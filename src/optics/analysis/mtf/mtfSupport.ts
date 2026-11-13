@@ -63,18 +63,29 @@ export interface MtfScaleDifference {
 }
 
 /**
- * Compare the prescription's focal length with the marketed one.
+ * Compare the prescription's focal length with the marketed one at the charted zoom position.
+ * Arrays list wide/tele endpoints or one value per evenly spaced authored station.
+ * Between listed positions, use the nearer endpoint/station, with ties going wider:
+ * no marketed focal length is authored between them, so it must not be interpolated.
  *
  * @param source - lens data carrying `focalLengthDesign` and `focalLengthMarketing`
+ * @param zoomT - normalized zoom position, 0 = wide and 1 = tele; scalars are unchanged
  * @returns the two lengths and their relative difference, or null when either is missing
  */
-export function mtfPrescriptionScale(source: {
-  focalLengthDesign?: number | readonly number[];
-  focalLengthMarketing?: number | readonly number[];
-}): MtfScaleDifference | null {
-  const first = (value: number | readonly number[] | undefined) => (Array.isArray(value) ? value[0] : value);
-  const designMm = first(source.focalLengthDesign) as number | undefined;
-  const marketingMm = first(source.focalLengthMarketing) as number | undefined;
+export function mtfPrescriptionScale(
+  source: {
+    focalLengthDesign?: number | readonly number[];
+    focalLengthMarketing?: number | readonly number[];
+  },
+  zoomT: number,
+): MtfScaleDifference | null {
+  const nearest = (value: number | readonly number[] | undefined): number | undefined => {
+    if (typeof value === "number" || value === undefined) return value;
+    const index = Math.max(0, Math.min(value.length - 1, Math.ceil(zoomT * (value.length - 1) - 0.5)));
+    return value[index];
+  };
+  const designMm = nearest(source.focalLengthDesign);
+  const marketingMm = nearest(source.focalLengthMarketing);
   if (!designMm || !marketingMm) return null;
   return { designMm, marketingMm, fraction: Math.abs(designMm / marketingMm - 1) };
 }
@@ -319,10 +330,13 @@ export function assessMtfSupport(request: AnalysisRequest, settings: MtfRequestO
   // Untyped callers can still pass a retired method name, which would otherwise compute as geometric.
   if (options.method !== "geometric" && options.method !== "diffraction")
     return reject("invalid-input", "MTF method must be geometric or diffraction.");
-  const scale = mtfPrescriptionScale({
-    focalLengthDesign: lens.source.catalog.focalLengthMm?.design,
-    focalLengthMarketing: lens.source.catalog.focalLengthMm?.marketing,
-  });
+  const scale = mtfPrescriptionScale(
+    {
+      focalLengthDesign: lens.source.catalog.focalLengthMm?.design,
+      focalLengthMarketing: lens.source.catalog.focalLengthMm?.marketing,
+    },
+    state.zoomT,
+  );
   if (scale && (scale.designMm / scale.marketingMm < 0.5 || scale.designMm / scale.marketingMm > 2)) {
     return reject("unverified-scale", "Prescription scale needs verification before reporting lp/mm.");
   }

@@ -128,10 +128,13 @@ export function assessMtfDataLimitations(state: PreparedGeometry, input: MtfData
     });
   }
 
-  const scale = mtfPrescriptionScale({
-    focalLengthDesign: source.catalog.focalLengthMm?.design,
-    focalLengthMarketing: source.catalog.focalLengthMm?.marketing,
-  });
+  const scale = mtfPrescriptionScale(
+    {
+      focalLengthDesign: source.catalog.focalLengthMm?.design,
+      focalLengthMarketing: source.catalog.focalLengthMm?.marketing,
+    },
+    state.zoomT,
+  );
   if (mtfScaleNeedsNote(scale)) {
     limitations.push({
       kind: "scale",

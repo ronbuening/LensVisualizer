@@ -252,7 +252,10 @@ only when it changes that display; the first five are blocking:
 - `image-plane`: the authored plane is inconsistent and the request was `auto` or `design`. A `best-axial` request
   never uses the authored plane, so it has no gap.
 - `short-field`: requested field positions are `outside-modeled-field`.
-- `scale`: the prescription and marketed focal lengths differ by more than 10 % (`mtfPrescriptionScale`).
+- `scale`: the prescription and marketed focal lengths differ by more than 10 % (`mtfPrescriptionScale`). The
+  comparison follows the charted zoom position: endpoint pairs use the nearer wide/tele end; lists with one value
+  per authored station use the nearer station. Midpoint ties go wider, and marketed focal lengths are never
+  interpolated. The warning names the compared pair; scalar values stay fixed.
 - `source-erratum` (note): the lens carries `corrected` `sourceErrata`, so a printed source value was replaced.
 - `source-inconsistent` (note): the lens carries `unresolved` `sourceErrata`; the curves describe the printed table.
 

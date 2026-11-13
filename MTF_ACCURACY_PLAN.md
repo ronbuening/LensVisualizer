@@ -155,13 +155,6 @@ and approval `agent_docs/decisions.md` requires (2026-10-20). Delete a row when 
 `agent_docs/decisions.md` with its reason; an accepted feature row moves to `FEATURE_ADDITION_PLAN.md`. Effort:
 S under a day, M one to three days, L longer.
 
-### Defects
-
-- **C1 — The scale warning ignores the zoom position.** `mtfPrescriptionScale` compares the first design and
-  marketed focal lengths at every station. Canon EF 100-300mm f/5.6 and Nikon AF Zoom-Micro 70-180mm keep their
-  wide-end warning at the tele end (31 % against 3.3 %, 17.7 % against 7.8 %); Sony RX10 misses its tele-end
-  11.8 %. Compare at the charted end. S.
-
 ### Accuracy
 
 - **C7 — The photopic spectrum is not a converged quadrature.** The five lines carry V(λ) samples as weights with no

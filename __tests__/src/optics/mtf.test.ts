@@ -7,12 +7,13 @@ import {
   buildChromaticPositiveElementLens,
   buildRearPlateLens,
   buildSimplePositiveElementLens,
+  buildVariableStopGapLens,
   REAR_PLATE_FIXTURE,
   teleconverterFixture,
   teleconverterHostData,
 } from "./testLensFixtures.js";
 import { prepareRuntimeState } from "../../../src/optics/state/runtimeAdapters.js";
-import { assessMtfSupport } from "../../../src/optics/analysis/mtf/mtfSupport.js";
+import { assessMtfSupport, mtfPrescriptionScale } from "../../../src/optics/analysis/mtf/mtfSupport.js";
 import type { MtfGridCap, MtfOptions } from "../../../src/types/mtf.js";
 import type { FiniteConjugate, RuntimeLens } from "../../../src/types/optics.js";
 import { LINE_NM } from "../../../src/optics/chromatic/spectralLines.js";
@@ -1225,6 +1226,100 @@ describe("MTF data limitations", () => {
     expect(field.text).toContain("1 of 2 field positions lies beyond it and is not charted");
     expect(scale.kind).toBe("scale");
     expect(scale.text).toContain("differs from the marketed 58 mm by 14%");
+  });
+  it("compares the charted zoom endpoint for scale notes and the extreme-scale guard", () => {
+    // Hold the traced geometry fixed while varying only the metadata the scale checks compare.
+    const zoom = buildVariableStopGapLens([
+      [1, 1],
+      [1, 1],
+      [1, 1],
+    ]);
+    for (const [design, marketing, warned, rejected] of [
+      [
+        [50, 70],
+        [50, 100],
+        [false, true],
+        [false, false],
+      ],
+      [
+        [35, 100],
+        [50, 100],
+        [true, false],
+        [false, false],
+      ],
+      [
+        [20, 100],
+        [50, 100],
+        [true, false],
+        [true, false],
+      ],
+      [
+        [50, 250],
+        [50, 100],
+        [false, true],
+        [false, true],
+      ],
+    ] as const) {
+      for (const zoomT of [0, 0.5, 0.5001, 1]) {
+        const prepared = prepareRuntimeState(zoom, 0, zoomT);
+        const target: typeof prepared = {
+          ...prepared,
+          lens: {
+            ...prepared.lens,
+            source: {
+              ...prepared.lens.source,
+              catalog: {
+                ...prepared.lens.source.catalog,
+                focalLengthMm: { design: [...design], marketing: [...marketing] },
+              },
+            },
+          },
+        };
+        const endpoint = zoomT <= 0.5 ? 0 : 1;
+        const notes = assessMtfDataLimitations(target, { ...reference, result: null });
+        const scale = notes.find((note) => note.kind === "scale");
+        expect(!!scale).toBe(warned[endpoint]);
+        if (scale) {
+          expect(scale.blocking).toBe(true);
+          expect(scale.text).toContain(`(${design[endpoint].toFixed(1)} mm)`);
+          expect(scale.text).toContain(`marketed ${marketing[endpoint]} mm`);
+        }
+        const support = assessMtfSupport(...mtfInputs(target, mtfTestOptions));
+        expect(support.available).toBe(!rejected[endpoint]);
+        if (rejected[endpoint]) expect(support.reason).toBe("unverified-scale");
+        else {
+          const note = support.limitations.find((text) => text.includes("prescription focal length"));
+          expect(!!note).toBe(warned[endpoint]);
+          if (note) {
+            expect(note).toContain(`(${design[endpoint].toFixed(1)} mm)`);
+            expect(note).toContain(`marketed ${marketing[endpoint]} mm`);
+          }
+        }
+      }
+    }
+  });
+  it("uses the nearest listed focal-length pair, with midpoint ties going wider", () => {
+    // Longer lists represent evenly spaced authored stations, never interpolated marketed values.
+    const source = { focalLengthDesign: [50, 70, 100], focalLengthMarketing: [50, 100, 100] };
+    for (const [zoomT, designMm, marketingMm] of [
+      [0, 50, 50],
+      [0.25, 50, 50],
+      [0.2501, 70, 100],
+      [0.5, 70, 100],
+      [0.75, 70, 100],
+      [0.7501, 100, 100],
+      [1, 100, 100],
+    ]) {
+      expect(mtfPrescriptionScale(source, zoomT)).toMatchObject({ designMm, marketingMm });
+    }
+    for (const zoomT of [0, 0.5, 1]) {
+      expect(mtfPrescriptionScale({ focalLengthDesign: 50, focalLengthMarketing: 100 }, zoomT)).toEqual({
+        designMm: 50,
+        marketingMm: 100,
+        fraction: 0.5,
+      });
+      expect(mtfPrescriptionScale({ focalLengthDesign: 50 }, zoomT)).toBeNull();
+    }
   });
   it("discloses authored source errata as notes that never block the chart", () => {
     // A corrected printed value and an unresolved contradiction each give one note; gaps stay blocking.
