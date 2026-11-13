@@ -6,9 +6,12 @@ export const MAKER_PREFIXES = [
      order-sensitive, and a Jena lens must not be caught by the generic prefix. */
   { prefix: "CARL ZEISS JENA", display: "Carl Zeiss Jena", slug: "carl-zeiss-jena" },
   { prefix: "CARL ZEISS", display: "Carl Zeiss Oberkochen", slug: "carl-zeiss-oberkochen" },
+  { prefix: "COOKE", display: "Cooke", slug: "cooke" },
+  { prefix: "TAYLOR HOBSON", display: "Cooke", slug: "cooke" },
   { prefix: "ENNA MÜNCHEN", display: "Enna München", slug: "enna-munchen" },
   { prefix: "ENNA MUNCHEN", display: "Enna München", slug: "enna-munchen" },
   { prefix: "ENNA", display: "Enna München", slug: "enna-munchen" },
+  { prefix: "ERNEMANN", display: "Ernemann", slug: "ernemann" },
   { prefix: "FUJIFILM", display: "Fujifilm", slug: "fujifilm" },
   { prefix: "FUJINON", display: "Fujifilm", slug: "fujifilm" },
   { prefix: "HASSELBLAD", display: "Hasselblad", slug: "hasselblad" },
