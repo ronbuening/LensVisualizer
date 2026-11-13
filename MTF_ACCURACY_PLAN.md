@@ -38,6 +38,9 @@ Where the comparison stands (19 digitized configurations, mean signed / mean abs
 factors we tested: patent example versus production lens, unknown maker focus and spectrum, and a heuristic ±0.035
 digitization allowance.
 
+That report was generated on 2026-10-08, before the stop-lattice sampling, so these figures describe the earlier
+engine until it is regenerated (candidate C12).
+
 ## Evidence
 
 Frozen-engine reruns, an independent d-line tracer, the patent PDFs, re-digitized charts and exact Hopkins
@@ -56,6 +59,9 @@ investigation and are replaced by regenerated ones as stages land.
 | Field as a fraction of the format half-diagonal in real chief-ray height | `src/optics/analysis/mtf/mtfFields.ts` |
 | Sampling convergence (128 → 256 changes ≤ 0.01) and the best-axial search (its optimum in 52 of 52) | `src/optics/analysis/mtf/mtfFocus.ts` |
 | Photopic five-line spectrum: monochromatic, C/d/F and broad white all fit charts worse | `src/optics/analysis/mtf/mtfSupport.ts` |
+| The 256-cell default cap: 256 → 512 moves ≤ 0.0012 (four lenses, both methods, 10/30/50 lp/mm); the steps are not monotone, so no Richardson extrapolation | `src/optics/analysis/mtf/mtfConstants.ts` |
+| Shear scaling from traced directions (no infinity-focus or flat-image shortcut), each wavelength's own cutoff, and the same line × flux weights in both methods | `src/optics/analysis/mtf/mtfShearedOtf.ts` |
+| Anchored dispersion: the Cauchy route stays within 2.4e-5 of the catalog curves over 470–650 nm (≤ 0.003 MTF on a 400 mm f/2.8); helium d and sodium D stay apart | `src/optics/chromatic/indexResolver.ts` |
 
 ### Wrong or unvalidated
 
@@ -140,6 +146,149 @@ Order: 4, then 8, then 9. Each stage is one PR and quotes the chart report befor
 
 - **Changes.** A site article quoting only regenerated report numbers with the wording above;
   `agent_docs/architecture/optics-engine.md` § Simulated MTF rewritten in place; this file deleted.
+
+## Unscheduled Candidates
+
+From a code and probe audit of the MTF path (six surveys, then an independent re-derivation of the numerical
+claims). None is scheduled. Each needs the owner's go-ahead, and a change to engine results also needs the evidence
+and approval `agent_docs/decisions.md` requires (2026-10-20). Delete a row when it ships; a rejected row moves to
+`agent_docs/decisions.md` with its reason; an accepted feature row moves to `FEATURE_ADDITION_PLAN.md`. Effort:
+S under a day, M one to three days, L longer.
+
+### Defects
+
+- **C1 — The scale warning ignores the zoom position.** `mtfPrescriptionScale` compares the first design and
+  marketed focal lengths at every station. Canon EF 100-300mm f/5.6 and Nikon AF Zoom-Micro 70-180mm keep their
+  wide-end warning at the tele end (31 % against 3.3 %, 17.7 % against 7.8 %); Sony RX10 misses its tele-end
+  11.8 %. Compare at the charted end. S.
+- **C2 — The unresolved-flux gate omits spectral weights.** `mtf.ts` sums transmitted and unresolved flux across
+  lines without `line.weight`, while the OTF mix uses it: a constructed photopic field reports 0.25 % where the
+  weighted share is 0.56 %. Weight both sums; keep the beam-neighbour rule. S.
+- **C3 — "MTF error ≤ 2ε" is stated for the diffraction method.** The bound is geometric; a scalar autocorrelation
+  counterexample moves 0.0117 against a bound of 0.0078. Word the note per method. S.
+- **C4 — The convergence band counts 0 lp/mm.** A request whose positive frequencies all lie above 50 lp/mm is
+  judged on DC alone and reported converged. The tab hides such values through `convergedThroughLpMm`; scripts read
+  the status. Leave 0 out of the band. S.
+- **C5 — The f/8 overlay is incomplete.** Its error is never rendered, the frequency view draws no faded
+  out-of-band segments for it, and the table and CSV leave it out. Under best axial focus it also refocuses at
+  f/8 (22 to 63 µm from the wide-open plane on four fast lenses) without saying so: label that, show both shifts,
+  and offer "hold the wide-open plane". S to M.
+- **C6 — `scripts/audit-mtf.mjs --fields` over-reports.** It counts unconverged curves as available at a 32-cell
+  cap and tallies the corner from extents. Report eligible, in-model, curve and converged separately, and trace
+  the corner. S.
+
+### Accuracy
+
+- **C7 — The photopic spectrum is not a converged quadrature.** The five lines carry V(λ) samples as weights with no
+  interval widths (spacing 40/45/55/40 nm), so 470 and 650 nm weigh about twice their share. Against a dense
+  integral of the same equal-energy V(λ) spectrum the curves read low by up to 0.029 at 50 lp/mm over 470–650 nm
+  (Nikkor Z 50mm f/1.2 on axis; 0.025 on Sigma 35mm f/1.4 Art at 70 % tangential; 0.012 on Sony FE 400mm f/2.8)
+  and by about 0.01 over 400–700 nm; each spectrum finding its own best focus does not remove it. Interval weights
+  on the same lines leave up to 0.014, five Gauss nodes up to 0.015, nine Gauss-Legendre nodes 0.0002 at 1.8 times
+  the trace cost. The band is a separate choice: 470–650 nm omits 3.3 % of the photopic weight and reads up to
+  0.021 above 400–700 nm, which needs glass data valid to 400 nm. Rule on the band, then the node count. This
+  reopens Stage 8's "no spectrum change" on convergence evidence, not chart fit. M.
+- **C8 — Stop-uniform weights are not the incident flux.** Since the stop lattice, a lit cell weighs 1 × bulk
+  transmission; the row above that calls equal flux per cell exact describes the launch lattice. Weighting the
+  same rays by projected launch area moves a Sigma 35mm f/1.4 Art corner by 0.008 (sagittal, 10 lp/mm, steady from
+  128 to 512 cells) and three other lenses by 0.004 to 0.009; a direction-cosine measure moves it 0.019 but is
+  rim-sensitive. Candidate: the stop-to-launch Jacobian as the cell weight, with the matching amplitude in the
+  sheared estimator, after an independent irradiance control. It changes the Pupil Convention, which follows
+  OpticStudio and CODE V. M to L.
+- **C9 — Two aliased grids can agree.** Convergence compares successive grids, so a blur far coarser than the
+  lattice can read the same wrong value on both: a 1.6 mm landing disc reads 1.0 at 10/30/50 lp/mm on 16 and 32
+  cells. The default 0–100 lp/mm sweep catches that case, and it takes a blur of millimetres, so the exposure is
+  soft-focus designs and far-off design planes (Pentax F 85mm Soft: a 20 lp/mm focus peak moved 9 mm between 64
+  and 256 cells). Candidate: keep a field unconverged while adjacent landings differ by more than half a cycle at
+  a judged frequency. Needed before any single-frequency focus option. M.
+- **C10 — Estimator controls beyond sixth order.** An eighth-order control (3r⁸ waves, half cutoff) reads 0.0023
+  low at every grid (five-point Boole; nine points 0.00004). A bowed stop-to-direction map (bow 0.2) reads 0.007
+  high at half cutoff at every grid; real corners bow 0.008 (Sony FE 20mm f/1.8 G) to 0.049 (Sony FE 14mm f/1.8
+  GM), where the same control gives 0.0005 or less. Add both as analytic tests with these bounds; no kernel change
+  on this evidence. S.
+- **C11 — Rim cells are all-or-nothing.** A cell counts when its centre lies in the stop. Area weights with traced
+  boundary cells cut an analytic disc's error at 32 cells from 0.0044 to 0.0003; weights on the kept cells alone
+  do nothing, and the sheared estimator needs its own treatment. The gain is speed (tolerance at a coarser grid),
+  not accuracy at the 256 cap. L.
+
+### Validation
+
+- **C12 — Regenerate the chart report and stamp it.** `mtf-chart-regression.generated.md` predates the stop
+  lattice, the unresolved-beam and dark-line rules and the 256 cap. Regenerate it, and print the engine commit and
+  hashes of anchors, conventions and prescriptions so a stale copy says so. Required before Stage 9. S plus the
+  run.
+- **C13 — The optical-path reference is wrong on mapped pupils.** It pairs cells on one direction cosine: on a
+  coupled 2-D map it reads 0.0070 where Hopkins gives 0.0144, inside its quarter-wave gate, and 0.0135 low on the
+  bowed map of C10. The report's cross-check covers 114 of 196 fields and none of Sigma 23mm f/1.4's; wide open,
+  6 of 12 probed fields fail the gate, while at f/8 the routes agree within 0.0005 on all 12. Pair on both
+  direction coordinates, report gate coverage, and add f/8 and 50 lp/mm. M to L.
+- **C14 — A numerical drift guard.** Nothing fails when an engine change moves MTF across the corpus:
+  `benchmark-mtf.mjs` keeps status and timing only. An opt-in signature of three existing benchmark cases (S, T,
+  focus shift, limits at 0/10/30/50 lp/mm, fields 0 and 0.7, fixed grid) with input hashes; never a chart
+  threshold. M.
+- **C15 — Missing analytic controls.** A finite-conjugate cutoff at 1/(λ · working N) from an independently derived
+  NA; a geometric defocus disc against its Bessel transform; the two-line beat over a full period. Cheap corpus
+  invariants: MTF(0) = 1, diffraction MTF at or below its own traced-pupil limit, S = T on axis. M.
+- **C16 — Midpoint comparison hides astigmatism errors.** The chart report compares pair midpoints; add the
+  assignment-free `|S − T|` against `pair_max − pair_min` beside it, and record S, T and the chart aperture in any
+  new digitization. M.
+- **C17 — A smaller outside witness.** A Cooke triplet with tabulated OpticStudio MTF is public (optiland issue
+  710), enough for a first rung before the adapter below. The plan's "two OpticStudio points" for optiland is out
+  of date. M.
+- **C18 — Stage 4 wording.** Its counts (77 of 846, 20 multi-flag) cannot be reproduced on today's 1,102 visible
+  lenses, several first suspects already carry errata (Pentax 645 35mm, Fujifilm GF 80mm), and errata live at
+  `source.errata`. Restate the acceptance against a fresh census. S.
+
+### Data
+
+- **C19 — Spectral eligibility.** 999 of 1,102 visible lenses get the photopic chart (280 with estimated
+  dispersion) and 70 fall back to the reference line. 38 of those are blocked by a high-νd glass with no `dPgF`:
+  59 surfaces, 0.46 % of the catalog's. 129 warned lenses estimate a single element. Extend the census to list
+  every blocker and what each upgrade unlocks. L for the source work.
+- **C20 — Finite conjugates.** 62 of 767 lenses with focus travel (8 %) have an eligible finite station; 504 of
+  604 published finite stations lack `focus.conjugates`. Backfill from sources only, never from a close-focus
+  label. L.
+- **C21 — Gaps that reach a chart unnamed.** A spherical stand-in for unpublished aspheres (Schneider Super-Symmar
+  XL 110mm) and reconstructed clear apertures (Sigma 23mm f/1.4) are stated only in file headers. Fold a declared
+  missing-asphere warning into Stage 8's `sdSource` work. M, plus backfill.
+
+### Features
+
+- **C22 — Show the diffraction limit.** `MtfFieldResult.diffractionLimit` is computed and unused. Draw it as an
+  opt-in S/T pair ("same traced pupil, no aberration"), add a field selector to the frequency view (it shows
+  centre, 50 % and the outermost only) and pixel-pitch Nyquist markers. Never multiply a geometric curve by it. M.
+- **C23 — A shareable MTF link.** Method, spectrum, focus, grid cap, field step, frequencies and the f/8 overlay
+  live in localStorage, so a shared link can show different curves. "Copy MTF link" with versioned settings that
+  do not overwrite the recipient's defaults. M.
+- **C24 — Exports with context.** The CSV has no lens, aperture, station, method, spectrum or plane, and exports
+  the selected frequencies even from the frequency view. Add current-view and all-values exports, the overlay's
+  rows, and SVG then PNG with a caption. M.
+- **C25 — Per-field diagnostics.** Grid, `maxDelta`, stable-through frequency, unresolved flux and notes exist per
+  field; the table shows values, ray count and status, and notes lose their field. Attach them to the field, and
+  show the focus scores. S.
+- **C26 — Through-focus view and a focus offset.** `mtfFocus.ts` already re-lands traced rays on shifted flat and
+  curved surfaces, off axis too. A through-focus plot per field and frequency, a user offset, and S/T peak
+  positions as a field-curvature readout share that code with Stage 8's band. Depends on C9. L.
+- **C27 — Comparisons beyond f/8.** Any aperture pair, MTF against aperture, and MTF against focal length over a
+  zoom's published stations (369 zooms, 1,092 published stations), each stating its plane. M each.
+- **C28 — Spectrum choices.** `MtfSpectralLine` already carries arbitrary lines. A chosen wavelength (S); R, G and
+  B responses on one plane, a g-to-C band, an illustrative sensor-weighted daylight (M each); eligibility judged
+  on the wavelengths requested.
+- **C29 — Finite-station readouts.** Working f-number and traced magnification beside a finite chart, navigation
+  to eligible stations, and an object-side lp/mm axis for macro lenses. M.
+- **C30 — Refusals that say why.** One message covers 18 fisheyes, 7 mirror lenses (the same 7 are annular) and 7
+  diffractive designs. Name the missing prerequisite (S). Unlock in stages, each behind its own control: an
+  on-axis geometric fisheye path; geometric tracing of a diffractive order; mirror lenses last, which need optical
+  path in the generalized tracer (the estimator reads an aberrated annulus 0.031 low, the optical-path kernel
+  within 0.00003). L each.
+- **C31 — Worker responsiveness.** The 30 ms budget is checked only between generator steps, and each step is a
+  whole field and grid across every line; the f/8 overlay doubles the workers (four in comparison mode), each
+  with its own 64 MiB cache. Phase-aware progress, yields inside long steps, and one page-wide budget before any
+  pool. M.
+- **C32 — RMS wavefront and Strehl per field.** Needs optical-path capture on the production bundles and the
+  pairing fix of C13; a ratio of MTF to limit at one frequency is not Strehl. M to L.
+- **C33 — Frequency-view legibility.** Fields differ by colour only there, and a line bridges fields still being
+  computed. Add markers or end labels and a distinct style for the bridged span. S.
 
 ## Optional: External Cross-Check Tool (optiland)
 
