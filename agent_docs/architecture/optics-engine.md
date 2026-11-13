@@ -215,8 +215,11 @@ spectral proxy. Complex OTFs combine, weighted by incident line weight × transm
 retains lateral color. Every chromatic trace sets `wavelengthNm` beside its indices.
 
 **Convergence and focus.** Grids refine 16 → 256 up to `maxGridSize` (256 by default). Convergence is
-judged at and below 50 lp/mm (absolute change ≤0.01), where a sampled geometric sum is not yet dominated by aliasing
-noise; each field reports `convergedThroughLpMm`. A finer grid that fails keeps the last good curve as unconverged.
+judged at positive requested frequencies at and below 50 lp/mm (absolute change ≤0.01), where a sampled geometric sum
+is not yet dominated by aliasing noise. If none is in that band, all positive requested frequencies decide convergence.
+A DC-only request is `unconverged` on its first successful grid and `converged` after its second, with `maxDelta: 0`.
+Each field reports `convergedThroughLpMm`, the highest requested frequency through which every change stays in
+tolerance, evaluated in frequency order. A finer grid that fails keeps the last good curve as unconverged.
 The axial bundle is re-projected without retracing to find the image plane that maximizes mean axial MTF at
 10–50 lp/mm (a scan, then golden-section refinement). The scan spans the flux-weighted axial crossings of the rays
 with 2 % of the flux ignored at each end, so a stray ray cannot stretch its steps past the focus, and it counts the

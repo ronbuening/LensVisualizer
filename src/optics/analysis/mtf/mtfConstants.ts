@@ -25,9 +25,10 @@ export const MTF_FOCUS_MODES: readonly MtfFocusMode[] = Object.freeze(["auto", "
 export const MTF_CONVERGENCE_TOLERANCE = 0.01;
 
 /**
- * Convergence is judged at and below this frequency. Above it a sampled geometric sum is
- * dominated by aliasing noise at low contrast, so demanding stability there forces 4x grids
- * without improving the curves photographic charts report (10-50 lp/mm).
+ * Convergence is judged at positive frequencies at and below this frequency, falling back
+ * to all positive requested frequencies if none is in band. Above it a sampled geometric
+ * sum is dominated by aliasing noise at low contrast, so demanding stability there forces
+ * 4x grids without improving the curves photographic charts report (10-50 lp/mm).
  */
 export const MTF_CONVERGENCE_BAND_LPMM = 50;
 

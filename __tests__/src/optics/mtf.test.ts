@@ -47,7 +47,7 @@ import {
 } from "../../../src/optics/analysis/mtf/mtfFocus.js";
 import { findMtfFootprint } from "../../../src/optics/analysis/mtf/mtfFootprint.js";
 import type { TraceRayClass } from "../../../src/optics/trace/rayClassification.js";
-import { MTF_MAX_UNKNOWN_FLUX } from "../../../src/optics/analysis/mtf/mtfConstants.js";
+import { MTF_FREQUENCIES, MTF_MAX_UNKNOWN_FLUX } from "../../../src/optics/analysis/mtf/mtfConstants.js";
 import type { EngineTraceResult } from "../../../src/optics/trace/types.js";
 import { traceEngineRay } from "../../../src/optics/trace/rayAdapters.js";
 import { createImageSurfaceShape } from "../../../src/optics/geometry/imageSurface.js";
@@ -799,6 +799,62 @@ describe("MTF pupil sampling", () => {
 });
 
 describe("MTF refinement and focus", () => {
+  // Prescribed successive curves isolate convergence from optical tracing and sampling.
+  const refineCurves = (frequencies: readonly number[], previous: number[], current: number[]) => [
+    ...refineMtfField(
+      [16, 32],
+      (size) => {
+        const values = size === 16 ? previous : current;
+        return { kind: "curves", field: { ...emptyMtfField(0), sagittal: values, tangential: values } };
+      },
+      frequencies,
+    ),
+  ];
+
+  it.each([{ frequencies: [0, 100] }, { frequencies: [100] }])(
+    "judges positive frequencies above the band for $frequencies lp/mm",
+    ({ frequencies }) => {
+      const field = refineCurves(
+        frequencies,
+        frequencies.map((f) => (f === 0 ? 1 : 0.1)),
+        frequencies.map((f) => (f === 0 ? 1 : 0.9)),
+      ).at(-1)!;
+      expect(field.status).toBe("unconverged");
+      expect(field.maxDelta).toBeCloseTo(0.8, 12);
+      expect(field.convergedThroughLpMm).toBe(frequencies.includes(0) ? 0 : null);
+    },
+  );
+
+  it("keeps DC-only requests converged after two successful grids", () => {
+    const fields = refineCurves([0], [1], [1]);
+    expect(fields[0].status).toBe("unconverged");
+    expect(fields[1]).toMatchObject({ status: "converged", maxDelta: 0, convergedThroughLpMm: 0 });
+  });
+
+  it.each([1 / 128, 1 / 32])("preserves default-grid convergence for an in-band change of %j", (delta) => {
+    const field = refineCurves(
+      MTF_FREQUENCIES,
+      MTF_FREQUENCIES.map((f) => (f === 0 ? 1 : 0.5)),
+      MTF_FREQUENCIES.map((f) => (f === 0 ? 1 : 0.5 + (f <= 50 ? delta : 0.125))),
+    ).at(-1)!;
+    expect(field).toMatchObject({
+      status: delta <= 0.01 ? "converged" : "unconverged",
+      maxDelta: delta,
+      convergedThroughLpMm: delta <= 0.01 ? 50 : 0,
+    });
+  });
+
+  it.each([20, 100])("reports stability in frequency order when the first unstable frequency is %j", (unstable) => {
+    const frequencies = [40, 0, 100, 20];
+    const field = refineCurves(
+      frequencies,
+      frequencies.map((f) => (f === 0 ? 1 : 0.5)),
+      frequencies.map((f) => (f === 0 ? 1 : 0.5 + (f >= unstable ? 0.125 : 1 / 128))),
+    ).at(-1)!;
+    expect(field.convergedThroughLpMm).toBe(unstable === 20 ? 0 : 40);
+    expect(frequencies).toEqual([40, 0, 100, 20]);
+  });
+
   it("keeps the last successful grid when finer sampling fails", () => {
     const curves = (value: number): MtfGridOutcome => ({
       kind: "curves",

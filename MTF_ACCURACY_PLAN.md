@@ -161,9 +161,6 @@ S under a day, M one to three days, L longer.
   marketed focal lengths at every station. Canon EF 100-300mm f/5.6 and Nikon AF Zoom-Micro 70-180mm keep their
   wide-end warning at the tele end (31 % against 3.3 %, 17.7 % against 7.8 %); Sony RX10 misses its tele-end
   11.8 %. Compare at the charted end. S.
-- **C4 — The convergence band counts 0 lp/mm.** A request whose positive frequencies all lie above 50 lp/mm is
-  judged on DC alone and reported converged. The tab hides such values through `convergedThroughLpMm`; scripts read
-  the status. Leave 0 out of the band. S.
 - **C5 — The f/8 overlay is incomplete.** Its error is never rendered, the frequency view draws no faded
   out-of-band segments for it, and the table and CSV leave it out. Under best axial focus it also refocuses at
   f/8 (22 to 63 µm from the wide-open plane on four fast lenses) without saying so: label that, show both shifts,

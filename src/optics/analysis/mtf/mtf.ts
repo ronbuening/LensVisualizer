@@ -358,9 +358,10 @@ function fieldAtGrid(
 /* ── Convergence ── */
 
 /**
- * Compare two successive grids. Only frequencies within the convergence band decide the
- * status; the highest frequency whose running maximum change stays in tolerance is reported
- * so higher-frequency charts can show where sampling noise begins.
+ * Compare two successive grids at positive frequencies in the convergence band, or all
+ * positive frequencies if none is in band. DC alone retains its zero-change comparison.
+ * The highest frequency whose running maximum change stays in tolerance is reported in
+ * frequency order so higher-frequency charts can show where sampling noise begins.
  */
 function applyConvergence(field: MtfFieldResult, previous: MtfFieldResult | null, frequencies: readonly number[]) {
   const tolerance = formatMtfTolerance();
@@ -375,12 +376,15 @@ function applyConvergence(field: MtfFieldResult, previous: MtfFieldResult | null
       Math.abs(field.tangential[i] - previous.tangential[i]),
     ),
   );
-  const band = frequencies.some((f) => f <= MTF_CONVERGENCE_BAND_LPMM)
-    ? deltas.filter((_, i) => frequencies[i] <= MTF_CONVERGENCE_BAND_LPMM)
-    : deltas;
-  field.maxDelta = Math.max(...band);
+  let band = deltas.filter((_, i) => frequencies[i] > 0 && frequencies[i] <= MTF_CONVERGENCE_BAND_LPMM);
+  if (!band.length) band = deltas.filter((_, i) => frequencies[i] > 0);
+  field.maxDelta = Math.max(...(band.length ? band : deltas));
   let through: number | null = null;
-  for (let i = 0; i < frequencies.length && deltas[i] <= MTF_CONVERGENCE_TOLERANCE; i++) through = frequencies[i];
+  const orderedIndices = frequencies.map((_, i) => i).sort((a, b) => frequencies[a] - frequencies[b]);
+  for (const i of orderedIndices) {
+    if (!(deltas[i] <= MTF_CONVERGENCE_TOLERANCE)) break;
+    through = frequencies[i];
+  }
   field.convergedThroughLpMm = through;
   field.status = field.maxDelta <= MTF_CONVERGENCE_TOLERANCE ? "converged" : "unconverged";
   field.message =
