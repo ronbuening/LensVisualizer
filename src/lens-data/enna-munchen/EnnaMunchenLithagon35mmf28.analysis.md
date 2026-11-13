@@ -1,80 +1,89 @@
-# Enna Lithagon 35 mm: source f/2.5 representative
+# Enna München Lithagon 35mm f/2.8
 
 ## Patent Reference and Design Identification
 
-**Patent:** US 2983191 A  
+**Patent:** US 2,983,191 A\
 **Inventor:** Johann Lautenbacher  
 **Assignee:** Enna-Werk Optische Anstalt Dr. Appelt K.G.  
 **Filed:** 15 February 1956  
 **Granted:** 9 May 1961  
 **Priority:** Germany, 19 February 1955  
-**Example details:** Main numerical example, normalized f = 1, uniformly scaled by 35.
+**Example details:** Sole numerical example, normalized f = 1; radii, thicknesses, air gaps and back focus uniformly scaled ×35 to millimetres.
 
-This is a qualified representative for the historical Lithagon 35 mm f/2.8 family, not an identified factory prescription. The patent example is f/2.5 with a 65° full field. The primary Enna sales brochure describes a 35 mm f/2.8 lens with a 64° field, six elements and an ordered section consistent with the patent's six-element/five-group design. These aperture and field differences remain explicit; the source is not stopped or relabeled to pretend numerical identity.
+Johann Lautenbacher's patent describes a six-element/five-group retrofocus design associated with the Lithagon 2,8/35. The example is f/2.5 with a 65° full field; the patent text also describes correction for f/2.8. Enna's sales brochure lists six elements, a 64° field, f/2.8–22 and a matching optical section for the retail lens, in Exakta and M42 mounts. These converging details support the association without establishing identical production prescriptions.
 
-The brochure is manufacturer-authored content mirrored by a collector, not a present manufacturer-hosted page. It distinguishes standard and automatic pre-set products with different near-focus specifications. Its statement of matching quality/specification does not prove identical numerical production optics across all versions. Uniform 35 mm scaling is representative, not a measured retail focal length.
+The manufacturer brochure, preserved on a collector's site, distinguishes standard and automatic pre-set versions with different close-focus specifications. Their matching published specifications do not establish identical optical prescriptions across all versions; 35 mm is the nominal retail focal length.
 
-A secondary historical page associates the product with this design but has conflicting patent references: prose DE1102435 versus image caption DE1062028. The original US publication and primary ordered section are the principal evidence; the secondary citation is not silently harmonized. Existing Lithagon 35 mm f/3.5 and Super-Lithagon 35 mm f/1.9 are different prescriptions and not additional versions counted here.
+A secondary historical page associates the product with DE 1,062,028 but gives DE 1,102,435 elsewhere in its prose. The original US publication and Enna's optical section provide the stronger evidence. The Lithagon 35 mm f/3.5 and Super-Lithagon 35 mm f/1.9 are different designs.
 
 ## Optical Architecture
 
 A large front negative meniscus precedes a modified triplet-like rear assembly across a substantial air gap. Two closely spaced positive singlets are followed by a biconcave negative singlet and a rear cemented negative/positive pair. Six elements form five groups; S10 is the cemented interface.
 
-The front negative member provides the retrofocus arrangement required for a long rear image distance. The source explains constraints on front-group spacing, surface power and rear-group correction. Those design claims are source statements, not independently measured performance of this reconstruction.
+The front negative member provides the retrofocus arrangement required for a long rear image distance. The patent constrains front-group spacing, surface power and rear-group correction; these design conditions do not establish measured production performance.
 
 ## Element-by-Element Analysis
 
 ### L1: front negative meniscus
 
-nd = 1.51821, νd = 65.2; the index exactly matches the helium-d catalog value of PK2. The meniscus is concave toward the rear assembly. Its large separation from L2 is retained exactly after uniform scaling. The source calls the indices mean refractive indices; exact helium-d catalog matches for five of the six elements establish the d reference.
+nd = 1.51821, νd = 65.2. Glass: PC2 (Hoya catalog equivalent). f = −73.68 mm in air. The negative meniscus is concave toward the rear assembly and separated from L2 by the largest air gap. The patent calls its indices mean refractive indices; their agreement with helium-d catalog values supports the d reference.
 
-### L2: positive singlet
+### L2: biconvex positive singlet
 
-nd = 1.74400, νd = 44.7; unmatched high-index source glass, using the d reference established by the other five elements. This positive element begins the rear assembly. Its small air separation from L3 is retained, not merged into a cemented interface.
+nd = 1.74400, νd = 44.7. Glass: S-LAM2 (Ohara catalog equivalent). f = +37.96 mm in air. This high-index positive element begins the rear assembly; a 0.07 mm air gap separates it from L3.
 
 ### L3: positive meniscus
 
-nd = 1.69347, νd = 53.5; the index exactly matches the helium-d catalog value of LaF2. The main example table prints 53.5, while the repeated claim table prints 53.7. This model uses the main example and records the conflict; no source-value correction or spectral fit is made. An original German scan has not resolved the discrepancy.
+nd = 1.69347, νd = 53.5. Glass: H-LaK6A (CDGM catalog equivalent). f = +53.50 mm in air. This positive meniscus precedes the iris. The example prints 53.5, while the claim table prints 53.7; the example value is retained. The discrepancy remains unresolved in the German source.
 
 ### L4: biconcave negative singlet
 
-nd = 1.68893, νd = 31.1; the index exactly matches the helium-d catalog value of SF8. This negative element lies between positive portions of the rear assembly. The patent discusses a low-Abbe negative element in its correction scheme; no quantitative aberration allocation is independently established here.
+nd = 1.68893, νd = 31.1. Glass: PBM28 (Ohara catalog equivalent). f = −16.81 mm in air. This biconcave element lies behind the iris, between positive portions of the rear assembly. The patent discusses its low Abbe number in the correction scheme without providing a separate quantitative aberration contribution.
 
 ### L5 and L6: rear cemented pair
 
-L5: nd = 1.66680, νd = 33.1; the index exactly matches the helium-d catalog value of SF19. L6: nd = 1.69100, νd = 54.9; the index exactly matches the helium-d catalog value of LaK9. The negative/positive pair shares the source's S10 interface; no extra air layer is inserted. No modern melt or catalog identity is asserted.
+L5: nd = 1.66680, νd = 33.1. Glass: PBM39 (Ohara catalog equivalent). f = −116.81 mm in air. L6: nd = 1.69100, νd = 54.9. Glass: J-LAK9 (Hikari catalog equivalent). f = +19.95 mm in air. The negative meniscus and biconvex positive element share S10 and form cemented doublet C1, whose focal length is +23.82 mm.
 
-Isolated-element focal lengths are not independently certified; all source radii and thicknesses are available in the typed prescription rather than inferred from product photographs.
+The individual focal lengths describe each element in air; they do not isolate its aberration contribution within the complete lens.
 
 ## Glass Identification and Selection
 
-The original publication identifies Abbe numbers and describes refractive indices as mean indices. Five of the six indices equal helium-d catalog values exactly: PK2 (L1), LaF2 (L3), SF8 (L4), SF19 (L5) and LaK9 (L6). This agreement establishes the d reference; it does not identify a historical supplier or melt. L2 remains unmatched. The source's 53.5/53.7 conflict is preserved, not hidden through rounding or optimization. No anomalous dispersion, full spectral melt, measured color correction or unique glass vendor is established.
+The catalog equivalents below agree with the patent within |Δnd| ≤ 0.0001 and |Δνd| ≤ 0.15. They supply dispersion curves without identifying the historical supplier or melt. The printed indices and Abbe numbers remain unchanged, including L3's 53.5/53.7 example/claim discrepancy.
+
+| Element | Patent nd / νd | Catalog equivalent | Catalog nd / νd |
+|---|---|---|---|
+| L1 | 1.51821 / 65.2 | PC2 (Hoya) | 1.51821 / 65.160509 |
+| L2 | 1.74400 / 44.7 | S-LAM2 (Ohara) | 1.743997 / 44.79 |
+| L3 | 1.69347 / 53.5 | H-LaK6A (CDGM) | 1.69350 / 53.380441 |
+| L4 | 1.68893 / 31.1 | PBM28 (Ohara) | 1.68893 / 31.082901 |
+| L5 | 1.66680 / 33.1 | PBM39 (Ohara) | 1.666799 / 33.046816 |
+| L6 | 1.69100 / 54.9 | J-LAK9 (Hikari) | 1.69100 / 54.93 |
+
+The high-dispersion negative glasses in L4 and L5 complement the positive members. No source partial-dispersion measurements establish anomalous dispersion or measured color correction. Historical Schott-name suggestions do not supply resolving catalog rows at these coordinates; the labels therefore name the available equivalents explicitly.
 
 ## Focus Mechanism
 
-The model preserves the source infinity prescription and printed BFL of 1.00950, scaled to 35.3325 mm. Literal paraxial computation gives 35.327695235 mm; the resulting +0.004804765 mm difference remains in the source image plane. No refocus or optical retuning removes it.
+Only infinity focus is modeled. The printed back-focus gap is 35.3325 mm; paraxial back focus is 35.327695235 mm, leaving a +0.004804765 mm offset at the source image plane.
 
-No finite-focus movement is reconstructed. The brochure gives about 1½ feet (approximately 0.46 m) for the standard-mount lens and 9 inches for the pre-set version. The standard-mount value is recorded as catalog.closeFocusM.marketing; the versions are not conflated. No manufacturing scale or focus travel is inferred from the nominal 35 mm label.
+The brochure gives about 1½ feet (approximately 0.46 m) close focus for the standard-mount lens and 9 inches for the pre-set version. The catalog minimum records the standard-mount value. The patent supplies no finite-focus spacings or focus travel.
 
 ## Aperture and Iris Assumptions
 
-The front element uses 19 mm semi-diameters and the rear assembly uses a common 9.5 mm. These arise from an explicit 2:1 schematic-height hypothesis followed by the largest half-millimeter rear-cap grid satisfying default 0.9 geometry limits. They are not calibrated clear-aperture measurements and were not selected by improving ray results.
+The front element uses 19 mm semi-diameters and the rear assembly uses 9.5 mm, inferred with a 2:1 height ratio and constrained by surface geometry. They are not published clear apertures. The patent figure suggests about 16 mm front and 8.5–8.9 mm rear, making the modeled rims about 10–20% larger.
 
-Neither patent nor brochure supplies a reliable iris mark or coordinate. The model therefore places a hypothetical iris at the midpoint of the source l3 gap, between L3 and L4: 1.9775 mm on each side. Full inferred-cap clearances are 1.047761 mm and 0.576071 mm. Native f/2.5 pupil construction gives a physical iris radius of 7.246861836 mm, a model result rather than a source diameter.
+Neither patent nor brochure supplies a reliable iris mark or coordinate. The inferred iris lies at the midpoint of l3, between L3 and L4: 1.9775 mm on each side. Surface-edge clearances to the iris plane are 1.047761 mm and 0.576071 mm. The f/2.5 design gives a physical iris radius of 7.246861836 mm, a calculated value rather than a published diameter.
 
-The source f/2.5 design and marketed f/2.8 family are separately recorded. The stop range through f/22 follows brochure context, but complete performance at every setting is not verified. No source radius, thickness, index, spacer, rim extension or geometry-limit override is used to force acceptance.
+The model opens to the patent's f/2.5; the retail f/2.8–22 aperture range follows Enna's brochure. The model does not establish measured performance at every setting.
 
-## Verification Summary
+## Model Scope and Limitations
 
-Native construction gives EFL 34.996580090 mm at f/2.5. Strict isolated TypeScript and independent scoped source/geometry checks accompany the handoff. The printed source image plane is retained.
+The calculated EFL is 34.996580090 mm at f/2.5, approximately 0.01% below the nominal 35 mm. The printed image-plane gap is retained.
 
-Two sparse diagnostics use 25 sampled pupil points plus the chief: nominal 36 × 24 mm frame angles and the explicit source 32.5° half-field. Each gives 26 successful optical traversals at axis, half and 0.7 field; 23 successful/3 clipped at 0.85 field; and 18 successful/8 clipped at the edge. Traces terminate at the last optical surface, not at a tested image-plane landing. Counts are not throughput fractions, full pupil integration, MTF or source-field coverage certification.
-
-The representative remains hidden. Current-corpus compatibility, full-app tests, lint/format integration, build, browser and MTF checks are deferred, not passed. Independent acceptance is limited to the qualified pre-integration scope.
+Peripheral pupil clipping remains possible despite clear chief-ray coverage of the 36 × 24 mm frame. The inferred stop and rims limit comparison with production vignetting. No measured MTF or production tolerances are supplied by these sources.
 
 ## Sources
 
 - [Original US2983191](https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/2983191), three-page USPTO scan, main example and repeated claim on PDF page 3.
 - [Enna product brochure](http://www.ihagee.org/Lenzen/ODI3-EnnaLenzen.pdf), primary maker content on a collector mirror; both pages inspected.
-- [Secondary retrofocus history](https://zeissikonveb.de/start/objektive/sonstige_objektive/retrofokus.html), qualified association with conflicting patent numbers retained.
+- [Secondary retrofocus history](https://zeissikonveb.de/start/objektive/sonstige_objektive/retrofokus.html), product association with conflicting patent numbers.
 - [Secondary product section](https://photobutmore.de/exakta/objektive/enna/lithagon2835-schnitt.jpg), contextual cross-check only; primary brochure preferred.

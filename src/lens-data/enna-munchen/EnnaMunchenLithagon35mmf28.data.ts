@@ -2,7 +2,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * US 2,983,191 A, sole example (PDF page 3), Johann Lautenbacher, Enna-Werk.
- * Qualified Lithagon 35 mm representative: patent f/2.5, marketed lens f/2.8.
+ * Lithagon 2,8/35: patent design f/2.5, marketed lens f/2.8.
  * Scale factor 35: multiply the source's normalized f = 1 radii, thicknesses,
  * air gaps and back focus by 35 to convert them to millimetres; n and ν are unchanged.
  * The unmarked stop is inferred at the l3 midpoint, splitting its 3.955 mm gap
@@ -10,8 +10,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * The 19 mm front and 9.5 mm rear semi-diameters are inferred schematic rims,
  * not published clear apertures. Back focus is not inferred: the final gap
  * retains the printed s′ = 1.00950 scaled to 35.3325 mm.
- * Five of six indices exactly match helium-d catalog values (PK2, LaF2, SF8,
- * SF19 and LaK9), establishing the d reference without identifying a supplier or melt.
+ * The indices agree with helium-d catalog values. Glass labels name catalog
+ * equivalents within the printed index/Abbe tolerances, not a supplier or melt.
  * Only the infinity prescription is modeled; the standard-mount brochure's
  * approximate 0.46 m close focus is catalog information, not modeled focus travel.
  */
@@ -20,8 +20,10 @@ const LENS_DATA = {
   "key": "enna-munchen-lithagon-35mm-f28",
   "maker": "Enna München",
   "name": "ENNA MÜNCHEN LITHAGON 35mm f/2.8",
+  "subtitle": "US 2,983,191 A, sole example — Lithagon 2,8/35",
   "visible": true,
   "catalog": {
+    "specs": ["6 ELEMENTS / 5 GROUPS", "ALL SPHERICAL", "DESIGN F/2.5", "f/2.8–22"],
     "lensMounts": ["exakta", "m42"],
     "imageFormat": "135-full-frame",
     "closeFocusM": {
@@ -57,61 +59,69 @@ const LENS_DATA = {
       "id": 1,
       "name": "L1",
       "label": "Element 1",
-      "type": "Spherical patent glass",
+      "type": "Negative Meniscus",
+      "role": "Front negative element of the long-back-focus retrofocus layout.",
       "nd": 1.51821,
       "vd": 65.2,
       "indexReference": "d",
-      "glass": "Source mean index with d-reference assumption; no exact melt"
+      "glass": "PC2 (Hoya catalog equivalent)"
     },
     {
       "id": 2,
       "name": "L2",
       "label": "Element 2",
-      "type": "Spherical patent glass",
+      "type": "Biconvex Positive",
+      "role": "Front positive singlet of the rear assembly.",
       "nd": 1.744,
       "vd": 44.7,
       "indexReference": "d",
-      "glass": "Source mean index with d-reference assumption; no exact melt"
+      "glass": "S-LAM2 (Ohara catalog equivalent)"
     },
     {
       "id": 3,
       "name": "L3",
       "label": "Element 3",
-      "type": "Spherical patent glass",
+      "type": "Positive Meniscus",
+      "role": "Positive singlet immediately before the iris.",
       "nd": 1.69347,
       "vd": 53.5,
       "indexReference": "d",
-      "glass": "Source mean index with d-reference assumption; no exact melt"
+      "glass": "H-LaK6A (CDGM catalog equivalent)"
     },
     {
       "id": 4,
       "name": "L4",
       "label": "Element 4",
-      "type": "Spherical patent glass",
+      "type": "Biconcave Negative",
+      "role": "High-dispersion negative singlet behind the iris.",
       "nd": 1.68893,
       "vd": 31.1,
       "indexReference": "d",
-      "glass": "Source mean index with d-reference assumption; no exact melt"
+      "glass": "PBM28 (Ohara catalog equivalent)"
     },
     {
       "id": 5,
       "name": "L5",
       "label": "Element 5",
-      "type": "Spherical patent glass",
+      "type": "Negative Meniscus",
+      "role": "Negative front member of the rear cemented doublet.",
+      "cemented": "C1",
       "nd": 1.6668,
       "vd": 33.1,
       "indexReference": "d",
-      "glass": "Source mean index with d-reference assumption; no exact melt"
+      "glass": "PBM39 (Ohara catalog equivalent)"
     },
     {
       "id": 6,
       "name": "L6",
       "label": "Element 6",
-      "type": "Spherical patent glass",
+      "type": "Biconvex Positive",
+      "role": "Positive rear member of the rear cemented doublet.",
+      "cemented": "C1",
       "nd": 1.691,
       "vd": 54.9,
       "indexReference": "d",
-      "glass": "Source mean index with d-reference assumption; no exact melt"
+      "glass": "J-LAK9 (Hikari catalog equivalent)"
     }
   ],
   "surfaces": [
@@ -194,8 +204,8 @@ const LENS_DATA = {
     }
   ],
   "focus": {
-    "closeFocusM": 1000000000000000.0,
-    "description": "The patent gives only the infinity prescription, so no focus movement is modeled."
+    "closeFocusM": 1e15,
+    "description": "Infinity focus only; the patent gives no finite-focus spacings."
   },
   "aperture": {
     "nominalFNumber": 2.5,
@@ -216,6 +226,7 @@ const LENS_DATA = {
     "fullFieldDeg": 65,
     "maxTraceFieldDeg": 32.5
   },
+  "doublets": [{ "text": "C1", "fromSurface": "9", "toSurface": "11" }],
   "layout": {
     "yScFill": 0.7
   }
