@@ -213,3 +213,11 @@ The glass catalog gained an LZOS shard (TK14, TK21, STK3), each a formula-3 fit 
 index table over 365–1014 nm (max index error under 1e-5). L5 changes from the K-LaK11 spectral proxy to
 `STK3 (LZOS)`: nd 1.659502 / νd 57.35 against the printed 1.6595 / 57.35, so the curve now matches the named glass
 instead of a row 0.0012 lower in nd. STK12 has no LZOS row in the source table, so L3, L4, L7 and L8 keep J-LAK9.
+
+## 2026-11-12 — LZOS TF5 row
+
+The glass catalog gained an LZOS TF5 row (formula-3 fit to the LZOS index table, max index error 5.9e-6), added for the
+KMZ New Petzval 85mm f/2.2. L2, L6 and L9 change from the H-ZF6 (CDGM) d-line equivalent to `TF5 (LZOS)`: nd
+1.755234 / νd 27.53 against the printed 1.7552 / 27.52, the GOST 13659-78 values. PgF moves from 0.6099 (H-ZF6) to
+0.6045, against 0.6048 for GOST TF5, which removes the 1.5e-4 g-line excess noted above. QF3 (LF5) and J-LAK9 (STK12)
+are unchanged.

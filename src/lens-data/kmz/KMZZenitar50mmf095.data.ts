@@ -15,8 +15,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * (inferred from that agreement; the patent names no glass): 1.5750 / 41.29 LF5, 1.7441 / 50.42 STK19,
  * 1.6595 / 57.35 STK3, 1.7552 / 27.52 TF5, 1.6131 / 60.61 TK14 and 1.6895 / 31.13 TF8, every nd to the printed four
  * decimals and every νd within 0.03. At the e line these glasses read 0.0024–0.0065 higher, and no pair matches any
- * catalog glass there. STK3 and TK14 trace on the LZOS catalogue rows. QF3 and H-ZF6 equal LF5 and TF5 at the d
- * line; PBM28 (nd 0.0006 and νd 0.05 below TF8) lends its dispersion curve, and the trace keeps the printed nd.
+ * catalog glass there. STK3, TF5 and TK14 trace on the LZOS catalogue rows. QF3 equals LF5 at the d line;
+ * PBM28 (nd 0.0006 and νd 0.05 below TF8) lends its dispersion curve, and the trace keeps the printed nd.
  * STK19 stays Unmatched.
  *
  * STOP: Table 1 places the aperture diaphragm (АД) 14.9 mm behind R6 and 11.3 mm ahead of R7. The stop takes its own
@@ -136,7 +136,7 @@ const LENS_DATA = {
       "vd": 27.52,
       "indexReference": "d",
       "focalLengthMm": -47.13,
-      "glass": "H-ZF6 (CDGM; d-line equivalent of GOST TF5; supplier unconfirmed)",
+      "glass": "TF5 (LZOS)",
       "role": "Negative meniscus behind the stop, concave to the object; front member of the cemented doublet",
       "cemented": "D1"
     },

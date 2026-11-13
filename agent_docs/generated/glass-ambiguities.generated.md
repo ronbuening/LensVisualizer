@@ -14,8 +14,8 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 - **1122** lenses scanned
 - **12702** glass elements examined
-- **2703** elements have multiple coordinate-compatible candidates
-- **494** lens files are affected
+- **2699** elements have multiple coordinate-compatible candidates
+- **492** lens files are affected
 - **276** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
 - **118** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
 
@@ -23,7 +23,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 |---|---:|
 | Smallest reference-index residual | 1570 |
 | Evidence-source priority | 835 |
-| Vendor context | 284 |
+| Vendor context | 280 |
 | Stable canonical-name order | 12 |
 | Smallest Abbe residual | 2 |
 
@@ -570,7 +570,6 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `699301 class (vendor unproven)` | 1.69895 / 30.13 (d) | E-FD15 — smallest d-line \|Δn\| (2.0e-7 vs 3.2e-6) | S-TIM35 (Ohara, code, preferred code row) | 1 | [HASSELBLAD XCD 45mm f/3.5](../../src/lens-data/hasselblad/HasselbladXCD3545.data.ts) L4 |
 | `835427 class (vendor unproven)` | 1.83481 / 42.72 (d) | J-LASF05 — smallest d-line \|Δn\| (2.1e-8 vs 2.9e-6) | S-LAH55 (Ohara, code, preferred code row)<br>TAFD5G (Hoya, code, alternate code row)<br>TAFD5F (Hoya, code, alternate code row) | 1 | [HASSELBLAD XCD 45mm f/3.5](../../src/lens-data/hasselblad/HasselbladXCD3545.data.ts) L8 |
 | `TAFD35 (HOYA, 911353; patent rounds vd to 35.2)` | 1.91082 / 35.20 (d) | TAFD35 — direct name evidence outranks six-digit code evidence. | H-ZLaF4LA (CDGM, code, vendor ✗, alternate code row) | 2 | [HASSELBLAD XCD 90mm f/2.5 V](../../src/lens-data/hasselblad/HasselbladXCD90mmf25V.data.ts) L6 +1 files |
-| `H-ZF6 (CDGM; d-line equivalent of GOST TF5; supplier unconfirmed)` | 1.75520 / 27.52 (d) | H-ZF6 — Annotation vendor context matches CDGM. | TF5 (LZOS, name, vendor ✗) | 4 | [KMZ ZENITAR 35mm f/1](../../src/lens-data/kmz/KMZZenitar35mmf1.data.ts) L2 +1 files |
 | `SF5 catalog proxy; 673322 dense-flint class (supplier unconfirmed)` | 1.67300 / 32.20 (d) | SF5 — direct name evidence outranks six-digit code evidence. | H-ZF2 (CDGM, code, alternate code row)<br>E-FD5 (Hoya, code, preferred code row) | 1 | [KODAK EKTAR 52mm f/1.5](../../src/lens-data/kodak/KodakEktar52mmf15.data.ts) IV |
 | `S-BAH10 catalog proxy; 670472 BAF10 class (supplier unconfirmed)` | 1.67000 / 47.20 (d) | BAF10 — smallest d-line \|Δn\| (2.8e-5 vs 2.9e-5) | S-BAH10 (Ohara, name)<br>H-ZBaF52 (CDGM, code, preferred code row) | 1 | [KODAK EKTAR 52mm f/1.5](../../src/lens-data/kodak/KodakEktar52mmf15.data.ts) V |
 | `804396 class; S-LAH63Q catalog-equivalent coefficient proxy (production supplier unspecified)` | 1.80440 / 39.60 (d) | S-LAH63Q — direct name evidence outranks six-digit code evidence. | J-LASF013 (Hikari, code, alternate code row)<br>S-LAH63 (Ohara, code, preferred code row) | 2 | [KONICA FL-HEXANON AR 300mm f/6.3](../../src/lens-data/konica/KonicaFLHexanonAR300mmf63.data.ts) L3 +1 files |

@@ -275,6 +275,6 @@ index error 5.9e-6. The fit gives nD 1.754998 and νD 27.52 against the printed 
 `SF4 (Schott catalog equivalent; production supplier unspecified)` to `TF5 (LZOS)`, the form L1/L4 use for TK21. L3's
 patent glass, GOST LF5, matches the LZOS table at nD 1.574900 / νD 41.30. It cannot get its own row because the catalog's `LF5`
 name belongs to the different Schott glass (1.58144/40.85). L3 therefore keeps CDGM QF3, now labelled
-`QF3 (CDGM catalog equivalent of GOST LF5; supplier unconfirmed)`, the form the Zenitars use. The other `TF5` mentions in the
-corpus (Zenitar 35 and 50 labels naming `H-ZF6` first) still resolve to H-ZF6.
+`QF3 (CDGM catalog equivalent of GOST LF5; supplier unconfirmed)`, the form the Zenitars use. The Zenitar 35 and 50 TF5
+elements, which named `H-ZF6` first, were afterwards relabelled `TF5 (LZOS)` as well (their audit logs, same date).
 
