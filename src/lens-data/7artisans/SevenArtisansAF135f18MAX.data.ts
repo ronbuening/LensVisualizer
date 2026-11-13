@@ -1,10 +1,11 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
-/** Literal CN122469500A Table1, verified from CN 122469500 A, Table 1.
- * Original Fig2 pupil radius36.8167mm determines f-number from literal paraxial EFL.
+/** CN 122469500 A, Table 1, the sole numerical example.
+ * Figure 2 pupil radius 36.8167 mm determines f-number from the paraxial EFL.
  * Scale factor 1; R, d and semi-diameters are in mm, with no units conversion.
  * Stop position and back focus are tabulated; the stop radius is inferred from the pupil.
- * Clear caps are inferred from Fig1; S26–S30 use 17.4 mm for corner chief-ray clearance.
- * Glass nd/vd retained literally with approximate dispersion; factory identity unproven.
+ * Clear semi-diameters are inferred from Figure 1; S26–S30 use 17.4 mm for corner chief-ray clearance.
+ * Printed nd/νd are retained; matching catalog curves do not establish factory glass identity.
+ * L5 has no matching catalog row and uses approximate dispersion from its printed nd/νd.
  * Prose ED ordinal contradiction preserved in source.errata. Infinity-only. */
 const LENS_DATA = {
   "checks": {
@@ -18,12 +19,15 @@ const LENS_DATA = {
   "key": "7artisans-af-135mm-f18-max",
   "maker": "7Artisans",
   "name": "7ARTISANS AF 135mm f/1.8 MAX",
-  "subtitle": "CN 122469500 A \u2014 sole numerical prescription",
+  "subtitle": "CN 122469500 A, Table 1 — the maker's own application",
   "visible": true,
   "catalog": {
     "specs": [
       "16 ELEMENTS / 13 GROUPS",
-      "132.106 mm PATENT EFL"
+      "6 ED / 5 HIGH-INDEX",
+      "ALL SPHERICAL",
+      "F/1.8–16",
+      "0.68 m MIN FOCUS"
     ],
     "elementCount": 16,
     "groupCount": 13,
@@ -63,7 +67,7 @@ const LENS_DATA = {
     "errata": [
       {
         "status": "unresolved",
-        "note": "Original prose/claims assign V80\u201390 to E9/E11; Table1 instead places V81.612838 at E10/E12. Literal table retained without repair."
+        "note": "Prose and claims assign Abbe numbers 80–90 to L9/L11; Table 1 instead places 81.612838 at L10/L12. The tabulated values are retained."
       }
     ]
   },
@@ -72,161 +76,195 @@ const LENS_DATA = {
       "id": 1,
       "name": "L1",
       "label": "Element 1",
-      "type": "Lens",
+      "type": "Positive Meniscus",
+      "role": "Positive front element of the front group",
       "nd": 1.84666,
       "vd": 23.784497,
       "indexReference": "d",
-      "glass": "Unmatched (literal patent index/Abbe pair; estimated dispersion)"
+      "glass": "CDGM H-ZF52"
     },
     {
       "id": 2,
       "name": "L2",
       "label": "Element 2",
-      "type": "Lens",
+      "type": "Biconvex Positive",
+      "role": "ED positive member of the first cemented pair",
+      "cemented": "C1",
+      "apd": "inferred",
+      "apdNote": "The maker marks L2 as ED; its printed nd/νd agree with H-FK61.",
       "nd": 1.497,
       "vd": 81.612838,
       "indexReference": "d",
-      "glass": "Unmatched (literal patent index/Abbe pair; estimated dispersion)"
+      "glass": "CDGM H-FK61"
     },
     {
       "id": 3,
       "name": "L3",
       "label": "Element 3",
-      "type": "Lens",
+      "type": "Biconcave Negative",
+      "role": "Negative member of the first cemented pair",
+      "cemented": "C1",
       "nd": 1.74077,
       "vd": 27.760063,
       "indexReference": "d",
-      "glass": "Unmatched (literal patent index/Abbe pair; estimated dispersion)"
+      "glass": "Hoya E-FD13"
     },
     {
       "id": 4,
       "name": "L4",
       "label": "Element 4",
-      "type": "Lens",
+      "type": "Negative Meniscus",
+      "role": "Air-spaced negative meniscus in the front group",
       "nd": 1.7552,
       "vd": 27.530047,
       "indexReference": "d",
-      "glass": "Unmatched (literal patent index/Abbe pair; estimated dispersion)"
+      "glass": "CDGM H-ZF6"
     },
     {
       "id": 5,
       "name": "L5",
       "label": "Element 5",
-      "type": "Lens",
+      "type": "Biconvex Positive",
+      "role": "ED positive member of the second cemented pair",
+      "cemented": "C2",
+      "apd": "inferred",
+      "apdNote": "The maker marks L5 as ED; its low index and Abbe number 94.523389 support that designation.",
       "nd": 1.4378,
       "vd": 94.523389,
       "indexReference": "d",
-      "glass": "Unmatched (literal patent index/Abbe pair; estimated dispersion)"
+      "glass": "Unmatched (nd 1.4378 / V 94.523389)"
     },
     {
       "id": 6,
       "name": "L6",
       "label": "Element 6",
-      "type": "Lens",
+      "type": "Negative Meniscus",
+      "role": "High-index negative member of the second cemented pair",
+      "cemented": "C2",
       "nd": 1.84666,
       "vd": 23.784497,
       "indexReference": "d",
-      "glass": "Unmatched (literal patent index/Abbe pair; estimated dispersion)"
+      "glass": "CDGM H-ZF52"
     },
     {
       "id": 7,
       "name": "L7",
       "label": "Element 7",
-      "type": "Lens",
+      "type": "Plano-Concave Negative",
+      "role": "Single negative focusing element behind the iris",
       "nd": 1.713,
       "vd": 53.832974,
       "indexReference": "d",
-      "glass": "Unmatched (literal patent index/Abbe pair; estimated dispersion)"
+      "glass": "Schott N-LAK8"
     },
     {
       "id": 8,
       "name": "L8",
       "label": "Element 8",
-      "type": "Lens",
+      "type": "Biconvex Positive",
+      "role": "Positive front element of the rear group",
       "nd": 1.52307,
       "vd": 58.639792,
       "indexReference": "d",
-      "glass": "Unmatched (literal patent index/Abbe pair; estimated dispersion)"
+      "glass": "Hoya C12"
     },
     {
       "id": 9,
       "name": "L9",
       "label": "Element 9",
-      "type": "Lens",
+      "type": "Negative Meniscus",
+      "role": "High-index negative meniscus in the rear group",
       "nd": 1.84666,
       "vd": 23.784497,
       "indexReference": "d",
-      "glass": "Unmatched (literal patent index/Abbe pair; estimated dispersion)"
+      "glass": "CDGM H-ZF52"
     },
     {
       "id": 10,
       "name": "L10",
       "label": "Element 10",
-      "type": "Lens",
+      "type": "Biconvex Positive",
+      "role": "Air-spaced ED positive element in the rear group",
+      "apd": "inferred",
+      "apdNote": "The maker marks L10 as ED; its printed nd/νd agree with H-FK61.",
       "nd": 1.497,
       "vd": 81.612838,
       "indexReference": "d",
-      "glass": "Unmatched (literal patent index/Abbe pair; estimated dispersion)"
+      "glass": "CDGM H-FK61"
     },
     {
       "id": 11,
       "name": "L11",
       "label": "Element 11",
-      "type": "Lens",
+      "type": "Biconcave Negative",
+      "role": "Air-spaced negative element between L10 and L12",
       "nd": 1.72825,
       "vd": 28.318797,
       "indexReference": "d",
-      "glass": "Unmatched (literal patent index/Abbe pair; estimated dispersion)"
+      "glass": "CDGM H-ZF4A"
     },
     {
       "id": 12,
       "name": "L12",
       "label": "Element 12",
-      "type": "Lens",
+      "type": "Biconcave Negative",
+      "role": "ED negative element preceding the high-index L13",
+      "apd": "inferred",
+      "apdNote": "The maker marks L12 as ED; its printed nd/νd agree with H-FK61.",
       "nd": 1.497,
       "vd": 81.612838,
       "indexReference": "d",
-      "glass": "Unmatched (literal patent index/Abbe pair; estimated dispersion)"
+      "glass": "CDGM H-FK61"
     },
     {
       "id": 13,
       "name": "L13",
       "label": "Element 13",
-      "type": "Lens",
+      "type": "Biconvex Positive",
+      "role": "High-index positive element ahead of the rear cemented pair",
       "nd": 2.0033,
       "vd": 28.316305,
       "indexReference": "d",
-      "glass": "Unmatched (literal patent index/Abbe pair; estimated dispersion)"
+      "glass": "Ohara S-LAH79"
     },
     {
       "id": 14,
       "name": "L14",
       "label": "Element 14",
-      "type": "Lens",
+      "type": "Biconvex Positive",
+      "role": "High-index positive member of the rear cemented pair",
+      "cemented": "C3",
       "nd": 1.84666,
       "vd": 23.784497,
       "indexReference": "d",
-      "glass": "Unmatched (literal patent index/Abbe pair; estimated dispersion)"
+      "glass": "CDGM H-ZF52"
     },
     {
       "id": 15,
       "name": "L15",
       "label": "Element 15",
-      "type": "Lens",
+      "type": "Biconcave Negative",
+      "role": "ED negative member of the rear cemented pair",
+      "cemented": "C3",
+      "apd": "inferred",
+      "apdNote": "The maker marks L15 as ED; its nd/νd fit the low-dispersion N-PSK53A catalog row.",
       "nd": 1.618,
       "vd": 63.392702,
       "indexReference": "d",
-      "glass": "Unmatched (literal patent index/Abbe pair; estimated dispersion)"
+      "glass": "Schott N-PSK53A"
     },
     {
       "id": 16,
       "name": "L16",
       "label": "Element 16",
-      "type": "Lens",
+      "type": "Negative Meniscus",
+      "role": "Air-spaced ED negative meniscus nearest the image",
+      "apd": "inferred",
+      "apdNote": "The maker marks L16 as ED; its nd/νd fit the low-dispersion H-ZPK5 catalog row.",
       "nd": 1.5928,
       "vd": 68.342024,
       "indexReference": "d",
-      "glass": "Unmatched (literal patent index/Abbe pair; estimated dispersion)"
+      "glass": "CDGM H-ZPK5"
     }
   ],
   "surfaces": [
@@ -432,13 +470,14 @@ const LENS_DATA = {
       "thicknessMm": 2.5,
       "nd": 1.5168,
       "vd": 64.198732,
+      "glass": "CDGM H-K9L",
       "gapAfterMm": 1,
-      "source": "CN122469500A Table1 surfaces31\u201332; literal physical plate and gaps"
+      "source": "CN 122469500 A, Table 1, surfaces 31–32; physical plate thickness and air gaps as printed"
     }
   ],
   "focus": {
     "closeFocusM": 1e15,
-    "description": "Infinity-only source Table1. Product MOD is metadata; no inferred finite-focus law."
+    "description": "Infinity focus only; Table 1 gives no close-focus configuration. The marketed minimum focus distance is 0.68 m."
   },
   "aperture": {
     "nominalFNumber": 1.7940979019491945,
@@ -454,6 +493,11 @@ const LENS_DATA = {
     ],
     "blades": 12
   },
+  "doublets": [
+    { "text": "C1", "fromSurface": "3", "toSurface": "5" },
+    { "text": "C2", "fromSurface": "8", "toSurface": "10" },
+    { "text": "C3", "fromSurface": "26", "toSurface": "28" }
+  ],
   "projection": {
     "kind": "rectilinear",
     "fullFieldDeg": 18.65650222861097,
