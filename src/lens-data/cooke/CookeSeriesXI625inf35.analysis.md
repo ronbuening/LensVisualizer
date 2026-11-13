@@ -1,6 +1,6 @@
-# Cooke Series XI 6¼ in f/3.5: GB155640 Example I
+# Cooke Series XI 6¼ in f/3.5: GB 155,640 A, Example I
 
-## Patent reference and product qualification
+## Patent reference and design identification
 
 **Patent:** GB 155,640 A  
 **Filed:** 22 September 1919  
@@ -9,43 +9,60 @@
 **Applicant:** Taylor, Taylor & Hobson Limited  
 **Example details:** Example I (printed p. 2), Figure 1; normalized focal length 1, scaled by 158.75 to millimetres (6¼ in).  
 
-GB 155,640 A, Taylor, Taylor & Hobson Limited and Horace William Lee; applied 22 September 1919, accepted 22 December 1920, printed 1921. The original three-page facsimile is retained. Example I is a normalized F=1 triplet, f/3, with stated45° field. Example II is separate and is not mixed into this model or counted as another physical family.
+The three-page patent by Horace William Lee and Taylor, Taylor & Hobson Limited was printed in 1921. Example I specifies a triplet with focal length 1 unit, aperture f/3 and a stated 45° full field. Example II specifies a separate 35° design.
 
-Cooke's modern Compendium explicitly associates Series XI f/3.5 with GB155640 and reports patent-number inscriptions on5-inch serial138174 and6.25-inch serials138272/199442. This is manufacturer-reported sample evidence, not engraving photographs independently inspected here. The maker says no catalog entry was found in its archive. Its broader association of the patent with other triplet series does not establish exclusive identity or select a factory example. The source f/3 is different from retail f/3.5.
+[Cooke's Compendium](https://cookeoptics.com/compendium/) identifies Series XI f/3.5 as a Cooke triplet associated with GB 155640. It reports patent-number inscriptions on a 5 in lens, serial 138174, and 6¼ in lenses, serials 138272 and 199442, and says no Series XI catalog entry was found in its archive. These are manufacturer-reported inscriptions. The patent's association with other triplet series does not establish an exclusive Series XI identity or select a production example.
 
-This reconstruction identifies the 6¼ in Series XI using Example I at 158.75 mm per normalized unit (×158.75), a uniform ×1.5875 rescale of the previous prescription. The validator identifies Science Museum object 1990-5036/1206 as a Thornton-Pickard Junior Special quarter-plate camera (3¼ × 4¼ in) carrying a Series XI 6¼ in f/3.5–16. Example I’s 45° full field supports this association; Example II’s 35° field does not. The association is strong to the patent and plausible to Example I, without establishing an exact factory prescription. The retail f/3.5 rating remains separate from the retained patent f/3 opening. Bounded dedup found no GB155640 model in the recovered checkout or Drive search, not a complete historical/live numerical novelty audit.
+The [Science Museum's Thornton-Pickard Junior Special](https://collection.sciencemuseumgroup.org.uk/objects/co8236220/thornton-pickard-junior-special-reflex-camera), object 1990-5036/1206, carries a Series XI 6¼ in f/3.5–16, serial 123826, for 3¼ × 4¼ in film packs. Its description specifies rack-and-pinion focusing. Together with the Compendium inscriptions, this supports the 6¼ in identification. Example I's wider field is closer to the approximately 23.2° quarter-plate corner half-angle than Example II's 17.5°. The link to the patent is strong and the choice of Example I plausible; an exact factory prescription is not established. The patent f/3 opening remains distinct from the retail f/3.5 rating.
 
-## Architecture and element analysis
-Three separate spherical elements form a positive-negative-positive triplet. All radii, glass thicknesses, air gaps, image-side distance and semi-diameters are scaled uniformly from the patent; glass indices, Abbe numbers and field angles are retained. The patent drawing has light incident from the right; the model follows the table's incident-to-image sequence rather than page-left order.
+## Optical architecture
 
-L1 is the front positive biconvex element, nD1.613, Nu58.5, source Parra-Mantois6540. Its radii after scaling are +63.706375 and −852.4875 mm, thickness 9.525 mm, and scaled source diameter 53.975 mm.
+Three separate spherical elements form a positive-negative-positive triplet in three air-spaced groups. The positive outer elements supply converging power, with a more dispersive negative element between them. The patent drawing has light incident from the right; the model follows the table's incident-to-image sequence rather than page-left order.
 
-L2 is a biconcave negative element, nD1.621, Nu36.2, source Chance361. Radii −74.64425 and +63.515875 mm, central thickness 1.5875 mm, scaled source diameter 47.625 mm. It follows a 15.875 mm scaled source airspace.
+## Element-by-element analysis
 
-L3 is the rear positive biconvex element, nD1.613, Nu58.5, source Parra-Mantois6540. Radii +372.26875 and −60.22975 mm, thickness 9.525 mm, scaled source diameter 47.625 mm. It follows the scaled 17.0815 mm airspace. No invented spacer or glass substitution is inserted.
+### L1 — Biconvex Positive
 
-## Spectral qualification
-The patent explicitly tabulates D-line index and Nu, but does not define Nu's formula. Values are interpreted as conventional Vd using period notation and the same inventor's later US1955591 explicit Abbe definition. This is a documented interpretation, not a formula printed in GB155640. Engine d approximates historical D. The historical catalog references are not proof of a particular melt, measured full dispersion, modern replacement or tolerance.
+nD = 1.613, νd = 58.5. Glass: Parra-Mantois 6540 in the patent; BACD4 (HOYA catalog equivalent).
 
-## Focus and scale
-Literal normalized EFL 0.998591886688 gives 158.5264620118 mm at ×158.75, retaining −0.1408113% against nominal 158.75 mm without fitting. Catalog focal length records marketing 158.75 mm and computed paraxial design EFL 158.53 mm. The terminal distance is calculated BFL 0.853257513035 normalized, stored as 135.45463 mm after rescaling and rounding, not a source-printed BFL. Total track is 189.04863 mm. The model represents infinity only. No actual factory focusing mechanism, close-focus movement or retail minimum distance is reconstructed.
+The front positive element has radii +63.706375 and −852.4875 mm, thickness 9.525 mm and diameter 53.975 mm. Its rear surface is weakly curved compared with its front surface.
+
+### L2 — Biconcave Negative
+
+nD = 1.621, νd = 36.2. Glass: Unmatched (Chance 361).
+
+The central negative element has radii −74.64425 and +63.515875 mm, thickness 1.5875 mm and diameter 47.625 mm. It follows a 15.875 mm airspace. Its lower Abbe number provides the dispersion contrast with the positive elements used for chromatic correction.
+
+### L3 — Biconvex Positive
+
+nD = 1.613, νd = 58.5. Glass: Parra-Mantois 6540 in the patent; BACD4 (HOYA catalog equivalent).
+
+The rear positive element has radii +372.26875 and −60.22975 mm, thickness 9.525 mm and diameter 47.625 mm. It follows the 17.0815 mm airspace containing the assumed stop. Its stronger image-side surface completes the converging triplet.
+
+## Glass identification and dispersion
+
+The patent tabulates sodium D-line index and Nu without defining Nu's formula. Nu is interpreted as conventional νd from period notation and Lee's explicit Abbe definition in [US 1,955,591 A](https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/1955591). The d-line calculation approximates the printed D-line index; that convention is retained.
+
+For L1 and L3, the HOYA BACD4 catalog row gives nd = 1.61272 and νd = 58.58. Its index rounds to the patent's 1.613 and its Abbe-number difference is +0.08. This supplies a catalog dispersion curve without establishing the historical melt or a replacement material. No exact catalog row matches L2's printed pair, so Chance 361 remains Unmatched. The patent supplies no measured full dispersion or material tolerances.
+
+## Focus mechanism and scale
+
+The prescription uses a uniform ×158.75 conversion from patent units to millimetres, corresponding to 6¼ in. Radii, thicknesses, gaps, semi-diameters and image circle share this factor; indices, Abbe numbers and field angles are retained. The normalized EFL 0.998591886688 gives 158.5264620118 mm, a −0.1408113% residual against nominal 158.75 mm. Catalog focal length records marketing 158.75 mm and paraxial design EFL 158.53 mm. The calculated back focal distance is 0.853257513035 patent units, stored as 135.45463 mm after rounding; it is not printed in the source. Total track is 189.04863 mm.
+
+The model describes infinity focus only. The museum camera focuses by rack and pinion, but no finite-focus spacings, travel or retail minimum focus distance are supplied for this optical model.
 
 ## Apertures and inferred iris
-Source diameters 0.34/0.30/0.30 are scaled directly to semi-diameters 26.9875/23.8125/23.8125 mm. They are element dimensions, not an iris prescription; unlike many reconstructed examples these caps are not inferred.
+Source diameters 0.34/0.30/0.30 give semi-diameters 26.9875/23.8125/23.8125 mm. These are printed element dimensions rather than iris diameters.
 
-No numerical physical stop position or hole diameter is supplied. This model assumes a stop at the midpoint of the larger internal airspace S2, 8.54075 mm from each vertex. This choice was made before ray testing, not fitted to rays. Independent review confirms full-cap stop clearance and element geometry. Native f/3 iris radius 21.3519389648 mm is a model result, not an original measurement. The authored aperture range is f/3–16, retaining the patent f/3 opening and capping the list at the documented retail limit of f/16; the retail aperture scale was f/3.5–16. No geometry allowance override is used.
+No numerical physical stop position or hole diameter is supplied. The assumed stop lies at the midpoint of the larger internal airspace s2, 8.54075 mm from each vertex; its position is not fitted to ray clearance. The f/3 iris radius is calculated as 21.3519389648 mm, and the axial beam clears the printed rims. The model aperture range is f/3–16; the documented retail scale is f/3.5–16.
 
-## Scoped checks and field limitations
-The model uses a 131.5085 mm image circle, scaling the previous rounded 82.84 mm field-derived circle by ×1.5875, consistent with the patent’s 45° full field at the nominal 158.75 mm scale (2f·tan 22.5°). This sets the analysis field and does not establish uniform illumination or commercial image quality.
+## Model scope and field limitations
 
-Native construction and isolated strict TypeScript reproduce against the retained checkout. Independent source and geometry reviews accompany qualified handoff. They are not factory-performance validation.
-
-Sparse source-field diagnostics use22.5° half-field. With25 pupil samples plus chief, successful optical-surface exits at0/.5/.7/.85/1 field fractions are26/23/19/16/10. At source edge there are11 clipped and5 blocked rays; at.85 field9 clipped and1 blocked. This substantial field limitation remains prominent. The field-coverage audit reaches 100% of the 131.5085 mm circle with a clear corner chief ray; this does not validate full-pupil illumination or commercial image quality.
-
-Counts are not throughput percentages, full pupil integration, independently tested image-plane landing or MTF. Full current-corpus/app tests, lint/format integration, build, browser and MTF remain deferred and unpassed. This representative is hidden, not integrated or deployed.
+The 131.5085 mm image circle retains the existing rounding of the diameter derived from the patent's 45° full field, using 2f·tan 22.5° at nominal focal length. The corner chief ray is clear and reaches the circle boundary. Marginal rays are clipped or blocked toward the source field edge, so chief-ray coverage does not establish full-pupil illumination, throughput or image quality. No measured MTF or factory-performance comparison is available.
 
 ## Sources
-- Original facsimile on secondary host: https://www.photo-china.net/pat/GB155640.pdf
-- Primary manufacturer retrospective and reported specimen inscriptions: https://cookeoptics.com/compendium/
-- Same-inventor explicit Abbe convention corroboration: https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/1955591
-- Verified source archive: https://drive.google.com/file/d/1BT7X81xSg-FpkY2tNYUwt0x4LdqM9Cp4/view
+
+- [GB 155,640 A facsimile](https://www.photo-china.net/pat/GB155640.pdf), Example I, printed p. 2 and Figure 1.
+- [Cooke Compendium](https://cookeoptics.com/compendium/), Series XI f/3.5 and reported specimen inscriptions.
+- [Science Museum Group, Thornton-Pickard Junior Special](https://collection.sciencemuseumgroup.org.uk/objects/co8236220/thornton-pickard-junior-special-reflex-camera), object 1990-5036/1206.
+- [US 1,955,591 A](https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/1955591), Lee's explicit Abbe-number definition.
