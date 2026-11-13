@@ -57,6 +57,133 @@ describe("audit script npm contracts", () => {
   });
 });
 
+describe("MTF field census", () => {
+  const root = mkdtempSync(join(tmpdir(), "audit-mtf-fields-"));
+  const catalog = join(root, "src/lens-data");
+  afterAll(() => rmSync(root, { recursive: true, force: true }));
+
+  interface FieldStages {
+    structurallyEligible: boolean;
+    insideModeledField: boolean;
+    curveProduced: boolean;
+    converged: boolean;
+    fieldFraction: number | null;
+    status: string;
+    reason: string | null;
+    gridSize: number;
+    convergedThroughLpMm: number | null;
+  }
+  interface Census {
+    maxGridSize: number;
+    focus: string;
+    convergenceNote: string;
+    fields: Record<string, Record<string, number>>;
+    lenses: { key: string; fields: Record<string, FieldStages> }[];
+  }
+
+  function census(args: string[] = []): Census {
+    return JSON.parse(
+      execFileSync(
+        "node",
+        [
+          "--import",
+          resolve("scripts/ts-js-specifier-hook-register.mjs"),
+          resolve("scripts/audit-mtf.mjs"),
+          "--fields",
+          "--list",
+          ...args,
+        ],
+        { cwd: root, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] },
+      ),
+    );
+  }
+
+  it("distinguishes support, field extent, curves and convergence on synthetic prescriptions", () => {
+    const pair = FIXTURE_PAIRS.find((pair) => pair.family === "prime");
+    if (pair?.kind !== "lens") throw new Error("missing prime fixture");
+    const prime = pair.v2;
+    const diffractive = FIXTURE_PAIRS.find((pair) => pair.family === "diffractive")!.v2;
+    mkdirSync(catalog, { recursive: true });
+    const fixtures = [
+      { ...prime, key: "inside", catalog: { ...prime.catalog, imageCircleMm: 10 } },
+      { ...prime, key: "short-field", catalog: { ...prime.catalog, imageCircleMm: 1000 } },
+      { ...diffractive, key: "unsupported" },
+      {
+        ...prime,
+        key: "convergent",
+        catalog: { imageCircleMm: 10, focalLengthMm: { design: 100 }, fNumber: { design: 10 } },
+        // A plano-hyperbolic singlet has zero axial blur at r / (n - 1) = 100 mm.
+        elements: prime.elements.map((element) => ({ ...element, nd: 1.5 })),
+        surfaces: [
+          { label: "STO", R: "flat", d: 1 },
+          { label: "1", R: "flat", d: 5, sd: 15, medium: 1 },
+          { label: "2", R: -50, d: 100, sd: 15, asphere: { K: -2.25 } },
+        ],
+        aperture: { nominalFNumber: 10, fStops: [10] },
+      },
+    ];
+    for (const fixture of fixtures)
+      writeFileSync(join(catalog, `${fixture.key}.data.ts`), `export default ${JSON.stringify(fixture)};\n`);
+
+    // A traced corner can produce an unconverged curve; an extent check alone cannot establish either stage.
+    const report = census();
+    expect(report.maxGridSize).toBe(32);
+    expect(report.focus).toBe("design");
+    expect(report.convergenceNote).toContain("product tab refines to 256");
+    const [convergent, inside, short, unsupported] = report.lenses;
+    expect(convergent.fields.center).toMatchObject({ curveProduced: true, converged: true, status: "converged" });
+    expect(inside.fields.corner).toMatchObject({
+      structurallyEligible: true,
+      insideModeledField: true,
+      curveProduced: true,
+      converged: false,
+      fieldFraction: 1,
+      status: "unconverged",
+      reason: null,
+      gridSize: 32,
+    });
+    expect(inside.fields.corner.convergedThroughLpMm).toSatisfy(
+      (value: number | null) => value === null || Number.isFinite(value),
+    );
+    expect(short.fields.corner).toMatchObject({
+      structurallyEligible: true,
+      insideModeledField: false,
+      curveProduced: false,
+      converged: false,
+      fieldFraction: 1,
+      status: "unavailable",
+      reason: "outside-modeled-field",
+      gridSize: 0,
+      convergedThroughLpMm: null,
+    });
+    expect(short.fields.edge.insideModeledField).toBe(true);
+    expect(unsupported.fields.center).toMatchObject({
+      structurallyEligible: false,
+      insideModeledField: false,
+      curveProduced: false,
+      converged: false,
+      status: "unavailable",
+      reason: "unsupported-path",
+      gridSize: 0,
+      convergedThroughLpMm: null,
+    });
+    for (const [position, totals] of Object.entries(report.fields))
+      for (const stage of ["structurallyEligible", "insideModeledField", "curveProduced", "converged"] as const)
+        expect(totals[stage]).toBe(report.lenses.filter((lens) => lens.fields[position][stage]).length);
+
+    const finer = census(["--grid=64", "--limit=2"]);
+    expect(finer.maxGridSize).toBe(64);
+    expect(finer.lenses[1].fields.corner.gridSize).toBe(64);
+    for (const cap of [128, 256]) expect(census([`--grid=${cap}`, "--limit=0"]).maxGridSize).toBe(cap);
+    expect(census(["--grid=48", "--limit=0"]).maxGridSize).toBe(32);
+    // The census never edits its catalog inputs.
+    for (const fixture of fixtures)
+      expect(readFileSync(join(catalog, `${fixture.key}.data.ts`), "utf8")).toBe(
+        `export default ${JSON.stringify(fixture)};\n`,
+      );
+  });
+});
+
 describe("audits read only V2 files", () => {
   const root = mkdtempSync(join(tmpdir(), "audit-v2-twins-"));
   afterAll(() => rmSync(root, { recursive: true, force: true }));

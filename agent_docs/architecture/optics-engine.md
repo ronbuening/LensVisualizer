@@ -298,7 +298,11 @@ The typed protocol
 built lens stays warm, and request ids reject stale replies. The worker caches finished fields and the focus search
 per request minus its field list (`MtfJobCache`), so a finer field step reuses coarser fields. Completed results use
 a client LRU bounded to 64 MiB, while chart changes reuse curves without tracing. The read-only census is `scripts/audit-mtf.mjs` (`--cdf`/`--photopic` for spectral
-eligibility, `--fields` for center, half-height and modeled-edge availability); `scripts/benchmark-mtf.mjs` flags are
+eligibility, `--fields` for structural eligibility → modeled-field inclusion → curve production → convergence at
+center, half-height, modeled edge and corner, explicitly requesting fraction 1 for the corner, at the authored
+(`design`) focus plane; `--list` retains each lens's field stages, status, reason, final grid size and convergence band,
+and `--grid=32|64|128|256` selects the census cap, default 32, distinct from the product tab's 256-cell refinement);
+`scripts/benchmark-mtf.mjs` flags are
 listed in `agent_docs/benchmarks/README.md`. Benchmarks retain status alongside timings so fast rejection is not
 confused with a completed curve.
 

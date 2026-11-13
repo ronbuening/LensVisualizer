@@ -161,9 +161,6 @@ S under a day, M one to three days, L longer.
   marketed focal lengths at every station. Canon EF 100-300mm f/5.6 and Nikon AF Zoom-Micro 70-180mm keep their
   wide-end warning at the tele end (31 % against 3.3 %, 17.7 % against 7.8 %); Sony RX10 misses its tele-end
   11.8 %. Compare at the charted end. S.
-- **C6 — `scripts/audit-mtf.mjs --fields` over-reports.** It counts unconverged curves as available at a 32-cell
-  cap and tallies the corner from extents. Report eligible, in-model, curve and converged separately, and trace
-  the corner. S.
 
 ### Accuracy
 
