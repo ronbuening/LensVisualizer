@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "inputHashes": {
-    "engineSha256": "18d66eaedd1c90e806f7d1c08ab2f3037aa16239ffb17077003fff64db8d3b2b",
+    "engineSha256": "e5f6e13e844bbbdddd828833fc5320968c6c24f03c1ec57e5c4a794783a00096",
     "lensDataSha256": {
       "src/lens-data/canon/CanonSerenar50mmf18.data.ts": "3361db2273e27151e4d7a98512e635ed76a8203a95fe47d4fae40b1c21f27174",
       "src/lens-data/fujifilm/FujifilmGF80mmf17R.data.ts": "20dbd32b7358e0e46631491dc3a36785a9dea977b6b32dee1a3d0d0e94f6e9ea",
@@ -136,11 +136,15 @@
         "fieldFractions": [0, 0.7],
         "frequenciesPerMm": [0, 10, 30, 50],
         "spectralLines": [
-          { "wavelengthNm": 555, "weight": 1 },
-          { "wavelengthNm": 470, "weight": 0.091 },
-          { "wavelengthNm": 510, "weight": 0.503 },
-          { "wavelengthNm": 610, "weight": 0.503 },
-          { "wavelengthNm": 650, "weight": 0.107 }
+          { "wavelengthNm": 560, "weight": 29.573 },
+          { "wavelengthNm": 530.82, "weight": 24.475 },
+          { "wavelengthNm": 589.18, "weight": 21.553 },
+          { "wavelengthNm": 504.8, "weight": 9.4728 },
+          { "wavelengthNm": 615.2, "weight": 10.291 },
+          { "wavelengthNm": 484.76, "weight": 2.7286 },
+          { "wavelengthNm": 635.24, "weight": 3.4949 },
+          { "wavelengthNm": 472.87, "weight": 0.75613 },
+          { "wavelengthNm": 647.13, "weight": 0.91347 }
         ],
         "conjugate": null
       },
@@ -148,10 +152,10 @@
       "focus": {
         "requestedMode": "best-axial",
         "mode": "best-axial",
-        "appliedShiftMm": -0.611797198,
-        "bestAxialShiftMm": -0.611797198,
-        "designScore": 0.06153549,
-        "bestScore": 0.196682068,
+        "appliedShiftMm": -0.612590336,
+        "bestAxialShiftMm": -0.612590336,
+        "designScore": 0.061789493,
+        "bestScore": 0.197411721,
         "imagePlaneOffsetMm": -0.011870187,
         "imagePlaneInconsistent": false
       },
@@ -161,9 +165,9 @@
           "status": "converged",
           "reason": null,
           "gridSize": 64,
-          "validRays": 16140,
-          "sagittal": [1, 0.35592906, 0.187770422, 0.106539234],
-          "tangential": [1, 0.35592906, 0.187770422, 0.106539234],
+          "validRays": 29052,
+          "sagittal": [1, 0.350771443, 0.186236366, 0.107787497],
+          "tangential": [1, 0.350771443, 0.186236366, 0.107787497],
           "diffractionLimit": null,
           "unknownFluxFraction": 0
         },
@@ -172,9 +176,9 @@
           "status": "converged",
           "reason": null,
           "gridSize": 64,
-          "validRays": 11082,
-          "sagittal": [1, 0.269240001, 0.053013174, 0.022787929],
-          "tangential": [1, 0.033365165, 0.004556576, 0.005045944],
+          "validRays": 19948,
+          "sagittal": [1, 0.265457037, 0.051143686, 0.025533031],
+          "tangential": [1, 0.033543967, 0.005156312, 0.004055779],
           "diffractionLimit": null,
           "unknownFluxFraction": 0
         }
@@ -197,11 +201,15 @@
         "fieldFractions": [0, 0.7],
         "frequenciesPerMm": [0, 10, 30, 50],
         "spectralLines": [
-          { "wavelengthNm": 555, "weight": 1 },
-          { "wavelengthNm": 470, "weight": 0.091 },
-          { "wavelengthNm": 510, "weight": 0.503 },
-          { "wavelengthNm": 610, "weight": 0.503 },
-          { "wavelengthNm": 650, "weight": 0.107 }
+          { "wavelengthNm": 560, "weight": 29.573 },
+          { "wavelengthNm": 530.82, "weight": 24.475 },
+          { "wavelengthNm": 589.18, "weight": 21.553 },
+          { "wavelengthNm": 504.8, "weight": 9.4728 },
+          { "wavelengthNm": 615.2, "weight": 10.291 },
+          { "wavelengthNm": 484.76, "weight": 2.7286 },
+          { "wavelengthNm": 635.24, "weight": 3.4949 },
+          { "wavelengthNm": 472.87, "weight": 0.75613 },
+          { "wavelengthNm": 647.13, "weight": 0.91347 }
         ],
         "conjugate": null
       },
@@ -210,9 +218,9 @@
         "requestedMode": "design",
         "mode": "design",
         "appliedShiftMm": 0,
-        "bestAxialShiftMm": -0.611797198,
-        "designScore": 0.06153549,
-        "bestScore": 0.196682068,
+        "bestAxialShiftMm": -0.612590336,
+        "designScore": 0.061789493,
+        "bestScore": 0.197411721,
         "imagePlaneOffsetMm": -0.011870187,
         "imagePlaneInconsistent": false
       },
@@ -222,9 +230,9 @@
           "status": "unconverged",
           "reason": null,
           "gridSize": 64,
-          "validRays": 16140,
-          "sagittal": [1, 0.1082984, 0.052578251, 0.035873917],
-          "tangential": [1, 0.108298401, 0.052578251, 0.035873918],
+          "validRays": 29052,
+          "sagittal": [1, 0.109058999, 0.052654693, 0.036096553],
+          "tangential": [1, 0.109058999, 0.052654694, 0.036096556],
           "diffractionLimit": null,
           "unknownFluxFraction": 0
         },
@@ -233,9 +241,9 @@
           "status": "unconverged",
           "reason": null,
           "gridSize": 64,
-          "validRays": 11082,
-          "sagittal": [1, 0.126762814, 0.026062762, 0.008789649],
-          "tangential": [1, 0.434690229, 0.093313661, 0.061420685],
+          "validRays": 19948,
+          "sagittal": [1, 0.126594281, 0.026373251, 0.009266727],
+          "tangential": [1, 0.436741593, 0.095718386, 0.063508355],
           "diffractionLimit": null,
           "unknownFluxFraction": 0
         }
@@ -380,11 +388,15 @@
         "fieldFractions": [0, 0.7],
         "frequenciesPerMm": [0, 10, 30, 50],
         "spectralLines": [
-          { "wavelengthNm": 555, "weight": 1 },
-          { "wavelengthNm": 470, "weight": 0.091 },
-          { "wavelengthNm": 510, "weight": 0.503 },
-          { "wavelengthNm": 610, "weight": 0.503 },
-          { "wavelengthNm": 650, "weight": 0.107 }
+          { "wavelengthNm": 560, "weight": 29.573 },
+          { "wavelengthNm": 530.82, "weight": 24.475 },
+          { "wavelengthNm": 589.18, "weight": 21.553 },
+          { "wavelengthNm": 504.8, "weight": 9.4728 },
+          { "wavelengthNm": 615.2, "weight": 10.291 },
+          { "wavelengthNm": 484.76, "weight": 2.7286 },
+          { "wavelengthNm": 635.24, "weight": 3.4949 },
+          { "wavelengthNm": 472.87, "weight": 0.75613 },
+          { "wavelengthNm": 647.13, "weight": 0.91347 }
         ],
         "conjugate": null
       },
@@ -392,10 +404,10 @@
       "focus": {
         "requestedMode": "best-axial",
         "mode": "best-axial",
-        "appliedShiftMm": -0.611797198,
-        "bestAxialShiftMm": -0.611797198,
-        "designScore": 0.06153549,
-        "bestScore": 0.196682068,
+        "appliedShiftMm": -0.612590336,
+        "bestAxialShiftMm": -0.612590336,
+        "designScore": 0.061789493,
+        "bestScore": 0.197411721,
         "imagePlaneOffsetMm": -0.011870187,
         "imagePlaneInconsistent": false
       },
@@ -405,12 +417,12 @@
           "status": "converged",
           "reason": null,
           "gridSize": 64,
-          "validRays": 16140,
-          "sagittal": [1, 0.344924123, 0.172392226, 0.109039617],
-          "tangential": [1, 0.344924124, 0.172392227, 0.109039617],
+          "validRays": 29052,
+          "sagittal": [1, 0.339687162, 0.169859501, 0.107339944],
+          "tangential": [1, 0.339687162, 0.169859502, 0.107339944],
           "diffractionLimit": {
-            "sagittal": [1, 0.987247718, 0.961756204, 0.936318761],
-            "tangential": [1, 0.987247718, 0.961756205, 0.936318762]
+            "sagittal": [1, 0.987204563, 0.961630258, 0.936102739],
+            "tangential": [1, 0.987204563, 0.961630259, 0.93610274]
           },
           "unknownFluxFraction": 0
         },
@@ -419,12 +431,12 @@
           "status": "converged",
           "reason": null,
           "gridSize": 64,
-          "validRays": 11082,
-          "sagittal": [1, 0.266670685, 0.059152876, 0.02108083],
-          "tangential": [1, 0.036365336, 0.005039533, 0.001574286],
+          "validRays": 19948,
+          "sagittal": [1, 0.262852726, 0.057753499, 0.023024554],
+          "tangential": [1, 0.036856331, 0.00566478, 0.00216448],
           "diffractionLimit": {
-            "sagittal": [1, 0.986317711, 0.959024037, 0.931767067],
-            "tangential": [1, 0.979613071, 0.938897428, 0.898206161]
+            "sagittal": [1, 0.986272116, 0.958883826, 0.931538981],
+            "tangential": [1, 0.979542693, 0.938687184, 0.897856646]
           },
           "unknownFluxFraction": 0
         }
@@ -447,11 +459,15 @@
         "fieldFractions": [0, 0.7],
         "frequenciesPerMm": [0, 10, 30, 50],
         "spectralLines": [
-          { "wavelengthNm": 555, "weight": 1 },
-          { "wavelengthNm": 470, "weight": 0.091 },
-          { "wavelengthNm": 510, "weight": 0.503 },
-          { "wavelengthNm": 610, "weight": 0.503 },
-          { "wavelengthNm": 650, "weight": 0.107 }
+          { "wavelengthNm": 560, "weight": 29.573 },
+          { "wavelengthNm": 530.82, "weight": 24.475 },
+          { "wavelengthNm": 589.18, "weight": 21.553 },
+          { "wavelengthNm": 504.8, "weight": 9.4728 },
+          { "wavelengthNm": 615.2, "weight": 10.291 },
+          { "wavelengthNm": 484.76, "weight": 2.7286 },
+          { "wavelengthNm": 635.24, "weight": 3.4949 },
+          { "wavelengthNm": 472.87, "weight": 0.75613 },
+          { "wavelengthNm": 647.13, "weight": 0.91347 }
         ],
         "conjugate": null
       },
@@ -460,9 +476,9 @@
         "requestedMode": "design",
         "mode": "design",
         "appliedShiftMm": 0,
-        "bestAxialShiftMm": -0.611797198,
-        "designScore": 0.06153549,
-        "bestScore": 0.196682068,
+        "bestAxialShiftMm": -0.612590336,
+        "designScore": 0.061789493,
+        "bestScore": 0.197411721,
         "imagePlaneOffsetMm": -0.011870187,
         "imagePlaneInconsistent": false
       },
@@ -472,12 +488,12 @@
           "status": "unconverged",
           "reason": null,
           "gridSize": 64,
-          "validRays": 16140,
-          "sagittal": [1, 0.109460913, 0.054027593, 0.032398764],
-          "tangential": [1, 0.109460913, 0.054027594, 0.032398764],
+          "validRays": 29052,
+          "sagittal": [1, 0.110129677, 0.054398938, 0.032283842],
+          "tangential": [1, 0.110129677, 0.054398939, 0.032283841],
           "diffractionLimit": {
-            "sagittal": [1, 0.987247718, 0.961756204, 0.936318761],
-            "tangential": [1, 0.987247718, 0.961756205, 0.936318762]
+            "sagittal": [1, 0.987204563, 0.961630258, 0.936102739],
+            "tangential": [1, 0.987204563, 0.961630259, 0.93610274]
           },
           "unknownFluxFraction": 0
         },
@@ -486,12 +502,12 @@
           "status": "converged",
           "reason": null,
           "gridSize": 64,
-          "validRays": 11082,
-          "sagittal": [1, 0.125393205, 0.022075137, 0.008916876],
-          "tangential": [1, 0.427720555, 0.086720754, 0.054708791],
+          "validRays": 19948,
+          "sagittal": [1, 0.125250687, 0.022327647, 0.008665426],
+          "tangential": [1, 0.429591494, 0.08809512, 0.058813104],
           "diffractionLimit": {
-            "sagittal": [1, 0.986317711, 0.959024037, 0.931767067],
-            "tangential": [1, 0.979613071, 0.938897428, 0.898206161]
+            "sagittal": [1, 0.986272116, 0.958883826, 0.931538981],
+            "tangential": [1, 0.979542693, 0.938687184, 0.897856646]
           },
           "unknownFluxFraction": 0
         }
@@ -624,11 +640,15 @@
         "fieldFractions": [0, 0.7],
         "frequenciesPerMm": [0, 10, 30, 50],
         "spectralLines": [
-          { "wavelengthNm": 555, "weight": 1 },
-          { "wavelengthNm": 470, "weight": 0.091 },
-          { "wavelengthNm": 510, "weight": 0.503 },
-          { "wavelengthNm": 610, "weight": 0.503 },
-          { "wavelengthNm": 650, "weight": 0.107 }
+          { "wavelengthNm": 560, "weight": 29.573 },
+          { "wavelengthNm": 530.82, "weight": 24.475 },
+          { "wavelengthNm": 589.18, "weight": 21.553 },
+          { "wavelengthNm": 504.8, "weight": 9.4728 },
+          { "wavelengthNm": 615.2, "weight": 10.291 },
+          { "wavelengthNm": 484.76, "weight": 2.7286 },
+          { "wavelengthNm": 635.24, "weight": 3.4949 },
+          { "wavelengthNm": 472.87, "weight": 0.75613 },
+          { "wavelengthNm": 647.13, "weight": 0.91347 }
         ],
         "conjugate": null
       },
@@ -636,10 +656,10 @@
       "focus": {
         "requestedMode": "best-axial",
         "mode": "best-axial",
-        "appliedShiftMm": -0.010815518,
-        "bestAxialShiftMm": -0.010815518,
-        "designScore": 0.90833574,
-        "bestScore": 0.923631078,
+        "appliedShiftMm": -0.009862232,
+        "bestAxialShiftMm": -0.009862232,
+        "designScore": 0.924940403,
+        "bestScore": 0.938335268,
         "imagePlaneOffsetMm": 0.051931765,
         "imagePlaneInconsistent": false
       },
@@ -649,9 +669,9 @@
           "status": "converged",
           "reason": null,
           "gridSize": 32,
-          "validRays": 4060,
-          "sagittal": [1, 0.992461467, 0.934793105, 0.832474781],
-          "tangential": [1, 0.992461467, 0.934793105, 0.832474781],
+          "validRays": 7308,
+          "sagittal": [1, 0.994033999, 0.94788994, 0.86356876],
+          "tangential": [1, 0.994033999, 0.94788994, 0.86356876],
           "diffractionLimit": null,
           "unknownFluxFraction": 0
         },
@@ -660,9 +680,9 @@
           "status": "converged",
           "reason": null,
           "gridSize": 32,
-          "validRays": 3170,
-          "sagittal": [1, 0.971726584, 0.777087846, 0.521950346],
-          "tangential": [1, 0.725843784, 0.182751911, 0.009475932],
+          "validRays": 5706,
+          "sagittal": [1, 0.972329846, 0.78090325, 0.526279395],
+          "tangential": [1, 0.727328332, 0.198511363, 0.011705945],
           "diffractionLimit": null,
           "unknownFluxFraction": 0
         }
@@ -685,11 +705,15 @@
         "fieldFractions": [0, 0.7],
         "frequenciesPerMm": [0, 10, 30, 50],
         "spectralLines": [
-          { "wavelengthNm": 555, "weight": 1 },
-          { "wavelengthNm": 470, "weight": 0.091 },
-          { "wavelengthNm": 510, "weight": 0.503 },
-          { "wavelengthNm": 610, "weight": 0.503 },
-          { "wavelengthNm": 650, "weight": 0.107 }
+          { "wavelengthNm": 560, "weight": 29.573 },
+          { "wavelengthNm": 530.82, "weight": 24.475 },
+          { "wavelengthNm": 589.18, "weight": 21.553 },
+          { "wavelengthNm": 504.8, "weight": 9.4728 },
+          { "wavelengthNm": 615.2, "weight": 10.291 },
+          { "wavelengthNm": 484.76, "weight": 2.7286 },
+          { "wavelengthNm": 635.24, "weight": 3.4949 },
+          { "wavelengthNm": 472.87, "weight": 0.75613 },
+          { "wavelengthNm": 647.13, "weight": 0.91347 }
         ],
         "conjugate": null
       },
@@ -698,9 +722,9 @@
         "requestedMode": "design",
         "mode": "design",
         "appliedShiftMm": 0,
-        "bestAxialShiftMm": -0.010815518,
-        "designScore": 0.90833574,
-        "bestScore": 0.923631078,
+        "bestAxialShiftMm": -0.009862232,
+        "designScore": 0.924940403,
+        "bestScore": 0.938335268,
         "imagePlaneOffsetMm": 0.051931765,
         "imagePlaneInconsistent": false
       },
@@ -710,9 +734,9 @@
           "status": "converged",
           "reason": null,
           "gridSize": 32,
-          "validRays": 4060,
-          "sagittal": [1, 0.990798341, 0.92100659, 0.799939982],
-          "tangential": [1, 0.990798341, 0.92100659, 0.799939982],
+          "validRays": 7308,
+          "sagittal": [1, 0.992576047, 0.935794677, 0.835073672],
+          "tangential": [1, 0.992576047, 0.935794677, 0.835073672],
           "diffractionLimit": null,
           "unknownFluxFraction": 0
         },
@@ -721,9 +745,9 @@
           "status": "converged",
           "reason": null,
           "gridSize": 32,
-          "validRays": 3170,
-          "sagittal": [1, 0.958500502, 0.687406558, 0.385412632],
-          "tangential": [1, 0.699619723, 0.200466837, 0.035287623],
+          "validRays": 5706,
+          "sagittal": [1, 0.960217631, 0.697533808, 0.394798965],
+          "tangential": [1, 0.703284461, 0.215095188, 0.032399189],
           "diffractionLimit": null,
           "unknownFluxFraction": 0
         }
@@ -868,11 +892,15 @@
         "fieldFractions": [0, 0.7],
         "frequenciesPerMm": [0, 10, 30, 50],
         "spectralLines": [
-          { "wavelengthNm": 555, "weight": 1 },
-          { "wavelengthNm": 470, "weight": 0.091 },
-          { "wavelengthNm": 510, "weight": 0.503 },
-          { "wavelengthNm": 610, "weight": 0.503 },
-          { "wavelengthNm": 650, "weight": 0.107 }
+          { "wavelengthNm": 560, "weight": 29.573 },
+          { "wavelengthNm": 530.82, "weight": 24.475 },
+          { "wavelengthNm": 589.18, "weight": 21.553 },
+          { "wavelengthNm": 504.8, "weight": 9.4728 },
+          { "wavelengthNm": 615.2, "weight": 10.291 },
+          { "wavelengthNm": 484.76, "weight": 2.7286 },
+          { "wavelengthNm": 635.24, "weight": 3.4949 },
+          { "wavelengthNm": 472.87, "weight": 0.75613 },
+          { "wavelengthNm": 647.13, "weight": 0.91347 }
         ],
         "conjugate": null
       },
@@ -880,10 +908,10 @@
       "focus": {
         "requestedMode": "best-axial",
         "mode": "best-axial",
-        "appliedShiftMm": -0.010815518,
-        "bestAxialShiftMm": -0.010815518,
-        "designScore": 0.90833574,
-        "bestScore": 0.923631078,
+        "appliedShiftMm": -0.009862232,
+        "bestAxialShiftMm": -0.009862232,
+        "designScore": 0.924940403,
+        "bestScore": 0.938335268,
         "imagePlaneOffsetMm": 0.051931765,
         "imagePlaneInconsistent": false
       },
@@ -893,12 +921,12 @@
           "status": "converged",
           "reason": null,
           "gridSize": 32,
-          "validRays": 4060,
-          "sagittal": [1, 0.971813097, 0.878659928, 0.756218224],
-          "tangential": [1, 0.971813097, 0.878659928, 0.756218225],
+          "validRays": 7308,
+          "sagittal": [1, 0.973256026, 0.890095469, 0.78141632],
+          "tangential": [1, 0.973256026, 0.890095469, 0.781416321],
           "diffractionLimit": {
-            "sagittal": [1, 0.979096247, 0.937288741, 0.895783014],
-            "tangential": [1, 0.979096247, 0.937288741, 0.895783014]
+            "sagittal": [1, 0.979025824, 0.937077472, 0.895431413],
+            "tangential": [1, 0.979025824, 0.937077472, 0.895431413]
           },
           "unknownFluxFraction": 0
         },
@@ -907,12 +935,12 @@
           "status": "converged",
           "reason": null,
           "gridSize": 64,
-          "validRays": 12680,
-          "sagittal": [1, 0.950696942, 0.746448025, 0.528819055],
-          "tangential": [1, 0.710835835, 0.124114604, 0.054496435],
+          "validRays": 22820,
+          "sagittal": [1, 0.951372065, 0.750705238, 0.535203459],
+          "tangential": [1, 0.712625234, 0.134889728, 0.070807058],
           "diffractionLimit": {
-            "sagittal": [1, 0.977146969, 0.931778211, 0.887039521],
-            "tangential": [1, 0.965045815, 0.895258543, 0.825734087]
+            "sagittal": [1, 0.977213216, 0.931850669, 0.887013492],
+            "tangential": [1, 0.964906021, 0.89484898, 0.825050413]
           },
           "unknownFluxFraction": 0
         }
@@ -935,11 +963,15 @@
         "fieldFractions": [0, 0.7],
         "frequenciesPerMm": [0, 10, 30, 50],
         "spectralLines": [
-          { "wavelengthNm": 555, "weight": 1 },
-          { "wavelengthNm": 470, "weight": 0.091 },
-          { "wavelengthNm": 510, "weight": 0.503 },
-          { "wavelengthNm": 610, "weight": 0.503 },
-          { "wavelengthNm": 650, "weight": 0.107 }
+          { "wavelengthNm": 560, "weight": 29.573 },
+          { "wavelengthNm": 530.82, "weight": 24.475 },
+          { "wavelengthNm": 589.18, "weight": 21.553 },
+          { "wavelengthNm": 504.8, "weight": 9.4728 },
+          { "wavelengthNm": 615.2, "weight": 10.291 },
+          { "wavelengthNm": 484.76, "weight": 2.7286 },
+          { "wavelengthNm": 635.24, "weight": 3.4949 },
+          { "wavelengthNm": 472.87, "weight": 0.75613 },
+          { "wavelengthNm": 647.13, "weight": 0.91347 }
         ],
         "conjugate": null
       },
@@ -948,9 +980,9 @@
         "requestedMode": "design",
         "mode": "design",
         "appliedShiftMm": 0,
-        "bestAxialShiftMm": -0.010815518,
-        "designScore": 0.90833574,
-        "bestScore": 0.923631078,
+        "bestAxialShiftMm": -0.009862232,
+        "designScore": 0.924940403,
+        "bestScore": 0.938335268,
         "imagePlaneOffsetMm": 0.051931765,
         "imagePlaneInconsistent": false
       },
@@ -960,12 +992,12 @@
           "status": "converged",
           "reason": null,
           "gridSize": 32,
-          "validRays": 4060,
-          "sagittal": [1, 0.970255654, 0.867600533, 0.734805542],
-          "tangential": [1, 0.970255654, 0.867600533, 0.734805542],
+          "validRays": 7308,
+          "sagittal": [1, 0.97190164, 0.880660097, 0.763737544],
+          "tangential": [1, 0.97190164, 0.880660097, 0.763737544],
           "diffractionLimit": {
-            "sagittal": [1, 0.979096247, 0.937288741, 0.895783014],
-            "tangential": [1, 0.979096247, 0.937288741, 0.895783014]
+            "sagittal": [1, 0.979025824, 0.937077472, 0.895431413],
+            "tangential": [1, 0.979025824, 0.937077472, 0.895431413]
           },
           "unknownFluxFraction": 0
         },
@@ -974,12 +1006,12 @@
           "status": "converged",
           "reason": null,
           "gridSize": 32,
-          "validRays": 3170,
-          "sagittal": [1, 0.938832614, 0.671547535, 0.4171546],
-          "tangential": [1, 0.688388896, 0.145247503, 0.031067237],
+          "validRays": 5706,
+          "sagittal": [1, 0.940433284, 0.681068349, 0.428094531],
+          "tangential": [1, 0.691814086, 0.154291645, 0.047432687],
           "diffractionLimit": {
-            "sagittal": [1, 0.977956563, 0.933878935, 0.890095967],
-            "tangential": [1, 0.965067139, 0.89531501, 0.825621049]
+            "sagittal": [1, 0.977882388, 0.933651434, 0.889725894],
+            "tangential": [1, 0.964947219, 0.894969301, 0.825023011]
           },
           "unknownFluxFraction": 0
         }
@@ -1112,11 +1144,15 @@
         "fieldFractions": [0, 0.7],
         "frequenciesPerMm": [0, 10, 30, 50],
         "spectralLines": [
-          { "wavelengthNm": 555, "weight": 1 },
-          { "wavelengthNm": 470, "weight": 0.091 },
-          { "wavelengthNm": 510, "weight": 0.503 },
-          { "wavelengthNm": 610, "weight": 0.503 },
-          { "wavelengthNm": 650, "weight": 0.107 }
+          { "wavelengthNm": 560, "weight": 29.573 },
+          { "wavelengthNm": 530.82, "weight": 24.475 },
+          { "wavelengthNm": 589.18, "weight": 21.553 },
+          { "wavelengthNm": 504.8, "weight": 9.4728 },
+          { "wavelengthNm": 615.2, "weight": 10.291 },
+          { "wavelengthNm": 484.76, "weight": 2.7286 },
+          { "wavelengthNm": 635.24, "weight": 3.4949 },
+          { "wavelengthNm": 472.87, "weight": 0.75613 },
+          { "wavelengthNm": 647.13, "weight": 0.91347 }
         ],
         "conjugate": null
       },
@@ -1124,10 +1160,10 @@
       "focus": {
         "requestedMode": "best-axial",
         "mode": "best-axial",
-        "appliedShiftMm": -0.012113382,
-        "bestAxialShiftMm": -0.012113382,
-        "designScore": 0.722008912,
-        "bestScore": 0.745065405,
+        "appliedShiftMm": -0.008322412,
+        "bestAxialShiftMm": -0.008322412,
+        "designScore": 0.75715808,
+        "bestScore": 0.769517849,
         "imagePlaneOffsetMm": -0.00060791,
         "imagePlaneInconsistent": false
       },
@@ -1137,9 +1173,9 @@
           "status": "converged",
           "reason": null,
           "gridSize": 64,
-          "validRays": 16124,
-          "sagittal": [1, 0.947424798, 0.719573914, 0.586400165],
-          "tangential": [1, 0.947424797, 0.719573915, 0.586400166],
+          "validRays": 29020,
+          "sagittal": [1, 0.957335431, 0.75423679, 0.60645036],
+          "tangential": [1, 0.95733543, 0.754236791, 0.606450362],
           "diffractionLimit": null,
           "unknownFluxFraction": 0
         },
@@ -1148,9 +1184,9 @@
           "status": "converged",
           "reason": null,
           "gridSize": 32,
-          "validRays": 2322,
-          "sagittal": [1, 0.801961018, 0.521532027, 0.397249116],
-          "tangential": [1, 0.934549188, 0.643715802, 0.434821723],
+          "validRays": 4180,
+          "sagittal": [1, 0.813845329, 0.526376792, 0.382139661],
+          "tangential": [1, 0.94075929, 0.670453927, 0.456419856],
           "diffractionLimit": null,
           "unknownFluxFraction": 0
         }
@@ -1173,11 +1209,15 @@
         "fieldFractions": [0, 0.7],
         "frequenciesPerMm": [0, 10, 30, 50],
         "spectralLines": [
-          { "wavelengthNm": 555, "weight": 1 },
-          { "wavelengthNm": 470, "weight": 0.091 },
-          { "wavelengthNm": 510, "weight": 0.503 },
-          { "wavelengthNm": 610, "weight": 0.503 },
-          { "wavelengthNm": 650, "weight": 0.107 }
+          { "wavelengthNm": 560, "weight": 29.573 },
+          { "wavelengthNm": 530.82, "weight": 24.475 },
+          { "wavelengthNm": 589.18, "weight": 21.553 },
+          { "wavelengthNm": 504.8, "weight": 9.4728 },
+          { "wavelengthNm": 615.2, "weight": 10.291 },
+          { "wavelengthNm": 484.76, "weight": 2.7286 },
+          { "wavelengthNm": 635.24, "weight": 3.4949 },
+          { "wavelengthNm": 472.87, "weight": 0.75613 },
+          { "wavelengthNm": 647.13, "weight": 0.91347 }
         ],
         "conjugate": null
       },
@@ -1186,9 +1226,9 @@
         "requestedMode": "design",
         "mode": "design",
         "appliedShiftMm": 0,
-        "bestAxialShiftMm": -0.012113382,
-        "designScore": 0.722008912,
-        "bestScore": 0.745065405,
+        "bestAxialShiftMm": -0.008322412,
+        "designScore": 0.75715808,
+        "bestScore": 0.769517849,
         "imagePlaneOffsetMm": -0.00060791,
         "imagePlaneInconsistent": false
       },
@@ -1198,9 +1238,9 @@
           "status": "converged",
           "reason": null,
           "gridSize": 64,
-          "validRays": 16124,
-          "sagittal": [1, 0.945532928, 0.706080956, 0.524834708],
-          "tangential": [1, 0.945532926, 0.706080959, 0.524834713],
+          "validRays": 29020,
+          "sagittal": [1, 0.954772822, 0.745823126, 0.577502711],
+          "tangential": [1, 0.95477282, 0.745823129, 0.577502712],
           "diffractionLimit": null,
           "unknownFluxFraction": 0
         },
@@ -1209,9 +1249,9 @@
           "status": "converged",
           "reason": null,
           "gridSize": 32,
-          "validRays": 2322,
-          "sagittal": [1, 0.830702606, 0.509006615, 0.331597818],
-          "tangential": [1, 0.931780781, 0.630506607, 0.424868973],
+          "validRays": 4180,
+          "sagittal": [1, 0.833335869, 0.513355312, 0.331477437],
+          "tangential": [1, 0.9386004, 0.660674529, 0.454579401],
           "diffractionLimit": null,
           "unknownFluxFraction": 0
         }
@@ -1356,11 +1396,15 @@
         "fieldFractions": [0, 0.7],
         "frequenciesPerMm": [0, 10, 30, 50],
         "spectralLines": [
-          { "wavelengthNm": 555, "weight": 1 },
-          { "wavelengthNm": 470, "weight": 0.091 },
-          { "wavelengthNm": 510, "weight": 0.503 },
-          { "wavelengthNm": 610, "weight": 0.503 },
-          { "wavelengthNm": 650, "weight": 0.107 }
+          { "wavelengthNm": 560, "weight": 29.573 },
+          { "wavelengthNm": 530.82, "weight": 24.475 },
+          { "wavelengthNm": 589.18, "weight": 21.553 },
+          { "wavelengthNm": 504.8, "weight": 9.4728 },
+          { "wavelengthNm": 615.2, "weight": 10.291 },
+          { "wavelengthNm": 484.76, "weight": 2.7286 },
+          { "wavelengthNm": 635.24, "weight": 3.4949 },
+          { "wavelengthNm": 472.87, "weight": 0.75613 },
+          { "wavelengthNm": 647.13, "weight": 0.91347 }
         ],
         "conjugate": null
       },
@@ -1368,10 +1412,10 @@
       "focus": {
         "requestedMode": "best-axial",
         "mode": "best-axial",
-        "appliedShiftMm": -0.012113382,
-        "bestAxialShiftMm": -0.012113382,
-        "designScore": 0.722008912,
-        "bestScore": 0.745065405,
+        "appliedShiftMm": -0.008322412,
+        "bestAxialShiftMm": -0.008322412,
+        "designScore": 0.75715808,
+        "bestScore": 0.769517849,
         "imagePlaneOffsetMm": -0.00060791,
         "imagePlaneInconsistent": false
       },
@@ -1381,12 +1425,12 @@
           "status": "converged",
           "reason": null,
           "gridSize": 64,
-          "validRays": 16124,
-          "sagittal": [1, 0.93941956, 0.72180148, 0.594266956],
-          "tangential": [1, 0.939419559, 0.721801479, 0.594266956],
+          "validRays": 29020,
+          "sagittal": [1, 0.948973866, 0.752533752, 0.601899202],
+          "tangential": [1, 0.948973866, 0.752533752, 0.601899203],
           "diffractionLimit": {
-            "sagittal": [1, 0.988343469, 0.965020152, 0.941422244],
-            "tangential": [1, 0.98834347, 0.965020155, 0.941422249]
+            "sagittal": [1, 0.988301935, 0.964899749, 0.941214101],
+            "tangential": [1, 0.988301936, 0.964899753, 0.941214105]
           },
           "unknownFluxFraction": 0
         },
@@ -1394,13 +1438,13 @@
           "fieldFraction": 0.7,
           "status": "converged",
           "reason": null,
-          "gridSize": 32,
-          "validRays": 2322,
-          "sagittal": [1, 0.797176899, 0.515342825, 0.4008981],
-          "tangential": [1, 0.917168438, 0.628514352, 0.432745604],
+          "gridSize": 64,
+          "validRays": 16792,
+          "sagittal": [1, 0.80708914, 0.521816215, 0.379571365],
+          "tangential": [1, 0.925758747, 0.654974876, 0.45074717],
           "diffractionLimit": {
-            "sagittal": [1, 0.986106306, 0.958318919, 0.930531532],
-            "tangential": [1, 0.976643256, 0.929929769, 0.883223588]
+            "sagittal": [1, 0.986701641, 0.960093306, 0.933313845],
+            "tangential": [1, 0.976571272, 0.929809318, 0.884363244]
           },
           "unknownFluxFraction": 0
         }
@@ -1423,11 +1467,15 @@
         "fieldFractions": [0, 0.7],
         "frequenciesPerMm": [0, 10, 30, 50],
         "spectralLines": [
-          { "wavelengthNm": 555, "weight": 1 },
-          { "wavelengthNm": 470, "weight": 0.091 },
-          { "wavelengthNm": 510, "weight": 0.503 },
-          { "wavelengthNm": 610, "weight": 0.503 },
-          { "wavelengthNm": 650, "weight": 0.107 }
+          { "wavelengthNm": 560, "weight": 29.573 },
+          { "wavelengthNm": 530.82, "weight": 24.475 },
+          { "wavelengthNm": 589.18, "weight": 21.553 },
+          { "wavelengthNm": 504.8, "weight": 9.4728 },
+          { "wavelengthNm": 615.2, "weight": 10.291 },
+          { "wavelengthNm": 484.76, "weight": 2.7286 },
+          { "wavelengthNm": 635.24, "weight": 3.4949 },
+          { "wavelengthNm": 472.87, "weight": 0.75613 },
+          { "wavelengthNm": 647.13, "weight": 0.91347 }
         ],
         "conjugate": null
       },
@@ -1436,9 +1484,9 @@
         "requestedMode": "design",
         "mode": "design",
         "appliedShiftMm": 0,
-        "bestAxialShiftMm": -0.012113382,
-        "designScore": 0.722008912,
-        "bestScore": 0.745065405,
+        "bestAxialShiftMm": -0.008322412,
+        "designScore": 0.75715808,
+        "bestScore": 0.769517849,
         "imagePlaneOffsetMm": -0.00060791,
         "imagePlaneInconsistent": false
       },
@@ -1448,12 +1496,12 @@
           "status": "converged",
           "reason": null,
           "gridSize": 64,
-          "validRays": 16124,
-          "sagittal": [1, 0.938275219, 0.707675425, 0.527160279],
-          "tangential": [1, 0.938275218, 0.707675426, 0.527160279],
+          "validRays": 29020,
+          "sagittal": [1, 0.946973286, 0.744288962, 0.573524621],
+          "tangential": [1, 0.946973286, 0.744288962, 0.573524623],
           "diffractionLimit": {
-            "sagittal": [1, 0.988343469, 0.965020152, 0.941422244],
-            "tangential": [1, 0.98834347, 0.965020155, 0.941422249]
+            "sagittal": [1, 0.988301935, 0.964899749, 0.941214101],
+            "tangential": [1, 0.988301936, 0.964899753, 0.941214105]
           },
           "unknownFluxFraction": 0
         },
@@ -1462,12 +1510,12 @@
           "status": "converged",
           "reason": null,
           "gridSize": 64,
-          "validRays": 9332,
-          "sagittal": [1, 0.823144263, 0.506418136, 0.330857571],
-          "tangential": [1, 0.916355118, 0.616427967, 0.425369884],
+          "validRays": 16792,
+          "sagittal": [1, 0.825869991, 0.510694846, 0.330568236],
+          "tangential": [1, 0.923018802, 0.645934544, 0.449259992],
           "diffractionLimit": {
-            "sagittal": [1, 0.986755984, 0.960252371, 0.933585291],
-            "tangential": [1, 0.976661998, 0.930048733, 0.884664565]
+            "sagittal": [1, 0.986701641, 0.960093306, 0.933313845],
+            "tangential": [1, 0.976571272, 0.929809318, 0.884363244]
           },
           "unknownFluxFraction": 0
         }
@@ -1612,11 +1660,15 @@
         "fieldFractions": [0, 0.7],
         "frequenciesPerMm": [0, 10, 30, 50],
         "spectralLines": [
-          { "wavelengthNm": 555, "weight": 1 },
-          { "wavelengthNm": 470, "weight": 0.091 },
-          { "wavelengthNm": 510, "weight": 0.503 },
-          { "wavelengthNm": 610, "weight": 0.503 },
-          { "wavelengthNm": 650, "weight": 0.107 }
+          { "wavelengthNm": 560, "weight": 29.573 },
+          { "wavelengthNm": 530.82, "weight": 24.475 },
+          { "wavelengthNm": 589.18, "weight": 21.553 },
+          { "wavelengthNm": 504.8, "weight": 9.4728 },
+          { "wavelengthNm": 615.2, "weight": 10.291 },
+          { "wavelengthNm": 484.76, "weight": 2.7286 },
+          { "wavelengthNm": 635.24, "weight": 3.4949 },
+          { "wavelengthNm": 472.87, "weight": 0.75613 },
+          { "wavelengthNm": 647.13, "weight": 0.91347 }
         ],
         "conjugate": {
           "objectDistanceMm": 576.6736,
@@ -1630,10 +1682,10 @@
       "focus": {
         "requestedMode": "best-axial",
         "mode": "best-axial",
-        "appliedShiftMm": -0.016869779,
-        "bestAxialShiftMm": -0.016869779,
-        "designScore": 0.722909298,
-        "bestScore": 0.761054008,
+        "appliedShiftMm": -0.016642164,
+        "bestAxialShiftMm": -0.016642164,
+        "designScore": 0.742036496,
+        "bestScore": 0.782771968,
         "imagePlaneOffsetMm": null,
         "imagePlaneInconsistent": false
       },
@@ -1643,9 +1695,9 @@
           "status": "converged",
           "reason": null,
           "gridSize": 64,
-          "validRays": 16140,
-          "sagittal": [1, 0.916494939, 0.746509703, 0.638571176],
-          "tangential": [1, 0.916494925, 0.746509713, 0.638571183],
+          "validRays": 29052,
+          "sagittal": [1, 0.923502854, 0.770704386, 0.669629353],
+          "tangential": [1, 0.923502838, 0.770704398, 0.66962936],
           "diffractionLimit": null,
           "unknownFluxFraction": 0
         },
@@ -1654,9 +1706,9 @@
           "status": "converged",
           "reason": null,
           "gridSize": 64,
-          "validRays": 12476,
-          "sagittal": [1, 0.844833792, 0.54920235, 0.442914335],
-          "tangential": [1, 0.888487949, 0.420945379, 0.122637346],
+          "validRays": 22458,
+          "sagittal": [1, 0.849656091, 0.553318331, 0.439590749],
+          "tangential": [1, 0.89670604, 0.433968217, 0.103433704],
           "diffractionLimit": null,
           "unknownFluxFraction": 0
         }
@@ -1679,11 +1731,15 @@
         "fieldFractions": [0, 0.7],
         "frequenciesPerMm": [0, 10, 30, 50],
         "spectralLines": [
-          { "wavelengthNm": 555, "weight": 1 },
-          { "wavelengthNm": 470, "weight": 0.091 },
-          { "wavelengthNm": 510, "weight": 0.503 },
-          { "wavelengthNm": 610, "weight": 0.503 },
-          { "wavelengthNm": 650, "weight": 0.107 }
+          { "wavelengthNm": 560, "weight": 29.573 },
+          { "wavelengthNm": 530.82, "weight": 24.475 },
+          { "wavelengthNm": 589.18, "weight": 21.553 },
+          { "wavelengthNm": 504.8, "weight": 9.4728 },
+          { "wavelengthNm": 615.2, "weight": 10.291 },
+          { "wavelengthNm": 484.76, "weight": 2.7286 },
+          { "wavelengthNm": 635.24, "weight": 3.4949 },
+          { "wavelengthNm": 472.87, "weight": 0.75613 },
+          { "wavelengthNm": 647.13, "weight": 0.91347 }
         ],
         "conjugate": {
           "objectDistanceMm": 576.6736,
@@ -1698,9 +1754,9 @@
         "requestedMode": "design",
         "mode": "design",
         "appliedShiftMm": 0,
-        "bestAxialShiftMm": -0.016869779,
-        "designScore": 0.722909298,
-        "bestScore": 0.761054008,
+        "bestAxialShiftMm": -0.016642164,
+        "designScore": 0.742036496,
+        "bestScore": 0.782771968,
         "imagePlaneOffsetMm": null,
         "imagePlaneInconsistent": false
       },
@@ -1710,9 +1766,9 @@
           "status": "converged",
           "reason": null,
           "gridSize": 64,
-          "validRays": 16140,
-          "sagittal": [1, 0.902053953, 0.716401692, 0.56013193],
-          "tangential": [1, 0.902053941, 0.716401692, 0.560131941],
+          "validRays": 29052,
+          "sagittal": [1, 0.907511173, 0.736923724, 0.590297681],
+          "tangential": [1, 0.907511159, 0.736923731, 0.590297686],
           "diffractionLimit": null,
           "unknownFluxFraction": 0
         },
@@ -1721,9 +1777,9 @@
           "status": "converged",
           "reason": null,
           "gridSize": 64,
-          "validRays": 12476,
-          "sagittal": [1, 0.87217496, 0.534089743, 0.306636683],
-          "tangential": [1, 0.900787631, 0.501406255, 0.224022716],
+          "validRays": 22458,
+          "sagittal": [1, 0.876351375, 0.529102588, 0.30733303],
+          "tangential": [1, 0.909063136, 0.519264858, 0.215352117],
           "diffractionLimit": null,
           "unknownFluxFraction": 0
         }
@@ -1880,11 +1936,15 @@
         "fieldFractions": [0, 0.7],
         "frequenciesPerMm": [0, 10, 30, 50],
         "spectralLines": [
-          { "wavelengthNm": 555, "weight": 1 },
-          { "wavelengthNm": 470, "weight": 0.091 },
-          { "wavelengthNm": 510, "weight": 0.503 },
-          { "wavelengthNm": 610, "weight": 0.503 },
-          { "wavelengthNm": 650, "weight": 0.107 }
+          { "wavelengthNm": 560, "weight": 29.573 },
+          { "wavelengthNm": 530.82, "weight": 24.475 },
+          { "wavelengthNm": 589.18, "weight": 21.553 },
+          { "wavelengthNm": 504.8, "weight": 9.4728 },
+          { "wavelengthNm": 615.2, "weight": 10.291 },
+          { "wavelengthNm": 484.76, "weight": 2.7286 },
+          { "wavelengthNm": 635.24, "weight": 3.4949 },
+          { "wavelengthNm": 472.87, "weight": 0.75613 },
+          { "wavelengthNm": 647.13, "weight": 0.91347 }
         ],
         "conjugate": {
           "objectDistanceMm": 576.6736,
@@ -1898,10 +1958,10 @@
       "focus": {
         "requestedMode": "best-axial",
         "mode": "best-axial",
-        "appliedShiftMm": -0.016869779,
-        "bestAxialShiftMm": -0.016869779,
-        "designScore": 0.722909298,
-        "bestScore": 0.761054008,
+        "appliedShiftMm": -0.016642164,
+        "bestAxialShiftMm": -0.016642164,
+        "designScore": 0.742036496,
+        "bestScore": 0.782771968,
         "imagePlaneOffsetMm": null,
         "imagePlaneInconsistent": false
       },
@@ -1911,12 +1971,12 @@
           "status": "converged",
           "reason": null,
           "gridSize": 64,
-          "validRays": 16140,
-          "sagittal": [1, 0.916085877, 0.742074586, 0.631090727],
-          "tangential": [1, 0.916085868, 0.742074605, 0.631090739],
+          "validRays": 29052,
+          "sagittal": [1, 0.923043011, 0.768695831, 0.665491425],
+          "tangential": [1, 0.923043001, 0.768695848, 0.665491434],
           "diffractionLimit": {
-            "sagittal": [1, 0.986627907, 0.959728439, 0.932567051],
-            "tangential": [1, 0.986627911, 0.959728453, 0.932567068]
+            "sagittal": [1, 0.986578869, 0.959559225, 0.932334907],
+            "tangential": [1, 0.986578874, 0.959559238, 0.932334924]
           },
           "unknownFluxFraction": 0
         },
@@ -1925,12 +1985,12 @@
           "status": "converged",
           "reason": null,
           "gridSize": 64,
-          "validRays": 12476,
-          "sagittal": [1, 0.839538467, 0.549874357, 0.435157405],
-          "tangential": [1, 0.876406025, 0.412344925, 0.116293643],
+          "validRays": 22458,
+          "sagittal": [1, 0.844062731, 0.552054532, 0.436079126],
+          "tangential": [1, 0.884321126, 0.425829409, 0.104307283],
           "diffractionLimit": {
-            "sagittal": [1, 0.985463711, 0.956284658, 0.927005225],
-            "tangential": [1, 0.980194529, 0.940715633, 0.901300207]
+            "sagittal": [1, 0.985415385, 0.956138222, 0.926808821],
+            "tangential": [1, 0.980125854, 0.94051093, 0.900906651]
           },
           "unknownFluxFraction": 0
         }
@@ -1953,11 +2013,15 @@
         "fieldFractions": [0, 0.7],
         "frequenciesPerMm": [0, 10, 30, 50],
         "spectralLines": [
-          { "wavelengthNm": 555, "weight": 1 },
-          { "wavelengthNm": 470, "weight": 0.091 },
-          { "wavelengthNm": 510, "weight": 0.503 },
-          { "wavelengthNm": 610, "weight": 0.503 },
-          { "wavelengthNm": 650, "weight": 0.107 }
+          { "wavelengthNm": 560, "weight": 29.573 },
+          { "wavelengthNm": 530.82, "weight": 24.475 },
+          { "wavelengthNm": 589.18, "weight": 21.553 },
+          { "wavelengthNm": 504.8, "weight": 9.4728 },
+          { "wavelengthNm": 615.2, "weight": 10.291 },
+          { "wavelengthNm": 484.76, "weight": 2.7286 },
+          { "wavelengthNm": 635.24, "weight": 3.4949 },
+          { "wavelengthNm": 472.87, "weight": 0.75613 },
+          { "wavelengthNm": 647.13, "weight": 0.91347 }
         ],
         "conjugate": {
           "objectDistanceMm": 576.6736,
@@ -1972,9 +2036,9 @@
         "requestedMode": "design",
         "mode": "design",
         "appliedShiftMm": 0,
-        "bestAxialShiftMm": -0.016869779,
-        "designScore": 0.722909298,
-        "bestScore": 0.761054008,
+        "bestAxialShiftMm": -0.016642164,
+        "designScore": 0.742036496,
+        "bestScore": 0.782771968,
         "imagePlaneOffsetMm": null,
         "imagePlaneInconsistent": false
       },
@@ -1984,12 +2048,12 @@
           "status": "converged",
           "reason": null,
           "gridSize": 64,
-          "validRays": 16140,
-          "sagittal": [1, 0.902978564, 0.714026228, 0.553630617],
-          "tangential": [1, 0.902978555, 0.714026248, 0.553630624],
+          "validRays": 29052,
+          "sagittal": [1, 0.90851516, 0.734738653, 0.586593498],
+          "tangential": [1, 0.908515149, 0.734738671, 0.586593504],
           "diffractionLimit": {
-            "sagittal": [1, 0.986627907, 0.959728439, 0.932567051],
-            "tangential": [1, 0.986627911, 0.959728453, 0.932567068]
+            "sagittal": [1, 0.986578869, 0.959559225, 0.932334907],
+            "tangential": [1, 0.986578874, 0.959559238, 0.932334924]
           },
           "unknownFluxFraction": 0
         },
@@ -1998,12 +2062,12 @@
           "status": "converged",
           "reason": null,
           "gridSize": 64,
-          "validRays": 12476,
-          "sagittal": [1, 0.865778676, 0.535927823, 0.308977795],
-          "tangential": [1, 0.887736706, 0.48949318, 0.223139076],
+          "validRays": 22458,
+          "sagittal": [1, 0.869624543, 0.530258876, 0.309700453],
+          "tangential": [1, 0.895650561, 0.507085688, 0.215828802],
           "diffractionLimit": {
-            "sagittal": [1, 0.985463711, 0.956284658, 0.927005225],
-            "tangential": [1, 0.980194529, 0.940715633, 0.901300207]
+            "sagittal": [1, 0.985415385, 0.956138222, 0.926808821],
+            "tangential": [1, 0.980125854, 0.94051093, 0.900906651]
           },
           "unknownFluxFraction": 0
         }
