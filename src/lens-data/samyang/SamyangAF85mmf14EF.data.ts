@@ -353,7 +353,7 @@ const LENS_DATA = {
   },
   "source": {
     "patentNumber": "KR 10-2213072 B1",
-    "authors": ["Jae-myeong Ryu", "Hae-jin Lee", "Jeong-du Lee"],
+    "authors": ["Jae Myung Ryu", "Hae Jin Lee", "Jeong Du Lee"],
     "patentYear": 2021,
     "example": {
       "label": "Example 2",
