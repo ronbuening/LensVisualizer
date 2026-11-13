@@ -2362,4 +2362,25 @@ export const OHARA_GLASS_ENTRIES: readonly GlassEntry[] = [
     source:
       "OHARA all-products Zemax catalog 2026-07-01 (OHARA_260701.AGF); discontinued PBM22, vendor formula-1 polynomial (ne 1.652226, νe 33.5539). It shares a six-digit code with a current row, so code6 is omitted.",
   },
+  /* Exact patent coordinates for the Pentax-M 135mm f/3.5 L3 (BSL22) and the Yongnuo YN 85mm L32 (PBM18Y). */
+  {
+    name: "BSL22",
+    vendor: "Ohara",
+    polynomial: [2.2739528, -0.0091160058, 0.01226882, -0.00031677862, 0.000060075221, -0.0000028098187],
+    nd: 1.518206,
+    vd: 65.039654,
+    code6: "518650",
+    source:
+      "OHARA all-products Zemax catalog 2026-07-01 (OHARA_260701.AGF); discontinued BSL22, vendor formula-1 polynomial.",
+  },
+  {
+    name: "PBM18Y",
+    vendor: "Ohara",
+    B: [1.34660215, 0.136322343, 0.183371587],
+    C: [0.0106313733, 0.0491403013, 23.9154655],
+    nd: 1.595509,
+    vd: 38.767114,
+    code6: "596387",
+    source: "OHARA all-products Zemax catalog 2026-07-01 (OHARA_260701.AGF); vendor Sellmeier coefficients for PBM18Y.",
+  },
 ];
