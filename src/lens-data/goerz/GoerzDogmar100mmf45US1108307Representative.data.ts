@@ -1,13 +1,24 @@
-// Qualified representative, not exact factory identity. Hidden pending integration.
-// Inferred apertures/iris; source nD/C-F magnitude interpreted for engine d/V.
-import type { LensDataV2Input } from "../LensVisualizer/src/types/lensDataV2.js";
-export default {
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * US 1,108,307 A, sole numerical example on PDF page 2; drawing on PDF page 1.
+ * Scale factor 1: source f = 100 is represented as 100 mm; source length values
+ * are retained numerically as millimetres (units conversion ×1), without fitting.
+ * Eight radii, seven axial intervals and four sodium nD / C–F pairs are transcribed;
+ * νD is derived as (nD − 1)/(nF − nC). The stop midpoint (2.7/2.7 mm), its
+ * f/4.5-derived radius and all 11.5 mm rims are inferred, not printed dimensions.
+ * The terminal 88.708856474 mm interval is calculated infinity back focus.
+ * Qualified Dogmar patent representative, not an exact factory identity.
+ */
+const LENS_DATA = {
   "schema": 2,
   "key": "goerz-dogmar-us1108307-representative",
   "maker": "Goerz",
   "name": "Goerz Dogmar 100mm f/4.5 (patent representative)",
   "visible": false,
   "catalog": {
+    "lensMounts": ["large-format-lens-board"],
+    "imageFormat": "6x9",
     "elementCount": 4,
     "groupCount": 4,
     "focalLengthMm": {
@@ -20,7 +31,11 @@ export default {
     }
   },
   "source": {
-    "patentNumber": "US 1108307",
+    "patentNumber": "US 1,108,307 A",
+    "example": {
+      "label": "Sole example",
+      "id": null
+    },
     "patentYear": 1914,
     "authors": [
       "Walther Zschokke"
@@ -37,7 +52,7 @@ export default {
       "type": "Spherical patent glass",
       "nd": 1.61412,
       "vd": 56.341284403669725,
-      "indexReference": "d",
+      "indexReference": "D",
       "glass": "Source nD; positive C-F dispersion magnitude; d-reference engine approximation"
     },
     {
@@ -47,7 +62,7 @@ export default {
       "type": "Spherical patent glass",
       "nd": 1.5689,
       "vd": 42.61423220973782,
-      "indexReference": "d",
+      "indexReference": "D",
       "glass": "Source nD; positive C-F dispersion magnitude; d-reference engine approximation"
     },
     {
@@ -57,7 +72,7 @@ export default {
       "type": "Spherical patent glass",
       "nd": 1.5482,
       "vd": 46.14478114478115,
-      "indexReference": "d",
+      "indexReference": "D",
       "glass": "Source nD; positive C-F dispersion magnitude; d-reference engine approximation"
     },
     {
@@ -67,7 +82,7 @@ export default {
       "type": "Spherical patent glass",
       "nd": 1.61412,
       "vd": 56.341284403669725,
-      "indexReference": "d",
+      "indexReference": "D",
       "glass": "Source nD; positive C-F dispersion magnitude; d-reference engine approximation"
     }
   ],
@@ -132,7 +147,7 @@ export default {
   ],
   "focus": {
     "closeFocusM": 1000000000000000.0,
-    "description": "NO_INTERNAL_RECONSTRUCTION: infinity representative only"
+    "description": "Only the infinity prescription is modeled because the patent provides no finite-focus data."
   },
   "aperture": {
     "nominalFNumber": 4.5,
@@ -153,3 +168,4 @@ export default {
     "yScFill": 0.7
   }
 } satisfies LensDataV2Input;
+export default LENS_DATA;

@@ -10,9 +10,9 @@
 **Title:** Telephoto Objective  
 **Example details:** Sole 100 mm f/4.5 numerical example and matching repeated claim.
 
-The original patent does not name Enna or Tele-Sandmar. A seller-hosted photograph visibly shows ARGUS Tele-Sandmar and Patent No. 2631497 on a physical lens. This is direct evidence of the readable markings, not an inference from the listing title, but does not establish the specimen's internal numerical prescription. The maker/location text is partly wrapped in this angle; a different photographed specimen independently shows Enna-Werk and 100 mm F:4.5. Those two specimens are not represented as the same serial lens.
+The original patent does not name Enna or Tele-Sandmar. The original Geiss-America sales manual describes a German-made 100 mm f/4.5 Tele-Sandmar for the Argus C3, with stops from f/4.5 to f/22 and rangefinder coupling. Collector sources name Enna-Werk. The focal length, aperture and the C3's in-body shutter behind the lens support a strong but circumstantial association with the patent. No published production element count or cross-section was found, and the seller-hosted patent engraving could not be verified.
 
-The original Geiss-America sales manual describes a 100 mm f/4.5 Tele-Sandmar for the Argus C3. The manual carries a 1951 copyright, preceding the patent application in 1952; the later specimen bears the granted patent number. This chronology does not prove all early and later versions had identical optics. Primary commercial literature, photographed patent marking and the complete matching-focal patent example support a qualified representative. They do not prove exact factory melt, every production variant or a teardown-level identity. Seller photographs and the manual mirror are not manufacturer-controlled custody.
+The manual carries a 1951 copyright and says "U.S. Patents Pending", preceding the patent application in 1952. This chronology does not prove all production versions had identical optics. The commercial literature and matching-focal patent example support a qualified representative, without proving exact factory melt, every production variant or a teardown-level identity. The manual is mirrored by a collectors group rather than held on a manufacturer-controlled site.
 
 ## Optical Architecture
 
@@ -38,7 +38,7 @@ Source nD = 1.72719, V = 28.0; unmatched source glass. The front surface is exac
 
 ## Glass Identification and Selection
 
-The patent explicitly defines its index column as sodium D at 589.3 nm and identifies the dispersion numbers as Abbe numbers. The engine d-reference representation approximates that sodium-D reference; it is not exact helium-d data or a known melt. No full dispersion curves, anomalous partial dispersion or vendor catalog identities are established.
+The patent explicitly defines its index column as sodium D at 589.3 nm and identifies the dispersion numbers as Abbe numbers. All four elements use the sodium-D reference (`indexReference: "D"`); the sodium-D to helium-d index difference is about 1.2–2.3 × 10⁻⁴, larger than the patent's five-decimal print precision. No exact melt is identified. No full dispersion curves, anomalous partial dispersion or vendor catalog identities are established.
 
 All four source index/Abbe pairs are preserved. The original example and repeated claim agree. No spectral or optical fitting was performed to improve focal length or ray success.
 
@@ -52,7 +52,7 @@ The patent prose describes a BFL/f ratio substantially below 0.4 and of the orde
 
 The source says the diaphragm or shutter is shown substantially midway between the second and third elements. The model realizes this as an exact 14.5/14.5 mm split of the 29 mm gap. That is a reasonable disclosed construction inference, not a published precise coordinate or mechanical tolerance.
 
-Source clear apertures are absent. The inferred front-group semi-diameter is 15.5 mm and the rear-group semi-diameter 9 mm, selected separately as the largest half-millimeter grid values satisfying default 0.9 geometry limits. The schematic supports unequal heights qualitatively but is not a calibrated drawing. These dimensions were not selected by optimizing ray results.
+Source clear apertures are absent. The inferred front-group semi-diameter is 15.5 mm and the rear-group semi-diameter 9 mm, selected separately as the largest half-millimeter grid values satisfying default 0.9 geometry limits. The figure is drawn to scale: its axial dimensions agree with the numerical example within 1 %, and its optical rims indicate semi-diameters of about 11.1 mm at the front and 6.4 mm at the rear. The retained model rims are larger; comparison and correction are open for the SD pass. These dimensions were not selected by optimizing ray results.
 
 Full inferred-cap clearance from the stop plane is 12.786010 mm on the front side and 11.025989 mm on the rear side. Native f/4.5 pupil construction yields a physical iris radius of 6.738905554 mm, not a source hole diameter. The UI range through f/22 is authored convenience, not complete validation of a retail diaphragm range.
 
@@ -70,4 +70,3 @@ The representative remains hidden. Full current-corpus/application tests, lint/f
 
 - [Original US2631497](https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/2631497), complete three-page USPTO scan; example, claim, sodium-D definition and approximate stop statement on PDF page 3.
 - [Geiss-America Tele-Sandmar sales manual](https://www.arguscg.org/manuals/sandmar/trutele.pdf), primary commercial literature mirrored by the Argus collectors group.
-- [Photographed Argus Tele-Sandmar specimen](https://www.etsy.com/listing/4300952254/argus-c3-c2-mount-100mm-f45-tele-sandmar), readable patent engraving; seller title alone is not used as proof.

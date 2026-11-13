@@ -1,13 +1,23 @@
-// Qualified patent representative, hidden pending integration.
-// Inferred caps and exact-midpoint realization; source sodiumD approximation.
-import type { LensDataV2Input } from "../LensVisualizer/src/types/lensDataV2.js";
-export default {
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * US 2,631,497 A, sole numerical example and repeated claim 3 table (PDF page 3).
+ * Native 100 mm f/4.5 prescription; scale factor 1, with dimensions already in mm
+ * and no units conversion. All seven radii, six glass/air intervals and four
+ * sodium-D index/Abbe pairs are retained as printed.
+ * The stop's 14.5/14.5 mm split of the 29 mm gap is inferred from "substantially
+ * midway". The 15.5 mm front and 9 mm rear semi-diameters are inferred geometry
+ * limits, larger than the figure, and await the SD pass. The final image interval
+ * is calculated back focus, not a printed source value. Only infinity is modeled.
+ */
+const LENS_DATA = {
   "schema": 2,
   "key": "enna-tele-sandmar100-us2631497-representative",
-  "maker": "Enna",
+  "maker": "Enna München",
   "name": "Enna Tele-Sandmar 100mm f/4.5 (patent representative)",
   "visible": false,
   "catalog": {
+    "imageFormat": "135-full-frame",
     "elementCount": 4,
     "groupCount": 3,
     "focalLengthMm": {
@@ -20,7 +30,8 @@ export default {
     }
   },
   "source": {
-    "patentNumber": "US 2631497",
+    "patentNumber": "US 2,631,497 A",
+    "example": { "label": "Sole example", "id": null },
     "patentYear": 1953,
     "authors": [
       "Franz Schlegel"
@@ -37,7 +48,7 @@ export default {
       "type": "Spherical patent glass",
       "nd": 1.62398,
       "vd": 47,
-      "indexReference": "d",
+      "indexReference": "D",
       "glass": "Source sodiumD589.3nm; d-reference engine approximation, no exact melt"
     },
     {
@@ -47,7 +58,7 @@ export default {
       "type": "Spherical patent glass",
       "nd": 1.74066,
       "vd": 27.2,
-      "indexReference": "d",
+      "indexReference": "D",
       "glass": "Source sodiumD589.3nm; d-reference engine approximation, no exact melt"
     },
     {
@@ -57,7 +68,7 @@ export default {
       "type": "Spherical patent glass",
       "nd": 1.61008,
       "vd": 46,
-      "indexReference": "d",
+      "indexReference": "D",
       "glass": "Source sodiumD589.3nm; d-reference engine approximation, no exact melt"
     },
     {
@@ -67,7 +78,7 @@ export default {
       "type": "Spherical patent glass",
       "nd": 1.72719,
       "vd": 28,
-      "indexReference": "d",
+      "indexReference": "D",
       "glass": "Source sodiumD589.3nm; d-reference engine approximation, no exact melt"
     }
   ],
@@ -101,32 +112,32 @@ export default {
       "label": "4",
       "R": -13.395,
       "d": 0.8,
-      "sd": 9.0,
+      "sd": 9,
       "medium": 3
     },
     {
       "label": "5",
       "R": -97.629,
       "d": 0.03,
-      "sd": 9.0
+      "sd": 9
     },
     {
       "label": "6",
       "R": "flat",
       "d": 1.7,
-      "sd": 9.0,
+      "sd": 9,
       "medium": 4
     },
     {
       "label": "7",
       "R": -27.623,
       "d": 39.07198037168,
-      "sd": 9.0
+      "sd": 9
     }
   ],
   "focus": {
-    "closeFocusM": 1000000000000000.0,
-    "description": "NO_INTERNAL_RECONSTRUCTION: infinity representative only"
+    "closeFocusM": 1000000000000000,
+    "description": "Only the infinity-focus prescription is modeled."
   },
   "aperture": {
     "nominalFNumber": 4.5,
@@ -147,3 +158,5 @@ export default {
     "yScFill": 0.7
   }
 } satisfies LensDataV2Input;
+
+export default LENS_DATA;

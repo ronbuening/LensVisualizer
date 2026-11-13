@@ -1,7 +1,7 @@
 ## Patent Reference and Design Identification
 
 **Patent:** CN 122469500 A
-**Inventors:** Changjia Liu, Xiangshi Luo, Xijing Yang
+**Inventors:** Liu Changjia, Luo Xiangshi, Yang Xijing
 **Assignee:** Shenzhen 7Artisans Photoelectric Technology Co., Ltd.
 **Filed:** June 25, 2026
 **Published:** July 28, 2026

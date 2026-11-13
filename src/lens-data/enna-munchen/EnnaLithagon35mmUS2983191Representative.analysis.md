@@ -26,35 +26,35 @@ The front negative member provides the retrofocus arrangement required for a lon
 
 ### L1: front negative meniscus
 
-Assumed nd = 1.51821, νd = 65.2; unmatched source glass. The meniscus is concave toward the rear assembly. Its large separation from L2 is retained exactly after uniform scaling. The source calls the indices mean refractive indices; treating them as d-reference values is an explicit modeling assumption.
+nd = 1.51821, νd = 65.2; the index exactly matches the helium-d catalog value of PK2. The meniscus is concave toward the rear assembly. Its large separation from L2 is retained exactly after uniform scaling. The source calls the indices mean refractive indices; exact helium-d catalog matches for five of the six elements establish the d reference.
 
 ### L2: positive singlet
 
-Assumed nd = 1.74400, νd = 44.7; unmatched high-index source glass. This positive element begins the rear assembly. Its small air separation from L3 is retained, not merged into a cemented interface.
+nd = 1.74400, νd = 44.7; unmatched high-index source glass, using the d reference established by the other five elements. This positive element begins the rear assembly. Its small air separation from L3 is retained, not merged into a cemented interface.
 
 ### L3: positive meniscus
 
-Assumed nd = 1.69347, νd = 53.5; unmatched source glass. The main example table prints 53.5, while the repeated claim table prints 53.7. This model uses the main example and records the conflict; no source-value correction or spectral fit is made. An original German scan has not resolved the discrepancy.
+nd = 1.69347, νd = 53.5; the index exactly matches the helium-d catalog value of LaF2. The main example table prints 53.5, while the repeated claim table prints 53.7. This model uses the main example and records the conflict; no source-value correction or spectral fit is made. An original German scan has not resolved the discrepancy.
 
 ### L4: biconcave negative singlet
 
-Assumed nd = 1.68893, νd = 31.1; unmatched lower-Abbe source glass. This negative element lies between positive portions of the rear assembly. The patent discusses a low-Abbe negative element in its correction scheme; no quantitative aberration allocation is independently established here.
+nd = 1.68893, νd = 31.1; the index exactly matches the helium-d catalog value of SF8. This negative element lies between positive portions of the rear assembly. The patent discusses a low-Abbe negative element in its correction scheme; no quantitative aberration allocation is independently established here.
 
 ### L5 and L6: rear cemented pair
 
-L5: assumed nd = 1.66680, νd = 33.1. L6: assumed nd = 1.69100, νd = 54.9. Both are unmatched source glasses. The negative/positive pair shares the source's S10 interface; no extra air layer is inserted. No modern melt or catalog identity is asserted.
+L5: nd = 1.66680, νd = 33.1; the index exactly matches the helium-d catalog value of SF19. L6: nd = 1.69100, νd = 54.9; the index exactly matches the helium-d catalog value of LaK9. The negative/positive pair shares the source's S10 interface; no extra air layer is inserted. No modern melt or catalog identity is asserted.
 
 Isolated-element focal lengths are not independently certified; all source radii and thicknesses are available in the typed prescription rather than inferred from product photographs.
 
 ## Glass Identification and Selection
 
-The original publication identifies Abbe numbers but describes refractive indices as mean indices without tying the numerical column to a specific spectral line. The engine d-reference interpretation is an assumption. The source's 53.5/53.7 conflict is preserved, not hidden through rounding or optimization. No anomalous dispersion, full spectral melt, measured color correction or unique glass vendor is established.
+The original publication identifies Abbe numbers and describes refractive indices as mean indices. Five of the six indices equal helium-d catalog values exactly: PK2 (L1), LaF2 (L3), SF8 (L4), SF19 (L5) and LaK9 (L6). This agreement establishes the d reference; it does not identify a historical supplier or melt. L2 remains unmatched. The source's 53.5/53.7 conflict is preserved, not hidden through rounding or optimization. No anomalous dispersion, full spectral melt, measured color correction or unique glass vendor is established.
 
 ## Focus Mechanism
 
 The model preserves the source infinity prescription and printed BFL of 1.00950, scaled to 35.3325 mm. Literal paraxial computation gives 35.327695235 mm; the resulting +0.004804765 mm difference remains in the source image plane. No refocus or optical retuning removes it.
 
-No finite-focus movement is reconstructed. The brochure gives approximately 14 inches for the standard lens and 9 inches for the pre-set version; neither is validated here, and the versions are not conflated. No manufacturing scale or focus travel is inferred from the nominal 35 mm label.
+No finite-focus movement is reconstructed. The brochure gives about 1½ feet (approximately 0.46 m) for the standard-mount lens and 9 inches for the pre-set version. The standard-mount value is recorded as catalog.closeFocusM.marketing; the versions are not conflated. No manufacturing scale or focus travel is inferred from the nominal 35 mm label.
 
 ## Aperture and Iris Assumptions
 

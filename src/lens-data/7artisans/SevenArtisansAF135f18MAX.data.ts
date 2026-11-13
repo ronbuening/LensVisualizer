@@ -1,7 +1,9 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
-/** Literal CN122469500A Table1, verified from user-provided original.
+/** Literal CN122469500A Table1, verified from CN 122469500 A, Table 1.
  * Original Fig2 pupil radius36.8167mm determines f-number from literal paraxial EFL.
- * Clear caps estimated from Fig1; under validation, not printed dimensions.
+ * Scale factor 1; R, d and semi-diameters are in mm, with no units conversion.
+ * Stop position and back focus are tabulated; the stop radius is inferred from the pupil.
+ * Clear caps are inferred from Fig1; S26–S30 use 17.4 mm for corner chief-ray clearance.
  * Glass nd/vd retained literally with approximate dispersion; factory identity unproven.
  * Prose ED ordinal contradiction preserved in source.errata. Infinity-only. */
 const LENS_DATA = {
@@ -33,6 +35,9 @@ const LENS_DATA = {
       "marketing": 1.8,
       "design": 1.7940979019491945
     },
+    "closeFocusM": {
+      "marketing": 0.68
+    },
     "lensMounts": [
       "sony-fe",
       "nikon-z",
@@ -48,9 +53,9 @@ const LENS_DATA = {
     },
     "patentYear": 2026,
     "authors": [
-      "Changjia Liu",
-      "Xiangshi Luo",
-      "Xijing Yang"
+      "Liu Changjia",
+      "Luo Xiangshi",
+      "Yang Xijing"
     ],
     "assignees": [
       "Shenzhen 7Artisans Photoelectric Technology Co., Ltd."
@@ -391,34 +396,34 @@ const LENS_DATA = {
       "label": "26",
       "R": 60.116289,
       "d": 5.1,
-      "sd": 17,
+      "sd": 17.4,
       "medium": 14
     },
     {
       "label": "27",
       "R": -505.402597,
       "d": 1.0,
-      "sd": 17,
+      "sd": 17.4,
       "medium": 15
     },
     {
       "label": "28",
       "R": 61.850131,
       "d": 8.328738,
-      "sd": 17
+      "sd": 17.4
     },
     {
       "label": "29",
       "R": -32.701218,
       "d": 1.0,
-      "sd": 17,
+      "sd": 17.4,
       "medium": 16
     },
     {
       "label": "30",
       "R": -70.574457,
       "d": 19.533382,
-      "sd": 17
+      "sd": 17.4
     }
   ],
   "rearPlates": [
@@ -432,7 +437,7 @@ const LENS_DATA = {
     }
   ],
   "focus": {
-    "closeFocusM": 0.68,
+    "closeFocusM": 1e15,
     "description": "Infinity-only source Table1. Product MOD is metadata; no inferred finite-focus law."
   },
   "aperture": {

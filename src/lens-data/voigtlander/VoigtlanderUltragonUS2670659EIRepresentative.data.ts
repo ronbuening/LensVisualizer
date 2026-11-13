@@ -1,11 +1,25 @@
-import type { LensDataV2Input } from "../LensVisualizer/src/types/lensDataV2.js";
-export default {
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * US 2,670,659 A, Example I (PDF p. 3), Albrecht Wilhelm Tronnier, assigned to Voigtländer.
+ * Representative Ultragon prescription, not an established factory 115 mm prescription.
+ * Scale factor: 115. The patent normalizes focal length to 1; multiply all radii,
+ * thicknesses and airspaces by 115 to express them in millimetres. The printed
+ * helium-d refractive indices and Abbe numbers are unchanged.
+ * The stop position is inferred at the midpoint of a2; its radius is derived from
+ * f/5.5. Clear semi-diameters of 20/15/11.5/15 mm are inferred, not tabulated.
+ * Back focus is not inferred: the last interval is the printed p0′ = 0.82606,
+ * scaled to 94.9969 mm. Only the infinity state is modeled.
+ */
+const LENS_DATA = {
   "schema": 2,
   "key": "voigtlander-ultragon-us2670659-ei-representative",
   "maker": "Voigtl\u00e4nder",
   "name": "Voigtl\u00e4nder Ultragon 115mm-scaled f/5.5 (patent EI representative)",
   "visible": false,
   "catalog": {
+    "lensMounts": ["large-format-lens-board"],
+    "imageFormat": "5x7",
     "elementCount": 5,
     "groupCount": 4,
     "focalLengthMm": {
@@ -18,7 +32,8 @@ export default {
     }
   },
   "source": {
-    "patentNumber": "US 2670659",
+    "patentNumber": "US 2,670,659 A",
+    "example": { "label": "Example I", "id": "1" },
     "patentYear": 1954,
     "authors": [
       "Albrecht Wilhelm Tronnier"
@@ -83,7 +98,7 @@ export default {
     {
       "label": "1",
       "R": 28.13015,
-      "d": 5.335999999999999,
+      "d": 5.336,
       "sd": 20.0,
       "medium": 1
     },
@@ -103,24 +118,24 @@ export default {
     {
       "label": "4",
       "R": 19.40625,
-      "d": 7.514099999999999,
+      "d": 7.5141,
       "sd": 15.0
     },
     {
       "label": "STO",
       "R": "flat",
-      "d": 7.514099999999999
+      "d": 7.5141
     },
     {
       "label": "5",
-      "R": -26.568450000000002,
+      "R": -26.56845,
       "d": 1.3064,
       "sd": 11.5,
       "medium": 3
     },
     {
       "label": "6",
-      "R": 62.020649999999996,
+      "R": 62.02065,
       "d": 5.8811,
       "sd": 11.5,
       "medium": 4
@@ -134,7 +149,7 @@ export default {
     {
       "label": "8",
       "R": -17.1419,
-      "d": 2.3954500000000003,
+      "d": 2.39545,
       "sd": 15.0,
       "medium": 5
     },
@@ -147,7 +162,7 @@ export default {
   ],
   "focus": {
     "closeFocusM": 1000000000000000.0,
-    "description": "NO_INTERNAL_RECONSTRUCTION: representative infinity only, separate component modes not modeled"
+    "description": "This model represents the lens at infinity, with no separate component modes modeled."
   },
   "aperture": {
     "nominalFNumber": 5.5,
@@ -170,3 +185,5 @@ export default {
     "yScFill": 0.7
   }
 } satisfies LensDataV2Input;
+
+export default LENS_DATA;
