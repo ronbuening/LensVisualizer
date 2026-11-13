@@ -187,11 +187,6 @@ S under a day, M one to three days, L longer.
   lattice, the unresolved-beam and dark-line rules and the 256 cap. Regenerate it, and print the engine commit and
   hashes of anchors, conventions and prescriptions so a stale copy says so. Required before Stage 9. S plus the
   run.
-- **C13 — The optical-path reference is wrong on mapped pupils.** It pairs cells on one direction cosine: on a
-  coupled 2-D map it reads 0.0070 where Hopkins gives 0.0144, inside its quarter-wave gate, and 0.0135 low on the
-  bowed map of C10. The report's cross-check covers 114 of 196 fields and none of Sigma 23mm f/1.4's; wide open,
-  6 of 12 probed fields fail the gate, while at f/8 the routes agree within 0.0005 on all 12. Pair on both
-  direction coordinates, report gate coverage, and add f/8 and 50 lp/mm. M to L.
 - **C15 — Missing analytic controls.** A finite-conjugate cutoff at 1/(λ · working N) from an independently derived
   NA; a geometric defocus disc against its Bessel transform; the two-line beat over a full period. Cheap corpus
   invariants: MTF(0) = 1, diffraction MTF at or below its own traced-pupil limit, S = T on axis. M.

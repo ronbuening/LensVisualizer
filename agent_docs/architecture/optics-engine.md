@@ -282,11 +282,15 @@ compares the catalog with digitized manufacturer chart values (`reports/data/mtf
 for every maker and under each maker's chart convention (`reports/data/mtfChartConventions.ts`: geometric,
 diffraction-inclusive or measured, with a documented / inferred basis), by frequency and field band; it repeats the
 two-route cross-check on those lenses and keeps the audit's own values, computed with the retired product, as a
-frozen reference. That cross-check samples wide open at 10 and 30 lp/mm; a stopped-down probe at 50 lp/mm found two
-wide-angle corners where the routes differ by 0.004 to 0.006 at every grid, with neither shown to be the more
-accurate. It is a report, never a test threshold: maker focus and spectrum are undocumented, and a patent
-example is not proven to be the production lens. The kernels are checked against exact Hopkins integrals; no real
-lens has been compared with another tool.
+frozen reference. The cross-check samples wide open and at f/8 (or the nearest attainable aperture), each on its own
+best axial focus plane, at 10, 30 and 50 lp/mm on a 128-cell lattice. Each pass prints per-configuration and total
+coverage beside the magnitude and complex OTF gaps: fields compared, fields excluded as not checked, phase-step
+exclusions with their largest step, non-invertible maps (infinite gate step), and unavailable fields or bundles.
+Only fields whose full spectrum passes the quarter-wave phase-step and invertibility gate contribute differences;
+compared and excluded step maxima are separate. The two routes share the ray trace, so agreement is not proof
+against an outside reference. It is a report, never a test threshold: maker focus and spectrum are undocumented,
+and a patent example is not proven to be the production lens. The kernels are checked against exact Hopkins
+integrals; no real lens has been compared with another tool.
 
 The MTF tab reuses `analysisContext.request`, or memoizes a standalone request from prepared geometry, aperture and
 EFL. Its f/8 comparison creates a separate request with scaled aperture radii, reports its own progress and errors,

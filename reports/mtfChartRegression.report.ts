@@ -1,5 +1,3 @@
-import type { LensDataV2Input } from "../src/types/lensDataV2.js";
-import { createAnalysisRequest } from "../src/optics/analysis.js";
 /**
  * Manufacturer-chart regression report.
  *
@@ -15,28 +13,28 @@ import { createAnalysisRequest } from "../src/optics/analysis.js";
  *
  * Regenerate: `MTF_CHART_REPORT=1 npm run generate:reports -- mtfChartRegression`
  */
+import type { LensDataV2Input } from "../src/types/lensDataV2.js";
+import { createAnalysisRequest } from "../src/optics/analysis.js";
 import { describe, expect, it } from "vitest";
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { env } from "node:process";
-import { combineOtfs, otfMagnitude } from "../src/optics/mtf.js";
-import type { ComplexOtf, MtfSpot } from "../src/optics/mtf.js";
-import { shearedOtf } from "../src/optics/mtf.js";
-import {
-  findMtfFieldFootprint,
-  prepareMtfFieldLaunch,
-  traceMtfStopBundle,
-  traceMtfLaunchPlaneBundle,
-} from "../src/optics/mtf.js";
-import { mtfWaveLattice, waveLatticeOtf, waveLatticePhaseStep } from "../src/optics/mtf.js";
-import { wideOpenStopAtZoom } from "../src/optics/optics.js";
+import { fNumberAtStopdown, wideOpenStopAtZoom } from "../src/optics/optics.js";
 import { buildLens } from "../src/optics/buildLens.js";
 import { prepareRuntimeState } from "../src/optics/optics.js";
-import { assessMtfSupport, computeMtf } from "../src/optics/mtf.js";
+import { computeMtf } from "../src/optics/mtf.js";
 import { computeAnalysisFieldGeometryAtState, entrancePupilAtState } from "../src/optics/fieldGeometry.js";
-import type { PreparedOpticalState } from "../src/optics/types.js";
 import type { MtfMethod, MtfOptions, MtfResult } from "../src/types/mtf.js";
 import { mtfChartConvention, type MtfChartConvention, type MtfChartMethod } from "./data/mtfChartConventions.js";
-import { correctedSinceAudit } from "./mtfChartLib.js";
+import {
+  correctedSinceAudit,
+  crossCheckConfiguration,
+  stoppedDownCrossCheck,
+  renderCrossCheckPass,
+  CROSS_CHECK_GRID,
+  CROSS_CHECK_FREQUENCIES,
+  CROSS_CHECK_PHASE_STEP_WAVES,
+} from "./mtfChartLib.js";
+import type { CrossCheckPass } from "./mtfChartLib.js";
 
 const modules = import.meta.glob<{ default: LensDataV2Input }>("../src/lens-data/**/*.data.ts", { eager: true });
 const ANCHORS_PATH = "reports/data/mtfChartAnchors.csv";
@@ -74,11 +72,6 @@ const LAST_REPRODUCTION = {
   meanAbsolute: 0.0047,
   meanSigned: -0.0047,
 };
-/** Pupil grid, frequencies and gates of the estimator cross-check. */
-const CROSS_CHECK_GRID = 128;
-const CROSS_CHECK_FREQUENCIES = [10, 30];
-const CROSS_CHECK_PHASE_STEP_WAVES = 0.25;
-const CROSS_CHECK_TOLERANCE = 0.004;
 /** Field bands by upper bound, set between the tenths of the field the anchors sit on. */
 const FIELD_BANDS = [
   { label: "0-0.3", upTo: 0.35 },
@@ -116,19 +109,6 @@ interface Sample {
   convention: Curves | null;
 }
 
-/** Diffraction estimate against the optical-path autocorrelation of the same rays, over one configuration. */
-interface CrossCheck {
-  /** Fields whose phase step stays under the gate at every wavelength, and the fields it rules out. */
-  compared: number;
-  undersampled: number;
-  /** Fields with curves that could not be traced again for the check. */
-  untraced: number;
-  /** |estimate - reference| of every compared S and T value. */
-  gaps: number[];
-  /** Largest phase step of the compared fields, in waves per lattice cell. */
-  largestStep: number;
-}
-
 /** One lens at one zoom position: a single published chart. */
 interface Configuration {
   key: string;
@@ -140,7 +120,7 @@ interface Configuration {
   /** Result of the diffraction method; focus and aperture do not depend on the method. */
   result: MtfResult;
   samples: Sample[];
-  crossCheck: CrossCheck;
+  crossChecks: { wideOpen: CrossCheckPass; stoppedDown: CrossCheckPass };
 }
 
 /** Delta of one sample under one comparison; null when the comparison has no curve there. */
@@ -220,80 +200,6 @@ function curvesAt(result: MtfResult, fieldIndex: number, frequency: number): Cur
   return { sagittal: field.sagittal[index], tangential: field.tangential[index] };
 }
 
-/**
- * Hold the diffraction estimate against the optical-path autocorrelation, field by field.
- *
- * Both are computed from one bundle per wavelength, traced again with optical paths at a fixed grid: the estimate
- * reads where the rays land, the reference reads how far they travelled. A field counts only where the reference
- * is itself sampled finely enough, a phase step under a quarter wave per cell at every wavelength.
- */
-function crossCheckConfiguration(state: PreparedOpticalState, options: MtfOptions, result: MtfResult): CrossCheck {
-  const charted = result.fields.filter((field) => field.status === "converged" || field.status === "unconverged");
-  const check: CrossCheck = { compared: 0, undersampled: 0, untraced: charted.length, gaps: [], largestStep: 0 };
-  const support = assessMtfSupport(
-    createAnalysisRequest({
-      preparedState: state,
-      dynamicEFL: 0,
-      currentEPSD: options.pupilSemiDiameterMm,
-      currentPhysStopSD: options.stopSemiDiameterMm,
-    }),
-    options,
-  );
-  if (!support.available || !result.focus) return check;
-  const planeZ = state.imgZ + result.focus.appliedShiftMm;
-  for (const field of charted) {
-    if (field.fieldAngleDeg === null) continue;
-    const launch = prepareMtfFieldLaunch(state, options, support, field.fieldAngleDeg);
-    // A bounding-sphere field keeps launch-plane sampling over its footprint, as the product does.
-    const footprint = launch && !launch.aim ? findMtfFieldFootprint(state, options, support, launch) : null;
-    if (!launch || (!launch.aim && !footprint)) continue;
-    const estimate = { sagittal: [] as Weighted[], tangential: [] as Weighted[] };
-    const reference = { sagittal: [] as Weighted[], tangential: [] as Weighted[] };
-    let common: MtfSpot | undefined;
-    let step = 0;
-    let complete = true;
-    for (const line of support.spectralLines) {
-      const extras = { reference: common, opticalPath: true };
-      const bundle = footprint
-        ? traceMtfLaunchPlaneBundle(state, options, support, launch, footprint, CROSS_CHECK_GRID, line, planeZ, extras)
-        : traceMtfStopBundle(state, options, support, launch, CROSS_CHECK_GRID, line, planeZ, extras);
-      const lattice = bundle && mtfWaveLattice(bundle, (common ??= bundle.chief), planeZ);
-      if (!bundle || !lattice || !common) {
-        complete = false;
-        break;
-      }
-      const wavelengthMm = line.wavelengthNm * 1e-6;
-      step = Math.max(step, waveLatticePhaseStep(lattice, wavelengthMm));
-      const weight = line.weight * bundle.rays.reduce((sum, ray) => sum + ray.weight, 0);
-      const sheared = shearedOtf(bundle, common, wavelengthMm, CROSS_CHECK_FREQUENCIES);
-      const wave = waveLatticeOtf(lattice, wavelengthMm, CROSS_CHECK_FREQUENCIES);
-      for (const cut of ["sagittal", "tangential"] as const) {
-        estimate[cut].push({ otf: sheared[cut], weight });
-        reference[cut].push({ otf: wave[cut], weight });
-      }
-    }
-    if (!complete) continue;
-    check.untraced--;
-    if (!(step < CROSS_CHECK_PHASE_STEP_WAVES)) {
-      check.undersampled++;
-      continue;
-    }
-    check.compared++;
-    check.largestStep = Math.max(check.largestStep, step);
-    for (const cut of ["sagittal", "tangential"] as const) {
-      const ours = otfMagnitude(combineOtfs(estimate[cut]));
-      const theirs = otfMagnitude(combineOtfs(reference[cut]));
-      ours.forEach((value, i) => check.gaps.push(Math.abs(value - theirs[i])));
-    }
-  }
-  return check;
-}
-
-interface Weighted {
-  otf: ComplexOtf;
-  weight: number;
-}
-
 /** Trace one chart's configuration with diffraction and, when it differs, under the maker's convention. */
 function runConfiguration(lens: LensDataV2Input, zoomT: number, anchors: Anchor[]): Configuration {
   const L = buildLens(lens);
@@ -352,7 +258,14 @@ function runConfiguration(lens: LensDataV2Input, zoomT: number, anchors: Anchor[
         convention: curvesAt(conventionResult, fieldIndex, anchor.frequency),
       };
     }),
-    crossCheck: crossCheckConfiguration(state, options(DIFFRACTION_METHOD), result),
+    crossChecks: {
+      wideOpen: {
+        fNumber: fNumberAtStopdown(0, zoomT, L),
+        focusShiftMm: result.focus?.appliedShiftMm ?? null,
+        check: crossCheckConfiguration(state, options(DIFFRACTION_METHOD), result),
+      },
+      stoppedDown: stoppedDownCrossCheck(L, zoomT, state, options(DIFFRACTION_METHOD)),
+    },
   };
 }
 
@@ -554,48 +467,40 @@ function renderReport(configurations: Configuration[]): string {
     );
   lines.push("");
 
-  const checks = configurations.map((configuration) => configuration.crossCheck);
-  const allGaps = checks.flatMap((check) => check.gaps);
-  const comparedFields = checks.reduce((sum, check) => sum + check.compared, 0);
-  const undersampledFields = checks.reduce((sum, check) => sum + check.undersampled, 0);
-  const untracedFields = checks.reduce((sum, check) => sum + check.untraced, 0);
   lines.push(
     "## Estimator Cross-Check",
     "",
-    "The diffraction estimate is computed from where the rays land. As a check that shares only the ray trace, the",
-    "same bundles are traced with their optical path and the complex pupil is autocorrelated on the stop lattice",
-    "(`waveLatticeOtf`). Both are summed over the photopic lines on the best axial focus plane at a",
-    `${CROSS_CHECK_GRID} pupil grid, and compared at ${CROSS_CHECK_FREQUENCIES.join(" and ")} lp/mm on both cuts. The optical-path route is only`,
-    `valid where its phase turns by less than ${CROSS_CHECK_PHASE_STEP_WAVES} wave from one lattice cell to the next, so a field enters`,
-    "only when every wavelength meets that; fast or strongly aberrated beams do not, and are counted as",
-    "undersampled. This is a consistency check between two routes in one engine, not a comparison with another tool.",
+    "The diffraction estimate reads ray landings; the optical-path route (`waveLatticeOtf`) autocorrelates the",
+    "complex pupil in direction space. The routes share the ray trace, so agreement is not proof against an outside",
+    "reference. Both are summed over the photopic lines on each aperture's own best axial focus plane, at a",
+    `${CROSS_CHECK_GRID}-cell pupil grid and ${CROSS_CHECK_FREQUENCIES.join(", ")} lp/mm on both cuts. The two passes use the same chart field fractions.`,
+    "The stopped-down pass uses f/8, capped at the lens's maximum marked f-number (minimum aperture), and never opens",
+    "past wide open. The actual marked f-number and focus shift from the authored image plane (mm) appear below.",
     "",
-    `| Lens | zoomT | Fields compared | Undersampled | Largest step (waves) | Values | Max abs | Mean abs | Above ${CROSS_CHECK_TOLERANCE} |`,
-    "|---|---:|---:|---:|---:|---:|---:|---:|---:|",
-  );
-  for (const { key, zoomT, crossCheck } of configurations)
-    lines.push(
-      row([
-        `\`${key}\``,
+    `A field is compared only when every wavelength has an invertible direction map and a phase step strictly below`,
+    `${CROSS_CHECK_PHASE_STEP_WAVES} wave per cell. Excluded fields are **not checked**: phase-step exclusions, non-invertible maps`,
+    "(whose gate returns infinity), and unavailable fields or bundles are counted separately. Each field has one",
+    "exclusion reason; an incomplete spectral bundle is unavailable. Largest excluded step is n/a where no complete",
+    "bundle exists, and infinity for a non-invertible map. Magnitude gaps are |abs(estimate) - abs(reference)|; complex",
+    "gaps are abs(estimate - reference), after spectral combination. All gaps describe only compared fields.",
+    "These are report diagnostics, never test thresholds.",
+    "",
+    ...renderCrossCheckPass(
+      "Wide open",
+      configurations.map(({ key, zoomT, crossChecks }) => ({
+        key,
         zoomT,
-        crossCheck.compared,
-        crossCheck.undersampled,
-        crossCheck.compared ? fixed(crossCheck.largestStep, 3) : "n/a",
-        crossCheck.gaps.length,
-        crossCheck.gaps.length ? fixed(Math.max(...crossCheck.gaps)) : "n/a",
-        crossCheck.gaps.length ? fixed(mean(crossCheck.gaps)) : "n/a",
-        crossCheck.gaps.filter((gap) => gap > CROSS_CHECK_TOLERANCE).length,
-      ]),
-    );
-  lines.push(
-    "",
-    allGaps.length
-      ? `Over ${comparedFields} fields (${allGaps.length} values): max absolute ${fixed(Math.max(...allGaps))}, mean absolute ` +
-          `${fixed(mean(allGaps))}, ${allGaps.filter((gap) => gap > CROSS_CHECK_TOLERANCE).length} above ${CROSS_CHECK_TOLERANCE}. ` +
-          `${undersampledFields} fields were undersampled for the optical-path route and are not compared` +
-          (untracedFields ? `; ${untracedFields} more could not be traced again for the check.` : ".")
-      : "No field met the phase-step gate.",
-    "",
+        pass: crossChecks.wideOpen,
+      })),
+    ),
+    ...renderCrossCheckPass(
+      "Stopped down",
+      configurations.map(({ key, zoomT, crossChecks }) => ({
+        key,
+        zoomT,
+        pass: crossChecks.stoppedDown,
+      })),
+    ),
   );
 
   const unchanged = configurations.filter((configuration) => !configuration.corrected);
