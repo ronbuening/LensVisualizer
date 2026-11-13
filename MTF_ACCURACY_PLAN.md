@@ -19,8 +19,8 @@ with.** The one approximation in the engine itself, the diffraction product, has
 2. **Two of the four drastic cases were lens-data errors.** Two patents print an aspheric coefficient with the wrong
    sign (Nikon Z MC 105, Zeiss Batis 18); both are corrected. Nikkor Z 85mm f/1.8 S is an unresolved source
    contradiction (`agent_docs/sd-audit-queue.md` Section G), and Sigma 23mm f/1.4 DC DN (−0.23 mean; its first-order
-   values match the patent) is undiagnosed. A screen flags 77 of 846 lenses (9 %) for the same class of
-   self-inconsistency. *Stage 4.*
+   values match the patent) is undiagnosed. A screen flagged 77 of the 846 lenses then in the catalog (9 %) for the
+   same class of self-inconsistency. *Stage 4.*
 3. **The traced aperture still differs from the label on some lenses.** Queued in
    `agent_docs/sd-audit-queue.md`: Section H (stops still sized from a marketed f-number) and Section I (125 lenses
    that trace more than 3 % from their label on axis).
@@ -29,8 +29,10 @@ with.** The one approximation in the engine itself, the diffraction product, has
 5. **A field slope remains**: slightly high on axis, low by about 0.02 / 0.06 at 10 / 30 lp/mm by 70 % field. It
    tracks clear apertures inferred from drawings and the single axial focus plane, which cannot be verified and are
    to be shown as uncertainty, not tuned. *Stage 8.*
-6. **No real lens has been compared with another tool.** That check is an optional diagnostic (last section); no
-   stage depends on it.
+6. **No catalog lens has been compared with another tool.** A published Cooke triplet has
+   (`scripts/mtf-external-reference.mjs`): first-order values and single rays match OpticStudio to the printed
+   precision and axial MTF within 0.004, while off axis the tools differ by up to 0.047, which follows the pupil
+   convention (candidate C8). The catalog check is an optional diagnostic (last section); no stage depends on it.
 
 Where the comparison stands (19 digitized configurations, mean signed / mean absolute, from
 `agent_docs/generated/mtf-chart-regression.generated.md`): −0.037 / 0.052 with diffraction for every maker and
@@ -83,7 +85,8 @@ patent-listed apertures and is degenerate with method choice; it stays a diagnos
 
 ### optiland as reference
 
-Only `ScalarFFTMTF` is externally validated (two OpticStudio points). optiland is monochromatic, has no focus
+optiland publishes cross-tool comparisons with OpticStudio for rays and FFT MTF (its validation page; issue 710
+tabulates a Cooke triplet and a singlet). optiland is monochromatic, has no focus
 search, its stop does not clip unless given an aperture, its default aiming is paraxial (it misses the real pupil
 centre by up to one pupil radius on wide angles), and default FFT sampling steps 19 lp/mm at f/1.4. It can validate
 rays, spots, optical path and monochromatic diffraction MTF. It cannot validate dispersion, white-light weighting,
@@ -117,8 +120,9 @@ Order: 4, then 8, then 9. Each stage is one PR and quotes the chart report befor
 
 ### Stage 4 — Prescription self-consistency screen
 
-- **Why.** A: a catalog screen trips a hard flag on 77 lenses and two on 20. The two corrected errata would have
-  been caught by it; the existing image-plane census is paraxial and cannot see an asphere error.
+- **Why.** A: on the 846 lenses of the investigation a catalog screen tripped a hard flag on 77 and two on 20; the
+  catalog has since grown, so those counts are a baseline, not a target. The two corrected errata would have been
+  caught by it; the existing image-plane census is paraxial and cannot see an asphere error.
 - **Changes.** `sourceSummary` (source f, F-number, half-field, image height, back focus, total length, example
   locator, `scale`, per zoom station; transcribed, never computed). A pure
   `src/optics/analysis/prescriptionConsistency.ts`: EFL against the source; image plane against paraxial focus;
@@ -126,10 +130,13 @@ Order: 4, then 8, then 9. Each stage is one PR and quotes the chart report befor
   h²; aspheres with every coefficient zero. `scripts/audit-prescription.mjs` with a report-only `--probe` that tries
   single-coefficient sign and exponent changes; a generated report; a cheap corpus sweep in
   `__tests__/src/lens-data/` as a shrink-only ratchet; rows in Section G of `agent_docs/sd-audit-queue.md`.
-- **First suspects.** Sigma 23mm f/1.4 DC DN (the largest remaining chart residual), Fujifilm GF 80/1.7, Leica
-  APO-Summicron-M 35, Pentax 645 35/3.5, Fujinon XF 23/1.4 R, Laowa 15/2, Tamron A03 28-200, Sony FE 20/1.8 G, and
-  Schneider Super-Symmar XL 110 and Ricoh GR IIIx (aspheres whose coefficients are all zero).
-- **Acceptance.** Reproduces 77 flagged / 20 multi-flag; `--probe` isolates each corrected erratum uniquely.
+- **First suspects.** Sigma 23mm f/1.4 DC DN (the largest remaining chart residual), Leica APO-Summicron-M 35,
+  Fujinon XF 23/1.4 R, Sony FE 20/1.8 G, and Schneider Super-Symmar XL 110 and Ricoh GR IIIx (aspheres whose
+  coefficients are all zero). Fujifilm GF 80/1.7 and Laowa 15/2 already carry an unresolved entry in
+  `source.errata`. Pentax 645 35/3.5 and Tamron A03 28-200 carry corrections and join Nikon Z MC 105 and Zeiss
+  Batis 18 as the screen's positive controls.
+- **Acceptance.** On a fresh census whose report records the lens count and input hashes, the screen flags each
+  positive control with its correction reverted, and `--probe` isolates each corrected erratum uniquely.
 
 ### Stage 8 — Surface what cannot be resolved
 
@@ -162,7 +169,9 @@ S under a day, M one to three days, L longer.
   transmission; the row above that calls equal flux per cell exact describes the launch lattice. Weighting the
   same rays by projected launch area moves a Sigma 35mm f/1.4 Art corner by 0.008 (sagittal, 10 lp/mm, steady from
   128 to 512 cells) and three other lenses by 0.004 to 0.009; a direction-cosine measure moves it 0.019 but is
-  rim-sensitive. Candidate: the stop-to-launch Jacobian as the cell weight, with the matching amplitude in the
+  rim-sensitive. Against OpticStudio on a published Cooke triplet (`scripts/mtf-external-reference.mjs`) the
+  off-axis difference of up to 0.047 falls to 0.008 when the paraxial entrance pupil is sampled as the source does,
+  a change of both the rays and their weights. Candidate: the stop-to-launch Jacobian as the cell weight, with the matching amplitude in the
   sheared estimator, after an independent irradiance control. It changes the Pupil Convention, which follows
   OpticStudio and CODE V. M to L.
 - **C9 — Two aliased grids can agree.** Convergence compares successive grids, so a blur far coarser than the
@@ -187,9 +196,6 @@ S under a day, M one to three days, L longer.
   lattice, the unresolved-beam and dark-line rules and the 256 cap. Regenerate it, and print the engine commit and
   hashes of anchors, conventions and prescriptions so a stale copy says so. Required before Stage 9. S plus the
   run.
-- **C18 — Stage 4 wording.** Its counts (77 of 846, 20 multi-flag) cannot be reproduced on today's 1,102 visible
-  lenses, several first suspects already carry errata (Pentax 645 35mm, Fujifilm GF 80mm), and errata live at
-  `source.errata`. Restate the acceptance against a fresh census. S.
 
 ### Data
 

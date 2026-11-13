@@ -263,8 +263,8 @@ only when it changes that display; the first five are blocking:
   comparison follows the charted zoom position: endpoint pairs use the nearer wide/tele end; lists with one value
   per authored station use the nearer station. Midpoint ties go wider, and marketed focal lengths are never
   interpolated. The warning names the compared pair; scalar values stay fixed.
-- `source-erratum` (note): the lens carries `corrected` `sourceErrata`, so a printed source value was replaced.
-- `source-inconsistent` (note): the lens carries `unresolved` `sourceErrata`; the curves describe the printed table.
+- `source-erratum` (note): the lens carries `corrected` `source.errata`, so a printed source value was replaced.
+- `source-inconsistent` (note): the lens carries `unresolved` `source.errata`; the curves describe the printed table.
 
 A lens with a converter is assessed as one system; no separate gap is raised for the pairing. A reference-line chart
 the reader chose has no glass gap. A paused proposal to narrow the `estimated-dispersion` blur and refit the
@@ -295,7 +295,10 @@ and a patent example is not proven to be the production lens. The generated repo
 working-tree state, resolved MTF settings and hashes of the engine, anchors, conventions and traced prescriptions;
 running it without `MTF_CHART_REPORT=1` only refreshes its `Status: current` or `Status: STALE` line from those hashes,
 without tracing. The kernels are checked against exact Hopkins
-integrals; no real lens has been compared with another tool.
+integrals. `scripts/mtf-external-reference.mjs` (opt-in) compares one published design, a monochromatic Cooke triplet
+with tabulated OpticStudio values: first-order values and single rays match to the printed precision and axial MTF
+within 0.004; off axis the tools differ by up to 0.047 because the source samples the paraxial entrance pupil
+without ray aiming and the engine samples the stop. No catalog lens has been compared with another tool.
 
 The MTF tab reuses `analysisContext.request`, or memoizes a standalone request from prepared geometry, aperture and
 EFL. Its f/8 comparison creates a separate request with scaled aperture radii, reports its own progress and errors,
