@@ -12,10 +12,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  */
 const LENS_DATA = {
   "schema": 2,
-  "key": "goerz-dogmar-us1108307-representative",
-  "maker": "Goerz",
-  "name": "Goerz Dogmar 100mm f/4.5 (patent representative)",
-  "visible": false,
+  "key": "c-p-goerz-dogmar-10cm-f45",
+  "maker": "C. P. Goerz",
+  "name": "C. P. GOERZ DOGMAR 10cm f/4.5",
+  "visible": true,
   "catalog": {
     "lensMounts": ["large-format-lens-board"],
     "imageFormat": "6x9",

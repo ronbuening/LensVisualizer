@@ -13,10 +13,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  */
 const LENS_DATA = {
   "schema": 2,
-  "key": "voigtlander-ultragon-us2670659-ei-representative",
+  "key": "voigtlander-ultragon-115mm-f55",
   "maker": "Voigtl\u00e4nder",
-  "name": "Voigtl\u00e4nder Ultragon 115mm-scaled f/5.5 (patent EI representative)",
-  "visible": false,
+  "name": "VOIGTLÄNDER ULTRAGON 115mm f/5.5",
+  "visible": true,
   "catalog": {
     "lensMounts": ["large-format-lens-board"],
     "imageFormat": "5x7",

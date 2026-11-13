@@ -79,7 +79,7 @@ export const MAKER_DETAILS: Record<string, MakerDetails> = {
       "Chinese optical manufacturer Shenzhen 7Artisans Photoelectric Technology Co., Ltd., producing manual-focus, autofocus and cinema lenses under the 7Artisans name.",
     history:
       "7Artisans was established in Shenzhen in 2016 by a group of photography enthusiasts. The company's account traces the project to a gathering in 2015 that brought together optical-design, manufacturing and camera-collecting interests. In September 2016, the group completed 100 engineering samples of a 50mm f/1.1 lens, with seven participants remaining to give the brand its name. The M 50mm f/1.1 entered commercial sale in 2017, followed by lenses for additional mounts and focal lengths. The Vision cinema series appeared in 2021 as the company expanded beyond still-photography lenses. Its later autofocus range includes the full-frame AF 135mm f/1.8 MAX, specified with sixteen elements in thirteen groups and versions for Sony E, Nikon Z and L mount.",
-    notableDesigns: "AF 135mm f/1.8 MAX (qualified patent representative); M 50mm f/1.1",
+    notableDesigns: "AF 135mm f/1.8 MAX, M 50mm f/1.1",
   },
   // https://www.zenitcamera.com/archive/history/marks.html
   // https://www.zenitcamera.com/archive/history/production-reliability-longevity.html
@@ -260,8 +260,8 @@ export const MAKER_DETAILS: Record<string, MakerDetails> = {
     summary:
       "German optical and camera manufacturer Optische Anstalt C. P. Goerz, known for the Dagor, Hypergon and Dogmar lens families.",
     history:
-      "Carl Paul Goerz established a mail-order business for mathematical instruments and drawing equipment in Berlin in 1886. The firm began manufacturing cameras in 1888 and expanded into precision optics. In 1897–98 it moved production to a new factory complex on Rheinstraße in Friedenau, which was enlarged as the business grew. Its photographic optics included Emil von Hoegh's Dagor double anastigmat and Hypergon wide-angle lens, alongside binoculars and other optical instruments. Walther Zschokke's four-element double-objective patent, granted in 1914 and assigned to Goerz, supplies the prescription for the catalog's qualified Dogmar representative. In 1926, the German Goerz business joined Ica, Ernemann and Contessa-Nettel in the formation of Zeiss Ikon.",
-    notableDesigns: "Dogmar 100mm f/4.5 (qualified patent representative); Dagor; Hypergon",
+      "Carl Paul Goerz established a mail-order business for mathematical instruments and drawing equipment in Berlin in 1886. The firm began manufacturing cameras in 1888 and expanded into precision optics. In 1897–98 it moved production to a new factory complex on Rheinstraße in Friedenau, which was enlarged as the business grew. Its photographic optics included Emil von Hoegh's Dagor double anastigmat and Hypergon wide-angle lens, alongside binoculars and other optical instruments. Walther Zschokke's four-element double-objective patent, granted in 1914 and assigned to Goerz, supplies the prescription for the catalog's Dogmar 10cm f/4.5. In 1926, the German Goerz business joined Ica, Ernemann and Contessa-Nettel in the formation of Zeiss Ikon.",
+    notableDesigns: "Dogmar 10cm f/4.5, Dagor, Hypergon",
   },
   canon: {
     founded: 1937,
@@ -406,7 +406,7 @@ export const MAKER_DETAILS: Record<string, MakerDetails> = {
       "British manufacturer Wray (Optical Works) Ltd, producing astronomical, photographic and military optics and the Wrayflex camera with Unilite lenses.",
     history:
       "William Wray, a solicitor and amateur astronomer, established the optical business in 1850 after making telescopes himself. A merger with the prism-binocular manufacturer Aitcheson in 1908 added binocular production to the firm's lens business. During the First World War it supplied binoculars and photographic lenses for the Royal Flying Corps, and during the Second World War it produced prism binoculars and reflector gunsights for the Royal Air Force. Its postwar civilian products included the Wrayflex 35 mm single-lens reflex camera, documented in a 1951 Science Museum Group example fitted with a 50mm f/2 Unilite. The Bromley works closed in June 1971, with operations transferred to Kershaw's in Leeds.",
-    notableDesigns: "Unilite 50mm f/2 (qualified US 2499264 Table A reconstruction); Wrayflex 35 mm SLR",
+    notableDesigns: "Unilite 50mm f/2, Wrayflex 35 mm SLR",
   },
   voigtlander: {
     founded: 1756,

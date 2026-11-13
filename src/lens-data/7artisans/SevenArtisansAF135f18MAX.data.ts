@@ -15,11 +15,11 @@ const LENS_DATA = {
     "scFill": 0.5
   },
   "schema": 2,
-  "key": "7artisans-af135f18-max",
+  "key": "7artisans-af-135mm-f18-max",
   "maker": "7Artisans",
   "name": "7ARTISANS AF 135mm f/1.8 MAX",
   "subtitle": "CN 122469500 A \u2014 sole numerical prescription",
-  "visible": false,
+  "visible": true,
   "catalog": {
     "specs": [
       "16 ELEMENTS / 13 GROUPS",

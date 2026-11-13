@@ -12,10 +12,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  */
 const LENS_DATA = {
   "schema": 2,
-  "key": "enna-tele-sandmar100-us2631497-representative",
+  "key": "enna-munchen-tele-sandmar-100mm-f45",
   "maker": "Enna München",
-  "name": "Enna Tele-Sandmar 100mm f/4.5 (patent representative)",
-  "visible": false,
+  "name": "ENNA MÜNCHEN TELE-SANDMAR 100mm f/4.5",
+  "visible": true,
   "catalog": {
     "imageFormat": "135-full-frame",
     "elementCount": 4,

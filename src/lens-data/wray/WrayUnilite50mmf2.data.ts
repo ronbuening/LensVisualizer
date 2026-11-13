@@ -19,10 +19,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  */
 const LENS_DATA = {
   "schema": 2,
-  "key": "wray-unilite-50mm-f2-us2499264-table-a-representative",
+  "key": "wray-unilite-50mm-f2",
   "maker": "Wray",
   "name": "WRAY UNILITE 50mm f/2",
-  "visible": false,
+  "visible": true,
   "catalog": {
     "elementCount": 5,
     "groupCount": 4,

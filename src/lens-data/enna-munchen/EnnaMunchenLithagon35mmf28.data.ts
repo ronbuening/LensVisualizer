@@ -17,10 +17,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  */
 const LENS_DATA = {
   "schema": 2,
-  "key": "enna-lithagon-35mm-us2983191-representative",
+  "key": "enna-munchen-lithagon-35mm-f28",
   "maker": "Enna München",
-  "name": "Enna Lithagon 35mm (f/2.5 patent representative)",
-  "visible": false,
+  "name": "ENNA MÜNCHEN LITHAGON 35mm f/2.8",
+  "visible": true,
   "catalog": {
     "lensMounts": ["exakta", "m42"],
     "imageFormat": "135-full-frame",
