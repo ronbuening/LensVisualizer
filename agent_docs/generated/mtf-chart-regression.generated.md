@@ -1,5 +1,7 @@
 # MTF Chart Regression (auto-generated)
 
+Status: STALE — generated before provenance was recorded
+
 Simulated MTF of 19 lens configurations against values digitized from the makers' published
 MTF charts: 392 samples in `reports/data/mtfChartAnchors.csv`, one per charted field position at
 10 and 30 lp/mm.

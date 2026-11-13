@@ -8,8 +8,8 @@
  * against an optical-path autocorrelation of the same rays, and keeps the audit's own values as a frozen reference:
  * the audit ran a method that no longer exists.
  *
- * It traces every configuration at a 256 pupil-grid cap, so it runs only with MTF_CHART_REPORT=1 and is skipped by a
- * plain `npm run generate:reports`. Chart agreement is reported and never asserted, here or in any test.
+ * Tracing every configuration at a 256 pupil-grid cap requires MTF_CHART_REPORT=1; a plain run only refreshes the
+ * report's freshness status from input hashes. Chart agreement is reported and never asserted.
  *
  * Regenerate: `MTF_CHART_REPORT=1 npm run generate:reports -- mtfChartRegression`
  */
@@ -17,7 +17,7 @@ import type { LensDataV2Input } from "../src/types/lensDataV2.js";
 import { createAnalysisRequest } from "../src/optics/analysis.js";
 import { describe, expect, it } from "vitest";
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
-import { env } from "node:process";
+import { cwd, env } from "node:process";
 import { fNumberAtStopdown, wideOpenStopAtZoom } from "../src/optics/optics.js";
 import { buildLens } from "../src/optics/buildLens.js";
 import { prepareRuntimeState } from "../src/optics/optics.js";
@@ -37,9 +37,18 @@ import {
   CROSS_CHECK_PHASE_STEP_WAVES,
 } from "./mtfChartLib.js";
 import type { Anchor, ChartDeltas, Curves, CrossCheckPass } from "./mtfChartLib.js";
+import {
+  createMtfChartProvenance,
+  hashMtfChartInputs,
+  MTF_CHART_ANCHORS_PATH as ANCHORS_PATH,
+  mtfChartStatus,
+  parseMtfChartProvenance,
+  updateMtfChartStatus,
+} from "./mtfChartProvenance.js";
+import type { MtfChartProvenance } from "./mtfChartProvenance.js";
 
-const modules = import.meta.glob<{ default: LensDataV2Input }>("../src/lens-data/**/*.data.ts", { eager: true });
-const ANCHORS_PATH = "reports/data/mtfChartAnchors.csv";
+// Lazy imports keep the freshness-only run independent of the catalog's module loading cost.
+const modules = import.meta.glob<{ default: LensDataV2Input }>("../src/lens-data/**/*.data.ts");
 const REPORT_DIR = "agent_docs/generated";
 const REPORT_PATH = `${REPORT_DIR}/mtf-chart-regression.generated.md`;
 const ENABLED = env.MTF_CHART_REPORT === "1";
@@ -102,6 +111,7 @@ interface Configuration {
   result: MtfResult;
   samples: Sample[];
   crossChecks: { wideOpen: CrossCheckPass; stoppedDown: CrossCheckPass };
+  settings: { diffraction: MtfOptions; makerConvention: MtfOptions };
 }
 
 /** Delta of one sample under one comparison; null when the comparison has no curve there. */
@@ -183,6 +193,7 @@ function runConfiguration(lens: LensDataV2Input, zoomT: number, anchors: Anchor[
     convention,
     corrected: correctedSinceAudit(L),
     result,
+    settings: { diffraction: options(DIFFRACTION_METHOD), makerConvention: options(conventionMethod) },
     samples: anchors.map((anchor) => {
       const fieldIndex = fieldFractions.indexOf(anchor.fieldFraction);
       return {
@@ -259,7 +270,7 @@ function recordedTable(configurations: Configuration[]): string[] {
   return lines;
 }
 
-function renderReport(configurations: Configuration[]): string {
+function renderReport(configurations: Configuration[], provenance: MtfChartProvenance): string {
   const samples = configurations.flatMap((configuration) => configuration.samples);
   const makers = [...new Set(configurations.map((configuration) => configuration.maker))];
   const groups: [string, Sample[]][] = [
@@ -274,12 +285,21 @@ function renderReport(configurations: Configuration[]): string {
   lines.push(
     "# MTF Chart Regression (auto-generated)",
     "",
+    "Status: current",
+    "",
     `Simulated MTF of ${configurations.length} lens configurations against values digitized from the makers' published`,
     `MTF charts: ${samples.length} samples in \`${ANCHORS_PATH}\`, one per charted field position at`,
     `${frequencies.join(" and ")} lp/mm.`,
     "",
     "**Regenerate this file** by running `MTF_CHART_REPORT=1 npm run generate:reports -- mtfChartRegression`.",
-    "Without the variable the run is skipped, because it traces every configuration at a 256 pupil-grid cap.",
+    "The provenance stamp records the UTC date, checkout, resolved MTF settings and input hashes of this run.",
+    "Without the variable, only the status line is refreshed by comparing input hashes; no lenses are traced.",
+    "",
+    "## Provenance",
+    "",
+    "```json",
+    JSON.stringify(provenance, null, 2),
+    "```",
     "",
     "## Reading the Numbers",
     "",
@@ -524,18 +544,46 @@ function renderReport(configurations: Configuration[]): string {
   return lines.join("\n") + "\n";
 }
 
-describe.skipIf(!ENABLED)("MTF chart regression report", () => {
-  it(
+describe("MTF chart regression report", () => {
+  it.skipIf(ENABLED)("refreshes input freshness without tracing", () => {
+    const existing = readFileSync(REPORT_PATH, "utf8");
+    const provenance = parseMtfChartProvenance(existing);
+    const hashes = hashMtfChartInputs(cwd(), Object.keys(provenance?.hashes.lensFiles ?? {}));
+    const updated = updateMtfChartStatus(existing, mtfChartStatus(provenance, hashes));
+    if (updated !== existing) writeFileSync(REPORT_PATH, updated);
+  });
+  it.skipIf(!ENABLED)(
     "emits simulated MTF against the digitized manufacturer charts",
-    () => {
+    async () => {
       const anchors = readAnchors();
       expect(anchors).toHaveLength(ANCHOR_COUNT);
       const recordedDeltas = anchors.map((anchor) => delta(anchor.recorded, anchor).midpoint);
       expect(Math.abs(mean(recordedDeltas) - RECORDED_MEAN_SIGNED)).toBeLessThan(0.0005);
       expect(Math.abs(mean(recordedDeltas.map(Math.abs)) - RECORDED_MEAN_ABSOLUTE)).toBeLessThan(0.0005);
 
-      const lensByKey = new Map(Object.values(modules).map((module) => [module.default.key, module.default]));
+      const loaded = await Promise.all(
+        Object.entries(modules).map(async ([path, load]) => ({
+          path: path.replace(/^\.\.\//, ""),
+          lens: (await load()).default,
+        })),
+      );
+      const lensByKey = new Map(loaded.map(({ lens }) => [lens.key, lens]));
       expect([...new Set(anchors.map((anchor) => anchor.key))].filter((key) => !lensByKey.has(key))).toEqual([]);
+      const keys = new Set(anchors.map((anchor) => anchor.key));
+      const hashes = hashMtfChartInputs(
+        cwd(),
+        loaded.filter(({ lens }) => keys.has(lens.key)).map(({ path }) => path),
+      );
+      const provenance = createMtfChartProvenance(cwd(), hashes, {
+        focusT: 0,
+        dynamicEFL: 0,
+        crossCheck: {
+          gridSize: CROSS_CHECK_GRID,
+          frequenciesPerMm: CROSS_CHECK_FREQUENCIES,
+          phaseStepWaves: CROSS_CHECK_PHASE_STEP_WAVES,
+          focus: "best-axial",
+        },
+      });
 
       // One chart per lens and zoom position.
       const charts = new Map<string, Anchor[]>();
@@ -546,9 +594,18 @@ describe.skipIf(!ENABLED)("MTF chart regression report", () => {
       const configurations = [...charts.values()]
         .map((group) => runConfiguration(lensByKey.get(group[0].key)!, group[0].zoomT, group))
         .sort((a, b) => byText(a.maker, b.maker) || byText(a.key, b.key) || a.zoomT - b.zoomT);
+      provenance.settings.configurations = configurations.map(({ key, zoomT, settings, result, crossChecks }) => ({
+        key,
+        zoomT,
+        ...settings,
+        spectralLines: result.support.spectralLines,
+        crossChecks: Object.fromEntries(
+          Object.entries(crossChecks).map(([pass, { fNumber, focusShiftMm }]) => [pass, { fNumber, focusShiftMm }]),
+        ),
+      }));
 
       mkdirSync(REPORT_DIR, { recursive: true });
-      writeFileSync(REPORT_PATH, renderReport(configurations));
+      writeFileSync(REPORT_PATH, renderReport(configurations, provenance));
       // Structural only: every requested field must return curves. How close they sit to a chart is never asserted.
       const withoutCurves = configurations
         .flatMap((configuration) => configuration.samples)

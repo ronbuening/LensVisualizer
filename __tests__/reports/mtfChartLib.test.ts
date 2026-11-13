@@ -1,9 +1,27 @@
 /**
  * Unit tests for the MTF chart regression report's helpers. The report runs only through `npm run generate:reports`
- * with MTF_CHART_REPORT=1; these checks stay in `npm test`.
+ * with MTF_CHART_REPORT=1 for tracing, or without it for freshness; these checks stay in `npm test`.
  */
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { readFileSync } from "node:fs";
+import { mkdirSync, mkdtempSync, readFileSync, renameSync, rmSync, writeFileSync } from "node:fs";
+import { createHash } from "node:crypto";
+import { execFileSync } from "node:child_process";
+import { tmpdir } from "node:os";
+import { join, resolve } from "node:path";
+import { pathToFileURL } from "node:url";
+import { cwd, execPath } from "node:process";
+import { format } from "prettier";
+import {
+  createMtfChartProvenance,
+  hashMtfChartInputs,
+  hashMtfEngineSources,
+  MTF_CHART_ANCHORS_PATH,
+  MTF_CHART_CONVENTIONS_PATH,
+  mtfChartStatus,
+  parseMtfChartProvenance,
+  updateMtfChartStatus,
+} from "../../reports/mtfChartProvenance.js";
+import type { MtfChartProvenance } from "../../reports/mtfChartProvenance.js";
 import {
   chartDeltas,
   correctedSinceAudit,
@@ -218,5 +236,119 @@ describe("MTF chart report helpers", () => {
     expect(aperture.entrancePupilSemiDiameterMm).toBe(aperture.stopSemiDiameterMm * 2);
     expect(options.fieldFractions).toEqual([0, 1]);
     expect(options.focus).toBe("best-axial");
+  });
+});
+
+describe("MTF chart provenance", () => {
+  const roots: string[] = [];
+  const fixture = () => {
+    const root = mkdtempSync(join(tmpdir(), "mtf-chart-provenance-"));
+    roots.push(root);
+    for (const directory of ["src/optics/nested", "src/lens-data", "reports/data"])
+      mkdirSync(join(root, directory), { recursive: true });
+    writeFileSync(join(root, "src/optics/z.ts"), "z\r\n");
+    writeFileSync(join(root, "src/optics/nested/a.ts"), "a\n");
+    writeFileSync(join(root, "src/optics/ignored.js"), "ignored");
+    writeFileSync(join(root, MTF_CHART_ANCHORS_PATH), "anchors");
+    writeFileSync(join(root, MTF_CHART_CONVENTIONS_PATH), "conventions");
+    writeFileSync(join(root, "src/lens-data/a.data.ts"), "lens a");
+    return root;
+  };
+  afterEach(() => {
+    for (const root of roots.splice(0)) rmSync(root, { recursive: true, force: true });
+    vi.useRealTimers();
+  });
+
+  it("hashes sorted paths and exact bytes, including nested sources, under plain Node", () => {
+    const root = fixture();
+    // Independent framing control catches order changes, newline conversion and omitted barrels.
+    const expected = createHash("sha256").update("src/optics/nested/a.ts\0a\n\0src/optics/z.ts\0z\r\n\0").digest("hex");
+    expect(hashMtfEngineSources(root)).toBe(expected);
+    const moduleUrl = pathToFileURL(resolve("reports/mtfChartProvenance.ts")).href;
+    const output = execFileSync(
+      execPath,
+      [
+        "--input-type=module",
+        "-e",
+        `import { hashMtfEngineSources } from ${JSON.stringify(moduleUrl)};
+       process.stdout.write(hashMtfEngineSources(${JSON.stringify(root)}));`,
+      ],
+      { encoding: "utf8" },
+    );
+    expect(output).toBe(expected);
+    writeFileSync(join(root, "src/optics/ignored.js"), "still ignored");
+    expect(hashMtfEngineSources(root)).toBe(expected);
+    renameSync(join(root, "src/optics/z.ts"), join(root, "src/optics/b.ts"));
+    expect(hashMtfEngineSources(root)).not.toBe(expected);
+    const renamed = hashMtfEngineSources(root);
+    writeFileSync(join(root, "src/optics/b.ts"), "changed");
+    expect(hashMtfEngineSources(root)).not.toBe(renamed);
+    const changed = hashMtfEngineSources(root);
+    writeFileSync(join(root, "src/optics/empty.ts"), "");
+    expect(hashMtfEngineSources(root)).not.toBe(changed);
+    rmSync(join(root, "src/optics/empty.ts"));
+    expect(hashMtfEngineSources(root)).toBe(changed);
+  });
+
+  it("records UTC checkout provenance and round-trips the fenced JSON while changing only status", async () => {
+    const root = fixture();
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date("2026-01-02T00:30:00Z"));
+    const hashes = hashMtfChartInputs(root, ["src/lens-data/a.data.ts"]);
+    const settings = { focus: "best-axial", maxGridSize: 256, frequenciesPerMm: [0, 10, 30] };
+    const stamp = createMtfChartProvenance(cwd(), hashes, settings);
+    expect(stamp).toMatchObject({ version: 1, generatedDateUtc: "2026-01-02", hashes, settings });
+    expect(stamp.gitCommit).toMatch(/^[a-f0-9]{40,64}$/);
+    expect(typeof stamp.uncommittedSrcOrReports).toBe("boolean");
+    const report = `# Chart\n\nStatus: current\n\n## Provenance\n\n\`\`\`json\n${JSON.stringify(stamp, null, 2)}\n\`\`\`\n\n## Results\n\nUnchanged.\n`;
+    expect(parseMtfChartProvenance(report)).toEqual(stamp);
+    expect(parseMtfChartProvenance(report.replaceAll("\n", "\r\n"))).toEqual(stamp);
+    const formatted = await format(report, { parser: "markdown" });
+    expect(parseMtfChartProvenance(formatted)).toEqual(stamp);
+    expect(formatted).toContain("\nStatus: current\n");
+    expect(mtfChartStatus(stamp, hashes)).toBe("Status: current");
+    const status = "Status: STALE — engine sources";
+    const updated = updateMtfChartStatus(report, status);
+    expect(updated).toBe(report.replace("Status: current", status));
+    expect(parseMtfChartProvenance(updated)).toEqual(stamp);
+    expect(updateMtfChartStatus(updated, status)).toBe(updated);
+    expect(updateMtfChartStatus(updated, "Status: current")).toBe(report);
+  });
+
+  it("names every changed input, counts missing lenses and rejects absent or malformed stamps", () => {
+    const root = fixture();
+    const paths = ["src/lens-data/a.data.ts"];
+    const hashes = hashMtfChartInputs(root, paths);
+    expect(hashes.anchors).toBe(createHash("sha256").update("anchors").digest("hex"));
+    expect(hashes.conventions).toBe(createHash("sha256").update("conventions").digest("hex"));
+    expect(hashes.lensFiles[paths[0]]).toBe(createHash("sha256").update("lens a").digest("hex"));
+    const stamp: MtfChartProvenance = {
+      version: 1,
+      generatedDateUtc: "2026-01-02",
+      gitCommit: "abc",
+      uncommittedSrcOrReports: false,
+      settings: {},
+      hashes,
+    };
+    writeFileSync(join(root, "src/optics/z.ts"), "new engine");
+    writeFileSync(join(root, MTF_CHART_ANCHORS_PATH), "new anchors");
+    writeFileSync(join(root, MTF_CHART_CONVENTIONS_PATH), "new conventions");
+    writeFileSync(join(root, paths[0]), "new lens");
+    const current = hashMtfChartInputs(root, paths);
+    expect(mtfChartStatus(stamp, current)).toBe(
+      "Status: STALE — engine sources / anchors / conventions / 1 lens files",
+    );
+    rmSync(join(root, paths[0]));
+    expect(hashMtfChartInputs(root, paths).lensFiles[paths[0]]).toBeNull();
+    expect(mtfChartStatus(stamp, hashMtfChartInputs(root, paths))).toBe(mtfChartStatus(stamp, current));
+    const twoLenses = { ...current, lensFiles: { ...current.lensFiles, "src/lens-data/b.data.ts": "new" } };
+    expect(mtfChartStatus(stamp, twoLenses)).toContain("2 lens files");
+    const legacy = "# Chart\n\nFrozen results.\n";
+    expect(parseMtfChartProvenance(legacy)).toBeNull();
+    const status = mtfChartStatus(null, current);
+    expect(status).toBe("Status: STALE — generated before provenance was recorded");
+    expect(updateMtfChartStatus(legacy, status)).toBe(`# Chart\n\n${status}\n\nFrozen results.\n`);
+    for (const json of ["{", "null", "{}", JSON.stringify({ ...stamp, hashes: { ...hashes, lensFiles: [] } })])
+      expect(parseMtfChartProvenance(`## Provenance\n\n\`\`\`json\n${json}\n\`\`\``)).toBeNull();
   });
 });

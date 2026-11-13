@@ -291,7 +291,10 @@ exclusions with their largest step, non-invertible maps (infinite gate step), an
 Only fields whose full spectrum passes the quarter-wave phase-step and invertibility gate contribute differences;
 compared and excluded step maxima are separate. The two routes share the ray trace, so agreement is not proof
 against an outside reference. It is a report, never a test threshold: maker focus and spectrum are undocumented,
-and a patent example is not proven to be the production lens. The kernels are checked against exact Hopkins
+and a patent example is not proven to be the production lens. The generated report stamps its UTC date, git commit,
+working-tree state, resolved MTF settings and hashes of the engine, anchors, conventions and traced prescriptions;
+running it without `MTF_CHART_REPORT=1` only refreshes its `Status: current` or `Status: STALE` line from those hashes,
+without tracing. The kernels are checked against exact Hopkins
 integrals; no real lens has been compared with another tool.
 
 The MTF tab reuses `analysisContext.request`, or memoizes a standalone request from prepared geometry, aperture and
