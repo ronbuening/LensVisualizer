@@ -13,7 +13,11 @@ import {
   teleconverterHostData,
 } from "./testLensFixtures.js";
 import { prepareRuntimeState } from "../../../src/optics/state/runtimeAdapters.js";
-import { assessMtfSupport, mtfPrescriptionScale } from "../../../src/optics/analysis/mtf/mtfSupport.js";
+import {
+  assessMtfSupport,
+  MTF_PHOTOPIC_LINES,
+  mtfPrescriptionScale,
+} from "../../../src/optics/analysis/mtf/mtfSupport.js";
 import type { MtfGridCap, MtfOptions } from "../../../src/types/mtf.js";
 import type { FiniteConjugate, RuntimeLens } from "../../../src/types/optics.js";
 import { LINE_NM } from "../../../src/optics/chromatic/spectralLines.js";
@@ -702,24 +706,28 @@ describe("MTF pupil sampling", () => {
     }
   });
   it("weights unresolved flux by the incident spectrum when applying the flux cap", () => {
-    // Only the strongest photopic line loses ten cells beside the beam. The independent flux balance exceeds 0.5 %,
-    // while pooling the five lattices equally would hide it below the cap. Ray counts remain ordinary sample counts.
+    // Only the strongest photopic line loses sixteen cells beside the beam. Weighted by the lines, they carry more than
+    // 0.5 % of the flux; pooling the lattices as equals would hide them below the cap. Ray counts stay sample counts.
     const state = prepareRuntimeState(buildChromaticPositiveElementLens(), 0, 0);
-    unaimedCells.at = namedPairs([1, 2, 3, 4, 5], [16, 32]);
-    unaimedCells.wavelengthNm = 555;
+    const strongest = MTF_PHOTOPIC_LINES[0];
+    const totalWeight = MTF_PHOTOPIC_LINES.reduce((sum, line) => sum + line.weight, 0);
+    const cells = 16;
+    unaimedCells.at = namedPairs([1, 2, 3, 4, 5, 6, 7, 8], [16, 32]);
+    unaimedCells.wavelengthNm = strongest.wavelengthNm;
     try {
       for (const method of ["geometric", "diffraction"] as const) {
         const field = computeMtf(...mtfInputs(state, { ...mtfTestOptions, method, spectrum: "photopic" })).fields[0];
-        // Each full 32-cell disc carries 812 units; the ten unresolved cells at 555 nm retain full transmission.
-        const expectedShare = 10 / (812 * (1 + 0.091 + 0.503 + 0.503 + 0.107));
+        // Each full 32-cell disc carries 812 units; the unresolved cells of the strongest line keep full transmission.
+        const expectedShare = (cells * strongest.weight) / (812 * totalWeight);
         expect(field.gridSize).toBe(32);
         expect(field.unknownFluxFraction).toBeCloseTo(expectedShare, 12);
         expect(expectedShare).toBeGreaterThan(MTF_MAX_UNKNOWN_FLUX);
+        expect(cells / (812 * MTF_PHOTOPIC_LINES.length)).toBeLessThan(MTF_MAX_UNKNOWN_FLUX);
         expect([field.validRays, field.failedRays, field.unaimedRays, field.unresolvedInBeamRays]).toEqual([
-          5 * 812 - 10,
+          MTF_PHOTOPIC_LINES.length * 812 - cells,
           0,
-          10,
-          10,
+          cells,
+          cells,
         ]);
         expect(field.status).toBe("unavailable");
         expect(field.reason).toBe("trace-failed");
@@ -1160,7 +1168,7 @@ describe("MTF data limitations", () => {
   const photopic = {
     preferredSpectrum: "photopic",
     spectrum: "photopic",
-    referenceWavelengthNm: 555,
+    referenceWavelengthNm: 560,
     result: null,
   } as const;
   const reference = {

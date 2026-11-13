@@ -1,0 +1,1 @@
+Fixed photopic MTF over-weighting blue and red, which read fast lenses up to 0.03 too low

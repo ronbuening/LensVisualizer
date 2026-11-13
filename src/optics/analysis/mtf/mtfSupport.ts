@@ -34,16 +34,22 @@ export const MTF_CDF_LINES: readonly MtfSpectralLine[] = Object.freeze([
 ]);
 
 /**
- * Five-line photopic estimate: CIE 1924 V(λ) on an equal-energy source across 470-650 nm.
- * The 555 nm peak comes first and anchors lateral color; every line sits inside the C-g range
- * that line-index glasses tabulate.
+ * Nine-point Gauss-Legendre quadrature of CIE 1924 V(λ) on an equal-energy source,
+ * 470-650 nm: λ = 560 + 90x, weight = 90w V(λ), for abscissa x and weight w on [-1, 1].
+ * V(λ) is linearly interpolated from the 5 nm table (DOI 10.25039/CIE.DS.dktna2s3).
+ * Weights use unrounded nodes; wavelengths round to 0.01 nm and weights to five significant figures.
+ * The centre comes first to anchor lateral color and field launch at 560 nm.
  */
 export const MTF_PHOTOPIC_LINES: readonly MtfSpectralLine[] = Object.freeze([
-  { wavelengthNm: 555, weight: 1 },
-  { wavelengthNm: 470, weight: 0.091 },
-  { wavelengthNm: 510, weight: 0.503 },
-  { wavelengthNm: 610, weight: 0.503 },
-  { wavelengthNm: 650, weight: 0.107 },
+  { wavelengthNm: 560, weight: 29.573 },
+  { wavelengthNm: 530.82, weight: 24.475 },
+  { wavelengthNm: 589.18, weight: 21.553 },
+  { wavelengthNm: 504.8, weight: 9.4728 },
+  { wavelengthNm: 615.2, weight: 10.291 },
+  { wavelengthNm: 484.76, weight: 2.7286 },
+  { wavelengthNm: 635.24, weight: 3.4949 },
+  { wavelengthNm: 472.87, weight: 0.75613 },
+  { wavelengthNm: 647.13, weight: 0.91347 },
 ]);
 
 /** Prescription focal length may differ from the marketed value by this share before results are qualified. */
@@ -367,7 +373,7 @@ export function assessMtfSupport(request: AnalysisRequest, settings: MtfRequestO
     support.limitations.push(
       options.spectrum === "cdf"
         ? "Three-line C/d/F estimate with equal incident intensity weights, one image plane and preserved lateral color; not a broadband camera response."
-        : "Five-line photopic estimate (470-650 nm, CIE 1924 V(λ) weights on an equal-energy source) with one image plane and preserved lateral color; not a specific camera's spectral response.",
+        : "Nine-point Gauss-Legendre photopic quadrature (470-650 nm, CIE 1924 V(λ) on an equal-energy source) with one image plane and preserved lateral color; not a specific camera's spectral response.",
     );
     if (lens.dispersion.some((s) => s.quality === "sellmeier"))
       support.limitations.push(

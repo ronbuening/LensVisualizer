@@ -58,7 +58,7 @@ investigation and are replaced by regenerated ones as stages land.
 | Footprint traced through the real clear apertures | `src/optics/analysis/mtf/mtfFootprint.ts` |
 | Field as a fraction of the format half-diagonal in real chief-ray height | `src/optics/analysis/mtf/mtfFields.ts` |
 | Sampling convergence (128 → 256 changes ≤ 0.01) and the best-axial search (its optimum in 52 of 52) | `src/optics/analysis/mtf/mtfFocus.ts` |
-| Photopic five-line spectrum: monochromatic, C/d/F and broad white all fit charts worse | `src/optics/analysis/mtf/mtfSupport.ts` |
+| Photopic spectrum: monochromatic, C/d/F and broad white all fit charts worse; its nine-node quadrature is within 0.0004 of a 73-line integral | `src/optics/analysis/mtf/mtfSupport.ts` |
 | The 256-cell default cap: 256 → 512 moves ≤ 0.0012 (four lenses, both methods, 10/30/50 lp/mm); the steps are not monotone, so no Richardson extrapolation | `src/optics/analysis/mtf/mtfConstants.ts` |
 | Shear scaling from traced directions (no infinity-focus or flat-image shortcut), each wavelength's own cutoff, and the same line × flux weights in both methods | `src/optics/analysis/mtf/mtfShearedOtf.ts` |
 | Anchored dispersion: the Cauchy route stays within 2.4e-5 of the catalog curves over 470–650 nm (≤ 0.003 MTF on a 400 mm f/2.8); helium d and sodium D stay apart | `src/optics/chromatic/indexResolver.ts` |
@@ -140,7 +140,8 @@ Order: 4, then 8, then 9. Each stage is one PR and quotes the chart report befor
   display toggle. A lens-level `sdSource` (`source-table`, `figure-measured`, `heuristic`) with a non-blocking
   `estimated-apertures` note.
 - **Not done.** No field-weighted default focus (four lenses supply 90 % of its gain); no clear-aperture scaling or
-  band derived from chart fits; no per-maker default method; no spectrum change.
+  band derived from chart fits; no per-maker default method; no spectrum change (band and node count are ruled in
+  `agent_docs/decisions.md`, 2026-11-13).
 
 ### Stage 9 — Validation statement and close-out
 
@@ -157,15 +158,6 @@ S under a day, M one to three days, L longer.
 
 ### Accuracy
 
-- **C7 — The photopic spectrum is not a converged quadrature.** The five lines carry V(λ) samples as weights with no
-  interval widths (spacing 40/45/55/40 nm), so 470 and 650 nm weigh about twice their share. Against a dense
-  integral of the same equal-energy V(λ) spectrum the curves read low by up to 0.029 at 50 lp/mm over 470–650 nm
-  (Nikkor Z 50mm f/1.2 on axis; 0.025 on Sigma 35mm f/1.4 Art at 70 % tangential; 0.012 on Sony FE 400mm f/2.8)
-  and by about 0.01 over 400–700 nm; each spectrum finding its own best focus does not remove it. Interval weights
-  on the same lines leave up to 0.014, five Gauss nodes up to 0.015, nine Gauss-Legendre nodes 0.0002 at 1.8 times
-  the trace cost. The band is a separate choice: 470–650 nm omits 3.3 % of the photopic weight and reads up to
-  0.021 above 400–700 nm, which needs glass data valid to 400 nm. Rule on the band, then the node count. This
-  reopens Stage 8's "no spectrum change" on convergence evidence, not chart fit. M.
 - **C8 — Stop-uniform weights are not the incident flux.** Since the stop lattice, a lit cell weighs 1 × bulk
   transmission; the row above that calls equal flux per cell exact describes the launch lattice. Weighting the
   same rays by projected launch area moves a Sigma 35mm f/1.4 Art corner by 0.008 (sagittal, 10 lp/mm, steady from

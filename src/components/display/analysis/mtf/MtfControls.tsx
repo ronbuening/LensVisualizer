@@ -18,7 +18,7 @@ interface MtfControlsProps {
   t: Theme;
   preferences: MtfPreferences;
   onChange: (patch: Partial<MtfPreferences>) => void;
-  /** Photopic sweeps at 1 % and 2 % steps trace five wavelengths for up to 101 fields. */
+  /** Photopic sweeps at 1 % and 2 % steps trace nine wavelengths for up to 101 fields. */
   slowFieldSteps: boolean;
   /** Offer the f/8 overlay: the working aperture is faster than f/8 and the lens reaches it. */
   compareF8Available: boolean;
@@ -50,7 +50,7 @@ const METHOD_HELP = [
   "Geometric: rays only. Ignores diffraction, so it overstates contrast for sharp or stopped-down lenses. Compare with design charts that omit diffraction, as Nikon's, Sony's and Tamron's appear to.",
 ].join("\n");
 const SPECTRUM_HELP = [
-  "Photopic: five wavelengths from 470 to 650 nm, weighted by the eye's sensitivity V(λ), like white-light charts.",
+  "Photopic: nine Gauss-Legendre samples integrate the eye's sensitivity V(λ) over 470-650 nm with equal energy per wavelength.",
   "C/d/F: the red, yellow and blue reference lines, weighted equally; gives color error more weight.",
   "Reference line: one wavelength, so color aberrations drop out.",
   "Lenses without enough glass dispersion data use the reference line.",
@@ -157,7 +157,7 @@ export default function MtfControls({
               t={t}
               active={preferences.fieldStepPercent === step}
               last={i === MTF_FIELD_STEPS.length - 1}
-              title={slowFieldSteps && step <= 2 ? "Slow: traces five wavelengths at every field" : undefined}
+              title={slowFieldSteps && step <= 2 ? "Slow: traces nine wavelengths at every field" : undefined}
               onClick={() => onChange({ fieldStepPercent: step })}
             >
               {step} %
