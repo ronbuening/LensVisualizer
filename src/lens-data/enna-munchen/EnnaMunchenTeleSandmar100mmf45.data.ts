@@ -2,12 +2,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * US 2,631,497 A, sole numerical example and repeated claim 3 table (PDF page 3).
- * Native 100 mm f/4.5 prescription; scale factor 1, with dimensions already in mm
+ * 100 mm f/4.5 prescription; scale factor 1, with dimensions already in mm
  * and no units conversion. All seven radii, six glass/air intervals and four
  * sodium-D index/Abbe pairs are retained as printed.
  * The stop's 14.5/14.5 mm split of the 29 mm gap is inferred from "substantially
  * midway". The 15.5 mm front and 9 mm rear semi-diameters are inferred geometry
- * limits, larger than the figure, and await the SD pass. The final image interval
+ * limits, larger than the figure's approximately 11.1/6.4 mm rims. The final image interval
  * is calculated back focus, not a printed source value. Only infinity is modeled.
  */
 const LENS_DATA = {
@@ -15,9 +15,11 @@ const LENS_DATA = {
   "key": "enna-munchen-tele-sandmar-100mm-f45",
   "maker": "Enna München",
   "name": "ENNA MÜNCHEN TELE-SANDMAR 100mm f/4.5",
+  "subtitle": "US 2,631,497 A, sole example — Tele-Sandmar for the Argus C3",
   "visible": true,
   "catalog": {
     "imageFormat": "135-full-frame",
+    "specs": ["4 ELEMENTS / 3 GROUPS", "ALL SPHERICAL", "f/4.5–22", "TELEPHOTO"],
     "elementCount": 4,
     "groupCount": 3,
     "focalLengthMm": {
@@ -45,41 +47,47 @@ const LENS_DATA = {
       "id": 1,
       "name": "L1",
       "label": "Element 1",
-      "type": "Spherical patent glass",
+      "type": "Biconvex Positive",
+      "role": "Positive front element of the cemented doublet.",
+      "cemented": "C1",
       "nd": 1.62398,
       "vd": 47,
       "indexReference": "D",
-      "glass": "Source sodiumD589.3nm; d-reference engine approximation, no exact melt"
+      "glass": "Unmatched (nD 1.62398 / V 47.0)"
     },
     {
       "id": 2,
       "name": "L2",
       "label": "Element 2",
-      "type": "Spherical patent glass",
+      "type": "Biconcave Negative",
+      "role": "Negative element of the positive front doublet.",
+      "cemented": "C1",
       "nd": 1.74066,
       "vd": 27.2,
       "indexReference": "D",
-      "glass": "Source sodiumD589.3nm; d-reference engine approximation, no exact melt"
+      "glass": "Unmatched (nD 1.74066 / V 27.2)"
     },
     {
       "id": 3,
       "name": "L3",
       "label": "Element 3",
-      "type": "Spherical patent glass",
+      "type": "Negative Meniscus",
+      "role": "Negative front element of the air-spaced rear pair.",
       "nd": 1.61008,
       "vd": 46,
       "indexReference": "D",
-      "glass": "Source sodiumD589.3nm; d-reference engine approximation, no exact melt"
+      "glass": "Unmatched (nD 1.61008 / V 46.0)"
     },
     {
       "id": 4,
       "name": "L4",
       "label": "Element 4",
-      "type": "Spherical patent glass",
+      "type": "Plano-Convex Positive",
+      "role": "Positive rear singlet with a flat front surface.",
       "nd": 1.72719,
       "vd": 28,
       "indexReference": "D",
-      "glass": "Source sodiumD589.3nm; d-reference engine approximation, no exact melt"
+      "glass": "Unmatched (nD 1.72719 / V 28.0)"
     }
   ],
   "surfaces": [
@@ -136,8 +144,8 @@ const LENS_DATA = {
     }
   ],
   "focus": {
-    "closeFocusM": 1000000000000000,
-    "description": "Only the infinity-focus prescription is modeled."
+    "closeFocusM": 1e15,
+    "description": "Infinity focus only; the production lens couples to the Argus C3 rangefinder."
   },
   "aperture": {
     "nominalFNumber": 4.5,
@@ -154,6 +162,9 @@ const LENS_DATA = {
   "projection": {
     "kind": "rectilinear"
   },
+  "doublets": [
+    { "text": "C1", "fromSurface": "1", "toSurface": "3" }
+  ],
   "layout": {
     "yScFill": 0.7
   }
