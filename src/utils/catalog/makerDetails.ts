@@ -46,6 +46,14 @@ export interface MakerDetails {
 }
 
 export const MAKER_DETAILS: Record<string, MakerDetails> = {
+  // Company history: https://www.hkyongnuo.com/gsjj
+  // Shenzhen assignee: https://patents.google.com/patent/CN110146970B/en
+  yongnuo: {
+    headquarters: "Shenzhen, China",
+    summary: "Chinese photographic-equipment manufacturer producing autofocus lenses and flash equipment.",
+    history:
+      "Yongnuo's company history records its first flash in 2009 and its first autofocus lens in 2014. Its lens patents include CN 110146970 B and CN 220171327 U, the sources of the YN 85mm and YN 56mm entries in this catalog.",
+  },
   // Corporate and camera history: company announcements, archived specifications and museum records.
   // https://www.apple.com/sg/newsroom/2026/03/apple-to-celebrate-50-years-of-thinking-different/
   // https://computerhistory.org/apple-timeline/
