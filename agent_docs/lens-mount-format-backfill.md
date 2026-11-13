@@ -7,10 +7,10 @@ the fields unset and add a note here until a source check resolves it.
 
 ## Current Coverage
 
-- Total lens data files: **1114**
-- Files with both `lensMounts` and `imageFormat`: **1067**
-- Files missing `lensMounts`: **38** (25 public lenses and 13 hidden reference fixtures)
-- Files missing `imageFormat`: **35** (23 public lenses and 12 hidden reference fixtures)
+- Total lens data files: **1121**
+- Files with both `lensMounts` and `imageFormat`: **1071**
+- Files missing `lensMounts`: **40** (27 public lenses and 13 hidden reference fixtures)
+- Files missing `imageFormat`: **36** (24 public lenses and 12 hidden reference fixtures)
 - Files missing both fields: **26**
 - Formats currently in use: `1-1.7-inch-type`, `1-1.8-inch-type`, `1-2.3-inch-type`, `1-2.55-inch-type`,
   `1-2.7-inch-type`, `1-inch-type`, `1.25-inch-tube`, `1.5-inch-type`, `110`, `135-full-frame`,
@@ -29,6 +29,7 @@ with remaining compatibility questions explained in the lens analysis.
 | Records | Remaining source limitation |
 |---------|-----------------------------|
 | Zeiss Mirotar 500mm f/4.5 | The cited ZEISS sheet identifies a tube and bellows assembly, but the reviewed source set does not select the camera-side fitting of that assembly. Do not assign a Contax or Contarex mount from the family name. |
+| Cooke Speed Panchro f/2 (US 1,955,591 Design); Cooke Speed Panchro Series II 75mm f/2 | Studio cine lenses were supplied in several camera fittings. Taylor-Hobson's LEN 45 leaflet and Cooke's Panchro history name none for these models, and the US 1,955,591 example is a 1-inch 16 mm design with no matching retail lens. |
 | Angénieux Retrofocus R1 35mm; R11 28mm | Historical specimen and secondary references indicate several native fittings. A period manufacturer listing tied to these selected production variants is still needed before enumerating their mounts. |
 | Zeiss Biotar 50mm f/1.4; Kodak Ektar 52mm f/1.5 | The scaled patent examples are not securely mapped to one factory installation. The Biotar family’s Kinamo and other cine contexts do not establish the fitting of this model. |
 | Kodak Ektar 50mm f/3.5 | Kodak literature documents both Ektra and Retina same-name products. The selected patent correlation does not uniquely choose between their different installations. |
@@ -62,6 +63,7 @@ patent scaling, angular field, or circular image into an unsupported rectangular
 
 | Records | Remaining source limitation |
 |---------|-----------------------------|
+| Cooke Series XI 6¼ in f/3.5 | Quarter-plate (3¼ × 4¼ in) has no canonical format id; the model keeps `imageCircleMm` (131.5 mm, the patent's 45° field). |
 | Nikon S-100 | [Nikon’s history](https://imaging.nikon.com/imaging/information/chronicle/cousins20-e/) confirms a pickup tube but gives no size. Tape widths and the unrelated COOLPIX S100/JVC S-100 do not establish its active format. |
 | Apple iPhone 7 Wide; iPhone 12 Wide | Apple’s cited product specifications do not give active sensor dimensions or establish the patent’s production identity. The iPhone 12 patent image circle remains explicit; neither receives a guessed inch-type format. |
 | Kinoptik Super-Tegea 1.9mm | Manufacturer brochures establish an 8.7 mm circular image and multiple applications, not a single rectangular capture frame. Keep `imageCircleMm`. |
