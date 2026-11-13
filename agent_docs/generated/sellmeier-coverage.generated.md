@@ -11,17 +11,17 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **1120** lenses scanned
-- **1101** visible lenses scanned
-- **762** lenses fully covered by trusted chromatic data
-- **757** visible lenses fully covered by trusted chromatic data
-- **754** lenses fully covered by strict Sellmeier data
-- **749** visible lenses fully covered by strict Sellmeier data
+- **1127** lenses scanned
+- **1108** visible lenses scanned
+- **769** lenses fully covered by trusted chromatic data
+- **764** visible lenses fully covered by trusted chromatic data
+- **761** lenses fully covered by strict Sellmeier data
+- **756** visible lenses fully covered by strict Sellmeier data
 - **8** lenses fully covered only after measured line-index data
 - **8** visible lenses fully covered only after measured line-index data
-- **11825 / 12708** non-air surfaces use strict catalog Sellmeier data
+- **11886 / 12769** non-air surfaces use strict catalog Sellmeier data
 - **93.1%** strict Sellmeier surface coverage overall
-- **11839 / 12708** non-air surfaces use trusted chromatic data
+- **11900 / 12769** non-air surfaces use trusted chromatic data
 - **93.2%** trusted chromatic coverage overall
 - **0 / 4** historical sodium D surfaces use name-verified catalog dispersion data
 - **271 / 347** native e-line surfaces use name-verified catalog Sellmeier data
@@ -510,6 +510,7 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [NIKON ZOOM-NIKKOR AUTO 80-200mm f/4.5](../../src/lens-data/nikon/NikonAutoZoomNikkor80200mmf45.data.ts) | 15/15 | 15 | 15/15 |
 | [OLYMPUS M.ZUIKO DIGITAL ED 17mm f/1.2 PRO](../../src/lens-data/olympus/OlympusMZuikoDigitalED17mmF12Pro.data.ts) | 15/15 | 15 | 15/15 |
 | [OLYMPUS ZUIKO 9-36mm f/2-2.4 (Olympus E-10 / E-20)](../../src/lens-data/olympus/OlympusZuiko936mmf224.data.ts) | 15/15 | 15 | 15/15 |
+| [OLYMPUS ZUIKO AUTO-ZOOM 75-150mm f/4](../../src/lens-data/olympus/OlympusZuikoAutoZoom75150mmf4.data.ts) | 15/15 | 15 | 15/15 |
 | [OLYMPUS ZUIKO AUTO-ZOOM 85-250mm f/5](../../src/lens-data/olympus/OlympusZuikoAutoZoom85250mmf5.data.ts) | 15/15 | 15 | 15/15 |
 | [PANASONIC LEICA DG SUMMILUX 12mm f/1.4 ASPH.](../../src/lens-data/panasonic/PanasonicDGSummilux12mmf14.data.ts) | 15/15 | 15 | 15/15 |
 | [PANASONIC LEICA DG VARIO-ELMARIT 8-18mm f/2.8-4.0 ASPH.](../../src/lens-data/panasonic/PanasonicLeicaDG818mmf284.data.ts) | 15/15 | 15 | 15/15 |
@@ -669,6 +670,7 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [OLYMPUS M.ZUIKO DIGITAL ED 12mm f/2.0](../../src/lens-data/olympus/OlympusMZuiko12mmf2.data.ts) | 11/11 | 11 | 11/11 |
 | [OLYMPUS ZUIKO AUTO-W 18mm f/3.5](../../src/lens-data/olympus/OlympusZuikoAutoW18mmf35.data.ts) | 11/11 | 11 | 11/11 |
 | [OLYMPUS ZUIKO DIGITAL ED 150mm f/2.0](../../src/lens-data/olympus/OlympusMZuiko150mmf2ED.data.ts) | 11/11 | 11 | 11/11 |
+| [OM SYSTEM M.ZUIKO DIGITAL ED 20mm f/1.4 PRO](../../src/lens-data/olympus/OMSystem20mmF14PRO.data.ts) | 11/11 | 11 | 11/11 |
 | [PANASONIC LEICA DC VARIO-SUMMILUX 10.9-34mm f/1.7-2.8 ASPH. (Panasonic Lumix LX100 / LX100 II; Leica D-Lux (Typ 109) / D-Lux 7 / D-Lux 8)](../../src/lens-data/panasonic/LeicaDCVarioSummilux10934mmf1728ASPHPanasonicLX100M2.data.ts) | 11/11 | 11 | 11/11 |
 | [PANASONIC LUMIX S 20-60mm f/3.5-5.6](../../src/lens-data/panasonic/PanasonicLumixS2060mmf3556.data.ts) | 11/11 | 11 | 11/11 |
 | [PANASONIC LUMIX S 35mm f/1.8](../../src/lens-data/panasonic/PanasonicS35mmf18.data.ts) | 11/11 | 11 | 11/11 |
@@ -736,6 +738,7 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [VOIGTLÄNDER NOKTON 35mm f/1.2 Aspherical](../../src/lens-data/voigtlander/VoigtlanderNokton35mmf12.data.ts) | 10/10 | 10 | 10/10 |
 | [VOIGTLÄNDER ULTRA WIDE-HELIAR 12mm f/5.6 Aspherical L39](../../src/lens-data/voigtlander/VoigtlanderUltraWideHeliar12mmf56AsphericalL39.data.ts) | 10/10 | 10 | 10/10 |
 | [VOIGTLÄNDER ULTRON Vintage Line 28mm f/2 Aspherical](../../src/lens-data/voigtlander/VoigtlanderUltron28f2.data.ts) | 10/10 | 10 | 10/10 |
+| [YONGNUO YN 56mm f/1.4 S DA DSM WL PRO](../../src/lens-data/yongnuo/YongnuoYN56mmf14.data.ts) | 10/10 | 10 | 10/10 |
 | [CANON EF 28mm f/2.8 IS USM](../../src/lens-data/canon/CanonEF28mmf28ISUSM.data.ts) | 9/9 | 9 | 9/9 |
 | [CANON EF 50mm f/2.5 Compact Macro](../../src/lens-data/canon/CanonEF50mmf25CompactMacro.data.ts) | 9/9 | 9 | 9/9 |
 | [CANON EF 85mm f/1.8 USM](../../src/lens-data/canon/CanonEF85mmf18USM.data.ts) | 9/9 | 9 | 9/9 |
@@ -795,6 +798,7 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [VOIGTLÄNDER NOKTON 50mm f/1 Aspherical](../../src/lens-data/voigtlander/VoigtlanderNokton50f1.data.ts) | 9/9 | 9 | 9/9 |
 | [VOIGTLÄNDER NOKTON 50mm f/1.2 X-Mount](../../src/lens-data/voigtlander/VoigtlanderNoktonX50mmf12.data.ts) | 9/9 | 9 | 9/9 |
 | [YASHICA ML 24mm f/2.8](../../src/lens-data/yashica/YashicaML24mmf28.data.ts) | 9/9 | 9 | 9/9 |
+| [YONGNUO YN 85mm f/1.8 S DF DSM](../../src/lens-data/yongnuo/YongnuoYN85mmf18SDFDSM.data.ts) | 9/9 | 9 | 9/9 |
 | [CANON 35mm f/1.5](../../src/lens-data/canon/Canon35mmf15LTM.data.ts) | 8/8 | 8 | 8/8 |
 | [CANON EF 100mm f/2 USM](../../src/lens-data/canon/CanonEF100mmf2USM.data.ts) | 8/8 | 8 | 8/8 |
 | [CANON EF 15mm f/2.8 Fisheye](../../src/lens-data/canon/CanonEF15mmf28.data.ts) | 8/8 | 8 | 8/8 |
@@ -958,6 +962,7 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [NIKON UV-NIKKOR 105mm f/4.5](../../src/lens-data/nikon/NikonUvNikkor105mmf45.data.ts) | 6/6 | 6 | 6/6 |
 | [OLYMPUS F.ZUIKO 35mm f/2.8 (Olympus XA)](../../src/lens-data/olympus/OlympusXAZuiko35mmf28.data.ts) | 6/6 | 6 | 6/6 |
 | [OLYMPUS F.ZUIKO AUTO-T 200mm f/5](../../src/lens-data/olympus/OlympusZuikoAutoT200mmf5.data.ts) | 6/6 | 6 | 6/6 |
+| [OLYMPUS F.ZUIKO AUTO-T 300mm f/4.5](../../src/lens-data/olympus/OlympusFZuikoAutoT300mmf45.data.ts) | 6/6 | 6 | 6/6 |
 | [OLYMPUS M.ZUIKO DIGITAL 17mm f/2.8](../../src/lens-data/olympus/OlympusMZuiko17mmf28.data.ts) | 6/6 | 6 | 6/6 |
 | [OLYMPUS ZUIKO AUTO-S 50mm f/1.8](../../src/lens-data/olympus/OlympusZuikoAutoS50mmf18.data.ts) | 6/6 | 6 | 6/6 |
 | [OLYMPUS ZUIKO AUTO-T 600mm f/6.5](../../src/lens-data/olympus/OlympusZuiko600mmf65.data.ts) | 6/6 | 6 | 6/6 |
@@ -1023,6 +1028,8 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [PENTAX 110 50mm f/2.8](../../src/lens-data/pentax/Pentax11050mmf28.data.ts) | 5/5 | 5 | 5/5 |
 | [PENTAX F 85mm f/2.8 Soft](../../src/lens-data/pentax/PentaxF85mmf28Soft.data.ts) | 5/5 | 5 | 5/5 |
 | [PENTAX SMC FA 28mm f/2.8 Soft](../../src/lens-data/pentax/PentaxFA28mmf28Soft.data.ts) | 5/5 | 5 | 5/5 |
+| [PENTAX SMC M 135mm f/3.5](../../src/lens-data/pentax/PentaxM135mmf35.data.ts) | 5/5 | 5 | 5/5 |
+| [PENTAX SMC M 150mm f/3.5](../../src/lens-data/pentax/PentaxM150mmf35.data.ts) | 5/5 | 5 | 5/5 |
 | [PENTAX SMC M 40mm f/2.8](../../src/lens-data/pentax/PentaxM40mmf28.data.ts) | 5/5 | 5 | 5/5 |
 | [PENTAX SUPER-TAKUMAR 135mm f/2.5](../../src/lens-data/pentax/PentaxSuperTakumar135mmf2.5.data.ts) | 5/5 | 5 | 5/5 |
 | [PENTAX ULTRA-ACHROMATIC-TAKUMAR 85mm f/4.5](../../src/lens-data/pentax/PentaxUltraAchromaticTakumar85mmf45.data.ts) | 5/5 | 5 | 5/5 |
