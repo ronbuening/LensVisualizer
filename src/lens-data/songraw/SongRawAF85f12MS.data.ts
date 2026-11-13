@@ -1,9 +1,16 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
-/** Qualified representative CN119667909A (numeric parity CN223827884U).
- * Source lens values unchanged; final20.300mm imagegap replaced by authorized no-filter computedBFD19.813299312mm.
- * Not a proven source typo. Preserve original/interpretation side-by-side in audit.
- * Source pupil34.309mm controlsf1.233195; printedf1.25 retained separately.
- * Inferred Fig1caps,default90%gap-sag; no claim exactretail optical prescription. Hidden pendingintegration. */
+/**
+ * Source: CN 119667909 A, Example 1, Tables 1–2 and Figure 1.
+ * Scale factor 1: source radii, thicknesses and gaps are already in millimetres;
+ * no units conversion is applied. Even-asphere coefficients retain source mm units.
+ * Rims are inferred from Figure 1; the native iris is inferred paraxially from
+ * the source entrance-pupil radius 34.309 mm (modeled f/1.233195, printed f/1.25).
+ * The final gap is the calculated lens-only paraxial back focus, 19.813299312 mm,
+ * rather than the printed 20.300 mm. Two-decimal nd precision and a non-unique
+ * misprint scan support retaining this interpretation, not a proven correction
+ * or exact filter conversion. No filter prescription or finite-focus state is supplied.
+ * Hidden representative model; no exact retail optical prescription is claimed.
+ */
 const LENS_DATA = {
   "schema": 2,
   "key": "songraw-af-85f12-ms",
@@ -424,6 +431,7 @@ const LENS_DATA = {
   "subtitle": "CN 119667909 A \u2014 qualified lens-only computed-focus interpretation",
   "catalog": {
     "lensMounts": [
+      "sony-fe",
       "nikon-z"
     ],
     "imageFormat": "135-full-frame",
@@ -437,6 +445,9 @@ const LENS_DATA = {
     "fNumber": {
       "marketing": 1.2,
       "design": 1.233195000482106
+    },
+    "closeFocusM": {
+      "marketing": 0.85
     },
     "specs": [
       "18 ELEMENTS / 10 GROUPS",
@@ -460,7 +471,7 @@ const LENS_DATA = {
     "errata": [
       {
         "status": "unresolved",
-        "note": "Original S29\u2192IMG20.300mm is retained in evidence; Ron authorizes a lens-only no-filter model at calculated BFD19.813299312326787mm. Minor error is an accepted possibility, not established source correction."
+        "note": "Printed S29\u2192IMG 20.300 mm is 0.486701 mm longer than the retained lens-only paraxial focus 19.813299312326787 mm. Two-decimal nd precision limits the back-focus accuracy; the 2,570-case single-value scan found no unique misprint. The final gap follows the YN 40 paraxial-focus precedent, not a proven source correction or exact filter conversion."
       },
       {
         "status": "unresolved",

@@ -1,16 +1,28 @@
-import type { LensDataV2Input } from "../LensVisualizer/src/types/lensDataV2.js";
-export default {
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * Source: US 2,279,384, Fred E. Altman / Eastman Kodak Company, Example 10.
+ * Scale factor 1: source radii and intervals are already millimetres; no units conversion.
+ * The literal prescription computes to 101.245322971 mm EFL versus nominal f = 100 mm.
+ * The unprinted stop is inferred at the midpoint of the 6.54 mm air gap (3.27 + 3.27 mm).
+ * Body semi-diameters 16 / 13.5 / 15.5 mm are inferred; the unprinted 84.173575804 mm
+ * back focus is calculated at infinity. No close-focus prescription is reconstructed.
+ */
+const LENS_DATA = {
   "schema": 2,
   "key": "kodak-medalist-us2279384-e10-representative",
   "maker": "Kodak",
   "name": "Kodak Medalist 100mm f/3.5 (patent E10 representative)",
   "visible": false,
   "catalog": {
+    "lensMounts": ["fixed-lens-camera"],
+    "imageFormat": "6x9",
+    "closeFocusM": { "marketing": 1.0668 },
     "elementCount": 5,
     "groupCount": 3,
     "focalLengthMm": {
       "marketing": 100,
-      "design": 100
+      "design": 101.24532297117585
     },
     "fNumber": {
       "marketing": 3.5,
@@ -18,7 +30,8 @@ export default {
     }
   },
   "source": {
-    "patentNumber": "US 2279384",
+    "patentNumber": "US 2,279,384",
+    "example": { "label": "Example 10", "id": "10" },
     "patentYear": 1942,
     "authors": [
       "Fred E. Altman"
@@ -165,3 +178,5 @@ export default {
     "yScFill": 0.7
   }
 } satisfies LensDataV2Input;
+
+export default LENS_DATA;

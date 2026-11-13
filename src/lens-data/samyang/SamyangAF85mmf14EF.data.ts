@@ -1,7 +1,12 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
-/** Hidden qualified representative E2. Both literal stations. Hybrid and filter retained.
- * Actual Image row afterD4; D5 kept in analysis metadata, not incoming propagation.
- * Inferred caps, default90% sag; sampled field clipping disclosed. */
+/**
+ * Source: KR 10-2213072 B1, Example 2, Tables 4–6; both printed focus states.
+ * Scale factor 1: source radii, thicknesses and gaps are already in mm; no units conversion.
+ * The iris and clear rims are inferred; source back-focus gaps remain literal, not re-solved.
+ * The camera-side 2.5 mm filter remains explicit because rearPlates.gapAfterMm is scalar,
+ * while source D4 varies from 0.507836 to 0.687847 mm; no physical gaps are redistributed.
+ * Actual Image follows D4; D5 after Image stays metadata and is not propagated.
+ */
 const LENS_DATA = {
   "schema": 2,
   "key": "samyang-af-85mm-f14-ef",
@@ -304,7 +309,7 @@ const LENS_DATA = {
     "yScFill": 0.7
   },
   "focus": {
-    "closeFocusM": 0.9,
+    "closeFocusM": 0.926326,
     "keyframes": [
       0,
       1
@@ -337,6 +342,9 @@ const LENS_DATA = {
       "marketing": 1.4,
       "design": 1.479
     },
+    "closeFocusM": {
+      "marketing": 0.9
+    },
     "specs": [
       "9 GLASS / 7 GROUPS PLUS HYBRID LAYER AND FILTER",
       "TWO LITERAL FOCUS ENDPOINTS",
@@ -344,7 +352,7 @@ const LENS_DATA = {
     ]
   },
   "source": {
-    "patentNumber": "KR 102213072 B1",
+    "patentNumber": "KR 10-2213072 B1",
     "authors": ["Jae-myeong Ryu", "Hae-jin Lee", "Jeong-du Lee"],
     "patentYear": 2021,
     "example": {

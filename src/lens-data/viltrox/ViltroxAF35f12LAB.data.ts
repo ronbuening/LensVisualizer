@@ -1,7 +1,14 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
-/** Hidden representative E2, not exact retail prescription.
- * Literal source filter and image plane retained. Both focus endpoints; no interpolated cam claim.
- * Inferred caps, default90% gap-sag. See analysis/audit for severe field clipping and review status. */
+/**
+ * CN 115826211 A/B, Example 2, Tables 4–6; representative LAB-family model.
+ * Scale s=1: source radii and distances are already millimetres; no units conversion.
+ * GL retains 15.575 mm before / 2.500 mm glass / 0.500 mm after in rearPlates.
+ * The pre-GL gap is fixed at both printed focus endpoints. No intermediate cam is verified.
+ * Rims are inferred geometry-limited bounds; the iris radius is engine-derived for f/1.2.
+ * Back focus and the 0.341084 m object-to-image near conjugate are calculated, not printed.
+ * Literal source spacings and image plane are retained, including the infinity focus residual.
+ * Default 90% gap-sag; see analysis/audit for severe field clipping and review status.
+ */
 const LENS_DATA = {
   "schema": 2,
   "key": "viltrox-af-35f12-lab",
@@ -157,16 +164,6 @@ const LENS_DATA = {
       "vd": 40.993,
       "indexReference": "d",
       "label": "L15",
-      "glass": "Literal rounded nd/Vd; unmatched glass, approximate dispersion"
-    },
-    {
-      "id": 16,
-      "name": "Published filter",
-      "type": "Lens",
-      "nd": 1.517,
-      "vd": 64.199,
-      "indexReference": "d",
-      "label": "Published filter",
       "glass": "Literal rounded nd/Vd; unmatched glass, approximate dispersion"
     }
   ],
@@ -368,19 +365,19 @@ const LENS_DATA = {
         "A10": 2.816e-13,
         "A12": -2.239e-16
       }
-    },
+    }
+  ],
+  "rearPlates": [
     {
-      "label": "27",
-      "R": "flat",
-      "d": 2.5,
+      "label": "GL",
+      "thicknessMm": 2.5,
+      "nd": 1.517,
+      "vd": 64.199,
+      "indexReference": "d",
+      "glass": "Literal rounded nd/Vd; unmatched glass, approximate dispersion",
+      "gapAfterMm": 0.5,
       "sd": 23,
-      "medium": 16
-    },
-    {
-      "label": "28",
-      "R": "flat",
-      "d": 0.5,
-      "sd": 23
+      "source": "CN 115826211 A/B, Example 2 Table 4, surfaces 27–28"
     }
   ],
   "gaps": {
@@ -431,7 +428,7 @@ const LENS_DATA = {
     "yScFill": 0.7
   },
   "focus": {
-    "closeFocusM": 0.206,
+    "closeFocusM": 0.341084,
     "keyframes": [
       0,
       1
@@ -452,9 +449,13 @@ const LENS_DATA = {
   "subtitle": "CN115826211A/B Example2 representative; literal filter and two focus stations",
   "catalog": {
     "lensMounts": [
-      "sony-fe"
+      "sony-fe",
+      "nikon-z"
     ],
     "imageFormat": "135-full-frame",
+    "closeFocusM": {
+      "marketing": 0.34
+    },
     "elementCount": 15,
     "groupCount": 10,
     "focalLengthMm": {
@@ -482,7 +483,7 @@ const LENS_DATA = {
       "id": "2"
     },
     "assignees": [
-      "Shenzhen Leiying Optoelectronics Technology Co., Ltd."
+      "Shenzhen Leiying Photoelectric Technology Co., Ltd."
     ],
     "errata": [
       {
