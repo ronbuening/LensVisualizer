@@ -5,18 +5,22 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * and Horace William Lee. The patent states an equivalent focal length of 1 unit,
  * aperture f/3 and full field of 45 degrees.
  *
- * SCALE AND UNITS: retain the uniform x100 normalisation: 1 patent unit becomes
- * 100 mm. All radii, thicknesses, air gaps and printed diameters use that conversion;
- * semi-diameters are half the converted diameters. No 100 mm Series XI was sold;
- * the documented retail focal lengths were 5 in and 6 1/4 in, at f/3.5.
- * This model is the normalised patent design, not a retail focal-length prescription.
+ * SCALE AND UNITS: uniform ×158.75 conversion: 1 patent unit becomes 158.75 mm
+ * (6¼ in), applying ×1.5875 to the previous millimetre prescription. Every radius,
+ * thickness, air gap, semi-diameter and image circle uses the same linear factor.
+ * Cooke's Compendium reports the patent inscription on 5 in and 6¼ in Series XI
+ * lenses. The Science Museum's quarter-plate Thornton-Pickard Junior Special has
+ * a Series XI 6¼ in f/3.5–16. Example I's 45-degree field supports that association;
+ * its patent f/3 opening is retained separately from the retail f/3.5 rating.
+ * The product-to-example association does not establish an exact factory prescription.
  *
- * INFERRED VALUES: the stop is placed midway through the 10.76 mm rear air gap,
- * 5.38 mm from each adjacent vertex; its opening is derived for f/3. The rims are
- * not inferred: the printed diameters give semi-diameters of 17, 15 and 15 mm.
- * The final 85.3257513035 mm gap is calculated paraxial back focus, not printed.
- * The 82.84 mm image circle is derived from the stated 45-degree field at the
- * nominal 100 mm scale; it does not certify edge illumination or image quality.
+ * INFERRED VALUES: the stop is midway through the 17.0815 mm rear air gap,
+ * 8.54075 mm from each adjacent vertex; its opening is derived for f/3. The rims
+ * are not inferred: printed diameters give semi-diameters 26.9875, 23.8125 and
+ * 23.8125 mm. The final 135.45463 mm gap is calculated paraxial back focus,
+ * not printed. Catalog design focal length is computed paraxial EFL, rounded to
+ * two decimals. The 131.5085 mm image circle scales the previous field-derived
+ * circle; it does not certify edge illumination or image quality.
  * The printed sodium D-line index is approximated by engine d; Nu is interpreted
  * as conventional Vd. Only infinity focus is represented.
  */
@@ -24,15 +28,18 @@ const LENS_DATA = {
   "schema": 2,
   "key": "cooke-seriesxi-gb155640-ei-representative",
   "maker": "Cooke",
-  "name": "COOKE SERIES XI f/3 (GB 155,640 Example I Design)",
+  "name": "COOKE SERIES XI 6¼ in f/3.5",
   "visible": false,
   "catalog": {
-    "lensMounts": ["large-format-lens-board"],
-    "imageCircleMm": 82.84,
+    "lensMounts": [
+      "large-format-lens-board"
+    ],
+    "imageCircleMm": 131.5085,
     "elementCount": 3,
     "groupCount": 3,
     "focalLengthMm": {
-      "design": 100
+      "marketing": 158.75,
+      "design": 158.53
     },
     "fNumber": {
       "marketing": 3.5,
@@ -41,7 +48,10 @@ const LENS_DATA = {
   },
   "source": {
     "patentNumber": "GB 155,640 A",
-    "example": { "label": "Example I", "id": "1" },
+    "example": {
+      "label": "Example I",
+      "id": "1"
+    },
     "patentYear": 1920,
     "authors": [
       "Horace William Lee"
@@ -85,52 +95,52 @@ const LENS_DATA = {
   "surfaces": [
     {
       "label": "1",
-      "R": 40.13,
-      "d": 6,
-      "sd": 17,
+      "R": 63.706375,
+      "d": 9.525,
+      "sd": 26.9875,
       "medium": 1
     },
     {
       "label": "2",
-      "R": -537,
-      "d": 10,
-      "sd": 17
+      "R": -852.4875,
+      "d": 15.875,
+      "sd": 26.9875
     },
     {
       "label": "3",
-      "R": -47.02,
-      "d": 1,
-      "sd": 15,
+      "R": -74.64425,
+      "d": 1.5875,
+      "sd": 23.8125,
       "medium": 2
     },
     {
       "label": "4",
-      "R": 40.01,
-      "d": 5.38,
-      "sd": 15
+      "R": 63.515875,
+      "d": 8.54075,
+      "sd": 23.8125
     },
     {
       "label": "STO",
       "R": "flat",
-      "d": 5.38
+      "d": 8.54075
     },
     {
       "label": "5",
-      "R": 234.5,
-      "d": 6,
-      "sd": 15,
+      "R": 372.26875,
+      "d": 9.525,
+      "sd": 23.8125,
       "medium": 3
     },
     {
       "label": "6",
-      "R": -37.94,
-      "d": 85.3257513035,
-      "sd": 15
+      "R": -60.22975,
+      "d": 135.45463,
+      "sd": 23.8125
     }
   ],
   "focus": {
     "closeFocusM": 1000000000000000,
-    "description": "This normalised patent model represents infinity focus only."
+    "description": "This 6¼ in patent reconstruction represents infinity focus only."
   },
   "aperture": {
     "nominalFNumber": 3,

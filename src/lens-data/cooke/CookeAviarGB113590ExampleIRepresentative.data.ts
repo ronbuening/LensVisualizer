@@ -1,30 +1,35 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
- * GB 113,590 A, Example I (PDF p. 2), a representative of the Cooke Aviar design rather than an exact factory model.
- * The patent's unit-focal-length prescription is normalized at ×100: multiply every printed radius, thickness
- * and air space by 100 to express lengths in millimetres; refractive indices and Abbe numbers are unchanged.
- * The literal prescription gives EFL 100.64 mm at this scale. Its +0.637% residual from nominal 100 mm is inherent
- * in the patent and retained without fitting. US 1,361,207 prints r2 = −.9152 in error; GB r2 = −.8152 is used
- * (−81.52 mm after scaling).
- * The 12 mm surface semi-diameters are inferred, not printed clear apertures. The stop is inferred at the midpoint
- * of the 3.62 mm central gap (1.81 mm on either side), with its radius derived from f/4.5. The final 92.278731268 mm
- * interval is the calculated infinity back focus, not a printed dimension. No finite-focus movement is modeled.
+ * GB 113,590 A, Example I (PDF p. 2), scaled to represent the documented Cooke Aviar 8¼ in f/4.5.
+ * Multiply every printed radius, thickness and air space in the patent's unit-focal-length prescription by
+ * 209.55 to express lengths in millimetres (×209.55 = 8¼ in nominal); all delivered model lengths are rescaled
+ * uniformly by ×2.0955. Refractive indices and Abbe numbers are unchanged.
+ * The literal prescription gives EFL 210.88 mm at this scale. Its +0.637% residual from nominal 209.55 mm
+ * is inherent in the patent and retained without fitting. The catalog design focal length is the traced EFL,
+ * rounded to two decimals. US 1,361,207 prints r2 = −.9152 in error; GB r2 = −.8152 is used
+ * (-170.82516 mm after scaling).
+ * The 25.146 mm surface semi-diameters are scaled inferences, not printed clear apertures. The stop is inferred
+ * at the midpoint of the 7.58571 mm central gap (3.792855 mm on either side), with its radius derived from f/4.5.
+ * The final 193.370081 mm interval is the calculated infinity back focus, not a printed dimension.
+ * No finite-focus movement or exact factory prescription is established.
  */
 const LENS_DATA = {
   "schema": 2,
   "key": "cooke-aviar-gb113590-ei-representative",
   "maker": "Cooke",
-  "name": "COOKE AVIAR f/4.5 (GB 113,590 Example I Design)",
+  "name": "COOKE AVIAR 8¼ in f/4.5",
   "visible": false,
   "catalog": {
-    "lensMounts": ["large-format-lens-board"],
-    "imageFormat": "6x9",
+    "lensMounts": [
+      "large-format-lens-board"
+    ],
+    "imageFormat": "5x7",
     "elementCount": 4,
     "groupCount": 4,
     "focalLengthMm": {
-      "marketing": 100,
-      "design": 100
+      "marketing": 209.55,
+      "design": 210.88
     },
     "fNumber": {
       "marketing": 4.5,
@@ -49,7 +54,7 @@ const LENS_DATA = {
     {
       "id": 1,
       "name": "L1",
-      "focalLengthMm": 36.21,
+      "focalLengthMm": 75.878055,
       "label": "Element 1",
       "type": "Spherical patent glass",
       "nd": 1.6116,
@@ -60,7 +65,7 @@ const LENS_DATA = {
     {
       "id": 2,
       "name": "L2",
-      "focalLengthMm": -38.32,
+      "focalLengthMm": -80.29956,
       "label": "Element 2",
       "type": "Spherical patent glass",
       "nd": 1.5682,
@@ -71,7 +76,7 @@ const LENS_DATA = {
     {
       "id": 3,
       "name": "L3",
-      "focalLengthMm": -42.18,
+      "focalLengthMm": -88.38819,
       "label": "Element 3",
       "type": "Spherical patent glass",
       "nd": 1.5502,
@@ -82,7 +87,7 @@ const LENS_DATA = {
     {
       "id": 4,
       "name": "L4",
-      "focalLengthMm": 36.21,
+      "focalLengthMm": 75.878055,
       "label": "Element 4",
       "type": "Spherical patent glass",
       "nd": 1.6116,
@@ -94,60 +99,60 @@ const LENS_DATA = {
   "surfaces": [
     {
       "label": "1",
-      "R": 29.76,
-      "d": 4.55,
-      "sd": 12.0,
+      "R": 62.36208,
+      "d": 9.534525,
+      "sd": 25.146,
       "medium": 1
     },
     {
       "label": "2",
-      "R": -81.52,
-      "d": 2.03,
-      "sd": 12.0
+      "R": -170.82516,
+      "d": 4.253865,
+      "sd": 25.146
     },
     {
       "label": "3",
-      "R": -42.85,
-      "d": 1.0,
-      "sd": 12.0,
+      "R": -89.792175,
+      "d": 2.0955,
+      "sd": 25.146,
       "medium": 2
     },
     {
       "label": "4",
-      "R": 44.64,
-      "d": 1.81,
-      "sd": 12.0
+      "R": 93.54312,
+      "d": 3.792855,
+      "sd": 25.146
     },
     {
       "label": "STO",
       "R": "flat",
-      "d": 1.81
+      "d": 3.792855
     },
     {
       "label": "5",
-      "R": -50.41,
-      "d": 1.0,
-      "sd": 12.0,
+      "R": -105.634155,
+      "d": 2.0955,
+      "sd": 25.146,
       "medium": 3
     },
     {
       "label": "6",
-      "R": 43.3,
-      "d": 1.93,
-      "sd": 12.0
+      "R": 90.73515,
+      "d": 4.044315,
+      "sd": 25.146
     },
     {
       "label": "7",
-      "R": 81.52,
-      "d": 4.55,
-      "sd": 12.0,
+      "R": 170.82516,
+      "d": 9.534525,
+      "sd": 25.146,
       "medium": 4
     },
     {
       "label": "8",
-      "R": -29.76,
-      "d": 92.278731268,
-      "sd": 12.0
+      "R": -62.36208,
+      "d": 193.370081,
+      "sd": 25.146
     }
   ],
   "focus": {

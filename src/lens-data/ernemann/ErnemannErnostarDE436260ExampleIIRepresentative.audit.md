@@ -38,3 +38,44 @@ Audit results:
 The scoped Prettier check passed for all three files. A comparison against the delivered files confirmed that every radius, spacing, glass value and other rim is unchanged, that the lens remains hidden, and that every existing audit line is preserved.
 
 Open: the later cleanup pass still owns key/file naming, element type labels, glass labels, remaining wording and the catalog focal-length presentation. Rims remain inferred rather than calibrated measurements of Abb. 2; the aperture proposal also lists 18.4 mm for both L5 faces if a square rim is later required, but this assignment authorizes only surface 7. Full-pupil illumination and exact factory-product prescription identity remain unverified. The existing audit lines above are preserved as historical records; this section supersedes their old source-provenance and rim statements.
+
+## 2026-11-13 — Rescale and rename
+
+Codex checked the rescaled file against the independent validator's report and compared the public 10.5 cm f/1.8 section. The validator independently re-read the patent page images, checking Example II's ten radii, nine thicknesses/gaps, six nD/ν pairs, 5.87 + 6.62 = 12.49 mm stop split, and Abb. 2's six elements in four groups with the cemented triplet second. This pass preserves that verified relative prescription and the prior surface-7 correction.
+
+Reason and verdict: the validator found commercial f/1.8 Ernostars at 8.5, 10.5, 12.5 and 16.5 cm, whereas the 10 cm Ernostar was the four-element f/2 lens. The owner-approved ×1.05 scale maps the patent's f = 100 normalisation to the 10.5 cm f/1.8 Ermanox 4.5 × 6 cm lens. Its [public optical section](https://upload.wikimedia.org/wikipedia/commons/d/d0/Ernostar_10%2C5cm_1%2C8_%281924%29.jpg) shows the same 6/4 layout and second-component cemented triplet. This is a valid family-based reconstruction at the marketed focal length, without claiming an exact factory prescription; the 8.5, 12.5 and 16.5 cm f/1.8 lenses share the design family.
+
+Changes:
+
+- Name: `ERNEMANN ERNOSTAR f/1.8 (DE 436,260 Example II Design)` → `ERNEMANN ERNOSTAR 10.5cm f/1.8`.
+- `catalog.focalLengthMm.marketing`: 100 → 105 mm; `catalog.focalLengthMm.design`: 100 → 104.71 mm, the newly traced paraxial EFL rounded to two decimals rather than the patent's nominal value.
+- Uniform factor 1.05 applied by a script to all ten numeric radii, eleven spacings (both stop gaps and the image-side distance included), and ten explicit optical semi-diameters. Every length change is listed below. No explicit stop radius, element focal length, image-circle diameter or dimensional projection/field coordinate is present to scale. The derived iris radius scales from 16.6141411993 to 17.4448482593 mm. Refractive indices, Abbe numbers, angles, f-numbers and the nonphysical infinity placeholder are retained; no conic is authored.
+- Header and analysis: patent-normalised Design identification → ×1.05 reconstruction of the 10.5 cm f/1.8 lens, with the shared 8.5/12.5/16.5 cm family, scaled dimensions, first-order values, aperture notes and updated 645 coverage. Millimetres need no units conversion. Source stop coordinates remain distinguished from inferred iris/rims and calculated back focus.
+- `imageFormat: "645"`, `lensMounts: ["fixed-lens-camera"]`, `visible: false`, the key and all three filenames are retained.
+
+| Surface | R (mm), old → new | d (mm), old → new | sd (mm), old → new |
+|---|---|---|---|
+| 1 | 50.2 → 52.71 | 7.26 → 7.623 | 28 → 29.4 |
+| 2 | 181.5 → 190.575 | 0.53 → 0.5565 | 28 → 29.4 |
+| 3 | 45.4 → 47.67 | 11.74 → 12.327 | 25 → 26.25 |
+| 4 | -106.8 → -112.14 | 6.94 → 7.287 | 25 → 26.25 |
+| 5 | -41.6 → -43.68 | 1.07 → 1.1235 | 25 → 26.25 |
+| 6 | 92 → 96.6 | 4.46 → 4.683 | 25 → 26.25 |
+| 7 | -179 → -187.95 | 1.07 → 1.1235 | 18.4 → 19.32 |
+| 8 | 30.4 → 31.92 | 5.87 → 6.1635 | 17.5 → 18.375 |
+| STO | flat (retained) | 6.62 → 6.951 | — |
+| 9 | 85.4 → 89.67 | 5.34 → 5.607 | 20 → 21 |
+| 10 | -85.4 → -89.67 | 56.83526107 → 59.677024 | 20 → 21 |
+
+First-order before → after: EFL 99.7200604306 → 104.7060634521 mm; BFD 56.83526107 → 59.67702412 mm (stored image interval rounded to 59.677024 mm); total track 107.73526107 → 113.122024 mm; f-number 1.8 → 1.8. `built.mjs` confirms the new EFL, f-number, total track and derived iris; `probe.mjs` confirms EFL 104.7061, BFD 59.6770, total track 113.1220 mm and f/1.800. The EFL and derived iris ratios are 1.0499999999999998, equal to 1.05 to floating-point precision. All 31 stored lengths were checked after parsing and again from the saved file; maximum ratio error is 2.18 × 10⁻⁹ from rounding the final image interval. Total track differs from the exact ×1.05 product by only 0.0000001235 mm. No unrelated data field was changed.
+
+Audit results:
+
+- `audit:surface`: OK — no validation errors.
+- `audit:aperture`: 1 lens / 1 station within 3%; traced f/1.7999999983, STO limiter; no rim limit, trace failure, iris mismatch or failed station.
+- `audit:image-circle`: 1 checked, 0 undersized, 0 skipped; also passes on the visible scratch copy.
+- `audit:field-coverage --below=1.01`: the hidden file was skipped, so an otherwise identical visible scratch copy was checked. Result: 100% coverage, 34.84999972 of the required 34.85 mm corner radius, modeled half-angle 18.0800114°, corner half-angle 18.0800115°, converged solve, clear corner, no limiting rim and 0 skipped. This checks chief-ray field coverage, not full-pupil illumination or the entire approximately 50° source field.
+
+The scoped Prettier check passed for all three files; the original audit text remains byte-for-byte intact.
+
+Open: the coordinator still owns key/file renaming; later cleanup owns element type labels, glass labels and remaining wording. Rims remain inferred rather than calibrated from Abb. 2; full-pupil illumination and exact factory-product prescription identity remain unverified. Full application tests, typecheck, lint, build and browser checks were outside this authorized scoped pass. Earlier audit lines are preserved as historical records; this section supersedes their scale, name, catalog focal-length and field-angle statements.

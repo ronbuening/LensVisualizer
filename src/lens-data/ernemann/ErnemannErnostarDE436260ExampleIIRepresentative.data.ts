@@ -2,24 +2,29 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * DE 436,260 C, Example II, page 2 and Abb. 2 on page 4 of the complete four-page patent.
- * The patent states f = 100 mm, f/1.8 and an approximately 50-degree field. This is the
- * patent's f = 100 normalisation, not a commercial 10 cm f/1.8 prescription: the f/1.8
- * Ernostar lenses were sold at 8.5, 10.5, 12.5 and 16.5 cm. Scale factor 1; all printed
- * radii, thicknesses and gaps are retained in millimetres, with no units conversion.
+ * Uniform scale factor 1.05 maps the patent's f = 100 mm normalisation to the Ernostar
+ * 10.5 cm f/1.8 of the Ermanox 4.5 x 6 cm. Its public section shares Example II's 6/4
+ * layout; this is a family-based reconstruction, not a certified factory prescription.
+ * The 8.5, 12.5 and 16.5 cm f/1.8 lenses share the design family. All radii, thicknesses,
+ * gaps (including the image interval) and inferred rims are multiplied by 1.05 in mm;
+ * no units conversion is needed. Angles, nD, nu and f-numbers are unchanged. The catalog
+ * design focal length is the computed paraxial EFL rounded to two decimals, 104.71 mm.
  * The printed nD and nu pairs are represented as nd and conventional Vd; the spectral
  * convention is qualified in the analysis. No inventor is printed; Ludwig Bertele is
  * retained as a historical attribution, not a name transcribed from this patent.
- * The stop position is printed (5.87 + 6.62 = 12.49 mm); its radius is derived for f/1.8.
- * All optical semi-diameters are inferred. Surface 7 is raised from 17.5 to 18.4 mm to
- * pass the stated axial beam; the other rims are retained. The final 56.83526107 mm gap
- * is calculated paraxial back focus, not a printed value. Only infinity is modeled;
- * closeFocusM = 1e15 is a placeholder, and the aperture range through f/22 is authored.
+ * The printed stop split 5.87 + 6.62 = 12.49 mm becomes 6.1635 + 6.951 = 13.1145 mm;
+ * the engine derives its radius for f/1.8, so it scales with the prescription.
+ * All optical semi-diameters are inferred. The earlier surface-7 correction from 17.5
+ * to 18.4 mm scales to 19.32 mm; all other rims receive the same factor. The calculated
+ * paraxial back-focus interval 56.83526107 mm becomes 59.677024 mm, not a printed value.
+ * Only infinity is modeled; closeFocusM = 1e15 is a placeholder, and the range to f/22
+ * is authored. The source field remains approximately 50 degrees.
  */
 const LENS_DATA = {
   "schema": 2,
   "key": "ernemann-ernostar-de436260-eii-representative",
   "maker": "Ernemann",
-  "name": "ERNEMANN ERNOSTAR f/1.8 (DE 436,260 Example II Design)",
+  "name": "ERNEMANN ERNOSTAR 10.5cm f/1.8",
   "visible": false,
   "catalog": {
     "lensMounts": ["fixed-lens-camera"],
@@ -27,8 +32,8 @@ const LENS_DATA = {
     "elementCount": 6,
     "groupCount": 4,
     "focalLengthMm": {
-      "marketing": 100,
-      "design": 100
+      "marketing": 105,
+      "design": 104.71
     },
     "fNumber": {
       "marketing": 1.8,
@@ -114,74 +119,74 @@ const LENS_DATA = {
   "surfaces": [
     {
       "label": "1",
-      "R": 50.2,
-      "d": 7.26,
-      "sd": 28.0,
+      "R": 52.71,
+      "d": 7.623,
+      "sd": 29.4,
       "medium": 1
     },
     {
       "label": "2",
-      "R": 181.5,
-      "d": 0.53,
-      "sd": 28.0
+      "R": 190.575,
+      "d": 0.5565,
+      "sd": 29.4
     },
     {
       "label": "3",
-      "R": 45.4,
-      "d": 11.74,
-      "sd": 25.0,
+      "R": 47.67,
+      "d": 12.327,
+      "sd": 26.25,
       "medium": 2
     },
     {
       "label": "4",
-      "R": -106.8,
-      "d": 6.94,
-      "sd": 25.0,
+      "R": -112.14,
+      "d": 7.287,
+      "sd": 26.25,
       "medium": 3
     },
     {
       "label": "5",
-      "R": -41.6,
-      "d": 1.07,
-      "sd": 25.0,
+      "R": -43.68,
+      "d": 1.1235,
+      "sd": 26.25,
       "medium": 4
     },
     {
       "label": "6",
-      "R": 92,
-      "d": 4.46,
-      "sd": 25.0
+      "R": 96.6,
+      "d": 4.683,
+      "sd": 26.25
     },
     {
       "label": "7",
-      "R": -179,
-      "d": 1.07,
-      "sd": 18.4,
+      "R": -187.95,
+      "d": 1.1235,
+      "sd": 19.32,
       "medium": 5
     },
     {
       "label": "8",
-      "R": 30.4,
-      "d": 5.87,
-      "sd": 17.5
+      "R": 31.92,
+      "d": 6.1635,
+      "sd": 18.375
     },
     {
       "label": "STO",
       "R": "flat",
-      "d": 6.62
+      "d": 6.951
     },
     {
       "label": "9",
-      "R": 85.4,
-      "d": 5.34,
-      "sd": 20.0,
+      "R": 89.67,
+      "d": 5.607,
+      "sd": 21.0,
       "medium": 6
     },
     {
       "label": "10",
-      "R": -85.4,
-      "d": 56.83526107,
-      "sd": 20.0
+      "R": -89.67,
+      "d": 59.677024,
+      "sd": 21.0
     }
   ],
   "focus": {

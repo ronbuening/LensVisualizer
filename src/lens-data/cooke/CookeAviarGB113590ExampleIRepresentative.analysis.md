@@ -1,6 +1,6 @@
-# Cooke Aviar: GB Example I representative
+# Cooke Aviar 8¼ in f/4.5: GB Example I representative
 
-## Patent Reference and Design Identification
+## Patent Reference and Lens Identification
 
 **Patent:** GB 113,590 A  
 **Inventor:** Arthur Warmisham  
@@ -8,11 +8,11 @@
 **Filed:** 27 November 1917  
 **Accepted:** 28 February 1918  
 **Title:** Improvements in Lenses  
-**Example details:** Example I, normalized focal length 1.00, scaled by 100 for a representative 100 mm-class model.
+**Example details:** Example I, normalized focal length 1.00, scaled by ×209.55 for the documented 8¼ in (209.55 mm nominal) f/4.5 Aviar focal length.
 
 Cooke Optics' own Compendium explicitly associates Series II f/4.5 Aviar with British patent 113590 and Arthur Warmisham, describing four separate glasses with no cement. This is a manufacturer retrospective, not a contemporary production drawing or proof that any particular commercial focal length used Example I. The retrospective's account of military use in 1916 is distinct from the 1917 application date; the dates are not conflated.
 
-This model uses the complete original GB publication hosted by a secondary archive. It is a qualified representative, not a factory 100 mm prescription. The chosen 100× scale is convenient and does not correct the numerical focal residual. Example II is a distinct unmodeled embodiment, not another entry or proven retail variant.
+This model uses the complete original GB publication hosted by a secondary archive. It is a qualified representative of the 8¼ in f/4.5 Aviar, not an established factory prescription. The validator documents f/4.5 Aviars at 5, 6, 7, 8¼ and 10½ inches; the 8¼ in identification selects one of those marketed focal lengths. The ×209.55 scale multiplies all previously delivered model lengths by ×2.0955 and preserves the numerical focal residual. Example II is a distinct unmodeled embodiment, not another entry or proven retail variant.
 
 The comparable US 1,361,207 publication misprints r2 = −0.9152; GB Example I prints −0.8152, which is used here. Both originals are preserved. The GB value is retained without combining the two tables. The formal legal family relationship is not independently established here.
 
@@ -20,7 +20,7 @@ The comparable US 1,361,207 publication misprints r2 = −0.9152; GB Example I p
 
 Four spherical, air-separated elements form an approximately symmetrical double objective. Positive outer elements enclose two negative inner elements. The source discusses arranging shallow faces toward the diaphragm and using lower-index negative glasses to improve field correction.
 
-The actual glass indices, radii and spacings are retained without enforcing exact symmetry. Source descriptions of aberration correction are design claims, not measured performance of this reconstruction. The central air interval remains 0.0362 normalized units, or 3.62 mm at the representative scale.
+The actual glass indices, radii and spacings are retained without enforcing exact symmetry. Source descriptions of aberration correction are design claims, not measured performance of this reconstruction. The central air interval remains 0.0362 normalized units, or 7.58571 mm at the 8¼ in scale.
 
 ## Element-by-Element Analysis
 
@@ -40,7 +40,7 @@ Source nD = 1.5502, V = 45.8; light flint class. Its glass differs from L2. The 
 
 Source nD = 1.6116, V = 56.4; dense baryta crown class. The outer positive elements share the stated glass class and numerical index/dispersion, but no modern catalog replacement or melt identity is established.
 
-Calculated isolated-element focal lengths in air are 36.21, −38.32, −42.18 and 36.21 mm for L1–L4, respectively, verified from the literal prescription. They are derived values, not patent-published element focal lengths.
+The stored isolated-element focal lengths in air are 75.878055, −80.29956, −88.38819 and 75.878055 mm for L1–L4, respectively. These labels uniformly scale the delivered rounded derived values by ×2.0955; they are not patent-published element focal lengths.
 
 ## Glass Identification and Selection
 
@@ -50,23 +50,25 @@ The source calls the outer glasses dense baryta crown and the negative glasses l
 
 ## Focus Mechanism
 
-The representative is infinity-only. Its terminal image interval, 92.278731268 mm, is calculated from the literal GB prescription, not printed as a source BFL. No finite-focus law, retail minimum focus or movement is reconstructed.
+The representative is infinity-only. Its terminal image interval, 193.370081 mm, is calculated from the literal GB prescription, not printed as a source BFL. No finite-focus law, retail minimum focus or movement is reconstructed.
 
-At 100× scale the literal EFL is 100.636959925 mm, approximately +0.637% relative to the nominal 100 mm. The +0.637% residual is inherent in the patent’s loose unit-focal-length normalization and is retained without fitting. The US literal table separately gives EFL 108.094627860 mm and is retained as different source evidence, not a failed variant silently repaired into this model.
+At ×209.55 scale the literal EFL is 210.884749523 mm, approximately +0.637% relative to the nominal 209.55 mm (8¼ in). The catalog records marketing focal length 209.55 mm and design focal length 210.88 mm, the traced EFL rounded to two decimals. The +0.637% residual is inherent in the patent’s loose unit-focal-length normalization and is retained without fitting. The US literal table separately gives EFL 226.512293 mm at the same ×209.55 scale and is retained as different source evidence, not a failed variant silently repaired into this model.
 
 ## Aperture and Iris Assumptions
 
-The source specifies f/4.5 but does not give surface clear apertures or a numerical stop split. A common 12 mm surface semi-diameter is inferred as the largest half-millimeter grid value satisfying the default 0.9 geometry limits, not as a measured production aperture or a ray-success optimization.
+The source specifies f/4.5 but does not give surface clear apertures or a numerical stop split. A common 25.146 mm surface semi-diameter uniformly scales the delivered 12 mm inference by ×2.0955. The delivered value was the largest half-millimeter grid value satisfying the default 0.9 geometry limits; its scaled counterpart remains an inference, not a measured production aperture or a ray-success optimization.
 
-The iris is hypothesized at the midpoint of the 3.62 mm central gap: 1.81 mm on either side. Full-cap clearances are 0.166856 mm and 0.360883 mm. Native f/4.5 pupil construction yields a physical iris radius of 9.697421739 mm. The coordinate and radius are model assumptions/derivations, not source dimensions. The f-stop UI through f/22 is convenience, not a validated retail minimum aperture.
+The iris is hypothesized at the midpoint of the 7.58571 mm central gap: 3.792855 mm on either side. The previously quoted full-cap clearances scale to approximately 0.349647 mm and 0.75623 mm. Native f/4.5 pupil construction yields a physical iris radius of 20.320947254 mm. The coordinate and radius are model assumptions/derivations, not source dimensions. The f-stop UI through f/22 is convenience, not a validated retail minimum aperture.
 
-No source spacer, radius, thickness, glass value or geometry limit is changed. No rim exception, extension or gap-sag allowance override is applied.
+All radii, thicknesses, air spaces, rims and derived element focal-length labels use the same ×2.0955 rescale. No glass value, dimensionless prescription ratio or geometry limit is changed. No rim exception, extension or gap-sag allowance override is applied.
 
 ## Verification Summary
 
-Native construction and strict isolated TypeScript pass against the recovered engine. Independent source and scoped geometry reviews accompany the package. The original GB/US difference and GB focal residual remain explicit.
+The original package recorded native construction and strict isolated TypeScript checks at its former representative scale. Independent source and scoped geometry reviews accompany the package. The original GB/US difference and GB focal residual remain explicit.
 
-Five sparse nominal 36 × 24 mm frame-angle diagnostics, each with 25 pupil samples plus the chief, give 26 successful optical traversals at each tested field. The saved traces end at the final optical surface, not at a separately tested image-plane landing. These counts do not establish full pupil throughput, MTF, manufacturing quality or a source-backed commercial image format. No numerical source field is asserted.
+At the former representative scale, five sparse nominal 36 × 24 mm frame-angle diagnostics, each with 25 pupil samples plus the chief, gave 26 successful optical traversals at each tested field. The saved traces end at the final optical surface, not at a separately tested image-plane landing. These counts do not establish full pupil throughput, MTF, manufacturing quality or a source-backed commercial image format. No numerical source field is asserted.
+
+At the 8¼ in scale, the surface and aperture audits pass with no rim limit, and the image-circle audit finds no undersized surface. A visible scratch copy gives 100% modeled coverage of the 5×7 format: 109.25 mm image semi-height (218.5 mm diagonal), approximately 27.286873° half-field, and a clear corner chief ray with no rim clips. This exceeds the assigned 98% threshold, so the catalog format is 5×7. These checks establish modeled coverage, not a patent-published field or measured production performance.
 
 The model remains hidden for qualified pre-integration review. Full current-corpus/app tests, lint/format integration, build, browser and MTF checks are deferred, not passed. No release or deployment is implied.
 
