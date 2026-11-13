@@ -8,17 +8,20 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * νD is derived as (nD − 1)/(nF − nC). The stop midpoint (2.7/2.7 mm), its
  * f/4.5-derived radius and all 11.5 mm rims are inferred, not printed dimensions.
  * The terminal 88.708856474 mm interval is calculated infinity back focus.
- * Qualified Dogmar patent representative, not an exact factory identity.
+ * Smith identifies this prescription as the Dogmar; production variants and
+ * factory glass melts are not established by the patent.
  */
 const LENS_DATA = {
   "schema": 2,
   "key": "c-p-goerz-dogmar-10cm-f45",
   "maker": "C. P. Goerz",
   "name": "C. P. GOERZ DOGMAR 10cm f/4.5",
+  "subtitle": "US 1,108,307 A, sole example — Goerz Dogmar f/4.5",
   "visible": true,
   "catalog": {
     "lensMounts": ["large-format-lens-board"],
     "imageFormat": "6x9",
+    "specs": ["4 ELEMENTS / 4 GROUPS", "ALL SPHERICAL", "f/4.5"],
     "elementCount": 4,
     "groupCount": 4,
     "focalLengthMm": {
@@ -49,41 +52,45 @@ const LENS_DATA = {
       "id": 1,
       "name": "L1",
       "label": "Element 1",
-      "type": "Spherical patent glass",
+      "type": "Biconvex Positive",
+      "role": "Positive front element of the front cell",
       "nd": 1.61412,
       "vd": 56.341284403669725,
       "indexReference": "D",
-      "glass": "Source nD; positive C-F dispersion magnitude; d-reference engine approximation"
+      "glass": "Unmatched (nD 1.61412 / V 56.3412844)"
     },
     {
       "id": 2,
       "name": "L2",
       "label": "Element 2",
-      "type": "Spherical patent glass",
+      "type": "Biconcave Negative",
+      "role": "Negative inner element of the front cell, with its stronger curve toward the diaphragm",
       "nd": 1.5689,
       "vd": 42.61423220973782,
       "indexReference": "D",
-      "glass": "Source nD; positive C-F dispersion magnitude; d-reference engine approximation"
+      "glass": "Unmatched (nD 1.56890 / V 42.6142322)"
     },
     {
       "id": 3,
       "name": "L3",
       "label": "Element 3",
-      "type": "Spherical patent glass",
+      "type": "Biconcave Negative",
+      "role": "Negative inner element of the rear cell, with its weaker curve toward the diaphragm",
       "nd": 1.5482,
       "vd": 46.14478114478115,
       "indexReference": "D",
-      "glass": "Source nD; positive C-F dispersion magnitude; d-reference engine approximation"
+      "glass": "Unmatched (nD 1.54820 / V 46.1447811)"
     },
     {
       "id": 4,
       "name": "L4",
       "label": "Element 4",
-      "type": "Spherical patent glass",
+      "type": "Biconvex Positive",
+      "role": "Positive rear element of the rear cell",
       "nd": 1.61412,
       "vd": 56.341284403669725,
       "indexReference": "D",
-      "glass": "Source nD; positive C-F dispersion magnitude; d-reference engine approximation"
+      "glass": "Unmatched (nD 1.61412 / V 56.3412844)"
     }
   ],
   "surfaces": [
@@ -146,8 +153,8 @@ const LENS_DATA = {
     }
   ],
   "focus": {
-    "closeFocusM": 1000000000000000.0,
-    "description": "Only the infinity prescription is modeled because the patent provides no finite-focus data."
+    "closeFocusM": 1e15,
+    "description": "Infinity focus only; the patent supplies no finite-focus spacings."
   },
   "aperture": {
     "nominalFNumber": 4.5,
@@ -157,9 +164,11 @@ const LENS_DATA = {
       8,
       11,
       16,
-      22
+      22,
+      32,
+      36
     ],
-    "maxFNumber": 22
+    "maxFNumber": 36
   },
   "projection": {
     "kind": "rectilinear"

@@ -1,19 +1,19 @@
-# Goerz Dogmar: 100 mm f/4.5 patent representative
+# C. P. Goerz Dogmar 10cm f/4.5
 
 ## Patent Reference and Design Identification
 
-**Patent:** US 1108307 A  
+**Patent:** US 1,108,307 A\
 **Inventor:** Walther Zschokke  
 **Assignee:** Optische Anstalt C. P. Goerz Aktiengesellschaft  
 **Filed:** 17 January 1913  
 **Granted:** 25 August 1914  
 **Example details:** Sole numerical example, focal length 100 and aperture ratio 1:4.5.
 
-The original patent supplies the complete spherical prescription but does not name Dogmar. A Goerz American Optical advertisement in Camera Work No. 47 (July 1914, PDF page 92) names the new Dogmar f/4.5–5.5, describing its three-foci use. This is primary manufacturer content hosted in a digitized magazine, not manufacturer-controlled custody. A 1916 Goerz catalog supplies further commercial stock context, not an exact prescription link.
+Walther Zschokke's patent supplies the complete spherical prescription but does not name Dogmar. A Goerz American Optical advertisement in Camera Work No. 47 (July 1914, PDF page 92) names the new Dogmar f/4.5–5.5 and describes its three-foci use. The 1916 Goerz catalogue gives commercial stock context. A later Goerz American catalogue gives front- and rear-cell focal lengths of about 1.92× and 1.52× the complete lens; the patent prescription gives 1.924× and 1.582×, respectively.
 
-W. J. Smith's Modern Lens Design, Fig. 13.22, explicitly associates Dogmar with US1108307 and the f100 prescription. That attribution is secondary. The separate generic enlarger in Figure 14.15 is not used as a substitute numerical source or factory-identification proof.
+W. J. Smith's Modern Lens Design, Fig. 13.22, p. 464, identifies US 1,108,307 and its focal-length-100 prescription as the Dogmar. The Science Museum Group records a Goerz Tenax with a 10 cm f/4.5 Dogmar, confirming that commercial focal length and aperture. Smith's separate enlarger example in Fig. 14.15 supplies none of this model's numerical data.
 
-Together these support a qualified patent representative. This model does not establish an exact factory 100 mm product, production glass melt or every retail variant. No source dimensions were rescaled or fitted.
+These sources connect the patent to the Dogmar family without establishing the exact prescription or glass melt of every 10 cm retail version. Source f = 100 and all source lengths are retained numerically in millimetres, with scale factor 1 and no fitting.
 
 ## Optical Architecture
 
@@ -23,51 +23,54 @@ The central source gap is 5.4 mm. The drawing locates a diaphragm within it, but
 
 ## Element-by-Element Analysis
 
-### L1: front positive element
+### L1: Biconvex Positive
 
-Source nD = 1.61412; derived V = 56.3412844; unmatched source baryta-crown-class glass. The positive front element participates in the collecting front component. A modern catalog identity and isolated-element focal length are not independently certified.
+Source nD = 1.61412; derived νD = 56.3412844; Unmatched baryta-crown glass. The positive front element participates in the collecting front cell; no exact catalogue glass is identified.
 
-### L2: front negative element
+### L2: Biconcave Negative
 
-Source nD = 1.56890; derived V = 42.6142322; unmatched source glass. The surface facing the diaphragm is more strongly curved than its outer surface, consistent with the patent's arrangement. Its air separation from L1 is retained at 1.8 mm.
+Source nD = 1.56890; derived νD = 42.6142322; Unmatched glass. The surface facing the diaphragm is more strongly curved than its outer surface, consistent with the patent's arrangement. Its air separation from L1 is 1.8 mm.
 
-### L3: rear negative element
+### L3: Biconcave Negative
 
-Source nD = 1.54820; derived V = 46.1447811; unmatched source glass. The diaphragm-facing surface is the less strongly curved surface of this negative element. The two negative elements are not interchangeable or symmetrized.
+Source nD = 1.54820; derived νD = 46.1447811; Unmatched glass. The diaphragm-facing surface is the less strongly curved surface of this negative element. The two negative elements have different curvatures and glasses.
 
-### L4: rear positive element
+### L4: Biconvex Positive
 
-Source nD = 1.61412; derived V = 56.3412844; unmatched source baryta-crown-class glass. Its source thickness is 3.6 mm rather than the front element's 4.2 mm. The rear positive/negative component is retained without imposing symmetry.
+Source nD = 1.61412; derived νD = 56.3412844; Unmatched baryta-crown glass. Its source thickness is 3.6 mm rather than the front element's 4.2 mm; the two cells are asymmetric.
 
 ## Glass Identification and Selection
 
-The source prints nD, nG′ and positive values labeled C–F. The positive C–F entries are interpreted as dispersion magnitudes nF − nC, not negative signed subtraction. V is calculated as (nD − 1)/(nF − nC). Smith's rounded glass codes corroborate this interpretation, but no exact melt or full dispersion curve is identified.
+The source prints nD, nG′ and positive values labeled C–F. The positive C–F entries are interpreted as dispersion magnitudes nF − nC, not negative signed subtraction. The νD values in the glass labels are calculated as (nD − 1)/(nF − nC), rather than printed Abbe numbers. Smith's rounded glass codes corroborate this interpretation, but no exact melt or full dispersion curve is identified.
 
-All four elements retain the historical sodium nD values with indexReference "D". The estimated nd − nD difference of about 1.0–1.2 × 10⁻⁴ exceeds the patent's five-decimal print precision, so the source values are not treated as helium d-line indices. Source nG′ values are preserved in the evidence but are not fitted by this two-parameter dispersion model; no exact G′ reproduction, partial dispersion or measured chromatic performance is claimed.
+All four elements retain the sodium nD reference. The estimated nd − nD difference of about 1.0–1.2 × 10⁻⁴ exceeds the patent's five-decimal print precision, so the source values are not treated as helium d-line indices. No catalogue row matches both the index and Abbe number within the stated precision. The patent's nG′ values, 1.62803 for L1/L4, 1.58637 for L2 and 1.56364 for L3, are not fitted by the two-parameter dispersion model; chromatic results therefore do not reproduce the complete published dispersion data.
 
 ## Focus Mechanism
 
-The authored representative is infinity-only. Its terminal image interval, 88.708856474 mm, is calculated from the literal source prescription, not a printed BFL. No source radius, thickness or refractive index was altered to focus the lens.
+The model is infinity-only. Its terminal image interval, 88.708856474 mm, is calculated from the source prescription, not a printed back focal distance. No source radius, thickness or refractive index was altered to focus the lens.
 
-The patent discusses separately using the front or rear member with additional bellows extension and stopping down. The maker advertisement's three-foci claim is not implemented or validated here. No finite-focus law, retail close-focus distance or separate-component mode is certified.
+The patent describes use on a bellows camera, including each cell separately with additional extension and stopping down. The cited Tenax Press Camera uses rack-and-pinion focusing on the body. The model includes neither finite-focus spacings nor separate-cell configurations; no retail minimum focus distance is established.
 
 ## Aperture and Iris Assumptions
 
-All surfaces use an inferred common semi-diameter of 11.5 mm. The source drawing suggests comparable element heights but supplies no calibrated clear aperture. The chosen value is the largest half-millimeter grid value satisfying the default 0.9 geometry limits for the literal spherical prescription. It was not selected by optimizing ray success and must not be reported as a manufacturing dimension.
+All surfaces use an inferred common semi-diameter of 11.5 mm. The source drawing suggests comparable element heights but supplies no calibrated clear aperture. This value is the largest 0.5 mm increment satisfying the model's 0.9 geometry limits; it is not a manufacturing dimension.
 
-The iris is placed 2.7 mm into the source's 5.4 mm central gap. At the full inferred cap, its plane has 0.905003 mm clearance from the front adjacent surface and 1.646454 mm from the rear adjacent surface. Native f/4.5 pupil construction gives an iris radius of 9.550146968 mm. Both the midpoint and this radius are authored assumptions/derivations, not published dimensions. The UI stop range through f/22 is convenience only, not sourced retail minimum aperture.
+The iris is placed 2.7 mm into the source's 5.4 mm central gap. At the full inferred rim, its plane has 0.905003 mm clearance from the front adjacent surface and 1.646454 mm from the rear adjacent surface. The f/4.5 entrance pupil gives an iris radius of 9.550146968 mm. Both the midpoint and this radius are inferred, not published dimensions. The f/36 endpoint follows the Science Museum Group's 10 cm f/4.5–36 Tenax Press Camera specimen, rather than a minimum aperture stated in the patent.
 
-No spacer, radius repair, element thickness alteration, clipping surface, rim exception or geometry-limit override is used. All eight source radii and seven axial intervals remain literal.
+All eight source radii and seven axial intervals are retained, without added spacers or altered element thicknesses.
 
-## Verification Summary
+## Model Scope and Limitations
 
-Independent source and model reviews confirm transcription, positive C–F magnitude interpretation, literal spacings, inferred-cap rule and iris clearance. Native construction gives EFL 99.996511940 mm and f/4.5. Strict isolated TypeScript passes.
+The prescription gives EFL 99.996511940 mm at f/4.5, with 20.000 mm from the first to last glass surface and calculated back focus of 88.708856474 mm. Stop position and clear apertures remain inferred.
 
-The representative remains hidden for pre-integration review. Full current-corpus/application tests, lint/format integration, production build, browser rendering and MTF remain deferred, not passed. No release or deployment is implied.
+The patent and catalogue association does not establish factory tolerances, an exact production glass melt or measured image quality. Separate-cell use and finite-focus performance are outside this model.
 
 ## Sources
 
 - [Original US1108307 patent](https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/1108307), complete three-page USPTO scan; numerical table on PDF page 2.
 - [Camera Work No. 47, July 1914](https://upload.wikimedia.org/wikipedia/commons/7/7c/Camera_Work_No._47_%28July_1914%29.pdf), manufacturer advertisement on PDF page 92.
 - [Goerz 1916 catalog](https://www.pacificrimcamera.com/rl/00574/00574.pdf), primary commercial content on a secondary host.
-- W. J. Smith, Modern Lens Design, Fig. 13.22; secondary attribution and contextual corroboration only.
+- [Goerz American Optical catalogue](https://www.pacificrimcamera.com/rl/00276/00276.pdf), printed pp. 7–8 (PDF pp. 6–7), Dogmar diagram and cell focal-length ratios.
+- W. J. Smith, Modern Lens Design, Fig. 13.22, p. 464; book attribution of the Dogmar to US 1,108,307.
+- [Science Museum Group, Goerz Tenax Camera](https://collection.sciencemuseumgroup.org.uk/objects/co8208195/goerz-tenax-camera), object 1990-5036/6587, 10 cm f/4.5 Dogmar on a 6 × 9 cm camera.
+- [Science Museum Group, Tenax Press Camera](https://collection.sciencemuseumgroup.org.uk/objects/co8205487/tenax-press-camera), object 1990-5036/2116, 10 cm f/4.5–36 Dogmar and body rack-and-pinion focusing.
