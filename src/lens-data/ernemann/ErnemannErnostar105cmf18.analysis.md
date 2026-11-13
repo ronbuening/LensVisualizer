@@ -27,7 +27,7 @@ The front meniscus and compound positive component precede the negative member, 
 
 ### L1: front positive meniscus
 
-Source nD = 1.5638, interpreted νd = 60.75. Glass: Schott N-SK11, a catalog equivalent rather than an identified historical melt. The more strongly curved front surface supplies positive power. Its source 7.26 mm center thickness becomes 7.623 mm.
+Source nD = 1.5638, interpreted νd = 60.75. Glass: N-SK11 (SCHOTT catalog equivalent; production supplier unspecified). This spectral equivalent does not identify a historical melt. The more strongly curved front surface supplies positive power. Its source 7.26 mm center thickness becomes 7.623 mm.
 
 ### L2: positive front element of the triplet
 
@@ -49,7 +49,7 @@ Source nD = 1.6223, interpreted νd = 36.0. Glass: TIM11 (spectral proxy; patent
 
 Source nD = 1.6220, interpreted νd = 53.15. Glass: S-BSM22 (spectral proxy; patent nD 1.6220 / V 53.15; supplier and melt unspecified). The biconvex rear element completes the positive-negative-positive power sequence. The source does not supply a terminal image gap or factory clear aperture.
 
-Isolated-element focal lengths are not tabulated in the patent. The glass labels distinguish the L1 catalog equivalent from the five qualified spectral proxies.
+Isolated-element focal lengths are calculated at the d line for each thick element in air; they are not tabulated in the patent and do not describe the powers of its cemented interfaces in place. L1–L6 give +126.71, +56.92, +105.90, −47.83, −43.76 and +72.96 mm respectively. The glass labels distinguish the L1 catalog equivalent from the five qualified spectral proxies.
 
 ## Glass Identification and Spectral Convention
 

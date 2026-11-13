@@ -73,7 +73,7 @@ Open:
 - The patent does not specify the physical iris location or clear apertures; the centered iris, derived radius and calculated BFD remain model assumptions/results. Peripheral illumination and image quality over the full 35° field are not established by the format-corner result.
 - A specific retail 1-inch product, camera mount, focusing mechanism and marketing minimum-focus distance remain unsupported. No finite-focus state is available. The selectable f/22 endpoint lacks a retail source and remains unchanged.
 - Printed sodium-D indices retain the existing helium-d reference by instruction; historical full dispersion and an exact catalog match remain unavailable for all six glasses.
-- Visual page review remains incomplete because the screenshot helper produced no image; broader checks and deployment are outside this pass.
+- Visual page review is closed by the second review below; broader checks and deployment remain outside this assignment.
 
 ## 2026-11-13 — Semi-diameter pass against the patent figure
 
@@ -166,3 +166,55 @@ Catalog metadata:
 - Six elements/four groups, the 16 mm cinema format, family-only attribution, absent mount, inferred iris/rims, source prescription and infinity-only focus remain unchanged. Retail identity and finite-focus/mount evidence remain open.
 
 The analysis title, design-only catalog wording, L3/L4 proxy descriptions and consolidated glass discussion agree with the current data. Earlier audit entries remain the historical record. Only the two Markdown companions are edited; the data file is read-only for this assignment. The permitted checks are the catalog-row lookup, `chan.mjs` comparison and Prettier write/check; no broad application commands, server or git state changes are run.
+
+## 2026-11-13 — Second review: diagram, labels and movement
+
+Compared the current localhost:5211 page and element inspectors with the sole figure on PDF page 1 of local `patents/US1955591A.pdf`, the numerical table on PDF page 3, and the earlier deployment, rim and glass records above. All four PDF pages were inspected; only one prescription and one construction figure are supplied. No maker construction diagram was available or viewed: the earlier deployment record supports a Speed Panchro family association, not an exact retail construction. The patent confirms six spherical elements in four components, cemented L2/L3 and L4/L5, with no anomalous-glass or aspheric designation.
+
+Independent native-raster checks reproduce 33.72 px/mm over S1–S10, 33.67 over S1–S4, and 34.39 over S4–S8. Correcting the upper S1 arc for the local axis tilt gives approximately 33–34 px/mm transversely. Clean upper edges at native x = 1050, 1180 and 1500 give approximately 6.93, 6.94 and 6.25 mm. The existing 6.9/6.3 mm component rims agree within the schematic figure's roughly 0.2–0.3 mm reading uncertainty. The drawing's small corner chamfers do not justify new cuts. Singlets remain above the drawing under the light rule. No optical rim, land, iris split or geometry-policy change is needed.
+
+### Cuts and lands
+
+Baseline is the pre-rim file `.lens-work/base1123sd/CookeSpeedPanchroUS1955591.data.ts`. Values are millimetres. The individual restore tests keep the other final rims fixed; land-only tests separately remove each extension without changing its optical cap.
+
+| Face or feature | Baseline | Figure proportion | Final retained | Maximum light cost and verdict |
+|---|---:|---:|---:|---|
+| S1/S2 cut | 9.0/9.0 | ≈6.9/6.9 | 8.0/8.0 | 2.4 points on restoring the pair; keep, slight |
+| S5 optical-cap cut | 5.0 | ≈4.4 | 4.4 | 1.9 points on restoring S5 alone; keep, slight |
+| S6 optical-cap cut | 5.0 | ≈4.4 | 4.4 | 0.1 point on restoring S6 alone; keep, slight |
+| S9/S10 cut | 7.0/7.0 | ≈6.3/6.3 | 6.7/6.7 | 2.8 points on restoring the pair; keep, slight |
+| S5 land | none | ≈6.9 outer edge | 6.9 | 0.0 points versus no extension; keep, drawn and lossless |
+| S6 land | none | ≈6.3 outer edge | 6.3 | 0.0 points versus no extension; keep, drawn and lossless |
+
+The full-pupil `rimcost.mjs --loo` result is a worst cumulative loss of 0.0 points against the pre-rim baseline. At fields 0.0/2.4/4.7/7.1/9.4/11.8/14.2°, baseline transmission is 100.0/96.4/89.5/82.2/74.2/65.8/56.9%, and retained transmission is 100.0/100.0/99.9/98.8/98.0/94.6/86.0%. This second review leaves the corner at 86.0% → 86.0%; the earlier rim work improved it from 56.9%. These are geometric pupil fractions. Real peripheral vignetting remains. S3/S4 = 6.9 and S7/S8 = 6.3 remain supported by the drawn component heights.
+
+### Inspector fields, glass and movement
+
+Filled the six missing `focalLengthMm` entries from `probe.mjs --elements`, using isolated thick-element power in air, rounded to two decimals. The previously blank inspector fields become:
+
+| Element | Before | Final focal length (mm) |
+|---|---|---:|
+| L1 | absent | +39.20 |
+| L2 | absent | +24.80 |
+| L3 | absent | −14.47 |
+| L4 | absent | −7.35 |
+| L5 | absent | +9.59 |
+| L6 | absent | +24.22 |
+
+The element names, signed-curvature types and roles are correct. C1 brackets S3–S5; C2 brackets S6–S8; both include exactly two elements. No extra group brackets, aspheric markers, cement layers or APD tags are warranted. The iris remains between the two cemented components, with the existing inferred 2.794/2.794 mm split and approximately 1.09/1.45 mm land clearance. No iris move is recommended.
+
+L1, C1, C2 and L6 each have zero modeled focus or zoom travel: 0.00 mm. No variable gaps, zoom stations or authored finite-focus keyframes exist. The probe's synthetic focus endpoints reproduce EFL 25.3852 mm and BFD 17.2313 mm, with infinite object distance; they are not additional prescriptions. The plain infinity-only focus description is supported by the source. Both live movement overlays explicitly show no modeled focus or zoom movement.
+
+`glasscheck.mjs --near 3`, `glassnear.mjs`, `agfnear.py` and a complete catalog/vendor-AGF window scan find no exact row (|Δnd| ≤ 0.0001, |Δν| ≤ 0.15) or row within the site's proxy tolerance (|Δnd| ≤ 0.002, |Δν| ≤ 0.25) for L1/L2/L5/L6. L2's nearest AGF BSM6 is 1.61375/56.37 (Δν = +0.27); it remains outside the tested window. No catalog-row proposal or glass relabel is justified.
+
+PDF page 3 gives L1 Chance 8894, L2 Chance 3265, L5 an unnumbered glass introduced after the cited Chance catalogue, and L6 Chance 6665. It gives no additional line indices or partial-dispersion values; there is no sibling numerical example in which these pairs could recur. L3 F3 and L4 J-SF2 remain qualified curves under the site's proxy tolerance. Their nominal catalog Abbe numbers are 36.90/33.73; evaluating their curves yields about 36.95/33.72. The analysis now distinguishes those two conventions. No printed C/d/F/g focus curves, astigmatism curves or distortion plots are present for numerical comparison. Every drawn medium has an index and Abbe value; no constant-index-only medium disables colour analysis. Historical measured full dispersion remains unavailable.
+
+PDF page 2 names Horace William Lee, assignor to Kapella Limited, and the 17 April 1934 grant. `source.assignees` already matches that spelling and the other Kapella records in this worktree; no consolidation is proposed.
+
+### Final targeted checks and rendered evidence
+
+Surface validation reports OK with no errors. The aperture audit reports one station within 3% and no rim, trace, iris or failed diagnosis. The image-circle audit reports zero undersized and zero skipped. Field coverage is 100% of the 6.35 mm format corner at about 14.2°, with no unsolved station. Real-ray tracing at 17.5° reaches 7.884 mm image height with no axial or chief-ray clip; S5's axial marginal height is 4.23 mm under its 4.4 mm cap. The engine builds successfully. Before → after EFL is 25.385179309 → 25.385179309 mm, half-field 17.5 → 17.5°, FOPEN 2 → 2, stop radius 4.156363225 → 4.156363225 mm and tracing half-field 25.188315 → 25.188315°. Markdown formatting and whitespace checks pass.
+
+The post-edit page, inspectors L1/L3/L4/L6, focus=1 and both movement overlays were re-shot and visually inspected. Focal lengths display correctly; component brackets and lands are clear and do not collide. Evidence directory: `/private/tmp/claude-501/-Users-ronbuening--claude-spares-spare-EIkiKm/8d989648-1a4e-43f9-bdb4-c4cbb0d8c850/scratchpad/sd/panchro/`. The matched-scale figure/model comparison is `rv-overlay.png` (reviewed outline red, pre-rim baseline blue); the post-edit main page is `rv-page.png`, with `rv-el1.png`, `rv-el3.png`, `rv-el4.png`, `rv-el6.png`, `rv-focus1.png`, `rv-mvfocus.png` and `rv-mvzoom.png` providing inspector/state evidence.
+
+Open: the sodium-D source values retain the existing helium-d reference; changing it is outside this edit list. The assumed iris, inferred mechanical apertures, historical melt dispersion, retail identity, mount, finite-focus behaviour and unsupported retail f/22 endpoint remain limitations already documented above. No additional defect outside the edit list was found. No tool call or edit was refused. No changelog, generated file, server or git state was changed, and no broad application checks were run under the addendum's restrictions.

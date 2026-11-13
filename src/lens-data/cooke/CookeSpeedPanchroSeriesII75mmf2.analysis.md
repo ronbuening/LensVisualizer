@@ -66,7 +66,7 @@ The rear negative meniscus completes C2. Both Examples I and II print V = 61.4 f
 
 ## Glass identification and selection
 
-The patent specifies sodium-D indices and Abbe V, without naming a supplier or glass number. Those printed values and the sodium-D reference remain unchanged. L1/L2/L5 use the Hikari J-LAK9 catalog curve, with catalog-minus-patent ΔnD = −0.00001205 and ΔV = +0.02524 at C/D/F. L6 uses Schott N-SK5, with ΔnD = +0.00004428 and ΔV = −0.14212. These four assignments meet |ΔnD| ≤ 0.0001 and |ΔV| ≤ 0.15 at the sodium-D reference.
+The patent specifies sodium-D indices and Abbe V, without naming a supplier or glass number. Those printed values and the sodium-D reference remain unchanged. L1/L2/L5 are labeled `J-LAK9 (HIKARI catalog equivalent; production supplier unspecified)`, with catalog-minus-patent ΔnD = −0.00001205 and ΔV = +0.02524 at C/D/F. L6 is labeled `N-SK5 (SCHOTT catalog equivalent; production supplier unspecified)`, with ΔnD = +0.00004428 and ΔV = −0.14212. These four assignments meet |ΔnD| ≤ 0.0001 and |ΔV| ≤ 0.15 at the sodium-D reference.
 
 L3 and L4 use qualified spectral proxies. Each label keeps the printed index at the sodium-D reference and borrows only the catalog row's wavelength dependence. The site's proxy tolerance allows an Abbe difference within about 0.25 and an index difference within about 0.002. The row-coordinate differences below compare catalog nd/νd with printed nD/V; the printed sodium-D index remains the model's anchor.
 

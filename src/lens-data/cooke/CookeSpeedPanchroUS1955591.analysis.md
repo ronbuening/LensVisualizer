@@ -42,12 +42,14 @@ Source nD = 1.6234, νD = 56.3; Chance No. 6665; Unmatched; isolated-element foc
 
 The patent expressly identifies its V values as Abbe numbers and supplies Chance Brothers catalog identifiers. It prints sodium-D indices; the model uses a helium-d reference, so the wavelength convention differs slightly. L3 uses an F3 spectral proxy and L4 uses a J-SF2 spectral proxy. Each label preserves the historical Chance number and states that the supplier and melt are unspecified.
 
-The engine keeps the printed index at the element's reference line and borrows only the catalog row's wavelength dependence. The printed nD/V pairs stay unchanged. These rows meet the site's spectral-proxy tolerance: Abbe number within about 0.25 and index within about 0.002 of the printed values. They are not exact matches and do not identify the historical glass, supplier or melt. Catalog vendors below identify the proxy rows only. Differences are catalog minus printed.
+The engine keeps the printed index at the element's reference line and borrows only the catalog row's wavelength dependence. The printed nD/V pairs stay unchanged. These rows meet the site's proxy tolerance: Abbe number within about 0.25 and index within about 0.002 of the printed values. They are not exact matches and do not identify the historical glass, supplier or melt. Catalog vendors below identify the proxy rows only. Differences are catalog minus printed.
 
 | Element / historical identifier | Spectral proxy (catalog vendor) | Printed nD / V | Catalog nd / νd | Δn | ΔV |
 |---|---|---|---|---|---|
 | L3 / Chance 4743 | F3 (Sumita) | 1.6134 / 36.9 | 1.61293 / 36.90 | −0.00047 | 0.00 |
 | L4 / Chance 337 | J-SF2 (Hikari) | 1.6469 / 33.7 | 1.64769 / 33.73 | +0.00079 | +0.03 |
+
+The table gives nominal catalog Abbe numbers. Evaluating the curves at the standard d, F and C lines gives approximately 36.95 for F3 and 33.72 for J-SF2, also within the site's proxy tolerance.
 
 L1 (Chance 8894), L2 (Chance 3265), L5 (Chance unnumbered new glass) and L6 (Chance 6665) remain Unmatched because no catalog row lies within that Abbe window. Historical measured full dispersion and partial-dispersion data are unavailable; the two borrowed curves are qualified spectral proxies.
 
@@ -67,7 +69,7 @@ The sole patent figure supplies approximate rim proportions. Its overall axial s
 
 The front singlet has equal 8.0 mm semi-diameters. The front cemented component has 6.9 mm rims at S3/S4 and a 4.4 mm optical cap at S5, followed by a flat land out to 6.9 mm. The rear cemented component has a 4.4 mm optical cap at S6, a flat land out to 6.3 mm, and 6.3 mm rims at S7/S8. The rear singlet has equal 6.7 mm rims. The two lands follow the figure's short optical curves and taller square edges; they do not enlarge the clear apertures. The singlets retain rims larger than the drawing's approximately 6.9/6.3 mm proportions to limit each rim reduction's geometric-transmission cost to less than three percentage points. These inferred values are not measured mechanical apertures.
 
-The f/2 axial beam and the chief rays to both the 16 mm corner and the stated 17.5° half-field pass all optical rims. At the 6.35 mm format semi-diagonal, reached at approximately 14.17°, calculated geometric transmission is about 86.0%. This is pupil transmission, not a measured photographic relative-illumination curve. Real off-axis clipping remains. The S5/S6 caps and lands clear the assumed iris plane by approximately 1.09/1.45 mm respectively.
+The f/2 axial beam and the chief rays to both the 16 mm corner and the stated 17.5° half-field clear all optical rims. At the 6.35 mm format semi-diagonal, reached at approximately 14.17°, calculated geometric transmission is about 86.0%. This is pupil transmission, not a measured photographic relative-illumination curve. Real off-axis clipping remains. The S5/S6 caps and lands clear the assumed iris plane by approximately 1.09/1.45 mm respectively.
 
 At f/2 the calculated iris radius is 4.156363225 mm, rather than a printed source diameter. The selectable f-stop range through f/22 has no established retail source.
 

@@ -30,6 +30,8 @@ L1 is Biconvex Positive: nD = 1.5744, ν = 57.7, Chance 9002, modeled with an S-
 
 L3 is Plano-Concave Negative: nD = 1.5732, ν = 51.9, Parra-Mantois 6062; front radius −1.35 inches, plane rear, thickness 0.08 inch. L4 is Plano-Convex Positive: nD = 1.6117, ν = 37.4, Parra-Mantois 6695; shared plane interface, rear radius −2.13 inches, thickness 0.20 inch. This diverging doublet shortens the back focus.
 
+The element-inspector focal lengths are calculated for each thick element isolated in air: L1 +71.97 mm, L2 −114.97 mm, L3 −59.82 mm and L4 +88.45 mm. They are not the powers of those elements within their cemented combinations.
+
 ## Glass Identification and Dispersion Limits
 
 The patent identifies C as Chance Bros. & Co. and P.M. as Parra-Mantois & Cie. L4 prints P.M. 6695 in Example I versus 6675 in Example II at identical nD/ν. The Example I number is retained.

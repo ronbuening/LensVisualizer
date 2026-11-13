@@ -2853,7 +2853,7 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 3 | Element 2 | abbe | `Unmatched (nD 1.5682 / V 43.4)` | Explicit unmatched/proprietary annotation |
+| 3 | Element II | abbe | `Unmatched (nD 1.5682 / V 43.4)` | Explicit unmatched/proprietary annotation |
 
 ### [KONICA HEXANON 38mm f/2.8 (Konica C35)](../../src/lens-data/konica/KonicaHexanon38mmf28.data.ts) - 75.0% trusted (3/4); 75.0% Sellmeier (3/4) - US 3,615,126
 

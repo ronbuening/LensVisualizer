@@ -57,6 +57,7 @@ const LENS_DATA = {
     {
       "id": 1,
       "name": "L1",
+      "focalLengthMm": -125.74,
       "label": "Element 1",
       "type": "Negative Meniscus",
       "role": "Negative front element of the front member's outer doublet",
@@ -69,6 +70,7 @@ const LENS_DATA = {
     {
       "id": 2,
       "name": "L2",
+      "focalLengthMm": 134.86,
       "label": "Element 2",
       "type": "Positive Meniscus",
       "role": "Positive rear element of the front member's outer doublet",
@@ -81,6 +83,7 @@ const LENS_DATA = {
     {
       "id": 3,
       "name": "L3",
+      "focalLengthMm": 94.78,
       "label": "Element 3",
       "type": "Biconvex Positive",
       "role": "Positive front element of the front member's inner doublet",
@@ -93,6 +96,7 @@ const LENS_DATA = {
     {
       "id": 4,
       "name": "L4",
+      "focalLengthMm": -117.25,
       "label": "Element 4",
       "type": "Biconcave Negative",
       "role": "Negative rear element of the front member's inner doublet",
@@ -105,6 +109,7 @@ const LENS_DATA = {
     {
       "id": 5,
       "name": "L5",
+      "focalLengthMm": -87.12,
       "label": "Element 5",
       "type": "Biconcave Negative",
       "role": "Negative front element of the rear member's inner doublet",
@@ -117,6 +122,7 @@ const LENS_DATA = {
     {
       "id": 6,
       "name": "L6",
+      "focalLengthMm": 70.32,
       "label": "Element 6",
       "type": "Biconvex Positive",
       "role": "Positive rear element of the rear member's inner doublet",
@@ -129,6 +135,7 @@ const LENS_DATA = {
     {
       "id": 7,
       "name": "L7",
+      "focalLengthMm": 101.39,
       "label": "Element 7",
       "type": "Positive Meniscus",
       "role": "Positive front element of the rear member's outer doublet",
@@ -141,6 +148,7 @@ const LENS_DATA = {
     {
       "id": 8,
       "name": "L8",
+      "focalLengthMm": -94.25,
       "label": "Element 8",
       "type": "Negative Meniscus",
       "role": "Negative rear element of the rear member's outer doublet",
@@ -240,7 +248,7 @@ const LENS_DATA = {
   ],
   "focus": {
     "closeFocusM": 1e15,
-    "description": "Infinity focus only; only the complete lens is modeled."
+    "description": "Infinity focus only; only the complete lens is modeled. The patent does not specify focus travel or a minimum focus distance."
   },
   "aperture": {
     "nominalFNumber": 6.8,

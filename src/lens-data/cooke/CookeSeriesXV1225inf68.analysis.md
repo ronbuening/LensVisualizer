@@ -36,7 +36,7 @@ L7, positive meniscus: nD = 1.5186, V = 60.3, Chance 9322; BALK3 spectral proxy,
 
 ## Glass identification
 
-L5/L7/L8 omit nD/V but repeat Chance numbers 7863/9322/458; their values follow the earlier matching rows. Both 1.6437/48.3 rows say not yet in Chance's catalogue. L3/L6 remain Unmatched because no catalog row lies within the site's spectral-proxy Abbe window of about 0.25, with index agreement within about 0.002.
+L5/L7/L8 omit nD/V but repeat Chance numbers 7863/9322/458; their values follow the earlier matching rows. Both 1.6437/48.3 rows say not yet in Chance's catalogue. L3/L6 remain Unmatched because no catalog row lies within the site's proxy tolerance of about 0.25 in Abbe number, with index agreement within about 0.002. The patent supplies no additional line indices or partial-dispersion values for that repeated glass (pp. 2–3).
 
 | Elements | Historical identifier | Printed nD / V | Spectral proxy (catalog vendor) | Catalog nd / νd | Δnd / Δνd (catalog − printed) |
 | --- | --- | --- | --- | --- | --- |
@@ -44,13 +44,13 @@ L5/L7/L8 omit nD/V but repeat Chance numbers 7863/9322/458; their values follow 
 | L2/L7 | Chance 9322 | 1.5186 / 60.3 | BALK3 (Sumita) | 1.518350 / 60.300000 | −0.000250 / 0.000000 |
 | L4/L5 | Chance 7863 | 1.5290 / 51.6 | SBF2 (Hoya) | 1.529440 / 51.640000 | +0.000440 / +0.040000 |
 
-These rows satisfy the site's spectral-proxy tolerance, not an exact glass match. The engine keeps each printed index at its reference line and borrows only the catalog row's wavelength dependence; stored nD/V values and Chance identifiers remain unchanged. Catalog vendors identify the proxy rows, not the historical supplier or melt, which remain unspecified. SBF2 uses the site's legacy Hoya row distributed with Koko/KDP-2, rather than a current Hoya publication.
+These rows satisfy the site's proxy tolerance, not an exact glass match. The engine keeps each printed index at its reference line and borrows only the catalog row's wavelength dependence; stored nD/V values and Chance identifiers remain unchanged. Catalog vendors identify the proxy rows, not the historical supplier or melt, which remain unspecified. SBF2 uses the site's legacy Hoya row distributed with Koko/KDP-2, rather than a current Hoya publication.
 
 The patent specifies sodium-D indices and Abbe V; the model uses the d-line convention with those printed values. The proxy curves do not establish the historical glasses' measured spectral curves, melt properties or manufacturing tolerances. L3/L6 have only the engine's Abbe-based dispersion approximation, without a resolved catalog curve.
 
 ## Focus and component limits
 
-Calculated EFL is 12.3448347070 inches (313.558801559 mm), +0.774161% above nominal 12.25 inches, without adjustment. Infinity back focus is 11.3771374842 inches, calculated rather than source-printed or a factory register distance. The model is infinity-only; retail minimum focus remains unknown.
+Calculated EFL is 12.3448347070 inches (313.558801559 mm), +0.774161% above nominal 12.25 inches, without adjustment. Infinity back focus is 11.3771374842 inches, calculated rather than source-printed or a factory register distance. The model is infinity-only; the patent gives no focus travel or minimum focus distance, and retail minimum focus remains unknown.
 
 Calculated front-member EFL is 25.413198233 inches versus nominal 25.5 inches; rear-member EFL is 18.874603500 versus 19.25 inches, retaining complete-lens orientations. Cooke places each isolated cell behind the iris without specifying spacing. Separate-cell orientations, stops, fields and image quality remain undetermined.
 

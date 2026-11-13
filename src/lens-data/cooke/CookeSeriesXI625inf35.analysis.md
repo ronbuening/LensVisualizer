@@ -25,27 +25,27 @@ Three separate spherical elements form a positive-negative-positive triplet in t
 
 nD = 1.613, νd = 58.5. Glass: Parra-Mantois 6540 in the patent; BACD4 (HOYA catalog equivalent).
 
-The front positive element has radii +63.706375 and −852.4875 mm, thickness 9.525 mm and diameter 53.975 mm. Its rear surface is weakly curved compared with its front surface.
+The front positive element has radii +63.706375 and −852.4875 mm, thickness 9.525 mm and diameter 53.975 mm. Its isolated thick-element focal length in air is +97.08 mm. Its rear surface is weakly curved compared with its front surface.
 
 ### L2 — Biconcave Negative
 
 nD = 1.621, νd = 36.2. Glass: Chance 361 in the patent; S-TIM2 (Ohara catalog spectral proxy; supplier and melt unspecified).
 
-The central negative element has radii −74.64425 and +63.515875 mm, thickness 1.5875 mm and diameter 47.625 mm. It follows a 15.875 mm airspace. Its lower Abbe number provides the dispersion contrast with the positive elements used for chromatic correction.
+The central negative element has radii −74.64425 and +63.515875 mm, thickness 1.5875 mm and diameter 47.625 mm. Its isolated thick-element focal length in air is −55.02 mm. It follows a 15.875 mm airspace. Its lower Abbe number provides the dispersion contrast with the positive elements used for chromatic correction.
 
 ### L3 — Biconvex Positive
 
 nD = 1.613, νd = 58.5. Glass: Parra-Mantois 6540 in the patent; BACD4 (HOYA catalog equivalent).
 
-The rear positive element has radii +372.26875 and −60.22975 mm, thickness 9.525 mm and diameter 47.625 mm. It follows the 17.0815 mm airspace containing the assumed stop. Its stronger image-side surface completes the converging triplet.
+The rear positive element has radii +372.26875 and −60.22975 mm, thickness 9.525 mm and diameter 47.625 mm. Its isolated thick-element focal length in air is +85.29 mm. It follows the 17.0815 mm airspace containing the assumed stop. Its stronger image-side surface completes the converging triplet.
 
 ## Glass identification and dispersion
 
 The patent tabulates sodium D-line index and Nu without defining Nu's formula. Nu is interpreted as conventional νd from period notation and Lee's explicit Abbe definition in [US 1,955,591 A](https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/1955591). The d-line calculation approximates the printed D-line index; that convention is retained.
 
-For L1 and L3, the HOYA BACD4 catalog row gives nd = 1.61272 and νd = 58.58. Its index rounds to the patent's 1.613 and its Abbe-number difference is +0.08. This supplies a catalog dispersion curve without establishing the historical melt or a replacement material.
+For L1 and L3, the HOYA BACD4 catalog row gives nd = 1.61272 and νd = 58.58, with catalog-minus-printed differences Δnd = −0.00028 and Δνd = +0.08. Its index rounds to the patent's three-decimal 1.613. It satisfies the site's proxy tolerance, rather than the stricter exact-match index window of 0.0001. The catalog-equivalent label denotes a spectral proxy; the engine retains the printed reference-line index and borrows the catalog wavelength dependence. It does not establish the historical Parra-Mantois melt or a replacement material.
 
-For L2, the Ohara S-TIM2 catalog row gives nd = 1.620041 and νd = 36.263378, with catalog-minus-printed differences Δnd = −0.000959 and Δνd = +0.063378. It satisfies the site's spectral-proxy tolerance of an Abbe-number difference within about 0.25 and an index difference within about 0.002. The engine keeps the printed index at the element's reference line and borrows only S-TIM2's wavelength dependence; the printed nD 1.621 and V 36.2 remain unchanged. This is not an exact match or an identification of the historical Chance 361 glass, supplier or melt. The patent supplies no measured full dispersion or material tolerances.
+For L2, the Ohara S-TIM2 catalog row gives nd = 1.620041 and νd = 36.263378, with catalog-minus-printed differences Δnd = −0.000959 and Δνd = +0.063378. It satisfies the site's proxy tolerance of an Abbe-number difference within about 0.25 and an index difference within about 0.002. The engine keeps the printed index at the element's reference line and borrows only S-TIM2's wavelength dependence; the printed nD 1.621 and V 36.2 remain unchanged. This is not an exact match or an identification of the historical Chance 361 glass, supplier or melt. The patent supplies no measured full dispersion or material tolerances.
 
 ## Focus mechanism and scale
 

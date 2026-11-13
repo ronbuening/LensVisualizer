@@ -102,3 +102,55 @@ L3/L6 retain `Unmatched (nD 1.6437 / V 48.3, not yet in Chance's catalogue)` bec
 Paraxial EFL before → after (mm): C 314.1795 → 314.1044; d 313.5588 → 313.5588; F 312.4958 → 312.5191; g 312.0126 → 312.0292. The REF result equals d in both files. These are modeled paraxial results from proxy and Abbe-derived dispersion, not measured historical chromatic performance.
 
 No name, mount, format or field change is assigned; catalog metadata is unchanged. The data file is read-only for this assignment. The analysis describes the final proxy labels, catalog coordinates and differences, and the remaining unmatched pair; existing audit lines are retained. No `Open:` item is resolved by this assignment. Formatting is scoped to the two assigned Markdown files.
+
+## 2026-11-13 — Second review: diagram, labels and movement
+
+Compared the local GB376044A.pdf front page, glass explanation on p. 2, complete-lens table on p. 3 and sole drawing on p. 4 with the current localhost:5211 page and all eight element inspectors. The prior validator found no maker construction diagram; its family association and eight-element/four-doublet count are retained without claiming a maker-image inspection. The patent drawing governs the silhouette.
+
+The fresh native-resolution ink readings agree with the earlier global scale. A strip 20–40 px above the local axis puts the first/third vertices near x = 974/1117 px: 143 / 13.716 = 10.426 px/mm. The fourth/sixth crossings near 1153/1324 give 171 / 16.1036 = 10.619 px/mm. The first/last crossings near 974/1695 give 721 / 69.088 = 10.436 px/mm, within 0.4% of the overlay's 10.472 px/mm fit. The earlier transverse front-arc fit supports approximately 10.5–10.7 px/mm. Local L5 compression and C2 bevels remain schematic, so the drawing establishes common-body proportions rather than precise optical lands.
+
+New rim readings use the midpoint of each ink stroke, taking half the full top-to-bottom height to remove local axis slope. At x = 1080/1250/1490/1590 px, top/bottom midpoints are approximately 1383.5/2016.5, 1400.5/2005, 1473/1933 and 1465.5/1944 px. Dividing their half-heights by 10.472 gives the following independent comparison.
+
+| Body / surfaces | Baseline sd (mm) | Before → final sd (mm) | Fresh figure reading (mm) | Verdict |
+| --- | ---: | --- | ---: | --- |
+| C1 / 1–3 | 30.5 each | 30.5 → 30.5 each | 30.2 | Keep: within reading noise. |
+| C2 / 4–6 | 30 each | 30 → 30 each | 28.9 | Keep: approximately 4% difference; schematic bevel gives no new optical cut or land. |
+| C3 / 7–9 | 22 each | 22 → 22 each | 22.0 | Keep: smaller than C4, as drawn. |
+| C4 / 10–12 | 22.5 each | 22.5 → 22.5 each | 22.8 | Keep: within reading noise. |
+
+Lands and cuts: none against the saved base1123sd file; no `rimExtensionSd` or `rimCutDepthMm`. The earlier integration reduction of C3 is already in that baseline. Full-pupil `rimcost.mjs --loo` reports a worst loss of 0.0 percentage points, with no element restoration candidates. Baseline/final transmissions at fields 0/2.7/5.5/8.2/11.0/13.7/16.5/19.2/21.9/24.7/27.4° are identically 100.0/99.9/97.6/94.7/91.4/88.5/84.4/78.4/71.5/64.1/55.8%. Retain the genuine peripheral clipping.
+
+All eight inspectors displayed `FL = −`. Added the isolated thick-element-in-air focal lengths from `probe.mjs --elements`, rounded to two decimals and already agreeing with the analysis:
+
+| Element | Before focalLengthMm | Final focalLengthMm (mm) |
+| --- | --- | ---: |
+| L1 | absent | −125.74 |
+| L2 | absent | +134.86 |
+| L3 | absent | +94.78 |
+| L4 | absent | −117.25 |
+| L5 | absent | −87.12 |
+| L6 | absent | +70.32 |
+| L7 | absent | +101.39 |
+| L8 | absent | −94.25 |
+
+Appended to `focus.description`: `The patent does not specify focus travel or a minimum focus distance.` The analysis now states the same limit and uses the site's proxy tolerance wording consistently. No rim, spacing, radius, index, Abbe number, glass label, tag, bracket, aperture, catalog or source field changed.
+
+Labels and tags checked: L1/L8 are negative menisci, L2/L7 positive menisci, L3/L6 biconvex positive and L4/L5 biconcave negative, agreeing with R signs and isolated powers. Sequential L1–L8 names avoid inventing designations absent from the patent's R/D/S notation. C1/C2/C3/C4 bracket surfaces 1–3/4–6/7–9/10–12 and contain exactly the matching cemented pairs. No extra parent brackets, aspheric suffixes, asphere coefficients or anomalous-dispersion tags are warranted. The patent's high-index crown description for L3/L6 establishes neither anomalous dispersion nor an ED tag.
+
+Movement verdict: all four doublets have zero displacement between the probe's focus endpoints. There are no variable gaps, focus keyframes or zoom stations. EFL/BFD at both endpoints remain 313.5588/288.9793 mm; no finite-focus state is inferred. The movement overlay explicitly says there is no modeled focus or zoom group movement. `focus=1` leaves the optics and infinity distance unchanged.
+
+Glass: all six existing spectral labels resolve within the site's proxy tolerance. `trylabel.mjs` confirms S-TIL1 1.548141/45.784277, BALK3 1.51835/60.3 and SBF2 1.52944/51.64. The glass check's curve-derived BALK3 Abbe value rounds to 60.33, whereas its catalog row prints 60.3; both remain inside the site's proxy tolerance. No exact replacement is supported. L3/L6 repeat 1.6437/48.3 in the sole complete-lens example, both explicitly “Not yet in catalogue” (p. 3); p. 2 identifies the new high-index crown generically. Neither page supplies additional line indices, partial dispersion or a further glass identifier. This is a repeated material within one example, not evidence of another numerical example. The nearest existing row is Sumita BAF9, approximately 1.64329/47.72. The nearest vendor-file entry is obsolete HOYA BAF9, 1.64328/47.94 in `HOYA20260707_include_obsolete.agf`: Δnd = −0.00042, ΔV = −0.36, outside even the site's proxy tolerance. No missing catalog row is proposed. All eight glasses retain V; there is no constant-index or nd-only medium. Six borrow spectral curves and two use Abbe-based dispersion. The patent prints no C/d/F/g aberration plots, astigmatism plots or distortion plots, so no source-curve comparison is available; measured spectral completeness remains unresolved.
+
+Assignee review only: p. 1 names Horace William Lee and Kapella Limited as applicants. The stored corporate assignee `Kapella Limited` matches the corpus spelling in the Series VIII and Speed Panchro entries; Lee is correctly stored as author. No consolidation variant or source-field change is proposed.
+
+Surface audit reports OK, no validation errors. Aperture audit reports one station within 3% of f/6.8 and zero rim, trace, iris or failed stations. Image-circle audit reports zero undersized/skipped; corner coverage is 100%, reaching 162.65 mm at 27.4°, with a clear chief ray and zero unsolved/skipped. Exact meridional tracing finds no axial/chief clips; axial heights at surfaces 9/12 are 21.20/21.57 mm. The upper corner bundle solve still returns no ray and does not replace the full-pupil transmission calculation. Engine before → final: EFL 313.558801559 → 313.558801559 mm; f-number 6.8 → 6.8; half-field 27.5 → 27.5°; tracing half-field 41.212526796 → 41.212526796°. No stop edit is recommended: the inferred SII midpoint has full-cap front/rear clearance 0.162442/1.696450 mm and the drawing prints no iris position.
+
+Closed: the earlier incomplete live-page inspection is now completed through the supplied screenshot queue. Post-edit page, all eight inspectors, `focus=1` and the movement overlay were read. All eight focal lengths now display with the expected signs, C1–C4 remain correctly placed, no false triplet appears, and the expanded focus text is readable. Overlay: `/private/tmp/claude-501/-Users-ronbuening--claude-spares-spare-EIkiKm/8d989648-1a4e-43f9-bdb4-c4cbb0d8c850/scratchpad/sd/xv/rv-overlay.png`; red final and blue baseline outlines coincide over the patent. Live page: `/private/tmp/claude-501/-Users-ronbuening--claude-spares-spare-EIkiKm/8d989648-1a4e-43f9-bdb4-c4cbb0d8c850/scratchpad/sd/xv/rv-page.png`; inspector images are `rv-el-1.png` through `rv-el-8.png` beside it.
+
+Open: physical shutter accommodation and manufacturing clearance remain unknown; mathematical iris clearance is not a hardware tolerance.
+
+Open: historical melt/spectral identity, exact factory prescription, separate-member modes and retail minimum focus remain unestablished. No new discrepancy outside the allowed edit list was found.
+
+Both assigned Markdown files pass the scoped Prettier check, and the three-file diff has no whitespace errors. Final element probes reproduce all eight stored focal lengths.
+
+No sandbox permission refusal occurred in this review. The historical browser refusal remains recorded above; no browser tool was used here. No changelog, shared data, generators, application tests, typecheck, lint, build, server or git state was changed.

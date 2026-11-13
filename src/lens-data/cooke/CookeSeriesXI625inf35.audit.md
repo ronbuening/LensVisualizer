@@ -90,7 +90,7 @@ Before → after engine values are identical: EFL 158.52646201178715 → 158.526
 
 Surface audit: OK, no validation errors. Aperture audit: one lens/one station within 3% of the stated f-number; zero rim, trace, iris or failed limits. Field coverage: one station at ≥99%, zero skipped or unsolved. The requested local screenshot helper emitted macOS power-monitor and DNS-watch errors and produced no PNG; rendered title/specs/focus inspection could not be completed. It was not retried. No prohibited full-suite commands, formatter, server or git-state changes were run. No explicit command or edit refusal was returned during this cleanup.
 
-Closed for rim review: the semi-diameter pass below supplies a dimensional comparison and model sketch; the printed diameters remain unchanged. Open: the midpoint stop is assumed, not supplied by the patent. Exact factory-example identity, the original glass melt curves, L2 catalog dispersion, finite-focus spacings/travel and retail minimum focus remain unknown. The quarter-plate corner half-angle is approximately 23.2°, slightly beyond the patent's declared 22.5° half-field. Chief-ray field coverage does not establish full-pupil illumination, measured MTF or production image quality. Rendered-page inspection remains incomplete because the screenshot helper produced no image. Remote CI and deployment were not checked. (closed 2026-11-13 for L2 catalog dispersion only: S-TIM2 supplies a qualified spectral proxy; the historical melt remains unknown.)
+Closed for rim review: the semi-diameter pass below supplies a dimensional comparison and model sketch; the printed diameters remain unchanged. Open: the midpoint stop is assumed, not supplied by the patent. Exact factory-example identity, the original glass melt curves, L2 catalog dispersion, finite-focus spacings/travel and retail minimum focus remain unknown. The quarter-plate corner half-angle is approximately 23.2°, slightly beyond the patent's declared 22.5° half-field. Chief-ray field coverage does not establish full-pupil illumination, measured MTF or production image quality. Rendered-page inspection was incomplete because the screenshot helper produced no image (closed 2026-11-13: the second review below inspects fresh live-page, element-inspector and movement-panel shots). Remote CI and deployment were not checked. (closed 2026-11-13 for L2 catalog dispersion only: S-TIM2 supplies a qualified spectral proxy; the historical melt remains unknown.)
 
 ## 2026-11-13 — Semi-diameter pass against the patent figure
 
@@ -147,3 +147,53 @@ Metadata: `catalog.imageFormat` absent → `"quarter-plate"`, the taxonomy row f
 The analysis describes the S-TIM2 proxy, its catalog differences and limits, and the quarter-plate format with the retained field shortfall. A direct comparison with the pre-relabel baseline finds only the L2 label and added image-format field changed in the data file. This text update leaves the data file read-only.
 
 The requested two-file Prettier write and check commands exit successfully, but `.prettierignore` excludes both Markdown and `src/lens-data/`, so they provide no formatting coverage. A separate readback checks the narrow text diff, retained historical audit lines, one appended section, expected whitespace and byte-identical data. No full suite, typecheck, lint, build, generation, server or git-state changes were run. No tool or edit refusal occurred.
+
+## 2026-11-13 — Second review: diagram, labels and movement
+
+Re-read the full audit and analysis, the retained local patent page images (GB155640A.pdf, all three pages), the 300 dpi Example I table, Figure 1 and the matched-axial-scale comparison at `/private/tmp/claude-501/-Users-ronbuening--claude-spares-spare-EIkiKm/8d989648-1a4e-43f9-bdb4-c4cbb0d8c850/scratchpad/sd/xi/overlay.png`. Compared these with the supplied current live page and all three inspector cards, then inspected fresh localhost:5211 shots after the edits below. The earlier validator records no available maker construction diagram; no maker image was inspected or downloaded. The patent confirms three separate spherical elements in three groups, without cemented components or special-glass markings.
+
+### Changes and retained dimensions
+
+All three supplied inspector cards showed `FL = —`. The worktree-backed `probe.mjs --elements` calculates each isolated thick element in air from its printed indices, radii and thickness. Added only the following numerical annotations; these do not alter the optical prescription.
+
+| Element | Before focalLengthMm | After focalLengthMm (mm) | Evidence |
+| --- | --- | ---: | --- |
+| L1 | absent | 97.08 | Isolated positive element, S1–S2. |
+| L2 | absent | -55.02 | Isolated negative element, S3–S4. |
+| L3 | absent | 85.29 | Isolated positive element, S5–S6. |
+
+Analysis now states these focal lengths and clarifies that BACD4 is a qualified spectral proxy despite the retained catalog-equivalent label. No glass string, type, role, name, tag, group, movement or optical dimension changed.
+
+| Surfaces | Before sd (mm) | After sd (mm) | Figure reading and verdict |
+| --- | ---: | ---: | --- |
+| 1, 2 | 26.9875 | 26.9875 | Printed diameter 0.34 × 158.75 / 2 governs; retain square-cut L1. |
+| 3, 4 | 23.8125 | 23.8125 | Printed diameter 0.30 × 158.75 / 2 governs over the smaller schematic L2. |
+| 5, 6 | 23.8125 | 23.8125 | Printed diameter 0.30 × 158.75 / 2; retain square-cut L3. |
+
+The earlier independent scale proof remains consistent with the inspected figure: overall axial scale about 13.68 px/mm, internal-air spans about 13.54/13.70 px/mm, but the thin negative element and transverse spans do not fit one scale. The drawing is therefore proportional evidence, not a replacement for printed diameters. The live page preserves the taller front element, equal central/rear heights and flat rim joins. Figure 1 supplies neither a stop tick nor a numerical location; retain the inferred 8.54075/8.54075 mm split without recommending a move. Its clearance remains 4.8443 mm to S4 at the engine f/3 iris radius, 3.9081 mm at the full glass rim.
+
+Lands and cuts: none relative to `.lens-work/base1123sd/CookeSeriesXI625inf35.data.ts`; no land or cut needs a spacing exception. Final full-pupil `rimcost.mjs --loo` gives worst loss 0.0 percentage points at every sampled field. Geometric pupil transmission before → after is 46.5 → 46.5% at 22.5°; the complete curve remains 100.0/99.9/95.9/89.7/82.5/74.8/66.4/56.7/46.5%. Ordinary off-axis vignetting is retained.
+
+### Labels, movement, glass and colour
+
+The R signs agree with the Biconvex Positive / Biconcave Negative / Biconvex Positive types and roles. Sequential L1–L3 designations avoid inventing names absent from the patent; r1–r6 identify surfaces, not elements. No aspheric suffixes, APD tags, cemented flags or cemented brackets are warranted. No named multi-element group brackets occur in the patent. The stop is drawn in the correct internal airspace, with its inferred position qualified.
+
+Movement verdict: L1, L2 and L3 each have 0 mm modeled focus and zoom displacement. There are no variable gaps, focus keyframes or zoom stations; the fixed internal airspaces are 15.875 and 17.0815 mm. `closeFocusM` remains 1e15. The helper's synthetic t=0/t=1 evaluations have identical geometry and are not two authored focus states. The patent supplies no travel table; the cited museum camera's rack-and-pinion focusing does not establish finite-focus optical spacings. The existing infinity-only description is accurate, and no direction/order correction is needed.
+
+All three glass labels resolve. L1/L3 BACD4 has catalog-minus-printed Δnd = -0.00028 and Δνd = +0.08: it rounds to the three-decimal patent index but lies outside the strict 0.0001 exact-index window. The established label remains; the analysis explicitly qualifies its meaning under the site's proxy tolerance and does not claim historical supplier or melt identity. L2 S-TIM2 has Δnd = -0.000959 and Δνd = +0.063378, also within the site's proxy tolerance. `trylabel.mjs` resolves both complete labels. No relabel or catalog-row addition is proposed.
+
+Catalog and vendor-AGF nearest-row searches find no alternative meeting both strict exact-match limits. BACD4 has the closer Abbe number for L1/L3; K-PSK200's near index has νd about 59.0. For L2, TIM11/PBM11 have νd about 35.88 and F11 about 35.95, all worse than S-TIM2's 36.263378. Printed page 2 explicitly identifies PM 6540 and C 361 as Parra-Mantois and Chance catalog entries, respectively; both index/Abbe pairs recur unchanged in Example II. The patent supplies no additional line indices, partial dispersion or chromatic/astigmatism/distortion plots to backfill or compare. No constant-index or nd-only glass medium is present; all three use resolved dispersion curves. The deliberate engine d approximation to printed sodium D is retained.
+
+The unchanged modeled C/d/F/g paraxial BFDs are 135.6565/135.4546/135.2289/135.2935 mm, with C/F/g shifts +201.8/-225.7/-161.1 µm relative to d. These are spectral-proxy predictions, not measured historical colour performance. The front page names Taylor, Taylor & Hobson Limited and Horace William Lee, application 22 September 1919 and acceptance 22 December 1920. The current assignee spelling matches the Cooke corpus; no consolidation variant was found.
+
+### Final checks and rendered page
+
+Before → after engine EFL is 158.5264620118 → 158.5264620118 mm, FOPEN 3 → 3, declared half-field 22.5 → 22.5°, physical stop radius 21.3519389648 → 21.3519389648 mm and total track 189.04863 → 189.04863 mm. The surface audit reports OK with no errors. Aperture checks one infinity station within 3%, with zero rim, trace, iris or failed limits. Image-circle audit checks one lens with zero undersized or skipped. Field coverage remains 100% at the stored 65.75425 mm image radius, with a clear 22.5° corner chief ray and zero unsolved or skipped stations. `clearap2.mjs --omega 22.5` reports no axial/chief clipping; axial heights at S1–S6 are 26.42/25.85/21.94/21.49/23.50/23.74 mm. Its diagnostic real-marginal stop differs from the engine stop as already documented above; the authored stop remains unchanged.
+
+The shared main-checkout helpers initially threw because that checkout's older taxonomy lacks `quarter-plate`; the worktree audits passed. Scratch copies of the helpers were pointed at the worktree engine, after which `built.mjs`, `probe.mjs`, the light tools and colour calculation completed successfully. No catalog or taxonomy field was changed to accommodate a helper.
+
+Fresh live shots inspected after the edits: `/private/tmp/claude-501/-Users-ronbuening--claude-spares-spare-EIkiKm/8d989648-1a4e-43f9-bdb4-c4cbb0d8c850/scratchpad/sd/xi/rv-page.png`, `rv-el-1.png`, `rv-el-2.png`, `rv-el-3.png`, `rv-focus1.png` and `rv-mv-zoom.png` in that same directory. Inspector focal lengths now read +97.08, -55.02 and +85.29 mm, with the expected types, roles and complete glass text. The page retains infinity-only wording, design f/3 versus marketed f/3.5 and three separate elements. Both movement panels report no modeled focus or zoom group movement; the focus-end query creates no optical travel. This closes the earlier rendered-page-inspection limitation.
+
+The requested Markdown-only Prettier check exits successfully; both files are ignored by the configured ignore rules, so that command supplies no independent formatting coverage. Narrow data/text diffs and whitespace were checked separately. No full suite, typecheck, lint, build, generation, changelog, server or git-state changes were made. No sandbox tool or edit refusal occurred during this review.
+
+Open: the midpoint iris, exact factory-to-example identity, historical melt curves, finite-focus spacings/travel and retail minimum focus remain unestablished. The quarter-plate corner is about 23.2°, beyond the printed 22.5° half-field; the stored circle does not certify that format's extreme corners. No manufacturer drawing or printed aberration plots are available for an independent comparison. Remote CI and deployment were not checked.

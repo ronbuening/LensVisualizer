@@ -90,7 +90,7 @@ Open:
 - The central-gap midpoint stop and calculated infinity back focus are not patent dimensions; an exact production prescription and numerical patent field remain unestablished.
 - The patent states sodium D while the existing model reference setting is helium d; full partial dispersion is unavailable. Exact glass/melt identities remain unknown.
 - A retail minimum focus distance, finite-focus movement and minimum aperture are not established by the cited sources. The existing f-stop settings through f/22 remain display choices, rather than a sourced retail aperture range.
-- Rendered-page review could not be completed: the prescribed screenshot helper produced no PNG despite the local route returning HTTP 200; the browser access host was also unavailable. Title, subtitle/specs and focus text still require visual inspection.
+- Closed by the second review below: fresh live page and all four inspector PNGs were inspected, including title/specs and static-focus text. The earlier screenshot failure no longer blocks the page review.
 
 No command or edit was denied. Full application checks and release work remain outside this cleanup assignment.
 
@@ -161,3 +161,54 @@ L2 retains `Unmatched (nD 1.5682 / V 43.4)` and Abbe fallback: no catalog row li
 | g / V | 210.2658 → 210.3589 | 192.7980 → 192.8920 | −572.1 → −478.1 |
 
 The REF channel remains EFL 210.8847 mm, BFD 193.3701 mm and zero offset from G. These are model predictions using qualified catalog proxies, not measured production colour correction. No name, mount, format or field metadata changes are assigned or present in the baseline/current data comparison. The analysis glass section and L1/L3/L4 paragraphs describe the current labels. Existing open limitations remain unresolved by these proxies.
+
+## 2026-11-13 — Second review: diagram, labels and movement
+
+Compared the supplied live page and all four inspectors with local GB113590A.pdf, PDF pages 1–4, especially Example I on page 2 and Fig. 1 on page 4, and US1361207A.pdf Fig. 1 on PDF page 1. The GB prescription at ×209.55 remains authoritative. The earlier maker-diagram record corroborates four separate spherical elements / four groups and no special-glass markings; no new manufacturer construction image was obtained or claimed.
+
+### Diagram and labels
+
+The native US figure was independently measured beside its local axis, excluding the lower callouts. In the saved 600 × 610 px crop, near-axis S1/S8 crossings are approximately x = 101.5 / 404: 302.5 px over 39.143940 mm gives 7.728 px/mm. Outer thicknesses give 8.023 and 7.394 px/mm; each inner thickness gives about 5.965 px/mm, roughly 23% below the span scale. The upper R1 arc's approximately 27 px sag at 160 px height gives a radius of about 488 px, or 7.82 px/mm. These independently confirm a schematic figure, with no reliable absolute clear diameters. Upper rim heights about the local axis are approximately 188 / 176 / 172 / 180 px for I–IV, within a few pixels of the earlier reading. The relative inner heights and square joins remain appropriate; small drawn inner chamfers do not justify a new land or unequal face heights.
+
+| Field | Before → after | Evidence / verdict |
+| --- | --- | --- |
+| Element names, ids 1–4 | L1/L2/L3/L4 → I/II/III/IV | Patent Fig. 1 and the Example I glass table use Roman element designations. |
+| Diagram labels, ids 1–4 | implicit numeric ids → explicit I/II/III/IV | Same patent designations; each agrees with its element name. |
+| Inspector labels, ids 1–4 | Element 1–4 → Element I–IV | Keeps inspector headings consistent with the diagram and patent. |
+
+The analysis now uses the same designations. Types and roles need no change: I/IV have radius signs +/− and are biconvex positive; II/III have signs −/+ and are biconcave negative. All four stored isolated-element focal lengths are present and sensible: the inspector displays +75.88 / −80.3 / −88.39 / +75.88 mm. The element probe gives freshly rounded +75.87 / −80.30 / −88.38 / +75.87 mm; their previously disclosed rounding differences remain immaterial. No cemented components, group hierarchy, aspheres or APD tags are supported by this example, so no brackets or tags were added. The iris remains between II and III with the inferred 3.792855 / 3.792855 mm split; neither figure supports a more precise numerical location.
+
+### Lands, cuts and light
+
+No rim changed in this review. The cumulative cuts against the saved base1123sd file remain:
+
+| Surfaces | Baseline sd, mm | Final sd, mm | Figure reading | Light cost / verdict |
+| --- | ---: | ---: | --- | --- |
+| 3/4 (II) | 25.146 each | 23.6 each | About 0.94 of front outer height; lower than I/IV | 0.0 points; keep, slight-loss budget satisfied. |
+| 5/6 (III) | 25.146 each | 23.2 each | About 0.92 of front outer height; slightly lower than II | 0.0 points; keep, slight-loss budget satisfied. |
+
+I/IV stay at 25.146 mm on both faces. There are no rim extensions, cut depths or geometry exceptions. Full-pupil `rimcost.mjs --loo` gives final worst loss **0.0 percentage points** at every sampled field; each inner-element restore gains 0.0 points. Geometric corner transmission is **74.6% baseline → 74.6% before review → 74.6% final** at approximately 27.286873°, distinct from cosine-fourth-weighted illumination. The meridional engine curve agrees, without replacing the full-pupil result.
+
+### Movement and engine checks
+
+I, II, III and IV each have **0 mm focus travel and 0 mm zoom travel**: no variable gap, focus keyframe or zoom station is authored. Both endpoint probes return EFL 210.884749523 mm, BFD 193.370081373 mm and f/4.5. The patent supplies one fixed numerical prescription per example and no finite-focus mechanism; the static-focus description is correct and no finite object-distance test applies. The live focus-endpoint view keeps the same geometry and infinity label; the movement dialog states that no focus or zoom group movement is modeled.
+
+Before → final engine EFL is **210.884749523 → 210.884749523 mm**, half-field **39.390086287 → 39.390086287°**, f-number **4.5 → 4.5** and stop radius **20.320947254 → 20.320947254 mm**. The engine default half-field remains distinct from the traced 5×7 corner. Surface audit is **OK — no validation errors**; aperture audit has **zero rim, trace or iris limits and zero failures**; image-circle audit has **1 checked, 0 undersized, 0 skipped**; field coverage is **100%**, with a clear 109.25 mm corner chief ray. The meridional trace has no CLIPS-AXIAL/BLOCKS-CHIEF flags; its lower full-field marginal solve remains `no-ray-found`, as previously disclosed. The full-pupil calculation separately measures the surviving bundle.
+
+### Glass, colour and attribution
+
+Every element was checked with `glasscheck.mjs --near 3`, `glassnear.mjs`, the vendor AGF search and a complete coordinate-window scan of the available catalog and four AGF files. No exact row meets |Δnd| ≤ 0.0001 and |Δνd| ≤ 0.15 for any element. The existing SK1 labels on I/IV and S-TIL1 on III stand under the site's proxy tolerance; `trylabel.mjs` resolves both. Their catalog-minus-printed differences remain −0.00135 / +0.10 and −0.002059 / −0.015723 respectively. No allowed alternative offers a clearly smaller Abbe difference at the same index tolerance, and no new catalog row is proposed.
+
+II remains `Unmatched (nD 1.5682 / V 43.4)`. Its closest AGF candidate PBL26Y is 1.56732 / 42.86 (Δnd −0.00088, Δν −0.54); catalog E-FL6 is 1.56732 / 42.84 (Δν −0.56). Neither meets the site's proxy tolerance. GB PDF page 2 names this glass only as **light flint**, defines sodium D and V = (nD − 1)/(nF − nC), and gives no supplier, glass code, individual line indices or partial dispersion. The pair does not recur in Example II, whose negative elements are 1.6206 / 36.2 heavy flint. This one-example occurrence establishes no optimizer history.
+
+All four media carry nd/vd; none is constant-index or nd-only, and no source-printed nC/nF/ng or partial-dispersion value is missing. Neither publication prints C/d/F/g aberration, astigmatism or distortion plots to compare numerically. The existing model colour predictions therefore remain qualified by the unresolved II curve, catalog proxies and sodium-D/helium-d reference difference; no measured chromatic agreement is claimed.
+
+GB PDF page 1 names Arthur Warmisham and Taylor, Taylor & Hobson Limited as applicants. The existing corporate assignee spelling agrees with the front page and the Series XI / Series II corpus entries; no Aviar spelling consolidation is proposed. Warmisham's co-applicant status is already disclosed in the analysis and is not changed into a corporate-family assertion.
+
+### Live render and remaining limits
+
+After the label edits, inspected `sd/aviar/rv-page.png`, `rv-el-1.png` through `rv-el-4.png`, `rv-focus1.png` and `rv-mv-focus.png` under the supplied scratchpad root. I–IV are readable without collisions; every inspector has the correct type, role, index, Abbe number, focal length and qualified glass label. The title, four-element/four-group specs, 5×7 badge, f/4.5 setting, iris position and static-focus text are consistent. The matched-scale red-model / blue-baseline side-by-side is `sd/aviar/rv-overlay.png`. This closes the earlier rendered-page-review limitation.
+
+Open: the sodium-D source still uses the retained helium-d reference setting, outside the allowed edits. Exact historical glass/melt identity, full partial dispersion, exact production-example identity, numerical patent field, clear diameters and stop coordinates remain unestablished. Retail minimum focus and minimum aperture are also unsourced. The previously disclosed lower marginal-ray solve remains incomplete; it does not invalidate the clear axial/chief rays or full-pupil corner measurement.
+
+No tool call or edit was denied by a permission check. Initial relative-path screenshot/render requests failed the helpers' absolute-path argument validation; corrected absolute paths succeeded. No changelog, source/assignee field, numerical prescription or git state was changed. Broad application checks were not run, as required by the assignment.

@@ -56,29 +56,32 @@ const LENS_DATA = {
     {
       "id": 1,
       "name": "L1",
+      "focalLengthMm": 110.02,
       "label": "Element 1",
       "type": "Positive Meniscus",
       "role": "Positive front singlet ahead of the first cemented doublet.",
       "nd": 1.6909,
       "vd": 54.9,
       "indexReference": "D",
-      "glass": "Hikari J-LAK9"
+      "glass": "J-LAK9 (HIKARI catalog equivalent; production supplier unspecified)"
     },
     {
       "id": 2,
       "name": "L2",
+      "focalLengthMm": 45.62,
       "label": "Element 2",
       "type": "Biconvex Positive",
       "role": "Positive front element of cemented doublet C1.",
       "nd": 1.6909,
       "vd": 54.9,
       "indexReference": "D",
-      "glass": "Hikari J-LAK9",
+      "glass": "J-LAK9 (HIKARI catalog equivalent; production supplier unspecified)",
       "cemented": "C1"
     },
     {
       "id": 3,
       "name": "L3",
+      "focalLengthMm": -71.59,
       "label": "Element 3",
       "type": "Biconcave Negative",
       "role": "Negative rear element of cemented doublet C1.",
@@ -91,6 +94,7 @@ const LENS_DATA = {
     {
       "id": 4,
       "name": "L4",
+      "focalLengthMm": -32.57,
       "label": "Element 4",
       "type": "Biconcave Negative",
       "role": "Negative singlet between cemented doublet C1 and the iris.",
@@ -102,25 +106,27 @@ const LENS_DATA = {
     {
       "id": 5,
       "name": "L5",
+      "focalLengthMm": 24.38,
       "label": "Element 5",
       "type": "Biconvex Positive",
       "role": "Positive front element of rear cemented doublet C2.",
       "nd": 1.6909,
       "vd": 54.9,
       "indexReference": "D",
-      "glass": "Hikari J-LAK9",
+      "glass": "J-LAK9 (HIKARI catalog equivalent; production supplier unspecified)",
       "cemented": "C2"
     },
     {
       "id": 6,
       "name": "L6",
+      "focalLengthMm": -48.37,
       "label": "Element 6",
       "type": "Negative Meniscus",
       "role": "Negative rear element of cemented doublet C2.",
       "nd": 1.589,
       "vd": 61.4,
       "indexReference": "D",
-      "glass": "Schott N-SK5",
+      "glass": "N-SK5 (SCHOTT catalog equivalent; production supplier unspecified)",
       "cemented": "C2"
     }
   ],
