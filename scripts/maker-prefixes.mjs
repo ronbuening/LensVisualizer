@@ -61,5 +61,6 @@ export const MAKER_PREFIXES = [
   { prefix: "VIVITAR", display: "Vivitar", slug: "vivitar" },
   { prefix: "WRAY", display: "Wray", slug: "wray" },
   { prefix: "YASHICA", display: "Yashica", slug: "yashica" },
+  { prefix: "YONGNUO", display: "Yongnuo", slug: "yongnuo" },
   { prefix: "YASHINON", display: "Yashica", slug: "yashica" },
 ];
