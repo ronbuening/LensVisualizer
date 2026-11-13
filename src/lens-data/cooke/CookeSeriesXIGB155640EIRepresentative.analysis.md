@@ -1,0 +1,41 @@
+# Cooke Series XI: GB155640 Example I representative
+
+## Patent reference and product qualification
+GB155640, Taylor, Taylor and Hobson and Horace William Lee; applied 22 September 1919, accepted 22 December 1920, printed 1921. The original three-page facsimile is retained. Example I is a normalized F=1 triplet, f/3, with stated45° field. Example II is separate and is not mixed into this model or counted as another physical family.
+
+Cooke's modern Compendium explicitly associates Series XI f/3.5 with GB155640 and reports patent-number inscriptions on5-inch serial138174 and6.25-inch serials138272/199442. This is manufacturer-reported sample evidence, not engraving photographs independently inspected here. The maker says no catalog entry was found in its archive. Its broader association of the patent with other triplet series does not establish exclusive identity or select a factory example. The source f/3 is different from retail f/3.5.
+
+This is an explicitly qualified representative of Example I at100mm per normalized unit. It is not an asserted factory100mm,5-inch or6.25-inch prescription, nor a fitted scaling to a retail focal length. Bounded dedup found no GB155640 model in the recovered checkout or Drive search, not a complete historical/live numerical novelty audit.
+
+## Architecture and element analysis
+Three separate spherical elements form a positive-negative-positive triplet. All original glass thicknesses and air gaps remain literal. The patent drawing has light incident from the right; the model follows the table's incident-to-image sequence rather than page-left order.
+
+L1 is the front positive biconvex element, nD1.613, Nu58.5, source Parra-Mantois6540. Its radii after scaling are+40.13 and−537mm, thickness6mm, and source diameter34mm.
+
+L2 is a biconcave negative element, nD1.621, Nu36.2, source Chance361. Radii−47.02 and+40.01mm, central thickness1mm, source diameter30mm. It follows a10mm source airspace.
+
+L3 is the rear positive biconvex element, nD1.613, Nu58.5, source Parra-Mantois6540. Radii+234.5 and−37.94mm, thickness6mm, source diameter30mm. It follows the original10.76mm airspace. No invented spacer or glass substitution is inserted.
+
+## Spectral qualification
+The patent explicitly tabulates D-line index and Nu, but does not define Nu's formula. Values are interpreted as conventional Vd using period notation and the same inventor's later US1955591 explicit Abbe definition. This is a documented interpretation, not a formula printed in GB155640. Engine d approximates historical D. The historical catalog references are not proof of a particular melt, measured full dispersion, modern replacement or tolerance.
+
+## Focus and scale
+Literal normalized EFL.998591886688 gives99.8591886688mm, retaining−.1408113% against nominal100mm without fitting. The terminal distance is calculated BFL.853257513035 normalized,85.3257513035mm, not a source-printed BFL. The model represents infinity only. No actual factory focusing mechanism, close-focus movement or retail minimum distance is reconstructed.
+
+## Apertures and inferred iris
+Source diameters.34/.30/.30 are scaled directly to semi-diameters17/15/15mm. They are element dimensions, not an iris prescription; unlike many reconstructed examples these caps are not inferred.
+
+No numerical physical stop position or hole diameter is supplied. This model assumes a stop at the midpoint of the larger internal airspace S2,5.38mm from each vertex. This choice was made before ray testing, not fitted to rays. Independent review confirms full-cap stop clearance and element geometry. Native f/3 iris radius13.4500402928mm is a model result, not an original measurement. Authored aperture settings throughf/22 are convenience, not validated factory settings. No geometry allowance override is used.
+
+## Scoped checks and field limitations
+Native construction and isolated strict TypeScript reproduce against the retained checkout. Independent source and geometry reviews accompany qualified handoff. They are not factory-performance validation.
+
+Sparse source-field diagnostics use22.5° half-field. With25 pupil samples plus chief, successful optical-surface exits at0/.5/.7/.85/1 field fractions are26/23/19/16/10. At source edge there are11 clipped and5 blocked rays; at.85 field9 clipped and1 blocked. This substantial field limitation remains prominent. No45° coverage or commercial image-quality claim is validated.
+
+Counts are not throughput percentages, full pupil integration, independently tested image-plane landing or MTF. Full current-corpus/app tests, lint/format integration, build, browser and MTF remain deferred and unpassed. This representative is hidden, not integrated or deployed.
+
+## Sources
+- Original facsimile on secondary host: https://www.photo-china.net/pat/GB155640.pdf
+- Primary manufacturer retrospective and reported specimen inscriptions: https://cookeoptics.com/compendium/
+- Same-inventor explicit Abbe convention corroboration: https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/1955591
+- Verified source archive: https://drive.google.com/file/d/1BT7X81xSg-FpkY2tNYUwt0x4LdqM9Cp4/view
