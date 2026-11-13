@@ -187,9 +187,6 @@ S under a day, M one to three days, L longer.
   lattice, the unresolved-beam and dark-line rules and the 256 cap. Regenerate it, and print the engine commit and
   hashes of anchors, conventions and prescriptions so a stale copy says so. Required before Stage 9. S plus the
   run.
-- **C15 — Missing analytic controls.** A finite-conjugate cutoff at 1/(λ · working N) from an independently derived
-  NA; a geometric defocus disc against its Bessel transform; the two-line beat over a full period. Cheap corpus
-  invariants: MTF(0) = 1, diffraction MTF at or below its own traced-pupil limit, S = T on axis. M.
 - **C16 — Midpoint comparison hides astigmatism errors.** The chart report compares pair midpoints; add the
   assignment-free `|S − T|` against `pair_max − pair_min` beside it, and record S, T and the chart aperture in any
   new digitization. M.

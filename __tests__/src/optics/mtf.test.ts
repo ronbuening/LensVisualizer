@@ -9,6 +9,14 @@ import {
   buildSimplePositiveElementLens,
   buildVariableStopGapLens,
   REAR_PLATE_FIXTURE,
+  sharedApoLanthar50f2,
+  sharedNikkor105f14,
+  sharedNikkorZ50f18,
+  sharedNikkorZ70200,
+  sharedNokton50f1,
+  sharedSonnar50f15,
+  analysisRequestAt,
+  apertureAt,
   teleconverterFixture,
   teleconverterHostData,
 } from "./testLensFixtures.js";
@@ -56,6 +64,7 @@ import { MTF_FREQUENCIES, MTF_MAX_UNKNOWN_FLUX } from "../../../src/optics/analy
 import type { EngineTraceResult } from "../../../src/optics/trace/types.js";
 import { traceEngineRay } from "../../../src/optics/trace/rayAdapters.js";
 import { createImageSurfaceShape } from "../../../src/optics/geometry/imageSurface.js";
+import { stopLattice } from "../../../src/optics/analysis/pupils/stopLattice.js";
 
 /*
  * Stop-lattice cells the aimed launch returns unaimed, by normalised stop position: the real aim leaves no cell inside
@@ -308,6 +317,38 @@ describe("MTF support", () => {
 });
 
 describe("geometric MTF", () => {
+  it.each([1, 0.55])("reproduces the signed defocus-disc transform with y/x radius ratio %s", (ratio) => {
+    // Uniform defocus discs and astigmatic ellipses have OTF 2 J1(2πνr) / (2πνr) on each principal cut.
+    const radius = 0.02;
+    const products = [0, 0.15, 0.4, 0.6098349456, 0.8, 1.1, 1.3];
+    const frequencies = products.map((s) => s / radius);
+    const points = stopLattice(128).map((cell) => ({
+      x: radius * cell.xFraction,
+      y: radius * ratio * cell.yFraction,
+      weight: cell.weight,
+    }));
+    // The Bessel power series evaluates 2 J1(z)/z directly, including its finite DC limit.
+    const discOtf = (nuR: number) => {
+      let term = 1,
+        sum = 1;
+      for (let k = 1; k < 40; k++) {
+        term *= -((Math.PI * nuR) ** 2) / (k * (k + 1));
+        sum += term;
+      }
+      return sum;
+    };
+    for (const axis of ["x", "y"] as const) {
+      const otf = geometricOtf(points, frequencies, axis);
+      const magnitude = otfMagnitude(otf);
+      products.forEach((s, i) => {
+        const expected = discOtf(s * (axis === "x" ? 1 : ratio));
+        // 128 midpoint cells resolve ≥49 cells/cycle here; the hard rim sets a 0.002 absolute quadrature bound.
+        expect(Math.abs(otf.real[i] - expected)).toBeLessThan(0.002);
+        expect(Math.abs(magnitude[i] - Math.abs(expected))).toBeLessThan(0.002);
+        expect(Math.abs(otf.imaginary[i])).toBeLessThan(1e-12);
+      });
+    }
+  });
   it("has unity response for a point and is translation invariant", () => {
     for (const x of [0, 1.234]) {
       expect(otfMagnitude(geometricOtf([{ x, y: 0, weight: 1 }], [0, 10, 100], "x"))).toEqual([1, 1, 1]);
@@ -506,6 +547,48 @@ describe("geometric MTF", () => {
     )!;
     expect(corner).toMatchObject({ modeledEdgeHeightMm: 15, basis: "format-corner" });
     expect(corner.modeledEdgeAngleDeg).toBeCloseTo(15, 3);
+  });
+});
+
+describe("MTF result invariants", () => {
+  it.each([
+    ["singlet", buildSimplePositiveElementLens],
+    ["chromatic singlet", buildChromaticPositiveElementLens],
+    ["APO-Lanthar", sharedApoLanthar50f2],
+    ["Nikkor 105", sharedNikkor105f14],
+    ["Nikkor Z 50", sharedNikkorZ50f18],
+    ["Nikkor Z 70-200", sharedNikkorZ70200],
+    ["Nokton", sharedNokton50f1],
+    ["Sonnar", sharedSonnar50f15],
+  ] as const)("normalizes flux, bounds diffraction and preserves axial symmetry: %s", (_name, makeLens) => {
+    // Normalized incoherent images conserve DC; pupil phase cannot beat zero phase, and axial rotations exchange S/T.
+    const lens = makeLens();
+    const request = analysisRequestAt(lens, { ...apertureAt(lens, 0) });
+    for (const method of ["geometric", "diffraction"] as const) {
+      const result = computeMtf(request, {
+        method,
+        spectrum: "reference",
+        focus: "design",
+        fieldFractions: [0],
+        frequenciesPerMm: [0, 10, 30, 50, 100],
+        maxGridSize: 32,
+      });
+      expect(result.support.available).toBe(true);
+      expect(result.fields).toHaveLength(1);
+      const field = result.fields[0];
+      expect(field.reason).toBeNull();
+      expect(field.sagittal).toHaveLength(result.frequenciesPerMm.length);
+      // DC and the triangle-inequality limit allow only 1e-10 summation noise.
+      for (const cut of ["sagittal", "tangential"] as const) {
+        expect(Math.abs(field[cut][0] - 1)).toBeLessThan(1e-10);
+        if (method === "diffraction") {
+          expect(field.diffractionLimit).toBeDefined();
+          field[cut].forEach((value, i) => expect(value - field.diffractionLimit![cut][i]).toBeLessThanOrEqual(1e-10));
+        }
+      }
+      // Stop aims end at a relative 1e-7 residual; the propagated S/T error is bounded here by 1e-6 MTF.
+      field.sagittal.forEach((value, i) => expect(Math.abs(value - field.tangential[i])).toBeLessThan(1e-6));
+    }
   });
 });
 

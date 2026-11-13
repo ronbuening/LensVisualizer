@@ -230,6 +230,35 @@ describe("qualified spectral MTF", () => {
     expect(otfMagnitude(shifted)[1]).toBeCloseTo(1, 12);
     expect(combineOtfs([]).real).toEqual([]);
   });
+  it.each([1, 3])("reproduces a full lateral-colour beat with line weights %s:1", (weight) => {
+    // Two translated monochromatic images interfere in OTF space with beat |w1 + w2 exp(−i2πνΔ)|/(w1+w2).
+    const delta = 0.05;
+    const frequencies = Array.from({ length: 17 }, (_, i) => i / (16 * delta));
+    const points = [
+      { x: -0.004, y: 0, weight: 1 },
+      { x: 0.004, y: 0, weight: 1 },
+    ];
+    const base = geometricOtf(points, frequencies, "x");
+    const shifted = geometricOtf(
+      points.map((point) => ({ ...point, x: point.x + delta })),
+      frequencies,
+      "x",
+    );
+    const mixed = otfMagnitude(
+      combineOtfs([
+        { otf: base, weight },
+        { otf: shifted, weight: 1 },
+      ]),
+    );
+    frequencies.forEach((nu, i) => {
+      const phase = 2 * Math.PI * nu * delta;
+      const beat = Math.hypot(weight + Math.cos(phase), Math.sin(phase)) / (weight + 1);
+      // The common two-point image has non-unit modulus, independently cos(2πν·0.004).
+      const perLine = Math.abs(Math.cos(2 * Math.PI * nu * 0.004));
+      expect(mixed[i]).toBeCloseTo(beat * perLine, 12);
+      expect(otfMagnitude(shifted)[i]).toBeCloseTo(perLine, 12);
+    });
+  });
   it("estimates nd/νd-only glass dispersion, says so, and identifies compatible catalog substitution", () => {
     const estimated = prepareRuntimeState(buildSimplePositiveElementLens(), 0, 0);
     expect(estimated.lens.dispersion[1].quality).toBe("abbe");

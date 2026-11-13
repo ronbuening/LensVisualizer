@@ -63,6 +63,35 @@ describe("documented finite MTF", () => {
     finiteConjugates: [conjugate],
   });
   const state = prepareRuntimeState(L, 1, 0);
+  it("sets the finite-conjugate diffraction cutoff from the independent marginal angle", () => {
+    // A nearly stigmatic finite image has the circular-pupil MTF at cutoff 2 sin U′ / λ in air.
+    const radius = options.stopSemiDiameterMm;
+    const marginal = atRear(radius, radius / conjugate.objectDistanceMm);
+    const na = Math.abs(marginal.u) / Math.hypot(1, marginal.u);
+    const workingN = 1 / (2 * na);
+    const support = assessMtfSupport(...mtfInputs(state, options));
+    const lambda = support.spectralLines[0].wavelengthNm * 1e-6;
+    const cutoff = 1 / (lambda * workingN);
+    const fractions = [0, 0.2, 0.5, 0.9, 1.1];
+    const request = { ...options, frequenciesPerMm: fractions.map((s) => s * cutoff) };
+    const bundle = traceMtfFieldPupil(state, request, support, 0, 64)!;
+    // At this 0.1 mm stop, residual spherical aberration leaves less than 10 nm transverse blur.
+    for (const ray of bundle.rays) expect(Math.hypot(ray.x, ray.y)).toBeLessThan(1e-5);
+    const result = computeMtf(...mtfInputs(state, request));
+    const field = result.fields[0];
+    expect(field.reason).toBeNull();
+    expect(result.focus!.appliedShiftMm).toBe(0);
+    expect(workingN).toBeGreaterThan(1.04 / (2 * Math.abs(atRear(radius, 0).u)));
+    expect(field.sagittal).toHaveLength(fractions.length);
+    fractions.forEach((s, i) => {
+      const expected = s >= 1 ? 0 : (2 / Math.PI) * (Math.acos(s) - s * Math.sqrt(1 - s * s));
+      for (const cut of ["sagittal", "tangential"] as const) {
+        // A 64-cell hard pupil rim dominates the paraxial/residual-aberration error here.
+        expect(Math.abs(field[cut][i] - expected)).toBeLessThan(0.004);
+        if (s > 1) expect(field[cut][i]).toBe(0);
+      }
+    });
+  });
   it("uses a common point source and reproduces paraxial focus and magnification", () => {
     const support = assessMtfSupport(...mtfInputs(state, options));
     const bundle = traceMtfFieldPupil(state, options, support, 0, 32)!;
