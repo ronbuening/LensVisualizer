@@ -699,6 +699,16 @@ export const ASSIGNEE_CORPORATE_HISTORY: Partial<Record<string, AuthoredCorporat
       },
     ],
   },
+  "Optische Anstalt C. P. Goerz Aktiengesellschaft": {
+    acquiredBy: [
+      {
+        organization: "Zeiss Ikon AG",
+        effectiveDate: "1926",
+        sourceUrl: SOURCES.zeissIkon,
+        note: "The museum record names Goerz among the four German camera companies, with Ica, Contessa Nettel and Ernemann, that Carl Zeiss Jena combined to form Zeiss Ikon.",
+      },
+    ],
+  },
   "Panasonic AVC Networks Xiamen Co., Ltd.": {
     subsidiaryOf: [
       {
