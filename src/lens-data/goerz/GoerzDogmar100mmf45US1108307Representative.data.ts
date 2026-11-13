@@ -1,0 +1,155 @@
+// Qualified representative, not exact factory identity. Hidden pending integration.
+// Inferred apertures/iris; source nD/C-F magnitude interpreted for engine d/V.
+import type { LensDataV2Input } from "../LensVisualizer/src/types/lensDataV2.js";
+export default {
+  "schema": 2,
+  "key": "goerz-dogmar-us1108307-representative",
+  "maker": "Goerz",
+  "name": "Goerz Dogmar 100mm f/4.5 (patent representative)",
+  "visible": false,
+  "catalog": {
+    "elementCount": 4,
+    "groupCount": 4,
+    "focalLengthMm": {
+      "marketing": 100,
+      "design": 100
+    },
+    "fNumber": {
+      "marketing": 4.5,
+      "design": 4.5
+    }
+  },
+  "source": {
+    "patentNumber": "US 1108307",
+    "patentYear": 1914,
+    "authors": [
+      "Walther Zschokke"
+    ],
+    "assignees": [
+      "Optische Anstalt C. P. Goerz Aktiengesellschaft"
+    ]
+  },
+  "elements": [
+    {
+      "id": 1,
+      "name": "L1",
+      "label": "Element 1",
+      "type": "Spherical patent glass",
+      "nd": 1.61412,
+      "vd": 56.341284403669725,
+      "indexReference": "d",
+      "glass": "Source nD; positive C-F dispersion magnitude; d-reference engine approximation"
+    },
+    {
+      "id": 2,
+      "name": "L2",
+      "label": "Element 2",
+      "type": "Spherical patent glass",
+      "nd": 1.5689,
+      "vd": 42.61423220973782,
+      "indexReference": "d",
+      "glass": "Source nD; positive C-F dispersion magnitude; d-reference engine approximation"
+    },
+    {
+      "id": 3,
+      "name": "L3",
+      "label": "Element 3",
+      "type": "Spherical patent glass",
+      "nd": 1.5482,
+      "vd": 46.14478114478115,
+      "indexReference": "d",
+      "glass": "Source nD; positive C-F dispersion magnitude; d-reference engine approximation"
+    },
+    {
+      "id": 4,
+      "name": "L4",
+      "label": "Element 4",
+      "type": "Spherical patent glass",
+      "nd": 1.61412,
+      "vd": 56.341284403669725,
+      "indexReference": "d",
+      "glass": "Source nD; positive C-F dispersion magnitude; d-reference engine approximation"
+    }
+  ],
+  "surfaces": [
+    {
+      "label": "1",
+      "R": 27.701,
+      "d": 4.2,
+      "sd": 11.5,
+      "medium": 1
+    },
+    {
+      "label": "2",
+      "R": -103.093,
+      "d": 1.8,
+      "sd": 11.5
+    },
+    {
+      "label": "3",
+      "R": -53.909,
+      "d": 1.6,
+      "sd": 11.5,
+      "medium": 2
+    },
+    {
+      "label": "4",
+      "R": 37.736,
+      "d": 2.7,
+      "sd": 11.5
+    },
+    {
+      "label": "STO",
+      "R": "flat",
+      "d": 2.7
+    },
+    {
+      "label": "5",
+      "R": -63.291,
+      "d": 1.6,
+      "sd": 11.5,
+      "medium": 3
+    },
+    {
+      "label": "6",
+      "R": 35.088,
+      "d": 1.8,
+      "sd": 11.5
+    },
+    {
+      "label": "7",
+      "R": 53.191,
+      "d": 3.6,
+      "sd": 11.5,
+      "medium": 4
+    },
+    {
+      "label": "8",
+      "R": -35.69,
+      "d": 88.708856474,
+      "sd": 11.5
+    }
+  ],
+  "focus": {
+    "closeFocusM": 1000000000000000.0,
+    "description": "NO_INTERNAL_RECONSTRUCTION: infinity representative only"
+  },
+  "aperture": {
+    "nominalFNumber": 4.5,
+    "fStops": [
+      4.5,
+      5.6,
+      8,
+      11,
+      16,
+      22
+    ],
+    "maxFNumber": 22
+  },
+  "projection": {
+    "kind": "rectilinear"
+  },
+  "layout": {
+    "yScFill": 0.7
+  }
+} satisfies LensDataV2Input;
