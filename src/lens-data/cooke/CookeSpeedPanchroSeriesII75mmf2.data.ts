@@ -1,20 +1,27 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 /**
  * US 2,502,509 A, Example II: normalized f = 1, relative aperture f/1.86.
- * Patent dimensionless R and d are converted to millimetres at x75 (x3 from
- * the delivered x25 model); every authored optical length is scaled together.
- * Indices, Abbe numbers and field angles are unchanged. The clear rims and iris
- * position are inferred, not printed; the terminal image distance is calculated
+ * Patent dimensionless radii and separations are converted to millimetres at ×75.
+ * Indices and Abbe numbers are retained; the 20° half-field is assumed.
+ * The clear rims and iris position are inferred, not printed;
+ * the terminal image distance is calculated
  * paraxial back focus, not a source measurement. L4 rims and the iris split are
- * adjusted only as documented in the rescale audit; the source air gap is kept.
+ * set for beam and surface clearance; the source air gap is kept.
  */
 const LENS_DATA = {
   "schema": 2,
   "key": "cooke-speed-panchro-series-ii-75mm-f2",
   "maker": "Cooke",
   "name": "COOKE SPEED PANCHRO SERIES II 75mm f/2",
+  "subtitle": "US 2,502,509 A, Example II — Speed Panchro Series II 75mm f/2, scaled ×75",
   "visible": true,
   "catalog": {
+    "specs": [
+      "6 ELEMENTS / 4 GROUPS",
+      "ALL SPHERICAL",
+      "DESIGN F/1.86",
+      "f/2–22"
+    ],
     "elementCount": 6,
     "groupCount": 4,
     "focalLengthMm": {
@@ -46,65 +53,71 @@ const LENS_DATA = {
       "id": 1,
       "name": "L1",
       "label": "Element 1",
-      "type": "Spherical patent glass",
+      "type": "Positive Meniscus",
+      "role": "Positive front singlet ahead of the first cemented doublet.",
       "nd": 1.6909,
       "vd": 54.9,
       "indexReference": "D",
-      "glass": "Source Chance Bros unspecified; historicalD/engine d approximation, not measured melt"
+      "glass": "Hikari J-LAK9"
     },
     {
       "id": 2,
       "name": "L2",
       "label": "Element 2",
-      "type": "Spherical patent glass",
+      "type": "Biconvex Positive",
+      "role": "Positive front element of cemented doublet C1.",
       "nd": 1.6909,
       "vd": 54.9,
       "indexReference": "D",
-      "glass": "Source Chance Bros unspecified; historicalD/engine d approximation, not measured melt",
-      "cemented": "D1"
+      "glass": "Hikari J-LAK9",
+      "cemented": "C1"
     },
     {
       "id": 3,
       "name": "L3",
       "label": "Element 3",
-      "type": "Spherical patent glass",
+      "type": "Biconcave Negative",
+      "role": "Negative rear element of cemented doublet C1.",
       "nd": 1.6227,
       "vd": 36,
       "indexReference": "D",
-      "glass": "Source Chance Bros unspecified; historicalD/engine d approximation, not measured melt",
-      "cemented": "D1"
+      "glass": "Unmatched (nD 1.6227 / V 36.0)",
+      "cemented": "C1"
     },
     {
       "id": 4,
       "name": "L4",
       "label": "Element 4",
-      "type": "Spherical patent glass",
+      "type": "Biconcave Negative",
+      "role": "Negative singlet between cemented doublet C1 and the iris.",
       "nd": 1.6535,
       "vd": 33.5,
       "indexReference": "D",
-      "glass": "Source Chance Bros unspecified; historicalD/engine d approximation, not measured melt"
+      "glass": "Unmatched (nD 1.6535 / V 33.5)"
     },
     {
       "id": 5,
       "name": "L5",
       "label": "Element 5",
-      "type": "Spherical patent glass",
+      "type": "Biconvex Positive",
+      "role": "Positive front element of rear cemented doublet C2.",
       "nd": 1.6909,
       "vd": 54.9,
       "indexReference": "D",
-      "glass": "Source Chance Bros unspecified; historicalD/engine d approximation, not measured melt",
-      "cemented": "D2"
+      "glass": "Hikari J-LAK9",
+      "cemented": "C2"
     },
     {
       "id": 6,
       "name": "L6",
       "label": "Element 6",
-      "type": "Spherical patent glass",
+      "type": "Negative Meniscus",
+      "role": "Negative rear element of cemented doublet C2.",
       "nd": 1.589,
       "vd": 61.4,
       "indexReference": "D",
-      "glass": "Source Chance Bros unspecified; historicalD/engine d approximation, not measured melt",
-      "cemented": "D2"
+      "glass": "Schott N-SK5",
+      "cemented": "C2"
     }
   ],
   "surfaces": [
@@ -181,8 +194,8 @@ const LENS_DATA = {
     }
   ],
   "focus": {
-    "closeFocusM": 1000000000000000.0,
-    "description": "NO_INTERNAL_RECONSTRUCTION: infinity scaled normalized EII representative only"
+    "closeFocusM": 1e15,
+    "description": "Infinity focus only; the patent gives no close-focus spacings or focusing travel."
   },
   "aperture": {
     "nominalFNumber": 1.86,
@@ -209,12 +222,12 @@ const LENS_DATA = {
   },
   "doublets": [
     {
-      "text": "D1",
+      "text": "C1",
       "fromSurface": "3",
       "toSurface": "5"
     },
     {
-      "text": "D2",
+      "text": "C2",
       "fromSurface": "8",
       "toSurface": "10"
     }
