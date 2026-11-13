@@ -1,6 +1,15 @@
 # Voigtländer Ultragon: US2670659 Example I representative
 
 ## Patent reference and qualified association
+
+**Patent:** US 2,670,659 A  
+**Inventor:** Albrecht Wilhelm Tronnier  
+**Assignee:** Voigtländer A.G., Braunschweig (printed "Voigtlander, A. G., Braunschweig")  
+**Filed:** 29 July 1952  
+**Granted:** 2 March 1954  
+**Priority:** Switzerland, 30 August 1951  
+**Example details:** Example I, uniformly scaled by ×115.  
+
 US2670659, Albrecht Wilhelm Tronnier, assigned Voigtländer, filed29July1952, Swiss priority30August1951, granted2March1954. The complete official original gives two normalizedF=1 f/5.5 examples of a five-element/four-group design. This model selects EI as the first complete numerical example, not because any source identifies it as the factory115mm lens. The patent's150mm illustration is not the photographed115mm prescription.
 
 A photographed artifact in Arne Cröll's2014 article visibly reads Voigtländer Braunschweig Ultragon1:5.5/11.5cm. The photograph establishes product identity and aperture/focal engraving, not internal construction or a patent inscription. The patent-family association is secondary scholarship and matching topology, not a newly found primary maker-to-patent bridge. Cröll's bibliography prints US2670649; that patent concerns unrelated helium detection. The corrected US2670659 association is explicitly identified, not silently treated as the literal citation. DE868524 has not been independently verified as equivalent.
