@@ -5,8 +5,8 @@
  * This is the reference the tests and the chart report hold the sheared-ray estimator against,
  * not a product path: it reads optical path where the estimator reads ray landings, so the two
  * share only the ray trace. It needs the phase to turn by less than a quarter wave from one
- * lattice cell to the next (`waveLatticePhaseStep`), which fast or strongly aberrated beams
- * exceed at any practical grid.
+ * lattice cell to the next (`waveLatticePhaseStep`) and an invertible direction map. Fast or
+ * strongly aberrated beams exceed the phase limit at any practical grid.
  */
 import type { Vec3 } from "../../types.js";
 import type { ComplexOtf, MtfSpot } from "./mtfMath.js";
@@ -107,13 +107,15 @@ export function mtfWaveLattice(bundle: MtfBundle, reference: MtfSpot, imagePlane
 
 /**
  * Largest optical-path change between neighbouring transmitted cells, in waves. The lattice OTF
- * is trustworthy while this stays under a quarter wave.
+ * is trustworthy below a quarter wave only when the direction map is invertible; a folded or
+ * degenerate map returns infinity regardless of its phase sampling.
  *
  * @param lattice - lattice pupil
  * @param wavelengthMm - wavelength in mm
- * @returns largest neighbour step in waves
+ * @returns largest neighbour step in waves, or infinity for a noninvertible direction map
  */
 export function waveLatticePhaseStep(lattice: MtfWaveLattice, wavelengthMm: number): number {
+  if (waveMesh(lattice) === null) return Infinity;
   const { columns, rows, amplitude, pathMm } = lattice;
   let step = 0;
   for (let row = 0; row < rows; row++)
@@ -128,114 +130,201 @@ export function waveLatticePhaseStep(lattice: MtfWaveLattice, wavelengthMm: numb
   return step / wavelengthMm;
 }
 
-/** One lattice line along a shear axis, ordered by rising direction cosine, with an empty cell beyond each end. */
-interface WaveLine {
-  amplitude: Float64Array;
-  pathMm: Float64Array;
-  /** Direction cosine of every cell, filled in across cells without a ray so positions can be looked up. */
-  cosine: Float64Array;
+/** Direction-space mesh, padded by one dark cell so interpolation reaches the pupil rim. */
+interface WaveMesh extends MtfWaveLattice {
+  /** Absolute direction-area Jacobian per unit lattice-index area. */
+  jacobian: Float64Array;
 }
 
-/**
- * Cut a lattice pupil into lines along one shear axis.
- *
- * @param lattice - lattice pupil
- * @param axis - image axis of the shear: x runs along lattice rows, y along lattice columns
- * @returns the lines that hold a ray
- */
-function waveLines(lattice: MtfWaveLattice, axis: "x" | "y"): WaveLine[] {
-  const { columns, rows } = lattice;
-  const [lines, cells, lineStride, cellStride] =
-    axis === "x" ? [rows, columns, columns, 1] : [columns, rows, 1, columns];
-  const source = axis === "x" ? lattice.cosineX : lattice.cosineY;
-  const litCells = Array.from({ length: lines }, (_, line) => {
-    const lit: number[] = [];
-    for (let cell = 0; cell < cells; cell++)
-      if (lattice.amplitude[line * lineStride + cell * cellStride] > 0) lit.push(cell);
-    return lit;
-  });
-  // Cosine per cell of the best-sampled line, signed, for a line whose own rays do not give one.
-  let fallbackPitch = 0;
-  let longest = 1;
-  litCells.forEach((lit, line) => {
-    const span = lit.length > 1 ? lit[lit.length - 1] - lit[0] : 0;
-    if (span < longest) return;
-    const first = source[line * lineStride + lit[0] * cellStride];
-    const last = source[line * lineStride + lit[lit.length - 1] * cellStride];
-    if (last === first) return;
-    longest = span;
-    fallbackPitch = (last - first) / span;
-  });
-  const result: WaveLine[] = [];
-  litCells.forEach((lit, line) => {
-    if (!lit.length) return;
-    const at = (cell: number) => line * lineStride + cell * cellStride;
-    const first = source[at(lit[0])];
-    const ownPitch = lit.length > 1 ? (source[at(lit[lit.length - 1])] - first) / (lit[lit.length - 1] - lit[0]) : 0;
-    const pitch = ownPitch !== 0 ? ownPitch : fallbackPitch;
-    if (pitch === 0) return;
-    const rising = pitch > 0;
-    const amplitude = new Float64Array(cells + 2);
-    const pathMm = new Float64Array(cells + 2);
-    const cosine = new Float64Array(cells + 2);
-    // Cosine of any cell: its own ray's, or a straight line through the nearest lit cells on either side.
-    const cosineAt = (cell: number) => {
-      const after = lit.findIndex((other) => other >= cell);
-      if (after >= 0 && lit[after] === cell) return source[at(cell)];
-      const a = after < 0 ? lit[lit.length - 1] : after === 0 ? lit[0] : lit[after - 1];
-      const b = after <= 0 ? a : lit[after];
-      const local = b !== a ? (source[at(b)] - source[at(a)]) / (b - a) : 0;
-      return source[at(a)] + (local !== 0 ? local : pitch) * (cell - a);
-    };
-    for (let slot = 0; slot < cells + 2; slot++) {
-      const cell = rising ? slot - 1 : cells - slot;
-      cosine[slot] = cosineAt(cell);
-      if (cell < 0 || cell >= cells) continue;
-      amplitude[slot] = lattice.amplitude[at(cell)];
-      pathMm[slot] = lattice.pathMm[at(cell)];
+/** Extend both cosines through dark cells; they carry geometry, never flux or phase. */
+function waveMesh(lattice: MtfWaveLattice): WaveMesh | null {
+  const columns = lattice.columns + 2;
+  const rows = lattice.rows + 2;
+  if (lattice.columns < 2 || lattice.rows < 2) return null;
+  const cells = columns * rows;
+  const mesh: WaveMesh = {
+    columns,
+    rows,
+    amplitude: new Float64Array(cells),
+    pathMm: new Float64Array(cells),
+    cosineX: new Float64Array(cells),
+    cosineY: new Float64Array(cells),
+    jacobian: new Float64Array(cells),
+  };
+  const known = new Uint8Array(cells);
+  for (let row = 0; row < lattice.rows; row++)
+    for (let column = 0; column < lattice.columns; column++) {
+      const source = row * lattice.columns + column;
+      if (!(lattice.amplitude[source] > 0)) continue;
+      const cell = (row + 1) * columns + column + 1;
+      known[cell] = 1;
+      mesh.amplitude[cell] = lattice.amplitude[source];
+      mesh.pathMm[cell] = lattice.pathMm[source];
+      mesh.cosineX[cell] = lattice.cosineX[source];
+      mesh.cosineY[cell] = lattice.cosineY[source];
     }
-    result.push({ amplitude, pathMm, cosine });
-  });
-  return result;
-}
+  // Local linear extrapolation uses the nearest measured slope at a rim, not a whole-line average.
+  const extend = (start: number, stride: number, length: number) => {
+    const lit: number[] = [];
+    for (let slot = 0; slot < length; slot++) if (known[start + slot * stride]) lit.push(slot);
+    if (lit.length < 2) return false;
+    let right = 1;
+    for (let slot = 0; slot < length; slot++) {
+      const cell = start + slot * stride;
+      if (known[cell]) continue;
+      while (right < lit.length - 1 && lit[right] < slot) right++;
+      const low = lit[right - 1];
+      const high = lit[right];
+      const fraction = (slot - low) / (high - low);
+      for (const coordinate of [mesh.cosineX, mesh.cosineY])
+        coordinate[cell] =
+          coordinate[start + low * stride] * (1 - fraction) + coordinate[start + high * stride] * fraction;
+    }
+    for (let slot = 0; slot < length; slot++) known[start + slot * stride] = 1;
+    return true;
+  };
+  for (let column = 1; column < columns - 1; column++) extend(column, columns, rows);
+  for (let row = 0; row < rows; row++) if (!extend(row * columns, 1, columns)) return null;
 
-/**
- * Amplitude and optical path of a line at a direction cosine, interpolated between its two nearest cells and
- * weighted by amplitude, so that beside the beam's edge the path is the lit cell's.
- *
- * @param line - lattice line ordered by rising cosine
- * @param target - direction cosine
- * @returns amplitude and path, with amplitude 0 beyond the line
- */
-function waveAt(line: WaveLine, target: number): { amplitude: number; pathMm: number } {
-  const { amplitude, pathMm, cosine } = line;
-  const end = cosine.length - 1;
-  if (!(target > cosine[0]) || !(target < cosine[end])) return { amplitude: 0, pathMm: 0 };
-  let low = 0,
-    high = end;
-  while (high - low > 1) {
-    const middle = (low + high) >> 1;
-    if (cosine[middle] <= target) low = middle;
-    else high = middle;
+  const { cosineX: x, cosineY: y } = mesh;
+  const cross = (a: number, b: number, c: number) => (x[b] - x[a]) * (y[c] - y[a]) - (y[b] - y[a]) * (x[c] - x[a]);
+  let orientation = 0;
+  for (let row = 0; row < rows - 1; row++)
+    for (let column = 0; column < columns - 1; column++) {
+      const a = row * columns + column;
+      for (const [b, c] of [
+        [a + 1, a + columns + 1],
+        [a + columns + 1, a + columns],
+      ]) {
+        const det = cross(a, b, c);
+        const scale = Math.hypot(x[b] - x[a], y[b] - y[a]) * Math.hypot(x[c] - x[a], y[c] - y[a]);
+        if (!Number.isFinite(det) || !(Math.abs(det) > 1e-12 * scale)) return null;
+        orientation ||= Math.sign(det);
+        if (orientation * det <= 0) return null;
+      }
+    }
+  // Consistent triangle orientation plus a simple boundary makes the piecewise-affine map one-to-one.
+  const boundary: number[] = [];
+  for (let column = 0; column < columns; column++) boundary.push(column);
+  for (let row = 1; row < rows; row++) boundary.push(row * columns + columns - 1);
+  for (let column = columns - 2; column >= 0; column--) boundary.push((rows - 1) * columns + column);
+  for (let row = rows - 2; row > 0; row--) boundary.push(row * columns);
+  for (let i = 0; i < boundary.length; i++) {
+    const a = boundary[i];
+    const b = boundary[(i + 1) % boundary.length];
+    for (let j = i + 2; j < boundary.length; j++) {
+      if (i === 0 && j === boundary.length - 1) continue;
+      const c = boundary[j];
+      const d = boundary[(j + 1) % boundary.length];
+      if (
+        Math.max(x[a], x[b]) < Math.min(x[c], x[d]) ||
+        Math.max(x[c], x[d]) < Math.min(x[a], x[b]) ||
+        Math.max(y[a], y[b]) < Math.min(y[c], y[d]) ||
+        Math.max(y[c], y[d]) < Math.min(y[a], y[b])
+      )
+        continue;
+      if (cross(a, b, c) * cross(a, b, d) <= 0 && cross(c, d, a) * cross(c, d, b) <= 0) return null;
+    }
   }
-  const span = cosine[high] - cosine[low];
-  const fraction = span > 0 ? (target - cosine[low]) / span : 0;
-  const near = (1 - fraction) * amplitude[low];
-  const far = fraction * amplitude[high];
-  const weight = near + far;
-  return { amplitude: weight, pathMm: weight > 0 ? (near * pathMm[low] + far * pathMm[high]) / weight : 0 };
+  for (let row = 0; row < rows; row++)
+    for (let column = 0; column < columns; column++) {
+      const cell = row * columns + column;
+      const left = row * columns + Math.max(column - 1, 0);
+      const right = row * columns + Math.min(column + 1, columns - 1);
+      const bottom = Math.max(row - 1, 0) * columns + column;
+      const top = Math.min(row + 1, rows - 1) * columns + column;
+      const det =
+        ((x[right] - x[left]) * (y[top] - y[bottom]) - (y[right] - y[left]) * (x[top] - x[bottom])) /
+        ((right - left) * ((top - bottom) / columns));
+      if (!(orientation * det > 0)) return null;
+      mesh.jacobian[cell] = Math.abs(det);
+      // A cell carries flux in stop coordinates. Hopkins needs field amplitude per direction-space area.
+      mesh.amplitude[cell] /= Math.sqrt(mesh.jacobian[cell]);
+    }
+  return mesh;
+}
+
+/** A mapped stop triangle, with its affine inverse for direction-coordinate lookups. */
+interface WaveTriangle {
+  a: number;
+  b: number;
+  c: number;
+  ux: number;
+  uy: number;
+  vx: number;
+  vy: number;
+  inverseDet: number;
+}
+
+/** Index the illuminated mesh triangles in direction-space bins; bins only accelerate exact 2-D lookups. */
+function waveLookup(mesh: WaveMesh): (x: number, y: number) => { amplitude: number; pathMm: number } {
+  const { columns, rows, cosineX: x, cosineY: y, amplitude, pathMm } = mesh;
+  let minX = Infinity,
+    maxX = -Infinity,
+    minY = Infinity,
+    maxY = -Infinity;
+  for (let cell = 0; cell < x.length; cell++) {
+    minX = Math.min(minX, x[cell]);
+    maxX = Math.max(maxX, x[cell]);
+    minY = Math.min(minY, y[cell]);
+    maxY = Math.max(maxY, y[cell]);
+  }
+  const binX = (value: number) =>
+    Math.max(0, Math.min(columns - 1, Math.floor(((value - minX) * columns) / (maxX - minX))));
+  const binY = (value: number) => Math.max(0, Math.min(rows - 1, Math.floor(((value - minY) * rows) / (maxY - minY))));
+  const bins: WaveTriangle[][] = Array.from({ length: columns * rows }, () => []);
+  for (let row = 0; row < rows - 1; row++)
+    for (let column = 0; column < columns - 1; column++) {
+      const a = row * columns + column;
+      for (const [b, c] of [
+        [a + 1, a + columns + 1],
+        [a + columns + 1, a + columns],
+      ]) {
+        if (!(amplitude[a] > 0 || amplitude[b] > 0 || amplitude[c] > 0)) continue;
+        const ux = x[b] - x[a],
+          uy = y[b] - y[a];
+        const vx = x[c] - x[a],
+          vy = y[c] - y[a];
+        const triangle = { a, b, c, ux, uy, vx, vy, inverseDet: 1 / (ux * vy - uy * vx) };
+        const lowX = binX(Math.min(x[a], x[b], x[c])),
+          highX = binX(Math.max(x[a], x[b], x[c]));
+        const lowY = binY(Math.min(y[a], y[b], y[c])),
+          highY = binY(Math.max(y[a], y[b], y[c]));
+        for (let by = lowY; by <= highY; by++)
+          for (let bx = lowX; bx <= highX; bx++) bins[by * columns + bx].push(triangle);
+      }
+    }
+  return (targetX, targetY) => {
+    if (targetX >= minX && targetX <= maxX && targetY >= minY && targetY <= maxY)
+      for (const { a, b, c, ux, uy, vx, vy, inverseDet } of bins[binY(targetY) * columns + binX(targetX)]) {
+        const dx = targetX - x[a],
+          dy = targetY - y[a];
+        const u = (dx * vy - dy * vx) * inverseDet;
+        const v = (ux * dy - uy * dx) * inverseDet;
+        const w = 1 - u - v;
+        // Roundoff at shared edges must not open cracks in the mapped pupil.
+        if (Math.min(u, v, w) < -1e-9) continue;
+        const wa = Math.max(0, w) * amplitude[a];
+        const wb = Math.max(0, u) * amplitude[b];
+        const wc = Math.max(0, v) * amplitude[c];
+        const value = wa + wb + wc;
+        // Amplitude weighting leaves a dark cell's undefined phase out of rim interpolation.
+        return { amplitude: value, pathMm: value > 0 ? (wa * pathMm[a] + wb * pathMm[b] + wc * pathMm[c]) / value : 0 };
+      }
+    return { amplitude: 0, pathMm: 0 };
+  };
 }
 
 /**
- * Hopkins' OTF of a lattice pupil: its autocorrelation at a shear of λν in direction cosine.
+ * Hopkins' OTF on a mapped lattice: autocorrelation at the exact direction-cosine shear λν.
  *
- * Every lit cell is paired with the two points of its lattice line whose direction cosines lie
- * half a shear to either side, found by interpolation on the rays' own cosines, with amplitude
- * and optical path interpolated linearly. Each frequency is summed at its exact shear:
- * interpolating a precomputed autocorrelation between whole-cell lags under-reads by up to 0.008,
- * because its phase turns between them.
+ * Both sheared endpoints are located in the 2-D direction mesh, keeping the perpendicular
+ * coordinate fixed. With J = |∂q/∂(column,row)|, the field amplitude is √flux/√J and each
+ * midpoint has direction-area weight J. Thus the stop-coordinate integrand is
+ * J₀ √(flux₊ flux₋ / (J₊ J₋)), with optical path interpolated without phase wrapping.
+ * Dark midpoint cells count too: an overlapping pair can straddle an obstruction.
  *
- * @param lattice - lattice pupil
+ * @param lattice - lattice pupil with an invertible direction map and adequately sampled phase
  * @param wavelengthMm - wavelength in mm
  * @param frequencies - image-space frequencies in lp/mm
  * @returns complex OTF per axis, with the phase convention of `geometricOtf`
@@ -245,23 +334,33 @@ export function waveLatticeOtf(
   wavelengthMm: number,
   frequencies: readonly number[],
 ): { sagittal: ComplexOtf; tangential: ComplexOtf } {
+  const mesh = waveMesh(lattice);
+  if (mesh === null) throw new RangeError("Wave lattice direction map must be invertible");
+  const at = waveLookup(mesh);
   let energy = 0;
   for (const value of lattice.amplitude) energy += value * value;
-  const cut = (lines: readonly WaveLine[]): ComplexOtf => {
+  const cut = (axis: "x" | "y"): ComplexOtf => {
     const real: number[] = [],
       imaginary: number[] = [];
     for (const frequency of frequencies) {
+      if (frequency === 0) {
+        real.push(1);
+        imaginary.push(0);
+        continue;
+      }
       const halfShear = (frequency * wavelengthMm) / 2;
       let re = 0,
         im = 0;
-      for (const line of lines)
-        for (let slot = 1; slot < line.cosine.length - 1; slot++) {
-          // Every cell is a pair centre, lit or not: the two ends of a pair can straddle an obstruction.
-          const plus = waveAt(line, line.cosine[slot] + halfShear);
-          const minus = waveAt(line, line.cosine[slot] - halfShear);
-          const pair = plus.amplitude * minus.amplitude;
+      for (let row = 1; row < mesh.rows - 1; row++)
+        for (let column = 1; column < mesh.columns - 1; column++) {
+          const cell = row * mesh.columns + column;
+          const x = mesh.cosineX[cell],
+            y = mesh.cosineY[cell];
+          const plus = at(x + (axis === "x" ? halfShear : 0), y + (axis === "y" ? halfShear : 0));
+          const minus = at(x - (axis === "x" ? halfShear : 0), y - (axis === "y" ? halfShear : 0));
+          const pair = mesh.jacobian[cell] * plus.amplitude * minus.amplitude;
           if (!(pair > 0)) continue;
-          // A ray's landing offset is minus the gradient of its path over direction cosine, hence the sign.
+          // A ray's landing offset is minus its path gradient over direction cosine, hence the sign.
           const phase = (2 * Math.PI * (plus.pathMm - minus.pathMm)) / wavelengthMm;
           re += pair * Math.cos(phase);
           im += pair * Math.sin(phase);
@@ -271,5 +370,5 @@ export function waveLatticeOtf(
     }
     return { real, imaginary };
   };
-  return { sagittal: cut(waveLines(lattice, "x")), tangential: cut(waveLines(lattice, "y")) };
+  return { sagittal: cut("x"), tangential: cut("y") };
 }

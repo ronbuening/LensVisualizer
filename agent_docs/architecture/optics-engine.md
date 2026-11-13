@@ -192,10 +192,15 @@ field bundles), and a field whose overlap is more than 1 % such pairs says so (`
 `mtfWavefront.ts` is the reference the estimator is held against, not a product path. With `recordOpticalPath` the
 sequential trace accumulates incident-medium optical length; `rayOpticalPathToImageMm` carries it to the foot of the
 perpendicular from the image point (a reference sphere at infinity, whose pupil coordinate is the ray's own direction
-cosine), and `waveLatticeOtf` autocorrelates the complex pupil on the bundle's lattice, pairing cells by direction
-cosine at each exact shear. It reads how
-far the rays travelled where the estimator reads where they land, so the two share only the trace. It is valid only
-while the phase turns less than a quarter wave per lattice cell (`waveLatticePhaseStep`). The source-prescription
+cosine). `waveLatticeOtf` locates both endpoints of each exact shear in a piecewise-affine 2-D direction mesh,
+holding the perpendicular cosine fixed. For the local finite-difference stop-to-direction area Jacobian J, it
+interpolates field amplitude √flux/√J and unwrapped optical path, then integrates midpoint pairs with direction-area
+weight J; dark midpoint cells still count across an obstruction. Dark cells carry linearly extended map coordinates
+and zero amplitude.
+It reads how far the rays travelled where the estimator reads where they land, so the two share only the trace.
+It is valid only while the phase turns less than a quarter wave per lattice cell (`waveLatticePhaseStep`),
+which returns infinity for a folded or degenerate direction mesh; consistent triangle orientation and a simple mesh
+boundary establish invertibility. The source-prescription
 result must not be presented as the manufacturer's production MTF; the shared omitted-sensor limitations above also
 apply.
 

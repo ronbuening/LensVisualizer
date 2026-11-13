@@ -509,6 +509,57 @@ describe("analytic wave-optics controls", () => {
     for (const s of [0.005, 0.05, 0.2, 0.5, 0.9])
       expect(Math.abs(hopkinsMtf(unaberrated, s, "x") - circularMtf(s))).toBeLessThan(1e-4);
   });
+  /** A circular direction-space pupil sampled through an analytic stop map; flux is its area Jacobian. */
+  const mappedWaveLattice = (bow: number, coupling: number, wave: WaveAberration, samples = 256) => {
+    const lattice = aberratedWaveLattice(unaberrated, na, wavelengthMm, samples);
+    const extent = 1 + Math.abs(coupling);
+    for (let row = 0; row < samples; row++)
+      for (let column = 0; column < samples; column++) {
+        const x = ((2 * (column + 0.5)) / samples - 1) * extent;
+        const v = ((2 * (row + 0.5)) / samples - 1) * extent;
+        const y = v + bow * (1 - v * v) + coupling * x * x;
+        const cell = row * samples + column;
+        lattice.amplitude[cell] = Math.hypot(x, y) <= 1 ? Math.sqrt(1 - 2 * bow * v) : 0;
+        lattice.cosineX[cell] = na * x;
+        lattice.cosineY[cell] = na * y;
+        lattice.pathMm[cell] = wavelengthMm * wave(x, y);
+      }
+    return lattice;
+  };
+  it("integrates direction-space area on a bowed stop map with Jacobian-weighted flux", () => {
+    const lattice = mappedWaveLattice(0.2, 0, unaberrated);
+    expect(waveLatticePhaseStep(lattice, wavelengthMm)).toBe(0);
+    const otf = waveLatticeOtf(lattice, wavelengthMm, [0, 0.5 * cutoff]);
+    for (const cut of ["sagittal", "tangential"] as const) {
+      expect(otf[cut].real[0]).toBeCloseTo(1, 12);
+      // The boundary is sampled at cell centres; 0.002 allows its O(1/N) rim error at 256 cells.
+      expect(Math.abs(otf[cut].real[1] - circularMtf(0.5))).toBeLessThan(0.002);
+      expect(Math.abs(otf[cut].imaginary[1])).toBeLessThan(1e-12);
+    }
+  });
+  it("holds the perpendicular direction coordinate fixed on a coupled area-preserving map", () => {
+    const lattice = mappedWaveLattice(0, 0.2, defocus);
+    expect(waveLatticePhaseStep(lattice, wavelengthMm)).toBeLessThan(0.025);
+    const otf = waveLatticeOtf(lattice, wavelengthMm, [0.2 * cutoff]);
+    const expected = hopkinsMtf(defocus, 0.2, "x", 800);
+    expect(expected).toBeCloseTo(0.014414, 5);
+    for (const cut of ["sagittal", "tangential"] as const) {
+      expect(Math.abs(otfMagnitude(otf[cut])[0] - expected)).toBeLessThan(0.002);
+      // Defocus gives the real integrand cos(8πsu), whose overlap integral is negative at s = 0.2.
+      expect(Math.abs(otf[cut].real[0] + expected)).toBeLessThan(0.002);
+      expect(Math.abs(otf[cut].imaginary[0])).toBeLessThan(0.002);
+    }
+  });
+  it("refuses folded and singular direction maps even with constant optical path", () => {
+    for (const folded of [false, true]) {
+      const lattice = aberratedWaveLattice(unaberrated, na, wavelengthMm, 32);
+      lattice.cosineY.forEach((y, cell) => {
+        lattice.cosineY[cell] = folded ? (y * y) / na : 0;
+      });
+      expect(waveLatticePhaseStep(lattice, wavelengthMm)).toBe(Infinity);
+      expect(() => waveLatticeOtf(lattice, wavelengthMm, [0.2 * cutoff])).toThrow(RangeError);
+    }
+  });
   it("measures the optical-path reference's phase step and pairs its cells across an obstruction", () => {
     // A pure tilt of 0.1 wave per column and 0.3 per row.
     const tilted = aberratedWaveLattice((x, y) => (0.1 * x + 0.3 * y) * 16, na, wavelengthMm, 32);
