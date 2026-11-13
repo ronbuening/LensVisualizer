@@ -16,10 +16,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  */
 const LENS_DATA = {
   "schema": 2,
-  "key": "cooke-aviar-gb113590-ei-representative",
+  "key": "cooke-aviar-8-25in-f45",
   "maker": "Cooke",
   "name": "COOKE AVIAR 8¼ in f/4.5",
-  "visible": false,
+  "visible": true,
   "catalog": {
     "lensMounts": [
       "large-format-lens-board"

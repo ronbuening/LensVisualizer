@@ -15,10 +15,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  */
 const LENS_DATA = {
   "schema": 2,
-  "key": "cooke-seriesviii-gb198958-ei-representative",
+  "key": "cooke-series-viii-telephoto-gb198958",
   "maker": "Cooke",
   "name": "COOKE SERIES VIII TELEPHOTO (GB 198,958 Example I Design)",
-  "visible": false,
+  "visible": true,
   "catalog": {
     "lensMounts": ["large-format-lens-board"],
     "imageFormat": "4x5",

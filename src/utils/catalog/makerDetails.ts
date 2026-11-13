@@ -133,8 +133,8 @@ export const MAKER_DETAILS: Record<string, MakerDetails> = {
     summary:
       "German camera, lens and cinema-projector manufacturer whose Ernostar lenses equipped the Ermanox cameras for photography in low light.",
     history:
-      "Heinrich Ernemann and his partner Matthias founded the Dresdner Photographische Apparate-Fabrik Ernemann & Matthias in Dresden in 1889. The business became a joint-stock company in 1899 and produced photographic cameras and cinema projectors. Ludwig Bertele developed the Ernostar lens for the company, first at f/2 and then at f/1.8. The Ermanox camera appeared in 1924 and used these large-aperture lenses for photography in available light. In 1926 Ernemann merged with other manufacturers to form Zeiss Ikon AG, while the Ernemann brand continued in use. The catalog's f/1.8 Ernostar is a representative of DE436260 Example II at its normalized focal length, rather than a verified production prescription.",
-    notableDesigns: "Ernostar f/1.8 (DE436260 Example II representative), Ernostar f/2",
+      "Heinrich Ernemann and his partner Matthias founded the Dresdner Photographische Apparate-Fabrik Ernemann & Matthias in Dresden in 1889. The business became a joint-stock company in 1899 and produced photographic cameras and cinema projectors. Ludwig Bertele developed the Ernostar lens for the company, first at f/2 and then at f/1.8. The Ermanox camera appeared in 1924 and used these large-aperture lenses for photography in available light. In 1926 Ernemann merged with other manufacturers to form Zeiss Ikon AG, while the Ernemann brand continued in use. The catalog's Ernostar 10.5cm f/1.8 follows Example II of Ernemann's DE 436,260.",
+    notableDesigns: "Ernostar 10.5cm f/1.8, Ernostar 10cm f/2, Ermanox camera",
   },
   kodak: {
     founded: 1892,
@@ -269,7 +269,7 @@ export const MAKER_DETAILS: Record<string, MakerDetails> = {
     summary:
       "British lens brand of Taylor, Taylor & Hobson, known for photographic anastigmats, telephotos and the Speed Panchro cinema lenses, later continued by Cooke Optics.",
     history:
-      "Cooke's manufacturing lineage began in Leicester in 1886 with the business later known as Taylor, Taylor & Hobson. The firm produced Cooke lenses based on H. Dennis Taylor's triplet design, patented in 1893. Arthur Warmisham's Aviar and Horace William Lee's Series VIII telephoto, Series XI triplet and Series XV Triple Convertible extended its photographic lens range. Lee's Speed Panchro designs were followed by Gordon Cook's Series II cinema lenses in the 1950s. Cooke Optics became a separate company in 1998 following a buyout of Taylor Hobson's optical division. The catalog models represent selected patent examples, with their associations to production lenses qualified in the individual analyses.",
+      "Cooke's manufacturing lineage began in Leicester in 1886 with the business later known as Taylor, Taylor & Hobson. The firm produced Cooke lenses based on H. Dennis Taylor's triplet design, patented in 1893. Arthur Warmisham's Aviar and Horace William Lee's Series VIII telephoto, Series XI triplet and Series XV Triple Convertible extended its photographic lens range. Lee's Speed Panchro designs were followed by Gordon Cook's Series II cinema lenses in the 1950s. Cooke Optics became a separate company in 1998 following a buyout of Taylor Hobson's optical division. Each Cooke model in the catalog follows a numerical example from one of these patents.",
     notableDesigns:
       "Aviar (Series II), Series VIII telephoto, Series XI triplet, Series XV Triple Convertible, Speed Panchro, Speed Panchro Series II (S2), Cooke Triplet",
   },

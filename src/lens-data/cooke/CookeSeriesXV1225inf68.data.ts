@@ -14,10 +14,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  */
 const LENS_DATA = {
   "schema": 2,
-  "key": "cooke-seriesxv-gb376044-combined-representative",
+  "key": "cooke-series-xv-12-25in-f68",
   "maker": "Cooke",
-  "name": "Cooke Series XV 12.25-inch f/6.8 (combined patent representative)",
-  "visible": false,
+  "name": "COOKE SERIES XV 12¼ in f/6.8",
+  "visible": true,
   "catalog": {
     "lensMounts": ["large-format-lens-board"],
     "imageFormat": "8x10",

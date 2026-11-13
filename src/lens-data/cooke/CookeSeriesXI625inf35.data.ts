@@ -26,10 +26,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  */
 const LENS_DATA = {
   "schema": 2,
-  "key": "cooke-seriesxi-gb155640-ei-representative",
+  "key": "cooke-series-xi-6-25in-f35",
   "maker": "Cooke",
   "name": "COOKE SERIES XI 6¼ in f/3.5",
-  "visible": false,
+  "visible": true,
   "catalog": {
     "lensMounts": [
       "large-format-lens-board"

@@ -22,10 +22,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  */
 const LENS_DATA = {
   "schema": 2,
-  "key": "ernemann-ernostar-de436260-eii-representative",
+  "key": "ernemann-ernostar-10-5cm-f18",
   "maker": "Ernemann",
   "name": "ERNEMANN ERNOSTAR 10.5cm f/1.8",
-  "visible": false,
+  "visible": true,
   "catalog": {
     "lensMounts": ["fixed-lens-camera"],
     "imageFormat": "645",

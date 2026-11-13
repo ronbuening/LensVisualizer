@@ -10,10 +10,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  */
 const LENS_DATA = {
   "schema": 2,
-  "key": "cooke-s2-us2502509-eii-representative",
+  "key": "cooke-speed-panchro-series-ii-75mm-f2",
   "maker": "Cooke",
   "name": "COOKE SPEED PANCHRO SERIES II 75mm f/2",
-  "visible": false,
+  "visible": true,
   "catalog": {
     "elementCount": 6,
     "groupCount": 4,

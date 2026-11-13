@@ -16,10 +16,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  */
 const LENS_DATA = {
   "schema": 2,
-  "key": "cooke-speed-panchro-us1955591-representative",
+  "key": "cooke-speed-panchro-us1955591",
   "maker": "Cooke",
   "name": "COOKE SPEED PANCHRO f/2 (US 1,955,591 Design)",
-  "visible": false,
+  "visible": true,
   "catalog": {
     "elementCount": 6,
     "groupCount": 4,
