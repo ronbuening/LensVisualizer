@@ -15,7 +15,7 @@ The [official product](https://7artisans.store/products/af-135mm-f1-8-full-frame
 
 ## Optical Architecture
 
-The positive front group comprises L1–L6, followed by the tabulated iris, a single negative focusing element L7, and positive rear group L8–L16. Three cemented pairs are L2/L3 (C1), L5/L6 (C2) and L14/L15 (C3). The glass-to-glass transitions are retained. The separate 2.5 mm camera-side plate and 1 mm final air space retain their physical dimensions.
+The positive front group 101 comprises L1–L6, followed by the tabulated iris 102, a single negative focusing element L7 (103), and positive rear group 104 comprising L8–L16. The diagram and inspector use Figure 1's callouts: 1001–1006 for elements 1–6, 103 for element 7, and 1008–1016 for elements 8–16. The L1–L16 shorthand in these notes refers to those element numbers. Three cemented pairs are L2/L3 (C1), L5/L6 (C2) and L14/L15 (C3). The glass-to-glass transitions are retained. The separate 2.5 mm camera-side plate and 1 mm final air space retain their physical dimensions; the plate is traced but omitted from the lens diagram. Inspector focal lengths describe each isolated thick element in air, including the individual members of cemented pairs.
 
 ## Elements and Glass
 
@@ -38,9 +38,9 @@ All source radii, separations, refractive indices and Abbe numbers are retained.
 
 The maker marks L2/L5/L10/L12/L15/L16 as ED and L1/L6/L9/L13/L14 as high-index; the six ED positions have consistent index/Abbe values and carry inferred ED tags, with L5 using the wavelength dependence of the ED fluorophosphate row S-FPL55.
 
-L5 retains the printed nd = 1.4378 and νd = 94.523389. The Ohara S-FPL55 catalog row has nd = 1.43875 and νd = 94.661059: catalog minus patent Δnd = +0.00095 and Δνd = +0.137670 (about +0.14). This lies within the site's spectral-proxy window of about 0.002 in index and 0.25 in Abbe number. The engine preserves the printed index at the d reference line and borrows only the catalog row's wavelength dependence; the authored nd/νd pair remains unchanged. This is a qualified spectral proxy, not an exact glass identification; supplier and melt are unspecified.
+L5 retains the printed nd = 1.4378 and νd = 94.523389. The Ohara S-FPL55 catalog row has nd = 1.43875 and νd = 94.661059: catalog minus patent Δnd = +0.00095 and Δνd = +0.137670 (about +0.14). This lies within the site's proxy tolerance of about 0.002 in index and 0.25 in Abbe number. The engine preserves the printed index at the d reference line and borrows only the catalog row's wavelength dependence; the authored nd/νd pair remains unchanged. This is a qualified spectral proxy, not an exact glass identification; supplier and melt are unspecified.
 
-The paraxial channel calculation in `chan.mjs` gives the following focus offsets relative to d (G), comparing nd/νd-only dispersion for L5 with its S-FPL55 spectral proxy. Channels R/G/B/V correspond to C/d/F/g.
+The paraxial channel calculation gives the following focus offsets relative to d (G), comparing nd/νd-only dispersion for L5 with its S-FPL55 spectral proxy. Channels R/G/B/V correspond to C/d/F/g.
 
 | Line | L5 nd/νd-only offset, µm | L5 S-FPL55 proxy offset, µm |
 | --- | ---: | ---: |
@@ -51,6 +51,8 @@ The paraxial channel calculation in `chan.mjs` gives the following focus offsets
 
 The S-FPL55 proxy gives a much smaller violet secondary-spectrum residual: g is −4.0 µm from d, versus +65.2 µm with nd/νd-only dispersion. The maximum absolute offset from d is just under 15 µm (14.995457 µm before rounding); the full C/d/F/g focus range is 23.3 µm, versus 65.2 µm with nd/νd-only dispersion. This range agrees better with the roughly 20 µm paraxial spread of the patent's Figure 2 longitudinal-aberration curves over 0.436–0.656 µm. The comparison supports the proxy's spectral behavior without establishing the manufactured glass identity or reproducing the full aberration curves.
 
+Paraxial colour agreement does not extend to the full source pupil. A ghost trace at Figure 2's 36.8167 mm pupil radius gives marginal C/d/F/g axial crossings of −0.024/−0.036/−0.052/−0.079 mm relative to the tabulated image plane. The violet result lies about 0.025 mm beyond the leftmost full-pupil curve drawn in Figure 2; individual wavelength identities are difficult to separate in the monochrome scan. The L5 dispersion approximation is a sensitivity: changing only its wavelength dependence moves the marginal violet focus substantially. The physical iris admits a smaller beam, so these full-source-pupil crossings do not describe the transmitted marginal ray.
+
 The prose and claims assign Abbe numbers 80–90 to L9/L11, whereas Table 1 gives them 23.784497/28.318797 and places 81.612838 at L10/L12; the model follows the table.
 
 ## Aperture and Geometry
@@ -59,7 +61,7 @@ Figure 2 prints pupil radius 36.8167 mm. Combining that with the table's paraxia
 
 ## Focus
 
-Only the tabulated infinity configuration is modeled. The product's minimum focus distance (MFD) is 0.68 m and its autofocus uses a stepping motor. The patent's 0–17 mm L7 travel does not establish a complete finite-conjugate relation or endpoint datum, so the model has no finite-focus state.
+Only the tabulated infinity configuration is modeled. The product's minimum focus distance (MFD) is 0.68 m and its autofocus uses a stepping motor. Paragraphs 0007 and 0033 (physical pages 3 and 5) state 0–17 mm axial travel for L7 (103), without specifying the objectward/imageward direction, endpoint datum or finite-focus spacings. The model therefore has no finite-focus state.
 
 ## Aspherical Surfaces
 
@@ -68,6 +70,8 @@ The selected table lists standard spherical surfaces, including the planar front
 ## Model Scope and Limitations
 
 The original graphs distinguish geometric through-focus MTF at 40 lp/mm (Figure 5) from polychromatic diffraction MTF through 60 lp/mm (Figure 6), both spanning 0.4358–0.6563 micrometers and image heights through 21.70 mm. Figure 7 reports relative illumination at 0.546074 micrometers. Method-mismatched curves must not be called reproductions.
+
+The model gives +0.861% distortion at the 21.65 mm format corner, consistent with Figure 4's roughly +1% edge value. Its violet tangential parabasal focus is −0.0929 mm relative to the tabulated image plane at that corner, extending beyond Figure 4's drawn range of roughly ±0.05 mm. Together with the full-pupil violet discrepancy, this limits claims of spectral agreement to the qualified paraxial comparison above.
 
 The paraxial EFL is 132.105528 mm with the source's image plane retained; the computed back focus is 1.0101 mm versus the printed 1 mm final gap. The 147.806791 mm total track lies within claim 7's 145–150 mm interval. Pupil aberration makes the real iris-admitted pupil differ from the paraxial pupil. A separate meridional trace launched at Figure 2's full pupil requires an approximately 21.175 mm iris radius and exceeds several modeled rims; that source-pupil trace remains inconsistent with the inferred 20.299857 mm iris. The actual iris-admitted axial beam clears the modeled rims. Wide-open geometric transmission at the modeled corner is approximately 36.2%. Off-axis clipping remains substantial and depends on the estimated clear apertures; simulated transmission is not a measurement of retail relative illumination or coating transmission.
 

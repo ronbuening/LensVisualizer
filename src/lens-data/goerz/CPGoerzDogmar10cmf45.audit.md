@@ -56,7 +56,7 @@ Before → after, identical: EFL 99.996511939962 → 99.996511939962 mm; FOPEN 4
 
 Surface audit: OK, no validation errors. Aperture audit: one lens/station within 3% of the stated f-number, zero rim/trace/iris limits and zero failures. Field-coverage audit with --all: one lens/station at ≥99%, zero unsolved and zero skipped. The browser screenshot helper returned thermal-observer and DNS-watch startup errors without producing an image, so rendered-page review could not be completed. No sandbox or approval denial occurred. Full application gates were excluded by this cleanup assignment.
 
-Rim and L4-edge review is closed by the semi-diameter section below, without geometry changes. Open: midpoint 2.7/2.7 mm stop split versus approximately 3.0/2.4 mm in the figure; this remains a coordinator decision. The exact production prescription/glass melts, complete nG′ dispersion fit, finite-focus spacings/minimum distance, separate-cell configurations and rendered-page review remain unestablished. The f/36 endpoint is resolved by the cited museum specimen.
+Rim and L4-edge review is closed by the semi-diameter section below, without geometry changes. Open: midpoint 2.7/2.7 mm stop split versus approximately 3.0/2.4 mm in the figure; this remains a coordinator decision. The exact production prescription/glass melts, complete nG′ dispersion fit, finite-focus spacings/minimum distance and separate-cell configurations remain unestablished. Rendered-page review is closed by the second-review section below. The f/36 endpoint is resolved by the cited museum specimen.
 
 ## 2026-11-13 — Semi-diameter pass against the patent figure
 
@@ -108,3 +108,59 @@ Paraxial chan.mjs output, pre-relabel → current, at infinity. R/G/B/V correspo
 | REF / authored D | 99.9965 → 99.9965 | 88.7089 → 88.7089 | 0.0 → 0.0 |
 
 No name, mount, format, field or other catalog metadata changes are assigned or present in the baseline comparison. The analysis describes the three proxies and L3's remaining limitation; the data file is not edited. The existing Open stop-split item remains unresolved because this assignment changes only glass text. Both Markdown companions are formatted with Prettier and checked with --check; full application gates are excluded by the text addendum.
+
+## 2026-11-13 — Second review: diagram, labels and movement
+
+Independently inspected the supplied 1400 × 900 live page and all four element inspectors, then re-read the local US1108307A.pdf: sole figure on PDF page 1, complete prescription, bibliography and explanatory text on page 2, and concluding claim on page 3. The actual source prints focal length 100, so the file's ×1 convention preserves the same 100 mm prescription as a normalized f = 1, ×100 description. No source coordinate changed.
+
+### Figure and rims
+
+Measured the native 2320 × 3408 scan again, excluding diagonal radius/thickness leaders, element-label leaders and stop ticks. At the local axis y ≈ 1643, the eight vertex centers are approximately x = 973.5, 1036.5, 1065.0, 1092.5, 1178.0, 1203.5, 1229.5 and 1287.0. The complete span gives 313.5 / 20 = 15.675 px/mm; the independent front and rear cell spans give 119 / 7.6 = 15.658 and 109 / 7 = 15.571 px/mm. Front thickness is approximately 4.02 versus 4.2 mm, the first negative thickness 1.75 versus 1.6 mm, and the rear air gap 1.66 versus 1.8 mm. Thick ink and these short-span differences limit absolute precision.
+
+As a transverse scale check, at y ≈ 1540, 103 px above the axis, the outer front and rear arcs lie near x = 985.5 and 1277.0. Their chord-sag radii relative to the vertices are roughly 448 and 535 px; divided by the printed radii 27.701 and 35.690 mm, these give approximately 16.2 and 15.0 px/mm. This coarse independent reading supports the long-span scale but does not establish precision for a small rim adjustment. Clean upper edges are about 187–190 px from the axis, approximately 11.9–12.1 mm. As before, treat the drawing as a proportional guide with roughly 0.3 mm reading uncertainty, not a clear-aperture specification.
+
+| Surfaces | Baseline / before → final sd (mm) | Independent figure reading (mm) | Verdict |
+| --- | --- | --- | --- |
+| 1–2, L1 | 11.5 / 11.5 → 11.5 each | approximately 12.0 | Retain equal square-cut rims; no significant mismatch |
+| 3–4, L2 | 11.5 / 11.5 → 11.5 each | approximately 12.0 | Retain equal square-cut rims and common height |
+| 5–6, L3 | 11.5 / 11.5 → 11.5 each | approximately 12.0–12.1 | Retain equal square-cut rims and common height |
+| 7–8, L4 | 11.5 / 11.5 → 11.5 each | approximately 12.1 | Retain thin positive edge, 0.438439 mm |
+
+No cut, land, rim extension, rim-cut depth or policy override is present; none was added. Full-pupil rimcost comparison with base1124sd, including leave-one-element-out checks, gives worst loss 0.0 percentage points across ten field samples. Corner geometric pupil transmission remains 63.4% → 63.4% at 26.8°; at 20.8° and 23.8° it remains 81.4% and 73.4%. These are clipping fractions, not total illumination. The meridional curve alone was not used to infer full-pupil equality.
+
+### Inspector fields, labels and movement
+
+The four supplied inspectors showed FL = −. Filled only their missing focalLengthMm fields from probe.mjs --elements, using isolated thick elements in air at the authored sodium-D index, rounded to two decimals:
+
+| Element | Before → after focalLengthMm | Evidence |
+| --- | --- | --- |
+| L1 | absent → +35.99 mm | Isolated positive thick element |
+| L2 | absent → −38.77 mm | Isolated negative thick element |
+| L3 | absent → −40.94 mm | Isolated negative thick element |
+| L4 | absent → +35.32 mm | Isolated positive thick element |
+
+All four names L1–L4 follow the patent's element designations. The two positive biconvex and two negative biconcave type strings agree with the signs of the eight radii; L2's stronger curve and L3's weaker curve face the diaphragm. Roles are correct. Four singlets form four air-separated components; there are no cemented components requiring brackets, no aspheres requiring A markers and no APD tags. The patent's baryta-crown description of L1/L4 does not designate anomalous dispersion. The earlier maker-cutaway record in the semi-diameter section reports four air-separated elements in two cells, no aspheric or special-glass markings and an uncalibrated barrel-obscured outline; that record was consulted, without newly viewing or downloading a maker image.
+
+Movement verdict for each of L1, L2, L3 and L4: fixed, displacement 0 mm. This is an infinity-only prime, with no zoom stations, focus keyframes or variable gaps. The source gives no finite-focus prescription or optical-group travel direction; page 2 discusses bellows-camera and separate-cell use without a numerical focus table. The focus description is accurate and does not invent a focusing mechanism. Probe's t = 0 and t = 1 diagnostics have identical 20.0000 mm optical track and 88.7089 mm back focus; its generic second line does not establish a finite-focus state. The live focus = 1 shot remains identical to infinity, with the far-end label stating Not modeled. Zoom/focus motion overlays have no authored motion to display.
+
+### Glass, colour and assignee
+
+Glasscheck and trylabel resolve BACD6 on L1/L4 and S-TIL26 on L2. Enumerating all evaluated site rows finds no exact match under |Δn| ≤ 0.0001 and |Δν| ≤ 0.15 for any element. BACD6 remains the only qualifying site row for L1/L4 under the site's proxy tolerance (Δn = −0.000366531, Δν = +0.0365712). S-TIL26 remains the closest qualifying L2 row in Abbe number (Δn = −0.001578123, Δν = +0.2028436); E-FL6 is farther at +0.2275516. No label changed. All four sodium-D references remain deliberate; stored source indices and derived dispersions are unchanged.
+
+L3's closest evaluated site rows remain E-FEL1 (approximately 1.54814/45.82), S-TIL1 (1.54814/45.78) and Schott LLF1 (1.54814/45.75); none lies within the site's proxy tolerance. The patent's sole example gives nD = 1.54820, C–F magnitude 0.01188 and nG′ = 1.56364 for L3 on page 2, but no glass name or supplier. There is no second example in which its pair can recur. L1 and L4 do repeat the same source glass coordinates.
+
+The full local vendor-AGF scan also finds no row inside the exact window. A borderline missing-row proposal for L3 is Sumita LLF1, tmp/pdfs/sumita-2025-11-07-all.agf, NM line 11675: nominal nd = 1.548140, νd = 45.900000, code 548459, formula 1, status 2. Its printed-header deltas are −0.000060 / −0.2447811. However, evaluating the CD polynomial on line 11677 at the engine's d/F/C wavelengths gives nd = 1.548140283 and νd = 45.8902224, hence Δν = −0.2545588, just outside the nominal 0.25 bound. This is a qualified proposal for catalog review, not an assigned match. Its coefficients are 2.349489, −0.007902707, 0.01649759, 0.0001810817, 0.00002788882, −0.00000009931414. A vendor-qualified name would be necessary: the current bare LLF1 resolves to Schott, not Sumita. Other missing archived rows inside the header proxy window are Ohara BSM6 for L1/L4 (1.613749/56.365919) and Sumita LF6 for L2 (1.567320/42.800000); these are proposals only, with no exact historical identification or reason to displace a working label before catalog review.
+
+No constant-index/nd-only element exists: all four elements supply dispersion. The patent additionally prints nG′ = 1.62803 on L1/L4 and 1.58637 on L2, as well as 1.56364 on L3; these remain unfitted. G′ is not the mercury-g line represented by ng, so it must not be copied into that field. The source gives C–F differences rather than separate C/F indices, and prints no dPgF, aberration plots, distortion plots or astigmatism plots. Therefore no patent C/d/F/g focus-curve comparison is available. Recomputed paraxial BFD offsets relative to sodium D are C +133.1 µm, F −176.7 µm and g −163.0 µm, unchanged; these are model results, not agreement with published aberration curves. The analysis now includes the isolated-element focal lengths and uses the site's proxy tolerance wording, while restricting the L3 no-match statement to the site's catalog.
+
+The page-2 heading names Walther Zschokke, assignor to Optische Anstalt C. P. Goerz Aktiengesellschaft, and gives filing 17 January 1913 and grant 25 August 1914. The assigned assignee matches that spelling. A worktree-wide search finds this as the only Goerz assignee occurrence, with no variant to consolidate here; assignee fields were not edited.
+
+### Final checks and live page
+
+Before → after, EFL 99.996511940 → 99.996511940 mm, built half-field 36.957592441° → 36.957592441°, f/4.5 → f/4.5 and stop radius 9.550146968 → 9.550146968 mm. The format-corner field remains 26.8°, distinct from the engine half-field. Surface audit reports OK with no validation errors; aperture audit reports no rim, trace or iris limit; image-circle audit finds zero undersized surfaces; field coverage is 100%, 50.50 / 50.50 mm, corner chief ray clear. Built.mjs does not throw. The nominal axial marginal surface heights range from 9.71 to 11.11 mm; minimum stored-rim margin is about 0.39 mm at surface 1. Clearap finds no axial or chief-ray clip, but cannot find the extreme unvignetted corner bundle, consistent with genuine off-axis clipping. The LSA diagnostic at normalized pupil radii 1 / 0.85 / 0.7 / 0.5 is +0.081 / −0.531 / −0.622 / −0.430 mm; no rim was raised to alter it.
+
+After the focal-length edits, inspected queued live shots rv-page.png, rv-el-1.png through rv-el-4.png and rv-focus1.png under scratchpad/sd/dogmar/. All four FL values render correctly, type/glass/role text is readable, four square-rim singlets retain their common height and thin rear edge, and the stop remains between L2/L3. The current matched-scale side-by-side is scratchpad/sd/dogmar/rv-overlay.png (current red dashed, coincident baseline blue). Both Markdown companions pass Prettier check. No changelog entry was added. No tool call or edit was refused by the sandbox.
+
+Open: the figure's stop ticks suggest about 3.0/2.4 mm rather than the stored 2.7/2.7 split; any optional 0.3 mm imageward shift and f/4.5 iris-radius recalculation remain report-only. Current full-rim iris clearances remain 0.905003 / 1.646454 mm, so this is not a spacing repair.
+
+Open: L3 has no qualifying site-catalog proxy; Sumita LLF1 is a borderline catalog proposal whose evaluated Abbe number needs an explicit decision. The source G′ indices remain unfitted, exact production glass/retail-variant identity remains unestablished, and finite-focus/separate-cell configurations are outside this model.

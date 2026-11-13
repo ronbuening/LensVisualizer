@@ -18,7 +18,7 @@ Calculated front/rear cells give 173.2/223.6 mm for Example I versus 199.7/188.4
 
 ## Optical Architecture
 
-Five spherical elements form four groups: two front singlets, a rear cemented doublet and a final negative singlet, with positive–negative–positive–negative power. The diaphragm separates the two cells. Narrow airspaces are retained, including a3 = 0.00994 rather than 0.00094.
+Five spherical elements form four groups: two front singlets, a rear cemented doublet and a final negative singlet, with positive–negative–positive–negative power. The brackets use the patent's component designations I (L1), II (L2), III (L3/L4) and IV (L5); C1 identifies the cemented pair. The diaphragm separates the two cells. Narrow airspaces are retained, including a3 = 0.00994 rather than 0.00094.
 
 ## Element-by-Element Analysis
 
@@ -50,7 +50,7 @@ The patent specifies yellow helium-d indices and Abbe numbers (PDF p. 3). The mo
 | L4 | SK3 (Sumita) | 1.60881 / 58.90 | −0.00040 / +0.10 |
 | L5 | BAC4 (Hoya) | 1.56883 / 56.04 | +0.00017 / −0.16 |
 
-Each row lies within the site's proxy window of about 0.25 in Abbe number and about 0.002 in index. The engine keeps the printed index at the element's helium-d reference line and borrows only the catalog row's wavelength dependence; the printed nd/νd stay unchanged. These are not exact glass matches and do not identify the historical glass, supplier, melt or composition. Full historical dispersion remains unknown.
+Each row lies within the site's proxy tolerance of about 0.25 in Abbe number and about 0.002 in index. The engine keeps the printed index at the element's helium-d reference line and borrows only the catalog row's wavelength dependence; the printed nd/νd stay unchanged. These are not exact glass matches and do not identify the historical glass, supplier, melt or composition. Full historical dispersion remains unknown.
 
 Cröll links L4 to the Apo-Lanthar front glass and reports a yellowish, slightly radioactive rear cell. This fits Example II's 1.65953/57.0; Example I specifies an ordinary heavy-crown pair, 1.60921/58.8. Neither radioactivity nor anomalous dispersion is assigned here.
 

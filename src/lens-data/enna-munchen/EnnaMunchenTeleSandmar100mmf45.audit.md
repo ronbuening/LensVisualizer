@@ -32,7 +32,7 @@ Audit results: surface validation OK, no errors; aperture audit within 3 % of th
 
 Closed: SD pass — the later dated semi-diameter section records front rims 15.5 → 15.1 mm and retained 9.0 mm rear rims, with 86.3 → 83.6 % corner transmission. The figure-sized rims remain substantially smaller; the illumination and traced-field rules prevent adopting them. The validator's older 86 %/18 %/44 % comparisons describe different aperture sets.
 
-Closed: cleanup pass — the coordinator set the names, key and filenames; the cleanup section below resolves subtitle/specs, element types, glass labels and remaining wording. Earlier audit lines record historical decisions and are superseded where corrected below. Full application checks and release remain outside this assignment; browser review remains Open below.
+Closed: cleanup pass — the coordinator set the names, key and filenames; the cleanup section below resolves subtitle/specs, element types, glass labels and remaining wording. Earlier audit lines record historical decisions and are superseded where corrected below. Full application checks and release remain outside this assignment; browser review is closed by the second review below.
 
 ## 2026-11-13 — Cleanup and wording pass
 
@@ -50,9 +50,13 @@ Surface audit: OK, no validation errors. Aperture audit: one station within 3 % 
 
 Closed: model-rim review — the later semi-diameter pass changes front rims to 15.1 mm and retains rear rims at 9.0 mm under the illumination and traced-field constraints. The drawing's long spans are calibrated, but its thin rear features are schematic; its approximately 11.1/6.4 mm proportional targets are not printed clear diameters.
 
-Open: the taxonomy has no Argus C mount id; `lensMounts` remains absent. Retail minimum focus distance and finite-focus travel are not established; no marketing close-focus distance or finite-focus state was added. (closed 2026-11-13: missing mount id resolved by taxonomy `argus-c`, “Argus C-series”, and `catalog.lensMounts: ["argus-c"]`; the retail minimum focus distance and finite-focus travel remain open.)
+Closed: missing mount id resolved on 2026-11-13 by taxonomy `argus-c`, “Argus C-series”, and `catalog.lensMounts: ["argus-c"]`.
 
-Open: no exact catalog glass rows, production optical cross-section or verified patent engraving establish production identity. The manual/product association remains circumstantial. Browser review remains incomplete because no screenshot was produced.
+Open: retail minimum focus distance and finite-focus travel are not established; no marketing close-focus distance or finite-focus state was added.
+
+Open: no exact catalog glass rows, production optical cross-section or verified patent engraving establish production identity. The manual/product association remains circumstantial.
+
+Closed: browser review completed on 2026-11-13 in the second review below, including the page, all four inspectors and both movement views.
 
 ## 2026-11-13 — Semi-diameter pass against the patent figure
 
@@ -117,3 +121,44 @@ The proxy rule uses an Abbe difference within about 0.25 and an index difference
 | g / V | 38.9755 → 38.9958 | −96.5 → −76.2 |
 
 Catalog metadata: absent `catalog.lensMounts` → `["argus-c"]`. The taxonomy defines `argus-c` as “Argus C-series”, the geared screw mount of the Argus C2/C3 and later C-series rangefinders. The missing-mount item is closed in place above; unresolved production identity, retail minimum focus distance, finite-focus travel and browser review retain their existing limitations. The analysis describes the final mount and glass assignments. Only the two assigned Markdown files are edited; the data file is read-only for this assignment.
+
+## 2026-11-13 — Second review: diagram, labels and movement
+
+Compared the current 5212 page and all four element inspectors with the local `US2631497A.pdf`: sole drawing on PDF page 1, bibliography and group description on page 2, sole example, repeated claim 3, sodium-D definition and approximate stop statement on page 3. The earlier audit's maker comparison is retained as qualified evidence: the Geiss-America manual shows the external lens and controls, not a production optical section. No new maker image was downloaded or claimed as viewed.
+
+Independent native-raster readings confirm S1 x = 660.5 px, S2 x = 894.5 px and S7 x ≈1669.5 px. The long-span scale is 1009 / 42.73 = 23.613 px/mm; L1 independently gives 234 / 10 = 23.4 px/mm. Front rim crossings at y ≈1462.5/1987.5 and rear crossings at ≈1564.5/1867 give proportional semi-diameters ≈11.12/6.41 mm. The local axis is slanted, and the rear drawn thickness and exaggerated 0.03 mm air gap do not share the long-span scale. These readings confirm the earlier schematic-proportion limitation, not new printed clear diameters. The square cuts, taller front doublet and equal-height rear singlets are preserved; no rim or geometry-policy change is warranted.
+
+| Cut or land | Before today's SD work (mm) | Current and final (mm) | Figure reading (mm) | Verdict and cumulative light cost |
+| --- | ---: | ---: | ---: | --- |
+| S1–S3 front doublet cuts | 15.5 | 15.1 | ≈11.1–11.8 | Keep: slight decrease; 2.7 percentage points at 12.1°. Restoring the full doublet recovers 2.7 points. |
+| S4–S7 rear rims | 9.0 | 9.0 | ≈6.4–6.9 | No cuts; retained traced-field constraint stands. |
+| Lands / cut depths | None | None | Square-cut elements | None to assess. |
+
+The full-pupil `rimcost.mjs --loo` comparison against `.lens-work/base1124sd/EnnaMunchenTeleSandmar100mmf45.data.ts` again gives baseline/current corner transmission 86.3/83.6 %, worst loss 2.7 points. This review's before/after transmission is 83.6 → 83.6 %. The axial sample remains 100 %. The meridional curve separately gives 97.6 % at 10.1° and 83.6 % at 12.1°; it is not the basis of the full-pupil verdict.
+
+All four supplied inspectors showed missing FL. Added the following `focalLengthMm` values from `probe.mjs --elements`, treating each thick element in air; they are calculated prescription values, not production measurements:
+
+| Element | Before (mm) | After (mm) |
+| --- | ---: | ---: |
+| L1 | Missing | +25.77 |
+| L2 | Missing | −34.86 |
+| L3 | Missing | −25.54 |
+| L4 | Missing | +37.99 |
+
+The cemented S1–S3 component independently computes to +66.71 mm. The analysis now states the calculated-element convention. The C1 bracket spans the right cemented doublet, both partners carry C1, and the L3–L4 air gap is not cemented. The patent provides no symbolic group or element notation requiring a rename; L1–L4 remain sequential, and no duplicate parent bracket was added over C1. Types agree with the radii: biconvex positive, biconcave negative, negative meniscus concave toward the object, and plano-convex positive. The stop lies between L2 and L3. All faces are spherical; no aspheric suffix, APD tag or named special glass is supported or present.
+
+Movement: no authored gaps, focus keyframes or zoom stations exist. The front doublet, rear negative singlet and rear positive singlet each have 0 mm modeled focus and zoom displacement; no ordering or direction change is needed. The infinity-only description names the manual's rangefinder coupling without inventing an internal mechanism. `focus=1` leaves the drawing and infinity distance unchanged; both movement views explicitly report no modeled focus or zoom group movement.
+
+Glass: `glasscheck.mjs --near 3` and `trylabel.mjs` resolve L1 E-BAF8 and L3 H-BaF6; both retained labels are spectral proxies under the site's proxy tolerance, not exact historical glass identities. No clearly better allowed row was found. L2 1.74066/27.2 and L4 1.72719/28.0 remain Unmatched. The nearest corpus candidates are respectively E-FD13 1.74077/27.76 (Δn +0.00011, Δν +0.56) and H-ZF4A 1.72825/28.32 (Δn +0.00106, Δν +0.32), outside the site's proxy tolerance in Abbe number. The vendor AGF search also finds Sumita SF13 1.74077/27.70 and SF10/SF10W 1.72825/28.30; neither meets the allowed window. No exact or eligible missing catalog row is proposed. PDF page 3 gives no glass name, extra line index or partial dispersion for either unresolved element. The pairs recur in claim 3, which repeats the same example, not an independent design. All four retain sodium D and nonzero Abbe dispersion; there is no constant-index-only medium. No chromatic, astigmatism or distortion plots are printed, so measured color agreement cannot be established.
+
+Assignee: page 2 says Harry J. Graw, matching the source field. The worktree corpus search finds no competing spelling to consolidate; this is separate from the Enna maker attribution. No source or assignee field was edited.
+
+Checks after the focal-length additions: surface audit OK, no validation errors; aperture audit one station within 3 %, zero rim, trace or iris limits; image-circle audit one checked, zero undersized; field coverage 100 %, 21.65 mm of 21.65 mm at 12.1°, no unsolved or skipped station. Exact meridional clearance with `--scan 60` finds no axial or corner-chief clip: S1–S7 axial heights 11.11/9.94/9.44/4.37/4.40/4.40/4.41 mm and chief heights 7.75/5.57/5.16/4.89/5.48/5.59/5.93 mm. Real off-axis bundle clipping remains. Built EFL 100.026642611 → 100.026642611 mm, half-field 17.883574616 → 17.883574616°, f-number 4.5 → 4.5 and physical stop radius 6.738905554 → 6.738905554 mm.
+
+The main-checkout tool engine initially rejected the worktree's new `argus-c` taxonomy id. Scratch copies of the read-only tools point imports to the worktree engine and succeed without changing the repo tools, mount field or optics. This was a runtime taxonomy mismatch, not a sandbox refusal. Both assigned Markdown files pass Prettier, and the scoped whitespace check passes. No tool call or edit was refused. No changelog entry, shared catalog file or other lens was changed.
+
+Viewed the fresh post-edit page, L1–L4 inspectors, `focus=1` and both movement shots. All four FL values appear correctly; the square rims and C1 bracket are coherent and clear of labels. The page still shows larger rims than the schematic patent, as quantified above. Post-edit live shot: `/private/tmp/claude-501/-Users-ronbuening--claude-spares-spare-EIkiKm/8d989648-1a4e-43f9-bdb4-c4cbb0d8c850/scratchpad/sd/sandmar/rv-el1.png`. Fresh matched-scale side-by-side: `/private/tmp/claude-501/-Users-ronbuening--claude-spares-spare-EIkiKm/8d989648-1a4e-43f9-bdb4-c4cbb0d8c850/scratchpad/sd/sandmar/rv-overlay.png` (red final, blue baseline).
+
+Open: numeric iris position is outside this review's edit list. The PDF page 1 drawing suggests about 16.1/12.9 mm rather than the retained 14.5/14.5 mm split; PDF page 3 says only “substantially midway.” This remains an optional drawing-fidelity suggestion for the coordinator, not a proven transcription error; no iris-radius change is proposed.
+
+Open: the patent's PDF page 2 prose says back focus is of order 0.2f, but the literal example gives 0.39062f. No retuning is justified. Exact L2/L4 glasses, production optical identity, retail minimum focus and finite-focus travel remain unresolved; the browser-review item is now closed.

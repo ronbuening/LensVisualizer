@@ -69,7 +69,8 @@ const LENS_DATA = {
   "elements": [
     {
       "id": 1,
-      "name": "L1",
+      "name": "e",
+      "diagramLabel": "e",
       "label": "Element 1",
       "type": "Positive Meniscus",
       "role": "Front positive collecting element",
@@ -81,7 +82,8 @@ const LENS_DATA = {
     },
     {
       "id": 2,
-      "name": "L2",
+      "name": "a",
+      "diagramLabel": "a",
       "label": "Element 2",
       "type": "Positive Meniscus",
       "role": "Positive front member of the cemented doublet",
@@ -94,7 +96,8 @@ const LENS_DATA = {
     },
     {
       "id": 3,
-      "name": "L3",
+      "name": "b",
+      "diagramLabel": "b",
       "label": "Element 3",
       "type": "Negative Meniscus",
       "role": "Thin negative rear member of the cemented doublet",
@@ -107,7 +110,8 @@ const LENS_DATA = {
     },
     {
       "id": 4,
-      "name": "L4",
+      "name": "c",
+      "diagramLabel": "c",
       "label": "Element 4",
       "type": "Negative Meniscus",
       "role": "Negative element behind the iris",
@@ -119,14 +123,15 @@ const LENS_DATA = {
     },
     {
       "id": 5,
-      "name": "L5",
+      "name": "f",
+      "diagramLabel": "f",
       "label": "Element 5",
       "type": "Biconvex Positive",
       "role": "Thick positive rear collecting element",
       "nd": 1.621,
       "vd": 60.3,
       "indexReference": "d",
-      "glass": "N-SK16 (spectral proxy; patent nD 1.621 / V 60.3; supplier and melt unspecified)",
+      "glass": "S-BSM16 (spectral proxy; patent nD 1.621 / V 60.3; supplier and melt unspecified)",
       "focalLengthMm": 39.614175
     }
   ],

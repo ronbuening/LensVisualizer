@@ -69,7 +69,8 @@ const LENS_DATA = {
       "nd": 1.51821,
       "vd": 65.2,
       "indexReference": "d",
-      "glass": "PC2 (Hoya catalog equivalent)"
+      "glass": "PC2 (Hoya catalog equivalent; production supplier unspecified)",
+      "focalLengthMm": -73.68
     },
     {
       "id": 2,
@@ -80,7 +81,8 @@ const LENS_DATA = {
       "nd": 1.744,
       "vd": 44.7,
       "indexReference": "d",
-      "glass": "S-LAM2 (Ohara catalog equivalent)"
+      "glass": "S-LAM2 (Ohara catalog equivalent; production supplier unspecified)",
+      "focalLengthMm": 37.96
     },
     {
       "id": 3,
@@ -91,7 +93,8 @@ const LENS_DATA = {
       "nd": 1.69347,
       "vd": 53.5,
       "indexReference": "d",
-      "glass": "H-LaK6A (CDGM catalog equivalent)"
+      "glass": "H-LaK6A (CDGM catalog equivalent; production supplier unspecified)",
+      "focalLengthMm": 53.50
     },
     {
       "id": 4,
@@ -102,7 +105,8 @@ const LENS_DATA = {
       "nd": 1.68893,
       "vd": 31.1,
       "indexReference": "d",
-      "glass": "PBM28 (Ohara catalog equivalent)"
+      "glass": "PBM28 (Ohara catalog equivalent; production supplier unspecified)",
+      "focalLengthMm": -16.81
     },
     {
       "id": 5,
@@ -114,7 +118,8 @@ const LENS_DATA = {
       "nd": 1.6668,
       "vd": 33.1,
       "indexReference": "d",
-      "glass": "PBM39 (Ohara catalog equivalent)"
+      "glass": "PBM39 (Ohara catalog equivalent; production supplier unspecified)",
+      "focalLengthMm": -116.81
     },
     {
       "id": 6,
@@ -126,7 +131,8 @@ const LENS_DATA = {
       "nd": 1.691,
       "vd": 54.9,
       "indexReference": "d",
-      "glass": "J-LAK9 (Hikari catalog equivalent)"
+      "glass": "J-LAK9 (Hikari catalog equivalent; production supplier unspecified)",
+      "focalLengthMm": 19.95
     }
   ],
   "surfaces": [
@@ -231,6 +237,10 @@ const LENS_DATA = {
     "fullFieldDeg": 65,
     "maxTraceFieldDeg": 32.5
   },
+  "groups": [
+    { "text": "M", "fromSurface": "1", "toSurface": "2" },
+    { "text": "H", "fromSurface": "3", "toSurface": "11" }
+  ],
   "doublets": [{ "text": "C1", "fromSurface": "9", "toSurface": "11" }],
   "layout": {
     "yScFill": 0.7

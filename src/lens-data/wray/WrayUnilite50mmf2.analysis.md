@@ -20,6 +20,8 @@ The patent supplies a five-element, four-component f/2 design assigned to Wray. 
 
 Five spherical elements form four components: a front positive singlet, a cemented positive/negative doublet, a rear negative meniscus and a thick biconvex positive rear singlet. The cemented interface is S4. The distinct boundaries S2/S3 and S7/S8 have zero axial air spacing, as printed. Their different curvatures create positive off-axis air separation; they must not be collapsed into cemented interfaces or separated by invented spacers.
 
+The diagram and inspector use the patent's element designations, front to rear: e, a, b, c and f. L1–L5 below denote those same elements by position; C1 brackets the cemented pair a + b at surfaces S3–S5.
+
 The iris lies in the central air gap, but its precise location is not dimensioned. The authored location is the midpoint of the geometrically clear interval for the inferred surface apertures, not an optimized or source-proven position. At the authored S5/S6 optical rims this is 7.195279 mm behind the S5 vertex; the remaining interval is 6.744721 mm, preserving Table B’s 13.94 mm central air gap.
 
 ## Element-by-Element Analysis
@@ -36,9 +38,9 @@ L2: assumed nd = 1.613, νd = 57.6; Unmatched (nD 1.613 / V 57.6); isolated f = 
 
 Assumed nd = 1.613, νd = 36.9; F3 (Sumita catalog equivalent); isolated f = −81.42 mm. Its strongly curved surfaces contribute negative power behind the stop. Its center thickness is 4.560 mm. No quantitative aberration allocation is claimed.
 
-### L5: thick biconvex rear positive element
+### L5 (f): thick biconvex rear positive element
 
-Assumed nd = 1.621, νd = 60.3; N-SK16 (Schott spectral proxy; supplier and melt unspecified); isolated f = +39.61 mm. The 7.100 mm thick biconvex element has a weakly curved front face (R8 = +149.500 mm) and a strongly curved rear face (R9 = −28.910 mm). Its thickness relative to L1, and its curved rear outline, are the clearest Figure 2 matches in both public Unilite sections. Its front boundary is distinct from L4 despite zero axial separation at the vertex.
+Assumed nd = 1.621, νd = 60.3; S-BSM16 (Ohara spectral proxy; supplier and melt unspecified); isolated f = +39.61 mm. The 7.100 mm thick biconvex element has a weakly curved front face (R8 = +149.500 mm) and a strongly curved rear face (R9 = −28.910 mm). Its thickness relative to L1, and its curved rear outline, are the clearest Figure 2 matches in both public Unilite sections. Its front boundary is distinct from L4 despite zero axial separation at the vertex.
 
 ## Glass Identification and Selection
 
@@ -47,9 +49,9 @@ The printed mean indices and Abbe numbers are retained, with the mean indices tr
 | Element | Printed nd / νd | Spectral proxy row | Catalog nd / νd | Δnd / Δνd (catalog − printed) |
 | --- | --- | --- | --- | --- |
 | L3 | 1.700 / 30.3 | S-TIM35 (Ohara) | 1.698947 / 30.127865 | −0.001053 / −0.172135 (about −0.0011 / −0.17) |
-| L5 | 1.621 / 60.3 | N-SK16 (Schott) | 1.62041 / 60.32 | −0.00059 / +0.02 |
+| L5 | 1.621 / 60.3 | S-BSM16 (Ohara) | 1.620411 / 60.289582 | −0.000589 / −0.010418 |
 
-Each spectral-proxy label makes the engine keep the printed index at the assumed d reference and borrow only the catalog row's wavelength dependence. The printed nd/νd stay unchanged. The rows satisfy the site's proxy tolerance: Abbe number within about 0.25 and index within about 0.002 of the printed pair. These are not exact matches and do not identify the historical glass, supplier or melt. L2 remains Unmatched (nD 1.613 / V 57.6), with no catalog row within that Abbe window. L2 and L4 share an index but not an Abbe number. All surfaces are spherical; no patent partial-dispersion data are supplied.
+Each spectral-proxy label makes the engine keep the printed index at the assumed d reference and borrow only the catalog row's wavelength dependence. The printed nd/νd stay unchanged. The rows satisfy the site's proxy tolerance: Abbe number within about 0.25 and index within about 0.002 of the printed pair. These are not exact matches and do not identify the historical glass, supplier or melt. L2 remains Unmatched (nD 1.613 / V 57.6), with no qualifying catalog row within the site's proxy tolerance. That pair appears only in Table B and its repetition in claim 5; Table A gives a different Abbe number for element a. The patent supplies no glass name, extra line indices or partial dispersion for this element. Its general discussion of transparent crystals does not identify any Table B element as a crystal. L2 and L4 share an index but not an Abbe number. All surfaces are spherical; no patent partial-dispersion data are supplied.
 
 ## Focus Mechanism
 
@@ -69,7 +71,7 @@ The axial aperture is iris-limited at f/2. Both zero-vertex air gaps have nonneg
 
 The model declares a 47.4° full field and a 23.7° maximum trace half-field for the 24 × 36 mm format of the Wrayflex Ia and II; the Wrayflex I exposes 24 × 32 mm. The guide's rounded 46° diagonal field is a source specification, while the declared 47.4° is a model field choice that reaches approximately 99.9% of the nominal 21.65 mm full-frame corner height. The geometric corner angle is approximately 23.4°; the traced chief ray at the nominal corner is clear at 23.735870°. No optical rim blocks that chief ray. S3 sets the engine’s wider paraxial field ceiling near 25.7°.
 
-At f/2 and infinity, the 64-cell stop lattice gives 49.81% geometric transmission and 35.86% relative illumination at a diagnostic 23° field. A separate calculation at the nominal corner angle gives 42.81% transmission and 29.86% relative illumination. These geometric estimates exclude coating and bulk absorption losses and do not establish production throughput, corner image quality or MTF.
+At f/2 and infinity, the 64-cell stop lattice gives 49.81% geometric transmission and 35.86% relative illumination at a diagnostic 23° field. At the declared 23.7° edge, these figures are 43.37% and 30.31%. A separate calculation at the nominal corner angle gives 42.81% transmission and 29.86% relative illumination. These geometric estimates exclude coating and bulk absorption losses and do not establish production throughput, corner image quality or MTF. Every element has dispersion data: L2 uses its printed Abbe number, while the other elements use qualified catalog curves. The patent prints no chromatic-focus, astigmatism or distortion plots against which to validate these predictions.
 
 The catalog mount is Wrayflex, an M41.2 × 26 tpi screw interface with a 42.05 mm flange distance.
 

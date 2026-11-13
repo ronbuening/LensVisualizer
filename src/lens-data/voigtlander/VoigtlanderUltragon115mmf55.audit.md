@@ -62,7 +62,7 @@ Open:
 - The declared field reaches about 98% of the 5×7 corner semi-diagonal: 106.69/109.25 mm. The semi-diameter pass below clears the declared chief ray, while the 43.2202° corner still clips at surfaces 6, 7 and 9. Full 85° commercial coverage, image quality and throughput are not established by this model. (closed 2026-11-13: the 86.5° full field / 43.25° maximum trace half-field and enlarged rims give 100% geometric corner coverage with a clear chief ray; image quality and throughput remain unestablished.)
 - Exact historical glass identities, radioactive composition and the exact production-to-example match remain unresolved. DE 868,524 has not been independently compared; no to-scale maker diagram was found.
 - Minimum focus distance, finite-focus spacings and separate convertible-cell configurations are not supplied by this model.
-- Rendered title, subtitle/specs and focus-panel review remains open: the screenshot helper produced no image, the browser-access host was unavailable, and the native Safari fallback was denied by the computer-use tool.
+- Rendered title, subtitle/specs and focus-panel review was closed by the second review below: fresh localhost:5212 screenshots show the current title, specifications, disabled infinity-focus control and all five element inspectors. The earlier unavailable screenshot and denied Safari action remain historical results.
 
 ## 2026-11-13 — Semi-diameter pass against the patent figure
 
@@ -137,3 +137,56 @@ Rims and field: S5–S7 increase 12.1 → 12.31 mm and S8/S9 increase 15.0 → 1
 The analysis describes the final proxy palette, current rims and declared field in present tense. Name, mounts and `5x7` format are unchanged. The current data header already records the rim and coverage rationale; this text-only assignment makes no data-file edits.
 
 Scoped `npx prettier --write` and `npx prettier --check` on the two Markdown files completed successfully. A byte comparison against the saved pre-edit data file confirms no data-file change. No tool call or edit was denied during this text update.
+
+## 2026-11-13 — Second review: diagram, labels and movement
+
+Compared the current localhost:5212 page and all five element inspectors with local `patents/US2670659A.pdf`, Figs. 1–2 on PDF p. 1, the bibliographic heading on p. 2 and both numerical examples and notation on p. 3. The existing high-resolution figure crops were inspected directly. Independent Fig. 2 arc sampling at 600 dpi (19 points, 15 px apart) gives a front radius of 847 px with 0.59 px RMS, or 30.11 px/mm against R1 = 28.13015 mm. The first-to-last vertex span gives 1028/33.0832 = 31.07 px/mm. The roughly 3% scale disagreement is small, but the drawing's approximately 187 px first-element thickness is 6.02 mm against the table's 5.336 mm, a 13% local discrepancy. Fig. 1 also exaggerates the first airspace. Both figures support proportions and step order rather than precise Example I apertures.
+
+### Diagram and inspector changes
+
+| Field | Before | After | Evidence and verdict |
+| --- | --- | --- | --- |
+| Component brackets | Absent | I: S1–S2; II: S3–S4; III: S5–S7; IV: S8–S9 | Figs. 1–2 and PDF p. 3 explicitly designate the four members I–IV. Added only those four component brackets; C1 remains the separate cemented-pair identifier. |
+| L1 focalLengthMm | Missing; inspector FL = − | +86.33 mm | Isolated thick-element-in-air result from probe with --elements. |
+| L2 focalLengthMm | Missing; inspector FL = − | −147.10 mm | Same calculation; the negative meniscus has negative power. |
+| L3 focalLengthMm | Missing; inspector FL = − | −35.98 mm | Same calculation for the biconcave doublet member in isolation. |
+| L4 focalLengthMm | Missing; inspector FL = − | +24.23 mm | Same calculation for the biconvex doublet member in isolation. |
+| L5 focalLengthMm | Missing; inspector FL = − | −85.21 mm | Same calculation for the final negative meniscus. |
+
+The analysis now explains I–IV and uses “the site's proxy tolerance” for the qualified glass assignments. No glass label, APD tag, element type, physical gap or rim was changed. L1–L5 are the patent's element designations; their positive-meniscus / negative-meniscus / biconcave-negative / biconvex-positive / negative-meniscus types agree with the radius signs and calculated powers. The patent gives no aspheres or anomalous-dispersion identification. C1 correctly joins L3/L4 over S5–S7, and the stop remains between L2 and L3.
+
+### Retained rims, light and corner
+
+No cuts or lands exist relative to base1124sd: S1/S2 = 20 mm and S3/S4 = 15 mm are unchanged, S5–S7 rise from the original 11.5 to the retained 12.31 mm, and S8/S9 rise from 15 to the retained 15.3 mm. No rimExtensionSd or rimCutDepthMm is present. The current step order and common doublet edge agree with the figures within their schematic limits; no new rim change is justified.
+
+L4's spherical edge thickness at 12.31 mm is only 0.01636 mm. At 12.4 mm it would be −0.08132 mm. Retain the knife-edge qualification rather than interpreting Fig. 2's larger body height as an exact common optical aperture.
+
+The final rimcost full-pupil comparison gives a worst loss of 0.0 percentage points against the original rims over all 16 fields at infinity. At the 43.25° final sample, original/current rims transmit 32.9%/42.8%; the axial sample remains 100%/100%. This compares both rim sets using the current field and glass palette. It is geometric pupil transmission, not photometric relative illumination; it does not establish historical throughput. During this review the current-edge result remains 42.8% before and after.
+
+The exact 5×7 corner trace at 43.22017° reaches 109.250 mm. S6/S7/S9 chief heights are 12.2778/12.3013/15.2586 mm within 12.31/12.31/15.3 mm; the narrowest of these clearances is S7's 0.0087 mm. No CLIPS-AXIAL or BLOCKS-CHIEF flag occurs at that corner. The upper full-bundle ray is unavailable, consistent with retained off-axis vignetting. Geometric corner coverage remains 100% before/after this review.
+
+### Movement, glass, colour and attribution
+
+Components I, II, III and IV each have zero internal displacement: there is no zoom, variable gap or finite-focus keyframe. The infinity-only description and disabled focus control are correct; no unsupported focusing mechanism or component configuration was added.
+
+All five labels resolve. The retained N-SK16, SF10, KF3, SK3 and BAC4 rows satisfy the site's proxy tolerance, with nominal catalog-minus-patent Δnd/Δνd respectively −0.00054/+0.02, +0.00025/+0.01, +0.00011/−0.10, −0.00040/+0.10 and +0.00017/−0.16. Glasscheck evaluates the actual KF3/SK3 curves at about νd 54.63/58.88, distinct from the nominal catalog fields 54.60/58.90; both remain compatible. Glassnear and the vendor AGF search find no exact row inside |Δnd| ≤ 0.0001 and |Δνd| ≤ 0.15 for any element. No existing label has a clearly better replacement warranting a change.
+
+Potential additional proxy rows, for future catalog work only, include Ohara NSL33 (1.51454/54.71, OHARA_260701.AGF, obsolete) for L3 and Hoya BACD3 (1.60881/58.86, HOYA20260707_include_obsolete.agf, obsolete) for L4. Neither is an exact match; supplier and production identity remain unspecified. Sumita SK16/K-SK16RH nominally give 1.62041/60.30 for L1, also outside the exact index window. These are optional proposals, not unresolved colour blockers.
+
+PDF p. 3 gives helium-d indices and Abbe numbers only: no named glass, extra line index, partial dispersion or chromatic/astigmatism/distortion plot is supplied. L2's 1.72800/28.4 and L3's 1.51443/54.7 recur in Example II; the other three pairs differ. There are zero unmatched, unresolved or constant-index-only elements. All retain the deliberate d reference. Modeled C/d/F/g back focus is 95.2651/94.9967/94.5277/94.2908 mm, giving C/F/g offsets +268.4/−469.0/−705.9 µm relative to d, unchanged by this review. The patent supplies no curves against which those chromatic offsets can be certified.
+
+PDF p. 2 prints “Voigtlander, A. G., Braunschweig”; the existing source.assignees value “Voigtländer AG” agrees with the corpus spelling used by the Skoparex and Telomar entries. No consolidation variant was found and no source metadata was edited. Inventor Albrecht Wilhelm Tronnier, filing 29 July 1952, Swiss priority 30 August 1951 and grant US 2,670,659 on 2 March 1954 agree. As the earlier audit records, Cröll's schematic confirms five elements/four groups and the rear doublet, is expressly not to scale and supplies no certified special-glass positions; no maker image was newly inspected.
+
+### Final checks and live result
+
+Before/after engine values are identical: EFL 115.0039016509 mm, half-field 43.25°, f/5.5, stop radius 8.776238254 mm, total track 128.0801 mm and tracingHalfField 39.264257°. Surface audit reports OK with no validation errors; aperture audit has one passing station and zero rim/trace/iris/failed stations; image-circle audit has one checked and zero undersized/skipped; field-coverage audit has one solved 100% corner and zero skipped. Built and probe complete successfully.
+
+Viewed fresh post-edit page and inspector screenshots rv-page.png and rv-el1.png through rv-el5.png in scratch sd/ultragon. All five focal lengths are populated, the C1 doublet badge and component I–IV captions are legible without collisions, title/specifications and infinity-only focus panel read correctly, and the retained silhouettes have no new overlap. The matched-axis, matched-scale side-by-side rv-overlay.png shows the current outline in red and original rims in blue against Fig. 2.
+
+Open: The inferred midpoint stop remains 7.5141/7.5141 mm. Fig. 2 suggests about 9.47/5.56 mm from S4, moving it approximately 1.95 mm toward the image; this is schematic evidence only and the numeric split remains report-only.
+
+Open: L4's near-knife edge, exact historical glasses/composition, the Example I versus product L4 conflict, exact factory association, finite-focus/component configurations and unestablished image quality remain qualified limitations. DE 868,524 has not been independently compared.
+
+Both Markdown files pass the scoped Prettier check, and the scoped whitespace diff check is clean. A structured comparison with the saved pre-review data confirms that only the five element focal lengths and component brackets changed.
+
+No sandbox tool call or edit was refused during this review. One patch initially failed a text-context check and was corrected after reading the target; concurrent screenshot requests collided in the helper queue and the affected requests succeeded sequentially. No changelog or git state change was made.

@@ -25,19 +25,19 @@ The central source gap is 5.4 mm. The drawing locates a diaphragm within it, but
 
 ### L1: Biconvex Positive
 
-Source nD = 1.61412; derived νD = 56.3412844; baryta-crown glass with BACD6 (Hoya catalog row) as a spectral proxy; historical supplier and melt unspecified. The positive front element participates in the collecting front cell; no exact catalogue glass is identified.
+Source nD = 1.61412; derived νD = 56.3412844; baryta-crown glass with BACD6 (Hoya catalog row) as a spectral proxy under the site's proxy tolerance; historical supplier and melt unspecified. The positive front element participates in the collecting front cell; no exact catalogue glass is identified. Its isolated thick-element focal length in air is +35.99 mm at sodium D.
 
 ### L2: Biconcave Negative
 
-Source nD = 1.56890; derived νD = 42.6142322; S-TIL26 (Ohara catalog row) spectral proxy; historical supplier and melt unspecified. The surface facing the diaphragm is more strongly curved than its outer surface, consistent with the patent's arrangement. Its air separation from L1 is 1.8 mm.
+Source nD = 1.56890; derived νD = 42.6142322; S-TIL26 (Ohara catalog row) spectral proxy under the site's proxy tolerance; historical supplier and melt unspecified. The surface facing the diaphragm is more strongly curved than its outer surface, consistent with the patent's arrangement. Its air separation from L1 is 1.8 mm. Its isolated thick-element focal length in air is −38.77 mm at sodium D.
 
 ### L3: Biconcave Negative
 
-Source nD = 1.54820; derived νD = 46.1447811; Unmatched glass. The diaphragm-facing surface is the less strongly curved surface of this negative element. The two negative elements have different curvatures and glasses.
+Source nD = 1.54820; derived νD = 46.1447811; Unmatched glass. The diaphragm-facing surface is the less strongly curved surface of this negative element. The two negative elements have different curvatures and glasses. Its isolated thick-element focal length in air is −40.94 mm at sodium D.
 
 ### L4: Biconvex Positive
 
-Source nD = 1.61412; derived νD = 56.3412844; baryta-crown glass with BACD6 (Hoya catalog row) as a spectral proxy; historical supplier and melt unspecified. Its source thickness is 3.6 mm rather than the front element's 4.2 mm; the two cells are asymmetric.
+Source nD = 1.61412; derived νD = 56.3412844; baryta-crown glass with BACD6 (Hoya catalog row) as a spectral proxy under the site's proxy tolerance; historical supplier and melt unspecified. Its source thickness is 3.6 mm rather than the front element's 4.2 mm; the two cells are asymmetric. Its isolated thick-element focal length in air is +35.32 mm at sodium D.
 
 ## Glass Identification and Selection
 
@@ -50,7 +50,7 @@ All four elements retain the sodium nD reference. The estimated nd − nD differ
 | L1, L4 | BACD6 / Hoya | 1.613753 | 56.377856 | −0.000367 | +0.036572 |
 | L2 | S-TIL26 / Ohara | 1.567322 | 42.817076 | −0.001578 | +0.202844 |
 
-These rows meet the site's spectral-proxy tolerance: Abbe number within about 0.25 of the source-derived value and index within about 0.002. The tabulated index differences compare catalog helium-d indices with source sodium-D indices; they are selection differences, not substitutions for the printed nD. These are qualified spectral proxies, not exact matches or identifications of the historical glass, supplier or melt. L3 remains Unmatched because no catalog row lies within that Abbe window, and its wavelength dependence uses the source nD/νD Abbe approximation.
+These rows meet the site's proxy tolerance: Abbe number within about 0.25 of the source-derived value and index within about 0.002. The tabulated index differences compare catalog helium-d indices with source sodium-D indices; they are selection differences, not substitutions for the printed nD. These are qualified spectral proxies, not exact matches or identifications of the historical glass, supplier or melt. L3 remains Unmatched because no row in the site's catalog lies within that Abbe window, and its wavelength dependence uses the source nD/νD Abbe approximation.
 
 The patent's nG′ values, 1.62803 for L1/L4, 1.58637 for L2 and 1.56364 for L3, are not fitted by the proxy curves or L3's Abbe approximation; chromatic results therefore do not reproduce the complete published dispersion data.
 

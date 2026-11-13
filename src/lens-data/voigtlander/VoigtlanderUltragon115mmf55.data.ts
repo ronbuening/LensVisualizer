@@ -58,6 +58,7 @@ const LENS_DATA = {
       "name": "L1",
       "label": "Element 1",
       "type": "Positive Meniscus",
+      "focalLengthMm": 86.33,
       "nd": 1.62095,
       "vd": 60.3,
       "indexReference": "d",
@@ -69,6 +70,7 @@ const LENS_DATA = {
       "name": "L2",
       "label": "Element 2",
       "type": "Negative Meniscus",
+      "focalLengthMm": -147.10,
       "nd": 1.728,
       "vd": 28.4,
       "indexReference": "d",
@@ -80,6 +82,7 @@ const LENS_DATA = {
       "name": "L3",
       "label": "Element 3",
       "type": "Biconcave Negative",
+      "focalLengthMm": -35.98,
       "nd": 1.51443,
       "vd": 54.7,
       "indexReference": "d",
@@ -92,6 +95,7 @@ const LENS_DATA = {
       "name": "L4",
       "label": "Element 4",
       "type": "Biconvex Positive",
+      "focalLengthMm": 24.23,
       "nd": 1.60921,
       "vd": 58.8,
       "indexReference": "d",
@@ -104,6 +108,7 @@ const LENS_DATA = {
       "name": "L5",
       "label": "Element 5",
       "type": "Negative Meniscus",
+      "focalLengthMm": -85.21,
       "nd": 1.56866,
       "vd": 56.2,
       "indexReference": "d",
@@ -179,6 +184,12 @@ const LENS_DATA = {
   ],
   "doublets": [
     { "text": "C1", "fromSurface": "5", "toSurface": "7" }
+  ],
+  "groups": [
+    { "text": "I", "fromSurface": "1", "toSurface": "2" },
+    { "text": "II", "fromSurface": "3", "toSurface": "4" },
+    { "text": "III", "fromSurface": "5", "toSurface": "7" },
+    { "text": "IV", "fromSurface": "8", "toSurface": "9" }
   ],
   "focus": {
     "closeFocusM": 1e15,

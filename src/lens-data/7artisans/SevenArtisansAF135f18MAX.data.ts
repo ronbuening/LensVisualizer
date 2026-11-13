@@ -7,7 +7,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * L4 has a 24.5 mm rim with a 22.5 mm rear optical cap and land; S7/S8 require gapSagFrac 0.99.
  * S26–S30 use 18.0 mm rims, capped below the S28/S29 crossing rather than the drawing's ~19.0 mm.
  * Printed nd/νd are retained; matching catalog curves do not establish factory glass identity.
- * L5 has no matching catalog row and uses approximate dispersion from its printed nd/νd.
+ * L5 borrows S-FPL55 dispersion within the site's proxy tolerance; its printed nd/νd are retained.
  * Prose ED ordinal contradiction preserved in source.errata. Infinity-only. */
 const LENS_DATA = {
   "checks": {
@@ -76,7 +76,9 @@ const LENS_DATA = {
   "elements": [
     {
       "id": 1,
-      "name": "L1",
+      "name": "1001",
+      "diagramLabel": "1001",
+      "focalLengthMm": 100.12,
       "label": "Element 1",
       "type": "Positive Meniscus",
       "role": "Positive front element of the front group",
@@ -87,7 +89,9 @@ const LENS_DATA = {
     },
     {
       "id": 2,
-      "name": "L2",
+      "name": "1002",
+      "diagramLabel": "1002",
+      "focalLengthMm": 101.78,
       "label": "Element 2",
       "type": "Biconvex Positive",
       "role": "ED positive member of the first cemented pair",
@@ -101,7 +105,9 @@ const LENS_DATA = {
     },
     {
       "id": 3,
-      "name": "L3",
+      "name": "1003",
+      "diagramLabel": "1003",
+      "focalLengthMm": -90.80,
       "label": "Element 3",
       "type": "Biconcave Negative",
       "role": "Negative member of the first cemented pair",
@@ -113,7 +119,9 @@ const LENS_DATA = {
     },
     {
       "id": 4,
-      "name": "L4",
+      "name": "1004",
+      "diagramLabel": "1004",
+      "focalLengthMm": -119.65,
       "label": "Element 4",
       "type": "Negative Meniscus",
       "role": "Air-spaced negative meniscus in the front group",
@@ -124,7 +132,9 @@ const LENS_DATA = {
     },
     {
       "id": 5,
-      "name": "L5",
+      "name": "1005",
+      "diagramLabel": "1005",
+      "focalLengthMm": 65.90,
       "label": "Element 5",
       "type": "Biconvex Positive",
       "role": "ED positive member of the second cemented pair",
@@ -138,7 +148,9 @@ const LENS_DATA = {
     },
     {
       "id": 6,
-      "name": "L6",
+      "name": "1006",
+      "diagramLabel": "1006",
+      "focalLengthMm": -187.13,
       "label": "Element 6",
       "type": "Negative Meniscus",
       "role": "High-index negative member of the second cemented pair",
@@ -150,7 +162,9 @@ const LENS_DATA = {
     },
     {
       "id": 7,
-      "name": "L7",
+      "name": "103",
+      "diagramLabel": "103",
+      "focalLengthMm": -59.67,
       "label": "Element 7",
       "type": "Plano-Concave Negative",
       "role": "Single negative focusing element behind the iris",
@@ -161,7 +175,9 @@ const LENS_DATA = {
     },
     {
       "id": 8,
-      "name": "L8",
+      "name": "1008",
+      "diagramLabel": "1008",
+      "focalLengthMm": 55.41,
       "label": "Element 8",
       "type": "Biconvex Positive",
       "role": "Positive front element of the rear group",
@@ -172,7 +188,9 @@ const LENS_DATA = {
     },
     {
       "id": 9,
-      "name": "L9",
+      "name": "1009",
+      "diagramLabel": "1009",
+      "focalLengthMm": -37.50,
       "label": "Element 9",
       "type": "Negative Meniscus",
       "role": "High-index negative meniscus in the rear group",
@@ -183,12 +201,14 @@ const LENS_DATA = {
     },
     {
       "id": 10,
-      "name": "L10",
+      "name": "1010",
+      "diagramLabel": "1010",
+      "focalLengthMm": 44.10,
       "label": "Element 10",
       "type": "Biconvex Positive",
       "role": "Air-spaced ED positive element in the rear group",
       "apd": "inferred",
-      "apdNote": "The maker marks L10 as ED; its printed nd/νd agree with H-FK61.",
+      "apdNote": "The maker marks element 10 (1010 / L10) as ED; Table 1 agrees with H-FK61. The prose instead assigns the 80–90 Abbe interval to L9, so this tag remains inferred.",
       "nd": 1.497,
       "vd": 81.612838,
       "indexReference": "d",
@@ -196,7 +216,9 @@ const LENS_DATA = {
     },
     {
       "id": 11,
-      "name": "L11",
+      "name": "1011",
+      "diagramLabel": "1011",
+      "focalLengthMm": -71.02,
       "label": "Element 11",
       "type": "Biconcave Negative",
       "role": "Air-spaced negative element between L10 and L12",
@@ -207,12 +229,14 @@ const LENS_DATA = {
     },
     {
       "id": 12,
-      "name": "L12",
+      "name": "1012",
+      "diagramLabel": "1012",
+      "focalLengthMm": -48.44,
       "label": "Element 12",
       "type": "Biconcave Negative",
       "role": "ED negative element preceding the high-index L13",
       "apd": "inferred",
-      "apdNote": "The maker marks L12 as ED; its printed nd/νd agree with H-FK61.",
+      "apdNote": "The maker marks element 12 (1012 / L12) as ED; Table 1 agrees with H-FK61. The prose instead assigns the 80–90 Abbe interval to L11, so this tag remains inferred.",
       "nd": 1.497,
       "vd": 81.612838,
       "indexReference": "d",
@@ -220,7 +244,9 @@ const LENS_DATA = {
     },
     {
       "id": 13,
-      "name": "L13",
+      "name": "1013",
+      "diagramLabel": "1013",
+      "focalLengthMm": 33.90,
       "label": "Element 13",
       "type": "Biconvex Positive",
       "role": "High-index positive element ahead of the rear cemented pair",
@@ -231,7 +257,9 @@ const LENS_DATA = {
     },
     {
       "id": 14,
-      "name": "L14",
+      "name": "1014",
+      "diagramLabel": "1014",
+      "focalLengthMm": 63.72,
       "label": "Element 14",
       "type": "Biconvex Positive",
       "role": "High-index positive member of the rear cemented pair",
@@ -243,7 +271,9 @@ const LENS_DATA = {
     },
     {
       "id": 15,
-      "name": "L15",
+      "name": "1015",
+      "diagramLabel": "1015",
+      "focalLengthMm": -89.11,
       "label": "Element 15",
       "type": "Biconcave Negative",
       "role": "ED negative member of the rear cemented pair",
@@ -257,7 +287,9 @@ const LENS_DATA = {
     },
     {
       "id": 16,
-      "name": "L16",
+      "name": "1016",
+      "diagramLabel": "1016",
+      "focalLengthMm": -103.81,
       "label": "Element 16",
       "type": "Negative Meniscus",
       "role": "Air-spaced ED negative meniscus nearest the image",
@@ -480,7 +512,7 @@ const LENS_DATA = {
   ],
   "focus": {
     "closeFocusM": 1e15,
-    "description": "Infinity focus only; Table 1 gives no close-focus configuration. The marketed minimum focus distance is 0.68 m."
+    "description": "Infinity focus only. The patent states 0–17 mm axial travel of L7 (103), but gives no travel direction or finite-focus spacing table (paragraphs 0007 and 0033, pages 3 and 5). The marketed minimum focus distance is 0.68 m."
   },
   "aperture": {
     "nominalFNumber": 1.7940979019491945,
@@ -496,6 +528,11 @@ const LENS_DATA = {
     ],
     "blades": 12
   },
+  "groups": [
+    { "text": "101 (+)", "fromSurface": "1", "toSurface": "10" },
+    { "text": "103 (−)", "fromSurface": "12", "toSurface": "13" },
+    { "text": "104 (+)", "fromSurface": "14", "toSurface": "30" }
+  ],
   "doublets": [
     { "text": "C1", "fromSurface": "3", "toSurface": "5" },
     { "text": "C2", "fromSurface": "8", "toSurface": "10" },

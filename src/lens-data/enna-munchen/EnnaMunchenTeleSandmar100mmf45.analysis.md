@@ -26,15 +26,15 @@ The front group is positive and the rear group negative, giving a telephoto arra
 
 L1: nD = 1.62398, νD = 47.0; E-BAF8 spectral proxy (catalog vendor Hikari; historical supplier and melt unspecified). L2: nD = 1.74066, νD = 27.2; Unmatched glass. L1 is biconvex and L2 biconcave, sharing S2 in cemented group C1. Their center thicknesses are 10 mm and 1.2 mm respectively.
 
-The index/dispersion contrast is consistent with a positive cemented correction group, but no exact modern glass pair, isolated-element focal length or measured color correction is established.
+The index/dispersion contrast is consistent with a positive cemented correction group. The calculated focal lengths of L1 and L2 treated separately as thick elements in air are +25.77 mm and −34.86 mm; the cemented doublet's calculated focal length is +66.71 mm. These are prescription calculations, not measured production values. No exact modern glass pair or measured color correction is established.
 
 ### L3: rear negative meniscus
 
-nD = 1.61008, νD = 46.0; H-BaF6 spectral proxy (catalog vendor CDGM; historical supplier and melt unspecified). Both radii are negative; the stronger concave surface faces the object. Its center thickness is 0.8 mm.
+nD = 1.61008, νD = 46.0; H-BaF6 spectral proxy (catalog vendor CDGM; historical supplier and melt unspecified). Both radii are negative; the stronger concave surface faces the object. Its center thickness is 0.8 mm. Its calculated isolated thick-element focal length in air is −25.54 mm.
 
 ### L4: rear plano-convex positive singlet
 
-nD = 1.72719, νD = 28.0; Unmatched glass. The front surface is flat. The 0.03 mm separation from L3 is an air gap. The negative/positive rear pair forms the functional rear group.
+nD = 1.72719, νD = 28.0; Unmatched glass. The front surface is flat. The 0.03 mm separation from L3 is an air gap. The negative/positive rear pair forms the functional rear group. Its calculated isolated thick-element focal length in air is +37.99 mm.
 
 ## Glass Identification and Selection
 
@@ -47,7 +47,7 @@ The patent explicitly defines its index column as sodium D at 589.3 nm and ident
 
 The table compares the catalog's helium-d index/Abbe pair with the printed sodium-D pair; it does not assert equality of the reference wavelengths. The engine keeps each printed index at its sodium-D reference line and borrows only the proxy row's wavelength dependence. The printed nD/νD pairs remain unchanged. L2 and L4 remain Unmatched because no catalog row falls within the proxy Abbe window. Their dispersion is Abbe-based; the proxies on L1 and L3 supply model wavelength dependence, not measured historical dispersion or evidence of anomalous partial dispersion.
 
-The sole example and repeated claim 3 give the same four index/Abbe pairs.
+The sole example and repeated claim 3 give the same four index/Abbe pairs. PDF page 3 supplies no glass names, additional line indices or partial-dispersion values for L2 or L4. There is no second numerical example and no plotted chromatic, astigmatism or distortion curve to compare with the calculated model.
 
 ## Focus Mechanism
 

@@ -18,7 +18,7 @@ A secondary historical page associates the product with DE 1,062,028 but gives D
 
 ## Optical Architecture
 
-A large front negative meniscus precedes a modified triplet-like rear assembly across a substantial air gap. Two closely spaced positive singlets are followed by a biconcave negative singlet and a rear cemented negative/positive pair. Six elements form five groups; S10 is the cemented interface.
+A large front negative meniscus, designated M in the patent, precedes the modified triplet-like main part H across a substantial air gap. The M bracket spans S1–S2; H spans S3–S11. Two closely spaced positive singlets are followed by a biconcave negative singlet and a rear cemented negative/positive pair. Six elements form five groups; S10 is the cemented interface.
 
 The front negative member provides the retrofocus arrangement required for a long rear image distance. The patent constrains front-group spacing, surface power and rear-group correction; these design conditions do not establish measured production performance.
 
@@ -26,23 +26,23 @@ The front negative member provides the retrofocus arrangement required for a lon
 
 ### L1: front negative meniscus
 
-nd = 1.51821, νd = 65.2. Glass: PC2 (Hoya catalog equivalent). f = −73.68 mm in air. The negative meniscus is concave toward the rear assembly and separated from L2 by the largest air gap. The patent calls its indices mean refractive indices; their agreement with helium-d catalog values supports the d reference.
+nd = 1.51821, νd = 65.2. Glass: PC2 (Hoya catalog equivalent; production supplier unspecified). f = −73.68 mm in air. The negative meniscus is concave toward the rear assembly and separated from L2 by the largest air gap. The patent calls its indices mean refractive indices; their agreement with helium-d catalog values supports the d reference.
 
 ### L2: biconvex positive singlet
 
-nd = 1.74400, νd = 44.7. Glass: S-LAM2 (Ohara catalog equivalent). f = +37.96 mm in air. This high-index positive element begins the rear assembly; a 0.07 mm air gap separates it from L3.
+nd = 1.74400, νd = 44.7. Glass: S-LAM2 (Ohara catalog equivalent; production supplier unspecified). f = +37.96 mm in air. This high-index positive element begins the rear assembly; a 0.07 mm air gap separates it from L3.
 
 ### L3: positive meniscus
 
-nd = 1.69347, νd = 53.5. Glass: H-LaK6A (CDGM catalog equivalent). f = +53.50 mm in air. This positive meniscus precedes the iris. The example prints 53.5, while the claim table prints 53.7; the example value is retained. The discrepancy remains unresolved in the German source.
+nd = 1.69347, νd = 53.5. Glass: H-LaK6A (CDGM catalog equivalent; production supplier unspecified). f = +53.50 mm in air. This positive meniscus precedes the iris. The example prints 53.5, while the claim table prints 53.7; the example value is retained. The US publication does not resolve the discrepancy.
 
 ### L4: biconcave negative singlet
 
-nd = 1.68893, νd = 31.1. Glass: PBM28 (Ohara catalog equivalent). f = −16.81 mm in air. This biconcave element lies behind the iris, between positive portions of the rear assembly. The patent discusses its low Abbe number in the correction scheme without providing a separate quantitative aberration contribution.
+nd = 1.68893, νd = 31.1. Glass: PBM28 (Ohara catalog equivalent; production supplier unspecified). f = −16.81 mm in air. This biconcave element lies behind the iris, between positive portions of the rear assembly. The patent discusses its low Abbe number in the correction scheme without providing a separate quantitative aberration contribution.
 
 ### L5 and L6: rear cemented pair
 
-L5: nd = 1.66680, νd = 33.1. Glass: PBM39 (Ohara catalog equivalent). f = −116.81 mm in air. L6: nd = 1.69100, νd = 54.9. Glass: J-LAK9 (Hikari catalog equivalent). f = +19.95 mm in air. The negative meniscus and biconvex positive element share S10 and form cemented doublet C1, whose focal length is +23.82 mm.
+L5: nd = 1.66680, νd = 33.1. Glass: PBM39 (Ohara catalog equivalent; production supplier unspecified). f = −116.81 mm in air. L6: nd = 1.69100, νd = 54.9. Glass: J-LAK9 (Hikari catalog equivalent; production supplier unspecified). f = +19.95 mm in air. The negative meniscus and biconvex positive element share S10 and form cemented doublet C1, whose focal length is +23.82 mm.
 
 The individual focal lengths describe each element in air; they do not isolate its aberration contribution within the complete lens.
 
@@ -50,14 +50,14 @@ The individual focal lengths describe each element in air; they do not isolate i
 
 The catalog equivalents below agree with the patent within |Δnd| ≤ 0.0001 and |Δνd| ≤ 0.15. They supply dispersion curves without identifying the historical supplier or melt. The printed indices and Abbe numbers remain unchanged, including L3's 53.5/53.7 example/claim discrepancy.
 
-| Element | Patent nd / νd | Catalog equivalent | Catalog nd / νd |
-|---|---|---|---|
-| L1 | 1.51821 / 65.2 | PC2 (Hoya) | 1.51821 / 65.160509 |
-| L2 | 1.74400 / 44.7 | S-LAM2 (Ohara) | 1.743997 / 44.79 |
-| L3 | 1.69347 / 53.5 | H-LaK6A (CDGM) | 1.69350 / 53.380441 |
-| L4 | 1.68893 / 31.1 | PBM28 (Ohara) | 1.68893 / 31.082901 |
-| L5 | 1.66680 / 33.1 | PBM39 (Ohara) | 1.666799 / 33.046816 |
-| L6 | 1.69100 / 54.9 | J-LAK9 (Hikari) | 1.69100 / 54.93 |
+| Element | Patent nd / νd | Catalog equivalent | Catalog nd / νd      |
+| ------- | -------------- | ------------------ | -------------------- |
+| L1      | 1.51821 / 65.2 | PC2 (Hoya)         | 1.51821 / 65.160509  |
+| L2      | 1.74400 / 44.7 | S-LAM2 (Ohara)     | 1.743997 / 44.79     |
+| L3      | 1.69347 / 53.5 | H-LaK6A (CDGM)     | 1.69350 / 53.380441  |
+| L4      | 1.68893 / 31.1 | PBM28 (Ohara)      | 1.68893 / 31.082901  |
+| L5      | 1.66680 / 33.1 | PBM39 (Ohara)      | 1.666799 / 33.046816 |
+| L6      | 1.69100 / 54.9 | J-LAK9 (Hikari)    | 1.69100 / 54.93      |
 
 The high-dispersion negative glasses in L4 and L5 complement the positive members. No source partial-dispersion measurements establish anomalous dispersion or measured color correction. Historical Schott-name suggestions do not supply resolving catalog rows at these coordinates; the labels therefore name the available equivalents explicitly.
 
