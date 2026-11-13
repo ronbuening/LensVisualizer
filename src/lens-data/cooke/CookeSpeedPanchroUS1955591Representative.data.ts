@@ -1,11 +1,24 @@
-// Qualified 16mm-cinema patent representative; not factory1inch identification.
-// Inferred iris/caps and strong field clipping; hidden pending integration.
-import type { LensDataV2Input } from "../LensVisualizer/src/types/lensDataV2.js";
-export default {
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * US 1,955,591 A, sole numerical example: a 1-inch f/2 lens for 16 mm motion-picture cameras with a 35-degree field.
+ * Cooke's manufacturer history links this patent to the Speed Panchro family; it does not identify this example
+ * as a specific retail lens.
+ *
+ * SCALE: 1x at the patent's native focal length; all radii, thicknesses and air gaps are converted from inches to
+ * millimetres by multiplying by 25.4. The calculated paraxial EFL is 25.385 mm; no focal-length fitting is applied.
+ *
+ * INFERRED: the iris lies midway through the 0.22-inch central air gap, 2.794 mm from either adjacent surface;
+ * its radius is derived for f/2. All semi-diameters are inferred. S3 and S4 are raised only from 5 mm to 6 mm and
+ * 5.1 mm to pass the axial beam, within the validator's approximately 6.9 mm front-doublet rim from the figure.
+ * Other rims retain their delivered values, pending a separate figure review. The final 17.2312996905702 mm
+ * image interval is calculated paraxial back focus, not a printed patent value. Only infinity focus is modeled.
+ */
+const LENS_DATA = {
   "schema": 2,
   "key": "cooke-speed-panchro-us1955591-representative",
   "maker": "Cooke",
-  "name": "Cooke Speed Panchro 1-inch f/2 (patent representative)",
+  "name": "COOKE SPEED PANCHRO f/2 (US 1,955,591 Design)",
   "visible": false,
   "catalog": {
     "elementCount": 6,
@@ -13,7 +26,7 @@ export default {
     "imageFormat": "16mm-cinema",
     "focalLengthMm": {
       "marketing": 25.4,
-      "design": 25.4
+      "design": 25.385
     },
     "fNumber": {
       "marketing": 2,
@@ -21,7 +34,11 @@ export default {
     }
   },
   "source": {
-    "patentNumber": "US 1955591",
+    "patentNumber": "US 1,955,591 A",
+    "example": {
+      "label": "Sole example",
+      "id": null
+    },
     "patentYear": 1934,
     "authors": [
       "Horace William Lee"
@@ -39,7 +56,7 @@ export default {
       "nd": 1.61,
       "vd": 53.3,
       "indexReference": "d",
-      "glass": "Source Chance Bros 3894; historicalD/engine d approximation, not measured melt"
+      "glass": "Source Chance Bros 8894; historicalD/engine d approximation, not measured melt"
     },
     {
       "id": 2,
@@ -102,22 +119,22 @@ export default {
     },
     {
       "label": "2",
-      "R": 100.27919999999999,
+      "R": 100.2792,
       "d": 0.127,
       "sd": 9.0
     },
     {
       "label": "3",
       "R": 10.1854,
-      "d": 3.8099999999999996,
-      "sd": 5.0,
+      "d": 3.81,
+      "sd": 6.0,
       "medium": 2
     },
     {
       "label": "4",
-      "R": 26.288999999999998,
+      "R": 26.289,
       "d": 1.1176,
-      "sd": 5.0,
+      "sd": 5.1,
       "medium": 3
     },
     {
@@ -134,7 +151,7 @@ export default {
     {
       "label": "6",
       "R": -7.874,
-      "d": 1.1429999999999998,
+      "d": 1.143,
       "sd": 5.0,
       "medium": 4
     },
@@ -147,13 +164,13 @@ export default {
     },
     {
       "label": "8",
-      "R": -10.540999999999999,
+      "R": -10.541,
       "d": 0.127,
       "sd": 5.0
     },
     {
       "label": "9",
-      "R": 35.559999999999995,
+      "R": 35.56,
       "d": 2.0574,
       "sd": 7.0,
       "medium": 6
@@ -167,7 +184,7 @@ export default {
   ],
   "focus": {
     "closeFocusM": 1000000000000000.0,
-    "description": "NO_INTERNAL_RECONSTRUCTION: infinity 16mm-cinema representative only"
+    "description": "Only the infinity prescription is modeled; no finite-focus movement is reconstructed."
   },
   "aperture": {
     "nominalFNumber": 2,
@@ -192,3 +209,4 @@ export default {
     "yScFill": 0.7
   }
 } satisfies LensDataV2Input;
+export default LENS_DATA;

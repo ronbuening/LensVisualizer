@@ -2,14 +2,14 @@
 
 ## Patent Reference and Design Identification
 
-**Patent:** DE 436260  
-**Designer:** Ludwig Bertele  
-**Assignee:** Ernemann-Werke A.G.  
+**Patent:** DE 436,260 C  
+**Designer (historical attribution):** Ludwig Bertele; no inventor is printed in the patent  
+**Assignee:** Ernemann-Werke AG  
 **Issued:** 28 October 1926  
 **Effective date stated:** 6 December 1924  
-**Example details:** Example II, 100 mm, f/1.8; source stop intervals b1 = 5.87 mm and b2 = 6.62 mm.
+**Example details:** Example II, f = 100 mm normalisation, f/1.8; source stop intervals b1 = 5.87 mm and b2 = 6.62 mm.
 
-This is a qualified patent-example reconstruction, not an identified factory 85 mm or 100 mm product. The inspected German source is a cropped/concatenated reproduction of original patent text, tables and drawings on a historian's site, not a complete native-office PDF. That provenance limitation remains explicit.
+This is a qualified reconstruction of Example II at the patent's f = 100 mm normalisation, with scale factor 1 and no units conversion. The complete four-page patent is available as `patents/DE436260C.pdf`; page 2 supplies the prescription and page 4 shows Abb. 2. The f/1.8 Ernostar lenses were sold at 8.5, 10.5, 12.5 and 16.5 cm; there was no commercial 10 cm f/1.8. The 10 cm Ernostar was the four-element f/2 lens. Bertele is retained in the metadata as a historical attribution, not as a printed patent inventor.
 
 Bertele's original article, published in 1926 and dated 5 November 1925, states that Ernemann manufactures the commercial Ernostar and describes f/1.8, approximately 50° field and a six-element/four-component section. It lists retail 85 mm, 125 mm and 165 mm applications. The article contains no complete numerical prescription and does not uniquely identify Example II. Its normalized curves do not prove a factory 100 mm variant.
 
@@ -51,9 +51,9 @@ Isolated-element focal lengths are not independently certified. Glass labels are
 
 ## Glass Identification and Spectral Convention
 
-Patent ν values are interpreted as conventional Vd using contemporary optical notation; the formula is not expressly defined in the inspected DE436260 reproduction. No historical glass identification or measured dispersion curve is claimed.
+Patent ν values are interpreted as conventional Vd using contemporary optical notation; the formula is not expressly defined in DE 436,260 C. No historical glass identification or measured dispersion curve is claimed.
 
-This interpretation is supported by the original 1899 von Rohr text, printed page 59, which defines plain ν as (nD − 1)/(nF − nC), separately from a specially barred D–G′ convention elsewhere. Bertele's later US1975678 also uses nd/v dispersion notation. These sources support the conventional reading; they do not turn the omitted definition in the inspected German reproduction into an explicit source statement.
+This interpretation is supported by the original 1899 von Rohr text, printed page 59, which defines plain ν as (nD − 1)/(nF − nC), separately from a specially barred D–G′ convention elsewhere. Bertele's later US1975678 also uses nd/v dispersion notation. These sources support the conventional reading; they do not turn the omitted definition in the inspected German patent into an explicit source statement.
 
 The patent nD reference is treated as historical sodium D. The engine's d-reference representation is an additional approximation, not exact modern helium-d melt data. Partial dispersion, full measured spectral curves and quantitative color performance remain unknown. No glass value is adjusted to match a modern catalog or improve performance.
 
@@ -65,9 +65,9 @@ No retail near-focus law, lens movement, minimum object distance or particular 8
 
 ## Inferred Apertures and Source Stop
 
-Clear apertures are not tabulated. Inferred common semi-diameters by air-separated component are 28 mm, 25 mm, 17.5 mm and 20 mm. Each is the largest half-millimeter grid value satisfying default 0.9 geometry constraints, with the negative singlet additionally constrained by clearance to the fixed source stop. The drawing supports unequal heights qualitatively, not calibrated dimensions. These caps were not selected by ray-performance fitting.
+Clear apertures are not tabulated. The initial inferred common semi-diameters by air-separated component were 28 mm, 25 mm, 17.5 mm and 20 mm, selected on a half-millimeter grid under the default 0.9 geometry constraints and clearance to the fixed source stop. The aperture audit found that surface 7 limited the nominal f/1.8 beam to f/1.87, so its semi-diameter was raised from 17.5 to 18.4 mm, the least change reported by the audit. Surface 8 remains at 17.5 mm, and every other rim is retained. The corrected axial beam is limited by the iris at f/1.8. The drawing supports unequal heights qualitatively, not calibrated dimensions; these remain inferred clear apertures.
 
-The negative component's full inferred cap has 0.327796 mm clearance to the stop plane; the rear component has 8.994944 mm clearance. Native f/1.8 construction yields an iris radius of 16.614141199 mm. The axial split is a source number; the hole radius and clear apertures are not. The UI range through f/22 is authored convenience, not a source-backed retail limit.
+The negative component's unchanged 17.5 mm rear rim has 0.327796 mm clearance to the stop plane; the rear component has 8.994944 mm clearance. Native f/1.8 construction yields an iris radius of 16.614141199 mm. The axial split is a source number; the hole radius and clear apertures are not. The UI range through f/22 is authored convenience, not a source-backed retail limit.
 
 No source radii, thicknesses, glass values, cemented interfaces or stop coordinates are changed. No geometry allowance override, rim exception, extension or artificial spacer is used.
 
@@ -75,15 +75,15 @@ No source radii, thicknesses, glass values, cemented interfaces or stop coordina
 
 Native construction and isolated strict TypeScript pass; independent scoped source/geometry reviews accompany the handoff. These checks are not full app or optical performance validation.
 
-At nominal 36 × 24 mm frame angles, 25 pupil samples plus the chief give 26 successful optical traversals through 0.7 field, 23 successful/3 clipped at 0.85 field, and 21 successful/2 clipped/3 blocked at the corner.
+With the corrected surface 7 and the catalog format set to 645 (56 × 41.5 mm, 69.7 mm diagonal), the image-circle audit reports no undersized surfaces. The field-coverage audit reaches 34.85 mm of the 34.85 mm corner semi-diagonal (100%) at 18.9°, with a clear corner chief ray. The hidden data file stays hidden; the field check used an otherwise identical scratch copy with visibility enabled.
 
-The explicit source 25° half-field is substantially less successful: axis 26 successful; half field 21 successful/2 clipped/3 blocked; 0.7 field 19 successful/2 clipped/5 blocked; 0.85 field 14 successful/5 clipped/7 blocked; edge only 6 successful/7 clipped/13 blocked. Strong source-field obstruction is retained and must not be described as verified 50° coverage or faithful factory performance.
+Chief-ray coverage does not establish a fully illuminated pupil or the patent's approximately 50° field. The independent pre-integration validator's meridional fan passed 15/25 rays at 20° and 7/25 at 25°. Those samples predate the surface-7 correction and are retained only as evidence of the need for a separate full-pupil assessment, not as current throughput measurements.
 
 Saved traces terminate at the rear optical surface, not at a separately tested image-plane landing. The samples are not throughput percentages, full pupil integration or MTF. The representative remains hidden. Full current-corpus/application tests, lint/format integration, build, browser and MTF checks remain deferred, not passed. No release/deployment or finished commercial coverage claim follows from scoped acceptance.
 
 ## Sources
 
-- [DE436260 original-content reproduction](https://zeissikonveb.de/onewebmedia/Marco/Carl%20Zeiss%20Jena/DE436260%20Ernostar%201,8.jpg), cropped/concatenated text, tables and figures; not a complete native-office PDF.
+- `patents/DE436260C.pdf`, complete four-page patent; Example II on page 2 and Abb. 2 on page 4.
 - [Bertele original Ernostar article](https://zeissikonveb.de/onewebmedia/Bertele%20-%20Ernostar%201925.pdf), primary designer-authored commercial description, published 1926; secondary-hosted scan.
 - Original von Rohr (1899), printed page 59, definition of plain ν; excerpt and original-file provenance retained in supporting evidence.
 - [US1975678](https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/1975678), related same-author notation evidence, not a substitute Ernostar prescription.

@@ -14,7 +14,7 @@ Cooke Optics' own Compendium explicitly associates Series II f/4.5 Aviar with Br
 
 This model uses the complete original GB publication hosted by a secondary archive. It is a qualified representative, not a factory 100 mm prescription. The chosen 100× scale is convenient and does not correct the numerical focal residual. Example II is a distinct unmodeled embodiment, not another entry or proven retail variant.
 
-The comparable US1361207 publication prints r2 = −0.9152, whereas GB Example I prints −0.8152. Both originals are preserved. This model uses GB as an independent primary source; it does not silently correct the US table or combine their values. The formal legal family relationship is not independently established here.
+The comparable US 1,361,207 publication misprints r2 = −0.9152; GB Example I prints −0.8152, which is used here. Both originals are preserved. The GB value is retained without combining the two tables. The formal legal family relationship is not independently established here.
 
 ## Optical Architecture
 
@@ -40,7 +40,7 @@ Source nD = 1.5502, V = 45.8; light flint class. Its glass differs from L2. The 
 
 Source nD = 1.6116, V = 56.4; dense baryta crown class. The outer positive elements share the stated glass class and numerical index/dispersion, but no modern catalog replacement or melt identity is established.
 
-Isolated-element focal lengths are not independently certified. The complete source prescription, rather than product photographs, governs the typed optical values.
+Calculated isolated-element focal lengths in air are 36.21, −38.32, −42.18 and 36.21 mm for L1–L4, respectively, verified from the literal prescription. They are derived values, not patent-published element focal lengths.
 
 ## Glass Identification and Selection
 
@@ -52,7 +52,7 @@ The source calls the outer glasses dense baryta crown and the negative glasses l
 
 The representative is infinity-only. Its terminal image interval, 92.278731268 mm, is calculated from the literal GB prescription, not printed as a source BFL. No finite-focus law, retail minimum focus or movement is reconstructed.
 
-At 100× scale the literal EFL is 100.636959925 mm, approximately +0.637% relative to the nominal 100 mm. This discrepancy remains unresolved and is disclosed. The US literal table separately gives EFL 108.094627860 mm and is retained as different source evidence, not a failed variant silently repaired into this model.
+At 100× scale the literal EFL is 100.636959925 mm, approximately +0.637% relative to the nominal 100 mm. The +0.637% residual is inherent in the patent’s loose unit-focal-length normalization and is retained without fitting. The US literal table separately gives EFL 108.094627860 mm and is retained as different source evidence, not a failed variant silently repaired into this model.
 
 ## Aperture and Iris Assumptions
 

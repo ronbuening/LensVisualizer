@@ -1,13 +1,29 @@
-// Qualified source-example reconstruction, not exact retail85mm or factory100mm.
-// Inferred conventionalVd and caps; strong source-field clipping/blocking retained.
-import type { LensDataV2Input } from "../LensVisualizer/src/types/lensDataV2.js";
-export default {
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * DE 436,260 C, Example II, page 2 and Abb. 2 on page 4 of the complete four-page patent.
+ * The patent states f = 100 mm, f/1.8 and an approximately 50-degree field. This is the
+ * patent's f = 100 normalisation, not a commercial 10 cm f/1.8 prescription: the f/1.8
+ * Ernostar lenses were sold at 8.5, 10.5, 12.5 and 16.5 cm. Scale factor 1; all printed
+ * radii, thicknesses and gaps are retained in millimetres, with no units conversion.
+ * The printed nD and nu pairs are represented as nd and conventional Vd; the spectral
+ * convention is qualified in the analysis. No inventor is printed; Ludwig Bertele is
+ * retained as a historical attribution, not a name transcribed from this patent.
+ * The stop position is printed (5.87 + 6.62 = 12.49 mm); its radius is derived for f/1.8.
+ * All optical semi-diameters are inferred. Surface 7 is raised from 17.5 to 18.4 mm to
+ * pass the stated axial beam; the other rims are retained. The final 56.83526107 mm gap
+ * is calculated paraxial back focus, not a printed value. Only infinity is modeled;
+ * closeFocusM = 1e15 is a placeholder, and the aperture range through f/22 is authored.
+ */
+const LENS_DATA = {
   "schema": 2,
   "key": "ernemann-ernostar-de436260-eii-representative",
   "maker": "Ernemann",
-  "name": "Ernemann Ernostar 100mm f/1.8 (Example II representative)",
+  "name": "ERNEMANN ERNOSTAR f/1.8 (DE 436,260 Example II Design)",
   "visible": false,
   "catalog": {
+    "lensMounts": ["fixed-lens-camera"],
+    "imageFormat": "645",
     "elementCount": 6,
     "groupCount": 4,
     "focalLengthMm": {
@@ -20,7 +36,7 @@ export default {
     }
   },
   "source": {
-    "patentNumber": "DE 436260",
+    "patentNumber": "DE 436,260 C",
     "patentYear": 1926,
     "example": {
       "id": "2",
@@ -30,7 +46,7 @@ export default {
       "Ludwig Bertele"
     ],
     "assignees": [
-      "Ernemann-Werke A.G."
+      "Ernemann-Werke AG"
     ]
   },
   "elements": [
@@ -140,7 +156,7 @@ export default {
       "label": "7",
       "R": -179,
       "d": 1.07,
-      "sd": 17.5,
+      "sd": 18.4,
       "medium": 5
     },
     {
@@ -170,7 +186,7 @@ export default {
   ],
   "focus": {
     "closeFocusM": 1000000000000000.0,
-    "description": "NO_INTERNAL_RECONSTRUCTION: infinity representative only"
+    "description": "Only the infinity prescription is modeled because the patent provides no focusing data."
   },
   "aperture": {
     "nominalFNumber": 1.8,
@@ -196,3 +212,4 @@ export default {
     "yScFill": 0.7
   }
 } satisfies LensDataV2Input;
+export default LENS_DATA;

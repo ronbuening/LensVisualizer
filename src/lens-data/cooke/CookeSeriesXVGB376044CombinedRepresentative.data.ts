@@ -1,16 +1,31 @@
-import type { LensDataV2Input } from "../LensVisualizer/src/types/lensDataV2.js";
-export default {
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * GB 376,044 A, sole example: the complete-lens table on p. 3 and drawing on p. 4.
+ * All patent radii, thicknesses and airspaces are converted from inches to millimetres
+ * by a uniform factor of 25.4; no further optical scaling or fitting is applied.
+ * The stop at the midpoint of SII, all semi-diameters and the paraxial back focus
+ * of 288.9792920995148 mm are inferred, not printed. L5/L6 use a common 22 mm
+ * semi-diameter to follow the drawing; the other inferred rims are retained.
+ * L5/L7/L8 indices and Abbe numbers are inferred from repeated Chance identifiers
+ * in the table. Historical sodium-D indices are approximated as engine d-line values.
+ * Only the combined infinity state is modeled; closeFocusM is a sentinel, not a
+ * minimum focus distance, and separate-member operating modes are not modeled.
+ */
+const LENS_DATA = {
   "schema": 2,
   "key": "cooke-seriesxv-gb376044-combined-representative",
   "maker": "Cooke",
   "name": "Cooke Series XV 12.25-inch f/6.8 (combined patent representative)",
   "visible": false,
   "catalog": {
+    "lensMounts": ["large-format-lens-board"],
+    "imageFormat": "8x10",
     "elementCount": 8,
     "groupCount": 4,
     "focalLengthMm": {
       "marketing": 311.15,
-      "design": 311.15
+      "design": 313.56
     },
     "fNumber": {
       "marketing": 6.8,
@@ -18,7 +33,8 @@ export default {
     }
   },
   "source": {
-    "patentNumber": "GB 376044",
+    "patentNumber": "GB 376,044 A",
+    "example": { "label": "Sole example", "id": null },
     "patentYear": 1932,
     "authors": [
       "Horace William Lee"
@@ -127,13 +143,13 @@ export default {
     {
       "label": "3",
       "R": 81.28,
-      "d": 3.2003999999999997,
+      "d": 3.2004,
       "sd": 30.5
     },
     {
       "label": "4",
-      "R": 79.90839999999999,
-      "d": 12.877799999999999,
+      "R": 79.9084,
+      "d": 12.8778,
       "sd": 30.0,
       "medium": 3
     },
@@ -157,35 +173,35 @@ export default {
     },
     {
       "label": "7",
-      "R": -62.230000000000004,
+      "R": -62.23,
       "d": 2.413,
-      "sd": 26.0,
+      "sd": 22,
       "medium": 5
     },
     {
       "label": "8",
-      "R": 180.00979999999998,
+      "R": 180.0098,
       "d": 9.5758,
-      "sd": 26.0,
+      "sd": 22,
       "medium": 6
     },
     {
       "label": "9",
-      "R": -59.20739999999999,
+      "R": -59.2074,
       "d": 2.413,
-      "sd": 26.0
+      "sd": 22
     },
     {
       "label": "10",
       "R": -60.198,
-      "d": 7.188199999999999,
+      "d": 7.1882,
       "sd": 22.5,
       "medium": 7
     },
     {
       "label": "11",
-      "R": -29.209999999999997,
-      "d": 3.0479999999999996,
+      "R": -29.21,
+      "d": 3.048,
       "sd": 22.5,
       "medium": 8
     },
@@ -198,7 +214,7 @@ export default {
   ],
   "focus": {
     "closeFocusM": 1000000000000000.0,
-    "description": "NO_INTERNAL_RECONSTRUCTION: combined infinity only; separate member operating modes not modeled"
+    "description": "Only the complete lens at infinity is modeled; separate member operating modes are not modeled."
   },
   "aperture": {
     "nominalFNumber": 6.8,
@@ -221,3 +237,5 @@ export default {
     "yScFill": 0.7
   }
 } satisfies LensDataV2Input;
+
+export default LENS_DATA;

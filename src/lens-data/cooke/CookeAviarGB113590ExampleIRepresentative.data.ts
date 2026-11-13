@@ -1,13 +1,25 @@
-// GB Example I representative, not a correction of US1361207 or exact factory model.
-// Inferred caps/iris; +0.637% focal residual retained; hidden pending integration.
-import type { LensDataV2Input } from "../LensVisualizer/src/types/lensDataV2.js";
-export default {
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * GB 113,590 A, Example I (PDF p. 2), a representative of the Cooke Aviar design rather than an exact factory model.
+ * The patent's unit-focal-length prescription is normalized at ×100: multiply every printed radius, thickness
+ * and air space by 100 to express lengths in millimetres; refractive indices and Abbe numbers are unchanged.
+ * The literal prescription gives EFL 100.64 mm at this scale. Its +0.637% residual from nominal 100 mm is inherent
+ * in the patent and retained without fitting. US 1,361,207 prints r2 = −.9152 in error; GB r2 = −.8152 is used
+ * (−81.52 mm after scaling).
+ * The 12 mm surface semi-diameters are inferred, not printed clear apertures. The stop is inferred at the midpoint
+ * of the 3.62 mm central gap (1.81 mm on either side), with its radius derived from f/4.5. The final 92.278731268 mm
+ * interval is the calculated infinity back focus, not a printed dimension. No finite-focus movement is modeled.
+ */
+const LENS_DATA = {
   "schema": 2,
   "key": "cooke-aviar-gb113590-ei-representative",
   "maker": "Cooke",
-  "name": "Cooke Aviar 100mm-class f/4.5 (GB Example I representative)",
+  "name": "COOKE AVIAR f/4.5 (GB 113,590 Example I Design)",
   "visible": false,
   "catalog": {
+    "lensMounts": ["large-format-lens-board"],
+    "imageFormat": "6x9",
     "elementCount": 4,
     "groupCount": 4,
     "focalLengthMm": {
@@ -21,10 +33,10 @@ export default {
   },
   "source": {
     "example": {
-      "id": "1",
-      "label": "Example I"
+      "label": "Example I",
+      "id": "1"
     },
-    "patentNumber": "GB 113590",
+    "patentNumber": "GB 113,590 A",
     "patentYear": 1918,
     "authors": [
       "Arthur Warmisham"
@@ -37,16 +49,18 @@ export default {
     {
       "id": 1,
       "name": "L1",
+      "focalLengthMm": 36.21,
       "label": "Element 1",
       "type": "Spherical patent glass",
       "nd": 1.6116,
-      "vd": 56.400000000000006,
+      "vd": 56.4,
       "indexReference": "d",
       "glass": "Source sodiumD/V explicitly defined; d-reference engine approximation"
     },
     {
       "id": 2,
       "name": "L2",
+      "focalLengthMm": -38.32,
       "label": "Element 2",
       "type": "Spherical patent glass",
       "nd": 1.5682,
@@ -57,6 +71,7 @@ export default {
     {
       "id": 3,
       "name": "L3",
+      "focalLengthMm": -42.18,
       "label": "Element 3",
       "type": "Spherical patent glass",
       "nd": 1.5502,
@@ -67,10 +82,11 @@ export default {
     {
       "id": 4,
       "name": "L4",
+      "focalLengthMm": 36.21,
       "label": "Element 4",
       "type": "Spherical patent glass",
       "nd": 1.6116,
-      "vd": 56.400000000000006,
+      "vd": 56.4,
       "indexReference": "d",
       "glass": "Source sodiumD/V explicitly defined; d-reference engine approximation"
     }
@@ -136,7 +152,7 @@ export default {
   ],
   "focus": {
     "closeFocusM": 1000000000000000.0,
-    "description": "NO_INTERNAL_RECONSTRUCTION: infinity representative only"
+    "description": "Only the infinity-focus prescription is modeled; no finite-focus movement is reconstructed."
   },
   "aperture": {
     "nominalFNumber": 4.5,
@@ -157,3 +173,5 @@ export default {
     "yScFill": 0.7
   }
 } satisfies LensDataV2Input;
+
+export default LENS_DATA;

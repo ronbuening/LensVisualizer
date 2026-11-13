@@ -1,15 +1,37 @@
-import type { LensDataV2Input } from "../LensVisualizer/src/types/lensDataV2.js";
-export default {
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * GB 155,640 A, Example I (printed page 2; Figure 1), Taylor, Taylor & Hobson Ltd.
+ * and Horace William Lee. The patent states an equivalent focal length of 1 unit,
+ * aperture f/3 and full field of 45 degrees.
+ *
+ * SCALE AND UNITS: retain the uniform x100 normalisation: 1 patent unit becomes
+ * 100 mm. All radii, thicknesses, air gaps and printed diameters use that conversion;
+ * semi-diameters are half the converted diameters. No 100 mm Series XI was sold;
+ * the documented retail focal lengths were 5 in and 6 1/4 in, at f/3.5.
+ * This model is the normalised patent design, not a retail focal-length prescription.
+ *
+ * INFERRED VALUES: the stop is placed midway through the 10.76 mm rear air gap,
+ * 5.38 mm from each adjacent vertex; its opening is derived for f/3. The rims are
+ * not inferred: the printed diameters give semi-diameters of 17, 15 and 15 mm.
+ * The final 85.3257513035 mm gap is calculated paraxial back focus, not printed.
+ * The 82.84 mm image circle is derived from the stated 45-degree field at the
+ * nominal 100 mm scale; it does not certify edge illumination or image quality.
+ * The printed sodium D-line index is approximated by engine d; Nu is interpreted
+ * as conventional Vd. Only infinity focus is represented.
+ */
+const LENS_DATA = {
   "schema": 2,
   "key": "cooke-seriesxi-gb155640-ei-representative",
   "maker": "Cooke",
-  "name": "Cooke Series XI 100mm-scaled f/3 (patent EI representative)",
+  "name": "COOKE SERIES XI f/3 (GB 155,640 Example I Design)",
   "visible": false,
   "catalog": {
+    "lensMounts": ["large-format-lens-board"],
+    "imageCircleMm": 82.84,
     "elementCount": 3,
     "groupCount": 3,
     "focalLengthMm": {
-      "marketing": 100,
       "design": 100
     },
     "fNumber": {
@@ -18,13 +40,14 @@ export default {
     }
   },
   "source": {
-    "patentNumber": "GB 155640",
+    "patentNumber": "GB 155,640 A",
+    "example": { "label": "Example I", "id": "1" },
     "patentYear": 1920,
     "authors": [
       "Horace William Lee"
     ],
     "assignees": [
-      "Taylor, Taylor and Hobson"
+      "Taylor, Taylor & Hobson Ltd."
     ]
   },
   "elements": [
@@ -106,8 +129,8 @@ export default {
     }
   ],
   "focus": {
-    "closeFocusM": 1000000000000000.0,
-    "description": "NO_INTERNAL_RECONSTRUCTION: infinity normalized representative only"
+    "closeFocusM": 1000000000000000,
+    "description": "This normalised patent model represents infinity focus only."
   },
   "aperture": {
     "nominalFNumber": 3,
@@ -118,10 +141,9 @@ export default {
       5.6,
       8,
       11,
-      16,
-      22
+      16
     ],
-    "maxFNumber": 22
+    "maxFNumber": 16
   },
   "projection": {
     "kind": "rectilinear",
@@ -132,3 +154,5 @@ export default {
     "yScFill": 0.7
   }
 } satisfies LensDataV2Input;
+
+export default LENS_DATA;

@@ -30,7 +30,7 @@ No numerical iris position or diameter is supplied. This model places it at the 
 ## Scoped checks and field limitations
 Native construction and isolated strict TypeScript reproduce; independent source/geometry and final reviews accompany qualified handoff. These are not factory-performance validation.
 
-No numeric source field angle was identified. An explicitly assumed10° half-field diagnostic yields26/26/23/21/18 successful optical-surface exits out of26 samples at fractions0/.5/.7/.85/1, with the remainder clipped. The assumed angle is not marketed or patent coverage. Counts are not throughput percentages, full pupil integration, tested image-plane landing or MTF.
+No numeric source field angle was identified. The earlier assumed10° half-field diagnostic yielded26/26/23/21/18 successful optical-surface exits out of26 samples at fractions0/.5/.7/.85/1, with the remainder clipped. The current model uses an assumed15° half-field to include the assigned 4x5 corner (approximately14.8°); this is not marketed or patent coverage. Counts are not throughput percentages, full pupil integration, tested image-plane landing or MTF.
 
 Current-corpus/application tests, lint/format integration, build, browser and MTF remain deferred and unpassed. This model is hidden, infinity-only, unintegrated and undeployed.
 

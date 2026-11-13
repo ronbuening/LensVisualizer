@@ -24,7 +24,7 @@ Source diagnostics independently give front-member EFL25.413198233 versus nomina
 ## Inferred apertures
 No clear diameters or numeric iris position are supplied. The model assumes the midpoint of centralSII=.45inch, with.225inch on each side, before tracing. It is an engineering hypothesis, not a source stop coordinate.
 
-Each actual cemented body uses a common inferred semi-diameter:30.5/30/26/22.5mm. Values are selected from a half-millimeter grid using default.9 rim/gap geometry and full iris-plane clearance before ray testing, not tuned to ray success. Independent review confirms air-body edge separation, cemented thickness and stop clearance. The rear full-cap iris clearance is only0.02324mm: mathematically positive, but not validated manufacturing tolerance or physical shutter accommodation. No unequal cemented rim, invented spacer or geometry override is introduced.
+Each cemented body uses a common inferred semi-diameter: 30.5/30/22/22.5 mm. Independent review of the patent drawing found that the L5/L6 doublet is smaller than L7/L8, so surfaces 7–9 were reduced from 26 to 22 mm; the other rims are retained. The axial beam needs 21.2 mm at this doublet. The validator reports that this change increases rear iris clearance from 0.02324 mm to 1.70 mm without changing vignetting. These inferred dimensions do not establish manufacturing tolerances or physical shutter accommodation. No unequal cemented rim, invented spacer or geometry override is introduced.
 
 Native iris radius20.260950617mm is calculated atf/6.8, not an original hole measurement. Authored f-stop settings throughf/32 are convenience, not verified retail markings.
 

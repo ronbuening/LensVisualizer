@@ -24,7 +24,7 @@ Both cemented interfaces and all three source air gaps remain literal. The centr
 
 ### L1: front positive meniscus
 
-Source nD = 1.6100, V = 53.3; Chance Brothers No. 3894. The front surface is more strongly curved than the rear. This is a historical catalog number from the source, not a certified present melt or modern replacement.
+Source nD = 1.6100, V = 53.3; Chance Brothers No. 8894. The front surface is more strongly curved than the rear. This is a historical catalog number from the source, not a certified present melt or modern replacement.
 
 ### L2 and L3: front cemented component
 
@@ -54,7 +54,7 @@ The terminal image interval is calculated as 0.678397625613 inch, approximately 
 
 Neither exact physical iris position nor clear apertures are supplied. An iris at the midpoint of the 0.22-inch central gap is an explicit engineering hypothesis, giving 0.11 inch on each side. It is not derived from the source's vertex-image midpoint claim.
 
-Inferred semi-diameters are 9 mm for the front singlet, 5 mm for the two central doublets, and 7 mm for the rear singlet. They are selected from a half-millimeter grid subject to default 0.9 geometry constraints and positive midpoint-iris clearance, not from measured mechanical apertures or ray-performance fitting.
+Inferred semi-diameters are 9 mm for the front singlet, 6.0 mm at S3 and 5.1 mm at S4 in the front doublet, 5 mm at the remaining doublet surfaces, and 7 mm for the rear singlet. The delivered 5 mm rims at S3 and S4 clipped the axial beam to f/2.41. They are raised only to the aperture audit’s minimum 6.0/5.1 mm values, within the validator’s approximately 6.9 mm front-doublet rim from the patent figure. The remaining inferred rims retain their delivered geometry-grid values; they are not measured mechanical apertures.
 
 Native f/2 construction gives an iris radius of 4.156363225 mm. This is a model result, not a source hole diameter. The f-stop range through f/22 is authored convenience, not a validated retail specification. No source radius, spacing, glass value, cemented interface or geometry limit is changed to improve acceptance.
 
@@ -62,7 +62,7 @@ Native f/2 construction gives an iris radius of 4.156363225 mm. This is a model 
 
 Native construction and isolated strict TypeScript pass, with independent scoped source/geometry reviews accompanying the handoff. These checks do not validate all commercial performance claims.
 
-A sparse source-field test uses the stated 17.5° half-field, not a 36 × 24 mm full-frame assumption. With 25 pupil samples plus the chief, results are: axis 26 successful; half field 14 successful/12 clipped; 0.7 field 12 successful/14 clipped; 0.85 field 10 successful/16 clipped; source edge only 8 successful/18 clipped.
+The original sparse source-field test used the stated 17.5° half-field, not a 36 × 24 mm full-frame assumption. Its claim of 26 successful axial samples is superseded by the independent validator’s finding that the delivered S3/S4 rims clipped the f/2 axial beam to f/2.41. The original off-axis sample counts have not been revalidated after the 6.0/5.1 mm rim correction.
 
 Strong peripheral clipping remains. These traces terminate at the rear optical surface, not at a separately tested image-plane landing. Counts are not throughput fractions, full pupil integration, MTF or verified 35° image quality/coverage. The 16 mm cinema designation is source context, not proof of every ray or production-format tolerance.
 

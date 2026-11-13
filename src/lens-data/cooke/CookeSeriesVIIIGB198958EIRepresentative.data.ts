@@ -1,15 +1,30 @@
-import type { LensDataV2Input } from "../LensVisualizer/src/types/lensDataV2.js";
-export default {
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * Source: GB 198,958 A, Example I (first numerical table, printed p. 2; Fig. 1).
+ * Native nominal 12-inch f/6 design; scale factor 1, with no production rescaling.
+ * All source lengths in inches are converted to millimetres by multiplying by 25.4;
+ * refractive indices and Abbe numbers are unchanged.
+ * The stop position at the midpoint of the 2.73-inch air gap is inferred, and its
+ * radius is derived from f/6. Rims are not inferred: the printed group diameters
+ * 2.05 and 1.5 inches give semi-diameters 26.035 and 19.05 mm. The final back focus
+ * is calculated (151.80322609880798 mm), not tabulated. The 15-degree half-field
+ * is a modeling limit chosen to trace the assigned 4x5 format, not a patent field.
+ * Infinity only; no focusing data are tabulated. Historical nD is approximated by
+ * the engine's d line; the glass identifiers do not establish measured dispersion.
+ */
+const LENS_DATA = {
   "schema": 2,
   "key": "cooke-seriesviii-gb198958-ei-representative",
   "maker": "Cooke",
-  "name": "Cooke Series VIII 12-inch f/6 (patent EI representative)",
+  "name": "COOKE SERIES VIII TELEPHOTO (GB 198,958 Example I Design)",
   "visible": false,
   "catalog": {
+    "lensMounts": ["large-format-lens-board"],
+    "imageFormat": "4x5",
     "elementCount": 4,
     "groupCount": 2,
     "focalLengthMm": {
-      "marketing": 304.8,
       "design": 304.8
     },
     "fNumber": {
@@ -18,7 +33,11 @@ export default {
     }
   },
   "source": {
-    "patentNumber": "GB 198958",
+    "patentNumber": "GB 198,958 A",
+    "example": {
+      "label": "Example I",
+      "id": "1"
+    },
     "patentYear": 1923,
     "authors": [
       "Horace William Lee"
@@ -72,23 +91,23 @@ export default {
   "surfaces": [
     {
       "label": "1",
-      "R": 54.60999999999999,
+      "R": 54.61,
       "d": 10.668,
-      "sd": 26.034999999999997,
+      "sd": 26.035,
       "medium": 1
     },
     {
       "label": "2",
-      "R": -157.98799999999997,
-      "d": 3.0479999999999996,
-      "sd": 26.034999999999997,
+      "R": -157.988,
+      "d": 3.048,
+      "sd": 26.035,
       "medium": 2
     },
     {
       "label": "3",
       "R": 143.51,
       "d": 34.671,
-      "sd": 26.034999999999997
+      "sd": 26.035
     },
     {
       "label": "STO",
@@ -99,26 +118,26 @@ export default {
       "label": "4",
       "R": -34.29,
       "d": 2.032,
-      "sd": 19.049999999999997,
+      "sd": 19.05,
       "medium": 3
     },
     {
       "label": "5",
       "R": "flat",
       "d": 5.08,
-      "sd": 19.049999999999997,
+      "sd": 19.05,
       "medium": 4
     },
     {
       "label": "6",
       "R": -54.102,
       "d": 151.80322609880798,
-      "sd": 19.049999999999997
+      "sd": 19.05
     }
   ],
   "focus": {
     "closeFocusM": 1000000000000000.0,
-    "description": "NO_INTERNAL_RECONSTRUCTION: source infinity representative; magnification2 is not macro2to1"
+    "description": "Infinity only; the patent tabulates no focusing data, so no focus movement is modeled."
   },
   "aperture": {
     "nominalFNumber": 6,
@@ -134,10 +153,11 @@ export default {
   },
   "projection": {
     "kind": "rectilinear",
-    "fullFieldDeg": 20,
-    "maxTraceFieldDeg": 10
+    "fullFieldDeg": 30,
+    "maxTraceFieldDeg": 15
   },
   "layout": {
     "yScFill": 0.7
   }
 } satisfies LensDataV2Input;
+export default LENS_DATA;

@@ -1,11 +1,11 @@
 # Cooke Series XI: GB155640 Example I representative
 
 ## Patent reference and product qualification
-GB155640, Taylor, Taylor and Hobson and Horace William Lee; applied 22 September 1919, accepted 22 December 1920, printed 1921. The original three-page facsimile is retained. Example I is a normalized F=1 triplet, f/3, with stated45° field. Example II is separate and is not mixed into this model or counted as another physical family.
+GB 155,640 A, Taylor, Taylor & Hobson Ltd. and Horace William Lee; applied 22 September 1919, accepted 22 December 1920, printed 1921. The original three-page facsimile is retained. Example I is a normalized F=1 triplet, f/3, with stated45° field. Example II is separate and is not mixed into this model or counted as another physical family.
 
 Cooke's modern Compendium explicitly associates Series XI f/3.5 with GB155640 and reports patent-number inscriptions on5-inch serial138174 and6.25-inch serials138272/199442. This is manufacturer-reported sample evidence, not engraving photographs independently inspected here. The maker says no catalog entry was found in its archive. Its broader association of the patent with other triplet series does not establish exclusive identity or select a factory example. The source f/3 is different from retail f/3.5.
 
-This is an explicitly qualified representative of Example I at100mm per normalized unit. It is not an asserted factory100mm,5-inch or6.25-inch prescription, nor a fitted scaling to a retail focal length. Bounded dedup found no GB155640 model in the recovered checkout or Drive search, not a complete historical/live numerical novelty audit.
+This is an explicitly qualified representative of Example I at 100 mm per normalized unit (×100). No 100 mm Series XI was sold; the documented retail focal lengths were 5 in and 6¼ in. This is not an asserted factory prescription at either retail focal length, nor a fitted scaling to one. Bounded dedup found no GB155640 model in the recovered checkout or Drive search, not a complete historical/live numerical novelty audit.
 
 ## Architecture and element analysis
 Three separate spherical elements form a positive-negative-positive triplet. All original glass thicknesses and air gaps remain literal. The patent drawing has light incident from the right; the model follows the table's incident-to-image sequence rather than page-left order.
@@ -25,12 +25,14 @@ Literal normalized EFL.998591886688 gives99.8591886688mm, retaining−.1408113% 
 ## Apertures and inferred iris
 Source diameters.34/.30/.30 are scaled directly to semi-diameters17/15/15mm. They are element dimensions, not an iris prescription; unlike many reconstructed examples these caps are not inferred.
 
-No numerical physical stop position or hole diameter is supplied. This model assumes a stop at the midpoint of the larger internal airspace S2,5.38mm from each vertex. This choice was made before ray testing, not fitted to rays. Independent review confirms full-cap stop clearance and element geometry. Native f/3 iris radius13.4500402928mm is a model result, not an original measurement. Authored aperture settings throughf/22 are convenience, not validated factory settings. No geometry allowance override is used.
+No numerical physical stop position or hole diameter is supplied. This model assumes a stop at the midpoint of the larger internal airspace S2,5.38mm from each vertex. This choice was made before ray testing, not fitted to rays. Independent review confirms full-cap stop clearance and element geometry. Native f/3 iris radius13.4500402928mm is a model result, not an original measurement. The authored aperture range is f/3–16, retaining the patent f/3 opening and capping the list at the documented retail limit of f/16; the retail aperture scale was f/3.5–16. No geometry allowance override is used.
 
 ## Scoped checks and field limitations
+The model uses an 82.84 mm image circle derived from the patent’s 45° full field at the nominal 100 mm scale (2f·tan 22.5°). This sets the analysis field and does not establish uniform illumination or commercial image quality.
+
 Native construction and isolated strict TypeScript reproduce against the retained checkout. Independent source and geometry reviews accompany qualified handoff. They are not factory-performance validation.
 
-Sparse source-field diagnostics use22.5° half-field. With25 pupil samples plus chief, successful optical-surface exits at0/.5/.7/.85/1 field fractions are26/23/19/16/10. At source edge there are11 clipped and5 blocked rays; at.85 field9 clipped and1 blocked. This substantial field limitation remains prominent. No45° coverage or commercial image-quality claim is validated.
+Sparse source-field diagnostics use22.5° half-field. With25 pupil samples plus chief, successful optical-surface exits at0/.5/.7/.85/1 field fractions are26/23/19/16/10. At source edge there are11 clipped and5 blocked rays; at.85 field9 clipped and1 blocked. This substantial field limitation remains prominent. The field-coverage audit reaches 100% of the 82.84 mm circle with a clear corner chief ray; this does not validate full-pupil illumination or commercial image quality.
 
 Counts are not throughput percentages, full pupil integration, independently tested image-plane landing or MTF. Full current-corpus/app tests, lint/format integration, build, browser and MTF remain deferred and unpassed. This representative is hidden, not integrated or deployed.
 
