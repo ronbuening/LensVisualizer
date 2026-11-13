@@ -5,13 +5,13 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Cooke's manufacturer history links this patent to the Speed Panchro family; it does not identify this example
  * as a specific retail lens.
  *
- * SCALE: 1x at the patent's native focal length; all radii, thicknesses and air gaps are converted from inches to
- * millimetres by multiplying by 25.4. The calculated paraxial EFL is 25.385 mm; no focal-length fitting is applied.
+ * All radii, thicknesses and air gaps are converted from inches to millimetres by multiplying by 25.4, without
+ * further scaling. The calculated paraxial EFL is 25.385 mm; no focal-length fitting is applied.
  *
  * INFERRED: the iris lies midway through the 0.22-inch central air gap, 2.794 mm from either adjacent surface;
- * its radius is derived for f/2. All semi-diameters are inferred. S3 and S4 are raised only from 5 mm to 6 mm and
- * 5.1 mm to pass the axial beam, within the validator's approximately 6.9 mm front-doublet rim from the figure.
- * Other rims retain their delivered values, pending a separate figure review. The final 17.2312996905702 mm
+ * its radius is derived for f/2. All semi-diameters are inferred. S3 and S4 have radii of 6 mm and 5.1 mm to pass
+ * the axial beam; the patent figure suggests approximately 6.9 mm for the front-doublet outer rim. The inferred
+ * rims differ from the drawing and are not measured mechanical apertures. The final 17.2312996905702 mm
  * image interval is calculated paraxial back focus, not a printed patent value. Only infinity focus is modeled.
  */
 const LENS_DATA = {
@@ -19,8 +19,14 @@ const LENS_DATA = {
   "key": "cooke-speed-panchro-us1955591",
   "maker": "Cooke",
   "name": "COOKE SPEED PANCHRO f/2 (US 1,955,591 Design)",
+  "subtitle": "US 1,955,591 A, sole example — Speed Panchro family design for 16 mm",
   "visible": true,
   "catalog": {
+    "specs": [
+      "6 ELEMENTS / 4 GROUPS",
+      "ALL SPHERICAL",
+      "f/2"
+    ],
     "elementCount": 6,
     "groupCount": 4,
     "imageFormat": "16mm-cinema",
@@ -52,61 +58,71 @@ const LENS_DATA = {
       "id": 1,
       "name": "L1",
       "label": "Element 1",
-      "type": "Spherical patent glass",
+      "type": "Positive Meniscus",
+      "role": "Positive front singlet",
       "nd": 1.61,
       "vd": 53.3,
       "indexReference": "d",
-      "glass": "Source Chance Bros 8894; historicalD/engine d approximation, not measured melt"
+      "glass": "Unmatched (Chance 8894, nD 1.6100 / V 53.3)"
     },
     {
       "id": 2,
       "name": "L2",
       "label": "Element 2",
-      "type": "Spherical patent glass",
+      "type": "Positive Meniscus",
+      "role": "Positive front element of the front cemented pair",
+      "cemented": "C1",
       "nd": 1.615,
       "vd": 56.1,
       "indexReference": "d",
-      "glass": "Source Chance Bros 3265; historicalD/engine d approximation, not measured melt"
+      "glass": "Unmatched (Chance 3265, nD 1.6150 / V 56.1)"
     },
     {
       "id": 3,
       "name": "L3",
       "label": "Element 3",
-      "type": "Spherical patent glass",
+      "type": "Negative Meniscus",
+      "role": "Negative rear element of the front cemented pair",
+      "cemented": "C1",
       "nd": 1.6134,
       "vd": 36.9,
       "indexReference": "d",
-      "glass": "Source Chance Bros 4743; historicalD/engine d approximation, not measured melt"
+      "glass": "Unmatched (Chance 4743, nD 1.6134 / V 36.9)"
     },
     {
       "id": 4,
       "name": "L4",
       "label": "Element 4",
-      "type": "Spherical patent glass",
+      "type": "Biconcave Negative",
+      "role": "Negative front element of the rear cemented pair",
+      "cemented": "C2",
       "nd": 1.6469,
       "vd": 33.7,
       "indexReference": "d",
-      "glass": "Source Chance Bros 337; historicalD/engine d approximation, not measured melt"
+      "glass": "Unmatched (Chance 337, nD 1.6469 / V 33.7)"
     },
     {
       "id": 5,
       "name": "L5",
       "label": "Element 5",
-      "type": "Spherical patent glass",
+      "type": "Biconvex Positive",
+      "role": "Positive rear element of the rear cemented pair",
+      "cemented": "C2",
       "nd": 1.6437,
       "vd": 48.3,
       "indexReference": "d",
-      "glass": "Source Chance Bros unnumbered new glass; historicalD/engine d approximation, not measured melt"
+      "glass": "Unmatched (Chance unnumbered new glass, nD 1.6437 / V 48.3)"
     },
     {
       "id": 6,
       "name": "L6",
       "label": "Element 6",
-      "type": "Spherical patent glass",
+      "type": "Biconvex Positive",
+      "role": "Positive rear singlet",
       "nd": 1.6234,
       "vd": 56.3,
       "indexReference": "d",
-      "glass": "Source Chance Bros 6665; historicalD/engine d approximation, not measured melt"
+      "glass": "Unmatched (Chance 6665, nD 1.6234 / V 56.3)"
     }
   ],
   "surfaces": [
@@ -183,8 +199,8 @@ const LENS_DATA = {
     }
   ],
   "focus": {
-    "closeFocusM": 1000000000000000.0,
-    "description": "Only the infinity prescription is modeled; no finite-focus movement is reconstructed."
+    "closeFocusM": 1e15,
+    "description": "Infinity focus only; the patent supplies no finite-focus spacings or focusing mechanism."
   },
   "aperture": {
     "nominalFNumber": 2,
@@ -205,6 +221,10 @@ const LENS_DATA = {
     "fullFieldDeg": 35,
     "maxTraceFieldDeg": 17.5
   },
+  "doublets": [
+    { "text": "C1", "fromSurface": "3", "toSurface": "5" },
+    { "text": "C2", "fromSurface": "6", "toSurface": "8" }
+  ],
   "layout": {
     "yScFill": 0.7
   }
