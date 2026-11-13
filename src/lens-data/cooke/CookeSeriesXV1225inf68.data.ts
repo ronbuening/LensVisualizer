@@ -8,19 +8,27 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * of 288.9792920995148 mm are inferred, not printed. L5/L6 use a common 22 mm
  * semi-diameter to follow the drawing; the other inferred rims are retained.
  * L5/L7/L8 indices and Abbe numbers are inferred from repeated Chance identifiers
- * in the table. Historical sodium-D indices are approximated as engine d-line values.
- * Only the combined infinity state is modeled; closeFocusM is a sentinel, not a
- * minimum focus distance, and separate-member operating modes are not modeled.
+ * in the table. The printed sodium-D indices are used with the d-line convention;
+ * the patent supplies no measured spectral curves.
+ * Only the complete lens at infinity is modeled; separate-member operating modes
+ * and a minimum focus distance are not specified.
  */
 const LENS_DATA = {
   "schema": 2,
   "key": "cooke-series-xv-12-25in-f68",
   "maker": "Cooke",
   "name": "COOKE SERIES XV 12¼ in f/6.8",
+  "subtitle": "GB 376,044 A, complete lens — Cooke Series XV Triple Convertible",
   "visible": true,
   "catalog": {
     "lensMounts": ["large-format-lens-board"],
     "imageFormat": "8x10",
+    "specs": [
+      "8 ELEMENTS / 4 GROUPS",
+      "ALL SPHERICAL",
+      "f/6.8",
+      "CONVERTIBLE"
+    ],
     "elementCount": 8,
     "groupCount": 4,
     "focalLengthMm": {
@@ -48,81 +56,97 @@ const LENS_DATA = {
       "id": 1,
       "name": "L1",
       "label": "Element 1",
-      "type": "Spherical patent glass",
+      "type": "Negative Meniscus",
+      "role": "Negative front element of the front member's outer doublet",
+      "cemented": "C1",
       "nd": 1.5472,
       "vd": 45.8,
       "indexReference": "d",
-      "glass": "Source Chance458; historical D/engine d approximation, not measured melt"
+      "glass": "Unmatched (nD 1.5472 / V 45.8, Chance 458)"
     },
     {
       "id": 2,
       "name": "L2",
       "label": "Element 2",
-      "type": "Spherical patent glass",
+      "type": "Positive Meniscus",
+      "role": "Positive rear element of the front member's outer doublet",
+      "cemented": "C1",
       "nd": 1.5186,
       "vd": 60.3,
       "indexReference": "d",
-      "glass": "Source Chance9322; historical D/engine d approximation, not measured melt"
+      "glass": "Unmatched (nD 1.5186 / V 60.3, Chance 9322)"
     },
     {
       "id": 3,
       "name": "L3",
       "label": "Element 3",
-      "type": "Spherical patent glass",
+      "type": "Biconvex Positive",
+      "role": "Positive front element of the front member's inner doublet",
+      "cemented": "C2",
       "nd": 1.6437,
       "vd": 48.3,
       "indexReference": "d",
-      "glass": "Source not yet in catalogue; historical D/engine d approximation, not measured melt"
+      "glass": "Unmatched (nD 1.6437 / V 48.3, not yet in Chance's catalogue)"
     },
     {
       "id": 4,
       "name": "L4",
       "label": "Element 4",
-      "type": "Spherical patent glass",
+      "type": "Biconcave Negative",
+      "role": "Negative rear element of the front member's inner doublet",
+      "cemented": "C2",
       "nd": 1.529,
       "vd": 51.6,
       "indexReference": "d",
-      "glass": "Source Chance7863; historical D/engine d approximation, not measured melt"
+      "glass": "Unmatched (nD 1.5290 / V 51.6, Chance 7863)"
     },
     {
       "id": 5,
       "name": "L5",
       "label": "Element 5",
-      "type": "Spherical patent glass",
+      "type": "Biconcave Negative",
+      "role": "Negative front element of the rear member's inner doublet",
+      "cemented": "C3",
       "nd": 1.529,
       "vd": 51.6,
       "indexReference": "d",
-      "glass": "Source Chance7863: blank nD/V matched to earlier identifier; historical D/engine d approximation, not measured melt"
+      "glass": "Unmatched (nD 1.5290 / V 51.6, Chance 7863)"
     },
     {
       "id": 6,
       "name": "L6",
       "label": "Element 6",
-      "type": "Spherical patent glass",
+      "type": "Biconvex Positive",
+      "role": "Positive rear element of the rear member's inner doublet",
+      "cemented": "C3",
       "nd": 1.6437,
       "vd": 48.3,
       "indexReference": "d",
-      "glass": "Source not yet in catalogue; historical D/engine d approximation, not measured melt"
+      "glass": "Unmatched (nD 1.6437 / V 48.3, not yet in Chance's catalogue)"
     },
     {
       "id": 7,
       "name": "L7",
       "label": "Element 7",
-      "type": "Spherical patent glass",
+      "type": "Positive Meniscus",
+      "role": "Positive front element of the rear member's outer doublet",
+      "cemented": "C4",
       "nd": 1.5186,
       "vd": 60.3,
       "indexReference": "d",
-      "glass": "Source Chance9322: blank nD/V matched to earlier identifier; historical D/engine d approximation, not measured melt"
+      "glass": "Unmatched (nD 1.5186 / V 60.3, Chance 9322)"
     },
     {
       "id": 8,
       "name": "L8",
       "label": "Element 8",
-      "type": "Spherical patent glass",
+      "type": "Negative Meniscus",
+      "role": "Negative rear element of the rear member's outer doublet",
+      "cemented": "C4",
       "nd": 1.5472,
       "vd": 45.8,
       "indexReference": "d",
-      "glass": "Source Chance458: blank nD/V matched to earlier identifier; historical D/engine d approximation, not measured melt"
+      "glass": "Unmatched (nD 1.5472 / V 45.8, Chance 458)"
     }
   ],
   "surfaces": [
@@ -213,8 +237,8 @@ const LENS_DATA = {
     }
   ],
   "focus": {
-    "closeFocusM": 1000000000000000.0,
-    "description": "Only the complete lens at infinity is modeled; separate member operating modes are not modeled."
+    "closeFocusM": 1e15,
+    "description": "Infinity focus only; only the complete lens is modeled."
   },
   "aperture": {
     "nominalFNumber": 6.8,
@@ -233,6 +257,12 @@ const LENS_DATA = {
     "fullFieldDeg": 55,
     "maxTraceFieldDeg": 27.5
   },
+  "doublets": [
+    { "text": "C1", "fromSurface": "1", "toSurface": "3" },
+    { "text": "C2", "fromSurface": "4", "toSurface": "6" },
+    { "text": "C3", "fromSurface": "7", "toSurface": "9" },
+    { "text": "C4", "fromSurface": "10", "toSurface": "12" }
+  ],
   "layout": {
     "yScFill": 0.7
   }
