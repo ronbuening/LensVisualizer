@@ -13,7 +13,7 @@ const LENS_DATA = {
   "key": "kodak-medalist-ektar-100mm-f35",
   "maker": "Kodak",
   "name": "KODAK EKTAR 100mm f/3.5 (Kodak Medalist)",
-  "visible": false,
+  "visible": true,
   "catalog": {
     "lensMounts": ["fixed-lens-camera"],
     "imageFormat": "6x9",

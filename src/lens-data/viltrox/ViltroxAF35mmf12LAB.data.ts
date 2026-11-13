@@ -14,7 +14,7 @@ const LENS_DATA = {
   "key": "viltrox-af-35mm-f12-lab",
   "maker": "Viltrox",
   "name": "VILTROX AF 35mm f/1.2 LAB",
-  "visible": false,
+  "visible": true,
   "elements": [
     {
       "id": 1,

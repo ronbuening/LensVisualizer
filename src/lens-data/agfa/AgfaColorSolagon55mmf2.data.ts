@@ -15,7 +15,7 @@ const LENS_DATA = {
   "key": "agfa-color-solagon-55mm-f2",
   "maker": "Agfa",
   "name": "AGFA COLOR-SOLAGON 55mm f/2",
-  "visible": false,
+  "visible": true,
   "catalog": {
     "imageFormat": "135-full-frame",
     "elementCount": 6,

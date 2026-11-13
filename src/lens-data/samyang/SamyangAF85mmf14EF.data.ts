@@ -12,7 +12,7 @@ const LENS_DATA = {
   "key": "samyang-af-85mm-f14-ef",
   "maker": "Samyang",
   "name": "SAMYANG AF 85mm f/1.4 EF",
-  "visible": false,
+  "visible": true,
   "elements": [
     {
       "id": 1,

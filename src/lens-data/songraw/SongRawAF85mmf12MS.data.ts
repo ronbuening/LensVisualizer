@@ -16,7 +16,7 @@ const LENS_DATA = {
   "key": "songraw-af-85mm-f12-ms",
   "maker": "SongRaw",
   "name": "SONGRAW AF 85mm f/1.2 MS",
-  "visible": false,
+  "visible": true,
   "elements": [
     {
       "id": 1,
