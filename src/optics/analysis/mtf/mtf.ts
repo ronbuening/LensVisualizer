@@ -283,8 +283,8 @@ function fieldAtGrid(
     if (bundle.lattice && aimedNothing(bundle.lattice))
       return unavailable("aim-failed", aimFailedMessage(bundle.lattice, line.wavelengthNm));
     const transmitted = bundle.rays.reduce((sum, ray) => sum + ray.weight, 0);
-    sampledWeight += transmitted + bundle.unresolvedInBeamWeight;
-    unresolvedWeight += bundle.unresolvedInBeamWeight;
+    sampledWeight += line.weight * (transmitted + bundle.unresolvedInBeamWeight);
+    unresolvedWeight += line.weight * bundle.unresolvedInBeamWeight;
     // A wavelength no ray reaches, with every sample resolved: the grid is vignetted if every wavelength is.
     if (bundle.rays.length === 0 && bundle.unaimed + bundle.failed === 0) {
       darkLines++;

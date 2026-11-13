@@ -59,6 +59,7 @@ import { createImageSurfaceShape } from "../../../src/optics/geometry/imageSurfa
 const unaimedCells = vi.hoisted(() => ({
   at: [] as (readonly [number, number])[],
   where: null as ((x: number, y: number, cellsAcross: number) => boolean) | null,
+  wavelengthNm: null as number | null,
 }));
 vi.mock("../../../src/optics/analysis/pupils/aimedPupil.js", async (importOriginal) => {
   const original = await importOriginal<typeof import("../../../src/optics/analysis/pupils/aimedPupil.js")>();
@@ -67,6 +68,12 @@ vi.mock("../../../src/optics/analysis/pupils/aimedPupil.js", async (importOrigin
     prepareAimedStopLatticeForState: (...args: Parameters<typeof original.prepareAimedStopLatticeForState>) => {
       const lattice = original.prepareAimedStopLatticeForState(...args);
       if (!lattice || (unaimedCells.at.length === 0 && !unaimedCells.where)) return lattice;
+      const spectrum = args[4];
+      if (
+        unaimedCells.wavelengthNm !== null &&
+        (typeof spectrum !== "object" || spectrum.wavelengthNm !== unaimedCells.wavelengthNm)
+      )
+        return lattice;
       const named = (x: number, y: number) =>
         unaimedCells.at.some(([u, v]) => u === x && v === y) ||
         (unaimedCells.where?.(x, y, lattice.cellsAcross) ?? false);
@@ -689,6 +696,36 @@ describe("MTF pupil sampling", () => {
       expect(bundle.rays).toHaveLength(810);
     } finally {
       unaimedCells.at = [];
+    }
+  });
+  it("weights unresolved flux by the incident spectrum when applying the flux cap", () => {
+    // Only the strongest photopic line loses ten cells beside the beam. The independent flux balance exceeds 0.5 %,
+    // while pooling the five lattices equally would hide it below the cap. Ray counts remain ordinary sample counts.
+    const state = prepareRuntimeState(buildChromaticPositiveElementLens(), 0, 0);
+    unaimedCells.at = namedPairs([1, 2, 3, 4, 5], [16, 32]);
+    unaimedCells.wavelengthNm = 555;
+    try {
+      for (const method of ["geometric", "diffraction"] as const) {
+        const field = computeMtf(...mtfInputs(state, { ...mtfTestOptions, method, spectrum: "photopic" })).fields[0];
+        // Each full 32-cell disc carries 812 units; the ten unresolved cells at 555 nm retain full transmission.
+        const expectedShare = 10 / (812 * (1 + 0.091 + 0.503 + 0.503 + 0.107));
+        expect(field.gridSize).toBe(32);
+        expect(field.unknownFluxFraction).toBeCloseTo(expectedShare, 12);
+        expect(expectedShare).toBeGreaterThan(MTF_MAX_UNKNOWN_FLUX);
+        expect([field.validRays, field.failedRays, field.unaimedRays, field.unresolvedInBeamRays]).toEqual([
+          5 * 812 - 10,
+          0,
+          10,
+          10,
+        ]);
+        expect(field.status).toBe("unavailable");
+        expect(field.reason).toBe("trace-failed");
+        expect(field.sagittal).toEqual([]);
+        expect(field.tangential).toEqual([]);
+      }
+    } finally {
+      unaimedCells.at = [];
+      unaimedCells.wavelengthNm = null;
     }
   });
   it("counts unaimed samples away from the beam and names them, but keeps the curve", () => {

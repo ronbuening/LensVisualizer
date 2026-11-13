@@ -161,10 +161,11 @@ replaced: counted per field (`unaimedRays`, `failedRays`) and named in the field
 estimator returns a number from a lattice with an unreported hole in the beam. A field is judged by those beside its
 transmitted beam (a row or column neighbour of a lit cell, the vignetting tab's `unresolved-in-beam` rule:
 `unresolvedInBeamRays`), each charged at full transmission; samples that touch no transmitted cell are named but carry
-no weight (`agent_docs/decisions.md`). Unresolved flux ε up to 0.5% of the beam is omitted with a note bounding the
-geometric MTF error at 2ε; more makes that grid unavailable (`trace-failed`) and refinement goes on, since a finer
-lattice can resolve a beam edge a coarser one cannot. A coarser curve the ladder keeps because no finer grid gave one
-says why. The reference chief is traced without aperture checks, so a clipped chief
+no weight (`agent_docs/decisions.md`). The unresolved share weights both transmitted and unresolved flux by each
+line's incident spectral weight, matching the OTF mixture. Unresolved flux ε up to 0.5% of the beam is omitted with a
+note bounding the geometric MTF error at 2ε; more makes that grid unavailable (`trace-failed`) and refinement goes on,
+since a finer lattice can resolve a beam edge a coarser one cannot. A coarser curve the ladder keeps because no finer
+grid gave one says why. The reference chief is traced without aperture checks, so a clipped chief
 still fixes the common image reference.
 
 **Methods.** Geometric OTF is the normalized intensity-weighted Fourier sum of exact landing points. The diffraction

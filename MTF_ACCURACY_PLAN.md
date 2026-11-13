@@ -161,9 +161,6 @@ S under a day, M one to three days, L longer.
   marketed focal lengths at every station. Canon EF 100-300mm f/5.6 and Nikon AF Zoom-Micro 70-180mm keep their
   wide-end warning at the tele end (31 % against 3.3 %, 17.7 % against 7.8 %); Sony RX10 misses its tele-end
   11.8 %. Compare at the charted end. S.
-- **C2 — The unresolved-flux gate omits spectral weights.** `mtf.ts` sums transmitted and unresolved flux across
-  lines without `line.weight`, while the OTF mix uses it: a constructed photopic field reports 0.25 % where the
-  weighted share is 0.56 %. Weight both sums; keep the beam-neighbour rule. S.
 - **C3 — "MTF error ≤ 2ε" is stated for the diffraction method.** The bound is geometric; a scalar autocorrelation
   counterexample moves 0.0117 against a bound of 0.0078. Word the note per method. S.
 - **C4 — The convergence band counts 0 lp/mm.** A request whose positive frequencies all lie above 50 lp/mm is
