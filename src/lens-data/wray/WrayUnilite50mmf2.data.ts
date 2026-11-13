@@ -7,12 +7,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * SCALE: normalized f = 1 lengths multiplied uniformly by 50 to millimetres, including
  * radii, thicknesses, zero vertex gaps, inferred rims, split stop gaps, paraxial back
  * focus and isolated-element focal lengths. Indices, Abbe numbers and angles unchanged.
- * GLASS: three-decimal mean indices traced with an assumed d-line reference; no
- * historical glass supplier or melt is identified.
+ * GLASS: three-decimal mean indices traced with an assumed d-line reference. L1
+ * and L4 have catalog equivalents; no historical glass supplier or melt is identified.
  * STOP: no iris is marked in the patent figure. Its plane is inferred as the midpoint
  * between the S5 and S6 optical rims along the axis; d5 remains the printed total gap.
  * The engine derives the iris radius from f/2. Rims are inferred from Fig. 2 element
- * heights relative to axial thicknesses; only axial f/2 clearance may raise them.
+ * heights relative to axial thicknesses and clear the axial f/2 beam.
  * IMAGE PLANE: the final interval is the calculated paraxial back focal distance,
  * not a patent dimension. Infinity prescription only; retail 3-foot focus is metadata.
  * The public Unilite sections agree with Fig. 2; this is not a certified factory prescription.
@@ -22,8 +22,15 @@ const LENS_DATA = {
   "key": "wray-unilite-50mm-f2",
   "maker": "Wray",
   "name": "WRAY UNILITE 50mm f/2",
+  "subtitle": "US 2,499,264 A, Table B — Wray Unilite of the Wrayflex",
   "visible": true,
   "catalog": {
+    "specs": [
+      "5 ELEMENTS / 4 GROUPS",
+      "ALL SPHERICAL",
+      "f/2–22",
+      "0.91 m"
+    ],
     "elementCount": 5,
     "groupCount": 4,
     "focalLengthMm": {
@@ -58,57 +65,62 @@ const LENS_DATA = {
       "id": 1,
       "name": "L1",
       "label": "Element 1",
-      "type": "Spherical patent glass",
+      "type": "Positive Meniscus",
+      "role": "Front positive collecting element",
       "nd": 1.691,
       "vd": 54.8,
       "indexReference": "d",
-      "glass": "Mean source index; d reference assumed, not source-defined",
+      "glass": "N-LAK9 (Schott catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 56.882895
     },
     {
       "id": 2,
       "name": "L2",
       "label": "Element 2",
-      "type": "Spherical patent glass",
+      "type": "Positive Meniscus",
+      "role": "Positive front member of the cemented doublet",
       "nd": 1.613,
       "vd": 57.6,
       "indexReference": "d",
-      "glass": "Mean source index; d reference assumed, not source-defined",
-      "cemented": "D1",
+      "glass": "Unmatched (nD 1.613 / V 57.6)",
+      "cemented": "C1",
       "focalLengthMm": 32.106119
     },
     {
       "id": 3,
       "name": "L3",
       "label": "Element 3",
-      "type": "Spherical patent glass",
+      "type": "Negative Meniscus",
+      "role": "Thin negative rear member of the cemented doublet",
       "nd": 1.7,
       "vd": 30.3,
       "indexReference": "d",
-      "glass": "Mean source index; d reference assumed, not source-defined",
-      "cemented": "D1",
+      "glass": "Unmatched (nD 1.700 / V 30.3)",
+      "cemented": "C1",
       "focalLengthMm": -21.576906
     },
     {
       "id": 4,
       "name": "L4",
       "label": "Element 4",
-      "type": "Spherical patent glass",
+      "type": "Negative Meniscus",
+      "role": "Negative element behind the iris",
       "nd": 1.613,
       "vd": 36.9,
       "indexReference": "d",
-      "glass": "Mean source index; d reference assumed, not source-defined",
+      "glass": "F3 (Sumita catalog equivalent; production supplier unspecified)",
       "focalLengthMm": -81.418342
     },
     {
       "id": 5,
       "name": "L5",
       "label": "Element 5",
-      "type": "Spherical patent glass",
+      "type": "Biconvex Positive",
+      "role": "Thick positive rear collecting element",
       "nd": 1.621,
       "vd": 60.3,
       "indexReference": "d",
-      "glass": "Mean source index; d reference assumed, not source-defined",
+      "glass": "Unmatched (nD 1.621 / V 60.3)",
       "focalLengthMm": 39.614175
     }
   ],
@@ -179,8 +191,8 @@ const LENS_DATA = {
     }
   ],
   "focus": {
-    "closeFocusM": 1000000000000000.0,
-    "description": "NO_INTERNAL_RECONSTRUCTION: infinity pilot only"
+    "closeFocusM": 1e15,
+    "description": "Infinity focus only; the production lens uses a helical focusing mount."
   },
   "aperture": {
     "nominalFNumber": 2,
@@ -206,7 +218,7 @@ const LENS_DATA = {
   },
   "doublets": [
     {
-      "text": "D1",
+      "text": "C1",
       "fromSurface": "3",
       "toSurface": "5"
     }
