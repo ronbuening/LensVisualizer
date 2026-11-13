@@ -746,6 +746,9 @@ const GLASS_CATALOG_SOURCE_ORDER = [
   "TK21",
   "STK3",
   "TF5",
+  "BSL22",
+  "PBM18Y",
+  "MP-TAFD51-50",
 ] as const;
 
 const GLASS_CATALOG_ENTRIES_BY_NAME: ReadonlyMap<string, GlassEntry> = new Map(
