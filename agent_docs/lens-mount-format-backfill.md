@@ -7,9 +7,9 @@ the fields unset and add a note here until a source check resolves it.
 
 ## Current Coverage
 
-- Total lens data files: **1114**
-- Files with both `lensMounts` and `imageFormat`: **1067**
-- Files missing `lensMounts`: **38** (25 public lenses and 13 hidden reference fixtures)
+- Total lens data files: **1120**
+- Files with both `lensMounts` and `imageFormat`: **1071**
+- Files missing `lensMounts`: **40** (27 public lenses and 13 hidden reference fixtures)
 - Files missing `imageFormat`: **35** (23 public lenses and 12 hidden reference fixtures)
 - Files missing both fields: **26**
 - Formats currently in use: `1-1.7-inch-type`, `1-1.8-inch-type`, `1-2.3-inch-type`, `1-2.55-inch-type`,
@@ -49,6 +49,8 @@ with remaining compatibility questions explained in the lens analysis.
 | Zeiss S-Biogon 40mm f/5.6 | Microfilm reduction lens installed in the Zeiss Mikrobox recorder. The sources give only an M50 × 0.75 rear thread, an industrial thread with no canonical mount id; do not assign a camera mount from the Biogon family name. |
 | Voigtländer Cine-Tele-Anastigmat 100mm f/4.5 | No manufacturer or period source names this product. Voigtländer’s catalogue Nr. 1709.7.25 and its price list of about 1930 offer only the Tele-Dynar f/6.3 as a telephoto, so no camera fitting can be tied to the research-correlated name. |
 | Voigtländer Tele-Dynar 100mm f/6.3 | The same two lists sell the Tele-Dynar only at 14–32 cm, as cells for the shutters of Voigtländer cameras or in Compur, shutterless and helical mountings. No 100 mm production variant exists to select, and none of those fittings is a canonical mount. |
+| Enna München Tele-Sandmar 100mm f/4.5 | Made for the Argus C3 rangefinder, whose lens bayonet has no canonical mount id. |
+| Wray Unilite 50mm f/2 | Wrayflex screw mount (M41.2 × 26 tpi per klassik-cameras); no canonical mount id exists. |
 
 ### Hidden reference fixtures
 
