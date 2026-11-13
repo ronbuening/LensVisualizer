@@ -1,14 +1,14 @@
-# Aviar GB Example I qualified pre-integration audit
+# Aviar GB Example I audit
 
-One hidden representative based on original GB113590, not a correction of US1361207 or exact factory100mm assertion. Source owner and independent review confirm all eight GB radii, seven intervals and four glass pairs. SourceGB−.8152 andUS−.9152 second radii are preserved separately. GB+0.637% EFL residual is unresolved and retained; no scaling to force EFL100.
+Originally hidden (closed: the coordinator has made the lens visible), based on original GB 113590, without an exact factory 100 mm assertion. Independent review confirmed all eight GB radii, seven intervals and four glass pairs. GB −.8152 and US −.9152 second radii were preserved separately. The GB +0.637% EFL residual was retained without fitting; its normalization origin is explained in the dated deployment section below.
 
-Scale100 is representative. Calculated infinityBFL92.278731268 is derived, not source image interval. SodiumD and Abbe definition explicit; engine d-reference is a disclosed approximation. No exactmelt/fullpartialdispersion or finitefocus claim.
+The original scale was ×100. Calculated infinity BFL 92.278731268 mm was derived, rather than a source image interval. Sodium D and the Abbe definition were explicit; the d reference was a disclosed approximation. No exact melt, full partial dispersion or finite-focus claim was made.
 
-Cap12 geometry-grid inference and central-gap midpoint1.81/1.81 are not source clearapertures/stopcoordinates. Fullcap iris clearancespositive. Defaults.9 retained, no source modification or geometry exception. Metadata source.example.idI corrected to1 to satisfy schema while labelExampleI retained; initial failure preserved, no optical change.
+The original 12 mm rim inference and central-gap midpoint 1.81 / 1.81 mm were not source clear apertures or stop coordinates. Full-cap iris clearances were positive. The default 0.9 geometry limits were retained, without a source modification or geometry exception. Metadata source.example.id was corrected from I to 1 while retaining label Example I; the initial failure was recorded, with no optical change.
 
-Final data differs from feasibilitypilot only key/name. Typednative, isolatedstricttsc and sparse traversals rerun. Sparse26OK perfield is not imageplane landing, MTF or commercial format proof. Full app/current corpus/lint/format/build/browser/MTF deferred to integration under agreed split. Final independent review governs qualified acceptance, not release.
+At that stage only key/name differed from the feasibility model. Isolated strict TypeScript checks and optical traversals were rerun. The 26 successful rays per field did not establish image-plane landing, MTF or commercial format. Full application, current-corpus, lint, format, build, browser and MTF work was deferred; those earlier checks did not constitute a release.
 
-MakerCompendium gives explicit primary retrospective patent/product link. No exact retail example selection or exhaustive live/historical/numerical novelty claim. Other ExampleII not built/countable. No publication,PR or deployment.
+The maker's Compendium gave an explicit retrospective patent/product link. No exact retail example selection or exhaustive novelty claim was made. Example II was not modeled. At that stage there was no publication, PR or deployment.
 
 ## 2026-11-13 — Deployment validation
 
@@ -27,7 +27,7 @@ Changes made:
 - `focus.description`: `NO_INTERNAL_RECONSTRUCTION: infinity representative only` → `Only the infinity-focus prescription is modeled; no finite-focus movement is reconstructed.`
 - Analysis: US/GB radius difference without an explicit misprint finding → explicit US misprint and retained GB value; unresolved EFL discrepancy → inherent normalization residual; uncertified element-focal-length statement → the four probe-verified, calculated values, distinguished from patent-published data.
 
-After these changes, the engine summary gives EFL **100.636959925 mm**, **f/4.5**, total track **110.958731268 mm** and physical stop radius **9.697421739 mm**. The element probe gives back focus **92.2787 mm** and zero rounded image-plane defocus. Prescription radii, thicknesses, gaps, indices and rims are unchanged; `visible: false` is retained.
+After these changes, the engine summary gives EFL **100.636959925 mm**, **f/4.5**, total track **110.958731268 mm** and physical stop radius **9.697421739 mm**. The element probe gives back focus **92.2787 mm** and zero rounded image-plane defocus. Prescription radii, thicknesses, gaps, indices and rims are unchanged; `visible: false` was retained at this stage (closed: the coordinator later set it to true).
 
 Validation:
 
@@ -36,7 +36,7 @@ Validation:
 - Image-circle audit: **1 lens checked, 0 undersized, 0 skipped**, using the assigned 6x9 format (101 mm diagonal).
 - Field-coverage audit: the hidden original is skipped. An otherwise identical scratch copy with `visible: true` gives **100% coverage**, modeled half-field **26.558883°**, image semi-height **50.50 mm / 50.50 mm**, and a clear format-corner chief ray with no rim clips. This confirms modeled coverage, not patent-published field performance.
 
-Open: the later cleanup pass still owns the key/file names, remaining subtitle/specs and analysis wording, generic element type and glass labels, sodium-D reference wording/metadata, the unsupported catalog marketing focal-length value, and comparison of inferred rims with the patent figure. The 6x9 assignment does not establish a documented commercial 100 mm variant. Full application checks and release work remain outside this assignment.
+Closed in later passes: key/file names, subtitle/specs and analysis wording, element types and glass labels, and the unsupported 100 mm marketing focal length. Remaining sodium-D reference and rim limitations are listed in the cleanup section below. The historical 6x9 assignment did not establish a documented commercial 100 mm variant. Full application checks and release work remain outside this assignment.
 
 ## 2026-11-13 — Rescale and rename
 
@@ -68,4 +68,28 @@ Audits, run from the main checkout against this worktree file:
 - Image circle: **1 lens checked, 0 undersized, 0 skipped**, for the 5×7 format's 218.5 mm diagonal.
 - Field coverage: hidden original skipped, as expected. The visible scratch copy has **100% coverage**, modeled half-field **27.286873°**, image semi-height **109.249999710 / 109.25 mm**, a converged edge solution and a clear format-corner chief ray with no rim clips. This is model coverage, not a measured production image circle or source field specification.
 
-Open: the later cleanup pass retains responsibility for key/file naming, remaining subtitle/specs and analysis wording, generic element type and glass labels, sodium-D reference wording/metadata, and comparison of inferred rims with the patent figure. The former unsupported 100 mm marketing value is resolved by this assignment. Full application checks and release work remain outside this assignment.
+Closed in later passes: key/file naming, subtitle/specs and analysis wording, element types and glass labels. Remaining sodium-D reference and rim limitations are listed below. The former unsupported 100 mm marketing value was resolved by the rescale. Full application checks and release work remain outside this assignment.
+
+## 2026-11-13 — Cleanup and wording pass
+
+Added the subtitle “GB 113,590 A, Example I — Cooke Aviar f/4.5, scaled to 8¼ in” and specs “4 ELEMENTS / 4 GROUPS”, “ALL SPHERICAL”, “f/4.5”. The header states the patent-to-millimetre conversion once and retains the residual, US r2 misprint, inferred rims/stop and calculated image interval. L1/L4 are Biconvex Positive; L2/L3 are Biconcave Negative, matching their radius signs. Labels remain Element 1–4; short roles identify the outer positive and inner negative components. All four groups are air-separated: no `cemented` tags or `doublets` entries are needed. No `apd` tags were added.
+
+All four former glass labels “Source sodiumD/V explicitly defined; d-reference engine approximation” became Unmatched labels with the printed values: L1/L4 nD 1.6116 / V 56.4, L2 nD 1.5682 / V 43.4, L3 nD 1.5502 / V 45.8. Stored Δnd = 0 and ΔV = 0 for every relabel; catalog Δnd/ΔV are not applicable because no catalog row was assigned. `glasscheck.mjs` confirms unresolved-by-design Abbe fallback for each. Its closest weighted candidates also fail the exact-row limits: BACD8 differs by about −0.00043 / −0.63 for L1/L4, E-FL6 by −0.00088 / −0.56 for L2, and LLF7 by −0.00151 / −0.37 for L3. The existing `indexReference: "d"` remains unchanged.
+
+Focus `closeFocusM` changed only in notation from 1000000000000000.0 to 1e15. Description: “Only the infinity-focus prescription is modeled; no finite-focus movement is reconstructed.” → “Infinity focus only; no finite-focus movement is specified.” No catalog minimum focus distance was added without a source. Existing mount, format, focal-length and patent metadata were retained.
+
+The public analysis now describes the lens rather than file production or validation counts. It retains Warmisham, the +0.637% EFL residual, US r2 misprint, all source citations, element focal-length rounding, inferred dimensions and spectral limitations. The Cooke Compendium was re-read live: Series II f/4.5 Aviar, 1921–c.1963, four separate uncemented glasses, patent 113590 and Warmisham; its 1962 Burke & James advertisement explicitly lists the 8¼ in f/4.5 Aviar for 5×7 plates. This supports the existing catalog values, without establishing an exact factory Example I prescription.
+
+Engine results before → after are identical: EFL 210.88474952282579 → 210.88474952282579 mm; FOPEN 4.5 → 4.5; halfField 39.39008628712742 → 39.39008628712742°; physical stop radius 20.32094725427708 → 20.32094725427708 mm; BFD 193.370081372674 → 193.370081372674 mm; total track 232.514021 → 232.514021 mm. Complete `built.mjs` and `probe.mjs --elements` outputs compare identically, including both focus keyframes. The built halfField is an engine default, distinct from the approximately 27.286873° 5×7 corner angle.
+
+Surface audit: OK, no validation errors. Aperture audit: 1 lens / 1 station within 3% of the stated f-number; zero rim, trace or iris limits and zero failures. Field-coverage audit: 1 station at ≥99%, none unsolved or skipped.
+
+Open:
+
+- The 25.146 mm rims remain inferred and unchanged. The validator's patent-figure estimate is about 0.10 f (20.955 mm at this scale), smaller than the model's 0.12 f; the entrance surface requires about 23.43 mm for f/4.5. The supplied Fig. 1 render confirms the outer convex / inner concave layout but prints no clear apertures or iris.
+- The central-gap midpoint stop and calculated infinity back focus are not patent dimensions; an exact production prescription and numerical patent field remain unestablished.
+- The patent states sodium D while the existing model reference setting is helium d; full partial dispersion is unavailable. Exact glass/melt identities remain unknown.
+- A retail minimum focus distance, finite-focus movement and minimum aperture are not established by the cited sources. The existing f-stop settings through f/22 remain display choices, rather than a sourced retail aperture range.
+- Rendered-page review could not be completed: the prescribed screenshot helper produced no PNG despite the local route returning HTTP 200; the browser access host was also unavailable. Title, subtitle/specs and focus text still require visual inspection.
+
+No command or edit was denied. Full application checks and release work remain outside this cleanup assignment.

@@ -1,4 +1,4 @@
-# Cooke Aviar 8¼ in f/4.5: GB Example I representative
+# Cooke Aviar 8¼ in f/4.5: GB 113,590 A, Example I
 
 ## Patent Reference and Lens Identification
 
@@ -8,69 +8,61 @@
 **Filed:** 27 November 1917  
 **Accepted:** 28 February 1918  
 **Title:** Improvements in Lenses  
-**Example details:** Example I, normalized focal length 1.00, scaled by ×209.55 for the documented 8¼ in (209.55 mm nominal) f/4.5 Aviar focal length.
+**Example details:** Example I, normalized focal length 1.00; all dimensional values are multiplied by 209.55 to give millimetres for the documented 8¼ in (209.55 mm nominal) f/4.5 Aviar.
 
-Cooke Optics' own Compendium explicitly associates Series II f/4.5 Aviar with British patent 113590 and Arthur Warmisham, describing four separate glasses with no cement. This is a manufacturer retrospective, not a contemporary production drawing or proof that any particular commercial focal length used Example I. The retrospective's account of military use in 1916 is distinct from the 1917 application date; the dates are not conflated.
+The [Cooke Compendium](https://cookeoptics.com/compendium/) dates the Series II f/4.5 Aviar to 1921–c.1963 and associates it with British patent 113590 and Arthur Warmisham. It describes “four separate glasses” without cement, with convex outer elements and double-concave inner elements. Its account of military use in 1916 predates the 1917 patent application.
 
-This model uses the complete original GB publication hosted by a secondary archive. It is a qualified representative of the 8¼ in f/4.5 Aviar, not an established factory prescription. The validator documents f/4.5 Aviars at 5, 6, 7, 8¼ and 10½ inches; the 8¼ in identification selects one of those marketed focal lengths. The ×209.55 scale multiplies all previously delivered model lengths by ×2.0955 and preserves the numerical focal residual. Example II is a distinct unmodeled embodiment, not another entry or proven retail variant.
+The model follows Example I of the complete GB publication. The Compendium records a 1962 Burke & James advertisement for an 8¼ in f/4.5 Aviar covering 5×7 plates. This supports the focal length and format; it does not establish the exact factory prescription. Example II is a distinct design with heavier flint glasses and is not modeled here.
 
-The comparable US 1,361,207 publication misprints r2 = −0.9152; GB Example I prints −0.8152, which is used here. Both originals are preserved. The GB value is retained without combining the two tables. The formal legal family relationship is not independently established here.
+The comparable US 1,361,207 publication misprints r2 = −0.9152; GB Example I prints −0.8152, which is used here. The formal legal family relationship is not independently established.
 
 ## Optical Architecture
 
 Four spherical, air-separated elements form an approximately symmetrical double objective. Positive outer elements enclose two negative inner elements. The source discusses arranging shallow faces toward the diaphragm and using lower-index negative glasses to improve field correction.
 
-The actual glass indices, radii and spacings are retained without enforcing exact symmetry. Source descriptions of aberration correction are design claims, not measured performance of this reconstruction. The central air interval remains 0.0362 normalized units, or 7.58571 mm at the 8¼ in scale.
+The glass indices, radii and spacings retain the patent's slight asymmetry. Its descriptions of aberration correction are design claims, rather than measured production performance. The central air interval is 0.0362 normalized units, or 7.58571 mm.
 
 ## Element-by-Element Analysis
 
 ### L1: front positive element
 
-Source nD = 1.6116, V = 56.4; dense baryta crown class, no exact melt identified. Its GB second radius is −0.8152, explicitly different from the US counterpart. The source positive power is preserved rather than retuned to nominal focal length.
+L1 is biconvex positive: nD = 1.6116, V = 56.4, Unmatched dense baryta crown class; stored isolated-element focal length 75.878055 mm. Its second radius is the GB value discussed above.
 
 ### L2: front negative element
 
-Source nD = 1.5682, V = 43.4; light flint class. It is separated from L1 by the source air space and is not cemented. Its diaphragm-facing surface is the shallower of the two inner curvatures for this element.
+L2 is biconcave negative: nD = 1.5682, V = 43.4, Unmatched light flint class; stored isolated-element focal length −80.29956 mm. It is air-separated from L1. Its diaphragm-facing surface is the shallower of its two curvatures.
 
 ### L3: rear negative element
 
-Source nD = 1.5502, V = 45.8; light flint class. Its glass differs from L2. The literal table's diaphragm-facing radius magnitude 0.5041 is larger than the rear-facing 0.4330; both are preserved.
+L3 is biconcave negative: nD = 1.5502, V = 45.8, Unmatched light flint class; stored isolated-element focal length −88.38819 mm. Its glass differs from L2. The diaphragm-facing radius magnitude 0.5041 is larger than the rear-facing 0.4330 in the normalized table.
 
 ### L4: rear positive element
 
-Source nD = 1.6116, V = 56.4; dense baryta crown class. The outer positive elements share the stated glass class and numerical index/dispersion, but no modern catalog replacement or melt identity is established.
+L4 is biconvex positive: nD = 1.6116, V = 56.4, Unmatched dense baryta crown class; stored isolated-element focal length 75.878055 mm. The outer positive elements share the stated glass class and index/dispersion, but no exact catalog glass or melt identity is established.
 
-The stored isolated-element focal lengths in air are 75.878055, −80.29956, −88.38819 and 75.878055 mm for L1–L4, respectively. These labels uniformly scale the delivered rounded derived values by ×2.0955; they are not patent-published element focal lengths.
+The stored element focal lengths derive from earlier rounded calculations, rather than patent-published values. Fresh paraxial calculation gives 75.87, −80.30, −88.38 and 75.87 mm to two decimal places.
 
 ## Glass Identification and Selection
 
-The GB text explicitly defines nD for sodium D light and V as (nD − 1)/(nF − nC). No spectral definition is inferred from an unlabeled number. The engine's d-reference representation nevertheless approximates the historical sodium D reference; it is not proof of an exact modern helium-d melt. Full partial dispersion and measured chromatic performance are not known.
+The GB text explicitly defines nD for sodium D light and V as (nD − 1)/(nF − nC). The model retains the printed values with its existing helium-d reference setting; the sodium-D/helium-d distinction remains a spectral limitation. Full partial dispersion and measured chromatic performance are unknown.
 
 The source calls the outer glasses dense baryta crown and the negative glasses light flint. These are source classes, not exact vendor catalog identifications. No index or Abbe number is adjusted to reduce the focal-length residual.
 
 ## Focus Mechanism
 
-The representative is infinity-only. Its terminal image interval, 193.370081 mm, is calculated from the literal GB prescription, not printed as a source BFL. No finite-focus law, retail minimum focus or movement is reconstructed.
+The model is infinity-only. Its terminal image interval, 193.370081 mm, is calculated from the GB prescription rather than printed as a back focal length. The sources cited here do not establish a finite-focus movement or retail minimum focus distance.
 
-At ×209.55 scale the literal EFL is 210.884749523 mm, approximately +0.637% relative to the nominal 209.55 mm (8¼ in). The catalog records marketing focal length 209.55 mm and design focal length 210.88 mm, the traced EFL rounded to two decimals. The +0.637% residual is inherent in the patent’s loose unit-focal-length normalization and is retained without fitting. The US literal table separately gives EFL 226.512293 mm at the same ×209.55 scale and is retained as different source evidence, not a failed variant silently repaired into this model.
+The calculated EFL is 210.884749523 mm, +0.637% relative to the nominal 209.55 mm. The catalog records marketing focal length 209.55 mm and design focal length 210.88 mm, the traced EFL rounded to two decimals. The residual arises from the patent's approximate unit-focal-length normalization and is retained without fitting. Using the US table's erroneous second radius instead gives EFL 226.512293 mm at the same scale.
 
 ## Aperture and Iris Assumptions
 
-The source specifies f/4.5 but does not give surface clear apertures or a numerical stop split. A common 25.146 mm surface semi-diameter uniformly scales the delivered 12 mm inference by ×2.0955. The delivered value was the largest half-millimeter grid value satisfying the default 0.9 geometry limits; its scaled counterpart remains an inference, not a measured production aperture or a ray-success optimization.
+The patent specifies f/4.5 but gives neither clear apertures nor a numerical stop position. The common 25.146 mm surface semi-diameter is inferred from geometric clearance, rather than measured from a production lens. No rim or gap-clearance exception is applied.
 
-The iris is hypothesized at the midpoint of the 7.58571 mm central gap: 3.792855 mm on either side. The previously quoted full-cap clearances scale to approximately 0.349647 mm and 0.75623 mm. Native f/4.5 pupil construction yields a physical iris radius of 20.320947254 mm. The coordinate and radius are model assumptions/derivations, not source dimensions. The f-stop UI through f/22 is convenience, not a validated retail minimum aperture.
+The inferred iris lies at the midpoint of the 7.58571 mm central gap, leaving 3.792855 mm on either side. The calculated iris clearances are approximately 0.349647 mm and 0.75623 mm. The f/4.5 entrance pupil gives a physical iris radius of 20.320947254 mm. These are derived dimensions. The available f-stops through f/22 are display settings; a retail minimum aperture has not been established.
 
-All radii, thicknesses, air spaces, rims and derived element focal-length labels use the same ×2.0955 rescale. No glass value, dimensionless prescription ratio or geometry limit is changed. No rim exception, extension or gap-sag allowance override is applied.
+## Model Scope and Limitations
 
-## Verification Summary
-
-The original package recorded native construction and strict isolated TypeScript checks at its former representative scale. Independent source and scoped geometry reviews accompany the package. The original GB/US difference and GB focal residual remain explicit.
-
-At the former representative scale, five sparse nominal 36 × 24 mm frame-angle diagnostics, each with 25 pupil samples plus the chief, gave 26 successful optical traversals at each tested field. The saved traces end at the final optical surface, not at a separately tested image-plane landing. These counts do not establish full pupil throughput, MTF, manufacturing quality or a source-backed commercial image format. No numerical source field is asserted.
-
-At the 8¼ in scale, the surface and aperture audits pass with no rim limit, and the image-circle audit finds no undersized surface. A visible scratch copy gives 100% modeled coverage of the 5×7 format: 109.25 mm image semi-height (218.5 mm diagonal), approximately 27.286873° half-field, and a clear corner chief ray with no rim clips. This exceeds the assigned 98% threshold, so the catalog format is 5×7. These checks establish modeled coverage, not a patent-published field or measured production performance.
-
-The model remains hidden for qualified pre-integration review. Full current-corpus/app tests, lint/format integration, build, browser and MTF checks are deferred, not passed. No release or deployment is implied.
+The model covers the 5×7 format's 109.25 mm image semi-height (218.5 mm diagonal), approximately 27.286873° half-field, with a clear corner chief ray. The patent gives no numerical field. Calculated coverage does not establish full pupil throughput, MTF, manufacturing quality or measured production performance.
 
 ## Sources
 

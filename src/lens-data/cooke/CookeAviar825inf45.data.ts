@@ -3,9 +3,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 /**
  * GB 113,590 A, Example I (PDF p. 2), scaled to represent the documented Cooke Aviar 8¼ in f/4.5.
  * Multiply every printed radius, thickness and air space in the patent's unit-focal-length prescription by
- * 209.55 to express lengths in millimetres (×209.55 = 8¼ in nominal); all delivered model lengths are rescaled
- * uniformly by ×2.0955. Refractive indices and Abbe numbers are unchanged.
- * The literal prescription gives EFL 210.88 mm at this scale. Its +0.637% residual from nominal 209.55 mm
+ * 209.55 to express all dimensional values in millimetres (8¼ in nominal).
+ * Refractive indices and Abbe numbers are unchanged.
+ * The prescription gives EFL 210.88 mm at this scale. Its +0.637% residual from nominal 209.55 mm
  * is inherent in the patent and retained without fitting. The catalog design focal length is the traced EFL,
  * rounded to two decimals. US 1,361,207 prints r2 = −.9152 in error; GB r2 = −.8152 is used
  * (-170.82516 mm after scaling).
@@ -19,12 +19,14 @@ const LENS_DATA = {
   "key": "cooke-aviar-8-25in-f45",
   "maker": "Cooke",
   "name": "COOKE AVIAR 8¼ in f/4.5",
+  "subtitle": "GB 113,590 A, Example I — Cooke Aviar f/4.5, scaled to 8¼ in",
   "visible": true,
   "catalog": {
     "lensMounts": [
       "large-format-lens-board"
     ],
     "imageFormat": "5x7",
+    "specs": ["4 ELEMENTS / 4 GROUPS", "ALL SPHERICAL", "f/4.5"],
     "elementCount": 4,
     "groupCount": 4,
     "focalLengthMm": {
@@ -56,44 +58,48 @@ const LENS_DATA = {
       "name": "L1",
       "focalLengthMm": 75.878055,
       "label": "Element 1",
-      "type": "Spherical patent glass",
+      "type": "Biconvex Positive",
+      "role": "Front positive outer element",
       "nd": 1.6116,
       "vd": 56.4,
       "indexReference": "d",
-      "glass": "Source sodiumD/V explicitly defined; d-reference engine approximation"
+      "glass": "Unmatched (nD 1.6116 / V 56.4)"
     },
     {
       "id": 2,
       "name": "L2",
       "focalLengthMm": -80.29956,
       "label": "Element 2",
-      "type": "Spherical patent glass",
+      "type": "Biconcave Negative",
+      "role": "Front negative inner element ahead of the diaphragm",
       "nd": 1.5682,
       "vd": 43.4,
       "indexReference": "d",
-      "glass": "Source sodiumD/V explicitly defined; d-reference engine approximation"
+      "glass": "Unmatched (nD 1.5682 / V 43.4)"
     },
     {
       "id": 3,
       "name": "L3",
       "focalLengthMm": -88.38819,
       "label": "Element 3",
-      "type": "Spherical patent glass",
+      "type": "Biconcave Negative",
+      "role": "Rear negative inner element behind the diaphragm",
       "nd": 1.5502,
       "vd": 45.8,
       "indexReference": "d",
-      "glass": "Source sodiumD/V explicitly defined; d-reference engine approximation"
+      "glass": "Unmatched (nD 1.5502 / V 45.8)"
     },
     {
       "id": 4,
       "name": "L4",
       "focalLengthMm": 75.878055,
       "label": "Element 4",
-      "type": "Spherical patent glass",
+      "type": "Biconvex Positive",
+      "role": "Rear positive outer element",
       "nd": 1.6116,
       "vd": 56.4,
       "indexReference": "d",
-      "glass": "Source sodiumD/V explicitly defined; d-reference engine approximation"
+      "glass": "Unmatched (nD 1.6116 / V 56.4)"
     }
   ],
   "surfaces": [
@@ -156,8 +162,8 @@ const LENS_DATA = {
     }
   ],
   "focus": {
-    "closeFocusM": 1000000000000000.0,
-    "description": "Only the infinity-focus prescription is modeled; no finite-focus movement is reconstructed."
+    "closeFocusM": 1e15,
+    "description": "Infinity focus only; no finite-focus movement is specified."
   },
   "aperture": {
     "nominalFNumber": 4.5,
