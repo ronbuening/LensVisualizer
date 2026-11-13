@@ -69,6 +69,18 @@ export const MAKER_DETAILS: Record<string, MakerDetails> = {
     notableDesigns:
       "QuickTake 100; iPhone 4S five-element camera; iPhone 7 Wide and 7 Plus dual-camera system; iPhone 11 Pro triple-camera system; iPhone 12 seven-element Main camera; iPhone 15 Pro Max tetraprism Telephoto",
   },
+  // Company history and production specifications; patent association qualified in the lens analysis.
+  // https://7artisans.store/pages/about-us
+  // https://7artisans.store/products/af-135mm-f1-8-full-frame-lens-for-e-z-l
+  "7artisans": {
+    founded: 2016,
+    headquarters: "Shenzhen, Guangdong, China",
+    summary:
+      "Chinese optical manufacturer Shenzhen 7Artisans Photoelectric Technology Co., Ltd., producing manual-focus, autofocus and cinema lenses under the 7Artisans name.",
+    history:
+      "7Artisans was established in Shenzhen in 2016 by a group of photography enthusiasts. The company's account traces the project to a gathering in 2015 that brought together optical-design, manufacturing and camera-collecting interests. In September 2016, the group completed 100 engineering samples of a 50mm f/1.1 lens, with seven participants remaining to give the brand its name. The M 50mm f/1.1 entered commercial sale in 2017, followed by lenses for additional mounts and focal lengths. The Vision cinema series appeared in 2021 as the company expanded beyond still-photography lenses. Its later autofocus range includes the full-frame AF 135mm f/1.8 MAX, specified with sixteen elements in thirteen groups and versions for Sony E, Nikon Z and L mount.",
+    notableDesigns: "AF 135mm f/1.8 MAX (qualified patent representative); M 50mm f/1.1",
+  },
   // https://www.zenitcamera.com/archive/history/marks.html
   // https://www.zenitcamera.com/archive/history/production-reliability-longevity.html
   // https://www.zenitcamera.com/archive/history/feday-about-lenses.html
@@ -236,6 +248,21 @@ export const MAKER_DETAILS: Record<string, MakerDetails> = {
     notableDesigns:
       "XF 35mm f/1.4 R, XF 56mm f/1.2 R APD, XF 80mm f/2.8 R LM OIS WR Macro, XF 50mm f/1.0 R WR, XF 8-16mm f/2.8 R LM WR",
   },
+  // Corporate origins, Friedenau works, lens families and the Zeiss Ikon merger.
+  // https://www.deutsche-biographie.de/sfz21445.html
+  // https://denkmaldatenbank.berlin.de/daobj.php?obj_dok_nr=09066281
+  // https://collection.sciencemuseumgroup.org.uk/people/cp102447/zeiss-ikon-ag
+  // https://patents.google.com/patent/US1108307A/en
+  // Dogmar attribution follows the qualified source discussion in the lens analysis.
+  goerz: {
+    founded: 1886,
+    headquarters: "Berlin-Friedenau, Germany (historical optical and camera works)",
+    summary:
+      "German optical and camera manufacturer Optische Anstalt C. P. Goerz, known for the Dagor, Hypergon and Dogmar lens families.",
+    history:
+      "Carl Paul Goerz established a mail-order business for mathematical instruments and drawing equipment in Berlin in 1886. The firm began manufacturing cameras in 1888 and expanded into precision optics. In 1897–98 it moved production to a new factory complex on Rheinstraße in Friedenau, which was enlarged as the business grew. Its photographic optics included Emil von Hoegh's Dagor double anastigmat and Hypergon wide-angle lens, alongside binoculars and other optical instruments. Walther Zschokke's four-element double-objective patent, granted in 1914 and assigned to Goerz, supplies the prescription for the catalog's qualified Dogmar representative. In 1926, the German Goerz business joined Ica, Ernemann and Contessa-Nettel in the formation of Zeiss Ikon.",
+    notableDesigns: "Dogmar 100mm f/4.5 (qualified patent representative); Dagor; Hypergon",
+  },
   canon: {
     founded: 1937,
     headquarters: "Tokyo, Japan",
@@ -366,6 +393,20 @@ export const MAKER_DETAILS: Record<string, MakerDetails> = {
     history:
       "Vivitar Corporation traces its origins to Ponder & Best, Inc., a photographic equipment importer founded in 1938 in Los Angeles. The company sold imported Japanese photographic accessories under the Vivitar brand starting in 1959, eventually adopting Vivitar Corporation as its corporate name in 1971.\n\nVivitar's commercial model was unusual: the company designed and marketed lenses but contracted their manufacture to Japanese optical firms — primarily Komine, Tokina, Cosina, Kiron, and Mamiya, among others. The brand became known primarily for affordable third-party lenses for the SLR market, but its premium tier, the Series 1, earned a distinct reputation for optical quality that rivaled — and in some cases surpassed — first-party alternatives.\n\nThe Series 1 designation was introduced in 1973 to mark lenses whose designs were developed or supervised by independent optical engineers rather than being straightforward copies of existing formulas. The most prominent contributor was Ellis I. Betensky, an American optical designer and patent holder who collaborated with Ponder & Best on several Series 1 designs. Betensky's patents — including US 3,942,876 covering the 200mm f/3.0 VMC — introduced design innovations such as fixed rear corrector elements that remained stationary during focusing, reducing focus breathing and improving off-axis performance at close distances. Other Series 1 contributors included David Betensky and William Peck.\n\nProduction quality varied by manufacturer: Series 1 lenses made by Komine are generally regarded as the highest-quality examples, with Kiron-made units also well-regarded. The VMC (Variable Multi-Coating) designation, introduced in the mid-1970s, indicated multi-layer anti-reflection coatings applied to all air-glass surfaces — a feature that markedly improved contrast and flare resistance relative to single-coated alternatives.\n\nVivitar was acquired by Hanson Photo in 1992. The brand has since changed hands multiple times and today is largely a consumer electronics label with no connection to the optical engineering tradition of the Series 1 era.",
     notableDesigns: "Series 1 200mm f/3.0 VMC, Series 1 90mm f/2.5 Macro, Series 1 28-90mm f/2.8-3.5",
+  },
+  // Museum corporate history and a documented Wrayflex with its Unilite lens.
+  // https://collection.sciencemuseumgroup.org.uk/people/cp110299
+  // https://collection.sciencemuseumgroup.org.uk/objects/co8205017/wrayflex-camera
+  // https://patents.google.com/patent/US2499264A/en
+  // The lens analysis qualifies the Unilite family association and Table A reconstruction.
+  wray: {
+    founded: 1850,
+    headquarters: "Bromley, Kent, England, United Kingdom (historical optical works)",
+    summary:
+      "British manufacturer Wray (Optical Works) Ltd, producing astronomical, photographic and military optics and the Wrayflex camera with Unilite lenses.",
+    history:
+      "William Wray, a solicitor and amateur astronomer, established the optical business in 1850 after making telescopes himself. A merger with the prism-binocular manufacturer Aitcheson in 1908 added binocular production to the firm's lens business. During the First World War it supplied binoculars and photographic lenses for the Royal Flying Corps, and during the Second World War it produced prism binoculars and reflector gunsights for the Royal Air Force. Its postwar civilian products included the Wrayflex 35 mm single-lens reflex camera, documented in a 1951 Science Museum Group example fitted with a 50mm f/2 Unilite. The Bromley works closed in June 1971, with operations transferred to Kershaw's in Leeds.",
+    notableDesigns: "Unilite 50mm f/2 (qualified US 2499264 Table A reconstruction); Wrayflex 35 mm SLR",
   },
   voigtlander: {
     founded: 1756,
