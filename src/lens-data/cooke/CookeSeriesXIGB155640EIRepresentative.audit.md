@@ -21,7 +21,7 @@ Changes made:
 - Header: absent → one JSDoc block identifying the patent, Example I, ×100 conversion to millimetres, retail focal lengths, inferred stop and calculated back focus, printed rather than inferred rims, derived image circle and index interpretation.
 - Name: `Cooke Series XI 100mm-scaled f/3 (patent EI representative)` → `COOKE SERIES XI f/3 (GB 155,640 Example I Design)`.
 - `catalog.focalLengthMm.marketing`: `100` → omitted because 100 mm is the model scale, not a sold focal length. `design: 100` and every prescription number remain unchanged.
-- `source.patentNumber`: `GB 155640` → `GB 155,640 A`; assignees: `["Taylor, Taylor and Hobson"]` → `["Taylor, Taylor & Hobson Ltd."]`; example: absent → `{ "label": "Example I", "id": "1" }`.
+- `source.patentNumber`: `GB 155640` → `GB 155,640 A`; assignees: `["Taylor, Taylor and Hobson"]` → `["Taylor, Taylor & Hobson Limited"]`; example: absent → `{ "label": "Example I", "id": "1" }`.
 - `catalog.lensMounts`: absent → `["large-format-lens-board"]`; `catalog.imageCircleMm`: absent → `82.84`, the validator's rounded diameter for 2f·tan 22.5° at the nominal 100 mm scale.
 - `aperture.fStops`: `[3, 3.5, 4, 5.6, 8, 11, 16, 22]` → `[3, 3.5, 4, 5.6, 8, 11, 16]`; `maxFNumber`: `22` → `16`, matching the documented retail upper limit while retaining the patent's f/3 opening.
 - `focus.description`: `NO_INTERNAL_RECONSTRUCTION: infinity normalized representative only` → `This normalised patent model represents infinity focus only.` The equivalent numeric spelling `1000000000000000.0` → `1000000000000000` removes an unnecessary decimal.

@@ -1,7 +1,7 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
- * GB 155,640 A, Example I (printed page 2; Figure 1), Taylor, Taylor & Hobson Ltd.
+ * GB 155,640 A, Example I (printed page 2; Figure 1), Taylor, Taylor & Hobson Limited
  * and Horace William Lee. The patent states an equivalent focal length of 1 unit,
  * aperture f/3 and full field of 45 degrees.
  *
@@ -47,7 +47,7 @@ const LENS_DATA = {
       "Horace William Lee"
     ],
     "assignees": [
-      "Taylor, Taylor & Hobson Ltd."
+      "Taylor, Taylor & Hobson Limited"
     ]
   },
   "elements": [

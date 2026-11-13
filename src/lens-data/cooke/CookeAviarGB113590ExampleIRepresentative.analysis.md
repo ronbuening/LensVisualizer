@@ -2,7 +2,7 @@
 
 ## Patent Reference and Design Identification
 
-**Patent:** GB 113590  
+**Patent:** GB 113,590 A  
 **Inventor:** Arthur Warmisham  
 **Applicant:** Taylor, Taylor & Hobson Limited, with Arthur Warmisham  
 **Filed:** 27 November 1917  

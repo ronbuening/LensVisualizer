@@ -2,7 +2,7 @@
 
 ## Patent Reference and Design Identification
 
-**Patent:** US 1955591 A  
+**Patent:** US 1,955,591 A  
 **Inventor:** Horace William Lee  
 **Assignee:** Kapella Limited  
 **Filed:** 11 November 1932  

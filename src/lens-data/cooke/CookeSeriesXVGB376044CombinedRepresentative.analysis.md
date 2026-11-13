@@ -1,6 +1,14 @@
 # Cooke Series XV: GB376044 combined representative
 
 ## Patent reference and product qualification
+
+**Patent:** GB 376,044 A  
+**Filed:** 31 July 1931  
+**Accepted:** 7 July 1932  
+**Inventor:** Horace William Lee  
+**Applicants:** Horace William Lee and Kapella Limited  
+**Example details:** Complete-lens table (sole example, p. 3), drawing on p. 4; inches converted to millimetres by multiplying by 25.4.  
+
 Original GB376044, Horace William Lee and Kapella Limited. Application31July1931, complete29April1932, accepted7July1932. The complete four-page facsimile is retained. It supplies one combined numerical example, with eight elements/four cemented doublets and nominal12.25-inch focal length, f/6.8, about55° field.
 
 Cooke's modern Compendium explicitly links Series XV Triple Convertible to GB376044. This is a qualified later-family attribution, not exact factory prescription or a particular serial. The family's1921 origin and quotedf/4.5 advertisement predate the1931/1932 f/6.8 example. Its1930s retail12.25/19/26.5-inch specifications differ from the patent12.25/19.25/25.5-inch figures. Maker references to Ansel Adams's serial309272 and later samples do not establish their numerical prescription. The modern2004 redesign is likewise not identity evidence. The earlier GB165657 is antecedent, not numerical equivalence.

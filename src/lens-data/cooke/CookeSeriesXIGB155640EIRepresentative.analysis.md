@@ -1,7 +1,15 @@
 # Cooke Series XI: GB155640 Example I representative
 
 ## Patent reference and product qualification
-GB 155,640 A, Taylor, Taylor & Hobson Ltd. and Horace William Lee; applied 22 September 1919, accepted 22 December 1920, printed 1921. The original three-page facsimile is retained. Example I is a normalized F=1 triplet, f/3, with stated45° field. Example II is separate and is not mixed into this model or counted as another physical family.
+
+**Patent:** GB 155,640 A  
+**Filed:** 22 September 1919  
+**Accepted:** 22 December 1920  
+**Inventor:** Horace William Lee  
+**Applicant:** Taylor, Taylor & Hobson Limited  
+**Example details:** Example I (printed p. 2), Figure 1; normalized focal length 1, scaled by 100 to millimetres.  
+
+GB 155,640 A, Taylor, Taylor & Hobson Limited and Horace William Lee; applied 22 September 1919, accepted 22 December 1920, printed 1921. The original three-page facsimile is retained. Example I is a normalized F=1 triplet, f/3, with stated45° field. Example II is separate and is not mixed into this model or counted as another physical family.
 
 Cooke's modern Compendium explicitly associates Series XI f/3.5 with GB155640 and reports patent-number inscriptions on5-inch serial138174 and6.25-inch serials138272/199442. This is manufacturer-reported sample evidence, not engraving photographs independently inspected here. The maker says no catalog entry was found in its archive. Its broader association of the patent with other triplet series does not establish exclusive identity or select a factory example. The source f/3 is different from retail f/3.5.
 

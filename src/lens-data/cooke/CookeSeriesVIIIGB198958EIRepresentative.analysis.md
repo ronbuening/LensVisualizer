@@ -1,6 +1,14 @@
 # Cooke Series VIII: GB198958 Example I representative
 
 ## Patent reference and product bridge
+
+**Patent:** GB 198,958 A  
+**Filed:** 7 October 1922  
+**Accepted:** 14 June 1923  
+**Inventor:** Horace William Lee  
+**Applicants:** Horace William Lee and Kapella Limited  
+**Example details:** Example I, first numerical table (printed p. 2), Fig. 1; inches converted to millimetres by multiplying by 25.4.  
+
 Original GB198958, Horace William Lee and Kapella Limited, applied7October1922, accepted14June1923. The complete three-page facsimile contains two numerical telephoto examples. This model uses Example I alone: nominal12inches, f/6, four glasses/two cemented doublets. Example II is separate, not a second counted family or a source for correcting EI.
 
 Cooke's modern Compendium reports GB198958 inscriptions on20-inch f/5.6 serial202365 and15-inch f/5.6 serial418036. This is manufacturer-reported artifact evidence, not engraving photos independently inspected here. It supports a family bridge, not exact numerical identity with the patent's12-inch f/6 or10-inch f/4.8 examples. No15/20-inch factory model is reconstructed by arbitrary scaling. Retail f/5.6 remains distinct from modeled f/6.
