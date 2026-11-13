@@ -18,7 +18,7 @@
 
 Gordon Henry Cook's six-element, four-group Example II is strongly associated with the Taylor-Hobson Cooke Speed Panchro Series II 75 mm f/2. The contemporary [Motion Picture Leaflet LEN. 45](https://www.pacificrimcamera.com/rl/02112/02112.pdf) specifies six elements in four groups, 75.00 ±0.75 mm focal length, f/2–22, and optical back focus 42.60 ±0.75 mm. It places the rear node 32.50 mm in front of the rear glass and the front node 17.00 mm behind the front surface. The model gives 42.72 mm back focus and node positions 32.28 / 17.32 mm.
 
-The leaflet's front/rear clear glass diameters are 38.10 / 22.40 mm; calculated f/2 axial beam diameters are about 37.5 / 22.6 mm. These agreements support the 75 mm association, without establishing that the patent is the unrounded production prescription. The displayed f/2 is the marketed aperture; the model retains the patent's f/1.86 design aperture. The leaflet's 25 mm Series II has nine elements in seven groups, 26.80 mm back focus and 57.70 mm front glass diameter: it is a different design. The leaflet does not identify a mount, so none is assigned. The field angles, iris coordinate and clear rims remain inferred.
+The leaflet's front/rear clear glass diameters are 38.10 / 22.40 mm. These agreements support the 75 mm association, without establishing that the patent is the unrounded production prescription. The working aperture is the marketed f/2, with an f/2–22 schedule. The catalog retains the patent's f/1.86 design f-number; the printed rear aperture limits that faster design to about f/1.97. The leaflet's 25 mm Series II has nine elements in seven groups, 26.80 mm back focus and 57.70 mm front glass diameter: it is a different design. The leaflet does not identify a mount, so none is assigned. The stored 23.4° full diagonal field follows the leaflet's silent-frame coverage; the iris coordinate and intermediate rims remain inferred.
 
 ## Optical architecture
 
@@ -42,13 +42,13 @@ The positive front element of C1 shares its rear surface with L3. C1 has a combi
 
 ### L3 — Biconcave Negative
 
-nD = 1.6227, V = 36.0. Glass: Unmatched. f = −71.59 mm.
+nD = 1.6227, V = 36.0. Glass: Ohara TIM11 spectral proxy, anchored at the printed sodium-D index; historical supplier and melt unspecified. f = −71.59 mm.
 
 The more dispersive negative partner opposes L2's positive power. The index difference across their cemented interface is 0.0682, as described by the patent.
 
 ### L4 — Biconcave Negative
 
-nD = 1.6535, V = 33.5. Glass: Unmatched. f = −32.57 mm.
+nD = 1.6535, V = 33.5. Glass: Hoya FD9 spectral proxy, anchored at the printed sodium-D index; historical supplier and melt unspecified. f = −32.57 mm.
 
 This strong negative singlet lies between C1 and the iris. It balances the positive front components, leaving the complete front member nearly afocal.
 
@@ -66,16 +66,16 @@ The rear negative meniscus completes C2. Both Examples I and II print V = 61.4 f
 
 ## Glass identification and selection
 
-The patent specifies sodium-D indices and Abbe V, without naming a supplier or glass number. Those values remain unchanged. The catalog names below describe curves matching the printed coordinates within |ΔnD| ≤ 0.0001 and |ΔV| ≤ 0.15; they do not identify historical melts or production suppliers.
+The patent specifies sodium-D indices and Abbe V, without naming a supplier or glass number. Those printed values and the sodium-D reference remain unchanged. L1/L2/L5 use the Hikari J-LAK9 catalog curve, with catalog-minus-patent ΔnD = −0.00001205 and ΔV = +0.02524 at C/D/F. L6 uses Schott N-SK5, with ΔnD = +0.00004428 and ΔV = −0.14212. These four assignments meet |ΔnD| ≤ 0.0001 and |ΔV| ≤ 0.15 at the sodium-D reference.
 
-| Elements | Printed nD / V | Glass label | Catalog minus patent at C/D/F |
-| --- | --- | --- | --- |
-| L1, L2, L5 | 1.6909 / 54.9 | Hikari J-LAK9 | ΔnD = −0.00001205; ΔV = +0.02524 |
-| L3 | 1.6227 / 36.0 | Unmatched | No catalog row meets both limits |
-| L4 | 1.6535 / 33.5 | Unmatched | No catalog row meets both limits |
-| L6 | 1.5890 / 61.4 | Schott N-SK5 | ΔnD = +0.00004428; ΔV = −0.14212 |
+L3 and L4 use qualified spectral proxies. Each label keeps the printed index at the sodium-D reference and borrows only the catalog row's wavelength dependence. The site's proxy tolerance allows an Abbe difference within about 0.25 and an index difference within about 0.002. The row-coordinate differences below compare catalog nd/νd with printed nD/V; the printed sodium-D index remains the model's anchor.
 
-J-LAK9 gives the closest simultaneous match among the available crown rows. N-SK5 meets both limits at the sodium-D reference. No anomalous-dispersion designation or measured full spectral curve is supplied by the patent.
+| Element | Printed nD / V | Spectral proxy row | Catalog nd / νd | Catalog pair minus printed pair |
+| --- | --- | --- | --- | --- |
+| L3 | 1.6227 / 36.0 | Ohara TIM11 | 1.620955 / 35.880852 | Δn = −0.001745; ΔV = −0.119148 |
+| L4 | 1.6535 / 33.5 | Hoya FD9 | 1.654462 / 33.717017 | Δn = +0.000962; ΔV = +0.217017 |
+
+TIM11 and FD9 are approximate spectral proxies, not exact glass matches. None of these catalog assignments identifies the historical glass, production supplier or melt. No anomalous-dispersion designation or measured full spectral curve is supplied by the patent.
 
 ## Focus mechanism and first-order dimensions
 
@@ -85,15 +85,17 @@ The normalized calculated EFL is 0.999934012431, giving 74.9950509324 mm, a −0
 
 ## Inferred iris and clear apertures
 
-The patent supplies no numerical iris coordinate or clear diameters. Its largest internal airspace S3 = 0.1190 corresponds to 8.925 mm. The inferred iris lies 0.316914 mm behind that gap's midpoint to clear the L4 rear rim: the two separations are 4.779414 / 4.145586 mm. The source air gap remains unchanged.
+The patent supplies no numerical iris coordinate or clear diameters. Its largest internal airspace S3 = 0.1190 corresponds to 8.925 mm. The inferred iris lies 0.816914 mm behind that gap's midpoint: the two separations are 5.279414 / 3.645586 mm. L4's rear rim has 4.7794132442 mm sag, leaving about 0.500000756 mm axial clearance to the iris plane. The source air gap remains unchanged.
 
-The four groups have inferred semi-diameters of 30 / 22.5 / 14.3 / 15 mm, common at all surfaces within each cemented group. They are not measured production apertures. The L4 rear rim has only 0.0000007558 mm axial clearance from the iris plane; this geometric clearance is not a manufacturing tolerance. Comparison with the patent figure remains unresolved.
+The front singlet has equal 19.05 mm semi-diameters, following the leaflet's 38.10 mm front clear glass diameter. C1 has equal 17.5 mm rims inferred from Fig. 2 proportions. L4 retains equal 14.3 mm rims. C2 has 15 mm front and cemented-interface rims and an 11.20 mm rear rim, the latter half the leaflet's printed 22.40 mm rear clear glass diameter. Its unequal optical extents do not establish a production bevel or mounting land. Making the entire rear doublet 11.20 mm high would clip the marketed f/2 beam at its front and cemented surfaces.
 
-The calculated iris radius is 12.7509673021 mm at the patent's f/1.86 design aperture. The leaflet documents the production range f/2–22; the model includes f/1.86 as its design setting.
+Fig. 2 is a schematic section: axial thickness and arc scales disagree by more than 10%, and its square rear outline is taller than the leaflet's clear rear aperture. Intermediate heights therefore use proportions rather than absolute drawing dimensions. L4's retained 14.3 mm rim is lower than the schematic proportion of about 15.9 mm. Its approximately 0.5 mm iris-plane clearance is inferred; neither the iris position nor a manufacturing tolerance is established by the sources.
+
+The calculated iris radius is 11.8584020240 mm at the working f/2 aperture. The leaflet documents f/2–22, while the patent's f/1.86 remains a catalog design value. The leaflet's printed 22.40 mm rear clear diameter limits the faster design to about f/1.97, consistent with the f/2 working schedule. The printed apertures and rounded prescription do not establish an exact unrounded production prescription or measured throughput.
 
 ## Model scope and limitations
 
-The 20° half-field is assumed: the patent describes a medium field without giving a numerical angle. The leaflet gives total diagonal coverage of 23.4° for the 75 mm lens on the 35 mm silent frame and 20.6° on the sound frame. The inferred rims exceed its front/rear clear glass diameters. Peripheral clipping limits wider-field interpretation; chief-ray coverage does not establish full-pupil transmission, image quality, throughput or production MTF.
+The patent describes a medium field without giving a numerical angle. The stored full diagonal field is the leaflet's 23.4° silent-frame coverage, with an 11.7° half-field and matching maximum trace-field metadata. The leaflet's sound-frame full field is 20.6°, corresponding to a 10.3° half-field. Its silent-frame figure implies an image radius of about 15.53 mm for a 75 mm rectilinear lens. The stored 35 mm cinema format's 13.60 mm corner, at approximately 10.3°, is fully covered by chief rays. Chief-ray coverage does not establish full-pupil transmission, image quality, throughput or production MTF. The inferred iris coordinate, intermediate rims and production correspondence remain limitations.
 
 ## Sources
 

@@ -1,4 +1,4 @@
-# Cooke Series VIII Telephoto: GB 198,958 A, Example I
+# Cooke Series VIII Telephoto 12 in f/6: GB 198,958 A, Example I
 
 ## Patent Reference and Design Identification
 
@@ -24,7 +24,7 @@ Four spherical elements form positive front and negative rear cemented doublets,
 
 ### C1 — Front Collecting Doublet
 
-L1 is Biconvex Positive: nD = 1.5744, ν = 57.7, Chance 9002; radii +2.15/−6.22 inches, thickness 0.42 inch. L2 is Biconcave Negative: nD = 1.6515, ν = 33.4, Parra-Mantois 6661; shared −6.22-inch interface, rear radius +5.65 inches, thickness 0.12 inch. The higher-index, lower-Abbe negative partner corrects the collecting system's color.
+L1 is Biconvex Positive: nD = 1.5744, ν = 57.7, Chance 9002, modeled with an S-BAL11 spectral proxy; radii +2.15/−6.22 inches, thickness 0.42 inch. L2 is Biconcave Negative: nD = 1.6515, ν = 33.4, Parra-Mantois 6661; shared −6.22-inch interface, rear radius +5.65 inches, thickness 0.12 inch. The higher-index, lower-Abbe negative partner corrects the collecting system's color.
 
 ### C2 — Rear Diverging Doublet
 
@@ -32,7 +32,11 @@ L3 is Plano-Concave Negative: nD = 1.5732, ν = 51.9, Parra-Mantois 6062; front 
 
 ## Glass Identification and Dispersion Limits
 
-The patent identifies C as Chance Bros. & Co. and P.M. as Parra-Mantois & Cie. L4 prints P.M. 6695 in Example I versus 6675 in Example II at identical nD/ν. The Example I number is retained. All four glasses remain Unmatched: no catalog row fits within |Δnd| ≤ 0.0001 and |Δν| ≤ 0.15.
+The patent identifies C as Chance Bros. & Co. and P.M. as Parra-Mantois & Cie. L4 prints P.M. 6695 in Example I versus 6675 in Example II at identical nD/ν. The Example I number is retained.
+
+L1, Chance 9002, uses the Ohara S-BAL11 catalog row as a spectral proxy. Its catalog nd = 1.572501 and νd = 57.74 differ from the printed nD = 1.5744 and ν = 57.7 by Δnd = −0.001899 and Δν = +0.04 (catalog minus patent). This meets the site's proxy tolerance of an Abbe difference within about 0.25 and an index difference within about 0.002. The engine retains the printed reference-line index and Abbe number and borrows only the catalog row's wavelength dependence. This is not an exact glass match and does not identify the historical glass, supplier or melt. L2–L4 remain Unmatched because no catalog row lies within that Abbe window.
+
+L1 uses catalog partial dispersion rather than a generic Abbe extrapolation. The modeled paraxial back-focus offsets relative to d are C +386.9 µm, F −308.9 µm and g −46.1 µm. These are calculated offsets for the qualified spectral model, not measured historical chromatic performance.
 
 The printed nD is approximated by the d line. The conventional Abbe interpretation of ν follows Lee's later US 1,955,591 usage; GB 198,958 defines no formula. These constants and identifiers do not establish full measured dispersion, melt identity or manufacturing tolerances.
 
@@ -46,13 +50,16 @@ The source describes infinitely distant objects. Its magnification of two is a t
 
 Printed group diameters 2.05/1.5 inches give semi-diameters 26.035/19.05 mm, not iris or entrance-pupil dimensions.
 
+Fig. 1 agrees with these diameters and shows equal-height faces within each cemented body. Both doublets have square-cut rims; no separate mechanical lands or rim cuts are established.
+
 The unprinted iris position is assumed at the gap midpoint, 1.365 inches from either doublet. Its calculated f/6 radius is 17.493250538 mm. No geometry override is used. Settings through f/32 are model controls, not documented retail markings.
 
 ## Field and Model Limitations
 
-No patent field angle is specified. The assumed 15° half-field includes the selected 4x5 corner at approximately 14.8°, without establishing retail coverage. Off-axis rim vignetting remains possible; clearances do not establish measured illumination or factory performance.
+No patent field angle is specified. The assumed 15° half-field includes the selected 4x5 corner at approximately 14.8°, without establishing retail coverage. At f/6 and infinity, the model transmits approximately 31.2% of the geometric pupil at that corner, versus 100% on axis. This is a traced geometric transmission fraction, not measured irradiance; clearances do not establish factory performance.
 
 ## Sources
+
 - Original patent facsimile: https://www.photo-china.net/pat/GB198958.pdf
 - Manufacturer retrospective reporting specimen inscriptions: https://cookeoptics.com/compendium/
 - Lee's later use of glass constants: https://patents.google.com/patent/US1955591A/en

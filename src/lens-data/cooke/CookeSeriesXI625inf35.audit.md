@@ -37,7 +37,7 @@ Audit results:
 - Field coverage: the assigned hidden file is skipped as hidden. A scratch copy differing only by `visible: true` reaches 99.99999993% of the 41.42 mm image radius at a modeled half-field of 22.48515754°; the corner chief ray is clear, with no corner clips and zero skipped stations. The nominal declared half-field remains 22.5°. This is geometric coverage, not full-pupil illumination; the validator reports 46.5% unvignetted pupil at the source edge.
 - Prettier check: all three assigned files pass. No full test suite, typecheck, lint, build, metadata generation, server, commit or deployment was run during this integration check.
 
-Closed for cleanup: the coordinator completed key and filename changes; the cleanup below resolves element types, glass labels, subtitle/specs and analysis wording. Open: any further rim-versus-figure review must distinguish the optical surfaces from labels and mechanical strokes and retain the printed diameters unless separately justified. An exact product-to-example identity, remote checks and production image quality are not established here.
+Closed for cleanup: the coordinator completed key and filename changes; the cleanup below resolves element types, glass labels, subtitle/specs and analysis wording. Closed for rim review: the semi-diameter pass below compares the local figure and retains all printed diameters. An exact product-to-example identity, remote checks and production image quality are not established here.
 
 
 ## 2026-11-13 — Rescale and rename
@@ -74,7 +74,7 @@ Audit results:
 
 A helper-script write accidentally targeted the read-only main checkout and was denied. That write was stopped without retry; no helper was created there. Required rescaling and audit checks were completed using the authorized files and writable scratch area. No full test suite, typecheck, lint, build, metadata generation, server, commit or deployment was run.
 
-Closed for cleanup: the coordinator completed key and filename changes; the cleanup below resolves element-type and glass labels, subtitle/specs and analysis wording. Open: the prior patent review governs rim-versus-figure qualification; the rescale only scales the printed rims. Exact product-to-example identity, remote checks and production image quality remain unestablished.
+Closed for cleanup: the coordinator completed key and filename changes; the cleanup below resolves element-type and glass labels, subtitle/specs and analysis wording. Closed for rim review: the semi-diameter pass below compares the local figure and retains the uniformly scaled printed rims. Exact product-to-example identity, remote checks and production image quality remain unestablished.
 
 ## 2026-11-13 — Cleanup and wording pass
 
@@ -90,4 +90,60 @@ Before → after engine values are identical: EFL 158.52646201178715 → 158.526
 
 Surface audit: OK, no validation errors. Aperture audit: one lens/one station within 3% of the stated f-number; zero rim, trace, iris or failed limits. Field coverage: one station at ≥99%, zero skipped or unsolved. The requested local screenshot helper emitted macOS power-monitor and DNS-watch errors and produced no PNG; rendered title/specs/focus inspection could not be completed. It was not retried. No prohibited full-suite commands, formatter, server or git-state changes were run. No explicit command or edit refusal was returned during this cleanup.
 
-Open: the midpoint stop is assumed, not supplied by the patent; no rim or stop edit is authorized in this pass. No new dimensional rim measurement was made beyond reviewing the retained source renders; the printed diameters are unchanged. Exact factory-example identity, the original glass melt curves, L2 catalog dispersion, finite-focus spacings/travel and retail minimum focus remain unknown. The quarter-plate corner half-angle is approximately 23.2°, slightly beyond the patent's declared 22.5° half-field. Chief-ray field coverage does not establish full-pupil illumination, measured MTF or production image quality. Rendered-page inspection remains incomplete because the screenshot helper produced no image. Remote CI and deployment were not checked.
+Closed for rim review: the semi-diameter pass below supplies a dimensional comparison and model sketch; the printed diameters remain unchanged. Open: the midpoint stop is assumed, not supplied by the patent. Exact factory-example identity, the original glass melt curves, L2 catalog dispersion, finite-focus spacings/travel and retail minimum focus remain unknown. The quarter-plate corner half-angle is approximately 23.2°, slightly beyond the patent's declared 22.5° half-field. Chief-ray field coverage does not establish full-pupil illumination, measured MTF or production image quality. Rendered-page inspection remains incomplete because the screenshot helper produced no image. Remote CI and deployment were not checked. (closed 2026-11-13 for L2 catalog dispersion only: S-TIM2 supplies a qualified spectral proxy; the historical melt remains unknown.)
+
+## 2026-11-13 — Semi-diameter pass against the patent figure
+
+Source: local `patents/GB155640A.pdf`, Example I table on printed page 2 and Figure 1 on PDF page 3. The native page rasters are 2592 × 3508 pixels at 300 dpi. Re-read the retained table and front-page images, and rendered a fresh native-resolution crop of Figure 1 from the assigned local PDF. The front page names Taylor, Taylor & Hobson Limited and Horace William Lee, application 22 September 1919, complete specification accepted 22 December 1920, publication number 155,640. No new bibliographic or naming discrepancy was found.
+
+The table explicitly prints diameters 0.34, 0.30 and 0.30 in focal-length units. Multiplying each by 158.75/2 gives the stored semi-diameters exactly. This is stronger evidence than the schematic. All six glass surfaces retain their values; no land, cut, gap allowance, prescription, stop or metadata value was changed. Header and analysis additions explain the schematic discrepancy and the assumed iris.
+
+### Figure scale and step order
+
+Light enters from the right. At native resolution the approximate vertex x coordinates, in optical order S1–S6, are 1680, 1543, 1328, 1315, 1081 and 947 pixels; the axis slopes about 10 pixels over this span. Line widths and hatching give several pixels of reading uncertainty. The 733-pixel first-to-last span corresponds to 53.594 mm, or 13.68 px/mm. Independent internal-air spans give 215/15.875 = 13.54 px/mm and 234/17.0815 = 13.70 px/mm. The positive-element thicknesses give approximately 14.38 and 14.07 px/mm. However, L2's roughly 13-pixel centre thickness gives only 8.19 px/mm rather than the roughly 22 pixels expected from its printed 1.5875 mm thickness at the overall scale.
+
+Transverse rim spans are approximately 674/538/642 pixels for L1/L2/L3. Against the printed diameters 53.975/47.625/47.625 mm these give 12.49/11.30/13.48 px/mm. Thus both directions have been checked and no single scale reproduces the figure; it is used for proportions only. At the illustrative axial scale 13.7 px/mm the apparent rim radii are about 24.6/19.6/23.4 mm, roughly 91%/82%/98% of the stored values. These are schematic readings, not replacement aperture dimensions. Figure 1 draws L1 taller than L3 and L2 smaller than both, although the printed L2 and L3 diameters are equal. The equal rear/central rims therefore remain intentional. Flat rim joins support square-cut faces within each element. Labels, leaders, axial arrows and hatching were excluded; no additional mechanical land or iris tick is identifiable.
+
+| Surfaces | Before sd (mm) | After sd (mm) | Authority and disposition |
+| --- | ---: | ---: | --- |
+| 1, 2 | 26.9875 | 26.9875 | Printed diameter 0.34 × 158.75; retain both faces. |
+| 3, 4 | 23.8125 | 23.8125 | Printed diameter 0.30 × 158.75 overrides the smaller schematic L2. |
+| 5, 6 | 23.8125 | 23.8125 | Printed diameter 0.30 × 158.75; drawing agrees within reading noise. |
+
+### Clearance, aperture and light
+
+The surface audit reports OK with no errors. The aperture audit checks one infinity station within 3% of the stated f-number, with zero rim, trace, iris or failed limits. Image-circle audit checks one lens with zero undersized and zero skipped. Field coverage checks the visible assigned file directly: 100%, 22.5° reaching 65.75 mm of 65.75 mm, corner chief ray clear, zero unsolved or skipped.
+
+The original `clearap.mjs --Y 65.75425` solver returned an inconsistent 10.51°/29.407 mm intercept, so it was rejected for corner evidence. `clearap2.mjs --omega 22.5` selects the physical branch: chief image height 65.803 mm and absolute chief heights 18.94/16.51/5.26/4.59/4.70/7.46 mm at S1–S6, all below the printed rims. Its conservative nominal-f/3 marginal heights are 26.42/25.85/21.94/21.49/23.50/23.74 mm; the narrowest glass margin is about 0.07 mm at S6. At retail f/3.5 they are 22.65/21.92/18.45/18.14/19.78/20.04 mm, also clear. This helper derives an exact f/3 ray stop radius of 22.173 mm; the engine's paraxial-derived physical stop is 21.3519389648 mm. The helper radius is diagnostic and was not authored into STO. The repo aperture audit passes the actual engine configuration.
+
+Calculated glass edge thicknesses at the printed rims are L1 3.0990 mm, L2 10.1203 mm and L3 3.8555 mm. The L2-to-L3 facing-surface clearance at their common rim is 13.2112 mm. The midpoint iris plane lies 8.54075 mm after S4's vertex: clearance to the curved S4 is 4.8443 mm at the engine f/3 opening and 3.9081 mm at the full glass radius; S5 is at least 8.54075 mm beyond the iris plane. No figure-supported relocation or size correction is recommended. The midpoint remains an assumption; Figure 1 supplies no physical stop position or opening.
+
+Engine before → after: EFL 158.5264620118 → 158.5264620118 mm, FOPEN 3 → 3, declared half-field 22.5 → 22.5°, stop radius 21.3519389648 → 21.3519389648 mm and track 189.04863 → 189.04863 mm. `rimcost.mjs` against `.lens-work/base1123sd/CookeSeriesXI625inf35.data.ts`, with element restoration enabled, gives identical curves at every sampled field: 100.0, 99.9, 95.9, 89.7, 82.5, 74.8, 66.4, 56.7 and 46.5% at 0.0, 2.8, 5.6, 8.4, 11.2, 14.1, 16.9, 19.7 and 22.5°. Corner illumination is 46.5 → 46.5%, worst loss 0.0 percentage points. This is geometric pupil transmission, not cosine-fourth or coating throughput. No lands or cuts were introduced, and ordinary off-axis vignetting remains.
+
+### Rendered comparison and limits
+
+Viewed the current/baseline model sketch and matched-scale side-by-side at `/private/tmp/claude-501/-Users-ronbuening--claude-spares-spare-EIkiKm/8d989648-1a4e-43f9-bdb4-c4cbb0d8c850/scratchpad/sd/xi/overlay.png`. The model is reversed to match the patent's right-to-left illumination; the baseline and current outlines coincide. Three spherical elements in three groups, weak S2/S5 curvature and square-cut rims agree; the figure's smaller L2 is explicitly qualified above. No manufacturer construction diagram is present in the validator assets or documented as inspected; the validator reports none public. No special-glass or aspherical-element position is claimed from a maker drawing. All three elements are spherical; printed glass pairs and roles are unchanged.
+
+The required sketch substitutes for a browser check in this assignment. No live page was opened; the coordinator retains rendered-page inspection. Infinity is the sole printed focus state. No new name or metadata defect was found; the quarter-plate corner remains about 23.2°, beyond the source's declared 22.5°, and exact production-example identity remains qualified. Parsed authored data is identical to the saved baseline, including the complete surface table and stop configuration. The requested three-file Prettier write/check commands exit successfully but the repository ignores `src/lens-data/` and Markdown, so they provide no independent formatting coverage; the narrow diff and whitespace check were inspected separately. No sandbox tool/edit refusal occurred in this pass. No full suite, typecheck, lint, build, generation, server or git-state operation was run.
+
+
+## 2026-11-13 — Glass proxies and catalog metadata
+
+L2 glass label: `Unmatched (nD 1.621 / V 36.2, Chance 361)` → `S-TIM2 (spectral proxy; patent nD 1.621 / V 36.2, Chance 361; supplier and melt unspecified)`. The Ohara S-TIM2 catalog row has nd = 1.620041 and νd = 36.263378; catalog minus printed gives Δnd = −0.000959 and Δνd = +0.063378. These lie within the repository's spectral-proxy window of about 0.002 in index and 0.25 in Abbe number. The engine retains the printed reference-line index and borrows only the catalog row's wavelength dependence. Printed nD 1.621 / V 36.2 remain unchanged. The historical Chance 361 identifier is retained; the proxy is not an exact match and does not identify the historical glass, supplier or melt. L1/L3 retain their BACD4 labels.
+
+Paraxial values from `chan.mjs`, using `.lens-work/base1123glass/CookeSeriesXI625inf35.data.ts` before and the assigned current data file after. Channels R/G/B/V represent C/d/F/g. BFD shifts are relative to the d-line focus; positive is farther behind the final surface.
+
+| Line (channel) | EFL before → after (mm) | BFD before → after (mm) | BFD shift vs d before → after (µm) |
+| --- | ---: | ---: | ---: |
+| C (R) | 158.7296 → 158.7390 | 135.6465 → 135.6565 | +191.8 → +201.8 |
+| d (G) | 158.5265 → 158.5265 | 135.4546 → 135.4546 | 0.0 → 0.0 |
+| F (B) | 158.2781 → 158.2640 | 135.2438 → 135.2289 | −210.8 → −225.7 |
+| g (V) | 158.2789 → 158.2870 | 135.2849 → 135.2935 | −169.7 → −161.1 |
+
+The reference channel also retains EFL 158.5265 mm, BFD 135.4546 mm and zero shift relative to d. These are modeled paraxial values using catalog proxies, not measured historical chromatic performance.
+
+Metadata: `catalog.imageFormat` absent → `"quarter-plate"`, the taxonomy row for 107.95 × 82.55 mm and nominal diagonal 135.9 mm. The stored `catalog.imageCircleMm` remains 131.5085 mm, about 3.2% short of the plate diagonal. The quarter-plate corner half-angle is approximately 23.2°, beyond the patent's 22.5° half-field; the format assignment does not certify corner coverage, illumination or image quality. No existing Open item specifically concerns a missing format. The earlier L2 catalog-dispersion uncertainty is closed in place for proxy availability only; the assumed stop and other historical uncertainties remain open.
+
+The analysis describes the S-TIM2 proxy, its catalog differences and limits, and the quarter-plate format with the retained field shortfall. A direct comparison with the pre-relabel baseline finds only the L2 label and added image-format field changed in the data file. This text update leaves the data file read-only.
+
+The requested two-file Prettier write and check commands exit successfully, but `.prettierignore` excludes both Markdown and `src/lens-data/`, so they provide no formatting coverage. A separate readback checks the narrow text diff, retained historical audit lines, one appended section, expected whitespace and byte-identical data. No full suite, typecheck, lint, build, generation, server or git-state changes were run. No tool or edit refusal occurred.

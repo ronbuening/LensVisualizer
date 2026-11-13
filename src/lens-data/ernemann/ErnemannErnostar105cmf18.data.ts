@@ -14,9 +14,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * retained as a historical attribution, not a name transcribed from this patent.
  * The printed stop split 5.87 + 6.62 = 12.49 mm becomes 6.1635 + 6.951 = 13.1145 mm;
  * the engine derives its radius for f/1.8, so it scales with the prescription.
- * All optical semi-diameters are inferred. The earlier surface-7 correction from 17.5
- * to 18.4 mm scales to 19.32 mm; all other rims receive the same factor. The calculated
- * paraxial back-focus interval 56.83526107 mm becomes 59.677024 mm, not a printed value.
+ * All optical semi-diameters are inferred from Abb. 2 proportions and checked against
+ * the iris-admitted f/1.8 beam. L5 retains its drawn bevel and unequal 19.32/18.375 mm
+ * faces. L6 uses 20.2 mm on both faces, retaining corner light within 3 percentage
+ * points of the starting rims rather than taking the smaller schematic figure rim.
+ * The calculated paraxial back-focus interval 56.83526107 mm becomes 59.677024 mm,
+ * not a printed value.
  * Only infinity is modeled; closeFocusM = 1e15 is a placeholder, and the range to f/22
  * is authored. The source field remains approximately 50 degrees.
  */
@@ -78,7 +81,7 @@ const LENS_DATA = {
       "nd": 1.6053,
       "vd": 59.4,
       "indexReference": "d",
-      "glass": "Unmatched (nD 1.6053 / V 59.4)"
+      "glass": "K-SK7 (spectral proxy; patent nD 1.6053 / V 59.4; supplier and melt unspecified)"
     },
     {
       "id": 3,
@@ -90,7 +93,7 @@ const LENS_DATA = {
       "nd": 1.6485,
       "vd": 33.8,
       "indexReference": "d",
-      "glass": "Unmatched (nD 1.6485 / V 33.8)"
+      "glass": "S-TIM22 (spectral proxy; patent nD 1.6485 / V 33.8; supplier and melt unspecified)"
     },
     {
       "id": 4,
@@ -102,7 +105,7 @@ const LENS_DATA = {
       "nd": 1.627,
       "vd": 39,
       "indexReference": "d",
-      "glass": "Unmatched (nD 1.6270 / V 39.0)"
+      "glass": "H-BaF8 (spectral proxy; patent nD 1.6270 / V 39.0; supplier and melt unspecified)"
     },
     {
       "id": 5,
@@ -113,7 +116,7 @@ const LENS_DATA = {
       "nd": 1.6223,
       "vd": 36,
       "indexReference": "d",
-      "glass": "Unmatched (nD 1.6223 / V 36.0)"
+      "glass": "TIM11 (spectral proxy; patent nD 1.6223 / V 36.0; supplier and melt unspecified)"
     },
     {
       "id": 6,
@@ -124,7 +127,7 @@ const LENS_DATA = {
       "nd": 1.622,
       "vd": 53.15,
       "indexReference": "d",
-      "glass": "Unmatched (nD 1.6220 / V 53.15)"
+      "glass": "S-BSM22 (spectral proxy; patent nD 1.6220 / V 53.15; supplier and melt unspecified)"
     }
   ],
   "surfaces": [
@@ -190,14 +193,14 @@ const LENS_DATA = {
       "label": "9",
       "R": 89.67,
       "d": 5.607,
-      "sd": 21.0,
+      "sd": 20.2,
       "medium": 6
     },
     {
       "label": "10",
       "R": -89.67,
       "d": 59.677024,
-      "sd": 21.0
+      "sd": 20.2
     }
   ],
   "focus": {

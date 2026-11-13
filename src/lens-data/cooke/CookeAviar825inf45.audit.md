@@ -86,10 +86,78 @@ Surface audit: OK, no validation errors. Aperture audit: 1 lens / 1 station with
 
 Open:
 
-- The 25.146 mm rims remain inferred and unchanged. The validator's patent-figure estimate is about 0.10 f (20.955 mm at this scale), smaller than the model's 0.12 f; the entrance surface requires about 23.43 mm for f/4.5. The supplied Fig. 1 render confirms the outer convex / inner concave layout but prints no clear apertures or iris.
+- Closed by the semi-diameter pass below: every rim was compared with both Fig. 1 scans. The drawings support relative heights rather than absolute diameters; L2/L3 now have smaller rims, while L1/L4 retain the baseline inference and the f/4.5 beam remains clear. No printed clear apertures or iris coordinates were found.
 - The central-gap midpoint stop and calculated infinity back focus are not patent dimensions; an exact production prescription and numerical patent field remain unestablished.
 - The patent states sodium D while the existing model reference setting is helium d; full partial dispersion is unavailable. Exact glass/melt identities remain unknown.
 - A retail minimum focus distance, finite-focus movement and minimum aperture are not established by the cited sources. The existing f-stop settings through f/22 remain display choices, rather than a sourced retail aperture range.
 - Rendered-page review could not be completed: the prescribed screenshot helper produced no PNG despite the local route returning HTTP 200; the browser access host was also unavailable. Title, subtitle/specs and focus text still require visual inspection.
 
 No command or edit was denied. Full application checks and release work remain outside this cleanup assignment.
+
+## 2026-11-13 — Semi-diameter pass against the patent figure
+
+Sources inspected: local GB113590A.pdf, PDF page 4 Fig. 1, for Example I (numerical table on PDF page 2), and the cleaner US1361207A.pdf, PDF page 1 Fig. 1. Fig. 2 is the different Example II and was excluded. The prescription remains the GB version at ×209.55; the US r2 misprint is not used.
+
+### Figure scale and evidence limits
+
+The first-to-last vertex interval is 39.143940 mm. At 300 dpi, approximate GB vertex x coordinates are 962, 1087, 1140, 1161, 1262, 1282, 1341 and 1459 px: 497 px gives 12.6967 px/mm. Independent outer-element thickness checks give 125/9.534525 = 13.1103 and 118/9.534525 = 12.3761 px/mm, within about 3.3% of that span scale. However, the inner thicknesses are 21 and 20 px instead of the predicted 26.6 px, about 21% and 25% short; the rear inter-element gap is about 15% too long after the same fit.
+
+At the US scan's native 72 dpi, the vertices are approximately 1080.5, 1158, 1192.5, 1205, 1267, 1279, 1314 and 1385 px: 304.5 px gives 7.77898 px/mm. The two outer-element thickness scales are 8.12835 and 7.44662 px/mm, about +4.5% and −4.3%. The inner thicknesses are about 23% and 26% short, independently confirming that the figure is schematic. A transverse check of the unobstructed upper R1 arc at height 160 px finds about 27 px sag: (160² + 27²)/(2 × 27) = 487.6 px radius, or 7.82 px/mm against R1 = 62.36208 mm. This agrees with the US axial span to about 0.5%, but does not cure the inner-thickness discrepancy. Neither figure draws a measurable iris tick.
+
+Accordingly, this is a **relative-height reading**, not a claim of printed or precisely scaled clear diameters. Clean top/bottom rim extents, excluding callout leaders and labels, give approximate GB half-heights L1/L2/L3/L4 = 269.5/255.5/248.5/264.5 px and US = 187/175.5/172/180 px. The inner/first-element ratios are approximately 0.94–0.95 for L2 and 0.92–0.93 for L3; the rear outer height differs from the front by only about 2–4%, within the keep range. Using the retained outer inference as the reference gives L2 about 23.6 mm and L3 about 23.2 mm. These correct the visible flat-height sequence even though their reductions are below 10%; they are proportion and step-order corrections, not absolute-scale cuts to the earlier 0.10 f estimate.
+
+### Rim decisions
+
+| Surfaces | Initial sd, mm | Final sd, mm | Evidence and decision |
+| --- | ---: | ---: | --- |
+| 1, 2 (L1) | 25.146 each | 25.146 each | Outer reference retained; US absolute reading is within roughly 5%, and the stated axial beam needs 23.432 mm at S1. |
+| 3, 4 (L2) | 25.146 each | 23.6 each | L2 is lower than the outer elements in both drawings; relative-height inference, −1.546 mm per face. |
+| 5, 6 (L3) | 25.146 each | 23.2 each | L3 is slightly lower than L2 in both drawings; relative-height inference, −1.946 mm per face. |
+| 7, 8 (L4) | 25.146 each | 25.146 each | Outer-element height difference is within drawing/scan uncertainty; retained rather than cutting corner light for an uncertain reading. |
+
+Each element keeps equal-height face endpoints. Small drawn chamfers on the inner elements are not reliable enough to reconstruct as lands or unequal optical rims. No rim extensions, rim-cut depths or geometry exceptions are introduced. The stop radius and position are unchanged.
+
+### Clearance, field and light
+
+Trial substitutions passed the surface validator and real-ray checks before edits. Final surface audit is **OK — no validation errors**. Aperture audit reports one station within 3% of f/4.5, with **zero rim, trace or iris limits and zero failures**. Image-circle audit: **1 checked, 0 undersized, 0 skipped**. Field coverage: **100%**, a clear chief ray at the 109.25 mm 5×7 corner, approximately **27.286873°**. Infinity is the only printed/modelled focus state.
+
+The meridional clearance table gives axial marginal heights at S1–S8 of approximately 23.43, 22.92, 21.84, 21.03, 20.89, 21.17, 21.78 and 22.09 mm. The smallest surface margin is about **1.71 mm at S1**; no CLIPS-AXIAL or BLOCKS-CHIEF flags occur. Both chief-ray root-selection tools agree. Their lower full-field marginal solve reports no ray; this remains a full-bundle limitation rather than an axial/chief clearance claim. The full-pupil lattice below independently measures the surviving corner bundle.
+
+Calculated edge thicknesses L1–L4 are **2.37910 / 8.27834 / 7.69077 / 2.37910 mm**. Minimum axial distances from the full optical rims to the inferred iris plane are **0.766890 mm on L2** and **1.213708 mm on L3**, increased from 0.349646 / 0.756231 mm. **Iris recommendation: retain its midpoint and f/4.5-derived radius; no relocation or radius change is justified by these figures.**
+
+Engine before → after: EFL **210.884749523 → 210.884749523 mm**, FOPEN **4.5 → 4.5**, engine halfField **39.390086287 → 39.390086287°**, physical stop radius **20.320947254 → 20.320947254 mm**, BFD **193.370081373 → 193.370081373 mm**. The engine half-field is a default, distinct from the traced format corner. The only changed built diagnostic is the derived stop-housing radius, **25.146 → 23.2 mm**, following the adjacent rim.
+
+The final rimcost full-pupil comparison against the saved base1123sd file, including one-element-at-a-time restores, gives **74.6% → 74.6%** geometric transmission at the 5×7 corner and **0.0 percentage-point loss** at every sampled field. At fields 0.0/2.7/5.5/8.2/10.9/13.6/16.4/19.1/21.8/24.6/27.3°, both curves are 100.0/100.0/100.0/100.0/100.0/98.9/96.9/93.8/88.7/82.7/74.6%. Each inner-element restore wins back 0.0 points. Ordinary off-axis vignetting is retained; these are geometric pupil fractions, not cosine-fourth-weighted measured illumination.
+
+### Render and remaining limits
+
+The model sketch was compared at matched axial scale with US Fig. 1, with initial rims in blue and final rims in black. Scratch artifact: `sd/aviar/overlay.png` under the supplied scratchpad root; model source is `sd/aviar/model.svg`. The intended outer > L2 > L3 height order is restored. This replaces the live browser check under the batch addendum; the coordinator must still inspect the rendered page.
+
+The supplied maker-linked image in `v-aviar/diagrams/commons_aviar_960.png` was viewed. It is a patent redraw, not an independent production section: four spherical air-separated elements / four groups, positive outer and negative inner elements, and lower inner rims agree. No special-glass or aspheric positions are identified; all four modeled elements remain spherical. It corroborates grouping and broad proportions only.
+
+GB front page inspected: Arthur Warmisham and Taylor, Taylor & Hobson Limited are the applicants; publication 113,590, application 27 November 1917, complete accepted 28 February 1918. US drawing sheet reads A. Warmisham, 1,361,207, application 7 January 1918 and patent date 7 December 1920. No new name, mount or format discrepancy was found. The already disclosed sodium-D source versus retained helium-d setting remains outside this SD assignment, as do exact production identity and unsourced retail focus/minimum-aperture limits.
+
+Tools completed: surface, aperture, image-circle and field-coverage audits; clearap and clearap2; built and element probe; final rimcost with leave-one-element-out restores; matched-scale model sketch and figure inspection. No tool call or edit was refused. Broad application tests and git state changes were not run, per assignment.
+
+## 2026-11-13 — Glass proxies and catalog metadata
+
+The current labels replace the pre-relabel baseline's Unmatched labels for L1, L3 and L4. Differences below are catalog minus printed; the stored patent nD/V pairs remain unchanged (stored ΔnD = 0 and ΔV = 0).
+
+| Element | Old label → new label | Catalog nd / νd | Δnd / Δν |
+| --- | --- | --- | --- |
+| L1 | `Unmatched (nD 1.6116 / V 56.4)` → `SK1 (spectral proxy; patent nD 1.6116 / V 56.4; supplier and melt unspecified)` | 1.61025 / 56.5 (Sumita) | −0.00135 / +0.10 |
+| L3 | `Unmatched (nD 1.5502 / V 45.8)` → `S-TIL1 (spectral proxy; patent nD 1.5502 / V 45.8; supplier and melt unspecified)` | 1.548141 / 45.784277 (Ohara) | −0.002059 / −0.015723 |
+| L4 | `Unmatched (nD 1.6116 / V 56.4)` → `SK1 (spectral proxy; patent nD 1.6116 / V 56.4; supplier and melt unspecified)` | 1.61025 / 56.5 (Sumita) | −0.00135 / +0.10 |
+
+L2 retains `Unmatched (nD 1.5682 / V 43.4)` and Abbe fallback: no catalog row lies within the proxy Abbe window. The proxy rule allows about 0.25 in Abbe number and about 0.002 in index; the S-TIL1 index difference is explicitly −0.002059. The engine keeps the printed index at each element's reference line and borrows only the catalog wavelength dependence. These labels identify neither the historical glass nor its supplier or melt. The existing helium-d reference remains an approximation to the patent's sodium-D definition; full partial dispersion and measured chromatic performance remain unknown.
+
+`chan.mjs`, run from the worktree against `.lens-work/base1123glass/CookeAviar825inf45.data.ts` and the current data file, gives the following paraxial results (before → after). Focus offsets are BFD relative to the d/G channel; C/d/F/g correspond to R/G/B/V.
+
+| Line / channel | EFL, mm | BFD, mm | BFD offset from d/G, µm |
+| --- | --- | --- | --- |
+| C / R | 211.2215 → 211.2102 | 193.6968 → 193.6853 | +326.7 → +315.2 |
+| d / G | 210.8847 → 210.8847 | 193.3701 → 193.3701 | 0.0 → 0.0 |
+| F / B | 210.3883 → 210.4245 | 192.8988 → 192.9357 | −471.3 → −434.4 |
+| g / V | 210.2658 → 210.3589 | 192.7980 → 192.8920 | −572.1 → −478.1 |
+
+The REF channel remains EFL 210.8847 mm, BFD 193.3701 mm and zero offset from G. These are model predictions using qualified catalog proxies, not measured production colour correction. No name, mount, format or field metadata changes are assigned or present in the baseline/current data comparison. The analysis glass section and L1/L3/L4 paragraphs describe the current labels. Existing open limitations remain unresolved by these proxies.

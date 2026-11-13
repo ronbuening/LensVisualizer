@@ -20,25 +20,33 @@ Eight spherical elements form four cemented doublets, two per member, with negat
 
 ### C1: front outer doublet, L1/L2
 
-L1, negative meniscus: nD = 1.5472, V = 45.8, Chance 458, f = −125.74 mm. L2, positive meniscus: nD = 1.5186, V = 60.3, Chance 9322, f = +134.86 mm. Together they form the weak negative front doublet.
+L1, negative meniscus: nD = 1.5472, V = 45.8, Chance 458; S-TIL1 spectral proxy, f = −125.74 mm. L2, positive meniscus: nD = 1.5186, V = 60.3, Chance 9322; BALK3 spectral proxy, f = +134.86 mm. Together they form the weak negative front doublet.
 
 ### C2: front inner doublet, L3/L4
 
-L3, biconvex positive: nD = 1.6437, V = 48.3, unnumbered Chance glass, f = +94.78 mm. L4, biconcave negative: nD = 1.5290, V = 51.6, Chance 7863, f = −117.25 mm. The high-index crown retains the index difference needed for correction (patent p. 2).
+L3, biconvex positive: nD = 1.6437, V = 48.3, unnumbered Chance glass, Unmatched, f = +94.78 mm. L4, biconcave negative: nD = 1.5290, V = 51.6, Chance 7863; SBF2 spectral proxy, f = −117.25 mm. The high-index crown retains the index difference needed for correction (patent p. 2).
 
 ### C3: rear inner doublet, L5/L6
 
-L5, biconcave negative: nD = 1.5290, V = 51.6, Chance 7863, f = −87.12 mm. L6, biconvex positive: nD = 1.6437, V = 48.3, unnumbered Chance glass, f = +70.32 mm. This positive doublet reverses C2's glass order.
+L5, biconcave negative: nD = 1.5290, V = 51.6, Chance 7863; SBF2 spectral proxy, f = −87.12 mm. L6, biconvex positive: nD = 1.6437, V = 48.3, unnumbered Chance glass, Unmatched, f = +70.32 mm. This positive doublet reverses C2's glass order.
 
 ### C4: rear outer doublet, L7/L8
 
-L7, positive meniscus: nD = 1.5186, V = 60.3, Chance 9322, f = +101.39 mm. L8, negative meniscus: nD = 1.5472, V = 45.8, Chance 458, f = −94.25 mm. Their combination is weakly negative. Individual focal lengths are calculated in air.
+L7, positive meniscus: nD = 1.5186, V = 60.3, Chance 9322; BALK3 spectral proxy, f = +101.39 mm. L8, negative meniscus: nD = 1.5472, V = 45.8, Chance 458; S-TIL1 spectral proxy, f = −94.25 mm. Their combination is weakly negative. Individual focal lengths are calculated in air.
 
 ## Glass identification
 
-L5/L7/L8 omit nD/V but repeat Chance numbers 7863/9322/458; their values follow the earlier matching rows. Both 1.6437/48.3 rows say not yet in Chance's catalogue. All glasses remain Unmatched: no catalog row meets |Δnd| ≤ 0.0001 and |ΔV| ≤ 0.15.
+L5/L7/L8 omit nD/V but repeat Chance numbers 7863/9322/458; their values follow the earlier matching rows. Both 1.6437/48.3 rows say not yet in Chance's catalogue. L3/L6 remain Unmatched because no catalog row lies within the site's spectral-proxy Abbe window of about 0.25, with index agreement within about 0.002.
 
-The patent specifies sodium-D indices and Abbe V; the model uses the d-line convention with those printed values. Two-number glass data do not establish measured spectral curves, melt properties or manufacturing tolerances.
+| Elements | Historical identifier | Printed nD / V | Spectral proxy (catalog vendor) | Catalog nd / νd | Δnd / Δνd (catalog − printed) |
+| --- | --- | --- | --- | --- | --- |
+| L1/L8 | Chance 458 | 1.5472 / 45.8 | S-TIL1 (Ohara) | 1.548141 / 45.784277 | +0.000941 / −0.015723 |
+| L2/L7 | Chance 9322 | 1.5186 / 60.3 | BALK3 (Sumita) | 1.518350 / 60.300000 | −0.000250 / 0.000000 |
+| L4/L5 | Chance 7863 | 1.5290 / 51.6 | SBF2 (Hoya) | 1.529440 / 51.640000 | +0.000440 / +0.040000 |
+
+These rows satisfy the site's spectral-proxy tolerance, not an exact glass match. The engine keeps each printed index at its reference line and borrows only the catalog row's wavelength dependence; stored nD/V values and Chance identifiers remain unchanged. Catalog vendors identify the proxy rows, not the historical supplier or melt, which remain unspecified. SBF2 uses the site's legacy Hoya row distributed with Koko/KDP-2, rather than a current Hoya publication.
+
+The patent specifies sodium-D indices and Abbe V; the model uses the d-line convention with those printed values. The proxy curves do not establish the historical glasses' measured spectral curves, melt properties or manufacturing tolerances. L3/L6 have only the engine's Abbe-based dispersion approximation, without a resolved catalog curve.
 
 ## Focus and component limits
 
@@ -49,13 +57,13 @@ Calculated front-member EFL is 25.413198233 inches versus nominal 25.5 inches; r
 ## Inferred apertures
 No clear diameters or numeric iris position are supplied. The model places the iris at the midpoint of SII = 0.45 inch, leaving 0.225 inch on each side; this position is inferred.
 
-Each cemented body has a common inferred semi-diameter: 30.5/30/22/22.5 mm. As in the drawing, L5/L6 is smaller than L7/L8; its axial beam needs about 21.2 mm. Rear iris clearance is approximately 1.70 mm. These dimensions do not establish manufacturing tolerances or physical shutter accommodation.
+Each cemented body has a common inferred semi-diameter: 30.5/30/22/22.5 mm, consistent with the drawing's approximate proportions. Its compressed thin L5 and schematic bevels limit precise local aperture readings; no separate optical lands are inferred. As in the drawing, L5/L6 is smaller than L7/L8; its axial beam needs about 21.2 mm. Full-cap clearance to the inferred iris plane is approximately 0.162 mm in front and 1.696 mm behind. These dimensions do not establish manufacturing tolerances or physical shutter accommodation.
 
 Iris radius 20.260950617 mm is calculated at f/6.8. Settings through f/32 are available in the model; the production lens's smallest marked aperture remains unconfirmed.
 
 ## Model scope and field limitations
 
-The stated 55° field corresponds to a 27.5° half-field. Peripheral pupil clipping remains substantial; a clear corner chief ray does not establish full-pupil transmission, commercial image quality or MTF. The inferred rims and stop do not define separate-cell photographic configurations.
+The stated 55° field corresponds to a 27.5° half-field. The modeled 8×10 corner at approximately 27.4° has 55.8% geometric pupil transmission at f/6.8. Peripheral pupil clipping remains substantial; a clear corner chief ray does not establish full-pupil transmission, commercial image quality or MTF. The inferred rims and stop do not define separate-cell photographic configurations.
 
 ## Sources
 - [GB 376,044 A, complete patent facsimile](https://www.photo-china.net/pat/GB376044.pdf), pp. 2–4.

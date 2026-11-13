@@ -17,7 +17,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * INFERRED VALUES: the stop is midway through the 17.0815 mm rear air gap,
  * 8.54075 mm from each adjacent vertex; its opening is derived for f/3. The rims
  * are not inferred: printed diameters give semi-diameters 26.9875, 23.8125 and
- * 23.8125 mm. The final 135.45463 mm gap is calculated paraxial back focus,
+ * 23.8125 mm. Figure 1 is schematic, drawing the middle element smaller than
+ * its printed diameter; printed dimensions govern all six optical rims.
+ * No iris tick or numerical stop location is supplied by the figure.
+ * The final 135.45463 mm gap is calculated paraxial back focus,
  * not printed. Catalog design focal length is computed paraxial EFL, rounded to
  * two decimals. The 131.5085 mm image circle is derived from the stated field,
  * with rounding retained; it does not certify edge illumination or image quality.
@@ -41,6 +44,7 @@ const LENS_DATA = {
     "lensMounts": [
       "large-format-lens-board"
     ],
+    "imageFormat": "quarter-plate",
     "imageCircleMm": 131.5085,
     "elementCount": 3,
     "groupCount": 3,
@@ -88,7 +92,7 @@ const LENS_DATA = {
       "nd": 1.621,
       "vd": 36.2,
       "indexReference": "d",
-      "glass": "Unmatched (nD 1.621 / V 36.2, Chance 361)"
+      "glass": "S-TIM2 (spectral proxy; patent nD 1.621 / V 36.2, Chance 361; supplier and melt unspecified)"
     },
     {
       "id": 3,

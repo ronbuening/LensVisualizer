@@ -29,7 +29,7 @@ The front positive element has radii +63.706375 and −852.4875 mm, thickness 9.
 
 ### L2 — Biconcave Negative
 
-nD = 1.621, νd = 36.2. Glass: Unmatched (Chance 361).
+nD = 1.621, νd = 36.2. Glass: Chance 361 in the patent; S-TIM2 (Ohara catalog spectral proxy; supplier and melt unspecified).
 
 The central negative element has radii −74.64425 and +63.515875 mm, thickness 1.5875 mm and diameter 47.625 mm. It follows a 15.875 mm airspace. Its lower Abbe number provides the dispersion contrast with the positive elements used for chromatic correction.
 
@@ -43,7 +43,9 @@ The rear positive element has radii +372.26875 and −60.22975 mm, thickness 9.5
 
 The patent tabulates sodium D-line index and Nu without defining Nu's formula. Nu is interpreted as conventional νd from period notation and Lee's explicit Abbe definition in [US 1,955,591 A](https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/1955591). The d-line calculation approximates the printed D-line index; that convention is retained.
 
-For L1 and L3, the HOYA BACD4 catalog row gives nd = 1.61272 and νd = 58.58. Its index rounds to the patent's 1.613 and its Abbe-number difference is +0.08. This supplies a catalog dispersion curve without establishing the historical melt or a replacement material. No exact catalog row matches L2's printed pair, so Chance 361 remains Unmatched. The patent supplies no measured full dispersion or material tolerances.
+For L1 and L3, the HOYA BACD4 catalog row gives nd = 1.61272 and νd = 58.58. Its index rounds to the patent's 1.613 and its Abbe-number difference is +0.08. This supplies a catalog dispersion curve without establishing the historical melt or a replacement material.
+
+For L2, the Ohara S-TIM2 catalog row gives nd = 1.620041 and νd = 36.263378, with catalog-minus-printed differences Δnd = −0.000959 and Δνd = +0.063378. It satisfies the site's spectral-proxy tolerance of an Abbe-number difference within about 0.25 and an index difference within about 0.002. The engine keeps the printed index at the element's reference line and borrows only S-TIM2's wavelength dependence; the printed nD 1.621 and V 36.2 remain unchanged. This is not an exact match or an identification of the historical Chance 361 glass, supplier or melt. The patent supplies no measured full dispersion or material tolerances.
 
 ## Focus mechanism and scale
 
@@ -54,11 +56,15 @@ The model describes infinity focus only. The museum camera focuses by rack and p
 ## Apertures and inferred iris
 Source diameters 0.34/0.30/0.30 give semi-diameters 26.9875/23.8125/23.8125 mm. These are printed element dimensions rather than iris diameters.
 
+Figure 1 is schematic: its axial thicknesses and transverse dimensions do not share one consistent scale. It draws the central element smaller than the rear element despite their equal printed diameters. The printed dimensions govern the square-cut rims; no mechanical lands or rim cuts are modeled.
+
 No numerical physical stop position or hole diameter is supplied. The assumed stop lies at the midpoint of the larger internal airspace s2, 8.54075 mm from each vertex; its position is not fitted to ray clearance. The f/3 iris radius is calculated as 21.3519389648 mm, and the axial beam clears the printed rims. The model aperture range is f/3–16; the documented retail scale is f/3.5–16.
+
+Figure 1 supplies no iris tick. The assumed stop plane clears L2's rear face by 4.8443 mm at the f/3 opening and 3.9081 mm at the full 23.8125 mm glass radius. Geometric pupil transmission is approximately 46.5% at the declared 22.5° half-field at f/3; this excludes cosine-fourth falloff and coating losses.
 
 ## Model scope and field limitations
 
-The 131.5085 mm image circle retains the existing rounding of the diameter derived from the patent's 45° full field, using 2f·tan 22.5° at nominal focal length. The corner chief ray is clear and reaches the circle boundary. Marginal rays are clipped or blocked toward the source field edge, so chief-ray coverage does not establish full-pupil illumination, throughput or image quality. No measured MTF or factory-performance comparison is available.
+The catalog image format is quarter-plate, 107.95 × 82.55 mm with a nominal 135.9 mm diagonal. The stored 131.5085 mm image circle is about 3.2% smaller than that diagonal and retains the rounded diameter derived from the patent's 45° full field, using 2f·tan 22.5° at nominal focal length. The quarter-plate corner lies at approximately 23.2°, beyond the patent's 22.5° half-field. The chief ray at the declared field edge is clear and reaches the stored circle boundary; this does not establish coverage of the plate corners. Marginal rays are clipped or blocked toward the source field edge, so chief-ray coverage does not establish full-pupil illumination, throughput or image quality. No measured MTF or factory-performance comparison is available.
 
 ## Sources
 

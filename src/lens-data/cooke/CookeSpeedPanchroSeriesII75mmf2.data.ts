@@ -2,11 +2,15 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 /**
  * US 2,502,509 A, Example II: normalized f = 1, relative aperture f/1.86.
  * Patent dimensionless radii and separations are converted to millimetres at ×75.
- * Indices and Abbe numbers are retained; the 20° half-field is assumed.
- * The clear rims and iris position are inferred, not printed;
- * the terminal image distance is calculated
- * paraxial back focus, not a source measurement. L4 rims and the iris split are
- * set for beam and surface clearance; the source air gap is kept.
+ * Indices and Abbe numbers are retained. The 11.7° half-field is LEN. 45's 23.4°
+ * silent-frame diagonal coverage.
+ * Front/rear clear semi-diameters 19.05 / 11.20 mm follow Taylor-Hobson LEN. 45;
+ * the other rims use Fig. 2 proportions. The printed rear rim limits the f/1.86
+ * design aperture to about f/1.97, so the working aperture is the marketed f/2.
+ * The iris position is inferred: 5.279414 mm behind L4, which leaves about
+ * 0.5 mm clearance to L4's rim, inside the unchanged source air gap. The
+ * terminal image distance is calculated paraxial back focus, not a source
+ * measurement.
  */
 const LENS_DATA = {
   "schema": 2,
@@ -81,7 +85,7 @@ const LENS_DATA = {
       "nd": 1.6227,
       "vd": 36,
       "indexReference": "D",
-      "glass": "Unmatched (nD 1.6227 / V 36.0)",
+      "glass": "TIM11 (spectral proxy; patent nD 1.6227 / V 36.0; supplier and melt unspecified)",
       "cemented": "C1"
     },
     {
@@ -93,7 +97,7 @@ const LENS_DATA = {
       "nd": 1.6535,
       "vd": 33.5,
       "indexReference": "D",
-      "glass": "Unmatched (nD 1.6535 / V 33.5)"
+      "glass": "FD9 (spectral proxy; patent nD 1.6535 / V 33.5; supplier and melt unspecified)"
     },
     {
       "id": 5,
@@ -125,34 +129,34 @@ const LENS_DATA = {
       "label": "1",
       "R": 56.79,
       "d": 7.44,
-      "sd": 30.0,
+      "sd": 19.05,
       "medium": 1
     },
     {
       "label": "2",
       "R": 212.535,
       "d": 0.15,
-      "sd": 30.0
+      "sd": 19.05
     },
     {
       "label": "3",
       "R": 36.2925,
       "d": 10.0425,
-      "sd": 22.5,
+      "sd": 17.5,
       "medium": 2
     },
     {
       "label": "4",
       "R": -212.535,
       "d": 3.72,
-      "sd": 22.5,
+      "sd": 17.5,
       "medium": 3
     },
     {
       "label": "5",
       "R": 56.79,
       "d": 2.9775,
-      "sd": 22.5
+      "sd": 17.5
     },
     {
       "label": "6",
@@ -164,13 +168,13 @@ const LENS_DATA = {
     {
       "label": "7",
       "R": 23.7825,
-      "d": 4.779414,
+      "d": 5.279414,
       "sd": 14.3
     },
     {
       "label": "STO",
       "R": "flat",
-      "d": 4.145586
+      "d": 3.645586
     },
     {
       "label": "8",
@@ -190,7 +194,7 @@ const LENS_DATA = {
       "label": "10",
       "R": -82.8675,
       "d": 42.716158,
-      "sd": 15.0
+      "sd": 11.2
     }
   ],
   "focus": {
@@ -198,9 +202,8 @@ const LENS_DATA = {
     "description": "Infinity focus only; the patent gives no close-focus spacings or focusing travel."
   },
   "aperture": {
-    "nominalFNumber": 1.86,
+    "nominalFNumber": 2,
     "fStops": [
-      1.86,
       2,
       2.8,
       4,
@@ -214,8 +217,8 @@ const LENS_DATA = {
   },
   "projection": {
     "kind": "rectilinear",
-    "fullFieldDeg": 40,
-    "maxTraceFieldDeg": 20
+    "fullFieldDeg": 23.4,
+    "maxTraceFieldDeg": 11.7
   },
   "layout": {
     "yScFill": 0.7

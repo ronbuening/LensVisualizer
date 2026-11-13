@@ -5,8 +5,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * All patent radii, thicknesses and airspaces are converted from inches to millimetres
  * by a uniform factor of 25.4; no further optical scaling or fitting is applied.
  * The stop at the midpoint of SII, all semi-diameters and the paraxial back focus
- * of 288.9792920995148 mm are inferred, not printed. L5/L6 use a common 22 mm
- * semi-diameter to follow the drawing; the other inferred rims are retained.
+ * of 288.9792920995148 mm are inferred, not printed. Common doublet semi-diameters
+ * of 30.5/30/22/22.5 mm follow the approximate proportions of the p. 4 drawing
+ * and clear the nominal f/6.8 axial beam. The drawing's thin L5 is not to the
+ * table's local axial scale; the figure's bevels do not establish optical lands.
  * L5/L7/L8 indices and Abbe numbers are inferred from repeated Chance identifiers
  * in the table. The printed sodium-D indices are used with the d-line convention;
  * the patent supplies no measured spectral curves.
@@ -62,7 +64,7 @@ const LENS_DATA = {
       "nd": 1.5472,
       "vd": 45.8,
       "indexReference": "d",
-      "glass": "Unmatched (nD 1.5472 / V 45.8, Chance 458)"
+      "glass": "S-TIL1 (spectral proxy; patent nD 1.5472 / V 45.8, Chance 458; supplier and melt unspecified)"
     },
     {
       "id": 2,
@@ -74,7 +76,7 @@ const LENS_DATA = {
       "nd": 1.5186,
       "vd": 60.3,
       "indexReference": "d",
-      "glass": "Unmatched (nD 1.5186 / V 60.3, Chance 9322)"
+      "glass": "BALK3 (spectral proxy; patent nD 1.5186 / V 60.3, Chance 9322; supplier and melt unspecified)"
     },
     {
       "id": 3,
@@ -98,7 +100,7 @@ const LENS_DATA = {
       "nd": 1.529,
       "vd": 51.6,
       "indexReference": "d",
-      "glass": "Unmatched (nD 1.5290 / V 51.6, Chance 7863)"
+      "glass": "SBF2 (spectral proxy; patent nD 1.5290 / V 51.6, Chance 7863; supplier and melt unspecified)"
     },
     {
       "id": 5,
@@ -110,7 +112,7 @@ const LENS_DATA = {
       "nd": 1.529,
       "vd": 51.6,
       "indexReference": "d",
-      "glass": "Unmatched (nD 1.5290 / V 51.6, Chance 7863)"
+      "glass": "SBF2 (spectral proxy; patent nD 1.5290 / V 51.6, Chance 7863; supplier and melt unspecified)"
     },
     {
       "id": 6,
@@ -134,7 +136,7 @@ const LENS_DATA = {
       "nd": 1.5186,
       "vd": 60.3,
       "indexReference": "d",
-      "glass": "Unmatched (nD 1.5186 / V 60.3, Chance 9322)"
+      "glass": "BALK3 (spectral proxy; patent nD 1.5186 / V 60.3, Chance 9322; supplier and melt unspecified)"
     },
     {
       "id": 8,
@@ -146,7 +148,7 @@ const LENS_DATA = {
       "nd": 1.5472,
       "vd": 45.8,
       "indexReference": "d",
-      "glass": "Unmatched (nD 1.5472 / V 45.8, Chance 458)"
+      "glass": "S-TIL1 (spectral proxy; patent nD 1.5472 / V 45.8, Chance 458; supplier and melt unspecified)"
     }
   ],
   "surfaces": [

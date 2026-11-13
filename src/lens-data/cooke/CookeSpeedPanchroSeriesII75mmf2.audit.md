@@ -21,7 +21,7 @@ The independent validator re-read the patent page images, checking all ten radii
 - Analysis: replaced the identification with the 75 mm leaflet evidence, updated scale-dependent dimensions and the D-line statement, removed the private Drive link and the unsupported successful on-axis ray claim. Remaining wording is reserved for cleanup. Every existing audit-log line is retained; this section supersedes its old identification, scale and validation claims.
 - Audits: audit:surface OK, no validation errors. audit:aperture: one lens/one station within 3% of the stated f-number; zero rim, trace or failed stations. audit:image-circle: one checked, zero undersized, zero skipped. audit:field-coverage --below=1.01 skips the hidden original; the otherwise identical visible scratch copy gives 100% chief-ray coverage, 13.60 / 13.60 mm at about 10.3°, corner clear, zero skipped. This does not measure full-pupil throughput, MTF or production performance.
 
-Open: mount identity remains unverified. The coordinator retains responsibility for file/key renaming; the cleanup pass still has element type labels, inherited Chance/historical-D glass wording, focus.description and analysis voice, and comparison of inferred rims with the patent figure. The assumed 20° half-field is not a printed specification. No full application tests, typecheck, lint, build, metadata generation or server were run, as instructed; the lens remains hidden. (Closed in part: coordinator renaming/visibility and the public-text, glass and cemented-id cleanup are complete; the remaining source and rim questions are listed below.)
+Open: mount identity remains unverified. The coordinator retains responsibility for file/key renaming; the cleanup pass still has element type labels, inherited Chance/historical-D glass wording, focus.description and analysis voice, and comparison of inferred rims with the patent figure. The assumed 20° half-field is not a printed specification. No full application tests, typecheck, lint, build, metadata generation or server were run, as instructed; the lens remains hidden. (Closed in part: coordinator renaming/visibility and the public-text, glass and cemented-id cleanup are complete; the remaining source and rim questions are listed below.) (closed 2026-11-13: the field uses LEN. 45’s 23.4° full / 11.7° half-field; printed front/rear rims and the intermediate-rim comparison resolve the rim item. Mount identity remains open.)
 
 ## 2026-11-13 — Cleanup and wording pass
 
@@ -35,4 +35,90 @@ The analysis now separates identification, architecture, individual elements, gl
 
 Before → after: EFL 74.99505093235224 → 74.99505093235224 mm; FOPEN 1.86 → 1.86; halfField 20 → 20°; stop radius 12.750967302116937 → 12.750967302116937 mm; BFD 42.7161577415 → 42.7161577415 mm; total track 93.641158 → 93.641158 mm. Both focus keyframes remain identical infinity states. Complete built/probe outputs compare byte-for-byte identical, including element focal lengths. Surface audit: OK, no validation errors. Aperture audit: one lens/one station within 3%; zero rim, trace, iris or failed stations. No broad checks or generators were run; formatting was skipped as directed by the addendum.
 
-Open: mount identity and production minimum focus distance remain unverified. L3/L4 glass curves and all historical supplier/melt identities remain unknown. The 20° half-field is assumed, exceeding the leaflet's 23.4° silent-frame and 20.6° sound-frame full diagonal fields. Fig. 2 supports the four-group topology but does not supply measured clear apertures or an iris coordinate; the inferred front/rear diameters 60 / 30 mm exceed the leaflet's 38.10 / 22.40 mm. Rims and stop were left unchanged. The L4-to-iris clearance is only 0.0000007558 mm and is not a manufacturing tolerance. Rendered-page review is incomplete: shot.sh produced no PNG; the Firefox fallback returned “MCP tool call requires approval, but approval policy is never.” That browser action was stopped without retry or another route.
+Open: mount identity and production minimum focus distance remain unverified. L3/L4 glass curves and all historical supplier/melt identities remain unknown. The 20° half-field is assumed, exceeding the leaflet's 23.4° silent-frame and 20.6° sound-frame full diagonal fields. Fig. 2 supports the four-group topology but does not supply measured clear apertures or an iris coordinate; the inferred front/rear diameters 60 / 30 mm exceed the leaflet's 38.10 / 22.40 mm. Rims and stop were left unchanged. The L4-to-iris clearance is only 0.0000007558 mm and is not a manufacturing tolerance. Rendered-page review is incomplete: shot.sh produced no PNG; the Firefox fallback returned “MCP tool call requires approval, but approval policy is never.” That browser action was stopped without retry or another route. (closed 2026-11-13: L3/L4 have qualified TIM11/FD9 spectral proxies; the field is 23.4° full / 11.7° half, front/rear clear diameters are 38.10 / 22.40 mm, the figure comparison is complete, and the inferred iris now clears L4’s rim by about 0.5 mm. Historical glass/supplier/melt identities, mount, minimum focus and production correspondence remain unverified; the earlier rendered-page refusal is not resolved by this text update.)
+
+Closed in part by the semi-diameter pass below: the front/rear clear diameters now follow the leaflet, and the intermediate-rim comparison and model-sketch review are complete. The iris clearance, assumed field and production correspondence remain open. The earlier browser refusal belongs to the cleanup pass; this pass used the authorized sketch queue and made no browser request. (closed 2026-11-13: the assumed-field and iris-clearance items are resolved by the current field metadata and 0.5 mm rearward iris move; production correspondence remains open.)
+
+## 2026-11-13 — Semi-diameter pass against the patent figure
+
+Sources inspected: local `patents/US2502509A.pdf`, PDF page 1 Fig. 2, page 2 bibliographic front page and page 3 Example II; Taylor-Hobson Motion Picture Leaflet LEN. 45, the supplied `f-s2/leaflet.png` and PDF. The leaflet prints front/rear clear glass diameters 38.10 / 22.40 mm in the 75 mm column. These numerical apertures outrank schematic figure heights and the light-cost rule. The prescription is normalized f = 1, scaled ×75. Gordon Henry Cook is the inventor, Taylor, Taylor & Hobson Limited the assignee; US 2,502,509 was published 4 April 1950, filed 27 December 1948, with British priority 29 November 1948. Current source metadata agrees.
+
+### Drawing scale and optical-rim readings
+
+At 600 dpi the page is 4640 × 6816 px. Fig. 2's local axis slopes about 0.019 px/px; the approximately 1083 px first-to-last vertex span represents 50.925 mm, or 21.27 px/mm. Independent front-singlet thickness is about 156 px / 7.44 mm = 20.97 px/mm. However, the rear element's approximately 91 px thickness / 3.5325 mm = 25.76 px/mm, about 21% above the whole-track scale. A clean lower R9 arc gives a radius around 510 px / 20.865 mm = 24.4 px/mm, about 15% above it. This fails a common two-direction metric scale: absolute figure-derived millimetres are not defensible.
+
+Use proportions only. Reading the optical borders, excluding leaders and numerals, gives approximate full heights of 865 px for L1, 795 px for C1, 724 px for L4 and 730 px for C2. Anchoring L1 to the printed 19.05 mm radius gives C1 17.5 mm, L4 about 15.9 mm and C2 about 16.1 mm. C1's f/2 axial floor at its first surface is 17.36 mm. Its common 17.5 mm rim preserves the square outline and clears that ray. Drawing uncertainty is approximately 0.2–0.4 mm; the larger rear outline is not a measured production aperture.
+
+| Surface | Starting sd (mm) | Final sd (mm) | Evidence / decision |
+| --- | ---: | ---: | --- |
+| 1 | 30 | 19.05 | Half the leaflet's printed front clear diameter |
+| 2 | 30 | 19.05 | Same square-cut front singlet; f/2 ray 18.04 mm |
+| 3 | 22.5 | 17.5 | Front-anchored Fig. 2 proportion; f/2 ray 17.36 mm |
+| 4 | 22.5 | 17.5 | Shared cemented face, same square C1 rim |
+| 5 | 22.5 | 17.5 | Same square C1 rim; f/2 ray 13.70 mm |
+| 6 | 14.3 | 14.3 | Retained; f/2 ray 13.35 mm, larger figure proportion needs an iris move |
+| 7 | 14.3 | 14.3 | Retained square L4; already effectively touches the iris plane |
+| 8 | 15 | 15 | Within about 7% of the proportional figure reading; no enlargement justified |
+| 9 | 15 | 15 | Cemented C2 interface retained; f/2 ray 11.89 mm |
+| 10 | 15 | 11.20 | Half the leaflet's printed rear clear diameter |
+
+Six surfaces changed. No lands, cuts, overrides, source R/d/n/V values, iris dimensions, aperture schedule, field metadata or other metadata were edited. The 11.20 mm rear optical extent differs from the square patent outline. Reducing all C2 faces to 11.20 mm would clip the f/2 axial ray at surfaces 8/9 (12.23 / 11.89 mm), so those faces stay. A tapered outline join does not establish a manufactured bevel; no unsupported mechanical land was invented.
+
+### Clearance, field and aperture results
+
+The whole trial set passed the surface audit before editing; the final file also reports no validation errors. Representative edge thicknesses: L1 5.0050 mm, L2 4.8229 mm, L3 7.2053 mm, L4 8.2385 mm and L5 3.1294 mm. The C1-to-L4 air clearance at the common 14.3 mm rim is 0.66599 mm. The image-circle audit remains one checked, zero undersized, zero skipped. Traced chief-ray corner coverage remains 100%, 13.60 / 13.60 mm at about 10.25°, with no blocked chief ray. Infinity is the only printed focus state; there are no zoom nodes.
+
+EFL remains 74.9950509324 mm, authored/engine half-field 20 → 20°, FOPEN 1.86 → 1.86, iris radius 12.7509673021 → 12.7509673021 mm. The separate tracing bound decreases 28.381875 → 24.873325°, still beyond the assumed 20°. An endpoint-only scratch trial has that same smaller bound: the intermediate cuts do not shorten it further. Fieldlimit's smallest paraxial bound is surface 1 at about 25.8°.
+
+The aperture audit now reports f/1.86 → f/1.97 (+5.8%), limited by surface 10. This is an unresolved incompatibility between the patent's faster design setting and the production leaflet's clear glass. The f/1.86 exact meridional trace flags surfaces 1/2/3/6/10 (axial heights 20.16 / 19.45 / 18.60 / 14.53 / 12.14 mm). The baseline already flagged surface 6. Do not enlarge printed apertures to conceal this conflict. A scratch-only f/2 schedule passes the aperture audit with zero rim/trace/iris failures. At f/2 the exact rear ray is 11.21 mm against the printed 11.20 mm radius, a 0.01 mm difference below the audit tolerance; all other axial rays clear. These rounded sources do not prove an exact unrounded production prescription.
+
+The unchanged L4 rear sag is 4.7794132442 mm against 4.779414 mm to the iris: clearance 0.0000007558 mm. Recommend moving the iris 0.500000 mm rearward, changing the split to 5.279414 / 3.645586 mm while preserving the 8.925 mm source air gap. This yields approximately 0.500000756 mm rim clearance. This practical separation is an inferred recommendation, not a source coordinate or manufacturing tolerance; it is not applied. Any iris move requires the coordinator to recalculate its derived radius, aperture and illumination.
+
+### Light cost and source-field limits
+
+The final full-pupil rimcost comparison, with leave-one-group-out restores, gives the following geometric transmission at matched fields:
+
+| Field (degrees) | 0 | 1.7 | 3.4 | 5.1 | 6.8 | 8.5 | 10.3 |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| Starting rims (%) | 100.0 | 99.2 | 98.4 | 97.1 | 96.3 | 95.0 | 92.9 |
+| Final rims (%) | 89.1 | 85.0 | 79.5 | 73.6 | 67.4 | 61.3 | 55.1 |
+
+Worst loss is 37.8 percentage points at the stored format's corner. Restoring C1 alone adds 0.0 points at every sampled field. Comparing the final file with an otherwise identical printed-endpoints-only trial also gives 0.0 points lost at every field. Thus the only discretionary cuts satisfy the 3-point rule; the larger losses are caused by numerically printed apertures, which outrank that rule. Restoring the front singlet or rear face separately would recover up to 3.7 / 20.4 points, respectively; those generous starting rims contradict the leaflet.
+
+Corner relative illumination, separately integrated from projected solid angle, is 87.7 → 58.2% at the retained f/1.86 setting, normalized to each model's own axial illumination. At marketed f/2, matching scratch baseline/final schedules give corner geometric transmission 99.1 → 63.3% and relative illumination 92.8 → 59.5%; axial geometric transmission remains 100%. These are geometric/radiometric model results, not measured coating loss, production throughput or MTF.
+
+The leaflet's 23.4° silent-frame full diagonal field implies an 11.7° half-field, not 20°. A 75 mm rectilinear estimate gives radius 15.53 mm (31.06 mm diameter); the exact model chief ray at 11.7° reaches 15.58 mm, clear through the final rims. The leaflet's sound-frame full field 20.6° instead implies 10.3° half-field, close to the stored `35mm-cinema` 22 × 16 mm format's 13.60 mm corner. Recommend that the coordinator distinguish silent-frame coverage from the stored format and replace or qualify the assumed 40° full field. No such metadata change is applied. Mount and production minimum focus remain unverified.
+
+### Rendered comparison and remaining limits
+
+Viewed the final/baseline model sketch and a matched-axial-scale side-by-side with Fig. 2. L1 and C1 are substantially closer in relative height; L4 remains lower than the schematic proportion because its current iris clearance precludes a larger square rim. C2's printed rear aperture cannot reproduce the square patent outline while its front clears f/2. The source comparison is qualified rather than an exact production silhouette match.
+
+Artifacts are under `/private/tmp/claude-501/-Users-ronbuening--claude-spares-spare-EIkiKm/8d989648-1a4e-43f9-bdb4-c4cbb0d8c850/scratchpad/sd/s2/`: `overlay.png`, `sketch.png`, `fig2-hi-1.png`, `rimcost.txt` and `illumination.jsonl`. The supplied leaflet has no construction drawing, but confirms six elements/four groups; Fig. 2 has that topology. It identifies no special-glass or aspherical positions; all six modeled elements are spherical. No browser or live-page check was attempted; the coordinator owns that check. No sandbox refusal occurred in this pass. No broad tests, generators, server or git state changes were run.
+
+The assigned three-file Prettier check and whitespace diff check pass. Comparing parsed optical payloads against the captured starting data shows exactly the six sd changes listed above; all other object values are identical.
+
+## 2026-11-13 — Glass proxies and catalog metadata
+
+- L3: `Unmatched (nD 1.6227 / V 36.0)` → `TIM11 (spectral proxy; patent nD 1.6227 / V 36.0; supplier and melt unspecified)`. Ohara catalog nd/νd = 1.620955 / 35.880852; catalog pair minus printed pair Δn = −0.001745, ΔV = −0.119148 (about −0.0017 / −0.12).
+- L4: `Unmatched (nD 1.6535 / V 33.5)` → `FD9 (spectral proxy; patent nD 1.6535 / V 33.5; supplier and melt unspecified)`. Hoya catalog nd/νd = 1.654462 / 33.717017; catalog pair minus printed pair Δn = +0.000962, ΔV = +0.217017 (about +0.0010 / +0.22).
+
+Both labels retain `indexReference: "D"` and the printed nD/V, anchor the index at the printed sodium-D value and borrow only the catalog row's wavelength dependence. They satisfy the repository's approximate proxy rule (Abbe within about 0.25, index within about 0.002), not the earlier strict exact-match criterion. They do not identify historical glass, supplier or melt.
+
+Paraxial `chan.mjs` comparison uses the assigned pre-relabel baseline at `.lens-work/base1123glass/CookeSpeedPanchroSeriesII75mmf2.data.ts` and the current worktree data. C/d/F/g correspond to R/G/B/V; BFD shifts are relative to G, in µm. These are paraxial focus results, not finite-aperture image-quality measurements.
+
+| Channel | EFL before → after (mm) | BFD before → after (mm) | BFD shift vs G before → after (µm) |
+| --- | --- | --- | --- |
+| C / R | 75.1043 → 75.1087 | 42.8077 → 42.8118 | +91.6 → +95.6 |
+| d / G | 74.9951 → 74.9951 | 42.7162 → 42.7162 | 0.0 → 0.0 |
+| F / B | 74.8575 → 74.8510 | 42.6179 → 42.6122 | −98.2 → −104.0 |
+| g / V | 74.8537 → 74.8493 | 42.6427 → 42.6402 | −73.4 → −76.0 |
+| REF / authored D | 74.9951 → 74.9951 | 42.7162 → 42.7162 | 0.0 → 0.0 |
+
+- Working aperture: `aperture.nominalFNumber` 1.86 → 2; 1.86 removed from `fStops`, leaving f/2–22. Catalog design f-number remains 1.86. The leaflet's printed 22.40 mm rear clear diameter limits the faster design to about f/1.97. The f/1.86 working-aperture conflict is closed by adopting the leaflet's f/2 schedule.
+- Iris: 0.500000 mm rearward; L4/STO gap split 4.779414 / 4.145586 → 5.279414 / 3.645586 mm, preserving the 8.925 mm source air gap. With unchanged L4 rear sag 4.7794132442 mm, clearance is about 0.500000756 mm. The coordinate is inferred, not a source coordinate or manufacturing tolerance. Current `buildLens` gives f/2, iris radius 11.8584020240 mm, EFL 74.9950509324 mm and half-field 11.7°.
+- Field: `projection.fullFieldDeg` 40 → 23.4 and `maxTraceFieldDeg` 20 → 11.7, following LEN. 45 silent-frame diagonal coverage. Sound-frame full field is 20.6°. The stored 35 mm cinema corner (about 10.3°, radius 13.60 mm) is fully covered by chief rays; that statement does not establish full-pupil illumination or MTF.
+- Rims versus leaflet: the 38.10 / 22.40 mm front/rear clear diameters follow the printed values, and the intermediate-rim comparison is complete. The source's schematic square rear outline and the model's smaller printed rear clear extent remain explicitly distinguished; exact production silhouette correspondence is not established.
+
+The current analysis describes only the final aperture, field, iris clearance and qualified glass assignments. Removed illumination/pupil-transmission numbers tied to the former iris coordinate rather than presenting them as current results. Earlier dated audit results, recommendations and limitation statements remain above as history; this section supersedes their assumed-field, near-contact iris, unresolved L3/L4 proxy and working-f/1.86 statuses. Mount, production minimum focus, historical glass/supplier/melt identity and exact production correspondence remain unverified. The existing data header already describes f/2, the 11.7° half-field and approximately 0.5 mm clearance; no header sentence is made false by the assigned changes. The data file is untouched.
+
+Only the two assigned Markdown files are formatted and checked with Prettier. No broad tests, generators, servers or git state changes are run.

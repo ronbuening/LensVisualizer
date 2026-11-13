@@ -9,7 +9,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * is inherent in the patent and retained without fitting. The catalog design focal length is the traced EFL,
  * rounded to two decimals. US 1,361,207 prints r2 = −.9152 in error; GB r2 = −.8152 is used
  * (-170.82516 mm after scaling).
- * The 25.146 mm surface semi-diameters are scaled inferences, not printed clear apertures. The stop is inferred
+ * Surface semi-diameters are inferred, not printed clear apertures: 25.146 mm on the outer elements,
+ * 23.6 / 23.2 mm on the front / rear inner elements, following Fig. 1's relative rim heights in
+ * GB 113,590 A (PDF p. 4) and US 1,361,207 (PDF p. 1). The schematic inner thicknesses prevent an
+ * absolute-scale rim reading; square joins omit uncertain bevel details. Real-ray and pupil-lattice checks
+ * retain the f/4.5 beam, clear 5×7 corner chief ray and baseline corner transmission. The stop is inferred
  * at the midpoint of the 7.58571 mm central gap (3.792855 mm on either side), with its radius derived from f/4.5.
  * The final 193.370081 mm interval is the calculated infinity back focus, not a printed dimension.
  * No finite-focus movement or exact factory prescription is established.
@@ -63,7 +67,7 @@ const LENS_DATA = {
       "nd": 1.6116,
       "vd": 56.4,
       "indexReference": "d",
-      "glass": "Unmatched (nD 1.6116 / V 56.4)"
+      "glass": "SK1 (spectral proxy; patent nD 1.6116 / V 56.4; supplier and melt unspecified)"
     },
     {
       "id": 2,
@@ -87,7 +91,7 @@ const LENS_DATA = {
       "nd": 1.5502,
       "vd": 45.8,
       "indexReference": "d",
-      "glass": "Unmatched (nD 1.5502 / V 45.8)"
+      "glass": "S-TIL1 (spectral proxy; patent nD 1.5502 / V 45.8; supplier and melt unspecified)"
     },
     {
       "id": 4,
@@ -99,7 +103,7 @@ const LENS_DATA = {
       "nd": 1.6116,
       "vd": 56.4,
       "indexReference": "d",
-      "glass": "Unmatched (nD 1.6116 / V 56.4)"
+      "glass": "SK1 (spectral proxy; patent nD 1.6116 / V 56.4; supplier and melt unspecified)"
     }
   ],
   "surfaces": [
@@ -120,14 +124,14 @@ const LENS_DATA = {
       "label": "3",
       "R": -89.792175,
       "d": 2.0955,
-      "sd": 25.146,
+      "sd": 23.6,
       "medium": 2
     },
     {
       "label": "4",
       "R": 93.54312,
       "d": 3.792855,
-      "sd": 25.146
+      "sd": 23.6
     },
     {
       "label": "STO",
@@ -138,14 +142,14 @@ const LENS_DATA = {
       "label": "5",
       "R": -105.634155,
       "d": 2.0955,
-      "sd": 25.146,
+      "sd": 23.2,
       "medium": 3
     },
     {
       "label": "6",
       "R": 90.73515,
       "d": 4.044315,
-      "sd": 25.146
+      "sd": 23.2
     },
     {
       "label": "7",

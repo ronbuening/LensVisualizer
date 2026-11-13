@@ -31,25 +31,25 @@ Source nD = 1.5638, interpreted νd = 60.75. Glass: Schott N-SK11, a catalog equ
 
 ### L2: positive front element of the triplet
 
-Source nD = 1.6053, interpreted νd = 59.4. Glass: Unmatched (nD 1.6053 / V 59.4). This biconvex element shares its rear boundary with L3. The relatively thick source 11.74 mm element becomes 12.327 mm.
+Source nD = 1.6053, interpreted νd = 59.4. Glass: K-SK7 (spectral proxy; patent nD 1.6053 / V 59.4; supplier and melt unspecified). This biconvex element shares its rear boundary with L3. The relatively thick source 11.74 mm element becomes 12.327 mm.
 
 ### L3: middle positive meniscus of the triplet
 
-Source nD = 1.6485, interpreted νd = 33.8. Glass: Unmatched (nD 1.6485 / V 33.8). Its two negative radii form a positive meniscus in isolation. Both interfaces are cemented to the adjacent glasses.
+Source nD = 1.6485, interpreted νd = 33.8. Glass: S-TIM22 (spectral proxy; patent nD 1.6485 / V 33.8; supplier and melt unspecified). Its two negative radii form a positive meniscus in isolation. Both interfaces are cemented to the adjacent glasses.
 
 ### L4: negative rear element of the triplet
 
-Source nD = 1.6270, interpreted νd = 39.0. Glass: Unmatched (nD 1.6270 / V 39.0). This biconcave element has a source center thickness of 1.07 mm, now 1.1235 mm. Its front interface is cemented to L3.
+Source nD = 1.6270, interpreted νd = 39.0. Glass: H-BaF8 (spectral proxy; patent nD 1.6270 / V 39.0; supplier and melt unspecified). This biconcave element has a source center thickness of 1.07 mm, now 1.1235 mm. Its front interface is cemented to L3.
 
 ### L5: negative singlet before the diaphragm
 
-Source nD = 1.6223, interpreted νd = 36.0. Glass: Unmatched (nD 1.6223 / V 36.0). The biconcave member precedes the source-defined stop. Its inferred clear aperture is constrained by clearance to that fixed stop plane.
+Source nD = 1.6223, interpreted νd = 36.0. Glass: TIM11 (spectral proxy; patent nD 1.6223 / V 36.0; supplier and melt unspecified). The biconcave member precedes the source-defined stop. Its inferred clear aperture is constrained by clearance to that fixed stop plane.
 
 ### L6: rear positive singlet
 
-Source nD = 1.6220, interpreted νd = 53.15. Glass: Unmatched (nD 1.6220 / V 53.15). The biconvex rear element completes the positive-negative-positive power sequence. The source does not supply a terminal image gap or factory clear aperture.
+Source nD = 1.6220, interpreted νd = 53.15. Glass: S-BSM22 (spectral proxy; patent nD 1.6220 / V 53.15; supplier and melt unspecified). The biconvex rear element completes the positive-negative-positive power sequence. The source does not supply a terminal image gap or factory clear aperture.
 
-Isolated-element focal lengths are not tabulated in the patent. The glass labels distinguish the L1 catalog equivalent from the five unmatched numerical pairs.
+Isolated-element focal lengths are not tabulated in the patent. The glass labels distinguish the L1 catalog equivalent from the five qualified spectral proxies.
 
 ## Glass Identification and Spectral Convention
 
@@ -59,7 +59,18 @@ This interpretation is supported by the original 1899 von Rohr text, printed pag
 
 The patent nD reference is treated as historical sodium D. Its use at the helium-d reference is an approximation. Schott N-SK11 has catalog nd = 1.56384 and νd = 60.80, differing from L1 by +0.00004 and +0.05. Its catalog curve supplies a spectral equivalent while the patent's numerical nd/νd pair remains unchanged; it does not identify a historical supplier or melt.
 
-The remaining pairs have no catalog match within |Δnd| ≤ 0.0001 and |Δνd| ≤ 0.15. In particular, Schott SF2 differs from L3 by −0.00081 in nd despite its similar νd = 33.85. Schott N-SSK2 differs from L6 by +0.00029 and +0.12; the patent prints 1.6220 to four decimal places, so this is not an exact match. Partial dispersion, measured historical spectral curves and quantitative color performance remain unknown. No source glass value is adjusted.
+L2–L6 use the catalog rows below as spectral proxies under the site's proxy tolerance: Abbe number within about 0.25 of the printed value and index within about 0.002. These are not exact glass matches. Each proxy keeps the printed index at the element's d-line reference and borrows only the catalog row's wavelength dependence; the printed nD/V pairs remain unchanged. Catalog vendors identify the borrowed curves, not the historical supplier or melt. No element is labelled Unmatched.
+
+| Element | Catalog row (catalog vendor) | Catalog nd | Catalog νd | Δnd | Δνd |
+| --- | --- | --- | --- | --- | --- |
+| L1 | N-SK11 (Schott), catalog equivalent | 1.56384 | 60.80 | +0.00004 | +0.05 |
+| L2 | K-SK7 (Sumita), spectral proxy | 1.60729 | 59.50 | +0.00199 | +0.10 |
+| L3 | S-TIM22 (Ohara), spectral proxy | 1.647689 | 33.792803 | −0.000811 | −0.007197 |
+| L4 | H-BaF8 (CDGM), spectral proxy | 1.62604 | 39.07 | −0.00096 | +0.07 |
+| L5 | TIM11 (Ohara), spectral proxy | 1.620955 | 35.880852 | −0.001345 | −0.119148 |
+| L6 | S-BSM22 (Ohara), spectral proxy | 1.622296 | 53.169067 | +0.000296 | +0.019067 |
+
+Differences are catalog minus the printed pair. The patent prints L6's index as 1.6220 to four decimal places. The proxies supply modeled dispersion, including catalog partial-dispersion behavior, without establishing historical partial dispersion or measured historical spectral curves. Quantitative color performance of the production lens remains unknown. No source glass value is adjusted.
 
 ## Focus Mechanism
 
@@ -69,13 +80,13 @@ The Swiss Camera Museum describes production Ermanox lenses in helical focusing 
 
 ## Inferred Apertures and Source Stop
 
-Clear apertures are not tabulated. At the patent's normalisation, the inferred common semi-diameters by air-separated component were 28 mm, 25 mm, 17.5 mm and 20 mm. A 17.5 mm front rim on L5 limited the nominal f/1.8 beam to f/1.87; 18.4 mm cleared the axial beam. The present component semi-diameters are 29.4 mm, 26.25 mm, 18.375 mm and 21 mm, with L5's front surface 7 at 19.32 mm and rear surface 8 at 18.375 mm. The axial beam is limited by the iris at f/1.8. Abb. 2 supports unequal component heights qualitatively, not calibrated dimensions; all clear apertures remain inferred.
+Clear apertures are not tabulated. The inferred semi-diameters are 29.4 mm for L1, 26.25 mm throughout the cemented triplet, 19.32/18.375 mm on L5's front/rear faces, and 20.2 mm on both L6 faces. Abb. 2 supports these relative component heights and L5's small bevel; its schematic arcs do not establish exact clear apertures. The rear singlet remains somewhat larger than the drawing's proportions to preserve peripheral illumination. The axial beam is limited by the iris at f/1.8, with approximately 0.012 mm marginal-ray clearance at surface 7. No mechanical lands are inferred.
 
-The negative component's 18.375 mm rear rim has approximately 0.344186 mm clearance to the stop plane; the rear component has approximately 9.444691 mm clearance. At f/1.8, the calculated iris radius is 17.444848259 mm, compared with 16.614141199 mm at the original scale. The axial split comes from the source; the hole radius and clear apertures are inferred. The displayed range through f/22 is not a documented retail limit.
+The negative component's 18.375 mm rear rim has approximately 0.344186 mm clearance to the stop plane; the rear component has approximately 9.255853 mm clearance. At f/1.8, the calculated iris radius is 17.444848259 mm, compared with 16.614141199 mm at the original scale. The axial split comes from the source; the hole radius and clear apertures are inferred. The displayed range through f/22 is not a documented retail limit.
 
 ## Model Scope and Field Limitations
 
-For the catalog's 645 frame (56 × 41.5 mm, 69.7 mm diagonal), the corner chief ray reaches the 34.85 mm semi-diagonal at a half-angle of 18.0800° without rim obstruction. This chief-ray result does not establish full-pupil illumination or the patent's approximately 50° full field. Off-axis vignetting, image-plane performance and MTF remain unquantified. The product association does not establish an exact factory prescription.
+For the catalog's 645 frame (56 × 41.5 mm, 69.7 mm diagonal), the corner chief ray reaches the 34.85 mm semi-diagonal at a half-angle of 18.0800° without rim obstruction. The wide-open engine pupil-lattice model transmits approximately 60.7% of the pupil at that corner and 100% on axis. This is geometric pupil transmission, without cosine falloff, coatings or a measured photometric calibration. It does not certify the patent's approximately 50° full field. Image-plane performance and MTF remain unquantified. The product association does not establish an exact factory prescription.
 
 ## Sources
 

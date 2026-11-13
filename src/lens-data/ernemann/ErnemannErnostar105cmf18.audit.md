@@ -96,4 +96,81 @@ Engine before → after, identical: EFL 104.7060634521182 → 104.7060634521182 
 
 Scoped checks: `audit:surface` reports OK, no validation errors. `audit:aperture` reports one lens/one station within 3%, no rim limit, trace failure, iris mismatch or failed station. `audit:field-coverage --all` reports one lens/one station at ≥99%, zero unsolved and zero skipped. The prescribed screenshot helper exited without producing a PNG, reporting Chrome power-monitor and DNS-watch errors; browser appearance was not verified and the attempt was not retried. Prettier was skipped as directed by the addendum; full tests, typecheck, lint, build and generators were excluded. No command or edit received an explicit sandbox/approval denial.
 
-Open: rims remain inferred rather than calibrated from Abb. 2; L5 retains unequal 19.32/18.375 mm front/rear semi-diameters, and a future square-rim decision belongs to a separate optics pass. Exact factory radii, glass supplier/melt identity, five unmatched glass pairs and the historical sodium-D versus helium-d spectral interpretation remain unresolved. Full-pupil illumination, performance over the approximately 50° source field, image-plane performance and MTF are unquantified. A source-backed minimum focus distance and retail aperture endpoint for this 10.5 cm variant are missing; f/22 remains an authored display limit. Browser appearance remains unchecked because the screenshot helper produced no image.
+Open: rims remain inferred rather than calibrated from Abb. 2; L5 retains unequal 19.32/18.375 mm front/rear semi-diameters (closed: the semi-diameter pass below confirms a small drawn bevel, not a square optical rim). Exact factory radii, glass supplier/melt identity, five unmatched glass pairs and the historical sodium-D versus helium-d spectral interpretation remain unresolved. Full-pupil illumination, performance over the approximately 50° source field, image-plane performance and MTF are unquantified (645 geometric pupil transmission is quantified below; full source-field and image-plane performance remain open). A source-backed minimum focus distance and retail aperture endpoint for this 10.5 cm variant are missing; f/22 remains an authored display limit. Browser appearance remains unchecked because the screenshot helper produced no image. (closed 2026-11-13: the five unmatched-label issues are resolved by L2–L6 qualified spectral proxies; historical glass identity and all other stated limitations remain open.)
+
+## 2026-11-13 — Semi-diameter pass against the patent figure
+
+Source: complete local `patents/DE436260C.pdf`, Example II on page 2 and Abb. 2 on page 4. The front page prints publication 436260, issue date 28 October 1926, effective date 6 December 1924, and owner Firma Ernemann-Werke, A.-G. in Dresden. No inventor is printed; Bertele remains a qualified historical attribution. No new naming or metadata discrepancy was found. All prescription values, catalog metadata, the stop and focus state remain unchanged.
+
+### Figure scale and limits
+
+The PDF contains native 300 dpi, 2592 × 3508 pixel scans. At that resolution Abb. 2 has a local axis near x = 640, with approximate vertex rows S1 789, S2 867, S3 879, S4 1013, S5 1091, S6 1108, S7 1161, S8 1170, S9 1310 and S10 1372. The first-to-last optical vertex span is about 583 px for 53.445 mm at the file's ×1.05 scale, or 10.91 px/mm. Independently, S3–S6 spans about 229 px for 20.7375 mm, or 11.04 px/mm; S8–S9 spans about 140 px for 13.1145 mm, or 10.68 px/mm. L1's center thickness gives approximately 10.23 px/mm, and L6's approximately 11.06 px/mm. These agree to within roughly 6%.
+
+Transverse curvature was also checked, excluding labels and hatching by following the outer contour over x = 500–740. Circle fits give S1 radius about 569 px / 52.71 mm = 10.79 px/mm and S10 about 952 px / 89.67 mm = 10.61 px/mm. The S9 arc instead gives about 776 px / 89.67 mm = 8.66 px/mm, despite the table's equal and opposite last radii. The very thin L5 thickness is comparable with scan stroke width. Thus 10.9 px/mm is an approximate overall fit, not proof of calibrated per-face apertures; the rim decisions use proportions with several-percent uncertainty. The sketch and patent are compared at this matched scale.
+
+Optical rim endpoints exclude radius/thickness leaders, stop ticks and hatch strokes. Abb. 2 and the supplied public 10.5 cm section agree on six elements/four groups, L2–L4 as the cemented second component and the iris behind L5. Both show a small bevel at L5's rear corners: the outer sidewall continues beyond the curved rear face's optical endpoint. L5 is not drawn with equal optical face radii. No special-glass or aspherical positions are identified by either drawing; all six modeled elements are spherical. The public section supports grouping and proportions, not exact factory dimensions or historical glasses.
+
+| Surfaces | Starting sd (mm) | Approximate figure sd at 105 mm scale | Final sd (mm) | Decision |
+| --- | --- | --- | --- | --- |
+| 1, 2 | 29.4, 29.4 | 27–28; figure/stored about 0.93 | 29.4, 29.4 | Retained: near the scale/measurement uncertainty, and the iris-admitted front beam reaches 28.038 mm. |
+| 3, 4, 5, 6 | 26.25 each | 26–27; ratio about 1.00 | 26.25 each | Retained: common triplet rims agree with the drawing. |
+| 7 | 19.32 | About 19.1; ratio 0.99 | 19.32 | Retained: the actual axial beam reaches 19.3077 mm. |
+| 8 | 18.375 | Roughly 17.5–18.0 at the beveled optical endpoint | 18.375 | Retained: consistent with the small drawn bevel within scan uncertainty; no square-face raise is warranted. |
+| 9 | 21.0 | Roughly 18.3–18.6; ratio about 0.88 | 20.2 | Reduced toward the figure, limited by the corner-light rule. |
+| 10 | 21.0 | Roughly 18.3–18.6; ratio about 0.88 | 20.2 | Same height as surface 9, preserving the square rear singlet. |
+
+### Ray clearance, illumination and stop
+
+The baseline passes the surface, aperture, image-circle and 645 chief-ray corner audits. Before and after, the engine gives EFL 104.706063452 mm, nominal f/1.8, source half-field 25°, tracingHalfField 28.089035670°, iris radius 17.444848259 mm and total track 113.122024 mm. The 645 corner is clear at 18.0800°, reaching the required 34.85 mm semi-diagonal with 100% chief-ray coverage; no limiting rim or skipped station is reported.
+
+The raw clear-aperture helper launches a 29.085 mm paraxial entrance radius when given f/1.8 and consequently requires a 18.116 mm iris, exceeding the actual 17.444848 mm hole. Its S3/S4/S7 axial flags therefore describe a larger beam than the engine admits. The longitudinal spherical-aberration diagnostic was read before considering any raise: −0.464/+0.056/−0.105/−0.149 mm at pupil fractions 1/0.85/0.7/0.5. A ghost trace solved directly to the existing iris gives the correct entrance radius 28.038379476 mm. The corresponding `clearap2` launch parameter is 1.867191781554; this is a helper input to reproduce that physical ray, not a changed nominal lens f-number.
+
+At that iris-admitted beam, axial ray radii on S1–S10 are 28.0384, 27.6974, 26.0747, 25.4227, 24.3821, 20.1356, 19.3077, 17.4652, 17.2623 and 17.0609 mm. All final rims clear them; S7 has the smallest allowance, 0.01228 mm. The corrected helper shows no axial or corner-chief clip. Its lower full-bundle root is not found, so its bundle column is not used to certify illumination; the engine's full-pupil lattice supplies that result. Aperture audit remains iris-limited with no rim, trace, iris-mismatch or failed station.
+
+The committed baseline and final file were compared with `rimcost.mjs --loo`, at infinity, the only printed focus state. At fields 0/2.6/5.2/7.7/10.3/12.9/15.5/18.1°, geometric pupil transmission is respectively:
+
+| Rims | Geometric pupil transmission (%) |
+| --- | --- |
+| Starting | 100.0 / 97.7 / 94.5 / 90.9 / 86.9 / 81.7 / 73.7 / 63.3 |
+| Final | 100.0 / 97.7 / 94.5 / 90.9 / 86.9 / 80.2 / 71.5 / 60.7 |
+
+No field loses 3 percentage points. A figure-sized 18.5 mm rear singlet gives only 54.2% at the corner and loses 9.1 points. Trial 20.0 mm loses 3.5 points; 20.1 mm loses 3.1; 20.2 mm is the smallest tenth-mm trial meeting the rule. The leave-one-component-out restoration identifies only S9/S10 as the source of the final light loss; restoring their 21 mm rims restores the starting curve. Thus the rear remains larger than the schematic figure, and its slight height excess over L5 remains, rather than widening L5 without optical evidence. The values measure pupil transmission, not cosine falloff or photometric calibration.
+
+L5's current rear sag is 5.819315 mm, leaving 0.344185 mm to the source-defined iris plane. Raising its rear optical radius to 19.32 mm would give sag 6.510868 mm, extending 0.347368 mm beyond that plane despite passing the surface validator. That square-face trial was rejected on the drawing and clearance evidence; it was not applied. The final rear singlet leaves 9.255853 mm from the iris plane to its nearest front-rim point. No iris position or radius change is recommended or applied, and no lands, cuts or validator overrides are added.
+
+### Final checks and visual comparison
+
+Surface audit: OK, no validation errors. Aperture audit: one station within 3% of nominal, zero rim limits, trace failures, iris mismatches or failed stations. Image-circle audit: one checked, zero undersized, zero skipped. Field-coverage audit: one station at 100%, corner clear, zero unsolved or skipped. The complete trial set passed the surface and corrected real-ray checks before editing; the same checks, engine build and illumination comparison passed on the saved file. No asphere departures need updating. A parsed comparison against the pre-edit scratch snapshot confirms that only S9/S10 semi-diameters changed; every other data field is identical. Scoped diff whitespace checks pass. The scoped Prettier command exits successfully, but these lens-data/Markdown paths are excluded by the repository ignore rules, so this is not an independent formatting certification. No whole-file formatter was run.
+
+The matched-scale side-by-side sketch was rendered through the coordinator's queue and inspected at `/private/tmp/claude-501/-Users-ronbuening--claude-spares-spare-EIkiKm/8d989648-1a4e-43f9-bdb4-c4cbb0d8c850/scratchpad/sd/ernostar/overlay.png`. It shows the retained triplet and beveled L5, with a modestly smaller, still square L6; blue marks the baseline. This is the prescribed model-sketch substitute, not a live browser check. The coordinator retains the live-page check. Exact factory apertures, full source-field illumination, five unmatched glass pairs, source-backed close focus and retail f/22 remain open. No sandbox refusal occurred. (closed 2026-11-13: the five unmatched-label issues are resolved by L2–L6 qualified spectral proxies; historical glass identity and all other stated limitations remain open.)
+
+## 2026-11-13 — Glass proxies and catalog metadata
+
+The pre-relabel baseline is `.lens-work/base1123glass/ErnemannErnostar105cmf18.data.ts`. Its only differences from the current data file are the five glass labels below. Each new label has the form `ROW (spectral proxy; patent nD … / V …; supplier and melt unspecified)` and retains the printed pair. Catalog values come from `glassCatalog.ts`; differences are catalog minus printed, not changes to the authored nD/V values.
+
+| Element | Old label → new label | Catalog nd | Catalog νd | Δnd | Δνd |
+| --- | --- | --- | --- | --- | --- |
+| L2 | `Unmatched (nD 1.6053 / V 59.4)` → `K-SK7 (spectral proxy; patent nD 1.6053 / V 59.4; supplier and melt unspecified)` (Sumita catalog) | 1.60729 | 59.50 | +0.00199 | +0.10 |
+| L3 | `Unmatched (nD 1.6485 / V 33.8)` → `S-TIM22 (spectral proxy; patent nD 1.6485 / V 33.8; supplier and melt unspecified)` (Ohara catalog) | 1.647689 | 33.792803 | −0.000811 | −0.007197 |
+| L4 | `Unmatched (nD 1.6270 / V 39.0)` → `H-BaF8 (spectral proxy; patent nD 1.6270 / V 39.0; supplier and melt unspecified)` (CDGM catalog) | 1.62604 | 39.07 | −0.00096 | +0.07 |
+| L5 | `Unmatched (nD 1.6223 / V 36.0)` → `TIM11 (spectral proxy; patent nD 1.6223 / V 36.0; supplier and melt unspecified)` (Ohara catalog) | 1.620955 | 35.880852 | −0.001345 | −0.119148 |
+| L6 | `Unmatched (nD 1.6220 / V 53.15)` → `S-BSM22 (spectral proxy; patent nD 1.6220 / V 53.15; supplier and melt unspecified)` (Ohara catalog) | 1.622296 | 53.169067 | +0.000296 | +0.019067 |
+
+L1 remains `Schott N-SK11`, a catalog equivalent with nd/νd = 1.56384/60.80 and Δnd/Δνd = +0.00004/+0.05. L2–L6 satisfy the repository proxy rule of about 0.25 in Abbe number and about 0.002 in index; they do not satisfy an exact-identity claim. The engine keeps the printed index at the element's reference line and borrows only the selected catalog row's wavelength dependence. The printed nD/V, historical sodium-D versus helium-d approximation, radii, spacings, rims, stop and focus state remain unchanged. No historical glass, supplier or melt is identified.
+
+`chan.mjs` was run from the worktree on the pre-relabel baseline and current data file. Channels R/G/B/V represent C/d/F/g. The following paraxial back focal distances and offsets relative to the d-line focus are before → after; offsets are calculated by the helper before rounding the displayed BFDs.
+
+| Line / channel | EFL (mm), before → after | BFD (mm), before → after | BFD shift vs d (µm), before → after |
+| --- | --- | --- | --- |
+| C / R | 104.8381 → 104.8456 | 59.8251 → 59.8319 | +148.1 → +154.8 |
+| d / G | 104.7061 → 104.7061 | 59.6770 → 59.6770 | 0.0 → 0.0 |
+| F / B | 104.5420 → 104.5374 | 59.4610 → 59.4565 | −216.0 → −220.6 |
+| g / V | 104.5422 → 104.5532 | 59.4059 → 59.4140 | −271.1 → −263.0 |
+
+The helper's REF channel remains EFL 104.7061 mm, BFD 59.6770 mm and offset 0.0 µm before and after. These are modeled proxy-dispersion results, not measurements of the historical lens. The five unmatched-label issues in the earlier open notes are closed in place; factory identity, historical dispersion and the other documented limitations remain unresolved.
+
+Catalog metadata: no name, mount, format, field or other metadata change is assigned or present relative to the pre-relabel baseline. The existing name, fixed-lens-camera mount, 645 format, 105 mm marketing focal length, 104.71 mm design focal length and approximately 50° source field are retained. Only the two assigned Markdown files are edited; the data file is read-only for this task.
+
+Scoped checks: the requested two-file `npx prettier --write` and `--check` commands exit successfully, but the repository ignores these paths (`prettier --file-info` reports `ignored: true` for the analysis), so their success does not certify formatting. Every original audit line is retained, with only the two unmatched-glass closure annotations appended in place. The data file is byte-identical to the pre-edit snapshot. No tests, typecheck, lint, build, generators, servers or git state changes are run; no tool call or edit is refused.
+
+Pre-existing text discrepancy flagged outside the glass assignment: the analysis's rear-component clearance sentence gives 9.444691 mm, while the latest semi-diameter audit above gives 9.255853 mm for the current 20.2 mm L6 rim. The analysis clearance sentence is not changed in this glass-only update. (Closed the same day: the analysis now gives 9.255853 mm.)
