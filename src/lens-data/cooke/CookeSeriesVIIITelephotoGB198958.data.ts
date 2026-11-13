@@ -2,7 +2,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * Source: GB 198,958 A, Example I (first numerical table, printed p. 2; Fig. 1).
- * Native nominal 12-inch f/6 design; scale factor 1, with no production rescaling.
+ * Nominal 12-inch f/6 design at the patent's scale, with no production rescaling.
  * All source lengths in inches are converted to millimetres by multiplying by 25.4;
  * refractive indices and Abbe numbers are unchanged.
  * The stop position at the midpoint of the 2.73-inch air gap is inferred, and its
@@ -11,17 +11,25 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * is calculated (151.80322609880798 mm), not tabulated. The 15-degree half-field
  * is a modeling limit chosen to trace the assigned 4x5 format, not a patent field.
  * Infinity only; no focusing data are tabulated. Historical nD is approximated by
- * the engine's d line; the glass identifiers do not establish measured dispersion.
+ * the d line; the glass identifiers do not establish measured dispersion. Example I
+ * prints Parra-Mantois 6695 for L4; Example II prints 6675 for the same nD and V.
  */
 const LENS_DATA = {
   "schema": 2,
   "key": "cooke-series-viii-telephoto-gb198958",
   "maker": "Cooke",
   "name": "COOKE SERIES VIII TELEPHOTO (GB 198,958 Example I Design)",
+  "subtitle": "GB 198,958 A, Example I — Cooke Series VIII telephoto design",
   "visible": true,
   "catalog": {
     "lensMounts": ["large-format-lens-board"],
     "imageFormat": "4x5",
+    "specs": [
+      "4 ELEMENTS / 2 GROUPS",
+      "DESIGN f = 12 in",
+      "F/6",
+      "ALL SPHERICAL"
+    ],
     "elementCount": 4,
     "groupCount": 2,
     "focalLengthMm": {
@@ -51,41 +59,49 @@ const LENS_DATA = {
       "id": 1,
       "name": "L1",
       "label": "Element 1",
-      "type": "Spherical patent glass",
+      "type": "Biconvex Positive",
       "nd": 1.5744,
       "vd": 57.7,
       "indexReference": "d",
-      "glass": "Chance9002; conventional Vd interpretation, historical D/engine d approximation, no melt equivalence"
+      "glass": "Unmatched (nD 1.5744 / V 57.7, Chance 9002)",
+      "role": "Positive element of the front collecting doublet",
+      "cemented": "C1"
     },
     {
       "id": 2,
       "name": "L2",
       "label": "Element 2",
-      "type": "Spherical patent glass",
+      "type": "Biconcave Negative",
       "nd": 1.6515,
       "vd": 33.4,
       "indexReference": "d",
-      "glass": "Parra-Mantois6661; conventional Vd interpretation, historical D/engine d approximation, no melt equivalence"
+      "glass": "Unmatched (nD 1.6515 / V 33.4, Parra-Mantois 6661)",
+      "role": "Negative element of the front collecting doublet",
+      "cemented": "C1"
     },
     {
       "id": 3,
       "name": "L3",
       "label": "Element 3",
-      "type": "Spherical patent glass",
+      "type": "Plano-Concave Negative",
       "nd": 1.5732,
       "vd": 51.9,
       "indexReference": "d",
-      "glass": "Parra-Mantois6062; conventional Vd interpretation, historical D/engine d approximation, no melt equivalence"
+      "glass": "Unmatched (nD 1.5732 / V 51.9, Parra-Mantois 6062)",
+      "role": "Negative element of the rear diverging doublet",
+      "cemented": "C2"
     },
     {
       "id": 4,
       "name": "L4",
       "label": "Element 4",
-      "type": "Spherical patent glass",
+      "type": "Plano-Convex Positive",
       "nd": 1.6117,
       "vd": 37.4,
       "indexReference": "d",
-      "glass": "Parra-Mantois6695 sourceEI, vs6675 sourceEII; conventional Vd interpretation, historical D/engine d approximation, no melt equivalence"
+      "glass": "Unmatched (nD 1.6117 / V 37.4, Parra-Mantois 6695)",
+      "role": "Positive element of the rear diverging doublet",
+      "cemented": "C2"
     }
   ],
   "surfaces": [
@@ -136,8 +152,8 @@ const LENS_DATA = {
     }
   ],
   "focus": {
-    "closeFocusM": 1000000000000000.0,
-    "description": "Infinity only; the patent tabulates no focusing data, so no focus movement is modeled."
+    "closeFocusM": 1e15,
+    "description": "Infinity focus only; the patent tabulates no focusing data."
   },
   "aperture": {
     "nominalFNumber": 6,
@@ -156,6 +172,10 @@ const LENS_DATA = {
     "fullFieldDeg": 30,
     "maxTraceFieldDeg": 15
   },
+  "doublets": [
+    { "text": "C1", "fromSurface": "1", "toSurface": "3" },
+    { "text": "C2", "fromSurface": "4", "toSurface": "6" }
+  ],
   "layout": {
     "yScFill": 0.7
   }

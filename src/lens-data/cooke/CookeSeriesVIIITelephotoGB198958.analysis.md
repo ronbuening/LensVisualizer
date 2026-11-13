@@ -1,49 +1,59 @@
-# Cooke Series VIII: GB198958 Example I representative
+# Cooke Series VIII Telephoto: GB 198,958 A, Example I
 
-## Patent reference and product bridge
+## Patent Reference and Design Identification
 
 **Patent:** GB 198,958 A  
 **Filed:** 7 October 1922  
 **Accepted:** 14 June 1923  
 **Inventor:** Horace William Lee  
 **Applicants:** Horace William Lee and Kapella Limited  
-**Example details:** Example I, first numerical table (printed p. 2), Fig. 1; inches converted to millimetres by multiplying by 25.4.  
+**Title:** Improvement in Photographic Lenses\
+**Example details:** Example I, first numerical table (printed p. 2), Fig. 1. All inch dimensions are converted to millimetres by multiplying by 25.4, without further scaling.
 
-Original GB198958, Horace William Lee and Kapella Limited, applied7October1922, accepted14June1923. The complete three-page facsimile contains two numerical telephoto examples. This model uses Example I alone: nominal12inches, f/6, four glasses/two cemented doublets. Example II is separate, not a second counted family or a source for correcting EI.
+The three-page patent gives two telephotos: Example I, nominal 12 inches at f/6, and Example II, 10 inches at f/4.8. This model uses Example I alone.
 
-Cooke's modern Compendium reports GB198958 inscriptions on20-inch f/5.6 serial202365 and15-inch f/5.6 serial418036. This is manufacturer-reported artifact evidence, not engraving photos independently inspected here. It supports a family bridge, not exact numerical identity with the patent's12-inch f/6 or10-inch f/4.8 examples. No15/20-inch factory model is reconstructed by arbitrary scaling. Retail f/5.6 remains distinct from modeled f/6.
+The [Cooke Compendium](https://cookeoptics.com/compendium/) lists Series VIII f/5.6 telephotos for 1924–1962, with 11, 12.5, 15 and 20-inch sizes in 1962. It reports patent 198958 engravings on 20-inch serial 202365 and 15-inch serial 418036. These reported inscriptions support the family association, without proving numerical identity. Its three-element/GB 155,640 description conflicts with the inscriptions and four-element patent. No 12-inch retail counterpart is established; the model retains f/6, distinct from retail f/5.6.
 
-An auction association with US2053231 was explicitly excluded: that patent concerns focusing screw mechanisms, not an optical numerical counterpart. Earlier GB132067 is prior art with a different architecture, not this prescription. Bounded repository/Drive dedup found no matching model; complete historical/live numerical novelty was not established.
+US 2,053,231 concerns focusing screws, not this optical prescription. GB 132,067 is prior art with a different architecture.
 
-## Architecture and element analysis
-Four spherical elements form two cemented doublets separated by2.73inches of air. Literal source radii, thicknesses, cemented interfaces and group diameters remain unchanged, converted by25.4mm per inch.
+## Optical Architecture
 
-L1 is the front positive element, nD1.5744/V57.7, Chance9002, with+2.15/−6.22-inch surfaces and.42-inch thickness. L2, nD1.6515/V33.4, Parra-Mantois6661, shares the first interface and has rear radius+5.65inches with.12-inch thickness. The rear pair starts with L3, nD1.5732/V51.9, Parra-Mantois6062, radius−1.35inches to a plane, thickness.08inch. L4, nD1.6117/V37.4, has a plane front and−2.13-inch rear surface, thickness.20inch.
+Four spherical elements form positive front and negative rear cemented doublets, separated by 2.73 inches of air. Source radii, thicknesses, interfaces and diameters are retained.
 
-The last glass is catalog6695 in EI versus6675 in EII despite matching numeric index/V. This genuine source identifier discrepancy is retained, not silently harmonized or treated as proof of a particular melt. Both examples' originals are included. No modern glass replacement is selected.
+## Element-by-Element Analysis
 
-## Spectral qualification
-Source nD is explicit; conventional Abbe interpretation of V is supported by the same inventor's later explicit US1955591 usage, but no formula is defined in GB198958. Engine d approximates historical D. Historical identifiers and two-number material data do not establish measured full dispersion, melt identity or manufacturing tolerance.
+### C1 — Front Collecting Doublet
 
-## Focus and literal focal result
-Literal EFL11.7319460046inches gives297.991428516mm,−2.23378% from nominal12inches/304.8mm. The discrepancy remains unresolved and unfitted. Calculated BFL5.97650496452inches is not a source-printed image interval.
+L1 is Biconvex Positive: nD = 1.5744, ν = 57.7, Chance 9002; radii +2.15/−6.22 inches, thickness 0.42 inch. L2 is Biconcave Negative: nD = 1.6515, ν = 33.4, Parra-Mantois 6661; shared −6.22-inch interface, rear radius +5.65 inches, thickness 0.12 inch. The higher-index, lower-Abbe negative partner corrects the collecting system's color.
 
-The source describes infinitely distant objects. Its 'magnification two' is a telephoto characteristic, not a2:1 macro object conjugate. This model is infinity only; no macro mode, factory focusing mechanism, close-focus travel or retail minimum focus is reconstructed.
+### C2 — Rear Diverging Doublet
 
-## Source diameters and inferred iris
-Source group diameters2.05/1.5inches directly give common semi-diameters26.035/19.05mm for the two cemented bodies. They are not inferred, and are not an iris or entrance-pupil prescription.
+L3 is Plano-Concave Negative: nD = 1.5732, ν = 51.9, Parra-Mantois 6062; front radius −1.35 inches, plane rear, thickness 0.08 inch. L4 is Plano-Convex Positive: nD = 1.6117, ν = 37.4, Parra-Mantois 6695; shared plane interface, rear radius −2.13 inches, thickness 0.20 inch. This diverging doublet shortens the back focus.
 
-No numerical iris position or diameter is supplied. This model places it at the midpoint of the sole2.73-inch gap,1.365inches either side, as an explicit hypothesis selected before tracing. Native f/6 iris radius17.493250538mm is a model result, not an original hole measurement. Full-cap geometry and stop clearance pass independent verification. No source repair or geometry override is used. Authored aperture settings throughf/32 are convenience, not verified retail markings.
+## Glass Identification and Dispersion Limits
 
-## Scoped checks and field limitations
-Native construction and isolated strict TypeScript reproduce; independent source/geometry and final reviews accompany qualified handoff. These are not factory-performance validation.
+The patent identifies C as Chance Bros. & Co. and P.M. as Parra-Mantois & Cie. L4 prints P.M. 6695 in Example I versus 6675 in Example II at identical nD/ν. The Example I number is retained. All four glasses remain Unmatched: no catalog row fits within |Δnd| ≤ 0.0001 and |Δν| ≤ 0.15.
 
-No numeric source field angle was identified. The earlier assumed10° half-field diagnostic yielded26/26/23/21/18 successful optical-surface exits out of26 samples at fractions0/.5/.7/.85/1, with the remainder clipped. The current model uses an assumed15° half-field to include the assigned 4x5 corner (approximately14.8°); this is not marketed or patent coverage. Counts are not throughput percentages, full pupil integration, tested image-plane landing or MTF.
+The printed nD is approximated by the d line. The conventional Abbe interpretation of ν follows Lee's later US 1,955,591 usage; GB 198,958 defines no formula. These constants and identifiers do not establish full measured dispersion, melt identity or manufacturing tolerances.
 
-Current-corpus/application tests, lint/format integration, build, browser and MTF remain deferred and unpassed. This model is hidden, infinity-only, unintegrated and undeployed.
+## Focus and First-Order Properties
+
+Calculated EFL is 297.991428516 mm (11.7319460046 inches), −2.23378% from nominal 12 inches/304.8 mm; the residual is retained without fitting. Calculated back focus, 151.803226099 mm (5.97650496452 inches), is not tabulated.
+
+The source describes infinitely distant objects. Its magnification of two is a telephoto characteristic, not a 2:1 macro conjugate. The model is infinity-only; no focusing mechanism, travel or retail minimum focus is established.
+
+## Source Diameters and Inferred Iris
+
+Printed group diameters 2.05/1.5 inches give semi-diameters 26.035/19.05 mm, not iris or entrance-pupil dimensions.
+
+The unprinted iris position is assumed at the gap midpoint, 1.365 inches from either doublet. Its calculated f/6 radius is 17.493250538 mm. No geometry override is used. Settings through f/32 are model controls, not documented retail markings.
+
+## Field and Model Limitations
+
+No patent field angle is specified. The assumed 15° half-field includes the selected 4x5 corner at approximately 14.8°, without establishing retail coverage. Off-axis rim vignetting remains possible; clearances do not establish measured illumination or factory performance.
 
 ## Sources
 - Original patent facsimile: https://www.photo-china.net/pat/GB198958.pdf
 - Manufacturer retrospective reporting specimen inscriptions: https://cookeoptics.com/compendium/
-- Verified source evidence: https://drive.google.com/file/d/15ImQLEVnmCD-AjZnXezS8zJ00bmHesmm/view
+- Lee's later use of glass constants: https://patents.google.com/patent/US1955591A/en
 - Explicitly excluded mechanism patent: https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/2053231
