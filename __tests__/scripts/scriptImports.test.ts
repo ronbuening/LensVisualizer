@@ -72,6 +72,9 @@ const runtimeInputs: Record<string, Record<string, { pattern?: string; generated
   "scripts/benchmark-mtf.mjs": {
     'join(ROOT, "src", "lens-data", file)': { pattern: "src/lens-data/**/*.data.ts", reason: "benchmark case paths" },
   },
+  "scripts/mtf-drift-signature.mjs": {
+    'join(ROOT, "src", "lens-data", file)': { pattern: "src/lens-data/**/*.data.ts", reason: "signature case paths" },
+  },
   "scripts/generate-build-metadata.mjs": {
     filePath: { pattern: "src/lens-data/**/*.*ts", reason: "lens and teleconverter catalog walk" },
   },

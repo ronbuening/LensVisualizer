@@ -33,6 +33,7 @@
     "audit:dpgf": "node --import ./scripts/ts-js-specifier-hook-register.mjs scripts/audit-dpgf.mjs",
     "audit:field-coverage": "node --import ./scripts/ts-js-specifier-hook-register.mjs scripts/audit-field-coverage.mjs",
     "audit:image-circle": "node --import ./scripts/ts-js-specifier-hook-register.mjs scripts/audit-image-circle.mjs",
+    "audit:mtf-drift": "node --import ./scripts/ts-js-specifier-hook-register.mjs scripts/mtf-drift-signature.mjs",
     "audit:patent-figure": "node --import ./scripts/ts-js-specifier-hook-register.mjs scripts/audit-patent-figure.mjs",
     "audit:surface": "node --import ./scripts/ts-js-specifier-hook-register.mjs scripts/audit-surface-probe.mjs",
     "audit:rim-cut-probe": "node --import ./scripts/ts-js-specifier-hook-register.mjs scripts/audit-rim-cut-probe.mjs",

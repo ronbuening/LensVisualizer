@@ -207,10 +207,6 @@ S under a day, M one to three days, L longer.
   bowed map of C10. The report's cross-check covers 114 of 196 fields and none of Sigma 23mm f/1.4's; wide open,
   6 of 12 probed fields fail the gate, while at f/8 the routes agree within 0.0005 on all 12. Pair on both
   direction coordinates, report gate coverage, and add f/8 and 50 lp/mm. M to L.
-- **C14 — A numerical drift guard.** Nothing fails when an engine change moves MTF across the corpus:
-  `benchmark-mtf.mjs` keeps status and timing only. An opt-in signature of three existing benchmark cases (S, T,
-  focus shift, limits at 0/10/30/50 lp/mm, fields 0 and 0.7, fixed grid) with input hashes; never a chart
-  threshold. M.
 - **C15 — Missing analytic controls.** A finite-conjugate cutoff at 1/(λ · working N) from an independently derived
   NA; a geometric defocus disc against its Bessel transform; the two-line beat over a full period. Cheap corpus
   invariants: MTF(0) = 1, diffraction MTF at or below its own traced-pupil limit, S = T on axis. M.
