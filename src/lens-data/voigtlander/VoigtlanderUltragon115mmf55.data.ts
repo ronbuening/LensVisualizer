@@ -2,7 +2,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * US 2,670,659 A, Example I (PDF p. 3), Albrecht Wilhelm Tronnier, assigned to Voigtländer.
- * Representative Ultragon prescription, not an established factory 115 mm prescription.
+ * The cell focal lengths support the Ultragon association; the exact factory prescription is unconfirmed.
  * Scale factor: 115. The patent normalizes focal length to 1; multiply all radii,
  * thicknesses and airspaces by 115 to express them in millimetres. The printed
  * helium-d refractive indices and Abbe numbers are unchanged.
@@ -16,8 +16,15 @@ const LENS_DATA = {
   "key": "voigtlander-ultragon-115mm-f55",
   "maker": "Voigtl\u00e4nder",
   "name": "VOIGTLÄNDER ULTRAGON 115mm f/5.5",
+  "subtitle": "US 2,670,659 A, Example I — Ultragon 115mm f/5.5, scaled ×115",
   "visible": true,
   "catalog": {
+    "specs": [
+      "5 ELEMENTS / 4 GROUPS",
+      "ALL SPHERICAL",
+      "f/5.5–32",
+      "CONVERTIBLE: FRONT 175 mm / REAR 225 mm"
+    ],
     "lensMounts": ["large-format-lens-board"],
     "imageFormat": "5x7",
     "elementCount": 5,
@@ -47,51 +54,58 @@ const LENS_DATA = {
       "id": 1,
       "name": "L1",
       "label": "Element 1",
-      "type": "Spherical patent glass",
+      "type": "Positive Meniscus",
       "nd": 1.62095,
       "vd": 60.3,
       "indexReference": "d",
-      "glass": "Source helium-d and Abbe nu; actual glass melt/full dispersion unspecified"
+      "glass": "Unmatched (nd 1.62095 / V 60.3)",
+      "role": "Positive front element of the two-element front cell."
     },
     {
       "id": 2,
       "name": "L2",
       "label": "Element 2",
-      "type": "Spherical patent glass",
+      "type": "Negative Meniscus",
       "nd": 1.728,
       "vd": 28.4,
       "indexReference": "d",
-      "glass": "Source helium-d and Abbe nu; actual glass melt/full dispersion unspecified"
+      "glass": "Unmatched (nd 1.72800 / V 28.4)",
+      "role": "Negative inner element of the front cell, facing the diaphragm."
     },
     {
       "id": 3,
       "name": "L3",
       "label": "Element 3",
-      "type": "Spherical patent glass",
+      "type": "Biconcave Negative",
       "nd": 1.51443,
       "vd": 54.7,
       "indexReference": "d",
-      "glass": "Source helium-d and Abbe nu; actual glass melt/full dispersion unspecified"
+      "glass": "Unmatched (nd 1.51443 / V 54.7)",
+      "role": "Negative front member of the cemented doublet behind the diaphragm.",
+      "cemented": "C1"
     },
     {
       "id": 4,
       "name": "L4",
       "label": "Element 4",
-      "type": "Spherical patent glass",
+      "type": "Biconvex Positive",
       "nd": 1.60921,
       "vd": 58.8,
       "indexReference": "d",
-      "glass": "Source helium-d and Abbe nu; actual glass melt/full dispersion unspecified"
+      "glass": "Unmatched (nd 1.60921 / V 58.8)",
+      "role": "Positive rear member supplying the cemented doublet's converging power.",
+      "cemented": "C1"
     },
     {
       "id": 5,
       "name": "L5",
       "label": "Element 5",
-      "type": "Spherical patent glass",
+      "type": "Negative Meniscus",
       "nd": 1.56866,
       "vd": 56.2,
       "indexReference": "d",
-      "glass": "Source helium-d and Abbe nu; actual glass melt/full dispersion unspecified"
+      "glass": "Unmatched (nd 1.56866 / V 56.2)",
+      "role": "Separate negative rear element of the three-element rear cell."
     }
   ],
   "surfaces": [
@@ -160,9 +174,12 @@ const LENS_DATA = {
       "sd": 15.0
     }
   ],
+  "doublets": [
+    { "text": "C1", "fromSurface": "5", "toSurface": "7" }
+  ],
   "focus": {
-    "closeFocusM": 1000000000000000.0,
-    "description": "This model represents the lens at infinity, with no separate component modes modeled."
+    "closeFocusM": 1e15,
+    "description": "Infinity focus only; separate front- and rear-cell configurations are not modeled."
   },
   "aperture": {
     "nominalFNumber": 5.5,

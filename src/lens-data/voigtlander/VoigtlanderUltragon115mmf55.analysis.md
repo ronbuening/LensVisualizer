@@ -1,6 +1,6 @@
-# Voigtländer Ultragon: US2670659 Example I representative
+# Voigtländer Ultragon 115mm f/5.5
 
-## Patent reference and qualified association
+## Patent Reference and Design Identification
 
 **Patent:** US 2,670,659 A  
 **Inventor:** Albrecht Wilhelm Tronnier  
@@ -8,41 +8,62 @@
 **Filed:** 29 July 1952  
 **Granted:** 2 March 1954  
 **Priority:** Switzerland, 30 August 1951  
-**Example details:** Example I, uniformly scaled by ×115.  
+**Example details:** Example I, PDF p. 3.
 
-US2670659, Albrecht Wilhelm Tronnier, assigned Voigtländer, filed29July1952, Swiss priority30August1951, granted2March1954. The complete official original gives two normalizedF=1 f/5.5 examples of a five-element/four-group design. This model selects EI as the first complete numerical example, not because any source identifies it as the factory115mm lens. The patent's150mm illustration is not the photographed115mm prescription.
+Tronnier gives two f/5.5 modified Gauss examples. Example I's radii, thicknesses, airspaces and printed back focus are multiplied by 115 to convert normalized focal length 1 to millimetres; nd/νd are unchanged. Fig. 2 illustrates a 150 mm lens, distinct from the 115 mm Ultragon.
 
-A photographed artifact in Arne Cröll's2014 article visibly reads Voigtländer Braunschweig Ultragon1:5.5/11.5cm. The photograph establishes product identity and aperture/focal engraving, not internal construction or a patent inscription. The patent-family association is secondary scholarship and matching topology, not a newly found primary maker-to-patent bridge. Cröll's bibliography prints US2670649; that patent concerns unrelated helium detection. The corrected US2670659 association is explicitly identified, not silently treated as the literal citation. DE868524 has not been independently verified as equivalent.
+Cröll illustrates the 1:5.5/11.5 cm engraving and lists Compur 2 shutters, f/5.5–32, production circa 1950–1961, official 5×7 coverage, and convertible cells of 175 mm f/8 and 225 mm f/11. His bibliography names DE 868,524 and misprints US 2,670,659 as 2,670,649, an unrelated helium-detection patent. The German publication has not been independently compared here.
 
-The115×normalized scaling is an expressly qualified representative, not exact factory115mm identity or optical fitting. The nonsupportive1954/55 maker catalog supplies no verified Ultragon bridge. The60/80mm f/4.5 prototypes, Prominent24mm f/5.8 and later Staeble/Eskofot/Agfa namesakes are excluded. No175/225mm component operating modes are modeled or counted.
+Calculated front/rear cells give 173.2/223.6 mm for Example I versus 199.7/188.4 mm for Example II. Example I agrees with Cröll, but the L4 conflict prevents an exact factory-prescription claim. The 1954/55 maker catalog supplies no direct link. The 60/80 mm f/4.5 prototypes, Prominent 24 mm f/5.8 and Staeble/Eskofot/Agfa namesakes are distinct.
 
-## Architecture and element analysis
-Five spherical elements form four air-separated bodies: front positive singlet, negative singlet, rear cemented doublet and final negative singlet. Both tiny airspaces and the one cemented interface are retained. Source EI a3=.00994 normalized is preserved, not the earlier preliminary misreading.00094.
+## Optical Architecture
 
-L1 has nd1.62095/nu60.3, with radii+.24461/+.47728 and thickness.04640 normalized. L2 has1.72800/28.4, radii+.21487/+.16875 and thickness.01705. L3/L4 are the cemented doublet:1.51443/54.7 and1.60921/58.8, surfaces−.23103/+.53931/−.16241, thicknesses.01136/.05114. L5 has1.56866/56.2, radii−.14906/−.24234, thickness.02083. The inter-body airspaces are.00028/.13068/.00994. No source radius, interval or material value is retuned.
+Five spherical elements form four groups: two front singlets, a rear cemented doublet and a final negative singlet, with positive–negative–positive–negative power. The diaphragm separates the two cells. Narrow airspaces are retained, including a3 = 0.00994 rather than 0.00094.
 
-The patent explicitly uses yellow helium-d indices and Abbe nu, matching the model's d reference rather than a silent sodium-D substitution. No actual glass melt, full measured dispersion, radioactivity or material composition is inferred from these numbers or the secondary author's speculation.
+## Element-by-Element Analysis
 
-## Focal result, source image interval and focus
-Literal EFL1.000033927399 normalized gives115.0039016509mm at115×scale. The small+.00339274% nominal residual remains unfitted. Crucially the model retains printed source image-side interval.82606, or94.9969mm. The independently calculated value.826058319344 would differ by about.000193275mm; it is not substituted to hide the source residual.
+### L1 — Positive Meniscus
 
-This is an infinity representative only. No factory close-focus mechanism, mechanical shutter accommodation, minimum focus, component reversal or separate-member photographic use is reconstructed. It is one family/model, not a set of proven factory variants.
+nd = 1.62095, νd = 60.3. Glass: Unmatched. f = +86.33 mm in isolation. The front collector is concave toward the diaphragm.
 
-## Inferred iris and clear apertures
-The source labels a diaphragm within central a2, but provides no numerical split or hole size. The midpoint split.06534/.06534 normalized is an explicit hypothesis chosen before tracing, not a dimension measured from the schematic.
+### L2 — Negative Meniscus
 
-Clear semi-diameters20/15/11.5/15mm are inferred per actual body, common across the cemented doublet. They are the largest half-millimeter-grid values allowed by default.9 rim/gap geometry and full iris-plane clearance, selected before ray results. No aperture fitting, optical repair or geometry override is introduced. Independent review confirms full-cap geometry and iris clearance. Native iris radius8.776238254mm is a model result, not an original hole measurement. Authored aperture settings throughf/32 are convenience, not verified factory settings.
+nd = 1.72800, νd = 28.4. Glass: Unmatched. f = −147.10 mm in isolation. This higher-dispersion negative singlet faces the diaphragm.
 
-## Scoped checks and prominent source-field limitation
-Native construction and isolated strict TypeScript reproduce. Source/geometry and final independent reviews accompany qualified handoff, not factory certification.
+### L3/L4 — Cemented Doublet C1
 
-An initial assumed25° half-field diagnostic was preserved. After recognizing the patent's stated85° full-field claim for the simplified design, a42.5° source-edge diagnostic was run without changing optics, iris or caps. With25 pupil samples plus chief, exits at fractions0/.5/.7/.85/1 are26/25/19/15/7; the remainder clip. Only7 successful and19 clipped at the source edge is a severe limitation. This reconstruction does not validate85° commercial coverage.
+L3: nd = 1.51443, νd = 54.7, f = −35.98 mm in isolation. L4: nd = 1.60921, νd = 58.8, f = +24.23 mm in isolation. Both glasses are Unmatched. Biconcave L3 and biconvex L4 form a +57.22 mm doublet. Their 0.09478 index step exceeds the patent's 0.050 minimum at the converging interface (PDF pp. 2–3).
 
-These are optical-surface exits, not measured throughput percentages, full pupil integration, tested image-plane landing or MTF. Current-corpus/application tests, lint/format integration, build, browser and MTF are deferred and unpassed. Hidden, unintegrated and undeployed.
+### L5 — Negative Meniscus
 
-## Sources and evidence scope
-- Official original: https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/2670659
-- Cröll original article and photographed artifact, page16/Fig8: https://mr-alvandi.com/downloads/large-format/voigtlander-large-format-lenses-from-1949-1972.pdf
-- Verified complete source archive: https://drive.google.com/file/d/1_n4zrzX7hYUumVzULx2zRSr2tbnKT6_w/view
-- Excluded mistyped patent: https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/2670649
-The large nonsupportive maker catalog remains in the verified complete source archive, not duplicated in this reduced deliverable. See SOURCE_ARCHIVE_SCOPE.md. Full current/historical numerical dedup is not established; no novelty claim.
+nd = 1.56866, νd = 56.2. Glass: Unmatched. f = −85.21 mm in isolation. This negative singlet completes the rear cell.
+
+## Glass Identification and Selection
+
+The patent specifies yellow helium-d indices and Abbe numbers (PDF p. 3). All five pairs remain Unmatched: no catalog row agrees within 0.0001 in nd and 0.15 in νd at printed precision. Melt, full dispersion and composition are unknown.
+
+Cröll links L4 to the Apo-Lanthar front glass and reports a yellowish, slightly radioactive rear cell. This fits Example II's 1.65953/57.0; Example I specifies an ordinary heavy-crown pair, 1.60921/58.8. Neither radioactivity nor anomalous dispersion is assigned here.
+
+## Focus Mechanism
+
+Infinity focus only; no finite-focus spacings or minimum distance are supplied. Separate-cell configurations, reversal and shutter dimensions are not modeled.
+
+## First-Order Results and Image Interval
+
+Calculated EFL is 115.0039016509 mm (+0.00339274%), at f/5.5, with total track 128.0801 mm. Printed p0′ = 0.82606 gives the retained 94.9969 mm image interval, about 0.000193275 mm longer than the calculated 94.996706725 mm back focus.
+
+## Inferred Iris and Clear Apertures
+
+The patent locates the diaphragm inside a2 without dimensions. The model splits a2 equally at 0.06534/0.06534 in patent units; derived iris radius is 8.776238254 mm at f/5.5.
+
+Body semi-diameters are inferred as 20/15/11.5/15 mm, common across the doublet. These and the midpoint stop are modeling choices.
+
+## Model Scope and Field Limitations
+
+The patent's 85° sentence describes Example II (PDF p. 3), not Example I. Declared model half-field is 42.5°. With retained rims, 4×5 geometric coverage is complete; 5×7 reaches 106.69/109.25 mm of the corner semi-diagonal, about 98%. The 43.2202° corner clips at surfaces 6, 7 and 9. This does not measure image quality, throughput or MTF.
+
+## Sources
+
+- [US 2,670,659 A, official patent](https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/2670659), figures on PDF p. 1, bibliographic heading on p. 2 and both examples on p. 3.
+- [Arne Cröll, Voigtländer Large Format Lenses from 1949–1972](https://mr-alvandi.com/downloads/large-format/voigtlander-large-format-lenses-from-1949-1972.pdf), 2014 revision, Fig. 1c on p. 3, Ultragon discussion on pp. 15–17, Fig. 8 on p. 16 and Table 7 on p. 17.
+- [US 2,670,649, the mistyped reference](https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/2670649), concerning helium detection.
