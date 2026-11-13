@@ -28,6 +28,8 @@ export interface MtfPreferences {
   maxGridSize: MtfGridCap;
   /** Overlay the lens stopped down to f/8 when the working aperture is faster. */
   compareF8: boolean;
+  /** Refocus the comparison independently, or keep the main result's image plane. */
+  comparisonFocus: "refocus" | "hold";
 }
 
 export const MTF_PREFERENCES_KEY = "lensvis:mtf:options";
@@ -41,6 +43,7 @@ export const DEFAULT_MTF_PREFERENCES: MtfPreferences = Object.freeze({
   frequencies: Object.freeze([10, 30] as const),
   maxGridSize: 256,
   compareF8: false,
+  comparisonFocus: "refocus",
 });
 
 /**
@@ -87,6 +90,7 @@ export function parseMtfPreferences(raw: unknown): MtfPreferences {
         ? stored.maxGridSize
         : defaults.maxGridSize,
     compareF8: typeof stored.compareF8 === "boolean" ? stored.compareF8 : defaults.compareF8,
+    comparisonFocus: stored.comparisonFocus === "hold" ? "hold" : defaults.comparisonFocus,
   };
 }
 

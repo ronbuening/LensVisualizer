@@ -54,14 +54,18 @@ export function useMtfComputation(
     () => new MtfWorkerClient(L, () => new Worker(new URL("./mtf.worker.ts", import.meta.url), { type: "module" })),
     [L],
   );
-  const [state, setState] = useState<{ client: MtfWorkerClient; value: MtfComputation }>({ client, value: IDLE });
+  const key = job ? JSON.stringify(job) : null;
+  const [state, setState] = useState<{ client: MtfWorkerClient; key: string | null; value: MtfComputation }>({
+    client,
+    key: null,
+    value: IDLE,
+  });
   // Results never carry over to another lens.
   const current = state.client === client ? state.value : IDLE;
   useEffect(() => () => client.dispose(), [client]);
-  const key = job ? JSON.stringify(job) : null;
   useEffect(() => {
     const set = (update: (previous: MtfComputation) => MtfComputation) =>
-      setState((previous) => ({ client, value: update(previous.client === client ? previous.value : IDLE) }));
+      setState((previous) => ({ client, key, value: update(previous.client === client ? previous.value : IDLE) }));
     if (!key) {
       set(() => IDLE);
       return;
@@ -87,5 +91,6 @@ export function useMtfComputation(
       client.cancel();
     };
   }, [client, key]);
-  return current;
+  // A dependent comparison must not read the previous request's focus before the effect runs.
+  return current.result && state.key !== key ? { ...current, stale: true } : current;
 }

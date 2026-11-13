@@ -1032,6 +1032,61 @@ describe("MTF refinement and focus", () => {
     expect(refocused.focus!.appliedShiftMm).toBe(refocused.focus!.bestAxialShiftMm);
     expect(refocused.fields[0].sagittal[1]).toBeGreaterThan(design.fields[0].sagittal[1]);
   });
+  it("holds one explicit plane for every field while retaining the independent best-focus diagnostic", () => {
+    const state = prepareRuntimeState(buildSimplePositiveElementLens(), 0, 0);
+    const options = { ...mtfTestOptions, fieldFractions: [0, 0.5] };
+    const design = computeMtf(...mtfInputs(state, options));
+    const shift = 0.25;
+    const held = computeMtf(...mtfInputs(state, { ...options, focus: "best-axial", heldFocusShiftMm: shift }));
+    expect(held.focus).toMatchObject({
+      requestedMode: "best-axial",
+      mode: "held",
+      appliedShiftMm: shift,
+      bestAxialShiftMm: design.focus!.bestAxialShiftMm,
+      designScore: design.focus!.designScore,
+      bestScore: design.focus!.bestScore,
+    });
+    expect(Math.abs(held.focus!.bestAxialShiftMm! - shift)).toBeGreaterThan(0.1);
+    for (const [i, field] of held.fields.entries()) {
+      // Targets remain on the authored plane. Independent ray transfer and a direct Fourier sum
+      // distinguish applying the held plane from merely labelling an independently refocused result.
+      expect(field.targetImageHeightMm).toBe(design.fields[i].targetImageHeightMm);
+      expect(field.fieldAngleDeg).toBe(design.fields[i].fieldAngleDeg);
+      expect(field.reason).toBeNull();
+      const bundle = traceMtfFieldPupil(state, options, held.support, field.fieldAngleDeg!, field.gridSize)!;
+      for (const [axis, coordinate] of [
+        ["sagittal", 0],
+        ["tangential", 1],
+      ] as const) {
+        const points = bundle.rays.map((ray) => {
+          const p = ray.trace.terminalPoint;
+          const d = ray.trace.terminalDirection;
+          return { x: p[coordinate] + ((state.imgZ + shift - p[2]) / d[2]) * d[coordinate], weight: ray.weight };
+        });
+        const flux = points.reduce((sum, p) => sum + p.weight, 0);
+        held.frequenciesPerMm.forEach((frequency, j) => {
+          const real = points.reduce((sum, p) => sum + p.weight * Math.cos(2 * Math.PI * frequency * p.x), 0);
+          const imaginary = points.reduce((sum, p) => sum + p.weight * Math.sin(2 * Math.PI * frequency * p.x), 0);
+          expect(field[axis][j]).toBeCloseTo(Math.hypot(real, imaginary) / flux, 10);
+        });
+      }
+    }
+    const heldDesign = computeMtf(...mtfInputs(state, { ...options, focus: "best-axial", heldFocusShiftMm: 0 }));
+    expect(heldDesign.focus).toMatchObject({ mode: "held", appliedShiftMm: 0 });
+    expect(heldDesign.fields).toEqual(design.fields);
+  });
+  it("refuses nonfinite held shifts and held planes ahead of the last surface", () => {
+    const state = prepareRuntimeState(buildSimplePositiveElementLens(), 0, 0);
+    for (const heldFocusShiftMm of [NaN, Infinity, -Infinity])
+      expect(() => computeMtf(...mtfInputs(state, { ...mtfTestOptions, heldFocusShiftMm }))).toThrow(/must be finite/);
+    const nearest = mtfNearestImagePlaneZ(state) - state.imgZ;
+    expect(() => computeMtf(...mtfInputs(state, { ...mtfTestOptions, heldFocusShiftMm: nearest - 0.001 }))).toThrow(
+      /in front of the last surface/,
+    );
+    expect(computeMtf(...mtfInputs(state, { ...mtfTestOptions, heldFocusShiftMm: nearest }))).toMatchObject({
+      focus: { mode: "held", appliedShiftMm: nearest },
+    });
+  });
   it("refocuses automatically only when the authored plane contradicts the paraxial focus", () => {
     const base = buildSimplePositiveElementLens();
     const options = { ...mtfTestOptions, fieldFractions: [0], pupilSemiDiameterMm: 2, stopSemiDiameterMm: 2 };

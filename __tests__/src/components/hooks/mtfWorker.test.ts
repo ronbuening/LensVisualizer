@@ -168,3 +168,26 @@ it("drops cancelled requests and reuses finished fields when only the field list
   expect(fine.result.fields[2]).toEqual(coarse.result.fields[1]);
   expect(fine.result.fields[1].status).not.toBe("pending");
 });
+
+it("keeps held planes in the worker's focus and field cache keys", async () => {
+  const { send, finished } = await loadWorker();
+  const L = buildChromaticPositiveElementLens();
+  send({ type: "init", input: structuredClone(canonicalLensFromRuntime(L)) });
+  const options: MtfOptions = {
+    method: "geometric",
+    spectrum: "reference",
+    focus: "best-axial",
+    pupilSemiDiameterMm: 0.5,
+    stopSemiDiameterMm: 0.5,
+    fieldFractions: [0],
+    frequenciesPerMm: [0, 10, 20],
+    maxGridSize: 32,
+  };
+  for (const [i, shift] of [0, 0.25, 0].entries()) {
+    const held = { ...options, heldFocusShiftMm: shift };
+    send({ type: "compute", id: i + 1, job: { focusT: 0, zoomT: 0, aberrationT: 0, options: held } });
+    const expected = computeMtf(...mtfInputs(prepareRuntimeState(L, 0, 0), held));
+    expect(await finished(i + 1)).toEqual({ type: "result", id: i + 1, result: expected });
+    expect(expected.focus).toMatchObject({ mode: "held", appliedShiftMm: shift });
+  }
+});

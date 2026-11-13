@@ -101,12 +101,21 @@ export default function MtfTab({
     ],
   );
   const support = useMemo(() => assessMtfSupport(request, options), [request, options]);
+  const comparisonPolicy = preferences.compareF8 ? preferences.comparisonFocus : null;
   // Disclosure belongs to these controls, not to a later lens, aperture or spectrum.
-  const [presentation, setPresentation] = useState({ request, options, diagnostic: false });
-  if (presentation.request !== request || presentation.options !== options) {
-    setPresentation({ request, options, diagnostic: false });
+  const [presentation, setPresentation] = useState({ request, options, comparisonPolicy, diagnostic: false });
+  if (
+    presentation.request !== request ||
+    presentation.options !== options ||
+    presentation.comparisonPolicy !== comparisonPolicy
+  ) {
+    setPresentation({ request, options, comparisonPolicy, diagnostic: false });
   }
-  const diagnostic = presentation.request === request && presentation.options === options && presentation.diagnostic;
+  const diagnostic =
+    presentation.request === request &&
+    presentation.options === options &&
+    presentation.comparisonPolicy === comparisonPolicy &&
+    presentation.diagnostic;
   const job = support.available ? request : null;
   const { result, stale, running, error } = useMtfComputation(L, job, options);
   const shown = support.available ? result : null;
@@ -123,8 +132,21 @@ export default function MtfTab({
   const [warningAcknowledged, acknowledgeWarning] = useMtfDataWarning(L.source.key, dataLimitations);
   // The f/8 stop comes from the stop rule, as the aperture control's does.
   const compareF8Available = !!fNumber && fNumber < COMPARISON_F_NUMBER - 0.05 && L.maxFstop >= COMPARISON_F_NUMBER;
+  const comparisonEnabled = compareF8Available && preferences.compareF8;
+  const holdComparison = preferences.comparisonFocus === "hold";
+  const mainShift = !stale ? shown?.focus?.appliedShiftMm : undefined;
+  const comparisonOptions = useMemo(
+    () => (holdComparison && mainShift !== undefined ? { ...options, heldFocusShiftMm: mainShift } : options),
+    [options, holdComparison, mainShift],
+  );
   const comparisonJob = useMemo(() => {
-    if (!job || !compareF8Available || !preferences.compareF8 || !(job.aperture.stopSemiDiameterMm > 0)) return null;
+    if (
+      !job ||
+      !comparisonEnabled ||
+      (holdComparison && mainShift === undefined) ||
+      !(job.aperture.stopSemiDiameterMm > 0)
+    )
+      return null;
     const stop = stopSemiDiameterForFNumber(COMPARISON_F_NUMBER, job.preparedGeometry.zoomT, L);
     // At one state the paraxial entrance pupil is proportional to the stop.
     const pupil = (job.aperture.entrancePupilSemiDiameterMm * stop) / job.aperture.stopSemiDiameterMm;
@@ -135,13 +157,16 @@ export default function MtfTab({
       currentPhysStopSD: stop,
       perspectiveTraceContext: job.perspectiveTraceContext,
     });
-  }, [job, compareF8Available, preferences.compareF8, L]);
-  const comparison = useMtfComputation(L, comparisonJob, options);
+  }, [job, comparisonEnabled, holdComparison, mainShift, L]);
+  const comparison = useMtfComputation(L, comparisonJob, comparisonOptions);
   const comparisonShown = comparisonJob && !comparison.stale && !stale ? comparison.result : null;
   // A result kept from an earlier request says nothing about the label on screen.
   const vignettingOf = (result: MtfResult | null, superseded: boolean) =>
     superseded ? null : (result?.axialVignetting ?? null);
-  const comparisonLabel = `f/${COMPARISON_F_NUMBER}${axialVignettingNote(vignettingOf(comparisonShown, false))}`;
+  const comparisonLabel = `f/${COMPARISON_F_NUMBER}${comparisonPlaneLabel(comparisonShown, mainShift)}${axialVignettingNote(vignettingOf(comparisonShown, false))}`;
+  const comparisonValues = comparisonShown?.fields.some((field) => field.sagittal.length && field.tangential.length)
+    ? comparisonShown
+    : null;
   const muted = { color: t.muted, margin: "4px 0" };
   return (
     <section style={{ color: t.value, fontSize: 12 }} aria-label="Simulated MTF">
@@ -158,6 +183,17 @@ export default function MtfTab({
         slowFieldSteps={spectrum.spectrum !== "reference"}
         compareF8Available={compareF8Available}
       />
+      {comparisonEnabled ? (
+        comparisonJob && comparison.error ? (
+          <p role="alert">{`f/8 comparison: ${comparison.error}`}</p>
+        ) : comparisonShown && !comparisonShown.support.available ? (
+          <p role="status" style={muted}>{`f/8 comparison: ${comparisonShown.support.message}`}</p>
+        ) : comparison.running || !comparisonJob ? (
+          <p role="status" style={muted}>
+            {comparisonJob ? "Calculating f/8 comparison…" : "f/8 comparison: waiting for the wide-open image plane…"}
+          </p>
+        ) : null
+      ) : null}
       {!support.available ? (
         <AnalysisEmptyState t={t}>
           <span role="status">{support.message}</span>
@@ -173,10 +209,6 @@ export default function MtfTab({
           {running ? (
             <p role="status" style={muted}>
               {stale ? "Updating…" : `Calculating… ${progressText(shown)}`}
-            </p>
-          ) : comparisonJob && comparison.running ? (
-            <p role="status" style={muted}>
-              Calculating f/8 comparison…
             </p>
           ) : null}
           {!stale ? (
@@ -197,7 +229,9 @@ export default function MtfTab({
                 <input
                   type="checkbox"
                   checked={diagnostic}
-                  onChange={(event) => setPresentation({ request, options, diagnostic: event.target.checked })}
+                  onChange={(event) =>
+                    setPresentation({ request, options, comparisonPolicy, diagnostic: event.target.checked })
+                  }
                 />
                 Show diagnostic estimates (unconverged or unverified frequencies)
               </label>
@@ -226,6 +260,9 @@ export default function MtfTab({
               t={t}
               diagnostic={diagnostic}
               stale={stale}
+              comparison={comparisonValues}
+              comparisonLabel={comparisonLabel}
+              mainLabel={fNumber ? `f/${formatFNumber(fNumber)} (main)` : "Main aperture"}
             />
           </MtfDataWarning>
         </>
@@ -264,6 +301,17 @@ export default function MtfTab({
       </details>
     </section>
   );
+}
+
+/** Label the applied plane, including the focus change relative to the main aperture. */
+function comparisonPlaneLabel(result: MtfResult | null, mainShift: number | undefined): string {
+  const focus = result?.focus;
+  if (!focus) return "";
+  const microns = (mm: number) => `${mm >= 0 ? "+" : "−"}${Math.abs(mm * 1000).toFixed(0)} µm`;
+  if (focus.mode === "held") return `, wide-open plane (${microns(focus.appliedShiftMm)} from authored plane)`;
+  if (focus.mode !== "best-axial") return ", design plane";
+  const relative = mainShift === undefined ? "" : `; ${microns(focus.appliedShiftMm - mainShift)} from wide-open plane`;
+  return `, refocused (${microns(focus.appliedShiftMm)} from authored plane${relative})`;
 }
 
 function headerLine(

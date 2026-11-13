@@ -123,8 +123,17 @@ on unmount. `MtfChart` gives each frequency a fixed `chartSeries` slot, labels c
 21 fields and hatches heights beyond the modeled edge. Its crosshair follows the pointer or the arrow keys
 (Home/End, Escape) and announces values through a polite live region. When the working aperture is faster than
 f/8 and the lens reaches it, "Compare f/8" runs a second worker request with pupil and stop radii scaled by N/8 and
-draws it with thin lines in the same slots. `mtf/MtfControls`, `mtf/MtfFieldSummary` and `mtf/MtfValueTable` hold
-the controls, status counts and per-field values; the table copies as CSV (`mtf/mtfCsv.ts`). When
+draws it with thin lines in the same slots, including faded out-of-band frequency segments when diagnostics are
+disclosed. Its progress and errors appear independently of the main result. The overlay labels its applied plane
+and both its authored-plane shift and its shift from the main aperture's plane. A persisted selector beside the
+enabled toggle defaults to "Refocus at f/8" (the selected focus policy applied independently); "Hold the wide-open
+plane" waits for the main result's first partial focus and uses that exact plane at f/8. Changing the comparison
+policy resets diagnostic disclosure and removes superseded comparison values.
+`mtf/MtfControls`, `mtf/MtfFieldSummary` and `mtf/MtfValueTable` hold
+the controls, status counts and per-field values; an enabled comparison with values adds aperture-labelled table
+rows and appended f/8 CSV columns, retaining the main columns and their order. Each aperture keeps its own physical
+image heights, field statuses and stable-band disclosure; missing values stay empty in CSV. The table copies as CSV
+(`mtf/mtfCsv.ts`). When
 `assessMtfDataLimitations` lists a `blocking` gap, `mtf/MtfDataWarning` blurs the chart and field summary, marks them
 `inert` and covers them with a warning card that lists every item. "Show chart anyway" records the blocking kinds for
 that lens system in `src/utils/state/mtfDataWarnings.ts` (`useMtfDataWarning`); the warning then collapses to a

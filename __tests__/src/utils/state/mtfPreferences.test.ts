@@ -31,6 +31,9 @@ describe("MTF preferences", () => {
     expect(parseMtfPreferences({ focus: "design" }).focus).toBe("design");
     expect(parseMtfPreferences({ focus: "auto" }).focus).toBe("auto");
     expect(parseMtfPreferences({ focus: "sideways" }).focus).toBe("best-axial");
+    expect(parseMtfPreferences({ compareF8: true }).comparisonFocus).toBe("refocus");
+    expect(parseMtfPreferences({ comparisonFocus: "hold" }).comparisonFocus).toBe("hold");
+    expect(parseMtfPreferences({ comparisonFocus: "unknown" }).comparisonFocus).toBe("refocus");
     // The diffraction-corrected product stored by earlier versions became the diffraction estimate.
     expect(DEFAULT_MTF_PREFERENCES.method).toBe("diffraction");
     expect(parseMtfPreferences({ method: "geometric-dl" }).method).toBe("diffraction");
@@ -61,9 +64,15 @@ describe("MTF preferences", () => {
     expect(getMtfPreferences().fieldStepPercent).toBe(2);
     const listener = vi.fn();
     const unsubscribe = subscribeMtfPreferences(listener);
-    updateMtfPreferences({ view: "frequency" });
+    updateMtfPreferences({ view: "frequency", comparisonFocus: "hold" });
     expect(listener).toHaveBeenCalledTimes(1);
-    expect(JSON.parse(store.get(MTF_PREFERENCES_KEY)!)).toMatchObject({ view: "frequency", fieldStepPercent: 2 });
+    expect(JSON.parse(store.get(MTF_PREFERENCES_KEY)!)).toMatchObject({
+      view: "frequency",
+      fieldStepPercent: 2,
+      comparisonFocus: "hold",
+    });
+    resetMtfPreferencesCache();
+    expect(getMtfPreferences().comparisonFocus).toBe("hold");
     unsubscribe();
     vi.stubGlobal("localStorage", {
       getItem: () => {

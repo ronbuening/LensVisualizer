@@ -177,6 +177,21 @@ export default function MtfControls({
             </Toggle>
           </ToggleGroup>
         ) : null}
+        {compareF8Available && preferences.compareF8 ? (
+          <Select
+            t={t}
+            label="f/8 comparison image plane"
+            help="Refocus at f/8: use the selected image-plane policy independently at f/8. Hold the wide-open plane: use exactly the main curve's image plane at f/8."
+            touchHelp={touchHelp}
+            style={selectStyle}
+            value={preferences.comparisonFocus}
+            options={[
+              ["refocus", "Refocus at f/8"],
+              ["hold", "Hold the wide-open plane"],
+            ]}
+            onChange={(comparisonFocus) => onChange({ comparisonFocus })}
+          />
+        ) : null}
         {preferences.view === "field" ? (
           <ToggleGroup label="Chart frequencies (lp/mm)" t={t}>
             {MTF_CHART_FREQUENCIES.map((frequency, i) => (

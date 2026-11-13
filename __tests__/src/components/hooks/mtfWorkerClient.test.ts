@@ -48,6 +48,29 @@ const job: MtfJob = {
 const result = computeMtf(...mtfInputs(prepareRuntimeState(L, 0, 0), job.options));
 
 describe("MTF worker lifecycle", () => {
+  it("keys held image planes separately from each other and from independent focus", async () => {
+    const port = new Port();
+    const client = new MtfWorkerClient(L, () => port);
+    const shifts = [undefined, 0, 0.25];
+    for (const [i, heldFocusShiftMm] of shifts.entries()) {
+      const requested = { ...job, options: { ...job.options, heldFocusShiftMm } };
+      const pending = client.compute(requested);
+      expect(port.computes()).toHaveLength(i + 1);
+      const response = {
+        ...result,
+        focus: {
+          ...result.focus!,
+          mode: heldFocusShiftMm === undefined ? "design" : "held",
+          appliedShiftMm: heldFocusShiftMm ?? 0,
+        },
+      } as const;
+      port.reply({ type: "result", id: i + 1, result: response });
+      expect(await pending).toEqual(response);
+      expect(await client.compute(requested)).toEqual(response);
+      expect(port.computes()).toHaveLength(i + 1);
+    }
+    client.dispose();
+  });
   it("retains completed curves across chart requests and invalidates changed apertures", async () => {
     const port = new Port();
     const client = new MtfWorkerClient(L, () => port);

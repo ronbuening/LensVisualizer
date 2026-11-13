@@ -10,12 +10,27 @@ interface MtfValueTableProps {
   frequencies: readonly MtfChartFrequency[];
   t: Theme;
   diagnostic?: boolean;
+  comparison?: MtfResult | null;
+  comparisonLabel?: string;
+  mainLabel?: string;
 }
 
 const STATUS_TEXT = { converged: "", unconverged: "unconverged", unavailable: "—", pending: "…" } as const;
 
-export default function MtfValueTable({ result, frequencies, t, diagnostic = false }: MtfValueTableProps) {
+export default function MtfValueTable({
+  result,
+  frequencies,
+  t,
+  diagnostic = false,
+  comparison = null,
+  comparisonLabel = "f/8",
+  mainLabel = "Main aperture",
+}: MtfValueTableProps) {
   const columns = frequencies.filter((f) => result.frequenciesPerMm.includes(f));
+  const sources = [
+    { result, label: mainLabel },
+    ...(comparison ? [{ result: comparison, label: comparisonLabel }] : []),
+  ];
   const cell = { padding: "2px 6px", textAlign: "right" as const, fontVariantNumeric: "tabular-nums" as const };
   return (
     <div style={{ overflowX: "auto", marginTop: 6 }}>
@@ -28,6 +43,11 @@ export default function MtfValueTable({ result, frequencies, t, diagnostic = fal
         </caption>
         <thead style={{ color: t.muted }}>
           <tr>
+            {comparison ? (
+              <th style={{ ...cell, textAlign: "left" }} scope="col">
+                Aperture / image plane
+              </th>
+            ) : null}
             <th style={cell} scope="col">
               Height (mm)
             </th>
@@ -45,31 +65,38 @@ export default function MtfValueTable({ result, frequencies, t, diagnostic = fal
           </tr>
         </thead>
         <tbody>
-          {result.fields.map((field) => {
-            const height = field.imageHeightMm ?? field.targetImageHeightMm;
-            const shown = field.status === "converged" || field.status === "unconverged";
-            return (
-              <tr key={field.fieldFraction} style={{ borderTop: `1px solid ${t.panelBorder}` }}>
-                <th style={cell} scope="row">
-                  {height !== null ? height.toFixed(2) : "—"}
-                </th>
-                {columns.map((f) => {
-                  const j = result.frequenciesPerMm.indexOf(f);
-                  return (
-                    <td key={f} style={cell}>
-                      {mtfValueVisible(field, f, diagnostic)
-                        ? `${field.sagittal[j].toFixed(3)} / ${field.tangential[j].toFixed(3)}`
-                        : "—"}
-                    </td>
-                  );
-                })}
-                <td style={cell}>{shown ? field.validRays : ""}</td>
-                <td style={{ ...cell, textAlign: "left", color: t.muted }}>
-                  {field.reason === "outside-modeled-field" ? "outside model" : STATUS_TEXT[field.status]}
-                </td>
-              </tr>
-            );
-          })}
+          {sources.flatMap(({ result: source, label }) =>
+            source.fields.map((field) => {
+              const height = field.imageHeightMm ?? field.targetImageHeightMm;
+              const shown = field.status === "converged" || field.status === "unconverged";
+              return (
+                <tr key={`${label}-${field.fieldFraction}`} style={{ borderTop: `1px solid ${t.panelBorder}` }}>
+                  {comparison ? (
+                    <th style={{ ...cell, textAlign: "left" }} scope="row">
+                      {label}
+                    </th>
+                  ) : null}
+                  <th style={cell} scope="row">
+                    {height !== null ? height.toFixed(2) : "—"}
+                  </th>
+                  {columns.map((f) => {
+                    const j = source.frequenciesPerMm.indexOf(f);
+                    return (
+                      <td key={f} style={cell}>
+                        {j >= 0 && mtfValueVisible(field, f, diagnostic)
+                          ? `${field.sagittal[j].toFixed(3)} / ${field.tangential[j].toFixed(3)}`
+                          : "—"}
+                      </td>
+                    );
+                  })}
+                  <td style={cell}>{shown ? field.validRays : ""}</td>
+                  <td style={{ ...cell, textAlign: "left", color: t.muted }}>
+                    {field.reason === "outside-modeled-field" ? "outside model" : STATUS_TEXT[field.status]}
+                  </td>
+                </tr>
+              );
+            }),
+          )}
         </tbody>
       </table>
     </div>

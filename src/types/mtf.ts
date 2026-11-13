@@ -46,6 +46,8 @@ export interface MtfOptions {
   maxGridSize?: MtfGridCap;
   /** Image plane for every field. Required: the engine has no default, so scripts and the tab cannot disagree. */
   focus: MtfFocusMode;
+  /** Explicit shift from the authored plane, in mm; overrides focus selection but keeps its diagnostic. */
+  heldFocusShiftMm?: number;
 }
 
 /** One sampled wavelength and its incident (pre-throughput) intensity weight. */
@@ -92,7 +94,7 @@ export interface MtfFieldGeometry {
 export interface MtfFocus {
   requestedMode: MtfFocusMode;
   /** Plane actually applied to every field. */
-  mode: Exclude<MtfFocusMode, "auto">;
+  mode: Exclude<MtfFocusMode, "auto"> | "held";
   /** Plane shift from the authored image plane applied to every field, in mm (positive away from the lens). */
   appliedShiftMm: number;
   /** Axial best-focus shift from the authored plane; null when the axial bundle could not be scored. */

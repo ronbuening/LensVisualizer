@@ -517,6 +517,7 @@ function resolveAxialBeam(context: MtfJobContext): MtfAxialBeam | null {
  * Axial best focus from the center bundle, and the image-plane consistency check. The search
  * always runs so results can report it; `best-axial` requests apply the shift to every field, and
  * `auto` requests apply it only when the authored plane is inconsistent with the prescription.
+ * An explicit held shift overrides that selection without suppressing the diagnostic.
  */
 function resolveMtfFocus(context: MtfJobContext, axial: MtfAxialBeam | null): MtfFocus {
   const { state, options, support } = context;
@@ -524,15 +525,25 @@ function resolveMtfFocus(context: MtfJobContext, axial: MtfAxialBeam | null): Mt
   const offset = mtfImagePlaneOffset(state, support);
   const focus: MtfFocus = {
     requestedMode,
-    mode: "design",
-    appliedShiftMm: 0,
+    mode: options.heldFocusShiftMm === undefined ? "design" : "held",
+    appliedShiftMm: options.heldFocusShiftMm ?? 0,
     bestAxialShiftMm: null,
     designScore: null,
     bestScore: null,
     imagePlaneOffsetMm: offset?.offsetMm ?? null,
     imagePlaneInconsistent: offset?.inconsistent ?? false,
   };
-  if (!axial) return focus;
+  const checkedFocus = (bundles?: Parameters<typeof mtfNearestImagePlaneZ>[1]) => {
+    if (options.heldFocusShiftMm !== undefined) {
+      const planeZ = state.imgZ + options.heldFocusShiftMm;
+      if (!Number.isFinite(options.heldFocusShiftMm) || !Number.isFinite(planeZ))
+        throw new RangeError("Held MTF image-plane shift must be finite.");
+      if (planeZ < mtfNearestImagePlaneZ(state, bundles))
+        throw new RangeError("Held MTF image plane lies in front of the last surface.");
+    }
+    return focus;
+  };
+  if (!axial) return checkedFocus();
   const { launch, footprint } = axial;
   const size = Math.min(MTF_FOCUS_GRID, context.ladder.at(-1) ?? MTF_FOCUS_GRID);
   const bundles = [];
@@ -540,7 +551,7 @@ function resolveMtfFocus(context: MtfJobContext, axial: MtfAxialBeam | null): Mt
     const bundle = footprint
       ? traceMtfLaunchPlaneBundle(state, options, support, launch, footprint, size, line, state.imgZ)
       : traceMtfStopBundle(state, options, support, launch, size, line, state.imgZ);
-    if (!bundle) return focus;
+    if (!bundle) return checkedFocus();
     bundles.push({ bundle, weight: line.weight });
   }
   const best = findAxialBestFocus(
@@ -549,15 +560,18 @@ function resolveMtfFocus(context: MtfJobContext, axial: MtfAxialBeam | null): Mt
     MTF_FOCUS_FREQUENCIES,
     state.lens.imageSurface === null ? mtfNearestImagePlaneZ(state) : mtfNearestImagePlaneZ(state, bundles),
   );
-  if (!best) return focus;
+  if (!best) return checkedFocus(bundles);
   focus.bestAxialShiftMm = best.shiftMm;
   focus.designScore = best.designScore;
   focus.bestScore = best.bestScore;
-  if (requestedMode === "best-axial" || (requestedMode === "auto" && focus.imagePlaneInconsistent)) {
+  if (
+    options.heldFocusShiftMm === undefined &&
+    (requestedMode === "best-axial" || (requestedMode === "auto" && focus.imagePlaneInconsistent))
+  ) {
     focus.mode = "best-axial";
     focus.appliedShiftMm = best.shiftMm;
   }
-  return focus;
+  return checkedFocus(bundles);
 }
 
 /* ── Job ── */

@@ -58,7 +58,15 @@ function memoizedMtf(target: typeof state, options: MtfJob["options"]): MtfResul
 }
 
 /** Worker stand-in that runs the pure engine; `progress` first posts a result with every field pending. */
-function stubWorker({ progress = false, target = state }: { progress?: boolean; target?: typeof state } = {}) {
+function stubWorker({
+  progress = false,
+  target = state,
+  error,
+}: {
+  progress?: boolean;
+  target?: typeof state;
+  error?: (job: MtfJob) => string | null;
+} = {}) {
   const calls = { compute: 0, jobs: [] as MtfJob[] };
   const replies: Array<() => void> = [];
   vi.stubGlobal(
@@ -71,8 +79,13 @@ function stubWorker({ progress = false, target = state }: { progress?: boolean; 
         if (message.type !== "compute") return;
         calls.compute++;
         calls.jobs.push(message.job);
-        const result = memoizedMtf(target, message.job.options);
         const send = (reply: MtfWorkerReply) => this.onmessage?.({ data: reply } as MessageEvent<MtfWorkerReply>);
+        const failure = error?.(message.job);
+        if (failure) {
+          queueMicrotask(() => send({ type: "error", id: message.id, error: failure }));
+          return;
+        }
+        const result = memoizedMtf(target, message.job.options);
         if (progress) {
           const pending: MtfResult = {
             ...result,
@@ -402,6 +415,99 @@ describe("MTF chart", () => {
     rerender(<MtfChart result={result} comparison={comparison} view="field" frequencies={[10]} t={mockTheme} />);
     expect(container.innerHTML).not.toContain("NaN");
   });
+  it("draws comparison estimates beyond the stable frequency band only when disclosed", () => {
+    const comparison = { ...result, fields: result.fields.map((field) => ({ ...field, convergedThroughLpMm: 20 })) };
+    const { container, rerender } = render(
+      <MtfChart
+        result={result}
+        comparison={comparison}
+        comparisonLabel="f/8"
+        view="frequency"
+        frequencies={[10]}
+        t={mockTheme}
+      />,
+    );
+    const faded = () => [...container.querySelectorAll('g[opacity="0.6"] > g[opacity="0.35"] path')];
+    expect(faded().some((path) => path.getAttribute("d"))).toBe(false);
+    fireEvent.keyDown(screen.getByRole("group", { name: /MTF chart values/ }), { key: "End" });
+    expect(screen.getByText(/^100 lp\/mm —/).textContent).toMatch(/f\/8: Center.*—/);
+    rerender(
+      <MtfChart
+        result={result}
+        comparison={comparison}
+        comparisonLabel="f/8"
+        view="frequency"
+        frequencies={[10]}
+        t={mockTheme}
+        diagnostic
+      />,
+    );
+    expect(faded().filter((path) => path.getAttribute("d"))).toHaveLength(6);
+    expect(faded().every((path) => path.getAttribute("stroke-width") === "1.1")).toBe(true);
+    expect(screen.getByText(/^100 lp\/mm —/).textContent).toMatch(/f\/8: Center.*S [0-9]/);
+  });
+  it("appends labelled comparison CSV columns and table rows under the same disclosure policy", async () => {
+    const comparison: MtfResult = {
+      ...result,
+      fields: result.fields.map((field, i) => ({
+        ...field,
+        imageHeightMm: field.imageHeightMm! + 1,
+        status: i === 0 ? "unavailable" : i === 1 ? "unconverged" : "converged",
+        convergedThroughLpMm: i === 2 ? 10 : null,
+      })),
+    };
+    const main = mtfCsv(result, [10, 30])
+      .split("\n")
+      .map((row) => row.split(","));
+    const csv = mtfCsv(result, [10, 30], false, comparison)
+      .split("\n")
+      .map((row) => row.split(","));
+    csv.forEach((row, i) => expect(row.slice(0, main[0].length)).toEqual(main[i]));
+    expect(csv[0].slice(9, 12)).toEqual(["f/8 image height (mm)", "f/8 10 lp/mm sagittal", "f/8 10 lp/mm tangential"]);
+    expect(csv[1].slice(10, 14)).toEqual(["", "", "", ""]);
+    expect(csv[2].slice(10, 14)).toEqual(["", "", "", ""]);
+    expect(csv[3].slice(12, 14)).toEqual(["", ""]);
+    expect(csv[3][9]).toBe(comparison.fields[2].imageHeightMm!.toFixed(3));
+    const estimates = mtfCsv(result, [10, 30], true, comparison)
+      .split("\n")
+      .map((row) => row.split(","));
+    expect(estimates[1].slice(10, 14)).toEqual(["", "", "", ""]);
+    expect(estimates[2].slice(10, 14).every(Boolean)).toBe(true);
+    expect(estimates[3].slice(10, 14).every(Boolean)).toBe(true);
+    const writeText = vi.fn().mockResolvedValue(undefined);
+    vi.stubGlobal("navigator", { ...navigator, clipboard: { writeText } });
+    const { rerender } = render(
+      <MtfFieldSummary
+        result={result}
+        comparison={comparison}
+        mainLabel="f/2.8"
+        comparisonLabel="f/8, design plane"
+        frequencies={[10, 30]}
+        t={mockTheme}
+      />,
+    );
+    const table = screen.getByRole("table");
+    expect(within(table).getAllByRole("rowheader", { name: "f/2.8" })).toHaveLength(3);
+    const comparedRows = within(table)
+      .getAllByRole("rowheader", { name: "f/8, design plane" })
+      .map((th) => th.closest("tr")!);
+    expect(
+      within(comparedRows[1])
+        .getAllByRole("cell")
+        .slice(0, 2)
+        .map((cell) => cell.textContent),
+    ).toEqual(["—", "—"]);
+    fireEvent.click(screen.getByRole("button", { name: "Copy CSV" }));
+    await screen.findByText("Copied");
+    expect(writeText).toHaveBeenCalledWith(mtfCsv(result, [10, 30], false, comparison));
+    rerender(
+      <MtfFieldSummary result={result} comparison={comparison} frequencies={[10, 30]} t={mockTheme} diagnostic />,
+    );
+    const diagnosticRow = within(screen.getByRole("table"))
+      .getAllByRole("rowheader", { name: "f/8" })[1]
+      .closest("tr")!;
+    expect(within(diagnosticRow).getAllByRole("cell")[0].textContent).toMatch(/0\.[0-9]+ \/ 0\.[0-9]+/);
+  });
   it("keeps nonconverged status rows in normal exports and qualifies diagnostic values", () => {
     const uncertain: MtfResult = {
       ...result,
@@ -504,14 +610,103 @@ describe("MTF export and aperture comparison", () => {
     await screen.findByRole("figure", { name: /image height/ });
     fireEvent.click(screen.getByRole("button", { name: "Compare f/8" }));
     // The f/8 stop comes from the stop rule, not from the current stop, and the iris limits its beam: no note.
-    expect(await screen.findByText(/^f\/8 \(thin lines\)$/)).toBeTruthy();
+    expect(await screen.findByText(/^f\/8, refocused .*\(thin lines\)$/)).toBeTruthy();
     const stopped = calls.jobs.at(-1)!.options;
     const f8Stop = stopSemiDiameterForFNumber(8, 0, L);
     expect(stopped.stopSemiDiameterMm).toBe(f8Stop);
     // The current request's pupil-to-stop ratio (1 : 1 here) carries over to the f/8 stop.
     expect(stopped.pupilSemiDiameterMm).toBeCloseTo(f8Stop, 12);
+    const mainFocus = memoizedMtf(state, calls.jobs[0].options).focus!;
+    const stoppedFocus = memoizedMtf(state, stopped).focus!;
+    const delta = stoppedFocus.appliedShiftMm - mainFocus.appliedShiftMm;
+    expect(screen.getByText(/^f\/8, refocused .*\(thin lines\)$/).textContent).toContain(
+      `${delta >= 0 ? "+" : "−"}${Math.abs(delta * 1000).toFixed(0)} µm from wide-open plane`,
+    );
     unmount();
     render(<MtfTab L={L} t={mockTheme} preparedState={state} currentEPSD={1} currentPhysStopSD={1} fNumber={8} />);
     expect(screen.queryByRole("button", { name: "Compare f/8" })).toBeNull();
+  });
+  it("shows the f/8 error independently while keeping the main result", async () => {
+    const f8Stop = stopSemiDiameterForFNumber(8, 0, L);
+    stubWorker({ error: (job) => (job.options.stopSemiDiameterMm === f8Stop ? "Comparison trace failed." : null) });
+    render(<MtfTab L={L} t={mockTheme} preparedState={state} currentEPSD={1} currentPhysStopSD={1} fNumber={2.8} />);
+    await screen.findByRole("figure");
+    fireEvent.click(screen.getByRole("button", { name: "Compare f/8" }));
+    expect(await screen.findByText("Calculating f/8 comparison…")).toBeTruthy();
+    expect((await screen.findByRole("alert")).textContent).toBe("f/8 comparison: Comparison trace failed.");
+    expect(screen.getByRole("figure")).toBeTruthy();
+    expect(screen.queryByText(/thin lines/)).toBeNull();
+  });
+  it("holds the main plane from its first partial result and replaces stale comparisons on policy changes", async () => {
+    localStorage.setItem(
+      MTF_PREFERENCES_KEY,
+      JSON.stringify({ compareF8: true, comparisonFocus: "hold", spectrum: "reference" }),
+    );
+    resetMtfPreferencesCache();
+    const worker = stubWorker({ progress: true, target: focusedState });
+    render(
+      <MtfTab
+        L={focusedL}
+        t={mockTheme}
+        preparedState={focusedState}
+        currentEPSD={1}
+        currentPhysStopSD={1}
+        fNumber={2.8}
+      />,
+    );
+    expect(screen.getByText(/f\/8 comparison: waiting/)).toBeTruthy();
+    await screen.findByText(/Calculating… 1 \/ 11 fields/);
+    await vi.waitFor(() => expect(worker.calls.compute).toBe(2));
+    const main = memoizedMtf(focusedState, worker.calls.jobs[0].options);
+    expect(worker.calls.jobs[1].options.heldFocusShiftMm).toBe(main.focus!.appliedShiftMm);
+    expect(await screen.findByText(/^f\/8, wide-open plane .*\(thin lines\)$/)).toBeTruthy();
+    fireEvent.click(screen.getByRole("checkbox", { name: /Show diagnostic estimates/ }));
+    fireEvent.change(screen.getByRole("combobox", { name: "f/8 comparison image plane" }), {
+      target: { value: "refocus" },
+    });
+    expect(screen.queryByText(/^f\/8, wide-open plane .*\(thin lines\)$/)).toBeNull();
+    expect((screen.getByRole("checkbox", { name: /Show diagnostic estimates/ }) as HTMLInputElement).checked).toBe(
+      false,
+    );
+    await vi.waitFor(() => expect(worker.calls.compute).toBe(3));
+    expect(worker.calls.jobs[2].options).not.toHaveProperty("heldFocusShiftMm");
+    expect(await screen.findByText(/^f\/8, refocused .*from wide-open plane.*\(thin lines\)$/)).toBeTruthy();
+    act(() => worker.finish());
+    await vi.waitFor(() => expect(screen.queryByText(/Calculating…/)).toBeNull());
+    fireEvent.click(screen.getByRole("button", { name: "Compare f/8" }));
+    expect(screen.queryByRole("combobox", { name: "f/8 comparison image plane" })).toBeNull();
+    expect(screen.queryByText(/thin lines/)).toBeNull();
+    expect(screen.queryByRole("columnheader", { name: "Aperture / image plane" })).toBeNull();
+  });
+  it("waits for the refreshed main focus when a held comparison's aperture changes", async () => {
+    localStorage.setItem(
+      MTF_PREFERENCES_KEY,
+      JSON.stringify({ compareF8: true, comparisonFocus: "hold", spectrum: "reference" }),
+    );
+    resetMtfPreferencesCache();
+    const worker = stubWorker({ progress: true, target: focusedState });
+    const tab = (stop: number) => (
+      <MtfTab
+        L={focusedL}
+        t={mockTheme}
+        preparedState={focusedState}
+        currentEPSD={stop}
+        currentPhysStopSD={stop}
+        fNumber={2.8}
+      />
+    );
+    const { rerender } = render(tab(1));
+    await screen.findByText(/^f\/8, wide-open plane .*\(thin lines\)$/);
+    expect(worker.calls.compute).toBe(2);
+    rerender(tab(0.8));
+    expect(screen.queryByText(/^f\/8, wide-open plane .*\(thin lines\)$/)).toBeNull();
+    expect(screen.getByText(/f\/8 comparison: waiting/)).toBeTruthy();
+    await vi.waitFor(() => expect(worker.calls.compute).toBe(4));
+    const refreshed = memoizedMtf(focusedState, worker.calls.jobs[2].options).focus!;
+    expect(worker.calls.jobs[2].options.stopSemiDiameterMm).toBe(0.8);
+    expect(worker.calls.jobs[3].options.heldFocusShiftMm).toBe(refreshed.appliedShiftMm);
+    expect(worker.calls.jobs[3].options.heldFocusShiftMm).not.toBe(worker.calls.jobs[1].options.heldFocusShiftMm);
+    act(() => worker.finish());
+    await vi.waitFor(() => expect(screen.queryByText(/Calculating…/)).toBeNull());
   });
 });

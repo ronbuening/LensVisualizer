@@ -12,6 +12,9 @@ interface MtfFieldSummaryProps {
   t: Theme;
   diagnostic?: boolean;
   stale?: boolean;
+  comparison?: MtfResult | null;
+  comparisonLabel?: string;
+  mainLabel?: string;
 }
 
 export default function MtfFieldSummary({
@@ -20,12 +23,15 @@ export default function MtfFieldSummary({
   t,
   diagnostic = false,
   stale = false,
+  comparison = null,
+  comparisonLabel = "f/8",
+  mainLabel = "Main aperture",
 }: MtfFieldSummaryProps) {
   const [copyStatus, setCopyStatus] = useState<string | null>(null);
   const copy = async () => {
     if (stale) return;
     try {
-      await navigator.clipboard.writeText(mtfCsv(result, frequencies, diagnostic));
+      await navigator.clipboard.writeText(mtfCsv(result, frequencies, diagnostic, comparison));
       setCopyStatus("Copied");
     } catch {
       setCopyStatus("Copy unavailable in this browser");
@@ -49,7 +55,15 @@ export default function MtfFieldSummary({
           .join(" · ")}
       </summary>
       {stale ? <p>Previous settings: values are updating. CSV export is disabled.</p> : null}
-      <MtfValueTable result={result} frequencies={frequencies} t={t} diagnostic={diagnostic} />
+      <MtfValueTable
+        result={result}
+        frequencies={frequencies}
+        t={t}
+        diagnostic={diagnostic}
+        comparison={comparison}
+        comparisonLabel={comparisonLabel}
+        mainLabel={mainLabel}
+      />
       <div style={{ display: "flex", alignItems: "center", gap: 8, marginTop: 6 }}>
         <button
           type="button"

@@ -226,7 +226,11 @@ with 2 % of the flux ignored at each end, so a stray ray cannot stretch its step
 virtual crossing of a ray that is already diverging. No candidate plane lies in front of the rearmost point of the
 last surface (`mtfNearestImagePlaneZ`): gaps of hundredths of a millimetre exist, and a ray cannot land on a plane it
 has passed. It is always reported as a
-diagnostic, and `focus: "best-axial"` (the tab's default) applies the shift to every field. `mtfImagePlaneOffset` (`mtfFocus.ts`) also
+diagnostic, and `focus: "best-axial"` (the tab's default) applies the shift to every field.
+An optional `heldFocusShiftMm` overrides focus selection with an exact shift from the authored plane for every field;
+`MtfFocus.mode` is `held`, while the requested mode and best-axial diagnostic remain reported. Nonfinite shifts and
+planes in front of `mtfNearestImagePlaneZ` are rejected. Field targets stay solved on the authored plane.
+`mtfImagePlaneOffset` (`mtfFocus.ts`) also
 compares the authored plane with the prescription's paraxial focus at infinity: beyond `MTF_IMAGE_PLANE_DEPTHS` (10)
 depths of focus, 2λN² at the d line and the open f-number, the plane is flagged as inconsistent lens data.
 `focus: "auto"` applies best axial focus only to flagged lenses and keeps the design plane otherwise, so the
@@ -275,7 +279,13 @@ example is not proven to be the production lens. The kernels are checked against
 lens has been compared with another tool.
 
 The MTF tab reuses `analysisContext.request`, or memoizes a standalone request from prepared geometry, aperture and
-EFL. Its f/8 comparison creates a separate request with scaled aperture radii. The hook serializes only slider and
+EFL. Its f/8 comparison creates a separate request with scaled aperture radii, reports its own progress and errors,
+and labels the applied plane and refocus shift relative to the main aperture. The comparison follows the selected
+focus policy independently by default; a persisted control can instead hold the main result's image plane, starting
+once its focus is available on the first partial result. Held shifts are part of both worker cache keys.
+The comparison shares the chart's diagnostic disclosure policy, including faded out-of-band frequency segments,
+and adds aperture-labelled table rows and appended CSV columns without changing the main CSV columns.
+The hook serializes only slider and
 aperture controls plus MTF settings, so chart-only changes retain the same computation key. MTF is worker-driven and
 has no lazy analysis-context accessor or job-table entry. Single-lens and comparison drawers share this renderer.
 The tab lazily creates a worker from the runtime's unexpanded canonical prescription, provenance and optional

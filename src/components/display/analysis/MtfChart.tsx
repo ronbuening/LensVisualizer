@@ -201,6 +201,18 @@ export default function MtfChart({
                   strokeWidth={1.1}
                   strokeDasharray={TANGENTIAL_DASH}
                 />
+                {s.sagittalDim ? (
+                  <g opacity={DIM_OPACITY}>
+                    <path d={gapPath(s.sagittalDim, xScale, yScale)} fill="none" stroke={s.color} strokeWidth={1.1} />
+                    <path
+                      d={gapPath(s.tangentialDim ?? [], xScale, yScale)}
+                      fill="none"
+                      stroke={s.color}
+                      strokeWidth={1.1}
+                      strokeDasharray={TANGENTIAL_DASH}
+                    />
+                  </g>
+                ) : null}
               </g>
             ))}
             {series.map((s) => (
