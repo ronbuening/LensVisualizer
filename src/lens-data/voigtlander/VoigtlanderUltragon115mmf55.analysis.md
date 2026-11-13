@@ -24,23 +24,33 @@ Five spherical elements form four groups: two front singlets, a rear cemented do
 
 ### L1 — Positive Meniscus
 
-nd = 1.62095, νd = 60.3. Glass: Unmatched. f = +86.33 mm in isolation. The front collector is concave toward the diaphragm.
+nd = 1.62095, νd = 60.3. Glass: N-SK16 (Schott spectral proxy; supplier and melt unspecified). f = +86.33 mm in isolation. The front collector is concave toward the diaphragm.
 
 ### L2 — Negative Meniscus
 
-nd = 1.72800, νd = 28.4. Glass: Unmatched. f = −147.10 mm in isolation. This higher-dispersion negative singlet faces the diaphragm.
+nd = 1.72800, νd = 28.4. Glass: SF10 (Schott spectral proxy; supplier and melt unspecified). f = −147.10 mm in isolation. This higher-dispersion negative singlet faces the diaphragm.
 
 ### L3/L4 — Cemented Doublet C1
 
-L3: nd = 1.51443, νd = 54.7, f = −35.98 mm in isolation. L4: nd = 1.60921, νd = 58.8, f = +24.23 mm in isolation. Both glasses are Unmatched. Biconcave L3 and biconvex L4 form a +57.22 mm doublet. Their 0.09478 index step exceeds the patent's 0.050 minimum at the converging interface (PDF pp. 2–3).
+L3: nd = 1.51443, νd = 54.7. Glass: KF3 (Sumita spectral proxy; supplier and melt unspecified). f = −35.98 mm in isolation. L4: nd = 1.60921, νd = 58.8. Glass: SK3 (Sumita spectral proxy; supplier and melt unspecified). f = +24.23 mm in isolation. Biconcave L3 and biconvex L4 form a +57.22 mm doublet. Their 0.09478 index step exceeds the patent's 0.050 minimum at the converging interface (PDF pp. 2–3).
 
 ### L5 — Negative Meniscus
 
-nd = 1.56866, νd = 56.2. Glass: Unmatched. f = −85.21 mm in isolation. This negative singlet completes the rear cell.
+nd = 1.56866, νd = 56.2. Glass: BAC4 (Hoya spectral proxy; supplier and melt unspecified). f = −85.21 mm in isolation. This negative singlet completes the rear cell.
 
 ## Glass Identification and Selection
 
-The patent specifies yellow helium-d indices and Abbe numbers (PDF p. 3). All five pairs remain Unmatched: no catalog row agrees within 0.0001 in nd and 0.15 in νd at printed precision. Melt, full dispersion and composition are unknown.
+The patent specifies yellow helium-d indices and Abbe numbers (PDF p. 3). The model retains those printed pairs and uses the following catalog rows only as spectral proxies. Differences are catalog minus patent.
+
+| Element | Spectral proxy (catalog vendor) | Catalog nd / νd | Δnd / Δνd |
+| --- | --- | --- | --- |
+| L1 | N-SK16 (Schott) | 1.62041 / 60.32 | −0.00054 / +0.02 |
+| L2 | SF10 (Schott) | 1.72825 / 28.41 | +0.00025 / +0.01 |
+| L3 | KF3 (Sumita) | 1.51454 / 54.60 | +0.00011 / −0.10 |
+| L4 | SK3 (Sumita) | 1.60881 / 58.90 | −0.00040 / +0.10 |
+| L5 | BAC4 (Hoya) | 1.56883 / 56.04 | +0.00017 / −0.16 |
+
+Each row lies within the site's proxy window of about 0.25 in Abbe number and about 0.002 in index. The engine keeps the printed index at the element's helium-d reference line and borrows only the catalog row's wavelength dependence; the printed nd/νd stay unchanged. These are not exact glass matches and do not identify the historical glass, supplier, melt or composition. Full historical dispersion remains unknown.
 
 Cröll links L4 to the Apo-Lanthar front glass and reports a yellowish, slightly radioactive rear cell. This fits Example II's 1.65953/57.0; Example I specifies an ordinary heavy-crown pair, 1.60921/58.8. Neither radioactivity nor anomalous dispersion is assigned here.
 
@@ -56,11 +66,11 @@ Calculated EFL is 115.0039016509 mm (+0.00339274%), at f/5.5, with total track 1
 
 The patent locates the diaphragm inside a2 without dimensions. The model splits a2 equally at 0.06534/0.06534 in patent units; derived iris radius is 8.776238254 mm at f/5.5.
 
-Body semi-diameters are inferred as 20/15/11.5/15 mm, common across the doublet. These and the midpoint stop are modeling choices.
+Body semi-diameters are inferred as 20/15/12.31/15.3 mm, with common 12.31 mm rims at S5–S7 and 15.3 mm rims at S8/S9. Figs. 1–2 support their relative heights; local axial spacings disagree with Example I, so the drawings do not establish precise clear diameters. The doublet and rear-singlet rims are the least that clear the approximately 43.2° chief ray to the 5×7 corner. The doublet approaches L4's knife edge: a common 12.4 mm rim gives negative edge thickness. The midpoint stop remains an estimate.
 
 ## Model Scope and Field Limitations
 
-The patent's 85° sentence describes Example II (PDF p. 3), not Example I. Declared model half-field is 42.5°. With retained rims, 4×5 geometric coverage is complete; 5×7 reaches 106.69/109.25 mm of the corner semi-diagonal, about 98%. The 43.2202° corner clips at surfaces 6, 7 and 9. This does not measure image quality, throughput or MTF.
+The patent's 85° sentence describes Example II (PDF p. 3), not Example I. The model declares an 86.5° full field and a 43.25° maximum trace half-field. Its approximately 43.2° chief ray reaches the full 109.25 mm 5×7 corner semi-diagonal, giving 100% geometric field coverage, consistent with the official 5×7 coverage Cröll lists; geometric 4×5 coverage is also complete. At the 43.2202° corner, chief-ray heights at S6, S7 and S9 are 12.2778, 12.3013 and 15.2586 mm, within the inferred clear radii of 12.31, 12.31 and 15.3 mm. This establishes corner chief-ray clearance, not full-pupil transmission, photometric relative illumination, image quality or MTF.
 
 ## Sources
 

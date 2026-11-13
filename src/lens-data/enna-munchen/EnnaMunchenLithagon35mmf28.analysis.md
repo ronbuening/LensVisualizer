@@ -69,9 +69,9 @@ The brochure gives about 1½ feet (approximately 0.46 m) close focus for the sta
 
 ## Aperture and Iris Assumptions
 
-The front element uses 19 mm semi-diameters and the rear assembly uses 9.5 mm, inferred with a 2:1 height ratio and constrained by surface geometry. They are not published clear apertures. The patent figure suggests about 16 mm front and 8.5–8.9 mm rear, making the modeled rims about 10–20% larger.
+The inferred semi-diameters are 16/14.2 mm for the front meniscus, 9.5 mm for L2, 8.5 mm for L3, 7.9 mm for L4 and 9.3 mm throughout the rear cemented pair. The sole patent figure supplies relative heights and a beveled front outline; its exaggerated axial thicknesses prevent an exact dimensional reading. L2, the front meniscus's rear face and the cemented pair retain more aperture than the schematic proportions suggest to preserve peripheral transmission. No mechanical lands or published clear diameters are modeled.
 
-Neither patent nor brochure supplies a reliable iris mark or coordinate. The inferred iris lies at the midpoint of l3, between L3 and L4: 1.9775 mm on each side. Surface-edge clearances to the iris plane are 1.047761 mm and 0.576071 mm. The f/2.5 design gives a physical iris radius of 7.246861836 mm, a calculated value rather than a published diameter.
+Neither patent nor brochure supplies a reliable iris mark or coordinate. The inferred iris lies at the midpoint of l3, between L3 and L4: 1.9775 mm on each side. Surface-edge clearances to the iris plane are 1.234624 mm and 1.014939 mm. The f/2.5 design gives a physical iris radius of 7.246861836 mm, a calculated value rather than a published diameter.
 
 The model opens to the patent's f/2.5; the retail f/2.8–22 aperture range follows Enna's brochure. The model does not establish measured performance at every setting.
 
@@ -79,7 +79,7 @@ The model opens to the patent's f/2.5; the retail f/2.8–22 aperture range foll
 
 The calculated EFL is 34.996580090 mm at f/2.5, approximately 0.01% below the nominal 35 mm. The printed image-plane gap is retained.
 
-Peripheral pupil clipping remains possible despite clear chief-ray coverage of the 36 × 24 mm frame. The inferred stop and rims limit comparison with production vignetting. No measured MTF or production tolerances are supplied by these sources.
+Peripheral pupil clipping remains despite clear chief-ray coverage of the 36 × 24 mm frame. Calculated geometric pupil transmission is 62.5% at the 32.36° full-frame corner at f/2.5; this excludes cosine falloff and measured production illumination. The inferred stop and rims limit comparison with production vignetting. No measured MTF or production tolerances are supplied by these sources.
 
 ## Sources
 

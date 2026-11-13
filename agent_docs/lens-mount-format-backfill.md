@@ -8,15 +8,15 @@ the fields unset and add a note here until a source check resolves it.
 ## Current Coverage
 
 - Total lens data files: **1120**
-- Files with both `lensMounts` and `imageFormat`: **1071**
-- Files missing `lensMounts`: **40** (27 public lenses and 13 hidden reference fixtures)
+- Files with both `lensMounts` and `imageFormat`: **1073**
+- Files missing `lensMounts`: **38** (25 public lenses and 13 hidden reference fixtures)
 - Files missing `imageFormat`: **35** (23 public lenses and 12 hidden reference fixtures)
 - Files missing both fields: **26**
 - Formats currently in use: `1-1.7-inch-type`, `1-1.8-inch-type`, `1-2.3-inch-type`, `1-2.55-inch-type`,
   `1-2.7-inch-type`, `1-inch-type`, `1.25-inch-tube`, `1.5-inch-type`, `110`, `135-full-frame`,
   `16mm-cinema`, `2-3-inch-type`, `35mm-cinema`, `44x33`, `4x5`, `5x7`, `645`, `6x6`, `6x7`, `6x9`, `8x10`,
   `aps-c`, `aps-film`, `four-thirds`, `half-frame-135`, `normal-8`, `super-35-1.9`, `super-35-cinema`, `super-8`
-- Mounts currently in use: `agfa-ambi-silette`, `alpa`, `arri-pl`, `arri-standard`, `c-mount`, `canon-7-bayonet`, `canon-ef`, `canon-ef-m`, `canon-ef-s`, `canon-fd`, `canon-fl`, `canon-r`, `canon-rf`, `contax-rf`, `contax-yashica`, `d-mount`, `dkl`, `enlarging-lens`, `exakta`, `fixed-lens-camera`, `four-thirds`, `fujica-x`, `fujifilm-g`, `fujifilm-x`, `graflex-xl`, `hasselblad-h`, `hasselblad-v`, `hasselblad-xcd`, `konica-ar`, `konica-f`, `l-mount`, `large-format-lens-board`, `leica-ltm`, `leica-m`, `leica-r`, `leica-visoflex`, `m42`, `mamiya-645`, `mamiya-7`, `mamiya-nc`, `mamiya-rb67`, `mamiya-ze`, `micro-four-thirds`, `minolta-sr`, `miranda-bayonet`, `nikon-1`, `nikon-f`, `nikon-ix`, `nikon-s`, `nikon-z`, `nikonos`, `nikonos-rs`, `olympus-om`, `olympus-pen-f`, `pentacon-six`, `pentax-110`, `pentax-645`, `pentax-67`, `pentax-k`, `pentax-q`, `praktica-b`, `praktina`, `projection-lens`, `samsung-nx`, `sigma-sa`, `sony-a`, `sony-fe`, `voigtlander-prominent`, `werra`, `zeiss-contaflex`, `zeiss-contarex`
+- Mounts currently in use: `agfa-ambi-silette`, `alpa`, `argus-c`, `arri-pl`, `arri-standard`, `c-mount`, `canon-7-bayonet`, `canon-ef`, `canon-ef-m`, `canon-ef-s`, `canon-fd`, `canon-fl`, `canon-r`, `canon-rf`, `contax-rf`, `contax-yashica`, `d-mount`, `dkl`, `enlarging-lens`, `exakta`, `fixed-lens-camera`, `four-thirds`, `fujica-x`, `fujifilm-g`, `fujifilm-x`, `graflex-xl`, `hasselblad-h`, `hasselblad-v`, `hasselblad-xcd`, `konica-ar`, `konica-f`, `l-mount`, `large-format-lens-board`, `leica-ltm`, `leica-m`, `leica-r`, `leica-visoflex`, `m42`, `mamiya-645`, `mamiya-7`, `mamiya-nc`, `mamiya-rb67`, `mamiya-ze`, `micro-four-thirds`, `minolta-sr`, `miranda-bayonet`, `nikon-1`, `nikon-f`, `nikon-ix`, `nikon-s`, `nikon-z`, `nikonos`, `nikonos-rs`, `olympus-om`, `olympus-pen-f`, `pentacon-six`, `pentax-110`, `pentax-645`, `pentax-67`, `pentax-k`, `pentax-q`, `praktica-b`, `praktina`, `projection-lens`, `samsung-nx`, `sigma-sa`, `sony-a`, `sony-fe`, `voigtlander-prominent`, `werra`, `wrayflex`, `zeiss-contaflex`, `zeiss-contarex`
 
 ## Source-Review Queue
 
@@ -49,8 +49,6 @@ with remaining compatibility questions explained in the lens analysis.
 | Zeiss S-Biogon 40mm f/5.6 | Microfilm reduction lens installed in the Zeiss Mikrobox recorder. The sources give only an M50 × 0.75 rear thread, an industrial thread with no canonical mount id; do not assign a camera mount from the Biogon family name. |
 | Voigtländer Cine-Tele-Anastigmat 100mm f/4.5 | No manufacturer or period source names this product. Voigtländer’s catalogue Nr. 1709.7.25 and its price list of about 1930 offer only the Tele-Dynar f/6.3 as a telephoto, so no camera fitting can be tied to the research-correlated name. |
 | Voigtländer Tele-Dynar 100mm f/6.3 | The same two lists sell the Tele-Dynar only at 14–32 cm, as cells for the shutters of Voigtländer cameras or in Compur, shutterless and helical mountings. No 100 mm production variant exists to select, and none of those fittings is a canonical mount. |
-| Enna München Tele-Sandmar 100mm f/4.5 | Made for the Argus C3 rangefinder, whose lens bayonet has no canonical mount id. |
-| Wray Unilite 50mm f/2 | Wrayflex screw mount (M41.2 × 26 tpi per klassik-cameras); no canonical mount id exists. |
 
 ### Hidden reference fixtures
 

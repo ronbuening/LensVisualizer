@@ -7,6 +7,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Eight radii, seven axial intervals and four sodium nD / C–F pairs are transcribed;
  * νD is derived as (nD − 1)/(nF − nC). The stop midpoint (2.7/2.7 mm), its
  * f/4.5-derived radius and all 11.5 mm rims are inferred, not printed dimensions.
+ * Equal square-cut rims agree with the schematic on PDF page 1 within its
+ * measurement uncertainty; real-ray checks clear the nominal axial beam and
+ * 6x9 corner chief ray. The drawing is not a calibrated aperture specification.
  * The terminal 88.708856474 mm interval is calculated infinity back focus.
  * Smith identifies this prescription as the Dogmar; production variants and
  * factory glass melts are not established by the patent.
@@ -57,7 +60,7 @@ const LENS_DATA = {
       "nd": 1.61412,
       "vd": 56.341284403669725,
       "indexReference": "D",
-      "glass": "Unmatched (nD 1.61412 / V 56.3412844)"
+      "glass": "BACD6 (spectral proxy; patent nD 1.61412 / V 56.3412844; supplier and melt unspecified)"
     },
     {
       "id": 2,
@@ -68,7 +71,7 @@ const LENS_DATA = {
       "nd": 1.5689,
       "vd": 42.61423220973782,
       "indexReference": "D",
-      "glass": "Unmatched (nD 1.56890 / V 42.6142322)"
+      "glass": "S-TIL26 (spectral proxy; patent nD 1.56890 / V 42.6142322; supplier and melt unspecified)"
     },
     {
       "id": 3,
@@ -90,7 +93,7 @@ const LENS_DATA = {
       "nd": 1.61412,
       "vd": 56.341284403669725,
       "indexReference": "D",
-      "glass": "Unmatched (nD 1.61412 / V 56.3412844)"
+      "glass": "BACD6 (spectral proxy; patent nD 1.61412 / V 56.3412844; supplier and melt unspecified)"
     }
   ],
   "surfaces": [

@@ -94,7 +94,7 @@ To isolate the optics, the four audits plus built.mjs/probe.mjs/lsa.mjs were run
 - Auxiliary clearap.mjs --Y 21.65 --scan 60 finds the corner chief ray, but its independent axial Newton trace fails before the stop (stopR NaN; upper/lower no-ray-found). Its zero-filled later heights are not evidence of axial or bundle clearance; the native aperture audit is the axial result. No full-bundle clearance claim is made from that helper.
 - Scoped Prettier check passes for all three edited files; git diff --check is clean. No full tests, typecheck, lint, build, generation, server, git mutation or deployment was performed.
 
-Closed: the coordinator resolved the structured-assignee conflict, visibility, name and filename/key updates. Element shapes, glass labels and remaining analysis wording are addressed below. Open: register a Wrayflex mount taxonomy id (the validator cites M41.2 ×26 tpi); lensMounts stays omitted. Figure-derived rims and drawing treatment of mechanical lands remain approximate. Full optical supplier/factory identity, finite-focus mechanics, full-aperture corner performance, browser rendering and deployment remain unverified.
+Closed: the coordinator resolved the structured-assignee conflict, visibility, name and filename/key updates. Element shapes, glass labels and remaining analysis wording are addressed below. Open: register a Wrayflex mount taxonomy id (the validator cites M41.2 ×26 tpi); lensMounts stays omitted. Figure-derived optical rims remain approximate; the omitted mechanical-land treatment is closed by the semi-diameter pass below. Full optical supplier/factory identity, finite-focus mechanics, full-aperture corner performance, browser rendering and deployment remain unverified. (closed 2026-11-13: the canonical wrayflex mount is registered and catalog.lensMounts is ["wrayflex"], M41.2 × 26 tpi screw with a 42.05 mm flange distance.)
 
 ## 2026-11-13 — Cleanup and wording pass
 
@@ -108,4 +108,92 @@ Analysis: the title and identification now use 50mm; obsolete display-choice dis
 
 Before → after, identical: EFL 49.99814539945887 → 49.99814539945887 mm; FOPEN 2 → 2; halfField 23 → 23°; stop radius 7.082180177444252 → 7.082180177444252 mm; paraxial BFD 22.168895344 → 22.168895344 mm (stored 22.168895 → 22.168895 mm); total track 59.603895 → 59.603895 mm. The complete built and probe outputs, including both focus keyframes and isolated-element powers, are identical. Direct worktree audit:surface reports “OK — no validation errors”. Direct audit:aperture reports one station within 3%, with zero rim limits, trace, iris or failed stations. Direct audit:field-coverage --all reports one station in the 90–99% band, zero unsolved and zero skipped.
 
-Open: no canonical Wrayflex mount id exists, so lensMounts remains absent. The declared 23° half-field is smaller than the approximately 23.4° geometric 24 × 36 mm corner angle; the unchanged Table B result is 20.944480 mm image height, 96.741% of the nominal 21.65 mm corner. Rims remain Figure 2 estimates, including the distinction between optical rims and mechanical lands; no rim or stop change was made. Historical glass supplier, melt and exact factory prescription remain unidentified. Finite-focus mechanics, full-aperture corner quality, throughput and MTF remain unestablished. Browser rendering remains unverified: shot.sh produced thermal-monitor/DNS errors and no screenshot; that line was stopped without retry. Full application checks and deployment remain deferred by scope. An optional comparison-script write was refused with “operation not permitted” because its command mistakenly used the main checkout as cwd; that check was stopped without retry or workaround. The required built/probe comparisons and worktree audits had already passed independently. Prettier was skipped as required by the addendum; no downloads, generation, dev server, git mutation, full tests, typecheck, lint or build were run.
+Open: no canonical Wrayflex mount id exists, so lensMounts remains absent. The declared 23° half-field is smaller than the approximately 23.4° geometric 24 × 36 mm corner angle; the unchanged Table B result is 20.944480 mm image height, 96.741% of the nominal 21.65 mm corner. Rims remain Figure 2 estimates; their mechanical-land treatment is closed by the semi-diameter pass below. No rim or stop change was made during this cleanup entry. Historical glass supplier, melt and exact factory prescription remain unidentified. Finite-focus mechanics, full-aperture corner quality, throughput and MTF remain unestablished. Browser rendering remains unverified: shot.sh produced thermal-monitor/DNS errors and no screenshot; that line was stopped without retry. Full application checks and deployment remain deferred by scope. An optional comparison-script write was refused with “operation not permitted” because its command mistakenly used the main checkout as cwd; that check was stopped without retry or workaround. The required built/probe comparisons and worktree audits had already passed independently. Prettier was skipped as required by the addendum; no downloads, generation, dev server, git mutation, full tests, typecheck, lint or build were run. (closed 2026-11-13: the missing mount and declared-field shortfall are resolved by catalog.lensMounts ["wrayflex"] and projection fullFieldDeg 47.4 / maxTraceFieldDeg 23.7; nominal-corner coverage is approximately 99.9%. Other limitations on this line remain.)
+
+## 2026-11-13 — Semi-diameter pass against the patent figure
+
+Source: local US2499264A.pdf, PDF page 1, Figure 2, with the explanatory text on PDF page 2 and Table B on PDF page 3. The text assigns Figures 1/2 to the two embodiments and Tables A/B to their numerical prescriptions. Figure 2's thick rear positive singlet agrees with Table B, not Table A. Lengths remain uniformly scaled from normalized f = 1 by 50. No prescription, glass, metadata or iris parameter changed in this pass.
+
+### Scale and optical endpoints
+
+The scan is a 2320 × 3408 native raster embedded on an equally sized PDF page in points; rendering at 72 dpi recovers that native grid. Larger dpi does not supply independent source detail. A 144-dpi crop was used for visual comparison. Coordinates below refer to the native raster, not the earlier 1996-pixel scratch preview. The optical axis slopes about 12 px over 609 px (1.13°); local axis heights and upper/lower endpoints were used rather than a single horizontal row.
+
+S1/S9 vertices are approximately x = 829/1438: 609 px for the 37.435 mm optical track, or 16.27 native px/mm. The independent S3/S9 span is about 520 px for 31.605 mm (16.45 px/mm), and S5/S9 about 421 px for 25.600 mm (16.45 px/mm). Resolvable element thicknesses agree with the aggregate calibration within about 6%; the 0.760 mm cemented layer is too thin to calibrate independently at this line width. Circle fits on clean upper arcs provide the transverse check: R1 443.89 px / 26.865 mm = 16.52 px/mm, R3 208.10 / 12.525 = 16.62, R7 258.91 / 15.935 = 16.25, and R9 463.94 / 28.910 = 16.05. Fit residuals are 0.21–0.36 native px. Weak faces are schematic and do not support exact curvature recovery. This supports approximate absolute rim readings as well as relative proportions, not factory clear diameters.
+
+| Surface | Optical sd before → after, mm | Approximate figure sd, mm | Figure/stored | Decision |
+| --- | --- | ---: | ---: | --- |
+| S1 | 17.6 → 17.6 | 17.5 | 0.99 | Retain, within scan/figure noise |
+| S2 | 17.6 → 17.6 | 17.5 | 0.99 | Retain equal-height front singlet rim |
+| S3 | 10.8 → 10.8 | 10.8 | 1.00 | Retain doublet outer rim |
+| S4 | 10.8 → 10.8 | 10.8 | 1.00 | Retain cemented junction; no land here |
+| S5 | 8.0 → 8.0 | 8.0 | 1.00 | Retain curved endpoint, add opaque extension |
+| S6 | 8.1 → 8.1 | 7.9–8.1 | 0.98–1.00 | Retain curved endpoint, add opaque extension |
+| S7 | 10.9 → 10.9 | 10.8–10.9 | 0.99–1.00 | Retain rear meniscus outer rim |
+| S8 | 14.6 → 14.6 | 14.5–14.6 | 0.99–1.00 | Retain rear singlet rim |
+| S9 | 14.6 → 14.6 | 14.5–14.6 | 0.99–1.00 | Retain equal-height rear singlet rim |
+
+Figure 2 ends S5 and S6 in vertical mechanical lands, not continued spherical caps and not diagonal joins to the opposite rim. The profiler finds the upper S5 land at native x = 1087–1092, y ≈ 1981–2035, and S6 at x = 1189–1191, y ≈ 1981–2039. Both lower shoulders are also visible. Local curved half-heights are about 130 px and outer half-heights about 176 px. No printed clear diameter or patent ray fan supplies a competing aperture authority.
+
+| Surface | Drawn outer semi-diameter before → after, mm | Authored change | Evidence |
+| --- | --- | --- | --- |
+| S5 | 8.0 → 10.8 | rimExtensionSd absent → 10.8 | Square land reaches the S3/S4 outer edge; optical sd remains 8.0 |
+| S6 | 8.1 → 10.9 | rimExtensionSd absent → 10.9 | Square land reaches S7's outer edge; optical sd remains 8.1 |
+
+The lands are 2.8 mm tall, well above the 0.1 mm minimum. Neither is cemented. Both terminate at the existing optical cap sag; neither alters optical refraction or transmits rays outside the cap. No rim cut or geometry tolerance override is required. The matched-scale overlay shows the restored square shoulders in place of the baseline's diagonal joins; small curve deviations elsewhere are retained as figure/prescription differences.
+
+### Clearance, field and illumination
+
+The complete candidate passed the surface audit before editing. The delivered file also reports “OK — no validation errors”; aperture audit gives traced f/1.999999998, limiter STO, with zero rim, trace, iris or failed stations. Image-circle audit checks one lens, with zero undersized and zero skipped. EFL remains 49.998145399 mm, FOPEN 2 → 2, declared half-field 23 → 23°, tracing half-field 25.700983417 → 25.700983417°, stop radius 7.082180177 → 7.082180177 mm and total track 59.603895 → 59.603895 mm. The complete built output is unchanged.
+
+An independent native engine trace of the stated entrance-pupil-radius ray reaches all surfaces without a tracing failure: S1–S9 heights are 12.49954 / 11.74165 / 10.54191 / 9.79607 / 7.92064 / 5.96645 / 6.54089 / 6.40582 / 5.95909 mm. The smallest optical rim margin on that ray is S5, 0.07936 mm. This diagnostic ignores the iris aperture; the aperture audit above determines the accepted on-axis beam. The auxiliary clearap and clearap2 Newton solvers still return stopR NaN and no upper/lower bundle rays; their later zero-filled axial values are not evidence. Their independently solved corner chief ray is consistent with the native field audit.
+
+The declared 23° field reaches 20.944479686 mm, 96.741245662% of the nominal 21.65 mm corner, before and after. Diagnosis is “declared”, rim null, cornerClips empty; the true nominal corner chief ray is already clear at 23.735870339°. No surface blocks that corner. S3 is the limiting surface of the engine's broader paraxial field estimate near 25.7°, and has about 2.09 mm chief-ray rim margin at the corner. Keeping the figure-supported caps and adding the lands therefore leaves declared coverage at 96.741%; it cannot change an authored angular limit. A diagnostic field request at the corner reaches image height 21.650000 mm without changing the stored projection. No rim enlargement is warranted to obtain that ray.
+
+The full-pupil 64-cell lattice (3228 samples per field) gives these identical before/after values:
+
+| Field | Geometric transmission before → after | Relative illumination before → after |
+| --- | --- | --- |
+| Declared edge, 23° | 49.8141% → 49.8141% | 35.8564% → 35.8564% |
+| Nominal full-frame corner, 23.735870339° | 42.8129% → 42.8129% | 29.8622% → 29.8622% |
+
+At the nominal corner, 1382 rays transmit, 726 are blocked before the stop, and zero samples are unaimed or failed. Relative illumination is the engine's geometric Rimmer integral, not a measured production value. Coating/bulk losses are excluded. Final rimcost --loo gives zero loss at every sampled field (0 / 2.875 / 5.75 / 8.625 / 11.5 / 14.375 / 17.25 / 20.125 / 23°); restoring either land separately changes transmission by zero points. This infinity-only prime has no other printed focus or zoom state.
+
+Iris recommendation: none. The existing S5-to-iris and iris-to-S6 optical clearances remain 3.070224127 / 3.070223450 mm, including the flat extensions at those same cap-end axial positions. The authored 13.940 mm total central air gap is preserved. A wider declared projection would be a separate source/metadata decision for the coordinator, not an iris or SD repair.
+
+### Visual evidence and remaining limits
+
+The required model sketch was rendered and viewed at infinity. That helper joins rims directly and omits lands; a supplementary land-aware model and the actual matched-scale patent overlay were also rendered and viewed. Overlay: /private/tmp/claude-501/-Users-ronbuening--claude-spares-spare-EIkiKm/8d989648-1a4e-43f9-bdb4-c4cbb0d8c850/scratchpad/sd/unilite/overlay.png. The land-aware model is lands-model.png in the same directory. Live browser review is deferred to the coordinator as required by SD_ADDENDUM_1123.
+
+The supplied collector-hosted klassik-cameras section was viewed: five elements/four groups, L2+L3 cemented, the same square inner shoulders and thick biconvex L5 agree with Figure 2. It closely reproduces the patent proportions and is not independently authenticated manufacturer evidence. No asphere or special-glass position is marked. The Wrayflex Guide's Unilite text was viewed and supports the 46° diagonal field; it does not publish per-surface apertures. No new maker diagram was downloaded.
+
+Scoped Prettier write/check commands completed, but the repository's .prettierignore excludes src/lens-data/ and Markdown, so these commands did not format the triad. Narrow hand edits preserve its existing layout. The three-file git diff --check is clean; the data diff contains only the aperture header and the two rimExtensionSd fields.
+
+PDF page 2 names Charles Gorrie Wynne, assignor to Wray (Optical Works) Limited; US 2,499,264, patented 28 February 1950, application 7 February 1945, Great Britain priority 25 February 1944. No new name discrepancy was found. The missing canonical Wrayflex mount identifier remains open. Rims remain inferred; factory prescription, historical glass identity, finite-focus mechanics, measured throughput, corner image quality and MTF remain unestablished. No sandbox/tool refusal occurred in this pass. Full application gates, generation, servers, git mutations and deployment were not run. (closed 2026-11-13: the canonical wrayflex mount identifier is registered and assigned; the other limitations on this line remain.)
+
+## 2026-11-13 — Glass proxies and catalog metadata
+
+The pre-relabel comparison is `.lens-work/base1124glass/WrayUnilite50mmf2.data.ts` against the current worktree prescription. Only the two assigned Markdown companions are edited here; the data file is read-only.
+
+| Element | Glass label old → new | Catalog nd / νd | Δnd / Δνd (catalog − printed) |
+| --- | --- | --- | --- |
+| L3 | Unmatched (nD 1.700 / V 30.3) → S-TIM35 (spectral proxy; patent nD 1.700 / V 30.3; supplier and melt unspecified) | Ohara 1.698947 / 30.127865 | −0.001053 / −0.172135 (about −0.0011 / −0.17) |
+| L5 | Unmatched (nD 1.621 / V 60.3) → N-SK16 (spectral proxy; patent nD 1.621 / V 60.3; supplier and melt unspecified) | Schott 1.62041 / 60.32 | −0.00059 / +0.02 |
+
+L2 stays Unmatched (nD 1.613 / V 57.6): no catalog row falls within the proxy Abbe window. L1 N-LAK9 and L4 F3 remain catalog equivalents. The spectral-proxy labels keep the printed index at the element's assumed d reference and borrow only the catalog row's wavelength dependence. Printed nd/νd stay unchanged. Both proxy rows meet the repository rule of about 0.25 in Abbe number and about 0.002 in index; neither is an exact match or an identification of historical glass, supplier or melt.
+
+`chan.mjs` ran from the worktree with its TypeScript specifier hook, baseline first and current data second. R/G/B/V correspond to C/d/F/g. Paraxial back-focus results and shifts relative to d are:
+
+| Channel | BFD before → after, mm | Focus shift vs d before → after, µm |
+| --- | --- | --- |
+| C (R) | 22.2267 → 22.2273 | +57.8 → +58.4 |
+| d (G) | 22.1689 → 22.1689 | 0.0 → 0.0 |
+| F (B) | 22.1083 → 22.1167 | −60.6 → −52.2 |
+| g (V) | 22.1267 → 22.1576 | −42.2 → −11.2 |
+
+The d-line EFL remains 49.9981 → 49.9981 mm at the helper's displayed precision, and REF focus shift remains 0.0 → 0.0 µm. These are model results from the borrowed spectral curves, not measured production chromatic performance.
+
+Catalog metadata: lensMounts omitted → ["wrayflex"], the new canonical Wrayflex taxonomy id (M41.2 × 26 tpi screw; 42.05 mm flange distance). The Wrayflex I exposes 24 × 32 mm; the Ia and II use 24 × 36 mm, matching the retained 135-full-frame format. Projection fullFieldDeg 46 → 47.4 and maxTraceFieldDeg 23 → 23.7 take nominal-corner coverage from approximately 96.7% → 99.9%. The corner chief ray already clears every optical rim; the wider declared field addresses the angular shortfall without changing optical rims or the stop. The guide's 46° remains a quoted source value; 47.4° is the model field choice for the full-frame corner. Spec “0.91 m” → “0.91 m MFD”; catalog.closeFocusM.marketing remains 0.914 m and the optical model remains infinity-only. The data header already describes the proxies and field. The historical missing-mount and field-shortfall items are closed in place above.
+
+The analysis describes the current proxy palette, Wrayflex mount, camera formats, declared field and MFD wording. Existing 23° illumination values are identified as diagnostics rather than the current declared edge. The historical approximately 23.4° geometric corner angle is distinct from the traced nominal-corner chief-ray angle of 23.735870°. Historical factory identity, finite-focus mechanics, measured throughput, corner image quality and MTF remain unestablished.
+
+Scoped Prettier write and check complete successfully. The repository ignore rules exclude Markdown and src/lens-data/, so these commands do not reformat the files. A byte comparison confirms the read-only data file is unchanged, and a line-prefix comparison confirms all 171 historical audit lines remain, with closure suffixes on only the three mount/field-status lines. No tool or edit refusal occurs during this text update. Full application checks, generation, servers and git state changes are outside this task and are not run.

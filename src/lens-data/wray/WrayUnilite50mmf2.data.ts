@@ -8,11 +8,16 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * radii, thicknesses, zero vertex gaps, inferred rims, split stop gaps, paraxial back
  * focus and isolated-element focal lengths. Indices, Abbe numbers and angles unchanged.
  * GLASS: three-decimal mean indices traced with an assumed d-line reference. L1
- * and L4 have catalog equivalents; no historical glass supplier or melt is identified.
+ * and L4 have catalog equivalents, L3 and L5 catalog spectral proxies; no historical
+ * glass supplier or melt is identified.
+ * FIELD: the 23.7° half-field reaches the 24 x 36 mm corner of the Wrayflex Ia and II;
+ * the Wrayflex Guide's rounder 46° figure falls just short of it.
  * STOP: no iris is marked in the patent figure. Its plane is inferred as the midpoint
  * between the S5 and S6 optical rims along the axis; d5 remains the printed total gap.
- * The engine derives the iris radius from f/2. Rims are inferred from Fig. 2 element
- * heights relative to axial thicknesses and clear the axial f/2 beam.
+ * The engine derives the iris radius from f/2. Optical rims are estimated from Fig. 2,
+ * checked against vertex spans and curved faces, and clear the axial f/2 beam.
+ * S5/S6 retain 8.0/8.1 mm optical caps; opaque lands extend their drawn rims to
+ * 10.8/10.9 mm, matching the square shoulders without increasing clear aperture.
  * IMAGE PLANE: the final interval is the calculated paraxial back focal distance,
  * not a patent dimension. Infinity prescription only; retail 3-foot focus is metadata.
  * The public Unilite sections agree with Fig. 2; this is not a certified factory prescription.
@@ -29,7 +34,7 @@ const LENS_DATA = {
       "5 ELEMENTS / 4 GROUPS",
       "ALL SPHERICAL",
       "f/2–22",
-      "0.91 m"
+      "0.91 m MFD"
     ],
     "elementCount": 5,
     "groupCount": 4,
@@ -41,6 +46,7 @@ const LENS_DATA = {
       "marketing": 2,
       "design": 2
     },
+    "lensMounts": ["wrayflex"],
     "imageFormat": "135-full-frame",
     "closeFocusM": {
       "marketing": 0.914
@@ -95,7 +101,7 @@ const LENS_DATA = {
       "nd": 1.7,
       "vd": 30.3,
       "indexReference": "d",
-      "glass": "Unmatched (nD 1.700 / V 30.3)",
+      "glass": "S-TIM35 (spectral proxy; patent nD 1.700 / V 30.3; supplier and melt unspecified)",
       "cemented": "C1",
       "focalLengthMm": -21.576906
     },
@@ -120,7 +126,7 @@ const LENS_DATA = {
       "nd": 1.621,
       "vd": 60.3,
       "indexReference": "d",
-      "glass": "Unmatched (nD 1.621 / V 60.3)",
+      "glass": "N-SK16 (spectral proxy; patent nD 1.621 / V 60.3; supplier and melt unspecified)",
       "focalLengthMm": 39.614175
     }
   ],
@@ -156,7 +162,8 @@ const LENS_DATA = {
       "label": "5",
       "R": 9.82,
       "d": 7.195279,
-      "sd": 8.0
+      "sd": 8.0,
+      "rimExtensionSd": 10.8
     },
     {
       "label": "STO",
@@ -168,6 +175,7 @@ const LENS_DATA = {
       "R": -10.765,
       "d": 4.56,
       "sd": 8.1,
+      "rimExtensionSd": 10.9,
       "medium": 4
     },
     {
@@ -210,8 +218,8 @@ const LENS_DATA = {
   },
   "projection": {
     "kind": "rectilinear",
-    "fullFieldDeg": 46,
-    "maxTraceFieldDeg": 23
+    "fullFieldDeg": 47.4,
+    "maxTraceFieldDeg": 23.7
   },
   "layout": {
     "yScFill": 0.7

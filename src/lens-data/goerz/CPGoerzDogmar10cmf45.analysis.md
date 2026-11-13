@@ -25,11 +25,11 @@ The central source gap is 5.4 mm. The drawing locates a diaphragm within it, but
 
 ### L1: Biconvex Positive
 
-Source nD = 1.61412; derived νD = 56.3412844; Unmatched baryta-crown glass. The positive front element participates in the collecting front cell; no exact catalogue glass is identified.
+Source nD = 1.61412; derived νD = 56.3412844; baryta-crown glass with BACD6 (Hoya catalog row) as a spectral proxy; historical supplier and melt unspecified. The positive front element participates in the collecting front cell; no exact catalogue glass is identified.
 
 ### L2: Biconcave Negative
 
-Source nD = 1.56890; derived νD = 42.6142322; Unmatched glass. The surface facing the diaphragm is more strongly curved than its outer surface, consistent with the patent's arrangement. Its air separation from L1 is 1.8 mm.
+Source nD = 1.56890; derived νD = 42.6142322; S-TIL26 (Ohara catalog row) spectral proxy; historical supplier and melt unspecified. The surface facing the diaphragm is more strongly curved than its outer surface, consistent with the patent's arrangement. Its air separation from L1 is 1.8 mm.
 
 ### L3: Biconcave Negative
 
@@ -37,13 +37,22 @@ Source nD = 1.54820; derived νD = 46.1447811; Unmatched glass. The diaphragm-fa
 
 ### L4: Biconvex Positive
 
-Source nD = 1.61412; derived νD = 56.3412844; Unmatched baryta-crown glass. Its source thickness is 3.6 mm rather than the front element's 4.2 mm; the two cells are asymmetric.
+Source nD = 1.61412; derived νD = 56.3412844; baryta-crown glass with BACD6 (Hoya catalog row) as a spectral proxy; historical supplier and melt unspecified. Its source thickness is 3.6 mm rather than the front element's 4.2 mm; the two cells are asymmetric.
 
 ## Glass Identification and Selection
 
 The source prints nD, nG′ and positive values labeled C–F. The positive C–F entries are interpreted as dispersion magnitudes nF − nC, not negative signed subtraction. The νD values in the glass labels are calculated as (nD − 1)/(nF − nC), rather than printed Abbe numbers. Smith's rounded glass codes corroborate this interpretation, but no exact melt or full dispersion curve is identified.
 
-All four elements retain the sodium nD reference. The estimated nd − nD difference of about 1.0–1.2 × 10⁻⁴ exceeds the patent's five-decimal print precision, so the source values are not treated as helium d-line indices. No catalogue row matches both the index and Abbe number within the stated precision. The patent's nG′ values, 1.62803 for L1/L4, 1.58637 for L2 and 1.56364 for L3, are not fitted by the two-parameter dispersion model; chromatic results therefore do not reproduce the complete published dispersion data.
+All four elements retain the sodium nD reference. The estimated nd − nD difference of about 1.0–1.2 × 10⁻⁴ exceeds the patent's five-decimal print precision, so the source values are not treated as helium d-line indices. BACD6 supplies the wavelength dependence for L1/L4 and S-TIL26 for L2. Each proxy curve is anchored at the printed sodium-D index; the stored source nD and derived νD values stay unchanged.
+
+| Elements | Spectral proxy / catalog vendor | Catalog nd | Catalog νd | Δn (catalog nd − source nD) | Δν (catalog νd − derived νD) |
+| --- | --- | --- | --- | --- | --- |
+| L1, L4 | BACD6 / Hoya | 1.613753 | 56.377856 | −0.000367 | +0.036572 |
+| L2 | S-TIL26 / Ohara | 1.567322 | 42.817076 | −0.001578 | +0.202844 |
+
+These rows meet the site's spectral-proxy tolerance: Abbe number within about 0.25 of the source-derived value and index within about 0.002. The tabulated index differences compare catalog helium-d indices with source sodium-D indices; they are selection differences, not substitutions for the printed nD. These are qualified spectral proxies, not exact matches or identifications of the historical glass, supplier or melt. L3 remains Unmatched because no catalog row lies within that Abbe window, and its wavelength dependence uses the source nD/νD Abbe approximation.
+
+The patent's nG′ values, 1.62803 for L1/L4, 1.58637 for L2 and 1.56364 for L3, are not fitted by the proxy curves or L3's Abbe approximation; chromatic results therefore do not reproduce the complete published dispersion data.
 
 ## Focus Mechanism
 
@@ -53,7 +62,9 @@ The patent describes use on a bellows camera, including each cell separately wit
 
 ## Aperture and Iris Assumptions
 
-All surfaces use an inferred common semi-diameter of 11.5 mm. The source drawing suggests comparable element heights but supplies no calibrated clear aperture. This value is the largest 0.5 mm increment satisfying the model's 0.9 geometry limits; it is not a manufacturing dimension.
+All eight optical surfaces use an inferred common semi-diameter of 11.5 mm, with equal front and rear rim heights on each element. The patent drawing supports these square-cut, comparable-height outlines. Its roughly 12 mm rim estimates differ by about 5–7%, within the uncertainty of a schematic whose individual axial spacings do not all match the table. The rims clear the nominal f/4.5 axial beam and the 6 × 9 cm corner chief ray; they are not published manufacturing dimensions. The rear element has approximately 0.438 mm edge thickness at this radius.
+
+At f/4.5 and infinity, modeled geometric pupil transmission is 81.4% at 20.8°, 73.4% at 23.8° and 63.4% at the 26.8° format corner. These are pupil-clipping fractions, not total image illumination including angular falloff or coating losses.
 
 The iris is placed 2.7 mm into the source's 5.4 mm central gap. At the full inferred rim, its plane has 0.905003 mm clearance from the front adjacent surface and 1.646454 mm from the rear adjacent surface. The f/4.5 entrance pupil gives an iris radius of 9.550146968 mm. Both the midpoint and this radius are inferred, not published dimensions. The f/36 endpoint follows the Science Museum Group's 10 cm f/4.5–36 Tenax Press Camera specimen, rather than a minimum aperture stated in the patent.
 

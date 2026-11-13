@@ -6,8 +6,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * and no units conversion. All seven radii, six glass/air intervals and four
  * sodium-D index/Abbe pairs are retained as printed.
  * The stop's 14.5/14.5 mm split of the 29 mm gap is inferred from "substantially
- * midway". The 15.5 mm front and 9 mm rear semi-diameters are inferred geometry
- * limits, larger than the figure's approximately 11.1/6.4 mm rims. The final image interval
+ * midway". The 15.1 mm front and 9 mm rear semi-diameters are inferred, with
+ * square rims retained. The sole figure suggests about 11.1/6.4 mm at the axial
+ * scale (arc-scale uncertainty about 6%); larger caps preserve the traced field
+ * and limit corner-light loss to 2.7 percentage points against the starting rims.
+ * Real-ray checks pass the f/4.5 axial beam and full-frame chief ray. The final image interval
  * is calculated back focus, not a printed source value. Only infinity is modeled.
  */
 const LENS_DATA = {
@@ -18,6 +21,7 @@ const LENS_DATA = {
   "subtitle": "US 2,631,497 A, sole example — Tele-Sandmar for the Argus C3",
   "visible": true,
   "catalog": {
+    "lensMounts": ["argus-c"],
     "imageFormat": "135-full-frame",
     "specs": ["4 ELEMENTS / 3 GROUPS", "ALL SPHERICAL", "f/4.5–22", "TELEPHOTO"],
     "elementCount": 4,
@@ -53,7 +57,7 @@ const LENS_DATA = {
       "nd": 1.62398,
       "vd": 47,
       "indexReference": "D",
-      "glass": "Unmatched (nD 1.62398 / V 47.0)"
+      "glass": "E-BAF8 (spectral proxy; patent nD 1.62398 / V 47.0; supplier and melt unspecified)"
     },
     {
       "id": 2,
@@ -76,7 +80,7 @@ const LENS_DATA = {
       "nd": 1.61008,
       "vd": 46,
       "indexReference": "D",
-      "glass": "Unmatched (nD 1.61008 / V 46.0)"
+      "glass": "H-BaF6 (spectral proxy; patent nD 1.61008 / V 46.0; supplier and melt unspecified)"
     },
     {
       "id": 4,
@@ -95,21 +99,21 @@ const LENS_DATA = {
       "label": "1",
       "R": 24.01,
       "d": 10,
-      "sd": 15.5,
+      "sd": 15.1,
       "medium": 1
     },
     {
       "label": "2",
       "R": -40.877,
       "d": 1.2,
-      "sd": 15.5,
+      "sd": 15.1,
       "medium": 2
     },
     {
       "label": "3",
       "R": 70.942,
       "d": 14.5,
-      "sd": 15.5
+      "sd": 15.1
     },
     {
       "label": "STO",

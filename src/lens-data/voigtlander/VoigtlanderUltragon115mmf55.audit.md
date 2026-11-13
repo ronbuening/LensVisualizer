@@ -36,9 +36,9 @@ Audit results:
 
 Open:
 
-- Preserve the optional figure differences for later review: the validator estimates Fig. 2 body semi-diameters near 19/16/13/15 mm versus the retained 20/15/11.5/15 mm, and the stop near 0.63 of a2 from R4 versus the retained midpoint. Its optional 12.0 mm doublet clears the patent-angle probe, while a roughly 12.3 mm doublet needed at the 5x7 corner approaches the L4 knife edge. These are notes, not authorized changes.
+- Rim review closed by the semi-diameter pass below; the historical validator estimates were Fig. 2 body semi-diameters near 19/16/13/15 mm versus 20/15/11.5/15 mm. The stop near 0.63 of a2 from R4 versus the midpoint remains a coordinator decision. The doublet's 5×7 knife-edge limitation is quantified below.
 - Closed by the cleanup pass below: subtitle/specs wording, element types and glass labels, analysis spacing and voice, private archive references, attribution of the 85° sentence to Example II, and confirmation of f/32 from Cröll. File/key/name choices remain the coordinator's.
-- The exact historical glass identity and exact production-to-example match remain unresolved. The retained 5x7 metadata records official coverage with a clipped design corner, not measured image quality or throughput.
+- The exact historical glass identity and exact production-to-example match remain unresolved. The retained 5x7 metadata records official coverage with a clipped design corner, not measured image quality or throughput. (closed 2026-11-13: the corner-clipping limitation is resolved by S5–S7 = 12.31 mm, S8/S9 = 15.3 mm and a declared 86.5° full field / 43.25° maximum trace half-field; historical glass identity, exact production association, image quality and throughput remain unresolved.)
 
 ## 2026-11-13 — Cleanup and wording pass
 
@@ -58,8 +58,82 @@ Surface audit: OK — no validation errors. Aperture audit: one station within 3
 
 Open:
 
-- Stop remains at a2's midpoint; Fig. 2 suggests about 0.63·a2 from R4. Retained body semi-diameters 20/15/11.5/15 mm differ from the validator's figure estimates of about 19/16/13/15 mm. Optional 12.0 mm doublet rims would clear the patent-angle probe; about 12.3 mm for the 5×7 corner approaches L4's knife edge. No optical changes were made.
-- The 5×7 corner remains about 98% covered geometrically: 106.69/109.25 mm, with the 43.2202° corner clipping at surfaces 6, 7 and 9. Full 85° commercial coverage, image quality and throughput are not established by this model.
+- Rim review closed by the semi-diameter pass below: the doublet now has common 12.1 mm rims. Stop remains at a2's midpoint; Fig. 2 suggests about 0.63·a2 from R4, still unapplied. (closed 2026-11-13: the common doublet rim is now 12.31 mm and the rear-singlet rims are 15.3 mm, clearing the corner chief ray; the inferred midpoint stop remains unchanged.)
+- The declared field reaches about 98% of the 5×7 corner semi-diagonal: 106.69/109.25 mm. The semi-diameter pass below clears the declared chief ray, while the 43.2202° corner still clips at surfaces 6, 7 and 9. Full 85° commercial coverage, image quality and throughput are not established by this model. (closed 2026-11-13: the 86.5° full field / 43.25° maximum trace half-field and enlarged rims give 100% geometric corner coverage with a clear chief ray; image quality and throughput remain unestablished.)
 - Exact historical glass identities, radioactive composition and the exact production-to-example match remain unresolved. DE 868,524 has not been independently compared; no to-scale maker diagram was found.
 - Minimum focus distance, finite-focus spacings and separate convertible-cell configurations are not supplied by this model.
 - Rendered title, subtitle/specs and focus-panel review remains open: the screenshot helper produced no image, the browser-access host was unavailable, and the native Safari fallback was denied by the computer-use tool.
+
+## 2026-11-13 — Semi-diameter pass against the patent figure
+
+Source: local `patents/US2670659A.pdf`, PDF p. 1, Figs. 1–2, compared with Example I on PDF p. 3 at ×115. The complete figure sheet and bibliographic page were inspected, followed by 600 dpi figure crops. PDF p. 2 identifies Albrecht Wilhelm Tronnier, assignor to “Voigtlander, A. G., Braunschweig”; application 29 July 1952, Swiss priority 30 August 1951, patented 2 March 1954, US 2,670,659.
+
+### Drawing scale and rim evidence
+
+At 600 dpi, Fig. 2's axis is approximately y=4698, with first/last vertices x=1752/2780. The 33.0832 mm modeled vertex span gives 31.07 px/mm. A clean upper front arc gives a fitted radius of approximately 847 px (0.55 px RMS), versus R1=28.13015 mm: 30.11 px/mm, about 3% different. Thus the overall axial and transverse scales agree approximately. They do not prove local dimensional fidelity: the first element is about 187 px thick, or 6.02 mm at the span scale, versus 5.336 mm in Example I, a 13% difference. Fig. 2's local spacings and doublet proportions cannot supply exact Example I clear diameters.
+
+Fig. 1 is more plainly schematic. Its first/last vertices are about x=1680/2678 at y≈2438, giving 30.17 px/mm. First-element thickness is about 190 px (6.30 versus 5.336 mm); the first air gap is drawn approximately 62 px (2.06 versus 0.0322 mm). A front-arc fit gives about 32.2 px/mm but is contaminated near the upper leader. These figures therefore govern relative rim heights and step order only. Their inclined bevels and annotation strokes are not read as additional clear spherical aperture; no inferred opaque lands were added.
+
+Approximate body-height readings below show the uncertainty between drawings, rather than measured effective diameters. The native scan has roughly 2 px-wide raster steps at 600 dpi; leader/edge interpretation and schematic construction dominate the uncertainty.
+
+| Surfaces | Before sd (mm) | Fig. 1 / Fig. 2 body-height equivalents (mm) | Final sd (mm) | Decision |
+| --- | ---: | ---: | ---: | --- |
+| 1, 2 | 20.0 each | ≈18.5 / 19.2 | 20.0 each | Within roughly 4–8% drawing noise; retain the front meniscus. |
+| 3, 4 | 15.0 each | ≈14.3 / 15.8 | 15.0 each | Both readings within roughly 6%; retain the neighbouring step order. |
+| 5 | 11.5 | ≈11.8 / 12.8 | 12.1 | Keep one common doublet rim with 6/7; no unsupported bevel/land reconstruction. |
+| 6 | 11.5 | ≈11.8 / 12.8 | 12.1 | Declared-edge chief height 11.80 mm exceeds the baseline rim. |
+| 7 | 11.5 | ≈11.8 / 12.8 | 12.1 | Declared-edge chief height 12.05 mm; 12.1 is the smallest passing tenth. |
+| 8, 9 | 15.0 each | ≈14.5 / 15.0 | 15.0 each | Within drawing noise; no increase for an undeclared corner. |
+
+The only numerical edits are 5, 6 and 7: 11.5→12.1 mm (+0.6 mm, +5.2%) each. The common rim preserves the doublet's straight shared edge. LSA before raising was −0.143/−0.389/−0.410/−0.276 mm at pupil fractions 1/0.85/0.7/0.5; there is no evidence here for a prescription repair. Both clear-aperture solvers agree on the chief heights. At the final rims, axial marginal heights on 5/6/7 are 8.41/8.65/8.83 mm and declared-edge chief heights are 8.46/11.80/12.05 mm. No axial or declared-edge chief clip remains. An upper unvignetted full-bundle ray is unavailable at that field; the pupil-lattice result below retains real off-axis loss.
+
+### Field, light and corner limits
+
+Before/after built results: EFL 115.0039016509 mm, f/5.5, half-field 42.5°, physical stop radius 8.776238254 mm and total track 128.0801 mm, all unchanged. The engine's separate `tracingHalfField` estimate rises 37.3676°→38.7820°; it is not the declared analysis edge. Surface audit passes with no errors; aperture audit has one passing station and zero rim/trace/iris/failed stations; image-circle audit has one checked, zero undersized, zero skipped. Field-coverage audit has one solved station, zero skipped, unchanged 106.686457/109.25 mm (97.6535%). Its limiting reason is the declared 42.5° projection, not a guarantee that the physical corner is clear.
+
+The final `rimcost.mjs --loo` comparison against `base1124sd/VoigtlanderUltragon115mmf55.data.ts` gives 35.6%→43.1% geometric transmission at 42.5°. At 39.7° it is 46.4%→54.0%; at 34.0°, 64.1%→71.4%; the axial value stays 100%. No sampled field loses light, so the lands/cuts budget is met. These are geometric pupil fractions, not photometric relative illumination. The physical 5×7 corner is at 43.220170°, beyond the declared model field; its illumination was not calculated. The rejected supplemental diagnostic described below was not retried.
+
+At the 5×7 corner, surfaces 6/7/9 require 12.277756/12.301282/15.258585 mm against final 12.1/12.1/15.0 mm. Surface 6 is the first clipped surface; 7 and 9 also clip. A whole-set trial with doublet 5/6/7=12.31 mm and rear singlet 8/9=15.3 mm passes the surface validator and clears that chief ray. It is broadly compatible with Fig. 2 proportions, but approaches the L4 knife edge and requires finer precision than the drawing supports. The next rounded tenth, 12.4 mm, has negative L4 edge thickness (−0.081 mm). The Fig. 2 ≈13 mm body height cannot be extended as a common clear spherical rim in Example I. The trial is not applied; the least change clearing the declared field is retained.
+
+### Render, stop recommendation and remaining scope
+
+Viewed the baseline and final model sketches and the matched-scale side-by-side `overlay.png` under scratch `sd/ultragon/`. The final common doublet rim is closer to Fig. 2 while remaining compatible with Fig. 1's schematic proportions. Front/rear singlet steps remain intact. The sketch joins rims directly and does not model bevels or lands. No browser was run; the coordinator's live page check remains open.
+
+The existing secondary drawing, Cröll Fig. 1c on article p. 3, was inspected: it agrees on five elements/four groups and the rear cemented doublet. It explicitly says “not to scale”; no manufacturer construction diagram was found, and no special-glass or aspherical positions can be certified from it. The modeled elements are all spherical. The historical L4 product-glass conflict remains documented in the analysis.
+
+Recommend coordinator review of the inferred stop at roughly 0.63 of a2 from R4: that would split the 15.0282 mm gap approximately 9.47/5.56 mm rather than 7.5141/7.5141 mm, moving the iris about 1.95 mm toward the image. This is schematic positional evidence, not a tabulated dimension. No stop position or radius change was applied. No new name/metadata mismatch was found; the existing Example II attribution of the 85° sentence and uncertain production-to-example association remain material qualifications.
+
+Sandbox refusal: an attempted relative write of a supplemental `corner.mjs` diagnostic targeted the read-only main checkout and returned `operation not permitted`. That diagnostic was abandoned, without retry or alternate execution. All assigned-file edits and normal audits succeeded.
+
+Formatting checks passed on all three assigned files, and the scoped whitespace diff check was clean. A structured comparison with the saved baseline confirms that only surface sd fields 5/6/7 changed; all surface R/d/media/stop fields match the baseline. The two Markdown sidecars were formatted; the data file received narrow edits only.
+
+## 2026-11-13 — Glass proxies and catalog metadata
+
+All five former Unmatched labels now use the spectral-proxy labels below. Catalog values and differences are from the current repository glass catalog; Δ is catalog minus the unchanged printed helium-d/Abbe pair.
+
+| Element | Old label → new label | Catalog nd / νd | Δnd / Δνd |
+| --- | --- | --- | --- |
+| L1 | `Unmatched (nd 1.62095 / V 60.3)` → `N-SK16 (spectral proxy; patent nd 1.62095 / V 60.3; supplier and melt unspecified)` (Schott row) | 1.62041 / 60.32 | −0.00054 / +0.02 |
+| L2 | `Unmatched (nd 1.72800 / V 28.4)` → `SF10 (spectral proxy; patent nd 1.72800 / V 28.4; supplier and melt unspecified)` (Schott row) | 1.72825 / 28.41 | +0.00025 / +0.01 |
+| L3 | `Unmatched (nd 1.51443 / V 54.7)` → `KF3 (spectral proxy; patent nd 1.51443 / V 54.7; supplier and melt unspecified)` (Sumita row) | 1.51454 / 54.60 | +0.00011 / −0.10 |
+| L4 | `Unmatched (nd 1.60921 / V 58.8)` → `SK3 (spectral proxy; patent nd 1.60921 / V 58.8; supplier and melt unspecified)` (Sumita row) | 1.60881 / 58.90 | −0.00040 / +0.10 |
+| L5 | `Unmatched (nd 1.56866 / V 56.2)` → `BAC4 (spectral proxy; patent nd 1.56866 / V 56.2; supplier and melt unspecified)` (Hoya row) | 1.56883 / 56.04 | +0.00017 / −0.16 |
+
+These rows meet the repository's proxy rule of about 0.25 in Abbe number and about 0.002 in index. The engine keeps each printed index at its helium-d reference line and borrows only the row's wavelength dependence; printed nd/νd are unchanged. These are not exact glass matches and identify no historical glass, supplier or melt. Historical composition and the L4 production-to-example conflict remain unresolved.
+
+`chan.mjs` compares the supplied `base1124glass/VoigtlanderUltragon115mmf55.data.ts` pre-relabel baseline with the current data. R/G/B/V correspond to C/d/F/g. Paraxial back-focus offsets relative to d are:
+
+| Line (channel) | Before (µm) | After (µm) |
+| --- | ---: | ---: |
+| C (R) | +269.9 | +268.4 |
+| d (G) | 0.0 | 0.0 |
+| F (B) | −496.0 | −469.0 |
+| g (V) | −766.1 | −705.9 |
+
+Absolute C/d/F/g back focus is 95.2666/94.9967/94.5007/94.2306 mm before → 95.2651/94.9967/94.5277/94.2908 mm after. The d-line EFL remains 115.0039 mm. These are modeled paraxial results from catalog dispersion proxies, not measured chromatic performance.
+
+Rims and field: S5–S7 increase 12.1 → 12.31 mm and S8/S9 increase 15.0 → 15.3 mm. These are the least rims clearing the approximately 43.2° chief ray to the full 5×7 corner; the earlier unapplied whole-set trial is now the adopted geometry. A common 12.4 mm doublet rim fails the L4 edge check (−0.081 mm edge thickness). Projection `fullFieldDeg` increases 85 → 86.5 and `maxTraceFieldDeg` increases 42.5 → 43.25. Geometric field coverage increases 97.65% → 100%, reaching the full 109.25 mm corner semi-diagonal and agreeing with the official 5×7 coverage Cröll lists. At the 43.2202° corner, S6/S7/S9 chief heights of 12.2778/12.3013/15.2586 mm clear the current 12.31/12.31/15.3 mm rims. The earlier 43.1% pupil-lattice result belongs to the previous rims at 42.5°; it is not a current-edge or corner transmission measurement. Full-pupil transmission, illumination and image quality remain unestablished.
+
+The analysis describes the final proxy palette, current rims and declared field in present tense. Name, mounts and `5x7` format are unchanged. The current data header already records the rim and coverage rationale; this text-only assignment makes no data-file edits.
+
+Scoped `npx prettier --write` and `npx prettier --check` on the two Markdown files completed successfully. A byte comparison against the saved pre-edit data file confirms no data-file change. No tool call or edit was denied during this text update.

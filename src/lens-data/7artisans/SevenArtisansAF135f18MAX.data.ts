@@ -3,13 +3,15 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Figure 2 pupil radius 36.8167 mm determines f-number from the paraxial EFL.
  * Scale factor 1; R, d and semi-diameters are in mm, with no units conversion.
  * Stop position and back focus are tabulated; the stop radius is inferred from the pupil.
- * Clear semi-diameters are inferred from Figure 1; S26–S30 use 17.4 mm for corner chief-ray clearance.
+ * Clear semi-diameters are inferred from Figure 1 and checked against the iris-admitted beam.
+ * L4 has a 24.5 mm rim with a 22.5 mm rear optical cap and land; S7/S8 require gapSagFrac 0.99.
+ * S26–S30 use 18.0 mm rims, capped below the S28/S29 crossing rather than the drawing's ~19.0 mm.
  * Printed nd/νd are retained; matching catalog curves do not establish factory glass identity.
  * L5 has no matching catalog row and uses approximate dispersion from its printed nd/νd.
  * Prose ED ordinal contradiction preserved in source.errata. Infinity-only. */
 const LENS_DATA = {
   "checks": {
-    "gapSagFrac": 0.97
+    "gapSagFrac": 0.99
   },
   "layout": {
     "yScFill": 0.35,
@@ -27,7 +29,7 @@ const LENS_DATA = {
       "6 ED / 5 HIGH-INDEX",
       "ALL SPHERICAL",
       "F/1.8–16",
-      "0.68 m MIN FOCUS"
+      "0.68 m MFD"
     ],
     "elementCount": 16,
     "groupCount": 13,
@@ -132,7 +134,7 @@ const LENS_DATA = {
       "nd": 1.4378,
       "vd": 94.523389,
       "indexReference": "d",
-      "glass": "Unmatched (nd 1.4378 / V 94.523389)"
+      "glass": "S-FPL55 (spectral proxy; patent nd 1.4378 / V 94.523389; supplier and melt unspecified)"
     },
     {
       "id": 6,
@@ -305,20 +307,21 @@ const LENS_DATA = {
       "label": "6",
       "R": 53.531364,
       "d": 1.2,
-      "sd": 27,
+      "sd": 24.5,
       "medium": 4
     },
     {
       "label": "7",
       "R": 33.291838,
       "d": 1.247481,
-      "sd": 22.396398402970696
+      "sd": 22.5,
+      "rimExtensionSd": 24.5
     },
     {
       "label": "8",
       "R": 37.391229,
       "d": 11.27,
-      "sd": 22.396398402970696,
+      "sd": 22.5,
       "medium": 5
     },
     {
@@ -434,34 +437,34 @@ const LENS_DATA = {
       "label": "26",
       "R": 60.116289,
       "d": 5.1,
-      "sd": 17.4,
+      "sd": 18.0,
       "medium": 14
     },
     {
       "label": "27",
       "R": -505.402597,
       "d": 1.0,
-      "sd": 17.4,
+      "sd": 18.0,
       "medium": 15
     },
     {
       "label": "28",
       "R": 61.850131,
       "d": 8.328738,
-      "sd": 17.4
+      "sd": 18.0
     },
     {
       "label": "29",
       "R": -32.701218,
       "d": 1.0,
-      "sd": 17.4,
+      "sd": 18.0,
       "medium": 16
     },
     {
       "label": "30",
       "R": -70.574457,
       "d": 19.533382,
-      "sd": 17.4
+      "sd": 18.0
     }
   ],
   "rearPlates": [

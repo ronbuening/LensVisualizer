@@ -7,7 +7,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * thicknesses and airspaces by 115 to express them in millimetres. The printed
  * helium-d refractive indices and Abbe numbers are unchanged.
  * The stop position is inferred at the midpoint of a2; its radius is derived from
- * f/5.5. Clear semi-diameters of 20/15/11.5/15 mm are inferred, not tabulated.
+ * f/5.5. Clear semi-diameters of 20/15/12.31/15.3 mm are inferred, not tabulated.
+ * Figs. 1–2 support the relative rim heights, not precise Example I dimensions;
+ * the doublet's common 12.31 mm rim and the 15.3 mm rear rim are the least that
+ * pass the 43.2° chief ray to the 5x7 corner, the coverage Cröll lists.
  * Back focus is not inferred: the last interval is the printed p0′ = 0.82606,
  * scaled to 94.9969 mm. Only the infinity state is modeled.
  */
@@ -58,7 +61,7 @@ const LENS_DATA = {
       "nd": 1.62095,
       "vd": 60.3,
       "indexReference": "d",
-      "glass": "Unmatched (nd 1.62095 / V 60.3)",
+      "glass": "N-SK16 (spectral proxy; patent nd 1.62095 / V 60.3; supplier and melt unspecified)",
       "role": "Positive front element of the two-element front cell."
     },
     {
@@ -69,7 +72,7 @@ const LENS_DATA = {
       "nd": 1.728,
       "vd": 28.4,
       "indexReference": "d",
-      "glass": "Unmatched (nd 1.72800 / V 28.4)",
+      "glass": "SF10 (spectral proxy; patent nd 1.72800 / V 28.4; supplier and melt unspecified)",
       "role": "Negative inner element of the front cell, facing the diaphragm."
     },
     {
@@ -80,7 +83,7 @@ const LENS_DATA = {
       "nd": 1.51443,
       "vd": 54.7,
       "indexReference": "d",
-      "glass": "Unmatched (nd 1.51443 / V 54.7)",
+      "glass": "KF3 (spectral proxy; patent nd 1.51443 / V 54.7; supplier and melt unspecified)",
       "role": "Negative front member of the cemented doublet behind the diaphragm.",
       "cemented": "C1"
     },
@@ -92,7 +95,7 @@ const LENS_DATA = {
       "nd": 1.60921,
       "vd": 58.8,
       "indexReference": "d",
-      "glass": "Unmatched (nd 1.60921 / V 58.8)",
+      "glass": "SK3 (spectral proxy; patent nd 1.60921 / V 58.8; supplier and melt unspecified)",
       "role": "Positive rear member supplying the cemented doublet's converging power.",
       "cemented": "C1"
     },
@@ -104,7 +107,7 @@ const LENS_DATA = {
       "nd": 1.56866,
       "vd": 56.2,
       "indexReference": "d",
-      "glass": "Unmatched (nd 1.56866 / V 56.2)",
+      "glass": "BAC4 (spectral proxy; patent nd 1.56866 / V 56.2; supplier and melt unspecified)",
       "role": "Separate negative rear element of the three-element rear cell."
     }
   ],
@@ -144,34 +147,34 @@ const LENS_DATA = {
       "label": "5",
       "R": -26.56845,
       "d": 1.3064,
-      "sd": 11.5,
+      "sd": 12.31,
       "medium": 3
     },
     {
       "label": "6",
       "R": 62.02065,
       "d": 5.8811,
-      "sd": 11.5,
+      "sd": 12.31,
       "medium": 4
     },
     {
       "label": "7",
       "R": -18.67715,
       "d": 1.1431,
-      "sd": 11.5
+      "sd": 12.31
     },
     {
       "label": "8",
       "R": -17.1419,
       "d": 2.39545,
-      "sd": 15.0,
+      "sd": 15.3,
       "medium": 5
     },
     {
       "label": "9",
       "R": -27.8691,
       "d": 94.9969,
-      "sd": 15.0
+      "sd": 15.3
     }
   ],
   "doublets": [
@@ -195,8 +198,8 @@ const LENS_DATA = {
   },
   "projection": {
     "kind": "rectilinear",
-    "fullFieldDeg": 85,
-    "maxTraceFieldDeg": 42.5
+    "fullFieldDeg": 86.5,
+    "maxTraceFieldDeg": 43.25
   },
   "layout": {
     "yScFill": 0.7

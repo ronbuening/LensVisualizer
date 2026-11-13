@@ -38,7 +38,7 @@ Audit results:
 
 Coverage here describes chief-ray reach, not uniform illumination or image quality. The validator reports vignetting values of 81% at 20.8°, 73% at 23.8° and 63% at 26.8°; no new throughput or MTF claim is made.
 
-Earlier cleanup queue (closed for wording and metadata): the coordinator set names and keys; the cleanup section below resolves subtitle/specification wording, element types, glass labels and the f/36 endpoint. Open: inferred 11.5 mm rims versus the figure's approximately 11.8 mm, the 2.7/2.7 mm stop split versus approximately 3.0/2.4 mm, and the rear element's 0.44 mm edge remain unchanged. Full application checks, browser rendering and MTF were outside this validation.
+Earlier cleanup queue (closed for wording and metadata): the coordinator set names and keys; the cleanup section below resolves subtitle/specification wording, element types, glass labels and the f/36 endpoint. Rim and rear-edge review is closed by the semi-diameter section below, retaining the original dimensions; the inferred stop split remains a coordinator decision. Full application checks, browser rendering and MTF were outside this validation.
 
 ## 2026-11-13 — Cleanup and wording pass
 
@@ -56,4 +56,55 @@ Before → after, identical: EFL 99.996511939962 → 99.996511939962 mm; FOPEN 4
 
 Surface audit: OK, no validation errors. Aperture audit: one lens/station within 3% of the stated f-number, zero rim/trace/iris limits and zero failures. Field-coverage audit with --all: one lens/station at ≥99%, zero unsolved and zero skipped. The browser screenshot helper returned thermal-observer and DNS-watch startup errors without producing an image, so rendered-page review could not be completed. No sandbox or approval denial occurred. Full application gates were excluded by this cleanup assignment.
 
-Open: inferred 11.5 mm rims versus the patent figure's approximately 11.8 mm; midpoint 2.7/2.7 mm stop split versus approximately 3.0/2.4 mm in the figure; L4's approximately 0.44 mm edge thickness. These remain for the separate geometry review. The exact production prescription/glass melts, complete nG′ dispersion fit, finite-focus spacings/minimum distance, separate-cell configurations and rendered-page review remain unestablished. The f/36 endpoint is resolved by the cited museum specimen.
+Rim and L4-edge review is closed by the semi-diameter section below, without geometry changes. Open: midpoint 2.7/2.7 mm stop split versus approximately 3.0/2.4 mm in the figure; this remains a coordinator decision. The exact production prescription/glass melts, complete nG′ dispersion fit, finite-focus spacings/minimum distance, separate-cell configurations and rendered-page review remain unestablished. The f/36 endpoint is resolved by the cited museum specimen.
+
+## 2026-11-13 — Semi-diameter pass against the patent figure
+
+Source: local US1108307A.pdf, PDF page 1, sole cross-section; numerical example and bibliography visually checked on PDF page 2. The addendum's normalized f = 1, ×100 convention and the file's native f = 100, ×1 convention describe the same 100 mm model. The actual local table prints focal length 100; no numeric conversion was applied.
+
+The native scan is 2320 × 3408 pixels at the PDF's 72 dpi, so enlarging it does not add source detail. At the local axis y ≈ 1643, surface vertices are approximately x = 974, 1037, 1065, 1093, 1178, 1204, 1230 and 1287. The overall 313 px / 20 mm span gives 15.65 px/mm. Independent front-cell and rear-cell spans give approximately 119 / 7.6 = 15.66 and 109 / 7 = 15.57 px/mm. Fits to the isolated outer spherical arcs give about 430.3 / 27.701 = 15.53 and 553.5 / 35.690 = 15.51 px/mm, corroborating transverse scale within about 1% of the long axial fit.
+
+Individual dimensions are less faithful: L1 is approximately 63 / 15.65 = 4.03 mm versus 4.2 mm, L2 approximately 28 / 15.65 = 1.79 mm versus 1.6 mm, and the rear air gap approximately 26 / 15.65 = 1.66 mm versus 1.8 mm. L2 differs by about 12%; thick ink adds uncertainty to the shorter spans. Accordingly this is a proportional reading, not a calibrated clear-diameter measurement. Optical edges are about 187–192 px from the local axis after excluding labels, diagonal leaders and the iris ticks: roughly 12.0–12.4 mm, conservatively about 12.1 ± 0.3 mm. This refines the earlier approximately 11.8 mm reading without establishing a significant rim mismatch.
+
+| Surfaces | Stored before → after (mm) | Figure estimate (mm) | Decision |
+| --- | --- | --- | --- |
+| 1, 2 (L1) | 11.5 → 11.5 each | approximately 12.1 ± 0.3 | Equal square-cut faces retained; within schematic uncertainty |
+| 3, 4 (L2) | 11.5 → 11.5 each | approximately 12.1 ± 0.3 | Equal square-cut faces retained; no supported step |
+| 5, 6 (L3) | 11.5 → 11.5 each | approximately 12.1 ± 0.3 | Equal square-cut faces retained; no supported step |
+| 7, 8 (L4) | 11.5 → 11.5 each | approximately 12.2 ± 0.3 | Equal faces retained; positive thin edge agrees qualitatively |
+
+No optical rim, land, cut, geometry allowance, stop or prescription coordinate changed. Approximate figure/stored ratios are 1.05–1.06, inside the 5–8% noise allowance. L4's edge thickness is 0.438439 mm; L1/L2/L3 edges are 1.056680 / 4.635883 / 4.591618 mm. The patent shows a thin rear edge but supplies no edge-thickness dimension, so it does not justify making L4 knife-edged.
+
+At infinity, both clear-aperture solvers give axial marginal heights 11.11 / 10.90 / 10.43 / 9.90 / 9.71 / 9.78 / 10.05 / 10.10 mm on surfaces 1–8 and corner-chief heights 5.02 / 3.65 / 2.32 / 1.68 / 1.69 / 2.33 / 3.69 / 4.82 mm. Minimum axial rim clearance is approximately 0.39 mm at surface 1; neither solver flags an axial or chief-ray clip. Both report no solution for the extreme unvignetted upper/lower bundle rays at the corner; those columns therefore do not measure an unvignetted full-field aperture. The independent engine aperture audit passes, and full-pupil vignetting below measures the intended off-axis loss.
+
+Before → after: surface audit OK with no errors; aperture audit one station within 3% of f/4.5 with no rim/trace/iris limits or failures; image-circle audit zero undersized and zero skipped; field coverage 100% at 26.8°, 50.50 / 50.50 mm with clear corner chief ray. Built half-field 36.957592° → 36.957592°, f/4.5 → f/4.5, EFL 99.996512 → 99.996512 mm and iris radius 9.550147 → 9.550147 mm. The engine half-field is distinct from the format-corner angle. The rim-cost comparison against base1124sd, including element-restoration checks, has zero loss at every sampled field: corner geometric transmission 63.4% → 63.4%, with 81.4% → 81.4% at 20.8° and 73.4% → 73.4% at 23.8°. Only infinity is supplied by the source.
+
+Stop recommendation, not applied: the tick near x = 1140 implies approximately (1140 − 1093) / 15.65 = 3.0 mm from surface 4 and (1178 − 1140) / 15.65 = 2.4 mm to surface 5. A coordinator may move the midpoint 0.3 mm imageward while retaining the source's 5.4 mm gap and recalculating the f/4.5 iris radius. This is optional figure inference, not a printed spacing or a clearance repair. Current iris-plane clearance at the full rim is 0.905003 mm ahead and 1.646454 mm behind; no iris-radius change is independently justified.
+
+The matched-scale side-by-side was rendered and inspected at scratchpad/sd/dogmar/overlay.png; model.svg/model.png compare the current black outlines with the coincident blue baseline. Four separate groups, equal square-cut heights and the thin L4 edge match the patent's proportions. The supplied maker cutaway in v-dogmar/cat00276/cut-06.png also shows four air-separated elements in two cells; its barrel-obscured, tapered presentation is not a calibrated rim source. There are no aspheres or marked special-glass positions in that image; the patent text places baryta crown in L1/L4. Live browser review remains with the coordinator under this assignment.
+
+Bibliography: Walther Zschokke, assignor to Optische Anstalt C. P. Goerz Aktiengesellschaft, US 1,108,307, filed 17 January 1913 and patented 25 August 1914. No new name/metadata discrepancy was found; exact commercial-variant identity remains qualified. A preliminary overview render accidentally targeted the read-only main-checkout directory and failed with “Could not write image to patent-overview-1.png”; that output was abandoned and no main-checkout file was changed. No tool call or authorized lens-file edit was refused. All retained artifacts are in the assigned scratch directory.
+
+
+## 2026-11-13 — Glass proxies and catalog metadata
+
+Compared the pre-relabel base1124glass prescription with the current data file. The only data differences are the three glass labels below. Catalog deltas use catalog nd minus source nD and catalog νd minus source-derived νD; the catalog index is helium-d, while all four elements retain indexReference "D" and the printed sodium-D index.
+
+- L1: "Unmatched (nD 1.61412 / V 56.3412844)" → "BACD6 (spectral proxy; patent nD 1.61412 / V 56.3412844; supplier and melt unspecified)". Hoya BACD6 catalog nd = 1.613753, νd = 56.377856; Δn = −0.000367, Δν = +0.036572.
+- L2: "Unmatched (nD 1.56890 / V 42.6142322)" → "S-TIL26 (spectral proxy; patent nD 1.56890 / V 42.6142322; supplier and melt unspecified)". Ohara S-TIL26 catalog nd = 1.567322, νd = 42.817076; Δn = −0.001578, Δν = +0.202844 (about 0.20).
+- L4: "Unmatched (nD 1.61412 / V 56.3412844)" → "BACD6 (spectral proxy; patent nD 1.61412 / V 56.3412844; supplier and melt unspecified)". Hoya BACD6 catalog nd = 1.613753, νd = 56.377856; Δn = −0.000367, Δν = +0.036572.
+- L3 stays "Unmatched (nD 1.54820 / V 46.1447811)"; no catalog row lies within the approximately 0.25 Abbe window. Its Abbe approximation remains in use.
+
+The proxies borrow only catalog wavelength dependence and anchor each curve at the printed nD. Stored nD and derived νD values stay unchanged. The repository proxy rule permits approximately |Δν| ≤ 0.25 and |Δn| ≤ 0.002; it establishes neither an exact glass match nor a historical supplier or melt. The earlier all-Unmatched record describes the pre-relabel state. The patent nG′ values remain unfitted.
+
+Paraxial chan.mjs output, pre-relabel → current, at infinity. R/G/B/V correspond here to C/sodium-D/F/g: G is D at 589.3 nm because indexReference is "D", rather than the usual helium-d channel. Focus shifts are BFD offsets relative to G, not measured longitudinal chromatic aberration.
+
+| Channel / line | EFL before → after (mm) | BFD before → after (mm) | BFD shift vs G before → after (µm) |
+| --- | --- | --- | --- |
+| R / C | 100.1214 → 100.1295 | 88.8337 → 88.8419 | +124.8 → +133.1 |
+| G / D | 99.9965 → 99.9965 | 88.7089 → 88.7089 | 0.0 → 0.0 |
+| B / F | 99.8373 → 99.8221 | 88.5482 → 88.5322 | −160.7 → −176.7 |
+| V / g | 99.8461 → 99.8391 | 88.5544 → 88.5458 | −154.4 → −163.0 |
+| REF / authored D | 99.9965 → 99.9965 | 88.7089 → 88.7089 | 0.0 → 0.0 |
+
+No name, mount, format, field or other catalog metadata changes are assigned or present in the baseline comparison. The analysis describes the three proxies and L3's remaining limitation; the data file is not edited. The existing Open stop-split item remains unresolved because this assignment changes only glass text. Both Markdown companions are formatted with Prettier and checked with --check; full application gates are excluded by the text addendum.

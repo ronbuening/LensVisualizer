@@ -66,4 +66,89 @@ Before → after: EFL 132.10552845338597 → 132.10552845338597 mm; FOPEN 1.7940
 
 The surface audit reports OK with no errors. The aperture audit has one station within 3%, zero rim/trace/iris/failed diagnoses; the pre-existing small S7/S8 restriction remains. Field coverage reports one station at ≥99%, zero unsolved and zero skipped. Prettier was skipped as directed. The requested screenshot helper produced no PNG and emitted macOS thermal-notification and DNS-watch errors; rendered-page review could not be completed. No command or edit was denied, and no retry was made.
 
-Open: L5 has no exact catalog glass; the patent's ED ordinals disagree with its table; exact manufactured prescription and glass identity remain unproven. No finite-focus configuration is tabulated despite the stated 0–17 mm L7 travel. Figure 1's rear rims are about 19.1 mm versus the retained 17.4 mm model radii and approximately 18.0 mm geometric ceiling. S7/S8 retain their small marginal restriction; the prior clear-aperture probe's axial/full-bundle limitations remain. Historical 17 mm-cap transmission numbers are not current-model results. Rendered-page review remains outstanding after the screenshot helper failed; full application tests were excluded from this pass.
+Open: L5 has no exact catalog glass; the patent's ED ordinals disagree with its table; exact manufactured prescription and glass identity remain unproven. No finite-focus configuration is tabulated despite the stated 0–17 mm L7 travel. Figure 1's rear rims are about 19.1 mm versus the retained 17.4 mm model radii and approximately 18.0 mm geometric ceiling (closed in the semi-diameter pass below: rear rims now 18.0 mm, with the remaining figure discrepancy explained by crossing surfaces). S7/S8 retain their small marginal restriction (closed below for the actual engine iris-admitted beam); the prior clear-aperture probe's source-pupil/full-bundle limitations remain. Historical 17 mm-cap transmission numbers are not current-model results (current 17.4/18.0 mm results are below). Rendered-page review remains outstanding after the screenshot helper failed; full application tests were excluded from this pass. (closed 2026-11-13 for L5 spectral coverage: S-FPL55 supplies a qualified spectral proxy; exact historical glass, supplier and melt remain unidentified.)
+
+## 2026-11-13 — Semi-diameter pass against the patent figure
+
+Source: local `patents/CN_122469500_A.pdf`, physical page 8, drawing sheet 1/5, Figure 1, the sole Table 1 example at infinity. Figure 2 on the same page prints pupil radius 36.8167 mm. This is a modern 2026 patent despite the batch addendum's generic old-patent description. The prescription's native millimetre scale is retained.
+
+### Scale and optical-rim readings
+
+The embedded Figure 1 image is native 300 dpi. A fresh 300-dpi page render gives axis row 918, S1 vertex x = 512.5, S12 x = 1042 and S30 x = 1838.5. The S1–S30 span is 1326 px / 124.773409 mm = 10.627264 px/mm. Two independent axial spans agree: S1–S12 is 529.5 px / 49.835617 mm = 10.624931 px/mm; S12–S30 is 796.5 px / 74.937792 mm = 10.628816 px/mm. S1–S2 thickness gives 103 px / 9.55 mm = 10.785 px/mm, within raster/vertex-reading uncertainty. The transverse scale is independently supported by the S1 arc: at 200, 300 and 360 px from the axis, circle fits give radii 75.00, 75.14 and 74.95 mm against the table's 75.124012 mm. Thus the same scale works in both directions; no anisotropic stretch was applied.
+
+Only optical edges were measured. Group brackets 101/103/104, stop strokes and lower leader lines were excluded. The clean top-side rim readings are estimates, generally uncertain by a few pixels plus drafting error. Values already within approximately 5–8% are retained. L4's visibly pointed modeled rim and the incorrect relative height of the rear group warrant the changes below even though the magnitude is near the batch's 10% screening threshold.
+
+| Surface(s) | Starting sd, mm | Figure sd, mm | Figure / starting | Final sd, mm | Decision |
+| --- | ---: | ---: | ---: | ---: | --- |
+| 1 / 2 | 36.8 | 35.95 | 0.977 | 36.8 | Retained within drawing uncertainty. |
+| 3 | 31.2 | 30.82 | 0.988 | 31.2 | Retained. |
+| 4 / 5 | 30.8 | 29.97 | 0.973 | 30.8 | Retained cemented-group outline. |
+| 6 | 27.0 | 24.42 | 0.904 | 24.5 | L4's outer edge is flat in the figure, not pointed; beam and light-cost checks permit the reduction. |
+| 7 | 22.396398402970696 | 22.54 optical cap; 24.42 outer edge | 1.006 for cap | 22.5 | Minimum tenth-mm cap that clears the iris-admitted axial beam; add `rimExtensionSd: 24.5`. |
+| 8 | 22.396398402970696 | 22.49 | 1.004 | 22.5 | Minimum tenth-mm raise for the iris-admitted axial beam; matches the C2 rim. |
+| 9 / 10 | 22.5 | 21.78 | 0.968 | 22.5 | Retained. |
+| 12 / 13 | 19.4 | 19.05 | 0.982 | 19.4 | Retained square-cut L7. |
+| 14 / 15 | 17.1 | 16.61 | 0.971 | 17.1 | Retained square-cut L8. |
+| 16 / 17 | 16.2 | 15.76 | 0.973 | 16.2 | Retained square-cut L9. |
+| 18 / 19 | 15.0 | 14.91 | 0.994 | 15.0 | Retained square-cut L10. |
+| 20 / 21 | 15.0 | 14.68 | 0.979 | 15.0 | Retained square-cut L11. |
+| 22 / 23 | 18.7 | 18.30 | 0.979 | 18.7 | Retained square-cut L12. |
+| 24 / 25 | 19.4 | 19.05 | 0.982 | 19.4 | Retained square-cut L13. |
+| 26 | 17.4 | 19.01 | 1.092 | 18.0 | Rear cemented pair raised coherently toward the figure, within the geometric cap. |
+| 27 | 17.4 | 19.01 | 1.092 | 18.0 | Same common rim; no land at the cemented junction. |
+| 28 | 17.4 | 19.01 | 1.092 | 18.0 | Same common rim; limited by the facing S29. |
+| 29 | 17.4 | 19.01 | 1.092 | 18.0 | Square-cut L16; limited by the facing S28. |
+| 30 | 17.4 | 19.01 | 1.092 | 18.0 | Square-cut L16; corner chief ray clears. |
+
+The L4 cap/edge ratio is q = 239.5 / 259.5 = 0.923. One native pixel at each endpoint gives approximately ±(1 + q)/259.5 = ±0.0074, excluding q = 1. The inferred land is about 1.9 mm in the drawing, represented as 2.0 mm between the 22.5 mm cap and 24.5 mm rim. This is a rim extension preserving the optical cap, not an inferred cut depth. No sub-0.1 mm land or cemented-interface land was added.
+
+### Clearance and retained limitations
+
+The actual engine iris radius remains 20.299857229885482 mm. The aperture audit's marginal heights require S7 = 22.450099 and S8 = 22.445813 mm. Both fit 22.5 mm; the smallest two-decimal gap-sag allowance is 0.99 because the combined sag is 1.226880 / 1.247481 = 0.983486. The positive physical S7/S8 gap is 0.020601 mm. At 0.98 the chosen tenth-mm rims exceed the budget, even though the faces do not cross. No R, d, glass, stop, metadata or focus mechanics changed.
+
+At S28/S29 the final 18.0 mm rim gives combined sag 8.076934 mm against 8.328738 mm separation, leaving 0.251804 mm. A 19.1 mm trial fails the surface audit: combined sag 9.180698 mm, physically crossing by 0.851960 mm. A larger gap allowance cannot cure that crossing. The 18.0 mm choice is the least tenth-mm raise that brings the relative rear height inside the drawing's approximate 5–8% uncertainty; no further raise is justified merely by improved light throughput.
+
+The ghost meridional `clearap` probe at the nominal paraxial entrance pupil is a different diagnostic: it derives a 21.175 mm iris rather than the engine's 20.300 mm iris, reports source-pupil axial flags (including S6 after its figure-driven reduction), and still cannot solve its upper full-field ray. These are retained limitations, not claimed resolved by the aperture audit. At the unchanged source pupil the longitudinal spherical aberration is −0.046 / −0.009 / −0.014 / −0.018 mm at pupil fractions 1.0 / 0.85 / 0.7 / 0.5, consistent with Figure 2's scale. The source-height chief ray has no blocked surface: required S26–S30 heights remain 17.16 / 16.95 / 16.57 / 16.57 / 17.27 mm, with minimum rear clearance about 0.73 mm at S30.
+
+The surface audit passes. The actual-iris aperture audit changes from f/1.7992748 to f/1.7940979; its next-ray limiter is now STO, and the raise audit finds zero undersized surfaces. The image-circle audit has one checked, zero undersized, zero skipped. Format-corner field coverage remains 100%, one solved station, zero skipped. Engine EFL remains 132.105528453386 mm, nominal FOPEN remains 1.794097901949, declared half-field remains 9.328251114305°, and stop radius is unchanged. The diagnostic tracing-half-field estimate increases from 9.292661859438° to 9.576464537469°.
+
+### Light and rendered comparison
+
+The final whole-set `rimcost --loo` comparison against `.lens-work/base1124sd/SevenArtisansAF135f18MAX.data.ts` uses the same field angles for both curves:
+
+| Field, degrees (rounded) | Starting geometric transmission, % | Final geometric transmission, % |
+| --- | ---: | ---: |
+| 0.0 | 99.0 | 100.0 |
+| 1.5 | 98.1 | 98.8 |
+| 3.1 | 90.6 | 90.9 |
+| 4.6 | 80.1 | 80.2 |
+| 6.2 | 68.9 | 69.0 |
+| 7.7 | 54.6 | 56.7 |
+| 9.2 | 32.2 | 36.2 |
+
+No sampled field loses light; the corner gains approximately 4.1 percentage points using unrounded values. Restoring L4 alone in the leave-one-element-out check recovers zero points: the figure-driven reduction/land meets the lands-and-cuts rule. This infinity-only prime has no further printed focus or zoom states. These are geometric lattice transmission figures, not retail relative illumination or an exact reproduction of Figure 7.
+
+Scratch evidence is in `/private/tmp/claude-501/-Users-ronbuening--claude-spares-spare-EIkiKm/8d989648-1a4e-43f9-bdb4-c4cbb0d8c850/scratchpad/sd/a135/`. The prescribed sketch tool produced `before.svg` and `after-straight.svg`; it omits lands. The separately constructed `overlay.svg` / `overlay.png` includes the authored S7 extension and compares the native patent crop with current black and starting blue model outlines at the same 10.627264 px/mm in both axes. The rendered PNG was inspected: the L4 point is replaced by the depicted flat land, rear rims move toward the figure, and the expected small residual rear-height discrepancy remains. No browser was used under this assignment; the coordinator's live-page review remains outstanding.
+
+The supplied `v-a135/diagrams/reeve_crop3x.jpg` was inspected. Its sixteen elements / thirteen groups, ordered shapes and three cemented pairs agree with the patent; the short L4 land and relative rear heights are compatible with the final outline, within the low-resolution image's limits. ED positions are L2/L5/L10/L12/L15/L16; high-index positions are L1/L6/L9/L13/L14. No aspherical element is marked or tabulated. The maker diagram omits the iris and separate camera-side plate and cannot settle tiny clearances.
+
+Front-page render and text agree: applicant 深圳市七工匠光电科技有限公司 (Shenzhen 7Artisans Photoelectric Technology Co., Ltd.); inventors 刘昌家 / 罗香石 / 杨希靖 (Liu Changjia / Luo Xiangshi / Yang Xijing); publication CN 122469500 A, 2026-07-28; application 202610921409.X, filed 2026-06-25. No new name or metadata mismatch was found. The already recorded L9/L11 prose-versus-table ED ordinal contradiction remains.
+
+Iris recommendation: retain the tabulated position and current inferred engine radius; no stop edit was applied. The coordinator should retain the source-pupil/real-iris discrepancy as a limitation rather than enlarge the iris and force further rim raises through crossing surfaces. Formatting and whitespace checks cover only these three assigned files. Full application tests/build and live viewer checks remain outside this pass. No sandbox tool call or edit was refused; missing-helper/module and patch-context errors were ordinary tool errors.
+
+## 2026-11-13 — Glass proxies and catalog metadata
+
+- L5: `Unmatched (nd 1.4378 / V 94.523389)` → `S-FPL55 (spectral proxy; patent nd 1.4378 / V 94.523389; supplier and melt unspecified)`. The Ohara ED fluorophosphate catalog row has nd = 1.43875 and νd = 94.661059; catalog minus patent Δnd = +0.00095 and Δνd = +0.137670 (about +0.14). It meets the approximate 0.002 index / 0.25 Abbe spectral-proxy rule. The engine retains the printed d-line index and borrows only the row's wavelength dependence; the authored nd/νd remain unchanged. This is not an exact identification of historical glass, supplier or melt.
+- `chan.mjs`, run from the worktree against `.lens-work/base1124glass/SevenArtisansAF135f18MAX.data.ts` and the current data file, gives the C/d/F/g results below. R/G/B/V map to C/d/F/g, and offsets are relative to d (G).
+
+| Line | BFD before → after, mm | Focus offset before → after, µm |
+| --- | --- | --- |
+| C (R) | 1.0383 → 1.0251 | +28.2 → +15.0 |
+| d (G) | 1.0101 → 1.0101 | 0.0 → 0.0 |
+| F (B) | 1.0155 → 1.0018 | +5.4 → −8.3 |
+| g (V) | 1.0753 → 1.0061 | +65.2 → −4.0 |
+
+- The violet residual relative to d falls from +65.2 to −4.0 µm. The maximum absolute offset from d falls from 65.2 µm to just under 15 µm. A scratch copy of `chan.mjs` changing only offset display precision gives C = +14.995457, F = −8.308407 and g = −4.018018 µm after relabeling. The full C/d/F/g range is therefore 23.3 µm, not under 15 µm; that distinction corrects the assignment's spread wording. The 23.3 µm range agrees better with the roughly 20 µm paraxial spread of patent Figure 2 over 0.436–0.656 µm, without proving exact glass identity or full-curve reproduction.
+- Catalog spec: `0.68 m MIN FOCUS` → `0.68 m MFD`. The analysis defines MFD as minimum focus distance and retains the 0.68 m marketing distance and infinity-only model limitation.
+- Added the missing first-line analysis title: `# 7Artisans AF 135mm f/1.8 MAX`. Updated the glass summary, L5 table row and ED paragraph to describe all sixteen elements' catalog spectral coverage and the qualified L5 proxy in present tense.
+- Remaining inconsistency: the read-only data-file header still says L5 has no matching catalog row and uses approximate dispersion, although its authored glass label resolves to S-FPL55. The header requires correction by its owner. The data file is unchanged by this text-only assignment.

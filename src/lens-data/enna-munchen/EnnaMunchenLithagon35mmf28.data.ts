@@ -7,8 +7,13 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * air gaps and back focus by 35 to convert them to millimetres; n and ν are unchanged.
  * The unmarked stop is inferred at the l3 midpoint, splitting its 3.955 mm gap
  * into 1.9775 mm on each side; its opening is derived from the design f/2.5.
- * The 19 mm front and 9.5 mm rear semi-diameters are inferred schematic rims,
- * not published clear apertures. Back focus is not inferred: the final gap
+ * Semi-diameters are inferred from the sole figure's proportions, not published
+ * clear apertures: L1 16/14.2 mm, L2 9.5 mm, L3 8.5 mm, L4 7.9 mm and C1 9.3 mm.
+ * The schematic drawing exaggerates some axial thicknesses; L1's unequal faces
+ * approximate its beveled outline. L2, L1's rear face and C1 retain extra aperture
+ * to keep geometric transmission within 3 percentage points of the starting rims.
+ * All rims clear the f/2.5 axial beam and full-frame chief ray. No lands are added.
+ * Back focus is not inferred: the final gap
  * retains the printed s′ = 1.00950 scaled to 35.3325 mm.
  * The indices agree with helium-d catalog values. Glass labels name catalog
  * equivalents within the printed index/Abbe tolerances, not a supplier or melt.
@@ -129,14 +134,14 @@ const LENS_DATA = {
       "label": "1",
       "R": 101.5,
       "d": 1.4,
-      "sd": 19.0,
+      "sd": 16.0,
       "medium": 1
     },
     {
       "label": "2",
       "R": 27.615,
       "d": 15.4,
-      "sd": 19.0
+      "sd": 14.2
     },
     {
       "label": "3",
@@ -155,14 +160,14 @@ const LENS_DATA = {
       "label": "5",
       "R": 21.4725,
       "d": 2.03,
-      "sd": 9.5,
+      "sd": 8.5,
       "medium": 3
     },
     {
       "label": "6",
       "R": 49.0,
       "d": 1.9775,
-      "sd": 9.5
+      "sd": 8.5
     },
     {
       "label": "STO",
@@ -173,34 +178,34 @@ const LENS_DATA = {
       "label": "7",
       "R": -32.9,
       "d": 1.925,
-      "sd": 9.5,
+      "sd": 7.9,
       "medium": 4
     },
     {
       "label": "8",
       "R": 18.305,
       "d": 2.87,
-      "sd": 9.5
+      "sd": 7.9
     },
     {
       "label": "9",
       "R": 134.75,
       "d": 2.45,
-      "sd": 9.5,
+      "sd": 9.3,
       "medium": 5
     },
     {
       "label": "10",
       "R": 49.0,
       "d": 4.2,
-      "sd": 9.5,
+      "sd": 9.3,
       "medium": 6
     },
     {
       "label": "11",
       "R": -18.515,
       "d": 35.3325,
-      "sd": 9.5
+      "sd": 9.3
     }
   ],
   "focus": {
