@@ -280,7 +280,9 @@ controls the error is rim sampling: other aberrations and vignetted pupil shapes
 pupil and 0.004 on 128, inside the 0.01 convergence tolerance. `reports/mtfChartRegression.report.ts`
 compares the catalog with digitized manufacturer chart values (`reports/data/mtfChartAnchors.csv`) with diffraction
 for every maker and under each maker's chart convention (`reports/data/mtfChartConventions.ts`: geometric,
-diffraction-inclusive or measured, with a documented / inferred basis), by frequency and field band; it repeats the
+diffraction-inclusive or measured, with a documented / inferred basis), comparing both pair midpoint and
+assignment-free S/T separation deltas by configuration, frequency, field band and totals, with per-direction deltas
+where chart strokes are explicitly assigned; it repeats the
 two-route cross-check on those lenses and keeps the audit's own values, computed with the retired product, as a
 frozen reference. The cross-check samples wide open and at f/8 (or the nearest attainable aperture), each on its own
 best axial focus plane, at 10, 30 and 50 lp/mm on a 128-cell lattice. Each pass prints per-configuration and total

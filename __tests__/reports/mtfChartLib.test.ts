@@ -3,10 +3,13 @@
  * with MTF_CHART_REPORT=1; these checks stay in `npm test`.
  */
 import { afterEach, describe, expect, it, vi } from "vitest";
+import { readFileSync } from "node:fs";
 import {
+  chartDeltas,
   correctedSinceAudit,
   crossCheckConfiguration,
   renderCrossCheckPass,
+  parseChartAnchors,
   stoppedDownCrossCheck,
 } from "../../reports/mtfChartLib.js";
 import type { CrossCheckPass } from "../../reports/mtfChartLib.js";
@@ -31,6 +34,46 @@ const CORRECTED: SourceErratum = {
 
 describe("MTF chart report helpers", () => {
   afterEach(() => vi.restoreAllMocks());
+
+  it("exposes opposite directional errors even when the pair midpoint agrees", () => {
+    const anchor = { pairMin: 0.6, pairMax: 0.8 };
+    const split = chartDeltas({ sagittal: 0.9, tangential: 0.5 }, anchor);
+    expect(split.midpoint).toBeCloseTo(0, 12);
+    expect(split.separation).toBeCloseTo(0.2, 12);
+    expect(split.sagittal).toBeNull();
+    expect(split.tangential).toBeNull();
+    expect(chartDeltas({ sagittal: 0.5, tangential: 0.9 }, anchor)).toEqual(split);
+    expect(chartDeltas({ sagittal: 0.7, tangential: 0.7 }, anchor).separation).toBeCloseTo(-0.2, 12);
+    expect(chartDeltas({ sagittal: 0.6, tangential: 0.8 }, anchor).separation).toBe(0);
+  });
+
+  it("preserves the existing anchors and accepts optional assignments and chart provenance", () => {
+    const csv = readFileSync("reports/data/mtfChartAnchors.csv", "utf8");
+    const anchors = parseChartAnchors(csv);
+    expect(anchors).toHaveLength(392);
+    expect(anchors.every((anchor) => anchor.assigned === undefined)).toBe(true);
+    const [header, first] = csv.trim().split("\n");
+    const extendedHeader =
+      header + ",manufacturer_sagittal,manufacturer_meridional,assignment_confidence,chart_stated_aperture";
+    expect(parseChartAnchors(`${extendedHeader}\n${first},,,,`)).toEqual([anchors[0]]);
+    const [assigned] = parseChartAnchors(`${extendedHeader}\n${first},0.8,0.6,high,"f/1.8, wide open"`);
+    expect(assigned).toMatchObject({
+      assigned: { sagittal: 0.8, tangential: 0.6 },
+      assignmentConfidence: "high",
+      statedAperture: "f/1.8, wide open",
+      recorded: anchors[0].recorded,
+    });
+    const deltas = chartDeltas({ sagittal: 0.9, tangential: 0.5 }, assigned);
+    expect(deltas.sagittal).toBeCloseTo(0.1, 12);
+    expect(deltas.tangential).toBeCloseTo(-0.1, 12);
+    const [partial] = parseChartAnchors(`${extendedHeader}\n${first},0,,low,`);
+    expect(chartDeltas({ sagittal: 0.1, tangential: 0.5 }, partial)).toMatchObject({
+      sagittal: 0.1,
+      tangential: null,
+    });
+    expect(() => parseChartAnchors(`${extendedHeader}\n${first},invalid,,,`)).toThrow("not a number");
+    expect(() => parseChartAnchors(`${extendedHeader}\n${first},0.8,0.6,certain,`)).toThrow("assignment_confidence");
+  });
 
   it("reads a corrected source erratum from a V2 file as from its V1 twin", () => {
     const prime = FIXTURE_PAIRS.find((pair) => pair.family === "prime");

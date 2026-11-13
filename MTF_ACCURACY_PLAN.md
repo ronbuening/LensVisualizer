@@ -187,9 +187,6 @@ S under a day, M one to three days, L longer.
   lattice, the unresolved-beam and dark-line rules and the 256 cap. Regenerate it, and print the engine commit and
   hashes of anchors, conventions and prescriptions so a stale copy says so. Required before Stage 9. S plus the
   run.
-- **C16 — Midpoint comparison hides astigmatism errors.** The chart report compares pair midpoints; add the
-  assignment-free `|S − T|` against `pair_max − pair_min` beside it, and record S, T and the chart aperture in any
-  new digitization. M.
 - **C18 — Stage 4 wording.** Its counts (77 of 846, 20 multi-flag) cannot be reproduced on today's 1,102 visible
   lenses, several first suspects already carry errata (Pentax 645 35mm, Fujifilm GF 80mm), and errata live at
   `source.errata`. Restate the acceptance against a fresh census. S.

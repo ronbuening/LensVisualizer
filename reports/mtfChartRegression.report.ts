@@ -26,6 +26,8 @@ import { computeAnalysisFieldGeometryAtState, entrancePupilAtState } from "../sr
 import type { MtfMethod, MtfOptions, MtfResult } from "../src/types/mtf.js";
 import { mtfChartConvention, type MtfChartConvention, type MtfChartMethod } from "./data/mtfChartConventions.js";
 import {
+  chartDeltas,
+  parseChartAnchors,
   correctedSinceAudit,
   crossCheckConfiguration,
   stoppedDownCrossCheck,
@@ -34,7 +36,7 @@ import {
   CROSS_CHECK_FREQUENCIES,
   CROSS_CHECK_PHASE_STEP_WAVES,
 } from "./mtfChartLib.js";
-import type { CrossCheckPass } from "./mtfChartLib.js";
+import type { Anchor, ChartDeltas, Curves, CrossCheckPass } from "./mtfChartLib.js";
 
 const modules = import.meta.glob<{ default: LensDataV2Input }>("../src/lens-data/**/*.data.ts", { eager: true });
 const ANCHORS_PATH = "reports/data/mtfChartAnchors.csv";
@@ -80,27 +82,6 @@ const FIELD_BANDS = [
 ];
 const fieldBand = (fraction: number) => FIELD_BANDS.find((band) => fraction <= band.upTo);
 
-/** One digitized chart value and the audit's own result at the same field and frequency. */
-interface Anchor {
-  key: string;
-  zoomT: number;
-  fieldFraction: number;
-  frequency: number;
-  /** Envelope of the chart's sagittal and meridional strokes, which the digitization does not tell apart. */
-  pairMin: number;
-  pairMax: number;
-  apertureLabel: number;
-  methodPrinted: string;
-  sourceUrl: string;
-  allowance: number;
-  recorded: Curves;
-}
-
-interface Curves {
-  sagittal: number;
-  tangential: number;
-}
-
 interface Sample {
   anchor: Anchor;
   maker: string;
@@ -124,10 +105,9 @@ interface Configuration {
 }
 
 /** Delta of one sample under one comparison; null when the comparison has no curve there. */
-type Comparison = (sample: Sample) => number | null;
+type Comparison = (sample: Sample) => ChartDeltas | null;
 
-const delta = (curves: Curves, anchor: Anchor) =>
-  (curves.sagittal + curves.tangential) / 2 - (anchor.pairMin + anchor.pairMax) / 2;
+const delta = chartDeltas;
 const DIFFRACTION: Comparison = (sample) => sample.diffraction && delta(sample.diffraction, sample.anchor);
 const MAKER_CONVENTION: Comparison = (sample) => sample.convention && delta(sample.convention, sample.anchor);
 const RECORDED: Comparison = (sample) => delta(sample.anchor.recorded, sample.anchor);
@@ -143,53 +123,7 @@ const row = (cells: (string | number)[]) => `| ${cells.join(" | ")} |`;
 /** Code-unit order, so the report sorts the same under every locale. */
 const byText = (a: string, b: string) => (a < b ? -1 : a > b ? 1 : 0);
 
-/** Split one CSV record on commas outside double quotes. Fields here never hold a line break. */
-function splitCsvRecord(record: string): string[] {
-  const cells: string[] = [];
-  let cell = "";
-  let quoted = false;
-  for (let i = 0; i < record.length; i++) {
-    const char = record[i];
-    if (quoted && char === '"' && record[i + 1] === '"') {
-      cell += '"';
-      i++;
-    } else if (char === '"') quoted = !quoted;
-    else if (char === "," && !quoted) {
-      cells.push(cell);
-      cell = "";
-    } else cell += char;
-  }
-  return [...cells, cell];
-}
-
-function readAnchors(): Anchor[] {
-  const [header, ...records] = readFileSync(ANCHORS_PATH, "utf8").trim().split("\n").map(splitCsvRecord);
-  return records.map((cells) => {
-    const text = (column: string) => {
-      const index = header.indexOf(column);
-      if (index < 0) throw new Error(`${ANCHORS_PATH} has no "${column}" column`);
-      return cells[index];
-    };
-    const number = (column: string) => {
-      const value = Number(text(column));
-      if (!Number.isFinite(value)) throw new Error(`${ANCHORS_PATH}: "${column}" of ${cells[0]} is not a number`);
-      return value;
-    };
-    return {
-      key: text("key"),
-      zoomT: number("zoomT"),
-      fieldFraction: number("field_fraction"),
-      frequency: number("frequency_lp_mm"),
-      pairMin: number("manufacturer_pair_min"),
-      pairMax: number("manufacturer_pair_max"),
-      apertureLabel: number("chart_aperture_label"),
-      methodPrinted: text("chart_method_printed"),
-      sourceUrl: text("source_url"),
-      allowance: number("digitization_allowance_mtf"),
-      recorded: { sagittal: number("audit_sagittal"), tangential: number("audit_tangential") },
-    };
-  });
-}
+const readAnchors = () => parseChartAnchors(readFileSync(ANCHORS_PATH, "utf8"));
 
 /** Sagittal and tangential values of one field at one frequency; null when the field returned no curve. */
 function curvesAt(result: MtfResult, fieldIndex: number, frequency: number): Curves | null {
@@ -270,11 +204,20 @@ function runConfiguration(lens: LensDataV2Input, zoomT: number, anchors: Anchor[
 }
 
 /** Mean signed delta, mean absolute delta and share of negative deltas, as table cells. */
-function deltaCells(samples: Sample[], comparison: Comparison): string[] {
-  const deltas = samples.map(comparison).filter((value) => value !== null);
+function deltaCells(samples: Sample[], comparison: Comparison, metric: keyof ChartDeltas = "midpoint"): string[] {
+  const deltas = samples.map((sample) => comparison(sample)?.[metric] ?? null).filter((value) => value !== null);
   if (!deltas.length) return ["n/a", "n/a", "n/a"];
   const negative = deltas.filter((value) => value < 0).length;
   return [signed(mean(deltas)), fixed(mean(deltas.map(Math.abs))), `${fixed((100 * negative) / deltas.length, 1)}%`];
+}
+
+/** Keep the pair's level and separation beside each other in every chart-comparison group. */
+function pairDeltaCells(samples: Sample[], comparison: Comparison, includeNegative = true): string[] {
+  const midpoint = deltaCells(samples, comparison);
+  return [
+    ...(includeNegative ? midpoint : midpoint.slice(0, 2)),
+    ...deltaCells(samples, comparison, "separation").slice(0, 2),
+  ];
 }
 
 /** diffraction estimate - recorded product for the sagittal and tangential value of every sample. */
@@ -340,11 +283,12 @@ function renderReport(configurations: Configuration[]): string {
     "",
     "## Reading the Numbers",
     "",
-    "- **Delta** is simulation minus chart, `(S + T) / 2 - (pair_min + pair_max) / 2`, in MTF units on the 0-1",
-    "  scale. A negative delta means the simulation reads below the chart.",
-    "- **Only pair midpoints are compared.** The digitization records the envelope of a chart's two strokes at each",
-    "  image height without assigning them to sagittal and meridional, so a midpoint can hide opposite errors in S",
-    "  and T.",
+    "**Midpoint delta** is simulation minus chart, `(S + T) / 2 - (pair_min + pair_max) / 2`, in MTF units;",
+    "negative means the simulation reads below the chart. **Separation delta** is `|S - T| - (pair_max - pair_min)`:",
+    "positive means more simulated S/T splitting (astigmatism/lateral blur asymmetry), negative less, without",
+    "assigning the chart's strokes to sagittal and meridional. Both have mean signed and mean absolute values;",
+    "neither is a test threshold, and nothing is fitted to the charts.",
+    "",
     `- **Samples are correlated, not independent measurements.** The ${samples.length} samples come from`,
     `  ${configurations.length} charts of ${lensCount} lenses; neighbors on a curve share a prescription, an image plane`,
     "  and a digitization. The means describe this set and carry no confidence interval.",
@@ -395,8 +339,8 @@ function renderReport(configurations: Configuration[]): string {
           " The Audit's Recorded Values), so those rows still include the printed, uncorrected tables."
         : ""),
     "",
-    "| Maker | Comparison | Samples | Mean signed | Mean absolute | Negative |",
-    "|---|---|---:|---:|---:|---:|",
+    "| Maker | Comparison | Samples | Midpoint: signed | absolute | negative | Separation: signed | absolute |",
+    "|---|---|---:|---:|---:|---:|---:|---:|",
   );
   const comparisons: [string, Comparison][] = [
     ["Diffraction", DIFFRACTION],
@@ -406,18 +350,18 @@ function renderReport(configurations: Configuration[]): string {
   for (const [group, members] of groups)
     for (const [label, comparison] of comparisons) {
       const count = members.filter((sample) => comparison(sample) !== null).length;
-      lines.push(row([group, label, count, ...deltaCells(members, comparison)]));
+      lines.push(row([group, label, count, ...pairDeltaCells(members, comparison)]));
     }
   lines.push("");
 
   lines.push(
     "## By Frequency and Field Band",
     "",
-    "Field is the fraction of the reference image height. Each comparison lists mean signed delta, mean absolute",
-    "delta and the share of negative samples.",
+    "Field is the fraction of the reference image height. Each comparison lists mean signed and mean absolute",
+    "midpoint and separation deltas, with the share of negative midpoint samples.",
     "",
-    "| Maker | lp/mm | Field | Samples | Diffraction: signed | absolute | negative | Convention: signed | absolute | negative |",
-    "|---|---:|---|---:|---:|---:|---:|---:|---:|---:|",
+    "| Maker | lp/mm | Field | Samples | Diffraction midpoint: signed | absolute | negative | separation: signed | absolute | Convention midpoint: signed | absolute | negative | separation: signed | absolute |",
+    "|---|---:|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|",
   );
   for (const [group, members] of groups)
     for (const frequency of frequencies)
@@ -431,8 +375,8 @@ function renderReport(configurations: Configuration[]): string {
             frequency,
             band.label,
             inBand.length,
-            ...deltaCells(inBand, DIFFRACTION),
-            ...deltaCells(inBand, MAKER_CONVENTION),
+            ...pairDeltaCells(inBand, DIFFRACTION),
+            ...pairDeltaCells(inBand, MAKER_CONVENTION),
           ]),
         );
       }
@@ -444,10 +388,10 @@ function renderReport(configurations: Configuration[]): string {
     "`Label f/` is the aperture printed on the chart, which the stop rule sizes the iris for; `Vignetted by` names the",
     "surface that clips the axial marginal ray, as the Summary's working f-number reports it. Focus shift is the best",
     "axial focus plane relative to the authored image plane, in mm. Each comparison lists mean signed and mean",
-    "absolute delta.",
+    "absolute midpoint and separation deltas.",
     "",
-    "| Lens | zoomT | Maker | Chart convention | Label f/ | Vignetted by | Focus shift | Diffraction: signed | absolute | Convention: signed | absolute |",
-    "|---|---:|---|---|---:|---|---:|---:|---:|---:|---:|",
+    "| Lens | zoomT | Maker | Chart convention | Label f/ | Vignetted by | Focus shift | Diffraction midpoint: signed | absolute | separation: signed | absolute | Convention midpoint: signed | absolute | separation: signed | absolute |",
+    "|---|---:|---|---|---:|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|",
   );
   for (const { key, zoomT, maker, convention, result, samples: own } of configurations)
     lines.push(
@@ -461,11 +405,46 @@ function renderReport(configurations: Configuration[]): string {
           ? `${result.axialVignetting.surfaceLabel}${result.axialVignetting.beforeStop ? " (before stop)" : ""}`
           : "—",
         result.focus ? signed(result.focus.appliedShiftMm) : "n/a",
-        ...deltaCells(own, DIFFRACTION).slice(0, 2),
-        ...deltaCells(own, MAKER_CONVENTION).slice(0, 2),
+        ...pairDeltaCells(own, DIFFRACTION, false),
+        ...pairDeltaCells(own, MAKER_CONVENTION, false),
       ]),
     );
   lines.push("");
+
+  const assigned = samples.filter((sample) => sample.anchor.assigned);
+  if (assigned.length) {
+    lines.push(
+      "## Assigned Directions",
+      "",
+      "Rows with explicitly assigned chart strokes also list simulation minus chart per direction (T is meridional).",
+      "Assignment confidence and the verbatim chart aperture are provenance only; missing assignments or curves",
+      "print n/a. Low-confidence assignments are included and labelled, never used as test thresholds or fitted.",
+      "",
+      "| Lens | zoomT | Field | lp/mm | Assignment confidence | Chart stated aperture | Label f/ | Comparison | S delta | T delta |",
+      "|---|---:|---:|---:|---|---|---:|---|---:|---:|",
+    );
+    for (const sample of assigned) {
+      const { anchor } = sample;
+      for (const [label, comparison] of comparisons) {
+        const deltas = comparison(sample);
+        lines.push(
+          row([
+            `\`${anchor.key}\``,
+            anchor.zoomT,
+            anchor.fieldFraction,
+            anchor.frequency,
+            anchor.assignmentConfidence ?? "unspecified",
+            (anchor.statedAperture ?? "unspecified").replace(/\|/g, "\\|"),
+            fixed(anchor.apertureLabel, 2),
+            label,
+            deltas?.sagittal == null ? "n/a" : signed(deltas.sagittal),
+            deltas?.tangential == null ? "n/a" : signed(deltas.tangential),
+          ]),
+        );
+      }
+    }
+    lines.push("");
+  }
 
   lines.push(
     "## Estimator Cross-Check",
@@ -551,7 +530,7 @@ describe.skipIf(!ENABLED)("MTF chart regression report", () => {
     () => {
       const anchors = readAnchors();
       expect(anchors).toHaveLength(ANCHOR_COUNT);
-      const recordedDeltas = anchors.map((anchor) => delta(anchor.recorded, anchor));
+      const recordedDeltas = anchors.map((anchor) => delta(anchor.recorded, anchor).midpoint);
       expect(Math.abs(mean(recordedDeltas) - RECORDED_MEAN_SIGNED)).toBeLessThan(0.0005);
       expect(Math.abs(mean(recordedDeltas.map(Math.abs)) - RECORDED_MEAN_ABSOLUTE)).toBeLessThan(0.0005);
 

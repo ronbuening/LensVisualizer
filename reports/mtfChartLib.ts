@@ -23,6 +23,136 @@ import {
 } from "../src/optics/mtf.js";
 import type { ComplexOtf, MtfSpot } from "../src/optics/mtf.js";
 
+/** Sagittal and tangential (meridional) MTF at one field and frequency. */
+export interface Curves {
+  sagittal: number;
+  tangential: number;
+}
+
+/** One digitized chart envelope and the frozen audit result at the same field and frequency. */
+export interface Anchor {
+  key: string;
+  zoomT: number;
+  fieldFraction: number;
+  frequency: number;
+  pairMin: number;
+  pairMax: number;
+  apertureLabel: number;
+  methodPrinted: string;
+  sourceUrl: string;
+  allowance: number;
+  recorded: Curves;
+  assigned?: Partial<Curves>;
+  assignmentConfidence?: "high" | "medium" | "low";
+  statedAperture?: string;
+}
+
+/** Simulation minus chart in MTF units; unassigned directions have no delta. */
+export interface ChartDeltas {
+  midpoint: number;
+  separation: number;
+  sagittal: number | null;
+  tangential: number | null;
+}
+
+/**
+ * Compare pair level and splitting independently so opposite S/T errors remain visible.
+ *
+ * @param curves - simulated S/T magnitudes at the anchor's field and frequency
+ * @param anchor - chart envelope and any explicitly assigned directional values
+ * @returns signed midpoint, assignment-free separation and available directional deltas
+ */
+export function chartDeltas(curves: Curves, anchor: Pick<Anchor, "pairMin" | "pairMax" | "assigned">): ChartDeltas {
+  return {
+    midpoint: (curves.sagittal + curves.tangential) / 2 - (anchor.pairMin + anchor.pairMax) / 2,
+    separation: Math.abs(curves.sagittal - curves.tangential) - (anchor.pairMax - anchor.pairMin),
+    sagittal: anchor.assigned?.sagittal === undefined ? null : curves.sagittal - anchor.assigned.sagittal,
+    tangential: anchor.assigned?.tangential === undefined ? null : curves.tangential - anchor.assigned.tangential,
+  };
+}
+
+/** Split one CSV record on commas outside double quotes. Fields here never hold a line break. */
+function splitCsvRecord(record: string): string[] {
+  const cells: string[] = [];
+  let cell = "";
+  let quoted = false;
+  for (let i = 0; i < record.length; i++) {
+    const char = record[i];
+    if (quoted && char === '"' && record[i + 1] === '"') {
+      cell += '"';
+      i++;
+    } else if (char === '"') quoted = !quoted;
+    else if (char === "," && !quoted) {
+      cells.push(cell);
+      cell = "";
+    } else cell += char;
+  }
+  return [...cells, cell];
+}
+
+/**
+ * Read chart anchors without requiring directional assignments for envelope digitizations.
+ *
+ * Required CSV columns: key, zoomT, field_fraction, frequency_lp_mm,
+ * manufacturer_pair_min/max (unassigned stroke envelope), chart_aperture_label
+ * (numeric f-number), chart_method_printed, source_url, digitization_allowance_mtf,
+ * audit_sagittal/tangential (frozen simulation, never chart assignments).
+ * height_mm and source_sha256 are retained in the CSV as provenance, not parsed here.
+ * Optional columns for new digitizations: manufacturer_sagittal and
+ * manufacturer_meridional (independently assigned MTF magnitudes), assignment_confidence
+ * (high/medium/low, descriptive only), chart_stated_aperture (verbatim printed aperture).
+ * Missing or blank optional cells stay absent; confidence never gates a comparison.
+ *
+ * @param csv - header and single-line records, with standard CSV quoting
+ * @returns anchors with unchanged frozen audit values and optional assignment provenance
+ */
+export function parseChartAnchors(csv: string): Anchor[] {
+  const [header, ...records] = csv.trim().split("\n").map(splitCsvRecord);
+  return records.map((cells) => {
+    const text = (column: string) => {
+      const index = header.indexOf(column);
+      if (index < 0) throw new Error(`MTF chart anchors have no "${column}" column`);
+      return cells[index];
+    };
+    const number = (column: string) => {
+      const value = Number(text(column));
+      if (!Number.isFinite(value)) throw new Error(`MTF chart anchors: "${column}" of ${cells[0]} is not a number`);
+      return value;
+    };
+    const optionalText = (column: string) => cells[header.indexOf(column)]?.trim() || undefined;
+    const optionalNumber = (column: string) => (optionalText(column) === undefined ? undefined : number(column));
+    const sagittal = optionalNumber("manufacturer_sagittal");
+    const tangential = optionalNumber("manufacturer_meridional");
+    const confidence = optionalText("assignment_confidence");
+    if (confidence !== undefined && confidence !== "high" && confidence !== "medium" && confidence !== "low")
+      throw new Error(`MTF chart anchors: invalid assignment_confidence of ${cells[0]}`);
+    const statedAperture = optionalText("chart_stated_aperture");
+    return {
+      key: text("key"),
+      zoomT: number("zoomT"),
+      fieldFraction: number("field_fraction"),
+      frequency: number("frequency_lp_mm"),
+      pairMin: number("manufacturer_pair_min"),
+      pairMax: number("manufacturer_pair_max"),
+      apertureLabel: number("chart_aperture_label"),
+      methodPrinted: text("chart_method_printed"),
+      sourceUrl: text("source_url"),
+      allowance: number("digitization_allowance_mtf"),
+      recorded: { sagittal: number("audit_sagittal"), tangential: number("audit_tangential") },
+      ...(sagittal !== undefined || tangential !== undefined
+        ? {
+            assigned: {
+              ...(sagittal !== undefined ? { sagittal } : {}),
+              ...(tangential !== undefined ? { tangential } : {}),
+            },
+          }
+        : {}),
+      ...(confidence !== undefined ? { assignmentConfidence: confidence } : {}),
+      ...(statedAperture !== undefined ? { statedAperture } : {}),
+    };
+  });
+}
+
 /** Fixed sampling and validity gate of the two-route consistency report. */
 export const CROSS_CHECK_GRID = 128;
 export const CROSS_CHECK_FREQUENCIES = [10, 30, 50];
