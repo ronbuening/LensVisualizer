@@ -12,9 +12,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  */
 const LENS_DATA = {
   "schema": 2,
-  "key": "agfa-colorsolagon55-us2784646-e1-representative",
+  "key": "agfa-color-solagon-55mm-f2",
   "maker": "Agfa",
-  "name": "Agfa Color-Solagon 55mm f/2 patent E1 representative",
+  "name": "AGFA COLOR-SOLAGON 55mm f/2",
   "visible": false,
   "catalog": {
     "imageFormat": "135-full-frame",

@@ -10,9 +10,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  */
 const LENS_DATA = {
   "schema": 2,
-  "key": "kodak-medalist-us2279384-e10-representative",
+  "key": "kodak-medalist-ektar-100mm-f35",
   "maker": "Kodak",
-  "name": "Kodak Medalist 100mm f/3.5 (patent E10 representative)",
+  "name": "KODAK EKTAR 100mm f/3.5 (Kodak Medalist)",
   "visible": false,
   "catalog": {
     "lensMounts": ["fixed-lens-camera"],

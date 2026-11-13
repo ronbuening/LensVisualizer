@@ -11,9 +11,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  */
 const LENS_DATA = {
   "schema": 2,
-  "key": "viltrox-af-35f12-lab",
+  "key": "viltrox-af-35mm-f12-lab",
   "maker": "Viltrox",
-  "name": "Viltrox AF 35mm f/1.2 LAB",
+  "name": "VILTROX AF 35mm f/1.2 LAB",
   "visible": false,
   "elements": [
     {

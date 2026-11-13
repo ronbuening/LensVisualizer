@@ -13,7 +13,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  */
 const LENS_DATA = {
   "schema": 2,
-  "key": "songraw-af-85f12-ms",
+  "key": "songraw-af-85mm-f12-ms",
   "maker": "SongRaw",
   "name": "SONGRAW AF 85mm f/1.2 MS",
   "visible": false,
