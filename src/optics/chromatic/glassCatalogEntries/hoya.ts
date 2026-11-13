@@ -2104,4 +2104,14 @@ export const HOYA_GLASS_ENTRIES: readonly GlassEntry[] = [
     source:
       "HOYA retained official Zemax catalog2026-07-07 including obsolete entries, M-NBFD82 literal formula1 row; locally inspected2026-10-31, current portal timed out. No source supplier, melt, chemistry or process identity implied. https://www.hoya-opticalworld.com/common/agf/HOYA20260707_include_obsolete.agf",
   },
+  /* Exact patent coordinates for the Yongnuo YN 85mm L11 (1.8213 / 42.73). */
+  {
+    name: "MP-TAFD51-50",
+    vendor: "Hoya",
+    polynomial: [3.2288052, -0.014433046, 0.029863488, 0.00082119282, -0.000010943492, 0.0000025804939],
+    nd: 1.8213,
+    vd: 42.72,
+    source:
+      "HOYA Zemax OpticStudio DATA 2026-07-07 (HOYA20260707.agf), MP-TAFD51-50 precision-moulding preform row; vendor formula-1 polynomial. It shares the six-digit code 821427 with M-TAFD51, so code6 is omitted.",
+  },
 ];
