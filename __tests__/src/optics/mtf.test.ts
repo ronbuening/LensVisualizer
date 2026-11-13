@@ -660,7 +660,9 @@ describe("MTF pupil sampling", () => {
       expect(one.unknownFluxFraction).toBeCloseTo(2 / 812, 12);
       expect(one.sagittal.length).toBeGreaterThan(0);
       expect(one.notes).toContain(
-        "2 pupil samples could not be aimed or traced: 2 beside the transmitted beam carry 0.25% of flux and are omitted; MTF error ≤ 0.005.",
+        method === "geometric"
+          ? "2 pupil samples could not be aimed or traced: 2 beside the transmitted beam carry 0.25% of flux and are omitted; MTF error ≤ 0.005."
+          : "2 pupil samples could not be aimed or traced: 2 beside the transmitted beam carry 0.25% of flux and are omitted; the diffraction estimate does not account for this flux.",
       );
       const stopped = fieldWith([1, 2, 3], method);
       expect(stopped.status).toBe("unconverged");
@@ -825,12 +827,51 @@ describe("MTF refinement and focus", () => {
     });
     expect(run([failure(false), curves(0.5)]).status).toBe("unavailable");
   });
-  it("reports unresolved flux with its error bound and rejects it beyond the cap", () => {
-    expect(assessUnresolvedFlux(0, 0)).toEqual({ acceptable: true, note: null });
-    const small = assessUnresolvedFlux(3, 0.002);
-    expect(small.acceptable).toBe(true);
-    expect(small.note).toContain("≤ 0.004");
-    expect(assessUnresolvedFlux(40, MTF_MAX_UNKNOWN_FLUX * 1.01).acceptable).toBe(false);
+  it.each(["geometric", "diffraction"] as const)(
+    "reports unresolved flux for %s and rejects it beyond the cap",
+    (method) => {
+      expect(assessUnresolvedFlux(0, 0, method)).toEqual({ acceptable: true, note: null });
+      const qualification =
+        method === "geometric" ? "MTF error ≤ 0.004" : "the diffraction estimate does not account for this flux";
+      expect(assessUnresolvedFlux(3, 0.002, method)).toEqual({
+        acceptable: true,
+        note: `3 pupil samples that could not be aimed or traced (0.20% of flux) are omitted; ${qualification}.`,
+      });
+      expect(assessUnresolvedFlux(5, 0.002, method, 3)).toEqual({
+        acceptable: true,
+        note: `5 pupil samples could not be aimed or traced: 3 beside the transmitted beam carry 0.20% of flux and are omitted; ${qualification}. 2 touch no transmitted cell and are not counted.`,
+      });
+      expect(assessUnresolvedFlux(3, MTF_MAX_UNKNOWN_FLUX, method).acceptable).toBe(true);
+      expect(assessUnresolvedFlux(40, MTF_MAX_UNKNOWN_FLUX * 1.01, method).acceptable).toBe(false);
+    },
+  );
+  it("does not transfer the geometric omission bound to scalar pupil autocorrelation", () => {
+    // Scalar pupil autocorrelation can exceed the geometric 2ε omission bound.
+    const pupil = Array.from({ length: 16 }, () => Array<number>(16).fill(1));
+    pupil[8][8] = -1;
+    const autocorrelation = (rows: readonly (readonly number[])[]) => {
+      let overlap = 0;
+      let energy = 0;
+      for (const row of rows)
+        for (let column = 0; column < row.length; column++) {
+          energy += row[column] ** 2;
+          if (column + 1 < row.length) overlap += row[column] * row[column + 1];
+        }
+      return overlap / energy;
+    };
+    const full = autocorrelation(pupil);
+    const fullFlattened = autocorrelation([pupil.flat()]);
+    pupil[8][8] = 0;
+    const omitted = autocorrelation(pupil);
+    const omittedFlattened = autocorrelation([pupil.flat()]);
+    const epsilon = 1 / 256;
+    expect(full).toBeCloseTo(0.921875, 12);
+    expect(omitted).toBeCloseTo(0.933333333333, 12);
+    expect(fullFlattened).toBeCloseTo(0.98046875, 12);
+    expect(omittedFlattened).toBeCloseTo(0.992156862745, 12);
+    expect(epsilon).toBeLessThan(MTF_MAX_UNKNOWN_FLUX);
+    expect(Math.abs(omitted - full)).toBeGreaterThan(2 * epsilon);
+    expect(Math.abs(omittedFlattened - fullFlattened)).toBeGreaterThan(2 * epsilon);
   });
   it("orders field requests coarse to fine, center and corner first", () => {
     const tenths = Array.from({ length: 11 }, (_, i) => i / 10);

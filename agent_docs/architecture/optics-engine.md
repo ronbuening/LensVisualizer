@@ -162,11 +162,12 @@ estimator returns a number from a lattice with an unreported hole in the beam. A
 transmitted beam (a row or column neighbour of a lit cell, the vignetting tab's `unresolved-in-beam` rule:
 `unresolvedInBeamRays`), each charged at full transmission; samples that touch no transmitted cell are named but carry
 no weight (`agent_docs/decisions.md`). The unresolved share weights both transmitted and unresolved flux by each
-line's incident spectral weight, matching the OTF mixture. Unresolved flux ε up to 0.5% of the beam is omitted with a
-note bounding the geometric MTF error at 2ε; more makes that grid unavailable (`trace-failed`) and refinement goes on,
-since a finer lattice can resolve a beam edge a coarser one cannot. A coarser curve the ladder keeps because no finer
-grid gave one says why. The reference chief is traced without aperture checks, so a clipped chief
-still fixes the common image reference.
+line's incident spectral weight, matching the OTF mixture. Unresolved flux ε up to 0.5% of the beam is omitted. The
+geometric method's note bounds the MTF error at 2ε; the diffraction method's note reports the omitted flux share and
+states that the estimate does not account for it, without an error bound. A larger share makes that grid unavailable
+(`trace-failed`) and refinement goes on, since a finer lattice can resolve a beam edge a coarser one cannot. A coarser
+curve the ladder keeps because no finer grid gave one says why. The reference chief is traced without aperture
+checks, so a clipped chief still fixes the common image reference.
 
 **Methods.** Geometric OTF is the normalized intensity-weighted Fourier sum of exact landing points. The diffraction
 method (`mtfShearedOtf.ts`, the tab's default, labelled "Diffraction-corrected") evaluates Hopkins' OTF from the same rays. At frequency ν the pupil

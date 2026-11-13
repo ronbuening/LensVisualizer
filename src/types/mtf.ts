@@ -169,7 +169,9 @@ export interface MtfFieldResult {
   unresolvedInBeamRays: number;
   /**
    * Share of the beam's flux carried by the unaimed and failed samples beside it, which the field is judged by; the
-   * geometric OTF error is at most twice this. Samples that touch no transmitted cell are counted but not in it.
+   * normalized geometric OTF error is at most twice this. The diffraction estimate does not account for this flux
+   * and has no established error bound for its omission. Samples that touch no transmitted cell are counted but
+   * not in it.
    */
   unknownFluxFraction: number;
   /** Largest change between the last two grids at or below the convergence band. */

@@ -42,7 +42,8 @@ export const MTF_MIN_RAYS = 16;
 /**
  * Largest share of a field's launch flux that may belong to rays the tracer cannot resolve.
  * Omitting flux ε changes a normalized geometric OTF by at most 2ε, so this bounds the
- * induced error at 0.01, the convergence tolerance.
+ * induced geometric error at 0.01, the convergence tolerance. Diffraction uses the same cap,
+ * without an established error bound for omitted flux.
  */
 export const MTF_MAX_UNKNOWN_FLUX = 0.005;
 

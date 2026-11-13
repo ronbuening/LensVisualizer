@@ -4,6 +4,7 @@ import type {
   MtfFieldGeometry,
   MtfFieldResult,
   MtfFocus,
+  MtfMethod,
   MtfOptions,
   MtfRequestOptions,
   MtfResult,
@@ -141,7 +142,8 @@ export interface MtfUnresolvedFlux {
 
 /**
  * Omitting flux ε changes a normalized geometric OTF by at most 2ε: small unresolved shares are
- * reported with that bound, larger ones make the grid unavailable. Unresolved samples are the
+ * reported with that bound only for the geometric method. Diffraction reports the omitted flux
+ * without an error bound. Larger shares make the grid unavailable. Unresolved samples are the
  * unaimed and failed ones. A field is judged by those beside its transmitted beam (a row or column
  * neighbour of a transmitted cell): one that touches no transmitted cell is counted and named in the
  * note but withholds nothing (`agent_docs/decisions.md`).
@@ -149,26 +151,31 @@ export interface MtfUnresolvedFlux {
  * @param unresolvedRays - unaimed and failed pupil samples
  * @param unknownFluxFraction - the judged share of the flux: that of the samples beside the beam when `inBeam` is
  *   given, of every unresolved sample otherwise, each counted at full transmission
+ * @param method - estimator whose omitted flux the note qualifies
  * @param inBeam - how many of the samples lie beside the transmitted beam; null when not counted
  * @returns whether the field may be reported, with its qualifying note
  */
 export function assessUnresolvedFlux(
   unresolvedRays: number,
   unknownFluxFraction: number,
+  method: MtfMethod,
   inBeam: number | null = null,
 ): MtfUnresolvedFlux {
   if (unknownFluxFraction > MTF_MAX_UNKNOWN_FLUX) return { acceptable: false, note: null };
   if (unresolvedRays === 0) return { acceptable: true, note: null };
   const share = `${(unknownFluxFraction * 100).toFixed(2)}% of flux`;
-  const bound = `MTF error ≤ ${(2 * unknownFluxFraction).toFixed(3)}`;
+  const qualification =
+    method === "geometric"
+      ? `MTF error ≤ ${(2 * unknownFluxFraction).toFixed(3)}`
+      : "the diffraction estimate does not account for this flux";
   if (inBeam === null)
     return {
       acceptable: true,
-      note: `${unresolvedRays} pupil samples that could not be aimed or traced (${share}) are omitted; ${bound}.`,
+      note: `${unresolvedRays} pupil samples that could not be aimed or traced (${share}) are omitted; ${qualification}.`,
     };
   const away = unresolvedRays - inBeam;
   const parts = [
-    ...(inBeam > 0 ? [`${inBeam} beside the transmitted beam carry ${share} and are omitted; ${bound}.`] : []),
+    ...(inBeam > 0 ? [`${inBeam} beside the transmitted beam carry ${share} and are omitted; ${qualification}.`] : []),
     ...(away > 0 ? [`${away} touch no transmitted cell and are not counted.`] : []),
   ];
   return { acceptable: true, note: `${unresolvedRays} pupil samples could not be aimed or traced: ${parts.join(" ")}` };
@@ -321,7 +328,12 @@ function fieldAtGrid(
   if (darkLines > 0) return unavailable("empty-pupil", "Too little pupil remains to estimate MTF.", true);
   field.unknownFluxFraction = sampledWeight > 0 ? unresolvedWeight / sampledWeight : 0;
   const unresolvedRays = field.failedRays + field.unaimedRays;
-  const unresolved = assessUnresolvedFlux(unresolvedRays, field.unknownFluxFraction, field.unresolvedInBeamRays);
+  const unresolved = assessUnresolvedFlux(
+    unresolvedRays,
+    field.unknownFluxFraction,
+    options.method,
+    field.unresolvedInBeamRays,
+  );
   // A finer grid can resolve a beam edge this one cannot, so the ladder goes on.
   if (!unresolved.acceptable) {
     const away = unresolvedRays - field.unresolvedInBeamRays;
