@@ -150,7 +150,9 @@ The persisted "Advanced" toggle is off by default and opens the field table with
 change between the last two grids, stable-through frequency, nonzero unresolved-flux percentage, unaimed and failed
 sample counts, non-stop pupil-sampling location, notes and message. Comparison rows use their own diagnostics,
 including when no comparison curve is available. With Advanced off, notes stay in the deduplicated list below the
-table. Advanced also shows a compact "Focus search" table for the main aperture and enabled comparison: requested
+table. Advanced adds the main aperture's field status and stable-through frequency to pointer and keyboard crosshair
+readouts and their polite live region in both chart views, while comparison values retain their compact format.
+Advanced also shows a compact "Focus search" table for the main aperture and enabled comparison: requested
 and applied modes, applied and best-axial shifts from the authored plane, design- and best-plane scores labelled
 "mean axial geometric MTF at 10–50 lp/mm", the signed paraxial-focus minus authored-plane offset and its consistency
 flag. Its caption separates numerical sampling from physical accuracy. Field notes retain the engine's method-specific

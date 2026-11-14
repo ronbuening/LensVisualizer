@@ -20,8 +20,10 @@ import {
 import {
   MTF_DIFFRACTION_LIMIT_LABEL,
   MTF_NYQUIST_NOTE,
+  mtfFieldStatusLabel,
   mtfNyquistLabel,
   mtfLimitValue,
+  mtfStableThroughLabel,
   mtfValueVisible,
   resolveMtfFrequencyField,
 } from "./mtf/mtfPresentation.js";
@@ -41,6 +43,8 @@ interface MtfChartProps {
   comparisonLabel?: string;
   /** Explicitly requested numerical estimates; never implied by a plotted line. */
   diagnostic?: boolean;
+  /** Include field status and numerical stability in the crosshair readout. */
+  advanced?: boolean;
   diffractionLimit?: boolean;
   frequencyField?: MtfFrequencyField;
   pixelPitchUm?: MtfPixelPitch | null;
@@ -64,6 +68,8 @@ interface Series extends SeriesValues {
   key: string;
   label: string;
   color: string;
+  /** Frequency-view series keep their field because the active sample indexes frequency. */
+  field?: MtfFieldResult;
   marker?: MarkerShape;
   /** Drawn points; withheld values break the regular line. */
   sagittalPoints: ChartPoint[];
@@ -96,6 +102,7 @@ export default function MtfChart({
   comparison = null,
   comparisonLabel = "Comparison",
   diagnostic = false,
+  advanced = false,
   diffractionLimit = false,
   frequencyField = "overview",
   pixelPitchUm = null,
@@ -402,6 +409,7 @@ export default function MtfChart({
               diagnostic,
               limits,
               comparedLimits,
+              advanced,
             )
           : null}
       </div>
@@ -621,6 +629,7 @@ function frequencySeries(
         key: name,
         label: `${name}${height}`,
         color: t.chartSeries[slot],
+        field,
         marker: MARKERS[slot],
         sagittal: result.frequenciesPerMm.map((_, i) => value("sagittal", i)),
         tangential: result.frequenciesPerMm.map((_, i) => value("tangential", i)),
@@ -646,29 +655,34 @@ function readout(
   diagnostic: boolean,
   limits: readonly Series[],
   comparedLimits: readonly Series[],
+  advanced: boolean,
 ): string {
   if (typeof x !== "number" || !Number.isFinite(x)) return "";
   const at = view === "frequency" ? `${x} lp/mm` : `${x.toFixed(2)} mm`;
+  const detail = (field: MtfFieldResult | undefined) =>
+    advanced && field ? ` (${mtfFieldStatusLabel(field)}; stable through: ${mtfStableThroughLabel(field)})` : "";
+  const fieldDetail = view === "field" ? detail(field) : "";
   if (view === "field" && field && field.status !== "converged" && field.status !== "unconverged")
-    return `${at}: ${field.status === "pending" ? "still calculating" : field.message}`;
-  const format = (s: Series) => {
+    return `${at}${fieldDetail}: ${field.status === "pending" ? "still calculating" : field.message}`;
+  const format = (s: Series, status = "") => {
     const sagittal = s.sagittal[index];
     const tangential = s.tangential[index];
     return typeof sagittal !== "number" || typeof tangential !== "number"
-      ? `${s.label} —`
-      : `${s.label} S ${sagittal.toFixed(3)} T ${tangential.toFixed(3)}`;
+      ? `${s.label}${status} —`
+      : `${s.label}${status} S ${sagittal.toFixed(3)} T ${tangential.toFixed(3)}`;
   };
-  const main = series.map(format).join(" · ");
+  const main = series.map((s) => format(s, view === "frequency" ? detail(s.field) : "")).join(" · ");
   const comparisonPosition =
     view === "field" ? ` at ${comparisonHeight === null ? "unknown height" : `${comparisonHeight.toFixed(2)} mm`}` : "";
   const extra = compared.length
-    ? ` · ${comparisonLabel}${comparisonPosition}: ${compared.map(format).join(" · ")}`
+    ? ` · ${comparisonLabel}${comparisonPosition}: ${compared.map((s) => format(s)).join(" · ")}`
     : "";
-  const reference = limits.length ? ` · Diffraction limit: ${limits.map(format).join(" · ")}` : "";
+  const reference = limits.length ? ` · Diffraction limit: ${limits.map((s) => format(s)).join(" · ")}` : "";
   const comparisonReference = comparedLimits.length
-    ? ` · ${comparisonLabel} diffraction limit: ${comparedLimits.map(format).join(" · ")}`
+    ? ` · ${comparisonLabel} diffraction limit: ${comparedLimits.map((s) => format(s)).join(" · ")}`
     : "";
-  return `${at}${view === "field" && field?.status === "unconverged" ? " (unconverged)" : ""}${diagnostic ? " — diagnostic estimates" : ""} — ${main}${extra}${reference}${comparisonReference}`;
+  const status = fieldDetail || (view === "field" && field?.status === "unconverged" ? " (unconverged)" : "");
+  return `${at}${status}${diagnostic ? " — diagnostic estimates" : ""} — ${main}${extra}${reference}${comparisonReference}`;
 }
 
 /** Frequency labels at the end of each sagittal curve, nudged apart so they never overlap. */

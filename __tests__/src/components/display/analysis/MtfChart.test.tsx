@@ -1,6 +1,6 @@
 /** Synthetic chart controls keep presentation changes independent of optical-engine results. */
 // @vitest-environment jsdom
-import { afterEach, describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import MtfChart from "../../../../../src/components/display/analysis/MtfChart.js";
 import type { MtfResult } from "../../../../../src/types/mtf.js";
@@ -153,6 +153,83 @@ describe("MTF chart presentation", () => {
     fireEvent.keyDown(chart, { key: "Escape" });
     expect(live.textContent).toBe("");
     expect(screen.queryByTestId("mtf-crosshair")).toBeNull();
+  });
+
+  it("adds active-field stability only in Advanced without disclosing withheld values", () => {
+    const result = syntheticResult();
+    result.fields[1].status = "unconverged";
+    result.fields[1].convergedThroughLpMm = 30;
+    const comparison = syntheticResult();
+    comparison.fields[0].sagittal[1] = 0.95;
+    const props = {
+      result,
+      comparison,
+      comparisonLabel: "f/8",
+      view: "field" as const,
+      frequencies: [10] as const,
+      t: mockTheme,
+    };
+    const { container, rerender } = render(<MtfChart {...props} />);
+    const chart = screen.getByRole("group", { name: /MTF chart values/ });
+    const live = container.querySelector('[aria-live="polite"]')!;
+    fireEvent.keyDown(chart, { key: "Home" });
+    const comparisonReadout = " · f/8 at 0.00 mm: 10 lp/mm S 0.950 T 0.800";
+    expect(live.textContent).toBe(`0.00 mm — 10 lp/mm S 0.900 T 0.800${comparisonReadout}`);
+    rerender(<MtfChart {...props} advanced />);
+    expect(live.textContent).toBe(
+      `0.00 mm (converged; stable through: 100 lp/mm) — 10 lp/mm S 0.900 T 0.800${comparisonReadout}`,
+    );
+    fireEvent.keyDown(chart, { key: "ArrowRight" });
+    expect(live.textContent).toBe(
+      "5.00 mm (unconverged; stable through: 30 lp/mm) — 10 lp/mm — · f/8 at 5.00 mm: 10 lp/mm S 0.850 T 0.750",
+    );
+    rerender(<MtfChart {...props} advanced={false} />);
+    expect(live.textContent).toBe("5.00 mm (unconverged) — 10 lp/mm — · f/8 at 5.00 mm: 10 lp/mm S 0.850 T 0.750");
+  });
+
+  it.each(["pending", "unavailable"] as const)("includes absent stability for an Advanced %s field", (status) => {
+    const result = syntheticResult();
+    result.fields[0] = {
+      ...result.fields[0],
+      status,
+      convergedThroughLpMm: null,
+      message: "No usable rays",
+    };
+    const { container } = render(<MtfChart result={result} view="field" frequencies={[10]} t={mockTheme} advanced />);
+    fireEvent.keyDown(screen.getByRole("group", { name: /MTF chart values/ }), { key: "Home" });
+    expect(container.querySelector('[aria-live="polite"]')!.textContent).toBe(
+      `0.00 mm (${status}; stable through: Not established): ${status === "pending" ? "still calculating" : "No usable rays"}`,
+    );
+  });
+
+  it("uses each frequency-view field's status rather than the crosshair's frequency index", () => {
+    const result = syntheticResult();
+    result.fields[2].status = "unconverged";
+    result.fields[2].convergedThroughLpMm = 30;
+    const { container } = render(
+      <MtfChart result={result} view="frequency" frequencies={[10]} t={mockTheme} advanced diagnostic />,
+    );
+    const chart = screen.getByRole("group", { name: /MTF chart values/ });
+    fireEvent.keyDown(chart, { key: "End" });
+    expect(container.querySelector('[aria-live="polite"]')!.textContent).toBe(
+      "100 lp/mm — diagnostic estimates — Center · 0.0 mm (converged; stable through: 100 lp/mm) S 0.100 T 0.050 · 50 % · 10.0 mm (unconverged; stable through: 30 lp/mm) S 0.100 T 0.050 · Edge · 20.0 mm (converged; stable through: 100 lp/mm) S 0.100 T 0.050",
+    );
+  });
+
+  it("mirrors pointer-selected field stability in the polite readout", () => {
+    const result = syntheticResult();
+    result.fields[1].status = "unconverged";
+    result.fields[1].convergedThroughLpMm = 30;
+    const { container } = render(<MtfChart result={result} view="field" frequencies={[10]} t={mockTheme} advanced />);
+    const chart = screen.getByRole("group", { name: /MTF chart values/ });
+    const svg = chart.querySelector("svg")!;
+    vi.spyOn(svg, "getBoundingClientRect").mockReturnValue({ left: 0, width: 380 } as DOMRect);
+    // MouseEvent supplies coordinates in environments without a native PointerEvent constructor.
+    fireEvent(chart, new MouseEvent("pointermove", { bubbles: true, clientX: 40 }));
+    const live = container.querySelector('[aria-live="polite"]')!;
+    expect(live.textContent).toBe("0.00 mm (converged; stable through: 100 lp/mm) — 10 lp/mm S 0.900 T 0.800");
+    fireEvent(chart, new MouseEvent("pointermove", { bubbles: true, clientX: 118 }));
+    expect(live.textContent).toBe("5.00 mm (unconverged; stable through: 30 lp/mm) — 10 lp/mm —");
   });
 
   it("preserves completed image-height path data, including comparison and pupil limits", () => {

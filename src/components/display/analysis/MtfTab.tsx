@@ -261,6 +261,7 @@ export default function MtfTab({
               comparison={comparisonShown}
               comparisonLabel={comparisonLabel}
               diagnostic={diagnostic}
+              advanced={preferences.advanced}
               diffractionLimit={preferences.diffractionLimit && preferences.method === "diffraction"}
               frequencyField={preferences.frequencyField}
               pixelPitchUm={preferences.pixelPitchUm}
