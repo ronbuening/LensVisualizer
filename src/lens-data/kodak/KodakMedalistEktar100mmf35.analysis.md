@@ -48,17 +48,21 @@ L5 — Biconvex Positive: nD = 1.744, V = 45.7. Glass: Unmatched (nD 1.744 / V 4
 
 The pair shares the +40.5 mm interface and forms cemented pair C2 before the image space. L4 has the same published index and Abbe coordinates as L3; this does not establish an identical historical melt.
 
+Isolated thick-element focal lengths in air are +31.09, −73.28, −34.59, −63.47 and +32.61 mm for L1–L5, calculated from the printed prescription. They differ from the elements' contributions within the assembled cemented pairs.
+
 ## Glass Identification and Selection
 
 The patent's sodium D-line indices and Nu values are approximated as helium d-line indices and conventional Abbe numbers, following Example 6. This leaves the focal-length residual unresolved. L2 uses BAK1 (Sumita); L3/L4 use F5 (Schott) as spectral proxies within the site's proxy tolerance. Catalog curves supply dispersion at the printed indices, without identifying suppliers or exact production glasses, which remain unconfirmed.
 
 L1 and L5 remain Unmatched: no catalog or vendor row meets the site's proxy tolerance. P-SK60 (V = 57.90) and LAF2 (44.90) miss L1's 57.2 and L5's 45.7. L5's coordinates suggest Kodak lanthanum glass; the melt remains unconfirmed. L2 retains the specification's V = 57.5 rather than the drawing's 57.4.
 
+Both unmatched pairs recur in other numerical examples: L1's 1.611/57.2 in Examples 1–8, and L5's 1.744/45.7 in Example 9. The tables provide no glass names, additional spectral-line indices or partial-dispersion values for them. The patent prints no wavelength-resolved aberration plots for a numerical color comparison.
+
 ## Focus Mechanism
 
 The prescription represents infinity focus only. The calculated infinity back focal length is 84.173575804 mm; this image interval is not printed in the patent. No near-focus motion or mount/register is modeled, and Example 6's finite-conjugate enlarger state is separate.
 
-The [Medalist II manual](https://www.cameramanuals.org/kodak_pdf/kodak_medalist-ii.pdf), final specifications page, describes a unit-focusing lens with a 3.5 ft (1.0668 m) minimum distance. The whole lens moves for focusing. That minimum distance is recorded as a product specification; the optical model remains at infinity.
+The [Medalist II manual](https://www.cameramanuals.org/kodak_pdf/kodak_medalist-ii.pdf), final specifications page, describes a unit-focusing lens with a 3.5 ft (1.0668 m) minimum distance. Its printed page 6 describes forward lens extension into the picture-taking position. The whole lens moves as a unit; the patent gives no near-focus travel or direction. The minimum distance is recorded as a product specification; all three modeled groups remain fixed at infinity.
 
 ## Inferred Stop and Clear Apertures
 

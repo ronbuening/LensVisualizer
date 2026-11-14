@@ -55,6 +55,7 @@ const LENS_DATA = {
       "name": "L1",
       "label": "Element 1",
       "type": "Biconvex Positive",
+      "focalLengthMm": 31.09,
       "nd": 1.611,
       "vd": 57.2,
       "indexReference": "d",
@@ -67,6 +68,7 @@ const LENS_DATA = {
       "name": "L2",
       "label": "Element 2",
       "type": "Biconcave Negative",
+      "focalLengthMm": -73.28,
       "nd": 1.573,
       "vd": 57.5,
       "indexReference": "d",
@@ -79,6 +81,7 @@ const LENS_DATA = {
       "name": "L3",
       "label": "Element 3",
       "type": "Biconcave Negative",
+      "focalLengthMm": -34.59,
       "nd": 1.605,
       "vd": 38.2,
       "indexReference": "d",
@@ -90,6 +93,7 @@ const LENS_DATA = {
       "name": "L4",
       "label": "Element 4",
       "type": "Biconcave Negative",
+      "focalLengthMm": -63.47,
       "nd": 1.605,
       "vd": 38.2,
       "indexReference": "d",
@@ -102,6 +106,7 @@ const LENS_DATA = {
       "name": "L5",
       "label": "Element 5",
       "type": "Biconvex Positive",
+      "focalLengthMm": 32.61,
       "nd": 1.744,
       "vd": 45.7,
       "indexReference": "d",
@@ -172,7 +177,7 @@ const LENS_DATA = {
   ],
   "focus": {
     "closeFocusM": 1000000000000000.0,
-    "description": "Infinity focus only; the Medalist focuses by moving the whole lens (unit focusing)."
+    "description": "Infinity focus only; the patent tabulates no near-focus travel. The Medalist uses whole-lens unit focusing; its manual describes forward lens extension."
   },
   "aperture": {
     "nominalFNumber": 3.5,

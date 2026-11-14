@@ -7,8 +7,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * 49.903117 mm against the stated 49 mm. The illustrated, unspecified filter is omitted.
  * Rims are inferred from U Fig. 1/2 (15.52 native px/mm in Fig. 1) and ray clearance.
  * Flat lands at S3/S4/S13/S24 preserve the drawn element edges without opening the caps.
- * S3/S4 clear the axial
- * beam; S13/S14 use the largest equal two-decimal rims within a 98% gap-sag limit and still
+ * S3/S4 clear the axial beam; S13/S14 use the largest equal two-decimal rims within a
+ * 98% gap-sag limit and still
  * clip slightly because of the source geometry. Other rims preserve off-axis vignetting.
  * The stop is derived from f/1.25 at the printed position. Infinity focus only;
  * this model does not reproduce the patent's published MTF charts. */
@@ -22,6 +22,7 @@ const LENS_DATA = {
     {
       "id": 1,
       "name": "L1",
+      "focalLengthMm": 63.15,
       "type": "Biconvex Positive",
       "nd": 1.81,
       "vd": 40.7,
@@ -34,6 +35,7 @@ const LENS_DATA = {
     {
       "id": 2,
       "name": "L2",
+      "focalLengthMm": -56.79,
       "type": "Biconcave Negative",
       "nd": 1.49,
       "vd": 70.4,
@@ -46,6 +48,7 @@ const LENS_DATA = {
     {
       "id": 3,
       "name": "L3",
+      "focalLengthMm": -35.97,
       "type": "Biconcave Negative",
       "nd": 1.77,
       "vd": 29.7,
@@ -58,6 +61,7 @@ const LENS_DATA = {
     {
       "id": 4,
       "name": "L4",
+      "focalLengthMm": 53.49,
       "type": "Biconvex Positive",
       "nd": 1.59,
       "vd": 68.3,
@@ -70,6 +74,7 @@ const LENS_DATA = {
     {
       "id": 5,
       "name": "L5",
+      "focalLengthMm": 56.56,
       "type": "Biconvex Positive",
       "nd": 2.0,
       "vd": 29.1,
@@ -81,6 +86,7 @@ const LENS_DATA = {
     {
       "id": 6,
       "name": "L6",
+      "focalLengthMm": -134.56,
       "type": "Negative Meniscus",
       "nd": 1.65,
       "vd": 33.8,
@@ -92,6 +98,7 @@ const LENS_DATA = {
     {
       "id": 7,
       "name": "L7",
+      "focalLengthMm": 128.8,
       "type": "Positive Meniscus",
       "nd": 1.88,
       "vd": 40.8,
@@ -103,6 +110,7 @@ const LENS_DATA = {
     {
       "id": 8,
       "name": "L8",
+      "focalLengthMm": -45.09,
       "type": "Biconcave Negative",
       "nd": 1.61,
       "vd": 37.0,
@@ -115,6 +123,7 @@ const LENS_DATA = {
     {
       "id": 9,
       "name": "L9",
+      "focalLengthMm": 44.05,
       "type": "Biconvex Positive",
       "nd": 1.59,
       "vd": 68.3,
@@ -127,6 +136,7 @@ const LENS_DATA = {
     {
       "id": 10,
       "name": "L10",
+      "focalLengthMm": -41.87,
       "type": "Biconcave Negative",
       "nd": 1.77,
       "vd": 29.7,
@@ -139,6 +149,7 @@ const LENS_DATA = {
     {
       "id": 11,
       "name": "L11",
+      "focalLengthMm": 52.66,
       "type": "Biconvex Positive",
       "nd": 1.59,
       "vd": 68.3,
@@ -151,6 +162,7 @@ const LENS_DATA = {
     {
       "id": 12,
       "name": "L12",
+      "focalLengthMm": 53.83,
       "type": "Biconvex Positive",
       "nd": 1.92,
       "vd": 20.9,
@@ -162,6 +174,7 @@ const LENS_DATA = {
     {
       "id": 13,
       "name": "L13",
+      "focalLengthMm": 60.67,
       "type": "Positive Meniscus",
       "nd": 1.88,
       "vd": 40.8,
@@ -174,6 +187,7 @@ const LENS_DATA = {
     {
       "id": 14,
       "name": "L14",
+      "focalLengthMm": -36.53,
       "type": "Negative Meniscus",
       "nd": 1.85,
       "vd": 23.8,
@@ -186,6 +200,7 @@ const LENS_DATA = {
     {
       "id": 15,
       "name": "L15",
+      "focalLengthMm": -168.91,
       "type": "Biconcave Negative",
       "nd": 1.81,
       "vd": 40.7,
@@ -402,6 +417,11 @@ const LENS_DATA = {
       16
     ]
   },
+  "groups": [
+    { "text": "G1", "fromSurface": "1", "toSurface": "10" },
+    { "text": "G2", "fromSurface": "12", "toSurface": "16" },
+    { "text": "G3", "fromSurface": "17", "toSurface": "26" }
+  ],
   "doublets": [
     { "text": "C1", "fromSurface": "1", "toSurface": "3" },
     { "text": "C2", "fromSurface": "4", "toSurface": "6" },
@@ -414,7 +434,7 @@ const LENS_DATA = {
   },
   "focus": {
     "closeFocusM": 1000000000000000.0,
-    "description": "Infinity focus only; production focuses by moving the middle group G2 (L7–L9). The U patent places G2 nearest the image at infinity, so closer focus requires motion toward the object. No close-focus spacings are published."
+    "description": "Infinity focus only. In the U patent, G1 (L1–L6), the stop and G3 (L10–L15) stay fixed; G2 (L7–L9) is nearest the image at infinity, so closer focus requires motion toward the object. No close-focus spacings are published."
   },
   "projection": {
     "kind": "rectilinear",

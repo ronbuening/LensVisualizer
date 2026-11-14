@@ -5,8 +5,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * The iris is derived from the f-number; source back-focus gaps are unchanged.
  * Clear rims are estimated from Figure 3 (Example 2), checked at both printed focus states.
  * Near-state axial ray floors retain S3/S4 at 26.3/25.6 mm, S5/S6 at 24.1/21.0 mm
- * and square L4 at 20.2 mm. Figure-drawn rear-face lands on S4/S6/S10 extend to
- * 26.3/24.1/18.0 mm; they do not enlarge the optical caps. The hybrid layer keeps L8's rims.
+ * and square L42 at 20.2 mm. Figure-drawn rear-face lands on S4/S6/S10 extend to
+ * 26.3/24.1/18.0 mm; they do not enlarge the optical caps. The hybrid layer keeps L82's rims.
  * The camera-side 2.5 mm filter stays drawn because its trailing gap D4 varies from
  * 0.507836 to 0.687847 mm with focus; the rear-plate format supports only a fixed trailing gap.
  * No physical gaps are redistributed.
@@ -22,7 +22,9 @@ const LENS_DATA = {
   "elements": [
     {
       "id": 1,
-      "name": "L1",
+      "name": "L12",
+      "diagramLabel": "L12",
+      "focalLengthMm": 96.94,
       "type": "Positive Meniscus",
       "nd": 1.7725,
       "vd": 49.62,
@@ -33,7 +35,9 @@ const LENS_DATA = {
     },
     {
       "id": 2,
-      "name": "L2",
+      "name": "L22",
+      "diagramLabel": "L22",
+      "focalLengthMm": 91.08,
       "type": "Positive Meniscus",
       "nd": 1.7433,
       "vd": 49.22,
@@ -44,7 +48,9 @@ const LENS_DATA = {
     },
     {
       "id": 3,
-      "name": "L3",
+      "name": "L32",
+      "diagramLabel": "L32",
+      "focalLengthMm": -54.87,
       "type": "Negative Meniscus",
       "nd": 1.72825,
       "vd": 28.32,
@@ -55,7 +61,9 @@ const LENS_DATA = {
     },
     {
       "id": 4,
-      "name": "L4",
+      "name": "L42",
+      "diagramLabel": "L42",
+      "focalLengthMm": 77.45,
       "type": "Positive Meniscus",
       "nd": 1.7725,
       "vd": 49.62,
@@ -66,7 +74,9 @@ const LENS_DATA = {
     },
     {
       "id": 5,
-      "name": "L5",
+      "name": "L52",
+      "diagramLabel": "L52",
+      "focalLengthMm": -42.8,
       "type": "Negative Meniscus",
       "nd": 1.8061,
       "vd": 33.27,
@@ -77,7 +87,9 @@ const LENS_DATA = {
     },
     {
       "id": 6,
-      "name": "L6",
+      "name": "L62",
+      "diagramLabel": "L62",
+      "focalLengthMm": -32.21,
       "type": "Biconcave Negative",
       "nd": 1.54814,
       "vd": 45.82,
@@ -89,7 +101,9 @@ const LENS_DATA = {
     },
     {
       "id": 7,
-      "name": "L7",
+      "name": "L72",
+      "diagramLabel": "L72",
+      "focalLengthMm": 26.56,
       "type": "Biconvex Positive",
       "nd": 1.7859,
       "vd": 43.93,
@@ -101,49 +115,56 @@ const LENS_DATA = {
     },
     {
       "id": 8,
-      "name": "Hybrid layer on L8",
-      "type": "Positive Meniscus",
+      "name": "Hybrid layer on L82",
+      "diagramLabel": "H",
+      "focalLengthMm": 738.78,
+      "type": "Aspheric Positive Meniscus",
       "nd": 1.517,
       "vd": 52,
       "indexReference": "d",
       "label": "Element 8",
       "glass": "Unmatched resin (nd 1.517 / νd 52)",
-      "role": "Thin hybrid layer forming the aspherical front surface of L8."
+      "role": "Thin hybrid layer forming the aspherical front surface of L82; H is a display alias, not a separate patent lens."
     },
     {
       "id": 9,
-      "name": "L8",
+      "name": "L82",
+      "diagramLabel": "L82",
+      "focalLengthMm": 74.58,
       "type": "Biconvex Positive",
       "nd": 1.7725,
       "vd": 49.62,
       "indexReference": "d",
       "label": "Element 9",
       "glass": "TAF1 (HOYA)",
-      "role": "Positive L8 substrate beneath the hybrid layer, cemented to L9.",
+      "role": "Positive L82 substrate beneath the hybrid layer, cemented to L92.",
       "cemented": "C2"
     },
     {
       "id": 10,
-      "name": "L9",
+      "name": "L92",
+      "diagramLabel": "L92",
+      "focalLengthMm": -147.89,
       "type": "Negative Meniscus",
       "nd": 1.64769,
       "vd": 33.84,
       "indexReference": "d",
       "label": "Element 10",
       "glass": "E-FD2 (HOYA)",
-      "role": "Negative L9 member of the last rear cemented doublet.",
+      "role": "Negative L92 member of the last rear cemented doublet.",
       "cemented": "C2"
     },
     {
       "id": 11,
       "name": "Published rear filter",
+      "diagramLabel": "OD",
       "type": "Plane-Parallel Plate",
       "nd": 1.5168,
       "vd": 64.2,
       "indexReference": "d",
       "label": "Published rear filter",
       "glass": "BSC7 (HOYA)",
-      "role": "Camera-side filter with a focus-dependent gap to the image plane."
+      "role": "Camera-side filter with a focus-dependent gap to the image plane; a plane-parallel plate has no finite isolated focal length."
     }
   ],
   "surfaces": [
@@ -239,7 +260,7 @@ const LENS_DATA = {
       "sd": 18
     },
     {
-      "label": "15",
+      "label": "15A",
       "R": 159.245,
       "d": 0.13,
       "sd": 18,
@@ -288,6 +309,11 @@ const LENS_DATA = {
   "doublets": [
     { "text": "C1", "fromSurface": "12", "toSurface": "14" },
     { "text": "C2", "fromSurface": "16", "toSurface": "18" }
+  ],
+  "groups": [
+    { "text": "G12", "fromSurface": "1", "toSurface": "8" },
+    { "text": "G22", "fromSurface": "9", "toSurface": "10" },
+    { "text": "G32", "fromSurface": "12", "toSurface": "18" }
   ],
   "gaps": {
     "8": {
@@ -347,7 +373,7 @@ const LENS_DATA = {
     "published": [
       1
     ],
-    "description": "PUBLISHED two focus states. L5 moves 4.928652 mm toward the image for close focus. The printed near object distance is 813.676935 mm before the first surface, or 0.926326 m from object to image; the maker states a 0.9 m minimum. The camera-side filter stays drawn because the gap after it changes with focus. The image plane follows D4; D5 is printed after Image and is not included in the image distance."
+    "description": "PUBLISHED two focus states, ordered infinity to near. G22 (L52) moves 4.928652 mm toward the image for close focus; G12 and G32 stay fixed. The printed near object distance is 813.676935 mm before the first surface, or 0.926326 m from object to image; the maker states a 0.9 m minimum. The camera-side filter stays drawn because the gap after it changes with focus. The image plane follows D4; D5 is printed after Image and is not included in the image distance."
   },
   "projection": {
     "kind": "rectilinear",

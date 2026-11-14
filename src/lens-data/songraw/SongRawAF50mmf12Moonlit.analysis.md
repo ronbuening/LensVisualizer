@@ -16,7 +16,7 @@ The numerical prescription follows the later U tables, with one correction to th
 
 ## Optical Architecture
 
-The design has 15 elements in ten air-separated groups. Five cemented pairs C1–C5 are L1/L2, L3/L4, L8/L9, L10/L11 and L13/L14, respectively. Functional groups G1 (L1–L6) and G3 (L10–L15) are fixed; G2 (L7–L9) alone moves for focusing (¶0046–0053). The iris remains at the source's S11 position, between G1 and G2. The tabulated prescription gives positive isolated powers for G1 and G3 despite the patent's negative-power description.
+The design has 15 elements in ten air-separated groups. Five cemented pairs C1–C5 are L1/L2, L3/L4, L8/L9, L10/L11 and L13/L14, respectively. Functional groups G1 (L1–L6, S1–S10) and G3 (L10–L15, S17–S26) are fixed; G2 (L7–L9, S12–S16) alone moves for focusing (¶0046–0053). The diagram brackets use these patent designations. The iris remains at the source's S11 position, between G1 and G2. The tabulated prescription gives positive isolated powers for G1 and G3 despite the patent's negative-power description.
 
 ## Element-by-Element Analysis
 
@@ -58,11 +58,13 @@ The printed nd/νd values retain their two/one-decimal precision. Fourteen eleme
 
 These rows supply dispersion stand-ins anchored at the printed index, not supplier identifications; exact production glasses remain unconfirmed. L14 remains Unmatched (nd 1.85 / νd 23.8): no catalog row lies within the tolerance. The S-TIH53/FDS90 class at nd 1.84666 differs by −0.00334, outside the index window despite its similar Abbe number, so L14 retains an Abbe-based estimate.
 
+Table 1 (page 7) and ¶0068 (page 10) give only L14's nd/νd pair; no glass name, additional line index or partial dispersion is supplied. There is one numerical example, so no independent sibling pair confirms its identity. The patent and supplied construction artwork identify aspheric L1/L15, without identifying ED or anomalous-dispersion elements; no APD tags are assigned. The patent prints polychromatic MTF charts, rather than line-resolved focus, astigmatism or distortion plots, so those spectral and aberration comparisons cannot be made from its figures.
+
 The lower-dispersion L2, L4, L9 and L11 contrast with their more dispersive cemented partners, consistent with the patent's chromatic-correction explanation. Proxy curves and L14's estimate do not establish production anomalous partial dispersion or measured colour correction. Computed EFL is 49.903117 mm, compared with the stated 49 mm and marketed 50 mm.
 
 ## Focus Mechanism and Image Plane
 
-Only infinity is modeled: the U supplies no close-focus station. G2 moves internally; G1, the stop and G3 stay fixed. G2 is at its image-side travel boundary at infinity (¶0053), so nearer focus requires objectward motion. The production minimum focus distance, 0.52 m per [PetaPixel](https://petapixel.com/2025/04/07/new-company-songraw-unveils-first-lens-full-frame-af-50mm-f-1-2-moonlit/), supplies no numerical close-focus spacings.
+Only infinity is modeled: the U supplies no close-focus station. G2 moves internally; G1, the stop and G3 stay fixed. G2 is at its image-side travel boundary at infinity (¶0053), with stop-to-S12 = 15.594 mm and S16-to-S17 = 1.000 mm. Nearer focus requires objectward motion, reducing the first gap and increasing the second; no travel amount is published. The production minimum focus distance, 0.52 m per [PetaPixel](https://petapixel.com/2025/04/07/new-company-songraw-unveils-first-lens-full-frame-af-50mm-f-1-2-moonlit/), supplies no numerical close-focus spacings.
 
 Table 1 prints S26-to-image spacing as 14.935 mm, repeated as about 14.9 mm in ¶0047. The model corrects this gap to the U prescription's calculated infinity back focus of 17.91466693210846 mm. No other prescription spacing, radius, index or coefficient changes. The illustrated filter FIT has no published thickness or material and is omitted. Mechanical flange distance does not independently establish optical back focus.
 

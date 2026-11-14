@@ -30,7 +30,7 @@ The inner doublets provide the opposed concave surfaces around the stop, while t
 
 ## Element-by-Element Analysis
 
-The shapes below follow the transcribed radii. Individual element focal lengths are not published. Production glass identities and suppliers remain unconfirmed.
+The shapes below follow the transcribed radii. The inspector's individual focal lengths are calculated for each isolated thick element in air: L1 +89.72 mm, L2 +28.19 mm, L3 −21.36 mm, L4 −25.79 mm, L5 +35.12 mm and L6 +53.21 mm. They are not published values or the powers of the cemented components. Production glass identities and suppliers remain unconfirmed.
 
 ### L1 — Positive meniscus, convex toward the object
 
@@ -42,7 +42,7 @@ L1 is the front positive singlet. Its stronger front curvature and weaker rear c
 
 L2: nd = 1.66972, νd = 47.4. Glass: S-BAH10 (Ohara spectral proxy).
 
-L3: nd = 1.65456, νd = 33.9. Glass: SF9 (Hikari spectral proxy).
+L3: nd = 1.65456, νd = 33.9. Glass: SF9 (Hikari catalog equivalent; production supplier unspecified).
 
 L2 is plano-convex and L3 plano-concave, sharing the flat S4 cemented interface in C1. L3's concave rear surface S5 faces the diaphragm. The patent describes this compound meniscus as weakly negative. The positive member has the higher Abbe number, providing a dispersion contrast with its negative partner; this is a qualitative reading of the prescription rather than a measured chromatic result.
 
@@ -62,7 +62,7 @@ L6 closes the system with a weakly curved front surface and a more strongly curv
 
 ## Glass Identification and Selection
 
-All six elements carry the catalog spectral proxies listed above; none remain unmatched. Each row lies within the site's proxy tolerance (|Δnd| ≤ 0.003, |Δνd| ≤ 0.25). BASF8 uses Sumita's legacy BaSF8 row. The row's dispersion curve is anchored to the patent's printed d-line index to estimate C/F/g indices; these are dispersion stand-ins, not supplier identifications. All six printed index/Abbe pairs and the 587.6 nm reference are retained. Exact production glasses remain unconfirmed.
+L3 uses Hikari SF9 as a catalog equivalent: its catalog nd = 1.65446 and νd = 33.855439 differ from the printed values by −0.00010 and −0.044561. The other five elements use the spectral proxies listed above within the site's proxy tolerance (|Δnd| ≤ 0.003, |Δνd| ≤ 0.25); none remain unmatched. BASF8 uses Sumita's legacy BaSF8 row. Each row's dispersion curve is anchored to the patent's printed d-line index to estimate C/F/g indices; these are dispersion stand-ins, not supplier identifications. All six printed index/Abbe pairs and the 587.6 nm reference are retained. Exact production glasses remain unconfirmed.
 
 Both cemented components pair higher-Abbe positive members with lower-Abbe negative members, supporting a qualitative chromatic-correction interpretation. Neither the printed pairs nor the proxies establish anomalous partial dispersion, apochromatic performance or measured production-glass spectra.
 

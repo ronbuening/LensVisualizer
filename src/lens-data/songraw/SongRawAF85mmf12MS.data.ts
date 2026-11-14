@@ -25,6 +25,7 @@ const LENS_DATA = {
     {
       "id": 1,
       "name": "L1",
+      "focalLengthMm": 133.66,
       "type": "Positive Meniscus",
       "nd": 1.85,
       "vd": 23.8,
@@ -36,6 +37,7 @@ const LENS_DATA = {
     {
       "id": 2,
       "name": "L2",
+      "focalLengthMm": 427.28,
       "type": "Positive Meniscus",
       "nd": 1.59,
       "vd": 68.3,
@@ -49,6 +51,7 @@ const LENS_DATA = {
     {
       "id": 3,
       "name": "L3",
+      "focalLengthMm": 171.59,
       "type": "Positive Meniscus",
       "nd": 1.59,
       "vd": 68.3,
@@ -63,6 +66,7 @@ const LENS_DATA = {
     {
       "id": 4,
       "name": "L4",
+      "focalLengthMm": -75.83,
       "type": "Negative Meniscus",
       "nd": 1.85,
       "vd": 25.2,
@@ -75,6 +79,7 @@ const LENS_DATA = {
     {
       "id": 5,
       "name": "L5",
+      "focalLengthMm": 70.31,
       "type": "Biconvex Positive",
       "nd": 1.59,
       "vd": 68.3,
@@ -89,6 +94,7 @@ const LENS_DATA = {
     {
       "id": 6,
       "name": "L6",
+      "focalLengthMm": -133.28,
       "type": "Biconcave Negative",
       "nd": 2,
       "vd": 25.5,
@@ -101,6 +107,7 @@ const LENS_DATA = {
     {
       "id": 7,
       "name": "L7",
+      "focalLengthMm": 205.99,
       "type": "Positive Meniscus",
       "nd": 1.92,
       "vd": 20.9,
@@ -113,18 +120,20 @@ const LENS_DATA = {
     {
       "id": 8,
       "name": "L8",
+      "focalLengthMm": -52.06,
       "type": "Biconcave Negative",
       "nd": 1.7,
       "vd": 55.5,
       "indexReference": "d",
       "label": "Element 8",
-      "glass": "Unmatched (nd 1.70 / νd 55.5)",
+      "glass": "MP-LAC14-80 (HOYA spectral proxy; matches the patent's nd 1.70 / νd 55.5 at its printed precision; supplier unconfirmed)",
       "role": "Negative member of moving focus doublet G2",
       "cemented": "C3"
     },
     {
       "id": 9,
       "name": "L9",
+      "focalLengthMm": 56.88,
       "type": "Biconvex Positive",
       "nd": 1.59,
       "vd": 68.3,
@@ -139,6 +148,7 @@ const LENS_DATA = {
     {
       "id": 10,
       "name": "L10",
+      "focalLengthMm": -22.85,
       "type": "Biconcave Negative",
       "nd": 1.77,
       "vd": 29.7,
@@ -151,6 +161,7 @@ const LENS_DATA = {
     {
       "id": 11,
       "name": "L11",
+      "focalLengthMm": 39.49,
       "type": "Biconvex Positive",
       "nd": 1.73,
       "vd": 54.7,
@@ -163,6 +174,7 @@ const LENS_DATA = {
     {
       "id": 12,
       "name": "L12",
+      "focalLengthMm": 51.53,
       "type": "Biconvex Positive",
       "nd": 1.73,
       "vd": 54.7,
@@ -175,6 +187,7 @@ const LENS_DATA = {
     {
       "id": 13,
       "name": "L13",
+      "focalLengthMm": -50.81,
       "type": "Biconcave Negative",
       "nd": 1.77,
       "vd": 29.7,
@@ -187,6 +200,7 @@ const LENS_DATA = {
     {
       "id": 14,
       "name": "L14",
+      "focalLengthMm": 34.2,
       "type": "Biconvex Positive",
       "nd": 2,
       "vd": 29.1,
@@ -199,6 +213,7 @@ const LENS_DATA = {
     {
       "id": 15,
       "name": "L15",
+      "focalLengthMm": -44.99,
       "type": "Biconcave Negative",
       "nd": 1.62,
       "vd": 36.3,
@@ -211,6 +226,7 @@ const LENS_DATA = {
     {
       "id": 16,
       "name": "L16",
+      "focalLengthMm": 36.47,
       "type": "Biconvex Positive",
       "nd": 2,
       "vd": 25.5,
@@ -223,6 +239,7 @@ const LENS_DATA = {
     {
       "id": 17,
       "name": "L17",
+      "focalLengthMm": -60.92,
       "type": "Biconcave Negative",
       "nd": 1.49,
       "vd": 70.4,
@@ -237,6 +254,7 @@ const LENS_DATA = {
     {
       "id": 18,
       "name": "L18",
+      "focalLengthMm": -194.66,
       "type": "Negative Meniscus",
       "nd": 1.81,
       "vd": 40.7,
@@ -481,7 +499,7 @@ const LENS_DATA = {
   },
   "focus": {
     "closeFocusM": 1000000000000000.0,
-    "description": "Infinity focus only; production focuses by moving G2 (the cemented L7–L8 pair) toward the image for nearer objects, while G1, the iris and G3 stay fixed. The patent supplies no finite-focus spacings or numerical travel."
+    "description": "Infinity focus only; the patent describes moving G2 (the cemented L7–L8 pair) toward the image for nearer objects, while G1, the iris and G3 stay fixed. The patent supplies no finite-focus spacings or numerical travel."
   },
   "projection": {
     "kind": "rectilinear",

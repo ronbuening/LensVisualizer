@@ -1,4 +1,5 @@
 # Scoped audit — independent final review completed
+
 - Original E2 source visual check and matrix calculations preserved separately Samyang85EF_Diagnostic_20261113; independent source review supports actual Image afterD4.
 - PILOT preparation reproducible: python prepare.py.
 - Native currentreadonly4caca439: node --import ../LensVisualizer/scripts/ts-js-specifier-hook-register.mjs native.mjs (run fromworkspace withcompletepaths as needed).
@@ -7,7 +8,6 @@
 - endpoint.mjs: chief+8axialfractions throughradius1 passbothstates.
 - validate-export.mjs: actualexporterrors[],identicalOptics=true,visiblefalse (historical; visibility is now true).
 - Independent sourceparity/capparity/noBracketproof pending — closed by the independent source and clipping review recorded below. No completedlenscount or deliveryauthorization inferred.
-
 
 ## 2026-11-13 — Deployment validation
 
@@ -49,11 +49,12 @@ Engine before → after: EFL 84.54865074703312 → 84.54865074703312 mm; FOPEN 1
 Figure 3 and the stored maker diagram were viewed again. They support the front-to-rear taper, two glass doublets and hybrid layer; they do not establish absolute clear rims or a maker-marked iris. No radii, thicknesses, gaps, aspheres, rims or stop values changed.
 
 Open:
+
 - Figure-based rim calibration is closed by the semi-diameter section below; absolute production dimensions and production edge illumination remain unestablished. The 30 mm front cap and substantial source-field clipping are retained. The aperture audit reports no axial rim limit.
 - The rear-plate format needs variable trailing-gap support before the filter can move out of the drawn elements without relocating it. D3 is fixed; D4 changes by 0.180011 mm. D5's purpose after Image remains unresolved.
 - The source's focal-length, air-back-focus and overall-length summaries disagree with the prescription; its 0.9 m near heading and f/1.584 near claim differ from the stated geometry and fixed-iris result. No numerical reconciliation or refocus was applied.
 - Exact production identity, glass suppliers and resin chemistry remain unproven; the finite-focus cam between the two published endpoints is unspecified.
-- The required headless page-view attempt produced thermal/DNS diagnostic errors and no screenshot; rendered-page review remains incomplete. Full application checks and remote CI were not run in this scope.
+- The required headless page-view attempt produced thermal/DNS diagnostic errors and no screenshot; that rendered-page limitation was subsequently closed by the post-edit screenshots in the second-review section below. Full application checks and remote CI were not run in this scope.
 
 Denial: a mistaken backup-copy destination in the main checkout was refused with “Operation not permitted.” That backup change was stopped without retry or alternate copy. No lens edit or optical audit was refused. Formatting commands were skipped as directed by the addendum.
 
@@ -65,16 +66,16 @@ At 600 dpi the upper-panel axis is y≈1968 px. The S1–S19 vertex span is 1883
 
 The clean drawn body radii are approximately L1 30.4, L2 25.7, L3 23.4, L4 20.1, L5 17.9, both rear doublets 17.9 and filter 22.5 mm. The rear faces of L2, L3 and L5 visibly end in lands: their optical endpoints are approximately 23.4, 19.5 and 15.8 mm. The first trial based solely on body heights clipped the printed near axial beam; the final set retains its numerical floors. A trial adding L2's land while keeping its 28 mm body also crossed the front face by 0.060 mm, so the body was brought down coherently with its cap. Neither issue required a prescription or tolerance change.
 
-| Surface | Before clear sd, mm | Final clear sd, mm | Final land outer radius, mm | Evidence / limiting requirement |
-| --- | ---: | ---: | ---: | --- |
-| 3 | 28 | 26.3 | — | Figure L2 body ≈25.7; near axial height 26.247825 |
-| 4 | 28 | 25.6 | 26.3 | Figure rear-face land; near axial height 25.547468 |
-| 5 | 27 | 24.1 | — | Figure L3 body ≈23.4; near axial height 24.021778 |
-| 6 | 27 | 21.0 | 24.1 | Figure rear-face land; near axial height 20.940371 |
-| 7 | 23 | 20.2 | — | Figure L4 ≈20.1; near axial height 20.179065 |
-| 8 | 23 | 20.2 | — | Keeps L4 square; near axial height 19.772382 |
-| 9 | 23 | 18.0 | — | Figure L5 body ≈17.9; infinity physical-stop axial height 17.049899 |
-| 10 | 23 | 16.0 | 18.0 | Figure cap ≈15.8; nominal-f/1.479 meridional probe requires 15.92 |
+| Surface | Before clear sd, mm | Final clear sd, mm | Final land outer radius, mm | Evidence / limiting requirement                                     |
+| ------- | ------------------: | -----------------: | --------------------------: | ------------------------------------------------------------------- |
+| 3       |                  28 |               26.3 |                           — | Figure L2 body ≈25.7; near axial height 26.247825                   |
+| 4       |                  28 |               25.6 |                        26.3 | Figure rear-face land; near axial height 25.547468                  |
+| 5       |                  27 |               24.1 |                           — | Figure L3 body ≈23.4; near axial height 24.021778                   |
+| 6       |                  27 |               21.0 |                        24.1 | Figure rear-face land; near axial height 20.940371                  |
+| 7       |                  23 |               20.2 |                           — | Figure L4 ≈20.1; near axial height 20.179065                        |
+| 8       |                  23 |               20.2 |                           — | Keeps L4 square; near axial height 19.772382                        |
+| 9       |                  23 |               18.0 |                           — | Figure L5 body ≈17.9; infinity physical-stop axial height 17.049899 |
+| 10      |                  23 |               16.0 |                        18.0 | Figure cap ≈15.8; nominal-f/1.479 meridional probe requires 15.92   |
 
 Eight clear radii changed; the largest reduction is S10, 23 → 16 mm. Three opaque extensions restore the drawn body outlines without reopening the caps. S1/S2 stay 30 mm, within the figure's uncertainty. S12–S18 stay 18 mm, including the complete L8 substrate/resin/L9 run; the asphere is unchanged. S19/S20 stay 24 mm because their difference from the ≈22.5 mm drawing is within the measurement band and the existing plate clears the corner. No inner apertures, cut depths, glass, powered geometry, focus gaps or metadata changed. `gapSagFrac` remains 0.90.
 
@@ -96,22 +97,68 @@ Open limits retained: production prescription and dimensions, supplier/resin ide
 
 Glasscheck resolves ten of eleven modeled material entries: all nine lens glasses and the published rear filter use compatible HOYA catalog rows; the separate hybrid resin remains unresolved by design with Abbe-based dispersion. Glass labels were already present and remain unchanged. Each old → new label and resolved row is listed below. Deltas are catalog minus printed values, using the catalog Sellmeier index at 587.5618 nm and its calculated Abbe number; they are not changes to the prescription.
 
-| Element / entry | Old → new label | Resolved HOYA row | Δnd | Δνd |
-| --- | --- | --- | ---: | ---: |
-| L1 / 1 | TAF1 (HOYA) → TAF1 (HOYA) | TAF1 | +2.897247e-8 | +0.004284 |
-| L2 / 2 | NBF1 (HOYA) → NBF1 (HOYA) | NBF1 | −6.779474e-7 | +0.001598 |
-| L3 / 3 | E-FD10 (HOYA) → E-FD10 (HOYA) | E-FD10 | −2.174405e-7 | +0.000486 |
-| L4 / 4 | TAF1 (HOYA) → TAF1 (HOYA) | TAF1 | +2.897247e-8 | +0.004284 |
-| L5 / 5 | NBFD15 (HOYA) → NBFD15 (HOYA) | NBFD15 | −6.081088e-7 | −0.000596 |
-| L6 / 6 | E-FEL1 (HOYA) → E-FEL1 (HOYA) | E-FEL1 | −1.217390e-7 | +0.000728 |
-| L7 / 7 | NBFD11 (HOYA) → NBFD11 (HOYA) | NBFD11 | −3.127807e-6 | +0.004383 |
-| Hybrid layer / 8 | Unmatched resin (nd 1.517 / νd 52) → Unmatched resin (nd 1.517 / νd 52) | None | — | — |
-| L8 / 9 | TAF1 (HOYA) → TAF1 (HOYA) | TAF1 | +2.897247e-8 | +0.004284 |
-| L9 / 10 | E-FD2 (HOYA) → E-FD2 (HOYA) | E-FD2 | −1.759915e-7 | +0.000565 |
-| Published rear filter / 11 | BSC7 (HOYA) → BSC7 (HOYA) | BSC7 | −1.783974e-6 | −0.001742 |
+| Element / entry            | Old → new label                                                         | Resolved HOYA row |          Δnd |       Δνd |
+| -------------------------- | ----------------------------------------------------------------------- | ----------------- | -----------: | --------: |
+| L1 / 1                     | TAF1 (HOYA) → TAF1 (HOYA)                                               | TAF1              | +2.897247e-8 | +0.004284 |
+| L2 / 2                     | NBF1 (HOYA) → NBF1 (HOYA)                                               | NBF1              | −6.779474e-7 | +0.001598 |
+| L3 / 3                     | E-FD10 (HOYA) → E-FD10 (HOYA)                                           | E-FD10            | −2.174405e-7 | +0.000486 |
+| L4 / 4                     | TAF1 (HOYA) → TAF1 (HOYA)                                               | TAF1              | +2.897247e-8 | +0.004284 |
+| L5 / 5                     | NBFD15 (HOYA) → NBFD15 (HOYA)                                           | NBFD15            | −6.081088e-7 | −0.000596 |
+| L6 / 6                     | E-FEL1 (HOYA) → E-FEL1 (HOYA)                                           | E-FEL1            | −1.217390e-7 | +0.000728 |
+| L7 / 7                     | NBFD11 (HOYA) → NBFD11 (HOYA)                                           | NBFD11            | −3.127807e-6 | +0.004383 |
+| Hybrid layer / 8           | Unmatched resin (nd 1.517 / νd 52) → Unmatched resin (nd 1.517 / νd 52) | None              |            — |         — |
+| L8 / 9                     | TAF1 (HOYA) → TAF1 (HOYA)                                               | TAF1              | +2.897247e-8 | +0.004284 |
+| L9 / 10                    | E-FD2 (HOYA) → E-FD2 (HOYA)                                             | E-FD2             | −1.759915e-7 | +0.000565 |
+| Published rear filter / 11 | BSC7 (HOYA) → BSC7 (HOYA)                                               | BSC7              | −1.783974e-6 | −0.001742 |
 
 The hybrid resin is an exception to the addendum's generic “no row inside the tolerance” explanation. A full catalog scan finds HOYA E-CF6 (Δnd +0.000419901, Δνd +0.150805) and Hikari J-KF6 (+0.000420010, +0.203782) inside the numeric window, but neither establishes the resin's dispersion or chemistry. Its existing unmatched label is retained as assigned. The analysis states that limitation rather than claiming no coordinate-compatible glass exists. The ten catalog curves remain spectral stand-ins anchored at the printed indices, not supplier identifications; exact production glasses remain unconfirmed. The stale analysis claim of TAF1 νd 49.63 was removed: the current catalog calculation is 49.624284, matching the printed 49.62 to two decimals.
 
 Name and mount scope: the data already reads “SAMYANG AF 85mm f/1.4 EF / F,” with Canon EF and Nikon F mount ids and a subtitle covering both versions; no data-file edit was needed. The analysis H1 and product statements now cover both mounts while retaining the distinct 11/8 FE / WO-family comparison. The [maker's F product page](https://www.lksamyang.com/en/product/product-view.php?seq=422&title=) specifies Nikon F, nine elements in seven groups, one hybrid asphere, f/1.4–16 and 0.90 m minimum focus, and links the same construction image 1559813077 as the EF page. The [official Korean announcement](https://www.lksamyang.com/ko/about/notice-view.php?seq=650) confirms 11 April 2019; [Photography Blog's contemporary announcement](https://www.photographyblog.com/news/samyang_af_85mm_f1_4_f_mf_14mm_f2_8_z_and_mf_85mm_f1_4_z_nikon_lenses) is corroborating context. The addendum's Chinese notice URL was inaccessible and Photography Blog returned HTTP 403 on direct opening; the official Korean notice and manufacturer product text were available. Existing semi-diameter findings and optical limitations are retained.
 
-Before/after built and probe output is identical: EFL 84.54865074703312 mm, FOPEN 1.479, half-field 14.239°, physical stop radius 15.090708515822355 mm, infinity after-filter BFD 0.5094 mm and near BFD −8.4999 mm; focus keys remain 0 and 1. Surface audit reports OK with no errors. No command or edit was refused by the sandbox. The required headless page-view attempt emitted thermal-notification and DNS-watch errors with no screenshot output; it was not retried. Rendered-page review remains open for the coordinator. No optical or data-file changes were made.
+Before/after built and probe output is identical: EFL 84.54865074703312 mm, FOPEN 1.479, half-field 14.239°, physical stop radius 15.090708515822355 mm, infinity after-filter BFD 0.5094 mm and near BFD −8.4999 mm; focus keys remain 0 and 1. Surface audit reports OK with no errors. No command or edit was refused by the sandbox. The required headless page-view attempt emitted thermal-notification and DNS-watch errors with no screenshot output; it was not retried. Rendered-page review was subsequently completed in the second-review section below. No optical or data-file changes were made in this section.
+
+## 2026-11-14 — Second review: diagram, labels and movement
+
+Compared the supplied live page and inspectors with the local KR 10-2213072 B1, Example 2: Figure 3 on PDF page 18, Tables 4–6 on pages 12–13, element/group definitions in paragraphs [0051]–[0055] on page 9, the front page, and the C/d/F fans in Figure 4 on page 19. The stored EF maker diagram was also viewed: nine glass elements in seven air-spaced components, two rear glass doublets and the hybrid eighth glass agree; it supplies no ED markings or iris location. The figure governs the inferred rims.
+
+An independent 600 dpi reading used the local axis at y≈1968, with first/filter vertex centres x≈829/2712.5: 1883.5 px / 109.4616 mm ≈17.207 px/mm. S3–S18 gives 1095 px / 63.6206 mm ≈17.211 px/mm. Mid-stroke body heights are approximately 30.4, 25.7, 23.4, 20.1, 17.9, 17.9 and 22.2 mm for L12, L22, L32, L42, L52, the rear doublets and OD. Stroke width contributes about 0.2 mm; the previously documented curvature mismatch adds systematic uncertainty. No reading establishes a new ≥10% error or an incorrect neighbour-height order. The slightly larger front caps remain necessary for the previously established near axial floors. The live drawing preserves the square L42, the three rear-face lands, common rear-group rims and the drawn filter. No clear radius or policy value changed.
+
+| Item                                   | Before → after                                                                                         | Evidence / verdict                                                                                                                                                                    |
+| -------------------------------------- | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Glass element names and diagram labels | L1…L9 / numeric element ids → L12…L92                                                                  | Paragraphs [0052]–[0055] and Figure 3 use these Example 2 designations; the separate layer no longer shifts the apparent numbering of L82/L92.                                        |
+| Group brackets                         | None → G12 S1–S8, G22 S9–S10, G32 S12–S18                                                              | Figure 3 brackets the front four elements, focusing singlet and rear doublets; no parent/subgroup duplicates.                                                                         |
+| Hybrid layer                           | “Hybrid layer on L8,” positive meniscus → “Hybrid layer on L82,” aspheric positive meniscus; display H | Table 5 marks its exposed S15 as the sole asphere. H is explicitly a display alias, not an extra patent lens. The separate layer remains outside C2; no false triplet was introduced. |
+| Filter label                           | Numeric 11 → OD                                                                                        | Figure 3 labels this optical element OD. The inspector explains its infinite isolated focal length.                                                                                   |
+| Isolated focal lengths                 | Missing → finite values below                                                                          | `probe --elements`, isolated thick elements in air at the d line; these are calculations, not patent values or cemented-assembly powers.                                              |
+| Focus wording                          | L5 imageward → G22/L52 imageward, fixed G12/G32, explicit infinity → near order                        | Table 6 and both Figure 3 panels; gap arrays and keyframe order already correct and unchanged.                                                                                        |
+
+Focal lengths added, mm: L12 +96.94; L22 +91.08; L32 −54.87; L42 +77.45; L52 −42.80; L62 −32.21; L72 +26.56; hybrid layer +738.78; L82 +74.58; L92 −147.89. The plane-parallel OD has no finite focal length and is intentionally left without a numeric value. C1 remains S12–S14 and C2 S16–S18. All shape/power signs agree with the prescription. No APD tags are justified by the patent or maker image, so none were added. S15's pink A marker and ASPH inspector badge are visible; the other faces are spherical.
+
+Lands and cuts are retained under the owner's light rule, cumulatively against `.lens-work/base1125sd/SamyangAF85mmf14EF.data.ts`. Numbers below are percentage points at wide-open aperture; the restore cost is the maximum light recovered by restoring that element's baseline caps and removing its land. Each land was also removed separately with `--noext`; none changed either parallel-beam curve at displayed precision.
+
+| Element / affected surfaces | Baseline clear sd, mm | Final clear sd, mm | Land outer sd, mm | Figure body, mm | Restore gain infinity / near, points | Verdict                                                              |
+| --------------------------- | --------------------- | ------------------ | ----------------- | --------------: | ------------------------------------ | -------------------------------------------------------------------- |
+| L22 S3/S4                   | 28 / 28               | 26.3 / 25.6        | S4 26.3           |           ≈25.7 | 0.0 / 0.5                            | Keep: slight cumulative loss; near axial floors govern caps.         |
+| L32 S5/S6                   | 27 / 27               | 24.1 / 21.0        | S6 24.1           |           ≈23.4 | 0.0 / 0.0                            | Keep: no measured extra cost; near axial floors govern caps.         |
+| L42 S7/S8                   | 23 / 23               | 20.2 / 20.2        | None              |           ≈20.1 | 0.0 / 0.0                            | Keep: square body matches figure and clears near axial beam.         |
+| L52 S9/S10                  | 23 / 23               | 18.0 / 16.0        | S10 18.0          |           ≈17.9 | 0.0 / 0.0                            | Keep: land is drawn; smaller optical cap has no measured extra cost. |
+
+Fresh `rimcost --loo` results: infinity corner 43.1 → 43.1% at 14.239°, worst loss 0.0 points. The existing near-state version of the same tool selects focus 1 and launches parallel beams: corner 46.7 → 46.7% at approximately 11.9°, worst loss 0.5 points on axis. Axial near transmission under that convention is 87.4 → 86.9%. These are distinct from real finite-object results. The earlier `sd/samyang85/final-endpoints.log` was inspected: its 812-ray actual-source-object trace gives infinity corner 42.3645 → 42.3645% and near corner 54.1872 → 54.1872%, with 100% axial transmission at both states and worst near loss 0.2463 points among seven fields. Those finite-object numbers are prior evidence, not a fresh execution in this review; geometry and rims are unchanged.
+
+Movement: D1 1.612500 → 6.541152 mm and D2 10.427100 → 5.498448 mm move G22/L52 4.928652 mm imageward. Their sum is constant, so G12, G32 and the stop stay fixed relative to the first vertex. D3 stays 37.3 mm, so OD stays fixed; D4 0.507836 → 0.687847 mm moves Image 0.180011 mm imageward. The near object distance is 813.676935 mm before S1. There is no zoom. The live motion overlay shows G12/G22/G32, with 4.75 mm maximum travel relative to its fixed focus-plane reference: 4.928652−0.180011 = 4.748641 mm. The near slider reads 93 cm with the maker's 90 cm separately. No gap values or state order changed.
+
+Glasscheck re-read all eleven material entries. All nine glass elements and OD resolve to the existing exact HOYA rows; maximum absolute calculated Δnd is 0.000003128 and maximum Δνd is 0.004383. No label needed replacing and no missing catalog row is proposed. The unmatched layer's printed 1.51700/52.00 pair recurs in Example 3, Table 7 on page 14. Neither table nor the hybrid-asphere paragraph [0054] on page 9 gives a resin trade name, supplier, C/F/g index or partial dispersion. Glassnear and the vendor AGF scan find E-CF6 1.51742/52.15 in `HOYA20260707.agf`, with obsolete CF6 in the include-obsolete file; J-KF6 in the catalog and obsolete Sumita KF6 also lie within the site's proxy tolerance. These are already available coordinate candidates, not identified resins. The unmatched designation is retained. There is no constant/nd-only medium and no omitted printed spectral index; the layer uses Abbe-based dispersion, so colour remains available.
+
+Colour check at the unchanged source image plane, using the aimed physical-stop pupil: paraxial C/d/F focus offsets are +0.09848/+0.00160/−0.06168 mm, and full-pupil offsets +0.07494/−0.01443/−0.03845 mm. Corresponding marginal image errors are +0.02608/−0.00504/−0.01349 mm. Figure 4's on-axis endpoints read approximately +0.044/+0.010/0.000 mm with ≈0.003 mm uncertainty. The difference exceeds that uncertainty but is largely common to the three channels: moving the comparison plane about 0.045 mm objectward accounts for most of it. No plane or glass was adjusted. Because d also differs, no material can be identified as the cause; the unmatched layer remains a dispersion uncertainty, rather than a proven erroneous glass. Figure 4 contains transverse fans, without separate longitudinal, astigmatism or distortion plots. Its legend controls the line identities; paragraph [0094] on page 13 mistakenly calls this Figure 5 and assigns a different line-style order.
+
+The front-page assignee is 주식회사 삼양옵틱스. “Samyang Optics Co., Ltd.” agrees with the existing Samyang corpus spelling; no consolidation variant was found. Authors and grant/publication dates agree with the current source block. Product/mount metadata remains EF / F with canon-ef and nikon-f, consistent with the prior maker evidence.
+
+Fresh optical checks before and after the edits: surface OK; aperture zero rim/trace/iris limits; image-circle zero undersized; field coverage 100%, 21.65/21.65 mm and clear corner. The meridional clear-aperture probes at both focus-gap endpoints have no axial/chief flags; their pre-existing extreme `LOWER no-ray-found` remains, and their parallel-beam axial convention does not replace finite-object evidence. The engine before/after comparison retains EFL 84.548650747 mm, f/1.479, declared half-field 14.239°, tracing half-field 15.725570°, physical stop radius 15.090708516 mm and track 112.469436 mm. Probe confirms all ten stored finite focal lengths and unchanged optical output at both focus keys. No iris relocation is supported by Figure 3. Scoped Markdown formatting checks and `git diff --check` completed without errors; the data file's existing quoted-key formatting was retained.
+
+Post-edit live screenshots were inspected at infinity and near focus, with the focus motion overlay, hybrid-layer inspector, L82 inspector and OD inspector. The figure taper, square rims, lands, OD plate, two doublet brackets, aspheric marker and new labels appear as intended; layer/L82 labels are staggered rather than collided. The live-page limitation in earlier sections is closed. Evidence directory: `/private/tmp/claude-501/-Users-ronbuening--claude-spares-spare-4b6LS6/fcefa615-105e-4bd7-925a-ed68ad81cb71/scratchpad/sd/samyang85/`, files `rv-page.png`, `rv-near.png`, `rv-motion.png`, `rv-layer.png`, `rv-L82.png`, `rv-filter.png` and `rv-side-by-side.png`. The existing `overlay.png` and `overlay-near.png` also remain applicable to unchanged rims and show the blue baseline.
+
+Open: S15 remains numerically labelled “15” rather than an A-suffixed surface label. Its geometry, data and visible marker are aspheric; surface-label edits are outside this assignment's allowed list. No asphere coefficient is missing.
+
+Open: source focal-length/back-focus/length summaries, the near f-number and 0.9 m heading, D5's meaning, variable rear-plate-gap support, production identity, supplier/resin identity and the intermediate focus cam remain unresolved. The fan-plane discrepancy above is not reconciled by a speculative glass change. Application-wide checks and remote CI remain outside this scope.
+
+Sandbox refusal: a command attempted to redirect the finite-conjugate recheck output to `./finite-before.jsonl` while its cwd was the read-only main checkout. The shell refused it with “operation not permitted.” That output change was stopped and was not retried in another form; the prior finite-object log is explicitly distinguished above. No lens edit was refused.

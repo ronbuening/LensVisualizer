@@ -19,7 +19,9 @@ const LENS_DATA = {
   "elements": [
     {
       "id": 1,
-      "name": "L1",
+      "name": "L11",
+      "diagramLabel": "L11",
+      "focalLengthMm": -76.86,
       "type": "Negative Meniscus",
       "nd": 1.487,
       "vd": 70.44,
@@ -27,12 +29,14 @@ const LENS_DATA = {
       "label": "Element 1",
       "glass": "FC5 (Hoya)",
       "apd": "inferred",
-      "apdNote": "The maker marks L1 as ED; its printed nd/νd is consistent with low-dispersion glass.",
+      "apdNote": "The maker marks element 1 (patent L11) as ED; its printed nd/νd is consistent with low-dispersion glass.",
       "role": "Negative front element of the fixed first group."
     },
     {
       "id": 2,
-      "name": "L2",
+      "name": "L12",
+      "diagramLabel": "L12",
+      "focalLengthMm": -39.41,
       "type": "Biconcave Negative",
       "nd": 1.847,
       "vd": 23.785,
@@ -40,11 +44,13 @@ const LENS_DATA = {
       "label": "Element 2",
       "glass": "FDS90 (Hoya)",
       "cemented": "C1",
-      "role": "Dispersive negative partner to L3 in the fixed first group."
+      "role": "Dispersive negative partner to L13 in the fixed first group."
     },
     {
       "id": 3,
-      "name": "L3",
+      "name": "L13",
+      "diagramLabel": "L13",
+      "focalLengthMm": 41.49,
       "type": "Biconvex Positive",
       "nd": 1.883,
       "vd": 40.805,
@@ -52,11 +58,13 @@ const LENS_DATA = {
       "label": "Element 3",
       "glass": "TAFD30 (Hoya)",
       "cemented": "C1",
-      "role": "High-index positive partner to L2 in the fixed first group."
+      "role": "High-index positive partner to L12 in the fixed first group."
     },
     {
       "id": 4,
-      "name": "L4",
+      "name": "L14",
+      "diagramLabel": "L14",
+      "focalLengthMm": 56.86,
       "type": "Positive Meniscus",
       "nd": 1.81,
       "vd": 40.993,
@@ -67,7 +75,9 @@ const LENS_DATA = {
     },
     {
       "id": 5,
-      "name": "L5",
+      "name": "L21",
+      "diagramLabel": "L21",
+      "focalLengthMm": 69.81,
       "type": "Biconvex Positive",
       "nd": 1.946,
       "vd": 17.942,
@@ -79,7 +89,9 @@ const LENS_DATA = {
     },
     {
       "id": 6,
-      "name": "L6",
+      "name": "L22",
+      "diagramLabel": "L22",
+      "focalLengthMm": -40.55,
       "type": "Biconcave Negative",
       "nd": 1.603,
       "vd": 38.011,
@@ -87,11 +99,13 @@ const LENS_DATA = {
       "label": "Element 6",
       "glass": "E-F5 (Hoya)",
       "cemented": "C2",
-      "role": "Negative partner to L5 in the first floating focus group."
+      "role": "Negative partner to L21 in the first floating focus group."
     },
     {
       "id": 7,
-      "name": "L7",
+      "name": "L31",
+      "diagramLabel": "L31",
+      "focalLengthMm": 48.35,
       "type": "Positive Meniscus",
       "nd": 1.593,
       "vd": 68.624,
@@ -100,12 +114,14 @@ const LENS_DATA = {
       "glass": "FCD515 (Hoya)",
       "cemented": "C3",
       "apd": "inferred",
-      "apdNote": "The maker marks L7 as ED; its printed nd/νd is consistent with low-dispersion glass.",
+      "apdNote": "The maker marks element 7 (patent L31) as ED; its printed nd/νd is consistent with low-dispersion glass.",
       "role": "Low-dispersion positive member of the fixed group before the stop."
     },
     {
       "id": 8,
-      "name": "L8",
+      "name": "L32",
+      "diagramLabel": "L32",
+      "focalLengthMm": -38.27,
       "type": "Negative Meniscus",
       "nd": 1.689,
       "vd": 31.161,
@@ -113,11 +129,13 @@ const LENS_DATA = {
       "label": "Element 8",
       "glass": "E-FD8 (Hoya)",
       "cemented": "C3",
-      "role": "Dispersive negative partner to L7 immediately before the stop."
+      "role": "Dispersive negative partner to L31 immediately before the stop."
     },
     {
       "id": 9,
-      "name": "L9",
+      "name": "L41",
+      "diagramLabel": "L41",
+      "focalLengthMm": 119.52,
       "type": "Biconvex Positive",
       "nd": 1.593,
       "vd": 68.624,
@@ -125,12 +143,14 @@ const LENS_DATA = {
       "label": "Element 9",
       "glass": "FCD515 (Hoya)",
       "apd": "inferred",
-      "apdNote": "The maker marks L9 as ED; its printed nd/νd is consistent with low-dispersion glass.",
+      "apdNote": "The maker marks element 9 (patent L41) as ED; its printed nd/νd is consistent with low-dispersion glass.",
       "role": "Low-dispersion positive element beginning the second floating focus group."
     },
     {
       "id": 10,
-      "name": "L10",
+      "name": "L42",
+      "diagramLabel": "L42",
+      "focalLengthMm": 41.27,
       "type": "Biconvex Positive",
       "nd": 1.569,
       "vd": 71.304,
@@ -139,12 +159,14 @@ const LENS_DATA = {
       "glass": "K-GFK70 (Sumita)",
       "cemented": "C4",
       "apd": "inferred",
-      "apdNote": "The maker marks L10 as ED; its printed nd/νd is consistent with low-dispersion glass.",
-      "role": "Low-dispersion positive partner to L11 in the second floating focus group."
+      "apdNote": "The maker marks element 10 (patent L42) as ED; its printed nd/νd is consistent with low-dispersion glass.",
+      "role": "Low-dispersion positive partner to L43 in the second floating focus group."
     },
     {
       "id": 11,
-      "name": "L11",
+      "name": "L43",
+      "diagramLabel": "L43",
+      "focalLengthMm": -121.07,
       "type": "Negative Meniscus",
       "nd": 1.847,
       "vd": 23.785,
@@ -156,7 +178,9 @@ const LENS_DATA = {
     },
     {
       "id": 12,
-      "name": "L12",
+      "name": "L51",
+      "diagramLabel": "L51",
+      "focalLengthMm": 94.73,
       "type": "Positive Meniscus",
       "nd": 1.946,
       "vd": 17.942,
@@ -167,7 +191,9 @@ const LENS_DATA = {
     },
     {
       "id": 13,
-      "name": "L13",
+      "name": "L52",
+      "diagramLabel": "L52",
+      "focalLengthMm": 103.68,
       "type": "Positive Meniscus",
       "nd": 1.593,
       "vd": 68.624,
@@ -176,12 +202,14 @@ const LENS_DATA = {
       "glass": "FCD515 (Hoya)",
       "cemented": "C5",
       "apd": "inferred",
-      "apdNote": "The maker marks L13 as ED; its printed nd/νd is consistent with low-dispersion glass.",
+      "apdNote": "The maker marks element 13 (patent L52) as ED; its printed nd/νd is consistent with low-dispersion glass.",
       "role": "Low-dispersion positive member of the final cemented pair."
     },
     {
       "id": 14,
-      "name": "L14",
+      "name": "L53",
+      "diagramLabel": "L53",
+      "focalLengthMm": -45.29,
       "type": "Negative Meniscus",
       "nd": 1.847,
       "vd": 23.785,
@@ -189,11 +217,13 @@ const LENS_DATA = {
       "label": "Element 14",
       "glass": "FDS90 (Hoya)",
       "cemented": "C5",
-      "role": "Dispersive negative partner to L13 in the fixed rear group."
+      "role": "Dispersive negative partner to L52 in the fixed rear group."
     },
     {
       "id": 15,
-      "name": "L15",
+      "name": "L54",
+      "diagramLabel": "L54",
+      "focalLengthMm": -180.74,
       "type": "Biconcave Negative",
       "nd": 1.81,
       "vd": 40.993,
@@ -473,11 +503,11 @@ const LENS_DATA = {
     ]
   },
   "groups": [
-    { "text": "G1 — Fixed front", "fromSurface": "1", "toSurface": "7" },
-    { "text": "G2 — Floating focus", "fromSurface": "8", "toSurface": "10" },
-    { "text": "G3 — Fixed", "fromSurface": "11", "toSurface": "13" },
-    { "text": "G4 — Floating focus", "fromSurface": "15", "toSurface": "19" },
-    { "text": "G5 — Fixed rear", "fromSurface": "20", "toSurface": "26" }
+    { "text": "G1", "fromSurface": "1", "toSurface": "7" },
+    { "text": "G2", "fromSurface": "8", "toSurface": "10" },
+    { "text": "G3", "fromSurface": "11", "toSurface": "13" },
+    { "text": "G4", "fromSurface": "15", "toSurface": "19" },
+    { "text": "G5", "fromSurface": "20", "toSurface": "26" }
   ],
   "doublets": [
     { "text": "C1", "fromSurface": "3", "toSurface": "5" },

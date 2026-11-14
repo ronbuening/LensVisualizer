@@ -26,7 +26,7 @@ The cemented assemblies are L3/L4, L5/L6, L7/L8, L9/L10/L11, L12/L13, L14/L15 an
 
 ## Element-by-Element Analysis
 
-The shapes and power signs follow the patent's element descriptions (¶0035–¶0052). Glass names below are spectral proxies, not supplier identifications. Individual element focal lengths are not tabulated. The patent attributes correction to the cemented assemblies collectively, without separate element aberration budgets (¶0058).
+The shapes and power signs follow the patent's element descriptions (¶0035–¶0052). Glass names below are spectral proxies within the site's proxy tolerance, not supplier identifications. Individual element focal lengths are not tabulated; the inspector gives calculated isolated thick-element focal lengths in air, rather than powers within the cemented assemblies. The patent attributes correction to the cemented assemblies collectively, without separate element aberration budgets (¶0058).
 
 ### L1 — Positive Meniscus
 
@@ -54,7 +54,7 @@ Biconvex positive L5 and biconcave negative L6 complete G1. The rear face of the
 
 ### L7/L8 — Moving Cemented Focus Doublet
 
-L7: nd = 1.92, νd = 20.9. Glass: E-FDS1 (HOYA spectral proxy). L8: nd = 1.70, νd = 55.5. Glass: unmatched; supplier unknown.
+L7: nd = 1.92, νd = 20.9. Glass: E-FDS1 (HOYA spectral proxy). L8: nd = 1.70, νd = 55.5. Glass: MP-LAC14-80 (HOYA spectral proxy).
 
 Positive meniscus L7 is cemented to biconcave negative L8. Together they form negative G2, the only group that moves during focusing.
 
@@ -90,7 +90,7 @@ L18 ends G3. Its surfaces S28 and S29 are the only aspherical surfaces in the pr
 
 ## Glass Identification and Selection
 
-The printed nd/νd precision is retained: two/one decimal places. Fifteen elements use catalog spectral proxies within the site's proxy tolerance (|Δnd| ≤ 0.003, matching the printed digits; |Δνd| ≤ 0.25). Their curves supply C/F/g dispersion anchored at the printed index; exact production glasses and suppliers remain unconfirmed.
+The printed nd/νd precision is retained: two/one decimal places. Sixteen elements use catalog spectral proxies within the site's proxy tolerance (|Δnd| ≤ 0.003, matching the printed digits; |Δνd| ≤ 0.25). Their curves supply C/F/g dispersion anchored at the printed index; exact production glasses and suppliers remain unconfirmed.
 
 | Elements | nd | νd | Spectral proxy (catalog vendor) |
 | --- | ---: | ---: | --- |
@@ -100,14 +100,14 @@ The printed nd/νd precision is retained: two/one decimal places. Fifteen elemen
 | L6, L16 | 2.00 | 25.5 | TAFD40 (HOYA) |
 | L14 | 2.00 | 29.1 | TAFD55 (HOYA) |
 | L7 | 1.92 | 20.9 | E-FDS1 (HOYA) |
-| L8 | 1.70 | 55.5 | Unmatched |
+| L8 | 1.70 | 55.5 | MP-LAC14-80 (HOYA) |
 | L10, L13 | 1.77 | 29.7 | NBFD29 (HOYA) |
 | L11, L12 | 1.73 | 54.7 | S-LAL18 (OHARA) |
 | L15 | 1.62 | 36.3 | E-F2 (HOYA) |
 | L17 | 1.49 | 70.4 | H-QK3L (CDGM) |
 | L18 | 1.81 | 40.7 | L-LAH84 (OHARA) |
 
-L1, L4 and L8 remain unmatched with Abbe-based dispersion: no catalog row meets the tolerance. The S-TIH53/FDS90 class (nd 1.84666), NBFD25 (1.85451) and LaK14 class (1.6968), respectively, fall outside the index window.
+L1 and L4 remain unmatched with Abbe-based dispersion: no catalog row meets the tolerance. The S-TIH53/FDS90 class (nd 1.84666) and NBFD25 (1.85451), respectively, fall outside the index window. L8 uses HOYA's MP-LAC14-80 (1.69760 / 55.51), the LaK14-class row whose index rounds to the printed 1.70.
 
 The patent assigns one material to L2/L3/L5/L9 (¶0007) and attributes axial chromatic, spherical and distortion correction to the seven cemented assemblies (¶0058). The maker's diagram marks L2/L3/L5/L9/L17 as ED, consistent with their low-dispersion values and proxies. Their ED tags remain inferred; neither tags nor proxies establish production partial dispersion or apochromatic performance.
 
@@ -145,6 +145,8 @@ The model has substantial off-axis geometric vignetting, with about 29.31% of th
 Table 1 controls the numerical prescription. Its S10 radius is 568.322 mm, while the prose gives 568.332 mm. S2 = 215.365 mm and S28 = -119.605 mm agree between the table and prose.
 
 Calculated transmitted monochromatic geometric RMS radii are 0.005745 mm axial, 0.009893 mm at half-field and 0.018087 mm at the edge. These are not diffraction MTF, measured performance or a reproduction of the source's 430–658 nm polychromatic charts.
+
+The modeled near-axis 658-versus-546 nm focus separation is 0.04067 mm, compared with approximately 0.017–0.018 mm in Figure 4a (about 0.002 mm reading uncertainty). Its full-pupil d-line spherical shift is −0.06816 mm. The coarse indices and unresolved partial dispersion prevent faithful reproduction of the source's color and spherical-aberration curves; no individual glass substitution is established as a correction.
 
 Coarse glass precision, inferred apertures, the omitted unspecified filter, the unresolved back-focus difference and uncertain exact product identity limit comparisons with the production lens.
 
