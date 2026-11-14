@@ -69,6 +69,12 @@ const runtimeInputs: Record<string, Record<string, { pattern?: string; generated
   "scripts/audit-mtf-dispersion.mjs": {
     'resolve("src/lens-data", file)': { pattern: "src/lens-data/**/*.data.ts", reason: "catalog walk" },
   },
+  "scripts/audit-mtf-weighting.mjs": {
+    'join(ROOT, "src", "lens-data", file)': {
+      pattern: "src/lens-data/**/*.data.ts",
+      reason: "weighting stations or CLI catalog key",
+    },
+  },
   "scripts/benchmark-mtf.mjs": {
     'join(ROOT, "src", "lens-data", file)': { pattern: "src/lens-data/**/*.data.ts", reason: "benchmark case paths" },
   },

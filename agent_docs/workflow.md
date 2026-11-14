@@ -45,6 +45,7 @@ npm run audit:dependencies          # Fail on non-allowlisted high/critical npm 
 npm run audit:dpgf                  # dPgF values that fit a source normal line instead of the engine's
 npm run audit:field-coverage        # traced analysis half-field vs format corner, and the rim that stops it
 npm run audit:image-circle          # semi-diameters that cannot cover their own image circle
+npm run audit:mtf-weighting         # Stop-uniform versus incident flux, with a launch-plane geometric reference
 npm run audit:mtf-drift             # Opt-in MTF numerical signature check; --update replaces the baseline
 npm run audit:patent-figure         # measure a patent cross-section against a lens data file
 npm run audit:surface               # aspheric domain scan + validator with trial semi-diameters

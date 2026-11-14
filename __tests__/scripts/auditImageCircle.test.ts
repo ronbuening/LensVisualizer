@@ -24,6 +24,40 @@ function runNpmScript(script: string, args: string[] = []): string {
 }
 
 describe("audit script npm contracts", () => {
+  it("measures pupil weighting through the npm hook and emits finite JSON comparisons", () => {
+    const output = runNpmScript("audit:mtf-weighting", ["--lens=canon-serenar-50f18", "--grid=16", "--json"]);
+    const report = JSON.parse(output.slice(output.indexOf("{")));
+    expect(report.grid).toBe(16);
+    expect(report.diffractionReference).toContain("no independent reference");
+    expect(report.stations).toHaveLength(1);
+    expect(report.perLens).toHaveLength(2);
+    expect(report.summary).toHaveLength(9);
+    for (const aperture of report.stations[0].apertures) {
+      expect(aperture.unavailable).toBeUndefined();
+      expect(aperture.fields).toHaveLength(3);
+      for (const field of aperture.fields) {
+        expect(field.unavailable).toBeUndefined();
+        for (const cut of ["sagittal", "tangential"]) {
+          expect(field.geometric.product[cut]).toHaveLength(3);
+          field.geometric.product[cut].forEach((value: number, i: number) => {
+            expect(value).toBeGreaterThanOrEqual(0);
+            expect(value).toBeLessThanOrEqual(1);
+            expect(field.geometric.productMinusReference[cut][i]).toBeCloseTo(
+              value - field.geometric.launchPlane[cut][i],
+              12,
+            );
+            expect(Number.isFinite(field.geometric.fluxMinusReference[cut][i])).toBe(true);
+            expect(field.diffraction.fluxMinusProduct[cut][i]).toBeCloseTo(
+              field.diffraction.incidentFlux[cut][i] - field.diffraction.product[cut][i],
+              12,
+            );
+          });
+        }
+      }
+    }
+    expect(report.summary.every((row: { samples: number }) => row.samples === 2)).toBe(true);
+  });
+
   it("audits one known lens through the npm entry with the loader hook", () => {
     const output = runNpmScript("audit:image-circle", ["src/lens-data/canon/Canon50mmf12.data.ts"]);
 

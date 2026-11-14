@@ -5,7 +5,11 @@ export { MTF_ESTIMATED_DISPERSION_MAX_VD, MTF_FIELDS, MTF_FREQUENCIES } from "./
 export { assessMtfDataLimitations } from "./analysis/mtf/mtfDataLimitations.js";
 export type { MtfDataLimitationInput } from "./analysis/mtf/mtfDataLimitations.js";
 export { mtfImagePlaneOffset } from "./analysis/mtf/mtfFocus.js";
-export { combineOtfs, otfMagnitude } from "./analysis/mtf/mtfMath.js";
+export { combineOtfs, geometricOtf, otfMagnitude } from "./analysis/mtf/mtfMath.js";
+export { mtfIncidentFluxWeights } from "./analysis/mtf/mtfIncidentFlux.js";
+export { findAxialBestFocus, landingPoints, mtfNearestImagePlaneZ } from "./analysis/mtf/mtfFocus.js";
+export { mtfChiefHeight, resolveMtfFieldTargets } from "./analysis/mtf/mtfFields.js";
+export { expandMtfFootprint } from "./analysis/mtf/mtfFootprint.js";
 export type { ComplexOtf, MtfSpot } from "./analysis/mtf/mtfMath.js";
 export { shearedOtf } from "./analysis/mtf/mtfShearedOtf.js";
 export {

@@ -65,6 +65,7 @@ import type { EngineTraceResult } from "../../../src/optics/trace/types.js";
 import { traceEngineRay } from "../../../src/optics/trace/rayAdapters.js";
 import { createImageSurfaceShape } from "../../../src/optics/geometry/imageSurface.js";
 import { stopLattice } from "../../../src/optics/analysis/pupils/stopLattice.js";
+import { mtfIncidentFluxWeights } from "../../../src/optics/analysis/mtf/mtfIncidentFlux.js";
 
 /*
  * Stop-lattice cells the aimed launch returns unaimed, by normalised stop position: the real aim leaves no cell inside
@@ -648,6 +649,85 @@ function buildRetrofocusLens() {
 }
 
 describe("MTF pupil sampling", () => {
+  it("matches uniform incident flux through an aberrated off-axis pupil", () => {
+    // The negative front meniscus produces pupil aberration at 35°. Launch-plane quadrature is independent of
+    // the stop map and its finite-difference Jacobian. The low frequencies resolve this fixture's millimetre blur.
+    const state = prepareRuntimeState(buildRetrofocusLens(), 0, 0);
+    const options = { ...mtfTestOptions, pupilSemiDiameterMm: 2.2, stopSemiDiameterMm: 3 };
+    const support = assessMtfSupport(...mtfInputs(state, options));
+    const launch = prepareMtfFieldLaunch(state, options, support, 35)!;
+    const footprint = findMtfFieldFootprint(state, options, support, launch)!;
+    const frequencies = [0.1, 0.3];
+    const stop = traceMtfFieldPupil(state, options, support, 35, 256)!;
+    const weights = mtfIncidentFluxWeights(stop);
+    expect(Array.from(weights).every((w) => Number.isFinite(w) && w > 0)).toBe(true);
+    const flux = stop.rays.map((ray, i) => ({ ...ray, weight: ray.weight * weights[i] }));
+    const plane = (n: number) =>
+      traceMtfLaunchPlaneBundle(state, options, support, launch, footprint, n, support.spectralLines[0])!;
+    const reference = plane(1024);
+    const coarseReference = plane(512);
+    for (const bundle of [stop, reference, coarseReference]) {
+      expect([bundle.failed, bundle.unaimed]).toEqual([0, 0]);
+      expect(Object.values(bundle.openBorders)).toEqual([false, false, false]);
+    }
+    // T=5e-4 allows the stop disc's boundary quadrature error; the independently doubled launch grid must move
+    // by less than T/2 in complex OTF. Stop-uniform weighting misses by more than ten times T on the T cut.
+    const tolerance = 5e-4;
+    for (const axis of ["x", "y"] as const) {
+      const control = geometricOtf(reference.rays, frequencies, axis);
+      const coarser = geometricOtf(coarseReference.rays, frequencies, axis);
+      const weighted = geometricOtf(flux, frequencies, axis);
+      for (let i = 0; i < frequencies.length; i++) {
+        const error = (otf: typeof control) =>
+          Math.hypot(otf.real[i] - control.real[i], otf.imaginary[i] - control.imaginary[i]);
+        expect(error(coarser)).toBeLessThan(tolerance / 2);
+        expect(error(weighted)).toBeLessThan(tolerance);
+      }
+      if (axis === "y") {
+        const uniform = geometricOtf(stop.rays, frequencies, axis);
+        expect(
+          Math.hypot(uniform.real[1] - control.real[1], uniform.imaginary[1] - control.imaginary[1]),
+        ).toBeGreaterThan(10 * tolerance);
+      }
+    }
+  });
+  it("integrates launch area and Lambertian solid angle, including mirrored rim stencils", () => {
+    const state = prepareRuntimeState(buildSimplePositiveElementLens(), 0, 0);
+    const support = assessMtfSupport(...mtfInputs(state, mtfTestOptions));
+    const bundle = traceMtfFieldPupil(state, mtfTestOptions, support, 0, 16)!;
+    const lattice = bundle.lattice!;
+    const area = bundle.stepMm ** 2;
+    for (const weight of mtfIncidentFluxWeights(bundle)) expect(weight).toBeCloseTo(area, 14);
+    // The stop is the first surface: its inverse map is the identity even at the rim. Keep only the +x launch
+    // geometry to exercise the same reflection used when a symmetric bundle traces half its pupil.
+    const half = {
+      ...lattice,
+      rays: lattice.rays.map((ray) =>
+        ray.origin && ray.origin[0] < 0
+          ? { ...ray, status: "unaimed" as const, reason: "aim-not-converged" as const, origin: null, direction: null }
+          : ray,
+      ),
+    };
+    expect(mtfIncidentFluxWeights({ ...bundle, lattice: half })).toEqual(mtfIncidentFluxWeights(bundle));
+    const objectPoint = [0, 0, lattice.chief.origin![2] - 10] as const;
+    const finite = {
+      ...lattice,
+      rays: lattice.rays.map((ray) => {
+        if (!ray.origin) return ray;
+        const [x, y, z] = ray.origin;
+        const length = Math.hypot(x, y, z - objectPoint[2]);
+        return { ...ray, direction: [x / length, y / length, 10 / length] as const };
+      }),
+    };
+    const weights = mtfIncidentFluxWeights({ ...bundle, lattice: finite, objectPoint });
+    bundle.rays.forEach((ray, i) => {
+      const x = ((2 * ray.column + 1 - bundle.columns) / bundle.columns) * lattice.stopSemiDiameterMm;
+      const y = ((2 * ray.row + 1 - bundle.rows) / bundle.rows) * lattice.stopSemiDiameterMm;
+      // dΩ = dz dA/r³ and cos(emission)=dz/r: the planar Lambertian source gives dz² dA/r⁴.
+      expect(weights[i]).toBeCloseTo((100 * area) / (100 + x * x + y * y) ** 2, 14);
+    });
+    expect(() => mtfIncidentFluxWeights({ ...bundle, sampling: "launch-plane" })).toThrow(RangeError);
+  });
   it("reproduces the launch-plane lattice on the axis of a lens without pupil aberration", () => {
     // The stop is the first surface and the axial beam is collimated, so a ray crosses the stop where it was launched:
     // the stop lattice and the launch-plane lattice over the same beam are the same cells, and so are their OTFs.

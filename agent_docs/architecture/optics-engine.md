@@ -1441,6 +1441,20 @@ Samples are uniform in those coordinates with equal weights (uniform apodization
 transmission it applied before, and nothing multiplies in the stop-to-launch Jacobian. Paraxial quantities (EP, XP,
 f-number, focal length) stay paraxial and labelled so.
 
+Product MTF weights are uniform on the stop, multiplied by bulk transmission. Incident-flux weighting instead uses
+the stop cell's pre-image area on a plane normal to the collimated object-space beam: the projected Jacobian of the
+stop-to-launch map. At a finite conjugate it uses the cell's object-side solid angle times the emission cosine for a
+Lambertian source surface normal to the optical axis. `analysis/mtf/mtfIncidentFlux.ts` computes these diagnostic
+weights from finite differences of the aimed lattice, with one-sided rim stencils and mirrored launch geometry.
+`npm run audit:mtf-weighting` compares both geometric weightings against uniform launch-plane quadrature (with
+Lambertian source weights at finite distance). Its diffraction pair uses the same sheared estimator with amplitudes
+√weight and has no independent diffraction reference. The audit keeps one product-weighted best-axial plane per
+station and aperture, reports footprint expansion and unresolved rays, and accepts `--lens=<key>`, `--grid=<cells>`
+and `--json`; it does not select product weights. On its default twelve stations, reference spectrum, 256-cell grids,
+wide open and f/8, fields 0/70%/corner and 10/30/50 lp/mm, the largest absolute product-minus-reference is 0.030342
+(signed −0.030342, Nikon 105 mm f/1.4 E prescription at f/1.45, 70% field, sagittal 50 lp/mm), with a shared best-axial
+plane selected on a 64-cell axial grid over 10/20/30/40/50 lp/mm.
+
 `analysis/pupils/aimedPupil.ts` owns the launch, exported through `analysis.ts`. `prepareAimedPupilLaunch(request,
 samples, geometry, channel?)` is pure and deterministic: a sample's solve depends only on the request, field, channel
 and its own target, so an external cross-checker calling it gets the tabs' rays bit for bit.
