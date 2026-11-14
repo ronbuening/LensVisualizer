@@ -1,6 +1,7 @@
 /** MTF share URLs preserve exact settings and reject an invalid override as a whole. */
 import { describe, expect, it } from "vitest";
 import {
+  buildLensNavigationUrl,
   buildMtfLink,
   decodeMtfSettings,
   encodeMtfSettings,
@@ -125,4 +126,26 @@ describe("MTF URL state", () => {
       expect(ordinary.toString()).toBe("focus=0.5");
     }
   });
+
+  it("preserves a valid payload unchanged rather than re-encoding its settings", () => {
+    const value = payload({ d: false, m: "geometric" });
+    const params = new URLSearchParams();
+    preserveSharedMtfSettings(`?v=1&mtf=${value}`, params);
+    expect(params.get("mtf")).toBe(value);
+  });
+
+  it("combines the shared override with destination optical state without copying the current lens state", () => {
+    const value = payload({ m: "geometric", d: false });
+    const params = new URLSearchParams({ v: "1", a_tc: "tc-14" });
+    const path = buildLensNavigationUrl("/compare/new-a/new-b", `?v=1&mtf=${value}&tc=old&focus=0.5`, params);
+    expect(path).toBe(`/compare/new-a/new-b/?v=1&a_tc=tc-14&mtf=${value}`);
+    expect(params.toString()).toBe("v=1&a_tc=tc-14");
+  });
+
+  it.each(["", "?mtf=1", "?v=2&mtf=1", "?v=1&mtf=1&mtf=1", "?v=1&mtf=invalid"])(
+    "drops absent or invalid sharing from lens navigation: %s",
+    (search) => {
+      expect(buildLensNavigationUrl("/lens/next", search)).toBe("/lens/next/");
+    },
+  );
 });

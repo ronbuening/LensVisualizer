@@ -9,6 +9,7 @@ import {
   MTF_PIXEL_PITCHES,
   type MtfPreferences,
 } from "./mtfPreferences.js";
+import { canonicalPagePath } from "../seo/siteUrls.js";
 
 export const MTF_URL_PARAM = "mtf";
 
@@ -110,13 +111,30 @@ export function buildMtfLink(href: string, preferences: MtfPreferences): string 
 }
 
 /**
- * Keep an existing valid share override when optical state rewrites the query.
- * @param currentSearch - query before ordinary synchronization
+ * Keep an existing valid share override unchanged when rebuilding a lens-view query.
+ * @param currentSearch - query before synchronization or navigation
  * @param params - newly built lens-view query, mutated only for an existing override
  */
 export function preserveSharedMtfSettings(currentSearch: string, params: URLSearchParams): void {
-  const shared = parseSharedMtfSettings(currentSearch);
-  if (!shared) return;
+  if (!parseSharedMtfSettings(currentSearch)) return;
   params.set("v", "1");
-  params.set(MTF_URL_PARAM, encodeMtfSettings(shared));
+  params.set(MTF_URL_PARAM, new URLSearchParams(currentSearch).get(MTF_URL_PARAM)!);
+}
+
+/**
+ * Carry visit-specific MTF settings through lens-view navigation before a fresh viewer mounts.
+ * @param pathname - destination single-lens or comparison route, without a query
+ * @param currentSearch - live query at navigation time, so removed overrides stay removed
+ * @param params - destination optical state; unrelated current query parameters are not copied
+ * @returns canonical lens-view path with only a valid existing MTF override carried forward
+ */
+export function buildLensNavigationUrl(
+  pathname: string,
+  currentSearch: string,
+  params = new URLSearchParams(),
+): string {
+  const nextParams = new URLSearchParams(params);
+  preserveSharedMtfSettings(currentSearch, nextParams);
+  const search = nextParams.toString();
+  return canonicalPagePath(`${pathname}${search ? `?${search}` : ""}`);
 }

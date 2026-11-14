@@ -49,9 +49,13 @@ owned by `src/utils/state/mtfUrlState.ts` and `useSharedMtfPreferences`. Its val
 followed by base64url JSON with short keys for non-default settings. JSON numbers preserve exact values. Unknown
 versions, duplicate parameters, unknown keys or any invalid setting reject the whole bundle; absent or invalid
 overrides leave stored preferences in charge. `buildMtfLink` adds the bundle only on an explicit copy action.
-`lensViewUrlSync` preserves an existing valid bundle without introducing one during ordinary synchronization;
-the visit hook updates it when its controls change and removes it for "Use my settings". Both comparison panes use
-the same override. No warning acknowledgments or diagnostic disclosures belong in this bundle.
+`lensViewUrlSync` preserves an existing valid bundle unchanged without introducing one during ordinary synchronization.
+Lens-view navigation uses `buildLensNavigationUrl` to carry that bundle through lens switches, comparison swaps and
+entering or leaving comparison mode, including legacy lens-query redirects; invalid bundles are dropped. Read the live
+query when navigating so "Use my settings" removes the override for subsequent navigation too. Links to other page
+types do not carry the bundle.
+The visit hook updates it when its controls change. Both comparison panes use the same override. No warning
+acknowledgments or diagnostic disclosures belong in this bundle.
 
 ## Tests
 

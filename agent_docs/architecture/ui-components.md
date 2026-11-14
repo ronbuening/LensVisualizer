@@ -122,9 +122,11 @@ comparison panes share; the existing `tab=mtf` URL selects the tab. "Copy MTF li
 summary, copies the current page URL with an explicit versioned `mtf` bundle containing every non-default MTF
 setting, including chart references and Advanced. It opens the MTF tab, preserves exact optical state, and uses the
 CSV action's clipboard confirmation. Ordinary visits do not write MTF settings to the URL. A valid shared bundle
-overrides stored settings for the visit and both comparison panes; "Settings from a shared link" offers "Use my
-settings" to remove the override and resume stored choices. Opening a link never saves its settings. Changing a
-control updates the visit's URL and saves only that control as a preference, leaving other shared settings visit-only.
+overrides stored settings for the visit and both comparison panes. Lens switches, comparison swaps and entering or
+leaving comparison carry the valid bundle unchanged; navigation to other page types does not carry it.
+"Settings from a shared link" offers "Use my settings" to remove the override, resume stored choices and keep it
+absent on subsequent lens-view navigation. Opening a link never saves its settings. Changing a control updates the
+visit's URL and saves only that control as a preference, leaving other shared settings visit-only.
 Warning acknowledgments and diagnostic disclosures are excluded, so a fresh visit still requires its own disclosures.
 The field summary's keyboard-operable Export menu downloads "CSV — this view", "CSV — all sampled values", SVG
 or PNG through local Blobs and temporary anchors. Copy CSV retains its uncaptioned image-height table. The view
