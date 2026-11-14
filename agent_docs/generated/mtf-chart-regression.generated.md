@@ -16,7 +16,7 @@ Without the variable, only the status line is refreshed by comparing input hashe
 {
   "version": 2,
   "generatedDateUtc": "2026-11-14",
-  "gitCommit": "e94cc96db6f1bae8b625bda51e369c2a91d0d510",
+  "gitCommit": "d7b56acee90ffe0df061a56c1fbb2f0de858960f",
   "uncommittedSrcOrReports": false,
   "settings": {
     "focusT": 0,
@@ -47,7 +47,7 @@ Without the variable, only the status line is refreshed by comparing input hashe
     ]
   },
   "hashes": {
-    "engineSources": "f7b4b4921117b9eb5debb218d463e2195737e11cd99f5bdf40206667eaaea9e4",
+    "engineSources": "535a324092b35c45e3e552e4f5aadc10a815ce28ce82e668ad26e92b9a371836",
     "reportSources": "f31c182071cda6048dfe2f87ac024d9a8835757d07d6f593d99260bdf5834711",
     "anchors": "c5320ed7acf34280f9d353748044b868ac1653a69dbd5b9044d94ddc1d473ac2",
     "conventions": "87c4d5a210113ff86fe8343b5aec4afa3db9906af41b5d679b7507314a55b815",
