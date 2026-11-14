@@ -31,7 +31,7 @@ with.** The one approximation in the engine itself, the diffraction product, has
    to be shown as uncertainty, not tuned. *Stage 8.*
 6. **No catalog lens has been compared with another tool.** A published Cooke triplet has
    (`scripts/mtf-external-reference.mjs`): first-order values and single rays match OpticStudio to the printed
-   precision and axial MTF within 0.004, while off axis the tools differ by up to 0.047, which follows the pupil
+   precision and axial MTF within 0.006 (60 lp/mm on a 256-cell pupil), while off axis the tools differ by up to 0.047, which follows the pupil
    convention (candidate C8). The catalog check is an optional diagnostic (last section); no stage depends on it.
 
 Where the comparison stands (19 digitized configurations, mean signed / mean absolute, from

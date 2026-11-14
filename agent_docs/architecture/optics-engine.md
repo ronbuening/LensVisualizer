@@ -298,7 +298,7 @@ running it without `MTF_CHART_REPORT=1` only refreshes its `Status: current` or 
 without tracing. The kernels are checked against exact Hopkins
 integrals. `scripts/mtf-external-reference.mjs` (opt-in) compares one published design, a monochromatic Cooke triplet
 with tabulated OpticStudio values: first-order values and single rays match to the printed precision and axial MTF
-within 0.004; off axis the tools differ by up to 0.047 because the source samples the paraxial entrance pupil
+within 0.006 (60 lp/mm on a 256-cell pupil; 0.004 on the adaptive grid, which stops at 64 cells); off axis the tools differ by up to 0.047 because the source samples the paraxial entrance pupil
 without ray aiming and the engine samples the stop. No catalog lens has been compared with another tool.
 
 The MTF tab reuses `analysisContext.request`, or memoizes a standalone request from prepared geometry, aperture and
