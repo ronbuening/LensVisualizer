@@ -169,8 +169,9 @@ function checkReference(
     recordHeights: true,
   });
   const authoredGap = state.imgZ - surfaces.at(-1)!.z;
-  if (!(authoredGap > 0) || !Number.isFinite(authoredGap))
-    return { ...check, unavailableReason: "Authored image plane is not beyond the last surface." };
+  // A rear plate may end on the image plane itself, where the miss is the ray height on that face.
+  if (!(authoredGap >= 0) || !Number.isFinite(authoredGap))
+    return { ...check, unavailableReason: "Authored image plane is in front of the last surface." };
   const gap = -axial.y / axial.u;
   const imageZ = surfaces.at(-1)!.z + gap;
   // Linearity scales the unit-height ray to the stop rim without testing clear apertures.

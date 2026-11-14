@@ -151,7 +151,15 @@ describe("documented finite MTF", () => {
         { label: "dummy", R: 1e15, d: lastGap, nd: 1, sd: 50, elemId: 0 },
       ],
     });
-    const reports = [defocused, withDummy].map(
+    // A plate may also end on the image plane itself (zero final gap).
+    const onImage = build({
+      ...data,
+      surfaces: [
+        ...data.surfaces.map((s, i) => (i === 2 ? { ...s, d: authoredGap } : s)),
+        { label: "dummy", R: 1e15, d: 0, nd: 1, sd: 50, elemId: 0 },
+      ],
+    });
+    const reports = [defocused, withDummy, onImage].map(
       (lens) => assessMtfConjugateConsistency(mtfInputs(prepareRuntimeState(lens, 1, 0), auditOptions)[0])!,
     );
     const expected = pupilDefocus(12, 1000, authoredGap).wavefrontMm / (587.5618e-6 / 4);
@@ -160,8 +168,10 @@ describe("documented finite MTF", () => {
       expect(Math.abs(report.offsetDepths! / expected - 1)).toBeLessThan(1e-6);
       expect(report.unavailableReason).toBeNull();
     }
-    expect(Math.abs(reports[1].offsetDepths! / reports[0].offsetDepths! - 1)).toBeLessThan(1e-6);
-    expect(reports[1].authoredPlaneWorkingFNumber).toBeCloseTo(reports[0].authoredPlaneWorkingFNumber!, 10);
+    for (const report of reports.slice(1)) {
+      expect(Math.abs(report.offsetDepths! / reports[0].offsetDepths! - 1)).toBeLessThan(1e-6);
+      expect(report.authoredPlaneWorkingFNumber).toBeCloseTo(reports[0].authoredPlaneWorkingFNumber!, 10);
+    }
     // A last-surface sag measure instead scales by L_i/L_a and loses two thirds here.
     const lastSurfaceRatio = (lastGap - 0.2) / lastGap / (imageGap / authoredGap);
     expect(Math.abs(lastSurfaceRatio - 1)).toBeGreaterThan(0.6);
