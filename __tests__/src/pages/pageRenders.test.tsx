@@ -3,8 +3,9 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { cleanup, fireEvent, screen, waitFor, within } from "@testing-library/react";
 import type { ReactElement, ReactNode } from "react";
+import { renderToString } from "react-dom/server";
 import type { PatentExample } from "../../../src/types/optics.js";
-import { Route, Routes, useLocation } from "react-router";
+import { Route, Routes, StaticRouter, useLocation } from "react-router";
 import HomePage from "../../../src/pages/HomePage.js";
 import ArticlesPage from "../../../src/pages/ArticlesPage.js";
 import ArticlePage from "../../../src/pages/ArticlePage.js";
@@ -219,6 +220,41 @@ describe("static page renders", () => {
 
     expect(screen.getByText(`${LENS_CATALOG[slugA].name} vs ${LENS_CATALOG[slugB].name}`)).toBeTruthy();
     expect(screen.getByText(/Interactive side-by-side comparison available in the viewer above/i)).toBeTruthy();
+  });
+
+  it.each([
+    ["no query", "", ""],
+    ["optical state only", "?v=1&focus=0.4&tab=mtf", ""],
+    ["shared defaults", "?v=1&mtf=1&focus=0.4&tab=mtf", "?v=1&mtf=1"],
+    ["shared overrides", "?v=1&mtf=1.eyJtIjoiZ2VvbWV0cmljIn0", "?v=1&mtf=1.eyJtIjoiZ2VvbWV0cmljIn0"],
+    ["invalid settings", "?v=1&mtf=invalid", ""],
+    ["missing view version", "?mtf=1", ""],
+    ["unknown view version", "?v=2&mtf=1", ""],
+    ["duplicate settings", "?v=1&mtf=1&mtf=1", ""],
+  ])("renders matching server and client comparison fallback links with %s", (_label, search, carried) => {
+    const [slugA, slugB] = CATALOG_KEYS;
+    const url = `/compare/${slugA}/${slugB}/${search}`;
+    const routes = (
+      <Routes>
+        <Route path="/compare/:slugA/:slugB" element={<ComparePage />} />
+      </Routes>
+    );
+    const html = renderToString(<StaticRouter location={url}>{routes}</StaticRouter>);
+    const serverContainer = document.createElement("div");
+    serverContainer.innerHTML = html;
+
+    renderRoutes(url, routes);
+
+    for (const body of [serverContainer, document.body]) {
+      const page = within(body);
+      for (const slug of [slugA, slugB]) {
+        expect(page.getByRole("link", { name: LENS_CATALOG[slug].name }).getAttribute("href")).toBe(
+          `/lens/${slug}/${carried}`,
+        );
+      }
+      expect(page.getByRole("link", { name: "Home" }).getAttribute("href")).toBe("/");
+      expect(page.getByRole("link", { name: "Lenses" }).getAttribute("href")).toBe("/lenses/");
+    }
   });
 
   it("reloads compare fallback content for a hidden configuration variant", () => {

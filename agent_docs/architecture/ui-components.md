@@ -124,6 +124,10 @@ setting, including chart references and Advanced. It opens the MTF tab, preserve
 CSV action's clipboard confirmation. Ordinary visits do not write MTF settings to the URL. A valid shared bundle
 overrides stored settings for the visit and both comparison panes. Lens switches, comparison swaps and entering or
 leaving comparison carry the valid bundle unchanged; navigation to other page types does not carry it.
+Comparison fallback lens-title links use `buildLensNavigationUrl` with the router's `location.search` to carry only a
+valid shared bundle. Server rendering receives that query through `StaticRouter`'s URL; queryless renders add no bundle.
+Static prerender routes contain no query, and arbitrary comparison pairs are client-only. On the client, the browser
+router supplies the address-bar query when `main.tsx` mounts with `createRoot`, replacing the static body without hydration.
 "Settings from a shared link" offers "Use my settings" to remove the override, resume stored choices and keep it
 absent on subsequent lens-view navigation. Opening a link never saves its settings. Changing a control updates the
 visit's URL and saves only that control as a preference, leaving other shared settings visit-only.
