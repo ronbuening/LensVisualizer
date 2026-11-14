@@ -441,7 +441,7 @@ const LENS_DATA = {
       {
         zoomStation: 0,
         keyframe: 1,
-        objectDistanceMm: 23689,
+        objectDistanceMm: 23688.96,
         distanceReference: "first-surface",
         sourceMagnification: "0.033",
         source: "JP 2013-250293 A, Example 1 (PDF p. 10): prints “β＝-0.033” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.03332.",

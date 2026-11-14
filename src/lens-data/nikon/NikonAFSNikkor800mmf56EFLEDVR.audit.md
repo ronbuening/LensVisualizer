@@ -11,7 +11,7 @@
 
 | Zoom / keyframe | Printed magnification → `sourceMagnification` | Source locator | Solved object distance | Check |
 | --- | --- | --- | --- | --- |
-| 0 / 1 | “β＝-0.033” → `"0.033"` | JP 2013-250293 A, Example 1 (PDF p. 10) | 23689 mm, first-surface | in focus 0.03332; at the declared distance 0.03332; −0.00 quarter waves |
+| 0 / 1 | “β＝-0.033” → `"0.033"` | JP 2013-250293 A, Example 1 (PDF p. 10) | 23688.96 mm, first-surface | in focus 0.03332; at the declared distance 0.03332; −0.00 quarter waves |
 | 0 / 2 | “β＝-0.155” → `"0.155"` | JP 2013-250293 A, Example 1 (PDF p. 10) | 5299.26 mm, first-surface | in focus 0.15541; at the declared distance 0.15540; −0.00 quarter waves |
 
 The patent prints a magnification and no object distance for these states. Each distance is solved from the prescription under `LENS_DATA_SPEC.md` § Finite conjugates: the distance that focuses the state on its image plane when the magnification there rounds to the print, otherwise the distance at the nearest magnification that does. Two independent readings of the patent agree on the printed value and on the gaps of the matching state.
