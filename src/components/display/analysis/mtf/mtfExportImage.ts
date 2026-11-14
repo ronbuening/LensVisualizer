@@ -1,6 +1,6 @@
 /** Self-contained SVG captions wrap the rendered chart without rebuilding its series. */
 import type { Theme } from "../../../../types/theme.js";
-import { mtfContextBlock, type MtfExportContext } from "./mtfExportContext.js";
+import { mtfCaptionLines, mtfContextBlock, type MtfExportContext } from "./mtfExportContext.js";
 
 export interface MtfChartSnapshot {
   content: string;
@@ -51,12 +51,9 @@ export function buildMtfSvg(chart: MtfChartSnapshot, context: MtfExportContext, 
     })
     .join("");
   y += 16;
-  const caption = wrap(
-    Object.entries(context)
-      .map(([key, value]) => `${key.replaceAll("_", " ")}: ${value}`)
-      .join(" · "),
-    134,
-  )
+  // At 12 px, 128 monospace characters leave room inside the chart's 16 px margins.
+  const caption = mtfCaptionLines(context, 128)
+    .flatMap((line) => wrap(line, 128))
     .map((line) => {
       const markup = `<text x="16" y="${y}">${xml(line)}</text>`;
       y += 17;
@@ -67,6 +64,6 @@ export function buildMtfSvg(chart: MtfChartSnapshot, context: MtfExportContext, 
   return {
     width,
     height,
-    svg: `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" font-family="'JetBrains Mono','SF Mono','Fira Code',monospace" font-size="12" fill="${xml(theme.value)}" color="${xml(theme.value)}"><title>Simulated MTF — ${xml(context.lens_name ?? "")}</title><desc>${xml(mtfContextBlock(context))}</desc><rect width="100%" height="100%" fill="${xml(theme.panelBg)}"/><svg x="16" y="16" width="${width - 32}" height="${chartHeight}" viewBox="0 0 ${chart.width} ${chart.height}">${chart.content}</svg><g fill="${xml(theme.muted)}">${legend}</g><g>${caption}</g></svg>`,
+    svg: `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" font-family="'JetBrains Mono','SF Mono','Fira Code',monospace" font-size="12" fill="${xml(theme.value)}" color="${xml(theme.value)}"><title>Simulated MTF — ${xml(context.lens_name ?? "")}</title><desc>${xml(mtfContextBlock(context))}</desc><rect width="100%" height="100%" fill="${xml(theme.panelBg)}"/><svg x="16" y="16" width="${width - 32}" height="${chartHeight}" viewBox="0 0 ${chart.width} ${chart.height}">${chart.content}</svg><g fill="${xml(theme.muted)}">${legend}</g><g aria-label="MTF export caption">${caption}</g></svg>`,
   };
 }

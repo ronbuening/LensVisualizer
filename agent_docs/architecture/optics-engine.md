@@ -342,9 +342,13 @@ Copy CSV keeps the uncaptioned image-height table. The Export menu adds contextu
 view or every sampled field × computed frequency, with per-field notes and the chart's same withheld-value,
 diagnostic, f/8 and diffraction-limit policies. Its `# key: value` context records the lens/source, optical station,
 selected/design/marketed apertures, actual spectrum and fallback reason, method, applied focus shift, grid cap,
-reference height/basis, shared settings link, UTC date and prescription disclaimer. SVG captures the rendered chart
-and legend with explicit theme colors/font and the same context caption; PNG rasterizes that SVG at 2× and shows
-an error if the browser cannot encode it. Downloads use local Blobs. Current calculations export as `status: partial`;
+reference height/basis, shared settings link, UTC date and prescription disclaimer. CSV context and the SVG's `desc`
+retain every key and spectral weight, rounding lengths to six decimal places. SVG captures the rendered chart
+and legend with explicit theme colors/font and a short, wrapped caption: lens/source, aperture, focal length,
+focus distance, spectrum summary, applied plane, grid cap, enabled overlays, diagnostic/partial status, link/date
+and disclaimer. Caption f-numbers match the tab; focal length rounds to 0.1 mm, heights to 0.01 mm and plane
+shifts to signed 0.001 mm. Long links end with an ellipsis while metadata retains the full URL. PNG rasterizes that
+SVG at 2× and shows an error if the browser cannot encode it. Downloads use local Blobs. Current calculations export as `status: partial`;
 results retained from superseded settings disable every export, including Copy CSV.
 The persisted "Advanced" preference defaults to false. It exposes per-field sampling diagnostics in the value table
 (including the comparison's own rows): grid size, `maxDelta`, `convergedThroughLpMm`, nonzero `unknownFluxFraction`

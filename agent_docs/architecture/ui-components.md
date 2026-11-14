@@ -136,9 +136,14 @@ frequency. Both CSV downloads preserve withheld cells and opt-in diagnostic disc
 diffraction-limit columns, and start with `# key: value` context lines documented in `mtfExportContext.ts`.
 Context records the lens/source, focal length and focus station, selected/design/marketed apertures, method,
 actual spectrum and any preferred-spectrum fallback, applied focus shift, grid cap, reference height/basis,
-shared MTF link, UTC generation date, status and prescription disclaimer. SVG captures the rendered chart and
-legend with explicit theme colors and font, plus that caption; PNG rasterizes the same SVG at 2× resolution and
-reports unsupported browser paths. Current partial results are labelled `status: partial`; superseded results
+shared MTF link, UTC generation date, status and prescription disclaimer. CSV context and the SVG's `desc` retain
+every key and spectral weight with lengths rounded to six decimal places. SVG captures the rendered chart and
+legend with explicit theme colors and font, plus a short, wrapped caption summarizing the lens/source, optical
+station, spectrum, applied plane, grid cap, enabled overlays, diagnostic/partial status, link/date and disclaimer.
+Caption apertures, focal length and plane shifts use the tab's precision; long links end with an ellipsis while
+metadata keeps the full URL.
+PNG rasterizes the same SVG at 2× resolution and reports unsupported browser paths.
+Current partial results are labelled `status: partial`; superseded results
 disable downloads and Copy CSV.
 Malformed bundles and unknown versions fall back to stored preferences as a whole. Every request computes 0–100 lp/mm for every
 field, so chart-only changes never recompute. `useMtfComputation` debounces settled inputs for 150 ms, keeps earlier

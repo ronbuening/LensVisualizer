@@ -1,5 +1,5 @@
 /**
- * Reproducible captions for MTF downloads, separate from the legacy clipboard table.
+ * Reproducible metadata and readable captions for MTF downloads.
  * Context CSV lines are `# key: value`, split at the first `: `; embedded newlines
  * become spaces. Keys use snake_case, dates are UTC, and measurements name their units.
  * Data starts at the first non-comment line and uses ordinary quoted CSV cells.
@@ -8,6 +8,7 @@ import type { RuntimeLens } from "../../../../types/optics.js";
 import type { MtfResult } from "../../../../types/mtf.js";
 import type { MtfPreferences } from "../../../../utils/state/mtfPreferences.js";
 import { SITE_NAME } from "../../../../utils/catalog/lensMetadata.js";
+import { formatFNumber } from "../../../../optics/optics.js";
 
 export const MTF_EXPORT_DISCLAIMER =
   "Prescription estimate, not manufacturer MTF. Modeled rear cover/filter plates are included; any omitted sensor optics can substantially change these curves.";
@@ -34,7 +35,7 @@ interface MtfExportContextInput {
 /**
  * Describe the result actually displayed, including an incomplete worker result.
  * @param input - optical station, displayed results, settings and explicit generation time
- * @returns ordered machine-readable keys shared by CSV and image captions
+ * @returns ordered machine-readable keys shared by CSV and SVG descriptions
  */
 export function buildMtfExportContext(input: MtfExportContextInput): MtfExportContext {
   const { lens, result, preferences, comparison } = input;
@@ -82,6 +83,70 @@ export function buildMtfExportContext(input: MtfExportContextInput): MtfExportCo
   };
 }
 
+function captionPlane(focus: string): string {
+  const [mode, shift] = focus.split("; shift ");
+  if (mode === "design") return "design plane";
+  if (!shift) return "image plane not yet available";
+  const mm = Number.parseFloat(shift);
+  return `${mode === "held" ? "held plane" : "best axial focus estimate"}, ${mm >= 0 ? "+" : "−"}${Math.abs(mm).toFixed(3)} mm`;
+}
+
+/**
+ * Summarize the stable context fields without exposing metadata keys or spectral weights.
+ * @param context - full CSV/SVG metadata from buildMtfExportContext
+ * @param maxLineLength - character budget for the shared link and date
+ * @returns short logical lines; the image renderer wraps them to its available width
+ */
+export function mtfCaptionLines(context: MtfExportContext, maxLineLength: number): string[] {
+  const [focalLength, distance] = context.station.split("; ");
+  const aperture =
+    context.aperture
+      .replaceAll(/f\/([\d.e+-]+)/g, (_, value: string) => `f/${formatFNumber(Number(value))}`)
+      .replace("selected ", "")
+      .replace("; design wide-open ", " (design ")
+      .replace("; marketed wide-open ", ", marketed ") + ")";
+  const [spectrum, ...lines] = context.spectrum.split("; ");
+  const wavelengths = lines.map(Number.parseFloat);
+  const spectrumLabel =
+    spectrum === "reference"
+      ? `reference, ${wavelengths[0].toFixed(1)} nm`
+      : `${spectrum === "cdf" ? "C/d/F" : spectrum}, ${lines.length} lines ${spectrum === "photopic" ? "470–650" : `${Math.min(...wavelengths).toFixed(0)}–${Math.max(...wavelengths).toFixed(0)}`} nm`;
+  const options = [
+    ...(context.comparison === "off"
+      ? []
+      : [
+          context.comparison.startsWith("f/8; ")
+            ? `f/8 comparison: ${captionPlane(context.comparison.slice(5))}`
+            : context.comparison,
+        ]),
+    ...(context.diffraction_limit === "shown" ? ["diffraction-limit reference"] : []),
+    ...(context.pixel_pitch === "off" ? [] : [`Nyquist marker, ${context.pixel_pitch} pixels`]),
+    ...(context.values === "diagnostic estimates included" ? ["diagnostic estimates shown"] : []),
+    ...(context.status === "partial" ? ["partial result"] : []),
+  ];
+  const linkLength = maxLineLength - context.generation_date.length - 3;
+  const link =
+    context.shared_link.length > linkLength ? `${context.shared_link.slice(0, linkLength - 1)}…` : context.shared_link;
+  return [
+    `${context.lens_name} — ${context.source.replaceAll("; ", ", ")}`,
+    [
+      aperture,
+      `${Number.parseFloat(focalLength).toFixed(1)} mm`,
+      distance
+        .replace(/^[\d.e+-]+ mm/, (value) => `${Number.parseFloat(value).toFixed(1)} mm`)
+        .replace("image-plane", "image plane")
+        .replace("first-surface", "first surface"),
+      ...(context.reference_image_height === "not yet available"
+        ? []
+        : [`reference height ${Number.parseFloat(context.reference_image_height).toFixed(2)} mm`]),
+    ].join(" · "),
+    `${context.method} · ${spectrumLabel} · ${captionPlane(context.focus)} · grid cap ${context.grid_cap.split(" ")[0]}`,
+    ...(options.length ? [options.join(" · ")] : []),
+    `${link} · ${context.generation_date}`,
+    context.disclaimer,
+  ];
+}
+
 /**
  * Keep every context value on one comment line so scripts can find the CSV header.
  * @param context - ordered export metadata
@@ -89,6 +154,15 @@ export function buildMtfExportContext(input: MtfExportContextInput): MtfExportCo
  */
 export function mtfContextBlock(context: MtfExportContext): string {
   return Object.entries(context)
-    .map(([key, value]) => `# ${key}: ${value.replace(/[\r\n]+/g, " ")}`)
+    .map(([key, value]) => {
+      // Round only measured context fields; names, links and spectral weights stay verbatim.
+      const text = ["station", "spectrum", "focus", "reference_image_height", "comparison", "pixel_pitch"].includes(key)
+        ? value.replace(
+            /(-?\d+(?:\.\d+)?(?:e[+-]?\d+)?) (mm|nm|µm)/gi,
+            (_, number: string, unit: string) => `${Number(Number(number).toFixed(6))} ${unit}`,
+          )
+        : value;
+      return `# ${key}: ${text.replace(/[\r\n]+/g, " ")}`;
+    })
     .join("\n");
 }

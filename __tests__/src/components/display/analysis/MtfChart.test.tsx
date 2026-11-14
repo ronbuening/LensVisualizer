@@ -88,7 +88,7 @@ describe("MTF export builders", () => {
     },
     FOPEN: 4.1,
   } as unknown as RuntimeLens;
-  const contextFor = (result: MtfResult) =>
+  const contextFor = (result: MtfResult, overrides: Partial<Parameters<typeof buildMtfExportContext>[0]> = {}) =>
     buildMtfExportContext({
       lens,
       result,
@@ -100,7 +100,35 @@ describe("MTF export builders", () => {
       link: "https://example.com/lens/control/?v=1&tab=mtf&mtf=1",
       spectrumNote: "Missing spectral data\nfor a glass",
       date: new Date("2026-11-13T23:30:00-05:00"),
+      ...overrides,
     });
+  const captionResult = () => {
+    const result = syntheticResult();
+    result.spectrum = "photopic";
+    result.support.spectralLines = Array.from({ length: 9 }, (_, i) => ({
+      wavelengthNm: 470 + i * 22.5,
+      weight: 1 / 9,
+    }));
+    result.geometry!.referenceHeightMm = 20.123456789;
+    result.focus = {
+      requestedMode: "best-axial",
+      mode: "best-axial",
+      appliedShiftMm: -0.05105684538361473,
+      bestAxialShiftMm: -0.05105684538361473,
+      designScore: 0.1,
+      bestScore: 0.2,
+      imagePlaneOffsetMm: 0,
+      imagePlaneInconsistent: false,
+    };
+    return result;
+  };
+  const captionFor = (context: ReturnType<typeof contextFor>) => {
+    const image = buildMtfSvg({ content: "", width: 600, height: 300, legend: [] }, context, mockTheme);
+    const doc = new DOMParser().parseFromString(image.svg, "image/svg+xml");
+    expect(doc.querySelector("parsererror")).toBeNull();
+    const lines = [...doc.querySelectorAll('[aria-label="MTF export caption"] text')].map((node) => node.textContent!);
+    return { image, doc, lines };
+  };
   const dataRows = (csv: string) =>
     csv
       .split("\n")
@@ -154,6 +182,111 @@ describe("MTF export builders", () => {
       status: "partial",
       station: "50 mm; 500 mm from image-plane; zoom 0.25; focus 0",
     });
+  });
+
+  it("prints a short default caption while retaining every metadata key and spectral weight in desc", () => {
+    const context = contextFor(captionResult(), { focalLengthMm: 51.28923234165664 });
+    const { doc, lines } = captionFor(context);
+    expect(lines).toHaveLength(6);
+    expect(lines.slice(0, 4)).toEqual([
+      "Control & Lens — US 123 A, Example 2",
+      "f/5.6 (design f/4.1, marketed f/4.0) · 51.3 mm · infinity · reference height 20.12 mm",
+      "Diffraction-corrected · photopic, 9 lines 470–650 nm · best axial focus estimate, −0.051 mm · grid cap 256",
+      `${context.shared_link} · 2026-11-14`,
+    ]);
+    expect(lines.slice(4).join(" ")).toBe(MTF_EXPORT_DISCLAIMER);
+    expect(lines.join(" ")).not.toMatch(/weight|lens key|status:|zoom 0.25/);
+    const metadata = doc.querySelector("desc")!.textContent!;
+    expect(metadata.split("\n").map((line) => line.slice(2, line.indexOf(": ")))).toEqual(Object.keys(context));
+    for (const line of captionResult().support.spectralLines) {
+      expect(metadata).toContain(`${line.wavelengthNm} nm (weight ${line.weight})`);
+    }
+  });
+
+  it("identifies a held-plane comparison, finite station and enabled reference markers", () => {
+    const result = captionResult();
+    result.support.conjugate = {
+      focusT: 1,
+      zoomT: 0.25,
+      objectDistanceMm: 500.123456789,
+      distanceReference: "first-surface",
+      source: "Synthetic station",
+    };
+    const comparison = captionResult();
+    comparison.focus!.mode = "held";
+    const { lines } = captionFor(
+      contextFor(result, {
+        comparison,
+        preferences: { ...DEFAULT_MTF_PREFERENCES, view: "frequency", diffractionLimit: true, pixelPitchUm: 5 },
+      }),
+    );
+    expect(lines).toHaveLength(7);
+    expect(lines[1]).toContain("500.1 mm from first surface");
+    expect(lines[3]).toBe(
+      "f/8 comparison: held plane, −0.051 mm · diffraction-limit reference · Nyquist marker, 5 µm pixels",
+    );
+  });
+
+  it("wraps long lens names and truncates long links while preserving their full metadata", () => {
+    const name = `${"X".repeat(300)} & <Control>`;
+    const link = `https://example.com/?mtf=${"settings".repeat(50)}`;
+    const context = contextFor(captionResult(), { lens: { ...lens, source: { ...lens.source, name } }, link });
+    const { image, doc, lines } = captionFor(context);
+    expect(lines).toHaveLength(8);
+    expect(lines.slice(0, 3).join("")).toBe(`${name} — US 123 A, Example 2`);
+    expect(lines.every((line) => line.length <= 128)).toBe(true);
+    expect(lines[5]).toMatch(/^https:\/\/example.com\/\?mtf=.+… · 2026-11-14$/);
+    expect(doc.querySelector("desc")!.textContent).toContain(`# shared_link: ${link}`);
+    expect(doc.querySelector("desc")!.textContent).toContain(`# lens_name: ${name}`);
+    for (const node of doc.querySelectorAll('[aria-label="MTF export caption"] text')) {
+      expect(Number(node.getAttribute("y"))).toBeLessThan(image.height - 16);
+    }
+  });
+
+  it("labels a partial result and diagnostic estimates without listing unavailable focus diagnostics", () => {
+    const result = captionResult();
+    result.fields[0].status = "pending";
+    result.focus = null;
+    const { lines } = captionFor(contextFor(result, { diagnostic: true }));
+    expect(lines).toHaveLength(7);
+    expect(lines[2]).toContain("image plane not yet available");
+    expect(lines[3]).toBe("diagnostic estimates shown · partial result");
+    expect(lines.join(" ")).not.toContain("requested best-axial");
+  });
+
+  it.each(["design", "held"] as const)("labels the applied %s plane with the tab's precision", (mode) => {
+    const result = captionResult();
+    result.focus!.mode = mode;
+    result.focus!.appliedShiftMm = -0.0514996;
+    const { lines } = captionFor(contextFor(result));
+    expect(lines[2]).toContain(mode === "design" ? "design plane" : "held plane, −0.051 mm");
+  });
+
+  it("rounds derived context lengths to six decimals in both CSV scopes and desc without rounding weights or links", () => {
+    const result = captionResult();
+    result.support.conjugate = {
+      focusT: 1,
+      zoomT: 0.25,
+      objectDistanceMm: 500.123456789,
+      distanceReference: "image-plane",
+      source: "Synthetic station",
+    };
+    result.support.spectralLines[0].wavelengthNm = 470.123456789;
+    const comparison = captionResult();
+    comparison.focus!.mode = "held";
+    comparison.focus!.appliedShiftMm = 1.23456789e-7;
+    const link = "https://example.com/?distance=51.28923234165664";
+    const context = contextFor(result, { focalLengthMm: 51.28923234165664, comparison, link });
+    const options = { result, context, view: "field" as const, frequencies: [10] };
+    const description = captionFor(context).doc.querySelector("desc")!.textContent;
+    for (const text of [mtfViewCsv(options), mtfAllSamplesCsv(options), description]) {
+      expect(text).toContain("# station: 51.289232 mm; 500.123457 mm from image-plane;");
+      expect(text).toContain("# focus: best-axial; shift -0.051057 mm");
+      expect(text).toContain("# reference_image_height: 20.123457 mm; format-corner");
+      expect(text).toContain(`470.123457 nm (weight ${1 / 9})`);
+      expect(text).toContain("# comparison: f/8; held; shift 0 mm");
+      expect(text).toContain(`# shared_link: ${link}`);
+    }
   });
 
   it("exports the selected image-height table with quoted notes and f/8 notes", () => {
