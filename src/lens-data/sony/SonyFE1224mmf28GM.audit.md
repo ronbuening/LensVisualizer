@@ -110,3 +110,15 @@ Patent: WO 2021/200206 A1, Example 2 / FIG. 6
 - The STO surface row keeps sd 11.815; the engine takes each station's radius from the schedule. `zoomApertureModel` is not set.
 - Traced with the schedule: f/2.909 / 2.908 / 2.906 (the radii for exactly 2.91 are 8.1122 / 9.5586 / 11.7985 mm), 0.14 % at most from 2.91. `npm run audit:aperture` lists no rim-, trace- or iris-limited station.
 - Header comment and the analysis sentence on iris sizing updated to match.
+
+## 2026-11-14 — Finite conjugates declared as object-to-image distances
+
+| Zoom / keyframe | Source distance and reference | Source locator | Paraxial residual |
+| --- | --- | --- | --- |
+| 0 / 1 | 280 mm, image-plane | WO 2021/200206 A1, Example 2, Table 9 (PDF p. 28), close-focus Wide column: d0 = 280 mm | +0.034790 mm; +3.63 quarter waves; first-surface −43.70 |
+| 1 / 1 | 280 mm, image-plane | WO 2021/200206 A1, Example 2, Table 9 (PDF p. 28), close-focus Mid column: d0 = 280 mm | +0.051584 mm; +5.58 quarter waves; first-surface −74.93 |
+| 2 / 1 | 280 mm, image-plane | WO 2021/200206 A1, Example 2, Table 9 (PDF p. 28), close-focus Tele column: d0 = 280 mm | −0.076851 mm; −8.81 quarter waves; first-surface −165.99 |
+
+The table lists d0 as the gap from the object row (0, OBJ) to surface 1, which reads as an object-to-first-surface distance. Read that way the states do not focus; read as the object-to-image distance they do. They are declared `image-plane` under the ruling recorded in `LENS_DATA_SPEC.md` § Finite conjugates. A second reading of the patent confirms the printed value, its unit and the gaps of each column.
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.

@@ -248,3 +248,20 @@ G2 alone moves objectward for close focus; all four groups move objectward overa
 - Public outline wording now distinguishes outer rim from the trimmed clear cap. Aspheric departure/slope remains calculated at the unchanged caps: S6A 14.2 mm +0.671780 mm  / 5.952733°, S24A 9.4 mm −0.287627 mm  / 3.133396°. Focused surface/image-circle/aperture/field checks and actual nine-state SVG review are recorded with this batch; zero hidden trim. Dense inferred-cut sweep results follow below.
 
 - Dense independent inferred-cut probe: 31 zoom × 26 focus states, grid 41, 0.5° field steps, 24,114,387 beam rays. S8 cap 10.937092 mm, margin 0.05 mm, maximum refined reach 10.8118 mm at zoom 0.1 / focus 0.7 / field 35.934°. Zero clipped, within-margin, or unlaunchable rays/fields.
+
+## 2026-11-14 — Finite conjugates from printed magnifications
+
+| Zoom / keyframe | Printed magnification → `sourceMagnification` | Source locator | Solved object distance | Check |
+| --- | --- | --- | --- | --- |
+| 0 / 5 | “β = −0.03333” → `"0.03333"` | JP 2000-321497 A, Example 1 (PDF p. 8) | 699.04 mm, first-surface | in focus 0.03332; at the declared distance 0.03332; +0.01 quarter waves |
+| 0 / 6 | “β = −0.05966” → `"0.05966"` | JP 2000-321497 A, Example 1 (PDF p. 8) | 372.82 mm, first-surface | in focus 0.05965; at the declared distance 0.05966; +0.03 quarter waves |
+| 7 / 2 | “β = −0.03333” → `"0.03333"` | JP 2000-321497 A, Example 1 (PDF p. 8) | 1415.43 mm, first-surface | in focus 0.03332; at the declared distance 0.03333; +0.01 quarter waves |
+| 7 / 3 | “β = −0.11558” → `"0.11558"` | JP 2000-321497 A, Example 1 (PDF p. 8) | 351.55 mm, first-surface | in focus 0.11556; at the declared distance 0.11558; +0.03 quarter waves |
+| 7 / 6 | “β = −0.50000” → `"0.50000"` | JP 2000-321497 A, Example 1 (PDF p. 8) | 33.32 mm, first-surface | in focus 0.49999; at the declared distance 0.50001; +0.04 quarter waves |
+| 11 / 1 | “β = −0.03333” → `"0.03333"` | JP 2000-321497 A, Example 1 (PDF p. 8) | 2312.68 mm, first-surface | in focus 0.03332; at the declared distance 0.03332; +0.01 quarter waves |
+| 11 / 4 | “β = −0.17171” → `"0.17171"` | JP 2000-321497 A, Example 1 (PDF p. 8) | 333.11 mm, first-surface | in focus 0.17170; at the declared distance 0.17171; +0.03 quarter waves |
+| 11 / 6 | “β = −0.50000” → `"0.50000"` | JP 2000-321497 A, Example 1 (PDF p. 8) | 43.46 mm, first-surface | in focus 0.49999; at the declared distance 0.49999; +0.00 quarter waves |
+
+The patent prints a magnification and no object distance for these states. Each distance is solved from the prescription under `LENS_DATA_SPEC.md` § Finite conjugates: the distance that focuses the state on its image plane when the magnification there rounds to the print, otherwise the distance at the nearest magnification that does. Two independent readings of the patent agree on the printed value and on the gaps of the matching state.
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.

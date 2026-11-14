@@ -322,6 +322,16 @@ const LENS_DATA = {
     closeFocusM: 0.24642928706318645,
     description:
       "Floating focus: G2 moves toward image, G3 moves toward object; G1 and G4 stationary. The patent identifies lateral stabilization by G4a; the centered diagram does not simulate OIS motion.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 106.25,
+        distanceReference: "first-surface",
+        sourceMagnification: "1.0",
+        source: "US 2018/0246292 A1, Example 1 (PDF p. 40): prints “β = −1.0” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 1.00096.",
+      },
+    ],
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
   },

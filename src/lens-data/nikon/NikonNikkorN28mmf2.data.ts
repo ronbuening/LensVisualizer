@@ -229,6 +229,16 @@ const LENS_DATA = {
     keyframes: [0, 0.81, 1],
     description:
       "CRC (Close-Range Correction): the converter-to-master gap d9 closes by the published 0.616 mm at β = −1/10 (≈0.37 m) while the whole lens extends; the 0.3 m production MFD keyframe holds that d9 and is calculated.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 267.38,
+        distanceReference: "first-surface",
+        sourceMagnification: "1/10",
+        source: "US 3,736,049, Sole example (PDF p. 5): prints “β = −1/10” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription at that magnification; focused on its image plane the state gives 0.09999.",
+      },
+    ],
     // (moved from publishedStations) The intermediate focus row is source-tabulated; the close endpoint is reconstructed.
     published: [1],
   },

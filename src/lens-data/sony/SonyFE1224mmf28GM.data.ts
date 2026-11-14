@@ -530,6 +530,29 @@ const LENS_DATA = {
     closeFocusM: 0.28,
     description:
       "Floating inner focus: GP2 and GP4 move independently; d11/d14 and d19/d22 change with focus while the back focal distance remains fixed at each zoom position.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 280,
+        distanceReference: "image-plane",
+        source: "WO 2021/200206 A1, Example 2, Table 9 (PDF p. 28), close-focus Wide column: d0 = 280 mm. The table lists d0 as the gap from the object row (0, OBJ) to surface 1, but the state focuses only when the 280 mm is measured to the image plane (+3.63 quarter waves, against −43.70 from the first surface), so it is declared as an object-to-image distance.",
+      },
+      {
+        zoomStation: 1,
+        keyframe: 1,
+        objectDistanceMm: 280,
+        distanceReference: "image-plane",
+        source: "WO 2021/200206 A1, Example 2, Table 9 (PDF p. 28), close-focus Mid column: d0 = 280 mm. The table lists d0 as the gap from the object row (0, OBJ) to surface 1, but the state focuses only when the 280 mm is measured to the image plane (+5.58 quarter waves, against −74.93 from the first surface), so it is declared as an object-to-image distance.",
+      },
+      {
+        zoomStation: 2,
+        keyframe: 1,
+        objectDistanceMm: 280,
+        distanceReference: "image-plane",
+        source: "WO 2021/200206 A1, Example 2, Table 9 (PDF p. 28), close-focus Tele column: d0 = 280 mm. The table lists d0 as the gap from the object row (0, OBJ) to surface 1, but the state focuses only when the 280 mm is measured to the image plane (−8.81 quarter waves, against −165.99 from the first surface), so it is declared as an object-to-image distance.",
+      },
+    ],
   },
 
   gaps: {

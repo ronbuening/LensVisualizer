@@ -478,6 +478,29 @@ const LENS_DATA = {
     closeFocusM: 1.0, // Patent model at 1000 mm; production lens achieves 0.40 m (W) / 0.82 m (T)
     description:
       "Floating inner focus — GR6 (neg.) moves image-ward, GR7 (pos.) moves object-ward. 4× XD Linear Motors.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 1000,
+        distanceReference: "image-plane",
+        source: "JP 2023-039817 A, Example 2, Table 8 (PDF p. 22), close-focus Wide column: d0 = 1000 mm. The table lists d0 as the gap from the object row (0, OBJ) to surface 1, but the state focuses only when the 1000 mm is measured to the image plane (+17.63 quarter waves, against −115.73 from the first surface), so it is declared as an object-to-image distance.",
+      },
+      {
+        zoomStation: 1,
+        keyframe: 1,
+        objectDistanceMm: 1000,
+        distanceReference: "image-plane",
+        source: "JP 2023-039817 A, Example 2, Table 8 (PDF p. 22), close-focus Mid column: d0 = 1000 mm. The table lists d0 as the gap from the object row (0, OBJ) to surface 1, but the state focuses only when the 1000 mm is measured to the image plane (−1.15 quarter waves, against −323.87 from the first surface), so it is declared as an object-to-image distance.",
+      },
+      {
+        zoomStation: 2,
+        keyframe: 1,
+        objectDistanceMm: 1000,
+        distanceReference: "image-plane",
+        source: "JP 2023-039817 A, Example 2, Table 8 (PDF p. 22), close-focus Tele column: d0 = 1000 mm. The table lists d0 as the gap from the object row (0, OBJ) to surface 1, but the state focuses only when the 1000 mm is measured to the image plane (+14.35 quarter waves, against −696.59 from the first surface), so it is declared as an object-to-image distance.",
+      },
+    ],
   },
 
   /* (moved from var) ── Variable air spacings (zoom + focus) ──

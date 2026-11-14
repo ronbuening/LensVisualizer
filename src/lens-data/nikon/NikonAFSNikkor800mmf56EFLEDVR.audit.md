@@ -6,3 +6,14 @@
 - All22 source nd/vd pairs exact, includingHG and drawnFL. All22 existing catalog curves retained and explicitly qualified. CaF2/fluorite and twoED roles remain inferred from sourcecoordinates/productcorrelation; source chemistry/supplier/melt and partial/APD values are unspecified. No C/F/g or partial values invented.
 - Surface/circle pass; source infinity aperture5.658 iris-limited; formatcorner>=99%. Nine actualSVG states (includingpublished intermediatefocus) have22finite paths/zero trim; raster inspected.22sourcepairs/catalog checks and sharedglass3files94testspass.
 - Fresh finite-object check corrects the earlier ambiguous all-focus axial-clearance claim. Intermediatefocus25/25 fulliris samplespass; sourceclose spacing at exact paraxial D0=5299.256093mm gives13/25 (12outerring clippedHG S1) with iris14.816216mm. Ghostpath requires HG72.24385/72.18607, L1 72.36673/71.92867, L2 64.91048/63.87944, L3front63.06709, L4front43.73228/cement40.24730mm, roughly2–4%over the drawn front ladder. Source FNO5.658 is infinity data; close spacing is published but close aperture/FNO is not. Retain source-like rims and explicitly document finite full-iris vignetting; no unsupported raised body or altered source controls. Counts describe discrete ray samples, not transmitted flux or measured production vignetting.
+
+## 2026-11-14 — Finite conjugates from printed magnifications
+
+| Zoom / keyframe | Printed magnification → `sourceMagnification` | Source locator | Solved object distance | Check |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | “β＝-0.033” → `"0.033"` | JP 2013-250293 A, Example 1 (PDF p. 10) | 23689 mm, first-surface | in focus 0.03332; at the declared distance 0.03332; −0.00 quarter waves |
+| 0 / 2 | “β＝-0.155” → `"0.155"` | JP 2013-250293 A, Example 1 (PDF p. 10) | 5299.26 mm, first-surface | in focus 0.15541; at the declared distance 0.15540; −0.00 quarter waves |
+
+The patent prints a magnification and no object distance for these states. Each distance is solved from the prescription under `LENS_DATA_SPEC.md` § Finite conjugates: the distance that focuses the state on its image plane when the magnification there rounds to the print, otherwise the distance at the nearest magnification that does. Two independent readings of the patent agree on the printed value and on the gaps of the matching state.
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.

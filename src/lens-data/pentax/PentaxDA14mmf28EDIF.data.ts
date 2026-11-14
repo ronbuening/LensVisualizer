@@ -381,6 +381,16 @@ const LENS_DATA = {
     closeFocusM: 0.2,
     description:
       "PUBLISHED inner focus: G2 and G3 move together 2.27 mm toward the object, carrying the stop, while G1 stays fixed. D8 closes from 4.43 to 2.16 mm and the back focus grows from 36.98 to 39.25 mm; both states are printed in Table 4. The patent gives the near state's magnification (−0.137) but not its distance; it is in focus at about 0.20 m object to image, while the production lens focuses to 0.17 m (0.19×). Table 4 gives F/3.0 for the near state, but its aberration plots are labelled F3.7; the difference is unresolved.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 88.1,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.137",
+        source: "US 7,116,499 B2, Embodiment 4 (PDF p. 11): prints “m = 0.000—−0.137” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.13736.",
+      },
+    ],
     published: [1],
   },
   gaps: {

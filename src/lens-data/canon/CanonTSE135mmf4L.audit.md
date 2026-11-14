@@ -58,3 +58,13 @@ Retain S-FPL51 for G2/G8 rather than H-FK61. H-FK61's raw θ0.538014220 is close
 All four genuine source θ conversions/APD flags, all eleven source pairs and every optical/control number remain unchanged. No C/F/g values are published for individual media here and none is manufactured. Figure 1(A)/(B), PDFp15, is part of the native 1653×2338 page at 200 ppi. The relevant L1p and FPp complete cemented members were inspected without remeasuring their caps or altering their interfaces. Completed 2026-10-30 shape/movement coverage and actual June23 history remain reused. Fixed iris versus source near-f-number limitations, finite/interpolated focus, source track discrepancy and moved-optics/tilt/shift launch limits remain exactly as documented; this catalog follow-up does not certify a new moved-field model.
 
 This is a scoped source/catalog assignment follow-up, not a new whole-lens shape review. Source reference/table pages were rendered at180dpi, separately from native figure pixels. No upsampled figure detail is treated as new evidence. The preserved production-correlation and sampled-runtime limits remain separate from source fidelity. No shared catalog row, tolerance, test or engine change is introduced.
+
+## 2026-11-14 — Finite conjugates from printed magnifications
+
+| Zoom / keyframe | Printed magnification → `sourceMagnification` | Source locator | Solved object distance | Check |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | “至近（撮像倍率０．５倍）” → `"0.5"` | JP 2018-132674 A, Numerical Data 1 (PDF p. 11) | 303.99 mm, first-surface | in focus 0.49985; at the declared distance 0.49985; −0.02 quarter waves |
+
+The patent prints a magnification and no object distance for this state. Each distance is solved from the prescription under `LENS_DATA_SPEC.md` § Finite conjugates: the distance that focuses the state on its image plane when the magnification there rounds to the print, otherwise the distance at the nearest magnification that does. Two independent readings of the patent agree on the printed value and on the gaps of the matching state.
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.

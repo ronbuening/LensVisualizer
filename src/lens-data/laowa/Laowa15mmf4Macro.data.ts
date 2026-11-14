@@ -246,6 +246,16 @@ const LENS_DATA = {
     description:
       "Dual-group floating focus: SF (L1–L6) moves 2.71 mm and MF (stop + L7–L9) moves 12.41 mm toward object. " +
       "Patent max 0.78×; production extends to 1:1 at MFD 0.122 m (~5 mm working distance).",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 9.32,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.7836",
+        source: "CN 205427291 U, Example 2 (PDF p. 9): prints “0.7836倍” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.78359.",
+      },
+    ],
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
   },

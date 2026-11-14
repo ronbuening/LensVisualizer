@@ -273,6 +273,16 @@ const LENS_DATA = {
     closeFocusM: 0.815,
     description:
       "Inner focus — only the G2 cemented doublet (L21+L22) moves, 8.1 mm toward the image from infinity to the patent's proximal state (β ≈ −0.14, about 0.82 m). Production MFD 0.6 m (0.2×) is beyond the published data and is not modeled.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 700.59,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.14",
+        source: "US 2016/0274335 A1, Example 1 (PDF p. 21): prints “β 0.14” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.13600.",
+      },
+    ],
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
   },

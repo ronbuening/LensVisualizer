@@ -112,3 +112,14 @@ the full-field f/2.48 bundle needs 16.5 mm at S1. L14 and L15–L17 are within a
   changes by 0.00004 mm (rounding of the derived trailing gap). Physical track grows by 0.971 mm.
 - `closeFocusM` 0.267 is the production MFD and was left alone. The stored keyframe coordinate still uses the legacy
   air-equivalent object-to-image distance (the physical −0.5× distance is 267.5 mm).
+
+## 2026-11-14 — Finite conjugates from printed magnifications
+
+| Zoom / keyframe | Printed magnification → `sourceMagnification` | Source locator | Solved object distance | Check |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | “MAGNIFICATION −0.2X” → `"0.2"` | US 2014/0247506 A1, Example 1 (PDF p. 23) | 363.12 mm, first-surface | in focus 0.19995; at the declared distance 0.19995; +0.01 quarter waves |
+| 0 / 2 | “MAGNIFICATION −0.5X” → `"0.5"` | US 2014/0247506 A1, Example 1 (PDF p. 23) | 179.88 mm, first-surface | in focus 0.49993; at the declared distance 0.49993; −0.02 quarter waves |
+
+The patent prints a magnification and no object distance for these states. Each distance is solved from the prescription under `LENS_DATA_SPEC.md` § Finite conjugates: the distance that focuses the state on its image plane when the magnification there rounds to the print, otherwise the distance at the nearest magnification that does. Two independent readings of the patent agree on the printed value and on the gaps of the matching state.
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.

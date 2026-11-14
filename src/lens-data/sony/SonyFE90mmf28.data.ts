@@ -332,6 +332,24 @@ const LENS_DATA = {
     keyframes: [0, 0.8075766830717322, 1],
     description:
       "Floating dual-group inner focus (Dual DDSSM). GR2 retreats toward image; GR4 advances toward object. 1:1 macro capable.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 202.58,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.5",
+        source: "WO 2016/136352 A1, Example 2 (PDF p. 25): prints “撮影倍率: −0.5” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.49842.",
+      },
+      {
+        zoomStation: 0,
+        keyframe: 2,
+        objectDistanceMm: 130.18,
+        distanceReference: "first-surface",
+        sourceMagnification: "1.0",
+        source: "WO 2016/136352 A1, Example 2 (PDF p. 25): prints “撮影倍率: −1.0” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.99572.",
+      },
+    ],
     // (moved from publishedStations) Every focus keyframe is a source row.
     published: [1, 2],
   },

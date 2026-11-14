@@ -257,6 +257,24 @@ const LENS_DATA = {
     keyframes: [0, 0.8118878142481926, 1],
     description:
       "PUBLISHED coaxial spacings at infinity, source 0.5x and source 1.0x labels. G1 fixed; G2/G3 independently move objectward. Source labels retained; Gaussian endpoint magnification -0.956664. closeFocusM is the calculated source-endpoint object-to-image distance, not marketed MFD. Intermediate focusT is the derived endpoint/intermediate object-to-image distance ratio; interpolated gaps and distance labels do not certify focus. No noncoaxial prescription or mechanical hinge is supplied.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 236.95,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.5",
+        source: "CN 118584637 A, Example 1 (PDF p. 7): prints “0.5倍” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.49825.",
+      },
+      {
+        zoomStation: 0,
+        keyframe: 2,
+        objectDistanceMm: 158.87,
+        distanceReference: "first-surface",
+        sourceMagnification: "1.0",
+        source: "CN 118584637 A, Example 1 (PDF p. 7): prints “1.0倍” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.95666.",
+      },
+    ],
     published: [1, 2],
   },
 

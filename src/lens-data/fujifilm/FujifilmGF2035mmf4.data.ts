@@ -419,6 +419,24 @@ const LENS_DATA = {
     closeFocusM: 0.319,
     description:
       "Inner focus by entire G2 (L21-L22). Patent Table 29 gives beta=-0.1 focus spacings at wide and tele; middle close-focus spacing is interpolated for the viewer.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 181.93,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.1",
+        source: "US 2022/0236544 A1, Example 10 (PDF p. 53): prints “β = −0.1” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.09932.",
+      },
+      {
+        zoomStation: 2,
+        keyframe: 1,
+        objectDistanceMm: 320.73,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.1",
+        source: "US 2022/0236544 A1, Example 10 (PDF p. 53): prints “β = −0.1” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.09881.",
+      },
+    ],
   },
 
   gaps: {

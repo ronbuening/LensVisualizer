@@ -235,6 +235,16 @@ const LENS_DATA = {
     closeFocusM: 0.395,
     description:
       "Floating macro focus: the positive front group, aperture stop, and negative rear group move independently toward the object from infinity to 1:1.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 170.8,
+        distanceReference: "first-surface",
+        sourceMagnification: "1.000",
+        source: "US 6,154,324, Embodiment 1 (PDF p. 18): prints “M = 0–1.000” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.99998.",
+      },
+    ],
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
   },

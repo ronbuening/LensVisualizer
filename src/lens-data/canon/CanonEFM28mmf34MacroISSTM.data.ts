@@ -246,6 +246,16 @@ const LENS_DATA = {
     closeFocusM: 0.093,
     description:
       "Patent rear-focus mechanism: L2 cemented doublet moves imageward within each focus mode; L1 and L2 shift objectward for the Super Macro mode. This file interpolates from infinity to the 1.2× third finite state; the patent rear plate is modeled in rearPlates.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 15.55,
+        distanceReference: "first-surface",
+        sourceMagnification: "1.20",
+        source: "US 2016/0313535 A1, Numerical Example 1 (PDF p. 20): prints “1.20x” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 1.19889.",
+      },
+    ],
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
   },

@@ -74,3 +74,15 @@ Left open:
 - Directly viewed `patents/US20060007559A1.pdf`: Figure 13, PDF page 14 at 600 dpi; Table 4, page 35; d-line convention, page 30; source FNO plots, pages 15–17. Every face and bonded boundary was inspected. No geometric change: the visible front compound land crosses the glass/resin interface. A coupled 15.5 mm interface/outer trial gives a −1.471 mm resin edge and exceeds the existing spherical rim limit. A resin-only land leaves a tapered substrate. Rejected both representations; no independently resolved exposed rear land elsewhere. No prescription coefficient, spacing, control, or tolerance changed.
 - All eight source media retain exact `nd`/`νd` pairs at the d line. Seven current catalog curves are labeled as spectral proxies with production supplier unspecified: J-LASF016 (L1g/L2an), J-SFH2, H-FK61, N-BK7 (L2ap/Lbp), J-LASF010. The resin remains unresolved; no catalog row or source spectral value is invented. L2a's inferred ED role remains a qualified product correlation, not measured APD.
 - Focused surface/image-circle audits pass. W/M/T axial aperture audits are iris-limited at source f/3.56/4.65/5.90. Current iris radii are 7.799001/7.790765/7.748381 mm; the public analysis/header now distinguish these from the earlier historical real-ray estimates. Nine actual zoom/focus SVG states have eight finite element paths and zero render trim. Source-coordinate/catalog consistency checks pass; shared dispersion/parity/partial tests: 3 files, 94 tests passed.
+
+## 2026-11-14 — Finite conjugates from printed magnifications
+
+| Zoom / keyframe | Printed magnification → `sourceMagnification` | Source locator | Solved object distance | Check |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | “β = -0.13159” → `"0.13159"` | US 2006/0007559 A1, Example 4 (PDF p. 35) | 112.06 mm, first-surface | in focus 0.13159; at the declared distance 0.13158; −0.00 quarter waves |
+| 1 / 1 | “β = -0.23049” → `"0.23049"` | US 2006/0007559 A1, Example 4 (PDF p. 35) | 123.32 mm, first-surface | in focus 0.23048; at the declared distance 0.23048; −0.01 quarter waves |
+| 2 / 1 | “β = -0.38023” → `"0.38023"` | US 2006/0007559 A1, Example 4 (PDF p. 35) | 112.17 mm, first-surface | in focus 0.38022; at the declared distance 0.38022; +0.00 quarter waves |
+
+The patent prints a magnification and no object distance for these states. Each distance is solved from the prescription under `LENS_DATA_SPEC.md` § Finite conjugates: the distance that focuses the state on its image plane when the magnification there rounds to the print, otherwise the distance at the nearest magnification that does. Two independent readings of the patent agree on the printed value and on the gaps of the matching state.
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.

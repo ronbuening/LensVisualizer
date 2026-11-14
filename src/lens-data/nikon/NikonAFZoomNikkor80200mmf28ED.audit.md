@@ -256,3 +256,14 @@ The 2026-10-30 review directly inspected local `JP_S62108218_A.pdf`: Figure 1 on
 All sixteen source nd/νd pairs remain exact. All sixteen current catalog curves are available and explicitly qualified as spectral proxies, including H-ZF7LA at the three previously labeled unresolved 805255 positions. No supplier, melt, C/F/g index, or partial-dispersion value is published. The three ED-role flags remain inferred production correlations, not source APD evidence. Current tracing gives iris-limited f/2.880000 and f/2.880021 at the two endpoints, with a 14.759220 mm fixed physical iris. The interpolated middle close state is not a published conjugate.
 
 Surface/circle checks pass; all four catalog stations reach at least 99% of the format corner; nine actual SVG states have sixteen finite paths and zero trim. Full-iris axial sampling at the two published close endpoint conjugates passes 25/25 each; the interpolated middle also passes. All source/catalog checks and shared glass suites pass (94 tests).
+
+## 2026-11-14 — Finite conjugates from printed magnifications
+
+| Zoom / keyframe | Printed magnification → `sourceMagnification` | Source locator | Solved object distance | Check |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | “β = −0.055” → `"0.055"` | JP S62-108218 A, Example 3 (PDF p. 6) | 1572.59 mm, first-surface | in focus 0.05505; at the declared distance 0.05505; +0.00 quarter waves |
+| 1 / 1 | “β = −0.135” → `"0.135"` | JP S62-108218 A, Example 3 (PDF p. 6) | 1572.47 mm, first-surface | in focus 0.13487; at the declared distance 0.13487; +0.01 quarter waves |
+
+The patent prints a magnification and no object distance for these states. Each distance is solved from the prescription under `LENS_DATA_SPEC.md` § Finite conjugates: the distance that focuses the state on its image plane when the magnification there rounds to the print, otherwise the distance at the nearest magnification that does. Two independent readings of the patent agree on the printed value and on the gaps of the matching state.
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.

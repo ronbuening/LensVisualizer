@@ -228,6 +228,16 @@ const LENS_DATA = {
     closeFocusM: 0.846926821765851,
     description:
       "PUBLISHED endpoint spacings: G2/L6 moves 5.9170 mm imageward; G1 and G3/image remain fixed. Native near state is |β| = 0.10, calculated object-to-image distance 0.846927 m, separate from marketed 0.84 m. Intermediate gaps are interpolated; UI distance labels are approximate, not a published focus law.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 760.09,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.10",
+        source: "JP 2013-161076 A, Numerical Example 1 (PDF p. 17): prints “|β|=0.10” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.10002.",
+      },
+    ],
     published: [1],
   },
 

@@ -55,3 +55,14 @@ L14 keeps PCD51. M-PCD51, Q-PSKH4S and J-PSKH4 improve a scalar θ ranking but w
 All fifteen genuine first-group C/F/g values, all five rounded source partial conversions, all nineteen nd/νd pairs and every APD flag stay unchanged. Both new labels are numerical proxies only; source chemistry, historical supplier, melt and forming process remain unestablished. Complete line-index tracing gives exactly the same R/G/B/V channels before/after. Figure 11 on PDF p25 is the native 1058×532 optical bitmap at about 400 ppi (not the neighboring aberration images). Only the relevant first singlet and L14/L15 cemented interface were reinspected; no rim, land, bonded fill or curvature is changed. The completed 2026-10-30 whole-lens shape review and actual June23/August7 dates remain reused.
 
 This is a scoped source/catalog assignment follow-up, not a new whole-lens shape review. Source reference/table pages were rendered at180dpi, separately from native figure pixels. No upsampled figure detail is treated as new evidence. The preserved production-correlation and sampled-runtime limits remain separate from source fidelity. No shared catalog row, tolerance, test or engine change is introduced.
+
+## 2026-11-14 — Finite conjugates from printed magnifications
+
+| Zoom / keyframe | Printed magnification → `sourceMagnification` | Source locator | Solved object distance | Check |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | “撮影倍率 1:2” → `"1:2"` | JP 2013-104994 A, Numerical Example 2 (PDF p. 16) | 369.52 mm, first-surface | in focus 0.50133; at the declared distance 0.50000; −18.05 quarter waves |
+| 0 / 2 | “撮影倍率 1:1” → `"1:1"` | JP 2013-104994 A, Numerical Example 2 (PDF p. 16) | 227.55 mm, first-surface | in focus 1.00010; at the declared distance 1.00003; −0.75 quarter waves |
+
+The patent prints a magnification and no object distance for these states. Each distance is solved from the prescription under `LENS_DATA_SPEC.md` § Finite conjugates: the distance that focuses the state on its image plane when the magnification there rounds to the print, otherwise the distance at the nearest magnification that does. Two independent readings of the patent agree on the printed value and on the gaps of the matching state.
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.

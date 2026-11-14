@@ -437,6 +437,24 @@ const LENS_DATA = {
     keyframes: [0, 0.2397855936928303, 1],
     description:
       "PUBLISHED inner focus: G2 moves imageward. Patent d11/d16 values are retained at infinity, β=-0.033, and β=-0.155; the intermediate UI coordinate is derived from the verified conjugate distance, with no reconstructed internal spacing.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 23689,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.033",
+        source: "JP 2013-250293 A, Example 1 (PDF p. 10): prints “β＝-0.033” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.03332.",
+      },
+      {
+        zoomStation: 0,
+        keyframe: 2,
+        objectDistanceMm: 5299.26,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.155",
+        source: "JP 2013-250293 A, Example 1 (PDF p. 10): prints “β＝-0.155” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.15541.",
+      },
+    ],
     // (moved from publishedStations) Every focus keyframe is a source row.
     published: [1, 2],
   },

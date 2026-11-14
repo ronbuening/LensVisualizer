@@ -219,6 +219,24 @@ const LENS_DATA = {
       "PUBLISHED — L221 translates imageward by 4.803 mm from infinity to the patent 0.142× row; " +
       "the physical model object-to-image conjugate is about 0.458 m. Sony's production 0.39 m / 0.16× endpoint is correlation " +
       "metadata only and is not used to reconstruct additional travel.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 2107.62,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.025",
+        source: "JP 2012-242690 A, Example 2 (PDF p. 11): prints “0.025倍” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription at magnification 0.0245, the nearest value that rounds to the print; focused on its image plane the state gives 0.02403.",
+      },
+      {
+        zoomStation: 0,
+        keyframe: 2,
+        objectDistanceMm: 376.16,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.142",
+        source: "JP 2012-242690 A, Example 2 (PDF p. 11): prints “最至近距離（0.142倍）” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription at magnification 0.1415, the nearest value that rounds to the print; focused on its image plane the state gives 0.13926.",
+      },
+    ],
     // (moved from publishedStations) Every focus keyframe is a source row.
     published: [1, 2],
   },

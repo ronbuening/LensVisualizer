@@ -49,3 +49,13 @@ Preserve June 24/October 29 whole source/shape dates. Checked every Example 2 me
 Additional NHG 2601 coefficient rows produce no closer viable proxy for the five native unresolved pairs. H-ZLaF64 misses L1/L12 indices by +0.00405/+0.00468; H-ZLaF70 misses L9 by +0.00584; H-K12 misses L11 by −0.01158 and νd by +6.84. The existing L10 TAF2 candidate is inside the broad resolver window but changes source F−C by +4.006603% (J-LASF017/Q-LASFPH3S about +4.25/+4.41%). No new source spectrum supports accepting that known mismatch. Earlier rejected material labels are not reinstated. Osaka/Kuraray public polymer information also gives no compatible coefficient lead; the analysis links the bounded primary search.
 
 Coverage stays 9/14, all five unresolved coordinates retained. Every source numeric/spectral/APD field, surface, rim/cut, stop and control remains unchanged. No new row is requested and no whole-review count is added.
+
+## 2026-11-14 — Finite conjugates from printed magnifications
+
+| Zoom / keyframe | Printed magnification → `sourceMagnification` | Source locator | Solved object distance | Check |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | “2.0倍” → `"2.0"` | CN 116520542 A, Example 2 (PDF p. 8) | 57.84 mm, first-surface | in focus 1.95905; at the declared distance 1.95864; −0.17 quarter waves |
+
+The patent prints a magnification and no object distance for this state. Each distance is solved from the prescription under `LENS_DATA_SPEC.md` § Finite conjugates: the distance that focuses the state on its image plane when the magnification there rounds to the print, otherwise the distance at the nearest magnification that does. Two independent readings of the patent agree on the printed value and on the gaps of the matching state.
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.

@@ -382,6 +382,16 @@ const LENS_DATA = {
     closeFocusM: 0.4,
     description:
       "Front-group extension focus: L1 (G1–G11 + stop) translates toward object; L2 (G12–G15) stationary. Single variable gap (d19); BFD constant. Ring-type USM.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 274.83,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.19",
+        source: "US 2019/0265441 A1, Numerical Data 2 (PDF p. 17): prints “image pickup magnification is -0.19” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.19251.",
+      },
+    ],
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
   },

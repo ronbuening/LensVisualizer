@@ -122,3 +122,13 @@ rewritten as attribution; unsupported "non-thoriated" and redesign-reason statem
 - Glass 774492 has no sourced catalog entry; thorium content is unverified attribution.
 - Whether the same formula was used in the pre-S.S.C. concave-front FD 35mm f/2 barrels (JP priority March 1971)
   was not checked.
+
+## 2026-11-14 — Finite conjugates from printed magnifications
+
+| Zoom / keyframe | Printed magnification → `sourceMagnification` | Source locator | Solved object distance | Check |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | “magnification of 0.118” → `"0.118"` | US 3,748,022, Sole example (PDF p. 4) | 294.93 mm, first-surface | in focus 0.11801; at the declared distance 0.11800; −0.01 quarter waves |
+
+The patent prints a magnification and no object distance for this state. Each distance is solved from the prescription under `LENS_DATA_SPEC.md` § Finite conjugates: the distance that focuses the state on its image plane when the magnification there rounds to the print, otherwise the distance at the nearest magnification that does. Two independent readings of the patent agree on the printed value and on the gaps of the matching state.
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.

@@ -239,6 +239,24 @@ const LENS_DATA = {
     keyframes: [0, 0.8582272721318963, 1],
     description:
       "MF configuration, from the patent's MF table: infinity and two published close stations at -1.0x and -1.5x. G2 and the stop move together toward the object, 31.05 mm in total; G1 and G3 stay fixed. Calculated paraxial object-to-image distances at the two stations are 355.098678 mm and 304.755369 mm; the slider scale uses these calculated distances, not the marketed 0.30 m MF or 1.5 m original AF limits. Between the three published states the spacings are interpolated for display only: this is not a published cam law, and distance labels between stations can differ from the physical conjugates. The combined MF-plus-AF use of the production lens is not modeled, and the launch and effective-f-number readouts at close focus are approximate.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 205.03,
+        distanceReference: "first-surface",
+        sourceMagnification: "1.0",
+        source: "CN 120276109 A, Example 1 (PDF p. 9): prints “倍率 -1.0x” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 1.00086.",
+      },
+      {
+        zoomStation: 0,
+        keyframe: 2,
+        objectDistanceMm: 154.69,
+        distanceReference: "first-surface",
+        sourceMagnification: "1.5",
+        source: "CN 120276109 A, Example 1 (PDF p. 9): prints “倍率 -1.5x” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 1.49616.",
+      },
+    ],
     published: [1, 2],
   },
 

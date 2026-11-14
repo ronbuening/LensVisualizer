@@ -221,3 +221,13 @@ Directly inspected `US_3549241_A.pdf` PDF page2 Figures2(A)/(B)/(F) at600dpi/nat
 Every exposed face and the two cemented components were reviewed. Figure2(A) resolves flat rear lands on front negative menisci L2/L3. S4/S6 retain their clear caps11.0/7.3mm and now extend to their existing front/body radii12.8/9.0. Native body half-heights≈250/180px give measuredq≈.78±.007/.010; adoptedq=.859/.811 deliberately preserves larger pre-existing optical caps. The beveled convex rims and cemented steps elsewhere do not justify additional concave cuts or exposed lands. Existing ray-supported rear-group outlines remain, since source Figure2(B) aperture coverage already showed why literal smaller outlines would clip the plotted rays.
 
 Current runtime iris3.939408mm and f4 aperture validation replace stale public references to an older4.013665mm exact calibration. Surface/canonical/inferred-cut and image-circle/full-format corner checks pass;9actualSVGstates viewed are finite/zero automatictrim. At the preserved source close spacing(D0=493.597157mm),25/25 axial stop-pupil samples pass. These are discrete model containment checks, not production throughput. No source R/d/nd/vd, focus or guard changes. Shared glass suites pass3files/94tests.
+
+## 2026-11-14 — Finite conjugates from printed magnifications
+
+| Zoom / keyframe | Printed magnification → `sourceMagnification` | Source locator | Solved object distance | Check |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | “1/25; d11′=1.57” → `"1/25"` | US 3,549,241 A, Example 2 (PDF p. 2) | 493.6 mm, first-surface | in focus 0.04000; at the declared distance 0.04000; −0.00 quarter waves |
+
+The patent prints a magnification and no object distance for this state. Each distance is solved from the prescription under `LENS_DATA_SPEC.md` § Finite conjugates: the distance that focuses the state on its image plane when the magnification there rounds to the print, otherwise the distance at the nearest magnification that does. Two independent readings of the patent agree on the printed value and on the gaps of the matching state.
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.

@@ -354,6 +354,16 @@ const LENS_DATA = {
     closeFocusM: 0.4999126452981072,
     description:
       "Source near station beta−0.194 corresponds to about 49.99 cm object-to-image, including the FL plate. GF and stop move 18.61 mm objectward; GR stays fixed. Intermediate motion is interpolated.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 320.55,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.194",
+        source: "WO 2019/229849 A1, Example 1 (PDF p. 23): prints “β −0.194” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.19426.",
+      },
+    ],
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
   },

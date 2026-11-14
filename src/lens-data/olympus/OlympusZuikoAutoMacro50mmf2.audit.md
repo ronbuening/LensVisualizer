@@ -63,3 +63,13 @@ Patent: US 4,708,445, Embodiment 6
 
 - `catalog.fNumber.design` = 2.0: `patents/US4708445.pdf` PDF p31, col. 8, lines 1–8, Embodiment 6 (continued) footer "f = 1, F/2.0, ω = 22.8°". Stop `nominalFNumber` 2.0 is not faster.
 - `catalog.focalLengthMm.design` = 50.016: the same footer states f = 1, multiplied by the ×50.016 scale the data header documents (r₁ 1.2060 → 60.319 confirms it).
+
+## 2026-11-14 — Finite conjugates from printed magnifications
+
+| Zoom / keyframe | Printed magnification → `sourceMagnification` | Source locator | Solved object distance | Check |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | “(β = 0.50); d4 = 0.0802” → `"0.50"` | US 4,708,445, Embodiment 6 (PDF p. 31) | 122.43 mm, first-surface | in focus 0.50006; at the declared distance 0.50007; +0.06 quarter waves |
+
+The patent prints a magnification and no object distance for this state. Each distance is solved from the prescription under `LENS_DATA_SPEC.md` § Finite conjugates: the distance that focuses the state on its image plane when the magnification there rounds to the print, otherwise the distance at the nearest magnification that does. Two independent readings of the patent agree on the printed value and on the gaps of the matching state.
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.

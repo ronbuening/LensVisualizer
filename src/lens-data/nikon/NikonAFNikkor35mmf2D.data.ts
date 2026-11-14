@@ -166,6 +166,24 @@ const LENS_DATA = {
     closeFocusM: 0.25,
     keyframes: [0, 0.21368634550222804, 1],
     description: "Published whole-lens focus; the patent mechanism differs from production rear focusing.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 1081,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.033",
+        source: "JP 2021-36283 A, Example 1 (PDF p. 11): prints “β＝‑0.033” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.03335.",
+      },
+      {
+        zoomStation: 0,
+        keyframe: 2,
+        objectDistanceMm: 153.63,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.237",
+        source: "JP 2021-36283 A, Example 1 (PDF p. 11): prints “β＝‑0.237” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.23666.",
+      },
+    ],
     // (moved from publishedStations) Every focus keyframe is a source row.
     published: [1, 2],
   },

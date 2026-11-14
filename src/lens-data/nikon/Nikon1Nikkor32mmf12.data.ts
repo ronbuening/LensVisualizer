@@ -174,6 +174,24 @@ const LENS_DATA = {
     keyframes: [0, 0.13423022016389788, 1],
     description:
       "Dual-group floating focus (CRC): all three patent states are exact keyframes; G1 and G2 translate objectward with approximately 2:1 travel. The three-plate filter/sensor stack behind G2 is traced but not drawn.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 3300.35,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.01",
+        source: "WO 2014/061226 A1, Example 1 (PDF p. 18): prints “撮影倍率−０．０１倍” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.00985.",
+      },
+      {
+        zoomStation: 0,
+        keyframe: 2,
+        objectDistanceMm: 443.5,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.07",
+        source: "WO 2014/061226 A1, Example 1 (PDF p. 18): prints “撮影倍率−０．０７倍” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.07469.",
+      },
+    ],
     // (moved from publishedStations) Every focus keyframe is a source row.
     published: [1, 2],
   },

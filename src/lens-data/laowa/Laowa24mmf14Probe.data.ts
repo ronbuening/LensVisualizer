@@ -510,6 +510,16 @@ const LENS_DATA = {
     closeFocusM: 0.47,
     description:
       "Inner focus — L23 (Foc, f = +69 mm) translates toward object. Patent data from ∞ to 1.0× magnification.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 21,
+        distanceReference: "first-surface",
+        sourceMagnification: "1.0",
+        source: "CN 210573001 U, Example 1 (PDF p. 8): prints “1.0倍” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.99685.",
+      },
+    ],
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
   },

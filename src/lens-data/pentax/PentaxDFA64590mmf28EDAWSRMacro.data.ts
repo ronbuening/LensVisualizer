@@ -225,6 +225,16 @@ const LENS_DATA = {
     closeFocusM: 0.413,
     description:
       "PUBLISHED two-group floating focus. From infinity to -0.50:1, G1 and G2 move objectward by 35.368 mm and 29.090 mm; D15 changes 5.680-11.958 mm and BFD changes 69.090-98.180 mm.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 205.6,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.50",
+        source: "US 2013/0222925 A1, Numerical Embodiment 4 (PDF p. 145): prints “Close-Distance(−0.50:1) Photographic Position” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.50001.",
+      },
+    ],
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
   },

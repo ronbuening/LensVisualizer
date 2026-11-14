@@ -29,3 +29,13 @@ Catalog version: local working tree, 2026-08-07
 - Corrected the marketed display order from “D AF 150mm f/2.8 IF” to “AF 150mm f/2.8 IF D.”
 - Romanized the patent inventor as Hideyuki Suga to satisfy catalog metadata conventions and match the existing author identity.
 - Shortened the diagram's functional-group captions to the patent's `G1`, `G2`, and `G3`; fixed/focusing behavior remains documented in the focus model and analysis without crowding the element annotations.
+
+## 2026-11-14 — Finite conjugates from printed magnifications
+
+| Zoom / keyframe | Printed magnification → `sourceMagnification` | Source locator | Solved object distance | Check |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | “撮影倍率 0.15” → `"0.15"` | JP 2001-183581 A, Example 1 (PDF p. 5) | 1029.31 mm, first-surface | in focus 0.15013; at the declared distance 0.15013; −0.00 quarter waves |
+
+The patent prints a magnification and no object distance for this state. Each distance is solved from the prescription under `LENS_DATA_SPEC.md` § Finite conjugates: the distance that focuses the state on its image plane when the magnification there rounds to the print, otherwise the distance at the nearest magnification that does. Two independent readings of the patent agree on the printed value and on the gaps of the matching state.
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.

@@ -321,6 +321,24 @@ const LENS_DATA = {
     keyframes: [0, 0.7599103882848731, 1],
     description:
       "Floating inner focus: G2 translates imageward while G4 and G5 translate objectward; G1, G3, stop, and G6 remain fixed.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 102.44,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.5",
+        source: "JP 2015-161792 A, Example 1 (PDF p. 15): prints “β=-0.5” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.49908.",
+      },
+      {
+        zoomStation: 0,
+        keyframe: 2,
+        objectDistanceMm: 58.79,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.98",
+        source: "JP 2015-161792 A, Example 1 (PDF p. 15): prints “β=-0.98” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.98446.",
+      },
+    ],
     // (moved from publishedStations) Every focus keyframe is a source row.
     published: [1, 2],
   },

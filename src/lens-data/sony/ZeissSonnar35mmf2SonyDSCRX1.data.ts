@@ -243,6 +243,24 @@ const LENS_DATA = {
     keyframes: [0, 0.4657219849, 1],
     description:
       "Published double-floating focus: GR2 (with STO) and GR3 move independently objectward while GR1 and GR4 remain fixed; infinity, intermediate, and shortest source states are preserved.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 584.15,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.06",
+        source: "US 2014/0071333 A1, Numerical Example 4 (PDF p. 24): prints “shooting magnification: 0.06” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.05879.",
+      },
+      {
+        zoomStation: 0,
+        keyframe: 2,
+        objectDistanceMm: 239.77,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.15",
+        source: "US 2014/0071333 A1, Numerical Example 4 (PDF p. 24): prints “shooting magnification: 0.15” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.14640.",
+      },
+    ],
     // (moved from publishedStations) Every focus keyframe is a source row.
     published: [1, 2],
   },

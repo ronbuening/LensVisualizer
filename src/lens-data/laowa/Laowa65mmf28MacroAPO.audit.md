@@ -76,3 +76,13 @@ L6/S9 and L9/S14 source 1.92286/20.88 now use N-SF66, verified against [official
 The full prior manufacturer datasets plus official NHG2601 add no strong new row for L3/L10. Existing equivalent N-SF66/E-FDS1 makes a duplicate NHG H-ZF62 row unnecessary. Small last-digit alternatives elsewhere are not treated as proof of a better historical spectrum. All named data labels are qualified; L3's uncertain coordinate loses its unsupported chemistry inference, and L10 analysis loses the speculative proprietary-CDGM explanation. Role prose no longer claims source-measured partial allocation, three-wavelength coincidence or certified APO behavior.
 
 Only glass-label and documentary role strings change; every source/numeric/APD/absorption/geometry/control/plate field remains equal. Current source coordinates andtwelve lens elements plus the plate coverage count stay fixed. No indexReferenceNote is used for known d provenance, no per-lens spectral override/new APD tag is added, and no complete source/shape review count or production claim is incremented.
+
+## 2026-11-14 — Finite conjugates from printed magnifications
+
+| Zoom / keyframe | Printed magnification → `sourceMagnification` | Source locator | Solved object distance | Check |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | “1.95倍” → `"1.95"` | CN 110161666 A, Example 2 (PDF p. 9) | 58.88 mm, first-surface | in focus 1.94575; at the declared distance 1.94547; −0.13 quarter waves |
+
+The patent prints a magnification and no object distance for this state. Each distance is solved from the prescription under `LENS_DATA_SPEC.md` § Finite conjugates: the distance that focuses the state on its image plane when the magnification there rounds to the print, otherwise the distance at the nearest magnification that does. Two independent readings of the patent agree on the printed value and on the gaps of the matching state.
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.

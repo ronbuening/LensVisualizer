@@ -7,3 +7,13 @@
 - All ten stored pairs match. Source definitions do not specify a line wavelength; the existing d-line interpretation stays qualified. No per-material partial/C/F/g data. Ten current coefficient curves remain compatible and unchanged. J-FKH1 is approximate to 1.50032/81.9 (catalog−patent Δnd −0.0025/Δνd +0.67), FF5 approximate Δnd −0.00237. Front ED position flags stay tied to the prior manufacturer/product correlation, not catalog-curve APD or a printed θgF. Supplier/melt remain unspecified.
 - Surface/circle/nominal aperture/≥99% field checks pass. All nine actual SVG states inspected: finite continuous shapes, zero hidden trim. No inferred numeric cuts to probe.
 - Triad validation: all 27 source pairs/27 unchanged compatible curve selections and spectral channels; source prescription and control invariants verified. Shared dispersion/glass consistency tests 2 files/93 tests passed; AST 3 files/128 objects, zero duplicate keys/parse errors. Candidate copies only; no shared catalog, engine, source PDF or report changes.
+
+## 2026-11-14 — Finite conjugates from printed magnifications
+
+| Zoom / keyframe | Printed magnification → `sourceMagnification` | Source locator | Solved object distance | Check |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | “β = −0.1” → `"0.1"` | US 4,176,913 A, Example 2 (PDF p. 8) | 2086.59 mm, first-surface | in focus 0.10494; at the declared distance 0.10494; −0.01 quarter waves |
+
+The patent prints a magnification and no object distance for this state. Each distance is solved from the prescription under `LENS_DATA_SPEC.md` § Finite conjugates: the distance that focuses the state on its image plane when the magnification there rounds to the print, otherwise the distance at the nearest magnification that does. Two independent readings of the patent agree on the printed value and on the gaps of the matching state.
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.

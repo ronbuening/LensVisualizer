@@ -7,3 +7,14 @@
 - Fig.5 native axial ruler: first/last vertices about600.5px over151.9248 scaledmm, roughly3.95px/mm. The final meniscus half-span is about65px, or16.5±0.5mm; its previous13mm paired caps were undersized. Both S25/S26 become16.5. Source-continuous paired heights also square S3/S4 at31.5, S5/S6 at26.4, S12/S13 at19.7, and S14/S15/S16 at17.7, using existing source-supported front references and conservative schematic uncertainty.
 - D1's old29/22.7/26mm tapers produced crossing-looking diagonal connectors in the actual SVG despite canonical acceptance. Source Fig.5 has a narrower bounded compound. All three faces S9/S10/S11 now share22.7mm, preserving the existing shared curvature and positive edge; no opaque cemented wing or changed optical radius. Full centered field and source f/3.536 remain clear, and no previously transmitted sampled ray is lost. Remaining concave ends are continuous source curves without an independently resolved opaque shoulder; no numerical cut is invented.
 - Canonical/surface, image-circle, centered-format and nominal aperture checks pass. Nine actual SVG states were inspected: finite paths, no diagonal D1 artifact, zero hidden trim. Sampled lattice retains3312, loses0 and gains180 rays, not flux. Source image gaps, scaled focus law, f-number schedule and tolerances remain unchanged; finite interpolation is still a visualization rather than a new published state.
+
+## 2026-11-14 — Finite conjugates from printed magnifications
+
+| Zoom / keyframe | Printed magnification → `sourceMagnification` | Source locator | Solved object distance | Check |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | “−1/2倍” → `"1/2"` | JP 2003-329924 A, Example 2 (PDF p. 4) | 424.02 mm, first-surface | in focus 0.50000; at the declared distance 0.50000; −0.00 quarter waves |
+| 0 / 2 | “−1倍” → `"1"` | JP 2003-329924 A, Example 2 (PDF p. 4) | 256.41 mm, first-surface | in focus 1.00000; at the declared distance 1.00003; +0.16 quarter waves |
+
+The patent prints a magnification and no object distance for these states. Each distance is solved from the prescription under `LENS_DATA_SPEC.md` § Finite conjugates: the distance that focuses the state on its image plane when the magnification there rounds to the print, otherwise the distance at the nearest magnification that does. Two independent readings of the patent agree on the printed value and on the gaps of the matching state.
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.

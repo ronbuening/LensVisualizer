@@ -37,3 +37,13 @@ Notes:
 - Visually rechecked local `patents/WO2024195273A1.pdf`, PDF page 53, Example 4 / Table 10. Surfaces 1, 20, and 24 repeat `nd = 1.58480`, `νd = 58.71`, and `θgF = 0.54116`.
 - Added Sumita K-CSK120(M) from the first-party 2025-11-07 all-glass AGF. Its coefficient curve evaluates to `1.584438 / 59.119 / 0.541114`, and the source identifies the molding-state variant.
 - Relabeled L11, L25, and L31 to `K-CSK120-M` as catalog equivalents while retaining patent code `585587`, the patent-authored `dPgF`, and the unspecified production supplier. No prescription geometry changed.
+
+## 2026-11-14 — Finite conjugates from printed magnifications
+
+| Zoom / keyframe | Printed magnification → `sourceMagnification` | Source locator | Solved object distance | Check |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | “横倍率 −0.2081” → `"0.2081"` | WO 2024/195273 A1, Example 4 (PDF p. 53) | 137.03 mm, first-surface | in focus 0.20816; at the declared distance 0.20815; −0.00 quarter waves |
+
+The patent prints a magnification and no object distance for this state. Each distance is solved from the prescription under `LENS_DATA_SPEC.md` § Finite conjugates: the distance that focuses the state on its image plane when the magnification there rounds to the print, otherwise the distance at the nearest magnification that does. Two independent readings of the patent agree on the printed value and on the gaps of the matching state.
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.

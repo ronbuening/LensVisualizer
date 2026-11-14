@@ -283,6 +283,16 @@ const LENS_DATA = {
   ],
   focus: {
     closeFocusM: 1.4,
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 1170.05,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.25",
+        source: "US 7,715,116 B2, Embodiment 7 (PDF p. 19): prints “m = 0.00—−0.02—−0.25” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription at magnification 0.245, the nearest value that rounds to the print; focused on its image plane the state gives 0.24448.",
+      },
+    ],
     published: [1],
     description:
       "PUBLISHED inner focus: the cemented negative third group (surfaces 10–12) moves 11.29 mm toward the image while the stop stays fixed with the second group. Table 7 prints both end spacings; the stop's own gap is derived from printed d9, and positions between the ends are interpolated. Traced at the closest spacing, object to image is 1400 mm at m = −0.2445, where Table 7 prints −0.25 and Ricoh lists 1.4 m and 0.24×.",

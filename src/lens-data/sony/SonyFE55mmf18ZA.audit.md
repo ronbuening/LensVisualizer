@@ -127,3 +127,13 @@ to strike surface 12 at 52-57°. 11A does not turn over inside its 16.5 mm rim, 
 than the data, inside the figure's noise, so no rim change is supported. 8A's slope sign change at 11.98 mm is a
 turnover under Step 6 even though the surface is nearly flat (−1° at its rim), but the stated f/1.86 beam needs
 12.37 mm there, so Step 6's stated-beam exception keeps the 13.5 mm rim. Recorded as a model limitation.
+
+## 2026-11-14 — Finite conjugates from printed magnifications
+
+| Zoom / keyframe | Printed magnification → `sourceMagnification` | Source locator | Solved object distance | Check |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | “β: −0.033” → `"0.033"` | US 2015/0092100 A1, Example 1 (PDF p. 26) | 1670.85 mm, first-surface | in focus 0.03245; at the declared distance 0.03250; +0.67 quarter waves |
+
+The patent prints a magnification and no object distance for this state. Each distance is solved from the prescription under `LENS_DATA_SPEC.md` § Finite conjugates: the distance that focuses the state on its image plane when the magnification there rounds to the print, otherwise the distance at the nearest magnification that does. Two independent readings of the patent agree on the printed value and on the gaps of the matching state.
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.

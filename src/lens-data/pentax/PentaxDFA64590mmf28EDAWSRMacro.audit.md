@@ -37,3 +37,13 @@ clearance allowance controls any surface that needs more aperture.
 
 The lens now has coefficient-backed dispersion on all 11 glass elements. The two ED identifications remain
 classifications based on the patent coordinates and product correlation, not claimed melt identities.
+
+## 2026-11-14 — Finite conjugates from printed magnifications
+
+| Zoom / keyframe | Printed magnification → `sourceMagnification` | Source locator | Solved object distance | Check |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | “Close-Distance(−0.50:1) Photographic Position” → `"0.50"` | US 2013/0222925 A1, Numerical Embodiment 4 (PDF p. 145) | 205.6 mm, first-surface | in focus 0.50001; at the declared distance 0.50000; −0.06 quarter waves |
+
+The patent prints a magnification and no object distance for this state. Each distance is solved from the prescription under `LENS_DATA_SPEC.md` § Finite conjugates: the distance that focuses the state on its image plane when the magnification there rounds to the print, otherwise the distance at the nearest magnification that does. Two independent readings of the patent agree on the printed value and on the gaps of the matching state.
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.

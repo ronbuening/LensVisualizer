@@ -197,6 +197,24 @@ const LENS_DATA = {
     step: 0.001,
     description:
       "Front assembly focus: groups G10 and G20 move objectward together while G30 remains fixed. Modeled by D13 increasing from 1.00 mm at infinity to 24.13 mm at 1:1.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 64.05,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.5",
+        source: "US 7,715,118 B2, Example 1 (PDF p. 15): prints “-0.5 magnification photographic position” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.49978.",
+      },
+      {
+        zoomStation: 0,
+        keyframe: 2,
+        objectDistanceMm: 29.62,
+        distanceReference: "first-surface",
+        sourceMagnification: "1.0",
+        source: "US 7,715,118 B2, Example 1 (PDF p. 15): prints “-1.0 magnification photographic position” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.99941.",
+      },
+    ],
     // (moved from publishedStations) Every focus keyframe is a source row.
     published: [1, 2],
   },

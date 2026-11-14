@@ -272,6 +272,24 @@ const LENS_DATA = {
     keyframes: [0, 0.7722923478757724, 1],
     description:
       "Internal floating focus: G2 moves toward image, G3 moves toward object. G1, G4, and aperture stop fixed. Source stations: infinity, half-size (inferred 0.229 m), life-size (inferred 0.177 m). Track about 124.2 mm; source middle station differs by 0.00137 mm. G2 travel: 11.2 mm, G3 travel: 21.4 mm.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 105.28,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.5",
+        source: "US 7,898,744 B2, Example 2 (PDF p. 23): prints “β = -0.5” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.49995.",
+      },
+      {
+        zoomStation: 0,
+        keyframe: 2,
+        objectDistanceMm: 53.04,
+        distanceReference: "first-surface",
+        sourceMagnification: "1.0",
+        source: "US 7,898,744 B2, Example 2 (PDF p. 23): prints “β = -1.0” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.99998.",
+      },
+    ],
     // (moved from publishedStations) Every focus keyframe is a source row.
     published: [1, 2],
   },
