@@ -391,6 +391,24 @@ describe("MTF export builders", () => {
     expect(doc.querySelector("desc")!.textContent).toContain(`# shared_link: ${link}`);
   });
 
+  it.each([
+    ["combining mark", `${"A".repeat(127)}e\u0301`, `${"A".repeat(127)}e\u0301`],
+    ["flag", `${"A".repeat(126)}🇺🇸`, `${"A".repeat(126)}🇺🇸`],
+    ["joined emoji", `${"A".repeat(126)}👩‍🔬`, `${"A".repeat(126)}👩‍🔬`],
+    ["skin tone", `${"A".repeat(126)}👍🏽`, `${"A".repeat(126)}👍🏽`],
+    ["variation selector", `${"A".repeat(127)}e\ufe0f`, `${"A".repeat(127)}e\ufe0f`],
+    ["supplementary variation selector", `${"A".repeat(127)}e\u{e0100}`, `${"A".repeat(127)}e\u{e0100}`],
+    ["lone regional indicator", `${"A".repeat(127)}🇺`, "A".repeat(127)],
+    ["paired regional indicators", `${"A".repeat(124)}🇺🇸🇨🇦🇬`, `${"A".repeat(124)}🇺🇸🇨🇦`],
+  ])("keeps %s intact when grapheme segmentation is unavailable", (_, name, firstLine) => {
+    const intl = Object.create(Intl);
+    Object.defineProperty(intl, "Segmenter", { value: undefined });
+    vi.stubGlobal("Intl", intl);
+    const { lines } = captionFor(contextFor(captionResult(), { lens: { ...lens, source: { ...lens.source, name } } }));
+    expect(lines[0]).toBe(firstLine);
+    expect(lines.join("")).toContain(name);
+  });
+
   it("labels a partial result and diagnostic estimates without listing unavailable focus diagnostics", () => {
     const result = captionResult();
     result.fields[0].status = "pending";

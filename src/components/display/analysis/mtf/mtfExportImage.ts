@@ -38,11 +38,32 @@ function xml(text: string): string {
     .replaceAll('"', "&quot;");
 }
 
+function fallbackGraphemes(text: string): string[] {
+  const clusters: string[] = [];
+  let joinNext = false;
+  let regionalIndicators = 0;
+  for (const point of Array.from(text)) {
+    const regional = /\p{Regional_Indicator}/u.test(point);
+    // Marks include both BMP and supplementary variation selectors.
+    if (
+      clusters.length > 0 &&
+      (joinNext || /\p{M}|\p{Emoji_Modifier}|\u200d/u.test(point) || (regional && regionalIndicators % 2 === 1))
+    ) {
+      clusters[clusters.length - 1] += point;
+    } else {
+      clusters.push(point);
+    }
+    joinNext = point === "\u200d";
+    regionalIndicators = regional ? regionalIndicators + 1 : 0;
+  }
+  return clusters;
+}
+
 function graphemes(text: string): string[] {
   const safe = xmlSafeText(text);
   return typeof Intl.Segmenter === "function"
     ? Array.from(new Intl.Segmenter(undefined, { granularity: "grapheme" }).segment(safe), ({ segment }) => segment)
-    : Array.from(safe);
+    : fallbackGraphemes(safe);
 }
 
 function graphemeWidth(grapheme: string): number {
