@@ -58,3 +58,11 @@ Focused runtime checks passed; full corpus validation follows at the batch check
 - `catalog.closeFocusM.marketing` 0.4 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.
 
 Text sync: header, focus.description and analysis: the patent's 0.3 m row focuses at 0.388 m; the 0.4 m MFD is catalog metadata.
+
+## 2026-11-14 — Published finite-conjugate certification
+
+| Zoom / keyframe | Field | Before | After | Source and conjugate residual |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | `focus.conjugates` | No entry | 300 mm, `first-surface` | 物距 最近(0.3m); Example 1, Table 2, ¶0078–0079, 最近 column; 物距/D1/D2 rows; PDF p. 8. Paraxial image minus authored plane -0.054654010 mm (-13.955199 diffraction depths); other reference +381.631125 depths; `consistent`, reference discriminated. Basis: audit-resolved. |
+
+The printed object-distance label leaves its reference plane undefined. The conjugate residual identifies the retained reference; the source string records that qualification.

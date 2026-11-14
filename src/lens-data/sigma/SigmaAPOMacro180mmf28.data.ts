@@ -357,6 +357,24 @@ const LENS_DATA = {
     keyframes: [0, 0.7710631530319496, 1],
     description:
       "Floating internal focus: L2 moves imageward while L3 moves objectward; L1, L4, L5/OS, and L6 remain fixed relative to the image plane.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 369.52,
+        distanceReference: "first-surface",
+        sourceMagnification: "1:2",
+        source: "JP 2013-104994 A, Numerical Example 2 (PDF p. 16): prints “撮影倍率 1:2” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription at that magnification; focused on its image plane the state gives 0.50133.",
+      },
+      {
+        zoomStation: 0,
+        keyframe: 2,
+        objectDistanceMm: 227.55,
+        distanceReference: "first-surface",
+        sourceMagnification: "1:1",
+        source: "JP 2013-104994 A, Numerical Example 2 (PDF p. 16): prints “撮影倍率 1:1” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription at that magnification; focused on its image plane the state gives 1.00010.",
+      },
+    ],
     // (moved from publishedStations) Every focus keyframe is a source row.
     published: [1, 2],
   },

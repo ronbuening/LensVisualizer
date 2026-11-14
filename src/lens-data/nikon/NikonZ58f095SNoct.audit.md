@@ -148,3 +148,13 @@ Verification: `assertCatalogConsistent()` and fresh per-element `resolveCompatib
 The existing dispersion and glass-resolution-parity suites pass (2 files, 93 tests).
 `audit:surface` passes after the glass-only changes.
 The runtime spectral probe reproduces all five authored source PgF values within 1e-9 through the catalog tier.
+
+## 2026-11-14 — Finite conjugates from printed magnifications
+
+| Zoom / keyframe | Printed magnification → `sourceMagnification` | Source locator | Solved object distance | Check |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | “β −0.194” → `"0.194"` | WO 2019/229849 A1, Example 1 (PDF p. 23) | 320.55 mm, first-surface | in focus 0.19426; at the declared distance 0.19426; +0.05 quarter waves |
+
+The patent prints a magnification and no object distance for this state. Each distance is solved from the prescription under `LENS_DATA_SPEC.md` § Finite conjugates: the distance that focuses the state on its image plane when the magnification there rounds to the print, otherwise the distance at the nearest magnification that does. Two independent readings of the patent agree on the printed value and on the gaps of the matching state.
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.

@@ -190,6 +190,16 @@ const LENS_DATA = {
       "Rear focusing by translating the entire second lens group G2 toward the object; data file close state follows the patent 0.50 m table, not the production 0.20 m MFD.",
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 500,
+        distanceReference: "image-plane",
+        source:
+          "JP 2011-248340 A, Example 1, paragraph 0038 (PDF p. 10) and Table 1 (PDF p. 11): 撮影距離は０．５ｍ; d2=1.9061 mm, d14=10.7439 mm. The image-plane reference is identified by the conjugate audit (referenceBasis=audit-resolved).",
+      },
+    ],
   },
 
   /* (moved from var) Patent Example 1 focus table, infinity and 0.50 m close-focus state. */

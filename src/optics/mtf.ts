@@ -10,6 +10,12 @@ export {
 export { assessMtfDataLimitations } from "./analysis/mtf/mtfDataLimitations.js";
 export type { MtfDataLimitationInput } from "./analysis/mtf/mtfDataLimitations.js";
 export { mtfImagePlaneOffset } from "./analysis/mtf/mtfFocus.js";
+export { assessMtfConjugateConsistency, MTF_FINITE_CONJUGATE_DEPTHS } from "./analysis/mtf/mtfConjugateConsistency.js";
+export type {
+  MtfConjugateCheck,
+  MtfConjugateConsistency,
+  MtfConjugateMagnification,
+} from "./analysis/mtf/mtfConjugateConsistency.js";
 export { combineOtfs, geometricOtf, otfMagnitude } from "./analysis/mtf/mtfMath.js";
 export { mtfIncidentFluxWeights } from "./analysis/mtf/mtfIncidentFlux.js";
 export { findAxialBestFocus, landingPoints, mtfNearestImagePlaneZ } from "./analysis/mtf/mtfFocus.js";

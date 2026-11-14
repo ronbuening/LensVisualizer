@@ -332,6 +332,16 @@ const LENS_DATA = {
       "Patent inner focus: G2 translates 7.911 mm toward the object; G1, stop and G3 stay fixed. Source close distance is 0.4 m object-to-image (307.67 mm to the first surface plus the 92.330 mm physical track including filter FL).",
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 307.67,
+        distanceReference: "first-surface",
+        source:
+          "WO 2019/220618 A1, Example 9, Table 9 variable-spacing data, near column, PDF p. 52 (printed p. 50): D0 = 307.67 mm; G2→G3 [19]=14.267, STO→G2 [STO]=5.109 mm. First-surface distance reference identified by the conjugate audit; the patent does not explicitly define the reference.",
+      },
+    ],
   },
 
   // (moved from var) §5 — Variable air spacings [d_infinity, d_close_focus]

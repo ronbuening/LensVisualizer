@@ -418,6 +418,24 @@ const LENS_DATA = {
     description:
       "PUBLISHED two-group floating focus: Gf moves imageward and G6 moves objectward from infinity to the patent's " +
       "850 mm shooting-distance state at each zoom position; no internal reconstruction is used.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 850,
+        distanceReference: "image-plane",
+        source:
+          "JP 2021-43375 A, Example 1, Tables 3–4 (PDF p. 19), first column (f=72.102 mm): 撮影距離 = 850.000; D5=3.247, D12=29.248, D15=3.329, D26=3.817, D29=12.267, D32=3.863 mm. Paragraph [0112] defines shooting distance from the image plane to the object.",
+      },
+      {
+        zoomStation: 1,
+        keyframe: 1,
+        objectDistanceMm: 850,
+        distanceReference: "image-plane",
+        source:
+          "JP 2021-43375 A, Example 1, Tables 3–4 (PDF p. 19), second column (f=101.789 mm): 撮影距離 = 850.000; D5=30.546, D12=19.092, D15=1.686, D26=5.978, D29=10.495, D32=3.475 mm. Paragraph [0112] defines shooting distance from the image plane to the object.",
+      },
+    ],
   },
 
   /* (moved from var) ── Published zoom and focus spacings ── */

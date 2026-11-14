@@ -318,6 +318,29 @@ const LENS_DATA = {
     closeFocusM: 0.29,
     description:
       "PUBLISHED internal focus: GR3 moves objectward. Patent Table 23 supplies infinity and d0=279 mm close spacings at all three zoom states; the external d0 reference plane is unresolved, so no reconstruction to the production 0.28 m wide / 0.24 m tele MFD is applied.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 279,
+        distanceReference: "image-plane",
+        source: "JP 2023-44106 A, Example 5, Table 23 (PDF p. 38), close-focus Wide column: d0 = 279 mm. The table lists d0 as the gap from the object row (0, OBJ) to surface 1. This column is inside the limit either way (+4.29 quarter waves to the image plane, −20.44 from the first surface), so it takes the object-to-image reading that the Mid and Tele columns of the same table require.",
+      },
+      {
+        zoomStation: 1,
+        keyframe: 1,
+        objectDistanceMm: 279,
+        distanceReference: "image-plane",
+        source: "JP 2023-44106 A, Example 5, Table 23 (PDF p. 38), close-focus Mid column: d0 = 279 mm. The table lists d0 as the gap from the object row (0, OBJ) to surface 1, but the state focuses only when the 279 mm is measured to the image plane (+5.38 quarter waves, against −42.63 from the first surface), so it is declared as an object-to-image distance.",
+      },
+      {
+        zoomStation: 2,
+        keyframe: 1,
+        objectDistanceMm: 279,
+        distanceReference: "image-plane",
+        source: "JP 2023-44106 A, Example 5, Table 23 (PDF p. 38), close-focus Tele column: d0 = 279 mm. The table lists d0 as the gap from the object row (0, OBJ) to surface 1, but the state focuses only when the 279 mm is measured to the image plane (+16.34 quarter waves, against −91.04 from the first surface), so it is declared as an object-to-image distance.",
+      },
+    ],
   },
 
   /* (moved from var) ── Published zoom/focus variable gaps: Example 5 Table 23 ── */

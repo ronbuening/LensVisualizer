@@ -24,3 +24,11 @@ Validation: focused runtime/paraxial check; full corpus gates at the ten-lens ch
 - `catalog.closeFocusM.marketing` 0.6 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.
 
 Text sync: analysis: the patent's 0.63 m state focuses at about 0.71 m object to image.
+
+## 2026-11-14 — Published finite-conjugate certification
+
+| Zoom / keyframe | Field | Before | After | Source and conjugate residual |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | `focus.conjugates` | No entry | 630 mm, `first-surface` | 物距 最近(0.63m); Example 1, Table 2, ¶0079–0081, 最近 column; 物距/D1/D2 rows; PDF p. 8/9. Paraxial image minus authored plane -0.035074284 mm (-14.181235 diffraction depths); other reference +284.786547 depths; `consistent`, reference discriminated. Basis: audit-resolved. |
+
+The printed object-distance label leaves its reference plane undefined. The conjugate residual identifies the retained reference; the source string records that qualification.

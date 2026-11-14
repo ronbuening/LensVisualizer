@@ -134,3 +134,13 @@ RI refusal. Queue files and shared code are outside this assignment's edit scope
 - Additional concave trims were tested on S6 and S9. Native figure shares are approximately q=0.81±0.008 (L3 rear, outer edge about 226 px) and q=0.92±0.011 (L5 front, about 181 px). Literal figure-share cuts intrude into traced beams: their maxima are 8.1028 and 8.8557 mm at focus 0 / field 33.46°. Move the cuts outward to `rimCutDepthMm` 1.90 and 1.19 mm, yielding clear radii 8.16495 and 8.93195 mm with lands to the retained 8.4 and 9.2 mm outer rims. Both satisfy the required 0.05 mm beam margin; neither depth is a patent measurement. No further resolved land was established; cemented interfaces are unchanged.
 - Fresh glass check: all 12 element nd/νd pairs and the 1.51680/64.20 physical rear plate match the source. Every modeled medium retains a compatible catalog curve; labels remain coordinate proxies, not evidence of production supplier. Three 1.49700/81.61 ED/APD assignments remain inferred. The source prints no partial-dispersion/line-index constants or Sellmeier coefficients. No glass correction is supported.
 - Verification: focused `audit:surface` passes including inferred-cut beams, `audit:image-circle` reports zero undersized surfaces, and `audit:aperture` remains within 3% with no rim limiter. Actual production SVG geometry has zero hidden trim across focus/zoom 0, 0.5, 1 and was rasterized and visually inspected. The pre-existing source-localization issue remains unresolved; neither clearance nor the new lands repairs its optical prescription.
+
+## 2026-11-14 — Finite conjugates from printed magnifications
+
+| Zoom / keyframe | Printed magnification → `sourceMagnification` | Source locator | Solved object distance | Check |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | “0.020 times” → `"0.020"` | US 2018/0149842 A1, Example 1 (PDF p. 8) | 782.66 mm, first-surface | in focus 0.01750; at the declared distance 0.01950; +6.15 quarter waves |
+
+The patent prints a magnification and no object distance for this state. Each distance is solved from the prescription under `LENS_DATA_SPEC.md` § Finite conjugates: the distance that focuses the state on its image plane when the magnification there rounds to the print, otherwise the distance at the nearest magnification that does. Two independent readings of the patent agree on the printed value and on the gaps of the matching state.
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.

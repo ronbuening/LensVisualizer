@@ -198,3 +198,13 @@ Checked and found correct.
 Maker diagram. Ten elements in nine groups with L7 and L8 cemented, ED at elements 2, 3 and 5 and HR at 8 and 10, the same order of heights as Fig. 1. It draws L4, L6 and L9 with stepped rims, consistent with the flats in Fig. 1, and it draws L3's rear face to the tip, resting against L4's front corner, where Fig. 1 draws a flat annulus; the patent figure governs.
 
 Open limitations. The renderer has no flat annulus, so L3 keeps a pointed tip and L4 a sloping top where Fig. 1 draws square-cut blocks. Setting surface 6 to 17 mm would square L3, passes the validator and raises the census to 84.4%, 98.8% and 96.0%, at the cost of a rim twice as long as drawn that reaches 0.37 mm behind L4's front corner; it was tried on the page and not kept. Surface 4 and both faces of L9 keep rims beyond the drawn curve ends, as before.
+
+## 2026-11-14 — Finite conjugates from printed magnifications
+
+| Zoom / keyframe | Printed magnification → `sourceMagnification` | Source locator | Solved object distance | Check |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | “/β/=0.10” → `"0.10"` | JP 2013-161076 A, Numerical Example 1 (PDF p. 17) | 760.09 mm, first-surface | in focus 0.10002; at the declared distance 0.10002; −0.01 quarter waves |
+
+The patent prints a magnification and no object distance for this state. Each distance is solved from the prescription under `LENS_DATA_SPEC.md` § Finite conjugates: the distance that focuses the state on its image plane when the magnification there rounds to the print, otherwise the distance at the nearest magnification that does. Two independent readings of the patent agree on the printed value and on the gaps of the matching state.
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.

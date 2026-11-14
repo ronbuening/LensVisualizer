@@ -256,3 +256,15 @@ Coverage: 17 physical lens elements, 17 authored media, 16 modeled media resolvi
 All seventeen nd/νd pairs are retained. L31's J-PSKH1 is a non-identical proxy (Δnd +0.000250). L32's M-TAF401 is also non-identical (Δnd about −0.00126, Δνd about −0.13); its label and analysis now explicitly say spectral proxy. L44 (1.62372/58.4) stays unresolved because several nearby crown curves are compatible but none is coordinate-equal or source-identified; unsupported proprietary-chemistry speculation was removed. Source θgF 0.5896 on L19 gives dPgF 0.0001286 (stored rounded 0.0001); θgF 0.6546 on L42 gives 0.04104236 (stored rounded 0.041). Both source-discussed APD tags and rounded deviations are retained. The separate rear plate remains source-matched.
 
 Verification: current-label resolver and native-coordinate compatibility sweep plus `assertCatalogConsistent()`; shared `dispersion.test.ts` and `partialDispersionLine.test.ts` checks. No catalog tolerance was relaxed. Full repository gates are recorded by the parent at the three-lens commit boundary.
+
+## 2026-11-14 — Published finite-conjugate certification
+
+Patent: JP 2025-052870 A, Numerical Example 1.
+
+| Zoom / keyframe | Field | Before | After | Source and paraxial residual |
+|---|---|---|---|---|
+| 0 / 1 | `focus.conjugates` | absent | 308.07 mm, `first-surface` | Numerical Example 1, Table 1 variable-spacing data, 至近距離 column, PDF p. 21; d0 = 308.07 mm. Image minus authored plane: -0.000313318289 mm (-0.176319626 diffraction depths); other reference: 1674.19650 depths; consistent. |
+
+Reference basis: patent-defined. Paragraph 0114 (PDF p. 18): 「ｄ０は物体から最も物体側のレンズ面の頂点までの光軸上の距離を示す。」
+
+The source gap columns match the authored keyframes. The declarations preserve all optical surfaces, gaps, rear plates and the authored image plane.

@@ -315,6 +315,16 @@ const LENS_DATA = {
       "Patent Example 3: G2 moves 4.441 mm toward the object; G1 and stop remain fixed. Source close focus is 0.700 m from object to the image plane, which the model reproduces with the sensor plate traced physically. Intermediate movement is interpolated.",
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 700,
+        distanceReference: "image-plane",
+        source:
+          "US 2021/0231927 A1, Example 3, PDF p. 80 (printed p. 18), Table 11: 0.7 m, DD[14]=7.025 mm and DD[22]=18.842 mm. Paragraph 0213 (PDF p. 79) defines 0.7 m from the object to the image plane Sim.",
+      },
+    ],
   },
 
   gaps: { STO: { label: "Stop–G2", values: [[11.466, 7.025]] }, "22": { label: "G2–PP", values: [[14.401, 18.842]] } },

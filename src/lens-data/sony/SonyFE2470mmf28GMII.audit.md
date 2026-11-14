@@ -57,3 +57,15 @@ Patent: WO 2023/181666 A1, Example 4
 - `catalog.closeFocusM.marketing` 0.21 / 0.3 m (wide / tele) keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.
 
 Text sync: closeFocusM comment: nearest station row; Sony's 0.21 / 0.30 m is catalog metadata.
+
+## 2026-11-14 — Source finite object distances
+
+Patent: WO 2023/181666 A1, Example 4.
+
+| Zoom / keyframe | Field | Before | After | Source and gap mapping |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | `focus.conjugates` | No declaration | 74 mm, `first-surface` | Table 18 Wide beta=-0.229, d20=8.37 and fixed d21=-1.10 map exactly to file gap 20=7.27; all other gaps match, and printed d0=74.00 mm passes. |
+| 1 / 1 | `focus.conjugates` | No declaration | 171.81 mm, `first-surface` | Table 18 Mid beta=-0.182, d20=4.24 and fixed d21=-1.10 map exactly to file gap 20=3.14; all other gaps match, and printed d0=171.81 mm passes. |
+| 2 / 1 | `focus.conjugates` | No declaration | 151.21 mm, `first-surface` | Table 18 Tele beta=-0.292, d20=1.98 and fixed d21=-1.10 map exactly to file gap 20=0.88; all other gaps match, and printed d0=151.21 mm passes. |
+
+The declarations retain the authored prescription and image plane. The axial consistency diagnostics are 0/1: +0.004619763 mm (+0.488790 quarter-wave depths), other reference unavailable, 1/1: +0.054340432 mm (+5.493510 quarter-wave depths), other reference +1423.661428 depths, 2/1: -0.084841548 mm (-8.227594 quarter-wave depths), other reference unavailable. No production minimum-focus distance or calculated object distance is certified.

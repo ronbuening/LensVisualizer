@@ -29,3 +29,23 @@ Patent: US 2015/0168697 A1, Example 4
 ### Phase 4 - Analysis sync
 
 - Updated element narratives and glass summary rows for the corrected labels.
+
+## 2026-11-14 — Published finite conjugates
+
+Patent: US 2015/0168697 A1, Example 4.
+
+| State (zoom/keyframe) | Field | Before | After | Paraxial offset (mm) | Offset (depths of focus) | Other reference (depths) | Verdict |
+|---|---|---|---|---|---|---|---|
+| 0/1 | `focus.conjugates` | absent | 700 mm, `image-plane` | -0.009138966 | -0.917755 | -70.787921 | consistent |
+| 1/1 | `focus.conjugates` | absent | 700 mm, `image-plane` | -0.030241767 | -3.001282 | -217.178694 | consistent |
+| 2/1 | `focus.conjugates` | absent | 700 mm, `image-plane` | -0.095334387 | -9.665689 | -723.714606 | consistent |
+
+Source: US 2015/0168697 A1, Example 4, Unit separation (PDF p. 38, printed p. 15), a distance between an object and an image is 0.7 m.
+
+Distance-reference basis: `patent-defined`. The patent states: “a distance between an object and an image is 0.7 m”
+
+- State 0/1: D5=2.56328, D11=53.22784, D19=3.12034, BF=2.5, D22=17.25696 mm. The printed finite-spacing column matches these authored gaps.
+- State 1/1: D5=30.41889, D11=25.3723, D19=6.98082, BF=2.75153, D22=13.14454 mm. The printed finite-spacing column matches these authored gaps.
+- State 2/1: D5=53.87892, D11=1.91217, D19=12.71907, BF=3.64447, D22=6.51353 mm. The printed finite-spacing column matches these authored gaps.
+
+Residuals retain the authored prescription and image plane. Every declared state already has its published-focus flag.

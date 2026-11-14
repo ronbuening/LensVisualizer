@@ -188,6 +188,16 @@ const LENS_DATA = {
     closeFocusM: 0.87,
     description:
       "CONSTRAINED_RECONSTRUCTION: patent d7 changes 14.397→18.198 mm; BF is solved from β=-0.25 as 46.800156→80.007294 mm. The implied front/rear movement ratio is 1.114463:1 versus the patent's rounded 1.11:1.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 694.04,
+        distanceReference: "first-surface",
+        sourceMagnification: "1/4",
+        source: "JP 1999-231209 A, Example 1 (PDF p. 8): prints “β=-1/4” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.25000.",
+      },
+    ],
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
   },

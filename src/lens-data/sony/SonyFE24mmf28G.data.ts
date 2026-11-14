@@ -242,6 +242,16 @@ const LENS_DATA = {
     closeFocusM: 0.255,
     description:
       "Inner focus: G2 translates 1.542 mm toward the object from infinity to the patent's 0.18 m state (measured from the first surface); G1 and G3 remain fixed.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 180,
+        distanceReference: "first-surface",
+        source:
+          "JP 2022-030896 A, Example 1, Table 3, close focus finite column, 撮影距離 row (PDF p. 13): 撮影距離 180.000; D(11)=2.978 mm; D(16)=4.077 mm. Paragraph 0076 defines the distance from the object to the first surface.",
+      },
+    ],
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
   },

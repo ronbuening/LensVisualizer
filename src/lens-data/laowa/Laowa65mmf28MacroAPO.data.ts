@@ -305,6 +305,16 @@ const LENS_DATA = {
       "Inner focus — G2 (L3–L9, 7 elements) translates 35 mm forward as a rigid unit. " +
       "G1 (L1–L2) and G3 (L10–L14) are fixed. Manual focus only, ~270° helicoid rotation. " +
       "Patent max magnification 1.95×; production rated 2:1.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 58.88,
+        distanceReference: "first-surface",
+        sourceMagnification: "1.95",
+        source: "CN 110161666 A, Example 2 (PDF p. 9): prints “1.95倍” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 1.94575.",
+      },
+    ],
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
   },

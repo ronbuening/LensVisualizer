@@ -26,3 +26,11 @@ Assignee audit: source-era Schneider names are consolidated as `Jos. Schneider &
 - Paraxial check against the previous data: EFL identical; defocus changes by 0.0016 mm at both focus endpoints, the
   difference between the legacy Table 31 Bf = 15.80982 mm and the Table 1 rows' 15.80820 mm. Physical track grows by
   0.850 mm to 130.0002 mm, matching the printed L = 130.00 mm; closeFocusM 0.410 m already used the physical L.
+
+## 2026-11-14 — Published finite conjugates
+
+| Zoom / keyframe | Field | Before | After | Source and residual |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | `focus.conjugates` | Absent | 280 mm, `first-surface` | Example 1, Table 3, near column, d0 row, PDF p. 15: d0 = 280.0000mm; d7=8.8679, d11=11.0000, d15=5.2530, d20=7.6776 mm. Paraxial offset +0.041607416 mm (+23.402680 depths); `consistent`; other reference +3768.598836 depths. |
+
+Reference definition: Table 1 (PDF p. 14): "0(OBJ)" has "(d0)" in the di column before surface 1; paragraph [0061] (PDF pp. 11–12): 「di」はi番目の面とi+1番目の面との間の光軸上の間隔の値（mm）を示す。

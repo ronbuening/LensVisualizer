@@ -427,6 +427,16 @@ const LENS_DATA = {
     closeFocusM: 0.3,
     description:
       "Inner focus: Group 2, including the aperture stop, translates objectward from infinity to 0.3 m; Groups 1 and 3 remain stationary and the DD[12]+DD[23] sum is conserved.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 137.03,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.2081",
+        source: "WO 2024/195273 A1, Example 4 (PDF p. 53): prints “横倍率 −0.2081” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription at magnification 0.20815, the nearest value that rounds to the print; focused on its image plane the state gives 0.20816.",
+      },
+    ],
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
   },

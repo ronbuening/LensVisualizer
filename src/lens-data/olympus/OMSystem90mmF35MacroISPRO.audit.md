@@ -253,3 +253,15 @@ Engine values before and after: focal length 88.2076 mm, f/3.638, stop 9.172 mm 
 Live page after the edits: the label row under the diagram reads G1, G2, G3, G4a, G4b/IS, G4c on one line at infinity and at 2x, nothing overlaps, and the outlines fall on the drawn ones at both ends of the travel apart from the differences listed above.
 
 Open limitations: the bevel on L14 and the tapers on L3, L6, L13 and L17 remain; L8 renders 0.2 mm taller than drawn; the patent's smaller close-focus stops are not modeled; the maker's special-glass positions are still unconfirmed by a construction diagram.
+
+## 2026-11-14 — Finite conjugates from printed magnifications
+
+| Zoom / keyframe | Printed magnification → `sourceMagnification` | Source locator | Solved object distance | Check |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | “横倍率β -0.50” → `"0.50"` | JP 2024-066164 A, Example 1 (PDF p. 17) | 171.69 mm, first-surface | in focus 0.50041; at the declared distance 0.50040; −0.04 quarter waves |
+| 0 / 2 | “横倍率β -1.00” → `"1.00"` | JP 2024-066164 A, Example 1 (PDF p. 17) | 96.32 mm, first-surface | in focus 1.00058; at the declared distance 1.00053; −0.14 quarter waves |
+| 0 / 3 | “横倍率β -2.00” → `"2.00"` | JP 2024-066164 A, Example 1 (PDF p. 17) | 70.06 mm, first-surface | in focus 2.00051; at the declared distance 2.00069; +0.18 quarter waves |
+
+The patent prints a magnification and no object distance for these states. Each distance is solved from the prescription under `LENS_DATA_SPEC.md` § Finite conjugates: the distance that focuses the state on its image plane when the magnification there rounds to the print, otherwise the distance at the nearest magnification that does. Two independent readings of the patent agree on the printed value and on the gaps of the matching state.
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.

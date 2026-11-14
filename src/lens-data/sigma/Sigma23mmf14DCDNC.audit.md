@@ -36,3 +36,15 @@ Patent: JP 2024-035865 A, Numerical Example 1
 Final finite-grid census after adopted caps: 31374 passed, 5680 clipped, 2 failed no-bracket continuations, 0 unaimed. The two failures occur at focus 0.984375/full actual image-height field at the first surface; the source-near endpoint itself has no failed continuation.
 
 - 2026-11-13 — `source.sdSource: "figure-measured"` rests on "Source optical caps and five resolved outer shoulders are reconstructed from the 825 ppi original with ±0.25 mm practical uncertainty." Source: existing header / audit text; no optical values change.
+
+## 2026-11-14 — Published finite-conjugate certification
+
+Patent: JP2024035865A, Numerical Example 1.
+
+| State (zoom/keyframe) | Field | Before | After | Source and axial residual |
+|---|---|---|---|---|
+| 0/1 | `focus.conjugates` | absent | 155 mm, `first-surface` | PDF p.10 (printed p.10), [可変間隔データ], 0.25m column, d0 row: d0 = 155.00; d17=7.3364; d19=3.3069; BF=18.7827 mm. Offset +0.000722545 mm (+0.242962 diffraction depths), `consistent`; other reference +4.304977427 mm (+1191.352965 depths). |
+
+"物面 ∞ (d0)" appears in the d column of [面データ], immediately before surface 1 (PDF/printed p.9); d0 is the object-side surface interval. The declared reference is patent-defined.
+
+The audit uses the open physical stop and the authored image plane. Published flags already include these keyframes. Prescription values, gap schedules and image position are retained.

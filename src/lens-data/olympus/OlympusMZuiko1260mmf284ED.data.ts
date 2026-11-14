@@ -377,6 +377,32 @@ const LENS_DATA = {
     closeFocusM: 0.25,
     description:
       "Internal focusing by translating the negative second group while reducing the internal G2 front/rear-unit gap.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 250,
+        distanceReference: "image-plane",
+        source:
+          "US 7,583,450 B2, Example 4, variable spacings (PDF p. 22, printed col. 15), OD = 250 mm; PDF p. 19 defines OD as measured from the image plane. wide: D5 G1-G2=0.59917, D11 G2 float=0.77704, D19 G3-G4=8.09555, BF=29.58052, D13 G2-STO=26.7452 mm.",
+      },
+      {
+        zoomStation: 1,
+        keyframe: 1,
+        objectDistanceMm: 250,
+        distanceReference: "image-plane",
+        source:
+          "US 7,583,450 B2, Example 4, variable spacings (PDF p. 22, printed col. 15), OD = 250 mm; PDF p. 19 defines OD as measured from the image plane. standard: D5 G1-G2=19.79172, D11 G2 float=0.77704, D19 G3-G4=3.06658, BF=43.73719, D13 G2-STO=13.25433 mm.",
+      },
+      {
+        zoomStation: 2,
+        keyframe: 1,
+        objectDistanceMm: 250,
+        distanceReference: "image-plane",
+        source:
+          "US 7,583,450 B2, Example 4, variable spacings (PDF p. 22, printed col. 15), OD = 250 mm; PDF p. 19 defines OD as measured from the image plane. tele: D5 G1-G2=40.54294, D11 G2 float=0.77704, D19 G3-G4=0.8, BF=60.80026, D13 G2-STO=7.42963 mm.",
+      },
+    ],
   },
 
   gaps: {

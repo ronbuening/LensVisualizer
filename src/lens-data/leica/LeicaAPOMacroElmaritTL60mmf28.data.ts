@@ -263,6 +263,16 @@ const LENS_DATA = {
     // (moved from publishedStations) Patent read 2026-10-06: Close-focus endpoint is the patent's tabulated POS2 row for Example 9 (β = -1.0, object
     // 67.497 mm): d7 = 3.050, d13 = 22.608 (¶0115).
     published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 67.497,
+        distanceReference: "first-surface",
+        source:
+          "JP 2016-090725 A, Example 9, paragraph 0115 various-data table, POS2 column (PDF p. 26): object=67.497 mm, beta=-1.0; d7=3.050, d13=22.608 mm. The object row in the surface-data table (paragraph 0110, PDF p. 25, unit mm) places the variable d interval between object and surface 1.",
+      },
+    ],
   },
 
   /* (moved from var) ── Variable air spacings (inner focus) ──

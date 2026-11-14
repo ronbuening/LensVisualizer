@@ -327,6 +327,16 @@ const LENS_DATA = {
       "Single-element inner focus: G3 / L31 moves toward the object. The patent beta=-1/40 row is exact, followed by a constrained endpoint matching Sigma's published 0.25 m / 1:9.9 specification.",
     // (moved from publishedStations) The intermediate focus row is source-tabulated; the close endpoint is reconstructed.
     published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 635.6343,
+        distanceReference: "first-surface",
+        source:
+          "JP 2018-205527 A, Numerical Example 1, [可変間隔データ], 40倍距離 column, PDF p. 19: d0=635.6343 mm; d23=2.8751 mm, d25=2.5210 mm. [面データ]: \"物面 | ∞ | (d0)\" immediately before surface 1; \"単位：mm\" (PDF p. 18).",
+      },
+    ],
   },
 
   gaps: {

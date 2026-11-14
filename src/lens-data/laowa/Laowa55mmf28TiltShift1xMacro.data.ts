@@ -280,6 +280,24 @@ const LENS_DATA = {
     keyframes: [0, 0.89097088434001, 1],
     description:
       "Floating internal focus; the patent tabulates infinity, 0.5× and 1.0×. G1 fixed. G2 with the stop advances 46.29 mm toward the object and G3 advances 37.92 mm, opening the stop-to-G3 gap from 1.47 to 9.84 mm at constant overall length. The printed 1.0× state computes to −0.96× paraxially at 265 mm object-to-image (Laowa quotes 27 cm). Spacings between the three states are interpolated, not published. All three states are coaxial; the patent gives no tilted or shifted prescription.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 107.84,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.5",
+        source: "CN 118671950 A, Example 1 (PDF p. 7): prints “0.5倍” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.49917.",
+      },
+      {
+        zoomStation: 0,
+        keyframe: 2,
+        objectDistanceMm: 75.36,
+        distanceReference: "first-surface",
+        sourceMagnification: "1.0",
+        source: "CN 118671950 A, Example 1 (PDF p. 7): prints “1.0倍” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.96249.",
+      },
+    ],
     published: [1, 2],
   },
 

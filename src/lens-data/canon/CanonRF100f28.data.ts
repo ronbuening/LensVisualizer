@@ -349,6 +349,24 @@ const LENS_DATA = {
     keyframes: [0, 0.6787635163962894, 1],
     description:
       "Patent normal SA setting: L2 and L4 move toward the image through the published infinity, 0.5× and 1.4× stations. Distances are calculated from the rounded prescription (0.37518 m and 0.25466 m). SA adjustment is not simulated.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 212.8,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.5",
+        source: "JP 2021-047297 A, Example 1 (PDF p. 10): prints “−0.5” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.49999.",
+      },
+      {
+        zoomStation: 0,
+        keyframe: 2,
+        objectDistanceMm: 92.29,
+        distanceReference: "first-surface",
+        sourceMagnification: "1.4",
+        source: "JP 2021-047297 A, Example 1 (PDF p. 10): prints “−1.4” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 1.39999.",
+      },
+    ],
     // (moved from publishedStations) Every focus keyframe is a source row.
     published: [1, 2],
   },

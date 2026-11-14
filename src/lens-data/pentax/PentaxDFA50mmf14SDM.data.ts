@@ -305,6 +305,16 @@ const LENS_DATA = {
     closeFocusM: 0.4,
     description:
       "Rear-group unit focusing. The first group is stationary; the complete second group translates toward the object. Patent Example 1 changes D11 from 10.407 mm to 1.012 mm and D25 (last lens surface to the cover plate) from 37.310 mm to 46.706 mm.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 250.74,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.184",
+        source: "US 2019/0250367 A1, Example 1 (PDF p. 17): prints “MAGNIFICATION −0.184” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription at magnification 0.1845, the nearest value that rounds to the print; focused on its image plane the state gives 0.18452.",
+      },
+    ],
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
   },

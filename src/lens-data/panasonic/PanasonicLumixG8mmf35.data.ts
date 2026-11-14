@@ -207,6 +207,16 @@ const LENS_DATA = {
     description: "Inner focus by L9. Variable gaps reproduce the patent's 1 m state; production MFD is 0.1 m.",
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 930.741,
+        distanceReference: "first-surface",
+        source:
+          "US 2012/0147254 A1, Numerical Example 4 / Embodiment 4, Table 8, 1 m column: d0 930.741 mm; d16=4.405 mm, d18=2.214 mm, BF=16.169 mm. Table 7 (same PDF p. 21): \"Object surface\" has d=\"Variable\" immediately before surface 1; Table 8 identifies that object-side interval as d0.",
+      },
+    ],
   },
 
   gaps: { "16": { label: "D16", values: [[4.513, 4.405]] }, "18": { label: "D18", values: [[2.105, 2.214]] } },

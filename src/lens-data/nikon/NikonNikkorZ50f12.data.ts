@@ -369,6 +369,16 @@ const LENS_DATA = {
       "Patent Example 1: F1 moves 7.727 mm and F2 6.143 mm objectward relative to the front/rear groups. Source close object distance is 467.50 mm from the first surface, 0.630805 m from the physical image plane. The 0.001 mm d36 change follows rounded source stations and is carried in d34; intermediate motion is interpolated.",
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 467.5,
+        distanceReference: "first-surface",
+        source:
+          "WO 2021/241230 A1, Example 1, Table 1 variable-spacing data, near column, PDF pp. 30–31 (printed pp. 28–29): d0 = 467.50 mm; F1–F2 [22]=3.584, F2–R [26]=8.043, L44–FL [33]=10.809, STO–F1 [STO]=11.437 mm. Paragraph 0112 (PDF pp. 26–27): 「ｄ０は物体から最も物体側のレンズ面の頂点までの光軸上の距離を示す。」",
+      },
+    ],
   },
 
   /* (moved from var) ── Variable air spacings (focus mechanism) ──

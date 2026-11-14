@@ -36,3 +36,19 @@ Patent: JP 2017-068114 A, Example 1 / Figure 1.
 - `catalog.closeFocusM.marketing` 0.16 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.
 
 Text sync: analysis: per-station closeFocusM values record the three near rows; the 0.16 m MFD is catalog metadata.
+
+## 2026-11-14 — Published finite conjugates
+
+Patent: JP 2017-068114 A, Example 1.
+
+| Zoom / keyframe | Field | Before | After | Source locator | Paraxial residual |
+| --- | --- | --- | --- | --- | --- |
+| 0 / 1 | `focus.conjugates` | Absent | 223.4242 mm, `first-surface` | PDF p. 17, Table 3, Variable distance data, near (至近) W / M / T columns, D0 row; D0 = 223.4242; D1=19.24919, D2=2.94882, BF=38.05242 mm | +0.000255365 mm / +0.017113 depths; consistent |
+| 1 / 1 | `focus.conjugates` | Absent | 334.46 mm, `first-surface` | PDF p. 17, Table 3, Variable distance data, near (至近) W / M / T columns, D0 row; D0 = 334.4600; D1=7.69258, D2=3.14643, BF=47.30267 mm | +0.000324514 mm / +0.016225 depths; consistent |
+| 2 / 1 | `focus.conjugates` | Absent | 442.926 mm, `first-surface` | PDF p. 17, Table 3, Variable distance data, near (至近) W / M / T columns, D0 row; D0 = 442.9260; D1=1.71937, D2=3.21963, BF=56.37761 mm | +0.000425500 mm / +0.016554 depths; consistent |
+
+Reference evidence: Ｄ０は魚眼ズームレンズＺＬ１の最も物体側の面（第１面）から物体までの距離を示す。
+
+Conjugate consistency does not remove the MTF projection guard for fisheye systems.
+
+The authored gaps, image plane and published-state flags are retained.

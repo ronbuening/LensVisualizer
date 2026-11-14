@@ -40,3 +40,15 @@ no new catalog entry was warranted.
 - `catalog.closeFocusM.marketing` 0.28 / 0.24 m (wide / tele) keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.
 
 Text sync: focus comment: the scalar is the object-to-image distance of the d0 = 279 mm rows; Sony's 0.28 / 0.24 m is catalog metadata.
+
+## 2026-11-14 — Finite conjugates declared as object-to-image distances
+
+| Zoom / keyframe | Source distance and reference | Source locator | Paraxial residual |
+| --- | --- | --- | --- |
+| 0 / 1 | 279 mm, image-plane | JP 2023-44106 A, Example 5, Table 23 (PDF p. 38), close-focus Wide column: d0 = 279 mm | +0.085206 mm; +4.29 quarter waves; first-surface −20.44 |
+| 1 / 1 | 279 mm, image-plane | JP 2023-44106 A, Example 5, Table 23 (PDF p. 38), close-focus Mid column: d0 = 279 mm | +0.107428 mm; +5.38 quarter waves; first-surface −42.63 |
+| 2 / 1 | 279 mm, image-plane | JP 2023-44106 A, Example 5, Table 23 (PDF p. 38), close-focus Tele column: d0 = 279 mm | +0.331099 mm; +16.34 quarter waves; first-surface −91.04 |
+
+The table lists d0 as the gap from the object row (0, OBJ) to surface 1, which reads as an object-to-first-surface distance. Read that way the states do not focus; read as the object-to-image distance they do. They are declared `image-plane` under the ruling recorded in `LENS_DATA_SPEC.md` § Finite conjugates. A second reading of the patent confirms the printed value, its unit and the gaps of each column.
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.

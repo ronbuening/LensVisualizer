@@ -28,3 +28,14 @@ Patent: JP 2015-215560 A, Example 1, Fig. 1 (PDF page 18)
 - Retained inference-qualified two-fluorite/three-ED production correlations. L23's source condition (5), using its own 0.0016821 coefficient, gives −0.011166753 ±0.005 and supports the source design-property qualification without identifying a material. Its current J-KZFH4 curve remains explicitly post-filing. All 16 active elements resolve to compatible curves; L33's annotation now matches the actual HOYA BACD15 coordinate proxy rather than the unavailable J-SK15 label. Updated all affected current public glass descriptions/table and removed the stale omission-policy assertion.
 - Actual verification: focused surface audit passes; image-circle audit checks all three candidates with zero undersized/skipped. Native SVG output was inspected at nine focus/zoom states per lens (27 total), with zero renderer trims. Current resolver/catalog consistency passes; the shared dispersion and partial-dispersion suites pass 93 tests. No clear-cap change required an aperture recalibration.
 - Additional direct source check: ¶0064 on PDF p. 16 expressly permits a configuration without the front protective filter glass (「これを備えない構成としてもよい」); ¶0031 p. 7 calls its inclusion preferable and ¶0035 p. 8 includes it in Example 1. The omission is thus source-permitted, while the active rear-focus normalization remains a disclosed model choice. Source FLG parameters are usable (Table 1 p. 9: R1 1200.37020, R2 1199.78950, thickness 5.000 mm, following air 1.000 mm, nd/vd 1.51680/63.88, θgF 0.54). No geometry is changed.
+
+## 2026-11-14 — Finite conjugates from printed magnifications
+
+| Zoom / keyframe | Printed magnification → `sourceMagnification` | Source locator | Solved object distance | Check |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | “β = -0.033” → `"0.033"` | JP 2015-215560 A, Example 1 (PDF p. 10) | 14656.3 mm, first-surface | in focus 0.03335; at the declared distance 0.03335; −0.00 quarter waves |
+| 0 / 2 | “β = -0.153” → `"0.153"` | JP 2015-215560 A, Example 1 (PDF p. 10) | 3169.3 mm, first-surface | in focus 0.15326; at the declared distance 0.15326; +0.00 quarter waves |
+
+The patent prints a magnification and no object distance for these states. Each distance is solved from the prescription under `LENS_DATA_SPEC.md` § Finite conjugates: the distance that focuses the state on its image plane when the magnification there rounds to the print, otherwise the distance at the nearest magnification that does. Two independent readings of the patent agree on the printed value and on the gaps of the matching state.
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.

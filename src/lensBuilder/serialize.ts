@@ -134,7 +134,7 @@ const ORDERS: Record<string, string[]> = {
   aperture: ["nominalFNumber", "fStops", "maxFNumber", "step", "blades", "bladeRoundedness"],
   aberrationControl: ["label", "description", "minLabel", "centerLabel", "maxLabel", "step", "gaps"],
   gap: ["label", "values"],
-  conjugates: ["zoomStation", "keyframe", "objectDistanceMm", "distanceReference", "source"],
+  conjugates: ["zoomStation", "keyframe", "objectDistanceMm", "distanceReference", "sourceMagnification", "source"],
   opticalConfiguration: ["groupKey", "label", "order"],
   focalLengthMm: ["marketing", "design"],
   fNumber: ["marketing", "design"],

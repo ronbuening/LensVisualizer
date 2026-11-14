@@ -67,3 +67,14 @@ The patent names no spectral line for its index and Abbe columns, and the 2026-1
 | Element 8 | 1.80518 / 25.4 | SF6 | +0.000002 | +0.032 |
 | Element 9 | 1.762 / 40.1 | S-LAM55 | +0.000001 | +0.000 |
 | Element 10 | 1.51633 / 64.1 | S-BSL7 | -0.000000 | +0.042 |
+
+## 2026-11-14 — Finite conjugates from printed magnifications
+
+| Zoom / keyframe | Printed magnification → `sourceMagnification` | Source locator | Solved object distance | Check |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | “0.5X” → `"0.5"` | JP 1991-141313 A, Numerical Example 1 (PDF p. 5) | 244.92 mm, first-surface | in focus 0.50003; at the declared distance 0.50003; +0.01 quarter waves |
+| 0 / 2 | “1.0X” → `"1.0"` | JP 1991-141313 A, Numerical Example 1 (PDF p. 5) | 144.89 mm, first-surface | in focus 1.00005; at the declared distance 1.00007; +0.03 quarter waves |
+
+The patent prints a magnification and no object distance for these states. Each distance is solved from the prescription under `LENS_DATA_SPEC.md` § Finite conjugates: the distance that focuses the state on its image plane when the magnification there rounds to the print, otherwise the distance at the nearest magnification that does. Two independent readings of the patent agree on the printed value and on the gaps of the matching state.
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.

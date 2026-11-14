@@ -375,6 +375,24 @@ const LENS_DATA = {
     keyframes: [0, 0.24994136650337306, 1],
     description:
       "PUBLISHED floating focus: G1 fixed; G2 and G3 move objectward on distinct paths. Infinity/middle/close spacings are patent Table 3; focusPositions[1]=0.2499413665 is a solved UI coordinate. Optional plate PP is modeled in rearPlates behind the patent DD25 gap.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 511.61,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.031",
+        source: "US 2016/0282590 A1, Example 1 (PDF p. 15): prints “β 0.031” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.03110.",
+      },
+      {
+        zoomStation: 0,
+        keyframe: 2,
+        objectDistanceMm: 61.42,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.209",
+        source: "US 2016/0282590 A1, Example 1 (PDF p. 15): prints “β 0.209” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.20895.",
+      },
+    ],
     // (moved from publishedStations) Every focus keyframe is a source row.
     published: [1, 2],
   },

@@ -290,6 +290,16 @@ const LENS_DATA = {
     closeFocusM: 0.567,
     description:
       "Patent close-range correction: the air gap inside the split L5 component closes from 0.432 to 0.314 mm at 1/25× magnification while the image distance grows. The near image distance is calculated from that published state, and intermediate positions are a linear interpolation. The production lens focuses to 0.30 m, which the patent does not tabulate.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 493.6,
+        distanceReference: "first-surface",
+        sourceMagnification: "1/25",
+        source: "US 3,549,241 A, Example 2 (PDF p. 2): prints “1/25; d11′=1.57” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription at that magnification; focused on its image plane the state gives 0.04000.",
+      },
+    ],
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
   },

@@ -359,6 +359,32 @@ const LENS_DATA = {
     closeFocusM: 0.35,
     description:
       "Floating inner focus by the split negative second group. The G2F–G2R spacing changes with subject distance but remains identical at a given subject distance across the zoom range.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 350,
+        distanceReference: "image-plane",
+        source:
+          "US 8,081,392 B2, Example 3, Zooming Data (PDF p. 22, printed cols. 17-18), WE(350)/ST(350)/TE(350), subject distance 35 cm; PDF p. 18 defines subject distance as the distance from the subject to image plane I. wide: D6=0.76, D14=0.85, D18=39.19, BF=33.78 mm.",
+      },
+      {
+        zoomStation: 1,
+        keyframe: 1,
+        objectDistanceMm: 350,
+        distanceReference: "image-plane",
+        source:
+          "US 8,081,392 B2, Example 3, Zooming Data (PDF p. 22, printed cols. 17-18), WE(350)/ST(350)/TE(350), subject distance 35 cm; PDF p. 18 defines subject distance as the distance from the subject to image plane I. standard: D6=9.09, D14=0.85, D18=17.36, BF=41.76 mm.",
+      },
+      {
+        zoomStation: 2,
+        keyframe: 1,
+        objectDistanceMm: 350,
+        distanceReference: "image-plane",
+        source:
+          "US 8,081,392 B2, Example 3, Zooming Data (PDF p. 22, printed cols. 17-18), WE(350)/ST(350)/TE(350), subject distance 35 cm; PDF p. 18 defines subject distance as the distance from the subject to image plane I. tele: D6=26.5, D14=0.85, D18=9.57, BF=46.6 mm.",
+      },
+    ],
   },
 
   gaps: {

@@ -214,6 +214,24 @@ const LENS_DATA = {
     keyframes: [0, 0.7995997649601272, 1],
     description:
       "PUBLISHED — Groups I + II and the diaphragm translate toward the object while Group III and the image plane remain fixed. In R1-normalized coordinates only D14 changes: 2.50 mm at infinity, 25.62 mm at 0.5×, and 48.74 mm at 1.0×. The modeled 1× subject-to-image distance is 0.30687 m; Canon markets 0.31 m.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 244.92,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.5",
+        source: "JP 1991-141313 A, Numerical Example 1 (PDF p. 5): prints “0.5X” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.50003.",
+      },
+      {
+        zoomStation: 0,
+        keyframe: 2,
+        objectDistanceMm: 144.89,
+        distanceReference: "first-surface",
+        sourceMagnification: "1.0",
+        source: "JP 1991-141313 A, Numerical Example 1 (PDF p. 5): prints “1.0X” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 1.00005.",
+      },
+    ],
     // (moved from publishedStations) Every focus keyframe is a source row.
     published: [1, 2],
   },

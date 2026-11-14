@@ -365,6 +365,16 @@ const LENS_DATA = {
       "Inner focus: the complete second lens group G2 translates 5.2416 mm toward the object from infinity to the patent close-focus state; G1, the stop, and G3 remain fixed.",
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 217,
+        distanceReference: "first-surface",
+        source:
+          "US 2022/0276464 A1, Example 3, PDF p. 39 (printed p. 11), Table 11: 0.217 m, DD[11]=1.7684 mm and DD[21]=6.9516 mm. Paragraph 0061 (PDF p. 31) defines object distance from the object to the lens surface closest to the object side.",
+      },
+    ],
   },
 
   gaps: { STO: { label: "DD[11]", values: [[7.01, 1.7684]] }, "21A": { label: "DD[21]", values: [[1.71, 6.9516]] } },

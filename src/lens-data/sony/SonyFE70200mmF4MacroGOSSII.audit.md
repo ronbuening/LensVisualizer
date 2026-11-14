@@ -107,3 +107,13 @@ A fresh source pass found a coherent standard MC-TAF115 row in [HOYA MC20251106.
 L72 now uses this standard curve as a qualified spectral proxy: Δne = +0.000453281 and Δνd = +0.061842 from the printed 1.77373 / 49.4. It remains a near match, with supplier, melt and annealing unconfirmed. No annealing-specific row or interpolation is used to approach the printed coordinate. All nineteen elements now have catalog curves (previously eighteen); only eighteen match the index to the printed precision.
 
 The native runtime surfaces, focal lengths, f-numbers, iris and pupil schedules are unchanged. SEL14TC and SEL20TC compositions can now convert all glasses to one physical wavelength for simulated MTF; the result is conditioned on this proxy’s dispersion rather than proof of the production glass. The mixed-reference guard itself is unchanged.
+
+## 2026-11-14 — Published finite conjugates
+
+| Zoom / keyframe | Field | Before | After | Source and residual |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | `focus.conjugates` | Absent | 2119.38 mm, `first-surface` | Example 2, Table 8, near Wide/Mid/Tele columns, d0 row, Wide, PDF p. 36: d0: 2119.38; 撮影距離 = 2289mm; d6=2.08, d14=16.82, d18=7.75, d22=9.60, d27=5.84, d30=13.21 mm. Paraxial offset -0.011050773 mm (-0.598786 depths); `consistent`; other reference +10.478668 depths. |
+| 1 / 1 | `focus.conjugates` | Absent | 3513.49 mm, `first-surface` | Example 2, Table 8, near Wide/Mid/Tele columns, d0 row, Mid, PDF p. 36: d0: 3513.49; 撮影距離 = 3709mm; d6=27.85, d14=2.61, d18=10.79, d22=6.12, d27=9.09, d30=24.61 mm. Paraxial offset -0.040245064 mm (-1.946735 depths); `ambiguous-reference`; other reference +9.162930 depths. |
+| 2 / 1 | `focus.conjugates` | Absent | 5570.44 mm, `first-surface` | Example 2, Table 8, near Wide/Mid/Tele columns, d0 row, Tele, PDF p. 36: d0: 5570.44; 撮影距離 = 5814mm; d6=75.53, d14=1.50, d18=9.59, d22=5.81, d27=3.90, d30=32.42 mm. Paraxial offset -0.027649327 mm (-1.483918 depths); `ambiguous-reference`; other reference +13.635847 depths. |
+
+Reference definition: Table 6 (PDF p. 35): "0(OBJ)" has "(d0)" in the di column before surface 1; paragraph [0064] (PDF p. 23): 「di」はi番目の面とi+1番目の面との間の光軸上の間隔の値（mm）を示す。

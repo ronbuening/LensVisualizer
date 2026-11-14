@@ -43,3 +43,21 @@ the analysis identifies both assignments as coordinate successors rather than pr
 - Focused surface and image-circle checks pass (0 undersized, 0 skipped), as do all three stated axial aperture stations. Nine focus/zoom SVG states were directly inspected: finite paths, zero hidden trim, no detached resin wing. Shared dispersion/resolver validation passes 93 tests; AST scan has zero duplicate properties/parse errors. Source R/d/aspheres, stop, zoom/focus controls, and tolerances are unchanged. Aspheric clear caps are unchanged; numeric public values remain based on those caps. Dense cut sweep results are recorded below.
 
 - Dense independent inferred-cut probe: 21 zoom × 21 focus states, grid 41, 0.5° field step, 10,357,033 beam rays. S8 cap 10.028007 mm, required margin 0.05 mm; furthest refined reach 9.1557 mm at zoom 0 / focus 0.35 / field 37.967°. Zero clipped rays, zero within-margin rays, and no unlaunchable fields.
+
+## 2026-11-14 — Published finite-conjugate certification
+
+Patent: US 6,621,643 B2, Example 1. Page locators below are one-based PDF pages.
+
+| Zoom / keyframe | Field | Before | After | Source locator | Paraxial offset / diffraction depths |
+|---|---|---|---|---|---|
+| 0 / 1 | `focus.conjugates` | Undeclared | 314.9335 mm, `first-surface` | PDF p.27, Table 1, Variable intervals upon zooming, 7-POS; `D0 314.9335` | +0.000015372 mm / +0.001009; consistent |
+| 1 / 1 | `focus.conjugates` | Undeclared | 299.9877 mm, `first-surface` | PDF p.27, Table 1, Variable intervals upon zooming, 8-POS; `D0 299.9877` | +0.000035268 mm / +0.001418; consistent |
+| 2 / 1 | `focus.conjugates` | Undeclared | 259.2589 mm, `first-surface` | PDF p.27, Table 1, Variable intervals upon zooming, 9-POS; `D0 259.2589` | +0.000519346 mm / +0.012696; consistent |
+
+- State 0/1: PDF p.27 defines mm as the general length unit; pp.26-27 do not define the D0 datum. The first-surface interpretation must be discriminated by the audit.
+- State 1/1: PDF p.27 defines mm as the general length unit; pp.26-27 do not define the D0 datum. The first-surface interpretation must be discriminated by the audit.
+- State 2/1: PDF p.27 defines mm as the general length unit; pp.26-27 do not define the D0 datum. The first-surface interpretation must be discriminated by the audit.
+
+Reference basis: audit-resolved. The patent prints the distance without an explicit datum definition. The first-surface reference is identified by the conjugate audit, which discriminates the image-plane alternative. The declaration records `referenceBasis: audit-resolved` in its source string because the conjugate schema has no separate reference-basis field.
+
+All declared states are consistent within the audit’s 25-depth threshold. Existing published-state flags already include these keyframes; the spacings and authored image plane are retained.

@@ -182,3 +182,13 @@ Execution-local locations were removed from reference metadata, probe reports an
 ## 2026-11-10 — Metadata fill
 
 - `catalog.fNumber.design` = 6.3: `patents/US_4126378_A.pdf` PDF p. 10 (col. 10), Table 5 (Embodiment 3) heading "f = 100  F No.: 6.3  2ω = 4° 13′", read from a render. The stop's `nominalFNumber` 6.3 passes the 0.5% guard.
+
+## 2026-11-14 — Additional source-backed finite conjugates
+
+| Zoom / keyframe | Source distance and reference | Source locator and matching gaps | Paraxial residual |
+| --- | --- | --- | --- |
+| 0 / 1 | 12000 mm, image-plane | US 4,126,378 A, Example 3, Table 5 (PDF p10) and close-focus prose (PDF p11, col. 11): printed photographic distance 2,000 patent units × 6 = 12,000 mm | +0.005874301 mm; +0.119316 quarter waves; alternate -20.826624. |
+
+The file header documents the uniform 6× length scale; `focus.description` identifies the photographic distance as object-to-image. The scaled printed distance is consistent with the authored close-focus state. The inferred stop splits the 167.364 mm d8 into 150.152914604317 mm before the stop and 17.211085395683 mm after it.
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.

@@ -208,6 +208,16 @@ const LENS_DATA = {
     closeFocusM: 0.955706213056126,
     description:
       "Inner focus — G2 (L4–L7, five elements) and the stop move 10.3438 mm objectward. The source beta=-0.1 station implies about 0.956 m object-to-image distance; G1, G3 and rear BF stay fixed.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 837.59,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.1000",
+        source: "US 5,640,277 A, Example 2 (PDF p. 34): prints “β −0.1000” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.10000.",
+      },
+    ],
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
   },

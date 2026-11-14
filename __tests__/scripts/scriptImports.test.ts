@@ -53,6 +53,9 @@ const runtimeInputs: Record<string, Record<string, { pattern?: string; generated
   "scripts/audit-field-coverage.mjs": {
     file: { pattern: "src/lens-data/**/*.data.ts", reason: "CLI path or catalog walk" },
   },
+  "scripts/audit-finite-conjugates.mjs": {
+    file: { pattern: "src/lens-data/**/*.data.ts", reason: "CLI data files or catalog walk" },
+  },
   "scripts/audit-image-circle.mjs": { file: { pattern: "src/lens-data/**/*.data.ts", reason: "catalog walk" } },
   "scripts/audit-patent-figure.mjs": {
     "resolve(dataFile)": { pattern: "src/lens-data/**/*.data.ts", reason: "required CLI data path" },

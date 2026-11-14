@@ -126,3 +126,13 @@ Freshly rendered and inspected `patents/WO2022071249A1.pdf`, Example 2, Table 2 
 Individually checked and retained the eight coefficient-backed lens proxies: L11 J-LLF6, L12/L24g/L32 S-LAH65V, L21 S-LAH99, L22 S-TIH6, L23 J-SFH1 and L41 S-TIM22; FL resolves to J-BK7. The resin and L31 remain unresolved. A fresh current-catalog scan finds no row within the existing broad nd/νd guard for either unresolved coordinate. No line-index or partial-dispersion measurements appear in the source table; all APD flags remain false. The analysis already qualifies supplier/chemistry and the unmatched L31 coordinate.
 
 No change was required. `assertCatalogConsistent()` and the scoped resolver review pass; the three shared glass suites pass (94 tests). Geometry is unchanged.
+
+## 2026-11-14 — Published finite conjugates
+
+Patent: WO 2022/071249 A1, Example 2.
+
+| Zoom / keyframe | Field | Before | After | Source and paraxial residual |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | `focus.conjugates` | Undeclared | 135.39 mm, `first-surface` | PDF p28, Table 2, 可変間隔データ, 近距離 β = −0.203 column (heading PDF p27); mm per ¶0098: D0 135.390; gaps 17=8.492, STO=3.169, 13A=1.339 mm. Offset -0.000173572 mm (-0.018168 diffraction depths); `consistent`. |
+
+Reference evidence: “D0は物体から光学系の最も物体側のレンズ面までの距離を示す。”.

@@ -54,3 +54,15 @@
 - Left as stored: all sixteen values, because each equals the printed θgF minus the engine's line exactly. They were
   not re-rounded to six decimals.
 - No element authors `nC`, `nF` or `ng`, and none uses `indexReference: "e"`, so neither special case applied.
+
+## 2026-11-14 — Source-certified finite conjugates
+
+Patent: JP2023033114A.
+
+| Zoom / keyframe | Field | Before | After | Source and paraxial residual |
+|---|---|---|---|---|
+| 1 / 1 | `focus.conjugates` | No declaration | 1100 mm, `first-surface` | Example 1, Table 2, 望遠端_至近; DD[5]=31.285, DD[13]=0.945, DD[19]=16.026, DD[22]=7.034 mm (PDF p.49 (printed p.49), ¶0218; gaps PDF p.51 (printed p.51)). Offset -0.416554096 mm / -20.248519 depths; alternate reference 49.864617097740194 depths; `consistent`. |
+
+Reference evidence: “実施例１では、最も物体側のレンズ面から至近物体までの光軸上の距離は１．１ｍ（メートル）である。”
+
+The declared states already carry published focus flags. No prescription, gap, image-plane, or existing conjugate value changes.

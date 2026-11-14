@@ -239,6 +239,16 @@ const LENS_DATA = {
     // Published 1/40 row mapped by 0.80 m / 3.4841132476 m = 0.229613661542.
     keyframes: [0, 0.229613661542, 1],
     description: "PUBLISHED inner focus: G2 moves imageward through INF, |β|=0.025, and MOD |β|=0.125 states.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 3385.41,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.025",
+        source: "JP 2015-096915 A, Example 2 (PDF p. 21): prints “1/40: |β| 0.025; d1 4.580; d2 12.393” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.02477.",
+      },
+    ],
     // (moved from publishedStations) Every focus keyframe is a source row.
     published: [1, 2],
   },

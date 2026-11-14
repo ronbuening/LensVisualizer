@@ -459,6 +459,7 @@ function conjugatesView(lens: CanonicalLens, view: ViewContext): FiniteConjugate
       zoomT: (ignoredAt(view, `${at}.zoomT`) as number | undefined) ?? zoomT,
       objectDistanceMm: conjugate.objectDistanceMm,
       distanceReference: conjugate.distanceReference,
+      ...(conjugate.sourceMagnification !== undefined && { sourceMagnification: conjugate.sourceMagnification }),
       source: conjugate.source,
     };
   });

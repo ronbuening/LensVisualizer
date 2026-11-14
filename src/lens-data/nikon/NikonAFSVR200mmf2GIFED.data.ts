@@ -421,6 +421,16 @@ const LENS_DATA = {
   "focus": {
     "closeFocusM": 1.9,
     "description": "PUBLISHED internal-focus states from US 7,411,745 B2 Example 3: G2 moves 9.5995 mm toward the image, with D10 5.5000→15.0995 mm, D16 15.5239→5.9244 mm and BF 59.4575→59.4386 mm. The patent prints β = −0.1258 and no distance; these spacings compute to about 1.897 m object to image, against Nikon's 1.9 m minimum focus.",
+    "conjugates": [
+      {
+        "zoomStation": 0,
+        "keyframe": 1,
+        "objectDistanceMm": 1678.45,
+        "distanceReference": "first-surface",
+        "sourceMagnification": "0.1258",
+        "source": "US 7,411,745 B2, Example 3 (PDF p. 24): prints “β = −0.1258” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription at magnification 0.12575, the nearest value that rounds to the print; focused on its image plane the state gives 0.12565."
+      }
+    ],
     "published": [
       1
     ]

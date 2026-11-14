@@ -351,3 +351,20 @@ lint, full tests, and production build all pass.
 - `catalog.closeFocusM.marketing` 0.34 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.
 
 Text sync: focus.description: the 0.20× row focuses at 0.424 m; the 0.34 m specification is catalog metadata.
+
+## 2026-11-14 — Published finite-conjugate certification
+
+Patent: JP 2021-076740 A, Example 2.
+
+| State (zoom/keyframe) | Field | Before | After | Source |
+|---|---|---|---|---|
+| 0/1 | `focus.conjugates` | Absent | `600` mm, `first-surface` | PDF p. 19, Table 2, フォーカス可変間隔, 撮影倍率 0.10 column: `ZD 0 = 600.00` mm; ZD11=14.29 mm, ZD20=20.05 mm. |
+| 0/2 | `focus.conjugates` | Absent | `300` mm, `first-surface` | PDF p. 19, Table 2, フォーカス可変間隔, 撮影倍率 0.20 column: `ZD 0 = 300.00` mm; ZD11=22.74 mm, ZD20=25.44 mm. |
+
+Reference basis: Table 2: OBJ | Infinity | ZD 0, immediately before surface 1. The object row precedes surface 1, so the printed object-side gap is first-surface-referenced.
+
+State 0/1: paraxial image-minus-authored-plane residual +0.011641795617 mm (+9.764662768 diffraction depths); alternate image-plane reference +1101.026201413 depths. Verdict: `consistent`; reference discriminated.
+
+State 0/2: paraxial image-minus-authored-plane residual +0.011668885237 mm (+8.243476806 diffraction depths); alternate image-plane reference +4368.705896141 depths. Verdict: `consistent`; reference discriminated.
+
+Only the conjugate declaration is added; the published flags and all prescription geometry are retained.

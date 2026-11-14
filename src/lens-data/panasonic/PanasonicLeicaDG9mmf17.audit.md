@@ -96,3 +96,13 @@ not as catalog Sellmeier data. No radius, thickness, index, Abbe number or semi-
 
 - Why the old value differed: printed close row states no distance; 0.095 m is the old (production) value.
 - `catalog.closeFocusM.marketing` 0.095 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.
+
+## 2026-11-14 — Published finite-conjugate certification
+
+Patent: US 2023/0367186 A1.
+
+| Zoom / keyframe | Field | Before | After | Source locator |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | `focus.conjugates` | No declaration | 129.0009 mm, `first-surface` | PDF p. 24; US 2023/0367186 A1, First Example of Numerical Values, Table 1C, Close-object column: d0 129.0009. d19=1.6129 mm, d23=4.6917 mm. |
+
+- State 0/1: paraxial image offset -0.00026749693059 mm (-0.0726759531922 diffraction depths); alternate reference +0.623520912505 mm (+165.10792101 depths). Verdict: `consistent`; reference discriminated: true. Reference evidence: Table 1A (PDF p. 23): "object surface" has d="Variable" immediately before surface 1; paragraph 0256: "the length is expressed in millimeters (mm)" and "d indicates the surface interval".

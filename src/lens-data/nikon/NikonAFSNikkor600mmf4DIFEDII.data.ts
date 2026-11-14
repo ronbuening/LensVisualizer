@@ -280,6 +280,16 @@ const LENS_DATA = {
       "PUBLISHED inner focus: G2 translates imageward by 10.8634 mm from infinity to the patent R=6000 mm object-to-image state; d11 33.4177→44.2811 mm and d16 16.5738→5.7105 mm. This endpoint is not Nikon's marketed 5.4/5.6 m MFD.",
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 5537.434,
+        distanceReference: "first-surface",
+        source:
+          "US5745306-2, Example 3, Table 3, Variable Interval Upon Focusing, Closest Distance column, D0 row, PDF p. 23: D0 = 5537.4340 (mm); d11=44.2811 mm, d16=5.7105 mm. Distance reference: PDF p. 23, printed col. 14.",
+      },
+    ],
   },
 
   gaps: { "11": { label: "D11", values: [[33.4177, 44.2811]] }, "16": { label: "D16", values: [[16.5738, 5.7105]] } },

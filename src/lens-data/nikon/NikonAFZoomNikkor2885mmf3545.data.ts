@@ -283,6 +283,16 @@ const LENS_DATA = {
     closeFocusM: 0.25,
     description:
       "Normal focusing is by front-group G1 translation. The tabulated close-focus state models the patent macro setting at the wide end: G1, G2, and G4 move together toward the object while G3 and the stop remain fixed.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 92.24,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.25",
+        source: "US 4,806,000, Sole example (PDF p. 13): prints “β = −0.25” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.24997.",
+      },
+    ],
   },
 
   gaps: {

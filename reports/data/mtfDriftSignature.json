@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
   "inputHashes": {
-    "engineSha256": "2b88a9bb4cf6ff2679e78b6bb57cad649a04f525cc401ebd0879a2524e55fe1c",
+    "engineSha256": "535a324092b35c45e3e552e4f5aadc10a815ce28ce82e668ad26e92b9a371836",
     "lensDataSha256": {
       "src/lens-data/canon/CanonSerenar50mmf18.data.ts": "3361db2273e27151e4d7a98512e635ed76a8203a95fe47d4fae40b1c21f27174",
       "src/lens-data/fujifilm/FujifilmGF80mmf17R.data.ts": "20dbd32b7358e0e46631491dc3a36785a9dea977b6b32dee1a3d0d0e94f6e9ea",
-      "src/lens-data/sony/SonyFE1224mmf28GM.data.ts": "3e434dc9491f0f40f03bdd780a814d1124110220f22418688f3defa3aa88de6d"
+      "src/lens-data/sony/SonyFE1224mmf28GM.data.ts": "c871b7524a0f6cfe034257746c37d921bf03fb7997a39489645c6ce4749c6235"
     }
   },
   "cases": [

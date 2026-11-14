@@ -281,6 +281,16 @@ const LENS_DATA = {
   ],
 
   focus: {
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 1000,
+        distanceReference: "first-surface",
+        source:
+          "US10168507, Example 4, Table 11, 1 m column; DD[12]=3.51, DD[14]=8.02 mm; distance wording PDF p.14 (column 12) (PDF p.16 (printed column 16)): 1 m. Distance reference identified by the conjugate audit (referenceBasis: audit-resolved); the patent does not define the datum.",
+      },
+    ],
     closeFocusM: 0.39,
     keyframes: [0, 0.39, 1],
     description:

@@ -51,3 +51,14 @@ Patent: US 5,438,455 A, Example 1
 - Rechecked all 10 lens media and the rear filter against printed nd/νd. Removed 40 catalog-derived nC/nF/ng/dPgF fields from the lens elements because the patent does not publish them. Every source nd/νd remains unchanged; compatible catalog dispersion curves remain available through the resolver. J-LLF6 is explicitly qualified: source νd=49.1 versus current catalog 48.78, with no production-supplier claim. Qualified the filter's J-BK7A label. No source APD measurement is asserted.
 - Surface and image-circle audits pass; the infinity aperture remains iris-limited at f/2.880000. Actual renderer output at 3 focus x 3 secondary-control states has 11 finite element paths and zero trim diagnostics per state; inspected the SVG raster. Four cardinal full-iris rays pass at infinity but retain baseline S1 clipping at the published close object distance. Source prescription, focus motion, and inferred iris station remain unchanged.
 - Shared dispersion, glass-resolution-parity, and partial-dispersion tests pass (3 files / 94 tests for this triad); catalog consistency passes. The retained finite-conjugate clipping is not described as full-iris clearance across the focus range.
+
+## 2026-11-14 — Source-backed finite conjugates
+
+Patent: US 5,438,455 A.
+
+| Zoom / keyframe | Added distance | Source locator and matching gaps | Paraxial residual |
+| --- | --- | --- | --- |
+| 0 / 1 | 2925.7669 mm, first-surface | PDF p. 8; Embodiment 1, Table 1, finite β=−.1446 column: d9=26.0802, d14=5.2009 mm | +0.004530374 mm; +0.464799 diffraction depths; alternate +824.077338 depths. |
+
+- Reference definition: “D0 represents the distance from an object to the first lens surface.” (PDF p. 8).
+- The authored gaps and image plane are retained.

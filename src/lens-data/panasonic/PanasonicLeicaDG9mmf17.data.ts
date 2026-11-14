@@ -298,6 +298,16 @@ const LENS_DATA = {
     description: "Inner focus via G2 (L10+L11 cemented doublet); linear motor AF.",
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 129.0009,
+        distanceReference: "first-surface",
+        source:
+          "US 2023/0367186 A1, First Example of Numerical Values, Table 1C, Close-object column: d0 129.0009 mm; d19=1.6129 mm, d23=4.6917 mm. Table 1A (PDF p. 23): \"object surface\" has d=\"Variable\" immediately before surface 1; paragraph 0256: \"the length is expressed in millimeters (mm)\" and \"d indicates the surface interval\".",
+      },
+    ],
   },
 
   /* (moved from var) ── Variable air spacings (inner focus via G2) ──

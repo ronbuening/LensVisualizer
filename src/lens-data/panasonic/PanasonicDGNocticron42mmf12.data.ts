@@ -354,6 +354,16 @@ const LENS_DATA = {
     description: "Internal focus by L9/G2 only; L9 moves 4.9449 mm toward the image side between infinity and 0.5 m.",
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 407.5,
+        distanceReference: "first-surface",
+        source:
+          "US 2015/0192839 A1, Numerical Example 5, Table 32 (continued), Object distance 500 column: d0 407.5000 mm; d15=6.5938 mm, d17=2.2756 mm. Table 29 (PDF p. 19): \"Object surface\" has d=\"Variable\" immediately before surface 1; Table 32 names this object-side interval d0.",
+      },
+    ],
   },
 
   /* (moved from var) ── Focus variable air gaps ── */

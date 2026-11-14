@@ -46,3 +46,13 @@ Patent: US 10,545,321 B2, Example 4, Figure 13
 - Full collimated guard0errors/untraced, reach11.778249+.05margin<12.747062. Supplemental exact sourceTable12firstsurface d02399.28/2352.02/2320.84 atkey1 also0errors; rejected diagnosticdeeper2.55/cap11.197 fails reach11.7837+.05 and is notadopted. Allpublishedfocusgapshandling retained with normalizedmedia limitations; no new certificate/flag/tolerance.
   -144405same collimated samples:125353retained,0lost,0gained,19052bothblocked; countsnotflux. SourcefocusisPUBLISHED; interlayer normalization EFL/FNOresiduals remain explicit, notretuned.
 - Four focused audits pass:0 surface errors/undersized apertures,9/9 stations≥99% field corner and within3% FNO, no rim/iris/trace failures.27 actual SVG zoom/focus states viewed with0trim and connected compounds.94 shared dispersion/resolver/partial-line tests pass. Source R/d/asphere coefficients/nd/vd/stop/zoom/focus/normalization/tolerances invariant. No live/shared engine/catalog/report/test changes.
+
+## 2026-11-14 — Published finite-conjugate certification
+
+| Zoom / keyframe | Field | Before | After | Source and conjugate residual |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | `focus.conjugates` | No entry | 2399.28 mm, `first-surface` | D(0) = 2399.28 (mm); Embodiment 4, Table 12, f = 152.1633 column; D(0)/D(29)/D(36) rows; PDF p. 31. Paraxial image minus authored plane +0.211220404 mm (+7.016331 diffraction depths); other reference +45.403613 depths; `consistent`, reference discriminated. Basis: patent-defined. |
+| 1 / 1 | `focus.conjugates` | No entry | 2352.02 mm, `first-surface` | D(0) = 2352.02 (mm); Embodiment 4, Table 12, f = 297.4851 column; D(0)/D(29)/D(36) rows; PDF p. 31. Paraxial image minus authored plane +0.142778509 mm (+3.195173 diffraction depths); other reference +107.149400 depths; `consistent`, reference discriminated. Basis: patent-defined. |
+| 2 / 1 | `focus.conjugates` | No entry | 2320.84 mm, `first-surface` | D(0) = 2320.84 (mm); Embodiment 4, Table 12, f = 582.5200 column; D(0)/D(29)/D(36) rows; PDF p. 31. Paraxial image minus authored plane +0.245571887 mm (+3.815815 diffraction depths); other reference +258.070552 depths; `consistent`, reference discriminated. Basis: patent-defined. |
+
+“the distance D (0) from the front surface of the first lens piece to the object.”

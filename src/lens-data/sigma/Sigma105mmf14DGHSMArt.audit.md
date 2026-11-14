@@ -74,3 +74,15 @@ Patent: JP 2019-144477 A, Numerical Example 1
 - S14's literal q candidate (5.64 mm depth, 26.968782 mm cap) fails the unchanged full-beam rule. Its adopted cut moves outward: fresh reach 27.926018 plus margin 0.084056 is below cap 28.018800. S8 reach 32.870280 plus margin 0.100786 clears33.595462; S21 reach 16.977505 plus0.052402 clears17.467215. The shared guard sweeps interpolated focus and the source close keyframe. A separate temporary source-point run adds the printed d0 = 826.8724 mm at that close endpoint and also passes, with S21 reach 16.977504 mm; this diagnostic does not add finite-conjugate certification to the authored file. S21 stays before its actual7.5444 mm stop gap; no iris relocation or source flag is added. All other faces retain their caps; no further resolved flat land justifies another cut/extension.
 - All **17 physical lens media plus one rear plate** retain the exact source d-line nd/νd pairs and all 18 actual PgF values. Four-decimal PgF precision is ±0.00005 before conversion to `.6438−.001682νd`; every stored dPgF reconstructs the printed value at that precision, including the plate's rounded−0.00035. No C/F/g indices are published. All 18 media resolve compatibly. M-TAFD305 remains a loose spectral proxy for L17 1.84915/40.00 (catalog 1.85135/40.10), without production/melt identification; unsupported molded-melt/vendor speculation was removed from public prose. Source anomaly conditions and the narrower six-element APD key remain; actual partial ratios do not make every ordinary partner a display-key APD element.
 - Canonical/surface/full-cut checks pass with no unlaunched fields; image-circle reports no undersized surface; direct field coverage and aperture census pass. Nine actual SVG states were generated/rasterized/viewed with connected cemented outlines and zero hidden trim. Source R/d/aspheres, plate gaps, source indices/partials, stop, all controls and tolerances are unchanged. All new caps clear the pre-cut complete wide-open beams, so the cuts retain those beams rather than fitting the figure at their expense. Catalog consistency/resolver coverage and focused shared glass tests were checked; full integration gates belong to the parent batch.
+
+## 2026-11-14 — Published finite conjugates
+
+Patent: JP 2019-144477 A. PDF pages below use the one-based PDF page index.
+
+| State (zoom/keyframe) | Field | Before | After | Source and paraxial residual |
+| --- | --- | --- | --- | --- |
+| 0/1 | `focus.conjugates` | Absent | 826.8724 mm, `first-surface` | PDF p. 13, Numerical Example 1, [可変間隔データ], 撮影距離 999 column; d14=3.0000 mm, d30=50.4932 mm. Offset +0.000710071 mm (+0.195482 diffraction depths); `consistent`. |
+
+[面データ]: "物面 | ∞ | (d0)" immediately before surface 1; "単位：mm" (PDF p. 12). This defines the declared distance from the object plane to the first surface.
+
+The published flags already include the declared keyframes. All gap values, surfaces, image-plane settings and existing focus controls are retained.

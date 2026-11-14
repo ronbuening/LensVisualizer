@@ -67,3 +67,16 @@ Validation: focused runtime/paraxial check; full corpus gates at the ten-lens ch
 - `catalog.fNumber.design: 2.8` from US 2020/0319427 A1 FIG. 3 (Sheet 2 of 40, PDF p. 3), INFINITY column:
   "F No. 2.80"; ¶[0104] (p. 8) repeats "an F number of 2.80" for Example 1. The stop's `nominalFNumber` 2.8 matches
   it. No optical value changed.
+
+## 2026-11-14 — Published finite conjugates
+
+Patent: US 2020/0319427 A1, Example 1.
+
+Figure 3 (PDF p. 3, Sheet 2) prints OBJECT DISTANCE 2400mm and 400mm. No explicit reference-plane definition is found; the first-surface reference is identified by the conjugate audit. The image-plane alternative exceeds the 25-depth limit at both states.
+
+| Zoom / keyframe | Field | Before | After | Matching source gaps (mm) | Paraxial offset (mm / depths) | Other reference (depths) |
+|---|---|---|---|---|---|---|
+| 0 / 1 | `focus.conjugates` | Undeclared | 2400 mm, `first-surface` | d12 3.02 | +0.234995388 / +24.018467 | +31.517376 |
+| 0 / 2 | `focus.conjugates` | Undeclared | 400 mm, `first-surface` | d12 14.46 | +0.067428600 / +5.080009 | +325.051298 |
+
+Every added declaration is `consistent` with `referenceDiscriminated: true`. The source-published flags already include these states.

@@ -473,6 +473,32 @@ const LENS_DATA = {
     closeFocusM: 0.25,
     description:
       "Patent Example 1 uses dual floating focus: G4 is the focus lens group and G5 is the floating lens group. The data file's close-focus spacings correspond to the patent close state at 247 mm; catalog.closeFocusM keeps Sony's production specification of 0.22 m as marketed metadata.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 111.71,
+        distanceReference: "first-surface",
+        source:
+          "WO 2024/135126 A1, Example 1, Table 3, Wide finite column, d0 row (PDF p. 24): d0 = 111.71; D8 G1-G2=21.92 mm; D11 G2-STO=6.47 mm; D19 G4-G5=3.81 mm; D22 G5-G6=3.27 mm; D14 G3-G4=7.76 mm; BF=17.31 mm. d0 is the object-to-first-surface gap in the surface table.",
+      },
+      {
+        zoomStation: 1,
+        keyframe: 1,
+        objectDistanceMm: 117.88,
+        distanceReference: "first-surface",
+        source:
+          "WO 2024/135126 A1, Example 1, Table 3, Mid finite column, d0 row (PDF p. 24): d0 = 117.88; D8 G1-G2=10.42 mm; D11 G2-STO=4.1 mm; D19 G4-G5=4.59 mm; D22 G5-G6=5.37 mm; D14 G3-G4=4.88 mm; BF=25.01 mm. d0 is the object-to-first-surface gap in the surface table.",
+      },
+      {
+        zoomStation: 2,
+        keyframe: 1,
+        objectDistanceMm: 119.57,
+        distanceReference: "first-surface",
+        source:
+          "WO 2024/135126 A1, Example 1, Table 3, Tele finite column, d0 row (PDF p. 24): d0 = 119.57; D8 G1-G2=1.13 mm; D11 G2-STO=3.64 mm; D19 G4-G5=7.69 mm; D22 G5-G6=3.92 mm; D14 G3-G4=3.23 mm; BF=33.08 mm. d0 is the object-to-first-surface gap in the surface table.",
+      },
+    ],
   },
 
   gaps: {

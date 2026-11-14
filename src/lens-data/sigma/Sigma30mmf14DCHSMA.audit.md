@@ -21,3 +21,15 @@ Patent: JP 2014-142520 A, Numerical Example 1 / FIG. 1
 - Fresh glass: all9 source nd/νd pairs exact and all9 resolve to compatible current coefficient curves. No source C/F/g, θgF, ΔPgF or anomalous-material condition is printed. No spectral override/APD badge invented. Glass annotations and public prose now qualify supplier/melt/molding-grade uncertainty; L4 resolves to E-FD4 despite the E-FD4L reference label. Canonical Hiroki Uehara spelling synchronized in subtitle/public analysis. No source R/d, asphere coefficients, glass coordinates, stop, focus/aperture controls, tolerances or certifications changed.
 - Finite guard supplement: temporary copies test source600mm image-plane state plus the existing derived300mm endpoint (not source-published); no authored finite certification added. Full inferred-cut guard passes with both, stepped focus and all fields. Source600mm keyframe and derived production-MFD limitation remain explicit.
 - Validation: surface/full cuts, image-circle0undersized, ≥99%field, aperture within3%/no rim limiter; catalogue consistency and3existing glass suites/94tests pass. Actual9state SVGs viewed: connected doublet and lands, max automatic trim0. Same65×65 pupil disk ×5source-field fractions ×3focus states:38,417retained,0lost,600gained,9,118blocked both; samples, not flux. Source/control invariants pass. Public prose synchronized; scratch evidence only `/tmp/ftb3/`.
+
+## 2026-11-14 — Published finite-conjugate certification
+
+Patent: JP2014142520A, Numerical Example 1.
+
+| State (zoom/keyframe) | Field | Before | After | Source and axial residual |
+|---|---|---|---|---|
+| 0/1 | `focus.conjugates` | absent | 600 mm, `image-plane` | PDF p.9 (printed p.9), [可変間隔データ], 600mm column, 撮影距離 row: 撮影距離 = 600mm; d6=3.5754; BF=40.2725 mm. Offset +0.000132074 mm (+0.050353 diffraction depths), `consistent`; other reference -0.315363858 mm (-121.158410 depths). |
+
+The patent labels the finite state with photographing distance but does not define its datum. The conjugate audit identifies the image-plane reference (`referenceBasis: audit-resolved`), with `referenceDiscriminated: true` at every declared state.
+
+The audit uses the open physical stop and the authored image plane. Published flags already include these keyframes. Prescription values, gap schedules and image position are retained.

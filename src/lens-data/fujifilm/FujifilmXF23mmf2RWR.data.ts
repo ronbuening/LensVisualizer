@@ -347,6 +347,16 @@ const LENS_DATA = {
     keyframes: [0, 0.3666506780181183, 1],
     description:
       "Inner focus by G2 only. The patent beta=-0.041 row is stored exactly before the constrained production 0.22 m endpoint; G1 and G3 remain fixed.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 534.97,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.041",
+        source: "US 2017/0351051 A1, Example 1 (PDF p. 22): prints “β = −0.041” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.04076.",
+      },
+    ],
     // (moved from publishedStations) The intermediate focus row is source-tabulated; the close endpoint is reconstructed.
     published: [1],
   },

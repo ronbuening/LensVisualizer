@@ -42,3 +42,17 @@ Patent: US 4,621,909, Example 3 / Table 3
 
 - Why the old value differed: printed row is d0 = 514.966 mm from the first surface (0.614 m object to image); production 0.5 m.
 - `catalog.closeFocusM.marketing` 0.5 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.
+
+## 2026-11-14 — Published finite-conjugate certification
+
+Patent: US 4,621,909, Embodiment 3. Page locators below are one-based PDF pages.
+
+| Zoom / keyframe | Field | Before | After | Source locator | Paraxial offset / diffraction depths |
+|---|---|---|---|---|---|
+| 0 / 1 | `focus.conjugates` | Undeclared | 514.966 mm, `first-surface` | PDF p.11, Table 3 (Third Embodiment), β=−0.1 column; `d0 514.966` | +0.003754763 mm / +1.970955; consistent |
+
+- State 0/1: Definition PDF p.10 (column 4). Printed d6=18.251 is authored 9.551 plus fixed 8.700 stop segment; d11=2.003 and Bf=42.756 mm match.
+
+Reference basis: patent-defined. The source states: “d0 represents the object distance from the foremost lens surface”.
+
+All declared states are consistent within the audit’s 25-depth threshold. Existing published-state flags already include these keyframes; the spacings and authored image plane are retained.

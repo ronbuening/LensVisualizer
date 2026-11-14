@@ -157,6 +157,16 @@ const LENS_DATA = {
     closeFocusM: 0.3580979406302213,
     description:
       "PUBLISHED floating-focus model using the patent beta=0 to beta=-1/2 internal gaps; the rear image distance is the independently solved finite conjugate. The bare lens reaches 1:2. The published beta=-1 state uses the optional Auto Macro Spacer and is not included.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 210.81,
+        distanceReference: "first-surface",
+        sourceMagnification: "1/2",
+        source: "JP S55-24081 B2, Sole example (PDF p. 2): prints “撮影倍率 β＝−1/2; d3＝3.53、d5＝7.78、d7＝2.1” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.50000.",
+      },
+    ],
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
   },

@@ -238,6 +238,16 @@ const LENS_DATA = {
       "PUBLISHED internal focus: negative unit G2 translates 17.8317 mm imageward from infinity to the patent R=3.300 m endpoint; d9 expands 8.2485→26.0802 mm while d14 contracts 23.0326→5.2009 mm, preserving d9+d14=31.2811 mm. No reconstructed focus state is used.",
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 2925.7669,
+        distanceReference: "first-surface",
+        source:
+          "US 5,438,455 A, Embodiment 1, Table 1 (PDF p. 8): D0=2925.7669 mm, defined as object to first lens surface; d9=26.0802 mm, d14=5.2009 mm.",
+      },
+    ],
   },
 
   /* (moved from var) Published inner-focus endpoint pairs from Example 1. */

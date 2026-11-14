@@ -276,6 +276,16 @@ const LENS_DATA = {
   ],
   focus: {
     closeFocusM: 0.7,
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 599.22,
+        distanceReference: "first-surface",
+        sourceMagnification: "1/4",
+        source: "US 4,793,698, Example 1 (PDF p. 12): prints “a magnification of ¼” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription at that magnification; focused on its image plane the state gives 0.25001.",
+      },
+    ],
     published: [1],
     description:
       "PUBLISHED infinity and 1/4-magnification gaps. Units 20 and 30 move toward the image, by 24.78 mm and 14.87 mm, while units 10 and 40 and the iris stay fixed. At the printed 1/4 state the object-to-image distance computes to 725 mm, about 3.6 % over the retail 0.7 m minimum focus.",

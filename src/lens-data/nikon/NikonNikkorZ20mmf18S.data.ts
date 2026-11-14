@@ -339,6 +339,24 @@ const LENS_DATA = {
       "PUBLISHED focus model: G2 moves imageward while G4 moves objectward. The patent's infinity, middle, and near rows are exact focus keyframes.",
     // (moved from publishedStations) Every focus keyframe is a source row.
     published: [1, 2],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 583.6824,
+        distanceReference: "first-surface",
+        source:
+          "WO 2021/117429 A1, Example 1, Table 1 variable-spacing data, middle/nearest columns, PDF p. 21 (printed p. 19): 物体距離 = 583.6824 mm; D8 [8]=4.66117, D10 [10]=8.86123, D23 [23]=7.83192, D25 [25A]=8.21231 mm. First-surface distance reference identified by the conjugate audit; the patent does not explicitly define the reference.",
+      },
+      {
+        zoomStation: 0,
+        keyframe: 2,
+        objectDistanceMm: 81.5339,
+        distanceReference: "first-surface",
+        source:
+          "WO 2021/117429 A1, Example 1, Table 1 variable-spacing data, middle/nearest columns, PDF p. 21 (printed p. 19): 物体距離 = 81.5339 mm; D8 [8]=8.49234, D10 [10]=5.03506, D23 [23]=7.06806, D25 [25A]=8.97413 mm. First-surface distance reference identified by the conjugate audit; the patent does not explicitly define the reference.",
+      },
+    ],
   },
 
   gaps: {

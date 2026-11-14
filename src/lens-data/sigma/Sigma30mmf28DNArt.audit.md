@@ -149,3 +149,15 @@ Coordinator follow-up, same day: the aspheric surfaces are now labelled `9A` and
 G2 IF / G3 bracket ends renamed to match; engine values unchanged. The printed 500 mm state is now a certified conjugate
 (keyframe 1, 500.07 mm object to image plane, `image-plane` reference), so finite-distance analyses use the patent's own
 object distance.
+
+## 2026-11-14 — Finite conjugate set to the printed distance
+
+| Zoom / keyframe | Field | Before | After | Defocus at the declared distance | Other reference | Verdict |
+| --- | --- | --- | --- | --- | --- | --- |
+| 0 / 1 | `focus.conjugates[0].objectDistanceMm` | 500.07 mm, `image-plane` | 500 mm, `image-plane` | +0.06 quarter waves | −22.0 quarter waves | consistent |
+
+Source: JP 2012-234169 A, Example 1, [可変間隔] table (PDF pp. 21–22), 撮影距離 500mm row (d4 5.6552, d9 2.8307, Bf 20.4045).
+
+The earlier entry declared 500.07 mm, the distance at which the printed spacings focus, where the patent prints 500 mm. A certified conjugate carries the printed distance (`LENS_DATA_SPEC.md` § Finite conjugates), so the entry now does. Distance-reference basis: `audit-resolved`. The patent labels the row 撮影距離 and does not define what it is measured from; the finite-conjugate audit identifies the image-plane reference. Two independent readings of the patent agree on the printed distance, its label, the absence of a definition and the gaps.
+
+All radii, thicknesses, glasses, gaps, image-plane distances and focus keyframes are retained.

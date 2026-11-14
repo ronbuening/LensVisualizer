@@ -139,3 +139,17 @@ Open limitations: the plate's thickness and index are not printed. `focus.conjug
 
 - `catalog.fNumber.marketing: 1.2` from the product name, so the wide-open readout names the marked f/1.2 beside
   the design f/1.23. No optical value changed.
+
+## 2026-11-14 — Published finite-conjugate certification
+
+Patent: JP 2022-128635 A, Example 1.
+
+| State (zoom/keyframe) | Field | Before | After | Source |
+|---|---|---|---|---|
+| 0/1 | `focus.conjugates` | Absent | `240.11` mm, `first-surface` | PDF p. 6, Table 1, フォーカス可変間隔, 撮影倍率 0.1436 column: `ZD 0 = 240.11` mm; ZD15=20.826 mm. |
+
+Reference basis: Table 1: OBJ | Infinity | ZD 0, immediately before surface 1; ¶0023 defines D(i) in mm. The object row precedes surface 1, so the printed object-side gap is first-surface-referenced.
+
+State 0/1: paraxial image-minus-authored-plane residual -0.009446989140 mm (-4.263703564 diffraction depths); alternate image-plane reference +674.087891506 depths. Verdict: `consistent`; reference discriminated.
+
+Only the conjugate declaration is added; the published flags and all prescription geometry are retained.

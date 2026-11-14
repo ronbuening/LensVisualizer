@@ -456,6 +456,32 @@ const LENS_DATA = {
     closeFocusM: 0.21, // nearest station row; Sony spec 0.21 m at 24 mm / 0.30 m at 70 mm is catalog metadata
     description:
       "Dual floating inner focus: Gr5 (negative singlet) and Gr6 (positive singlet) move on independent trajectories, driven by four XD Linear Motors.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 74,
+        distanceReference: "first-surface",
+        source:
+          "WO 2023/181666 A1, Example 4, Table 18, Wide close column (PDF p. 51 / printed p. 49): d0=74 mm, beta=-0.229; d20=8.37, d29=7.18, d31=4.5, d33=4.6 mm. Table 16 places d0 at 0(OBJ), ahead of surface 1; the numerical-data definitions make di the axial spacing from surface i to i+1. The existing omitted surface-21 flare cutter has d21=-1.10 mm, so authored gap 20=7.27 mm preserves the source path; all other variable gaps match the column.",
+      },
+      {
+        zoomStation: 1,
+        keyframe: 1,
+        objectDistanceMm: 171.81,
+        distanceReference: "first-surface",
+        source:
+          "WO 2023/181666 A1, Example 4, Table 18, Mid close column (PDF p. 51 / printed p. 49): d0=171.81 mm, beta=-0.182; d20=4.24, d29=5.66, d31=4.35, d33=17.01 mm. Table 16 places d0 at 0(OBJ), ahead of surface 1; the numerical-data definitions make di the axial spacing from surface i to i+1. The existing omitted surface-21 flare cutter has d21=-1.10 mm, so authored gap 20=3.14 mm preserves the source path; all other variable gaps match the column.",
+      },
+      {
+        zoomStation: 2,
+        keyframe: 1,
+        objectDistanceMm: 151.21,
+        distanceReference: "first-surface",
+        source:
+          "WO 2023/181666 A1, Example 4, Table 18, Tele close column (PDF p. 51 / printed p. 49): d0=151.21 mm, beta=-0.292; d20=1.98, d29=5.75, d31=5.56, d33=31.03 mm. Table 16 places d0 at 0(OBJ), ahead of surface 1; the numerical-data definitions make di the axial spacing from surface i to i+1. The existing omitted surface-21 flare cutter has d21=-1.10 mm, so authored gap 20=0.88 mm preserves the source path; all other variable gaps match the column.",
+      },
+    ],
   },
 
   /* (moved from var) ── Variable air spacings (zoom + focus) ──

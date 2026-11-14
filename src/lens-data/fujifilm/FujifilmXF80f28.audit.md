@@ -106,3 +106,13 @@ Patent: US 2018/0246292 A1 — Example 1
   that only matched within tolerance. Both now use the N-BK7 class (1.51680 / 64.17), the exact-nd match and the label
   the other Fujifilm rear plates use. Catalog names remain inferred counterparts; the analysis glass list and the
   rear-plate paragraph follow.
+
+## 2026-11-14 — Finite conjugates from printed magnifications
+
+| Zoom / keyframe | Printed magnification → `sourceMagnification` | Source locator | Solved object distance | Check |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | “β = −1.0” → `"1.0"` | US 2018/0246292 A1, Example 1 (PDF p. 40) | 106.25 mm, first-surface | in focus 1.00096; at the declared distance 1.00095; −0.04 quarter waves |
+
+The patent prints a magnification and no object distance for this state. Each distance is solved from the prescription under `LENS_DATA_SPEC.md` § Finite conjugates: the distance that focuses the state on its image plane when the magnification there rounds to the print, otherwise the distance at the nearest magnification that does. Two independent readings of the patent agree on the printed value and on the gaps of the matching state.
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.

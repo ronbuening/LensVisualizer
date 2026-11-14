@@ -24,3 +24,15 @@ Patent: JP 2010-72639 A, Example 4 / Figure 4.
 - Plate check: EFL identical and paraxial defocus unchanged at both focus keyframes (worst difference 7e-16 mm); physical
   track grows 0.4133 mm, the plate's t(1 − 1/n). `closeFocusM: 0.3` is the patent's quoted object-to-image distance and is
   unchanged. Surface validation and image-circle audits pass.
+
+## 2026-11-14 — Published finite-conjugate certification
+
+Patent: JP2010072639A; Example 4, paragraph 0098, Table 11, 300mm column; reference definition in paragraph 0106, PDF p. 17, FIG. 12 description.
+
+| State | Field | Before | After | Source evidence |
+| --- | --- | --- | --- | --- |
+| Zoom 0, keyframe 1 | `focus.conjugates` | No declaration | `objectDistanceMm: 300`, `distanceReference: "image-plane"` | `300mm`; PDF p. 16. Printed A=6.02 mm, B=3.68 mm, C=5.66 mm equal authored gaps 6=6.02 mm, STO=3.68 mm, 15=5.66 mm. |
+
+Reference: patent-defined. The patent states: “図１２は、実施例４の撮像光学系の「像面から３００ｍｍにある物体における収差曲線図」”.
+
+The paraxial image offset is -0.003429943 mm (-0.777216 diffraction depths); verdict `ambiguous-reference`, `referenceDiscriminated: false`. The alternative `first-surface` reference gives -0.022555610 mm (-5.117709 depths). The explicit source definition supports the declaration even though the numerical check cannot discriminate the references. All authored prescription, focus-gap and image-plane values are retained.

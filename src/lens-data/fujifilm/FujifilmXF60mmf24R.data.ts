@@ -290,6 +290,24 @@ const LENS_DATA = {
      */
     keyframes: [0, 0.6115561181433857, 1],
     description: "Unit focus — entire G1 (L11–L17 + aperture stop) translates forward as a rigid unit; G2 fixed.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 363.12,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.2",
+        source: "US 2014/0247506 A1, Example 1 (PDF p. 23): prints “MAGNIFICATION −0.2X” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.19995.",
+      },
+      {
+        zoomStation: 0,
+        keyframe: 2,
+        objectDistanceMm: 179.88,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.5",
+        source: "US 2014/0247506 A1, Example 1 (PDF p. 23): prints “MAGNIFICATION −0.5X” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.49993.",
+      },
+    ],
     // (moved from publishedStations) Every focus keyframe is a source row.
     published: [1, 2],
   },

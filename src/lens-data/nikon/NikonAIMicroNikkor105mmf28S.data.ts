@@ -212,6 +212,16 @@ const LENS_DATA = {
       "CRC floating focus: G1 and G2 move objectward relative to the fixed rear divergent group G3 while D6 and D11 increase; the diaphragm moves with G2.",
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 254.9907,
+        distanceReference: "first-surface",
+        source:
+          "US 4,392,724, Example 1, Table 1 (First Embodiment), d0 header and finite d6/d11 endpoints, PDF p.21: d0 = ∞ ~ 254.9907; authored gaps D6 G1–G2=20.68200, D11 G2–G3=34.36660 mm. Distance reference identified by the conjugate audit (referenceBasis: audit-resolved); the patent does not define the datum.",
+      },
+    ],
   },
 
   gaps: {

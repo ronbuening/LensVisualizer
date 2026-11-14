@@ -47,3 +47,13 @@ Patent: JP 2004-302170 A, Example 4 / Table 4
   `S-LAH63 (OHARA coordinate match)`, whose published coordinate is `nd=1.80440`, `vd=39.59`.
 - This is a catalog-coordinate identification, not a claim that Fuji procured OHARA glass for the production lens.
 - Synchronized the analysis and removed this lens from the catalog-mismatch queue.
+
+## 2026-11-14 — Finite conjugates from printed magnifications
+
+| Zoom / keyframe | Printed magnification → `sourceMagnification` | Source locator | Solved object distance | Check |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | “等倍” → `"1:1"` | JP 2004-302170 A, Example 4 (PDF p. 13) | 144.35 mm, first-surface | in focus 1.00017; at the declared distance 1.00003; −0.26 quarter waves |
+
+The patent prints a magnification and no object distance for this state. Each distance is solved from the prescription under `LENS_DATA_SPEC.md` § Finite conjugates: the distance that focuses the state on its image plane when the magnification there rounds to the print, otherwise the distance at the nearest magnification that does. Two independent readings of the patent agree on the printed value and on the gaps of the matching state.
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.

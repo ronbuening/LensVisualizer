@@ -342,6 +342,16 @@ const LENS_DATA = {
     closeFocusM: 0.717,
     description:
       "Floating focus: G1 fixed; G2 and G3 move. The patent variable-gaps encode infinity and a beta=0.02x finite-focus check, not the production 0.2x minimum-focus endpoint.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 595.45,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.02",
+        source: "CN 205720849 U, Example 2 (PDF p. 9): prints “0.02倍” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.02066.",
+      },
+    ],
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
   },

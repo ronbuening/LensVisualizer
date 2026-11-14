@@ -2,6 +2,7 @@ import { constructionFixtureData } from "../constructionFixtures.js";
 import { teleconverterCompatibility } from "../../../../src/optics/teleconverter.js";
 import { describe, expect, it } from "vitest";
 import { mtfFiniteConjugate, mtfFiniteObjectPoint } from "../../../../src/optics/analysis/mtf/mtfConjugates.js";
+import { assessMtfConjugateConsistency } from "../../../../src/optics/analysis/mtf/mtfConjugateConsistency.js";
 import { paraxialTrace } from "../../../../src/optics/first-order/lensConstants.js";
 import { prepareRuntimeState } from "../../../../src/optics/state/runtimeAdapters.js";
 import {
@@ -20,6 +21,7 @@ import type { LensData, RuntimeLens } from "../../../../src/types/optics.js";
 import type { TeleconverterIncompatibility } from "../../../../src/types/teleconverter.js";
 import {
   build,
+  mtfInputs,
   REAR_PLATE_FIXTURE,
   TELECONVERTER_FIXTURE_OBJECT_DISTANCE_MM,
   teleconverterFixture,
@@ -338,6 +340,33 @@ describe("attachTeleconverter", () => {
         expect(objectZ(composedData)).toBeCloseTo(objectZ(hostData), 9);
       }
     }
+    // A printed magnification rides through as the bare host's, and the audit does not hold the composed lens to it.
+    const solved = {
+      focusT: 1,
+      zoomT: 0,
+      objectDistanceMm: 1000,
+      distanceReference: "first-surface" as const,
+      sourceMagnification: "0.10",
+      source: "Synthetic",
+    };
+    const host = teleconverterHostData({ lastGapFocusOffsets: [0, 5], overrides: { finiteConjugates: [solved] } });
+    const composed = attachTeleconverter(host, tc);
+    expect(constructionFixtureData(composed).finiteConjugates).toEqual([solved]);
+    const audit = (lens: RuntimeLens) => {
+      const inputs = mtfInputs(prepareRuntimeState(lens, 1, 0), {
+        method: "geometric",
+        spectrum: "reference",
+        focus: "design",
+        pupilSemiDiameterMm: 1,
+        stopSemiDiameterMm: 1,
+        fieldFractions: [0],
+        frequenciesPerMm: [10],
+        maxGridSize: 32,
+      });
+      return assessMtfConjugateConsistency(inputs[0])!.magnification;
+    };
+    expect(audit(build(host))!.printed).toBe("0.10");
+    expect(audit(build(composed))).toBeNull();
   });
 
   it("narrows a declared rectilinear coverage by the focal ratio", () => {

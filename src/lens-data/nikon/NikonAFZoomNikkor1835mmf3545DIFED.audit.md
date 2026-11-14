@@ -52,3 +52,21 @@ edge thickness is now the compound-asphere layer, 0.425851 mm at 16.1 mm (was 0.
 - Directly viewed `patents/US20010030812A1.pdf`, Example2 Figure4A/PDF5 at600dpi, Table2/PDF18, d-line convention/PDF17. All12 source nd/vd pairs exact;11 actual catalog curves explicitly qualified, compoundasphere1.50625/55.63 remains unresolved. CurrentJ-LASF0171.79500/45.31 closelymatches source1.794997/45.30 withoutsupplier/meltidentity. SingleinferredED role retained;no sourceCFg/partialvaluesinvented.
 - S2 retainsclear17.2mm withnew exposedland toexisting22.5mmouterrim. Nativeq≈.73±.010 atedge≈190px;adopted.764 preserveslargercap. Everyremainingconvex/concaveface and bondedboundary inspected; compoundlayer/internalinterface receive no lands and noextraexposedclipresolved. Priorcornerfloors/sourceasphere unchanged. Design3.59/4.12/4.62 alreadycorrect;no apertureexception.
 - Surface/circle pass;3aperturesiris-limitedwithin3%,3formatcorners>=99%. AtpublishedcloseD0187.8488/195.2848/195.7094mm,all75fulliris aimedaxialsamplespass. NineactualSVGstates12finitepaths/zero trim, rasterinspected. Source/catalog checks and3sharedglassfiles94testspass.
+
+## 2026-11-14 — Published finite-conjugate certification
+
+Patent: US 2001/0030812 A1, Example 2. Page locators below are one-based PDF pages.
+
+| Zoom / keyframe | Field | Before | After | Source locator | Paraxial offset / diffraction depths |
+|---|---|---|---|---|---|
+| 0 / 1 | `focus.conjugates` | Undeclared | 330 mm, `image-plane` | PDF p.18, Table 2, Variable intervals during Zooming, finite R row, f=18.50037; `R 0.33 m; d0 187.8488` | -0.007009123 mm / -0.462908; consistent |
+| 1 / 1 | `focus.conjugates` | Undeclared | 330 mm, `image-plane` | PDF p.18, Table 2, Variable intervals during Zooming, finite R row, f=25.00067; `R 0.33 m; d0 195.2848` | -0.012137134 mm / -0.608689; consistent |
+| 2 / 1 | `focus.conjugates` | Undeclared | 330 mm, `image-plane` | PDF p.18, Table 2, Variable intervals during Zooming, finite R row, f=34.00123; `R 0.33 m; d0 195.7094` | -0.022558730 mm / -0.899907; consistent |
+
+- State 0/1: Definition PDF p.17, paragraph 0050, applies to all examples. The same table also defines d0 as object to first lens surface and prints a contradictory distance; both printed quantities are retained in this record.
+- State 1/1: Definition PDF p.17, paragraph 0050, applies to all examples. The same table also defines d0 as object to first lens surface and prints a contradictory distance; both printed quantities are retained in this record.
+- State 2/1: Definition PDF p.17, paragraph 0050, applies to all examples. The same table also defines d0 as object to first lens surface and prints a contradictory distance; both printed quantities are retained in this record.
+
+Reference basis: patent-defined. The source states: “R denotes a shooting distance (a distance from the object to the image)”.
+
+All declared states are consistent within the audit’s 25-depth threshold. Existing published-state flags already include these keyframes; the spacings and authored image plane are retained.

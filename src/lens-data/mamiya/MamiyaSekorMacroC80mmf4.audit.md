@@ -35,3 +35,13 @@ Catalog version: local working tree, 2026-08-07
 - A tighter repeat measurement against patent Figure 1 found L1–L6 figure/data mean-height ratios of approximately `1.007`, `0.996`, `0.941`, `0.991`, `1.118`, and `0.996`. Every element is within approximately 12% of the patent silhouette, so no further semi-diameter change is justified.
 - Element shapes, D1/D2 boundaries, rounded Abbe badges, and the production display name remain correct.
 - Shortened the diagram captions to `G1`–`G4`; the floating/fixed behavior remains explicit in the focus model, variable-gap labels, top-line specification, and analysis while no longer colliding beneath the compact rear group.
+
+## 2026-11-14 — Finite conjugates from printed magnifications
+
+| Zoom / keyframe | Printed magnification → `sourceMagnification` | Source locator | Solved object distance | Check |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | “撮影倍率 β＝−1/2; d3＝3.53、d5＝7.78、d7＝2.1” → `"1/2"` | JP S55-24081 B2, Sole example (PDF p. 2) | 210.81 mm, first-surface | in focus 0.50000; at the declared distance 0.50001; +0.02 quarter waves |
+
+The patent prints a magnification and no object distance for this state. Each distance is solved from the prescription under `LENS_DATA_SPEC.md` § Finite conjugates: the distance that focuses the state on its image plane when the magnification there rounds to the print, otherwise the distance at the nearest magnification that does. Two independent readings of the patent agree on the printed value and on the gaps of the matching state.
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.

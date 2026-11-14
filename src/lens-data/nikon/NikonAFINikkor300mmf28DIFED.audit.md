@@ -38,3 +38,14 @@ Patent: JP H04-294310 A, Example 1
 - Rechecked all 11 lens media against the printed nd/νd table. Retained every coordinate and qualified catalog proxy; all resolve consistently. The source gives no nC/nF/ng/dPgF or supplier identities, and none are authored. The ED positions remain inferred from high νd, without measured APD claims.
 - Surface and image-circle audits pass; the infinity aperture is iris-limited at f/2.900000. Actual renderer output at 3 focus x 3 secondary-control states has 11 finite element paths and zero trim diagnostics per state; inspected the SVG raster. Neighboring-gap/stop checks show no new regression. Four cardinal full-iris rays at the published finite object distance retain baseline S2 clipping; the prior infinity S7 clipping is removed. The unresolved Bf offset and inferred stop station are retained.
 - Shared dispersion, glass-resolution-parity, and partial-dispersion tests pass (3 files / 94 tests for this triad); catalog consistency passes. No full-suite claim is made here.
+
+## 2026-11-14 — Source-backed finite conjugates
+
+Patent: JP H04-294310 A.
+
+| Zoom / keyframe | Added distance | Source locator and matching gaps | Paraxial residual |
+| --- | --- | --- | --- |
+| 0 / 1 | 2228.5485 mm, first-surface | PDF p. 5; ¶0026, Example 1, finite β=−0.1418 column: d9=16.0229, d14=4.9517 mm | -0.000321684 mm; -0.032550 diffraction depths; alternate +568.400927 depths. |
+
+- Reference definition: “D0は物体から第１レンズ面までの距離を表している。” (PDF p. 4, ¶0025).
+- The authored gaps and image plane are retained.

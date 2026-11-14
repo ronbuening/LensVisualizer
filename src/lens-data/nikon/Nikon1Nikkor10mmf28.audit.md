@@ -29,3 +29,14 @@ Reviewed local untracked patent file `patents/JP2011248340A.pdf`, Example 1.
   air 1.11 / 0.30 mm between them and d20 = 0.6644 mm to the image.
 - Paraxial check against the previous data: EFL identical and defocus unchanged at infinity and 0.50 m (|Δ| ≈ 1e-11 mm;
   the old fold was carried to full precision). Physical track grows by 0.950 mm to the patent's TL 37.9644 mm.
+
+## 2026-11-14 — Source-backed finite conjugates
+
+Patent: JP 2011-248340 A.
+
+| Zoom / keyframe | Added distance | Source locator and matching gaps | Paraxial residual |
+| --- | --- | --- | --- |
+| 0 / 1 | 500 mm, image-plane | PDF p. 10; ¶0038; Table 1 (PDF p. 11), 近距離物体合焦時 column, d2=1.9061, d14=10.7439 mm | +0.000027303 mm; +0.002683 diffraction depths; alternate -1.670758 depths. |
+
+- Zoom 0: the patent prints “近距離物体合焦時の撮影距離は０．５ｍ” without an explicit reference definition. The conjugate audit identifies the image-plane reference (`audit-resolved`).
+- The authored gaps and image plane are retained.

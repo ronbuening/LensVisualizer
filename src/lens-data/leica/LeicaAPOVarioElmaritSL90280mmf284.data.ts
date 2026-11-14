@@ -468,6 +468,32 @@ const LENS_DATA = {
     description:
       "Dual inner focus (Leica 'Dual Syncro Drive'): G5 (neg cemented doublet L19–L20) moves image-side; " +
       "G6 (pos singlet L21) moves object-side. Opposing motion cancels field curvature during focus.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 1200,
+        distanceReference: "first-surface",
+        source:
+          "JP 2016-139125 A, Numerical Example 1, Data 3 Wide column (PDF p. 22): object distance 1200.0000 mm; d6=1.1675, d16=61.1833, d18=1.0000, d33=4.3347, d36=20.6573, d38=15.2555 mm. Paragraph 0123 defines lengths in mm. The first-surface reference is identified by the conjugate audit (audit-resolved); the patent does not explicitly define the object-distance reference.",
+      },
+      {
+        zoomStation: 1,
+        keyframe: 1,
+        objectDistanceMm: 1200,
+        distanceReference: "first-surface",
+        source:
+          "JP 2016-139125 A, Numerical Example 1, Data 3 Intermediate column (PDF p. 22): object distance 1200.0000 mm; d6=29.0997, d16=29.6605, d18=4.5905, d33=12.5970, d36=15.6675, d38=11.9830 mm. Paragraph 0123 defines lengths in mm. The first-surface reference is identified by the conjugate audit (audit-resolved); the patent does not explicitly define the object-distance reference.",
+      },
+      {
+        zoomStation: 2,
+        keyframe: 1,
+        objectDistanceMm: 1200,
+        distanceReference: "first-surface",
+        source:
+          "JP 2016-139125 A, Numerical Example 1, Data 3 Tele column (PDF p. 22): object distance 1200.0000 mm; d6=53.3278, d16=1.0000, d18=9.0230, d33=19.5673, d36=12.2099, d38=8.4703 mm. Paragraph 0123 defines lengths in mm. The first-surface reference is identified by the conjugate audit (audit-resolved); the patent does not explicitly define the object-distance reference.",
+      },
+    ],
   },
 
   /* (moved from var) ── Variable air spacings (zoom + focus) ──

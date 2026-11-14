@@ -231,6 +231,16 @@ const LENS_DATA = {
     closeFocusM: 0.2,
     description:
       "Unit/full-group focus. Patent Example 4 moves the full optical system and changes only DD[15] from 11.087 mm at infinity to 14.713 mm at beta = -0.16x.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 152.73,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.16",
+        source: "US 2026/0118637 A1, Example 4 (PDF p. 36): prints “Short range −0.16×” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.16000.",
+      },
+    ],
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
   },

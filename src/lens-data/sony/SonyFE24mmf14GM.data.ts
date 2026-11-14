@@ -279,6 +279,16 @@ const LENS_DATA = {
     closeFocusM: 0.24,
     description:
       "Internal focus by unit translation of GR2: d10 closes from 7.87 mm to 2.84 mm while d22 opens from 2.91 mm to 7.94 mm, moving GR2 5.03 mm toward the object at close focus.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 131.41,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.172",
+        source: "WO 2019/073744 A1, Numerical Example 1 (PDF p. 15): prints “β = -0.172” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.17159.",
+      },
+    ],
     // (moved from publishedStations) Patent read 2026-10-06: Close-focus gaps d10 = 2.84 and d22 = 7.94 are the patent's Table 3 near-focus row for
     // Numerical Example 1 (beta = -0.172), used unscaled.
     published: [1],

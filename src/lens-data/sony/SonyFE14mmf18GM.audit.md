@@ -97,3 +97,19 @@ Effect. Dispersion tiers moved from 5 catalog and 9 Abbe-estimate surfaces to 14
 
 - L5 `type` Negative Meniscus → Biconcave Negative and L6 Positive Meniscus → Biconvex Positive. Their radii are −27.601 / +19.770 and +19.770 / −114.412 mm, and paragraph 0126 describes the cemented LN unit as a biconcave and a biconvex lens.
 - The analysis header named the second inventor "Ora Matsuoka" from the WO front page. `patentAuthors` and the Sony FE 135mm f/1.8 GM model use "Dai Matsuoka" for the same inventor (松岡 大); the header now uses that spelling and notes the front-page form.
+
+## 2026-11-14 — Published finite conjugates
+
+Patent: WO 2021/199923 A1, Numerical Example 1.
+
+| Zoom/keyframe | Before | Added object distance / reference | Source locator | Paraxial offset (mm / diffraction depths) | Other-reference offset (mm / depths) |
+|---|---|---|---|---|---|
+| 0/1 | No conjugate | 250 mm / `image-plane` | PDF p. 27, printed p. 25; Table 3, close focus finite column, 最至近 row; `最至近 250mm` | -0.013396732 / -3.3378493 | -0.60881866 / -155.50791 |
+
+The retained rows are `consistent` under the 25-diffraction-depth criterion. Existing gaps, image plane and published flags are retained.
+
+- State 0/1: D14=4.66 mm; D25=6.47 mm.
+
+The distance reference is audit-resolved: the patent gives no explicit reference definition, and only the retained reference is consistent. The conjugate source string records that qualification.
+
+The supplied JPA 1999231209-000000.pdf is an unrelated apodization patent. Evidence is from the matching local WO2021199923A1.pdf. Table 3 does not explicitly define the distance reference; the discriminating audit identifies image-plane.

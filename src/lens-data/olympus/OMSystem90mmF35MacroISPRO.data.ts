@@ -389,6 +389,32 @@ const LENS_DATA = {
     keyframes: [0, 0.6872097510190636, 0.8947806709924443, 1.0],
     description:
       "PUBLISHED: the patent prints four states (infinity, 0.5×, 1× and 2×). G2 moves toward the image and G3 toward the object as focus closes. Distance labels are derived from the paraxial magnification of each printed state, not from printed object distances; between the printed states the gaps are interpolated linearly, which is not a verified focus cam. The iris is sized at infinity and held fixed, so the patent's finite-state f-numbers are not imposed. At 1× and 2× some analysis panels trace few rays or fall back to collimated light.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 171.69,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.50",
+        source: "JP 2024-066164 A, Example 1 (PDF p. 17): prints “横倍率β -0.50” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.50041.",
+      },
+      {
+        zoomStation: 0,
+        keyframe: 2,
+        objectDistanceMm: 96.32,
+        distanceReference: "first-surface",
+        sourceMagnification: "1.00",
+        source: "JP 2024-066164 A, Example 1 (PDF p. 17): prints “横倍率β -1.00” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 1.00058.",
+      },
+      {
+        zoomStation: 0,
+        keyframe: 3,
+        objectDistanceMm: 70.06,
+        distanceReference: "first-surface",
+        sourceMagnification: "2.00",
+        source: "JP 2024-066164 A, Example 1 (PDF p. 17): prints “横倍率β -2.00” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 2.00051.",
+      },
+    ],
     published: [1, 2, 3],
   },
 

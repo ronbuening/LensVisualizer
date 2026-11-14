@@ -50,3 +50,21 @@ Direct source reinspection retains US20250251576A1 Numerical Example1: PDF15/par
 A complete previously downloaded ordinary-glass search finds SUMITA KF4 only as a broad coordinate lead: evaluated nd1.533576107, nominal ν51.6. Its F−C span is over2% above the source-implied span, and no source C/F/g or partial evidence supports that substitution or identifies a glass formulation for the source resin. The retained MISC/ZEON datasets and NHG2601 have no closer supported published row. KF4 is rejected and no unused catalog row, synthetic fit or resin grade is invented. The source layer remains unresolved with Abbe fallback; all14 other qualified curves are retained.
 
 All15 source pairs, spectra/APD fields, R/d, aspheres, connected hybrid caps, stop and control trajectories remain unchanged. The October30 source/shape review is reused, preserving its source-length discrepancy, focus limitations and production qualifications; no new whole-lens review is claimed.
+
+## 2026-11-14 — Published finite-conjugate certification
+
+Patent: US 2025/0251576 A1, Numerical Example 1. PDF p. 16 (printed p. 6),
+the variable-gap table's `Closest Distance (-400 mm)` column, matches the authored
+near keyframe. Paragraph 0068 on PDF p. 15 (printed p. 5) states: "An object
+distance is a distance from the image plane to an object position."
+
+| State / field | Before | After | Source evidence |
+|---|---|---|---|
+| Zoom 0, keyframe 1: `focus.conjugates` | Absent | `objectDistanceMm: 400`, `distanceReference: "image-plane"` | Printed signed object position -400 mm; d10=1.46, d12=5.96, d15=7.27, d22=7.08 mm. |
+
+The positive distance records the magnitude of the printed signed object position;
+the image-plane reference is patent-defined. The paraxial image-minus-authored-plane
+residual is -0.005013871778459 mm (-2.005320423794 diffraction depths), within the
+25-depth limit. The alternate first-surface interpretation gives -2.004899754786 mm
+(-861.239972629147 depths), so the reference is discriminated and the verdict is
+`consistent`. The source rounding residual remains in the authored image plane.

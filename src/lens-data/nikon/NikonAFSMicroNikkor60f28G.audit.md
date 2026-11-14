@@ -47,3 +47,14 @@ Patent: US 7,898,744 B2
 - S2A: inferred depth 4.04 mm gives cap 13.298866 mm / outer 14.2 mm (adopted q = 0.93654). The earlier 3.90 mm trial (cap 13.0955 mm) failed the full-beam guard: reach 13.1921 mm plus 0.05 mm requires at least 13.2421 mm. The adopted cap is deliberately outward of the measured endpoint. S7's continuous front cap grows 10.5→11.5 mm toward the drawn height. S8A grows 10.0→10.2 mm to pass the nominal axial beam, then carries a source-supported opaque land to 10.6 mm. A source-like 11.5 mm rear rim fails gap clearance (5.082 > 4.680 mm within the unchanged 5.2 mm S8A–S9 gap); 10.7 mm also fails (4.704 mm). Thus its adopted q = 0.96226 is outward of the figure. The G4 height discrepancy remains: larger source-like rims fail S19–S20 clearance, and no additional eligible resolved endpoint justified a new cut.
 - Fresh glass verdict: all 12 printed d-line nd/νd pairs retained, 12 compatible resolved catalog curves; no unresolved medium. The source supplies no C/F/g indices or θgF. No catalog-derived line/APD override was introduced. L7 remains low-dispersion with an inferred spectral counterpart, without asserting production ED chemistry or measured APD. Supplier/melt/molding identities remain unproved.
 - Validation: surface and image-circle audits pass; nominal aperture audit has no raise proposal. Dense inferred-cut probe: 1 zoom × 22 focus states, 348,490 rays; S2A reach 13.1917 mm versus 13.298866−0.05 mm, zero clipped or within margin. All nine focus/zoom SVG states are finite, hidden trim zero, and were viewed. Public departures/slopes synchronized to actual caps: S2A +237.966 µm / 34.919°; S8A −180.869 µm / 24.704°. Shared dispersion/resolver parity tests: 2 files / 93 tests passed; independent source-pair, curve and optical-invariance checks passed.
+
+## 2026-11-14 — Finite conjugates from printed magnifications
+
+| Zoom / keyframe | Printed magnification → `sourceMagnification` | Source locator | Solved object distance | Check |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | “β = -0.5” → `"0.5"` | US 7,898,744 B2, Example 2 (PDF p. 23) | 105.28 mm, first-surface | in focus 0.49995; at the declared distance 0.49996; +0.04 quarter waves |
+| 0 / 2 | “β = -1.0” → `"1.0"` | US 7,898,744 B2, Example 2 (PDF p. 23) | 53.04 mm, first-surface | in focus 0.99998; at the declared distance 0.99987; −0.23 quarter waves |
+
+The patent prints a magnification and no object distance for these states. Each distance is solved from the prescription under `LENS_DATA_SPEC.md` § Finite conjugates: the distance that focuses the state on its image plane when the magnification there rounds to the print, otherwise the distance at the nearest magnification that does. Two independent readings of the patent agree on the printed value and on the gaps of the matching state.
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.

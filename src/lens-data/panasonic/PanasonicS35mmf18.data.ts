@@ -296,6 +296,16 @@ const LENS_DATA = {
       "Inner focus — single negative element (L21, Group G2) driven by linear motor. Total travel 6.92 mm; overall optical length is constant.",
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 240,
+        distanceReference: "image-plane",
+        source:
+          "CN 216772097 U, Example 1, paragraphs 0117–0118, MOD column and minimum shooting-distance row: 最短拍摄距离 0.24m (= 240 mm); d1=8.7213 mm, d2=0.9347 mm (authored gap 16A=4.20+d2=5.1347 mm). The image-plane reference is identified by the conjugate audit (referenceBasis=audit-resolved).",
+      },
+    ],
   },
 
   /* (moved from var) ── Variable air spacings (inner focus) ──

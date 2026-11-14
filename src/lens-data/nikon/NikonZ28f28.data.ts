@@ -269,6 +269,16 @@ const LENS_DATA = {
       "Source near station: 19 cm including the filter path. G2 and G3 move 1.681 mm and 4.792 mm objectward; G1, stop and G4 stay fixed. Intermediate motion is interpolated.",
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 135.39,
+        distanceReference: "first-surface",
+        source:
+          "WO 2022/071249 A1, Example 2, Table 2, 可変間隔データ, 近距離 β = −0.203 column (heading PDF p27); mm per ¶0098, PDF p28: D0 135.390; gaps (mm): 17=8.492, STO=3.169, 13A=1.339. D0 is object to first surface (¶0096).",
+      },
+    ],
   },
 
   /* (moved from var) ── Variable air spacings (floating inner-focus) ──

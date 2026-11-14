@@ -84,3 +84,14 @@ This is a current-runtime followup to reused September 23 source coverage, with 
 Explicit finite-object rays use Gaussian object planes calculated from the complete current matrix, including the unchanged source focus keyframes. A paraxial entrance-stop seed and inverse chief solve target actual image heights 0, 10.825 and 21.65 mm, rather than assuming that a paraxially scaled object height reaches the distorted image edge. At twenty uniformly spaced positive focus controls plus published control 0.0818, all 63 target chiefs converge and clear. Current-iris 193-point bundles give 10,998 passed, 1,095 clipped, 66 unbracketed path failures and no unaimed rays. Failed intersections remain separate numerical/path outcomes; they are not silently counted as transmitted or clipped. Every sampled axial bundle passes 193/193. At the source close geometry, axis/half/format-edge counts are 193/193, 193/193 and 147/193, with no failed rays at that endpoint. No rim, iris, tolerance or cam is changed to clear those probes.
 
 The published intermediate gap geometry at focus control 0.0818 gives Gaussian object-to-image 4.253882565 m and magnification -0.02011644, compared with the current distance label 4.278728606 m. The source close gap gives Gaussian 0.346122688 m and magnification -0.50014201, compared with label 0.35 m. The largest sampled Gaussian-versus-label relative difference is 34.060245% at focus 0.25: 0.923156577 m versus 1.4 m. Published gap keyframes, the actual Gaussian object, the distance-label object plane used by exact-working probes and collimated rays through focus-adjusted geometry are distinct. No continuous production focus calibration, moved IS or beyond-source field fidelity is established by this runtime supplement.
+
+## 2026-11-14 — Finite conjugates from printed magnifications
+
+| Zoom / keyframe | Printed magnification → `sourceMagnification` | Source locator | Solved object distance | Check |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | “imaging magnification -0.02 times” → `"0.02"` | US 2021/0072505 A1, Numerical Example 1 (PDF p. 19) | 4147.93 mm, first-surface | in focus 0.02012; at the declared distance 0.02012; +0.00 quarter waves |
+| 0 / 2 | “imaging magnification -0.5 times” → `"0.5"` | US 2021/0072505 A1, Numerical Example 1 (PDF p. 19) | 214.25 mm, first-surface | in focus 0.50014; at the declared distance 0.50015; +0.06 quarter waves |
+
+The patent prints a magnification and no object distance for these states. Each distance is solved from the prescription under `LENS_DATA_SPEC.md` § Finite conjugates: the distance that focuses the state on its image plane when the magnification there rounds to the print, otherwise the distance at the nearest magnification that does. Two independent readings of the patent agree on the printed value and on the gaps of the matching state.
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.

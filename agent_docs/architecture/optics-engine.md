@@ -269,6 +269,60 @@ point, are aimed from it at the stop and include spherical launch phase; their w
 every field's. Only `finiteConjugates` stations are
 eligible; see `src/lens-data/LENS_DATA_SPEC.md` for source requirements.
 
+`assessMtfConjugateConsistency` checks a prepared certified finite state without changing any MTF result.
+It traces the axial paraxial ray at the reference wavelength, scaled to the physical stop rim. At the last surface,
+height y, slope u and image-medium index n′ give transverse miss h_a = y + u L_a at the authored image vertex,
+where L_a is the positive distance from that surface. A linear combination of the axial and parallel basis rays
+with zero recorded height at the stop locates its image, the exit pupil, at l_ep = −y_c/u_c from the last surface.
+The pupil rim has height a = y + u l_ep and authored radius R_a = L_a − l_ep, giving reference slope u_a = −a/R_a.
+An image-space telecentric pupil (|u_c/y_c| ≤ 10⁻¹²/mm) uses u_a = u; an authored plane at the pupil is unavailable.
+Defocus on the pupil sphere is W = −n′ u_a h_a/2 = n′ a²/2 (1/R_a − 1/R_i), independent of the last-surface location.
+Signed `offsetDepths` = W/(λ/4) measures quarter waves; for a small image offset Δ it tends to Δ/(2λn′N_i²), where
+`paraxialWorkingFNumber` = N_i = 1/(2n′|u|). Positive defocus means the real image lies beyond the authored plane.
+`authoredPlaneWorkingFNumber` = N_a = 1/(2n′|u_a|) sets `diffractionDepthMm` = 2λn′N_a² and `limitMm` = 25 times
+that depth. The millimetre depth describes the authored-plane cone from the exit pupil. For a finite real image,
+the quarter-wave measure equals the small-offset normalization times R_i/R_a, retaining its finite-offset correction.
+A real image lies beyond the last surface, or on or inside trailing flat plates when the axial ray's height changes
+sign after the last powered surface; its reported position is then the final-medium ray's back-extrapolation.
+The calculated image position, offset, magnification and N_i are null for infinite or virtual images;
+`paraxialImageUnavailableReason` explains why without suppressing their pupil-referenced defocus. Such images
+cannot certify consistency. An invalid authored plane or unavailable support instead sets `unavailableReason`.
+The separate `realRayWorkingFNumber` reuses the MTF stop-rim ray and is null when it clips or fails;
+`realRayUnavailableReason`
+names that failure without affecting the verdict. The reference-line axial best-focus search remains a diagnostic
+bounded to ±10 mm.
+
+A conjugate that carries `sourceMagnification` has a solved distance, and the report's `magnification` block checks
+it against the print. Two unit basis rays at the first vertex, parallel (y = 1) and angular (u = 1), land on the
+authored plane at heights A and B: an object at distance s focuses there when s = −B/A, and A is the magnification
+of that conjugate. At its own paraxial image an object at s has magnification D/(s u_p + u_a), where u_p and u_a are
+the two rays' final slopes and D their invariant y_p u_a − u_p y_a. `solvedObjectDistanceMm` is −B/A when that
+object is real and |A| lies within half a unit of the print's last decimal. Otherwise it is the distance whose
+magnification is the value in that interval nearest |A|, solved for the in-focus conjugate's image orientation
+first and for the other when the first has no real object in front of the lens with a finite real image; an afocal
+system (|u_p| ≤ 10⁻¹²/mm) has no such solution. A ratio or whole number has no interval. `withinPrint` tests the
+declared distance's magnification against the same interval, widened by the 0.005 mm to which the distance is
+written. `matchesSolve` requires the declared distance to be the solved one to that rounding. Such a conjugate is `consistent` when it is inside the depth limit,
+`withinPrint` and `matchesSolve`, and `inconsistent` otherwise; its first-surface reference is fixed by
+construction, so the other-reference verdicts do not apply.
+
+`npm run audit:finite-conjugates` checks every declaration at its open physical stop, including axial conjugacy on
+fisheyes, retaining every support check except the off-axis projection requirement. The limit is
+`MTF_FINITE_CONJUGATE_DEPTHS` = 25 quarter waves, an empirical outlier threshold: the catalog's declarations lie within
+24.5 except four separated outliers that begin at 36.2. This accommodates the main source-rounded residual range; it
+does not certify source accuracy, and a wrong distance on a short or slow lens can stay inside it. The other distance reference is checked
+independently by the same authored-plane wavefront measure, never applied. `referenceDiscriminated` is true
+when the other reference would put the object at or behind the first surface, exceeds 25 absolute depths, or has an
+absolute offset in depths at least 10 times the declared one and above one depth. Any other unavailable alternate does
+not establish discrimination.
+
+A declared reference within the limit is `consistent` when discriminated, otherwise `ambiguous-reference`: the source
+still defines the reference, but this check cannot confirm it. A declared mismatch is `other-reference` when the alternate
+passes, otherwise `inconsistent`; unavailable declared paraxial evidence is also `inconsistent`.
+`--lens=<key>` and `--files=<comma-separated data files>` filter inputs; `--json` retains full precision. The audit
+exits 0 unless `--strict` finds an `inconsistent` or `other-reference` row or a loading error. Ambiguous references
+are informational and pass strict checks.
+
 **Data limitations** (`mtfDataLimitations.ts`). `MtfSupport.limitations` are the model's standing assumptions;
 `assessMtfDataLimitations` lists what the lens data lacks for the chart on screen. Each item is `blocking` (the tab
 holds the chart behind a warning until the reader has seen it) or a note listed beside the chart. A gap is listed
@@ -782,7 +836,9 @@ is the host's. Built-in converters stay on `opticalConfiguration`.
 - **Image-referenced object distances grow by the converter's extension**, because only the image plane moves:
   `focus.closeFocusM`, `zoom.stations[].closeFocusM`, and `focus.conjugates` entries with
   `distanceReference: "image-plane"`. Entries measured
-  from the first surface are unchanged.
+  from the first surface are unchanged. A `sourceMagnification` rides through as the bare host's print, so the
+  station button still says the distance is solved; the conjugate audit skips its magnification check on a
+  composed lens.
 - **Station provenance rides through unchanged:** composition keeps the host's station counts, so `publishedStations`
   indices stay valid and `publishedStationAvailability()` reports the pairing as `composed`.
 - **Identity:** converter surface labels take the reserved `TC` prefix, element ids continue after the host's, and the
@@ -932,7 +988,7 @@ slider convention `focusDistanceAt` (closeFocus / focusT), as they do on folded 
 compiler did not build. `focus.closeFocusM` is the close row's distance (a corpus sweep holds it within 5 %); the
 maker's figure is `catalog.closeFocusM.marketing`, named beside the label by `marketedCloseFocusNote`. Station buttons
 for source-certified conjugates (`PublishedFocusStation.certifiedDistanceM`) show the source's object-to-image
-distance. Zoom-change focus remapping, comparison focus sharing and `PublishedFocusStation.distanceM` still use the
+distance, or the one solved from its printed magnification. Zoom-change focus remapping, comparison focus sharing and `PublishedFocusStation.distanceM` still use the
 convention.
 
 `state/preparedGeometry.ts` owns `prepareState()` and the only prepared-control LRU. It retains prepared states for

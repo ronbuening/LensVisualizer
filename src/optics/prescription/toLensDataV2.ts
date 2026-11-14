@@ -385,7 +385,7 @@ function writeLens(write: Writer, lens: CanonicalLens): Untyped {
       conjugates.push(record);
       write.item("focus.conjugates", index, at);
       write.copy(record, at, conjugate, at, ["zoomStation", "keyframe", "objectDistanceMm", "distanceReference"]);
-      write.copy(record, at, conjugate, at, ["source"]);
+      write.copy(record, at, conjugate, at, ["sourceMagnification", "source"]);
     });
   }
   if (!lens.zoom && !publishedDefaulted) write.copy(focus, "focus", lens.focus, "focus", ["published"]);

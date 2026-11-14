@@ -190,3 +190,17 @@ Coverage: 12 physical lens elements, 13 authored media, 12 modeled media resolvi
 All twelve physical lens-glass pairs and the additional 0.1 mm bonded medium match the source. Two broad proxy labels were improved using already available coordinate-matched curves: L15 S-FPM2/FCD505 → J-PSKH1 (1.59319/67.9), and L23 S-FPL51/FCD1 → J-FKH1 (1.49782/82.6). These improve spectral-coordinate agreement without identifying production suppliers or chemistry. L15/L23 APD tags remain inferred; this source table publishes no θgF. L22 already resolves to M-TAF401 and its stale public unresolved wording was corrected. Twelve of thirteen modeled media resolve to curves; only the source-listed bonded medium 1.56093/36.6 stays unresolved and uses Abbe approximation. No per-lens spectral overrides were added, and geometry remains unchanged.
 
 Verification: current-label resolver and native-coordinate compatibility sweep plus `assertCatalogConsistent()`; shared `dispersion.test.ts` and `partialDispersionLine.test.ts` checks. No catalog tolerance was relaxed. Full repository gates are recorded by the parent at the three-lens commit boundary.
+
+## 2026-11-14 — Published finite-conjugate certification
+
+Patent: WO 2019/220618 A1, Example 9.
+
+| Zoom / keyframe | Field | Before | After | Source and paraxial residual |
+|---|---|---|---|---|
+| 0 / 1 | `focus.conjugates` | absent | 307.67 mm, `first-surface` | Example 9, Table 9 variable-spacing data, near column, PDF p. 52 (printed p. 50); D0 = 307.67 mm. Image minus authored plane: 0.0000391144602 mm (0.00956807651 diffraction depths); other reference: 710.151030 depths; consistent. |
+
+Reference basis: audit-resolved. The patent prints the distance without explicitly defining its reference; the first-surface interpretation is consistent and the image-plane interpretation is rejected by the conjugate audit.
+
+The source gap columns match the authored keyframes. The declarations preserve all optical surfaces, gaps, rear plates and the authored image plane.
+
+Patent D12=2.409 mm plus dummy-plane gap d13=2.700 mm equals existing STO gap=5.109 mm; D19=14.267 mm, D26=1.000 mm in rearPlates.

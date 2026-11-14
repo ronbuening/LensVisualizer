@@ -269,3 +269,16 @@ Surface, image-circle and infinity aperture checks pass; the full nominal f/4 ax
 ## 2026-11-10 — Metadata fill
 
 - `catalog.fNumber.design` = 4.0: `patents/US5402268.pdf` PDF p7, col. 8, Table 1 (First Embodiment) header "f = 200.0 mm, f-number: 4.0, 2ω = 12.33°". Stop `nominalFNumber` 4.0 is not faster.
+
+## 2026-11-14 — Published finite conjugates
+
+Patent: US 5,402,268, Example 1.
+
+| Zoom / keyframe | Field | Before | After | Source locator | Paraxial residual |
+| --- | --- | --- | --- | --- | --- |
+| 0 / 1 | `focus.conjugates` | Absent | 480.7237 mm, `first-surface` | PDF p. 7, Table 1, Variable Interval in Zooming, beta=-0.5000 / -1.0000 columns, d0 row; d0 = 480.7237; d5=14.2044, d8=17.7426 (S8.d=2.57025 + STO.d=15.17235), d14=32.5222 mm | -0.002246414 mm / -0.082079 depths; consistent |
+| 0 / 2 | `focus.conjugates` | Absent | 272.5885 mm, `first-surface` | PDF p. 7, Table 1, Variable Interval in Zooming, beta=-0.5000 / -1.0000 columns, d0 row; d0 = 272.5885; d5=6.6432, d8=37.1142 (S8.d=2.57025 + STO.d=34.54395), d14=13.1506 mm | -0.001826388 mm / -0.041822 depths; consistent |
+
+Reference evidence: d0 is the distance from the object to the apex of the first lens surface.
+
+The authored gaps, image plane and published-state flags are retained.

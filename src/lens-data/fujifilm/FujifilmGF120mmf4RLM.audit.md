@@ -49,3 +49,18 @@ Patent: US 2018/0059384 A1, Example 1
   rounding in the old fold (36.746 + 3.200/1.5168 + 1.022 = 39.8777 stored as 39.878). Physical track grows by
   1.090 mm to 172.98 mm, matching the analysis's 173.0 mm total length; `closeFocusM` (0.45 m manufacturer MFD) is
   unchanged.
+
+## 2026-11-14 — Published finite conjugate
+
+Patent: US 2018/0059384 A1, Example 1, Table 2 finite column and Table 3 right-hand column; PDF page 21.
+
+| State | Field | Before | After | Source evidence |
+| --- | --- | --- | --- | --- |
+| Zoom 0 / keyframe 1 | `focus.conjugates` | absent | `280.75` mm, `first-surface` | Printed `0.28075 m`; DD[7]=16.729; DD[12]=7.364; DD[16]=12.408; DD[21]=39.331 mm. |
+
+The patent prints the distance without defining its endpoints. The conjugate audit identifies the
+first-surface reference; the source string records that basis. The authored-plane paraxial
+offset is +0.001611994 mm (+0.070848 diffraction depths); the other
+reference gives -1541.434551944 mm (-196.484544 depths).
+The verdict is `consistent` and the reference is discriminated. The existing published flag and
+all optical geometry remain unchanged.

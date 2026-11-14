@@ -262,6 +262,16 @@ const LENS_DATA = {
     description:
       "PUBLISHED unit focus: the whole optical assembly extends 4.947 mm toward the object, the mechanism Cosina states, and only the back gap changes. The close endpoint is the patent's printed state (Table 1: magnification 0.1436, ZD0 = 240.11 mm from surface 1, BF 20.826 mm, 298.886 mm object-to-image); the production specification is 0.3 m at 1:6.7.",
     published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 240.11,
+        distanceReference: "first-surface",
+        source:
+          "JP 2022-128635 A, Example 1, Table 1, フォーカス可変間隔, 撮影倍率 0.1436 column (PDF p. 6): ZD 0=240.11 mm is the object-to-first-surface gap (Table 1, OBJ row, PDF p. 6); ZD15=20.826 mm.",
+      },
+    ],
   },
   gaps: { "15": { label: "BF", values: [[15.879, 20.826]] } },
   aperture: {

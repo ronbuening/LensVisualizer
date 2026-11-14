@@ -133,3 +133,14 @@ The patent names no spectral line for its index and Abbe columns, and the 2026-1
 | Element 8 | 1.65412 / 39.7 | BPH5 | -0.000005 | -0.012 |
 | Element 9 | 1.6516 / 58.6 | S-LAL7 | -0.000003 | -0.049 |
 | Element 10 | 1.618 / 63.4 | S-PHM52 | -0.000000 | -0.066 |
+
+
+## 2026-11-14 — Published finite conjugate
+
+Patent: JP H01-102413 A, Numerical Example 1, PDF/printed p. 5 (folio 75), variable-gap table.
+
+| State | Field | Before | After |
+| --- | --- | --- | --- |
+| Zoom station 0, keyframe 1 | `focus.conjugates` | Absent | 2500 mm, image-plane reference (audit-resolved) |
+
+The table prints a `2.5 m` column with D10 = 35.49 mm and D13 = 17.71 mm. The authored split of D13 is 9.71 mm before the stop plus 8.00 mm after it, matching the printed total. The source does not define the distance origin. The conjugate audit identifies the image-plane reference: -0.003500304 mm (-0.861047 depths), versus -1.752958663 mm (-446.841145 depths) for a first-surface reference. The accepted row is `consistent` and reference-discriminated. The separate real marginal-ray working aperture is unavailable because it clips at surface 2; that diagnostic does not determine the paraxial verdict.

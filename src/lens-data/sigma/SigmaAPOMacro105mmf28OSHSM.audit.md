@@ -33,3 +33,14 @@ the same generation. The lens key and file name are unchanged.
 - Add exposed flat lands S9to15.5mm,S23to15.5mm,S24to17mm, following Figure31 body contours. A fresh native aperture check found S10's previous12.4mm cap limited f-number by4.26%. Raise common S9/S10 clear caps to13mm (beam diagnostic required≥12.9), retaining S9land15.5mm and adding exposed S10land14mm. This reaches its existing adjoining body without putting a land on the opaque cemented interface. All literal radii, thicknesses, focus gaps, nd/νd and stop/iris controls remain unchanged; no new tolerance.
 - Other short concave steps do not support reliable numeric cuts at native resolution. Canonical and full inferred-cut checks pass. Nine actual SVG states inspected: connected compounds,finite paths,zero hidden trim. Native f2.91 is iris-limited (traced2.909999997); image-circle0undersized and centered format chief clears. Matched16-point stop-lattice samples retain5,556,lost0,gained330 (not flux). All prescribed numeric/control invariants pass.
 - Special-glass tags remain inferred from source coordinates and maker wording. A catalog code match is a spectral proxy; no source partial-ratio precision or historical supplier is inferred. Source focus states remain literal and intermediate motion approximate; inferred rims are not manufacturer mechanical dimensions.
+
+## 2026-11-14 — Finite conjugates from printed magnifications
+
+| Zoom / keyframe | Printed magnification → `sourceMagnification` | Source locator | Solved object distance | Check |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | “撮影倍率 1:2” → `"1:2"` | JP 2012-058682 A, Example 4 (PDF p. 18) | 228.09 mm, first-surface | in focus 0.49999; at the declared distance 0.50001; +0.16 quarter waves |
+| 0 / 2 | “撮影倍率 1:1” → `"1:1"` | JP 2012-058682 A, Example 4 (PDF p. 18) | 144.29 mm, first-surface | in focus 0.99999; at the declared distance 0.99995; −0.22 quarter waves |
+
+The patent prints a magnification and no object distance for these states. Each distance is solved from the prescription under `LENS_DATA_SPEC.md` § Finite conjugates: the distance that focuses the state on its image plane when the magnification there rounds to the print, otherwise the distance at the nearest magnification that does. Two independent readings of the patent agree on the printed value and on the gaps of the matching state.
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.

@@ -395,6 +395,16 @@ const LENS_DATA = {
     // (moved from publishedStations) Patent read 2026-10-06: Close-focus gaps (d16 3.14, d32 60.01) are the patent's Example 1 POS2 row, printed for
     // an object 80.48 mm ahead of surface 1 (about 0.25 m from the image plane).
     published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 80.48,
+        distanceReference: "first-surface",
+        source:
+          "JP 2017-161685 A, Example 1, surface-data object row 0(OB) and POS2, PDF pp. 15–16: 0(OB), d = ∞〜80.48 mm; D16 [16]=3.14, BF [32]=60.01 mm. Paragraph 0067 (PDF p. 14): 「ＯＢ：物面」 and 「軸上面間隔ｄ（ｍｍ）」; surface row 0(OB) precedes surface 1 and prints d = ∞〜80.48.",
+      },
+    ],
   },
 
   /* (moved from var) ── Variable air spacings (focus mechanism) ──

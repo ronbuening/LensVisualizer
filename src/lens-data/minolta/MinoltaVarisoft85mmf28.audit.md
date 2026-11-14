@@ -89,3 +89,13 @@ Patent: US 4,124,276A, Embodiment 3
 ## 2026-11-10 — Metadata fill
 
 - `catalog.fNumber.design` = 2.8: `patents/US4124276.pdf` PDF p. 23 (col. 8), Table 6 (Embodiment 3) heading "f = 100.0  FNo. = 2.8  2ω = 28°  Back Focal Distance s′ = 66.90", read from a render. The stop's `nominalFNumber` 2.8 passes the 0.5% guard.
+
+## 2026-11-14 — Finite conjugates from printed magnifications
+
+| Zoom / keyframe | Printed magnification → `sourceMagnification` | Source locator | Solved object distance | Check |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | “magnification of 0.11” → `"0.11"` | US 4,124,276, Embodiment 3 (PDF p. 23) | 849.3 mm, first-surface | in focus 0.10829; at the declared distance 0.10829; +0.01 quarter waves |
+
+The patent prints a magnification and no object distance for this state. Each distance is solved from the prescription under `LENS_DATA_SPEC.md` § Finite conjugates: the distance that focuses the state on its image plane when the magnification there rounds to the print, otherwise the distance at the nearest magnification that does. Two independent readings of the patent agree on the printed value and on the gaps of the matching state.
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.

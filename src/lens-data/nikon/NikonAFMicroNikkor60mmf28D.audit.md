@@ -44,3 +44,14 @@ The literal source endpoint (~8.45 mm, depth≈2.50 mm) clips the full beam: the
 Freshly checked all 8 Table1 nd/νd pairs and the explicit587.6nm d-line convention. All8 resolve to compatible catalog curves; retained source coordinates and qualified spectral-proxy labels. The patent supplies no C/F/g or partial-dispersion data and establishes no production vendor or melt. No invented spectral fields or APD assertions added.
 
 Surface, image-circle and infinity aperture checks pass. Nine actual renderer states are finite with zero hidden trim. Source R/d/focus data, stop calibration and tolerances are unchanged.
+
+## 2026-11-14 — Finite conjugates from printed magnifications
+
+| Zoom / keyframe | Printed magnification → `sourceMagnification` | Source locator | Solved object distance | Check |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | “β = -0.50000” → `"0.50000"` | US 5,751,485, Embodiment 1 (PDF p. 26) | 154.39 mm, first-surface | in focus 0.50000; at the declared distance 0.49999; −0.04 quarter waves |
+| 0 / 2 | “β = -1.00000” → `"1.00000"` | US 5,751,485, Embodiment 1 (PDF p. 26) | 90.44 mm, first-surface | in focus 1.00000; at the declared distance 0.99996; −0.07 quarter waves |
+
+The patent prints a magnification and no object distance for these states. Each distance is solved from the prescription under `LENS_DATA_SPEC.md` § Finite conjugates: the distance that focuses the state on its image plane when the magnification there rounds to the print, otherwise the distance at the nearest magnification that does. Two independent readings of the patent agree on the printed value and on the gaps of the matching state.
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.

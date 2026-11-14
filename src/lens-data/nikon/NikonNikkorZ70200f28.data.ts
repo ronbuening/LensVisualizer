@@ -405,6 +405,32 @@ const LENS_DATA = {
     closeFocusM: 1.0,
     description:
       "Patent focus stations: G7 moves toward the image and G8 toward the object. The tabulated gaps imply approximately 1.0 m object-to-image distance; tele travel is ±11.53 mm.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 767.58,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.08318",
+        source: "WO 2020/105104 A1, Example 1 (PDF p. 24): prints “β -0.08318” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.08318.",
+      },
+      {
+        zoomStation: 1,
+        keyframe: 1,
+        objectDistanceMm: 767.58,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.14416",
+        source: "WO 2020/105104 A1, Example 1 (PDF p. 24): prints “β -0.14416” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.14416.",
+      },
+      {
+        zoomStation: 2,
+        keyframe: 1,
+        objectDistanceMm: 767.03,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.19832",
+        source: "WO 2020/105104 A1, Example 1 (PDF p. 24): prints “β -0.19832” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.19832.",
+      },
+    ],
   },
 
   /* (moved from var) ── Variable air spacings (zoom + focus) ──

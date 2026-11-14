@@ -428,6 +428,16 @@ const LENS_DATA = {
       "Floating internal focus: F1 (L21–L22, weak negative) and F2 (L31–L32, positive) both move toward the object by different amounts (patent: 5.351 mm and 3.677 mm to β = −0.10). Front group A and final group R are fixed. Close state is the patent's β = −0.10 conjugate (0.472 m object-to-image, calculated); production MFD is 0.3 m.",
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 308.07,
+        distanceReference: "first-surface",
+        source:
+          "JP 2025-052870 A, Numerical Example 1, Table 1 variable-spacing data, 至近距離 column, PDF p. 21: d0 = 308.07 mm; D22 [22]=3.693, D26 [26]=5.676, D18 [STO]=13.738 mm. Paragraph 0114 (PDF p. 18): 「ｄ０は物体から最も物体側のレンズ面の頂点までの光軸上の距離を示す。」",
+      },
+    ],
   },
 
   /* (moved from var) ── Variable air spacings (floating focus) ── */

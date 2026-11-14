@@ -401,7 +401,14 @@ describe("builder untrusted input gate", () => {
       description: "Source\nnote",
       published: [1],
       conjugates: [
-        { zoomStation: 0, keyframe: 1, objectDistanceMm: 1000, distanceReference: "first-surface", source: "Source" },
+        {
+          zoomStation: 0,
+          keyframe: 1,
+          objectDistanceMm: 1000,
+          distanceReference: "first-surface",
+          sourceMagnification: "0.050",
+          source: "Source",
+        },
       ],
     };
     draft.aberrationControl = {

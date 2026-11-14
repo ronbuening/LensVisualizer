@@ -67,3 +67,13 @@ Found correct: elements L1–L12 are numbered sequentially, since the patent nam
 Movement: the patent says focusing moves groups 20 and 30 together while group 10 can stay stationary, and Table 4 prints D8 4.43 → 2.16 mm and fB 36.98 → 39.25 mm. On the page, index 0 is infinity and index 1 is the close state (slider "∞ … 20 cm", marketed 17 cm). The overlay shows G1 fixed about 100 mm ahead of the focus plane, and G2 and G3 moving 2.27 mm toward the object (open circle at infinity on the image side, filled at close focus). The image line is fixed: S1 to the image is 111.91 mm in both states, and the engine's last gap of 39.2477 mm carries the 0.0023 mm infinity best-focus offset. The close-state readouts are D8 2.16, BF 39.25 and EFL 14.80 mm. Probe gives EFL 14.3849 → 14.7970 mm and m −0.1372.
 
 Open: the rims stay inferred. The near-state F-number difference is unchanged in the file. Every embodiment's close-focus plots carry a larger F-number than its table: F4.3 on Figs. 3A and 6A against 3.6 in Tables 1 and 2, F3.7 on Figs. 9A and 12A against 3.0 in Tables 3 and 4. That suggests a plotting convention rather than a misprint particular to Embodiment 4.
+
+## 2026-11-14 — Finite conjugates from printed magnifications
+
+| Zoom / keyframe | Printed magnification → `sourceMagnification` | Source locator | Solved object distance | Check |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | “m = 0.000—−0.137” → `"0.137"` | US 7,116,499 B2, Embodiment 4 (PDF p. 11) | 88.1 mm, first-surface | in focus 0.13736; at the declared distance 0.13736; −0.00 quarter waves |
+
+The patent prints a magnification and no object distance for this state. Each distance is solved from the prescription under `LENS_DATA_SPEC.md` § Finite conjugates: the distance that focuses the state on its image plane when the magnification there rounds to the print, otherwise the distance at the nearest magnification that does. Two independent readings of the patent agree on the printed value and on the gaps of the matching state.
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.

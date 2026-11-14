@@ -157,6 +157,16 @@ const LENS_DATA = {
       "Rear-group internal focusing: G5 moves 3.5896 mm toward the object from infinity to 0.30 m while the first-surface-to-image track remains 56.2503 mm.",
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 243.7497,
+        distanceReference: "first-surface",
+        source:
+          "JP 2008-040033 A, Example 1, ¶0023 (可変間隔), finite column, PDF p. 5: Ｏｂｊ=２４３．７４９７ mm; d10=1.4104 mm, Bf=17.3299 mm. \"Ｏｂｊは被写体からレンズ第１面までの距離を示す。\" (¶0017, PDF p. 4; Obj is the distance from the subject to the first lens surface).",
+      },
+    ],
   },
 
   gaps: { "10A": { label: "D10", values: [[5.0, 1.4104]] }, "12": { label: "BF", values: [[13.7403, 17.3299]] } },
