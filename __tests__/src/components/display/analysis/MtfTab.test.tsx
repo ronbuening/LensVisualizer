@@ -40,7 +40,7 @@ import {
   mtfZoomRequests,
 } from "../../../../../src/components/display/analysis/mtf/mtfApertureSweep.js";
 import useLensComputation from "../../../../../src/components/hooks/useLensComputation.js";
-import { mtfJobForRequest } from "../../../../../src/components/hooks/mtfWorkerClient.js";
+import { MtfWorkerClient, mtfJobForRequest } from "../../../../../src/components/hooks/mtfWorkerClient.js";
 import { createAnalysisRequest } from "../../../../../src/optics/analysis.js";
 import { mtfSweepFields } from "../../../../../src/components/display/analysis/mtf/mtfPresentation.js";
 import { MTF_EXPORT_DISCLAIMER } from "../../../../../src/components/display/analysis/mtf/mtfExportContext.js";
@@ -96,6 +96,7 @@ function stubWorker({
 } = {}) {
   const calls = { compute: 0, workers: 0, cancels: 0, jobs: [] as MtfJob[] };
   const replies: Array<() => void> = [];
+  const progressReplies: Array<(phase: Extract<MtfWorkerReply, { type: "progress" }>["phase"]) => void> = [];
   vi.stubGlobal(
     "Worker",
     class {
@@ -106,11 +107,17 @@ function stubWorker({
       }
       terminate() {}
       postMessage(message: MtfWorkerRequest) {
-        if (message.type === "cancel") calls.cancels++;
+        if (message.type === "cancel") {
+          calls.cancels++;
+          queueMicrotask(() =>
+            this.onmessage?.({ data: { type: "cancelled", id: message.id } } as MessageEvent<MtfWorkerReply>),
+          );
+        }
         if (message.type !== "compute") return;
         calls.compute++;
         calls.jobs.push(message.job);
         const send = (reply: MtfWorkerReply) => this.onmessage?.({ data: reply } as MessageEvent<MtfWorkerReply>);
+        progressReplies.push((phase) => send({ type: "progress", id: message.id, phase }));
         const failure = error?.(message.job);
         if (failure) {
           queueMicrotask(() => send({ type: "error", id: message.id, error: failure }));
@@ -127,14 +134,33 @@ function stubWorker({
             ...result,
             fields: result.fields.map((field, i) => (i === 0 ? field : { ...field, status: "pending" })),
           };
-          queueMicrotask(() => send({ type: "progress", id: message.id, result: pending }));
+          queueMicrotask(() =>
+            send({
+              type: "progress",
+              id: message.id,
+              phase: {
+                kind: "field",
+                fieldIndex: 3,
+                fieldCount: result.fields.length,
+                gridSize: 128,
+                lineIndex: 2,
+                lineCount: 9,
+              },
+              result: pending,
+            }),
+          );
           replies.push(() => send({ type: "result", id: message.id, result }));
         } else if (defer) replies.push(() => send({ type: "result", id: message.id, result }));
         else queueMicrotask(() => send({ type: "result", id: message.id, result }));
       }
     },
   );
-  return { calls, finish: () => replies.splice(0).forEach((reply) => reply()) };
+  return {
+    calls,
+    finish: () => replies.splice(0).forEach((reply) => reply()),
+    phase: (phase: Extract<MtfWorkerReply, { type: "progress" }>["phase"]) =>
+      progressReplies.forEach((reply) => reply(phase)),
+  };
 }
 
 const legendColor = (label: string) =>
@@ -149,6 +175,7 @@ beforeEach(() => {
 });
 afterEach(() => {
   cleanup();
+  vi.useRealTimers();
   vi.unstubAllGlobals();
 });
 
@@ -691,12 +718,59 @@ describe("MTF tab", () => {
     const step = within(screen.getByRole("group", { name: "Field step" })).getByRole("button", { name: "5 %" });
     expect(step.getAttribute("aria-pressed")).toBe("true");
   });
+  it("shows queued and setup phases while throttling polite announcements to three seconds", async () => {
+    vi.useFakeTimers();
+    const worker = stubWorker({ defer: true });
+    const blockers = Array.from(
+      { length: 2 },
+      () =>
+        new MtfWorkerClient(L, () => ({
+          postMessage() {},
+          terminate() {},
+          onmessage: null,
+          onerror: null,
+        })),
+    );
+    const job: MtfJob = { focusT: 0, zoomT: 0, aberrationT: 0, options: referenceOptions };
+    const pending = blockers.map((client) => client.compute(job).catch(() => null));
+    const mounted = render(<MtfTab L={L} t={mockTheme} preparedState={state} currentEPSD={1} currentPhysStopSD={1} />);
+    await act(async () => {
+      await vi.advanceTimersByTimeAsync(150);
+    });
+    expect(screen.getByText("Waiting…").getAttribute("aria-live")).toBe("off");
+    expect(worker.calls.workers).toBe(0);
+    act(() => blockers[0].dispose());
+    expect(screen.getByText("Resolving fields…")).toBeTruthy();
+    act(() => worker.phase({ kind: "focus", lineIndex: 1, lineCount: 9 }));
+    expect(screen.getByText("Finding focus…")).toBeTruthy();
+    expect(screen.queryByText("MTF: Finding focus…")).toBeNull();
+    await act(async () => {
+      await vi.advanceTimersByTimeAsync(2850);
+    });
+    expect(screen.getByText("MTF: Finding focus…").getAttribute("aria-live")).toBe("polite");
+    act(() =>
+      worker.phase({ kind: "field", fieldIndex: 3, fieldCount: 11, gridSize: 128, lineIndex: 2, lineCount: 9 }),
+    );
+    expect(screen.getByText("Field 3 of 11 · 128 cells · line 2 of 9")).toBeTruthy();
+    await act(async () => {
+      await vi.advanceTimersByTimeAsync(2999);
+    });
+    expect(screen.getByText("MTF: Finding focus…")).toBeTruthy();
+    await act(async () => {
+      await vi.advanceTimersByTimeAsync(1);
+    });
+    expect(screen.getByText("MTF: Field 3 of 11 · 128 cells · line 2 of 9")).toBeTruthy();
+    mounted.unmount();
+    blockers.forEach((client) => client.dispose());
+    await Promise.all(pending);
+  });
+
   it("reports field progress before the result completes", async () => {
     const worker = stubWorker({ progress: true });
     render(<MtfTab L={L} t={mockTheme} preparedState={state} currentEPSD={1} currentPhysStopSD={1} />);
-    expect((await screen.findByText(/Calculating… 1 \/ 11 fields/)).getAttribute("role")).toBe("status");
+    expect((await screen.findByText(/Field 3 of 11 · 128 cells · line 2 of 9/)).getAttribute("role")).toBe("status");
     worker.finish();
-    await vi.waitFor(() => expect(screen.queryByText(/Calculating…/)).toBeNull());
+    await vi.waitFor(() => expect(screen.queryByText(/Field 3 of 11 · 128 cells/)).toBeNull());
   });
 });
 
@@ -1862,7 +1936,7 @@ describe("MTF export and aperture comparison", () => {
       />,
     );
     expect(screen.getByText(/f\/8 comparison: waiting/)).toBeTruthy();
-    await screen.findByText(/Calculating… 1 \/ 11 fields/);
+    await screen.findByText(/Field 3 of 11 · 128 cells · line 2 of 9/);
     await vi.waitFor(() => expect(worker.calls.compute).toBe(2));
     const main = memoizedMtf(focusedState, worker.calls.jobs[0].options);
     expect(worker.calls.jobs[1].options.heldFocusShiftMm).toBe(main.focus!.appliedShiftMm);
@@ -1879,7 +1953,7 @@ describe("MTF export and aperture comparison", () => {
     expect(worker.calls.jobs[2].options).not.toHaveProperty("heldFocusShiftMm");
     expect(await screen.findByText(/^f\/8, refocused .*from wide-open plane.*\(thin lines\)$/)).toBeTruthy();
     act(() => worker.finish());
-    await vi.waitFor(() => expect(screen.queryByText(/Calculating…/)).toBeNull());
+    await vi.waitFor(() => expect(screen.queryByText(/Field 3 of 11 · 128 cells/)).toBeNull());
     fireEvent.click(screen.getByRole("button", { name: "Compare f/8" }));
     expect(screen.queryByRole("combobox", { name: "f/8 comparison image plane" })).toBeNull();
     expect(screen.queryByText(/thin lines/)).toBeNull();
@@ -1914,7 +1988,7 @@ describe("MTF export and aperture comparison", () => {
     expect(worker.calls.jobs[3].options.heldFocusShiftMm).toBe(refreshed.appliedShiftMm);
     expect(worker.calls.jobs[3].options.heldFocusShiftMm).not.toBe(worker.calls.jobs[1].options.heldFocusShiftMm);
     act(() => worker.finish());
-    await vi.waitFor(() => expect(screen.queryByText(/Calculating…/)).toBeNull());
+    await vi.waitFor(() => expect(screen.queryByText(/Field 3 of 11 · 128 cells/)).toBeNull());
   });
 });
 
@@ -2745,7 +2819,8 @@ describe("MTF aperture sweeps", () => {
     rerender({ current: 5.6, settings: "two", lens: focusedL });
     expect(calls.cancels).toBe(2);
     rerender({ current: 5.6, settings: "two", lens: L });
-    expect(calls.cancels).toBe(3);
+    // The third request waits behind unacknowledged cancellations, so removing it sends no worker message.
+    expect(calls.cancels).toBe(2);
     expect(calls.workers).toBe(2);
     await act(async () => finish());
     expect(calls.jobs.slice(0, 4).every((job) => job.options.fieldFractions?.length === 1)).toBe(true);
@@ -2813,15 +2888,15 @@ describe("MTF aperture sweeps", () => {
     expect(calls.compute).toBe(1);
     expect(screen.getByText(/Aperture sweep: waiting/)).toBeTruthy();
     await act(async () => finish());
-    expect(screen.getByText("Calculating f/8.0, 1 of 3…")).toBeTruthy();
+    expect(screen.getByText((text) => text.startsWith("Calculating f/8.0, 1 of 3…"))).toBeTruthy();
     expect(calls.compute).toBe(2);
     expect(screen.queryByTestId("mtf-provisional")).toBeNull();
     expect(screen.getByRole("rowheader", { name: "f/11" }).closest("tr")!.textContent).toContain("pending");
     await act(async () => finish());
-    expect(screen.getByText("Calculating f/11, 2 of 3…")).toBeTruthy();
+    expect(screen.getByText((text) => text.startsWith("Calculating f/11, 2 of 3…"))).toBeTruthy();
     expect(calls.compute).toBe(3);
     await act(async () => finish());
-    expect(screen.getByText("Calculating f/16, 3 of 3…")).toBeTruthy();
+    expect(screen.getByText((text) => text.startsWith("Calculating f/16, 3 of 3…"))).toBeTruthy();
     expect(calls.compute).toBe(4);
     await act(async () => finish());
     expect(screen.queryByText(/Calculating f\//)).toBeNull();
@@ -3242,7 +3317,7 @@ describe("MTF zoom sweeps", () => {
         </LensDispatchContext.Provider>,
       );
       await screen.findByRole("figure", { name: "Simulated MTF versus focal length" });
-      expect(screen.getByText("Calculating 35 mm, 1 of 2…")).toBeTruthy();
+      expect(screen.getByText((text) => text.startsWith("Calculating 35 mm, 1 of 2…"))).toBeTruthy();
       expect(calls.workers).toBe(1);
       expect(screen.queryByRole("button", { name: "Compare f/8" })).toBeNull();
       expect(screen.queryByRole("combobox", { name: "Aperture sweep image plane" })).toBeNull();
@@ -3251,7 +3326,7 @@ describe("MTF zoom sweeps", () => {
       expect(screen.getByTestId("mtf-current-zoom")).toBeTruthy();
       expect(screen.queryByTestId("mtf-provisional")).toBeNull();
       await act(async () => finish());
-      expect(screen.getByText("Calculating 140 mm, 2 of 2…")).toBeTruthy();
+      expect(screen.getByText((text) => text.startsWith("Calculating 140 mm, 2 of 2…"))).toBeTruthy();
       await act(async () => finish());
       expect(calls.jobs).toHaveLength(2);
       expect(

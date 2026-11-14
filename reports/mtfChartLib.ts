@@ -339,8 +339,10 @@ export function stoppedDownCrossCheck(
     }),
     stoppedOptions,
   );
-  // The first yield resolves field targets and best focus before any adaptive field tracing.
-  const result = steps.next().value;
+  // Phase boundaries precede the common plane; stop before adaptive field tracing starts.
+  let next = steps.next();
+  while (!next.done && !next.value.result) next = steps.next();
+  const result = next.done ? next.value : next.value.result!;
   steps.return(result);
   return {
     fNumber,

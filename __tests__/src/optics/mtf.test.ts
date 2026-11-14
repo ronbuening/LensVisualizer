@@ -32,7 +32,7 @@ import type { FiniteConjugate, RuntimeLens, SourceOmission } from "../../../src/
 import { LINE_NM } from "../../../src/optics/chromatic/spectralLines.js";
 import { geometricOtf, otfMagnitude } from "../../../src/optics/analysis/mtf/mtfMath.js";
 import { assessMtfDataLimitations } from "../../../src/optics/analysis/mtf/mtfDataLimitations.js";
-import { computeMtf } from "../../../src/optics/analysis/mtf/mtf.js";
+import { computeMtf, computeMtfSteps } from "../../../src/optics/analysis/mtf/mtf.js";
 import { attachFixtureTeleconverter as attachTeleconverter } from "./constructionFixtures.js";
 import {
   findMtfFieldFootprint,
@@ -1792,5 +1792,56 @@ describe("MTF data limitations", () => {
     expect(notes[0].text).toContain(`the source prints ${-front.R}, this prescription uses ${front.R}`);
     expect(notes[1].text).toContain("these curves describe the printed table: The table traces to a shorter");
     expect(assessMtfDataLimitations(state, photopic).every(({ blocking }) => blocking)).toBe(true);
+  });
+});
+
+describe("cooperative MTF steps", () => {
+  it.each([
+    ["geometric", "reference"],
+    ["diffraction", "reference"],
+    ["geometric", "photopic"],
+    ["diffraction", "photopic"],
+  ] as const)("returns exactly the synchronous %s / %s result", (method, spectrum) => {
+    const lens = buildChromaticPositiveElementLens();
+    const state = prepareRuntimeState(lens, 0, 0);
+    const options = { ...mtfTestOptions, method, spectrum, fieldFractions: [0, 0.5] };
+    const expected = computeMtf(...mtfInputs(state, options));
+    const steps = computeMtfSteps(...mtfInputs(state, options));
+    const phases = [];
+    let next = steps.next();
+    while (!next.done) {
+      const progress = next.value;
+      phases.push(progress.phase);
+      if (progress.result) {
+        expect(progress.result.focus).not.toBeNull();
+        for (const field of progress.result.fields)
+          expect(field.sagittal.length).toBe(field.status === "pending" ? 0 : expected.frequenciesPerMm.length);
+      } else {
+        expect(Object.keys(progress)).toEqual(["phase"]);
+      }
+      next = steps.next();
+    }
+    expect(next.value).toStrictEqual(expected);
+    const lineCount = spectrum === "photopic" ? 9 : 1;
+    expect(phases.filter((phase) => phase.kind === "focus").map((phase) => phase.lineIndex)).toEqual(
+      Array.from({ length: lineCount + 1 }, (_, index) => index),
+    );
+    expect(phases.slice(0, 2)).toEqual([{ kind: "geometry" }, { kind: "geometry" }]);
+    expect(phases).toContainEqual({
+      kind: "field",
+      fieldIndex: 1,
+      fieldCount: 2,
+      gridSize: 16,
+      lineIndex: 1,
+      lineCount,
+    });
+    expect(phases).toContainEqual({
+      kind: "field",
+      fieldIndex: 2,
+      fieldCount: 2,
+      gridSize: 32,
+      lineIndex: lineCount,
+      lineCount,
+    });
   });
 });

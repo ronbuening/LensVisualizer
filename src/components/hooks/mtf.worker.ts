@@ -11,7 +11,7 @@ import type { MtfResult } from "../../types/mtf.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import type { MtfJob, MtfWorkerReply, MtfWorkerRequest } from "./mtfWorkerClient.js";
 
-/** Longest synchronous slice before the worker yields to incoming messages. */
+/** Target slice length, checked at each geometry, focus-bundle or spectral-line boundary. */
 const SLICE_MS = 30;
 /** Minimum spacing of progress messages. */
 const PROGRESS_MS = 100;
@@ -20,7 +20,8 @@ const MAX_CACHED_JOBS = 24;
 
 let lens: RuntimeLens | null = null;
 let initializationError: string | null = null;
-let active: { id: number; steps: Generator<MtfResult, MtfResult>; postedAt: number } | null = null;
+let active: { id: number; steps: ReturnType<typeof computeMtfSteps>; postedAt: number; result?: MtfResult } | null =
+  null;
 const jobCaches = new Map<string, MtfJobCache>();
 
 const post = (reply: MtfWorkerReply) => self.postMessage(reply);
@@ -36,10 +37,12 @@ function jobCache(job: MtfJob): MtfJobCache {
 }
 
 /** Find an overview edge on this worker without tracing the station's full field grid. */
-function* stationSteps(request: AnalysisRequest, job: MtfJob, cache: MtfJobCache): Generator<MtfResult, MtfResult> {
+function* stationSteps(request: AnalysisRequest, job: MtfJob, cache: MtfJobCache): ReturnType<typeof computeMtfSteps> {
   if (!job.sweep) return yield* computeMtfSteps(request, job.options, cache);
   const { candidates, field } = job.sweep;
+  yield { phase: { kind: "geometry" } };
   if (cache.geometry === undefined) cache.geometry = resolveMtfGeometry(request, job.options);
+  yield { phase: { kind: "geometry" } };
   if (!cache.geometry) return yield* computeMtfSteps(request, job.options, cache);
   const geometry = cache.geometry;
   const edges = [...candidates]
@@ -51,12 +54,10 @@ function* stationSteps(request: AnalysisRequest, job: MtfJob, cache: MtfJobCache
       fieldFractions: typeof field === "number" ? [field] : [...new Set([0, 0.5, edge])].sort((a, b) => a - b),
     };
     const steps = computeMtfSteps(request, settings, cache);
-    let result: MtfResult;
-    for (;;) {
-      const next = steps.next();
-      const sampled = next.value.fields.find((sample) => sample.fieldFraction === edge);
-      result = {
-        ...next.value,
+    const withEdge = (result: MtfResult): MtfResult => {
+      const sampled = result.fields.find((sample) => sample.fieldFraction === edge);
+      return {
+        ...result,
         ...(field === "overview"
           ? {
               sweepEdge: {
@@ -66,8 +67,15 @@ function* stationSteps(request: AnalysisRequest, job: MtfJob, cache: MtfJobCache
             }
           : {}),
       };
-      if (next.done) break;
-      yield result;
+    };
+    let result: MtfResult;
+    for (;;) {
+      const next = steps.next();
+      if (next.done) {
+        result = withEdge(next.value);
+        break;
+      }
+      yield { ...next.value, ...(next.value.result ? { result: withEdge(next.value.result) } : {}) };
     }
     const sampled = result.fields.find((sample) => sample.fieldFraction === edge);
     if (
@@ -94,11 +102,12 @@ function pump(): void {
         post({ type: "result", id: job.id, result: next.value });
         return;
       }
+      if (next.value.result) job.result = next.value.result;
       const now = performance.now();
       if (now - start >= SLICE_MS) {
         if (now - job.postedAt >= PROGRESS_MS) {
           job.postedAt = now;
-          post({ type: "progress", id: job.id, result: next.value });
+          post({ type: "progress", id: job.id, ...next.value, ...(job.result ? { result: job.result } : {}) });
         }
         // Yield so a cancel or newer request can arrive before the next slice.
         setTimeout(() => {
@@ -129,6 +138,7 @@ self.onmessage = (event: MessageEvent<MtfWorkerRequest>) => {
   }
   if (message.type === "cancel") {
     if (active?.id === message.id) active = null;
+    post({ type: "cancelled", id: message.id });
     return;
   }
   try {

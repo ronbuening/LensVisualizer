@@ -217,10 +217,6 @@ S under a day, M one to three days, L longer.
   also annular, 7 diffractive designs). Unlock in stages, each behind its own control: an on-axis geometric fisheye
   path; geometric tracing of a diffractive order; mirror lenses last, which need optical path in the generalized
   tracer (the estimator reads an aberrated annulus 0.031 low, the optical-path kernel within 0.00003). L each.
-- **C31 — Worker responsiveness.** The 30 ms budget is checked only between generator steps, and each step is a
-  whole field and grid across every line; the f/8 overlay doubles the workers (four in comparison mode), each
-  with its own 64 MiB cache. Phase-aware progress, yields inside long steps, and one page-wide budget before any
-  pool. M.
 - **C32 — RMS wavefront and Strehl per field.** Needs optical-path capture on the production bundles and the
   pairing fix of C13; a ratio of MTF to limit at one frequency is not Strehl. M to L.
 

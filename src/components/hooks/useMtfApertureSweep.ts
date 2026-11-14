@@ -4,13 +4,14 @@ import type { AnalysisRequest } from "../../optics/analysis.js";
 import type { MtfSweepSample, MtfRequestOptions, MtfResult } from "../../types/mtf.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import { mtfApertureRequests } from "../display/analysis/mtf/mtfApertureSweep.js";
-import { MtfWorkerClient, mtfJobForRequest, type MtfJob } from "./mtfWorkerClient.js";
+import { MtfWorkerClient, mtfJobForRequest, type MtfJob, type MtfProgress } from "./mtfWorkerClient.js";
 
 interface SweepState {
   samples: readonly MtfSweepSample[];
   running: boolean;
   index: number;
   error: string | null;
+  phase: MtfProgress["phase"] | null;
 }
 
 /**
@@ -66,6 +67,7 @@ export function useMtfSweep(
     running: jobs.length > 0,
     index: 0,
     error: null,
+    phase: null,
   };
   const [state, setState] = useState<{ client: MtfWorkerClient; key: string; value: SweepState } | null>(null);
   useEffect(() => () => client.dispose(), [client]);
@@ -73,12 +75,19 @@ export function useMtfSweep(
     let live = true;
     const queue = JSON.parse(serialized) as Array<Omit<MtfSweepSample, "result"> & { job: MtfJob }>;
     const samples: MtfSweepSample[] = queue.map(({ job: _job, ...sample }) => ({ ...sample, result: null }));
+    let phase: MtfProgress["phase"] | null = null;
     const publish = (index: number, running: boolean, error: string | null = null) => {
-      if (live) setState({ client, key, value: { samples: [...samples], index, running, error } });
+      if (live)
+        setState({
+          client,
+          key,
+          value: { samples: [...samples], index, running, error, phase: running ? phase : null },
+        });
     };
     const run = async () => {
       for (let index = 0; index < queue.length; index++) {
         if (!live) return;
+        phase = null;
         publish(index, true);
         const accept = (result: MtfResult) => {
           if (!live) return;
@@ -87,7 +96,15 @@ export function useMtfSweep(
         };
         try {
           const job = queue[index].job;
-          const result = await client.compute(job, accept);
+          const result = await client.compute(
+            job,
+            (progress) => {
+              phase = progress.phase;
+              if (progress.result) accept(progress.result);
+              else publish(index, true);
+            },
+            "sweep",
+          );
           if (!live) return;
           accept(result);
         } catch (cause) {

@@ -484,12 +484,21 @@ The tab lazily creates a worker from the runtime's unexpanded canonical prescrip
 composition descriptor. `buildCanonicalLens()` compiles that input once; rear plates expand in the compiler with the
 same physical gaps and dispersion as on the main thread. The worker reconstructs prepared geometry and an
 `AnalysisRequest` for `computeMtfSteps`; compiled geometry and its solve caches never cross the worker boundary.
-The typed protocol
-(`init | compute | cancel` → `progress | result | error`) runs
-`computeMtfSteps` in ~30 ms slices and posts partial results at most every 100 ms. Cancellation is cooperative, so the
-built lens stays warm, and request ids reject stale replies. The worker caches finished fields and the focus search
-per request minus its field list (`MtfJobCache`), so a finer field step reuses coarser fields. Completed results use
-a client LRU bounded to 64 MiB, while chart changes reuse curves without tracing. The read-only census is `scripts/audit-mtf.mjs`; its default support totals include additive
+The typed protocol (`init | compute | cancel` → `progress | result | cancelled | error`) drives
+`computeMtfSteps` with a 30 ms slice target, checked at geometry boundaries, after each axial spectral bundle,
+and between spectral lines of each field/grid evaluation. Phase-only yields expose no unfinished spectral field;
+only complete grid evaluations accompany partial results. A single lattice trace, the geometry solve and the focus
+score search remain synchronous, so the slice target is not a hard latency bound. Progress includes geometry,
+focus search, working aperture, or field ordinal/grid/line ordinal and posts at most every 100 ms. The tab shows
+short phase text and waiting jobs show “Waiting…”. Polite live announcements update at most once every three seconds.
+Cancellation is cooperative, so the built lens stays warm, and request ids reject stale replies. A shared page
+scheduler admits at most two computations, prioritizing main visible results, then comparisons, then sweeps, FIFO
+within each class. Cancelling queued work removes it; running work holds its slot until the worker acknowledges
+cancellation or completes, and disposal or worker failure releases it. Each client retains its own warm worker;
+no computation is split across workers. The worker caches finished fields and the focus search per request minus
+its field list (`MtfJobCache`), so a finer field step reuses coarser fields. Completed results share one page-wide
+64 MiB LRU byte budget across clients; disposing a client removes its entries. Chart changes reuse curves without
+tracing. The read-only census is `scripts/audit-mtf.mjs`; its default support totals include additive
 `unsupported-path:<sub-reason>` keys, so a lens with several path refusals contributes to each matching key.
 Options include `--cdf`/`--photopic` for spectral
 eligibility, `--fields` for structural eligibility → modeled-field inclusion → curve production → convergence at

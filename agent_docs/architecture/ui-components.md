@@ -165,7 +165,10 @@ disable downloads and Copy CSV.
 Malformed bundles and unknown versions fall back to stored preferences as a whole. Image-height and frequency
 requests compute 0–100 lp/mm for every field, so changes between those views never recompute.
 `useMtfComputation` debounces settled inputs for 150 ms, keeps earlier curves dimmed until the new request reports progress, and cancels superseded work; the mounted tab disposes its worker
-on unmount. In the image-height view, `MtfChart` gives each frequency a fixed `chartSeries` slot, labels curve ends,
+on unmount. Main results, comparisons and sweeps share two page-wide computation slots and one 64 MiB result-cache
+budget, in that priority order and FIFO within each class. Queued work shows “Waiting…”. Running status names
+geometry, focus search, working aperture or the current field/grid/spectral line. Visible progress follows the
+100 ms worker throttle; its polite live announcement updates at most once every three seconds. In the image-height view, `MtfChart` gives each frequency a fixed `chartSeries` slot, labels curve ends,
 adds marker shapes up to 21 fields and hatches heights beyond the modeled edge. Spans across pending fields use
 lighter dotted lines for both axes, the comparison and the diffraction limit, with a caption explaining the style
 while either aperture is computing; unavailable or undisclosed unconverged values leave gaps. Completed results

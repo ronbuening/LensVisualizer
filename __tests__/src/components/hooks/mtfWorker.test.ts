@@ -22,6 +22,7 @@ import {
 } from "../../../../src/components/hooks/mtfWorkerClient.js";
 
 afterEach(() => {
+  vi.useRealTimers();
   vi.unstubAllGlobals();
   vi.restoreAllMocks();
 });
@@ -46,7 +47,7 @@ async function loadWorker() {
       },
       { timeout: 20000, interval: 5 },
     );
-  return { send, replies, finished, compiled, runtimeView, prepareWorkerState };
+  return { send, replies, finished, compiled, runtimeView, prepareWorkerState, port };
 }
 
 it("round-trips the finite object, working aperture and traced magnification and reuses them with focus", async () => {
@@ -244,7 +245,8 @@ it("drops cancelled requests and reuses finished fields when only the field list
   const coarse = (await finished(2)) as Extract<MtfWorkerReply, { type: "result" }>;
   send({ type: "compute", id: 3, job: { ...job, options: { ...options, fieldFractions: [0, 0.25, 0.5, 1] } } });
   const fine = (await finished(3)) as Extract<MtfWorkerReply, { type: "result" }>;
-  expect(replies().some((reply) => reply.id === 1 && reply.type !== "progress")).toBe(false);
+  expect(replies().some((reply) => reply.id === 1 && reply.type === "result")).toBe(false);
+  expect(replies()).toContainEqual({ type: "cancelled", id: 1 });
   // Shared fractions come back identical; the new one is traced.
   expect(fine.result.fields[0]).toEqual(coarse.result.fields[0]);
   expect(fine.result.fields[2]).toEqual(coarse.result.fields[1]);
@@ -505,4 +507,98 @@ it("carries the center as the selected edge when the modeled radius is below the
   expect(reply.result.sweepEdge).toEqual({ fieldFraction: 0, imageHeightMm: 0 });
   expect(reply.result.fields[0]).toEqual(ordinary.fields[0]);
   expect(reply.result.fields[1]).toMatchObject({ fieldFraction: 0.5, status: "unavailable" });
+});
+
+it("honours cancellation during the first step at the next boundary without advancing another yield", async () => {
+  const { send, replies, compiled } = await loadWorker();
+  vi.useFakeTimers();
+  let now = 0;
+  vi.spyOn(performance, "now").mockImplementation(() => (now += 100));
+  const engine = await import("../../../../src/optics/analysis/mtf/mtf.js");
+  const compute = engine.computeMtfSteps;
+  let yields = 0;
+  vi.spyOn(engine, "computeMtfSteps").mockImplementation(function* (...args) {
+    const steps = compute(...args);
+    let next = steps.next();
+    while (!next.done) {
+      yields++;
+      if (yields === 1) setTimeout(() => send({ type: "cancel", id: 1 }), 0);
+      yield next.value;
+      next = steps.next();
+    }
+    return next.value;
+  });
+  const lens = buildChromaticPositiveElementLens();
+  send({ type: "init", input: structuredClone(canonicalLensFromRuntime(lens)) });
+  const job = {
+    focusT: 0,
+    zoomT: 0,
+    aberrationT: 0,
+    options: {
+      method: "geometric",
+      spectrum: "photopic",
+      focus: "best-axial",
+      pupilSemiDiameterMm: 1,
+      stopSemiDiameterMm: 1,
+      fieldFractions: [0, 0.5, 1],
+      maxGridSize: 256,
+    },
+  };
+  send({ type: "compute", id: 1, job });
+  expect(yields).toBe(1);
+  await vi.runAllTimersAsync();
+  expect(yields).toBe(1);
+  expect(replies()).toContainEqual({ type: "cancelled", id: 1 });
+  expect(replies().filter((reply) => reply.type === "result")).toEqual([]);
+  const builds = compiled.mock.calls.length;
+  send({ type: "compute", id: 2, job: { ...job, options: { ...job.options, fieldFractions: [0], maxGridSize: 32 } } });
+  await vi.runAllTimersAsync();
+  expect(replies().some((reply) => reply.id === 2 && reply.type === "result")).toBe(true);
+  expect(compiled).toHaveBeenCalledTimes(builds);
+});
+
+it.each([20, 100])("posts phases with a %i ms clock step and a 100 ms progress throttle", async (clockStep) => {
+  const { send, replies, port } = await loadWorker();
+  vi.useFakeTimers();
+  let now = 0;
+  vi.spyOn(performance, "now").mockImplementation(() => (now += clockStep));
+  const times: number[] = [];
+  port.postMessage.mockImplementation((reply: MtfWorkerReply) => {
+    if (reply.type === "progress") times.push(now);
+  });
+  const lens = buildChromaticPositiveElementLens();
+  send({ type: "init", input: structuredClone(canonicalLensFromRuntime(lens)) });
+  send({
+    type: "compute",
+    id: 1,
+    job: {
+      focusT: 0,
+      zoomT: 0,
+      aberrationT: 0,
+      options: {
+        method: "geometric",
+        spectrum: "photopic",
+        focus: "best-axial",
+        pupilSemiDiameterMm: 1,
+        stopSemiDiameterMm: 1,
+        fieldFractions: [0, 0.5],
+        maxGridSize: 32,
+      },
+    },
+  });
+  await vi.runAllTimersAsync();
+  const progress = replies().filter((reply) => reply.type === "progress");
+  expect(progress.some((reply) => reply.phase.kind === "focus")).toBe(true);
+  if (clockStep === 100) {
+    expect(progress[0].phase).toEqual({ kind: "geometry" });
+    expect(progress.some((reply) => reply.phase.kind === "aperture")).toBe(true);
+    expect(progress.filter((reply) => reply.phase.kind === "focus").map((reply) => reply.phase)).toEqual(
+      Array.from({ length: 10 }, (_, lineIndex) => ({ kind: "focus", lineIndex, lineCount: 9 })),
+    );
+  }
+  expect(progress).toContainEqual(
+    expect.objectContaining({ phase: expect.objectContaining({ kind: "field", fieldCount: 2, lineCount: 9 }) }),
+  );
+  for (let i = 1; i < times.length; i++) expect(times[i] - times[i - 1]).toBeGreaterThanOrEqual(100);
+  expect(replies().at(-1)?.type).toBe("result");
 });

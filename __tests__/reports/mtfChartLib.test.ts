@@ -337,7 +337,9 @@ describe("MTF chart report helpers", () => {
     const state = prepareRuntimeState(ranged, 0, 0);
     const result = { fields: [], focus: { appliedShiftMm: 0.012 } } as unknown as MtfResult;
     const compute = vi.spyOn(mtf, "computeMtfSteps").mockImplementation(function* () {
-      yield result;
+      yield { phase: { kind: "geometry" } };
+      yield { phase: { kind: "focus", lineIndex: 1, lineCount: 9 } };
+      yield { phase: { kind: "aperture" }, result };
       throw new Error("The cross-check must not run an adaptive field sweep");
     });
     vi.spyOn(mtf, "assessMtfSupport").mockReturnValue({ available: false } as ReturnType<typeof mtf.assessMtfSupport>);

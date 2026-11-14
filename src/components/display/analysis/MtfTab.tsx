@@ -1,5 +1,5 @@
 /** MTF stays outside render-time optics; requests execute only in the mounted tab's worker. */
-import { useContext, useMemo, useRef, useState } from "react";
+import { useEffect, useContext, useMemo, useRef, useState } from "react";
 import type { RuntimeLens } from "../../../types/optics.js";
 import type { MtfAxialVignetting, MtfMethod, MtfRequestOptions, MtfResult, MtfSpectrum } from "../../../types/mtf.js";
 import { createAnalysisRequest } from "../../../optics/analysis.js";
@@ -19,6 +19,7 @@ import {
   mtfRequestAtAperture,
 } from "./mtf/mtfApertureSweep.js";
 import { mtfSweepFields, mtfSweepLabel } from "./mtf/mtfPresentation.js";
+import type { MtfProgress } from "../../hooks/mtfWorkerClient.js";
 import { useMtfComputation } from "../../hooks/useMtfComputation.js";
 import { useMtfDataWarning } from "../../hooks/useMtfDataWarning.js";
 import { useSharedMtfPreferences } from "../../../utils/state/useSharedMtfPreferences.js";
@@ -167,7 +168,7 @@ export default function MtfTab({
     presentation.comparisonPolicy === comparisonPolicy &&
     presentation.diagnostic;
   const job = support.available && view !== "zoom" ? request : null;
-  const { result, stale, running, error } = useMtfComputation(L, job, options);
+  const { result, stale, running, error, phase } = useMtfComputation(L, job, options);
   const mainShown = support.available ? result : null;
   const dataLimitations = useMemo(
     () =>
@@ -339,7 +340,7 @@ export default function MtfTab({
       : holdComparison
         ? "Aperture sweep holds the charted aperture's image plane at every aperture."
         : "Aperture sweep applies the selected image-plane policy independently at each aperture (refocus).";
-  const comparison = useMtfComputation(L, comparisonJob, comparisonOptions);
+  const comparison = useMtfComputation(L, comparisonJob, comparisonOptions, "comparison");
   const comparisonShown = comparisonJob && !comparison.stale && !stale ? comparison.result : null;
   // A result kept from an earlier request says nothing about the label on screen.
   const vignettingOf = (result: MtfResult | null, superseded: boolean) =>
@@ -415,10 +416,14 @@ export default function MtfTab({
         sweep.error ? (
           <p role="alert">{`${view === "zoom" ? "Zoom" : "Aperture"} sweep: ${sweep.error}`}</p>
         ) : sweep.running ? (
-          <p
-            role="status"
-            style={muted}
-          >{`Calculating ${mtfSweepLabel(sweep.samples[sweep.index])}, ${sweep.index + 1} of ${sweep.samples.length}…`}</p>
+          <MtfProgressStatus
+            color={t.muted}
+            text={
+              sweep.phase?.kind === "waiting"
+                ? "Waiting…"
+                : `Calculating ${mtfSweepLabel(sweep.samples[sweep.index])}, ${sweep.index + 1} of ${sweep.samples.length}…${sweep.phase ? ` · ${progressText(sweep.phase)}` : ""}`
+            }
+          />
         ) : view === "aperture" && !sweepReady && support.available && running && !error ? (
           <p role="status" style={muted}>
             Aperture sweep: waiting for the charted aperture's fields and image plane…
@@ -431,11 +436,16 @@ export default function MtfTab({
         ) : comparisonShown && !comparisonShown.support.available ? (
           <p role="status" style={muted}>{`${comparisonAperture} comparison: ${comparisonShown.support.message}`}</p>
         ) : comparison.running || !comparisonJob ? (
-          <p role="status" style={muted}>
-            {comparisonJob
-              ? `Calculating ${comparisonAperture} comparison…`
-              : `${comparisonAperture} comparison: waiting for the wide-open image plane…`}
-          </p>
+          <MtfProgressStatus
+            color={t.muted}
+            text={
+              comparisonJob
+                ? comparison.phase && comparison.phase.kind !== "geometry"
+                  ? `${comparisonAperture} comparison: ${progressText(comparison.phase)}`
+                  : `Calculating ${comparisonAperture} comparison…`
+                : `${comparisonAperture} comparison: waiting for the wide-open image plane…`
+            }
+          />
         ) : null
       ) : null}
       {view !== "zoom" && !support.available ? (
@@ -445,16 +455,10 @@ export default function MtfTab({
       ) : view !== "zoom" && error ? (
         <p role="alert">{error}</p>
       ) : !shown ? (
-        <p role="status" style={muted}>
-          Calculating MTF in the background…
-        </p>
+        <MtfProgressStatus color={t.muted} text={progressText(phase)} />
       ) : (
         <>
-          {view !== "zoom" && running ? (
-            <p role="status" style={muted}>
-              {stale ? "Updating…" : `Calculating… ${progressText(shown)}`}
-            </p>
-          ) : null}
+          {view !== "zoom" && running ? <MtfProgressStatus color={t.muted} text={progressText(phase)} /> : null}
           {!displayStale ? (
             <div role="note" aria-label="MTF numerical limits" style={{ margin: "8px 0", color: t.value }}>
               <p>
@@ -945,9 +949,54 @@ function axialVignettingNote(vignetting: MtfAxialVignetting | null): string {
   return ` (axial beam vignetted at surface ${vignetting.surfaceLabel}${vignetting.beforeStop ? ", before the stop" : ""})`;
 }
 
-function progressText(result: MtfResult): string {
-  const done = result.fields.filter((f) => f.status !== "pending").length;
-  return `${done} / ${result.fields.length} fields`;
+/** Short visible phases keep line-by-line progress distinct from completed field counts. */
+function progressText(phase: MtfProgress["phase"] | null): string {
+  switch (phase?.kind) {
+    case "waiting":
+      return "Waiting…";
+    case "geometry":
+      return "Resolving fields…";
+    case "focus":
+      return "Finding focus…";
+    case "aperture":
+      return "Checking aperture…";
+    case "field":
+      return `Field ${phase.fieldIndex} of ${phase.fieldCount} · ${phase.gridSize} cells${phase.lineCount > 1 ? ` · line ${phase.lineIndex} of ${phase.lineCount}` : ""}`;
+    default:
+      return "Calculating MTF in the background…";
+  }
+}
+
+interface MtfProgressStatusProps {
+  text: string;
+  color: string;
+}
+
+/** Visible progress follows the worker; assistive announcements trail by at least three seconds. */
+function MtfProgressStatus({ text, color }: MtfProgressStatusProps) {
+  const [announcement, setAnnouncement] = useState({ text: "", at: Date.now() });
+  useEffect(() => {
+    if (text === announcement.text) return;
+    const timer = setTimeout(
+      () => setAnnouncement({ text, at: Date.now() }),
+      Math.max(0, 3000 - (Date.now() - announcement.at)),
+    );
+    return () => clearTimeout(timer);
+  }, [text, announcement]);
+  return (
+    <>
+      <p role="status" aria-live="off" style={{ color, fontSize: 12 }}>
+        {text}
+      </p>
+      <span
+        role="status"
+        aria-live="polite"
+        style={{ position: "absolute", width: 1, height: 1, overflow: "hidden", clipPath: "inset(50%)" }}
+      >
+        {announcement.text ? `MTF: ${announcement.text}` : ""}
+      </span>
+    </>
+  );
 }
 
 /**

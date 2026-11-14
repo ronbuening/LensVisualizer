@@ -2,6 +2,7 @@ import { mtfInputs } from "../../optics/testLensFixtures.js";
 import { describe, expect, it } from "vitest";
 import {
   MtfWorkerClient,
+  MtfPageBudget,
   type MtfJob,
   type MtfWorkerPort,
   type MtfWorkerReply,
@@ -129,19 +130,19 @@ describe("MTF worker lifecycle", () => {
   it("reports progress for the running request only", async () => {
     const port = new Port();
     const client = new MtfWorkerClient(L, () => port);
-    const partials: number[] = [];
-    const pending = client.compute(job, (partial) => partials.push(partial.fields.length));
-    port.reply({ type: "progress", id: 1, result: { ...result, fields: [] } });
-    port.reply({ type: "progress", id: 7, result });
+    const phases: string[] = [];
+    const pending = client.compute(job, (progress) => phases.push(progress.phase.kind));
+    port.reply({ type: "progress", id: 1, phase: { kind: "focus", lineIndex: 1, lineCount: 9 } });
+    port.reply({ type: "progress", id: 7, phase: { kind: "geometry" }, result });
     port.reply({ type: "result", id: 1, result });
     await pending;
-    expect(partials).toEqual([0]);
+    expect(phases).toEqual(["waiting", "geometry", "focus"]);
     client.dispose();
   });
   it("evicts retained payloads and keeps caller mutations out of cached calculations", async () => {
     const port = new Port();
     const bytes = (JSON.stringify(result).length + JSON.stringify(job).length) * 2 + 1024;
-    const client = new MtfWorkerClient(L, () => port, bytes + 50);
+    const client = new MtfWorkerClient(L, () => port, new MtfPageBudget(2, bytes + 50));
     const first = client.compute(job);
     port.reply({ type: "result", id: 1, result });
     await first;
@@ -159,7 +160,7 @@ describe("MTF worker lifecycle", () => {
   });
   it("does not cache results beyond its byte budget and reports worker errors", async () => {
     const port = new Port();
-    const client = new MtfWorkerClient(L, () => port, 1);
+    const client = new MtfWorkerClient(L, () => port, new MtfPageBudget(2, 1));
     const first = client.compute(job);
     port.reply({ type: "result", id: 1, result });
     await first;
@@ -168,5 +169,104 @@ describe("MTF worker lifecycle", () => {
     await expect(second).rejects.toThrow("unavailable");
     expect(port.computes()).toHaveLength(2);
     client.dispose();
+  });
+});
+
+describe("page-wide MTF resources", () => {
+  it("admits two jobs and orders queued main, comparison and sweep jobs FIFO within each class", async () => {
+    const budget = new MtfPageBudget();
+    const ports = Array.from({ length: 8 }, () => new Port());
+    const clients = ports.map((port) => new MtfWorkerClient(L, () => port, budget));
+    const order: number[] = [];
+    const priorities = ["sweep", "sweep", "sweep", "comparison", "main", "main", "comparison", "sweep"] as const;
+    const pending = clients.map((client, i) =>
+      client.compute(
+        job,
+        (progress) => {
+          if (progress.phase.kind === "geometry") order.push(i);
+        },
+        priorities[i],
+      ),
+    );
+    expect(order).toEqual([0, 1]);
+    expect(ports[4].messages).toEqual([]);
+    for (const index of [0, 1, 4, 5, 3, 6, 2, 7]) ports[index].reply({ type: "result", id: 1, result });
+    await Promise.all(pending);
+    expect(order).toEqual([0, 1, 4, 5, 3, 6, 2, 7]);
+    clients.forEach((client) => client.dispose());
+  });
+
+  it("removes cancelled queued jobs and holds running slots until cancellation is acknowledged", async () => {
+    const budget = new MtfPageBudget(1);
+    const ports = Array.from({ length: 4 }, () => new Port());
+    const clients = ports.map((port) => new MtfWorkerClient(L, () => port, budget));
+    const first = clients[0].compute(job).catch((error: Error) => error.name);
+    const queued = clients[1].compute(job).catch((error: Error) => error.name);
+    const next = clients[2].compute(job);
+    clients[1].cancel();
+    clients[0].cancel();
+    expect(await queued).toBe("AbortError");
+    expect(await first).toBe("AbortError");
+    expect(ports[1].messages).toEqual([]);
+    expect(ports[2].computes()).toHaveLength(0);
+    ports[0].reply({ type: "cancelled", id: 1 });
+    expect(ports[2].computes()).toHaveLength(1);
+    const last = clients[3].compute(job);
+    ports[0].reply({ type: "cancelled", id: 1 });
+    expect(ports[3].computes()).toHaveLength(0);
+    ports[2].reply({ type: "result", id: 1, result });
+    ports[3].reply({ type: "result", id: 1, result });
+    await Promise.all([next, last]);
+    clients.forEach((client) => client.dispose());
+  });
+
+  it("shares one cache byte allowance and promotes hits across client owners", async () => {
+    const bytes = (JSON.stringify(result).length + JSON.stringify(job).length) * 2 + 1024;
+    const budget = new MtfPageBudget(2, bytes * 2 + 10);
+    const ports = Array.from({ length: 3 }, () => new Port());
+    const clients = ports.map((port) => new MtfWorkerClient(L, () => port, budget));
+    for (const index of [0, 1]) {
+      const pending = clients[index].compute(job);
+      ports[index].reply({ type: "result", id: 1, result });
+      await pending;
+    }
+    const hit = await clients[0].compute(job);
+    hit.fields[0].sagittal[0] = 0.123;
+    expect((await clients[0].compute(job)).fields[0].sagittal[0]).toBe(result.fields[0].sagittal[0]);
+    const third = clients[2].compute(job);
+    ports[2].reply({ type: "result", id: 1, result });
+    await third;
+    expect(await clients[0].compute(job)).toEqual(result);
+    const evicted = clients[1].compute(job);
+    expect(ports[1].computes()).toHaveLength(2);
+    ports[1].reply({ type: "result", id: 2, result });
+    await evicted;
+    clients.forEach((client) => client.dispose());
+  });
+
+  it("releases occupied slots on worker errors, construction errors and disposal", async () => {
+    const budget = new MtfPageBudget(1);
+    const port = new Port();
+    const client = new MtfWorkerClient(L, () => port, budget);
+    const broken = new MtfWorkerClient(
+      L,
+      () => {
+        throw new Error("constructor failed");
+      },
+      budget,
+    );
+    const nextPort = new Port();
+    const next = new MtfWorkerClient(L, () => nextPort, budget);
+    const pending = client.compute(job).catch((error: Error) => error.message);
+    const failed = broken.compute(job).catch((error: Error) => error.message);
+    const done = next.compute(job);
+    port.onerror?.({} as ErrorEvent);
+    expect(await pending).toContain("background calculation failed");
+    expect(await failed).toBe("constructor failed");
+    expect(nextPort.computes()).toHaveLength(1);
+    next.dispose();
+    await expect(done).rejects.toMatchObject({ name: "AbortError" });
+    client.dispose();
+    broken.dispose();
   });
 });

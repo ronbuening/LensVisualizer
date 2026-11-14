@@ -70,6 +70,21 @@ export interface MtfJobCache {
   fields: Map<number, MtfFieldResult>;
 }
 
+/** Work boundaries carry no in-progress spectral field or unfinished curve arrays. */
+export type MtfPhase =
+  | { kind: "geometry" }
+  | { kind: "focus"; lineIndex: number; lineCount: number }
+  | { kind: "aperture" }
+  | { kind: "field"; fieldIndex: number; fieldCount: number; gridSize: number; lineIndex: number; lineCount: number };
+
+/** Only complete grid evaluations can accompany a progress boundary. */
+export interface MtfProgress {
+  phase: MtfPhase;
+  result?: MtfResult;
+}
+
+type MtfFieldStep = MtfPhase | MtfFieldResult;
+
 /** Everything one request shares across its fields. */
 interface MtfJobContext {
   state: PreparedGeometry;
@@ -245,13 +260,14 @@ type MtfFieldSampling =
 const MTF_LAUNCH_PLANE_NOTE =
   "This field launches from the bounding sphere, which the stop lattice does not cover: its pupil is sampled in equal cells of the launch plane, not evenly on the stop.";
 
-function fieldAtGrid(
+function* fieldAtGrid(
   context: MtfJobContext,
   target: MtfFieldTarget,
   launch: MtfFieldLaunch,
   sampling: MtfFieldSampling,
   size: number,
-): MtfGridOutcome {
+  phase: Pick<Extract<MtfPhase, { kind: "field" }>, "fieldIndex" | "fieldCount">,
+): Generator<MtfPhase, MtfGridOutcome> {
   const { state, options, support } = context;
   const field = emptyMtfField(target.fraction, target);
   field.gridSize = size;
@@ -275,6 +291,7 @@ function fieldAtGrid(
   /** Wavelengths no ray reaches at this grid. */
   let darkLines = 0;
   for (const [index, line] of support.spectralLines.entries()) {
+    yield { kind: "field", ...phase, gridSize: size, lineIndex: index + 1, lineCount: support.spectralLines.length };
     let bundle: MtfBundle | null;
     if (sampling.kind === "stop") {
       bundle = traceMtfStopBundle(state, options, support, launch, size, line, context.imagePlaneZ, {
@@ -434,6 +451,16 @@ export function* refineMtfField(
   evaluate: (size: number) => MtfGridOutcome,
   frequencies: readonly number[],
 ): Generator<MtfFieldResult, void> {
+  const steps = refineMtfFieldSteps(ladder, evaluate, frequencies);
+  for (const step of steps) if ("status" in step) yield step;
+}
+
+/** Preserve refinement order while allowing an evaluation to pause between spectral lines. */
+function* refineMtfFieldSteps(
+  ladder: readonly number[],
+  evaluate: (size: number) => MtfGridOutcome | Generator<MtfPhase, MtfGridOutcome>,
+  frequencies: readonly number[],
+): Generator<MtfFieldStep, void> {
   let previous: MtfFieldResult | null = null;
   /** The last failed level since the last curve. */
   let failed: { size: number; message: string } | null = null;
@@ -444,7 +471,8 @@ export function* refineMtfField(
       );
   };
   for (const size of ladder) {
-    const outcome = evaluate(size);
+    const evaluation = evaluate(size);
+    const outcome = "kind" in evaluation ? evaluation : yield* evaluation;
     if (outcome.kind === "unavailable") {
       failed = { size, message: outcome.field.message };
       if (!outcome.refine) {
@@ -472,7 +500,11 @@ export function* refineMtfField(
  * stop lattice; a bounding-sphere field scans a launch-plane footprint first and widens it when its guard band carries
  * flux.
  */
-function* traceField(context: MtfJobContext, target: MtfFieldTarget): Generator<MtfFieldResult, void> {
+function* traceField(
+  context: MtfJobContext,
+  target: MtfFieldTarget,
+  phase: Pick<Extract<MtfPhase, { kind: "field" }>, "fieldIndex" | "fieldCount">,
+): Generator<MtfFieldStep, void> {
   const { state, options, support } = context;
   const launch =
     target.fieldAngleDeg === null ? null : prepareMtfFieldLaunch(state, options, support, target.fieldAngleDeg);
@@ -486,9 +518,9 @@ function* traceField(context: MtfJobContext, target: MtfFieldTarget): Generator<
   }
   if (launch.aim) {
     const sampling: MtfFieldSampling = { kind: "stop", lattices: new Map() };
-    yield* refineMtfField(
+    yield* refineMtfFieldSteps(
       context.ladder,
-      (size) => fieldAtGrid(context, target, launch, sampling, size),
+      (size) => fieldAtGrid(context, target, launch, sampling, size, phase),
       context.frequencies,
     );
     return;
@@ -501,9 +533,16 @@ function* traceField(context: MtfJobContext, target: MtfFieldTarget): Generator<
     return;
   }
   let expansions = 0;
-  const evaluate = (size: number): MtfGridOutcome => {
+  const evaluate = function* (size: number): Generator<MtfPhase, MtfGridOutcome> {
     for (;;) {
-      const outcome = fieldAtGrid(context, target, launch, { kind: "launch-plane", footprint: footprint! }, size);
+      const outcome = yield* fieldAtGrid(
+        context,
+        target,
+        launch,
+        { kind: "launch-plane", footprint: footprint! },
+        size,
+        phase,
+      );
       const open = outcome.kind === "curves" ? outcome.openBorders : undefined;
       if (!open || !(open.x || open.y0 || open.y1)) return outcome;
       if (expansions >= MTF_MAX_FOOTPRINT_EXPANSIONS) {
@@ -517,7 +556,7 @@ function* traceField(context: MtfJobContext, target: MtfFieldTarget): Generator<
       expansions++;
     }
   };
-  yield* refineMtfField(context.ladder, evaluate, context.frequencies);
+  yield* refineMtfFieldSteps(context.ladder, evaluate, context.frequencies);
 }
 
 /* ── Focus ── */
@@ -576,7 +615,7 @@ function resolveMtfAxialReadout(
  * `auto` requests apply it only when the authored plane is inconsistent with the prescription.
  * An explicit held shift overrides that selection without suppressing the diagnostic.
  */
-function resolveMtfFocus(context: MtfJobContext, axial: MtfAxialBeam | null): MtfFocus {
+function* resolveMtfFocus(context: MtfJobContext, axial: MtfAxialBeam | null): Generator<MtfPhase, MtfFocus> {
   const { state, options, support } = context;
   const requestedMode = options.focus;
   const offset = mtfImagePlaneOffset(state, support);
@@ -604,10 +643,11 @@ function resolveMtfFocus(context: MtfJobContext, axial: MtfAxialBeam | null): Mt
   const { launch, footprint } = axial;
   const size = Math.min(MTF_FOCUS_GRID, context.ladder.at(-1) ?? MTF_FOCUS_GRID);
   const bundles = [];
-  for (const line of support.spectralLines) {
+  for (const [index, line] of support.spectralLines.entries()) {
     const bundle = footprint
       ? traceMtfLaunchPlaneBundle(state, options, support, launch, footprint, size, line, state.imgZ)
       : traceMtfStopBundle(state, options, support, launch, size, line, state.imgZ);
+    yield { kind: "focus", lineIndex: index + 1, lineCount: support.spectralLines.length };
     if (!bundle) return checkedFocus();
     bundles.push({ bundle, weight: line.weight });
   }
@@ -657,7 +697,8 @@ export function resolveMtfGeometry(request: AnalysisRequest, settings: MtfReques
 }
 
 /**
- * Yields after the field axis is known and after every refinement, so a worker can publish progress.
+ * Yields phase boundaries around geometry, focus bundles and spectral grid evaluations.
+ * Only completed grid evaluations appear in progress results; the return value is the final result.
  *
  * @param request - prepared geometry and current physical aperture
  * @param settings - method, spectrum, focus and sampling
@@ -667,7 +708,7 @@ export function* computeMtfSteps(
   request: AnalysisRequest,
   settings: MtfRequestOptions,
   cache?: MtfJobCache,
-): Generator<MtfResult, MtfResult> {
+): Generator<MtfProgress, MtfResult> {
   const state = request.preparedGeometry;
   const options = resolveMtfOptions(request, settings);
   const support = assessMtfSupport(request, settings);
@@ -687,6 +728,7 @@ export function* computeMtfSteps(
     axialVignetting: null,
   };
   if (!support.available) return result;
+  yield { phase: { kind: "geometry" } };
   result.conjugate = support.conjugate
     ? {
         kind: "finite",
@@ -715,6 +757,7 @@ export function* computeMtfSteps(
         });
   if (cache) cache.geometry = geometry;
   result.geometry = geometry;
+  yield { phase: { kind: "geometry" } };
   if (!geometry) {
     result.fields = fractions.map((fraction) =>
       markUnavailable(emptyMtfField(fraction), "chief-ray-failed", "No valid chief ray reaches the image plane."),
@@ -727,19 +770,27 @@ export function* computeMtfSteps(
       ? markUnavailable(emptyMtfField(target.fraction, target), "outside-modeled-field", outsideModelMessage(geometry))
       : emptyMtfField(target.fraction, target),
   );
+  yield { phase: { kind: "focus", lineIndex: 0, lineCount: support.spectralLines.length } };
   // Every field shares one image plane, so the axial focus search runs before any field.
   const axial = cache?.focus && cache.axial ? null : resolveAxialBeam(context);
   if (cache?.focus) {
     result.focus = cache.focus;
   } else {
-    result.focus = resolveMtfFocus(context, axial);
+    const steps = resolveMtfFocus(context, axial);
+    let next = steps.next();
+    while (!next.done) {
+      yield { phase: next.value };
+      next = steps.next();
+    }
+    result.focus = next.value;
     if (cache) cache.focus = result.focus;
   }
   context.imagePlaneZ = state.imgZ + result.focus.appliedShiftMm;
+  yield { phase: { kind: "aperture" } };
   const readout = cache?.axial ?? resolveMtfAxialReadout(request, context, axial);
   Object.assign(result, readout);
   if (cache) cache.axial = readout;
-  yield result;
+  yield { phase: { kind: "aperture" }, result };
   for (const index of mtfFieldProcessingOrder(fractions)) {
     if (targets[index].outsideModel) continue;
     const cached = cache?.fields.get(fractions[index]);
@@ -748,10 +799,23 @@ export function* computeMtfSteps(
       continue;
     }
     let finished: MtfFieldResult | undefined;
-    for (const field of traceField(context, targets[index])) {
-      finished = field;
-      result.fields[index] = field;
-      yield result;
+    const phase = { fieldIndex: index + 1, fieldCount: fractions.length };
+    let currentPhase: MtfPhase = {
+      kind: "field",
+      ...phase,
+      gridSize: 0,
+      lineIndex: 0,
+      lineCount: support.spectralLines.length,
+    };
+    for (const step of traceField(context, targets[index], phase)) {
+      if ("kind" in step) {
+        currentPhase = step;
+        yield { phase: step };
+      } else {
+        finished = step;
+        result.fields[index] = step;
+        yield { phase: currentPhase, result };
+      }
     }
     // Only fields that ran to completion are reusable; an abandoned generator stores nothing.
     if (finished && cache) cache.fields.set(fractions[index], copyField(finished));
