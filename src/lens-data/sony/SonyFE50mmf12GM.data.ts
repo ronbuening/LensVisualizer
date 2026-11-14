@@ -335,6 +335,16 @@ const LENS_DATA = {
       "Published double-floating focus: GR2 moves image-side 6.1293 mm and GR4 moves object-side 4.6776 mm from infinity to the patent near endpoint (d0 = 280 mm from the first surface, about 0.410 m object-to-IMG). The focus label follows this patent endpoint; Sony markets the minimum distance as 0.4 m.",
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 280,
+        distanceReference: "first-surface",
+        source:
+          "JP 2022-140076 A, Example 1, Table 3 (PDF p. 15), near column: d0 = 280.0000mm; d7=8.8679, d11=11.0000, d15=5.2530, d20=7.6776 mm. Table 1 (PDF p. 14) lists d0 as the object-to-first-surface gap.",
+      },
+    ],
   },
 
   gaps: {
