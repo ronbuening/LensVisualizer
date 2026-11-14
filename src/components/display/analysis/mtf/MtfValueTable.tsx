@@ -1,8 +1,14 @@
 /** Numeric sagittal/tangential MTF per field at the displayed frequencies. */
 import type { MtfResult } from "../../../../types/mtf.js";
 import type { Theme } from "../../../../types/theme.js";
-import type { MtfChartFrequency } from "../../../../utils/state/mtfPreferences.js";
-import { mtfValueVisible } from "./mtfPresentation.js";
+import type { MtfChartFrequency, MtfPixelPitch } from "../../../../utils/state/mtfPreferences.js";
+import {
+  MTF_DIFFRACTION_LIMIT_LABEL,
+  MTF_NYQUIST_NOTE,
+  mtfNyquistLabel,
+  mtfLimitValue,
+  mtfValueVisible,
+} from "./mtfPresentation.js";
 import { textRun } from "../../../../utils/text.js";
 
 interface MtfValueTableProps {
@@ -13,6 +19,8 @@ interface MtfValueTableProps {
   comparison?: MtfResult | null;
   comparisonLabel?: string;
   mainLabel?: string;
+  diffractionLimit?: boolean;
+  pixelPitchUm?: MtfPixelPitch | null;
 }
 
 const STATUS_TEXT = { converged: "", unconverged: "unconverged", unavailable: "—", pending: "…" } as const;
@@ -25,7 +33,10 @@ export default function MtfValueTable({
   comparison = null,
   comparisonLabel = "f/8",
   mainLabel = "Main aperture",
+  diffractionLimit = false,
+  pixelPitchUm = null,
 }: MtfValueTableProps) {
+  const showLimit = diffractionLimit && result.method === "diffraction";
   const columns = frequencies.filter((f) => result.frequenciesPerMm.includes(f));
   const sources = [
     { result, label: mainLabel },
@@ -39,6 +50,8 @@ export default function MtfValueTable({
           {textRun(
             "MTF by image height, sagittal / tangential",
             diagnostic ? " — diagnostic estimates included" : " — converged values only",
+            showLimit ? `. ${MTF_DIFFRACTION_LIMIT_LABEL}` : "",
+            pixelPitchUm !== null ? `. ${mtfNyquistLabel(pixelPitchUm)}. ${MTF_NYQUIST_NOTE}` : "",
           )}
         </caption>
         <thead style={{ color: t.muted }}>
@@ -56,6 +69,9 @@ export default function MtfValueTable({
                 {textRun(f, " lp/mm")}
               </th>
             ))}
+            {showLimit
+              ? columns.map((f) => <th key={`limit-${f}`} style={cell} scope="col">{`${f} lp/mm limit S / T`}</th>)
+              : null}
             <th style={cell} scope="col">
               Rays
             </th>
@@ -89,6 +105,26 @@ export default function MtfValueTable({
                       </td>
                     );
                   })}
+                  {showLimit
+                    ? columns.map((frequency) => {
+                        const j = source.frequenciesPerMm.indexOf(frequency);
+                        const sagittal =
+                          source.method === "diffraction"
+                            ? mtfLimitValue(field, "sagittal", j, frequency, diagnostic)
+                            : null;
+                        const tangential =
+                          source.method === "diffraction"
+                            ? mtfLimitValue(field, "tangential", j, frequency, diagnostic)
+                            : null;
+                        return (
+                          <td key={`limit-${frequency}`} style={cell}>
+                            {sagittal !== null && tangential !== null
+                              ? `${sagittal.toFixed(3)} / ${tangential.toFixed(3)}`
+                              : "—"}
+                          </td>
+                        );
+                      })
+                    : null}
                   <td style={cell}>{shown ? field.validRays : ""}</td>
                   <td style={{ ...cell, textAlign: "left", color: t.muted }}>
                     {field.reason === "outside-modeled-field" ? "outside model" : STATUS_TEXT[field.status]}

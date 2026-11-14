@@ -182,6 +182,7 @@ export default function MtfTab({
         onChange={updatePreferences}
         slowFieldSteps={spectrum.spectrum !== "reference"}
         compareF8Available={compareF8Available}
+        result={shown}
       />
       {comparisonEnabled ? (
         comparisonJob && comparison.error ? (
@@ -253,6 +254,9 @@ export default function MtfTab({
               comparison={comparisonShown}
               comparisonLabel={comparisonLabel}
               diagnostic={diagnostic}
+              diffractionLimit={preferences.diffractionLimit && preferences.method === "diffraction"}
+              frequencyField={preferences.frequencyField}
+              pixelPitchUm={preferences.pixelPitchUm}
             />
             <MtfFieldSummary
               result={shown}
@@ -263,6 +267,8 @@ export default function MtfTab({
               comparison={comparisonValues}
               comparisonLabel={comparisonLabel}
               mainLabel={fNumber ? `f/${formatFNumber(fNumber)} (main)` : "Main aperture"}
+              diffractionLimit={preferences.diffractionLimit && preferences.method === "diffraction"}
+              pixelPitchUm={preferences.view === "frequency" ? preferences.pixelPitchUm : null}
             />
           </MtfDataWarning>
         </>

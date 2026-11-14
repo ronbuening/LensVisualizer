@@ -212,9 +212,6 @@ S under a day, M one to three days, L longer.
 
 ### Features
 
-- **C22 — Show the diffraction limit.** `MtfFieldResult.diffractionLimit` is computed and unused. Draw it as an
-  opt-in S/T pair ("same traced pupil, no aberration"), add a field selector to the frequency view (it shows
-  centre, 50 % and the outermost only) and pixel-pitch Nyquist markers. Never multiply a geometric curve by it. M.
 - **C23 — A shareable MTF link.** Method, spectrum, focus, grid cap, field step, frequencies and the f/8 overlay
   live in localStorage, so a shared link can show different curves. "Copy MTF link" with versioned settings that
   do not overwrite the recipient's defaults. M.

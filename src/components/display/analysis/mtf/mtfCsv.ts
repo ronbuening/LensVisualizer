@@ -1,5 +1,5 @@
 /** Plain-text export of the MTF value table. */
-import { mtfValueVisible } from "./mtfPresentation.js";
+import { mtfLimitValue, mtfValueVisible } from "./mtfPresentation.js";
 import type { MtfResult } from "../../../../types/mtf.js";
 
 /**
@@ -11,6 +11,7 @@ import type { MtfResult } from "../../../../types/mtf.js";
  * @param frequencies - frequencies to export, in lp/mm
  * @param diagnostic - include explicitly disclosed numerical estimates
  * @param comparison - optional f/8 overlay; appended columns match fields by fraction
+ * @param diffractionLimit - append same-pupil reference columns after all existing columns
  * @returns CSV text with a header row
  */
 export function mtfCsv(
@@ -18,8 +19,13 @@ export function mtfCsv(
   frequencies: readonly number[],
   diagnostic = false,
   comparison: MtfResult | null = null,
+  diffractionLimit = false,
 ): string {
   const columns = frequencies.filter((f) => result.frequenciesPerMm.includes(f));
+  const limitSources =
+    diffractionLimit && result.method === "diffraction"
+      ? [{ result, prefix: "" }, ...(comparison ? [{ result: comparison, prefix: "f/8 " }] : [])]
+      : [];
   const header = [
     "Image height (mm)",
     "Field (%)",
@@ -38,6 +44,12 @@ export function mtfCsv(
           "f/8 shift from authored plane (mm)",
         ]
       : []),
+    ...limitSources.flatMap(({ prefix }) =>
+      columns.flatMap((f) => [
+        `${prefix}${f} lp/mm diffraction limit sagittal`,
+        `${prefix}${f} lp/mm diffraction limit tangential`,
+      ]),
+    ),
   ];
   const rows = result.fields.map((field) => {
     const height = field.imageHeightMm ?? field.targetImageHeightMm;
@@ -73,6 +85,17 @@ export function mtfCsv(
       diagnostic ? "diagnostic estimates included" : "converged band only",
       field.convergedThroughLpMm ?? "",
       ...appended,
+      ...limitSources.flatMap(({ result: source }) => {
+        const referenceField = source.fields.find((other) => other.fieldFraction === field.fieldFraction);
+        return columns.flatMap((frequency) =>
+          (["sagittal", "tangential"] as const).map((axis) => {
+            const j = source.frequenciesPerMm.indexOf(frequency);
+            return source.method === "diffraction" && referenceField && j >= 0
+              ? (mtfLimitValue(referenceField, axis, j, frequency, diagnostic)?.toFixed(4) ?? "")
+              : "";
+          }),
+        );
+      }),
     ];
   });
   return [header, ...rows].map((row) => row.join(",")).join("\n");

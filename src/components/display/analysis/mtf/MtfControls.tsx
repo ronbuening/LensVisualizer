@@ -1,14 +1,18 @@
 /** MTF model, spectrum, focus, sampling, view, field-step and frequency controls. */
 import { useEffect, useId, useRef, useState, type CSSProperties, type ReactNode } from "react";
-import type { MtfFocusMode, MtfGridCap, MtfMethod, MtfSpectrum } from "../../../../types/mtf.js";
+import type { MtfResult, MtfFocusMode, MtfGridCap, MtfMethod, MtfSpectrum } from "../../../../types/mtf.js";
 import type { Theme } from "../../../../types/theme.js";
 import {
   MTF_CHART_FREQUENCIES,
   MTF_FIELD_STEPS,
+  MTF_PIXEL_PITCHES,
+  type MtfFrequencyField,
+  type MtfPixelPitch,
   type MtfChartFrequency,
   type MtfChartView,
   type MtfPreferences,
 } from "../../../../utils/state/mtfPreferences.js";
+import { resolveMtfFrequencyField } from "./mtfPresentation.js";
 import { selector, toggleBtn, toggleGroup } from "../../../../utils/style/styles.js";
 import HelpTooltipButton from "../../../controls/HelpTooltipButton.js";
 import PortalTooltip from "../../../controls/PortalTooltip.js";
@@ -22,6 +26,7 @@ interface MtfControlsProps {
   slowFieldSteps: boolean;
   /** Offer the f/8 overlay: the working aperture is faster than f/8 and the lens reaches it. */
   compareF8Available: boolean;
+  result?: MtfResult | null;
 }
 
 const METHODS: ReadonlyArray<[MtfMethod, string]> = [
@@ -78,6 +83,7 @@ export default function MtfControls({
   onChange,
   slowFieldSteps,
   compareF8Available,
+  result = null,
 }: MtfControlsProps) {
   const selectStyle: CSSProperties = { ...selector(t, false), fontSize: 11, padding: "5px 26px 5px 8px" };
   const touchHelp = useMediaQuery(HOVERLESS_QUERY, { ssrDefault: false });
@@ -164,6 +170,58 @@ export default function MtfControls({
             </Toggle>
           ))}
         </ToggleGroup>
+        <span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
+          <ToggleGroup label="Diffraction reference" t={t}>
+            <Toggle
+              t={t}
+              active={preferences.diffractionLimit && preferences.method === "diffraction"}
+              disabled={preferences.method === "geometric"}
+              title={preferences.method === "geometric" ? "Requires diffraction method." : undefined}
+              last
+              onClick={() => onChange({ diffractionLimit: !preferences.diffractionLimit })}
+            >
+              Diffraction limit
+            </Toggle>
+          </ToggleGroup>
+          {preferences.method === "geometric" ? (
+            <span style={{ color: t.muted }}>Requires diffraction method.</span>
+          ) : null}
+        </span>
+        {preferences.view === "frequency" ? (
+          <>
+            <Select<MtfFrequencyField>
+              t={t}
+              label="Fields"
+              help="Overview shows the center, 50 % and outermost available field. Select a computed field by its fraction of the reference image height and its image height in mm."
+              touchHelp={touchHelp}
+              style={selectStyle}
+              value={resolveMtfFrequencyField(result, preferences.frequencyField)}
+              options={[
+                ["overview", "Fields: Overview"],
+                ...[...(result?.fields ?? [])]
+                  .sort((a, b) => a.fieldFraction - b.fieldFraction)
+                  .map((field): [number, string] => [
+                    field.fieldFraction,
+                    `Fields: ${(field.fieldFraction * 100).toFixed(0)} % · ${(field.imageHeightMm ?? field.targetImageHeightMm)?.toFixed(2) ?? "—"} mm`,
+                  ]),
+              ]}
+              onChange={(frequencyField) => onChange({ frequencyField })}
+            />
+            <Select<MtfPixelPitch | "none">
+              t={t}
+              label="Pixel pitch"
+              help="Nyquist is 500 divided by pixel pitch in µm, in lp/mm. It is the sampling limit of a pixel grid, not a prediction of camera or sensor MTF."
+              touchHelp={touchHelp}
+              style={selectStyle}
+              value={preferences.pixelPitchUm ?? "none"}
+              options={[
+                ["none", "Pixel pitch: none"],
+                ...MTF_PIXEL_PITCHES.map((pitch): [MtfPixelPitch, string] => [pitch, `Pixel pitch: ${pitch} µm`]),
+              ]}
+              onChange={(pitch) => onChange({ pixelPitchUm: pitch === "none" ? null : pitch })}
+            />
+          </>
+        ) : null}
         {compareF8Available ? (
           <ToggleGroup label="Aperture comparison" t={t}>
             <Toggle
@@ -317,6 +375,7 @@ function Toggle({
   active,
   last,
   title,
+  disabled = false,
   onClick,
   children,
 }: {
@@ -324,6 +383,7 @@ function Toggle({
   active: boolean;
   last: boolean;
   title?: string;
+  disabled?: boolean;
   onClick: () => void;
   children: ReactNode;
 }) {
@@ -332,8 +392,12 @@ function Toggle({
       type="button"
       aria-pressed={active}
       title={title}
+      disabled={disabled}
       onClick={onClick}
-      style={toggleBtn(t, active, { hasRightBorder: !last, padding: "5px 9px" })}
+      style={{
+        ...toggleBtn(t, active, { hasRightBorder: !last, padding: "5px 9px" }),
+        ...(disabled ? { opacity: 0.42, cursor: "not-allowed" } : {}),
+      }}
     >
       {children}
     </button>

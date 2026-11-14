@@ -7,6 +7,9 @@
 import type { MtfFocusMode, MtfGridCap, MtfMethod, MtfSpectrum } from "../../types/mtf.js";
 
 export type MtfChartView = "field" | "frequency";
+export type MtfFrequencyField = "overview" | number;
+export const MTF_PIXEL_PITCHES = [3, 4, 5, 6, 8] as const;
+export type MtfPixelPitch = (typeof MTF_PIXEL_PITCHES)[number];
 
 /** Field spacing choices, in percent of the reference image height. */
 export const MTF_FIELD_STEPS = [10, 5, 2, 1] as const;
@@ -30,6 +33,12 @@ export interface MtfPreferences {
   compareF8: boolean;
   /** Refocus the comparison independently, or keep the main result's image plane. */
   comparisonFocus: "refocus" | "hold";
+  /** Reference response of the same traced pupil without aberration. */
+  diffractionLimit: boolean;
+  /** Fraction of the reference image height, or the center/half-height/edge overview. */
+  frequencyField: MtfFrequencyField;
+  /** Pixel-grid sampling reference in µm; null hides the marker. */
+  pixelPitchUm: MtfPixelPitch | null;
 }
 
 export const MTF_PREFERENCES_KEY = "lensvis:mtf:options";
@@ -44,6 +53,9 @@ export const DEFAULT_MTF_PREFERENCES: MtfPreferences = Object.freeze({
   maxGridSize: 256,
   compareF8: false,
   comparisonFocus: "refocus",
+  diffractionLimit: false,
+  frequencyField: "overview",
+  pixelPitchUm: null,
 });
 
 /**
@@ -91,6 +103,18 @@ export function parseMtfPreferences(raw: unknown): MtfPreferences {
         : defaults.maxGridSize,
     compareF8: typeof stored.compareF8 === "boolean" ? stored.compareF8 : defaults.compareF8,
     comparisonFocus: stored.comparisonFocus === "hold" ? "hold" : defaults.comparisonFocus,
+    diffractionLimit:
+      typeof stored.diffractionLimit === "boolean" ? stored.diffractionLimit : defaults.diffractionLimit,
+    frequencyField:
+      typeof stored.frequencyField === "number" &&
+      Number.isFinite(stored.frequencyField) &&
+      stored.frequencyField >= 0 &&
+      stored.frequencyField <= 1
+        ? stored.frequencyField
+        : defaults.frequencyField,
+    pixelPitchUm: MTF_PIXEL_PITCHES.includes(stored.pixelPitchUm as MtfPixelPitch)
+      ? (stored.pixelPitchUm as MtfPixelPitch)
+      : null,
   };
 }
 

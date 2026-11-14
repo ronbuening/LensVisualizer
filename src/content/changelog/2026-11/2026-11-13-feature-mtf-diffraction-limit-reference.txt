@@ -1,0 +1,1 @@
+Added a diffraction-limit reference, a field selector and Nyquist markers to the MTF tab

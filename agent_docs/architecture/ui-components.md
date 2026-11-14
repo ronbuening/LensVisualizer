@@ -128,7 +128,16 @@ disclosed. Its progress and errors appear independently of the main result. The 
 and both its authored-plane shift and its shift from the main aperture's plane. A persisted selector beside the
 enabled toggle defaults to "Refocus at f/8" (the selected focus policy applied independently); "Hold the wide-open
 plane" waits for the main result's first partial focus and uses that exact plane at f/8. Changing the comparison
-policy resets diagnostic disclosure and removes superseded comparison values.
+policy resets diagnostic disclosure and removes superseded comparison values. A persisted "Diffraction limit"
+toggle (off by default, disabled with a reason for geometric MTF) draws thin dotted S and dash-dot T references:
+"Diffraction limit of the same traced pupil (no aberration)". References follow the main and f/8 curves' visibility
+rules, including stable bands and diagnostic disclosure, and appear in crosshair readouts, the value table and
+CSV columns appended after all existing columns. In the frequency view, persisted "Fields" selects Overview
+(center, 50 % and outermost available field) or one computed field labelled by reference-height percentage and mm;
+a saved field missing from the result falls back to Overview. Persisted "Pixel pitch" offers none or 3/4/5/6/8 µm,
+marking Nyquist at 500/pitch lp/mm or labelling it with a right-edge arrow beyond the chart range. The caption and
+accessible value-table caption explain that this is the pixel-grid sampling limit, not a camera or sensor MTF
+prediction. These display controls reuse results without tracing.
 `mtf/MtfControls`, `mtf/MtfFieldSummary` and `mtf/MtfValueTable` hold
 the controls, status counts and per-field values; an enabled comparison with values adds aperture-labelled table
 rows and appended f/8 CSV columns, retaining the main columns and their order. Each aperture keeps its own physical

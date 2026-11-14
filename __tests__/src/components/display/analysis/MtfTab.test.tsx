@@ -115,6 +115,38 @@ afterEach(() => {
 });
 
 describe("MTF tab", () => {
+  it("offers persisted display references without recomputing and falls back from a stale field", async () => {
+    localStorage.setItem(MTF_PREFERENCES_KEY, JSON.stringify({ frequencyField: 0.35 }));
+    resetMtfPreferencesCache();
+    const { calls } = stubWorker({ target: focusedState });
+    render(<MtfTab L={focusedL} t={mockTheme} preparedState={focusedState} currentEPSD={1} currentPhysStopSD={1} />);
+    await screen.findByRole("figure");
+    expect(screen.getByRole("button", { name: "Diffraction limit" }).getAttribute("aria-pressed")).toBe("false");
+    expect(screen.queryByRole("combobox", { name: "Fields" })).toBeNull();
+    expect(screen.queryByRole("combobox", { name: "Pixel pitch" })).toBeNull();
+    const computations = calls.compute;
+    fireEvent.click(screen.getByRole("button", { name: "Diffraction limit" }));
+    fireEvent.click(
+      within(screen.getByRole("group", { name: "MTF chart" })).getByRole("button", { name: "Frequency" }),
+    );
+    const fields = screen.getByRole("combobox", { name: "Fields" }) as HTMLSelectElement;
+    expect(fields.value).toBe("overview");
+    expect(within(fields).getByRole("option", { name: /40 % · .* mm/ })).toBeTruthy();
+    fireEvent.change(fields, { target: { value: "0.4" } });
+    fireEvent.change(screen.getByRole("combobox", { name: "Pixel pitch" }), { target: { value: "6" } });
+    expect(screen.getByRole("figure").textContent).toContain("Nyquist, 6 µm pixels: 83.3 lp/mm");
+    expect(calls.compute).toBe(computations);
+    expect(JSON.parse(localStorage.getItem(MTF_PREFERENCES_KEY)!)).toMatchObject({
+      diffractionLimit: true,
+      frequencyField: 0.4,
+      pixelPitchUm: 6,
+    });
+    fireEvent.change(screen.getByRole("combobox", { name: "MTF method" }), { target: { value: "geometric" } });
+    expect((screen.getByRole("button", { name: "Diffraction limit" }) as HTMLButtonElement).disabled).toBe(true);
+    expect(screen.getByText("Requires diffraction method.")).toBeTruthy();
+    await vi.waitFor(() => expect(calls.compute).toBe(computations + 1));
+    expect(screen.queryByTestId("mtf-diffraction-limit")).toBeNull();
+  });
   it("blocks moved optics without starting background work", () => {
     const worker = vi.fn();
     vi.stubGlobal("Worker", worker);
@@ -360,6 +392,197 @@ describe("MTF chart", () => {
     ...computed,
     fields: computed.fields.map((field) => ({ ...field, status: "converged", convergedThroughLpMm: 100 })),
   };
+  // Distinct synthetic S/T references prove the UI reads the supplied pupil response without normalizing curves.
+  const withLimit: MtfResult = {
+    ...result,
+    method: "diffraction",
+    fields: result.fields.map((field) => ({
+      ...field,
+      diffractionLimit: {
+        sagittal: result.frequenciesPerMm.map((f) => 1 - f / 200),
+        tangential: result.frequenciesPerMm.map((f) => 1 - f / 250),
+      },
+    })),
+  };
+  it("leaves default chart and CSV output unchanged when the reference is off", () => {
+    const props = { result: withLimit, view: "field" as const, frequencies: [10, 30] as const, t: mockTheme };
+    const { container, rerender } = render(<MtfChart {...props} />);
+    const original = container.innerHTML;
+    rerender(<MtfChart {...props} diffractionLimit={false} frequencyField="overview" pixelPitchUm={null} />);
+    expect(container.innerHTML).toBe(original);
+    expect(mtfCsv(withLimit, [10, 30], false, result, false)).toBe(mtfCsv(withLimit, [10, 30], false, result));
+    expect(screen.queryByTestId("mtf-diffraction-limit")).toBeNull();
+    const mainPaths = () => [...container.querySelectorAll('path[stroke-width="2"]')].map((p) => p.outerHTML);
+    const curves = mainPaths();
+    rerender(<MtfChart {...props} diffractionLimit />);
+    expect(mainPaths()).toEqual(curves);
+    expect(screen.getByText("Diffraction limit of the same traced pupil (no aberration)")).toBeTruthy();
+    fireEvent.keyDown(screen.getByRole("group", { name: /MTF chart values/ }), { key: "Home" });
+    expect(screen.getByText(/— 10 lp\/mm S/).textContent).toContain("Diffraction limit: 10 lp/mm S 0.950 T 0.960");
+    rerender(<MtfChart {...props} diffractionLimit={false} />);
+    fireEvent.keyDown(screen.getByRole("group", { name: /MTF chart values/ }), { key: "Escape" });
+    expect(container.innerHTML).toBe(original);
+  });
+  it("withholds reference values with their curves and discloses diagnostic estimates together", () => {
+    const uncertain: MtfResult = {
+      ...withLimit,
+      fields: withLimit.fields.map((field, i) => ({
+        ...field,
+        status: i === 0 ? "unconverged" : i === 1 ? "unavailable" : "converged",
+        convergedThroughLpMm: i === 2 ? 20 : null,
+      })),
+    };
+    const props = {
+      result: uncertain,
+      view: "field" as const,
+      frequencies: [30] as const,
+      t: mockTheme,
+      diffractionLimit: true,
+    };
+    const { rerender } = render(<MtfChart {...props} />);
+    const referencePaths = () =>
+      [...screen.getByTestId("mtf-diffraction-limit").querySelectorAll("path")].filter((p) => p.getAttribute("d"));
+    expect(referencePaths()).toHaveLength(0);
+    rerender(<MtfChart {...props} diagnostic />);
+    expect(referencePaths()).toHaveLength(2);
+    expect(referencePaths().every((p) => p.getAttribute("d")!.match(/M/g)?.length === 2)).toBe(true);
+    rerender(<MtfChart {...props} view="frequency" frequencyField={1} />);
+    fireEvent.keyDown(screen.getByRole("group", { name: /MTF chart values/ }), { key: "End" });
+    expect(screen.getByText(/^100 lp\/mm —/).textContent).not.toMatch(/S [0-9]/);
+    const dimPaths = () => [...screen.getByTestId("mtf-diffraction-limit").querySelectorAll('g[opacity="0.35"] path')];
+    expect(dimPaths().some((p) => p.getAttribute("d"))).toBe(false);
+    rerender(<MtfChart {...props} view="frequency" frequencyField={1} diagnostic />);
+    expect(dimPaths().filter((p) => p.getAttribute("d"))).toHaveLength(2);
+    expect(screen.getByText(/^100 lp\/mm —/).textContent).toContain("Diffraction limit: 100 %");
+    expect(screen.getByText(/^100 lp\/mm —/).textContent).toContain("S 0.500 T 0.600");
+  });
+  it("selects one computed frequency field for the main, f/8 and reference curves", () => {
+    const props = {
+      result: withLimit,
+      comparison: withLimit,
+      view: "frequency" as const,
+      frequencies: [10] as const,
+      t: mockTheme,
+      diffractionLimit: true,
+    };
+    const { rerender } = render(<MtfChart {...props} frequencyField={0.5} comparisonLabel="f/8, wide-open plane" />);
+    expect(screen.queryByText(/^Center ·/)).toBeNull();
+    expect(screen.queryByText(/^Edge ·/)).toBeNull();
+    expect(screen.getAllByTestId("mtf-diffraction-limit")).toHaveLength(2);
+    for (const group of screen.getAllByTestId("mtf-diffraction-limit"))
+      expect(group.querySelectorAll('path[stroke-dasharray="1,3"]')).toHaveLength(2);
+    fireEvent.keyDown(screen.getByRole("group", { name: /MTF chart values/ }), { key: "End" });
+    expect(screen.getByText(/^100 lp\/mm —/).textContent).toContain("f/8, wide-open plane diffraction limit: 50 %");
+    rerender(<MtfChart {...props} frequencyField={0.4} />);
+    expect(screen.getByText(/^Center ·/)).toBeTruthy();
+    expect(screen.getByText(/^Edge ·/)).toBeTruthy();
+  });
+  it("places Nyquist at the pixel-grid sampling frequency or labels it beyond the right edge", () => {
+    const props = { result, view: "frequency" as const, frequencies: [10] as const, t: mockTheme };
+    const { rerender } = render(<MtfChart {...props} pixelPitchUm={8} />);
+    const line = screen.getByTestId("mtf-nyquist").querySelector("line")!;
+    // Plot spans x=40..350 for 0..100 lp/mm: 8 µm gives 62.5 lp/mm.
+    expect(Number(line.getAttribute("x1"))).toBeCloseTo(40 + 310 * 0.625);
+    expect(line.getAttribute("x2")).toBe(line.getAttribute("x1"));
+    expect(screen.getByRole("status").textContent).toContain("Nyquist, 8 µm pixels: 62.5 lp/mm");
+    expect(screen.getByRole("status").textContent).toContain("not a prediction of camera or sensor MTF");
+    rerender(<MtfChart {...props} pixelPitchUm={5} />);
+    expect(screen.getByTestId("mtf-nyquist").querySelector("line")!.getAttribute("x1")).toBe("350");
+    rerender(<MtfChart {...props} pixelPitchUm={3} />);
+    const marker = screen.getByTestId("mtf-nyquist");
+    expect(marker.querySelector("line")).toBeNull();
+    expect(marker.querySelector("text")!.getAttribute("x")).toBe("350");
+    expect(marker.textContent).toContain("Nyquist, 3 µm pixels: 166.7 lp/mm →");
+    expect(screen.getByRole("status").textContent).toContain("beyond chart range");
+    rerender(<MtfChart {...props} view="field" pixelPitchUm={8} />);
+    expect(screen.queryByTestId("mtf-nyquist")).toBeNull();
+    expect(screen.queryByRole("status")).toBeNull();
+  });
+  it("appends limit CSV columns after f/8 columns and applies the same table disclosure", async () => {
+    const limited: MtfResult = {
+      ...withLimit,
+      fields: withLimit.fields.map((field, i) => ({
+        ...field,
+        status: i === 0 ? "unavailable" : i === 1 ? "unconverged" : "converged",
+        convergedThroughLpMm: i === 2 ? 20 : null,
+      })),
+    };
+    const base = mtfCsv(limited, [10, 30], false, limited)
+      .split("\n")
+      .map((r) => r.split(","));
+    const normal = mtfCsv(limited, [10, 30], false, limited, true)
+      .split("\n")
+      .map((r) => r.split(","));
+    normal.forEach((row, i) => expect(row.slice(0, base[0].length)).toEqual(base[i]));
+    expect(normal[0].slice(base[0].length)).toEqual([
+      "10 lp/mm diffraction limit sagittal",
+      "10 lp/mm diffraction limit tangential",
+      "30 lp/mm diffraction limit sagittal",
+      "30 lp/mm diffraction limit tangential",
+      "f/8 10 lp/mm diffraction limit sagittal",
+      "f/8 10 lp/mm diffraction limit tangential",
+      "f/8 30 lp/mm diffraction limit sagittal",
+      "f/8 30 lp/mm diffraction limit tangential",
+    ]);
+    expect(normal[1].slice(-8)).toEqual(Array(8).fill(""));
+    expect(normal[2].slice(-8)).toEqual(Array(8).fill(""));
+    expect(normal[3].slice(-8)).toEqual(["0.9500", "0.9600", "", "", "0.9500", "0.9600", "", ""]);
+    const diagnostic = mtfCsv(limited, [10, 30], true, limited, true)
+      .split("\n")
+      .map((r) => r.split(","));
+    expect(diagnostic[1].slice(-8)).toEqual(Array(8).fill(""));
+    expect(diagnostic[2].slice(-8)).toEqual([
+      "0.9500",
+      "0.9600",
+      "0.8500",
+      "0.8800",
+      "0.9500",
+      "0.9600",
+      "0.8500",
+      "0.8800",
+    ]);
+    expect(mtfCsv(result, [10], false, null, true)).toBe(mtfCsv(result, [10]));
+    const writeText = vi.fn().mockResolvedValue(undefined);
+    vi.stubGlobal("navigator", { ...navigator, clipboard: { writeText } });
+    const props = {
+      result: limited,
+      comparison: limited,
+      frequencies: [10, 30] as const,
+      t: mockTheme,
+      diffractionLimit: true,
+      pixelPitchUm: 6 as const,
+    };
+    const { rerender } = render(<MtfFieldSummary {...props} />);
+    expect(screen.getByRole("table").querySelector("caption")!.textContent).toContain(
+      "Diffraction limit of the same traced pupil (no aberration)",
+    );
+    expect(screen.getByRole("table").querySelector("caption")!.textContent).toContain(
+      "Nyquist, 6 µm pixels: 83.3 lp/mm",
+    );
+    const limitCells = () =>
+      within(screen.getByRole("table"))
+        .getAllByRole("row")
+        .slice(1)
+        .map((row) =>
+          within(row)
+            .getAllByRole("cell")
+            .slice(2, 4)
+            .map((cell) => cell.textContent),
+        );
+    expect(limitCells()).toEqual([
+      ["—", "—"],
+      ["—", "—"],
+      ["0.950 / 0.960", "—"],
+      ["—", "—"],
+      ["—", "—"],
+      ["0.950 / 0.960", "—"],
+    ]);
+    fireEvent.click(screen.getByRole("button", { name: "Copy CSV" }));
+    await screen.findByText("Copied");
+    expect(writeText).toHaveBeenCalledWith(mtfCsv(limited, [10, 30], false, limited, true));
+    rerender(<MtfFieldSummary {...props} diagnostic />);
+    expect(limitCells()[1]).toEqual(["0.950 / 0.960", "0.850 / 0.880"]);
+  });
   it("withholds unconverged frequency readouts and values beyond the converged band", () => {
     const uncertain: MtfResult = {
       ...result,

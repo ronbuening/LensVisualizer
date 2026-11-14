@@ -2,7 +2,7 @@
 import { useState } from "react";
 import type { MtfResult } from "../../../../types/mtf.js";
 import type { Theme } from "../../../../types/theme.js";
-import type { MtfChartFrequency } from "../../../../utils/state/mtfPreferences.js";
+import type { MtfChartFrequency, MtfPixelPitch } from "../../../../utils/state/mtfPreferences.js";
 import { mtfCsv } from "./mtfCsv.js";
 import MtfValueTable from "./MtfValueTable.js";
 
@@ -15,6 +15,8 @@ interface MtfFieldSummaryProps {
   comparison?: MtfResult | null;
   comparisonLabel?: string;
   mainLabel?: string;
+  diffractionLimit?: boolean;
+  pixelPitchUm?: MtfPixelPitch | null;
 }
 
 export default function MtfFieldSummary({
@@ -26,12 +28,14 @@ export default function MtfFieldSummary({
   comparison = null,
   comparisonLabel = "f/8",
   mainLabel = "Main aperture",
+  diffractionLimit = false,
+  pixelPitchUm = null,
 }: MtfFieldSummaryProps) {
   const [copyStatus, setCopyStatus] = useState<string | null>(null);
   const copy = async () => {
     if (stale) return;
     try {
-      await navigator.clipboard.writeText(mtfCsv(result, frequencies, diagnostic, comparison));
+      await navigator.clipboard.writeText(mtfCsv(result, frequencies, diagnostic, comparison, diffractionLimit));
       setCopyStatus("Copied");
     } catch {
       setCopyStatus("Copy unavailable in this browser");
@@ -63,6 +67,8 @@ export default function MtfFieldSummary({
         comparison={comparison}
         comparisonLabel={comparisonLabel}
         mainLabel={mainLabel}
+        diffractionLimit={diffractionLimit}
+        pixelPitchUm={pixelPitchUm}
       />
       <div style={{ display: "flex", alignItems: "center", gap: 8, marginTop: 6 }}>
         <button

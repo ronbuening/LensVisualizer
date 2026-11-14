@@ -307,6 +307,14 @@ focus policy independently by default; a persisted control can instead hold the 
 once its focus is available on the first partial result. Held shifts are part of both worker cache keys.
 The comparison shares the chart's diagnostic disclosure policy, including faded out-of-band frequency segments,
 and adds aperture-labelled table rows and appended CSV columns without changing the main CSV columns.
+The opt-in diffraction limit draws the same traced pupil's aberration-free S/T response as thin dotted and
+dash-dot references, with the same field, stable-band and diagnostic visibility as its curves; geometric mode
+disables it. Crosshair readouts, the value table and CSV include these reference values only when enabled, with
+CSV columns appended after the f/8 columns. The frequency view shows the center/50 %/outermost overview or one
+computed field selected by reference-height percentage and mm; a saved field absent from the result falls back
+to Overview. An optional 3/4/5/6/8 µm pixel pitch marks Nyquist at 500/pitch lp/mm, or labels it at the right edge
+with an arrow beyond the chart range. The caption and accessible table identify it as the sampling limit of a
+pixel grid, not a camera or sensor MTF prediction. These three display choices persist in localStorage.
 The hook serializes only slider and
 aperture controls plus MTF settings, so chart-only changes retain the same computation key. MTF is worker-driven and
 has no lazy analysis-context accessor or job-table entry. Single-lens and comparison drawers share this renderer.
