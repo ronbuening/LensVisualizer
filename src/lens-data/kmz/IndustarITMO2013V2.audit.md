@@ -25,3 +25,11 @@ Compared the local-site section with the original p.51 clear-diameter table agai
 ### Maker attribution
 
 Assigned explicit maker KMZ and a manufacturer-first display name, preserving the lens key and ITMO Variant 2 qualification. The KMZ archive credits the Industar-50 calculation to M. D. Maltsev at KMZ; the book's pp.5–6 worked example identifies an OPAL-library Industar-50 with the selected variant's radii and internal spacings. Industar is the lens family, while KMZ supplies the documented maker/design association. This does not establish a particular factory production prescription. Sources: https://www.zenitcamera.com/archive/lenses/industar-50.html and the original ITMO book.
+
+## 2026-11-11 — Glass coverage pass
+
+L1 and L4 change from `Unmatched (TK14; PG&F 2010 d-line proxy; historic melt unconfirmed)` to `TK14 (LZOS)`, a new
+catalog row fitted to the LZOS clear-glass catalogue's TK14 index table over 365–1014 nm (max index error 4.9e-6). It
+matches the stored coordinate exactly (nd 1.613091 vs 1.61309, νd 60.58 vs 60.58), and its g-line index 1.625606 equals
+the PG&F ng 1.62561 the file carried, so that ng was dropped. L3 (OF1) is unchanged. Coverage rises from 1/4 to 3/4
+elements.

@@ -11,19 +11,19 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **1128** lenses scanned
-- **1109** visible lenses scanned
-- **772** lenses fully covered by trusted chromatic data
-- **767** visible lenses fully covered by trusted chromatic data
-- **764** lenses fully covered by strict Sellmeier data
-- **759** visible lenses fully covered by strict Sellmeier data
+- **1134** lenses scanned
+- **1115** visible lenses scanned
+- **778** lenses fully covered by trusted chromatic data
+- **773** visible lenses fully covered by trusted chromatic data
+- **770** lenses fully covered by strict Sellmeier data
+- **765** visible lenses fully covered by strict Sellmeier data
 - **8** lenses fully covered only after measured line-index data
 - **8** visible lenses fully covered only after measured line-index data
-- **11897 / 12769** non-air surfaces use strict catalog Sellmeier data
+- **11938 / 12812** non-air surfaces use strict catalog Sellmeier data
 - **93.2%** strict Sellmeier surface coverage overall
-- **11911 / 12769** non-air surfaces use trusted chromatic data
+- **11952 / 12812** non-air surfaces use trusted chromatic data
 - **93.3%** trusted chromatic coverage overall
-- **0 / 4** historical sodium D surfaces use name-verified catalog dispersion data
+- **2 / 10** historical sodium D surfaces use name-verified catalog dispersion data
 - **271 / 347** native e-line surfaces use name-verified catalog Sellmeier data
 
 ## Native E-Line Catalog Matches
@@ -746,6 +746,7 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [CANON RF 16mm f/2.8 STM](../../src/lens-data/canon/CanonRF16mmf28STM.data.ts) | 9/9 | 9 | 9/9 |
 | [CARL ZEISS DISTAGON T* 28mm f/2](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon28mmf2.data.ts) | 9/9 | 9 | 9/9 |
 | [CARL ZEISS DISTAGON T* 35mm f/1.4](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagon35mmf14.data.ts) | 9/9 | 9 | 9/9 |
+| [ENNA MÜNCHEN SUPER-LITHAGON 35mm f/1.9](../../src/lens-data/enna-munchen/EnnaMunchenSuperLithagon35mmf19.data.ts) | 9/9 | 9 | 9/9 |
 | [FUJIFILM EBC FUJINON W 24mm f/2.8](../../src/lens-data/fujifilm/FujifilmEBCFujinonW24mmf28M42.data.ts) | 9/9 | 9 | 9/9 |
 | [FUJIFILM EBC X-FUJINON W 24mm f/2.8 DM](../../src/lens-data/fujifilm/FujifilmXFujinonSW24mmf28DMEBC.data.ts) | 9/9 | 9 | 9/9 |
 | [FUJIFILM FUJINON GF 50mm f/3.5 R LM WR](../../src/lens-data/fujifilm/FujifilmFujinonGf50mmf35RLMWR.data.ts) | 9/9 | 9 | 9/9 |
@@ -839,6 +840,7 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [PENTAX SMC M 20mm f/4](../../src/lens-data/pentax/PentaxM20mmf4.data.ts) | 8/8 | 8 | 8/8 |
 | [PENTAX SUPER-TAKUMAR 35mm f/2](../../src/lens-data/pentax/PentaxSuperTakumar35mmf2.data.ts) | 8/8 | 8 | 8/8 |
 | [PENTAX SUPER-TAKUMAR 50mm f/1.4 (8-element)](../../src/lens-data/pentax/PentaxSuperTakumar50mmf14EightElement.data.ts) | 8/8 | 8 | 8/8 |
+| [PENTAX-01 STANDARD PRIME 8.5mm f/1.9](../../src/lens-data/pentax/Pentax01StandardPrime85mmF19.data.ts) | 8/8 | 8 | 8/8 |
 | [RICOH GR LENS 6.0mm f/1.9 (Ricoh GR DIGITAL III)](../../src/lens-data/ricoh/RicohGRDigitalIII60mmF19.data.ts) | 8/8 | 8 | 8/8 |
 | [RICOH GR LENS 6.0mm f/1.9 (Ricoh GR DIGITAL IV)](../../src/lens-data/ricoh/Ricoh60mmf19VCGRD.data.ts) | 8/8 | 8 | 8/8 |
 | [RODENSTOCK GRANDAGON-N 75mm f/4.5](../../src/lens-data/rodenstock/RodenstockGrandagonN75mmf45.data.ts) | 8/8 | 8 | 8/8 |
@@ -906,6 +908,7 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [OLYMPUS G.ZUIKO AUTO-W 25mm f/2.8](../../src/lens-data/olympus/OlympusPenFZuiko25mmf28.data.ts) | 7/7 | 7 | 7/7 |
 | [OLYMPUS G.ZUIKO AUTO-W 28mm f/3.5](../../src/lens-data/olympus/OlympusZuiko28mmf35.data.ts) | 7/7 | 7 | 7/7 |
 | [OLYMPUS ZUIKO AUTO-S 50mm f/1.2](../../src/lens-data/olympus/OlympusZuikoAutoS50mmf12.data.ts) | 7/7 | 7 | 7/7 |
+| [OLYMPUS ZUIKO AUTO-T 100mm f/2](../../src/lens-data/olympus/OlympusZuikoAutoT100mmf2.data.ts) | 7/7 | 7 | 7/7 |
 | [PENTAX SMC A ZOOM 35-70mm f/4](../../src/lens-data/pentax/PentaxA3570mmf4.data.ts) | 7/7 | 7 | 7/7 |
 | [PENTAX SMC A* 135mm f/1.8](../../src/lens-data/pentax/PentaxA135mmf18.data.ts) | 7/7 | 7 | 7/7 |
 | [PENTAX SMC M 28mm f/2.8](../../src/lens-data/pentax/PentaxM28mmf28.data.ts) | 7/7 | 7 | 7/7 |
@@ -926,6 +929,7 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [VOIGTLÄNDER NOKTON 50mm f/1.5](../../src/lens-data/voigtlander/VoigtlanderNokton50mmf15.data.ts) | 7/7 | 7 | 7/7 |
 | [VOIGTLÄNDER NOKTON Vintage Line 75mm f/1.5 Aspherical VM](../../src/lens-data/voigtlander/VoigtlanderNokton75mmf15AsphericalVM.data.ts) | 7/7 | 7 | 7/7 |
 | [YASHICA ML 35mm f/2.8 (early diamond-grip)](../../src/lens-data/yashica/YashicaML35mmf28Early.data.ts) | 7/7 | 7 | 7/7 |
+| [ZENIT MC ZENITAR 85mm f/1.4](../../src/lens-data/kmz/ZenitMCZenitar85mmf14.data.ts) | 7/7 | 7 | 7/7 |
 | [AGFA SOLAGON 50mm f/2](../../src/lens-data/agfa/AgfaSolagon50mmf2.data.ts) | 6/6 | 6 | 6/6 |
 | [CANON EF 40mm f/2.8 STM](../../src/lens-data/canon/CanonEF40mmf28.data.ts) | 6/6 | 6 | 6/6 |
 | [CANON EF-S 24mm f/2.8 STM](../../src/lens-data/canon/CanonEFS24mmf28STM.data.ts) | 6/6 | 6 | 6/6 |
@@ -975,6 +979,7 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [PENTAX DA 50mm f/1.8](../../src/lens-data/pentax/PentaxDA50mmf18.data.ts) | 6/6 | 6 | 6/6 |
 | [PENTAX SMC 67 MACRO 100mm f/4](../../src/lens-data/pentax/PentaxSMC67100mmf4.data.ts) | 6/6 | 6 | 6/6 |
 | [PENTAX SMC A 200mm f/4](../../src/lens-data/pentax/PentaxA200mmf4.data.ts) | 6/6 | 6 | 6/6 |
+| [PENTAX SMC A 35mm f/2.8](../../src/lens-data/pentax/PentaxA35mmf28.data.ts) | 6/6 | 6 | 6/6 |
 | [PENTAX SMC M 28mm f/3.5](../../src/lens-data/pentax/PentaxM28mmf35.data.ts) | 6/6 | 6 | 6/6 |
 | [PENTAX SMC M 50mm f/1.7](../../src/lens-data/pentax/PentaxM50mmf17.data.ts) | 6/6 | 6 | 6/6 |
 | [RICOH GR LENS 18.3mm f/2.8 (Ricoh GR III)](../../src/lens-data/ricoh/RicohGR328f28.data.ts) | 6/6 | 6 | 6/6 |
@@ -1050,6 +1055,7 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [CARL ZEISS TESSAR 50mm f/3.5](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissTessar50mmf35.data.ts) | 4/4 | 4 | 4/4 |
 | [ENNA MÜNCHEN LITHAGON 35mm f/3.5](../../src/lens-data/enna-munchen/EnnaMunchenLithagon35mmf35.data.ts) | 4/4 | 4 | 4/4 |
 | [FUJIFILM EBC FUJINON 85mm f/4 SOFT-FOCUS](../../src/lens-data/fujifilm/FujifilmFujinon85mmf40SFEBC.data.ts) | 4/4 | 4 | 4/4 |
+| [KMZ INDUSTAR 52.39mm f/3.56 (ITMO 2013 Variant 2)](../../src/lens-data/kmz/IndustarITMO2013V2.data.ts) | 4/4 | 4 | 4/4 |
 | [KODAK EKTAR 50mm f/3.5](../../src/lens-data/kodak/KodakEktar50mmf35.data.ts) | 4/4 | 4 | 4/4 |
 | [KODAK WIDE-FIELD EKTAR 100mm f/6.3](../../src/lens-data/kodak/KodakWideFieldEktar100mmf63.data.ts) | 4/4 | 4 | 4/4 |
 | [KONICA HEXANON 135mm f/3.5](../../src/lens-data/konica/KonicaHexanon135mmf35.data.ts) | 4/4 | 4 | 4/4 |
@@ -1396,32 +1402,32 @@ Fully strict and line-index-complete trusted lenses are listed above; this table
 | 289 | [VOIGTLÄNDER NOKTON 60mm f/0.95](../../src/lens-data/voigtlander/VoigtlanderNokton60mmf95.data.ts) | 54.5% | 54.5% | 6/11 | 6/11 | 5 | abbe: 5 |
 | 290 | [MINOLTA AF 24-105mm f/3.5-4.5 (D)](../../src/lens-data/minolta/MinoltaAF24105mmf3545D.data.ts) | 53.8% | 53.8% | 7/13 | 7/13 | 6 | abbe: 6 |
 | 291 | [SONY FE 400-800mm f/6.3-8 G OSS](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) | 51.9% | 51.9% | 14/27 | 14/27 | 13 | abbe: 13 |
-| 292 | [KMZ INDUSTAR 52.39mm f/3.56 (ITMO 2013 Variant 2)](../../src/lens-data/kmz/IndustarITMO2013V2.data.ts) | 50.0% | 50.0% | 2/4 | 2/4 | 2 | abbe: 2 |
-| 293 | [NIKON SERIES E 135mm f/2.8](../../src/lens-data/nikon/NikonSeriesE135mmf28.data.ts) | 50.0% | 50.0% | 2/4 | 2/4 | 2 | abbe: 2 |
-| 294 | [LEICA SUMMICRON-C 40mm f/2](../../src/lens-data/leica/LeicaSummicronC40mmf2.data.ts) | 50.0% | 50.0% | 3/6 | 3/6 | 3 | abbe: 3 |
-| 295 | [NIKON NIKKOR 35mm f/2.8 (Nikon 35Ti)](../../src/lens-data/nikon/Nikon35Ti35mmf28.data.ts) | 50.0% | 50.0% | 3/6 | 3/6 | 3 | abbe: 3 |
-| 296 | [MINOLTA AF APO TELE 200mm f/2.8](../../src/lens-data/minolta/MinoltaAF200mmf28.data.ts) | 50.0% | 50.0% | 4/8 | 4/8 | 4 | abbe: 4 |
-| 297 | [P. ANGÉNIEUX TYPE M1 25mm f/0.95](../../src/lens-data/p.-angénieux/AngenieuxTypeM125mmf095.data.ts) | 50.0% | 50.0% | 4/8 | 4/8 | 4 | abbe: 4 |
-| 298 | [PENTAX DA* 300mm f/4 ED [IF] SDM](../../src/lens-data/pentax/PentaxDAStar300mmF4EDIFSDM.data.ts) | 50.0% | 50.0% | 4/8 | 4/8 | 4 | abbe: 4 |
-| 299 | [RODENSTOCK GRANDAGON-N 65mm f/4.5](../../src/lens-data/rodenstock/RodenstockGrandagonN65mmf45.data.ts) | 50.0% | 50.0% | 4/8 | 4/8 | 4 | abbe: 4 |
-| 300 | [VILTROX AF 33mm f/1.4 E](../../src/lens-data/viltrox/ViltroxAF33mmf14E.data.ts) | 50.0% | 50.0% | 5/10 | 5/10 | 5 | abbe: 5 |
-| 301 | [PANASONIC LUMIX S 14-28mm f/4-5.6 MACRO](../../src/lens-data/panasonic/PanasonicLumixS1428mmF456.data.ts) | 50.0% | 44.4% | 9/18 | 8/18 | 9 | abbe: 9 |
+| 292 | [NIKON SERIES E 135mm f/2.8](../../src/lens-data/nikon/NikonSeriesE135mmf28.data.ts) | 50.0% | 50.0% | 2/4 | 2/4 | 2 | abbe: 2 |
+| 293 | [LEICA SUMMICRON-C 40mm f/2](../../src/lens-data/leica/LeicaSummicronC40mmf2.data.ts) | 50.0% | 50.0% | 3/6 | 3/6 | 3 | abbe: 3 |
+| 294 | [NIKON NIKKOR 35mm f/2.8 (Nikon 35Ti)](../../src/lens-data/nikon/Nikon35Ti35mmf28.data.ts) | 50.0% | 50.0% | 3/6 | 3/6 | 3 | abbe: 3 |
+| 295 | [MINOLTA AF APO TELE 200mm f/2.8](../../src/lens-data/minolta/MinoltaAF200mmf28.data.ts) | 50.0% | 50.0% | 4/8 | 4/8 | 4 | abbe: 4 |
+| 296 | [P. ANGÉNIEUX TYPE M1 25mm f/0.95](../../src/lens-data/p.-angénieux/AngenieuxTypeM125mmf095.data.ts) | 50.0% | 50.0% | 4/8 | 4/8 | 4 | abbe: 4 |
+| 297 | [PENTAX DA* 300mm f/4 ED [IF] SDM](../../src/lens-data/pentax/PentaxDAStar300mmF4EDIFSDM.data.ts) | 50.0% | 50.0% | 4/8 | 4/8 | 4 | abbe: 4 |
+| 298 | [RODENSTOCK GRANDAGON-N 65mm f/4.5](../../src/lens-data/rodenstock/RodenstockGrandagonN65mmf45.data.ts) | 50.0% | 50.0% | 4/8 | 4/8 | 4 | abbe: 4 |
+| 299 | [VILTROX AF 33mm f/1.4 E](../../src/lens-data/viltrox/ViltroxAF33mmf14E.data.ts) | 50.0% | 50.0% | 5/10 | 5/10 | 5 | abbe: 5 |
+| 300 | [PANASONIC LUMIX S 14-28mm f/4-5.6 MACRO](../../src/lens-data/panasonic/PanasonicLumixS1428mmF456.data.ts) | 50.0% | 44.4% | 9/18 | 8/18 | 9 | abbe: 9 |
 |  | **45-49.9% coverage** |  |  |  |  |  |  |
-| 302 | [PANASONIC LUMIX S PRO 16-35mm f/4](../../src/lens-data/panasonic/PanasonicLumixSPro1635mmf4.data.ts) | 46.2% | 46.2% | 6/13 | 6/13 | 7 | abbe: 7 |
+| 301 | [PANASONIC LUMIX S PRO 16-35mm f/4](../../src/lens-data/panasonic/PanasonicLumixSPro1635mmf4.data.ts) | 46.2% | 46.2% | 6/13 | 6/13 | 7 | abbe: 7 |
 |  | **40-44.9% coverage** |  |  |  |  |  |  |
-| 303 | [NIKON ULTRA-MICRO-NIKKOR 29.5mm f/1.2](../../src/lens-data/nikon/NikonUltraMicroNikkor295mmf12.data.ts) | 44.4% | 44.4% | 4/9 | 4/9 | 5 | abbe: 5 |
-| 304 | [KODAK ENLARGING EKTAR 100mm f/4.5](../../src/lens-data/kodak/KodakEnlargingEktar100mmf45.data.ts) | 40.0% | 40.0% | 2/5 | 2/5 | 3 | abbe: 3 |
-| 305 | [LEICA ELMAR-M 135mm f/4](../../src/lens-data/leica/LeicaElmarM135mmf4.data.ts) | 40.0% | 40.0% | 2/5 | 2/5 | 3 | abbe: 3 |
-| 306 | [VOIGTLÄNDER SKOPARON 35mm f/3.5](../../src/lens-data/voigtlander/VoigtlanderSkoparon35mmf35.data.ts) | 40.0% | 40.0% | 2/5 | 2/5 | 3 | abbe: 3 |
-| 307 | [VOIGTLÄNDER APO-LANTHAR 50mm f/2 Aspherical](../../src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.data.ts) | 40.0% | 40.0% | 4/10 | 4/10 | 6 | abbe: 6 |
+| 302 | [NIKON ULTRA-MICRO-NIKKOR 29.5mm f/1.2](../../src/lens-data/nikon/NikonUltraMicroNikkor295mmf12.data.ts) | 44.4% | 44.4% | 4/9 | 4/9 | 5 | abbe: 5 |
+| 303 | [KODAK ENLARGING EKTAR 100mm f/4.5](../../src/lens-data/kodak/KodakEnlargingEktar100mmf45.data.ts) | 40.0% | 40.0% | 2/5 | 2/5 | 3 | abbe: 3 |
+| 304 | [LEICA ELMAR-M 135mm f/4](../../src/lens-data/leica/LeicaElmarM135mmf4.data.ts) | 40.0% | 40.0% | 2/5 | 2/5 | 3 | abbe: 3 |
+| 305 | [VOIGTLÄNDER SKOPARON 35mm f/3.5](../../src/lens-data/voigtlander/VoigtlanderSkoparon35mmf35.data.ts) | 40.0% | 40.0% | 2/5 | 2/5 | 3 | abbe: 3 |
+| 306 | [VOIGTLÄNDER APO-LANTHAR 50mm f/2 Aspherical](../../src/lens-data/voigtlander/VoigtlanderApoLanthar50f2.data.ts) | 40.0% | 40.0% | 4/10 | 4/10 | 6 | abbe: 6 |
 |  | **35-39.9% coverage** |  |  |  |  |  |  |
-| 308 | [LAOWA 100mm f/2.8 Tilt-Shift 1× Macro](../../src/lens-data/laowa/Laowa100mmf28TiltShift1xMacro.data.ts) | 38.5% | 38.5% | 5/13 | 5/13 | 8 | abbe: 8 |
-| 309 | [RODENSTOCK APO-SIRONAR-W 150mm f/5.6 (archived A1 reconstruction)](../../src/lens-data/rodenstock/RodenstockApoSironarW150mmf56A1Reconstruction.data.ts) *(hidden)* | 37.5% | 37.5% | 3/8 | 3/8 | 5 | abbe: 5 |
+| 307 | [LAOWA 100mm f/2.8 Tilt-Shift 1× Macro](../../src/lens-data/laowa/Laowa100mmf28TiltShift1xMacro.data.ts) | 38.5% | 38.5% | 5/13 | 5/13 | 8 | abbe: 8 |
+| 308 | [RODENSTOCK APO-SIRONAR-W 150mm f/5.6 (archived A1 reconstruction)](../../src/lens-data/rodenstock/RodenstockApoSironarW150mmf56A1Reconstruction.data.ts) *(hidden)* | 37.5% | 37.5% | 3/8 | 3/8 | 5 | abbe: 5 |
 |  | **30-34.9% coverage** |  |  |  |  |  |  |
-| 310 | [LEICA TELYT-S 800mm f/6.3](../../src/lens-data/leica/LeicaTelytS800mmf63.data.ts) | 33.3% | 33.3% | 1/3 | 1/3 | 2 | abbe: 2 |
-| 311 | [CARL ZEISS JENA SONNAR 50mm f/2](../../src/lens-data/carl-zeiss-jena/ZeissJenaSonnar50f2.data.ts) | 33.3% | 33.3% | 2/6 | 2/6 | 4 | abbe: 4 |
-| 312 | [LEICA MACRO-ELMARIT-R 60mm f/2.8](../../src/lens-data/leica/LeicaMacroElmaritR60mmf28.data.ts) | 33.3% | 33.3% | 2/6 | 2/6 | 4 | abbe: 4 |
-| 313 | [LEITZ NOCTILUX 50mm f/1.2](../../src/lens-data/leica/LeitzNoctilux50mmf12.data.ts) | 33.3% | 33.3% | 2/6 | 2/6 | 4 | abbe: 4 |
+| 309 | [LEICA TELYT-S 800mm f/6.3](../../src/lens-data/leica/LeicaTelytS800mmf63.data.ts) | 33.3% | 33.3% | 1/3 | 1/3 | 2 | abbe: 2 |
+| 310 | [CARL ZEISS JENA SONNAR 50mm f/2](../../src/lens-data/carl-zeiss-jena/ZeissJenaSonnar50f2.data.ts) | 33.3% | 33.3% | 2/6 | 2/6 | 4 | abbe: 4 |
+| 311 | [LEICA MACRO-ELMARIT-R 60mm f/2.8](../../src/lens-data/leica/LeicaMacroElmaritR60mmf28.data.ts) | 33.3% | 33.3% | 2/6 | 2/6 | 4 | abbe: 4 |
+| 312 | [LEITZ NOCTILUX 50mm f/1.2](../../src/lens-data/leica/LeitzNoctilux50mmf12.data.ts) | 33.3% | 33.3% | 2/6 | 2/6 | 4 | abbe: 4 |
+| 313 | [LEITZ SUMMAR 50mm f/2](../../src/lens-data/leica/LeitzSummar50mmf2.data.ts) | 33.3% | 33.3% | 2/6 | 2/6 | 4 | abbe: 4 |
 | 314 | [MEYER OPTIK GÖRLITZ DOUBLE-PLASMAT 135mm f/4.5 (patent model)](../../src/lens-data/meyer-optik-goerlitz/MeyerOptikGorlitz135mmf45DoublePlasmat.data.ts) | 33.3% | 33.3% | 2/6 | 2/6 | 4 | abbe: 4 |
 | 315 | [PENTAX DA 70mm f/2.4 Limited](../../src/lens-data/pentax/PentaxDA70mmf24Limited.data.ts) | 33.3% | 33.3% | 2/6 | 2/6 | 4 | abbe: 4 |
 |  | **25-29.9% coverage** |  |  |  |  |  |  |
@@ -3445,13 +3451,6 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 29 | Element L72 | abbe | `670266 — catalog unresolved (supplier unconfirmed)` | No catalog match |
 | ... | ... | ... | ... | 5 more missing surfaces |
 
-### [KMZ INDUSTAR 52.39mm f/3.56 (ITMO 2013 Variant 2)](../../src/lens-data/kmz/IndustarITMO2013V2.data.ts) - 50.0% trusted (2/4); 50.0% Sellmeier (2/4)
-
-| Surface | Element | Runtime quality | Glass annotation | Reason |
-|---|---|---|---|---|
-| 1 | Element 1 | abbe | `Unmatched (TK14; PG&F 2010 d-line proxy; historic melt unconfirmed)` | Explicit unmatched/proprietary annotation |
-| 6 | Element 4 | abbe | `Unmatched (TK14; PG&F 2010 d-line proxy; historic melt unconfirmed)` | Explicit unmatched/proprietary annotation |
-
 ### [NIKON SERIES E 135mm f/2.8](../../src/lens-data/nikon/NikonSeriesE135mmf28.data.ts) - 50.0% trusted (2/4); 50.0% Sellmeier (2/4) - US 4,303,314
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
@@ -3638,6 +3637,15 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 3 | Element 2 | abbe | `Unmatched (ne 1.900 / νe 40.5; no catalog row within the printed precision)` | Explicit unmatched/proprietary annotation |
 | 6 | Element 4 | abbe | `Unmatched (ne 1.844 / νe 30.0; no catalog row within the printed precision)` | Explicit unmatched/proprietary annotation |
 | 7 | Element 5 | abbe | `Unmatched (ne 1.900 / νe 40.5; no catalog row within the printed precision)` | Explicit unmatched/proprietary annotation |
+
+### [LEITZ SUMMAR 50mm f/2](../../src/lens-data/leica/LeitzSummar50mmf2.data.ts) - 33.3% trusted (2/6); 33.3% Sellmeier (2/6) - GB 423,468 A
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `Unmatched (nD 1.6202 / νD 60.4; SK16-type dense crown)` | Explicit unmatched/proprietary annotation |
+| 3 | Element 2 | abbe | `Unmatched (nD 1.6202 / νD 60.4; SK16-type dense crown)` | Explicit unmatched/proprietary annotation |
+| 7 | Element 5 | abbe | `Unmatched (nD 1.6202 / νD 60.4; SK16-type dense crown)` | Explicit unmatched/proprietary annotation |
+| 9 | Element 6 | abbe | `Unmatched (nD 1.6202 / νD 60.4; SK16-type dense crown)` | Explicit unmatched/proprietary annotation |
 
 ### [MEYER OPTIK GÖRLITZ DOUBLE-PLASMAT 135mm f/4.5 (patent model)](../../src/lens-data/meyer-optik-goerlitz/MeyerOptikGorlitz135mmf45DoublePlasmat.data.ts) - 33.3% trusted (2/6); 33.3% Sellmeier (2/6) - GB 135,853 A
 

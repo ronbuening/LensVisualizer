@@ -19,7 +19,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * PG&F 2010 named-grade nd/vd/ng rows are explicit modern catalog proxies.
  * Book indices/wavelengths and historic glass melts are unconfirmed.
  * indexReference = d (587.56 nm). LF5 uses the coordinate-exact QF3 spectral proxy.
- * TK14/OF1 retain supplier-listed ng and Abbe fallback; no complete curves are established.
+ * TK14 traces on the LZOS catalogue curve (a fit to the LZOS index table; its g-line index equals the
+ * PG&F ng). OF1 keeps its supplier-listed ng and Abbe fallback.
  * KMZ maker grouping follows the documented Industar-50 design association.
  * The exact source model is not a verified factory prescription; mount, image format and patent remain unset.
  *
@@ -57,8 +58,7 @@ const LENS_DATA = {
       vd: 60.58,
       indexReference: "d",
       focalLengthMm: 27.891500432,
-      glass: "Unmatched (TK14; PG&F 2010 d-line proxy; historic melt unconfirmed)",
-      ng: 1.62561,
+      glass: "TK14 (LZOS)",
     },
     {
       id: 2,
@@ -94,9 +94,8 @@ const LENS_DATA = {
       vd: 60.58,
       indexReference: "d",
       focalLengthMm: 15.684475563,
-      glass: "Unmatched (TK14; PG&F 2010 d-line proxy; historic melt unconfirmed)",
+      glass: "TK14 (LZOS)",
       cemented: "D1",
-      ng: 1.62561,
     },
   ],
 

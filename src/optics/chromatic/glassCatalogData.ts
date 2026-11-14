@@ -680,6 +680,7 @@ const GLASS_CATALOG_SOURCE_ORDER = [
   "J-LASF03",
   "K-PG395-M",
   "M-NBFD130",
+  "M-TAC60",
   "TAC6",
   "TAC8P",
   "L-LAH81",
