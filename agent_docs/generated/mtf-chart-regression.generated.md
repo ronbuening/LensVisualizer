@@ -16,7 +16,7 @@ Without the variable, only the status line is refreshed by comparing input hashe
 {
   "version": 2,
   "generatedDateUtc": "2026-11-14",
-  "gitCommit": "434e537dd509371f73af3de5a813fe1b93645c53",
+  "gitCommit": "14cb5b7c79978c2b1646ddc510e83f0b2ed86996",
   "uncommittedSrcOrReports": false,
   "settings": {
     "focusT": 0,
@@ -47,7 +47,7 @@ Without the variable, only the status line is refreshed by comparing input hashe
     ]
   },
   "hashes": {
-    "engineSources": "a553406377680baa817c87ed8bf71f3850a4c0eebb14d4e3b823c017cf173ac3",
+    "engineSources": "9561f0e78e2726e57c46a225f1bf54bdbbea4a7381ca31b0f68387b7610112f3",
     "reportSources": "2d0e95a71848ca06c5bf896c541075282a58d7dbd820128601c32af41cab3b2e",
     "anchors": "c5320ed7acf34280f9d353748044b868ac1653a69dbd5b9044d94ddc1d473ac2",
     "conventions": "87c4d5a210113ff86fe8343b5aec4afa3db9906af41b5d679b7507314a55b815",
@@ -63,7 +63,7 @@ Without the variable, only the status line is refreshed by comparing input hashe
       "src/lens-data/sigma/Sigma105mmf28DGDNMacroArt.data.ts": "08f09e6a15074f006db18809f82df83082c154a9ce4ef617f59a28c776000edf",
       "src/lens-data/sigma/Sigma16mmf14DCDN.data.ts": "32f1d4313c0c48b15ab880b297b716e0b6616ed5c6140310ddb7ea6d4e514605",
       "src/lens-data/sigma/Sigma20mmf14DGHSMArt.data.ts": "b34ef3827525edbc2c442de7e5730eae431d0dcf1a4782b04c1f1ce553163dff",
-      "src/lens-data/sigma/Sigma23mmf14DCDNC.data.ts": "b1ac1b48f4ffcca54ffe8a57ce39738af3a78aec6854cf1ac510d4e6c447550d",
+      "src/lens-data/sigma/Sigma23mmf14DCDNC.data.ts": "fa55b61c88fba8487ce4fa29fadc1970f79ea8dc3e87c95c675de059a546acc3",
       "src/lens-data/sigma/Sigma35mmf14DGHSMA.data.ts": "41fee4d92ce5aa73e720d49da7aafe9f7a67cac3daa7575a13522bd35dcb78bc",
       "src/lens-data/sigma/Sigma45mmf28DGDN.data.ts": "4d1df4f08d40d2b05fa24b4c92168feb92dd56f7b96bb43bdc5b997db9637883",
       "src/lens-data/sigma/Sigma50mmf14DGHSMA.data.ts": "4f7b131605132e91ab39d884dd58fc7b4a51af4210a22e0390fd35fdeabeebe2",
