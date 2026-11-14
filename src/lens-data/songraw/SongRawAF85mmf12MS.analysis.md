@@ -8,15 +8,15 @@
 **Title:** 一种定焦镜头 (*A fixed-focal-length lens*)\
 **Example details:** Table 1 / Fig. 2a on PDF page 11; Table 2, the even-asphere equation and Fig. 2b on page 12; Fig. 1 on page 10.
 
-This model transcribes Example 1 (实施例一) and is associated with SongRaw's AF 85mm f/1.2 product family. The association does not establish an exact retail prescription. The prior source audit reports that CN 223827884 U has identical numerical rows and aspheres; that utility-model comparison has not been independently repeated in this review.
+This model transcribes Example 1 (实施例一) and is associated with SongRaw's AF 85mm f/1.2 product family. The association does not establish an exact retail prescription. Numerical agreement with CN 223827884 U has been reported but has not been independently confirmed.
 
-The product association rests on several construction-level similarities recorded in the validator report:
+The product association rests on several construction similarities:
 
 1. The maker and patent describe 18 elements in ten air-separated groups.
-2. The maker lists one aspherical element, five ED elements and eleven HR elements. Public exploded artwork supports the broad shapes and final aspherical element, but does not establish exact cementing, stop placement or a material assignment for every element.
-3. The nominal 85 mm focal length and f/1.2 product aperture are consistent with the patent's stated f/1.2–1.3 design range. The literal prescription gives EFL 84.619374543 mm, rather than exactly 85 mm.
+2. The maker lists one aspherical element, five ED elements and eleven high-index elements. The [exploded construction diagram](https://cdn.shopify.com/s/files/1/0628/6943/8707/files/SONGRAW-MS-85MM-F1-2-LENS-F1.2-ELEMENTS.jpg?v=1790344124) supports the broad shapes and final aspherical element, but does not establish exact cementing, stop placement or glass identities.
+3. The nominal 85 mm focal length and f/1.2 product aperture are consistent with the patent's stated f/1.2–1.3 design range. The prescription gives EFL 84.619374543 mm, rather than exactly 85 mm.
 
-[Dustin Abbott's September 2026 review](https://dustinabbott.net/2026/09/songraw-af-85mm-f1-2-ms-review/) identifies the silver MS Nikon Z version. The validator also records Sony E and Nikon Z variants and a marketed 0.85 m minimum focus distance. No directly connected manufacturer optical section was verified. Product-image material was unavailable for direct review because of an earlier access restriction. Product identity therefore remains uncertain even where the numerical patent transcription has been checked.
+[Dustin Abbott's September 2026 review](https://dustinabbott.net/2026/09/songraw-af-85mm-f1-2-ms-review/) identifies the silver MS Nikon Z version and gives a 0.85 m minimum focus distance. The [maker's product page](https://songrawlens.com/products/songraw-af-851-2-ms-full-frame-autofocus-lens-golden-focal-lengthportraits-with-depth) offers Sony E and Nikon Z variants. These similarities support a family association; an exact match to the production prescription remains unproven.
 
 ## Optical Architecture
 
@@ -72,7 +72,7 @@ Positive L12 and negative L13 continue the rear group's sequence of cemented pos
 
 ### L14/L15 — Cemented Doublet
 
-L14: nd = 2.00, νd = 25.5. Glass: unmatched; supplier unknown. L15: nd = 1.62, νd = 36.3. Glass: unmatched; supplier unknown.
+L14: nd = 2.00, νd = 29.1. Glass: unmatched; supplier unknown. L15: nd = 1.62, νd = 36.3. Glass: unmatched; supplier unknown.
 
 Positive L14 and negative L15 form the next rear doublet. Their Abbe-number difference is smaller than that of L12/L13; no independent quantitative correction contribution is assigned to this pair.
 
@@ -90,14 +90,15 @@ L18 ends G3. Its surfaces S28 and S29 are the only aspherical surfaces in the pr
 
 ## Glass Identification and Selection
 
-Original d-line indices and Abbe numbers are retained literally, at only two and one decimal places respectively. No factory melt or catalog glass is identified. Dispersion calculated from nd/νd is approximate and does not establish anomalous partial dispersion or apochromatic correction.
+The patent's d-line indices and Abbe numbers are retained at their printed precision: two and one decimal places respectively. No factory melt or catalog glass is identified. Dispersion calculated from nd/νd is approximate and does not establish anomalous partial dispersion or apochromatic correction.
 
 | Elements | nd | νd | Source-supported distinction |
 | --- | ---: | ---: | --- |
 | L1 | 1.85 | 23.8 | Higher-dispersion front element |
 | L2, L3, L5, L9 | 1.59 | 68.3 | Shared lower-dispersion material |
 | L4 | 1.85 | 25.2 | Negative member of L3/L4 |
-| L6, L14, L16 | 2.00 | 25.5 | High-index, higher-dispersion material |
+| L6, L16 | 2.00 | 25.5 | High-index, higher-dispersion material |
+| L14 | 2.00 | 29.1 | Positive member of L14/L15 |
 | L7 | 1.92 | 20.9 | Positive member of moving G2 |
 | L8 | 1.70 | 55.5 | Negative member of moving G2 |
 | L10, L13 | 1.77 | 29.7 | Negative rear elements |
@@ -108,13 +109,15 @@ Original d-line indices and Abbe numbers are retained literally, at only two and
 
 The patent explicitly assigns the same material to L2, L3, L5 and L9 (¶0007). It attributes axial chromatic, spherical and distortion correction to the contrasting dispersions in the seven cemented assemblies (¶0058). These are source descriptions of the design strategy, not measured performance or proof of a particular retail glass allocation.
 
-## Focus Mechanism and Image Plane Interpretation
+The maker's exploded diagram marks L2, L3, L5, L9 and L17 as ED. Their patent values are consistent with low-dispersion glasses, so those five positions carry inferred ED tags. The tags express the product-to-patent association; they do not establish a catalog row or a measured partial-dispersion value.
+
+## Focus Mechanism and Image Plane
 
 The patent describes internal focusing by moving G2 toward the image for nearer objects while G1, the iris and G3 remain fixed. A stepping motor is described (¶0028, ¶0033). No complete finite-focus station or numerical travel is supplied, so the model implements infinity only and supplies no invented focus law. The marketed 0.85 m minimum focus distance is product context, not a modeled endpoint.
 
-The modeled final gap remains 19.813299312 mm, placing the image at the literal prescription's lens-only paraxial focus. The patent prints nd to only two decimals; the SongRaw 50 validator showed that ±0.005 nd rounding alone moves a comparable design's back focus by several millimetres. The printed S29→IMG distance of 20.300 mm is about 0.487 mm longer than this model's calculated focus. The independent validator's 2,570-case single-value scan found no unique misprint, so it supplies no justified prescription correction. Retaining the calculated final gap follows the previously used approach of solving the last gap to paraxial focus.
+The modeled final gap is 19.813299312 mm, placing the image at calculated paraxial focus without a filter. The printed S29→IMG distance of 20.300 mm is about 0.487 mm longer. The patent prints nd to only two decimals, allowing rounding of ±0.005; rounding alone can move the back focus of a comparable design by several millimetres. No unique misprint has been established, so the difference remains unresolved.
 
-This is a modeling interpretation, not proof of a source error or an exact conversion to a system without a filter. The independent validator did not accept the substituted gap as an established source correction. The printed distance remains recorded as an unresolved discrepancy. No other numerical prescription value is changed. FT is drawn but has no thickness or refractive-index prescription; no filter is invented.
+The calculated gap does not establish a source error or an exact filter conversion. Figure 1 draws a protective filter labeled FIT before the image, but gives no thickness or refractive-index prescription. The model omits that unspecified filter and retains every other numerical prescription value.
 
 ## Aspherical Surfaces
 
@@ -125,29 +128,30 @@ Only S28 and S29, on final L18, carry standard even-asphere terms through A12. T
 | S28 | 0 | -9.74182e-6 | +1.27066e-8 | -9.6825e-12 | -8.09107e-15 | +5.01459e-17 |
 | S29 | 0 | -5.08406e-6 | +1.21233e-8 | +7.62564e-12 | -3.92426e-14 | +7.66722e-17 |
 
-Both surfaces have negative leading A4 terms with higher-order corrections. All coefficients are literal; the prior source audit reports agreement between the A and U publications, subject to the independent-review limitation above. No manufacturing method or surface-specific quantitative correction is inferred from these coefficients.
+Both surfaces have negative leading A4 terms with higher-order corrections. All coefficients retain the printed values. Agreement with the U publication remains unconfirmed, as noted above. No manufacturing method or surface-specific quantitative correction is inferred from these coefficients.
 
 ## Aperture and Geometry
 
-The source explicitly gives entrance-pupil radius 34.309 mm, not iris radius. Combining it with literal EFL gives modeled f/1.233195; printed f/1.25 is preserved as a source inconsistency rather than normalizing the pupil. The model's paraxial iris radius is 18.474887 mm. The original specification permits f/1.2–1.3.
+The source explicitly gives an entrance-pupil radius of 34.309 mm, rather than an iris radius. Combining it with calculated EFL gives f/1.233195; the patent states f/1.25 and permits f/1.2–1.3. The model retains the printed pupil radius and derives a paraxial iris radius of 18.474887 mm.
 
-Clear apertures are inferred from the patent figure, not published dimensions. Approximate axial-scale silhouette estimates were checked against the modeled geometry. The default allowance of 90% of the air gap for combined surface sag is retained. Rough figure estimates are adjusted slightly at facing S7/S8 and S27/S28 to remain within that allowance. No override is required. No gap, glass, radius or asphere was altered to fit the apertures. All authored semi-diameters survive model construction unchanged, apart from the generated stop radius.
+Clear apertures are inferred from the patent figure, which gives no aperture dimensions. The broad front and narrower rear follow its silhouette, with small adjustments at facing S7/S8 and S27/S28 to avoid surface overlap. These rims are not established factory clear apertures.
 
-The model's 18.474887 mm iris clears the axial marginal rays. However, the separate clear-aperture calculation rederives a 19.072 mm iris from the full 34.309 mm source entrance pupil and flags axial clipping at seven surfaces: S7 and S15–S20. Thus the model's iris clears; the full source pupil does not clear these inferred rims in that real-ray calculation.
+The model's 18.474887 mm iris clears the axial marginal rays. A real-ray calculation using the full 34.309 mm entrance pupil instead reaches a 19.072 mm iris radius and clips at S7 and S15–S20. That larger iris differs from the model's paraxially derived iris.
 
-An 812-sample equal-area lattice aimed at the stop yields valid/blocked counts of 812/0 axial, 574/238 at half-field and 252/560 at the edge. Blocked fractions of 0%, 29.31% and 68.97% are conditional geometric sampling outcomes, not measured illumination, coating transmission or retail vignetting. All 240 off-axis ray-solver failures to bracket an intersection occur at spherical surfaces and were classified as aperture misses using an independent whole-line intersection check. No unresolved ray is silently discarded. The 14.573558° half-field is inferred as atan(22/EFL) from the upper source image diameter of 44 mm, not a separately published angle.
+The model has substantial off-axis geometric vignetting, with about 29.31% of the pupil blocked at half-field and 68.97% at the edge, compared with no axial blockage. These figures describe geometric clipping, not measured illumination or coating transmission. The 14.573558° half-field is derived as atan(22/EFL) from the upper source image diameter of 44 mm; the patent does not publish a field angle.
 
-## Validation and Limitations
+## Model Scope and Limitations
 
-The exported prescription passed the recorded geometry validation and matched the previously checked numerical model. Source-value comparisons, independent paraxial calculations, aperture checks and the retained ray outcomes are documented in the audit evidence. Table values control over small prose disagreements at S2, S10 and S28; the differing source statements remain recorded.
+Table 1 controls the numerical prescription. Its S10 radius is 568.322 mm, while the prose gives 568.332 mm. S2 = 215.365 mm and S28 = -119.605 mm agree between the table and prose.
 
-Transmitted monochromatic geometric RMS radii for the 812-sample diagnostic are 0.005745 mm axial, 0.009893 mm at half-field and 0.018087 mm at the edge. These are not diffraction MTF, measured performance or a reproduction of the source's 430–658 nm polychromatic charts.
+Calculated transmitted monochromatic geometric RMS radii are 0.005745 mm axial, 0.009893 mm at half-field and 0.018087 mm at the edge. These are not diffraction MTF, measured performance or a reproduction of the source's 430–658 nm polychromatic charts.
 
-The model remains hidden from the public catalog. Full application regression, compatibility with the current application and browser checks have not been completed. Coarse glass precision, inferred apertures, the omitted unspecified filter, unresolved back-focus interpretation and uncertain exact product identity remain substantive limitations.
+Coarse glass precision, inferred apertures, the omitted unspecified filter, the unresolved back-focus difference and uncertain exact product identity limit comparisons with the production lens.
 
 ## Sources / References
 
 1. **CN 119667909 A**, *一种定焦镜头*, Example 1; front page, Fig. 1, Tables 1–2 / Figs. 2a–2b; ¶0027–¶0058. Filed 2025-01-23; published 2025-03-21.
-2. [SongRaw AF 85/1.2 MS product page](https://songrawlens.com/products/songraw-af-851-2-ms-full-frame-autofocus-lens-golden-focal-lengthportraits-with-depth), construction and product specifications as recorded in the validator report.
+2. [SongRaw AF 85/1.2 MS product page](https://songrawlens.com/products/songraw-af-851-2-ms-full-frame-autofocus-lens-golden-focal-lengthportraits-with-depth), product variants and specifications.
 3. [Dustin Abbott, SongRaw AF 85mm F1.2 MS review](https://dustinabbott.net/2026/09/songraw-af-85mm-f1-2-ms-review/), September 2026, product-family context.
-4. **CN 223827884 U**, numerical agreement reported by the prior source audit; not independently rechecked in this review.
+4. **CN 223827884 U**, reported numerical agreement remains independently unconfirmed.
+5. [SongRaw MS exploded construction diagram](https://cdn.shopify.com/s/files/1/0628/6943/8707/files/SONGRAW-MS-85MM-F1-2-LENS-F1.2-ELEMENTS.jpg?v=1790344124), 18 elements / 10 groups, five ED, eleven high-index and one aspherical element; ED positions inferred from the color coding.

@@ -3,13 +3,14 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Source: CN 119667909 A, Example 1, Tables 1–2 and Figure 1.
  * Scale factor 1: source radii, thicknesses and gaps are already in millimetres;
  * no units conversion is applied. Even-asphere coefficients retain source mm units.
- * Rims are inferred from Figure 1; the native iris is inferred paraxially from
+ * Rims are inferred from Figure 1; the iris is inferred paraxially from
  * the source entrance-pupil radius 34.309 mm (modeled f/1.233195, printed f/1.25).
  * The final gap is the calculated lens-only paraxial back focus, 19.813299312 mm,
  * rather than the printed 20.300 mm. Two-decimal nd precision and a non-unique
- * misprint scan support retaining this interpretation, not a proven correction
- * or exact filter conversion. No filter prescription or finite-focus state is supplied.
- * Hidden representative model; no exact retail optical prescription is claimed.
+ * misprint scan leave the difference unresolved; neither a source correction
+ * nor an exact filter conversion is established. No filter prescription or
+ * finite-focus state is supplied. The design is associated with the product
+ * family; an exact retail optical prescription is not established.
  */
 const LENS_DATA = {
   "schema": 2,
@@ -21,182 +22,225 @@ const LENS_DATA = {
     {
       "id": 1,
       "name": "L1",
-      "type": "Lens",
+      "type": "Positive Meniscus",
       "nd": 1.85,
       "vd": 23.8,
       "indexReference": "d",
       "label": "Element 1",
-      "glass": "Unmatched literal Nd/Vd; approximate dispersion"
+      "glass": "Unmatched (nd 1.85 / νd 23.8)",
+      "role": "Front positive meniscus of fixed G1"
     },
     {
       "id": 2,
       "name": "L2",
-      "type": "Lens",
+      "type": "Positive Meniscus",
       "nd": 1.59,
       "vd": 68.3,
       "indexReference": "d",
       "label": "Element 2",
-      "glass": "Unmatched literal Nd/Vd; approximate dispersion"
+      "glass": "Unmatched (nd 1.59 / νd 68.3)",
+      "role": "Second positive meniscus of fixed G1",
+      "apd": "inferred",
+      "apdNote": "The maker's diagram marks L2 as ED; the patent's nd/νd is consistent with a low-dispersion glass."
     },
     {
       "id": 3,
       "name": "L3",
-      "type": "Lens",
+      "type": "Positive Meniscus",
       "nd": 1.59,
       "vd": 68.3,
       "indexReference": "d",
       "label": "Element 3",
-      "glass": "Unmatched literal Nd/Vd; approximate dispersion"
+      "glass": "Unmatched (nd 1.59 / νd 68.3)",
+      "role": "Positive member of the first cemented doublet in G1",
+      "cemented": "C1",
+      "apd": "inferred",
+      "apdNote": "The maker's diagram marks L3 as ED; the patent's nd/νd is consistent with a low-dispersion glass."
     },
     {
       "id": 4,
       "name": "L4",
-      "type": "Lens",
+      "type": "Negative Meniscus",
       "nd": 1.85,
       "vd": 25.2,
       "indexReference": "d",
       "label": "Element 4",
-      "glass": "Unmatched literal Nd/Vd; approximate dispersion"
+      "glass": "Unmatched (nd 1.85 / νd 25.2)",
+      "role": "Negative member of the first cemented doublet in G1",
+      "cemented": "C1"
     },
     {
       "id": 5,
       "name": "L5",
-      "type": "Lens",
+      "type": "Biconvex Positive",
       "nd": 1.59,
       "vd": 68.3,
       "indexReference": "d",
       "label": "Element 5",
-      "glass": "Unmatched literal Nd/Vd; approximate dispersion"
+      "glass": "Unmatched (nd 1.59 / νd 68.3)",
+      "role": "Positive member of the second cemented doublet in G1",
+      "cemented": "C2",
+      "apd": "inferred",
+      "apdNote": "The maker's diagram marks L5 as ED; the patent's nd/νd is consistent with a low-dispersion glass."
     },
     {
       "id": 6,
       "name": "L6",
-      "type": "Lens",
+      "type": "Biconcave Negative",
       "nd": 2,
       "vd": 25.5,
       "indexReference": "d",
       "label": "Element 6",
-      "glass": "Unmatched literal Nd/Vd; approximate dispersion"
+      "glass": "Unmatched (nd 2.00 / νd 25.5)",
+      "role": "Negative member of the second cemented doublet in G1",
+      "cemented": "C2"
     },
     {
       "id": 7,
       "name": "L7",
-      "type": "Lens",
+      "type": "Positive Meniscus",
       "nd": 1.92,
       "vd": 20.9,
       "indexReference": "d",
       "label": "Element 7",
-      "glass": "Unmatched literal Nd/Vd; approximate dispersion"
+      "glass": "Unmatched (nd 1.92 / νd 20.9)",
+      "role": "Positive member of moving focus doublet G2",
+      "cemented": "C3"
     },
     {
       "id": 8,
       "name": "L8",
-      "type": "Lens",
+      "type": "Biconcave Negative",
       "nd": 1.7,
       "vd": 55.5,
       "indexReference": "d",
       "label": "Element 8",
-      "glass": "Unmatched literal Nd/Vd; approximate dispersion"
+      "glass": "Unmatched (nd 1.70 / νd 55.5)",
+      "role": "Negative member of moving focus doublet G2",
+      "cemented": "C3"
     },
     {
       "id": 9,
       "name": "L9",
-      "type": "Lens",
+      "type": "Biconvex Positive",
       "nd": 1.59,
       "vd": 68.3,
       "indexReference": "d",
       "label": "Element 9",
-      "glass": "Unmatched literal Nd/Vd; approximate dispersion"
+      "glass": "Unmatched (nd 1.59 / νd 68.3)",
+      "role": "Front positive member of the cemented triplet in G3",
+      "cemented": "C4",
+      "apd": "inferred",
+      "apdNote": "The maker's diagram marks L9 as ED; the patent's nd/νd is consistent with a low-dispersion glass."
     },
     {
       "id": 10,
       "name": "L10",
-      "type": "Lens",
+      "type": "Biconcave Negative",
       "nd": 1.77,
       "vd": 29.7,
       "indexReference": "d",
       "label": "Element 10",
-      "glass": "Unmatched literal Nd/Vd; approximate dispersion"
+      "glass": "Unmatched (nd 1.77 / νd 29.7)",
+      "role": "Central negative member of the cemented triplet in G3",
+      "cemented": "C4"
     },
     {
       "id": 11,
       "name": "L11",
-      "type": "Lens",
+      "type": "Biconvex Positive",
       "nd": 1.73,
       "vd": 54.7,
       "indexReference": "d",
       "label": "Element 11",
-      "glass": "Unmatched literal Nd/Vd; approximate dispersion"
+      "glass": "Unmatched (nd 1.73 / νd 54.7)",
+      "role": "Rear positive member of the cemented triplet in G3",
+      "cemented": "C4"
     },
     {
       "id": 12,
       "name": "L12",
-      "type": "Lens",
+      "type": "Biconvex Positive",
       "nd": 1.73,
       "vd": 54.7,
       "indexReference": "d",
       "label": "Element 12",
-      "glass": "Unmatched literal Nd/Vd; approximate dispersion"
+      "glass": "Unmatched (nd 1.73 / νd 54.7)",
+      "role": "Positive member of the first cemented doublet in G3",
+      "cemented": "C5"
     },
     {
       "id": 13,
       "name": "L13",
-      "type": "Lens",
+      "type": "Biconcave Negative",
       "nd": 1.77,
       "vd": 29.7,
       "indexReference": "d",
       "label": "Element 13",
-      "glass": "Unmatched literal Nd/Vd; approximate dispersion"
+      "glass": "Unmatched (nd 1.77 / νd 29.7)",
+      "role": "Negative member of the first cemented doublet in G3",
+      "cemented": "C5"
     },
     {
       "id": 14,
       "name": "L14",
-      "type": "Lens",
+      "type": "Biconvex Positive",
       "nd": 2,
       "vd": 29.1,
       "indexReference": "d",
       "label": "Element 14",
-      "glass": "Unmatched literal Nd/Vd; approximate dispersion"
+      "glass": "Unmatched (nd 2.00 / νd 29.1)",
+      "role": "Positive member of the second cemented doublet in G3",
+      "cemented": "C6"
     },
     {
       "id": 15,
       "name": "L15",
-      "type": "Lens",
+      "type": "Biconcave Negative",
       "nd": 1.62,
       "vd": 36.3,
       "indexReference": "d",
       "label": "Element 15",
-      "glass": "Unmatched literal Nd/Vd; approximate dispersion"
+      "glass": "Unmatched (nd 1.62 / νd 36.3)",
+      "role": "Negative member of the second cemented doublet in G3",
+      "cemented": "C6"
     },
     {
       "id": 16,
       "name": "L16",
-      "type": "Lens",
+      "type": "Biconvex Positive",
       "nd": 2,
       "vd": 25.5,
       "indexReference": "d",
       "label": "Element 16",
-      "glass": "Unmatched literal Nd/Vd; approximate dispersion"
+      "glass": "Unmatched (nd 2.00 / νd 25.5)",
+      "role": "Positive member of the final cemented doublet in G3",
+      "cemented": "C7"
     },
     {
       "id": 17,
       "name": "L17",
-      "type": "Lens",
+      "type": "Biconcave Negative",
       "nd": 1.49,
       "vd": 70.4,
       "indexReference": "d",
       "label": "Element 17",
-      "glass": "Unmatched literal Nd/Vd; approximate dispersion"
+      "glass": "Unmatched (nd 1.49 / νd 70.4)",
+      "role": "Negative member of the final cemented doublet in G3",
+      "cemented": "C7",
+      "apd": "inferred",
+      "apdNote": "The maker's diagram marks L17 as ED; the patent's nd/νd is consistent with a low-dispersion glass."
     },
     {
       "id": 18,
       "name": "L18",
-      "type": "Lens",
+      "type": "Negative Meniscus",
       "nd": 1.81,
       "vd": 40.7,
       "indexReference": "d",
       "label": "Element 18",
-      "glass": "Unmatched literal Nd/Vd; approximate dispersion"
+      "glass": "Unmatched (nd 1.81 / νd 40.7)",
+      "role": "Separate rear negative meniscus with two aspherical surfaces"
     }
   ],
   "surfaces": [
@@ -408,6 +452,20 @@ const LENS_DATA = {
       }
     }
   ],
+  "groups": [
+    { "text": "G1 · FIXED FRONT", "fromSurface": "1", "toSurface": "10" },
+    { "text": "G2 · FOCUS", "fromSurface": "11", "toSurface": "13" },
+    { "text": "G3 · FIXED REAR", "fromSurface": "15", "toSurface": "29" }
+  ],
+  "doublets": [
+    { "text": "C1", "fromSurface": "5", "toSurface": "7" },
+    { "text": "C2", "fromSurface": "8", "toSurface": "10" },
+    { "text": "C3", "fromSurface": "11", "toSurface": "13" },
+    { "text": "C4 (TRIPLET)", "fromSurface": "15", "toSurface": "18" },
+    { "text": "C5", "fromSurface": "19", "toSurface": "21" },
+    { "text": "C6", "fromSurface": "22", "toSurface": "24" },
+    { "text": "C7", "fromSurface": "25", "toSurface": "27" }
+  ],
   "aperture": {
     "nominalFNumber": 1.233195000482106,
     "fStops": [
@@ -419,7 +477,7 @@ const LENS_DATA = {
   },
   "focus": {
     "closeFocusM": 1000000000000000.0,
-    "description": "Infinity only. G2 internal-focus direction is described but no finite station or motion law is supplied."
+    "description": "Infinity focus only; production focuses by moving G2 (the cemented L7–L8 pair) toward the image for nearer objects, while G1, the iris and G3 stay fixed. The patent supplies no finite-focus spacings or numerical travel."
   },
   "projection": {
     "kind": "rectilinear",
@@ -428,7 +486,7 @@ const LENS_DATA = {
   "checks": {
     "gapSagFrac": 0.9
   },
-  "subtitle": "CN 119667909 A \u2014 qualified lens-only computed-focus interpretation",
+  "subtitle": "CN 119667909 A, Example 1 — family design for the AF 85mm f/1.2 MS",
   "catalog": {
     "lensMounts": [
       "sony-fe",
@@ -451,8 +509,10 @@ const LENS_DATA = {
     },
     "specs": [
       "18 ELEMENTS / 10 GROUPS",
-      "SOURCE PUPIL RADIUS34.309mm",
-      "LENS-ONLY INFINITY INTERPRETATION"
+      "5 ED / 11 HIGH-INDEX ELEMENTS",
+      "1 ASPHERICAL ELEMENT",
+      "F/1.2",
+      "MINIMUM FOCUS 0.85 m"
     ]
   },
   "source": {
@@ -471,15 +531,15 @@ const LENS_DATA = {
     "errata": [
       {
         "status": "unresolved",
-        "note": "Printed S29\u2192IMG 20.300 mm is 0.486701 mm longer than the retained lens-only paraxial focus 19.813299312326787 mm. Two-decimal nd precision limits the back-focus accuracy; the 2,570-case single-value scan found no unique misprint. The final gap follows the YN 40 paraxial-focus precedent, not a proven source correction or exact filter conversion."
+        "note": "Printed S29→IMG 20.300 mm is 0.486701 mm longer than the calculated paraxial focus without a filter, 19.813299312326787 mm. Two-decimal nd precision limits back-focus accuracy, and no unique misprint has been established. The model places the image at calculated paraxial focus; a source correction or exact filter conversion is not established."
       },
       {
         "status": "unresolved",
-        "note": "Original pupil radius34.309mm and literalEFL84.6193745 imply f1.233195 rather than statedf1.25. Source radius controls iris; no silent f-number normalization. Original Nd/Vd coarse and unmatched."
+        "note": "The printed entrance-pupil radius of 34.309 mm and calculated EFL of 84.6193745 mm imply f/1.233195 rather than the stated f/1.25. The iris is derived from the printed pupil radius. The rounded nd/νd values do not establish catalog glass identities."
       },
       {
         "status": "unresolved",
-        "note": "FT appears in source figure but no thickness/index prescription exists. It is explicitly omitted. TableS2=215.365,S10=568.322,S28=-119.605 retained against slight prose differences; U223827884 numericaltables identical."
+        "note": "FIT appears in Figure 1 but has no thickness or refractive-index prescription and is omitted. Table 1 gives S2 = 215.365 mm, S10 = 568.322 mm and S28 = -119.605 mm; only S10 differs numerically from the prose value, 568.332 mm. Agreement with CN 223827884 U was previously reported but has not been independently confirmed."
       }
     ]
   }
