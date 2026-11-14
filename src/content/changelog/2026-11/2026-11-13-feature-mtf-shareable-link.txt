@@ -1,0 +1,1 @@
+Added a Copy MTF link action so a shared link opens with the same MTF settings

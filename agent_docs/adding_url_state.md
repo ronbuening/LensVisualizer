@@ -30,7 +30,7 @@ Every new field touches exactly these three places. Using `myOverlayOpen` → pa
    `parseBooleanParam(params, "myo")` and assign only when not `undefined`; in `buildLensViewQuery()` destructure the
    option, `params.set("myo", "1")` when true, and add it to the `usesV1ViewState` disjunction; in
    `buildLensViewQueryFromState()` read `state.panels.myOverlayOpen`. Pick a short, unused param key — existing keys:
-   `el`, `a_el`, `b_el`, `gm`, `chr`, `ptz`, `ad`, `tab`, `mv`, `cfg`, `tc`, `a_tc`, `b_tc`, `pp`, `ims`.
+   `el`, `a_el`, `b_el`, `gm`, `chr`, `ptz`, `ad`, `tab`, `mv`, `cfg`, `tc`, `a_tc`, `b_tc`, `pp`, `ims`, `mtf`.
 
 ### Custom-Encoded Fields
 
@@ -43,6 +43,15 @@ A boolean that is also a stored preference (compare `patentPositions` → `pp`) 
 `VIEW_STATE_FIELDS` boolean reads an absent param as `false`, which would override the preference on every load and
 reset it on every history entry. Parse it as tri-state, leave it out of `DEFAULT_URL_STATE`, and seed it in
 `createInitialState` as `urlState.x ?? prefs.x ?? false`.
+
+Explicit preference bundles can live outside reducer state: `mtf` is a v1-gated, independently versioned override
+owned by `src/utils/state/mtfUrlState.ts` and `useSharedMtfPreferences`. Its value is `1` for all defaults, or `1.`
+followed by base64url JSON with short keys for non-default settings. JSON numbers preserve exact values. Unknown
+versions, duplicate parameters, unknown keys or any invalid setting reject the whole bundle; absent or invalid
+overrides leave stored preferences in charge. `buildMtfLink` adds the bundle only on an explicit copy action.
+`lensViewUrlSync` preserves an existing valid bundle without introducing one during ordinary synchronization;
+the visit hook updates it when its controls change and removes it for "Use my settings". Both comparison panes use
+the same override. No warning acknowledgments or diagnostic disclosures belong in this bundle.
 
 ## Tests
 

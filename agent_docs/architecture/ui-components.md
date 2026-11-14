@@ -118,7 +118,15 @@ note describes a held plane as authored only when that shift is exactly zero. Ea
 explains its options in a mouse-hover or keyboard-focus `PortalTooltip`, also linked through `aria-describedby`; on
 hover-less (touch) devices a `HelpTooltipButton` beside each dropdown gives tap access. Method, spectrum, image plane, sampling (128² or 256² cap), view, field step (10/5/2/1 %) and frequency chips
 (10–50 lp/mm) persist in localStorage through `src/utils/state/mtfPreferences.ts` and `useMtfPreferences`, which
-comparison panes share; the existing `tab=mtf` URL selects the tab. Every request computes 0–100 lp/mm for every
+comparison panes share; the existing `tab=mtf` URL selects the tab. "Copy MTF link", beside "Copy CSV" in the field
+summary, copies the current page URL with an explicit versioned `mtf` bundle containing every non-default MTF
+setting, including chart references and Advanced. It opens the MTF tab, preserves exact optical state, and uses the
+CSV action's clipboard confirmation. Ordinary visits do not write MTF settings to the URL. A valid shared bundle
+overrides stored settings for the visit and both comparison panes; "Settings from a shared link" offers "Use my
+settings" to remove the override and resume stored choices. Opening a link never saves its settings. Changing a
+control updates the visit's URL and saves only that control as a preference, leaving other shared settings visit-only.
+Warning acknowledgments and diagnostic disclosures are excluded, so a fresh visit still requires its own disclosures.
+Malformed bundles and unknown versions fall back to stored preferences as a whole. Every request computes 0–100 lp/mm for every
 field, so chart-only changes never recompute. `useMtfComputation` debounces settled inputs for 150 ms, keeps earlier
 curves dimmed until the new request reports progress, and cancels superseded work; the mounted tab disposes its worker
 on unmount. In the image-height view, `MtfChart` gives each frequency a fixed `chartSeries` slot, labels curve ends,

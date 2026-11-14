@@ -1,8 +1,8 @@
 /**
  * Persistent MTF analysis options, shared by every MTF tab in this browser.
  *
- * Options live in localStorage rather than the URL: they describe how the viewer likes to read
- * MTF, not the lens state being shared. A small external store lets comparison panes update together.
+ * Options normally live in localStorage. Explicit share links override them for a visit through
+ * useSharedMtfPreferences without saving the link's values. This store lets comparison panes update together.
  */
 import type { MtfFocusMode, MtfGridCap, MtfMethod, MtfSpectrum } from "../../types/mtf.js";
 

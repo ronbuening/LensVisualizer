@@ -214,9 +214,6 @@ S under a day, M one to three days, L longer.
 
 ### Features
 
-- **C23 — A shareable MTF link.** Method, spectrum, focus, grid cap, field step, frequencies and the f/8 overlay
-  live in localStorage, so a shared link can show different curves. "Copy MTF link" with versioned settings that
-  do not overwrite the recipient's defaults. M.
 - **C24 — Exports with context.** The CSV has no lens, aperture, station, method, spectrum or plane, and exports
   the selected frequencies even from the frequency view. Add current-view and all-values exports, the overlay's
   rows, and SVG then PNG with a caption. M.

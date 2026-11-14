@@ -10,7 +10,8 @@ import { assessMtfDataLimitations, assessMtfSupport, resolveMtfSpectrum } from "
 import { formatFNumber, stopSemiDiameterForFNumber } from "../../../optics/optics.js";
 import { useMtfComputation } from "../../hooks/useMtfComputation.js";
 import { useMtfDataWarning } from "../../hooks/useMtfDataWarning.js";
-import { useMtfPreferences } from "../../hooks/useMtfPreferences.js";
+import { useSharedMtfPreferences } from "../../../utils/state/useSharedMtfPreferences.js";
+import { buildMtfLink } from "../../../utils/state/mtfUrlState.js";
 import { AnalysisEmptyState } from "./analysisUi.js";
 import MtfChart from "./MtfChart.js";
 import MtfControls from "./mtf/MtfControls.js";
@@ -73,7 +74,7 @@ export default function MtfTab({
   focalLengthMm,
   movementActive = false,
 }: MtfTabProps) {
-  const [preferences, updatePreferences] = useMtfPreferences();
+  const [preferences, updatePreferences, sharedSettings, useStoredSettings] = useSharedMtfPreferences();
   const request = useMemo(
     () =>
       analysisContext?.request ??
@@ -178,6 +179,25 @@ export default function MtfTab({
   return (
     <section style={{ color: t.value, fontSize: 12 }} aria-label="Simulated MTF">
       <h3 style={{ margin: "0 0 4px", fontSize: 14 }}>Simulated MTF</h3>
+      {sharedSettings ? (
+        <p role="status" style={muted}>
+          <span>Settings from a shared link</span>{" "}
+          <button
+            type="button"
+            onClick={useStoredSettings}
+            style={{
+              background: "none",
+              border: "none",
+              padding: 0,
+              color: t.value,
+              cursor: "pointer",
+              font: "inherit",
+            }}
+          >
+            Use my settings
+          </button>
+        </p>
+      ) : null}
       <p style={muted}>
         {headerLine(options, support.referenceWavelengthNm, fNumber, focalLengthMm, shown, vignettingOf(shown, stale))}
       </p>
@@ -286,6 +306,7 @@ export default function MtfTab({
               diffractionLimit={preferences.diffractionLimit && preferences.method === "diffraction"}
               pixelPitchUm={preferences.view === "frequency" ? preferences.pixelPitchUm : null}
               advanced={preferences.advanced}
+              getMtfLink={() => buildMtfLink(window.location.href, preferences)}
             />
           </MtfDataWarning>
         </>

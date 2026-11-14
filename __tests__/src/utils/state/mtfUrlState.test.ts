@@ -1,0 +1,128 @@
+/** MTF share URLs preserve exact settings and reject an invalid override as a whole. */
+import { describe, expect, it } from "vitest";
+import {
+  buildMtfLink,
+  decodeMtfSettings,
+  encodeMtfSettings,
+  parseSharedMtfSettings,
+  preserveSharedMtfSettings,
+} from "../../../../src/utils/state/mtfUrlState.js";
+import { DEFAULT_MTF_PREFERENCES, type MtfPreferences } from "../../../../src/utils/state/mtfPreferences.js";
+
+const settings: Required<MtfPreferences> = {
+  method: "geometric",
+  spectrum: "cdf",
+  focus: "design",
+  maxGridSize: 128,
+  view: "frequency",
+  fieldStepPercent: 2,
+  frequencies: [20, 40, 50],
+  compareF8: true,
+  comparisonFocus: "hold",
+  diffractionLimit: true,
+  frequencyField: 1 / 3,
+  pixelPitchUm: 5,
+  advanced: true,
+};
+const payload = (raw: unknown) => `1.${btoa(JSON.stringify(raw)).replace(/=+$/, "")}`;
+
+describe("MTF URL state", () => {
+  it("round-trips every setting, including an exact field fraction and non-default frequency lists", () => {
+    const encoded = encodeMtfSettings(settings);
+    expect(decodeMtfSettings(encoded)).toEqual(settings);
+    expect(decodeMtfSettings(encoded)!.frequencyField).toBe(1 / 3);
+    const params = new URLSearchParams({ v: "1", mtf: encoded });
+    expect(parseSharedMtfSettings(`?${params}`)).toEqual(settings);
+    for (const frequencies of [[50], [10, 20, 30, 40, 50], [20, 40]] as const) {
+      expect(decodeMtfSettings(encodeMtfSettings({ ...settings, frequencies }))!.frequencies).toEqual(frequencies);
+    }
+  });
+
+  it("omits defaults inside an explicit defaults payload and preserves all other supported choices", () => {
+    expect(encodeMtfSettings(DEFAULT_MTF_PREFERENCES)).toBe("1");
+    expect(decodeMtfSettings("1")).toEqual(DEFAULT_MTF_PREFERENCES);
+    const encoded = encodeMtfSettings({ ...DEFAULT_MTF_PREFERENCES, advanced: true });
+    expect(JSON.parse(atob(encoded.slice(2)))).toEqual({ a: true });
+    for (const patch of [
+      { focus: "auto", spectrum: "reference", fieldStepPercent: 1, pixelPitchUm: 3, frequencyField: 0 },
+      { fieldStepPercent: 5, pixelPitchUm: 4, frequencyField: 1 },
+      { pixelPitchUm: 6, frequencyField: 0.003000000001 },
+      { pixelPitchUm: 8, frequencyField: "overview" },
+    ] satisfies Partial<MtfPreferences>[]) {
+      const preferences = { ...DEFAULT_MTF_PREFERENCES, ...patch };
+      expect(decodeMtfSettings(encodeMtfSettings(preferences))).toEqual(preferences);
+    }
+  });
+
+  it.each([
+    null,
+    "",
+    "2",
+    "2.e30",
+    "1.",
+    "1.%%%",
+    "1.e30.extra",
+    "1.e30=",
+    `1.${"a".repeat(2048)}`,
+    payload(null),
+    payload([]),
+    payload(3),
+    payload({ unknown: true }),
+    payload({ __proto__: null, constructor: true }),
+    payload({ m: "geometric-dl" }),
+    payload({ s: "unknown" }),
+    payload({ f: "sideways" }),
+    payload({ g: 512 }),
+    payload({ v: "chart" }),
+    payload({ h: 3 }),
+    payload({ q: [] }),
+    payload({ q: [50, 10] }),
+    payload({ q: [10, 10] }),
+    payload({ q: [10, "30"] }),
+    payload({ q: [10, 35] }),
+    payload({ c: 1 }),
+    payload({ o: "auto" }),
+    payload({ d: "true" }),
+    payload({ r: -0.1 }),
+    payload({ r: 1.1 }),
+    payload({ r: "0.5" }),
+    payload({ r: null }),
+    payload({ p: 7 }),
+    payload({ a: 1 }),
+    payload({ m: "geometric", q: [20, 35] }),
+  ])("rejects a malformed or future payload as a whole: %s", (value) => {
+    expect(decodeMtfSettings(value)).toBeNull();
+  });
+
+  it("requires v1 and a single parameter, leaving absent or invalid overrides to stored preferences", () => {
+    for (const query of ["", "?mtf=1", "?v=2&mtf=1", "?v=1&mtf=1&mtf=1", "?v=1&mtf=2"])
+      expect(parseSharedMtfSettings(query)).toBeNull();
+  });
+
+  it("copies the current optical state, page and fragment while explicitly opening the MTF tab", () => {
+    const href =
+      "https://example.com/lens/test/?v=1&focus=0.6666666666666666&aperture=0.12345678901234568&cfg=test-alt#chart";
+    const url = new URL(buildMtfLink(href, settings));
+    expect(url.pathname).toBe("/lens/test/");
+    expect(url.hash).toBe("#chart");
+    expect(url.searchParams.get("focus")).toBe("0.6666666666666666");
+    expect(url.searchParams.get("aperture")).toBe("0.12345678901234568");
+    expect(url.searchParams.get("cfg")).toBe("test-alt");
+    expect(url.searchParams.get("ad")).toBe("1");
+    expect(url.searchParams.get("tab")).toBe("mtf");
+    expect(parseSharedMtfSettings(url.search)).toEqual(settings);
+    expect([...url.searchParams.keys()]).toEqual(["v", "focus", "aperture", "cfg", "ad", "tab", "mtf"]);
+  });
+
+  it("preserves only an existing valid override during ordinary URL synchronization", () => {
+    const params = new URLSearchParams({ focus: "0.5" });
+    preserveSharedMtfSettings(`?v=1&mtf=${encodeMtfSettings(settings)}`, params);
+    expect(params.get("focus")).toBe("0.5");
+    expect(parseSharedMtfSettings(params.toString())).toEqual(settings);
+    for (const search of ["", "?mtf=1", "?v=1&mtf=2"]) {
+      const ordinary = new URLSearchParams({ focus: "0.5" });
+      preserveSharedMtfSettings(search, ordinary);
+      expect(ordinary.toString()).toBe("focus=0.5");
+    }
+  });
+});

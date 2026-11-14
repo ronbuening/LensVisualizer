@@ -18,6 +18,7 @@ interface MtfFieldSummaryProps {
   diffractionLimit?: boolean;
   pixelPitchUm?: MtfPixelPitch | null;
   advanced?: boolean;
+  getMtfLink?: () => string;
 }
 
 export default function MtfFieldSummary({
@@ -32,12 +33,22 @@ export default function MtfFieldSummary({
   diffractionLimit = false,
   pixelPitchUm = null,
   advanced = false,
+  getMtfLink,
 }: MtfFieldSummaryProps) {
   const [copyStatus, setCopyStatus] = useState<string | null>(null);
   const copy = async () => {
     if (stale) return;
     try {
       await navigator.clipboard.writeText(mtfCsv(result, frequencies, diagnostic, comparison, diffractionLimit));
+      setCopyStatus("Copied");
+    } catch {
+      setCopyStatus("Copy unavailable in this browser");
+    }
+  };
+  const copyLink = async () => {
+    if (!getMtfLink) return;
+    try {
+      await navigator.clipboard.writeText(getMtfLink());
       setCopyStatus("Copied");
     } catch {
       setCopyStatus("Copy unavailable in this browser");
@@ -90,6 +101,23 @@ export default function MtfFieldSummary({
         >
           Copy CSV
         </button>
+        {getMtfLink ? (
+          <button
+            type="button"
+            onClick={() => void copyLink()}
+            style={{
+              background: "none",
+              border: `1px solid ${t.panelBorder}`,
+              borderRadius: 4,
+              color: t.value,
+              cursor: "pointer",
+              font: "inherit",
+              padding: "2px 8px",
+            }}
+          >
+            Copy MTF link
+          </button>
+        ) : null}
         <span aria-live="polite">{copyStatus}</span>
       </div>
       {!advanced && noted.length ? (

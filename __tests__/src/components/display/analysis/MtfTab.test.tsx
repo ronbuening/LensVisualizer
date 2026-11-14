@@ -21,7 +21,12 @@ import { computeMtf } from "../../../../../src/optics/analysis/mtf/mtf.js";
 import { mtfImagePlaneOffset } from "../../../../../src/optics/analysis/mtf/mtfFocus.js";
 import type { MtfResult } from "../../../../../src/types/mtf.js";
 import type { MtfJob, MtfWorkerReply, MtfWorkerRequest } from "../../../../../src/components/hooks/mtfWorkerClient.js";
-import { MTF_PREFERENCES_KEY, resetMtfPreferencesCache } from "../../../../../src/utils/state/mtfPreferences.js";
+import {
+  DEFAULT_MTF_PREFERENCES,
+  MTF_PREFERENCES_KEY,
+  resetMtfPreferencesCache,
+} from "../../../../../src/utils/state/mtfPreferences.js";
+import { buildMtfLink, parseSharedMtfSettings } from "../../../../../src/utils/state/mtfUrlState.js";
 import { resetMtfDataWarnings } from "../../../../../src/utils/state/mtfDataWarnings.js";
 
 // The fixture's authored image plane sits far from its paraxial focus, so Auto refocuses it.
@@ -114,6 +119,7 @@ const legendColor = (label: string) =>
 
 beforeEach(() => {
   installMatchMediaMock(false);
+  window.history.replaceState({}, "", "/");
   localStorage.clear();
   resetMtfPreferencesCache();
   resetMtfDataWarnings();
@@ -121,6 +127,133 @@ beforeEach(() => {
 afterEach(() => {
   cleanup();
   vi.unstubAllGlobals();
+});
+
+describe("MTF share links", () => {
+  const tab = <MtfTab L={focusedL} t={mockTheme} preparedState={focusedState} currentEPSD={1} currentPhysStopSD={1} />;
+
+  it("applies link settings without saving them, saves only changed controls, and resumes my settings", async () => {
+    const saved = JSON.stringify({ method: "diffraction", spectrum: "reference", focus: "auto", advanced: false });
+    localStorage.setItem(MTF_PREFERENCES_KEY, saved);
+    const shared = { ...DEFAULT_MTF_PREFERENCES, method: "geometric", focus: "design", advanced: true } as const;
+    window.history.replaceState({}, "", buildMtfLink(window.location.href, shared));
+    const { calls } = stubWorker({ target: focusedState });
+    const { unmount } = render(tab);
+    await screen.findByRole("figure");
+    expect(screen.getByText("Settings from a shared link")).toBeTruthy();
+    expect((screen.getByRole("combobox", { name: "MTF method" }) as HTMLSelectElement).value).toBe("geometric");
+    expect(calls.jobs[0].options).toMatchObject({ method: "geometric", focus: "design", spectrum: "photopic" });
+    expect(localStorage.getItem(MTF_PREFERENCES_KEY)).toBe(saved);
+    fireEvent.change(screen.getByRole("combobox", { name: "MTF spectrum" }), { target: { value: "cdf" } });
+    expect(parseSharedMtfSettings(window.location.search)).toEqual({ ...shared, spectrum: "cdf" });
+    expect(JSON.parse(localStorage.getItem(MTF_PREFERENCES_KEY)!)).toMatchObject({
+      method: "diffraction",
+      spectrum: "cdf",
+      focus: "auto",
+      advanced: false,
+    });
+    // Closing and reopening the analysis tab keeps this visit's override.
+    unmount();
+    render(tab);
+    expect((screen.getByRole("combobox", { name: "MTF method" }) as HTMLSelectElement).value).toBe("geometric");
+    fireEvent.click(screen.getByRole("button", { name: "Use my settings" }));
+    expect(screen.queryByText("Settings from a shared link")).toBeNull();
+    expect(new URLSearchParams(window.location.search).has("mtf")).toBe(false);
+    expect((screen.getByRole("combobox", { name: "MTF method" }) as HTMLSelectElement).value).toBe("diffraction");
+    expect((screen.getByRole("combobox", { name: "MTF image plane" }) as HTMLSelectElement).value).toBe("auto");
+    expect(screen.getByRole("button", { name: "Advanced" }).getAttribute("aria-pressed")).toBe("false");
+    fireEvent.change(screen.getByRole("combobox", { name: "MTF method" }), { target: { value: "geometric" } });
+    expect(JSON.parse(localStorage.getItem(MTF_PREFERENCES_KEY)!).method).toBe("geometric");
+    expect(new URLSearchParams(window.location.search).has("mtf")).toBe(false);
+  });
+
+  it.each(["", "?v=1&mtf=2", "?v=1&mtf=bad", "?mtf=1"])(
+    "keeps ordinary stored preferences and URL behavior for %s",
+    async (query) => {
+      const saved = JSON.stringify({ method: "geometric", spectrum: "reference" });
+      localStorage.setItem(MTF_PREFERENCES_KEY, saved);
+      window.history.replaceState({}, "", `/lens/test/${query}`);
+      const original = window.location.href;
+      stubWorker({ target: focusedState });
+      render(tab);
+      await screen.findByRole("figure");
+      expect(screen.queryByText("Settings from a shared link")).toBeNull();
+      expect((screen.getByRole("combobox", { name: "MTF method" }) as HTMLSelectElement).value).toBe("geometric");
+      expect(localStorage.getItem(MTF_PREFERENCES_KEY)).toBe(saved);
+      fireEvent.click(screen.getByRole("button", { name: "Advanced" }));
+      expect(JSON.parse(localStorage.getItem(MTF_PREFERENCES_KEY)!).advanced).toBe(true);
+      expect(window.location.href).toBe(original);
+    },
+  );
+
+  it("copies the current URL and visit settings without changing the address bar or sharing disclosures", async () => {
+    stubWorker({ target: focusedState });
+    const writeText = vi.fn().mockResolvedValue(undefined);
+    vi.stubGlobal("navigator", { ...navigator, clipboard: { writeText } });
+    window.history.replaceState({}, "", "/lens/test/?v=1&focus=0.6666666666666666&aperture=0.12345678901234568#chart");
+    const original = window.location.href;
+    const { unmount } = render(tab);
+    await screen.findByRole("figure");
+    fireEvent.click(screen.getByRole("button", { name: "Show chart anyway" }));
+    fireEvent.click(screen.getByRole("checkbox", { name: /Show diagnostic estimates/ }));
+    fireEvent.click(screen.getByRole("button", { name: "Advanced" }));
+    fireEvent.click(screen.getByRole("button", { name: "Copy MTF link" }));
+    expect(await screen.findByText("Copied")).toBeTruthy();
+    expect(window.location.href).toBe(original);
+    const copied = new URL(writeText.mock.calls[0][0] as string);
+    expect(copied.pathname).toBe("/lens/test/");
+    expect(copied.hash).toBe("#chart");
+    expect(copied.searchParams.get("focus")).toBe("0.6666666666666666");
+    expect(copied.searchParams.get("aperture")).toBe("0.12345678901234568");
+    expect(copied.searchParams.get("ad")).toBe("1");
+    expect(copied.searchParams.get("tab")).toBe("mtf");
+    expect(parseSharedMtfSettings(copied.search)).toEqual({ ...DEFAULT_MTF_PREFERENCES, advanced: true });
+    // A new recipient visit starts with both disclosures closed, even though the sender opened them.
+    unmount();
+    resetMtfDataWarnings();
+    window.history.replaceState({}, "", copied.href);
+    render(tab);
+    await screen.findByRole("figure");
+    expect(screen.getByRole("note", { name: "Limited data for this chart" })).toBeTruthy();
+    expect((screen.getByRole("checkbox", { name: /Show diagnostic estimates/ }) as HTMLInputElement).checked).toBe(
+      false,
+    );
+  });
+
+  it("reports clipboard failure for the link action", async () => {
+    stubWorker({ target: focusedState });
+    vi.stubGlobal("navigator", {
+      ...navigator,
+      clipboard: { writeText: vi.fn().mockRejectedValue(new Error("blocked")) },
+    });
+    render(tab);
+    await screen.findByRole("figure");
+    fireEvent.click(screen.getByRole("button", { name: "Copy MTF link" }));
+    expect(await screen.findByText("Copy unavailable in this browser")).toBeTruthy();
+  });
+
+  it("hydrates shared settings and removes them on back/forward navigation", async () => {
+    stubWorker({ target: focusedState });
+    render(tab);
+    await screen.findByRole("figure");
+    act(() => {
+      window.history.replaceState(
+        {},
+        "",
+        buildMtfLink(window.location.href, { ...DEFAULT_MTF_PREFERENCES, advanced: true }),
+      );
+      window.dispatchEvent(new PopStateEvent("popstate"));
+    });
+    expect(screen.getByText("Settings from a shared link")).toBeTruthy();
+    expect(screen.getByRole("button", { name: "Advanced" }).getAttribute("aria-pressed")).toBe("true");
+    act(() => {
+      window.history.replaceState({}, "", "/lens/test/");
+      window.dispatchEvent(new PopStateEvent("popstate"));
+    });
+    expect(screen.queryByText("Settings from a shared link")).toBeNull();
+    expect(screen.getByRole("button", { name: "Advanced" }).getAttribute("aria-pressed")).toBe("false");
+    expect(localStorage.getItem(MTF_PREFERENCES_KEY)).toBeNull();
+  });
 });
 
 describe("MTF tab", () => {
