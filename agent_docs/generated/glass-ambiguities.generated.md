@@ -12,16 +12,16 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **1127** lenses scanned
-- **12778** glass elements examined
-- **2700** elements have multiple coordinate-compatible candidates
-- **493** lens files are affected
+- **1128** lenses scanned
+- **12763** glass elements examined
+- **2699** elements have multiple coordinate-compatible candidates
+- **492** lens files are affected
 - **276** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
 - **118** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
 
 | Selection criterion | Elements |
 |---|---:|
-| Smallest reference-index residual | 1571 |
+| Smallest reference-index residual | 1570 |
 | Evidence-source priority | 835 |
 | Vendor context | 280 |
 | Stable canonical-name order | 12 |
@@ -644,7 +644,6 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `M-BACD12 / L-BAL42 / D-ZK2 class (583-595)` | 1.58313 / 59.46 (d) | M-BACD12 — smallest d-line \|Δn\| (1.6e-8 vs 4.4e-6) | L-BAL42 (Ohara, name)<br>Q-SK52S (Hikari, code, preferred code row) | 1 | [LAOWA 15mm f/2 Zero-D](../../src/lens-data/laowa/Laowa15mmf2ZeroD.data.ts) L12 |
 | `S-LAH95 / TAFD25 class (904313)` | 1.90366 / 31.31 (d) | S-LAH95 — smallest d-line \|Δn\| (5.9e-7 vs 2.0e-6) | TAFD25 (Hoya, name)<br>J-LASFH13 (Hikari, code, alternate code row)<br>N-LASF46B (Schott, code, alternate code row)<br>TAFD25L (Hoya, code, alternate code row) | 3 | [LAOWA 15mm f/4 Wide Angle 1:1 Macro](../../src/lens-data/laowa/Laowa15mmf4Macro.data.ts) L3 |
 | `N-LASF44 (Schott catalog-equivalent to patent 804465; supplier not identified)` | 1.80420 / 46.50 (d) | N-LASF44 — direct name evidence outranks six-digit code evidence. | TAF3 (Hoya, code, vendor ✗, alternate code row)<br>TAF3D (Hoya, code, vendor ✗, alternate code row) | 1 | [LAOWA 15mm f/4 Wide Angle 1:1 Macro](../../src/lens-data/laowa/Laowa15mmf4Macro.data.ts) L7b |
-| `K-CSK120-M (SUMITA catalog equivalent; production supplier unspecified)` | 1.58444 / 59.16 (d) | K-CSK120-M — smallest d-line \|Δn\| (1.8e-6 vs 2.5e-3) | K-CSK120 (Sumita, name, vendor ✓) | 1 | [LAOWA 15mm f/4.5 Zero-D Shift](../../src/lens-data/laowa/Laowa15mmf45ZeroDShift.data.ts) L2 |
 | `N-SF66 / E-FDS1 class (923209)` | 1.92286 / 20.88 (d) | N-SF66 — smallest d-line \|Δn\| (8.8e-8 vs 4.0e-7) | E-FDS1 (Hoya, name)<br>PBH21 (Ohara, code, alternate code row) | 2 | [LAOWA 24mm f/14 2× Macro Probe](../../src/lens-data/laowa/Laowa24mmf14Probe.data.ts) L7 |
 | `883408 — coordinate class; supplier unconfirmed` | 1.88300 / 40.80 (d) | S-LAH58 — smallest d-line \|Δn\| (3.0e-6 vs 3.9e-6) | TAFD30 (Hoya, code, alternate code row) | 3 | [LAOWA 55mm f/2.8 Tilt-Shift 1× Macro](../../src/lens-data/laowa/Laowa55mmf28TiltShift1xMacro.data.ts) L4 |
 | `923209 — coordinate class; supplier unconfirmed` | 1.92286 / 20.88 (d) | N-SF66 — smallest d-line \|Δn\| (8.8e-8 vs 4.0e-7) | E-FDS1 (Hoya, code, alternate code row)<br>PBH21 (Ohara, code, alternate code row) | 1 | [LAOWA 55mm f/2.8 Tilt-Shift 1× Macro](../../src/lens-data/laowa/Laowa55mmf28TiltShift1xMacro.data.ts) L7 |
