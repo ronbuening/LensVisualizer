@@ -156,3 +156,17 @@ Direct source: `patents/JP2014209144A.pdf`, PDF p. 15 FIG. 5 (600 dpi/native fig
 - Geometry retained. FIG. 5 draws the exposed concave faces as continuous caps to their rims; the small apparent steps are cemented boundaries/leader strokes, without an independently resolved radial flat land. No new cuts or height extensions are justified. In particular the source≈19.3 mm L2B outline cannot simply replace S11/S12 rims: their printed2 mm gap would overlap; the inherited17.4/17.7 caps and existing `gapSagFrac:0.96` are retained without further relaxation.
 - All19 media nd/vd pairs freshly match ¶0043, with d=587.6 nm explicitly defined. No C/F/g indices, partial dispersion or material-specific APD claim is supplied. All19 currently resolve to qualified catalog-compatible curves. Labels state source/catalog coordinates and unspecified supplier. E6's actual resolver is J-KF6; E12 is N-FK5; E13 is FCD1 (not a two-name production identification); E14 remains exact-coordinate NBFD10. The three ED/APD badges remain inferred.
 - Canonical/full cut validation, surface, image-circle, all three format corners and all three nominal apertures pass. Nine actual SVG states show zero trimming. At the printed2.2m object distances D0=1890/1858.1924/1814.6227 mm, the unchanged runtime iris passes25/25 axial pupil samples at each zoom; these are discrete counts, not flux percentages. R/d, focus/zoom gaps, fixed iris and source design FNO4.62/5.24/5.78 are preserved.
+
+## 2026-11-14 — Source-certified finite conjugates
+
+Patent: JP 2014-209144 A, Example 2, ¶0045, 近距離合焦時の可変間隔, 広角 column.
+
+| Zoom / keyframe | Field | Before | After | Source and axial residual |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | `focus.conjugates` | Absent | 1890 mm, `first-surface` | PDF p. 11, Example 2, ¶0045, 近距離合焦時の可変間隔, 広角 column: d0 1890.0000; +0.104346586 mm (+3.782106 depths of focus), `consistent`. |
+| 1 / 1 | `focus.conjugates` | Absent | 1858.1924 mm, `first-surface` | PDF p. 11, Example 2, ¶0045, 近距離合焦時の可変間隔, 中間 column: d0 1858.1924; -0.014928285 mm (-0.388816 depths of focus), `consistent`. |
+| 2 / 1 | `focus.conjugates` | Absent | 1814.6227 mm, `first-surface` | PDF p. 11, Example 2, ¶0045, 近距離合焦時の可変間隔, 望遠 column: d0 1814.6227; -0.018845906 mm (-0.338169 depths of focus), `consistent`. |
+
+- State 0/1: d25=13.6845 mm; d28=14.3413 mm; other gaps unchanged from infinity. Reference evidence: “Example 2 surface table begins 物面 (object surface), r=∞, d=(d0), followed by surface 1 (PDF p. 10); d is the axial surface spacing in mm (¶0036, PDF p. 9)”. Alternate-reference residual: +3.972704255 mm (+133.197602 depths of focus).
+- State 1/1: d25=21.5022 mm; d28=21.3957 mm; other gaps unchanged from infinity. Reference evidence: “Example 2 surface table begins 物面 (object surface), r=∞, d=(d0), followed by surface 1 (PDF p. 10); d is the axial surface spacing in mm (¶0036, PDF p. 9)”. Alternate-reference residual: +9.281169406 mm (+204.534315 depths of focus).
+- State 2/1: d25=26.1835 mm; d28=40.4924 mm; other gaps unchanged from infinity. Reference evidence: “Example 2 surface table begins 物面 (object surface), r=∞, d=(d0), followed by surface 1 (PDF p. 10); d is the axial surface spacing in mm (¶0036, PDF p. 9)”. Alternate-reference residual: +28.609664614 mm (+338.939033 depths of focus).

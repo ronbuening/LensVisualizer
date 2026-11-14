@@ -32,3 +32,15 @@ Directly inspected US8416512 Figure 3/PDF4, including both cemented blocks, and 
 All 14 nd/vd pairs match the source. Twelve catalog curve selections remain unchanged and both cement layers remain intentional unresolved fallbacks. Two dPgF and six C/F/g per-lens helper values on media 5/13 were catalog-derived, not source-published, and are removed; their two spectral responses now consistently use the same qualified catalog curves as other lenses. No actual source partial/line datum is discarded. The two ED-position flags remain explicitly inferred; neither coordinate agreement nor a selected curve proves production supplier or partial dispersion. Source R/d/aspheric coefficients/material pairs, stop/focus controls and tolerances remain unchanged.
 
 The public S21A departure and rim slope now use its adopted 16.5 mm cap: +1.4436 mm and 1.6280°; S4A remains −2.5048 mm at 19 mm. Surface, image-circle, nominal aperture and full-field checks pass (≥99% field coverage). All nine actual SVG states were inspected: finite continuous outlines and zero hidden trim. The shared glass suites pass 2 files/93 tests; source/curve invariants and duplicate-key checks pass.
+
+## 2026-11-14 — Source-certified finite conjugates
+
+Patent: US 8,416,512 B2, Example 3, Variable Distances, POS2 column.
+
+| Zoom / keyframe | Field | Before | After | Source and axial residual |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | `focus.conjugates` | Absent | 717.21 mm, `first-surface` | PDF p. 35, Example 3, Variable Distances, POS2 column: d0 = 717.21; +0.001780192 mm (+0.724153 depths of focus), `consistent`. |
+
+- State 0/1: d8=4.145 mm; BF=38.690 mm. The patent does not explicitly define the distance reference; the conjugate check discriminates the declared reference from the alternate. Alternate-reference residual: +0.182492509 mm (+73.869209 depths of focus).
+
+The printed POS3 d0=112.5 mm (PDF p. 35, Example 3) is not declared at state 0/2: its unchanged d8=0.561 mm and BF=42.274 mm give +0.153589689 mm (+56.548855 depths of focus), beyond the 25-depth limit.
