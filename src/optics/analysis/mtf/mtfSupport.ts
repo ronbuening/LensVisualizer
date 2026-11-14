@@ -7,6 +7,7 @@ import type {
   MtfSupport,
   MtfUnavailableReason,
 } from "../../../types/mtf.js";
+import { MTF_MIN_WAVELENGTH_NM, MTF_MAX_WAVELENGTH_NM } from "../../../types/mtf.js";
 import type { AnalysisRequest } from "../request.js";
 import { measuredLineAbbe } from "../../chromatic/materialResolver.js";
 import { LINE_NM } from "../../chromatic/spectralLines.js";
@@ -55,7 +56,9 @@ export const MTF_PHOTOPIC_LINES: readonly MtfSpectralLine[] = Object.freeze([
 /** Prescription focal length may differ from the marketed value by this share before results are qualified. */
 const SCALE_NOTE_FRACTION = 0.1;
 
-export const MTF_SPECTRUM_LABELS: Record<Exclude<MtfSpectrum, "reference">, string> = {
+export const MTF_SPECTRUM_LABELS: Record<MtfSpectrum, string> = {
+  reference: "Reference-wavelength",
+  single: "Single-wavelength",
   cdf: "C/d/F",
   photopic: "Photopic",
 };
@@ -230,15 +233,58 @@ export function mtfReferenceCoordinates(state: PreparedGeometry): string {
   return (references.length ? references : ["d"]).map((r) => `n${r} and ν${r}`).join(" / ");
 }
 
+/** Native reference coordinate, including the d-line conversion used for mixed references. */
+function nativeReference(state: PreparedGeometry): { referenceWavelengthNm: number; mixed: boolean } {
+  const { lens } = state;
+  const media = lens.elements
+    .map((e) => e.source)
+    .filter((e) => state.surfaces.some((s) => s.nd !== 1 && s.elemId === e.id));
+  const references = new Set(media.map((e) => e.indexReference ?? "d"));
+  const mixed = references.size > 1;
+  const referenceWavelengthNm = references.size === 1 ? LINE_NM[media[0]?.indexReference ?? "d"] : LINE_NM.d;
+  return { referenceWavelengthNm, mixed };
+}
+
+/**
+ * Whether a selection is equivalent to a reference run, needing no additional spectral glass gate.
+ * @param state - prepared optical state
+ * @param spectrum - requested spectrum
+ * @param wavelengthNm - required for a single-line selection, in nm
+ * @returns true for the reference selection or its exact single-wavelength equivalent
+ */
+export function mtfUsesReferenceIndices(
+  state: PreparedGeometry,
+  spectrum: MtfSpectrum,
+  wavelengthNm?: number,
+): boolean {
+  return (
+    spectrum === "reference" || (spectrum === "single" && wavelengthNm === nativeReference(state).referenceWavelengthNm)
+  );
+}
+
 /**
  * Resolve a preferred spectrum against the lens's glass data, falling back to the reference line.
  *
  * @param state - prepared optical state
  * @param preferred - requested spectrum
+ * @param wavelengthNm - single-line wavelength in nm, when selected
  * @returns spectrum to request, with a user-facing note when it differs or estimates dispersion
  */
-export function resolveMtfSpectrum(state: PreparedGeometry, preferred: MtfSpectrum): MtfSpectrumChoice {
-  if (preferred === "reference") return { spectrum: preferred, note: null };
+export function resolveMtfSpectrum(
+  state: PreparedGeometry,
+  preferred: MtfSpectrum,
+  wavelengthNm?: number,
+): MtfSpectrumChoice {
+  // Invalid wavelengths reach request validation rather than being hidden by a glass fallback.
+  if (
+    preferred === "single" &&
+    (typeof wavelengthNm !== "number" ||
+      !Number.isFinite(wavelengthNm) ||
+      wavelengthNm < MTF_MIN_WAVELENGTH_NM ||
+      wavelengthNm > MTF_MAX_WAVELENGTH_NM)
+  )
+    return { spectrum: preferred, note: null };
+  if (mtfUsesReferenceIndices(state, preferred, wavelengthNm)) return { spectrum: preferred, note: null };
   const { blocker, estimatedGlasses, partialLineGlasses } = assessMtfSpectralData(state);
   if (!blocker) {
     const glassCount = (n: number) => (n === 1 ? "one glass" : `${n} glasses`);
@@ -302,12 +348,7 @@ export function assessMtfSupport(request: AnalysisRequest, settings: MtfRequestO
   const state = request.preparedGeometry;
   const options = resolveMtfOptions(request, settings);
   const { lens } = state;
-  const media = lens.elements
-    .map((e) => e.source)
-    .filter((e) => state.surfaces.some((s) => s.nd !== 1 && s.elemId === e.id));
-  const references = new Set(media.map((e) => e.indexReference ?? "d"));
-  const mixed = references.size > 1;
-  const referenceWavelengthNm = references.size === 1 ? LINE_NM[media[0]?.indexReference ?? "d"] : LINE_NM.d;
+  const { referenceWavelengthNm, mixed } = nativeReference(state);
   const support: MtfSupport = {
     available: true,
     reason: null,
@@ -319,7 +360,7 @@ export function assessMtfSupport(request: AnalysisRequest, settings: MtfRequestO
         ? MTF_CDF_LINES.map((line) => ({ ...line }))
         : options.spectrum === "photopic"
           ? MTF_PHOTOPIC_LINES.map((line) => ({ ...line }))
-          : [{ wavelengthNm: referenceWavelengthNm, weight: 1 }],
+          : [{ wavelengthNm: options.spectrum === "single" ? options.wavelengthNm : referenceWavelengthNm, weight: 1 }],
     limitations: [
       "Circular iris; authored clear apertures and glass values may be approximate.",
       "Excludes coatings, manufacturing errors, omitted sensor stacks, polarization and sensor processing.",
@@ -340,6 +381,19 @@ export function assessMtfSupport(request: AnalysisRequest, settings: MtfRequestO
     reason,
     message,
   });
+  if (
+    options.spectrum === "single" &&
+    (!Number.isFinite(options.wavelengthNm) ||
+      options.wavelengthNm < MTF_MIN_WAVELENGTH_NM ||
+      options.wavelengthNm > MTF_MAX_WAVELENGTH_NM)
+  ) {
+    // A rejected request uses no spectral lines; keep nonfinite inputs out of serialized results.
+    support.spectralLines = [];
+    return reject(
+      "invalid-input",
+      `Single-wavelength MTF requires a finite wavelength from ${MTF_MIN_WAVELENGTH_NM} to ${MTF_MAX_WAVELENGTH_NM} nm.`,
+    );
+  }
   if (!mtfSequentialRefractivePath(state))
     return reject("unsupported-path", "MTF currently supports centered, sequential refractive prescriptions.");
   if (options.movementActive) return reject("active-movement", "MTF is unavailable while tilt or shift is active.");
@@ -403,7 +457,7 @@ export function assessMtfSupport(request: AnalysisRequest, settings: MtfRequestO
     support.limitations.push(
       "Mixed d/D/e references are converted to the d line with compatible catalog dispersion, anchored to each authored index.",
     );
-  if (options.spectrum !== "reference") {
+  if (!mtfUsesReferenceIndices(state, options.spectrum, options.wavelengthNm)) {
     const label = MTF_SPECTRUM_LABELS[options.spectrum];
     const spectral = assessMtfSpectralData(state);
     if (spectral.blocker)
@@ -416,7 +470,9 @@ export function assessMtfSupport(request: AnalysisRequest, settings: MtfRequestO
     support.limitations.push(
       options.spectrum === "cdf"
         ? "Three-line C/d/F estimate with equal incident intensity weights, one image plane and preserved lateral color; not a broadband camera response."
-        : "Nine-point Gauss-Legendre photopic quadrature (470-650 nm, CIE 1924 V(λ) on an equal-energy source) with one image plane and preserved lateral color; not a specific camera's spectral response.",
+        : options.spectrum === "single"
+          ? `Single-wavelength estimate at ${options.wavelengthNm} nm; field launch and axial focus use this line alone.`
+          : "Nine-point Gauss-Legendre photopic quadrature (470-650 nm, CIE 1924 V(λ) on an equal-energy source) with one image plane and preserved lateral color; not a specific camera's spectral response.",
     );
     if (lens.dispersion.some((s) => s.quality === "sellmeier"))
       support.limitations.push(

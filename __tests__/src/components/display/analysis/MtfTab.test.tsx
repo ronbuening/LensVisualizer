@@ -258,6 +258,84 @@ describe("MTF share links", () => {
 });
 
 describe("MTF tab", () => {
+  it("offers single wavelength only in Advanced, keeping a selected line visible and labelled while off", async () => {
+    localStorage.setItem(MTF_PREFERENCES_KEY, JSON.stringify({ spectrum: "reference", wavelengthNm: 587.5618 }));
+    const { calls } = stubWorker({ target: focusedState });
+    render(<MtfTab L={focusedL} t={mockTheme} preparedState={focusedState} currentEPSD={1} currentPhysStopSD={1} />);
+    await screen.findByRole("figure");
+    const select = screen.getByRole("combobox", { name: "MTF spectrum" });
+    expect(within(select).queryByRole("option", { name: "Single wavelength" })).toBeNull();
+    expect(screen.queryByRole("spinbutton", { name: "MTF wavelength" })).toBeNull();
+    fireEvent.click(screen.getByRole("button", { name: "Advanced" }));
+    expect(within(select).getByRole("option", { name: "Single wavelength" })).toBeTruthy();
+    fireEvent.change(select, { target: { value: "single" } });
+    const input = screen.getByRole("spinbutton", { name: "MTF wavelength" }) as HTMLInputElement;
+    expect([input.min, input.max, input.step]).toEqual(["435.8", "656.3", "1"]);
+    await vi.waitFor(() =>
+      expect(calls.jobs.at(-1)!.options).toMatchObject({ spectrum: "single", wavelengthNm: 587.5618 }),
+    );
+    expect(screen.queryByText(/Every glass is known only/)).toBeNull();
+    const computations = calls.compute;
+    fireEvent.click(screen.getByRole("button", { name: "Advanced" }));
+    expect(screen.queryByRole("spinbutton", { name: "MTF wavelength" })).toBeNull();
+    expect(within(select).getByRole("option", { name: "Single wavelength" })).toBeTruthy();
+    expect((select as HTMLSelectElement).value).toBe("single");
+    expect(screen.getByText(/Diffraction-corrected · 587.5618 nm ·/)).toBeTruthy();
+    expect(calls.compute).toBe(computations);
+    fireEvent.change(select, { target: { value: "reference" } });
+    expect(within(select).queryByRole("option", { name: "Single wavelength" })).toBeNull();
+    fireEvent.click(screen.getByRole("button", { name: "Advanced" }));
+    fireEvent.change(select, { target: { value: "single" } });
+    for (const [label, wavelengthNm] of [
+      ["g 436", 435.8343],
+      ["F 486", 486.1327],
+      ["e 546", 546.074],
+      ["d 588", 587.5618],
+      ["C 656", 656.2725],
+    ] as const) {
+      fireEvent.click(screen.getByRole("button", { name: label }));
+      expect((screen.getByRole("spinbutton", { name: "MTF wavelength" }) as HTMLInputElement).valueAsNumber).toBe(
+        wavelengthNm,
+      );
+    }
+    const wavelengthInput = screen.getByRole("spinbutton", { name: "MTF wavelength" });
+    fireEvent.change(wavelengthInput, { target: { value: "53" } });
+    expect(JSON.parse(localStorage.getItem(MTF_PREFERENCES_KEY)!).wavelengthNm).toBe(656.2725);
+    fireEvent.blur(wavelengthInput);
+    expect((wavelengthInput as HTMLInputElement).valueAsNumber).toBe(656.2725);
+    fireEvent.change(wavelengthInput, { target: { value: "532.125" } });
+    await vi.waitFor(() =>
+      expect(calls.jobs.at(-1)!.options).toMatchObject({ spectrum: "single", wavelengthNm: 532.125 }),
+    );
+  });
+
+  it("opens a shared single-line chart with Advanced off and applies the same wavelength to f/8", async () => {
+    const shared = { ...DEFAULT_MTF_PREFERENCES, spectrum: "single" as const, wavelengthNm: 532.125, compareF8: true };
+    window.history.replaceState(
+      {},
+      "",
+      buildMtfLink("https://example.com/lens/test/", shared).replace("https://example.com", ""),
+    );
+    const { calls } = stubWorker({ target: focusedState });
+    render(
+      <MtfTab
+        L={focusedL}
+        t={mockTheme}
+        preparedState={focusedState}
+        currentEPSD={1}
+        currentPhysStopSD={1}
+        fNumber={2.8}
+      />,
+    );
+    await vi.waitFor(() => expect(calls.compute).toBe(2));
+    expect(screen.queryByRole("spinbutton", { name: "MTF wavelength" })).toBeNull();
+    expect((screen.getByRole("combobox", { name: "MTF spectrum" }) as HTMLSelectElement).value).toBe("single");
+    expect(screen.getByText(/Diffraction-corrected · 532.125 nm ·/)).toBeTruthy();
+    for (const job of calls.jobs) expect(job.options).toMatchObject({ spectrum: "single", wavelengthNm: 532.125 });
+    expect(calls.jobs[0].options.stopSemiDiameterMm).not.toBe(calls.jobs[1].options.stopSemiDiameterMm);
+    expect(localStorage.getItem(MTF_PREFERENCES_KEY)).toBeNull();
+  });
+
   it("offers persisted display references without recomputing and falls back from a stale field", async () => {
     localStorage.setItem(MTF_PREFERENCES_KEY, JSON.stringify({ frequencyField: 0.35 }));
     resetMtfPreferencesCache();
@@ -336,6 +414,8 @@ describe("MTF tab", () => {
     const header = screen.getByText(/^f\/2\.8 · 49\.2 mm · Diffraction-corrected · /);
     expect(header.textContent).toContain("photopic spectrum");
     expect(header.textContent).toContain("Best axial focus estimate (");
+    expect(screen.queryByRole("option", { name: "Single wavelength" })).toBeNull();
+    expect(screen.queryByRole("spinbutton", { name: "MTF wavelength" })).toBeNull();
     // The fixture glass has only nd and νd, so its dispersion is estimated and the tab says so.
     expect(screen.getByText("Dispersion of one glass is estimated from nd and νd.")).toBeTruthy();
     expect(screen.queryByText(/own prescription's paraxial focus/)).toBeNull();

@@ -181,7 +181,13 @@ a saved field missing from the result falls back to Overview. Persisted "Pixel p
 marking Nyquist at 500/pitch lp/mm or labelling it with a right-edge arrow beyond the chart range. The caption and
 accessible value-table caption explain that this is the pixel-grid sampling limit, not a camera or sensor MTF
 prediction. These display controls reuse results without tracing.
-The persisted "Advanced" toggle is off by default and opens the field table with each field's grid size, largest
+The persisted "Advanced" toggle is off by default. It offers "Single wavelength" in the spectrum selector and, when
+selected, a compact nm input (435.8–656.3 nm, 1 nm steps) and g/F/e/d/C presets. Preset labels round to whole nm but
+select exact reference-line wavelengths. Turning Advanced off hides the input and presets; a selected single spectrum
+stays in the menu so the reader can change away, and the header continues to name its wavelength. A native-reference
+choice carries no glass-data warning. The wavelength persists, travels in version-1 share links as an additive field,
+appears in export metadata and captions, and applies to both the main and f/8 computations.
+Advanced opens the field table with each field's grid size, largest
 change between the last two grids, stable-through frequency, nonzero unresolved-flux percentage, unaimed and failed
 sample counts, non-stop pupil-sampling location, notes and message. Comparison rows use their own diagnostics,
 including when no comparison curve is available. With Advanced off, notes stay in the deduplicated list below the

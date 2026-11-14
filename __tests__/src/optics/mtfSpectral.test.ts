@@ -20,6 +20,8 @@ import {
 import { combineOtfs, geometricOtf, otfMagnitude } from "../../../src/optics/analysis/mtf/mtfMath.js";
 import { shearedOtf } from "../../../src/optics/analysis/mtf/mtfShearedOtf.js";
 import { mtfIndexResolver, traceMtfFieldPupil } from "../../../src/optics/analysis/mtf/mtfTracing.js";
+import { findAxialBestFocus, mtfNearestImagePlaneZ } from "../../../src/optics/analysis/mtf/mtfFocus.js";
+import { MTF_FOCUS_FREQUENCIES } from "../../../src/optics/analysis/mtf/mtfConstants.js";
 import { computeMtf } from "../../../src/optics/analysis/mtf/mtf.js";
 import {
   evaluateCatalogAbbeNumber,
@@ -72,6 +74,141 @@ const options: MtfOptions = {
 };
 
 describe("qualified spectral MTF", () => {
+  it.each(["geometric", "diffraction"] as const)(
+    "keeps exact native d/D/e reference results without a glass gate (%s)",
+    (method) => {
+      for (const reference of ["d", "D", "e"] as const) {
+        const base = constructionFixtureData(buildSimplePositiveElementLens());
+        const state = prepareRuntimeState(
+          build({ ...base, elements: base.elements.map((e) => ({ ...e, vd: undefined, indexReference: reference })) }),
+          0,
+          0,
+        );
+        const settings = { ...options, method, focus: "best-axial" as const, fieldFractions: [0, 0.15] };
+        const expected = computeMtf(...mtfInputs(state, { ...settings, spectrum: "reference" }));
+        const single = computeMtf(
+          ...mtfInputs(state, { ...settings, spectrum: "single", wavelengthNm: LINE_NM[reference] }),
+        );
+        expect(single.support.available).toBe(true);
+        expect(single.support.useResolvedReference).toBe(false);
+        expect({ ...single, spectrum: "reference" }).toEqual(expected);
+        expect(resolveMtfSpectrum(state, "single", LINE_NM[reference])).toEqual({ spectrum: "single", note: null });
+        expect(
+          assessMtfDataLimitations(state, {
+            preferredSpectrum: "single",
+            spectrum: "single",
+            wavelengthNm: LINE_NM[reference],
+            referenceWavelengthNm: LINE_NM[reference],
+            result: null,
+          }),
+        ).toEqual([]);
+      }
+    },
+  );
+
+  it.each(["geometric", "diffraction"] as const)(
+    "matches a hand-built anchored one-line run and focus (%s)",
+    (method) => {
+      const state = prepareRuntimeState(buildChromaticPositiveElementLens(), 0, 0);
+      const line = { wavelengthNm: 532.125, weight: 1 };
+      const settings: MtfOptions = {
+        ...options,
+        method,
+        spectrum: "single",
+        wavelengthNm: line.wavelengthNm,
+        pupilSemiDiameterMm: 1,
+        stopSemiDiameterMm: 1,
+        fieldFractions: [0.15],
+      };
+      // Build the control from the established anchored C/d/F path, independently of single-line resolution.
+      const support = {
+        ...assessMtfSupport(...mtfInputs(state, options)),
+        referenceWavelengthNm: line.wavelengthNm,
+        spectralLines: [line],
+      };
+      const result = computeMtf(...mtfInputs(state, settings));
+      expect(result.support.spectralLines).toEqual([line]);
+      expect(result.support.referenceWavelengthNm).toBe(line.wavelengthNm);
+      const field = result.fields[0];
+      expect(field.reason).toBeNull();
+      const bundle = traceMtfFieldPupil(state, settings, support, field.fieldAngleDeg!, field.gridSize, line)!;
+      expect(bundle.failed + bundle.unaimed).toBe(0);
+      const expected =
+        method === "geometric"
+          ? {
+              sagittal: geometricOtf(bundle.rays, options.frequenciesPerMm!, "x"),
+              tangential: geometricOtf(bundle.rays, options.frequenciesPerMm!, "y"),
+            }
+          : shearedOtf(bundle, bundle.chief, line.wavelengthNm * 1e-6, options.frequenciesPerMm!);
+      for (const axis of ["sagittal", "tangential"] as const)
+        otfMagnitude(expected[axis]).forEach((value, i) => expect(field[axis][i]).toBeCloseTo(value, 12));
+      // The best-plane search must score this line, even when the chart uses the design plane.
+      const axial = traceMtfFieldPupil(state, settings, support, 0, 32, line)!;
+      const best = findAxialBestFocus(
+        [{ bundle: axial, weight: 1 }],
+        state.imgZ,
+        MTF_FOCUS_FREQUENCIES,
+        mtfNearestImagePlaneZ(state),
+      )!;
+      expect(result.focus!.bestAxialShiftMm).toBe(best.shiftMm);
+      expect(result.focus!.bestScore).toBe(best.bestScore);
+    },
+  );
+
+  it("uses the same spectral gate and named reference fallback for a chosen non-reference line", () => {
+    const state = withGlass({ vd: undefined });
+    const choice = resolveMtfSpectrum(state, "single", 532);
+    expect(choice).toEqual({
+      spectrum: "reference",
+      note: "Single-wavelength MTF is unavailable because a glass has no Abbe number; showing the reference wavelength.",
+    });
+    expect(assessMtfSupport(...mtfInputs(state, { ...options, spectrum: "single", wavelengthNm: 532 })).reason).toBe(
+      "spectral-data-unavailable",
+    );
+    const fallback = computeMtf(...mtfInputs(state, { ...options, spectrum: "reference" }));
+    expect(fallback.support.spectralLines).toEqual([{ wavelengthNm: LINE_NM.d, weight: 1 }]);
+    expect(
+      assessMtfDataLimitations(state, {
+        preferredSpectrum: "single",
+        spectrum: choice.spectrum,
+        wavelengthNm: 532,
+        referenceWavelengthNm: LINE_NM.d,
+        result: null,
+      }),
+    ).toMatchObject([{ kind: "reference-only", blocking: true }]);
+    const estimated = withGlass({ vd: 60 });
+    expect(resolveMtfSpectrum(estimated, "single", 532).note).toContain("estimated");
+    expect(
+      assessMtfDataLimitations(estimated, {
+        preferredSpectrum: "single",
+        spectrum: "single",
+        wavelengthNm: 532,
+        referenceWavelengthNm: 532,
+        result: null,
+      }),
+    ).toMatchObject([{ kind: "estimated-dispersion" }]);
+  });
+
+  it("rejects missing, nonfinite and out-of-range wavelengths before glass fallback, accepting both endpoints", () => {
+    const state = withGlass({ vd: undefined });
+    for (const wavelengthNm of [undefined, NaN, Infinity, -Infinity, 435.7999, 656.3001]) {
+      // Exercise untyped worker/script inputs, including the required field being absent.
+      const settings = { ...options, spectrum: "single", wavelengthNm } as MtfOptions;
+      const result = computeMtf(...mtfInputs(state, settings));
+      expect(result.support.reason).toBe("invalid-input");
+      expect(result.support.message).toContain("435.8 to 656.3 nm");
+      expect(result.fields).toEqual([]);
+      expect(result.support.spectralLines).toEqual([]);
+      expect(JSON.parse(JSON.stringify(result))).toEqual(result);
+      expect(resolveMtfSpectrum(state, "single", wavelengthNm).spectrum).toBe("single");
+    }
+    const chromatic = prepareRuntimeState(buildChromaticPositiveElementLens(), 0, 0);
+    for (const wavelengthNm of [435.8, 656.3])
+      expect(
+        assessMtfSupport(...mtfInputs(chromatic, { ...options, spectrum: "single", wavelengthNm })).available,
+      ).toBe(true);
+  });
+
   it("derives the nine photopic weights from Gauss-Legendre weights and tabulated V(λ)", () => {
     // Positive abscissae and weights on [-1, 1]; symmetry supplies the other half.
     const gauss = [

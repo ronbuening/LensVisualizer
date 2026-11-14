@@ -12,6 +12,7 @@ import type { PreparedGeometry } from "../../types.js";
 import {
   assessMtfSpectralData,
   mtfReferenceCoordinates,
+  mtfUsesReferenceIndices,
   MTF_SPECTRUM_LABELS,
   mtfPrescriptionScale,
   mtfScaleNeedsNote,
@@ -20,6 +21,8 @@ import {
 export interface MtfDataLimitationInput {
   /** Spectrum the reader asked for. */
   preferredSpectrum: MtfSpectrum;
+  /** Selected single-line wavelength in nm. */
+  wavelengthNm?: number;
   /** Spectrum actually charted; the reference line when the glass data cannot support the preferred one. */
   spectrum: MtfSpectrum;
   /** Reference wavelength of the chart, in nm. */
@@ -84,7 +87,7 @@ export function assessMtfDataLimitations(state: PreparedGeometry, input: MtfData
     });
   }
 
-  if (input.preferredSpectrum !== "reference") {
+  if (!mtfUsesReferenceIndices(state, input.preferredSpectrum, input.wavelengthNm)) {
     const label = MTF_SPECTRUM_LABELS[input.preferredSpectrum];
     const spectral = assessMtfSpectralData(state);
     if (input.spectrum === "reference" && spectral.blocker) {
@@ -127,7 +130,9 @@ export function assessMtfDataLimitations(state: PreparedGeometry, input: MtfData
               : count === glasses.length
                 ? `Every glass is known only by ${coordinates}, so all dispersion is estimated.`
                 : `${count} of ${glasses.length} glasses (${names}) ${count === 1 ? "is" : "are"} known only by ${coordinates}, so ${count === 1 ? "its" : "their"} dispersion is estimated.`) +
-            ` Primary color stays exact; secondary spectrum in these ${label === "Photopic" ? "photopic" : label} curves is approximate.`,
+            (input.preferredSpectrum === "single"
+              ? " The refractive indices at the selected wavelength are estimated."
+              : ` Primary color stays exact; secondary spectrum in these ${label === "Photopic" ? "photopic" : label} curves is approximate.`),
         });
     }
   }

@@ -6,6 +6,8 @@
  */
 import type { MtfFocusMode, MtfGridCap, MtfMethod, MtfSpectrum } from "../../types/mtf.js";
 
+import { MTF_MIN_WAVELENGTH_NM, MTF_MAX_WAVELENGTH_NM } from "../../types/mtf.js";
+
 export type MtfChartView = "field" | "frequency";
 export type MtfFrequencyField = "overview" | number;
 export const MTF_PIXEL_PITCHES = [3, 4, 5, 6, 8] as const;
@@ -23,6 +25,8 @@ export interface MtfPreferences {
   method: MtfMethod;
   /** Preferred spectrum; lenses without spectral glass data fall back to the reference wavelength. */
   spectrum: MtfSpectrum;
+  /** Single-line wavelength in nm; retained when another spectrum is selected. */
+  wavelengthNm: number;
   focus: MtfFocusMode;
   view: MtfChartView;
   fieldStepPercent: MtfFieldStepPercent;
@@ -48,6 +52,7 @@ export const MTF_PREFERENCES_KEY = "lensvis:mtf:options";
 export const DEFAULT_MTF_PREFERENCES: MtfPreferences = Object.freeze({
   method: "diffraction",
   spectrum: "photopic",
+  wavelengthNm: 546.074,
   focus: "best-axial",
   view: "field",
   fieldStepPercent: 10,
@@ -74,7 +79,7 @@ const oneOf =
 const isMethod = oneOf<MtfMethod>(["geometric", "diffraction"]);
 /** Method names stored by earlier versions: the diffraction-corrected product became the diffraction estimate. */
 const RETIRED_METHODS: ReadonlyMap<unknown, MtfMethod> = new Map([["geometric-dl", "diffraction"]]);
-const isSpectrum = oneOf<MtfSpectrum>(["reference", "cdf", "photopic"]);
+const isSpectrum = oneOf<MtfSpectrum>(["reference", "cdf", "photopic", "single"]);
 const isFocus = oneOf<MtfFocusMode>(["auto", "design", "best-axial"]);
 const isView = oneOf<MtfChartView>(["field", "frequency"]);
 const isFieldStep = oneOf<MtfFieldStepPercent>(MTF_FIELD_STEPS);
@@ -96,6 +101,13 @@ export function parseMtfPreferences(raw: unknown): MtfPreferences {
   return {
     method: isMethod(stored.method) ? stored.method : (RETIRED_METHODS.get(stored.method) ?? defaults.method),
     spectrum: isSpectrum(stored.spectrum) ? stored.spectrum : defaults.spectrum,
+    wavelengthNm:
+      typeof stored.wavelengthNm === "number" &&
+      Number.isFinite(stored.wavelengthNm) &&
+      stored.wavelengthNm >= MTF_MIN_WAVELENGTH_NM &&
+      stored.wavelengthNm <= MTF_MAX_WAVELENGTH_NM
+        ? stored.wavelengthNm
+        : defaults.wavelengthNm,
     focus: isFocus(stored.focus) ? stored.focus : defaults.focus,
     view: isView(stored.view) ? stored.view : defaults.view,
     fieldStepPercent: isFieldStep(stored.fieldStepPercent) ? stored.fieldStepPercent : defaults.fieldStepPercent,

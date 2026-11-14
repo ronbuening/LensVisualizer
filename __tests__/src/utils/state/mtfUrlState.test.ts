@@ -13,6 +13,7 @@ import { DEFAULT_MTF_PREFERENCES, type MtfPreferences } from "../../../../src/ut
 const settings: Required<MtfPreferences> = {
   method: "geometric",
   spectrum: "cdf",
+  wavelengthNm: DEFAULT_MTF_PREFERENCES.wavelengthNm,
   focus: "design",
   maxGridSize: 128,
   view: "frequency",
@@ -37,6 +38,19 @@ describe("MTF URL state", () => {
     for (const frequencies of [[50], [10, 20, 30, 40, 50], [20, 40]] as const) {
       expect(decodeMtfSettings(encodeMtfSettings({ ...settings, frequencies }))!.frequencies).toEqual(frequencies);
     }
+  });
+
+  it("round-trips exact single wavelengths in additive v1 links and decodes older links", () => {
+    for (const wavelengthNm of [435.8, 546.074, 532.125, 656.3]) {
+      const single = { ...settings, spectrum: "single" as const, wavelengthNm, advanced: false };
+      expect(decodeMtfSettings(encodeMtfSettings(single))).toEqual(single);
+    }
+    expect(decodeMtfSettings(payload({ s: "reference", m: "geometric" }))).toEqual({
+      ...DEFAULT_MTF_PREFERENCES,
+      spectrum: "reference",
+      method: "geometric",
+    });
+    for (const w of [null, "532", 435.7, 656.4]) expect(decodeMtfSettings(payload({ s: "single", w }))).toBeNull();
   });
 
   it("omits defaults inside an explicit defaults payload and preserves all other supported choices", () => {

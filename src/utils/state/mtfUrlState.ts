@@ -9,6 +9,7 @@ import {
   MTF_PIXEL_PITCHES,
   type MtfPreferences,
 } from "./mtfPreferences.js";
+import { MTF_MIN_WAVELENGTH_NM, MTF_MAX_WAVELENGTH_NM } from "../../types/mtf.js";
 import { canonicalPagePath } from "../seo/siteUrls.js";
 
 export const MTF_URL_PARAM = "mtf";
@@ -29,7 +30,15 @@ const isFrequencies = (value: unknown) =>
 
 const SETTINGS = {
   m: { key: "method", valid: oneOf("geometric", "diffraction") },
-  s: { key: "spectrum", valid: oneOf("reference", "cdf", "photopic") },
+  s: { key: "spectrum", valid: oneOf("reference", "cdf", "photopic", "single") },
+  w: {
+    key: "wavelengthNm",
+    valid: (value: unknown) =>
+      typeof value === "number" &&
+      Number.isFinite(value) &&
+      value >= MTF_MIN_WAVELENGTH_NM &&
+      value <= MTF_MAX_WAVELENGTH_NM,
+  },
   f: { key: "focus", valid: oneOf("auto", "design", "best-axial") },
   g: { key: "maxGridSize", valid: oneOf(128, 256) },
   v: { key: "view", valid: oneOf("field", "frequency") },
@@ -49,6 +58,7 @@ const SETTINGS = {
  * @returns one query parameter value; `1` explicitly shares all defaults
  */
 export function encodeMtfSettings(preferences: MtfPreferences): string {
+  // Version 1 is additive: old payloads inherit the wavelength default and retain their spectra.
   const overrides: Record<string, unknown> = {};
   for (const [code, { key }] of Object.entries(SETTINGS)) {
     if (JSON.stringify(preferences[key]) !== JSON.stringify(DEFAULT_MTF_PREFERENCES[key])) {

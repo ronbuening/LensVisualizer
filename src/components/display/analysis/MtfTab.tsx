@@ -51,6 +51,7 @@ const SPECTRUM_LABELS: Record<MtfSpectrum, string> = {
   photopic: "photopic",
   cdf: "C/d/F",
   reference: "reference line",
+  single: "single wavelength",
 };
 
 /**
@@ -89,13 +90,15 @@ export default function MtfTab({
     [analysisContext, preparedState, focalLengthMm, currentEPSD, currentPhysStopSD],
   );
   const spectrum = useMemo(
-    () => resolveMtfSpectrum(preparedState, preferences.spectrum),
-    [preparedState, preferences.spectrum],
+    () => resolveMtfSpectrum(preparedState, preferences.spectrum, preferences.wavelengthNm),
+    [preparedState, preferences.spectrum, preferences.wavelengthNm],
   );
   const options: MtfRequestOptions = useMemo(
     () => ({
       method: preferences.method,
-      spectrum: spectrum.spectrum,
+      ...(spectrum.spectrum === "single"
+        ? { spectrum: "single" as const, wavelengthNm: preferences.wavelengthNm }
+        : { spectrum: spectrum.spectrum }),
       focus: preferences.focus,
       maxGridSize: preferences.maxGridSize,
       fieldFractions: mtfFieldFractions(preferences.fieldStepPercent),
@@ -107,6 +110,7 @@ export default function MtfTab({
       preferences.maxGridSize,
       preferences.fieldStepPercent,
       spectrum.spectrum,
+      preferences.wavelengthNm,
       movementActive,
     ],
   );
@@ -133,11 +137,19 @@ export default function MtfTab({
     () =>
       assessMtfDataLimitations(preparedState, {
         preferredSpectrum: preferences.spectrum,
+        wavelengthNm: preferences.wavelengthNm,
         spectrum: spectrum.spectrum,
         referenceWavelengthNm: support.referenceWavelengthNm,
         result: shown,
       }),
-    [preparedState, preferences.spectrum, spectrum.spectrum, support.referenceWavelengthNm, shown],
+    [
+      preparedState,
+      preferences.spectrum,
+      preferences.wavelengthNm,
+      spectrum.spectrum,
+      support.referenceWavelengthNm,
+      shown,
+    ],
   );
   const [warningAcknowledged, acknowledgeWarning] = useMtfDataWarning(L.source.key, dataLimitations);
   // The f/8 stop comes from the stop rule, as the aperture control's does.
@@ -209,7 +221,7 @@ export default function MtfTab({
         t={t}
         preferences={preferences}
         onChange={updatePreferences}
-        slowFieldSteps={spectrum.spectrum !== "reference"}
+        slowFieldSteps={spectrum.spectrum !== "reference" && spectrum.spectrum !== "single"}
         compareF8Available={compareF8Available}
         result={shown}
       />
@@ -458,9 +470,11 @@ function headerLine(
   if (focalLengthMm) parts.push(`${focalLengthMm.toFixed(1)} mm`);
   parts.push(METHOD_LABELS[options.method]);
   parts.push(
-    options.spectrum === "reference"
-      ? `${referenceWavelengthNm.toFixed(1)} nm`
-      : `${SPECTRUM_LABELS[options.spectrum]} spectrum`,
+    options.spectrum === "single"
+      ? `${options.wavelengthNm} nm`
+      : options.spectrum === "reference"
+        ? `${referenceWavelengthNm.toFixed(1)} nm`
+        : `${SPECTRUM_LABELS[options.spectrum]} spectrum`,
   );
   // Label the plane actually applied: auto may refocus a lens whose image plane is inconsistent.
   const focus = result?.focus;

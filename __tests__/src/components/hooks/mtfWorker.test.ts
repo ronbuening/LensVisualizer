@@ -230,3 +230,30 @@ it("keeps held planes in the worker's focus and field cache keys", async () => {
     expect(expected.focus).toMatchObject({ mode: "held", appliedShiftMm: shift });
   }
 });
+
+it("keys single wavelengths separately in the worker's focus and field caches", async () => {
+  const { send, finished } = await loadWorker();
+  const L = buildChromaticPositiveElementLens();
+  send({ type: "init", input: structuredClone(canonicalLensFromRuntime(L)) });
+  const results = [];
+  for (const [i, wavelengthNm] of [532, 632, 532].entries()) {
+    const options: MtfOptions = {
+      method: "geometric",
+      spectrum: "single",
+      wavelengthNm,
+      focus: "best-axial",
+      pupilSemiDiameterMm: 1,
+      stopSemiDiameterMm: 1,
+      fieldFractions: [0],
+      frequenciesPerMm: [0, 10, 30],
+      maxGridSize: 32,
+    };
+    send({ type: "compute", id: i + 1, job: { focusT: 0, zoomT: 0, aberrationT: 0, options } });
+    const expected = computeMtf(...mtfInputs(prepareRuntimeState(L, 0, 0), options));
+    expect(expected.support.available).toBe(true);
+    expect(await finished(i + 1)).toEqual({ type: "result", id: i + 1, result: expected });
+    results.push(expected);
+  }
+  expect(results[0].focus!.bestAxialShiftMm).not.toBe(results[1].focus!.bestAxialShiftMm);
+  expect(results[0]).toEqual(results[2]);
+});

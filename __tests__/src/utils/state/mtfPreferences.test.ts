@@ -59,6 +59,25 @@ describe("MTF preferences", () => {
     });
     expect(parseMtfPreferences({ frequencies: [] }).frequencies).toEqual(DEFAULT_MTF_PREFERENCES.frequencies);
   });
+  it("migrates and persists single-line wavelength choices without changing older spectra", () => {
+    for (const spectrum of ["reference", "cdf", "photopic"] as const)
+      expect(parseMtfPreferences({ spectrum })).toMatchObject({
+        spectrum,
+        wavelengthNm: DEFAULT_MTF_PREFERENCES.wavelengthNm,
+      });
+    for (const wavelengthNm of [undefined, null, "532", NaN, Infinity, 435.7, 656.4])
+      expect(parseMtfPreferences({ spectrum: "single", wavelengthNm })).toMatchObject({
+        spectrum: "single",
+        wavelengthNm: DEFAULT_MTF_PREFERENCES.wavelengthNm,
+      });
+    for (const wavelengthNm of [435.8, 532.125, 656.3])
+      expect(parseMtfPreferences({ spectrum: "single", wavelengthNm }).wavelengthNm).toBe(wavelengthNm);
+    const store = stubStorage();
+    updateMtfPreferences({ spectrum: "single", wavelengthNm: 532.125 });
+    expect(JSON.parse(store.get(MTF_PREFERENCES_KEY)!)).toMatchObject({ spectrum: "single", wavelengthNm: 532.125 });
+    resetMtfPreferencesCache();
+    expect(getMtfPreferences()).toMatchObject({ spectrum: "single", wavelengthNm: 532.125 });
+  });
   it("persists updates, notifies subscribers and survives unavailable storage", () => {
     const store = stubStorage({ [MTF_PREFERENCES_KEY]: JSON.stringify({ fieldStepPercent: 2 }) });
     expect(getMtfPreferences().fieldStepPercent).toBe(2);

@@ -167,6 +167,23 @@ describe("MTF export builders", () => {
   };
   const dataRows = (csv: string) => parseCsv(csv).filter((row) => !row[0].startsWith("# "));
 
+  it("exports the actual single wavelength and preserves a preferred wavelength on fallback", () => {
+    const result = captionResult();
+    result.spectrum = "single";
+    result.support.spectralLines = [{ wavelengthNm: 532.125, weight: 1 }];
+    const preferences = { ...DEFAULT_MTF_PREFERENCES, spectrum: "single" as const, wavelengthNm: 532.125 };
+    const context = contextFor(result, { preferences });
+    expect(context.spectrum).toBe("single; 532.125 nm (weight 1)");
+    expect(context.preferred_spectrum).toBeUndefined();
+    expect(captionFor(context).lines.join(" ")).toContain("single wavelength, 532.125 nm");
+    result.spectrum = "reference";
+    result.support.spectralLines = [{ wavelengthNm: 587.5618, weight: 1 }];
+    const fallback = contextFor(result, { preferences });
+    expect(fallback.preferred_spectrum).toBe("single; 532.125 nm");
+    expect(fallback.spectrum_fallback_reason).toContain("Missing spectral data");
+    expect(captionFor(fallback).lines.join(" ")).toContain("reference, 587.6 nm");
+  });
+
   // Catalog aperture metadata must describe the same station as the chart.
   it.each([
     [0, 4.6, 4.5],

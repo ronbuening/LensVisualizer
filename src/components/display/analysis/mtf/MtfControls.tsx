@@ -1,6 +1,7 @@
 /** MTF model, spectrum, focus, sampling, view, field-step and frequency controls. */
 import { useEffect, useId, useRef, useState, type CSSProperties, type ReactNode } from "react";
 import type { MtfResult, MtfFocusMode, MtfGridCap, MtfMethod, MtfSpectrum } from "../../../../types/mtf.js";
+import { MTF_MIN_WAVELENGTH_NM, MTF_MAX_WAVELENGTH_NM } from "../../../../types/mtf.js";
 import type { Theme } from "../../../../types/theme.js";
 import {
   MTF_CHART_FREQUENCIES,
@@ -37,6 +38,7 @@ const SPECTRA: ReadonlyArray<[MtfSpectrum, string]> = [
   ["photopic", "Photopic (V(λ))"],
   ["cdf", "C/d/F (equal weights)"],
   ["reference", "Reference line"],
+  ["single", "Single wavelength"],
 ];
 /** Auto keeps the design plane unless the lens data's plane contradicts its own prescription. */
 const FOCUS: ReadonlyArray<[MtfFocusMode, string]> = [
@@ -58,6 +60,7 @@ const SPECTRUM_HELP = [
   "Photopic: nine Gauss-Legendre samples integrate the eye's sensitivity V(λ) over 470-650 nm with equal energy per wavelength.",
   "C/d/F: the red, yellow and blue reference lines, weighted equally; gives color error more weight.",
   "Reference line: one wavelength, so color aberrations drop out.",
+  "Single wavelength (Advanced): one chosen line from 435.8 to 656.3 nm; other than the native reference, it needs glass dispersion data.",
   "Lenses without enough glass dispersion data use the reference line.",
 ].join("\n");
 const FOCUS_HELP = [
@@ -113,7 +116,9 @@ export default function MtfControls({
           touchHelp={touchHelp}
           style={selectStyle}
           value={preferences.spectrum}
-          options={SPECTRA}
+          options={SPECTRA.filter(
+            ([spectrum]) => spectrum !== "single" || preferences.advanced || preferences.spectrum === "single",
+          )}
           onChange={(spectrum) => onChange({ spectrum })}
         />
         <Select
@@ -137,6 +142,35 @@ export default function MtfControls({
           onChange={(maxGridSize) => onChange({ maxGridSize: Number(maxGridSize) as MtfGridCap })}
         />
       </div>
+      {preferences.advanced && preferences.spectrum === "single" ? (
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 6, alignItems: "center" }}>
+          <WavelengthInput
+            value={preferences.wavelengthNm}
+            style={selectStyle}
+            onChange={(wavelengthNm) => onChange({ wavelengthNm })}
+          />
+          <span>nm</span>
+          {(
+            [
+              ["g 436", 435.8343],
+              ["F 486", 486.1327],
+              ["e 546", 546.074],
+              ["d 588", 587.5618],
+              ["C 656", 656.2725],
+            ] as const
+          ).map(([label, wavelengthNm]) => (
+            <button
+              key={label}
+              type="button"
+              style={toggleBtn(t, preferences.wavelengthNm === wavelengthNm, { padding: "5px 7px" })}
+              title={`${wavelengthNm} nm`}
+              onClick={() => onChange({ wavelengthNm })}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
+      ) : null}
       <div style={{ display: "flex", flexWrap: "wrap", gap: 8, alignItems: "center" }}>
         <ToggleGroup label="MTF chart" t={t}>
           {(
@@ -278,6 +312,39 @@ export default function MtfControls({
         </ToggleGroup>
       </div>
     </div>
+  );
+}
+
+/** Keep partial numeric edits local; only valid physical wavelengths start a computation. */
+function WavelengthInput({
+  value,
+  style,
+  onChange,
+}: {
+  value: number;
+  style: CSSProperties;
+  onChange: (value: number) => void;
+}) {
+  const [draft, setDraft] = useState({ value, text: String(value) });
+  if (draft.value !== value) setDraft({ value, text: String(value) });
+  return (
+    <input
+      type="number"
+      aria-label="MTF wavelength"
+      min={MTF_MIN_WAVELENGTH_NM}
+      max={MTF_MAX_WAVELENGTH_NM}
+      step={1}
+      value={draft.text}
+      style={{ ...style, width: 88, padding: "5px 6px" }}
+      onChange={(event) => {
+        const text = event.target.value;
+        const wavelength = event.target.valueAsNumber;
+        setDraft({ value, text });
+        if (Number.isFinite(wavelength) && wavelength >= MTF_MIN_WAVELENGTH_NM && wavelength <= MTF_MAX_WAVELENGTH_NM)
+          onChange(wavelength);
+      }}
+      onBlur={() => setDraft({ value, text: String(value) })}
+    />
   );
 }
 

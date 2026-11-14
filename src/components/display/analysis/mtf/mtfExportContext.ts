@@ -75,7 +75,11 @@ export function buildMtfExportContext(input: MtfExportContextInput): MtfExportCo
     method: result.method === "diffraction" ? "Diffraction-corrected" : "Geometric",
     spectrum: `${result.spectrum}; ${result.support.spectralLines.map((line) => `${line.wavelengthNm} nm (weight ${line.weight})`).join("; ")}`,
     ...(result.spectrum !== preferences.spectrum
-      ? { preferred_spectrum: preferences.spectrum, spectrum_fallback_reason: input.spectrumNote ?? "not recorded" }
+      ? {
+          preferred_spectrum:
+            preferences.spectrum === "single" ? `single; ${preferences.wavelengthNm} nm` : preferences.spectrum,
+          spectrum_fallback_reason: input.spectrumNote ?? "not recorded",
+        }
       : {}),
     focus: focus(result),
     grid_cap: `${preferences.maxGridSize} cells across pupil`,
@@ -121,8 +125,8 @@ export function mtfCaptionLines(context: MtfExportContext, maxLineLength: number
   const [spectrum, ...lines] = context.spectrum.split("; ");
   const wavelengths = lines.map(Number.parseFloat);
   const spectrumLabel =
-    spectrum === "reference"
-      ? `reference, ${wavelengths[0].toFixed(1)} nm`
+    spectrum === "reference" || spectrum === "single"
+      ? `${spectrum === "single" ? "single wavelength" : "reference"}, ${spectrum === "single" ? wavelengths[0] : wavelengths[0].toFixed(1)} nm`
       : `${spectrum === "cdf" ? "C/d/F" : spectrum}, ${lines.length} lines ${spectrum === "photopic" ? "470–650" : `${Math.min(...wavelengths).toFixed(0)}–${Math.max(...wavelengths).toFixed(0)}`} nm`;
   const options = [
     ...(context.comparison === "off"

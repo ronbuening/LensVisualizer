@@ -48,6 +48,27 @@ const job: MtfJob = {
 const result = computeMtf(...mtfInputs(prepareRuntimeState(L, 0, 0), job.options));
 
 describe("MTF worker lifecycle", () => {
+  it("transports exact wavelengths and caches their completed results separately", async () => {
+    const port = new Port();
+    const client = new MtfWorkerClient(L, () => port);
+    const results = [];
+    for (const [i, wavelengthNm] of [532.125, 632.25].entries()) {
+      const requested: MtfJob = { ...job, options: { ...job.options, spectrum: "single", wavelengthNm } };
+      const expected = computeMtf(...mtfInputs(prepareRuntimeState(L, 0, 0), requested.options));
+      const pending = client.compute(requested);
+      expect(port.computes()).toHaveLength(i + 1);
+      expect(port.computes().at(-1)!.job.options).toMatchObject({ spectrum: "single", wavelengthNm });
+      port.reply({ type: "result", id: i + 1, result: expected });
+      expect(await pending).toEqual(expected);
+      results.push(expected);
+    }
+    expect(results[0].fields[0].sagittal).not.toEqual(results[1].fields[0].sagittal);
+    expect(
+      await client.compute({ ...job, options: { ...job.options, spectrum: "single", wavelengthNm: 532.125 } }),
+    ).toEqual(results[0]);
+    expect(port.computes()).toHaveLength(2);
+    client.dispose();
+  });
   it("keys held image planes separately from each other and from independent focus", async () => {
     const port = new Port();
     const client = new MtfWorkerClient(L, () => port);

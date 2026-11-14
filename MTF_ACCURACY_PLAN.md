@@ -212,9 +212,9 @@ S under a day, M one to three days, L longer.
   positions as a field-curvature readout share that code with Stage 8's band. Depends on C9. L.
 - **C27 — Comparisons beyond f/8.** Any aperture pair, MTF against aperture, and MTF against focal length over a
   zoom's published stations (369 zooms, 1,092 published stations), each stating its plane. M each.
-- **C28 — Spectrum choices.** `MtfSpectralLine` already carries arbitrary lines. A chosen wavelength (S); R, G and
-  B responses on one plane, a g-to-C band, an illustrative sensor-weighted daylight (M each); eligibility judged
-  on the wavelengths requested.
+- **C28 — Spectrum choices.** A single chosen wavelength exists under Advanced. Still open: R, G and B responses
+  on one plane, a g-to-C band, and an illustrative sensor-weighted daylight (M each), with eligibility judged on
+  the wavelengths requested.
 - **C29 — Finite-station readouts.** Working f-number and traced magnification beside a finite chart, navigation
   to eligible stations, and an object-side lp/mm axis for macro lenses. M.
 - **C30 — Refusals that say why.** One message covers 18 fisheyes, 7 mirror lenses (the same 7 are annular) and 7

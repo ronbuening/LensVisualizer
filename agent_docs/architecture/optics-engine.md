@@ -210,7 +210,12 @@ unused dark padding do not exclude the reference. The source-prescription
 result must not be presented as the manufacturer's production MTF; the shared omitted-sensor limitations above also
 apply.
 
-**Spectra.** Monochromatic runs retain native d/e indices; mixed references require usable physical conversion. C/d/F
+**Spectra.** Reference runs retain native d/e indices; mixed references require usable physical conversion. A `single`
+spectrum requires a finite `wavelengthNm` in the inclusive 435.8–656.3 nm g-to-C interval; invalid wavelengths return
+`invalid-input`. An exact native-reference choice retains authored indices and bypasses the glass gate, with identical
+curves, field launch and focus to `reference`. Every other chosen wavelength uses anchored spectral indices and the
+same glass gate and named reference fallback as C/d/F and photopic. Its one line supplies field launch and best-axial
+focus without spectral mixing; `MtfResult.support.spectralLines` records the actual wavelength and weight. C/d/F
 (equal weights) and photopic (nine-point Gauss-Legendre quadrature over 470-650 nm, with quadrature weights times
 CIE 1924 V(λ) on an equal-energy source, 560 nm first) share one glass gate, `assessMtfSpectralData`, which uses
 `collectMtfSpectralBlockers` to collect every blocking element while retaining the first-blocker message. Photopic V(λ)

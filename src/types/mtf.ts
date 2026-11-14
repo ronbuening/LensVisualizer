@@ -5,7 +5,7 @@ import type { FiniteConjugate } from "./optics.js";
  * rays' landing errors, which adds the diffraction of the actual aperture.
  */
 export type MtfMethod = "geometric" | "diffraction";
-export type MtfSpectrum = "reference" | "cdf" | "photopic";
+export type MtfSpectrum = "reference" | "cdf" | "photopic" | "single";
 /**
  * `auto` keeps the authored image plane unless it is inconsistent with the prescription's own paraxial focus, then
  * uses best axial focus; `design` and `best-axial` always apply their plane.
@@ -29,13 +29,27 @@ export type MtfUnavailableReason =
   | "vignetted"
   | "outside-modeled-field";
 
+/** Shared spectral interval covered by every supported glass tier (g through C), in nm. */
+export const MTF_MIN_WAVELENGTH_NM = 435.8;
+export const MTF_MAX_WAVELENGTH_NM = 656.3;
+
+/** A single-line request must carry its physical wavelength through storage and worker transport. */
+type MtfSpectrumOptions =
+  | { spectrum: "single"; wavelengthNm: number }
+  | { spectrum: Exclude<MtfSpectrum, "single">; wavelengthNm?: number };
+
 /** Method-specific settings; physical aperture comes from AnalysisRequest. */
-export type MtfRequestOptions = Omit<MtfOptions, "pupilSemiDiameterMm" | "stopSemiDiameterMm">;
+export type MtfRequestOptions = Omit<
+  MtfOptions,
+  "pupilSemiDiameterMm" | "stopSemiDiameterMm" | "spectrum" | "wavelengthNm"
+> &
+  MtfSpectrumOptions;
 
 /** Resolved inputs used by the MTF kernels and the serializable worker protocol. */
-export interface MtfOptions {
+export type MtfOptions = MtfCommonOptions & MtfSpectrumOptions;
+
+interface MtfCommonOptions {
   method: MtfMethod;
-  spectrum: MtfSpectrum;
   pupilSemiDiameterMm: number;
   stopSemiDiameterMm: number;
   movementActive?: boolean;
@@ -66,7 +80,7 @@ export interface MtfSupport {
    * true for spectral runs and for mixed d/e references that need physical conversion.
    */
   useResolvedReference: boolean;
-  /** Incident intensity weights, reference line first; throughput is applied before normalizing the OTF. */
+  /** Actual wavelengths used, reference line first; incident weights precede throughput normalization. */
   spectralLines: MtfSpectralLine[];
   conjugate?: FiniteConjugate;
   limitations: string[];
