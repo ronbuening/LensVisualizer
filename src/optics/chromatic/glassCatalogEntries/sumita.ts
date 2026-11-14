@@ -41,6 +41,17 @@ export const SUMITA_GLASS_ENTRIES: readonly GlassEntry[] = [
       "SUMITA Zemax all-glass catalog 2025-11-07 including discontinued glasses; vendor formula-3 polynomial for K-SFLD11.",
   },
   {
+    name: "K-PMK30",
+    vendor: "Sumita",
+    polynomial: [2.2984199, -0.0098977917, 0.010454435, -0.000011762246, 0.00002220678, -1.2212713e-6],
+    nd: 1.525,
+    vd: 70.4,
+    PgF: 0.5314,
+    code6: "525704",
+    source:
+      "SUMITA Zemax all-glass catalog 2025-11-07, K-PMK30 NM/CD row (pre-moulding values); vendor formula-1 polynomial.",
+  },
+  {
     name: "SSK2",
     vendor: "Sumita",
     polynomial: [2.583873, -0.00933743, 0.01666236, 0.0003569082, -0.000004730077, 0.0000008454233],

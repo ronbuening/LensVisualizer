@@ -9,9 +9,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **1128** lenses scanned (**1109** visible)
-- **11897 / 12769** non-air surfaces use strict catalog Sellmeier data (93.2%)
-- **11915 / 12769** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 93.3%)
+- **1134** lenses scanned (**1115** visible)
+- **11934 / 12821** non-air surfaces use strict catalog Sellmeier data (93.1%)
+- **11952 / 12821** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 93.2%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
 - **288** code-only missing-Sellmeier elements in Sweep 2: **27** active unreviewed, **155** self-recording explicit dispositions, **0** dispositions missing any review record
@@ -199,6 +199,7 @@ These rows contain resin, cement, plastic, liquid, or unclassified optical media
 | [CANON 15-45mm f/2.8-5.6 (Canon PowerShot G1 X Mark III)](../../src/lens-data/canon/CanonPowerShotG1XIII1545mmf2856.data.ts) | JP 2018-106021 A | [PDF](../../patents/JP2018106021A.pdf) | 88.9% (8/9) | 88.9% (8/9) | 1 | 18A [resin] (GRP resin rear meniscus: `Optical resin / polymer (patent GRP)`) | abbe: 1 |
 | [NIKON AF-S NIKKOR 50mm f/1.4 G](../../src/lens-data/nikon/NikonAFSNikkor50mmf14G.data.ts) | JP 2015-041003 A | [PDF](../../patents/JP2015041003A.pdf) | 88.9% (8/9) | 88.9% (8/9) | 1 | 9 [cement] (Cement layer: `Unmatched (patent cement layer; nd=1.51400, νd=42.83)`) | abbe: 1 |
 | [NIKON NIKKOR Z 26mm f/2.8](../../src/lens-data/nikon/NikonZ26f28.data.ts) | WO 2023/190222 A1 | [PDF](../../patents/WO2023190222A1.pdf) | 88.9% (8/9) | 88.9% (8/9) | 1 | 14A [resin] (Element 8a (resin): `Resin layer (patent composite asphere; chemistry and supplier unspecified)`) | abbe: 1 |
+| [PENTAX DA 15mm f/4 ED AL Limited](../../src/lens-data/pentax/PentaxDA15mmf4EDALLimited.data.ts) | US 7,843,651 B2 | [PDF](../../patents/US7843651B2.pdf) | 88.9% (8/9) | 88.9% (8/9) | 1 | 2 [resin] (Element 1 resin layer: `Unmatched (synthetic resin hybrid-asphere layer, nd=1.52972, vd=42.7)`) | abbe: 1 |
 | [PENTAX DA 21mm f/3.2 AL Limited](../../src/lens-data/pentax/PentaxDA21mmf32Limited.data.ts) | US 7,411,746 B2 | [PDF](../../patents/US7411746.pdf) | 88.9% (8/9) | 88.9% (8/9) | 1 | 12A [resin] (Hybrid resin layer: `Compound UV-curing resin (patent; no catalog glass match)`) | abbe: 1 |
 | [SONY E 35mm f/1.8 OSS](../../src/lens-data/sony/SonyE35mmf18.data.ts) | JP 2014-089352 A | [PDF](../../patents/JP2014089352A.pdf) | 88.9% (8/9) | 88.9% (8/9) | 1 | 4A [resin] (L113 composite resin layer: `UV-curable optical resin (patent nd=1.540, νd=41.200)`) | abbe: 1 |
 | [NIKON AF-S DX NIKKOR 16-80mm f/2.8-4 E ED VR](../../src/lens-data/nikon/NikonAFSDXNikkor1680mmf284EEDVR.data.ts) | US 2018/0252903 A1 | [PDF](../../patents/US20180252903A1.pdf) | 88.9% (16/18) | 88.9% (16/18) | 2 | 6A [resin] (L21 Bonded Resin Layer: `Unmatched bonded aspherical resin (patent medium; no published dispersion coefficients)`)<br>23A [glass] (L41: `Unmatched (nd=1.79050, vd=45.0; glass-molded asphere)`) | abbe: 2 |
