@@ -244,6 +244,16 @@ const LENS_DATA = {
     description: "Rear focus: cemented negative G2 moves 14.49 mm imageward from infinity to 2.5 m.",
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 2500,
+        distanceReference: "image-plane",
+        source:
+          "JP H01-102413 A, Numerical Example 1, p. 5 variable-gap table, 2.5 m column: D10=35.49 mm, D13=17.71 mm (authored as 9.71 mm to the stop plus 8.00 mm). Distance reference identified by the conjugate audit (audit-resolved).",
+      },
+    ],
   },
 
   /* (moved from var) D13 is split by the estimated stop: R13→STO varies; STO→R14 remains 8.00 mm. */
