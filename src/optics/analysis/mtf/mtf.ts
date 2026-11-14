@@ -1,6 +1,5 @@
 /** Pure MTF orchestration with explicit per-field convergence and unavailable results. */
 import type {
-  MtfAxialVignetting,
   MtfFieldGeometry,
   MtfFieldResult,
   MtfFocus,
@@ -35,6 +34,10 @@ import {
   prepareMtfFieldLaunch,
   traceMtfStopBundle,
   traceMtfLaunchPlaneBundle,
+  mtfAimSpectrum,
+  mtfImagePoint,
+  mtfLaunchRay,
+  mtfTraceOptions,
 } from "./mtfTracing.js";
 import type { MtfBundle, MtfFieldLaunch, MtfOpenBorders } from "./mtfTracing.js";
 import type { AimedStopLattice } from "../pupils/aimedPupil.js";
@@ -42,7 +45,8 @@ import { expandMtfFootprint } from "./mtfFootprint.js";
 import type { MtfFootprint } from "./mtfFootprint.js";
 import { shearedOtf } from "./mtfShearedOtf.js";
 import { findAxialBestFocus, mtfImagePlaneOffset, mtfNearestImagePlaneZ } from "./mtfFocus.js";
-import { computeWorkingFNumber } from "../summary/fNumbers.js";
+import { traceWorkingFNumber } from "../summary/fNumbers.js";
+import { traceEngineRay } from "../../trace/rayAdapters.js";
 import {
   mtfBeamHeight,
   mtfChiefHeight,
@@ -62,7 +66,7 @@ export interface MtfJobCache {
   /** Field axis; null when no chief ray reaches the image. */
   geometry?: MtfFieldGeometry | null;
   focus?: MtfFocus;
-  axialVignetting?: MtfAxialVignetting | null;
+  axial?: Pick<MtfResult, "workingFNumber" | "magnification" | "axialVignetting">;
   fields: Map<number, MtfFieldResult>;
 }
 
@@ -533,6 +537,39 @@ function resolveAxialBeam(context: MtfJobContext): MtfAxialBeam | null {
   return footprint ? { launch, footprint } : null;
 }
 
+/** The chart's own object and first wavelength define both the working aperture and axial vignetting. */
+function resolveMtfAxialReadout(
+  request: AnalysisRequest,
+  context: MtfJobContext,
+  axial: MtfAxialBeam | null,
+): NonNullable<MtfJobCache["axial"]> {
+  const { state, options, support } = context;
+  const line = support.spectralLines[0];
+  const field = axial?.launch.aim;
+  const marginal = field ? traceWorkingFNumber(request, field, mtfAimSpectrum(state, support, line)) : null;
+  let magnification: number | null = null;
+  if (support.conjugate && axial?.launch.objectPoint) {
+    // A 0.01 mm object height samples the on-axis scale without a paraxial object-distance substitution.
+    const distance = state.surfaces[0].z - axial.launch.objectPoint[2];
+    const angleDeg = (Math.atan2(0.01, distance) * 180) / Math.PI;
+    const launch = prepareMtfFieldLaunch(state, options, support, angleDeg);
+    if (launch?.objectPoint) {
+      const trace = traceEngineRay(state, mtfLaunchRay(launch, 0, 0), mtfTraceOptions(state, options, support, line));
+      const image = mtfImagePoint(state, trace, context.imagePlaneZ);
+      const value = image ? image.y / launch.objectPoint[1] : NaN;
+      if (Number.isFinite(value)) magnification = value;
+    }
+  }
+  return {
+    workingFNumber: marginal?.status === "traced" ? marginal.value : null,
+    axialVignetting:
+      marginal?.status === "vignetted"
+        ? { surfaceLabel: marginal.surfaceLabel, beforeStop: marginal.beforeStop }
+        : null,
+    magnification,
+  };
+}
+
 /**
  * Axial best focus from the center bundle, and the image-plane consistency check. The search
  * always runs so results can report it; `best-axial` requests apply the shift to every field, and
@@ -644,9 +681,19 @@ export function* computeMtfSteps(
     fields: [],
     geometry: null,
     focus: null,
+    conjugate: null,
+    workingFNumber: null,
+    magnification: null,
     axialVignetting: null,
   };
   if (!support.available) return result;
+  result.conjugate = support.conjugate
+    ? {
+        kind: "finite",
+        objectDistanceMm: support.conjugate.objectDistanceMm,
+        distanceReference: support.conjugate.distanceReference,
+      }
+    : { kind: "infinity" };
   const cap = options.maxGridSize ?? MTF_DEFAULT_GRID_CAP;
   const context: MtfJobContext = {
     state,
@@ -681,20 +728,17 @@ export function* computeMtfSteps(
       : emptyMtfField(target.fraction, target),
   );
   // Every field shares one image plane, so the axial focus search runs before any field.
+  const axial = cache?.focus && cache.axial ? null : resolveAxialBeam(context);
   if (cache?.focus) {
     result.focus = cache.focus;
   } else {
-    result.focus = resolveMtfFocus(context, resolveAxialBeam(context));
+    result.focus = resolveMtfFocus(context, axial);
     if (cache) cache.focus = result.focus;
   }
-  // The header names the surface that vignettes the axial marginal ray, as the Summary's working f-number does.
-  if (cache?.axialVignetting !== undefined) {
-    result.axialVignetting = cache.axialVignetting;
-  } else {
-    result.axialVignetting = axialVignetting(request);
-    if (cache) cache.axialVignetting = result.axialVignetting;
-  }
   context.imagePlaneZ = state.imgZ + result.focus.appliedShiftMm;
+  const readout = cache?.axial ?? resolveMtfAxialReadout(request, context, axial);
+  Object.assign(result, readout);
+  if (cache) cache.axial = readout;
   yield result;
   for (const index of mtfFieldProcessingOrder(fractions)) {
     if (targets[index].outsideModel) continue;
@@ -726,14 +770,6 @@ function copyField(field: MtfFieldResult): MtfFieldResult {
       tangential: [...field.diffractionLimit.tangential],
     },
   };
-}
-
-/** The surface that vignettes the axial marginal ray, from the Summary's working f-number; null when none does. */
-function axialVignetting(request: AnalysisRequest): MtfAxialVignetting | null {
-  const marginal = computeWorkingFNumber(request);
-  return marginal.status === "vignetted"
-    ? { surfaceLabel: marginal.surfaceLabel, beforeStop: marginal.beforeStop }
-    : null;
 }
 
 export function computeMtf(request: AnalysisRequest, options: MtfRequestOptions): MtfResult {

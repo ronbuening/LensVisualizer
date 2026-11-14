@@ -150,10 +150,17 @@ footprint scan, the lit-or-dark probe past the chief's own clip (`mtfBeamHeight`
 reaches the image. Full-beam results depend on authored clear apertures, so estimated semi-diameters that vignette less
 than the production lens lower off-axis curves.
 
-**Axial vignetting.** The chart is labelled with the marked f-number; the stop rule sizes the iris for it. When the
-Summary's working f-number (`computeWorkingFNumber`) finds the axial marginal ray vignetted, `MtfResult.axialVignetting`
-names that surface (and whether it is before the stop) and the header says so. No other f-number is derived from the
-MTF beam. It is cached with the focus search.
+**Axial vignetting / working f-number.** The chart is labelled with the marked f-number; the stop rule sizes the iris
+for it. `MtfResult.conjugate` records infinity or the certified station's object distance and distance reference.
+The axial launch used by the focus search supplies that same physical object to the Summary's marginal-ray machinery
+(`traceWorkingFNumber`), instead of substituting the Summary's paraxial object. At the spectrum's first line, one
+real ray through the charted stop rim supplies `workingFNumber = 1/(2 n′ sin θ′)` and `axialVignetting`. A clip makes
+the working number unavailable and names its surface (and whether it is before the stop) in the header; an unaimed
+or failed marginal ray also leaves the number null. At a finite station, a chief ray from a 0.01 mm off-axis object
+height supplies signed `magnification` as chief image height / object height on the applied chart plane, including
+a held or best-axial shift. Infinity and failed chief rays carry null magnification. These readouts are cached
+with the focus search and do not change any field values. Advanced shows the working aperture and the on-axis
+first-line diffraction cutoff `1/(λ·N_working)`, plus finite object-side frequency examples `ν_object = |m|·ν_image`.
 
 **Ray failures** (`trace/rayClassification.ts`, also used by the aimed launch and the vignetting tab). TIR and aperture
 clips are blocking on both sides of the stop: the aimed launch's search ahead of the stop takes them as blocks at their

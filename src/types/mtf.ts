@@ -135,8 +135,8 @@ export interface MtfFocus {
 }
 
 /**
- * The clear aperture that vignettes the axial marginal ray, the Summary working f-number's `vignetted` state
- * (`computeWorkingFNumber`). The chart header names it beside the marked f-number.
+ * The clear aperture that vignettes the chart's axial marginal ray. The same trace supplies the working f-number;
+ * the chart header names a clip beside the marked f-number.
  */
 export interface MtfAxialVignetting {
   /** Label of the surface that stops the marginal ray. */
@@ -223,6 +223,15 @@ export interface MtfResult {
   fields: MtfFieldResult[];
   geometry: MtfFieldGeometry | null;
   focus: MtfFocus | null;
+  /** Physical object used by the chart; null for an unsupported request. Distances use the authored station's reference. */
+  conjugate:
+    | { kind: "infinity" }
+    | { kind: "finite"; objectDistanceMm: number; distanceReference: FiniteConjugate["distanceReference"] }
+    | null;
+  /** 1 / (2 n′ sin θ′) of the real axial stop-rim ray at the first spectral line; null when it cannot pass or trace. */
+  workingFNumber: number | null;
+  /** Signed on-axis chief image height / small object height on the applied image plane; null at infinity or on failure. */
+  magnification: number | null;
   /** Where the axial marginal ray is vignetted; null when it is not, or when the request is unsupported. */
   axialVignetting: MtfAxialVignetting | null;
 }

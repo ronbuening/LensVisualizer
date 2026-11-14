@@ -1401,6 +1401,7 @@ describe("MTF axial vignetting", () => {
     });
     const result = mtfAt(rimmed, 8);
     expect(result.axialVignetting).toEqual({ surfaceLabel: "1", beforeStop: false });
+    expect(result.workingFNumber).toBeNull();
     expect(computeWorkingFNumber(inputs(rimmed, 8)[0])).toEqual({
       status: "vignetted",
       surfaceLabel: "1",
@@ -1409,7 +1410,11 @@ describe("MTF axial vignetting", () => {
     expect(JSON.parse(JSON.stringify(result.axialVignetting))).toEqual(result.axialVignetting);
   });
   it("is null when the request is unsupported", () => {
-    expect(mtfAt(base, 1, { movementActive: true }).axialVignetting).toBeNull();
+    const result = mtfAt(base, 1, { movementActive: true });
+    expect(result.axialVignetting).toBeNull();
+    expect(result.workingFNumber).toBeNull();
+    expect(result.conjugate).toBeNull();
+    expect(result.magnification).toBeNull();
   });
 });
 

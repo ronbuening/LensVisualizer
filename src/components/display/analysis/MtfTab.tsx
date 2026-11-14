@@ -1,5 +1,5 @@
 /** MTF stays outside render-time optics; requests execute only in the mounted tab's worker. */
-import { useMemo, useRef, useState } from "react";
+import { useContext, useMemo, useRef, useState } from "react";
 import type { RuntimeLens } from "../../../types/optics.js";
 import type { MtfAxialVignetting, MtfMethod, MtfRequestOptions, MtfResult, MtfSpectrum } from "../../../types/mtf.js";
 import { createAnalysisRequest } from "../../../optics/analysis.js";
@@ -7,7 +7,10 @@ import type { AnalysisComputationContext } from "../../../optics/analysis.js";
 import type { PreparedOpticalState } from "../../../optics/types.js";
 import type { Theme } from "../../../types/theme.js";
 import { assessMtfDataLimitations, assessMtfSupport, resolveMtfSpectrum } from "../../../optics/mtf.js";
-import { formatFNumber, stopSemiDiameterForFNumber } from "../../../optics/optics.js";
+import { formatFNumber, prepareRuntimeState, stopSemiDiameterForFNumber } from "../../../optics/optics.js";
+import { publishedFocusStations, publishedZoomStations } from "../../../optics/publishedStations.js";
+import { LensDispatchContext, LensStateContext } from "../../../utils/state/LensContext.js";
+import { SET_PATENT_STATION } from "../../../utils/state/lensReducer.js";
 import { useMtfComputation } from "../../hooks/useMtfComputation.js";
 import { useMtfDataWarning } from "../../hooks/useMtfDataWarning.js";
 import { useSharedMtfPreferences } from "../../../utils/state/useSharedMtfPreferences.js";
@@ -38,6 +41,15 @@ interface FocusSearchProps {
   comparison: MtfResult | null;
   mainLabel: string;
   t: Theme;
+}
+
+interface ConjugateReadoutProps extends FocusSearchProps {
+  L: RuntimeLens;
+  request: Parameters<typeof assessMtfSupport>[0];
+  options: MtfRequestOptions;
+  fNumber?: number;
+  frequencies: readonly number[];
+  stale: boolean;
 }
 
 /** Comparison aperture of manufacturer charts. */
@@ -302,12 +314,26 @@ export default function MtfTab({
               pixelPitchUm={preferences.pixelPitchUm}
             />
             {preferences.advanced ? (
-              <FocusSearch
-                result={shown}
-                comparison={comparisonShown}
-                mainLabel={fNumber ? `f/${formatFNumber(fNumber)} (main)` : "Main aperture"}
-                t={t}
-              />
+              <div style={{ display: "flex", flexWrap: "wrap", gap: 16 }}>
+                <FocusSearch
+                  result={shown}
+                  comparison={comparisonShown}
+                  mainLabel={fNumber ? `f/${formatFNumber(fNumber)} (main)` : "Main aperture"}
+                  t={t}
+                />
+                <ConjugateReadout
+                  L={L}
+                  request={request}
+                  options={options}
+                  result={shown}
+                  comparison={comparisonShown}
+                  mainLabel="Main aperture"
+                  fNumber={fNumber}
+                  frequencies={preferences.frequencies}
+                  stale={stale}
+                  t={t}
+                />
+              </div>
             ) : null}
             <MtfFieldSummary
               result={shown}
@@ -381,6 +407,171 @@ export default function MtfTab({
   );
 }
 
+/** Chart-state facts share the focus search's cache; toggling this block never traces a chart. */
+function ConjugateReadout({
+  L,
+  request,
+  options,
+  result,
+  comparison,
+  mainLabel,
+  fNumber,
+  frequencies,
+  stale,
+  t,
+}: ConjugateReadoutProps) {
+  const viewer = useContext(LensStateContext);
+  const dispatch = useContext(LensDispatchContext);
+  const canSelectStation = !!dispatch && !!viewer && !viewer.state.lens.comparing;
+  const stations = useMemo(() => {
+    if (!canSelectStation) return [];
+    return publishedZoomStations(L).flatMap((zoom) =>
+      publishedFocusStations(L, zoom.index).flatMap(({ conjugate }) => {
+        if (!conjugate) return [];
+        const preparedState = prepareRuntimeState(L, conjugate.focusT, conjugate.zoomT);
+        const stationRequest = createAnalysisRequest({
+          preparedState,
+          dynamicEFL: 0,
+          currentEPSD: request.aperture.entrancePupilSemiDiameterMm,
+          currentPhysStopSD: request.aperture.stopSemiDiameterMm,
+        });
+        return assessMtfSupport(stationRequest, options).available ? [conjugate] : [];
+      }),
+    );
+  }, [L, request.aperture, options, canSelectStation]);
+  const sources = [
+    { result, label: mainLabel, marked: fNumber },
+    ...(comparison ? [{ result: comparison, label: "f/8 comparison", marked: COMPARISON_F_NUMBER }] : []),
+  ];
+  const finite = result.conjugate?.kind === "finite";
+  const ratio = (m: number) => `1:${(1 / Math.abs(m)).toFixed(2)}`;
+  const rows = [
+    [
+      "Object",
+      (r) =>
+        r.conjugate?.kind === "infinity"
+          ? "At infinity"
+          : r.conjugate?.kind === "finite"
+            ? `${r.conjugate.objectDistanceMm.toFixed(1)} mm from the ${r.conjugate.distanceReference === "image-plane" ? "authored image plane" : "first surface"}`
+            : "Unavailable",
+    ],
+    [
+      "Aperture",
+      (r, marked) =>
+        `${marked ? `Marked f/${formatFNumber(marked)}` : "Marked f-number unavailable"} · ${r.workingFNumber === null ? `working f-number unavailable${r.axialVignetting ? " (axial marginal ray vignetted)" : ""}` : `working f/${formatFNumber(r.workingFNumber)}`}`,
+    ],
+    [
+      "On-axis diffraction cutoff",
+      (r) => {
+        const nm = r.support.spectralLines[0]?.wavelengthNm;
+        return r.workingFNumber !== null && nm
+          ? `${(1e6 / (nm * r.workingFNumber)).toFixed(1)} lp/mm at ${nm.toFixed(1)} nm; 1/(λ·N_working)`
+          : "Unavailable";
+      },
+    ],
+    ...(finite
+      ? ([
+          [
+            "Magnification (on axis)",
+            (r) =>
+              r.magnification === null
+                ? "Unavailable"
+                : `m = ${r.magnification.toFixed(4)}; ${r.magnification === 0 ? "ratio unavailable" : ratio(r.magnification)}`,
+          ],
+          [
+            "Object-side frequencies (on axis)",
+            (r) =>
+              r.magnification === null
+                ? "Unavailable"
+                : `ν_object = |m|·ν_image: ${frequencies.join(", ")} image lp/mm → ${frequencies.map((f) => (Math.abs(r.magnification!) * f).toFixed(2)).join(", ")} object lp/mm`,
+          ],
+        ] satisfies ReadonlyArray<[string, (r: MtfResult) => string]>)
+      : []),
+  ] satisfies ReadonlyArray<[string, (r: MtfResult, marked?: number) => string]>;
+  const cell = { padding: "2px 6px", textAlign: "left" as const, fontWeight: "normal" as const };
+  return (
+    <section
+      aria-label="Conjugate and working aperture"
+      style={{ margin: "8px 0", fontSize: 11, color: t.muted, minWidth: 0, maxWidth: "100%" }}
+    >
+      <h4 style={{ margin: "0 0 4px", color: t.value, fontSize: 12 }}>Conjugate and working aperture</h4>
+      {stale ? (
+        <p>Updating chart-state readouts…</p>
+      ) : (
+        <div style={{ overflowX: "auto" }}>
+          <table style={{ borderCollapse: "collapse" }}>
+            <caption style={{ textAlign: "left", paddingBottom: 4 }}>
+              Working aperture uses the real axial stop-rim ray at the first spectral line; magnification uses a small
+              off-axis chief ray on the charted plane.
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col" style={cell}>
+                  Chart state
+                </th>
+                {sources.map(({ label }) => (
+                  <th key={label} scope="col" style={cell}>
+                    {label}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {rows.map(([label, value]) => (
+                <tr key={label}>
+                  <th scope="row" style={cell}>
+                    {label}
+                  </th>
+                  {sources.map((source) => (
+                    <td key={source.label} style={cell}>
+                      {value(source.result, source.marked)}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+      {stations.length ? (
+        <div
+          role="group"
+          aria-label="Finite conjugate stations"
+          style={{ display: "flex", flexWrap: "wrap", gap: 4, marginTop: 6 }}
+        >
+          {stations.map((station) => {
+            const active =
+              !stale &&
+              result.support.conjugate?.focusT === station.focusT &&
+              result.support.conjugate.zoomT === station.zoomT;
+            const distance = `${Number((station.objectDistanceMm / 1000).toPrecision(4))} m`;
+            const label = active && result.magnification ? `${ratio(result.magnification)} (${distance})` : distance;
+            return (
+              <button
+                key={`${station.zoomT}/${station.focusT}`}
+                type="button"
+                aria-pressed={active}
+                title={`${distance} from the ${station.distanceReference === "image-plane" ? "authored image plane" : "first surface"}; zoom ${station.zoomT}. ${station.source}`}
+                onClick={() => dispatch?.({ type: SET_PATENT_STATION, zoomT: station.zoomT, focusT: station.focusT })}
+                style={{
+                  background: "none",
+                  border: `1px solid ${t.muted}`,
+                  color: t.value,
+                  font: "inherit",
+                  cursor: "pointer",
+                  padding: "2px 6px",
+                }}
+              >
+                {label}
+              </button>
+            );
+          })}
+        </div>
+      ) : null}
+    </section>
+  );
+}
+
 /** Numerical focus diagnostics use the geometric search scores for either chart method. */
 function FocusSearch({ result, comparison, mainLabel, t }: FocusSearchProps) {
   const sources = [{ result, label: mainLabel }, ...(comparison ? [{ result: comparison, label: "f/8" }] : [])];
@@ -407,7 +598,10 @@ function FocusSearch({ result, comparison, mainLabel, t }: FocusSearchProps) {
     ],
   ] satisfies ReadonlyArray<[string, (focus: MtfResult["focus"]) => string]>;
   return (
-    <section aria-label="Focus search" style={{ margin: "8px 0", fontSize: 11, color: t.muted }}>
+    <section
+      aria-label="Focus search"
+      style={{ margin: "8px 0", fontSize: 11, color: t.muted, minWidth: 0, maxWidth: "100%" }}
+    >
       <h4 style={{ margin: "0 0 4px", color: t.value, fontSize: 12 }}>Focus search</h4>
       <div style={{ overflowX: "auto" }}>
         <table style={{ borderCollapse: "collapse" }}>
@@ -492,8 +686,8 @@ function headerLine(
 }
 
 /**
- * Qualify a marked f-number when a clear aperture vignettes the axial marginal ray, the Summary working f-number's
- * `vignetted` state. Callers pass null for a superseded result.
+ * Qualify a marked f-number when a clear aperture vignettes the chart's axial marginal ray.
+ * Callers pass null for a superseded result.
  */
 function axialVignettingNote(vignetting: MtfAxialVignetting | null): string {
   if (!vignetting) return "";

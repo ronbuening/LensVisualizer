@@ -72,6 +72,13 @@ export function buildMtfExportContext(input: MtfExportContextInput): MtfExportCo
         ? [`${marketedLabel} f/${marketedFNumber}`]
         : []),
     ].join("; "),
+    working_f_number: result.workingFNumber === null ? "unavailable" : String(result.workingFNumber),
+    ...(result.conjugate?.kind === "finite"
+      ? {
+          magnification: result.magnification === null ? "unavailable" : String(result.magnification),
+          object_distance: `${result.conjugate.objectDistanceMm} mm from ${result.conjugate.distanceReference}`,
+        }
+      : {}),
     method: result.method === "diffraction" ? "Diffraction-corrected" : "Geometric",
     spectrum: `${result.spectrum}; ${result.support.spectralLines.map((line) => `${line.wavelengthNm} nm (weight ${line.weight})`).join("; ")}`,
     ...(result.spectrum !== preferences.spectrum
@@ -173,7 +180,15 @@ export function mtfContextBlock(context: MtfExportContext): string {
   return Object.entries(context)
     .map(([key, value]) => {
       // Round only measured context fields; names, links and spectral weights stay verbatim.
-      const text = ["station", "spectrum", "focus", "reference_image_height", "comparison", "pixel_pitch"].includes(key)
+      const text = [
+        "station",
+        "object_distance",
+        "spectrum",
+        "focus",
+        "reference_image_height",
+        "comparison",
+        "pixel_pitch",
+      ].includes(key)
         ? value.replace(
             /(-?\d+(?:\.\d+)?(?:e[+-]?\d+)?) (mm|nm|µm)/gi,
             (_, number: string, unit: string) => `${Number(Number(number).toFixed(6))} ${unit}`,

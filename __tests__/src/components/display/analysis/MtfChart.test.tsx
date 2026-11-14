@@ -68,6 +68,9 @@ function syntheticResult(): MtfResult {
     },
     focus: null,
     axialVignetting: null,
+    conjugate: { kind: "infinity" },
+    workingFNumber: 5.7,
+    magnification: null,
   };
 }
 
@@ -165,6 +168,38 @@ describe("MTF export builders", () => {
     const lines = [...doc.querySelectorAll('[aria-label="MTF export caption"] text')].map((node) => node.textContent!);
     return { image, doc, lines };
   };
+  it("exports working aperture and finite conjugate facts without lengthening the caption", () => {
+    const result = syntheticResult();
+    const infinity = contextFor(result);
+    expect(infinity.working_f_number).toBe("5.7");
+    expect(infinity.magnification).toBeUndefined();
+    expect(infinity.object_distance).toBeUndefined();
+    result.conjugate = { kind: "finite", objectDistanceMm: 450, distanceReference: "image-plane" };
+    result.support.conjugate = {
+      focusT: 1,
+      zoomT: 0,
+      objectDistanceMm: 450,
+      distanceReference: "image-plane",
+      source: "Synthetic source station",
+    };
+    result.magnification = -0.5;
+    const finite = contextFor(result);
+    expect(finite.magnification).toBe("-0.5");
+    expect(finite.object_distance).toBe("450 mm from image-plane");
+    expect(captionFor({ ...finite, working_f_number: "500", magnification: "-2" }).lines).toEqual(
+      captionFor(finite).lines,
+    );
+    expect(captionFor(finite).lines.join(" ")).not.toContain("working");
+    const csv = mtfContextBlock(finite);
+    expect(csv).toContain("# working_f_number: 5.7");
+    expect(csv).toContain("# magnification: -0.5");
+    expect(csv).toContain("# object_distance: 450 mm from image-plane");
+    expect(captionFor(finite).doc.querySelector("desc")!.textContent).toContain("# magnification: -0.5");
+    expect(contextFor({ ...result, workingFNumber: null, magnification: null })).toMatchObject({
+      working_f_number: "unavailable",
+      magnification: "unavailable",
+    });
+  });
   const dataRows = (csv: string) => parseCsv(csv).filter((row) => !row[0].startsWith("# "));
 
   it("exports the actual single wavelength and preserves a preferred wavelength on fallback", () => {

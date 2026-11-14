@@ -16,6 +16,7 @@ import { spectralTraceOptions } from "../../../src/optics/analysis/pupils/aimedP
 import { publishedFocusStations, publishedZoomStations } from "../../../src/optics/state/publishedStations.js";
 import { prepareEngineTrace } from "../../../src/optics/trace/rayAdapters.js";
 import { computeMtf } from "../../../src/optics/analysis/mtf/mtf.js";
+import { computeWorkingFNumber } from "../../../src/optics/analysis/summary/fNumbers.js";
 import { shearedOtf } from "../../../src/optics/analysis/mtf/mtfShearedOtf.js";
 import {
   mtfWaveLattice,
@@ -78,6 +79,14 @@ describe("documented finite MTF", () => {
     // At this 0.1 mm stop, residual spherical aberration leaves less than 10 nm transverse blur.
     for (const ray of bundle.rays) expect(Math.hypot(ray.x, ray.y)).toBeLessThan(1e-5);
     const result = computeMtf(...mtfInputs(state, request));
+    expect(result.conjugate).toEqual({
+      kind: "finite",
+      objectDistanceMm: conjugate.objectDistanceMm,
+      distanceReference: "first-surface",
+    });
+    // The hand calculation is paraxial; the real 0.1 mm marginal ray agrees within 10 ppm.
+    expect(Math.abs(result.workingFNumber! / workingN - 1)).toBeLessThan(1e-5);
+    expect(result.axialVignetting).toBeNull();
     const field = result.fields[0];
     expect(field.reason).toBeNull();
     expect(result.focus!.appliedShiftMm).toBe(0);
@@ -107,9 +116,62 @@ describe("documented finite MTF", () => {
     const parallel = atRear(1, 0),
       magnification = parallel.y + imageGap * parallel.u;
     expect(offAxis.chief.y / offAxis.objectPoint![1]).toBeCloseTo(magnification, 5);
-    const result = computeMtf(...mtfInputs(state, options)).fields[0];
-    expect(result.status).toBe("converged");
-    expect(result.sagittal[0]).toBeCloseTo(1, 12);
+    const result = computeMtf(...mtfInputs(state, options));
+    expect(result.magnification).toBeCloseTo(magnification, 4);
+    expect(result.fields[0].status).toBe("converged");
+    expect(result.fields[0].sagittal[0]).toBeCloseTo(1, 12);
+  });
+  it("reads the infinity marginal angle without a finite magnification", () => {
+    const infinite = prepareRuntimeState(L, 0, 0);
+    const marginal = atRear(options.stopSemiDiameterMm, 0);
+    const na = Math.abs(marginal.u) / Math.hypot(1, marginal.u);
+    const result = computeMtf(...mtfInputs(infinite, options));
+    expect(result.conjugate).toEqual({ kind: "infinity" });
+    expect(Math.abs(result.workingFNumber! * 2 * na - 1)).toBeLessThan(1e-5);
+    expect(result.magnification).toBeNull();
+  });
+  it("traces magnification onto the applied held plane", () => {
+    const shift = 2;
+    // Unit object height, chief through the stop centre: u = −1 / object distance.
+    const chief = atRear(0, -1 / conjugate.objectDistanceMm);
+    const result = computeMtf(...mtfInputs(state, { ...options, heldFocusShiftMm: shift }));
+    expect(result.magnification).toBeCloseTo(chief.y + (imageGap + shift) * chief.u, 4);
+  });
+  it("keeps the certified object when the authored plane implies a different paraxial conjugate", () => {
+    const shifted = prepareRuntimeState(
+      build({
+        ...constructionFixtureData(L),
+        surfaces: constructionFixtureData(L).surfaces.map((s, i) => (i === 2 ? { ...s, d: imageGap + 20 } : s)),
+      }),
+      1,
+      0,
+    );
+    const inputs = mtfInputs(shifted, options);
+    const result = computeMtf(...inputs);
+    const summary = computeWorkingFNumber(inputs[0]);
+    expect(summary.status).toBe("traced");
+    if (summary.status !== "traced") throw new Error("Expected a paraxial-object marginal ray");
+    expect(Math.abs(summary.value - result.workingFNumber!)).toBeGreaterThan(1);
+    const marginal = atRear(options.stopSemiDiameterMm, options.stopSemiDiameterMm / conjugate.objectDistanceMm);
+    const na = Math.abs(marginal.u) / Math.hypot(1, marginal.u);
+    expect(Math.abs(result.workingFNumber! * 2 * na - 1)).toBeLessThan(1e-5);
+  });
+  it("retains an image-plane distance reference in the serializable chart state", () => {
+    const distance = conjugate.objectDistanceMm + state.imgZ;
+    const referenced = prepareRuntimeState(
+      build({
+        ...constructionFixtureData(L),
+        finiteConjugates: [{ ...conjugate, objectDistanceMm: distance, distanceReference: "image-plane" }],
+      }),
+      1,
+      0,
+    );
+    const result = computeMtf(...mtfInputs(referenced, options));
+    const firstSurface = computeMtf(...mtfInputs(state, options));
+    expect(result.conjugate).toEqual({ kind: "finite", objectDistanceMm: distance, distanceReference: "image-plane" });
+    expect(result.workingFNumber).toBeCloseTo(firstSurface.workingFNumber!, 10);
+    expect(result.magnification).toBeCloseTo(firstSurface.magnification!, 10);
+    expect(JSON.parse(JSON.stringify(result))).toEqual(result);
   });
   it("distinguishes first-surface and image-plane distances and rejects unverified states", () => {
     expect(mtfFiniteObjectPoint(state, conjugate, 0)![2]).toBe(-1000);

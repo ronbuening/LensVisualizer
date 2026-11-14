@@ -215,8 +215,6 @@ S under a day, M one to three days, L longer.
 - **C28 — Spectrum choices.** A single chosen wavelength exists under Advanced. Still open: R, G and B responses
   on one plane, a g-to-C band, and an illustrative sensor-weighted daylight (M each), with eligibility judged on
   the wavelengths requested.
-- **C29 — Finite-station readouts.** Working f-number and traced magnification beside a finite chart, navigation
-  to eligible stations, and an object-side lp/mm axis for macro lenses. M.
 - **C30 — Unlock refused lens classes.** The refusal now names its reasons (18 fisheyes, 7 mirror lenses that are
   also annular, 7 diffractive designs). Unlock in stages, each behind its own control: an on-axis geometric fisheye
   path; geometric tracing of a diffractive order; mirror lenses last, which need optical path in the generalized

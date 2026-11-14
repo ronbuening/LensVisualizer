@@ -8,7 +8,10 @@ import MtfTab from "../../../../../src/components/display/analysis/MtfTab.js";
 import { mtfCsv } from "../../../../../src/components/display/analysis/mtf/mtfCsv.js";
 import MtfFieldSummary from "../../../../../src/components/display/analysis/mtf/MtfFieldSummary.js";
 import MtfChart from "../../../../../src/components/display/analysis/MtfChart.js";
-import { installMatchMediaMock, mockTheme } from "../../../../testUtils.js";
+import { installMatchMediaMock, makeTestLensState, mockTheme } from "../../../../testUtils.js";
+import { LensDispatchContext, LensStateContext } from "../../../../../src/utils/state/LensContext.js";
+import lensReducer from "../../../../../src/utils/state/lensReducer.js";
+import type { LensAction } from "../../../../../src/types/state.js";
 import {
   build,
   buildChromaticPositiveElementLens,
@@ -834,6 +837,7 @@ describe("MTF chart", () => {
     expect(toggle.getAttribute("aria-pressed")).toBe("false");
     expect(toggle.title).toBe("Per-field sampling details and the focus search");
     expect(screen.queryByRole("region", { name: "Focus search" })).toBeNull();
+    expect(screen.queryByRole("region", { name: "Conjugate and working aperture" })).toBeNull();
     expect(screen.queryByRole("columnheader", { name: "Grid size" })).toBeNull();
     fireEvent.click(toggle);
     expect(toggle.getAttribute("aria-pressed")).toBe("true");
@@ -841,6 +845,9 @@ describe("MTF chart", () => {
       false,
     );
     const focus = within(screen.getByRole("region", { name: "Focus search" }));
+    const conjugate = within(screen.getByRole("region", { name: "Conjugate and working aperture" }));
+    expect(conjugate.getByText("At infinity")).toBeTruthy();
+    expect(conjugate.queryByRole("rowheader", { name: "Magnification (on axis)" })).toBeNull();
     const value = (label: string) =>
       focus.getByRole("rowheader", { name: label }).closest("tr")!.querySelector("td")!.textContent;
     expect(value("Requested mode")).toBe("Auto");
@@ -867,6 +874,124 @@ describe("MTF chart", () => {
     await screen.findByRole("region", { name: "Focus search" });
     expect(screen.getByRole("button", { name: "Advanced" }).getAttribute("aria-pressed")).toBe("true");
   });
+
+  it.each(["first-surface", "image-plane"] as const)(
+    "shows finite readouts and each aperture's own working number under Advanced (%s)",
+    async (distanceReference) => {
+      const finite: MtfResult = {
+        ...diagnostics,
+        conjugate: { kind: "finite", objectDistanceMm: 450, distanceReference },
+        workingFNumber: 4,
+        magnification: -0.5,
+        support: {
+          ...diagnostics.support,
+          spectralLines: [
+            { wavelengthNm: 500, weight: 1 },
+            { wavelengthNm: 650, weight: 1 },
+          ],
+        },
+      };
+      const f8 = { ...finite, workingFNumber: 12, magnification: -0.4 };
+      const f8Stop = stopSemiDiameterForFNumber(8, 0, L);
+      const { calls } = stubWorker({
+        resultForJob: (job) => (job.options.stopSemiDiameterMm === f8Stop ? f8 : finite),
+      });
+      localStorage.setItem(
+        MTF_PREFERENCES_KEY,
+        JSON.stringify({ advanced: true, compareF8: true, frequencies: [10, 30] }),
+      );
+      resetMtfPreferencesCache();
+      render(<MtfTab L={L} t={mockTheme} preparedState={state} currentEPSD={1} currentPhysStopSD={1} fNumber={2.8} />);
+      const block = within(await screen.findByRole("region", { name: "Conjugate and working aperture" }));
+      await block.findByRole("columnheader", { name: "f/8 comparison" });
+      expect(
+        block.getAllByText(
+          `450.0 mm from the ${distanceReference === "image-plane" ? "authored image plane" : "first surface"}`,
+        ),
+      ).toHaveLength(2);
+      expect(block.getByText("Marked f/2.8 · working f/4.0")).toBeTruthy();
+      expect(block.getByText("Marked f/8.0 · working f/12")).toBeTruthy();
+      expect(block.getByText("500.0 lp/mm at 500.0 nm; 1/(λ·N_working)")).toBeTruthy();
+      expect(block.getByText("166.7 lp/mm at 500.0 nm; 1/(λ·N_working)")).toBeTruthy();
+      expect(block.getByText("m = -0.5000; 1:2.00")).toBeTruthy();
+      expect(block.getByText("m = -0.4000; 1:2.50")).toBeTruthy();
+      expect(block.getByText("ν_object = |m|·ν_image: 10, 30 image lp/mm → 5.00, 15.00 object lp/mm")).toBeTruthy();
+      expect(block.getByRole("rowheader", { name: "Object-side frequencies (on axis)" })).toBeTruthy();
+      expect(block.queryByRole("group", { name: "Finite conjugate stations" })).toBeNull();
+      const computations = calls.compute;
+      fireEvent.click(screen.getByRole("button", { name: "Advanced" }));
+      expect(screen.queryByRole("region", { name: "Conjugate and working aperture" })).toBeNull();
+      expect(calls.compute).toBe(computations);
+    },
+  );
+
+  it("withholds a working aperture and cutoff when the marginal ray is vignetted", async () => {
+    stubWorker({
+      resultForJob: () => ({
+        ...diagnostics,
+        workingFNumber: null,
+        axialVignetting: { surfaceLabel: "2", beforeStop: false },
+      }),
+    });
+    localStorage.setItem(MTF_PREFERENCES_KEY, JSON.stringify({ advanced: true }));
+    resetMtfPreferencesCache();
+    render(<MtfTab L={L} t={mockTheme} preparedState={state} currentEPSD={1} currentPhysStopSD={1} fNumber={2.8} />);
+    const block = within(await screen.findByRole("region", { name: "Conjugate and working aperture" }));
+    expect(block.getByText("Marked f/2.8 · working f-number unavailable (axial marginal ray vignetted)")).toBeTruthy();
+    expect(
+      within(block.getByRole("rowheader", { name: "On-axis diffraction cutoff" }).closest("tr")!).getByRole("cell")
+        .textContent,
+    ).toBe("Unavailable");
+  });
+
+  it.each([false, true])(
+    "uses the existing station action only in a single-lens viewer (comparing=%s)",
+    async (comparing) => {
+      const finiteLens = build({
+        ...constructionFixtureData(L),
+        finiteConjugates: [
+          {
+            focusT: 1,
+            zoomT: 0,
+            objectDistanceMm: 450,
+            distanceReference: "first-surface",
+            source: "Synthetic source station",
+          },
+        ],
+      });
+      let viewerState = makeTestLensState({ lens: { comparing }, sliders: { aberrationT: 0.5, stopdownT: 0.5 } });
+      const dispatch = vi.fn((action: LensAction) => {
+        viewerState = lensReducer(viewerState, action);
+      });
+      stubWorker({ resultForJob: () => diagnostics });
+      localStorage.setItem(MTF_PREFERENCES_KEY, JSON.stringify({ advanced: true }));
+      resetMtfPreferencesCache();
+      render(
+        <LensStateContext.Provider
+          value={{ state: viewerState, theme: mockTheme, isWide: true, updateURLWithSliders: () => {} }}
+        >
+          <LensDispatchContext.Provider value={dispatch}>
+            <MtfTab
+              L={finiteLens}
+              t={mockTheme}
+              preparedState={prepareRuntimeState(finiteLens, 0, 0)}
+              currentEPSD={1}
+              currentPhysStopSD={1}
+            />
+          </LensDispatchContext.Provider>
+        </LensStateContext.Provider>,
+      );
+      const block = within(await screen.findByRole("region", { name: "Conjugate and working aperture" }));
+      if (comparing) {
+        expect(block.queryByRole("group", { name: "Finite conjugate stations" })).toBeNull();
+        expect(dispatch).not.toHaveBeenCalled();
+      } else {
+        fireEvent.click(block.getByRole("button", { name: "0.45 m" }));
+        expect(dispatch).toHaveBeenCalledWith({ type: "SET_PATENT_STATION", focusT: 1, zoomT: 0 });
+        expect(viewerState.sliders).toMatchObject({ focusT: 1, zoomT: 0, aberrationT: 0, stopdownT: 0 });
+      }
+    },
+  );
 
   it("shows the comparison's own focus and unavailable field diagnostics", async () => {
     const comparison: MtfResult = {

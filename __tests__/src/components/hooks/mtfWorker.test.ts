@@ -4,6 +4,7 @@ import { afterEach, expect, it, vi } from "vitest";
 import {
   build,
   buildChromaticPositiveElementLens,
+  buildSimplePositiveElementLens,
   REAR_PLATE_FIXTURE,
   teleconverterFixture,
   teleconverterHostData,
@@ -47,6 +48,48 @@ async function loadWorker() {
     );
   return { send, replies, finished, compiled, runtimeView, prepareWorkerState };
 }
+
+it("round-trips the finite object, working aperture and traced magnification and reuses them with focus", async () => {
+  const { send, finished } = await loadWorker();
+  const lens = build({
+    ...constructionFixtureData(buildSimplePositiveElementLens()),
+    finiteConjugates: [
+      {
+        focusT: 1,
+        zoomT: 0,
+        objectDistanceMm: 1000,
+        distanceReference: "first-surface",
+        source: "Synthetic finite source",
+      },
+    ],
+  });
+  const options: MtfOptions = {
+    method: "diffraction",
+    spectrum: "reference",
+    focus: "design",
+    pupilSemiDiameterMm: 0.1,
+    stopSemiDiameterMm: 0.1,
+    fieldFractions: [0],
+    frequenciesPerMm: [0, 1, 2],
+    maxGridSize: 32,
+  };
+  send({ type: "init", input: structuredClone(canonicalLensFromRuntime(lens)) });
+  const job = { focusT: 1, zoomT: 0, aberrationT: 0, options };
+  send({ type: "compute", id: 1, job });
+  const expected = computeMtf(...mtfInputs(prepareRuntimeState(lens, 1, 0), options));
+  expect(expected.conjugate).toEqual({ kind: "finite", objectDistanceMm: 1000, distanceReference: "first-surface" });
+  expect(expected.workingFNumber).toBeGreaterThan(0);
+  expect(expected.magnification).toBeLessThan(0);
+  expect(structuredClone(await finished(1))).toEqual({ type: "result", id: 1, result: expected });
+  send({ type: "compute", id: 2, job: { ...job, options: { ...options, fieldFractions: [0, 0.5] } } });
+  const cached = await finished(2);
+  expect(cached.type).toBe("result");
+  if (cached.type !== "result") throw new Error("Expected a worker result");
+  expect(cached.result.focus).toEqual(expected.focus);
+  expect(cached.result.workingFNumber).toBe(expected.workingFNumber);
+  expect(cached.result.magnification).toBe(expected.magnification);
+  expect(cached.result.axialVignetting).toEqual(expected.axialVignetting);
+});
 
 it("compiles canonical prescriptions in the worker and matches the pure engine for every method", async () => {
   const { send, finished, compiled, runtimeView, prepareWorkerState } = await loadWorker();

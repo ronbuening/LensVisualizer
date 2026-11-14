@@ -111,7 +111,7 @@ distortion and vignetting tabs consume deferred/frozen inputs through `analysisJ
 estimated from nd/νd, or the reference line and the reason when a glass blocks spectral sampling), best axial focus
 (with an explanatory note when the lens data's plane contradicts its own paraxial focus; "Design plane (auto)" and
 "Design plane (always)" remain) and the image-height view at 10 % field steps showing 10 and 30 lp/mm. The header
-names the marked f-number and, when the Summary's working f-number finds the axial marginal ray vignetted
+names the marked f-number and, when the MTF's own axial marginal ray is vignetted
 (`MtfResult.axialVignetting`), the surface that clips it ("f/1.4 (axial beam vignetted at surface 14)"). Plane readouts
 follow the applied focus mode: held results name their shift from the authored plane, and the inconsistent-plane
 note describes a held plane as authored only when that shift is exactly zero. Each dropdown
@@ -140,7 +140,8 @@ frequency. Both CSV downloads preserve withheld cells and opt-in diagnostic disc
 diffraction-limit columns, neutralize formula-capable text with an apostrophe before CSV quoting, and start with
 single-cell `# key: value` context records documented in `mtfExportContext.ts`. Decode optional CSV quoting before
 stripping `# ` and splitting at the first `: `; quoted context values preserve commas, quotes and newlines.
-Context records the lens/source, focal length and focus station, selected/design/marketed apertures, method,
+Context records the lens/source, focal length and focus station, selected/design/marketed apertures, `working_f_number`
+and, at a finite conjugate, signed `magnification` and `object_distance` with its reference, method,
 actual spectrum and any preferred-spectrum fallback, applied focus shift, grid cap, reference height/basis,
 shared MTF link, UTC generation date, status and prescription disclaimer. Exported zoom apertures identify the
 charted station's design aperture and qualify a single marketed value as catalog metadata. CSV context and the
@@ -196,7 +197,14 @@ readouts and their polite live region in both chart views, while comparison valu
 Advanced also shows a compact "Focus search" table for the main aperture and enabled comparison: requested
 and applied modes, applied and best-axial shifts from the authored plane, design- and best-plane scores labelled
 "mean axial geometric MTF at 10–50 lp/mm", the signed paraxial-focus minus authored-plane offset and its consistency
-flag. Its caption separates numerical sampling from physical accuracy. Field notes retain the engine's method-specific
+flag. Its caption separates numerical sampling from physical accuracy. Beside it, "Conjugate and working aperture"
+shows infinity or the station's distance and reference, marked and traced working f-numbers, and the on-axis
+diffraction cutoff at the spectrum's first line. Finite charts add signed magnification, its absolute `1:x` ratio,
+and the selected image frequencies translated to object-side lp/mm on axis by `|m|`. The f/8 column uses its own
+working aperture, spectrum and magnification. Superseded readouts wait for the current result. On single-lens
+pages with the existing viewer dispatch, eligible finite-station buttons use `SET_PATENT_STATION` to move focus
+and zoom together; the active station includes its traced ratio. Comparison panes and standalone tabs offer no
+station buttons. Field notes retain the engine's method-specific
 qualifications: geometric unresolved flux can carry the 2ε error bound; diffraction omitted flux has no such bound.
 Advanced is independent of "Show diagnostic estimates (unconverged or unverified frequencies)" and does not disclose
 withheld values or start another computation.
