@@ -1,6 +1,7 @@
 /** Validates and copies portable V2 builder drafts before editing, persistence or export. */
 import type { LensDataV2Input } from "../types/lensDataV2.js";
 import { ASPHERIC_COEFFICIENT_SCHEMA } from "../types/asphericSchema.js";
+import { sourceProvenanceIssues } from "../types/sourceProvenanceSchema.js";
 import { IMAGE_FORMAT_BY_ID, LENS_MOUNT_BY_ID } from "../utils/catalog/lensTaxonomy.js";
 
 export const MAX_DRAFT_BYTES = 1_000_000;
@@ -189,17 +190,9 @@ const erratum = variant("status", {
     ["status", "surface", "field", "printed", "applied", "evidence", "note"],
   ),
 });
-const omission = object(
-  {
-    kind: literal("asphere-coefficients", "asphere-term", "asphere-equation"),
-    surfaces: array(surfaceLabel, 250, 1),
-    note: (v, p) => {
-      freeText(v, p);
-      if (!(v as string).trim()) refuse(p, "Expected a non-empty note");
-    },
-  },
-  ["kind", "surfaces", "note"],
-);
+const sourceDeclaration: Rule = () => {
+  // The shared contract checks these fields after the schema makes authored surface labels available.
+};
 const element = object(
   {
     ...numericFields(
@@ -320,8 +313,8 @@ const schema = object(
       authors: array(text, 40),
       assignees: array(text, 40),
       errata: array(erratum, 250),
-      omissions: array(omission, 250),
-      sdSource: literal("source-table", "figure-measured", "heuristic"),
+      omissions: sourceDeclaration,
+      sdSource: sourceDeclaration,
       issuer: text,
     }),
     elements: array(element, 100),
@@ -517,13 +510,8 @@ export function parseUntrustedDraft(input: unknown): UntrustedDraftResult {
     schema(draft, "draft");
     const typedDraft = draft as LensDataV2Input;
     const labels = new Set(typedDraft.surfaces.map((surface) => surface.label));
-    for (const [index, omission] of (typedDraft.source?.omissions ?? []).entries()) {
-      if (
-        omission.surfaces.some((label) => !labels.has(label)) ||
-        new Set(omission.surfaces).size !== omission.surfaces.length
-      )
-        refuse(`draft.source.omissions[${index}].surfaces`, "Expected unique authored surface labels that exist");
-    }
+    const issue = sourceProvenanceIssues(typedDraft.source?.omissions, typedDraft.source?.sdSource, labels)[0];
+    if (issue) refuse(`draft.source.${issue.path}`, issue.message);
     if (new TextEncoder().encode(JSON.stringify(draft)).length > MAX_DRAFT_BYTES)
       refuse("draft", "JSON must be at most 1 MB");
     return { ok: true, draft: typedDraft };

@@ -35,10 +35,79 @@ describe("builder untrusted input gate on catalog copies", () => {
     });
     expect(refused).toEqual([]);
   });
+
+  it.each(
+    ALL_CATALOG_KEYS.map((key) => authoredInputForKey(key)!).filter(
+      (input) => input.source?.omissions !== undefined || input.source?.sdSource !== undefined,
+    ),
+  )("validates and preserves declared catalog source fields ($key)", (input) => {
+    const copy = copyCatalogInput(input);
+    expect(copy.source).toEqual(input.source);
+    expect(validateDraft(input).ok).toBe(true);
+    expect(validateDraft(copy).ok).toBe(true);
+    expect(importJson(exportJson(copy)).source).toEqual(input.source);
+    const compiled = ts.transpileModule(exportDataTs(copy), {
+      compilerOptions: { module: ts.ModuleKind.CommonJS },
+    }).outputText;
+    const exports: { default?: LensDataV2Input } = {};
+    new Function("exports", compiled)(exports);
+    expect(exports.default!.source).toEqual(input.source);
+    expect(validateDraft(exports.default!).ok).toBe(true);
+  });
 });
 
 // Reduced synthetic versions of the audit's t-*, ls-*, s08/s19/s26 and overflow payloads.
 describe("builder untrusted input gate", () => {
+  it.each([
+    "A",
+    "A4\twas not published",
+    "A4\r\nwas not published",
+    "Source μm 日本語 🔭",
+    "x".repeat(4000),
+    "🔭".repeat(2000),
+  ])("preserves permitted omission notes (%#)", (note) => {
+    const draft = createTemplate();
+    draft.source = { omissions: [{ kind: "asphere-term", surfaces: ["1"], note }] };
+    expect(parseUntrustedDraft(draft)).toEqual({ ok: true, draft });
+    expect(importJson(exportJson(draft))).toEqual(draft);
+    expect(validateDraft(draft).ok).toBe(true);
+  });
+
+  it.each([
+    "x".repeat(4001),
+    "🔭".repeat(2000) + "x",
+    " Source ",
+    "Source\u0000",
+    "Source\u0085",
+    "Source\u202e",
+    "Source\ud800",
+  ])("rejects omission notes outside the shared text contract (%#)", (note) => {
+    expect(issues(changed("source", { omissions: [{ kind: "asphere-term", surfaces: ["1"], note }] }))).toContain(
+      "draft.source.omissions[0].note:",
+    );
+  });
+
+  it("accepts the omission count limit and rejects the next entry", () => {
+    const draft = createTemplate();
+    draft.source = { omissions: [] };
+    expect(parseUntrustedDraft(draft)).toEqual({ ok: true, draft });
+    draft.source.omissions = Array.from({ length: 250 }, () => ({ kind: "asphere-term", surfaces: ["1"], note: "A4" }));
+    expect(parseUntrustedDraft(draft)).toEqual({ ok: true, draft });
+    expect(validateDraft(draft).ok).toBe(true);
+    draft.source.omissions!.push({ kind: "asphere-term", surfaces: ["1"], note: "A4" });
+    expect(issues(draft)).toContain("draft.source.omissions:");
+  });
+
+  it("accepts 250 unique omission surface labels and rejects 251", () => {
+    const draft = createTemplate();
+    draft.surfaces = Array.from({ length: 250 }, (_, i) => ({ label: String(i + 1), R: "flat" }));
+    draft.source = { omissions: [{ kind: "asphere-term", surfaces: draft.surfaces.map((s) => s.label), note: "A4" }] };
+    expect(parseUntrustedDraft(draft)).toEqual({ ok: true, draft });
+    draft.source.omissions![0].surfaces.push("251");
+    expect(issues(draft)).toContain("draft.source.omissions[0].surfaces:");
+    expect(issues(draft)).toContain("250");
+  });
+
   it.each(["source-table", "figure-measured", "heuristic"] as const)(
     "accepts aperture provenance %s and every omission kind without inferring aspheres",
     (sdSource) => {

@@ -11,6 +11,7 @@ import { MAX_RIM_SLOPE_TAN } from "../../../src/optics/geometry/surfaceProfile.j
 import { ASPHERIC_COEFFICIENT_SCHEMA } from "../../../src/types/asphericSchema.js";
 import { attachFixtureTeleconverter as attachTeleconverter } from "./constructionFixtures.js";
 import { teleconverterFixture, teleconverterHostData } from "./testLensFixtures.js";
+import { validateSourceProvenance } from "../../../src/optics/prescription/validate/references.js";
 
 /* Passthrough mock so a single test can make buildAsphereIndex throw once.
  * buildAsphereIndex cannot be made to throw from plain lens data, so the
@@ -2806,6 +2807,46 @@ describe("source omissions and aperture provenance", () => {
   const omission = { kind: "asphere-coefficients", surfaces: ["1"], note: "Spherical stand-in." };
   const errors = (fields: Record<string, unknown>) =>
     validateLensData(makeValid(fields)).filter((message) => /sourceOmissions|sdSource/.test(message));
+  it.each([
+    "A",
+    "A4\twas not published",
+    "A4\r\nwas not published",
+    "Source μm 日本語 🔭",
+    "x".repeat(4000),
+    "🔭".repeat(2000),
+  ])("accepts permitted omission notes (%#)", (note) => {
+    expect(errors({ sourceOmissions: [{ ...omission, note }] })).toEqual([]);
+  });
+  it.each([
+    "x".repeat(4001),
+    "🔭".repeat(2000) + "x",
+    " Source ",
+    "Source\u0000",
+    "Source\u0085",
+    "Source\u202e",
+    "Source\ud800",
+  ])("rejects omission notes outside the shared text contract (%#)", (note) => {
+    expect(errors({ sourceOmissions: [{ ...omission, note }] }).join(" ")).toContain("note");
+  });
+  it("accepts the omission count limit and rejects the next entry", () => {
+    expect(errors({ sourceOmissions: [] })).toEqual([]);
+    const sourceOmissions = Array.from({ length: 250 }, () => ({ ...omission }));
+    expect(errors({ sourceOmissions })).toEqual([]);
+    expect(errors({ sourceOmissions: [...sourceOmissions, omission] }).join(" ")).toContain("250");
+  });
+  it("accepts 250 unique omission surface labels and rejects 251 even when all exist", () => {
+    const labels = Array.from({ length: 251 }, (_, i) => String(i + 1));
+    for (const count of [250, 251]) {
+      const messages: string[] = [];
+      validateSourceProvenance(
+        { sourceOmissions: [{ ...omission, surfaces: labels.slice(0, count) }] },
+        new Set(labels),
+        messages,
+      );
+      if (count === 250) expect(messages).toEqual([]);
+      else expect(messages.join(" ")).toContain("250");
+    }
+  });
   it("accepts explicit declarations and leaves absent provenance undeclared", () => {
     expect(errors({})).toEqual([]);
     for (const sdSource of ["source-table", "figure-measured", "heuristic"])
@@ -2816,6 +2857,8 @@ describe("source omissions and aperture provenance", () => {
   });
   it.each([
     [{ sdSource: "inferred" }, "sdSource"],
+    [{ sdSource: null }, "sdSource"],
+    [{ sdSource: 1 }, "sdSource"],
     [{ sourceOmissions: null }, "must be an array"],
     [{ sourceOmissions: [null] }, "must be an object"],
     [

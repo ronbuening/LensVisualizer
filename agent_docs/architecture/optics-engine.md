@@ -280,6 +280,8 @@ only when it changes that display; the first five are blocking:
   apertures. `figure-measured` carries a milder measurement-uncertainty note; `source-table` and an absent declaration
   carry none. A composition retains either part's declared uncertainty and remaps converter omission labels. These
   source fields travel in the canonical prescription and survive the MTF worker's rebuild, like `source.errata`.
+  The engine and builder validate them through the same pure source-declaration contract; text and collection
+  limits are defined beside the fields in `src/lens-data/LENS_DATA_SPEC.md`.
 - `source-erratum` (note): the lens carries `corrected` `source.errata`, so a printed source value was replaced.
 - `source-inconsistent` (note): the lens carries `unresolved` `source.errata`; the curves describe the printed table.
 

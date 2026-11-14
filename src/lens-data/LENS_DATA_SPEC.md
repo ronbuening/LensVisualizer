@@ -402,8 +402,18 @@ source: {
 ### Surface-definition omissions (`source.omissions`)
 
 Declare a source-definition gap when the prescription supplies a stand-in or makes a documented assumption.
-Each entry has `kind`, `surfaces` (a non-empty list of unique authored surface labels, including any `A` suffix),
-and a non-empty `note` explaining both the omission and how it is modeled:
+The optional list contains at most 250 entries; an empty list declares no omissions. Each entry has only `kind`,
+`surfaces` (1–250 unique existing authored surface labels, including any `A` suffix), and `note`, explaining both
+the omission and how it is modeled. The engine and builder use the same pure contract in
+`src/types/sourceProvenanceSchema.ts`:
+
+- `note` is non-empty after trimming, has no leading or trailing whitespace, and contains at most 4,000 UTF-16 code
+  units (JavaScript string length). Valid text is preserved verbatim.
+- Unicode text, TAB, LF and CR are allowed. Other C0 controls (U+0000–U+001F), DEL/C1 controls (U+007F–U+009F),
+  directional controls U+061C, U+200E–U+200F, U+202A–U+202E and U+2066–U+2069, and lone UTF-16 surrogates are rejected.
+  The builder separately bounds the complete transported draft to 1 MB.
+
+`kind` is one of:
 
 - `"asphere-coefficients"`: the source calls a surface aspheric but publishes no coefficients, so a stand-in
   surface is traced.
@@ -437,7 +447,8 @@ derived stop radius, drawn outer blank, or `rimCutDepthSource` (which documents 
 `"source-table"` means the source lists the clear apertures; `"figure-measured"` means they are measured from the
 source drawing by the [figure procedure](../../agent_docs/patent-figure-sd-audit-procedure.md); `"heuristic"` means
 they are estimated or reconstructed from ray envelopes or other model constraints. Leave mixed or unclear evidence
-undeclared rather than selecting a category from a few surfaces. No default is supplied.
+undeclared rather than selecting a category from a few surfaces. These three strings are the only accepted values
+in both the engine and builder; omission of the field is allowed and no default is supplied.
 
 The MTF chart lists an `estimated-apertures` note for heuristic apertures and a milder measurement-uncertainty note
 for figure measurements, because off-axis curves depend on these caps. Table values and undeclared provenance
@@ -1689,7 +1700,7 @@ Code: `src/optics/prescription/validate/`.
 | Every surface medium names an element, and every element is some surface's medium; asphere terms finite and known | `validateReferences` (`references.ts`) |
 | Patent metadata completeness, publication-number formatting, party-name rules and no inventor repeated as an assignee; `source.example` is `{ label, id }` with trimmed strings, `id` is what the label gives and `null` exactly for `"Sole example"`, it needs a patent number and does not repeat it; `source.issuer` is a trimmed, conventionally capitalized name and never stands beside a patent number | `validatePatentMetadata`, `validatePatentExample` (`patent.ts`) |
 | `source.errata` entries | `validateSourceErrata` (`references.ts`) |
-| `source.omissions` kinds, unique existing surface labels and non-empty notes; `source.sdSource` enum | `validateSourceProvenance` (`references.ts`) |
+| `source.omissions` kinds, bounded unique existing surface labels and trimmed, bounded notes; `source.sdSource` enum | Shared `sourceProvenanceIssues` (`src/types/sourceProvenanceSchema.ts`), called by `validateSourceProvenance` (`references.ts`) and the builder |
 | Element spans: both ends, in order; internal surfaces only an embedded stop or the folded exceptions | `validateSpans` (`references.ts`) |
 | `groups` and `doublets` name existing surfaces | `validateAnnotations` (`references.ts`) |
 | Stations increasing; keyframes begin at 0, end at 1, strictly increasing; conjugates name distinct authored states | `validateStations` (`controls.ts`) |

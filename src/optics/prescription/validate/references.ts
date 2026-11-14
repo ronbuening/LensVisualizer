@@ -3,6 +3,7 @@ import type { UntrustedLensData, ExplicitElementSpan } from "./context.js";
 import type { SurfaceData } from "../../../types/optics.js";
 import { TELECONVERTER_LABEL_PREFIX } from "../teleconverterCompatibility.js";
 import { ASPHERIC_COEFFICIENT_SCHEMA } from "../../../types/asphericSchema.js";
+import { sourceProvenanceIssues } from "../../../types/sourceProvenanceSchema.js";
 import { surfaceFitsInsideCentralOpening } from "../../geometry/apertureBands.js";
 import { annularNestedOpeningForSpan, isEmbeddedStop, isAllowedFoldedSpanInternalSurface } from "./aperture.js";
 
@@ -25,37 +26,18 @@ const SOURCE_ERRATUM_SURFACE_FIELDS = new Set(["R", "d", "nd"]);
 /** A correction needs this many independent kinds of source-internal evidence. */
 const SOURCE_ERRATUM_MIN_EVIDENCE = 2;
 
-/** Check declared aperture evidence and missing surface definitions without inferring either from numeric values. */
+/**
+ * Check declared aperture evidence and missing surface definitions with the portable source contract.
+ *
+ * @param data - diagnostic source fields in construction-column form
+ * @param surfaceLabels - labels of the authored surfaces
+ * @param errors - collected validation messages
+ * @returns nothing; appends issues using construction paths for the authored-path adapter
+ */
 export function validateSourceProvenance(data: UntrustedLensData, surfaceLabels: Set<string>, errors: string[]): void {
-  if (data.sdSource !== undefined && !["source-table", "figure-measured", "heuristic"].includes(data.sdSource)) {
-    errors.push(`"sdSource" must be source-table, figure-measured or heuristic`);
-  }
-  if (data.sourceOmissions === undefined) return;
-  if (!Array.isArray(data.sourceOmissions)) {
-    errors.push(`"sourceOmissions" must be an array when provided`);
-    return;
-  }
-  for (let index = 0; index < data.sourceOmissions.length; index++) {
-    const entry = data.sourceOmissions[index];
-    const at = `"sourceOmissions[${index}]"`;
-    if (!entry || typeof entry !== "object" || Array.isArray(entry)) {
-      errors.push(`${at} must be an object`);
-      continue;
-    }
-    for (const field of Object.keys(entry)) {
-      if (!["kind", "surfaces", "note"].includes(field)) errors.push(`${at} has unknown field ${field}`);
-    }
-    if (!["asphere-coefficients", "asphere-term", "asphere-equation"].includes(entry.kind))
-      errors.push(`${at}.kind must be asphere-coefficients, asphere-term or asphere-equation`);
-    if (typeof entry.note !== "string" || !entry.note.trim()) errors.push(`${at}.note must be non-empty`);
-    if (
-      !Array.isArray(entry.surfaces) ||
-      entry.surfaces.length === 0 ||
-      Array.from(entry.surfaces).some((label) => typeof label !== "string" || !surfaceLabels.has(label)) ||
-      new Set(entry.surfaces).size !== entry.surfaces.length
-    ) {
-      errors.push(`${at}.surfaces must be a non-empty list of unique authored surface labels`);
-    }
+  for (const issue of sourceProvenanceIssues(data.sourceOmissions, data.sdSource, surfaceLabels)) {
+    const [field, ...members] = issue.path.replace(/^omissions/, "sourceOmissions").split(".");
+    errors.push(`"${field}"${members.length ? `.${members.join(".")}` : ""} ${issue.message}`);
   }
 }
 
