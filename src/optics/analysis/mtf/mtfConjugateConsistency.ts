@@ -57,10 +57,10 @@ export interface MtfConjugateCheck {
 const SOLVED_DISTANCE_ROUNDING_MM = 0.005;
 
 /**
- * A declared distance must sit within one quarter wave of the solved one. The 0.01 mm rounding stays well inside
- * that even at several times life size; a provisional or superseded distance does not.
+ * A declared distance that is not the solved one to its rounding still matches within a twentieth of a quarter
+ * wave, so a later index refinement does not unsettle a long object distance.
  */
-const SOLVED_DISTANCE_DEPTHS = 1;
+const SOLVED_DISTANCE_DEPTHS = 0.05;
 
 /** A final slope below 10⁻¹²/mm for a unit-height parallel ray is an afocal system: no distance sets a magnification. */
 const AFOCAL_SLOPE_PER_MM = 1e-12;
@@ -87,7 +87,7 @@ export interface MtfConjugateMagnification {
   solvedObjectDistanceMm: number | null;
   /** Signed quarter waves of defocus with the object at the solved distance. */
   solvedOffsetDepths: number | null;
-  /** The declared distance is the solved one, to within one quarter wave of defocus. */
+  /** The declared distance is the solved one to its 0.01 mm rounding, or within 0.05 quarter waves of it. */
   matchesSolve: boolean;
 }
 
@@ -100,7 +100,10 @@ export interface MtfConjugateConsistency extends MtfConjugateCheck {
   otherReference: MtfConjugateCheck;
   /** The alternate object is impossible, outside the limit, or has a tenfold residual above one depth. */
   referenceDiscriminated: boolean;
-  /** Present when the conjugate carries `sourceMagnification`, whose distance is solved, not printed. */
+  /**
+   * Present when the conjugate carries `sourceMagnification`, whose distance is solved, not printed. Null on a
+   * teleconverter-composed lens, which keeps the bare host's print.
+   */
   magnification: MtfConjugateMagnification | null;
   /**
    * A solved distance is consistent when it is within the limit, is the distance the solve gives and has a
@@ -162,15 +165,9 @@ export function assessMtfConjugateConsistency(request: AnalysisRequest): MtfConj
           ?.shiftMm ?? null;
     }
   }
-  const magnification = checkMagnification(state, support, conjugate, declared);
-  if (magnification?.solvedObjectDistanceMm != null) {
-    const solved = { ...conjugate, objectDistanceMm: magnification.solvedObjectDistanceMm };
-    magnification.solvedOffsetDepths = checkReference(request, options, support, solved).offsetDepths;
-    magnification.matchesSolve =
-      magnification.solvedOffsetDepths !== null &&
-      declared.offsetDepths !== null &&
-      Math.abs(declared.offsetDepths - magnification.solvedOffsetDepths) <= SOLVED_DISTANCE_DEPTHS;
-  }
+  const magnification = checkMagnification(state, support, conjugate, declared, (objectDistanceMm) =>
+    checkReference(request, options, support, { ...conjugate, objectDistanceMm }),
+  );
   return {
     ...declared,
     imagePlaneZMm: state.imgZ,
@@ -208,14 +205,17 @@ function referenceLineSurfaces(state: PreparedGeometry, support: MtfSupport) {
  * The tabulated state is in focus on its image plane, so that conjugate is the estimate whenever its
  * magnification rounds to the printed value; a print the prescription misses is honoured at its nearest bound,
  * which leaves the miss visible as defocus.
+ *
+ * @param checkAt - the reference check with the object moved to a candidate first-surface distance
  */
 function checkMagnification(
   state: PreparedGeometry,
   support: MtfSupport,
   conjugate: FiniteConjugate,
   declared: MtfConjugateCheck,
+  checkAt: (objectDistanceMm: number) => MtfConjugateCheck,
 ): MtfConjugateMagnification | null {
-  if (conjugate.sourceMagnification === undefined) return null;
+  if (conjugate.sourceMagnification === undefined || state.lens.attachedTeleconverter) return null;
   const printed = parseSourceMagnification(conjugate.sourceMagnification);
   const check: MtfConjugateMagnification = {
     printed: conjugate.sourceMagnification,
@@ -243,24 +243,41 @@ function checkMagnification(
   const real = (distance: number) => (distance > 0 && Number.isFinite(distance) ? distance : null);
   const low = printed.value - printed.halfUnit;
   const high = printed.value + printed.halfUnit;
-  if (Number.isFinite(a) && Number.isFinite(b) && Math.abs(parallel.u) > AFOCAL_SLOPE_PER_MM) {
+  if (Number.isFinite(a) && Number.isFinite(b)) {
     const inFocus = a !== 0 ? real(-b / a) : null;
     check.inFocusObjectDistanceMm = inFocus;
     check.inFocusMagnification = inFocus === null ? null : Math.abs(a);
     const target = Math.min(high, Math.max(low, Math.abs(a)));
-    if (inFocus !== null && target === Math.abs(a)) check.solvedObjectDistanceMm = inFocus;
-    else if (target > 0) {
-      // Either image orientation may hold the real object; the in-focus conjugate's is tried first, because a
-      // plane at or beyond infinity focus leaves that orientation to rounding or to a virtual object.
+    const accept = (distance: number | null, imageMustBeReal: boolean) => {
+      if (distance === null || check.solvedObjectDistanceMm !== null) return;
+      const solved = checkAt(distance);
+      // The object must stand in front of the first surface, and a bound's conjugate must be a finite real image.
+      if (solved.unavailableReason !== null) return;
+      if (imageMustBeReal && solved.paraxialImageUnavailableReason !== null) return;
+      check.solvedObjectDistanceMm = distance;
+      check.solvedOffsetDepths = solved.offsetDepths;
+    };
+    // The in-focus conjugate images on the authored plane by construction.
+    if (inFocus !== null && target === Math.abs(a)) accept(inFocus, false);
+    else if (Math.abs(parallel.u) > AFOCAL_SLOPE_PER_MM) {
+      // Either image orientation may hold the real conjugate; the in-focus one's is tried first.
       const at = (magnification: number) => real((invariant / magnification - angular.u) / parallel.u);
       const preferred = a < 0 ? -target : target;
-      check.solvedObjectDistanceMm = at(preferred) ?? at(-preferred);
+      accept(at(preferred), true);
+      accept(at(-preferred), true);
     }
   }
+  if (check.solvedObjectDistanceMm !== null)
+    check.matchesSolve =
+      Math.abs(conjugate.objectDistanceMm - check.solvedObjectDistanceMm) <= SOLVED_DISTANCE_ROUNDING_MM + 1e-9 ||
+      (check.solvedOffsetDepths !== null &&
+        declared.offsetDepths !== null &&
+        Math.abs(declared.offsetDepths - check.solvedOffsetDepths) <= SOLVED_DISTANCE_DEPTHS);
   if (declared.paraxialMagnification !== null && invariant !== 0) {
     const magnitude = Math.abs(declared.paraxialMagnification);
-    // dm/ds = −m² u_p / D converts the written distance's rounding into magnification.
-    const slack = Math.abs((magnitude ** 2 * parallel.u) / invariant) * SOLVED_DISTANCE_ROUNDING_MM + 1e-12;
+    // dm/ds = −m² u_p / D converts the written distance's rounding into magnification; the margin covers the
+    // derivative's own change across that rounding.
+    const slack = Math.abs((magnitude ** 2 * parallel.u) / invariant) * SOLVED_DISTANCE_ROUNDING_MM * 1.001 + 1e-12;
     check.atDeclaredDistance = magnitude;
     check.withinPrint = magnitude >= low - slack && magnitude <= high + slack;
   }

@@ -430,8 +430,6 @@ export function attachTeleconverter(
   lens.focus.closeFocusM = hostLens.focus.closeFocusM + extensionM;
   for (const conjugate of lens.focus.conjugates ?? []) {
     if (conjugate.distanceReference === "image-plane") conjugate.objectDistanceMm += extensionMm;
-    /* The printed magnification is the bare host's; the converter multiplies it. */
-    delete conjugate.sourceMagnification;
   }
   if (hostLens.catalog.imageCircleMm !== undefined && formatDiagonal !== undefined)
     lens.catalog.imageCircleMm = Math.max(

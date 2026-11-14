@@ -387,7 +387,8 @@ export interface FiniteConjugate {
   distanceReference: "first-surface" | "image-plane";
   /**
    * Magnitude of the magnification the source prints for this state, as printed ("0.50", "1/10", "1:2"). Present
-   * only when the source prints no object distance and `objectDistanceMm` is solved from the prescription.
+   * only when the source prints no object distance and `objectDistanceMm` is solved from the prescription. On a
+   * teleconverter-composed lens it stays the bare host's print, which the converter multiplies.
    */
   sourceMagnification?: string;
   /** Publication/embodiment/table or other evidence establishing both distance and focus spacings. */

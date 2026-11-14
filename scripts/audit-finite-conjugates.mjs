@@ -91,11 +91,13 @@ else {
   console.log(
     "Depths are signed defocus wavefront error at the authored plane in quarter waves; mm depths use its cone.",
   );
-  console.log("Printed m is sourceMagnification; a solved distance is consistent when m at it rounds to the print.");
   console.log(
-    "| Lens | Zoom/keyframe | Reference | Object z | Authored z | Paraxial z | Offset mm | Best axial mm | λ nm | Paraxial Nw | Authored-plane Nw | Real-ray Nw | 2λn′Na² mm | Offset depths | Limit mm | m | Other offset mm | Other depths | Reference discriminated | Printed m | In-focus m | Solved distance | Verdict | Reason | Paraxial-image reason | Real-ray reason |",
+    "Printed m is sourceMagnification: its distance must be the solved one, with a magnification that rounds to the print.",
   );
-  console.log(`|${Array(26).fill("---").join("|")}|`);
+  console.log(
+    "| Lens | Zoom/keyframe | Reference | Object z | Authored z | Paraxial z | Offset mm | Best axial mm | λ nm | Paraxial Nw | Authored-plane Nw | Real-ray Nw | 2λn′Na² mm | Offset depths | Limit mm | m | Other offset mm | Other depths | Reference discriminated | Printed m | In-focus m | Solved distance | Rounds to print | Is the solved distance | Verdict | Reason | Paraxial-image reason | Real-ray reason |",
+  );
+  console.log(`|${Array(28).fill("---").join("|")}|`);
   const number = (value) => (value === null ? "—" : Number(value.toPrecision(7)).toString());
   for (const row of report.rows) {
     console.log(
@@ -123,6 +125,8 @@ else {
         row.magnification ? row.magnification.inFocusMagnification : "—",
         // Written to 0.01 mm, which seven significant figures lose beyond 100 m.
         row.magnification?.solvedObjectDistanceMm?.toFixed(2) ?? "—",
+        row.magnification?.withinPrint ?? "—",
+        row.magnification?.matchesSolve ?? "—",
         row.verdict,
         row.unavailableReason ?? "—",
         row.paraxialImageUnavailableReason ?? "—",

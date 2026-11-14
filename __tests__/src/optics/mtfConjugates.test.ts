@@ -227,6 +227,24 @@ describe("documented finite MTF", () => {
     expect(report.magnification!.inFocusObjectDistanceMm).toBeNull();
     expect(report.magnification!.inFocusMagnification).toBeNull();
     expect(report.magnification!.solvedObjectDistanceMm).toBeCloseTo(near, 8);
+    // Above life size the upright orientation has a real object too, inside the front focus, but its image is
+    // virtual: the solve must return the inverted conjugate at the print's lower bound.
+    const magnified = (lens: typeof L, focusState: typeof short) => {
+      const data = constructionFixtureData(lens);
+      const image = focusState.imgZ - focusState.surfaces.at(-1)!.z;
+      const surfaces = data.surfaces.map((s, i) => (i === 2 ? { ...s, d: image } : s));
+      const built = build({ ...data, surfaces, finiteConjugates: [{ ...conjugate, sourceMagnification: "2.0" }] });
+      return assessMtfConjugateConsistency(mtfInputs(prepareRuntimeState(built, 1, 0), auditOptions)[0])!;
+    };
+    near = 60;
+    far = 100;
+    for (let i = 0; i < 80; i++) {
+      const middle = (near + far) / 2;
+      if (magnificationAt(middle) > 1.95) near = middle;
+      else far = middle;
+    }
+    expect(magnified(L, short).magnification!.solvedObjectDistanceMm).toBeCloseTo(near, 8);
+    expect(magnified(L, state).magnification!.solvedObjectDistanceMm).toBeCloseTo(near, 8);
   });
   it("keeps defocus invariant when a dummy surface is inserted just before the image", () => {
     // An index-matched plane changes no optical power or pupil, only the final trace reference.

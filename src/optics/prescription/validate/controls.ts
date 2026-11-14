@@ -221,7 +221,7 @@ export function validateStations(
           (!parseSourceMagnification(c.sourceMagnification) || c.distanceReference !== "first-surface")
         )
           errors.push(
-            '"finiteConjugates" sourceMagnification must be a printed decimal or ratio on a first-surface distance',
+            '"finiteConjugates" sourceMagnification must be a printed decimal or whole-number ratio on a first-surface distance',
           );
         const key = `${c.focusT}:${c.zoomT}`;
         if (seen.has(key)) errors.push('"finiteConjugates" contains a duplicate focus/zoom station');

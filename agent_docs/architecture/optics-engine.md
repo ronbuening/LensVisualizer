@@ -296,15 +296,16 @@ A conjugate that carries `sourceMagnification` has a solved distance, and the re
 it against the print. Two unit basis rays at the first vertex, parallel (y = 1) and angular (u = 1), land on the
 authored plane at heights A and B: an object at distance s focuses there when s = −B/A, and A is the magnification
 of that conjugate. At its own paraxial image an object at s has magnification D/(s u_p + u_a), where u_p and u_a are
-the two rays' final slopes and D their invariant y_p u_a − u_p y_a. `solvedObjectDistanceMm` is −B/A when |A| lies
-within half a unit of the print's last decimal, and otherwise the distance at the nearest bound of that interval; a
-ratio or whole number has no interval. The bound is solved for the in-focus conjugate's image orientation first and
-for the other when that one has no real object; an afocal system (|u_p| ≤ 10⁻¹²/mm) has no solution. `withinPrint`
-tests the declared distance's magnification against the same interval, widened by the 0.005 mm to which the distance
-is written, and `matchesSolve` requires the declared distance's defocus to be within one quarter wave of the solved
-distance's. Such a conjugate is `consistent` when it is inside the depth limit, `withinPrint` and `matchesSolve`,
-and `inconsistent` otherwise; its first-surface reference is fixed by construction, so the other-reference verdicts
-do not apply.
+the two rays' final slopes and D their invariant y_p u_a − u_p y_a. `solvedObjectDistanceMm` is −B/A when that
+object is real and |A| lies within half a unit of the print's last decimal. Otherwise it is the distance whose
+magnification is the value in that interval nearest |A|, solved for the in-focus conjugate's image orientation
+first and for the other when the first has no real object in front of the lens with a finite real image; an afocal
+system (|u_p| ≤ 10⁻¹²/mm) has no such solution. A ratio or whole number has no interval. `withinPrint` tests the
+declared distance's magnification against the same interval, widened by the 0.005 mm to which the distance is
+written. `matchesSolve` requires the declared distance to be the solved one to that rounding, or to differ from it
+by at most 0.05 quarter waves of defocus. Such a conjugate is `consistent` when it is inside the depth limit,
+`withinPrint` and `matchesSolve`, and `inconsistent` otherwise; its first-surface reference is fixed by
+construction, so the other-reference verdicts do not apply.
 
 `npm run audit:finite-conjugates` checks every declaration at its open physical stop, including axial conjugacy on
 fisheyes, retaining every support check except the off-axis projection requirement. The limit is
@@ -836,7 +837,9 @@ is the host's. Built-in converters stay on `opticalConfiguration`.
 - **Image-referenced object distances grow by the converter's extension**, because only the image plane moves:
   `focus.closeFocusM`, `zoom.stations[].closeFocusM`, and `focus.conjugates` entries with
   `distanceReference: "image-plane"`. Entries measured
-  from the first surface are unchanged; a `sourceMagnification` is dropped, since the print is the bare host's.
+  from the first surface are unchanged. A `sourceMagnification` rides through as the bare host's print, so the
+  station button still says the distance is solved; the conjugate audit skips its magnification check on a
+  composed lens.
 - **Station provenance rides through unchanged:** composition keeps the host's station counts, so `publishedStations`
   indices stay valid and `publishedStationAvailability()` reports the pairing as `composed`.
 - **Identity:** converter surface labels take the reserved `TC` prefix, element ids continue after the host's, and the

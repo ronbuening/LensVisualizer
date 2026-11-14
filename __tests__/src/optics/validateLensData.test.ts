@@ -508,7 +508,8 @@ describe("validateLensData", () => {
     expect(parseSourceMagnification("0.50")).toEqual({ value: 0.5, halfUnit: 0.005 });
     expect(parseSourceMagnification("1:2")).toEqual({ value: 0.5, halfUnit: 0 });
     expect(parseSourceMagnification("2")).toEqual({ value: 2, halfUnit: 0 });
-    expect(parseSourceMagnification("0/1")).toBeNull();
+    for (const text of ["0/1", "1/2.5", "1:01", "01", "00.5", ".5", "-0.5"])
+      expect(parseSourceMagnification(text)).toBeNull();
   });
   it("checks publishedStations against the authored zoom and focus stations", () => {
     const station = { focusT: 1, objectDistanceMm: 700, distanceReference: "image-plane", source: "Synthetic table" };
