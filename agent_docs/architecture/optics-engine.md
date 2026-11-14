@@ -180,7 +180,9 @@ amplitude and landing error interpolated linearly along each lattice line. The s
 each pair opens by the lattice cells that λν spans at its own centre, from the rays' own cosines, because a
 wide-angle corner maps the lattice onto the exit pupil unevenly. That correction is first order and grid refinement
 does not remove its residual: within 0.003 up to 55 % of the cutoff on catalog corners, 0.009 near the cutoff of
-a 55° corner. Every wavelength shears its own lattice
+a 55° corner. Half-cutoff analytic controls pin two known limitations that grid refinement does not remove: about
+0.0023 low for 3r⁸ waves and about 0.0005, 0.0019 and 0.007 high for the Jacobian-weighted map
+q_y/NA = v + a(1 − v²) at a = 0.05, 0.1 and 0.2, respectively. Every wavelength shears its own lattice
 against the field's one image reference, so lateral color stays in the phase that `combineOtfs` sums. It needs no
 optical path, reference sphere or validity gate, and tends to the geometric OTF as ν → 0. Its kernel costs two to five
 times the geometric sum, which the ray trace dwarfs: request time did not rise. `MtfFieldResult.diffractionLimit` is the same overlap with zero phase: the response the traced pupil

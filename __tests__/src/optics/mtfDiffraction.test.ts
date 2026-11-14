@@ -688,4 +688,42 @@ describe("analytic wave-optics controls", () => {
     // Five rays per sheared pair integrate the wavefront slope exactly through sixth order; three stop at fourth.
     for (const s of [0.05, 0.1, 0.2, 0.3, 0.5]) expect(estimateError(secondarySpherical, s, 128)).toBeLessThan(0.004);
   });
+  it("pins the eighth-order spherical residual at half cutoff on a 256-cell pupil", () => {
+    // Boole's eighth-order bias is a known limitation, not an accuracy target.
+    const eighthOrder: WaveAberration = (x, y) => 3 * (x * x + y * y) ** 4;
+    for (const cut of cuts(eighthOrder, 0.5, 256)) {
+      expect(cut.hopkins).toBeCloseTo(0.054209, 5);
+      const error = cut.estimate - cut.hopkins;
+      expect(Math.abs(error)).toBeLessThan(0.004);
+      expect(Math.abs(error + 0.0023)).toBeLessThan(0.0002);
+    }
+  });
+  it("pins the bowed-map tangential residual at half cutoff across grid refinement", () => {
+    // The measure/shear bias persists under refinement: a known limitation, not a target.
+    const errors = [128, 256].map((samples) =>
+      [0.05, 0.1, 0.2].map((bow) => {
+        const directionY = (qv: number) => {
+          const v = qv / na;
+          return na * (v + bow * (1 - v * v));
+        };
+        const bundle = latticePupil((qx, qv) => Math.hypot(qx, directionY(qv)) <= na, na, samples);
+        for (const ray of bundle.rays) {
+          const [qx, qv] = ray.trace.terminalDirection;
+          const qy = directionY(qv);
+          ray.weight = 1 - (2 * bow * qv) / na;
+          ray.trace.terminalDirection = [qx, qy, Math.sqrt(1 - qx * qx - qy * qy)];
+        }
+        const out = shearedOtf(bundle, ORIGIN, wavelengthMm, [0.5 * cutoff]);
+        return otfMagnitude(out.tangential)[0] - circularMtf(0.5);
+      }),
+    );
+    for (const gridErrors of errors) {
+      expect(Math.abs(gridErrors[0])).toBeLessThan(0.001);
+      const measured = [0.0005, 0.0019, 0.0071];
+      gridErrors.forEach((error, i) => expect(Math.abs(error - measured[i])).toBeLessThan(0.0003));
+      expect(gridErrors[1]).toBeGreaterThan(gridErrors[0]);
+      expect(gridErrors[2]).toBeGreaterThan(gridErrors[1]);
+    }
+    errors[0].forEach((error, i) => expect(errors[1][i]).toBeGreaterThanOrEqual(error));
+  });
 });

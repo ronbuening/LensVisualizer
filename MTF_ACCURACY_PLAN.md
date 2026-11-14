@@ -186,11 +186,6 @@ S under a day, M one to three days, L longer.
   soft-focus designs and far-off design planes (Pentax F 85mm Soft: a 20 lp/mm focus peak moved 9 mm between 64
   and 256 cells). Candidate: keep a field unconverged while adjacent landings differ by more than half a cycle at
   a judged frequency. Needed before any single-frequency focus option. M.
-- **C10 — Estimator controls beyond sixth order.** An eighth-order control (3r⁸ waves, half cutoff) reads 0.0023
-  low at every grid (five-point Boole; nine points 0.00004). A bowed stop-to-direction map (bow 0.2) reads 0.007
-  high at half cutoff at every grid; real corners bow 0.008 (Sony FE 20mm f/1.8 G) to 0.049 (Sony FE 14mm f/1.8
-  GM), where the same control gives 0.0005 or less. Add both as analytic tests with these bounds; no kernel change
-  on this evidence. S.
 - **C11 — Rim cells are all-or-nothing.** A cell counts when its centre lies in the stop. Area weights with traced
   boundary cells cut an analytic disc's error at 32 cells from 0.0044 to 0.0003; weights on the kept cells alone
   do nothing, and the sheared estimator needs its own treatment. The gain is speed (tolerance at a coarser grid),
