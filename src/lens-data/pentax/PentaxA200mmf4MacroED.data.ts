@@ -207,6 +207,16 @@ const LENS_DATA = {
       "Fixed-rear extension: the first lens group moves toward the object. The data varies surface 13 so that D13 + STO.d equals the patent d13 spacing.",
     // (moved from publishedStations) Every focus keyframe is a source row.
     published: [1, 2],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 2,
+        objectDistanceMm: 302.2,
+        distanceReference: "first-surface",
+        source:
+          "US 4,666,260, Example 1, PDF p. 11 (col. 4): WD = ∞ – 302.2 mm; WD is defined as the distance between the object and the first lens surface. The closest d13=62.58 mm is authored as gap 13=61.58 mm plus STO.d=1.00 mm.",
+      },
+    ],
   },
 
   gaps: { "13": { label: "D13", values: [[6.53, 34.05, 61.58]] } },

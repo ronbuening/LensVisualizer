@@ -55,3 +55,15 @@ Patent: US 6,560,042 B2, Example 3
 
 - `catalog.fNumber.design` set to 1.8: US 6,560,042 B2, PDF p. 13, col. 9, Table 3 (third embodiment) header
   "F_NO = 1:1.8" (with f = 31.80). The stop's `nominalFNumber` 1.8 matches it.
+
+## 2026-11-14 — Published finite-conjugate certification
+
+Patent: US6560042; Column 9, Numerical Example 3, Table 3 header u/m/fB rows and surface 8 final d; unit definition on PDF p. 11, col. 6.
+
+| State | Field | Before | After | Source evidence |
+| --- | --- | --- | --- | --- |
+| Zoom 0, keyframe 1 | `focus.conjugates` | No declaration | `objectDistanceMm: 300`, `distanceReference: "image-plane"` | `u = ∞−0.53−0.30`; PDF p. 13. Printed d8=3.87 mm and fB=41.88 mm equal authored gaps 8=3.87 mm and 16=41.88 mm. |
+
+Reference: audit-resolved. The source names an object distance without defining its endpoint; the conjugate check discriminates the `image-plane` reference.
+
+The paraxial image offset is +0.002929997 mm (+0.652466 diffraction depths); verdict `consistent`, `referenceDiscriminated: true`. The alternative `first-surface` reference gives -1.657295707 mm (-389.350862 depths). All authored prescription, focus-gap and image-plane values are retained.

@@ -215,6 +215,16 @@ const LENS_DATA = {
     // (moved from publishedStations) Patent read 2026-10-06: Close-focus gaps (d8 3.87, BF 41.88) are the US 6,560,042 Table 3 row for m = -0.155, u
     // = 0.30 m; the patent's m = -0.070 row (4.77 / 39.15) is not authored.
     published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 300,
+        distanceReference: "image-plane",
+        source:
+          "US 6,560,042 B2, Numerical Example 3, Table 3, PDF p. 13: u = ∞–0.53–0.30 m, m = 0.000–−0.070–−0.155; closest d8=3.87 mm and fB=41.88 mm. Distance reference identified by the conjugate audit (audit-resolved).",
+      },
+    ],
   },
 
   /* (moved from var) ── Variable air spacings (floating inner focus) ──
