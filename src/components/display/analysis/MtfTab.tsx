@@ -31,6 +31,13 @@ interface MtfTabProps {
   movementActive?: boolean;
 }
 
+interface FocusSearchProps {
+  result: MtfResult;
+  comparison: MtfResult | null;
+  mainLabel: string;
+  t: Theme;
+}
+
 /** Comparison aperture of manufacturer charts. */
 const COMPARISON_F_NUMBER = 8;
 
@@ -258,17 +265,26 @@ export default function MtfTab({
               frequencyField={preferences.frequencyField}
               pixelPitchUm={preferences.pixelPitchUm}
             />
+            {preferences.advanced ? (
+              <FocusSearch
+                result={shown}
+                comparison={comparisonShown}
+                mainLabel={fNumber ? `f/${formatFNumber(fNumber)} (main)` : "Main aperture"}
+                t={t}
+              />
+            ) : null}
             <MtfFieldSummary
               result={shown}
               frequencies={preferences.frequencies}
               t={t}
               diagnostic={diagnostic}
               stale={stale}
-              comparison={comparisonValues}
+              comparison={preferences.advanced ? comparisonShown : comparisonValues}
               comparisonLabel={comparisonLabel}
               mainLabel={fNumber ? `f/${formatFNumber(fNumber)} (main)` : "Main aperture"}
               diffractionLimit={preferences.diffractionLimit && preferences.method === "diffraction"}
               pixelPitchUm={preferences.view === "frequency" ? preferences.pixelPitchUm : null}
+              advanced={preferences.advanced}
             />
           </MtfDataWarning>
         </>
@@ -305,6 +321,71 @@ export default function MtfTab({
           format.
         </p>
       </details>
+    </section>
+  );
+}
+
+/** Numerical focus diagnostics use the geometric search scores for either chart method. */
+function FocusSearch({ result, comparison, mainLabel, t }: FocusSearchProps) {
+  const sources = [{ result, label: mainLabel }, ...(comparison ? [{ result: comparison, label: "f/8" }] : [])];
+  const modes = { auto: "Auto", design: "Design plane", "best-axial": "Best axial focus", held: "Held image plane" };
+  const shift = (mm: number | null | undefined) =>
+    mm == null ? "—" : `${mm >= 0 ? "+" : "−"}${Math.abs(mm).toFixed(4)} mm`;
+  const cell = { padding: "2px 6px", textAlign: "left" as const, fontWeight: "normal" as const };
+  const rows = [
+    ["Requested mode", (focus) => (focus ? modes[focus.requestedMode] : "—")],
+    ["Applied mode", (focus) => (focus ? modes[focus.mode] : "—")],
+    ["Applied shift from authored plane", (focus) => shift(focus?.appliedShiftMm)],
+    ["Best-axial shift from authored plane", (focus) => shift(focus?.bestAxialShiftMm)],
+    ["Design-plane score (mean axial geometric MTF at 10–50 lp/mm)", (focus) => focus?.designScore?.toFixed(4) ?? "—"],
+    ["Best-plane score (mean axial geometric MTF at 10–50 lp/mm)", (focus) => focus?.bestScore?.toFixed(4) ?? "—"],
+    ["Image-plane offset (paraxial focus − authored plane)", (focus) => shift(focus?.imagePlaneOffsetMm)],
+    [
+      "Image-plane consistency",
+      (focus) =>
+        focus?.imagePlaneOffsetMm == null
+          ? "Not assessed"
+          : focus.imagePlaneInconsistent
+            ? "Flagged inconsistent"
+            : "Not flagged inconsistent",
+    ],
+  ] satisfies ReadonlyArray<[string, (focus: MtfResult["focus"]) => string]>;
+  return (
+    <section aria-label="Focus search" style={{ margin: "8px 0", fontSize: 11, color: t.muted }}>
+      <h4 style={{ margin: "0 0 4px", color: t.value, fontSize: 12 }}>Focus search</h4>
+      <div style={{ overflowX: "auto" }}>
+        <table style={{ borderCollapse: "collapse" }}>
+          <caption style={{ textAlign: "left", paddingBottom: 4 }}>
+            These details describe numerical sampling and the focus search, not physical accuracy.
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col" style={cell}>
+                Focus diagnostic
+              </th>
+              {sources.map(({ label }) => (
+                <th key={label} scope="col" style={cell}>
+                  {label}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map(([label, value]) => (
+              <tr key={label}>
+                <th scope="row" style={cell}>
+                  {label}
+                </th>
+                {sources.map((source) => (
+                  <td key={source.label} style={{ ...cell, whiteSpace: "nowrap" }}>
+                    {value(source.result.focus)}
+                  </td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </section>
   );
 }

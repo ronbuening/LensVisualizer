@@ -8,6 +8,8 @@ import {
   mtfNyquistLabel,
   mtfLimitValue,
   mtfValueVisible,
+  mtfFieldStatusLabel,
+  mtfStableThroughLabel,
 } from "./mtfPresentation.js";
 import { textRun } from "../../../../utils/text.js";
 
@@ -21,6 +23,7 @@ interface MtfValueTableProps {
   mainLabel?: string;
   diffractionLimit?: boolean;
   pixelPitchUm?: MtfPixelPitch | null;
+  advanced?: boolean;
 }
 
 const STATUS_TEXT = { converged: "", unconverged: "unconverged", unavailable: "—", pending: "…" } as const;
@@ -35,6 +38,7 @@ export default function MtfValueTable({
   mainLabel = "Main aperture",
   diffractionLimit = false,
   pixelPitchUm = null,
+  advanced = false,
 }: MtfValueTableProps) {
   const showLimit = diffractionLimit && result.method === "diffraction";
   const columns = frequencies.filter((f) => result.frequenciesPerMm.includes(f));
@@ -78,6 +82,41 @@ export default function MtfValueTable({
             <th style={{ ...cell, textAlign: "left" }} scope="col">
               Status
             </th>
+            {advanced ? (
+              <>
+                <th style={cell} scope="col" title="Samples across the pupil diameter on the last usable grid">
+                  Grid size
+                </th>
+                <th
+                  style={cell}
+                  scope="col"
+                  title="Largest MTF change between the last two grids in the convergence band"
+                >
+                  Max ΔMTF
+                </th>
+                <th style={cell} scope="col">
+                  Stable through
+                </th>
+                <th style={cell} scope="col">
+                  Unresolved flux
+                </th>
+                <th style={cell} scope="col">
+                  Unaimed samples
+                </th>
+                <th style={cell} scope="col">
+                  Failed samples
+                </th>
+                <th style={{ ...cell, textAlign: "left" }} scope="col">
+                  Pupil sampling
+                </th>
+                <th style={{ ...cell, textAlign: "left" }} scope="col">
+                  Field notes
+                </th>
+                <th style={{ ...cell, textAlign: "left" }} scope="col">
+                  Field message
+                </th>
+              </>
+            ) : null}
           </tr>
         </thead>
         <tbody>
@@ -127,8 +166,39 @@ export default function MtfValueTable({
                     : null}
                   <td style={cell}>{shown ? field.validRays : ""}</td>
                   <td style={{ ...cell, textAlign: "left", color: t.muted }}>
-                    {field.reason === "outside-modeled-field" ? "outside model" : STATUS_TEXT[field.status]}
+                    {advanced
+                      ? mtfFieldStatusLabel(field)
+                      : field.reason === "outside-modeled-field"
+                        ? "outside model"
+                        : STATUS_TEXT[field.status]}
                   </td>
+                  {advanced ? (
+                    <>
+                      <td style={cell}>{field.gridSize || "—"}</td>
+                      <td style={cell}>{field.maxDelta === null ? "—" : field.maxDelta.toFixed(4)}</td>
+                      <td style={{ ...cell, whiteSpace: "nowrap" }}>{mtfStableThroughLabel(field)}</td>
+                      <td style={cell}>
+                        {field.unknownFluxFraction ? `${(field.unknownFluxFraction * 100).toFixed(2)} %` : ""}
+                      </td>
+                      <td style={cell}>{field.unaimedRays}</td>
+                      <td style={cell}>{field.failedRays}</td>
+                      <td style={{ ...cell, textAlign: "left" }}>
+                        {field.pupilSampling === "stop" ? "" : "Launch plane"}
+                      </td>
+                      <td style={{ ...cell, textAlign: "left", minWidth: field.notes.length ? 200 : undefined }}>
+                        {field.notes.length ? (
+                          <ul style={{ margin: 0, paddingLeft: 14 }}>
+                            {field.notes.map((note, i) => (
+                              <li key={i}>{note}</li>
+                            ))}
+                          </ul>
+                        ) : null}
+                      </td>
+                      <td style={{ ...cell, textAlign: "left", minWidth: field.message ? 160 : undefined }}>
+                        {field.message}
+                      </td>
+                    </>
+                  ) : null}
                 </tr>
               );
             }),

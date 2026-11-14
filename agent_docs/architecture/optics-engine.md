@@ -328,6 +328,16 @@ computed field selected by reference-height percentage and mm; a saved field abs
 to Overview. An optional 3/4/5/6/8 µm pixel pitch marks Nyquist at 500/pitch lp/mm, or labels it at the right edge
 with an arrow beyond the chart range. The caption and accessible table identify it as the sampling limit of a
 pixel grid, not a camera or sensor MTF prediction. These three display choices persist in localStorage.
+The persisted "Advanced" preference defaults to false. It exposes per-field sampling diagnostics in the value table
+(including the comparison's own rows): grid size, `maxDelta`, `convergedThroughLpMm`, nonzero `unknownFluxFraction`
+as a percentage, `unaimedRays`, `failedRays`, non-stop `pupilSampling`, notes and message. Field notes keep the engine's
+method-specific unresolved-flux wording, including the geometric 2ε bound and the diffraction estimate's lack of a
+bound. With Advanced off, the existing deduplicated notes list remains. A "Focus search" block reports each
+aperture's requested and applied mode, applied and best-axial shifts, design and best scores as mean axial geometric
+MTF at 10–50 lp/mm, `imagePlaneOffsetMm` (paraxial focus minus authored plane) and `imagePlaneInconsistent`. Null
+diagnostics are shown as absent, with no consistency assessment when the offset is absent. Its caption identifies
+these as numerical sampling and focus-search details, separate from physical accuracy. Advanced changes presentation
+only and does not enable the independent diagnostic-estimates disclosure or alter withheld-value policy.
 The hook serializes only slider and
 aperture controls plus MTF settings, so chart-only changes retain the same computation key. MTF is worker-driven and
 has no lazy analysis-context accessor or job-table entry. Single-lens and comparison drawers share this renderer.

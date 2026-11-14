@@ -39,6 +39,8 @@ export interface MtfPreferences {
   frequencyField: MtfFrequencyField;
   /** Pixel-grid sampling reference in µm; null hides the marker. */
   pixelPitchUm: MtfPixelPitch | null;
+  /** Show per-field numerical sampling details and the focus search. */
+  advanced: boolean;
 }
 
 export const MTF_PREFERENCES_KEY = "lensvis:mtf:options";
@@ -56,6 +58,7 @@ export const DEFAULT_MTF_PREFERENCES: MtfPreferences = Object.freeze({
   diffractionLimit: false,
   frequencyField: "overview",
   pixelPitchUm: null,
+  advanced: false,
 });
 
 /**
@@ -115,6 +118,7 @@ export function parseMtfPreferences(raw: unknown): MtfPreferences {
     pixelPitchUm: MTF_PIXEL_PITCHES.includes(stored.pixelPitchUm as MtfPixelPitch)
       ? (stored.pixelPitchUm as MtfPixelPitch)
       : null,
+    advanced: typeof stored.advanced === "boolean" ? stored.advanced : defaults.advanced,
   };
 }
 

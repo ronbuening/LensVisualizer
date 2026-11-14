@@ -265,6 +265,17 @@ export default function MtfControls({
             ))}
           </ToggleGroup>
         ) : null}
+        <ToggleGroup label="MTF details" t={t}>
+          <Toggle
+            t={t}
+            active={preferences.advanced}
+            last
+            title="Per-field sampling details and the focus search"
+            onClick={() => onChange({ advanced: !preferences.advanced })}
+          >
+            Advanced
+          </Toggle>
+        </ToggleGroup>
       </div>
     </div>
   );

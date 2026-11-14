@@ -2,6 +2,24 @@
 import type { MtfFrequencyField, MtfPixelPitch } from "../../../../utils/state/mtfPreferences.js";
 import type { MtfFieldResult, MtfResult } from "../../../../types/mtf.js";
 
+/**
+ * Name the numerical status without implying physical accuracy.
+ * @param field - sampled field, including its unavailable reason
+ * @returns status label shared by detailed field readouts
+ */
+export function mtfFieldStatusLabel(field: MtfFieldResult): string {
+  return field.reason === "outside-modeled-field" ? "outside model" : field.status;
+}
+
+/**
+ * Label the frequency band whose sampled grid changes meet the convergence tolerance.
+ * @param field - sampled field with its reported stable band
+ * @returns frequency in lp/mm, or an explicit absent-band label
+ */
+export function mtfStableThroughLabel(field: MtfFieldResult): string {
+  return field.convergedThroughLpMm === null ? "Not established" : `${field.convergedThroughLpMm} lp/mm`;
+}
+
 /** A field's status alone does not establish stability beyond its tested frequency band. */
 export function mtfValueVisible(field: MtfFieldResult, frequency: number, diagnostic = false): boolean {
   if (field.status !== "converged" && field.status !== "unconverged") return false;

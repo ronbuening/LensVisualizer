@@ -63,11 +63,13 @@ function stubWorker({
   target = state,
   error,
   heldFocusShiftMm,
+  resultForJob,
 }: {
   progress?: boolean;
   target?: typeof state;
   error?: (job: MtfJob) => string | null;
   heldFocusShiftMm?: number;
+  resultForJob?: (job: MtfJob) => MtfResult;
 } = {}) {
   const calls = { compute: 0, jobs: [] as MtfJob[] };
   const replies: Array<() => void> = [];
@@ -87,10 +89,12 @@ function stubWorker({
           queueMicrotask(() => send({ type: "error", id: message.id, error: failure }));
           return;
         }
-        const result = memoizedMtf(
-          target,
-          heldFocusShiftMm === undefined ? message.job.options : { ...message.job.options, heldFocusShiftMm },
-        );
+        const result =
+          resultForJob?.(message.job) ??
+          memoizedMtf(
+            target,
+            heldFocusShiftMm === undefined ? message.job.options : { ...message.job.options, heldFocusShiftMm },
+          );
         if (progress) {
           const pending: MtfResult = {
             ...result,
@@ -441,6 +445,279 @@ describe("MTF chart", () => {
       },
     })),
   };
+  // Supplied diagnostics isolate presentation from the engine's numerical decisions.
+  const diagnostics: MtfResult = {
+    ...result,
+    focus: {
+      requestedMode: "auto",
+      mode: "best-axial",
+      appliedShiftMm: 0.125,
+      bestAxialShiftMm: 0.125,
+      designScore: 0.3456,
+      bestScore: 0.7891,
+      imagePlaneOffsetMm: -0.25,
+      imagePlaneInconsistent: true,
+    },
+    fields: result.fields.map((field, i) => ({
+      ...field,
+      imageHeightMm: i * 5,
+      targetImageHeightMm: i * 5,
+      status: (["converged", "unconverged", "unavailable"] as const)[i],
+      reason: i === 2 ? "trace-failed" : null,
+      gridSize: [64, 128, 32][i],
+      maxDelta: [0.0042, 0.0234, null][i],
+      convergedThroughLpMm: [30, 10, null][i],
+      unknownFluxFraction: [0, 0.003, 0.02][i],
+      unaimedRays: i,
+      failedRays: i * 2,
+      pupilSampling: i === 1 ? "launch-plane" : "stop",
+      notes: i === 2 ? [] : ["Shared sampling note.", `Only field ${i}.`],
+      message: `Field ${i} message.`,
+    })),
+  };
+  const advancedHeaders = [
+    "Grid size",
+    "Max ΔMTF",
+    "Stable through",
+    "Unresolved flux",
+    "Unaimed samples",
+    "Failed samples",
+    "Pupil sampling",
+    "Field notes",
+    "Field message",
+  ];
+
+  it("keeps the default table and deduplicated notes unchanged with Advanced off", () => {
+    const props = { result: diagnostics, frequencies: [10, 30] as const, t: mockTheme };
+    const { container, rerender } = render(<MtfFieldSummary {...props} />);
+    const original = container.innerHTML;
+    expect(screen.getAllByText("Shared sampling note.")).toHaveLength(1);
+    expect(
+      within(screen.getByRole("table"))
+        .getAllByRole("columnheader")
+        .map((th) => th.textContent),
+    ).toEqual(["Height (mm)", "10 lp/mm", "30 lp/mm", "Rays", "Status"]);
+    rerender(<MtfFieldSummary {...props} advanced={false} />);
+    expect(container.innerHTML).toBe(original);
+    for (const name of advancedHeaders) expect(screen.queryByRole("columnheader", { name })).toBeNull();
+  });
+
+  it("attaches sampling details, notes and messages to their fields without disclosing withheld values", () => {
+    render(<MtfFieldSummary result={diagnostics} frequencies={[10, 30]} t={mockTheme} advanced />);
+    const table = screen.getByRole("table");
+    expect(table.closest("details")!.open).toBe(true);
+    for (const name of advancedHeaders)
+      expect(within(table).getByRole("columnheader", { name }).getAttribute("scope")).toBe("col");
+    const rows = within(table).getAllByRole("row").slice(1);
+    const cells = rows.map((row) =>
+      within(row)
+        .getAllByRole("cell")
+        .map((cell) => cell.textContent),
+    );
+    expect(cells[0].slice(3)).toEqual([
+      "converged",
+      "64",
+      "0.0042",
+      "30 lp/mm",
+      "",
+      "0",
+      "0",
+      "",
+      "Shared sampling note.Only field 0.",
+      "Field 0 message.",
+    ]);
+    expect(cells[1].slice(3)).toEqual([
+      "unconverged",
+      "128",
+      "0.0234",
+      "10 lp/mm",
+      "0.30 %",
+      "1",
+      "2",
+      "Launch plane",
+      "Shared sampling note.Only field 1.",
+      "Field 1 message.",
+    ]);
+    expect(cells[2].slice(3)).toEqual([
+      "unavailable",
+      "32",
+      "—",
+      "Not established",
+      "2.00 %",
+      "2",
+      "4",
+      "",
+      "",
+      "Field 2 message.",
+    ]);
+    expect(cells[0][0]).not.toBe("—");
+    expect(cells[1].slice(0, 2)).toEqual(["—", "—"]);
+    expect(cells[2].slice(0, 2)).toEqual(["—", "—"]);
+    expect(within(rows[0]).queryByText("Only field 1.")).toBeNull();
+    expect(within(rows[1]).queryByText("Only field 0.")).toBeNull();
+    expect(screen.getAllByText("Shared sampling note.")).toHaveLength(2);
+  });
+
+  it.each(["geometric", "diffraction"] as const)(
+    "uses each aperture's own %s notes and sampling diagnostics",
+    (method) => {
+      const fluxNote =
+        method === "geometric"
+          ? "Unresolved flux 0.3%; MTF error ≤ 2ε."
+          : "Unresolved flux 0.3%; the diffraction estimate does not account for it.";
+      const main = { ...diagnostics, method, fields: diagnostics.fields.map((f) => ({ ...f, notes: [fluxNote] })) };
+      const comparison: MtfResult = {
+        ...main,
+        fields: main.fields.map((field) => ({
+          ...field,
+          gridSize: 256,
+          maxDelta: 0,
+          convergedThroughLpMm: 50,
+          unknownFluxFraction: 0.001,
+          unaimedRays: 5,
+          failedRays: 7,
+          notes: ["Comparison sampling note."],
+          message: "Comparison message.",
+        })),
+      };
+      render(<MtfFieldSummary result={main} comparison={comparison} frequencies={[10]} t={mockTheme} advanced />);
+      const rows = within(screen.getByRole("table"))
+        .getAllByRole("rowheader", { name: "f/8" })
+        .map((th) => th.closest("tr")!);
+      for (const row of rows) {
+        expect(
+          within(row)
+            .getAllByRole("cell")
+            .slice(3)
+            .map((cell) => cell.textContent),
+        ).toEqual([
+          "256",
+          "0.0000",
+          "50 lp/mm",
+          "0.10 %",
+          "5",
+          "7",
+          row === rows[1] ? "Launch plane" : "",
+          "Comparison sampling note.",
+          "Comparison message.",
+        ]);
+        expect(within(row).queryByText(fluxNote)).toBeNull();
+      }
+      expect(screen.getAllByText(fluxNote)).toHaveLength(3);
+      if (method === "diffraction") expect(document.body.textContent).not.toContain("MTF error ≤");
+    },
+  );
+
+  it("persists Advanced without retracing or changing diagnostic disclosure and restores the default render", async () => {
+    const { calls } = stubWorker({ resultForJob: () => diagnostics });
+    const { container, unmount } = render(
+      <MtfTab L={L} t={mockTheme} preparedState={state} currentEPSD={1} currentPhysStopSD={1} />,
+    );
+    await screen.findByRole("figure");
+    const original = container.innerHTML;
+    const computations = calls.compute;
+    const toggle = screen.getByRole("button", { name: "Advanced" });
+    expect(toggle.getAttribute("aria-pressed")).toBe("false");
+    expect(toggle.title).toBe("Per-field sampling details and the focus search");
+    expect(screen.queryByRole("region", { name: "Focus search" })).toBeNull();
+    expect(screen.queryByRole("columnheader", { name: "Grid size" })).toBeNull();
+    fireEvent.click(toggle);
+    expect(toggle.getAttribute("aria-pressed")).toBe("true");
+    expect((screen.getByRole("checkbox", { name: /Show diagnostic estimates/ }) as HTMLInputElement).checked).toBe(
+      false,
+    );
+    const focus = within(screen.getByRole("region", { name: "Focus search" }));
+    const value = (label: string) =>
+      focus.getByRole("rowheader", { name: label }).closest("tr")!.querySelector("td")!.textContent;
+    expect(value("Requested mode")).toBe("Auto");
+    expect(value("Applied mode")).toBe("Best axial focus");
+    expect(value("Applied shift from authored plane")).toBe("+0.1250 mm");
+    expect(value("Best-axial shift from authored plane")).toBe("+0.1250 mm");
+    expect(value("Design-plane score (mean axial geometric MTF at 10–50 lp/mm)")).toBe("0.3456");
+    expect(value("Best-plane score (mean axial geometric MTF at 10–50 lp/mm)")).toBe("0.7891");
+    expect(value("Image-plane offset (paraxial focus − authored plane)")).toBe("−0.2500 mm");
+    expect(value("Image-plane consistency")).toBe("Flagged inconsistent");
+    expect(focus.getByText(/numerical sampling and the focus search, not physical accuracy/)).toBeTruthy();
+    fireEvent.click(toggle);
+    expect(container.innerHTML).toBe(original);
+    fireEvent.click(screen.getByRole("checkbox", { name: /Show diagnostic estimates/ }));
+    fireEvent.click(toggle);
+    expect((screen.getByRole("checkbox", { name: /Show diagnostic estimates/ }) as HTMLInputElement).checked).toBe(
+      true,
+    );
+    expect(calls.compute).toBe(computations);
+    expect(JSON.parse(localStorage.getItem(MTF_PREFERENCES_KEY)!).advanced).toBe(true);
+    unmount();
+    resetMtfPreferencesCache();
+    render(<MtfTab L={L} t={mockTheme} preparedState={state} currentEPSD={1} currentPhysStopSD={1} />);
+    await screen.findByRole("region", { name: "Focus search" });
+    expect(screen.getByRole("button", { name: "Advanced" }).getAttribute("aria-pressed")).toBe("true");
+  });
+
+  it("shows the comparison's own focus and unavailable field diagnostics", async () => {
+    const comparison: MtfResult = {
+      ...diagnostics,
+      focus: {
+        ...diagnostics.focus!,
+        requestedMode: "design",
+        mode: "held",
+        appliedShiftMm: -0.5,
+        bestAxialShiftMm: 0.75,
+        designScore: 0.4567,
+        bestScore: 0.8765,
+        imagePlaneOffsetMm: 0.01,
+        imagePlaneInconsistent: false,
+      },
+      fields: diagnostics.fields.map((field) => ({
+        ...field,
+        status: "unavailable",
+        sagittal: [],
+        tangential: [],
+        gridSize: 16,
+      })),
+    };
+    const f8Stop = stopSemiDiameterForFNumber(8, 0, L);
+    stubWorker({ resultForJob: (job) => (job.options.stopSemiDiameterMm === f8Stop ? comparison : diagnostics) });
+    localStorage.setItem(MTF_PREFERENCES_KEY, JSON.stringify({ advanced: true, compareF8: true }));
+    resetMtfPreferencesCache();
+    render(<MtfTab L={L} t={mockTheme} preparedState={state} currentEPSD={1} currentPhysStopSD={1} fNumber={2.8} />);
+    await screen.findAllByRole("rowheader", { name: /^f\/8, wide-open plane/ });
+    const focus = within(screen.getByRole("region", { name: "Focus search" }));
+    expect(focus.getByRole("columnheader", { name: "f/8" })).toBeTruthy();
+    const values = (label: string) =>
+      within(focus.getByRole("rowheader", { name: label }).closest("tr")!)
+        .getAllByRole("cell")
+        .map((td) => td.textContent);
+    expect(values("Requested mode")).toEqual(["Auto", "Design plane"]);
+    expect(values("Applied mode")).toEqual(["Best axial focus", "Held image plane"]);
+    expect(values("Applied shift from authored plane")).toEqual(["+0.1250 mm", "−0.5000 mm"]);
+    expect(values("Best-axial shift from authored plane")).toEqual(["+0.1250 mm", "+0.7500 mm"]);
+    expect(values("Design-plane score (mean axial geometric MTF at 10–50 lp/mm)")).toEqual(["0.3456", "0.4567"]);
+    expect(values("Best-plane score (mean axial geometric MTF at 10–50 lp/mm)")).toEqual(["0.7891", "0.8765"]);
+    expect(values("Image-plane offset (paraxial focus − authored plane)")).toEqual(["−0.2500 mm", "+0.0100 mm"]);
+    expect(values("Image-plane consistency")).toEqual(["Flagged inconsistent", "Not flagged inconsistent"]);
+    fireEvent.click(screen.getByRole("button", { name: "Compare f/8" }));
+    expect(focus.queryByRole("columnheader", { name: "f/8" })).toBeNull();
+    expect(screen.queryByRole("rowheader", { name: /^f\/8/ })).toBeNull();
+  });
+
+  it("labels absent focus diagnostics without inventing scores or a consistency assessment", async () => {
+    localStorage.setItem(MTF_PREFERENCES_KEY, JSON.stringify({ advanced: true }));
+    resetMtfPreferencesCache();
+    stubWorker({ resultForJob: () => ({ ...diagnostics, focus: null }) });
+    render(<MtfTab L={L} t={mockTheme} preparedState={state} currentEPSD={1} currentPhysStopSD={1} />);
+    const focus = within(await screen.findByRole("region", { name: "Focus search" }));
+    expect(focus.getAllByRole("cell").map((cell) => cell.textContent)).toEqual([
+      "—",
+      "—",
+      "—",
+      "—",
+      "—",
+      "—",
+      "—",
+      "Not assessed",
+    ]);
+  });
   it("leaves default chart and CSV output unchanged when the reference is off", () => {
     const props = { result: withLimit, view: "field" as const, frequencies: [10, 30] as const, t: mockTheme };
     const { container, rerender } = render(<MtfChart {...props} />);

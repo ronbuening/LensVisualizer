@@ -111,6 +111,27 @@ describe("MTF preferences", () => {
     expect(getMtfPreferences()).toMatchObject({ frequencyField: 0, pixelPitchUm: null });
   });
 
+  it("keeps advanced details off for older or corrupt preferences and persists the boolean choice", () => {
+    expect(DEFAULT_MTF_PREFERENCES.advanced).toBe(false);
+    expect(parseMtfPreferences({ method: "geometric-dl", maxGridSize: 128 })).toMatchObject({
+      method: "diffraction",
+      maxGridSize: 256,
+      advanced: false,
+    });
+    for (const advanced of [undefined, null, "true", "false", 0, 1, {}, []])
+      expect(parseMtfPreferences({ advanced }).advanced).toBe(false);
+    expect(parseMtfPreferences({ advanced: true }).advanced).toBe(true);
+    expect(parseMtfPreferences({ advanced: false }).advanced).toBe(false);
+    const store = stubStorage();
+    updateMtfPreferences({ advanced: true });
+    expect(JSON.parse(store.get(MTF_PREFERENCES_KEY)!).advanced).toBe(true);
+    resetMtfPreferencesCache();
+    expect(getMtfPreferences().advanced).toBe(true);
+    updateMtfPreferences({ advanced: false });
+    resetMtfPreferencesCache();
+    expect(getMtfPreferences().advanced).toBe(false);
+  });
+
   it("loads 128 cells saved as the old standard as the new 256-cell default, but keeps 128 chosen since", () => {
     // Before 256 became the standard, every save wrote the old standard 128 whatever the reader chose elsewhere.
     expect(parseMtfPreferences({ maxGridSize: 128, view: "frequency" }).maxGridSize).toBe(256);

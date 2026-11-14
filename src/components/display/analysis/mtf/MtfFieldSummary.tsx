@@ -17,6 +17,7 @@ interface MtfFieldSummaryProps {
   mainLabel?: string;
   diffractionLimit?: boolean;
   pixelPitchUm?: MtfPixelPitch | null;
+  advanced?: boolean;
 }
 
 export default function MtfFieldSummary({
@@ -30,6 +31,7 @@ export default function MtfFieldSummary({
   mainLabel = "Main aperture",
   diffractionLimit = false,
   pixelPitchUm = null,
+  advanced = false,
 }: MtfFieldSummaryProps) {
   const [copyStatus, setCopyStatus] = useState<string | null>(null);
   const copy = async () => {
@@ -51,7 +53,7 @@ export default function MtfFieldSummary({
   ] as const;
   const noted = result.fields.filter((f) => f.notes.length || (f.status === "unavailable" && f.reason));
   return (
-    <details style={{ color: t.muted, fontSize: 11 }}>
+    <details open={advanced || undefined} style={{ color: t.muted, fontSize: 11 }}>
       <summary style={{ cursor: "pointer" }}>
         {parts
           .filter(([n], i) => n > 0 || i < 3)
@@ -69,6 +71,7 @@ export default function MtfFieldSummary({
         mainLabel={mainLabel}
         diffractionLimit={diffractionLimit}
         pixelPitchUm={pixelPitchUm}
+        advanced={advanced}
       />
       <div style={{ display: "flex", alignItems: "center", gap: 8, marginTop: 6 }}>
         <button
@@ -89,7 +92,7 @@ export default function MtfFieldSummary({
         </button>
         <span aria-live="polite">{copyStatus}</span>
       </div>
-      {noted.length ? (
+      {!advanced && noted.length ? (
         <ul style={{ margin: "6px 0 0", paddingLeft: 16 }}>
           {[...new Set(noted.flatMap((f) => (f.status === "unavailable" ? [f.message] : f.notes)))].map((text) => (
             <li key={text}>{text}</li>

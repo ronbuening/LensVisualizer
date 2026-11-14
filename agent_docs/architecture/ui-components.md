@@ -146,6 +146,17 @@ a saved field missing from the result falls back to Overview. Persisted "Pixel p
 marking Nyquist at 500/pitch lp/mm or labelling it with a right-edge arrow beyond the chart range. The caption and
 accessible value-table caption explain that this is the pixel-grid sampling limit, not a camera or sensor MTF
 prediction. These display controls reuse results without tracing.
+The persisted "Advanced" toggle is off by default and opens the field table with each field's grid size, largest
+change between the last two grids, stable-through frequency, nonzero unresolved-flux percentage, unaimed and failed
+sample counts, non-stop pupil-sampling location, notes and message. Comparison rows use their own diagnostics,
+including when no comparison curve is available. With Advanced off, notes stay in the deduplicated list below the
+table. Advanced also shows a compact "Focus search" table for the main aperture and enabled comparison: requested
+and applied modes, applied and best-axial shifts from the authored plane, design- and best-plane scores labelled
+"mean axial geometric MTF at 10–50 lp/mm", the signed paraxial-focus minus authored-plane offset and its consistency
+flag. Its caption separates numerical sampling from physical accuracy. Field notes retain the engine's method-specific
+qualifications: geometric unresolved flux can carry the 2ε error bound; diffraction omitted flux has no such bound.
+Advanced is independent of "Show diagnostic estimates (unconverged or unverified frequencies)" and does not disclose
+withheld values or start another computation.
 `mtf/MtfControls`, `mtf/MtfFieldSummary` and `mtf/MtfValueTable` hold
 the controls, status counts and per-field values; an enabled comparison with values adds aperture-labelled table
 rows and appended f/8 CSV columns, retaining the main columns and their order. Each aperture keeps its own physical
