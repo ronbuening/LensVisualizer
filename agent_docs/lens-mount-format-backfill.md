@@ -7,9 +7,9 @@ the fields unset and add a note here until a source check resolves it.
 
 ## Current Coverage
 
-- Total lens data files: **1128**
-- Files with both `lensMounts` and `imageFormat`: **1081**
-- Files missing `lensMounts`: **38** (25 public lenses and 13 hidden reference fixtures)
+- Total lens data files: **1134**
+- Files with both `lensMounts` and `imageFormat`: **1084**
+- Files missing `lensMounts`: **41** (26 public lenses, 2 hidden patent designs and 13 hidden reference fixtures)
 - Files missing `imageFormat`: **35** (23 public lenses and 12 hidden reference fixtures)
 - Files missing both fields: **26**
 - Formats currently in use: `1-1.7-inch-type`, `1-1.8-inch-type`, `1-2.3-inch-type`, `1-2.55-inch-type`,
@@ -48,12 +48,16 @@ with remaining compatibility questions explained in the lens analysis.
 | Carl Zeiss Jena PI-Flektogon 30mm f/2.8 | The 1975 factory sheet names no fitting. Its archive host ties only a *similar* SO-4 2,8/30 to the Stasi HFK camera, which was screw-mounted but whose thread no source names. |
 | Zeiss S-Biogon 40mm f/5.6 | Microfilm reduction lens installed in the Zeiss Mikrobox recorder. The sources give only an M50 × 0.75 rear thread, an industrial thread with no canonical mount id; do not assign a camera mount from the Biogon family name. |
 | Voigtländer Cine-Tele-Anastigmat 100mm f/4.5 | No manufacturer or period source names this product. Voigtländer’s catalogue Nr. 1709.7.25 and its price list of about 1930 offer only the Tele-Dynar f/6.3 as a telephoto, so no camera fitting can be tied to the research-correlated name. |
+| Sigma H.L. Wide 28mm f/2.8 | Sigma's lens booklet lists its mount options (Canon, Contax, Fujica, Konica, Minolta, Nikon, Olympus, Pentax K, Praktica, Ricoh, Rollei, Yashica) for the whole line, not per model. A per-model mount list is needed before assigning ids. |
 | Voigtländer Tele-Dynar 100mm f/6.3 | The same two lists sell the Tele-Dynar only at 14–32 cm, as cells for the shutters of Voigtländer cameras or in Compur, shutterless and helical mountings. No 100 mm production variant exists to select, and none of those fittings is a canonical mount. |
 
 ### Hidden reference fixtures
 
 `src/lens-data/reference/*.data.ts` are synthetic mirror/folded fixtures and intentionally remain outside public
 catalog mount/format taxonomy unless a separate reference-fixture convention is added.
+
+The hidden Nikon 61mm f/2.88 and Pentax 87.8mm f/2.9 macro patent designs match no production lens, so no camera
+mount applies; each carries the image format its patent implies.
 
 ### Remaining public image-format questions
 
