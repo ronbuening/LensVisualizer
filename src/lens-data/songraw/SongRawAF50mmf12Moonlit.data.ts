@@ -1,12 +1,12 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
-/** CN 224176794 U, sole numerical example; production coefficients are unproven.
+/** CN 224176794 U, Example 1, the sole numerical prescription; production coefficients are unproven.
  * Scale s = 1: source dimensions and asphere coefficients are unscaled.
  * S26 image gap corrected from 14.935 mm to the computed infinity focus,
  * 17.91466693210846 mm. The earlier CN 119148346 A layout explains the printed 14.9 mm.
  * Other radii, gaps, indices and aspheres retain the U tables. Computed EFL is
  * 49.903117 mm against the stated 49 mm. The illustrated, unspecified filter is omitted.
  * Rims are inferred from the patent figures and ray clearance. S3/S4 clear the axial
- * beam; S13/S14 use the largest equal two-decimal rims at gapSagFrac 0.98 and still
+ * beam; S13/S14 use the largest equal two-decimal rims within a 98% gap-sag limit and still
  * clip slightly because of the source geometry. Other rims preserve off-axis vignetting.
  * The stop is derived from f/1.25 at the printed position. Infinity focus only;
  * this model does not reproduce the patent's published MTF charts. */
@@ -20,152 +20,177 @@ const LENS_DATA = {
     {
       "id": 1,
       "name": "L1",
-      "type": "Lens",
+      "type": "Biconvex Positive",
       "nd": 1.81,
       "vd": 40.7,
       "indexReference": "d",
       "label": "Element 1",
-      "glass": "Unmatched original Nd/Vd; approximate dispersion"
+      "role": "Aspheric front element of the fixed first group, cemented to L2",
+      "cemented": "C1",
+      "glass": "Unmatched (nd 1.81 / νd 40.7)"
     },
     {
       "id": 2,
       "name": "L2",
-      "type": "Lens",
+      "type": "Biconcave Negative",
       "nd": 1.49,
       "vd": 70.4,
       "indexReference": "d",
       "label": "Element 2",
-      "glass": "Unmatched original Nd/Vd; approximate dispersion"
+      "role": "Negative rear element of the first cemented pair",
+      "cemented": "C1",
+      "glass": "Unmatched (nd 1.49 / νd 70.4)"
     },
     {
       "id": 3,
       "name": "L3",
-      "type": "Lens",
+      "type": "Biconcave Negative",
       "nd": 1.77,
       "vd": 29.7,
       "indexReference": "d",
       "label": "Element 3",
-      "glass": "Unmatched original Nd/Vd; approximate dispersion"
+      "role": "Negative front element of the second cemented pair",
+      "cemented": "C2",
+      "glass": "Unmatched (nd 1.77 / νd 29.7)"
     },
     {
       "id": 4,
       "name": "L4",
-      "type": "Lens",
+      "type": "Biconvex Positive",
       "nd": 1.59,
       "vd": 68.3,
       "indexReference": "d",
       "label": "Element 4",
-      "glass": "Unmatched original Nd/Vd; approximate dispersion"
+      "role": "Positive rear element of the second cemented pair",
+      "cemented": "C2",
+      "glass": "Unmatched (nd 1.59 / νd 68.3)"
     },
     {
       "id": 5,
       "name": "L5",
-      "type": "Lens",
+      "type": "Biconvex Positive",
       "nd": 2.0,
       "vd": 29.1,
       "indexReference": "d",
       "label": "Element 5",
-      "glass": "Unmatched original Nd/Vd; approximate dispersion"
+      "role": "Positive collector in the fixed first group before the stop",
+      "glass": "Unmatched (nd 2.00 / νd 29.1)"
     },
     {
       "id": 6,
       "name": "L6",
-      "type": "Lens",
+      "type": "Negative Meniscus",
       "nd": 1.65,
       "vd": 33.8,
       "indexReference": "d",
       "label": "Element 6",
-      "glass": "Unmatched original Nd/Vd; approximate dispersion"
+      "role": "Negative rear element of the fixed first group beside the stop",
+      "glass": "Unmatched (nd 1.65 / νd 33.8)"
     },
     {
       "id": 7,
       "name": "L7",
-      "type": "Lens",
+      "type": "Positive Meniscus",
       "nd": 1.88,
       "vd": 40.8,
       "indexReference": "d",
       "label": "Element 7",
-      "glass": "Unmatched original Nd/Vd; approximate dispersion"
+      "role": "Positive front element of the moving focus group G2",
+      "glass": "Unmatched (nd 1.88 / νd 40.8)"
     },
     {
       "id": 8,
       "name": "L8",
-      "type": "Lens",
+      "type": "Biconcave Negative",
       "nd": 1.61,
       "vd": 37.0,
       "indexReference": "d",
       "label": "Element 8",
-      "glass": "Unmatched original Nd/Vd; approximate dispersion"
+      "role": "Negative front element of the cemented pair in focus group G2",
+      "cemented": "C3",
+      "glass": "Unmatched (nd 1.61 / νd 37.0)"
     },
     {
       "id": 9,
       "name": "L9",
-      "type": "Lens",
+      "type": "Biconvex Positive",
       "nd": 1.59,
       "vd": 68.3,
       "indexReference": "d",
       "label": "Element 9",
-      "glass": "Unmatched original Nd/Vd; approximate dispersion"
+      "role": "Positive rear element of the cemented pair in focus group G2",
+      "cemented": "C3",
+      "glass": "Unmatched (nd 1.59 / νd 68.3)"
     },
     {
       "id": 10,
       "name": "L10",
-      "type": "Lens",
+      "type": "Biconcave Negative",
       "nd": 1.77,
       "vd": 29.7,
       "indexReference": "d",
       "label": "Element 10",
-      "glass": "Unmatched original Nd/Vd; approximate dispersion"
+      "role": "Negative front element of the fixed rear group G3, cemented to L11",
+      "cemented": "C4",
+      "glass": "Unmatched (nd 1.77 / νd 29.7)"
     },
     {
       "id": 11,
       "name": "L11",
-      "type": "Lens",
+      "type": "Biconvex Positive",
       "nd": 1.59,
       "vd": 68.3,
       "indexReference": "d",
       "label": "Element 11",
-      "glass": "Unmatched original Nd/Vd; approximate dispersion"
+      "role": "Positive rear element of the fourth cemented pair",
+      "cemented": "C4",
+      "glass": "Unmatched (nd 1.59 / νd 68.3)"
     },
     {
       "id": 12,
       "name": "L12",
-      "type": "Lens",
+      "type": "Biconvex Positive",
       "nd": 1.92,
       "vd": 20.9,
       "indexReference": "d",
       "label": "Element 12",
-      "glass": "Unmatched original Nd/Vd; approximate dispersion"
+      "role": "Positive element between the two cemented pairs in the fixed rear group",
+      "glass": "Unmatched (nd 1.92 / νd 20.9)"
     },
     {
       "id": 13,
       "name": "L13",
-      "type": "Lens",
+      "type": "Positive Meniscus",
       "nd": 1.88,
       "vd": 40.8,
       "indexReference": "d",
       "label": "Element 13",
-      "glass": "Unmatched original Nd/Vd; approximate dispersion"
+      "role": "Positive front element of the fifth cemented pair",
+      "cemented": "C5",
+      "glass": "Unmatched (nd 1.88 / νd 40.8)"
     },
     {
       "id": 14,
       "name": "L14",
-      "type": "Lens",
+      "type": "Negative Meniscus",
       "nd": 1.85,
       "vd": 23.8,
       "indexReference": "d",
       "label": "Element 14",
-      "glass": "Unmatched original Nd/Vd; approximate dispersion"
+      "role": "Negative rear element of the fifth cemented pair",
+      "cemented": "C5",
+      "glass": "Unmatched (nd 1.85 / νd 23.8)"
     },
     {
       "id": 15,
       "name": "L15",
-      "type": "Lens",
+      "type": "Biconcave Negative",
       "nd": 1.81,
       "vd": 40.7,
       "indexReference": "d",
       "label": "Element 15",
-      "glass": "Unmatched original Nd/Vd; approximate dispersion"
+      "role": "Rear element of the fixed group G3, with two aspheric faces",
+      "glass": "Unmatched (nd 1.81 / νd 40.7)"
     }
   ],
   "surfaces": [
@@ -367,9 +392,17 @@ const LENS_DATA = {
   "aperture": {
     "nominalFNumber": 1.25,
     "fStops": [
-      1.25
+      1.25,
+      16
     ]
   },
+  "doublets": [
+    { "text": "C1", "fromSurface": "1", "toSurface": "3" },
+    { "text": "C2", "fromSurface": "4", "toSurface": "6" },
+    { "text": "C3", "fromSurface": "14", "toSurface": "16" },
+    { "text": "C4", "fromSurface": "17", "toSurface": "19" },
+    { "text": "C5", "fromSurface": "22", "toSurface": "24" }
+  ],
   "layout": {
     "yScFill": 0.7
   },
@@ -384,7 +417,7 @@ const LENS_DATA = {
   "checks": {
     "gapSagFrac": 0.98
   },
-  "subtitle": "CN 224176794 U — qualified no-filter computed-focus interpretation",
+  "subtitle": "CN 224176794 U, Example 1 — SongRaw AF 50mm f/1.2 Moonlit construction",
   "catalog": {
     "lensMounts": [
       "sony-fe",
@@ -407,17 +440,17 @@ const LENS_DATA = {
     },
     "specs": [
       "15 ELEMENTS / 10 GROUPS",
-      "3 ASPHERICAL SURFACES",
-      "INFINITY ONLY",
-      "QUALIFIED COMPUTED-FOCUS INTERPRETATION"
+      "2 ASPHERICAL ELEMENTS",
+      "F/1.2",
+      "MINIMUM FOCUS 0.52 m"
     ]
   },
   "source": {
     "patentNumber": "CN 224176794 U",
     "patentYear": 2026,
     "example": {
-      "label": "Sole example",
-      "id": null
+      "label": "Example 1",
+      "id": "1"
     },
     "authors": [
       "Yuwen Chang"
