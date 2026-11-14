@@ -30,6 +30,13 @@ export const MOUNT_DETAILS: Record<LensMountId, MountDetails> = {
     description:
       "Agfa Ambi Silette was the interchangeable-lens branch of the Silette rangefinder family. The camera kept a central shutter in the body and used dedicated Agfa lenses rather than adopting one of the broader German leaf-shutter bayonet standards.\n\nThe system was small: a 35 mm Color-Ambion, 50 mm Color-Solinar, 90 mm Color-Telinear, and later a 130 mm Color-Telinear. The finder supported switchable frame lines for the main focal lengths, and the camera remained closer in spirit to a premium compact rangefinder than to an open-system SLR.\n\nIn this catalog, the Ambi Silette mount keeps Agfa's interchangeable rangefinder lenses separate from fixed-lens Silette cameras and from Agfa Ambiflex SLR lenses, whose mechanical interface and lens set are different.",
   },
+  "agfa-ambiflex": {
+    era: "Agfa Ambiflex (Agfaflex in the United States) 35 mm leaf-shutter SLRs, from about 1960",
+    formatNotes: "35 mm film SLR",
+    summary: "The interchangeable-lens fitting of Agfa's Ambiflex leaf-shutter reflex cameras.",
+    description:
+      "The Ambiflex was Agfa's 35 mm single-lens reflex with a Prontor Reflex leaf shutter behind the lens; it was sold as the Agfaflex in the United States, while a fixed-lens sister model was called the Colorflex. The interchangeable-lens models took a small dedicated set: the 50mm f/2.8 Color-Solinar as standard lens, the 35mm f/3.4 Color-Ambion, the 90mm f/3.4 and 135mm f/4 Color-Telinears, and the 55mm f/2 Color-Solagon on the top model.\n\nThe shutter and exposure control stay in the body, so the lenses carry no shutter of their own. Collector reports say the later Selectaflex bodies used a slightly altered mount for automatic exposure; the catalog keeps those bodies out of this id until a maker source settles compatibility. The Ambiflex lenses are also distinct from Agfa's Ambi Silette rangefinder bayonet.",
+  },
   alpa: {
     era: "Historical Pignons ALPA 35 mm reflex system",
     formatNotes: "35 mm film",
