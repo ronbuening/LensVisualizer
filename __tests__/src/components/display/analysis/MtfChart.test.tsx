@@ -1,5 +1,5 @@
-/** Synthetic chart controls keep presentation changes independent of optical-engine results. */
 // @vitest-environment jsdom
+/** Synthetic chart controls keep presentation changes independent of optical-engine results. */
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import MtfChart from "../../../../../src/components/display/analysis/MtfChart.js";
