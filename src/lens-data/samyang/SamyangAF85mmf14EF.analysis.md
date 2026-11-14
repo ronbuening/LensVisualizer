@@ -1,4 +1,4 @@
-# Samyang AF 85mm f/1.4 EF
+# SAMYANG AF 85mm f/1.4 EF / F
 
 ## Patent Reference and Design Identification
 
@@ -10,13 +10,13 @@
 **Assignee:** Samyang Optics Co., Ltd.
 **Example details:** Tables 4–6, Figure 3
 
-The prescription follows Example 2 at its original scale, including both printed focus states. Its earlier publication is KR20200129711A. The association with the Samyang AF 85mm f/1.4 EF rests on convergent evidence:
+Example 2 is modeled at original scale with both printed focus states. The earlier publication is KR20200129711A. The EF / F association rests on:
 
-1. Samyang's EF specifications and its 2022 catalogue, page 19, describe nine glass elements in seven groups, rear cemented doublets and a hybrid asphere on L8. The construction diagram supports the element shapes and rear-group arrangement; it does not mark the iris.
-2. The marketed 85 mm f/1.4, Canon EF, full-frame lens has a stated 0.9 m minimum focus distance and an f/1.4–16 aperture range. The patent model is close in focal length and aperture, but its printed near-focus distances differ from that marketing value, as explained below.
-3. Example 2 fits the hybrid construction better than the ED-containing Example 3. This is evidence of a design-family association, not proof that the numerical prescription is the exact factory design. The EF product's reported 2018 release also precedes this patent's filing.
+1. Samyang's EF and F specifications describe nine glass elements in seven groups and one hybrid asphere. Their shared construction diagram supports the rear cemented doublets and hybrid layer on L8; it does not mark the iris.
+2. Both full-frame versions have a stated 0.9 m minimum focus distance and an f/1.4–16 aperture range. The patent model is close in focal length and aperture, but its printed near-focus distances differ from that marketing value, as explained below.
+3. Example 2 fits the hybrid construction better than the ED-containing Example 3, supporting a design-family association rather than exact factory identity. The EF product's reported 2018 release and the Nikon F version's 11 April 2019 announcement both precede the patent's filing.
 
-This is distinct from the AF 85mm f/1.4 FE already in the catalog. That model has eleven elements in eight groups and uses Example 3 of WO 2021/085655 A1, with an all-spherical construction. The EF source belongs to the KR family; the FE source belongs to a different WO family. The shared focal-length and aperture labels do not establish prescription identity.
+This is distinct from the AF 85mm f/1.4 FE already in the catalog. That model has eleven elements in eight groups and uses Example 3 of WO 2021/085655 A1, with an all-spherical construction. The EF / F association uses the KR family; the FE source belongs to a different WO family. The shared focal-length and aperture labels do not establish prescription identity.
 
 ## Optical Architecture
 
@@ -28,7 +28,7 @@ The camera-side filter is a physical 2.5 mm plate. The image plane follows D4 af
 
 ## Element-by-Element Analysis
 
-The following glass values are published nd/νd pairs. The Hoya catalog equivalents supply dispersion curves without identifying the production glass supplier. Individual-element focal lengths are not specified. Element shapes and qualitative power roles are inferred from the curvatures, rather than presented as separate patent claims.
+The following glass values are published nd/νd pairs. Hoya catalog equivalents supply spectral proxies at the printed indices; production glasses and suppliers remain unconfirmed. Individual-element focal lengths are not specified. Shapes and qualitative power roles are inferred from the curvatures, rather than presented as separate patent claims.
 
 ### L1 — Positive meniscus, convex to object
 
@@ -86,19 +86,19 @@ Surfaces 19–20 represent the published filter. Its thickness and the physical 
 
 ## Glass Identification and Selection
 
-| Location | nd | νd | Identification |
+| Location | nd | νd | Catalog spectral proxy |
 | --- | ---: | ---: | --- |
-| L1, L4, L8 | 1.7725 | 49.62 | TAF1 (Hoya) equivalent |
-| L2 | 1.7433 | 49.22 | NBF1 (Hoya) equivalent |
-| L3 | 1.72825 | 28.32 | E-FD10 (Hoya) equivalent |
-| L5 | 1.8061 | 33.27 | NBFD15 (Hoya) equivalent |
-| L6 | 1.54814 | 45.82 | E-FEL1 (Hoya) equivalent |
-| L7 | 1.7859 | 43.93 | NBFD11 (Hoya) equivalent |
+| L1, L4, L8 | 1.7725 | 49.62 | TAF1 (Hoya) |
+| L2 | 1.7433 | 49.22 | NBF1 (Hoya) |
+| L3 | 1.72825 | 28.32 | E-FD10 (Hoya) |
+| L5 | 1.8061 | 33.27 | NBFD15 (Hoya) |
+| L6 | 1.54814 | 45.82 | E-FEL1 (Hoya) |
+| L7 | 1.7859 | 43.93 | NBFD11 (Hoya) |
 | Hybrid layer | 1.517 | 52 | Unmatched resin |
-| L9 | 1.64769 | 33.84 | E-FD2 (Hoya) equivalent |
-| Rear filter | 1.5168 | 64.2 | BSC7 (Hoya) equivalent |
+| L9 | 1.64769 | 33.84 | E-FD2 (Hoya) |
+| Rear filter | 1.5168 | 64.2 | BSC7 (Hoya) |
 
-The palette combines positive and negative elements with differing indices and dispersions. The catalog rows match the printed nd values; their Abbe numbers match except for TAF1's 49.63 versus the printed 49.62. These curves do not establish historical suppliers or prove apochromatic correction. The resin retains an approximate dispersion model. The maker publishes one hybrid asphere and no ED positions for the EF lens, so no element is tagged for anomalous partial dispersion. Printed indices remain unchanged; the catalog curves do not reconcile the source's focal-length and back-focus discrepancies.
+The nine lens glasses and rear filter use Hoya spectral proxies at the printed indices within the site's proxy tolerance (|Δnd| ≤ 0.003, |Δνd| ≤ 0.25). Production glasses and suppliers remain unconfirmed. The unmatched resin retains Abbe-based dispersion: E-CF6 and J-KF6 meet that window but do not establish its dispersion. These curves do not prove apochromatic correction or reconcile the source's focal-length and back-focus discrepancies. Neither mount's specifications identify ED positions; no element is tagged for anomalous partial dispersion.
 
 ## Focus Mechanism
 
@@ -147,6 +147,7 @@ Axial rays pass at both states. The calculated axial RMS radius is 0.0029263 mm 
 ## Sources
 
 - [KR 10-2213072 B1](https://patents.google.com/patent/KR102213072B1/ko), Example 2, Tables 4–6 and 10, Figure 3, asphere equation and front-page bibliography; earlier publication KR20200129711A.
-- [Samyang AF 85mm F1.4 EF specifications](https://www.lksamyang.com/ko/product/product-view.php?seq=379), [manufacturer construction diagram](https://www.lksamyang.com/upload/editor/1559813077), and Samyang's 2022 catalogue, page 19. These support the construction association, not exact numerical identity.
+- [Samyang AF 85mm F1.4 EF specifications](https://www.lksamyang.com/ko/product/product-view.php?seq=379), [AF 85mm F1.4 F specifications](https://www.lksamyang.com/en/product/product-view.php?seq=422&title=), and their [shared construction diagram](https://www.lksamyang.com/upload/editor/1559813077); Samyang's 2022 catalogue, page 19, also documents the EF construction. These support the association, not exact numerical identity.
+- [Samyang's Nikon F announcement, 11 April 2019](https://www.lksamyang.com/ko/about/notice-view.php?seq=650).
 - [WO 2021/085655 A1](https://patents.google.com/patent/WO2021085655A1/en), the separate patent source for the catalog's AF 85mm f/1.4 FE model.
 - [Samyang AF 85mm F1.4 FE specifications](https://www.lksamyang.com/ko/product/product-view.php?seq=417), for the different eleven-element/eight-group construction.

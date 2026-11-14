@@ -92,3 +92,23 @@ No source-supported iris relocation or radius change is recommended: Figure 4 do
 The front page (PDF page 3) identifies inventor Fred E. Altman, assignor to Eastman Kodak Company, US 2,279,384, filed January 9, 1941 and patented April 14, 1942. No sandbox command or edit was refused during this pass. Broader tests, build, generators, server operations and git mutations were not run.
 
 The three-file Prettier write/check commands completed successfully, but the repository's ignore file excludes `src/lens-data/` and all Markdown, so they made no formatting changes. The scoped whitespace diff check passes.
+
+## 2026-11-14 — Glass labels, name and mount metadata
+
+The current element labels were checked with `glasscheck.mjs` against the site's glass catalog: three elements resolve to compatible spectral proxies and two remain intentionally unmatched. Differences below are catalog minus printed patent coordinates, using evaluated d-line index and Abbe number; they are not changes to the stored prescription.
+
+| Element | Old label → current label | Δnd | Δνd | Resolved row |
+| --- | --- | ---: | ---: | --- |
+| L1 | `Unmatched (nD 1.611 / V 57.2)` → unchanged | — | — | None |
+| L2 | `Unmatched (nD 1.573 / V 57.5)` → `BAK1 (SUMITA spectral proxy for the patent's nD 1.573 / V 57.5; Kodak melt unconfirmed)` | −0.00050 | −0.01 | BAK1 (Sumita) |
+| L3 | `Unmatched (nD 1.605 / V 38.2)` → `F5 (SCHOTT spectral proxy for the patent's nD 1.605 / V 38.2; Kodak melt unconfirmed)` | −0.00158 | −0.17 | F5 (Schott) |
+| L4 | `Unmatched (nD 1.605 / V 38.2)` → `F5 (SCHOTT spectral proxy for the patent's nD 1.605 / V 38.2; Kodak melt unconfirmed)` | −0.00158 | −0.17 | F5 (Schott) |
+| L5 | `Unmatched (nD 1.744 / V 45.7)` → unchanged | — | — | None |
+
+The site's proxy tolerance is |Δnd| ≤ 0.003 and |Δνd| ≤ 0.25. L1's nearest P-SK60 (Schott), 1.61035/57.90, differs by approximately −0.00065/+0.70. L5's LAF2 (Hoya), 1.74400/44.90, differs by approximately +0.00000/−0.80; H-LaF3B has the same 44.90 Abbe limitation. No catalog or vendor row lies inside both limits for either element, so both retain the Abbe fallback and their labels and coordinates are unchanged (stored Δnd = Δνd = 0). L5's coordinates are consistent with a Kodak lanthanum-glass class, without establishing a particular melt or measured composition. The earlier all-unmatched decision is superseded for L2–L4: BAK1's catalog row lists nd = 1.5725, while its evaluated curve gives about 1.572498; the current spectral proxy uses the printed patent index of 1.573, without substituting the catalog index.
+
+Sources: [US 2,279,384, Example 10](https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/2279384) supplies the retained nD/Nu pairs; the current `src/optics/glassCatalog.ts` catalog and `glasscheck.mjs`/`trylabel.mjs` results supply the row identities and differences. The batch's `TEXT_ADDENDUM_1125.md`, medalist row, identifies the BAK1/F5 proxies and the unmatched L1/L5 constraints. The analysis's element descriptions and glass section now distinguish these dispersion stand-ins at the printed indices from historical supplier identifications. Exact production glasses remain unconfirmed; the sodium-D/helium-d approximation and L2's drawing/specification discrepancy remain disclosed.
+
+No name or mount change was assigned: `KODAK EKTAR 100mm f/3.5 (Kodak Medalist)` and `["fixed-lens-camera"]` are retained. The data file, optical dimensions, rims and stop were not edited; the preceding semi-diameter record remains intact.
+
+Before/after engine summaries agree: EFL 101.24532297117585 mm, FOPEN 3.5, half-field 26°, stop radius 11.766110125076459 mm, BFD 84.173575804 mm and total track 113.003575804 mm; both focus keyframes remain identical infinity states. The surface audit reports OK with no errors. An exhaustive catalog search finds zero rows inside both proxy limits for L1 or L5. The analysis is no longer than before, and the existing audit history is unchanged. The required screenshot helper emitted macOS power-notification and DNS-watch errors and produced no image; rendered-page inspection remains incomplete. No command or edit was explicitly refused by the sandbox, and the failed screenshot was not retried.

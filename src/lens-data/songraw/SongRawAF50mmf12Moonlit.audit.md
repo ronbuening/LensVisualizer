@@ -132,3 +132,33 @@ Rendered review: the prescribed sketch was also copied into scratch with explici
 The supplied PetaPixel/SongRaw artwork was viewed: 15 elements, ten groups, five cemented pairs and the ordered shapes agree; aspheric elements are L1 and L15. It gives proportions only, omits an explicit iris and does not identify ED/APD positions. Its G2 separation differs from the U infinity drawing; it is not a ruler for rim values. The patent front page was re-read: inventor 昌宇文 (Yuwen Chang), applicant 深圳市松若摄影设备有限公司 (Shenzhen Songruo Photography Equipment Co., Ltd.), CN 224176794 U, published April 28, 2026; filed June 11, 2025, priority 202411609438.X dated November 12, 2024. No new name or bibliographic metadata problem was found. The existing 49 mm/computed EFL difference, unspecified FIT and corrected final image gap remain outside this pass. No iris/stop change is recommended or applied: retain the printed stop position and design f/1.25 derivation, with the source-geometry f/1.28 limitation disclosed. No sandbox refusal occurred.
 
 Final scope check against the committed SD baseline finds exactly four new surface fields, all rimExtensionSd, with every existing surface value and every non-surface data field identical. The scoped whitespace check passes. Prettier write/check was invoked only for these three files; the repository ignores Markdown and src/lens-data, so it made no formatting edits and does not certify their formatting. No full application, build, metadata-generation or state-changing git command ran.
+
+## 2026-11-14 — Glass labels, name and mount metadata
+
+Glasscheck on the current data file resolves 14 of 15 elements to compatible catalog rows; L14 is unresolved by design. The following records the coordinator's existing label changes from the preceding cleanup, not additional data edits. For each proxy below, the complete new label is `ROW (VENDOR spectral proxy; matches the patent's nd N / νd V at its printed precision; supplier unconfirmed)`, with ROW/VENDOR from the new-label column and N/V from the old label. Each listed row is also the row returned by glasscheck. Δnd/Δνd are catalog minus printed values, using glasscheck's five-decimal index and two-decimal Abbe output; the stored patent values are unchanged.
+
+| Element | Old label → new label (row / vendor) | Δnd | Δνd |
+|---|---|---:|---:|
+| L1 | Unmatched (nd 1.81 / νd 40.7) → L-LAH84 / OHARA spectral proxy | −0.00165 | −0.15 |
+| L2 | Unmatched (nd 1.49 / νd 70.4) → H-QK3L / CDGM spectral proxy | −0.00251 | +0.04 |
+| L3 | Unmatched (nd 1.77 / νd 29.7) → NBFD29 / HOYA spectral proxy | +0.00047 | +0.04 |
+| L4 | Unmatched (nd 1.59 / νd 68.3) → H-ZPK5 / CDGM spectral proxy | +0.00280 | +0.04 |
+| L5 | Unmatched (nd 2.00 / νd 29.1) → TAFD55 / HOYA spectral proxy | +0.00100 | +0.03 |
+| L6 | Unmatched (nd 1.65 / νd 33.8) → H-ZF1 / CDGM spectral proxy | −0.00231 | +0.04 |
+| L7 | Unmatched (nd 1.88 / νd 40.8) → S-LAH58 / OHARA spectral proxy | +0.00300 | −0.03 |
+| L8 | Unmatched (nd 1.61 / νd 37.0) → S-TIM3 / OHARA spectral proxy | +0.00293 | +0.01 |
+| L9 | Unmatched (nd 1.59 / νd 68.3) → H-ZPK5 / CDGM spectral proxy | +0.00280 | +0.04 |
+| L10 | Unmatched (nd 1.77 / νd 29.7) → NBFD29 / HOYA spectral proxy | +0.00047 | +0.04 |
+| L11 | Unmatched (nd 1.59 / νd 68.3) → H-ZPK5 / CDGM spectral proxy | +0.00280 | +0.04 |
+| L12 | Unmatched (nd 1.92 / νd 20.9) → E-FDS1 / HOYA spectral proxy | +0.00286 | −0.02 |
+| L13 | Unmatched (nd 1.88 / νd 40.8) → S-LAH58 / OHARA spectral proxy | +0.00300 | −0.03 |
+| L14 | Unmatched (nd 1.85 / νd 23.8) → unchanged | — | — |
+| L15 | Unmatched (nd 1.81 / νd 40.7) → L-LAH84 / OHARA spectral proxy | −0.00165 | −0.15 |
+
+All proxies satisfy the site's proxy tolerance: |Δnd| ≤ 0.003 with the row matching the printed index digits, and |Δνd| ≤ 0.25. They supply catalog dispersion anchored at the printed index, not evidence of a supplier or production melt. Exact production glasses remain unconfirmed. L14 has no row inside the window: the S-TIH53 / FDS90 class has nd 1.84666 (Δnd −0.00334), outside the index limit despite its close Abbe number. Catalog metadata gives S-TIH53 νd 23.7779 (Δνd −0.0221) and FDS90 νd 23.78 (Δνd −0.02); trylabel rejects both at 1.85 / 23.8. L14 therefore retains the Abbe fallback.
+
+Sources: CN 224176794 U Table 1 supplies the printed pairs; the site's `src/optics/glassCatalog.ts` catalog, read through `glasscheck.mjs`, supplies the compatible rows and differences. `src/optics/chromatic/glassCatalogEntries/ohara.ts` records S-TIH53 from the OHARA 2017-11-30 AGF; `hoya.ts` records FDS90 from HOYA20260707_include_obsolete.agf. The TEXT_ADDENDUM_1125.md songraw50 assignment supplies the scope. No name or mount change is assigned; the existing name and Sony FE / Nikon Z metadata remain unchanged. No APD inference is added.
+
+Analysis changes replace the blanket unknown/Unmatched claims with the proxy table, explain the L14 exception and qualify spectral conclusions. The earlier semi-diameter section and all historical audit decisions remain intact. The data file is untouched; its SHA-256 remains 3106fd6bf7ba54f452f35f61154cd500d45123e3282a889f541da756912033af.
+
+Before/after built and probe outputs are identical: EFL 49.90311745758611 mm, FOPEN 1.25, authored half-field 23.790486344830388°, tracing half-field 24.744000265746717°, stop radius 21.985254253541743 mm and infinity image gap 17.91466693210846 mm; both focus-key outputs retain BFD 17.9147 mm at the probe's displayed precision. The scoped surface audit reports “OK — no validation errors”; the scoped whitespace check passes. The screenshot helper was attempted once, emitted thermal/power and DNS diagnostics, and produced no PNG, leaving rendered review open. No full application, typecheck, lint, build or generation command ran. No sandbox refusal occurred.

@@ -30,19 +30,19 @@ The radii are [+30.7, −44.6, +727.1, −71.3, +29.9, −751.7, +40.5, −56.7]
 
 L1 — Biconvex Positive: nD = 1.611, V = 57.2. Glass: Unmatched (nD 1.611 / V 57.2).
 
-L2 — Biconcave Negative: nD = 1.573, V = 57.5. Glass: Unmatched (nD 1.573 / V 57.5).
+L2 — Biconcave Negative: nD = 1.573, V = 57.5. Glass: BAK1 (Sumita spectral proxy; Kodak melt unconfirmed).
 
 The two elements share the −44.6 mm interface and form cemented pair C1, followed by the air gap to the central singlet. Their similar Abbe numbers do not establish a named glass pair or measured chromatic performance.
 
 ### L3 — Biconcave Negative, central singlet
 
-nD = 1.605, V = 38.2. Glass: Unmatched (nD 1.605 / V 38.2).
+nD = 1.605, V = 38.2. Glass: F5 (Schott spectral proxy; Kodak melt unconfirmed).
 
 L3 lies between the two cemented groups. Its −71.3 mm and +29.9 mm surfaces define the central negative element. The larger air gap behind it contains the inferred iris. Its separate numerical aberration contribution is not established.
 
 ### L4 + L5 — Rear cemented doublet
 
-L4 — Biconcave Negative: nD = 1.605, V = 38.2. Glass: Unmatched (nD 1.605 / V 38.2).
+L4 — Biconcave Negative: nD = 1.605, V = 38.2. Glass: F5 (Schott spectral proxy; Kodak melt unconfirmed).
 
 L5 — Biconvex Positive: nD = 1.744, V = 45.7. Glass: Unmatched (nD 1.744 / V 45.7).
 
@@ -50,9 +50,9 @@ The pair shares the +40.5 mm interface and forms cemented pair C2 before the ima
 
 ## Glass Identification and Selection
 
-The patent explicitly gives sodium D-line indices and Nu values, written here as nD and V. The Nu values are treated as conventional Abbe numbers. The model uses the helium d line as an approximation to historical D, consistent with the Example 6 model from the same patent. The reference-line distinction does not resolve the focal-length residual and does not establish historical glass identity.
+The patent's sodium D-line indices and Nu values are approximated as helium d-line indices and conventional Abbe numbers, following Example 6. This leaves the focal-length residual unresolved. L2 uses BAK1 (Sumita); L3/L4 use F5 (Schott) as spectral proxies within the site's proxy tolerance. Catalog curves supply dispersion at the printed indices, without identifying suppliers or exact production glasses, which remain unconfirmed.
 
-No catalog row matches both printed coordinates at the required precision, so all five glass labels remain Unmatched. No historical supplier, melt identity, measured full spectral curve or manufacturing tolerance is established. The drawing prints L2's Abbe number as 57.4, whereas the specification prints 57.5; the model retains the specification value.
+L1 and L5 remain Unmatched: no catalog or vendor row meets the site's proxy tolerance. P-SK60 (V = 57.90) and LAF2 (44.90) miss L1's 57.2 and L5's 45.7. L5's coordinates suggest Kodak lanthanum glass; the melt remains unconfirmed. L2 retains the specification's V = 57.5 rather than the drawing's 57.4.
 
 ## Focus Mechanism
 

@@ -26,7 +26,7 @@ The cemented assemblies are L3/L4, L5/L6, L7/L8, L9/L10/L11, L12/L13, L14/L15 an
 
 ## Element-by-Element Analysis
 
-The following shapes and power signs follow the patent's element descriptions (¶0035–¶0052). All glass identities are unmatched: the source supplies only rounded d-line indices and Abbe numbers. Individual element focal lengths are not tabulated and are not assigned here. The patent attributes correction to the cemented assemblies collectively, rather than supplying a separate aberration budget for each element (¶0058).
+The shapes and power signs follow the patent's element descriptions (¶0035–¶0052). Glass names below are spectral proxies, not supplier identifications. Individual element focal lengths are not tabulated. The patent attributes correction to the cemented assemblies collectively, without separate element aberration budgets (¶0058).
 
 ### L1 — Positive Meniscus
 
@@ -36,80 +36,80 @@ L1 begins fixed positive G1 with a convex object face and concave image face.
 
 ### L2 — Positive Meniscus
 
-nd = 1.59, νd = 68.3. Glass: unmatched; supplier unknown.
+nd = 1.59, νd = 68.3. Glass: H-ZPK5 (CDGM spectral proxy).
 
 L2 is the second positive meniscus in G1. Its higher Abbe number distinguishes it from the more dispersive L1.
 
 ### L3/L4 — Cemented Meniscus Doublet
 
-L3: nd = 1.59, νd = 68.3. Glass: unmatched; supplier unknown. L4: nd = 1.85, νd = 25.2. Glass: unmatched; supplier unknown.
+L3: nd = 1.59, νd = 68.3. Glass: H-ZPK5 (CDGM spectral proxy). L4: nd = 1.85, νd = 25.2. Glass: unmatched; supplier unknown.
 
 Positive L3 and negative L4 share a positively curved cemented interface. Their contrasting Abbe numbers support the patent's stated use of cemented positive/negative pairs for chromatic correction.
 
 ### L5/L6 — Cemented Doublet
 
-L5: nd = 1.59, νd = 68.3. Glass: unmatched; supplier unknown. L6: nd = 2.00, νd = 25.5. Glass: unmatched; supplier unknown.
+L5: nd = 1.59, νd = 68.3. Glass: H-ZPK5 (CDGM spectral proxy). L6: nd = 2.00, νd = 25.5. Glass: TAFD40 (HOYA spectral proxy).
 
 Biconvex positive L5 and biconcave negative L6 complete G1. The rear face of the assembly is weakly concave.
 
 ### L7/L8 — Moving Cemented Focus Doublet
 
-L7: nd = 1.92, νd = 20.9. Glass: unmatched; supplier unknown. L8: nd = 1.70, νd = 55.5. Glass: unmatched; supplier unknown.
+L7: nd = 1.92, νd = 20.9. Glass: E-FDS1 (HOYA spectral proxy). L8: nd = 1.70, νd = 55.5. Glass: unmatched; supplier unknown.
 
 Positive meniscus L7 is cemented to biconcave negative L8. Together they form negative G2, the only group that moves during focusing.
 
 ### L9/L10/L11 — Cemented Triplet
 
-L9: nd = 1.59, νd = 68.3. Glass: unmatched; supplier unknown. L10: nd = 1.77, νd = 29.7. Glass: unmatched; supplier unknown. L11: nd = 1.73, νd = 54.7. Glass: unmatched; supplier unknown.
+L9: nd = 1.59, νd = 68.3. Glass: H-ZPK5 (CDGM spectral proxy). L10: nd = 1.77, νd = 29.7. Glass: NBFD29 (HOYA spectral proxy). L11: nd = 1.73, νd = 54.7. Glass: S-LAL18 (OHARA spectral proxy).
 
 The triplet begins G3 behind the iris. Biconcave negative L10 lies between positive L9 and L11, combining contrasting dispersions within a single cemented assembly.
 
 ### L12/L13 — Cemented Doublet
 
-L12: nd = 1.73, νd = 54.7. Glass: unmatched; supplier unknown. L13: nd = 1.77, νd = 29.7. Glass: unmatched; supplier unknown.
+L12: nd = 1.73, νd = 54.7. Glass: S-LAL18 (OHARA spectral proxy). L13: nd = 1.77, νd = 29.7. Glass: NBFD29 (HOYA spectral proxy).
 
 Positive L12 and negative L13 continue the rear group's sequence of cemented positive/negative assemblies.
 
 ### L14/L15 — Cemented Doublet
 
-L14: nd = 2.00, νd = 29.1. Glass: unmatched; supplier unknown. L15: nd = 1.62, νd = 36.3. Glass: unmatched; supplier unknown.
+L14: nd = 2.00, νd = 29.1. Glass: TAFD55 (HOYA spectral proxy). L15: nd = 1.62, νd = 36.3. Glass: E-F2 (HOYA spectral proxy).
 
 Positive L14 and negative L15 form the next rear doublet. Their Abbe-number difference is smaller than that of L12/L13; no independent quantitative correction contribution is assigned to this pair.
 
 ### L16/L17 — Cemented Doublet
 
-L16: nd = 2.00, νd = 25.5. Glass: unmatched; supplier unknown. L17: nd = 1.49, νd = 70.4. Glass: unmatched; supplier unknown.
+L16: nd = 2.00, νd = 25.5. Glass: TAFD40 (HOYA spectral proxy). L17: nd = 1.49, νd = 70.4. Glass: H-QK3L (CDGM spectral proxy).
 
 Positive L16 and negative L17 form the final cemented pair, ahead of the separate aspherical element.
 
 ### L18 — Negative Meniscus, Two-Sided Asphere
 
-nd = 1.81, νd = 40.7. Glass: unmatched; supplier unknown.
+nd = 1.81, νd = 40.7. Glass: L-LAH84 (OHARA spectral proxy).
 
 L18 ends G3. Its surfaces S28 and S29 are the only aspherical surfaces in the prescription. The patent does not isolate their individual contributions to the final aberration balance.
 
 ## Glass Identification and Selection
 
-The patent's d-line indices and Abbe numbers are retained at their printed precision: two and one decimal places respectively. No factory melt or catalog glass is identified. Dispersion calculated from nd/νd is approximate and does not establish anomalous partial dispersion or apochromatic correction.
+The printed nd/νd precision is retained: two/one decimal places. Fifteen elements use catalog spectral proxies within the site's proxy tolerance (|Δnd| ≤ 0.003, matching the printed digits; |Δνd| ≤ 0.25). Their curves supply C/F/g dispersion anchored at the printed index; exact production glasses and suppliers remain unconfirmed.
 
-| Elements | nd | νd | Source-supported distinction |
+| Elements | nd | νd | Spectral proxy (catalog vendor) |
 | --- | ---: | ---: | --- |
-| L1 | 1.85 | 23.8 | Higher-dispersion front element |
-| L2, L3, L5, L9 | 1.59 | 68.3 | Shared lower-dispersion material |
-| L4 | 1.85 | 25.2 | Negative member of L3/L4 |
-| L6, L16 | 2.00 | 25.5 | High-index, higher-dispersion material |
-| L14 | 2.00 | 29.1 | Positive member of L14/L15 |
-| L7 | 1.92 | 20.9 | Positive member of moving G2 |
-| L8 | 1.70 | 55.5 | Negative member of moving G2 |
-| L10, L13 | 1.77 | 29.7 | Negative rear elements |
-| L11, L12 | 1.73 | 54.7 | Positive rear elements |
-| L15 | 1.62 | 36.3 | Negative member of L14/L15 |
-| L17 | 1.49 | 70.4 | Lower-dispersion negative rear element |
-| L18 | 1.81 | 40.7 | Final aspherical element |
+| L1 | 1.85 | 23.8 | Unmatched |
+| L2, L3, L5, L9 | 1.59 | 68.3 | H-ZPK5 (CDGM) |
+| L4 | 1.85 | 25.2 | Unmatched |
+| L6, L16 | 2.00 | 25.5 | TAFD40 (HOYA) |
+| L14 | 2.00 | 29.1 | TAFD55 (HOYA) |
+| L7 | 1.92 | 20.9 | E-FDS1 (HOYA) |
+| L8 | 1.70 | 55.5 | Unmatched |
+| L10, L13 | 1.77 | 29.7 | NBFD29 (HOYA) |
+| L11, L12 | 1.73 | 54.7 | S-LAL18 (OHARA) |
+| L15 | 1.62 | 36.3 | E-F2 (HOYA) |
+| L17 | 1.49 | 70.4 | H-QK3L (CDGM) |
+| L18 | 1.81 | 40.7 | L-LAH84 (OHARA) |
 
-The patent explicitly assigns the same material to L2, L3, L5 and L9 (¶0007). It attributes axial chromatic, spherical and distortion correction to the contrasting dispersions in the seven cemented assemblies (¶0058). These are source descriptions of the design strategy, not measured performance or proof of a particular retail glass allocation.
+L1, L4 and L8 remain unmatched with Abbe-based dispersion: no catalog row meets the tolerance. The S-TIH53/FDS90 class (nd 1.84666), NBFD25 (1.85451) and LaK14 class (1.6968), respectively, fall outside the index window.
 
-The maker's exploded diagram marks L2, L3, L5, L9 and L17 as ED. Their patent values are consistent with low-dispersion glasses, so those five positions carry inferred ED tags. The tags express the product-to-patent association; they do not establish a catalog row or a measured partial-dispersion value.
+The patent assigns one material to L2/L3/L5/L9 (¶0007) and attributes axial chromatic, spherical and distortion correction to the seven cemented assemblies (¶0058). The maker's diagram marks L2/L3/L5/L9/L17 as ED, consistent with their low-dispersion values and proxies. Their ED tags remain inferred; neither tags nor proxies establish production partial dispersion or apochromatic performance.
 
 ## Focus Mechanism and Image Plane
 

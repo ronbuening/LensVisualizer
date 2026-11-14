@@ -91,3 +91,27 @@ Matched-scale model/figure comparisons were rendered and viewed at both focus en
 The stored maker EF image was viewed: nine glass elements / seven groups, front-to-rear taper, L6–L7 and L8–L9 cemented pairs and the highlighted L8 hybrid asphere agree. The low-resolution artwork is only a proportion check; its front section is slightly taller relative to the rear groups. It marks no ED positions and no iris. The different FE design is not the dimensional reference. The patent front page confirms inventors 류재명 / 이해진 / 이정두 (Jae Myung Ryu / Hae Jin Lee / Jeong Du Lee), Samyang Optics Co., Ltd., KR 10-2213072 B1, filing 2019-05-09, registration 2021-02-01 and publication 2021-02-08. No new naming or bibliographic mismatch was found.
 
 Open limits retained: production prescription and dimensions, supplier/resin identity, intermediate focus cam, source summary discrepancies, near f-number, variable plate-gap representation and D5's meaning. No stop relocation is justified. No sandbox refusal occurred in this semi-diameter pass.
+
+## 2026-11-14 — Glass labels, name and mount metadata
+
+Glasscheck resolves ten of eleven modeled material entries: all nine lens glasses and the published rear filter use compatible HOYA catalog rows; the separate hybrid resin remains unresolved by design with Abbe-based dispersion. Glass labels were already present and remain unchanged. Each old → new label and resolved row is listed below. Deltas are catalog minus printed values, using the catalog Sellmeier index at 587.5618 nm and its calculated Abbe number; they are not changes to the prescription.
+
+| Element / entry | Old → new label | Resolved HOYA row | Δnd | Δνd |
+| --- | --- | --- | ---: | ---: |
+| L1 / 1 | TAF1 (HOYA) → TAF1 (HOYA) | TAF1 | +2.897247e-8 | +0.004284 |
+| L2 / 2 | NBF1 (HOYA) → NBF1 (HOYA) | NBF1 | −6.779474e-7 | +0.001598 |
+| L3 / 3 | E-FD10 (HOYA) → E-FD10 (HOYA) | E-FD10 | −2.174405e-7 | +0.000486 |
+| L4 / 4 | TAF1 (HOYA) → TAF1 (HOYA) | TAF1 | +2.897247e-8 | +0.004284 |
+| L5 / 5 | NBFD15 (HOYA) → NBFD15 (HOYA) | NBFD15 | −6.081088e-7 | −0.000596 |
+| L6 / 6 | E-FEL1 (HOYA) → E-FEL1 (HOYA) | E-FEL1 | −1.217390e-7 | +0.000728 |
+| L7 / 7 | NBFD11 (HOYA) → NBFD11 (HOYA) | NBFD11 | −3.127807e-6 | +0.004383 |
+| Hybrid layer / 8 | Unmatched resin (nd 1.517 / νd 52) → Unmatched resin (nd 1.517 / νd 52) | None | — | — |
+| L8 / 9 | TAF1 (HOYA) → TAF1 (HOYA) | TAF1 | +2.897247e-8 | +0.004284 |
+| L9 / 10 | E-FD2 (HOYA) → E-FD2 (HOYA) | E-FD2 | −1.759915e-7 | +0.000565 |
+| Published rear filter / 11 | BSC7 (HOYA) → BSC7 (HOYA) | BSC7 | −1.783974e-6 | −0.001742 |
+
+The hybrid resin is an exception to the addendum's generic “no row inside the tolerance” explanation. A full catalog scan finds HOYA E-CF6 (Δnd +0.000419901, Δνd +0.150805) and Hikari J-KF6 (+0.000420010, +0.203782) inside the numeric window, but neither establishes the resin's dispersion or chemistry. Its existing unmatched label is retained as assigned. The analysis states that limitation rather than claiming no coordinate-compatible glass exists. The ten catalog curves remain spectral stand-ins anchored at the printed indices, not supplier identifications; exact production glasses remain unconfirmed. The stale analysis claim of TAF1 νd 49.63 was removed: the current catalog calculation is 49.624284, matching the printed 49.62 to two decimals.
+
+Name and mount scope: the data already reads “SAMYANG AF 85mm f/1.4 EF / F,” with Canon EF and Nikon F mount ids and a subtitle covering both versions; no data-file edit was needed. The analysis H1 and product statements now cover both mounts while retaining the distinct 11/8 FE / WO-family comparison. The [maker's F product page](https://www.lksamyang.com/en/product/product-view.php?seq=422&title=) specifies Nikon F, nine elements in seven groups, one hybrid asphere, f/1.4–16 and 0.90 m minimum focus, and links the same construction image 1559813077 as the EF page. The [official Korean announcement](https://www.lksamyang.com/ko/about/notice-view.php?seq=650) confirms 11 April 2019; [Photography Blog's contemporary announcement](https://www.photographyblog.com/news/samyang_af_85mm_f1_4_f_mf_14mm_f2_8_z_and_mf_85mm_f1_4_z_nikon_lenses) is corroborating context. The addendum's Chinese notice URL was inaccessible and Photography Blog returned HTTP 403 on direct opening; the official Korean notice and manufacturer product text were available. Existing semi-diameter findings and optical limitations are retained.
+
+Before/after built and probe output is identical: EFL 84.54865074703312 mm, FOPEN 1.479, half-field 14.239°, physical stop radius 15.090708515822355 mm, infinity after-filter BFD 0.5094 mm and near BFD −8.4999 mm; focus keys remain 0 and 1. Surface audit reports OK with no errors. No command or edit was refused by the sandbox. The required headless page-view attempt emitted thermal-notification and DNS-watch errors with no screenshot output; it was not retried. Rendered-page review remains open for the coordinator. No optical or data-file changes were made.

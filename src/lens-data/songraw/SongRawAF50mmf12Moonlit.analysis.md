@@ -20,7 +20,7 @@ The design has 15 elements in ten air-separated groups. Five cemented pairs C1�
 
 ## Element-by-Element Analysis
 
-Isolated-element focal lengths are calculated in air from the U table; cementing changes their assembled contributions. All glass identities are unknown.
+Isolated-element focal lengths are calculated in air from the U table; cementing changes their assembled contributions. Catalog spectral proxies are listed below; exact production glasses remain unconfirmed.
 
 | Element | Shape and position | nd | νd | Isolated f (mm) |
 |---|---|---:|---:|---:|
@@ -42,7 +42,23 @@ Isolated-element focal lengths are calculated in air from the U table; cementing
 
 ## Glass Identification
 
-The published d-line indices and Abbe numbers retain their coarse precision of two and one decimals. Each glass is labeled Unmatched with its printed nd/νd; no factory melt or catalog glass is identified. The lower-dispersion L2, L4, L9 and L11 contrast with their more dispersive cemented partners, consistent with the patent's chromatic-correction explanation. Abbe-based spectral estimates cannot establish anomalous partial dispersion or measured colour correction. Computed EFL is 49.903117 mm, compared with the stated 49 mm and marketed 50 mm.
+The printed nd/νd values retain their two/one-decimal precision. Fourteen elements carry catalog spectral proxies within the site's proxy tolerance (|Δnd| ≤ 0.003, |Δνd| ≤ 0.25, with nd matching the printed digits):
+
+| Elements | Catalog spectral proxy |
+|---|---|
+| L1, L15 | L-LAH84 (OHARA) |
+| L2 | H-QK3L (CDGM) |
+| L3, L10 | NBFD29 (HOYA) |
+| L4, L9, L11 | H-ZPK5 (CDGM) |
+| L5 | TAFD55 (HOYA) |
+| L6 | H-ZF1 (CDGM) |
+| L7, L13 | S-LAH58 (OHARA) |
+| L8 | S-TIM3 (OHARA) |
+| L12 | E-FDS1 (HOYA) |
+
+These rows supply dispersion stand-ins anchored at the printed index, not supplier identifications; exact production glasses remain unconfirmed. L14 remains Unmatched (nd 1.85 / νd 23.8): no catalog row lies within the tolerance. The S-TIH53/FDS90 class at nd 1.84666 differs by −0.00334, outside the index window despite its similar Abbe number, so L14 retains an Abbe-based estimate.
+
+The lower-dispersion L2, L4, L9 and L11 contrast with their more dispersive cemented partners, consistent with the patent's chromatic-correction explanation. Proxy curves and L14's estimate do not establish production anomalous partial dispersion or measured colour correction. Computed EFL is 49.903117 mm, compared with the stated 49 mm and marketed 50 mm.
 
 ## Focus Mechanism and Image Plane
 
