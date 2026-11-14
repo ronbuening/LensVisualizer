@@ -6,9 +6,11 @@ import { createHash } from "node:crypto";
 import { execFileSync } from "node:child_process";
 import { readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
+import type { MtfOptions, MtfSpectralLine } from "../src/types/mtf.js";
 
 export const MTF_CHART_ANCHORS_PATH = "reports/data/mtfChartAnchors.csv";
 export const MTF_CHART_CONVENTIONS_PATH = "reports/data/mtfChartConventions.ts";
+const STAMP_VERSION = 2;
 
 export interface MtfChartInputHashes {
   engineSources: string;
@@ -18,12 +20,79 @@ export interface MtfChartInputHashes {
 }
 
 export interface MtfChartProvenance {
-  version: 1;
+  version: number;
   generatedDateUtc: string;
   gitCommit: string;
   uncommittedSrcOrReports: boolean;
   settings: Record<string, unknown>;
   hashes: MtfChartInputHashes;
+}
+
+interface ConfigurationSettings {
+  key: string;
+  zoomT: number;
+  diffraction: MtfOptions;
+  makerConvention: MtfOptions;
+  spectralLines: readonly MtfSpectralLine[];
+  crossChecks: Record<"wideOpen" | "stoppedDown", { fNumber: number; focusShiftMm: number | null }>;
+}
+
+/**
+ * Keep chart controls readable while retaining a fingerprint of every resolved value.
+ * Object keys sort recursively in code-unit order; array order and JSON number precision remain intact.
+ *
+ * @param configuration - complete resolved requests, spectrum and cross-check aperture/plane settings
+ * @param sharedSettings - controls common to every chart and cross-check
+ * @returns one compact configuration entry with the first 12 hex digits of its canonical JSON SHA-256
+ */
+export function summarizeMtfChartConfiguration(
+  configuration: ConfigurationSettings,
+  sharedSettings: Record<string, unknown>,
+) {
+  const canonical = JSON.stringify({ configuration, sharedSettings }, (_key, value) =>
+    value && typeof value === "object" && !Array.isArray(value)
+      ? Object.fromEntries(
+          Object.keys(value)
+            .sort()
+            .map((key) => [key, value[key]]),
+        )
+      : value,
+  );
+  return {
+    key: configuration.key,
+    zoomT: configuration.zoomT,
+    fNumber: configuration.crossChecks.wideOpen.fNumber,
+    makerConventionMethod: configuration.makerConvention.method,
+    fieldCount: configuration.diffraction.fieldFractions?.length ?? 0,
+    settingsSha256: createHash("sha256").update(canonical).digest("hex").slice(0, 12),
+  };
+}
+
+function renderJson(value: unknown, depth = 0, expandObject = false): string {
+  if (value === null || typeof value !== "object") return JSON.stringify(value);
+  const padding = " ".repeat(depth);
+  const primitive = (item: unknown) => item === null || typeof item !== "object";
+  if (Array.isArray(value)) {
+    if (value.every(primitive)) return JSON.stringify(value);
+    return `[\n${value.map((item) => `${padding}  ${renderJson(item, depth + 2)}`).join(",\n")}\n${padding}]`;
+  }
+  const entries = Object.entries(value);
+  if (!expandObject && entries.every(([, item]) => primitive(item) || (Array.isArray(item) && item.every(primitive))))
+    return JSON.stringify(value);
+  const lines = entries.map(
+    ([key, item]) => `${padding}  ${JSON.stringify(key)}: ${renderJson(item, depth + 2, key === "lensFiles")}`,
+  );
+  return `{\n${lines.join(",\n")}\n${padding}}`;
+}
+
+/**
+ * Render parseable JSON with compact arrays and configuration rows, without Markdown JSON reformatting.
+ *
+ * @param provenance - complete stamp to embed in the report
+ * @returns the Provenance section, using a text fence so Prettier preserves its layout
+ */
+export function renderMtfChartProvenance(provenance: MtfChartProvenance): string {
+  return `## Provenance\n\n\`\`\`text\n${renderJson(JSON.parse(JSON.stringify(provenance)))}\n\`\`\`\n`;
 }
 
 /**
@@ -101,7 +170,7 @@ export function createMtfChartProvenance(
 ): MtfChartProvenance {
   const git = (...args: string[]) => execFileSync("git", args, { cwd: root, encoding: "utf8" }).trim();
   return {
-    version: 1,
+    version: STAMP_VERSION,
     generatedDateUtc: new Date().toISOString().slice(0, 10),
     gitCommit: git("rev-parse", "HEAD"),
     uncommittedSrcOrReports: git("status", "--porcelain", "--untracked-files=all", "--", "src/", "reports/") !== "",
@@ -114,16 +183,17 @@ export function createMtfChartProvenance(
  * Read the report's own stamp rather than depending on a sidecar that can drift separately.
  *
  * @param markdown - existing generated report, with or without a stamp
- * @returns validated provenance, or null for legacy, malformed or incomplete stamps
+ * @returns validated provenance (including older versions), or null for absent, malformed or incomplete stamps
  */
 export function parseMtfChartProvenance(markdown: string): MtfChartProvenance | null {
-  const block = /^## Provenance\r?\n\s*```json\r?\n([\s\S]*?)\r?\n```/m.exec(markdown);
+  const block = /^## Provenance\r?\n\s*```(?:json|text)\r?\n([\s\S]*?)\r?\n```/m.exec(markdown);
   if (!block) return null;
   try {
     const value = JSON.parse(block[1]);
     const digest = (input: unknown) => typeof input === "string" && /^[a-f0-9]{64}$/.test(input);
     if (
-      value?.version !== 1 ||
+      !Number.isInteger(value?.version) ||
+      value.version < 1 ||
       typeof value.generatedDateUtc !== "string" ||
       !/^\d{4}-\d{2}-\d{2}$/.test(value.generatedDateUtc) ||
       typeof value.gitCommit !== "string" ||
@@ -158,6 +228,8 @@ export function mtfChartStatus(provenance: MtfChartProvenance | null, current: M
   if (!provenance) return "Status: STALE — generated before provenance was recorded";
   const before = provenance.hashes;
   const changed: string[] = [];
+  if (provenance.version !== STAMP_VERSION)
+    changed.push(`provenance stamp version ${provenance.version} (expected ${STAMP_VERSION})`);
   if (before.engineSources !== current.engineSources) changed.push("engine sources");
   if (before.anchors !== current.anchors) changed.push("anchors");
   if (before.conventions !== current.conventions) changed.push("conventions");

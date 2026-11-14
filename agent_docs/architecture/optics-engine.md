@@ -293,9 +293,13 @@ Only fields whose full spectrum passes the quarter-wave phase-step and invertibi
 compared and excluded step maxima are separate. The two routes share the ray trace, so agreement is not proof
 against an outside reference. It is a report, never a test threshold: maker focus and spectrum are undocumented,
 and a patent example is not proven to be the production lens. The generated report stamps its UTC date, git commit,
-working-tree state, resolved MTF settings and hashes of the engine, anchors, conventions and traced prescriptions;
-running it without `MTF_CHART_REPORT=1` only refreshes its `Status: current` or `Status: STALE` line from those hashes,
-without tracing. The kernels are checked against exact Hopkins
+working-tree state, shared MTF settings and hashes of the engine, anchors, conventions and traced prescriptions.
+Each compact configuration entry names its key, zoom, marked f-number, maker-convention method and field count,
+plus the first 12 hex digits of the SHA-256 of its full resolved settings as canonical JSON (recursively sorted
+object keys, preserved array order), including the shared controls, spectrum and cross-check apertures and planes.
+The versioned stamp uses a text fence to preserve compact JSON through Markdown formatting; an older stamp version
+is stale. Running the report without `MTF_CHART_REPORT=1` only refreshes its `Status: current` or `Status: STALE`
+line from the version and input hashes, without tracing. The kernels are checked against exact Hopkins
 integrals. `scripts/mtf-external-reference.mjs` (opt-in) compares one published design, a monochromatic Cooke triplet
 with tabulated OpticStudio values: first-order values and single rays match to the printed precision and axial MTF
 within 0.006 (60 lp/mm on a 256-cell pupil; 0.004 on the adaptive grid, which stops at 64 cells); off axis the tools differ by up to 0.047 because the source samples the paraxial entrance pupil

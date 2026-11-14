@@ -23,7 +23,7 @@ import { buildLens } from "../src/optics/buildLens.js";
 import { prepareRuntimeState } from "../src/optics/optics.js";
 import { computeMtf } from "../src/optics/mtf.js";
 import { computeAnalysisFieldGeometryAtState, entrancePupilAtState } from "../src/optics/fieldGeometry.js";
-import type { MtfMethod, MtfOptions, MtfResult } from "../src/types/mtf.js";
+import type { MtfMethod, MtfOptions, MtfRequestOptions, MtfResult } from "../src/types/mtf.js";
 import { mtfChartConvention, type MtfChartConvention, type MtfChartMethod } from "./data/mtfChartConventions.js";
 import {
   chartDeltas,
@@ -43,6 +43,8 @@ import {
   MTF_CHART_ANCHORS_PATH as ANCHORS_PATH,
   mtfChartStatus,
   parseMtfChartProvenance,
+  renderMtfChartProvenance,
+  summarizeMtfChartConfiguration,
   updateMtfChartStatus,
 } from "./mtfChartProvenance.js";
 import type { MtfChartProvenance } from "./mtfChartProvenance.js";
@@ -63,6 +65,13 @@ const RECORDED_MEAN_ABSOLUTE = 0.0731;
 /** Method of the one-method comparison; pupil, stop and fields are sized per configuration. */
 const DIFFRACTION_METHOD: MtfMethod = "diffraction";
 const FREQUENCIES = [0, 10, 20, 30, 40, 50];
+const CHART_REQUEST_SETTINGS = {
+  method: DIFFRACTION_METHOD,
+  spectrum: "photopic",
+  focus: "best-axial",
+  maxGridSize: 256,
+  frequenciesPerMm: FREQUENCIES,
+} satisfies MtfRequestOptions;
 /** Engine method that stands in for each chart method. Only a geometric chart leaves diffraction out. */
 const ENGINE_METHOD: Record<MtfChartMethod, MtfMethod> = {
   geometric: "geometric",
@@ -153,11 +162,8 @@ function runConfiguration(lens: LensDataV2Input, zoomT: number, anchors: Anchor[
   const pupil = entrancePupilAtState(stop, 0, zoomT, L, computeAnalysisFieldGeometryAtState(0, zoomT, L, 0), 0).epSD;
   const fieldFractions = [...new Set(anchors.map((anchor) => anchor.fieldFraction))].sort((a, b) => a - b);
   const options = (method: MtfMethod): MtfOptions => ({
+    ...CHART_REQUEST_SETTINGS,
     method,
-    spectrum: "photopic",
-    focus: "best-axial",
-    maxGridSize: 256,
-    frequenciesPerMm: FREQUENCIES,
     fieldFractions,
     pupilSemiDiameterMm: pupil,
     stopSemiDiameterMm: stop,
@@ -292,14 +298,10 @@ function renderReport(configurations: Configuration[], provenance: MtfChartProve
     `${frequencies.join(" and ")} lp/mm.`,
     "",
     "**Regenerate this file** by running `MTF_CHART_REPORT=1 npm run generate:reports -- mtfChartRegression`.",
-    "The provenance stamp records the UTC date, checkout, resolved MTF settings and input hashes of this run.",
+    "The provenance stamp records the UTC date, checkout, shared settings, per-configuration settings digests and input hashes.",
     "Without the variable, only the status line is refreshed by comparing input hashes; no lenses are traced.",
     "",
-    "## Provenance",
-    "",
-    "```json",
-    JSON.stringify(provenance, null, 2),
-    "```",
+    renderMtfChartProvenance(provenance).trimEnd(),
     "",
     "## Reading the Numbers",
     "",
@@ -574,16 +576,23 @@ describe("MTF chart regression report", () => {
         cwd(),
         loaded.filter(({ lens }) => keys.has(lens.key)).map(({ path }) => path),
       );
-      const provenance = createMtfChartProvenance(cwd(), hashes, {
+      const sharedSettings = {
         focusT: 0,
         dynamicEFL: 0,
+        diffraction: CHART_REQUEST_SETTINGS,
+        makerConvention:
+          "Same as diffraction except method: geometric charts use geometric; all others use diffraction.",
         crossCheck: {
           gridSize: CROSS_CHECK_GRID,
           frequenciesPerMm: CROSS_CHECK_FREQUENCIES,
           phaseStepWaves: CROSS_CHECK_PHASE_STEP_WAVES,
           focus: "best-axial",
+          spectrum: "same as diffraction",
+          fields: "same as diffraction",
+          apertures: "wide open and f/8 or nearest attainable, each at its own best axial focus",
         },
-      });
+      };
+      const provenance = createMtfChartProvenance(cwd(), hashes, { ...sharedSettings });
 
       // One chart per lens and zoom position.
       const charts = new Map<string, Anchor[]>();
@@ -594,15 +603,24 @@ describe("MTF chart regression report", () => {
       const configurations = [...charts.values()]
         .map((group) => runConfiguration(lensByKey.get(group[0].key)!, group[0].zoomT, group))
         .sort((a, b) => byText(a.maker, b.maker) || byText(a.key, b.key) || a.zoomT - b.zoomT);
-      provenance.settings.configurations = configurations.map(({ key, zoomT, settings, result, crossChecks }) => ({
-        key,
-        zoomT,
-        ...settings,
-        spectralLines: result.support.spectralLines,
-        crossChecks: Object.fromEntries(
-          Object.entries(crossChecks).map(([pass, { fNumber, focusShiftMm }]) => [pass, { fNumber, focusShiftMm }]),
+      provenance.settings.configurations = configurations.map(({ key, zoomT, settings, result, crossChecks }) =>
+        summarizeMtfChartConfiguration(
+          {
+            key,
+            zoomT,
+            ...settings,
+            spectralLines: result.support.spectralLines,
+            crossChecks: {
+              wideOpen: { fNumber: crossChecks.wideOpen.fNumber, focusShiftMm: crossChecks.wideOpen.focusShiftMm },
+              stoppedDown: {
+                fNumber: crossChecks.stoppedDown.fNumber,
+                focusShiftMm: crossChecks.stoppedDown.focusShiftMm,
+              },
+            },
+          },
+          sharedSettings,
         ),
-      }));
+      );
 
       mkdirSync(REPORT_DIR, { recursive: true });
       writeFileSync(REPORT_PATH, renderReport(configurations, provenance));

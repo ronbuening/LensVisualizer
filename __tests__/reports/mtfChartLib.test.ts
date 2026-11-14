@@ -19,6 +19,8 @@ import {
   MTF_CHART_CONVENTIONS_PATH,
   mtfChartStatus,
   parseMtfChartProvenance,
+  renderMtfChartProvenance,
+  summarizeMtfChartConfiguration,
   updateMtfChartStatus,
 } from "../../reports/mtfChartProvenance.js";
 import type { MtfChartProvenance } from "../../reports/mtfChartProvenance.js";
@@ -241,6 +243,51 @@ describe("MTF chart report helpers", () => {
 
 describe("MTF chart provenance", () => {
   const roots: string[] = [];
+  const sharedSettings = {
+    crossCheck: {
+      apertures: "wide open and f/8 or nearest attainable, each at its own best axial focus",
+      fields: "same as diffraction",
+      focus: "best-axial",
+      frequenciesPerMm: [10, 30, 50],
+      gridSize: 128,
+      phaseStepWaves: 0.25,
+      spectrum: "same as diffraction",
+    },
+    diffraction: {
+      focus: "best-axial",
+      frequenciesPerMm: [0, 10, 20, 30, 40, 50],
+      maxGridSize: 256,
+      method: "diffraction",
+      spectrum: "photopic",
+    },
+    dynamicEFL: 0,
+    focusT: 0,
+    makerConvention: "Same as diffraction except method: geometric charts use geometric; all others use diffraction.",
+  };
+  // Explicitly sorted keys provide an independent canonical-JSON control, including nested objects.
+  const configurationSettings = (index = 0) => {
+    const options = {
+      fieldFractions: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
+      focus: "best-axial",
+      frequenciesPerMm: [0, 10, 20, 30, 40, 50],
+      maxGridSize: 256,
+      method: "diffraction",
+      pupilSemiDiameterMm: 3,
+      spectrum: "photopic",
+      stopSemiDiameterMm: 2,
+    } satisfies MtfOptions;
+    return {
+      crossChecks: {
+        stoppedDown: { fNumber: 8, focusShiftMm: 0.02 },
+        wideOpen: { fNumber: 2, focusShiftMm: 0.01 },
+      },
+      diffraction: options,
+      key: `synthetic-${index}`,
+      makerConvention: { ...options, method: "geometric" as const },
+      spectralLines: [{ wavelengthNm: 550, weight: 1 }],
+      zoomT: index / 18,
+    };
+  };
   const fixture = () => {
     const root = mkdtempSync(join(tmpdir(), "mtf-chart-provenance-"));
     roots.push(root);
@@ -290,20 +337,92 @@ describe("MTF chart provenance", () => {
     expect(hashMtfEngineSources(root)).toBe(changed);
   });
 
-  it("records UTC checkout provenance and round-trips the fenced JSON while changing only status", async () => {
+  it("fingerprints canonical full settings independently of object insertion order", () => {
+    const configuration = configurationSettings();
+    const summary = summarizeMtfChartConfiguration(configuration, sharedSettings);
+    const expected = createHash("sha256")
+      .update(JSON.stringify({ configuration, sharedSettings }))
+      .digest("hex")
+      .slice(0, 12);
+    expect(summary).toEqual({
+      key: "synthetic-0",
+      zoomT: 0,
+      fNumber: 2,
+      makerConventionMethod: "geometric",
+      fieldCount: 11,
+      settingsSha256: expected,
+    });
+    const { stopSemiDiameterMm, ...otherOptions } = configuration.diffraction;
+    expect(
+      summarizeMtfChartConfiguration(
+        {
+          ...configuration,
+          diffraction: {
+            stopSemiDiameterMm,
+            ...otherOptions,
+          },
+        },
+        Object.fromEntries(Object.entries(sharedSettings).reverse()),
+      ),
+    ).toEqual(summary);
+    // Hidden request values, resolved spectra and both cross-check planes remain fingerprinted.
+    const variants = [
+      { ...configuration, diffraction: { ...configuration.diffraction, pupilSemiDiameterMm: 3.1 } },
+      { ...configuration, makerConvention: { ...configuration.makerConvention, fieldFractions: [0, 1] } },
+      { ...configuration, spectralLines: [{ wavelengthNm: 550, weight: 2 }] },
+      ...(["wideOpen", "stoppedDown"] as const).map((pass) => ({
+        ...configuration,
+        crossChecks: { ...configuration.crossChecks, [pass]: { ...configuration.crossChecks[pass], focusShiftMm: 1 } },
+      })),
+    ];
+    for (const variant of variants)
+      expect(summarizeMtfChartConfiguration(variant, sharedSettings).settingsSha256).not.toBe(expected);
+    expect(summarizeMtfChartConfiguration(configuration, { ...sharedSettings, focusT: 1 }).settingsSha256).not.toBe(
+      expected,
+    );
+    expect(
+      summarizeMtfChartConfiguration(
+        {
+          ...configuration,
+          diffraction: {
+            ...configuration.diffraction,
+            fieldFractions: [1, 0.9, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3, 0.2, 0.1, 0],
+          },
+        },
+        sharedSettings,
+      ).settingsSha256,
+    ).not.toBe(expected);
+  });
+
+  it("round-trips a compact 19-configuration stamp through Prettier while changing only status", async () => {
     const root = fixture();
     vi.useFakeTimers();
     vi.setSystemTime(new Date("2026-01-02T00:30:00Z"));
-    const hashes = hashMtfChartInputs(root, ["src/lens-data/a.data.ts"]);
-    const settings = { focus: "best-axial", maxGridSize: 256, frequenciesPerMm: [0, 10, 30] };
+    const hashes = {
+      ...hashMtfChartInputs(root, ["src/lens-data/a.data.ts"]),
+      lensFiles: Object.fromEntries(
+        Array.from({ length: 17 }, (_, i) => [`src/lens-data/synthetic-${i}.data.ts`, "a".repeat(64)]),
+      ),
+    };
+    const settings = {
+      ...sharedSettings,
+      configurations: Array.from({ length: 19 }, (_, i) =>
+        summarizeMtfChartConfiguration(configurationSettings(i), sharedSettings),
+      ),
+    };
     const stamp = createMtfChartProvenance(cwd(), hashes, settings);
-    expect(stamp).toMatchObject({ version: 1, generatedDateUtc: "2026-01-02", hashes, settings });
+    expect(stamp).toMatchObject({ version: 2, generatedDateUtc: "2026-01-02", hashes, settings });
     expect(stamp.gitCommit).toMatch(/^[a-f0-9]{40,64}$/);
     expect(typeof stamp.uncommittedSrcOrReports).toBe("boolean");
-    const report = `# Chart\n\nStatus: current\n\n## Provenance\n\n\`\`\`json\n${JSON.stringify(stamp, null, 2)}\n\`\`\`\n\n## Results\n\nUnchanged.\n`;
+    const section = renderMtfChartProvenance(stamp);
+    expect(section.trimEnd().split("\n").length).toBeLessThan(70);
+    expect(section.split("\n").filter((line) => line.includes('"settingsSha256":'))).toHaveLength(19);
+    expect(section).toContain('"frequenciesPerMm":[0,10,20,30,40,50]');
+    const report = `# Chart\n\nStatus: current\n\n${section}\n## Results\n\nUnchanged.\n`;
     expect(parseMtfChartProvenance(report)).toEqual(stamp);
     expect(parseMtfChartProvenance(report.replaceAll("\n", "\r\n"))).toEqual(stamp);
     const formatted = await format(report, { parser: "markdown" });
+    expect(formatted).toBe(report);
     expect(parseMtfChartProvenance(formatted)).toEqual(stamp);
     expect(formatted).toContain("\nStatus: current\n");
     expect(mtfChartStatus(stamp, hashes)).toBe("Status: current");
@@ -315,6 +434,15 @@ describe("MTF chart provenance", () => {
     expect(updateMtfChartStatus(updated, "Status: current")).toBe(report);
   });
 
+  it("marks an older JSON-fenced stamp stale with its version even when all input hashes match", () => {
+    const hashes = hashMtfChartInputs(fixture(), ["src/lens-data/a.data.ts"]);
+    const stamp = { ...createMtfChartProvenance(cwd(), hashes, {}), version: 1 };
+    const report = `## Provenance\n\n\`\`\`json\n${JSON.stringify(stamp, null, 2)}\n\`\`\`\n`;
+    const parsed = parseMtfChartProvenance(report);
+    expect(parsed).toEqual(stamp);
+    expect(mtfChartStatus(parsed, hashes)).toBe("Status: STALE — provenance stamp version 1 (expected 2)");
+  });
+
   it("names every changed input, counts missing lenses and rejects absent or malformed stamps", () => {
     const root = fixture();
     const paths = ["src/lens-data/a.data.ts"];
@@ -323,7 +451,7 @@ describe("MTF chart provenance", () => {
     expect(hashes.conventions).toBe(createHash("sha256").update("conventions").digest("hex"));
     expect(hashes.lensFiles[paths[0]]).toBe(createHash("sha256").update("lens a").digest("hex"));
     const stamp: MtfChartProvenance = {
-      version: 1,
+      version: 2,
       generatedDateUtc: "2026-01-02",
       gitCommit: "abc",
       uncommittedSrcOrReports: false,
