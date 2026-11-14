@@ -241,6 +241,24 @@ const LENS_DATA = {
       "PUBLISHED two-unit floating focus: G1+G2 move together while STO+G3 move independently. The infinity, 0.10×, and 0.20× patent rows are exact focus keyframes. The 0.20× row focuses at 0.424 m object to image; the 0.34 m manufacturer product specification is kept as catalog metadata, and no 0.25× internal state is reconstructed.",
     // (moved from publishedStations) Every focus keyframe is a source row.
     published: [1, 2],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 600,
+        distanceReference: "first-surface",
+        source:
+          "JP 2021-076740 A, Example 2, Table 2, フォーカス可変間隔, 撮影倍率 0.10 column (PDF p. 19): ZD 0=600.00 mm is the object-to-first-surface gap (Table 2, OBJ row, PDF p. 19); ZD11=14.29 mm, ZD20=20.05 mm.",
+      },
+      {
+        zoomStation: 0,
+        keyframe: 2,
+        objectDistanceMm: 300,
+        distanceReference: "first-surface",
+        source:
+          "JP 2021-076740 A, Example 2, Table 2, フォーカス可変間隔, 撮影倍率 0.20 column (PDF p. 19): ZD 0=300.00 mm is the object-to-first-surface gap (Table 2, OBJ row, PDF p. 19); ZD11=22.74 mm, ZD20=25.44 mm.",
+      },
+    ],
   },
 
   gaps: {

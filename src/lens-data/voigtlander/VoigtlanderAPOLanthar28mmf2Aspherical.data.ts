@@ -361,6 +361,16 @@ const LENS_DATA = {
       "its first-order object-to-image matrix has B = -0.648 mm.",
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 428,
+        distanceReference: "first-surface",
+        source:
+          "JP 2026-98935 A, Example 2, Table 7, 最短撮影距離 column (PDF p. 17): D0=428.00 mm is the object-to-first-surface gap (Table 6, OBJ row, PDF p. 15); D11=3.36 mm, D21=20.28 mm.",
+      },
+    ],
   },
 
   gaps: { STO: { label: "D11", values: [[3.83, 3.36]] }, "21A": { label: "BF", values: [[18.21, 20.28]] } },

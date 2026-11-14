@@ -212,6 +212,16 @@ const LENS_DATA = {
       "PUBLISHED unit focus: the complete optical assembly translates 4.1312 mm toward the object. D11 changes from 15.2788 mm at infinity to 19.41 mm at the published 0.24906 m object-plane-to-image-plane conjugate; all internal gaps remain fixed.",
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 206.4,
+        distanceReference: "first-surface",
+        source:
+          "JP 2024-167569 A, Example 1, Table 1, 可変間隔, finite column (PDF p. 7): D0=206.40 mm is the object-to-first-surface gap (Table 1, OBJ row, PDF p. 7); D11=19.41 mm.",
+      },
+    ],
   },
 
   /* (moved from var) ── Published unit-focus state ── */

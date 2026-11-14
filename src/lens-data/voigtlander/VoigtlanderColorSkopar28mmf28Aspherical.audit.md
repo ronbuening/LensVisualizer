@@ -18,3 +18,17 @@ Patent: JP 2023-032663 A, Example 1. Earlier extraction, independent-calculation
 - Figure 1 independently shows the rear concave shoulder of L1 and front shoulder of L2. Add exposed lands S4to10 mm at unchanged7.8 mm cap and S9to7.6 mm at unchanged7.2 mm cap. Existing body, cemented-pair and asphere dimensions retain their proportions. No opaque interface land, resin wing, numeric cut or tolerance change; other tiny steps remain without invented end depths.
 - Canonical/full inferred-cut checks pass. Twelve actual SVG views include the exact published focus keyframe: finite paths, connected compound and zero hidden trim. Native F2.88 remains iris-limited; image-circle finds zero undersized surfaces and the centered format chief clears. Matched16-point stop-lattice samples retain8,388, lose0 and gain0, as finite counts rather than flux. All R/d, aspheres, nd/νd, references, stop, focus, aperture and tolerances are invariant.
 - Missing Ln1 Abbe, inferred index/rims/iris, source paraxial residuals, the product-constrained close endpoint and qualified spectra remain explicit limitations. Centered checks do not certify factory performance or moved optics.
+
+## 2026-11-14 — Published finite-conjugate certification
+
+Patent: JP 2023-032663 A, Example 1.
+
+| State (zoom/keyframe) | Field | Before | After | Source |
+|---|---|---|---|---|
+| 0/1 | `focus.conjugates` | Absent | `180` mm, `first-surface` | PDF p. 7, Table 1, フォーカス可変間隔, finite column: `ZD 0 = 180` mm; ZD14=43.330 mm (authored BF=43.33 mm). |
+
+Reference basis: Table 1: OBJ | Infinity | ZD 0, immediately before surface 1. The object row precedes surface 1, so the printed object-side gap is first-surface-referenced.
+
+State 0/1: paraxial image-minus-authored-plane residual +0.045339594892 mm (+4.036308002 diffraction depths); alternate image-plane reference +280.391960189 depths. Verdict: `consistent`; reference discriminated.
+
+Only the conjugate declaration is added; the published flags and all prescription geometry are retained.

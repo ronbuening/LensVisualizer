@@ -214,6 +214,16 @@ const LENS_DATA = {
       "Unit focusing (entire optical assembly extends toward the object). The close endpoint is the patent's tabulated state (ZD0 = 369.5 mm from surface 1, BF 19.36 mm, 441.3 mm object-to-image); the production specification is 0.45 m.",
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 369.5,
+        distanceReference: "first-surface",
+        source:
+          "JP 2025-58577 A, Example 1, Table 1, フォーカス可変間隔, finite column (PDF p. 9): ZD0=369.5 mm is the object-to-first-surface gap (Table 1, OBJ row, PDF p. 9); ZD18=19.36 mm.",
+      },
+    ],
   },
 
   /* (moved from var) ── Variable air spacings (unit focus — BFD only) ── */

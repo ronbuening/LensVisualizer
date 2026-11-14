@@ -206,6 +206,16 @@ const LENS_DATA = {
       "and m = -0.44136 (about 1:2.266).",
     // (moved from publishedStations) The intermediate focus row is source-tabulated; the close endpoint is reconstructed.
     published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 180,
+        distanceReference: "first-surface",
+        source:
+          "JP 2023-032663 A, Example 1, Table 1, フォーカス可変間隔, finite column (PDF p. 7): ZD 0=180 mm is the object-to-first-surface gap (Table 1, OBJ row, PDF p. 7); ZD14=43.330 mm (authored BF=43.33 mm).",
+      },
+    ],
   },
 
   gaps: { "14A": { label: "BF", values: [[38.498, 43.33, 51.52159608589783]] } },

@@ -171,6 +171,16 @@ const LENS_DATA = {
       "57.00 mm at the 0.70008 m image-plane-referenced close state. The independent S.A. control requires refocusing.",
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 591.5,
+        distanceReference: "first-surface",
+        source:
+          "JP 2026-120386 A, Example 2, Table 7, 最短撮影距離 column (PDF p. 11): D0=591.50 mm is the object-to-first-surface gap (Table 6, OBJ row, PDF p. 10); D10=57.00 mm; Table 8 soft-focus-zero U3=8.730 mm.",
+      },
+    ],
   },
 
   /* (moved from var) ── Published unit-focus movement ── */
