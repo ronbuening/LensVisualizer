@@ -1,4 +1,5 @@
 export const MAKER_PREFIXES = [
+  { prefix: "7ARTISANS", display: "7Artisans", slug: "7artisans" },
   { prefix: "AGFA", display: "Agfa", slug: "agfa" },
   { prefix: "APPLE", display: "Apple", slug: "apple" },
   { prefix: "CANON", display: "Canon", slug: "canon" },
@@ -11,6 +12,8 @@ export const MAKER_PREFIXES = [
   { prefix: "ENNA", display: "Enna München", slug: "enna-munchen" },
   { prefix: "FUJIFILM", display: "Fujifilm", slug: "fujifilm" },
   { prefix: "FUJINON", display: "Fujifilm", slug: "fujifilm" },
+  { prefix: "C. P. GOERZ", display: "C. P. Goerz", slug: "goerz" },
+  { prefix: "GOERZ", display: "C. P. Goerz", slug: "goerz" },
   { prefix: "HASSELBLAD", display: "Hasselblad", slug: "hasselblad" },
   { prefix: "KONICA", display: "Konica", slug: "konica" },
   { prefix: "KINOPTIK", display: "Kinoptik", slug: "kinoptik" },
@@ -56,6 +59,7 @@ export const MAKER_PREFIXES = [
   { prefix: "TOKINA", display: "Tokina", slug: "tokina" },
   { prefix: "VILTROX", display: "Viltrox", slug: "viltrox" },
   { prefix: "VIVITAR", display: "Vivitar", slug: "vivitar" },
+  { prefix: "WRAY", display: "Wray", slug: "wray" },
   { prefix: "YASHICA", display: "Yashica", slug: "yashica" },
   { prefix: "YONGNUO", display: "Yongnuo", slug: "yongnuo" },
   { prefix: "YASHINON", display: "Yashica", slug: "yashica" },

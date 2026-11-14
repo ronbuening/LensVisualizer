@@ -22,6 +22,7 @@ while the catalog is being backfilled, but when present it must be a non-empty a
 |----|---------------|-------|
 | `agfa-ambi-silette` | Agfa Ambi Silette | Agfa Ambi Silette proprietary 35 mm rangefinder bayonet. |
 | `alpa` | ALPA (35 mm SLR) | The proprietary bayonet of the Swiss ALPA 35 mm SLR system. |
+| `argus-c` | Argus C-series | The geared screw mount of the Argus C2/C3 and later C-series rangefinders; usually pairs with `135-full-frame`. |
 | `arri-pl` | ARRI PL | The Positive Lock cinema mount used by ARRI and many other camera makers. |
 | `arri-standard` | ARRI Standard | The original cylindrical ARRIFLEX lens mount used before ARRI Bayonet and PL. |
 | `c-mount` | C-mount | The one-inch, 32-thread-per-inch screw mount used across cine and imaging systems. |
@@ -34,6 +35,7 @@ while the catalog is being backfilled, but when present it must be a non-empty a
 | `praktica-b` | Praktica B | The Praktica B bayonet used by PRAKTICAR lenses. |
 | `voigtlander-prominent` | Voigtländer Prominent | Voigtländer’s interchangeable lens system for the postwar Prominent rangefinder. |
 | `werra` | Werra | Carl Zeiss Jena Werra rangefinder bayonet, from the Werra III of 1958; usually pairs with `135-full-frame`. |
+| `wrayflex` | Wrayflex | Wray's M41.2 × 26 tpi SLR screw mount; 24 × 32 mm on the Wrayflex I, `135-full-frame` from the Ia. |
 | `canon-ef` | Canon EF | Canon EF SLR mount. |
 | `canon-ef-s` | Canon EF-S | Canon EF-derived APS-C DSLR mount; pairs with `aps-c`. |
 | `canon-ef-m` | Canon EF-M | Canon EF-M APS-C mirrorless mount; usually pairs with `aps-c`. |
