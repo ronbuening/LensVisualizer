@@ -12,10 +12,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * this model does not reproduce the patent's published MTF charts. */
 const LENS_DATA = {
   "schema": 2,
-  "key": "songraw-moonlit-50f12",
+  "key": "songraw-af-50mm-f12-moonlit",
   "maker": "SongRaw",
-  "name": "SONGRAW Moonlit AF 50mm f/1.2",
-  "visible": false,
+  "name": "SONGRAW AF 50mm f/1.2 MOONLIT",
+  "visible": true,
   "elements": [
     {
       "id": 1,
