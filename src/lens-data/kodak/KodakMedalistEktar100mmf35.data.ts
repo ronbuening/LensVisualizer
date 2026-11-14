@@ -3,18 +3,25 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 /**
  * Source: US 2,279,384, Fred E. Altman / Eastman Kodak Company, Example 10.
  * Scale factor 1: source radii and intervals are already millimetres; no units conversion.
- * The literal prescription computes to 101.245322971 mm EFL versus nominal f = 100 mm.
+ * The prescription computes to 101.245322971 mm EFL versus nominal f = 100 mm.
  * The unprinted stop is inferred at the midpoint of the 6.54 mm air gap (3.27 + 3.27 mm).
  * Body semi-diameters 16 / 13.5 / 15.5 mm are inferred; the unprinted 84.173575804 mm
- * back focus is calculated at infinity. No close-focus prescription is reconstructed.
+ * back focus is calculated at infinity. Only infinity focus is modeled.
  */
 const LENS_DATA = {
   "schema": 2,
   "key": "kodak-medalist-ektar-100mm-f35",
   "maker": "Kodak",
   "name": "KODAK EKTAR 100mm f/3.5 (Kodak Medalist)",
+  "subtitle": "US 2,279,384, Example 10 — Ektar 100mm f/3.5 of the Kodak Medalist",
   "visible": true,
   "catalog": {
+    "specs": [
+      "5 ELEMENTS / 3 GROUPS",
+      "ALL SPHERICAL",
+      "F/3.5–32",
+      "MINIMUM FOCUS 3.5 FT / 1.07 m"
+    ],
     "lensMounts": ["fixed-lens-camera"],
     "imageFormat": "6x9",
     "closeFocusM": { "marketing": 1.0668 },
@@ -45,51 +52,60 @@ const LENS_DATA = {
       "id": 1,
       "name": "L1",
       "label": "Element 1",
-      "type": "Spherical patent glass",
+      "type": "Biconvex Positive",
       "nd": 1.611,
       "vd": 57.2,
       "indexReference": "d",
-      "glass": "Source nD/nu interpreted conventional Abbe; historical D/engine d approximation, no measured full melt curve"
+      "glass": "Unmatched (nD 1.611 / V 57.2)",
+      "role": "Positive front element of the front cemented doublet",
+      "cemented": "C1"
     },
     {
       "id": 2,
       "name": "L2",
       "label": "Element 2",
-      "type": "Spherical patent glass",
+      "type": "Biconcave Negative",
       "nd": 1.573,
       "vd": 57.5,
       "indexReference": "d",
-      "glass": "Source nD/nu interpreted conventional Abbe; historical D/engine d approximation, no measured full melt curve"
+      "glass": "Unmatched (nD 1.573 / V 57.5)",
+      "role": "Negative rear element of the front cemented doublet",
+      "cemented": "C1"
     },
     {
       "id": 3,
       "name": "L3",
       "label": "Element 3",
-      "type": "Spherical patent glass",
+      "type": "Biconcave Negative",
       "nd": 1.605,
       "vd": 38.2,
       "indexReference": "d",
-      "glass": "Source nD/nu interpreted conventional Abbe; historical D/engine d approximation, no measured full melt curve"
+      "glass": "Unmatched (nD 1.605 / V 38.2)",
+      "role": "Central negative singlet ahead of the iris"
     },
     {
       "id": 4,
       "name": "L4",
       "label": "Element 4",
-      "type": "Spherical patent glass",
+      "type": "Biconcave Negative",
       "nd": 1.605,
       "vd": 38.2,
       "indexReference": "d",
-      "glass": "Source nD/nu interpreted conventional Abbe; historical D/engine d approximation, no measured full melt curve"
+      "glass": "Unmatched (nD 1.605 / V 38.2)",
+      "role": "Negative front element of the rear cemented doublet",
+      "cemented": "C2"
     },
     {
       "id": 5,
       "name": "L5",
       "label": "Element 5",
-      "type": "Spherical patent glass",
+      "type": "Biconvex Positive",
       "nd": 1.744,
       "vd": 45.7,
       "indexReference": "d",
-      "glass": "Source nD/nu interpreted conventional Abbe; historical D/engine d approximation, no measured full melt curve"
+      "glass": "Unmatched (nD 1.744 / V 45.7)",
+      "role": "Positive rear element of the rear cemented doublet",
+      "cemented": "C2"
     }
   ],
   "surfaces": [
@@ -154,7 +170,7 @@ const LENS_DATA = {
   ],
   "focus": {
     "closeFocusM": 1000000000000000.0,
-    "description": "NO_INTERNAL_RECONSTRUCTION: infinity E10 representative, not finite-conjugate E6 enlarger"
+    "description": "Infinity focus only; the Medalist focuses by moving the whole lens (unit focusing)."
   },
   "aperture": {
     "nominalFNumber": 3.5,
@@ -165,15 +181,25 @@ const LENS_DATA = {
       8,
       11,
       16,
-      22
+      22,
+      32
     ],
-    "maxFNumber": 22
+    "maxFNumber": 32
   },
   "projection": {
     "kind": "rectilinear",
     "fullFieldDeg": 52,
     "maxTraceFieldDeg": 26
   },
+  "groups": [
+    { "text": "G1", "fromSurface": "1", "toSurface": "3" },
+    { "text": "G2", "fromSurface": "4", "toSurface": "5" },
+    { "text": "G3", "fromSurface": "6", "toSurface": "8" }
+  ],
+  "doublets": [
+    { "text": "C1", "fromSurface": "1", "toSurface": "3" },
+    { "text": "C2", "fromSurface": "6", "toSurface": "8" }
+  ],
   "layout": {
     "yScFill": 0.7
   }
