@@ -9,9 +9,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **1128** lenses scanned (**1109** visible)
-- **11897 / 12769** non-air surfaces use strict catalog Sellmeier data (93.2%)
-- **11915 / 12769** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 93.3%)
+- **1134** lenses scanned (**1115** visible)
+- **11935 / 12820** non-air surfaces use strict catalog Sellmeier data (93.1%)
+- **11953 / 12820** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 93.2%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
 - **288** code-only missing-Sellmeier elements in Sweep 2: **27** active unreviewed, **155** self-recording explicit dispositions, **0** dispositions missing any review record
@@ -185,6 +185,7 @@ These rows contain resin, cement, plastic, liquid, or unclassified optical media
 | [NIKON AF-S NIKKOR 35mm f/1.8 G ED](../../src/lens-data/nikon/NikonAFSNikkor35mmf18GED.data.ts) | JP 2015-118186 A | [PDF](../../patents/JP2015118186A.pdf) | 91.7% (11/12) | 91.7% (11/12) | 1 | 19A [resin] (L27 resin layer: `Unmatched (patent resin layer, nd=1.5361, νd=41.21; chemistry and supplier unspecified)`) | abbe: 1 |
 | [PENTAX HD DA 18-50mm f/4-5.6 DC WR RE](../../src/lens-data/pentax/HDPentaxDA1850mmF456DCWRRE.data.ts) | JP 2016-6455 A | [PDF](../../patents/JP2016006455A.pdf) | 91.7% (11/12) | 91.7% (11/12) | 1 | 4 [resin] (L12 Bonded Resin Layer: `Unmatched (synthetic resin layer; chemistry unpublished)`) | abbe: 1 |
 | [PENTAX SMC FA J 75-300mm f/4.5-5.8 AL](../../src/lens-data/pentax/PentaxFAJ75300mmF4558AL.data.ts) | US 2003/0223122 A1 | [PDF](../../patents/US20030223122A1.pdf) | 91.7% (11/12) | 91.7% (11/12) | 1 | 17 [plastic] (Element 10: `Unmatched (optical plastic; nd 1.52538, νd 56.3)`) | abbe: 1 |
+| [PENTAX SMC FA* 24mm f/2 AL [IF]](../../src/lens-data/pentax/PentaxFAStar24mmf2.data.ts) | US 4,934,797 A | [PDF](../../patents/US4934797A.pdf) | 91.7% (11/12) | 91.7% (11/12) | 1 | 14A [resin] (Element 8 resin layer: `Unmatched (aspheric resin layer; nd 1.5201, νd 50.8)`) | abbe: 1 |
 | [PENTAX SMC FA 20-35mm f/4 AL](../../src/lens-data/pentax/PentaxFA2035mmF4AL.data.ts) | US 6,246,529 B1 | [PDF](../../patents/US6246529.pdf) | 90.9% (10/11) | 90.9% (10/11) | 1 | 4 [resin] (Hybrid resin layer: `Unmatched (patent resin; supplier unconfirmed)`) | abbe: 1 |
 | [SAMYANG AF 35-150mm f/2-2.8 FE / L](../../src/lens-data/samyang/SamyangAF35150mmf228.data.ts) | US 2025/0231383 A1 | [PDF](../../patents/US_20250231383_A1.pdf) | 90.9% (20/22) | 90.9% (20/22) | 2 | 6A [resin] (L4 hybrid resin asphere: `UV-curable hybrid aspherical resin (patent nd=1.517, νd=52.0)`)<br>40A [glass] (L21 final dual-aspherical meniscus: `K-SKLD200 / K-SKLD120(M) neighborhood, proprietary crown class`) | abbe: 2 |
 | [CANON EF 28-90mm f/4-5.6 II USM](../../src/lens-data/canon/CanonEF2890mmf456II.data.ts) | JP 2009-282554 A | [PDF](../../patents/JP2009282554A.pdf) | 90.0% (9/10) | 90.0% (9/10) | 1 | 16 [plastic] (Group 4 negative asphere; material unresolved: `Unmatched (source plastic-asphere option; n=1.58306, ν=30.2; POLYCARB is a near candidate)`) | abbe: 1 |
