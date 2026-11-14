@@ -126,6 +126,18 @@ overrides stored settings for the visit and both comparison panes; "Settings fro
 settings" to remove the override and resume stored choices. Opening a link never saves its settings. Changing a
 control updates the visit's URL and saves only that control as a preference, leaving other shared settings visit-only.
 Warning acknowledgments and diagnostic disclosures are excluded, so a fresh visit still requires its own disclosures.
+The field summary's keyboard-operable Export menu downloads "CSV — this view", "CSV — all sampled values", SVG
+or PNG through local Blobs and temporary anchors. Copy CSV retains its uncaptioned image-height table. The view
+download follows the selected chart: the image-height table with field notes, or every frequency for each shown
+field, including independently selected f/8 overview fields. All sampled values includes every field and computed
+frequency. Both CSV downloads preserve withheld cells and opt-in diagnostic disclosure, include enabled f/8 and
+diffraction-limit columns, and start with `# key: value` context lines documented in `mtfExportContext.ts`.
+Context records the lens/source, focal length and focus station, selected/design/marketed apertures, method,
+actual spectrum and any preferred-spectrum fallback, applied focus shift, grid cap, reference height/basis,
+shared MTF link, UTC generation date, status and prescription disclaimer. SVG captures the rendered chart and
+legend with explicit theme colors and font, plus that caption; PNG rasterizes the same SVG at 2× resolution and
+reports unsupported browser paths. Current partial results are labelled `status: partial`; superseded results
+disable downloads and Copy CSV.
 Malformed bundles and unknown versions fall back to stored preferences as a whole. Every request computes 0–100 lp/mm for every
 field, so chart-only changes never recompute. `useMtfComputation` debounces settled inputs for 150 ms, keeps earlier
 curves dimmed until the new request reports progress, and cancels superseded work; the mounted tab disposes its worker

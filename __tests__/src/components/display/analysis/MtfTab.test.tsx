@@ -28,6 +28,7 @@ import {
 } from "../../../../../src/utils/state/mtfPreferences.js";
 import { buildMtfLink, parseSharedMtfSettings } from "../../../../../src/utils/state/mtfUrlState.js";
 import { resetMtfDataWarnings } from "../../../../../src/utils/state/mtfDataWarnings.js";
+import { MTF_EXPORT_DISCLAIMER } from "../../../../../src/components/display/analysis/mtf/mtfExportContext.js";
 
 // The fixture's authored image plane sits far from its paraxial focus, so Auto refocuses it.
 const L = buildSimplePositiveElementLens();
@@ -1378,5 +1379,205 @@ describe("MTF export and aperture comparison", () => {
     expect(worker.calls.jobs[3].options.heldFocusShiftMm).not.toBe(worker.calls.jobs[1].options.heldFocusShiftMm);
     act(() => worker.finish());
     await vi.waitFor(() => expect(screen.queryByText(/Calculating…/)).toBeNull());
+  });
+});
+
+describe("MTF download actions", () => {
+  afterEach(() => vi.restoreAllMocks());
+
+  function downloads() {
+    const blobs: Blob[] = [];
+    const clicks: Array<{ filename: string; attached: boolean }> = [];
+    const revokeObjectURL = vi.fn();
+    vi.stubGlobal(
+      "URL",
+      class extends URL {
+        static createObjectURL = vi.fn((blob: Blob) => {
+          blobs.push(blob);
+          return `blob:mtf-${blobs.length}`;
+        });
+        static revokeObjectURL = revokeObjectURL;
+      },
+    );
+    vi.spyOn(HTMLAnchorElement.prototype, "click").mockImplementation(function (this: HTMLAnchorElement) {
+      clicks.push({ filename: this.download, attached: this.isConnected });
+    });
+    return { blobs, clicks, revokeObjectURL };
+  }
+
+  function readBlob(blob: Blob): Promise<string> {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result as string);
+      reader.onerror = reject;
+      reader.readAsText(blob);
+    });
+  }
+
+  async function showTab() {
+    localStorage.setItem(
+      MTF_PREFERENCES_KEY,
+      JSON.stringify({
+        method: "geometric",
+        spectrum: "reference",
+        focus: "design",
+        advanced: true,
+        frequencies: [10],
+      }),
+    );
+    const worker = stubWorker({ target: focusedState });
+    const rendered = render(
+      <MtfTab
+        L={focusedL}
+        t={mockTheme}
+        preparedState={focusedState}
+        currentEPSD={1}
+        currentPhysStopSD={1}
+        fNumber={2.8}
+      />,
+    );
+    await screen.findByRole("figure");
+    const warning = screen.queryByRole("button", { name: "Show chart anyway" });
+    if (warning) fireEvent.click(warning);
+    return { ...rendered, worker };
+  }
+
+  it("opens and navigates the menu by keyboard and downloads contextual view/all CSVs", async () => {
+    const { blobs, clicks } = downloads();
+    const writeText = vi.fn().mockResolvedValue(undefined);
+    vi.stubGlobal("navigator", { ...navigator, clipboard: { writeText } });
+    await showTab();
+    const button = screen.getByRole("button", { name: "Export" });
+    expect(button.getAttribute("aria-expanded")).toBe("false");
+    fireEvent.keyDown(button, { key: "ArrowDown" });
+    const first = screen.getByRole("menuitem", { name: "CSV — this view" });
+    expect(document.activeElement).toBe(first);
+    fireEvent.keyDown(first, { key: "End" });
+    expect(document.activeElement).toBe(screen.getByRole("menuitem", { name: "PNG" }));
+    fireEvent.keyDown(document.activeElement!, { key: "ArrowDown" });
+    expect(document.activeElement).toBe(first);
+    fireEvent.keyDown(first, { key: "Escape" });
+    expect(screen.queryByRole("menu")).toBeNull();
+    expect(document.activeElement).toBe(button);
+    fireEvent.keyDown(button, { key: "ArrowUp" });
+    expect(document.activeElement).toBe(screen.getByRole("menuitem", { name: "PNG" }));
+    fireEvent.keyDown(document.activeElement!, { key: "Home" });
+    fireEvent.click(screen.getByRole("menuitem", { name: "CSV — this view" }));
+    await vi.waitFor(() => expect(clicks).toHaveLength(1));
+    expect(screen.queryByRole("menu")).toBeNull();
+    expect(document.activeElement).toBe(button);
+    const viewCsv = await readBlob(blobs[0]);
+    expect(viewCsv).toContain(`# lens_key: ${focusedL.source.key}`);
+    expect(viewCsv).toContain("# aperture: selected f/2.8;");
+    expect(viewCsv).toContain(`# disclaimer: ${MTF_EXPORT_DISCLAIMER}`);
+    expect(viewCsv).toContain("# status: complete");
+    const link = viewCsv
+      .split("\n")
+      .find((line) => line.startsWith("# shared_link: "))!
+      .slice("# shared_link: ".length);
+    expect(parseSharedMtfSettings(new URL(link).search)).toMatchObject({
+      frequencies: [10],
+      advanced: true,
+      method: "geometric",
+    });
+    expect(clicks[0]).toMatchObject({ attached: true });
+    expect(clicks[0].filename).toMatch(/-image-height-\d{4}-\d{2}-\d{2}-this-view\.csv$/);
+    expect(document.querySelector("a[download]")).toBeNull();
+
+    // The legacy action retains its uncaptioned bytes alongside the new downloads.
+    fireEvent.click(screen.getByRole("button", { name: "Copy CSV" }));
+    await screen.findByText("Copied");
+    const legacy = writeText.mock.calls[0][0] as string;
+    expect(legacy.startsWith("Image height (mm),Field (%),10 lp/mm sagittal")).toBe(true);
+    expect(
+      viewCsv
+        .split("\n")
+        .filter((line) => !line.startsWith("# "))
+        .map((line) => line.slice(0, line.lastIndexOf(",")))
+        .join("\n"),
+    ).toBe(legacy);
+
+    fireEvent.click(
+      within(screen.getByRole("group", { name: "MTF chart" })).getByRole("button", { name: "Frequency" }),
+    );
+    fireEvent.click(button);
+    fireEvent.click(screen.getByRole("menuitem", { name: "CSV — this view" }));
+    await vi.waitFor(() => expect(clicks).toHaveLength(2));
+    const frequencyCsv = await readBlob(blobs[1]);
+    expect(frequencyCsv).toContain("# view: spatial frequency");
+    expect(frequencyCsv).toContain("Field (%),Frequency (lp/mm),Image height (mm),Sagittal,Tangential");
+    fireEvent.click(button);
+    fireEvent.click(screen.getByRole("menuitem", { name: "CSV — all sampled values" }));
+    await vi.waitFor(() => expect(clicks).toHaveLength(3));
+    expect(clicks[2].filename).toMatch(/-frequency-\d{4}-\d{2}-\d{2}-all-sampled-values\.csv$/);
+    const allCsv = await readBlob(blobs[2]);
+    expect(allCsv.split("\n").filter((line) => !line.startsWith("# ")).length).toBeGreaterThan(
+      frequencyCsv.split("\n").filter((line) => !line.startsWith("# ")).length,
+    );
+  });
+
+  it("downloads the rendered SVG and a 2× PNG, and discloses PNG failures", async () => {
+    const { blobs, clicks } = downloads();
+    await showTab();
+    fireEvent.click(screen.getByRole("button", { name: "Export" }));
+    fireEvent.click(screen.getByRole("menuitem", { name: "SVG" }));
+    await vi.waitFor(() => expect(clicks).toHaveLength(1));
+    expect(clicks[0].filename).toMatch(/\.svg$/);
+    const svg = await readBlob(blobs[0]);
+    expect(svg).toContain(MTF_EXPORT_DISCLAIMER);
+    expect(svg).toContain('stroke-width="2"');
+    expect(svg).toContain("font-family=");
+    vi.stubGlobal(
+      "Image",
+      class {
+        onload: (() => void) | null = null;
+        set src(_value: string) {
+          queueMicrotask(() => this.onload?.());
+        }
+      },
+    );
+    // Canvas pixels are stubbed in jsdom; the real export is checked through drawImage/toBlob.
+    const drawImage = vi.fn();
+    const canvasContext = vi
+      .spyOn(HTMLCanvasElement.prototype, "getContext")
+      .mockReturnValue({ drawImage } as unknown as CanvasRenderingContext2D);
+    vi.spyOn(HTMLCanvasElement.prototype, "toBlob").mockImplementation((callback) =>
+      callback(new Blob(["PNG pixels"], { type: "image/png" })),
+    );
+    fireEvent.click(screen.getByRole("button", { name: "Export" }));
+    fireEvent.click(screen.getByRole("menuitem", { name: "PNG" }));
+    await vi.waitFor(() => expect(clicks).toHaveLength(2));
+    expect(clicks[1].filename).toMatch(/\.png$/);
+    expect(blobs.at(-1)?.type).toBe("image/png");
+    expect(drawImage.mock.calls[0][3]).toBe(2000);
+    expect(drawImage.mock.calls[0][4]).toBeGreaterThan(1000);
+    canvasContext.mockReturnValueOnce(null);
+    fireEvent.click(screen.getByRole("button", { name: "Export" }));
+    fireEvent.click(screen.getByRole("menuitem", { name: "PNG" }));
+    expect(await screen.findByRole("alert")).toHaveProperty(
+      "textContent",
+      "PNG export unavailable in this browser. Try SVG.",
+    );
+    expect(clicks).toHaveLength(2);
+  });
+
+  it("marks a computing result partial and disables downloads of superseded results", async () => {
+    const { blobs, clicks } = downloads();
+    localStorage.setItem(
+      MTF_PREFERENCES_KEY,
+      JSON.stringify({ method: "geometric", spectrum: "reference", advanced: true }),
+    );
+    stubWorker({ target: focusedState, progress: true });
+    render(<MtfTab L={focusedL} t={mockTheme} preparedState={focusedState} currentEPSD={1} currentPhysStopSD={1} />);
+    await screen.findByRole("figure");
+    const warning = screen.queryByRole("button", { name: "Show chart anyway" });
+    if (warning) fireEvent.click(warning);
+    fireEvent.click(screen.getByRole("button", { name: "Export" }));
+    fireEvent.click(screen.getByRole("menuitem", { name: "CSV — this view" }));
+    await vi.waitFor(() => expect(clicks).toHaveLength(1));
+    expect(await readBlob(blobs[0])).toContain("# status: partial");
+    fireEvent.change(screen.getByRole("combobox", { name: "MTF image plane" }), { target: { value: "design" } });
+    expect(screen.getByRole("button", { name: "Export" })).toHaveProperty("disabled", true);
+    expect(screen.getByRole("button", { name: "Copy CSV" })).toHaveProperty("disabled", true);
   });
 });

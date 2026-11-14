@@ -1,5 +1,5 @@
 /** MTF stays outside render-time optics; requests execute only in the mounted tab's worker. */
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import type { RuntimeLens } from "../../../types/optics.js";
 import type { MtfAxialVignetting, MtfMethod, MtfRequestOptions, MtfResult, MtfSpectrum } from "../../../types/mtf.js";
 import { createAnalysisRequest } from "../../../optics/analysis.js";
@@ -17,6 +17,7 @@ import MtfChart from "./MtfChart.js";
 import MtfControls from "./mtf/MtfControls.js";
 import MtfDataWarning from "./mtf/MtfDataWarning.js";
 import MtfFieldSummary from "./mtf/MtfFieldSummary.js";
+import { buildMtfExportContext, MTF_EXPORT_DISCLAIMER } from "./mtf/mtfExportContext.js";
 import { textRun } from "../../../utils/text.js";
 
 interface MtfTabProps {
@@ -75,6 +76,7 @@ export default function MtfTab({
   movementActive = false,
 }: MtfTabProps) {
   const [preferences, updatePreferences, sharedSettings, useStoredSettings] = useSharedMtfPreferences();
+  const chartRef = useRef<HTMLElement>(null);
   const request = useMemo(
     () =>
       analysisContext?.request ??
@@ -273,6 +275,7 @@ export default function MtfTab({
             t={t}
           >
             <MtfChart
+              exportRef={chartRef}
               result={shown}
               view={preferences.view}
               frequencies={preferences.frequencies}
@@ -307,14 +310,33 @@ export default function MtfTab({
               pixelPitchUm={preferences.view === "frequency" ? preferences.pixelPitchUm : null}
               advanced={preferences.advanced}
               getMtfLink={() => buildMtfLink(window.location.href, preferences)}
+              chartRef={chartRef}
+              view={preferences.view}
+              frequencyField={preferences.frequencyField}
+              exportComparison={comparisonShown}
+              getExportContext={() =>
+                buildMtfExportContext({
+                  lens: L,
+                  result: shown,
+                  preferences,
+                  focalLengthMm: focalLengthMm ?? (request.dynamicEFL || L.EFL),
+                  fNumber,
+                  zoomT: preparedState.zoomT,
+                  focusT: preparedState.focusT,
+                  spectrumNote: spectrum.note,
+                  link: buildMtfLink(window.location.href, preferences),
+                  date: new Date(),
+                  partial: running || (comparisonEnabled && (comparison.running || !comparisonJob)),
+                  diagnostic,
+                  comparison: comparisonShown,
+                  comparisonRequested: comparisonEnabled,
+                })
+              }
             />
           </MtfDataWarning>
         </>
       )}
-      <p style={muted}>
-        Prescription estimate, not manufacturer MTF. Modeled rear cover/filter plates are included; any omitted sensor
-        optics can substantially change these curves.
-      </p>
+      <p style={muted}>{MTF_EXPORT_DISCLAIMER}</p>
       <details style={{ color: t.muted, fontSize: 11 }}>
         <summary style={{ cursor: "pointer" }}>Model assumptions</summary>
         <p>{support.message}</p>

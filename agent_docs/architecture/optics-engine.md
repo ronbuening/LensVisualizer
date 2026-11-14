@@ -338,6 +338,14 @@ computed field selected by reference-height percentage and mm; a saved field abs
 to Overview. An optional 3/4/5/6/8 µm pixel pitch marks Nyquist at 500/pitch lp/mm, or labels it at the right edge
 with an arrow beyond the chart range. The caption and accessible table identify it as the sampling limit of a
 pixel grid, not a camera or sensor MTF prediction. These three display choices persist in localStorage.
+Copy CSV keeps the uncaptioned image-height table. The Export menu adds contextual CSVs for the current chart
+view or every sampled field × computed frequency, with per-field notes and the chart's same withheld-value,
+diagnostic, f/8 and diffraction-limit policies. Its `# key: value` context records the lens/source, optical station,
+selected/design/marketed apertures, actual spectrum and fallback reason, method, applied focus shift, grid cap,
+reference height/basis, shared settings link, UTC date and prescription disclaimer. SVG captures the rendered chart
+and legend with explicit theme colors/font and the same context caption; PNG rasterizes that SVG at 2× and shows
+an error if the browser cannot encode it. Downloads use local Blobs. Current calculations export as `status: partial`;
+results retained from superseded settings disable every export, including Copy CSV.
 The persisted "Advanced" preference defaults to false. It exposes per-field sampling diagnostics in the value table
 (including the comparison's own rows): grid size, `maxDelta`, `convergedThroughLpMm`, nonzero `unknownFluxFraction`
 as a percentage, `unaimedRays`, `failedRays`, non-stop `pupilSampling`, notes and message. Field notes keep the engine's

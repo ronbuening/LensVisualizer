@@ -5,6 +5,20 @@ import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import MtfChart from "../../../../../src/components/display/analysis/MtfChart.js";
 import type { MtfResult } from "../../../../../src/types/mtf.js";
 import { mockTheme } from "../../../../testUtils.js";
+import type { RuntimeLens } from "../../../../../src/types/optics.js";
+import { DEFAULT_MTF_PREFERENCES } from "../../../../../src/utils/state/mtfPreferences.js";
+import {
+  buildMtfExportContext,
+  mtfContextBlock,
+  MTF_EXPORT_DISCLAIMER,
+} from "../../../../../src/components/display/analysis/mtf/mtfExportContext.js";
+import { mtfAllSamplesCsv, mtfViewCsv } from "../../../../../src/components/display/analysis/mtf/mtfExportCsv.js";
+import { buildMtfSvg } from "../../../../../src/components/display/analysis/mtf/mtfExportImage.js";
+import {
+  downloadMtfBlob,
+  mtfPngBlob,
+  snapshotMtfChart,
+} from "../../../../../src/components/display/analysis/mtf/mtfDownload.js";
 
 function syntheticResult(): MtfResult {
   return {
@@ -57,6 +71,295 @@ function syntheticResult(): MtfResult {
 }
 
 afterEach(cleanup);
+
+// Export controls use distinct synthetic values so withheld and overlay cells cannot be confused.
+describe("MTF export builders", () => {
+  afterEach(() => {
+    vi.useRealTimers();
+    vi.restoreAllMocks();
+    vi.unstubAllGlobals();
+  });
+  const lens = {
+    source: {
+      name: "Control & Lens",
+      key: "control-lens",
+      catalog: { fNumber: { design: 4.1, marketing: 4 } },
+      source: { patentNumber: "US 123 A", example: { label: "Example 2", id: "2" } },
+    },
+    FOPEN: 4.1,
+  } as unknown as RuntimeLens;
+  const contextFor = (result: MtfResult) =>
+    buildMtfExportContext({
+      lens,
+      result,
+      preferences: DEFAULT_MTF_PREFERENCES,
+      focalLengthMm: 50,
+      fNumber: 5.6,
+      zoomT: 0.25,
+      focusT: 0,
+      link: "https://example.com/lens/control/?v=1&tab=mtf&mtf=1",
+      spectrumNote: "Missing spectral data\nfor a glass",
+      date: new Date("2026-11-13T23:30:00-05:00"),
+    });
+  const dataRows = (csv: string) =>
+    csv
+      .split("\n")
+      .filter((line) => !line.startsWith("# "))
+      .map((line) => line.split(","));
+
+  it("records source, optical station, actual spectrum/plane, fallback, UTC date and disclaimer", () => {
+    const result = syntheticResult();
+    result.focus = {
+      requestedMode: "auto",
+      mode: "best-axial",
+      appliedShiftMm: -0.125,
+      bestAxialShiftMm: -0.125,
+      designScore: 0.1,
+      bestScore: 0.2,
+      imagePlaneOffsetMm: 1,
+      imagePlaneInconsistent: true,
+    };
+    const context = contextFor(result);
+    expect(context).toMatchObject({
+      site_name: "Surface & Stop",
+      lens_name: "Control & Lens",
+      lens_key: "control-lens",
+      source: "US 123 A; Example 2",
+      station: "50 mm; infinity; zoom 0.25; focus 0",
+      aperture: "selected f/5.6; design wide-open f/4.1; marketed wide-open f/4",
+      method: "Diffraction-corrected",
+      spectrum: "reference; 550 nm (weight 1)",
+      preferred_spectrum: "photopic",
+      focus: "best-axial; shift -0.125 mm from authored plane (requested auto)",
+      grid_cap: "256 cells across pupil",
+      reference_image_height: "20 mm; format-corner",
+      generation_date: "2026-11-14",
+      shared_link: "https://example.com/lens/control/?v=1&tab=mtf&mtf=1",
+      disclaimer: MTF_EXPORT_DISCLAIMER,
+      status: "complete",
+    });
+    const block = mtfContextBlock(context);
+    expect(block.split("\n")).toHaveLength(Object.keys(context).length);
+    expect(block).toContain("# spectrum_fallback_reason: Missing spectral data for a glass");
+    expect(block).toContain("# shared_link: https://example.com/");
+    result.fields[0].status = "pending";
+    result.support.conjugate = {
+      focusT: 1,
+      zoomT: 0.25,
+      objectDistanceMm: 500,
+      distanceReference: "image-plane",
+      source: "Table 2",
+    };
+    expect(contextFor(result)).toMatchObject({
+      status: "partial",
+      station: "50 mm; 500 mm from image-plane; zoom 0.25; focus 0",
+    });
+  });
+
+  it("exports the selected image-height table with quoted notes and f/8 notes", () => {
+    const result = syntheticResult();
+    result.fields[0].notes = ['Aim, with "qualification"'];
+    const comparison = syntheticResult();
+    comparison.fields[0].notes = ["Overlay note"];
+    const csv = mtfViewCsv({
+      result,
+      comparison,
+      context: contextFor(result),
+      view: "field",
+      frequencies: [10],
+      diffractionLimit: true,
+    });
+    const [header, first, ...rest] = csv.split("\n").filter((line) => !line.startsWith("# "));
+    expect(header).toContain("10 lp/mm sagittal,10 lp/mm tangential");
+    expect(header).not.toContain("30 lp/mm");
+    expect(header).toMatch(/diffraction limit tangential,Notes,f\/8 notes$/);
+    expect(first).toContain('"Aim, with ""qualification""",Overlay note');
+    expect(rest).toHaveLength(4);
+  });
+
+  it("exports each frequency of the shown fields, including independent overlay edges", () => {
+    const result = syntheticResult();
+    const comparison = syntheticResult();
+    comparison.fields[4].status = "unavailable";
+    const rows = dataRows(
+      mtfViewCsv({ result, comparison, context: contextFor(result), view: "frequency", frequencies: [10] }),
+    );
+    expect(rows).toHaveLength(1 + 4 * 5);
+    expect(rows[0]).toContain("Frequency (lp/mm)");
+    expect(rows.slice(1).map((row) => row.slice(0, 2))).toEqual(
+      [0, 50, 75, 100].flatMap((f) => [0, 10, 30, 50, 100].map((v) => [String(f), String(v)])),
+    );
+    const overlayOnly = rows.find((row) => row[0] === "75" && row[1] === "10")!;
+    expect(overlayOnly.slice(2, 8)).toEqual(["", "", "", "", "", ""]);
+    expect(overlayOnly.slice(8, 12)).toEqual(["15", "0.7500", "0.6500", "converged"]);
+  });
+
+  it("withholds out-of-band, unconverged, unavailable and pending cells, with explicit diagnostic statuses", () => {
+    const result = syntheticResult();
+    result.fields[1].status = "unconverged";
+    result.fields[1].convergedThroughLpMm = 30;
+    result.fields[2].status = "pending";
+    result.fields[3].convergedThroughLpMm = 30;
+    result.fields[4].status = "unavailable";
+    const options = {
+      result,
+      comparison: result,
+      context: contextFor(result),
+      view: "frequency" as const,
+      frequencies: [10],
+      frequencyField: 0.25,
+      diffractionLimit: true,
+    };
+    const [header, ...rows] = dataRows(mtfViewCsv(options));
+    expect(rows).toHaveLength(5);
+    expect(rows[1]).toEqual([
+      "25",
+      "10",
+      "5",
+      "",
+      "",
+      "unconverged",
+      "30",
+      "",
+      "5",
+      "",
+      "",
+      "unconverged",
+      "30",
+      "",
+      "",
+      "",
+      "",
+      "",
+    ]);
+    expect(header.slice(-4)).toEqual([
+      "Diffraction limit sagittal",
+      "Diffraction limit tangential",
+      "f/8 Diffraction limit sagittal",
+      "f/8 Diffraction limit tangential",
+    ]);
+    const diagnostic = dataRows(mtfViewCsv({ ...options, diagnostic: true }));
+    expect(diagnostic[2].slice(2, 6)).toEqual(["5", "0.8500", "0.7500", "unconverged; diagnostic estimates included"]);
+    expect(diagnostic[2].slice(-4)).toEqual(["0.9500", "0.9400", "0.9500", "0.9400"]);
+    const fieldView = dataRows(mtfViewCsv({ ...options, view: "field", diagnostic: true }));
+    expect(fieldView[2][fieldView[0].indexOf("Status")]).toBe("unconverged; diagnostic estimates included");
+    expect(fieldView[2][fieldView[0].indexOf("f/8 status")]).toBe("unconverged; diagnostic estimates included");
+    const all = dataRows(mtfAllSamplesCsv({ ...options, diagnostic: true }));
+    expect(all).toHaveLength(26);
+    for (const fraction of ["50", "100"]) {
+      expect(
+        all.filter((row) => row[0] === fraction).every((row) => row[3] === "" && row[4] === "" && row.at(-1) === ""),
+      ).toBe(true);
+    }
+    const normal = dataRows(mtfAllSamplesCsv(options));
+    expect(normal.find((row) => row[0] === "75" && row[1] === "50")?.slice(3, 5)).toEqual(["", ""]);
+  });
+
+  it("falls back to the chart overview for an absent saved field", () => {
+    const result = syntheticResult();
+    const options = { result, context: contextFor(result), view: "frequency" as const, frequencies: [10] };
+    expect(mtfViewCsv({ ...options, frequencyField: 0.1 })).toBe(mtfViewCsv(options));
+    expect(dataRows(mtfAllSamplesCsv({ ...options, frequencyField: 0.25 }))).toHaveLength(26);
+  });
+
+  it("wraps actual chart series, legend and captions in valid standalone themed SVG", () => {
+    const result = syntheticResult();
+    const ref = { current: null as HTMLElement | null };
+    render(
+      <MtfChart
+        result={result}
+        comparison={result}
+        view="frequency"
+        frequencyField={0.25}
+        frequencies={[10]}
+        t={mockTheme}
+        exportRef={ref}
+        diffractionLimit
+        pixelPitchUm={5}
+      />,
+    );
+    const snapshot = snapshotMtfChart(ref.current!);
+    const image = buildMtfSvg(snapshot, contextFor(result), mockTheme);
+    const document = new DOMParser().parseFromString(image.svg, "image/svg+xml");
+    expect(document.querySelector("parsererror")).toBeNull();
+    expect(image.svg).toContain(snapshot.content);
+    expect(
+      [...document.querySelectorAll('path[stroke-width="2"]')].filter((path) => path.getAttribute("d")),
+    ).toHaveLength(2);
+    expect(
+      [...document.querySelectorAll('path[stroke-width="1.1"]')].filter((path) => path.getAttribute("d")),
+    ).toHaveLength(2);
+    expect(document.querySelectorAll('[data-testid="mtf-diffraction-limit"]')).toHaveLength(2);
+    expect(document.documentElement.getAttribute("font-family")).toContain("JetBrains Mono");
+    expect(document.querySelector("rect")?.getAttribute("fill")).toBe(mockTheme.panelBg);
+    expect(document.documentElement.textContent).toContain("Control & Lens");
+    expect(document.documentElement.textContent).toContain(MTF_EXPORT_DISCLAIMER);
+    expect(document.documentElement.textContent).toContain("25 % · 5.0 mm (circle markers)");
+    expect(document.documentElement.textContent).toContain("Nyquist, 5 µm pixels: 100 lp/mm");
+    expect(image.svg).not.toContain("foreignObject");
+    expect(image.svg).not.toContain("var(--");
+  });
+
+  it("removes the temporary download anchor and revokes its URL after browser dispatch", () => {
+    vi.useFakeTimers();
+    const revokeObjectURL = vi.fn();
+    vi.stubGlobal(
+      "URL",
+      class extends URL {
+        static createObjectURL = vi.fn(() => "blob:mtf-download");
+        static revokeObjectURL = revokeObjectURL;
+      },
+    );
+    const click = vi.spyOn(HTMLAnchorElement.prototype, "click").mockImplementation(function (this: HTMLAnchorElement) {
+      expect(this.isConnected).toBe(true);
+      expect(this.download).toBe("control-frequency-2026-11-13.csv");
+    });
+    downloadMtfBlob(new Blob(["data"], { type: "text/csv" }), "control-frequency-2026-11-13.csv");
+    expect(click).toHaveBeenCalledOnce();
+    expect(document.querySelector("a[download]")).toBeNull();
+    expect(revokeObjectURL).not.toHaveBeenCalled();
+    vi.advanceTimersByTime(1000);
+    expect(revokeObjectURL).toHaveBeenCalledExactlyOnceWith("blob:mtf-download");
+  });
+
+  it("requests a 2× canvas raster and rejects unavailable canvas or PNG encoding", async () => {
+    // jsdom has no rasterizer: exercise image decoding dispatch, dimensions and canvas calls with stubs.
+    const revokeObjectURL = vi.fn();
+    vi.stubGlobal(
+      "URL",
+      class extends URL {
+        static createObjectURL = vi.fn(() => "blob:mtf-chart");
+        static revokeObjectURL = revokeObjectURL;
+      },
+    );
+    vi.stubGlobal(
+      "Image",
+      class {
+        onload: (() => void) | null = null;
+        set src(_value: string) {
+          queueMicrotask(() => this.onload?.());
+        }
+      },
+    );
+    const drawImage = vi.fn();
+    const getContext = vi
+      .spyOn(HTMLCanvasElement.prototype, "getContext")
+      .mockReturnValue({ drawImage } as unknown as CanvasRenderingContext2D);
+    const png = new Blob(["stub"], { type: "image/png" });
+    const toBlob = vi.spyOn(HTMLCanvasElement.prototype, "toBlob").mockImplementation((callback) => callback(png));
+    const image = { svg: "<svg/>", width: 100, height: 50 };
+    expect(await mtfPngBlob(image)).toBe(png);
+    const canvas = getContext.mock.instances[0] as HTMLCanvasElement;
+    expect([canvas.width, canvas.height]).toEqual([200, 100]);
+    expect(drawImage).toHaveBeenCalledWith(expect.anything(), 0, 0, 200, 100);
+    expect(toBlob).toHaveBeenCalledWith(expect.any(Function), "image/png");
+    getContext.mockReturnValueOnce(null);
+    await expect(mtfPngBlob(image)).rejects.toThrow("Canvas unavailable");
+    toBlob.mockImplementationOnce((callback) => callback(null));
+    await expect(mtfPngBlob(image)).rejects.toThrow("PNG encoding unavailable");
+    expect(revokeObjectURL).toHaveBeenCalledTimes(3);
+  });
+});
 
 describe("MTF chart presentation", () => {
   it("identifies frequency-view fields by distinct curve and legend marker shapes", () => {

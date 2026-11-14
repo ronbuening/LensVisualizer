@@ -212,9 +212,6 @@ S under a day, M one to three days, L longer.
 
 ### Features
 
-- **C24 — Exports with context.** The CSV has no lens, aperture, station, method, spectrum or plane, and exports
-  the selected frequencies even from the frequency view. Add current-view and all-values exports, the overlay's
-  rows, and SVG then PNG with a caption. M.
 - **C26 — Through-focus view and a focus offset.** `mtfFocus.ts` already re-lands traced rays on shifted flat and
   curved surfaces, off axis too. A through-focus plot per field and frequency, a user offset, and S/T peak
   positions as a field-curvature readout share that code with Stage 8's band. Depends on C9. L.

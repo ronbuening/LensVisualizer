@@ -7,7 +7,7 @@
  * crosshair (pointer or arrow keys) reads exact values, and an optional comparison result, such
  * as the lens at f/8, is drawn in the same slots with thin lines.
  */
-import { useId, useState, type KeyboardEvent, type PointerEvent } from "react";
+import { useId, useState, type KeyboardEvent, type PointerEvent, type Ref } from "react";
 import type { MtfFieldResult, MtfResult } from "../../../types/mtf.js";
 import type { Theme } from "../../../types/theme.js";
 import {
@@ -48,6 +48,8 @@ interface MtfChartProps {
   diffractionLimit?: boolean;
   frequencyField?: MtfFrequencyField;
   pixelPitchUm?: MtfPixelPitch | null;
+  /** Export adapters snapshot the rendered SVG and legend without rebuilding chart series. */
+  exportRef?: Ref<HTMLElement>;
 }
 
 type MarkerShape = "circle" | "square" | "triangle" | "diamond" | "cross";
@@ -106,6 +108,7 @@ export default function MtfChart({
   diffractionLimit = false,
   frequencyField = "overview",
   pixelPitchUm = null,
+  exportRef,
 }: MtfChartProps) {
   // useId output contains characters that are not valid in url(#…) references.
   const patternId = `mtf-hatch-${useId().replace(/[^a-zA-Z0-9_-]/g, "")}`;
@@ -173,6 +176,7 @@ export default function MtfChart({
   };
   return (
     <figure
+      ref={exportRef}
       style={{ margin: "12px 0" }}
       aria-label={`Simulated MTF versus ${view === "frequency" ? "spatial frequency" : "image height"}`}
     >
