@@ -30,17 +30,21 @@ export interface MtfPreferences {
   method: MtfMethod;
   /** Preferred spectrum; lenses without spectral glass data fall back to the reference wavelength. */
   spectrum: MtfSpectrum;
+  /** Regular spectrum, retained independently of the Advanced spectrum. */
+  regularSpectrum: Exclude<MtfSpectrum, "single">;
   /** Single-line wavelength in nm; retained when another spectrum is selected. */
   wavelengthNm: number;
   focus: MtfFocusMode;
   view: MtfChartView;
+  /** Regular view, retained independently of either Advanced sweep. */
+  regularView: "field" | "frequency";
   fieldStepPercent: MtfFieldStepPercent;
   /** Displayed frequencies, ascending; never empty. */
   frequencies: readonly MtfChartFrequency[];
   maxGridSize: MtfGridCap;
   /** Enable the stopped-down overlay when the stored comparison aperture is attainable. */
   compareF8: boolean;
-  /** Stored comparison aperture; an unavailable choice disables the overlay without substitution. */
+  /** Advanced comparison aperture; an unavailable active choice disables the overlay without substitution. */
   comparisonFNumber: MtfComparisonFNumber;
   /** Refocus the comparison independently, or keep the main result's image plane. */
   comparisonFocus: "refocus" | "hold";
@@ -59,9 +63,11 @@ export const MTF_PREFERENCES_KEY = "lensvis:mtf:options";
 export const DEFAULT_MTF_PREFERENCES: MtfPreferences = Object.freeze({
   method: "diffraction",
   spectrum: "photopic",
+  regularSpectrum: "photopic",
   wavelengthNm: 546.074,
   focus: "best-axial",
   view: "field",
+  regularView: "field",
   fieldStepPercent: 10,
   frequencies: Object.freeze([10, 30] as const),
   maxGridSize: 256,
@@ -88,8 +94,10 @@ const isMethod = oneOf<MtfMethod>(["geometric", "diffraction"]);
 /** Method names stored by earlier versions: the diffraction-corrected product became the diffraction estimate. */
 const RETIRED_METHODS: ReadonlyMap<unknown, MtfMethod> = new Map([["geometric-dl", "diffraction"]]);
 const isSpectrum = oneOf<MtfSpectrum>(["reference", "cdf", "photopic", "single"]);
+const isRegularSpectrum = oneOf<MtfPreferences["regularSpectrum"]>(["reference", "cdf", "photopic"]);
 const isFocus = oneOf<MtfFocusMode>(["auto", "design", "best-axial"]);
 const isView = oneOf<MtfChartView>(["field", "frequency", "aperture", "zoom"]);
+const isRegularView = oneOf<MtfPreferences["regularView"]>(["field", "frequency"]);
 const isFieldStep = oneOf<MtfFieldStepPercent>(MTF_FIELD_STEPS);
 const isFrequency = oneOf<MtfChartFrequency>(MTF_CHART_FREQUENCIES);
 const isGridCap = oneOf<MtfGridCap>([128, 256]);
@@ -118,6 +126,11 @@ export function parseMtfPreferences(raw: unknown): MtfPreferences {
   return {
     method: isMethod(stored.method) ? stored.method : (RETIRED_METHODS.get(stored.method) ?? defaults.method),
     spectrum: isSpectrum(stored.spectrum) ? stored.spectrum : defaults.spectrum,
+    regularSpectrum: isRegularSpectrum(stored.regularSpectrum)
+      ? stored.regularSpectrum
+      : isRegularSpectrum(stored.spectrum)
+        ? stored.spectrum
+        : defaults.regularSpectrum,
     wavelengthNm:
       typeof stored.wavelengthNm === "number" &&
       Number.isFinite(stored.wavelengthNm) &&
@@ -127,6 +140,11 @@ export function parseMtfPreferences(raw: unknown): MtfPreferences {
         : defaults.wavelengthNm,
     focus: isFocus(stored.focus) ? stored.focus : defaults.focus,
     view: isView(stored.view) ? stored.view : defaults.view,
+    regularView: isRegularView(stored.regularView)
+      ? stored.regularView
+      : isRegularView(stored.view)
+        ? stored.view
+        : defaults.regularView,
     fieldStepPercent: isFieldStep(stored.fieldStepPercent) ? stored.fieldStepPercent : defaults.fieldStepPercent,
     frequencies: frequencies.length && frequencies.every(isFrequency) ? frequencies : defaults.frequencies,
     maxGridSize:
@@ -152,6 +170,50 @@ export function parseMtfPreferences(raw: unknown): MtfPreferences {
       : null,
     advanced: typeof stored.advanced === "boolean" ? stored.advanced : defaults.advanced,
   };
+}
+
+/**
+ * Resolve the settings used by requests, controls, exports and explicit share links.
+ * Hidden Advanced choices stay stored so re-enabling Advanced restores them.
+ * @param preferences - validated stored or visit-specific choices
+ * @param isZoom - whether the current lens offers a zoom sweep
+ * @returns effective settings without mutating either set of remembered choices
+ */
+export function resolveMtfPreferences(preferences: MtfPreferences, isZoom = true): MtfPreferences {
+  return {
+    ...preferences,
+    ...(!preferences.advanced
+      ? {
+          spectrum: preferences.regularSpectrum,
+          wavelengthNm: DEFAULT_MTF_PREFERENCES.wavelengthNm,
+          comparisonFNumber: 8,
+          view: preferences.regularView,
+        }
+      : {}),
+    ...(preferences.advanced && preferences.view === "zoom" && !isZoom ? { view: preferences.regularView } : {}),
+  };
+}
+
+/**
+ * Apply control edits to the active set of choices without replacing the other set.
+ * @param preferences - current stored or visit-specific choices
+ * @param patch - controls changed by the reader
+ * @returns a patch suitable for persistence or a visit-specific override
+ */
+export function mtfPreferencePatch(
+  preferences: MtfPreferences,
+  patch: Partial<MtfPreferences>,
+): Partial<MtfPreferences> {
+  const next = { ...patch };
+  if (isRegularSpectrum(patch.spectrum)) {
+    next.regularSpectrum = patch.spectrum;
+    if (!preferences.advanced && preferences.spectrum === "single") delete next.spectrum;
+  }
+  if (isRegularView(patch.view)) {
+    next.regularView = patch.view;
+    if (!preferences.advanced && (preferences.view === "aperture" || preferences.view === "zoom")) delete next.view;
+  }
+  return next;
 }
 
 /** Load saved options, falling back safely during SSR or when storage is unavailable. */

@@ -5,6 +5,8 @@ import {
   MTF_PREFERENCES_KEY,
   MTF_COMPARISON_F_NUMBERS,
   parseMtfPreferences,
+  mtfPreferencePatch,
+  resolveMtfPreferences,
   resetMtfPreferencesCache,
   subscribeMtfPreferences,
   updateMtfPreferences,
@@ -25,6 +27,51 @@ afterEach(() => {
 });
 
 describe("MTF preferences", () => {
+  it.each(["photopic", "cdf", "reference"] as const)(
+    "restores the regular %s spectrum and frequency view",
+    (spectrum) => {
+      stubStorage({ [MTF_PREFERENCES_KEY]: JSON.stringify({ spectrum, view: "frequency" }) });
+      const change = (patch: Parameters<typeof updateMtfPreferences>[0]) =>
+        updateMtfPreferences(mtfPreferencePatch(getMtfPreferences(), patch));
+      change({ advanced: true });
+      change({ spectrum: "single", wavelengthNm: 532.125, comparisonFNumber: 5.6, view: "aperture" });
+      change({ advanced: false });
+      resetMtfPreferencesCache();
+      expect(resolveMtfPreferences(getMtfPreferences())).toMatchObject({
+        spectrum,
+        view: "frequency",
+        comparisonFNumber: 8,
+        wavelengthNm: DEFAULT_MTF_PREFERENCES.wavelengthNm,
+      });
+      change({ spectrum: "reference", view: "field" });
+      expect(resolveMtfPreferences(getMtfPreferences())).toMatchObject({ spectrum: "reference", view: "field" });
+      change({ advanced: true });
+      expect(resolveMtfPreferences(getMtfPreferences())).toMatchObject({
+        spectrum: "single",
+        wavelengthNm: 532.125,
+        comparisonFNumber: 5.6,
+        view: "aperture",
+      });
+    },
+  );
+
+  it("migrates older and corrupt memories without activating hidden Advanced settings", () => {
+    for (const advanced of [false, true]) {
+      const migrated = parseMtfPreferences({ spectrum: "single", wavelengthNm: 532.125, view: "zoom", advanced });
+      expect(migrated).toMatchObject({ regularSpectrum: "photopic", regularView: "field" });
+      expect(resolveMtfPreferences(migrated)).toMatchObject({
+        spectrum: advanced ? "single" : "photopic",
+        view: advanced ? "zoom" : "field",
+      });
+    }
+    expect(
+      parseMtfPreferences({ spectrum: "cdf", view: "frequency", regularSpectrum: "single", regularView: "zoom" }),
+    ).toMatchObject({ regularSpectrum: "cdf", regularView: "frequency" });
+    const prime = parseMtfPreferences({ advanced: true, view: "zoom", regularView: "frequency" });
+    expect(resolveMtfPreferences(prime, false).view).toBe("frequency");
+    expect(prime.view).toBe("zoom");
+  });
+
   it("accepts the aperture view without changing older defaults or repairing its Advanced preference", () => {
     expect(parseMtfPreferences({ view: "aperture", advanced: false })).toMatchObject({
       view: "aperture",
@@ -66,6 +113,7 @@ describe("MTF preferences", () => {
       method: "diffraction",
       focus: "design",
       view: "frequency",
+      regularView: "frequency",
       frequencies: [10, 50],
     });
     expect(parseMtfPreferences({ frequencies: [] }).frequencies).toEqual(DEFAULT_MTF_PREFERENCES.frequencies);
@@ -89,7 +137,7 @@ describe("MTF preferences", () => {
     resetMtfPreferencesCache();
     expect(getMtfPreferences()).toMatchObject({ spectrum: "single", wavelengthNm: 532.125 });
   });
-  it("migrates the comparison aperture to f/8 and retains it when Advanced is hidden", () => {
+  it("migrates the comparison aperture to f/8 and remembers the Advanced stop while using f/8 off", () => {
     expect(parseMtfPreferences({ compareF8: true })).toMatchObject({
       compareF8: true,
       comparisonFNumber: 8,
@@ -109,6 +157,8 @@ describe("MTF preferences", () => {
     });
     resetMtfPreferencesCache();
     expect(getMtfPreferences()).toMatchObject({ compareF8: true, comparisonFNumber: 5.6, advanced: false });
+    expect(resolveMtfPreferences(getMtfPreferences()).comparisonFNumber).toBe(8);
+    expect(resolveMtfPreferences({ ...getMtfPreferences(), advanced: true }).comparisonFNumber).toBe(5.6);
     for (const comparisonFNumber of [13.5, 45, 64, 90, 128]) {
       updateMtfPreferences({ comparisonFNumber });
       resetMtfPreferencesCache();

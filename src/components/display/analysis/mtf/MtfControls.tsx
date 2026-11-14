@@ -22,6 +22,7 @@ import useMediaQuery from "../../../../utils/useMediaQuery.js";
 
 interface MtfControlsProps {
   t: Theme;
+  /** Effective settings from resolveMtfPreferences, including lens-specific view fallback. */
   preferences: MtfPreferences;
   onChange: (patch: Partial<MtfPreferences>) => void;
   /** Photopic sweeps at 1 % and 2 % steps trace nine wavelengths for up to 101 fields. */
@@ -93,11 +94,7 @@ export default function MtfControls({
   result = null,
   isZoom = false,
 }: MtfControlsProps) {
-  const view =
-    ((preferences.view === "aperture" || preferences.view === "zoom") && !preferences.advanced) ||
-    (preferences.view === "zoom" && !isZoom)
-      ? "field"
-      : preferences.view;
+  const view = preferences.view;
   const isSweep = view === "aperture" || view === "zoom";
   const comparisonAvailable = comparisonFNumbers.includes(comparisonFNumber);
   const views: ReadonlyArray<[MtfChartView, string]> = [
@@ -134,9 +131,7 @@ export default function MtfControls({
           touchHelp={touchHelp}
           style={selectStyle}
           value={preferences.spectrum}
-          options={SPECTRA.filter(
-            ([spectrum]) => spectrum !== "single" || preferences.advanced || preferences.spectrum === "single",
-          )}
+          options={SPECTRA.filter(([spectrum]) => spectrum !== "single" || preferences.advanced)}
           onChange={(spectrum) => onChange({ spectrum })}
         />
         <Select

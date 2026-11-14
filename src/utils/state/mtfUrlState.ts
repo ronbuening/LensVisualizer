@@ -8,6 +8,7 @@ import {
   MTF_FIELD_STEPS,
   MTF_PIXEL_PITCHES,
   isMtfComparisonFNumber,
+  resolveMtfPreferences,
   type MtfPreferences,
 } from "./mtfPreferences.js";
 import { MTF_MIN_WAVELENGTH_NM, MTF_MAX_WAVELENGTH_NM } from "../../types/mtf.js";
@@ -52,18 +53,28 @@ const SETTINGS = {
   r: { key: "frequencyField", valid: isField },
   p: { key: "pixelPitchUm", valid: oneOf(null, ...MTF_PIXEL_PITCHES) },
   a: { key: "advanced", valid: oneOf(true, false) },
+  b: { key: "regularSpectrum", valid: oneOf("reference", "cdf", "photopic") },
+  j: { key: "regularView", valid: oneOf("field", "frequency") },
 } as const satisfies Record<string, { key: keyof MtfPreferences; valid: (value: unknown) => boolean }>;
 
 /**
  * Encode complete settings using version 1 and exact JSON number serialization.
- * @param preferences - current visit's settings, including the preferred spectrum
+ * @param preferences - remembered visit settings; explicit sharing resolves them in buildMtfLink
  * @returns one query parameter value; `1` explicitly shares all defaults
  */
 export function encodeMtfSettings(preferences: MtfPreferences): string {
   // Version 1 is additive: absent wavelength and comparison-aperture fields inherit their defaults.
   const overrides: Record<string, unknown> = {};
   for (const [code, { key }] of Object.entries(SETTINGS)) {
-    if (JSON.stringify(preferences[key]) !== JSON.stringify(DEFAULT_MTF_PREFERENCES[key])) {
+    // A regular choice already encoded in s/v needs no second copy. Only a hidden
+    // regular choice accompanying a single line or sweep needs its additive field.
+    if (key === "regularSpectrum" && preferences.regularSpectrum === preferences.spectrum) continue;
+    if (key === "regularView" && preferences.regularView === preferences.view) continue;
+    if (
+      (key === "regularSpectrum" && preferences.spectrum !== "single") ||
+      (key === "regularView" && (preferences.view === "field" || preferences.view === "frequency")) ||
+      JSON.stringify(preferences[key]) !== JSON.stringify(DEFAULT_MTF_PREFERENCES[key])
+    ) {
       overrides[code] = preferences[key];
     }
   }
@@ -89,6 +100,10 @@ export function decodeMtfSettings(value: string | null): MtfPreferences | null {
       if (!valid(setting)) return null;
       Object.assign(preferences, { [key]: setting });
     }
+    if (!Object.hasOwn(raw, "b") && preferences.spectrum !== "single")
+      preferences.regularSpectrum = preferences.spectrum;
+    if (!Object.hasOwn(raw, "j") && (preferences.view === "field" || preferences.view === "frequency"))
+      preferences.regularView = preferences.view;
     return preferences;
   } catch {
     return null;
@@ -118,7 +133,7 @@ export function buildMtfLink(href: string, preferences: MtfPreferences): string 
   url.searchParams.set("v", "1");
   url.searchParams.set("ad", "1");
   url.searchParams.set("tab", "mtf");
-  url.searchParams.set(MTF_URL_PARAM, encodeMtfSettings(preferences));
+  url.searchParams.set(MTF_URL_PARAM, encodeMtfSettings(resolveMtfPreferences(preferences)));
   return url.href;
 }
 

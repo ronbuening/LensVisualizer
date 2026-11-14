@@ -347,7 +347,13 @@ within 0.006 (60 lp/mm on a 256-cell pupil; 0.004 on the adaptive grid, which st
 without ray aiming and the engine samples the stop. No catalog lens has been compared with another tool.
 
 The MTF tab reuses `analysisContext.request`, or memoizes a standalone request from prepared geometry, aperture and
-EFL. Its stopped-down comparison creates a separate ordinary request, sizing the stop at the current zoom and
+EFL. `resolveMtfPreferences` resolves stored or visit-specific choices once for requests, controls, headers,
+comparison labels, exports and copied links. With Advanced off, it uses f/8, the remembered regular spectrum
+(photopic by default), and the remembered regular image-height or frequency view. The single wavelength and
+sweep choices remain stored for Advanced. Older stored shapes and links infer regular memories from non-single
+spectra and non-sweep views, otherwise defaulting to photopic and image height. Copied links include only effective
+settings; live shared visits retain both memories with additive version-1 fields `b` and `j`.
+Its stopped-down comparison creates a separate ordinary request, sizing the stop at the current zoom and
 scaling the entrance pupil by the stop-radius ratio. It reports its own progress and errors and labels the applied
 plane and refocus shift relative to the main aperture. The comparison follows the selected
 focus policy independently by default; a persisted control can instead hold the main result's image plane, starting
@@ -356,11 +362,11 @@ once its focus is available on the first partial result. Held shifts are part of
 through f/128 slower than the charted aperture (a gap greater than 0.05 f-number for rounded labels), with the exact
 bound `stop <= L.maxFstop`, the slider's minimum aperture. The minimum itself is also offered when it is within
 f/1–f/128, slower than the charted aperture by more than 0.05, and more than 0.05 from every listed full stop. The
-preference defaults to f/8. A stored stop outside this list disables the overlay without substitution or preference
+preference defaults to f/8. In Advanced, a stored stop outside this list disables the overlay without substitution or preference
 changes; its disabled toggle's title explains the aperture-range requirement. Advanced reveals the comparison aperture
 select, which lists attainable stops and shows an unavailable stored stop as a disabled placeholder. Choosing a stop
-stores it. Advanced off hides the select while the toggle continues to name the stored aperture, with f/8
-availability matching the rounded-aperture rule of the default control.
+stores it. Advanced off hides the select and uses the regular f/8 overlay, including its toggle, requests and labels;
+turning Advanced on restores the stored aperture. Regular f/8 availability matches the rounded-aperture rule.
 `compareF8` keeps its overlay-on meaning; `comparisonFNumber` defaults to 8 for older stored preferences and shared
 links. Version-1 share encoding adds only optional `n` for a non-default aperture; f/8 payloads stay unchanged.
 Stored preferences and shared links accept every finite comparison f-number from 1 through 128, including
@@ -370,8 +376,9 @@ and adds aperture-labelled table rows and appended CSV columns without changing 
 `f/8 ` column prefix stays unchanged at f/8; another stop uses its own prefix, such as `f/5.6 `, for comparison,
 notes and diffraction-limit columns in the clipboard and both contextual CSV scopes. Legends, plane labels,
 crosshair values, Advanced focus/working-aperture blocks, export context and captions name that same aperture.
-Advanced exposes Aperture and, for zoom lenses, Zoom views. With Advanced off, either stored sweep view renders
-image height without changing the preference; a prime also falls back from a stored Zoom view. The Aperture sweep
+Advanced exposes Aperture and, for zoom lenses, Zoom views. With Advanced off, either stored sweep view returns
+to the remembered regular view without changing the sweep preference; a prime also falls back to that regular view
+from a stored Zoom view. The Aperture sweep
 starts at the exact charted aperture, then uses the comparison selector's slower stops, including a distinct
 minimum aperture within the shared range. Each point is an ordinary request with the same stop/pupil scaling,
 restricted to the center, 50 % and charted result's outermost available field, or the frequency selector's single
@@ -458,8 +465,9 @@ bound. With Advanced off, the existing deduplicated notes list remains. A "Focus
 aperture's requested and applied mode, applied and best-axial shifts, design and best scores as mean axial geometric
 MTF at 10–50 lp/mm, `imagePlaneOffsetMm` (paraxial focus minus authored plane) and `imagePlaneInconsistent`. Null
 diagnostics are shown as absent, with no consistency assessment when the offset is absent. Its caption identifies
-these as numerical sampling and focus-search details, separate from physical accuracy. Toggling Advanced changes
-presentation only and does not enable the independent diagnostic-estimates disclosure or alter withheld-value policy.
+these as numerical sampling and focus-search details, separate from physical accuracy. Toggling Advanced can change
+the effective spectrum, comparison aperture and chart view; unchanged request settings reuse computations. It does not
+enable the independent diagnostic-estimates disclosure or alter withheld-value policy.
 The hook serializes only slider and
 aperture controls plus MTF settings, so chart-only changes retain the same computation key. MTF is worker-driven and
 has no lazy analysis-context accessor or job-table entry. Single-lens and comparison drawers share this renderer.

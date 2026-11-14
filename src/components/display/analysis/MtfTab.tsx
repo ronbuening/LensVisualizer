@@ -23,6 +23,7 @@ import { useMtfComputation } from "../../hooks/useMtfComputation.js";
 import { useMtfDataWarning } from "../../hooks/useMtfDataWarning.js";
 import { useSharedMtfPreferences } from "../../../utils/state/useSharedMtfPreferences.js";
 import { buildMtfLink } from "../../../utils/state/mtfUrlState.js";
+import { resolveMtfPreferences } from "../../../utils/state/mtfPreferences.js";
 import { AnalysisEmptyState } from "./analysisUi.js";
 import MtfChart from "./MtfChart.js";
 import MtfControls from "./mtf/MtfControls.js";
@@ -95,14 +96,10 @@ export default function MtfTab({
   focalLengthMm,
   movementActive = false,
 }: MtfTabProps) {
-  const [preferences, updatePreferences, sharedSettings, useStoredSettings] = useSharedMtfPreferences();
+  const [storedPreferences, updatePreferences, sharedSettings, useStoredSettings] = useSharedMtfPreferences();
+  const preferences = resolveMtfPreferences(storedPreferences, L.isZoom);
   const chartRef = useRef<HTMLElement>(null);
-  // Keep the stored view so Advanced can restore it; every visible view has a switch-away button.
-  const view =
-    ((preferences.view === "aperture" || preferences.view === "zoom") && !preferences.advanced) ||
-    (preferences.view === "zoom" && !L.isZoom)
-      ? "field"
-      : preferences.view;
+  const view = preferences.view;
   const isSweep = view === "aperture" || view === "zoom";
   const request = useMemo(
     () =>
@@ -514,7 +511,7 @@ export default function MtfTab({
                     buildMtfExportContext({
                       lens: L,
                       result: chartResult,
-                      preferences: { ...preferences, view },
+                      preferences,
                       sweepSamples: isSweep ? sweepSamples : undefined,
                       sweepCaption: isSweep ? sweepCaption : undefined,
                       focalLengthMm: focalLengthMm ?? (request.dynamicEFL || L.EFL),

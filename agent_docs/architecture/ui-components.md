@@ -179,11 +179,12 @@ diagnostics are disclosed. Advanced reveals a "Comparison aperture" select besid
 with the exact bound `stop <= L.maxFstop`. The minimum aperture itself is included when it lies in f/1–f/128,
 is slower than the charted aperture by more than 0.05 and is more than 0.05 from every listed full stop.
 `mtfComparisonFNumbers` supplies this range to the tab, select and sweep. The stored choice defaults to f/8.
-An unavailable stored stop disables the overlay and its toggle;
+In Advanced, an unavailable stored stop disables the overlay and its toggle;
 the title explains the aperture-range requirement. No other stop is substituted or stored. Advanced still lists
 attainable stops, with a disabled placeholder naming the unavailable stored stop; choosing a stop stores it.
-An empty range hides the select. Turning Advanced off hides the aperture select while the toggle keeps naming the
-stored aperture, including a non-default choice. Default f/8 availability retains the rounded-aperture boundary.
+An empty range hides the select. Turning Advanced off restores the regular f/8 comparison and hides the aperture
+select; turning it on restores the stored Advanced aperture. Regular f/8 availability retains the rounded-aperture
+boundary.
 Its progress and errors appear independently of the main result. The overlay labels its applied plane and both its
 authored-plane shift and its shift from the main
 aperture's plane. A persisted plane selector beside the enabled toggle defaults to "Refocus at f/N" (the selected
@@ -194,8 +195,9 @@ boolean. Stored options missing `comparisonFNumber` and old shared links default
 optional `n` for a non-default comparison f-number, preserving f/8 link bytes.
 Preferences and shared links validate comparison apertures as finite numbers from 1 through 128; availability
 follows the current lens and zoom's attainable-stop list.
-Advanced adds the Aperture chart button. A stored aperture view falls back to image height while Advanced is off,
-without overwriting the preference. Its x axis is log2 f-number, with ticks at the exact charted aperture and then
+Advanced adds the Aperture chart button. A stored sweep view returns to the last regular image-height or frequency
+view while Advanced is off, without overwriting the sweep preference. Its x axis is log2 f-number, with ticks at
+the exact charted aperture and then
 the comparison selector's slower stops, including a distinct minimum aperture within the shared range. Frequencies
 keep their fixed colors, and fields use the frequency view's marker shapes, with hollow markers for isolated
 diffraction references. The Fields selector chooses one field or the center/50 %/outermost available
@@ -218,8 +220,8 @@ height, plane/shift and notes, plus enabled diffraction references. This-view CS
 includes every computed frequency at the sweep's sampled fields. Context records `view: aperture`, the sweep policy
 and each aperture's applied plane. SVG/PNG capture the rendered sweep and caption. Stored settings and v1 shared
 links accept the aperture view without changing older defaults.
-Advanced also offers Zoom for zoom lenses. A stored Zoom view falls back to image height with Advanced off or on a
-prime, preserving the preference. It uses the same sweep hook, series, table, point counts, exports and withholding
+Advanced also offers Zoom for zoom lenses. A stored Zoom view falls back to the remembered regular view with
+Advanced off or on a prime, preserving the preference. It uses the same sweep hook, series, table, point counts, exports and withholding
 policy. Published infinity stations come from `publishedZoomStations`, defaulting to all authored stations; each
 uses its own wide-open iris through the viewer's controls and ordinary job builder. One worker computes stations
 sequentially with focal-length/ordinal progress and partial results; changes cancel work and completed requests stay
@@ -255,9 +257,10 @@ accessible value-table caption explain that this is the pixel-grid sampling limi
 prediction. These display controls reuse results without tracing.
 The persisted "Advanced" toggle is off by default. It offers "Single wavelength" in the spectrum selector and, when
 selected, a compact nm input (435.8–656.3 nm, 1 nm steps) and g/F/e/d/C presets. Preset labels round to whole nm but
-select exact reference-line wavelengths. Turning Advanced off hides the input and presets; a selected single spectrum
-stays in the menu so the reader can change away, and the header continues to name its wavelength. A native-reference
-choice carries no glass-data warning. The wavelength persists, travels in version-1 share links as an additive field,
+select exact reference-line wavelengths. Turning Advanced off removes the single-wavelength option, input and presets,
+and restores the last regular spectrum (photopic by default). Turning it on restores the selected Advanced spectrum
+and wavelength. A native-reference choice carries no glass-data warning. The wavelength persists, travels in
+version-1 share links as an additive field,
 appears in export metadata and captions, and applies to both the main and comparison computations.
 Advanced opens the field table with each field's grid size, largest
 change between the last two grids, stable-through frequency, nonzero unresolved-flux percentage, unaimed and failed
@@ -278,7 +281,14 @@ and zoom together; the active station includes its traced ratio. Comparison pane
 station buttons. Field notes retain the engine's method-specific
 qualifications: geometric unresolved flux can carry the 2ε error bound; diffraction omitted flux has no such bound.
 Advanced is independent of "Show diagnostic estimates (unconverged or unverified frequencies)" and does not disclose
-withheld values. Toggling Advanced itself reuses the current computations.
+withheld values. Toggling Advanced reuses computations when the effective request settings stay the same.
+`resolveMtfPreferences` supplies effective settings to requests, controls, headers, comparison labels, exports and
+copied links. Stored `regularSpectrum` and `regularView` remember regular choices while `spectrum`, `wavelengthNm`,
+`view` and `comparisonFNumber` retain Advanced choices. Selecting a regular spectrum or view updates its memory;
+regular-mode edits preserve a stored single wavelength or sweep. Older stored shapes and links infer regular choices
+from non-single spectra and non-sweep views, otherwise defaulting to photopic and image height. Copied links encode
+only effective settings and the Advanced flag; live shared visits retain both memories across toggles using additive
+version-1 fields `b` (regular spectrum) and `j` (regular view).
 `mtf/MtfControls`, `mtf/MtfActions`, `mtf/MtfFieldSummary` and `mtf/MtfValueTable` hold
 the controls, result-independent actions, status counts and per-field values; an enabled comparison with values adds
 aperture-labelled table rows and appended aperture-prefixed CSV columns, retaining the main columns and their order. The f/8 column

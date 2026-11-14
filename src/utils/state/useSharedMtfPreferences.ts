@@ -1,7 +1,7 @@
 /** Visit-specific MTF settings follow an explicit share URL; ordinary visits keep the stored preference flow. */
 import { useMemo, useSyncExternalStore } from "react";
 import { useMtfPreferences } from "../../components/hooks/useMtfPreferences.js";
-import type { MtfPreferences } from "./mtfPreferences.js";
+import { mtfPreferencePatch, type MtfPreferences } from "./mtfPreferences.js";
 import { encodeMtfSettings, MTF_URL_PARAM, parseSharedMtfSettings } from "./mtfUrlState.js";
 
 const CHANGE_EVENT = "lensvis:mtf-link-settings";
@@ -38,10 +38,12 @@ export function useSharedMtfPreferences(): [
   const search = useSyncExternalStore(subscribe, getSearch, getServerSearch);
   const shared = useMemo(() => parseSharedMtfSettings(search), [search]);
   const update = (patch: Partial<MtfPreferences>) => {
-    if (shared) replaceSettings({ ...shared, ...patch });
+    if (shared) replaceSettings({ ...shared, ...mtfPreferencePatch(shared, patch) });
     // Only the control the reader changes becomes a preference; other shared values
     // stay visit-only. "Use my settings" resumes their saved choices without saving the link.
-    updateStored(patch);
+    // Remember regular selections even when the saved Advanced spectrum/view differs
+    // from this visit's link. Hidden choices in either set remain untouched.
+    updateStored(mtfPreferencePatch({ ...stored, advanced: (shared ?? stored).advanced }, patch));
   };
   return [shared ?? stored, update, shared !== null, () => replaceSettings(null)];
 }

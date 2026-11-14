@@ -8,15 +8,21 @@ import {
   parseSharedMtfSettings,
   preserveSharedMtfSettings,
 } from "../../../../src/utils/state/mtfUrlState.js";
-import { DEFAULT_MTF_PREFERENCES, type MtfPreferences } from "../../../../src/utils/state/mtfPreferences.js";
+import {
+  DEFAULT_MTF_PREFERENCES,
+  resolveMtfPreferences,
+  type MtfPreferences,
+} from "../../../../src/utils/state/mtfPreferences.js";
 
 const settings: Required<MtfPreferences> = {
   method: "geometric",
   spectrum: "cdf",
+  regularSpectrum: "cdf",
   wavelengthNm: DEFAULT_MTF_PREFERENCES.wavelengthNm,
   focus: "design",
   maxGridSize: 128,
   view: "frequency",
+  regularView: "frequency",
   fieldStepPercent: 2,
   frequencies: [20, 40, 50],
   compareF8: true,
@@ -30,11 +36,47 @@ const settings: Required<MtfPreferences> = {
 const payload = (raw: unknown) => `1.${btoa(JSON.stringify(raw)).replace(/=+$/, "")}`;
 
 describe("MTF URL state", () => {
+  it.each([false, true])("copies only effective settings with Advanced %s", (advanced) => {
+    const remembered = {
+      ...settings,
+      spectrum: "single" as const,
+      wavelengthNm: 532.125,
+      view: "zoom" as const,
+      advanced,
+    };
+    const shared = parseSharedMtfSettings(new URL(buildMtfLink("https://example.com/lens/test/", remembered)).search)!;
+    expect(shared).toEqual(resolveMtfPreferences(remembered));
+    expect(shared).toMatchObject({
+      spectrum: advanced ? "single" : "cdf",
+      view: advanced ? "zoom" : "frequency",
+      comparisonFNumber: advanced ? 5.6 : 8,
+      wavelengthNm: advanced ? 532.125 : DEFAULT_MTF_PREFERENCES.wavelengthNm,
+      advanced,
+    });
+    // The live visit URL retains both memories, unlike an explicit copied link.
+    expect(decodeMtfSettings(encodeMtfSettings(remembered))).toEqual(remembered);
+  });
+
+  it("reads old single-line and sweep links as Advanced choices with regular defaults", () => {
+    const old = decodeMtfSettings(payload({ s: "single", w: 532.125, v: "aperture", n: 5.6 }))!;
+    expect(old).toMatchObject({ spectrum: "single", wavelengthNm: 532.125, view: "aperture", comparisonFNumber: 5.6 });
+    expect(resolveMtfPreferences(old)).toMatchObject({ spectrum: "photopic", view: "field", comparisonFNumber: 8 });
+    expect(resolveMtfPreferences({ ...old, advanced: true })).toMatchObject({
+      spectrum: "single",
+      view: "aperture",
+      comparisonFNumber: 5.6,
+    });
+    expect(decodeMtfSettings(payload({ s: "cdf", v: "frequency" }))).toMatchObject({
+      regularSpectrum: "cdf",
+      regularView: "frequency",
+    });
+  });
+
   it.each(["aperture", "zoom"] as const)("round-trips the %s view and controls in additive v1 links", (view) => {
     for (const advanced of [true, false]) {
       const aperture = { ...settings, view, advanced };
       const link = buildMtfLink("https://example.com/lens/test/?v=1&aperture=0.12345678901234568", aperture);
-      expect(parseSharedMtfSettings(new URL(link).search)).toEqual(aperture);
+      expect(parseSharedMtfSettings(new URL(link).search)).toEqual(resolveMtfPreferences(aperture));
       expect(new URL(link).searchParams.get("aperture")).toBe("0.12345678901234568");
     }
     expect(decodeMtfSettings(payload({ v: "field" }))?.view).toBe("field");
@@ -60,6 +102,7 @@ describe("MTF URL state", () => {
     expect(decodeMtfSettings(payload({ s: "reference", m: "geometric" }))).toEqual({
       ...DEFAULT_MTF_PREFERENCES,
       spectrum: "reference",
+      regularSpectrum: "reference",
       method: "geometric",
     });
     for (const w of [null, "532", 435.7, 656.4]) expect(decodeMtfSettings(payload({ s: "single", w }))).toBeNull();
@@ -132,6 +175,8 @@ describe("MTF URL state", () => {
     payload({ r: null }),
     payload({ p: 7 }),
     payload({ a: 1 }),
+    payload({ b: "single" }),
+    payload({ j: "aperture" }),
     payload({ m: "geometric", q: [20, 35] }),
   ])("rejects a malformed or future payload as a whole: %s", (value) => {
     expect(decodeMtfSettings(value)).toBeNull();

@@ -32,6 +32,7 @@ import {
   resetMtfPreferencesCache,
 } from "../../../../../src/utils/state/mtfPreferences.js";
 import { buildMtfLink, parseSharedMtfSettings } from "../../../../../src/utils/state/mtfUrlState.js";
+import { useSharedMtfPreferences } from "../../../../../src/utils/state/useSharedMtfPreferences.js";
 import { resetMtfDataWarnings } from "../../../../../src/utils/state/mtfDataWarnings.js";
 import { useMtfApertureSweep, useMtfSweep } from "../../../../../src/components/hooks/useMtfApertureSweep.js";
 import {
@@ -151,6 +152,44 @@ afterEach(() => {
 describe("MTF share links", () => {
   const tab = <MtfTab L={focusedL} t={mockTheme} preparedState={focusedState} currentEPSD={1} currentPhysStopSD={1} />;
 
+  it.each([false, true])(
+    "saves shared control edits to the active mode when stored Advanced differs (%s)",
+    (advanced) => {
+      localStorage.setItem(
+        MTF_PREFERENCES_KEY,
+        JSON.stringify({
+          advanced: !advanced,
+          spectrum: "single",
+          wavelengthNm: 532.125,
+          view: "zoom",
+        }),
+      );
+      window.history.replaceState(
+        {},
+        "",
+        buildMtfLink(window.location.href, {
+          ...DEFAULT_MTF_PREFERENCES,
+          advanced,
+          spectrum: "reference",
+          regularSpectrum: "reference",
+          view: "frequency",
+          regularView: "frequency",
+        }),
+      );
+      const { result } = renderHook(() => useSharedMtfPreferences());
+      act(() => result.current[1]({ spectrum: "cdf", view: "field" }));
+      expect(result.current[0]).toMatchObject({ spectrum: "cdf", view: "field", advanced });
+      expect(JSON.parse(localStorage.getItem(MTF_PREFERENCES_KEY)!)).toMatchObject({
+        advanced: !advanced,
+        spectrum: advanced ? "cdf" : "single",
+        view: advanced ? "field" : "zoom",
+        wavelengthNm: 532.125,
+        regularSpectrum: "cdf",
+        regularView: "field",
+      });
+    },
+  );
+
   it("applies link settings without saving them, saves only changed controls, and resumes my settings", async () => {
     const saved = JSON.stringify({ method: "diffraction", spectrum: "reference", focus: "auto", advanced: false });
     localStorage.setItem(MTF_PREFERENCES_KEY, saved);
@@ -164,7 +203,11 @@ describe("MTF share links", () => {
     expect(calls.jobs[0].options).toMatchObject({ method: "geometric", focus: "design", spectrum: "photopic" });
     expect(localStorage.getItem(MTF_PREFERENCES_KEY)).toBe(saved);
     fireEvent.change(screen.getByRole("combobox", { name: "MTF spectrum" }), { target: { value: "cdf" } });
-    expect(parseSharedMtfSettings(window.location.search)).toEqual({ ...shared, spectrum: "cdf" });
+    expect(parseSharedMtfSettings(window.location.search)).toEqual({
+      ...shared,
+      spectrum: "cdf",
+      regularSpectrum: "cdf",
+    });
     expect(JSON.parse(localStorage.getItem(MTF_PREFERENCES_KEY)!)).toMatchObject({
       method: "diffraction",
       spectrum: "cdf",
@@ -276,7 +319,7 @@ describe("MTF share links", () => {
 });
 
 describe("MTF tab", () => {
-  it("offers single wavelength only in Advanced, keeping a selected line visible and labelled while off", async () => {
+  it("restores the regular spectrum while off and remembers the Advanced wavelength", async () => {
     localStorage.setItem(MTF_PREFERENCES_KEY, JSON.stringify({ spectrum: "reference", wavelengthNm: 587.5618 }));
     const { calls } = stubWorker({ target: focusedState });
     render(<MtfTab L={focusedL} t={mockTheme} preparedState={focusedState} currentEPSD={1} currentPhysStopSD={1} />);
@@ -293,17 +336,16 @@ describe("MTF tab", () => {
       expect(calls.jobs.at(-1)!.options).toMatchObject({ spectrum: "single", wavelengthNm: 587.5618 }),
     );
     expect(screen.queryByText(/Every glass is known only/)).toBeNull();
-    const computations = calls.compute;
     fireEvent.click(screen.getByRole("button", { name: "Advanced" }));
     expect(screen.queryByRole("spinbutton", { name: "MTF wavelength" })).toBeNull();
-    expect(within(select).getByRole("option", { name: "Single wavelength" })).toBeTruthy();
-    expect((select as HTMLSelectElement).value).toBe("single");
-    expect(screen.getByText(/Diffraction-corrected · 587.5618 nm ·/)).toBeTruthy();
-    expect(calls.compute).toBe(computations);
-    fireEvent.change(select, { target: { value: "reference" } });
     expect(within(select).queryByRole("option", { name: "Single wavelength" })).toBeNull();
+    expect((select as HTMLSelectElement).value).toBe("reference");
+    expect(screen.getByText(/Diffraction-corrected · 587.6 nm ·/)).toBeTruthy();
+    await vi.waitFor(() => expect(screen.queryByText(/Previous settings are shown/)).toBeNull());
+    fireEvent.change(select, { target: { value: "cdf" } });
     fireEvent.click(screen.getByRole("button", { name: "Advanced" }));
-    fireEvent.change(select, { target: { value: "single" } });
+    expect((select as HTMLSelectElement).value).toBe("single");
+    expect(screen.getByRole("spinbutton", { name: "MTF wavelength" })).toHaveProperty("valueAsNumber", 587.5618);
     for (const [label, wavelengthNm] of [
       ["g 436", 435.8343],
       ["F 486", 486.1327],
@@ -327,8 +369,14 @@ describe("MTF tab", () => {
     );
   });
 
-  it("opens a shared single-line chart with Advanced off and applies the same wavelength to f/8", async () => {
-    const shared = { ...DEFAULT_MTF_PREFERENCES, spectrum: "single" as const, wavelengthNm: 532.125, compareF8: true };
+  it("opens a shared Advanced single-line chart and applies the same wavelength to f/8", async () => {
+    const shared = {
+      ...DEFAULT_MTF_PREFERENCES,
+      spectrum: "single" as const,
+      wavelengthNm: 532.125,
+      compareF8: true,
+      advanced: true,
+    };
     window.history.replaceState(
       {},
       "",
@@ -346,7 +394,7 @@ describe("MTF tab", () => {
       />,
     );
     await vi.waitFor(() => expect(calls.compute).toBe(2));
-    expect(screen.queryByRole("spinbutton", { name: "MTF wavelength" })).toBeNull();
+    expect(screen.getByRole("spinbutton", { name: "MTF wavelength" })).toHaveProperty("valueAsNumber", 532.125);
     expect((screen.getByRole("combobox", { name: "MTF spectrum" }) as HTMLSelectElement).value).toBe("single");
     expect(screen.getByText(/Diffraction-corrected · 532.125 nm ·/)).toBeTruthy();
     for (const job of calls.jobs) expect(job.options).toMatchObject({ spectrum: "single", wavelengthNm: 532.125 });
@@ -1532,7 +1580,7 @@ describe("MTF export and aperture comparison", () => {
     render(<MtfTab L={L} t={mockTheme} preparedState={state} currentEPSD={1} currentPhysStopSD={1} fNumber={8} />);
     expect(screen.getByRole("button", { name: "Compare f/8" })).toHaveProperty("disabled", true);
   });
-  it("selects another stop throughout the overlay and keeps it explicit with Advanced hidden", async () => {
+  it("selects another Advanced stop and restores f/8 throughout the regular overlay and links", async () => {
     const { calls } = stubWorker({ target: focusedState });
     const writeText = vi.fn().mockResolvedValue(undefined);
     vi.stubGlobal("navigator", { ...navigator, clipboard: { writeText } });
@@ -1579,18 +1627,20 @@ describe("MTF export and aperture comparison", () => {
     expect(container.querySelector('[aria-live="polite"]')!.textContent).toContain("f/5.6, refocused");
     fireEvent.click(screen.getByRole("button", { name: "Advanced" }));
     expect(screen.queryByRole("combobox", { name: "Comparison aperture" })).toBeNull();
-    expect(screen.getByRole("button", { name: "Compare f/5.6" }).getAttribute("aria-pressed")).toBe("true");
-    expect(legend.isConnected).toBe(true);
-    expect(calls.compute).toBe(3);
+    expect(screen.getByRole("button", { name: "Compare f/8" }).getAttribute("aria-pressed")).toBe("true");
+    await screen.findByText(/^f\/8, refocused .*\(thin lines\)$/);
+    expect(legend.isConnected).toBe(false);
+    expect(screen.queryByRole("combobox", { name: "f/5.6 comparison image plane" })).toBeNull();
+    expect(screen.getByRole("combobox", { name: "f/8 comparison image plane" })).toBeTruthy();
     fireEvent.click(screen.getByRole("button", { name: "Copy CSV" }));
     await vi.waitFor(() => expect(writeText).toHaveBeenCalledTimes(1));
-    expect(writeText.mock.calls[0][0]).toContain("f/5.6 10 lp/mm sagittal");
-    expect(writeText.mock.calls[0][0]).not.toContain("f/8");
+    expect(writeText.mock.calls[0][0]).toContain("f/8 10 lp/mm sagittal");
+    expect(writeText.mock.calls[0][0]).not.toContain("f/5.6");
     fireEvent.click(screen.getByRole("button", { name: "Copy MTF link" }));
     await vi.waitFor(() => expect(writeText).toHaveBeenCalledTimes(2));
     expect(parseSharedMtfSettings(new URL(writeText.mock.calls[1][0] as string).search)).toMatchObject({
       compareF8: true,
-      comparisonFNumber: 5.6,
+      comparisonFNumber: 8,
       advanced: false,
     });
     expect(JSON.parse(localStorage.getItem(MTF_PREFERENCES_KEY)!)).toMatchObject({
@@ -1600,8 +1650,9 @@ describe("MTF export and aperture comparison", () => {
     });
     fireEvent.click(screen.getByRole("button", { name: "Advanced" }));
     expect(screen.getByRole("combobox", { name: "Comparison aperture" })).toHaveProperty("value", "5.6");
+    await screen.findByText(/^f\/5\.6, refocused .*\(thin lines\)$/);
     fireEvent.click(screen.getByRole("button", { name: "Advanced" }));
-    fireEvent.click(screen.getByRole("button", { name: "Compare f/5.6" }));
+    fireEvent.click(screen.getByRole("button", { name: "Compare f/8" }));
     expect(screen.queryByText(/thin lines/)).toBeNull();
   });
 
@@ -1894,6 +1945,138 @@ describe("MTF download actions", () => {
       reader.readAsText(blob);
     });
   }
+
+  it.each([
+    { visit: "stored", sweep: "aperture" },
+    { visit: "shared", sweep: "aperture" },
+    { visit: "stored", sweep: "zoom" },
+    { visit: "shared", sweep: "zoom" },
+  ] as const)(
+    "uses regular settings in requests, controls, headers, downloads and links during a $visit $sweep visit",
+    async ({ visit, sweep }) => {
+      const { blobs } = downloads();
+      const writeText = vi.fn().mockResolvedValue(undefined);
+      vi.stubGlobal("navigator", { ...navigator, clipboard: { writeText } });
+      const lens = build({
+        ...constructionFixtureData(buildChromaticPositiveElementLens()),
+        ...(sweep === "zoom"
+          ? {
+              zoomPositions: [35, 70],
+              nominalFno: [2.8, 4],
+              var: {
+                "1": [
+                  [5, 5],
+                  [7, 7],
+                ],
+              },
+            }
+          : {}),
+      });
+      const preparedState = prepareRuntimeState(lens, 0, 0);
+      const choices = {
+        ...DEFAULT_MTF_PREFERENCES,
+        advanced: true,
+        spectrum: "single" as const,
+        wavelengthNm: 532.125,
+        regularSpectrum: "cdf" as const,
+        regularView: "frequency" as const,
+        comparisonFNumber: 5.6,
+        compareF8: true,
+      };
+      if (visit === "stored") localStorage.setItem(MTF_PREFERENCES_KEY, JSON.stringify(choices));
+      else window.history.replaceState({}, "", buildMtfLink(window.location.href, choices));
+      const { calls } = stubWorker({
+        resultForJob: (job) => ({
+          ...apertureControlResult(job),
+          method: job.options.method,
+          spectrum: job.options.spectrum,
+          support: assessMtfSupport(...mtfInputs(preparedState, job.options)),
+        }),
+      });
+      render(
+        <MtfTab
+          L={lens}
+          t={mockTheme}
+          preparedState={preparedState}
+          currentEPSD={2}
+          currentPhysStopSD={1}
+          fNumber={2.8}
+        />,
+      );
+      const settle = async () => {
+        await screen.findByRole("figure");
+        await vi.waitFor(() => {
+          const warning = screen.queryByRole("button", { name: "Show chart anyway" });
+          if (warning) fireEvent.click(warning);
+          expect(screen.getByRole("button", { name: "Export" })).toHaveProperty("disabled", false);
+        });
+      };
+      // Acknowledge source limitations before checking any downloadable values.
+      await screen.findByRole("figure");
+      const warning = screen.queryByRole("button", { name: "Show chart anyway" });
+      if (warning) fireEvent.click(warning);
+      await settle();
+      expect(screen.getByText(/Diffraction-corrected · 532.125 nm ·/)).toBeTruthy();
+      expect(screen.getByRole("button", { name: "Compare f/5.6" }).getAttribute("aria-pressed")).toBe("true");
+      await vi.waitFor(() =>
+        expect(calls.jobs.at(-1)!.options.stopSemiDiameterMm).toBe(stopSemiDiameterForFNumber(5.6, 0, lens)),
+      );
+      fireEvent.click(screen.getByRole("button", { name: "Export" }));
+      fireEvent.click(screen.getByRole("menuitem", { name: "CSV — this view" }));
+      await vi.waitFor(() => expect(blobs).toHaveLength(1));
+      expect(await readBlob(blobs[0])).toContain("# spectrum: single; 532.125 nm");
+      expect(await readBlob(blobs[0])).toContain("# comparison: f/5.6;");
+      fireEvent.click(screen.getByRole("button", { name: sweep === "zoom" ? "Zoom" : "Aperture" }));
+      await screen.findByRole("figure", {
+        name: `Simulated MTF versus ${sweep === "zoom" ? "focal length" : "aperture"}`,
+      });
+      fireEvent.click(screen.getByRole("button", { name: "Advanced" }));
+      await screen.findByRole("figure", { name: "Simulated MTF versus spatial frequency" });
+      await settle();
+      expect(screen.getByText(/Diffraction-corrected · C\/d\/F spectrum ·/)).toBeTruthy();
+      const spectrum = screen.getByRole("combobox", { name: "MTF spectrum" });
+      expect(spectrum).toHaveProperty("value", "cdf");
+      expect(within(spectrum).queryByRole("option", { name: "Single wavelength" })).toBeNull();
+      expect(screen.queryByRole("spinbutton", { name: "MTF wavelength" })).toBeNull();
+      expect(screen.queryByRole("button", { name: "Aperture" })).toBeNull();
+      expect(screen.getByRole("button", { name: "Compare f/8" }).getAttribute("aria-pressed")).toBe("true");
+      await vi.waitFor(() => {
+        expect(calls.jobs.at(-1)!.options.spectrum).toBe("cdf");
+        expect(calls.jobs.at(-1)!.options.stopSemiDiameterMm).toBe(stopSemiDiameterForFNumber(8, 0, lens));
+      });
+      for (const label of ["CSV — this view", "CSV — all sampled values", "SVG"]) {
+        fireEvent.click(screen.getByRole("button", { name: "Export" }));
+        fireEvent.click(screen.getByRole("menuitem", { name: label }));
+        await vi.waitFor(() => expect(blobs).toHaveLength(label === "SVG" ? 4 : label === "CSV — this view" ? 2 : 3));
+      }
+      for (const blob of blobs.slice(1)) {
+        const text = await readBlob(blob);
+        expect(text).toContain("# view: spatial frequency");
+        expect(text).toContain("# spectrum: cdf;");
+        expect(text).toContain("# comparison: f/8;");
+        expect(text).not.toContain("532.125");
+        expect(text).not.toContain("f/5.6");
+      }
+      fireEvent.click(screen.getByRole("button", { name: "Copy MTF link" }));
+      await vi.waitFor(() => expect(writeText).toHaveBeenCalledTimes(1));
+      expect(parseSharedMtfSettings(new URL(writeText.mock.calls[0][0]).search)).toMatchObject({
+        advanced: false,
+        spectrum: "cdf",
+        view: "frequency",
+        comparisonFNumber: 8,
+      });
+      fireEvent.change(spectrum, { target: { value: "reference" } });
+      fireEvent.click(screen.getByRole("button", { name: "Image height" }));
+      fireEvent.click(screen.getByRole("button", { name: "Advanced" }));
+      await screen.findByRole("figure", {
+        name: `Simulated MTF versus ${sweep === "zoom" ? "focal length" : "aperture"}`,
+      });
+      expect(spectrum).toHaveProperty("value", "single");
+      expect(screen.getByRole("spinbutton", { name: "MTF wavelength" })).toHaveProperty("valueAsNumber", 532.125);
+      fireEvent.click(screen.getByRole("button", { name: "Frequency" }));
+      expect(screen.getByRole("combobox", { name: "Comparison aperture" })).toHaveProperty("value", "5.6");
+    },
+  );
 
   async function showTab(view: "field" | "frequency" | "aperture" | "zoom" = "field", advanced = true) {
     localStorage.setItem(
