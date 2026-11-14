@@ -191,6 +191,14 @@ export const MAKER_DETAILS: Record<string, MakerDetails> = {
     notableDesigns:
       "T-mount, Adapt-A-Matic, Adaptall and Adaptall-2, SP 90mm Macro series, SP AF 60mm f/2 Di II Macro, SP AF 180mm f/3.5 Di Macro, 28-200mm all-in-one zoom, 28-75mm f/2.8, 35-150mm f/2-2.8, SP 150-600mm",
   },
+  // Launch coverage: https://petapixel.com/2025/04/07/new-company-songraw-unveils-first-lens-full-frame-af-50mm-f-1-2-moonlit/
+  // Applicant and address: CN 224176794 U, CN 119667909 A
+  songraw: {
+    headquarters: "Shenzhen, China",
+    summary: "Chinese maker of fast full-frame autofocus primes for Sony E and Nikon Z mounts.",
+    history:
+      "SongRaw announced its first lens, the AF 50mm f/1.2 Moonlit, in April 2025. Its optical patents are filed by Shenzhen Songruo Photography Equipment Co., Ltd.; CN 224176794 U and CN 119667909 A are the sources of the AF 50mm f/1.2 Moonlit and AF 85mm f/1.2 MS entries in this catalog.",
+  },
   /* Thypoch product pages; patent applicant per CN 118244463 A and CN 118534627 A.
    * https://thypoch.com/en/simera/50mm
    * https://thypoch.com/en/ksana/21mm

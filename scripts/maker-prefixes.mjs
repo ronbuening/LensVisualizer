@@ -51,6 +51,7 @@ export const MAKER_PREFIXES = [
   { prefix: "SCHNEIDER", display: "Schneider Kreuznach", slug: "schneider-kreuznach" },
   { prefix: "SIGMA", display: "Sigma", slug: "sigma" },
   { prefix: "SONY", display: "Sony", slug: "sony" },
+  { prefix: "SONGRAW", display: "SongRaw", slug: "songraw" },
   { prefix: "TAMRON", display: "Tamron", slug: "tamron" },
   { prefix: "THYPOCH", display: "Thypoch", slug: "thypoch" },
   { prefix: "TOKINA", display: "Tokina", slug: "tokina" },
