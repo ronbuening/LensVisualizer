@@ -241,6 +241,24 @@ const LENS_DATA = {
       "Triple-group inner focus (G2 + G4 + G5 move toward object); constant overall length. G4 is primary focus element (40 mm travel). G5 reversal motion fine-tunes aberrations at macro magnifications.",
     // (moved from publishedStations) Every focus keyframe is a source row.
     published: [1, 2],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 2000,
+        distanceReference: "image-plane",
+        source:
+          "US 2020/0192060 A1, Example 2, Fig. 7 (PDF p. 6), 2.0m column: OBJECT DISTANCE (mm) 2000.0000; THI2=8.84413, THI7=5.96115, THI11=37.35039, THI13=10.09897, THI16=9.59983 mm. Paragraph 0041 (PDF p. 17) defines object distance from image plane 5a and applies the arrangement to subsequent examples.",
+      },
+      {
+        zoomStation: 0,
+        keyframe: 2,
+        objectDistanceMm: 429.9341,
+        distanceReference: "image-plane",
+        source:
+          "US 2020/0192060 A1, Example 2, Fig. 7 (PDF p. 6), 0.43m column: OBJECT DISTANCE (mm) 429.9341; THI2=1.41023, THI7=13.39504, THI11=4.62225, THI13=42.19990, THI16=10.22703 mm. Paragraph 0041 (PDF p. 17) defines object distance from image plane 5a and applies the arrangement to subsequent examples.",
+      },
+    ],
   },
 
   gaps: {

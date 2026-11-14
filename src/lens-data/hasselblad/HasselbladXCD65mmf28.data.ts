@@ -247,6 +247,24 @@ const LENS_DATA = {
       "Front-group focus: G1, stop, and G2 move as a unit toward the object while G3 remains fixed. The patent's infinity, 2400 mm, and 400 mm object-distance states are represented exactly.",
     // (moved from publishedStations) Every focus keyframe is a source row.
     published: [1, 2],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 2400,
+        distanceReference: "first-surface",
+        source:
+          "US 2020/0319427 A1, Example 1, Fig. 3 (PDF p. 3): OBJECT DISTANCE 2400mm; d12=3.02 mm. The first-surface distance reference is identified by the conjugate audit; the patent does not explicitly define the reference.",
+      },
+      {
+        zoomStation: 0,
+        keyframe: 2,
+        objectDistanceMm: 400,
+        distanceReference: "first-surface",
+        source:
+          "US 2020/0319427 A1, Example 1, Fig. 3 (PDF p. 3): OBJECT DISTANCE 400mm; d12=14.46 mm. The first-surface distance reference is identified by the conjugate audit; the patent does not explicitly define the reference.",
+      },
+    ],
   },
 
   gaps: { "12": { label: "BF", values: [[1.0, 3.02, 14.46]] } },

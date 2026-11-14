@@ -310,6 +310,24 @@ const LENS_DATA = {
       "published Table 8 wide/tele shifts of 4.694/22.040 mm; the 92.433 mm mid shift of 9.458720 mm is " +
       "code-evaluated from the same published mechanism at U=1500 mm. The inferred STO, G4, and BFD remain fixed; " +
       "patent U is object-to-image distance and is not silently equated to the product MFD reference plane.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 1500,
+        distanceReference: "image-plane",
+        source:
+          "JP 1983-149014 A, Example 3, Table 8 (PDF p. 5, printed p. 69): U(mm)=1500, f=66.288 mm, extension=4.694 mm, matching d3=3.576, d8=25.574, authored d13-to-STO=8.194 and BFD=71.139 mm. Table heading defines U as object-to-image distance (物像間距離).",
+      },
+      {
+        zoomStation: 2,
+        keyframe: 1,
+        objectDistanceMm: 1500,
+        distanceReference: "image-plane",
+        source:
+          "JP 1983-149014 A, Example 3, Table 8 (PDF p. 5, printed p. 69): U(mm)=1500, f=135.090 mm, extension=22.040 mm, matching d3=26.048, d8=3.102, authored d13-to-STO=48.012 and BFD=70.888 mm. Table heading defines U as object-to-image distance (物像間距離).",
+      },
+    ],
   },
 
   gaps: {

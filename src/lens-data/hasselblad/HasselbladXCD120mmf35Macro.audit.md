@@ -59,3 +59,16 @@ Patent: US 2020/0192060 A1, Example 2
 - `catalog.focalLengthMm.design: 120` from the same FIG. 7 column, "FOCAL LENGTH (mm) 120.0000"; ¶[0063] (p. 5)
   repeats "Focal length (infinity): 120 mm". The file is unscaled (surface 1 R 265.465 as printed in FIG. 6). No
   optical value changed.
+
+## 2026-11-14 — Published finite conjugates
+
+Patent: US 2020/0192060 A1, Example 2.
+
+Paragraph 0041 (PDF p. 17, printed p. 4) defines the distance from image plane 5a and states that the arrangements for the following specific examples are the same. Figure 7 (PDF p. 6, Sheet 5) prints the precise object-distance row used here.
+
+| Zoom / keyframe | Field | Before | After | Matching source gaps (mm) | Paraxial offset (mm / depths) | Other reference (depths) |
+|---|---|---|---|---|---|---|
+| 0 / 1 | `focus.conjugates` | Undeclared | 2000 mm, `image-plane` | THI2 8.84413; THI7 5.96115; THI11 37.35039; THI13 10.09897; THI16 9.59983 | +0.047468406 / +3.153972 | -37.149809 |
+| 0 / 2 | `focus.conjugates` | Undeclared | 429.9341 mm, `image-plane` | THI2 1.41023; THI7 13.39504; THI11 4.62225; THI13 42.19990; THI16 10.22703 | +0.257358038 / +10.752610 | -1469.604284 |
+
+Every added declaration is `consistent` with `referenceDiscriminated: true`. The source-published flags already include these states.
