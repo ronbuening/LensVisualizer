@@ -173,6 +173,8 @@ const SOURCE_FIELDS: Fields<SourceV2Input> = {
   authors: true,
   assignees: true,
   errata: true,
+  omissions: true,
+  sdSource: true,
   issuer: true,
 };
 
@@ -183,6 +185,8 @@ const TELECONVERTER_SOURCE_FIELDS: Fields<TeleconverterSourceV2Input> = {
   patentYear: true,
   authors: true,
   assignees: true,
+  omissions: true,
+  sdSource: true,
 };
 
 const ELEMENT_FIELDS: Fields<ElementV2Input> = {

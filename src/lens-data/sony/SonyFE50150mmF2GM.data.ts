@@ -78,6 +78,14 @@ const LENS_DATA = {
     patentYear: 2025,
     authors: ["Hiroo Juri", "Naoto Kikuchi", "Hiraku Iwaya"],
     assignees: ["Sony Group Corporation"],
+    omissions: [
+      {
+        kind: "asphere-term",
+        surfaces: ["16A"],
+        note: "Table 4 leaves surface 16 A10 blank; the implemented polynomial treats the omitted coefficient as zero.",
+      },
+    ],
+    sdSource: "source-table",
   },
 
   elements: [

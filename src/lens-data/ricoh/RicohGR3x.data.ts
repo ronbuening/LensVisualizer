@@ -35,6 +35,13 @@ const LENS_DATA = {
     patentYear: 2022,
     authors: ["Kazuyasu Ohashi"],
     assignees: ["Ricoh Co., Ltd."],
+    omissions: [
+      {
+        kind: "asphere-coefficients",
+        surfaces: ["12A"],
+        note: "The source marks S12 aspherical but omits its coefficients; the model traces a spherical placeholder.",
+      },
+    ],
   },
 
   /* ── Elements ── */

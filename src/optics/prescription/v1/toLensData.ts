@@ -79,6 +79,8 @@ export const V1_PRINT_ORDER = {
     "patentAssignees",
     "patentYear",
     "sourceErrata",
+    "sourceOmissions",
+    "sdSource",
     "sourceIssuer",
     "elementCount",
     "groupCount",
@@ -148,6 +150,8 @@ export const V1_PRINT_ORDER = {
     "patentAuthors",
     "patentAssignees",
     "patentYear",
+    "sourceOmissions",
+    "sdSource",
     "elementCount",
     "groupCount",
     "elements",
@@ -505,6 +509,8 @@ function buildLensView(
   put(out, "patentAssignees", source.assignees);
   put(out, "patentYear", source.patentYear);
   put(out, "sourceErrata", source.errata);
+  put(out, "sourceOmissions", source.omissions);
+  put(out, "sdSource", source.sdSource);
   put(out, "sourceIssuer", source.issuer);
   put(out, "elementCount", catalog.elementCount);
   put(out, "groupCount", catalog.groupCount);
@@ -630,6 +636,8 @@ export function toTeleconverterData(
   put(out, "patentAuthors", converter.source.authors);
   put(out, "patentAssignees", converter.source.assignees);
   put(out, "patentYear", converter.source.patentYear);
+  put(out, "sourceOmissions", converter.source.omissions);
+  put(out, "sdSource", converter.source.sdSource);
   put(out, "elementCount", converter.catalog.elementCount);
   put(out, "groupCount", converter.catalog.groupCount);
   out.elements = converter.elements.map((element, index) => elementView(element, index, view));

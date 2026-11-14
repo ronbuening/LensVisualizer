@@ -245,6 +245,89 @@ describe("element model V2 mapping", () => {
     draft.groups = [{ text: "Front", fromSurface: "1", toSurface: "2" }];
     expect(() => applyElementModel(draft, removed)).toThrow(/still referenced/);
   });
+
+  it("keeps omission references attached to authored surfaces through insertion, movement and relabeling", () => {
+    const draft = createTemplate();
+    draft.source = {
+      omissions: [{ kind: "asphere-coefficients", surfaces: ["1", "3"], note: "Spherical placeholders" }],
+      sdSource: "heuristic",
+    };
+    const snapshot = structuredClone(draft);
+    const model = modelOf(draft);
+    for (const [edited, labels] of [
+      [insertElement(model, 0), ["3", "5"]],
+      [moveItem(model, 0, 1), ["3", "1"]],
+    ] as const) {
+      const applied = expectBuild(edited, draft);
+      expect(applied.source).toEqual({
+        ...draft.source,
+        omissions: [{ ...draft.source.omissions![0], surfaces: labels }],
+      });
+    }
+    const withoutStop = structuredClone(model);
+    withoutStop.items.splice(2, 1);
+    withoutStop.gaps.splice(2, 1);
+    expect(expectBuild(insertStop(withoutStop, 0), draft).source).toEqual(draft.source);
+    groupOf(model).surfaces[0].label = "11A";
+    expect(expectBuild(model, draft).source!.omissions![0].surfaces).toEqual(["1A", "3"]);
+    expect(draft).toStrictEqual(snapshot);
+  });
+
+  it("prunes deleted surfaces and empty omissions before renumbering can reuse their labels", () => {
+    const draft = createTemplate();
+    draft.source = {
+      omissions: [
+        { kind: "asphere-coefficients", surfaces: ["1", "3"], note: "Spherical placeholders" },
+        { kind: "asphere-term", surfaces: ["2"], note: "Blank A10" },
+      ],
+      sdSource: "source-table",
+    };
+    const model = modelOf(draft);
+    const removed = expectBuild(removeItem(model, 0), draft);
+    expect(removed.source).toEqual({
+      sdSource: "source-table",
+      omissions: [{ ...draft.source.omissions![0], surfaces: ["1"] }],
+    });
+    const cemented = expectBuild(cementWithNext(model, 0), draft);
+    expect(cemented.source!.omissions!.map((o) => o.surfaces)).toEqual([["1"], ["2"]]);
+    const cementedModel = modelOf(cemented);
+    expect(expectBuild(removeElement(cementedModel, 0, 0), cemented).source!.omissions!.map((o) => o.surfaces)).toEqual(
+      [["1"]],
+    );
+    expect(expectBuild(removeElement(cementedModel, 0, 1), cemented).source!.omissions!.map((o) => o.surfaces)).toEqual(
+      [["1"], ["2"]],
+    );
+    draft.source.omissions = [{ kind: "asphere-coefficients", surfaces: ["5", "6"], note: "Rear placeholders" }];
+    const replaced = insertElement(removeItem(model, 3), 3);
+    expect(groupOf(replaced, 3).surfaces.map((s) => s.label)).toEqual(["5", "6"]);
+    expect(expectBuild(replaced, draft).source).toEqual({ sdSource: "source-table", omissions: [] });
+  });
+
+  it("carries a shared junction's omission to both surfaces when splitting", () => {
+    const draft = expectBuild(cementWithNext(modelOf(), 0));
+    draft.surfaces[1].asphere = { A4: 1e-9 };
+    draft.source = { omissions: [{ kind: "asphere-term", surfaces: ["2"], note: "Blank A10" }] };
+    const applied = expectBuild(splitGroup(modelOf(draft), 0, 1), draft);
+    expect(applied.source!.omissions![0].surfaces).toEqual(["2", "3"]);
+    expect(applied.surfaces.filter((s) => s.asphere).map((s) => s.label)).toEqual(["2", "3"]);
+  });
+
+  it("removes asphere omissions only when an existing asphere is removed, retaining spherical placeholders", () => {
+    const draft = createTemplate();
+    draft.surfaces[0].asphere = { A4: 1e-9 };
+    draft.source = {
+      omissions: (["asphere-coefficients", "asphere-term", "asphere-equation"] as const).flatMap((kind) => [
+        { kind, surfaces: ["1", "3"], note: "Source assumption" },
+        { kind, surfaces: ["1"], note: "Only the edited asphere" },
+      ]),
+    };
+    const model = modelOf(draft);
+    expect(expectBuild(updateSurface(model, 0, 0, { R: 31 }), draft).source).toEqual(draft.source);
+    const applied = expectBuild(updateSurface(model, 0, 0, { asphere: undefined }), draft);
+    expect(applied.source!.omissions).toEqual(
+      draft.source.omissions!.filter((o) => o.surfaces.length === 2).map((o) => ({ ...o, surfaces: ["3"] })),
+    );
+  });
 });
 
 describe("element model edits", () => {

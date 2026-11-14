@@ -72,6 +72,7 @@ const LENS_DATA = {
     patentYear: 2022,
     authors: ["Junichi Yamazoe", "Ryohei Tazaki"],
     assignees: ["Tamron Co., Ltd.", "Sony Group Corporation"],
+    sdSource: "source-table",
   },
 
   elements: [

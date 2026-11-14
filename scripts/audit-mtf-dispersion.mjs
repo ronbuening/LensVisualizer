@@ -228,8 +228,8 @@ async function census() {
       options,
     );
     if (!support.available) continue;
-    // The first step carries the field axis and the focus, which is all the data gaps need.
-    const result = computeMtfSteps(
+    // Data gaps need the common plane and field axis, before adaptive field tracing starts.
+    const steps = computeMtfSteps(
       createAnalysisRequest({
         preparedState: state,
         dynamicEFL: 0,
@@ -237,7 +237,11 @@ async function census() {
         currentPhysStopSD: options.stopSemiDiameterMm,
       }),
       options,
-    ).next().value;
+    );
+    let next = steps.next();
+    while (!next.done && !next.value.result) next = steps.next();
+    const result = next.done ? next.value : next.value.result;
+    steps.return(result);
     const gaps = assessMtfDataLimitations(state, {
       preferredSpectrum: "photopic",
       spectrum,

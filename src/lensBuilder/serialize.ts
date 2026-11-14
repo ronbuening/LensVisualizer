@@ -1,3 +1,4 @@
+/** Serializes portable authored V2 drafts; TypeScript exports follow the canonical source field order. */
 import type { LensDataV2Input } from "../types/lensDataV2.js";
 import { validateDraft } from "./draft.js";
 import { requireUntrustedDraft, escapeExportString, escapeExportJsonText, MAX_DRAFT_BYTES } from "./untrusted.js";
@@ -46,7 +47,18 @@ const ORDERS: Record<string, string[]> = {
     "fNumber",
     "closeFocusM",
   ],
-  source: ["patentNumber", "example", "patentYear", "authors", "assignees", "errata", "issuer"],
+  source: [
+    "patentNumber",
+    "example",
+    "patentYear",
+    "authors",
+    "assignees",
+    "errata",
+    "omissions",
+    "sdSource",
+    "issuer",
+  ],
+  omissions: ["kind", "surfaces", "note"],
   elements: [
     "id",
     "name",

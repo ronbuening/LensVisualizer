@@ -19,8 +19,8 @@ with.** The one approximation in the engine itself, the diffraction product, has
 2. **Two of the four drastic cases were lens-data errors.** Two patents print an aspheric coefficient with the wrong
    sign (Nikon Z MC 105, Zeiss Batis 18); both are corrected. Nikkor Z 85mm f/1.8 S is an unresolved source
    contradiction (`agent_docs/sd-audit-queue.md` Section G), and Sigma 23mm f/1.4 DC DN (−0.23 mean; its first-order
-   values match the patent) is undiagnosed. A screen flags 77 of 846 lenses (9 %) for the same class of
-   self-inconsistency. *Stage 4.*
+   values match the patent) is undiagnosed. A screen flagged 77 of the 846 lenses then in the catalog (9 %) for the
+   same class of self-inconsistency. *Stage 4.*
 3. **The traced aperture still differs from the label on some lenses.** Queued in
    `agent_docs/sd-audit-queue.md`: Section H (stops still sized from a marketed f-number) and Section I (125 lenses
    that trace more than 3 % from their label on axis).
@@ -29,14 +29,19 @@ with.** The one approximation in the engine itself, the diffraction product, has
 5. **A field slope remains**: slightly high on axis, low by about 0.02 / 0.06 at 10 / 30 lp/mm by 70 % field. It
    tracks clear apertures inferred from drawings and the single axial focus plane, which cannot be verified and are
    to be shown as uncertainty, not tuned. *Stage 8.*
-6. **No real lens has been compared with another tool.** That check is an optional diagnostic (last section); no
-   stage depends on it.
+6. **No catalog lens has been compared with another tool.** A published Cooke triplet has
+   (`scripts/mtf-external-reference.mjs`): first-order values and single rays match OpticStudio to the printed
+   precision and axial MTF within 0.006 (60 lp/mm on a 256-cell pupil), while off axis the tools differ by up to
+   0.047, which follows the pupil convention (candidate C8). The catalog check is an optional diagnostic (last
+   section); no stage depends on it.
 
 Where the comparison stands (19 digitized configurations, mean signed / mean absolute, from
-`agent_docs/generated/mtf-chart-regression.generated.md`): −0.037 / 0.052 with diffraction for every maker and
-−0.026 / 0.050 when each maker is compared in its own chart convention. About 0.03 remains unexplained after the
+`agent_docs/generated/mtf-chart-regression.generated.md`): −0.027 / 0.046 with diffraction for every maker and
+−0.014 / 0.046 when each maker is compared in its own chart convention. About 0.03 remains unexplained after the
 factors we tested: patent example versus production lens, unknown maker focus and spectrum, and a heuristic ±0.035
 digitization allowance.
+
+The report carries a provenance stamp and a status line; quote it only while that line reads `current`.
 
 ## Evidence
 
@@ -55,7 +60,10 @@ investigation and are replaced by regenerated ones as stages land.
 | Footprint traced through the real clear apertures | `src/optics/analysis/mtf/mtfFootprint.ts` |
 | Field as a fraction of the format half-diagonal in real chief-ray height | `src/optics/analysis/mtf/mtfFields.ts` |
 | Sampling convergence (128 → 256 changes ≤ 0.01) and the best-axial search (its optimum in 52 of 52) | `src/optics/analysis/mtf/mtfFocus.ts` |
-| Photopic five-line spectrum: monochromatic, C/d/F and broad white all fit charts worse | `src/optics/analysis/mtf/mtfSupport.ts` |
+| Photopic spectrum: monochromatic, C/d/F and broad white all fit charts worse; its nine-node quadrature is within 0.0004 of a 73-line integral | `src/optics/analysis/mtf/mtfSupport.ts` |
+| The 256-cell default cap: 256 → 512 moves ≤ 0.0012 (four lenses, both methods, 10/30/50 lp/mm); the steps are not monotone, so no Richardson extrapolation | `src/optics/analysis/mtf/mtfConstants.ts` |
+| Shear scaling from traced directions (no infinity-focus or flat-image shortcut), each wavelength's own cutoff, and the same line × flux weights in both methods | `src/optics/analysis/mtf/mtfShearedOtf.ts` |
+| Anchored dispersion: the Cauchy route stays within 2.4e-5 of the catalog curves over 470–650 nm (≤ 0.003 MTF on a 400 mm f/2.8); helium d and sodium D stay apart | `src/optics/chromatic/indexResolver.ts` |
 
 ### Wrong or unvalidated
 
@@ -77,7 +85,8 @@ patent-listed apertures and is degenerate with method choice; it stays a diagnos
 
 ### optiland as reference
 
-Only `ScalarFFTMTF` is externally validated (two OpticStudio points). optiland is monochromatic, has no focus
+optiland publishes cross-tool comparisons with OpticStudio for rays and FFT MTF (its validation page; issue 710
+tabulates a Cooke triplet and a singlet). optiland is monochromatic, has no focus
 search, its stop does not clip unless given an aperture, its default aiming is paraxial (it misses the real pupil
 centre by up to one pupil radius on wide angles), and default FFT sampling steps 19 lp/mm at f/1.4. It can validate
 rays, spots, optical path and monochromatic diffraction MTF. It cannot validate dispersion, white-light weighting,
@@ -111,8 +120,9 @@ Order: 4, then 8, then 9. Each stage is one PR and quotes the chart report befor
 
 ### Stage 4 — Prescription self-consistency screen
 
-- **Why.** A: a catalog screen trips a hard flag on 77 lenses and two on 20. The two corrected errata would have
-  been caught by it; the existing image-plane census is paraxial and cannot see an asphere error.
+- **Why.** A: on the 846 lenses of the investigation a catalog screen tripped a hard flag on 77 and two on 20; the
+  catalog has since grown, so those counts are a baseline, not a target. The two corrected errata would have been
+  caught by it; the existing image-plane census is paraxial and cannot see an asphere error.
 - **Changes.** `sourceSummary` (source f, F-number, half-field, image height, back focus, total length, example
   locator, `scale`, per zoom station; transcribed, never computed). A pure
   `src/optics/analysis/prescriptionConsistency.ts`: EFL against the source; image plane against paraxial focus;
@@ -120,10 +130,13 @@ Order: 4, then 8, then 9. Each stage is one PR and quotes the chart report befor
   h²; aspheres with every coefficient zero. `scripts/audit-prescription.mjs` with a report-only `--probe` that tries
   single-coefficient sign and exponent changes; a generated report; a cheap corpus sweep in
   `__tests__/src/lens-data/` as a shrink-only ratchet; rows in Section G of `agent_docs/sd-audit-queue.md`.
-- **First suspects.** Sigma 23mm f/1.4 DC DN (the largest remaining chart residual), Fujifilm GF 80/1.7, Leica
-  APO-Summicron-M 35, Pentax 645 35/3.5, Fujinon XF 23/1.4 R, Laowa 15/2, Tamron A03 28-200, Sony FE 20/1.8 G, and
-  Schneider Super-Symmar XL 110 and Ricoh GR IIIx (aspheres whose coefficients are all zero).
-- **Acceptance.** Reproduces 77 flagged / 20 multi-flag; `--probe` isolates each corrected erratum uniquely.
+- **First suspects.** Sigma 23mm f/1.4 DC DN (the largest remaining chart residual), Leica APO-Summicron-M 35,
+  Fujinon XF 23/1.4 R, Sony FE 20/1.8 G, and Schneider Super-Symmar XL 110 and Ricoh GR IIIx (aspheres whose
+  coefficients are all zero). Fujifilm GF 80/1.7 and Laowa 15/2 already carry an unresolved entry in
+  `source.errata`. Pentax 645 35/3.5 and Tamron A03 28-200 carry corrections and join Nikon Z MC 105 and Zeiss
+  Batis 18 as the screen's positive controls.
+- **Acceptance.** On a fresh census whose report records the lens count and input hashes, the screen flags each
+  positive control with its correction reverted, and `--probe` isolates each corrected erratum uniquely.
 
 ### Stage 8 — Surface what cannot be resolved
 
@@ -131,15 +144,81 @@ Order: 4, then 8, then 9. Each stage is one PR and quotes the chart report befor
 - **Changes.** The maker's chart convention and its basis shown in the tab, with a button that sets the method and
   no automatic switch (the conventions table moves from `reports/data/` into `src/utils/catalog/`). A through-focus
   band whose width is fixed a priori from the traced f-number, re-projected from bundles already traced, as a
-  display toggle. A lens-level `sdSource` (`source-table`, `figure-measured`, `heuristic`) with a non-blocking
-  `estimated-apertures` note.
+  display toggle. `source.sdSource` (`source-table`, `figure-measured`, `heuristic`) and its `estimated-apertures`
+  note exist and seven lenses declare it; the catalog backfill remains, one lens at a time from its own audit
+  evidence.
 - **Not done.** No field-weighted default focus (four lenses supply 90 % of its gain); no clear-aperture scaling or
-  band derived from chart fits; no per-maker default method; no spectrum change.
+  band derived from chart fits; no per-maker default method; no spectrum change (band and node count are ruled in
+  `agent_docs/decisions.md`, 2026-11-13).
 
 ### Stage 9 — Validation statement and close-out
 
 - **Changes.** A site article quoting only regenerated report numbers with the wording above;
   `agent_docs/architecture/optics-engine.md` § Simulated MTF rewritten in place; this file deleted.
+
+## Unscheduled Candidates
+
+From a code and probe audit of the MTF path (six surveys, then an independent re-derivation of the numerical
+claims). None is scheduled. Each needs the owner's go-ahead, and a change to engine results also needs the evidence
+and approval `agent_docs/decisions.md` requires (2026-10-20). Delete a row when it ships; a rejected row moves to
+`agent_docs/decisions.md` with its reason; an accepted feature row moves to `FEATURE_ADDITION_PLAN.md`. Effort:
+S under a day, M one to three days, L longer.
+
+### Accuracy
+
+- **C8 — Stop-uniform weights are not the incident flux.** Since the stop lattice, a lit cell weighs 1 × bulk
+  transmission; the row above that calls equal flux per cell exact describes the launch lattice.
+  `npm run audit:mtf-weighting` measures it on twelve stations against dense launch-plane sampling (equal flux per
+  cell): the stop lattice weighted by incident flux (`mtfIncidentFlux.ts`) meets that reference within 0.0014 in
+  MTF and 0.0021 in complex OTF, while the product differs from it by up to 0.030 wide open (Nikon 105mm f/1.4,
+  70 % field, 50 lp/mm), 0.006 to 0.008 mean absolute off axis and 0.0015 on axis, with either sign; at f/8 the
+  mean is under 0.001 and the largest 0.011. A separate ray loop reproduced the largest value. For diffraction the
+  audit compares the product estimator with the direction-space reference fed incident flux on the 64 of 72
+  samples its gate passes: up to 0.030, about 0.004 mean off axis, which mixes the weights with the estimator's
+  own error; feeding flux weights to the sheared estimator is not the correction, since it has no direction-space
+  Jacobian (C10). Against OpticStudio on a published Cooke triplet (`scripts/mtf-external-reference.mjs`) the
+  off-axis difference of up to 0.047 falls to 0.008 when the paraxial entrance pupil is sampled as the source
+  does. Open: the owner's ruling on making incident flux the product weight (it leaves the OpticStudio and CODE V
+  pupil convention); the geometric method is ready, the diffraction estimator needs the measure first. M to L.
+- **C9 — Two aliased grids can agree.** Convergence compares successive grids, so a blur far coarser than the
+  lattice can read the same wrong value on both: a 1.6 mm landing disc reads 1.0 at 10/30/50 lp/mm on 16 and 32
+  cells. The default 0–100 lp/mm sweep catches that case, and it takes a blur of millimetres, so the exposure is
+  soft-focus designs and far-off design planes (Pentax F 85mm Soft: a 20 lp/mm focus peak moved 9 mm between 64
+  and 256 cells). Candidate: keep a field unconverged while adjacent landings differ by more than half a cycle at
+  a judged frequency. Needed before any single-frequency focus option. M.
+- **C11 — Rim cells are all-or-nothing.** A cell counts when its centre lies in the stop. Area weights with traced
+  boundary cells cut an analytic disc's error at 32 cells from 0.0044 to 0.0003; weights on the kept cells alone
+  do nothing, and the sheared estimator needs its own treatment. The gain is speed (tolerance at a coarser grid),
+  not accuracy at the 256 cap. L.
+
+### Data
+
+- **C19 — Spectral eligibility.** 999 of 1,102 visible lenses get the photopic chart (280 with estimated
+  dispersion) and 70 fall back to the reference line (`scripts/audit-mtf.mjs --blockers`). 39 of those hold a
+  high-νd glass with no `dPgF`: 59 surfaces, 0.46 % of the catalog's, and resolving that class alone would unlock
+  38 lenses, 27 of them through a single element. Their sources are exhausted: the patents of 37 were re-read (two
+  have no PDF) and none prints partial dispersion, line indices or a glass name that meets a catalog row for a
+  blocked element. What remains is a ruling, not data work: whether a named glass class (the fluor crowns near
+  1.497 / 81.6) may borrow catalog dispersion past the νd tolerance, or the gate may pass such glasses with a
+  warning (`agent_docs/dispersion-estimate-exploration.md`).
+- **C20 — Finite conjugates.** 62 of 767 lenses with focus travel (8 %) have an eligible finite station; 504 of
+  604 published finite stations lack `focus.conjugates`. Backfill from sources only, never from a close-focus
+  label. L.
+
+### Features
+
+- **C26 — Through-focus view and a focus offset.** `mtfFocus.ts` already re-lands traced rays on shifted flat and
+  curved surfaces, off axis too. A through-focus plot per field and frequency, a user offset, and S/T peak
+  positions as a field-curvature readout share that code with Stage 8's band. Depends on C9. L.
+- **C28 — Spectrum choices.** A single chosen wavelength exists under Advanced. Still open: R, G and B responses
+  on one plane, a g-to-C band, and an illustrative sensor-weighted daylight (M each), with eligibility judged on
+  the wavelengths requested.
+- **C30 — Unlock refused lens classes.** The refusal now names its reasons (18 fisheyes, 7 mirror lenses that are
+  also annular, 7 diffractive designs). Unlock in stages, each behind its own control: an on-axis geometric fisheye
+  path; geometric tracing of a diffractive order; mirror lenses last, which need optical path in the generalized
+  tracer (the estimator reads an aberrated annulus 0.031 low, the optical-path kernel within 0.00003). L each.
+- **C32 — RMS wavefront and Strehl per field.** Needs optical-path capture on the production bundles and the
+  pairing fix of C13; a ratio of MTF to limit at one frequency is not Strehl. M to L.
 
 ## Optional: External Cross-Check Tool (optiland)
 

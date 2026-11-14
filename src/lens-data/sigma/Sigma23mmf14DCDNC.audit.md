@@ -34,3 +34,5 @@ Patent: JP 2024-035865 A, Numerical Example 1
 - Actual SVGs at infinity/mid/near compared with native Figure 1. All 65 states/845 paths finite, closed, connected; zero hidden trim. Smaller source-supported caps retain off-axis vignetting. Full pupil survival, chief clearance, drawing fidelity and production correlation remain separate. Scratch evidence is not staged; coordinator owns shared reports/full gates.
 
 Final finite-grid census after adopted caps: 31374 passed, 5680 clipped, 2 failed no-bracket continuations, 0 unaimed. The two failures occur at focus 0.984375/full actual image-height field at the first surface; the source-near endpoint itself has no failed continuation.
+
+- 2026-11-13 — `source.sdSource: "figure-measured"` rests on "Source optical caps and five resolved outer shoulders are reconstructed from the 825 ppi original with ±0.25 mm practical uncertainty." Source: existing header / audit text; no optical values change.

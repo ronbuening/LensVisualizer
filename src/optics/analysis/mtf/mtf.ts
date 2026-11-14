@@ -1,9 +1,9 @@
 /** Pure MTF orchestration with explicit per-field convergence and unavailable results. */
 import type {
-  MtfAxialVignetting,
   MtfFieldGeometry,
   MtfFieldResult,
   MtfFocus,
+  MtfMethod,
   MtfOptions,
   MtfRequestOptions,
   MtfResult,
@@ -34,6 +34,10 @@ import {
   prepareMtfFieldLaunch,
   traceMtfStopBundle,
   traceMtfLaunchPlaneBundle,
+  mtfAimSpectrum,
+  mtfImagePoint,
+  mtfLaunchRay,
+  mtfTraceOptions,
 } from "./mtfTracing.js";
 import type { MtfBundle, MtfFieldLaunch, MtfOpenBorders } from "./mtfTracing.js";
 import type { AimedStopLattice } from "../pupils/aimedPupil.js";
@@ -41,7 +45,8 @@ import { expandMtfFootprint } from "./mtfFootprint.js";
 import type { MtfFootprint } from "./mtfFootprint.js";
 import { shearedOtf } from "./mtfShearedOtf.js";
 import { findAxialBestFocus, mtfImagePlaneOffset, mtfNearestImagePlaneZ } from "./mtfFocus.js";
-import { computeWorkingFNumber } from "../summary/fNumbers.js";
+import { traceWorkingFNumber } from "../summary/fNumbers.js";
+import { traceEngineRay } from "../../trace/rayAdapters.js";
 import {
   mtfBeamHeight,
   mtfChiefHeight,
@@ -61,9 +66,24 @@ export interface MtfJobCache {
   /** Field axis; null when no chief ray reaches the image. */
   geometry?: MtfFieldGeometry | null;
   focus?: MtfFocus;
-  axialVignetting?: MtfAxialVignetting | null;
+  axial?: Pick<MtfResult, "workingFNumber" | "magnification" | "axialVignetting">;
   fields: Map<number, MtfFieldResult>;
 }
+
+/** Work boundaries carry no in-progress spectral field or unfinished curve arrays. */
+export type MtfPhase =
+  | { kind: "geometry" }
+  | { kind: "focus"; lineIndex: number; lineCount: number }
+  | { kind: "aperture" }
+  | { kind: "field"; fieldIndex: number; fieldCount: number; gridSize: number; lineIndex: number; lineCount: number };
+
+/** Only complete grid evaluations can accompany a progress boundary. */
+export interface MtfProgress {
+  phase: MtfPhase;
+  result?: MtfResult;
+}
+
+type MtfFieldStep = MtfPhase | MtfFieldResult;
 
 /** Everything one request shares across its fields. */
 interface MtfJobContext {
@@ -140,8 +160,28 @@ export interface MtfUnresolvedFlux {
 }
 
 /**
+ * Weight unresolved samples beside the beam by the same incident spectrum as transmitted flux.
+ * Unresolved samples carry full transmission; resolved ray weights include bulk absorption.
+ *
+ * @param lines - incident spectral weight and summed transmitted and unresolved-in-beam weights per line
+ * @returns unresolved share of the possible beam flux, or zero when it carries no weight
+ */
+export function mtfUnresolvedFluxFraction(
+  lines: readonly { weight: number; transmittedWeight: number; unresolvedInBeamWeight: number }[],
+): number {
+  let sampledWeight = 0;
+  let unresolvedWeight = 0;
+  for (const line of lines) {
+    sampledWeight += line.weight * (line.transmittedWeight + line.unresolvedInBeamWeight);
+    unresolvedWeight += line.weight * line.unresolvedInBeamWeight;
+  }
+  return sampledWeight > 0 ? unresolvedWeight / sampledWeight : 0;
+}
+
+/**
  * Omitting flux ε changes a normalized geometric OTF by at most 2ε: small unresolved shares are
- * reported with that bound, larger ones make the grid unavailable. Unresolved samples are the
+ * reported with that bound only for the geometric method. Diffraction reports the omitted flux
+ * without an error bound. Larger shares make the grid unavailable. Unresolved samples are the
  * unaimed and failed ones. A field is judged by those beside its transmitted beam (a row or column
  * neighbour of a transmitted cell): one that touches no transmitted cell is counted and named in the
  * note but withholds nothing (`agent_docs/decisions.md`).
@@ -149,26 +189,31 @@ export interface MtfUnresolvedFlux {
  * @param unresolvedRays - unaimed and failed pupil samples
  * @param unknownFluxFraction - the judged share of the flux: that of the samples beside the beam when `inBeam` is
  *   given, of every unresolved sample otherwise, each counted at full transmission
+ * @param method - estimator whose omitted flux the note qualifies
  * @param inBeam - how many of the samples lie beside the transmitted beam; null when not counted
  * @returns whether the field may be reported, with its qualifying note
  */
 export function assessUnresolvedFlux(
   unresolvedRays: number,
   unknownFluxFraction: number,
+  method: MtfMethod,
   inBeam: number | null = null,
 ): MtfUnresolvedFlux {
   if (unknownFluxFraction > MTF_MAX_UNKNOWN_FLUX) return { acceptable: false, note: null };
   if (unresolvedRays === 0) return { acceptable: true, note: null };
   const share = `${(unknownFluxFraction * 100).toFixed(2)}% of flux`;
-  const bound = `MTF error ≤ ${(2 * unknownFluxFraction).toFixed(3)}`;
+  const qualification =
+    method === "geometric"
+      ? `MTF error ≤ ${(2 * unknownFluxFraction).toFixed(3)}`
+      : "the diffraction estimate does not account for this flux";
   if (inBeam === null)
     return {
       acceptable: true,
-      note: `${unresolvedRays} pupil samples that could not be aimed or traced (${share}) are omitted; ${bound}.`,
+      note: `${unresolvedRays} pupil samples that could not be aimed or traced (${share}) are omitted; ${qualification}.`,
     };
   const away = unresolvedRays - inBeam;
   const parts = [
-    ...(inBeam > 0 ? [`${inBeam} beside the transmitted beam carry ${share} and are omitted; ${bound}.`] : []),
+    ...(inBeam > 0 ? [`${inBeam} beside the transmitted beam carry ${share} and are omitted; ${qualification}.`] : []),
     ...(away > 0 ? [`${away} touch no transmitted cell and are not counted.`] : []),
   ];
   return { acceptable: true, note: `${unresolvedRays} pupil samples could not be aimed or traced: ${parts.join(" ")}` };
@@ -215,13 +260,14 @@ type MtfFieldSampling =
 const MTF_LAUNCH_PLANE_NOTE =
   "This field launches from the bounding sphere, which the stop lattice does not cover: its pupil is sampled in equal cells of the launch plane, not evenly on the stop.";
 
-function fieldAtGrid(
+function* fieldAtGrid(
   context: MtfJobContext,
   target: MtfFieldTarget,
   launch: MtfFieldLaunch,
   sampling: MtfFieldSampling,
   size: number,
-): MtfGridOutcome {
+  phase: Pick<Extract<MtfPhase, { kind: "field" }>, "fieldIndex" | "fieldCount">,
+): Generator<MtfPhase, MtfGridOutcome> {
   const { state, options, support } = context;
   const field = emptyMtfField(target.fraction, target);
   field.gridSize = size;
@@ -241,12 +287,11 @@ function fieldAtGrid(
   let commonReference: MtfSpot | undefined;
   /** Whether the reference wavelength's chief ray is stopped by a clear aperture. */
   let chiefClipped: boolean | undefined;
-  // Flux the beam could carry: transmitted, plus the unresolved samples beside it, which the field is judged by.
-  let sampledWeight = 0;
-  let unresolvedWeight = 0;
+  const fluxWeights = [];
   /** Wavelengths no ray reaches at this grid. */
   let darkLines = 0;
   for (const [index, line] of support.spectralLines.entries()) {
+    yield { kind: "field", ...phase, gridSize: size, lineIndex: index + 1, lineCount: support.spectralLines.length };
     let bundle: MtfBundle | null;
     if (sampling.kind === "stop") {
       bundle = traceMtfStopBundle(state, options, support, launch, size, line, context.imagePlaneZ, {
@@ -283,8 +328,11 @@ function fieldAtGrid(
     if (bundle.lattice && aimedNothing(bundle.lattice))
       return unavailable("aim-failed", aimFailedMessage(bundle.lattice, line.wavelengthNm));
     const transmitted = bundle.rays.reduce((sum, ray) => sum + ray.weight, 0);
-    sampledWeight += transmitted + bundle.unresolvedInBeamWeight;
-    unresolvedWeight += bundle.unresolvedInBeamWeight;
+    fluxWeights.push({
+      weight: line.weight,
+      transmittedWeight: transmitted,
+      unresolvedInBeamWeight: bundle.unresolvedInBeamWeight,
+    });
     // A wavelength no ray reaches, with every sample resolved: the grid is vignetted if every wavelength is.
     if (bundle.rays.length === 0 && bundle.unaimed + bundle.failed === 0) {
       darkLines++;
@@ -319,9 +367,14 @@ function fieldAtGrid(
   if (darkLines === support.spectralLines.length)
     return unavailable("vignetted", "No rays reach this image height through the model's clear apertures.", true);
   if (darkLines > 0) return unavailable("empty-pupil", "Too little pupil remains to estimate MTF.", true);
-  field.unknownFluxFraction = sampledWeight > 0 ? unresolvedWeight / sampledWeight : 0;
+  field.unknownFluxFraction = mtfUnresolvedFluxFraction(fluxWeights);
   const unresolvedRays = field.failedRays + field.unaimedRays;
-  const unresolved = assessUnresolvedFlux(unresolvedRays, field.unknownFluxFraction, field.unresolvedInBeamRays);
+  const unresolved = assessUnresolvedFlux(
+    unresolvedRays,
+    field.unknownFluxFraction,
+    options.method,
+    field.unresolvedInBeamRays,
+  );
   // A finer grid can resolve a beam edge this one cannot, so the ladder goes on.
   if (!unresolved.acceptable) {
     const away = unresolvedRays - field.unresolvedInBeamRays;
@@ -346,9 +399,10 @@ function fieldAtGrid(
 /* ── Convergence ── */
 
 /**
- * Compare two successive grids. Only frequencies within the convergence band decide the
- * status; the highest frequency whose running maximum change stays in tolerance is reported
- * so higher-frequency charts can show where sampling noise begins.
+ * Compare two successive grids at positive frequencies in the convergence band, or all
+ * positive frequencies if none is in band. DC alone retains its zero-change comparison.
+ * The highest frequency whose running maximum change stays in tolerance is reported in
+ * frequency order so higher-frequency charts can show where sampling noise begins.
  */
 function applyConvergence(field: MtfFieldResult, previous: MtfFieldResult | null, frequencies: readonly number[]) {
   const tolerance = formatMtfTolerance();
@@ -363,12 +417,15 @@ function applyConvergence(field: MtfFieldResult, previous: MtfFieldResult | null
       Math.abs(field.tangential[i] - previous.tangential[i]),
     ),
   );
-  const band = frequencies.some((f) => f <= MTF_CONVERGENCE_BAND_LPMM)
-    ? deltas.filter((_, i) => frequencies[i] <= MTF_CONVERGENCE_BAND_LPMM)
-    : deltas;
-  field.maxDelta = Math.max(...band);
+  let band = deltas.filter((_, i) => frequencies[i] > 0 && frequencies[i] <= MTF_CONVERGENCE_BAND_LPMM);
+  if (!band.length) band = deltas.filter((_, i) => frequencies[i] > 0);
+  field.maxDelta = Math.max(...(band.length ? band : deltas));
   let through: number | null = null;
-  for (let i = 0; i < frequencies.length && deltas[i] <= MTF_CONVERGENCE_TOLERANCE; i++) through = frequencies[i];
+  const orderedIndices = frequencies.map((_, i) => i).sort((a, b) => frequencies[a] - frequencies[b]);
+  for (const i of orderedIndices) {
+    if (!(deltas[i] <= MTF_CONVERGENCE_TOLERANCE)) break;
+    through = frequencies[i];
+  }
   field.convergedThroughLpMm = through;
   field.status = field.maxDelta <= MTF_CONVERGENCE_TOLERANCE ? "converged" : "unconverged";
   field.message =
@@ -394,6 +451,16 @@ export function* refineMtfField(
   evaluate: (size: number) => MtfGridOutcome,
   frequencies: readonly number[],
 ): Generator<MtfFieldResult, void> {
+  const steps = refineMtfFieldSteps(ladder, evaluate, frequencies);
+  for (const step of steps) if ("status" in step) yield step;
+}
+
+/** Preserve refinement order while allowing an evaluation to pause between spectral lines. */
+function* refineMtfFieldSteps(
+  ladder: readonly number[],
+  evaluate: (size: number) => MtfGridOutcome | Generator<MtfPhase, MtfGridOutcome>,
+  frequencies: readonly number[],
+): Generator<MtfFieldStep, void> {
   let previous: MtfFieldResult | null = null;
   /** The last failed level since the last curve. */
   let failed: { size: number; message: string } | null = null;
@@ -404,7 +471,8 @@ export function* refineMtfField(
       );
   };
   for (const size of ladder) {
-    const outcome = evaluate(size);
+    const evaluation = evaluate(size);
+    const outcome = "kind" in evaluation ? evaluation : yield* evaluation;
     if (outcome.kind === "unavailable") {
       failed = { size, message: outcome.field.message };
       if (!outcome.refine) {
@@ -432,7 +500,11 @@ export function* refineMtfField(
  * stop lattice; a bounding-sphere field scans a launch-plane footprint first and widens it when its guard band carries
  * flux.
  */
-function* traceField(context: MtfJobContext, target: MtfFieldTarget): Generator<MtfFieldResult, void> {
+function* traceField(
+  context: MtfJobContext,
+  target: MtfFieldTarget,
+  phase: Pick<Extract<MtfPhase, { kind: "field" }>, "fieldIndex" | "fieldCount">,
+): Generator<MtfFieldStep, void> {
   const { state, options, support } = context;
   const launch =
     target.fieldAngleDeg === null ? null : prepareMtfFieldLaunch(state, options, support, target.fieldAngleDeg);
@@ -446,9 +518,9 @@ function* traceField(context: MtfJobContext, target: MtfFieldTarget): Generator<
   }
   if (launch.aim) {
     const sampling: MtfFieldSampling = { kind: "stop", lattices: new Map() };
-    yield* refineMtfField(
+    yield* refineMtfFieldSteps(
       context.ladder,
-      (size) => fieldAtGrid(context, target, launch, sampling, size),
+      (size) => fieldAtGrid(context, target, launch, sampling, size, phase),
       context.frequencies,
     );
     return;
@@ -461,9 +533,16 @@ function* traceField(context: MtfJobContext, target: MtfFieldTarget): Generator<
     return;
   }
   let expansions = 0;
-  const evaluate = (size: number): MtfGridOutcome => {
+  const evaluate = function* (size: number): Generator<MtfPhase, MtfGridOutcome> {
     for (;;) {
-      const outcome = fieldAtGrid(context, target, launch, { kind: "launch-plane", footprint: footprint! }, size);
+      const outcome = yield* fieldAtGrid(
+        context,
+        target,
+        launch,
+        { kind: "launch-plane", footprint: footprint! },
+        size,
+        phase,
+      );
       const open = outcome.kind === "curves" ? outcome.openBorders : undefined;
       if (!open || !(open.x || open.y0 || open.y1)) return outcome;
       if (expansions >= MTF_MAX_FOOTPRINT_EXPANSIONS) {
@@ -477,7 +556,7 @@ function* traceField(context: MtfJobContext, target: MtfFieldTarget): Generator<
       expansions++;
     }
   };
-  yield* refineMtfField(context.ladder, evaluate, context.frequencies);
+  yield* refineMtfFieldSteps(context.ladder, evaluate, context.frequencies);
 }
 
 /* ── Focus ── */
@@ -497,34 +576,79 @@ function resolveAxialBeam(context: MtfJobContext): MtfAxialBeam | null {
   return footprint ? { launch, footprint } : null;
 }
 
+/** The chart's own object and first wavelength define both the working aperture and axial vignetting. */
+function resolveMtfAxialReadout(
+  request: AnalysisRequest,
+  context: MtfJobContext,
+  axial: MtfAxialBeam | null,
+): NonNullable<MtfJobCache["axial"]> {
+  const { state, options, support } = context;
+  const line = support.spectralLines[0];
+  const field = axial?.launch.aim;
+  const marginal = field ? traceWorkingFNumber(request, field, mtfAimSpectrum(state, support, line)) : null;
+  let magnification: number | null = null;
+  if (support.conjugate && axial?.launch.objectPoint) {
+    // A 0.01 mm object height samples the on-axis scale without a paraxial object-distance substitution.
+    const distance = state.surfaces[0].z - axial.launch.objectPoint[2];
+    const angleDeg = (Math.atan2(0.01, distance) * 180) / Math.PI;
+    const launch = prepareMtfFieldLaunch(state, options, support, angleDeg);
+    if (launch?.objectPoint) {
+      const trace = traceEngineRay(state, mtfLaunchRay(launch, 0, 0), mtfTraceOptions(state, options, support, line));
+      const image = mtfImagePoint(state, trace, context.imagePlaneZ);
+      const value = image ? image.y / launch.objectPoint[1] : NaN;
+      if (Number.isFinite(value)) magnification = value;
+    }
+  }
+  return {
+    workingFNumber: marginal?.status === "traced" ? marginal.value : null,
+    axialVignetting:
+      marginal?.status === "vignetted"
+        ? { surfaceLabel: marginal.surfaceLabel, beforeStop: marginal.beforeStop }
+        : null,
+    magnification,
+  };
+}
+
 /**
  * Axial best focus from the center bundle, and the image-plane consistency check. The search
  * always runs so results can report it; `best-axial` requests apply the shift to every field, and
  * `auto` requests apply it only when the authored plane is inconsistent with the prescription.
+ * An explicit held shift overrides that selection without suppressing the diagnostic.
  */
-function resolveMtfFocus(context: MtfJobContext, axial: MtfAxialBeam | null): MtfFocus {
+function* resolveMtfFocus(context: MtfJobContext, axial: MtfAxialBeam | null): Generator<MtfPhase, MtfFocus> {
   const { state, options, support } = context;
   const requestedMode = options.focus;
   const offset = mtfImagePlaneOffset(state, support);
   const focus: MtfFocus = {
     requestedMode,
-    mode: "design",
-    appliedShiftMm: 0,
+    mode: options.heldFocusShiftMm === undefined ? "design" : "held",
+    appliedShiftMm: options.heldFocusShiftMm ?? 0,
     bestAxialShiftMm: null,
     designScore: null,
     bestScore: null,
     imagePlaneOffsetMm: offset?.offsetMm ?? null,
     imagePlaneInconsistent: offset?.inconsistent ?? false,
   };
-  if (!axial) return focus;
+  const checkedFocus = (bundles?: Parameters<typeof mtfNearestImagePlaneZ>[1]) => {
+    if (options.heldFocusShiftMm !== undefined) {
+      const planeZ = state.imgZ + options.heldFocusShiftMm;
+      if (!Number.isFinite(options.heldFocusShiftMm) || !Number.isFinite(planeZ))
+        throw new RangeError("Held MTF image-plane shift must be finite.");
+      if (planeZ < mtfNearestImagePlaneZ(state, bundles))
+        throw new RangeError("Held MTF image plane lies in front of the last surface.");
+    }
+    return focus;
+  };
+  if (!axial) return checkedFocus();
   const { launch, footprint } = axial;
   const size = Math.min(MTF_FOCUS_GRID, context.ladder.at(-1) ?? MTF_FOCUS_GRID);
   const bundles = [];
-  for (const line of support.spectralLines) {
+  for (const [index, line] of support.spectralLines.entries()) {
     const bundle = footprint
       ? traceMtfLaunchPlaneBundle(state, options, support, launch, footprint, size, line, state.imgZ)
       : traceMtfStopBundle(state, options, support, launch, size, line, state.imgZ);
-    if (!bundle) return focus;
+    yield { kind: "focus", lineIndex: index + 1, lineCount: support.spectralLines.length };
+    if (!bundle) return checkedFocus();
     bundles.push({ bundle, weight: line.weight });
   }
   const best = findAxialBestFocus(
@@ -533,15 +657,18 @@ function resolveMtfFocus(context: MtfJobContext, axial: MtfAxialBeam | null): Mt
     MTF_FOCUS_FREQUENCIES,
     state.lens.imageSurface === null ? mtfNearestImagePlaneZ(state) : mtfNearestImagePlaneZ(state, bundles),
   );
-  if (!best) return focus;
+  if (!best) return checkedFocus(bundles);
   focus.bestAxialShiftMm = best.shiftMm;
   focus.designScore = best.designScore;
   focus.bestScore = best.bestScore;
-  if (requestedMode === "best-axial" || (requestedMode === "auto" && focus.imagePlaneInconsistent)) {
+  if (
+    options.heldFocusShiftMm === undefined &&
+    (requestedMode === "best-axial" || (requestedMode === "auto" && focus.imagePlaneInconsistent))
+  ) {
     focus.mode = "best-axial";
     focus.appliedShiftMm = best.shiftMm;
   }
-  return focus;
+  return checkedFocus(bundles);
 }
 
 /* ── Job ── */
@@ -570,7 +697,8 @@ export function resolveMtfGeometry(request: AnalysisRequest, settings: MtfReques
 }
 
 /**
- * Yields after the field axis is known and after every refinement, so a worker can publish progress.
+ * Yields phase boundaries around geometry, focus bundles and spectral grid evaluations.
+ * Only completed grid evaluations appear in progress results; the return value is the final result.
  *
  * @param request - prepared geometry and current physical aperture
  * @param settings - method, spectrum, focus and sampling
@@ -580,7 +708,7 @@ export function* computeMtfSteps(
   request: AnalysisRequest,
   settings: MtfRequestOptions,
   cache?: MtfJobCache,
-): Generator<MtfResult, MtfResult> {
+): Generator<MtfProgress, MtfResult> {
   const state = request.preparedGeometry;
   const options = resolveMtfOptions(request, settings);
   const support = assessMtfSupport(request, settings);
@@ -594,9 +722,20 @@ export function* computeMtfSteps(
     fields: [],
     geometry: null,
     focus: null,
+    conjugate: null,
+    workingFNumber: null,
+    magnification: null,
     axialVignetting: null,
   };
   if (!support.available) return result;
+  yield { phase: { kind: "geometry" } };
+  result.conjugate = support.conjugate
+    ? {
+        kind: "finite",
+        objectDistanceMm: support.conjugate.objectDistanceMm,
+        distanceReference: support.conjugate.distanceReference,
+      }
+    : { kind: "infinity" };
   const cap = options.maxGridSize ?? MTF_DEFAULT_GRID_CAP;
   const context: MtfJobContext = {
     state,
@@ -618,6 +757,7 @@ export function* computeMtfSteps(
         });
   if (cache) cache.geometry = geometry;
   result.geometry = geometry;
+  yield { phase: { kind: "geometry" } };
   if (!geometry) {
     result.fields = fractions.map((fraction) =>
       markUnavailable(emptyMtfField(fraction), "chief-ray-failed", "No valid chief ray reaches the image plane."),
@@ -630,22 +770,27 @@ export function* computeMtfSteps(
       ? markUnavailable(emptyMtfField(target.fraction, target), "outside-modeled-field", outsideModelMessage(geometry))
       : emptyMtfField(target.fraction, target),
   );
+  yield { phase: { kind: "focus", lineIndex: 0, lineCount: support.spectralLines.length } };
   // Every field shares one image plane, so the axial focus search runs before any field.
+  const axial = cache?.focus && cache.axial ? null : resolveAxialBeam(context);
   if (cache?.focus) {
     result.focus = cache.focus;
   } else {
-    result.focus = resolveMtfFocus(context, resolveAxialBeam(context));
+    const steps = resolveMtfFocus(context, axial);
+    let next = steps.next();
+    while (!next.done) {
+      yield { phase: next.value };
+      next = steps.next();
+    }
+    result.focus = next.value;
     if (cache) cache.focus = result.focus;
   }
-  // The header names the surface that vignettes the axial marginal ray, as the Summary's working f-number does.
-  if (cache?.axialVignetting !== undefined) {
-    result.axialVignetting = cache.axialVignetting;
-  } else {
-    result.axialVignetting = axialVignetting(request);
-    if (cache) cache.axialVignetting = result.axialVignetting;
-  }
   context.imagePlaneZ = state.imgZ + result.focus.appliedShiftMm;
-  yield result;
+  yield { phase: { kind: "aperture" } };
+  const readout = cache?.axial ?? resolveMtfAxialReadout(request, context, axial);
+  Object.assign(result, readout);
+  if (cache) cache.axial = readout;
+  yield { phase: { kind: "aperture" }, result };
   for (const index of mtfFieldProcessingOrder(fractions)) {
     if (targets[index].outsideModel) continue;
     const cached = cache?.fields.get(fractions[index]);
@@ -654,10 +799,23 @@ export function* computeMtfSteps(
       continue;
     }
     let finished: MtfFieldResult | undefined;
-    for (const field of traceField(context, targets[index])) {
-      finished = field;
-      result.fields[index] = field;
-      yield result;
+    const phase = { fieldIndex: index + 1, fieldCount: fractions.length };
+    let currentPhase: MtfPhase = {
+      kind: "field",
+      ...phase,
+      gridSize: 0,
+      lineIndex: 0,
+      lineCount: support.spectralLines.length,
+    };
+    for (const step of traceField(context, targets[index], phase)) {
+      if ("kind" in step) {
+        currentPhase = step;
+        yield { phase: step };
+      } else {
+        finished = step;
+        result.fields[index] = step;
+        yield { phase: currentPhase, result };
+      }
     }
     // Only fields that ran to completion are reusable; an abandoned generator stores nothing.
     if (finished && cache) cache.fields.set(fractions[index], copyField(finished));
@@ -676,14 +834,6 @@ function copyField(field: MtfFieldResult): MtfFieldResult {
       tangential: [...field.diffractionLimit.tangential],
     },
   };
-}
-
-/** The surface that vignettes the axial marginal ray, from the Summary's working f-number; null when none does. */
-function axialVignetting(request: AnalysisRequest): MtfAxialVignetting | null {
-  const marginal = computeWorkingFNumber(request);
-  return marginal.status === "vignetted"
-    ? { surfaceLabel: marginal.surfaceLabel, beforeStop: marginal.beforeStop }
-    : null;
 }
 
 export function computeMtf(request: AnalysisRequest, options: MtfRequestOptions): MtfResult {

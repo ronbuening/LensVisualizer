@@ -9,7 +9,7 @@
  * in the catalog yet, and keeps a host's relaxed `gapSagFrac` / `maxRimAngleDeg` from hiding a converter error.
  */
 
-import type { LensData } from "../../../types/optics.js";
+import type { LensData, SurfaceData } from "../../../types/optics.js";
 import type { TeleconverterData } from "../../../types/teleconverter.js";
 import { traceParaxialSurfaces as traceSurfacesParaxial } from "../../math/paraxial.js";
 import { ingestLens } from "../ingestV2.js";
@@ -17,6 +17,7 @@ import { mergeTeleconverterPrescription } from "../teleconverter.js";
 import { rearPlateAirEquivalentMm, teleconverterGeometry } from "../teleconverterCompatibility.js";
 import { canonicalConstructionData } from "../constructionData.js";
 import validateLensData from "./index.js";
+import { validateSourceProvenance } from "./references.js";
 import { LENS_KEY_PATTERN, validateImageFormat, validateLensMounts, validateRearPlates } from "./schema.js";
 
 /* Validation operates on untrusted data — a permissive record keeps dynamic-key checks free of casts. */
@@ -140,6 +141,7 @@ export default function validateTeleconverterData(data: UntrustedTeleconverterDa
     }
   }
   if (!Array.isArray(data.surfaces) || !Array.isArray(data.elements) || errors.length > 0) return errors;
+  validateSourceProvenance(data, new Set<string>(data.surfaces.map((surface: SurfaceData) => surface?.label)), errors);
 
   data.surfaces.forEach((surface: UntrustedTeleconverterData, i: number) => {
     const at = `surfaces[${i}] ("${surface?.label}")`;
