@@ -56,3 +56,13 @@ Patent: US 2018/0031811 A1, Example 4 / Figure 11
 - Directly viewed `patents/US20180031811A1.pdf`, Example4 Figure11/PDF12 at600dpi plus original raster, Table4/PDF34, d-line definition/PDF29. Every face and bonded boundary inspected. Arcs meet optical rims; small corner steps do not independently resolve an exposed flat land. Dense rear leaders/brackets excluded. Retain all geometry: no inferred cut or extension, no source-depth flag or tolerance change.
 - All18 source nd/vd pairs exact, includingHG and drawnFL. All18 existing catalog curves retained and explicitly qualified as spectral proxies. CaF2/fluorite and four ED-role flags remain inferred coordinate/product correlations; the patent publishes no material/supplier identity, C/F/g set, or partial/APD values. No new catalog row or spectral field.
 - Surface/circle pass; infinity source aperture f4.08 iris-limited, formatcorner>=99%. Sourceclose d0=3930.900mm fulliris16.983992 gives25/25 aimed axialrayspassing. Nine actualSVG states have18finite paths/zero trim; raster inspected.18sourcepairs/catalog consistency and sharedglass3files94testspass.
+
+## 2026-11-14 — Published finite conjugates
+
+Patent: US20180031811A1, Example 4.
+
+| State (zoom/keyframe) | Field | Before | After | Source and axial residual |
+| --- | --- | --- | --- | --- |
+| 0/1 | `focus.conjugates` | None | 3930.9 mm, `first-surface` | PDF p. 34, Example 4, Table 4, [Variable Distance Data], Close-up Shooting Distance column, d0 row; d0 = 3930.900; d11=33.104 mm, d14=29.826 mm. Image minus authored plane: +0.0068721467 mm (+0.35131988 diffraction depths), `consistent`. Alternate reference: 506.9386793155739 depths. |
+
+Reference definition (¶0261, PDF p. 29 (printed p. 13); units ¶0264 and cross-example applicability ¶0265): ““d0” indicates a distance from the objet to the lens surface located closest to the object side.”

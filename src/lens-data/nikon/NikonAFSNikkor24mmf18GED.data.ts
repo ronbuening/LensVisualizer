@@ -288,6 +288,16 @@ const LENS_DATA = {
       "Rear-group inner focus: Gr1 is fixed; Gr2 moves 4.98 mm object-ward from infinity to close focus while BFD increases by 4.98 mm.",
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 104.38,
+        distanceReference: "first-surface",
+        source:
+          "JP2017003807A, Example 4, ¶0079, 面データ, POS2 endpoints of rows 0(OB), 10 and 24, PDF p. 18: 0(OB): d(mm) = ∞ 〜104.38 (mm); d10=4.38 mm, d24=43.44 mm. Distance reference: ¶0061, PDF p. 13; row 0(OB) immediately precedes surface 1 in p. 18 surface table.",
+      },
+    ],
   },
 
   gaps: { "10": { label: "Gr1–Gr2", values: [[9.36, 4.38]] }, "24": { label: "BF", values: [[38.46, 43.44]] } },

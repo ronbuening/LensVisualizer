@@ -45,3 +45,15 @@ Patent: US 5,745,306 A, Example 1, Fig. 1 (PDF page 2)
 - All original powered R/d, source Bf, internal focus-gap values, stop/aperture controls, old media coordinates and check tolerances remain unchanged. Every original material's C/d/F/g runtime channels are invariant. Both filters use qualified compatible J-BK7A curves; source indices remain authoritative and do not establish production suppliers/melts. No individual C/F/g or partial-dispersion datum is printed, and none is invented. All convex/concave/cemented/filter faces were inspected; apparent short straight ends cannot be separated reliably from ordinary shallow profiles/ink (and Fig. 10 ray contamination), so no inferred cut or extension is adopted. Geometry passing is not treated as source evidence.
 - Source-complete comparison: infinity EFL294.129638 mm and rear-filter BFL84.133641 mm are invariant; full track315.0747→319.6747 mm. At retained published close gaps, object-to-image2513.944427→2515.307296 mm, unchanged magnification−.141397137. Object-to-front2195.632596 mm closely matches printed2195.6253 mm; the source R2500 label/rounded2.5 m production correlation is not forced into exact physical equality. All aspheres absent.
 - Verification: surface/image-circle/aperture pass;39-media batch source/curve/structural-invariance checks pass. Nine focus/zoom SVG states finite, hidden trimzero, viewed with both plates and connected compounds. Public fulltrack/conjugate/aperture/condition12 numbers synchronized. Shared dispersion/resolver parity tests pass2 files/93 tests. PDF/temporary renders remain untracked research inputs.
+
+## 2026-11-14 — Published finite conjugates
+
+Patent: US5745306-2, Example 1.
+
+| State (zoom/keyframe) | Field | Before | After | Source and axial residual |
+| --- | --- | --- | --- | --- |
+| 0/1 | `focus.conjugates` | None | 2195.6253 mm, `first-surface` | PDF p. 21, Example 1, Table 1, Variable Interval Upon Focusing, Closest Distance column, D0 row; D0 = 2195.6253; d10=40.3744 mm, d15=8.4568 mm. Image minus authored plane: +0.0001458715 mm (+0.01496587 diffraction depths), `consistent`. Alternate reference: 708.7951107141496 depths. |
+
+Reference definition (PDF p. 21, printed col. 10): “D0 is a distance from the object to the first lens surface (object distance).”
+
+The text also prints R=2500, defining R as object-to-image distance (PDF p. 22, col. 11). The trial uses the tabulated D0 without any conversion.

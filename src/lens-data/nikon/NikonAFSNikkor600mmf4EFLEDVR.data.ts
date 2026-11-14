@@ -372,6 +372,16 @@ const LENS_DATA = {
       "4.400 m to the focal plane. The rear image spacing is fixed.",
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 3930.9,
+        distanceReference: "first-surface",
+        source:
+          "US20180031811A1, Example 4, Table 4, [Variable Distance Data], Close-up Shooting Distance column, d0 row, PDF p. 34: d0 = 3930.900 (mm); d11=33.104 mm, d14=29.826 mm. Distance reference: ¶0261, PDF p. 29 (printed p. 13); units ¶0264 and cross-example applicability ¶0265.",
+      },
+    ],
   },
 
   /* (moved from var) ── Published internal-focus spacings ── */

@@ -56,3 +56,15 @@ Patent: US 5,745,306 A, Example 3 / Figure 7
 - Actual verification: focused surface and image-circle audits pass all three candidates (zero undersized/skipped); aperture audit passes all three stated axial beams after the PF cap correction. Native SVG output was inspected at nine focus/zoom states per lens (27 total), with zero renderer trims. Current resolver/catalog consistency passes. Shared dispersion/partial-dispersion suites were already run in this candidate wave (93 passing tests); no engine changes or per-lens tests were added.
 - Approved source-complete restoration: a diagnostic copy of the existing complete beam search targets planes 1/2 without adding any rim cuts. With an initially generous 90 mm clear radius, the furthest full wide-open beam reaches S1 72.9840634 mm / S2 72.7820629 mm at focus 0.05, field 3.5104478°; zero sampled fields are untraced. Adopted square sd 77 mm = the maximum plus 5%, rounded up to 0.5 mm. Source does not publish that plate diameter; it remains an envelope estimate. All powered caps are untouched.
 - Comparison with the former omitted-plate variant: EFL 587.792929452 mm and infinity BFL from the rear-filter last vertex 115.686575941 mm are identical. The original 115.6862 mm rear air is retained; its 0.000375941 mm residual is source rounding, not caused by the front omission. Full physical track is now 462.477700 mm (+6.2 mm); active surface-3 track remains 456.277700 mm. The source close geometry gives Gaussian object-to-image distance 5999.936977 mm (formerly 5998.233390 mm). Printed D0 5537.4340 mm gives B +0.002723107 mm; rounded model R 6000 mm gives B −0.006816625 mm. Updated all affected public omission, track, finite-focus, and residual descriptions. Focus/aperture/format checks and the nine-state native SVG trial all pass, with zero trims and at least 99% format-corner coverage.
+
+## 2026-11-14 — Published finite conjugates
+
+Patent: US5745306-2, Example 3.
+
+| State (zoom/keyframe) | Field | Before | After | Source and axial residual |
+| --- | --- | --- | --- | --- |
+| 0/1 | `focus.conjugates` | None | 5537.434 mm, `first-surface` | PDF p. 23, Example 3, Table 3, Variable Interval Upon Focusing, Closest Distance column, D0 row; D0 = 5537.4340; d11=44.2811 mm, d16=5.7105 mm. Image minus authored plane: +0.0002945336 mm (+0.01505675 diffraction depths), `consistent`. Alternate reference: 285.482620018722 depths. |
+
+Reference definition (PDF p. 23, printed col. 14): “D0 is a distance from the object to the first lens surface (object distance).”
+
+The text also prints R=6000, defining R as object-to-image distance on the same page. The trial uses tabulated D0 without conversion.

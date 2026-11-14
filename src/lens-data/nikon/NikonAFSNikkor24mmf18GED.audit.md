@@ -29,3 +29,13 @@ Reviewed local untracked patent file `patents/JP2017003807A.pdf`, Example 4 / pa
 - S1 continuous front cap22→23mm. Exposed S2/S14/S16 preserve clearcaps18/12.4/12.0 with outerlands23/13/12.5mm. Native endpoint q≈.74±.012/.84±.024/.83±.026, edge143/76/71px; adopted.783/.954/.960 conservatively preserve larger clearcaps. Native first/last vertex span~530px/85.91mm gives6.17px/mm, frontouter~23mm. All other exposed/cemented boundaries inspected; no independently resolved further concave land/cemented land is added.
 - Inferred S9/S10 rims12.0/11.5 clip printed f1.86 to f1.98. Fresh --raise requires12.5/12.4; adopted common12.5 along full source L5arcs. Axial infinity aperture now clears, without control/sourceprescription changes. At sourceclose objectdistance104.38mm, fulliris10.457452mm gives25/25 aimed axialrayspassing (baseline13/25,12clippedS9).
 - Surface/circle pass; axial aperture within3% of source1.86; formatcorner>=99%. Nine actualSVG states have14finite paths/zero trim and finalraster inspected. All14 sourcepairs/catalog checks pass; shared dispersion/parity/partial tests3files94pass. Source focus gaps/aspheres/tolerances unchanged.
+
+## 2026-11-14 — Published finite conjugates
+
+Patent: JP2017003807A, Example 4.
+
+| State (zoom/keyframe) | Field | Before | After | Source and axial residual |
+| --- | --- | --- | --- | --- |
+| 0/1 | `focus.conjugates` | None | 104.38 mm, `first-surface` | PDF p. 18, Example 4, ¶0079, 面データ, POS2 endpoints of rows 0(OB), 10 and 24; 0(OB): d(mm) = ∞ 〜104.38; d10=4.38 mm, d24=43.44 mm. Image minus authored plane: +0.0844005473 mm (+17.87345558 diffraction depths), `consistent`. Alternate reference: unavailable depths. |
+
+Reference definition (¶0061, PDF p. 13; row 0(OB) immediately precedes surface 1 in p. 18 surface table): “面番号ｉ（ＯＢ：物面，ＳＴ：絞り面，ＩＭ：像面），近軸における曲率半径ｒ（ｍｍ），軸上面間隔ｄ（ｍｍ）”

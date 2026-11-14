@@ -250,6 +250,16 @@ const LENS_DATA = {
       "PUBLISHED internal focus: negative G2 translates imageward by 10.8239 mm; D10 increases 29.5505→40.3744 mm while D15 decreases 19.2807→8.4568 mm. The rear image spacing is fixed.",
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 2195.6253,
+        distanceReference: "first-surface",
+        source:
+          "US5745306-2, Example 1, Table 1, Variable Interval Upon Focusing, Closest Distance column, D0 row, PDF p. 21: D0 = 2195.6253 (mm); d10=40.3744 mm, d15=8.4568 mm. Distance reference: PDF p. 21, printed col. 10.",
+      },
+    ],
   },
 
   /* (moved from var) ── Published internal-focus spacings ── */

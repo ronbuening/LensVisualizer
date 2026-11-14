@@ -120,3 +120,15 @@ Validator clean, image-circle floor clean, field coverage 100 %, `audit:aperture
 
 - `catalog.fNumber.marketing: 1.8` from the product name, so the wide-open readout names the marked f/1.8 beside
   the design f/1.86. No optical value changed.
+
+## 2026-11-14 — Published finite conjugates
+
+Patent: JP2015118186A, Numerical Example 1.
+
+| State (zoom/keyframe) | Field | Before | After | Source and axial residual |
+| --- | --- | --- | --- | --- |
+| 0/1 | `focus.conjugates` | None | 1019.325 mm, `first-surface` | PDF p. 13, Numerical Example 1, Table 1, ［可変間隔データ］, 近距離 column, Ｄ０ row; Ｄ０ = 1019.325; D7=8.063 mm. Image minus authored plane: +0.0027720062 mm (+0.65935028 diffraction depths), `consistent`. Alternate reference: 35.116546760485456 depths. |
+
+Reference definition (¶0066, PDF p. 11; units ¶0069): “また、物体からレンズ最前面までの距離をＤ０とする。”
+
+Authored BF=39.572 mm follows the fixed G1/image-plane constraint in ¶0075; it is not a separate printed near BF row.
