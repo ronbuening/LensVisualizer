@@ -15,9 +15,15 @@ const LENS_DATA = {
   "key": "agfa-color-solagon-55mm-f2",
   "maker": "Agfa",
   "name": "AGFA COLOR-SOLAGON 55mm f/2",
+  "subtitle": "US 2,784,646, Example 1 — Color-Solagon 55mm f/2 of the Agfa Ambiflex, scaled ×55",
   "visible": true,
   "catalog": {
     "imageFormat": "135-full-frame",
+    "specs": [
+      "6 ELEMENTS / 4 GROUPS",
+      "ALL SPHERICAL",
+      "F/2"
+    ],
     "elementCount": 6,
     "groupCount": 4,
     "focalLengthMm": {
@@ -49,61 +55,71 @@ const LENS_DATA = {
       "id": 1,
       "name": "L1",
       "label": "Element 1",
-      "type": "Spherical patent glass",
+      "type": "Positive Meniscus",
+      "role": "Front positive singlet; begins convergence before the front cemented component.",
       "nd": 1.72253,
       "vd": 37.8,
       "indexReference": "d",
-      "glass": "Literal source d-line and Abbe values; no factory glass or measured curve"
+      "glass": "Unmatched (nd 1.72253 / νd 37.8)"
     },
     {
       "id": 2,
       "name": "L2",
       "label": "Element 2",
-      "type": "Spherical patent glass",
+      "type": "Plano-Convex Positive",
+      "role": "Positive member of the front cemented component; plane rear cemented face.",
+      "cemented": "C1",
       "nd": 1.66972,
       "vd": 47.4,
       "indexReference": "d",
-      "glass": "Literal source d-line and Abbe values; no factory glass or measured curve"
+      "glass": "Unmatched (nd 1.66972 / νd 47.4)"
     },
     {
       "id": 3,
       "name": "L3",
       "label": "Element 3",
-      "type": "Spherical patent glass",
+      "type": "Plano-Concave Negative",
+      "role": "Negative member of the front cemented component; concave rear face toward the stop.",
+      "cemented": "C1",
       "nd": 1.65456,
       "vd": 33.9,
       "indexReference": "d",
-      "glass": "Literal source d-line and Abbe values; no factory glass or measured curve"
+      "glass": "Unmatched (nd 1.65456 / νd 33.9)"
     },
     {
       "id": 4,
       "name": "L4",
       "label": "Element 4",
-      "type": "Spherical patent glass",
+      "type": "Plano-Concave Negative",
+      "role": "Negative member of the rear cemented component; concave front face toward the stop.",
+      "cemented": "C2",
       "nd": 1.69915,
       "vd": 30.1,
       "indexReference": "d",
-      "glass": "Literal source d-line and Abbe values; no factory glass or measured curve"
+      "glass": "Unmatched (nd 1.69915 / νd 30.1)"
     },
     {
       "id": 5,
       "name": "L5",
       "label": "Element 5",
-      "type": "Spherical patent glass",
+      "type": "Plano-Convex Positive",
+      "role": "Positive member of the rear cemented component; plane front cemented face.",
+      "cemented": "C2",
       "nd": 1.69086,
       "vd": 54.7,
       "indexReference": "d",
-      "glass": "Literal source d-line and Abbe values; no factory glass or measured curve"
+      "glass": "Unmatched (nd 1.69086 / νd 54.7)"
     },
     {
       "id": 6,
       "name": "L6",
       "label": "Element 6",
-      "type": "Spherical patent glass",
+      "type": "Biconvex Positive",
+      "role": "Rear positive singlet; completes convergence toward the image plane.",
       "nd": 1.72253,
       "vd": 37.8,
       "indexReference": "d",
-      "glass": "Literal source d-line and Abbe values; no factory glass or measured curve"
+      "glass": "Unmatched (nd 1.72253 / νd 37.8)"
     }
   ],
   "surfaces": [
@@ -181,7 +197,7 @@ const LENS_DATA = {
   ],
   "focus": {
     "closeFocusM": 1000000000000000.0,
-    "description": "NO_INTERNAL_RECONSTRUCTION: infinity normalized representative only"
+    "description": "Infinity focus only; the patent gives no close-focus spacings or focus travel."
   },
   "aperture": {
     "nominalFNumber": 2,
@@ -202,6 +218,10 @@ const LENS_DATA = {
     "fullFieldDeg": 50,
     "maxTraceFieldDeg": 25
   },
+  "doublets": [
+    { "text": "C1", "fromSurface": "3", "toSurface": "5" },
+    { "text": "C2", "fromSurface": "6", "toSurface": "8" }
+  ],
   "layout": {
     "yScFill": 0.7
   }
