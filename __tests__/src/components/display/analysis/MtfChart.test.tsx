@@ -114,7 +114,16 @@ describe("MTF export builders", () => {
       source: { patentNumber: "US 123 A", example: { label: "Example 2", id: "2" } },
     },
     FOPEN: 4.1,
+    isZoom: false,
   } as unknown as RuntimeLens;
+  const zoomLens = (marketing: number | readonly number[]) =>
+    ({
+      ...lens,
+      isZoom: true,
+      FOPEN: 4.6,
+      zoomFOPENs: [4.6, 5.2, 5.8],
+      source: { ...lens.source, catalog: { fNumber: { design: 4.6, marketing } } },
+    }) as unknown as RuntimeLens;
   const contextFor = (result: MtfResult, overrides: Partial<Parameters<typeof buildMtfExportContext>[0]> = {}) =>
     buildMtfExportContext({
       lens,
@@ -157,6 +166,69 @@ describe("MTF export builders", () => {
     return { image, doc, lines };
   };
   const dataRows = (csv: string) => parseCsv(csv).filter((row) => !row[0].startsWith("# "));
+
+  // Catalog aperture metadata must describe the same station as the chart.
+  it.each([
+    [0, 4.6, 4.5],
+    [0.25, 4.9, 4.5],
+    [1, 5.8, 5.6],
+  ])("exports the charted zoom aperture at zoom %s", (zoomT, design, marketing) => {
+    const context = contextFor(captionResult(), { lens: zoomLens([4.5, 5.6]), zoomT, fNumber: 8 });
+    const expected = `selected f/8; design wide-open f/${design}; marketed wide-open f/${marketing}`;
+    expect(context.aperture).toBe(expected);
+    expect(mtfContextBlock(context)).toContain(`# aperture: ${expected}`);
+    const { doc, lines } = captionFor(context);
+    expect(doc.querySelector("desc")!.textContent).toContain(`# aperture: ${expected}`);
+    expect(lines[1]).toContain(`f/8.0 (design f/${design}, marketed f/${marketing})`);
+  });
+
+  it.each([
+    [
+      [4.5, 5.6],
+      [
+        [0.5, 4.5],
+        [0.5001, 5.6],
+      ],
+    ],
+    [
+      [4.5, 5, 5.6],
+      [
+        [0.25, 4.5],
+        [0.2501, 5],
+        [0.5, 5],
+        [0.75, 5],
+        [0.7501, 5.6],
+      ],
+    ],
+  ] as const)("selects the nearest marketed aperture from %j, with ties toward wide", (marketing, stations) => {
+    for (const [zoomT, expected] of stations) {
+      const context = contextFor(syntheticResult(), { lens: zoomLens(marketing), zoomT });
+      expect(context.aperture.split("; ").at(-1)).toBe(`marketed wide-open f/${expected}`);
+    }
+  });
+
+  it.each([0, 1])("qualifies a single marketed zoom aperture as a catalog value at zoom %s", (zoomT) => {
+    const context = contextFor(captionResult(), { lens: zoomLens(4.5), zoomT });
+    expect(context.aperture).toContain("; catalog marketed f/4.5");
+    expect(context.aperture).not.toContain("; marketed wide-open");
+    const { doc, lines } = captionFor(context);
+    expect(doc.querySelector("desc")!.textContent).toContain("; catalog marketed f/4.5");
+    expect(lines[1]).toContain(", catalog marketed f/4.5)");
+  });
+
+  it("preserves prime design and marketed apertures and omits a redundant marketed value", () => {
+    const prime = { ...lens, FOPEN: 4.125 };
+    expect(contextFor(syntheticResult(), { lens: prime }).aperture).toBe(
+      "selected f/5.6; design wide-open f/4.1; marketed wide-open f/4",
+    );
+    const sameAperture = {
+      ...prime,
+      source: { ...prime.source, catalog: { fNumber: { design: 4.1, marketing: 4.1 } } },
+    };
+    expect(contextFor(syntheticResult(), { lens: sameAperture }).aperture).toBe(
+      "selected f/5.6; design wide-open f/4.1",
+    );
+  });
 
   it("records source, optical station, actual spectrum/plane, fallback, UTC date and disclaimer", () => {
     const result = syntheticResult();

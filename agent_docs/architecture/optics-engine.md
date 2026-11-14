@@ -342,9 +342,13 @@ Copy CSV keeps the uncaptioned image-height table. The Export menu adds contextu
 view or every sampled field × computed frequency, with per-field notes and the chart's same withheld-value,
 diagnostic, f/8 and diffraction-limit policies. Its `# key: value` context records the lens/source, optical station,
 selected/design/marketed apertures, actual spectrum and fallback reason, method, applied focus shift, grid cap,
-reference height/basis, shared settings link, UTC date and prescription disclaimer. CSV context and the SVG's `desc`
-retain every key and spectral weight, rounding lengths to six decimal places. SVG captures the rendered chart
-and legend with explicit theme colors/font and a short, wrapped caption: lens/source, aperture, focal length,
+reference height/basis, shared settings link, UTC date and prescription disclaimer. A zoom's design wide-open
+aperture comes from `fopenAtZoomClamped`, shared with the aperture control. Marketed endpoint or station lists use
+the nearest listed value, with midpoint ties going wider and no interpolation, as for `mtfPrescriptionScale`.
+A single marketed zoom aperture is labelled as a catalog value rather than a station value. Prime apertures use
+the catalog design and marketed values. CSV context and the SVG's `desc` retain every key and spectral weight,
+rounding lengths to six decimal places. SVG captures the rendered chart and legend with explicit theme colors/font
+and a short, wrapped caption: lens/source, aperture, focal length,
 focus distance, spectrum summary, applied plane, grid cap, enabled overlays, diagnostic/partial status, link/date
 and disclaimer. Caption f-numbers match the tab; focal length rounds to 0.1 mm, heights to 0.01 mm and plane
 shifts to signed 0.001 mm. Long links end with an ellipsis while metadata retains the full URL. PNG rasterizes that

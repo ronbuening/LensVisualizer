@@ -9,7 +9,7 @@ import type { RuntimeLens } from "../../../../types/optics.js";
 import type { MtfResult } from "../../../../types/mtf.js";
 import type { MtfPreferences } from "../../../../utils/state/mtfPreferences.js";
 import { SITE_NAME } from "../../../../utils/catalog/lensMetadata.js";
-import { formatFNumber } from "../../../../optics/optics.js";
+import { fopenAtZoomClamped, formatFNumber } from "../../../../optics/optics.js";
 
 export const MTF_EXPORT_DISCLAIMER =
   "Prescription estimate, not manufacturer MTF. Modeled rear cover/filter plates are included; any omitted sensor optics can substantially change these curves.";
@@ -33,6 +33,13 @@ interface MtfExportContextInput {
   comparisonRequested?: boolean;
 }
 
+function marketedFNumberAtZoom(value: number | readonly number[] | undefined, zoomT: number): number | undefined {
+  if (typeof value === "number" || value === undefined) return value;
+  // Marketed values are discrete, with midpoint ties going wider as for focal lengths.
+  const index = Math.max(0, Math.min(value.length - 1, Math.ceil(zoomT * (value.length - 1) - 0.5)));
+  return value[index];
+}
+
 /**
  * Describe the result actually displayed, including an incomplete worker result.
  * @param input - optical station, displayed results, settings and explicit generation time
@@ -42,6 +49,10 @@ export function buildMtfExportContext(input: MtfExportContextInput): MtfExportCo
   const { lens, result, preferences, comparison } = input;
   const source = lens.source.source;
   const aperture = lens.source.catalog.fNumber;
+  const designFNumber = lens.isZoom ? fopenAtZoomClamped(input.zoomT, lens) : (aperture?.design ?? lens.FOPEN);
+  const marketedFNumber = marketedFNumberAtZoom(aperture?.marketing, input.zoomT);
+  const marketedLabel =
+    lens.isZoom && typeof aperture?.marketing === "number" ? "catalog marketed" : "marketed wide-open";
   const conjugate = result.support.conjugate;
   const focus = (value: MtfResult) =>
     value.focus
@@ -56,9 +67,9 @@ export function buildMtfExportContext(input: MtfExportContextInput): MtfExportCo
     station: `${input.focalLengthMm} mm; ${conjugate ? `${conjugate.objectDistanceMm} mm from ${conjugate.distanceReference}` : input.focusT === 0 ? "infinity" : "focus distance not established"}; zoom ${input.zoomT}; focus ${input.focusT}`,
     aperture: [
       input.fNumber ? `selected f/${input.fNumber}` : "selected f-number not recorded",
-      `design wide-open f/${aperture?.design ?? lens.FOPEN}`,
-      ...(aperture?.marketing !== undefined && aperture.marketing !== (aperture.design ?? lens.FOPEN)
-        ? [`marketed wide-open f/${aperture.marketing}`]
+      `design wide-open f/${designFNumber}`,
+      ...(marketedFNumber !== undefined && marketedFNumber !== designFNumber
+        ? [`${marketedLabel} f/${marketedFNumber}`]
         : []),
     ].join("; "),
     method: result.method === "diffraction" ? "Diffraction-corrected" : "Geometric",
@@ -105,7 +116,8 @@ export function mtfCaptionLines(context: MtfExportContext, maxLineLength: number
       .replaceAll(/f\/([\d.e+-]+)/g, (_, value: string) => `f/${formatFNumber(Number(value))}`)
       .replace("selected ", "")
       .replace("; design wide-open ", " (design ")
-      .replace("; marketed wide-open ", ", marketed ") + ")";
+      .replace("; marketed wide-open ", ", marketed ")
+      .replace("; catalog marketed ", ", catalog marketed ") + ")";
   const [spectrum, ...lines] = context.spectrum.split("; ");
   const wavelengths = lines.map(Number.parseFloat);
   const spectrumLabel =

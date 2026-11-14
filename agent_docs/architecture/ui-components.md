@@ -142,9 +142,10 @@ single-cell `# key: value` context records documented in `mtfExportContext.ts`. 
 stripping `# ` and splitting at the first `: `; quoted context values preserve commas, quotes and newlines.
 Context records the lens/source, focal length and focus station, selected/design/marketed apertures, method,
 actual spectrum and any preferred-spectrum fallback, applied focus shift, grid cap, reference height/basis,
-shared MTF link, UTC generation date, status and prescription disclaimer. CSV context and the SVG's `desc` retain
-every key and spectral weight with lengths rounded to six decimal places. SVG captures the rendered chart and
-legend with explicit theme colors and font, plus a short, wrapped caption summarizing the lens/source, optical
+shared MTF link, UTC generation date, status and prescription disclaimer. Exported zoom apertures identify the
+charted station's design aperture and qualify a single marketed value as catalog metadata. CSV context and the
+SVG's `desc` retain every key and spectral weight with lengths rounded to six decimal places. SVG captures the
+rendered chart and legend with explicit theme colors and font, plus a short, wrapped caption summarizing the lens/source, optical
 station, spectrum, applied plane, grid cap, enabled overlays, diagnostic/partial status, link/date and disclaimer.
 Caption apertures, focal length and plane shifts use the tab's precision; long links end with an ellipsis while
 metadata keeps the full URL.
