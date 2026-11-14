@@ -178,6 +178,15 @@ const LENS_DATA = {
   ],
 
   focus: {
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 12000,
+        distanceReference: "image-plane",
+        source: "US 4,126,378 A, Example 3, Table 5 (PDF p10) and close-focus prose (PDF p11, col. 11): printed photographic distance 2,000 patent units × 6 = 12,000 mm. The file header documents that all source lengths are scaled 6×, and focus.description documents the image-plane interpretation. Source d8=27.894, d10=0.863, d12=2.801 become 167.364, 5.178, 16.806 mm; the modeled stop splits d8 without changing its total.",
+      },
+    ],
     closeFocusM: 12,
     published: [1],
     description:

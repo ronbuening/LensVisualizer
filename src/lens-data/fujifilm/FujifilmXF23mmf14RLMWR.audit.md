@@ -84,3 +84,13 @@ Patent: US 2022/0276464 A1, Example 7
   FCD505 coordinate (nd 1.59282 / νd 68.62) and Fujifilm's published three-ED count.
 - Unchanged: `dPgF` (0.015956), every `apdNote`, glass label, `nd`, `νd`, surface and semi-diameter. The analysis does
   not state the tag, so it is unchanged.
+
+## 2026-11-14 — Source finite object distances
+
+Patent: US 2022/0276464 A1, Example 7.
+
+| Zoom / keyframe | Field | Before | After | Source and gap mapping |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | `focus.conjugates` | No declaration | 97.3614465993 mm, `first-surface` | Example 7 Table 27, 0.100 m column, DD12=2.3603/DD22=6.4897 maps to STO=2.298022/22A=6.318466 mm at the header factor; converted distance passes. |
+
+The declarations retain the authored prescription and image plane. The header factor 0.973614465993 converts the printed 0.100 m (100 mm) to 97.3614465993 mm; paragraph 0061 defines the object-side surface reference. The axial consistency diagnostics are 0/1: +0.022131838 mm (+8.843143 quarter-wave depths), other reference +6725.922755 depths. No production minimum-focus distance or calculated object distance is certified.

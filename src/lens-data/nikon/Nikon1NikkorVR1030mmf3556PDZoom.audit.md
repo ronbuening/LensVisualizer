@@ -51,3 +51,13 @@ Patent: US 2018/0196240 A1.
 - Zoom 2: the patent prints “D 200.00” without an explicit reference definition. The conjugate audit identifies the image-plane reference (`audit-resolved`).
 - Wide state remains uncertified: D=200.00 mm has no explicit reference definition, and the image-plane residual (+0.050758465 mm, +3.263648 depths) and first-surface residual (-0.148039724 mm, -9.638445 depths) do not discriminate the reference.
 - The authored gaps and image plane are retained.
+
+## 2026-11-14 — Additional source-backed finite conjugates
+
+| Zoom / keyframe | Source distance and reference | Source locator and matching gaps | Paraxial residual |
+| --- | --- | --- | --- |
+| 0 / 1 | 200 mm, image-plane | US 2018/0196240 A1, Example 11, Table 11 (PDF p. 84), close-distance W column: D=200.00 mm; d6=18.51 mm, d13=1.98 mm, d15=4.95 mm | +0.050758465 mm; +3.268853 quarter waves; alternate -9.593612. |
+
+The reference follows the declared sibling states in the same source table: image-plane for Table 11 M/T, first-surface for Table 4 closest-focus states. These additional rows are within the limit but the audit cannot independently discriminate their references (`ambiguous-reference`).
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.

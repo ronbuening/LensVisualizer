@@ -370,6 +370,16 @@ const LENS_DATA = {
       "Inner focus: G2 (surfaces 13-22A) translates objectward as a unit; G1, the stop, and G3 remain fixed.",
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 97.3614465993,
+        distanceReference: "first-surface",
+        source:
+          "US 2022/0276464 A1, Example 7, Table 27, 0.100 m column (PDF p. 42): printed object distance 0.100 m = 100 mm, multiplied by 0.973614465993 = 97.3614465993 mm; this file documents the uniform factor in its header Scale paragraph. Table 27 DD[12]=2.3603 and DD[22]=6.4897 mm scale to the authored STO=2.298022 and 22A=6.318466 mm. The specification defines object distance from object to the lens surface closest to the object side (paragraph 0061).",
+      },
+    ],
   },
 
   gaps: {

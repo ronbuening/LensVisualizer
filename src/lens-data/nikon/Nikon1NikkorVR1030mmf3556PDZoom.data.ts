@@ -328,6 +328,13 @@ const LENS_DATA = {
     description: "PUBLISHED: G3 moves imageward to the Table 11 D=200 mm state; no extra focus states.",
     conjugates: [
       {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 200,
+        distanceReference: "image-plane",
+        source: "US 2018/0196240 A1, Example 11, Table 11 (PDF p. 84), close-distance W column: D=200.00 mm; d6=18.51 mm, d13=1.98 mm, d15=4.95 mm. The image-plane reference is the one the conjugate audit identifies for the M and T states of the same table.",
+      },
+      {
         zoomStation: 1,
         keyframe: 1,
         objectDistanceMm: 200,

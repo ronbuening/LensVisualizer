@@ -42,3 +42,13 @@ Preserve actual September 9 shape/glass and September 23 rear-plate review dates
 Existing700-entry scan confirms no closer already-present row than L-LAH85V. Its evaluated residuals are nd +0.00057016/νd −0.161632. New D-ZLAF85LS-25 in the [official CDGM September 2026 AGF](https://www.cdgmgd.com/downloadFile.htm?uid=3f4d14c82d2c11eeb5ac000c29c8de8c), row 11573, improves them to +0.00000996/+0.017917; PgF 0.568644 has no source comparison. The literal formula 2 coefficients use λµm, n²=1+ΣBiλ²/(λ²−Ci), range 0.365–2.325 µm, and pass the unchanged catalog validator. Source GC `anneal rate:25℃/h` describes only the catalog state. A qualified proxy label does not claim that anneal schedule or the historical supplier/melt/chemistry for Samyang.
 
 Only L12's glass label and explicit d-reference annotations change in data. All numeric prescription/material/spectral values, APD tags, rims, aspheres, iris/focus controls and rear-plate fields remain identical; all other curve choices stay fixed. The label now selects the closer state-specific curve, with authored d preserved and only estimated L12 C/F/g changed. Existing aperture/asphere/finite/off-axis limitations and the prior complete-review count remain unchanged. No duplicate generic glass or per-lens spectral override is introduced.
+
+## 2026-11-14 — Source finite object distances
+
+Patent: KR 10-2077265 B1, Example 3.
+
+| Zoom / keyframe | Field | Before | After | Source and gap mapping |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | `focus.conjugates` | No declaration | 175.678043 mm, `first-surface` | Example 3 Table 9 near D1/D2 match; source D3=42.958030 and D4=0.562472 are exactly mapped to file 23A=42.991934 and rear gapAfter=0.528568; D0=175.678043 mm passes. |
+
+The declarations retain the authored prescription and image plane. The axial consistency diagnostics are 0/1: -0.000814630 mm (-0.398275 quarter-wave depths), other reference +12055.492370 depths. No production minimum-focus distance or calculated object distance is certified.

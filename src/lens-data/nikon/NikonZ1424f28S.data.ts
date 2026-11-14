@@ -421,11 +421,25 @@ const LENS_DATA = {
     conjugates: [
       {
         zoomStation: 0,
+        keyframe: 4,
+        objectDistanceMm: 553,
+        distanceReference: "first-surface",
+        source: "WO 2021/117563 A1, Example 4, Table 4, 可変間隔データ, 中間距離合焦状態 β = 0.025, W column; mm per ¶0077 (PDF p21), PDF p43: 物体距離 553; gaps (mm): 8=20.03, 11=9.77, 28=22.54. The first-surface reference is the one the conjugate audit identifies for the closest-focus states of the same table.",
+      },
+      {
+        zoomStation: 0,
         keyframe: 5,
         objectDistanceMm: 141,
         distanceReference: "first-surface",
         source:
           "WO 2021/117563 A1, Example 4, Table 4, 可変間隔データ, 至近距離合焦状態, W column; mm per ¶0077 (PDF p21), PDF p43: 物体距離 141; gaps (mm): 8=22.29, 11=7.5, 28=22.54. Reference identified by the conjugate audit (audit-resolved).",
+      },
+      {
+        zoomStation: 1,
+        keyframe: 3,
+        objectDistanceMm: 697,
+        distanceReference: "first-surface",
+        source: "WO 2021/117563 A1, Example 4, Table 4, 可変間隔データ, 中間距離合焦状態 β = 0.025, M1 column; mm per ¶0077 (PDF p21), PDF p43: 物体距離 697; gaps (mm): 8=11.12, 11=7.55, 28=27.74. The first-surface reference is the one the conjugate audit identifies for the closest-focus states of the same table.",
       },
       {
         zoomStation: 1,
@@ -437,11 +451,25 @@ const LENS_DATA = {
       },
       {
         zoomStation: 2,
+        keyframe: 2,
+        objectDistanceMm: 777,
+        distanceReference: "first-surface",
+        source: "WO 2021/117563 A1, Example 4, Table 4, 可変間隔データ, 中間距離合焦状態 β = 0.025, M2 column; mm per ¶0077 (PDF p21), PDF p43: 物体距離 777; gaps (mm): 8=7.69, 11=6.52, 28=30.59. The first-surface reference is the one the conjugate audit identifies for the closest-focus states of the same table.",
+      },
+      {
+        zoomStation: 2,
         keyframe: 5,
         objectDistanceMm: 149,
         distanceReference: "first-surface",
         source:
           "WO 2021/117563 A1, Example 4, Table 4, 可変間隔データ, 至近距離合焦状態, M2 column; mm per ¶0077 (PDF p21), PDF p43: 物体距離 149; gaps (mm): 8=10.37, 11=3.83, 28=30.59. Reference identified by the conjugate audit (audit-resolved).",
+      },
+      {
+        zoomStation: 3,
+        keyframe: 1,
+        objectDistanceMm: 909,
+        distanceReference: "first-surface",
+        source: "WO 2021/117563 A1, Example 4, Table 4, 可変間隔データ, 中間距離合焦状態 β = 0.025, T column; mm per ¶0077 (PDF p21), PDF p43: 物体距離 909; gaps (mm): 8=3.46, 11=5.04, 28=35.22. The first-surface reference is the one the conjugate audit identifies for the closest-focus states of the same table.",
       },
       {
         zoomStation: 3,

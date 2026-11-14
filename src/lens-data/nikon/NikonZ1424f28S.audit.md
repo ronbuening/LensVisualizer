@@ -231,3 +231,16 @@ The intermediate rows stay undeclared because both references pass the tolerance
 | 1 / 3 | 697 mm, PDF p43 | -0.053470997 mm / -5.373200 depths | +0.048212882 mm / +4.824916 depths | `ambiguous-reference` |
 | 2 / 2 | 777 mm, PDF p43 | -0.069154272 mm / -6.949953 depths | +0.028795932 mm / +2.883135 depths | `ambiguous-reference` |
 | 3 / 1 | 909 mm, PDF p43 | -0.082477411 mm / -8.288352 depths | +0.011860941 mm / +1.187985 depths | `ambiguous-reference` |
+
+## 2026-11-14 — Additional source-backed finite conjugates
+
+| Zoom / keyframe | Source distance and reference | Source locator and matching gaps | Paraxial residual |
+| --- | --- | --- | --- |
+| 0 / 4 | 553 mm, first-surface | WO 2021/117563 A1, Example 4, Table 4, 可変間隔データ, 中間距離合焦状態 β = 0.025, W column; mm per ¶0077 (PDF p21), PDF p43: 物体距離 553; gaps (mm): 8=20.03, 11=9.77, 28=22.54 | -0.043164434 mm; -4.333458 quarter waves; alternate +7.117685. |
+| 1 / 3 | 697 mm, first-surface | WO 2021/117563 A1, Example 4, Table 4, 可変間隔データ, 中間距離合焦状態 β = 0.025, M1 column; mm per ¶0077 (PDF p21), PDF p43: 物体距離 697; gaps (mm): 8=11.12, 11=7.55, 28=27.74 | -0.053470997 mm; -5.367384 quarter waves; alternate +4.829625. |
+| 2 / 2 | 777 mm, first-surface | WO 2021/117563 A1, Example 4, Table 4, 可変間隔データ, 中間距離合焦状態 β = 0.025, M2 column; mm per ¶0077 (PDF p21), PDF p43: 物体距離 777; gaps (mm): 8=7.69, 11=6.52, 28=30.59 | -0.069154272 mm; -6.940754 quarter waves; alternate +2.884724. |
+| 3 / 1 | 909 mm, first-surface | WO 2021/117563 A1, Example 4, Table 4, 可変間隔データ, 中間距離合焦状態 β = 0.025, T column; mm per ¶0077 (PDF p21), PDF p43: 物体距離 909; gaps (mm): 8=3.46, 11=5.04, 28=35.22 | -0.082477411 mm; -8.276334 quarter waves; alternate +1.188232. |
+
+The reference follows the declared sibling states in the same source table: image-plane for Table 11 M/T, first-surface for Table 4 closest-focus states. These additional rows are within the limit but the audit cannot independently discriminate their references (`ambiguous-reference`).
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.
