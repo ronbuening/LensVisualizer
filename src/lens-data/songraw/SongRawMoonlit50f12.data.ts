@@ -1,9 +1,15 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
-/** Qualified representative CN224176794U model, not certified factory prescription.
- * User accepts possible 14.935mm image-gap typo; applied no-filter paraxial focus17.914666932mm.
- * Literal source and conflicting A publication preserved separately; no glass/radius/asphere blending.
- * Inferred per-face clear caps require97%gap-sag at S3/4,S13/14,S24/25; clipping disclosed.
- * Infinity only; hidden pending integration. Not a claimed reproduction of published MTF. */
+/** CN 224176794 U, sole numerical example; production coefficients are unproven.
+ * Scale s = 1: source dimensions and asphere coefficients are unscaled.
+ * S26 image gap corrected from 14.935 mm to the computed infinity focus,
+ * 17.91466693210846 mm. The earlier CN 119148346 A layout explains the printed 14.9 mm.
+ * Other radii, gaps, indices and aspheres retain the U tables. Computed EFL is
+ * 49.903117 mm against the stated 49 mm. The illustrated, unspecified filter is omitted.
+ * Rims are inferred from the patent figures and ray clearance. S3/S4 clear the axial
+ * beam; S13/S14 use the largest equal two-decimal rims at gapSagFrac 0.98 and still
+ * clip slightly because of the source geometry. Other rims preserve off-axis vignetting.
+ * The stop is derived from f/1.25 at the printed position. Infinity focus only;
+ * this model does not reproduce the patent's published MTF charts. */
 const LENS_DATA = {
   "schema": 2,
   "key": "songraw-moonlit-50f12",
@@ -189,13 +195,13 @@ const LENS_DATA = {
       "label": "3",
       "R": 41.009,
       "d": 10.392,
-      "sd": 18.99
+      "sd": 19.05
     },
     {
       "label": "4",
       "R": -35.997,
       "d": 1.5,
-      "sd": 18.99,
+      "sd": 19.08,
       "medium": 3
     },
     {
@@ -253,13 +259,13 @@ const LENS_DATA = {
       "label": "13",
       "R": 76.029,
       "d": 5.492,
-      "sd": 19.68
+      "sd": 19.78
     },
     {
       "label": "14",
       "R": -72.262,
       "d": 1.5,
-      "sd": 19.68,
+      "sd": 19.78,
       "medium": 8
     },
     {
@@ -369,14 +375,14 @@ const LENS_DATA = {
   },
   "focus": {
     "closeFocusM": 1000000000000000.0,
-    "description": "Infinity only. Source G2 internal focus is described but no complete finite station is supplied; no motion inferred."
+    "description": "Infinity focus only; production focuses by moving the middle group G2 (L7–L9). The U patent places G2 nearest the image at infinity, so closer focus requires motion toward the object. No close-focus spacings are published."
   },
   "projection": {
     "kind": "rectilinear",
     "fullFieldDeg": 47.580972689660776
   },
   "checks": {
-    "gapSagFrac": 0.97
+    "gapSagFrac": 0.98
   },
   "subtitle": "CN 224176794 U — qualified no-filter computed-focus interpretation",
   "catalog": {
@@ -395,6 +401,9 @@ const LENS_DATA = {
     "fNumber": {
       "marketing": 1.2,
       "design": 1.25
+    },
+    "closeFocusM": {
+      "marketing": 0.52
     },
     "specs": [
       "15 ELEMENTS / 10 GROUPS",
@@ -418,12 +427,20 @@ const LENS_DATA = {
     ],
     "errata": [
       {
-        "status": "unresolved",
-        "note": "Table1 S26→IMG prints14.935mm. User authorizes considering it a ten-key typo; this qualified no-filter model uses literal-prescription paraxial BFL17.91466693210846mm. Cause is not proven; printed14.935 retained in evidence. Not a supported formal source correction."
+        "status": "corrected",
+        "surface": "26",
+        "field": "d",
+        "printed": 14.935,
+        "applied": 17.91466693210846,
+        "evidence": [
+          "source-summary",
+          "claims"
+        ],
+        "note": "Table 1 prints 14.935 mm from S26 to the image; paragraph 0047 repeats about 14.9 mm. With the fixed outer groups and moving G2 of claim 1, the U infinity spacings focus at 17.91466693210846 mm without a filter. The earlier CN 119148346 A layout focuses at about 15.6 mm and also prints about 14.9 mm. The image gap is corrected to the U calculation; neither publication prints the applied value."
       },
       {
         "status": "unresolved",
-        "note": "U states49mm; literal rounded Nd/Vd prescription gives49.903117mm. Illustrated FT has no numerical prescription and is omitted explicitly. PriorityA119148346 differs in index, aspheres and focus convention; none of its values are substituted."
+        "note": "The U states 49 mm focal length; its rounded Table 1 prescription computes to 49.903117 mm. The model retains the printed radii, spacings before S26, indices and aspheres. The illustrated filter has no published thickness or material and is omitted."
       }
     ]
   }

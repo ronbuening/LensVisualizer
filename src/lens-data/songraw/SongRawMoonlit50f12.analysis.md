@@ -1,40 +1,71 @@
 ## Patent Reference and Design Identification
 
-**Patent:** CN 224176794 U, published April 28, 2026.
-**Inventor:** 昌宇文.
-**Assignee:** Shenzhen Songruo Photography Equipment Co., Ltd.
+**Patent:** CN 224176794 U
+**Filed:** June 11, 2025
+**Published:** April 28, 2026
+**Priority:** CN 202411609438.X, filed November 12, 2024; published as CN 119148346 A on December 17, 2024
+**Inventor:** Yuwen Chang (昌宇文)
+**Applicant:** Shenzhen Songruo Photography Equipment Co., Ltd.
 **Example details:** Sole numerical prescription, Tables 1–2, original pages 7–8, Figure 1 page 12.
 
-This representative prescription is associated with the original SongRaw Moonlit AF 50mm f/1.2, not independently established as its exact factory prescription. The maker's exploded artwork and connected sections in [Phillip Reeve](https://phillipreeve.net/blog/review-songraw-50mm-1-2-moonlit/) and [PetaPixel's launch article](https://petapixel.com/2025/04/07/new-company-songraw-unveils-first-lens-full-frame-af-50mm-f-1-2-moonlit/) support all 15 coarse ordered shapes, five cemented pairs, and ED/HR/asphere locations. The actual PetaPixel diagram is included in the evidence package. These nondimensionalized images cannot establish exact radii, asphere coefficients, optical back focus, or aperture dimensions.
+This prescription is associated with the original SongRaw Moonlit AF 50mm f/1.2. The maker's artwork reproduced by [Phillip Reeve](https://phillipreeve.net/blog/review-songraw-50mm-1-2-moonlit/) and [PetaPixel](https://petapixel.com/2025/04/07/new-company-songraw-unveils-first-lens-full-frame-af-50mm-f-1-2-moonlit/) agrees in its 15 elements, ten groups, five cemented pairs and two aspheric elements, L1 and L15. The ordered shapes support the association, but the drawings cannot establish exact production radii, coefficients, back focus or clear apertures. Dimensions are in millimetres with scale factor 1; no dimensions or asphere coefficients are rescaled.
 
-The priority publication CN119148346A is related but differs in aspheres, index and focus-state descriptions. This model uses only the later U numerical table. No values are blended between publications.
+The numerical prescription follows the later U tables, with one correction to the image gap explained below.
 
 ## Optical Architecture
 
-Fifteen elements in ten air-separated groups. Five cemented pairs are L1/2, L3/4, L8/9, L10/11 and L13/14. Functional G1=L1–6 and G3=L10–15 are fixed; G2=L7–9 is described as the focusing group. The source iris position is retained at S11.
+The design has 15 elements in ten air-separated groups. Five cemented pairs are L1/L2, L3/L4, L8/L9, L10/L11 and L13/L14. Functional groups G1 (L1–L6) and G3 (L10–L15) are fixed; G2 (L7–L9) alone moves for focusing (¶0046–0053). The iris remains at the source's S11 position, between G1 and G2.
 
-## Elements and Glass
+## Element-by-Element Analysis
 
-Original d-line indices and Abbe values are retained at their published coarse precision of two and one decimals. No factory melt or catalog glass is identified. Spectral behavior inferred by the engine from Nd/Vd is approximate. Literal first-order EFL is49.903117mm rather than the source's49mm or marketed50mm.
+These isolated-element focal lengths are calculated in air from the U table; cementing changes each element's contribution in the assembled lens. Glass identities are unknown throughout.
 
-## Aperture and Geometry
+| Element | Shape and position | nd | νd | Isolated f (mm) |
+|---|---|---:|---:|---:|
+| L1 | Positive front asphere, cemented to L2 | 1.81 | 40.7 | +63.15 |
+| L2 | Biconcave partner of L1 | 1.49 | 70.4 | −56.79 |
+| L3 | Biconcave front of the second doublet | 1.77 | 29.7 | −35.97 |
+| L4 | Biconvex partner of L3 | 1.59 | 68.3 | +53.49 |
+| L5 | Biconvex collector before the stop | 2.00 | 29.1 | +56.56 |
+| L6 | Negative meniscus next to the stop | 1.65 | 33.8 | −134.56 |
+| L7 | Positive meniscus at the front of G2 | 1.88 | 40.8 | +128.80 |
+| L8 | Biconcave front of the moving doublet | 1.61 | 37.0 | −45.09 |
+| L9 | Biconvex partner of L8 | 1.59 | 68.3 | +44.05 |
+| L10 | Biconcave front of the fixed rear group | 1.77 | 29.7 | −41.87 |
+| L11 | Biconvex partner of L10 | 1.59 | 68.3 | +52.66 |
+| L12 | Biconvex rear-group element | 1.92 | 20.9 | +53.83 |
+| L13 | Positive meniscus, cemented to L14 | 1.88 | 40.8 | +60.67 |
+| L14 | Negative meniscus partner of L13 | 1.85 | 23.8 | −36.53 |
+| L15 | Biconcave rear element, both faces aspheric | 1.81 | 40.7 | −168.91 |
 
-Nominal f/1.25 is the source MTF condition and lies within its stated f/1.2–1.3 range. It is not silently stopped down to improve results. Clear semi-diameters are inferred, not published. A rough source-figure silhouette was supplemented by exact axial ray heights; facing caps S3/S4, S13/S14 and S24/S25 were limited to the user-authorized97%gap-sag ceiling. Per-face caps differ and are not asserted to reproduce factory rim machining. These limits deliberately clip part of the iris-admitted beam.
+## Glass Identification
 
-At reference wavelength, an812-sample equal-area aimed stop lattice gives valid/blocked counts756/56 on-axis,542/270 at half-field,268/544 at full-field. Blocked fractions are6.90%,33.25%,66.995%. These are sampled geometric outcomes of this provisional-aperture model, not measured photographic illumination. All174 raw off-axis noBracket events are classified as spherical-cap aperture misses; independent proof is retained with the checks. No failed ray was silently discarded. Half-field23.790486° is inferred as atan(22/EFL) from the source's upper44mm image diameter, not a separately published angle.
+The published d-line indices and Abbe numbers retain their coarse precision of two and one decimals. No factory melt or catalog glass is identified. The lower-dispersion L2, L4, L9 and L11 contrast with their more dispersive cemented partners, consistent with the patent's chromatic-correction explanation. Abbe-based spectral estimates cannot establish anomalous partial dispersion or measured colour correction. Computed EFL is 49.903117 mm, compared with the stated 49 mm and marketed 50 mm.
 
-## Focus and Image Plane Interpretation
+## Focus Mechanism and Image Plane
 
-Ron explicitly accepted considering the printed14.935mm image gap a possible ten-key typo, saying: “I’m okay considering that to be a typo considering relative positions between 4 and 7 on a ten key”. This is an accepted interpretation, not proof of a source error. The model uses the literal U prescription's no-filter paraxial BFL17.914666932mm. The printed14.935mm remains in source evidence and errata. No optical radius, spacing before the last surface, glass or asphere is altered.
+Only infinity is modeled because the U supplies no close-focus station. G2 moves internally while G1, the stop and G3 remain fixed. The U places G2 at its image-side travel boundary at infinity (¶0053); nearer focus therefore requires motion toward the object. The production minimum focus distance is 0.52 m, reported by [PetaPixel](https://petapixel.com/2025/04/07/new-company-songraw-unveils-first-lens-full-frame-af-50mm-f-1-2-moonlit/), and does not define numerical close-focus spacings.
 
-The patent illustrates FT but publishes no thickness or material for it. This is explicitly a lens-only no-filter interpretation. Sony E's18mm flange distance is measured from a mechanical plane, not the last optical vertex; it does not verify this BFL. Only infinity is modeled. No finite focus law is invented from the product minimum focus distance.
+Table 1 prints S26-to-image spacing as 14.935 mm, repeated as about 14.9 mm in ¶0047. The model corrects this gap to the U prescription's calculated infinity back focus of 17.91466693210846 mm. No other prescription spacing, radius, index or coefficient changes. The illustrated filter FIT has no published thickness or material and is omitted. Mechanical flange distance does not independently establish optical back focus.
 
 ## Aspherical Surfaces
 
-The U table supplies S1, S25 and S26 even-asphere coefficients through A12, all K=0. These three surfaces belong to the first and last elements. The priority A publication's different front coefficients are not substituted.
+The U table supplies even-asphere coefficients through A12 for S1 on L1 and S25/S26 on L15. All use K = 0 in the standard conic-plus-even-polynomial equation, with the square-root term containing 1 − (1 + K)Y²/R². The data retains every U coefficient at its printed precision; the earlier A publication gives different coefficients. Manufacturing method is not established by the tables.
 
-## Validation and Limitations
+## Aperture and Geometry
 
-Scoped checks reproduce the independent paraxial EFL/BFL, all26 literal source rows and asphere values (except explicitly interpreted last image gap), native construction and canonical geometry validation. The transmitted-ray RMS radii from the812-sample diagnostic are0.03342mm axial,0.03066mm half-field,0.05723mm edge; these are conditional monochromatic geometric results, not measured resolution, diffraction MTF or reproduction of the patent's polychromatic charts. Source-range f/1.3 was tested separately, not adopted as the model aperture.
+Nominal f/1.25 is the patent's MTF condition within its stated f/1.2–1.3 range. The iris radius is derived from that design aperture. Clear semi-diameters are inferred from Fig. 1/2 and ray clearance, rather than published dimensions. S3/S4 use 19.05/19.08 mm to clear the axial beam. S13/S14 use equal 19.78 mm rims: their combined sag is 5.37795 mm across a 5.492 mm gap, just below the 98% intrusion limit. The surfaces would meet near 20 mm radius, short of the f/1.25 marginal ray heights of 20.26/20.30 mm. Their remaining clipping follows from the source geometry.
 
-The file remains hidden. Full application regression, complete current-main compatibility and compiled-browser QA are deferred to integration under the agreed split. No engine change, PR, merge or deployment is included. Independent review must accompany the handoff; scoped validity does not certify production identity or aperture accuracy.
+Sampled geometric transmission is 95.2% on-axis, 67.8% at half-field and 32.8% at the edge. The remaining axial loss is about 4.8%, equivalent in pupil area to approximately f/1.28. These are geometric model results, excluding reflection, absorption and diffraction, rather than measured illumination. The 23.790486° half-field is inferred from atan(22/EFL) and the source's upper 44 mm image diameter. Exact production apertures and the patent's published polychromatic MTF are not established by this model.
+
+## Comparison with the Priority Application
+
+CN 119148346 A also prints about 14.9 mm to the image, but uses a different infinity layout: S10-to-stop is 6.0 mm, stop-to-S17 is 31.1 mm, and G2 is nearest the object with S10-to-S12 at 7.35 mm. Its coarser table calculates to about 48.85 mm EFL and 15.6 mm back focus; substituting only the U's L3 index gives about 14.8 mm back focus. The printed image gap is therefore consistent with the earlier layout, whereas the U's 15.594 mm stop-to-G2 gap gives 17.915 mm back focus. The A's stated focus direction is opposite to the physically consistent U arrangement.
+
+The A also gives L3 index 1.78 rather than 1.77, shares front and rear asphere terms that the U separates, and differs in S25 A10 and S26 A4. These differences are not combined into the U model. The image-gap correction is a calculated interpretation of the later layout; neither publication prints 17.91466693210846 mm.
+
+## Sources
+
+- CN 224176794 U, Tables 1–2, ¶0047–0053 and Fig. 1/2: prescription, focus layout and construction.
+- CN 119148346 A, Table 1, ¶0025, ¶0031–0032 and ¶0046: earlier layout and image gap.
+- [SongRaw product page](https://songrawlens.com/products/songraw-af-50mm-f1-2-fe-moonlit-lens), [PetaPixel launch article](https://petapixel.com/2025/04/07/new-company-songraw-unveils-first-lens-full-frame-af-50mm-f-1-2-moonlit/) and [Phillip Reeve review](https://phillipreeve.net/blog/review-songraw-50mm-1-2-moonlit/): product specifications and construction artwork.
