@@ -10,10 +10,16 @@ import type { MtfOptions, MtfSpectralLine } from "../src/types/mtf.js";
 
 export const MTF_CHART_ANCHORS_PATH = "reports/data/mtfChartAnchors.csv";
 export const MTF_CHART_CONVENTIONS_PATH = "reports/data/mtfChartConventions.ts";
+const REPORT_SOURCE_PATHS = [
+  "reports/mtfChartRegression.report.ts",
+  "reports/mtfChartLib.ts",
+  "reports/mtfChartProvenance.ts",
+];
 const STAMP_VERSION = 2;
 
 export interface MtfChartInputHashes {
   engineSources: string;
+  reportSources: string;
   anchors: string;
   conventions: string;
   lensFiles: Record<string, string | null>;
@@ -25,7 +31,7 @@ export interface MtfChartProvenance {
   gitCommit: string;
   uncommittedSrcOrReports: boolean;
   settings: Record<string, unknown>;
-  hashes: MtfChartInputHashes;
+  hashes: Omit<MtfChartInputHashes, "reportSources"> & { reportSources?: string };
 }
 
 interface ConfigurationSettings {
@@ -95,6 +101,17 @@ export function renderMtfChartProvenance(provenance: MtfChartProvenance): string
   return `## Provenance\n\n\`\`\`text\n${renderJson(JSON.parse(JSON.stringify(provenance)))}\n\`\`\`\n`;
 }
 
+function hashSources(root: string, paths: readonly string[]): string {
+  const hash = createHash("sha256");
+  for (const path of [...paths].sort())
+    hash
+      .update(path)
+      .update("\0")
+      .update(readFileSync(join(root, path)))
+      .update("\0");
+  return hash.digest("hex");
+}
+
 /**
  * Hash every TypeScript file under src/optics, including root-level barrels, in code-unit path order.
  * Each entry is its POSIX repo-relative path, NUL, raw file bytes, NUL, with no newline conversion.
@@ -113,14 +130,7 @@ export function hashMtfEngineSources(root: string): string {
     }
   };
   walk("src/optics");
-  const hash = createHash("sha256");
-  for (const path of files.sort())
-    hash
-      .update(path)
-      .update("\0")
-      .update(readFileSync(join(root, path)))
-      .update("\0");
-  return hash.digest("hex");
+  return hashSources(root, files);
 }
 
 function hashFile(root: string, path: string): string {
@@ -149,6 +159,7 @@ export function hashMtfChartInputs(root: string, lensPaths: readonly string[]): 
   );
   return {
     engineSources: hashMtfEngineSources(root),
+    reportSources: hashSources(root, REPORT_SOURCE_PATHS),
     anchors: hashFile(root, MTF_CHART_ANCHORS_PATH),
     conventions: hashFile(root, MTF_CHART_CONVENTIONS_PATH),
     lensFiles,
@@ -183,7 +194,7 @@ export function createMtfChartProvenance(
  * Read the report's own stamp rather than depending on a sidecar that can drift separately.
  *
  * @param markdown - existing generated report, with or without a stamp
- * @returns validated provenance (including older versions), or null for absent, malformed or incomplete stamps
+ * @returns validated current or legacy provenance, or null for absent or malformed stamps
  */
 export function parseMtfChartProvenance(markdown: string): MtfChartProvenance | null {
   const block = /^## Provenance\r?\n\s*```(?:json|text)\r?\n([\s\S]*?)\r?\n```/m.exec(markdown);
@@ -201,6 +212,7 @@ export function parseMtfChartProvenance(markdown: string): MtfChartProvenance | 
       !value.settings ||
       typeof value.settings !== "object" ||
       !digest(value.hashes?.engineSources) ||
+      (value.hashes?.reportSources !== undefined && !digest(value.hashes.reportSources)) ||
       !digest(value.hashes?.anchors) ||
       !digest(value.hashes?.conventions) ||
       !value.hashes?.lensFiles ||
@@ -231,6 +243,8 @@ export function mtfChartStatus(provenance: MtfChartProvenance | null, current: M
   if (provenance.version !== STAMP_VERSION)
     changed.push(`provenance stamp version ${provenance.version} (expected ${STAMP_VERSION})`);
   if (before.engineSources !== current.engineSources) changed.push("engine sources");
+  if (before.reportSources === undefined) changed.push("report code hash missing");
+  else if (before.reportSources !== current.reportSources) changed.push("report code changed");
   if (before.anchors !== current.anchors) changed.push("anchors");
   if (before.conventions !== current.conventions) changed.push("conventions");
   const paths = new Set([...Object.keys(before.lensFiles), ...Object.keys(current.lensFiles)]);

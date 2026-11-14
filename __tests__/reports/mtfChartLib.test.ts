@@ -243,6 +243,23 @@ describe("MTF chart report helpers", () => {
 
 describe("MTF chart provenance", () => {
   const roots: string[] = [];
+  const reportSources = [
+    {
+      path: "reports/mtfChartRegression.report.ts",
+      original: "const FREQUENCIES = [10, 30, 50];\n",
+      changed: "const FREQUENCIES = [10, 20, 30];\n",
+    },
+    {
+      path: "reports/mtfChartLib.ts",
+      original: "const CROSS_CHECK_GRID = 128;\r\n",
+      changed: "const CROSS_CHECK_GRID = 64;\r\n",
+    },
+    {
+      path: "reports/mtfChartProvenance.ts",
+      original: "const STAMP_VERSION = 2;\n",
+      changed: "const STAMP_VERSION = 3;\n",
+    },
+  ];
   const sharedSettings = {
     crossCheck: {
       apertures: "wide open and f/8 or nearest attainable, each at its own best axial focus",
@@ -299,6 +316,7 @@ describe("MTF chart provenance", () => {
     writeFileSync(join(root, MTF_CHART_ANCHORS_PATH), "anchors");
     writeFileSync(join(root, MTF_CHART_CONVENTIONS_PATH), "conventions");
     writeFileSync(join(root, "src/lens-data/a.data.ts"), "lens a");
+    for (const { path, original } of reportSources) writeFileSync(join(root, path), original);
     return root;
   };
   afterEach(() => {
@@ -317,12 +335,20 @@ describe("MTF chart provenance", () => {
       [
         "--input-type=module",
         "-e",
-        `import { hashMtfEngineSources } from ${JSON.stringify(moduleUrl)};
-       process.stdout.write(hashMtfEngineSources(${JSON.stringify(root)}));`,
+        `import { hashMtfChartInputs } from ${JSON.stringify(moduleUrl)};
+       process.stdout.write(JSON.stringify(hashMtfChartInputs(${JSON.stringify(root)}, [])));`,
       ],
       { encoding: "utf8" },
     );
-    expect(output).toBe(expected);
+    const expectedReport = createHash("sha256")
+      .update(
+        "reports/mtfChartLib.ts\0const CROSS_CHECK_GRID = 128;\r\n\0" +
+          "reports/mtfChartProvenance.ts\0const STAMP_VERSION = 2;\n\0" +
+          "reports/mtfChartRegression.report.ts\0const FREQUENCIES = [10, 30, 50];\n\0",
+      )
+      .digest("hex");
+    expect(JSON.parse(output)).toMatchObject({ engineSources: expected, reportSources: expectedReport });
+    expect(hashMtfChartInputs(root, []).reportSources).toBe(expectedReport);
     writeFileSync(join(root, "src/optics/ignored.js"), "still ignored");
     expect(hashMtfEngineSources(root)).toBe(expected);
     renameSync(join(root, "src/optics/z.ts"), join(root, "src/optics/b.ts"));
@@ -443,6 +469,37 @@ describe("MTF chart provenance", () => {
     expect(mtfChartStatus(parsed, hashes)).toBe("Status: STALE — provenance stamp version 1 (expected 2)");
   });
 
+  it.each(reportSources)(
+    "marks changed report code stale for $path and keeps unchanged inputs current",
+    ({ path, changed }) => {
+      const root = fixture();
+      const paths = ["src/lens-data/a.data.ts"];
+      const hashes = hashMtfChartInputs(root, paths);
+      const stamp = parseMtfChartProvenance(renderMtfChartProvenance(createMtfChartProvenance(cwd(), hashes, {})));
+      expect(stamp).not.toBeNull();
+      expect(mtfChartStatus(stamp, hashMtfChartInputs(root, paths))).toBe("Status: current");
+      writeFileSync(join(root, path), changed);
+      const current = hashMtfChartInputs(root, paths);
+      expect(current.reportSources).not.toBe(hashes.reportSources);
+      expect(current).toEqual({ ...hashes, reportSources: expect.any(String) });
+      expect(mtfChartStatus(stamp, current)).toBe("Status: STALE — report code changed");
+    },
+  );
+
+  it.each([1, 2])("names a missing report code hash in a version %i stamp", (version) => {
+    const hashes = hashMtfChartInputs(fixture(), ["src/lens-data/a.data.ts"]);
+    const { reportSources: _reportSources, ...legacyHashes } = hashes;
+    const stamp = { ...createMtfChartProvenance(cwd(), hashes, {}), version, hashes: legacyHashes };
+    const report = `## Provenance\n\n\`\`\`json\n${JSON.stringify(stamp)}\n\`\`\`\n`;
+    const parsed = parseMtfChartProvenance(report);
+    expect(parsed).toEqual(stamp);
+    expect(mtfChartStatus(parsed, hashes)).toBe(
+      version === 2
+        ? "Status: STALE — report code hash missing"
+        : "Status: STALE — provenance stamp version 1 (expected 2) / report code hash missing",
+    );
+  });
+
   it("names every changed input, counts missing lenses and rejects absent or malformed stamps", () => {
     const root = fixture();
     const paths = ["src/lens-data/a.data.ts"];
@@ -476,7 +533,13 @@ describe("MTF chart provenance", () => {
     const status = mtfChartStatus(null, current);
     expect(status).toBe("Status: STALE — generated before provenance was recorded");
     expect(updateMtfChartStatus(legacy, status)).toBe(`# Chart\n\n${status}\n\nFrozen results.\n`);
-    for (const json of ["{", "null", "{}", JSON.stringify({ ...stamp, hashes: { ...hashes, lensFiles: [] } })])
+    for (const json of [
+      "{",
+      "null",
+      "{}",
+      JSON.stringify({ ...stamp, hashes: { ...hashes, lensFiles: [] } }),
+      JSON.stringify({ ...stamp, hashes: { ...hashes, reportSources: "invalid" } }),
+    ])
       expect(parseMtfChartProvenance(`## Provenance\n\n\`\`\`json\n${json}\n\`\`\``)).toBeNull();
   });
 });

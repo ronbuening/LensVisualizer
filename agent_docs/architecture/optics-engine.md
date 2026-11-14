@@ -295,7 +295,8 @@ Only fields whose full spectrum passes the quarter-wave phase-step and invertibi
 compared and excluded step maxima are separate. The two routes share the ray trace, so agreement is not proof
 against an outside reference. It is a report, never a test threshold: maker focus and spectrum are undocumented,
 and a patent example is not proven to be the production lens. The generated report stamps its UTC date, git commit,
-working-tree state, shared MTF settings and hashes of the engine, anchors, conventions and traced prescriptions.
+working-tree state, shared MTF settings and hashes of the engine, report sources, anchors, conventions and traced
+prescriptions.
 Each compact configuration entry names its key, zoom, marked f-number, maker-convention method and field count,
 plus the first 12 hex digits of the SHA-256 of its full resolved settings as canonical JSON (recursively sorted
 object keys, preserved array order), including the shared controls, spectrum and cross-check apertures and planes.
