@@ -31,17 +31,17 @@ with.** The one approximation in the engine itself, the diffraction product, has
    to be shown as uncertainty, not tuned. *Stage 8.*
 6. **No catalog lens has been compared with another tool.** A published Cooke triplet has
    (`scripts/mtf-external-reference.mjs`): first-order values and single rays match OpticStudio to the printed
-   precision and axial MTF within 0.006 (60 lp/mm on a 256-cell pupil), while off axis the tools differ by up to 0.047, which follows the pupil
-   convention (candidate C8). The catalog check is an optional diagnostic (last section); no stage depends on it.
+   precision and axial MTF within 0.006 (60 lp/mm on a 256-cell pupil), while off axis the tools differ by up to
+   0.047, which follows the pupil convention (candidate C8). The catalog check is an optional diagnostic (last
+   section); no stage depends on it.
 
 Where the comparison stands (19 digitized configurations, mean signed / mean absolute, from
-`agent_docs/generated/mtf-chart-regression.generated.md`): −0.037 / 0.052 with diffraction for every maker and
-−0.026 / 0.050 when each maker is compared in its own chart convention. About 0.03 remains unexplained after the
+`agent_docs/generated/mtf-chart-regression.generated.md`): −0.027 / 0.046 with diffraction for every maker and
+−0.014 / 0.046 when each maker is compared in its own chart convention. About 0.03 remains unexplained after the
 factors we tested: patent example versus production lens, unknown maker focus and spectrum, and a heuristic ±0.035
 digitization allowance.
 
-That report was generated on 2026-10-08, before the stop-lattice sampling, so these figures describe the earlier
-engine until it is regenerated (candidate C12).
+The report carries a provenance stamp and a status line; quote it only while that line reads `current`.
 
 ## Evidence
 
@@ -194,13 +194,6 @@ S under a day, M one to three days, L longer.
   boundary cells cut an analytic disc's error at 32 cells from 0.0044 to 0.0003; weights on the kept cells alone
   do nothing, and the sheared estimator needs its own treatment. The gain is speed (tolerance at a coarser grid),
   not accuracy at the 256 cap. L.
-
-### Validation
-
-- **C12 — Regenerate the chart report and stamp it.** `mtf-chart-regression.generated.md` predates the stop
-  lattice, the unresolved-beam and dark-line rules and the 256 cap. Regenerate it, and print the engine commit and
-  hashes of anchors, conventions and prescriptions so a stale copy says so. Required before Stage 9. S plus the
-  run.
 
 ### Data
 
