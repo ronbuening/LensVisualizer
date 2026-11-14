@@ -338,6 +338,59 @@ describe("MTF export builders", () => {
     }
   });
 
+  // User-authored names must survive both XML serialization and caption line breaks.
+  it.each([
+    ["emoji", `${"A".repeat(127)}${"🔭".repeat(20)}`, "A".repeat(127)],
+    ["CJK", "望遠鏡".repeat(50), "望遠鏡".repeat(21) + "望"],
+    ["combining marks", "e\u0301".repeat(140), "e\u0301".repeat(128)],
+    ["joined emoji", "👩🏽‍🔬".repeat(70), "👩🏽‍🔬".repeat(64)],
+  ])("wraps %s names at grapheme boundaries with wider glyphs taking two columns", (_, name, firstLine) => {
+    const context = contextFor(captionResult(), { lens: { ...lens, source: { ...lens.source, name } } });
+    const { doc, lines } = captionFor(context);
+    expect(lines[0]).toBe(firstLine);
+    expect(lines.join("")).toContain(name);
+    expect(doc.querySelector("title")!.textContent).toBe(`Simulated MTF — ${name}`);
+    expect(doc.querySelector("desc")!.textContent).toContain(`# lens_name: ${name}`);
+  });
+
+  it.each([
+    ["emoji", `${"A".repeat(113)}${"🔭".repeat(20)}`, `${"A".repeat(113)}…`],
+    ["CJK", "望".repeat(140), `${"望".repeat(57)}…`],
+    ["combining marks", "e\u0301".repeat(140), `${"e\u0301".repeat(114)}…`],
+    ["joined emoji", "👩🏽‍🔬".repeat(70), `${"👩🏽‍🔬".repeat(57)}…`],
+  ])("truncates %s links at grapheme boundaries within the caption width", (_, link, shortened) => {
+    const { doc, lines } = captionFor(contextFor(captionResult(), { link }));
+    expect(lines).toContain(`${shortened} · 2026-11-14`);
+    expect(doc.querySelector("desc")!.textContent).toContain(`# shared_link: ${link}`);
+  });
+
+  it("replaces lone surrogates and XML-invalid characters in names, links and legend text", () => {
+    const name = `🔭\ud800X\udc00\u0000\u000b\ufffe\uffff & <Lens>`;
+    const safeName = "🔭�X����� & <Lens>";
+    const context = contextFor(captionResult(), { lens: { ...lens, source: { ...lens.source, name } }, link: name });
+    const image = buildMtfSvg({ content: "", width: 600, height: 300, legend: [{ text: name }] }, context, mockTheme);
+    const doc = new DOMParser().parseFromString(image.svg, "image/svg+xml");
+    expect(doc.querySelector("parsererror")).toBeNull();
+    expect(doc.querySelector("title")!.textContent).toBe(`Simulated MTF — ${safeName}`);
+    expect(doc.querySelector("desc")!.textContent).toContain(`# lens_name: ${safeName}`);
+    expect(doc.querySelector("desc")!.textContent).toContain(`# shared_link: ${safeName}`);
+    expect([...doc.querySelectorAll("text")].map((node) => node.textContent)).toContain(safeName);
+  });
+
+  it("keeps code points intact when grapheme segmentation is unavailable", () => {
+    const name = `${"A".repeat(127)}${"🔭".repeat(20)}`;
+    const link = `${"A".repeat(113)}${"🔭".repeat(20)}`;
+    const context = contextFor(captionResult(), { lens: { ...lens, source: { ...lens.source, name } }, link });
+    const intl = Object.create(Intl);
+    Object.defineProperty(intl, "Segmenter", { value: undefined });
+    vi.stubGlobal("Intl", intl);
+    const { doc, lines } = captionFor(context);
+    expect(lines[0]).toBe("A".repeat(127));
+    expect(lines.join("")).toContain(name);
+    expect(lines).toContain(`${"A".repeat(113)}… · 2026-11-14`);
+    expect(doc.querySelector("desc")!.textContent).toContain(`# shared_link: ${link}`);
+  });
+
   it("labels a partial result and diagnostic estimates without listing unavailable focus diagnostics", () => {
     const result = captionResult();
     result.fields[0].status = "pending";

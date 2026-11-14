@@ -353,8 +353,11 @@ rounding lengths to six decimal places. SVG captures the rendered chart and lege
 and a short, wrapped caption: lens/source, aperture, focal length,
 focus distance, spectrum summary, applied plane, grid cap, enabled overlays, diagnostic/partial status, link/date
 and disclaimer. Caption f-numbers match the tab; focal length rounds to 0.1 mm, heights to 0.01 mm and plane
-shifts to signed 0.001 mm. Long links end with an ellipsis while metadata retains the full URL. PNG rasterizes that
-SVG at 2× and shows an error if the browser cannot encode it. Downloads use local Blobs. Current calculations export as `status: partial`;
+shifts to signed 0.001 mm. Caption and legend wrapping and link shortening use grapheme boundaries through
+`Intl.Segmenter`, falling back to code points when unavailable. The width estimate counts East Asian wide glyphs
+and emoji as two Latin monospace columns and other graphemes as one. Lone surrogates and other XML-invalid text
+characters become U+FFFD throughout SVG text. Long links end with an ellipsis while metadata retains the full URL.
+PNG rasterizes that SVG at 2× and shows an error if the browser cannot encode it. Downloads use local Blobs. Current calculations export as `status: partial`;
 results retained from superseded settings disable every export, including Copy CSV.
 The persisted "Advanced" preference defaults to false. It exposes per-field sampling diagnostics in the value table
 (including the comparison's own rows): grid size, `maxDelta`, `convergedThroughLpMm`, nonzero `unknownFluxFraction`

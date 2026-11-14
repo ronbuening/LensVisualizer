@@ -148,7 +148,8 @@ SVG's `desc` retain every key and spectral weight with lengths rounded to six de
 rendered chart and legend with explicit theme colors and font, plus a short, wrapped caption summarizing the lens/source, optical
 station, spectrum, applied plane, grid cap, enabled overlays, diagnostic/partial status, link/date and disclaimer.
 Caption apertures, focal length and plane shifts use the tab's precision; long links end with an ellipsis while
-metadata keeps the full URL.
+metadata keeps the full URL. Caption wrapping and link shortening preserve Unicode characters and estimate wider
+glyphs as two columns; the SVG replaces XML-invalid text with U+FFFD (see the optics engine's Simulated MTF section).
 PNG rasterizes the same SVG at 2× resolution and reports unsupported browser paths.
 Current partial results are labelled `status: partial`; superseded results
 disable downloads and Copy CSV.
