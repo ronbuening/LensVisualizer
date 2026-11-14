@@ -204,3 +204,30 @@ Freshly rendered and inspected `patents/WO2021117563A1.pdf`, Example 4: Table 4 
 All catalog counterparts were checked and retained: L11 S-BAL35; L12 S-LAM60; L13/L35/L37/L38 J-FKH1; L14 J-KZFH9; L21 TAFD40; L22 S-TIM22; L31 J-LASFH23; L32 J-PSKH4; L33 S-LAH98; L34 S-TIH53; L36/L39 S-LAH55; L40 Q-LASFH58S. All 16 have compatible coefficient-backed curves. The new data-file qualification makes the supplier-neutral proxy status explicit; no production glass identity is inferred.
 
 The four `apd: "patent"` classifications are supported: ¶0108 identifies L13's anomalous-dispersion glass, and ¶0110 does so for L35/L37/L38. No numerical partial dispersion or C/F/g line-index table is supplied for them, so no such values were invented. The other APD flags remain false. `assertCatalogConsistent()` and the scoped resolver review pass; the three shared glass suites pass (94 tests). No optical or geometry values changed.
+
+## 2026-11-14 — Published finite conjugates
+
+Patent: WO 2021/117563 A1, Example 4.
+
+| Zoom / keyframe | Field | Before | After | Source and paraxial residual |
+| --- | --- | --- | --- | --- |
+| 0 / 5 | `focus.conjugates` | Undeclared | 141 mm, `first-surface` | PDF p43, Table 4, 可変間隔データ, 至近距離合焦状態, W column; mm per ¶0077 (PDF p21): 物体距離 141; gaps 8=22.29, 11=7.5, 28=22.54 mm. Offset -0.036266888 mm (-3.643406 diffraction depths); `consistent`. |
+| 1 / 5 | `focus.conjugates` | Undeclared | 147 mm, `first-surface` | PDF p43, Table 4, 可変間隔データ, 至近距離合焦状態, M1 column; mm per ¶0077 (PDF p21): 物体距離 147; gaps 8=13.66, 11=5.02, 28=27.74 mm. Offset -0.051228002 mm (-5.147338 diffraction depths); `consistent`. |
+| 2 / 5 | `focus.conjugates` | Undeclared | 149 mm, `first-surface` | PDF p43, Table 4, 可変間隔データ, 至近距離合焦状態, M2 column; mm per ¶0077 (PDF p21): 物体距離 149; gaps 8=10.37, 11=3.83, 28=30.59 mm. Offset -0.062400959 mm (-6.269627 diffraction depths); `consistent`. |
+| 3 / 5 | `focus.conjugates` | Undeclared | 150 mm, `first-surface` | PDF p43, Table 4, 可変間隔データ, 至近距離合焦状態, T column; mm per ¶0077 (PDF p21): 物体距離 150; gaps 8=6.38, 11=2.13, 28=35.22 mm. Offset -0.085552732 mm (-8.598330 diffraction depths); `consistent`. |
+
+The source prints object distances without explicitly defining the reference. The conjugate audit identifies the first-surface reference (`audit-resolved`); the source strings record that provenance.
+
+- 0 / 5: alternate image-plane reference has offset +8.755678358 mm (+611.768377 diffraction depths).
+- 1 / 5: alternate image-plane reference has offset +8.325506394 mm (+611.361432 diffraction depths).
+- 2 / 5: alternate image-plane reference has offset +9.234538790 mm (+668.441555 diffraction depths).
+- 3 / 5: alternate image-plane reference has offset +12.267449681 mm (+831.741767 diffraction depths).
+
+The intermediate rows stay undeclared because both references pass the tolerance and the source does not define the object-distance reference:
+
+| Zoom / keyframe | Printed object distance | First-surface offset | Image-plane offset | Outcome |
+| --- | --- | --- | --- | --- |
+| 0 / 4 | 553 mm, PDF p43 | -0.043164434 mm / -4.337694 depths | +0.071080823 mm / +7.106256 depths | `ambiguous-reference` |
+| 1 / 3 | 697 mm, PDF p43 | -0.053470997 mm / -5.373200 depths | +0.048212882 mm / +4.824916 depths | `ambiguous-reference` |
+| 2 / 2 | 777 mm, PDF p43 | -0.069154272 mm / -6.949953 depths | +0.028795932 mm / +2.883135 depths | `ambiguous-reference` |
+| 3 / 1 | 909 mm, PDF p43 | -0.082477411 mm / -8.288352 depths | +0.011860941 mm / +1.187985 depths | `ambiguous-reference` |

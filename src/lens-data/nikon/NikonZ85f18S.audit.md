@@ -113,3 +113,13 @@ Freshly rendered and inspected `patents/JP2020173366A.pdf`, Example 3 (¶0069–
 Each annotation resolves compatibly: L11 S-LAH66, L12 FCD705, L13 S-FPL51, L14 H-ZLaF76, L21 PBH21, L22/L44 J-F5, L31 J-PSKH4, L41 TAFD35, L42 H-ZF2, L43 J-LASFH22, L45 SF2, and PT J-BK7A. All 12 lens elements plus PT have coefficient-backed catalog curves. No source line-index or partial-dispersion measurement supports restoring the former L12/L13 APD claims; their false flags and qualified analysis remain correct. Exact-coordinate or compatible matches do not establish production material chemistry or suppliers.
 
 No change was required. `assertCatalogConsistent()` and the scoped resolver review pass; the three shared glass suites pass (94 tests). Geometry and the separately documented source-summary contradiction are unchanged.
+
+## 2026-11-14 — Published finite conjugates
+
+Patent: JP 2020-173366 A, Example 3.
+
+| Zoom / keyframe | Field | Before | After | Source and paraxial residual |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | `focus.conjugates` | Undeclared | 800 mm, `image-plane` | PDF p17, Example 3, ¶0070 可変パラメーター, POS2 row: 物体距離 0.8m(POS2); gaps 7=10.02, 10=9.445, 13=8.821, STO=5.153 mm. Offset +0.054016358 mm (+11.529463 diffraction depths); `consistent`. |
+
+Reference evidence: “物体距離は物面ＯＢから像面ＩＭまでの距離であり、各実施例での至近物体距離は０．８ｍ（ＰＯＳ２）である。”.

@@ -413,7 +413,36 @@ const LENS_DATA = {
   },
 
   /* ── Focus & Aperture ── */
-  focus: { closeFocusM: 0.2, description: "G4 inner focus (cemented doublet L41+L42 moves image-ward). STM AF motor." },
+  focus: {
+    closeFocusM: 0.2,
+    description: "G4 inner focus (cemented doublet L41+L42 moves image-ward). STM AF motor.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 96.613,
+        distanceReference: "first-surface",
+        source:
+          "WO 2022/264542 A1, Example 1, Table 1, 可変間隔データ, 至近距離合焦状態, W column (gaps continue PDF p31); mm per ¶0107, PDF p30: 物体距離 96.613; gaps (mm): 5=1.137, 13=20.855, 26=3.492, 29=12.425, 33=8.272. Reference identified by the conjugate audit (audit-resolved).",
+      },
+      {
+        zoomStation: 1,
+        keyframe: 1,
+        objectDistanceMm: 280.487,
+        distanceReference: "first-surface",
+        source:
+          "WO 2022/264542 A1, Example 1, Table 1, 可変間隔データ, 至近距離合焦状態, M column (gaps continue PDF p31); mm per ¶0107, PDF p30: 物体距離 280.487; gaps (mm): 5=18.064, 13=6.402, 26=8.922, 29=10.049, 33=18.869. Reference identified by the conjugate audit (audit-resolved).",
+      },
+      {
+        zoomStation: 2,
+        keyframe: 1,
+        objectDistanceMm: 248.897,
+        distanceReference: "first-surface",
+        source:
+          "WO 2022/264542 A1, Example 1, Table 1, 可変間隔データ, 至近距離合焦状態, T column (gaps continue PDF p31); mm per ¶0107, PDF p30: 物体距離 248.897; gaps (mm): 5=38.687, 13=2.04, 26=10.681, 29=9.274, 33=33.216. Reference identified by the conjugate audit (audit-resolved).",
+      },
+    ],
+  },
 
   /* (moved from var) ── Variable Air Spacings ──
    *  3 zoom positions: Wide (18.540), Mid (50.034), Tele (135.845).
