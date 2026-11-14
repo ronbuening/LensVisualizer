@@ -5,6 +5,8 @@
  * --files=<comma-separated data files> narrows the catalog. --json preserves full
  * precision; --strict fails on inconsistent/other-reference rows or loading errors.
  * An ambiguous reference is informational: the source defines the convention. Ordinary audits exit 0.
+ * A conjugate with sourceMagnification also reports the distance its print solves to: author it with a
+ * provisional positive objectDistanceMm, then write the "Solved distance" column to 0.01 mm.
  */
 
 import { readdirSync } from "node:fs";
@@ -89,10 +91,11 @@ else {
   console.log(
     "Depths are signed defocus wavefront error at the authored plane in quarter waves; mm depths use its cone.",
   );
+  console.log("Printed m is sourceMagnification; a solved distance is consistent when m at it rounds to the print.");
   console.log(
-    "| Lens | Zoom/keyframe | Reference | Object z | Authored z | Paraxial z | Offset mm | Best axial mm | λ nm | Paraxial Nw | Authored-plane Nw | Real-ray Nw | 2λn′Na² mm | Offset depths | Limit mm | m | Other offset mm | Other depths | Reference discriminated | Verdict | Reason | Paraxial-image reason | Real-ray reason |",
+    "| Lens | Zoom/keyframe | Reference | Object z | Authored z | Paraxial z | Offset mm | Best axial mm | λ nm | Paraxial Nw | Authored-plane Nw | Real-ray Nw | 2λn′Na² mm | Offset depths | Limit mm | m | Other offset mm | Other depths | Reference discriminated | Printed m | In-focus m | Solved distance | Verdict | Reason | Paraxial-image reason | Real-ray reason |",
   );
-  console.log(`|${Array(23).fill("---").join("|")}|`);
+  console.log(`|${Array(26).fill("---").join("|")}|`);
   const number = (value) => (value === null ? "—" : Number(value.toPrecision(7)).toString());
   for (const row of report.rows) {
     console.log(
@@ -116,6 +119,9 @@ else {
         row.otherReference.paraxialOffsetMm,
         row.otherReference.offsetDepths,
         row.referenceDiscriminated,
+        row.magnification?.printed ?? "—",
+        row.magnification ? row.magnification.inFocusMagnification : "—",
+        row.magnification ? row.magnification.solvedObjectDistanceMm : "—",
         row.verdict,
         row.unavailableReason ?? "—",
         row.paraxialImageUnavailableReason ?? "—",

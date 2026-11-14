@@ -241,6 +241,7 @@ const CONJUGATE_FIELDS: Readonly<Record<keyof FiniteConjugate, true>> = {
   zoomT: true,
   objectDistanceMm: true,
   distanceReference: true,
+  sourceMagnification: true,
   source: true,
 };
 
@@ -784,24 +785,36 @@ function ingestConjugates(
     /* The engine matches a conjugate to its station within the tolerance and never reads the coordinate itself. */
     if (keyframe >= 0 && !Object.is(keyframes[keyframe], focusT)) context.ignored[`${at}.focusT`] = focusT;
     if (zoomStation >= 0 && !Object.is(stationCoordinates[zoomStation], zoomT)) context.ignored[`${at}.zoomT`] = zoomT;
-    const out = {
+    const out: CanonicalConjugate = {
       zoomStation,
       keyframe,
       objectDistanceMm: conjugate.objectDistanceMm as number,
       distanceReference: conjugate.distanceReference as CanonicalConjugate["distanceReference"],
+      ...(conjugate.sourceMagnification !== undefined && {
+        sourceMagnification: conjugate.sourceMagnification as string,
+      }),
       source: conjugate.source as string,
     };
-    if (context.sources) recordConjugate(context.sources, index, at, context.ignored);
+    if (context.sources) recordConjugate(context.sources, index, at, context.ignored, out);
     return out;
   });
 }
 
 /** Where a conjugate was read from: its coordinates become the indices that hold them, and set-aside ones say why. */
-function recordConjugate(sources: SourcePaths, index: number, at: string, ignored: Readonly<Record<string, unknown>>) {
+function recordConjugate(
+  sources: SourcePaths,
+  index: number,
+  at: string,
+  ignored: Readonly<Record<string, unknown>>,
+  conjugate: CanonicalConjugate,
+) {
   const from = `finiteConjugates[${index}]`;
   sources.records[at] = from;
   for (const field of ["objectDistanceMm", "distanceReference", "source"]) {
     sources.read[`${at}.${field}`] = `${from}.${field}`;
+  }
+  if (conjugate.sourceMagnification !== undefined) {
+    sources.read[`${at}.sourceMagnification`] = `${from}.sourceMagnification`;
   }
   sources.heldBy[`${from}.focusT`] = `${at}.keyframe`;
   sources.heldBy[`${from}.zoomT`] = `${at}.zoomStation`;

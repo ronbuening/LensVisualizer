@@ -7,9 +7,11 @@
 
 import type { FiniteConjugate } from "../../../types/optics.js";
 import type { MtfOptions, MtfSupport } from "../../../types/mtf.js";
+import type { PreparedGeometry } from "../../types.js";
 import type { AnalysisRequest } from "../request.js";
 import { FLAT_R_THRESHOLD } from "../../geometry/surfaceProfile.js";
 import { traceParaxialSurfaces } from "../../math/paraxial.js";
+import { parseSourceMagnification } from "../../prescription/sourceMagnification.js";
 import { traceWorkingFNumber } from "../summary/fNumbers.js";
 import { mtfFiniteConjugate, mtfFiniteObjectPoint } from "./mtfConjugates.js";
 import { MTF_FOCUS_FREQUENCIES, MTF_FOCUS_GRID } from "./mtfConstants.js";
@@ -51,6 +53,30 @@ export interface MtfConjugateCheck {
   unavailableReason: string | null;
 }
 
+/** Half the 0.01 mm to which a solved object distance is written. */
+const SOLVED_DISTANCE_ROUNDING_MM = 0.005;
+
+/** A solved object distance compared with the magnification its source prints. Magnifications are magnitudes. */
+export interface MtfConjugateMagnification {
+  /** `sourceMagnification` as authored. */
+  printed: string;
+  value: number;
+  /** Half a unit of the last printed decimal; 0 for a ratio or whole number. */
+  halfUnit: number;
+  /** Paraxial magnification with the object at the declared distance; null without a finite real image. */
+  atDeclaredDistance: number | null;
+  /** The declared distance's magnification rounds to the print, within the distance's own rounding. */
+  withinPrint: boolean;
+  /** First-surface distance that focuses the state on the authored image plane; null when that object is not real. */
+  inFocusObjectDistanceMm: number | null;
+  inFocusMagnification: number | null;
+  /**
+   * The distance to declare: the in-focus one when its magnification rounds to the print, otherwise the
+   * distance at the nearest magnification that does. Null when no real object satisfies the rule.
+   */
+  solvedObjectDistanceMm: number | null;
+}
+
 export interface MtfConjugateConsistency extends MtfConjugateCheck {
   imagePlaneZMm: number;
   referenceWavelengthNm: number;
@@ -60,6 +86,12 @@ export interface MtfConjugateConsistency extends MtfConjugateCheck {
   otherReference: MtfConjugateCheck;
   /** The alternate object is impossible, outside the limit, or has a tenfold residual above one depth. */
   referenceDiscriminated: boolean;
+  /** Present when the conjugate carries `sourceMagnification`, whose distance is solved, not printed. */
+  magnification: MtfConjugateMagnification | null;
+  /**
+   * A solved distance is consistent when it is within the limit and its magnification rounds to the print; its
+   * reference is first-surface by construction, so it is never ambiguous or other-reference.
+   */
   verdict: "consistent" | "inconsistent" | "other-reference" | "ambiguous-reference";
 }
 
@@ -115,6 +147,7 @@ export function assessMtfConjugateConsistency(request: AnalysisRequest): MtfConj
           ?.shiftMm ?? null;
     }
   }
+  const magnification = checkMagnification(state, support, conjugate, declared);
   return {
     ...declared,
     imagePlaneZMm: state.imgZ,
@@ -123,14 +156,87 @@ export function assessMtfConjugateConsistency(request: AnalysisRequest): MtfConj
     realRayBestFocusOffsetMm,
     otherReference,
     referenceDiscriminated,
-    verdict: withinLimit(declared)
-      ? referenceDiscriminated
+    magnification,
+    verdict: magnification
+      ? withinLimit(declared) && magnification.withinPrint
         ? "consistent"
-        : "ambiguous-reference"
-      : declaredMismatch && withinLimit(otherReference)
-        ? "other-reference"
-        : "inconsistent",
+        : "inconsistent"
+      : withinLimit(declared)
+        ? referenceDiscriminated
+          ? "consistent"
+          : "ambiguous-reference"
+        : declaredMismatch && withinLimit(otherReference)
+          ? "other-reference"
+          : "inconsistent",
   };
+}
+
+/** Prepared surfaces with every index evaluated at the audit's reference line. */
+function referenceLineSurfaces(state: PreparedGeometry, support: MtfSupport) {
+  const indexAtSurface = mtfIndexResolver(state, support, support.referenceWavelengthNm);
+  return indexAtSurface
+    ? state.surfaces.map((surface, i) => ({ ...surface, nd: indexAtSurface(i, surface.nd) }))
+    : state.surfaces;
+}
+
+/**
+ * Solve the object distance a printed magnification stands for, and test the declared one against the print.
+ *
+ * The tabulated state is in focus on its image plane, so that conjugate is the estimate whenever its
+ * magnification rounds to the printed value; a print the prescription misses is honoured at its nearest bound,
+ * which leaves the miss visible as defocus.
+ */
+function checkMagnification(
+  state: PreparedGeometry,
+  support: MtfSupport,
+  conjugate: FiniteConjugate,
+  declared: MtfConjugateCheck,
+): MtfConjugateMagnification | null {
+  if (conjugate.sourceMagnification === undefined) return null;
+  const printed = parseSourceMagnification(conjugate.sourceMagnification);
+  const check: MtfConjugateMagnification = {
+    printed: conjugate.sourceMagnification,
+    value: printed?.value ?? NaN,
+    halfUnit: printed?.halfUnit ?? NaN,
+    atDeclaredDistance: null,
+    withinPrint: false,
+    inFocusObjectDistanceMm: null,
+    inFocusMagnification: null,
+    solvedObjectDistanceMm: null,
+  };
+  if (!printed || !support.available) return check;
+  const surfaces = referenceLineSurfaces(state, support);
+  const authoredGap = state.imgZ - surfaces.at(-1)!.z;
+  const parallel = traceParaxialSurfaces(surfaces, 1, 0, { skipLastTransfer: true });
+  const angular = traceParaxialSurfaces(surfaces, 0, 1, { skipLastTransfer: true });
+  // An axial object at distance s reaches the first vertex at height s per unit slope, so its ray lands on the
+  // authored plane at s A + B: focus needs s = −B/A, and A is the magnification there.
+  const a = parallel.y + authoredGap * parallel.u;
+  const b = angular.y + authoredGap * angular.u;
+  // At its own paraxial image an object at s has magnification D / (s u_p + u_a), D the two rays' invariant.
+  const invariant = parallel.y * angular.u - parallel.u * angular.y;
+  const real = (distance: number) => (distance > 0 && Number.isFinite(distance) ? distance : null);
+  const low = printed.value - printed.halfUnit;
+  const high = printed.value + printed.halfUnit;
+  if (Number.isFinite(a) && a !== 0 && Number.isFinite(b)) {
+    check.inFocusObjectDistanceMm = real(-b / a);
+    check.inFocusMagnification = Math.abs(a);
+    const target = Math.min(high, Math.max(low, Math.abs(a)));
+    check.solvedObjectDistanceMm =
+      target === Math.abs(a)
+        ? check.inFocusObjectDistanceMm
+        : parallel.u !== 0
+          ? real((invariant / (Math.sign(a) * target) - angular.u) / parallel.u)
+          : null;
+  }
+  if (declared.paraxialMagnification !== null && invariant !== 0) {
+    const magnitude = Math.abs(declared.paraxialMagnification);
+    // dm/ds = −m² u_p / D converts the written distance's rounding into magnification.
+    const slack = Math.abs((magnitude ** 2 * parallel.u) / invariant) * SOLVED_DISTANCE_ROUNDING_MM + 1e-12;
+    check.atDeclaredDistance = magnitude;
+    check.withinPrint = magnitude >= low - slack && magnitude <= high + slack;
+  }
+  return check;
 }
 
 function checkReference(
@@ -160,10 +266,7 @@ function checkReference(
   if (!support.available) return { ...check, unavailableReason: support.message };
   const object = mtfFiniteObjectPoint(state, conjugate, 0);
   if (!object) return { ...check, unavailableReason: "Object is not in front of the first surface." };
-  const indexAtSurface = mtfIndexResolver(state, support, support.referenceWavelengthNm);
-  const surfaces = indexAtSurface
-    ? state.surfaces.map((surface, i) => ({ ...surface, nd: indexAtSurface(i, surface.nd) }))
-    : state.surfaces;
+  const surfaces = referenceLineSurfaces(state, support);
   const distance = first.z - object[2];
   // Conjugate equation: a unit-height axial ray starts with u = 1/object distance.
   const axial = traceParaxialSurfaces(surfaces, 1, 1 / distance, {

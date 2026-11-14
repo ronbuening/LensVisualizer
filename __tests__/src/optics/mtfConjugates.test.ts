@@ -135,6 +135,63 @@ describe("documented finite MTF", () => {
     expect(report.offsetDepths).toBeCloseTo(wavefrontMm / ((report.referenceWavelengthNm * 1e-6) / 4), 10);
     expect(Math.abs(report.otherReference.offsetDepths!)).toBeGreaterThan(report.thresholdDepths);
   });
+  // Independent conjugate magnification of an object at `distance`: the parallel ray's height at that image.
+  function magnificationAt(distance: number) {
+    const ray = atRear(1, 1 / distance);
+    const parallel = atRear(1, 0);
+    return Math.abs(parallel.y - (ray.y / ray.u) * parallel.u);
+  }
+  function magnificationReport(objectDistanceMm: number, sourceMagnification: string) {
+    const solved = prepareRuntimeState(
+      build({
+        ...constructionFixtureData(L),
+        finiteConjugates: [{ ...conjugate, objectDistanceMm, sourceMagnification }],
+      }),
+      1,
+      0,
+    );
+    return assessMtfConjugateConsistency(mtfInputs(solved, auditOptions)[0])!;
+  }
+  it("solves a printed magnification to the in-focus distance when the trace rounds to it", () => {
+    const inFocus = magnificationAt(1000);
+    // The provisional distance is wrong on purpose: the solve reads the prescription, not the declaration.
+    const provisional = magnificationReport(900, inFocus.toFixed(4));
+    expect(provisional.magnification!.inFocusMagnification).toBeCloseTo(inFocus, 12);
+    expect(provisional.magnification!.inFocusObjectDistanceMm).toBeCloseTo(1000, 8);
+    expect(provisional.magnification!.solvedObjectDistanceMm).toBeCloseTo(1000, 8);
+    expect(provisional.magnification!.atDeclaredDistance).toBeCloseTo(magnificationAt(900), 12);
+    expect(provisional.magnification!.withinPrint).toBe(false);
+    expect(provisional.verdict).toBe("inconsistent");
+    const declared = magnificationReport(1000, inFocus.toFixed(4));
+    expect(declared.magnification!.withinPrint).toBe(true);
+    expect(declared.verdict).toBe("consistent");
+    expect(assessMtfConjugateConsistency(mtfInputs(state, auditOptions)[0])!.magnification).toBeNull();
+  });
+  it("holds a print the prescription misses at its nearest rounding bound", () => {
+    // 12% above the in-focus magnification, so the bound nearest focus is the print minus half its last digit.
+    const printed = (magnificationAt(1000) * 1.12).toFixed(4);
+    const bound = Number(printed) - 0.00005;
+    let near = 500;
+    let far = 1000;
+    for (let i = 0; i < 80; i++) {
+      const middle = (near + far) / 2;
+      if (magnificationAt(middle) > bound) near = middle;
+      else far = middle;
+    }
+    const provisional = magnificationReport(1000, printed);
+    expect(provisional.magnification!.solvedObjectDistanceMm).toBeCloseTo(near, 8);
+    expect(provisional.magnification!.withinPrint).toBe(false);
+    const declared = magnificationReport(Number(near.toFixed(2)), printed);
+    expect(declared.magnification!.withinPrint).toBe(true);
+    // The miss stays visible as defocus instead of being absorbed by the solve.
+    const { wavefrontMm } = pupilDefocus(12, Number(near.toFixed(2)), imageGap);
+    expect(declared.offsetDepths).toBeCloseTo(wavefrontMm / ((declared.referenceWavelengthNm * 1e-6) / 4), 8);
+    expect(Math.abs(declared.offsetDepths!)).toBeGreaterThan(declared.thresholdDepths);
+    expect(declared.verdict).toBe("inconsistent");
+    // A ratio carries no rounding interval, so the distance sits at exactly that magnification.
+    const ratio = magnificationReport(1000, "1/20");
+    expect(magnificationAt(ratio.magnification!.solvedObjectDistanceMm!)).toBeCloseTo(0.05, 12);
+  });
   it("keeps defocus invariant when a dummy surface is inserted just before the image", () => {
     // An index-matched plane changes no optical power or pupil, only the final trace reference.
     const authoredGap = imageGap + 0.2;

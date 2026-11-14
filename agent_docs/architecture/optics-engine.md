@@ -292,6 +292,17 @@ The separate `realRayWorkingFNumber` reuses the MTF stop-rim ray and is null whe
 names that failure without affecting the verdict. The reference-line axial best-focus search remains a diagnostic
 bounded to ±10 mm.
 
+A conjugate that carries `sourceMagnification` has a solved distance, and the report's `magnification` block checks
+it against the print. Two unit basis rays at the first vertex, parallel (y = 1) and angular (u = 1), land on the
+authored plane at heights A and B: an object at distance s focuses there when s = −B/A, and A is the magnification
+of that conjugate. At its own paraxial image an object at s has magnification D/(s u_p + u_a), where u_p and u_a are
+the two rays' final slopes and D their invariant y_p u_a − u_p y_a. `solvedObjectDistanceMm` is −B/A when |A| lies
+within half a unit of the print's last decimal, and otherwise the distance at the nearest bound of that interval; a
+ratio or whole number has no interval. `withinPrint` tests the declared distance's magnification against the same
+interval, widened by the 0.005 mm to which the distance is written. Such a conjugate is `consistent` when it is
+inside the depth limit and `withinPrint`, and `inconsistent` otherwise; its first-surface reference is fixed by
+construction, so the other-reference verdicts do not apply.
+
 `npm run audit:finite-conjugates` checks every declaration at its open physical stop, including axial conjugacy on
 fisheyes, retaining every support check except the off-axis projection requirement. The limit is
 `MTF_FINITE_CONJUGATE_DEPTHS` = 25 quarter waves, an empirical outlier threshold: the catalog's declarations lie within
@@ -822,7 +833,7 @@ is the host's. Built-in converters stay on `opticalConfiguration`.
 - **Image-referenced object distances grow by the converter's extension**, because only the image plane moves:
   `focus.closeFocusM`, `zoom.stations[].closeFocusM`, and `focus.conjugates` entries with
   `distanceReference: "image-plane"`. Entries measured
-  from the first surface are unchanged.
+  from the first surface are unchanged; a `sourceMagnification` is dropped, since the print is the bare host's.
 - **Station provenance rides through unchanged:** composition keeps the host's station counts, so `publishedStations`
   indices stay valid and `publishedStationAvailability()` reports the pairing as `composed`.
 - **Identity:** converter surface labels take the reserved `TC` prefix, element ids continue after the host's, and the

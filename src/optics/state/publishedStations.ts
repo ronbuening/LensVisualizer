@@ -259,6 +259,7 @@ export function publishedFocusStations(L: RuntimeLens, zoomStationIndex = 0): Pu
           zoomT,
           objectDistanceMm: source.objectDistanceMm,
           distanceReference: source.distanceReference,
+          ...(source.sourceMagnification !== undefined && { sourceMagnification: source.sourceMagnification }),
           source: source.source,
         }
       : null;

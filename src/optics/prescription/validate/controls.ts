@@ -1,6 +1,7 @@
 /** Authored station declarations and variable-gap controls, before normalization. */
 import type { UntrustedLensData } from "./context.js";
 import { firstInfinityThickness } from "../compileControls.js";
+import { parseSourceMagnification } from "../sourceMagnification.js";
 
 export function isStationIndexList(value: unknown, min: number, max: number): value is number[] {
   return (
@@ -215,6 +216,13 @@ export function validateStations(
             : Math.abs(c.zoomT * (zoomCount - 1) - Math.round(c.zoomT * (zoomCount - 1))) > 1e-8)
         )
           errors.push('"finiteConjugates" must identify authored focus and zoom stations, not interpolated positions');
+        if (
+          c.sourceMagnification !== undefined &&
+          (!parseSourceMagnification(c.sourceMagnification) || c.distanceReference !== "first-surface")
+        )
+          errors.push(
+            '"finiteConjugates" sourceMagnification must be a printed decimal or ratio on a first-surface distance',
+          );
         const key = `${c.focusT}:${c.zoomT}`;
         if (seen.has(key)) errors.push('"finiteConjugates" contains a duplicate focus/zoom station');
         seen.add(key);

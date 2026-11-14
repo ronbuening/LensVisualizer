@@ -1060,6 +1060,14 @@ focus: {
       distanceReference: "image-plane",
       source: "Patent publication, example and tables identifying this finite configuration",
     },
+    {
+      zoomStation: 0,
+      keyframe: 2,
+      objectDistanceMm: 244.92,
+      distanceReference: "first-surface",
+      sourceMagnification: "0.50",
+      source: "Patent publication, example and column printing magnification −0.50; distance solved from the prescription",
+    },
   ],
 },
 ```
@@ -1075,7 +1083,19 @@ focus: {
   in the surface table). Where the source prints a distance without defining its reference, declare it only when the
   audit below reports `consistent`, meaning the other reference fails or is impossible, and say in `source` that the
   conjugate audit identified the reference. Other states in the same source table then take that reference. Leave
-  the state undeclared when the source's stated reference and the audit disagree.
+  the state undeclared when the source's stated reference and the audit disagree, unless the maintainer has ruled on
+  that source; then declare the ruled reference and say in `source` what the table states and why it is not followed.
+  Ruled so far: the Sony `d0` object rows of the FE 12-24mm F2.8 GM, FE 20-70mm F4 G, FE 70-200mm F2.8 GM II and
+  FE PZ 16-35mm F4 G patents are object-to-image distances, because every state of each table focuses only that way.
+- `sourceMagnification` is for a tabulated state whose source prints a magnification and no object distance. Give the
+  printed magnitude as a string: a decimal exactly as printed, trailing zeros kept (`"0.50"`), or an image-to-object
+  ratio (`"1/10"`, `"1:2"`; 等倍 is `"1:1"`). The distance is then solved from the prescription and is always
+  `"first-surface"`: enter a provisional positive `objectDistanceMm`, run the audit below, and write its
+  `Solved distance` to 0.01 mm. The solve takes the distance that focuses the state on its authored image plane when
+  the magnification there rounds to the print, and otherwise the distance at the nearest magnification that does, so
+  a print the prescription misses stays visible as defocus. A ratio or a whole number has no rounding interval.
+  `source` quotes the printed magnification and says the distance is solved. The magnification must be the source's
+  figure for that column or state; a marketed maximum magnification or `closeFocusM` never qualifies.
 - A distance the source measures to a front filter or protective plate that the file does not model is not a
   first-surface distance. Model the plate or leave the state undeclared.
 - In a scaled transcription the printed distance scales by the file's own stated factor; give the printed value and
@@ -1088,6 +1108,8 @@ focus: {
   a numeric defocus diagnostic but cannot certify consistency. Fisheye axial checks retain the other MTF support prerequisites.
   See `agent_docs/architecture/optics-engine.md` § Simulated MTF for the measure and distance-reference verdicts.
   `--lens=<key>`, `--files=<comma-separated data files>`, `--json` and `--strict` support focused authoring checks.
+  A `sourceMagnification` entry is consistent when its distance is inside the limit and the magnification at that
+  distance rounds to the print.
   The audit is a screen, not proof: on a short or slow lens a wrong distance can stay inside the limit, so read the
   printed value, unit, example and close-focus column against the source as well.
 - Source-rounded prescriptions may keep residual defocus: MTF evaluates the authored image plane by default, reports the

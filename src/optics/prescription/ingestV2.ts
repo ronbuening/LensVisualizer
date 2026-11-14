@@ -258,6 +258,7 @@ const CONJUGATE_FIELDS: Fields<ConjugateV2Input> = {
   keyframe: true,
   objectDistanceMm: true,
   distanceReference: true,
+  sourceMagnification: true,
   source: true,
 };
 
@@ -894,10 +895,18 @@ function ingestConjugates(
       keyframe: keyframe as number,
       objectDistanceMm: conjugate.objectDistanceMm as number,
       distanceReference: conjugate.distanceReference as CanonicalConjugate["distanceReference"],
+      ...(conjugate.sourceMagnification !== undefined && {
+        sourceMagnification: conjugate.sourceMagnification as string,
+      }),
       source: conjugate.source as string,
     };
     if (context.sources) {
-      recordInPlace(context.sources, at, out, ["objectDistanceMm", "distanceReference", "source"]);
+      recordInPlace(context.sources, at, out, [
+        "objectDistanceMm",
+        "distanceReference",
+        "sourceMagnification",
+        "source",
+      ]);
       context.sources.heldBy[`${at}.zoomStation`] = `${at}.zoomStation`;
       context.sources.heldBy[`${at}.keyframe`] = `${at}.keyframe`;
     }

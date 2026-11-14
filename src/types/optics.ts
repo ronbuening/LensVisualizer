@@ -385,6 +385,11 @@ export interface FiniteConjugate {
   zoomT: number;
   objectDistanceMm: number;
   distanceReference: "first-surface" | "image-plane";
+  /**
+   * Magnitude of the magnification the source prints for this state, as printed ("0.50", "1/10", "1:2"). Present
+   * only when the source prints no object distance and `objectDistanceMm` is solved from the prescription.
+   */
+  sourceMagnification?: string;
   /** Publication/embodiment/table or other evidence establishing both distance and focus spacings. */
   source: string;
 }

@@ -18,6 +18,7 @@ export function mtfFiniteConjugate(state: PreparedGeometry): FiniteConjugate | u
   return {
     objectDistanceMm: conjugate.objectDistanceMm,
     distanceReference: conjugate.distanceReference,
+    ...(conjugate.sourceMagnification !== undefined && { sourceMagnification: conjugate.sourceMagnification }),
     source: conjugate.source,
     focusT: source.focus.keyframes[conjugate.keyframe],
     zoomT: count > 1 ? conjugate.zoomStation / (count - 1) : 0,
