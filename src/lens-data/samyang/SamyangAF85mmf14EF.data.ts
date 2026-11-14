@@ -2,9 +2,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 /**
  * Source: KR 10-2213072 B1, Example 2, Tables 4–6; both printed focus states.
  * Scale factor 1: source radii, thicknesses and gaps are already in mm; no units conversion.
- * The iris and clear rims are inferred; source back-focus gaps remain literal, not re-solved.
- * The camera-side 2.5 mm filter remains explicit because rearPlates.gapAfterMm is scalar,
- * while source D4 varies from 0.507836 to 0.687847 mm; no physical gaps are redistributed.
+ * The iris is derived from the f-number and the clear rims are inferred; source back-focus gaps are unchanged.
+ * The camera-side 2.5 mm filter stays drawn because its trailing gap D4 varies from
+ * 0.507836 to 0.687847 mm with focus; the rear-plate format supports only a fixed trailing gap.
+ * No physical gaps are redistributed.
  * Actual Image follows D4; D5 after Image stays metadata and is not propagated.
  */
 const LENS_DATA = {
@@ -12,117 +13,133 @@ const LENS_DATA = {
   "key": "samyang-af-85mm-f14-ef",
   "maker": "Samyang",
   "name": "SAMYANG AF 85mm f/1.4 EF",
+  "subtitle": "KR 10-2213072 B1, Example 2 — the EF version's 9/7 construction",
   "visible": true,
   "elements": [
     {
       "id": 1,
       "name": "L1",
-      "type": "Lens",
+      "type": "Positive Meniscus",
       "nd": 1.7725,
       "vd": 49.62,
       "indexReference": "d",
-      "label": "L1",
-      "glass": "Published nd/Vd, unassigned catalogue glass; approximate dispersion"
+      "label": "Element 1",
+      "glass": "TAF1 (HOYA)",
+      "role": "Positive meniscus opening the fixed front group."
     },
     {
       "id": 2,
       "name": "L2",
-      "type": "Lens",
+      "type": "Positive Meniscus",
       "nd": 1.7433,
       "vd": 49.22,
       "indexReference": "d",
-      "label": "L2",
-      "glass": "Published nd/Vd, unassigned catalogue glass; approximate dispersion"
+      "label": "Element 2",
+      "glass": "NBF1 (HOYA)",
+      "role": "Second positive meniscus in the fixed front group."
     },
     {
       "id": 3,
       "name": "L3",
-      "type": "Lens",
+      "type": "Negative Meniscus",
       "nd": 1.72825,
       "vd": 28.32,
       "indexReference": "d",
-      "label": "L3",
-      "glass": "Published nd/Vd, unassigned catalogue glass; approximate dispersion"
+      "label": "Element 3",
+      "glass": "E-FD10 (HOYA)",
+      "role": "Negative meniscus between the front positive elements."
     },
     {
       "id": 4,
       "name": "L4",
-      "type": "Lens",
+      "type": "Positive Meniscus",
       "nd": 1.7725,
       "vd": 49.62,
       "indexReference": "d",
-      "label": "L4",
-      "glass": "Published nd/Vd, unassigned catalogue glass; approximate dispersion"
+      "label": "Element 4",
+      "glass": "TAF1 (HOYA)",
+      "role": "Positive meniscus closing the fixed front group."
     },
     {
       "id": 5,
       "name": "L5",
-      "type": "Lens",
+      "type": "Negative Meniscus",
       "nd": 1.8061,
       "vd": 33.27,
       "indexReference": "d",
-      "label": "L5",
-      "glass": "Published nd/Vd, unassigned catalogue glass; approximate dispersion"
+      "label": "Element 5",
+      "glass": "NBFD15 (HOYA)",
+      "role": "Single negative element moving toward the image for close focus."
     },
     {
       "id": 6,
       "name": "L6",
-      "type": "Lens",
+      "type": "Biconcave Negative",
       "nd": 1.54814,
       "vd": 45.82,
       "indexReference": "d",
-      "label": "L6",
-      "glass": "Published nd/Vd, unassigned catalogue glass; approximate dispersion"
+      "label": "Element 6",
+      "glass": "E-FEL1 (HOYA)",
+      "role": "Negative member of the first rear cemented doublet.",
+      "cemented": "C1"
     },
     {
       "id": 7,
       "name": "L7",
-      "type": "Lens",
+      "type": "Biconvex Positive",
       "nd": 1.7859,
       "vd": 43.93,
       "indexReference": "d",
-      "label": "L7",
-      "glass": "Published nd/Vd, unassigned catalogue glass; approximate dispersion"
+      "label": "Element 7",
+      "glass": "NBFD11 (HOYA)",
+      "role": "Positive member of the first rear cemented doublet.",
+      "cemented": "C1"
     },
     {
       "id": 8,
       "name": "Hybrid layer on L8",
-      "type": "Lens",
+      "type": "Positive Meniscus",
       "nd": 1.517,
       "vd": 52,
       "indexReference": "d",
-      "label": "Hybrid layer on L8",
-      "glass": "Published nd/Vd, unassigned catalogue glass; approximate dispersion"
+      "label": "Element 8",
+      "glass": "Unmatched resin (nd 1.517 / νd 52)",
+      "role": "Thin hybrid layer forming the aspherical front surface of L8."
     },
     {
       "id": 9,
       "name": "L8",
-      "type": "Lens",
+      "type": "Biconvex Positive",
       "nd": 1.7725,
       "vd": 49.62,
       "indexReference": "d",
-      "label": "L8",
-      "glass": "Published nd/Vd, unassigned catalogue glass; approximate dispersion"
+      "label": "Element 9",
+      "glass": "TAF1 (HOYA)",
+      "role": "Positive L8 substrate beneath the hybrid layer, cemented to L9.",
+      "cemented": "C2"
     },
     {
       "id": 10,
       "name": "L9",
-      "type": "Lens",
+      "type": "Negative Meniscus",
       "nd": 1.64769,
       "vd": 33.84,
       "indexReference": "d",
-      "label": "L9",
-      "glass": "Published nd/Vd, unassigned catalogue glass; approximate dispersion"
+      "label": "Element 10",
+      "glass": "E-FD2 (HOYA)",
+      "role": "Negative L9 member of the last rear cemented doublet.",
+      "cemented": "C2"
     },
     {
       "id": 11,
       "name": "Published rear filter",
-      "type": "Lens",
+      "type": "Plane-Parallel Plate",
       "nd": 1.5168,
       "vd": 64.2,
       "indexReference": "d",
       "label": "Published rear filter",
-      "glass": "Published nd/Vd, unassigned catalogue glass; approximate dispersion"
+      "glass": "BSC7 (HOYA)",
+      "role": "Camera-side filter with a focus-dependent gap to the image plane."
     }
   ],
   "surfaces": [
@@ -261,6 +278,10 @@ const LENS_DATA = {
       "sd": 24
     }
   ],
+  "doublets": [
+    { "text": "C1", "fromSurface": "12", "toSurface": "14" },
+    { "text": "C2", "fromSurface": "16", "toSurface": "18" }
+  ],
   "gaps": {
     "8": {
       "label": "D1",
@@ -302,7 +323,8 @@ const LENS_DATA = {
   "aperture": {
     "nominalFNumber": 1.479,
     "fStops": [
-      1.479
+      1.479,
+      16
     ]
   },
   "layout": {
@@ -318,7 +340,7 @@ const LENS_DATA = {
     "published": [
       1
     ],
-    "description": "Literal source gap endpoints; near D0=813.676935mm beforefirstvertex, not certified0.90m retail. ImageafterD4; D5retained metadata not propagated."
+    "description": "PUBLISHED two focus states. L5 moves 4.928652 mm toward the image for close focus. The printed near object distance is 813.676935 mm before the first surface, or 0.926326 m from object to image; the maker states a 0.9 m minimum. The camera-side filter stays drawn because the gap after it changes with focus. The image plane follows D4; D5 is printed after Image and is not included in the image distance."
   },
   "projection": {
     "kind": "rectilinear",
@@ -346,9 +368,10 @@ const LENS_DATA = {
       "marketing": 0.9
     },
     "specs": [
-      "9 GLASS / 7 GROUPS PLUS HYBRID LAYER AND FILTER",
-      "TWO LITERAL FOCUS ENDPOINTS",
-      "INFERRED CLEAR APERTURES"
+      "9 ELEMENTS / 7 GROUPS",
+      "1 HYBRID ASPHERICAL ELEMENT",
+      "F/1.4–16",
+      "MINIMUM FOCUS 0.9 m"
     ]
   },
   "source": {
@@ -365,19 +388,19 @@ const LENS_DATA = {
     "errata": [
       {
         "status": "unresolved",
-        "note": "D5 printed after Image: retained -0.005027/-0.133249mm as source metadata, not propagated into Image. Actual Image afterD4 used; purpose of D5 unresolved."
+        "note": "D5 is printed after Image: −0.005027/−0.133249 mm is retained as source metadata and excluded from the image distance. The image plane follows D4; the purpose of D5 remains unresolved."
       },
       {
         "status": "unresolved",
-        "note": "Source Table6 f84.499585 conflicts Table10 84.548355 and prose84.54. Native84.548650747 retained, no rescale."
+        "note": "Table 6 gives a focal length of 84.499585 mm, Table 10 gives 84.548355 mm, and the prose gives 84.54 mm. The calculated 84.548650747 mm is retained without rescaling."
       },
       {
         "status": "unresolved",
-        "note": "Literal nearD0=813.676935mm and Image track112.649447 yield926.326382mm, not label0.9m. Source nearF1.584 retained as claim; physical iris fixed from infinityF1.479."
+        "note": "The near object distance D0 of 813.676935 mm plus the image track of 112.649447 mm gives 926.326382 mm from object to image, differing from the source's 0.9 m heading. The source states near f/1.584; the physical iris remains fixed at the size derived from infinity f/1.479."
       },
       {
         "status": "unresolved",
-        "note": "Primary catalogue supports family pairing not exact factory E2. Caps geometry-limited assumptions, not factory dimensions; full application/current-main/browser QA deferred integration."
+        "note": "The maker's catalogue supports a design-family association with Example 2 without establishing the exact factory prescription. Clear rims are inferred from the optical geometry rather than measured production dimensions."
       }
     ]
   }
