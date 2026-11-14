@@ -326,6 +326,24 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.2,
     description: "PUBLISHED: G3 moves imageward to the Table 11 D=200 mm state; no extra focus states.",
+    conjugates: [
+      {
+        zoomStation: 1,
+        keyframe: 1,
+        objectDistanceMm: 200,
+        distanceReference: "image-plane",
+        source:
+          "US 2018/0196240 A1, Example 11, Table 11 (PDF p. 84), close-distance M column: D=200.00 mm; d6=6.32 mm, d13=8.15 mm, d15=7.16 mm. The image-plane reference is identified by the conjugate audit (referenceBasis=audit-resolved).",
+      },
+      {
+        zoomStation: 2,
+        keyframe: 1,
+        objectDistanceMm: 200,
+        distanceReference: "image-plane",
+        source:
+          "US 2018/0196240 A1, Example 11, Table 11 (PDF p. 84), close-distance T column: D=200.00 mm; d6=2.14 mm, d13=14.40 mm, d15=8.12 mm. The image-plane reference is identified by the conjugate audit (referenceBasis=audit-resolved).",
+      },
+    ],
   },
 
   gaps: {
