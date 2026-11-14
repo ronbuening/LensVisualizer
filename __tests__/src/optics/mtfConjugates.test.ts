@@ -6,6 +6,7 @@ import { build, buildSimplePositiveElementLens, buildVariableStopGapLens } from 
 import { prepareRuntimeState } from "../../../src/optics/state/runtimeAdapters.js";
 import { assessMtfSupport, resolveMtfOptions } from "../../../src/optics/analysis/mtf/mtfSupport.js";
 import { mtfFiniteObjectPoint } from "../../../src/optics/analysis/mtf/mtfConjugates.js";
+import { assessMtfConjugateConsistency } from "../../../src/optics/analysis/mtf/mtfConjugateConsistency.js";
 import {
   aimMtfStopLattice,
   mtfAimSpectrum,
@@ -64,6 +65,162 @@ describe("documented finite MTF", () => {
     finiteConjugates: [conjugate],
   });
   const state = prepareRuntimeState(L, 1, 0);
+  // A fast aperture makes the two distance conventions distinguishable in diffraction depths.
+  const auditOptions = { ...options, pupilSemiDiameterMm: 12, stopSemiDiameterMm: 12 };
+  it("certifies the independently solved paraxial image and magnification", () => {
+    const report = assessMtfConjugateConsistency(mtfInputs(state, auditOptions)[0])!;
+    const parallel = atRear(1, 0);
+    expect(report.verdict).toBe("consistent");
+    expect(report.objectZMm).toBe(-1000);
+    expect(report.paraxialImageZMm).toBeCloseTo(6 + imageGap, 12);
+    expect(report.paraxialOffsetMm).toBeCloseTo(0, 12);
+    expect(report.paraxialMagnification).toBeCloseTo(parallel.y + imageGap * parallel.u, 12);
+    // Paraxial Snell steps give the marginal slope independently of clear-aperture clips.
+    const marginal = atRear(auditOptions.stopSemiDiameterMm, auditOptions.stopSemiDiameterMm / 1000);
+    const paraxialN = 1 / (2 * Math.abs(marginal.u));
+    expect(report.paraxialWorkingFNumber).toBeCloseTo(paraxialN, 12);
+    expect(report.diffractionDepthMm).toBeCloseTo(2 * report.referenceWavelengthNm * 1e-6 * paraxialN ** 2, 12);
+    expect(report.referenceDiscriminated).toBe(true);
+    expect(report.realRayBestFocusOffsetMm).not.toBeNull();
+    // The helper uses the chart's real marginal ray, rather than the inferred Summary conjugate.
+    const result = computeMtf(...mtfInputs(state, { ...auditOptions, maxGridSize: 32 }));
+    expect(report.realRayWorkingFNumber).toBe(result.workingFNumber);
+    expect(result.focus!.appliedShiftMm).toBe(0);
+  });
+  it("recognizes the other distance reference without changing the declared object", () => {
+    const wrongReference = prepareRuntimeState(
+      build({
+        ...constructionFixtureData(L),
+        finiteConjugates: [{ ...conjugate, distanceReference: "image-plane" }],
+      }),
+      1,
+      0,
+    );
+    const report = assessMtfConjugateConsistency(mtfInputs(wrongReference, auditOptions)[0])!;
+    const wrongAxial = atRear(1, 1 / (1000 - state.imgZ));
+    expect(report.verdict).toBe("other-reference");
+    expect(report.objectZMm).toBeCloseTo(state.imgZ - 1000, 12);
+    expect(report.paraxialOffsetMm).toBeCloseTo(-wrongAxial.y / wrongAxial.u - imageGap, 12);
+    expect(report.otherReference.distanceReference).toBe("first-surface");
+    expect(report.otherReference.paraxialOffsetMm).toBeCloseTo(0, 12);
+  });
+  it("flags a perturbed focus gap with the independently known signed residual", () => {
+    const perturbed = prepareRuntimeState(
+      build({
+        ...constructionFixtureData(L),
+        surfaces: constructionFixtureData(L).surfaces.map((s, i) => (i === 2 ? { ...s, d: imageGap + 2 } : s)),
+      }),
+      1,
+      0,
+    );
+    const report = assessMtfConjugateConsistency(mtfInputs(perturbed, auditOptions)[0])!;
+    expect(report.verdict).toBe("inconsistent");
+    expect(report.paraxialOffsetMm).toBeCloseTo(-2, 12);
+    expect(report.offsetDepths).toBeCloseTo(-2 / report.diffractionDepthMm!, 10);
+    expect(Math.abs(report.otherReference.offsetDepths!)).toBeGreaterThan(report.thresholdDepths);
+  });
+  it("certifies paraxial conjugacy when the real working-aperture ray clips", () => {
+    const report = assessMtfConjugateConsistency(
+      mtfInputs(state, { ...auditOptions, pupilSemiDiameterMm: 20, stopSemiDiameterMm: 20 })[0],
+    )!;
+    const marginal = atRear(20, 20 / 1000);
+    expect(report.verdict).toBe("consistent");
+    expect(report.paraxialOffsetMm).toBeCloseTo(0, 12);
+    expect(report.paraxialWorkingFNumber).toBeCloseTo(1 / (2 * Math.abs(marginal.u)), 12);
+    expect(report.realRayWorkingFNumber).toBeNull();
+    expect(report.offsetDepths).toBeCloseTo(0, 12);
+    expect(report.unavailableReason).toBeNull();
+    expect(report.realRayUnavailableReason).toContain("Working f-number ray");
+  });
+  it("discriminates two passing references only with a substantial relative residual", () => {
+    // The independent ABCD solve gives the alternate image and its own paraxial depth.
+    // A 6 mm stop puts that residual between one and 25 depths, below the rejection threshold.
+    const stop = 6;
+    const other = atRear(1, 1 / (1000 - state.imgZ));
+    const otherGap = -other.y / other.u;
+    const otherN = 1 / (2 * stop * Math.abs(other.u));
+    const depth = 2 * 587.5618e-6 * otherN ** 2;
+    const report = assessMtfConjugateConsistency(
+      mtfInputs(state, { ...auditOptions, pupilSemiDiameterMm: stop, stopSemiDiameterMm: stop })[0],
+    )!;
+    expect(report.otherReference.paraxialOffsetMm).toBeCloseTo(otherGap - imageGap, 12);
+    expect(report.otherReference.offsetDepths).toBeCloseTo((otherGap - imageGap) / depth, 10);
+    expect(Math.abs(report.otherReference.offsetDepths!)).toBeGreaterThan(1);
+    expect(Math.abs(report.otherReference.offsetDepths!)).toBeLessThan(report.thresholdDepths);
+    expect(report.referenceDiscriminated).toBe(true);
+    expect(report.verdict).toBe("consistent");
+  });
+  it("reports ambiguity when both references fit without a tenfold separation above one depth", () => {
+    // At the exact image a tiny stop makes even the alternate residual less than one depth.
+    const unresolved = assessMtfConjugateConsistency(mtfInputs(state, options)[0])!;
+    expect(Math.abs(unresolved.otherReference.offsetDepths!)).toBeLessThan(1);
+    expect(unresolved.referenceDiscriminated).toBe(false);
+    expect(unresolved.verdict).toBe("ambiguous-reference");
+
+    // Move the plane to share the independently calculated convention residual between both.
+    const other = atRear(1, 1 / (1000 - state.imgZ));
+    const sharedGap = (imageGap - other.y / other.u) / 2;
+    const shared = prepareRuntimeState(
+      build({
+        ...constructionFixtureData(L),
+        surfaces: constructionFixtureData(L).surfaces.map((s, i) => (i === 2 ? { ...s, d: sharedGap } : s)),
+      }),
+      1,
+      0,
+    );
+    const report = assessMtfConjugateConsistency(mtfInputs(shared, auditOptions)[0])!;
+    expect(report.paraxialOffsetMm).toBeCloseTo(imageGap - sharedGap, 12);
+    for (const check of [report, report.otherReference]) {
+      expect(Math.abs(check.offsetDepths!)).toBeGreaterThan(1);
+      expect(Math.abs(check.offsetDepths!)).toBeLessThan(report.thresholdDepths);
+    }
+    expect(Math.abs(report.otherReference.offsetDepths! / report.offsetDepths!)).toBeLessThan(10);
+    expect(report.referenceDiscriminated).toBe(false);
+    expect(report.verdict).toBe("ambiguous-reference");
+  });
+  it("treats an alternate object behind the first surface as discriminating the reference", () => {
+    // 60 mm from the first surface images about 250 mm away, so 60 mm from the image lies inside the system.
+    const near = atRear(1, 1 / 60);
+    const nearGap = -near.y / near.u;
+    const close = prepareRuntimeState(
+      build({
+        ...constructionFixtureData(base),
+        surfaces: constructionFixtureData(base).surfaces.map((s, i) => (i === 2 ? { ...s, d: nearGap } : s)),
+        finiteConjugates: [{ ...conjugate, objectDistanceMm: 60 }],
+      }),
+      1,
+      0,
+    );
+    expect(close.imgZ).toBeGreaterThan(60);
+    const report = assessMtfConjugateConsistency(mtfInputs(close, options)[0])!;
+    expect(report.paraxialOffsetMm).toBeCloseTo(0, 9);
+    expect(report.otherReference.unavailableReason).toContain("not in front");
+    expect(report.otherReference.offsetDepths).toBeNull();
+    expect(report.referenceDiscriminated).toBe(true);
+    expect(report.verdict).toBe("consistent");
+  });
+  it("does not certify infinity or interpolated focus states", () => {
+    for (const focusT of [0, 0.5])
+      expect(assessMtfConjugateConsistency(mtfInputs(prepareRuntimeState(L, focusT, 0), auditOptions)[0])).toBeNull();
+  });
+  it("checks the same axial source on a fisheye while preserving its MTF support boundary", () => {
+    const fisheye = prepareRuntimeState(
+      build({
+        ...constructionFixtureData(L),
+        projection: { kind: "fisheye-equidistant", focalLengthMm: 50, fullFieldDeg: 180 },
+      }),
+      1,
+      0,
+    );
+    const report = assessMtfConjugateConsistency(mtfInputs(fisheye, auditOptions)[0])!;
+    const axial = assessMtfConjugateConsistency(mtfInputs(state, auditOptions)[0])!;
+    expect(report.verdict).toBe("consistent");
+    expect(report.paraxialImageZMm).toBe(axial.paraxialImageZMm);
+    expect(report.paraxialWorkingFNumber).toBe(axial.paraxialWorkingFNumber);
+    expect(report.realRayWorkingFNumber).toBe(axial.realRayWorkingFNumber);
+    expect(report.realRayBestFocusOffsetMm).toBe(axial.realRayBestFocusOffsetMm);
+    expect(assessMtfSupport(...mtfInputs(fisheye, auditOptions)).reason).toBe("unsupported-path");
+  });
   it("sets the finite-conjugate diffraction cutoff from the independent marginal angle", () => {
     // A nearly stigmatic finite image has the circular-pupil MTF at cutoff 2 sin U′ / λ in air.
     const radius = options.stopSemiDiameterMm;

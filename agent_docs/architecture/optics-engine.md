@@ -269,6 +269,31 @@ point, are aimed from it at the stop and include spherical launch phase; their w
 every field's. Only `finiteConjugates` stations are
 eligible; see `src/lens-data/LENS_DATA_SPEC.md` for source requirements.
 
+`assessMtfConjugateConsistency` checks a prepared certified finite state without changing any MTF result.
+It traces the paraxial image at the reference wavelength and reports its signed offset from the authored image vertex
+and transverse magnification. The axial paraxial ray is scaled to the physical stop rim, giving
+`paraxialWorkingFNumber` = 1/(2 n′ |u′|) in the small-angle approximation. This sets the diffraction depth
+2λN_paraxial² and the signed `offsetDepths`, so the verdict depends only on paraxial quantities. The separate
+`realRayWorkingFNumber` reuses the MTF stop-rim ray and is null when it clips or fails; `realRayUnavailableReason`
+names that failure without affecting the verdict. The reference-line axial best-focus search remains a diagnostic
+bounded to ±10 mm.
+
+`npm run audit:finite-conjugates` checks every declaration at its open physical stop, including axial conjugacy on
+fisheyes. The limit is `MTF_FINITE_CONJUGATE_DEPTHS` = 25 paraxial diffraction depths: all 100 catalog states are
+measurable, 96 lie within 24.310 depths, and four outliers span 36.125–101.683. This accommodates the main
+source-rounded residual range; it does not certify source accuracy. The other distance reference is checked
+independently and normalized with its own paraxial working aperture, never applied. `referenceDiscriminated` is true
+when the other reference would put the object at or behind the first surface, exceeds 25 absolute depths, or has an
+absolute offset in depths at least 10 times the declared one and above one depth. Any other unavailable alternate does
+not establish discrimination.
+
+A declared reference within the limit is `consistent` when discriminated, otherwise `ambiguous-reference`: the source
+still defines the reference, but this check cannot confirm it. A declared mismatch is `other-reference` when the alternate
+passes, otherwise `inconsistent`; unavailable declared paraxial evidence is also `inconsistent`.
+`--lens=<key>` and `--files=<comma-separated data files>` filter inputs; `--json` retains full precision. The audit
+exits 0 unless `--strict` finds an `inconsistent` or `other-reference` row or a loading error. Ambiguous references
+are informational and pass strict checks.
+
 **Data limitations** (`mtfDataLimitations.ts`). `MtfSupport.limitations` are the model's standing assumptions;
 `assessMtfDataLimitations` lists what the lens data lacks for the chart on screen. Each item is `blocking` (the tab
 holds the chart behind a warning until the reader has seen it) or a note listed beside the chart. A gap is listed

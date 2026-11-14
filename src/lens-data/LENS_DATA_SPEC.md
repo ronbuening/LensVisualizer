@@ -1072,6 +1072,8 @@ focus: {
 - MTF never infers conjugates from `closeFocusM`, a production MFD or interpolated slider labels; undocumented
   intermediate states stay unavailable. Do not certify calculated focus travel as a published configuration.
 - Every conjugate also counts as a published state (below).
+- Run `npm run audit:finite-conjugates` to check declared distances and focus spacings against paraxial conjugacy;
+  `--lens=<key>`, `--files=<comma-separated data files>`, `--json` and `--strict` support focused authoring checks.
 - Source-rounded prescriptions may keep residual defocus: MTF evaluates the authored image plane by default, reports the
   axial best-focus shift as a diagnostic, and moves the plane only when the viewer asks. Do not edit the authored image
   distance to improve simulated MTF.

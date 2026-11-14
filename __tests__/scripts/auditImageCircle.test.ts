@@ -8,7 +8,7 @@
  *
  * Each audit reads V2 and refuses its archived V1 twin with the conversion command.
  */
-import { execFileSync } from "node:child_process";
+import { execFileSync, spawnSync } from "node:child_process";
 import { chmodSync, existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { dirname, join, relative, resolve } from "node:path";
@@ -211,6 +211,130 @@ describe("audit script npm contracts", () => {
       expect(String((error as { stderr?: string }).stderr)).toContain("finite positive value");
     }
     expect(failed).toBe(true);
+  });
+});
+
+describe("finite conjugate consistency audit", () => {
+  const root = mkdtempSync(join(tmpdir(), "audit-finite-conjugates-"));
+  afterAll(() => rmSync(root, { recursive: true, force: true }));
+
+  it("emits one numeric JSON row per declaration, filters inputs and keeps strict failure opt-in", () => {
+    const pair = FIXTURE_PAIRS.find((candidate) => candidate.family === "prime");
+    if (pair?.kind !== "lens") throw new Error("missing prime fixture");
+    // Independent paraxial Snell steps for the fixture's +50/-50 mm, 5 mm thick, n=1.5168 singlet.
+    let y = 1 + 1 / 1000;
+    let u = (1 / 1000 - (y * 0.5168) / 50) / 1.5168;
+    y += 5 * u;
+    u = 1.5168 * u - (y * -0.5168) / -50;
+    const imageGap = -y / u;
+    const catalog = join(root, "src/lens-data");
+    mkdirSync(catalog, { recursive: true });
+    const files = ["consistent", "other-reference", "inconsistent", "ambiguous-reference"].map((verdict) => {
+      const file = join(catalog, `${verdict}.data.ts`);
+      const fixture = {
+        ...pair.v2,
+        key: verdict,
+        surfaces: pair.v2.surfaces.map(({ asphere: _asphere, ...surface }, i) =>
+          i === 2 ? { ...surface, d: undefined } : surface,
+        ),
+        gaps: {
+          "2": {
+            values: [
+              [47.5, imageGap + (verdict === "inconsistent" ? 2 : verdict === "ambiguous-reference" ? 0.08 : 0)],
+            ],
+          },
+        },
+        // Omitted keyframes exercise ingest's canonical [0, 1] default.
+        focus: {
+          closeFocusM: 1,
+          conjugates: [
+            {
+              zoomStation: 0,
+              keyframe: 1,
+              objectDistanceMm: 1000,
+              distanceReference: verdict === "other-reference" ? "image-plane" : "first-surface",
+              source: "Synthetic independently solved conjugate",
+            },
+          ],
+        },
+      };
+      writeFileSync(file, `export default ${JSON.stringify(fixture)};\n`);
+      return file;
+    });
+    const originals = files.map((file) => readFileSync(file, "utf8"));
+    const run = (...args: string[]) =>
+      spawnSync("npm", ["run", "--silent", "audit:finite-conjugates", "--", `--files=${files.join(",")}`, ...args], {
+        encoding: "utf8",
+      });
+    const result = run("--json");
+    expect(result.status).toBe(0);
+    const report = JSON.parse(result.stdout);
+    expect(report).toMatchObject({
+      lenses: 4,
+      conjugates: 4,
+      verdicts: { consistent: 1, inconsistent: 1, "other-reference": 1, "ambiguous-reference": 1 },
+      errors: [],
+    });
+    expect(report.thresholdDepths).toBeGreaterThan(0);
+    for (const row of report.rows) {
+      expect(row).toMatchObject({ zoomStation: 0, keyframe: 1, objectDistanceMm: 1000, verdict: row.lens });
+      expect(row.file).toEqual(expect.any(String));
+      for (const field of [
+        "objectZMm",
+        "imagePlaneZMm",
+        "paraxialImageZMm",
+        "paraxialOffsetMm",
+        "realRayBestFocusOffsetMm",
+        "referenceWavelengthNm",
+        "paraxialWorkingFNumber",
+        "realRayWorkingFNumber",
+        "diffractionDepthMm",
+        "offsetDepths",
+        "limitMm",
+        "paraxialMagnification",
+      ])
+        expect(Number.isFinite(row[field]), field).toBe(true);
+      expect(row.otherReference.distanceReference).not.toBe(row.distanceReference);
+      expect(Number.isFinite(row.otherReference.paraxialOffsetMm)).toBe(true);
+      expect(Number.isFinite(row.otherReference.offsetDepths)).toBe(true);
+      expect(typeof row.referenceDiscriminated).toBe("boolean");
+    }
+    expect(run("--json", "--strict").status).toBe(1);
+    expect(run("--json", "--strict", "--lens=ambiguous-reference").status).toBe(0);
+    const filtered = run("--json", "--strict", "--lens=consistent");
+    expect(filtered.status).toBe(0);
+    expect(JSON.parse(filtered.stdout).rows).toHaveLength(1);
+    const walked = JSON.parse(
+      execFileSync(
+        "node",
+        [
+          "--import",
+          resolve("scripts/ts-js-specifier-hook-register.mjs"),
+          resolve("scripts/audit-finite-conjugates.mjs"),
+          "--json",
+        ],
+        { cwd: root, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] },
+      ),
+    );
+    expect(walked.verdicts).toEqual(report.verdicts);
+    expect(walked.rows.map((row: { file: string }) => row.file)).toEqual([
+      "src/lens-data/ambiguous-reference.data.ts",
+      "src/lens-data/consistent.data.ts",
+      "src/lens-data/inconsistent.data.ts",
+      "src/lens-data/other-reference.data.ts",
+    ]);
+    const table = run();
+    expect(table.stdout).toContain("| Object z | Authored z | Paraxial z | Offset mm |");
+    expect(table.stdout).toContain("Paraxial Nw | Real-ray Nw");
+    expect(table.stdout).toContain("Reference discriminated");
+    expect(table.stdout).toContain("ambiguous-reference");
+    expect(table.stdout).toContain("other-reference");
+    expect(files.map((file) => readFileSync(file, "utf8"))).toEqual(originals);
+
+    const missing = run("--json", "--lens=missing");
+    expect(missing.status).toBe(0);
+    expect(JSON.parse(missing.stdout)).toMatchObject({ rows: [], errors: [{ message: "No lens matches missing." }] });
+    expect(run("--json", "--strict", "--lens=missing").status).toBe(1);
   });
 });
 
