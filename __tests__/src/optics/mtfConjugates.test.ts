@@ -214,8 +214,8 @@ describe("documented finite MTF", () => {
     const close = magnificationReport(1000, "20").magnification!.solvedObjectDistanceMm!;
     expect(magnificationAt(close)).toBeCloseTo(20, 9);
     for (const [offset, matches] of [
-      [0.0049, true],
-      [-0.0049, true],
+      [0.004999, true],
+      [-0.004999, true],
       [0.0051, false],
       [-0.0051, false],
     ] as const) {
