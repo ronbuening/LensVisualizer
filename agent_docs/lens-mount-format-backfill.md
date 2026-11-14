@@ -7,9 +7,9 @@ the fields unset and add a note here until a source check resolves it.
 
 ## Current Coverage
 
-- Total lens data files: **1121**
-- Files with both `lensMounts` and `imageFormat`: **1074**
-- Files missing `lensMounts`: **38** (25 public lenses and 13 hidden reference fixtures)
+- Total lens data files: **1127**
+- Files with both `lensMounts` and `imageFormat`: **1079**
+- Files missing `lensMounts`: **39** (26 public lenses and 13 hidden reference fixtures)
 - Files missing `imageFormat`: **35** (23 public lenses and 12 hidden reference fixtures)
 - Files missing both fields: **26**
 - Formats currently in use: `1-1.7-inch-type`, `1-1.8-inch-type`, `1-2.3-inch-type`, `1-2.55-inch-type`,
@@ -28,6 +28,7 @@ with remaining compatibility questions explained in the lens analysis.
 
 | Records | Remaining source limitation |
 |---------|-----------------------------|
+| Agfa Color-Solagon 55mm f/2 | Lens for the Agfa Ambiflex. The canonical taxonomy has no id for the Ambiflex lens fitting; add one before filling the field rather than reusing `agfa-ambi-silette`. |
 | Zeiss Mirotar 500mm f/4.5 | The cited ZEISS sheet identifies a tube and bellows assembly, but the reviewed source set does not select the camera-side fitting of that assembly. Do not assign a Contax or Contarex mount from the family name. |
 | Angénieux Retrofocus R1 35mm; R11 28mm | Historical specimen and secondary references indicate several native fittings. A period manufacturer listing tied to these selected production variants is still needed before enumerating their mounts. |
 | Zeiss Biotar 50mm f/1.4; Kodak Ektar 52mm f/1.5 | The scaled patent examples are not securely mapped to one factory installation. The Biotar family’s Kinamo and other cine contexts do not establish the fitting of this model. |
