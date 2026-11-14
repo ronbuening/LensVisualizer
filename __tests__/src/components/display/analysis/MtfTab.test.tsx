@@ -1597,8 +1597,14 @@ describe("MTF export and aperture comparison", () => {
     { charted: 2.8, wideOpen: 2, max: 5.6, choices: [4, 5.6], stored: 8, available: false },
     { charted: 5.6, wideOpen: 2, max: 8, choices: [8], stored: 8, available: true },
     { charted: 32, wideOpen: 2, max: 32, choices: [], stored: 8, available: false },
-    { charted: 11, wideOpen: 2, max: 16 - 1e-10, choices: [16], stored: 16, available: true },
+    { charted: 11, wideOpen: 2, max: 16 - 1e-10, choices: [], stored: 16, available: false },
     { charted: 11, wideOpen: 2, max: 15.99, choices: [], stored: 16, available: false },
+    { charted: 4, wideOpen: 2, max: 7.9999999995, choices: [5.6], stored: 8, available: false },
+    { charted: 32, wideOpen: 2, max: 64, choices: [45, 64], stored: 64, available: true },
+    { charted: 64, wideOpen: 2, max: 128, choices: [90, 128], stored: 128, available: true },
+    { charted: 8, wideOpen: 2, max: 13.5, choices: [11, 13.5], stored: 13.5, available: true },
+    { charted: 8, wideOpen: 2, max: 11.04, choices: [11], stored: 11, available: true },
+    { charted: 8, wideOpen: 2, max: 10.96, choices: [], stored: 11, available: false },
   ])(
     "bounds full stops by the charted f/$charted and minimum aperture f/$max",
     async ({ charted, wideOpen, max, choices, stored, available }) => {
@@ -1645,7 +1651,7 @@ describe("MTF export and aperture comparison", () => {
   // Default, hidden-Advanced eligibility retains the rounded-aperture boundary of the f/8 control.
   it.each(
     [undefined, 2.8, 5.6, 7.94, 7.95, 7.96, 8, 11, 16, 22].flatMap((charted) =>
-      [5.6, 8, 16, 22].map((minimum) => ({ charted, minimum })),
+      [5.6, 7.9999999995, 8, 16, 22].map((minimum) => ({ charted, minimum })),
     ),
   )(
     "retains f/8 availability at charted f/$charted × minimum f/$minimum with Advanced off",
@@ -2208,6 +2214,12 @@ describe("MTF aperture sweeps", () => {
     { current: 5.6, open: 1.2, max: 22, expected: [5.6, 8, 11, 16, 22] },
     { current: 11, open: 1.2, max: 16, expected: [11, 16] },
     { current: 22, open: 1.2, max: 22, expected: [22] },
+    { current: 5.8, open: 5.8, max: 64, expected: [5.8, 8, 11, 16, 22, 32, 45, 64] },
+    { current: 32, open: 5.8, max: 64, expected: [32, 45, 64] },
+    { current: 64, open: 5.8, max: 128, expected: [64, 90, 128] },
+    { current: 2.8, open: 2.8, max: 13.5, expected: [2.8, 4, 5.6, 8, 11, 13.5] },
+    { current: 11, open: 2.8, max: 11.04, expected: [11] },
+    { current: 4, open: 2.8, max: 7.9999999995, expected: [4, 5.6] },
   ])("builds the current-down request list at f/$current", ({ current, open, max, expected }) => {
     const lens = build({ ...constructionFixtureData(focusedL), nominalFno: open, maxFstop: max });
     const request = analysisRequestForLens(lens);
@@ -2408,6 +2420,46 @@ describe("MTF aperture sweeps", () => {
     await act(async () => finish());
     expect(screen.queryByText(/Calculating f\//)).toBeNull();
     expect(screen.getByText(/18 converged · 0 unconverged · 0 unavailable points/)).toBeTruthy();
+  });
+
+  it("shows no sweep waiting message when the main optical state is unsupported", () => {
+    localStorage.setItem(MTF_PREFERENCES_KEY, JSON.stringify({ view: "aperture", advanced: true }));
+    const { calls } = stubWorker();
+    render(
+      <MtfTab
+        L={focusedL}
+        t={mockTheme}
+        preparedState={focusedState}
+        currentEPSD={1}
+        currentPhysStopSD={1}
+        fNumber={8}
+        movementActive
+      />,
+    );
+    expect(
+      screen.getByText("MTF is unavailable while tilt or shift is active.", { selector: '[role="status"]' }),
+    ).toBeTruthy();
+    expect(screen.queryByText(/Aperture sweep: waiting/)).toBeNull();
+    expect(calls.compute).toBe(0);
+  });
+
+  it("clears the sweep waiting message when the main computation fails", async () => {
+    localStorage.setItem(MTF_PREFERENCES_KEY, JSON.stringify({ view: "aperture", advanced: true }));
+    const { calls } = stubWorker({ error: () => "Main trace failed." });
+    render(
+      <MtfTab
+        L={focusedL}
+        t={mockTheme}
+        preparedState={focusedState}
+        currentEPSD={1}
+        currentPhysStopSD={1}
+        fNumber={8}
+      />,
+    );
+    expect(screen.getByText(/Aperture sweep: waiting/)).toBeTruthy();
+    expect((await screen.findByRole("alert")).textContent).toBe("Main trace failed.");
+    expect(screen.queryByText(/Aperture sweep: waiting/)).toBeNull();
+    expect(calls.compute).toBe(1);
   });
 
   it("falls back to image height with Advanced off, retaining and restoring the stored view", async () => {

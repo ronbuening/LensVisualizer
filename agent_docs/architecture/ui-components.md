@@ -171,9 +171,11 @@ Its crosshair follows the pointer or the arrow keys
 request, sizing its stop with `stopSemiDiameterForFNumber` at the current zoom and scaling the entrance pupil by
 the stop-radius ratio. It draws thin lines in the same slots, including faded out-of-band frequency segments when
 diagnostics are disclosed. Advanced reveals a "Comparison aperture" select beside the toggle: full stops
-1/1.4/2/2.8/4/5.6/8/11/16/22/32 slower than the charted f-number by more than 0.05 for rounded labels, through
-`L.maxFstop` inclusive with 1e-9 f-number endpoint tolerance. `mtfComparisonFNumbers` supplies this range to the tab,
-select and sweep. The stored choice defaults to f/8. An unavailable stored stop disables the overlay and its toggle;
+1/1.4/2/2.8/4/5.6/8/11/16/22/32/45/64/90/128 slower than the charted f-number by more than 0.05 for rounded labels,
+with the exact bound `stop <= L.maxFstop`. The minimum aperture itself is included when it lies in f/1–f/128,
+is slower than the charted aperture by more than 0.05 and is more than 0.05 from every listed full stop.
+`mtfComparisonFNumbers` supplies this range to the tab, select and sweep. The stored choice defaults to f/8.
+An unavailable stored stop disables the overlay and its toggle;
 the title explains the aperture-range requirement. No other stop is substituted or stored. Advanced still lists
 attainable stops, with a disabled placeholder naming the unavailable stored stop; choosing a stop stores it.
 An empty range hides the select. Turning Advanced off hides the aperture select while the toggle keeps naming the
@@ -186,11 +188,16 @@ and uses that exact plane at the comparison aperture. Changing the comparison ap
 diagnostic disclosure and removes superseded comparison values. `compareF8` remains the persisted overlay-on
 boolean. Stored options missing `comparisonFNumber` and old shared links default to 8; version-1 link encoding adds
 optional `n` for a non-default comparison f-number, preserving f/8 link bytes.
+Preferences and shared links validate comparison apertures as finite numbers from 1 through 128; availability
+follows the current lens and zoom's attainable-stop list.
 Advanced adds the Aperture chart button. A stored aperture view falls back to image height while Advanced is off,
 without overwriting the preference. Its x axis is log2 f-number, with ticks at the exact charted aperture and then
-the comparison selector's slower full stops through `L.maxFstop`, inclusive. Frequencies keep their fixed colors, and
-fields use the frequency view's marker shapes, with hollow markers for isolated diffraction references. The Fields selector chooses one field or the center/50 %/outermost available
+the comparison selector's slower stops, including a distinct minimum aperture within the shared range. Frequencies
+keep their fixed colors, and fields use the frequency view's marker shapes, with hollow markers for isolated
+diffraction references. The Fields selector chooses one field or the center/50 %/outermost available
 overview; overview waits for the charted result's final edge and keeps those fractions fixed across apertures.
+The waiting message appears only while a supported main computation is pending; unsupported states and errors
+show only the main explanation.
 `useMtfSweep` sends ordinary requests restricted to those fields, scales both aperture radii as for the
 comparison, and runs one aperture after another on one retained worker client. Progress names the current aperture
 and ordinal; partial values appear immediately, with gaps for pending apertures and no provisional bridges. The

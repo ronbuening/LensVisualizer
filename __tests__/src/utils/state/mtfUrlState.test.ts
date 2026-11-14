@@ -73,11 +73,12 @@ describe("MTF URL state", () => {
       comparisonFNumber: 8,
     });
     expect(encodeMtfSettings({ ...DEFAULT_MTF_PREFERENCES, compareF8: true })).toBe(payload({ c: true }));
-    for (const comparisonFNumber of [1, 1.4, 2, 2.8, 4, 5.6, 8, 11, 16, 22, 32] as const) {
+    for (const comparisonFNumber of [1, 1.4, 2, 2.8, 3, 4, 5.6, 8, 11, 13.5, 16, 22, 32, 45, 64, 90, 128]) {
       const preferences = { ...settings, comparisonFNumber, advanced: false };
       expect(decodeMtfSettings(encodeMtfSettings(preferences))).toEqual(preferences);
     }
-    for (const n of [null, "11", 0, 3, 64]) expect(decodeMtfSettings(payload({ c: true, n }))).toBeNull();
+    for (const n of [null, "11", 0, 0.999, 128.001, NaN, Infinity, -Infinity])
+      expect(decodeMtfSettings(payload({ c: true, n }))).toBeNull();
   });
 
   it("omits defaults inside an explicit defaults payload and preserves all other supported choices", () => {

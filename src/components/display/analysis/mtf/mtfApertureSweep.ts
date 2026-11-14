@@ -4,24 +4,30 @@ import { fopenAtZoomClamped, prepareRuntimeState, stopSemiDiameterForFNumber } f
 import { computeAnalysisFieldGeometryAtState, entrancePupilAtState } from "../../../../optics/fieldGeometry.js";
 import { publishedZoomStations } from "../../../../optics/publishedStations.js";
 import type { RuntimeLens } from "../../../../types/optics.js";
-import { MTF_COMPARISON_F_NUMBERS } from "../../../../utils/state/mtfPreferences.js";
+import { isMtfComparisonFNumber, MTF_COMPARISON_F_NUMBERS } from "../../../../utils/state/mtfPreferences.js";
 
 /** Rounded chart labels within 0.05 f-number represent the same aperture. */
 const APERTURE_LABEL_TOLERANCE = 0.05;
-/** Include an endpoint despite floating-point roundoff, without extending the physical range. */
-const APERTURE_BOUND_TOLERANCE = 1e-9;
 
 /**
- * Share the attainable full stops between the overlay, its selector and the aperture sweep.
+ * Share attainable full stops and a distinct minimum aperture between comparison and sweep.
  * @param fNumber - marked chart aperture at the current zoom position
  * @param maxFstop - lens's minimum aperture (largest attainable marked f-number)
- * @returns slower full stops, including the minimum aperture within roundoff tolerance
+ * @returns slower full stops through f/128 within the exact bound, plus a distinct minimum
  */
-export function mtfComparisonFNumbers(fNumber: number | undefined, maxFstop: number) {
+export function mtfComparisonFNumbers(fNumber: number | undefined, maxFstop: number): number[] {
   if (!fNumber || !Number.isFinite(fNumber) || fNumber <= 0) return [];
-  return MTF_COMPARISON_F_NUMBERS.filter(
-    (stop) => fNumber < stop - APERTURE_LABEL_TOLERANCE && stop <= maxFstop + APERTURE_BOUND_TOLERANCE,
+  const stops: number[] = MTF_COMPARISON_F_NUMBERS.filter(
+    (stop) => fNumber < stop - APERTURE_LABEL_TOLERANCE && stop <= maxFstop,
   );
+  if (
+    isMtfComparisonFNumber(maxFstop) &&
+    fNumber < maxFstop - APERTURE_LABEL_TOLERANCE &&
+    MTF_COMPARISON_F_NUMBERS.every((stop) => Math.abs(stop - maxFstop) > APERTURE_LABEL_TOLERANCE)
+  ) {
+    stops.push(maxFstop);
+  }
+  return stops;
 }
 
 /**
@@ -43,7 +49,7 @@ export function mtfRequestAtAperture(lens: RuntimeLens, request: AnalysisRequest
 }
 
 /**
- * Start at the exact charted aperture, followed by the comparison selector's slower full stops.
+ * Start at the exact charted aperture, followed by the comparison selector's slower stops.
  * @param lens - current lens, including its minimum-aperture bound
  * @param request - charted request, retained verbatim for the first point
  * @param fNumber - charted marked f-number

@@ -366,7 +366,7 @@ export default function MtfTab({
             role="status"
             style={muted}
           >{`Calculating ${mtfSweepLabel(sweep.samples[sweep.index])}, ${sweep.index + 1} of ${sweep.samples.length}…`}</p>
-        ) : view === "aperture" && !sweepReady ? (
+        ) : view === "aperture" && !sweepReady && support.available && running && !error ? (
           <p role="status" style={muted}>
             Aperture sweep: waiting for the charted aperture's fields and image plane…
           </p>

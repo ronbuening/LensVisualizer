@@ -353,15 +353,18 @@ plane and refocus shift relative to the main aperture. The comparison follows th
 focus policy independently by default; a persisted control can instead hold the main result's image plane, starting
 once its focus is available on the first partial result. Held shifts are part of both worker cache keys.
 `mtfComparisonFNumbers` shares the attainable stops between the tab, select and aperture sweep: standard full stops
-slower than the charted aperture (a gap greater than 0.05 f-number for rounded labels) up to and including
-`L.maxFstop`, the slider's minimum-aperture bound, with 1e-9 f-number tolerance at that endpoint. The preference
-defaults to f/8. A stored stop outside this list disables the overlay without substitution or preference changes;
-its disabled toggle's title explains the aperture-range requirement. Advanced reveals the comparison aperture
+through f/128 slower than the charted aperture (a gap greater than 0.05 f-number for rounded labels), with the exact
+bound `stop <= L.maxFstop`, the slider's minimum aperture. The minimum itself is also offered when it is within
+f/1–f/128, slower than the charted aperture by more than 0.05, and more than 0.05 from every listed full stop. The
+preference defaults to f/8. A stored stop outside this list disables the overlay without substitution or preference
+changes; its disabled toggle's title explains the aperture-range requirement. Advanced reveals the comparison aperture
 select, which lists attainable stops and shows an unavailable stored stop as a disabled placeholder. Choosing a stop
 stores it. Advanced off hides the select while the toggle continues to name the stored aperture, with f/8
 availability matching the rounded-aperture rule of the default control.
 `compareF8` keeps its overlay-on meaning; `comparisonFNumber` defaults to 8 for older stored preferences and shared
 links. Version-1 share encoding adds only optional `n` for a non-default aperture; f/8 payloads stay unchanged.
+Stored preferences and shared links accept every finite comparison f-number from 1 through 128, including
+non-full-stop minima; the attainable-stop helper determines availability for the current lens and zoom.
 The comparison shares the chart's diagnostic disclosure policy, including faded out-of-band frequency segments,
 and adds aperture-labelled table rows and appended CSV columns without changing the main CSV columns. The existing
 `f/8 ` column prefix stays unchanged at f/8; another stop uses its own prefix, such as `f/5.6 `, for comparison,
@@ -369,13 +372,14 @@ notes and diffraction-limit columns in the clipboard and both contextual CSV sco
 crosshair values, Advanced focus/working-aperture blocks, export context and captions name that same aperture.
 Advanced exposes Aperture and, for zoom lenses, Zoom views. With Advanced off, either stored sweep view renders
 image height without changing the preference; a prime also falls back from a stored Zoom view. The Aperture sweep
-starts at the exact charted aperture, then uses the comparison selector's slower full stops through `L.maxFstop`, inclusive. Each point is an ordinary request with the same
-stop/pupil scaling,
+starts at the exact charted aperture, then uses the comparison selector's slower stops, including a distinct
+minimum aperture within the shared range. Each point is an ordinary request with the same stop/pupil scaling,
 restricted to the center, 50 % and charted result's outermost available field, or the frequency selector's single
-field. Overview waits for the charted result to finish so its edge stays fixed throughout the sweep. One retained
-`useMtfSweep` client runs the apertures sequentially, publishes partial results and reports the current
-f-number and aperture count. Only the selected view computes; optical/settings changes cancel it and completed
-requests reuse the client's result cache when the view returns. Its plane selector shares `comparisonFocus`:
+field. Overview waits for the charted result to finish so its edge stays fixed throughout the sweep. The waiting
+message appears only while a supported main computation is pending; unsupported states and errors use the main
+explanation alone. One retained `useMtfSweep` client runs the apertures sequentially, publishes partial results and
+reports the current f-number and aperture count. Only the selected view computes; optical/settings changes cancel it
+and completed requests reuse the client's result cache when the view returns. Its plane selector shares `comparisonFocus`:
 refocus applies the selected focus policy independently, while hold uses the charted aperture's exact applied
 shift. The caption states that policy, and table/CSV rows record each applied plane and shift. Comparison-overlay
 controls and requests are hidden in this view. Aperture ticks use a log2 f-number axis; frequency colors and field

@@ -95,9 +95,9 @@ describe("MTF preferences", () => {
       comparisonFNumber: 8,
       advanced: false,
     });
-    for (const comparisonFNumber of [undefined, null, "11", 0, 3, NaN, Infinity, 64])
+    for (const comparisonFNumber of [undefined, null, "11", 0, 0.999, 128.001, NaN, Infinity, -Infinity])
       expect(parseMtfPreferences({ comparisonFNumber }).comparisonFNumber).toBe(8);
-    for (const comparisonFNumber of MTF_COMPARISON_F_NUMBERS)
+    for (const comparisonFNumber of [...MTF_COMPARISON_F_NUMBERS, 3, 13.5, 45, 64, 90, 128])
       expect(parseMtfPreferences({ comparisonFNumber }).comparisonFNumber).toBe(comparisonFNumber);
     const store = stubStorage();
     updateMtfPreferences({ compareF8: true, comparisonFNumber: 5.6, advanced: true });
@@ -109,6 +109,11 @@ describe("MTF preferences", () => {
     });
     resetMtfPreferencesCache();
     expect(getMtfPreferences()).toMatchObject({ compareF8: true, comparisonFNumber: 5.6, advanced: false });
+    for (const comparisonFNumber of [13.5, 45, 64, 90, 128]) {
+      updateMtfPreferences({ comparisonFNumber });
+      resetMtfPreferencesCache();
+      expect(getMtfPreferences().comparisonFNumber).toBe(comparisonFNumber);
+    }
   });
   it("persists updates, notifies subscribers and survives unavailable storage", () => {
     const store = stubStorage({ [MTF_PREFERENCES_KEY]: JSON.stringify({ fieldStepPercent: 2 }) });

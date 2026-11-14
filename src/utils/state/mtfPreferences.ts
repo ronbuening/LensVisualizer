@@ -14,8 +14,9 @@ export const MTF_PIXEL_PITCHES = [3, 4, 5, 6, 8] as const;
 export type MtfPixelPitch = (typeof MTF_PIXEL_PITCHES)[number];
 
 /** Full stops offered for the comparison, subject to the charted lens's aperture range. */
-export const MTF_COMPARISON_F_NUMBERS = [1, 1.4, 2, 2.8, 4, 5.6, 8, 11, 16, 22, 32] as const;
-export type MtfComparisonFNumber = (typeof MTF_COMPARISON_F_NUMBERS)[number];
+export const MTF_COMPARISON_F_NUMBERS = [1, 1.4, 2, 2.8, 4, 5.6, 8, 11, 16, 22, 32, 45, 64, 90, 128] as const;
+/** Finite marked f-number from 1 through 128, including non-full-stop minimum apertures. */
+export type MtfComparisonFNumber = number;
 
 /** Field spacing choices, in percent of the reference image height. */
 export const MTF_FIELD_STEPS = [10, 5, 2, 1] as const;
@@ -92,7 +93,15 @@ const isView = oneOf<MtfChartView>(["field", "frequency", "aperture", "zoom"]);
 const isFieldStep = oneOf<MtfFieldStepPercent>(MTF_FIELD_STEPS);
 const isFrequency = oneOf<MtfChartFrequency>(MTF_CHART_FREQUENCIES);
 const isGridCap = oneOf<MtfGridCap>([128, 256]);
-const isComparisonFNumber = oneOf<MtfComparisonFNumber>(MTF_COMPARISON_F_NUMBERS);
+
+/**
+ * Accept lens-specific minimum apertures as well as full stops in preferences and share links.
+ * @param value - untrusted marked f-number
+ * @returns whether the value is finite and within the inclusive 1–128 range
+ */
+export function isMtfComparisonFNumber(value: unknown): value is MtfComparisonFNumber {
+  return typeof value === "number" && Number.isFinite(value) && value >= 1 && value <= 128;
+}
 
 /**
  * Validate stored options field by field; unknown or corrupt values keep their defaults.
@@ -125,7 +134,7 @@ export function parseMtfPreferences(raw: unknown): MtfPreferences {
         ? stored.maxGridSize
         : defaults.maxGridSize,
     compareF8: typeof stored.compareF8 === "boolean" ? stored.compareF8 : defaults.compareF8,
-    comparisonFNumber: isComparisonFNumber(stored.comparisonFNumber)
+    comparisonFNumber: isMtfComparisonFNumber(stored.comparisonFNumber)
       ? stored.comparisonFNumber
       : defaults.comparisonFNumber,
     comparisonFocus: stored.comparisonFocus === "hold" ? "hold" : defaults.comparisonFocus,

@@ -7,7 +7,7 @@ import {
   MTF_CHART_FREQUENCIES,
   MTF_FIELD_STEPS,
   MTF_PIXEL_PITCHES,
-  MTF_COMPARISON_F_NUMBERS,
+  isMtfComparisonFNumber,
   type MtfPreferences,
 } from "./mtfPreferences.js";
 import { MTF_MIN_WAVELENGTH_NM, MTF_MAX_WAVELENGTH_NM } from "../../types/mtf.js";
@@ -46,7 +46,7 @@ const SETTINGS = {
   h: { key: "fieldStepPercent", valid: oneOf(...MTF_FIELD_STEPS) },
   q: { key: "frequencies", valid: isFrequencies },
   c: { key: "compareF8", valid: oneOf(true, false) },
-  n: { key: "comparisonFNumber", valid: oneOf(...MTF_COMPARISON_F_NUMBERS) },
+  n: { key: "comparisonFNumber", valid: isMtfComparisonFNumber },
   o: { key: "comparisonFocus", valid: oneOf("refocus", "hold") },
   d: { key: "diffractionLimit", valid: oneOf(true, false) },
   r: { key: "frequencyField", valid: isField },
