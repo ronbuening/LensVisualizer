@@ -1,0 +1,1 @@
+Added an Advanced toggle to the MTF tab for per-field sampling and focus-search details
