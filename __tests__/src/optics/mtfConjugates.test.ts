@@ -202,6 +202,29 @@ describe("documented finite MTF", () => {
     const ratio = magnificationReport(1000, "1/20");
     expect(magnificationAt(ratio.magnification!.solvedObjectDistanceMm!)).toBeCloseTo(0.05, 12);
   });
+  it("holds a solved distance to its 0.01 mm rounding, however little defocus a larger miss costs", () => {
+    const solved = magnificationReport(1000, "1/20").magnification!.solvedObjectDistanceMm!;
+    // At a twentieth life size 0.02 mm of object distance is a negligible defocus, and still not the solve.
+    const off = magnificationReport(solved + 0.02, "1/20");
+    expect(Math.abs(off.offsetDepths! - off.magnification!.solvedOffsetDepths!)).toBeLessThan(0.01);
+    expect(off.magnification!.matchesSolve).toBe(false);
+    expect(off.verdict).toBe("inconsistent");
+    // Twenty times life size puts the object 2.5 mm beyond the front focus, where a first-order allowance for
+    // the rounding falls short and half a rounding step is several quarter waves.
+    const close = magnificationReport(1000, "20").magnification!.solvedObjectDistanceMm!;
+    expect(magnificationAt(close)).toBeCloseTo(20, 9);
+    for (const [offset, matches] of [
+      [0.0049, true],
+      [-0.0049, true],
+      [0.0051, false],
+      [-0.0051, false],
+    ] as const) {
+      const rounded = magnificationReport(close + offset, "20");
+      expect(Math.abs(rounded.offsetDepths! - rounded.magnification!.solvedOffsetDepths!)).toBeGreaterThan(1);
+      expect(rounded.magnification!.matchesSolve).toBe(matches);
+      expect(rounded.magnification!.withinPrint).toBe(matches);
+    }
+  });
   it("solves a print for the real object when the in-focus conjugate is virtual", () => {
     // Half a millimetre inside infinity focus, only a virtual object focuses on the plane.
     const parallel = atRear(1, 0);

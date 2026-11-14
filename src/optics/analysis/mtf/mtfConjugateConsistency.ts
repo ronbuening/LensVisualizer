@@ -56,12 +56,6 @@ export interface MtfConjugateCheck {
 /** Half the 0.01 mm to which a solved object distance is written. */
 const SOLVED_DISTANCE_ROUNDING_MM = 0.005;
 
-/**
- * A declared distance that is not the solved one to its rounding still matches within a twentieth of a quarter
- * wave, so a later index refinement does not unsettle a long object distance.
- */
-const SOLVED_DISTANCE_DEPTHS = 0.05;
-
 /** A final slope below 10⁻¹²/mm for a unit-height parallel ray is an afocal system: no distance sets a magnification. */
 const AFOCAL_SLOPE_PER_MM = 1e-12;
 
@@ -87,7 +81,7 @@ export interface MtfConjugateMagnification {
   solvedObjectDistanceMm: number | null;
   /** Signed quarter waves of defocus with the object at the solved distance. */
   solvedOffsetDepths: number | null;
-  /** The declared distance is the solved one to its 0.01 mm rounding, or within 0.05 quarter waves of it. */
+  /** The declared distance is the solved one to its 0.01 mm rounding. */
   matchesSolve: boolean;
 }
 
@@ -267,19 +261,19 @@ function checkMagnification(
       accept(at(-preferred), true);
     }
   }
+  // A defocus tolerance would pass round values at low magnification, where a millimetre is a small fraction of
+  // a quarter wave, so the test is on the distance itself.
   if (check.solvedObjectDistanceMm !== null)
     check.matchesSolve =
-      Math.abs(conjugate.objectDistanceMm - check.solvedObjectDistanceMm) <= SOLVED_DISTANCE_ROUNDING_MM + 1e-9 ||
-      (check.solvedOffsetDepths !== null &&
-        declared.offsetDepths !== null &&
-        Math.abs(declared.offsetDepths - check.solvedOffsetDepths) <= SOLVED_DISTANCE_DEPTHS);
-  if (declared.paraxialMagnification !== null && invariant !== 0) {
+      Math.abs(conjugate.objectDistanceMm - check.solvedObjectDistanceMm) <= SOLVED_DISTANCE_ROUNDING_MM + 1e-9;
+  if (declared.paraxialMagnification !== null && declared.paraxialMagnification !== 0 && invariant !== 0) {
     const magnitude = Math.abs(declared.paraxialMagnification);
-    // dm/ds = −m² u_p / D converts the written distance's rounding into magnification; the margin covers the
-    // derivative's own change across that rounding.
-    const slack = Math.abs((magnitude ** 2 * parallel.u) / invariant) * SOLVED_DISTANCE_ROUNDING_MM * 1.001 + 1e-12;
+    // 1/m = (s u_p + u_a) / D is linear in s, so the distance's rounding moves 1/|m| by exactly this much.
+    const inverse = 1 / magnitude;
+    const shift = Math.abs(parallel.u / invariant) * SOLVED_DISTANCE_ROUNDING_MM;
     check.atDeclaredDistance = magnitude;
-    check.withinPrint = magnitude >= low - slack && magnitude <= high + slack;
+    check.withinPrint =
+      1 / (inverse + shift) <= high + 1e-12 && (inverse <= shift || 1 / (inverse - shift) >= low - 1e-12);
   }
   return check;
 }

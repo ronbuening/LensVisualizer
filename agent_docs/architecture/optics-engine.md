@@ -302,8 +302,7 @@ magnification is the value in that interval nearest |A|, solved for the in-focus
 first and for the other when the first has no real object in front of the lens with a finite real image; an afocal
 system (|u_p| ≤ 10⁻¹²/mm) has no such solution. A ratio or whole number has no interval. `withinPrint` tests the
 declared distance's magnification against the same interval, widened by the 0.005 mm to which the distance is
-written. `matchesSolve` requires the declared distance to be the solved one to that rounding, or to differ from it
-by at most 0.05 quarter waves of defocus. Such a conjugate is `consistent` when it is inside the depth limit,
+written. `matchesSolve` requires the declared distance to be the solved one to that rounding. Such a conjugate is `consistent` when it is inside the depth limit,
 `withinPrint` and `matchesSolve`, and `inconsistent` otherwise; its first-surface reference is fixed by
 construction, so the other-reference verdicts do not apply.
 
