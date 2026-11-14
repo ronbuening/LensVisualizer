@@ -7,15 +7,15 @@ the fields unset and add a note here until a source check resolves it.
 
 ## Current Coverage
 
-- Total lens data files: **1128**
-- Files with both `lensMounts` and `imageFormat`: **1081**
-- Files missing `lensMounts`: **38** (25 public lenses and 13 hidden reference fixtures)
+- Total lens data files: **1135**
+- Files with both `lensMounts` and `imageFormat`: **1086**
+- Files missing `lensMounts`: **40** (27 public lenses and 13 hidden reference fixtures)
 - Files missing `imageFormat`: **35** (23 public lenses and 12 hidden reference fixtures)
 - Files missing both fields: **26**
 - Formats currently in use: `1-1.7-inch-type`, `1-1.8-inch-type`, `1-2.3-inch-type`, `1-2.55-inch-type`,
   `1-2.7-inch-type`, `1-inch-type`, `1.25-inch-tube`, `1.5-inch-type`, `110`, `135-full-frame`,
   `16mm-cinema`, `2-3-inch-type`, `35mm-cinema`, `44x33`, `4x5`, `5x7`, `645`, `6x6`, `6x7`, `6x9`, `8x10`,
-  `aps-c`, `aps-film`, `four-thirds`, `half-frame-135`, `normal-8`, `super-35-1.9`, `super-35-cinema`, `super-8`
+  `aps-c`, `aps-film`, `four-thirds`, `half-frame-135`, `normal-8`, `quarter-plate`, `super-35-1.9`, `super-35-cinema`, `super-8`
 - Mounts currently in use: `agfa-ambi-silette`, `alpa`, `arri-pl`, `arri-standard`, `c-mount`, `canon-7-bayonet`, `canon-ef`, `canon-ef-m`, `canon-ef-s`, `canon-fd`, `canon-fl`, `canon-r`, `canon-rf`, `contax-rf`, `contax-yashica`, `d-mount`, `dkl`, `enlarging-lens`, `exakta`, `fixed-lens-camera`, `four-thirds`, `fujica-x`, `fujifilm-g`, `fujifilm-x`, `graflex-xl`, `hasselblad-h`, `hasselblad-v`, `hasselblad-xcd`, `konica-ar`, `konica-f`, `l-mount`, `large-format-lens-board`, `leica-ltm`, `leica-m`, `leica-r`, `leica-visoflex`, `m42`, `mamiya-645`, `mamiya-7`, `mamiya-nc`, `mamiya-rb67`, `mamiya-ze`, `micro-four-thirds`, `minolta-sr`, `miranda-bayonet`, `nikon-1`, `nikon-f`, `nikon-ix`, `nikon-s`, `nikon-z`, `nikonos`, `nikonos-rs`, `olympus-om`, `olympus-pen-f`, `pentacon-six`, `pentax-110`, `pentax-645`, `pentax-67`, `pentax-k`, `pentax-q`, `praktica-b`, `praktina`, `projection-lens`, `samsung-nx`, `sigma-sa`, `sony-a`, `sony-fe`, `voigtlander-prominent`, `werra`, `zeiss-contaflex`, `zeiss-contarex`
 
 ## Source-Review Queue
@@ -29,6 +29,7 @@ with remaining compatibility questions explained in the lens analysis.
 | Records | Remaining source limitation |
 |---------|-----------------------------|
 | Zeiss Mirotar 500mm f/4.5 | The cited ZEISS sheet identifies a tube and bellows assembly, but the reviewed source set does not select the camera-side fitting of that assembly. Do not assign a Contax or Contarex mount from the family name. |
+| Cooke Speed Panchro 1 in f/2 (US 1,955,591 Design); Cooke Speed Panchro Series II 75mm f/2 | Studio cine lenses were supplied in several camera fittings. Taylor-Hobson's LEN 45 leaflet and Cooke's Panchro history name none for these models, and the US 1,955,591 example is a 1-inch 16 mm design with no matching retail lens. |
 | Angénieux Retrofocus R1 35mm; R11 28mm | Historical specimen and secondary references indicate several native fittings. A period manufacturer listing tied to these selected production variants is still needed before enumerating their mounts. |
 | Zeiss Biotar 50mm f/1.4; Kodak Ektar 52mm f/1.5 | The scaled patent examples are not securely mapped to one factory installation. The Biotar family’s Kinamo and other cine contexts do not establish the fitting of this model. |
 | Kodak Ektar 50mm f/3.5 | Kodak literature documents both Ektra and Retina same-name products. The selected patent correlation does not uniquely choose between their different installations. |

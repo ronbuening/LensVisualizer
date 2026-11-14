@@ -132,6 +132,18 @@ export const MAKER_DETAILS: Record<string, MakerDetails> = {
     notableDesigns:
       "Lithagon 35mm lenses, Super-Lithagon 35mm f/1.9, Ennalyt 50mm lenses, Tele-Ennalyt 400mm f/4.5, Enna 85-250mm tele-zoom",
   },
+  // Company history and Ernostar development: museum records; patent qualification in the lens analysis.
+  // https://collection.sciencemuseumgroup.org.uk/people/cp100571/ernemann-werke
+  // https://www.cameramuseum.ch/en/discover/permanent-exhibition/the-plate-era/the-ermanox-plays-with-the-shadows/
+  ernemann: {
+    founded: 1889,
+    headquarters: "Dresden, Saxony, Germany (historical works)",
+    summary:
+      "German camera, lens and cinema-projector manufacturer whose Ernostar lenses equipped the Ermanox cameras for photography in low light.",
+    history:
+      "Heinrich Ernemann and his partner Matthias founded the Dresdner Photographische Apparate-Fabrik Ernemann & Matthias in Dresden in 1889. The business became a joint-stock company in 1899 and produced photographic cameras and cinema projectors. Ludwig Bertele developed the Ernostar lens for the company, first at f/2 and then at f/1.8. The Ermanox camera appeared in 1924 and used these large-aperture lenses for photography in available light. In 1926 Ernemann merged with other manufacturers to form Zeiss Ikon AG, while the Ernemann brand continued in use. The catalog's Ernostar 10.5cm f/1.8 follows Example II of Ernemann's DE 436,260.",
+    notableDesigns: "Ernostar 10.5cm f/1.8, Ernostar 10cm f/2, Ermanox camera",
+  },
   kodak: {
     founded: 1892,
     headquarters: "Rochester, New York, United States",
@@ -253,6 +265,21 @@ export const MAKER_DETAILS: Record<string, MakerDetails> = {
       "Canon's origins trace to 1933, when Goro Yoshida and his brother-in-law Saburo Uchida built the Kwanon — a 35 mm focal-plane shutter camera prototype, named after the Buddhist goddess of mercy — at the Precision Optical Instruments Laboratory in Roppongi, Tokyo. The Kwanon never went into commercial production; the first camera actually sold under the new brand was the Hansa Canon (1936), a coupled-rangefinder 35 mm body distributed by Omiya Shashin-yōhin under the 'Hansa' trade name and fitted with a Nikkor 50 mm f/3.5 lens supplied by Nippon Kogaku — Canon did not yet produce its own lenses. Precision Optical Industry Co., Ltd. was formally incorporated in August 1937 to scale up production, and the company renamed itself Canon Camera Co., Ltd. in 1947 (and Canon Inc. in 1969).\n\nCanon began manufacturing its own optics in 1939 with the Serenar lens series for the Hansa Canon line. Through the 1950s and early 1960s the Canon-mount (Leica thread mount-derivative) rangefinders matured into the Canon VI and Canon 7, and the Canonflex (1959) and FT QL (1966) brought Canon into the SLR market. The R, FL, and FD lens-mount series of the 1960s and early 1970s established Canon's SLR optical line, and the AE-1 (1976) — with CPU-controlled shutter-priority exposure made possible by Canon's early investment in microelectronics — sold an unprecedented five million units worldwide and became the best-selling SLR of the decade. The Canon F-1 (1971) and New F-1 (1981) served professional photojournalists and studio photographers during the same period.\n\nThe EOS system (1987) was a deliberate architectural break: Canon abandoned the FD mount mid-product-cycle and introduced the EF mount with a fully electronic lens-body interface and a 54 mm throat at a 44 mm flange focal distance. Every EF lens drives its own autofocus motor internally — Canon's USM (Ultrasonic Motor), introduced on the EF 300 mm f/2.8L USM in 1987, was the first such system in any 35 mm autofocus lens and removed the body-to-lens mechanical coupling that limited earlier AF designs. The EOS-1 (1989) and the long telephoto L-series that followed — together with optical innovations like in-lens Image Stabilization (introduced on the EF 75-300 mm f/4-5.6 IS USM in 1995, the first stabilized 35 mm autofocus lens), Diffractive Optics (DO) elements (EF 400 mm f/4 DO IS USM, 2001), and Blue-spectrum Refractive (BR) elements (EF 35 mm f/1.4L II USM, 2015) — made Canon the dominant force in professional sport and press photography through the 1990s and 2000s.\n\nCanon's transition to digital began with the EOS D30 (2000) and EOS-1D (2001), and the EOS-1Ds (2002) was the first integrated full-frame DSLR. The RF mount system, launched with the EOS R (2018), kept the EF mount's 54 mm throat but shortened the flange focal distance from 44 mm to 20 mm, enabling much shorter back-focus designs and a denser 12-pin lens-body data link. The RF 50 mm f/1.2L USM and RF 85 mm f/1.2L USM demonstrated what this design freedom enabled at wide apertures, while the RF 100 mm f/2.8L Macro IS USM introduced an SA (spherical aberration) control ring — an adjustable element group that allows photographers to dial in or out foreground and background bokeh character at any focus distance.",
     notableDesigns:
       "EF 50mm f/1.0L USM, EF 85mm f/1.2L II USM, EF 200mm f/2L IS USM, RF 50mm f/1.2L USM, RF 100mm f/2.8L Macro IS USM",
+  },
+  // Manufacturing lineage and later company formation: Science Museum Group; lens families: Cooke archives.
+  // https://collection.sciencemuseumgroup.org.uk/people/cp104737/taylor-hobson-limited
+  // https://cookeoptics.com/compendium/
+  // https://cookeoptics.com/news-and-events/the-history-of-panchro-part-1/
+  // https://cookeoptics.com/news-and-events/classic-cookes-25mm-t2-2-cooke-speed-panchro-series-ii-s2-serial-592911-in-production-from-1953-u-s-patent-2502509/
+  cooke: {
+    founded: 1886,
+    headquarters: "Leicester, England, United Kingdom",
+    summary:
+      "British lens brand of Taylor, Taylor & Hobson, known for photographic anastigmats, telephotos and the Speed Panchro cinema lenses, later continued by Cooke Optics.",
+    history:
+      "Cooke's manufacturing lineage began in Leicester in 1886 with the business later known as Taylor, Taylor & Hobson. The firm produced Cooke lenses based on H. Dennis Taylor's triplet design, patented in 1893. Arthur Warmisham's Aviar and Horace William Lee's Series VIII telephoto, Series XI triplet and Series XV Triple Convertible extended its photographic lens range. Lee's Speed Panchro designs were followed by Gordon Cook's Series II cinema lenses in the 1950s. Cooke Optics became a separate company in 1998 following a buyout of Taylor Hobson's optical division. Each Cooke model in the catalog follows a numerical example from one of these patents.",
+    notableDesigns:
+      "Aviar (Series II), Series VIII telephoto, Series XI triplet, Series XV Triple Convertible, Speed Panchro, Speed Panchro Series II (S2), Cooke Triplet",
   },
   hasselblad: {
     founded: 1941,
