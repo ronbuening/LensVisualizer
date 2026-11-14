@@ -38,6 +38,16 @@ type MtfSpectrumOptions =
   | { spectrum: "single"; wavelengthNm: number }
   | { spectrum: Exclude<MtfSpectrum, "single">; wavelengthNm?: number };
 
+/** Missing prerequisites within the unsupported-path refusal. */
+export type MtfUnsupportedPathReason =
+  | "fisheye-projection"
+  | "folded-path"
+  | "annular-aperture"
+  | "diffractive-surface"
+  | "blocking-surface"
+  | "tilted-image-plane"
+  | "non-forward-image-plane";
+
 /** Method-specific settings; physical aperture comes from AnalysisRequest. */
 export type MtfRequestOptions = Omit<
   MtfOptions,
@@ -73,6 +83,8 @@ export interface MtfSpectralLine {
 export interface MtfSupport {
   available: boolean;
   reason: MtfUnavailableReason | null;
+  /** All applicable unsupported-path prerequisites in stable display order; absent for other results. */
+  pathReasons?: readonly MtfUnsupportedPathReason[];
   message: string;
   referenceWavelengthNm: number;
   /**

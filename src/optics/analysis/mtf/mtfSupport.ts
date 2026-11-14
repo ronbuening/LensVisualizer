@@ -6,6 +6,7 @@ import type {
   MtfSpectrum,
   MtfSupport,
   MtfUnavailableReason,
+  MtfUnsupportedPathReason,
 } from "../../../types/mtf.js";
 import { MTF_MIN_WAVELENGTH_NM, MTF_MAX_WAVELENGTH_NM } from "../../../types/mtf.js";
 import type { AnalysisRequest } from "../request.js";
@@ -55,6 +56,22 @@ export const MTF_PHOTOPIC_LINES: readonly MtfSpectralLine[] = Object.freeze([
 
 /** Prescription focal length may differ from the marketed value by this share before results are qualified. */
 const SCALE_NOTE_FRACTION = 0.1;
+
+const UNSUPPORTED_PATH_MESSAGES: Record<MtfUnsupportedPathReason, string> = {
+  "fisheye-projection":
+    "MTF is unavailable for fisheye projections; the field axis needs a projection mapping rather than image height along one meridian.",
+  "folded-path":
+    "MTF is unavailable for folded or mirror paths; diffraction needs optical-path lengths through the reflections.",
+  "annular-aperture":
+    "MTF is unavailable for annular apertures; diffraction needs optical-path differences across the central obstruction.",
+  "diffractive-surface":
+    "MTF is unavailable for diffractive surfaces; spectral results need a model of the wavelength-dependent diffraction order.",
+  "blocking-surface": "MTF is unavailable for blocking surfaces; the pupil model assumes a sequential refractive path.",
+  "tilted-image-plane":
+    "MTF requires an image plane perpendicular to the optical axis; tilted-plane direction cosines are not modeled.",
+  "non-forward-image-plane":
+    "MTF requires a forward-facing image plane; the image-space direction-cosine model assumes a positive axial normal.",
+};
 
 export const MTF_SPECTRUM_LABELS: Record<MtfSpectrum, string> = {
   reference: "Reference-wavelength",
@@ -394,11 +411,26 @@ export function assessMtfSupport(request: AnalysisRequest, settings: MtfRequestO
       `Single-wavelength MTF requires a finite wavelength from ${MTF_MIN_WAVELENGTH_NM} to ${MTF_MAX_WAVELENGTH_NM} nm.`,
     );
   }
-  if (!mtfSequentialRefractivePath(state))
-    return reject("unsupported-path", "MTF currently supports centered, sequential refractive prescriptions.");
+  const rejectPath = (): MtfSupport => {
+    const pathReasons: MtfUnsupportedPathReason[] = [];
+    if (lens.source.projection?.kind?.startsWith("fisheye")) pathReasons.push("fisheye-projection");
+    if (lens.flags.isFoldedOptics || state.surfaces.some((s) => s.interaction.type === "reflect"))
+      pathReasons.push("folded-path");
+    if (state.surfaces.some((s) => (s.innerSd ?? 0) > 0)) pathReasons.push("annular-aperture");
+    if (state.surfaces.some((s) => s.diffractive)) pathReasons.push("diffractive-surface");
+    if (state.surfaces.some((s) => s.interaction.type !== "refract" && s.interaction.type !== "reflect"))
+      pathReasons.push("blocking-surface");
+    const [x, y, z] = state.imagePlane.normal;
+    if (Math.abs(x) > 1e-10 || Math.abs(y) > 1e-10) pathReasons.push("tilted-image-plane");
+    if (z <= 0) pathReasons.push("non-forward-image-plane");
+    return {
+      ...reject("unsupported-path", pathReasons.map((reason) => UNSUPPORTED_PATH_MESSAGES[reason]).join(" ")),
+      pathReasons,
+    };
+  };
+  if (!mtfSequentialRefractivePath(state)) return rejectPath();
   if (options.movementActive) return reject("active-movement", "MTF is unavailable while tilt or shift is active.");
-  if (!mtfAxialImagePlane(state))
-    return reject("unsupported-path", "MTF requires an image plane perpendicular to the optical axis.");
+  if (!mtfAxialImagePlane(state)) return rejectPath();
   if (state.focusT !== 0) {
     const conjugate = mtfFiniteConjugate(state);
     if (!conjugate || !mtfFiniteObjectPoint(state, conjugate, 0))

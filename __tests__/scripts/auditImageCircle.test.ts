@@ -214,6 +214,55 @@ describe("audit script npm contracts", () => {
   });
 });
 
+describe("MTF support census", () => {
+  const root = mkdtempSync(join(tmpdir(), "audit-mtf-support-"));
+  afterAll(() => rmSync(root, { recursive: true, force: true }));
+
+  it("adds overlapping path-reason counts without changing the existing support totals", () => {
+    const prime = FIXTURE_PAIRS.find((pair) => pair.family === "prime")!.v2;
+    const mirror = FIXTURE_PAIRS.find((pair) => pair.family === "folded (auto)")!.v2;
+    const fixtures = [
+      { ...prime, key: "candidate" },
+      {
+        ...prime,
+        key: "fisheye",
+        projection: { kind: "fisheye-equidistant", focalLengthMm: 50, fullFieldDeg: 180 },
+      },
+      {
+        ...mirror,
+        key: "mirror",
+        surfaces: mirror.surfaces.map((s, i) => (i === 1 ? { ...s, innerSd: 1 } : s)),
+      },
+      { ...FIXTURE_PAIRS.find((pair) => pair.family === "diffractive")!.v2, key: "diffractive" },
+      { ...prime, key: "hidden", visible: false },
+    ];
+    const catalog = join(root, "src/lens-data");
+    mkdirSync(catalog, { recursive: true });
+    for (const fixture of fixtures)
+      writeFileSync(join(catalog, `${fixture.key}.data.ts`), `export default ${JSON.stringify(fixture)};\n`);
+
+    const report = JSON.parse(
+      execFileSync(
+        "node",
+        ["--import", resolve("scripts/ts-js-specifier-hook-register.mjs"), resolve("scripts/audit-mtf.mjs")],
+        { cwd: root, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] },
+      ),
+    );
+    expect(report).toEqual({
+      candidate: 1,
+      "unsupported-path": 3,
+      "unsupported-path:fisheye-projection": 1,
+      "unsupported-path:folded-path": 1,
+      "unsupported-path:annular-aperture": 1,
+      "unsupported-path:diffractive-surface": 1,
+    });
+    for (const fixture of fixtures)
+      expect(readFileSync(join(catalog, `${fixture.key}.data.ts`), "utf8")).toBe(
+        `export default ${JSON.stringify(fixture)};\n`,
+      );
+  });
+});
+
 describe("MTF field census", () => {
   const root = mkdtempSync(join(tmpdir(), "audit-mtf-fields-"));
   const catalog = join(root, "src/lens-data");

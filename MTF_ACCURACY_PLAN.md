@@ -217,11 +217,10 @@ S under a day, M one to three days, L longer.
   the wavelengths requested.
 - **C29 — Finite-station readouts.** Working f-number and traced magnification beside a finite chart, navigation
   to eligible stations, and an object-side lp/mm axis for macro lenses. M.
-- **C30 — Refusals that say why.** One message covers 18 fisheyes, 7 mirror lenses (the same 7 are annular) and 7
-  diffractive designs. Name the missing prerequisite (S). Unlock in stages, each behind its own control: an
-  on-axis geometric fisheye path; geometric tracing of a diffractive order; mirror lenses last, which need optical
-  path in the generalized tracer (the estimator reads an aberrated annulus 0.031 low, the optical-path kernel
-  within 0.00003). L each.
+- **C30 — Unlock refused lens classes.** The refusal now names its reasons (18 fisheyes, 7 mirror lenses that are
+  also annular, 7 diffractive designs). Unlock in stages, each behind its own control: an on-axis geometric fisheye
+  path; geometric tracing of a diffractive order; mirror lenses last, which need optical path in the generalized
+  tracer (the estimator reads an aberrated annulus 0.031 low, the optical-path kernel within 0.00003). L each.
 - **C31 — Worker responsiveness.** The 30 ms budget is checked only between generator steps, and each step is a
   whole field and grid across every line; the f/8 overlay doubles the workers (four in comparison mode), each
   with its own 64 MiB cache. Phase-aware progress, yields inside long steps, and one page-wide budget before any

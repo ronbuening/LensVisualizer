@@ -142,7 +142,10 @@ cells alike. No footprint scan or expansion runs where the stop defines the exte
 sampling: a field the aimed launch reaches only through the bounding sphere
 (`MtfFieldLaunch.aim` null) keeps the footprint scan, its guard-band expansion and equal launch-plane cells
 (`traceMtfLaunchPlaneBundle`), and reports `pupilSampling: "launch-plane"` with a note. No field does today: MTF
-refuses fisheye projections and rectilinear fields stay below the 89° launch cap. The field axis also keeps one
+refuses fisheye projections, folded or mirror paths, annular apertures, diffractive surfaces, blocking surfaces,
+tilted image planes and image planes without a forward-facing normal. `MtfSupport.pathReasons` lists every
+applicable prerequisite in that order, and the message explains why each prevents an estimate. Rectilinear fields
+stay below the 89° launch cap. The field axis also keeps one
 footprint scan, the lit-or-dark probe past the chief's own clip (`mtfBeamHeight`), which asks only whether any ray
 reaches the image. Full-beam results depend on authored clear apertures, so estimated semi-diameters that vignette less
 than the production lens lower off-axis curves.
@@ -389,11 +392,13 @@ The typed protocol
 `computeMtfSteps` in ~30 ms slices and posts partial results at most every 100 ms. Cancellation is cooperative, so the
 built lens stays warm, and request ids reject stale replies. The worker caches finished fields and the focus search
 per request minus its field list (`MtfJobCache`), so a finer field step reuses coarser fields. Completed results use
-a client LRU bounded to 64 MiB, while chart changes reuse curves without tracing. The read-only census is `scripts/audit-mtf.mjs` (`--cdf`/`--photopic` for spectral
+a client LRU bounded to 64 MiB, while chart changes reuse curves without tracing. The read-only census is `scripts/audit-mtf.mjs`; its default support totals include additive
+`unsupported-path:<sub-reason>` keys, so a lens with several path refusals contributes to each matching key.
+Options include `--cdf`/`--photopic` for spectral
 eligibility, `--fields` for structural eligibility → modeled-field inclusion → curve production → convergence at
 center, half-height, modeled edge and corner, explicitly requesting fraction 1 for the corner, at the authored
 (`design`) focus plane; `--list` retains each lens's field stages, status, reason, final grid size and convergence band,
-and `--grid=32|64|128|256` selects the census cap, default 32, distinct from the product tab's 256-cell refinement).
+and `--grid=32|64|128|256` selects the census cap, default 32, distinct from the product tab's 256-cell refinement.
 `--blockers` defaults to photopic and reports every blocking element, class totals, shares of all catalog glass-bearing
 surfaces, and how many reference-supported lenses each class alone unlocks; `--list` includes fallback and estimated-element
 rows, and `--limit=N` restricts the audited visible catalog. Counts use the infinity, wide-zoom, wide-open state and

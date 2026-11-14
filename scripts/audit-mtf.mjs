@@ -1,7 +1,8 @@
 /**
  * Read-only MTF census. Run with the project's TS specifier hook.
  *
- * Default: support reasons per lens. `--fields` reports structural eligibility, modeled-field inclusion,
+ * Default: support reasons per lens, with additive `unsupported-path:<sub-reason>` counts for every matching gate.
+ * `--fields` reports structural eligibility, modeled-field inclusion,
  * curve production and convergence at center, half-height, modeled edge and corner (fraction 1).
  * `--grid=32|64|128|256` sets the census cap (default 32); the product tab refines to 256.
  * `--cdf` / `--photopic` select the spectrum; `--list` retains each lens's field stages and diagnostics,
@@ -109,6 +110,7 @@ for (const file of files) {
   const assessed = assessMtfSupport(request, options);
   const reason = assessed.reason ?? "candidate";
   tally(support, reason);
+  for (const pathReason of assessed.pathReasons ?? []) tally(support, `unsupported-path:${pathReason}`);
   if (blockerCensus) {
     glassSurfaces += state.lens.dispersion.filter((d) => d.quality !== "air").length;
     if (assessed.available) {

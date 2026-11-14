@@ -5,6 +5,7 @@ import { describe, expect, it, vi } from "vitest";
 import {
   build,
   buildChromaticPositiveElementLens,
+  buildFacingFlatMirrorsLens,
   buildRearPlateLens,
   buildSimplePositiveElementLens,
   buildVariableStopGapLens,
@@ -66,6 +67,7 @@ import { traceEngineRay } from "../../../src/optics/trace/rayAdapters.js";
 import { createImageSurfaceShape } from "../../../src/optics/geometry/imageSurface.js";
 import { stopLattice } from "../../../src/optics/analysis/pupils/stopLattice.js";
 import { mtfIncidentFluxWeights } from "../../../src/optics/analysis/mtf/mtfIncidentFlux.js";
+import { FIXTURE_PAIRS } from "./prescription/ingestV2Fixtures.js";
 
 /*
  * Stop-lattice cells the aimed launch returns unaimed, by normalised stop position: the real aim leaves no cell inside
@@ -266,6 +268,92 @@ describe("MTF on curved image surfaces", () => {
 describe("MTF support", () => {
   const L = buildSimplePositiveElementLens();
   const state = prepareRuntimeState(L, 0, 0);
+  const fisheye = prepareRuntimeState(
+    build({
+      ...constructionFixtureData(L),
+      projection: { kind: "fisheye-equidistant", focalLengthMm: 50, fullFieldDeg: 180 },
+    }),
+    0,
+    0,
+  );
+  const folded = prepareRuntimeState(buildFacingFlatMirrorsLens(), 0, 0);
+  const diffractive = prepareRuntimeState(build(FIXTURE_PAIRS.find((pair) => pair.family === "diffractive")!.v2), 0, 0);
+  const pathCases = [
+    { reason: "fisheye-projection", state: fisheye, message: /fisheye projections;.*projection mapping/i },
+    { reason: "folded-path", state: folded, message: /folded or mirror paths;.*optical-path lengths/i },
+    {
+      reason: "annular-aperture",
+      state: { ...state, surfaces: state.surfaces.map((s, i) => (i === 1 ? { ...s, innerSd: 1 } : s)) },
+      message: /annular apertures;.*optical-path differences.*central obstruction/i,
+    },
+    {
+      reason: "diffractive-surface",
+      state: diffractive,
+      message: /diffractive surfaces;.*wavelength-dependent.*order/i,
+    },
+    {
+      reason: "blocking-surface",
+      state: {
+        ...state,
+        surfaces: state.surfaces.map((s, i) =>
+          i === 1 ? { ...s, interaction: { ...s.interaction, type: "block" as const } } : s,
+        ),
+      },
+      message: /blocking surfaces;.*pupil model.*sequential refractive path/i,
+    },
+    {
+      reason: "tilted-image-plane",
+      state: { ...state, imagePlane: { ...state.imagePlane, normal: [0, 0.1, 1] as const } },
+      message: /perpendicular.*optical axis;.*direction cosines.*not modeled/i,
+    },
+    {
+      reason: "non-forward-image-plane",
+      state: { ...state, imagePlane: { ...state.imagePlane, normal: [0, 0, -1] as const } },
+      message: /forward-facing image plane;.*positive axial normal/i,
+    },
+  ];
+
+  // These gates qualify the model, so neither MTF method can silently approximate a missing prerequisite.
+  it.each(pathCases)("names the missing prerequisite for $reason", ({ reason, state: target, message }) => {
+    for (const method of ["geometric", "diffraction"] as const) {
+      const support = assessMtfSupport(...mtfInputs(target, { ...mtfTestOptions, method }));
+      expect(support).toMatchObject({ available: false, reason: "unsupported-path", pathReasons: [reason] });
+      expect(support.message).toMatch(message);
+      expect(support.message.length).toBeLessThan(160);
+      expect(computeMtf(...mtfInputs(target, { ...mtfTestOptions, method })).fields).toEqual([]);
+    }
+  });
+
+  it("lists every missing path prerequisite once in a stable order", () => {
+    const combined = {
+      ...folded,
+      lens: { ...folded.lens, source: fisheye.lens.source },
+      surfaces: folded.surfaces.map((s, i) =>
+        i === 0
+          ? { ...s, interaction: { ...s.interaction, type: "block" as const } }
+          : { ...s, innerSd: 1, diffractive: diffractive.surfaces.find((surface) => surface.diffractive)!.diffractive },
+      ),
+      imagePlane: { ...folded.imagePlane, normal: [0, 0.1, -1] as const },
+    };
+    const support = assessMtfSupport(...mtfInputs(combined, { ...mtfTestOptions, movementActive: true }));
+    expect(support).toMatchObject({
+      available: false,
+      reason: "unsupported-path",
+      pathReasons: pathCases.map(({ reason }) => reason),
+    });
+    expect(support.message).toBe(
+      pathCases.map(({ state: target }) => assessMtfSupport(...mtfInputs(target, mtfTestOptions)).message).join(" "),
+    );
+  });
+
+  it("keeps movement precedence for an otherwise sequential lens with a tilted image plane", () => {
+    const tilted = pathCases.find(({ reason }) => reason === "tilted-image-plane")!.state;
+    const support = assessMtfSupport(...mtfInputs(tilted, { ...mtfTestOptions, movementActive: true }));
+    expect(support.reason).toBe("active-movement");
+    expect(support).not.toHaveProperty("pathReasons");
+    expect(assessMtfSupport(...mtfInputs(state, mtfTestOptions))).not.toHaveProperty("pathReasons");
+  });
+
   it("uses authored reference indices without requiring a spectral glass identity", () => {
     expect(assessMtfSupport(...mtfInputs(state, mtfTestOptions))).toMatchObject({
       available: true,
