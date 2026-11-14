@@ -167,6 +167,9 @@ describe("documented finite MTF", () => {
     for (const report of reports) {
       expect(Math.abs(report.offsetDepths! / expected - 1)).toBeLessThan(1e-6);
       expect(report.unavailableReason).toBeNull();
+      // The image 0.2 mm short of the plane is real even when a flat face sits behind it.
+      expect(report.paraxialImageUnavailableReason).toBeNull();
+      expect(report.paraxialOffsetMm).toBeCloseTo(-0.2, 9);
     }
     for (const report of reports.slice(1)) {
       expect(Math.abs(report.offsetDepths! / reports[0].offsetDepths! - 1)).toBeLessThan(1e-6);

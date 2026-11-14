@@ -8,6 +8,7 @@
 import type { FiniteConjugate } from "../../../types/optics.js";
 import type { MtfOptions, MtfSupport } from "../../../types/mtf.js";
 import type { AnalysisRequest } from "../request.js";
+import { FLAT_R_THRESHOLD } from "../../geometry/surfaceProfile.js";
 import { traceParaxialSurfaces } from "../../math/paraxial.js";
 import { traceWorkingFNumber } from "../summary/fNumbers.js";
 import { mtfFiniteConjugate, mtfFiniteObjectPoint } from "./mtfConjugates.js";
@@ -204,7 +205,10 @@ function checkReference(
   const authoredN = 1 / (2 * n * Math.abs(authoredSlope));
   if (!(authoredN > 0) || !Number.isFinite(authoredN) || !Number.isFinite(u) || !(n > 0))
     return { ...check, unavailableReason: "No finite authored-plane working f-number." };
-  if (gap > 0 && Number.isFinite(imageZ)) {
+  // Trailing flat plates add no power, so a real image may fall on or just inside one.
+  let lastPowered = surfaces.length - 1;
+  while (lastPowered > 0 && Math.abs(surfaces[lastPowered].R) >= FLAT_R_THRESHOLD) lastPowered--;
+  if (Number.isFinite(imageZ) && imageZ > surfaces[lastPowered].z) {
     check.paraxialImageZMm = imageZ;
     check.paraxialOffsetMm = imageZ - state.imgZ;
     // A parallel basis ray's image height is A + t C, the transverse magnification at conjugacy.
