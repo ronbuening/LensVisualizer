@@ -121,7 +121,8 @@ else {
         row.referenceDiscriminated,
         row.magnification?.printed ?? "—",
         row.magnification ? row.magnification.inFocusMagnification : "—",
-        row.magnification ? row.magnification.solvedObjectDistanceMm : "—",
+        // Written to 0.01 mm, which seven significant figures lose beyond 100 m.
+        row.magnification?.solvedObjectDistanceMm?.toFixed(2) ?? "—",
         row.verdict,
         row.unavailableReason ?? "—",
         row.paraxialImageUnavailableReason ?? "—",

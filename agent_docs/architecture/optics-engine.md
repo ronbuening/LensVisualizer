@@ -298,10 +298,13 @@ authored plane at heights A and B: an object at distance s focuses there when s 
 of that conjugate. At its own paraxial image an object at s has magnification D/(s u_p + u_a), where u_p and u_a are
 the two rays' final slopes and D their invariant y_p u_a − u_p y_a. `solvedObjectDistanceMm` is −B/A when |A| lies
 within half a unit of the print's last decimal, and otherwise the distance at the nearest bound of that interval; a
-ratio or whole number has no interval. `withinPrint` tests the declared distance's magnification against the same
-interval, widened by the 0.005 mm to which the distance is written. Such a conjugate is `consistent` when it is
-inside the depth limit and `withinPrint`, and `inconsistent` otherwise; its first-surface reference is fixed by
-construction, so the other-reference verdicts do not apply.
+ratio or whole number has no interval. The bound is solved for the in-focus conjugate's image orientation first and
+for the other when that one has no real object; an afocal system (|u_p| ≤ 10⁻¹²/mm) has no solution. `withinPrint`
+tests the declared distance's magnification against the same interval, widened by the 0.005 mm to which the distance
+is written, and `matchesSolve` requires the declared distance's defocus to be within one quarter wave of the solved
+distance's. Such a conjugate is `consistent` when it is inside the depth limit, `withinPrint` and `matchesSolve`,
+and `inconsistent` otherwise; its first-surface reference is fixed by construction, so the other-reference verdicts
+do not apply.
 
 `npm run audit:finite-conjugates` checks every declaration at its open physical stop, including axial conjugacy on
 fisheyes, retaining every support check except the off-axis projection requirement. The limit is
@@ -983,7 +986,7 @@ slider convention `focusDistanceAt` (closeFocus / focusT), as they do on folded 
 compiler did not build. `focus.closeFocusM` is the close row's distance (a corpus sweep holds it within 5 %); the
 maker's figure is `catalog.closeFocusM.marketing`, named beside the label by `marketedCloseFocusNote`. Station buttons
 for source-certified conjugates (`PublishedFocusStation.certifiedDistanceM`) show the source's object-to-image
-distance. Zoom-change focus remapping, comparison focus sharing and `PublishedFocusStation.distanceM` still use the
+distance, or the one solved from its printed magnification. Zoom-change focus remapping, comparison focus sharing and `PublishedFocusStation.distanceM` still use the
 convention.
 
 `state/preparedGeometry.ts` owns `prepareState()` and the only prepared-control LRU. It retains prepared states for

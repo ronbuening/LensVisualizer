@@ -982,7 +982,7 @@ Each station:
   label interpolates inverse distance between rows. It is not `closeFocusM / focusT`. The close row's distance must be
   the authored close-focus distance within 5 % (`__tests__/src/lens-data/closeFocusEndpoint.test.ts`, which lists its
   exemptions with reasons); a maker's different figure goes in `catalog.closeFocusM.marketing`. Patent-station
-  buttons for source-certified conjugates show the source's own distance.
+  buttons for source-certified conjugates show the source's own distance, or the one solved from its magnification.
 - **Station labels** are compiled into the runtime lens (`L.zoomLabels`). Nothing displays them today; the zoom
   slider shows the station focal lengths.
 - **Computed by `buildLens`**, per station: the EFL (`zoomEFLs`), entrance-pupil semi-diameter (`zoomEPs`),
@@ -1089,7 +1089,7 @@ focus: {
   FE PZ 16-35mm F4 G patents are object-to-image distances, because every state of each table focuses only that way.
 - `sourceMagnification` is for a tabulated state whose source prints a magnification and no object distance. Give the
   printed magnitude as a string: a decimal exactly as printed, trailing zeros kept (`"0.50"`), or an image-to-object
-  ratio (`"1/10"`, `"1:2"`; 等倍 is `"1:1"`). The distance is then solved from the prescription and is always
+  ratio of whole numbers (`"1/10"`, `"1:2"`; 等倍 is `"1:1"`). The distance is then solved from the prescription and is always
   `"first-surface"`: enter a provisional positive `objectDistanceMm`, run the audit below, and write its
   `Solved distance` to 0.01 mm. The solve takes the distance that focuses the state on its authored image plane when
   the magnification there rounds to the print, and otherwise the distance at the nearest magnification that does, so
@@ -1108,8 +1108,8 @@ focus: {
   a numeric defocus diagnostic but cannot certify consistency. Fisheye axial checks retain the other MTF support prerequisites.
   See `agent_docs/architecture/optics-engine.md` § Simulated MTF for the measure and distance-reference verdicts.
   `--lens=<key>`, `--files=<comma-separated data files>`, `--json` and `--strict` support focused authoring checks.
-  A `sourceMagnification` entry is consistent when its distance is inside the limit and the magnification at that
-  distance rounds to the print.
+  A `sourceMagnification` entry is consistent when its distance is inside the limit, is the solved distance to within
+  one quarter wave, and has a magnification that rounds to the print.
   The audit is a screen, not proof: on a short or slow lens a wrong distance can stay inside the limit, so read the
   printed value, unit, example and close-focus column against the source as well.
 - Source-rounded prescriptions may keep residual defocus: MTF evaluates the authored image plane by default, reports the

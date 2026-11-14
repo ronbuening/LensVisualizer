@@ -338,6 +338,19 @@ describe("attachTeleconverter", () => {
         expect(objectZ(composedData)).toBeCloseTo(objectZ(hostData), 9);
       }
     }
+    // A printed magnification is the bare host's, so composition does not carry it.
+    const solved = {
+      focusT: 1,
+      zoomT: 0,
+      objectDistanceMm: 1000,
+      distanceReference: "first-surface" as const,
+      sourceMagnification: "0.10",
+      source: "Synthetic",
+    };
+    const host = teleconverterHostData({ lastGapFocusOffsets: [0, 5], overrides: { finiteConjugates: [solved] } });
+    expect(constructionFixtureData(attachTeleconverter(host, tc)).finiteConjugates).toEqual([
+      { focusT: 1, zoomT: 0, objectDistanceMm: 1000, distanceReference: "first-surface", source: "Synthetic" },
+    ]);
   });
 
   it("narrows a declared rectilinear coverage by the focal ratio", () => {

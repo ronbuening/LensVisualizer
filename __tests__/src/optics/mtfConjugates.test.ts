@@ -161,10 +161,19 @@ describe("documented finite MTF", () => {
     expect(provisional.magnification!.solvedObjectDistanceMm).toBeCloseTo(1000, 8);
     expect(provisional.magnification!.atDeclaredDistance).toBeCloseTo(magnificationAt(900), 12);
     expect(provisional.magnification!.withinPrint).toBe(false);
+    expect(provisional.magnification!.solvedOffsetDepths).toBeCloseTo(0, 8);
+    expect(provisional.magnification!.matchesSolve).toBe(false);
     expect(provisional.verdict).toBe("inconsistent");
     const declared = magnificationReport(1000, inFocus.toFixed(4));
     expect(declared.magnification!.withinPrint).toBe(true);
+    expect(declared.magnification!.matchesSolve).toBe(true);
     expect(declared.verdict).toBe("consistent");
+    // One decimal fewer widens the print enough to hold a distance that is not the solved one.
+    const loose = magnificationReport(990, inFocus.toFixed(3));
+    expect(loose.magnification!.withinPrint).toBe(true);
+    expect(Math.abs(loose.offsetDepths!)).toBeLessThan(loose.thresholdDepths);
+    expect(loose.magnification!.matchesSolve).toBe(false);
+    expect(loose.verdict).toBe("inconsistent");
     expect(assessMtfConjugateConsistency(mtfInputs(state, auditOptions)[0])!.magnification).toBeNull();
   });
   it("holds a print the prescription misses at its nearest rounding bound", () => {
@@ -183,6 +192,7 @@ describe("documented finite MTF", () => {
     expect(provisional.magnification!.withinPrint).toBe(false);
     const declared = magnificationReport(Number(near.toFixed(2)), printed);
     expect(declared.magnification!.withinPrint).toBe(true);
+    expect(declared.magnification!.matchesSolve).toBe(true);
     // The miss stays visible as defocus instead of being absorbed by the solve.
     const { wavefrontMm } = pupilDefocus(12, Number(near.toFixed(2)), imageGap);
     expect(declared.offsetDepths).toBeCloseTo(wavefrontMm / ((declared.referenceWavelengthNm * 1e-6) / 4), 8);
@@ -191,6 +201,32 @@ describe("documented finite MTF", () => {
     // A ratio carries no rounding interval, so the distance sits at exactly that magnification.
     const ratio = magnificationReport(1000, "1/20");
     expect(magnificationAt(ratio.magnification!.solvedObjectDistanceMm!)).toBeCloseTo(0.05, 12);
+  });
+  it("solves a print for the real object when the in-focus conjugate is virtual", () => {
+    // Half a millimetre inside infinity focus, only a virtual object focuses on the plane.
+    const parallel = atRear(1, 0);
+    const short = prepareRuntimeState(
+      build({
+        ...constructionFixtureData(L),
+        surfaces: constructionFixtureData(L).surfaces.map((s, i) =>
+          i === 2 ? { ...s, d: -parallel.y / parallel.u - 0.5 } : s,
+        ),
+        finiteConjugates: [{ ...conjugate, sourceMagnification: "0.50" }],
+      }),
+      1,
+      0,
+    );
+    const report = assessMtfConjugateConsistency(mtfInputs(short, auditOptions)[0])!;
+    let near = 100;
+    let far = 300;
+    for (let i = 0; i < 80; i++) {
+      const middle = (near + far) / 2;
+      if (magnificationAt(middle) > 0.495) near = middle;
+      else far = middle;
+    }
+    expect(report.magnification!.inFocusObjectDistanceMm).toBeNull();
+    expect(report.magnification!.inFocusMagnification).toBeNull();
+    expect(report.magnification!.solvedObjectDistanceMm).toBeCloseTo(near, 8);
   });
   it("keeps defocus invariant when a dummy surface is inserted just before the image", () => {
     // An index-matched plane changes no optical power or pupil, only the final trace reference.
