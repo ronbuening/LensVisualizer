@@ -81,12 +81,14 @@ function memoizedMtf(target: typeof state, options: MtfJob["options"]): MtfResul
 /** Worker stand-in that runs the pure engine; `progress` first posts a result with every field pending. */
 function stubWorker({
   progress = false,
+  defer = false,
   target = state,
   error,
   heldFocusShiftMm,
   resultForJob,
 }: {
   progress?: boolean;
+  defer?: boolean;
   target?: typeof state;
   error?: (job: MtfJob) => string | null;
   heldFocusShiftMm?: number;
@@ -127,7 +129,8 @@ function stubWorker({
           };
           queueMicrotask(() => send({ type: "progress", id: message.id, result: pending }));
           replies.push(() => send({ type: "result", id: message.id, result }));
-        } else queueMicrotask(() => send({ type: "result", id: message.id, result }));
+        } else if (defer) replies.push(() => send({ type: "result", id: message.id, result }));
+        else queueMicrotask(() => send({ type: "result", id: message.id, result }));
       }
     },
   );
@@ -1664,14 +1667,15 @@ describe("MTF export and aperture comparison", () => {
     { charted: 2.8, wideOpen: 2, max: 5.6, choices: [4, 5.6], stored: 8, available: false },
     { charted: 5.6, wideOpen: 2, max: 8, choices: [8], stored: 8, available: true },
     { charted: 32, wideOpen: 2, max: 32, choices: [], stored: 8, available: false },
-    { charted: 11, wideOpen: 2, max: 16 - 1e-10, choices: [], stored: 16, available: false },
-    { charted: 11, wideOpen: 2, max: 15.99, choices: [], stored: 16, available: false },
-    { charted: 4, wideOpen: 2, max: 7.9999999995, choices: [5.6], stored: 8, available: false },
+    { charted: 11, wideOpen: 2, max: 16 - 1e-10, choices: [16 - 1e-10], stored: 16, available: false },
+    { charted: 4, wideOpen: 2, max: 15.99, choices: [5.6, 8, 11, 15.99], stored: 15.99, available: true },
+    { charted: 11, wideOpen: 2, max: 15.99, choices: [15.99], stored: 16, available: false },
+    { charted: 4, wideOpen: 2, max: 7.9999999995, choices: [5.6, 7.9999999995], stored: 8, available: false },
     { charted: 32, wideOpen: 2, max: 64, choices: [45, 64], stored: 64, available: true },
     { charted: 64, wideOpen: 2, max: 128, choices: [90, 128], stored: 128, available: true },
     { charted: 8, wideOpen: 2, max: 13.5, choices: [11, 13.5], stored: 13.5, available: true },
     { charted: 8, wideOpen: 2, max: 11.04, choices: [11], stored: 11, available: true },
-    { charted: 8, wideOpen: 2, max: 10.96, choices: [], stored: 11, available: false },
+    { charted: 8, wideOpen: 2, max: 10.96, choices: [10.96], stored: 11, available: false },
   ])(
     "bounds full stops by the charted f/$charted and minimum aperture f/$max",
     async ({ charted, wideOpen, max, choices, stored, available }) => {
@@ -2620,7 +2624,8 @@ describe("MTF aperture sweeps", () => {
     { current: 64, open: 5.8, max: 128, expected: [64, 90, 128] },
     { current: 2.8, open: 2.8, max: 13.5, expected: [2.8, 4, 5.6, 8, 11, 13.5] },
     { current: 11, open: 2.8, max: 11.04, expected: [11] },
-    { current: 4, open: 2.8, max: 7.9999999995, expected: [4, 5.6] },
+    { current: 4, open: 2.8, max: 7.9999999995, expected: [4, 5.6, 7.9999999995] },
+    { current: 4, open: 2.8, max: 15.99, expected: [4, 5.6, 8, 11, 15.99] },
   ])("builds the current-down request list at f/$current", ({ current, open, max, expected }) => {
     const lens = build({ ...constructionFixtureData(focusedL), nominalFno: open, maxFstop: max });
     const request = analysisRequestForLens(lens);
@@ -2899,6 +2904,160 @@ describe("MTF aperture sweeps", () => {
 });
 
 describe("MTF zoom sweeps", () => {
+  it.each([
+    { view: "zoom", entry: "switch" },
+    { view: "aperture", entry: "switch" },
+    { view: "zoom", entry: "link" },
+    { view: "aperture", entry: "link" },
+  ] as const)("preserves ordinary short-field withholding in $view via $entry", async ({ view, entry }) => {
+    const preferences = {
+      ...DEFAULT_MTF_PREFERENCES,
+      advanced: true,
+      spectrum: "reference",
+      regularSpectrum: "reference",
+      method: "geometric",
+      focus: "best-axial",
+      fieldStepPercent: 10,
+      frequencies: [10],
+    } as const;
+    if (entry === "link")
+      window.history.replaceState({}, "", buildMtfLink(window.location.href, { ...preferences, view }));
+    else localStorage.setItem(MTF_PREFERENCES_KEY, JSON.stringify(preferences));
+    const lens = zoomControlLens();
+    const { calls } = stubWorker({
+      resultForJob: (job) => {
+        const result = apertureControlResult(job);
+        const fractions = job.sweep ? [0, 0.5, 0.9] : job.options.fieldFractions!;
+        return {
+          ...result,
+          geometry: {
+            ...result.geometry!,
+            referenceHeightMm: 10,
+            modeledEdgeHeightMm: 9.606291,
+            basis: "format-corner",
+          },
+          fields: fractions.map((fieldFraction) => ({
+            ...result.fields[0],
+            fieldFraction,
+            imageHeightMm: fieldFraction * 10,
+            targetImageHeightMm: fieldFraction * 10,
+            ...(fieldFraction === 1
+              ? { status: "unavailable", reason: "outside-modeled-field", sagittal: [], tangential: [] }
+              : {}),
+          })),
+          ...(job.sweep ? { sweepEdge: { fieldFraction: 0.9, imageHeightMm: 9 } } : {}),
+        };
+      },
+    });
+    const writeText = vi.fn().mockResolvedValue(undefined);
+    vi.stubGlobal("navigator", { ...navigator, clipboard: { writeText } });
+    render(
+      <MtfTab
+        L={lens}
+        t={mockTheme}
+        preparedState={prepareRuntimeState(lens, 0, 0)}
+        currentEPSD={1}
+        currentPhysStopSD={1}
+        fNumber={8}
+      />,
+    );
+    if (entry === "switch") {
+      await screen.findByRole("note", { name: "Limited data for this chart" });
+      expect(screen.getByRole("button", { name: "Copy CSV" })).toHaveProperty("disabled", true);
+      fireEvent.click(screen.getByRole("button", { name: view === "zoom" ? "Zoom" : "Aperture" }));
+    }
+    await vi.waitFor(() => expect(calls.compute).toBe(view === "zoom" && entry === "link" ? 3 : 4));
+    const warning = screen.getByRole("note", { name: "Limited data for this chart" });
+    expect(warning.textContent).toContain("9.6 mm, short of the 10.0 mm format corner");
+    expect(warning.textContent).toContain("1 of 11 field positions");
+    const table = screen.getByRole("table", { name: /MTF by/ });
+    expect(table.textContent).toContain("withheld");
+    fireEvent.click(screen.getByRole("checkbox", { name: /Show diagnostic estimates/ }));
+    expect(table.textContent).toContain("withheld");
+    fireEvent.click(screen.getByRole("button", { name: "Copy CSV" }));
+    await vi.waitFor(() => expect(writeText).toHaveBeenCalledTimes(1));
+    expect(writeText.mock.calls[0][0]).toContain("withheld");
+    expect(writeText.mock.calls[0][0]).not.toContain(",converged");
+    fireEvent.click(screen.getByRole("button", { name: "Show chart anyway" }));
+    expect(table.textContent).not.toContain("withheld");
+    fireEvent.click(screen.getByRole("button", { name: "Copy CSV" }));
+    await vi.waitFor(() => expect(writeText).toHaveBeenCalledTimes(2));
+    expect(writeText.mock.calls[1][0]).toContain(",converged");
+  });
+
+  it.each(["zoom", "aperture"] as const)(
+    "requires a current %s sweep result for data actions and keeps partial results exportable",
+    async (view) => {
+      localStorage.setItem(
+        MTF_PREFERENCES_KEY,
+        JSON.stringify({ view, advanced: true, spectrum: "reference", method: "geometric" }),
+      );
+      const lens = zoomControlLens();
+      const { calls, finish } = stubWorker({ defer: true, resultForJob: apertureControlResult });
+      render(
+        <MtfTab
+          L={lens}
+          t={mockTheme}
+          preparedState={prepareRuntimeState(lens, 0, 0)}
+          currentEPSD={1}
+          currentPhysStopSD={1}
+          fNumber={8}
+        />,
+      );
+      const expectDisabled = () => {
+        for (const name of ["Copy CSV", "Export"]) {
+          const button = screen.getByRole("button", { name });
+          expect(button).toHaveProperty("disabled", true);
+          expect(button.title).toBe("No current MTF result.");
+        }
+        expect(screen.getByRole("button", { name: "Copy MTF link" })).toHaveProperty("disabled", false);
+      };
+      expectDisabled();
+      await vi.waitFor(() => expect(calls.compute).toBe(1));
+      if (view === "aperture") {
+        await act(async () => finish()); // The main chart alone does not supply a sweep sample.
+        await vi.waitFor(() => expect(calls.compute).toBe(2));
+        expectDisabled();
+      }
+      await act(async () => finish());
+      for (const name of ["Copy CSV", "Export"])
+        expect(screen.getByRole("button", { name })).toHaveProperty("disabled", false);
+      expect(screen.getByRole("table", { name: /MTF by/ }).textContent).toContain("pending");
+      fireEvent.change(screen.getByRole("combobox", { name: "MTF method" }), { target: { value: "diffraction" } });
+      for (const name of ["Copy CSV", "Export"])
+        expect(screen.getByRole("button", { name })).toHaveProperty("disabled", true);
+      expect(screen.getByRole("button", { name: "Copy MTF link" })).toHaveProperty("disabled", false);
+    },
+  );
+
+  it.each(["zoom", "aperture"] as const)("disables %s data actions when every sweep sample fails", async (view) => {
+    localStorage.setItem(MTF_PREFERENCES_KEY, JSON.stringify({ view, advanced: true, spectrum: "reference" }));
+    const lens = zoomControlLens();
+    let attempts = 0;
+    const { calls } = stubWorker({
+      resultForJob: apertureControlResult,
+      error: () => (view === "aperture" && ++attempts === 1 ? null : "Synthetic station failure"),
+    });
+    render(
+      <MtfTab
+        L={lens}
+        t={mockTheme}
+        preparedState={prepareRuntimeState(lens, 0, 0)}
+        currentEPSD={1}
+        currentPhysStopSD={1}
+        fNumber={8}
+      />,
+    );
+    await vi.waitFor(() => expect(calls.compute).toBe(view === "zoom" ? 3 : 4));
+    expect(screen.getByRole("table", { name: /MTF by/ }).textContent).toContain("error: Synthetic station failure");
+    for (const name of ["Copy CSV", "Export"]) {
+      const button = screen.getByRole("button", { name });
+      expect(button).toHaveProperty("disabled", true);
+      expect(button.title).toBe("No current MTF result.");
+    }
+    expect(screen.getByRole("button", { name: "Copy MTF link" })).toHaveProperty("disabled", false);
+  });
+
   it.each([false, true])(
     "uses published infinity stations (declared: %s) and the viewer's exact wide-open job",
     (declared) => {

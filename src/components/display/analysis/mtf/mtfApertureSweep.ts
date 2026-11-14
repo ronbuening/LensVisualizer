@@ -23,7 +23,7 @@ export function mtfComparisonFNumbers(fNumber: number | undefined, maxFstop: num
   if (
     isMtfComparisonFNumber(maxFstop) &&
     fNumber < maxFstop - APERTURE_LABEL_TOLERANCE &&
-    MTF_COMPARISON_F_NUMBERS.every((stop) => Math.abs(stop - maxFstop) > APERTURE_LABEL_TOLERANCE)
+    stops.every((stop) => Math.abs(stop - maxFstop) > APERTURE_LABEL_TOLERANCE)
   ) {
     stops.push(maxFstop);
   }

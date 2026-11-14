@@ -136,7 +136,9 @@ Copy CSV, Copy MTF link and Export stay visible in a wrapping row below the char
 status line, value table and field notes, with confirmation and error messages beside the actions. The row renders
 before the first result, on errors and for unsupported lenses. Copy MTF link needs only the settings and page URL
 and stays usable in every tab state. Copy CSV and Export are disabled, with a short reason in their titles, when no
-current result is displayed, values are stale or a blocking data warning is unacknowledged. The action row stays
+current result is displayed, values are stale or a chart-wide blocking data warning is unacknowledged. In either sweep,
+data actions require at least one sample result for the current sweep settings; the empty chart's placeholder and the
+aperture view's main result do not count. Partial results remain exportable. The action row stays
 outside the warning's inert regions; explicit guards keep copying data and all four downloads behind the warning.
 The action row's keyboard-operable Export menu downloads "CSV — this view", "CSV — all sampled values", SVG
 or PNG through local Blobs and temporary anchors. Copy CSV retains its uncaptioned image-height table in the
@@ -177,7 +179,8 @@ the stop-radius ratio. It draws thin lines in the same slots, including faded ou
 diagnostics are disclosed. Advanced reveals a "Comparison aperture" select beside the toggle: full stops
 1/1.4/2/2.8/4/5.6/8/11/16/22/32/45/64/90/128 slower than the charted f-number by more than 0.05 for rounded labels,
 with the exact bound `stop <= L.maxFstop`. The minimum aperture itself is included when it lies in f/1–f/128,
-is slower than the charted aperture by more than 0.05 and is more than 0.05 from every listed full stop.
+is slower than the charted aperture by more than 0.05 and is more than 0.05 from every returned attainable full stop.
+A minimum just below a full stop is included exactly, while the unattainable full stop stays excluded.
 `mtfComparisonFNumbers` supplies this range to the tab, select and sweep. The stored choice defaults to f/8.
 In Advanced, an unavailable stored stop disables the overlay and its toggle;
 the title explains the aperture-range requirement. No other stop is substituted or stored. Advanced still lists
@@ -236,7 +239,9 @@ include each station's actual field fraction and mm height, including its edge. 
 The caption states infinity, each station's own wide-open aperture and independent focus: best axial focus per
 station, each station's authored design plane, or Auto's per-station plane assessment. Comparison overlay controls
 and requests are hidden. A failed station shows its error in the table, leaves a chart gap and allows the queue
-to continue. Both sweeps retain structured limitations per sample. One warning names the affected stations or
+to continue. Both sweeps retain structured limitations per sample. Short-field coverage uses each sample's field
+geometry and the ordinary tab's full field-step grid, independent of the restricted fields computed by the sweep.
+One warning names the affected stations or
 apertures and their limitation texts; “Show chart anyway” acknowledges the listed blocking kinds for that system.
 Until acknowledged, affected samples have no values in the chart, crosshair, table, clipboard or any export,
 including diagnostic estimates. Unaffected samples remain readable and notes remain listed per sample.

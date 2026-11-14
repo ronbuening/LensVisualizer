@@ -177,6 +177,7 @@ export default function MtfTab({
         spectrum: spectrum.spectrum,
         referenceWavelengthNm: support.referenceWavelengthNm,
         result: mainShown,
+        fieldFractions: options.fieldFractions,
       }),
     [
       preparedState,
@@ -185,6 +186,7 @@ export default function MtfTab({
       spectrum.spectrum,
       support.referenceWavelengthNm,
       mainShown,
+      options.fieldFractions,
     ],
   );
   const holdComparison = preferences.comparisonFocus === "hold";
@@ -254,6 +256,7 @@ export default function MtfTab({
       spectrum: resolved.spectrum,
       referenceWavelengthNm: stationSupport.referenceWavelengthNm,
       result: sample.result,
+      fieldFractions: options.fieldFractions,
     });
     return {
       ...sample,
@@ -350,13 +353,15 @@ export default function MtfTab({
   ).filter((field) => field.status === "unconverged").length;
   const chartResult = shown && (view === "zoom" || (support.available && !error)) ? shown : null;
   const warningBlocked = !isSweep && !warningAcknowledged && dataLimitations.some(({ blocking }) => blocking);
-  const dataDisabledReason = !chartResult
-    ? "No current MTF result."
-    : displayStale
-      ? "Values are updating for the current settings."
-      : warningBlocked
-        ? "Acknowledge the data warning to copy or export values."
-        : undefined;
+  const hasSweepResult = sweep.samples.some((sample) => sample.result !== null);
+  const dataDisabledReason =
+    !chartResult || (isSweep && !hasSweepResult)
+      ? "No current MTF result."
+      : displayStale
+        ? "Values are updating for the current settings."
+        : warningBlocked
+          ? "Acknowledge the data warning to copy or export values."
+          : undefined;
   const muted = { color: t.muted, margin: "4px 0" };
   return (
     <section style={{ color: t.value, fontSize: 12 }} aria-label="Simulated MTF">

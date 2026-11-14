@@ -286,7 +286,9 @@ only when it changes that display; the first five are blocking:
   zero `appliedShiftMm`. A shifted held plane has no authored-plane gap, regardless of the requested mode, even
   when it coincides with the best-axial diagnostic. Automatic refocus to `best-axial` carries a disclosure that the
   curves use best axial focus; an explicitly requested and applied `best-axial` plane has no gap.
-- `short-field`: requested field positions are `outside-modeled-field`.
+- `short-field`: requested field positions are `outside-modeled-field`. An optional ordinary field grid lets
+  `assessMtfDataLimitations` count those positions from the result's reference height and modeled edge, with the
+  target resolver's edge tolerance, independently of which fields the result computes.
 - `scale`: the prescription and marketed focal lengths differ by more than 10 % (`mtfPrescriptionScale`). The
   comparison follows the charted zoom position: endpoint pairs use the nearer wide/tele end; lists with one value
   per authored station use the nearer station. Midpoint ties go wider, and marketed focal lengths are never
@@ -361,7 +363,8 @@ once its focus is available on the first partial result. Held shifts are part of
 `mtfComparisonFNumbers` shares the attainable stops between the tab, select and aperture sweep: standard full stops
 through f/128 slower than the charted aperture (a gap greater than 0.05 f-number for rounded labels), with the exact
 bound `stop <= L.maxFstop`, the slider's minimum aperture. The minimum itself is also offered when it is within
-f/1–f/128, slower than the charted aperture by more than 0.05, and more than 0.05 from every listed full stop. The
+f/1–f/128, slower than the charted aperture by more than 0.05, and more than 0.05 from every returned attainable
+full stop. A minimum just below a full stop is offered exactly; the unattainable full stop stays excluded. The
 preference defaults to f/8. In Advanced, a stored stop outside this list disables the overlay without substitution or preference
 changes; its disabled toggle's title explains the aperture-range requirement. Advanced reveals the comparison aperture
 select, which lists attainable stops and shows an unavailable stored stop as a disabled placeholder. Choosing a stop
@@ -416,10 +419,16 @@ fractions and mm heights per station, including the selected edge. Heights beyon
 unavailable. The shared sweep chart, diffraction-limit references, value table, point counts and exports keep the
 same stable-band and diagnostic withholding rules. A failed station records its error in the table, leaves a gap
 and allows later stations to run.
-Both sweeps retain structured data limitations per sample. One warning lists affected stations or apertures and their
+Both sweeps retain structured data limitations per sample. Coverage uses each sample's field geometry and the ordinary
+tab's full field-step grid, so restricting computation to inner fields cannot remove a short-field warning. Spectrum,
+glass, applied-focus, scale and source-declaration limitations use the same sample inputs as an ordinary request.
+One warning lists affected stations or apertures and their
 limitation texts, with the existing “Show chart anyway” acknowledgement per system and limitation kind. Unacknowledged
 blocking kinds withhold only the affected samples from charts, crosshairs, tables, clipboard and every export;
 diagnostic disclosure does not release them. Unaffected samples remain readable. Notes stay listed per sample.
+Copy CSV and Export require at least one actual result in the current sweep; an empty-chart placeholder or the
+aperture view's main result alone does not enable them. Pending and entirely failed sweeps disable both actions with
+a reason, while partial results remain exportable and Copy MTF link stays enabled.
 Zoom CSV adds design focal length, zoom coordinate and each station's aperture,
 plane and limitations. Context records `view: zoom`, its sweep policy and all stations; SVG/PNG include the rendered
 chart and caption. The persisted view and version-1 shared bundle accept `aperture` and `zoom` while older settings

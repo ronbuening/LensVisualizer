@@ -1611,6 +1611,41 @@ describe("MTF data limitations", () => {
     expect(scale.kind).toBe("scale");
     expect(scale.text).toContain("differs from the marketed 58 mm by 14%");
   });
+  it.each([
+    { edge: 9.606291, uncharted: 1 },
+    { edge: 10, uncharted: 0 },
+    { edge: 10 - 5e-9, uncharted: 0 },
+    { edge: 10 - 5e-8, uncharted: 1 },
+  ])(
+    "assesses ordinary field coverage from geometry when results restrict fields (edge $edge)",
+    ({ edge, uncharted }) => {
+      // Coverage follows the ordinary chart's reference grid, even when a sweep traces only inner fields.
+      const result = computeMtf(...mtfInputs(state, { ...mtfTestOptions, focus: "best-axial", fieldFractions: [0] }));
+      const geometry = {
+        ...result.geometry!,
+        referenceHeightMm: 10,
+        modeledEdgeHeightMm: edge,
+        basis: "format-corner" as const,
+      };
+      const fieldFractions = Array.from({ length: 11 }, (_, i) => i / 10);
+      const restricted = { ...result, geometry };
+      const notes = assessMtfDataLimitations(state, { ...reference, result: restricted, fieldFractions });
+      if (uncharted) {
+        expect(notes).toMatchObject([{ kind: "short-field", blocking: true }]);
+        expect(notes[0].text).toContain("1 of 11 field positions lies beyond it and is not charted");
+        const ordinary = {
+          ...result,
+          geometry,
+          fields: fieldFractions.map((fieldFraction) => ({
+            ...result.fields[0],
+            fieldFraction,
+            ...(fieldFraction === 1 ? { reason: "outside-modeled-field" as const } : {}),
+          })),
+        };
+        expect(notes).toEqual(assessMtfDataLimitations(state, { ...reference, result: ordinary }));
+      } else expect(notes).toEqual([]);
+    },
+  );
   it.each(["auto", "design", "best-axial"] as const)(
     "does not claim a shifted held plane is authored or best axial with a %s request",
     (focus) => {

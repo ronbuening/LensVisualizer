@@ -29,6 +29,8 @@ export interface MtfDataLimitationInput {
   referenceWavelengthNm: number;
   /** Charted result; the image-plane and field gaps are known only once one exists. */
   result: MtfResult | null;
+  /** Ordinary field grid for geometry-based coverage, independent of restricted result fields. */
+  fieldFractions?: readonly number[];
 }
 
 /** Element names listed before the rest are counted. */
@@ -171,13 +173,21 @@ export function assessMtfDataLimitations(state: PreparedGeometry, input: MtfData
 
   const geometry = input.result?.geometry;
   const fields = input.result?.fields ?? [];
-  const uncharted = fields.filter((field) => field.reason === "outside-modeled-field").length;
+  // Match the target resolver's edge tolerance so numerical rim noise is not a data gap.
+  const edgeTolerance = geometry ? geometry.modeledEdgeHeightMm * 1e-9 + 1e-9 : 0;
+  const uncharted =
+    geometry && input.fieldFractions
+      ? input.fieldFractions.filter(
+          (fraction) => fraction * geometry.referenceHeightMm > geometry.modeledEdgeHeightMm + edgeTolerance,
+        ).length
+      : fields.filter((field) => field.reason === "outside-modeled-field").length;
+  const fieldCount = input.fieldFractions?.length ?? fields.length;
   if (geometry && uncharted > 0) {
     const mm = formatHeights(geometry.referenceHeightMm - geometry.modeledEdgeHeightMm);
     limitations.push({
       kind: "short-field",
       blocking: true,
-      text: `The modeled clear apertures end the field at ${mm(geometry.modeledEdgeHeightMm)} mm, short of the ${mm(geometry.referenceHeightMm)} mm format corner. ${uncharted} of ${fields.length} field positions ${uncharted === 1 ? "lies beyond it and is" : "lie beyond it and are"} not charted.`,
+      text: `The modeled clear apertures end the field at ${mm(geometry.modeledEdgeHeightMm)} mm, short of the ${mm(geometry.referenceHeightMm)} mm format corner. ${uncharted} of ${fieldCount} field positions ${uncharted === 1 ? "lies beyond it and is" : "lie beyond it and are"} not charted.`,
     });
   }
 
