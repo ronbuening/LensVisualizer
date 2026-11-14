@@ -1337,11 +1337,36 @@ describe("MTF aperture chart", () => {
 describe("MTF zoom chart", () => {
   it("uses station focal lengths on a log axis, marks only a matching slider position and reads each station's edge", () => {
     const result = syntheticResult();
-    const short = { ...result, fields: result.fields.filter((field) => [0, 0.5, 0.75].includes(field.fieldFraction)) };
+    const short = {
+      ...result,
+      geometry: { ...result.geometry!, referenceHeightMm: 10, modeledEdgeHeightMm: 9.6063 },
+      fields: result.fields
+        .filter((field) => [0, 0.5, 0.75].includes(field.fieldFraction))
+        .map((field) => ({
+          ...field,
+          fieldFraction: field.fieldFraction === 0.75 ? 0.9 : field.fieldFraction,
+          imageHeightMm: field.fieldFraction === 0.75 ? 9 : field.fieldFraction * 10,
+          targetImageHeightMm: field.fieldFraction === 0.75 ? 9 : field.fieldFraction * 10,
+        })),
+    };
     const samples: MtfSweepSample[] = [
-      { focalLengthMm: 35, zoomT: 0, fNumber: 4, edgeOverview: true, result: short },
+      {
+        focalLengthMm: 35,
+        zoomT: 0,
+        fNumber: 4,
+        edgeOverview: true,
+        edge: { fieldFraction: 0.9, imageHeightMm: 9 },
+        result: short,
+      },
       { focalLengthMm: 70, zoomT: 0.5, fNumber: 5.6, edgeOverview: true, result: null },
-      { focalLengthMm: 140, zoomT: 1, fNumber: 8, edgeOverview: true, result },
+      {
+        focalLengthMm: 140,
+        zoomT: 1,
+        fNumber: 8,
+        edgeOverview: true,
+        edge: { fieldFraction: 1, imageHeightMm: 20 },
+        result,
+      },
     ];
     const props = {
       result,
@@ -1370,13 +1395,18 @@ describe("MTF zoom chart", () => {
     fireEvent.keyDown(screen.getByRole("group", { name: /MTF chart values/ }), { key: "Home" });
     const live = () => container.querySelector('[aria-live="polite"]')!.textContent;
     expect(live()).toContain("35 mm — 10 lp/mm · Center");
-    expect(live()).toContain("Edge (each station) (converged; stable through: 100 lp/mm) S 0.750 T 0.650");
+    expect(live()).toContain(
+      "Edge (each station) (90 % · 9.000 mm) (converged; stable through: 100 lp/mm) S 0.750 T 0.650",
+    );
     expect(live()).toContain("Diffraction limit");
     rerender(<MtfChart {...props} currentZoomT={0.4} />);
     expect(screen.queryByTestId("mtf-current-zoom")).toBeNull();
     fireEvent.keyDown(screen.getByRole("group", { name: /MTF chart values/ }), { key: "End" });
     expect(live()).toContain("140 mm —");
     expect(live()).toContain("S 0.700 T 0.600");
+    render(<MtfFieldSummary {...props} />);
+    expect(screen.getByRole("table").textContent).toContain("Edge: 90 % · 9.000 mm; 0.750 / 0.650");
+    expect(parseCsv(mtfSweepCsv(props))[3].slice(3, 8)).toEqual(["90", "10", "9", "0.7500", "0.6500"]);
   });
 
   it("shares zoom withholding and station-specific field heights across the table and both CSV scopes", () => {
@@ -1386,8 +1416,22 @@ describe("MTF zoom chart", () => {
     result.fields[2].reason = "outside-modeled-field";
     const short = { ...result, fields: result.fields.filter((field) => [0, 0.5, 0.75].includes(field.fieldFraction)) };
     const samples = [
-      { focalLengthMm: 35, zoomT: 0, fNumber: 4, edgeOverview: true, result: short },
-      { focalLengthMm: 140, zoomT: 1, fNumber: 8, edgeOverview: true, result },
+      {
+        focalLengthMm: 35,
+        zoomT: 0,
+        fNumber: 4,
+        edgeOverview: true,
+        edge: { fieldFraction: 0.75, imageHeightMm: 15 },
+        result: short,
+      },
+      {
+        focalLengthMm: 140,
+        zoomT: 1,
+        fNumber: 8,
+        edgeOverview: true,
+        edge: { fieldFraction: 1, imageHeightMm: 20 },
+        result,
+      },
     ];
     const options = {
       view: "zoom" as const,
@@ -1423,5 +1467,75 @@ it("reports an exhausted zoom edge as unavailable rather than pending", () => {
   result.fields = result.fields
     .filter((field) => field.fieldFraction === 0 || field.fieldFraction === 0.5)
     .map((field) => ({ ...field, status: "unavailable", sagittal: [], tangential: [] }));
-  expect(mtfSweepPointStatus({ focalLengthMm: 50, fNumber: 4, edgeOverview: true, result }, 1, 10)).toBe("unavailable");
+  expect(
+    mtfSweepPointStatus(
+      { focalLengthMm: 50, fNumber: 4, edgeOverview: true, edge: { fieldFraction: 1, imageHeightMm: 20 }, result },
+      1,
+      10,
+    ),
+  ).toBe("unavailable");
+});
+
+it("uses the explicit center fallback for the edge in chart readouts, table and both CSV scopes", () => {
+  const result = syntheticResult();
+  result.fields = result.fields.filter((field) => field.fieldFraction === 0 || field.fieldFraction === 0.5);
+  result.fields[1] = {
+    ...result.fields[1],
+    status: "unavailable",
+    reason: "outside-modeled-field",
+    sagittal: [],
+    tangential: [],
+  };
+  const sample: MtfSweepSample = {
+    focalLengthMm: 20,
+    fNumber: 4,
+    edgeOverview: true,
+    edge: { fieldFraction: 0, imageHeightMm: 0 },
+    result,
+  };
+  const props = {
+    result,
+    view: "zoom" as const,
+    sweepSamples: [sample],
+    sweepFields: [0, 0.5, 1],
+    frequencies: [10] as const,
+    t: mockTheme,
+    advanced: true,
+  };
+  const { container } = render(
+    <>
+      <MtfChart {...props} />
+      <MtfFieldSummary {...props} />
+    </>,
+  );
+  fireEvent.keyDown(screen.getByRole("group", { name: /MTF chart values/ }), { key: "Home" });
+  expect(container.querySelector('[aria-live="polite"]')!.textContent).toContain(
+    "Edge (each station) (0 % · 0.000 mm)",
+  );
+  expect(screen.getByRole("table").textContent).toContain("Edge: 0 % · 0.000 mm; 0.900 / 0.800");
+  for (const csv of [
+    mtfSweepCsv(props),
+    mtfViewCsv({ ...props, context: {} }),
+    mtfAllSamplesCsv({ ...props, context: {} }),
+  ]) {
+    const rows = parseCsv(csv).filter((row) => !row[0].startsWith("# "));
+    expect(rows.some((row) => row.slice(3, 8).join(",") === "0,10,0,0.9000,0.8000")).toBe(true);
+    expect(rows.filter((row) => row[4] === "10" && row[6] === "0.9000")).toHaveLength(2);
+  }
+});
+
+it("labels no-format fractions by each station's modeled field and shows the selected physical height", () => {
+  const result = syntheticResult();
+  const props = {
+    result,
+    view: "zoom" as const,
+    sweepSamples: [{ focalLengthMm: 20, fNumber: 4, result, stationFieldReference: true }],
+    sweepFields: [0.5],
+    frequencies: [10] as const,
+    t: mockTheme,
+  };
+  const { container } = render(<MtfChart {...props} />);
+  expect(screen.getByText(/10 lp\/mm · 50 % of each station's modeled field/)).toBeTruthy();
+  fireEvent.keyDown(screen.getByRole("group", { name: /MTF chart values/ }), { key: "Home" });
+  expect(container.querySelector('[aria-live="polite"]')!.textContent).toContain("(50 % · 10.000 mm)");
 });

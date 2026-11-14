@@ -768,7 +768,7 @@ function sweepSeries(
         curve.map((y, i) => (y === null ? null : { x: mtfSweepX(samples[i]), y }));
       return {
         key: `${frequency}/${fraction}`,
-        label: `${frequency} lp/mm · ${fraction === 0 ? "Center" : fraction === 1 && samples.some((s) => s.edgeOverview) ? "Edge (each station)" : `${(fraction * 100).toFixed(0)} %`}`,
+        label: `${frequency} lp/mm · ${fraction === 0 ? "Center" : fraction === 1 && samples.some((s) => s.edgeOverview) ? "Edge (each station)" : `${(fraction * 100).toFixed(0)} %${samples.some((s) => s.stationFieldReference) ? " of each station's modeled field" : ""}`}`,
         color: t.chartSeries[slot],
         marker: MARKERS[fieldSlot % MARKERS.length],
         sampleFields,
@@ -822,7 +822,11 @@ function readout(
       format(
         s,
         view === "aperture" || view === "zoom"
-          ? detail(s.sampleFields?.[index])
+          ? (() => {
+              const sampled = s.sampleFields?.[index];
+              const height = fieldHeight(sampled);
+              return `${view === "zoom" && sampled ? ` (${(sampled.fieldFraction * 100).toFixed(0)} %${height !== null ? ` · ${height.toFixed(3)} mm` : ""})` : ""}${detail(sampled)}`;
+            })()
           : view === "frequency"
             ? detail(s.field)
             : "",

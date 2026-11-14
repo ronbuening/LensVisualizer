@@ -52,7 +52,7 @@ export default function MtfFieldSummary({
   const sweepStatuses = sweepSamples.flatMap((sample) =>
     sweepFields.flatMap((fraction) => frequencies.map((frequency) => mtfSweepPointStatus(sample, fraction, frequency))),
   );
-  const sweepParts = (["converged", "unconverged", "unavailable", "pending"] as const).map(
+  const sweepParts = (["converged", "unconverged", "unavailable", "pending", "withheld", "error"] as const).map(
     (status) => [sweepStatuses.filter((value) => value === status).length, status] as const,
   );
   const noted = result.fields.filter((f) => f.notes.length || (f.status === "unavailable" && f.reason));

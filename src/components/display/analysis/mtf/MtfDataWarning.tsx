@@ -1,6 +1,6 @@
 /**
- * Holds the MTF chart behind a blurred warning until the reader has seen which data the lens lacks.
- * Non-blocking notes never blur the chart; they are listed in the collapsed line above it.
+ * Lists the data limitations and acknowledges their blocking kinds for a lens system.
+ * Ordinary charts stay blurred until acknowledgement; sweeps withhold affected samples independently.
  */
 import type { CSSProperties, ReactNode } from "react";
 import type { MtfDataLimitation } from "../../../../types/mtf.js";
@@ -13,8 +13,10 @@ interface MtfDataWarningProps {
   /** True once the reader has dismissed every blocking kind listed. */
   acknowledged: boolean;
   onAcknowledge: () => void;
+  /** Sweeps withhold individual samples and keep unaffected samples readable. */
+  withholdChart?: boolean;
   t: Theme;
-  /** Action row outside the inert regions; the caller disables data actions while blocked. */
+  /** Action row outside the warning boundary; the caller applies the data disclosure policy. */
   actions?: ReactNode;
   /** Result details retain the same warning boundary after the action row. */
   details?: ReactNode;
@@ -36,13 +38,15 @@ export default function MtfDataWarning({
   children,
   actions,
   details,
+  withholdChart = true,
 }: MtfDataWarningProps) {
   const blocking = limitations.some((limitation) => limitation.blocking);
   const blocked = blocking && !acknowledged;
+  const covered = blocked && withholdChart;
   const list = (
     <ul style={{ margin: "8px 0 0", paddingLeft: 18 }}>
-      {limitations.map(({ kind, text }) => (
-        <li key={kind} style={{ marginBottom: 4 }}>
+      {limitations.map(({ kind, text }, index) => (
+        <li key={`${kind}/${index}`} style={{ marginBottom: 4 }}>
           {text}
         </li>
       ))}
@@ -59,9 +63,12 @@ export default function MtfDataWarning({
           {list}
         </details>
       ) : null}
-      {/* Both layers share one grid cell, so a long warning stretches the cell instead of overflowing the chart. */}
+      {/* Chart-wide warnings share the chart's cell so long limitation lists cannot overflow it. */}
       <div style={{ display: "grid" }}>
-        <div inert={blocked} style={{ gridArea: "1 / 1", minWidth: 0, ...(blocked ? BLURRED : null) }}>
+        <div
+          inert={covered}
+          style={{ gridArea: withholdChart ? "1 / 1" : "2 / 1", minWidth: 0, ...(covered ? BLURRED : null) }}
+        >
           {children}
         </div>
         {blocked ? (
@@ -112,7 +119,7 @@ export default function MtfDataWarning({
       </div>
       {actions}
       {details ? (
-        <div inert={blocked} style={{ minWidth: 0, ...(blocked ? BLURRED : null) }}>
+        <div inert={covered} style={{ minWidth: 0, ...(covered ? BLURRED : null) }}>
           {details}
         </div>
       ) : null}

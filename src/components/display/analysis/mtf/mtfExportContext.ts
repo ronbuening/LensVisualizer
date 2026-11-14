@@ -110,7 +110,10 @@ export function buildMtfExportContext(input: MtfExportContextInput): MtfExportCo
       ? {
           aperture_sweep: input.sweepCaption ?? preferences.comparisonFocus,
           aperture_planes: (input.sweepSamples ?? [])
-            .map(({ fNumber, result }) => `f/${fNumber}: ${result ? focus(result) : "pending"}`)
+            .map(
+              ({ fNumber, result, blocked, error }) =>
+                `f/${fNumber}: ${blocked ? "withheld pending data acknowledgement" : (error ?? (result ? focus(result) : "pending"))}`,
+            )
             .join("; "),
         }
       : {}),
@@ -120,12 +123,13 @@ export function buildMtfExportContext(input: MtfExportContextInput): MtfExportCo
           aperture: "each station's own wide-open aperture",
           focus: "selected image-plane policy independently per station",
           working_f_number: "per station",
+          reference_image_height: "per station; see sampled image heights",
           zoom_sweep:
             input.sweepCaption ?? "Published infinity stations, each wide open; focus independently per station.",
           zoom_stations: (input.sweepSamples ?? [])
             .map(
               (sample) =>
-                `${mtfSweepLabel(sample)}; zoom ${sample.zoomT}; f/${sample.fNumber}; ${sample.result ? focus(sample.result) : "pending"}; ${sample.result?.support.message ?? "pending"}; ${(sample.limitations ?? []).join("; ")}`,
+                `${mtfSweepLabel(sample)}; zoom ${sample.zoomT}; f/${sample.fNumber}; ${sample.blocked ? "withheld pending data acknowledgement" : (sample.error ?? (sample.result ? focus(sample.result) : "pending"))}; ${sample.result?.support.message ?? ""}; ${[...(sample.limitations ?? []).map(({ text }) => text), ...(sample.notes ?? [])].join("; ")}`,
             )
             .join(" | "),
         }
@@ -203,7 +207,7 @@ export function mtfCaptionLines(context: MtfExportContext, maxLineLength: number
         .replace(/^[\d.e+-]+ mm/, (value) => `${Number.parseFloat(value).toFixed(1)} mm`)
         .replace("image-plane", "image plane")
         .replace("first-surface", "first surface"),
-      ...(context.reference_image_height === "not yet available"
+      ...(context.reference_image_height === "not yet available" || context.view === "zoom"
         ? []
         : [`reference height ${Number.parseFloat(context.reference_image_height).toFixed(2)} mm`]),
     ].join(" · "),

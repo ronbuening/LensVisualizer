@@ -190,7 +190,6 @@ export default function MtfTab({
       mainShown,
     ],
   );
-  const [warningAcknowledged, acknowledgeWarning] = useMtfDataWarning(L.source.key, dataLimitations);
   const holdComparison = preferences.comparisonFocus === "hold";
   const mainShift = !stale ? mainShown?.focus?.appliedShiftMm : undefined;
   const comparisonOptions = useMemo(
@@ -240,9 +239,8 @@ export default function MtfTab({
       aperture: request.aperture,
     }),
   );
-  const sweepSamples = sweep.samples.map((sample, index) => {
-    if (view !== "zoom") return sample;
-    const station = zoomRequests[index];
+  const assessedSweepSamples = sweep.samples.map((sample, index) => {
+    const station = sweepRequests[index];
     const resolved = resolveMtfSpectrum(
       station.request.preparedGeometry,
       preferences.spectrum,
@@ -262,22 +260,62 @@ export default function MtfTab({
     });
     return {
       ...sample,
-      limitations: [
+      stationFieldReference:
+        view === "zoom" &&
+        (sample.result?.geometry
+          ? sample.result.geometry.basis === "modeled-edge"
+          : !(L.source.catalog.imageCircleMm || L.source.catalog.imageFormat || L.imageSurface?.fieldExtentMm)),
+      limitations,
+      notes: [
         ...new Set([
           ...(!stationSupport.available ? [stationSupport.message] : []),
           ...(sample.result && !sample.result.support.available ? [sample.result.support.message] : []),
-          ...limitations.map((item) => item.text),
           ...(resolved.note ? [resolved.note] : []),
         ]),
       ],
     };
   });
+  const warningLimitations = isSweep
+    ? assessedSweepSamples.flatMap((sample) =>
+        sample.limitations.map((limitation) => ({
+          ...limitation,
+          text: `${mtfSweepLabel(sample)}: ${limitation.text}`,
+        })),
+      )
+    : dataLimitations;
+  const [warningAcknowledged, acknowledgeWarning, dismissedKinds] = useMtfDataWarning(L.source.key, warningLimitations);
+  // Remove undisclosed results before passing samples to any display or export consumer.
+  const sweepSamples = assessedSweepSamples.map((sample) => {
+    const blocked = sample.limitations.some(({ kind, blocking }) => blocking && !dismissedKinds.has(kind));
+    return blocked ? { ...sample, blocked, result: null, edge: undefined } : sample;
+  });
+  const disclosedSweepResult =
+    sweepSamples.find((sample) => sample.result?.support.available)?.result ??
+    sweepSamples.find((sample) => sample.result)?.result;
+  const emptySweepResult: MtfResult | null =
+    sweepSamples.length || mainShown
+      ? {
+          method: preferences.method,
+          spectrum: spectrum.spectrum,
+          support,
+          frequenciesPerMm: [...preferences.frequencies],
+          fields: [],
+          geometry: null,
+          focus: null,
+          conjugate: null,
+          workingFNumber: null,
+          magnification: null,
+          axialVignetting: null,
+        }
+      : null;
+  const mainDataBlocked = dataLimitations.some(({ kind, blocking }) => blocking && !dismissedKinds.has(kind));
   const shown =
     view === "zoom"
-      ? (sweep.samples.find((sample) => sample.result?.support.available)?.result ??
-        sweep.samples.find((sample) => sample.result)?.result ??
-        null)
-      : mainShown;
+      ? (disclosedSweepResult ?? emptySweepResult)
+      : view === "aperture" && mainDataBlocked
+        ? emptySweepResult
+        : mainShown;
+  const stationFieldReference = assessedSweepSamples.some((sample) => sample.stationFieldReference);
   const displayStale = view === "zoom" ? false : stale;
   const displaySupport = view === "zoom" ? (shown?.support ?? support) : support;
   const displayFields =
@@ -294,7 +332,10 @@ export default function MtfTab({
           : preferences.focus === "design"
             ? "Design plane uses each station's authored image plane."
             : "Each station uses its authored design plane unless Auto selects best axial focus for an inconsistent plane.") +
-        " Fields share the lens's reference image height; each station's edge is its outermost available sampled height."
+        (stationFieldReference
+          ? " Fields are fractions of each station's own modeled field; image heights differ between stations."
+          : " Fields share the lens's declared reference image height.") +
+        " Each station's edge is its outermost available sampled height."
       : holdComparison
         ? "Aperture sweep holds the charted aperture's image plane at every aperture."
         : "Aperture sweep applies the selected image-plane policy independently at each aperture (refocus).";
@@ -311,7 +352,7 @@ export default function MtfTab({
     view === "zoom" ? sweepSamples.flatMap((sample) => sample.result?.fields ?? []) : (shown?.fields ?? [])
   ).filter((field) => field.status === "unconverged").length;
   const chartResult = shown && (view === "zoom" || (support.available && !error)) ? shown : null;
-  const warningBlocked = view !== "zoom" && !warningAcknowledged && dataLimitations.some(({ blocking }) => blocking);
+  const warningBlocked = !isSweep && !warningAcknowledged && dataLimitations.some(({ blocking }) => blocking);
   const dataDisabledReason = !chartResult
     ? "No current MTF result."
     : displayStale
@@ -444,7 +485,8 @@ export default function MtfTab({
         </>
       )}
       <MtfDataWarning
-        limitations={chartResult && view !== "zoom" ? dataLimitations : []}
+        limitations={isSweep || chartResult ? warningLimitations : []}
+        withholdChart={!isSweep}
         acknowledged={warningAcknowledged}
         onAcknowledge={acknowledgeWarning}
         t={t}
@@ -483,7 +525,9 @@ export default function MtfTab({
                       link: buildMtfLink(window.location.href, preferences),
                       date: new Date(),
                       partial: isSweep
-                        ? (view === "aperture" && !sweepReady) || sweep.running || !!sweep.error
+                        ? (view === "aperture" && !sweepReady) ||
+                          sweep.running ||
+                          sweepSamples.some((sample) => sample.blocked || sample.error)
                         : running || (comparisonEnabled && (comparison.running || !comparisonJob)),
                       diagnostic,
                       comparison: comparisonShown,
@@ -543,7 +587,7 @@ export default function MtfTab({
                   {sweepSamples.map((sample) => (
                     <li
                       key={sample.zoomT}
-                    >{`${sample.focalLengthMm} mm · f/${formatFNumber(sample.fNumber)}: ${sample.limitations?.join("; ") || (sample.result ? "No additional data limitations." : "Pending.")}`}</li>
+                    >{`${sample.focalLengthMm} mm · f/${formatFNumber(sample.fNumber)}: ${[...sample.limitations.map(({ text }) => text), ...sample.notes, ...(sample.error ? [sample.error] : [])].join("; ") || (sample.result ? "No additional data limitations." : "Pending.")}`}</li>
                   ))}
                 </ul>
               ) : null}

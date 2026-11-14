@@ -102,9 +102,10 @@ export function mtfSweepCsv(
   all = false,
 ): string {
   const { sweepSamples = [], sweepFields = [], diagnostic = false, diffractionLimit = false } = options;
-  const frequencies = all
-    ? [...new Set(sweepSamples.flatMap(({ result }) => result?.frequenciesPerMm ?? []))].sort((a, b) => a - b)
-    : options.frequencies;
+  const sampledFrequencies = [...new Set(sweepSamples.flatMap(({ result }) => result?.frequenciesPerMm ?? []))].sort(
+    (a, b) => a - b,
+  );
+  const frequencies = all && sampledFrequencies.length ? sampledFrequencies : options.frequencies;
   const zoom = sweepSamples.some((sample) => sample.focalLengthMm !== undefined);
   const header = [
     ...(zoom ? ["Focal length (mm)", "Zoom position"] : []),
@@ -124,7 +125,7 @@ export function mtfSweepCsv(
   const rows = sweepSamples.flatMap((sample) =>
     sweepFields.flatMap((fraction) =>
       frequencies.map((frequency) => {
-        const { result } = sample;
+        const result = sample.blocked || sample.error ? null : sample.result;
         const field = mtfSweepField(sample, fraction);
         const index = result?.frequenciesPerMm.indexOf(frequency) ?? -1;
         const visible = field && index >= 0 && mtfValueVisible(field, frequency, diagnostic);
@@ -143,7 +144,14 @@ export function mtfSweepCsv(
           result?.focus?.mode ?? "",
           result?.focus?.appliedShiftMm ?? "",
           textCell(
-            [notes(field) || result?.support.message || "", ...(sample.limitations ?? [])].filter(Boolean).join("; "),
+            [
+              sample.error,
+              notes(field) || result?.support.message || "",
+              ...(sample.limitations ?? []).map(({ text }) => text),
+              ...(sample.notes ?? []),
+            ]
+              .filter(Boolean)
+              .join("; "),
           ),
           ...(diffractionLimit
             ? (["sagittal", "tangential"] as const).map((axis) =>

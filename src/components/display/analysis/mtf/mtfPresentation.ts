@@ -86,6 +86,8 @@ export function mtfSweepFields(result: MtfResult | null, choice: MtfFrequencyFie
  * @returns numerical availability, independent of diagnostic disclosure
  */
 export function mtfSweepPointStatus(sample: MtfSweepSample, fraction: number, frequency: number) {
+  if (sample.error) return "error";
+  if (sample.blocked) return "withheld";
   if (!sample.result) return "pending";
   const field = mtfSweepField(sample, fraction);
   if (!field)
@@ -115,13 +117,24 @@ export function mtfNyquistLabel(pitch: MtfPixelPitch): string {
  * @returns field in this sample, or undefined while pending/unsupported
  */
 export function mtfSweepField(sample: MtfSweepSample, fraction: number): MtfFieldResult | undefined {
+  if (sample.blocked || sample.error) return undefined;
   if (sample.edgeOverview && fraction === 1) {
-    return (
-      sample.result?.fields.filter((f) => f.fieldFraction !== 0 && f.fieldFraction !== 0.5).at(-1) ??
-      sample.result?.fields.at(-1)
-    );
+    return sample.result?.fields.find((f) => f.fieldFraction === sample.edge?.fieldFraction);
   }
   return sample.result?.fields.find((f) => f.fieldFraction === fraction);
+}
+
+/**
+ * Identify the physical height behind a sweep series at one station.
+ * @param sample - aperture or zoom station, including its selected overview edge
+ * @param fraction - fixed fraction, or the overview edge slot
+ * @returns actual fraction and image height, with the edge named explicitly
+ */
+export function mtfSweepFieldLabel(sample: MtfSweepSample, fraction: number): string {
+  const field = mtfSweepField(sample, fraction);
+  if (!field) return "";
+  const height = field.imageHeightMm ?? field.targetImageHeightMm;
+  return `${sample.edgeOverview && fraction === 1 ? "Edge: " : ""}${(field.fieldFraction * 100).toFixed(0)} %${height !== null ? ` · ${height.toFixed(3)} mm` : ""}`;
 }
 
 /**

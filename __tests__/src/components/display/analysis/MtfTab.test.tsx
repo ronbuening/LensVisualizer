@@ -1925,8 +1925,7 @@ describe("MTF download actions", () => {
     await screen.findByRole("figure");
     const warning = screen.queryByRole("button", { name: "Show chart anyway" });
     if (warning) fireEvent.click(warning);
-    if (view === "zoom") await vi.waitFor(() => expect(worker.calls.compute).toBe(3));
-    if (view === "aperture")
+    if (view === "zoom" || view === "aperture")
       await vi.waitFor(() =>
         expect(screen.getByText(/9 converged · 0 unconverged · 0 unavailable points/)).toBeTruthy(),
       );
@@ -2108,6 +2107,59 @@ describe("MTF download actions", () => {
       frequencies: [10],
     });
   });
+
+  it.each(["zoom", "aperture"] as const)(
+    "withholds blocked %s samples in both CSV downloads and the SVG used for image exports",
+    async (view) => {
+      const { blobs } = downloads();
+      localStorage.setItem(MTF_PREFERENCES_KEY, JSON.stringify({ view, advanced: true, frequencies: [10] }));
+      const lens = zoomControlLens();
+      const { calls } = stubWorker({ resultForJob: apertureControlResult });
+      render(
+        <MtfTab
+          L={lens}
+          t={mockTheme}
+          preparedState={prepareRuntimeState(lens, 0, 0)}
+          currentEPSD={1}
+          currentPhysStopSD={1}
+          fNumber={8}
+        />,
+      );
+      await vi.waitFor(() => expect(calls.compute).toBe(view === "zoom" ? 3 : 4));
+      expect(screen.getByRole("button", { name: "Show chart anyway" })).toBeTruthy();
+      for (const label of ["CSV — this view", "CSV — all sampled values", "SVG"]) {
+        const before = blobs.length;
+        fireEvent.click(screen.getByRole("button", { name: "Export" }));
+        fireEvent.click(screen.getByRole("menuitem", { name: label }));
+        await vi.waitFor(() => expect(blobs.length).toBe(before + 1));
+      }
+      for (const blob of blobs.slice(0, 2)) {
+        const csv = await readBlob(blob);
+        expect(csv).toContain("withheld");
+        expect(csv).not.toContain("1.0000");
+        const rows = csv
+          .split("\n")
+          .filter((line) => !/^"?# /.test(line))
+          .slice(1);
+        const offset = view === "zoom" ? 6 : 4;
+        expect(rows.length).toBeGreaterThan(0);
+        expect(
+          rows.every((row) =>
+            row
+              .split(",")
+              .slice(offset, offset + 2)
+              .every((value) => value === ""),
+          ),
+        ).toBe(true);
+      }
+      const svg = await readBlob(blobs[2]);
+      const parsed = new DOMParser().parseFromString(svg, "image/svg+xml");
+      expect([...parsed.querySelectorAll('path[stroke-width="2"]')].every((path) => !path.getAttribute("d"))).toBe(
+        true,
+      );
+      expect(svg).toContain("withheld pending data acknowledgement");
+    },
+  );
 
   it("downloads zoom CSV and SVG and round-trips its shared view", async () => {
     const { blobs, clicks } = downloads();
@@ -2360,6 +2412,7 @@ function apertureControlResult(job: MtfJob): MtfResult {
   const base = memoizedMtf(focusedState, { ...referenceOptions, fieldFractions: [0] });
   return {
     ...base,
+    ...(job.sweep?.field === "overview" ? { sweepEdge: { fieldFraction: 1, imageHeightMm: 20 } } : {}),
     focus: { ...base.focus!, appliedShiftMm: job.options.heldFocusShiftMm ?? 0.125 },
     fields: (job.options.fieldFractions ?? [0, 0.5, 1]).map((fraction) => ({
       ...base.fields[0],
@@ -2701,6 +2754,87 @@ describe("MTF zoom sweeps", () => {
     },
   );
 
+  it.each(["zoom", "aperture"] as const)("continues the %s queue after a failed middle sample", async (view) => {
+    const lens = zoomControlLens();
+    const requests =
+      view === "zoom"
+        ? mtfZoomRequests(lens, analysisRequestForLens(lens))
+        : mtfApertureRequests(lens, analysisRequestForLens(lens), 8);
+    const failed = mtfJobForRequest(requests[1].request, referenceOptions);
+    const { calls } = stubWorker({
+      resultForJob: apertureControlResult,
+      error: (job) =>
+        job.zoomT === failed.zoomT && job.options.stopSemiDiameterMm === failed.options.stopSemiDiameterMm
+          ? "Synthetic middle failure"
+          : null,
+    });
+    const { result } = renderHook(() => useMtfSweep(lens, requests, referenceOptions, "failure"));
+    await vi.waitFor(() => expect(result.current.running).toBe(false));
+    expect(calls.compute).toBe(requests.length);
+    expect(result.current.samples[1]).toMatchObject({ result: null, error: "Synthetic middle failure" });
+    expect(result.current.samples.at(-1)!.result).not.toBeNull();
+    expect(result.current.error).toBeNull();
+    expect(calls.jobs.every((job) => !job.sweep || !("referenceHeightMm" in job.sweep))).toBe(true);
+    render(
+      <MtfFieldSummary
+        result={result.current.samples[0].result!}
+        sweepSamples={result.current.samples}
+        sweepFields={[0]}
+        frequencies={[10]}
+        view={view}
+        t={mockTheme}
+        advanced
+      />,
+    );
+    expect(screen.getByRole("table").textContent).toContain("error: Synthetic middle failure");
+  });
+
+  it.each(["zoom", "aperture"] as const)(
+    "withholds default photopic %s values until the system's dispersion kind is acknowledged",
+    async (view) => {
+      localStorage.setItem(MTF_PREFERENCES_KEY, JSON.stringify({ view, advanced: true, frequencies: [10] }));
+      const lens = zoomControlLens();
+      const { calls } = stubWorker({ resultForJob: apertureControlResult });
+      const writeText = vi.fn().mockResolvedValue(undefined);
+      vi.stubGlobal("navigator", { ...navigator, clipboard: { writeText } });
+      const { container } = render(
+        <MtfTab
+          L={lens}
+          t={mockTheme}
+          preparedState={prepareRuntimeState(lens, 0, 0)}
+          currentEPSD={1}
+          currentPhysStopSD={1}
+          fNumber={8}
+        />,
+      );
+      const expected = view === "zoom" ? 3 : 4;
+      await vi.waitFor(() => expect(calls.compute).toBe(expected));
+      const table = screen.getByRole("table", { name: /MTF by/ });
+      expect(table.textContent).toContain("withheld");
+      const warning = screen.getByRole("note", { name: "Limited data for this chart" });
+      expect(warning.textContent).toContain("dispersion is estimated");
+      expect(warning.textContent).toContain(view === "zoom" ? "35 mm:" : "f/8.0:");
+      expect(screen.getByRole("figure").closest("[inert]")).toBeNull();
+      fireEvent.click(screen.getByRole("checkbox", { name: /Show diagnostic estimates/ }));
+      expect(table.textContent).toContain("withheld");
+      fireEvent.keyDown(screen.getByRole("group", { name: /MTF chart values/ }), { key: "Home" });
+      expect(container.querySelector('[aria-live="polite"]')!.textContent).not.toMatch(/S [0-9]/);
+      fireEvent.click(screen.getByRole("button", { name: "Copy CSV" }));
+      await vi.waitFor(() => expect(writeText).toHaveBeenCalledTimes(1));
+      expect(writeText.mock.calls[0][0]).toContain("withheld");
+      expect(writeText.mock.calls[0][0]).not.toContain("1.0000");
+      fireEvent.click(screen.getByRole("button", { name: "Show chart anyway" }));
+      expect(table.textContent).not.toContain("withheld");
+      expect(
+        within(table)
+          .getAllByRole("row")
+          .slice(1)
+          .every((row) => row.textContent!.includes("converged")),
+      ).toBe(true);
+      expect(calls.compute).toBe(expected);
+    },
+  );
+
   it("schedules stations sequentially, publishes progress, cancels stale stations and returns to cache", async () => {
     const lens = zoomControlLens(true);
     const { calls, finish } = stubWorker({ progress: true, resultForJob: apertureControlResult });
@@ -2863,7 +2997,9 @@ it("lists a zoom's scale discrepancy at its own station without blocking other f
     JSON.stringify({ view: "zoom", advanced: true, spectrum: "reference", focus: "best-axial" }),
   );
   stubWorker({ resultForJob: apertureControlResult });
-  render(
+  const writeText = vi.fn().mockResolvedValue(undefined);
+  vi.stubGlobal("navigator", { ...navigator, clipboard: { writeText } });
+  const { container } = render(
     <MtfTab
       L={lens}
       t={mockTheme}
@@ -2876,5 +3012,22 @@ it("lists a zoom's scale discrepancy at its own station without blocking other f
   const stations = within(screen.getByRole("list", { name: "Zoom station limitations" })).getAllByRole("listitem");
   expect(stations[0].textContent).not.toContain("differs from the marketed");
   expect(stations[1].textContent).toContain("50.2 mm) differs from the marketed 100 mm");
-  expect(screen.queryByRole("button", { name: "Show chart anyway" })).toBeNull();
+  const table = screen.getByRole("table", { name: /MTF by focal length/ });
+  const rows = within(table).getAllByRole("row");
+  expect(rows[1].textContent).toContain("converged");
+  expect(rows[2].textContent).toContain("withheld");
+  expect(rows[2].textContent).not.toContain("0.900 / 0.900");
+  expect(screen.getByRole("note", { name: "Limited data for this chart" }).textContent).toContain("50.2 mm:");
+  fireEvent.keyDown(screen.getByRole("group", { name: /MTF chart values/ }), { key: "End" });
+  expect(container.querySelector('[aria-live="polite"]')!.textContent).not.toMatch(/S [0-9]/);
+  fireEvent.click(screen.getByRole("button", { name: "Copy CSV" }));
+  await vi.waitFor(() => expect(writeText).toHaveBeenCalledOnce());
+  const csvRows = (writeText.mock.calls[0][0] as string).split("\n");
+  expect(
+    csvRows.filter((row) => row.startsWith("50.2,")).every((row) => row.split(",").slice(6, 8).join() === ","),
+  ).toBe(true);
+  expect(csvRows.some((row) => row.startsWith("50,") && row.split(",")[6] !== "")).toBe(true);
+  fireEvent.click(screen.getByRole("button", { name: "Show chart anyway" }));
+  expect(rows[2].textContent).not.toContain("withheld");
+  expect(rows[2].textContent).toContain("converged");
 });

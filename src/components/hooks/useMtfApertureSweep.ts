@@ -77,25 +77,28 @@ export function useMtfSweep(
       if (live) setState({ client, key, value: { samples: [...samples], index, running, error } });
     };
     const run = async () => {
-      let referenceHeightMm: number | undefined;
       for (let index = 0; index < queue.length; index++) {
         if (!live) return;
         publish(index, true);
         const accept = (result: MtfResult) => {
           if (!live) return;
-          samples[index] = { ...samples[index], result };
+          samples[index] = { ...samples[index], result, edge: result.sweepEdge };
           publish(index, true);
         };
         try {
           const job = queue[index].job;
-          if (job.sweep && referenceHeightMm !== undefined) job.sweep.referenceHeightMm = referenceHeightMm;
           const result = await client.compute(job, accept);
-          referenceHeightMm ??= result.geometry?.referenceHeightMm;
           if (!live) return;
           accept(result);
         } catch (cause) {
-          if (live && (cause as Error).name !== "AbortError") publish(index, false, (cause as Error).message);
-          return;
+          if (!live || (cause as Error).name === "AbortError") return;
+          samples[index] = {
+            ...samples[index],
+            result: null,
+            edge: undefined,
+            error: String((cause as Error).message ?? cause),
+          };
+          publish(index, true);
         }
       }
       publish(Math.max(0, queue.length - 1), false);

@@ -1,13 +1,18 @@
 /** Explicit inputs and serializable outputs for simulated, image-space lens MTF. */
 import type { FiniteConjugate } from "./optics.js";
 
-/** One aperture or zoom station in a UI sweep; null reserves a pending point. */
+/** One aperture or zoom station in a UI sweep; null reserves a pending or withheld point. */
 export interface MtfSweepSample {
   fNumber: number;
   focalLengthMm?: number;
   zoomT?: number;
   edgeOverview?: boolean;
-  limitations?: readonly string[];
+  edge?: MtfResult["sweepEdge"];
+  stationFieldReference?: boolean;
+  limitations?: readonly MtfDataLimitation[];
+  notes?: readonly string[];
+  blocked?: boolean;
+  error?: string;
   result: MtfResult | null;
 }
 
@@ -230,6 +235,8 @@ export interface MtfFieldResult {
 }
 
 export interface MtfResult {
+  /** Selected overview edge on a restricted worker request; ordinary requests leave it absent. */
+  sweepEdge?: { fieldFraction: number; imageHeightMm: number | null };
   method: MtfMethod;
   spectrum: MtfSpectrum;
   support: MtfSupport;

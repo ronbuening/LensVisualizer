@@ -378,8 +378,9 @@ restricted to the center, 50 % and charted result's outermost available field, o
 field. Overview waits for the charted result to finish so its edge stays fixed throughout the sweep. The waiting
 message appears only while a supported main computation is pending; unsupported states and errors use the main
 explanation alone. One retained `useMtfSweep` client runs the apertures sequentially, publishes partial results and
-reports the current f-number and aperture count. Only the selected view computes; optical/settings changes cancel it
-and completed requests reuse the client's result cache when the view returns. Its plane selector shares `comparisonFocus`:
+reports the current f-number and aperture count. A failed sample records its error and leaves a chart gap while
+the queue continues; only cancellation stops later samples. Only the selected view computes; optical/settings
+changes cancel it and completed requests reuse the client's result cache when the view returns. Its plane selector shares `comparisonFocus`:
 refocus applies the selected focus policy independently, while hold uses the charted aperture's exact applied
 shift. The caption states that policy, and table/CSV rows record each applied plane and shift. Comparison-overlay
 controls and requests are hidden in this view. Aperture ticks use a log2 f-number axis; frequency colors and field
@@ -399,13 +400,20 @@ plane at that station. The caption states infinity, each station's own wide-open
 On the worker, the station's modeled field geometry selects center, 50 % and the outermost field-step position
 inside its modeled edge, or the selected single fraction, before tracing pupils. These jobs restrict the field list
 and reuse that geometry in the ordinary engine request. If its edge field is unavailable, the worker tries inward
-field-step positions, retaining the same focus and completed fields, until it finds a usable edge. Fractions share
-the lens's reference image height; without a declared format they share the modeled reference height of the first
-station with resolved geometry. Heights beyond a station's modeled edge remain unavailable. The overview's Edge series follows each station's available edge, with
-actual reference fractions and heights recorded in CSV. The shared sweep chart, crosshair, diffraction-limit
-references, value table, point counts and exports keep the same stable-band and diagnostic withholding rules.
-Advanced lists data limitations and unsupported reasons per station below the table, rather than blocking the whole
-sweep behind one station's warning. Zoom CSV adds design focal length, zoom coordinate and each station's aperture,
+field-step positions, retaining the same focus and completed fields, until it finds a usable edge. The selected
+edge fraction and actual height travel explicitly with each sample, including an edge that falls back to center.
+Every sampled field matches the ordinary request at that station. A declared format supplies the common reference
+height; without one each station retains its own modeled-field reference. Series labels name that station-specific
+basis and the caption states that image heights differ between stations. The crosshair, table and CSV give actual
+fractions and mm heights per station, including the selected edge. Heights beyond a station's modeled edge remain
+unavailable. The shared sweep chart, diffraction-limit references, value table, point counts and exports keep the
+same stable-band and diagnostic withholding rules. A failed station records its error in the table, leaves a gap
+and allows later stations to run.
+Both sweeps retain structured data limitations per sample. One warning lists affected stations or apertures and their
+limitation texts, with the existing “Show chart anyway” acknowledgement per system and limitation kind. Unacknowledged
+blocking kinds withhold only the affected samples from charts, crosshairs, tables, clipboard and every export;
+diagnostic disclosure does not release them. Unaffected samples remain readable. Notes stay listed per sample.
+Zoom CSV adds design focal length, zoom coordinate and each station's aperture,
 plane and limitations. Context records `view: zoom`, its sweep policy and all stations; SVG/PNG include the rendered
 chart and caption. The persisted view and version-1 shared bundle accept `aperture` and `zoom` while older settings
 retain their defaults.

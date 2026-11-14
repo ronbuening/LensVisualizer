@@ -204,7 +204,8 @@ The waiting message appears only while a supported main computation is pending; 
 show only the main explanation.
 `useMtfSweep` sends ordinary requests restricted to those fields, scales both aperture radii as for the
 comparison, and runs one aperture after another on one retained worker client. Progress names the current aperture
-and ordinal; partial values appear immediately, with gaps for pending apertures and no provisional bridges. The
+and ordinal; partial values appear immediately, with gaps for pending apertures and no provisional bridges. A failed
+aperture retains its error in the table and leaves a chart gap; the queue continues unless cancelled. The
 view computes only while selected, cancels on optical/settings changes and reuses the client's completed-result
 cache on return. A sweep plane selector shares persisted `comparisonFocus`: the selected policy applies
 independently at each aperture, or every point holds the charted aperture's applied plane. The caption states the
@@ -225,14 +226,21 @@ sequentially with focal-length/ordinal progress and partial results; changes can
 cached. It does not move sliders. Focal length uses a logarithmic axis and authored design-focal-length ticks; a
 marker identifies a matching current zoom station. The worker restricts each job to center, 50 % and that station's
 outermost field-step position inside its modeled edge, or the selected single field. An unavailable edge field is
-retried inward with the same focus and cached fields. All fractions use a common reference image height (the modeled
-reference height of the first station with resolved geometry when no format is declared), so unreachable heights
-remain unavailable. Edge's actual percentage and mm height can differ by station and are recorded in CSV.
+retried inward with the same focus and cached fields. The selected edge fraction and mm height travel explicitly
+with the sample, including a fallback to center. Each sampled value equals the ordinary tab at that station. A
+declared format supplies a common reference image height; without one the series are fractions of each station's
+own modeled field and the caption states that image heights differ between stations. Crosshair, table and CSV
+include each station's actual field fraction and mm height, including its edge. Unreachable fields stay unavailable.
 The caption states infinity, each station's own wide-open aperture and independent focus: best axial focus per
 station, each station's authored design plane, or Auto's per-station plane assessment. Comparison overlay controls
-and requests are hidden. Advanced lists limitations and unsupported reasons per station below its table, without
-one blocking warning over the whole sweep. Clipboard/current-view CSV includes each station's design focal length,
-zoom coordinate, aperture, fields and applied plane; all-values CSV includes every computed frequency there.
+and requests are hidden. A failed station shows its error in the table, leaves a chart gap and allows the queue
+to continue. Both sweeps retain structured limitations per sample. One warning names the affected stations or
+apertures and their limitation texts; “Show chart anyway” acknowledges the listed blocking kinds for that system.
+Until acknowledged, affected samples have no values in the chart, crosshair, table, clipboard or any export,
+including diagnostic estimates. Unaffected samples remain readable and notes remain listed per sample.
+Advanced lists station limitations and unsupported reasons below the table. Clipboard/current-view CSV includes
+each station's design focal length, zoom coordinate, aperture, fields and applied plane; all-values CSV includes
+every computed frequency there.
 Context records `view: zoom`, policy and station details; SVG/PNG capture the rendered sweep and caption. Stored
 settings and v1 shared links preserve the Zoom view.
 A persisted "Diffraction limit"

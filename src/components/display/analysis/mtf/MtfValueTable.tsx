@@ -12,6 +12,7 @@ import {
   mtfSweepPointStatus,
   mtfSweepField,
   mtfSweepLabel,
+  mtfSweepFieldLabel,
   mtfStableThroughLabel,
 } from "./mtfPresentation.js";
 import { textRun } from "../../../../utils/text.js";
@@ -290,7 +291,9 @@ function SweepValueTable({
                 const field = mtfSweepField(sample, fraction);
                 const index = sample.result?.frequenciesPerMm.indexOf(frequency) ?? -1;
                 const visible = field && index >= 0 && mtfValueVisible(field, frequency, diagnostic);
-                const status = mtfSweepPointStatus(sample, fraction, frequency);
+                const status = sample.error
+                  ? `error: ${sample.error}`
+                  : mtfSweepPointStatus(sample, fraction, frequency);
                 const limitS =
                   field && sample.result?.method === "diffraction" && index >= 0
                     ? mtfLimitValue(field, "sagittal", index, frequency, diagnostic)
@@ -305,7 +308,7 @@ function SweepValueTable({
                     style={cell}
                     title={field ? [...field.notes, field.message].filter(Boolean).join("; ") : undefined}
                   >
-                    {`${visible ? `${field.sagittal[index].toFixed(3)} / ${field.tangential[index].toFixed(3)}` : "—"}; ${status}; ${field ? mtfStableThroughLabel(field) : "Not established"}${diffractionLimit ? `; limit ${limitS != null && limitT != null ? `${limitS.toFixed(3)} / ${limitT.toFixed(3)}` : "—"}` : ""}`}
+                    {`${zoom && field ? `${mtfSweepFieldLabel(sample, fraction)}; ` : ""}${visible ? `${field.sagittal[index].toFixed(3)} / ${field.tangential[index].toFixed(3)}` : "—"}; ${status}; ${field ? mtfStableThroughLabel(field) : "Not established"}${diffractionLimit ? `; limit ${limitS != null && limitT != null ? `${limitS.toFixed(3)} / ${limitT.toFixed(3)}` : "—"}` : ""}`}
                   </td>
                 );
               })}

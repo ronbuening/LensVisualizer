@@ -38,11 +38,9 @@ function jobCache(job: MtfJob): MtfJobCache {
 /** Find an overview edge on this worker without tracing the station's full field grid. */
 function* stationSteps(request: AnalysisRequest, job: MtfJob, cache: MtfJobCache): Generator<MtfResult, MtfResult> {
   if (!job.sweep) return yield* computeMtfSteps(request, job.options, cache);
-  const { candidates, field, referenceHeightMm } = job.sweep;
+  const { candidates, field } = job.sweep;
   if (cache.geometry === undefined) cache.geometry = resolveMtfGeometry(request, job.options);
   if (!cache.geometry) return yield* computeMtfSteps(request, job.options, cache);
-  // Undeclared formats share the first station's reference too: fractions keep the same mm.
-  if (referenceHeightMm !== undefined) cache.geometry = { ...cache.geometry, referenceHeightMm };
   const geometry = cache.geometry;
   const edges = [...candidates]
     .sort((a, b) => b - a)
@@ -52,7 +50,25 @@ function* stationSteps(request: AnalysisRequest, job: MtfJob, cache: MtfJobCache
       ...job.options,
       fieldFractions: typeof field === "number" ? [field] : [...new Set([0, 0.5, edge])].sort((a, b) => a - b),
     };
-    const result = yield* computeMtfSteps(request, settings, cache);
+    const steps = computeMtfSteps(request, settings, cache);
+    let result: MtfResult;
+    for (;;) {
+      const next = steps.next();
+      const sampled = next.value.fields.find((sample) => sample.fieldFraction === edge);
+      result = {
+        ...next.value,
+        ...(field === "overview"
+          ? {
+              sweepEdge: {
+                fieldFraction: edge,
+                imageHeightMm: sampled?.imageHeightMm ?? sampled?.targetImageHeightMm ?? null,
+              },
+            }
+          : {}),
+      };
+      if (next.done) break;
+      yield result;
+    }
     const sampled = result.fields.find((sample) => sample.fieldFraction === edge);
     if (
       typeof field === "number" ||

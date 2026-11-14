@@ -339,7 +339,7 @@ it("restricts zoom overview to each station's field edge with the same ordinary 
   }
 });
 
-it("keeps a common reference height and reports a station's unreachable shared heights as unavailable", async () => {
+it("keeps ordinary field heights even when a sweep message contains a foreign reference height", async () => {
   const { send, finished } = await loadWorker();
   const lens = buildSimplePositiveElementLens();
   send({ type: "init", input: structuredClone(canonicalLensFromRuntime(lens)) });
@@ -368,14 +368,10 @@ it("keeps a common reference height and reports a station's unreachable shared h
   });
   const reply = await finished(1);
   if (reply.type !== "result") throw new Error("Expected station result");
-  expect(reply.result.geometry!.referenceHeightMm).toBe(referenceHeightMm);
-  expect(reply.result.fields.map((field) => field.fieldFraction)).toEqual([0, 0.25, 0.5]);
-  expect(reply.result.fields.at(-1)).toMatchObject({
-    reason: "outside-modeled-field",
-    status: "unavailable",
-    targetImageHeightMm: referenceHeightMm * 0.5,
-  });
-  expect(reply.result.fields[1].targetImageHeightMm).toBe(referenceHeightMm * 0.25);
+  expect(reply.result.geometry).toEqual(ordinary.geometry);
+  expect(reply.result.fields.map((field) => field.fieldFraction)).toEqual([0, 0.5, 1]);
+  for (const field of reply.result.fields)
+    expect(field).toEqual(ordinary.fields.find((control) => control.fieldFraction === field.fieldFraction));
 });
 
 it("finds an inward overview field when the modeled edge has no usable MTF", async () => {
@@ -424,4 +420,89 @@ it("finds an inward overview field when the modeled edge has no usable MTF", asy
   ]);
   expect(reply.result.fields.at(-1)).toEqual(ordinary.fields.find((field) => field.fieldFraction === 0.75));
   expect(reply.result.focus).toEqual(ordinary.focus);
+  expect(reply.result.sweepEdge).toEqual({
+    fieldFraction: 0.75,
+    imageHeightMm: ordinary.fields.find((field) => field.fieldFraction === 0.75)!.imageHeightMm,
+  });
+});
+
+it("matches ordinary no-format fields at every station even when their modeled reference heights differ", async () => {
+  const { send, finished } = await loadWorker();
+  const lens = build({
+    ...constructionFixtureData(buildSimplePositiveElementLens()),
+    zoomPositions: [50, 60, 70],
+    var: {
+      "1": [
+        [5, 5],
+        [7, 7],
+        [9, 9],
+      ],
+    },
+  });
+  send({ type: "init", input: structuredClone(canonicalLensFromRuntime(lens)) });
+  const options: MtfOptions = {
+    method: "geometric",
+    spectrum: "reference",
+    focus: "best-axial",
+    pupilSemiDiameterMm: 0.5,
+    stopSemiDiameterMm: 0.5,
+    fieldFractions: [0, 0.5, 1],
+    frequenciesPerMm: [0, 10, 30],
+    maxGridSize: 32,
+  };
+  const heights: number[] = [];
+  for (const [id, zoomT] of [0, 0.5, 1].entries()) {
+    const ordinary = computeMtf(...mtfInputs(prepareRuntimeState(lens, 0, zoomT), options));
+    heights.push(ordinary.geometry!.referenceHeightMm);
+    expect(ordinary.geometry!.basis).toBe("modeled-edge");
+    send({
+      type: "compute",
+      id,
+      job: { focusT: 0, zoomT, aberrationT: 0, options, sweep: { candidates: options.fieldFractions, field: 0.5 } },
+    });
+    const reply = await finished(id);
+    if (reply.type !== "result") throw new Error("Expected station result");
+    expect(reply.result.geometry).toEqual(ordinary.geometry);
+    expect(reply.result.fields).toEqual(ordinary.fields.filter((field) => field.fieldFraction === 0.5));
+    expect(reply.result.focus).toEqual(ordinary.focus);
+  }
+  expect(new Set(heights).size).toBe(3);
+});
+
+it("carries the center as the selected edge when the modeled radius is below the first field step", async () => {
+  const { send, finished } = await loadWorker();
+  const lens = buildSimplePositiveElementLens();
+  const options: MtfOptions = {
+    method: "geometric",
+    spectrum: "reference",
+    focus: "best-axial",
+    pupilSemiDiameterMm: 0.5,
+    stopSemiDiameterMm: 0.5,
+    fieldFractions: [0, 0.1, 0.5, 1],
+    frequenciesPerMm: [0, 10, 30],
+    maxGridSize: 32,
+  };
+  const ordinary = computeMtf(...mtfInputs(prepareRuntimeState(lens, 0, 0), options));
+  const engine = await import("../../../../src/optics/analysis/mtf/mtf.js");
+  vi.spyOn(engine, "resolveMtfGeometry").mockReturnValue({
+    ...ordinary.geometry!,
+    modeledEdgeHeightMm: ordinary.geometry!.referenceHeightMm * 0.05,
+  });
+  send({ type: "init", input: structuredClone(canonicalLensFromRuntime(lens)) });
+  send({
+    type: "compute",
+    id: 1,
+    job: {
+      focusT: 0,
+      zoomT: 0,
+      aberrationT: 0,
+      options,
+      sweep: { candidates: options.fieldFractions, field: "overview" },
+    },
+  });
+  const reply = await finished(1);
+  if (reply.type !== "result") throw new Error("Expected station result");
+  expect(reply.result.sweepEdge).toEqual({ fieldFraction: 0, imageHeightMm: 0 });
+  expect(reply.result.fields[0]).toEqual(ordinary.fields[0]);
+  expect(reply.result.fields[1]).toMatchObject({ fieldFraction: 0.5, status: "unavailable" });
 });
