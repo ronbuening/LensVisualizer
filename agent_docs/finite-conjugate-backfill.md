@@ -8,14 +8,14 @@ removes the keyframe's published flag.
 ## Coverage
 
 - Published finite states: **604** on 376 lenses.
-- Declared: **361** on 223 lenses.
-- Open: **243** states on 157 lenses, listed below by what the cited source prints.
+- Declared: **510** on 318 lenses.
+- Open: **94** states on 64 lenses, listed below by what the cited source prints.
 
 | What the source prints for the state | States |
 |---|---|
-| Only a magnification | 147 |
+| A magnification that could not be declared | 10 |
 | Neither a distance nor a magnification | 30 |
-| A distance that could not be declared | 66 |
+| A distance that could not be declared | 54 |
 
 States are written `zoomStation/keyframe`. "Depths" are the audit's signed quarter waves of defocus at the authored
 image plane for the printed distance under the source's reference and under the other one; the limit is 25.
@@ -24,26 +24,14 @@ image plane for the printed distance under the source's reference and under the 
 
 ### The source's stated reference does not focus, the other one does
 
-The printed number, unit and gaps match the file. Nothing is declared against the source's own definition; each row
-needs a ruling or a second source.
+The printed number, unit and gaps match the file. Nothing is declared against the source's own definition without a
+ruling recorded in the spec (the Sony d0 rows have one); each row needs that ruling or a second source.
 
 | Lens file | State | Printed | Depths (declared / other) | Finding |
 |---|---|---|---|---|
 | `canon/CanonRF14mmF14LVCM` | 0/1 | First surface from object plane 240.532 | -267.7 / -5.6 | Patent says “First surface from object plane”; printed close gaps match the file, but only image-plane use passes. |
 | `canon/CanonRF20mmf14LVCM` | 0/1 | First surface from object plane 300.024 | -305.0 / -0.1 | Patent says “First surface from object plane”; printed close gaps match the file, but only image-plane use passes. |
 | `fujifilm/FujifilmXF56mmf12RWR` | 0/1 | 0.5m | +537.4 / -0.1 | ¶0062 defines “物体から像面Ｓｉｍまでの光軸Ｚ上の距離” (object to image plane); Table 5 prints 0.5m and DD[3]/DD[17]=9.855/8.902, but only first-surface use passes. |
-| `sony/SonyFE1224mmf28GM` | 0/1 | d0 280mm | -43.7 / +3.6 | Table 9 close gaps match natively; the patent defines di as 「i番目の面とi+1番目の面との間の光軸上の間隔」 and puts d0 at 0(OBJ), so it denotes object-to-first-surface; only the image-plane interpretation passes, and it is not substituted. |
-| `sony/SonyFE1224mmf28GM` | 1/1 | d0 280mm | -74.9 / +5.6 | Table 9 close gaps match natively; the patent defines di as 「i番目の面とi+1番目の面との間の光軸上の間隔」 and puts d0 at 0(OBJ), so it denotes object-to-first-surface; only the image-plane interpretation passes, and it is not substituted. |
-| `sony/SonyFE1224mmf28GM` | 2/1 | d0 280mm | -166.0 / -8.8 | Table 9 close gaps match natively; the patent defines di as 「i番目の面とi+1番目の面との間の光軸上の間隔」 and puts d0 at 0(OBJ), so it denotes object-to-first-surface; only the image-plane interpretation passes, and it is not substituted. |
-| `sony/SonyFE2070mmf4G` | 0/1 | d0 = 299mm | -34.6 / +2.5 | Table 38 close gaps match natively; the patent defines di as 「i番目の面とi+1番目の面との間の光軸上の間隔」 and puts d0 at 0(OBJ), so it denotes object-to-first-surface; only the image-plane interpretation passes, and it is not substituted. |
-| `sony/SonyFE2070mmf4G` | 1/1 | d0 = 299mm | -113.8 / +1.7 | Table 38 close gaps match natively; the patent defines di as 「i番目の面とi+1番目の面との間の光軸上の間隔」 and puts d0 at 0(OBJ), so it denotes object-to-first-surface; only the image-plane interpretation passes, and it is not substituted. |
-| `sony/SonyFE2070mmf4G` | 2/1 | d0 = 299mm | -434.5 / -6.4 | Table 38 close gaps match natively; the patent defines di as 「i番目の面とi+1番目の面との間の光軸上の間隔」 and puts d0 at 0(OBJ), so it denotes object-to-first-surface; only the image-plane interpretation passes, and it is not substituted. |
-| `sony/SonyFE70200mmf28GMII` | 0/1 | d0 = 1000mm | -115.7 / +17.6 | Table 8 close gaps match natively; the patent defines di as 「i番目の面とi+1番目の面との間の光軸上の間隔」 and puts d0 at 0(OBJ), so it denotes object-to-first-surface; only the image-plane interpretation passes, and it is not substituted. |
-| `sony/SonyFE70200mmf28GMII` | 1/1 | d0 = 1000mm | -323.9 / -1.2 | Table 8 close gaps match natively; the patent defines di as 「i番目の面とi+1番目の面との間の光軸上の間隔」 and puts d0 at 0(OBJ), so it denotes object-to-first-surface; only the image-plane interpretation passes, and it is not substituted. |
-| `sony/SonyFE70200mmf28GMII` | 2/1 | d0 = 1000mm | -696.6 / +14.4 | Table 8 close gaps match natively; the patent defines di as 「i番目の面とi+1番目の面との間の光軸上の間隔」 and puts d0 at 0(OBJ), so it denotes object-to-first-surface; only the image-plane interpretation passes, and it is not substituted. |
-| `sony/SonyFEPZ1635mmf4G` | 0/1 | d0 = 279mm | — / — | d0 = 279 mm, defined by Table 21 as object to first surface, focuses at Wide only at −20.6 depths with the image-plane reading equally inside the limit; Mid and Tele pass only as image-plane distances. |
-| `sony/SonyFEPZ1635mmf4G` | 1/1 | d0 = 279mm | -42.6 / +5.4 | Table 23 close gaps match natively; the patent defines di as 「i番目の面とi+1番目の面との間の光軸上の間隔」 and puts d0 at 0(OBJ), so it denotes object-to-first-surface; only the image-plane interpretation passes, and it is not substituted. |
-| `sony/SonyFEPZ1635mmf4G` | 2/1 | d0 = 279mm | -91.0 / +16.3 | Table 23 close gaps match natively; the patent defines di as 「i番目の面とi+1番目の面との間の光軸上の間隔」 and puts d0 at 0(OBJ), so it denotes object-to-first-surface; only the image-plane interpretation passes, and it is not substituted. |
 
 ### Distance measured to a front plate the file does not model
 
@@ -146,110 +134,24 @@ No audit row exists until the lens is supported (diffractive surface, mirror pat
 | `viltrox/ViltroxAF50mmf18FE` | 0/1 | 物距 最近(0.5m) | +241.7 / +507.3 | Example 1 Table 2 close column has the same D1/D2 and 0.5 m; 物距 does not expressly identify its datum and neither reference passes. |
 | `vivitar/VivitarSeries1135mmf23` | 0/1 | 1500 mm. or less than 59 inches | -34.4 / +145.6 | Table II matches D10=10.4 mm, but the prose only says 1500 mm or less than 59 inches without naming a datum; neither reference passes. |
 
-## Magnification Only
+## Printed Magnification, Not Declared
 
-The source tabulates these states by magnification and prints no object distance. A conjugate is not inferred from a
-magnification: the object distance that reproduces it is a calculation on the prescription, not a source value.
-Declaring them needs a ruling on that rule.
+The source prints a magnification and no object distance. The distance solved from that magnification
+(`sourceMagnification`, `LENS_DATA_SPEC.md` § Finite conjugates) fails the audit, or the two readings of the source
+disagree on what is printed. A failure with matching gaps is a lead for a prescription check.
 
-- `canon/CanonEF100mmf28LIS`: 0/1
-- `canon/CanonEF100mmf28Macro`: 0/1, 0/2
-- `canon/CanonEF180mmf35LMacroUSM`: 0/1, 0/2, 0/3
-- `canon/CanonEFM22mmf2STM`: 0/1
-- `canon/CanonEFM28mmf34MacroISSTM`: 0/1
-- `canon/CanonEFM32mmf14STM`: 0/1
-- `canon/CanonFD35mmf2`: 0/1
-- `canon/CanonRF100f28`: 0/1, 0/2
-- `canon/CanonRF24mmF14LVCM`: 0/1, 0/2, 0/3
-- `canon/CanonRF35mmF18MACROISSTM`: 0/1
-- `canon/CanonRF50mmf12L`: 0/1
-- `canon/CanonRF85mmf2Macro`: 0/1, 0/2
-- `canon/CanonTSE135mmf4L`: 0/1
-- `canon/CanonTSE50mmf28L`: 0/1
-- `carl-zeiss-oberkochen/ZeissBatis1885`: 0/1, 0/2
-- `carl-zeiss-oberkochen/ZeissTouit50mmf28Macro`: 0/1, 0/2
-- `fujifilm/FujifilmFujinonXf16mmf14RWR`: 0/1, 0/2
-- `fujifilm/FujifilmGF2035mmf4`: 0/1, 2/1
-- `fujifilm/FujifilmGF30mmf56TS`: 0/1
-- `fujifilm/FujifilmXF23mmf28RWR`: 0/1
-- `fujifilm/FujifilmXF23mmf2RWR`: 0/1
-- `fujifilm/FujifilmXF60mmf24R`: 0/1, 0/2
-- `fujifilm/FujifilmXF80f28`: 0/1
-- `fujifilm/FujifilmXF90mmf2`: 0/1
-- `hasselblad/HasselbladHC120mmf4Macro`: 0/1
-- `konica/KonicaHexanon60mmf12`: 0/1
-- `laowa/Laowa100mmf28TiltShift1xMacro`: 0/1, 0/2
-- `laowa/Laowa105mmf2STF`: 0/1
-- `laowa/Laowa12mmf28ZeroD`: 0/1
-- `laowa/Laowa15mmf2ZeroD`: 0/1
-- `laowa/Laowa15mmf4Macro`: 0/1
-- `laowa/Laowa180mmf45UltraMacroAPO`: 0/1, 0/2
-- `laowa/Laowa24mmf14Probe`: 0/1
-- `laowa/Laowa55mmf28TiltShift1xMacro`: 0/1, 0/2
-- `laowa/Laowa58mmf28MacroAPO`: 0/1
-- `laowa/Laowa65mmf28MacroAPO`: 0/1
-- `laowa/Laowa90mmf28UltraMacroAPO`: 0/1, 0/2
-- `mamiya/MamiyaSekorDAF150mmf28IF`: 0/1
-- `mamiya/MamiyaSekorMacroC80mmf4`: 0/1
-- `minolta/MinoltaAF100mmf2`: 0/1
-- `minolta/MinoltaAF135mmf28`: 0/1
-- `minolta/MinoltaAF20mmf28`: 0/1
-- `minolta/MinoltaSTF135mmf28T45`: 0/1
-- `minolta/MinoltaVarisoft85mmf28`: 0/1
-- `nikon/Nikon1Nikkor32mmf12`: 0/1, 0/2
-- `nikon/Nikon85f14D`: 0/1
-- `nikon/NikonAF28f14D`: 0/1
-- `nikon/NikonAFMicroNikkor60mmf28D`: 0/1, 0/2
-- `nikon/NikonAFNikkor35mmf2D`: 0/1, 0/2
-- `nikon/NikonAFSDXZoomNikkor1855mmf3556GEDII`: 0/1, 1/1, 2/1
-- `nikon/NikonAFSMicroNikkor60f28G`: 0/1, 0/2
-- `nikon/NikonAFSNIKKOR500mmf4EFLEDVR`: 0/1, 0/2
-- `nikon/NikonAFSNikkor800mmf56EFLEDVR`: 0/1, 0/2
-- `nikon/NikonAFSVR200mmf2GIFED`: 0/1
-- `nikon/NikonAFZoomNikkor2885mmf3545`: 0/1
-- `nikon/NikonAFZoomNikkor80200mmf28ED`: 0/1, 1/1
-- `nikon/NikonAIAFZoomNikkor2485mmf284DIF`: 0/5, 0/6, 7/2, 7/3, 7/6, 11/1, 11/4, 11/6
-- `nikon/NikonAINikkor600mmf56IFED`: 0/1
-- `nikon/NikonAiNikkor200mmf2IFED`: 0/1
-- `nikon/NikonAiSNikkor300mmf2IFED`: 0/1
-- `nikon/NikonNikkor105f14E`: 0/1
-- `nikon/NikonNikkor20mmf4`: 0/1
-- `nikon/NikonNikkorN28mmf2`: 0/1
-- `nikon/NikonNikkorZ40mmf2`: 0/1
-- `nikon/NikonNikkorZ70200f28`: 0/1, 1/1, 2/1
-- `nikon/NikonZ58f095SNoct`: 0/1
-- `olympus/OMSystem90mmF35MacroISPRO`: 0/1, 0/2, 0/3
-- `olympus/OlympusMZuiko75mmf18`: 0/1
-- `olympus/OlympusZuikoAutoMacro50mmf2`: 0/1
-- `olympus/OlympusZuikoAutoMacro90mmf2`: 0/1, 0/2
-- `p.-angénieux/AngenieuxDEM180mmf23APO`: 0/1
-- `panasonic/PanasonicLeicaDGMacroElmarit45mmF28ASPHMegaOIS`: 0/1, 0/2
-- `pentax/Pentax645FA120mmf4`: 0/1
-- `pentax/PentaxA135mmf18`: 0/1
-- `pentax/PentaxA200mmf4MacroED`: 0/1
-- `pentax/PentaxDA14mmf28EDIF`: 0/1
-- `pentax/PentaxDA35mmf28MacroLimited`: 0/1, 0/2
-- `pentax/PentaxDAStar300mmF4EDIFSDM`: 0/1
-- `pentax/PentaxDFA50mmf14SDM`: 0/1
-- `pentax/PentaxDFA64535mmf35AL`: 0/1
-- `pentax/PentaxDFA64590mmf28EDAWSRMacro`: 0/1
-- `pentax/PentaxF135mmf28IF`: 0/1
-- `sigma/SigmaAPOMacro105mmf28OSHSM`: 0/1, 0/2
-- `sigma/SigmaAPOMacro150mmf28OSHSM`: 0/1, 0/2
-- `sigma/SigmaAPOMacro180mmf28`: 0/1, 0/2
-- `sigma/SigmaDP3M50mmf28`: 0/1
-- `sony/SonyE20mmf28`: 0/1
-- `sony/SonyE50mmf18OSS`: 0/1, 0/2
-- `sony/SonyFE24mmf14GM`: 0/1
-- `sony/SonyFE24mmf18ZA`: 0/1
-- `sony/SonyFE55mmf18ZA`: 0/1
-- `sony/SonyFE90mmf28`: 0/1, 0/2
-- `sony/SonyPlanarFE50mmf14ZA`: 0/1, 0/2
-- `sony/ZeissSonnar35mmf2SonyDSCRX1`: 0/1, 0/2
-- `tamron/TamronSP90mmf28Di`: 0/1, 0/2
-- `tamron/TamronSPAF180mmf35Di`: 0/1, 0/2
-- `tamron/TamronSPAF60mmf2Di`: 0/1, 0/2
-- `voigtlander/VoigtlanderMacroApoLanthar125mmf25`: 0/1
+| Lens file | State | Printed | Finding |
+|---|---|---|---|
+| `carl-zeiss-oberkochen/ZeissBatis1885` | 0/2 | MOD: /β/ 0.125; d1 10.172; d2 6.801 | Focused on its image plane the state has magnification 0.12293; the distance at the printed magnification, to its rounding, is +30.3 quarter waves out. |
+| `nikon/NikonAINikkor600mmf56IFED` | 0/1 | 撮影倍率 1/10 | Focused on its image plane the state has magnification 0.09486; the distance at the printed magnification, to its rounding, is +65.9 quarter waves out. |
+| `nikon/NikonAiSNikkor300mmf2IFED` | 0/1 | β = −0.089 | Focused on its image plane the state has magnification 0.08642; the distance at the printed magnification, to its rounding, is +133.8 quarter waves out. |
+| `nikon/NikonNikkorZ40mmf2` | 0/1 | β＝−1/10 | Focused on its image plane the state has magnification 0.03330; the distance at the printed magnification, to its rounding, is +515.5 quarter waves out. |
+| `olympus/OlympusZuikoAutoMacro90mmf2` | 0/1 | 1/10 X; d13 5.283 | Focused on its image plane the state has magnification 0.11753; the distance at the printed magnification, to its rounding, is -263.8 quarter waves out. |
+| `olympus/OlympusZuikoAutoMacro90mmf2` | 0/2 | 1/2 X; d13 20.277 | Focused on its image plane the state has magnification 0.50598; the distance at the printed magnification, to its rounding, is -46.2 quarter waves out. |
+| `pentax/PentaxA135mmf18` | 0/1 | a magnification of −1/10 with d₁₁ being 20.64 and 20.42 | Focused on its image plane the state has magnification 0.09797; the distance at the printed magnification, to its rounding, is +55.1 quarter waves out. |
+| `pentax/PentaxA200mmf4MacroED` | 0/1 | (b) a ½ magnification | Second reader: the ½ magnification is named only in the drawing list, not tied to the gap column. |
+| `sigma/SigmaDP3M50mmf28` | 0/1 | β=/10/ | Print reads β=/10/; the trace gives 0.1. |
+| `tamron/TamronSPAF60mmf2Di` | 0/1 | Up to 5:1 Mag. | Focused on its image plane the state has magnification 0.19781; the distance at the printed magnification, to its rounding, is +25.7 quarter waves out. |
 
 ## Neither Distance Nor Magnification
 

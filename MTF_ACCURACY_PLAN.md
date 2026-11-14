@@ -201,13 +201,13 @@ S under a day, M one to three days, L longer.
   blocked element. What remains is a ruling, not data work: whether a named glass class (the fluor crowns near
   1.497 / 81.6) may borrow catalog dispersion past the νd tolerance, or the gate may pass such glasses with a
   warning (`agent_docs/dispersion-estimate-exploration.md`).
-- **C20 — Finite conjugates.** 361 of 604 published finite states carry `focus.conjugates` (223 lenses), each
-  checked by `npm run audit:finite-conjugates`. The 243 open states are listed by cause in
-  `agent_docs/finite-conjugate-backfill.md`. 147 print only a magnification and 30 print nothing, so they wait on
-  a ruling: may a printed magnification certify a conjugate? 66 print a distance that could not be declared: in 15
-  the source's stated reference does not focus and the other one does (12 of them Sony `d0` rows), 15 miss the
+- **C20 — Finite conjugates.** 510 of 604 published finite states carry `focus.conjugates` (318 lenses), each
+  checked by `npm run audit:finite-conjugates`. The 94 open states are listed by cause in
+  `agent_docs/finite-conjugate-backfill.md`. 30 print neither a distance nor a magnification. 10 print a
+  magnification whose solved distance fails the audit or that the two readings dispute. 54 print a distance that
+  could not be declared: in 3 the source's stated reference does not focus and the other one does, 15 miss the
   limit with every printed value matching, and the rest are omitted front plates, adjusted gaps or unsupported
-  lenses. Backfill from sources only, never from a close-focus label. M.
+  lenses. Backfill from sources only, never from a close-focus label. S.
 
 ### Features
 

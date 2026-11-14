@@ -1,1 +1,1 @@
-Added close-focus MTF for 156 more lenses, at the object distances their patents print
+Added close-focus MTF for 251 more lenses, at the object distances or magnifications their patents print
