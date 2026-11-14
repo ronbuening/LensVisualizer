@@ -168,14 +168,17 @@ S under a day, M one to three days, L longer.
 - **C8 — Stop-uniform weights are not the incident flux.** Since the stop lattice, a lit cell weighs 1 × bulk
   transmission; the row above that calls equal flux per cell exact describes the launch lattice.
   `npm run audit:mtf-weighting` measures it on twelve stations against dense launch-plane sampling (equal flux per
-  cell): the stop lattice weighted by incident flux (`mtfIncidentFlux.ts`) meets that reference within 0.0014,
-  while the product differs from it by up to 0.030 wide open (Nikon 105mm f/1.4, 70 % field, 50 lp/mm), 0.006 to
-  0.008 mean absolute off axis and 0.0015 on axis, with either sign; at f/8 the mean is under 0.001 and the largest
-  0.011. The same weights move the diffraction estimate by up to 0.029, which has no independent reference yet.
-  Against OpticStudio on a published Cooke triplet (`scripts/mtf-external-reference.mjs`) the off-axis difference
-  of up to 0.047 falls to 0.008 when the paraxial entrance pupil is sampled as the source does. Open: the owner's
-  ruling on making incident flux the product weight (it leaves the OpticStudio and CODE V pupil convention), with
-  a reference for the diffraction side first. M.
+  cell): the stop lattice weighted by incident flux (`mtfIncidentFlux.ts`) meets that reference within 0.0014 in
+  MTF and 0.0021 in complex OTF, while the product differs from it by up to 0.030 wide open (Nikon 105mm f/1.4,
+  70 % field, 50 lp/mm), 0.006 to 0.008 mean absolute off axis and 0.0015 on axis, with either sign; at f/8 the
+  mean is under 0.001 and the largest 0.011. A separate ray loop reproduced the largest value. For diffraction the
+  audit compares the product estimator with the direction-space reference fed incident flux on the 64 of 72
+  samples its gate passes: up to 0.030, about 0.004 mean off axis, which mixes the weights with the estimator's
+  own error; feeding flux weights to the sheared estimator is not the correction, since it has no direction-space
+  Jacobian (C10). Against OpticStudio on a published Cooke triplet (`scripts/mtf-external-reference.mjs`) the
+  off-axis difference of up to 0.047 falls to 0.008 when the paraxial entrance pupil is sampled as the source
+  does. Open: the owner's ruling on making incident flux the product weight (it leaves the OpticStudio and CODE V
+  pupil convention); the geometric method is ready, the diffraction estimator needs the measure first. M to L.
 - **C9 — Two aliased grids can agree.** Convergence compares successive grids, so a blur far coarser than the
   lattice can read the same wrong value on both: a 1.6 mm landing disc reads 1.0 at 10/30/50 lp/mm on 16 and 32
   cells. The default 0–100 lp/mm sweep catches that case, and it takes a blur of millimetres, so the exposure is

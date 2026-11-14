@@ -12,7 +12,7 @@ import { execFileSync } from "node:child_process";
 import { chmodSync, existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { dirname, join, relative, resolve } from "node:path";
-import { env } from "node:process";
+import { env, execPath } from "node:process";
 import { afterAll, describe, expect, it } from "vitest";
 import { FIXTURE_PAIRS } from "../src/optics/prescription/ingestV2Fixtures.js";
 
@@ -23,39 +23,162 @@ function runNpmScript(script: string, args: string[] = []): string {
   });
 }
 
+function weightingProbe(source: string) {
+  return JSON.parse(
+    execFileSync(
+      execPath,
+      [
+        "--import",
+        resolve("scripts/ts-js-specifier-hook-register.mjs"),
+        "--input-type=module",
+        "--eval",
+        `import { geometricComparison, summarize, weightingDiagnostics } from "./scripts/audit-mtf-weighting.mjs";\n${source}`,
+      ],
+      { encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] },
+    ),
+  );
+}
+
 describe("audit script npm contracts", () => {
   it("measures pupil weighting through the npm hook and emits finite JSON comparisons", () => {
     const output = runNpmScript("audit:mtf-weighting", ["--lens=canon-serenar-50f18", "--grid=16", "--json"]);
     const report = JSON.parse(output.slice(output.indexOf("{")));
     expect(report.grid).toBe(16);
-    expect(report.diffractionReference).toContain("no independent reference");
+    expect(report.diffractionEstimatorSensitivity).toContain("not a prediction");
+    expect(report.diffractionEstimatorSensitivity).toContain("sqrt(F/J)");
+    expect(report.diffractionReference).toContain("handles its own Jacobian");
     expect(report.stations).toHaveLength(1);
     expect(report.perLens).toHaveLength(2);
-    expect(report.summary).toHaveLength(9);
+    expect(report.summary.rows).toHaveLength(18);
+    expect(report.summary.populations).toMatchObject({ attempted: 6, unavailable: 0 });
+    expect(report.summary.populations.clean + report.summary.populations.warned).toBe(6);
+    expect(report.diffractionReferenceGate.attempted).toBe(6);
+    expect(report.diffractionReferenceGate.passed + report.diffractionReferenceGate.excluded).toBe(6);
+    expect(report.diffractionReferenceGate.passed).toBeGreaterThan(0);
     for (const aperture of report.stations[0].apertures) {
       expect(aperture.unavailable).toBeUndefined();
       expect(aperture.fields).toHaveLength(3);
       for (const field of aperture.fields) {
         expect(field.unavailable).toBeUndefined();
+        expect(Array.isArray(field.warnings)).toBe(true);
+        expect(field).not.toHaveProperty("warning");
+        expect(field).not.toHaveProperty("diffraction");
         for (const cut of ["sagittal", "tangential"]) {
           expect(field.geometric.product[cut]).toHaveLength(3);
           field.geometric.product[cut].forEach((value: number, i: number) => {
             expect(value).toBeGreaterThanOrEqual(0);
             expect(value).toBeLessThanOrEqual(1);
-            expect(field.geometric.productMinusReference[cut][i]).toBeCloseTo(
+            expect(field.geometric.productMinusReferenceMagnitude[cut][i]).toBeCloseTo(
               value - field.geometric.launchPlane[cut][i],
               12,
             );
-            expect(Number.isFinite(field.geometric.fluxMinusReference[cut][i])).toBe(true);
-            expect(field.diffraction.fluxMinusProduct[cut][i]).toBeCloseTo(
-              field.diffraction.incidentFlux[cut][i] - field.diffraction.product[cut][i],
+            expect(Number.isFinite(field.geometric.fluxMinusReferenceMagnitude[cut][i])).toBe(true);
+            const otfs = field.geometric.otfs;
+            for (const [group, metric] of [
+              ["product", "productReferenceComplexGap"],
+              ["incidentFlux", "fluxReferenceComplexGap"],
+            ]) {
+              expect(field.geometric[metric][cut][i]).toBeCloseTo(
+                Math.hypot(
+                  otfs[group][cut].real[i] - otfs.launchPlane[cut].real[i],
+                  otfs[group][cut].imaginary[i] - otfs.launchPlane[cut].imaginary[i],
+                ),
+                12,
+              );
+            }
+            const sensitivity = field.diffractionEstimatorSensitivity;
+            expect(sensitivity.fluxMinusProductMagnitude[cut][i]).toBeCloseTo(
+              sensitivity.incidentFlux[cut][i] - sensitivity.product[cut][i],
               12,
             );
+            const reference = field.diffractionReference;
+            if (reference.gatePassed) {
+              expect(reference.phaseStepWaves).toBeLessThan(0.25);
+              expect(reference.productEstimatorMinusReferenceMagnitude[cut][i]).toBeCloseTo(
+                sensitivity.product[cut][i] - reference.incidentFluxMagnitude[cut][i],
+                12,
+              );
+            } else {
+              expect(reference.unavailable).toBeTruthy();
+              expect(reference).not.toHaveProperty("productEstimatorMinusReferenceMagnitude");
+            }
           });
         }
       }
     }
-    expect(report.summary.every((row: { samples: number }) => row.samples === 2)).toBe(true);
+    expect(report.summary.rows.filter((row: { population: string }) => row.population === "clean")).toHaveLength(9);
+  });
+
+  it("retains a phase-only discrepancy that vanishes in MTF magnitudes", () => {
+    // Unit phasors have identical MTF; their complex separation is the chord, independent of ray tracing.
+    const comparison = weightingProbe(`
+      const otf = (re, im) => Object.fromEntries(["sagittal", "tangential"].map(cut => [cut, {real: [re], imaginary: [im]}]));
+      console.log(JSON.stringify(geometricComparison({product: otf(0, 1), incidentFlux: otf(0.6, 0.8), launchPlane: otf(1, 0)})));
+    `);
+    for (const cut of ["sagittal", "tangential"]) {
+      expect(comparison.productMinusReferenceMagnitude[cut][0]).toBe(0);
+      expect(comparison.fluxMinusReferenceMagnitude[cut][0]).toBe(0);
+      expect(comparison.productReferenceComplexGap[cut][0]).toBeCloseTo(Math.SQRT2, 14);
+      expect(comparison.fluxReferenceComplexGap[cut][0]).toBeCloseTo(Math.sqrt(0.8), 14);
+    }
+  });
+
+  it("keeps simultaneous warnings and states the measure of unresolved flux", () => {
+    const result = weightingProbe(`
+      const stop = {sampling: "stop", rays: [{weight: 3}], failed: 1, unaimed: 0,
+        unresolvedInBeam: 1, unresolvedWeight: 1, unresolvedInBeamWeight: 1,
+        openBorders: {x: true, y0: false, y1: false}};
+      const reference = {...stop, sampling: "launch-plane", objectPoint: [0, 0, -10],
+        unresolvedWeight: 2, unresolvedInBeamWeight: 2};
+      console.log(JSON.stringify(weightingDiagnostics(stop, reference)));
+    `);
+    expect(result.warnings).toHaveLength(4);
+    expect(result.warnings.join(" ")).toContain("guard band remains open");
+    expect(result.warnings.join(" ")).toContain("25.0000%");
+    expect(result.warnings.join(" ")).toContain("≤40.0000%");
+    expect(result.diagnostics.stop.unresolvedFlux).toMatchObject({
+      allShare: 0.25,
+      inBeamShare: 0.25,
+      upperBound: false,
+      basis: "stop-uniform, not incident flux",
+    });
+    expect(result.diagnostics.launchPlane.unresolvedFlux).toMatchObject({ allShare: 0.4, upperBound: true });
+  });
+
+  it("counts unavailable apertures and keeps warned statistics out of clean statistics", () => {
+    const result = weightingProbe(`
+      const otf = re => Object.fromEntries(["sagittal", "tangential"].map(cut => [cut, {real: [re, re, re], imaginary: [0, 0, 0]}]));
+      const geometric = re => geometricComparison({product: otf(re), incidentFlux: otf(1), launchPlane: otf(1)});
+      console.log(JSON.stringify(summarize([{label: "synthetic", apertures: [
+        {fNumber: 2, fields: [
+          {fraction: 0, warnings: [], geometric: geometric(0.8)},
+          {fraction: 0.7, warnings: ["unresolved", "open border"], geometric: geometric(0.1)},
+          {fraction: 1, warnings: [], unavailable: "no footprint"}]},
+        {fNumber: 8, fields: [], unavailable: "no focus"}
+      ]}])));
+    `);
+    expect(result.populations).toMatchObject({ attempted: 6, unavailable: 4, clean: 1, warned: 1 });
+    expect(result.populations.unavailableSamples).toHaveLength(4);
+    expect(result.populations.unavailableSamples.map((sample: { reason: string }) => sample.reason)).toEqual([
+      "no footprint",
+      "no focus",
+      "no focus",
+      "no focus",
+    ]);
+    for (const row of result.rows) {
+      if (row.population === "clean" && row.field === 0) {
+        expect(row.samples).toBe(1);
+        expect(row.productMagnitude.mean).toBeCloseTo(0.2, 14);
+        expect(row.productComplexGap.max).toBeCloseTo(0.2, 14);
+      } else if (row.population === "warned" && row.field === 0.7) {
+        expect(row.samples).toBe(1);
+        expect(row.productMagnitude.mean).toBeCloseTo(0.9, 14);
+      } else {
+        expect(row.samples).toBe(0);
+        expect(row.productMagnitude.max).toBeNull();
+        expect(row.productComplexGap.mean).toBeNull();
+      }
+    }
   });
 
   it("audits one known lens through the npm entry with the loader hook", () => {

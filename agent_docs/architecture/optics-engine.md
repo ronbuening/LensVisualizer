@@ -1459,13 +1459,25 @@ stop-to-launch map. At a finite conjugate it uses the cell's object-side solid a
 Lambertian source surface normal to the optical axis. `analysis/mtf/mtfIncidentFlux.ts` computes these diagnostic
 weights from finite differences of the aimed lattice, with one-sided rim stencils and mirrored launch geometry.
 `npm run audit:mtf-weighting` compares both geometric weightings against uniform launch-plane quadrature (with
-Lambertian source weights at finite distance). Its diffraction pair uses the same sheared estimator with amplitudes
-√weight and has no independent diffraction reference. The audit keeps one product-weighted best-axial plane per
-station and aperture, reports footprint expansion and unresolved rays, and accepts `--lens=<key>`, `--grid=<cells>`
-and `--json`; it does not select product weights. On its default twelve stations, reference spectrum, 256-cell grids,
-wide open and f/8, fields 0/70%/corner and 10/30/50 lp/mm, the largest absolute product-minus-reference is 0.030342
-(signed −0.030342, Nikon 105 mm f/1.4 E prescription at f/1.45, 70% field, sagittal 50 lp/mm), with a shared best-axial
-plane selected on a 64-cell axial grid over 10/20/30/40/50 lp/mm.
+Lambertian source weights at finite distance). It retains complex geometric OTFs about the shared chief image point
+and reports both signed MTF-magnitude differences and complex gaps |OTF_a − OTF_reference|. The diffraction weight
+column is the sheared estimator's sensitivity to its weights only: √weight on the stop lattice lacks the
+direction-space amplitude √(F/J), area measure J and exact 2-D shear endpoints, so its change does not predict
+diffraction MTF under incident-flux weighting. A separate optical-path reference receives incident cell flux F and
+handles its own direction-map Jacobian; product-estimator-minus-reference MTF-magnitude differences include both
+estimator and weighting differences. It reports gate exclusions and includes reference values only for invertible
+maps with phase steps below a quarter wave per cell. The audit counts attempted, unavailable (with reasons), clean
+and warned field/aperture samples, keeps clean and warned statistics separate, and retains every field warning.
+Unresolved-flux shares state their measure: stop-uniform shares do not establish incident-flux shares, and finite
+launch-plane shares use an upper bound on the missing source cosine. Unresolved samples assume full transmission.
+The audit keeps one product-weighted best-axial plane per station and aperture, reports footprint expansion, and
+accepts `--lens=<key>`, `--grid=<cells>` and `--json`; it does not select product weights. On its default twelve
+stations, reference spectrum, 256-cell grids, wide open and f/8, fields 0/70%/corner and 10/30/50 lp/mm, the largest
+measured absolute product-minus-reference difference in geometric MTF magnitude across 72 clean field/aperture
+samples (zero unavailable or warned) is 0.030342 (signed −0.030342, Nikon 105 mm f/1.4 E prescription at f/1.45,
+70% field, sagittal 50 lp/mm), with a shared best-axial plane selected on a 64-cell axial grid over
+10/20/30/40/50 lp/mm. The launch-plane reference is independent quadrature of the same tracer, not an independent
+optical simulation; fixed-grid comparisons are not convergence claims.
 
 `analysis/pupils/aimedPupil.ts` owns the launch, exported through `analysis.ts`. `prepareAimedPupilLaunch(request,
 samples, geometry, channel?)` is pure and deterministic: a sample's solve depends only on the request, field, channel
