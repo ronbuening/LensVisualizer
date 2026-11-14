@@ -550,6 +550,47 @@ describe("analytic wave-optics controls", () => {
       expect(Math.abs(otf[cut].imaginary[0])).toBeLessThan(0.002);
     }
   });
+  it("accepts a radially mapped cat's-eye pupil without using folded dark padding", () => {
+    const scale = 0.08;
+    const shears = [0.05, 0.2, 0.5, 0.8, 1.1, 1.6];
+    const inside = (u: number, v: number) => u * u + v * v < 1 && u * u + (v - 0.5) ** 2 < 1;
+    // Invert rho = r + r³/2 analytically, independently of the reference's mesh.
+    const directionInside = (x: number, y: number) => {
+      const rho = Math.hypot(x, y);
+      const r = 2 * Math.sqrt(2 / 3) * Math.sinh(Math.asinh(1.5 * Math.sqrt(3 / 2) * rho) / 3);
+      const factor = rho > 0 ? r / rho : 1;
+      return inside(x * factor, y * factor);
+    };
+    // Direct Hopkins quadrature in direction space: zero path and uniform field amplitude.
+    const expected = shears.map((s) => ({
+      sagittal: overlapShare(directionInside, 1.5, 2 * s, 0),
+      tangential: overlapShare(directionInside, 1.5, 0, 2 * s),
+    }));
+    for (const samples of [64, 128, 256]) {
+      const lattice = aberratedWaveLattice(unaberrated, scale, wavelengthMm, samples);
+      for (let row = 0; row < samples; row++)
+        for (let column = 0; column < samples; column++) {
+          const u = (2 * (column + 0.5)) / samples - 1;
+          const v = (2 * (row + 0.5)) / samples - 1;
+          const r2 = u * u + v * v;
+          const cell = row * samples + column;
+          // Both radial eigenvalues are positive; Jacobian-weighted flux gives uniform direction amplitude.
+          lattice.amplitude[cell] = inside(u, v) ? Math.sqrt((1 + 0.5 * r2) * (1 + 1.5 * r2)) : 0;
+          lattice.cosineX[cell] = scale * u * (1 + 0.5 * r2);
+          lattice.cosineY[cell] = scale * v * (1 + 0.5 * r2);
+        }
+      expect(waveLatticePhaseStep(lattice, wavelengthMm)).toBe(0);
+      if (samples === 64) continue;
+      const otf = waveLatticeOtf(lattice, wavelengthMm, [0, ...shears.map((s) => (2 * scale * s) / wavelengthMm)]);
+      for (const cut of ["sagittal", "tangential"] as const) {
+        expect(otf[cut].real[0]).toBe(1);
+        // Cell-centre rim sampling stays within 0.002 of direct Hopkins at both 128 and 256 cells.
+        shears.forEach((_, i) => expect(Math.abs(otf[cut].real[i + 1] - expected[i][cut])).toBeLessThan(0.002));
+        expect(otf[cut].real.at(-1)).toBe(0);
+        expect(otf[cut].imaginary.every((value) => value === 0)).toBe(true);
+      }
+    }
+  });
   it("refuses folded and singular direction maps even with constant optical path", () => {
     for (const folded of [false, true]) {
       const lattice = aberratedWaveLattice(unaberrated, na, wavelengthMm, 32);

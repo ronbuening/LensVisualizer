@@ -108,7 +108,8 @@ export function mtfWaveLattice(bundle: MtfBundle, reference: MtfSpot, imagePlane
 /**
  * Largest optical-path change between neighbouring transmitted cells, in waves. The lattice OTF
  * is trustworthy below a quarter wave only when the direction map is invertible; a folded or
- * degenerate map returns infinity regardless of its phase sampling.
+ * degenerate map on the interpolated pupil returns infinity regardless of its phase sampling.
+ * Unilluminated padding outside that support does not constrain invertibility.
  *
  * @param lattice - lattice pupil
  * @param wavelengthMm - wavelength in mm
@@ -134,6 +135,8 @@ export function waveLatticePhaseStep(lattice: MtfWaveLattice, wavelengthMm: numb
 interface WaveMesh extends MtfWaveLattice {
   /** Absolute direction-area Jacobian per unit lattice-index area. */
   jacobian: Float64Array;
+  /** Only triangles touching a lit vertex can contribute an interpolated endpoint. */
+  triangles: [number, number, number][];
 }
 
 /** Extend both cosines through dark cells; they carry geometry, never flux or phase. */
@@ -150,6 +153,7 @@ function waveMesh(lattice: MtfWaveLattice): WaveMesh | null {
     cosineX: new Float64Array(cells),
     cosineY: new Float64Array(cells),
     jacobian: new Float64Array(cells),
+    triangles: [],
   };
   const known = new Uint8Array(cells);
   for (let row = 0; row < lattice.rows; row++)
@@ -188,6 +192,13 @@ function waveMesh(lattice: MtfWaveLattice): WaveMesh | null {
 
   const { cosineX: x, cosineY: y } = mesh;
   const cross = (a: number, b: number, c: number) => (x[b] - x[a]) * (y[c] - y[a]) - (y[b] - y[a]) * (x[c] - x[a]);
+  // Removing shared edges leaves the boundary of the actual interpolation support,
+  // including holes and disconnected pieces, rather than the extrapolated rectangle.
+  const edges = new Map<number, [number, number, number]>();
+  const edge = (a: number, b: number, c: number) => {
+    const key = Math.min(a, b) * cells + Math.max(a, b);
+    if (!edges.delete(key)) edges.set(key, [a, b, c]);
+  };
   let orientation = 0;
   for (let row = 0; row < rows - 1; row++)
     for (let column = 0; column < columns - 1; column++) {
@@ -196,26 +207,25 @@ function waveMesh(lattice: MtfWaveLattice): WaveMesh | null {
         [a + 1, a + columns + 1],
         [a + columns + 1, a + columns],
       ]) {
+        if (!(mesh.amplitude[a] > 0 || mesh.amplitude[b] > 0 || mesh.amplitude[c] > 0)) continue;
         const det = cross(a, b, c);
         const scale = Math.hypot(x[b] - x[a], y[b] - y[a]) * Math.hypot(x[c] - x[a], y[c] - y[a]);
         if (!Number.isFinite(det) || !(Math.abs(det) > 1e-12 * scale)) return null;
         orientation ||= Math.sign(det);
         if (orientation * det <= 0) return null;
+        mesh.triangles.push([a, b, c]);
+        edge(a, b, c);
+        edge(b, c, a);
+        edge(c, a, b);
       }
     }
-  // Consistent triangle orientation plus a simple boundary makes the piecewise-affine map one-to-one.
-  const boundary: number[] = [];
-  for (let column = 0; column < columns; column++) boundary.push(column);
-  for (let row = 1; row < rows; row++) boundary.push(row * columns + columns - 1);
-  for (let column = columns - 2; column >= 0; column--) boundary.push((rows - 1) * columns + column);
-  for (let row = rows - 2; row > 0; row--) boundary.push(row * columns);
+  // Consistent orientation and disjoint boundaries rule out folds within each piece.
+  const boundary = [...edges.values()];
   for (let i = 0; i < boundary.length; i++) {
-    const a = boundary[i];
-    const b = boundary[(i + 1) % boundary.length];
-    for (let j = i + 2; j < boundary.length; j++) {
-      if (i === 0 && j === boundary.length - 1) continue;
-      const c = boundary[j];
-      const d = boundary[(j + 1) % boundary.length];
+    const [a, b] = boundary[i];
+    for (let j = i + 1; j < boundary.length; j++) {
+      const [c, d] = boundary[j];
+      if (a === c || a === d || b === c || b === d) continue;
       if (
         Math.max(x[a], x[b]) < Math.min(x[c], x[d]) ||
         Math.max(x[c], x[d]) < Math.min(x[a], x[b]) ||
@@ -226,9 +236,24 @@ function waveMesh(lattice: MtfWaveLattice): WaveMesh | null {
       if (cross(a, b, c) * cross(a, b, d) <= 0 && cross(c, d, a) * cross(c, d, b) <= 0) return null;
     }
   }
+  // A component contained in another need not cross its boundary. Unit winding at
+  // each boundary triangle's interior also excludes such multiple coverage.
+  for (const [a, b, c] of boundary) {
+    const px = (x[a] + x[b] + x[c]) / 3;
+    const py = (y[a] + y[b] + y[c]) / 3;
+    let winding = 0;
+    for (const [u, v] of boundary) {
+      const side = (x[v] - x[u]) * (py - y[u]) - (y[v] - y[u]) * (px - x[u]);
+      if (y[u] <= py && y[v] > py && side > 0) winding++;
+      if (y[u] > py && y[v] <= py && side < 0) winding--;
+    }
+    if (winding !== orientation) return null;
+  }
   for (let row = 0; row < rows; row++)
     for (let column = 0; column < columns; column++) {
       const cell = row * columns + column;
+      // Quadrature is anchored at a lit endpoint, so dark-cell Jacobians are unused.
+      if (!(mesh.amplitude[cell] > 0)) continue;
       const left = row * columns + Math.max(column - 1, 0);
       const right = row * columns + Math.min(column + 1, columns - 1);
       const bottom = Math.max(row - 1, 0) * columns + column;
@@ -263,37 +288,30 @@ function waveLookup(mesh: WaveMesh): (x: number, y: number) => { amplitude: numb
     maxX = -Infinity,
     minY = Infinity,
     maxY = -Infinity;
-  for (let cell = 0; cell < x.length; cell++) {
-    minX = Math.min(minX, x[cell]);
-    maxX = Math.max(maxX, x[cell]);
-    minY = Math.min(minY, y[cell]);
-    maxY = Math.max(maxY, y[cell]);
-  }
+  for (const triangle of mesh.triangles)
+    for (const cell of triangle) {
+      minX = Math.min(minX, x[cell]);
+      maxX = Math.max(maxX, x[cell]);
+      minY = Math.min(minY, y[cell]);
+      maxY = Math.max(maxY, y[cell]);
+    }
   const binX = (value: number) =>
     Math.max(0, Math.min(columns - 1, Math.floor(((value - minX) * columns) / (maxX - minX))));
   const binY = (value: number) => Math.max(0, Math.min(rows - 1, Math.floor(((value - minY) * rows) / (maxY - minY))));
   const bins: WaveTriangle[][] = Array.from({ length: columns * rows }, () => []);
-  for (let row = 0; row < rows - 1; row++)
-    for (let column = 0; column < columns - 1; column++) {
-      const a = row * columns + column;
-      for (const [b, c] of [
-        [a + 1, a + columns + 1],
-        [a + columns + 1, a + columns],
-      ]) {
-        if (!(amplitude[a] > 0 || amplitude[b] > 0 || amplitude[c] > 0)) continue;
-        const ux = x[b] - x[a],
-          uy = y[b] - y[a];
-        const vx = x[c] - x[a],
-          vy = y[c] - y[a];
-        const triangle = { a, b, c, ux, uy, vx, vy, inverseDet: 1 / (ux * vy - uy * vx) };
-        const lowX = binX(Math.min(x[a], x[b], x[c])),
-          highX = binX(Math.max(x[a], x[b], x[c]));
-        const lowY = binY(Math.min(y[a], y[b], y[c])),
-          highY = binY(Math.max(y[a], y[b], y[c]));
-        for (let by = lowY; by <= highY; by++)
-          for (let bx = lowX; bx <= highX; bx++) bins[by * columns + bx].push(triangle);
-      }
-    }
+  for (const [a, b, c] of mesh.triangles) {
+    const ux = x[b] - x[a],
+      uy = y[b] - y[a];
+    const vx = x[c] - x[a],
+      vy = y[c] - y[a];
+    const triangle = { a, b, c, ux, uy, vx, vy, inverseDet: 1 / (ux * vy - uy * vx) };
+    const lowX = binX(Math.min(x[a], x[b], x[c])),
+      highX = binX(Math.max(x[a], x[b], x[c]));
+    const lowY = binY(Math.min(y[a], y[b], y[c])),
+      highY = binY(Math.max(y[a], y[b], y[c]));
+    for (let by = lowY; by <= highY; by++)
+      for (let bx = lowX; bx <= highX; bx++) bins[by * columns + bx].push(triangle);
+  }
   return (targetX, targetY) => {
     if (targetX >= minX && targetX <= maxX && targetY >= minY && targetY <= maxY)
       for (const { a, b, c, ux, uy, vx, vy, inverseDet } of bins[binY(targetY) * columns + binX(targetX)]) {
@@ -318,11 +336,14 @@ function waveLookup(mesh: WaveMesh): (x: number, y: number) => { amplitude: numb
 /**
  * Hopkins' OTF on a mapped lattice: autocorrelation at the exact direction-cosine shear λν.
  *
- * Both sheared endpoints are located in the 2-D direction mesh, keeping the perpendicular
- * coordinate fixed. With J = |∂q/∂(column,row)|, the field amplitude is √flux/√J and each
- * midpoint has direction-area weight J. Thus the stop-coordinate integrand is
- * J₀ √(flux₊ flux₋ / (J₊ J₋)), with optical path interpolated without phase wrapping.
- * Dark midpoint cells count too: an overlapping pair can straddle an obstruction.
+ * With J = |∂q/∂(column,row)|, the field amplitude is √flux/√J. Quadrature is anchored
+ * at a lit endpoint with direction-area weight J, locating the other endpoint at ±λν
+ * in the 2-D mesh while holding the perpendicular coordinate fixed. Averaging the
+ * equivalent forward and backward integrals preserves symmetry on the sampled grid.
+ * Translation gives ∫P(q+s/2)P*(q−s/2)dq = ∫P(q+s)P*(q)dq, so the anchor can
+ * be lit even when the pair's midpoint lies in an obstruction or dark padding.
+ * This includes pairs across obstructions without integrating through the arbitrary
+ * dark extension. Optical path is interpolated without phase wrapping.
  *
  * @param lattice - lattice pupil with an invertible direction map and adequately sampled phase
  * @param wavelengthMm - wavelength in mm
@@ -335,7 +356,7 @@ export function waveLatticeOtf(
   frequencies: readonly number[],
 ): { sagittal: ComplexOtf; tangential: ComplexOtf } {
   const mesh = waveMesh(lattice);
-  if (mesh === null) throw new RangeError("Wave lattice direction map must be invertible");
+  if (mesh === null) throw new RangeError("Wave lattice illuminated direction map must be invertible");
   const at = waveLookup(mesh);
   let energy = 0;
   for (const value of lattice.amplitude) energy += value * value;
@@ -348,22 +369,24 @@ export function waveLatticeOtf(
         imaginary.push(0);
         continue;
       }
-      const halfShear = (frequency * wavelengthMm) / 2;
+      const shear = frequency * wavelengthMm;
       let re = 0,
         im = 0;
       for (let row = 1; row < mesh.rows - 1; row++)
         for (let column = 1; column < mesh.columns - 1; column++) {
           const cell = row * mesh.columns + column;
+          if (!(mesh.amplitude[cell] > 0)) continue;
           const x = mesh.cosineX[cell],
             y = mesh.cosineY[cell];
-          const plus = at(x + (axis === "x" ? halfShear : 0), y + (axis === "y" ? halfShear : 0));
-          const minus = at(x - (axis === "x" ? halfShear : 0), y - (axis === "y" ? halfShear : 0));
-          const pair = mesh.jacobian[cell] * plus.amplitude * minus.amplitude;
-          if (!(pair > 0)) continue;
-          // A ray's landing offset is minus its path gradient over direction cosine, hence the sign.
-          const phase = (2 * Math.PI * (plus.pathMm - minus.pathMm)) / wavelengthMm;
-          re += pair * Math.cos(phase);
-          im += pair * Math.sin(phase);
+          for (const sign of [-1, 1]) {
+            const other = at(x + (axis === "x" ? sign * shear : 0), y + (axis === "y" ? sign * shear : 0));
+            const pair = (mesh.jacobian[cell] * mesh.amplitude[cell] * other.amplitude) / 2;
+            if (!(pair > 0)) continue;
+            // A ray's landing offset is minus its path gradient over direction cosine, hence the sign.
+            const phase = (sign * 2 * Math.PI * (other.pathMm - mesh.pathMm[cell])) / wavelengthMm;
+            re += pair * Math.cos(phase);
+            im += pair * Math.sin(phase);
+          }
         }
       real.push(re / energy);
       imaginary.push(im / energy);
