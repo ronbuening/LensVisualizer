@@ -1,7 +1,12 @@
 /** Public mtf seam; implementations live in the focused engine subdirectories. */
-export { computeMtf, computeMtfSteps, resolveMtfGeometry } from "./analysis/mtf/mtf.js";
+export { computeMtf, computeMtfSteps, mtfUnresolvedFluxFraction, resolveMtfGeometry } from "./analysis/mtf/mtf.js";
 export type { MtfJobCache } from "./analysis/mtf/mtf.js";
-export { MTF_ESTIMATED_DISPERSION_MAX_VD, MTF_FIELDS, MTF_FREQUENCIES } from "./analysis/mtf/mtfConstants.js";
+export {
+  MTF_ESTIMATED_DISPERSION_MAX_VD,
+  MTF_FIELDS,
+  MTF_FREQUENCIES,
+  MTF_MAX_UNKNOWN_FLUX,
+} from "./analysis/mtf/mtfConstants.js";
 export { assessMtfDataLimitations } from "./analysis/mtf/mtfDataLimitations.js";
 export type { MtfDataLimitationInput } from "./analysis/mtf/mtfDataLimitations.js";
 export { mtfImagePlaneOffset } from "./analysis/mtf/mtfFocus.js";

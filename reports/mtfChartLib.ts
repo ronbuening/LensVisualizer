@@ -12,6 +12,8 @@ import {
   combineOtfs,
   computeMtfSteps,
   findMtfFieldFootprint,
+  MTF_MAX_UNKNOWN_FLUX,
+  mtfUnresolvedFluxFraction,
   mtfWaveLattice,
   otfMagnitude,
   prepareMtfFieldLaunch,
@@ -165,6 +167,7 @@ export interface CrossCheck {
   compared: number;
   undersampled: number;
   nonInvertible: number;
+  unresolvedFlux: number;
   untraced: number;
   gaps: number[];
   complexGaps: number[];
@@ -190,6 +193,7 @@ const emptyCrossCheck = (): CrossCheck => ({
   compared: 0,
   undersampled: 0,
   nonInvertible: 0,
+  unresolvedFlux: 0,
   untraced: 0,
   gaps: [],
   complexGaps: [],
@@ -238,6 +242,7 @@ export function crossCheckConfiguration(
     }[] = [];
     let common: MtfSpot | undefined;
     let step = 0;
+    const fluxWeights = [];
     for (const line of support.spectralLines) {
       const extras = { reference: common, opticalPath: true };
       const bundle = footprint
@@ -247,16 +252,26 @@ export function crossCheckConfiguration(
       if (!bundle || !lattice || !common) break;
       const wavelengthMm = line.wavelengthNm * 1e-6;
       step = Math.max(step, waveLatticePhaseStep(lattice, wavelengthMm));
+      const transmitted = bundle.rays.reduce((sum, ray) => sum + ray.weight, 0);
+      fluxWeights.push({
+        weight: line.weight,
+        transmittedWeight: transmitted,
+        unresolvedInBeamWeight: bundle.unresolvedInBeamWeight,
+      });
       spectra.push({
         bundle,
         lattice,
         wavelengthMm,
-        weight: line.weight * bundle.rays.reduce((sum, ray) => sum + ray.weight, 0),
+        weight: line.weight * transmitted,
       });
     }
     // Incomplete spectra cannot establish either a comparison or a full-spectrum gate maximum.
     if (!common || spectra.length !== support.spectralLines.length) continue;
     check.untraced--;
+    if (mtfUnresolvedFluxFraction(fluxWeights) > MTF_MAX_UNKNOWN_FLUX) {
+      check.unresolvedFlux++;
+      continue;
+    }
     if (!(step < CROSS_CHECK_PHASE_STEP_WAVES)) {
       check.largestExcludedStep = Math.max(check.largestExcludedStep, step);
       if (step === Infinity) check.nonInvertible++;
@@ -349,10 +364,11 @@ export function renderCrossCheckPass(
   const maximum = (values: number[]) => (values.length ? fixed(Math.max(...values)) : "n/a");
   const cells = (check: CrossCheck): (number | string)[] => [
     check.compared,
-    check.undersampled + check.nonInvertible + check.untraced,
+    check.undersampled + check.nonInvertible + check.unresolvedFlux + check.untraced,
     check.undersampled,
     check.undersampled ? fixed(check.largestUndersampledStep, 3) : "n/a",
     check.nonInvertible,
+    check.unresolvedFlux,
     check.untraced,
     check.undersampled + check.nonInvertible ? fixed(check.largestExcludedStep, 3) : "n/a",
     check.compared ? fixed(check.largestStep, 3) : "n/a",
@@ -367,12 +383,12 @@ export function renderCrossCheckPass(
   const lines = [
     `### ${label}`,
     "",
-    `| Lens | zoomT | Marked f/ | Focus shift (mm) | Fields compared | Fields excluded (not checked) | Phase step ≥ gate | Largest phase exclusion (waves/cell) | Non-invertible map | Unavailable field/bundle | Largest excluded step (waves/cell) | Largest compared step (waves/cell) | Values | Max magnitude gap | Mean magnitude gap | Max complex gap | Magnitude gaps above ${CROSS_CHECK_TOLERANCE} |`,
-    "|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|",
+    `| Lens | zoomT | Marked f/ | Focus shift (mm) | Fields compared | Fields excluded (not checked) | Phase step ≥ gate | Largest phase exclusion (waves/cell) | Non-invertible map | Unresolved flux over the cap | Unavailable field/bundle | Largest excluded step (waves/cell) | Largest compared step (waves/cell) | Values | Max magnitude gap | Mean magnitude gap | Max complex gap | Magnitude gaps above ${CROSS_CHECK_TOLERANCE} |`,
+    "|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|",
   ];
   for (const { key, zoomT, pass } of configurations) {
     const check = pass.check;
-    for (const count of ["compared", "undersampled", "nonInvertible", "untraced"] as const)
+    for (const count of ["compared", "undersampled", "nonInvertible", "unresolvedFlux", "untraced"] as const)
       total[count] += check[count];
     for (const step of ["largestStep", "largestExcludedStep", "largestUndersampledStep"] as const)
       total[step] = Math.max(total[step], check[step]);

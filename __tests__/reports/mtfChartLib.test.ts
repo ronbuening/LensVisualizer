@@ -130,6 +130,7 @@ describe("MTF chart report helpers", () => {
     vi.spyOn(mtf, "traceMtfStopBundle").mockReturnValue({
       chief: { x: 0, y: 0, weight: 1 },
       rays: [{ weight: 1 }],
+      unresolvedInBeamWeight: 0,
     } as NonNullable<ReturnType<typeof mtf.traceMtfStopBundle>>);
     vi.spyOn(mtf, "mtfWaveLattice").mockReturnValue({} as NonNullable<ReturnType<typeof mtf.mtfWaveLattice>>);
     const steps = [0.1, 0.2, 0.25, 0.8, Infinity, 0.1, 0.25, 0.25];
@@ -176,6 +177,124 @@ describe("MTF chart report helpers", () => {
     });
   });
 
+  it.each([
+    { label: "a complete pupil", missing: 0, transmission: 1, weights: [1], excluded: false },
+    { label: "one unresolved row", missing: 128, transmission: 1, weights: [1], excluded: true },
+    { label: "half a row below the cap", missing: 64, transmission: 1, weights: [1], excluded: false },
+    { label: "attenuated transmitted flux", missing: 64, transmission: 0.5, weights: [1], excluded: true },
+    { label: "the strongest spectral line", missing: 128, transmission: 1, weights: [9, 1], excluded: true },
+    { label: "a weak spectral line", missing: 128, transmission: 1, weights: [1, 9], excluded: false },
+  ])("applies the unresolved-flux cap to $label before comparing", ({ missing, transmission, weights, excluded }) => {
+    const state = prepareRuntimeState(buildSimplePositiveElementLens(), 0, 0);
+    const options: MtfOptions = {
+      method: "diffraction",
+      spectrum: "reference",
+      focus: "design",
+      pupilSemiDiameterMm: 3,
+      stopSemiDiameterMm: 3,
+      fieldFractions: [0],
+    };
+    const bundle: NonNullable<ReturnType<typeof mtf.traceMtfStopBundle>> = {
+      sampling: "stop",
+      chief: { x: 0, y: 0, weight: 1 },
+      chiefClipped: false,
+      rays: [],
+      blocked: 0,
+      failed: 0,
+      unaimed: 0,
+      unresolvedWeight: 0,
+      unresolvedInBeam: 0,
+      unresolvedInBeamWeight: 0,
+      columns: 128,
+      rows: 128,
+      mirrored: false,
+      stepMm: 6 / 128,
+      openBorders: { x: false, y0: false, y1: false },
+    };
+    // A flat wavefront and affine direction map pass the reference gate independently of the missing flux.
+    for (let row = 0; row < 128; row++)
+      for (let column = 0; column < 128; column++) {
+        const x = (2 * (column + 0.5)) / 128 - 1;
+        const y = (2 * (row + 0.5)) / 128 - 1;
+        if (x * x + y * y > 1) continue;
+        bundle.rays.push({
+          x: 0,
+          y: 0,
+          weight: transmission,
+          row,
+          column,
+          trace: {
+            input: { origin: [0, 0, 0], direction: [0, 0, 1] },
+            terminalPoint: [0, 0, state.imgZ],
+            terminalDirection: [0.1 * x, 0.1 * y, Math.sqrt(1 - 0.01 * (x * x + y * y))],
+            finalMedium: 1,
+            opticalPathLengthMm: 0,
+          },
+        });
+      }
+    expect(bundle.rays).toHaveLength(12_892);
+    const incomplete = {
+      ...bundle,
+      rays: bundle.rays.filter((ray) => ray.row !== 64 || ray.column >= missing),
+      failed: missing,
+      unresolvedWeight: missing,
+      unresolvedInBeam: missing,
+      unresolvedInBeamWeight: missing,
+    };
+    expect(incomplete.rays).toHaveLength(12_892 - missing);
+    const unknown = missing * weights[0];
+    const transmitted = weights.reduce((sum, weight, i) => sum + weight * (12_892 - (i === 0 ? missing : 0)), 0);
+    expect(unknown / (unknown + transmission * transmitted) > 0.005).toBe(excluded);
+    vi.spyOn(mtf, "assessMtfSupport").mockReturnValue({
+      available: true,
+      spectralLines: weights.map((weight, i) => ({ wavelengthNm: 500 + 100 * i, weight })),
+    } as ReturnType<typeof mtf.assessMtfSupport>);
+    vi.spyOn(mtf, "prepareMtfFieldLaunch").mockReturnValue({ aim: {} } as NonNullable<
+      ReturnType<typeof mtf.prepareMtfFieldLaunch>
+    >);
+    const trace = vi
+      .spyOn(mtf, "traceMtfStopBundle")
+      .mockImplementation((_state, _options, _support, _launch, _grid, line) =>
+        line.wavelengthNm === 500 ? incomplete : bundle,
+      );
+    const estimate = vi.spyOn(mtf, "shearedOtf");
+    const reference = vi.spyOn(mtf, "waveLatticeOtf");
+    const result = {
+      focus: { appliedShiftMm: 0 },
+      fields: [{ fieldAngleDeg: 0, status: "pending" }],
+    } as unknown as MtfResult;
+    const check = crossCheckConfiguration(state, options, result);
+    expect(check).toMatchObject({
+      compared: excluded ? 0 : 1,
+      unresolvedFlux: excluded ? 1 : 0,
+      undersampled: 0,
+      nonInvertible: 0,
+      untraced: 0,
+    });
+    expect(estimate).toHaveBeenCalledTimes(excluded ? 0 : weights.length);
+    expect(reference).toHaveBeenCalledTimes(excluded ? 0 : weights.length);
+    expect(check.gaps).toHaveLength(excluded ? 0 : 6);
+    expect(check.complexGaps).toHaveLength(excluded ? 0 : 6);
+    if (!excluded) expect(Math.max(...check.gaps)).toBeLessThan(0.004);
+
+    // A missing wavelength remains unavailable even when a traced line exceeds the flux cap.
+    trace.mockReturnValueOnce(incomplete).mockReturnValueOnce(null);
+    vi.mocked(mtf.assessMtfSupport).mockReturnValue({
+      available: true,
+      spectralLines: [
+        { wavelengthNm: 500, weight: 1 },
+        { wavelengthNm: 600, weight: 1 },
+      ],
+    } as ReturnType<typeof mtf.assessMtfSupport>);
+    expect(crossCheckConfiguration(state, options, result)).toMatchObject({
+      compared: 0,
+      unresolvedFlux: 0,
+      untraced: 1,
+      gaps: [],
+      complexGaps: [],
+    });
+  });
+
   it("prints exclusions and totals even when no field is checked", () => {
     const pass: CrossCheckPass = {
       fNumber: 8,
@@ -184,6 +303,7 @@ describe("MTF chart report helpers", () => {
         compared: 0,
         undersampled: 2,
         nonInvertible: 1,
+        unresolvedFlux: 4,
         untraced: 3,
         largestStep: 0,
         largestExcludedStep: Infinity,
@@ -197,11 +317,12 @@ describe("MTF chart report helpers", () => {
       { key: "synthetic-b", zoomT: 1, pass },
     ]);
     expect(lines.join("\n")).toContain("Fields excluded (not checked)");
+    expect(lines.join("\n")).toContain("Unresolved flux over the cap");
     expect(lines).toContain(
-      "| `synthetic-a` | 0 | 8.00 | n/a | 0 | 6 | 2 | 0.750 | 1 | 3 | infinity | n/a | 0 | n/a | n/a | n/a | 0 |",
+      "| `synthetic-a` | 0 | 8.00 | n/a | 0 | 10 | 2 | 0.750 | 1 | 4 | 3 | infinity | n/a | 0 | n/a | n/a | n/a | 0 |",
     );
     expect(lines).toContain(
-      "| **Total** | — | — | — | 0 | 12 | 4 | 0.750 | 2 | 6 | infinity | n/a | 0 | n/a | n/a | n/a | 0 |",
+      "| **Total** | — | — | — | 0 | 20 | 4 | 0.750 | 2 | 8 | 6 | infinity | n/a | 0 | n/a | n/a | n/a | 0 |",
     );
   });
 

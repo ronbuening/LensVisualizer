@@ -294,9 +294,10 @@ two-route cross-check on those lenses and keeps the audit's own values, computed
 frozen reference. The cross-check samples wide open and at f/8 (or the nearest attainable aperture), each on its own
 best axial focus plane, at 10, 30 and 50 lp/mm on a 128-cell lattice. Each pass prints per-configuration and total
 coverage beside the magnitude and complex OTF gaps: fields compared, fields excluded as not checked, phase-step
-exclusions with their largest step, non-invertible maps (infinite gate step), and unavailable fields or bundles.
-Only fields whose full spectrum passes the quarter-wave phase-step and invertibility gate contribute differences;
-compared and excluded step maxima are separate. The two routes share the ray trace, so agreement is not proof
+exclusions with their largest step, non-invertible maps (infinite gate step), unresolved flux over the product's
+spectrally weighted 0.5% cap, and unavailable fields or bundles.
+Only fields whose full spectrum passes the unresolved-flux, quarter-wave phase-step and invertibility gates contribute
+differences; compared and excluded step maxima are separate. The two routes share the ray trace, so agreement is not proof
 against an outside reference. It is a report, never a test threshold: maker focus and spectrum are undocumented,
 and a patent example is not proven to be the production lens. The generated report stamps its UTC date, git commit,
 working-tree state, shared MTF settings and hashes of the engine, report sources, anchors, conventions and traced

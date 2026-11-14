@@ -141,6 +141,25 @@ export interface MtfUnresolvedFlux {
 }
 
 /**
+ * Weight unresolved samples beside the beam by the same incident spectrum as transmitted flux.
+ * Unresolved samples carry full transmission; resolved ray weights include bulk absorption.
+ *
+ * @param lines - incident spectral weight and summed transmitted and unresolved-in-beam weights per line
+ * @returns unresolved share of the possible beam flux, or zero when it carries no weight
+ */
+export function mtfUnresolvedFluxFraction(
+  lines: readonly { weight: number; transmittedWeight: number; unresolvedInBeamWeight: number }[],
+): number {
+  let sampledWeight = 0;
+  let unresolvedWeight = 0;
+  for (const line of lines) {
+    sampledWeight += line.weight * (line.transmittedWeight + line.unresolvedInBeamWeight);
+    unresolvedWeight += line.weight * line.unresolvedInBeamWeight;
+  }
+  return sampledWeight > 0 ? unresolvedWeight / sampledWeight : 0;
+}
+
+/**
  * Omitting flux ε changes a normalized geometric OTF by at most 2ε: small unresolved shares are
  * reported with that bound only for the geometric method. Diffraction reports the omitted flux
  * without an error bound. Larger shares make the grid unavailable. Unresolved samples are the
@@ -248,9 +267,7 @@ function fieldAtGrid(
   let commonReference: MtfSpot | undefined;
   /** Whether the reference wavelength's chief ray is stopped by a clear aperture. */
   let chiefClipped: boolean | undefined;
-  // Flux the beam could carry: transmitted, plus the unresolved samples beside it, which the field is judged by.
-  let sampledWeight = 0;
-  let unresolvedWeight = 0;
+  const fluxWeights = [];
   /** Wavelengths no ray reaches at this grid. */
   let darkLines = 0;
   for (const [index, line] of support.spectralLines.entries()) {
@@ -290,8 +307,11 @@ function fieldAtGrid(
     if (bundle.lattice && aimedNothing(bundle.lattice))
       return unavailable("aim-failed", aimFailedMessage(bundle.lattice, line.wavelengthNm));
     const transmitted = bundle.rays.reduce((sum, ray) => sum + ray.weight, 0);
-    sampledWeight += line.weight * (transmitted + bundle.unresolvedInBeamWeight);
-    unresolvedWeight += line.weight * bundle.unresolvedInBeamWeight;
+    fluxWeights.push({
+      weight: line.weight,
+      transmittedWeight: transmitted,
+      unresolvedInBeamWeight: bundle.unresolvedInBeamWeight,
+    });
     // A wavelength no ray reaches, with every sample resolved: the grid is vignetted if every wavelength is.
     if (bundle.rays.length === 0 && bundle.unaimed + bundle.failed === 0) {
       darkLines++;
@@ -326,7 +346,7 @@ function fieldAtGrid(
   if (darkLines === support.spectralLines.length)
     return unavailable("vignetted", "No rays reach this image height through the model's clear apertures.", true);
   if (darkLines > 0) return unavailable("empty-pupil", "Too little pupil remains to estimate MTF.", true);
-  field.unknownFluxFraction = sampledWeight > 0 ? unresolvedWeight / sampledWeight : 0;
+  field.unknownFluxFraction = mtfUnresolvedFluxFraction(fluxWeights);
   const unresolvedRays = field.failedRays + field.unaimedRays;
   const unresolved = assessUnresolvedFlux(
     unresolvedRays,
