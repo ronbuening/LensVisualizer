@@ -391,8 +391,15 @@ Every input's accessible name includes its element (`L2 front radius`, `L2 thick
 for display and reveals the exact value on focus, so an untouched field never rewrites authored precision.
 `BuilderTouchContext` raises fields to 16 px below the wide breakpoint so iOS does not zoom.
 
-The form also edits identity, aperture, close focus and vertical fill. Source, catalog, zoom/focus schedules, rear
-plates and all other authored fields survive edits and JSON transport. `.data.ts` export prints the house root-level
+The form also edits identity, aperture, close focus and vertical fill. Source (including `errata`, `omissions` and
+`sdSource`), catalog, zoom/focus schedules, rear plates and all other authored fields survive edits and JSON transport.
+Omission surface labels follow insertions, moves and renumbering; deleted surface references are removed,
+and entries with no remaining surfaces are dropped. Splitting a cemented junction carries its omissions to both
+resulting surfaces because both inherit its shape. Explicitly removing an existing asphere also removes that
+surface's coefficient, term and equation omission references: a deliberately spherical surface needs none of those
+assumptions. A spherical stand-in that already lacks an asphere keeps its declarations through unrelated edits.
+The input gate requires known omission kinds, non-empty notes and non-empty lists of unique, existing surface labels;
+`sdSource` accepts `source-table`, `figure-measured` or `heuristic`. `.data.ts` export prints the house root-level
 type import, header, `const LENS_DATA = { ... } satisfies LensDataV2Input` and default export, using canonical group
 order. It retains authored values, not original source comments; it does not import conversion-only optics code. The
 built-in triplet is a synthetic teaching design with catalog N-BK7/N-F2 glasses, approximately 49 mm EFL at f/2.8,

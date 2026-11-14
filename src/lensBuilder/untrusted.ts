@@ -1,3 +1,4 @@
+/** Validates and copies portable V2 builder drafts before editing, persistence or export. */
 import type { LensDataV2Input } from "../types/lensDataV2.js";
 import { ASPHERIC_COEFFICIENT_SCHEMA } from "../types/asphericSchema.js";
 import { IMAGE_FORMAT_BY_ID, LENS_MOUNT_BY_ID } from "../utils/catalog/lensTaxonomy.js";
@@ -188,6 +189,17 @@ const erratum = variant("status", {
     ["status", "surface", "field", "printed", "applied", "evidence", "note"],
   ),
 });
+const omission = object(
+  {
+    kind: literal("asphere-coefficients", "asphere-term", "asphere-equation"),
+    surfaces: array(surfaceLabel, 250, 1),
+    note: (v, p) => {
+      freeText(v, p);
+      if (!(v as string).trim()) refuse(p, "Expected a non-empty note");
+    },
+  },
+  ["kind", "surfaces", "note"],
+);
 const element = object(
   {
     ...numericFields(
@@ -308,6 +320,8 @@ const schema = object(
       authors: array(text, 40),
       assignees: array(text, 40),
       errata: array(erratum, 250),
+      omissions: array(omission, 250),
+      sdSource: literal("source-table", "figure-measured", "heuristic"),
       issuer: text,
     }),
     elements: array(element, 100),
@@ -501,9 +515,18 @@ export function parseUntrustedDraft(input: unknown): UntrustedDraftResult {
     };
     const draft = copy(value, "draft", 0);
     schema(draft, "draft");
+    const typedDraft = draft as LensDataV2Input;
+    const labels = new Set(typedDraft.surfaces.map((surface) => surface.label));
+    for (const [index, omission] of (typedDraft.source?.omissions ?? []).entries()) {
+      if (
+        omission.surfaces.some((label) => !labels.has(label)) ||
+        new Set(omission.surfaces).size !== omission.surfaces.length
+      )
+        refuse(`draft.source.omissions[${index}].surfaces`, "Expected unique authored surface labels that exist");
+    }
     if (new TextEncoder().encode(JSON.stringify(draft)).length > MAX_DRAFT_BYTES)
       refuse("draft", "JSON must be at most 1 MB");
-    return { ok: true, draft: draft as LensDataV2Input };
+    return { ok: true, draft: typedDraft };
   } catch (error) {
     return { ok: false, issues: [error instanceof Error ? error.message : "Invalid draft"] };
   }
