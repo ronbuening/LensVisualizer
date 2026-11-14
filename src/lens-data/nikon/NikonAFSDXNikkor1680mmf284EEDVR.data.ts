@@ -411,6 +411,32 @@ const LENS_DATA = {
     closeFocusM: 0.350001,
     description:
       "PUBLISHED: G2 translates objectward between the patent Table 3 infinity and short-distance states; W/M/T endpoints preserve source D5/D14 pairs while D22, D27, and BF are zoom-only.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 219.63,
+        distanceReference: "first-surface",
+        source:
+          "US 2018/0252903 A1, Example 1, PDF p. 35, Table 3, Variable distance data, Short distance W / M / T columns, D0 row: D0 = 219.63 mm to the first surface; D5=0.885, D14=20.061, D22=1.434, D27=9.397, BF=37.994 mm.",
+      },
+      {
+        zoomStation: 1,
+        keyframe: 1,
+        objectDistanceMm: 203.82,
+        distanceReference: "first-surface",
+        source:
+          "US 2018/0252903 A1, Example 1, PDF p. 35, Table 3, Variable distance data, Short distance W / M / T columns, D0 row: D0 = 203.82 mm to the first surface; D5=15.776, D14=9.596, D22=6.306, D27=4.525, BF=49.378 mm.",
+      },
+      {
+        zoomStation: 2,
+        keyframe: 1,
+        objectDistanceMm: 178.43,
+        distanceReference: "first-surface",
+        source:
+          "US 2018/0252903 A1, Example 1, PDF p. 35, Table 3, Variable distance data, Short distance W / M / T columns, D0 row: D0 = 178.43 mm to the first surface; D5=31.579, D14=5.033, D22=9.411, D27=1.420, BF=63.528 mm.",
+      },
+    ],
   },
 
   gaps: {

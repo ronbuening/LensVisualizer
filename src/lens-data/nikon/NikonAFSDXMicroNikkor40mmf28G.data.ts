@@ -227,6 +227,24 @@ const LENS_DATA = {
       "PUBLISHED: Example 1 supplies exact INF, β=-0.5 MID, and β=-1.0 CLD focus keyframes. G1 and G2 move objectward while d1a changes; the stop co-moves with G2, d1b stays 4.00000 mm, and G3 remains fixed to the physical image plane. The modeled CLD conjugate is 0.15264661 m object-to-physical-focal-plane, which the close-focus label reports; Nikon's separate 0.163 m marketed minimum-focus specification is kept as catalog metadata.",
     // (moved from publishedStations) Every focus keyframe is a source row.
     published: [1, 2],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 80.4055,
+        distanceReference: "first-surface",
+        source:
+          "US 2011/0170195 A1, Example 1, PDF p. 27, Table 1, Variable Distances, MID / CLD columns, d0 row: d0 = 80.4055 mm to the first surface; d1a=3.21650, d1b=4.00000, d2=13.37100 mm.",
+      },
+      {
+        zoomStation: 0,
+        keyframe: 2,
+        objectDistanceMm: 38.9287,
+        distanceReference: "first-surface",
+        source:
+          "US 2011/0170195 A1, Example 1, PDF p. 27, Table 1, Variable Distances, MID / CLD columns, d0 row: d0 = 38.9287 mm to the first surface; d1a=5.33230, d1b=4.00000, d2=25.70880 mm.",
+      },
+    ],
   },
 
   gaps: {

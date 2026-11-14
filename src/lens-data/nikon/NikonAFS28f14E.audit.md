@@ -68,3 +68,15 @@ All15 source nd/νd pairs agree:14 physical elements plus the explicit0.05mm res
 | L28 | 1.693500 / 53.2 | S-LAL13 |
 
 Selected coefficient curves remain unchanged and qualified spectral proxies; source indices and actual source partial dispersion remain authoritative. No tolerance was relaxed. Absolute-path candidate surface, image-circle and aperture audits pass; resolver/`assertCatalogConsistent()` pass. Nine actual native SVG focus/zoom states were rendered and visually inspected, with zero hidden rim trim. Shared dispersion/partial-dispersion suites passed2files/93tests for this wave. Coordinator records full gates and commit integration.
+
+## 2026-11-14 — Published finite conjugates
+
+Patent: JP 2017-227799 A, Example 1.
+
+| Zoom / keyframe | Field | Before | After | Source locator | Paraxial residual |
+| --- | --- | --- | --- | --- | --- |
+| 0 / 1 | `focus.conjugates` | Absent | 105.61 mm, `first-surface` | PDF p. 14, Example 1 surface data, 0(OB) row Di(mm), near endpoint; rows 12 and 27; 0(OB), Di(mm): ∞ 〜105.61; D12=1.42, D27=44.77 mm | -0.001877477 mm / -0.644838 depths; consistent |
+
+Reference evidence: Table structure: "0(OB)" has "Di(mm)" = "∞ 〜105.61" and is followed by surface "1"; paragraph 0060 defines "ＯＢ：物面" and "軸上面間隔Ｄｉ（ｍｍ）".
+
+The authored gaps, image plane and published-state flags are retained.
