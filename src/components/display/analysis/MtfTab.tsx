@@ -341,10 +341,13 @@ function headerLine(
   const focus = result?.focus;
   const bestAxial = focus ? focus.mode === "best-axial" : options.focus === "best-axial";
   const shift = focus?.appliedShiftMm ?? 0;
+  const shiftLabel = `${shift >= 0 ? "+" : "−"}${Math.abs(shift).toFixed(3)} mm`;
   parts.push(
-    bestAxial
-      ? `Best axial focus estimate (${shift >= 0 ? "+" : "−"}${Math.abs(shift).toFixed(3)} mm)`
-      : "Design image plane",
+    focus?.mode === "held"
+      ? `Held image plane (${shiftLabel} from authored plane)`
+      : bestAxial
+        ? `Best axial focus estimate (${shiftLabel})`
+        : "Design image plane",
   );
   return parts.join(" · ");
 }
@@ -379,7 +382,11 @@ function ImagePlaneNote({ result, t, onUseAuto }: { result: MtfResult | null; t:
         <span>
           {`These curves use best axial focus (${shift >= 0 ? "+" : "−"}${Math.abs(shift).toFixed(3)} mm); choose “Design plane (always)” to see the authored plane.`}
         </span>
-      ) : focus.requestedMode === "design" ? (
+      ) : focus.mode === "held" && shift !== 0 ? (
+        <span>
+          {`These curves use a held image plane (${shift >= 0 ? "+" : "−"}${Math.abs(shift).toFixed(3)} mm from the authored plane).`}
+        </span>
+      ) : (
         <span>
           <span>Curves at the authored plane are out of focus. </span>
           <button
@@ -397,7 +404,7 @@ function ImagePlaneNote({ result, t, onUseAuto }: { result: MtfResult | null; t:
             Refocus automatically
           </button>
         </span>
-      ) : null}
+      )}
     </p>
   );
 }

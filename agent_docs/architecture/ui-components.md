@@ -112,7 +112,9 @@ estimated from nd/νd, or the reference line and the reason when a glass blocks 
 (with an explanatory note when the lens data's plane contradicts its own paraxial focus; "Design plane (auto)" and
 "Design plane (always)" remain) and the image-height view at 10 % field steps showing 10 and 30 lp/mm. The header
 names the marked f-number and, when the Summary's working f-number finds the axial marginal ray vignetted
-(`MtfResult.axialVignetting`), the surface that clips it ("f/1.4 (axial beam vignetted at surface 14)"). Each dropdown
+(`MtfResult.axialVignetting`), the surface that clips it ("f/1.4 (axial beam vignetted at surface 14)"). Plane readouts
+follow the applied focus mode: held results name their shift from the authored plane, and the inconsistent-plane
+note describes a held plane as authored only when that shift is exactly zero. Each dropdown
 explains its options in a mouse-hover or keyboard-focus `PortalTooltip`, also linked through `aria-describedby`; on
 hover-less (touch) devices a `HelpTooltipButton` beside each dropdown gives tap access. Method, spectrum, image plane, sampling (128² or 256² cap), view, field step (10/5/2/1 %) and frequency chips
 (10–50 lp/mm) persist in localStorage through `src/utils/state/mtfPreferences.ts` and `useMtfPreferences`, which

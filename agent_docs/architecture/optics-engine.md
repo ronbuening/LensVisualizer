@@ -257,8 +257,10 @@ only when it changes that display; the first five are blocking:
 - `estimated-dispersion`: a spectral chart uses nd/νd-only glasses. They are named, and split between lens and
   converter on a composed system. Synthetic rear plates are not counted: a flat plate only shifts focus with color,
   and the estimate keeps its F−C span exact.
-- `image-plane`: the authored plane is inconsistent and the request was `auto` or `design`. A `best-axial` request
-  never uses the authored plane, so it has no gap.
+- `image-plane`: the authored plane is inconsistent and the applied mode is `design`, or `held` with an exactly
+  zero `appliedShiftMm`. A shifted held plane has no authored-plane gap, regardless of the requested mode, even
+  when it coincides with the best-axial diagnostic. Automatic refocus to `best-axial` carries a disclosure that the
+  curves use best axial focus; an explicitly requested and applied `best-axial` plane has no gap.
 - `short-field`: requested field positions are `outside-modeled-field`.
 - `scale`: the prescription and marketed focal lengths differ by more than 10 % (`mtfPrescriptionScale`). The
   comparison follows the charted zoom position: endpoint pairs use the nearer wide/tele end; lists with one value

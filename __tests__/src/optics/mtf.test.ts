@@ -1398,6 +1398,31 @@ describe("MTF data limitations", () => {
     expect(scale.kind).toBe("scale");
     expect(scale.text).toContain("differs from the marketed 58 mm by 14%");
   });
+  it.each(["auto", "design", "best-axial"] as const)(
+    "does not claim a shifted held plane is authored or best axial with a %s request",
+    (focus) => {
+      // A held override can coincide with best focus or select another plane, independently of the requested policy.
+      const options = { ...mtfTestOptions, pupilSemiDiameterMm: 0.1, stopSemiDiameterMm: 0.1 };
+      const best = computeMtf(...mtfInputs(state, { ...options, focus: "best-axial" })).focus!;
+      expect(best.imagePlaneInconsistent).toBe(true);
+      expect(Math.abs(best.appliedShiftMm)).toBeGreaterThan(1);
+      for (const heldFocusShiftMm of [best.appliedShiftMm, best.appliedShiftMm / 2]) {
+        const result = computeMtf(...mtfInputs(state, { ...options, focus, heldFocusShiftMm }));
+        expect(result.focus).toMatchObject({ requestedMode: focus, mode: "held", appliedShiftMm: heldFocusShiftMm });
+        expect(assessMtfDataLimitations(state, { ...reference, result })).toEqual([]);
+      }
+    },
+  );
+  it.each(["auto", "design", "best-axial"] as const)(
+    "warns when a held plane is the inconsistent authored plane with a %s request",
+    (focus) => {
+      const result = computeMtf(...mtfInputs(state, { ...mtfTestOptions, focus, heldFocusShiftMm: 0 }));
+      expect(result.focus).toMatchObject({ mode: "held", appliedShiftMm: 0, imagePlaneInconsistent: true });
+      const [note] = assessMtfDataLimitations(state, { ...reference, result });
+      expect(note).toMatchObject({ kind: "image-plane", blocking: true });
+      expect(note.text).toContain("These curves are taken at the authored plane and are out of focus.");
+    },
+  );
   it("compares the charted zoom endpoint for scale notes and the extreme-scale guard", () => {
     // Hold the traced geometry fixed while varying only the metadata the scale checks compare.
     const zoom = buildVariableStopGapLens([

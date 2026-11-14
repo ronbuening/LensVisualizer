@@ -62,10 +62,12 @@ function stubWorker({
   progress = false,
   target = state,
   error,
+  heldFocusShiftMm,
 }: {
   progress?: boolean;
   target?: typeof state;
   error?: (job: MtfJob) => string | null;
+  heldFocusShiftMm?: number;
 } = {}) {
   const calls = { compute: 0, jobs: [] as MtfJob[] };
   const replies: Array<() => void> = [];
@@ -85,7 +87,10 @@ function stubWorker({
           queueMicrotask(() => send({ type: "error", id: message.id, error: failure }));
           return;
         }
-        const result = memoizedMtf(target, message.job.options);
+        const result = memoizedMtf(
+          target,
+          heldFocusShiftMm === undefined ? message.job.options : { ...message.job.options, heldFocusShiftMm },
+        );
         if (progress) {
           const pending: MtfResult = {
             ...result,
@@ -289,6 +294,38 @@ describe("MTF tab", () => {
     expect(note).toContain(`${Math.abs(offsetMm).toFixed(2)} mm behind`);
     expect(note).toContain("These curves use best axial focus");
   });
+  it.each(["auto", "design", "best-axial"] as const)(
+    "labels a shifted held result independently of the %s request",
+    async (focus) => {
+      // A held worker result exercises plane readouts independently of the main-chart controls.
+      localStorage.setItem(MTF_PREFERENCES_KEY, JSON.stringify({ focus, spectrum: "reference" }));
+      resetMtfPreferencesCache();
+      stubWorker({ heldFocusShiftMm: 10 });
+      render(<MtfTab L={L} t={mockTheme} preparedState={state} currentEPSD={1} currentPhysStopSD={1} />);
+      await screen.findByRole("figure");
+      expect(screen.getByText(/· Held image plane \(\+10\.000 mm from authored plane\)/)).toBeTruthy();
+      const note = screen.getByText(/own prescription's paraxial focus/).closest("p")!.textContent!;
+      expect(note).toContain("These curves use a held image plane (+10.000 mm from the authored plane).");
+      expect(note).not.toContain("out of focus");
+      expect(note).not.toContain("best axial focus");
+      expect(screen.queryByRole("button", { name: "Refocus automatically" })).toBeNull();
+      expect(screen.queryByRole("note", { name: "Limited data for this chart" })).toBeNull();
+    },
+  );
+  it.each(["auto", "design", "best-axial"] as const)(
+    "warns that a held zero shift uses the authored plane despite a %s request",
+    async (focus) => {
+      localStorage.setItem(MTF_PREFERENCES_KEY, JSON.stringify({ focus, spectrum: "reference" }));
+      resetMtfPreferencesCache();
+      stubWorker({ heldFocusShiftMm: 0 });
+      render(<MtfTab L={L} t={mockTheme} preparedState={state} currentEPSD={1} currentPhysStopSD={1} />);
+      await screen.findByRole("figure");
+      expect(screen.getByText(/· Held image plane \(\+0\.000 mm from authored plane\)/)).toBeTruthy();
+      const note = screen.getByText(/own prescription's paraxial focus/).closest("p")!.textContent!;
+      expect(note).toContain("Curves at the authored plane are out of focus.");
+      expect(screen.getByRole("button", { name: "Refocus automatically" })).toBeTruthy();
+    },
+  );
   it("holds the chart behind a data warning until the reader dismisses it", async () => {
     stubWorker({ target: focusedState });
     const tab = (

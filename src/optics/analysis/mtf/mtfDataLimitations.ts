@@ -4,7 +4,7 @@
  * `assessMtfSupport` says whether MTF can run and lists the model's general assumptions. This module answers a
  * narrower question for the chart on screen: what is this lens, or lens plus converter, missing that the most
  * accurate model would need? Every gap is tied to the display it changes, so a single-wavelength chart the reader
- * asked for carries no dispersion gap, and an inconsistent image plane is no gap at best axial focus. Gaps hold the
+ * asked for carries no dispersion gap, and image-plane claims follow the plane actually applied. Gaps hold the
  * chart behind a warning (`blocking`); authored source errata are notes that leave it readable.
  */
 import type { MtfDataLimitation, MtfResult, MtfSpectrum } from "../../../types/mtf.js";
@@ -102,15 +102,21 @@ export function assessMtfDataLimitations(state: PreparedGeometry, input: MtfData
   }
 
   const focus = input.result?.focus;
-  // At best axial focus by request, the chart never uses the authored plane.
-  if (focus?.imagePlaneInconsistent && focus.imagePlaneOffsetMm !== null && focus.requestedMode !== "best-axial") {
+  const usesAuthoredPlane = focus?.mode === "design" || (focus?.mode === "held" && focus.appliedShiftMm === 0);
+  // Automatic refocus is disclosed because the applied plane differs from the requested design policy.
+  const automaticallyRefocused = focus?.mode === "best-axial" && focus.requestedMode === "auto";
+  if (
+    focus?.imagePlaneInconsistent &&
+    focus.imagePlaneOffsetMm !== null &&
+    (usesAuthoredPlane || automaticallyRefocused)
+  ) {
     const offset = focus.imagePlaneOffsetMm;
     limitations.push({
       kind: "image-plane",
       blocking: true,
       text:
         `The authored image plane sits ${Math.abs(offset).toFixed(2)} mm ${offset > 0 ? "in front of" : "behind"} this prescription's paraxial focus, so the back focus in the lens data disagrees with its surfaces. ` +
-        (focus.mode === "best-axial"
+        (automaticallyRefocused
           ? "These curves are refocused to best axial focus instead of the design plane."
           : "These curves are taken at the authored plane and are out of focus."),
     });
