@@ -8,15 +8,14 @@ removes the keyframe's published flag.
 ## Coverage
 
 - Published finite states: **607** on 379 lenses.
-- Declared: **511** on 319 lenses.
-- Open: **96** states on 66 lenses, listed below by what the cited source prints.
+- Declared: **512** on 320 lenses.
+- Open: **95** states on 65 lenses, listed below by what the cited source prints.
 
 | What the source prints for the state | States |
 |---|---|
 | A magnification that could not be declared | 10 |
-| Neither a distance nor a magnification | 30 |
+| Neither a distance nor a magnification | 31 |
 | A distance that could not be declared | 54 |
-| Not yet read against the source | 2 |
 
 States are written `zoomStation/keyframe`. "Depths" are the audit's signed quarter waves of defocus at the authored
 image plane for the printed distance under the source's reference and under the other one; the limit is 25.
@@ -159,6 +158,7 @@ disagree on what is printed. A failure with matching gaps is a lead for a prescr
 The source tabulates the close-focus gaps without saying what they focus on.
 
 - `canon/CanonRF135f18`: 0/1
+- `canon/CanonRF24mmf18MacroISSTM`: 0/1
 - `canon/CanonRF600mmf11ISSTM`: 0/1
 - `canon/CanonRF800mmf11ISSTM`: 0/1
 - `canon/CanonTSE90mmf28L`: 0/1
@@ -174,16 +174,6 @@ The source tabulates the close-focus gaps without saying what they focus on.
 - `panasonic/PanasonicLumixSPro2470mmf28`: 0/1, 1/1, 2/1
 - `sony/SonyFE20mmf18G`: 0/1
 - `sony/SonySEL30mmf35`: 0/1
-
-## Not Yet Read
-
-States that joined the catalog after the backfill passes. Nothing has been read against the source for this queue; the
-note is what the lens file itself records.
-
-| Lens file | State | Lens file's note |
-|---|---|---|
-| `canon/CanonRF24mmf18MacroISSTM` | 0/1 | File header: the patent prints no close object distance; the printed close spacing focuses 136.0 mm object to image at −0.51×. |
-| `pentax/PentaxDAStar55mmf14` | 0/1 | Audit log: the patent prints M = −0.173 and no object distance, so the state is a `sourceMagnification` candidate. |
 
 ## Declared States Outside The Audit Limit
 
