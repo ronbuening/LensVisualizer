@@ -125,6 +125,57 @@ export interface MtfSpectralData {
   partialLineGlasses: number;
 }
 
+/** One element that cannot supply spectral MTF indices, in first-surface order. */
+export interface MtfSpectralBlocker {
+  elementId: number;
+  class: "high-vd-no-partial" | "e-line-no-catalog" | "no-abbe" | "unusable-measured-span";
+  /** Completes "…because …" in the spectrum fallback message. */
+  message: string;
+  /** Indices of glass-bearing surfaces, including hidden rear plates and embedded stops. */
+  surfaceIndices: number[];
+}
+
+/**
+ * Collect every blocking element using the spectral gate's per-glass precedence.
+ * Counts refer to surfaces whose following medium is glass, rather than both faces of each element.
+ *
+ * @param state - prepared optical state, including generated rear plates
+ * @returns all blocking elements in surface order, each with its glass-bearing surface indices
+ */
+export function collectMtfSpectralBlockers(state: PreparedGeometry): MtfSpectralBlocker[] {
+  const { lens } = state;
+  const blockers = new Map<number, MtfSpectralBlocker>();
+  for (const [i, dispersion] of lens.dispersion.entries()) {
+    if (dispersion.quality === "air" || dispersion.quality === "sellmeier") continue;
+    const surface = state.surfaces[i];
+    const element = lens.elements.find((e) => e.id === surface.elemId)?.source;
+    let blocker: Pick<MtfSpectralBlocker, "class" | "message">;
+    if (dispersion.quality === "constant") blocker = { class: "no-abbe", message: "a glass has no Abbe number" };
+    else if (element?.indexReference === "e")
+      blocker = { class: "e-line-no-catalog", message: "an e-line glass has no catalog dispersion data" };
+    else {
+      const missingG = dispersion.quality === "lineIndices" && element?.ng === undefined;
+      if (dispersion.quality !== "abbe" && !missingG) continue;
+      const vd = missingG
+        ? measuredLineAbbe(surface.nd, dispersion.indexAt("R"), dispersion.indexAt("B"))
+        : (element?.vd ?? lens.indices.vdByIdx[i] ?? 0);
+      if (!Number.isFinite(vd) || vd <= 0)
+        blocker = { class: "unusable-measured-span", message: "a glass has no usable measured dispersion span" };
+      else if (vd > MTF_ESTIMATED_DISPERSION_MAX_VD && element?.dPgF === undefined)
+        blocker = {
+          class: "high-vd-no-partial",
+          message: `a low-dispersion glass (ν${element?.indexReference ?? "d"} ${vd.toFixed(1)}) has no partial-dispersion data`,
+        };
+      else continue;
+    }
+    const elementId = surface.elemId ?? -1 - i;
+    const existing = blockers.get(elementId);
+    if (existing) existing.surfaceIndices.push(i);
+    else blockers.set(elementId, { elementId, ...blocker, surfaceIndices: [i] });
+  }
+  return [...blockers.values()];
+}
+
 /**
  * Classify the glasses for spectral MTF. Catalog Sellmeier and complete measured line indices supply spectral
  * data; native d/D Abbe-only glasses and missing-g line tables use normal-line estimates. The latter derive
@@ -140,30 +191,22 @@ export function assessMtfSpectralData(state: PreparedGeometry): MtfSpectralData 
   const { lens } = state;
   const estimated = new Set<number>();
   const partial = new Set<number>();
-  const blocked = (blocker: string): MtfSpectralData => ({
-    blocker,
-    estimatedGlasses: 0,
-    estimatedElementIds: [],
-    partialLineElementIds: [],
-    partialLineGlasses: 0,
-  });
+  const firstBlocker = collectMtfSpectralBlockers(state)[0];
+  if (firstBlocker)
+    return {
+      blocker: firstBlocker.message,
+      estimatedGlasses: 0,
+      estimatedElementIds: [],
+      partialLineElementIds: [],
+      partialLineGlasses: 0,
+    };
   for (const [i, dispersion] of lens.dispersion.entries()) {
     if (dispersion.quality === "air" || dispersion.quality === "sellmeier") continue;
     const surface = state.surfaces[i];
     const element = lens.elements.find((e) => e.id === surface.elemId)?.source;
-    if (dispersion.quality === "constant") return blocked("a glass has no Abbe number");
-    if (element?.indexReference === "e") return blocked("an e-line glass has no catalog dispersion data");
     const missingG = dispersion.quality === "lineIndices" && element?.ng === undefined;
     if (dispersion.quality !== "abbe" && !missingG) continue;
-    const vd = missingG
-      ? measuredLineAbbe(surface.nd, dispersion.indexAt("R"), dispersion.indexAt("B"))
-      : (element?.vd ?? lens.indices.vdByIdx[i] ?? 0);
-    if (!Number.isFinite(vd) || vd <= 0) return blocked("a glass has no usable measured dispersion span");
     if (missingG) partial.add(surface.elemId ?? -1 - i);
-    if (vd > MTF_ESTIMATED_DISPERSION_MAX_VD && element?.dPgF === undefined)
-      return blocked(
-        `a low-dispersion glass (ν${element?.indexReference ?? "d"} ${vd.toFixed(1)}) has no partial-dispersion data`,
-      );
     estimated.add(surface.elemId ?? -1 - i);
   }
   return {

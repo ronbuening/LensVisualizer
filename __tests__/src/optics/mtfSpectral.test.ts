@@ -11,6 +11,8 @@ import {
 import { prepareRuntimeState } from "../../../src/optics/state/runtimeAdapters.js";
 import {
   assessMtfSupport,
+  assessMtfSpectralData,
+  collectMtfSpectralBlockers,
   MTF_CDF_LINES,
   MTF_PHOTOPIC_LINES,
   resolveMtfSpectrum,
@@ -289,6 +291,34 @@ describe("qualified spectral MTF", () => {
     expect(assessMtfSupport(...mtfInputs(withGlass({ nd: 1.497, vd: 81.6, dPgF: 0.03 }), options)).available).toBe(
       true,
     );
+  });
+  it("collects different blockers in surface order, including a hidden rear plate", () => {
+    const base = constructionFixtureData(buildSimplePositiveElementLens());
+    const state = prepareRuntimeState(
+      build({
+        ...base,
+        elements: base.elements.map((e) => ({ ...e, vd: undefined })),
+        rearPlates: [{ ...REAR_PLATE_FIXTURE, glass: undefined, nd: 1.497, vd: 81.6 }],
+      }),
+      0,
+      0,
+    );
+    expect(collectMtfSpectralBlockers(state)).toEqual([
+      { elementId: 1, class: "no-abbe", message: "a glass has no Abbe number", surfaceIndices: [1] },
+      {
+        elementId: 2,
+        class: "high-vd-no-partial",
+        message: "a low-dispersion glass (νd 81.6) has no partial-dispersion data",
+        surfaceIndices: [3],
+      },
+    ]);
+    expect(assessMtfSpectralData(state)).toEqual({
+      blocker: "a glass has no Abbe number",
+      estimatedGlasses: 0,
+      estimatedElementIds: [],
+      partialLineElementIds: [],
+      partialLineGlasses: 0,
+    });
   });
   it("checks hidden rear plates as well as visible elements", () => {
     const base = buildChromaticPositiveElementLens();

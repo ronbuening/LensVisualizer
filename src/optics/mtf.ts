@@ -12,6 +12,7 @@ export {
   MTF_PHOTOPIC_LINES,
   assessMtfSpectralData,
   assessMtfSupport,
+  collectMtfSpectralBlockers,
   resolveMtfSpectrum,
 } from "./analysis/mtf/mtfSupport.js";
 export {

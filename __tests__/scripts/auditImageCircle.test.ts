@@ -184,6 +184,156 @@ describe("MTF field census", () => {
   });
 });
 
+describe("MTF spectral blocker census", () => {
+  const root = mkdtempSync(join(tmpdir(), "audit-mtf-blockers-"));
+  afterAll(() => rmSync(root, { recursive: true, force: true }));
+
+  it("counts all blockers, overlapping classes, upgrade leverage and estimated elements without editing inputs", () => {
+    const primePair = FIXTURE_PAIRS.find((pair) => pair.family === "prime");
+    const embeddedPair = FIXTURE_PAIRS.find((pair) => pair.family === "stop inside an element");
+    if (primePair?.kind !== "lens" || embeddedPair?.kind !== "lens") throw new Error("missing prime fixtures");
+    const prime = { ...primePair.v2, elements: primePair.v2.elements.map((e) => ({ ...e, glass: undefined })) };
+    const embedded = embeddedPair.v2;
+    const high = { ...embedded.elements[0], nd: 1.497, vd: 81.6, glass: "Unresolved high glass" };
+    const fixtures = [
+      {
+        ...embedded,
+        key: "a-multi",
+        elements: [{ ...high, vd: undefined }],
+        rearPlates: [{ label: "Unknown plate", nd: 1.497, vd: 81.6, thicknessMm: 1, gapAfterMm: 1 }],
+      },
+      {
+        ...embedded,
+        key: "b-high",
+        elements: [high],
+        rearPlates: [{ label: "High plate", nd: 1.497, vd: 81.6, thicknessMm: 1, gapAfterMm: 1 }],
+      },
+      { ...prime, key: "c-no-abbe", elements: prime.elements.map((e) => ({ ...e, vd: undefined })) },
+      { ...prime, key: "d-e-line", elements: prime.elements.map((e) => ({ ...e, indexReference: "e" })) },
+      { ...prime, key: "e-estimate-one" },
+      {
+        ...prime,
+        key: "f-estimate-two",
+        elements: [...prime.elements, { ...prime.elements[0], id: 2, name: "L2", label: "Second element" }],
+        surfaces: [
+          ...prime.surfaces,
+          { label: "3", R: "flat", d: 5, sd: 15, medium: 2 },
+          { label: "4", R: "flat", d: 80, sd: 15 },
+        ],
+      },
+      { ...FIXTURE_PAIRS.find((pair) => pair.family === "diffractive")!.v2, key: "g-unsupported" },
+      { ...prime, key: "h-resolved", elements: prime.elements.map((e) => ({ ...e, glass: "N-BK7" })) },
+      {
+        ...prime,
+        key: "i-plate-estimate",
+        elements: prime.elements.map((e) => ({ ...e, glass: "N-BK7" })),
+        rearPlates: [{ label: "Estimated plate", nd: 1.5168, vd: 64.17, thicknessMm: 1, gapAfterMm: 1 }],
+      },
+      { ...prime, key: "j-hidden", visible: false },
+    ];
+    const catalog = join(root, "src/lens-data");
+    mkdirSync(catalog, { recursive: true });
+    for (const fixture of fixtures)
+      writeFileSync(join(catalog, `${fixture.key}.data.ts`), `export default ${JSON.stringify(fixture)};\n`);
+    const run = (...args: string[]) =>
+      JSON.parse(
+        execFileSync(
+          "node",
+          [
+            "--import",
+            resolve("scripts/ts-js-specifier-hook-register.mjs"),
+            resolve("scripts/audit-mtf.mjs"),
+            "--blockers",
+            ...args,
+          ],
+          { cwd: root, encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] },
+        ),
+      );
+    const report = run("--list");
+    expect(report).toMatchObject({
+      spectrum: "photopic",
+      audited: 9,
+      glassSurfaces: 15,
+      eligible: 4,
+      referenceFallback: 4,
+      unsupported: 1,
+      classes: {
+        "high-vd-no-partial": {
+          lenses: 2,
+          elements: 3,
+          surfaces: 4,
+          shareOfGlassSurfaces: 4 / 15,
+          unlockedLenses: 1,
+          singleBlockingElementLenses: [],
+        },
+        "no-abbe": {
+          lenses: 2,
+          elements: 2,
+          surfaces: 3,
+          shareOfGlassSurfaces: 3 / 15,
+          unlockedLenses: 1,
+          singleBlockingElementLenses: ["c-no-abbe"],
+        },
+        "e-line-no-catalog": {
+          lenses: 1,
+          elements: 1,
+          surfaces: 1,
+          unlockedLenses: 1,
+          singleBlockingElementLenses: ["d-e-line"],
+        },
+        "unusable-measured-span": { lenses: 0, elements: 0, surfaces: 0, unlockedLenses: 0 },
+      },
+      estimatedDispersion: { lenses: 3, singleElementLenses: 2, elementCountDistribution: { "1": 2, "2": 1 } },
+      estimatedDispersionWarning: { lenses: 2, singleElementLenses: 1, elementCountDistribution: { "1": 1, "2": 1 } },
+    });
+    expect(report.lenses).toHaveLength(4);
+    expect(report.lenses[0].blockers).toEqual([
+      {
+        elementId: 1,
+        label: high.label,
+        nd: 1.497,
+        vd: null,
+        indexReference: "d",
+        glass: "Unresolved high glass",
+        class: "no-abbe",
+        surfaces: 2,
+      },
+      {
+        elementId: 2,
+        label: "Unknown plate",
+        nd: 1.497,
+        vd: 81.6,
+        indexReference: "d",
+        glass: null,
+        class: "high-vd-no-partial",
+        surfaces: 1,
+      },
+    ]);
+    expect(
+      report.estimatedDispersion.rows.map((row: { estimatedElementCount: number }) => row.estimatedElementCount),
+    ).toEqual([1, 2, 1]);
+    const summary = run();
+    expect(summary.lenses).toBeUndefined();
+    expect(summary.estimatedDispersion.rows).toBeUndefined();
+    expect(summary.classes).toEqual(report.classes);
+    expect(run("--limit=1")).toMatchObject({
+      audited: 1,
+      glassSurfaces: 3,
+      referenceFallback: 1,
+      classes: { "high-vd-no-partial": { unlockedLenses: 0 }, "no-abbe": { unlockedLenses: 0 } },
+    });
+    expect(run("--limit=0")).toMatchObject({
+      audited: 0,
+      glassSurfaces: 0,
+      classes: { "no-abbe": { shareOfGlassSurfaces: 0 } },
+    });
+    for (const fixture of fixtures)
+      expect(readFileSync(join(catalog, `${fixture.key}.data.ts`), "utf8")).toBe(
+        `export default ${JSON.stringify(fixture)};\n`,
+      );
+  });
+});
+
 describe("audits read only V2 files", () => {
   const root = mkdtempSync(join(tmpdir(), "audit-v2-twins-"));
   afterAll(() => rmSync(root, { recursive: true, force: true }));

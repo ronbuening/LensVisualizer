@@ -200,9 +200,13 @@ S under a day, M one to three days, L longer.
 ### Data
 
 - **C19 — Spectral eligibility.** 999 of 1,102 visible lenses get the photopic chart (280 with estimated
-  dispersion) and 70 fall back to the reference line. 38 of those are blocked by a high-νd glass with no `dPgF`:
-  59 surfaces, 0.46 % of the catalog's. 129 warned lenses estimate a single element. Extend the census to list
-  every blocker and what each upgrade unlocks. L for the source work.
+  dispersion) and 70 fall back to the reference line (`scripts/audit-mtf.mjs --blockers`). 39 of those hold a
+  high-νd glass with no `dPgF`: 59 surfaces, 0.46 % of the catalog's, and resolving that class alone would unlock
+  38 lenses, 27 of them through a single element. Their sources are exhausted: the patents of 37 were re-read (two
+  have no PDF) and none prints partial dispersion, line indices or a glass name that meets a catalog row for a
+  blocked element. What remains is a ruling, not data work: whether a named glass class (the fluor crowns near
+  1.497 / 81.6) may borrow catalog dispersion past the νd tolerance, or the gate may pass such glasses with a
+  warning (`agent_docs/dispersion-estimate-exploration.md`).
 - **C20 — Finite conjugates.** 62 of 767 lenses with focus travel (8 %) have an eligible finite station; 504 of
   604 published finite stations lack `focus.conjugates`. Backfill from sources only, never from a close-focus
   label. L.

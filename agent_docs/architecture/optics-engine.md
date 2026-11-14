@@ -206,7 +206,8 @@ apply.
 
 **Spectra.** Monochromatic runs retain native d/e indices; mixed references require usable physical conversion. C/d/F
 (equal weights) and photopic (nine-point Gauss-Legendre quadrature over 470-650 nm, with quadrature weights times
-CIE 1924 V(λ) on an equal-energy source, 560 nm first) share one glass gate, `assessMtfSpectralData`. Photopic V(λ)
+CIE 1924 V(λ) on an equal-energy source, 560 nm first) share one glass gate, `assessMtfSpectralData`, which uses
+`collectMtfSpectralBlockers` to collect every blocking element while retaining the first-blocker message. Photopic V(λ)
 uses linear interpolation of the 5 nm table; the centre node anchors lateral color and field launch. Catalog
 Sellmeier and d-referenced line indices qualify, and so do d-referenced nd/νd-only glasses through the Abbe tier's
 normal-line estimate, which the tab notes. A glass with no
@@ -331,7 +332,17 @@ a client LRU bounded to 64 MiB, while chart changes reuse curves without tracing
 eligibility, `--fields` for structural eligibility → modeled-field inclusion → curve production → convergence at
 center, half-height, modeled edge and corner, explicitly requesting fraction 1 for the corner, at the authored
 (`design`) focus plane; `--list` retains each lens's field stages, status, reason, final grid size and convergence band,
-and `--grid=32|64|128|256` selects the census cap, default 32, distinct from the product tab's 256-cell refinement);
+and `--grid=32|64|128|256` selects the census cap, default 32, distinct from the product tab's 256-cell refinement).
+`--blockers` defaults to photopic and reports every blocking element, class totals, shares of all catalog glass-bearing
+surfaces, and how many reference-supported lenses each class alone unlocks; `--list` includes fallback and estimated-element
+rows, and `--limit=N` restricts the audited visible catalog. Counts use the infinity, wide-zoom, wide-open state and
+include hidden rear plates and glass-bearing embedded stops, counting a surface by its following medium.
+Of 1,102 visible lenses and 12,811 glass-bearing surfaces, 999 are photopic-eligible, 70 fall back to the reference line,
+and 33 are otherwise unsupported. Among fallbacks, high-νd glasses without partial dispersion block 39 lenses
+(59 elements/surfaces; resolving that class alone unlocks 38), non-catalog e-line glasses block 22 (67 elements/surfaces;
+22 unlocked), and glasses without Abbe numbers block 10 (32 elements, 34 surfaces; 9 unlocked). The 280 eligible lenses
+using estimated dispersion include 138 estimating exactly one element; the chart's `estimated-dispersion` warning excludes
+hidden rear plates and covers 264 lenses, 128 with exactly one estimated authored element.
 `scripts/benchmark-mtf.mjs` flags are
 listed in `agent_docs/benchmarks/README.md`. Benchmarks retain status alongside timings so fast rejection is not
 confused with a completed curve.
