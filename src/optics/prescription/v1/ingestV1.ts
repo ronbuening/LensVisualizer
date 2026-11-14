@@ -109,6 +109,8 @@ const LENS_FIELDS: Readonly<Record<keyof LensDataInput, true>> = {
   patentAssignees: true,
   patentYear: true,
   sourceErrata: true,
+  sourceOmissions: true,
+  sdSource: true,
   sourceIssuer: true,
   elementCount: true,
   groupCount: true,
@@ -179,6 +181,8 @@ const TELECONVERTER_FIELDS: Readonly<Record<keyof TeleconverterData, true>> = {
   patentAuthors: true,
   patentAssignees: true,
   patentYear: true,
+  sourceOmissions: true,
+  sdSource: true,
   elementCount: true,
   groupCount: true,
   elements: true,
@@ -1023,6 +1027,7 @@ const V1_NAMES = {
     authors: "patentAuthors",
     assignees: "patentAssignees",
     errata: "sourceErrata",
+    omissions: "sourceOmissions",
     issuer: "sourceIssuer",
   },
   focus: { closeFocusM: "closeFocusM", description: "focusDescription" },
@@ -1074,7 +1079,17 @@ function recordLensReads(sources: SourcePaths, lens: Untyped): void {
 
 /** Record the members a V1 file keeps at its top level, where the prescription's `source` holds them. */
 function recordSourceReads(sources: SourcePaths, source: Untyped): void {
-  const fields = ["patentNumber", "example", "patentYear", "authors", "assignees", "errata", "issuer"];
+  const fields = [
+    "patentNumber",
+    "example",
+    "patentYear",
+    "authors",
+    "assignees",
+    "errata",
+    "omissions",
+    "sdSource",
+    "issuer",
+  ];
   recordReads(sources, "source", "", source, fields, V1_NAMES.source);
 }
 
@@ -1086,6 +1101,8 @@ function ingestSource(data: Untyped): Untyped {
   put(source, "authors", data.patentAuthors);
   put(source, "assignees", data.patentAssignees);
   put(source, "errata", data.sourceErrata);
+  put(source, "omissions", data.sourceOmissions);
+  put(source, "sdSource", data.sdSource);
   put(source, "issuer", data.sourceIssuer);
   return source;
 }

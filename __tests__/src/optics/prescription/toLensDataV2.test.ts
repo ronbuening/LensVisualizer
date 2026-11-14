@@ -7,7 +7,12 @@
 import { describe, expect, it } from "vitest";
 import { ASPHERIC_COEFFICIENT_SCHEMA } from "../../../../src/types/asphericSchema.js";
 import { prescriptionDifference } from "../../../../src/optics/prescription/canonical.js";
-import { ingestLens, ingestTeleconverter, toTeleconverterData } from "../../../../src/optics/lensDataConversion.js";
+import {
+  ingestLens,
+  ingestTeleconverter,
+  toLensDataInput,
+  toTeleconverterData,
+} from "../../../../src/optics/lensDataConversion.js";
 import { childPath, extendPath, parentPath, pathBelow } from "../../../../src/optics/prescription/sourcePaths.js";
 import {
   toLensDataV2Input,
@@ -616,5 +621,40 @@ describe("native sodium D", () => {
     expect(v2.elements[0].indexReference).toBe("D");
     expect(v2.rearPlates![0].indexReference).toBe("D");
     expect(prescriptionDifference(canonical.prescription, ingestLens(v2).prescription)).toBeUndefined();
+  });
+});
+
+describe("source-definition provenance views", () => {
+  it.each([
+    { kind: "asphere-coefficients", note: "Spherical stand-in." },
+    { kind: "asphere-term", note: "A10 is blank and taken as zero." },
+    { kind: "asphere-equation", note: "The sibling patent supplies the interpreted equation." },
+  ] as const)("preserves $kind declarations and their paths through both file views", ({ kind, note }) => {
+    const file = structuredClone(pairOf("prime").v2);
+    file.source = {
+      omissions: [{ kind, surfaces: [file.surfaces[0].label], note }],
+      sdSource: "heuristic",
+    };
+    const input = ingestLens(file, { sources: true });
+    const writes = v2Writes();
+    const printed = toLensDataV2Input(input, writes);
+    expect(printed.source).toEqual(file.source);
+    expect(Object.keys(printed.source!)).toEqual(["omissions", "sdSource"]);
+    const map = v2SourceMap(input, writes);
+    expect(map.textSource("source.omissions[0].note")).toBe("source.omissions[0].note");
+    expect(map.textSource("source.sdSource")).toBe("source.sdSource");
+    expect(prescriptionDifference(input.prescription, ingestLens(printed).prescription)).toBeUndefined();
+    expect(prescriptionDifference(input.prescription, ingestLens(toLensDataInput(input)).prescription)).toBeUndefined();
+    const tcPair = FIXTURE_PAIRS.find((pair) => pair.kind === "teleconverter")!;
+    const tcFile = structuredClone(tcPair.v2) as TeleconverterDataV2Input;
+    tcFile.source = {
+      ...file.source,
+      omissions: [{ ...file.source.omissions![0], surfaces: [tcFile.surfaces[0].label] }],
+    };
+    const tc = ingestTeleconverter(tcFile);
+    expect(toTeleconverterDataV2Input(tc).source).toEqual(tcFile.source);
+    expect(
+      prescriptionDifference(tc.prescription, ingestTeleconverter(toTeleconverterData(tc)).prescription),
+    ).toBeUndefined();
   });
 });

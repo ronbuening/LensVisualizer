@@ -63,6 +63,13 @@ const LENS_DATA = {
         note: "Table 10 lists D/y = 12.08/21.7 = 0.557 for this example, outside Equation 5's range of 0.65–0.75, and its D matches neither aperture printed in Table 7 (15.06 and 12.31 mm). The Table 7 apertures are used.",
       },
     ],
+    omissions: [
+      {
+        kind: "asphere-equation",
+        surfaces: ["7A", "8A", "22A", "23A"],
+        note: "Equation 6 is blank in the controlling source; the model uses the separately documented standard-conic interpretation from a sibling patent.",
+      },
+    ],
   },
   elements: [
     {

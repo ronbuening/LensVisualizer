@@ -21,8 +21,8 @@ import {
 } from "./comparisonReducer.js";
 import type { FocusPairResult, AperturePairResult, ZoomPairResult, MovementPairResult } from "./comparisonSliders.js";
 import type { LensState, LensAction } from "../types/state.js";
-import { canonicalPagePath } from "../utils/seo/siteUrls.js";
 import { buildLensViewQuery } from "../utils/state/lensViewUrlState.js";
+import { buildLensNavigationUrl } from "../utils/state/mtfUrlState.js";
 
 export { isComparisonOk } from "./useComparisonMode.js";
 export type { ComparisonLensesResult } from "./useComparisonMode.js";
@@ -133,8 +133,8 @@ export default function useComparisonOrchestration({
             : lensKeyB;
       /* The compare route mounts a fresh viewer that initializes from the URL, so a mounted converter has to
          travel in the navigation itself; the debounced URL writer would run too late to carry it across. */
-      const search = buildLensViewQuery({ comparing: true, teleconverterKeyA }).toString();
-      void navigate(canonicalPagePath(`/compare/${comparisonKeyA}/${autoB}${search ? `?${search}` : ""}`), {
+      const params = buildLensViewQuery({ comparing: true, teleconverterKeyA });
+      void navigate(buildLensNavigationUrl(`/compare/${comparisonKeyA}/${autoB}`, window.location.search, params), {
         replace: false,
       });
     } else {
@@ -145,8 +145,8 @@ export default function useComparisonOrchestration({
         ...(movementPair ? { shiftA: movementPair.shiftA, tiltA: movementPair.tiltA } : {}),
       });
       /* Same remount on the way out: pane A's converter follows its lens back to the single-lens route. */
-      const search = buildLensViewQuery({ teleconverterKey: teleconverterKeyA }).toString();
-      void navigate(canonicalPagePath(`/lens/${lensKeyA}${search ? `?${search}` : ""}`), { replace: false });
+      const params = buildLensViewQuery({ teleconverterKey: teleconverterKeyA });
+      void navigate(buildLensNavigationUrl(`/lens/${lensKeyA}`, window.location.search, params), { replace: false });
     }
   }, [
     comparing,

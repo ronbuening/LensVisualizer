@@ -29,6 +29,8 @@ import type {
   RearPlateData,
   RefractiveIndexReferenceLine,
   SourceErratum,
+  SourceOmission,
+  SemiDiameterSource,
   SurfaceInteraction,
 } from "./optics.js";
 
@@ -222,6 +224,8 @@ export interface SourceV2Input {
   authors?: string[];
   assignees?: string[];
   errata?: SourceErratum[];
+  omissions?: SourceOmission[];
+  sdSource?: SemiDiameterSource;
   /**
    * The organization that issued a non-patent manufacturer source, such as a factory optical data sheet, named as
    * its historical legal entity at the source date. Never set beside `patentNumber`.

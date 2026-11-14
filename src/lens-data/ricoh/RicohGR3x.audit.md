@@ -33,3 +33,5 @@ Original Table3 PDFp32 and Figure3 PDFp4 at600dpi reviewed. BF16.478→16.001281
   the file's image plane is unchanged. Close-focus gap 19.2331862252 mm = legacy 20.8564680966 − 1.40/1.51633 − 0.70.
 - Paraxial check against the previous data: EFL identical; defocus unchanged at both focus keyframes (worst difference
   3e-15 mm). Physical track grows by 0.477 mm (t(1 − 1/n)) to 32.938 mm, consistent with the source L/f = 1.264.
+
+- 2026-11-13 — `source.omissions` records the stand-in described by "S12 is marked aspherical but coefficients are absent: spherical placeholder." Source: existing header / audit text; no optical values change.

@@ -46,6 +46,7 @@ const JURISDICTION_LABELS: Record<string, string> = {
   JP: "Japan",
   KR: "South Korea",
   NL: "Netherlands",
+  RU: "Russia",
   SU: "Soviet Union",
   US: "United States",
   WO: "International (WIPO)",

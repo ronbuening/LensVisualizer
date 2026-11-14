@@ -14,6 +14,7 @@ import { HIKARI_GLASS_ENTRIES } from "./glassCatalogEntries/hikari.js";
 import { SUMITA_GLASS_ENTRIES } from "./glassCatalogEntries/sumita.js";
 import { CDGM_GLASS_ENTRIES } from "./glassCatalogEntries/cdgm.js";
 import { NHG_GLASS_ENTRIES } from "./glassCatalogEntries/nhg.js";
+import { LZOS_GLASS_ENTRIES } from "./glassCatalogEntries/lzos.js";
 import { SPECIAL_GLASS_ENTRIES } from "./glassCatalogEntries/special.js";
 
 export type { GlassEntry } from "./glassCatalogTypes.js";
@@ -739,6 +740,12 @@ const GLASS_CATALOG_SOURCE_ORDER = [
   "NBFD1",
   "LASKN3",
   "N-BK10",
+  "TK14",
+  "TK21",
+  "STK3",
+  "BSL22",
+  "PBM18Y",
+  "MP-TAFD51-50",
 ] as const;
 
 const GLASS_CATALOG_ENTRIES_BY_NAME: ReadonlyMap<string, GlassEntry> = new Map(
@@ -750,6 +757,7 @@ const GLASS_CATALOG_ENTRIES_BY_NAME: ReadonlyMap<string, GlassEntry> = new Map(
     ...SUMITA_GLASS_ENTRIES,
     ...CDGM_GLASS_ENTRIES,
     ...NHG_GLASS_ENTRIES,
+    ...LZOS_GLASS_ENTRIES,
     ...SPECIAL_GLASS_ENTRIES,
   ].map((entry) => [entry.name, entry] as const),
 );

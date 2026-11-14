@@ -6,6 +6,7 @@ import { describe, expect, it } from "vitest";
 import { ASSIGNEES } from "../../../../src/utils/catalog/assigneeCatalog.js";
 import { LENS_SUMMARIES, SUMMARY_KEYS } from "../../../../src/utils/catalog/lensSummaries.js";
 import { AUTHORS } from "../../../../src/utils/catalog/authorCatalog.js";
+import { MAKER_CORPORATE_FAMILIES } from "../../../../src/utils/catalog/makerCorporateFamilies.js";
 import {
   buildUniversalRelationshipGraph,
   isUniversalCorporateEdge,
@@ -66,8 +67,12 @@ describe("buildUniversalRelationshipGraph", () => {
         assignee.corporateFamily.length,
       0,
     );
+    // Catalog maker hubs present in the graph add their sourced family records.
+    const expectedMakerRecords = Object.entries(MAKER_CORPORATE_FAMILIES)
+      .filter(([slug]) => graph.nodes.some((node) => node.id === `maker:${slug}`))
+      .reduce((total, [, families]) => total + families.length, 0);
 
-    expect(graph.stats.corporateRelationships).toBe(expectedCorporateRecords);
+    expect(graph.stats.corporateRelationships).toBe(expectedCorporateRecords + expectedMakerRecords);
     const canon = ASSIGNEES.find((assignee) => assignee.name === "Canon Inc.")!;
     const canonCamera = ASSIGNEES.find((assignee) => assignee.name === "Canon Camera Co., Inc.")!;
     expect(
@@ -114,6 +119,25 @@ describe("buildUniversalRelationshipGraph", () => {
       if (isUniversalCorporateEdge(edge.kind)) {
         expect(edge.sourceUrl, edge.id).toMatch(/^https:\/\//);
         expect(edge.effectiveDate ?? edge.effectiveFrom, edge.id).toMatch(/^\d{4}(?:-\d{2}(?:-\d{2})?)?$/);
+      }
+    }
+  });
+
+  it("joins a catalog maker hub to a corporate family that its patent assignees share", () => {
+    const graph = buildUniversalRelationshipGraph();
+    const components = universalConnectedComponents(graph.nodes, graph.edges);
+    const componentOf = new Map(components.flatMap((component, index) => component.map((id) => [id, index] as const)));
+    for (const [slug, families] of Object.entries(MAKER_CORPORATE_FAMILIES)) {
+      const makerId = `maker:${slug}`;
+      if (!graph.nodes.some((node) => node.id === makerId)) continue;
+      for (const { family } of families) {
+        const members = ASSIGNEES.filter((assignee) =>
+          assignee.corporateFamily.some((entry) => entry.family === family),
+        );
+        expect(members.length, `${slug} → ${family}`).toBeGreaterThan(0);
+        for (const member of members) {
+          expect(componentOf.get(`assignee:${member.slug}`), `${slug} → ${member.name}`).toBe(componentOf.get(makerId));
+        }
       }
     }
   });

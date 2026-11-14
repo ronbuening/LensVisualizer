@@ -6,6 +6,8 @@
  * `v` version param. v1-gated params (selection, overlay open-state,
  * analysis tab) are only honored when `v=1`; unknown versions silently
  * drop them so older clients do not misread future schemas.
+ * Explicit MTF preference sharing is owned by mtfUrlState; it stays outside reducer
+ * hydration so an absent override always leaves stored preferences in charge.
  */
 
 import { isAnalysisTabId, type LensState, type URLState } from "../../types/state.js";

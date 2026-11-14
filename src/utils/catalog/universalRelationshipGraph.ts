@@ -12,6 +12,7 @@ import { ASSIGNEES, getAssigneeByName } from "./assigneeCatalog.js";
 import { AUTHORS, getAuthorByName } from "./authorCatalog.js";
 import { catalogCollator } from "./collation.js";
 import { LENS_SUMMARIES, SUMMARY_KEYS } from "./lensSummaries.js";
+import { MAKER_CORPORATE_FAMILIES } from "./makerCorporateFamilies.js";
 import { deriveMaker } from "./lensMetadata.js";
 import type { PatentLensRef } from "../../types/catalog.js";
 import { aggregatePatentRecords } from "./patentRecords.js";
@@ -317,6 +318,23 @@ export function buildUniversalRelationshipGraph(
       for (const relationship of assignee.corporateFamily) {
         addEdge({
           from,
+          to: familyNodeId(relationship.family),
+          kind: "family",
+          effectiveFrom: relationship.effectiveFrom,
+          effectiveTo: relationship.effectiveTo,
+          sourceUrl: relationship.sourceUrl,
+          note: relationship.note,
+        });
+      }
+    }
+
+    // A catalog maker hub joins its sourced corporate family, so models without a patent sit in the same network as
+    // the maker's patents instead of a separate one.
+    for (const node of [...nodesById.values()]) {
+      if (node.kind !== "maker") continue;
+      for (const relationship of MAKER_CORPORATE_FAMILIES[node.slug] ?? []) {
+        addEdge({
+          from: node.id,
           to: familyNodeId(relationship.family),
           kind: "family",
           effectiveFrom: relationship.effectiveFrom,

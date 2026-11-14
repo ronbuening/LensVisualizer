@@ -65,6 +65,9 @@ const LENS_DATA = {
     authors: ["Hideki Sakai"], // inventors in source order, Given Middle Family; [] only when the source names none
     assignees: ["Canon Inc."], // canonical legal-entity names, no locations; [] only when the source names none
     // errata: [ ... ],             // values that differ from the print, or unresolved contradictions; see § Source errata
+    // omissions: [{ kind: "asphere-term", surfaces: ["9A"], note: "A10 is blank and taken as zero." }],
+    // Omission kinds: asphere-coefficients (stand-in), asphere-term (zero), asphere-equation (interpretation).
+    // sdSource: "figure-measured", // source-table | figure-measured | heuristic; leave mixed/unknown provenance out
   },
 
   /* ── Elements ── one entry per physical glass/mirror element, front to rear; each id a unique positive integer and

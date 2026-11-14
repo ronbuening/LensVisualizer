@@ -101,8 +101,8 @@ field and frequency settings (`MtfRequestOptions`). The request supplies prepare
 radii; geometry-only helpers take `PreparedGeometry`. Resolved `MtfOptions` remain internal to the unchanged sampling
 and OTF code, and serve as the serializable worker controls. Every request names its focus mode: the engine has no default plane, and a request without one is
 `invalid-input`. This estimates the authored prescription; numerical convergence and source-data confidence are
-separate. Sagittal frequencies run along image X, tangential along Y; the field lies in the Y/Z meridian. Both chart
-views share the same computed fields, one image plane and physical lp/mm units.
+separate. Sagittal frequencies run along image X, tangential along Y; the field lies in the Y/Z meridian. The
+image-height and frequency views share the same computed fields, one image plane and physical lp/mm units.
 
 **Field axis** (`mtfFields.ts`). Field fractions are fractions of a reference image height: the declared format-corner
 radius (`imageCircleMm`, else the canonical format diagonal), or the modeled edge when neither is declared. The
@@ -142,15 +142,25 @@ cells alike. No footprint scan or expansion runs where the stop defines the exte
 sampling: a field the aimed launch reaches only through the bounding sphere
 (`MtfFieldLaunch.aim` null) keeps the footprint scan, its guard-band expansion and equal launch-plane cells
 (`traceMtfLaunchPlaneBundle`), and reports `pupilSampling: "launch-plane"` with a note. No field does today: MTF
-refuses fisheye projections and rectilinear fields stay below the 89° launch cap. The field axis also keeps one
+refuses fisheye projections, folded or mirror paths, annular apertures, diffractive surfaces, blocking surfaces,
+tilted image planes and image planes without a forward-facing normal. `MtfSupport.pathReasons` lists every
+applicable prerequisite in that order, and the message explains why each prevents an estimate. Rectilinear fields
+stay below the 89° launch cap. The field axis also keeps one
 footprint scan, the lit-or-dark probe past the chief's own clip (`mtfBeamHeight`), which asks only whether any ray
 reaches the image. Full-beam results depend on authored clear apertures, so estimated semi-diameters that vignette less
 than the production lens lower off-axis curves.
 
-**Axial vignetting.** The chart is labelled with the marked f-number; the stop rule sizes the iris for it. When the
-Summary's working f-number (`computeWorkingFNumber`) finds the axial marginal ray vignetted, `MtfResult.axialVignetting`
-names that surface (and whether it is before the stop) and the header says so. No other f-number is derived from the
-MTF beam. It is cached with the focus search.
+**Axial vignetting / working f-number.** The chart is labelled with the marked f-number; the stop rule sizes the iris
+for it. `MtfResult.conjugate` records infinity or the certified station's object distance and distance reference.
+The axial launch used by the focus search supplies that same physical object to the Summary's marginal-ray machinery
+(`traceWorkingFNumber`), instead of substituting the Summary's paraxial object. At the spectrum's first line, one
+real ray through the charted stop rim supplies `workingFNumber = 1/(2 n′ sin θ′)` and `axialVignetting`. A clip makes
+the working number unavailable and names its surface (and whether it is before the stop) in the header; an unaimed
+or failed marginal ray also leaves the number null. At a finite station, a chief ray from a 0.01 mm off-axis object
+height supplies signed `magnification` as chief image height / object height on the applied chart plane, including
+a held or best-axial shift. Infinity and failed chief rays carry null magnification. These readouts are cached
+with the focus search and do not change any field values. Advanced shows the working aperture and the on-axis
+first-line diffraction cutoff `1/(λ·N_working)`, plus finite object-side frequency examples `ν_object = |m|·ν_image`.
 
 **Ray failures** (`trace/rayClassification.ts`, also used by the aimed launch and the vignetting tab). TIR and aperture
 clips are blocking on both sides of the stop: the aimed launch's search ahead of the stop takes them as blocks at their
@@ -161,11 +171,13 @@ replaced: counted per field (`unaimedRays`, `failedRays`) and named in the field
 estimator returns a number from a lattice with an unreported hole in the beam. A field is judged by those beside its
 transmitted beam (a row or column neighbour of a lit cell, the vignetting tab's `unresolved-in-beam` rule:
 `unresolvedInBeamRays`), each charged at full transmission; samples that touch no transmitted cell are named but carry
-no weight (`agent_docs/decisions.md`). Unresolved flux ε up to 0.5% of the beam is omitted with a note bounding the
-geometric MTF error at 2ε; more makes that grid unavailable (`trace-failed`) and refinement goes on, since a finer
-lattice can resolve a beam edge a coarser one cannot. A coarser curve the ladder keeps because no finer grid gave one
-says why. The reference chief is traced without aperture checks, so a clipped chief
-still fixes the common image reference.
+no weight (`agent_docs/decisions.md`). The unresolved share weights both transmitted and unresolved flux by each
+line's incident spectral weight, matching the OTF mixture. Unresolved flux ε up to 0.5% of the beam is omitted. The
+geometric method's note bounds the MTF error at 2ε; the diffraction method's note reports the omitted flux share and
+states that the estimate does not account for it, without an error bound. A larger share makes that grid unavailable
+(`trace-failed`) and refinement goes on, since a finer lattice can resolve a beam edge a coarser one cannot. A coarser
+curve the ladder keeps because no finer grid gave one says why. The reference chief is traced without aperture
+checks, so a clipped chief still fixes the common image reference.
 
 **Methods.** Geometric OTF is the normalized intensity-weighted Fourier sum of exact landing points. The diffraction
 method (`mtfShearedOtf.ts`, the tab's default, labelled "Diffraction-corrected") evaluates Hopkins' OTF from the same rays. At frequency ν the pupil
@@ -178,7 +190,9 @@ amplitude and landing error interpolated linearly along each lattice line. The s
 each pair opens by the lattice cells that λν spans at its own centre, from the rays' own cosines, because a
 wide-angle corner maps the lattice onto the exit pupil unevenly. That correction is first order and grid refinement
 does not remove its residual: within 0.003 up to 55 % of the cutoff on catalog corners, 0.009 near the cutoff of
-a 55° corner. Every wavelength shears its own lattice
+a 55° corner. Half-cutoff analytic controls pin two known limitations that grid refinement does not remove: about
+0.0023 low for 3r⁸ waves and about 0.0005, 0.0019 and 0.007 high for the Jacobian-weighted map
+q_y/NA = v + a(1 − v²) at a = 0.05, 0.1 and 0.2, respectively. Every wavelength shears its own lattice
 against the field's one image reference, so lateral color stays in the phase that `combineOtfs` sums. It needs no
 optical path, reference sphere or validity gate, and tends to the geometric OTF as ν → 0. Its kernel costs two to five
 times the geometric sum, which the ray trace dwarfs: request time did not rise. `MtfFieldResult.diffractionLimit` is the same overlap with zero phase: the response the traced pupil
@@ -190,17 +204,34 @@ field bundles), and a field whose overlap is more than 1 % such pairs says so (`
 `mtfWavefront.ts` is the reference the estimator is held against, not a product path. With `recordOpticalPath` the
 sequential trace accumulates incident-medium optical length; `rayOpticalPathToImageMm` carries it to the foot of the
 perpendicular from the image point (a reference sphere at infinity, whose pupil coordinate is the ray's own direction
-cosine), and `waveLatticeOtf` autocorrelates the complex pupil on the bundle's lattice, pairing cells by direction
-cosine at each exact shear. It reads how
-far the rays travelled where the estimator reads where they land, so the two share only the trace. It is valid only
-while the phase turns less than a quarter wave per lattice cell (`waveLatticePhaseStep`). The source-prescription
+cosine). `waveLatticeOtf` anchors quadrature at each lit endpoint and locates its partner at the exact shear ±λν in
+a piecewise-affine 2-D direction mesh, holding the perpendicular cosine fixed. For the local finite-difference
+stop-to-direction area Jacobian J, it interpolates field amplitude √flux/√J and unwrapped optical path, then
+integrates endpoint pairs with direction-area weight J. It averages the equivalent forward and backward integrals
+to preserve symmetry on the sampled grid. Pairs across an obstruction still count without sampling dark midpoints.
+Dark cells carry linearly extended map coordinates and zero amplitude; only triangles touching a lit vertex enter
+the endpoint lookup, and a point outside that support contributes zero.
+It reads how far the rays travelled where the estimator reads where they land, so the two share only the trace.
+It is valid only while the phase turns less than a quarter wave per lattice cell (`waveLatticePhaseStep`),
+which returns infinity for a folded or degenerate map on that interpolation support. Consistent triangle orientation,
+disjoint boundary edges and unit winding inside boundary triangles establish invertibility, including holes and
+disconnected pieces. The gate and the lit-cell Jacobian stencil read only supported geometry; folds confined to
+unused dark padding do not exclude the reference. The source-prescription
 result must not be presented as the manufacturer's production MTF; the shared omitted-sensor limitations above also
 apply.
 
-**Spectra.** Monochromatic runs retain native d/e indices; mixed references require usable physical conversion. C/d/F
-(equal weights) and photopic (470/510/555/610/650 nm, CIE 1924 V(λ) weights on an equal-energy source, 555 nm
-first) share one glass gate, `assessMtfSpectralData`. Catalog Sellmeier and d-referenced line indices qualify, and so
-do d-referenced nd/νd-only glasses through the Abbe tier's normal-line estimate, which the tab notes. A glass with no
+**Spectra.** Reference runs retain native d/e indices; mixed references require usable physical conversion. A `single`
+spectrum requires a finite `wavelengthNm` in the inclusive 435.8–656.3 nm g-to-C interval; invalid wavelengths return
+`invalid-input`. An exact native-reference choice retains authored indices and bypasses the glass gate, with identical
+curves, field launch and focus to `reference`. Every other chosen wavelength uses anchored spectral indices and the
+same glass gate and named reference fallback as C/d/F and photopic. Its one line supplies field launch and best-axial
+focus without spectral mixing; `MtfResult.support.spectralLines` records the actual wavelength and weight. C/d/F
+(equal weights) and photopic (nine-point Gauss-Legendre quadrature over 470-650 nm, with quadrature weights times
+CIE 1924 V(λ) on an equal-energy source, 560 nm first) share one glass gate, `assessMtfSpectralData`, which uses
+`collectMtfSpectralBlockers` to collect every blocking element while retaining the first-blocker message. Photopic V(λ)
+uses linear interpolation of the 5 nm table; the centre node anchors lateral color and field launch. Catalog
+Sellmeier and d-referenced line indices qualify, and so do d-referenced nd/νd-only glasses through the Abbe tier's
+normal-line estimate, which the tab notes. A glass with no
 νd, an e-line glass without catalog data, or an nd/νd-only glass above νd 65 without `dPgF`
 (`MTF_ESTIMATED_DISPERSION_MAX_VD`, where anomalous glasses sit) blocks spectral sampling; `resolveMtfSpectrum` then
 falls back to the reference wavelength and names the reason. With about 17 % of each lens's glasses reduced to nd/νd,
@@ -213,15 +244,22 @@ spectral proxy. Complex OTFs combine, weighted by incident line weight × transm
 retains lateral color. Every chromatic trace sets `wavelengthNm` beside its indices.
 
 **Convergence and focus.** Grids refine 16 → 256 up to `maxGridSize` (256 by default). Convergence is
-judged at and below 50 lp/mm (absolute change ≤0.01), where a sampled geometric sum is not yet dominated by aliasing
-noise; each field reports `convergedThroughLpMm`. A finer grid that fails keeps the last good curve as unconverged.
+judged at positive requested frequencies at and below 50 lp/mm (absolute change ≤0.01), where a sampled geometric sum
+is not yet dominated by aliasing noise. If none is in that band, all positive requested frequencies decide convergence.
+A DC-only request is `unconverged` on its first successful grid and `converged` after its second, with `maxDelta: 0`.
+Each field reports `convergedThroughLpMm`, the highest requested frequency through which every change stays in
+tolerance, evaluated in frequency order. A finer grid that fails keeps the last good curve as unconverged.
 The axial bundle is re-projected without retracing to find the image plane that maximizes mean axial MTF at
 10–50 lp/mm (a scan, then golden-section refinement). The scan spans the flux-weighted axial crossings of the rays
 with 2 % of the flux ignored at each end, so a stray ray cannot stretch its steps past the focus, and it counts the
 virtual crossing of a ray that is already diverging. No candidate plane lies in front of the rearmost point of the
 last surface (`mtfNearestImagePlaneZ`): gaps of hundredths of a millimetre exist, and a ray cannot land on a plane it
 has passed. It is always reported as a
-diagnostic, and `focus: "best-axial"` (the tab's default) applies the shift to every field. `mtfImagePlaneOffset` (`mtfFocus.ts`) also
+diagnostic, and `focus: "best-axial"` (the tab's default) applies the shift to every field.
+An optional `heldFocusShiftMm` overrides focus selection with an exact shift from the authored plane for every field;
+`MtfFocus.mode` is `held`, while the requested mode and best-axial diagnostic remain reported. Nonfinite shifts and
+planes in front of `mtfNearestImagePlaneZ` are rejected. Field targets stay solved on the authored plane.
+`mtfImagePlaneOffset` (`mtfFocus.ts`) also
 compares the authored plane with the prescription's paraxial focus at infinity: beyond `MTF_IMAGE_PLANE_DEPTHS` (10)
 depths of focus, 2λN² at the d line and the open f-number, the plane is flagged as inconsistent lens data.
 `focus: "auto"` applies best axial focus only to flagged lenses and keeps the design plane otherwise, so the
@@ -237,15 +275,38 @@ holds the chart behind a warning until the reader has seen it) or a note listed 
 only when it changes that display; the first five are blocking:
 
 - `reference-only`: a glass blocks the preferred spectrum, so the chart is the reference wavelength alone.
-- `estimated-dispersion`: a spectral chart uses nd/νd-only glasses. They are named, and split between lens and
-  converter on a composed system. Synthetic rear plates are not counted: a flat plate only shifts focus with color,
-  and the estimate keeps its F−C span exact.
-- `image-plane`: the authored plane is inconsistent and the request was `auto` or `design`. A `best-axial` request
-  never uses the authored plane, so it has no gap.
-- `short-field`: requested field positions are `outside-modeled-field`.
-- `scale`: the prescription and marketed focal lengths differ by more than 10 % (`mtfPrescriptionScale`).
-- `source-erratum` (note): the lens carries `corrected` `sourceErrata`, so a printed source value was replaced.
-- `source-inconsistent` (note): the lens carries `unresolved` `sourceErrata`; the curves describe the printed table.
+- `estimated-dispersion`: a spectral chart uses Abbe-only glasses or measured red/blue tables with an estimated g
+  index. For `single`, a glass is counted only when the selected index depends on an estimate. The resolver's
+  four-term Cauchy fit uses all native C/d/F/g, C/D/F/g or C′/e/F′/g nodes: an exact measured node is independent of
+  estimates at other nodes, while interpolation away from the nodes depends on every node, including an estimated
+  g index. An Abbe-only glass estimates every node except its authored reference index. Estimated glasses are named,
+  and split between lens and converter on a composed system. Synthetic rear plates are not counted: a flat plate
+  only shifts focus with color, and the estimate keeps its F−C span exact.
+- `image-plane`: the authored plane is inconsistent and the applied mode is `design`, or `held` with an exactly
+  zero `appliedShiftMm`. A shifted held plane has no authored-plane gap, regardless of the requested mode, even
+  when it coincides with the best-axial diagnostic. Automatic refocus to `best-axial` carries a disclosure that the
+  curves use best axial focus; an explicitly requested and applied `best-axial` plane has no gap.
+- `short-field`: requested field positions are `outside-modeled-field`. An optional ordinary field grid lets
+  `assessMtfDataLimitations` count those positions from the result's reference height and modeled edge, with the
+  target resolver's edge tolerance, independently of which fields the result computes.
+- `scale`: the prescription and marketed focal lengths differ by more than 10 % (`mtfPrescriptionScale`). The
+  comparison follows the charted zoom position: endpoint pairs use the nearer wide/tele end; lists with one value
+  per authored station use the nearer station. Midpoint ties go wider, and marketed focal lengths are never
+  interpolated. The warning names the compared pair; scalar values stay fixed.
+- `incomplete-prescription`: one entry lists every `source.omissions` declaration and its surfaces. It blocks
+  only when an `asphere-coefficients` omission declares a source-designated asphere with no published coefficients;
+  the warning states that the curves describe the modeled stand-in, not the lens itself. With only `asphere-term`
+  (individual blank coefficients taken as zero) or `asphere-equation` (an absent or ambiguous equation given a
+  documented interpretation), it is a note that states the assumption and that the curves rest on it.
+  Zero coefficients alone establish no omission.
+- `estimated-apertures` (note): `source.sdSource` is `heuristic`, so off-axis curves depend on estimated clear
+  apertures. `figure-measured` carries a milder measurement-uncertainty note; `source-table` and an absent declaration
+  carry none. A composition retains either part's declared uncertainty and remaps converter omission labels. These
+  source fields travel in the canonical prescription and survive the MTF worker's rebuild, like `source.errata`.
+  The engine and builder validate them through the same pure source-declaration contract; text and collection
+  limits are defined beside the fields in `src/lens-data/LENS_DATA_SPEC.md`.
+- `source-erratum` (note): the lens carries `corrected` `source.errata`, so a printed source value was replaced.
+- `source-inconsistent` (note): the lens carries `unresolved` `source.errata`; the curves describe the printed table.
 
 A lens with a converter is assessed as one system; no separate gap is raised for the pairing. A reference-line chart
 the reader chose has no glass gap. A paused proposal to narrow the `estimated-dispersion` blur and refit the
@@ -261,29 +322,202 @@ controls the error is rim sampling: other aberrations and vignetted pupil shapes
 pupil and 0.004 on 128, inside the 0.01 convergence tolerance. `reports/mtfChartRegression.report.ts`
 compares the catalog with digitized manufacturer chart values (`reports/data/mtfChartAnchors.csv`) with diffraction
 for every maker and under each maker's chart convention (`reports/data/mtfChartConventions.ts`: geometric,
-diffraction-inclusive or measured, with a documented / inferred basis), by frequency and field band; it repeats the
+diffraction-inclusive or measured, with a documented / inferred basis), comparing both pair midpoint and
+assignment-free S/T separation deltas by configuration, frequency, field band and totals, with per-direction deltas
+where chart strokes are explicitly assigned; it repeats the
 two-route cross-check on those lenses and keeps the audit's own values, computed with the retired product, as a
-frozen reference. That cross-check samples wide open at 10 and 30 lp/mm; a stopped-down probe at 50 lp/mm found two
-wide-angle corners where the routes differ by 0.004 to 0.006 at every grid, with neither shown to be the more
-accurate. It is a report, never a test threshold: maker focus and spectrum are undocumented, and a patent
-example is not proven to be the production lens. The kernels are checked against exact Hopkins integrals; no real
-lens has been compared with another tool.
+frozen reference. The cross-check samples wide open and at f/8 (or the nearest attainable aperture), each on its own
+best axial focus plane, at 10, 30 and 50 lp/mm on a 128-cell lattice. Each pass prints per-configuration and total
+coverage beside the magnitude and complex OTF gaps: fields compared, fields excluded as not checked, phase-step
+exclusions with their largest step, non-invertible maps (infinite gate step), unresolved flux over the product's
+spectrally weighted 0.5% cap, and unavailable fields or bundles.
+Only fields whose full spectrum passes the unresolved-flux, quarter-wave phase-step and invertibility gates contribute
+differences; compared and excluded step maxima are separate. The two routes share the ray trace, so agreement is not proof
+against an outside reference. It is a report, never a test threshold: maker focus and spectrum are undocumented,
+and a patent example is not proven to be the production lens. The generated report stamps its UTC date, git commit,
+working-tree state, shared MTF settings and hashes of the engine, report sources, anchors, conventions and traced
+prescriptions.
+Each compact configuration entry names its key, zoom, marked f-number, maker-convention method and field count,
+plus the first 12 hex digits of the SHA-256 of its full resolved settings as canonical JSON (recursively sorted
+object keys, preserved array order), including the shared controls, spectrum and cross-check apertures and planes.
+The versioned stamp uses a text fence to preserve compact JSON through Markdown formatting; an older stamp version
+is stale. Running the report without `MTF_CHART_REPORT=1` only refreshes its `Status: current` or `Status: STALE`
+line from the version and input hashes, without tracing. The kernels are checked against exact Hopkins
+integrals. `scripts/mtf-external-reference.mjs` (opt-in) compares one published design, a monochromatic Cooke triplet
+with tabulated OpticStudio values: first-order values and single rays match to the printed precision and axial MTF
+within 0.006 (60 lp/mm on a 256-cell pupil; 0.004 on the adaptive grid, which stops at 64 cells); off axis the tools differ by up to 0.047 because the source samples the paraxial entrance pupil
+without ray aiming and the engine samples the stop. No catalog lens has been compared with another tool.
 
 The MTF tab reuses `analysisContext.request`, or memoizes a standalone request from prepared geometry, aperture and
-EFL. Its f/8 comparison creates a separate request with scaled aperture radii. The hook serializes only slider and
+EFL. `resolveMtfPreferences` resolves stored or visit-specific choices once for requests, controls, headers,
+comparison labels, exports and copied links. With Advanced off, it uses f/8, the remembered regular spectrum
+(photopic by default), and the remembered regular image-height or frequency view. The single wavelength and
+sweep choices remain stored for Advanced. Older stored shapes and links infer regular memories from non-single
+spectra and non-sweep views, otherwise defaulting to photopic and image height. Copied links include only effective
+settings; live shared visits retain both memories with additive version-1 fields `b` and `j`.
+Its stopped-down comparison creates a separate ordinary request, sizing the stop at the current zoom and
+scaling the entrance pupil by the stop-radius ratio. It reports its own progress and errors and labels the applied
+plane and refocus shift relative to the main aperture. The comparison follows the selected
+focus policy independently by default; a persisted control can instead hold the main result's image plane, starting
+once its focus is available on the first partial result. Held shifts are part of both worker cache keys.
+`mtfComparisonFNumbers` shares the attainable stops between the tab, select and aperture sweep: standard full stops
+through f/128 slower than the charted aperture (a gap greater than 0.05 f-number for rounded labels), with the exact
+bound `stop <= L.maxFstop`, the slider's minimum aperture. The minimum itself is also offered when it is within
+f/1–f/128, slower than the charted aperture by more than 0.05, and more than 0.05 from every returned attainable
+full stop. A minimum just below a full stop is offered exactly; the unattainable full stop stays excluded. The
+preference defaults to f/8. In Advanced, a stored stop outside this list disables the overlay without substitution or preference
+changes; its disabled toggle's title explains the aperture-range requirement. Advanced reveals the comparison aperture
+select, which lists attainable stops and shows an unavailable stored stop as a disabled placeholder. Choosing a stop
+stores it. Advanced off hides the select and uses the regular f/8 overlay, including its toggle, requests and labels;
+turning Advanced on restores the stored aperture. Regular f/8 availability matches the rounded-aperture rule.
+`compareF8` keeps its overlay-on meaning; `comparisonFNumber` defaults to 8 for older stored preferences and shared
+links. Version-1 share encoding adds only optional `n` for a non-default aperture; f/8 payloads stay unchanged.
+Stored preferences and shared links accept every finite comparison f-number from 1 through 128, including
+non-full-stop minima; the attainable-stop helper determines availability for the current lens and zoom.
+The comparison shares the chart's diagnostic disclosure policy, including faded out-of-band frequency segments,
+and adds aperture-labelled table rows and appended CSV columns without changing the main CSV columns. The existing
+`f/8 ` column prefix stays unchanged at f/8; another stop uses its own prefix, such as `f/5.6 `, for comparison,
+notes and diffraction-limit columns in the clipboard and both contextual CSV scopes. Legends, plane labels,
+crosshair values, Advanced focus/working-aperture blocks, export context and captions name that same aperture.
+Advanced exposes Aperture and, for zoom lenses, Zoom views. With Advanced off, either stored sweep view returns
+to the remembered regular view without changing the sweep preference; a prime also falls back to that regular view
+from a stored Zoom view. The Aperture sweep
+starts at the exact charted aperture, then uses the comparison selector's slower stops, including a distinct
+minimum aperture within the shared range. Each point is an ordinary request with the same stop/pupil scaling,
+restricted to the center, 50 % and charted result's outermost available field, or the frequency selector's single
+field. Overview waits for the charted result to finish so its edge stays fixed throughout the sweep. The waiting
+message appears only while a supported main computation is pending; unsupported states and errors use the main
+explanation alone. One retained `useMtfSweep` client runs the apertures sequentially, publishes partial results and
+reports the current f-number and aperture count. A failed sample records its error and leaves a chart gap while
+the queue continues; only cancellation stops later samples. Only the selected view computes; optical/settings
+changes cancel it and completed requests reuse the client's result cache when the view returns. Its plane selector shares `comparisonFocus`:
+refocus applies the selected focus policy independently, while hold uses the charted aperture's exact applied
+shift. The caption states that policy, and table/CSV rows record each applied plane and shift. Comparison-overlay
+controls and requests are hidden in this view. Aperture ticks use a log2 f-number axis; frequency colors and field
+marker shapes identify S/T pairs; hollow reference markers keep isolated limit samples visible. Pending apertures and withheld values leave gaps without provisional bridges.
+The chart, crosshair/live region, diffraction references, aperture-row value table and CSV share the normal
+stable-band and diagnostic disclosure rules. The status line counts aperture × selected field × selected frequency
+points (one S/T pair each), including frequencies beyond a converged field's stable band as unconverged.
+The Zoom view uses `publishedZoomStations`: source-declared published zoom stations, or every authored station when
+none are declared. Every station is at infinity and its own wide-open aperture, using the viewer's
+`fopenAtZoomClamped`, stop rule, prepared state and entrance-pupil controls through `mtfJobForRequest`. The same
+`useMtfSweep` client runs one ordinary job per station sequentially, with station/ordinal progress, partial results,
+cancellation and completed-result caching. It does not move the sliders or run a comparison overlay. The x axis is
+log focal length, with ticks labelled by the authored design focal lengths; a marker identifies the current zoom
+slider position only when it coincides with a published station. Each station applies the selected focus policy
+independently: best axial focus is found per optical state, design uses its authored plane, and Auto assesses that
+plane at that station. The caption states infinity, each station's own wide-open aperture and this focus policy.
+On the worker, the station's modeled field geometry selects center, 50 % and the outermost field-step position
+inside its modeled edge, or the selected single fraction, before tracing pupils. These jobs restrict the field list
+and reuse that geometry in the ordinary engine request. If its edge field is unavailable, the worker tries inward
+field-step positions, retaining the same focus and completed fields, until it finds a usable edge. During inward
+retries, progress retains the prior snapshot until no retry field is pending, so completed statuses and grid sizes
+do not regress. The selected edge fraction and actual height travel explicitly with each sample, including an edge
+that falls back to center.
+Every sampled field matches the ordinary request at that station. A declared format supplies the common reference
+height; without one each station retains its own modeled-field reference. Series labels name that station-specific
+basis and the caption states that image heights differ between stations. The crosshair, table and CSV give actual
+fractions and mm heights per station, including the selected edge. Heights beyond a station's modeled edge remain
+unavailable. The shared sweep chart, diffraction-limit references, value table, point counts and exports keep the
+same stable-band and diagnostic withholding rules. A failed station records its error in the table, leaves a gap
+and allows later stations to run.
+Both sweeps retain structured data limitations per sample. Coverage uses each sample's field geometry and the ordinary
+tab's full field-step grid, so restricting computation to inner fields cannot remove a short-field warning. Spectrum,
+glass, applied-focus, scale and source-declaration limitations use the same sample inputs as an ordinary request.
+One warning lists affected stations or apertures and their
+limitation texts, with the existing “Show chart anyway” acknowledgement per system and limitation kind. Unacknowledged
+blocking kinds withhold only the affected samples from charts, crosshairs, tables, clipboard and every export;
+diagnostic disclosure does not release them. Unaffected samples remain readable. Notes stay listed per sample.
+Copy CSV and Export require at least one actual result in the current sweep; an empty-chart placeholder or the
+aperture view's main result alone does not enable them. Pending and entirely failed sweeps disable both actions with
+a reason, while partial results remain exportable and Copy MTF link stays enabled.
+Zoom CSV adds design focal length, zoom coordinate and each station's aperture,
+plane and limitations. Context records `view: zoom`, its sweep policy and all stations; SVG/PNG include the rendered
+chart and caption. The persisted view and version-1 shared bundle accept `aperture` and `zoom` while older settings
+retain their defaults.
+The opt-in diffraction limit draws the same traced pupil's aberration-free S/T response as thin dotted and
+dash-dot references, with the same field, stable-band and diagnostic visibility as its curves; geometric mode
+disables it. Crosshair readouts, the value table and CSV include these reference values only when enabled, with
+CSV columns appended after the comparison columns. The frequency view shows the center/50 %/outermost overview or
+one computed field selected by reference-height percentage and mm; a saved field absent from the result falls back
+to Overview. An optional 3/4/5/6/8 µm pixel pitch marks Nyquist at 500/pitch lp/mm, or labels it at the right edge
+with an arrow beyond the chart range. The caption and accessible table identify it as the sampling limit of a
+pixel grid, not a camera or sensor MTF prediction. These three display choices persist in localStorage.
+Copy CSV keeps the uncaptioned image-height table in the image-height and frequency views. In Aperture it emits
+an uncaptioned row for each aperture × selected field × selected frequency, including S/T values, status, stable
+band, image height, applied plane/shift and notes, plus enabled diffraction references. Pending or undisclosed
+values have blank numerical cells. The current-view download adds context to that table; all sampled values
+includes every computed frequency at the sweep's sampled fields. Aperture export context records `view: aperture`,
+the sweep policy and each aperture's applied plane; SVG and PNG capture its chart and caption. The Export menu adds
+contextual CSVs for the current chart view or every sampled field × computed frequency, with per-field notes and the chart's same withheld-value,
+diagnostic, comparison and diffraction-limit policies. Its `# key: value` context records the lens/source, optical
+station, selected/design/marketed apertures, actual spectrum and fallback reason, method, applied focus shift, grid cap,
+reference height/basis, shared settings link, UTC date and prescription disclaimer. A zoom's design wide-open
+aperture comes from `fopenAtZoomClamped`, shared with the aperture control. Marketed endpoint or station lists use
+the nearest listed value, with midpoint ties going wider and no interpolation, as for `mtfPrescriptionScale`.
+A single marketed zoom aperture is labelled as a catalog value rather than a station value. Prime apertures use
+the catalog design and marketed values. CSV context and the SVG's `desc` retain every key and spectral weight,
+rounding lengths to six decimal places. SVG captures the rendered chart and legend with explicit theme colors/font
+and a short, wrapped caption: lens/source, aperture, focal length,
+focus distance, spectrum summary, applied plane, grid cap, enabled overlays, diagnostic/partial status, link/date
+and disclaimer. Caption f-numbers match the tab; focal length rounds to 0.1 mm, heights to 0.01 mm and plane
+shifts to signed 0.001 mm. Caption and legend wrapping and link shortening use grapheme boundaries through
+`Intl.Segmenter`. When unavailable, the fallback groups code points with combining marks, variation selectors,
+skin-tone modifiers and zero-width-joiner sequences, and pairs regional indicators. The width estimate counts East
+Asian wide glyphs and emoji as two Latin monospace columns and other graphemes as one. Lone surrogates and other XML-invalid text
+characters become U+FFFD throughout SVG text. Long links end with an ellipsis while metadata retains the full URL.
+PNG rasterizes that SVG at 2× and shows an error if the browser cannot encode it. Downloads use local Blobs. Current calculations export as `status: partial`;
+results retained from superseded settings disable every export, including Copy CSV.
+The persisted "Advanced" preference defaults to false. It exposes per-field sampling diagnostics in the value table
+(including the comparison's own rows): grid size, `maxDelta`, `convergedThroughLpMm`, nonzero `unknownFluxFraction`
+as a percentage, `unaimedRays`, `failedRays`, non-stop `pupilSampling`, notes and message. Field notes keep the engine's
+method-specific unresolved-flux wording, including the geometric 2ε bound and the diffraction estimate's lack of a
+bound. With Advanced off, the existing deduplicated notes list remains. A "Focus search" block reports each
+aperture's requested and applied mode, applied and best-axial shifts, design and best scores as mean axial geometric
+MTF at 10–50 lp/mm, `imagePlaneOffsetMm` (paraxial focus minus authored plane) and `imagePlaneInconsistent`. Null
+diagnostics are shown as absent, with no consistency assessment when the offset is absent. Its caption identifies
+these as numerical sampling and focus-search details, separate from physical accuracy. Toggling Advanced can change
+the effective spectrum, comparison aperture and chart view; unchanged request settings reuse computations. It does not
+enable the independent diagnostic-estimates disclosure or alter withheld-value policy.
+The hook serializes only slider and
 aperture controls plus MTF settings, so chart-only changes retain the same computation key. MTF is worker-driven and
 has no lazy analysis-context accessor or job-table entry. Single-lens and comparison drawers share this renderer.
 The tab lazily creates a worker from the runtime's unexpanded canonical prescription, provenance and optional
 composition descriptor. `buildCanonicalLens()` compiles that input once; rear plates expand in the compiler with the
 same physical gaps and dispersion as on the main thread. The worker reconstructs prepared geometry and an
 `AnalysisRequest` for `computeMtfSteps`; compiled geometry and its solve caches never cross the worker boundary.
-The typed protocol
-(`init | compute | cancel` → `progress | result | error`) runs
-`computeMtfSteps` in ~30 ms slices and posts partial results at most every 100 ms. Cancellation is cooperative, so the
-built lens stays warm, and request ids reject stale replies. The worker caches finished fields and the focus search
-per request minus its field list (`MtfJobCache`), so a finer field step reuses coarser fields. Completed results use
-a client LRU bounded to 64 MiB, while chart changes reuse curves without tracing. The read-only census is `scripts/audit-mtf.mjs` (`--cdf`/`--photopic` for spectral
-eligibility, `--fields` for center, half-height and modeled-edge availability); `scripts/benchmark-mtf.mjs` flags are
+The typed protocol (`init | compute | cancel` → `progress | result | cancelled | error`) drives
+`computeMtfSteps` with a 30 ms slice target, checked at geometry boundaries, after each axial spectral bundle,
+and between spectral lines of each field/grid evaluation. Phase-only yields expose no unfinished spectral field;
+only complete grid evaluations accompany partial results. A single lattice trace, the geometry solve and the focus
+score search remain synchronous, so the slice target is not a hard latency bound. Progress includes geometry,
+focus search, working aperture, or field ordinal/grid/line ordinal and posts at most every 100 ms. The tab shows
+short phase text and waiting jobs show “Waiting…”. Polite live announcements update at most once every three seconds.
+Cancellation is cooperative, so the built lens stays warm, and request ids reject stale replies. A shared page
+scheduler admits at most two computations, prioritizing main visible results, then comparisons, then sweeps, FIFO
+within each class. Cancelling queued work removes it; running work holds its slot until the worker acknowledges
+cancellation or completes, and disposal or worker failure releases it. Each client retains its own warm worker;
+no computation is split across workers. The worker caches finished fields and the focus search per request minus
+its field list (`MtfJobCache`), so a finer field step reuses coarser fields. Completed results share one page-wide
+64 MiB LRU byte budget across clients; disposing a client removes its entries. Chart changes reuse curves without
+tracing. The read-only census is `scripts/audit-mtf.mjs`; its default support totals include additive
+`unsupported-path:<sub-reason>` keys, so a lens with several path refusals contributes to each matching key.
+Options include `--cdf`/`--photopic` for spectral
+eligibility, `--fields` for structural eligibility → modeled-field inclusion → curve production → convergence at
+center, half-height, modeled edge and corner, explicitly requesting fraction 1 for the corner, at the authored
+(`design`) focus plane; `--list` retains each lens's field stages, status, reason, final grid size and convergence band,
+and `--grid=32|64|128|256` selects the census cap, default 32, distinct from the product tab's 256-cell refinement.
+`--blockers` defaults to photopic and reports every blocking element, class totals, shares of all catalog glass-bearing
+surfaces, and how many reference-supported lenses each class alone unlocks; `--list` includes fallback and estimated-element
+rows, and `--limit=N` restricts the audited visible catalog. Counts use the infinity, wide-zoom, wide-open state and
+include hidden rear plates and glass-bearing embedded stops, counting a surface by its following medium.
+Of 1,102 visible lenses and 12,811 glass-bearing surfaces, 999 are photopic-eligible, 70 fall back to the reference line,
+and 33 are otherwise unsupported. Among fallbacks, high-νd glasses without partial dispersion block 39 lenses
+(59 elements/surfaces; resolving that class alone unlocks 38), non-catalog e-line glasses block 22 (67 elements/surfaces;
+22 unlocked), and glasses without Abbe numbers block 10 (32 elements, 34 surfaces; 9 unlocked). The 280 eligible lenses
+using estimated dispersion include 138 estimating exactly one element; the chart's `estimated-dispersion` warning excludes
+hidden rear plates and covers 264 lenses, 128 with exactly one estimated authored element.
+`scripts/benchmark-mtf.mjs` flags are
 listed in `agent_docs/benchmarks/README.md`. Benchmarks retain status alongside timings so fast rejection is not
 confused with a completed curve.
 
@@ -390,8 +624,8 @@ focus and aberration 0 of the current zoom position; focus never moves the iris.
   fold.
 
 Stopped down, `stopSemiDiameterForFNumber(N, zoomT, L)` applies the rule on every lens, capped at the wide-open stop
-(`wideOpenStopAtZoom`). The aperture control, the MTF tab's f/8 comparison, comparison mode and the benchmark harness
-all call it; no caller scales a stop linearly. The paraxial entrance pupil of a state (`entrancePupil` in
+(`wideOpenStopAtZoom`). The aperture control, the MTF tab's aperture comparison, comparison mode and the benchmark
+harness all call it; no caller scales a stop linearly. The paraxial entrance pupil of a state (`entrancePupil` in
 `field/geometry.ts`) divides the stop by the same paraxial ratio, so at infinity focus a stop set for f/N gives
 EPD = F/N to a few ulp. Every other semi-diameter is a hard clip with no margin, so a rim smaller than the beam the
 iris admits makes the lens trace slower than its label; `npm run audit:aperture` lists those stations and what limits
@@ -1380,6 +1614,32 @@ centre, which misses the front surfaces of a lens whose entrance pupil lies far 
 Samples are uniform in those coordinates with equal weights (uniform apodization on the stop); each tab keeps the bulk
 transmission it applied before, and nothing multiplies in the stop-to-launch Jacobian. Paraxial quantities (EP, XP,
 f-number, focal length) stay paraxial and labelled so.
+
+Product MTF weights are uniform on the stop, multiplied by bulk transmission. Incident-flux weighting instead uses
+the stop cell's pre-image area on a plane normal to the collimated object-space beam: the projected Jacobian of the
+stop-to-launch map. At a finite conjugate it uses the cell's object-side solid angle times the emission cosine for a
+Lambertian source surface normal to the optical axis. `analysis/mtf/mtfIncidentFlux.ts` computes these diagnostic
+weights from finite differences of the aimed lattice, with one-sided rim stencils and mirrored launch geometry.
+`npm run audit:mtf-weighting` compares both geometric weightings against uniform launch-plane quadrature (with
+Lambertian source weights at finite distance). It retains complex geometric OTFs about the shared chief image point
+and reports both signed MTF-magnitude differences and complex gaps |OTF_a − OTF_reference|. The diffraction weight
+column is the sheared estimator's sensitivity to its weights only: √weight on the stop lattice lacks the
+direction-space amplitude √(F/J), area measure J and exact 2-D shear endpoints, so its change does not predict
+diffraction MTF under incident-flux weighting. A separate optical-path reference receives incident cell flux F and
+handles its own direction-map Jacobian; product-estimator-minus-reference MTF-magnitude differences include both
+estimator and weighting differences. It reports gate exclusions and includes reference values only for invertible
+maps with phase steps below a quarter wave per cell. The audit counts attempted, unavailable (with reasons), clean
+and warned field/aperture samples, keeps clean and warned statistics separate, and retains every field warning.
+Unresolved-flux shares state their measure: stop-uniform shares do not establish incident-flux shares, and finite
+launch-plane shares use an upper bound on the missing source cosine. Unresolved samples assume full transmission.
+The audit keeps one product-weighted best-axial plane per station and aperture, reports footprint expansion, and
+accepts `--lens=<key>`, `--grid=<cells>` and `--json`; it does not select product weights. On its default twelve
+stations, reference spectrum, 256-cell grids, wide open and f/8, fields 0/70%/corner and 10/30/50 lp/mm, the largest
+measured absolute product-minus-reference difference in geometric MTF magnitude across 72 clean field/aperture
+samples (zero unavailable or warned) is 0.030342 (signed −0.030342, Nikon 105 mm f/1.4 E prescription at f/1.45,
+70% field, sagittal 50 lp/mm), with a shared best-axial plane selected on a 64-cell axial grid over
+10/20/30/40/50 lp/mm. The launch-plane reference is independent quadrature of the same tracer, not an independent
+optical simulation; fixed-grid comparisons are not convergence claims.
 
 `analysis/pupils/aimedPupil.ts` owns the launch, exported through `analysis.ts`. `prepareAimedPupilLaunch(request,
 samples, geometry, channel?)` is pure and deterministic: a sample's solve depends only on the request, field, channel

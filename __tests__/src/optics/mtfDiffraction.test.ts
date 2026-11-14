@@ -509,6 +509,98 @@ describe("analytic wave-optics controls", () => {
     for (const s of [0.005, 0.05, 0.2, 0.5, 0.9])
       expect(Math.abs(hopkinsMtf(unaberrated, s, "x") - circularMtf(s))).toBeLessThan(1e-4);
   });
+  /** A circular direction-space pupil sampled through an analytic stop map; flux is its area Jacobian. */
+  const mappedWaveLattice = (bow: number, coupling: number, wave: WaveAberration, samples = 256) => {
+    const lattice = aberratedWaveLattice(unaberrated, na, wavelengthMm, samples);
+    const extent = 1 + Math.abs(coupling);
+    for (let row = 0; row < samples; row++)
+      for (let column = 0; column < samples; column++) {
+        const x = ((2 * (column + 0.5)) / samples - 1) * extent;
+        const v = ((2 * (row + 0.5)) / samples - 1) * extent;
+        const y = v + bow * (1 - v * v) + coupling * x * x;
+        const cell = row * samples + column;
+        lattice.amplitude[cell] = Math.hypot(x, y) <= 1 ? Math.sqrt(1 - 2 * bow * v) : 0;
+        lattice.cosineX[cell] = na * x;
+        lattice.cosineY[cell] = na * y;
+        lattice.pathMm[cell] = wavelengthMm * wave(x, y);
+      }
+    return lattice;
+  };
+  it("integrates direction-space area on a bowed stop map with Jacobian-weighted flux", () => {
+    const lattice = mappedWaveLattice(0.2, 0, unaberrated);
+    expect(waveLatticePhaseStep(lattice, wavelengthMm)).toBe(0);
+    const otf = waveLatticeOtf(lattice, wavelengthMm, [0, 0.5 * cutoff]);
+    for (const cut of ["sagittal", "tangential"] as const) {
+      expect(otf[cut].real[0]).toBeCloseTo(1, 12);
+      // The boundary is sampled at cell centres; 0.002 allows its O(1/N) rim error at 256 cells.
+      expect(Math.abs(otf[cut].real[1] - circularMtf(0.5))).toBeLessThan(0.002);
+      expect(Math.abs(otf[cut].imaginary[1])).toBeLessThan(1e-12);
+    }
+  });
+  it("holds the perpendicular direction coordinate fixed on a coupled area-preserving map", () => {
+    const lattice = mappedWaveLattice(0, 0.2, defocus);
+    expect(waveLatticePhaseStep(lattice, wavelengthMm)).toBeLessThan(0.025);
+    const otf = waveLatticeOtf(lattice, wavelengthMm, [0.2 * cutoff]);
+    const expected = hopkinsMtf(defocus, 0.2, "x", 800);
+    expect(expected).toBeCloseTo(0.014414, 5);
+    for (const cut of ["sagittal", "tangential"] as const) {
+      expect(Math.abs(otfMagnitude(otf[cut])[0] - expected)).toBeLessThan(0.002);
+      // Defocus gives the real integrand cos(8πsu), whose overlap integral is negative at s = 0.2.
+      expect(Math.abs(otf[cut].real[0] + expected)).toBeLessThan(0.002);
+      expect(Math.abs(otf[cut].imaginary[0])).toBeLessThan(0.002);
+    }
+  });
+  it("accepts a radially mapped cat's-eye pupil without using folded dark padding", () => {
+    const scale = 0.08;
+    const shears = [0.05, 0.2, 0.5, 0.8, 1.1, 1.6];
+    const inside = (u: number, v: number) => u * u + v * v < 1 && u * u + (v - 0.5) ** 2 < 1;
+    // Invert rho = r + r³/2 analytically, independently of the reference's mesh.
+    const directionInside = (x: number, y: number) => {
+      const rho = Math.hypot(x, y);
+      const r = 2 * Math.sqrt(2 / 3) * Math.sinh(Math.asinh(1.5 * Math.sqrt(3 / 2) * rho) / 3);
+      const factor = rho > 0 ? r / rho : 1;
+      return inside(x * factor, y * factor);
+    };
+    // Direct Hopkins quadrature in direction space: zero path and uniform field amplitude.
+    const expected = shears.map((s) => ({
+      sagittal: overlapShare(directionInside, 1.5, 2 * s, 0),
+      tangential: overlapShare(directionInside, 1.5, 0, 2 * s),
+    }));
+    for (const samples of [64, 128, 256]) {
+      const lattice = aberratedWaveLattice(unaberrated, scale, wavelengthMm, samples);
+      for (let row = 0; row < samples; row++)
+        for (let column = 0; column < samples; column++) {
+          const u = (2 * (column + 0.5)) / samples - 1;
+          const v = (2 * (row + 0.5)) / samples - 1;
+          const r2 = u * u + v * v;
+          const cell = row * samples + column;
+          // Both radial eigenvalues are positive; Jacobian-weighted flux gives uniform direction amplitude.
+          lattice.amplitude[cell] = inside(u, v) ? Math.sqrt((1 + 0.5 * r2) * (1 + 1.5 * r2)) : 0;
+          lattice.cosineX[cell] = scale * u * (1 + 0.5 * r2);
+          lattice.cosineY[cell] = scale * v * (1 + 0.5 * r2);
+        }
+      expect(waveLatticePhaseStep(lattice, wavelengthMm)).toBe(0);
+      if (samples === 64) continue;
+      const otf = waveLatticeOtf(lattice, wavelengthMm, [0, ...shears.map((s) => (2 * scale * s) / wavelengthMm)]);
+      for (const cut of ["sagittal", "tangential"] as const) {
+        expect(otf[cut].real[0]).toBe(1);
+        // Cell-centre rim sampling stays within 0.002 of direct Hopkins at both 128 and 256 cells.
+        shears.forEach((_, i) => expect(Math.abs(otf[cut].real[i + 1] - expected[i][cut])).toBeLessThan(0.002));
+        expect(otf[cut].real.at(-1)).toBe(0);
+        expect(otf[cut].imaginary.every((value) => value === 0)).toBe(true);
+      }
+    }
+  });
+  it("refuses folded and singular direction maps even with constant optical path", () => {
+    for (const folded of [false, true]) {
+      const lattice = aberratedWaveLattice(unaberrated, na, wavelengthMm, 32);
+      lattice.cosineY.forEach((y, cell) => {
+        lattice.cosineY[cell] = folded ? (y * y) / na : 0;
+      });
+      expect(waveLatticePhaseStep(lattice, wavelengthMm)).toBe(Infinity);
+      expect(() => waveLatticeOtf(lattice, wavelengthMm, [0.2 * cutoff])).toThrow(RangeError);
+    }
+  });
   it("measures the optical-path reference's phase step and pairs its cells across an obstruction", () => {
     // A pure tilt of 0.1 wave per column and 0.3 per row.
     const tilted = aberratedWaveLattice((x, y) => (0.1 * x + 0.3 * y) * 16, na, wavelengthMm, 32);
@@ -595,5 +687,43 @@ describe("analytic wave-optics controls", () => {
   it("holds within 0.004 of Hopkins under sixth-order spherical aberration", () => {
     // Five rays per sheared pair integrate the wavefront slope exactly through sixth order; three stop at fourth.
     for (const s of [0.05, 0.1, 0.2, 0.3, 0.5]) expect(estimateError(secondarySpherical, s, 128)).toBeLessThan(0.004);
+  });
+  it("pins the eighth-order spherical residual at half cutoff on a 256-cell pupil", () => {
+    // Boole's eighth-order bias is a known limitation, not an accuracy target.
+    const eighthOrder: WaveAberration = (x, y) => 3 * (x * x + y * y) ** 4;
+    for (const cut of cuts(eighthOrder, 0.5, 256)) {
+      expect(cut.hopkins).toBeCloseTo(0.054209, 5);
+      const error = cut.estimate - cut.hopkins;
+      expect(Math.abs(error)).toBeLessThan(0.004);
+      expect(Math.abs(error + 0.0023)).toBeLessThan(0.0002);
+    }
+  });
+  it("pins the bowed-map tangential residual at half cutoff across grid refinement", () => {
+    // The measure/shear bias persists under refinement: a known limitation, not a target.
+    const errors = [128, 256].map((samples) =>
+      [0.05, 0.1, 0.2].map((bow) => {
+        const directionY = (qv: number) => {
+          const v = qv / na;
+          return na * (v + bow * (1 - v * v));
+        };
+        const bundle = latticePupil((qx, qv) => Math.hypot(qx, directionY(qv)) <= na, na, samples);
+        for (const ray of bundle.rays) {
+          const [qx, qv] = ray.trace.terminalDirection;
+          const qy = directionY(qv);
+          ray.weight = 1 - (2 * bow * qv) / na;
+          ray.trace.terminalDirection = [qx, qy, Math.sqrt(1 - qx * qx - qy * qy)];
+        }
+        const out = shearedOtf(bundle, ORIGIN, wavelengthMm, [0.5 * cutoff]);
+        return otfMagnitude(out.tangential)[0] - circularMtf(0.5);
+      }),
+    );
+    for (const gridErrors of errors) {
+      expect(Math.abs(gridErrors[0])).toBeLessThan(0.001);
+      const measured = [0.0005, 0.0019, 0.0071];
+      gridErrors.forEach((error, i) => expect(Math.abs(error - measured[i])).toBeLessThan(0.0003));
+      expect(gridErrors[1]).toBeGreaterThan(gridErrors[0]);
+      expect(gridErrors[2]).toBeGreaterThan(gridErrors[1]);
+    }
+    errors[0].forEach((error, i) => expect(errors[1][i]).toBeGreaterThanOrEqual(error));
   });
 });

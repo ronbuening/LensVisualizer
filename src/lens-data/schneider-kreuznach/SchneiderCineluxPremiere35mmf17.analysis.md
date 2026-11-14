@@ -78,7 +78,7 @@ Surface 42: R=-52.802 mm; K=0, A4=-5.31052e-07, A6=5.2398e-10, A8=-1.31713e-11, 
 
 Both grants print C42 = +0.018939 mm⁻¹ in Table 2, conflicting with Table 1's R42 = −52.802 mm. The model uses the printed radius directly and retains every polynomial coefficient. Full source free diameters are retained; the iris radius is inferred from nominal f/1.7. Surface 42 limits traced speed to approximately f/1.7694. The printed image plane lies about 7.2 µm ahead of the paraxial infinity image plane; no best-focus refit is applied.
 
-Infinity full-field MTF is available at f/1.7, 2.8 and 4 with reference, five-line photopic and C/d/F spectra. Numerical sampling converges through at least 50 lp/mm; convergence through 100 lp/mm is not uniform across fields, spectra and apertures. These calculated curves do not establish measured production performance.
+Infinity full-field MTF is available at f/1.7, 2.8 and 4 with reference, photopic and C/d/F spectra. Numerical sampling converges through at least 50 lp/mm; convergence through 100 lp/mm is not uniform across fields, spectra and apertures. These calculated curves do not establish measured production performance.
 
 ## Sources
 

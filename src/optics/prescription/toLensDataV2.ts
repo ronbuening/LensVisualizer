@@ -319,7 +319,7 @@ function writeSource(write: Writer, out: Untyped, prescription: CanonicalPrescri
   const source = write.record(out, "", "source", "source");
   const fields = ["patentNumber", "example", "patentYear", "authors", "assignees"];
   write.copy(source, "source", prescription.source, "source", fields);
-  write.copy(source, "source", prescription.source, "source", ["errata", "issuer"]);
+  write.copy(source, "source", prescription.source, "source", ["errata", "omissions", "sdSource", "issuer"]);
   dropIfEmpty(out, "", "source", write.writes);
 }
 

@@ -1,14 +1,20 @@
 /** MTF model, spectrum, focus, sampling, view, field-step and frequency controls. */
 import { useEffect, useId, useRef, useState, type CSSProperties, type ReactNode } from "react";
-import type { MtfFocusMode, MtfGridCap, MtfMethod, MtfSpectrum } from "../../../../types/mtf.js";
+import type { MtfResult, MtfFocusMode, MtfGridCap, MtfMethod, MtfSpectrum } from "../../../../types/mtf.js";
+import { MTF_MIN_WAVELENGTH_NM, MTF_MAX_WAVELENGTH_NM } from "../../../../types/mtf.js";
 import type { Theme } from "../../../../types/theme.js";
 import {
   MTF_CHART_FREQUENCIES,
   MTF_FIELD_STEPS,
+  MTF_PIXEL_PITCHES,
+  type MtfFrequencyField,
+  type MtfPixelPitch,
   type MtfChartFrequency,
   type MtfChartView,
   type MtfPreferences,
+  type MtfComparisonFNumber,
 } from "../../../../utils/state/mtfPreferences.js";
+import { resolveMtfFrequencyField } from "./mtfPresentation.js";
 import { selector, toggleBtn, toggleGroup } from "../../../../utils/style/styles.js";
 import HelpTooltipButton from "../../../controls/HelpTooltipButton.js";
 import PortalTooltip from "../../../controls/PortalTooltip.js";
@@ -16,12 +22,16 @@ import useMediaQuery from "../../../../utils/useMediaQuery.js";
 
 interface MtfControlsProps {
   t: Theme;
+  /** Effective settings from resolveMtfPreferences, including lens-specific view fallback. */
   preferences: MtfPreferences;
   onChange: (patch: Partial<MtfPreferences>) => void;
-  /** Photopic sweeps at 1 % and 2 % steps trace five wavelengths for up to 101 fields. */
+  /** Photopic sweeps at 1 % and 2 % steps trace nine wavelengths for up to 101 fields. */
   slowFieldSteps: boolean;
-  /** Offer the f/8 overlay: the working aperture is faster than f/8 and the lens reaches it. */
-  compareF8Available: boolean;
+  /** Attainable full stops strictly slower than the charted aperture. */
+  comparisonFNumbers: readonly MtfComparisonFNumber[];
+  comparisonFNumber: MtfComparisonFNumber;
+  result?: MtfResult | null;
+  isZoom?: boolean;
 }
 
 const METHODS: ReadonlyArray<[MtfMethod, string]> = [
@@ -32,6 +42,7 @@ const SPECTRA: ReadonlyArray<[MtfSpectrum, string]> = [
   ["photopic", "Photopic (V(λ))"],
   ["cdf", "C/d/F (equal weights)"],
   ["reference", "Reference line"],
+  ["single", "Single wavelength"],
 ];
 /** Auto keeps the design plane unless the lens data's plane contradicts its own prescription. */
 const FOCUS: ReadonlyArray<[MtfFocusMode, string]> = [
@@ -50,9 +61,10 @@ const METHOD_HELP = [
   "Geometric: rays only. Ignores diffraction, so it overstates contrast for sharp or stopped-down lenses. Compare with design charts that omit diffraction, as Nikon's, Sony's and Tamron's appear to.",
 ].join("\n");
 const SPECTRUM_HELP = [
-  "Photopic: five wavelengths from 470 to 650 nm, weighted by the eye's sensitivity V(λ), like white-light charts.",
+  "Photopic: nine Gauss-Legendre samples integrate the eye's sensitivity V(λ) over 470-650 nm with equal energy per wavelength.",
   "C/d/F: the red, yellow and blue reference lines, weighted equally; gives color error more weight.",
   "Reference line: one wavelength, so color aberrations drop out.",
+  "Single wavelength (Advanced): one chosen line from 435.8 to 656.3 nm; other than the native reference, it needs glass dispersion data.",
   "Lenses without enough glass dispersion data use the reference line.",
 ].join("\n");
 const FOCUS_HELP = [
@@ -77,8 +89,20 @@ export default function MtfControls({
   preferences,
   onChange,
   slowFieldSteps,
-  compareF8Available,
+  comparisonFNumbers,
+  comparisonFNumber,
+  result = null,
+  isZoom = false,
 }: MtfControlsProps) {
+  const view = preferences.view;
+  const isSweep = view === "aperture" || view === "zoom";
+  const comparisonAvailable = comparisonFNumbers.includes(comparisonFNumber);
+  const views: ReadonlyArray<[MtfChartView, string]> = [
+    ["field", "Image height"],
+    ["frequency", "Frequency"],
+    ...(preferences.advanced ? [["aperture", "Aperture"] as [MtfChartView, string]] : []),
+    ...(preferences.advanced && isZoom ? [["zoom", "Zoom"] as [MtfChartView, string]] : []),
+  ];
   const selectStyle: CSSProperties = { ...selector(t, false), fontSize: 11, padding: "5px 26px 5px 8px" };
   const touchHelp = useMediaQuery(HOVERLESS_QUERY, { ssrDefault: false });
   const toggleFrequency = (frequency: MtfChartFrequency) => {
@@ -107,7 +131,7 @@ export default function MtfControls({
           touchHelp={touchHelp}
           style={selectStyle}
           value={preferences.spectrum}
-          options={SPECTRA}
+          options={SPECTRA.filter(([spectrum]) => spectrum !== "single" || preferences.advanced)}
           onChange={(spectrum) => onChange({ spectrum })}
         />
         <Select
@@ -131,20 +155,45 @@ export default function MtfControls({
           onChange={(maxGridSize) => onChange({ maxGridSize: Number(maxGridSize) as MtfGridCap })}
         />
       </div>
-      <div style={{ display: "flex", flexWrap: "wrap", gap: 8, alignItems: "center" }}>
-        <ToggleGroup label="MTF chart" t={t}>
+      {preferences.advanced && preferences.spectrum === "single" ? (
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 6, alignItems: "center" }}>
+          <WavelengthInput
+            value={preferences.wavelengthNm}
+            style={selectStyle}
+            onChange={(wavelengthNm) => onChange({ wavelengthNm })}
+          />
+          <span>nm</span>
           {(
             [
-              ["field", "Image height"],
-              ["frequency", "Frequency"],
-            ] as ReadonlyArray<[MtfChartView, string]>
-          ).map(([view, text], i) => (
+              ["g 436", 435.8343],
+              ["F 486", 486.1327],
+              ["e 546", 546.074],
+              ["d 588", 587.5618],
+              ["C 656", 656.2725],
+            ] as const
+          ).map(([label, wavelengthNm]) => (
+            <button
+              key={label}
+              type="button"
+              style={toggleBtn(t, preferences.wavelengthNm === wavelengthNm, { padding: "5px 7px" })}
+              title={`${wavelengthNm} nm`}
+              onClick={() => onChange({ wavelengthNm })}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
+      ) : null}
+      <div style={{ display: "flex", flexWrap: "wrap", gap: 8, alignItems: "center" }}>
+        <ToggleGroup label="MTF chart" t={t}>
+          {views.map(([choice, text], i) => (
             <Toggle
-              key={view}
+              key={choice}
               t={t}
-              active={preferences.view === view}
-              last={i === 1}
-              onClick={() => onChange({ view })}
+              active={view === choice}
+              last={i === 1 || i === views.length - 1}
+              separator={choice === "aperture"}
+              onClick={() => onChange({ view: choice })}
             >
               {text}
             </Toggle>
@@ -157,27 +206,129 @@ export default function MtfControls({
               t={t}
               active={preferences.fieldStepPercent === step}
               last={i === MTF_FIELD_STEPS.length - 1}
-              title={slowFieldSteps && step <= 2 ? "Slow: traces five wavelengths at every field" : undefined}
+              title={slowFieldSteps && step <= 2 ? "Slow: traces nine wavelengths at every field" : undefined}
               onClick={() => onChange({ fieldStepPercent: step })}
             >
               {step} %
             </Toggle>
           ))}
         </ToggleGroup>
-        {compareF8Available ? (
+        <span style={{ display: "inline-flex", alignItems: "center", gap: 6 }}>
+          <ToggleGroup label="Diffraction reference" t={t}>
+            <Toggle
+              t={t}
+              active={preferences.diffractionLimit && preferences.method === "diffraction"}
+              disabled={preferences.method === "geometric"}
+              title={preferences.method === "geometric" ? "Requires diffraction method." : undefined}
+              last
+              onClick={() => onChange({ diffractionLimit: !preferences.diffractionLimit })}
+            >
+              Diffraction limit
+            </Toggle>
+          </ToggleGroup>
+          {preferences.method === "geometric" ? (
+            <span style={{ color: t.muted }}>Requires diffraction method.</span>
+          ) : null}
+        </span>
+        {view !== "field" ? (
+          <>
+            <Select<MtfFrequencyField>
+              t={t}
+              label="Fields"
+              help="Overview shows the center, 50 % and outermost available field. Select a computed field by its fraction of the reference image height and its image height in mm."
+              touchHelp={touchHelp}
+              style={selectStyle}
+              value={resolveMtfFrequencyField(result, preferences.frequencyField)}
+              options={[
+                ["overview", "Fields: Overview"],
+                ...[...(result?.fields ?? [])]
+                  .sort((a, b) => a.fieldFraction - b.fieldFraction)
+                  .map((field): [number, string] => [
+                    field.fieldFraction,
+                    `Fields: ${(field.fieldFraction * 100).toFixed(0)} % · ${(field.imageHeightMm ?? field.targetImageHeightMm)?.toFixed(2) ?? "—"} mm`,
+                  ]),
+              ]}
+              onChange={(frequencyField) => onChange({ frequencyField })}
+            />
+            {view === "frequency" ? (
+              <Select<MtfPixelPitch | "none">
+                t={t}
+                label="Pixel pitch"
+                help="Nyquist is 500 divided by pixel pitch in µm, in lp/mm. It is the sampling limit of a pixel grid, not a prediction of camera or sensor MTF."
+                touchHelp={touchHelp}
+                style={selectStyle}
+                value={preferences.pixelPitchUm ?? "none"}
+                options={[
+                  ["none", "Pixel pitch: none"],
+                  ...MTF_PIXEL_PITCHES.map((pitch): [MtfPixelPitch, string] => [pitch, `Pixel pitch: ${pitch} µm`]),
+                ]}
+                onChange={(pitch) => onChange({ pixelPitchUm: pitch === "none" ? null : pitch })}
+              />
+            ) : null}
+          </>
+        ) : null}
+        {!isSweep ? (
           <ToggleGroup label="Aperture comparison" t={t}>
             <Toggle
               t={t}
-              active={preferences.compareF8}
+              active={comparisonAvailable && preferences.compareF8}
               last
-              title="Overlay the lens stopped down to f/8 (thin lines)"
+              disabled={!comparisonAvailable}
+              title={
+                comparisonAvailable
+                  ? `Overlay the lens stopped down to f/${comparisonFNumber} (thin lines)`
+                  : `f/${comparisonFNumber} comparison unavailable: comparisons must be slower than the charted aperture and within the lens's aperture range at this zoom position.`
+              }
               onClick={() => onChange({ compareF8: !preferences.compareF8 })}
             >
-              Compare f/8
+              {`Compare f/${comparisonFNumber}`}
             </Toggle>
           </ToggleGroup>
         ) : null}
-        {preferences.view === "field" ? (
+        {!isSweep && comparisonFNumbers.length > 0 && preferences.advanced ? (
+          <Select<MtfComparisonFNumber>
+            t={t}
+            label="Comparison aperture"
+            help="Choose a full stop slower than the charted aperture, within the lens's aperture range at this zoom position."
+            touchHelp={touchHelp}
+            style={selectStyle}
+            value={comparisonAvailable ? comparisonFNumber : ""}
+            placeholder={comparisonAvailable ? undefined : `f/${comparisonFNumber} unavailable`}
+            options={comparisonFNumbers.map((stop) => [stop, `f/${stop}`])}
+            onChange={(comparisonFNumber) => onChange({ comparisonFNumber })}
+          />
+        ) : null}
+        {!isSweep && comparisonAvailable && preferences.compareF8 ? (
+          <Select
+            t={t}
+            label={`f/${comparisonFNumber} comparison image plane`}
+            help={`Refocus at f/${comparisonFNumber}: use the selected image-plane policy independently at f/${comparisonFNumber}. Hold the wide-open plane: use exactly the main curve's image plane at f/${comparisonFNumber}.`}
+            touchHelp={touchHelp}
+            style={selectStyle}
+            value={preferences.comparisonFocus}
+            options={[
+              ["refocus", `Refocus at f/${comparisonFNumber}`],
+              ["hold", "Hold the wide-open plane"],
+            ]}
+            onChange={(comparisonFocus) => onChange({ comparisonFocus })}
+          />
+        ) : null}
+        {view === "aperture" ? (
+          <Select
+            t={t}
+            label="Aperture sweep image plane"
+            help="Apply the selected image-plane policy at each aperture, or hold exactly the charted aperture's plane throughout the sweep."
+            touchHelp={touchHelp}
+            style={selectStyle}
+            value={preferences.comparisonFocus}
+            options={[
+              ["refocus", "Refocus at each aperture"],
+              ["hold", "Hold the charted aperture's plane"],
+            ]}
+            onChange={(comparisonFocus) => onChange({ comparisonFocus })}
+          />
+        ) : null}
+        {view !== "frequency" ? (
           <ToggleGroup label="Chart frequencies (lp/mm)" t={t}>
             {MTF_CHART_FREQUENCIES.map((frequency, i) => (
               <Toggle
@@ -192,8 +343,52 @@ export default function MtfControls({
             ))}
           </ToggleGroup>
         ) : null}
+        <ToggleGroup label="MTF details" t={t}>
+          <Toggle
+            t={t}
+            active={preferences.advanced}
+            last
+            title="Per-field sampling details and the focus search"
+            onClick={() => onChange({ advanced: !preferences.advanced })}
+          >
+            Advanced
+          </Toggle>
+        </ToggleGroup>
       </div>
     </div>
+  );
+}
+
+/** Keep partial numeric edits local; only valid physical wavelengths start a computation. */
+function WavelengthInput({
+  value,
+  style,
+  onChange,
+}: {
+  value: number;
+  style: CSSProperties;
+  onChange: (value: number) => void;
+}) {
+  const [draft, setDraft] = useState({ value, text: String(value) });
+  if (draft.value !== value) setDraft({ value, text: String(value) });
+  return (
+    <input
+      type="number"
+      aria-label="MTF wavelength"
+      min={MTF_MIN_WAVELENGTH_NM}
+      max={MTF_MAX_WAVELENGTH_NM}
+      step={1}
+      value={draft.text}
+      style={{ ...style, width: 88, padding: "5px 6px" }}
+      onChange={(event) => {
+        const text = event.target.value;
+        const wavelength = event.target.valueAsNumber;
+        setDraft({ value, text });
+        if (Number.isFinite(wavelength) && wavelength >= MTF_MIN_WAVELENGTH_NM && wavelength <= MTF_MAX_WAVELENGTH_NM)
+          onChange(wavelength);
+      }}
+      onBlur={() => setDraft({ value, text: String(value) })}
+    />
   );
 }
 
@@ -209,6 +404,7 @@ function Select<T extends string | number>({
   style,
   value,
   options,
+  placeholder,
   onChange,
 }: {
   t: Theme;
@@ -216,8 +412,10 @@ function Select<T extends string | number>({
   help: string;
   touchHelp: boolean;
   style: CSSProperties;
-  value: T;
+  value: T | "";
   options: ReadonlyArray<[T, string]>;
+  /** An unavailable stored choice stays explicit instead of displaying the first option. */
+  placeholder?: string;
   onChange: (value: T) => void;
 }) {
   const selectRef = useRef<HTMLSelectElement | null>(null);
@@ -272,6 +470,11 @@ function Select<T extends string | number>({
           if (event.key === "Escape") hide();
         }}
       >
+        {placeholder ? (
+          <option value="" disabled>
+            {placeholder}
+          </option>
+        ) : null}
         {options.map(([v, text]) => (
           <option key={v} value={v}>
             {text}
@@ -302,6 +505,8 @@ function Toggle({
   active,
   last,
   title,
+  disabled = false,
+  separator = false,
   onClick,
   children,
 }: {
@@ -309,6 +514,8 @@ function Toggle({
   active: boolean;
   last: boolean;
   title?: string;
+  disabled?: boolean;
+  separator?: boolean;
   onClick: () => void;
   children: ReactNode;
 }) {
@@ -317,8 +524,13 @@ function Toggle({
       type="button"
       aria-pressed={active}
       title={title}
+      disabled={disabled}
       onClick={onClick}
-      style={toggleBtn(t, active, { hasRightBorder: !last, padding: "5px 9px" })}
+      style={{
+        ...toggleBtn(t, active, { hasRightBorder: !last, padding: "5px 9px" }),
+        ...(separator ? { borderLeft: `1px solid ${t.toggleBorder}` } : {}),
+        ...(disabled ? { opacity: 0.42, cursor: "not-allowed" } : {}),
+      }}
     >
       {children}
     </button>

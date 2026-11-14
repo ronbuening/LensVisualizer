@@ -216,7 +216,7 @@ function selectClusterHubs(
     familyMembers.set(family.id, members);
   }
 
-  const familyHubs = componentNodes
+  const familyCandidates = componentNodes
     .filter((node) => node.kind === "family")
     .map((family) => {
       const members = (familyMembers.get(family.id) ?? []).sort(compareNodes);
@@ -229,9 +229,23 @@ function selectClusterHubs(
         strength,
       } satisfies ClusterHub;
     })
-    .filter((hub) => hub.strength >= MIN_HUB_PATENT_EDGES);
+    .sort(
+      (left, right) => right.strength - left.strength || catalogCollator.compare(left.anchorLabel, right.anchorLabel),
+    );
 
-  const coveredAssignees = new Set(familyHubs.flatMap((hub) => hub.seedIds.slice(1)));
+  // Stronger families claim shared members first, matching the ownership tie-break. A family qualifies when it is
+  // prolific or unites two patent-holding names that would otherwise be separate assignee hubs; a family whose
+  // members are all claimed already adds no neighborhood, so its node joins the family that holds those members.
+  const coveredAssignees = new Set<string>();
+  const familyHubs: ClusterHub[] = [];
+  for (const candidate of familyCandidates) {
+    const unclaimed = candidate.seedIds.slice(1).filter((id) => !coveredAssignees.has(id));
+    const unclaimedWithPatents = unclaimed.filter((id) => (patentDegree.get(id) ?? 0) > 0);
+    if (unclaimed.length === 0) continue;
+    if (candidate.strength < MIN_HUB_PATENT_EDGES && unclaimedWithPatents.length < 2) continue;
+    familyHubs.push(candidate);
+    for (const id of unclaimed) coveredAssignees.add(id);
+  }
   const assigneeHubs = componentNodes
     .filter(
       (node) => node.kind === "assignee" && !coveredAssignees.has(node.id) && (patentDegree.get(node.id) ?? 0) > 0,

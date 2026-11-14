@@ -7,7 +7,7 @@ export interface GlassEntry {
   /** Vendor-canonical glass name, e.g. "N-BK7", "S-FPL51". */
   readonly name: string;
   /** Vendor (Schott, Ohara, Hoya, Hikari, Sumita, CDGM, NHG, special). */
-  readonly vendor: "Schott" | "Ohara" | "Hoya" | "Hikari" | "Sumita" | "CDGM" | "NHG" | "Special";
+  readonly vendor: "Schott" | "Ohara" | "Hoya" | "Hikari" | "Sumita" | "CDGM" | "NHG" | "LZOS" | "Special";
   /** Sellmeier B1, B2, B3 coefficients. */
   readonly B?: readonly [number, number, number];
   /** Sellmeier C1, C2, C3 coefficients (micrometers squared). */

@@ -1,0 +1,2077 @@
+{
+  "schemaVersion": 1,
+  "inputHashes": {
+    "engineSha256": "2b88a9bb4cf6ff2679e78b6bb57cad649a04f525cc401ebd0879a2524e55fe1c",
+    "lensDataSha256": {
+      "src/lens-data/canon/CanonSerenar50mmf18.data.ts": "3361db2273e27151e4d7a98512e635ed76a8203a95fe47d4fae40b1c21f27174",
+      "src/lens-data/fujifilm/FujifilmGF80mmf17R.data.ts": "20dbd32b7358e0e46631491dc3a36785a9dea977b6b32dee1a3d0d0e94f6e9ea",
+      "src/lens-data/sony/SonyFE1224mmf28GM.data.ts": "3e434dc9491f0f40f03bdd780a814d1124110220f22418688f3defa3aa88de6d"
+    }
+  },
+  "cases": [
+    {
+      "id": "canon-serenar-50f18/infinity/geometric/reference/best-axial",
+      "lensKey": "canon-serenar-50f18",
+      "lensDataFile": "src/lens-data/canon/CanonSerenar50mmf18.data.ts",
+      "settings": {
+        "method": "geometric",
+        "spectrum": "reference",
+        "focus": "best-axial",
+        "focusT": 0,
+        "zoomT": 0,
+        "fNumber": 1.8,
+        "stopSemiDiameterMm": 8.408034438,
+        "pupilSemiDiameterMm": 13.885435801,
+        "maxGridSize": 64,
+        "fieldFractions": [0, 0.7],
+        "frequenciesPerMm": [0, 10, 30, 50],
+        "spectralLines": [{ "wavelengthNm": 587.5618, "weight": 1 }],
+        "conjugate": null
+      },
+      "support": { "available": true, "reason": null },
+      "focus": {
+        "requestedMode": "best-axial",
+        "mode": "best-axial",
+        "appliedShiftMm": -0.180138723,
+        "bestAxialShiftMm": -0.180138723,
+        "designScore": 0.078453872,
+        "bestScore": 0.197228233,
+        "imagePlaneOffsetMm": -0.011870187,
+        "imagePlaneInconsistent": false
+      },
+      "fields": [
+        {
+          "fieldFraction": 0,
+          "status": "unconverged",
+          "reason": null,
+          "gridSize": 64,
+          "validRays": 3228,
+          "sagittal": [1, 0.337155706, 0.1764205, 0.103562707],
+          "tangential": [1, 0.337155703, 0.176420504, 0.103562709],
+          "diffractionLimit": null,
+          "unknownFluxFraction": 0
+        },
+        {
+          "fieldFraction": 0.7,
+          "status": "unconverged",
+          "reason": null,
+          "gridSize": 64,
+          "validRays": 2220,
+          "sagittal": [1, 0.28997471, 0.115960024, 0.07696346],
+          "tangential": [1, 0.112167384, 0.041630143, 0.034236872],
+          "diffractionLimit": null,
+          "unknownFluxFraction": 0
+        }
+      ]
+    },
+    {
+      "id": "canon-serenar-50f18/infinity/geometric/reference/design",
+      "lensKey": "canon-serenar-50f18",
+      "lensDataFile": "src/lens-data/canon/CanonSerenar50mmf18.data.ts",
+      "settings": {
+        "method": "geometric",
+        "spectrum": "reference",
+        "focus": "design",
+        "focusT": 0,
+        "zoomT": 0,
+        "fNumber": 1.8,
+        "stopSemiDiameterMm": 8.408034438,
+        "pupilSemiDiameterMm": 13.885435801,
+        "maxGridSize": 64,
+        "fieldFractions": [0, 0.7],
+        "frequenciesPerMm": [0, 10, 30, 50],
+        "spectralLines": [{ "wavelengthNm": 587.5618, "weight": 1 }],
+        "conjugate": null
+      },
+      "support": { "available": true, "reason": null },
+      "focus": {
+        "requestedMode": "design",
+        "mode": "design",
+        "appliedShiftMm": 0,
+        "bestAxialShiftMm": -0.180138723,
+        "designScore": 0.078453872,
+        "bestScore": 0.197228233,
+        "imagePlaneOffsetMm": -0.011870187,
+        "imagePlaneInconsistent": false
+      },
+      "fields": [
+        {
+          "fieldFraction": 0,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 64,
+          "validRays": 3228,
+          "sagittal": [1, 0.127554581, 0.069761858, 0.050194062],
+          "tangential": [1, 0.127554582, 0.069761859, 0.050194064],
+          "diffractionLimit": null,
+          "unknownFluxFraction": 0
+        },
+        {
+          "fieldFraction": 0.7,
+          "status": "unconverged",
+          "reason": null,
+          "gridSize": 64,
+          "validRays": 2220,
+          "sagittal": [1, 0.146535962, 0.035586533, 0.018149973],
+          "tangential": [1, 0.408329017, 0.094971455, 0.057526701],
+          "diffractionLimit": null,
+          "unknownFluxFraction": 0
+        }
+      ]
+    },
+    {
+      "id": "canon-serenar-50f18/infinity/geometric/photopic/best-axial",
+      "lensKey": "canon-serenar-50f18",
+      "lensDataFile": "src/lens-data/canon/CanonSerenar50mmf18.data.ts",
+      "settings": {
+        "method": "geometric",
+        "spectrum": "photopic",
+        "focus": "best-axial",
+        "focusT": 0,
+        "zoomT": 0,
+        "fNumber": 1.8,
+        "stopSemiDiameterMm": 8.408034438,
+        "pupilSemiDiameterMm": 13.885435801,
+        "maxGridSize": 64,
+        "fieldFractions": [0, 0.7],
+        "frequenciesPerMm": [0, 10, 30, 50],
+        "spectralLines": [
+          { "wavelengthNm": 560, "weight": 29.573 },
+          { "wavelengthNm": 530.82, "weight": 24.475 },
+          { "wavelengthNm": 589.18, "weight": 21.553 },
+          { "wavelengthNm": 504.8, "weight": 9.4728 },
+          { "wavelengthNm": 615.2, "weight": 10.291 },
+          { "wavelengthNm": 484.76, "weight": 2.7286 },
+          { "wavelengthNm": 635.24, "weight": 3.4949 },
+          { "wavelengthNm": 472.87, "weight": 0.75613 },
+          { "wavelengthNm": 647.13, "weight": 0.91347 }
+        ],
+        "conjugate": null
+      },
+      "support": { "available": true, "reason": null },
+      "focus": {
+        "requestedMode": "best-axial",
+        "mode": "best-axial",
+        "appliedShiftMm": -0.612590336,
+        "bestAxialShiftMm": -0.612590336,
+        "designScore": 0.061789493,
+        "bestScore": 0.197411721,
+        "imagePlaneOffsetMm": -0.011870187,
+        "imagePlaneInconsistent": false
+      },
+      "fields": [
+        {
+          "fieldFraction": 0,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 64,
+          "validRays": 29052,
+          "sagittal": [1, 0.350771443, 0.186236366, 0.107787497],
+          "tangential": [1, 0.350771443, 0.186236366, 0.107787497],
+          "diffractionLimit": null,
+          "unknownFluxFraction": 0
+        },
+        {
+          "fieldFraction": 0.7,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 64,
+          "validRays": 19948,
+          "sagittal": [1, 0.265457037, 0.051143686, 0.025533031],
+          "tangential": [1, 0.033543967, 0.005156312, 0.004055779],
+          "diffractionLimit": null,
+          "unknownFluxFraction": 0
+        }
+      ]
+    },
+    {
+      "id": "canon-serenar-50f18/infinity/geometric/photopic/design",
+      "lensKey": "canon-serenar-50f18",
+      "lensDataFile": "src/lens-data/canon/CanonSerenar50mmf18.data.ts",
+      "settings": {
+        "method": "geometric",
+        "spectrum": "photopic",
+        "focus": "design",
+        "focusT": 0,
+        "zoomT": 0,
+        "fNumber": 1.8,
+        "stopSemiDiameterMm": 8.408034438,
+        "pupilSemiDiameterMm": 13.885435801,
+        "maxGridSize": 64,
+        "fieldFractions": [0, 0.7],
+        "frequenciesPerMm": [0, 10, 30, 50],
+        "spectralLines": [
+          { "wavelengthNm": 560, "weight": 29.573 },
+          { "wavelengthNm": 530.82, "weight": 24.475 },
+          { "wavelengthNm": 589.18, "weight": 21.553 },
+          { "wavelengthNm": 504.8, "weight": 9.4728 },
+          { "wavelengthNm": 615.2, "weight": 10.291 },
+          { "wavelengthNm": 484.76, "weight": 2.7286 },
+          { "wavelengthNm": 635.24, "weight": 3.4949 },
+          { "wavelengthNm": 472.87, "weight": 0.75613 },
+          { "wavelengthNm": 647.13, "weight": 0.91347 }
+        ],
+        "conjugate": null
+      },
+      "support": { "available": true, "reason": null },
+      "focus": {
+        "requestedMode": "design",
+        "mode": "design",
+        "appliedShiftMm": 0,
+        "bestAxialShiftMm": -0.612590336,
+        "designScore": 0.061789493,
+        "bestScore": 0.197411721,
+        "imagePlaneOffsetMm": -0.011870187,
+        "imagePlaneInconsistent": false
+      },
+      "fields": [
+        {
+          "fieldFraction": 0,
+          "status": "unconverged",
+          "reason": null,
+          "gridSize": 64,
+          "validRays": 29052,
+          "sagittal": [1, 0.109058999, 0.052654693, 0.036096553],
+          "tangential": [1, 0.109058999, 0.052654694, 0.036096556],
+          "diffractionLimit": null,
+          "unknownFluxFraction": 0
+        },
+        {
+          "fieldFraction": 0.7,
+          "status": "unconverged",
+          "reason": null,
+          "gridSize": 64,
+          "validRays": 19948,
+          "sagittal": [1, 0.126594281, 0.026373251, 0.009266727],
+          "tangential": [1, 0.436741593, 0.095718386, 0.063508355],
+          "diffractionLimit": null,
+          "unknownFluxFraction": 0
+        }
+      ]
+    },
+    {
+      "id": "canon-serenar-50f18/infinity/diffraction/reference/best-axial",
+      "lensKey": "canon-serenar-50f18",
+      "lensDataFile": "src/lens-data/canon/CanonSerenar50mmf18.data.ts",
+      "settings": {
+        "method": "diffraction",
+        "spectrum": "reference",
+        "focus": "best-axial",
+        "focusT": 0,
+        "zoomT": 0,
+        "fNumber": 1.8,
+        "stopSemiDiameterMm": 8.408034438,
+        "pupilSemiDiameterMm": 13.885435801,
+        "maxGridSize": 64,
+        "fieldFractions": [0, 0.7],
+        "frequenciesPerMm": [0, 10, 30, 50],
+        "spectralLines": [{ "wavelengthNm": 587.5618, "weight": 1 }],
+        "conjugate": null
+      },
+      "support": { "available": true, "reason": null },
+      "focus": {
+        "requestedMode": "best-axial",
+        "mode": "best-axial",
+        "appliedShiftMm": -0.180138723,
+        "bestAxialShiftMm": -0.180138723,
+        "designScore": 0.078453872,
+        "bestScore": 0.197228233,
+        "imagePlaneOffsetMm": -0.011870187,
+        "imagePlaneInconsistent": false
+      },
+      "fields": [
+        {
+          "fieldFraction": 0,
+          "status": "unconverged",
+          "reason": null,
+          "gridSize": 64,
+          "validRays": 3228,
+          "sagittal": [1, 0.334541561, 0.175805388, 0.101591392],
+          "tangential": [1, 0.334541559, 0.17580539, 0.101591392],
+          "diffractionLimit": {
+            "sagittal": [1, 0.986580889, 0.959789921, 0.932983201],
+            "tangential": [1, 0.98658089, 0.959789921, 0.932983202]
+          },
+          "unknownFluxFraction": 0
+        },
+        {
+          "fieldFraction": 0.7,
+          "status": "unconverged",
+          "reason": null,
+          "gridSize": 64,
+          "validRays": 2220,
+          "sagittal": [1, 0.289589185, 0.113709991, 0.06891778],
+          "tangential": [1, 0.106794423, 0.033283616, 0.023775015],
+          "diffractionLimit": {
+            "sagittal": [1, 0.985611375, 0.956943073, 0.928238455],
+            "tangential": [1, 0.97853409, 0.935651776, 0.892890868]
+          },
+          "unknownFluxFraction": 0
+        }
+      ]
+    },
+    {
+      "id": "canon-serenar-50f18/infinity/diffraction/reference/design",
+      "lensKey": "canon-serenar-50f18",
+      "lensDataFile": "src/lens-data/canon/CanonSerenar50mmf18.data.ts",
+      "settings": {
+        "method": "diffraction",
+        "spectrum": "reference",
+        "focus": "design",
+        "focusT": 0,
+        "zoomT": 0,
+        "fNumber": 1.8,
+        "stopSemiDiameterMm": 8.408034438,
+        "pupilSemiDiameterMm": 13.885435801,
+        "maxGridSize": 64,
+        "fieldFractions": [0, 0.7],
+        "frequenciesPerMm": [0, 10, 30, 50],
+        "spectralLines": [{ "wavelengthNm": 587.5618, "weight": 1 }],
+        "conjugate": null
+      },
+      "support": { "available": true, "reason": null },
+      "focus": {
+        "requestedMode": "design",
+        "mode": "design",
+        "appliedShiftMm": 0,
+        "bestAxialShiftMm": -0.180138723,
+        "designScore": 0.078453872,
+        "bestScore": 0.197228233,
+        "imagePlaneOffsetMm": -0.011870187,
+        "imagePlaneInconsistent": false
+      },
+      "fields": [
+        {
+          "fieldFraction": 0,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 64,
+          "validRays": 3228,
+          "sagittal": [1, 0.129232239, 0.069551369, 0.045167646],
+          "tangential": [1, 0.129232239, 0.06955137, 0.045167646],
+          "diffractionLimit": {
+            "sagittal": [1, 0.986580889, 0.959789921, 0.932983201],
+            "tangential": [1, 0.98658089, 0.959789921, 0.932983202]
+          },
+          "unknownFluxFraction": 0
+        },
+        {
+          "fieldFraction": 0.7,
+          "status": "unconverged",
+          "reason": null,
+          "gridSize": 64,
+          "validRays": 2220,
+          "sagittal": [1, 0.14504945, 0.031621784, 0.011936079],
+          "tangential": [1, 0.402375243, 0.080024722, 0.062904388],
+          "diffractionLimit": {
+            "sagittal": [1, 0.985611375, 0.956943073, 0.928238455],
+            "tangential": [1, 0.97853409, 0.935651776, 0.892890868]
+          },
+          "unknownFluxFraction": 0
+        }
+      ]
+    },
+    {
+      "id": "canon-serenar-50f18/infinity/diffraction/photopic/best-axial",
+      "lensKey": "canon-serenar-50f18",
+      "lensDataFile": "src/lens-data/canon/CanonSerenar50mmf18.data.ts",
+      "settings": {
+        "method": "diffraction",
+        "spectrum": "photopic",
+        "focus": "best-axial",
+        "focusT": 0,
+        "zoomT": 0,
+        "fNumber": 1.8,
+        "stopSemiDiameterMm": 8.408034438,
+        "pupilSemiDiameterMm": 13.885435801,
+        "maxGridSize": 64,
+        "fieldFractions": [0, 0.7],
+        "frequenciesPerMm": [0, 10, 30, 50],
+        "spectralLines": [
+          { "wavelengthNm": 560, "weight": 29.573 },
+          { "wavelengthNm": 530.82, "weight": 24.475 },
+          { "wavelengthNm": 589.18, "weight": 21.553 },
+          { "wavelengthNm": 504.8, "weight": 9.4728 },
+          { "wavelengthNm": 615.2, "weight": 10.291 },
+          { "wavelengthNm": 484.76, "weight": 2.7286 },
+          { "wavelengthNm": 635.24, "weight": 3.4949 },
+          { "wavelengthNm": 472.87, "weight": 0.75613 },
+          { "wavelengthNm": 647.13, "weight": 0.91347 }
+        ],
+        "conjugate": null
+      },
+      "support": { "available": true, "reason": null },
+      "focus": {
+        "requestedMode": "best-axial",
+        "mode": "best-axial",
+        "appliedShiftMm": -0.612590336,
+        "bestAxialShiftMm": -0.612590336,
+        "designScore": 0.061789493,
+        "bestScore": 0.197411721,
+        "imagePlaneOffsetMm": -0.011870187,
+        "imagePlaneInconsistent": false
+      },
+      "fields": [
+        {
+          "fieldFraction": 0,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 64,
+          "validRays": 29052,
+          "sagittal": [1, 0.339687162, 0.169859501, 0.107339944],
+          "tangential": [1, 0.339687162, 0.169859502, 0.107339944],
+          "diffractionLimit": {
+            "sagittal": [1, 0.987204563, 0.961630258, 0.936102739],
+            "tangential": [1, 0.987204563, 0.961630259, 0.93610274]
+          },
+          "unknownFluxFraction": 0
+        },
+        {
+          "fieldFraction": 0.7,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 64,
+          "validRays": 19948,
+          "sagittal": [1, 0.262852726, 0.057753499, 0.023024554],
+          "tangential": [1, 0.036856331, 0.00566478, 0.00216448],
+          "diffractionLimit": {
+            "sagittal": [1, 0.986272116, 0.958883826, 0.931538981],
+            "tangential": [1, 0.979542693, 0.938687184, 0.897856646]
+          },
+          "unknownFluxFraction": 0
+        }
+      ]
+    },
+    {
+      "id": "canon-serenar-50f18/infinity/diffraction/photopic/design",
+      "lensKey": "canon-serenar-50f18",
+      "lensDataFile": "src/lens-data/canon/CanonSerenar50mmf18.data.ts",
+      "settings": {
+        "method": "diffraction",
+        "spectrum": "photopic",
+        "focus": "design",
+        "focusT": 0,
+        "zoomT": 0,
+        "fNumber": 1.8,
+        "stopSemiDiameterMm": 8.408034438,
+        "pupilSemiDiameterMm": 13.885435801,
+        "maxGridSize": 64,
+        "fieldFractions": [0, 0.7],
+        "frequenciesPerMm": [0, 10, 30, 50],
+        "spectralLines": [
+          { "wavelengthNm": 560, "weight": 29.573 },
+          { "wavelengthNm": 530.82, "weight": 24.475 },
+          { "wavelengthNm": 589.18, "weight": 21.553 },
+          { "wavelengthNm": 504.8, "weight": 9.4728 },
+          { "wavelengthNm": 615.2, "weight": 10.291 },
+          { "wavelengthNm": 484.76, "weight": 2.7286 },
+          { "wavelengthNm": 635.24, "weight": 3.4949 },
+          { "wavelengthNm": 472.87, "weight": 0.75613 },
+          { "wavelengthNm": 647.13, "weight": 0.91347 }
+        ],
+        "conjugate": null
+      },
+      "support": { "available": true, "reason": null },
+      "focus": {
+        "requestedMode": "design",
+        "mode": "design",
+        "appliedShiftMm": 0,
+        "bestAxialShiftMm": -0.612590336,
+        "designScore": 0.061789493,
+        "bestScore": 0.197411721,
+        "imagePlaneOffsetMm": -0.011870187,
+        "imagePlaneInconsistent": false
+      },
+      "fields": [
+        {
+          "fieldFraction": 0,
+          "status": "unconverged",
+          "reason": null,
+          "gridSize": 64,
+          "validRays": 29052,
+          "sagittal": [1, 0.110129677, 0.054398938, 0.032283842],
+          "tangential": [1, 0.110129677, 0.054398939, 0.032283841],
+          "diffractionLimit": {
+            "sagittal": [1, 0.987204563, 0.961630258, 0.936102739],
+            "tangential": [1, 0.987204563, 0.961630259, 0.93610274]
+          },
+          "unknownFluxFraction": 0
+        },
+        {
+          "fieldFraction": 0.7,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 64,
+          "validRays": 19948,
+          "sagittal": [1, 0.125250687, 0.022327647, 0.008665426],
+          "tangential": [1, 0.429591494, 0.08809512, 0.058813104],
+          "diffractionLimit": {
+            "sagittal": [1, 0.986272116, 0.958883826, 0.931538981],
+            "tangential": [1, 0.979542693, 0.938687184, 0.897856646]
+          },
+          "unknownFluxFraction": 0
+        }
+      ]
+    },
+    {
+      "id": "sony-fe-1224f28-gm/infinity/geometric/reference/best-axial",
+      "lensKey": "sony-fe-1224f28-gm",
+      "lensDataFile": "src/lens-data/sony/SonyFE1224mmf28GM.data.ts",
+      "settings": {
+        "method": "geometric",
+        "spectrum": "reference",
+        "focus": "best-axial",
+        "focusT": 0,
+        "zoomT": 0,
+        "fNumber": 2.91,
+        "stopSemiDiameterMm": 8.115,
+        "pupilSemiDiameterMm": 2.165067791,
+        "maxGridSize": 64,
+        "fieldFractions": [0, 0.7],
+        "frequenciesPerMm": [0, 10, 30, 50],
+        "spectralLines": [{ "wavelengthNm": 587.5618, "weight": 1 }],
+        "conjugate": null
+      },
+      "support": { "available": true, "reason": null },
+      "focus": {
+        "requestedMode": "best-axial",
+        "mode": "best-axial",
+        "appliedShiftMm": 0.002669979,
+        "bestAxialShiftMm": 0.002669979,
+        "designScore": 0.983336296,
+        "bestScore": 0.984498699,
+        "imagePlaneOffsetMm": 0.051931765,
+        "imagePlaneInconsistent": false
+      },
+      "fields": [
+        {
+          "fieldFraction": 0,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 32,
+          "validRays": 812,
+          "sagittal": [1, 0.998579819, 0.987286672, 0.96506126],
+          "tangential": [1, 0.998579819, 0.987286672, 0.96506126],
+          "diffractionLimit": null,
+          "unknownFluxFraction": 0
+        },
+        {
+          "fieldFraction": 0.7,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 32,
+          "validRays": 634,
+          "sagittal": [1, 0.97407492, 0.78990882, 0.52680128],
+          "tangential": [1, 0.737264412, 0.263477387, 0.115568259],
+          "diffractionLimit": null,
+          "unknownFluxFraction": 0
+        }
+      ]
+    },
+    {
+      "id": "sony-fe-1224f28-gm/infinity/geometric/reference/design",
+      "lensKey": "sony-fe-1224f28-gm",
+      "lensDataFile": "src/lens-data/sony/SonyFE1224mmf28GM.data.ts",
+      "settings": {
+        "method": "geometric",
+        "spectrum": "reference",
+        "focus": "design",
+        "focusT": 0,
+        "zoomT": 0,
+        "fNumber": 2.91,
+        "stopSemiDiameterMm": 8.115,
+        "pupilSemiDiameterMm": 2.165067791,
+        "maxGridSize": 64,
+        "fieldFractions": [0, 0.7],
+        "frequenciesPerMm": [0, 10, 30, 50],
+        "spectralLines": [{ "wavelengthNm": 587.5618, "weight": 1 }],
+        "conjugate": null
+      },
+      "support": { "available": true, "reason": null },
+      "focus": {
+        "requestedMode": "design",
+        "mode": "design",
+        "appliedShiftMm": 0,
+        "bestAxialShiftMm": 0.002669979,
+        "designScore": 0.983336296,
+        "bestScore": 0.984498699,
+        "imagePlaneOffsetMm": 0.051931765,
+        "imagePlaneInconsistent": false
+      },
+      "fields": [
+        {
+          "fieldFraction": 0,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 32,
+          "validRays": 812,
+          "sagittal": [1, 0.998471425, 0.986339481, 0.962585246],
+          "tangential": [1, 0.998471425, 0.986339481, 0.962585246],
+          "diffractionLimit": null,
+          "unknownFluxFraction": 0
+        },
+        {
+          "fieldFraction": 0.7,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 32,
+          "validRays": 634,
+          "sagittal": [1, 0.977035954, 0.812007517, 0.567970199],
+          "tangential": [1, 0.743721348, 0.25777153, 0.117283501],
+          "diffractionLimit": null,
+          "unknownFluxFraction": 0
+        }
+      ]
+    },
+    {
+      "id": "sony-fe-1224f28-gm/infinity/geometric/photopic/best-axial",
+      "lensKey": "sony-fe-1224f28-gm",
+      "lensDataFile": "src/lens-data/sony/SonyFE1224mmf28GM.data.ts",
+      "settings": {
+        "method": "geometric",
+        "spectrum": "photopic",
+        "focus": "best-axial",
+        "focusT": 0,
+        "zoomT": 0,
+        "fNumber": 2.91,
+        "stopSemiDiameterMm": 8.115,
+        "pupilSemiDiameterMm": 2.165067791,
+        "maxGridSize": 64,
+        "fieldFractions": [0, 0.7],
+        "frequenciesPerMm": [0, 10, 30, 50],
+        "spectralLines": [
+          { "wavelengthNm": 560, "weight": 29.573 },
+          { "wavelengthNm": 530.82, "weight": 24.475 },
+          { "wavelengthNm": 589.18, "weight": 21.553 },
+          { "wavelengthNm": 504.8, "weight": 9.4728 },
+          { "wavelengthNm": 615.2, "weight": 10.291 },
+          { "wavelengthNm": 484.76, "weight": 2.7286 },
+          { "wavelengthNm": 635.24, "weight": 3.4949 },
+          { "wavelengthNm": 472.87, "weight": 0.75613 },
+          { "wavelengthNm": 647.13, "weight": 0.91347 }
+        ],
+        "conjugate": null
+      },
+      "support": { "available": true, "reason": null },
+      "focus": {
+        "requestedMode": "best-axial",
+        "mode": "best-axial",
+        "appliedShiftMm": -0.009862232,
+        "bestAxialShiftMm": -0.009862232,
+        "designScore": 0.924940403,
+        "bestScore": 0.938335268,
+        "imagePlaneOffsetMm": 0.051931765,
+        "imagePlaneInconsistent": false
+      },
+      "fields": [
+        {
+          "fieldFraction": 0,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 32,
+          "validRays": 7308,
+          "sagittal": [1, 0.994033999, 0.94788994, 0.86356876],
+          "tangential": [1, 0.994033999, 0.94788994, 0.86356876],
+          "diffractionLimit": null,
+          "unknownFluxFraction": 0
+        },
+        {
+          "fieldFraction": 0.7,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 32,
+          "validRays": 5706,
+          "sagittal": [1, 0.972329846, 0.78090325, 0.526279395],
+          "tangential": [1, 0.727328332, 0.198511363, 0.011705945],
+          "diffractionLimit": null,
+          "unknownFluxFraction": 0
+        }
+      ]
+    },
+    {
+      "id": "sony-fe-1224f28-gm/infinity/geometric/photopic/design",
+      "lensKey": "sony-fe-1224f28-gm",
+      "lensDataFile": "src/lens-data/sony/SonyFE1224mmf28GM.data.ts",
+      "settings": {
+        "method": "geometric",
+        "spectrum": "photopic",
+        "focus": "design",
+        "focusT": 0,
+        "zoomT": 0,
+        "fNumber": 2.91,
+        "stopSemiDiameterMm": 8.115,
+        "pupilSemiDiameterMm": 2.165067791,
+        "maxGridSize": 64,
+        "fieldFractions": [0, 0.7],
+        "frequenciesPerMm": [0, 10, 30, 50],
+        "spectralLines": [
+          { "wavelengthNm": 560, "weight": 29.573 },
+          { "wavelengthNm": 530.82, "weight": 24.475 },
+          { "wavelengthNm": 589.18, "weight": 21.553 },
+          { "wavelengthNm": 504.8, "weight": 9.4728 },
+          { "wavelengthNm": 615.2, "weight": 10.291 },
+          { "wavelengthNm": 484.76, "weight": 2.7286 },
+          { "wavelengthNm": 635.24, "weight": 3.4949 },
+          { "wavelengthNm": 472.87, "weight": 0.75613 },
+          { "wavelengthNm": 647.13, "weight": 0.91347 }
+        ],
+        "conjugate": null
+      },
+      "support": { "available": true, "reason": null },
+      "focus": {
+        "requestedMode": "design",
+        "mode": "design",
+        "appliedShiftMm": 0,
+        "bestAxialShiftMm": -0.009862232,
+        "designScore": 0.924940403,
+        "bestScore": 0.938335268,
+        "imagePlaneOffsetMm": 0.051931765,
+        "imagePlaneInconsistent": false
+      },
+      "fields": [
+        {
+          "fieldFraction": 0,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 32,
+          "validRays": 7308,
+          "sagittal": [1, 0.992576047, 0.935794677, 0.835073672],
+          "tangential": [1, 0.992576047, 0.935794677, 0.835073672],
+          "diffractionLimit": null,
+          "unknownFluxFraction": 0
+        },
+        {
+          "fieldFraction": 0.7,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 32,
+          "validRays": 5706,
+          "sagittal": [1, 0.960217631, 0.697533808, 0.394798965],
+          "tangential": [1, 0.703284461, 0.215095188, 0.032399189],
+          "diffractionLimit": null,
+          "unknownFluxFraction": 0
+        }
+      ]
+    },
+    {
+      "id": "sony-fe-1224f28-gm/infinity/diffraction/reference/best-axial",
+      "lensKey": "sony-fe-1224f28-gm",
+      "lensDataFile": "src/lens-data/sony/SonyFE1224mmf28GM.data.ts",
+      "settings": {
+        "method": "diffraction",
+        "spectrum": "reference",
+        "focus": "best-axial",
+        "focusT": 0,
+        "zoomT": 0,
+        "fNumber": 2.91,
+        "stopSemiDiameterMm": 8.115,
+        "pupilSemiDiameterMm": 2.165067791,
+        "maxGridSize": 64,
+        "fieldFractions": [0, 0.7],
+        "frequenciesPerMm": [0, 10, 30, 50],
+        "spectralLines": [{ "wavelengthNm": 587.5618, "weight": 1 }],
+        "conjugate": null
+      },
+      "support": { "available": true, "reason": null },
+      "focus": {
+        "requestedMode": "best-axial",
+        "mode": "best-axial",
+        "appliedShiftMm": 0.002669979,
+        "bestAxialShiftMm": 0.002669979,
+        "designScore": 0.983336296,
+        "bestScore": 0.984498699,
+        "imagePlaneOffsetMm": 0.051931765,
+        "imagePlaneInconsistent": false
+      },
+      "fields": [
+        {
+          "fieldFraction": 0,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 32,
+          "validRays": 812,
+          "sagittal": [1, 0.976636265, 0.922403925, 0.860666992],
+          "tangential": [1, 0.976636265, 0.922403925, 0.860666992],
+          "diffractionLimit": {
+            "sagittal": [1, 0.9780177, 0.934053099, 0.890400097],
+            "tangential": [1, 0.9780177, 0.9340531, 0.890400097]
+          },
+          "unknownFluxFraction": 0
+        },
+        {
+          "fieldFraction": 0.7,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 32,
+          "validRays": 634,
+          "sagittal": [1, 0.952696172, 0.761742593, 0.547879509],
+          "tangential": [1, 0.722194466, 0.173992633, 0.138701441],
+          "diffractionLimit": {
+            "sagittal": [1, 0.976818201, 0.930454602, 0.884417751],
+            "tangential": [1, 0.963225355, 0.889852705, 0.816421175]
+          },
+          "unknownFluxFraction": 0
+        }
+      ]
+    },
+    {
+      "id": "sony-fe-1224f28-gm/infinity/diffraction/reference/design",
+      "lensKey": "sony-fe-1224f28-gm",
+      "lensDataFile": "src/lens-data/sony/SonyFE1224mmf28GM.data.ts",
+      "settings": {
+        "method": "diffraction",
+        "spectrum": "reference",
+        "focus": "design",
+        "focusT": 0,
+        "zoomT": 0,
+        "fNumber": 2.91,
+        "stopSemiDiameterMm": 8.115,
+        "pupilSemiDiameterMm": 2.165067791,
+        "maxGridSize": 64,
+        "fieldFractions": [0, 0.7],
+        "frequenciesPerMm": [0, 10, 30, 50],
+        "spectralLines": [{ "wavelengthNm": 587.5618, "weight": 1 }],
+        "conjugate": null
+      },
+      "support": { "available": true, "reason": null },
+      "focus": {
+        "requestedMode": "design",
+        "mode": "design",
+        "appliedShiftMm": 0,
+        "bestAxialShiftMm": 0.002669979,
+        "designScore": 0.983336296,
+        "bestScore": 0.984498699,
+        "imagePlaneOffsetMm": 0.051931765,
+        "imagePlaneInconsistent": false
+      },
+      "fields": [
+        {
+          "fieldFraction": 0,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 32,
+          "validRays": 812,
+          "sagittal": [1, 0.976510614, 0.920980238, 0.855973175],
+          "tangential": [1, 0.976510614, 0.920980238, 0.855973175],
+          "diffractionLimit": {
+            "sagittal": [1, 0.9780177, 0.934053099, 0.890400097],
+            "tangential": [1, 0.9780177, 0.9340531, 0.890400097]
+          },
+          "unknownFluxFraction": 0
+        },
+        {
+          "fieldFraction": 0.7,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 32,
+          "validRays": 634,
+          "sagittal": [1, 0.955457104, 0.77980171, 0.579506831],
+          "tangential": [1, 0.728120828, 0.167358897, 0.148017774],
+          "diffractionLimit": {
+            "sagittal": [1, 0.976818201, 0.930454602, 0.884417751],
+            "tangential": [1, 0.963225355, 0.889852705, 0.816421175]
+          },
+          "unknownFluxFraction": 0
+        }
+      ]
+    },
+    {
+      "id": "sony-fe-1224f28-gm/infinity/diffraction/photopic/best-axial",
+      "lensKey": "sony-fe-1224f28-gm",
+      "lensDataFile": "src/lens-data/sony/SonyFE1224mmf28GM.data.ts",
+      "settings": {
+        "method": "diffraction",
+        "spectrum": "photopic",
+        "focus": "best-axial",
+        "focusT": 0,
+        "zoomT": 0,
+        "fNumber": 2.91,
+        "stopSemiDiameterMm": 8.115,
+        "pupilSemiDiameterMm": 2.165067791,
+        "maxGridSize": 64,
+        "fieldFractions": [0, 0.7],
+        "frequenciesPerMm": [0, 10, 30, 50],
+        "spectralLines": [
+          { "wavelengthNm": 560, "weight": 29.573 },
+          { "wavelengthNm": 530.82, "weight": 24.475 },
+          { "wavelengthNm": 589.18, "weight": 21.553 },
+          { "wavelengthNm": 504.8, "weight": 9.4728 },
+          { "wavelengthNm": 615.2, "weight": 10.291 },
+          { "wavelengthNm": 484.76, "weight": 2.7286 },
+          { "wavelengthNm": 635.24, "weight": 3.4949 },
+          { "wavelengthNm": 472.87, "weight": 0.75613 },
+          { "wavelengthNm": 647.13, "weight": 0.91347 }
+        ],
+        "conjugate": null
+      },
+      "support": { "available": true, "reason": null },
+      "focus": {
+        "requestedMode": "best-axial",
+        "mode": "best-axial",
+        "appliedShiftMm": -0.009862232,
+        "bestAxialShiftMm": -0.009862232,
+        "designScore": 0.924940403,
+        "bestScore": 0.938335268,
+        "imagePlaneOffsetMm": 0.051931765,
+        "imagePlaneInconsistent": false
+      },
+      "fields": [
+        {
+          "fieldFraction": 0,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 32,
+          "validRays": 7308,
+          "sagittal": [1, 0.973256026, 0.890095469, 0.78141632],
+          "tangential": [1, 0.973256026, 0.890095469, 0.781416321],
+          "diffractionLimit": {
+            "sagittal": [1, 0.979025824, 0.937077472, 0.895431413],
+            "tangential": [1, 0.979025824, 0.937077472, 0.895431413]
+          },
+          "unknownFluxFraction": 0
+        },
+        {
+          "fieldFraction": 0.7,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 64,
+          "validRays": 22820,
+          "sagittal": [1, 0.951372065, 0.750705238, 0.535203459],
+          "tangential": [1, 0.712625234, 0.134889728, 0.070807058],
+          "diffractionLimit": {
+            "sagittal": [1, 0.977213216, 0.931850669, 0.887013492],
+            "tangential": [1, 0.964906021, 0.89484898, 0.825050413]
+          },
+          "unknownFluxFraction": 0
+        }
+      ]
+    },
+    {
+      "id": "sony-fe-1224f28-gm/infinity/diffraction/photopic/design",
+      "lensKey": "sony-fe-1224f28-gm",
+      "lensDataFile": "src/lens-data/sony/SonyFE1224mmf28GM.data.ts",
+      "settings": {
+        "method": "diffraction",
+        "spectrum": "photopic",
+        "focus": "design",
+        "focusT": 0,
+        "zoomT": 0,
+        "fNumber": 2.91,
+        "stopSemiDiameterMm": 8.115,
+        "pupilSemiDiameterMm": 2.165067791,
+        "maxGridSize": 64,
+        "fieldFractions": [0, 0.7],
+        "frequenciesPerMm": [0, 10, 30, 50],
+        "spectralLines": [
+          { "wavelengthNm": 560, "weight": 29.573 },
+          { "wavelengthNm": 530.82, "weight": 24.475 },
+          { "wavelengthNm": 589.18, "weight": 21.553 },
+          { "wavelengthNm": 504.8, "weight": 9.4728 },
+          { "wavelengthNm": 615.2, "weight": 10.291 },
+          { "wavelengthNm": 484.76, "weight": 2.7286 },
+          { "wavelengthNm": 635.24, "weight": 3.4949 },
+          { "wavelengthNm": 472.87, "weight": 0.75613 },
+          { "wavelengthNm": 647.13, "weight": 0.91347 }
+        ],
+        "conjugate": null
+      },
+      "support": { "available": true, "reason": null },
+      "focus": {
+        "requestedMode": "design",
+        "mode": "design",
+        "appliedShiftMm": 0,
+        "bestAxialShiftMm": -0.009862232,
+        "designScore": 0.924940403,
+        "bestScore": 0.938335268,
+        "imagePlaneOffsetMm": 0.051931765,
+        "imagePlaneInconsistent": false
+      },
+      "fields": [
+        {
+          "fieldFraction": 0,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 32,
+          "validRays": 7308,
+          "sagittal": [1, 0.97190164, 0.880660097, 0.763737544],
+          "tangential": [1, 0.97190164, 0.880660097, 0.763737544],
+          "diffractionLimit": {
+            "sagittal": [1, 0.979025824, 0.937077472, 0.895431413],
+            "tangential": [1, 0.979025824, 0.937077472, 0.895431413]
+          },
+          "unknownFluxFraction": 0
+        },
+        {
+          "fieldFraction": 0.7,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 32,
+          "validRays": 5706,
+          "sagittal": [1, 0.940433284, 0.681068349, 0.428094531],
+          "tangential": [1, 0.691814086, 0.154291645, 0.047432687],
+          "diffractionLimit": {
+            "sagittal": [1, 0.977882388, 0.933651434, 0.889725894],
+            "tangential": [1, 0.964947219, 0.894969301, 0.825023011]
+          },
+          "unknownFluxFraction": 0
+        }
+      ]
+    },
+    {
+      "id": "fujifilm-gf80-f17/infinity/geometric/reference/best-axial",
+      "lensKey": "fujifilm-gf80-f17",
+      "lensDataFile": "src/lens-data/fujifilm/FujifilmGF80mmf17R.data.ts",
+      "settings": {
+        "method": "geometric",
+        "spectrum": "reference",
+        "focus": "best-axial",
+        "focusT": 0,
+        "zoomT": 0,
+        "fNumber": 1.75,
+        "stopSemiDiameterMm": 12.96585265,
+        "pupilSemiDiameterMm": 22.480635587,
+        "maxGridSize": 64,
+        "fieldFractions": [0, 0.7],
+        "frequenciesPerMm": [0, 10, 30, 50],
+        "spectralLines": [{ "wavelengthNm": 587.5618, "weight": 1 }],
+        "conjugate": null
+      },
+      "support": { "available": true, "reason": null },
+      "focus": {
+        "requestedMode": "best-axial",
+        "mode": "best-axial",
+        "appliedShiftMm": 0.011754131,
+        "bestAxialShiftMm": 0.011754131,
+        "designScore": 0.903844242,
+        "bestScore": 0.956844337,
+        "imagePlaneOffsetMm": -0.00060791,
+        "imagePlaneInconsistent": false
+      },
+      "fields": [
+        {
+          "fieldFraction": 0,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 64,
+          "validRays": 3228,
+          "sagittal": [1, 0.995315561, 0.961422299, 0.909249385],
+          "tangential": [1, 0.99531556, 0.961422294, 0.909249377],
+          "diffractionLimit": null,
+          "unknownFluxFraction": 0
+        },
+        {
+          "fieldFraction": 0.7,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 64,
+          "validRays": 1870,
+          "sagittal": [1, 0.819697341, 0.521732899, 0.351247248],
+          "tangential": [1, 0.967292646, 0.794357424, 0.611481889],
+          "diffractionLimit": null,
+          "unknownFluxFraction": 0
+        }
+      ]
+    },
+    {
+      "id": "fujifilm-gf80-f17/infinity/geometric/reference/design",
+      "lensKey": "fujifilm-gf80-f17",
+      "lensDataFile": "src/lens-data/fujifilm/FujifilmGF80mmf17R.data.ts",
+      "settings": {
+        "method": "geometric",
+        "spectrum": "reference",
+        "focus": "design",
+        "focusT": 0,
+        "zoomT": 0,
+        "fNumber": 1.75,
+        "stopSemiDiameterMm": 12.96585265,
+        "pupilSemiDiameterMm": 22.480635587,
+        "maxGridSize": 64,
+        "fieldFractions": [0, 0.7],
+        "frequenciesPerMm": [0, 10, 30, 50],
+        "spectralLines": [{ "wavelengthNm": 587.5618, "weight": 1 }],
+        "conjugate": null
+      },
+      "support": { "available": true, "reason": null },
+      "focus": {
+        "requestedMode": "design",
+        "mode": "design",
+        "appliedShiftMm": 0,
+        "bestAxialShiftMm": 0.011754131,
+        "designScore": 0.903844242,
+        "bestScore": 0.956844337,
+        "imagePlaneOffsetMm": -0.00060791,
+        "imagePlaneInconsistent": false
+      },
+      "fields": [
+        {
+          "fieldFraction": 0,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 32,
+          "validRays": 812,
+          "sagittal": [1, 0.990527181, 0.91811749, 0.790157803],
+          "tangential": [1, 0.990527183, 0.918117502, 0.790157828],
+          "diffractionLimit": null,
+          "unknownFluxFraction": 0
+        },
+        {
+          "fieldFraction": 0.7,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 64,
+          "validRays": 1870,
+          "sagittal": [1, 0.786958674, 0.563225994, 0.398839235],
+          "tangential": [1, 0.964486205, 0.784018728, 0.568250364],
+          "diffractionLimit": null,
+          "unknownFluxFraction": 0
+        }
+      ]
+    },
+    {
+      "id": "fujifilm-gf80-f17/infinity/geometric/photopic/best-axial",
+      "lensKey": "fujifilm-gf80-f17",
+      "lensDataFile": "src/lens-data/fujifilm/FujifilmGF80mmf17R.data.ts",
+      "settings": {
+        "method": "geometric",
+        "spectrum": "photopic",
+        "focus": "best-axial",
+        "focusT": 0,
+        "zoomT": 0,
+        "fNumber": 1.75,
+        "stopSemiDiameterMm": 12.96585265,
+        "pupilSemiDiameterMm": 22.480635587,
+        "maxGridSize": 64,
+        "fieldFractions": [0, 0.7],
+        "frequenciesPerMm": [0, 10, 30, 50],
+        "spectralLines": [
+          { "wavelengthNm": 560, "weight": 29.573 },
+          { "wavelengthNm": 530.82, "weight": 24.475 },
+          { "wavelengthNm": 589.18, "weight": 21.553 },
+          { "wavelengthNm": 504.8, "weight": 9.4728 },
+          { "wavelengthNm": 615.2, "weight": 10.291 },
+          { "wavelengthNm": 484.76, "weight": 2.7286 },
+          { "wavelengthNm": 635.24, "weight": 3.4949 },
+          { "wavelengthNm": 472.87, "weight": 0.75613 },
+          { "wavelengthNm": 647.13, "weight": 0.91347 }
+        ],
+        "conjugate": null
+      },
+      "support": { "available": true, "reason": null },
+      "focus": {
+        "requestedMode": "best-axial",
+        "mode": "best-axial",
+        "appliedShiftMm": -0.008322412,
+        "bestAxialShiftMm": -0.008322412,
+        "designScore": 0.75715808,
+        "bestScore": 0.769517849,
+        "imagePlaneOffsetMm": -0.00060791,
+        "imagePlaneInconsistent": false
+      },
+      "fields": [
+        {
+          "fieldFraction": 0,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 64,
+          "validRays": 29020,
+          "sagittal": [1, 0.957335431, 0.75423679, 0.60645036],
+          "tangential": [1, 0.95733543, 0.754236791, 0.606450362],
+          "diffractionLimit": null,
+          "unknownFluxFraction": 0
+        },
+        {
+          "fieldFraction": 0.7,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 32,
+          "validRays": 4180,
+          "sagittal": [1, 0.813845329, 0.526376792, 0.382139661],
+          "tangential": [1, 0.94075929, 0.670453927, 0.456419856],
+          "diffractionLimit": null,
+          "unknownFluxFraction": 0
+        }
+      ]
+    },
+    {
+      "id": "fujifilm-gf80-f17/infinity/geometric/photopic/design",
+      "lensKey": "fujifilm-gf80-f17",
+      "lensDataFile": "src/lens-data/fujifilm/FujifilmGF80mmf17R.data.ts",
+      "settings": {
+        "method": "geometric",
+        "spectrum": "photopic",
+        "focus": "design",
+        "focusT": 0,
+        "zoomT": 0,
+        "fNumber": 1.75,
+        "stopSemiDiameterMm": 12.96585265,
+        "pupilSemiDiameterMm": 22.480635587,
+        "maxGridSize": 64,
+        "fieldFractions": [0, 0.7],
+        "frequenciesPerMm": [0, 10, 30, 50],
+        "spectralLines": [
+          { "wavelengthNm": 560, "weight": 29.573 },
+          { "wavelengthNm": 530.82, "weight": 24.475 },
+          { "wavelengthNm": 589.18, "weight": 21.553 },
+          { "wavelengthNm": 504.8, "weight": 9.4728 },
+          { "wavelengthNm": 615.2, "weight": 10.291 },
+          { "wavelengthNm": 484.76, "weight": 2.7286 },
+          { "wavelengthNm": 635.24, "weight": 3.4949 },
+          { "wavelengthNm": 472.87, "weight": 0.75613 },
+          { "wavelengthNm": 647.13, "weight": 0.91347 }
+        ],
+        "conjugate": null
+      },
+      "support": { "available": true, "reason": null },
+      "focus": {
+        "requestedMode": "design",
+        "mode": "design",
+        "appliedShiftMm": 0,
+        "bestAxialShiftMm": -0.008322412,
+        "designScore": 0.75715808,
+        "bestScore": 0.769517849,
+        "imagePlaneOffsetMm": -0.00060791,
+        "imagePlaneInconsistent": false
+      },
+      "fields": [
+        {
+          "fieldFraction": 0,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 64,
+          "validRays": 29020,
+          "sagittal": [1, 0.954772822, 0.745823126, 0.577502711],
+          "tangential": [1, 0.95477282, 0.745823129, 0.577502712],
+          "diffractionLimit": null,
+          "unknownFluxFraction": 0
+        },
+        {
+          "fieldFraction": 0.7,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 32,
+          "validRays": 4180,
+          "sagittal": [1, 0.833335869, 0.513355312, 0.331477437],
+          "tangential": [1, 0.9386004, 0.660674529, 0.454579401],
+          "diffractionLimit": null,
+          "unknownFluxFraction": 0
+        }
+      ]
+    },
+    {
+      "id": "fujifilm-gf80-f17/infinity/diffraction/reference/best-axial",
+      "lensKey": "fujifilm-gf80-f17",
+      "lensDataFile": "src/lens-data/fujifilm/FujifilmGF80mmf17R.data.ts",
+      "settings": {
+        "method": "diffraction",
+        "spectrum": "reference",
+        "focus": "best-axial",
+        "focusT": 0,
+        "zoomT": 0,
+        "fNumber": 1.75,
+        "stopSemiDiameterMm": 12.96585265,
+        "pupilSemiDiameterMm": 22.480635587,
+        "maxGridSize": 64,
+        "fieldFractions": [0, 0.7],
+        "frequenciesPerMm": [0, 10, 30, 50],
+        "spectralLines": [{ "wavelengthNm": 587.5618, "weight": 1 }],
+        "conjugate": null
+      },
+      "support": { "available": true, "reason": null },
+      "focus": {
+        "requestedMode": "best-axial",
+        "mode": "best-axial",
+        "appliedShiftMm": 0.011754131,
+        "bestAxialShiftMm": 0.011754131,
+        "designScore": 0.903844242,
+        "bestScore": 0.956844337,
+        "imagePlaneOffsetMm": -0.00060791,
+        "imagePlaneInconsistent": false
+      },
+      "fields": [
+        {
+          "fieldFraction": 0,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 64,
+          "validRays": 3228,
+          "sagittal": [1, 0.984096798, 0.945607941, 0.902772989],
+          "tangential": [1, 0.984096799, 0.945607943, 0.902772993],
+          "diffractionLimit": {
+            "sagittal": [1, 0.987704916, 0.963114749, 0.938221091],
+            "tangential": [1, 0.987704918, 0.963114753, 0.938221096]
+          },
+          "unknownFluxFraction": 0
+        },
+        {
+          "fieldFraction": 0.7,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 64,
+          "validRays": 1870,
+          "sagittal": [1, 0.814387557, 0.517845916, 0.354283974],
+          "tangential": [1, 0.94812271, 0.772814504, 0.575710461],
+          "diffractionLimit": {
+            "sagittal": [1, 0.986055351, 0.958155283, 0.930078321],
+            "tangential": [1, 0.975442739, 0.926577157, 0.879054621]
+          },
+          "unknownFluxFraction": 0
+        }
+      ]
+    },
+    {
+      "id": "fujifilm-gf80-f17/infinity/diffraction/reference/design",
+      "lensKey": "fujifilm-gf80-f17",
+      "lensDataFile": "src/lens-data/fujifilm/FujifilmGF80mmf17R.data.ts",
+      "settings": {
+        "method": "diffraction",
+        "spectrum": "reference",
+        "focus": "design",
+        "focusT": 0,
+        "zoomT": 0,
+        "fNumber": 1.75,
+        "stopSemiDiameterMm": 12.96585265,
+        "pupilSemiDiameterMm": 22.480635587,
+        "maxGridSize": 64,
+        "fieldFractions": [0, 0.7],
+        "frequenciesPerMm": [0, 10, 30, 50],
+        "spectralLines": [{ "wavelengthNm": 587.5618, "weight": 1 }],
+        "conjugate": null
+      },
+      "support": { "available": true, "reason": null },
+      "focus": {
+        "requestedMode": "design",
+        "mode": "design",
+        "appliedShiftMm": 0,
+        "bestAxialShiftMm": 0.011754131,
+        "designScore": 0.903844242,
+        "bestScore": 0.956844337,
+        "imagePlaneOffsetMm": -0.00060791,
+        "imagePlaneInconsistent": false
+      },
+      "fields": [
+        {
+          "fieldFraction": 0,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 32,
+          "validRays": 812,
+          "sagittal": [1, 0.978663834, 0.891435416, 0.765786512],
+          "tangential": [1, 0.978663833, 0.891435416, 0.76578651],
+          "diffractionLimit": {
+            "sagittal": [1, 0.98767758, 0.96303274, 0.9383879],
+            "tangential": [1, 0.987677578, 0.963032734, 0.93838789]
+          },
+          "unknownFluxFraction": 0
+        },
+        {
+          "fieldFraction": 0.7,
+          "status": "unconverged",
+          "reason": null,
+          "gridSize": 64,
+          "validRays": 1870,
+          "sagittal": [1, 0.783130644, 0.554428992, 0.398571104],
+          "tangential": [1, 0.945878141, 0.758774512, 0.528454142],
+          "diffractionLimit": {
+            "sagittal": [1, 0.986055351, 0.958155283, 0.930078321],
+            "tangential": [1, 0.975442739, 0.926577157, 0.879054621]
+          },
+          "unknownFluxFraction": 0
+        }
+      ]
+    },
+    {
+      "id": "fujifilm-gf80-f17/infinity/diffraction/photopic/best-axial",
+      "lensKey": "fujifilm-gf80-f17",
+      "lensDataFile": "src/lens-data/fujifilm/FujifilmGF80mmf17R.data.ts",
+      "settings": {
+        "method": "diffraction",
+        "spectrum": "photopic",
+        "focus": "best-axial",
+        "focusT": 0,
+        "zoomT": 0,
+        "fNumber": 1.75,
+        "stopSemiDiameterMm": 12.96585265,
+        "pupilSemiDiameterMm": 22.480635587,
+        "maxGridSize": 64,
+        "fieldFractions": [0, 0.7],
+        "frequenciesPerMm": [0, 10, 30, 50],
+        "spectralLines": [
+          { "wavelengthNm": 560, "weight": 29.573 },
+          { "wavelengthNm": 530.82, "weight": 24.475 },
+          { "wavelengthNm": 589.18, "weight": 21.553 },
+          { "wavelengthNm": 504.8, "weight": 9.4728 },
+          { "wavelengthNm": 615.2, "weight": 10.291 },
+          { "wavelengthNm": 484.76, "weight": 2.7286 },
+          { "wavelengthNm": 635.24, "weight": 3.4949 },
+          { "wavelengthNm": 472.87, "weight": 0.75613 },
+          { "wavelengthNm": 647.13, "weight": 0.91347 }
+        ],
+        "conjugate": null
+      },
+      "support": { "available": true, "reason": null },
+      "focus": {
+        "requestedMode": "best-axial",
+        "mode": "best-axial",
+        "appliedShiftMm": -0.008322412,
+        "bestAxialShiftMm": -0.008322412,
+        "designScore": 0.75715808,
+        "bestScore": 0.769517849,
+        "imagePlaneOffsetMm": -0.00060791,
+        "imagePlaneInconsistent": false
+      },
+      "fields": [
+        {
+          "fieldFraction": 0,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 64,
+          "validRays": 29020,
+          "sagittal": [1, 0.948973866, 0.752533752, 0.601899202],
+          "tangential": [1, 0.948973866, 0.752533752, 0.601899203],
+          "diffractionLimit": {
+            "sagittal": [1, 0.988301935, 0.964899749, 0.941214101],
+            "tangential": [1, 0.988301936, 0.964899753, 0.941214105]
+          },
+          "unknownFluxFraction": 0
+        },
+        {
+          "fieldFraction": 0.7,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 64,
+          "validRays": 16792,
+          "sagittal": [1, 0.80708914, 0.521816215, 0.379571365],
+          "tangential": [1, 0.925758747, 0.654974876, 0.45074717],
+          "diffractionLimit": {
+            "sagittal": [1, 0.986701641, 0.960093306, 0.933313845],
+            "tangential": [1, 0.976571272, 0.929809318, 0.884363244]
+          },
+          "unknownFluxFraction": 0
+        }
+      ]
+    },
+    {
+      "id": "fujifilm-gf80-f17/infinity/diffraction/photopic/design",
+      "lensKey": "fujifilm-gf80-f17",
+      "lensDataFile": "src/lens-data/fujifilm/FujifilmGF80mmf17R.data.ts",
+      "settings": {
+        "method": "diffraction",
+        "spectrum": "photopic",
+        "focus": "design",
+        "focusT": 0,
+        "zoomT": 0,
+        "fNumber": 1.75,
+        "stopSemiDiameterMm": 12.96585265,
+        "pupilSemiDiameterMm": 22.480635587,
+        "maxGridSize": 64,
+        "fieldFractions": [0, 0.7],
+        "frequenciesPerMm": [0, 10, 30, 50],
+        "spectralLines": [
+          { "wavelengthNm": 560, "weight": 29.573 },
+          { "wavelengthNm": 530.82, "weight": 24.475 },
+          { "wavelengthNm": 589.18, "weight": 21.553 },
+          { "wavelengthNm": 504.8, "weight": 9.4728 },
+          { "wavelengthNm": 615.2, "weight": 10.291 },
+          { "wavelengthNm": 484.76, "weight": 2.7286 },
+          { "wavelengthNm": 635.24, "weight": 3.4949 },
+          { "wavelengthNm": 472.87, "weight": 0.75613 },
+          { "wavelengthNm": 647.13, "weight": 0.91347 }
+        ],
+        "conjugate": null
+      },
+      "support": { "available": true, "reason": null },
+      "focus": {
+        "requestedMode": "design",
+        "mode": "design",
+        "appliedShiftMm": 0,
+        "bestAxialShiftMm": -0.008322412,
+        "designScore": 0.75715808,
+        "bestScore": 0.769517849,
+        "imagePlaneOffsetMm": -0.00060791,
+        "imagePlaneInconsistent": false
+      },
+      "fields": [
+        {
+          "fieldFraction": 0,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 64,
+          "validRays": 29020,
+          "sagittal": [1, 0.946973286, 0.744288962, 0.573524621],
+          "tangential": [1, 0.946973286, 0.744288962, 0.573524623],
+          "diffractionLimit": {
+            "sagittal": [1, 0.988301935, 0.964899749, 0.941214101],
+            "tangential": [1, 0.988301936, 0.964899753, 0.941214105]
+          },
+          "unknownFluxFraction": 0
+        },
+        {
+          "fieldFraction": 0.7,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 64,
+          "validRays": 16792,
+          "sagittal": [1, 0.825869991, 0.510694846, 0.330568236],
+          "tangential": [1, 0.923018802, 0.645934544, 0.449259992],
+          "diffractionLimit": {
+            "sagittal": [1, 0.986701641, 0.960093306, 0.933313845],
+            "tangential": [1, 0.976571272, 0.929809318, 0.884363244]
+          },
+          "unknownFluxFraction": 0
+        }
+      ]
+    },
+    {
+      "id": "fujifilm-gf80-f17/finite/geometric/reference/best-axial",
+      "lensKey": "fujifilm-gf80-f17",
+      "lensDataFile": "src/lens-data/fujifilm/FujifilmGF80mmf17R.data.ts",
+      "settings": {
+        "method": "geometric",
+        "spectrum": "reference",
+        "focus": "best-axial",
+        "focusT": 1,
+        "zoomT": 0,
+        "fNumber": 1.75,
+        "stopSemiDiameterMm": 12.96585265,
+        "pupilSemiDiameterMm": 22.042193434,
+        "maxGridSize": 64,
+        "fieldFractions": [0, 0.7],
+        "frequenciesPerMm": [0, 10, 30, 50],
+        "spectralLines": [{ "wavelengthNm": 587.5618, "weight": 1 }],
+        "conjugate": {
+          "objectDistanceMm": 576.6736,
+          "distanceReference": "first-surface",
+          "source": "US20210294073A1, Example 1, ¶0084 and Tables 1/3: 700 mm to the physical image plane minus 123.3264 mm summed physical track = 576.6736 mm to the first vertex; DD4=1.932 mm, DD15=16.728 mm. PP is traced in rearPlates at its physical thickness and gaps.",
+          "focusT": 1,
+          "zoomT": 0
+        }
+      },
+      "support": { "available": true, "reason": null },
+      "focus": {
+        "requestedMode": "best-axial",
+        "mode": "best-axial",
+        "appliedShiftMm": -0.001709641,
+        "bestAxialShiftMm": -0.001709641,
+        "designScore": 0.866820173,
+        "bestScore": 0.867448394,
+        "imagePlaneOffsetMm": null,
+        "imagePlaneInconsistent": false
+      },
+      "fields": [
+        {
+          "fieldFraction": 0,
+          "status": "unconverged",
+          "reason": null,
+          "gridSize": 64,
+          "validRays": 3228,
+          "sagittal": [1, 0.957137169, 0.8600317, 0.794874979],
+          "tangential": [1, 0.957137149, 0.860031748, 0.794874984],
+          "diffractionLimit": null,
+          "unknownFluxFraction": 0
+        },
+        {
+          "fieldFraction": 0.7,
+          "status": "unconverged",
+          "reason": null,
+          "gridSize": 64,
+          "validRays": 2498,
+          "sagittal": [1, 0.845993126, 0.523436842, 0.402862298],
+          "tangential": [1, 0.913337423, 0.436996521, 0.043531795],
+          "diffractionLimit": null,
+          "unknownFluxFraction": 0
+        }
+      ]
+    },
+    {
+      "id": "fujifilm-gf80-f17/finite/geometric/reference/design",
+      "lensKey": "fujifilm-gf80-f17",
+      "lensDataFile": "src/lens-data/fujifilm/FujifilmGF80mmf17R.data.ts",
+      "settings": {
+        "method": "geometric",
+        "spectrum": "reference",
+        "focus": "design",
+        "focusT": 1,
+        "zoomT": 0,
+        "fNumber": 1.75,
+        "stopSemiDiameterMm": 12.96585265,
+        "pupilSemiDiameterMm": 22.042193434,
+        "maxGridSize": 64,
+        "fieldFractions": [0, 0.7],
+        "frequenciesPerMm": [0, 10, 30, 50],
+        "spectralLines": [{ "wavelengthNm": 587.5618, "weight": 1 }],
+        "conjugate": {
+          "objectDistanceMm": 576.6736,
+          "distanceReference": "first-surface",
+          "source": "US20210294073A1, Example 1, ¶0084 and Tables 1/3: 700 mm to the physical image plane minus 123.3264 mm summed physical track = 576.6736 mm to the first vertex; DD4=1.932 mm, DD15=16.728 mm. PP is traced in rearPlates at its physical thickness and gaps.",
+          "focusT": 1,
+          "zoomT": 0
+        }
+      },
+      "support": { "available": true, "reason": null },
+      "focus": {
+        "requestedMode": "design",
+        "mode": "design",
+        "appliedShiftMm": 0,
+        "bestAxialShiftMm": -0.001709641,
+        "designScore": 0.866820173,
+        "bestScore": 0.867448394,
+        "imagePlaneOffsetMm": null,
+        "imagePlaneInconsistent": false
+      },
+      "fields": [
+        {
+          "fieldFraction": 0,
+          "status": "unconverged",
+          "reason": null,
+          "gridSize": 64,
+          "validRays": 3228,
+          "sagittal": [1, 0.955898531, 0.859526528, 0.795481751],
+          "tangential": [1, 0.955898511, 0.859526577, 0.795481754],
+          "diffractionLimit": null,
+          "unknownFluxFraction": 0
+        },
+        {
+          "fieldFraction": 0.7,
+          "status": "unconverged",
+          "reason": null,
+          "gridSize": 64,
+          "validRays": 2498,
+          "sagittal": [1, 0.849344185, 0.516206938, 0.393989236],
+          "tangential": [1, 0.915779183, 0.450436748, 0.026366471],
+          "diffractionLimit": null,
+          "unknownFluxFraction": 0
+        }
+      ]
+    },
+    {
+      "id": "fujifilm-gf80-f17/finite/geometric/photopic/best-axial",
+      "lensKey": "fujifilm-gf80-f17",
+      "lensDataFile": "src/lens-data/fujifilm/FujifilmGF80mmf17R.data.ts",
+      "settings": {
+        "method": "geometric",
+        "spectrum": "photopic",
+        "focus": "best-axial",
+        "focusT": 1,
+        "zoomT": 0,
+        "fNumber": 1.75,
+        "stopSemiDiameterMm": 12.96585265,
+        "pupilSemiDiameterMm": 22.042193434,
+        "maxGridSize": 64,
+        "fieldFractions": [0, 0.7],
+        "frequenciesPerMm": [0, 10, 30, 50],
+        "spectralLines": [
+          { "wavelengthNm": 560, "weight": 29.573 },
+          { "wavelengthNm": 530.82, "weight": 24.475 },
+          { "wavelengthNm": 589.18, "weight": 21.553 },
+          { "wavelengthNm": 504.8, "weight": 9.4728 },
+          { "wavelengthNm": 615.2, "weight": 10.291 },
+          { "wavelengthNm": 484.76, "weight": 2.7286 },
+          { "wavelengthNm": 635.24, "weight": 3.4949 },
+          { "wavelengthNm": 472.87, "weight": 0.75613 },
+          { "wavelengthNm": 647.13, "weight": 0.91347 }
+        ],
+        "conjugate": {
+          "objectDistanceMm": 576.6736,
+          "distanceReference": "first-surface",
+          "source": "US20210294073A1, Example 1, ¶0084 and Tables 1/3: 700 mm to the physical image plane minus 123.3264 mm summed physical track = 576.6736 mm to the first vertex; DD4=1.932 mm, DD15=16.728 mm. PP is traced in rearPlates at its physical thickness and gaps.",
+          "focusT": 1,
+          "zoomT": 0
+        }
+      },
+      "support": { "available": true, "reason": null },
+      "focus": {
+        "requestedMode": "best-axial",
+        "mode": "best-axial",
+        "appliedShiftMm": -0.016642164,
+        "bestAxialShiftMm": -0.016642164,
+        "designScore": 0.742036496,
+        "bestScore": 0.782771968,
+        "imagePlaneOffsetMm": null,
+        "imagePlaneInconsistent": false
+      },
+      "fields": [
+        {
+          "fieldFraction": 0,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 64,
+          "validRays": 29052,
+          "sagittal": [1, 0.923502854, 0.770704386, 0.669629353],
+          "tangential": [1, 0.923502838, 0.770704398, 0.66962936],
+          "diffractionLimit": null,
+          "unknownFluxFraction": 0
+        },
+        {
+          "fieldFraction": 0.7,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 64,
+          "validRays": 22458,
+          "sagittal": [1, 0.849656091, 0.553318331, 0.439590749],
+          "tangential": [1, 0.89670604, 0.433968217, 0.103433704],
+          "diffractionLimit": null,
+          "unknownFluxFraction": 0
+        }
+      ]
+    },
+    {
+      "id": "fujifilm-gf80-f17/finite/geometric/photopic/design",
+      "lensKey": "fujifilm-gf80-f17",
+      "lensDataFile": "src/lens-data/fujifilm/FujifilmGF80mmf17R.data.ts",
+      "settings": {
+        "method": "geometric",
+        "spectrum": "photopic",
+        "focus": "design",
+        "focusT": 1,
+        "zoomT": 0,
+        "fNumber": 1.75,
+        "stopSemiDiameterMm": 12.96585265,
+        "pupilSemiDiameterMm": 22.042193434,
+        "maxGridSize": 64,
+        "fieldFractions": [0, 0.7],
+        "frequenciesPerMm": [0, 10, 30, 50],
+        "spectralLines": [
+          { "wavelengthNm": 560, "weight": 29.573 },
+          { "wavelengthNm": 530.82, "weight": 24.475 },
+          { "wavelengthNm": 589.18, "weight": 21.553 },
+          { "wavelengthNm": 504.8, "weight": 9.4728 },
+          { "wavelengthNm": 615.2, "weight": 10.291 },
+          { "wavelengthNm": 484.76, "weight": 2.7286 },
+          { "wavelengthNm": 635.24, "weight": 3.4949 },
+          { "wavelengthNm": 472.87, "weight": 0.75613 },
+          { "wavelengthNm": 647.13, "weight": 0.91347 }
+        ],
+        "conjugate": {
+          "objectDistanceMm": 576.6736,
+          "distanceReference": "first-surface",
+          "source": "US20210294073A1, Example 1, ¶0084 and Tables 1/3: 700 mm to the physical image plane minus 123.3264 mm summed physical track = 576.6736 mm to the first vertex; DD4=1.932 mm, DD15=16.728 mm. PP is traced in rearPlates at its physical thickness and gaps.",
+          "focusT": 1,
+          "zoomT": 0
+        }
+      },
+      "support": { "available": true, "reason": null },
+      "focus": {
+        "requestedMode": "design",
+        "mode": "design",
+        "appliedShiftMm": 0,
+        "bestAxialShiftMm": -0.016642164,
+        "designScore": 0.742036496,
+        "bestScore": 0.782771968,
+        "imagePlaneOffsetMm": null,
+        "imagePlaneInconsistent": false
+      },
+      "fields": [
+        {
+          "fieldFraction": 0,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 64,
+          "validRays": 29052,
+          "sagittal": [1, 0.907511173, 0.736923724, 0.590297681],
+          "tangential": [1, 0.907511159, 0.736923731, 0.590297686],
+          "diffractionLimit": null,
+          "unknownFluxFraction": 0
+        },
+        {
+          "fieldFraction": 0.7,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 64,
+          "validRays": 22458,
+          "sagittal": [1, 0.876351375, 0.529102588, 0.30733303],
+          "tangential": [1, 0.909063136, 0.519264858, 0.215352117],
+          "diffractionLimit": null,
+          "unknownFluxFraction": 0
+        }
+      ]
+    },
+    {
+      "id": "fujifilm-gf80-f17/finite/diffraction/reference/best-axial",
+      "lensKey": "fujifilm-gf80-f17",
+      "lensDataFile": "src/lens-data/fujifilm/FujifilmGF80mmf17R.data.ts",
+      "settings": {
+        "method": "diffraction",
+        "spectrum": "reference",
+        "focus": "best-axial",
+        "focusT": 1,
+        "zoomT": 0,
+        "fNumber": 1.75,
+        "stopSemiDiameterMm": 12.96585265,
+        "pupilSemiDiameterMm": 22.042193434,
+        "maxGridSize": 64,
+        "fieldFractions": [0, 0.7],
+        "frequenciesPerMm": [0, 10, 30, 50],
+        "spectralLines": [{ "wavelengthNm": 587.5618, "weight": 1 }],
+        "conjugate": {
+          "objectDistanceMm": 576.6736,
+          "distanceReference": "first-surface",
+          "source": "US20210294073A1, Example 1, ¶0084 and Tables 1/3: 700 mm to the physical image plane minus 123.3264 mm summed physical track = 576.6736 mm to the first vertex; DD4=1.932 mm, DD15=16.728 mm. PP is traced in rearPlates at its physical thickness and gaps.",
+          "focusT": 1,
+          "zoomT": 0
+        }
+      },
+      "support": { "available": true, "reason": null },
+      "focus": {
+        "requestedMode": "best-axial",
+        "mode": "best-axial",
+        "appliedShiftMm": -0.001709641,
+        "bestAxialShiftMm": -0.001709641,
+        "designScore": 0.866820173,
+        "bestScore": 0.867448394,
+        "imagePlaneOffsetMm": null,
+        "imagePlaneInconsistent": false
+      },
+      "fields": [
+        {
+          "fieldFraction": 0,
+          "status": "unconverged",
+          "reason": null,
+          "gridSize": 64,
+          "validRays": 3228,
+          "sagittal": [1, 0.954540416, 0.864345858, 0.807681387],
+          "tangential": [1, 0.954540405, 0.864345855, 0.80768139],
+          "diffractionLimit": {
+            "sagittal": [1, 0.98588098, 0.957301058, 0.928835097],
+            "tangential": [1, 0.985880985, 0.957301069, 0.928835116]
+          },
+          "unknownFluxFraction": 0
+        },
+        {
+          "fieldFraction": 0.7,
+          "status": "unconverged",
+          "reason": null,
+          "gridSize": 64,
+          "validRays": 2498,
+          "sagittal": [1, 0.839869202, 0.514970565, 0.412470437],
+          "tangential": [1, 0.900950943, 0.4367101, 0.019622889],
+          "diffractionLimit": {
+            "sagittal": [1, 0.984702269, 0.953928021, 0.923213368],
+            "tangential": [1, 0.979145519, 0.93758195, 0.895948962]
+          },
+          "unknownFluxFraction": 0
+        }
+      ]
+    },
+    {
+      "id": "fujifilm-gf80-f17/finite/diffraction/reference/design",
+      "lensKey": "fujifilm-gf80-f17",
+      "lensDataFile": "src/lens-data/fujifilm/FujifilmGF80mmf17R.data.ts",
+      "settings": {
+        "method": "diffraction",
+        "spectrum": "reference",
+        "focus": "design",
+        "focusT": 1,
+        "zoomT": 0,
+        "fNumber": 1.75,
+        "stopSemiDiameterMm": 12.96585265,
+        "pupilSemiDiameterMm": 22.042193434,
+        "maxGridSize": 64,
+        "fieldFractions": [0, 0.7],
+        "frequenciesPerMm": [0, 10, 30, 50],
+        "spectralLines": [{ "wavelengthNm": 587.5618, "weight": 1 }],
+        "conjugate": {
+          "objectDistanceMm": 576.6736,
+          "distanceReference": "first-surface",
+          "source": "US20210294073A1, Example 1, ¶0084 and Tables 1/3: 700 mm to the physical image plane minus 123.3264 mm summed physical track = 576.6736 mm to the first vertex; DD4=1.932 mm, DD15=16.728 mm. PP is traced in rearPlates at its physical thickness and gaps.",
+          "focusT": 1,
+          "zoomT": 0
+        }
+      },
+      "support": { "available": true, "reason": null },
+      "focus": {
+        "requestedMode": "design",
+        "mode": "design",
+        "appliedShiftMm": 0,
+        "bestAxialShiftMm": -0.001709641,
+        "designScore": 0.866820173,
+        "bestScore": 0.867448394,
+        "imagePlaneOffsetMm": null,
+        "imagePlaneInconsistent": false
+      },
+      "fields": [
+        {
+          "fieldFraction": 0,
+          "status": "unconverged",
+          "reason": null,
+          "gridSize": 64,
+          "validRays": 3228,
+          "sagittal": [1, 0.953532394, 0.862321156, 0.806354685],
+          "tangential": [1, 0.953532383, 0.862321154, 0.806354688],
+          "diffractionLimit": {
+            "sagittal": [1, 0.98588098, 0.957301058, 0.928835097],
+            "tangential": [1, 0.985880985, 0.957301069, 0.928835116]
+          },
+          "unknownFluxFraction": 0
+        },
+        {
+          "fieldFraction": 0.7,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 64,
+          "validRays": 2498,
+          "sagittal": [1, 0.843048122, 0.508913685, 0.40171679],
+          "tangential": [1, 0.903205595, 0.449411066, 0.003282649],
+          "diffractionLimit": {
+            "sagittal": [1, 0.984702269, 0.953928021, 0.923213368],
+            "tangential": [1, 0.979145519, 0.93758195, 0.895948962]
+          },
+          "unknownFluxFraction": 0
+        }
+      ]
+    },
+    {
+      "id": "fujifilm-gf80-f17/finite/diffraction/photopic/best-axial",
+      "lensKey": "fujifilm-gf80-f17",
+      "lensDataFile": "src/lens-data/fujifilm/FujifilmGF80mmf17R.data.ts",
+      "settings": {
+        "method": "diffraction",
+        "spectrum": "photopic",
+        "focus": "best-axial",
+        "focusT": 1,
+        "zoomT": 0,
+        "fNumber": 1.75,
+        "stopSemiDiameterMm": 12.96585265,
+        "pupilSemiDiameterMm": 22.042193434,
+        "maxGridSize": 64,
+        "fieldFractions": [0, 0.7],
+        "frequenciesPerMm": [0, 10, 30, 50],
+        "spectralLines": [
+          { "wavelengthNm": 560, "weight": 29.573 },
+          { "wavelengthNm": 530.82, "weight": 24.475 },
+          { "wavelengthNm": 589.18, "weight": 21.553 },
+          { "wavelengthNm": 504.8, "weight": 9.4728 },
+          { "wavelengthNm": 615.2, "weight": 10.291 },
+          { "wavelengthNm": 484.76, "weight": 2.7286 },
+          { "wavelengthNm": 635.24, "weight": 3.4949 },
+          { "wavelengthNm": 472.87, "weight": 0.75613 },
+          { "wavelengthNm": 647.13, "weight": 0.91347 }
+        ],
+        "conjugate": {
+          "objectDistanceMm": 576.6736,
+          "distanceReference": "first-surface",
+          "source": "US20210294073A1, Example 1, ¶0084 and Tables 1/3: 700 mm to the physical image plane minus 123.3264 mm summed physical track = 576.6736 mm to the first vertex; DD4=1.932 mm, DD15=16.728 mm. PP is traced in rearPlates at its physical thickness and gaps.",
+          "focusT": 1,
+          "zoomT": 0
+        }
+      },
+      "support": { "available": true, "reason": null },
+      "focus": {
+        "requestedMode": "best-axial",
+        "mode": "best-axial",
+        "appliedShiftMm": -0.016642164,
+        "bestAxialShiftMm": -0.016642164,
+        "designScore": 0.742036496,
+        "bestScore": 0.782771968,
+        "imagePlaneOffsetMm": null,
+        "imagePlaneInconsistent": false
+      },
+      "fields": [
+        {
+          "fieldFraction": 0,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 64,
+          "validRays": 29052,
+          "sagittal": [1, 0.923043011, 0.768695831, 0.665491425],
+          "tangential": [1, 0.923043001, 0.768695848, 0.665491434],
+          "diffractionLimit": {
+            "sagittal": [1, 0.986578869, 0.959559225, 0.932334907],
+            "tangential": [1, 0.986578874, 0.959559238, 0.932334924]
+          },
+          "unknownFluxFraction": 0
+        },
+        {
+          "fieldFraction": 0.7,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 64,
+          "validRays": 22458,
+          "sagittal": [1, 0.844062731, 0.552054532, 0.436079126],
+          "tangential": [1, 0.884321126, 0.425829409, 0.104307283],
+          "diffractionLimit": {
+            "sagittal": [1, 0.985415385, 0.956138222, 0.926808821],
+            "tangential": [1, 0.980125854, 0.94051093, 0.900906651]
+          },
+          "unknownFluxFraction": 0
+        }
+      ]
+    },
+    {
+      "id": "fujifilm-gf80-f17/finite/diffraction/photopic/design",
+      "lensKey": "fujifilm-gf80-f17",
+      "lensDataFile": "src/lens-data/fujifilm/FujifilmGF80mmf17R.data.ts",
+      "settings": {
+        "method": "diffraction",
+        "spectrum": "photopic",
+        "focus": "design",
+        "focusT": 1,
+        "zoomT": 0,
+        "fNumber": 1.75,
+        "stopSemiDiameterMm": 12.96585265,
+        "pupilSemiDiameterMm": 22.042193434,
+        "maxGridSize": 64,
+        "fieldFractions": [0, 0.7],
+        "frequenciesPerMm": [0, 10, 30, 50],
+        "spectralLines": [
+          { "wavelengthNm": 560, "weight": 29.573 },
+          { "wavelengthNm": 530.82, "weight": 24.475 },
+          { "wavelengthNm": 589.18, "weight": 21.553 },
+          { "wavelengthNm": 504.8, "weight": 9.4728 },
+          { "wavelengthNm": 615.2, "weight": 10.291 },
+          { "wavelengthNm": 484.76, "weight": 2.7286 },
+          { "wavelengthNm": 635.24, "weight": 3.4949 },
+          { "wavelengthNm": 472.87, "weight": 0.75613 },
+          { "wavelengthNm": 647.13, "weight": 0.91347 }
+        ],
+        "conjugate": {
+          "objectDistanceMm": 576.6736,
+          "distanceReference": "first-surface",
+          "source": "US20210294073A1, Example 1, ¶0084 and Tables 1/3: 700 mm to the physical image plane minus 123.3264 mm summed physical track = 576.6736 mm to the first vertex; DD4=1.932 mm, DD15=16.728 mm. PP is traced in rearPlates at its physical thickness and gaps.",
+          "focusT": 1,
+          "zoomT": 0
+        }
+      },
+      "support": { "available": true, "reason": null },
+      "focus": {
+        "requestedMode": "design",
+        "mode": "design",
+        "appliedShiftMm": 0,
+        "bestAxialShiftMm": -0.016642164,
+        "designScore": 0.742036496,
+        "bestScore": 0.782771968,
+        "imagePlaneOffsetMm": null,
+        "imagePlaneInconsistent": false
+      },
+      "fields": [
+        {
+          "fieldFraction": 0,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 64,
+          "validRays": 29052,
+          "sagittal": [1, 0.90851516, 0.734738653, 0.586593498],
+          "tangential": [1, 0.908515149, 0.734738671, 0.586593504],
+          "diffractionLimit": {
+            "sagittal": [1, 0.986578869, 0.959559225, 0.932334907],
+            "tangential": [1, 0.986578874, 0.959559238, 0.932334924]
+          },
+          "unknownFluxFraction": 0
+        },
+        {
+          "fieldFraction": 0.7,
+          "status": "converged",
+          "reason": null,
+          "gridSize": 64,
+          "validRays": 22458,
+          "sagittal": [1, 0.869624543, 0.530258876, 0.309700453],
+          "tangential": [1, 0.895650561, 0.507085688, 0.215828802],
+          "diffractionLimit": {
+            "sagittal": [1, 0.985415385, 0.956138222, 0.926808821],
+            "tangential": [1, 0.980125854, 0.94051093, 0.900906651]
+          },
+          "unknownFluxFraction": 0
+        }
+      ]
+    }
+  ]
+}

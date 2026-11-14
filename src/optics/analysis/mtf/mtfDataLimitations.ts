@@ -3,15 +3,16 @@
  *
  * `assessMtfSupport` says whether MTF can run and lists the model's general assumptions. This module answers a
  * narrower question for the chart on screen: what is this lens, or lens plus converter, missing that the most
- * accurate model would need? Every gap is tied to the display it changes, so a single-wavelength chart the reader
- * asked for carries no dispersion gap, and an inconsistent image plane is no gap at best axial focus. Gaps hold the
- * chart behind a warning (`blocking`); authored source errata are notes that leave it readable.
+ * accurate model would need? Every gap follows the indices and image plane actually used. Blocking gaps hold
+ * the chart behind a warning; term/equation assumptions, aperture provenance and source errata leave it readable.
  */
 import type { MtfDataLimitation, MtfResult, MtfSpectrum } from "../../../types/mtf.js";
 import type { PreparedGeometry } from "../../types.js";
+import { channelWavelengths, CHROMATIC_CHANNEL_ORDER } from "../../chromatic/channels.js";
 import {
   assessMtfSpectralData,
   mtfReferenceCoordinates,
+  mtfUsesReferenceIndices,
   MTF_SPECTRUM_LABELS,
   mtfPrescriptionScale,
   mtfScaleNeedsNote,
@@ -20,12 +21,16 @@ import {
 export interface MtfDataLimitationInput {
   /** Spectrum the reader asked for. */
   preferredSpectrum: MtfSpectrum;
+  /** Selected single-line wavelength in nm. */
+  wavelengthNm?: number;
   /** Spectrum actually charted; the reference line when the glass data cannot support the preferred one. */
   spectrum: MtfSpectrum;
   /** Reference wavelength of the chart, in nm. */
   referenceWavelengthNm: number;
   /** Charted result; the image-plane and field gaps are known only once one exists. */
   result: MtfResult | null;
+  /** Ordinary field grid for geometry-based coverage, independent of restricted result fields. */
+  fieldFractions?: readonly number[];
 }
 
 /** Element names listed before the rest are counted. */
@@ -53,7 +58,38 @@ export function assessMtfDataLimitations(state: PreparedGeometry, input: MtfData
   const { source } = state.lens;
   const limitations: MtfDataLimitation[] = [];
 
-  if (input.preferredSpectrum !== "reference") {
+  const omissions = source.source.omissions ?? [];
+  if (omissions.length > 0) {
+    const blocking = omissions.some((omission) => omission.kind === "asphere-coefficients");
+    const details = omissions
+      .map((omission) => {
+        const surfaces = `surface${omission.surfaces.length === 1 ? "" : "s"} ${omission.surfaces.join(", ")}`;
+        if (omission.kind === "asphere-coefficients")
+          return `The source omits aspheric coefficients for ${surfaces}: ${omission.note}`;
+        if (omission.kind === "asphere-term")
+          return `The source leaves individual aspheric terms blank for ${surfaces}: ${omission.note} These curves rest on taking those terms as zero.`;
+        return `The source's aspheric equation is absent or ambiguous for ${surfaces}: ${omission.note} These curves rest on that documented interpretation.`;
+      })
+      .join(" ");
+    limitations.push({
+      kind: "incomplete-prescription",
+      blocking,
+      text: details + (blocking ? " These curves describe the modeled stand-in, not the lens itself." : ""),
+    });
+  }
+  const sdSource = source.source.sdSource;
+  if (sdSource === "heuristic" || sdSource === "figure-measured") {
+    limitations.push({
+      kind: "estimated-apertures",
+      blocking: false,
+      text:
+        sdSource === "heuristic"
+          ? "Off-axis curves depend on clear apertures that are estimated or reconstructed rather than listed by the source."
+          : "Clear apertures measured from source figures carry measurement uncertainty; off-axis curves depend on those measurements.",
+    });
+  }
+
+  if (!mtfUsesReferenceIndices(state, input.preferredSpectrum, input.wavelengthNm)) {
     const label = MTF_SPECTRUM_LABELS[input.preferredSpectrum];
     const spectral = assessMtfSpectralData(state);
     if (input.spectrum === "reference" && spectral.blocker) {
@@ -68,7 +104,18 @@ export function assessMtfDataLimitations(state: PreparedGeometry, input: MtfData
         state.surfaces.some((surface) => surface.nd !== 1 && surface.elemId === element.id),
       );
       const estimatedIds = new Set(spectral.estimatedElementIds);
-      const estimated = glasses.filter((element) => estimatedIds.has(element.id));
+      const partialIds = new Set(spectral.partialLineElementIds);
+      const estimated = glasses.filter((element) => {
+        if (!estimatedIds.has(element.id)) return false;
+        if (input.preferredSpectrum !== "single") return true;
+        // The resolver fits all four native C/d/F/g, C/D/F/g or C′/e/F′/g nodes.
+        // At a node only that index matters: G is authored on both estimated
+        // tiers; measured-line tables also supply R/B. Away from nodes the
+        // Cauchy fit depends on every node, including the estimated g index.
+        const wavelengths = channelWavelengths(element.indexReference ?? "d");
+        const channel = CHROMATIC_CHANNEL_ORDER.find((ch) => wavelengths[ch] === input.wavelengthNm);
+        return channel === undefined || (channel !== "G" && (!partialIds.has(element.id) || channel === "V"));
+      });
       // A mounted converter's elements follow the lens's; name the two parts separately.
       const converterFrom = state.lens.attachedTeleconverter?.firstElementId ?? Infinity;
       const named = (converter: boolean) =>
@@ -84,7 +131,7 @@ export function assessMtfDataLimitations(state: PreparedGeometry, input: MtfData
               .filter(Boolean)
               .join("; ");
       const count = estimated.length;
-      const partialCount = estimated.filter((element) => spectral.partialLineElementIds.includes(element.id)).length;
+      const partialCount = estimated.filter((element) => partialIds.has(element.id)).length;
       const coordinates = mtfReferenceCoordinates(state);
       if (count > 0)
         limitations.push({
@@ -96,21 +143,29 @@ export function assessMtfDataLimitations(state: PreparedGeometry, input: MtfData
               : count === glasses.length
                 ? `Every glass is known only by ${coordinates}, so all dispersion is estimated.`
                 : `${count} of ${glasses.length} glasses (${names}) ${count === 1 ? "is" : "are"} known only by ${coordinates}, so ${count === 1 ? "its" : "their"} dispersion is estimated.`) +
-            ` Primary color stays exact; secondary spectrum in these ${label === "Photopic" ? "photopic" : label} curves is approximate.`,
+            (input.preferredSpectrum === "single"
+              ? " The refractive indices at the selected wavelength are estimated."
+              : ` Primary color stays exact; secondary spectrum in these ${label === "Photopic" ? "photopic" : label} curves is approximate.`),
         });
     }
   }
 
   const focus = input.result?.focus;
-  // At best axial focus by request, the chart never uses the authored plane.
-  if (focus?.imagePlaneInconsistent && focus.imagePlaneOffsetMm !== null && focus.requestedMode !== "best-axial") {
+  const usesAuthoredPlane = focus?.mode === "design" || (focus?.mode === "held" && focus.appliedShiftMm === 0);
+  // Automatic refocus is disclosed because the applied plane differs from the requested design policy.
+  const automaticallyRefocused = focus?.mode === "best-axial" && focus.requestedMode === "auto";
+  if (
+    focus?.imagePlaneInconsistent &&
+    focus.imagePlaneOffsetMm !== null &&
+    (usesAuthoredPlane || automaticallyRefocused)
+  ) {
     const offset = focus.imagePlaneOffsetMm;
     limitations.push({
       kind: "image-plane",
       blocking: true,
       text:
         `The authored image plane sits ${Math.abs(offset).toFixed(2)} mm ${offset > 0 ? "in front of" : "behind"} this prescription's paraxial focus, so the back focus in the lens data disagrees with its surfaces. ` +
-        (focus.mode === "best-axial"
+        (automaticallyRefocused
           ? "These curves are refocused to best axial focus instead of the design plane."
           : "These curves are taken at the authored plane and are out of focus."),
     });
@@ -118,20 +173,31 @@ export function assessMtfDataLimitations(state: PreparedGeometry, input: MtfData
 
   const geometry = input.result?.geometry;
   const fields = input.result?.fields ?? [];
-  const uncharted = fields.filter((field) => field.reason === "outside-modeled-field").length;
+  // Match the target resolver's edge tolerance so numerical rim noise is not a data gap.
+  const edgeTolerance = geometry ? geometry.modeledEdgeHeightMm * 1e-9 + 1e-9 : 0;
+  const uncharted =
+    geometry && input.fieldFractions
+      ? input.fieldFractions.filter(
+          (fraction) => fraction * geometry.referenceHeightMm > geometry.modeledEdgeHeightMm + edgeTolerance,
+        ).length
+      : fields.filter((field) => field.reason === "outside-modeled-field").length;
+  const fieldCount = input.fieldFractions?.length ?? fields.length;
   if (geometry && uncharted > 0) {
     const mm = formatHeights(geometry.referenceHeightMm - geometry.modeledEdgeHeightMm);
     limitations.push({
       kind: "short-field",
       blocking: true,
-      text: `The modeled clear apertures end the field at ${mm(geometry.modeledEdgeHeightMm)} mm, short of the ${mm(geometry.referenceHeightMm)} mm format corner. ${uncharted} of ${fields.length} field positions ${uncharted === 1 ? "lies beyond it and is" : "lie beyond it and are"} not charted.`,
+      text: `The modeled clear apertures end the field at ${mm(geometry.modeledEdgeHeightMm)} mm, short of the ${mm(geometry.referenceHeightMm)} mm format corner. ${uncharted} of ${fieldCount} field positions ${uncharted === 1 ? "lies beyond it and is" : "lie beyond it and are"} not charted.`,
     });
   }
 
-  const scale = mtfPrescriptionScale({
-    focalLengthDesign: source.catalog.focalLengthMm?.design,
-    focalLengthMarketing: source.catalog.focalLengthMm?.marketing,
-  });
+  const scale = mtfPrescriptionScale(
+    {
+      focalLengthDesign: source.catalog.focalLengthMm?.design,
+      focalLengthMarketing: source.catalog.focalLengthMm?.marketing,
+    },
+    state.zoomT,
+  );
   if (mtfScaleNeedsNote(scale)) {
     limitations.push({
       kind: "scale",

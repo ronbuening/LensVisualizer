@@ -61,3 +61,5 @@ Patent: JP 2022-030896 A, Example 1 / FIG. 1
 - `catalog.closeFocusM.marketing` 0.18 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.
 
 Text sync: focus.description: "to 0.18 m" → "to the patent's 0.18 m state (measured from the first surface)".
+
+- 2026-11-13 — `source.sdSource: "source-table"` rests on "Note on semi-diameters: clear apertures are patent-listed H values." Source: existing header / audit text; no optical values change.
