@@ -49,3 +49,15 @@ The live focus slider orders infinity before the 10 cm state. Only G2 moves imag
 - Paraxial check against the previous data: EFL identical and defocus unchanged (worst |Δ| 5e-13 mm) at infinity and
   the 0.1 m keyframe, because the old fold was stored unrounded. Physical track grows by 2.850 × (1 − 1/1.51680) =
   0.971 mm to 82.006 mm, the patent's raw geometric length.
+
+## 2026-11-14 — Source-certified finite conjugates
+
+Patent: CN116500768A.
+
+| Zoom / keyframe | Field | Before | After | Source and paraxial residual |
+|---|---|---|---|---|
+| 0 / 1 | `focus.conjugates` | No declaration | 18.2 mm, `first-surface` | Example 1, Table 2, 最近 column; DD[14]=10.754, DD[19]=4.757 mm (PDF p.25 (specification p.20/41), ¶0317; gaps PDF p.26 (specification p.21/41)). Offset +0.000663754 mm / +0.090353 depths; alternate reference unavailable depths; `consistent`. |
+
+Reference evidence: “在实施例1中，从最靠物体侧的透镜面至最近物体为止在光轴上的距离为18.2mm(毫米)。”
+
+The declared states already carry published focus flags. No prescription, gap, image-plane, or existing conjugate value changes.

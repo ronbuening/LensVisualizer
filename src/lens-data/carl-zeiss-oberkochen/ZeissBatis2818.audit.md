@@ -122,3 +122,15 @@ Model change: surface 22A d 22.083 → 22.106 mm, so the authored image plane mo
 every other value are unchanged. Analysis sync: physical track 91.978 → 92.001 mm, TL/EFL 4.960644 → 4.961884,
 condition (5) 0.463078 → 0.462962, object-to-image distance at the 158.000 mm state 249.978 → 250.001 mm, close-state
 paraxial residual +0.055374 → +0.032374 mm.
+
+## 2026-11-14 — Source-certified finite conjugates
+
+Patent: JP2016188967A.
+
+| Zoom / keyframe | Field | Before | After | Source and paraxial residual |
+|---|---|---|---|---|
+| 0 / 1 | `focus.conjugates` | No declaration | 158 mm, `first-surface` | Example 1, ¶0097, 各合焦状態の数値データ, close column; D(14)=2.318, D(16)=5.674 mm (PDF p.14 (printed p.14)). Offset +0.032374247 mm / +3.248764 depths; alternate reference 205.99282432963184 depths; `consistent`. |
+
+The patent prints the distance without defining its datum. The first-surface reference is identified by the conjugate audit (`referenceBasis: audit-resolved`), which discriminates the alternative. This basis is recorded in the declaration’s `source` and the accompanying results; the current conjugate schema has no separate reference-basis field.
+
+The declared states already carry published focus flags. No prescription, gap, image-plane, or existing conjugate value changes.

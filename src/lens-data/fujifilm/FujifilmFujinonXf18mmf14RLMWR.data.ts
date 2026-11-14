@@ -413,6 +413,16 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   focus: {
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 110,
+        distanceReference: "first-surface",
+        source:
+          "US20220011542A1, Example 1, Table 2, Object Distance 110 mm column; DD[12]=4.08, DD[22]=9.22 mm; ¶0083 (PDF p.22 (printed p.7)): 110 mm.",
+      },
+    ],
     closeFocusM: 0.2,
     description:
       "Inner focus: G2 (L21–L26) moves 2.50 mm toward the object. The published close state places the object 110 mm ahead of the first surface; the other groups and image plane stay fixed.",

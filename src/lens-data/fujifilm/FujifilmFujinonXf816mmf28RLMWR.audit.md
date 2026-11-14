@@ -104,3 +104,18 @@ Retain the refusal of RI for non-localized fields. Numerical clear apertures are
 `focus.closeFocusM` stays 0.5 m. Source prints a 500 mm-from-image-plane state; at 8 mm, two-decimal gap rounding moves the paraxial distance by several percent. The close row's modeled label reads within -5.8 % of it, so the close-endpoint corpus guard lists this lens as an exemption.
 
 - `catalog.closeFocusM.marketing` 0.25 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.
+
+## 2026-11-14 — Source-certified finite conjugates
+
+Patent: US20190302431A1.
+
+| Zoom / keyframe | Field | Before | After | Source and paraxial residual |
+|---|---|---|---|---|
+| 0 / 1 | `focus.conjugates` | No declaration | 500 mm, `image-plane` | Example 1, Table 2, W-500 mm / T-500 mm columns; W-500 mm: DD[9]=29.531, DD[18]=3.357, DD[26]=2.222, DD[32]=3.325 mm (PDF p.34 (printed p.9), ¶0096; gaps PDF p.35 (printed p.10)). Offset -0.014184610 mm / -1.463459 depths; alternate reference -6.096758666416571 depths; `ambiguous-reference`. |
+| 1 / 1 | `focus.conjugates` | No declaration | 500 mm, `image-plane` | Example 1, Table 2, W-500 mm / T-500 mm columns; T-500 mm: DD[9]=2.986, DD[18]=2.809, DD[26]=6.900, DD[32]=8.958 mm (PDF p.34 (printed p.9), ¶0096; gaps PDF p.35 (printed p.10)). Offset -0.013839040 mm / -1.436812 depths; alternate reference -15.37704908060272 depths; `consistent`. |
+
+Reference evidence: “an object at a distance of 500 mm (millimeters) from the image plane at the wide-angle end ... an object at a distance of 500 mm (millimeters) from the image plane at the telephoto end (¶0096)”
+
+The wide station is retained on the patent’s explicit image-plane definition; the two references are numerically ambiguous there.
+
+The declared states already carry published focus flags. No prescription, gap, image-plane, or existing conjugate value changes.

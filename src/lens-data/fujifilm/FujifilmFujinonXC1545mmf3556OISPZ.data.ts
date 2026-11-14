@@ -397,6 +397,32 @@ const LENS_DATA = {
   },
 
   focus: {
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 1000,
+        distanceReference: "image-plane",
+        source:
+          "JP2021015312A, Example 3, Table 11, 有限距離物体合焦時; ¶0059 defines finite state; WIDE: DD[6]=24.57, DD[16]=2.63, DD[18]=6.88 mm (PDF p.11 (printed p.11), ¶0059; gaps PDF p.19 (printed p.19)): 像面から１ｍの距離の物体に合焦時.",
+      },
+      {
+        zoomStation: 1,
+        keyframe: 1,
+        objectDistanceMm: 1000,
+        distanceReference: "image-plane",
+        source:
+          "JP2021015312A, Example 3, Table 11, 有限距離物体合焦時; ¶0059 defines finite state; MID: DD[6]=10.26, DD[16]=5.87, DD[18]=12.76 mm (PDF p.11 (printed p.11), ¶0059; gaps PDF p.19 (printed p.19)): 像面から１ｍの距離の物体に合焦時.",
+      },
+      {
+        zoomStation: 2,
+        keyframe: 1,
+        objectDistanceMm: 1000,
+        distanceReference: "image-plane",
+        source:
+          "JP2021015312A, Example 3, Table 11, 有限距離物体合焦時; ¶0059 defines finite state; TELE: DD[6]=0.34, DD[16]=13.68, DD[18]=16.96 mm (PDF p.11 (printed p.11), ¶0059; gaps PDF p.19 (printed p.19)): 像面から１ｍの距離の物体に合焦時.",
+      },
+    ],
     closeFocusM: 1.0,
     description: "PUBLISHED: G3 focuses from infinity to the patent 1 m state only; this is not the production MFD.",
   },

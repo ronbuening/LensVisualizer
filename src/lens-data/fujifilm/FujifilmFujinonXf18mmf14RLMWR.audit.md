@@ -20,3 +20,15 @@ The second local-site review identifies L21 as the ED element correlated with [F
   gapAfter 1.1000 mm. Paraxial check against the previous data: EFL identical and defocus unchanged at both focus
   states (the old 11.3930556962 was the exact fold).
 - Physical first-surface-to-image track grows by 0.971 mm to the patent's 91.0641 mm.
+
+## 2026-11-14 — Source-certified finite conjugates
+
+Patent: US20220011542A1.
+
+| Zoom / keyframe | Field | Before | After | Source and paraxial residual |
+|---|---|---|---|---|
+| 0 / 1 | `focus.conjugates` | No declaration | 110 mm, `first-surface` | Example 1, Table 2, Object Distance 110 mm column; DD[12]=4.08, DD[22]=9.22 mm; ¶0083 (PDF p.22 (printed p.7)). Offset -0.000632486 mm / -0.234393 depths; alternate reference 2058.905150166006 depths; `consistent`. |
+
+Reference evidence: “The object distance is a distance on the optical axis from the object to the lens surface closest to the object side in the first lens group G1.”
+
+The declared states already carry published focus flags. No prescription, gap, image-plane, or existing conjugate value changes.
