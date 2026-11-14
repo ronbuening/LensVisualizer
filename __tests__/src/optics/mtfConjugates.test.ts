@@ -47,12 +47,26 @@ const conjugate: FiniteConjugate = {
 };
 
 // Independent ABCD calculation: stop-to-glass air=1 mm, n=1.5168, radii +50/-50, glass=5 mm.
-function atRear(y: number, u: number) {
+function atRear(y: number, u: number, imageN = 1) {
   y += u;
   u = (u - (y * (1.5168 - 1)) / 50) / 1.5168;
   y += 5 * u;
-  u = 1.5168 * u - (y * (1 - 1.5168)) / -50;
+  u = (1.5168 * u - (y * (imageN - 1.5168)) / -50) / imageN;
   return { y, u };
+}
+
+// The angular ABCD basis starts at the stop centre; its axial crossing is the exit pupil.
+function pupilDefocus(radius: number, distance: number, authoredGap: number, imageN = 1) {
+  const marginal = atRear(radius, radius / distance, imageN);
+  const chief = atRear(0, 1, imageN);
+  const pupilGap = -chief.y / chief.u;
+  const rim = marginal.y + marginal.u * pupilGap;
+  const authoredRadius = authoredGap - pupilGap;
+  const imageRadius = -rim / marginal.u;
+  return {
+    wavefrontMm: ((imageN * rim ** 2) / 2) * (1 / authoredRadius - 1 / imageRadius),
+    authoredN: Math.abs(authoredRadius / rim) / (2 * imageN),
+  };
 }
 
 describe("documented finite MTF", () => {
@@ -79,6 +93,7 @@ describe("documented finite MTF", () => {
     const marginal = atRear(auditOptions.stopSemiDiameterMm, auditOptions.stopSemiDiameterMm / 1000);
     const paraxialN = 1 / (2 * Math.abs(marginal.u));
     expect(report.paraxialWorkingFNumber).toBeCloseTo(paraxialN, 12);
+    expect(report.authoredPlaneWorkingFNumber).toBeCloseTo(paraxialN, 12);
     expect(report.diffractionDepthMm).toBeCloseTo(2 * report.referenceWavelengthNm * 1e-6 * paraxialN ** 2, 12);
     expect(report.referenceDiscriminated).toBe(true);
     expect(report.realRayBestFocusOffsetMm).not.toBeNull();
@@ -116,8 +131,69 @@ describe("documented finite MTF", () => {
     const report = assessMtfConjugateConsistency(mtfInputs(perturbed, auditOptions)[0])!;
     expect(report.verdict).toBe("inconsistent");
     expect(report.paraxialOffsetMm).toBeCloseTo(-2, 12);
-    expect(report.offsetDepths).toBeCloseTo(-2 / report.diffractionDepthMm!, 10);
+    const { wavefrontMm } = pupilDefocus(12, 1000, imageGap + 2);
+    expect(report.offsetDepths).toBeCloseTo(wavefrontMm / ((report.referenceWavelengthNm * 1e-6) / 4), 10);
     expect(Math.abs(report.otherReference.offsetDepths!)).toBeGreaterThan(report.thresholdDepths);
+  });
+  it("keeps defocus invariant when a dummy surface is inserted just before the image", () => {
+    // An index-matched plane changes no optical power or pupil, only the final trace reference.
+    const authoredGap = imageGap + 0.2;
+    const lastGap = 0.3;
+    const data = constructionFixtureData(L);
+    const defocused = build({
+      ...data,
+      surfaces: data.surfaces.map((s, i) => (i === 2 ? { ...s, d: authoredGap } : s)),
+    });
+    const withDummy = build({
+      ...data,
+      surfaces: [
+        ...data.surfaces.map((s, i) => (i === 2 ? { ...s, d: authoredGap - lastGap } : s)),
+        { label: "dummy", R: 1e15, d: lastGap, nd: 1, sd: 50, elemId: 0 },
+      ],
+    });
+    const reports = [defocused, withDummy].map(
+      (lens) => assessMtfConjugateConsistency(mtfInputs(prepareRuntimeState(lens, 1, 0), auditOptions)[0])!,
+    );
+    const expected = pupilDefocus(12, 1000, authoredGap).wavefrontMm / (587.5618e-6 / 4);
+    expect(Math.abs(expected)).toBeGreaterThan(25);
+    for (const report of reports) {
+      expect(Math.abs(report.offsetDepths! / expected - 1)).toBeLessThan(1e-6);
+      expect(report.unavailableReason).toBeNull();
+    }
+    expect(Math.abs(reports[1].offsetDepths! / reports[0].offsetDepths! - 1)).toBeLessThan(1e-6);
+    expect(reports[1].authoredPlaneWorkingFNumber).toBeCloseTo(reports[0].authoredPlaneWorkingFNumber!, 10);
+    // A last-surface sag measure instead scales by L_i/L_a and loses two thirds here.
+    const lastSurfaceRatio = (lastGap - 0.2) / lastGap / (imageGap / authoredGap);
+    expect(Math.abs(lastSurfaceRatio - 1)).toBeGreaterThan(0.6);
+  });
+  it("uses a finite defocus value for an image-space telecentric pupil", () => {
+    // Air=64 mm before an n=1→2, R=64 face: a stop-centre ray exits with u_c=0.
+    // The stop-rim ray exits with u=−r/128, independently of the finite object distance.
+    const radius = 12;
+    const n = 2;
+    const offset = 1e-4;
+    const imageGap = 128 * (1 + 64 / 1000) - 5;
+    const telecentric = prepareRuntimeState(
+      build({
+        ...constructionFixtureData(L),
+        elements: L.elements.map((e) => ({ ...e, nd: n })),
+        surfaces: [
+          { label: "STO", R: 1e15, d: 64, nd: 1, sd: 15, elemId: 0 },
+          { label: "1", R: 64, d: 5, nd: n, sd: 15, elemId: 1 },
+          { label: "2", R: 1e15, d: imageGap - offset, nd: n, sd: 15, elemId: 1 },
+        ],
+      }),
+      1,
+      0,
+    );
+    const report = assessMtfConjugateConsistency(mtfInputs(telecentric, auditOptions)[0])!;
+    const workingN = 1 / (2 * n * (radius / 128));
+    const depth = 2 * 587.5618e-6 * n * workingN ** 2;
+    expect(report.unavailableReason).toBeNull();
+    expect(report.paraxialOffsetMm).toBeCloseTo(offset, 10);
+    expect(report.authoredPlaneWorkingFNumber).toBeCloseTo(workingN, 12);
+    expect(report.diffractionDepthMm).toBeCloseTo(depth, 12);
+    expect(report.offsetDepths).toBeCloseTo(offset / depth, 9);
   });
   it("certifies paraxial conjugacy when the real working-aperture ray clips", () => {
     const report = assessMtfConjugateConsistency(
@@ -128,23 +204,22 @@ describe("documented finite MTF", () => {
     expect(report.paraxialOffsetMm).toBeCloseTo(0, 12);
     expect(report.paraxialWorkingFNumber).toBeCloseTo(1 / (2 * Math.abs(marginal.u)), 12);
     expect(report.realRayWorkingFNumber).toBeNull();
-    expect(report.offsetDepths).toBeCloseTo(0, 12);
+    expect(report.offsetDepths).toBeCloseTo(0, 10);
     expect(report.unavailableReason).toBeNull();
     expect(report.realRayUnavailableReason).toContain("Working f-number ray");
   });
   it("discriminates two passing references only with a substantial relative residual", () => {
-    // The independent ABCD solve gives the alternate image and its own paraxial depth.
+    // The independent ABCD solve gives the alternate cone's wavefront at the authored plane.
     // A 6 mm stop puts that residual between one and 25 depths, below the rejection threshold.
     const stop = 6;
     const other = atRear(1, 1 / (1000 - state.imgZ));
     const otherGap = -other.y / other.u;
-    const otherN = 1 / (2 * stop * Math.abs(other.u));
-    const depth = 2 * 587.5618e-6 * otherN ** 2;
+    const { wavefrontMm } = pupilDefocus(stop, 1000 - state.imgZ, imageGap);
     const report = assessMtfConjugateConsistency(
       mtfInputs(state, { ...auditOptions, pupilSemiDiameterMm: stop, stopSemiDiameterMm: stop })[0],
     )!;
     expect(report.otherReference.paraxialOffsetMm).toBeCloseTo(otherGap - imageGap, 12);
-    expect(report.otherReference.offsetDepths).toBeCloseTo((otherGap - imageGap) / depth, 10);
+    expect(report.otherReference.offsetDepths).toBeCloseTo(wavefrontMm / (587.5618e-6 / 4), 10);
     expect(Math.abs(report.otherReference.offsetDepths!)).toBeGreaterThan(1);
     expect(Math.abs(report.otherReference.offsetDepths!)).toBeLessThan(report.thresholdDepths);
     expect(report.referenceDiscriminated).toBe(true);
@@ -203,6 +278,127 @@ describe("documented finite MTF", () => {
     for (const focusT of [0, 0.5])
       expect(assessMtfConjugateConsistency(mtfInputs(prepareRuntimeState(L, focusT, 0), auditOptions)[0])).toBeNull();
   });
+  // The image-side cone must not hide a wrong object by becoming arbitrarily slow.
+  it.each([1e-5, -1e-5])("rejects an object %s mm from the front focal point", (offset) => {
+    const frontFocus = -atRear(0, 1).u / atRear(1, 0).u;
+    const distance = frontFocus + offset;
+    const near = prepareRuntimeState(
+      build({ ...constructionFixtureData(L), finiteConjugates: [{ ...conjugate, objectDistanceMm: distance }] }),
+      1,
+      0,
+    );
+    const report = assessMtfConjugateConsistency(mtfInputs(near, auditOptions)[0])!;
+    const { wavefrontMm } = pupilDefocus(12, distance, imageGap);
+    expect(report.verdict).toBe("inconsistent");
+    expect(report.offsetDepths).toBeCloseTo(wavefrontMm / ((report.referenceWavelengthNm * 1e-6) / 4), 7);
+    expect(report.offsetDepths).toBeGreaterThan(1000);
+    expect(report.unavailableReason).toBeNull();
+    if (offset < 0) {
+      expect(report.paraxialImageZMm).toBeNull();
+      expect(report.paraxialOffsetMm).toBeNull();
+      expect(report.paraxialMagnification).toBeNull();
+      expect(report.paraxialWorkingFNumber).toBeNull();
+      expect(report.paraxialImageUnavailableReason).toContain("No finite real paraxial image");
+      // A tiny test aperture can make the wavefront pass; a virtual image still cannot certify focus.
+      const slow = assessMtfConjugateConsistency(mtfInputs(near, options)[0])!;
+      expect(Math.abs(slow.offsetDepths!)).toBeLessThan(slow.thresholdDepths);
+      expect(slow.verdict).toBe("inconsistent");
+    } else expect(report.paraxialImageZMm).toBeGreaterThan(1e8);
+  });
+  it("retains finite defocus when a collimated exit has no finite real image", () => {
+    // A single n=1→2, R=64 mm refracting face collimates an axial object 64 mm away exactly.
+    const collimated = prepareRuntimeState(
+      build({
+        ...constructionFixtureData(L),
+        elements: L.elements.map((e) => ({ ...e, nd: 2 })),
+        surfaces: [
+          { label: "STO", R: 1e15, d: 0, nd: 1, sd: 15, elemId: 0 },
+          { label: "1", R: 64, d: 5, nd: 2, sd: 15, elemId: 1 },
+          { label: "2", R: 1e15, d: 64, nd: 2, sd: 15, elemId: 1 },
+        ],
+        finiteConjugates: [{ ...conjugate, objectDistanceMm: 64 }],
+      }),
+      1,
+      0,
+    );
+    const report = assessMtfConjugateConsistency(mtfInputs(collimated, auditOptions)[0])!;
+    expect(report.paraxialImageZMm).toBeNull();
+    expect(report.paraxialOffsetMm).toBeNull();
+    expect(report.paraxialMagnification).toBeNull();
+    expect(report.paraxialWorkingFNumber).toBeNull();
+    expect(report.paraxialImageUnavailableReason).toContain("No finite real paraxial image");
+    expect(report.unavailableReason).toBeNull();
+    // The stop and refracting face coincide, 5 mm before the last surface: R_a = 64 + 5.
+    expect(report.offsetDepths).toBeCloseTo((2 * 12 ** 2) / (2 * 69) / (587.5618e-6 / 4), 9);
+    expect(report.verdict).toBe("inconsistent");
+  });
+  it("rejects a reference that puts the object at front focus while the other reference focuses", () => {
+    const parallel = atRear(1, 0);
+    const angular = atRear(0, 1);
+    const frontFocus = -angular.u / parallel.u;
+    // Solve S - frontFocus = authored z = 6 + imageGap(S) using the independent ABCD matrix.
+    const q = 6 - parallel.y / parallel.u;
+    const planeZ = (q + Math.sqrt(q ** 2 - (4 * (parallel.y * frontFocus + angular.y)) / parallel.u)) / 2;
+    const wrong = prepareRuntimeState(
+      build({
+        ...constructionFixtureData(L),
+        surfaces: constructionFixtureData(L).surfaces.map((s, i) => (i === 2 ? { ...s, d: planeZ - 6 } : s)),
+        finiteConjugates: [{ ...conjugate, objectDistanceMm: frontFocus + planeZ, distanceReference: "image-plane" }],
+      }),
+      1,
+      0,
+    );
+    const report = assessMtfConjugateConsistency(mtfInputs(wrong, auditOptions)[0])!;
+    expect(-report.objectZMm).toBeCloseTo(frontFocus, 12);
+    expect(report.offsetDepths).toBeGreaterThan(1000);
+    expect(report.otherReference.offsetDepths).toBeCloseTo(0, 8);
+    expect(report.verdict).toBe("other-reference");
+  });
+  it("uses the image medium index in quarter-wave defocus and authored-plane depth", () => {
+    const n = 1.333;
+    const marginal = atRear(12, 12 / 1000, n);
+    const lambda = 587.5618e-6;
+    // Set 22.5 quarter waves by solving the pupil-sphere vergence difference independently.
+    const chief = atRear(0, 1, n);
+    const pupilGap = -chief.y / chief.u;
+    const rim = marginal.y + marginal.u * pupilGap;
+    const authoredGap = pupilGap + 1 / (-marginal.u / rim + (22.5 * lambda) / (2 * n * rim ** 2));
+    const immersed = prepareRuntimeState(
+      build({
+        ...constructionFixtureData(L),
+        elements: [...L.elements, { ...L.elements[0], id: 2, nd: n }],
+        surfaces: constructionFixtureData(L).surfaces.map((s, i) =>
+          i === 2 ? { ...s, nd: n, elemId: 2, d: authoredGap } : s,
+        ),
+      }),
+      1,
+      0,
+    );
+    const report = assessMtfConjugateConsistency(mtfInputs(immersed, auditOptions)[0])!;
+    const { authoredN } = pupilDefocus(12, 1000, authoredGap, n);
+    expect(report.authoredPlaneWorkingFNumber).toBeCloseTo(authoredN, 12);
+    expect(report.diffractionDepthMm).toBeCloseTo(2 * lambda * n * authoredN ** 2, 12);
+    expect(report.limitMm).toBe(report.thresholdDepths * report.diffractionDepthMm!);
+    expect(report.offsetDepths).toBeCloseTo(22.5, 9);
+  });
+  it("approaches offset / (2 lambda n N squared) for a small image offset", () => {
+    const offset = 1e-7;
+    const shifted = prepareRuntimeState(
+      build({
+        ...constructionFixtureData(L),
+        surfaces: constructionFixtureData(L).surfaces.map((s, i) => (i === 2 ? { ...s, d: imageGap - offset } : s)),
+      }),
+      1,
+      0,
+    );
+    const report = assessMtfConjugateConsistency(mtfInputs(shifted, auditOptions)[0])!;
+    const marginal = atRear(12, 12 / 1000);
+    const n = 1;
+    const conjugateN = 1 / (2 * n * Math.abs(marginal.u));
+    const oldDepths = offset / (2 * report.referenceWavelengthNm * 1e-6 * n * conjugateN ** 2);
+    expect(report.offsetDepths).toBeGreaterThan(0);
+    expect(report.offsetDepths! / oldDepths).toBeCloseTo(1, 7);
+  });
   it("checks the same axial source on a fisheye while preserving its MTF support boundary", () => {
     const fisheye = prepareRuntimeState(
       build({
@@ -220,6 +416,28 @@ describe("documented finite MTF", () => {
     expect(report.realRayWorkingFNumber).toBe(axial.realRayWorkingFNumber);
     expect(report.realRayBestFocusOffsetMm).toBe(axial.realRayBestFocusOffsetMm);
     expect(assessMtfSupport(...mtfInputs(fisheye, auditOptions)).reason).toBe("unsupported-path");
+  });
+  it("keeps mixed-reference and physical eligibility checks on a fisheye axial audit", () => {
+    const imageN = 1.6;
+    const axial = atRear(1, 1 / 1000, imageN);
+    const mixed = prepareRuntimeState(
+      build({
+        ...constructionFixtureData(L),
+        projection: { kind: "fisheye-equidistant", focalLengthMm: 50, fullFieldDeg: 180 },
+        elements: [...L.elements, { ...L.elements[0], id: 2, nd: imageN, glass: undefined, indexReference: "e" }],
+        surfaces: constructionFixtureData(L).surfaces.map((s, i) =>
+          i === 2 ? { ...s, nd: imageN, elemId: 2, d: -axial.y / axial.u } : s,
+        ),
+      }),
+      1,
+      0,
+    );
+    const report = assessMtfConjugateConsistency(mtfInputs(mixed, auditOptions)[0])!;
+    expect(report.verdict).toBe("inconsistent");
+    expect(report.unavailableReason).toContain("Mixed d/D/e indices");
+    expect(report.offsetDepths).toBeNull();
+    const invalid = assessMtfConjugateConsistency(mtfInputs(mixed, { ...auditOptions, stopSemiDiameterMm: NaN })[0])!;
+    expect(invalid.unavailableReason).toContain("finite physical apertures");
   });
   it("sets the finite-conjugate diffraction cutoff from the independent marginal angle", () => {
     // A nearly stigmatic finite image has the circular-pupil MTF at cutoff 2 sin U′ / λ in air.

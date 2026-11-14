@@ -270,19 +270,32 @@ every field's. Only `finiteConjugates` stations are
 eligible; see `src/lens-data/LENS_DATA_SPEC.md` for source requirements.
 
 `assessMtfConjugateConsistency` checks a prepared certified finite state without changing any MTF result.
-It traces the paraxial image at the reference wavelength and reports its signed offset from the authored image vertex
-and transverse magnification. The axial paraxial ray is scaled to the physical stop rim, giving
-`paraxialWorkingFNumber` = 1/(2 n′ |u′|) in the small-angle approximation. This sets the diffraction depth
-2λN_paraxial² and the signed `offsetDepths`, so the verdict depends only on paraxial quantities. The separate
-`realRayWorkingFNumber` reuses the MTF stop-rim ray and is null when it clips or fails; `realRayUnavailableReason`
+It traces the axial paraxial ray at the reference wavelength, scaled to the physical stop rim. At the last surface,
+height y, slope u and image-medium index n′ give transverse miss h_a = y + u L_a at the authored image vertex,
+where L_a is the positive distance from that surface. A linear combination of the axial and parallel basis rays
+with zero recorded height at the stop locates its image, the exit pupil, at l_ep = −y_c/u_c from the last surface.
+The pupil rim has height a = y + u l_ep and authored radius R_a = L_a − l_ep, giving reference slope u_a = −a/R_a.
+An image-space telecentric pupil (|u_c/y_c| ≤ 10⁻¹²/mm) uses u_a = u; an authored plane at the pupil is unavailable.
+Defocus on the pupil sphere is W = −n′ u_a h_a/2 = n′ a²/2 (1/R_a − 1/R_i), independent of the last-surface location.
+Signed `offsetDepths` = W/(λ/4) measures quarter waves; for a small image offset Δ it tends to Δ/(2λn′N_i²), where
+`paraxialWorkingFNumber` = N_i = 1/(2n′|u|). Positive defocus means the real image lies beyond the authored plane.
+`authoredPlaneWorkingFNumber` = N_a = 1/(2n′|u_a|) sets `diffractionDepthMm` = 2λn′N_a² and `limitMm` = 25 times
+that depth. The millimetre depth describes the authored-plane cone from the exit pupil. For a finite real image,
+the quarter-wave measure equals the small-offset normalization times R_i/R_a, retaining its finite-offset correction.
+The calculated image position, offset, magnification and N_i are null for infinite or virtual images;
+`paraxialImageUnavailableReason` explains why without suppressing their pupil-referenced defocus. Such images
+cannot certify consistency. An invalid authored plane or unavailable support instead sets `unavailableReason`.
+The separate `realRayWorkingFNumber` reuses the MTF stop-rim ray and is null when it clips or fails;
+`realRayUnavailableReason`
 names that failure without affecting the verdict. The reference-line axial best-focus search remains a diagnostic
 bounded to ±10 mm.
 
 `npm run audit:finite-conjugates` checks every declaration at its open physical stop, including axial conjugacy on
-fisheyes. The limit is `MTF_FINITE_CONJUGATE_DEPTHS` = 25 paraxial diffraction depths: all 100 catalog states are
-measurable, 96 lie within 24.310 depths, and four outliers span 36.125–101.683. This accommodates the main
+fisheyes, retaining every support check except the off-axis projection requirement. The limit is
+`MTF_FINITE_CONJUGATE_DEPTHS` = 25 quarter waves: all 100 catalog states are measurable, 96 lie within 24.314 units,
+and four outliers span 36.174–101.033. This accommodates the main
 source-rounded residual range; it does not certify source accuracy. The other distance reference is checked
-independently and normalized with its own paraxial working aperture, never applied. `referenceDiscriminated` is true
+independently by the same authored-plane wavefront measure, never applied. `referenceDiscriminated` is true
 when the other reference would put the object at or behind the first surface, exceeds 25 absolute depths, or has an
 absolute offset in depths at least 10 times the declared one and above one depth. Any other unavailable alternate does
 not establish discrimination.

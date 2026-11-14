@@ -1072,7 +1072,12 @@ focus: {
 - MTF never infers conjugates from `closeFocusM`, a production MFD or interpolated slider labels; undocumented
   intermediate states stay unavailable. Do not certify calculated focus travel as a published configuration.
 - Every conjugate also counts as a published state (below).
-- Run `npm run audit:finite-conjugates` to check declared distances and focus spacings against paraxial conjugacy;
+- Run `npm run audit:finite-conjugates` to check declared distances and focus spacings using paraxial defocus
+  wavefront error on the exit-pupil sphere referenced to the authored image plane, at the open physical stop.
+  The limit is 25 quarter waves; the millimetre depth uses the cone from the exit-pupil rim to the authored plane
+  and the image-medium index, with the marginal slope as the telecentric limit. Infinite or virtual images retain
+  a numeric defocus diagnostic but cannot certify consistency. Fisheye axial checks retain the other MTF support prerequisites.
+  See `agent_docs/architecture/optics-engine.md` § Simulated MTF for the measure and distance-reference verdicts.
   `--lens=<key>`, `--files=<comma-separated data files>`, `--json` and `--strict` support focused authoring checks.
 - Source-rounded prescriptions may keep residual defocus: MTF evaluates the authored image plane by default, reports the
   axial best-focus shift as a diagnostic, and moves the plane only when the viewer asks. Do not edit the authored image

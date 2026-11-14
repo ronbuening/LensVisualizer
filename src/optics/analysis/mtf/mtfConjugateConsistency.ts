@@ -29,15 +29,20 @@ export interface MtfConjugateCheck {
   objectZMm: number;
   paraxialImageZMm: number | null;
   paraxialOffsetMm: number | null;
+  /** Infinite and virtual images have no finite real-image diagnostics, but retain defocus. */
+  paraxialImageUnavailableReason: string | null;
   /** Signed transverse magnification at the paraxial conjugate plane. */
   paraxialMagnification: number | null;
   /** Small-angle 1 / (2 n′ |u′|), with the axial ray scaled to the physical stop rim. */
   paraxialWorkingFNumber: number | null;
+  /** 1 / (2 n′ |u_a|), for the exit-pupil rim cone converging on the authored plane. */
+  authoredPlaneWorkingFNumber: number | null;
   /** Real stop-rim ray's 1 / (2 n′ sin θ′); diagnostic only, null when it clips or fails. */
   realRayWorkingFNumber: number | null;
   realRayUnavailableReason: string | null;
-  /** One paraxial diffraction depth of focus, 2 λ N_paraxial². */
+  /** One authored-plane paraxial diffraction depth of focus, 2 λ n′ N_a². */
   diffractionDepthMm: number | null;
+  /** Signed authored-plane defocus wavefront error in quarter waves. */
   offsetDepths: number | null;
   limitMm: number | null;
   /** Unavailable diagnostics cannot certify consistency. */
@@ -71,7 +76,7 @@ export function assessMtfConjugateConsistency(request: AnalysisRequest): MtfConj
   if (!conjugate) return null;
   const settings = { method: "geometric", spectrum: "reference", focus: "design" } as const;
   const options = resolveMtfOptions(request, settings);
-  const support = { ...assessMtfSupport(request, settings), conjugate };
+  const support = { ...assessMtfSupport(request, settings, { axialConjugateAudit: true }), conjugate };
   const declared = checkReference(request, options, support, conjugate);
   const otherConjugate: FiniteConjugate = {
     ...conjugate,
@@ -80,6 +85,7 @@ export function assessMtfConjugateConsistency(request: AnalysisRequest): MtfConj
   const otherReference = checkReference(request, options, support, otherConjugate);
   const withinLimit = (check: MtfConjugateCheck) =>
     check.unavailableReason === null &&
+    check.paraxialImageUnavailableReason === null &&
     check.offsetDepths !== null &&
     Math.abs(check.offsetDepths) <= MTF_FINITE_CONJUGATE_DEPTHS;
   const declaredMismatch =
@@ -95,7 +101,7 @@ export function assessMtfConjugateConsistency(request: AnalysisRequest): MtfConj
           Math.abs(otherReference.offsetDepths) > 1)));
 
   let realRayBestFocusOffsetMm: number | null = null;
-  if (axialPathAvailable(support)) {
+  if (support.available) {
     const launch = prepareMtfFieldLaunch(state, options, support, 0);
     const bundle = launch?.aim
       ? traceMtfStopBundle(state, options, support, launch, MTF_FOCUS_GRID, support.spectralLines[0])
@@ -138,8 +144,10 @@ function checkReference(
     objectZMm: (conjugate.distanceReference === "image-plane" ? state.imgZ : first.z) - conjugate.objectDistanceMm,
     paraxialImageZMm: null,
     paraxialOffsetMm: null,
+    paraxialImageUnavailableReason: null,
     paraxialMagnification: null,
     paraxialWorkingFNumber: null,
+    authoredPlaneWorkingFNumber: null,
     realRayWorkingFNumber: null,
     realRayUnavailableReason: null,
     diffractionDepthMm: null,
@@ -147,9 +155,7 @@ function checkReference(
     limitMm: null,
     unavailableReason: null,
   };
-  // An invalid declared object may still be valid under the alternate reference.
-  if (!axialPathAvailable(support) && support.reason !== "finite-conjugate-unavailable")
-    return { ...check, unavailableReason: support.message };
+  if (!support.available) return { ...check, unavailableReason: support.message };
   const object = mtfFiniteObjectPoint(state, conjugate, 0);
   if (!object) return { ...check, unavailableReason: "Object is not in front of the first surface." };
   const indexAtSurface = mtfIndexResolver(state, support, support.referenceWavelengthNm);
@@ -162,23 +168,59 @@ function checkReference(
     skipLastTransfer: true,
     recordHeights: true,
   });
+  const authoredGap = state.imgZ - surfaces.at(-1)!.z;
+  if (!(authoredGap > 0) || !Number.isFinite(authoredGap))
+    return { ...check, unavailableReason: "Authored image plane is not beyond the last surface." };
   const gap = -axial.y / axial.u;
   const imageZ = surfaces.at(-1)!.z + gap;
-  if (!Number.isFinite(imageZ)) return { ...check, unavailableReason: "No finite paraxial image." };
-  check.paraxialImageZMm = imageZ;
-  check.paraxialOffsetMm = imageZ - state.imgZ;
-  // A parallel basis ray's image height is A + t C, the transverse magnification at conjugacy.
-  const parallel = traceParaxialSurfaces(surfaces, 1, 0, { skipLastTransfer: true });
-  check.paraxialMagnification = parallel.y + gap * parallel.u;
   // Linearity scales the unit-height ray to the stop rim without testing clear apertures.
-  // Paraxial NA is n′ |u′|; using sin(arctan u′) would add a nonparaxial correction.
   const stopHeight = axial.heights![state.lens.stop.surfaceIndex];
-  const paraxialN = Math.abs(stopHeight / (2 * axial.n * axial.u * options.stopSemiDiameterMm));
-  if (!(paraxialN > 0) || !Number.isFinite(paraxialN))
-    return { ...check, unavailableReason: "No finite paraxial working f-number." };
-  check.paraxialWorkingFNumber = paraxialN;
-  check.diffractionDepthMm = 2 * support.referenceWavelengthNm * 1e-6 * paraxialN ** 2;
-  check.offsetDepths = check.paraxialOffsetMm / check.diffractionDepthMm;
+  const scale = options.stopSemiDiameterMm / stopHeight;
+  const y = axial.y * scale;
+  const u = axial.u * scale;
+  const n = axial.n;
+  const parallel = traceParaxialSurfaces(surfaces, 1, 0, {
+    skipLastTransfer: true,
+    recordHeights: true,
+  });
+  // This linear combination vanishes at the stop, so its axial crossing images the stop centre.
+  const parallelStopHeight = parallel.heights![state.lens.stop.surfaceIndex];
+  const yc = axial.y * parallelStopHeight - parallel.y * stopHeight;
+  const uc = axial.u * parallelStopHeight - parallel.u * stopHeight;
+  if (!Number.isFinite(yc) || !Number.isFinite(uc) || (yc === 0 && uc === 0))
+    return { ...check, unavailableReason: "No paraxial exit pupil." };
+  let authoredSlope: number;
+  // A pupil vergence below 10⁻¹²/mm is the image-space telecentric limit.
+  if (Math.abs(uc) <= 1e-12 * Math.abs(yc)) authoredSlope = u;
+  else {
+    const exitPupilGap = -yc / uc;
+    const authoredRadius = authoredGap - exitPupilGap;
+    if (Math.abs(authoredRadius) <= 1e-12 * Math.max(1, Math.abs(authoredGap), Math.abs(exitPupilGap)))
+      return { ...check, unavailableReason: "Authored image plane coincides with the exit pupil." };
+    const pupilRimHeight = y + u * exitPupilGap;
+    authoredSlope = -pupilRimHeight / authoredRadius;
+  }
+  const authoredN = 1 / (2 * n * Math.abs(authoredSlope));
+  if (!(authoredN > 0) || !Number.isFinite(authoredN) || !Number.isFinite(u) || !(n > 0))
+    return { ...check, unavailableReason: "No finite authored-plane working f-number." };
+  if (gap > 0 && Number.isFinite(imageZ)) {
+    check.paraxialImageZMm = imageZ;
+    check.paraxialOffsetMm = imageZ - state.imgZ;
+    // A parallel basis ray's image height is A + t C, the transverse magnification at conjugacy.
+    check.paraxialMagnification = parallel.y + gap * parallel.u;
+    // Paraxial NA is n′ |u′|; sin(arctan u′) would add a nonparaxial correction.
+    check.paraxialWorkingFNumber = 1 / (2 * n * Math.abs(u));
+  } else check.paraxialImageUnavailableReason = "No finite real paraxial image (infinite or virtual).";
+  const lambdaMm = support.referenceWavelengthNm * 1e-6;
+  // At the exit-pupil rim a, u_a = −a/R_a and h_a = a(1 − R_a/R_i), so
+  // W = −n′ u_a h_a/2 = n′ a²/2 (1/R_a − 1/R_i) on the pupil sphere.
+  // For small Δ = R_i − R_a, W/(λ/4) ≈ Δ/(2 λ n′ N²), N = 1/(2n′|u|).
+  // The transverse miss keeps defocus large for infinite or virtual images.
+  const authoredMiss = y + u * authoredGap;
+  const wavefrontMm = (-n * authoredSlope * authoredMiss) / 2;
+  check.authoredPlaneWorkingFNumber = authoredN;
+  check.diffractionDepthMm = 2 * lambdaMm * n * authoredN ** 2;
+  check.offsetDepths = wavefrontMm / (lambdaMm / 4);
   check.limitMm = MTF_FINITE_CONJUGATE_DEPTHS * check.diffractionDepthMm;
   const referencedSupport = { ...support, conjugate };
   const launch = prepareMtfFieldLaunch(state, options, referencedSupport, 0);
@@ -194,14 +236,4 @@ function checkReference(
   }
   check.realRayWorkingFNumber = marginal.value;
   return check;
-}
-
-function axialPathAvailable(support: MtfSupport): boolean {
-  // Axial conjugacy needs no off-axis projection mapping, even on a fisheye.
-  return (
-    support.available ||
-    (support.reason === "unsupported-path" &&
-      support.pathReasons?.length === 1 &&
-      support.pathReasons[0] === "fisheye-projection")
-  );
 }

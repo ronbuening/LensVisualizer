@@ -83,13 +83,16 @@ report.conjugates = report.rows.length;
 if (args.includes("--json")) console.log(JSON.stringify(report, null, 2));
 else {
   console.log(
-    `${report.lenses} lenses · ${report.conjugates} conjugates · ${report.thresholdDepths} diffraction depths threshold`,
+    `${report.lenses} lenses · ${report.conjugates} conjugates · ${report.thresholdDepths} quarter-wave defocus threshold`,
   );
   console.log("Offsets are image minus authored plane (mm); positive is away from the lens. — means unavailable.");
   console.log(
-    "| Lens | Zoom/keyframe | Reference | Object z | Authored z | Paraxial z | Offset mm | Best axial mm | λ nm | Paraxial Nw | Real-ray Nw | 2λNp² mm | Offset depths | Limit mm | m | Other offset mm | Other depths | Reference discriminated | Verdict | Reason | Real-ray reason |",
+    "Depths are signed defocus wavefront error at the authored plane in quarter waves; mm depths use its cone.",
   );
-  console.log(`|${Array(21).fill("---").join("|")}|`);
+  console.log(
+    "| Lens | Zoom/keyframe | Reference | Object z | Authored z | Paraxial z | Offset mm | Best axial mm | λ nm | Paraxial Nw | Authored-plane Nw | Real-ray Nw | 2λn′Na² mm | Offset depths | Limit mm | m | Other offset mm | Other depths | Reference discriminated | Verdict | Reason | Paraxial-image reason | Real-ray reason |",
+  );
+  console.log(`|${Array(23).fill("---").join("|")}|`);
   const number = (value) => (value === null ? "—" : Number(value.toPrecision(7)).toString());
   for (const row of report.rows) {
     console.log(
@@ -104,6 +107,7 @@ else {
         row.realRayBestFocusOffsetMm,
         row.referenceWavelengthNm,
         row.paraxialWorkingFNumber,
+        row.authoredPlaneWorkingFNumber,
         row.realRayWorkingFNumber,
         row.diffractionDepthMm,
         row.offsetDepths,
@@ -114,6 +118,7 @@ else {
         row.referenceDiscriminated,
         row.verdict,
         row.unavailableReason ?? "—",
+        row.paraxialImageUnavailableReason ?? "—",
         row.realRayUnavailableReason ?? "—",
       ]
         .map((value) => (typeof value === "number" || value === null ? number(value) : value))

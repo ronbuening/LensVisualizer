@@ -287,6 +287,7 @@ describe("finite conjugate consistency audit", () => {
         "realRayBestFocusOffsetMm",
         "referenceWavelengthNm",
         "paraxialWorkingFNumber",
+        "authoredPlaneWorkingFNumber",
         "realRayWorkingFNumber",
         "diffractionDepthMm",
         "offsetDepths",
@@ -298,6 +299,7 @@ describe("finite conjugate consistency audit", () => {
       expect(Number.isFinite(row.otherReference.paraxialOffsetMm)).toBe(true);
       expect(Number.isFinite(row.otherReference.offsetDepths)).toBe(true);
       expect(typeof row.referenceDiscriminated).toBe("boolean");
+      expect(row.paraxialImageUnavailableReason).toBeNull();
     }
     expect(run("--json", "--strict").status).toBe(1);
     expect(run("--json", "--strict", "--lens=ambiguous-reference").status).toBe(0);
@@ -325,7 +327,8 @@ describe("finite conjugate consistency audit", () => {
     ]);
     const table = run();
     expect(table.stdout).toContain("| Object z | Authored z | Paraxial z | Offset mm |");
-    expect(table.stdout).toContain("Paraxial Nw | Real-ray Nw");
+    expect(table.stdout).toContain("Paraxial Nw | Authored-plane Nw | Real-ray Nw | 2λn′Na² mm");
+    expect(table.stdout).toContain("wavefront error at the authored plane in quarter waves");
     expect(table.stdout).toContain("Reference discriminated");
     expect(table.stdout).toContain("ambiguous-reference");
     expect(table.stdout).toContain("other-reference");
