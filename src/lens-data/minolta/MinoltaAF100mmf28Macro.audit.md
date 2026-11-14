@@ -41,3 +41,16 @@ Patent: US 4,764,000, Example 8 / claim 9
 
 - No glass-label, APD, or high-index-status changes were needed in this pass.
 - The patent gives no clear apertures. Existing SDs remain inferred from the f/2.83 marginal envelope, 55 mm production filter constraint, edge thickness, and cross-gap sag clearance, so no SD edits were made.
+
+## 2026-11-14 — Published finite-conjugate certification
+
+Patent: US4764000.pdf; source locators below use one-based PDF pages.
+
+| Zoom / keyframe | Field | Before | After | Source and paraxial residual |
+|---|---|---|---|---|
+| 0 / 1 | `focus.conjugates` | Absent | 266.4 mm, `first-surface` | PDF p. 21, Table 8, Embodiment 8, col. 12; d8=18.36, d12=10.64; offset +4.31984122429e-06 mm (+0.000289886312 depths), other reference 1730.4269 depths; `consistent`, reference discriminated. |
+| 0 / 2 | `focus.conjugates` | Absent | 171 mm, `first-surface` | PDF p. 21, Table 8, Embodiment 8, col. 12; d8=27.50, d12=1.50; offset +3.9818814912e-11 mm (+1.4912141e-09 depths), other reference unavailable (object at or behind first surface); `consistent`, reference discriminated. |
+
+State 0/1: reference basis is audit-resolved. "In the tables, object distance represents the distance from the lens system to the focussed object." (PDF p. 19, col. 7) The text names the lens system without identifying a vertex. The first-surface reference is discriminated by the conjugate audit. The negative printed sign denotes the object side; objectDistanceMm stores its positive magnitude. Source length units are interpreted as mm. The distance, focus gaps and image plane are retained without adjustment.
+
+State 0/2: reference basis is audit-resolved. "In the tables, object distance represents the distance from the lens system to the focussed object." (PDF p. 19, col. 7) The text names the lens system without identifying a vertex. The first-surface reference is discriminated by the conjugate audit. The negative printed sign denotes the object side; objectDistanceMm stores its positive magnitude. Source length units are interpreted as mm. The distance, focus gaps and image plane are retained without adjustment.

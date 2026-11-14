@@ -124,3 +124,19 @@ that say "L16 keeps its patent ΔPgF +0.028" describe the file as it stood on 20
 Left: nothing. L16 is the only element with a `dPgF`; the other 17 elements carry none and none was added. No element
 authors nC, nF or ng, and none uses `indexReference: "e"`. nd, νd, glass labels, the `apd` tag and all surfaces are
 unchanged. `dpgfcheck.mjs` reports that the file still builds and validates.
+
+## 2026-11-14 — Published finite-conjugate certification
+
+Patent: JP2018087903A.pdf; source locators below use one-based PDF pages.
+
+| Zoom / keyframe | Field | Before | After | Source and paraxial residual |
+|---|---|---|---|---|
+| 0 / 1 | `focus.conjugates` | Absent | 195 mm, `first-surface` | PDF p. 16, Example 1, paragraph 0068 各種データ, W column, finite-distance block; d9=26.783, d12=5.750; offset -0.00289263295625 mm (-0.195325623 depths), other reference 162.290862 depths; `consistent`, reference discriminated. |
+| 1 / 1 | `focus.conjugates` | Absent | 200.726 mm, `first-surface` | PDF p. 16, Example 1, paragraph 0068 各種データ, M column, finite-distance block; d9=14.553, d12=5.530; offset -0.00510082625925 mm (-0.258228761 depths), other reference 200.598779 depths; `consistent`, reference discriminated. |
+| 2 / 1 | `focus.conjugates` | Absent | 198.279 mm, `first-surface` | PDF p. 16, Example 1, paragraph 0068 各種データ, T column, finite-distance block; d9=7.123, d12=5.246; offset -0.0109150570777 mm (-0.438992741 depths), other reference 333.745024 depths; `consistent`, reference discriminated. |
+
+State 0/1: reference basis is audit-resolved. The separately printed d0 value is used verbatim. The nominal 350mm photographing-distance heading is not substituted. Paragraph 0061 calls d axial surface spacing and 0062 calls di variable surface spacing; no explicit object reference is stated for d0. The distance, focus gaps and image plane are retained without adjustment.
+
+State 1/1: reference basis is audit-resolved. The separately printed d0 value is used verbatim. The nominal 350mm photographing-distance heading is not substituted. Paragraph 0061 calls d axial surface spacing and 0062 calls di variable surface spacing; no explicit object reference is stated for d0. The distance, focus gaps and image plane are retained without adjustment.
+
+State 2/1: reference basis is audit-resolved. The separately printed d0 value is used verbatim. The nominal 350mm photographing-distance heading is not substituted. Paragraph 0061 calls d axial surface spacing and 0062 calls di variable surface spacing; no explicit object reference is stated for d0. The distance, focus gaps and image plane are retained without adjustment.

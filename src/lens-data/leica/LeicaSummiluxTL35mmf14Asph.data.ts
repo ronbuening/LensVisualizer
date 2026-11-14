@@ -281,6 +281,16 @@ const LENS_DATA = {
       "PUBLISHED inner focus: the single negative Gr2 element L21 moves 7.10 mm imageward from infinity (D14=2.29 mm, D16=12.12 mm) to the patent POS2 state at 306 mm from source surface 1 (D14=9.39 mm, D16=5.02 mm). The corresponding source object-to-image distance is approximately 0.4008 m; interpolation between endpoints is not a published mechanical trajectory.",
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 306,
+        distanceReference: "first-surface",
+        source:
+          "EP 3 029 504 A1, Example 4, Variable Parameters (PDF p. 15), POS2: Object Distance 306mm; d14=9.39 mm, d16=5.02 mm. Surface Data (p. 14) lists the variable object-side axial gap on row OB before surface 1.",
+      },
+    ],
   },
 
   gaps: { "14A": { label: "D14", values: [[2.29, 9.39]] }, "16A": { label: "D16", values: [[12.12, 5.02]] } },
