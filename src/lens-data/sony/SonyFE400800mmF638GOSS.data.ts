@@ -490,6 +490,32 @@ const LENS_DATA = {
     closeFocusM: 3.799,
     description:
       "PUBLISHED G6 inner-focus state at 3.799 m: G6 moves imageward by 4.80 / 9.69 / 16.07 mm at Wide / Mid / Tele; production MFD is not reconstructed.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 3450,
+        distanceReference: "first-surface",
+        source:
+          "WO 2024/154461 A1, Example 1, Table 4, Wide finite column, d0 row (PDF p. 28): d0 = 3450.00; d5=73.95 mm; d8=2 mm; d13=44.45 mm; d20=9.02 mm; d23=17.16 mm; d26=13.77 mm. d0 is the object-to-first-surface gap in the surface table.",
+      },
+      {
+        zoomStation: 1,
+        keyframe: 1,
+        objectDistanceMm: 3450,
+        distanceReference: "first-surface",
+        source:
+          "WO 2024/154461 A1, Example 1, Table 4, Mid finite column, d0 row (PDF p. 28): d0 = 3450.00; d5=92.98 mm; d8=4.42 mm; d13=22.9 mm; d20=10.33 mm; d23=21.61 mm; d26=8.09 mm. d0 is the object-to-first-surface gap in the surface table.",
+      },
+      {
+        zoomStation: 2,
+        keyframe: 1,
+        objectDistanceMm: 3450,
+        distanceReference: "first-surface",
+        source:
+          "WO 2024/154461 A1, Example 1, Table 4, Tele finite column, d0 row (PDF p. 28): d0 = 3450.00; d5=107.64 mm; d8=2.24 mm; d13=1.8 mm; d20=9.3 mm; d23=22.73 mm; d26=16.63 mm. d0 is the object-to-first-surface gap in the surface table.",
+      },
+    ],
   },
 
   gaps: {

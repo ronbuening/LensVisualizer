@@ -18,3 +18,21 @@ Patent: WO 2024/135126 A1, Example 1
 - `catalog.closeFocusM.marketing` 0.22 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.
 
 Text sync: header and focus.description: the 247 mm close state focuses at 0.25 m; Sony's 0.22 m is catalog metadata.
+
+## 2026-11-14 — Published finite conjugates
+
+Patent: WO 2024/135126 A1, Example 1.
+
+| Zoom/keyframe | Before | Added object distance / reference | Source locator | Paraxial offset (mm / diffraction depths) | Other-reference offset (mm / depths) |
+|---|---|---|---|---|---|
+| 0/1 | No conjugate | 111.71 mm / `first-surface` | PDF p. 24, printed p. 22; Table 3, Wide finite column, d0 row; `d0 = 111.71` | 0.017935368 / 1.7736494 | unavailable / unavailable |
+| 1/1 | No conjugate | 117.88 mm / `first-surface` | PDF p. 24, printed p. 22; Table 3, Mid finite column, d0 row; `d0 = 117.88` | 0.095391443 / 9.4114543 | unavailable / unavailable |
+| 2/1 | No conjugate | 119.57 mm / `first-surface` | PDF p. 24, printed p. 22; Table 3, Tele finite column, d0 row; `d0 = 119.57` | 0.2273778 / 22.228813 | unavailable / unavailable |
+
+The retained rows are `consistent` under the 25-diffraction-depth criterion. Existing gaps, image plane and published flags are retained.
+
+- State 0/1: D8 G1-G2=21.92 mm; D11 G2-STO=6.47 mm; D19 G4-G5=3.81 mm; D22 G5-G6=3.27 mm; D14 G3-G4=7.76 mm; BF=17.31 mm.
+- State 1/1: D8 G1-G2=10.42 mm; D11 G2-STO=4.1 mm; D19 G4-G5=4.59 mm; D22 G5-G6=5.37 mm; D14 G3-G4=4.88 mm; BF=25.01 mm.
+- State 2/1: D8 G1-G2=1.13 mm; D11 G2-STO=3.64 mm; D19 G4-G5=7.69 mm; D22 G5-G6=3.92 mm; D14 G3-G4=3.23 mm; BF=33.08 mm.
+
+Reference evidence: Table 1 (PDF p. 23, printed p. 21): "0(OBJ)" has "(d0)" in the di column, immediately before surface 1.

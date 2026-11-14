@@ -27,3 +27,21 @@ The wide and tele live outlines preserve the source stepped front group and rear
 In the fixed image-plane frame G1/G7 are stationary within 0.02 mm rounding; G2/G3 move imageward. G4 moves objectward, while G5/G6 reverse after Mid. Table 4 orders Wide/Mid/Tele correctly; G6 focuses imageward 4.80/9.69/16.07 mm relative to G5 (16.08 mm in the tele image-plane frame because tabulated gaps differ by 0.01 mm).
 
 L12, L13, L41, L42, L43 and L78 now carry inferred low-dispersion/APD coloring. Resolved coordinate labels name the guarded proxy explicitly. The 13 unmatched elements have no compatible current-catalog or additional HOYA AGF candidate; they remain unresolved.
+
+## 2026-11-14 — Published finite conjugates
+
+Patent: WO 2024/154461 A1, Example 1.
+
+| Zoom/keyframe | Before | Added object distance / reference | Source locator | Paraxial offset (mm / diffraction depths) | Other-reference offset (mm / depths) |
+|---|---|---|---|---|---|
+| 0/1 | No conjugate | 3450 mm / `first-surface` | PDF p. 28, printed p. 26; Table 4, Wide finite column, d0 row; `d0 = 3450.00` | 0.072104529 / 1.4971542 | 4.8681019 / 89.446291 |
+| 1/1 | No conjugate | 3450 mm / `first-surface` | PDF p. 28, printed p. 26; Table 4, Mid finite column, d0 row; `d0 = 3450.00` | 0.068371884 / 1.0864188 | 9.5644216 / 120.11704 |
+| 2/1 | No conjugate | 3450 mm / `first-surface` | PDF p. 28, printed p. 26; Table 4, Tele finite column, d0 row; `d0 = 3450.00` | -0.091621859 / -1.1473669 | 21.772982 / 164.35073 |
+
+The retained rows are `consistent` under the 25-diffraction-depth criterion. Existing gaps, image plane and published flags are retained.
+
+- State 0/1: d5=73.95 mm; d8=2 mm; d13=44.45 mm; d20=9.02 mm; d23=17.16 mm; d26=13.77 mm.
+- State 1/1: d5=92.98 mm; d8=4.42 mm; d13=22.9 mm; d20=10.33 mm; d23=21.61 mm; d26=8.09 mm.
+- State 2/1: d5=107.64 mm; d8=2.24 mm; d13=1.8 mm; d20=9.3 mm; d23=22.73 mm; d26=16.63 mm.
+
+Reference evidence: Table 1 (PDF p. 26, printed p. 24): "0(OBJ)" has "(d0)" in the di column, immediately before surface 1.

@@ -409,6 +409,16 @@ const LENS_DATA = {
     closeFocusM: 2.7,
     description:
       "PUBLISHED GR2 inner focus: 19.70 mm objectward; d14 51.13→31.43 and d17 9.69→29.39 mm; 2.7 m datum undefined.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 2700,
+        distanceReference: "image-plane",
+        source:
+          "JP 2025-063175 A, Example 2, Table 6, close focus finite column, 被写体距離 row (PDF p. 20): 被写体距離 2.7m; D14 (before GR2)=31.43 mm; D17 (after GR2)=29.39 mm. Distance reference identified by the conjugate audit as image-plane (audit-resolved).",
+      },
+    ],
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
   },
