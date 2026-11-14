@@ -171,12 +171,15 @@ Its crosshair follows the pointer or the arrow keys
 request, sizing its stop with `stopSemiDiameterForFNumber` at the current zoom and scaling the entrance pupil by
 the stop-radius ratio. It draws thin lines in the same slots, including faded out-of-band frequency segments when
 diagnostics are disclosed. Advanced reveals a "Comparison aperture" select beside the toggle: full stops
-1/1.4/2/2.8/4/5.6/8/11/16/22/32 strictly above the charted f-number and below `L.maxFstop`, the slider's minimum
-aperture. The stored choice defaults to f/8. If unavailable, the next slower full stop above the charted aperture
-is used without overwriting the preference; an empty range hides the comparison controls and disables its request.
-Turning Advanced off hides the aperture select while the toggle keeps naming the selected aperture, including a
-non-default stored choice, and still turns the overlay off. Its progress and errors appear independently of the
-main result. The overlay labels its applied plane and both its authored-plane shift and its shift from the main
+1/1.4/2/2.8/4/5.6/8/11/16/22/32 slower than the charted f-number by more than 0.05 for rounded labels, through
+`L.maxFstop` inclusive with 1e-9 f-number endpoint tolerance. `mtfComparisonFNumbers` supplies this range to the tab,
+select and sweep. The stored choice defaults to f/8. An unavailable stored stop disables the overlay and its toggle;
+the title explains the aperture-range requirement. No other stop is substituted or stored. Advanced still lists
+attainable stops, with a disabled placeholder naming the unavailable stored stop; choosing a stop stores it.
+An empty range hides the select. Turning Advanced off hides the aperture select while the toggle keeps naming the
+stored aperture, including a non-default choice. Default f/8 availability retains the rounded-aperture boundary.
+Its progress and errors appear independently of the main result. The overlay labels its applied plane and both its
+authored-plane shift and its shift from the main
 aperture's plane. A persisted plane selector beside the enabled toggle defaults to "Refocus at f/N" (the selected
 focus policy applied independently); "Hold the wide-open plane" waits for the main result's first partial focus
 and uses that exact plane at the comparison aperture. Changing the comparison aperture or plane policy resets
@@ -185,8 +188,8 @@ boolean. Stored options missing `comparisonFNumber` and old shared links default
 optional `n` for a non-default comparison f-number, preserving f/8 link bytes.
 Advanced adds the Aperture chart button. A stored aperture view falls back to image height while Advanced is off,
 without overwriting the preference. Its x axis is log2 f-number, with ticks at the exact charted aperture and then
-the comparison selector's slower full stops below `L.maxFstop`. Frequencies keep their fixed colors, and fields use
-the frequency view's marker shapes, with hollow markers for isolated diffraction references. The Fields selector chooses one field or the center/50 %/outermost available
+the comparison selector's slower full stops through `L.maxFstop`, inclusive. Frequencies keep their fixed colors, and
+fields use the frequency view's marker shapes, with hollow markers for isolated diffraction references. The Fields selector chooses one field or the center/50 %/outermost available
 overview; overview waits for the charted result's final edge and keeps those fractions fixed across apertures.
 `useMtfApertureSweep` sends ordinary requests restricted to those fields, scales both aperture radii as for the
 comparison, and runs one aperture after another on one retained worker client. Progress names the current aperture

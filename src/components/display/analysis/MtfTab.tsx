@@ -12,13 +12,12 @@ import { publishedFocusStations, publishedZoomStations } from "../../../optics/p
 import { LensDispatchContext, LensStateContext } from "../../../utils/state/LensContext.js";
 import { SET_PATENT_STATION } from "../../../utils/state/lensReducer.js";
 import { useMtfApertureSweep } from "../../hooks/useMtfApertureSweep.js";
-import { mtfRequestAtAperture } from "./mtf/mtfApertureSweep.js";
+import { mtfComparisonFNumbers, mtfRequestAtAperture } from "./mtf/mtfApertureSweep.js";
 import { mtfSweepFields } from "./mtf/mtfPresentation.js";
 import { useMtfComputation } from "../../hooks/useMtfComputation.js";
 import { useMtfDataWarning } from "../../hooks/useMtfDataWarning.js";
 import { useSharedMtfPreferences } from "../../../utils/state/useSharedMtfPreferences.js";
 import { buildMtfLink } from "../../../utils/state/mtfUrlState.js";
-import { MTF_COMPARISON_F_NUMBERS } from "../../../utils/state/mtfPreferences.js";
 import { AnalysisEmptyState } from "./analysisUi.js";
 import MtfChart from "./MtfChart.js";
 import MtfControls from "./mtf/MtfControls.js";
@@ -131,16 +130,11 @@ export default function MtfTab({
     ],
   );
   const support = useMemo(() => assessMtfSupport(request, options), [request, options]);
-  // The slider's marked aperture and maxFstop bound the choices at this zoom position.
-  const comparisonFNumbers = MTF_COMPARISON_F_NUMBERS.filter(
-    (stop) => !!fNumber && stop > fNumber && stop < L.maxFstop,
-  );
-  // Keep the preference across optical states; a temporary fallback must not overwrite it.
-  const comparisonFNumber = comparisonFNumbers.includes(preferences.comparisonFNumber)
-    ? preferences.comparisonFNumber
-    : (comparisonFNumbers[0] ?? preferences.comparisonFNumber);
+  const comparisonFNumbers = mtfComparisonFNumbers(fNumber, L.maxFstop);
+  const comparisonFNumber = preferences.comparisonFNumber;
+  const comparisonAvailable = comparisonFNumbers.includes(comparisonFNumber);
   const comparisonAperture = `f/${comparisonFNumber}`;
-  const comparisonEnabled = view !== "aperture" && comparisonFNumbers.length > 0 && preferences.compareF8;
+  const comparisonEnabled = view !== "aperture" && comparisonAvailable && preferences.compareF8;
   const comparisonPolicy =
     view === "aperture"
       ? `aperture/${preferences.comparisonFocus}/${preferences.frequencyField}`

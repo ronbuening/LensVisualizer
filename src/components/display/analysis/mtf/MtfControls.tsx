@@ -92,6 +92,7 @@ export default function MtfControls({
   result = null,
 }: MtfControlsProps) {
   const view = preferences.view === "aperture" && !preferences.advanced ? "field" : preferences.view;
+  const comparisonAvailable = comparisonFNumbers.includes(comparisonFNumber);
   const views: ReadonlyArray<[MtfChartView, string]> = [
     ["field", "Image height"],
     ["frequency", "Frequency"],
@@ -263,13 +264,18 @@ export default function MtfControls({
             ) : null}
           </>
         ) : null}
-        {view !== "aperture" && comparisonFNumbers.length > 0 ? (
+        {view !== "aperture" ? (
           <ToggleGroup label="Aperture comparison" t={t}>
             <Toggle
               t={t}
-              active={preferences.compareF8}
+              active={comparisonAvailable && preferences.compareF8}
               last
-              title={`Overlay the lens stopped down to f/${comparisonFNumber} (thin lines)`}
+              disabled={!comparisonAvailable}
+              title={
+                comparisonAvailable
+                  ? `Overlay the lens stopped down to f/${comparisonFNumber} (thin lines)`
+                  : `f/${comparisonFNumber} comparison unavailable: comparisons must be slower than the charted aperture and within the lens's aperture range at this zoom position.`
+              }
               onClick={() => onChange({ compareF8: !preferences.compareF8 })}
             >
               {`Compare f/${comparisonFNumber}`}
@@ -277,18 +283,19 @@ export default function MtfControls({
           </ToggleGroup>
         ) : null}
         {view !== "aperture" && comparisonFNumbers.length > 0 && preferences.advanced ? (
-          <Select
+          <Select<MtfComparisonFNumber>
             t={t}
             label="Comparison aperture"
             help="Choose a full stop slower than the charted aperture, within the lens's aperture range at this zoom position."
             touchHelp={touchHelp}
             style={selectStyle}
-            value={comparisonFNumber}
+            value={comparisonAvailable ? comparisonFNumber : ""}
+            placeholder={comparisonAvailable ? undefined : `f/${comparisonFNumber} unavailable`}
             options={comparisonFNumbers.map((stop) => [stop, `f/${stop}`])}
             onChange={(comparisonFNumber) => onChange({ comparisonFNumber })}
           />
         ) : null}
-        {view !== "aperture" && comparisonFNumbers.length > 0 && preferences.compareF8 ? (
+        {view !== "aperture" && comparisonAvailable && preferences.compareF8 ? (
           <Select
             t={t}
             label={`f/${comparisonFNumber} comparison image plane`}
@@ -394,6 +401,7 @@ function Select<T extends string | number>({
   style,
   value,
   options,
+  placeholder,
   onChange,
 }: {
   t: Theme;
@@ -401,8 +409,10 @@ function Select<T extends string | number>({
   help: string;
   touchHelp: boolean;
   style: CSSProperties;
-  value: T;
+  value: T | "";
   options: ReadonlyArray<[T, string]>;
+  /** An unavailable stored choice stays explicit instead of displaying the first option. */
+  placeholder?: string;
   onChange: (value: T) => void;
 }) {
   const selectRef = useRef<HTMLSelectElement | null>(null);
@@ -457,6 +467,11 @@ function Select<T extends string | number>({
           if (event.key === "Escape") hide();
         }}
       >
+        {placeholder ? (
+          <option value="" disabled>
+            {placeholder}
+          </option>
+        ) : null}
         {options.map(([v, text]) => (
           <option key={v} value={v}>
             {text}

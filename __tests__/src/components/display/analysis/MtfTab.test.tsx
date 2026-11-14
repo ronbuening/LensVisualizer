@@ -1509,7 +1509,7 @@ describe("MTF export and aperture comparison", () => {
     );
     unmount();
     render(<MtfTab L={L} t={mockTheme} preparedState={state} currentEPSD={1} currentPhysStopSD={1} fNumber={8} />);
-    expect(screen.queryByRole("button", { name: "Compare f/8" })).toBeNull();
+    expect(screen.getByRole("button", { name: "Compare f/8" })).toHaveProperty("disabled", true);
   });
   it("selects another stop throughout the overlay and keeps it explicit with Advanced hidden", async () => {
     const { calls } = stubWorker({ target: focusedState });
@@ -1529,7 +1529,7 @@ describe("MTF export and aperture comparison", () => {
     fireEvent.click(screen.getByRole("button", { name: "Advanced" }));
     const select = screen.getByRole("combobox", { name: "Comparison aperture" }) as HTMLSelectElement;
     expect(select.value).toBe("8");
-    expect([...select.options].map((option) => Number(option.value))).toEqual([4, 5.6, 8, 11]);
+    expect([...select.options].map((option) => Number(option.value))).toEqual([4, 5.6, 8, 11, 16]);
     fireEvent.click(screen.getByRole("button", { name: "Compare f/8" }));
     await screen.findByText(/^f\/8, refocused .*\(thin lines\)$/);
     fireEvent.click(screen.getByRole("checkbox", { name: /Show diagnostic estimates/ }));
@@ -1584,14 +1584,18 @@ describe("MTF export and aperture comparison", () => {
   });
 
   it.each([
-    { charted: 8, wideOpen: 8, max: 32, choices: [11, 16, 22], selected: 11 },
-    { charted: 11, wideOpen: 2, max: 32, choices: [16, 22], selected: 16 },
-    { charted: 2.8, wideOpen: 2, max: 5.6, choices: [4], selected: 4 },
-    { charted: 5.6, wideOpen: 2, max: 8, choices: [], selected: null },
-    { charted: 32, wideOpen: 2, max: 32, choices: [], selected: null },
+    { charted: 8, wideOpen: 8, max: 32, choices: [11, 16, 22, 32], stored: 8, available: false },
+    { charted: 11, wideOpen: 2, max: 16, choices: [16], stored: 16, available: true },
+    { charted: 16, wideOpen: 2, max: 22, choices: [22], stored: 22, available: true },
+    { charted: 2.8, wideOpen: 2, max: 16, choices: [4, 5.6, 8, 11, 16], stored: 22, available: false },
+    { charted: 2.8, wideOpen: 2, max: 5.6, choices: [4, 5.6], stored: 8, available: false },
+    { charted: 5.6, wideOpen: 2, max: 8, choices: [8], stored: 8, available: true },
+    { charted: 32, wideOpen: 2, max: 32, choices: [], stored: 8, available: false },
+    { charted: 11, wideOpen: 2, max: 16 - 1e-10, choices: [16], stored: 16, available: true },
+    { charted: 11, wideOpen: 2, max: 15.99, choices: [], stored: 16, available: false },
   ])(
     "bounds full stops by the charted f/$charted and minimum aperture f/$max",
-    async ({ charted, wideOpen, max, choices, selected }) => {
+    async ({ charted, wideOpen, max, choices, stored, available }) => {
       const lens = build({
         ...constructionFixtureData(focusedL),
         fstopSeries: [wideOpen, max],
@@ -1601,8 +1605,9 @@ describe("MTF export and aperture comparison", () => {
       expect(lens.maxFstop).toBe(max);
       expect(lens.FOPEN).toBe(wideOpen);
       const preparedState = prepareRuntimeState(lens, 0, 0);
-      const { calls } = stubWorker({ target: preparedState });
-      localStorage.setItem(MTF_PREFERENCES_KEY, JSON.stringify({ advanced: true, compareF8: true }));
+      const { calls } = stubWorker({ resultForJob: apertureControlResult });
+      const saved = JSON.stringify({ advanced: true, compareF8: true, comparisonFNumber: stored });
+      localStorage.setItem(MTF_PREFERENCES_KEY, saved);
       render(
         <MtfTab
           L={lens}
@@ -1614,19 +1619,89 @@ describe("MTF export and aperture comparison", () => {
         />,
       );
       const select = screen.queryByRole("combobox", { name: "Comparison aperture" }) as HTMLSelectElement | null;
-      expect(select ? [...select.options].map((option) => Number(option.value)) : []).toEqual(choices);
-      if (selected === null) {
-        expect(screen.queryByRole("group", { name: "Aperture comparison" })).toBeNull();
-        await screen.findByRole("figure");
-        expect(calls.compute).toBe(1);
-      } else {
-        expect(select!.value).toBe(String(selected));
-        expect(screen.getByRole("button", { name: `Compare f/${selected}` })).toBeTruthy();
-        await vi.waitFor(() => expect(calls.compute).toBe(2));
-        expect(calls.jobs.at(-1)!.options.stopSemiDiameterMm).toBe(stopSemiDiameterForFNumber(selected, 0, lens));
+      expect(
+        select ? [...select.options].filter((option) => !option.disabled).map((option) => Number(option.value)) : [],
+      ).toEqual(choices);
+      expect(select?.value ?? "").toBe(available ? String(stored) : "");
+      const toggle = screen.getByRole("button", { name: `Compare f/${stored}` });
+      expect(toggle).toHaveProperty("disabled", !available);
+      if (!available) {
+        expect(toggle.title).toMatch(/unavailable.*slower than the charted aperture.*aperture range/);
       }
+      await screen.findByRole("figure");
+      await vi.waitFor(() => expect(calls.compute).toBe(available ? 2 : 1));
+      if (available)
+        expect(calls.jobs.at(-1)!.options.stopSemiDiameterMm).toBe(stopSemiDiameterForFNumber(stored, 0, lens));
+      expect(localStorage.getItem(MTF_PREFERENCES_KEY)).toBe(saved);
     },
   );
+
+  // Default, hidden-Advanced eligibility retains the rounded-aperture boundary of the f/8 control.
+  it.each(
+    [undefined, 2.8, 5.6, 7.94, 7.95, 7.96, 8, 11, 16, 22].flatMap((charted) =>
+      [5.6, 8, 16, 22].map((minimum) => ({ charted, minimum })),
+    ),
+  )(
+    "retains f/8 availability at charted f/$charted × minimum f/$minimum with Advanced off",
+    async ({ charted, minimum }) => {
+      const lens = build({ ...constructionFixtureData(focusedL), nominalFno: 2, maxFstop: minimum });
+      const compareF8Available = !!charted && charted < 8 - 0.05 && minimum >= 8;
+      localStorage.setItem(MTF_PREFERENCES_KEY, JSON.stringify({ advanced: false, compareF8: true }));
+      const { calls } = stubWorker({ resultForJob: apertureControlResult });
+      const writeText = vi.fn().mockResolvedValue(undefined);
+      vi.stubGlobal("navigator", { ...navigator, clipboard: { writeText } });
+      render(
+        <MtfTab
+          L={lens}
+          t={mockTheme}
+          preparedState={prepareRuntimeState(lens, 0, 0)}
+          currentEPSD={1}
+          currentPhysStopSD={1}
+          fNumber={charted}
+        />,
+      );
+      expect(screen.getByRole("button", { name: "Compare f/8" })).toHaveProperty("disabled", !compareF8Available);
+      expect(screen.queryByRole("combobox", { name: "Comparison aperture" })).toBeNull();
+      await screen.findByRole("figure");
+      await vi.waitFor(() => expect(calls.compute).toBe(compareF8Available ? 2 : 1));
+      fireEvent.click(screen.getByRole("button", { name: "Copy CSV" }));
+      await vi.waitFor(() => expect(writeText).toHaveBeenCalledTimes(1));
+      expect((writeText.mock.calls[0][0] as string).includes("f/8 10 lp/mm sagittal")).toBe(compareF8Available);
+      expect(screen.queryAllByText(/\(thin lines\)/).length > 0).toBe(compareF8Available);
+    },
+  );
+
+  it("keeps an unavailable stored stop until the reader selects an attainable stop", async () => {
+    const saved = JSON.stringify({ advanced: true, compareF8: true, comparisonFNumber: 22 });
+    localStorage.setItem(MTF_PREFERENCES_KEY, saved);
+    const { calls } = stubWorker({ resultForJob: apertureControlResult });
+    render(
+      <MtfTab
+        L={focusedL}
+        t={mockTheme}
+        preparedState={focusedState}
+        currentEPSD={1}
+        currentPhysStopSD={1}
+        fNumber={2.8}
+      />,
+    );
+    await screen.findByRole("figure");
+    expect(calls.compute).toBe(1);
+    expect(screen.getByRole("button", { name: "Compare f/22" })).toHaveProperty("disabled", true);
+    expect(screen.queryAllByText(/\(thin lines\)/)).toHaveLength(0);
+    const select = screen.getByRole("combobox", { name: "Comparison aperture" }) as HTMLSelectElement;
+    expect(select.value).toBe("");
+    expect(select.selectedOptions[0].textContent).toBe("f/22 unavailable");
+    expect(localStorage.getItem(MTF_PREFERENCES_KEY)).toBe(saved);
+    fireEvent.change(select, { target: { value: "16" } });
+    expect(screen.getByRole("button", { name: "Compare f/16" })).toHaveProperty("disabled", false);
+    await vi.waitFor(() => expect(calls.compute).toBe(2));
+    expect(calls.jobs.at(-1)!.options.stopSemiDiameterMm).toBe(stopSemiDiameterForFNumber(16, 0, focusedL));
+    expect(JSON.parse(localStorage.getItem(MTF_PREFERENCES_KEY)!)).toMatchObject({
+      comparisonFNumber: 16,
+      compareF8: true,
+    });
+  });
 
   it("uses the current zoom's aperture and stop rule without overwriting a temporarily unavailable choice", async () => {
     const lens = build({
@@ -1661,12 +1736,11 @@ describe("MTF export and aperture comparison", () => {
     const { rerender } = render(tab(0));
     await screen.findByText(/^f\/8, refocused .*\(thin lines\)$/);
     rerender(tab(1));
-    expect(screen.getByRole("button", { name: "Compare f/16" })).toBeTruthy();
-    await screen.findByText(/^f\/16, refocused .*\(thin lines\)$/);
-    const stop = stopSemiDiameterForFNumber(16, 1, lens);
-    expect(calls.jobs.find((job) => job.zoomT === 1 && job.options.stopSemiDiameterMm === stop)).toBeTruthy();
+    expect(screen.getByRole("button", { name: "Compare f/8" })).toHaveProperty("disabled", true);
+    expect(screen.queryByText(/thin lines/)).toBeNull();
+    await vi.waitFor(() => expect(calls.jobs.filter((job) => job.zoomT === 1)).toHaveLength(1));
     expect(screen.queryByRole("combobox", { name: "Comparison aperture" })).toBeNull();
-    // Automatic range fallbacks leave the stored preference at its implicit f/8 default.
+    // A zoom change leaves the stored preference at its implicit f/8 default.
     expect(JSON.parse(localStorage.getItem(MTF_PREFERENCES_KEY)!)).not.toHaveProperty("comparisonFNumber");
     rerender(tab(0));
     expect(screen.getByRole("button", { name: "Compare f/8" })).toBeTruthy();
@@ -1821,7 +1895,7 @@ describe("MTF download actions", () => {
     if (warning) fireEvent.click(warning);
     if (view === "aperture")
       await vi.waitFor(() =>
-        expect(screen.getByText(/6 converged · 0 unconverged · 0 unavailable points/)).toBeTruthy(),
+        expect(screen.getByText(/9 converged · 0 unconverged · 0 unavailable points/)).toBeTruthy(),
       );
     return { ...rendered, worker };
   }
@@ -1858,6 +1932,8 @@ describe("MTF download actions", () => {
     expect(csv).toContain("# comparison: off");
     expect(csv).toContain("# status: complete");
     expect(csv).toContain("# aperture_planes: f/8:");
+    expect(csv).toContain("f/16: design; shift");
+    expect(csv.split("\n").filter((line) => line.startsWith("16,"))).toHaveLength(3);
     expect(
       csv
         .split("\n")
@@ -2065,9 +2141,10 @@ function apertureControlResult(job: MtfJob): MtfResult {
 
 describe("MTF aperture sweeps", () => {
   it.each([
-    { current: 1.2, open: 1.2, max: 32, expected: [1.2, 1.4, 2, 2.8, 4, 5.6, 8, 11, 16, 22] },
-    { current: 8, open: 8, max: 32, expected: [8, 11, 16, 22] },
-    { current: 5.6, open: 1.2, max: 22, expected: [5.6, 8, 11, 16] },
+    { current: 1.2, open: 1.2, max: 32, expected: [1.2, 1.4, 2, 2.8, 4, 5.6, 8, 11, 16, 22, 32] },
+    { current: 8, open: 8, max: 32, expected: [8, 11, 16, 22, 32] },
+    { current: 5.6, open: 1.2, max: 22, expected: [5.6, 8, 11, 16, 22] },
+    { current: 11, open: 1.2, max: 16, expected: [11, 16] },
     { current: 22, open: 1.2, max: 22, expected: [22] },
   ])("builds the current-down request list at f/$current", ({ current, open, max, expected }) => {
     const lens = build({ ...constructionFixtureData(focusedL), nominalFno: open, maxFstop: max });
@@ -2102,7 +2179,7 @@ describe("MTF aperture sweeps", () => {
     });
     const request = analysisRequestForLens(lens, 0, 1);
     const samples = mtfApertureRequests(lens, request, 12);
-    expect(samples.map((sample) => sample.fNumber)).toEqual([12, 16, 22]);
+    expect(samples.map((sample) => sample.fNumber)).toEqual([12, 16, 22, 32]);
     expect(samples[1].request.aperture.stopSemiDiameterMm).toBe(stopSemiDiameterForFNumber(16, 1, lens));
     expect(samples[1].request.preparedGeometry.zoomT).toBe(1);
     const options = {
@@ -2221,18 +2298,18 @@ describe("MTF aperture sweeps", () => {
         />,
       );
       await screen.findByRole("figure", { name: "Simulated MTF versus aperture" });
-      await vi.waitFor(() => expect(calls.compute).toBe(3));
+      await vi.waitFor(() => expect(calls.compute).toBe(4));
       expect(calls.workers).toBe(2); // Main chart plus one sweep client, with no comparison worker.
       expect(calls.jobs.slice(1).every((job) => JSON.stringify(job.options.fieldFractions) === "[0.5]")).toBe(true);
       expect(calls.jobs.slice(1).map((job) => job.options.heldFocusShiftMm)).toEqual(
-        comparisonFocus === "hold" ? [0.125, 0.125] : [undefined, undefined],
+        comparisonFocus === "hold" ? [0.125, 0.125, 0.125] : [undefined, undefined, undefined],
       );
       expect(screen.queryByRole("group", { name: "Aperture comparison" })).toBeNull();
       expect(screen.queryByRole("combobox", { name: "Comparison aperture" })).toBeNull();
       expect(screen.getByRole("combobox", { name: "Aperture sweep image plane" })).toBeTruthy();
       expect(screen.getByRole("group", { name: "Chart frequencies (lp/mm)" })).toBeTruthy();
       expect(screen.getByRole("table", { name: /MTF by aperture/ })).toBeTruthy();
-      expect(await screen.findByText(/4 converged · 0 unconverged · 0 unavailable points/)).toBeTruthy();
+      expect(await screen.findByText(/6 converged · 0 unconverged · 0 unavailable points/)).toBeTruthy();
     },
   );
 
@@ -2256,16 +2333,19 @@ describe("MTF aperture sweeps", () => {
     expect(calls.compute).toBe(1);
     expect(screen.getByText(/Aperture sweep: waiting/)).toBeTruthy();
     await act(async () => finish());
-    expect(screen.getByText("Calculating f/8.0, 1 of 2…")).toBeTruthy();
+    expect(screen.getByText("Calculating f/8.0, 1 of 3…")).toBeTruthy();
     expect(calls.compute).toBe(2);
     expect(screen.queryByTestId("mtf-provisional")).toBeNull();
     expect(screen.getByRole("rowheader", { name: "f/11" }).closest("tr")!.textContent).toContain("pending");
     await act(async () => finish());
-    expect(screen.getByText("Calculating f/11, 2 of 2…")).toBeTruthy();
+    expect(screen.getByText("Calculating f/11, 2 of 3…")).toBeTruthy();
     expect(calls.compute).toBe(3);
     await act(async () => finish());
+    expect(screen.getByText("Calculating f/16, 3 of 3…")).toBeTruthy();
+    expect(calls.compute).toBe(4);
+    await act(async () => finish());
     expect(screen.queryByText(/Calculating f\//)).toBeNull();
-    expect(screen.getByText(/12 converged · 0 unconverged · 0 unavailable points/)).toBeTruthy();
+    expect(screen.getByText(/18 converged · 0 unconverged · 0 unavailable points/)).toBeTruthy();
   });
 
   it("falls back to image height with Advanced off, retaining and restoring the stored view", async () => {
@@ -2291,13 +2371,13 @@ describe("MTF aperture sweeps", () => {
     expect(calls.compute).toBe(1);
     fireEvent.click(screen.getByRole("button", { name: "Advanced" }));
     await screen.findByRole("figure", { name: "Simulated MTF versus aperture" });
-    await vi.waitFor(() => expect(calls.compute).toBe(3));
+    await vi.waitFor(() => expect(calls.compute).toBe(4));
     fireEvent.click(screen.getByRole("button", { name: "Frequency" }));
     await screen.findByRole("figure", { name: "Simulated MTF versus spatial frequency" });
     const completed = calls.compute;
     fireEvent.click(screen.getByRole("button", { name: "Aperture" }));
     await vi.waitFor(() =>
-      expect(screen.getByText(/12 converged · 0 unconverged · 0 unavailable points/)).toBeTruthy(),
+      expect(screen.getByText(/18 converged · 0 unconverged · 0 unavailable points/)).toBeTruthy(),
     );
     expect(calls.compute).toBe(completed);
   });

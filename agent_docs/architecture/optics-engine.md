@@ -352,10 +352,14 @@ scaling the entrance pupil by the stop-radius ratio. It reports its own progress
 plane and refocus shift relative to the main aperture. The comparison follows the selected
 focus policy independently by default; a persisted control can instead hold the main result's image plane, starting
 once its focus is available on the first partial result. Held shifts are part of both worker cache keys.
-Advanced reveals the comparison aperture select: standard full stops strictly above the charted f-number and below
-`L.maxFstop`, the same minimum-aperture bound the slider uses. The preference defaults to f/8; an unavailable choice
-uses the next slower full stop above the charted aperture without overwriting it. No valid stop disables the overlay.
-Advanced off hides the select while the toggle continues to name the chosen aperture and can disable the overlay.
+`mtfComparisonFNumbers` shares the attainable stops between the tab, select and aperture sweep: standard full stops
+slower than the charted aperture (a gap greater than 0.05 f-number for rounded labels) up to and including
+`L.maxFstop`, the slider's minimum-aperture bound, with 1e-9 f-number tolerance at that endpoint. The preference
+defaults to f/8. A stored stop outside this list disables the overlay without substitution or preference changes;
+its disabled toggle's title explains the aperture-range requirement. Advanced reveals the comparison aperture
+select, which lists attainable stops and shows an unavailable stored stop as a disabled placeholder. Choosing a stop
+stores it. Advanced off hides the select while the toggle continues to name the stored aperture, with f/8
+availability matching the rounded-aperture rule of the default control.
 `compareF8` keeps its overlay-on meaning; `comparisonFNumber` defaults to 8 for older stored preferences and shared
 links. Version-1 share encoding adds only optional `n` for a non-default aperture; f/8 payloads stay unchanged.
 The comparison shares the chart's diagnostic disclosure policy, including faded out-of-band frequency segments,
@@ -365,7 +369,8 @@ notes and diffraction-limit columns in the clipboard and both contextual CSV sco
 crosshair values, Advanced focus/working-aperture blocks, export context and captions name that same aperture.
 Advanced also exposes an Aperture view. With Advanced off, a stored `view: "aperture"` renders image height
 without changing the preference. The sweep starts at the exact charted aperture, then uses the comparison
-selector's slower full stops below `L.maxFstop`. Each point is an ordinary request with the same stop/pupil scaling,
+selector's slower full stops through `L.maxFstop`, inclusive. Each point is an ordinary request with the same
+stop/pupil scaling,
 restricted to the center, 50 % and charted result's outermost available field, or the frequency selector's single
 field. Overview waits for the charted result to finish so its edge stays fixed throughout the sweep. One retained
 `useMtfApertureSweep` client runs the apertures sequentially, publishes partial results and reports the current

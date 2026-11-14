@@ -37,9 +37,9 @@ export interface MtfPreferences {
   /** Displayed frequencies, ascending; never empty. */
   frequencies: readonly MtfChartFrequency[];
   maxGridSize: MtfGridCap;
-  /** Enable the stopped-down overlay when a slower full stop is available. */
+  /** Enable the stopped-down overlay when the stored comparison aperture is attainable. */
   compareF8: boolean;
-  /** Preferred comparison aperture; unavailable choices fall back to the next slower full stop. */
+  /** Stored comparison aperture; an unavailable choice disables the overlay without substitution. */
   comparisonFNumber: MtfComparisonFNumber;
   /** Refocus the comparison independently, or keep the main result's image plane. */
   comparisonFocus: "refocus" | "hold";
