@@ -6,6 +6,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { act, cleanup, fireEvent, render, renderHook, screen, within } from "@testing-library/react";
 import MtfTab from "../../../../../src/components/display/analysis/MtfTab.js";
 import { mtfCsv } from "../../../../../src/components/display/analysis/mtf/mtfCsv.js";
+import MtfActions from "../../../../../src/components/display/analysis/mtf/MtfActions.js";
 import MtfFieldSummary from "../../../../../src/components/display/analysis/mtf/MtfFieldSummary.js";
 import MtfChart from "../../../../../src/components/display/analysis/MtfChart.js";
 import { installMatchMediaMock, makeTestLensState, mockTheme } from "../../../../testUtils.js";
@@ -1219,7 +1220,12 @@ describe("MTF chart", () => {
       diffractionLimit: true,
       pixelPitchUm: 6 as const,
     };
-    const { rerender } = render(<MtfFieldSummary {...props} />);
+    const { rerender } = render(
+      <>
+        <MtfActions {...props} />
+        <MtfFieldSummary {...props} />
+      </>,
+    );
     expect(screen.getByRole("table").querySelector("caption")!.textContent).toContain(
       "Diffraction limit of the same traced pupil (no aberration)",
     );
@@ -1247,7 +1253,12 @@ describe("MTF chart", () => {
     fireEvent.click(screen.getByRole("button", { name: "Copy CSV" }));
     await screen.findByText("Copied");
     expect(writeText).toHaveBeenCalledWith(mtfCsv(limited, [10, 30], false, limited, true));
-    rerender(<MtfFieldSummary {...props} diagnostic />);
+    rerender(
+      <>
+        <MtfActions {...props} diagnostic />
+        <MtfFieldSummary {...props} diagnostic />
+      </>,
+    );
     expect(limitCells()[1]).toEqual(["0.950 / 0.960", "0.850 / 0.880"]);
   });
   it("withholds unconverged frequency readouts and values beyond the converged band", () => {
@@ -1367,14 +1378,17 @@ describe("MTF chart", () => {
     const writeText = vi.fn().mockResolvedValue(undefined);
     vi.stubGlobal("navigator", { ...navigator, clipboard: { writeText } });
     const { rerender } = render(
-      <MtfFieldSummary
-        result={result}
-        comparison={comparison}
-        mainLabel="f/2.8"
-        comparisonLabel="f/8, design plane"
-        frequencies={[10, 30]}
-        t={mockTheme}
-      />,
+      <>
+        <MtfActions result={result} comparison={comparison} frequencies={[10, 30]} t={mockTheme} />
+        <MtfFieldSummary
+          result={result}
+          comparison={comparison}
+          mainLabel="f/2.8"
+          comparisonLabel="f/8, design plane"
+          frequencies={[10, 30]}
+          t={mockTheme}
+        />
+      </>,
     );
     const table = screen.getByRole("table");
     expect(within(table).getAllByRole("rowheader", { name: "f/2.8" })).toHaveLength(3);
@@ -1413,7 +1427,7 @@ describe("MTF chart", () => {
   it("prevents stale exports from being mistaken for the current settings", () => {
     const writeText = vi.fn().mockResolvedValue(undefined);
     vi.stubGlobal("navigator", { ...navigator, clipboard: { writeText } });
-    render(<MtfFieldSummary result={result} frequencies={[10, 30]} t={mockTheme} stale />);
+    render(<MtfActions result={result} frequencies={[10, 30]} t={mockTheme} stale />);
     const copy = screen.getByRole("button", { name: "Copy CSV" });
     expect((copy as HTMLButtonElement).disabled).toBe(true);
     fireEvent.click(copy);
@@ -1484,6 +1498,7 @@ describe("MTF export and aperture comparison", () => {
     vi.stubGlobal("navigator", { ...navigator, clipboard: { writeText } });
     render(<MtfTab L={L} t={mockTheme} preparedState={state} currentEPSD={1} currentPhysStopSD={1} />);
     await screen.findByRole("figure", { name: /image height/ });
+    fireEvent.click(screen.getByRole("button", { name: "Show chart anyway" }));
     fireEvent.click(screen.getByRole("button", { name: "Copy CSV" }));
     expect(await screen.findByText("Copied")).toBeTruthy();
     const [header, first] = (writeText.mock.calls[0][0] as string).split("\n");
@@ -1532,6 +1547,7 @@ describe("MTF export and aperture comparison", () => {
       />,
     );
     await screen.findByRole("figure");
+    fireEvent.click(screen.getByRole("button", { name: "Show chart anyway" }));
     fireEvent.click(screen.getByRole("button", { name: "Advanced" }));
     const select = screen.getByRole("combobox", { name: "Comparison aperture" }) as HTMLSelectElement;
     expect(select.value).toBe("8");
@@ -1658,7 +1674,10 @@ describe("MTF export and aperture comparison", () => {
     async ({ charted, minimum }) => {
       const lens = build({ ...constructionFixtureData(focusedL), nominalFno: 2, maxFstop: minimum });
       const compareF8Available = !!charted && charted < 8 - 0.05 && minimum >= 8;
-      localStorage.setItem(MTF_PREFERENCES_KEY, JSON.stringify({ advanced: false, compareF8: true }));
+      localStorage.setItem(
+        MTF_PREFERENCES_KEY,
+        JSON.stringify({ advanced: false, compareF8: true, spectrum: "reference" }),
+      );
       const { calls } = stubWorker({ resultForJob: apertureControlResult });
       const writeText = vi.fn().mockResolvedValue(undefined);
       vi.stubGlobal("navigator", { ...navigator, clipboard: { writeText } });
@@ -1914,6 +1933,132 @@ describe("MTF download actions", () => {
     return { ...rendered, worker };
   }
 
+  // Actions belong to the tab even when no chart exists; only sharing needs no optical result.
+  it.each(["pending", "error", "unsupported"] as const)(
+    "keeps link sharing usable and data actions disabled in the %s state",
+    async (status) => {
+      const { clicks } = downloads();
+      const writeText = vi.fn().mockResolvedValue(undefined);
+      vi.stubGlobal("navigator", { ...navigator, clipboard: { writeText } });
+      window.history.replaceState({}, "", "/lens/test/?v=1&focus=0.25#chart");
+      localStorage.setItem(MTF_PREFERENCES_KEY, JSON.stringify({ method: "geometric", spectrum: "reference" }));
+      if (status === "error") stubWorker({ error: () => "Worker failed" });
+      else
+        vi.stubGlobal(
+          "Worker",
+          class {
+            postMessage() {}
+            terminate() {}
+          },
+        );
+      const lens =
+        status === "unsupported"
+          ? build({
+              ...constructionFixtureData(focusedL),
+              projection: { kind: "fisheye-equidistant", focalLengthMm: 50, fullFieldDeg: 180 },
+            })
+          : focusedL;
+      render(
+        <MtfTab
+          L={lens}
+          preparedState={prepareRuntimeState(lens, 0, 0)}
+          currentEPSD={1}
+          currentPhysStopSD={1}
+          t={mockTheme}
+        />,
+      );
+      if (status === "error") await screen.findByRole("alert");
+      if (status === "unsupported") expect(screen.getByRole("status").textContent).toContain("fisheye");
+      expect(screen.queryByRole("figure")).toBeNull();
+      for (const name of ["Copy CSV", "Export"]) {
+        const button = screen.getByRole("button", { name });
+        expect(button).toHaveProperty("disabled", true);
+        expect(button.title).toBe("No current MTF result.");
+        fireEvent.click(button);
+        fireEvent.keyDown(button, { key: "ArrowDown" });
+      }
+      const exports = screen.getAllByRole("menuitem", { hidden: true });
+      expect(exports).toHaveLength(4);
+      for (const item of exports) {
+        expect(item).toHaveProperty("disabled", true);
+        expect(item.title).toBe("No current MTF result.");
+      }
+      expect(screen.queryByRole("menu")).toBeNull();
+      expect(writeText).not.toHaveBeenCalled();
+      expect(clicks).toHaveLength(0);
+      const link = screen.getByRole("button", { name: "Copy MTF link" });
+      expect(link).toHaveProperty("disabled", false);
+      fireEvent.click(link);
+      await screen.findByText("Copied");
+      const copied = new URL(writeText.mock.calls[0][0]);
+      expect(copied.pathname).toBe("/lens/test/");
+      expect(copied.hash).toBe("#chart");
+      expect(copied.searchParams.get("focus")).toBe("0.25");
+      expect(parseSharedMtfSettings(copied.search)).toMatchObject({ method: "geometric", spectrum: "reference" });
+    },
+  );
+
+  it("keeps sharing outside the warning while data actions and result details stay protected", async () => {
+    const { clicks } = downloads();
+    const writeText = vi.fn().mockResolvedValue(undefined);
+    vi.stubGlobal("navigator", { ...navigator, clipboard: { writeText } });
+    localStorage.setItem(MTF_PREFERENCES_KEY, JSON.stringify({ advanced: true }));
+    stubWorker({ target: focusedState });
+    render(<MtfTab L={focusedL} preparedState={focusedState} currentEPSD={1} currentPhysStopSD={1} t={mockTheme} />);
+    const chart = await screen.findByRole("figure");
+    expect(chart.closest("[inert]")).toBeTruthy();
+    expect(screen.getByRole("table", { name: /MTF by image height/ }).closest("[inert]")).toBeTruthy();
+    for (const name of ["Copy CSV", "Export"]) {
+      const button = screen.getByRole("button", { name });
+      expect(button.closest("[inert]")).toBeNull();
+      expect(button).toHaveProperty("disabled", true);
+      expect(button.title).toContain("Acknowledge the data warning");
+      fireEvent.click(button);
+      fireEvent.keyDown(button, { key: "ArrowDown" });
+    }
+    const exports = screen.getAllByRole("menuitem", { hidden: true });
+    expect(exports).toHaveLength(4);
+    for (const item of exports) {
+      expect(item).toHaveProperty("disabled", true);
+      expect(item.title).toContain("Acknowledge the data warning");
+    }
+    expect(screen.queryByRole("menu")).toBeNull();
+    expect(clicks).toHaveLength(0);
+    expect(writeText).not.toHaveBeenCalled();
+    const link = screen.getByRole("button", { name: "Copy MTF link" });
+    expect(link.closest("[inert]")).toBeNull();
+    fireEvent.click(link);
+    await screen.findByText("Copied");
+    expect(parseSharedMtfSettings(new URL(writeText.mock.calls[0][0]).search)).toMatchObject({ advanced: true });
+    expect(chart.closest("[inert]")).toBeTruthy();
+    fireEvent.click(screen.getByRole("button", { name: "Show chart anyway" }));
+    expect(chart.closest("[inert]")).toBeNull();
+    expect(screen.getByRole("table", { name: /MTF by image height/ }).closest("[inert]")).toBeNull();
+    expect(screen.getByRole("button", { name: "Copy CSV" })).toHaveProperty("disabled", false);
+    fireEvent.click(screen.getByRole("button", { name: "Export" }));
+    const items = screen.getAllByRole("menuitem");
+    expect(items.map((item) => item.textContent)).toEqual([
+      "CSV — this view",
+      "CSV — all sampled values",
+      "SVG",
+      "PNG",
+    ]);
+    for (const item of items) expect(item).toHaveProperty("disabled", false);
+  });
+
+  it("gives independently mounted action rows distinct export menu ids", () => {
+    const props = { result: null, frequencies: [10] as const, t: mockTheme };
+    render(
+      <>
+        <MtfActions {...props} />
+        <MtfActions {...props} />
+      </>,
+    );
+    const ids = screen.getAllByRole("button", { name: "Export" }).map((button) => button.getAttribute("aria-controls"));
+    expect(ids.every(Boolean)).toBe(true);
+    expect(new Set(ids).size).toBe(2);
+  });
+
   it.each(["field", "frequency", "aperture", "zoom"] as const)(
     "keeps the %s copy and export actions above the collapsed field details",
     async (view) => {
@@ -1925,7 +2070,7 @@ describe("MTF download actions", () => {
       const row = buttons[0].parentElement!;
       expect(within(row).getAllByRole("button")).toEqual(buttons);
       for (const button of buttons) expect(button.closest("details")).toBeNull();
-      expect(row.nextElementSibling).toBe(details);
+      expect(row.compareDocumentPosition(details) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
       expect(screen.getByRole("figure").compareDocumentPosition(row) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
       expect(row.style.flexWrap).toBe("wrap");
     },
@@ -2155,6 +2300,8 @@ describe("MTF download actions", () => {
 
   it("marks a computing result partial and disables downloads of superseded results", async () => {
     const { blobs, clicks } = downloads();
+    const writeText = vi.fn().mockResolvedValue(undefined);
+    vi.stubGlobal("navigator", { ...navigator, clipboard: { writeText } });
     localStorage.setItem(
       MTF_PREFERENCES_KEY,
       JSON.stringify({ method: "geometric", spectrum: "reference", advanced: true }),
@@ -2171,6 +2318,24 @@ describe("MTF download actions", () => {
     fireEvent.change(screen.getByRole("combobox", { name: "MTF image plane" }), { target: { value: "design" } });
     expect(screen.getByRole("button", { name: "Export" })).toHaveProperty("disabled", true);
     expect(screen.getByRole("button", { name: "Copy CSV" })).toHaveProperty("disabled", true);
+    for (const name of ["Copy CSV", "Export"]) {
+      const button = screen.getByRole("button", { name });
+      expect(button.title).toBe("Values are updating for the current settings.");
+      fireEvent.click(button);
+      fireEvent.keyDown(button, { key: "ArrowDown" });
+    }
+    const exports = screen.getAllByRole("menuitem", { hidden: true });
+    expect(exports).toHaveLength(4);
+    for (const item of exports) {
+      expect(item).toHaveProperty("disabled", true);
+      expect(item.title).toBe("Values are updating for the current settings.");
+    }
+    expect(screen.queryByRole("menu")).toBeNull();
+    expect(clicks).toHaveLength(1);
+    expect(writeText).not.toHaveBeenCalled();
+    fireEvent.click(screen.getByRole("button", { name: "Copy MTF link" }));
+    await screen.findByText("Copied");
+    expect(parseSharedMtfSettings(new URL(writeText.mock.calls[0][0]).search)).toMatchObject({ focus: "design" });
   });
 });
 

@@ -118,8 +118,8 @@ note describes a held plane as authored only when that shift is exactly zero. Ea
 explains its options in a mouse-hover or keyboard-focus `PortalTooltip`, also linked through `aria-describedby`; on
 hover-less (touch) devices a `HelpTooltipButton` beside each dropdown gives tap access. Method, spectrum, image plane, sampling (128² or 256² cap), view, field step (10/5/2/1 %) and frequency chips
 (10–50 lp/mm) persist in localStorage through `src/utils/state/mtfPreferences.ts` and `useMtfPreferences`, which
-comparison panes share; the existing `tab=mtf` URL selects the tab. "Copy MTF link", beside "Copy CSV" in the field
-summary, copies the current page URL with an explicit versioned `mtf` bundle containing every non-default MTF
+comparison panes share; the existing `tab=mtf` URL selects the tab. "Copy MTF link", beside "Copy CSV" in the action
+row, copies the current page URL with an explicit versioned `mtf` bundle containing every non-default MTF
 setting, including chart references and Advanced. It opens the MTF tab, preserves exact optical state, and uses the
 CSV action's clipboard confirmation. Ordinary visits do not write MTF settings to the URL. A valid shared bundle
 overrides stored settings for the visit and both comparison panes. Lens switches, comparison swaps and entering or
@@ -133,8 +133,12 @@ absent on subsequent lens-view navigation. Opening a link never saves its settin
 visit's URL and saves only that control as a preference, leaving other shared settings visit-only.
 Warning acknowledgments and diagnostic disclosures are excluded, so a fresh visit still requires its own disclosures.
 Copy CSV, Copy MTF link and Export stay visible in a wrapping row below the chart caption and above the collapsible
-status line, value table and field notes, with confirmation and error messages beside the actions.
-The field summary's keyboard-operable Export menu downloads "CSV — this view", "CSV — all sampled values", SVG
+status line, value table and field notes, with confirmation and error messages beside the actions. The row renders
+before the first result, on errors and for unsupported lenses. Copy MTF link needs only the settings and page URL
+and stays usable in every tab state. Copy CSV and Export are disabled, with a short reason in their titles, when no
+current result is displayed, values are stale or a blocking data warning is unacknowledged. The action row stays
+outside the warning's inert regions; explicit guards keep copying data and all four downloads behind the warning.
+The action row's keyboard-operable Export menu downloads "CSV — this view", "CSV — all sampled values", SVG
 or PNG through local Blobs and temporary anchors. Copy CSV retains its uncaptioned image-height table in the
 image-height and frequency views. The view download follows the selected chart: the image-height table with field notes, or every frequency for each shown
 field, including independently selected comparison overview fields. All sampled values includes every field and
@@ -267,16 +271,16 @@ station buttons. Field notes retain the engine's method-specific
 qualifications: geometric unresolved flux can carry the 2ε error bound; diffraction omitted flux has no such bound.
 Advanced is independent of "Show diagnostic estimates (unconverged or unverified frequencies)" and does not disclose
 withheld values. Toggling Advanced itself reuses the current computations.
-`mtf/MtfControls`, `mtf/MtfFieldSummary` and `mtf/MtfValueTable` hold
-the controls, status counts and per-field values; an enabled comparison with values adds aperture-labelled table
-rows and appended aperture-prefixed CSV columns, retaining the main columns and their order. The f/8 column
+`mtf/MtfControls`, `mtf/MtfActions`, `mtf/MtfFieldSummary` and `mtf/MtfValueTable` hold
+the controls, result-independent actions, status counts and per-field values; an enabled comparison with values adds
+aperture-labelled table rows and appended aperture-prefixed CSV columns, retaining the main columns and their order. The f/8 column
 names stay unchanged; another aperture replaces only the `f/8 ` prefix, for example `f/5.6 10 lp/mm sagittal`
 and `f/5.6 notes`, including diffraction-limit columns in both CSV scopes. Each aperture keeps its own physical
 image heights, field statuses and stable-band disclosure; missing values stay empty in CSV. The table copies as CSV
 (`mtf/mtfCsv.ts`). When
 `assessMtfDataLimitations` lists a `blocking` gap, `mtf/MtfDataWarning` blurs the chart and field summary, marks them
-`inert` and covers them with a warning card that lists every item. "Show chart anyway" records the blocking kinds for
-that lens system in `src/utils/state/mtfDataWarnings.ts` (`useMtfDataWarning`); the warning then collapses to a
+`inert` in separate regions around the action row and covers the chart with a warning card that lists every item.
+"Show chart anyway" records the blocking kinds for that lens system in `src/utils/state/mtfDataWarnings.ts` (`useMtfDataWarning`); the warning then collapses to a
 `<details>` line above the chart. Non-blocking notes (source errata) never blur the chart and appear in that line
 from the start. Dismissals are in memory only: they survive tab switches, reset on reload, and a kind of gap not yet
 dismissed on that lens brings the card back. Worker caching, numerical status, the gap kinds and

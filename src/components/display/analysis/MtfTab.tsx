@@ -28,6 +28,7 @@ import MtfChart from "./MtfChart.js";
 import MtfControls from "./mtf/MtfControls.js";
 import MtfDataWarning from "./mtf/MtfDataWarning.js";
 import MtfFieldSummary from "./mtf/MtfFieldSummary.js";
+import MtfActions from "./mtf/MtfActions.js";
 import { buildMtfExportContext, MTF_EXPORT_DISCLAIMER } from "./mtf/mtfExportContext.js";
 import { textRun } from "../../../utils/text.js";
 
@@ -309,6 +310,15 @@ export default function MtfTab({
   const unconvergedCount = (
     view === "zoom" ? sweepSamples.flatMap((sample) => sample.result?.fields ?? []) : (shown?.fields ?? [])
   ).filter((field) => field.status === "unconverged").length;
+  const chartResult = shown && (view === "zoom" || (support.available && !error)) ? shown : null;
+  const warningBlocked = view !== "zoom" && !warningAcknowledged && dataLimitations.some(({ blocking }) => blocking);
+  const dataDisabledReason = !chartResult
+    ? "No current MTF result."
+    : displayStale
+      ? "Values are updating for the current settings."
+      : warningBlocked
+        ? "Acknowledge the data warning to copy or export values."
+        : undefined;
   const muted = { color: t.muted, margin: "4px 0" };
   return (
     <section style={{ color: t.value, fontSize: 12 }} aria-label="Simulated MTF">
@@ -431,112 +441,138 @@ export default function MtfTab({
           {displayStale ? (
             <p role="status">Previous settings are shown while the current calculation updates.</p>
           ) : null}
-          <MtfDataWarning
-            limitations={view === "zoom" ? [] : dataLimitations}
-            acknowledged={warningAcknowledged}
-            onAcknowledge={acknowledgeWarning}
-            t={t}
-          >
-            <MtfChart
-              exportRef={chartRef}
-              result={shown}
-              sweepSamples={sweepSamples}
-              sweepFields={displayFields}
-              sweepCaption={sweepCaption}
-              view={view}
-              currentZoomT={preparedState.zoomT}
-              frequencies={preferences.frequencies}
-              t={t}
-              stale={displayStale}
-              comparison={comparisonShown}
-              comparisonLabel={comparisonLabel}
-              diagnostic={diagnostic}
-              advanced={preferences.advanced}
-              diffractionLimit={preferences.diffractionLimit && preferences.method === "diffraction"}
-              frequencyField={preferences.frequencyField}
-              pixelPitchUm={preferences.pixelPitchUm}
-            />
-            {preferences.advanced && view !== "zoom" ? (
-              <div style={{ display: "flex", flexWrap: "wrap", gap: 16 }}>
-                <FocusSearch
-                  result={shown}
-                  comparison={comparisonShown}
-                  comparisonFNumber={comparisonFNumber}
-                  mainLabel={fNumber ? `f/${formatFNumber(fNumber)} (main)` : "Main aperture"}
-                  t={t}
-                />
-                <ConjugateReadout
-                  L={L}
-                  request={request}
-                  options={options}
-                  result={shown}
-                  comparison={comparisonShown}
-                  comparisonFNumber={comparisonFNumber}
-                  mainLabel="Main aperture"
-                  fNumber={fNumber}
-                  frequencies={preferences.frequencies}
-                  stale={displayStale}
-                  t={t}
-                />
-              </div>
-            ) : null}
-            <MtfFieldSummary
-              result={shown}
-              sweepSamples={sweepSamples}
-              sweepFields={displayFields}
-              sweepCaption={sweepCaption}
-              frequencies={preferences.frequencies}
-              t={t}
-              diagnostic={diagnostic}
-              stale={displayStale}
-              comparison={preferences.advanced ? comparisonShown : comparisonValues}
-              comparisonLabel={comparisonLabel}
-              comparisonFNumber={comparisonFNumber}
-              mainLabel={fNumber ? `f/${formatFNumber(fNumber)} (main)` : "Main aperture"}
-              diffractionLimit={preferences.diffractionLimit && preferences.method === "diffraction"}
-              pixelPitchUm={view === "frequency" ? preferences.pixelPitchUm : null}
-              advanced={preferences.advanced}
-              getMtfLink={() => buildMtfLink(window.location.href, preferences)}
-              chartRef={chartRef}
-              view={view}
-              frequencyField={preferences.frequencyField}
-              exportComparison={comparisonShown}
-              getExportContext={() =>
-                buildMtfExportContext({
-                  lens: L,
-                  result: shown,
-                  preferences: { ...preferences, view },
-                  sweepSamples: isSweep ? sweepSamples : undefined,
-                  sweepCaption: isSweep ? sweepCaption : undefined,
-                  focalLengthMm: focalLengthMm ?? (request.dynamicEFL || L.EFL),
-                  fNumber,
-                  zoomT: preparedState.zoomT,
-                  focusT: view === "zoom" ? 0 : preparedState.focusT,
-                  spectrumNote: spectrum.note,
-                  link: buildMtfLink(window.location.href, preferences),
-                  date: new Date(),
-                  partial: isSweep
-                    ? (view === "aperture" && !sweepReady) || sweep.running || !!sweep.error
-                    : running || (comparisonEnabled && (comparison.running || !comparisonJob)),
-                  diagnostic,
-                  comparison: comparisonShown,
-                  comparisonFNumber,
-                  comparisonRequested: comparisonEnabled,
-                })
-              }
-            />
-            {view === "zoom" && preferences.advanced ? (
-              <ul aria-label="Zoom station limitations" style={{ color: t.muted, paddingLeft: 16 }}>
-                {sweepSamples.map((sample) => (
-                  <li
-                    key={sample.zoomT}
-                  >{`${sample.focalLengthMm} mm · f/${formatFNumber(sample.fNumber)}: ${sample.limitations?.join("; ") || (sample.result ? "No additional data limitations." : "Pending.")}`}</li>
-                ))}
-              </ul>
-            ) : null}
-          </MtfDataWarning>
         </>
       )}
+      <MtfDataWarning
+        limitations={chartResult && view !== "zoom" ? dataLimitations : []}
+        acknowledged={warningAcknowledged}
+        onAcknowledge={acknowledgeWarning}
+        t={t}
+        actions={
+          <MtfActions
+            result={chartResult}
+            sweepSamples={sweepSamples}
+            sweepFields={displayFields}
+            frequencies={preferences.frequencies}
+            t={t}
+            diagnostic={diagnostic}
+            stale={displayStale}
+            disabledReason={dataDisabledReason}
+            comparison={preferences.advanced ? comparisonShown : comparisonValues}
+            comparisonFNumber={comparisonFNumber}
+            diffractionLimit={preferences.diffractionLimit && preferences.method === "diffraction"}
+            getMtfLink={() => buildMtfLink(window.location.href, preferences)}
+            chartRef={chartRef}
+            view={view}
+            frequencyField={preferences.frequencyField}
+            exportComparison={comparisonShown}
+            getExportContext={
+              chartResult
+                ? () =>
+                    buildMtfExportContext({
+                      lens: L,
+                      result: chartResult,
+                      preferences: { ...preferences, view },
+                      sweepSamples: isSweep ? sweepSamples : undefined,
+                      sweepCaption: isSweep ? sweepCaption : undefined,
+                      focalLengthMm: focalLengthMm ?? (request.dynamicEFL || L.EFL),
+                      fNumber,
+                      zoomT: preparedState.zoomT,
+                      focusT: view === "zoom" ? 0 : preparedState.focusT,
+                      spectrumNote: spectrum.note,
+                      link: buildMtfLink(window.location.href, preferences),
+                      date: new Date(),
+                      partial: isSweep
+                        ? (view === "aperture" && !sweepReady) || sweep.running || !!sweep.error
+                        : running || (comparisonEnabled && (comparison.running || !comparisonJob)),
+                      diagnostic,
+                      comparison: comparisonShown,
+                      comparisonFNumber,
+                      comparisonRequested: comparisonEnabled,
+                    })
+                : undefined
+            }
+          />
+        }
+        details={
+          chartResult ? (
+            <>
+              {preferences.advanced && view !== "zoom" ? (
+                <div style={{ display: "flex", flexWrap: "wrap", gap: 16 }}>
+                  <FocusSearch
+                    result={chartResult}
+                    comparison={comparisonShown}
+                    comparisonFNumber={comparisonFNumber}
+                    mainLabel={fNumber ? `f/${formatFNumber(fNumber)} (main)` : "Main aperture"}
+                    t={t}
+                  />
+                  <ConjugateReadout
+                    L={L}
+                    request={request}
+                    options={options}
+                    result={chartResult}
+                    comparison={comparisonShown}
+                    comparisonFNumber={comparisonFNumber}
+                    mainLabel="Main aperture"
+                    fNumber={fNumber}
+                    frequencies={preferences.frequencies}
+                    stale={displayStale}
+                    t={t}
+                  />
+                </div>
+              ) : null}
+              <MtfFieldSummary
+                result={chartResult}
+                sweepSamples={sweepSamples}
+                sweepFields={displayFields}
+                sweepCaption={sweepCaption}
+                frequencies={preferences.frequencies}
+                t={t}
+                diagnostic={diagnostic}
+                comparison={preferences.advanced ? comparisonShown : comparisonValues}
+                comparisonLabel={comparisonLabel}
+                comparisonFNumber={comparisonFNumber}
+                mainLabel={fNumber ? `f/${formatFNumber(fNumber)} (main)` : "Main aperture"}
+                diffractionLimit={preferences.diffractionLimit && preferences.method === "diffraction"}
+                pixelPitchUm={view === "frequency" ? preferences.pixelPitchUm : null}
+                advanced={preferences.advanced}
+                view={view}
+              />
+              {view === "zoom" && preferences.advanced ? (
+                <ul aria-label="Zoom station limitations" style={{ color: t.muted, paddingLeft: 16 }}>
+                  {sweepSamples.map((sample) => (
+                    <li
+                      key={sample.zoomT}
+                    >{`${sample.focalLengthMm} mm · f/${formatFNumber(sample.fNumber)}: ${sample.limitations?.join("; ") || (sample.result ? "No additional data limitations." : "Pending.")}`}</li>
+                  ))}
+                </ul>
+              ) : null}
+            </>
+          ) : null
+        }
+      >
+        {chartResult ? (
+          <MtfChart
+            exportRef={chartRef}
+            result={chartResult}
+            sweepSamples={sweepSamples}
+            sweepFields={displayFields}
+            sweepCaption={sweepCaption}
+            view={view}
+            currentZoomT={preparedState.zoomT}
+            frequencies={preferences.frequencies}
+            t={t}
+            stale={displayStale}
+            comparison={comparisonShown}
+            comparisonLabel={comparisonLabel}
+            diagnostic={diagnostic}
+            advanced={preferences.advanced}
+            diffractionLimit={preferences.diffractionLimit && preferences.method === "diffraction"}
+            frequencyField={preferences.frequencyField}
+            pixelPitchUm={preferences.pixelPitchUm}
+          />
+        ) : null}
+      </MtfDataWarning>
       <p style={muted}>{MTF_EXPORT_DISCLAIMER}</p>
       <details style={{ color: t.muted, fontSize: 11 }}>
         <summary style={{ cursor: "pointer" }}>Model assumptions</summary>

@@ -14,7 +14,11 @@ interface MtfDataWarningProps {
   acknowledged: boolean;
   onAcknowledge: () => void;
   t: Theme;
-  /** Chart and field summary the warning covers. */
+  /** Action row outside the inert regions; the caller disables data actions while blocked. */
+  actions?: ReactNode;
+  /** Result details retain the same warning boundary after the action row. */
+  details?: ReactNode;
+  /** Chart the warning covers. */
   children: ReactNode;
 }
 
@@ -24,7 +28,15 @@ const NOTES_TITLE = "Notes on this lens's data";
 
 const BLURRED: CSSProperties = { filter: "blur(4px)", pointerEvents: "none", userSelect: "none" };
 
-export default function MtfDataWarning({ limitations, acknowledged, onAcknowledge, t, children }: MtfDataWarningProps) {
+export default function MtfDataWarning({
+  limitations,
+  acknowledged,
+  onAcknowledge,
+  t,
+  children,
+  actions,
+  details,
+}: MtfDataWarningProps) {
   const blocking = limitations.some((limitation) => limitation.blocking);
   const blocked = blocking && !acknowledged;
   const list = (
@@ -98,6 +110,12 @@ export default function MtfDataWarning({ limitations, acknowledged, onAcknowledg
           </div>
         ) : null}
       </div>
+      {actions}
+      {details ? (
+        <div inert={blocked} style={{ minWidth: 0, ...(blocked ? BLURRED : null) }}>
+          {details}
+        </div>
+      ) : null}
     </>
   );
 }

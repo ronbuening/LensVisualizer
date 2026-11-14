@@ -12,6 +12,7 @@ import {
   mtfContextBlock,
   MTF_EXPORT_DISCLAIMER,
 } from "../../../../../src/components/display/analysis/mtf/mtfExportContext.js";
+import MtfActions from "../../../../../src/components/display/analysis/mtf/MtfActions.js";
 import MtfFieldSummary from "../../../../../src/components/display/analysis/mtf/MtfFieldSummary.js";
 import {
   mtfSweepCsv,
@@ -1290,6 +1291,7 @@ describe("MTF aperture chart", () => {
     const contents = (diagnostic: boolean) => (
       <>
         <MtfChart {...props} diagnostic={diagnostic} />
+        <MtfActions {...props} diagnostic={diagnostic} />
         <MtfFieldSummary {...props} diagnostic={diagnostic} />
       </>
     );
