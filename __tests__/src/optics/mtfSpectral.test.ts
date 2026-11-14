@@ -661,6 +661,106 @@ describe("native sodium D", () => {
 });
 
 describe("partial measured dispersion", () => {
+  function measuredGlass(reference: "d" | "D", ng?: number) {
+    const base = constructionFixtureData(buildSimplePositiveElementLens());
+    const nd = 1.62;
+    return prepareRuntimeState(
+      build({
+        ...base,
+        elements: base.elements.map((e) => ({
+          ...e,
+          nd,
+          indexReference: reference,
+          glass: undefined,
+          nC: 1.6169,
+          nF: 1.6272,
+          ng,
+        })),
+        surfaces: base.surfaces.map((s) => ({ ...s, nd: s.nd === 1 ? 1 : nd })),
+      }),
+      0,
+      0,
+    );
+  }
+
+  it.each(["d", "D"] as const)("does not qualify measured single-line indices in a native %s table", (reference) => {
+    // Changing the unused g node independently controls whether a measured node depends on its estimate.
+    const variants = [undefined, 1.632, 1.64].map((ng) => measuredGlass(reference, ng));
+    for (const [wavelengthNm, expected] of [
+      [LINE_NM.C, 1.6169],
+      [LINE_NM[reference], 1.62],
+      [LINE_NM.F, 1.6272],
+    ]) {
+      for (const state of variants) {
+        expect(anchoredIndexAtWavelength(state, 1, wavelengthNm)).toBeCloseTo(expected, 12);
+        expect(
+          assessMtfDataLimitations(state, {
+            preferredSpectrum: "single",
+            spectrum: "single",
+            wavelengthNm,
+            referenceWavelengthNm: wavelengthNm,
+            result: null,
+          }),
+        ).toEqual([]);
+      }
+    }
+  });
+
+  it.each([532, LINE_NM.g, LINE_NM.C - 0.001, LINE_NM.F + 0.001])(
+    "qualifies a single-line index that depends on the estimated g node at %s nm",
+    (wavelengthNm) => {
+      const partial = measuredGlass("d");
+      const measured = measuredGlass("d", 1.64);
+      expect(
+        Math.abs(
+          anchoredIndexAtWavelength(partial, 1, wavelengthNm) - anchoredIndexAtWavelength(measured, 1, wavelengthNm),
+        ),
+      ).toBeGreaterThan(1e-10);
+      const input = {
+        preferredSpectrum: "single",
+        spectrum: "single",
+        wavelengthNm,
+        referenceWavelengthNm: wavelengthNm,
+        result: null,
+      } as const;
+      expect(assessMtfDataLimitations(partial, input)).toMatchObject([
+        { kind: "estimated-dispersion", blocking: true },
+      ]);
+      expect(assessMtfDataLimitations(measured, input)).toEqual([]);
+    },
+  );
+
+  it.each(["d", "D"] as const)("qualifies Abbe-only single-line indices away from native %s", (reference) => {
+    const base = constructionFixtureData(buildSimplePositiveElementLens());
+    const state = prepareRuntimeState(
+      build({ ...base, elements: base.elements.map((e) => ({ ...e, vd: 60, indexReference: reference })) }),
+      0,
+      0,
+    );
+    for (const wavelengthNm of [LINE_NM.C, LINE_NM[reference], LINE_NM.F, LINE_NM.g, 532]) {
+      const notes = assessMtfDataLimitations(state, {
+        preferredSpectrum: "single",
+        spectrum: "single",
+        wavelengthNm,
+        referenceWavelengthNm: wavelengthNm,
+        result: null,
+      });
+      if (wavelengthNm === LINE_NM[reference]) expect(notes).toEqual([]);
+      else expect(notes).toMatchObject([{ kind: "estimated-dispersion", blocking: true }]);
+    }
+  });
+
+  it.each(["cdf", "photopic"] as const)("retains the missing-g warning for %s", (spectrum) => {
+    expect(
+      assessMtfDataLimitations(measuredGlass("d"), {
+        preferredSpectrum: spectrum,
+        spectrum,
+        referenceWavelengthNm: spectrum === "cdf" ? LINE_NM.d : 560,
+        result: null,
+      }),
+    ).toMatchObject([{ kind: "estimated-dispersion", blocking: true }]);
+  });
+
   it.each(["d", "D"] as const)(
     "guards the measured span at %s independently of the printed Abbe value",
     (reference) => {

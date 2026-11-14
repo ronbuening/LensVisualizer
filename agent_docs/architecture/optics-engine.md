@@ -275,9 +275,13 @@ holds the chart behind a warning until the reader has seen it) or a note listed 
 only when it changes that display; the first five are blocking:
 
 - `reference-only`: a glass blocks the preferred spectrum, so the chart is the reference wavelength alone.
-- `estimated-dispersion`: a spectral chart uses nd/νd-only glasses. They are named, and split between lens and
-  converter on a composed system. Synthetic rear plates are not counted: a flat plate only shifts focus with color,
-  and the estimate keeps its F−C span exact.
+- `estimated-dispersion`: a spectral chart uses Abbe-only glasses or measured red/blue tables with an estimated g
+  index. For `single`, a glass is counted only when the selected index depends on an estimate. The resolver's
+  four-term Cauchy fit uses all native C/d/F/g, C/D/F/g or C′/e/F′/g nodes: an exact measured node is independent of
+  estimates at other nodes, while interpolation away from the nodes depends on every node, including an estimated
+  g index. An Abbe-only glass estimates every node except its authored reference index. Estimated glasses are named,
+  and split between lens and converter on a composed system. Synthetic rear plates are not counted: a flat plate
+  only shifts focus with color, and the estimate keeps its F−C span exact.
 - `image-plane`: the authored plane is inconsistent and the applied mode is `design`, or `held` with an exactly
   zero `appliedShiftMm`. A shifted held plane has no authored-plane gap, regardless of the requested mode, even
   when it coincides with the best-axial diagnostic. Automatic refocus to `best-axial` carries a disclosure that the

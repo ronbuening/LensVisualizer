@@ -3,12 +3,12 @@
  *
  * `assessMtfSupport` says whether MTF can run and lists the model's general assumptions. This module answers a
  * narrower question for the chart on screen: what is this lens, or lens plus converter, missing that the most
- * accurate model would need? Every gap is tied to the display it changes, so a single-wavelength chart the reader
- * asked for carries no dispersion gap, and image-plane claims follow the plane actually applied. Blocking gaps hold
+ * accurate model would need? Every gap follows the indices and image plane actually used. Blocking gaps hold
  * the chart behind a warning; term/equation assumptions, aperture provenance and source errata leave it readable.
  */
 import type { MtfDataLimitation, MtfResult, MtfSpectrum } from "../../../types/mtf.js";
 import type { PreparedGeometry } from "../../types.js";
+import { channelWavelengths, CHROMATIC_CHANNEL_ORDER } from "../../chromatic/channels.js";
 import {
   assessMtfSpectralData,
   mtfReferenceCoordinates,
@@ -102,7 +102,18 @@ export function assessMtfDataLimitations(state: PreparedGeometry, input: MtfData
         state.surfaces.some((surface) => surface.nd !== 1 && surface.elemId === element.id),
       );
       const estimatedIds = new Set(spectral.estimatedElementIds);
-      const estimated = glasses.filter((element) => estimatedIds.has(element.id));
+      const partialIds = new Set(spectral.partialLineElementIds);
+      const estimated = glasses.filter((element) => {
+        if (!estimatedIds.has(element.id)) return false;
+        if (input.preferredSpectrum !== "single") return true;
+        // The resolver fits all four native C/d/F/g, C/D/F/g or C′/e/F′/g nodes.
+        // At a node only that index matters: G is authored on both estimated
+        // tiers; measured-line tables also supply R/B. Away from nodes the
+        // Cauchy fit depends on every node, including the estimated g index.
+        const wavelengths = channelWavelengths(element.indexReference ?? "d");
+        const channel = CHROMATIC_CHANNEL_ORDER.find((ch) => wavelengths[ch] === input.wavelengthNm);
+        return channel === undefined || (channel !== "G" && (!partialIds.has(element.id) || channel === "V"));
+      });
       // A mounted converter's elements follow the lens's; name the two parts separately.
       const converterFrom = state.lens.attachedTeleconverter?.firstElementId ?? Infinity;
       const named = (converter: boolean) =>
@@ -118,7 +129,7 @@ export function assessMtfDataLimitations(state: PreparedGeometry, input: MtfData
               .filter(Boolean)
               .join("; ");
       const count = estimated.length;
-      const partialCount = estimated.filter((element) => spectral.partialLineElementIds.includes(element.id)).length;
+      const partialCount = estimated.filter((element) => partialIds.has(element.id)).length;
       const coordinates = mtfReferenceCoordinates(state);
       if (count > 0)
         limitations.push({
