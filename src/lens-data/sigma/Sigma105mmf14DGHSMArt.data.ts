@@ -332,6 +332,16 @@ const LENS_DATA = {
     description: "Internal rear-group focus: G2 moves objectward; G1 and the image plane remain fixed.",
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 826.8724,
+        distanceReference: "first-surface",
+        source:
+          "JP 2019-144477 A, Numerical Example 1, [可変間隔データ], 撮影距離 999 column, PDF p. 13: d0=826.8724 mm; d14=3.0000 mm, d30=50.4932 mm. [面データ]: \"物面 | ∞ | (d0)\" immediately before surface 1; \"単位：mm\" (PDF p. 12).",
+      },
+    ],
   },
 
   gaps: { "14": { label: "D14", values: [[15.8705, 3.0]] }, "30A": { label: "BF", values: [[37.5626, 50.4932]] } },

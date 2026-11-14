@@ -323,6 +323,24 @@ const LENS_DATA = {
       "and 7.642/3.920 mm at the patent nearest state; D1 + D2 remains 11.562 mm.",
     // (moved from publishedStations) Every focus keyframe is a source row.
     published: [1, 2],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 915.554,
+        distanceReference: "first-surface",
+        source:
+          "US 2024/0151940 A1, Embodiment 1, TABLE 3, m=-1/40 column, PDF p. 14: D0=915.554 mm; D1=10.155 mm, D2=1.407 mm. Table 1: \"Object\" row has D0 in Thickness, immediately before surface 1 (PDF p. 13, printed p. 3); ¶0053 specifies mm.",
+      },
+      {
+        zoomStation: 0,
+        keyframe: 2,
+        objectDistanceMm: 101.451,
+        distanceReference: "first-surface",
+        source:
+          "US 2024/0151940 A1, Embodiment 1, TABLE 3, TL=0.19 m column, PDF p. 14: D0=101.451 mm; D1=7.642 mm, D2=3.920 mm. Table 1: \"Object\" row has D0 in Thickness, immediately before surface 1 (PDF p. 13, printed p. 3); ¶0053 specifies mm.",
+      },
+    ],
   },
 
   gaps: { STO: { label: "D1", values: [[10.562, 10.155, 7.642]] }, "15": { label: "D2", values: [[1, 1.407, 3.92]] } },

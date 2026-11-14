@@ -212,6 +212,24 @@ const LENS_DATA = {
       "the distance the close-focus label reports.",
     // (moved from publishedStations) Every focus keyframe is a source row.
     published: [1, 2],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 993.49977,
+        distanceReference: "first-surface",
+        source:
+          "WO 2020/230915 A1, Embodiment 1, Table 3 (¶0126), MAG=-1/40 column, PDF p. 17: D0=993.49977 mm; D1=4.11302 mm, D2=2.35986 mm. Table 1: \"obj | infinity | D0\" in Lens surface/R/Dn columns, immediately before surface 1 (PDF p. 16, printed p. 14); ¶0119 specifies Dn in millimeters.",
+      },
+      {
+        zoomStation: 0,
+        keyframe: 2,
+        objectDistanceMm: 200.04902,
+        distanceReference: "first-surface",
+        source:
+          "WO 2020/230915 A1, Embodiment 1, Table 3 (¶0126), TL=0.2m column, PDF p. 17: D0=200.04902 mm; D1=3.25312 mm, D2=3.21976 mm. Table 1: \"obj | infinity | D0\" in Lens surface/R/Dn columns, immediately before surface 1 (PDF p. 16, printed p. 14); ¶0119 specifies Dn in millimeters.",
+      },
+    ],
   },
 
   gaps: {

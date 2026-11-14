@@ -97,3 +97,15 @@ instead (10.707 mm at 21.9 mm). The analysis quotes neither and is unchanged.
 - The original PDF Figure1 on p.19 loses many strokes at both native resolution and600dpi. Supplement it with the exact-publication [JP2019117419A original Figure image](https://patentimages.storage.googleapis.com/96/36/9d/199f0e595f2065/2019117419-4.png) (SHA-256 `f7ecb0344a64530807bcbc97d19db5c2afd96e36ac41b4ae9eed4465a738fb61`). Its paired original infinity plot reads F1.46/ω46.85; the close plot reads F1.48/ω46.74, matching Example1. No other publication/example supplies numerical prescription cells.
 - Native744×520 image scale: front vertex x≈96 to LPF entry x≈685 over158.813mm gives≈3.71px/mm. Clean outer heights are≈141/112/92px for the first three bodies, roughly38/30/25mm with~0.3–0.5mm drawing uncertainty. Adopt S1=38.0, S3A=30.0, S5/S6=25.0mm; retain S2=27 and S4A=21.9 clear caps with exposed flat lands to38/30mm. These are drawing inferences, never printed apertures. The rest retain geometric/bundle-limited caps: the schematic's later tall blocks are not reproducible by literal thin-element geometry. No opaque interface land, resin wing or new cut is used.
 - Canonical/full inferred-cut validation passes; S3A scan to30mm has no turnover and a27.1° rim angle. Nine actual buildLens/computeElementShapes SVG views inspected: finite paths, zero hidden trim, connected compounds. Native aperture remains iris-limited f/1.46; full-format chief clears; image-circle reports zero undersized. Matched16-point stop-lattice samples over focus/zoom0/.5/1 ×five common field fractions retain6,558 previous passes, lose0, gain18; counts are not flux. Source959mm and the existing derived276mm endpoint are retained without new finite-focus certification. R/d/aspheres/stop/controls/tolerances stay unchanged.
+
+## 2026-11-14 — Published finite conjugates
+
+Patent: JP 2019-117419 A. PDF pages below use the one-based PDF page index.
+
+| State (zoom/keyframe) | Field | Before | After | Source and paraxial residual |
+| --- | --- | --- | --- | --- |
+| 0/1 | `focus.conjugates` | Absent | 798.2357 mm, `first-surface` | PDF p. 10, Numerical Example 1, [可変間隔データ], 撮影距離959mm column; d11=6.5175 mm, d16=5.7528 mm, d27=37.0527 mm. Offset +0.003967618 mm (+1.565809 diffraction depths); `consistent`. |
+
+[面データ]: "物面 | ∞ | (d0)" immediately before surface 1; "単位：mm" (PDF p. 9). This defines the declared distance from the object plane to the first surface.
+
+The published flags already include the declared keyframes. All gap values, surfaces, image-plane settings and existing focus controls are retained.

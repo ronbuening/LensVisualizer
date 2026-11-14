@@ -374,6 +374,24 @@ const LENS_DATA = {
       "PUBLISHED inner focus: G21 translates imageward while G11 and G31 remain fixed; infinity, MAG=-1/30, and TL=0.2 m D1/D2 states are retained. The 2.500 mm rear plate is traced (not drawn) at fixed D3 = 22.66 mm with the fixed D4 + D5 = 0.500 mm trailing gap; D5 is not modeled as a signed gap.",
     // (moved from publishedStations) Every focus keyframe is a source row.
     published: [1, 2],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 411.570745,
+        distanceReference: "first-surface",
+        source:
+          "KR 10-1933088 B1, Numerical Example 1, Table 3 (¶0093), MAG=-1/30 column, PDF p. 13: D0=411.570745 mm; D1=18.786854 mm, D2=3.111872 mm. Table 1: \"object | infinity | D0\" in the lens-surface/R/Dn columns, immediately before surface 1 (PDF p. 11, ¶0089).",
+      },
+      {
+        zoomStation: 0,
+        keyframe: 2,
+        objectDistanceMm: 94.636274,
+        distanceReference: "first-surface",
+        source:
+          "KR 10-1933088 B1, Numerical Example 1, Table 3 (¶0093), TL=0.2m column, PDF p. 13: D0=94.636274 mm; D1=19.865161 mm, D2=2.033566 mm. Table 1: \"object | infinity | D0\" in the lens-surface/R/Dn columns, immediately before surface 1 (PDF p. 11, ¶0089).",
+      },
+    ],
   },
 
   gaps: {
