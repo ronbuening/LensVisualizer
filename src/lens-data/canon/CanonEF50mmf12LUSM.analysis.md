@@ -122,14 +122,14 @@ The patent's conditional expressions deliberately couple the rear-group positive
 
 The patent states that every embodiment focuses by moving the **entire lens system** (¶0085). The optical topology is therefore unit focus: no internal air gap changes during focusing.
 
-Numerical Example 1 publishes only the infinity prescription. The finite-focus state in the data file is explicitly a **CONSTRAINED_RECONSTRUCTION**, not a patent spacing row. Canon publishes a closest focusing distance of 0.45 m and a maximum magnification of 0.15×. Treating the 0.45 m value as object-to-image-plane distance, a finite-conjugate solve of the final prescription gives a physical solution with the last-surface-to-image distance increasing from the authored `D15 = 38.88 mm` to **45.947215 mm**. The corresponding paraxial magnification is **−0.147276×**, consistent with Canon's rounded 0.15× specification.
+Numerical Example 1 publishes only the infinity prescription. The finite-focus state in the data file is explicitly a **CONSTRAINED_RECONSTRUCTION**, not a patent spacing row. Canon publishes a closest focusing distance of 0.45 m and a maximum magnification of 0.15×. Treating the 0.45 m value as object-to-image-plane distance, a finite-conjugate solve of the final prescription gives a physical solution with the last-surface-to-image distance increasing from the infinity `D15 = 38.333791 mm` (re-solved from the printed 38.88 mm; see Verification Summary) to **45.947215 mm**. The corresponding paraxial magnification is **−0.147276×**, consistent with Canon's rounded 0.15× specification.
 
 | State                            | Internal spacings    | S15-to-image gap |
 | -------------------------------- | -------------------- | ---------------: |
-| Infinity                         | Patent values, fixed |         38.88 mm |
+| Infinity                         | Patent values, fixed |     38.333791 mm |
 | 0.45 m reconstructed close focus | Unchanged            |     45.947215 mm |
 
-The modeled extension relative to the patent-authored infinity image gap is therefore **7.067215 mm**. This is a code-solved modeling quantity; the patent does not publish close-focus travel or a finite-focus spacing table. Canon identifies ring-type USM as the production focus drive, but that mechanical actuator specification does not imply a separate internal floating optical group.
+The modeled extension relative to the infinity image gap is therefore **7.613424 mm** (7.067215 mm from the printed 38.88 mm). This is a code-solved modeling quantity; the patent does not publish close-focus travel or a finite-focus spacing table. Canon identifies ring-type USM as the production focus drive, but that mechanical actuator specification does not imply a separate internal floating optical group.
 
 ## Aspherical Surfaces
 
@@ -184,7 +184,7 @@ This placement matters because the rear group's correction strategy is not just 
 
 ## Verification Summary
 
-The final data arrays reproduce the patent prescription at source scale. Independent reduced-angle tracing and ABCD accumulation give an EFL of **51.695042 mm**, agreeing with the patent's rounded 51.70 mm headline value. The Gaussian paraxial BFD from surface 15 is **38.333791 mm**, whereas the patent-authored image-plane spacing `D15` is **38.88 mm**. The data retains the source `D15`; the 0.546209 mm difference remains a source image-distance discrepancy. The source does not establish a designer best-focus rationale, and no source-supported correction was found.
+The final data arrays reproduce the patent prescription at source scale. Independent reduced-angle tracing and ABCD accumulation give an EFL of **51.695042 mm**, agreeing with the patent's rounded 51.70 mm headline value. The Gaussian paraxial BFD from surface 15 is **38.333791 mm**, whereas the patent-authored image-plane spacing `D15` is **38.88 mm**. Numerical Example 2 (PDF p. 11) shows the same pattern, printed D15 39.00 mm against a paraxial 38.457 mm (−0.543 mm), so the printed spacing follows a convention the patent does not state; no plate is printed and the real-ray axial best focus lies at the paraxial plane, not the printed one. The model re-solves the infinity `D15` to 38.333791 mm (2026-11-03); radii, glass and the asphere are unchanged.
 
 The patent publishes neither glass-surface semi-diameters nor a physical stop diameter. The data file therefore uses inferred semi-diameters. The stop semi-diameter, **14.591344 mm**, is derived from the modeled f/1.25 entrance pupil and computed pupil magnification; the remaining surface apertures are geometry-modeling values constrained by marginal rays, Figure 1, and the current edge/slope/cross-gap rules. These dimensions are not represented as patent measurements.
 
@@ -223,12 +223,11 @@ A full-clearance widening trial (D1 faces to 17.3 mm and rear faces to 19.7 mm) 
 At the next authored stop, f/1.4, all 49 axial samples clear at all 21 states, with 3087 aimed launches and 63 clear
 chiefs again. That narrower sampled aperture does not replace the published f/1.25 target.
 
-Table half-angle 22.7° gives image height 21.337279 mm; Figure 2's 22.71° gives 21.347615 mm (98.6–98.7% of modeled
-135-format radius). The separately solved runtime corner is about 23.0° and clear. The source D15=38.88 mm stays
-0.546209 mm imageward of the Gaussian plane; native table continuation and Figure 1 show no source plate that
-explains it. The September 25 source-plane audit remains a historical record; best-focus intent is unresolved.
-Half focus gives 750.481728 mm and close 450.000016 mm conjugates; these remain inferred unit-focus states, not
-source spacings. Source fidelity, sampled clearance and production correlation are distinct conclusions.
+On the re-solved image plane, table half-angle 22.7° gives image height 21.229 mm and Figure 2's 22.71° gives
+21.239 mm (98.1–98.2% of modeled 135-format radius; 21.337279 / 21.347615 mm on the printed plane). The separately
+solved runtime corner is about 23.1° and clear. Native table continuation and Figure 1 show no source plate. Half
+focus gives a 0.797 m and close a 0.450 m conjugate (0.750 m half focus before the 2026-11-03 re-solve); these remain
+inferred unit-focus states, not source spacings. Source fidelity, sampled clearance and production correlation are distinct conclusions.
 
 ## Sources
 
@@ -242,7 +241,7 @@ The S-TIM27 catalog curve now models the 640345 position: its evaluated nd = 1.6
 
 ## Historical live-diagram follow-up (undated; superseded by 2026-10-30 cap review)
 
-The second live-site comparison straightened G11/G12 and the second cemented pair: S2 is now 22.0 mm, S4 20.0 mm, S6 16.5 mm, and S11 18.9 mm. Other radii remain unchanged, including the 19.0 mm asphere aperture. These optical-rim refinements reduce artificial taper without copying mechanical steps. A larger 18.5 mm G13 front rim was rejected by the cross-gap rule. The source whole-unit focus direction remains objectward, with both GF and GR moving by the same reconstructed 7.067215 mm.
+The second live-site comparison straightened G11/G12 and the second cemented pair: S2 is now 22.0 mm, S4 20.0 mm, S6 16.5 mm, and S11 18.9 mm. Other radii remain unchanged, including the 19.0 mm asphere aperture. These optical-rim refinements reduce artificial taper without copying mechanical steps. A larger 18.5 mm G13 front rim was rejected by the cross-gap rule. The source whole-unit focus direction remains objectward, with both GF and GR moving by the same reconstructed travel (7.613424 mm since the 2026-11-03 re-solve).
 
 ## Image-plane source audit (2026-09-25)
 
@@ -250,7 +249,7 @@ Source image-plane audit: all R/d/nd/vd and S14 coefficients match
 JP2007333790A Example 1 (PDF pp.10–11). EFL 51.695042 agrees with
 51.70, but printed D15=38.88 is not paraxial BFL 38.333791 mm.
 No source plate or supported correction explains the -0.546209 mm
-offset. Retain the published image distance; best-focus intent is unproven.
+offset. (Superseded 2026-11-03: infinity D15 re-solved to 38.333791 mm.)
 
 ## 2026-10-30 — Source-Stated Catalog Design Metadata
 

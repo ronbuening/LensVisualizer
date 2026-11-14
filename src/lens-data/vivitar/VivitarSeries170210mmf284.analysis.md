@@ -171,6 +171,8 @@ The patent states that the strong power of G1 (F₁ = 69.6 mm, shorter than the 
 
 The variable gaps in the patent are D1 (between G1 and G2) and D2 (between G2 and G3), which change during zooming, plus BFL (back focal length to the image plane). Focus adjustment changes the position of G1 relative to the camera body, effectively adding a small extension to the front of the lens and increasing D1 while the image plane shifts accordingly. The patent does not publish close-focus spacing data for Example 4, so the precise focus travel and close-focus D1 values cannot be determined from this document alone.
 
+The model's close rows are therefore derived, not published: at each zoom station G1 is solved paraxially so the lens focuses an object 0.9 m from the image plane, with G2, G3 and the back focus fixed. The resulting G1 extension is 7.507 / 7.509 / 7.516 mm at wide / mid / tele (close D1 = 10.007476 / 18.201373 / 21.984461 mm), nearly constant across the zoom range, as a front unit-focus group stationary during zoom implies.
+
 The marketed minimum focus distance for the production lens was approximately 0.9 m, with a maximum reproduction ratio of approximately 1:2.5. At the wide-angle end (70 mm), the minimum focus distance was longer — approximately 1.6 m — because the same mechanical focus travel produces less focal-length-normalized defocus at wider angles. The variation of MFD with focal length is a characteristic of front-group unit-focus designs where the focus extension is independent of the zoom setting.
 
 ---
@@ -194,7 +196,8 @@ Zooming is accomplished by moving G2 rearward and G3 forward simultaneously, in 
 | f-number | f/2.89 | f/3.49 | f/4.01 |
 | D1 (G1–G2) | 2.500 mm | 10.692 mm | 14.468 mm |
 | D2 (G2–G3) | **37.49 mm*** | 15.947 mm | 0.500 mm |
-| BFL | 38.997 mm | 52.352 mm | 64.025 mm |
+| BFL (printed) | 38.997 mm | 52.352 mm | 64.025 mm |
+| BFL (model, re-solved) | 39.063135 mm | 52.575201 mm | 64.847396 mm |
 | EFL (verified) | 72.0 mm | 135.0 mm | 205.0 mm |
 
 **\*Typographical error in patent.** The published value for D2 at the wide position is 3.490 mm. A paraxial ray trace using D1 = 2.500, D2 = 3.490, and BFL = 38.997 yields an EFL of approximately 381 mm — irreconcilable with the patent's own stated EFL of 72.132 mm at this zoom position. Total-track conservation across the three zoom positions requires D2 ≈ 37.49 mm at wide, yielding EFL = 72.0 mm in agreement with the patent's stated value. The mid and tele zoom positions, where the published data is internally consistent, verify to within 0.1 mm and 1.2 mm respectively.
@@ -203,7 +206,7 @@ The same anomaly appears in Table III (Example 3): D2 at wide is listed as 4.17 
 
 As supporting evidence, the corrected D2 restores monotonically decreasing behavior (37.49 → 15.95 → 0.50 mm) consistent with the patent's description of G3 moving toward G2 during zoom-to-telephoto. The Certificate of Correction appended to the patent (August 15, 1989) corrects several typographical errors in the specification and claims — including a dropped digit in Claim 4's L14 thickness — but does not address the D2 wide-angle value.
 
-D1 increases monotonically from 2.5 to 14.5 mm (G2 moves rearward), D2 decreases monotonically from 37.5 to 0.5 mm (G3 moves forward and converges toward G2), and BFL increases monotonically from 39.0 to 64.0 mm (the image plane moves further from G3 as the system focal length increases). The zoom ratio is 203.8/72.1 = 2.83:1.
+D1 increases monotonically from 2.5 to 14.5 mm (G2 moves rearward), D2 decreases monotonically from 37.5 to 0.5 mm (G3 moves forward and converges toward G2), and BFL increases monotonically from 39.0 to 64.0 mm as printed, 39.1 to 64.8 mm in the model (the image plane moves further from G3 as the system focal length increases). The zoom ratio is 203.8/72.1 = 2.83:1.
 
 ---
 
@@ -263,6 +266,8 @@ Independent paraxial ray traces (y-nu method) were performed on the full 24-surf
 The group focal lengths match the patent's Table IX values to within rounding of the three-decimal-place nd values. The EFL match at mid-zoom is excellent (Δ = 0.1 mm). The slightly larger deviation at the tele end (Δ = 1.2 mm) is consistent with the accumulated effect of rounding in the published nd and radius values over a long optical path.
 
 The total track is conserved across all three zoom positions to within ±0.003 mm, confirming the corrected D2 value and validating the zoom-gap conservation model.
+
+**Image plane.** With the printed BFL rows and the three-decimal indices, the paraxial image lies 0.066 / 0.223 / 0.822 mm behind the printed image plane at wide / mid / tele: 6.7, 15.6 and 43.5 times the 2λN² depth of focus at f/2.89 / 3.49 / 4.01. The real-ray axial best focus lies on the same side and further out (+0.26 mm at mid, +0.99 mm at tele), so spherical aberration does not account for it. The residual grows roughly with the square of the focal length, the signature of a small error in the front group's power magnified by the zooming groups behind it. The rounding of the indices accounts for it: raising only the five printed 1.487 indices to 1.48749 moves the image 0.29–0.48 mm the other way. No single printed value is isolated, so the prescription is kept and the BFL is re-solved per station for paraxial focus at infinity: 38.997 / 52.352 / 64.025 → 39.063135 / 52.575201 / 64.847396 mm. The EFLs are unchanged; the modeled first-vertex-to-image track becomes 182.599 / 182.760 / 183.361 mm. The derived 0.9 m close rows were re-solved after the BFL change (above).
 
 The Petzval radius of 1124 mm indicates a gently curved field — typical for a telephoto zoom of this era and acceptable for 35 mm film where the tolerable depth of focus is approximately ±30 µm.
 

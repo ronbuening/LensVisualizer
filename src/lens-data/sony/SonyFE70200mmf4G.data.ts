@@ -13,8 +13,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Source image-plane contradiction: Table 3's 190.0000 mm total length
  * implies BF = 42.9273 mm, but the wide-infinity prescription gives
  * EFL = 72.160241 mm (printed 72.0974) and BFL = 42.115294 mm.
- * All Table 1-3 entries match. Retain the published track and -0.812006 mm
- * offset rather than fitting BF to focus; see the audit sidecar.
+ * All Table 1-3 entries match; Example 2 misses its own total length the
+ * same way. Image plane kept (fixed-BF zoom); the infinity rows are
+ * re-solved for paraxial focus by G42 (LENS_DATA_SPEC Image-Plane
+ * Consistency): d25/d28 4.5426/7.0924, 2.4692/9.1658, 2.8188/8.8162 ->
+ * 4.363607/7.271393, 2.273991/9.361009, 2.634107/9.000893 (offsets
+ * -0.812/-0.906/-0.855 -> 0 mm). See the audit sidecar.
  *
  * Aperture:
  *   The patent prints no stop diameter. nominalFno holds the Table 3 f-numbers, 4.1474 / 4.0559 / 4.1269
@@ -421,20 +425,22 @@ const LENS_DATA = {
         [8.5, 8.5],
       ],
     },
+    // Infinity column printed 4.5426 / 2.4692 / 2.8188; re-solved for paraxial focus (close column app-derived).
     "25": {
       label: "d25: G41–G42 / focus",
       values: [
-        [4.5426, 5.7312266867],
-        [2.4692, 5.183607002],
-        [2.8188, 8.6471640439],
+        [4.363607, 5.7312266867],
+        [2.273991, 5.183607002],
+        [2.634107, 8.6471640439],
       ],
     },
+    // Infinity column printed 7.0924 / 9.1658 / 8.8162; re-solved for paraxial focus (close column app-derived).
     "28A": {
       label: "d28: G42–G43 / focus",
       values: [
-        [7.0924, 5.9037733133],
-        [9.1658, 6.451392998],
-        [8.8162, 2.9878359561],
+        [7.271393, 5.9037733133],
+        [9.361009, 6.451392998],
+        [9.000893, 2.9878359561],
       ],
     },
   },

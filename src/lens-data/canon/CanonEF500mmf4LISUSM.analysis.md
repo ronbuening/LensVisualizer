@@ -69,17 +69,17 @@ standalone element powers listed later. The final row describes the complete act
 | L3 overall            | L3a + L3b + L3c            |            +3970.7843 | Weak net-positive rear unit after internal cancellation |
 | Complete active model | L1 + L2 + L3               |             +491.3568 | Full-system Gaussian EFL from the rounded arrays        |
 
-The physical track from the first powered surface to the image plane is 404.57 mm.
+The physical track from the first powered surface to the image plane is 405.24 mm (404.57 mm with the printed rear gap).
 The rear filter FL is now traced with D29=30.00 mm, thickness 2.20 mm, $n_d = 1.516330$,
-$\nu_d = 64.1$, and trailing air D31+D32=31.34+38.94=70.28 mm. FC is an inactive plane;
+$\nu_d = 64.1$, and trailing air re-solved to 70.950443 mm (printed D31+D32=31.34+38.94=70.28 mm). FC is an inactive plane;
 combining its adjacent air gaps changes no optical power. The front protection plate
 HG is traced ahead of L1a, and the previously normalized finite-object reference is retained.
 
 All powered R/d/index values match Numerical Example 24 (PDF p.79, columns 33–34).
 The source prescription gives EFL 491.356789 mm versus the printed 490.56 mm, and
-physical back focus 103.150443 mm versus its 102.48 mm image distance. The +0.670443 mm
-paraxial offset remains unchanged by unfolding FL. No single source-supported misprint
-resolves this discrepancy; the published prescription is retained rather than tuned.
+physical back focus 103.150443 mm versus its 102.48 mm image distance. No single source-supported misprint
+resolves either discrepancy. The radii, glass and source focal-length mismatch are retained; the final air gap
+behind FL is re-solved by +0.670443 mm so the image plane lies at paraxial infinity focus (2026-11-03).
 
 The patent publishes the aperture-stop location explicitly as surface 16. The model therefore does not infer the stop
 position. It does infer the physical stop semi-diameter, because Example 24 gives no stop diameter; the f/4.1 pupil
@@ -271,16 +271,16 @@ immediately before and after it while preserving their sum.
 
 | Gap                       | Infinity (mm) | Reconstructed close (mm) |   Change (mm) |
 | ------------------------- | ------------: | -----------------------: | ------------: |
-| Surface 12 / L2 front gap |  20.520000000 |             37.353981615 | +16.833981615 |
-| Surface 15 / L2 rear gap  |  93.550000000 |             76.716018385 | -16.833981615 |
+| Surface 12 / L2 front gap |  20.520000000 |             37.160657000 | +16.640657000 |
+| Surface 15 / L2 rear gap  |  93.550000000 |             76.909343000 | -16.640657000 |
 | Sum                       | 114.070000000 |            114.070000000 |             0 |
 
 The single external scalar constraint is Canon's marketed 4.5 m closest focusing distance, measured to the focal plane.
-With the source HG and FL restored physically, the unchanged cam gives a derived object-to-image close
-conjugate of 4.500000000 m. `closeFocusM` now reports 4.5 m rather than the old 4.497548307 m omission
-normalization; this is a coordinate consequence of the restored plates, not a new cam solve or a source
-finite-distance table. Recalculation from the final arrays gives a close-focus lateral magnification of -0.121615195, whose
-absolute value is consistent with Canon's rounded 0.12× product specification.
+With the source HG and FL traced physically and the final gap re-solved for infinity focus, the close row is
+re-solved (2026-11-03) so it images a 4.500000 m object-to-image conjugate; the earlier 16.833981615 mm travel
+belonged to the printed rear gap. This is a reconstruction, not a source finite-distance table. Recalculation from
+the final arrays gives a close-focus lateral magnification of -0.121871174, whose absolute value is consistent with
+Canon's rounded 0.12× product specification.
 
 No additional floating motion is reconstructed. In particular, L3b is not moved axially with focus; its patent-defined
 motion is transverse and belongs to image stabilization.
@@ -369,10 +369,11 @@ numerical examples but does not alter the Example 24 numeric prescription; no si
 modeled surfaces.
 
 The model now traces HG and FL physically at the selected source positions and omits only the inactive
-FC bookkeeping plane. The existing powered prescription, source rear path and focus gaps are unchanged.
+FC bookkeeping plane. The powered prescription is unchanged.
 The source physical R29-to-image path is 30.00 + 2.20 + 31.34 + 38.94 = 102.48 mm, while the literal
-array’s paraxial infinity focus is 103.150443 mm behind R29. The source plane is therefore 0.670443 mm
-ahead of focus; this and the focal-length/condition discrepancy are formalized as unresolved `source.errata`.
+array’s paraxial infinity focus is 103.150443 mm behind R29. The printed plane was therefore 0.670443 mm
+ahead of focus; the model re-solves the final air gap to 70.950443 mm. The focal-length/condition discrepancy
+remains an unresolved `source.errata` entry.
 
 ## Original Figure and Runtime Review — 2026-10-30
 
@@ -439,17 +440,16 @@ Surface validation, the source infinity aperture criterion, image-circle floor a
 coverage pass. The 201-position focus render census has 17 finite closed connected contours in every
 state and zero hidden trimming. The source infinity axial pupil clears all 97 sampled rays.
 
-The retained source image-plane discrepancy creates a near-infinity interval without a positive real
-object conjugate. At focus 0.01, the derived object-to-image conjugate is −6,732,679 mm; a physical
-finite-object seed cannot represent that state. The actual-conjugate census therefore has three
-unseeded field bundles there. Its other 100 controls × three fields × 97 pupils (29,100 traced rays)
-have clear chiefs and no axial clipping, aim failure or trace failure after HG restoration.
+Before the 2026-11-03 image-plane re-solve, the printed rear gap created a near-infinity interval without a
+positive real object conjugate (at focus 0.01 the derived object-to-image conjugate was −6,732,679 mm), and
+the actual-conjugate census had three unseeded field bundles there. Its other 100 controls × three fields ×
+97 pupils (29,100 traced rays) had clear chiefs and no axial clipping, aim failure or trace failure after HG
+restoration. With the re-solved gap every focus control has a positive real conjugate.
 
 A separate 101-control positive-object probe uses object-to-image distance 4500/focus mm and the full
 paraxial stop-centered chief mapping for the three field heights. All 29,391 sampled rays have valid
 aiming and tracing, all 101 axial bundles and all chiefs clear. This establishes sampled clearance
-in those geometry states; it does not establish a production focus cam or remove the source image-plane
-contradiction. Centered IS only is represented, and displaced IS or attached-converter clearance remains
+in those geometry states; it does not establish a production focus cam. Centered IS only is represented, and displaced IS or attached-converter clearance remains
 unverified. Source fidelity, sampled runtime clearance and production correlation are separate findings.
 
 ## Sources and References

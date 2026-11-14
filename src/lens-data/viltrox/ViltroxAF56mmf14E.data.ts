@@ -5,7 +5,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  Data source: CN 211955965 U, Example 1 (刘瑞军; 陈宝锋).                ║
  * ║  Production correlation: Viltrox AF 56mm F1.4 E, Sony E, APS-C.           ║
  * ║  10 elements / 9 physical groups; all spherical.                          ║
- * ║  Focus status: PUBLISHED. L31/G3 moves 4.01 mm imageward.                 ║
+ * ║  Focus status: PUBLISHED. L31/G3 moves 4.175783 mm imageward.             ║
  * ║                                                                            ║
  * ║  SOURCE CORRECTIONS / MODELING:                                            ║
  * ║  - Patent row 9 is the physical aperture-stop plane shown in Fig. 1 and   ║
@@ -34,10 +34,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  focus reconstruction is used.                                             ║
  *
  * MTF audit: Example 1 R/d/nd/vd all match. GL is now traced at its
- * physical gaps in rearPlates. Physical BFL 17.180324 mm differs from
- * source image distance 16.67 mm; +0.510324 mm offset is unchanged.
- * Coarse source indices are a plausible cause, not proven glass identity.
- * Keep the source values; no supported single misprint resolves the mismatch.
+ * physical gaps in rearPlates. Physical BFL 17.180324 mm differed from
+ * the source image distance 16.67 mm (+0.510324 mm); coarse source indices
+ * are the plausible cause, and no supported single misprint resolves it.
+ * IMAGE-PLANE RE-SOLVE (2026-11-03): S20 13.67 → 14.180324 mm for paraxial
+ * infinity focus; the 0.63 m row, object to image, is re-solved by L31:
+ * D1 5.01 → 5.175783, D2 3.85 → 3.684217 mm. EFL is unchanged.
  */
 
 // Manufacturer identity/specification sources:
@@ -249,20 +251,24 @@ const LENS_DATA = {
     { label: "17", R: 29.01, d: 10.0, sd: 13.4, medium: 9 },
     { label: "18", R: -29.92, d: 3.48, sd: 13.2 },
     { label: "19", R: -26.39, d: 1.23, sd: 11.8, medium: 10 },
-    { label: "20", R: -62.64, d: 13.67, sd: 12.2 },
+    { label: "20", R: -62.64, d: 14.180324, sd: 12.2 }, // printed 13.67; re-solved for paraxial focus
   ],
 
   focus: {
-    closeFocusM: 0.711,
+    closeFocusM: 0.63,
     description:
-      "PUBLISHED inner focus: L31/G3 translates 4.01 mm imageward; D1 1.00→5.01 mm and D2 7.86→3.85 mm. " +
-      "The modeled close endpoint is the patent's 0.63 m state; Viltrox markets the production lens at 0.6 m MFD.",
+      "PUBLISHED inner focus: L31/G3 translates 4.175783 mm imageward (printed 4.01 mm); D1 1.00→5.175783 mm and " +
+      "D2 7.86→3.684217 mm, re-solved for paraxial focus (printed 5.01 / 3.85 mm). The modeled close endpoint is the " +
+      "patent's 0.63 m state, object to image; Viltrox markets the production lens at 0.6 m MFD.",
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
   },
 
-  /* (moved from var) Published Example 1 focus gaps: D1 increases and D2 decreases by exactly 4.01 mm. */
-  gaps: { "14": { label: "D1", values: [[1.0, 5.01]] }, "16": { label: "D2", values: [[7.86, 3.85]] } },
+  /* (moved from var) Published Example 1 focus gaps: printed D1 and D2 change by exactly 4.01 mm; the close row is re-solved. */
+  gaps: {
+    "14": { label: "D1", values: [[1.0, 5.175783]] }, // printed 1.00 / 5.01; 0.63 m row re-solved for paraxial focus
+    "16": { label: "D2", values: [[7.86, 3.684217]] }, // printed 7.86 / 3.85; 0.63 m row re-solved for paraxial focus
+  },
 
   aperture: { nominalFNumber: 1.4120949446201125, fStops: [1.4, 2, 2.8, 4, 5.6, 8, 11, 16], blades: 9 },
 

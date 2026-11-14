@@ -91,3 +91,33 @@ telephoto end columns; read from the page image and from the text layer.
 
 - Why the old value differed: derived close rows approximate Sony's range; 1 m is the old (production) value.
 - `catalog.closeFocusM.marketing` 1 / 1.5 m (wide / tele) keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.
+
+## 2026-11-03 — Image-plane consistency (re-solve)
+
+Source: local `patents/US20150226945A1.pdf`, Numerical Example 1 Tables 1–3 (PDF pages 20–21); Numerical Example 2
+Tables 4–6 (PDF pages 21–22, read on the page image). LENS_DATA_SPEC § Image-Plane Consistency: an inconsistency no
+single value isolates, on a zoom whose back focus is one fixed value, so the focus mechanism (G42) moves per station.
+
+| Field | Before | After | Justification |
+|---|---|---|---|
+| `gaps["25"]` infinity, W / M / T | 4.5426 / 2.4692 / 2.8188 | 4.363607 / 2.273991 / 2.634107 | G42 moved toward the object until each infinity row is in paraxial focus |
+| `gaps["28A"]` infinity, W / M / T | 7.0924 / 9.1658 / 8.8162 | 7.271393 / 9.361009 / 9.000893 | Same move, opposite sign; d25 + d28 and the 190.0000 mm track unchanged |
+
+- Residual: infinity −0.812 / −0.906 / −0.855 mm (40 / 47 / 43 depths) → 0 at every station. The real-ray axial best
+  focus sat at −0.867 / −0.843 / −0.863 mm, so the printed plane was not a best-focus plane.
+- Close rows (app-derived, G42 solved to 1.0 / 1.25 / 1.5 m) still focus there on the same plane: unchanged, and
+  `closeFocusM` 1 with station values 1 / 1.25 / 1.5 m stays. G42 travel becomes 1.3676 / 2.9096 / 6.0131 mm
+  (was 1.1886 / 2.7144 / 5.8284).
+- EFL: 72.160 / 122.975 / 193.912 → 72.825 / 124.215 / 195.761 mm (printed 72.0974 / 122.948 / 193.9726).
+- Evidence for the class: every Table 1–3 entry matches; Table 1 prints `(BF)` with no value, so BF 42.9273 mm
+  follows from the 190.0000 mm total length. Example 2 transcribed from the page image gives paraxial BFL
+  40.550 / 40.482 / 40.470 mm against the 41.2029 mm its 180.0000 mm total length implies (−0.65 / −0.72 / −0.73 mm),
+  and EFL 72.131 / 105.020 / 193.886 against 72.0971 / 104.9932 / 193.9747: the same pattern, so the source, not the
+  transcription, carries it. The e-line reference of ¶0139 leaves the offsets at about −0.84 to −0.92 mm.
+- Rim clearance: d25 smallest 2.274 mm (middle, infinity, at the vertex); d28 smallest edge gap 2.367 mm (telephoto,
+  close, unchanged row).
+
+Follow-ups:
+
+- Whether the 190.0000 mm total length includes an element the tables omit stays open; a ruling could instead
+  re-solve BF to 42.1153 mm and restore the printed d25/d28.

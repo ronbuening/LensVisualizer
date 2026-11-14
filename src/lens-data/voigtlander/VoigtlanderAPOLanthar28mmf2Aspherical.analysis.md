@@ -15,7 +15,7 @@ The data file correlates Example 2 with the **VOIGTLÄNDER APO-LANTHAR 28mm f/2 
 2. The manufacturer gives a 74.0° angle of view; Example 2 gives a 37.02° half field, or 74.04° full field.
 3. Both sources specify 12 elements in 8 groups.
 4. The manufacturer identifies six anomalous-partial-dispersion elements, two double-sided aspherical elements, and a floating mechanism. Example 2 contains four aspherical surfaces on two elements, publishes $\Delta P_{gF}$ for every glass, and moves G1 and G2 independently during close focusing.
-5. The production VM lens focuses to 0.5 m. Example 2 normalizes to about 0.50115 m from object to image plane when the printed D0 and close-state track are combined.
+5. The production VM lens focuses to 0.5 m. Example 2's printed D0 of 428.00 mm puts the model's re-solved close state 0.5011 m from object to image plane (0.50115 m with the printed close-state track).
 6. The patent application was filed before the VM lens entered production; Cosina lists the VM release date as 2025-07-24.
 
 The VM scope is deliberate. Cosina's later Sony E- and Nikon Z-mount versions specify 0.28 m minimum focus and mount-optimized optics, whereas Example 2 provides a 0.5 m-class focus endpoint. A common published section drawing does not establish numerical identity across those variants.
@@ -40,7 +40,7 @@ G2 is divided into:
 
 Independent d-line tracing of the final data gives G1 an EFL of +58.393064 mm and G2 an EFL of +53.746561 mm. The ratio is 1.08645, close to the near-symmetric stop-side power balance described by the patent in connection with condition (3). The front negative subsections G1a+G1b have a combined air-to-air EFL of −29.801877 mm; they expand the angular field before G1c restores positive power. Behind the stop, the negative G2a and G2c sections bracket the strong +20.625740 mm G2b singlet.
 
-The complete authored prescription has an EFL of 28.942108 mm, a first-surface-to-image track of 71.55 mm, and a BFL from S21A of 18.144592 mm. Under the project definitions it is neither telephoto ($TL/EFL=2.4722$) nor retrofocus ($BFD/EFL=0.6269<1$). The important architectural feature is instead the approximately balanced pair of positive floating macro-groups around the stop.
+The complete authored prescription has an EFL of 28.942108 mm, a first-surface-to-image track of 71.484592 mm (71.55 mm with the printed D21), and a BFL from S21A of 18.144592 mm. Under the project definitions it is neither telephoto ($TL/EFL=2.4699$) nor retrofocus ($BFD/EFL=0.6269<1$). The important architectural feature is instead the approximately balanced pair of positive floating macro-groups around the stop.
 
 The optical path contains no sensor cover, filter, inactive dummy plane, flare cutter, folded-path surface, or synthetic cement layer. Surface 11 is absent only because the active aperture plane is labeled `STO` and carries the patent's D11 spacing.
 
@@ -164,16 +164,16 @@ All twelve elements carry a numeric `dPgF` because the patent prints $\Delta P_{
 
 ## Focus Mechanism
 
-The patent describes a two-unit floating focus system. G1 and G2 both move toward the object during close focusing, but G2 moves farther. The data status is **PUBLISHED**: it transcribes the two endpoint gaps without solving or substituting a reconstructed state.
+The patent describes a two-unit floating focus system. G1 and G2 both move toward the object during close focusing, but G2 moves farther. The data status is **PUBLISHED**: both endpoint states are the patent's, at their printed object distances. The model re-solves their spacings for paraxial focus (below); no intermediate state is reconstructed.
 
-| Variable spacing | Infinity | Published close | Change |
+| Variable spacing | Infinity (printed → model) | Close, D0 = 428.00 mm (printed → model) | Model change |
 |---|---:|---:|---:|
-| D11, STO to S12 | 3.83 mm | 3.36 mm | −0.47 mm |
-| D21, S21A to image plane | 18.21 mm | 20.28 mm | +2.07 mm |
+| D11, STO to S12 | 3.83 mm | 3.36 → 3.354995 mm | −0.475005 mm |
+| D21, S21A to image plane | 18.21 → 18.144592 mm | 20.28 → 20.236636 mm | +2.092044 mm |
 
-These changes encode approximately 1.60 mm forward travel for G1 and 2.07 mm for G2, compared with the patent summary values $X_1=1.61$ mm and $X_2=2.08$ mm. The 0.01 mm differences are consistent with the displayed precision of the spacing table.
+The rounded printed spacings were not in paraxial focus. At infinity, D21 = 18.21 mm left the image plane 0.065408 mm behind the computed 18.144592 mm BFL, about 13 depths of focus at f/2.06; the real-ray axial best focus was −0.087 mm, so the plane was not a best-focus plane either. At the close state, D0 = 428.00 mm with D11 = 3.36 mm and D21 = 20.28 mm gave an object-to-image matrix element $B=-0.647619$ mm rather than zero; holding the two printed gaps would require D0 = 418.763140 mm. The model sets the infinity D21 to the computed BFL and carries that change to the close row. It then moves G1 and G2 in the printed ratio (D11 −0.47 : D21 +2.07) until the row focuses at the printed D0 = 428.00 mm. This gives D11 = 3.354995 mm and D21 = 20.236636 mm, 0.5011 m from object to image. No misprint is claimed.
 
-The printed endpoint is internally inconsistent at first order. With D0 = 428.00 mm, D11 = 3.36 mm, and D21 = 20.28 mm, the object-to-image matrix has $B=-0.647619$ mm rather than zero. Holding the two internal gaps would require D0 = 418.763140 mm; holding D0 and D11 would require D21 = 20.235592 mm. Neither diagnostic replacement is adopted. The analysis therefore treats the movement as published kinematics, not as a validated exact paraxial conjugate.
+The model changes encode 1.617 mm forward travel for G1 and 2.092 mm for G2, compared with the patent summary values $X_1=1.61$ mm and $X_2=2.08$ mm (1.60 and 2.07 mm from the printed spacings).
 
 No focus reconstruction extends Example 2 to the 0.28 m endpoints of the E- or Z-mount production versions.
 
@@ -222,11 +222,11 @@ The following values were recomputed from the authored TypeScript arrays and sto
 
 | No. | Condition | Authored-model value | Result |
 |---:|---|---:|:---:|
-| 1 | $X_2-X_1>0$ | 0.4700 | Pass |
-| 2 | $2<TL/f<2.5$ | 2.47218 | Pass |
+| 1 | $X_2-X_1>0$ | 0.4750 | Pass |
+| 2 | $2<TL/f<2.5$ | 2.46991 | Pass |
 | 3 | $1<f_1/f_2<1.14$ | 1.08645 | Pass |
 | 4 | $f_1/f_{1ab}<-1.95$ | −1.95938 | Pass |
-| 5 | $TL_{ab}/TL\leq0.15$ | 0.146331 | Pass |
+| 5 | $TL_{ab}/TL\leq0.15$ | 0.146465 | Pass |
 | 6 | $n_{d1bp}>1.76$ | 1.85150 | Pass |
 | 7 | $1.86>n_{d1bm}>1.76$ | 1.78880 | Pass |
 | 8 | $\nu_{d1bp}>29$ | 40.78 | Pass |
@@ -252,12 +252,12 @@ The final data file was checked against the patent tables and independently trac
 |---|---:|---:|
 | EFL | 28.942108 mm | 28.84 mm summary value |
 | BFL from S21A | 18.144592 mm | D21 = 18.21 mm |
-| S1-to-image track | 71.550000 mm | TL = 71.19 mm |
+| S1-to-image track | 71.484592 mm (71.55 printed sum) | TL = 71.19 mm |
 | Modeled f-number | 2.060000 | F/2.06 |
 | Petzval sum $\sum\phi/(nn')$ | 0.002241384 mm⁻¹ | not tabulated |
 | Petzval radius | 446.152944 mm | not tabulated |
 
-The discrepancies between Table 5 and the raw prescription are retained rather than silently reconciled. The earlier source-precision trials used the miscopied S17 and are superseded. The corrected source still differs in EFL, BFL and total length; no further source-backed adjustment is justified.
+The discrepancies between Table 5 and the raw prescription are disclosed rather than silently reconciled. The earlier source-precision trials used the miscopied S17 and are superseded. The corrected source still differs in EFL, BFL and total length. No misprint is isolated: D21 is re-solved to the computed BFL as described under Focus Mechanism, and the EFL and TL differences remain.
 
 The stop diameter is not published. The authored `STO.sd` of 7.864192 mm is an inference selected to make the 28.942108 mm model operate at F/2.06; it is not a measured production aperture. The remaining semi-diameters are also model-derived. Their relative sequence was measured from Figure 3 and the final values pass the repository's edge-thickness, rim-slope, conic-domain, shared-gap, and image-circle-floor checks at both focus states.
 
@@ -282,7 +282,8 @@ No uniform scale was applied, no plate was omitted and replaced by an air-equiva
 
 2026-09-25 source recheck: Table 6 S17 is R=580.403, d=5.45 mm,
 correcting 580.103/5.15. Updated EFL is 28.942108 mm; BFL 18.144592
-versus printed D21=18.21, so offset is now -0.065408 mm. Source TL
-71.19 also disagrees with the 71.55 mm sum. Retain the remaining source
-contradiction; the earlier audit's S17 transcription and calculations
-are superseded. No focus-fitting or inferred plate is introduced.
+versus printed D21=18.21, so offset was -0.065408 mm; on 2026-11-03 D21
+and the close row were re-solved for paraxial focus (see Focus Mechanism).
+Source TL 71.19 also disagrees with the 71.55 mm printed sum; the earlier
+audit's S17 transcription and calculations are superseded. No inferred
+plate is introduced.

@@ -11,7 +11,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║                                                                            ║
  * ║  FOCUS — CONSTRAINED_RECONSTRUCTION:                                     ║
  * ║  The patent states whole-lens/unit focusing but publishes no finite-      ║
- * ║  focus spacing row. All internal gaps are fixed. D15 is 38.88 mm at      ║
+ * ║  focus spacing row. All internal gaps are fixed. D15 is 38.333791 mm at  ║
  * ║  infinity and is reconstructed as 45.947215 mm at Canon's 0.45 m MFD,    ║
  * ║  treating MFD as object-to-image-plane distance. The solved paraxial      ║
  * ║  magnification is 0.147276x versus Canon's rounded 0.15x specification.   ║
@@ -29,8 +29,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  ASPHERE: patent surface 14 uses a spherical base, so project K = 0.      ║
  * ║  Patent B/C/D/E map to project A4/A6/A8/A10 without scaling.              ║
  * ║                                                                            ║
- * ║  The authored D15 = 38.88 mm image-plane spacing is preserved even       ║
- * ║  though the independently computed Gaussian BFD is 38.333791 mm.          ║
+ * ║  Image-plane re-solve (2026-11-03): infinity D15 38.88 -> 38.333791 mm,  ║
+ * ║  the Gaussian BFD; the printed plane sat 0.546209 mm beyond focus.       ║
  * ╚════════════════════════════════════════════════════════════════════════════╝
  *
  * Product metadata sources:
@@ -39,9 +39,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *
  * Source image-plane audit: all R/d/nd/vd and S14 coefficients match
  * JP2007333790A Example 1 (PDF pp.10–11). EFL 51.695042 agrees with
- * 51.70, but printed D15=38.88 is not paraxial BFL 38.333791 mm.
- * No source plate or supported correction explains the -0.546209 mm
- * offset. Retain the published image distance; best-focus intent is unproven.
+ * 51.70, but printed D15=38.88 is not paraxial BFL 38.333791 mm. Example 2
+ * (PDF p.11) is off by the same -0.543 mm, so the printed spacing follows a
+ * convention the patent does not state; no plate is printed. Infinity D15 is
+ * re-solved to paraxial focus; radii, glass and the asphere are unchanged.
  */
 
 const LENS_DATA = {
@@ -74,12 +75,6 @@ const LENS_DATA = {
     patentYear: 2007,
     authors: ["Makoto Mitsusaka"],
     assignees: ["Canon Inc."],
-    errata: [
-      {
-        status: "unresolved",
-        note: "The original Numerical Example 1 prints D15=38.88 mm (PDF page 10/printed 10), retained literally. Its Gaussian BFL is 38.333791112 mm despite EFL matching printed 51.70 mm. No source plate, unique correction or demonstrated best-focus rationale explains the 0.546208888 mm residual. The September 25, 2026 source-plane audit is retained; no optical number is changed.",
-      },
-    ],
   },
 
   /* ── Elements ── */
@@ -234,11 +229,11 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.45,
     description:
-      "The whole optical unit moves toward the object for closer focus. The 7.07 mm travel to 0.45 m is reconstructed; the patent specifies unit focusing but gives no close-focus spacing table.",
+      "The whole optical unit moves toward the object for closer focus. The 7.61 mm travel to 0.45 m is reconstructed; the patent specifies unit focusing but gives no close-focus spacing table.",
   },
 
   /* (moved from var) ── Variable air spacing: constrained unit-focus reconstruction ── */
-  gaps: { "15": { label: "BF", values: [[38.88, 45.947215]] } },
+  gaps: { "15": { label: "BF", values: [[38.333791, 45.947215]] } }, // printed infinity 38.88; re-solved for paraxial focus (close row reconstructed, unchanged)
 
   /* ── Aperture configuration ── */
   aperture: { nominalFNumber: 1.25, fStops: [1.25, 1.4, 2, 2.8, 4, 5.6, 8, 11, 16], blades: 8 },

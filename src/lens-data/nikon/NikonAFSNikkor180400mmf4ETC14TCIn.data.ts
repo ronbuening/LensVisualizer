@@ -17,10 +17,14 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * the slip-in holder (40.5 mm NC filter supplied), so FL1 is drawn as a plane-parallel
  * plate and is not counted in elementCount. FL2 (Table 10 surfaces 69-70, 2.0 mm) lies behind
  * the last lens and is modeled in `rearPlates` (traced, not drawn): the last surface
- * stores 10.827 + 40.582 = 51.409 mm to FL2, then 0.100 mm to the image. EFL and paraxial
- * defocus equal the former air-equivalent fold; the physical track is 1.192511 mm longer
- * and equals the sum of the printed spacings. The 2.0 m close-focus solve was made on
- * the air-equivalent track, so the physical object-to-image distance is 2.001193 m.
+ * stores the space to FL2, then 0.100 mm to the image. EFL equals the former air-equivalent
+ * fold.
+ * Image plane: Table 10's printed spacings (10.827 + 40.582 = 51.409 mm to FL2) leave the
+ * plane 0.454 / 0.497 / 0.551 mm short of paraxial focus; its summary (f exactly 1.40006 x
+ * Table 8, Bf 52.827 constant over zoom) does not reproduce, and no single value isolates
+ * why. S67 is re-solved to one minimax value, 51.409 -> 51.911458 mm (residual
+ * -0.049 / -0.006 / +0.049 mm, <= 1.3 depths); the infinity G1B gaps stay shared with the
+ * TC-out file. The close rows are then re-solved to 2.000 m physical (was 2.001193 m).
  * No uniform scaling is applied. The source uses d-line nd and vd and is all-spherical.
  *
  * Partial dispersion: the patent prints no θgF column, only the Table 11 deviations
@@ -582,7 +586,7 @@ const LENS_DATA = {
     { label: "65", R: -85.2412, d: 11.802, sd: 15.5 },
     { label: "66", R: -56.5492, d: 2.0, sd: 13.0, medium: 36 },
     // Printed d67 10.827 + dummy-plane gap 40.582 to FL2 (same-index dummy plane folded out)
-    { label: "67", R: 4513.6484, d: 51.409, sd: 13.0 },
+    { label: "67", R: 4513.6484, d: 51.911458, sd: 13.0 }, // printed 51.409; re-solved for paraxial focus (one value)
   ],
 
   zoom: {
@@ -598,25 +602,27 @@ const LENS_DATA = {
     closeFocusM: 2,
     description:
       "CONSTRAINED_RECONSTRUCTION: cemented negative G1B (L16+L17) moves imageward by " +
-      "20.124738 / 19.991463 / 19.958994 mm at wide / mid / tele to model Nikon's 2.0 m MFD; " +
+      "19.897632 / 19.920851 / 19.927234 mm at wide / mid / tele to model Nikon's 2.0 m MFD; " +
       "the normalized gaps after surfaces 9 and 13 retain a constant 34.399 mm sum.",
   },
 
   gaps: {
+    // Close column code-solved for 2.0 m from the image plane after the S67 re-solve
+    // (was 27.108738 / 26.975463 / 26.942994 and 7.290262 / 7.423537 / 7.456006).
     "9": {
       label: "G1B front",
       values: [
-        [6.984, 27.108738235048598],
-        [6.984, 26.975463184639125],
-        [6.984, 26.94299428825733],
+        [6.984, 26.881632],
+        [6.984, 26.904851],
+        [6.984, 26.911234],
       ],
     },
     "13": {
       label: "G1B rear",
       values: [
-        [27.415, 7.290261764951399],
-        [27.415, 7.423536815360876],
-        [27.415, 7.456005711742666],
+        [27.415, 7.517368],
+        [27.415, 7.494149],
+        [27.415, 7.487766],
       ],
     },
     "15": {

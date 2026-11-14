@@ -1,0 +1,1 @@
+Fixed infinity focus in 40 lens models and the close-focus distances it had skewed

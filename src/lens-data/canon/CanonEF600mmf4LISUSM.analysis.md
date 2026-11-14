@@ -32,7 +32,7 @@ statement that this patent is the production prescription. Four independent feat
 The current model contains **17 elements in 13 groups**, including **15 powered elements in 11 groups** plus
 explicit source HG and FL plates. HG restores R1–R2, a 6.00 mm front plate followed by 1.50 mm air; only inactive
 FC remains omitted. FL retains D29 = 12.00 mm, t = 2.00 mm, $n_d$ = 1.516330, $\nu_d$ = 64.4 and trailing air
-D31+D32 = 103.78 mm. The count includes both source plates and agrees with the established production correlation;
+re-solved to 103.286743 mm (printed D31+D32 = 103.78 mm; see Source Consistency). The count includes both source plates and agrees with the established production correlation;
 it does not prove a one-to-one production prescription. No scaling is applied.
 The 2001 Certificate of Correction does not alter Numerical Example 22.
 
@@ -44,8 +44,8 @@ magnification, eight diaphragm blades, and a minimum aperture of f/32.
 ## Optical Architecture
 
 The design is a long-focus **positive–negative–positive telephoto system** with internal focusing and a transverse
-stabilization group. The physical track from source HG to the image plane is **476.20 mm**; first powered surface
-R3 to the same plane remains **468.70 mm**. The full HG-included track gives **TL/EFL ≈ 0.813561**, so the design meets the project's
+stabilization group. The physical track from source HG to the image plane is **475.71 mm** (476.20 mm with the printed rear gap); first powered surface
+R3 to the same plane is **468.21 mm**. The full HG-included track gives **TL/EFL ≈ 0.812718**, so the design meets the project's
 telephoto criterion of TL/EFL < 1. The normalized rear distance is only about 0.2001 EFL, so the design is not
 retrofocus by the project's BFD > EFL definition.
 
@@ -274,7 +274,8 @@ The final authored spacing is the source's 12.00 mm physical air gap to FL.
 
 Original rows R30–R31 on PDF page 79 / column 33 give flat faces, 2.00 mm physical thickness, $n_d$ 1.516330 and $\nu_d$ 64.4.
 The source leading air gap is D29 12.00 mm; D31 64.77 plus D32 39.01 gives 103.78 mm air after the filter when the
-inactive FC plane is omitted. These physical values remain, with no manual air-equivalent replacement of the plate.
+inactive FC plane is omitted. The model re-solves that trailing air to 103.286743 mm for paraxial focus; the plate stays
+physical, with no manual air-equivalent replacement.
 
 No optical aperture is tabulated. The retained clear radius 17.5 mm is a qualified ray estimate. A current 193-sample
 pupil census across 21 focus positions, axial/half/corner format fields and the actual configured diagram field gives
@@ -328,20 +329,19 @@ used as the single external scalar constraint.
 
 | Variable gap             | Infinity (mm) | Close state (mm) |   Change (mm) |
 | ------------------------ | ------------: | ---------------: | ------------: |
-| Surface 12 → L2          |  45.860000000 |     64.689163964 | +18.829163964 |
-| L2 → surface 15 rear gap |  98.910000000 |     80.080836036 | −18.829163964 |
+| Surface 12 → L2          |  45.860000000 |     64.829647000 | +18.969647000 |
+| L2 → surface 15 rear gap |  98.910000000 |     79.940353000 | −18.969647000 |
 | Sum                      | 144.770000000 |    144.770000000 |   0.000000000 |
 
-The modeled L2 travel remains **18.829163964 mm imageward**. With explicitly restored HG and the retained source
-image plane, the unchanged gaps independently give a **5.500000 m physical conjugate**, close-state EFL 497.919055 mm
-and magnification magnitude 0.117790×. The sampled finite-conjugate image-plane residual is −1.53×10⁻⁹ mm. The metadata
-already states 5.5 m, so no scalar or cam retune is needed. The source still supplies no finite-focus table; this exact
-endpoint match supports the existing reconstruction rather than making it a printed prescription.
+The modeled L2 travel is **18.969647 mm imageward** (18.829163964 mm before the 2026-11-03 image-plane re-solve). With
+HG traced and the final gap re-solved for infinity focus, the close row is solved for a **5.500000 m physical conjugate**,
+with close-state EFL 497.356647 mm and magnification magnitude 0.117628×. The source still supplies no finite-focus
+table; the close row is a reconstruction, not a printed prescription.
 
 HG adds 7.50 mm to the front-to-image physical track and changes the finite object-reference propagation. Intermediate
-L2 motion remains illustrative: at focus 0.5 / display 11 m, sampled conjugate defocus is −2.783002 mm. The original has no
-finite cam, so no compensator trajectory or powered R/d is invented to remove that residual. Physical conjugate,
-source image-plane discrepancy and sampled illumination remain separate conclusions.
+L2 motion remains illustrative: at focus 0.5 the linear L2 motion images a 10.24 m object. The original has no
+finite cam, so no compensator trajectory or powered R/d is invented. Physical conjugate and sampled illumination
+remain separate conclusions.
 
 ## Chromatic Correction Strategy
 
@@ -416,9 +416,9 @@ paraxial iris convention. The real aimed iris-rim result is a separate metric, w
 at retained source-constrained S6; neither the stop nor source caps are enlarged to force a result.
 
 Printed physical R29-to-IP distance is 117.78 mm. Literal arrays give physical paraxial BFL 117.286743145 mm, or final
-air after FL 103.286743145 mm versus retained 103.78 mm. Thus the source image plane lies 0.493256855 mm behind the
-paraxial focus. This unresolved discrepancy preserves the 2026-09-25 source review and is now formally recorded in
-source.errata without changing any printed number or inventing an isolated misprint.
+air after FL 103.286743145 mm versus the printed 103.78 mm, so the printed image plane lies 0.493256855 mm behind the
+paraxial focus. No isolated misprint explains it; the model re-solves the final air gap to 103.286743 mm (2026-11-03)
+without changing any radius, glass or plate.
 
 Active-15 cap/clearance conclusions reuse the 2026-08-20/21 review; the old 600 dpi renders were upsampled from the
 original's native 2320 × 3408 one-bit 300 ppi pages. Current Figure 85 comparison uses a native 90° rotation only, including explicit HG and FL while excluding
@@ -436,7 +436,7 @@ Surface/image-circle checks pass. All 21 focus corner chiefs reach approximately
 21 focus positions and four fields (including actual configured diagram field) passes axial 193/193 at infinity and 145/193 close;
 format-corner counts 113/193 at infinity and 109/193 close, with all chiefs valid/aimed. All baseline/candidate counts remain equal. HG adds no clipping of otherwise passing sampled bundles.
 Across 21 focus × seven presets, 129 real working calls trace and 18 vignette at S6, unchanged. These sampled results do
-not certify full-aperture or production illumination, or erase the source image-plane discrepancy.
+not certify full-aperture or production illumination.
 
 Actual generated SVGs compare the connected 17-medium configuration with native Figure 85. Twenty-one focus states
 produce 357 finite connected closed paths and zero hidden renderer trimming. No asphere, folded path, scaling,

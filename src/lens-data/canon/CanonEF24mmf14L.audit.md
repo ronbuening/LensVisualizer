@@ -180,3 +180,23 @@ Use J-SK14 only as a closer full-spectrum catalog proxy. BACD14 was the initial 
 Paragraph 0035/condition (12), PDF p4/col6, compares θgF with0.641−0.0016νd. That optional source comparison line differs from the engine normal line0.6438−0.001682νd. For L10 the source bound is0.5438805152, so its printed θ remains below the optional condition; neither the proxy change nor the preserved derived dPgF is a new patent APD designation. All thirty-three genuine source C/F/g points and every source number/partial/APD/control remain untouched. Complete line-index tracing already has priority, so all actual chromatic channels stay exactly identical; the change improves the qualified catalog annotation, not the traced prescription or a production-material claim.
 
 This is a scoped catalog-assignment follow-up. The selected original reference/spectral pages were freshly rendered for numerical reading and native figure pixels inspected for the relevant body/interface only. The prior whole-lens shape pass is reused with its actual date. Source R/d, caps, aspheres, stops, gaps, zoom/focus controls, source spectral values, source errata, field/interpolation limits and production-correlation qualifications are preserved. No source-medium identity or new whole-review count is claimed.
+
+## 2026-11-03 — Image-plane consistency (re-solve)
+
+| Field | Before | After | Justification |
+| --- | --- | --- | --- |
+| S22 d (final gap) | 36.467 mm | 38.133626 mm | Paraxial focus; LENS_DATA_SPEC Image-Plane Consistency |
+| `source.errata` unresolved final-gap entry | present | removed | Its only subject was this residual |
+
+- Residual: +1.666626 mm (674.6 depths at f/1.45) before, 0 after. EFL 24.599402 mm unchanged; first-vertex-to-image
+  track 118.638 → 120.305 mm. Infinity-only: no focus travel or close row; `closeFocusM` 0.25 m (production) unchanged.
+- Evidence (re-read of `patents/JPA 1999030743-000000.pdf`): Tables 1, 5, 6 and 7 (PDF pp. 5, 9, 10, 11) all print
+  the final spacing 36.467 mm. Independent ABCD traces give Example 5 EFL 24.598930 / BFL 38.278677 mm (+1.811677),
+  Example 6 24.599402 / 38.133626 (+1.666626), Example 7 24.598908 / 37.884164 (+1.417164). The printed value is a
+  common nominal spacing, not any example's back focus, so the 36.467 + 2.5/1.5 coincidence above is not a plate.
+  Example 1 prints R20 = 0.000 and does not trace to a 24.6 mm lens; it was not used.
+- Real-ray axial best focus sat 1.625 mm behind the printed plane, so that plane was not a best-focus plane.
+- The 41.35° source chief now reaches 21.275 mm (98.3% of the half-diagonal; 20.922 mm before); the 21.65 mm corner is
+  reached near 41.8°. Aperture, image-circle, field-coverage and surface-probe audits are unchanged.
+
+Follow-ups: none.

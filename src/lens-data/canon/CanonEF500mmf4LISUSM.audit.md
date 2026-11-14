@@ -161,3 +161,28 @@ The patent names no spectral line for its index and Abbe columns, and the 2026-1
 | L3c positive doublet member | 1.517417 / 52.4 | S-NSL36 | -0.000000 | +0.031 |
 | L3c negative meniscus | 1.72 / 43.7 | S-LAM52 | -0.000000 | -0.010 |
 | Drop-in filter FL | 1.51633 / 64.1 | S-BSL7 | -0.000000 | +0.042 |
+
+## 2026-11-03 — Image-plane consistency (re-solve)
+
+Back focus first, per LENS_DATA_SPEC Image-Plane Consistency: the fixed final gap is solved at infinity, the
+reconstructed close row carries it, then L2 is re-solved for that row's 4.5 m target.
+
+| Field | Before | After | Justification |
+| --- | --- | --- | --- |
+| S31 d (FL rear → image; printed D31+D32) | 70.28 mm | 70.950443 mm | Paraxial infinity focus |
+| D12 close row (L2 front gap) | 37.353982 mm | 37.160657 mm | Reconstructed row re-solved for 4.5 m object to image |
+| D15 close row (L2 rear gap) | 76.716018 mm | 76.909343 mm | Same; D12+D15 stays 114.07 mm |
+| Infinity D12 / D15 | 20.52 / 93.55 mm | unchanged | Published source row |
+| `source.errata` | f, condition (21) and image path | f and condition (21) | Image-plane residual removed from the unresolved note |
+
+- Residual: +0.670443 mm (33.9 depths at f/4.1) before, 0 after. EFL 491.356789 mm unchanged (source f 490.56 mm stays
+  unresolved). L2 travel 16.833982 → 16.640657 mm. HG-to-image track 411.07 → 411.740443 mm. `closeFocusM` stays 4.5 m
+  (close row now 4.500000 m object to image); close magnification −0.121615 → −0.121871.
+- Evidence: Numerical Example 24 (`patents/US6115188.pdf`, PDF p. 79, cols. 33–34) as already audited above; real-ray
+  axial best focus sat 0.696 mm behind the printed plane, so that plane was not a best-focus plane. Sibling Example 25
+  (EF 400mm f/2.8L IS) focuses within 0.017 mm with its printed rear path, so the residual is example-specific.
+  No single-value misprint is isolated: front-group spacings d5–d14 each reconcile focus and f to within 0.04 mm.
+- The near-infinity virtual-conjugate interval noted above is gone: every focus control now has a positive real
+  conjugate (0.01 → 384.6 m). Aperture, image-circle, field-coverage and surface-probe audits are unchanged.
+
+Follow-ups: none.

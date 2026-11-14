@@ -48,3 +48,33 @@ with new source evidence. The source plate likewise has nd/vd only.
 `focus.closeFocusM` 0.5 → 0.72 m. The close-focus distance now records where the authored close row focuses — its paraxial in-focus object-to-image distance — so the close-focus label and `closeFocusM` agree within 2 %. The old value was up to 44.1 % from that row. No gap, keyframe, published flag or other optical value changed.
 
 - Why the old value differed: the patent's 0.5 m state has no defined reference plane; the row focuses at 0.720 m object to image.
+
+## 2026-11-03 — Image-plane consistency (re-solve)
+
+Source: CN 211955966 U Example 1, Tables 1–2 (PDF pp. 7–8). The file matches the print; the printed rows did not
+focus with the printed two-decimal indices. Back focus first, per LENS_DATA_SPEC Image-Plane Consistency: the S22 air
+gap is re-solved for paraxial infinity focus, the change is carried to the close row, and L31 is then moved so that
+row focuses at 500 mm from the first vertex.
+
+| Field | Before | After | Justification |
+| --- | --- | --- | --- |
+| S22 `d` | 28.44 | 29.428687 | Back focus re-solved for paraxial infinity focus; GL and its 1.00 mm air unchanged |
+| D1 (gap after S16A), 0.5 m | 6.75 | 6.691799 | L31 moved for paraxial focus 500 mm from the first vertex |
+| D2 (gap after S18A), 0.5 m | 2.86 | 2.918201 | Same move; D1 + D2 = 9.61 mm kept |
+| `focus.closeFocusM` | 0.72 | 0.594 | The re-solved row's object-to-image distance (0.5935 m) |
+| `catalog.closeFocusM.marketing` | absent | 0.55 | Viltrox AF 50/1.8 FE minimum focus distance (0.1×; Lenstip and retailer specifications) |
+
+- Residual at infinity: +0.988687 → 0.000000 mm (260 depths at f/1.8). L31 travel 5.75 → 5.691799 mm. EFL 49.073753
+  mm unchanged at infinity; 0.5 m EFL 46.687632 → 46.712158 mm (printed 49 / 46.48). Track 92.50 → 93.488687 mm.
+- Close focus: the 0.5 m is read from the first vertex. With that reading the printed rows carried the same residual,
+  +0.989 mm at infinity and +0.943 mm at 0.5 m, as index rounding would. With the residual removed, the printed travel
+  focuses 495 mm from the first vertex (index-rounding spread 484–506 mm). β −0.0967 matches Viltrox's 0.1×. The
+  image-plane reading would leave residuals of +0.99 and +2.04 mm and need 7.07 mm of travel, which runs the L31 and
+  L41 rims into each other. The 0.72 m relabel measured the residual.
+- Cause: the indices are printed to two decimals, which spread infinity focus by σ ≈ 0.84 mm; L41's 1.51/81.4 is not
+  the cause (1.497 makes the offset +1.69 mm). Re-solving both rows by L31 alone instead would close the S18A/S19 rim
+  to −0.36 mm at h = 13.6, which the back-focus route avoids.
+- Clearance: D2 rim minimum 6.623 / 0.932 mm at infinity / 0.5 m (was 0.873 mm at 0.5 m); D1 1.000 / 6.692 mm.
+  Aperture, image-circle, field-coverage and surface-probe audits are unchanged.
+
+Follow-ups: none for the image plane. Conditions (1), (4) and (6) stay as recorded in the analysis.

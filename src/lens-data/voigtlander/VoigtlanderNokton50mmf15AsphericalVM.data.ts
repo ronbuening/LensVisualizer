@@ -30,6 +30,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * unfold. Published infinity ZD16=25.00 mm gives a -0.027512 mm paraxial
  * offset. Preserve it: no transcription error was found, and designer
  * best-focus intent is not explicit despite the small finite-aperture residual.
+ * Image plane kept as a best-focus plane (LENS_DATA_SPEC Image-Plane
+ * Consistency): paraxial offset −0.027512 mm (11.4 depths); real-ray axial
+ * best focus −0.004458 mm; at the printed 630 mm row the plane likewise sits
+ * 0.032547 mm behind paraxial focus.
  */
 
 const LENS_DATA = {

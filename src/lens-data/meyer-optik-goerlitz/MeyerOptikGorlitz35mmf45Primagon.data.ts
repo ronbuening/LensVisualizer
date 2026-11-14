@@ -13,6 +13,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ distance are uniformly scaled ×0.35 for the 35 mm production       ║
  * ║ correlation. The scaled rounded prescription computes EFL           ║
  * ║ 34.5749063963 mm rather than exactly 35 mm; the mismatch is kept.   ║
+ * ║ Image-plane re-solve (2026-11-03): the printed s′ = 101 (35.35 mm   ║
+ * ║ at scale) left the plane 0.495242 mm beyond paraxial focus; the     ║
+ * ║ final d is re-solved 35.35 -> 34.854758 mm.                         ║
  * ║                                                                    ║
  * ║ Stop: patent Fig. p.6 places B inside the L3-L4 air gap but gives  ║
  * ║ no numerical split or diaphragm diameter. The drawing is           ║
@@ -139,9 +142,9 @@ const LENS_DATA = {
     // Physical stop size is not published; radius derived from the design f-number.
     { label: "STO", R: "flat", d: 1.05 },
     { label: "7", R: 67.2, d: 1.925, sd: 5.7, medium: 4 },
-    // Source s' = 101 mm is scaled ×0.35 to 35.35 mm. The rounded prescription's
-    // paraxial BFD is 34.8547584837 mm, so this source image plane lies 0.4952415163 mm behind it.
-    { label: "8", R: -12.6, d: 35.35, sd: 5.7 },
+    // Source s' = 101 mm scales ×0.35 to 35.35 mm, 0.495242 mm behind the rounded prescription's
+    // paraxial BFD; the back focus is re-solved to that paraxial focus.
+    { label: "8", R: -12.6, d: 34.854758, sd: 5.7 }, // printed s′ 101 (35.35 at scale); re-solved for paraxial focus
   ],
 
   /* (moved from var) ── Focus ── */

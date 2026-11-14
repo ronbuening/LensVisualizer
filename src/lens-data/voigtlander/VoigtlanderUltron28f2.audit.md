@@ -61,3 +61,30 @@ Best-focus inquiry: the source describes infinity aberration plots but no delibe
 **Cause/action:** source summary/prescription inconsistency; keep published distances and explicitly qualified A6 reconstruction. Offset **+0.069147 → +0.069147 mm**; Section E row deleted. No numerical change/changelog; the existing separate asphere limitation is not declared resolved.
 
 Validation: focused runtime/paraxial check; full corpus gates at the ten-lens checkpoint.
+
+## 2026-11-03 — Image-plane consistency (re-solve)
+
+JP 2022-100641 A Example 1 Table 1 (PDF p. 7) matches the file, apart from the documented ASP18 A6 decimal repair,
+which does not touch paraxial focus. ¶0035 (p. 8) defines ZD18 as last lens to image. The printed ZD18 = 18.40 mm is
+0.069147 mm short of the computed 18.469147 mm BFL (14.7 depths at f/2). The real-ray axial best focus lay +0.059 mm
+beyond the plane, so it was not a best-focus plane, and the undocumented filter 101 would only push focus further back.
+Together with EFL 28.579770 against 28.50 and track 60.24 against LT 60.2274, this is source rounding or inconsistency
+with no isolated misprint. It is re-solved under LENS_DATA_SPEC Image-Plane Consistency. Unit focus has one moving gap,
+so ZD18 is solved at infinity and then at the printed ZD0 = 430 mm from the first surface.
+
+| Field | Before | After | Justification |
+| --- | --- | --- | --- |
+| ZD18 (BF), infinity | 18.40 | 18.469147 | Computed BFL |
+| ZD18 (BF), near | 20.33 | 20.407945 | Paraxial focus at ZD0 = 430 mm |
+| `focus.closeFocusM` | 0.4921574 | 0.4922 | Near object to image 492.248 mm |
+
+- Residual: infinity +0.069147 → 0 mm. Near row: before, it focused 447.65 mm from the first surface (0.5098 m object to
+  image); now it focuses at 430.00 mm.
+- Extension 1.93 → 1.938798 mm. EFL unchanged (28.579770 mm). Track 60.24 → 60.309147 mm at infinity, 62.17 →
+  62.247945 mm near. Near magnification −0.067838 against the printed 0.0676 (−0.065111 before).
+- `closeFocusM` 0.4921574 → 0.4922 m. That value came from 430 + LT 60.2274 + 1.93; the re-solved row now agrees with it
+  to 0.1 mm. No maker figure is recorded in the files, so `catalog.closeFocusM.marketing` was not added.
+- ZD18 has no following lens surface, so no rim clearance applies. Aperture, image-circle, field-coverage and
+  surface-probe audits are unchanged.
+
+Follow-ups: the ASP18 A6 reconstruction and the EFL (28.50 mm) summary mismatch stay open.

@@ -31,6 +31,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  NOTE ON EFL: the printed prescription computes 16.52 / 22.96 /      ║
  * ║    34.02 mm (+0.22 to +0.24% vs Table 16) with paraxial image        ║
  * ║    residuals of +0.11 / +0.09 / +0.01 mm. Values are not edited.     ║
+ * ║  Image plane kept as a best-focus plane (LENS_DATA_SPEC Image-Plane  ║
+ * ║    Consistency): paraxial offset +0.108 / +0.086 / +0.005 mm (11.1 / ║
+ * ║    8.8 / 0.5 depths at f/2.88); real-ray axial best focus +0.085 /   ║
+ * ║    +0.052 / +0.087 mm (8.7 / 5.3 / 8.9 depths).                      ║
  * ║  NOTE ON ASPHERES: printed numerator y²c² read as standard y²c;      ║
  * ║    (1+K) conic form, K used directly; A4–A12 as published.           ║
  * ║  NOTE ON SCALING: none (patent scale).                               ║

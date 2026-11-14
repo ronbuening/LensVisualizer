@@ -149,7 +149,9 @@ A reduced-angle y-ν paraxial ray trace was run independently from the tabulated
 
 The computed EFL is close enough to the patent value that no transcription correction was made to the prescription table. The small difference is consistent with the precision limits of a three-decimal printed patent prescription.
 
-The final data-file surface list differs from the patent table only by insertion of the aperture stop inside the R9-R10 air space and by estimated semi-diameters. All radii, thicknesses, refractive indices, and Abbe numbers are otherwise transcribed directly from Example 1.
+The final data-file surface list differs from the patent table only by insertion of the aperture stop inside the R9-R10 air space, by a zero-power WTR plane 0.001 mm ahead of R1, and by estimated semi-diameters. All radii, thicknesses, refractive indices, and Abbe numbers are otherwise transcribed directly from Example 1.
+
+The viewer launches rays in air, so the WTR plane puts water ($n_d = 1.33306$) in front of R1, as on the R-UW AF Zoom-Nikkor 20-35mm. With it the model reproduces the water-to-air trace above: EFL 12.3995 mm, with the image plane at the 39.3394 mm paraxial focus behind R17. Before 2026-11-03 the file had no water medium, so R1 was traced from air; that gave EFL 15.348 mm and left the image plane 1.153 mm behind paraxial focus. A flat air-to-water entry can bend a ray no further than 48.6° from the axis in water. The model's traceable half field is therefore 30.7° in air, well short of the patent's 85.3° underwater half field, which needs a launch that starts in water.
 
 ## Data-File Implementation Notes
 

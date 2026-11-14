@@ -16,7 +16,7 @@ Embodiment 7 is identified with high confidence as the optical formula associate
 2. Two elements have $n_d = 1.43700$, $\nu_d = 95.10$, matching HOYA FCD100, and one has $n_d = 1.59282$, $\nu_d = 68.62$, matching HOYA FCD515. This agrees with Tamron's stated use of two XLD elements and one LD element.
 3. The patent gives $f = 92.74$ mm and FNo. 2.89 at infinity, consistent with a marketed 90 mm f/2.8 lens.
 4. The infinity half-angle of view is $13.12^\circ$, corresponding to a full-frame diagonal image circle of about 43.1 mm.
-5. The prescription is tabulated at infinity, 1:2, and 1:1 magnification, and the calculated 1:1 object-to-image distance is 299.31 mm. Tamron publishes a 0.30 m minimum focus distance and 1:1 maximum magnification.
+5. The prescription is tabulated at infinity, 1:2, and 1:1 magnification, and the calculated 1:1 object-to-image distance is 299.31 mm with the printed spacings (299.66 mm in the re-solved model). Tamron publishes a 0.30 m minimum focus distance and 1:1 maximum magnification.
 6. The patent uses three independently moving inner groups while the front and rear assemblies remain axially fixed, matching the F004's internal-focus architecture.
 7. Embodiment 7 assigns the fifth group to lateral image stabilization. Tamron introduced the F004 with VC in 2012; the Sony A-mount version retained the optical group but omitted the VC actuator because stabilization was provided in the camera body.
 8. The priority date immediately precedes the 2012 introduction of Model F004. The later Model F017 did not appear until 2016.
@@ -80,7 +80,7 @@ L1, L2, and L4 are the three convex elements used in the patent's average-index 
 
 $n_d = 1.81600$, $\nu_d = 46.62$. Glass: OHARA S-LAH59. $f = -49.92$ mm.
 
-L5 begins the net-negative G2 focus group. Its high index provides substantial negative power with manageable curvature. Because G2 translates by 18.049 mm between infinity and 1:1, L5 encounters one of the largest changes in ray height and conjugate condition in the system.
+L5 begins the net-negative G2 focus group. Its high index provides substantial negative power with manageable curvature. Because G2 translates by 18.049 mm between infinity and 1:1 (17.972 mm in the re-solved model), L5 encounters one of the largest changes in ray height and conjugate condition in the system.
 
 The glass is an exact current-catalog match. Its $\nu_d$ places it in dense lanthanum-flint territory despite the family name sometimes being loosely associated with crowns.
 
@@ -104,7 +104,7 @@ The rear radius is very weak, so L7 is nearly plano-convex in power distribution
 
 The stop is fixed axially between G2 and G3. The data file uses an infinity-state stop semi-diameter of 13.9336 mm, obtained by paraxially calibrating the entrance pupil to the patent's FNo. 2.89. The patent states that the physical stop diameter is preferably reduced toward close focus, but it does not tabulate the diaphragm diameter at the three focus states.
 
-D(14) is the axial distance from the stop to L8; it is not a diaphragm diameter. It decreases from 14.000 mm at infinity to 9.2987 mm at 1:2 and 1.700 mm at 1:1 because G3 moves toward the object. The data file models that axial movement but keeps one physical stop size. Consequently, the patent's close-focus F-numbers are documented here rather than represented as a focus-dependent diaphragm schedule.
+D(14) is the axial distance from the stop to L8; it is not a diaphragm diameter. It decreases from 14.000 mm at infinity to 9.2987 mm at 1:2 and 1.700 mm at 1:1 as printed (9.2713 mm and 1.7525 mm in the re-solved model) because G3 moves toward the object. The data file models that axial movement but keeps one physical stop size. Consequently, the patent's close-focus F-numbers are documented here rather than represented as a focus-dependent diaphragm schedule.
 
 ### L8 — Biconvex Positive, Single-Element G3
 
@@ -123,7 +123,7 @@ The selected values, 68.62 and 1.59282, lie near the middle of both ranges. The 
 
 The cemented pair has computed in-situ focal length +81.238 mm. L9 is a negative meniscus and L10 is a positive biconvex element. The patent specifically favors a front negative element cemented to a rear positive element in this group because the arrangement reduces focus-dependent curvature-of-field variation.
 
-G4 moves 17.570 mm toward the object from infinity to 1:1, opposite G2's imageward travel. The substantial positive power and counter-directed displacement give the floating system another independent degree of freedom for controlling field curvature, spherical aberration, and coma at macro conjugates.
+G4 moves 17.570 mm toward the object from infinity to 1:1 (17.494 mm in the re-solved model), opposite G2's imageward travel. The substantial positive power and counter-directed displacement give the floating system another independent degree of freedom for controlling field curvature, spherical aberration, and coma at macro conjugates.
 
 S-LAL12Q is used rather than the older S-LAL12 label because the current OHARA catalog's Q variant matches both $n_d = 1.67790$ and $\nu_d = 55.35$.
 
@@ -181,6 +181,8 @@ Catalog-only per-element C/F/g and partial-dispersion copies were removed on2026
 
 The lens uses three-group floating inner focus. G1, G5, and G6 remain fixed along the optical axis. G2, G3, and G4 move independently while the stop stays at a fixed axial station.
 
+Printed spacings (Embodiment 7):
+
 | Quantity              |   Infinity |        1:2 |        1:1 | Infinity-to-1:1 change |
 | --------------------- | ---------: | ---------: | ---------: | ---------------------: |
 | D(7), G1-to-G2 gap    |  1.2000 mm |  9.8415 mm | 19.2488 mm |            +18.0488 mm |
@@ -192,6 +194,17 @@ The lens uses three-group floating inner focus. G1, G5, and G6 remain fixed alon
 
 D(7)+D(13) remains 21.2500 mm in all three states, proving that G2 translates 18.0488 mm imageward while the stop remains fixed. G3's position is controlled directly by D(14), which decreases monotonically; G3 therefore moves 12.3000 mm objectward. The position of G4 relative to the stop is D(14) plus the L8 center thickness plus D(16), giving 17.5695 mm of objectward travel. D(19) increases by the same amount, keeping G5 fixed.
 
+With the printed spacings the infinity image plane sits 0.293897 mm in front of paraxial focus, about 32 times the ±2λN² depth at F2.89, and the real-ray axial best focus (+0.389 mm) lay beyond paraxial focus, so the printed plane is not a best-focus plane. The printed 1:2 row also misses its stated magnification (−0.49428×). The model therefore re-solves the air gaps for paraxial focus, back focus first: the folded final BFD gains 0.293897 mm at every state, then the 1:2 and 1:1 rows move G2, G3 and G4 together, in the printed infinity-to-1:1 proportions, until each is in paraxial focus at −0.5× and −1.0×. Radii, thicknesses and indices are unchanged; all three rows stay published.
+
+| Quantity (model)      |   Infinity |        1:2 |        1:1 | Infinity-to-1:1 change |
+| --------------------- | ---------: | ---------: | ---------: | ---------------------: |
+| D(7), G1-to-G2 gap    |  1.2000 mm |  9.8818 mm | 19.1717 mm |            +17.9717 mm |
+| D(13), G2-to-stop gap | 20.0500 mm | 11.3682 mm |  2.0783 mm |            −17.9717 mm |
+| D(14), stop-to-G3 gap | 14.0000 mm |  9.2713 mm |  1.7525 mm |            −12.2475 mm |
+| D(16), G3-to-G4 gap   |  6.7201 mm |  1.0874 mm |  1.4731 mm |             −5.2470 mm |
+| D(19), G4-to-G5 gap   |  1.7996 mm | 12.1609 mm | 19.2940 mm |            +17.4944 mm |
+| Folded final BFD      | 47.0332 mm | 47.0732 mm | 47.0580 mm |             +0.0248 mm |
+
 The non-monotonic D(16) values do not mean G3 reverses direction. They record the changing separation of two independently moving groups. At 1:2, G4 has approached G3 more rapidly than at the final 1:1 state, after which their separation increases slightly.
 
 The independently traced conjugates are:
@@ -201,10 +214,12 @@ The independently traced conjugates are:
 | Infinity        |   92.5564 mm |               effectively infinite |                        — |                      — |
 | 1:2 table state |   81.7477 mm |                        217.3499 mm |              376.1247 mm |              −0.49428× |
 | 1:1 table state |   64.9771 mm |                        140.5468 mm |              299.3064 mm |              −1.00033× |
+| 1:2, re-solved  |   81.6877 mm |                        215.4455 mm |              374.5142 mm |              −0.50000× |
+| 1:1, re-solved  |   65.1489 mm |                        140.6052 mm |              299.6587 mm |              −1.00000× |
 
-The 1:1 object-to-image distance agrees with Tamron's 0.30 m published minimum focus distance. The calculated distance from the first optical surface to the object is 140.55 mm; Tamron publishes a 139 mm working distance. The small difference is consistent with measuring working distance from the mechanical front of the lens rather than the first surface vertex.
+The table states are traced with the printed spacings; the model uses the re-solved rows, and its close-focus distance is 0.2997 m. The 1:1 object-to-image distance agrees with Tamron's 0.30 m published minimum focus distance. The calculated distance from the first optical surface to the object is 140.55 mm (140.61 mm re-solved); Tamron publishes a 139 mm working distance. The small difference is consistent with measuring working distance from the mechanical front of the lens rather than the first surface vertex.
 
-The patent's total first-surface-to-image track is nearly constant: 158.7349 mm at infinity, 158.7748 mm at 1:2, and 158.7596 mm at 1:1 after D(27) is folded into the image-space distance. The external barrel therefore need not extend during focusing.
+The patent's total first-surface-to-image track is nearly constant: 158.7349 mm at infinity, 158.7748 mm at 1:2, and 158.7596 mm at 1:1 after D(27) is folded into the image-space distance (159.0288, 159.0687 and 159.0535 mm in the re-solved model). The external barrel therefore need not extend during focusing.
 
 ## Image Stabilization
 
@@ -275,7 +290,7 @@ The inferred semi-diameters were separately checked against the project's render
 - maximum signed cross-gap sag intrusion: 0.8794 of the air gap, at surfaces 9–10;
 - front semi-diameter: 26.5 mm, within the 29 mm radius of the 58 mm filter thread.
 
-No cover glass or terminal dummy plate is included. Surface 26's stored image-space distance is the patent's 44.5749 mm air distance plus D(27): 46.7393 mm at infinity and 46.7641 mm at 1:1.
+No cover glass or terminal dummy plate is included. The patent's image-space distance after surface 26 is its 44.5749 mm air distance plus D(27): 46.7393 mm at infinity and 46.7641 mm at 1:1. The model stores 47.033197 mm and 47.057997 mm, re-solved for paraxial focus at infinity with the same 0.293897 mm carried to every state.
 
 ## Design Heritage and Context
 
@@ -297,7 +312,8 @@ MTF source audit: US9063253B2 Embodiment 7 (PDF pp. 84–85) reproduces
 all stored prescription values but not its own printed infinity focal length.
 EFL = 92.556419 mm versus 92.74; paraxial BFL = 47.033197 mm versus
 the published air path 44.5749 + 2.1644 = 46.7393 mm (offset +0.293897 mm).
-Surface 27 is a dummy air plane, not a plate. Preserve the source image plane.
+Surface 27 is a dummy air plane, not a plate. Superseded 2026-11-03: the back focus and near rows
+are re-solved for paraxial focus (Focus Mechanism; audit).
 
 ## 2026-10-30 source outline and glass reinspection
 

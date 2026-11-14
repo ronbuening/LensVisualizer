@@ -16,7 +16,7 @@ Numerical Example 2 is the closest patent match for the fixed zoom lens used in 
 
 The production lens is officially specified as 12.5-62.5 mm, f/2.0-3.9, with a 24-120 mm equivalent angle of view, 14 elements in 11 groups, one double-sided UA aspherical element, and two additional double-sided aspherical elements. The camera uses a Canon 1.5-inch-type CMOS sensor. These specifications converge with the patent example: 14 glass elements, 11 air-separated optical groups, six aspherical surfaces, similar F-number, a 4.73x patent zoom ratio versus a marketed 5x zoom, and a B5 negative inner-focus group. The patent was filed on January 28, 2015, with Japanese priority on January 31, 2014, shortly before the camera's 2014 market introduction.
 
-The patent's Focal length row is not identical to the Gaussian paraxial effective focal length derived from the prescription. It corresponds closely to image height divided by tan(half viewing angle), whereas the independent Gaussian paraxial trace gives 12.571 / 22.807 / 62.196 mm. The analysis and data file therefore record both concepts explicitly: the patent table focal lengths are used as the zoom-position labels, and the Gaussian paraxial values are documented in the verification section.
+The printed table omits about 2.20 mm of air between B3 and the aperture stop: with the printed d15 = 2.30 mm the prescription traces to Gaussian EFLs of 12.571 / 22.807 / 62.196 mm, back focus 0.017–0.386 mm beyond the printed paraxial BF, and a track about 2.2 mm shorter than the printed total lens length, although every zoom-group focal length matches the printed group table. With d15 = 4.50 mm the trace reproduces the printed 12.84 / 22.90 / 60.72 mm, the printed total lens length and infinity focus at all three stations. The data file applies this as a corrected source erratum (see Verification Summary).
 
 ## Optical Architecture
 
@@ -148,12 +148,12 @@ The palette is dominated by high-index flints and lanthanum-family glasses. L7 a
 
 The fifth zoom group B5, consisting of L12 and L13, is the focus lens group. The patent states that B5 has negative refractive power and moves to the image side when shifting from an infinite-distance object to a near-distance object at telephoto (¶0050). This is an inner-focus arrangement: only the small rear negative group moves for focusing, while the other groups follow the zoom cam tracks.
 
-The patent tabulates only infinity-focus zoom spacings for Numerical Example 2. Canon's production specifications give a closest focusing distance of 5 cm at wide angle and 40 cm at telephoto. The data file therefore includes an explicitly marked paraxial close-focus visualization: B5 is shifted imageward by increasing d22 and reducing d26 while the image plane remains fixed. The fitted close-focus travel is not a patent-disclosed mechanical cam. Traced object to image, the fitted close rows focus at about 0.13 m (wide), 0.28 m (middle) and 0.50 m (tele); the per-station close-focus labels report those distances, and Canon's 5 cm / 40 cm figures are kept as marketed metadata.
+The patent tabulates only infinity-focus zoom spacings for Numerical Example 2. Canon's production specifications give a closest focusing distance of 5 cm at wide angle and 40 cm at telephoto. The data file therefore includes an explicitly marked paraxial close-focus visualization: B5 is shifted imageward by increasing d22 and reducing d26 while the image plane remains fixed. The fitted close-focus travel is not a patent-disclosed mechanical cam. The rows are fitted for 50 / 200 / 400 mm from the first lens vertex, Canon's front-of-lens convention; traced object to image they focus at 0.1315 m (wide), 0.2833 m (middle) and 0.5008 m (tele). The per-station close-focus labels report those distances, and Canon's 5 cm / 40 cm figures are kept as marketed metadata. The rows were re-solved after the S15 erratum (2026-11-03).
 
 | Variable gap | Wide infinity | Wide close model | Middle infinity | Middle close model | Tele infinity | Tele close model |
 |---|---:|---:|---:|---:|---:|---:|
-| d22, B4-B5 | 1.60 | 4.53 | 3.74 | 5.74 | 10.36 | 16.12 |
-| d26, B5-B6 | 4.49 | 1.56 | 4.80 | 2.80 | 12.85 | 7.09 |
+| d22, B4-B5 | 1.60 | 4.39 | 3.74 | 5.74 | 10.36 | 15.54 |
+| d26, B5-B6 | 4.49 | 1.70 | 4.80 | 2.80 | 12.85 | 7.67 |
 
 ## Aspherical Surfaces
 
@@ -198,7 +198,7 @@ Condition (1) is especially diagnostic of this design. R24 = +37.777 mm and R25 
 
 Patent surface 10 is an optically inert flat air-to-air reference surface with d = -0.10 mm. Negative thickness cannot be passed to the renderer, so the data file omits surface 10 and folds it into the preceding B2-B3 gap. The renderer gap labeled 9 is therefore d9 + d10: 22.01 / 10.44 / 0.25 mm rather than the patent's 22.11 / 10.54 / 0.35 mm followed by -0.10 mm.
 
-Patent surfaces 29 and 30 are the optical block immediately in front of the sensor. The data file models this block physically in `rearPlates` (1.55 mm, nd 1.51633, νd 64.1, S-BSL7 class), with the patent d28 = 3.41 / 8.24 / 9.52 mm before it and d30 = 3.31 mm after it. It is traced by every analysis but not drawn. Paraxially the stack equals an air-equivalent image-plane spacing of 7.742 / 12.572 / 13.852 mm, d28 + 1.55 / 1.51633 + 3.31, matching the patent BF row of 7.75 / 12.57 / 13.86 mm. Because the block is traced physically, the physical track is 0.528 mm longer than the air-equivalent track. A separate marginal-ray calculation on the rounded published prescription gives Gaussian BFLs of 7.963 / 12.589 / 14.238 mm from surface 28. The data file follows the patent image-plane spacing rather than refocusing the rounded table.
+Patent surfaces 29 and 30 are the optical block immediately in front of the sensor. The data file models this block physically in `rearPlates` (1.55 mm, nd 1.51633, νd 64.1, S-BSL7 class), with the patent d28 = 3.41 / 8.24 / 9.52 mm before it and d30 = 3.31 mm after it. It is traced by every analysis but not drawn. Paraxially the stack equals an air-equivalent image-plane spacing of 7.742 / 12.572 / 13.852 mm, d28 + 1.55 / 1.51633 + 3.31, matching the patent BF row of 7.75 / 12.57 / 13.86 mm. Because the block is traced physically, the physical track is 0.528 mm longer than the air-equivalent track. With the printed d15 = 2.30 mm, a separate marginal-ray calculation gives Gaussian BFLs of 7.963 / 12.589 / 14.238 mm from surface 28; with the corrected 4.50 mm the image plane lies within one depth of focus of paraxial focus at every station, so the patent image-plane spacing is kept.
 
 The patent does not provide semi-diameters. Renderer semi-diameters were inferred from multi-state ray envelopes and then reduced only as needed to satisfy the project constraints: sd/|R| < 0.90, front/rear element semi-diameter ratio <= 1.25, signed cross-gap sag intrusion <= 90% of the air gap, and positive edge thickness. The tightest retained checks are the L2 rim edge thickness at about 0.48 mm, the L14 rim edge thickness at about 0.48 mm, the surface 5 to 6 gap at about 89.5% intrusion, the surface 18A to 19 gap at about 86.3%, and the surface 24 to 25A gap at about 89.5%.
 
@@ -208,15 +208,16 @@ All load-bearing paraxial quantities were re-derived from the patent prescriptio
 
 | Quantity | Computed from re-extracted prescription | Patent / source value | Result |
 |---|---:|---:|---|
-| Gaussian EFL, wide | 12.571 mm | Patent focal row 12.84 mm | Deliberate distinction; record both values. |
-| Gaussian EFL, middle | 22.807 mm | Patent focal row 22.90 mm | Close agreement. |
-| Gaussian EFL, tele | 62.196 mm | Patent focal row 60.72 mm | Deliberate distinction; record both values. |
+| Gaussian EFL, wide | 12.841 mm (12.571 with printed d15) | Patent focal row 12.84 mm | Matches with the S15 erratum. |
+| Gaussian EFL, middle | 22.905 mm (22.807) | Patent focal row 22.90 mm | Matches with the S15 erratum. |
+| Gaussian EFL, tele | 60.724 mm (62.196) | Patent focal row 60.72 mm | Matches with the S15 erratum. |
+| Physical track, wide / middle / tele | 81.51 / 83.31 / 100.82 mm (79.31 / 81.11 / 98.62) | Total lens length 81.50 / 83.31 / 100.81 mm | Matches with the S15 erratum. |
 | Air-equivalent image-plane gap, wide | 7.742 mm | Patent BF row 7.75 mm | Matches the air-equivalent cover-glass path. |
 | Air-equivalent image-plane gap, middle | 12.572 mm | Patent BF row 12.57 mm | Matches the air-equivalent cover-glass path. |
 | Air-equivalent image-plane gap, tele | 13.852 mm | Patent BF row 13.86 mm | Matches the air-equivalent cover-glass path. |
-| Marginal-ray Gaussian BFL from surface 28, wide | 7.963 mm | Air-equivalent patent image-plane gap 7.742 mm | Rounded-table residual +0.221 mm. |
-| Marginal-ray Gaussian BFL from surface 28, middle | 12.589 mm | Air-equivalent patent image-plane gap 12.572 mm | Rounded-table residual +0.017 mm. |
-| Marginal-ray Gaussian BFL from surface 28, tele | 14.238 mm | Air-equivalent patent image-plane gap 13.852 mm | Rounded-table residual +0.386 mm. |
+| Infinity image-plane offset, wide | +0.0045 mm (+0.221 with printed d15) | Patent BF row, paraxial (¶0085) | 0.96 depth of focus. |
+| Infinity image-plane offset, middle | +0.0079 mm (+0.017) | Patent BF row, paraxial (¶0085) | 0.55 depth of focus. |
+| Infinity image-plane offset, tele | +0.0118 mm (+0.386) | Patent BF row, paraxial (¶0085) | 0.66 depth of focus. |
 | B1 group focal length | +59.406 mm | +59.41 mm | Matches. |
 | B2 group focal length | -12.765 mm | -12.77 mm | Matches. |
 | B3 group focal length | +27.735 mm | +27.73 mm | Matches. |
@@ -226,7 +227,7 @@ All load-bearing paraxial quantities were re-derived from the patent prescriptio
 | Surface-by-surface Petzval sum | +0.003088 mm^-1 | Not tabulated | Derived. |
 | Petzval radius | +323.8 mm | Not tabulated | Derived. |
 
-All six zoom-group focal lengths re-compute to the patent values within normal table rounding. The patent's focal-length row is retained as the zoom-position label set, while the Gaussian paraxial EFL is documented separately. The data file keeps the patent image-plane spacing, with the cover glass traced physically; it does not shift the image plane to the marginal-ray focus of the rounded public table.
+All six zoom-group focal lengths re-compute to the patent values within normal table rounding, while the complete system with the printed d15 = 2.30 mm misses the printed focal lengths, back focus and total lens length at every station. Adding 2.20 mm between B3 and the stop (d15 = 4.50 mm) reconciles all three. Numerical Example 3 on the same page shows the same deficit (12.569 / 22.807 / 62.220 mm against the same printed row) and the same fix (12.839 / 22.900 / 60.728 mm; track 81.47 / 83.29 / 100.62 against 81.50 / 83.32 / 100.65), and FIG. 3 (PDF p. 4) draws the stop SP about 4.5 mm behind B3's rear vertex. The data file records this as a corrected `source.errata` entry (source-summary and sibling-example evidence) and keeps the patent image-plane spacing, with the cover glass traced physically.
 
 ## Sources
 
@@ -242,11 +243,11 @@ MTF source audit: Numerical Example 2 (PDF pp. 30–31) matches the stored
 prescription, including all six aspheres and the rear sensor block. At wide
 infinity, EFL 12.571053 differs from printed 12.84; air BFL 7.962884
 differs from printed BF 7.75 and rear reduced path 7.742205 mm.
-Paragraph 0085 explicitly calls BF paraxial. Preserve the source values
-and residual +0.220679 mm offset; this is not established designer best focus.
+Paragraph 0085 explicitly calls BF paraxial. (Superseded 2026-11-03: the
+residual came from 2.20 mm of air missing at d15, corrected as a source erratum.)
 
 ## Image-format reference
 
 `imageFormat: "1.5-inch-type"` records the nominal 18.7 × 14.0 mm sensor envelope from [Canon’s Mark II sales sheet](https://device.report/m/a4df8e71c17310fa51e7f6b594febf20fec3401f37c55af516a88ccecd3977b1.pdf). The production camera crops this multi-aspect sensor for 3:2 and 4:3 recording. The metadata does not reconstruct those crops or replace the patent’s zoom-dependent image heights with sensor dimensions.
 
-At the modeled wide infinity station, the aperture-contained chief-ray edge reaches about 7.94 mm image height, 68% of the nominal 11.68 mm sensor-envelope corner. Surface 4 limits the edge, and the corner solve is unreachable in the present model. This is a limit of the authored optical model, not a measurement of production sensor cropping or camera performance.
+At the modeled wide infinity station, the aperture-contained chief-ray edge reaches about 7.83 mm image height, 67% of the nominal 11.68 mm sensor-envelope corner (7.94 mm, 68% before the S15 erratum moved the stop). Surface 4 limits the edge, and the corner solve is unreachable in the present model. This is a limit of the authored optical model, not a measurement of production sensor cropping or camera performance. With the corrected stop position, the middle station's 11.68 mm corner chief also clips at the B1 rims S2/S3 (about 16.58 / 16.48 mm against the inferred 16.1 mm), giving 98% coverage there. The rims are not widened without patent-figure evidence.

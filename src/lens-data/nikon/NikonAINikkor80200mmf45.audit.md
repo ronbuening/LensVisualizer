@@ -43,3 +43,29 @@ semi-diameter was not changed.
 - Added only the resolved rear-relay L8 front concave-end trim: **S18 outer18.0 mm, cut depth6.70 mm, cap16.280006143 mm**, adopted q0.904445, land1.719994 mm. Source q≈0.904; first/last glass span≈2725working px /154.880 mm gives17.6working/8.8native px/mm (original300dpi); edge≈151nativepx, one-pixel q uncertainty ±0.013 (0.891–0.917). Complete beam reach**14.969220861 mm** at zoom0.95/focus0.60/field5.761926942°, margin0.05 mm, actual clearance1.310785281 mm, zero untraced/errors. Other concave ends have no separately resolved flat land; cemented steps retained as source/renderer limitation, no forced extra clipping.
 - Compatible coefficient coverage remains **12/12**. Qualified E-LAF11 and J-LAK8, correcting the claim that catalog 31.591/53.96 are ordinary one-decimal rounding of source 31.7/53.9; they round31.6/54.0 instead. Source values and current proxy curves stay unchanged. Public narrative/table and current header distinguish compatibility from production melt identity. No new spectral overrides, R/d, stop, focus or zoom changes.
 - Actual verification: focused surface and image-circle audits pass all three, zero undersized/skipped. Aperture6/6 source stations within3%, zero rim/iris/trace failures after final50mm floor changes; field6/6≥99%, zero unsolved/skipped. Both zoom inferred cuts pass the complete beam guard; both 50mm retained-cap extensions clear the final explicit beam check. Actual native SVGs inspected at nine focus/zoom controls each (27 views), zero renderer trims; every enlarged compound remains connected, without detached wings. Current resolver and `assertCatalogConsistent` pass32/32 physical-element curves. No shared engine/catalog/test, tolerances, global reports, or root files changed.
+
+## 2026-11-03 — Image-plane consistency (re-solve)
+
+Source: `patents/US4223981.pdf`, Embodiment 1 table on PDF p. 13, checked visually. Every r, d, n and ν matches. The
+printed B.f. 42.495 mm is the relay's back focus for a collimated input (computed 42.4933 mm; relay fR 112.520 against
+the printed 112.523 mm). The printed three-decimal D5/D10/D13 leave the variable-power section slightly non-afocal
+(reduced angle −0.9 to −1.4 × 10⁻⁵ per unit height), so the paraxial BFD fell short of the published plane. No single
+r, d or n change fixes all three states, and Claim 9's middle D5 (28.313) moves the wrong way. The real-ray axial best
+focus (−0.378 mm at 200 mm) tracks the paraxial offset, so the plane is not a best-focus plane. The back focus is one
+fixed value, so the focus mechanism (G1, D5) is re-solved per station.
+
+| Field | Before | After | Justification |
+| --- | --- | --- | --- |
+| D5 infinity, 80 / 126.5 / 200 mm | 3.229 / 28.213 / 44.014 | 3.036476 / 28.069189 / 43.894724 | G1 focus gap re-solved for paraxial focus at infinity (LENS_DATA_SPEC Image-Plane Consistency) |
+| D5 at 1.8 m | 13.097762 / 38.130810 / 53.956508 | unchanged | Already solved for 1.8 m from the image plane; still images at 1.800 m |
+| `catalog.focalLengthMm.design` | [80.102454, 199.911568] | [79.972468, 200.019948] | Re-solved EFL endpoints |
+
+- Residual at infinity: −0.083 / −0.156 / −0.322 mm (3.5 / 6.5 / 13.5 depths at f/4.5) → 0.000 mm at every station.
+- EFL 80.102454 / 126.598870 / 199.911568 → 79.972468 / 126.481252 / 200.019948 mm, now within 0.035 % of the printed
+  80 / 126.5 / 200. Traced wide-open f-number 4.5000 / 4.4972 / 4.4907 → 4.5000 at all three states.
+- G1 travel to 1.8 m 9.868762 / 9.917810 / 9.942508 → 10.061286 / 10.061621 / 10.061784 mm. Infinity track
+  197.375 → 197.182 / 197.231 / 197.255 mm.
+- Close focus unchanged at 1.8 m (production distance-scale limit). D5 minimum rim clearance at the re-solved wide
+  infinity row is 2.651 mm.
+
+Follow-ups: none.

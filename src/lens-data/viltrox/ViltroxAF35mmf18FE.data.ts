@@ -7,7 +7,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ Data source: CN 211955963 U, Example 1.                                   ║
  * ║ Production correlation: Viltrox AF 35/1.8 FE (Sony E / full frame).       ║
  * ║ Patent prescription: 10 elements, 8 air-separated groups, 4 aspheres.     ║
- * ║ Focus status: PUBLISHED. L31/G3 moves imageward by 4.92 mm.               ║
+ * ║ Focus status: PUBLISHED. L31/G3 moves imageward by 5.591116 mm.           ║
  * ║                                                                            ║
  * ║ SOURCE NORMALIZATIONS:                                                     ║
  * ║   • Raw Table-1 row 8 is the physical aperture stop.                      ║
@@ -20,8 +20,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║                                                                            ║
  * ║ REAR PLATE: GL is traced in rearPlates at its physical source gaps:     ║
  * ║ 22.12 mm before, 2.00 mm / nd 1.52 / vd 64.2, 1.00 mm after.            ║
- * ║ Source image distance 25.12 mm exceeds paraxial BFL 24.567805 mm.       ║
- * ║ The -0.552195 mm offset remains; published values retained (see audit). ║
+ * ║ IMAGE-PLANE RE-SOLVE (2026-11-03): the printed rows left infinity focus ║
+ * ║ 0.552195 mm in front of the image plane. Back focus cannot absorb it    ║
+ * ║ (the 0.3 m row's S15A/S16 rim would close), so L31 is re-solved at both ║
+ * ║ rows: D1 1.00/5.92 → 0.242573/5.833689, D2 8.69/3.77 → 9.447427/3.856311║
+ * ║ mm (∞ / 0.3 m from the first vertex). S19 22.12 mm is unchanged.        ║
  * ║                                                                            ║
  * ║ SEMI-DIAMETERS:                                                            ║
  * ║   No patent clear apertures are published. G1/G2 SDs follow Figure 1     ║
@@ -32,9 +35,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║                                                                            ║
  * ║ FOCUS / MFD NOTE:                                                         ║
  * ║   The modeled endpoint is the patent's published nearest-focus row,       ║
- * ║   labeled 0.3 m; traced object to image it focuses at 0.388 m, which      ║
- * ║   closeFocusM records. The production lens is marketed with a 0.4 m       ║
- * ║   minimum focus distance; catalog.closeFocusM keeps that marketing value, ║
+ * ║   labeled 0.3 m and read from the first vertex; re-solved, it focuses at  ║
+ * ║   0.3925 m object to image, which closeFocusM records. The production   ║
+ * ║   lens is marketed with a 0.4 m minimum focus distance;                   ║
+ * ║   catalog.closeFocusM keeps that marketing value,                         ║
  * ║   and it does not alter patent gaps.                                      ║
  * ║                                                                            ║
  * ║ Manufacturer sources:                                                     ║
@@ -61,7 +65,7 @@ const LENS_DATA = {
     imageFormat: "135-full-frame",
     specs: [
       "10 ELEMENTS / 8 GROUPS",
-      "35 mm MARKETED / 34.545 mm PATENT EFL",
+      "35 mm MARKETED / 34.801 mm MODELED EFL",
       "f/1.8",
       "63.2° FULL-FRAME VIEW",
       "2 ASPHERICAL ELEMENTS / 4 ASPHERICAL SURFACES",
@@ -69,7 +73,7 @@ const LENS_DATA = {
     ],
     elementCount: 10,
     groupCount: 8,
-    focalLengthMm: { marketing: 35, design: 34.54521692924615 },
+    focalLengthMm: { marketing: 35, design: 34.801033 }, // 34.545217 before the 2026-11-03 focus re-solve
     fNumber: { marketing: 1.8, design: 1.8 },
     closeFocusM: { marketing: 0.4 },
   },
@@ -181,7 +185,7 @@ const LENS_DATA = {
       vd: 53.15,
       focalLengthMm: -107.488959,
       glass: "K-VC80-M (catalog-equivalent spectral proxy; supplier unresolved)",
-      role: "Single-element negative internal-focus group G3; translates imageward by 4.92 mm.",
+      role: "Single-element negative internal-focus group G3; translates imageward by 5.591116 mm (printed 4.92 mm).",
       diagramLabel: "L31",
     },
     {
@@ -253,17 +257,21 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   focus: {
-    closeFocusM: 0.388,
+    closeFocusM: 0.3925,
     description:
-      "PUBLISHED patent focus: L31/G3 alone translates 4.92 mm imageward; " +
-      "D1 1.00→5.92 mm and D2 8.69→3.77 mm, with D1+D2=9.69 mm. " +
-      "The endpoint is the patent's 0.3 m row, which focuses at 0.388 m object to image; the production Viltrox lens is marketed at 0.4 m MFD.",
+      "PUBLISHED patent focus: L31/G3 alone translates 5.591116 mm imageward (printed 4.92 mm); " +
+      "D1 0.242573→5.833689 mm and D2 9.447427→3.856311 mm, with D1+D2=9.69 mm, re-solved for paraxial focus " +
+      "(printed D1 1.00→5.92, D2 8.69→3.77 mm). The endpoint is the patent's 0.3 m row, measured from the first " +
+      "vertex, which is 0.3925 m object to image; the production Viltrox lens is marketed at 0.4 m MFD.",
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
   },
 
   /* (moved from var) ── Published focus movement ── */
-  gaps: { "13A": { label: "D1", values: [[1.0, 5.92]] }, "15A": { label: "D2", values: [[8.69, 3.77]] } },
+  gaps: {
+    "13A": { label: "D1", values: [[0.242573, 5.833689]] }, // printed 1.00 / 5.92; both rows re-solved for paraxial focus
+    "15A": { label: "D2", values: [[9.447427, 3.856311]] }, // printed 8.69 / 3.77; both rows re-solved for paraxial focus
+  },
 
   /* ── Aperture configuration ── */
   aperture: { nominalFNumber: 1.8, fStops: [1.8, 2, 2.8, 4, 5.6, 8, 11, 16], blades: 9 },

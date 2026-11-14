@@ -49,7 +49,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * -0.036203 mm). The front filter has no infinity-focus power; no rear
  * plate is listed. The small difference may include finite-aperture and
  * spectral design-focus choices, but these are not specified by the source.
- * Keep the published image distance rather than adjusting it to focus.
+ * Image plane kept as a best-focus plane (LENS_DATA_SPEC Image-Plane
+ * Consistency): paraxial offset -0.036 mm (15.8 depths); real-ray axial best
+ * focus -0.008 mm; source evidence: the designer prints the same 44.800 mm F1
+ * plane in all three Summilux-C examples (US 8,508,864 B2 Examples 2 and 3,
+ * EP 2 321 688 B1), and the EP ray fans (Figs. 10a/10b) balance at it.
  */
 
 const LENS_DATA = {

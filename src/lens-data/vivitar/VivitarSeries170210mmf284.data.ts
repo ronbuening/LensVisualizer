@@ -27,6 +27,15 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    finite-conjugate solve at the production 0.9 m MFD, treating      ║
  * ║    G1 as the front focusing unit and keeping G2/G3/BFL fixed.        ║
  * ║                                                                      ║
+ * ║  NOTE ON IMAGE PLANE (2026-11-03):                                   ║
+ * ║    With Table IV's three-decimal indices the printed BFL rows left   ║
+ * ║    paraxial focus +0.066 / +0.223 / +0.822 mm behind the plane       ║
+ * ║    (6.7 / 15.6 / 43.5 depths). BFL is re-solved per station for      ║
+ * ║    paraxial focus at infinity: 38.997 / 52.352 / 64.025 ->           ║
+ * ║    39.063135 / 52.575201 / 64.847396 mm; the 0.9 m close S5 rows     ║
+ * ║    follow: 10.069 / 18.259 / 22.071 -> 10.007476 / 18.201373 /       ║
+ * ║    21.984461 mm. Radii, indices, infinity D1/D2 rows unchanged.      ║
+ * ║                                                                      ║
  * ║  NOTE ON APERTURE:                                                   ║
  * ║    Table IV prints f/NO. 2.89 / 3.49 / 4.01 and no stop diameter.    ║
  * ║    zoomApertureModel "fixed-iris": the engine opens the iris to      ║
@@ -325,18 +334,20 @@ const LENS_DATA = {
    *  D1 (S5): G1–G2 gap. Increases wide→tele (G2 moves rearward), and
    *    increases again during close focus as G1 extends toward the object.
    *    Close-focus endpoints are derived from a paraxial finite-conjugate
-   *    solve at the production 0.9 m MFD: ΔG1 ≈ 7.57 / 7.57 / 7.60 mm.
+   *    solve at the production 0.9 m MFD: ΔG1 = 7.507 / 7.509 / 7.516 mm.
    *  D2 (S11): G2–G3 gap. Decreases wide→tele (G3 moves forward).
    *    Wide-position D2 corrected from patent's 3.490 to 37.490 (total-track conservation).
    *  BFL (S24): Back focal length. Increases wide→tele; unchanged by front-group focus.
+   *    Re-solved per station for paraxial focus at infinity (printed 38.997 / 52.352 / 64.025).
    */
   gaps: {
+    // app-derived close (kf1) rows were 10.069 / 18.259 / 22.071; re-solved at 0.9 m after the BF re-solve
     "5": {
       label: "D1",
       values: [
-        [2.5, 10.069],
-        [10.692, 18.259],
-        [14.468, 22.071],
+        [2.5, 10.007476],
+        [10.692, 18.201373],
+        [14.468, 21.984461],
       ],
     },
     "11": {
@@ -347,12 +358,13 @@ const LENS_DATA = {
         [0.5, 0.5],
       ],
     },
+    // printed 38.997 / 52.352 / 64.025 (Table IV); re-solved for paraxial focus at infinity, zoom-only
     "24": {
       label: "BF",
       values: [
-        [38.997, 38.997],
-        [52.352, 52.352],
-        [64.025, 64.025],
+        [39.063135, 39.063135],
+        [52.575201, 52.575201],
+        [64.847396, 64.847396],
       ],
     },
   },

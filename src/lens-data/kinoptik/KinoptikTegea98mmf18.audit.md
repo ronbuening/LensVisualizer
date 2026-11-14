@@ -43,3 +43,22 @@ Source: local `patents/US3037426.pdf`, Example 2/Table 2, PDF p.5 (columns 3–4
 **Cause: source contradiction.** The independent native-scale EFL is 9.784066724 mm versus printed 9.759; BFL 22.377889324 versus the image distance 21.841 printed at the top of column 4. The source also contradicts itself on L7's focal length (-22.109 versus -21.691033 from its geometry; see existing analysis). No single source-backed correction resolves these residuals. Keep the table and image distance unchanged, without assuming an undocumented best-focus intent. Runtime offset **+0.536889 → +0.536889 mm**. Section E row deleted. No data change or changelog.
 
 Validation: focused runtime/paraxial check; full corpus gates at the ten-lens checkpoint.
+
+## 2026-11-03 — Image-plane consistency (re-solve)
+
+| Field | Before | After | Justification |
+| --- | --- | --- | --- |
+| S15 `d` (image distance) | 21.841 | 22.377889 | Re-solved for paraxial infinity focus; printed 21.841 kept in the inline comment |
+
+- Residual: +0.536889 → 0 mm (114 depths at f/2 before). EFL 9.784067 mm unchanged; track 180.951 → 181.488 mm.
+  No focus travel is modeled; closeFocusM 0.2286 (production 9 in) unchanged.
+- Evidence: Table 2 (US 3,037,426, PDF p. 5) matches every R, d and nd in the file. The source's printed f 9.759 and
+  system focal lengths −22.109 / 87.87 / 38.64 mm compute to 9.784 and −21.691 / 86.667 / 39.097 mm, 1–2 % apart in
+  mixed directions, so no single misprint isolates the image distance (a paraboloid R of 15.289 that matches system I
+  still leaves +0.452 mm). The census real-ray axial best focus, +0.433 mm, sits near paraxial focus, so the printed
+  plane is not a best-focus plane.
+- Aperture, image-circle, field-coverage (90–99 %) and surface-probe audits are unchanged.
+- Text sync: header (image-plane box and MTF note), inline comment, analysis (first-order paragraph, L15 paragraph,
+  image-plane section).
+
+Follow-ups: none.

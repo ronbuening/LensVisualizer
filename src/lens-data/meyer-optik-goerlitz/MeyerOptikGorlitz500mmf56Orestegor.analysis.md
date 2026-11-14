@@ -28,7 +28,7 @@ The design is a four-element, four-group, all-spherical telephoto. The patent di
 
 In the implemented 5× model, the front L1+L2 main part has a positive in-air equivalent focal length of +431.728 mm, while the rear L3+L4 main part has a negative equivalent focal length of −408.509 mm. These are functional two-element group powers, not cemented-group powers; all four elements are air separated. The complete system’s EFL is 497.7868 mm.
 
-The scaled source image track from the first lens vertex to the published image plane is 444.0 mm. Its ratio to the computed EFL is 0.89195, which satisfies the project definition of a telephoto system because $TL/EFL < 1$. The paraxial BFD from the last lens vertex is 90.9234 mm; the source-derived scaled image spacing remains 90.0 mm, preserving the rounding residual rather than altering the prescription to force agreement.
+The paraxial BFD from the last lens vertex is 90.9234 mm. The patent prints its back focus as a whole number, $s' = 18$ mm at $f' = 100$ (90.0 mm scaled), alongside whole-millimetre radii; that rounded figure would leave the image plane 0.923 mm short of paraxial focus. The model therefore places the image at the paraxial focus, 90.923433 mm behind the last vertex, so the first-vertex-to-image track is 444.923 mm (444.0 mm with the printed $s'$). Its ratio to the computed EFL is 0.89380, which satisfies the project definition of a telephoto system because $TL/EFL < 1$.
 
 The patent’s arrangement is therefore not simply a long-focus lens placed far from the image plane. The positive front part and negative rear part, together with their wide axial separation, produce an effective focal length longer than the physical track to the source image plane. This statement concerns first-order layout only; it does not by itself assign individual aberration-correction duties to the elements.
 
@@ -110,7 +110,7 @@ The patent states eight inequality checks, grouped in the source under its numbe
 | $(n_3+n_4)/2 > 1.635$ | PASS |
 | $\sum(d+l)+s' < 0.9f'$ | PASS |
 
-The final row makes the system’s compactness explicit in the patent’s own formulation. In the implemented model the equivalent track/EFL check is 0.89195, consistent with the telephoto classification discussed above. [DE 1 980 417, PDF p. 4 (printed p. 2) and claim 2 on PDF p. 7.]
+The final row makes the system’s compactness explicit in the patent’s own formulation. In the implemented model the equivalent track/EFL check is 0.89380 (0.89195 with the printed $s'$), consistent with the telephoto classification discussed above. [DE 1 980 417, PDF p. 4 (printed p. 2) and claim 2 on PDF p. 7.]
 
 ## Sources and References
 

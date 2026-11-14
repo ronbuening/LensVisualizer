@@ -11,7 +11,7 @@
 
 The prescription is the fixed project correlation for the **NIKON AI ZOOM-NIKKOR 80-200mm f/4.5**. Embodiment 1 is explicitly described as an 80-200 mm, f/4.5 telephoto zoom for a 35 mm still camera. Its numerical example contains 12 glass elements in 9 air-separated components, organized into five functional groups, and uses front-group focusing. Those characteristics agree with the correlated AI-era 12-element/9-group formula recorded in the final data file. The correlation is therefore treated as fixed by the job card and prescription match; it is not presented as a separate manufacturer confirmation. [1][2]
 
-The patent table gives focal-length states of 80.0, 126.5, and 200.0 mm, a nominal f-number of 4.5, and a published back focus of 42.495 mm at all three states. The final model keeps the marketed 80-200 mm and f/4.5 specifications separate from the independently computed design endpoints of 80.102454 and 199.911568 mm. No uniform scale factor was applied. [1][2][3]
+The patent table gives focal-length states of 80.0, 126.5, and 200.0 mm, a nominal f-number of 4.5, and a published back focus of 42.495 mm at all three states. The final model keeps the marketed 80-200 mm and f/4.5 specifications separate from the independently computed design endpoints of 79.972468 and 200.019948 mm. No uniform scale factor was applied. [1][2][3]
 
 ## Optical Architecture
 
@@ -37,9 +37,9 @@ The variable-power section is paraxially close to afocal at every published zoom
 | 126.5 mm | 42.113 | 71.860 | 82.880 |
 | 200.0 mm | 57.914 | 68.769 | 82.879 |
 
-G2 moves monotonically imageward by 40.785 mm from 80 to 200 mm. G3 first moves 13.036 mm imageward at the middle state, then reverses 3.091 mm objectward, ending 9.945 mm imageward of its wide-angle position. The reversal is a real compensator motion and is preserved by the three-point piecewise interpolation in the data file. The relay remains fixed to the patent table’s 0.001 mm spacing precision. [2][3]
+G2 moves monotonically imageward by 40.785 mm from 80 to 200 mm. G3 first moves 13.036 mm imageward at the middle state, then reverses 3.091 mm objectward, ending 9.945 mm imageward of its wide-angle position. The reversal is a real compensator motion and is preserved by the three-point piecewise interpolation in the data file. The relay remains fixed to the patent table’s 0.001 mm spacing precision. The positions above use the printed D5; the model re-solves D5 at infinity for paraxial focus (Verification Summary), which places G1, and therefore r1, 0.192524 / 0.143811 / 0.119276 mm closer to the fixed groups at the three states. [2][3]
 
-At 200 mm, the patent’s first-surface-to-image-plane track is 197.374 mm, giving a source telephoto ratio of 0.98687. The independently computed paraxial image plane gives a ratio of 0.98570. Both satisfy the stated strict criterion for a telephoto construction, `TL/EFL < 1`. The design is not retrofocus: computed `BFD/EFL` decreases from 0.5295 at 80 mm to 0.2110 at 200 mm. [1][3]
+At 200 mm, the patent’s first-surface-to-image-plane track is 197.374 mm, giving a source telephoto ratio of 0.98687. The model, with D5 re-solved for paraxial focus, has a 197.255 mm track and a ratio of 0.98618. Both satisfy the stated strict criterion for a telephoto construction, `TL/EFL < 1`. The design is not retrofocus: computed `BFD/EFL` decreases from 0.5314 at 80 mm to 0.2125 at 200 mm. [1][3]
 
 ## Element-by-Element Analysis
 
@@ -152,11 +152,11 @@ The reconstruction uses the production instruction manual’s 1.8 m distance-sca
 
 | Zoom state | G1 objectward shift (mm) | D5 at infinity (mm) | D5 at 1.8 m (mm) | Calculated magnification |
 |---:|---:|---:|---:|---:|
-| 80.0 mm | 9.868762 | 3.229 | 13.097762 | -0.054328 |
-| 126.5 mm | 9.917810 | 28.213 | 38.130810 | -0.085926 |
-| 200.0 mm | 9.942508 | 44.014 | 53.956508 | -0.135888 |
+| 80.0 mm | 10.061286 | 3.036476 (printed 3.229) | 13.097762 | -0.054328 |
+| 126.5 mm | 10.061621 | 28.069189 (printed 28.213) | 38.130810 | -0.085926 |
+| 200.0 mm | 10.061784 | 43.894724 (printed 44.014) | 53.956508 | -0.135888 |
 
-The required shift changes by only 0.073745 mm across the zoom range. That small variation is compatible with a mechanically coupled front focusing cell, but it is still a modeling inference rather than proof of the production cam profile. [3]
+The infinity D5 values are the printed spacings re-solved for paraxial focus; the 1.8 m rows were solved for that distance and are unchanged. The required shift changes by only 0.000498 mm across the zoom range. That small variation is compatible with a mechanically coupled front focusing cell, but it is still a modeling inference rather than proof of the production cam profile. [3]
 
 ## Conditional Expressions
 
@@ -179,11 +179,11 @@ Conditions (1) and (2) govern the relay’s power distribution and index contras
 
 | Nominal state | Computed EFL (mm) | Published EFL (mm) | Computed paraxial BFD (mm) | Published BFD (mm) | Modeled f-number |
 |---:|---:|---:|---:|---:|---:|
-| 80.0 mm | 80.102454 | 80.0 | 42.411727 | 42.495 | 4.504035 |
-| 126.5 mm | 126.598870 | 126.5 | 42.339518 | 42.495 | 4.501224 |
-| 200.0 mm | 199.911568 | 200.0 | 42.172969 | 42.495 | 4.494741 |
+| 80.0 mm | 79.972468 | 80.0 | 42.495000 | 42.495 | 4.500000 |
+| 126.5 mm | 126.481252 | 126.5 | 42.495000 | 42.495 | 4.500000 |
+| 200.0 mm | 200.019948 | 200.0 | 42.495000 | 42.495 | 4.500000 |
 
-The EFL residuals are within 0.129% of the printed nominal values. The calculated BFD is shorter than the published 42.495 mm by 0.083 to 0.322 mm. These differences are treated as source-precision or unrounded-master residuals; the surface prescription is not altered to force exact agreement. [1][3]
+The published 42.495 mm back focus is the relay's own back focus for a collimated input (computed 42.4933 mm; relay focal length 112.519954 against the printed 112.523 mm). With the printed three-decimal spacings, the variable-power section is not exactly afocal, so the computed BFD fell short of it by 0.083 / 0.156 / 0.322 mm (42.411727 / 42.339518 / 42.172969 mm, at EFL 80.102454 / 126.598870 / 199.911568 mm). No single printed value isolates that rounding residual, so the model re-solves D5, the G1 focusing gap, at each infinity state so the image lies at paraxial focus on the published plane (D5 3.229 / 28.213 / 44.014 → 3.036476 / 28.069189 / 43.894724 mm). The re-solved EFLs lie within 0.035% of the printed nominal values. [1][3]
 
 The patent’s half-field angles of 15.11°, 9.66°, and 6.17° correspond to approximately 21.6 mm image height at the three focal lengths, consistent with the half-diagonal of the 135 format specified in the data file. [1][3]
 
@@ -193,13 +193,13 @@ Surface-by-surface Petzval power was computed as `φ/(n·n′)`. G2 contributes 
 
 ### Stop placement and semi-diameters
 
-The patent figure shows an aperture stop in D13 but gives neither its exact split nor its clear radius. The model places a neutral `STO` immediately before r14, coincident with the r14 vertex, and uses a common stop semi-diameter of 12.482215 mm. That single stop gives modeled f-numbers of 4.5040, 4.5012, and 4.4947 across the zoom range. Stop position and radius are therefore explicit modeling inferences. [1][2][3]
+The patent figure shows an aperture stop in D13 but gives neither its exact split nor its clear radius. The model places a neutral `STO` immediately before r14, coincident with the r14 vertex, and uses a common stop semi-diameter of 12.502399 mm. Because the variable-power section delivers an almost collimated beam to the relay at every re-solved state, that single stop gives a modeled f/4.5000 at all three states. Stop position and radius are therefore explicit modeling inferences. [1][2][3]
 
 The patent also omits clear apertures. Surface semi-diameters were inferred from the paraxial marginal/chief-ray envelopes, the published field, the patent section, and mechanical-envelope evidence recorded in the audit. A normalized FIG. 1 comparison showed that the relay-front L6/L7 pair was small relative to the variator and rear relay, so surfaces 14-17 were increased to a common 15.0 mm semi-diameter. The remaining group-height ratios were within the drawing's measurement tolerance and were retained. The revised prescription passes the surface-clearance and image-circle validators. At the full patent field and at reconstructed close focus, one-sided pupil clipping remains, consistent with the disclosed decision not to enlarge inferred glass solely to eliminate falloff. [2][3][6]
 
 ### Source corrections and unresolved table values
 
-The descriptive Embodiment 1 table gives the middle D5 value as 28.213 mm; Claim 9 gives 28.313 mm. The model retains 28.213 mm because it preserves the nearly fixed relay position and produces the better whole-system cardinal match. The 0.100 mm conflict remains documented rather than silently normalized. [1][2][3]
+The descriptive Embodiment 1 table gives the middle D5 value as 28.213 mm; Claim 9 gives 28.313 mm. The model starts from 28.213 mm (re-solved to 28.069189 mm for paraxial focus) because it preserves the nearly fixed relay position and produces the better whole-system cardinal match; the paraxial re-solve moves away from Claim 9's value, not toward it. The 0.100 mm conflict remains documented rather than silently normalized. [1][2][3]
 
 The patent’s relay-front focal length of +107.181 mm and relay-rear focal length of +6666.670 mm are not reproduced by the listed prescription. Independent calculations give +105.377057 mm and -5537.448408 mm. The combined relay, however, computes to +112.519954 mm, within 0.003046 mm of the patent’s +112.523 mm. The prescription is retained without artificial changes to force the two subgroup entries. [1][3]
 

@@ -110,3 +110,23 @@ Patent: WO 2021/200206 A1, Example 2 / FIG. 6
 - The STO surface row keeps sd 11.815; the engine takes each station's radius from the schedule. `zoomApertureModel` is not set.
 - Traced with the schedule: f/2.909 / 2.908 / 2.906 (the radii for exactly 2.91 are 8.1122 / 9.5586 / 11.7985 mm), 0.14 % at most from 2.91. `npm run audit:aperture` lists no rim-, trace- or iris-limited station.
 - Header comment and the analysis sentence on iris sizing updated to match.
+
+## 2026-11-03 — Image-plane consistency (kept as best-focus plane)
+
+Source: local `patents/WO2021200206A1.pdf` (image only), Table 9 on PDF page 28 (d0 ∞ / "280mm", the variable gaps
+and φ15 at Wide / Mid / Tele). LENS_DATA_SPEC § Image-Plane Consistency: the real-ray axial best focus lies within 10
+depths of the plane at every station.
+
+| Field | Before | After | Justification |
+|---|---|---|---|
+| Header | — | best-focus-plane line | Paraxial +0.052 / +0.102 / +0.031 mm (5.2 / 10.3 / 3.1 depths at f/2.91); real-ray axial best focus +0.003 / −0.003 / −0.011 mm |
+
+- No gap, keyframe or `closeFocusM` changed. Two-decimal gap rounding moves focus by at most about 0.02 mm. Read with the
+  printed e-line indices of Table 6, the offsets would be +0.026 / +0.079 / +0.014 mm, so the d-line conversion
+  accounts for only 0.02–0.03 mm of them.
+- Close rows: the "280mm" state is read as object to image (a first-surface reading would put the object 0.42–0.43 m
+  away); the rows focus 0.2861 / 0.2854 / 0.2759 m, within rounding.
+
+Follow-ups:
+
+- None.

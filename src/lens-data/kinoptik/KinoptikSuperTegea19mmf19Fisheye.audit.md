@@ -45,3 +45,22 @@ For the small-offset inquiry, source text specifies image distance without a des
 **Cause/action:** residual source/reconstruction inconsistency; document it and preserve the published image distance. Offset **+0.050584 → +0.050584 mm**; Section E row deleted. No numerical change/changelog; no claim that MD04 became a literal verified source value.
 
 Validation: focused runtime/paraxial check; full corpus gates at the ten-lens checkpoint.
+
+## 2026-11-03 — Image-plane consistency (kept as best-focus plane)
+
+| Field | Before | After | Justification |
+| --- | --- | --- | --- |
+| Header | retain-the-plane note | best-focus-plane line added | LENS_DATA_SPEC Image-Plane Consistency, best-focus row |
+| S14 `d` (image distance) | 9.28 | 9.28 | Kept: real-ray axial best focus lies within 10 depths of the plane |
+
+- Residual: paraxial offset +0.0506 mm (11.9 depths at f/1.9, depth 2λN² = 0.00424 mm), unchanged. The census
+  real-ray axial best focus is +0.012 mm (2.8 depths), and the 2026-09-25 geometric MTF diagnostic gives +0.0145 mm
+  (3.4 depths): the printed plane sits near the finite-aperture best focus. EFL 1.955900 mm and closeFocusM
+  (fixed-focus placeholder) unchanged.
+- Evidence: Table 3 (US 3,037,426, PDF p. 5, col. 4) prints the 9.28 mm image distance and f = 1.98 mm; the source
+  states no best-focus convention. The reconstructed paraboloid (MD04, R = 7.5) does not cause the offset: R = 7.6
+  gives EFL 1.978 mm and still leaves +0.043 mm. The sibling Example 2 (Tegea 9.8) image distance is not a best-focus
+  plane, so the best-focus reading rests on the real-ray trace, not on the source.
+- No data value changed; the four audits are unchanged (field coverage stays 85 %, its existing failed corner solve).
+
+Follow-ups: none.

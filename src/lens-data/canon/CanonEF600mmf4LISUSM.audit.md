@@ -2,74 +2,30 @@
 
 Patent: US 6,115,188 A, Numerical Example 22 / Figure 85
 
-## 2026-08-20 - Patent-figure, identity, and glass audit
+## Historical audits prior to 2026-11-03
 
-### Semi-diameter review
+Condensed from the 2026-08-20, 2026-08-21, 2026-09-25 and 2026-10-04 sessions; the 2026-10-30 and 2026-10-31
+entries below are kept in full.
 
-- Inspected PDF page 56, Figure 85, at 600 dpi after rotating the vertical optical axis and excluding the omitted front
-  protection glass and rear filter:
-  `npm run audit:patent-figure -- src/lens-data/canon/CanonEF600mmf4LISUSM.data.ts patents/US6115188.pdf 56 0.15,0.39,0.69,0.76 --rot90 --axis=0.578 --dpi=600`.
-- Reliable optical-rim rows agree with the modeled silhouette: L1b is about 57.3 mm versus 60.5-63.8 mm, L2 is
-  31.3 mm versus 33.0 mm, and L3a is 19.4 mm versus 20.0 mm. The front L1a ENV/RIM readings disagree at
-  72.9/65.6 mm versus 77.0 mm, so they do not support a change.
-- Figure labels and subunit brackets contaminate several rear automated rows. The uncontaminated rear optical rims are
-  within about 18% of the modeled values, below the strong-evidence threshold.
-- Retained all surface and stop semi-diameters. The image-circle floor reports zero undersized surfaces and the surface
-  validator reports no geometry errors.
-
-### Glass classification
-
-- Numerical Example 22 publishes d-line index/Abbe coordinates but no production glass suppliers.
-- Retained vendor-neutral coordinate-class labels and all 15 compatible Sellmeier curves. No new catalog row or
-  source-defensible production-material identity was needed for this generation.
-- The lens remains 15/15 strict Sellmeier and trusted-chromatic covered with no coordinate mismatch.
-
-### Identity and metadata
-
-- Verified the display name `CANON EF 600mm f/4 L IS USM` against Canon's official product identity and the repository's
-  spacing policy.
-- Normalized the structured assignee to the repository-wide `Canon Inc.` spelling; the analysis retains the patent's
-  printed Canon Kabushiki Kaisha wording.
-
-## 2026-08-21 - Diagram-label and movement follow-up
-
-### Patent-figure review
-
-- Re-inspected Figure 85 at 600 dpi against the site screenshot. Optical rims remain within the accepted figure-reading
-  uncertainty, so no semi-diameter change is supported.
-- Replaced numeric element tags with the source-derived L1a/L1b/L1c/L2/L3a/L3b/L3c element identifiers already used
-  by the prescription analysis.
-
-### Glass and motion metadata
-
-- Added inferred special-dispersion tags to the two production-correlated UD positions and the fluorite-coordinate
-  position. No `dPgF` was invented because Example 22 publishes no partial-dispersion row.
-- Confirmed that L2 translates 18.829163964 mm imageward from infinity to the modeled 5.5 m state, while L1/L3 remain
-  fixed. This prime lens has no zoom travel.
-
-## 2026-09-25 — MTF image-plane census
-
-Source: local `patents/US6115188.pdf`, Numerical Example 22, PDF pp.78–79 (columns 32–33). Visually checked every R3–R29 radius, thickness and index, all 15 powered-element Abbe values, infinity D12=45.86/D15=98.91, and stop R16. All match, without scaling or aspheres. The source correction certificate does not amend Example 22. The declared finite-focus reconstruction is outside this infinity comparison.
-
-**Cause: folded filter plus source image-distance contradiction.** Restored source FL surfaces 30–31 in rearPlates: 2.00 mm, nd=1.516330, νd=64.4 (the actual printed filter value), with D29=12.00 and trailing D31+D32=64.77+39.01=103.78 mm across inactive FC. The front HG plate remains omitted under existing rules; it adds no infinity optical power. No inferred glass identity was assigned to FL. Independent EFL 585.327789123 mm differs from printed 585.20, air BFL is 116.605717247, and physical BFL is 117.286743145 versus source image distance 117.78. No single source-backed misprint resolves the discrepancy. Preserve the source values. Runtime offset **-0.493257 → -0.493257 mm**. Section E row deleted; changelog records physical filter restoration.
-
-Validation: focused runtime/paraxial check; full corpus gates at the ten-lens checkpoint.
-
-## 2026-10-04 — Drop-in filter drawn as an element
-
-- The rear drop-in filter plate FL moved out of `rearPlates` into the drawn prescription: surfaces 30–31 and element
-  16 (`Plane-Parallel Plate`), with the same thickness, index and gaps. The lens is computed with the filter in place
-  and a teleconverter mounts behind it, so it is part of the lens rather than a camera-side plate.
-- The source lists no clear aperture for the plate. Its semi-diameter, 17.5 mm, is a ray-trace estimate: the largest
-  height on the plate of any ray that reaches the 135 format or the diagram's off-axis field at infinity, mid and
-  close focus (16.30 mm), plus 5%, rounded up to 0.5 mm. Not figure-audited.
-- Before/after check: EFL, entrance pupil, stop radius, image plane, half-field, analysis half-field and the traced
-  axial, mid-field, corner and diagram bundles are unchanged. `npm run audit:field-coverage` still reports 100% of the
-  corner.
-- Glass: the filter is labelled S-BSL7 by its index. Example 22 prints νd 64.4 where Examples 1, 24 and 25 of the same
-  patent print 64.1 for the same filter, and no catalog glass sits at 1.51633 / 64.4. The printed value is kept and
-  Ohara S-BSL7 (νd 64.14) supplies the dispersion curve; the supplier is not confirmed. The plate previously had no
-  glass label and traced on the Abbe-number estimate.
+- 2026-08-20, patent figure: `patents/US6115188.pdf` PDF p. 56, Figure 85, read at 600 dpi (rotated axis; audit:patent-figure
+  with rows 0.15,0.39,0.69,0.76, `--rot90 --axis=0.578`). Reliable rims agreed with the model (L1b ≈ 57.3 vs 60.5–63.8 mm,
+  L2 31.3 vs 33.0 mm, L3a 19.4 vs 20.0 mm); L1a ENV/RIM readings (72.9/65.6 vs 77.0 mm) disagreed and did not support a
+  change; rear rows were label-contaminated and within ~18%. All semi-diameters retained. Example 22 prints d-line
+  index/Abbe coordinates without suppliers; vendor-neutral labels kept. Display name checked; assignee normalized to
+  `Canon Inc.`.
+- 2026-08-21, follow-up: Figure 85 rims stayed within reading uncertainty; element tags became L1a/L1b/L1c/L2/L3a/L3b/L3c;
+  inferred special-dispersion tags added at the two UD-correlated positions and the fluorite-coordinate position, with
+  no invented dPgF. L2 then moved 18.829163964 mm imageward to the modeled 5.5 m state; L1/L3 fixed.
+- 2026-09-25, MTF image-plane census: Numerical Example 22 (PDF pp. 78–79, cols. 32–33) checked R3–R29, all 15 powered
+  Abbe values, infinity D12 = 45.86 / D15 = 98.91 and stop R16; all matched, no scaling or aspheres; the certificate does
+  not amend Example 22. FL restored as a 2.00 mm, nd 1.516330, νd 64.4 plate with D29 = 12.00 and trailing
+  D31+D32 = 64.77 + 39.01 = 103.78 mm across inactive FC. Independent EFL 585.327789123 mm (printed 585.20), air BFL
+  116.605717247 mm, physical BFL 117.286743145 mm against the printed 117.78 mm: offset −0.493257 mm, no single misprint.
+- 2026-10-04, FL drawn: FL moved from `rearPlates` to drawn surfaces 30–31 (element 16, `Plane-Parallel Plate`) with
+  unchanged thickness, index and gaps, since a teleconverter mounts behind it. Its sd 17.5 mm is a ray-trace estimate
+  (16.30 mm maximum height plus 5%, rounded up), not figure-audited. EFL, pupil, stop, image plane, half-fields and traced
+  bundles unchanged; field coverage stayed 100% of the corner. Filter labelled S-BSL7 by index; Example 22 prints νd 64.4
+  where Examples 1, 24 and 25 print 64.1, and the printed value is kept.
 
 ## 2026-10-30 — Scoped HG/FL configuration, source-reference and shoulder follow-up
 
@@ -204,3 +160,28 @@ The patent names no spectral line for its index and Abbe columns, and the 2026-1
 | L3c cemented negative | 1.846658 / 23.9 | PBH53 | -0.000000 | -0.014 |
 
 The other medium has no exact catalog match and stays `Unmatched`: Drop-in filter FL (1.51633 / 64.4).
+
+## 2026-11-03 — Image-plane consistency (re-solve)
+
+Back focus first, per LENS_DATA_SPEC Image-Plane Consistency: the fixed final gap is solved at infinity, the
+reconstructed close row carries it, then L2 is re-solved for that row's 5.5 m target.
+
+| Field | Before | After | Justification |
+| --- | --- | --- | --- |
+| S31 d (FL rear → image; printed D31+D32) | 103.78 mm | 103.286743 mm | Paraxial infinity focus |
+| D12 close row (L2 front gap) | 64.689164 mm | 64.829647 mm | Reconstructed row re-solved for 5.5 m object to image |
+| D15 close row (L2 rear gap) | 80.080836 mm | 79.940353 mm | Same; D12+D15 stays 144.77 mm |
+| Infinity D12 / D15 | 45.86 / 98.91 mm | unchanged | Published source row |
+| `source.errata` unresolved image-distance entry | present | removed | Its only subject was this residual |
+
+- Residual: −0.493257 mm (24.7 depths at f/4.12) before, 0 after. EFL 585.327789 mm unchanged (printed f 585.20 mm).
+  L2 travel 18.829164 → 18.969647 mm. HG-to-image track 476.20 → 475.706743 mm. `closeFocusM` stays 5.5 m (close row
+  5.500000 m object to image); close-state EFL 497.919055 → 497.356647 mm; magnification −0.117790 → −0.117628.
+- Evidence: Numerical Example 22 as audited 2026-09-25 (`patents/US6115188.pdf`, PDF pp. 78–79). Real-ray axial best
+  focus sat 0.464 mm ahead of the printed plane, so that plane was not a best-focus plane. No single-value misprint is
+  isolated: an L2-only re-solve would move EFL to 586.02 mm (further from 585.20), a final-gap solve keeps 585.33 mm,
+  and a 0.63 mm shorter D15 gives 585.10 mm. Sibling Example 25 focuses within 0.017 mm, so this is example-specific.
+- Linear L2 motion at focus 0.5 now images 10.24 m (10.18 m before). Aperture, image-circle, field-coverage and
+  surface-probe audits are unchanged.
+
+Follow-ups: none.

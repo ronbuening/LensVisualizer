@@ -38,10 +38,11 @@ focusing element. The positive/negative L41/L42 combination forms G4.
 
 Table 1 prints nd 1.85 for L12; this model carries 1.83 as a source correction (see Glass Identification). With
 it, the computed infinity EFL is 23.350 mm against the printed 23.44 mm (−0.38%). The four groups have EFLs
-+45.953, +33.783, −41.312 and +38.267 mm. The first vertex lies 85.78 mm from the printed image plane, and the
-infinity paraxial focus falls 0.125 mm in front of that plane. The patent prints indices to two decimals only;
-substituting plausible six-digit catalog indices for the same glasses reduces the residuals to about −0.1% and
-0.04 mm, but the printed indices are kept.[1]
++45.953, +33.783, −41.312 and +38.267 mm. The first vertex lies 85.78 mm from the printed image plane, and with
+the printed spacings the infinity paraxial focus falls 0.125 mm in front of that plane. The patent prints indices
+to two decimals only; substituting plausible six-digit catalog indices for the same glasses reduces the residuals to
+about −0.1% and 0.04 mm. The printed indices are kept, and the model instead re-solves the last air gap for paraxial
+focus (see Focus Mechanism), so its first vertex lies 85.655 mm from the image plane at infinity.[1]
 
 ## Element-by-Element Analysis
 
@@ -130,7 +131,8 @@ to give G4 a net EFL of +38.27 mm.
 nd = 1.85000, νd = 23.78. Glass: Unmatched (nd 1.85, νd 23.78; coarse patent coordinates). f = −39.76 mm.
 
 L42 ends the lens and shares its printed nd/νd with L21. Behind it the patent prints 14.29 mm of air, a 2.00 mm
-GL filter plate (¶0076), then 1.00 mm of air to the image; the model traces that chain unchanged.
+GL filter plate (¶0076), then 1.00 mm of air to the image. The model traces the plate and its 1.00 mm air unchanged
+and re-solves the first air gap to 14.164855 mm for paraxial infinity focus.
 
 ## Glass Identification and Selection
 
@@ -173,12 +175,16 @@ G3 (L31) alone moves toward the image while G1, G2 and G4 stay fixed relative to
 | State | D1 (mm) | D2 (mm) | D1 + D2 (mm) | Printed EFL (mm) | Model EFL (mm) |
 | ----- | ------: | ------: | -----------: | ---------------: | -------------: |
 | ∞     |    1.00 |    4.43 |         5.43 |            23.44 |         23.350 |
-| 0.3 m |    3.76 |    1.88 |         5.64 |            22.95 |         22.907 |
+| 0.3 m |    3.76 |    1.88 |         5.64 |            22.95 |         22.872 |
 
-The model uses both printed states. Measured from the image plane, the 0.3 m state focuses onto the printed image
-plane at a magnification of −0.10, matching Viltrox's 0.3 m minimum focus distance and 0.1× maximum magnification.
-D1 grows by 2.76 mm while D2 shrinks by 2.55 mm, so the printed D1 + D2 changes by 0.21 mm even though only G3
-moves; no single source value isolates the cause, and the printed spacings are kept. The invention application
+The model uses both printed states. Measured from the image plane, the printed 0.3 m state focuses onto the printed
+image plane at a magnification of −0.10, matching Viltrox's 0.3 m minimum focus distance and 0.1× maximum
+magnification. With the printed spacings, though, infinity focus lies 0.125 mm in front of the image plane. The
+model re-solves the last air gap 14.29 → 14.164855 mm for paraxial infinity focus, carries that change to the 0.3 m
+row, and moves G3 so the row is again in paraxial focus at 0.3 m object to image: D1 3.76 → 3.922333 mm and D2
+1.88 → 1.717667 mm. The model EFL in the table is for the re-solved row. In the printed table D1 grows by 2.76 mm
+while D2 shrinks by 2.55 mm, so D1 + D2 changes by 0.21 mm even though only G3 moves. No single source value
+isolates the cause, and the printed sums are kept. G3 travels 2.922333 mm in the model (printed 2.76 mm in D1). The invention application
 and its grant repeat these numbers.[1–4]
 
 ## Conditional Expressions

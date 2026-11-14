@@ -90,3 +90,24 @@ Printed D15=38.88 remains 0.546209 mm imageward of Gaussian BFL 38.333791112 des
 with printed 51.70. Native table continuation/section show no plate, filter or supported correction explaining it.
 Structured source.errata stays unresolved; best-focus intent is unproven. The September 25 historical audit date is
 preserved. Original source fidelity, sampled runtime clearance and production correlation remain separate conclusions.
+
+## 2026-11-03 — Image-plane consistency (re-solve)
+
+| Field | Before | After | Justification |
+| --- | --- | --- | --- |
+| BF gap "15", infinity | 38.88 mm | 38.333791 mm | Paraxial infinity focus; LENS_DATA_SPEC Image-Plane Consistency |
+| BF gap "15", close row | 45.947215 mm | unchanged | Reconstructed row already images 0.450000 m object to image |
+| `source.errata` unresolved D15 entry | present | removed | Its only subject was this residual |
+
+- Residual: −0.546209 mm (297.5 depths at f/1.25) before, 0 after. EFL 51.695042 mm unchanged. Unit-focus travel
+  7.067215 → 7.613424 mm; first-vertex-to-image track 96.600 → 96.054 mm at infinity. `closeFocusM` stays 0.45 m;
+  close magnification −0.147276 unchanged; half-focus conjugate 0.750 → 0.797 m.
+- Evidence: `patents/JP_2007333790_A.pdf` p. 10 native image re-read, D15 = 38.88 as transcribed. Example 2 on p. 11
+  (f 51.70, Fno 1.45) traces to EFL 51.6925 / BFL 38.4566 mm against printed D15 39.00 (−0.5434 mm), the same offset
+  as Example 1, so the printed spacing is a systematic convention rather than a digit slip; no plate is printed.
+  Figure 2 (p. 16) curves start at 0 on axis. Real-ray axial best focus sat 0.579 mm ahead of the printed plane,
+  0.033 mm from paraxial, so the printed plane was not a best-focus plane.
+- The 22.7° table chief now reaches 21.229 mm (21.337 mm before). Aperture, image-circle, field-coverage and
+  surface-probe audits are unchanged.
+
+Follow-ups: none.

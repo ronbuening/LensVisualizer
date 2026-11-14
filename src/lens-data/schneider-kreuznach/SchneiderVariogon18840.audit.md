@@ -56,6 +56,26 @@ Small-offset best-focus check: reference-index axial geometric MTF (32 grid, 812
 
 Validation: focused runtime/paraxial check; full corpus gates at the ten-lens checkpoint.
 
+## 2026-11-03 — Image-plane consistency (kept as best-focus plane)
+
+The image-plane census (`scripts/audit-mtf.mjs --focus`) flagged all three stations. Under the Image-Plane Consistency
+rule the plane is kept: the real-ray axial best focus lies within 10 depths of it at every station.
+
+| Field | Before | After | Justification |
+| --- | --- | --- | --- |
+| Data values | printed | unchanged | best-focus plane (rule's keep case) |
+| Header | MTF source-audit note | adds one "Image plane kept as a best-focus plane" line | records the rule and the figures |
+
+- Residual (unchanged): paraxial focus +0.0625 / +0.0615 / +0.0559 mm behind the plane (16.4 / 16.1 / 14.7 depths at
+  f/1.8). Real-ray axial MTF best focus +0.013 / −0.008 / +0.020 mm (3.4 / 2.1 / 5.3 depths), so undercorrected
+  spherical aberration at f/1.8 accounts for the paraxial offset.
+- Evidence: Table I (PDF p. 4) matches every value (2026-09-25 entry); d24 = 13.1 is the patent's one-decimal back
+  focal length against a paraxial 13.156–13.163 mm. A final-gap re-solve (13.161474 mm) would place the plane about
+  0.06 mm behind the real-ray best focus.
+- No travel, EFL or close-focus change; `focus.closeFocusM` stays 0.9144 (Bauer C2 manual, 3 ft).
+
+Follow-ups: none.
+
 ## 2026-11-10 — Metadata fill
 
 - `catalog.fNumber.design` set to 1.8: US 3,442,573, PDF p. 4, col. 3, ll. 19–25: Table I is given "for a system of

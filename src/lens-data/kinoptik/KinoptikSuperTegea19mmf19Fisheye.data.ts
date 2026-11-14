@@ -44,8 +44,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * MTF source audit: Table 3 / PDF p. 5 retains the documented MD04
  * parabola correction; all other radii, gaps and glass coordinates match.
  * Computed EFL 1.955900 vs printed 1.98 and BFL 9.330584 vs 9.28 show
- * a residual source inconsistency. The source does not specify designer best
- * focus; preserve the image distance and do not further tune the paraboloid.
+ * a residual source inconsistency; do not further tune the paraboloid.
+ * Image plane kept as a best-focus plane (LENS_DATA_SPEC Image-Plane Consistency): paraxial offset
+ * +0.0506 mm (11.9 depths); real-ray axial best focus +0.012 mm (2.8 depths); the source prints 9.28 mm
+ * but states no best-focus convention.
  */
 
 const LENS_DATA = {

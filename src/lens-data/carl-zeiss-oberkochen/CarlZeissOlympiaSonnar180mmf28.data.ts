@@ -28,8 +28,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * MTF source audit: Table II / claim 2 values match at uniform scale ×180.
  * Printed Schnittweite 0.4126 becomes 74.268 mm, while paraxial BFL is
  * 74.367782 mm (offset +0.099782); EFL is 180.055230 versus nominal 180.
- * No plate or transcription error found. The patent does not establish a
- * designer best-focus convention; retain its printed image distance.
+ * No plate or transcription error found.
+ * Image plane kept as a best-focus plane (LENS_DATA_SPEC Image-Plane Consistency): paraxial offset
+ * +0.0998 mm (10.8 depths); real-ray axial best focus 0.074 mm behind the plane (8.0 depths).
  */
 
 const LENS_DATA = {

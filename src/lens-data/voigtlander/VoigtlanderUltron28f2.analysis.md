@@ -47,11 +47,11 @@ Every commercial name is an inferred coordinate counterpart. The existing compat
 
 ## Focus Mechanism
 
-The source publishes ZD0=430 mm, ZD18=20.33 mm and magnification 0.0676 at its near station. Infinity ZD18 is 18.40 mm. All internal spacings stay fixed, so all elements and the stop move 1.93 mm objectward relative to the fixed image plane. Intermediate movement is interpolated.
+The source publishes ZD0=430 mm, ZD18=20.33 mm and magnification 0.0676 at its near station. Infinity ZD18 is 18.40 mm. All internal spacings stay fixed, so all elements and the stop move objectward relative to the fixed image plane, 1.93 mm by the printed rows. Intermediate movement is interpolated.
 
-Using the summary's infinity LT=60.2274 mm gives the source object-to-image near distance **430+60.2274+1.93=492.1574 mm**, replacing the rounded 0.5 m label. However, the exact printed surface table has infinity track 60.24 mm, EFL 28.579770 mm and a small residual image-plane matrix A=0.00241943. At the printed near gap, it computes magnification −0.06511085 and front-vertex object distance 447.646690 mm, giving object-to-image distance **509.816690 mm**. This does not reproduce source ZD0=430 mm or magnification 0.0676.
+Using the summary's infinity LT=60.2274 mm gives the source object-to-image near distance 430+60.2274+1.93=492.1574 mm. The exact printed surface table does not focus on its own rows, however. It has infinity track 60.24 mm, EFL 28.579770 mm and a paraxial BFL of 18.469147 mm, so ZD18 = 18.40 mm left the image plane 0.069147 mm before paraxial focus (15 depths at f/2). The real-ray axial best focus also lay +0.059 mm beyond the plane, so it was not a best-focus plane. At the printed near gap the row focused 447.646690 mm from the front vertex, with magnification −0.06511085 and 509.816690 mm object to image. That does not reproduce source ZD0=430 mm or magnification 0.0676.
 
-The grant repeats the same values. Rounded data may contribute, but that explanation is not proven; neither the radii nor the source gap is tuned to force agreement. Both the source-derived label and this model discrepancy are explicit. A higher-precision prescription or authoritative correction remains a follow-up.
+The model therefore re-solves the single moving gap for paraxial focus at both published distances. ZD18 is 18.469147 mm at infinity and 20.407945 mm at ZD0 = 430 mm, an extension of 1.938798 mm. The near station is then 492.247945 mm from object to image, the model's 0.4922 m close-focus distance, and its magnification is −0.067838 against the printed 0.0676. The grant repeats the printed values. Rounding in the printed data is the likely cause but is not proven, and no misprint is claimed; radii and indices are unchanged.
 
 ## Aspherical Surfaces
 
@@ -73,15 +73,16 @@ All SDs remain unchanged. Surface and image-circle checks pass with explicit ful
 - [JP2022100641A publication](https://patents.google.com/patent/JP2022100641A/ja), including romanized author metadata and the link to its grant.
 - [Granted JP7546909B2 PDF](https://patentimages.storage.googleapis.com/8f/d3/23/80c0b08aeccb67/JP7546909B2.pdf), retrieved to check the ambiguous coefficient; Table1 p.6 repeats it and the numerical prescription.
 
-Follow-up remains for ASP18 A6, the printed-table/source-summary focus discrepancy, and the unspecified plate's optical path. These do not authorize replacing source values with a visually convenient fit.
+Follow-up remains for ASP18 A6, the printed-table/source-summary EFL discrepancy, and the unspecified plate's optical path. These do not authorize replacing source values with a visually convenient fit.
 
 ## Image-plane source audit (2026-09-25)
 
 MTF census: Table 1 / ¶0035 explicitly defines ZD18 as last lens to image.
 At infinity ZD18=18.40; computed d-line BFL=18.469147 and EFL=28.579770
-versus printed 28.50. All radii/gaps/indices match. Preserve the source
-image distance and documented malformed A6; no evidence establishes a
-designer best-focus plane or supplies parameters for the depicted filter.
+versus printed 28.50. All radii/gaps/indices match. Keep the documented
+malformed A6; no evidence establishes a designer best-focus plane or
+supplies parameters for the depicted filter. On 2026-11-03 ZD18 was
+re-solved for paraxial focus at both rows (see Focus Mechanism).
 
 
 ## Production mount assignment

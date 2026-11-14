@@ -48,3 +48,24 @@ Validation: focused runtime/paraxial check; full corpus gates at the ten-lens ch
 ## 2026-10-11 — Patent number in catalog form
 
 `patentNumber` is now `JP 1969-025743 B` (was `JP1969-025743`): 特公昭44-25743, an examined patent publication, so kind code B. Written without a space after the country code, the number was not recognised as a publication number: the site showed it as plain text with no Espacenet link and listed it under "Other jurisdictions" instead of Japan. `subtitle`, the header comment and the analysis use the same form. No optical value changed.
+
+## 2026-11-03 — Image-plane consistency (re-solve)
+
+Source: `patents/JPB 1969025743-000000.pdf`, Example 2 on PDF p. 3, checked visually (no text layer). Every r, d and N
+in the file matches the table ×28, with the existing r9/r12 Petzval emendations. The printed back focus 1.32 does not
+reproduce: the prescription gives 1.3112, which rounds to 1.31. Sibling Example 1 on the same page prints 1.30 and traces
+to 1.3025, so the source's back-focus figures are otherwise paraxial; no single value isolates Example 2's 0.009
+(normalized) discrepancy. The real-ray axial best focus lies −0.41 mm from the old plane, beyond the paraxial focus,
+so the printed plane is not a best-focus plane.
+
+| Field | Before | After | Justification |
+| --- | --- | --- | --- |
+| S14 `d` (last vertex to image) | 36.96 | 36.714083 | Back-focus gap re-solved for paraxial focus at infinity (LENS_DATA_SPEC Image-Plane Consistency) |
+
+- Residual at infinity: −0.245917 mm (17.1 depths at f/3.5) → 0.000000 mm.
+- Track 86.261 → 86.015 mm. EFL 28.009933 mm unchanged; no focus travel exists.
+- Close focus: unchanged at 0.6 m (product metadata; focus is not modeled).
+- The 2026-09-25 decision to preserve the printed back focus is superseded.
+
+Follow-ups: the r9/r12 corrections are recorded in the header, analysis and this log but have no `source.errata`
+entries in the data file.

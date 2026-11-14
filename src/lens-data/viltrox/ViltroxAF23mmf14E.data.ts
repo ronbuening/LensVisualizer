@@ -15,10 +15,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * FIRST ORDER: model EFL 23.350 mm against the printed 23.44 mm (−0.38%). The patent prints indices to two
  * decimals only; plausible six-digit catalog indices for the same glasses reduce the EFL gap to about −0.1%
  * and the 0.125 mm infinity defocus to about 0.04 mm. The printed indices are kept.
+ * IMAGE-PLANE RE-SOLVE (2026-11-03): S22 14.29 → 14.164855 mm for paraxial infinity focus (residual −0.125145 mm);
+ * the 0.3 m row, object to image, is then re-solved by G3: D1 3.76 → 3.922333, D2 1.88 → 1.717667 mm.
  *
  * FOCUS: Table 2 prints infinity and 0.3 m states. G3 (L31) alone moves toward the image: D1 1.00 → 3.76 mm,
  * D2 4.43 → 1.88 mm. D1 + D2 is 5.43 mm at infinity and 5.64 mm at 0.3 m, although G2 and G4 are fixed; the
- * printed spacings are kept and the 0.21 mm difference is recorded as an unresolved erratum.
+ * printed sums are kept and the 0.21 mm difference is recorded as an unresolved erratum.
  *
  * FIELD CURVES (unresolved erratum): Fig. 3 keeps the tangential field within about 0.1 mm of the axial focus to
  * 31.7°; the printed table traces to −0.75 mm at the edge (−0.88 mm against the image plane), and Fig. 6 shows
@@ -70,7 +72,7 @@ const LENS_DATA = {
       },
       {
         status: "unresolved",
-        note: "Table 2 moves only G3, yet D1 + D2 is 5.43 mm at infinity and 5.64 mm at 0.3 m. The printed spacings are kept.",
+        note: "Table 2 moves only G3, yet D1 + D2 is 5.43 mm at infinity and 5.64 mm at 0.3 m. The printed sums are kept; the 0.3 m row's G3 position is re-solved for paraxial focus.",
       },
       {
         status: "unresolved",
@@ -256,7 +258,7 @@ const LENS_DATA = {
     { label: "19", R: 30.99, d: 8.03, sd: 12.8, medium: 10 },
     { label: "20", R: -27, d: 0.91, sd: 12.8 },
     { label: "21", R: -25.97, d: 1, sd: 12.8, medium: 11 },
-    { label: "22", R: -114.18, d: 14.29, sd: 12.8 },
+    { label: "22", R: -114.18, d: 14.164855, sd: 12.8 }, // printed 14.29; re-solved for paraxial focus
   ],
 
   focus: {
@@ -264,12 +266,15 @@ const LENS_DATA = {
     description:
       "PUBLISHED — single-element internal focus: the negative G3 meniscus (Element 9) moves toward the image as " +
       "focus shortens from infinity to the patent's 0.3 m state, which matches the marketed minimum focus distance " +
-      "(D1 1.00 → 3.76 mm; D2 4.43 → 1.88 mm). The printed D1 + D2 grows by 0.21 mm although G2 and G4 are fixed; " +
-      "the printed spacings are kept.",
+      "(D1 1.00 → 3.922333 mm; D2 4.43 → 1.717667 mm, re-solved for paraxial focus at 0.3 m object to image; printed " +
+      "3.76 / 1.88 mm). The printed D1 + D2 grows by 0.21 mm although G2 and G4 are fixed; the printed sums are kept.",
     published: [1],
   },
 
-  gaps: { "16": { label: "D1", values: [[1.0, 3.76]] }, "18": { label: "D2", values: [[4.43, 1.88]] } },
+  gaps: {
+    "16": { label: "D1", values: [[1.0, 3.922333]] }, // printed 1.00 / 3.76; 0.3 m row re-solved for paraxial focus
+    "18": { label: "D2", values: [[4.43, 1.717667]] }, // printed 4.43 / 1.88; 0.3 m row re-solved for paraxial focus
+  },
 
   aperture: { nominalFNumber: 1.4, fStops: [1.4, 2, 2.8, 4, 5.6, 8, 11, 16], blades: 9 },
 

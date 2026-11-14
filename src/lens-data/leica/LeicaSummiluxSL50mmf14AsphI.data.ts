@@ -25,8 +25,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    from exact meridional/Snell axial marginal rays with clearance, then   ║
  * ║    checked against edge thickness, actual rim slope, conic domain,        ║
  * ║    shared-gap intrusion, and representative off-axis bundles.             ║
- * ║  - The rounded patent prescription retains a 0.075–0.085 mm paraxial     ║
- * ║    image-plane residual. No radius or spacing is altered to suppress it.  ║
+ * ║  - The printed image plane lies 0.075–0.085 mm inside paraxial focus;     ║
+ * ║    the patent's own aberration plots are drawn at it (see below).         ║
  * ║  - Glass labels are coordinate classes. Supplier/melt identity and        ║
  * ║    element-specific line-index/APD data are not established by the patent.║
  * ╚══════════════════════════════════════════════════════════════════════════════╝
@@ -34,8 +34,13 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * MTF source audit: Example 1 pp. 10–11 values match, including all four
  * aspheres and PT (1.410 mm, nd=1.51680, νd=64.20, rear air 0.800 mm).
  * EFL 51.962733 vs 51.964; paraxial focus is 0.075274 mm behind the
- * published image plane. No source-supported correction or explicit designer
- * best-focus convention found. Retain the printed physical path.
+ * published image plane.
+ * Image plane kept as a best-focus plane (LENS_DATA_SPEC Image-Plane
+ * Consistency): paraxial offset +0.075 mm (30.9 depths); real-ray axial best
+ * focus +0.024 mm; source evidence: the d-line curves of the spherical-
+ * aberration plots (Figs. 5A/5D/5G, PDF p. 22) meet the axis at about +0.077,
+ * +0.084 and +0.087 mm at POS1/POS2/POS3, so the patent evaluates at the
+ * printed plane and reproduces the model's 0.0753/0.0834/0.0846 mm offsets.
  */
 
 // FIG. 1 optical-rim audit: S1 = 26.5 mm; S20A = 21.5 mm; S21A = 19.5 mm, capped below its slope reversal. Other SDs retain ray-envelope estimates.

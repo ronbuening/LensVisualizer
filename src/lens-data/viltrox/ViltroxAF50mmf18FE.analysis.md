@@ -105,7 +105,7 @@ Both surfaces of L23 are aspherical. This gives G2 higher-order shape freedom im
 
 `nd = 1.50, νd = 81.6. Glass: J-FK01A (catalog-equivalent spectral proxy; supplier unresolved). f = -90.418144 mm.`
 
-L31 is the complete G3 focusing group. The patent explicitly assigns negative power to this single element and states that G3 moves toward the image during focusing while the other groups remain fixed (¶0057, ¶0067–0070). From infinity to the published 0.5 m state, L31 translates imageward by 5.75 mm.
+L31 is the complete G3 focusing group. The patent explicitly assigns negative power to this single element and states that G3 moves toward the image during focusing while the other groups remain fixed (¶0057, ¶0067–0070). From infinity to the published 0.5 m state, L31 translates imageward by 5.691799 mm in the model (5.75 mm in the printed table).
 
 Its very high Abbe number places it in a low-dispersion fluorophosphate class, and the patent text describes the focusing lens as using ultra-low-dispersion glass together with aspherical surfaces to manage chromatic and monochromatic changes during focusing (¶0025). The catalog curve remains only a spectral proxy: no exact vendor glass, APO designation, or anomalous-partial-dispersion behavior is claimed because the patent supplies no line indices or `dPgF`.
 
@@ -156,13 +156,16 @@ The focus status is **PUBLISHED**. Example 1 gives two complete spacing states a
 | Focus state | Patent object distance | D1 after L23 (mm) | D2 after L31 (mm) | D1 + D2 (mm) |
 |---|---:|---:|---:|---:|
 | Infinity | ∞ | 1.00 | 8.61 | 9.61 |
-| Published close state | 0.5 m | 6.75 | 2.86 | 9.61 |
+| Published close state (printed) | 0.5 m | 6.75 | 2.86 | 9.61 |
+| Published close state (model) | 0.5 m | 6.691799 | 2.918201 | 9.61 |
 
-From infinity to the published close state, D1 increases by 5.75 mm while D2 decreases by 5.75 mm. The sum remains exactly 9.61 mm at the published precision, so the mechanism is a pure imageward translation of L31 by 5.75 mm with the surrounding groups fixed. The final data reproduces those spacings directly.
+In the printed table D1 increases by 5.75 mm while D2 decreases by 5.75 mm. The sum remains exactly 9.61 mm at the published precision, so the mechanism is a pure imageward translation of L31 with the surrounding groups fixed.
 
-The patent's 0.5 m entry is not automatically equivalent to the production lens's sensor-plane minimum focusing distance. The source does not define the object-distance reference plane and does not publish magnification for Example 1. The data therefore uses 0.5 m only as the source's published close-state coordinate and states that limitation explicitly in `focusDescription`.
+With the printed two-decimal indices, the printed spacings left paraxial infinity focus 0.988687 mm beyond the image plane, and the same residual (0.943 mm) sat on the close row when its 0.5 m is read from the first vertex. That is the signature of index rounding, which alone spreads this focus by about ±0.8 mm. The model therefore re-solves the S22 air gap for infinity (see Verification Summary), carries it to the close row, and then moves L31 so the close row focuses an object 500 mm from the first vertex: D1 6.691799 mm, D2 2.918201 mm, a 1% shorter travel than printed.
 
-The internal movement changes first-order system behavior. Recalculation from the final arrays gives EFL 49.073753 mm at infinity and 46.687632 mm in the published close configuration. This is focus breathing in the paraxial configuration sense; it is a computed property of the two source states, not a manufacturer specification.
+The patent does not state the reference plane of its 0.5 m entry. The model reads it from the first vertex. With the residual removed, the printed travel focuses 495 mm from the first vertex (index-rounding spread 484–506 mm). The re-solved state's magnification is −0.0967 and its close/infinity EFL ratio 0.9519, against Viltrox's 0.1× and the patent's 46.48/49 = 0.9486. Read from the image plane, the residual would differ between the rows (+0.99 against +2.04 mm), and the travel would have to grow to 7.07 mm, which would run the L31 and L41 rims into each other (−0.45 mm at h = 13.6 mm). The close row is 0.594 m object to image, which `closeFocusM` records; Viltrox markets a 0.55 m minimum focus distance, kept in `catalog.closeFocusM.marketing`. The earlier 0.72 m label measured the residual.
+
+The internal movement changes first-order system behavior. Recalculation from the final arrays gives EFL 49.073753 mm at infinity and 46.712158 mm in the re-solved close configuration (patent: 49 / 46.48 mm). This is focus breathing in the paraxial configuration sense; it is a computed property of the two source states, not a manufacturer specification.
 
 ## Aspherical Surfaces
 
@@ -212,16 +215,16 @@ The G1 and G4 ratio discrepancies are different. The rounded surface prescriptio
 
 The final TypeScript arrays were independently recomputed using both sequential height/reduced-angle tracing and an ABCD matrix formulation. The two methods agree to floating-point precision at both published focus states.
 
-| Quantity | Infinity | Published 0.5 m configuration |
+| Quantity | Infinity | Published 0.5 m configuration (re-solved) |
 |---|---:|---:|
-| EFL (mm) | 49.073752888 | 46.687632148 |
-| Air-equivalent BFL from surface 22 vertex (mm) | 31.744476320 | 27.188518798 |
-| Front principal plane H1 from surface 1 (mm) | +33.141247306 | +29.971082307 |
-| Rear principal plane H2 from surface 22 (mm) | -17.329276569 | -19.499113350 |
+| EFL (mm) | 49.073752888 | 46.712158276 |
+| Air-equivalent BFL from surface 22 vertex (mm) | 31.744476320 | 27.229543 |
+| Front principal plane H1 from surface 1 (mm) | +33.141247306 | +30.002971813 |
+| Rear principal plane H2 from surface 22 (mm) | -17.329276569 | -19.482615 |
 
-The patent's source rear path contains a 2.00 mm plane-parallel GL filter of nd = 1.52 and vd = 64.2, preceded by 28.44 mm air and followed by 1.00 mm air (Table 1 S22-S24, ¶0075). The model traces these physical distances through `rearPlates`. Their reduced propagation is 28.44 + 2.00/1.52 + 1.00 = 30.755789 mm, equal to the former air-equivalent fold.
+The patent's source rear path contains a 2.00 mm plane-parallel GL filter of nd = 1.52 and vd = 64.2, preceded by 28.44 mm air and followed by 1.00 mm air (Table 1 S22-S24, ¶0075). The model traces the plate and the 1.00 mm air through `rearPlates`. The printed reduced propagation, 28.44 + 2.00/1.52 + 1.00 = 30.755789 mm, falls short of the air-equivalent paraxial BFL, 31.744476 mm.
 
-The physical paraxial BFL is 32.428687 mm, while the published image plane is 31.44 mm behind S22. The +0.988687 mm offset remains unchanged by unfolding. Every source radius, thickness, index, Abbe number and asphere coefficient matches after the documented source-label correction. No additional transcription error explains the mismatch. The patent's coarse numeric precision may contribute, but its original unrounded design is unavailable; retain the published values without tuning to focus.
+The physical paraxial BFL is 32.428687 mm, while the printed image plane is 31.44 mm behind S22, a +0.988687 mm offset. Every source radius, thickness, index, Abbe number and asphere coefficient matches after the documented source-label correction; no transcription error explains the mismatch, and the same residual on both focus rows points to the two-decimal indices. The model re-solves the S22 air gap 28.44 → 29.428687 mm for paraxial infinity focus, keeping the plate and its 1.00 mm air, so the first-vertex-to-image track is 93.488687 mm.
 
 
 The semi-diameter model passes the edge-thickness, actual rim-slope, conic, cross-gap, normal off-axis containment, and published-focus endpoint checks. These semi-diameters remain modeling inferences because the patent does not publish clear apertures. The tightest modeled air gap is between surfaces 8 and 9; the facing surfaces remain physically separated at the authored rim.

@@ -33,7 +33,7 @@ The design has two net-positive functional groups. Moving G1 consists of L1–L6
 
 G1A has relatively weak net positive power because the positive first meniscus precedes a net-negative cemented pair. G1B is more strongly positive, combining the aspheric meniscus with a net-positive cemented pair. G2 has weak net positive power from a negative/positive combination. These calculated power balances describe the transcribed surfaces; assigning individual aberration-control effects beyond the patent's statements is an optical interpretation.
 
-The source includes a separate 0.85mm protective plate, CG, at surfaces 16/17, followed by 0.50mm of air to IMAGE. It is traced as a rear plate and excluded from the eight powered-element count. The last powered surface retains 25.55mm of physical air before CG. Their sum is the published physical rear distance of 26.90mm. This is distinct from the model's infinity Gaussian back focal distance of 26.642661mm, measured from the last powered lens vertex and including the plate.
+The source includes a separate 0.85mm protective plate, CG, at surfaces 16/17, followed by 0.50mm of air to IMAGE. It is traced as a rear plate and excluded from the eight powered-element count. The source prints 25.55mm of physical air between the last powered surface and CG, a published physical rear distance of 26.90mm. The infinity Gaussian back focal distance, measured from the last powered lens vertex and including the plate, is 26.642661mm, so the model re-solves that air to 25.292661mm and its rear distance equals the paraxial focus (see Focus Mechanism).
 
 ## Element-by-Element Analysis
 
@@ -106,16 +106,16 @@ The active labels deliberately use `Unmatched`, and every powered element and CG
 
 ## Focus Mechanism
 
-G1, including the first six elements and stop, translates toward the object relative to fixed G2 and the image plane. D11, the air between source surfaces 11 and 12, increases by 9.32mm. The data use coordinates relative to the current first vertex; that coordinate choice must not be confused with the camera-fixed mechanical frame.
+G1, including the first six elements and stop, translates toward the object relative to fixed G2 and the image plane. D11, the air between source surfaces 11 and 12, increases by 9.32mm in the patent table and by 9.195506mm in the re-solved model. The data use coordinates relative to the current first vertex; that coordinate choice must not be confused with the camera-fixed mechanical frame.
 
-| Published state | D0: object to first surface | D11 | First vertex to IMAGE |
-|---|---:|---:|---:|
-| Infinity | Infinity | 0.39mm | 68.79mm |
-| Near | 370mm | 9.71mm | 78.11mm |
+| Published state | D0: object to first surface | D11 printed | D11 model | First vertex to IMAGE, printed / model |
+|---|---:|---:|---:|---:|
+| Infinity | Infinity | 0.39mm | 0.39mm | 68.79mm / 68.532661mm |
+| Near | 370mm | 9.71mm | 9.585506mm | 78.11mm / 77.728167mm |
 
-The reference plane of D0 follows the object-row spacing in Table 1a and its identification in Table 1b/¶0060. The corresponding authored near object-to-image distance is 448.11mm, which is close to, but not substituted for, the manufacturer's 0.45m specification.
+The reference plane of D0 follows the object-row spacing in Table 1a and its identification in Table 1b/¶0060. The printed spacings put the near object 448.11mm from the image; the re-solved row puts it 447.73mm away, the model's 0.4477m close-focus distance, which is close to, but not substituted for, the manufacturer's 0.45m specification.
 
-Using the rounded source media and retained image plane, the calculated Gaussian near conjugate is instead 355.750194mm from the first vertex, or 433.860194mm object-to-image. The published 370mm configuration remains authored, with its residual defocus. The source magnification summary is 0.16; the model's paraxial image-matrix factor is approximately -0.164069. No focus spacing or image plane is tuned to remove these differences.
+With the rounded source media, the printed spacings leave the image plane 0.257339mm in front of paraxial focus at infinity, about 104 times the ±2λN² depth at F1.45, and the printed near row focuses an object 355.750194mm from the first vertex (433.860194mm object-to-image) rather than the published 370mm. The real-ray axial best focus (−0.346mm) lay even further from the plane, so the printed plane was not a best-focus plane. As for the Ksana 21mm from the same source family, the air gaps are re-solved for paraxial focus, back focus first: the air before CG becomes 25.292661mm (printed 25.55mm), and the near D11 becomes 9.585506mm (printed 9.71mm), which focuses the published 370mm object. Radii, thicknesses, indices, aspheres and the plate are unchanged, and both states stay published. The source magnification summary is 0.16; the re-solved near row's paraxial image-matrix factor is approximately -0.15712 (-0.164069 with the printed spacings).
 
 Only the two gap states are published. Intermediate gaps are interpolation samples, not a measured cam law. The marketed lens is manually focused; no autofocus drive or stabilized group is inferred from this patent.
 
@@ -144,15 +144,15 @@ At the model's inferred radii of 11.00mm and 10.95mm, the departures from their 
 
 ## Conditional Expressions
 
-The model preserves every printed interval and summary. Using the calculated EFL with the source's M = 0.16, physical BFL = 26.90mm and H = 21.60mm gives S/(f M BFL/H) ≈ 0.903597, satisfying S ≤ f M BFL/H. The model also gives TTL/f ≈ 1.328932, fG1/f ≈ 1.063304 and fG1A/fG1 ≈ 2.344768, within the stated intervals 1–1.5, 0.85–1.20 and 2.05–2.65. L2 meets the source's νd ≥ 81.6 condition.
+The model preserves every printed interval and summary. Using the calculated EFL with the source's M = 0.16, physical BFL = 26.90mm and H = 21.60mm gives S/(f M BFL/H) ≈ 0.903597, satisfying S ≤ f M BFL/H. The model also gives TTL/f ≈ 1.323961 (1.328932 with the printed spacings), fG1/f ≈ 1.063304 and fG1A/fG1 ≈ 2.344768, within the stated intervals 1–1.5, 0.85–1.20 and 2.05–2.65. L2 meets the source's νd ≥ 81.6 condition.
 
 The A summary ratios and some group focal lengths do not exactly reproduce from its surface table. The later B summary is closer to the direct calculation, but the source disagreement remains recorded rather than silently repaired.
 
 ## Verification Scope and Source-Model Limitations
 
-The native source-table EFL is 51.763365mm. It is distinct from the printed A summary 51.93mm, the B summary 51.76mm and marketed 50mm. Likewise, the physical rear distance 26.90mm is distinct from the Gaussian BFD 26.642661mm.
+The native source-table EFL is 51.763365mm. It is distinct from the printed A summary 51.93mm, the B summary 51.76mm and marketed 50mm. Likewise, the printed physical rear distance 26.90mm is distinct from the Gaussian BFD 26.642661mm, which the re-solved model adopts.
 
-More substantially, unvignetted source-surface diagnostic traces through the fixed iris give final outgoing-ray axis-intercept residuals of **-1.310996mm at infinity and -2.083606mm at the published near state**, relative to the authored image plane. Marginal-minus-paraxial longitudinal differences are approximately -1.053658mm and -1.716111mm. At the near state, the full-iris diagnostic ray lies outside the inferred 8A rim; these diagnostics are separate from transmission through the clipped finite-body model. These do not reproduce the source's plotted aberration behavior. The original two-decimal index precision and unknown spectra remain limitations, but rounding has not been proved to explain the entire discrepancy. No prescription adjustment is made to force a match.
+More substantially, unvignetted source-surface diagnostic traces through the fixed iris give final outgoing-ray axis-intercept residuals of **-1.310996mm at infinity and -2.083606mm at the published near state**, relative to the printed image plane and spacings (at infinity, -1.053657mm relative to the re-solved plane). Marginal-minus-paraxial longitudinal differences are approximately -1.053658mm and -1.716111mm. At the near state, the full-iris diagnostic ray lies outside the inferred 8A rim; these diagnostics are separate from transmission through the clipped finite-body model. These do not reproduce the source's plotted aberration behavior. The original two-decimal index precision and unknown spectra remain limitations, but rounding has not been proved to explain the entire discrepancy. No prescription adjustment is made to force a match.
 
 A qualified finite test uses **71,720 explicit physical entrance-cap launches** across 40 field/focus groups. Raw native outcomes remain 38,081 OK, 28,315 clipped and 5,324 failed. Independent geometry/refraction calculations classify the failed launches as 1,506 finite-cap misses in air and 3,818 total-internal-reflection cases with no transmitted branch. These physical dispositions are separate from the engine's unchanged failed statuses.
 

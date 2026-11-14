@@ -49,8 +49,8 @@ The very weak net power of VG makes its quoted focal length particularly
 sensitive to cancellation between the constituent powers.
 
 The first and last surface vertices enclose 55.3 mm in the literal table.
-Including the printed 15.4 mm image gap gives 70.7 mm, whereas the summary's
-normalized 2.01 scales to 70.35 mm. These are optical distances and should not
+Including the re-solved 15.096 mm image gap gives 70.40 mm, in line with the
+summary's normalized 2.01 (70.35 mm); the printed 15.4 mm gap would give 70.7 mm. These are optical distances and should not
 be equated with the manufacturer's approximately 50.2 mm mechanical length.
 
 ## Element-by-Element Analysis
@@ -204,14 +204,15 @@ coefficient table alone.
 
 The printed table gives an EFL of 34.746 mm at 35× scale rather than the
 stated 35 mm. Its Gaussian back focus is 15.096 mm, so paraxial focus lies
-0.30 mm ahead of the printed 15.4 mm final gap. The printed total length
-(2.01, or 70.35 mm) matches the Gaussian focus rather than the printed gap.
-The discrepancy follows from two-decimal rounding of the normalized spacings:
-varying them within ±0.005 and ne within ±0.0005 moves the Gaussian image
-plane to either side of the printed gap. On-axis spherical aberration is
-small (−0.10 mm at full aperture), so no sign misprint is indicated. The
-printed gap is kept as published. A rounding adjustment consistent with the
-patent's first-order summary is possible but is not used here.
+0.30 mm ahead of the printed 15.4 mm final gap, about 168 depths of focus at
+f/1.24. The printed total length (2.01, or 70.35 mm) matches the Gaussian
+focus rather than the printed gap. The discrepancy follows from two-decimal
+rounding of the normalized spacings: varying them within ±0.005 and ne within
+±0.0005 moves the Gaussian image plane to either side of the printed gap.
+On-axis spherical aberration is small (−0.10 mm at full aperture), so no sign
+misprint is indicated. The model therefore re-solves the final gap to the
+paraxial focus, 15.096398 mm (printed 0.44, or 15.4 mm); every radius,
+thickness, index and asphere stays as printed, and EFL is unchanged.
 
 Semi-diameters are estimates measured from Figure 2, which is drawn to the
 prescription's proportions, and checked against a real-ray trace; no clear
@@ -221,8 +222,9 @@ follows both. With these estimates the full axial
 f/1.24 pupil passes, and the chief ray reaches the full-frame corner at an
 image height of 21.65 mm.
 
-At the printed image plane the axial image is defocused; best axial focus lies
-about 0.34 mm ahead of it. At that plane, the e-line geometric 40 lp/mm MTF is
+With the printed 15.4 mm gap the axial image was defocused, with best axial
+focus about 0.34 mm ahead of that plane; the re-solved image plane lies within
+about 0.03 mm of it. At that plane, the e-line geometric 40 lp/mm MTF is
 approximately 0.552 on axis but only 0.068 sagittal and 0.043 tangential at
 half-diagonal height. Leica's white-light infinity charts (f/1.2, f/2.8 and
 f/5.6; 5 to 40 lp/mm) are materially stronger over much of the field. The
@@ -232,8 +234,8 @@ behavior rather than production image quality. No value was adjusted against
 the published curves.
 
 Leica gives the entrance pupil as 24.5 mm in front of the bayonet. The model's
-paraxial entrance pupil lies 52.66 mm ahead of the printed image plane, or
-24.86 mm in front of the Leica M bayonet (27.80 mm flange distance).
+paraxial entrance pupil lies 52.36 mm ahead of the modeled image plane, or
+24.56 mm in front of the Leica M bayonet (27.80 mm flange distance).
 
 ## Rear-Asphere Clear-Aperture Uncertainty
 

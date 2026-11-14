@@ -62,6 +62,41 @@ Independent trace: EFL 65.015871503 versus printed 65.02 mm, air BFL 22.13937352
 
 Validation: focused runtime/paraxial check; full corpus gates at the ten-lens checkpoint.
 
+## 2026-11-03 — Image-plane consistency (structure)
+
+Class E, approved by the owner over the 2026-09-25 "do not add the calculated defocus as invented air" note above.
+Fig. 2 prints no distance after the cover-glass surface S20, and the model had put the image on S20. With the image
+there, paraxial infinity focus lay 0.232471 mm behind it (25 depths at f/2.8), and the printed d12 rows focused at
+2756 mm (printed 2400) and 402 mm (printed 400) from S1. A plane 0.232471 mm behind S20 makes all three printed rows
+agree with one another.
+
+| Field | Before | After | Justification |
+| --- | --- | --- | --- |
+| `rearPlates[1].gapAfterMm` | 0 | 0.232471 | Unprinted S20-to-image air; the printed rows focus on this plane |
+| `gaps["12"]` kf1 (2400 mm) | 3.02 | 3.022850 | Re-solved for paraxial focus at the printed 2400 mm from S1 |
+| `gaps["12"]` kf2 (400 mm) | 14.46 | 14.273641 | Re-solved for paraxial focus at the printed 400 mm from S1 |
+| `gaps["12"]` kf0 (infinity) | 1.00 | 1.00 | In focus once the plane is placed |
+| `focus.keyframes[1]` | 0.1758096778953822 | 0.202582 | closeFocusM / the 2400 mm row's object-to-image distance (0.505236 / 2.493985 m) |
+| `focus.closeFocusM` | 0.5 | 0.5052 | Re-solved close row: 400 mm + 105.236 mm track |
+
+- Residual: infinity +0.232471 → 0 mm. With the plane alone, the printed near rows focus at 2403.3 mm and 395.0 mm
+  from S1; the d12 re-solve puts them at 2400.00 and 400.00 mm. Travel 13.46 → 13.273641 mm. EFL 65.015872 mm
+  unchanged. Infinity track 91.730 → 91.962471 mm; close track 105.236112 mm.
+- Close focus 0.5073 → 0.5052 m (label). Hasselblad's 0.5 m differs by 1.0 %, so no `catalog.closeFocusM.marketing`.
+- Evidence: Fig. 2 and Fig. 3 (sheet 2, PDF p. 3) match the file; air BFL 22.139374 mm against the 21.906903 mm
+  air-equivalent rear path. Sibling Example 2 (Fig. 8 and 9, sheet 8) prints the same unspaced S20; its printed rows
+  (d12 1.00 / 3.02 / 14.00 at infinity / 2400 / 410 mm) agree only with an image plane 2.427 mm behind its S20
+  (2398 / 407 mm). The census MTF best focus, +0.221 mm, sat beside the paraxial focus, so the old plane was not a
+  best-focus choice.
+- Rim clearance: d12 is 1.000 / 3.023 / 14.274 mm at the vertex and the minimum over its 15.45 mm band, unchanged in
+  kind. Aperture, image-circle, field-coverage and surface-probe audits are unchanged (within 3 %, 0 undersized,
+  ≥99 %, no validation errors).
+- Text sync: header (cover-glass note and image-plane note), inline comments, `focus.description`, plate `source`, and
+  analysis (minimum-focus bullet, track paragraph, cover-glass paragraph, focus table and travel, image-plane section).
+
+Follow-ups: the near rows' printed distances sit 1.3 % (400 mm) and 0.14 % (2400 mm) from where the printed d12
+values focus on the placed plane; the re-solve absorbs that, and no erratum is recorded.
+
 ## 2026-11-10 — Metadata fill
 
 - `catalog.fNumber.design: 2.8` from US 2020/0319427 A1 FIG. 3 (Sheet 2 of 40, PDF p. 3), INFINITY column:

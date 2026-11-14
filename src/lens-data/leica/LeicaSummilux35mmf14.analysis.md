@@ -189,8 +189,10 @@ aberration performance claimed in the patent. [1, pp. 1-2]
 
 The final model's paraxial EFL is **35.1431768 mm**. Its first-to-last refracting-surface vertex track is **32.4240 mm**,
 or 0.922626× the EFL. The paraxial BFD measured from surface 12 is **19.1164174 mm**, while the scaled source image-plane
-spacing is **19.1415000 mm**. The -0.0250826 mm residual is retained rather than forcing the source image plane to the
-recomputed paraxial focus; in normalized source units it lies within the dossier's rounding-propagation tolerance.
+spacing is **19.1415000 mm**. That −0.0250826 mm residual, about 11 depths of focus at f/1.4, is at the tail of what
+four-decimal rounding of the normalized table can produce, and the real-ray axial best focus (−0.149 mm) does not sit at
+the printed plane; the model therefore re-solves the final gap to the paraxial focus, **19.116417 mm**. The physical
+first-vertex-to-image track becomes **51.540417 mm** (51.5655 mm with the printed a5).
 
 The first-order result is reproduced with two distinct paraxial representations: reduced-angle $[y,\nu]$
 tracing and an ordinary-angle $[y,u]$ matrix chain. They agree at machine precision for this air-to-air system. The
@@ -247,11 +249,9 @@ The following curves are approximate spectral proxies within the catalog coordin
 | L4 | 1.7899 / 48 (e) | TAF4 | 0.002048 | -0.741 |
 | L6 | 1.7899 / 48 (e) | TAF4 | 0.002048 | -0.741 |
 
-## Image-plane source audit (2026-09-25)
+## Image-plane consistency (2026-11-03)
 
-MTF image-plane audit (2026-09-25): FR1233449 Tableau 1 (PDF p. 1,
-repeated p. 2) matches every R/d and native ne/ve coordinate at scale 35.
-The printed rear distance a5=0.5469 becomes 19.1415 mm, versus native-e
-paraxial BFL 19.116417 mm; offset -0.025083 mm. No plates, aspherics or
-other focus state are listed. The source does not establish a best-focus
-interpretation or a single correctable misprint; retain its published plane.
+FR 1.233.449 Tableau 1 (PDF p. 1, repeated p. 2) and US 2,975,673 Table 1 both print a5 = 0.5469, and every R/d and
+native ne/νe coordinate matches the file at scale 35. The printed rear distance becomes 19.1415 mm, against a native-e
+paraxial BFL of 19.116417 mm (offset −0.025083 mm). No plates, aspherics or other focus state are listed, and no single
+misprint isolates the difference. The final gap is re-solved to 19.116417 mm; EFL stays 35.143177 mm.

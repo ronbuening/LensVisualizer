@@ -16,11 +16,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║                                                                              ║
  * ║  FOCUS STATUS: PUBLISHED.                                                    ║
  * ║  The patent publishes D2, D6, and D11 at infinity and at β = −0.12.          ║
- * ║  D2 contracts by 2.574 mm; D11 contracts by 17.406 mm.                       ║
- * ║  Rounded D2+D6 totals differ by 0.018 mm, leaving Component III with a       ║
- * ║  small coordinate residual; Component IV shifts 17.424 mm relative to R1.    ║
- * ║  The close-state BF value is the fixed-image-plane completion required to    ║
- * ║  keep the image plane at z = 191.160 mm; it is not an invented group motion. ║
+ * ║  Printed D2 contracts by 2.574 mm and D11 by 17.406 mm. Rounded D2+D6 totals ║
+ * ║  differ by 0.018 mm, leaving Component III with a small coordinate residual. ║
+ * ║  The close-state BF is the fixed-image-plane completion (track unchanged).   ║
  * ║                                                                              ║
  * ║  SOURCE CORRECTION: Example 1 prints V1 = 6.12. It is authored as νd = 61.2  ║
  * ║  because Example 2 prints 61.2 for the same 1.589 glass and all catalog      ║
@@ -49,8 +47,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * MTF source audit: Example 1 (PDF p. 7, column 3) matches every stored
  * radius/gap/index at scale ×1.8, with the documented V1=61.2 emendation.
  * Native EFL 99.959464 and BFL 44.708683 differ from F=100 and BF=44.79.
- * Scaled offset −0.146370 mm is retained as source inconsistency; no plate
- * or additional focus adjustment is supported by the published prescription.
+ * Image-plane re-solve (2026-11-03): BF 80.622 -> 80.475630 mm at infinity
+ * (offset −0.146370 -> 0); carried to the close row, which is then re-solved
+ * with the travel-weighted II/IV mechanism at β = −0.12 (1603.701 mm from
+ * the first surface): D2 0.432 -> 0.425294, D6 29.538 -> 29.544659,
+ * D11 0.576 -> 0.530650, BF 98.046 -> 97.945026. No misprint is claimed.
  */
 
 const LENS_DATA = {
@@ -223,19 +224,19 @@ const LENS_DATA = {
   ],
 
   focus: {
-    closeFocusM: 1.7886507000747824,
+    closeFocusM: 1.7947,
     description:
-      "PUBLISHED compound internal focus using the patent's D2, D6, and D11 endpoints at infinity and β = −0.12. D2 contracts by 2.574 mm and D11 by 17.406 mm; the rounded D2+D6 totals leave a 0.018 mm coordinate residual, so Component IV shifts 17.424 mm relative to R1. The authored BF endpoint is the fixed-image-plane completion; the corresponding model object-to-image distance is 1.78865 m and the traced magnification is −0.120513.",
+      "PUBLISHED compound internal focus using the patent's D2, D6, and D11 endpoints at infinity and β = −0.12. The infinity BF is re-solved for paraxial focus (printed 44.79 × 1.8 = 80.622 mm), and the close row is re-solved with the patent's Component II/IV motion to focus at β = −0.12, 1603.701 mm from the first surface (1.7947 m object to image). D2 contracts by 2.581 mm and D11 by 17.451 mm (printed 2.574 and 17.406 mm); the D2+D6 totals leave a 0.018 mm Component III residual, as printed, so Component IV shifts 17.469 mm relative to R1.",
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
   },
 
   /* (moved from var) Published infinity and β = −0.12 states; BF close value preserves the fixed image plane. */
   gaps: {
-    "2": { label: "D2", values: [[3.006, 0.432]] },
-    "6": { label: "D6", values: [[26.982, 29.538]] },
-    "11": { label: "D11", values: [[17.982, 0.576]] },
-    "14": { label: "BF", values: [[80.622, 98.046]] },
+    "2": { label: "D2", values: [[3.006, 0.425294]] }, // printed 3.006/0.432; close row re-solved for paraxial focus
+    "6": { label: "D6", values: [[26.982, 29.544659]] }, // printed 26.982/29.538; close row re-solved for paraxial focus
+    "11": { label: "D11", values: [[17.982, 0.53065]] }, // printed 17.982/0.576; close row re-solved for paraxial focus
+    "14": { label: "BF", values: [[80.47563, 97.945026]] }, // printed 80.622 (BF 44.79 × 1.8); close 98.046 was our completion; both re-solved for paraxial focus
   },
 
   aperture: { nominalFNumber: 2.3, fStops: [2.3, 2.8, 4, 5.6, 8, 11, 16] },

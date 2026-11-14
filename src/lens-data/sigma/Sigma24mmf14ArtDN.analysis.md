@@ -18,14 +18,14 @@ Example 1 is the embodiment transcribed for the Sigma 24mm F1.4 DG DN | Art (A02
 3. The patent gives f = 23.86 mm and F-number = 1.46 for Example 1, corresponding to the production 24 mm F1.4 nominal specification.
 4. The tabulated image height is Y = 21.63 mm, giving a 43.26 mm image circle for the 36 x 24 mm full-frame format.
 5. Example 1 focuses by moving only G2 toward the image side from infinity to close focus (§0097); the production lens is an internally focusing mirrorless design.
-6. The close-focus state is tabulated at 249 mm, matching the production minimum focusing distance of 25 cm within normal rounding.
+6. The close-focus state is tabulated at 249 mm (object 136.5 mm from the first surface), matching the production minimum focusing distance of 25 cm within normal rounding. The re-solved model row focuses there at 0.2522 m object to image.
 7. The patent was filed on 2021-11-17 and published after the August 2022 product introduction, which is consistent with a production-adjacent Sigma filing.
 
 The older Sigma 24mm F1.4 DG HSM | Art is excluded. It is a different DSLR-era optical system and does not match the Example 1 element count, group count, internal focusing arrangement, or special-element census.
 
 ## Optical Architecture
 
-The design is a five-group fast wide-angle of negative-positive-positive-negative-positive group power distribution. The front negative group gives the lens a retrofocus-derived layout, but the patent BF/EFL ratio is just below unity: BF = 23.0355 mm versus f = 23.86 mm. It is therefore better described as a front-negative mirrorless wide-angle than as a strict long-back-focus retrofocus design.
+The design is a five-group fast wide-angle of negative-positive-positive-negative-positive group power distribution. The front negative group gives the lens a retrofocus-derived layout, but the BF/EFL ratio is below unity: the patent prints BF = 23.0355 mm against f = 23.86 mm, and the traced paraxial back focus is 21.9873 mm against EFL 24.0037 mm (0.916). It is therefore better described as a front-negative mirrorless wide-angle than as a strict long-back-focus retrofocus design.
 
 The aperture stop is between G3 and G4. The patent's central architectural point is the split rear-of-stop correction system: rather than using a single rear positive group, it divides the post-stop volume into G4 and G5, each containing both positive and negative refracting components. The patent states that this placement allows the positive glasses behind the stop to be selected for axial color, lateral color, peripheral short-wavelength flare, and field curvature at the same time (§0023-0024).
 
@@ -164,12 +164,12 @@ The key chromatic pattern is the split use of ED/fluorophosphate glass. One FLD-
 
 The lens uses internal focus by a single moving group, G2. Claim 2 fixes every other group relative to the image plane. From infinity to the close-focus state, G2 moves toward the image side; d10 increases and d12 decreases by the same amount.
 
-| State | d0 | d10 | d12 | BF |
-|---|---:|---:|---:|---:|
-| Infinity | ∞ | 3.7171 | 8.1632 | 23.0355 |
-| 249 mm state | 136.5000 | 9.2968 | 2.5835 | 23.0355 |
+| State | d0 | d10 printed | d12 printed | BF printed | d10 model | d12 model | BF model |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| Infinity | ∞ | 3.7171 | 8.1632 | 23.0355 | 3.7171 | 8.1632 | 21.987349 |
+| 249 mm state | 136.5000 | 9.2968 | 2.5835 | 23.0355 | 7.682694 | 4.197606 | 21.987349 |
 
-The two variable gaps sum to 11.8803 mm in both focus states, so the G2 travel is 5.5797 mm. The data file records these as the only focus variables.
+The two variable gaps sum to 11.8803 mm in both focus states. The printed G2 travel is 5.5797 mm. With the back focus re-solved to paraxial focus, the printed near row focuses an object only 86.6 mm from the first vertex, so the near row is re-solved by moving G2 alone until it focuses the published 136.5 mm object: the model's G2 travel is 3.965594 mm, and the near state lies 0.2522 m from the image plane. The data file records d10 and d12 as the only focus variables.
 
 The patent's finite-distance table is treated as a focus-spacing table, not as an independently verified magnification table. A simple first-order finite-conjugate trace does not reproduce the production maximum magnification closely enough to justify a paraxial magnification claim. The production specification, 1:7.1, governs the user-facing magnification value.
 
@@ -223,7 +223,7 @@ The patent correspondence table labels conditions (3) and (4) as G5L1. For Examp
 
 ## Data File Transcription and Semi-Diameter Notes
 
-The TypeScript data file uses the unscaled Example 1 prescription from the patent. It includes all 17 glass elements, the aperture stop, the two focus-variable air gaps, and all eight aspherical surfaces. The source lists the image immediately after S32 with BF as its spacing; it supplies no rear cover/filter plate prescription. No plate is invented.
+The TypeScript data file uses the unscaled Example 1 prescription from the patent. It includes all 17 glass elements, the aperture stop, the two focus-variable air gaps, and all eight aspherical surfaces. The source lists the image immediately after S32 with BF as its spacing; it supplies no rear cover/filter plate prescription. No plate is invented. The model's BF is re-solved to the paraxial focus, 21.987349 mm against the printed 23.0355 mm (see Verification Summary).
 
 Every glass carries a `dPgF` for chromatic tracing. It is the glass's θgF, recovered from the patent-published signed deviation and the patent's line (0.648285 − 0.00180123·νd), minus the engine's normal line (0.6438 − 0.001682·νd); the patent's ΔθgF is not copied directly. The APD marker is narrower: it is applied only to L2, L11, and L14, the two FLD-class elements and one SLD-class element supported by the production special-element census.
 
@@ -241,7 +241,7 @@ Independent paraxial tracing of the d-line spherical-base prescription gives the
 | G4 | -49.60 mm | -49.5941 mm |
 | G5 | +36.37 mm | +36.3714 mm |
 
-The same trace gives system EFL = 24.0037 mm. The patent table gives f = 23.86 mm. The paraxial focus from the last surface is 21.9873 mm, while the patent BF entry is 23.0355 mm. Because the group powers and condition values reproduce the patent table and no surface transcription error was found, the data file preserves the patent's tabulated BF rather than forcing the first-order paraxial focus. The resulting image-plane offset is −1.048151 mm. The surface spacings plus BF also total 116.762 mm, versus the summary table's 113.95 mm lens length. These source inconsistencies are disclosed; neither an omitted plate nor a specific single misprint is established by the source.
+The same trace gives system EFL = 24.0037 mm. The patent table gives f = 23.86 mm. The paraxial focus from the last surface is 21.9873 mm, while the patent BF entry is 23.0355 mm: with the printed BF the image plane sat 1.048151 mm behind paraxial focus, about 420 times the ±2λN² depth at F1.46, so the infinity row focused an object 0.54 m away. The surface spacings plus the printed BF total 116.762 mm, versus the summary table's 113.95 mm lens length. The group powers and condition values reproduce the patent table and no single R, d or nd explains the focal length, back focus and track together; Example 2 of the same patent misses its stated f, BF and lens length in the same way. The contradiction is recorded as an unresolved source erratum, and the model re-solves the air gaps for paraxial focus instead: BF = 21.987349 mm (track 115.714 mm), and the near row's d10/d12 = 7.682694/4.197606 mm, which focuses the published 136.5 mm object. Radii, thicknesses, indices and aspheres are unchanged.
 
 The Petzval sum, computed surface by surface as Σ φ/(n·n'), is +0.003265 mm^-1, corresponding to a Petzval radius of -306.24 mm. This small residual is consistent with the use of high-index positive elements and the rear aspheric field element.
 

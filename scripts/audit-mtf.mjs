@@ -7,8 +7,11 @@
  * `--grid=32|64|128|256` sets the census cap (default 32); the product tab refines to 256.
  * `--cdf` / `--photopic` select the spectrum; `--list` retains each lens's field stages and diagnostics,
  * and names the lenses behind every unavailable field.
- * `--limit=N` audits the first N lenses only. `--focus` instead lists lenses whose authored image plane is
- * inconsistent with their own paraxial focus (`mtfImagePlaneOffset`), largest offset first.
+ * `--limit=N` audits the first N lenses only. `--focus` instead lists the zoom stations (every station of a zoom,
+ * the one of a prime) whose authored image plane at infinity is inconsistent with their own paraxial focus
+ * (`mtfImagePlaneOffset`), largest offset first, with the real-ray axial best-focus shift, the close row's focus label
+ * and the authored close-focus distance. `--min-depths=N` lists stations beyond N depths of focus instead of the
+ * flag's `MTF_IMAGE_PLANE_DEPTHS`.
  * `--blockers` instead inventories every blocking glass, class totals and upgrade leverage, and counts
  * estimated elements in eligible lenses. It defaults to photopic; `--list` adds fallback and estimate rows.
  */
@@ -17,7 +20,13 @@ import { resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 import { createAnalysisRequest } from "../src/optics/analysis.js";
 import { buildLens } from "../src/optics/buildLens.js";
-import { prepareRuntimeState } from "../src/optics/optics.js";
+import {
+  closeFocusAtZoom,
+  eflAtZoom,
+  focusLabelDistanceM,
+  prepareRuntimeState,
+  wideOpenStopAtZoom,
+} from "../src/optics/optics.js";
 import { entrancePupilAtState } from "../src/optics/fieldGeometry.js";
 import {
   assessMtfDataLimitations,
@@ -39,6 +48,7 @@ const perField = process.argv.includes("--fields");
 const list = process.argv.includes("--list");
 const limit = Number(process.argv.find((arg) => arg.startsWith("--limit="))?.slice(8) ?? Infinity);
 const focusCensus = process.argv.includes("--focus");
+const minDepths = Number(process.argv.find((arg) => arg.startsWith("--min-depths="))?.slice(13) ?? NaN);
 /** The authored plane keeps the field census tied to the lens data as written. */
 const FIELD_FOCUS = "design";
 const requestedGrid = Number(process.argv.find((arg) => arg.startsWith("--grid="))?.slice(7) ?? 32);
@@ -88,9 +98,14 @@ let audited = 0;
 for (const file of files) {
   if (audited >= limit) break;
   const data = (await import(pathToFileURL(resolve("src/lens-data", file)))).default;
-  if (data.visible === false) continue;
+  // Hidden configuration members (a built-in converter engaged, say) are reachable from their visible sibling.
+  if (data.visible === false && !(focusCensus && data.catalog?.opticalConfiguration)) continue;
   audited++;
   const L = buildLens(data, { path: `src/lens-data/${file}` });
+  if (focusCensus) {
+    inconsistent.push(...focusStations(data, file, L));
+    continue;
+  }
   const state = prepareRuntimeState(L, 0, 0);
   const options = {
     method: "geometric",
@@ -175,17 +190,6 @@ for (const file of files) {
     }
     continue;
   }
-  if (focusCensus) {
-    const offset = reason === "candidate" ? mtfImagePlaneOffset(state, assessed) : null;
-    if (offset?.inconsistent)
-      inconsistent.push({
-        key: data.key,
-        file,
-        offsetMm: Number(offset.offsetMm.toFixed(3)),
-        depths: Number(((10 * Math.abs(offset.offsetMm)) / offset.limitMm).toFixed(1)),
-      });
-    continue;
-  }
   if (!perField) continue;
   const geometry = assessed.available ? resolveMtfGeometry(request, options) : null;
   const edge = geometry ? geometry.modeledEdgeHeightMm / geometry.referenceHeightMm : null;
@@ -237,7 +241,12 @@ const report = blockerCensus
       ...(list ? { lenses } : {}),
     }
   : focusCensus
-    ? { audited, candidates: support.candidate ?? 0, inconsistent: inconsistent.length, lenses: inconsistent }
+    ? {
+        audited,
+        stations: inconsistent.length,
+        lenses: new Set(inconsistent.map((row) => row.key)).size,
+        inconsistent,
+      }
     : perField
       ? {
           spectrum,
@@ -252,3 +261,60 @@ const report = blockerCensus
         }
       : support;
 console.log(JSON.stringify(report, null, 2));
+
+/**
+ * Image-plane consistency of every zoom station at infinity, wide open. The offset is paraxial focus minus the
+ * authored plane; the best-focus shift is the real-ray axial MTF optimum on the census spectrum, absent where the
+ * MTF cannot trace the lens (`mtf` names why).
+ *
+ * @param data - authored lens data
+ * @param file - path below `src/lens-data`
+ * @param L - runtime lens
+ * @returns the stations beyond the threshold
+ */
+function focusStations(data, file, L) {
+  const rows = [];
+  const stations = (L.isZoom && L.zoomPositions?.length) || 1;
+  for (let station = 0; station < stations; station++) {
+    const zoomT = stations > 1 ? station / (stations - 1) : 0;
+    const state = prepareRuntimeState(L, 0, zoomT);
+    const stopSemiDiameterMm = wideOpenStopAtZoom(zoomT, L);
+    const pupilSemiDiameterMm = entrancePupilAtState(stopSemiDiameterMm, 0, zoomT, L).epSD;
+    const request = createAnalysisRequest({
+      preparedState: state,
+      dynamicEFL: 0,
+      currentEPSD: pupilSemiDiameterMm,
+      currentPhysStopSD: stopSemiDiameterMm,
+    });
+    const options = {
+      method: "geometric",
+      spectrum,
+      focus: "best-axial",
+      maxGridSize: 32,
+      fieldFractions: [0],
+      pupilSemiDiameterMm,
+      stopSemiDiameterMm,
+    };
+    const assessed = assessMtfSupport(request, options);
+    // The plane's consistency is lens data whether or not the MTF can trace it; folded paths have no sequential focus.
+    const offset = L.isFoldedOptics ? null : mtfImagePlaneOffset(state, assessed);
+    if (!offset) continue;
+    const depths = (10 * Math.abs(offset.offsetMm)) / offset.limitMm;
+    if (Number.isFinite(minDepths) ? depths <= minDepths : !offset.inconsistent) continue;
+    const best = assessed.available ? (computeMtf(request, options).focus?.bestAxialShiftMm ?? null) : null;
+    const label = focusLabelDistanceM(1, L, zoomT);
+    rows.push({
+      key: data.key,
+      file,
+      station: stations > 1 ? `${station + 1}/${stations}` : "prime",
+      eflMm: Number(eflAtZoom(zoomT, L).toFixed(2)),
+      offsetMm: Number(offset.offsetMm.toFixed(3)),
+      depths: Number(depths.toFixed(1)),
+      bestFocusShiftMm: best === null ? null : Number(best.toFixed(3)),
+      ...(assessed.available ? {} : { mtf: assessed.reason }),
+      closeLabelM: label === null || !Number.isFinite(label) ? label : Number(label.toFixed(3)),
+      closeFocusM: closeFocusAtZoom(zoomT, L),
+    });
+  }
+  return rows;
+}

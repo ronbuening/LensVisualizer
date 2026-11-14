@@ -1072,9 +1072,8 @@ focus: {
 - MTF never infers conjugates from `closeFocusM`, a production MFD or interpolated slider labels; undocumented
   intermediate states stay unavailable. Do not certify calculated focus travel as a published configuration.
 - Every conjugate also counts as a published state (below).
-- Source-rounded prescriptions may keep residual defocus: MTF evaluates the authored image plane by default, reports the
-  axial best-focus shift as a diagnostic, and moves the plane only when the viewer asks. Do not edit the authored image
-  distance to improve simulated MTF.
+- Every certified row is in paraxial focus at its stated distance ([Image-Plane Consistency](#image-plane-consistency)).
+  The source's distance is never changed to fit the spacings.
 
 ### Published Stations
 
@@ -1099,6 +1098,45 @@ station whose rounded source row was re-solved for paraxial consistency is still
 - Do not publish a reconstructed close-focus endpoint, a production minimum-focus distance or a code-solved keyframe.
 - A teleconverter has no stations. A composed host + converter keeps the host's; its focal lengths and f-numbers there
   are computed, not tabulated.
+
+### Image-Plane Consistency
+
+Every authored row (zoom station × focus keyframe) is in paraxial focus on the authored image plane at its own object
+distance. That distance is infinity for keyframe 0, the source's printed distance and reference for a published near
+row, and the target it was solved for on an app-derived row. `scripts/audit-mtf.mjs --focus` checks the infinity row of
+every station. A station is out of focus beyond `MTF_IMAGE_PLANE_DEPTHS` (10) depths of focus, 2λN² at the d line and
+that station's open f-number. Once any station is out, every row of the lens is worked, so its rows stay consistent.
+
+| Cause | Action |
+| --- | --- |
+| Transcription error, or a misprint the source-errata standard isolates | Correct it ([Source errata](#source-errata-sourceerrata)) |
+| Model artefact: a missing water medium, plate, or air the source omits | Fix the structure |
+| Source rounding, or an inconsistency no single value isolates | Re-solve the rows; published rows stay published |
+| Our own residual: solved cams, sampled stations, reconstructed close rows | Re-solve the rows |
+| Deliberate best-focus plane: the source evaluates at it (its own aberration plots, a stated convention), or the real-ray axial best focus lies within 10 depths of the plane at every station | Keep it, and say so in the header |
+| A residual no rounding-sized gap change explains (focus drifting across a zoom against a claimed fixed image plane) | Keep the printed values, add an `unresolved` erratum, and queue the lens in Section G of `agent_docs/sd-audit-queue.md` |
+
+Re-solve air gaps only. Never change radii, glass, aspheres, plates or the image plane, and keep every gap above its
+rim clearance at every row.
+
+- **Infinity rows:** the back-focus gap, which is the air between the last lens surface and the image plane or the first
+  rear plate. Solve it per row where it is a variable gap, and once on a prime. On a zoom whose back focus is one fixed
+  value, move the source's focus mechanism per station instead (the gaps its near rows move, in their own proportions).
+  Where that zoom models no focus travel, solve one value. Where the back-focus solve, or a near row after it, would
+  close a gap below rim clearance, move the focus mechanism at the infinity row as well.
+- **Near rows:** move the focus mechanism at the row's object distance, after carrying the infinity row's back-focus
+  change. A published row whose printed distance contradicts its own spacings keeps the carried change only, and
+  gets an `unresolved` erratum.
+- **Close focus:** `closeFocusM` follows the re-solved close row, and a maker's different figure stays in
+  `catalog.closeFocusM.marketing`. Never certify a re-solved distance the source does not print.
+- **Labels:**
+  - An inline comment on each re-solved value names the printed value: `// printed 36.467; re-solved for paraxial focus`.
+  - The header carries a one-line re-solve note with the before and after values.
+  - `focus.description` and a conjugate's `source` say so where they quote the values.
+  - The `*.audit.md` entry is dated and records the before and after values, the residual, the travel and the EFL
+    change.
+  - A re-solve claims no misprint, so it gets no `source.errata` entry. An `unresolved` entry whose only subject was
+    the residual is removed.
 
 ### Aberration control (`aberrationControl`)
 

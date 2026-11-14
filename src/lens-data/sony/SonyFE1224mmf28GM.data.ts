@@ -19,6 +19,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Tele: stopSemiDiameter = phi15/2 = 8.115 / 9.565 / 11.815 mm. The engine takes the station radius
  * from the schedule. The radii that give exactly F2.91 are 8.112 / 9.559 / 11.799 mm, so the published
  * schedule traces to f/2.909 / 2.908 / 2.906.
+ * Image plane kept as a best-focus plane (LENS_DATA_SPEC Image-Plane Consistency): paraxial offset +0.052 / +0.102 /
+ * +0.031 mm (5.2 / 10.3 / 3.1 depths at f/2.91); real-ray axial best focus +0.003 / −0.003 / −0.011 mm (≤ 1.1 depths).
  */
 const LENS_DATA = {
   schema: 2,
