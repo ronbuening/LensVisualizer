@@ -5,7 +5,28 @@
 import { canonicalLensFromRuntime } from "../../optics/buildLens.js";
 import type { CanonicalLens, IngestedPrescription } from "../../optics/buildLens.js";
 import type { RuntimeLens } from "../../types/optics.js";
-import type { MtfOptions, MtfResult } from "../../types/mtf.js";
+import type { MtfOptions, MtfRequestOptions, MtfResult } from "../../types/mtf.js";
+import type { AnalysisRequest } from "../../optics/analysis.js";
+
+/**
+ * Serialize controls only; prepared geometry and solve caches stay on their thread.
+ * @param request - optical snapshot and physical aperture
+ * @param options - sampling, spectrum and plane policy
+ * @returns the worker's rebuildable input
+ */
+export function mtfJobForRequest(request: AnalysisRequest, options: MtfRequestOptions): MtfJob {
+  return {
+    focusT: request.preparedGeometry.focusT,
+    zoomT: request.preparedGeometry.zoomT,
+    aberrationT: request.preparedGeometry.aberrationT,
+    options: {
+      ...options,
+      pupilSemiDiameterMm: request.aperture.entrancePupilSemiDiameterMm,
+      stopSemiDiameterMm: request.aperture.stopSemiDiameterMm,
+      movementActive: request.pose?.active ?? options.movementActive,
+    },
+  };
+}
 
 export interface MtfJob {
   focusT: number;

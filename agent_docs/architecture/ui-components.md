@@ -133,8 +133,8 @@ absent on subsequent lens-view navigation. Opening a link never saves its settin
 visit's URL and saves only that control as a preference, leaving other shared settings visit-only.
 Warning acknowledgments and diagnostic disclosures are excluded, so a fresh visit still requires its own disclosures.
 The field summary's keyboard-operable Export menu downloads "CSV — this view", "CSV — all sampled values", SVG
-or PNG through local Blobs and temporary anchors. Copy CSV retains its uncaptioned image-height table. The view
-download follows the selected chart: the image-height table with field notes, or every frequency for each shown
+or PNG through local Blobs and temporary anchors. Copy CSV retains its uncaptioned image-height table in the
+image-height and frequency views. The view download follows the selected chart: the image-height table with field notes, or every frequency for each shown
 field, including independently selected comparison overview fields. All sampled values includes every field and
 computed frequency. Both CSV downloads preserve withheld cells and opt-in diagnostic disclosure, include enabled
 comparison and diffraction-limit columns, neutralize formula-capable text with an apostrophe before CSV quoting, and start with
@@ -154,9 +154,9 @@ glyphs as two columns; the SVG replaces XML-invalid text with U+FFFD (see the op
 PNG rasterizes the same SVG at 2× resolution and reports unsupported browser paths.
 Current partial results are labelled `status: partial`; superseded results
 disable downloads and Copy CSV.
-Malformed bundles and unknown versions fall back to stored preferences as a whole. Every request computes 0–100 lp/mm for every
-field, so chart-only changes never recompute. `useMtfComputation` debounces settled inputs for 150 ms, keeps earlier
-curves dimmed until the new request reports progress, and cancels superseded work; the mounted tab disposes its worker
+Malformed bundles and unknown versions fall back to stored preferences as a whole. Image-height and frequency
+requests compute 0–100 lp/mm for every field, so changes between those views never recompute.
+`useMtfComputation` debounces settled inputs for 150 ms, keeps earlier curves dimmed until the new request reports progress, and cancels superseded work; the mounted tab disposes its worker
 on unmount. In the image-height view, `MtfChart` gives each frequency a fixed `chartSeries` slot, labels curve ends,
 adds marker shapes up to 21 fields and hatches heights beyond the modeled edge. Spans across pending fields use
 lighter dotted lines for both axes, the comparison and the diffraction limit, with a caption explaining the style
@@ -180,7 +180,27 @@ focus policy applied independently); "Hold the wide-open plane" waits for the ma
 and uses that exact plane at the comparison aperture. Changing the comparison aperture or plane policy resets
 diagnostic disclosure and removes superseded comparison values. `compareF8` remains the persisted overlay-on
 boolean. Stored options missing `comparisonFNumber` and old shared links default to 8; version-1 link encoding adds
-optional `n` for a non-default comparison f-number, preserving f/8 link bytes. A persisted "Diffraction limit"
+optional `n` for a non-default comparison f-number, preserving f/8 link bytes.
+Advanced adds the Aperture chart button. A stored aperture view falls back to image height while Advanced is off,
+without overwriting the preference. Its x axis is log2 f-number, with ticks at the exact charted aperture and then
+the comparison selector's slower full stops below `L.maxFstop`. Frequencies keep their fixed colors, and fields use
+the frequency view's marker shapes, with hollow markers for isolated diffraction references. The Fields selector chooses one field or the center/50 %/outermost available
+overview; overview waits for the charted result's final edge and keeps those fractions fixed across apertures.
+`useMtfApertureSweep` sends ordinary requests restricted to those fields, scales both aperture radii as for the
+comparison, and runs one aperture after another on one retained worker client. Progress names the current aperture
+and ordinal; partial values appear immediately, with gaps for pending apertures and no provisional bridges. The
+view computes only while selected, cancels on optical/settings changes and reuses the client's completed-result
+cache on return. A sweep plane selector shares persisted `comparisonFocus`: the selected policy applies
+independently at each aperture, or every point holds the charted aperture's applied plane. The caption states the
+policy; the aperture-row value table and CSV include each applied plane/shift. Overlay controls and requests are
+hidden in this view. Crosshair/keyboard readouts, the live region, diffraction references, table and exports apply
+the same stable-band and diagnostic disclosure as image height. Counts cover aperture × selected field × selected
+frequency points (one S/T pair each), counting a frequency beyond a converged field's stable band as unconverged.
+Copy CSV emits one uncaptioned row per aperture, field and selected frequency with S/T, status, stable band, image
+height, plane/shift and notes, plus enabled diffraction references. This-view CSV adds context; all sampled values
+includes every computed frequency at the sweep's sampled fields. Context records `view: aperture`, the sweep policy
+and each aperture's applied plane. SVG/PNG capture the rendered sweep and caption. Stored settings and v1 shared
+links accept the aperture view without changing older defaults. A persisted "Diffraction limit"
 toggle (off by default, disabled with a reason for geometric MTF) draws thin dotted S and dash-dot T references:
 "Diffraction limit of the same traced pupil (no aberration)". References follow the main and comparison curves'
 visibility rules, including stable bands and diagnostic disclosure, and appear in crosshair readouts, the value table and

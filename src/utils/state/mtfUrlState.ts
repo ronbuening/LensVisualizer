@@ -42,7 +42,7 @@ const SETTINGS = {
   },
   f: { key: "focus", valid: oneOf("auto", "design", "best-axial") },
   g: { key: "maxGridSize", valid: oneOf(128, 256) },
-  v: { key: "view", valid: oneOf("field", "frequency") },
+  v: { key: "view", valid: oneOf("field", "frequency", "aperture") },
   h: { key: "fieldStepPercent", valid: oneOf(...MTF_FIELD_STEPS) },
   q: { key: "frequencies", valid: isFrequencies },
   c: { key: "compareF8", valid: oneOf(true, false) },

@@ -3,7 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 import type { AnalysisRequest } from "../../optics/analysis.js";
 import type { MtfRequestOptions, MtfResult } from "../../types/mtf.js";
 import type { RuntimeLens } from "../../types/optics.js";
-import { MtfWorkerClient, type MtfJob } from "./mtfWorkerClient.js";
+import { MtfWorkerClient, mtfJobForRequest, type MtfJob } from "./mtfWorkerClient.js";
 
 /** Pause before starting a request, so slider drags do not queue work. */
 const DEBOUNCE_MS = 150;
@@ -33,23 +33,7 @@ export function useMtfComputation(
   options: MtfRequestOptions,
 ): MtfComputation {
   // Serialize controls only: compiled geometry and owned solve caches stay on their thread.
-  const job: MtfJob | null = useMemo(
-    () =>
-      request
-        ? {
-            focusT: request.preparedGeometry.focusT,
-            zoomT: request.preparedGeometry.zoomT,
-            aberrationT: request.preparedGeometry.aberrationT,
-            options: {
-              ...options,
-              pupilSemiDiameterMm: request.aperture.entrancePupilSemiDiameterMm,
-              stopSemiDiameterMm: request.aperture.stopSemiDiameterMm,
-              movementActive: request.pose?.active ?? options.movementActive,
-            },
-          }
-        : null,
-    [request, options],
-  );
+  const job: MtfJob | null = useMemo(() => (request ? mtfJobForRequest(request, options) : null), [request, options]);
   const client = useMemo(
     () => new MtfWorkerClient(L, () => new Worker(new URL("./mtf.worker.ts", import.meta.url), { type: "module" })),
     [L],

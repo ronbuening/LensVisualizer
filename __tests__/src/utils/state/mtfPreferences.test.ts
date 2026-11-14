@@ -25,6 +25,16 @@ afterEach(() => {
 });
 
 describe("MTF preferences", () => {
+  it("accepts the aperture view without changing older defaults or repairing its Advanced preference", () => {
+    expect(parseMtfPreferences({ view: "aperture", advanced: false })).toMatchObject({
+      view: "aperture",
+      advanced: false,
+    });
+    expect(parseMtfPreferences({}).view).toBe("field");
+    expect(parseMtfPreferences({ view: "frequency" }).view).toBe("frequency");
+    expect(parseMtfPreferences({ view: "unknown" }).view).toBe("field");
+  });
+
   it("keeps valid stored fields and replaces corrupt ones with defaults", () => {
     expect(parseMtfPreferences(null)).toEqual(DEFAULT_MTF_PREFERENCES);
     // Curves default to best axial focus, as a real lens is focused.

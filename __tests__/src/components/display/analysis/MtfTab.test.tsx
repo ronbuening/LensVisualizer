@@ -3,7 +3,7 @@ import { constructionFixtureData } from "../../../optics/constructionFixtures.js
 import { createAnalysisComputationContext } from "../../../../../src/optics/analysis/analysisContext.js";
 import { mtfInputs } from "../../../optics/testLensFixtures.js";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { act, cleanup, fireEvent, render, screen, within } from "@testing-library/react";
+import { act, cleanup, fireEvent, render, renderHook, screen, within } from "@testing-library/react";
 import MtfTab from "../../../../../src/components/display/analysis/MtfTab.js";
 import { mtfCsv } from "../../../../../src/components/display/analysis/mtf/mtfCsv.js";
 import MtfFieldSummary from "../../../../../src/components/display/analysis/mtf/MtfFieldSummary.js";
@@ -14,6 +14,7 @@ import lensReducer from "../../../../../src/utils/state/lensReducer.js";
 import type { LensAction } from "../../../../../src/types/state.js";
 import {
   build,
+  analysisRequestForLens,
   buildChromaticPositiveElementLens,
   buildSimplePositiveElementLens,
 } from "../../../optics/testLensFixtures.js";
@@ -31,6 +32,9 @@ import {
 } from "../../../../../src/utils/state/mtfPreferences.js";
 import { buildMtfLink, parseSharedMtfSettings } from "../../../../../src/utils/state/mtfUrlState.js";
 import { resetMtfDataWarnings } from "../../../../../src/utils/state/mtfDataWarnings.js";
+import { useMtfApertureSweep } from "../../../../../src/components/hooks/useMtfApertureSweep.js";
+import { mtfApertureRequests } from "../../../../../src/components/display/analysis/mtf/mtfApertureSweep.js";
+import { mtfSweepFields } from "../../../../../src/components/display/analysis/mtf/mtfPresentation.js";
 import { MTF_EXPORT_DISCLAIMER } from "../../../../../src/components/display/analysis/mtf/mtfExportContext.js";
 
 // The fixture's authored image plane sits far from its paraxial focus, so Auto refocuses it.
@@ -80,15 +84,19 @@ function stubWorker({
   heldFocusShiftMm?: number;
   resultForJob?: (job: MtfJob) => MtfResult;
 } = {}) {
-  const calls = { compute: 0, jobs: [] as MtfJob[] };
+  const calls = { compute: 0, workers: 0, cancels: 0, jobs: [] as MtfJob[] };
   const replies: Array<() => void> = [];
   vi.stubGlobal(
     "Worker",
     class {
       onmessage: ((e: MessageEvent<MtfWorkerReply>) => void) | null = null;
       onerror = null;
+      constructor() {
+        calls.workers++;
+      }
       terminate() {}
       postMessage(message: MtfWorkerRequest) {
+        if (message.type === "cancel") calls.cancels++;
         if (message.type !== "compute") return;
         calls.compute++;
         calls.jobs.push(message.job);
@@ -1782,10 +1790,11 @@ describe("MTF download actions", () => {
     });
   }
 
-  async function showTab() {
+  async function showTab(view: "field" | "aperture" = "field") {
     localStorage.setItem(
       MTF_PREFERENCES_KEY,
       JSON.stringify({
+        view,
         method: "geometric",
         spectrum: "reference",
         focus: "design",
@@ -1793,7 +1802,10 @@ describe("MTF download actions", () => {
         frequencies: [10],
       }),
     );
-    const worker = stubWorker({ target: focusedState });
+    const worker = stubWorker({
+      target: focusedState,
+      ...(view === "aperture" ? { resultForJob: apertureControlResult } : {}),
+    });
     const rendered = render(
       <MtfTab
         L={focusedL}
@@ -1801,14 +1813,49 @@ describe("MTF download actions", () => {
         preparedState={focusedState}
         currentEPSD={1}
         currentPhysStopSD={1}
-        fNumber={2.8}
+        fNumber={view === "aperture" ? 8 : 2.8}
       />,
     );
     await screen.findByRole("figure");
     const warning = screen.queryByRole("button", { name: "Show chart anyway" });
     if (warning) fireEvent.click(warning);
+    if (view === "aperture")
+      await vi.waitFor(() =>
+        expect(screen.getByText(/6 converged · 0 unconverged · 0 unavailable points/)).toBeTruthy(),
+      );
     return { ...rendered, worker };
   }
+
+  it("downloads the aperture view CSV, keeps its clipboard table and round-trips its shared view", async () => {
+    const { blobs, clicks } = downloads();
+    const writeText = vi.fn().mockResolvedValue(undefined);
+    vi.stubGlobal("navigator", { ...navigator, clipboard: { writeText } });
+    await showTab("aperture");
+    fireEvent.click(screen.getByRole("button", { name: "Copy CSV" }));
+    await vi.waitFor(() => expect(writeText).toHaveBeenCalledTimes(1));
+    fireEvent.click(screen.getByRole("button", { name: "Export" }));
+    fireEvent.click(screen.getByRole("menuitem", { name: "CSV — this view" }));
+    await vi.waitFor(() => expect(clicks).toHaveLength(1));
+    const csv = await readBlob(blobs[0]);
+    expect(csv).toContain("# view: aperture");
+    expect(csv).toContain("# comparison: off");
+    expect(csv).toContain("# status: complete");
+    expect(csv).toContain("# aperture_planes: f/8:");
+    expect(
+      csv
+        .split("\n")
+        .filter((line) => !/^"?# /.test(line))
+        .join("\n"),
+    ).toBe(writeText.mock.calls[0][0]);
+    expect(clicks[0].filename).toMatch(/-aperture-.*-this-view\.csv$/);
+    fireEvent.click(screen.getByRole("button", { name: "Copy MTF link" }));
+    await vi.waitFor(() => expect(writeText).toHaveBeenCalledTimes(2));
+    expect(parseSharedMtfSettings(new URL(writeText.mock.calls[1][0]).search)).toMatchObject({
+      view: "aperture",
+      advanced: true,
+      frequencies: [10],
+    });
+  });
 
   it("downloads a chosen comparison aperture with its held plane and matching CSV and SVG captions", async () => {
     const { blobs } = downloads();
@@ -1913,50 +1960,53 @@ describe("MTF download actions", () => {
     );
   });
 
-  it("downloads the rendered SVG and a 2× PNG, and discloses PNG failures", async () => {
-    const { blobs, clicks } = downloads();
-    await showTab();
-    fireEvent.click(screen.getByRole("button", { name: "Export" }));
-    fireEvent.click(screen.getByRole("menuitem", { name: "SVG" }));
-    await vi.waitFor(() => expect(clicks).toHaveLength(1));
-    expect(clicks[0].filename).toMatch(/\.svg$/);
-    const svg = await readBlob(blobs[0]);
-    expect(svg).toContain(MTF_EXPORT_DISCLAIMER);
-    expect(svg).toContain('stroke-width="2"');
-    expect(svg).toContain("font-family=");
-    vi.stubGlobal(
-      "Image",
-      class {
-        onload: (() => void) | null = null;
-        set src(_value: string) {
-          queueMicrotask(() => this.onload?.());
-        }
-      },
-    );
-    // Canvas pixels are stubbed in jsdom; the real export is checked through drawImage/toBlob.
-    const drawImage = vi.fn();
-    const canvasContext = vi
-      .spyOn(HTMLCanvasElement.prototype, "getContext")
-      .mockReturnValue({ drawImage } as unknown as CanvasRenderingContext2D);
-    vi.spyOn(HTMLCanvasElement.prototype, "toBlob").mockImplementation((callback) =>
-      callback(new Blob(["PNG pixels"], { type: "image/png" })),
-    );
-    fireEvent.click(screen.getByRole("button", { name: "Export" }));
-    fireEvent.click(screen.getByRole("menuitem", { name: "PNG" }));
-    await vi.waitFor(() => expect(clicks).toHaveLength(2));
-    expect(clicks[1].filename).toMatch(/\.png$/);
-    expect(blobs.at(-1)?.type).toBe("image/png");
-    expect(drawImage.mock.calls[0][3]).toBe(2000);
-    expect(drawImage.mock.calls[0][4]).toBeGreaterThan(1000);
-    canvasContext.mockReturnValueOnce(null);
-    fireEvent.click(screen.getByRole("button", { name: "Export" }));
-    fireEvent.click(screen.getByRole("menuitem", { name: "PNG" }));
-    expect(await screen.findByRole("alert")).toHaveProperty(
-      "textContent",
-      "PNG export unavailable in this browser. Try SVG.",
-    );
-    expect(clicks).toHaveLength(2);
-  });
+  it.each(["field", "aperture"] as const)(
+    "downloads the rendered %s SVG and a 2× PNG, and discloses PNG failures",
+    async (view) => {
+      const { blobs, clicks } = downloads();
+      await showTab(view);
+      fireEvent.click(screen.getByRole("button", { name: "Export" }));
+      fireEvent.click(screen.getByRole("menuitem", { name: "SVG" }));
+      await vi.waitFor(() => expect(clicks).toHaveLength(1));
+      expect(clicks[0].filename).toMatch(/\.svg$/);
+      const svg = await readBlob(blobs[0]);
+      expect(svg).toContain(MTF_EXPORT_DISCLAIMER);
+      expect(svg).toContain('stroke-width="2"');
+      expect(svg).toContain("font-family=");
+      vi.stubGlobal(
+        "Image",
+        class {
+          onload: (() => void) | null = null;
+          set src(_value: string) {
+            queueMicrotask(() => this.onload?.());
+          }
+        },
+      );
+      // Canvas pixels are stubbed in jsdom; the real export is checked through drawImage/toBlob.
+      const drawImage = vi.fn();
+      const canvasContext = vi
+        .spyOn(HTMLCanvasElement.prototype, "getContext")
+        .mockReturnValue({ drawImage } as unknown as CanvasRenderingContext2D);
+      vi.spyOn(HTMLCanvasElement.prototype, "toBlob").mockImplementation((callback) =>
+        callback(new Blob(["PNG pixels"], { type: "image/png" })),
+      );
+      fireEvent.click(screen.getByRole("button", { name: "Export" }));
+      fireEvent.click(screen.getByRole("menuitem", { name: "PNG" }));
+      await vi.waitFor(() => expect(clicks).toHaveLength(2));
+      expect(clicks[1].filename).toMatch(/\.png$/);
+      expect(blobs.at(-1)?.type).toBe("image/png");
+      expect(drawImage.mock.calls[0][3]).toBe(2000);
+      expect(drawImage.mock.calls[0][4]).toBeGreaterThan(1000);
+      canvasContext.mockReturnValueOnce(null);
+      fireEvent.click(screen.getByRole("button", { name: "Export" }));
+      fireEvent.click(screen.getByRole("menuitem", { name: "PNG" }));
+      expect(await screen.findByRole("alert")).toHaveProperty(
+        "textContent",
+        "PNG export unavailable in this browser. Try SVG.",
+      );
+      expect(clicks).toHaveLength(2);
+    },
+  );
 
   it("marks a computing result partial and disables downloads of superseded results", async () => {
     const { blobs, clicks } = downloads();
@@ -1976,5 +2026,262 @@ describe("MTF download actions", () => {
     fireEvent.change(screen.getByRole("combobox", { name: "MTF image plane" }), { target: { value: "design" } });
     expect(screen.getByRole("button", { name: "Export" })).toHaveProperty("disabled", true);
     expect(screen.getByRole("button", { name: "Copy CSV" })).toHaveProperty("disabled", true);
+  });
+});
+
+/** A small ordinary result supplies deterministic field availability to the UI scheduling controls. */
+function apertureControlResult(job: MtfJob): MtfResult {
+  const base = memoizedMtf(focusedState, { ...referenceOptions, fieldFractions: [0] });
+  return {
+    ...base,
+    focus: { ...base.focus!, appliedShiftMm: job.options.heldFocusShiftMm ?? 0.125 },
+    fields: (job.options.fieldFractions ?? [0, 0.5, 1]).map((fraction) => ({
+      ...base.fields[0],
+      fieldFraction: fraction,
+      imageHeightMm: fraction * 20,
+      targetImageHeightMm: fraction * 20,
+      status: "converged",
+      convergedThroughLpMm: 100,
+    })),
+  };
+}
+
+describe("MTF aperture sweeps", () => {
+  it.each([
+    { current: 1.2, open: 1.2, max: 32, expected: [1.2, 1.4, 2, 2.8, 4, 5.6, 8, 11, 16, 22] },
+    { current: 8, open: 8, max: 32, expected: [8, 11, 16, 22] },
+    { current: 5.6, open: 1.2, max: 22, expected: [5.6, 8, 11, 16] },
+    { current: 22, open: 1.2, max: 22, expected: [22] },
+  ])("builds the current-down request list at f/$current", ({ current, open, max, expected }) => {
+    const lens = build({ ...constructionFixtureData(focusedL), nominalFno: open, maxFstop: max });
+    const request = analysisRequestForLens(lens);
+    const samples = mtfApertureRequests(lens, request, current);
+    expect(samples.map((sample) => sample.fNumber)).toEqual(expected);
+    expect(samples[0].request).toBe(request);
+    for (const sample of samples.slice(1)) {
+      const stop = stopSemiDiameterForFNumber(sample.fNumber, 0, lens);
+      expect(sample.request.aperture.stopSemiDiameterMm).toBe(stop);
+      expect(sample.request.aperture.entrancePupilSemiDiameterMm).toBeCloseTo(
+        (request.aperture.entrancePupilSemiDiameterMm * stop) / request.aperture.stopSemiDiameterMm,
+        12,
+      );
+      expect(sample.request.preparedGeometry).toBe(request.preparedGeometry);
+    }
+    expect(mtfApertureRequests(lens, request, undefined)).toEqual([]);
+  });
+
+  it("uses the current zoom's stop rule and preserves ordinary image-height values at each aperture", () => {
+    const lens = build({
+      ...constructionFixtureData(focusedL),
+      zoomPositions: [40, 60],
+      nominalFno: [4, 11],
+      maxFstop: 32,
+      var: {
+        "1": [
+          [5, 5],
+          [7, 7],
+        ],
+      },
+    });
+    const request = analysisRequestForLens(lens, 0, 1);
+    const samples = mtfApertureRequests(lens, request, 12);
+    expect(samples.map((sample) => sample.fNumber)).toEqual([12, 16, 22]);
+    expect(samples[1].request.aperture.stopSemiDiameterMm).toBe(stopSemiDiameterForFNumber(16, 1, lens));
+    expect(samples[1].request.preparedGeometry.zoomT).toBe(1);
+    const options = {
+      method: "geometric",
+      spectrum: "reference",
+      focus: "best-axial",
+      maxGridSize: 32,
+      frequenciesPerMm: [10, 30],
+    } as const;
+    // The dense image-height request is an independent control for the restricted sweep's field samples.
+    for (const sample of mtfApertureRequests(focusedL, analysisRequestForLens(focusedL), 8)) {
+      const full = computeMtf(sample.request, { ...options, fieldFractions: [0, 0.25, 0.5, 0.75, 1] });
+      const restricted = computeMtf(sample.request, { ...options, fieldFractions: [0, 0.5, 1] });
+      expect(restricted.focus).toEqual(full.focus);
+      for (const field of restricted.fields)
+        expect(field).toEqual(full.fields.find((value) => value.fieldFraction === field.fieldFraction));
+    }
+  });
+
+  it("selects the frequency overview's actual edge or one requested field", () => {
+    const base = apertureControlResult({ options: referenceOptions } as MtfJob);
+    base.fields.at(-1)!.status = "unavailable";
+    base.fields.push({ ...base.fields[0], fieldFraction: 0.8 });
+    expect(mtfSweepFields(base, "overview")).toEqual([0, 0.5, 0.8]);
+    expect(mtfSweepFields(base, 0.8)).toEqual([0.8]);
+    expect(mtfSweepFields(base, 0.9)).toEqual([0, 0.5, 0.8]);
+  });
+
+  it("publishes partial results, schedules sequentially on one client, cancels and reuses its cache", async () => {
+    const { calls, finish } = stubWorker({ progress: true, resultForJob: apertureControlResult });
+    const request = analysisRequestForLens(focusedL);
+    const options = {
+      method: "geometric",
+      spectrum: "reference",
+      focus: "design",
+      fieldFractions: [0, 0.5, 1],
+    } as const;
+    const { result, rerender } = renderHook(
+      ({ active, settings }) => useMtfApertureSweep(focusedL, active ? request : null, 8, options, settings),
+      { initialProps: { active: true, settings: "first" } },
+    );
+    await vi.waitFor(() => expect(result.current.samples[0].result).not.toBeNull());
+    expect(calls.workers).toBe(1);
+    expect(calls.compute).toBe(1);
+    expect(result.current.samples.slice(1).every((sample) => sample.result === null)).toBe(true);
+    expect(calls.jobs[0].options.fieldFractions).toEqual([0, 0.5, 1]);
+    await act(async () => finish());
+    expect(calls.compute).toBe(2);
+    expect(result.current.index).toBe(1);
+    rerender({ active: false, settings: "first" });
+    expect(calls.cancels).toBe(1);
+    expect(result.current.samples).toEqual([]);
+    await act(async () => finish());
+    expect(calls.compute).toBe(2);
+    rerender({ active: true, settings: "first" });
+    await vi.waitFor(() => expect(calls.compute).toBe(3));
+    expect(calls.workers).toBe(1);
+    expect(result.current.samples[0].result).not.toBeNull();
+    await act(async () => finish());
+    await act(async () => finish());
+    expect(result.current.running).toBe(false);
+    expect(result.current.samples.every((sample) => sample.result !== null)).toBe(true);
+    const completed = calls.compute;
+    rerender({ active: false, settings: "first" });
+    rerender({ active: true, settings: "second" });
+    await vi.waitFor(() => expect(result.current.running).toBe(false));
+    expect(calls.compute).toBe(completed);
+    expect(calls.workers).toBe(1);
+  });
+
+  it("cancels a pending sweep when its optical state, settings, or lens changes", async () => {
+    const { calls, finish } = stubWorker({ progress: true, resultForJob: apertureControlResult });
+    const request = analysisRequestForLens(focusedL);
+    const options = { method: "geometric", spectrum: "reference", focus: "design", fieldFractions: [0.5] } as const;
+    const { result, rerender } = renderHook(
+      ({ current, settings, lens }) => useMtfApertureSweep(lens, request, current, options, settings),
+      { initialProps: { current: 4, settings: "one", lens: focusedL } },
+    );
+    await vi.waitFor(() => expect(result.current.samples[0].result).not.toBeNull());
+    rerender({ current: 5.6, settings: "one", lens: focusedL });
+    expect(calls.cancels).toBe(1);
+    expect(result.current.samples[0].fNumber).toBe(5.6);
+    rerender({ current: 5.6, settings: "two", lens: focusedL });
+    expect(calls.cancels).toBe(2);
+    rerender({ current: 5.6, settings: "two", lens: L });
+    expect(calls.cancels).toBe(3);
+    expect(calls.workers).toBe(2);
+    await act(async () => finish());
+    expect(calls.jobs.slice(0, 4).every((job) => job.options.fieldFractions?.length === 1)).toBe(true);
+  });
+
+  it.each(["hold", "refocus"] as const)(
+    "renders the selected sweep and applies the %s plane policy",
+    async (comparisonFocus) => {
+      localStorage.setItem(
+        MTF_PREFERENCES_KEY,
+        JSON.stringify({
+          view: "aperture",
+          advanced: true,
+          comparisonFocus,
+          compareF8: true,
+          spectrum: "reference",
+          method: "geometric",
+          frequencyField: 0.5,
+        }),
+      );
+      const { calls } = stubWorker({ resultForJob: apertureControlResult });
+      render(
+        <MtfTab
+          L={focusedL}
+          t={mockTheme}
+          preparedState={focusedState}
+          currentEPSD={1}
+          currentPhysStopSD={1}
+          fNumber={8}
+        />,
+      );
+      await screen.findByRole("figure", { name: "Simulated MTF versus aperture" });
+      await vi.waitFor(() => expect(calls.compute).toBe(3));
+      expect(calls.workers).toBe(2); // Main chart plus one sweep client, with no comparison worker.
+      expect(calls.jobs.slice(1).every((job) => JSON.stringify(job.options.fieldFractions) === "[0.5]")).toBe(true);
+      expect(calls.jobs.slice(1).map((job) => job.options.heldFocusShiftMm)).toEqual(
+        comparisonFocus === "hold" ? [0.125, 0.125] : [undefined, undefined],
+      );
+      expect(screen.queryByRole("group", { name: "Aperture comparison" })).toBeNull();
+      expect(screen.queryByRole("combobox", { name: "Comparison aperture" })).toBeNull();
+      expect(screen.getByRole("combobox", { name: "Aperture sweep image plane" })).toBeTruthy();
+      expect(screen.getByRole("group", { name: "Chart frequencies (lp/mm)" })).toBeTruthy();
+      expect(screen.getByRole("table", { name: /MTF by aperture/ })).toBeTruthy();
+      expect(await screen.findByText(/4 converged · 0 unconverged · 0 unavailable points/)).toBeTruthy();
+    },
+  );
+
+  it("reports each aperture's ordinal and draws the partial result without a comparison overlay", async () => {
+    localStorage.setItem(
+      MTF_PREFERENCES_KEY,
+      JSON.stringify({ view: "aperture", advanced: true, spectrum: "reference", method: "geometric" }),
+    );
+    const { calls, finish } = stubWorker({ progress: true, resultForJob: apertureControlResult });
+    render(
+      <MtfTab
+        L={focusedL}
+        t={mockTheme}
+        preparedState={focusedState}
+        currentEPSD={1}
+        currentPhysStopSD={1}
+        fNumber={8}
+      />,
+    );
+    await screen.findByRole("figure", { name: "Simulated MTF versus aperture" });
+    expect(calls.compute).toBe(1);
+    expect(screen.getByText(/Aperture sweep: waiting/)).toBeTruthy();
+    await act(async () => finish());
+    expect(screen.getByText("Calculating f/8.0, 1 of 2…")).toBeTruthy();
+    expect(calls.compute).toBe(2);
+    expect(screen.queryByTestId("mtf-provisional")).toBeNull();
+    expect(screen.getByRole("rowheader", { name: "f/11" }).closest("tr")!.textContent).toContain("pending");
+    await act(async () => finish());
+    expect(screen.getByText("Calculating f/11, 2 of 2…")).toBeTruthy();
+    expect(calls.compute).toBe(3);
+    await act(async () => finish());
+    expect(screen.queryByText(/Calculating f\//)).toBeNull();
+    expect(screen.getByText(/12 converged · 0 unconverged · 0 unavailable points/)).toBeTruthy();
+  });
+
+  it("falls back to image height with Advanced off, retaining and restoring the stored view", async () => {
+    localStorage.setItem(
+      MTF_PREFERENCES_KEY,
+      JSON.stringify({ view: "aperture", advanced: false, spectrum: "reference" }),
+    );
+    const { calls } = stubWorker({ resultForJob: apertureControlResult });
+    render(
+      <MtfTab
+        L={focusedL}
+        t={mockTheme}
+        preparedState={focusedState}
+        currentEPSD={1}
+        currentPhysStopSD={1}
+        fNumber={8}
+      />,
+    );
+    await screen.findByRole("figure", { name: "Simulated MTF versus image height" });
+    expect(screen.queryByRole("button", { name: "Aperture" })).toBeNull();
+    expect(screen.getByRole("button", { name: "Image height" }).getAttribute("aria-pressed")).toBe("true");
+    expect(JSON.parse(localStorage.getItem(MTF_PREFERENCES_KEY)!).view).toBe("aperture");
+    expect(calls.compute).toBe(1);
+    fireEvent.click(screen.getByRole("button", { name: "Advanced" }));
+    await screen.findByRole("figure", { name: "Simulated MTF versus aperture" });
+    await vi.waitFor(() => expect(calls.compute).toBe(3));
+    fireEvent.click(screen.getByRole("button", { name: "Frequency" }));
+    await screen.findByRole("figure", { name: "Simulated MTF versus spatial frequency" });
+    const completed = calls.compute;
+    fireEvent.click(screen.getByRole("button", { name: "Aperture" }));
+    await vi.waitFor(() =>
+      expect(screen.getByText(/12 converged · 0 unconverged · 0 unavailable points/)).toBeTruthy(),
+    );
+    expect(calls.compute).toBe(completed);
   });
 });

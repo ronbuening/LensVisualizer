@@ -1,6 +1,6 @@
 /** Shared chart/table/export policy: numerical estimates require an explicit diagnostic view. */
 import type { MtfFrequencyField, MtfPixelPitch } from "../../../../utils/state/mtfPreferences.js";
-import type { MtfFieldResult, MtfResult } from "../../../../types/mtf.js";
+import type { MtfApertureSample, MtfFieldResult, MtfResult } from "../../../../types/mtf.js";
 
 /**
  * Name the numerical status without implying physical accuracy.
@@ -59,6 +59,37 @@ export function resolveMtfFrequencyField(result: MtfResult | null, choice: MtfFr
   return typeof choice === "number" && result?.fields.some((field) => field.fieldFraction === choice)
     ? choice
     : "overview";
+}
+
+/**
+ * Match the frequency view's overview at the charted aperture, keeping its fields fixed during a sweep.
+ * @param result - charted result used to identify the outermost available field
+ * @param choice - selected reference-height fraction or overview
+ * @returns selected fractions in increasing order
+ */
+export function mtfSweepFields(result: MtfResult | null, choice: MtfFrequencyField): number[] {
+  const selected = resolveMtfFrequencyField(result, choice);
+  if (typeof selected === "number") return [selected];
+  const available = (result?.fields ?? [])
+    .filter((f) => f.status === "converged" || f.status === "unconverged")
+    .sort((a, b) => a.fieldFraction - b.fieldFraction);
+  const edge = available.at(-1);
+  return [0, 0.5, ...(edge && edge.fieldFraction > 0.5 ? [edge.fieldFraction] : [])];
+}
+
+/**
+ * Count numerical points (one S/T pair), including frequencies outside a field's stable band.
+ * @param sample - computed or reserved aperture
+ * @param fraction - fixed reference-height field
+ * @param frequency - charted spatial frequency in lp/mm
+ * @returns numerical availability, independent of diagnostic disclosure
+ */
+export function mtfAperturePointStatus(sample: MtfApertureSample, fraction: number, frequency: number) {
+  if (!sample.result) return "pending";
+  const field = sample.result.fields.find((f) => f.fieldFraction === fraction);
+  if (!field) return sample.result.support.available ? "pending" : "unavailable";
+  if (field.status === "converged" && !mtfValueVisible(field, frequency)) return "unconverged";
+  return field.status;
 }
 
 /**

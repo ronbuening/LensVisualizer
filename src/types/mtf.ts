@@ -1,5 +1,11 @@
 /** Explicit inputs and serializable outputs for simulated, image-space lens MTF. */
 import type { FiniteConjugate } from "./optics.js";
+
+/** One marked aperture in a UI sweep; null reserves a point not yet computed. */
+export interface MtfApertureSample {
+  fNumber: number;
+  result: MtfResult | null;
+}
 /**
  * `geometric` sums ray landings; `diffraction` shears the traced pupil against itself and weights each overlap by the
  * rays' landing errors, which adds the diffraction of the actual aperture.

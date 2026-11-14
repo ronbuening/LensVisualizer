@@ -91,6 +91,12 @@ export default function MtfControls({
   comparisonFNumber,
   result = null,
 }: MtfControlsProps) {
+  const view = preferences.view === "aperture" && !preferences.advanced ? "field" : preferences.view;
+  const views: ReadonlyArray<[MtfChartView, string]> = [
+    ["field", "Image height"],
+    ["frequency", "Frequency"],
+    ...(preferences.advanced ? [["aperture", "Aperture"] as [MtfChartView, string]] : []),
+  ];
   const selectStyle: CSSProperties = { ...selector(t, false), fontSize: 11, padding: "5px 26px 5px 8px" };
   const touchHelp = useMediaQuery(HOVERLESS_QUERY, { ssrDefault: false });
   const toggleFrequency = (frequency: MtfChartFrequency) => {
@@ -176,18 +182,14 @@ export default function MtfControls({
       ) : null}
       <div style={{ display: "flex", flexWrap: "wrap", gap: 8, alignItems: "center" }}>
         <ToggleGroup label="MTF chart" t={t}>
-          {(
-            [
-              ["field", "Image height"],
-              ["frequency", "Frequency"],
-            ] as ReadonlyArray<[MtfChartView, string]>
-          ).map(([view, text], i) => (
+          {views.map(([choice, text], i) => (
             <Toggle
-              key={view}
+              key={choice}
               t={t}
-              active={preferences.view === view}
-              last={i === 1}
-              onClick={() => onChange({ view })}
+              active={view === choice}
+              last={i === 1 || i === views.length - 1}
+              separator={choice === "aperture"}
+              onClick={() => onChange({ view: choice })}
             >
               {text}
             </Toggle>
@@ -224,7 +226,7 @@ export default function MtfControls({
             <span style={{ color: t.muted }}>Requires diffraction method.</span>
           ) : null}
         </span>
-        {preferences.view === "frequency" ? (
+        {view !== "field" ? (
           <>
             <Select<MtfFrequencyField>
               t={t}
@@ -244,22 +246,24 @@ export default function MtfControls({
               ]}
               onChange={(frequencyField) => onChange({ frequencyField })}
             />
-            <Select<MtfPixelPitch | "none">
-              t={t}
-              label="Pixel pitch"
-              help="Nyquist is 500 divided by pixel pitch in µm, in lp/mm. It is the sampling limit of a pixel grid, not a prediction of camera or sensor MTF."
-              touchHelp={touchHelp}
-              style={selectStyle}
-              value={preferences.pixelPitchUm ?? "none"}
-              options={[
-                ["none", "Pixel pitch: none"],
-                ...MTF_PIXEL_PITCHES.map((pitch): [MtfPixelPitch, string] => [pitch, `Pixel pitch: ${pitch} µm`]),
-              ]}
-              onChange={(pitch) => onChange({ pixelPitchUm: pitch === "none" ? null : pitch })}
-            />
+            {view === "frequency" ? (
+              <Select<MtfPixelPitch | "none">
+                t={t}
+                label="Pixel pitch"
+                help="Nyquist is 500 divided by pixel pitch in µm, in lp/mm. It is the sampling limit of a pixel grid, not a prediction of camera or sensor MTF."
+                touchHelp={touchHelp}
+                style={selectStyle}
+                value={preferences.pixelPitchUm ?? "none"}
+                options={[
+                  ["none", "Pixel pitch: none"],
+                  ...MTF_PIXEL_PITCHES.map((pitch): [MtfPixelPitch, string] => [pitch, `Pixel pitch: ${pitch} µm`]),
+                ]}
+                onChange={(pitch) => onChange({ pixelPitchUm: pitch === "none" ? null : pitch })}
+              />
+            ) : null}
           </>
         ) : null}
-        {comparisonFNumbers.length > 0 ? (
+        {view !== "aperture" && comparisonFNumbers.length > 0 ? (
           <ToggleGroup label="Aperture comparison" t={t}>
             <Toggle
               t={t}
@@ -272,7 +276,7 @@ export default function MtfControls({
             </Toggle>
           </ToggleGroup>
         ) : null}
-        {comparisonFNumbers.length > 0 && preferences.advanced ? (
+        {view !== "aperture" && comparisonFNumbers.length > 0 && preferences.advanced ? (
           <Select
             t={t}
             label="Comparison aperture"
@@ -284,7 +288,7 @@ export default function MtfControls({
             onChange={(comparisonFNumber) => onChange({ comparisonFNumber })}
           />
         ) : null}
-        {comparisonFNumbers.length > 0 && preferences.compareF8 ? (
+        {view !== "aperture" && comparisonFNumbers.length > 0 && preferences.compareF8 ? (
           <Select
             t={t}
             label={`f/${comparisonFNumber} comparison image plane`}
@@ -299,7 +303,22 @@ export default function MtfControls({
             onChange={(comparisonFocus) => onChange({ comparisonFocus })}
           />
         ) : null}
-        {preferences.view === "field" ? (
+        {view === "aperture" ? (
+          <Select
+            t={t}
+            label="Aperture sweep image plane"
+            help="Apply the selected image-plane policy at each aperture, or hold exactly the charted aperture's plane throughout the sweep."
+            touchHelp={touchHelp}
+            style={selectStyle}
+            value={preferences.comparisonFocus}
+            options={[
+              ["refocus", "Refocus at each aperture"],
+              ["hold", "Hold the charted aperture's plane"],
+            ]}
+            onChange={(comparisonFocus) => onChange({ comparisonFocus })}
+          />
+        ) : null}
+        {view !== "frequency" ? (
           <ToggleGroup label="Chart frequencies (lp/mm)" t={t}>
             {MTF_CHART_FREQUENCIES.map((frequency, i) => (
               <Toggle
@@ -469,6 +488,7 @@ function Toggle({
   last,
   title,
   disabled = false,
+  separator = false,
   onClick,
   children,
 }: {
@@ -477,6 +497,7 @@ function Toggle({
   last: boolean;
   title?: string;
   disabled?: boolean;
+  separator?: boolean;
   onClick: () => void;
   children: ReactNode;
 }) {
@@ -489,6 +510,7 @@ function Toggle({
       onClick={onClick}
       style={{
         ...toggleBtn(t, active, { hasRightBorder: !last, padding: "5px 9px" }),
+        ...(separator ? { borderLeft: `1px solid ${t.toggleBorder}` } : {}),
         ...(disabled ? { opacity: 0.42, cursor: "not-allowed" } : {}),
       }}
     >

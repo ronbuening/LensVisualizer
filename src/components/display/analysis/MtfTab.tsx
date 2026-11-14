@@ -7,10 +7,13 @@ import type { AnalysisComputationContext } from "../../../optics/analysis.js";
 import type { PreparedOpticalState } from "../../../optics/types.js";
 import type { Theme } from "../../../types/theme.js";
 import { assessMtfDataLimitations, assessMtfSupport, resolveMtfSpectrum } from "../../../optics/mtf.js";
-import { formatFNumber, prepareRuntimeState, stopSemiDiameterForFNumber } from "../../../optics/optics.js";
+import { formatFNumber, prepareRuntimeState } from "../../../optics/optics.js";
 import { publishedFocusStations, publishedZoomStations } from "../../../optics/publishedStations.js";
 import { LensDispatchContext, LensStateContext } from "../../../utils/state/LensContext.js";
 import { SET_PATENT_STATION } from "../../../utils/state/lensReducer.js";
+import { useMtfApertureSweep } from "../../hooks/useMtfApertureSweep.js";
+import { mtfRequestAtAperture } from "./mtf/mtfApertureSweep.js";
+import { mtfSweepFields } from "./mtf/mtfPresentation.js";
 import { useMtfComputation } from "../../hooks/useMtfComputation.js";
 import { useMtfDataWarning } from "../../hooks/useMtfDataWarning.js";
 import { useSharedMtfPreferences } from "../../../utils/state/useSharedMtfPreferences.js";
@@ -89,6 +92,8 @@ export default function MtfTab({
 }: MtfTabProps) {
   const [preferences, updatePreferences, sharedSettings, useStoredSettings] = useSharedMtfPreferences();
   const chartRef = useRef<HTMLElement>(null);
+  // Keep the stored view so Advanced can restore it; every visible view has a switch-away button.
+  const view = preferences.view === "aperture" && !preferences.advanced ? "field" : preferences.view;
   const request = useMemo(
     () =>
       analysisContext?.request ??
@@ -135,8 +140,13 @@ export default function MtfTab({
     ? preferences.comparisonFNumber
     : (comparisonFNumbers[0] ?? preferences.comparisonFNumber);
   const comparisonAperture = `f/${comparisonFNumber}`;
-  const comparisonEnabled = comparisonFNumbers.length > 0 && preferences.compareF8;
-  const comparisonPolicy = comparisonEnabled ? `${preferences.comparisonFocus}/${comparisonFNumber}` : null;
+  const comparisonEnabled = view !== "aperture" && comparisonFNumbers.length > 0 && preferences.compareF8;
+  const comparisonPolicy =
+    view === "aperture"
+      ? `aperture/${preferences.comparisonFocus}/${preferences.frequencyField}`
+      : comparisonEnabled
+        ? `${preferences.comparisonFocus}/${comparisonFNumber}`
+        : null;
   // Disclosure belongs to these controls, not to a later lens, aperture or spectrum.
   const [presentation, setPresentation] = useState({ request, options, comparisonPolicy, diagnostic: false });
   if (
@@ -187,17 +197,29 @@ export default function MtfTab({
       !(job.aperture.stopSemiDiameterMm > 0)
     )
       return null;
-    const stop = stopSemiDiameterForFNumber(comparisonFNumber, job.preparedGeometry.zoomT, L);
-    // At one state the paraxial entrance pupil is proportional to the stop.
-    const pupil = (job.aperture.entrancePupilSemiDiameterMm * stop) / job.aperture.stopSemiDiameterMm;
-    return createAnalysisRequest({
-      preparedState: job.preparedGeometry,
-      dynamicEFL: job.dynamicEFL,
-      currentEPSD: pupil,
-      currentPhysStopSD: stop,
-      perspectiveTraceContext: job.perspectiveTraceContext,
-    });
+    return mtfRequestAtAperture(L, job, comparisonFNumber);
   }, [job, comparisonEnabled, comparisonFNumber, holdComparison, mainShift, L]);
+  const sweepFieldKey = mtfSweepFields(shown, preferences.frequencyField).join(",");
+  const sweepOptions = useMemo(
+    () => ({ ...comparisonOptions, fieldFractions: sweepFieldKey.split(",").map(Number) }),
+    [comparisonOptions, sweepFieldKey],
+  );
+  // The overview's outermost available field is final only after the charted request completes.
+  const sweepReady =
+    !stale &&
+    shown &&
+    (typeof preferences.frequencyField === "number" || !running) &&
+    (!holdComparison || mainShift !== undefined);
+  const sweep = useMtfApertureSweep(
+    L,
+    view === "aperture" && sweepReady ? job : null,
+    fNumber,
+    sweepOptions,
+    JSON.stringify(preferences),
+  );
+  const apertureCaption = holdComparison
+    ? "Aperture sweep holds the charted aperture's image plane at every aperture."
+    : "Aperture sweep applies the selected image-plane policy independently at each aperture (refocus).";
   const comparison = useMtfComputation(L, comparisonJob, comparisonOptions);
   const comparisonShown = comparisonJob && !comparison.stale && !stale ? comparison.result : null;
   // A result kept from an earlier request says nothing about the label on screen.
@@ -244,6 +266,20 @@ export default function MtfTab({
         comparisonFNumber={comparisonFNumber}
         result={shown}
       />
+      {view === "aperture" ? (
+        sweep.error ? (
+          <p role="alert">{`Aperture sweep: ${sweep.error}`}</p>
+        ) : sweep.running ? (
+          <p
+            role="status"
+            style={muted}
+          >{`Calculating f/${formatFNumber(sweep.samples[sweep.index].fNumber)}, ${sweep.index + 1} of ${sweep.samples.length}…`}</p>
+        ) : !sweepReady ? (
+          <p role="status" style={muted}>
+            Aperture sweep: waiting for the charted aperture's fields and image plane…
+          </p>
+        ) : null
+      ) : null}
       {comparisonEnabled ? (
         comparisonJob && comparison.error ? (
           <p role="alert">{`${comparisonAperture} comparison: ${comparison.error}`}</p>
@@ -310,7 +346,10 @@ export default function MtfTab({
             <MtfChart
               exportRef={chartRef}
               result={shown}
-              view={preferences.view}
+              apertureSamples={sweep.samples}
+              apertureFields={sweepOptions.fieldFractions}
+              apertureCaption={apertureCaption}
+              view={view}
               frequencies={preferences.frequencies}
               t={t}
               stale={stale}
@@ -348,6 +387,9 @@ export default function MtfTab({
             ) : null}
             <MtfFieldSummary
               result={shown}
+              apertureSamples={sweep.samples}
+              apertureFields={sweepOptions.fieldFractions}
+              apertureCaption={apertureCaption}
               frequencies={preferences.frequencies}
               t={t}
               diagnostic={diagnostic}
@@ -357,18 +399,20 @@ export default function MtfTab({
               comparisonFNumber={comparisonFNumber}
               mainLabel={fNumber ? `f/${formatFNumber(fNumber)} (main)` : "Main aperture"}
               diffractionLimit={preferences.diffractionLimit && preferences.method === "diffraction"}
-              pixelPitchUm={preferences.view === "frequency" ? preferences.pixelPitchUm : null}
+              pixelPitchUm={view === "frequency" ? preferences.pixelPitchUm : null}
               advanced={preferences.advanced}
               getMtfLink={() => buildMtfLink(window.location.href, preferences)}
               chartRef={chartRef}
-              view={preferences.view}
+              view={view}
               frequencyField={preferences.frequencyField}
               exportComparison={comparisonShown}
               getExportContext={() =>
                 buildMtfExportContext({
                   lens: L,
                   result: shown,
-                  preferences,
+                  preferences: { ...preferences, view },
+                  apertureSamples: view === "aperture" ? sweep.samples : undefined,
+                  apertureCaption: view === "aperture" ? apertureCaption : undefined,
                   focalLengthMm: focalLengthMm ?? (request.dynamicEFL || L.EFL),
                   fNumber,
                   zoomT: preparedState.zoomT,
@@ -376,7 +420,10 @@ export default function MtfTab({
                   spectrumNote: spectrum.note,
                   link: buildMtfLink(window.location.href, preferences),
                   date: new Date(),
-                  partial: running || (comparisonEnabled && (comparison.running || !comparisonJob)),
+                  partial:
+                    view === "aperture"
+                      ? !sweepReady || sweep.running || !!sweep.error
+                      : running || (comparisonEnabled && (comparison.running || !comparisonJob)),
                   diagnostic,
                   comparison: comparisonShown,
                   comparisonFNumber,

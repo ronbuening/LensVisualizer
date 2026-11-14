@@ -1,5 +1,5 @@
 /** Numeric sagittal/tangential MTF per field at the displayed frequencies. */
-import type { MtfResult } from "../../../../types/mtf.js";
+import type { MtfApertureSample, MtfResult } from "../../../../types/mtf.js";
 import type { Theme } from "../../../../types/theme.js";
 import type { MtfChartFrequency, MtfPixelPitch } from "../../../../utils/state/mtfPreferences.js";
 import {
@@ -9,12 +9,16 @@ import {
   mtfLimitValue,
   mtfValueVisible,
   mtfFieldStatusLabel,
+  mtfAperturePointStatus,
   mtfStableThroughLabel,
 } from "./mtfPresentation.js";
 import { textRun } from "../../../../utils/text.js";
 
 interface MtfValueTableProps {
   result: MtfResult;
+  apertureSamples?: readonly MtfApertureSample[];
+  apertureFields?: readonly number[];
+  apertureCaption?: string;
   frequencies: readonly MtfChartFrequency[];
   t: Theme;
   diagnostic?: boolean;
@@ -26,10 +30,23 @@ interface MtfValueTableProps {
   advanced?: boolean;
 }
 
+interface ApertureValueTableProps {
+  samples: readonly MtfApertureSample[];
+  fields: readonly number[];
+  frequencies: readonly MtfChartFrequency[];
+  t: Theme;
+  diagnostic: boolean;
+  diffractionLimit: boolean;
+  caption?: string;
+}
+
 const STATUS_TEXT = { converged: "", unconverged: "unconverged", unavailable: "—", pending: "…" } as const;
 
 export default function MtfValueTable({
   result,
+  apertureSamples,
+  apertureFields,
+  apertureCaption,
   frequencies,
   t,
   diagnostic = false,
@@ -40,6 +57,18 @@ export default function MtfValueTable({
   pixelPitchUm = null,
   advanced = false,
 }: MtfValueTableProps) {
+  if (apertureSamples)
+    return (
+      <ApertureValueTable
+        samples={apertureSamples}
+        fields={apertureFields ?? []}
+        frequencies={frequencies}
+        t={t}
+        diagnostic={diagnostic}
+        diffractionLimit={diffractionLimit}
+        caption={apertureCaption}
+      />
+    );
   const showLimit = diffractionLimit && result.method === "diffraction";
   const columns = frequencies.filter((f) => result.frequenciesPerMm.includes(f));
   const sources = [
@@ -203,6 +232,79 @@ export default function MtfValueTable({
               );
             }),
           )}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+/** Rows stay aligned with aperture ticks while every field/frequency obeys the chart's disclosure. */
+function ApertureValueTable({
+  samples,
+  fields,
+  frequencies,
+  t,
+  diagnostic,
+  diffractionLimit,
+  caption,
+}: ApertureValueTableProps) {
+  const cell = { padding: "2px 6px", textAlign: "right" as const };
+  const columns = fields.flatMap((fraction) => frequencies.map((frequency) => ({ fraction, frequency })));
+  return (
+    <div style={{ overflowX: "auto", marginTop: 6 }}>
+      <table style={{ borderCollapse: "collapse", color: t.value, fontSize: 10.5 }}>
+        <caption style={{ textAlign: "left", color: t.muted, paddingBottom: 4 }}>
+          {`MTF by aperture, sagittal / tangential — ${diagnostic ? "diagnostic estimates included" : "converged values only"}. ${caption ?? ""}${diffractionLimit ? ` ${MTF_DIFFRACTION_LIMIT_LABEL}.` : ""}`}
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col" style={cell}>
+              f-number
+            </th>
+            <th scope="col" style={cell}>
+              Image plane / shift (mm)
+            </th>
+            {columns.map(({ fraction, frequency }) => (
+              <th scope="col" style={cell} key={`${fraction}/${frequency}`}>
+                {`${(fraction * 100).toFixed(0)} % · ${frequency} lp/mm S / T; status; stable through${diffractionLimit ? "; limit S / T" : ""}`}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          {samples.map((sample) => (
+            <tr key={sample.fNumber}>
+              <th scope="row" style={cell}>{`f/${sample.fNumber}`}</th>
+              <td style={cell}>
+                {sample.result?.focus
+                  ? `${sample.result.focus.mode} / ${sample.result.focus.appliedShiftMm.toFixed(4)}`
+                  : "—"}
+              </td>
+              {columns.map(({ fraction, frequency }) => {
+                const field = sample.result?.fields.find((f) => f.fieldFraction === fraction);
+                const index = sample.result?.frequenciesPerMm.indexOf(frequency) ?? -1;
+                const visible = field && index >= 0 && mtfValueVisible(field, frequency, diagnostic);
+                const status = mtfAperturePointStatus(sample, fraction, frequency);
+                const limitS =
+                  field && sample.result?.method === "diffraction" && index >= 0
+                    ? mtfLimitValue(field, "sagittal", index, frequency, diagnostic)
+                    : null;
+                const limitT =
+                  field && sample.result?.method === "diffraction" && index >= 0
+                    ? mtfLimitValue(field, "tangential", index, frequency, diagnostic)
+                    : null;
+                return (
+                  <td
+                    key={`${fraction}/${frequency}`}
+                    style={cell}
+                    title={field ? [...field.notes, field.message].filter(Boolean).join("; ") : undefined}
+                  >
+                    {`${visible ? `${field.sagittal[index].toFixed(3)} / ${field.tangential[index].toFixed(3)}` : "—"}; ${status}; ${field ? mtfStableThroughLabel(field) : "Not established"}${diffractionLimit ? `; limit ${limitS != null && limitT != null ? `${limitS.toFixed(3)} / ${limitT.toFixed(3)}` : "—"}` : ""}`}
+                  </td>
+                );
+              })}
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>

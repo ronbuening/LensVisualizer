@@ -6,7 +6,7 @@
  * their units. Data starts at the first decoded non-comment record.
  */
 import type { RuntimeLens } from "../../../../types/optics.js";
-import type { MtfResult } from "../../../../types/mtf.js";
+import type { MtfApertureSample, MtfResult } from "../../../../types/mtf.js";
 import type { MtfPreferences } from "../../../../utils/state/mtfPreferences.js";
 import { SITE_NAME } from "../../../../utils/catalog/lensMetadata.js";
 import { fopenAtZoomClamped, formatFNumber } from "../../../../optics/optics.js";
@@ -32,6 +32,8 @@ interface MtfExportContextInput {
   comparison?: MtfResult | null;
   comparisonFNumber?: number;
   comparisonRequested?: boolean;
+  apertureSamples?: readonly MtfApertureSample[];
+  apertureCaption?: string;
 }
 
 function marketedFNumberAtZoom(value: number | readonly number[] | undefined, zoomT: number): number | undefined {
@@ -95,7 +97,20 @@ export function buildMtfExportContext(input: MtfExportContextInput): MtfExportCo
     reference_image_height: result.geometry
       ? `${result.geometry.referenceHeightMm} mm; ${result.geometry.basis}`
       : "not yet available",
-    view: preferences.view === "field" ? "image height" : "spatial frequency",
+    view:
+      preferences.view === "aperture"
+        ? "aperture"
+        : preferences.view === "field"
+          ? "image height"
+          : "spatial frequency",
+    ...(preferences.view === "aperture"
+      ? {
+          aperture_sweep: input.apertureCaption ?? preferences.comparisonFocus,
+          aperture_planes: (input.apertureSamples ?? [])
+            .map(({ fNumber, result }) => `f/${fNumber}: ${result ? focus(result) : "pending"}`)
+            .join("; "),
+        }
+      : {}),
     values: input.diagnostic ? "diagnostic estimates included" : "converged band only",
     diffraction_limit: preferences.diffractionLimit && result.method === "diffraction" ? "shown" : "off",
     pixel_pitch:
@@ -143,6 +158,7 @@ export function mtfCaptionLines(context: MtfExportContext, maxLineLength: number
       : `${spectrum === "cdf" ? "C/d/F" : spectrum}, ${lines.length} lines ${spectrum === "photopic" ? "470–650" : `${Math.min(...wavelengths).toFixed(0)}–${Math.max(...wavelengths).toFixed(0)}`} nm`;
   const [comparisonAperture, ...comparisonFocus] = context.comparison.split("; ");
   const options = [
+    ...(context.aperture_sweep ? [context.aperture_sweep] : []),
     ...(context.comparison === "off"
       ? []
       : [

@@ -1,9 +1,9 @@
 // @vitest-environment jsdom
 /** Synthetic chart controls keep presentation changes independent of optical-engine results. */
 import { afterEach, describe, expect, it, vi } from "vitest";
-import { cleanup, fireEvent, render, screen } from "@testing-library/react";
+import { cleanup, fireEvent, render, screen, within } from "@testing-library/react";
 import MtfChart from "../../../../../src/components/display/analysis/MtfChart.js";
-import type { MtfResult } from "../../../../../src/types/mtf.js";
+import type { MtfApertureSample, MtfResult } from "../../../../../src/types/mtf.js";
 import { mockTheme } from "../../../../testUtils.js";
 import type { RuntimeLens } from "../../../../../src/types/optics.js";
 import { DEFAULT_MTF_PREFERENCES } from "../../../../../src/utils/state/mtfPreferences.js";
@@ -12,7 +12,12 @@ import {
   mtfContextBlock,
   MTF_EXPORT_DISCLAIMER,
 } from "../../../../../src/components/display/analysis/mtf/mtfExportContext.js";
-import { mtfAllSamplesCsv, mtfViewCsv } from "../../../../../src/components/display/analysis/mtf/mtfExportCsv.js";
+import MtfFieldSummary from "../../../../../src/components/display/analysis/mtf/MtfFieldSummary.js";
+import {
+  mtfApertureCsv,
+  mtfAllSamplesCsv,
+  mtfViewCsv,
+} from "../../../../../src/components/display/analysis/mtf/mtfExportCsv.js";
 import { mtfCsv } from "../../../../../src/components/display/analysis/mtf/mtfCsv.js";
 import { buildMtfSvg } from "../../../../../src/components/display/analysis/mtf/mtfExportImage.js";
 import {
@@ -168,6 +173,98 @@ describe("MTF export builders", () => {
     const lines = [...doc.querySelectorAll('[aria-label="MTF export caption"] text')].map((node) => node.textContent!);
     return { image, doc, lines };
   };
+  it("exports aperture samples, applied planes, visibility and context for both CSV scopes and images", () => {
+    const result = captionResult();
+    result.fields[0].notes = ["=SUM(1,2)"];
+    const uncertain = structuredClone(result);
+    uncertain.fields[0].status = "unconverged";
+    uncertain.fields[2].convergedThroughLpMm = 10;
+    uncertain.fields[4].status = "unavailable";
+    uncertain.focus!.mode = "held";
+    const samples = [
+      { fNumber: 2, result },
+      { fNumber: 2.8, result: uncertain },
+      { fNumber: 4, result: null },
+    ];
+    const preferences = {
+      ...DEFAULT_MTF_PREFERENCES,
+      view: "aperture" as const,
+      advanced: true,
+      comparisonFocus: "hold" as const,
+    };
+    const context = contextFor(result, {
+      preferences,
+      apertureSamples: samples,
+      apertureCaption: "Holds the charted aperture's image plane.",
+      partial: true,
+    });
+    expect(context.view).toBe("aperture");
+    expect(context.status).toBe("partial");
+    expect(context.aperture_planes).toContain("f/2.8: held; shift");
+    expect(context.aperture_planes).toContain("f/4: pending");
+    const options = {
+      result,
+      context,
+      view: "aperture" as const,
+      frequencies: [10, 30] as const,
+      apertureSamples: samples,
+      apertureFields: [0, 0.5, 1],
+      diffractionLimit: true,
+    };
+    const raw = parseCsv(mtfApertureCsv(options));
+    expect(raw[0]).toEqual([
+      "f-number",
+      "Field (%)",
+      "Frequency (lp/mm)",
+      "Image height (mm)",
+      "Sagittal",
+      "Tangential",
+      "Status",
+      "Stable through (lp/mm)",
+      "Image plane",
+      "Shift from authored plane (mm)",
+      "Notes",
+      "Diffraction limit sagittal",
+      "Diffraction limit tangential",
+    ]);
+    expect(raw).toHaveLength(19);
+    expect(raw[1].slice(0, 10)).toEqual([
+      "2",
+      "0",
+      "10",
+      "0",
+      "0.9000",
+      "0.8000",
+      "converged",
+      "100",
+      "best-axial",
+      String(result.focus!.appliedShiftMm),
+    ]);
+    expect(raw[1][10]).toBe("'=SUM(1,2)");
+    expect(raw[7].slice(4, 7)).toEqual(["", "", "unconverged"]);
+    expect(raw[10].slice(4, 7)).toEqual(["", "", "unconverged"]);
+    expect(raw[11].slice(4, 7)).toEqual(["", "", "unavailable"]);
+    expect(raw[13].slice(4, 7)).toEqual(["", "", "pending"]);
+    for (const row of raw.slice(7)) if (row[4] === "") expect(row.slice(11)).toEqual(["", ""]);
+    const diagnostic = parseCsv(mtfApertureCsv({ ...options, diagnostic: true }));
+    expect(diagnostic[7][4]).toBe("0.9000");
+    expect(diagnostic[10][4]).toBe("0.6000");
+    expect(diagnostic[11][4]).toBe("");
+    expect(diagnostic[7][6]).toContain("diagnostic estimates included");
+    const viewed = parseCsv(mtfViewCsv(options));
+    expect(viewed.filter((row) => !row[0].startsWith("# "))).toEqual(raw);
+    expect(viewed.find((row) => row[0] === "# view: aperture")).toBeTruthy();
+    const all = parseCsv(mtfAllSamplesCsv(options)).filter((row) => !row[0].startsWith("# "));
+    expect(all).toHaveLength(1 + 3 * 3 * result.frequenciesPerMm.length);
+    expect(all.some((row) => row[2] === "100")).toBe(true);
+    const { container } = render(<MtfChart {...options} t={mockTheme} apertureCaption={context.aperture_sweep} />);
+    const image = buildMtfSvg(snapshotMtfChart(container.querySelector("figure")!), context, mockTheme);
+    expect(image.svg).toContain("# view: aperture");
+    expect(image.svg).toContain("f-number");
+    expect(image.svg).toContain("Holds the charted aperture");
+    expect(image.svg).toContain("partial result");
+  });
+
   it("exports working aperture and finite conjugate facts without lengthening the caption", () => {
     const result = syntheticResult();
     const infinity = contextFor(result);
@@ -1083,5 +1180,153 @@ describe("MTF chart presentation", () => {
         },
       ]
     `);
+  });
+});
+
+describe("MTF aperture chart", () => {
+  it("uses log2 aperture ticks, field shapes, exact readouts and gaps for partial results", () => {
+    const result = syntheticResult();
+    const samples: MtfApertureSample[] = [
+      { fNumber: 2, result },
+      { fNumber: 2.8, result: null },
+      { fNumber: 4, result },
+    ];
+    const props = {
+      result,
+      view: "aperture" as const,
+      apertureSamples: samples,
+      apertureFields: [0, 0.5, 1],
+      frequencies: [10] as const,
+      t: mockTheme,
+      advanced: true,
+      diffractionLimit: true,
+      apertureCaption: "Holds the charted aperture's image plane.",
+    };
+    const { container, rerender } = render(<MtfChart {...props} />);
+    expect(screen.getByRole("figure", { name: "Simulated MTF versus aperture" })).toBeTruthy();
+    expect(screen.getByText("f-number")).toBeTruthy();
+    const tickX = (label: string) =>
+      Number([...container.querySelectorAll("svg text")].find((text) => text.textContent === label)!.getAttribute("x"));
+    expect(tickX("2.0")).toBe(40);
+    expect(tickX("4.0")).toBe(350);
+    expect(tickX("2.8")).toBeCloseTo(40 + 310 * Math.log2(1.4), 10);
+    expect(screen.queryByTestId("mtf-provisional")).toBeNull();
+    const paths = [...container.querySelectorAll('path[stroke-width="2"]')];
+    expect(paths).toHaveLength(6);
+    expect(paths.every((path) => !(path.getAttribute("d") ?? "").includes("L"))).toBe(true);
+    const markers = screen.getAllByTestId("mtf-aperture-markers");
+    expect(markers).toHaveLength(3);
+    expect(markers[0].querySelectorAll("circle")).toHaveLength(4);
+    expect(markers[1].querySelectorAll("rect")).toHaveLength(4);
+    expect(markers[2].querySelectorAll("path")).toHaveLength(4);
+    const chart = screen.getByRole("group", { name: /MTF chart values/ });
+    fireEvent.keyDown(chart, { key: "Home" });
+    const live = () => container.querySelector('[aria-live="polite"]')!.textContent!;
+    expect(live()).toContain("f/2.0 — 10 lp/mm · Center (converged; stable through: 100 lp/mm) S 0.900 T 0.800");
+    expect(live()).toContain("Diffraction limit");
+    fireEvent.keyDown(chart, { key: "ArrowRight" });
+    expect(live()).toContain("f/2.8 — 10 lp/mm · Center —");
+    rerender(<MtfChart {...props} apertureSamples={samples.map((sample) => ({ ...sample, result }))} />);
+    expect(
+      [...container.querySelectorAll('path[stroke-width="2"]')].every((path) =>
+        (path.getAttribute("d") ?? "").includes("L"),
+      ),
+    ).toBe(true);
+    expect(live()).toContain("f/2.8 — 10 lp/mm · Center (converged");
+    fireEvent.keyDown(chart, { key: "End" });
+    expect(live()).toContain("f/4.0 —");
+    fireEvent.keyDown(chart, { key: "Escape" });
+    expect(live()).toBe("");
+    vi.spyOn(container.querySelector("figure svg")!, "getBoundingClientRect").mockReturnValue({
+      left: 0,
+      width: 380,
+    } as DOMRect);
+    fireEvent(chart, new MouseEvent("pointermove", { bubbles: true, clientX: 195 }));
+    expect(live()).toContain("f/2.8 —");
+    vi.restoreAllMocks();
+  });
+
+  it("keeps one computed aperture and its diffraction reference visible without line segments", () => {
+    const result = syntheticResult();
+    render(
+      <MtfChart
+        result={result}
+        view="aperture"
+        apertureSamples={[{ fNumber: 16, result }]}
+        apertureFields={[0]}
+        frequencies={[10]}
+        t={mockTheme}
+        diffractionLimit
+      />,
+    );
+    expect(screen.getByTestId("mtf-aperture-markers").querySelectorAll("circle")).toHaveLength(2);
+    const reference = screen.getByTestId("mtf-aperture-limit-markers");
+    expect(reference.querySelectorAll('circle[fill="none"]')).toHaveLength(2);
+    expect(reference.querySelector("circle")!.getAttribute("stroke-width")).toBe("0.9");
+  });
+
+  it("withholds unstable and unavailable points and their limits consistently in chart, table and clipboard", async () => {
+    const result = syntheticResult();
+    result.fields[0].status = "unconverged";
+    result.fields[2].convergedThroughLpMm = 10;
+    result.fields[4].status = "unavailable";
+    const samples = [
+      { fNumber: 4, result },
+      { fNumber: 5.6, result: null },
+    ];
+    const props = {
+      result,
+      view: "aperture" as const,
+      apertureSamples: samples,
+      apertureFields: [0, 0.5, 1],
+      frequencies: [10, 30] as const,
+      t: mockTheme,
+      diffractionLimit: true,
+      advanced: true,
+    };
+    const writeText = vi.fn().mockResolvedValue(undefined);
+    vi.stubGlobal("navigator", { ...navigator, clipboard: { writeText } });
+    const contents = (diagnostic: boolean) => (
+      <>
+        <MtfChart {...props} diagnostic={diagnostic} />
+        <MtfFieldSummary {...props} diagnostic={diagnostic} />
+      </>
+    );
+    const { container, rerender } = render(contents(false));
+    expect(
+      screen.getByText(
+        "1 converged · 3 unconverged · 2 unavailable · 6 pending points (one sagittal/tangential pair each)",
+      ),
+    ).toBeTruthy();
+    const table = screen.getByRole("table", { name: /MTF by aperture/ });
+    expect(within(table).getAllByRole("row")).toHaveLength(3);
+    const row = within(screen.getByRole("rowheader", { name: "f/4" }).closest("tr")!);
+    expect(row.getAllByRole("cell").map((cell) => cell.textContent)).toEqual([
+      "—",
+      "—; unconverged; 100 lp/mm; limit —",
+      "—; unconverged; 100 lp/mm; limit —",
+      "0.800 / 0.700; converged; 10 lp/mm; limit 0.950 / 0.940",
+      "—; unconverged; 10 lp/mm; limit —",
+      "—; unavailable; 100 lp/mm; limit —",
+      "—; unavailable; 100 lp/mm; limit —",
+    ]);
+    fireEvent.click(screen.getByRole("button", { name: "Copy CSV" }));
+    await vi.waitFor(() => expect(writeText).toHaveBeenCalledTimes(1));
+    const normal = parseCsv(writeText.mock.calls[0][0]);
+    expect(normal[1].slice(4, 6)).toEqual(["", ""]);
+    expect(normal[3].slice(4, 6)).toEqual(["0.8000", "0.7000"]);
+    expect(normal[4].slice(4, 6)).toEqual(["", ""]);
+    rerender(contents(true));
+    fireEvent.keyDown(screen.getByRole("group", { name: /MTF chart values/ }), { key: "Home" });
+    expect(container.querySelector('[aria-live="polite"]')!.textContent).toContain(
+      "Center (unconverged; stable through: 100 lp/mm) S 0.900 T 0.800",
+    );
+    fireEvent.click(screen.getByRole("button", { name: "Copy CSV" }));
+    await vi.waitFor(() => expect(writeText).toHaveBeenCalledTimes(2));
+    const diagnostic = parseCsv(writeText.mock.calls[1][0]);
+    expect(diagnostic[1].slice(4, 6)).toEqual(["0.9000", "0.8000"]);
+    expect(diagnostic[4].slice(4, 6)).toEqual(["0.6000", "0.5000"]);
+    expect(diagnostic[5].slice(4, 6)).toEqual(["", ""]);
+    vi.unstubAllGlobals();
   });
 });

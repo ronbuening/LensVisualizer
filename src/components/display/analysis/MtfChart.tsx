@@ -1,5 +1,5 @@
 /**
- * MTF against image height or spatial frequency.
+ * MTF against image height, spatial frequency or aperture.
  *
  * Each frequency keeps a fixed color slot, so hiding one never repaints the others. Sagittal
  * curves are solid and tangential (meridional) curves dashed, as on manufacturer charts; direct
@@ -8,7 +8,7 @@
  * as the lens at f/8, is drawn in the same slots with thin lines.
  */
 import { useId, useState, type KeyboardEvent, type PointerEvent, type Ref } from "react";
-import type { MtfFieldResult, MtfResult } from "../../../types/mtf.js";
+import type { MtfApertureSample, MtfFieldResult, MtfResult } from "../../../types/mtf.js";
 import type { Theme } from "../../../types/theme.js";
 import {
   MTF_CHART_FREQUENCIES,
@@ -27,12 +27,16 @@ import {
   mtfValueVisible,
   resolveMtfFrequencyField,
 } from "./mtf/mtfPresentation.js";
+import { formatFNumber } from "../../../optics/optics.js";
 import { SvgChartFrame } from "./charts/SvgChartFrame.js";
 import { createPlotArea, gapPath, linearScale, niceTicks, type ChartPoint } from "./charts/chartMath.js";
 
 interface MtfChartProps {
   result: MtfResult;
   view: MtfChartView;
+  apertureSamples?: readonly MtfApertureSample[];
+  apertureFields?: readonly number[];
+  apertureCaption?: string;
   /** Frequencies drawn in the image-height view. */
   frequencies: readonly MtfChartFrequency[];
   t: Theme;
@@ -72,6 +76,7 @@ interface Series extends SeriesValues {
   color: string;
   /** Frequency-view series keep their field because the active sample indexes frequency. */
   field?: MtfFieldResult;
+  sampleFields?: Array<MtfFieldResult | undefined>;
   marker?: MarkerShape;
   /** Drawn points; withheld values break the regular line. */
   sagittalPoints: ChartPoint[];
@@ -88,6 +93,7 @@ interface LimitCurvesProps {
   series: readonly Series[];
   xScale: (value: number) => number;
   yScale: (value: number) => number;
+  markSamples?: boolean;
 }
 
 interface ProvisionalCurvesProps extends Omit<LimitCurvesProps, "series"> {
@@ -99,6 +105,9 @@ export default function MtfChart({
   result,
   view,
   frequencies,
+  apertureSamples = [],
+  apertureFields = [],
+  apertureCaption,
   t,
   stale = false,
   comparison = null,
@@ -124,24 +133,52 @@ export default function MtfChart({
     view === "frequency"
       ? Math.max(1, ...result.frequenciesPerMm)
       : (reference ?? Math.max(0.01, ...fields.map((f) => fieldHeight(f) ?? 0)));
-  const xScale = linearScale(0, maxX, plotLeft, plotRight);
+  const apertureStart = apertureSamples[0]?.fNumber ?? 1;
+  const apertureEnd = apertureSamples.at(-1)?.fNumber ?? apertureStart;
+  // Equal distances represent equal exposure stops: x = log2(N).
+  const apertureScale = linearScale(
+    Math.log2(apertureStart),
+    Math.log2(apertureEnd > apertureStart ? apertureEnd : apertureStart * Math.SQRT2),
+    plotLeft,
+    plotRight,
+  );
+  const xScale =
+    view === "aperture"
+      ? (value: number) => apertureScale(Math.log2(value))
+      : linearScale(0, maxX, plotLeft, plotRight);
   const yScale = linearScale(0, 1, plotBottom, plotTop);
   const selectedField = resolveMtfFrequencyField(result, frequencyField);
   const buildSeries = (source: MtfResult, limit = false) =>
     view === "frequency"
       ? frequencySeries(sortedFields(source), source, t, diagnostic, selectedField, limit)
       : fieldSeries(sortedFields(source), source, frequencies, t, diagnostic, limit);
-  const series = buildSeries(result);
-  const compared = comparison ? buildSeries(comparison) : [];
-  const limits = diffractionLimit && result.method === "diffraction" ? buildSeries(result, true) : [];
-  const comparedLimits = diffractionLimit && comparison?.method === "diffraction" ? buildSeries(comparison, true) : [];
+  const series =
+    view === "aperture"
+      ? apertureSeries(apertureSamples, apertureFields, frequencies, t, diagnostic, false)
+      : buildSeries(result);
+  const compared = view !== "aperture" && comparison ? buildSeries(comparison) : [];
+  const limits =
+    diffractionLimit && result.method === "diffraction"
+      ? view === "aperture"
+        ? apertureSeries(apertureSamples, apertureFields, frequencies, t, diagnostic, true)
+        : buildSeries(result, true)
+      : [];
+  const comparedLimits =
+    view !== "aperture" && diffractionLimit && comparison?.method === "diffraction"
+      ? buildSeries(comparison, true)
+      : [];
   const nyquist = view === "frequency" && pixelPitchUm !== null ? 500 / pixelPitchUm : null;
   const nyquistLabel = nyquist !== null ? mtfNyquistLabel(pixelPitchUm!) : null;
   // x of every sample the crosshair can visit, aligned with the series value arrays.
-  const samples = view === "frequency" ? result.frequenciesPerMm : fields.map((f) => fieldHeight(f));
+  const samples =
+    view === "aperture"
+      ? apertureSamples.map((sample) => sample.fNumber)
+      : view === "frequency"
+        ? result.frequenciesPerMm
+        : fields.map((f) => fieldHeight(f));
   const edge = view === "field" ? result.geometry?.modeledEdgeHeightMm : undefined;
   const hatched = edge !== undefined && edge < maxX - 1e-6;
-  const marked = view === "frequency" || fields.length <= MAX_MARKED_FIELDS;
+  const marked = view !== "field" || fields.length <= MAX_MARKED_FIELDS;
   const pending =
     fields.some((field) => field.status === "pending") ||
     comparison?.fields.some((field) => field.status === "pending");
@@ -152,11 +189,12 @@ export default function MtfChart({
     const rect = svg?.getBoundingClientRect();
     if (!rect || !(rect.width > 0)) return;
     const x = (((event.clientX - rect.left) * area.width) / rect.width - plotLeft) / (plotRight - plotLeft);
-    const target = x * maxX;
+    const target = view === "aperture" ? plotLeft + x * (plotRight - plotLeft) : x * maxX;
     let best: number | null = null;
     samples.forEach((sample, i) => {
       if (sample === null) return;
-      if (best === null || Math.abs(sample - target) < Math.abs(samples[best]! - target)) best = i;
+      const distance = (value: number) => Math.abs((view === "aperture" ? xScale(value) : value) - target);
+      if (best === null || distance(sample) < distance(samples[best]!)) best = i;
     });
     setActive(best);
   };
@@ -178,7 +216,7 @@ export default function MtfChart({
     <figure
       ref={exportRef}
       style={{ margin: "12px 0" }}
-      aria-label={`Simulated MTF versus ${view === "frequency" ? "spatial frequency" : "image height"}`}
+      aria-label={`Simulated MTF versus ${view === "aperture" ? "aperture" : view === "frequency" ? "spatial frequency" : "image height"}`}
     >
       <div
         tabIndex={0}
@@ -193,13 +231,15 @@ export default function MtfChart({
         <SvgChartFrame
           area={area}
           t={t}
-          xTicks={niceTicks(0, maxX, 5)}
+          xTicks={view === "aperture" ? apertureSamples.map((sample) => sample.fNumber) : niceTicks(0, maxX, 5)}
           yTicks={[0, 0.2, 0.4, 0.6, 0.8, 1]}
           xScale={xScale}
           yScale={yScale}
-          xTickLabel={(v) => (Number.isInteger(v) ? String(v) : v.toFixed(1))}
+          xTickLabel={(v) => (view === "aperture" ? formatFNumber(v) : Number.isInteger(v) ? String(v) : v.toFixed(1))}
           yTickLabel={(v) => v.toFixed(1)}
-          xLabel={view === "frequency" ? "Spatial frequency (lp/mm)" : "Image height (mm)"}
+          xLabel={
+            view === "aperture" ? "f-number" : view === "frequency" ? "Spatial frequency (lp/mm)" : "Image height (mm)"
+          }
           yLabel="MTF"
         >
           {hatched ? (
@@ -264,7 +304,9 @@ export default function MtfChart({
             </g>
           ) : null}
           <g opacity={stale ? 0.45 : 1}>
-            {limits.length ? <LimitCurves series={limits} xScale={xScale} yScale={yScale} /> : null}
+            {limits.length ? (
+              <LimitCurves series={limits} xScale={xScale} yScale={yScale} markSamples={view === "aperture"} />
+            ) : null}
             {comparedLimits.length ? (
               <g opacity={COMPARISON_OPACITY}>
                 <LimitCurves series={comparedLimits} xScale={xScale} yScale={yScale} />
@@ -318,12 +360,18 @@ export default function MtfChart({
                     />
                   </g>
                 ) : null}
-                {view === "frequency" && s.marker ? (
-                  <g data-testid="mtf-frequency-markers" data-field={s.key}>
+                {view !== "field" && s.marker ? (
+                  <g
+                    data-testid={view === "aperture" ? "mtf-aperture-markers" : "mtf-frequency-markers"}
+                    data-field={s.key}
+                  >
                     {[s.sagittalPoints, s.tangentialPoints, s.sagittalDim ?? [], s.tangentialDim ?? []].map(
                       (points, axis) => (
                         <g key={axis} opacity={axis >= 2 ? DIM_OPACITY : 1}>
-                          {frequencyMarkerPoints(points).map((point, i) => (
+                          {(view === "aperture"
+                            ? points.filter((point): point is NonNullable<ChartPoint> => !!point)
+                            : frequencyMarkerPoints(points)
+                          ).map((point, i) => (
                             <Marker
                               key={i}
                               shape={s.marker!}
@@ -418,18 +466,21 @@ export default function MtfChart({
           : null}
       </div>
       <figcaption style={{ color: t.muted, fontSize: 11, display: "flex", flexWrap: "wrap", gap: "4px 12px" }}>
+        {view === "aperture" && apertureCaption ? <span>{apertureCaption}</span> : null}
         {series.map((s) => (
           <LegendItem
             key={s.key}
             t={t}
             color={s.color}
             marker={marked ? s.marker : undefined}
-            label={view === "frequency" ? `${s.label} (${s.marker} markers)` : s.label}
+            label={view !== "field" ? `${s.label} (${s.marker} markers)` : s.label}
           />
         ))}
         <LegendItem t={t} color={t.value} label="Sagittal" />
         <LegendItem t={t} color={t.value} dash={TANGENTIAL_DASH} label="Tangential (meridional)" />
-        {comparison ? <LegendItem t={t} color={t.value} thin label={`${comparisonLabel} (thin lines)`} /> : null}
+        {view !== "aperture" && comparison ? (
+          <LegendItem t={t} color={t.value} thin label={`${comparisonLabel} (thin lines)`} />
+        ) : null}
         {limits.length || comparedLimits.length ? (
           <>
             <span>{MTF_DIFFRACTION_LIMIT_LABEL}</span>
@@ -453,8 +504,8 @@ export default function MtfChart({
   );
 }
 
-/** Thin reference strokes retain sagittal dots and tangential dash groups at every disclosed point. */
-function LimitCurves({ series, xScale, yScale }: LimitCurvesProps) {
+/** Thin reference strokes retain S/T dash patterns; hollow markers keep isolated aperture samples visible. */
+function LimitCurves({ series, xScale, yScale, markSamples = false }: LimitCurvesProps) {
   return (
     <g data-testid="mtf-diffraction-limit" opacity={0.55}>
       {series.map((s) => (
@@ -477,6 +528,23 @@ function LimitCurves({ series, xScale, yScale }: LimitCurvesProps) {
               />
             </g>
           ))}
+          {markSamples && s.marker ? (
+            <g data-testid="mtf-aperture-limit-markers">
+              {[...s.sagittalPoints, ...s.tangentialPoints].map((point, i) =>
+                point ? (
+                  <Marker
+                    key={i}
+                    shape={s.marker!}
+                    x={xScale(point.x)}
+                    y={yScale(point.y)}
+                    color={s.color}
+                    ring="none"
+                    hollow
+                  />
+                ) : null,
+              )}
+            </g>
+          ) : null}
           <ProvisionalCurves series={s} xScale={xScale} yScale={yScale} strokeWidth={0.9} />
         </g>
       ))}
@@ -646,6 +714,51 @@ function frequencySeries(
   });
 }
 
+/** Fixed frequency colors and field shapes identify every pair throughout the aperture sweep. */
+function apertureSeries(
+  samples: readonly MtfApertureSample[],
+  fields: readonly number[],
+  frequencies: readonly MtfChartFrequency[],
+  t: Theme,
+  diagnostic: boolean,
+  limit: boolean,
+): Series[] {
+  return MTF_CHART_FREQUENCIES.flatMap((frequency, slot) => {
+    if (!frequencies.includes(frequency)) return [];
+    return fields.map((fraction, fieldSlot) => {
+      const sampleFields = samples.map(({ result }) =>
+        result?.fields.find((field) => field.fieldFraction === fraction),
+      );
+      const values = (axis: "sagittal" | "tangential") =>
+        samples.map(({ result }, i) => {
+          const field = sampleFields[i];
+          const index = result?.frequenciesPerMm.indexOf(frequency) ?? -1;
+          if (!field || index < 0) return null;
+          return limit
+            ? result?.method === "diffraction"
+              ? mtfLimitValue(field, axis, index, frequency, diagnostic)
+              : null
+            : curveValue(field, field[axis], index, frequency, diagnostic);
+        });
+      const sagittal = values("sagittal");
+      const tangential = values("tangential");
+      const points = (curve: Array<number | null>) =>
+        curve.map((y, i) => (y === null ? null : { x: samples[i].fNumber, y }));
+      return {
+        key: `${frequency}/${fraction}`,
+        label: `${frequency} lp/mm · ${fraction === 0 ? "Center" : `${(fraction * 100).toFixed(0)} %`}`,
+        color: t.chartSeries[slot],
+        marker: MARKERS[fieldSlot % MARKERS.length],
+        sampleFields,
+        sagittal,
+        tangential,
+        sagittalPoints: points(sagittal),
+        tangentialPoints: points(tangential),
+      };
+    });
+  });
+}
+
 /** Crosshair text: every series' sagittal and tangential values at one sample. */
 function readout(
   view: MtfChartView,
@@ -662,7 +775,7 @@ function readout(
   advanced: boolean,
 ): string {
   if (typeof x !== "number" || !Number.isFinite(x)) return "";
-  const at = view === "frequency" ? `${x} lp/mm` : `${x.toFixed(2)} mm`;
+  const at = view === "aperture" ? `f/${formatFNumber(x)}` : view === "frequency" ? `${x} lp/mm` : `${x.toFixed(2)} mm`;
   const detail = (field: MtfFieldResult | undefined) =>
     advanced && field ? ` (${mtfFieldStatusLabel(field)}; stable through: ${mtfStableThroughLabel(field)})` : "";
   const fieldDetail = view === "field" ? detail(field) : "";
@@ -675,7 +788,11 @@ function readout(
       ? `${s.label}${status} —`
       : `${s.label}${status} S ${sagittal.toFixed(3)} T ${tangential.toFixed(3)}`;
   };
-  const main = series.map((s) => format(s, view === "frequency" ? detail(s.field) : "")).join(" · ");
+  const main = series
+    .map((s) =>
+      format(s, view === "aperture" ? detail(s.sampleFields?.[index]) : view === "frequency" ? detail(s.field) : ""),
+    )
+    .join(" · ");
   const comparisonPosition =
     view === "field" ? ` at ${comparisonHeight === null ? "unknown height" : `${comparisonHeight.toFixed(2)} mm`}` : "";
   const extra = compared.length
@@ -714,14 +831,16 @@ function Marker({
   y,
   color,
   ring,
+  hollow = false,
 }: {
   shape: MarkerShape;
   x: number;
   y: number;
   color: string;
   ring: string;
+  hollow?: boolean;
 }) {
-  const common = { fill: color, stroke: ring, strokeWidth: 1 };
+  const common = { fill: hollow ? "none" : color, stroke: hollow ? color : ring, strokeWidth: hollow ? 0.9 : 1 };
   switch (shape) {
     case "circle":
       return <circle cx={x} cy={y} r={2.8} {...common} />;
@@ -736,7 +855,7 @@ function Marker({
         <path
           d={`M${x - 2.8},${y - 2.8}L${x + 2.8},${y + 2.8}M${x - 2.8},${y + 2.8}L${x + 2.8},${y - 2.8}`}
           stroke={color}
-          strokeWidth={1.6}
+          strokeWidth={hollow ? 0.9 : 1.6}
         />
       );
   }

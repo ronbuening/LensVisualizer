@@ -101,8 +101,8 @@ field and frequency settings (`MtfRequestOptions`). The request supplies prepare
 radii; geometry-only helpers take `PreparedGeometry`. Resolved `MtfOptions` remain internal to the unchanged sampling
 and OTF code, and serve as the serializable worker controls. Every request names its focus mode: the engine has no default plane, and a request without one is
 `invalid-input`. This estimates the authored prescription; numerical convergence and source-data confidence are
-separate. Sagittal frequencies run along image X, tangential along Y; the field lies in the Y/Z meridian. Both chart
-views share the same computed fields, one image plane and physical lp/mm units.
+separate. Sagittal frequencies run along image X, tangential along Y; the field lies in the Y/Z meridian. The
+image-height and frequency views share the same computed fields, one image plane and physical lp/mm units.
 
 **Field axis** (`mtfFields.ts`). Field fractions are fractions of a reference image height: the declared format-corner
 radius (`imageCircleMm`, else the canonical format diagonal), or the modeled edge when neither is declared. The
@@ -363,6 +363,22 @@ and adds aperture-labelled table rows and appended CSV columns without changing 
 `f/8 ` column prefix stays unchanged at f/8; another stop uses its own prefix, such as `f/5.6 `, for comparison,
 notes and diffraction-limit columns in the clipboard and both contextual CSV scopes. Legends, plane labels,
 crosshair values, Advanced focus/working-aperture blocks, export context and captions name that same aperture.
+Advanced also exposes an Aperture view. With Advanced off, a stored `view: "aperture"` renders image height
+without changing the preference. The sweep starts at the exact charted aperture, then uses the comparison
+selector's slower full stops below `L.maxFstop`. Each point is an ordinary request with the same stop/pupil scaling,
+restricted to the center, 50 % and charted result's outermost available field, or the frequency selector's single
+field. Overview waits for the charted result to finish so its edge stays fixed throughout the sweep. One retained
+`useMtfApertureSweep` client runs the apertures sequentially, publishes partial results and reports the current
+f-number and aperture count. Only the selected view computes; optical/settings changes cancel it and completed
+requests reuse the client's result cache when the view returns. Its plane selector shares `comparisonFocus`:
+refocus applies the selected focus policy independently, while hold uses the charted aperture's exact applied
+shift. The caption states that policy, and table/CSV rows record each applied plane and shift. Comparison-overlay
+controls and requests are hidden in this view. Aperture ticks use a log2 f-number axis; frequency colors and field
+marker shapes identify S/T pairs; hollow reference markers keep isolated limit samples visible. Pending apertures and withheld values leave gaps without provisional bridges.
+The chart, crosshair/live region, diffraction references, aperture-row value table and CSV share the normal
+stable-band and diagnostic disclosure rules. The status line counts aperture × selected field × selected frequency
+points (one S/T pair each), including frequencies beyond a converged field's stable band as unconverged.
+The persisted view and version-1 shared bundle accept `aperture` while older settings retain their defaults.
 The opt-in diffraction limit draws the same traced pupil's aberration-free S/T response as thin dotted and
 dash-dot references, with the same field, stable-band and diagnostic visibility as its curves; geometric mode
 disables it. Crosshair readouts, the value table and CSV include these reference values only when enabled, with
@@ -371,8 +387,13 @@ one computed field selected by reference-height percentage and mm; a saved field
 to Overview. An optional 3/4/5/6/8 µm pixel pitch marks Nyquist at 500/pitch lp/mm, or labels it at the right edge
 with an arrow beyond the chart range. The caption and accessible table identify it as the sampling limit of a
 pixel grid, not a camera or sensor MTF prediction. These three display choices persist in localStorage.
-Copy CSV keeps the uncaptioned image-height table. The Export menu adds contextual CSVs for the current chart
-view or every sampled field × computed frequency, with per-field notes and the chart's same withheld-value,
+Copy CSV keeps the uncaptioned image-height table in the image-height and frequency views. In Aperture it emits
+an uncaptioned row for each aperture × selected field × selected frequency, including S/T values, status, stable
+band, image height, applied plane/shift and notes, plus enabled diffraction references. Pending or undisclosed
+values have blank numerical cells. The current-view download adds context to that table; all sampled values
+includes every computed frequency at the sweep's sampled fields. Aperture export context records `view: aperture`,
+the sweep policy and each aperture's applied plane; SVG and PNG capture its chart and caption. The Export menu adds
+contextual CSVs for the current chart view or every sampled field × computed frequency, with per-field notes and the chart's same withheld-value,
 diagnostic, comparison and diffraction-limit policies. Its `# key: value` context records the lens/source, optical
 station, selected/design/marketed apertures, actual spectrum and fallback reason, method, applied focus shift, grid cap,
 reference height/basis, shared settings link, UTC date and prescription disclaimer. A zoom's design wide-open

@@ -30,6 +30,17 @@ const settings: Required<MtfPreferences> = {
 const payload = (raw: unknown) => `1.${btoa(JSON.stringify(raw)).replace(/=+$/, "")}`;
 
 describe("MTF URL state", () => {
+  it("round-trips the aperture view, its field selection and focus policy in additive v1 links", () => {
+    for (const advanced of [true, false]) {
+      const aperture = { ...settings, view: "aperture" as const, advanced };
+      const link = buildMtfLink("https://example.com/lens/test/?v=1&aperture=0.12345678901234568", aperture);
+      expect(parseSharedMtfSettings(new URL(link).search)).toEqual(aperture);
+      expect(new URL(link).searchParams.get("aperture")).toBe("0.12345678901234568");
+    }
+    expect(decodeMtfSettings(payload({ v: "field" }))?.view).toBe("field");
+    expect(decodeMtfSettings(payload({ v: "frequency" }))?.view).toBe("frequency");
+  });
+
   it("round-trips every setting, including an exact field fraction and non-default frequency lists", () => {
     const encoded = encodeMtfSettings(settings);
     expect(decodeMtfSettings(encoded)).toEqual(settings);
