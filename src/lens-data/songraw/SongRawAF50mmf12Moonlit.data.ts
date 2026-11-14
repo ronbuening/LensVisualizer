@@ -29,7 +29,7 @@ const LENS_DATA = {
       "label": "Element 1",
       "role": "Aspheric front element of the fixed first group, cemented to L2",
       "cemented": "C1",
-      "glass": "Unmatched (nd 1.81 / νd 40.7)"
+      "glass": "L-LAH84 (OHARA spectral proxy; matches the patent's nd 1.81 / νd 40.7 at its printed precision; supplier unconfirmed)"
     },
     {
       "id": 2,
@@ -41,7 +41,7 @@ const LENS_DATA = {
       "label": "Element 2",
       "role": "Negative rear element of the first cemented pair",
       "cemented": "C1",
-      "glass": "Unmatched (nd 1.49 / νd 70.4)"
+      "glass": "H-QK3L (CDGM spectral proxy; matches the patent's nd 1.49 / νd 70.4 at its printed precision; supplier unconfirmed)"
     },
     {
       "id": 3,
@@ -53,7 +53,7 @@ const LENS_DATA = {
       "label": "Element 3",
       "role": "Negative front element of the second cemented pair",
       "cemented": "C2",
-      "glass": "Unmatched (nd 1.77 / νd 29.7)"
+      "glass": "NBFD29 (HOYA spectral proxy; matches the patent's nd 1.77 / νd 29.7 at its printed precision; supplier unconfirmed)"
     },
     {
       "id": 4,
@@ -65,7 +65,7 @@ const LENS_DATA = {
       "label": "Element 4",
       "role": "Positive rear element of the second cemented pair",
       "cemented": "C2",
-      "glass": "Unmatched (nd 1.59 / νd 68.3)"
+      "glass": "H-ZPK5 (CDGM spectral proxy; matches the patent's nd 1.59 / νd 68.3 at its printed precision; supplier unconfirmed)"
     },
     {
       "id": 5,
@@ -76,7 +76,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "label": "Element 5",
       "role": "Positive collector in the fixed first group before the stop",
-      "glass": "Unmatched (nd 2.00 / νd 29.1)"
+      "glass": "TAFD55 (HOYA spectral proxy; matches the patent's nd 2.00 / νd 29.1 at its printed precision; supplier unconfirmed)"
     },
     {
       "id": 6,
@@ -87,7 +87,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "label": "Element 6",
       "role": "Negative rear element of the fixed first group beside the stop",
-      "glass": "Unmatched (nd 1.65 / νd 33.8)"
+      "glass": "H-ZF1 (CDGM spectral proxy; matches the patent's nd 1.65 / νd 33.8 at its printed precision; supplier unconfirmed)"
     },
     {
       "id": 7,
@@ -98,7 +98,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "label": "Element 7",
       "role": "Positive front element of the moving focus group G2",
-      "glass": "Unmatched (nd 1.88 / νd 40.8)"
+      "glass": "S-LAH58 (OHARA spectral proxy; matches the patent's nd 1.88 / νd 40.8 at its printed precision; supplier unconfirmed)"
     },
     {
       "id": 8,
@@ -110,7 +110,7 @@ const LENS_DATA = {
       "label": "Element 8",
       "role": "Negative front element of the cemented pair in focus group G2",
       "cemented": "C3",
-      "glass": "Unmatched (nd 1.61 / νd 37.0)"
+      "glass": "S-TIM3 (OHARA spectral proxy; matches the patent's nd 1.61 / νd 37.0 at its printed precision; supplier unconfirmed)"
     },
     {
       "id": 9,
@@ -122,7 +122,7 @@ const LENS_DATA = {
       "label": "Element 9",
       "role": "Positive rear element of the cemented pair in focus group G2",
       "cemented": "C3",
-      "glass": "Unmatched (nd 1.59 / νd 68.3)"
+      "glass": "H-ZPK5 (CDGM spectral proxy; matches the patent's nd 1.59 / νd 68.3 at its printed precision; supplier unconfirmed)"
     },
     {
       "id": 10,
@@ -134,7 +134,7 @@ const LENS_DATA = {
       "label": "Element 10",
       "role": "Negative front element of the fixed rear group G3, cemented to L11",
       "cemented": "C4",
-      "glass": "Unmatched (nd 1.77 / νd 29.7)"
+      "glass": "NBFD29 (HOYA spectral proxy; matches the patent's nd 1.77 / νd 29.7 at its printed precision; supplier unconfirmed)"
     },
     {
       "id": 11,
@@ -146,7 +146,7 @@ const LENS_DATA = {
       "label": "Element 11",
       "role": "Positive rear element of the fourth cemented pair",
       "cemented": "C4",
-      "glass": "Unmatched (nd 1.59 / νd 68.3)"
+      "glass": "H-ZPK5 (CDGM spectral proxy; matches the patent's nd 1.59 / νd 68.3 at its printed precision; supplier unconfirmed)"
     },
     {
       "id": 12,
@@ -157,7 +157,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "label": "Element 12",
       "role": "Positive element between the two cemented pairs in the fixed rear group",
-      "glass": "Unmatched (nd 1.92 / νd 20.9)"
+      "glass": "E-FDS1 (HOYA spectral proxy; matches the patent's nd 1.92 / νd 20.9 at its printed precision; supplier unconfirmed)"
     },
     {
       "id": 13,
@@ -169,7 +169,7 @@ const LENS_DATA = {
       "label": "Element 13",
       "role": "Positive front element of the fifth cemented pair",
       "cemented": "C5",
-      "glass": "Unmatched (nd 1.88 / νd 40.8)"
+      "glass": "S-LAH58 (OHARA spectral proxy; matches the patent's nd 1.88 / νd 40.8 at its printed precision; supplier unconfirmed)"
     },
     {
       "id": 14,
@@ -192,7 +192,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "label": "Element 15",
       "role": "Rear element of the fixed group G3, with two aspheric faces",
-      "glass": "Unmatched (nd 1.81 / νd 40.7)"
+      "glass": "L-LAH84 (OHARA spectral proxy; matches the patent's nd 1.81 / νd 40.7 at its printed precision; supplier unconfirmed)"
     }
   ],
   "surfaces": [

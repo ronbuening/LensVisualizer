@@ -563,7 +563,7 @@ const LENS_DATA = {
       },
       {
         "status": "unresolved",
-        "note": "Clear apertures are inferred geometry-limited bounds, not published dimensions. Heavy corner vignetting is described in the analysis; it is a property of these inferred rims, not a measured retail illumination result."
+        "note": "Clear apertures are read from the patent's Figure 2-1 and checked against the traced beams; they are not published dimensions. The corner vignetting described in the analysis is a property of these rims, not a measured retail illumination result."
       }
     ]
   }

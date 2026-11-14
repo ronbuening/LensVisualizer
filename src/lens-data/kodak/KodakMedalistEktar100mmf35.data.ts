@@ -70,7 +70,7 @@ const LENS_DATA = {
       "nd": 1.573,
       "vd": 57.5,
       "indexReference": "d",
-      "glass": "Unmatched (nD 1.573 / V 57.5)",
+      "glass": "BAK1 (SUMITA spectral proxy for the patent's nD 1.573 / V 57.5; Kodak melt unconfirmed)",
       "role": "Negative rear element of the front cemented doublet",
       "cemented": "C1"
     },
@@ -82,7 +82,7 @@ const LENS_DATA = {
       "nd": 1.605,
       "vd": 38.2,
       "indexReference": "d",
-      "glass": "Unmatched (nD 1.605 / V 38.2)",
+      "glass": "F5 (SCHOTT spectral proxy for the patent's nD 1.605 / V 38.2; Kodak melt unconfirmed)",
       "role": "Central negative singlet ahead of the iris"
     },
     {
@@ -93,7 +93,7 @@ const LENS_DATA = {
       "nd": 1.605,
       "vd": 38.2,
       "indexReference": "d",
-      "glass": "Unmatched (nD 1.605 / V 38.2)",
+      "glass": "F5 (SCHOTT spectral proxy for the patent's nD 1.605 / V 38.2; Kodak melt unconfirmed)",
       "role": "Negative front element of the rear cemented doublet",
       "cemented": "C2"
     },

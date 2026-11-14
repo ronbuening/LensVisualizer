@@ -41,7 +41,7 @@ const LENS_DATA = {
       "vd": 68.3,
       "indexReference": "d",
       "label": "Element 2",
-      "glass": "Unmatched (nd 1.59 / νd 68.3)",
+      "glass": "H-ZPK5 (CDGM spectral proxy; matches the patent's nd 1.59 / νd 68.3 at its printed precision; supplier unconfirmed)",
       "role": "Second positive meniscus of fixed G1",
       "apd": "inferred",
       "apdNote": "The maker's diagram marks L2 as ED; the patent's nd/νd is consistent with a low-dispersion glass."
@@ -54,7 +54,7 @@ const LENS_DATA = {
       "vd": 68.3,
       "indexReference": "d",
       "label": "Element 3",
-      "glass": "Unmatched (nd 1.59 / νd 68.3)",
+      "glass": "H-ZPK5 (CDGM spectral proxy; matches the patent's nd 1.59 / νd 68.3 at its printed precision; supplier unconfirmed)",
       "role": "Positive member of the first cemented doublet in G1",
       "cemented": "C1",
       "apd": "inferred",
@@ -80,7 +80,7 @@ const LENS_DATA = {
       "vd": 68.3,
       "indexReference": "d",
       "label": "Element 5",
-      "glass": "Unmatched (nd 1.59 / νd 68.3)",
+      "glass": "H-ZPK5 (CDGM spectral proxy; matches the patent's nd 1.59 / νd 68.3 at its printed precision; supplier unconfirmed)",
       "role": "Positive member of the second cemented doublet in G1",
       "cemented": "C2",
       "apd": "inferred",
@@ -94,7 +94,7 @@ const LENS_DATA = {
       "vd": 25.5,
       "indexReference": "d",
       "label": "Element 6",
-      "glass": "Unmatched (nd 2.00 / νd 25.5)",
+      "glass": "TAFD40 (HOYA spectral proxy; matches the patent's nd 2.00 / νd 25.5 at its printed precision; supplier unconfirmed)",
       "role": "Negative member of the second cemented doublet in G1",
       "cemented": "C2"
     },
@@ -106,7 +106,7 @@ const LENS_DATA = {
       "vd": 20.9,
       "indexReference": "d",
       "label": "Element 7",
-      "glass": "Unmatched (nd 1.92 / νd 20.9)",
+      "glass": "E-FDS1 (HOYA spectral proxy; matches the patent's nd 1.92 / νd 20.9 at its printed precision; supplier unconfirmed)",
       "role": "Positive member of moving focus doublet G2",
       "cemented": "C3"
     },
@@ -130,7 +130,7 @@ const LENS_DATA = {
       "vd": 68.3,
       "indexReference": "d",
       "label": "Element 9",
-      "glass": "Unmatched (nd 1.59 / νd 68.3)",
+      "glass": "H-ZPK5 (CDGM spectral proxy; matches the patent's nd 1.59 / νd 68.3 at its printed precision; supplier unconfirmed)",
       "role": "Front positive member of the cemented triplet in G3",
       "cemented": "C4",
       "apd": "inferred",
@@ -144,7 +144,7 @@ const LENS_DATA = {
       "vd": 29.7,
       "indexReference": "d",
       "label": "Element 10",
-      "glass": "Unmatched (nd 1.77 / νd 29.7)",
+      "glass": "NBFD29 (HOYA spectral proxy; matches the patent's nd 1.77 / νd 29.7 at its printed precision; supplier unconfirmed)",
       "role": "Central negative member of the cemented triplet in G3",
       "cemented": "C4"
     },
@@ -156,7 +156,7 @@ const LENS_DATA = {
       "vd": 54.7,
       "indexReference": "d",
       "label": "Element 11",
-      "glass": "Unmatched (nd 1.73 / νd 54.7)",
+      "glass": "S-LAL18 (OHARA spectral proxy; matches the patent's nd 1.73 / νd 54.7 at its printed precision; supplier unconfirmed)",
       "role": "Rear positive member of the cemented triplet in G3",
       "cemented": "C4"
     },
@@ -168,7 +168,7 @@ const LENS_DATA = {
       "vd": 54.7,
       "indexReference": "d",
       "label": "Element 12",
-      "glass": "Unmatched (nd 1.73 / νd 54.7)",
+      "glass": "S-LAL18 (OHARA spectral proxy; matches the patent's nd 1.73 / νd 54.7 at its printed precision; supplier unconfirmed)",
       "role": "Positive member of the first cemented doublet in G3",
       "cemented": "C5"
     },
@@ -180,7 +180,7 @@ const LENS_DATA = {
       "vd": 29.7,
       "indexReference": "d",
       "label": "Element 13",
-      "glass": "Unmatched (nd 1.77 / νd 29.7)",
+      "glass": "NBFD29 (HOYA spectral proxy; matches the patent's nd 1.77 / νd 29.7 at its printed precision; supplier unconfirmed)",
       "role": "Negative member of the first cemented doublet in G3",
       "cemented": "C5"
     },
@@ -192,7 +192,7 @@ const LENS_DATA = {
       "vd": 29.1,
       "indexReference": "d",
       "label": "Element 14",
-      "glass": "Unmatched (nd 2.00 / νd 29.1)",
+      "glass": "TAFD55 (HOYA spectral proxy; matches the patent's nd 2.00 / νd 29.1 at its printed precision; supplier unconfirmed)",
       "role": "Positive member of the second cemented doublet in G3",
       "cemented": "C6"
     },
@@ -204,7 +204,7 @@ const LENS_DATA = {
       "vd": 36.3,
       "indexReference": "d",
       "label": "Element 15",
-      "glass": "Unmatched (nd 1.62 / νd 36.3)",
+      "glass": "E-F2 (HOYA spectral proxy; matches the patent's nd 1.62 / νd 36.3 at its printed precision; supplier unconfirmed)",
       "role": "Negative member of the second cemented doublet in G3",
       "cemented": "C6"
     },
@@ -216,7 +216,7 @@ const LENS_DATA = {
       "vd": 25.5,
       "indexReference": "d",
       "label": "Element 16",
-      "glass": "Unmatched (nd 2.00 / νd 25.5)",
+      "glass": "TAFD40 (HOYA spectral proxy; matches the patent's nd 2.00 / νd 25.5 at its printed precision; supplier unconfirmed)",
       "role": "Positive member of the final cemented doublet in G3",
       "cemented": "C7"
     },
@@ -228,7 +228,7 @@ const LENS_DATA = {
       "vd": 70.4,
       "indexReference": "d",
       "label": "Element 17",
-      "glass": "Unmatched (nd 1.49 / νd 70.4)",
+      "glass": "H-QK3L (CDGM spectral proxy; matches the patent's nd 1.49 / νd 70.4 at its printed precision; supplier unconfirmed)",
       "role": "Negative member of the final cemented doublet in G3",
       "cemented": "C7",
       "apd": "inferred",
@@ -242,7 +242,7 @@ const LENS_DATA = {
       "vd": 40.7,
       "indexReference": "d",
       "label": "Element 18",
-      "glass": "Unmatched (nd 1.81 / νd 40.7)",
+      "glass": "L-LAH84 (OHARA spectral proxy; matches the patent's nd 1.81 / νd 40.7 at its printed precision; supplier unconfirmed)",
       "role": "Separate rear negative meniscus with two aspherical surfaces"
     }
   ],

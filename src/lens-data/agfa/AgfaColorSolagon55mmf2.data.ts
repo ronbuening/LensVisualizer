@@ -20,6 +20,7 @@ const LENS_DATA = {
   "subtitle": "US 2,784,646, Example 1 — Color-Solagon 55mm f/2 of the Agfa Ambiflex, scaled ×55",
   "visible": true,
   "catalog": {
+    "lensMounts": ["agfa-ambiflex"],
     "imageFormat": "135-full-frame",
     "specs": [
       "6 ELEMENTS / 4 GROUPS",
@@ -62,7 +63,7 @@ const LENS_DATA = {
       "nd": 1.72253,
       "vd": 37.8,
       "indexReference": "d",
-      "glass": "Unmatched (nd 1.72253 / νd 37.8)"
+      "glass": "BASF8 (SUMITA spectral proxy for the patent's nd 1.72253 / νd 37.8; 1950s melt and supplier unconfirmed)"
     },
     {
       "id": 2,
@@ -74,7 +75,7 @@ const LENS_DATA = {
       "nd": 1.66972,
       "vd": 47.4,
       "indexReference": "d",
-      "glass": "Unmatched (nd 1.66972 / νd 47.4)"
+      "glass": "S-BAH10 (OHARA spectral proxy for the patent's nd 1.66972 / νd 47.4; 1950s melt and supplier unconfirmed)"
     },
     {
       "id": 3,
@@ -86,7 +87,7 @@ const LENS_DATA = {
       "nd": 1.65456,
       "vd": 33.9,
       "indexReference": "d",
-      "glass": "Unmatched (nd 1.65456 / νd 33.9)"
+      "glass": "SF9 (HIKARI spectral proxy for the patent's nd 1.65456 / νd 33.9; 1950s melt and supplier unconfirmed)"
     },
     {
       "id": 4,
@@ -98,7 +99,7 @@ const LENS_DATA = {
       "nd": 1.69915,
       "vd": 30.1,
       "indexReference": "d",
-      "glass": "Unmatched (nd 1.69915 / νd 30.1)"
+      "glass": "SF15 (SUMITA spectral proxy for the patent's nd 1.69915 / νd 30.1; 1950s melt and supplier unconfirmed)"
     },
     {
       "id": 5,
@@ -110,7 +111,7 @@ const LENS_DATA = {
       "nd": 1.69086,
       "vd": 54.7,
       "indexReference": "d",
-      "glass": "Unmatched (nd 1.69086 / νd 54.7)"
+      "glass": "N-LAK9 (SCHOTT spectral proxy for the patent's nd 1.69086 / νd 54.7; 1950s melt and supplier unconfirmed)"
     },
     {
       "id": 6,
@@ -121,7 +122,7 @@ const LENS_DATA = {
       "nd": 1.72253,
       "vd": 37.8,
       "indexReference": "d",
-      "glass": "Unmatched (nd 1.72253 / νd 37.8)"
+      "glass": "BASF8 (SUMITA spectral proxy for the patent's nd 1.72253 / νd 37.8; 1950s melt and supplier unconfirmed)"
     }
   ],
   "surfaces": [

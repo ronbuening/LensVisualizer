@@ -16,8 +16,8 @@ const LENS_DATA = {
   "schema": 2,
   "key": "samyang-af-85mm-f14-ef",
   "maker": "Samyang",
-  "name": "SAMYANG AF 85mm f/1.4 EF",
-  "subtitle": "KR 10-2213072 B1, Example 2 — the EF version's 9/7 construction",
+  "name": "SAMYANG AF 85mm f/1.4 EF / F",
+  "subtitle": "KR 10-2213072 B1, Example 2 — the 9/7 construction of the EF and Nikon F versions",
   "visible": true,
   "elements": [
     {
@@ -358,7 +358,8 @@ const LENS_DATA = {
   },
   "catalog": {
     "lensMounts": [
-      "canon-ef"
+      "canon-ef",
+      "nikon-f"
     ],
     "imageFormat": "135-full-frame",
     "elementCount": 9,
