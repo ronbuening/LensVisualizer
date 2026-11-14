@@ -1,1 +1,0 @@
-Added a single-wavelength MTF spectrum under the Advanced toggle

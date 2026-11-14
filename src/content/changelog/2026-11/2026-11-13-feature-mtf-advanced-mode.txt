@@ -1,0 +1,1 @@
+Added an Advanced MTF mode: diagnostics, single wavelength, aperture and zoom views

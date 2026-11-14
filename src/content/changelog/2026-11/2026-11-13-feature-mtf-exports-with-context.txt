@@ -1,1 +1,0 @@
-Added MTF exports with full context: current-view and all-values CSV, SVG and PNG

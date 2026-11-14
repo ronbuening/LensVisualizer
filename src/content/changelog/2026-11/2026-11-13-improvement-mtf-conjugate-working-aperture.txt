@@ -1,1 +1,0 @@
-Added working f-number, magnification and finite-station shortcuts to the MTF Advanced view

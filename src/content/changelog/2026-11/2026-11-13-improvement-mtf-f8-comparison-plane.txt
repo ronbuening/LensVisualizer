@@ -1,1 +1,0 @@
-Added a hold-the-plane option, plane labels and exported values to the MTF f/8 comparison

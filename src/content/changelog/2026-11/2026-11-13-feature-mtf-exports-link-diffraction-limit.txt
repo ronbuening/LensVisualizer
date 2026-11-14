@@ -1,0 +1,1 @@
+Added MTF exports (CSV, SVG, PNG), a shareable link and a diffraction-limit reference
