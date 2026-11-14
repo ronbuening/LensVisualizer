@@ -316,6 +316,24 @@ const LENS_DATA = {
       "Inner focus: the single negative L6 element (G2) moves imageward; patent plate M is modeled in rearPlates (traced, not drawn).",
     // (moved from publishedStations) Every focus keyframe is a source row.
     published: [1, 2],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 939.5121,
+        distanceReference: "first-surface",
+        source:
+          "US 2017/0059832 A1, Numerical Example 4, Table 25, 1011 column: d0 939.5121 mm; d10=3.4869 mm, d12=8.3965 mm, BF=0.00488 mm (authored gap 16=10.80027 mm). Table 22 (same PDF p. 22): \"Object surface\" has d=\"Variable\" immediately before surface 1; Table 25 identifies that object-side interval as d0.",
+      },
+      {
+        zoomStation: 0,
+        keyframe: 2,
+        objectDistanceMm: 175,
+        distanceReference: "first-surface",
+        source:
+          "US 2017/0059832 A1, Numerical Example 4, Table 25, 246 column: d0 175.0000 mm; d10=8.6131 mm, d12=3.2651 mm, BF=0.00594 mm (authored gap 16=10.80133 mm). Table 22 (same PDF p. 22): \"Object surface\" has d=\"Variable\" immediately before surface 1; Table 25 identifies that object-side interval as d0.",
+      },
+    ],
   },
 
   gaps: {

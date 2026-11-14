@@ -61,3 +61,13 @@ Every element authors nC, nF and ng, so the trace uses those indices and `dPgF` 
 
 - L5 and L13 (NBFD15) and L6 (E-F5): the engine-line value from their own line indices is +0.000274 and +0.002627. The stored 0 and +0.0029 are within 0.0003 of those and stay exactly as they were, although by origin they are the same catalog figures.
 - The five-decimal line indices fix PgF only to about ±0.003 for FCD100 (nF − nC = 0.00460), ±0.002 for the other crowns and ±0.001 or better for the flints, so the new figures agree with the repo's catalog curves to that precision rather than exactly (FCD100: line indices +0.048767, catalog curve +0.049777). The line-index value is kept because it is what the trace computes.
+
+## 2026-11-14 — Published finite-conjugate certification
+
+Patent: JP 2017-167327 A.
+
+| Zoom / keyframe | Field | Before | After | Source locator |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | `focus.conjugates` | No declaration | 111 mm, `first-surface` | PDF p. 11; JP 2017-167327 A, Numerical Example 1, 可変間隔データ, 0.2m column: d0 111.00. d22=2.0736 mm, d24=3.1864 mm, BF=0.9999 mm. |
+
+- State 0/1: paraxial image offset -8.62929458236e-05 mm (-0.0347196067001 diffraction depths); alternate reference +2.63736296472 mm (+984.986341478 depths). Verdict: `consistent`; reference discriminated: true. Reference evidence: PDF p. 10: "単位：mm"; surface table "物面 ∞ (d0)" immediately precedes surface 1.

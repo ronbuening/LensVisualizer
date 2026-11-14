@@ -141,3 +141,13 @@ the catalog-derived route: the patent prints no a and b for its line, so none we
 - Checked against the local `patents/JPWO2020158622A1.pdf`, Numerical Example 3 (PDF page 21, text layer): surface 3
   prints nd 1.51680, νd 64.2, the N-BK7 coordinate, not S-BSL7's 1.51633 / 64.14.
 - No data-file change.
+
+## 2026-11-14 — Published finite-conjugate certification
+
+Patent: JP WO2020/158622 A1 (WO 2020/158622 A1).
+
+| Zoom / keyframe | Field | Before | After | Source locator |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | `focus.conjugates` | No declaration | 291.4803 mm, `first-surface` | PDF p. 22; JP WO2020/158622 A1 (WO 2020/158622 A1), Numerical Example 3, Table 3C, −.1500倍(近接物体) column; gaps continue on PDF p. 23: d0 291.4803. d16=7.5963 mm, d18=12.3145 mm, d20=3.2779 mm. |
+
+- State 0/1: paraxial image offset +0.000397365217395 mm (+0.135882660308 diffraction depths); alternate reference +6.54096187708 mm (+1736.94414959 depths). Verdict: `consistent`; reference discriminated: true. Reference evidence: Table 3A (PDF p. 21): "物面 ∞ 可変" immediately precedes surface 1; Table 3C identifies that variable object-side surface interval as d0.

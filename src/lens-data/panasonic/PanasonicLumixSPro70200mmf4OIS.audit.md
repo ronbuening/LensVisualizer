@@ -36,3 +36,17 @@
   1.3e-10 mm), because the previous fold used the exact `2.1074/1.51680` air equivalent and the printed BF.
 - Physical track grows by 0.718 mm to 193.727–193.728 mm, in agreement with the patent's printed 193.72 mm total length;
   `closeFocusM` stays at the patent's 1.000 m object-to-image condition.
+
+## 2026-11-14 — Published finite-conjugate certification
+
+Patent: JP 2020-086133 A.
+
+| Zoom / keyframe | Field | Before | After | Source locator |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | `focus.conjugates` | No declaration | 806.2799 mm, `first-surface` | PDF p. 30; JP 2020-086133 A, Numerical Example 6, 可変間隔データ second block, 広角 column: d0 806.2799. d5=0.7606, d12=33.3561, d16 [source label]=3.8230, d18=3.9631, d22=16.5109, d25=5.6367, BF=0.3482 mm (authored gap 41=30.3552 mm). |
+| 1 / 1 | `focus.conjugates` | No declaration | 806.2795 mm, `first-surface` | PDF p. 30; JP 2020-086133 A, Numerical Example 6, 可変間隔データ second block, 中間 column: d0 806.2795. d5=20.4344, d12=17.9581, d16 [source label]=1.5039, d18=2.0064, d22=8.8545, d25=13.2914, BF=0.3504 mm (authored gap 41=30.3574 mm). |
+| 2 / 1 | `focus.conjugates` | No declaration | 806.2793 mm, `first-surface` | PDF p. 30; JP 2020-086133 A, Numerical Example 6, 可変間隔データ second block, 望遠 column: d0 806.2793. d5=35.3177, d12=1.2210, d16 [source label]=1.5012, d18=3.8630, d22=2.3153, d25=19.8325, BF=0.3486 mm (authored gap 41=30.3556 mm). |
+
+- State 0/1: paraxial image offset -0.00262287735043 mm (-0.128104016842 diffraction depths); alternate reference +1.79017819439 mm (+83.5329057269 depths). Verdict: `consistent`; reference discriminated: true. Reference evidence: PDF p. 28: "単位：mm" and surface table "物面 ∞ ∞" immediately before surface 1; PDF p. 30 variable-spacing table names the object-side interval d0.
+- State 1/1: paraxial image offset -0.0026538151769 mm (-0.125045023365 diffraction depths); alternate reference +4.5532509673 mm (+190.21365629 depths). Verdict: `consistent`; reference discriminated: true. Reference evidence: PDF p. 28: "単位：mm" and surface table "物面 ∞ ∞" immediately before surface 1; PDF p. 30 variable-spacing table names the object-side interval d0.
+- State 2/1: paraxial image offset -0.002484794098 mm (-0.102553719224 diffraction depths); alternate reference +14.2983537858 mm (+412.736998951 depths). Verdict: `consistent`; reference discriminated: true. Reference evidence: PDF p. 28: "単位：mm" and surface table "物面 ∞ ∞" immediately before surface 1; PDF p. 30 variable-spacing table names the object-side interval d0.
