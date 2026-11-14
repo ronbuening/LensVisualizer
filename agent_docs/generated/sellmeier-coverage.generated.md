@@ -11,17 +11,17 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **1128** lenses scanned
-- **1109** visible lenses scanned
-- **772** lenses fully covered by trusted chromatic data
-- **767** visible lenses fully covered by trusted chromatic data
-- **764** lenses fully covered by strict Sellmeier data
-- **759** visible lenses fully covered by strict Sellmeier data
+- **1134** lenses scanned
+- **1115** visible lenses scanned
+- **778** lenses fully covered by trusted chromatic data
+- **773** visible lenses fully covered by trusted chromatic data
+- **770** lenses fully covered by strict Sellmeier data
+- **765** visible lenses fully covered by strict Sellmeier data
 - **8** lenses fully covered only after measured line-index data
 - **8** visible lenses fully covered only after measured line-index data
-- **11897 / 12769** non-air surfaces use strict catalog Sellmeier data
+- **11946 / 12818** non-air surfaces use strict catalog Sellmeier data
 - **93.2%** strict Sellmeier surface coverage overall
-- **11911 / 12769** non-air surfaces use trusted chromatic data
+- **11960 / 12818** non-air surfaces use trusted chromatic data
 - **93.3%** trusted chromatic coverage overall
 - **0 / 4** historical sodium D surfaces use name-verified catalog dispersion data
 - **271 / 347** native e-line surfaces use name-verified catalog Sellmeier data
@@ -687,6 +687,7 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [SONY E 18-55mm f/3.5-5.6 OSS](../../src/lens-data/sony/SonyE1855mmf3556.data.ts) | 11/11 | 11 | 11/11 |
 | [SONY FE 85mm f/1.4 GM](../../src/lens-data/sony/SonyFE85mmF14GM.data.ts) | 11/11 | 11 | 11/11 |
 | [YASHICA AUTO YASHINON-DS 20mm f/3.3](../../src/lens-data/yashica/YashicaAutoYashinonDS20mmf33.data.ts) | 11/11 | 11 | 11/11 |
+| [YONGNUO YN 33mm f/1.4 DA DSM WL PRO](../../src/lens-data/yongnuo/YongnuoYN33mmf14.data.ts) | 11/11 | 11 | 11/11 |
 | [ZEISS BATIS 18mm f/2.8](../../src/lens-data/carl-zeiss-oberkochen/ZeissBatis2818.data.ts) | 11/11 | 11 | 11/11 |
 | [ZEISS BATIS 85mm f/1.8](../../src/lens-data/carl-zeiss-oberkochen/ZeissBatis1885.data.ts) | 11/11 | 11 | 11/11 |
 | [CANON EF 100mm f/2.8 Macro](../../src/lens-data/canon/CanonEF100mmf28Macro.data.ts) | 10/10 | 10 | 10/10 |
@@ -735,6 +736,7 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [SIGMA 56mm f/1.4 DC DN | Contemporary](../../src/lens-data/sigma/Sigma56mmf14DCDNContemporary.data.ts) | 10/10 | 10 | 10/10 |
 | [VILTROX AF 56mm f/1.4 E](../../src/lens-data/viltrox/ViltroxAF56mmf14E.data.ts) | 10/10 | 10 | 10/10 |
 | [VOIGTLÄNDER MACRO APO-LANTHAR 125mm f/2.5 SL](../../src/lens-data/voigtlander/VoigtlanderMacroApoLanthar125mmf25.data.ts) | 10/10 | 10 | 10/10 |
+| [VOIGTLÄNDER NOKTON 23mm f/1.2 Aspherical X-Mount](../../src/lens-data/voigtlander/VoigtlanderNokton23mmf12X.data.ts) | 10/10 | 10 | 10/10 |
 | [VOIGTLÄNDER NOKTON 35mm f/1.2 Aspherical](../../src/lens-data/voigtlander/VoigtlanderNokton35mmf12.data.ts) | 10/10 | 10 | 10/10 |
 | [VOIGTLÄNDER ULTRA WIDE-HELIAR 12mm f/5.6 Aspherical L39](../../src/lens-data/voigtlander/VoigtlanderUltraWideHeliar12mmf56AsphericalL39.data.ts) | 10/10 | 10 | 10/10 |
 | [VOIGTLÄNDER ULTRON Vintage Line 28mm f/2 Aspherical](../../src/lens-data/voigtlander/VoigtlanderUltron28f2.data.ts) | 10/10 | 10 | 10/10 |
@@ -798,6 +800,7 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [VOIGTLÄNDER NOKTON 50mm f/1 Aspherical](../../src/lens-data/voigtlander/VoigtlanderNokton50f1.data.ts) | 9/9 | 9 | 9/9 |
 | [VOIGTLÄNDER NOKTON 50mm f/1.2 X-Mount](../../src/lens-data/voigtlander/VoigtlanderNoktonX50mmf12.data.ts) | 9/9 | 9 | 9/9 |
 | [YASHICA ML 24mm f/2.8](../../src/lens-data/yashica/YashicaML24mmf28.data.ts) | 9/9 | 9 | 9/9 |
+| [YONGNUO YN 50mm f/1.4](../../src/lens-data/yongnuo/YongnuoYN50mmf14.data.ts) | 9/9 | 9 | 9/9 |
 | [YONGNUO YN 85mm f/1.8 S DF DSM](../../src/lens-data/yongnuo/YongnuoYN85mmf18SDFDSM.data.ts) | 9/9 | 9 | 9/9 |
 | [CANON 35mm f/1.5](../../src/lens-data/canon/Canon35mmf15LTM.data.ts) | 8/8 | 8 | 8/8 |
 | [CANON EF 100mm f/2 USM](../../src/lens-data/canon/CanonEF100mmf2USM.data.ts) | 8/8 | 8 | 8/8 |
@@ -923,6 +926,8 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [SONY SONNAR T* FE 55mm f/1.8 ZA](../../src/lens-data/sony/SonyFE55mmf18ZA.data.ts) | 7/7 | 7 | 7/7 |
 | [SONY ZEISS VARIO-SONNAR T* 10.4-37.1mm f/1.8-4.9 (Sony Cyber-shot DSC-RX100 / DSC-RX100 II)](../../src/lens-data/sony/ZeissVarioSonnarT104371mmf1849SonyDSCRX100M12.data.ts) | 7/7 | 7 | 7/7 |
 | [VOIGTLÄNDER APO-SKOPAR 90mm f/2.8 VM / SL IIs](../../src/lens-data/voigtlander/VoigtlanderApoSkopar90mmf28.data.ts) | 7/7 | 7 | 7/7 |
+| [VOIGTLÄNDER COLOR-SKOPAR 18mm f/2.8 Aspherical X-Mount](../../src/lens-data/voigtlander/VoigtlanderColorSkopar18mmf28X.data.ts) | 7/7 | 7 | 7/7 |
+| [VOIGTLÄNDER COLOR-SKOPAR 50mm f/2.2 VM](../../src/lens-data/voigtlander/VoigtlanderColorSkopar50mmf22VM.data.ts) | 7/7 | 7 | 7/7 |
 | [VOIGTLÄNDER NOKTON 50mm f/1.5](../../src/lens-data/voigtlander/VoigtlanderNokton50mmf15.data.ts) | 7/7 | 7 | 7/7 |
 | [VOIGTLÄNDER NOKTON Vintage Line 75mm f/1.5 Aspherical VM](../../src/lens-data/voigtlander/VoigtlanderNokton75mmf15AsphericalVM.data.ts) | 7/7 | 7 | 7/7 |
 | [YASHICA ML 35mm f/2.8 (early diamond-grip)](../../src/lens-data/yashica/YashicaML35mmf28Early.data.ts) | 7/7 | 7 | 7/7 |
@@ -1031,6 +1036,7 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [PENTAX 110 50mm f/2.8](../../src/lens-data/pentax/Pentax11050mmf28.data.ts) | 5/5 | 5 | 5/5 |
 | [PENTAX F 85mm f/2.8 Soft](../../src/lens-data/pentax/PentaxF85mmf28Soft.data.ts) | 5/5 | 5 | 5/5 |
 | [PENTAX SMC FA 28mm f/2.8 Soft](../../src/lens-data/pentax/PentaxFA28mmf28Soft.data.ts) | 5/5 | 5 | 5/5 |
+| [PENTAX SMC M 120mm f/2.8](../../src/lens-data/pentax/PentaxM120mmf28.data.ts) | 5/5 | 5 | 5/5 |
 | [PENTAX SMC M 135mm f/3.5](../../src/lens-data/pentax/PentaxM135mmf35.data.ts) | 5/5 | 5 | 5/5 |
 | [PENTAX SMC M 150mm f/3.5](../../src/lens-data/pentax/PentaxM150mmf35.data.ts) | 5/5 | 5 | 5/5 |
 | [PENTAX SMC M 40mm f/2.8](../../src/lens-data/pentax/PentaxM40mmf28.data.ts) | 5/5 | 5 | 5/5 |

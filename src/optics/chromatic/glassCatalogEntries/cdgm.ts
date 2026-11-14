@@ -576,4 +576,36 @@ export const CDGM_GLASS_ENTRIES: readonly GlassEntry[] = [
     source:
       "CDGM official Zemax optical glass catalog UpdatedSep2026, native formula2 D-ZLAF67 row, accessed2026-10-31. https://www.cdgmgd.com/downloadFile.htm?uid=3f4d14c82d2c11eeb5ac000c29c8de8c. This is an approximate spectral proxy; no source supplier, melt, chemistry or process identity implied.",
   },
+  /* Exact patent coordinates for the Yongnuo YN 33mm L7 (H-ZF12) and the glasses the Meike 85mm f/1.8 patent names (H-ZLaF55D, H-LaK50A). */
+  {
+    name: "H-ZF12",
+    vendor: "CDGM",
+    B: [0.323730379, 1.65668629, 2.1214152],
+    C: [0.0598308169, 0.0120542686, 174.18792],
+    nd: 1.76182,
+    vd: 26.607986,
+    source:
+      "CDGM official Zemax optical glass catalog updated Sep. 2026, native formula-2 H-ZF12 row (Sellmeier K1-L3); https://www.cdgmgd.com/downloadFile.htm?uid=3f4d14c82d2c11eeb5ac000c29c8de8c; accessed 2026-11-09. It shares the six-digit code 762266 with HOYA FD140, so code6 is omitted.",
+  },
+  {
+    name: "H-ZLaF55D",
+    vendor: "CDGM",
+    B: [0.227765275, 2.04686906, 1.20888928],
+    C: [0.0412221798, 0.010748949, 87.8518998],
+    nd: 1.83481,
+    vd: 42.725177,
+    source:
+      "CDGM official Zemax optical glass catalog updated Sep. 2026, native formula-2 H-ZLAF55D row (Sellmeier K1-L3); https://www.cdgmgd.com/downloadFile.htm?uid=3f4d14c82d2c11eeb5ac000c29c8de8c; accessed 2026-11-09. It shares the six-digit code 835427 with existing rows, so code6 is omitted.",
+  },
+  {
+    name: "H-LaK50A",
+    vendor: "CDGM",
+    B: [0.759437631, 1.16056755, 0.92336083],
+    C: [0.0022319671, 91.0466256, 0.0158590987],
+    nd: 1.6516,
+    vd: 58.403057,
+    code6: "652584",
+    source:
+      "CDGM official Zemax optical glass catalog updated Sep. 2026, native formula-2 H-LAK50A row (Sellmeier K1-L3); https://www.cdgmgd.com/downloadFile.htm?uid=3f4d14c82d2c11eeb5ac000c29c8de8c; accessed 2026-11-09.",
+  },
 ];
