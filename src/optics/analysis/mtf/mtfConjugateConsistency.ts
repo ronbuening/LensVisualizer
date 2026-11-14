@@ -28,6 +28,7 @@ export const MTF_FINITE_CONJUGATE_DEPTHS = 25;
 export interface MtfConjugateCheck {
   distanceReference: FiniteConjugate["distanceReference"];
   objectZMm: number;
+  /** Axis crossing of the final-medium ray; inside a trailing plate it is that ray's back-extrapolation. */
   paraxialImageZMm: number | null;
   paraxialOffsetMm: number | null;
   /** Infinite and virtual images have no finite real-image diagnostics, but retain defocus. */
@@ -205,10 +206,12 @@ function checkReference(
   const authoredN = 1 / (2 * n * Math.abs(authoredSlope));
   if (!(authoredN > 0) || !Number.isFinite(authoredN) || !Number.isFinite(u) || !(n > 0))
     return { ...check, unavailableReason: "No finite authored-plane working f-number." };
-  // Trailing flat plates add no power, so a real image may fall on or just inside one.
+  // A real image lies beyond the last surface, or on or inside the trailing flat plates, where the
+  // converging ray has already crossed the axis: its height changes sign after the last powered surface.
   let lastPowered = surfaces.length - 1;
   while (lastPowered > 0 && Math.abs(surfaces[lastPowered].R) >= FLAT_R_THRESHOLD) lastPowered--;
-  if (Number.isFinite(imageZ) && imageZ > surfaces[lastPowered].z) {
+  const crossedInPlates = axial.y === 0 || axial.heights![lastPowered] * axial.y < 0;
+  if (Number.isFinite(imageZ) && (gap > 0 || crossedInPlates)) {
     check.paraxialImageZMm = imageZ;
     check.paraxialOffsetMm = imageZ - state.imgZ;
     // A parallel basis ray's image height is A + t C, the transverse magnification at conjugacy.

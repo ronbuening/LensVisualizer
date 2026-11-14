@@ -282,6 +282,8 @@ Signed `offsetDepths` = W/(λ/4) measures quarter waves; for a small image offse
 `authoredPlaneWorkingFNumber` = N_a = 1/(2n′|u_a|) sets `diffractionDepthMm` = 2λn′N_a² and `limitMm` = 25 times
 that depth. The millimetre depth describes the authored-plane cone from the exit pupil. For a finite real image,
 the quarter-wave measure equals the small-offset normalization times R_i/R_a, retaining its finite-offset correction.
+A real image lies beyond the last surface, or on or inside trailing flat plates when the axial ray's height changes
+sign after the last powered surface; its reported position is then the final-medium ray's back-extrapolation.
 The calculated image position, offset, magnification and N_i are null for infinite or virtual images;
 `paraxialImageUnavailableReason` explains why without suppressing their pupil-referenced defocus. Such images
 cannot certify consistency. An invalid authored plane or unavailable support instead sets `unavailableReason`.

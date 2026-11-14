@@ -179,6 +179,24 @@ describe("documented finite MTF", () => {
     const lastSurfaceRatio = (lastGap - 0.2) / lastGap / (imageGap / authoredGap);
     expect(Math.abs(lastSurfaceRatio - 1)).toBeGreaterThan(0.6);
   });
+  it("keeps a virtual image inside a thick flat-backed element from certifying", () => {
+    // 32 mm from the stop is inside the front focal length (about 124 mm), so the beam diverges through
+    // 256 mm of glass and leaves the flat back still diverging: its axis crossing is virtual, in the glass.
+    const data = constructionFixtureData(base);
+    const thick = build({
+      ...data,
+      surfaces: data.surfaces.map((s, i) =>
+        i === 1 ? { ...s, R: 64, d: 256 } : i === 2 ? { ...s, R: 1e15, d: 1 } : s,
+      ),
+      finiteConjugates: [{ ...conjugate, objectDistanceMm: 32 }],
+    });
+    const report = assessMtfConjugateConsistency(mtfInputs(prepareRuntimeState(thick, 1, 0), options)[0])!;
+    // The 0.1 mm stop keeps the wavefront measure itself inside the limit.
+    expect(Math.abs(report.offsetDepths!)).toBeLessThan(report.thresholdDepths);
+    expect(report.paraxialImageUnavailableReason).toContain("virtual");
+    expect(report.paraxialImageZMm).toBeNull();
+    expect(report.verdict).toBe("inconsistent");
+  });
   it("uses a finite defocus value for an image-space telecentric pupil", () => {
     // Air=64 mm before an n=1→2, R=64 face: a stop-centre ray exits with u_c=0.
     // The stop-rim ray exits with u=−r/128, independently of the finite object distance.
