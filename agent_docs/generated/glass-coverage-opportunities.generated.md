@@ -9,12 +9,12 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **1128** lenses scanned (**1109** visible)
-- **11897 / 12769** non-air surfaces use strict catalog Sellmeier data (93.2%)
-- **11915 / 12769** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 93.3%)
+- **1134** lenses scanned (**1115** visible)
+- **11976 / 12865** non-air surfaces use strict catalog Sellmeier data (93.1%)
+- **11994 / 12865** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 93.2%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
-- **288** code-only missing-Sellmeier elements in Sweep 2: **27** active unreviewed, **155** self-recording explicit dispositions, **0** dispositions missing any review record
+- **290** code-only missing-Sellmeier elements in Sweep 2: **27** active unreviewed, **157** self-recording explicit dispositions, **0** dispositions missing any review record
 - **0** unresolved named-token elements in Sweep 2B, producing **0** token occurrences across **0** distinct tokens
 - **20** Tier A proprietary backfill rows in Sweep 3
 
@@ -42,6 +42,7 @@ These lenses are missing trusted chromatic data only on glass elements. One or t
 | [NIKON NIKKOR Z 24-70mm f/2.8 S](../../src/lens-data/nikon/NikonZ2470f28.data.ts) | WO 2020/136749 A1 | [PDF](../../patents/WO2020136749A1.pdf) | 94.1% (16/17) | 94.1% (16/17) | 1 | 26 [glass] (Element 14: `792450 — dense lanthanum crown (patent nd=1.79189, νd=45.04; no exact public catalog match)`) | abbe: 1 |
 | [TAMRON 18-270mm f/3.5-6.3 Di II VC PZD (B008)](../../src/lens-data/tamron/TamronB00818270mmf3563DiIIVCPZD.data.ts) | JP 2011-248219 A | [PDF](../../patents/JP2011248219A.pdf) | 94.1% (16/17) | 94.1% (16/17) | 1 | 6A [glass] (Element 4 hybrid layer: `Unmatched (hybrid asphere layer; chemistry unestablished, nd=1.51460, vd=49.96)`) | abbe: 1 |
 | [TAMRON 18-400mm f/3.5-6.3 Di II VC HLD](../../src/lens-data/tamron/TamronB02818400mmf3563.data.ts) | JP 2017-116646 A | [PDF](../../patents/JP2017116646A.pdf) | 94.1% (16/17) | 94.1% (16/17) | 1 | 6A [glass] (Element 4 thin layer: `Unmatched (thin aspheric layer; patent nd=1.51460, vd=49.96)`) | abbe: 1 |
+| [MINOLTA AF 28-135mm f/4-4.5](../../src/lens-data/minolta/MinoltaAF28135mmf445.data.ts) | US 4,844,600 A | [PDF](../../patents/US4844600A.pdf) | 93.8% (15/16) | 93.8% (15/16) | 1 | 4 [glass] (Element 3: `Unmatched (patent nd 1.67000, νd 57.07)`) | abbe: 1 |
 | [MINOLTA AF 80-200mm f/2.8 APO](../../src/lens-data/minolta/MinoltaAF80200mmf28APO.data.ts) | JP 1989-039542 A | [PDF](../../patents/JPA 1989039542-000000.pdf) | 93.8% (15/16) | 93.8% (15/16) | 1 | 20 [glass] (Element 12: `Unmatched (493836 Minolta AD/ED fluorophosphate; no compatible public coefficient row)`) | abbe: 1 |
 | [NIKON AF-S ZOOM-NIKKOR 24-85mm f/3.5-4.5 G IF-ED](../../src/lens-data/nikon/NikonAFSZoomNikkor2485mmf3545GIFED.data.ts) | JP 2003-241093 A | [PDF](../../patents/JP_2003241093_A.pdf) | 93.8% (15/16) | 93.8% (15/16) | 1 | 6A [glass] (Element 4 hybrid layer: `Unmatched (thin hybrid-asphere layer, n_d=1.55389, v_d=38.1)`) | abbe: 1 |
 | [PANASONIC LUMIX G VARIO 7-14mm f/4 ASPH.](../../src/lens-data/panasonic/PanasonicLumixGVario714mmf4.data.ts) | US 2010/0194930 A1 | [PDF](../../patents/US20100194930A1.pdf) | 93.8% (15/16) | 93.8% (15/16) | 1 | 28 [glass] (Element 16: `Unmatched crown class (523/701, likely phosphate/fluorophosphate)`) | abbe: 1 |
@@ -118,6 +119,7 @@ These lenses are missing trusted chromatic data only on glass elements. One or t
 | [CARL ZEISS JENA MC PANCOLAR 50mm f/1.8](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaMCPancolar50mmf18.data.ts) |  | No patent number parsed from lens metadata | 83.3% (5/6) | 83.3% (5/6) | 1 | 4 [glass] (Element III: `Unmatched (patent nd=1.5995, νd=35.2; no catalog row at these coordinates)`) | abbe: 1 |
 | [MAMIYA-SEKOR CS 35mm f/2.8](../../src/lens-data/mamiya/MamiyaSekorCS35mmf28.data.ts) | JP 1978-066222 A | Missing from untracked local patents/ references (JP1978066222A, JP1978066222, 1978066222, JPA1978066222000000) | 83.3% (5/6) | 83.3% (5/6) | 1 | 3 [glass] (Element 2: `Unmatched (nd=1.69480, νd=55.5; nearest public 697555 lanthanum-crown family)`) | abbe: 1 |
 | [MINOLTA MD 50mm f/1.7](../../src/lens-data/minolta/Minolta50mmf17MD.data.ts) | JP S60-111215 A | [PDF](../../patents/JPS60111215A.pdf) | 83.3% (5/6) | 83.3% (5/6) | 1 | 10 [glass] (Element 6: `Unmatched (781446 high-index mid-dispersion glass; no compatible public coefficient row)`) | abbe: 1 |
+| [MINOLTA SUPER ROKKOR 5cm f/1.8](../../src/lens-data/minolta/MinoltaSuperRokkor5cmf18.data.ts) | JP S38-11587 B | [PDF](../../patents/JPS3811587B.pdf) | 83.3% (5/6) | 83.3% (5/6) | 1 | 7 [glass] (Element 4: `Unmatched (patent nd 1.5749, νd 39.2; no exact catalog row; supplier unspecified)`) | abbe: 1 |
 | [PENTAX SMC TAKUMAR 6x7 600mm f/4](../../src/lens-data/pentax/PentaxSMCTakumar6x7600mmf4.data.ts) | US 3,502,393 | [PDF](../../patents/US3502393.pdf) | 83.3% (5/6) | 83.3% (5/6) | 1 | 5 [glass] (Element 3: `Unmatched (512598 crown; no public catalog row)`) | abbe: 1 |
 | [SCHNEIDER-KREUZNACH APO-SYMMAR 100mm f/5.6](../../src/lens-data/schneider-kreuznach/SchneiderAPOSymmar100mmf56.data.ts) | US 6,028,720 | [PDF](../../patents/US6028720.pdf) | 83.3% (5/6) | 83.3% (5/6) | 1 | 4 [glass] (Element 3: `Unmatched (phosphate crown class, ne=1.5223, ve=69.5; no public catalog match — possible special melt or discontinued glass)`) | abbe: 1 |
 | [SCHNEIDER-KREUZNACH SUPER-SYMMAR XL 110mm f/5.6 ASPHERIC](../../src/lens-data/schneider-kreuznach/SchneiderSuperSymmarXL110mmf56.data.ts) | US 5,870,234 | [PDF](../../patents/US5870234.pdf) | 83.3% (5/6) | 83.3% (5/6) | 1 | 1 [glass] (Element 1: `Unmatched (Schott KF9; patent e-line ne=1.52583, ve=51.25 stored as nd/vd)`) | abbe: 1 |

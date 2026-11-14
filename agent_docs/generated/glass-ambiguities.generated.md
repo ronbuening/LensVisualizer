@@ -12,17 +12,17 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **1128** lenses scanned
-- **12763** glass elements examined
-- **2699** elements have multiple coordinate-compatible candidates
-- **492** lens files are affected
+- **1134** lenses scanned
+- **12859** glass elements examined
+- **2703** elements have multiple coordinate-compatible candidates
+- **493** lens files are affected
 - **276** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
 - **118** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
 
 | Selection criterion | Elements |
 |---|---:|
 | Smallest reference-index residual | 1570 |
-| Evidence-source priority | 835 |
+| Evidence-source priority | 839 |
 | Vendor context | 280 |
 | Stable canonical-name order | 12 |
 | Smallest Abbe residual | 2 |
@@ -826,6 +826,9 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `589611 crown class (L-BAL35 / N-SK5 / K-SKLD5 coordinate family)` | 1.58913 / 61.10 (d) | N-SK5 — direct name evidence outranks alias evidence. | S-BAL35 (Ohara, alias) | 1 | [MINOLTA MD ZOOM 75-150mm f/4](../../src/lens-data/minolta/Minolta75150mmf40MDZoom.data.ts) L7 |
 | `658509 dense crown / N-SSK5 class` | 1.65844 / 50.90 (d) | N-SSK5 — direct name evidence outranks six-digit code evidence. | S-BSM25 (Ohara, code, alternate code row)<br>BACED5 (Hoya, code, alternate code row) | 1 | [MINOLTA MD ZOOM 75-150mm f/4](../../src/lens-data/minolta/Minolta75150mmf40MDZoom.data.ts) L9 |
 | `673322 dense flint / SF5 class` | 1.67270 / 32.20 (d) | SF5 — direct name evidence outranks six-digit code evidence. | H-ZF2 (CDGM, code, alternate code row)<br>E-FD5 (Hoya, code, preferred code row) | 1 | [MINOLTA MD ZOOM 75-150mm f/4](../../src/lens-data/minolta/Minolta75150mmf40MDZoom.data.ts) L11 |
+| `LAC12 (HOYA catalog equivalent; patent 678555; production supplier unspecified)` | 1.67790 / 55.50 (d) | LAC12 — direct name evidence outranks six-digit code evidence. | K-LaK12 (Sumita, code, vendor ✗, alternate code row) | 2 | [MINOLTA SUPER ROKKOR 5cm f/1.8](../../src/lens-data/minolta/MinoltaSuperRokkor5cmf18.data.ts) L1 |
+| `SF15 (Sumita catalog equivalent; patent 699301; production supplier unspecified)` | 1.69900 / 30.10 (d) | SF15 — direct name evidence outranks six-digit code evidence. | E-FD15 (Hoya, code, vendor ✗, alternate code row)<br>S-TIM35 (Ohara, code, vendor ✗, preferred code row) | 1 | [MINOLTA SUPER ROKKOR 5cm f/1.8](../../src/lens-data/minolta/MinoltaSuperRokkor5cmf18.data.ts) L3 |
+| `BAF10 (HOYA catalog equivalent; patent 670472; production supplier unspecified)` | 1.67000 / 47.20 (d) | BAF10 — direct name evidence outranks six-digit code evidence. | H-ZBaF52 (CDGM, code, vendor ✗, preferred code row) | 1 | [MINOLTA SUPER ROKKOR 5cm f/1.8](../../src/lens-data/minolta/MinoltaSuperRokkor5cmf18.data.ts) L6 |
 | `J-BASF8 (Hikari spectral proxy for patent BaSF8; historical supplier/melt unconfirmed)` | 1.72342 / 37.90 (d) | J-BASF8 — Annotation vendor context matches Hikari. | BASF8 (Sumita, name, vendor ✗) | 2 | [MIRANDA AUTO E 50mm f/1.4](../../src/lens-data/miranda/MirandaAutoE50mmf14.data.ts) L1 |
 | `J-BAF11 (Hikari spectral proxy for patent BaF11; historical supplier/melt unconfirmed)` | 1.66672 / 48.30 (d) | J-BAF11 — Annotation vendor context matches Hikari. | BAF11 (Sumita, name, vendor ✗) | 2 | [MIRANDA AUTO E 50mm f/1.4](../../src/lens-data/miranda/MirandaAutoE50mmf14.data.ts) L6 |
 | `BK7 / S-BSL7 class (protective glass)` | 1.51680 / 63.88 (d) | S-BSL7 — direct name evidence outranks alias evidence. | N-BK7 (Schott, alias) | 1 | [NIKON 1 NIKKOR 11-27.5mm f/3.5-5.6](../../src/lens-data/nikon/Nikon1Nikkor1127mmf3556.data.ts) P |

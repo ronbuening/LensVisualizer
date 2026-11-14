@@ -9,10 +9,10 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **1128** lenses scanned
-- **1663** total code-only elements found
-- **1663** elements in this report
-- **272** distinct lens files affected
+- **1134** lenses scanned
+- **1665** total code-only elements found
+- **1665** elements in this report
+- **273** distinct lens files affected
 
 ## Codes by Frequency
 
@@ -47,13 +47,13 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 804465 | 13 | 9 | patents/US20220171174A1.pdf<br>patents/WO2025013477A1.pdf<br>patents/US20100194930A1.pdf<br>patents/US8824059.pdf | No review-record hit |
 | 001291 | 11 | 10 | patents/JP2016148731A.pdf<br>patents/US20190113711A1.pdf<br>patents/US20200166730A1.pdf<br>patents/US20160282590A1.pdf | 1/11 rows have review records |
 | 437951 | 11 | 7 | patents/WO2025013477A1.pdf<br>patents/JP2020118738A.pdf<br>patents/US20210132345A1.pdf<br>patents/JP2020086133A.pdf | No review-record hit |
+| 493836 | 11 | 5 | patents/JPH08086961A.pdf<br>patents/JPA 1996327896-000000.pdf<br>patents/JP2004109559A.pdf<br>patents/JPA 1989039542-000000.pdf | All rows have review records |
 | 713539 | 11 | 10 | patents/JPA 1980017129-000000.pdf<br>patents/JPA 1979030821-000000.pdf<br>patents/JPA 1998206729-000000.pdf<br>patents/JPA 1987244010-000000.pdf | 1/11 rows have review records |
 | 583594 | 10 | 10 | patents/US20140098253A1.pdf<br>patents/JP2016118658A.pdf<br>patents/US20130335830A1.pdf<br>patents/US20060023317A1.pdf | No review-record hit |
 | 589612 | 10 | 10 | patents/JP_2003241093_A.pdf<br>patents/US4452513.pdf<br>patents/US4223981.pdf<br>patents/US20160327774A1.pdf | No review-record hit |
 | 593686 | 10 | 9 | patents/JP2016148731A.pdf<br>patents/US20130308041A1.pdf<br>patents/JP2023033114A.pdf<br>patents/JP2020086133A.pdf | No review-record hit |
 | 648338 | 10 | 10 | patents/US2968221.pdf<br>patents/US20200166730A1.pdf<br>patents/US8422143.pdf<br>patents/US3482900.pdf | No review-record hit |
 | 851401 | 10 | 8 | patents/JP2016148731A.pdf<br>patents/US20130335830A1.pdf<br>patents/JP2022140076A.pdf<br>patents/JP2023044106A.pdf | No review-record hit |
-| 493836 | 9 | 4 | patents/JPA 1996327896-000000.pdf<br>patents/JP2004109559A.pdf<br>patents/JPA 1989039542-000000.pdf<br>patents/US_4786152_A.pdf | All rows have review records |
 | 603655 | 9 | 5 | patents/US20220011542A1.pdf<br>patents/JP2023001878A.pdf<br>patents/US20050157403A1.pdf<br>patents/US20030133200A1.pdf | No review-record hit |
 | 620363 | 9 | 7 | patents/JP_2005092056_A.pdf<br>patents/JPA 1982019708-000000.pdf<br>patents/CN116520542A.pdf<br>patents/JPA 2000019398-000000.pdf | 1/9 rows have review records |
 | 694532 | 9 | 7 | patents/JP_S54107336_A.pdf<br>patents/JPA 1989039542-000000.pdf<br>patents/US20210132345A1.pdf<br>patents/US20180164556A1.pdf | No review-record hit |
@@ -1464,6 +1464,13 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L3 (Cemented negative component) | 4 | `699301 class (supplier unconfirmed)` | 1.69895 / 30.10 | E-FD15 (trusted Sellmeier) | sellmeier | patents/DE_1282311_B.pdf | No review-record hit |
 | L4 (Rear negative singlet) | 6 | `639555 class (supplier unconfirmed)` | 1.63854 / 55.50 | K-SK18 (trusted Sellmeier) | sellmeier | patents/DE_1282311_B.pdf | No review-record hit |
 | L5 (Rear positive singlet) | 8 | `699301 class (supplier unconfirmed)` | 1.69895 / 30.10 | E-FD15 (trusted Sellmeier) | sellmeier | patents/DE_1282311_B.pdf | No review-record hit |
+
+### [MINOLTA AF 100-400mm f/4.5-6.7 APO](../../src/lens-data/minolta/MinoltaAF100400mmf4567APO.data.ts) - JP H08-086961 A
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
+|---|---|---|---|---|---|---|---|
+| L2 (Element 2) | 2 | `Unmatched (493836 Minolta AD/ED fluorophosphate; no compatible public coefficient row)` | 1.49310 / 83.58 | No catalog entry | abbe | patents/JPH08086961A.pdf | Explicit disposition in data |
+| L3 (Element 3) | 4 | `Unmatched (493836 Minolta AD/ED fluorophosphate; no compatible public coefficient row)` | 1.49310 / 83.58 | No catalog entry | abbe | patents/JPH08086961A.pdf | Explicit disposition in data |
 
 ### [MINOLTA AF 100mm f/2](../../src/lens-data/minolta/MinoltaAF100mmf2.data.ts) - JP 1987-244010 A
 
