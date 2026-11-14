@@ -452,6 +452,32 @@ const LENS_DATA = {
     description:
       "PUBLISHED: G5 (L20) moves imageward to the complete 2.4 m patent state at each zoom position; " +
       "the marketed 1.3 m wide-end MFD is not reconstructed.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 2070.5448,
+        distanceReference: "first-surface",
+        source:
+          "WO 2024/062958 A1, Example 2, Table 6, near wide/middle/tele columns, PDF p. 47 (printed p. 45): d(0) = 2070.5448 mm; D7 [7]=12.5172, D12 [12]=4.6966, D14 [14]=74.8686, D33 / FOCUS FRONT [33]=5.9374, D35 / FOCUS REAR [35]=28.7165, BF [44]=45.8745 mm. Table 5, PDF p. 45 (printed p. 43), lists 「物体面」 with d(0) immediately before surface 1. Paragraph 0140 (PDF p. 38) defines d as 「レンズ面の光軸上の間隔」.",
+      },
+      {
+        zoomStation: 1,
+        keyframe: 1,
+        objectDistanceMm: 2070.5449,
+        distanceReference: "first-surface",
+        source:
+          "WO 2024/062958 A1, Example 2, Table 6, near wide/middle/tele columns, PDF p. 47 (printed p. 45): d(0) = 2070.5449 mm; D7 [7]=39.4888, D12 [12]=5.6756, D14 [14]=33.7845, D33 / FOCUS FRONT [33]=15.8708, D35 / FOCUS REAR [35]=18.7832, BF [44]=59.0079 mm. Table 5, PDF p. 45 (printed p. 43), lists 「物体面」 with d(0) immediately before surface 1. Paragraph 0140 (PDF p. 38) defines d as 「レンズ面の光軸上の間隔」.",
+      },
+      {
+        zoomStation: 2,
+        keyframe: 1,
+        objectDistanceMm: 2070.5446,
+        distanceReference: "first-surface",
+        source:
+          "WO 2024/062958 A1, Example 2, Table 6, near wide/middle/tele columns, PDF p. 47 (printed p. 45): d(0) = 2070.5446 mm; D7 [7]=56.7686, D12 [12]=4.9219, D14 [14]=1.2, D33 / FOCUS FRONT [33]=27.4934, D35 / FOCUS REAR [35]=7.1606, BF [44]=75.0666 mm. Table 5, PDF p. 45 (printed p. 43), lists 「物体面」 with d(0) immediately before surface 1. Paragraph 0140 (PDF p. 38) defines d as 「レンズ面の光軸上の間隔」.",
+      },
+    ],
   },
 
   gaps: {

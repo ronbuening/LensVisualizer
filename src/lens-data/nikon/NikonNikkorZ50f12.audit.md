@@ -185,3 +185,17 @@ Coverage: 17 physical lens elements, 17 authored media, 17 modeled media resolvi
 All seventeen lens-glass pairs and labels are retained. J-PSKH4 for L31, S-LAH96 for L32 and N-KZFS4 for L43 are non-identical compatible proxies, not exact identities (Δnd about +0.00043, −0.00065 and +0.00070 respectively). Source partial dispersion is not published for any element of this example; the existing L18/L22 APD designations remain catalog inferences. No authored dPgF or per-lens line-index override was found. The rear FL plate (1.51680/63.9) remains separately source-matched. No optical data or geometry changed.
 
 Verification: current-label resolver and native-coordinate compatibility sweep plus `assertCatalogConsistent()`; shared `dispersion.test.ts` and `partialDispersionLine.test.ts` checks. No catalog tolerance was relaxed. Full repository gates are recorded by the parent at the three-lens commit boundary.
+
+## 2026-11-14 — Published finite-conjugate certification
+
+Patent: WO 2021/241230 A1, Example 1.
+
+| Zoom / keyframe | Field | Before | After | Source and paraxial residual |
+|---|---|---|---|---|
+| 0 / 1 | `focus.conjugates` | absent | 467.5 mm, `first-surface` | Example 1, Table 1 variable-spacing data, near column, PDF pp. 30–31 (printed pp. 28–29); d0 = 467.50 mm. Image minus authored plane: 0.000393866833 mm (0.217133379 diffraction depths); other reference: 1259.94119 depths; consistent. |
+
+Reference basis: patent-defined. Paragraph 0112 (PDF pp. 26–27): 「ｄ０は物体から最も物体側のレンズ面の頂点までの光軸上の距離を示す。」
+
+The source gap columns match the authored keyframes. The declarations preserve all optical surfaces, gaps, rear plates and the authored image plane.
+
+Patent d19=11.437, d23=3.584, d27=8.043, d34=10.810, d36=0.701 mm. The existing model carries the d36 decrease of 0.001 mm in gap 33 (10.809), with rearPlates.gapAfterMm=0.702; this leaves the physical last-surface-to-image distance equal to the printed stack. No gap is changed.

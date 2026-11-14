@@ -45,3 +45,15 @@ Source R/d/aspheric coefficients/material pairs, stop, focus/perspective control
 ### Extended source-circle refinement
 
 Paragraph0077/PDF17 explicitly prints y′max = 33.0 mm. A separate 66 mm reference-circle chief-ray probe initially reached only 31.82982 mm (96.454%) with S2 = 26.5 mm; the 33 mm corner requires S2 = 26.79520 mm at 60.12151°. Both 26.8 and 26.9 mm opening trials pass the unchanged geometric guards. The adopted 26.9 mm clear cap retains the 36 mm land (q = 0.747222) and reaches 33.0 mm with all chief-ray apertures clear. No source R/d, spectrum, stop, focus/shift/tilt metadata, physical gap or tolerance changes. The ordinary FX analysis bounds are retained; this supplemental infinity chief-ray result is not a full shifted-pupil/tilt or manufacturing-coverage certification.
+
+## 2026-11-14 — Published finite-conjugate certification
+
+Patent: JP 2017-161685 A, Example 1.
+
+| Zoom / keyframe | Field | Before | After | Source and paraxial residual |
+|---|---|---|---|---|
+| 0 / 1 | `focus.conjugates` | absent | 80.48 mm, `first-surface` | Example 1, surface-data object row 0(OB) and POS2, PDF pp. 15–16; 0(OB), d = ∞〜80.48 mm. Image minus authored plane: -0.00246699047 mm (-0.117303251 diffraction depths); other reference: unavailable (Object is not in front of the first surface.); consistent. |
+
+Reference basis: patent-defined. Paragraph 0067 (PDF p. 14): 「ＯＢ：物面」 and 「軸上面間隔ｄ（ｍｍ）」; surface row 0(OB) precedes surface 1 and prints d = ∞〜80.48.
+
+The source gap columns match the authored keyframes. The declarations preserve all optical surfaces, gaps, rear plates and the authored image plane.
