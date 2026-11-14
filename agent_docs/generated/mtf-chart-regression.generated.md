@@ -16,7 +16,7 @@ Without the variable, only the status line is refreshed by comparing input hashe
 {
   "version": 2,
   "generatedDateUtc": "2026-11-14",
-  "gitCommit": "3ddf316f746089e9931c71a1588ec7899201b47e",
+  "gitCommit": "e94cc96db6f1bae8b625bda51e369c2a91d0d510",
   "uncommittedSrcOrReports": false,
   "settings": {
     "focusT": 0,
@@ -47,28 +47,28 @@ Without the variable, only the status line is refreshed by comparing input hashe
     ]
   },
   "hashes": {
-    "engineSources": "2b88a9bb4cf6ff2679e78b6bb57cad649a04f525cc401ebd0879a2524e55fe1c",
+    "engineSources": "f7b4b4921117b9eb5debb218d463e2195737e11cd99f5bdf40206667eaaea9e4",
     "reportSources": "f31c182071cda6048dfe2f87ac024d9a8835757d07d6f593d99260bdf5834711",
     "anchors": "c5320ed7acf34280f9d353748044b868ac1653a69dbd5b9044d94ddc1d473ac2",
     "conventions": "87c4d5a210113ff86fe8343b5aec4afa3db9906af41b5d679b7507314a55b815",
     "lensFiles": {
       "src/lens-data/nikon/NikonNikkorZ1430mmf4S.data.ts": "d8bb9ba1917b0dff58a6ac99a2c3741507991b580c7805df7ffd0d32b4410371",
       "src/lens-data/nikon/NikonNikkorZ2470mmf4S.data.ts": "b91bd00ea6c58167548fc48fe96f668137ed292b016f66aea221f52d39fe12c4",
-      "src/lens-data/nikon/NikonNikkorZ50f12.data.ts": "5597998b6a7c428e39c47a48bbed03f9ae9e034cba8b807e77975d87878b3a1e",
-      "src/lens-data/nikon/NikonZ105f28.data.ts": "c7399e9c90286fba5315f25493a5d0a0f1d7d2eed1474372188218019b4df6fb",
+      "src/lens-data/nikon/NikonNikkorZ50f12.data.ts": "350fb8a3e9b021bf81482f5fafe39ce25e47b6ed70bc4bd4dc7847d3a8333fdc",
+      "src/lens-data/nikon/NikonZ105f28.data.ts": "cc07544bccebd9563e199395036221406789ecc5ea086a035ee62edc47ff8d12",
       "src/lens-data/nikon/NikonZ135f18.data.ts": "6cfb0feef125c787727216fa3007a2a12a115a7a3cf271214d87f82a05a26665",
       "src/lens-data/nikon/NikonZ35f18S.data.ts": "f6012bd5552a0d67589f1b8e333d4136a3f82282f677349231e53fc081736260",
-      "src/lens-data/nikon/NikonZ85f18S.data.ts": "63b97ee3dcbe5a579766d189420ddf915196769859f3c516e0d8f925d6f5eb94",
-      "src/lens-data/sigma/Sigma105mmf14DGHSMArt.data.ts": "58cbb039c71bec159d8b9dfadec044e1a79b4595e82871b3b03d68d50b4c2dd4",
+      "src/lens-data/nikon/NikonZ85f18S.data.ts": "63669d3d345e08f7189c7329565b4361849d742e48c1290ce730a14704170948",
+      "src/lens-data/sigma/Sigma105mmf14DGHSMArt.data.ts": "4f7e41f7ac9191b298a52f6f71741fc64ff8625e91c1dfcf446ef32b7ca64217",
       "src/lens-data/sigma/Sigma105mmf28DGDNMacroArt.data.ts": "08f09e6a15074f006db18809f82df83082c154a9ce4ef617f59a28c776000edf",
-      "src/lens-data/sigma/Sigma16mmf14DCDN.data.ts": "32f1d4313c0c48b15ab880b297b716e0b6616ed5c6140310ddb7ea6d4e514605",
-      "src/lens-data/sigma/Sigma20mmf14DGHSMArt.data.ts": "b34ef3827525edbc2c442de7e5730eae431d0dcf1a4782b04c1f1ce553163dff",
-      "src/lens-data/sigma/Sigma23mmf14DCDNC.data.ts": "fa55b61c88fba8487ce4fa29fadc1970f79ea8dc3e87c95c675de059a546acc3",
-      "src/lens-data/sigma/Sigma35mmf14DGHSMA.data.ts": "41fee4d92ce5aa73e720d49da7aafe9f7a67cac3daa7575a13522bd35dcb78bc",
-      "src/lens-data/sigma/Sigma45mmf28DGDN.data.ts": "4d1df4f08d40d2b05fa24b4c92168feb92dd56f7b96bb43bdc5b997db9637883",
-      "src/lens-data/sigma/Sigma50mmf14DGHSMA.data.ts": "4f7b131605132e91ab39d884dd58fc7b4a51af4210a22e0390fd35fdeabeebe2",
-      "src/lens-data/sigma/Sigma85mmf14Art.data.ts": "b9e270cfc40ebb13e4447b9d33922ac295992bde63664ba991af7c7fdca1f2fd",
-      "src/lens-data/sigma/SigmaDGDNA85mmf14.data.ts": "a4c5fdf1b8e75db53ff7c9e2aa19cbd12498b3218b42483213a875af670a6f55"
+      "src/lens-data/sigma/Sigma16mmf14DCDN.data.ts": "d552d5c909f1fa0bb0de9c587adba7a8338583bf9e96c96ee13f64dfaafbc4ae",
+      "src/lens-data/sigma/Sigma20mmf14DGHSMArt.data.ts": "5067337b16fce581cdf6bead374f0d218056a681296045b176b06a69ad79ac7e",
+      "src/lens-data/sigma/Sigma23mmf14DCDNC.data.ts": "28d9ca65b32c703f99dc7f9fb6b66685655fda304326ac676d041e9f963d48e6",
+      "src/lens-data/sigma/Sigma35mmf14DGHSMA.data.ts": "3d33f3bba9c733965c4a9a09c0be6efaf01c0fae16f8e23b96d9c7853f7d3d2f",
+      "src/lens-data/sigma/Sigma45mmf28DGDN.data.ts": "6d93315bd00d2ad91c6779ee27afe2d7f6121bfb0334d14dfa3701f1336cbc25",
+      "src/lens-data/sigma/Sigma50mmf14DGHSMA.data.ts": "f46f6de634fe3bccbdbf0bc4febbdd6cf5a970cce95a6de9eabd97dc659ffb64",
+      "src/lens-data/sigma/Sigma85mmf14Art.data.ts": "3cb7970abe25f1fae2398dee1d33b553cc804c3c3411b7d71ca91ff70dd140a7",
+      "src/lens-data/sigma/SigmaDGDNA85mmf14.data.ts": "a14afbfcb44ecb38199bff19a13f1bcb000804ff06379895bec450828958e725"
     }
   }
 }
