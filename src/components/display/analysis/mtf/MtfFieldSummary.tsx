@@ -23,6 +23,7 @@ interface MtfFieldSummaryProps {
   stale?: boolean;
   comparison?: MtfResult | null;
   comparisonLabel?: string;
+  comparisonFNumber?: number;
   mainLabel?: string;
   diffractionLimit?: boolean;
   pixelPitchUm?: MtfPixelPitch | null;
@@ -43,7 +44,8 @@ export default function MtfFieldSummary({
   diagnostic = false,
   stale = false,
   comparison = null,
-  comparisonLabel = "f/8",
+  comparisonFNumber = 8,
+  comparisonLabel = `f/${comparisonFNumber}`,
   mainLabel = "Main aperture",
   diffractionLimit = false,
   pixelPitchUm = null,
@@ -113,6 +115,7 @@ export default function MtfFieldSummary({
         frequencyField,
         diagnostic,
         comparison: exportComparison,
+        comparisonFNumber,
         diffractionLimit,
       };
       const stem = `${context.lens_key.replace(/[^a-zA-Z0-9_-]/g, "-")}-${view === "field" ? "image-height" : "frequency"}-${context.generation_date}`;
@@ -140,7 +143,9 @@ export default function MtfFieldSummary({
   const copy = async () => {
     if (stale) return;
     try {
-      await navigator.clipboard.writeText(mtfCsv(result, frequencies, diagnostic, comparison, diffractionLimit));
+      await navigator.clipboard.writeText(
+        mtfCsv(result, frequencies, diagnostic, comparison, diffractionLimit, comparisonFNumber),
+      );
       setCopyStatus("Copied");
     } catch {
       setCopyStatus("Copy unavailable in this browser");

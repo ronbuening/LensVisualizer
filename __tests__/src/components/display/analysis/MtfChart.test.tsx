@@ -507,6 +507,43 @@ describe("MTF export builders", () => {
     }
   });
 
+  it("names non-default comparison columns, context and image captions with the selected stop", () => {
+    const result = captionResult();
+    const comparison = captionResult();
+    const context = contextFor(result, {
+      preferences: { ...DEFAULT_MTF_PREFERENCES, compareF8: true, comparisonFNumber: 5.6, advanced: false },
+      comparison,
+    });
+    const options = {
+      result,
+      comparison,
+      comparisonFNumber: 5.6,
+      context,
+      view: "field" as const,
+      frequencies: [10],
+      diffractionLimit: true,
+    };
+    const legacy = mtfCsv(result, [10], false, comparison, true);
+    expect(mtfCsv(result, [10], false, comparison, true, 8)).toBe(legacy);
+    // A changed prefix leaves the established f/8 schema, values and column order intact.
+    expect(mtfCsv(result, [10], false, comparison, true, 5.6)).toBe(legacy.replaceAll("f/8 ", "f/5.6 "));
+    for (const csv of [mtfViewCsv(options), mtfViewCsv({ ...options, view: "frequency" }), mtfAllSamplesCsv(options)]) {
+      const [header, ...rows] = dataRows(csv);
+      expect(header.some((column) => column.startsWith("f/5.6 "))).toBe(true);
+      expect(header.map((column) => column.toLowerCase())).toContain("f/5.6 notes");
+      expect(header.some((column) => column.startsWith("f/8 "))).toBe(false);
+      expect(rows.length).toBeGreaterThan(0);
+      expect(csv).toContain("# comparison: f/5.6; best-axial;");
+    }
+    expect(contextFor(result, { comparisonRequested: true, comparisonFNumber: 11 }).comparison).toBe(
+      "f/11 not available",
+    );
+    const { doc, lines } = captionFor(context);
+    expect(lines.join(" ")).toContain("f/5.6 comparison: best axial focus estimate, −0.051 mm");
+    expect(doc.querySelector("desc")!.textContent).toContain("# comparison: f/5.6;");
+    expect(lines.join(" ")).not.toContain("f/8");
+  });
+
   it("exports the selected image-height table with quoted notes and f/8 notes", () => {
     const result = syntheticResult();
     result.fields[0].notes = ['Aim, with "qualification"'];

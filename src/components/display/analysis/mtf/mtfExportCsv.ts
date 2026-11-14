@@ -13,6 +13,7 @@ interface MtfCsvExportOptions {
   frequencyField?: MtfFrequencyField;
   diagnostic?: boolean;
   comparison?: MtfResult | null;
+  comparisonFNumber?: number;
   diffractionLimit?: boolean;
 }
 
@@ -45,7 +46,9 @@ function shownFields(result: MtfResult, choice: MtfFrequencyField): MtfFieldResu
 export function mtfViewCsv(options: MtfCsvExportOptions): string {
   const { result, context, frequencies, diagnostic = false, comparison = null, diffractionLimit = false } = options;
   if (options.view === "frequency") return sampledCsv(options, false);
-  const table = mtfCsv(result, frequencies, diagnostic, comparison, diffractionLimit).split("\n");
+  const table = mtfCsv(result, frequencies, diagnostic, comparison, diffractionLimit, options.comparisonFNumber).split(
+    "\n",
+  );
   const header = table[0].split(",");
   const statusColumns = header.flatMap((name, i) => (name.toLowerCase().endsWith("status") ? [i] : []));
   // The clipboard table contains only formatted numbers and fixed status/value/plane labels.
@@ -59,7 +62,7 @@ export function mtfViewCsv(options: MtfCsvExportOptions): string {
         if (cells[index]) cells[index] += "; diagnostic estimates included";
       });
     const safeCells = cells.map((value, index) => (!i || textColumns.includes(index) ? textCell(value) : value));
-    return `${safeCells.join(",")},${textCell(i ? notes(field) : "Notes")}${comparison ? `,${textCell(i ? notes(other) : "f/8 notes")}` : ""}`;
+    return `${safeCells.join(",")},${textCell(i ? notes(field) : "Notes")}${comparison ? `,${textCell(i ? notes(other) : `f/${options.comparisonFNumber ?? 8} notes`)}` : ""}`;
   });
   return `${mtfContextBlock({ ...context, export_scope: "this view" })}\n${rows.join("\n")}`;
 }
@@ -84,7 +87,7 @@ function sampledCsv(options: MtfCsvExportOptions, all: boolean): string {
   );
   const sources = [
     { result, fields: main, prefix: "" },
-    ...(comparison ? [{ result: comparison, fields: compared, prefix: "f/8 " }] : []),
+    ...(comparison ? [{ result: comparison, fields: compared, prefix: `f/${options.comparisonFNumber ?? 8} ` }] : []),
   ];
   const limits = diffractionLimit ? sources.filter((s) => s.result.method === "diffraction") : [];
   const header = [

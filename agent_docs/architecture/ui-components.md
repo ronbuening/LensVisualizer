@@ -135,9 +135,9 @@ Warning acknowledgments and diagnostic disclosures are excluded, so a fresh visi
 The field summary's keyboard-operable Export menu downloads "CSV — this view", "CSV — all sampled values", SVG
 or PNG through local Blobs and temporary anchors. Copy CSV retains its uncaptioned image-height table. The view
 download follows the selected chart: the image-height table with field notes, or every frequency for each shown
-field, including independently selected f/8 overview fields. All sampled values includes every field and computed
-frequency. Both CSV downloads preserve withheld cells and opt-in diagnostic disclosure, include enabled f/8 and
-diffraction-limit columns, neutralize formula-capable text with an apostrophe before CSV quoting, and start with
+field, including independently selected comparison overview fields. All sampled values includes every field and
+computed frequency. Both CSV downloads preserve withheld cells and opt-in diagnostic disclosure, include enabled
+comparison and diffraction-limit columns, neutralize formula-capable text with an apostrophe before CSV quoting, and start with
 single-cell `# key: value` context records documented in `mtfExportContext.ts`. Decode optional CSV quoting before
 stripping `# ` and splitting at the first `: `; quoted context values preserve commas, quotes and newlines.
 Context records the lens/source, focal length and focus station, selected/design/marketed apertures, `working_f_number`
@@ -165,17 +165,25 @@ retain the regular strokes. In the frequency view, each field's main curve pair 
 a few sampled frequencies, named and shown in the legend; no field end labels compete with the Nyquist label.
 Solid sagittal, dashed tangential, thin comparison and dotted/dash-dot limit strokes retain their meanings.
 Its crosshair follows the pointer or the arrow keys
-(Home/End, Escape) and announces values through a polite live region. When the working aperture is faster than
-f/8 and the lens reaches it, "Compare f/8" runs a second worker request with pupil and stop radii scaled by N/8 and
-draws it with thin lines in the same slots, including faded out-of-band frequency segments when diagnostics are
-disclosed. Its progress and errors appear independently of the main result. The overlay labels its applied plane
-and both its authored-plane shift and its shift from the main aperture's plane. A persisted selector beside the
-enabled toggle defaults to "Refocus at f/8" (the selected focus policy applied independently); "Hold the wide-open
-plane" waits for the main result's first partial focus and uses that exact plane at f/8. Changing the comparison
-policy resets diagnostic disclosure and removes superseded comparison values. A persisted "Diffraction limit"
+(Home/End, Escape) and announces values through a polite live region. "Compare f/N" runs a second ordinary worker
+request, sizing its stop with `stopSemiDiameterForFNumber` at the current zoom and scaling the entrance pupil by
+the stop-radius ratio. It draws thin lines in the same slots, including faded out-of-band frequency segments when
+diagnostics are disclosed. Advanced reveals a "Comparison aperture" select beside the toggle: full stops
+1/1.4/2/2.8/4/5.6/8/11/16/22/32 strictly above the charted f-number and below `L.maxFstop`, the slider's minimum
+aperture. The stored choice defaults to f/8. If unavailable, the next slower full stop above the charted aperture
+is used without overwriting the preference; an empty range hides the comparison controls and disables its request.
+Turning Advanced off hides the aperture select while the toggle keeps naming the selected aperture, including a
+non-default stored choice, and still turns the overlay off. Its progress and errors appear independently of the
+main result. The overlay labels its applied plane and both its authored-plane shift and its shift from the main
+aperture's plane. A persisted plane selector beside the enabled toggle defaults to "Refocus at f/N" (the selected
+focus policy applied independently); "Hold the wide-open plane" waits for the main result's first partial focus
+and uses that exact plane at the comparison aperture. Changing the comparison aperture or plane policy resets
+diagnostic disclosure and removes superseded comparison values. `compareF8` remains the persisted overlay-on
+boolean. Stored options missing `comparisonFNumber` and old shared links default to 8; version-1 link encoding adds
+optional `n` for a non-default comparison f-number, preserving f/8 link bytes. A persisted "Diffraction limit"
 toggle (off by default, disabled with a reason for geometric MTF) draws thin dotted S and dash-dot T references:
-"Diffraction limit of the same traced pupil (no aberration)". References follow the main and f/8 curves' visibility
-rules, including stable bands and diagnostic disclosure, and appear in crosshair readouts, the value table and
+"Diffraction limit of the same traced pupil (no aberration)". References follow the main and comparison curves'
+visibility rules, including stable bands and diagnostic disclosure, and appear in crosshair readouts, the value table and
 CSV columns appended after all existing columns. In the frequency view, persisted "Fields" selects Overview
 (center, 50 % and outermost available field) or one computed field labelled by reference-height percentage and mm;
 a saved field missing from the result falls back to Overview. Persisted "Pixel pitch" offers none or 3/4/5/6/8 µm,
@@ -187,7 +195,7 @@ selected, a compact nm input (435.8–656.3 nm, 1 nm steps) and g/F/e/d/C preset
 select exact reference-line wavelengths. Turning Advanced off hides the input and presets; a selected single spectrum
 stays in the menu so the reader can change away, and the header continues to name its wavelength. A native-reference
 choice carries no glass-data warning. The wavelength persists, travels in version-1 share links as an additive field,
-appears in export metadata and captions, and applies to both the main and f/8 computations.
+appears in export metadata and captions, and applies to both the main and comparison computations.
 Advanced opens the field table with each field's grid size, largest
 change between the last two grids, stable-through frequency, nonzero unresolved-flux percentage, unaimed and failed
 sample counts, non-stop pupil-sampling location, notes and message. Comparison rows use their own diagnostics,
@@ -200,17 +208,19 @@ and applied modes, applied and best-axial shifts from the authored plane, design
 flag. Its caption separates numerical sampling from physical accuracy. Beside it, "Conjugate and working aperture"
 shows infinity or the station's distance and reference, marked and traced working f-numbers, and the on-axis
 diffraction cutoff at the spectrum's first line. Finite charts add signed magnification, its absolute `1:x` ratio,
-and the selected image frequencies translated to object-side lp/mm on axis by `|m|`. The f/8 column uses its own
-working aperture, spectrum and magnification. Superseded readouts wait for the current result. On single-lens
+and the selected image frequencies translated to object-side lp/mm on axis by `|m|`. The comparison column uses its
+own working aperture, spectrum and magnification. Superseded readouts wait for the current result. On single-lens
 pages with the existing viewer dispatch, eligible finite-station buttons use `SET_PATENT_STATION` to move focus
 and zoom together; the active station includes its traced ratio. Comparison panes and standalone tabs offer no
 station buttons. Field notes retain the engine's method-specific
 qualifications: geometric unresolved flux can carry the 2ε error bound; diffraction omitted flux has no such bound.
 Advanced is independent of "Show diagnostic estimates (unconverged or unverified frequencies)" and does not disclose
-withheld values or start another computation.
+withheld values. Toggling Advanced itself reuses the current computations.
 `mtf/MtfControls`, `mtf/MtfFieldSummary` and `mtf/MtfValueTable` hold
 the controls, status counts and per-field values; an enabled comparison with values adds aperture-labelled table
-rows and appended f/8 CSV columns, retaining the main columns and their order. Each aperture keeps its own physical
+rows and appended aperture-prefixed CSV columns, retaining the main columns and their order. The f/8 column
+names stay unchanged; another aperture replaces only the `f/8 ` prefix, for example `f/5.6 10 lp/mm sagittal`
+and `f/5.6 notes`, including diffraction-limit columns in both CSV scopes. Each aperture keeps its own physical
 image heights, field statuses and stable-band disclosure; missing values stay empty in CSV. The table copies as CSV
 (`mtf/mtfCsv.ts`). When
 `assessMtfDataLimitations` lists a `blocking` gap, `mtf/MtfDataWarning` blurs the chart and field summary, marks them

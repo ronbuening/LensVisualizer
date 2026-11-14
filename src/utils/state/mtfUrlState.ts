@@ -7,6 +7,7 @@ import {
   MTF_CHART_FREQUENCIES,
   MTF_FIELD_STEPS,
   MTF_PIXEL_PITCHES,
+  MTF_COMPARISON_F_NUMBERS,
   type MtfPreferences,
 } from "./mtfPreferences.js";
 import { MTF_MIN_WAVELENGTH_NM, MTF_MAX_WAVELENGTH_NM } from "../../types/mtf.js";
@@ -45,6 +46,7 @@ const SETTINGS = {
   h: { key: "fieldStepPercent", valid: oneOf(...MTF_FIELD_STEPS) },
   q: { key: "frequencies", valid: isFrequencies },
   c: { key: "compareF8", valid: oneOf(true, false) },
+  n: { key: "comparisonFNumber", valid: oneOf(...MTF_COMPARISON_F_NUMBERS) },
   o: { key: "comparisonFocus", valid: oneOf("refocus", "hold") },
   d: { key: "diffractionLimit", valid: oneOf(true, false) },
   r: { key: "frequencyField", valid: isField },
@@ -58,7 +60,7 @@ const SETTINGS = {
  * @returns one query parameter value; `1` explicitly shares all defaults
  */
 export function encodeMtfSettings(preferences: MtfPreferences): string {
-  // Version 1 is additive: old payloads inherit the wavelength default and retain their spectra.
+  // Version 1 is additive: absent wavelength and comparison-aperture fields inherit their defaults.
   const overrides: Record<string, unknown> = {};
   for (const [code, { key }] of Object.entries(SETTINGS)) {
     if (JSON.stringify(preferences[key]) !== JSON.stringify(DEFAULT_MTF_PREFERENCES[key])) {

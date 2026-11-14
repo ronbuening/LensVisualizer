@@ -30,6 +30,7 @@ interface MtfExportContextInput {
   partial?: boolean;
   diagnostic?: boolean;
   comparison?: MtfResult | null;
+  comparisonFNumber?: number;
   comparisonRequested?: boolean;
 }
 
@@ -47,6 +48,7 @@ function marketedFNumberAtZoom(value: number | readonly number[] | undefined, zo
  */
 export function buildMtfExportContext(input: MtfExportContextInput): MtfExportContext {
   const { lens, result, preferences, comparison } = input;
+  const comparisonAperture = `f/${input.comparisonFNumber ?? preferences.comparisonFNumber}`;
   const source = lens.source.source;
   const aperture = lens.source.catalog.fNumber;
   const designFNumber = lens.isZoom ? fopenAtZoomClamped(input.zoomT, lens) : (aperture?.design ?? lens.FOPEN);
@@ -98,7 +100,11 @@ export function buildMtfExportContext(input: MtfExportContextInput): MtfExportCo
     diffraction_limit: preferences.diffractionLimit && result.method === "diffraction" ? "shown" : "off",
     pixel_pitch:
       preferences.view === "frequency" && preferences.pixelPitchUm ? `${preferences.pixelPitchUm} µm` : "off",
-    comparison: comparison ? `f/8; ${focus(comparison)}` : input.comparisonRequested ? "f/8 not available" : "off",
+    comparison: comparison
+      ? `${comparisonAperture}; ${focus(comparison)}`
+      : input.comparisonRequested
+        ? `${comparisonAperture} not available`
+        : "off",
     shared_link: input.link,
     generation_date: input.date.toISOString().slice(0, 10),
     status: partial ? "partial" : "complete",
@@ -135,12 +141,13 @@ export function mtfCaptionLines(context: MtfExportContext, maxLineLength: number
     spectrum === "reference" || spectrum === "single"
       ? `${spectrum === "single" ? "single wavelength" : "reference"}, ${spectrum === "single" ? wavelengths[0] : wavelengths[0].toFixed(1)} nm`
       : `${spectrum === "cdf" ? "C/d/F" : spectrum}, ${lines.length} lines ${spectrum === "photopic" ? "470–650" : `${Math.min(...wavelengths).toFixed(0)}–${Math.max(...wavelengths).toFixed(0)}`} nm`;
+  const [comparisonAperture, ...comparisonFocus] = context.comparison.split("; ");
   const options = [
     ...(context.comparison === "off"
       ? []
       : [
-          context.comparison.startsWith("f/8; ")
-            ? `f/8 comparison: ${captionPlane(context.comparison.slice(5))}`
+          comparisonFocus.length
+            ? `${comparisonAperture} comparison: ${captionPlane(comparisonFocus.join("; "))}`
             : context.comparison,
         ]),
     ...(context.diffraction_limit === "shown" ? ["diffraction-limit reference"] : []),

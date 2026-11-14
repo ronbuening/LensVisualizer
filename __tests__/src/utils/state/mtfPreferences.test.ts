@@ -3,6 +3,7 @@ import {
   DEFAULT_MTF_PREFERENCES,
   getMtfPreferences,
   MTF_PREFERENCES_KEY,
+  MTF_COMPARISON_F_NUMBERS,
   parseMtfPreferences,
   resetMtfPreferencesCache,
   subscribeMtfPreferences,
@@ -77,6 +78,27 @@ describe("MTF preferences", () => {
     expect(JSON.parse(store.get(MTF_PREFERENCES_KEY)!)).toMatchObject({ spectrum: "single", wavelengthNm: 532.125 });
     resetMtfPreferencesCache();
     expect(getMtfPreferences()).toMatchObject({ spectrum: "single", wavelengthNm: 532.125 });
+  });
+  it("migrates the comparison aperture to f/8 and retains it when Advanced is hidden", () => {
+    expect(parseMtfPreferences({ compareF8: true })).toMatchObject({
+      compareF8: true,
+      comparisonFNumber: 8,
+      advanced: false,
+    });
+    for (const comparisonFNumber of [undefined, null, "11", 0, 3, NaN, Infinity, 64])
+      expect(parseMtfPreferences({ comparisonFNumber }).comparisonFNumber).toBe(8);
+    for (const comparisonFNumber of MTF_COMPARISON_F_NUMBERS)
+      expect(parseMtfPreferences({ comparisonFNumber }).comparisonFNumber).toBe(comparisonFNumber);
+    const store = stubStorage();
+    updateMtfPreferences({ compareF8: true, comparisonFNumber: 5.6, advanced: true });
+    updateMtfPreferences({ advanced: false });
+    expect(JSON.parse(store.get(MTF_PREFERENCES_KEY)!)).toMatchObject({
+      compareF8: true,
+      comparisonFNumber: 5.6,
+      advanced: false,
+    });
+    resetMtfPreferencesCache();
+    expect(getMtfPreferences()).toMatchObject({ compareF8: true, comparisonFNumber: 5.6, advanced: false });
   });
   it("persists updates, notifies subscribers and survives unavailable storage", () => {
     const store = stubStorage({ [MTF_PREFERENCES_KEY]: JSON.stringify({ fieldStepPercent: 2 }) });

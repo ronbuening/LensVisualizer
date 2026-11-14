@@ -13,6 +13,10 @@ export type MtfFrequencyField = "overview" | number;
 export const MTF_PIXEL_PITCHES = [3, 4, 5, 6, 8] as const;
 export type MtfPixelPitch = (typeof MTF_PIXEL_PITCHES)[number];
 
+/** Full stops offered for the comparison, subject to the charted lens's aperture range. */
+export const MTF_COMPARISON_F_NUMBERS = [1, 1.4, 2, 2.8, 4, 5.6, 8, 11, 16, 22, 32] as const;
+export type MtfComparisonFNumber = (typeof MTF_COMPARISON_F_NUMBERS)[number];
+
 /** Field spacing choices, in percent of the reference image height. */
 export const MTF_FIELD_STEPS = [10, 5, 2, 1] as const;
 export type MtfFieldStepPercent = (typeof MTF_FIELD_STEPS)[number];
@@ -33,8 +37,10 @@ export interface MtfPreferences {
   /** Displayed frequencies, ascending; never empty. */
   frequencies: readonly MtfChartFrequency[];
   maxGridSize: MtfGridCap;
-  /** Overlay the lens stopped down to f/8 when the working aperture is faster. */
+  /** Enable the stopped-down overlay when a slower full stop is available. */
   compareF8: boolean;
+  /** Preferred comparison aperture; unavailable choices fall back to the next slower full stop. */
+  comparisonFNumber: MtfComparisonFNumber;
   /** Refocus the comparison independently, or keep the main result's image plane. */
   comparisonFocus: "refocus" | "hold";
   /** Reference response of the same traced pupil without aberration. */
@@ -59,6 +65,7 @@ export const DEFAULT_MTF_PREFERENCES: MtfPreferences = Object.freeze({
   frequencies: Object.freeze([10, 30] as const),
   maxGridSize: 256,
   compareF8: false,
+  comparisonFNumber: 8,
   comparisonFocus: "refocus",
   diffractionLimit: false,
   frequencyField: "overview",
@@ -85,6 +92,7 @@ const isView = oneOf<MtfChartView>(["field", "frequency"]);
 const isFieldStep = oneOf<MtfFieldStepPercent>(MTF_FIELD_STEPS);
 const isFrequency = oneOf<MtfChartFrequency>(MTF_CHART_FREQUENCIES);
 const isGridCap = oneOf<MtfGridCap>([128, 256]);
+const isComparisonFNumber = oneOf<MtfComparisonFNumber>(MTF_COMPARISON_F_NUMBERS);
 
 /**
  * Validate stored options field by field; unknown or corrupt values keep their defaults.
@@ -117,6 +125,9 @@ export function parseMtfPreferences(raw: unknown): MtfPreferences {
         ? stored.maxGridSize
         : defaults.maxGridSize,
     compareF8: typeof stored.compareF8 === "boolean" ? stored.compareF8 : defaults.compareF8,
+    comparisonFNumber: isComparisonFNumber(stored.comparisonFNumber)
+      ? stored.comparisonFNumber
+      : defaults.comparisonFNumber,
     comparisonFocus: stored.comparisonFocus === "hold" ? "hold" : defaults.comparisonFocus,
     diffractionLimit:
       typeof stored.diffractionLimit === "boolean" ? stored.diffractionLimit : defaults.diffractionLimit,

@@ -12,6 +12,7 @@ import {
   type MtfChartFrequency,
   type MtfChartView,
   type MtfPreferences,
+  type MtfComparisonFNumber,
 } from "../../../../utils/state/mtfPreferences.js";
 import { resolveMtfFrequencyField } from "./mtfPresentation.js";
 import { selector, toggleBtn, toggleGroup } from "../../../../utils/style/styles.js";
@@ -25,8 +26,9 @@ interface MtfControlsProps {
   onChange: (patch: Partial<MtfPreferences>) => void;
   /** Photopic sweeps at 1 % and 2 % steps trace nine wavelengths for up to 101 fields. */
   slowFieldSteps: boolean;
-  /** Offer the f/8 overlay: the working aperture is faster than f/8 and the lens reaches it. */
-  compareF8Available: boolean;
+  /** Attainable full stops strictly slower than the charted aperture. */
+  comparisonFNumbers: readonly MtfComparisonFNumber[];
+  comparisonFNumber: MtfComparisonFNumber;
   result?: MtfResult | null;
 }
 
@@ -85,7 +87,8 @@ export default function MtfControls({
   preferences,
   onChange,
   slowFieldSteps,
-  compareF8Available,
+  comparisonFNumbers,
+  comparisonFNumber,
   result = null,
 }: MtfControlsProps) {
   const selectStyle: CSSProperties = { ...selector(t, false), fontSize: 11, padding: "5px 26px 5px 8px" };
@@ -256,29 +259,41 @@ export default function MtfControls({
             />
           </>
         ) : null}
-        {compareF8Available ? (
+        {comparisonFNumbers.length > 0 ? (
           <ToggleGroup label="Aperture comparison" t={t}>
             <Toggle
               t={t}
               active={preferences.compareF8}
               last
-              title="Overlay the lens stopped down to f/8 (thin lines)"
+              title={`Overlay the lens stopped down to f/${comparisonFNumber} (thin lines)`}
               onClick={() => onChange({ compareF8: !preferences.compareF8 })}
             >
-              Compare f/8
+              {`Compare f/${comparisonFNumber}`}
             </Toggle>
           </ToggleGroup>
         ) : null}
-        {compareF8Available && preferences.compareF8 ? (
+        {comparisonFNumbers.length > 0 && preferences.advanced ? (
           <Select
             t={t}
-            label="f/8 comparison image plane"
-            help="Refocus at f/8: use the selected image-plane policy independently at f/8. Hold the wide-open plane: use exactly the main curve's image plane at f/8."
+            label="Comparison aperture"
+            help="Choose a full stop slower than the charted aperture, within the lens's aperture range at this zoom position."
+            touchHelp={touchHelp}
+            style={selectStyle}
+            value={comparisonFNumber}
+            options={comparisonFNumbers.map((stop) => [stop, `f/${stop}`])}
+            onChange={(comparisonFNumber) => onChange({ comparisonFNumber })}
+          />
+        ) : null}
+        {comparisonFNumbers.length > 0 && preferences.compareF8 ? (
+          <Select
+            t={t}
+            label={`f/${comparisonFNumber} comparison image plane`}
+            help={`Refocus at f/${comparisonFNumber}: use the selected image-plane policy independently at f/${comparisonFNumber}. Hold the wide-open plane: use exactly the main curve's image plane at f/${comparisonFNumber}.`}
             touchHelp={touchHelp}
             style={selectStyle}
             value={preferences.comparisonFocus}
             options={[
-              ["refocus", "Refocus at f/8"],
+              ["refocus", `Refocus at f/${comparisonFNumber}`],
               ["hold", "Hold the wide-open plane"],
             ]}
             onChange={(comparisonFocus) => onChange({ comparisonFocus })}

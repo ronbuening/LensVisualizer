@@ -347,24 +347,34 @@ within 0.006 (60 lp/mm on a 256-cell pupil; 0.004 on the adaptive grid, which st
 without ray aiming and the engine samples the stop. No catalog lens has been compared with another tool.
 
 The MTF tab reuses `analysisContext.request`, or memoizes a standalone request from prepared geometry, aperture and
-EFL. Its f/8 comparison creates a separate request with scaled aperture radii, reports its own progress and errors,
-and labels the applied plane and refocus shift relative to the main aperture. The comparison follows the selected
+EFL. Its stopped-down comparison creates a separate ordinary request, sizing the stop at the current zoom and
+scaling the entrance pupil by the stop-radius ratio. It reports its own progress and errors and labels the applied
+plane and refocus shift relative to the main aperture. The comparison follows the selected
 focus policy independently by default; a persisted control can instead hold the main result's image plane, starting
 once its focus is available on the first partial result. Held shifts are part of both worker cache keys.
+Advanced reveals the comparison aperture select: standard full stops strictly above the charted f-number and below
+`L.maxFstop`, the same minimum-aperture bound the slider uses. The preference defaults to f/8; an unavailable choice
+uses the next slower full stop above the charted aperture without overwriting it. No valid stop disables the overlay.
+Advanced off hides the select while the toggle continues to name the chosen aperture and can disable the overlay.
+`compareF8` keeps its overlay-on meaning; `comparisonFNumber` defaults to 8 for older stored preferences and shared
+links. Version-1 share encoding adds only optional `n` for a non-default aperture; f/8 payloads stay unchanged.
 The comparison shares the chart's diagnostic disclosure policy, including faded out-of-band frequency segments,
-and adds aperture-labelled table rows and appended CSV columns without changing the main CSV columns.
+and adds aperture-labelled table rows and appended CSV columns without changing the main CSV columns. The existing
+`f/8 ` column prefix stays unchanged at f/8; another stop uses its own prefix, such as `f/5.6 `, for comparison,
+notes and diffraction-limit columns in the clipboard and both contextual CSV scopes. Legends, plane labels,
+crosshair values, Advanced focus/working-aperture blocks, export context and captions name that same aperture.
 The opt-in diffraction limit draws the same traced pupil's aberration-free S/T response as thin dotted and
 dash-dot references, with the same field, stable-band and diagnostic visibility as its curves; geometric mode
 disables it. Crosshair readouts, the value table and CSV include these reference values only when enabled, with
-CSV columns appended after the f/8 columns. The frequency view shows the center/50 %/outermost overview or one
-computed field selected by reference-height percentage and mm; a saved field absent from the result falls back
+CSV columns appended after the comparison columns. The frequency view shows the center/50 %/outermost overview or
+one computed field selected by reference-height percentage and mm; a saved field absent from the result falls back
 to Overview. An optional 3/4/5/6/8 µm pixel pitch marks Nyquist at 500/pitch lp/mm, or labels it at the right edge
 with an arrow beyond the chart range. The caption and accessible table identify it as the sampling limit of a
 pixel grid, not a camera or sensor MTF prediction. These three display choices persist in localStorage.
 Copy CSV keeps the uncaptioned image-height table. The Export menu adds contextual CSVs for the current chart
 view or every sampled field × computed frequency, with per-field notes and the chart's same withheld-value,
-diagnostic, f/8 and diffraction-limit policies. Its `# key: value` context records the lens/source, optical station,
-selected/design/marketed apertures, actual spectrum and fallback reason, method, applied focus shift, grid cap,
+diagnostic, comparison and diffraction-limit policies. Its `# key: value` context records the lens/source, optical
+station, selected/design/marketed apertures, actual spectrum and fallback reason, method, applied focus shift, grid cap,
 reference height/basis, shared settings link, UTC date and prescription disclaimer. A zoom's design wide-open
 aperture comes from `fopenAtZoomClamped`, shared with the aperture control. Marketed endpoint or station lists use
 the nearest listed value, with midpoint ties going wider and no interpolation, as for `mtfPrescriptionScale`.
@@ -389,8 +399,8 @@ bound. With Advanced off, the existing deduplicated notes list remains. A "Focus
 aperture's requested and applied mode, applied and best-axial shifts, design and best scores as mean axial geometric
 MTF at 10–50 lp/mm, `imagePlaneOffsetMm` (paraxial focus minus authored plane) and `imagePlaneInconsistent`. Null
 diagnostics are shown as absent, with no consistency assessment when the offset is absent. Its caption identifies
-these as numerical sampling and focus-search details, separate from physical accuracy. Advanced changes presentation
-only and does not enable the independent diagnostic-estimates disclosure or alter withheld-value policy.
+these as numerical sampling and focus-search details, separate from physical accuracy. Toggling Advanced changes
+presentation only and does not enable the independent diagnostic-estimates disclosure or alter withheld-value policy.
 The hook serializes only slider and
 aperture controls plus MTF settings, so chart-only changes retain the same computation key. MTF is worker-driven and
 has no lazy analysis-context accessor or job-table entry. Single-lens and comparison drawers share this renderer.
@@ -527,8 +537,8 @@ focus and aberration 0 of the current zoom position; focus never moves the iris.
   fold.
 
 Stopped down, `stopSemiDiameterForFNumber(N, zoomT, L)` applies the rule on every lens, capped at the wide-open stop
-(`wideOpenStopAtZoom`). The aperture control, the MTF tab's f/8 comparison, comparison mode and the benchmark harness
-all call it; no caller scales a stop linearly. The paraxial entrance pupil of a state (`entrancePupil` in
+(`wideOpenStopAtZoom`). The aperture control, the MTF tab's aperture comparison, comparison mode and the benchmark
+harness all call it; no caller scales a stop linearly. The paraxial entrance pupil of a state (`entrancePupil` in
 `field/geometry.ts`) divides the stop by the same paraxial ratio, so at infinity focus a stop set for f/N gives
 EPD = F/N to a few ulp. Every other semi-diameter is a hard clip with no margin, so a rim smaller than the beam the
 iris admits makes the lens trace slower than its label; `npm run audit:aperture` lists those stations and what limits

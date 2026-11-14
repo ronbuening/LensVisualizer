@@ -20,6 +20,7 @@ const settings: Required<MtfPreferences> = {
   fieldStepPercent: 2,
   frequencies: [20, 40, 50],
   compareF8: true,
+  comparisonFNumber: 5.6,
   comparisonFocus: "hold",
   diffractionLimit: true,
   frequencyField: 1 / 3,
@@ -51,6 +52,21 @@ describe("MTF URL state", () => {
       method: "geometric",
     });
     for (const w of [null, "532", 435.7, 656.4]) expect(decodeMtfSettings(payload({ s: "single", w }))).toBeNull();
+  });
+
+  it("adds comparison apertures to v1 links while old comparison links still mean f/8", () => {
+    expect(decodeMtfSettings(payload({ c: true, o: "hold" }))).toEqual({
+      ...DEFAULT_MTF_PREFERENCES,
+      compareF8: true,
+      comparisonFocus: "hold",
+      comparisonFNumber: 8,
+    });
+    expect(encodeMtfSettings({ ...DEFAULT_MTF_PREFERENCES, compareF8: true })).toBe(payload({ c: true }));
+    for (const comparisonFNumber of [1, 1.4, 2, 2.8, 4, 5.6, 8, 11, 16, 22, 32] as const) {
+      const preferences = { ...settings, comparisonFNumber, advanced: false };
+      expect(decodeMtfSettings(encodeMtfSettings(preferences))).toEqual(preferences);
+    }
+    for (const n of [null, "11", 0, 3, 64]) expect(decodeMtfSettings(payload({ c: true, n }))).toBeNull();
   });
 
   it("omits defaults inside an explicit defaults payload and preserves all other supported choices", () => {
