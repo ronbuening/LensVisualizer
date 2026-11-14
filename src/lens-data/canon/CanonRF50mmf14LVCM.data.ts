@@ -352,6 +352,16 @@ const LENS_DATA = {
     description: "Floating inner focus: L2 moves objectward by 2.30 mm and L4/Lr1 by 4.40 mm from infinity to 0.40 m.",
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 400,
+        distanceReference: "image-plane",
+        source:
+          "US 2025/0251576 A1, Numerical Example 1, PDF p. 16 (printed p. 6), Closest Distance (-400 mm) column: d10=1.46 mm, d12=5.96 mm, d15=7.27 mm, d22=7.08 mm. Paragraph 0068, PDF p. 15 (printed p. 5), defines object distance from the image plane to the object position.",
+      },
+    ],
   },
 
   gaps: {
