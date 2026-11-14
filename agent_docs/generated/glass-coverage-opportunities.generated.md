@@ -9,9 +9,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **1128** lenses scanned (**1109** visible)
-- **11897 / 12769** non-air surfaces use strict catalog Sellmeier data (93.2%)
-- **11915 / 12769** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 93.3%)
+- **1136** lenses scanned (**1117** visible)
+- **11947 / 12820** non-air surfaces use strict catalog Sellmeier data (93.2%)
+- **11965 / 12820** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 93.3%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
 - **288** code-only missing-Sellmeier elements in Sweep 2: **27** active unreviewed, **155** self-recording explicit dispositions, **0** dispositions missing any review record
@@ -122,6 +122,7 @@ These lenses are missing trusted chromatic data only on glass elements. One or t
 | [SCHNEIDER-KREUZNACH APO-SYMMAR 100mm f/5.6](../../src/lens-data/schneider-kreuznach/SchneiderAPOSymmar100mmf56.data.ts) | US 6,028,720 | [PDF](../../patents/US6028720.pdf) | 83.3% (5/6) | 83.3% (5/6) | 1 | 4 [glass] (Element 3: `Unmatched (phosphate crown class, ne=1.5223, ve=69.5; no public catalog match — possible special melt or discontinued glass)`) | abbe: 1 |
 | [SCHNEIDER-KREUZNACH SUPER-SYMMAR XL 110mm f/5.6 ASPHERIC](../../src/lens-data/schneider-kreuznach/SchneiderSuperSymmarXL110mmf56.data.ts) | US 5,870,234 | [PDF](../../patents/US5870234.pdf) | 83.3% (5/6) | 83.3% (5/6) | 1 | 1 [glass] (Element 1: `Unmatched (Schott KF9; patent e-line ne=1.52583, ve=51.25 stored as nd/vd)`) | abbe: 1 |
 | [RUSSAR-21 60mm f/18](../../src/lens-data/unattributed/Russar21.data.ts) | US 2,516,724 A | [PDF](../../patents/US2516724.pdf) | 83.3% (5/6) | 83.3% (5/6) | 1 | 1 [glass] (Element 1: `Unmatched (Lenzos L-67; nd=1.6395, vd=43.3; reference wavelength unstated)`) | abbe: 1 |
+| [YONGNUO YN 40mm f/2.8N](../../src/lens-data/yongnuo/YongnuoYN40mmf28N.data.ts) | CN 207216120 U | [PDF](../../patents/CN207216120U.pdf) | 83.3% (5/6) | 83.3% (5/6) | 1 | 10A [glass] (Element 6: `Unmatched (nd 1.829, νd 37.1; supplier and partial dispersion unknown)`) | abbe: 1 |
 | [VILTROX AF 14mm f/4 AIR](../../src/lens-data/viltrox/ViltroxAF14mmf4Air.data.ts) | CN 121091494 A | [PDF](../../patents/CN_121091494_A.pdf) | 83.3% (10/12) | 83.3% (10/12) | 2 | 17 [glass] (Element 10: `Unmatched (patent nd=1.78 / vd=25.7; rounded coordinates do not pass catalog guard)`)<br>19A [glass] (Element 11: `Unmatched (nd≈1.64, νd≈23.5)`) | abbe: 2 |
 | [FUJIFILM FUJINON XF 16-50mm f/2.8-4.8 R LM WR](../../src/lens-data/fujifilm/FujifilmFujinonXf1650mmf2848RLMWR.data.ts) | WO 2024/057734 A1 | [PDF](../../patents/WO_2024057734_A1.pdf) | 81.8% (9/11) | 81.8% (9/11) | 2 | 3A [glass] (Element 2: `Unmatched (nd=1.58510, νd=58.74)`)<br>16A [glass] (Element 9: `Unmatched (nd=1.58510, νd=58.74)`) | abbe: 2 |
 | [FUJIFILM SUPER EBC FUJINON 7.1-28.4mm f/2-2.8 (Fujifilm X10)](../../src/lens-data/fujifilm/FujifilmX1071284mmf228.data.ts) | US 2014/0133036 A1 | Missing from untracked local patents/ references (US20140133036A1, US20140133036, 20140133036) | 81.8% (9/11) | 81.8% (9/11) | 2 | 11A [glass] (G3 front asphere: `Unmatched (nd=1.803603, νd=40.28)`)<br>16A [glass] (G3 negative asphere: `Unmatched (nd=1.803603, νd=40.28)`) | abbe: 2 |

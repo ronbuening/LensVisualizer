@@ -58,7 +58,7 @@ The positive meniscus, convex to the object, closes component I. Its rear face i
 
 ### Element 4 — Negative Meniscus
 
-nd = 1.7552, νd = 27.52. Glass: H-ZF6 (CDGM) coordinate equivalent, an SF4-class dense flint; the pair is the d-line value of the Russian dense flint TF5 (inferred). f = −47.13 mm.
+nd = 1.7552, νd = 27.52. Glass: TF5 (LZOS), an SF4-class dense flint; the pair is the d-line value of the Russian dense flint TF5 (inferred), traced on the LZOS catalogue curve. f = −47.13 mm.
 
 The first element behind the stop, 11.3 mm from it, presents a strongly curved concave face (R = −32.21 mm) to the diaphragm. That face carries the second-largest negative Petzval term in the lens, −0.0134 mm⁻¹ in the model.
 
@@ -99,13 +99,13 @@ The last element is plane toward the object, with a concave rear face of R = 25.
 | 1.5750 | 41.29 | L1 | LF5 | QF3 (CDGM) equivalent | light flint |
 | 1.7441 | 50.42 | L2, L6, L7 | STK19 | Unmatched | extra-dense lanthanum crown |
 | 1.6595 | 57.35 | L3, L8 | STK3 | STK3 (LZOS) | extra-dense lanthanum crown |
-| 1.7552 | 27.52 | L4 | TF5 | H-ZF6 (CDGM) equivalent | dense flint |
+| 1.7552 | 27.52 | L4 | TF5 | TF5 (LZOS) | dense flint |
 | 1.6131 | 60.61 | L5 | TK14 | TK14 (LZOS) | dense crown |
 | 1.6895 | 31.13 | L9 | TF8 | PBM28 (OHARA), nearest row | dense flint |
 
 Table 1 heads its columns n and ν without naming a spectral line, and the patent names no glass types or supplier. Every printed pair is the d-line value of a Russian GOST optical glass as GOST 13659-78 tabulates it: each nd agrees to the printed four decimals and each νd within 0.03. At the e line those glasses read 0.0024–0.0065 higher, and no pair matches any catalog glass there, so the values are traced as nd and νd. The identification rests on that agreement alone and says nothing about the production melts.
 
-L3, L5 and L8 trace on the glass catalog's LZOS STK3 and TK14 rows, fits to the LZOS catalogue's own index tables. QF3 and H-ZF6 equal LF5 and TF5 at the d line. PBM28 (0.0006 lower in nd, 0.05 lower in νd than TF8) lends its dispersion curve while the trace keeps the printed index. STK19 is traced with Abbe-number dispersion. The STK3 crown also appears in the Zenitar 35mm f/1 patent. Every element satisfies the index and dispersion ranges of claim 2.
+L3, L4, L5 and L8 trace on the glass catalog's LZOS STK3, TF5 and TK14 rows, fits to the LZOS catalogue's own index tables. QF3 equals LF5 at the d line. PBM28 (0.0006 lower in nd, 0.05 lower in νd than TF8) lends its dispersion curve while the trace keeps the printed index. STK19 is traced with Abbe-number dispersion. The STK3 crown also appears in the Zenitar 35mm f/1 patent. Every element satisfies the index and dispersion ranges of claim 2.
 
 Only six glasses serve nine elements. The three positive elements L2, L6 and L7 share one lanthanum glass, and L3 and L8 share another. The two dense flints sit where the negative power is concentrated: L4 next to the stop and L9 in front of the image.
 

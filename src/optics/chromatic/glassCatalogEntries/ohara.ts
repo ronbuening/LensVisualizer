@@ -2247,6 +2247,28 @@ export const OHARA_GLASS_ENTRIES: readonly GlassEntry[] = [
       "OHARA all-products Zemax catalog 2026-07-01 (OHARA_260701.AGF); vendor coefficients for discontinued LAL8. It shares a six-digit code with a current row, so code6 is omitted.",
   },
   {
+    name: "LAL60",
+    vendor: "Ohara",
+    polynomial: [2.9223334, -0.015268924, 0.020070735, 0.00049690538, -0.000015326299, 0.0000010772354],
+    nd: 1.725999,
+    vd: 53.565698,
+    PgF: 0.5457,
+    code6: "726536",
+    source:
+      "OHARA all-products Zemax catalog 2026-07-01 (OHARA_260701.AGF); vendor coefficients for discontinued LAL60 (the later S-LAL60 shares the coefficients). Added for the Olympus Zuiko Auto-S 40mm f/2 (US 4,396,255 A, L5 1.726/53.56).",
+  },
+  {
+    name: "PBL7",
+    vendor: "Ohara",
+    polynomial: [2.3529256, -0.0089081938, 0.015048987, 0.00070028858, -0.000047518872, 0.0000038995587],
+    nd: 1.548689,
+    vd: 45.555746,
+    PgF: 0.5651,
+    code6: "549456",
+    source:
+      "OHARA all-products Zemax catalog 2026-07-01 (OHARA_260701.AGF); vendor coefficients for discontinued PBL7. Added for the SMC Pentax 30mm f/2.8 (US 3,975,091 A, L1 1.54869/45.6).",
+  },
+  {
     name: "PBM25",
     vendor: "Ohara",
     polynomial: [2.7107551, -0.0092889162, 0.027542314, 0.0013512557, -0.000054563909, 0.0000083261074],

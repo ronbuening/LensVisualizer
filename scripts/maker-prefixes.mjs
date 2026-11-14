@@ -12,6 +12,7 @@ export const MAKER_PREFIXES = [
   { prefix: "FUJIFILM", display: "Fujifilm", slug: "fujifilm" },
   { prefix: "FUJINON", display: "Fujifilm", slug: "fujifilm" },
   { prefix: "HASSELBLAD", display: "Hasselblad", slug: "hasselblad" },
+  { prefix: "ISCO", display: "ISCO", slug: "isco" },
   { prefix: "KONICA", display: "Konica", slug: "konica" },
   { prefix: "KINOPTIK", display: "Kinoptik", slug: "kinoptik" },
   { prefix: "KMZ", display: "KMZ", slug: "kmz" },
