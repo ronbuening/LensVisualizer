@@ -5,8 +5,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Scale factor 1: source radii and intervals are already millimetres; no units conversion.
  * The prescription computes to 101.245322971 mm EFL versus nominal f = 100 mm.
  * The unprinted stop is inferred at the midpoint of the 6.54 mm air gap (3.27 + 3.27 mm).
- * Body semi-diameters 16 / 13.5 / 15.5 mm are inferred; the unprinted 84.173575804 mm
- * back focus is calculated at infinity. Only infinity focus is modeled.
+ * Body semi-diameters 16 / 13.5 / 15.5 mm are inferred, consistent with the relative
+ * rim heights and square cuts of schematic Fig. 4 (Example 10), not measured apertures.
+ * Real-ray checks clear the axial f/3.5 beam and 6x9 corner chief ray; off-axis vignetting remains.
+ * The unprinted 84.173575804 mm back focus is calculated at infinity. Only infinity focus is modeled.
  */
 const LENS_DATA = {
   "schema": 2,

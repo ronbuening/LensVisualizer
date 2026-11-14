@@ -3,7 +3,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Source: CN 119667909 A, Example 1, Tables 1–2 and Figure 1.
  * Scale factor 1: source radii, thicknesses and gaps are already in millimetres;
  * no units conversion is applied. Even-asphere coefficients retain source mm units.
- * Rims are inferred from Figure 1; the iris is inferred paraxially from
+ * Rims are inferred from Figure 1 at approximately 14.6 px/mm in a 300 dpi render.
+ * S7 retains its 24.17 mm optical cap with a flat land to the 31 mm drawn rim;
+ * S27/S28 retain 16.16 mm caps because the full drawn curves would cross.
+ * The iris is inferred paraxially from
  * the source entrance-pupil radius 34.309 mm (modeled f/1.233195, printed f/1.25).
  * The final gap is the calculated lens-only paraxial back focus, 19.813299312 mm,
  * rather than the printed 20.300 mm. Two-decimal nd precision and a non-unique
@@ -288,7 +291,8 @@ const LENS_DATA = {
       "label": "7",
       "R": 35.941,
       "d": 3.946,
-      "sd": 24.17
+      "sd": 24.17,
+      "rimExtensionSd": 31
     },
     {
       "label": "8",

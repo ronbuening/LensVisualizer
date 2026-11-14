@@ -134,7 +134,7 @@ Both surfaces have negative leading A4 terms with higher-order corrections. All 
 
 The source explicitly gives an entrance-pupil radius of 34.309 mm, rather than an iris radius. Combining it with calculated EFL gives f/1.233195; the patent states f/1.25 and permits f/1.2–1.3. The model retains the printed pupil radius and derives a paraxial iris radius of 18.474887 mm.
 
-Clear apertures are inferred from the patent figure, which gives no aperture dimensions. The broad front and narrower rear follow its silhouette, with small adjustments at facing S7/S8 and S27/S28 to avoid surface overlap. These rims are not established factory clear apertures.
+Clear apertures are inferred from Figure 1, which gives no aperture dimensions. The broad front and narrower rear follow its silhouette. S7 has a 24.17 mm optical cap and a flat land extending to the 31 mm outer rim of L3/L4; the land preserves the square outer edge without opening the aperture. S8 retains its 24.17 mm cap. S27/S28 retain 16.16 mm caps to avoid surface overlap. The figure draws the final pair almost meeting at larger heights, but continuing the prescribed curves to those heights would make them cross. These rims are not established factory clear apertures.
 
 The model's 18.474887 mm iris clears the axial marginal rays. A real-ray calculation using the full 34.309 mm entrance pupil instead reaches a 19.072 mm iris radius and clips at S7 and S15–S20. That larger iris differs from the model's paraxially derived iris.
 

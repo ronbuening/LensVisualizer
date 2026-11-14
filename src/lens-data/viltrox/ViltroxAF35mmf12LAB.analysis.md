@@ -157,15 +157,15 @@ The leading polynomial terms have opposite signs on the L4 faces and negative si
 
 ## Clear Apertures and Throughput Limitations
 
-No numerical clear apertures are published. The modeled rims are geometry-limited physical-group bounds, not proportional measurements of the manufacturer or patent drawings. Their broad-front, narrow-rear envelope is qualitatively consistent with those drawings, but the drawings do not establish these dimensions.
+No numerical clear apertures are published. The modeled rims are inferred from Example 2, Figure 2-1, at approximately 19.0 rendered pixels per millimetre at 600 dpi (the embedded drawing is about 150 dpi). Independent front and rear vertex spans agree on that scale within 1%. The manufacturer image supports the broad-front, narrow-rear proportions but provides no dimensional scale.
 
-The inferred rims satisfy curvature, slope and facing-surface clearance bounds while transmitting the axial pupil at f/1.2. No source curvature, thickness or material coordinate is changed. The iris semi-diameter is derived from the f-number as 17.343540796 mm rather than published by the patent. These rim dimensions apply at both focus endpoints.
+The front element has a 27.8 mm body radius and a 23.2 mm rear optical cap. The latter preserves the original paraxial tracing-field estimate within the figure's endpoint uncertainty. The first cemented pair has a 24.7 mm body radius with its front cap ending at 22.7 mm. The rear face of the first floating pair has a 17.0 mm optical cap and a 19.7 mm body radius. The final cemented pair has a 17.4 mm body radius and a 15.3 mm rear cap. Opaque lands join those caps to the drawn edges; no land is applied at a cemented interface. Other square rims retain common heights within each physical assembly.
 
-The model has **heavy corner vignetting** at infinity. At the 32.1° half-field angle, geometric transmission is 17.49%, with 82.51% blocked; at half that field it is 80.05%, and the axial pupil clears. Most corner loss occurs at the inferred front rim, with additional clipping in the middle and rear groups.
+The inferred rims satisfy curvature, slope and facing-surface clearance bounds while transmitting the axial pupil at f/1.2 at both printed focus configurations. The gap-sag budget is 97%; the front lands retain 0.516 mm of physical separation, and the floating-pair rear land retains 0.404 mm at the near endpoint. No source curvature, thickness or material coordinate is changed. The iris semi-diameter is derived from the f-number as 17.343540796 mm rather than published by the patent. These rim dimensions apply at both focus endpoints.
 
-For a finite object 205.016 mm before the first vertex, calculated corner transmission is 37.19% (62.81% blocked) and half-field transmission is 89.41%, with the axial pupil clear. These finite-object results use a different illumination geometry from collimated field-angle rays and are not interchangeable with them.
+The model retains **heavy corner vignetting**. The application's wide-open geometric transmission is approximately 38.1% at the 32.1° infinity half-field, with the axial pupil clear. In the near-focus configuration, its collimated field-angle calculation gives approximately 57.1% at 27.1°. That near-configuration calculation is not a finite-object illumination measurement at the calculated 205.016 mm conjugate.
 
-These geometric transmission fractions depend on inferred apertures. They are not measurements of illumination, coatings or retail vignetting. The front-rim dimensions need comparison with the maker's connected construction diagram before the corner losses can be attributed to the production lens.
+These geometric transmission fractions depend on inferred apertures. They are not measurements of illumination, coatings or retail vignetting. Figure 2-1 and the maker image support the larger front body and the stepped rear caps, but neither establishes factory clear diameters or measured production-lens corner transmission.
 
 ## Model Scope and Limitations
 

@@ -64,7 +64,7 @@ The [Medalist II manual](https://www.cameramanuals.org/kodak_pdf/kodak_medalist-
 
 The source supplies neither a numerical iris coordinate nor clear-aperture dimensions. The model assumes an iris at the midpoint of the 6.54 mm air gap, leaving 3.27 mm on each side. This position is inferred rather than measured from the retail lens section.
 
-The three groups have inferred semi-diameters of 16, 13.5 and 15.5 mm, with common rims on each cemented pair. These values use half-millimetre increments and a 0.9 rim/gap limit. The clearance between the central singlet's rear surface and the iris plane is only 0.04883 mm at its full rim. This positive geometric clearance does not establish manufacturing tolerance, shutter fit or blade thickness. The rims remain unmeasured against retail hardware.
+The three groups have inferred semi-diameters of 16, 13.5 and 15.5 mm, with common rims on each cemented pair. Figure 4 explicitly represents Example 10, but its local axial and curvature scales are inconsistent, so it supports relative proportions rather than measured apertures. Its group rim-height ratios are approximately 1 : 0.82 : 1, compared with the model's 1 : 0.844 : 0.969; all three groups have square-cut rims without resolved lands. These values use half-millimetre increments and a 0.9 rim/gap limit. The clearance between the central singlet's rear surface and the iris plane is only 0.04883 mm at its full rim. No iris station is marked in Figure 4. This positive geometric clearance does not establish manufacturing tolerance, shutter fit or blade thickness. The rims remain unmeasured against retail hardware.
 
 At f/3.5 the iris radius derived from the f-number is 11.766110125 mm, not a factory measurement. The aperture range extends through f/32, as listed in the Medalist II manual and brochure.
 
@@ -72,7 +72,7 @@ At f/3.5 the iris radius derived from the f-number is 11.766110125 mm, not a fac
 
 The prescription computes to an EFL of 101.245322971 mm, versus the patent's nominal 100 mm: a +1.2453% difference (about +1.25%), recorded as the design focal length. Both printed prescription tables agree on the radii and intervals; no single source-supported misprint correction has been found. Example 6 computes to 100.355 mm (+0.36%) on the same normalization. The Example 10 difference remains a source inconsistency, with the printed radii, thicknesses, gaps and glass coordinates retained.
 
-The inferred rims transmit the full axial aperture but clip part of the off-axis bundle. This geometric vignetting does not establish retail illumination or measured transmission.
+The inferred rims transmit the full axial aperture but clip part of the off-axis bundle. The engine's full-pupil lattice transmits approximately 77.9% at the declared 26° half-field, relative to 100% on axis. This geometric vignetting does not establish retail illumination or measured transmission.
 
 At the declared 26° half-field, the image height is 49.378512726 mm, or 97.779233% of the canonical 6x9 semi-diagonal of 50.5 mm. The declared projection field limits that result; the corner chief ray clears the rims at 26.515684°. Neither the 52° source field nor the 54° retail claim is established as fully illuminated coverage, and the declared source field does not reach the full canonical 6x9 corner. The model does not establish exact factory-example identification or manufacturing performance.
 

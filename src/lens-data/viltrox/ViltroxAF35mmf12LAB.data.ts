@@ -4,10 +4,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Scale s=1: source radii and distances are already millimetres; no units conversion.
  * GL retains 15.575 mm before / 2.500 mm glass / 0.500 mm after in rearPlates.
  * The pre-GL gap is fixed at both printed focus endpoints. No intermediate focus cam is published.
- * Rims are inferred geometry-limited bounds; the iris radius is derived from f/1.2.
+ * Rims are inferred from Figure 2-1, checked at both printed focus states; the iris is derived from f/1.2.
+ * S2/S3/S10/S24 retain drawn lands; caps and body rims are distinct, with no lands at cemented interfaces.
  * Back focus and the 0.341084 m object-to-image near conjugate are calculated, not printed.
  * Source spacings and image plane are retained, including the infinity focus residual.
- * Facing-surface sag is limited to 90% of each gap; the model has heavy corner vignetting.
+ * The 97% gap-sag budget admits the noncrossing S2/S3 and near-state S10/S11 lands; corner vignetting remains.
  */
 const LENS_DATA = {
   "schema": 2,
@@ -207,34 +208,36 @@ const LENS_DATA = {
       "label": "1",
       "R": 170.905,
       "d": 1.8,
-      "sd": 24,
+      "sd": 27.8,
       "medium": 1
     },
     {
       "label": "2",
       "R": 30.599,
       "d": 17.095,
-      "sd": 24
+      "sd": 23.2,
+      "rimExtensionSd": 27.8
     },
     {
       "label": "3",
       "R": -46.402,
       "d": 1.5,
-      "sd": 22,
+      "sd": 22.7,
+      "rimExtensionSd": 24.7,
       "medium": 2
     },
     {
       "label": "4",
       "R": 120.719,
       "d": 11,
-      "sd": 22,
+      "sd": 24.7,
       "medium": 3
     },
     {
       "label": "5",
       "R": -50.344,
       "d": 0.15,
-      "sd": 22
+      "sd": 24.7
     },
     {
       "label": "6",
@@ -268,20 +271,21 @@ const LENS_DATA = {
       "label": "8",
       "R": 83.207,
       "d": 4.4,
-      "sd": 21,
+      "sd": 19.7,
       "medium": 5
     },
     {
       "label": "9",
       "R": -311.913,
       "d": 1.2,
-      "sd": 21,
+      "sd": 19.7,
       "medium": 6
     },
     {
       "label": "10",
       "R": 26.572,
-      "sd": 21
+      "sd": 17,
+      "rimExtensionSd": 19.7
     },
     {
       "label": "11",
@@ -311,66 +315,67 @@ const LENS_DATA = {
       "label": "15",
       "R": 200.542,
       "d": 4.79,
-      "sd": 20,
+      "sd": 19.2,
       "medium": 9
     },
     {
       "label": "16",
       "R": -108.635,
       "d": 0.15,
-      "sd": 20
+      "sd": 19.2
     },
     {
       "label": "17",
       "R": 62.205,
       "d": 9.8,
-      "sd": 20,
+      "sd": 19.2,
       "medium": 10
     },
     {
       "label": "18",
       "R": -35.565,
       "d": 1.3,
-      "sd": 20,
+      "sd": 19.2,
       "medium": 11
     },
     {
       "label": "19",
       "R": -55.362,
-      "sd": 20
+      "sd": 19.2
     },
     {
       "label": "20",
       "R": 67.585,
       "d": 3.3,
-      "sd": 20,
+      "sd": 18.7,
       "medium": 12
     },
     {
       "label": "21",
       "R": 268.402,
       "d": 0.2,
-      "sd": 20
+      "sd": 18.7
     },
     {
       "label": "22",
       "R": 34.254,
       "d": 5.4,
-      "sd": 15.3,
+      "sd": 17.4,
       "medium": 13
     },
     {
       "label": "23",
       "R": 72.811,
       "d": 1.2,
-      "sd": 15.3,
+      "sd": 17.4,
       "medium": 14
     },
     {
       "label": "24",
       "R": 24.934,
       "d": 6.85,
-      "sd": 15.3
+      "sd": 15.3,
+      "rimExtensionSd": 17.4
     },
     {
       "label": "25",
@@ -501,7 +506,7 @@ const LENS_DATA = {
     "fullFieldDeg": 64.2
   },
   "checks": {
-    "gapSagFrac": 0.9
+    "gapSagFrac": 0.97
   },
   "subtitle": "CN 115826211 A, Example 2 — Viltrox AF 35mm f/1.2 LAB construction",
   "catalog": {

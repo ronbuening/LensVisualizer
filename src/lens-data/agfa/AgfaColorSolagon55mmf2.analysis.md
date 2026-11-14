@@ -76,13 +76,13 @@ The calculated effective focal length is 54.9985181967 mm at f/2, compared with 
 
 ### Inferred rims and diaphragm
 
-The source supplies neither clear-aperture semi-diameters nor an exact stop split. The inferred element-body semi-diameters were initially 20/12.5/11.5/14.5 mm. S3/S4 were raised from 12.5 to 12.9 mm to clear the axial f/2 beam, giving L2 equal front and rear rims. S5 remains 12.5 mm; the other inferred rims are unchanged. Figure 4 supports the construction, but does not establish factory clear apertures.
+The source supplies neither clear-aperture semi-diameters nor an exact stop split. The inferred rims are S1/S2 20 mm, S3/S4 12.9 mm, S5 10.2 mm, S6 9.4 mm, S7/S8 11.5 mm and S9/S10 14.5 mm. L2 has equal front and rear rims; the shorter inner concave faces S5/S6 preserve the step toward the diaphragm shown in Figure 4. Their radii also admit the axial f/2 beam. The drawing is schematic: its individual axial thicknesses do not consistently match the prescription, so its proportions support the relative rim heights rather than factory aperture measurements.
 
-An iris at the midpoint between the adjacent surface vertices would intersect the glass at full aperture. The inferred iris position instead lies at the midpoint of the interval that clears the curved surfaces: 8.376374101204 mm after S5 and 4.803825898796 mm before S6, preserving the 13.1802 mm central air space. The modeled clearance is 0.660540553 mm on each side; this does not establish manufactured shutter or mounting clearance. The stop radius, 9.632180754601764 mm, is derived from f/2.
+The inferred iris position is 8.376374101204 mm after S5 and 4.803825898796 mm before S6, preserving the 13.1802 mm central air space. At the modeled cap edges, the axial distances to this plane are 3.958208458 mm from S5 and 2.159769020 mm from S6. These clearances do not establish manufactured shutter or mounting clearance or an exact factory stop station. The stop radius, 9.632180754601764 mm, is derived from f/2.
 
 ### Field coverage and image quality
 
-No axial rim limit remains at f/2. Off-axis vignetting remains within the inferred apertures, including substantial loss at the patent's 25° half-field. Unknown factory rims prevent attributing these losses to a production lens or treating them as measured illumination.
+There is no axial rim limit at f/2. The calculated geometric pupil transmission is approximately 51.7% at the full-frame corner, with substantial off-axis loss also present at the patent's 25° half-field. Unknown factory rims prevent attributing these losses to a production lens or treating them as measured illumination.
 
 The modeled chief ray reaches the 21.65 mm full-frame corner at 21.7°. This establishes chief-ray coverage, not illumination across the whole pupil. The model supplies no measured illumination, measured glass curves, near-focus prescription or exact factory-performance data; no MTF claim follows from these calculations.
 

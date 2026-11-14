@@ -2,7 +2,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 /**
  * Source: KR 10-2213072 B1, Example 2, Tables 4–6; both printed focus states.
  * Scale factor 1: source radii, thicknesses and gaps are already in mm; no units conversion.
- * The iris is derived from the f-number and the clear rims are inferred; source back-focus gaps are unchanged.
+ * The iris is derived from the f-number; source back-focus gaps are unchanged.
+ * Clear rims are estimated from Figure 3 (Example 2), checked at both printed focus states.
+ * Near-state axial ray floors retain S3/S4 at 26.3/25.6 mm, S5/S6 at 24.1/21.0 mm
+ * and square L4 at 20.2 mm. Figure-drawn rear-face lands on S4/S6/S10 extend to
+ * 26.3/24.1/18.0 mm; they do not enlarge the optical caps. The hybrid layer keeps L8's rims.
  * The camera-side 2.5 mm filter stays drawn because its trailing gap D4 varies from
  * 0.507836 to 0.687847 mm with focus; the rear-plate format supports only a fixed trailing gap.
  * No physical gaps are redistributed.
@@ -160,51 +164,54 @@ const LENS_DATA = {
       "label": "3",
       "R": 41.863,
       "d": 7.398,
-      "sd": 28,
+      "sd": 26.3,
       "medium": 2
     },
     {
       "label": "4",
       "R": 101.422,
       "d": 4.5,
-      "sd": 28
+      "sd": 25.6,
+      "rimExtensionSd": 26.3
     },
     {
       "label": "5",
       "R": 312.179,
       "d": 1.8,
-      "sd": 27,
+      "sd": 24.1,
       "medium": 3
     },
     {
       "label": "6",
       "R": 35.337,
       "d": 7,
-      "sd": 27
+      "sd": 21,
+      "rimExtensionSd": 24.1
     },
     {
       "label": "7",
       "R": 52.741,
       "d": 5,
-      "sd": 23,
+      "sd": 20.2,
       "medium": 4
     },
     {
       "label": "8",
       "R": 426.864,
-      "sd": 23
+      "sd": 20.2
     },
     {
       "label": "9",
       "R": 551.865,
       "d": 1.8,
-      "sd": 23,
+      "sd": 18,
       "medium": 5
     },
     {
       "label": "10",
       "R": 32.423,
-      "sd": 23
+      "sd": 16,
+      "rimExtensionSd": 18
     },
     {
       "label": "STO",

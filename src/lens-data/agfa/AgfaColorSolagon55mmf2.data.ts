@@ -5,7 +5,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * All printed radii, thicknesses and air spaces are multiplied by 55 to convert the
  * normalized source lengths to millimetres; the d-line indices and Abbe values are unchanged.
  * The source does not print clear semi-diameters, an exact stop station or back focus.
- * Rims are inferred; S3/S4 are raised together from 12.5 to 12.9 mm to clear the axial f/2 beam.
+ * Rims are inferred from the proportions of schematic Fig. 4, not printed clear apertures.
+ * S3/S4 share a 12.9 mm axial f/2 floor; the shorter S5/S6 caps are 10.2/9.4 mm,
+ * preserving the drawn inner-face step with real-ray aperture and corner-light checks.
  * The central 13.1802 mm air space is split at an inferred stop,
  * 8.376374101204 mm after S5 and 4.803825898796 mm before S6. The iris radius is derived
  * from f/2, and the unprinted final gap is the calculated paraxial back focus.
@@ -154,7 +156,7 @@ const LENS_DATA = {
       "label": "5",
       "R": 13.9832,
       "d": 8.376374101204,
-      "sd": 12.5
+      "sd": 10.2
     },
     {
       "label": "STO",
@@ -165,7 +167,7 @@ const LENS_DATA = {
       "label": "6",
       "R": -18.0312,
       "d": 4.94395,
-      "sd": 11.5,
+      "sd": 9.4,
       "medium": 4
     },
     {

@@ -74,4 +74,61 @@ Engine numbers before → after: EFL 49.90311745758611 → 49.90311745758611 mm;
 
 Scoped checks: audit:surface reports “OK — no validation errors”; audit:aperture reports one station within its default 3% tolerance and zero rim, trace, iris or failed limits; audit:field-coverage --all reports one station at ≥99%, zero unsolved and zero skipped. The default aperture tolerance still permits the documented S13/S14 source-geometry loss: 95.2% axial transmission, about f/1.28, with off-axis vignetting retained. Prettier and full application checks were skipped under the addendum. The prescribed screenshot helper produced thermal/power and DNS diagnostics but no PNG; browser review could not be completed and was not retried. No sandbox refusal occurred.
 
-Open: the stated 49 mm versus calculated 49.903117 mm focal length; the unspecified omitted FIT filter; unknown exact production coefficients, glass identities and clear apertures; no published close-focus prescription; S13/S14 source-geometry clipping and the uncertain allocation of off-axis loss between design and inferred rims; the previously unresolved lower full-field marginal-ray solve; the patent's negative-power prose for G1/G3 despite their positive isolated powers; full application regression and rendered browser review. Rims and optics require a separate pass if these limitations are revisited.
+Open: the stated 49 mm versus calculated 49.903117 mm focal length; the unspecified omitted FIT filter; unknown exact production coefficients, glass identities and clear apertures; no published close-focus prescription; S13/S14 source-geometry clipping and the uncertain allocation of off-axis loss between design and inferred rims; the previously unresolved lower full-field marginal-ray solve; the patent's negative-power prose for G1/G3 despite their positive isolated powers; full application regression and rendered browser review. The figure-based rim and land review is completed below; those source and tracing limitations remain open.
+
+## 2026-11-14 — Semi-diameter pass against the patent figure
+
+Source: local CN224176794U.pdf, PDF pages 12/13, U Fig. 1/2, not the earlier A publication's layout. The native scan is 2480 × 3508 pixels at 300 dpi. Fig. 1 supplies clean optical curve endpoints and flat lands. Fig. 2 shows the tabulated infinity layout, with G2 close to G3; Fig. 1 places G2 farther objectward and is used for element outlines rather than focus spacings. No effective-diameter column is printed in Table 1. All optical sd values, including the binding S3/S4 19.05/19.08 mm and S13/S14 19.78 mm, are retained; gapSagFrac remains 0.98. Only four rimExtensionSd fields are added.
+
+Scale: the local Fig. 1 axis is column 1240. Native vertex rows S1 ≈2567 and S10 ≈1960 span 607 px for 38.992 mm, or 15.5673 px/mm. Independently, S17 ≈1268 and S26 ≈719 span 549 px for 35.433 mm, or 15.4940 px/mm, a 0.47% difference. The full S1–S26 span gives 1848/119.064 = 15.5211 px/mm; S1–stop gives 719/46.345 = 15.5141 px/mm. A transverse arc check on S22, R = 42.029 mm, from its vertex near (1240, 992) to (1520, 929) gives a pixel circle radius of about 653.7 px, or 15.55 px/mm. This confirms approximately equal axial and transverse scale. Fig. 1's stop-to-S12 span is about 107 px = 6.89 mm, rather than the infinity 15.594 mm: G2 is about 8.7 mm objectward in that drawing. No focus table is inferred from this.
+
+Every optical rim was screened at 15.5211 px/mm. Figure readings below are approximate to 0.2 mm, excluding leaders, brackets, ray ink, the image plane and FIT. Ratios are figure/stored sd; differences remain inside approximately 5%, and several retained caps sit above the drawing to clear the axial beam. Cemented interfaces remain free of lands.
+
+| Surface | Retained sd (mm) | Fig. 1 optical endpoint (mm) | Figure/stored |
+|---|---:|---:|---:|
+| S1 | 20.07 | 20.1 | 1.00 |
+| S2 | 20.00 | 20.1 | 1.01 |
+| S3 | 19.05 | 18.8 | 0.99 |
+| S4 | 19.08 | 18.9 | 0.99 |
+| S5 | 22.00 | 22.0 | 1.00 |
+| S6 | 22.59 | 22.0 | 0.97 |
+| S7 | 24.65 | 23.8 | 0.97 |
+| S8 | 24.74 | 23.8 | 0.96 |
+| S9 | 23.05 | 22.0 | 0.95 |
+| S10 | 22.10 | 22.0 | 1.00 |
+| S12 | 20.86 | 20.3 | 0.97 |
+| S13 | 19.78 | 19.6 | 0.99 |
+| S14 | 19.78 | 19.8 | 1.00 |
+| S15 | 20.18 | 19.8 | 0.98 |
+| S16 | 20.16 | 19.8 | 0.98 |
+| S17 | 20.50 | 20.8 | 1.01 |
+| S18 | 20.50 | 20.8 | 1.01 |
+| S19 | 20.50 | 20.8 | 1.01 |
+| S20 | 22.30 | 22.3 | 1.00 |
+| S21 | 22.30 | 22.3 | 1.00 |
+| S22 | 20.50 | 20.6 | 1.00 |
+| S23 | 20.50 | 20.6 | 1.00 |
+| S24 | 17.09 | 17.3 | 1.01 |
+| S25 | 17.09 | 17.5 | 1.02 |
+| S26 | 17.30 | 17.5 | 1.01 |
+
+The visible disagreements are missing flat lands, rather than optical radii. The following values are total drawn semi-diameters, not additional aperture. No existing sd, innerSd, rim cut or check changes.
+
+| Surface | sd before → after (mm) | Drawn face edge before → after (mm) | Evidence |
+|---|---|---|---|
+| S3 | 19.05 → 19.05 | 19.05 → 20.00 | Native rows 2371–2372 draw a short horizontal land from columns about 1531–1532 to 1550–1552; the first doublet's outer edge is about 20.1 mm. Keep the approved cap and match its 20.00 mm cemented/outer body. |
+| S4 | 19.08 → 19.08 | 19.08 → 22.00 | Rows 2362–2363 draw a land from column 1534 to 1583–1584: approximately 18.9 → 22.1 mm. Match the existing S5 body rather than enlarge the optical cap. |
+| S13 | 19.78 → 19.78 | 19.78 → 20.86 | Rows 1637–1640 show the L7 rear curve ending inside its outer edge. Keep the binding cap and match the S12 edge. S12's axial marginal ray is 20.74 mm, above its approximately 20.3 mm figure reading, so its 20.86 mm body is retained. |
+| S24 | 17.09 → 17.09 | 17.09 → 20.50 | Row 774 has a clear horizontal land around columns 1509–1559, approximately 17.3 → 20.6 mm. Match S22/S23's 20.50 mm body; the optical curve remains at 17.09 mm. |
+
+These four extensions exceed 0.1 mm, occur only at glass/air boundaries, and retain all optical caps. Trial geometry passed before edits. The complete final set passes the surface check; image-circle check reports one lens, zero undersized and zero skipped; field coverage reaches 22.00/22.00 mm (100%) at about 23.8°, with zero unsolved/skipped stations. Default aperture audit reports no limits within its 3% tolerance. This is one infinity station only: no printed finite station exists. The clear-aperture trace is numerically unchanged: S13/S14 marginal heights 20.26/20.30 mm still exceed 19.78 mm; no chief ray is blocked. Its lower full-field marginal solve still reports no-ray-found. The previous LSA check is 0.168/0.124/0.056/0.007 mm at pupil fractions 1/0.85/0.7/0.5; no rim was raised for this pass. No aspheric sd changed, so no quoted clear-aperture sag or departure changes.
+
+Built values before → after: EFL 49.90311745758611 → 49.90311745758611 mm; FOPEN 1.25 → 1.25; authored half-field 23.790486344830388 → 23.790486344830388°; tracing half-field 24.744000265746717 → 24.744000265746717°; iris radius 21.985254253541743 → 21.985254253541743 mm. Stop position, prescription, focus, glass and metadata are untouched.
+
+The final rimcost comparison against base1125sd, with element-by-element restoration enabled, gives identical geometric transmission at all nine sampled fields: 95.2, 89.9, 82.7, 75.6, 67.8, 59.5, 51.0, 42.0 and 32.8%, from axis through 23.8°. Corner illumination is 32.8% → 32.8%; worst loss is 0.0 percentage points. Restoring each of S3, S4, S13 and S24 separately also changes transmission by 0.0 points. Thus every land meets the light rule. Remaining axial transmission is 95.2% (area-equivalent aperture about f/1.28), with substantial off-axis vignetting retained.
+
+Rendered review: the prescribed sketch was also copied into scratch with explicit rimExtensionSd support, since its stock straight joins omit lands. The final PNG and matched-scale comparison were viewed. The lands restore the source's square steps, while other rim heights remain within the drawing's uncertainty. The comparison is saved at `/private/tmp/claude-501/-Users-ronbuening--claude-spares-spare-4b6LS6/fcefa615-105e-4bd7-925a-ed68ad81cb71/scratchpad/sd/songraw50/overlay.png`; its source/model panels share 15.5211 px/mm and align at S1, with the different G2 drawing position explicitly labeled. The model uses infinity spacings; the figure's unspecified FIT plate and printed image gap are not reproduced. No browser was used under this addendum; the coordinator retains the live-page check.
+
+The supplied PetaPixel/SongRaw artwork was viewed: 15 elements, ten groups, five cemented pairs and the ordered shapes agree; aspheric elements are L1 and L15. It gives proportions only, omits an explicit iris and does not identify ED/APD positions. Its G2 separation differs from the U infinity drawing; it is not a ruler for rim values. The patent front page was re-read: inventor 昌宇文 (Yuwen Chang), applicant 深圳市松若摄影设备有限公司 (Shenzhen Songruo Photography Equipment Co., Ltd.), CN 224176794 U, published April 28, 2026; filed June 11, 2025, priority 202411609438.X dated November 12, 2024. No new name or bibliographic metadata problem was found. The existing 49 mm/computed EFL difference, unspecified FIT and corrected final image gap remain outside this pass. No iris/stop change is recommended or applied: retain the printed stop position and design f/1.25 derivation, with the source-geometry f/1.28 limitation disclosed. No sandbox refusal occurred.
+
+Final scope check against the committed SD baseline finds exactly four new surface fields, all rimExtensionSd, with every existing surface value and every non-surface data field identical. The scoped whitespace check passes. Prettier write/check was invoked only for these three files; the repository ignores Markdown and src/lens-data, so it made no formatting edits and does not certify their formatting. No full application, build, metadata-generation or state-changing git command ran.

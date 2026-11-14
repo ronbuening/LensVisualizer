@@ -52,7 +52,7 @@ L3 introduces negative power between the front positive elements. Its lower Abbe
 
 nd = 1.7725, νd = 49.62. Glass: TAF1 (Hoya) catalog equivalent.
 
-L4 closes the front section before the variable gap D1. Its modeled rim is an inferred geometry limit, not a published mechanical dimension.
+L4 closes the front section before the variable gap D1. Its square 20.2 mm rim follows Figure 3 subject to the near-state axial ray clearance; it is not a published mechanical dimension.
 
 ### L5 — Negative meniscus focusing element
 
@@ -136,9 +136,9 @@ The negative A4 term contributes a negative sag departure from the conic base; t
 
 The source's in-air back-focus and overall-length summaries remain inconsistent with the prescription. The source gives an air back focus of 39.403047 mm versus 39.457638 mm calculated, and an overall length of 112.418323 mm versus 112.469436 mm calculated. The calculated after-filter infinity back focus is 0.509431 mm versus the stored 0.507836 mm. Residual paraxial image-plane offsets are +0.001595473 mm at infinity and +0.001772322 mm near focus. Neither source plane was refocused.
 
-The inferred rims avoid overlapping surfaces at L4 and L7, with semi-diameters of 23 mm at L4 and 18 mm in the rear section. The surface semi-diameters, in source-row order with the stop marked separately, are:
+The inferred rims follow Figure 3 at the source scale, subject to axial clearance at both printed focus states. The near-state beam requires slightly larger front-section optical caps than the drawing alone suggests. L4 has a square 20.2 mm rim; the rear doublets and L8's hybrid layer share 18 mm rims. Flat lands on the rear faces of L2, L3 and L5 extend their optical caps to drawn body radii of 26.3, 24.1 and 18 mm, respectively. The surface clear semi-diameters, in source-row order with the stop marked separately, are:
 
-30, 30, 28, 28, 27, 27, 23, 23, 23, 23, STOP, 18, 18, 18, 18, 18, 18, 18, 24, 24 mm.
+30, 30, 26.3, 25.6, 24.1, 21, 20.2, 20.2, 18, 16, STOP, 18, 18, 18, 18, 18, 18, 18, 24, 24 mm.
 
 These are inferred clear apertures, not patent-published or factory-measured rims. The model reaches the full-frame corner, but some edge rays are blocked. Geometric clipping is substantial at the source's field edge: 57.6355% at infinity (14.239°) and 45.8128% at the printed near state (11.939°). Analytic sphere intersections confirm that blocked incoming lines miss the 30 mm front cap. These calculated fractions exclude coating losses and do not establish production illumination.
 

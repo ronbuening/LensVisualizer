@@ -5,7 +5,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * 17.91466693210846 mm. The earlier CN 119148346 A layout explains the printed 14.9 mm.
  * Other radii, gaps, indices and aspheres retain the U tables. Computed EFL is
  * 49.903117 mm against the stated 49 mm. The illustrated, unspecified filter is omitted.
- * Rims are inferred from the patent figures and ray clearance. S3/S4 clear the axial
+ * Rims are inferred from U Fig. 1/2 (15.52 native px/mm in Fig. 1) and ray clearance.
+ * Flat lands at S3/S4/S13/S24 preserve the drawn element edges without opening the caps.
+ * S3/S4 clear the axial
  * beam; S13/S14 use the largest equal two-decimal rims within a 98% gap-sag limit and still
  * clip slightly because of the source geometry. Other rims preserve off-axis vignetting.
  * The stop is derived from f/1.25 at the printed position. Infinity focus only;
@@ -220,13 +222,15 @@ const LENS_DATA = {
       "label": "3",
       "R": 41.009,
       "d": 10.392,
-      "sd": 19.05
+      "sd": 19.05,
+      "rimExtensionSd": 20
     },
     {
       "label": "4",
       "R": -35.997,
       "d": 1.5,
       "sd": 19.08,
+      "rimExtensionSd": 22,
       "medium": 3
     },
     {
@@ -284,7 +288,8 @@ const LENS_DATA = {
       "label": "13",
       "R": 76.029,
       "d": 5.492,
-      "sd": 19.78
+      "sd": 19.78,
+      "rimExtensionSd": 20.86
     },
     {
       "label": "14",
@@ -357,7 +362,8 @@ const LENS_DATA = {
       "label": "24",
       "R": 26.468,
       "d": 7.921,
-      "sd": 17.09
+      "sd": 17.09,
+      "rimExtensionSd": 20.5
     },
     {
       "label": "25",
