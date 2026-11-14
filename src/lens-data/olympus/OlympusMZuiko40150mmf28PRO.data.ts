@@ -350,7 +350,36 @@ const LENS_DATA = {
   },
 
   /* ── Focus configuration ── */
-  focus: { closeFocusM: 0.7, description: "Dual VCM floating focus: G4 (VCM 1) and G5 (VCM 2) move independently." },
+  focus: {
+    closeFocusM: 0.7,
+    description: "Dual VCM floating focus: G4 (VCM 1) and G5 (VCM 2) move independently.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 700,
+        distanceReference: "image-plane",
+        source:
+          "US 2015/0168697 A1, Example 4, Unit separation (PDF p. 38, printed p. 15), a distance between an object and an image is 0.7 m. wide: D5=2.56328, D11=53.22784, D19=3.12034, BF=2.5, D22=17.25696 mm.",
+      },
+      {
+        zoomStation: 1,
+        keyframe: 1,
+        objectDistanceMm: 700,
+        distanceReference: "image-plane",
+        source:
+          "US 2015/0168697 A1, Example 4, Unit separation (PDF p. 38, printed p. 15), a distance between an object and an image is 0.7 m. standard: D5=30.41889, D11=25.3723, D19=6.98082, BF=2.75153, D22=13.14454 mm.",
+      },
+      {
+        zoomStation: 2,
+        keyframe: 1,
+        objectDistanceMm: 700,
+        distanceReference: "image-plane",
+        source:
+          "US 2015/0168697 A1, Example 4, Unit separation (PDF p. 38, printed p. 15), a distance between an object and an image is 0.7 m. tele: D5=53.87892, D11=1.91217, D19=12.71907, BF=3.64447, D22=6.51353 mm.",
+      },
+    ],
+  },
 
   /* (moved from var) ── Variable air spacings (zoom + focus) ──
    *  Each value is an array of [d_inf, d_close] pairs, one per zoom position.

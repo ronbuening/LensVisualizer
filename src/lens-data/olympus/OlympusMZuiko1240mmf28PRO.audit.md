@@ -102,3 +102,23 @@ the analysis, which is unchanged.
 
 - Why the old value differed: printed close rows focus at 0.25 m; 0.2 m is the old (production) value.
 - `catalog.closeFocusM.marketing` 0.2 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.
+
+## 2026-11-14 — Published finite conjugates
+
+Patent: US 2014/0139720 A1, Example 5.
+
+| State (zoom/keyframe) | Field | Before | After | Paraxial offset (mm) | Offset (depths of focus) | Other reference (depths) | Verdict |
+|---|---|---|---|---|---|---|---|
+| 0/1 | `focus.conjugates` | absent | 250 mm, `image-plane` | -0.000539023 | -0.055001 | -36.306255 | consistent |
+| 1/1 | `focus.conjugates` | absent | 250 mm, `image-plane` | -0.001319455 | -0.133898 | -116.299522 | consistent |
+| 2/1 | `focus.conjugates` | absent | 250 mm, `image-plane` | -0.001296877 | -0.130716 | -361.013134 | consistent |
+
+Source: US 2014/0139720 A1, Example 5, paragraph 0252 (PDF p. 35) and Focus data (PDF p. 39, printed p. 13): object to image distance 0.25 meter.
+
+Distance-reference basis: `patent-defined`. The patent states: “the distance from the object point to the image point (i.e. object to image distance) is 0.25 meter.”
+
+- State 0/1: D3=0.8433, D10=19.7674, D21=4.1419, D18=2.4446 mm. d18 infinity + 0.557 mm; d21 infinity - 0.557 mm, using the printed G4 imageward movement; zoom-only gaps unchanged.
+- State 1/1: D3=3.1723, D10=6.3586, D21=8.1832, D18=9.8217 mm. d18 infinity + 1.565 mm; d21 infinity - 1.565 mm, using the printed G4 imageward movement; zoom-only gaps unchanged.
+- State 2/1: D3=26.5044, D10=1.0555, D21=7.3242, D18=17.5045 mm. d18 infinity + 4.431 mm; d21 infinity - 4.431 mm, using the printed G4 imageward movement; zoom-only gaps unchanged.
+
+Residuals retain the authored prescription and image plane. Every declared state already has its published-focus flag.
