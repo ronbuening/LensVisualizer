@@ -58,6 +58,7 @@ Tags: `[policy]` how we work · `[recipe]` steps for one change type · `[archit
 - [queue] [`../MTF_ACCURACY_PLAN.md`](../MTF_ACCURACY_PLAN.md) — MTF audit findings, assumption review, the open stages (prescription screen, uncertainty display, validation statement) and unscheduled candidates; optional optiland cross-check tool
 - [queue] [`sd-audit-queue.md`](sd-audit-queue.md) — semi-diameter floor failures, shape deviations, source blockers, MTF field and image-plane censuses, traced field-coverage shortfalls, prescription errors found in passing, stops still opened to the marketed f-number, stations whose stated axial beam does not pass, the in-progress diagram sweep
 - [queue] [`lens-mount-format-backfill.md`](lens-mount-format-backfill.md) — mount/format metadata coverage and review queue
+- [queue] [`finite-conjugate-backfill.md`](finite-conjugate-backfill.md) — published close-focus states without `focus.conjugates`, by what the source prints and why a printed distance could not be declared
 - [queue] [`patent-example-queue.md`](patent-example-queue.md) — patent-backed lenses without `source.example`, and the schema decision each needs
 - [queue] [`glass-relabel-followup.md`](glass-relabel-followup.md) — catalog-mismatch relabel status and closed families
 - [queue] [`proprietary-glass-backfill.md`](proprietary-glass-backfill.md) — patent line-index backfill for proprietary glasses

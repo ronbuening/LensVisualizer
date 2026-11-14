@@ -292,9 +292,9 @@ bounded to ±10 mm.
 
 `npm run audit:finite-conjugates` checks every declaration at its open physical stop, including axial conjugacy on
 fisheyes, retaining every support check except the off-axis projection requirement. The limit is
-`MTF_FINITE_CONJUGATE_DEPTHS` = 25 quarter waves: all 100 catalog states are measurable, 96 lie within 24.314 units,
-and four outliers span 36.174–101.033. This accommodates the main
-source-rounded residual range; it does not certify source accuracy. The other distance reference is checked
+`MTF_FINITE_CONJUGATE_DEPTHS` = 25 quarter waves, an empirical outlier threshold: the catalog's declarations lie within
+24.5 except four separated outliers that begin at 36.2. This accommodates the main source-rounded residual range; it
+does not certify source accuracy, and a wrong distance on a short or slow lens can stay inside it. The other distance reference is checked
 independently by the same authored-plane wavefront measure, never applied. `referenceDiscriminated` is true
 when the other reference would put the object at or behind the first surface, exceeds 25 absolute depths, or has an
 absolute offset in depths at least 10 times the declared one and above one depth. Any other unavailable alternate does

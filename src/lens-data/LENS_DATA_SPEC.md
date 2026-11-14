@@ -1071,6 +1071,15 @@ focus: {
   identifies the evidence for both the distance and the focus spacings.
 - MTF never infers conjugates from `closeFocusM`, a production MFD or interpolated slider labels; undocumented
   intermediate states stay unavailable. Do not certify calculated focus travel as a published configuration.
+- `distanceReference` is the one the source defines (a defining sentence, or an object row whose gap precedes surface 1
+  in the surface table). Where the source prints a distance without defining its reference, declare it only when the
+  audit below reports `consistent`, meaning the other reference fails or is impossible, and say in `source` that the
+  conjugate audit identified the reference. Other states in the same source table then take that reference. Leave
+  the state undeclared when the source's stated reference and the audit disagree.
+- A distance the source measures to a front filter or protective plate that the file does not model is not a
+  first-surface distance. Model the plate or leave the state undeclared.
+- In a scaled transcription the printed distance scales by the file's own stated factor; give the printed value and
+  the factor in `source`.
 - Every conjugate also counts as a published state (below).
 - Run `npm run audit:finite-conjugates` to check declared distances and focus spacings using paraxial defocus
   wavefront error on the exit-pupil sphere referenced to the authored image plane, at the open physical stop.
@@ -1079,6 +1088,8 @@ focus: {
   a numeric defocus diagnostic but cannot certify consistency. Fisheye axial checks retain the other MTF support prerequisites.
   See `agent_docs/architecture/optics-engine.md` § Simulated MTF for the measure and distance-reference verdicts.
   `--lens=<key>`, `--files=<comma-separated data files>`, `--json` and `--strict` support focused authoring checks.
+  The audit is a screen, not proof: on a short or slow lens a wrong distance can stay inside the limit, so read the
+  printed value, unit, example and close-focus column against the source as well.
 - Source-rounded prescriptions may keep residual defocus: MTF evaluates the authored image plane by default, reports the
   axial best-focus shift as a diagnostic, and moves the plane only when the viewer asks. Do not edit the authored image
   distance to improve simulated MTF.
