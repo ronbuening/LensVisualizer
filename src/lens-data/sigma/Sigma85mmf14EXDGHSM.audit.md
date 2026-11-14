@@ -30,3 +30,15 @@ Preserve the completed 2026-10-30 original-source shape/glass review. Rechecked 
 The [official CDGM September 2026 AGF](https://www.cdgmgd.com/downloadFile.htm?uid=3f4d14c82d2c11eeb5ac000c29c8de8c) D-ZK3A-25 NM/CD row and [manufacturer detailed sheet](https://www.cdgmgd.com/webapp/pdf/D-ZK3A-25.pdf) support a qualified proxy. The native three-term Sellmeier constants are retained exactly. The sheet’s PgF 0.5372 differs by about 0.000111 from the adopted coefficient evaluation; this is retained as a vendor-data residual, with no fit or per-lens partial inferred. Evaluated nd 1.588279997, νd 61.012484 and PgF 0.537311 give source residuals +0.000649997 / −0.067516 and a +0.221396% F−C span error. The source nd remains the runtime anchor. This is the smallest joint normalized coordinate residual among the checked current/usable primary rows; Sumita(M) alternatives improve index alone but miss νd by −0.523819/−0.653942, while S-BAL35 misses nd by +0.001499910. The row's 25 °C/h annealing condition is not evidence of Sigma's process, supplier or melt.
 
 E6 now names D-ZK3A-25 as a qualified spectral proxy, coverage 10/11 → 11/11. All source numeric fields, partial/APD data, shapes, inferred cuts, iris and controls are unchanged by pure parsed-data and d-line runtime comparison. No supplier/melt identity, source spectral observation or new APD designation is inferred. This followup adds no whole-shape review count; existing source and runtime limitations remain applicable.
+
+## 2026-11-14 — Published finite-conjugate certification
+
+Patent: JP2011170128A, Numerical Example 5.
+
+| State (zoom/keyframe) | Field | Before | After | Source and axial residual |
+|---|---|---|---|---|
+| 0/1 | `focus.conjugates` | absent | 850 mm, `image-plane` | PDF p.18 (printed p.17), ¶0088 [可変間隔], 0.85m column, 撮影距離 row: 撮影距離 = 0.85m; d6=4.8554 mm; B.F. is not numerically tabulated. Offset -0.000027810 mm (-0.007950 diffraction depths), `consistent`; other reference -1.458945880 mm (-435.679452 depths). |
+
+The patent labels the finite state with photographing distance but does not define its datum. The conjugate audit identifies the image-plane reference (`referenceBasis: audit-resolved`), with `referenceDiscriminated: true` at every declared state.
+
+The audit uses the open physical stop and the authored image plane. Published flags already include these keyframes. Prescription values, gap schedules and image position are retained.

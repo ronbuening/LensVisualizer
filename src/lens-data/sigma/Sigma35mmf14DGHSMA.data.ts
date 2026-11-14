@@ -250,6 +250,16 @@ const LENS_DATA = {
   ],
 
   focus: {
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 164,
+        distanceReference: "first-surface",
+        source:
+          "JP2014048488A, Numerical Example 4, [可変間隔データ], 300mm column, d0 row (PDF p.17, printed p.17): d0=164.0000 mm; d10=1.0000; d15=5.4213; BF=47.0458 mm. The surface table (p.16) lists d0 in the object-plane d row before surface 1.",
+      },
+    ],
     closeFocusM: 0.3,
     description:
       "Floating inner focus: G2 and G3 advance toward the object on separate trajectories; the aperture stop moves with G3.",

@@ -261,6 +261,16 @@ const LENS_DATA = {
   ],
 
   focus: {
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 850,
+        distanceReference: "image-plane",
+        source:
+          "JP2011170128A, Numerical Example 5, ¶0088 [可変間隔], 0.85m column, 撮影距離 row (PDF p.18, printed p.17): 撮影距離=0.85m; d6=4.8554 mm; B.F. is not numerically tabulated. Distance reference identified by the conjugate audit (referenceBasis: audit-resolved); the patent does not define the datum.",
+      },
+    ],
     closeFocusM: 0.85,
     description:
       "PUBLISHED focus gap, derived image distance: rear focus with the front group L1 and the image plane fixed. The patent prints d6 at infinity and at 0.85 m (15.2520 → 4.8554 mm) but no back focus, so the infinity image distance is the paraxial back focus of the printed table (39.512 mm). The rear group L2, with the iris, advances 10.3966 mm toward the object, giving 849.998 mm object-to-image at 1:8.64 (marketed 0.85 m, 1:8.6). Positions between the two printed states are linearly interpolated.",

@@ -195,6 +195,16 @@ const LENS_DATA = {
   ],
 
   focus: {
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 600,
+        distanceReference: "image-plane",
+        source:
+          "JP2014142520A, Numerical Example 1, [可変間隔データ], 600mm column, 撮影距離 row (PDF p.9, printed p.9): 撮影距離=600mm; d6=3.5754; BF=40.2725 mm. Distance reference identified by the conjugate audit (referenceBasis: audit-resolved); the patent does not define the datum.",
+      },
+    ],
     closeFocusM: 0.3,
     keyframes: [0, 0.49996964183249615, 1],
     description:

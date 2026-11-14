@@ -569,6 +569,24 @@ const LENS_DATA = {
     },
   ],
   focus: {
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 19410.1882,
+        distanceReference: "first-surface",
+        source:
+          "JP2025071886A, Numerical Example 1, [可変間隔データ], 20m column, d0 row (PDF p.16, printed p.16): d0=19410.1882 mm; d15=7.4232; d18=26.6738; BF=37.1732 mm. The surface table (p.15) lists d0 in the object-plane d row before surface 1.",
+      },
+      {
+        zoomStation: 0,
+        keyframe: 2,
+        objectDistanceMm: 2898.0257,
+        distanceReference: "first-surface",
+        source:
+          "JP2025071886A, Numerical Example 1, [可変間隔データ], 3.2m column, d0 row (PDF p.16, printed p.16): d0=2898.0257 mm; d15=21.9757; d18=12.1213; BF=37.1732 mm. The surface table (p.15) lists d0 in the object-plane d row before surface 1.",
+      },
+    ],
     closeFocusM: 3.1504,
     keyframes: [0, 0.16022, 1],
     published: [1, 2],

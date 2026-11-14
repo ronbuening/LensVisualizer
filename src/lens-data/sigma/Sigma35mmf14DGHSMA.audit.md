@@ -21,3 +21,15 @@ Patent: JP 2014-048488 A, Numerical Example 4 / FIG. 16
 - Both asphere coefficients preserved. S1A polynomial departure recomputed+1.464901mm at new cap27.4; S22A remains−0.762333mm at unchanged cap17. Public asphere/rim paragraphs synchronized. No source R/d, media coordinates, stop, focus/aperture controls, off-axis display fraction, tolerances or certification edits.
 - Fresh glass: all13 source pairs exact and all13 retain compatible current coefficient models. No source C/F/g, θgF, ΔPgF or anomalous-material designation; νd averages in conditions are not partial-dispersion evidence. Labels now state qualified proxies/supplier-grade uncertainty. L5/L10/L11 actually resolve to FCD505, coefficientνd68.657103 versus source68.62, and stale public FCD515 production-identification wording is corrected. Current LBC3N coefficientsνd63.710956 support source63.71 without establishing supplier/melt. No APD badge or spectral override added.
 - Full inferred-cut guard passes; a separate temporary source d0=164mm first-surface conjugate at close also passes (no authored certification added). Source close table/plot discrepancy remains. Actual9state SVGs viewed, connected compounds, max automatic trim0. Surface/full-cut, image-circle0undersized, ≥99%field, aperture within3%/no rim limiter, catalogue consistency and3shared glass suites/94tests pass. Identical pupil samples and source/control invariant proof recorded with final evidence in `/tmp/ftb3/`; the same65×65 pupil disk at5source-field fractions ×3focus states retains38,044samples, loses0, gains3,409, and blocks6,682inboth; these counts are not photometric flux.
+
+## 2026-11-14 — Published finite-conjugate certification
+
+Patent: JP2014048488A, Numerical Example 4.
+
+| State (zoom/keyframe) | Field | Before | After | Source and axial residual |
+|---|---|---|---|---|
+| 0/1 | `focus.conjugates` | absent | 164 mm, `first-surface` | PDF p.17 (printed p.17), [可変間隔データ], 300mm column, d0 row: d0 = 164.0000; d10=1.0000; d15=5.4213; BF=47.0458 mm. Offset +0.001071695 mm (+0.354056 diffraction depths), `consistent`; other reference +22.487383370 mm (+4556.779174 depths). |
+
+"物面 ∞ (d0)" appears in the d column of [面データ], immediately before surface 1 (PDF/printed p.16); d0 is the object-side surface interval. The declared reference is patent-defined.
+
+The audit uses the open physical stop and the authored image plane. Published flags already include these keyframes. Prescription values, gap schedules and image position are retained.

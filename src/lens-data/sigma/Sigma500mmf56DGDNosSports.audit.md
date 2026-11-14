@@ -52,3 +52,16 @@ The lands render shorter than drawn (q 0.93, 0.96 and 0.88 against 0.90, 0.90 an
 Checked and found correct: element designations L1–L20 and every type match ¶0076–0080 and the signs of R; G1 (1–15), G2 (16–18) and G3 (20–35) match Fig. 1's brackets, with the IU (20–24) and RU (25–35) sub-brackets carried in the G3 text; the stop is surface 19 between G2 and G3 (¶0081); all surfaces are spherical (claim 12) and no asphere marker is shown. FLD (L2, L4, L6) and SLD (L1, L12) stay "inferred": the patent text sets no dispersion condition on them. All 20 glass labels resolve (FCD1, FCD100, TAF1, E-FL6, E-FD5, FCD515, TAFD30, E-FD80, FDS18, E-FD15, E-FD4, NBFD29, TAFD37); the inspector shows FDS18 with the patent APD tag and doublet D4 for L15, FCD515 inferred for L12. Focus: ¶0077 moves G2 from the object side toward the image for infinity to close focus and Fig. 1's arrow under G2 points to the image; G1 (¶0076) and G3 (¶0078) are fixed. The data give d15 5.1467 → 7.4232 → 21.9757 mm and d18 28.9503 → 26.6738 → 12.1213 mm (sum 34.0970 mm in every state), keyframes 0 / 0.16022 / 1 in the table's INF / 20 m / 3.2 m order; the motion overlay shows G2 travelling 16.83 mm toward the image with G1 and G3 still, and the slider runs from ∞ to 3.15 m.
 
 Remaining differences: G1 and G2 rims sit 3–4 % above Fig. 1 (the file's scale choice, within measurement noise); L14 is 8 % above Fig. 1 but 2.5 % above Sigma's drawing; Fig. 1 draws L16 2 px taller than L15 while Sigma draws L15 taller, so the model keeps one height; both drawings put L20 2–3 px above the triplet, which the model keeps level; Sigma draws L8 a step below L7, which Fig. 1 does not, so no step was added.
+
+## 2026-11-14 — Published finite-conjugate certification
+
+Patent: JP2025071886A, Numerical Example 1.
+
+| State (zoom/keyframe) | Field | Before | After | Source and axial residual |
+|---|---|---|---|---|
+| 0/1 | `focus.conjugates` | absent | 19410.1882 mm, `first-surface` | PDF p.16 (printed p.16), [可変間隔データ], 20m column, d0 row: d0 = 19410.1882; d15=7.4232; d18=26.6738; BF=37.1732 mm. Offset -0.005002456 mm (-0.126544 diffraction depths), `consistent`; other reference +0.155034970 mm (+3.904897 depths). |
+| 0/2 | `focus.conjugates` | absent | 2898.0257 mm, `first-surface` | PDF p.16 (printed p.16), [可変間隔データ], 3.2m column, d0 row: d0 = 2898.0257; d15=21.9757; d18=12.1213; BF=37.1732 mm. Offset -0.004899302 mm (-0.123935 diffraction depths), `consistent`; other reference +8.370037311 mm (+170.801479 depths). |
+
+"物面 ∞ (d0)" appears in the d column of [面データ], immediately before surface 1 (PDF/printed p.15); d0 is the object-side surface interval. The declared reference is patent-defined.
+
+The audit uses the open physical stop and the authored image plane. Published flags already include these keyframes. Prescription values, gap schedules and image position are retained.

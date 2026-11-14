@@ -232,6 +232,16 @@ const LENS_DATA = {
   ],
 
   focus: {
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 258,
+        distanceReference: "first-surface",
+        source:
+          "JP2015114366A, Numerical Example 1, [可変間隔データ], 400mm column, d0 row (PDF p.12, printed p.12): d0=258.0000 mm; d9=1.2000; d14=5.8989; BF=47.6991 mm. The surface table (p.11) lists d0 in the object-plane d row before surface 1.",
+      },
+    ],
     closeFocusM: 0.4,
     description:
       "Internal floating focus: G1 fixed; G2A and the stop/G2B move independently toward the object. Patent variables are d9, d14, and BF at infinity and at 0.40 m.",
