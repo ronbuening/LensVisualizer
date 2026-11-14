@@ -4,8 +4,8 @@
  * `assessMtfSupport` says whether MTF can run and lists the model's general assumptions. This module answers a
  * narrower question for the chart on screen: what is this lens, or lens plus converter, missing that the most
  * accurate model would need? Every gap is tied to the display it changes, so a single-wavelength chart the reader
- * asked for carries no dispersion gap, and image-plane claims follow the plane actually applied. Gaps hold the
- * chart behind a warning (`blocking`); authored source errata are notes that leave it readable.
+ * asked for carries no dispersion gap, and image-plane claims follow the plane actually applied. Blocking gaps hold
+ * the chart behind a warning; term/equation assumptions, aperture provenance and source errata leave it readable.
  */
 import type { MtfDataLimitation, MtfResult, MtfSpectrum } from "../../../types/mtf.js";
 import type { PreparedGeometry } from "../../types.js";
@@ -52,6 +52,37 @@ function formatHeights(gapMm: number): (heightMm: number) => string {
 export function assessMtfDataLimitations(state: PreparedGeometry, input: MtfDataLimitationInput): MtfDataLimitation[] {
   const { source } = state.lens;
   const limitations: MtfDataLimitation[] = [];
+
+  const omissions = source.source.omissions ?? [];
+  if (omissions.length > 0) {
+    const blocking = omissions.some((omission) => omission.kind === "asphere-coefficients");
+    const details = omissions
+      .map((omission) => {
+        const surfaces = `surface${omission.surfaces.length === 1 ? "" : "s"} ${omission.surfaces.join(", ")}`;
+        if (omission.kind === "asphere-coefficients")
+          return `The source omits aspheric coefficients for ${surfaces}: ${omission.note}`;
+        if (omission.kind === "asphere-term")
+          return `The source leaves individual aspheric terms blank for ${surfaces}: ${omission.note} These curves rest on taking those terms as zero.`;
+        return `The source's aspheric equation is absent or ambiguous for ${surfaces}: ${omission.note} These curves rest on that documented interpretation.`;
+      })
+      .join(" ");
+    limitations.push({
+      kind: "incomplete-prescription",
+      blocking,
+      text: details + (blocking ? " These curves describe the modeled stand-in, not the lens itself." : ""),
+    });
+  }
+  const sdSource = source.source.sdSource;
+  if (sdSource === "heuristic" || sdSource === "figure-measured") {
+    limitations.push({
+      kind: "estimated-apertures",
+      blocking: false,
+      text:
+        sdSource === "heuristic"
+          ? "Off-axis curves depend on clear apertures that are estimated or reconstructed rather than listed by the source."
+          : "Clear apertures measured from source figures carry measurement uncertainty; off-axis curves depend on those measurements.",
+    });
+  }
 
   if (input.preferredSpectrum !== "reference") {
     const label = MTF_SPECTRUM_LABELS[input.preferredSpectrum];

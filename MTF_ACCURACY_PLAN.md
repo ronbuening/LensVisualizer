@@ -144,8 +144,9 @@ Order: 4, then 8, then 9. Each stage is one PR and quotes the chart report befor
 - **Changes.** The maker's chart convention and its basis shown in the tab, with a button that sets the method and
   no automatic switch (the conventions table moves from `reports/data/` into `src/utils/catalog/`). A through-focus
   band whose width is fixed a priori from the traced f-number, re-projected from bundles already traced, as a
-  display toggle. A lens-level `sdSource` (`source-table`, `figure-measured`, `heuristic`) with a non-blocking
-  `estimated-apertures` note.
+  display toggle. `source.sdSource` (`source-table`, `figure-measured`, `heuristic`) and its `estimated-apertures`
+  note exist and seven lenses declare it; the catalog backfill remains, one lens at a time from its own audit
+  evidence.
 - **Not done.** No field-weighted default focus (four lenses supply 90 % of its gain); no clear-aperture scaling or
   band derived from chart fits; no per-maker default method; no spectrum change (band and node count are ruled in
   `agent_docs/decisions.md`, 2026-11-13).
@@ -208,9 +209,6 @@ S under a day, M one to three days, L longer.
 - **C20 — Finite conjugates.** 62 of 767 lenses with focus travel (8 %) have an eligible finite station; 504 of
   604 published finite stations lack `focus.conjugates`. Backfill from sources only, never from a close-focus
   label. L.
-- **C21 — Gaps that reach a chart unnamed.** A spherical stand-in for unpublished aspheres (Schneider Super-Symmar
-  XL 110mm) and reconstructed clear apertures (Sigma 23mm f/1.4) are stated only in file headers. Fold a declared
-  missing-asphere warning into Stage 8's `sdSource` work. M, plus backfill.
 
 ### Features
 

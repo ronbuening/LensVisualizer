@@ -270,6 +270,16 @@ only when it changes that display; the first five are blocking:
   comparison follows the charted zoom position: endpoint pairs use the nearer wide/tele end; lists with one value
   per authored station use the nearer station. Midpoint ties go wider, and marketed focal lengths are never
   interpolated. The warning names the compared pair; scalar values stay fixed.
+- `incomplete-prescription`: one entry lists every `source.omissions` declaration and its surfaces. It blocks
+  only when an `asphere-coefficients` omission declares a source-designated asphere with no published coefficients;
+  the warning states that the curves describe the modeled stand-in, not the lens itself. With only `asphere-term`
+  (individual blank coefficients taken as zero) or `asphere-equation` (an absent or ambiguous equation given a
+  documented interpretation), it is a note that states the assumption and that the curves rest on it.
+  Zero coefficients alone establish no omission.
+- `estimated-apertures` (note): `source.sdSource` is `heuristic`, so off-axis curves depend on estimated clear
+  apertures. `figure-measured` carries a milder measurement-uncertainty note; `source-table` and an absent declaration
+  carry none. A composition retains either part's declared uncertainty and remaps converter omission labels. These
+  source fields travel in the canonical prescription and survive the MTF worker's rebuild, like `source.errata`.
 - `source-erratum` (note): the lens carries `corrected` `source.errata`, so a printed source value was replaced.
 - `source-inconsistent` (note): the lens carries `unresolved` `source.errata`; the curves describe the printed table.
 

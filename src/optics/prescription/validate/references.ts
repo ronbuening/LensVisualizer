@@ -25,6 +25,40 @@ const SOURCE_ERRATUM_SURFACE_FIELDS = new Set(["R", "d", "nd"]);
 /** A correction needs this many independent kinds of source-internal evidence. */
 const SOURCE_ERRATUM_MIN_EVIDENCE = 2;
 
+/** Check declared aperture evidence and missing surface definitions without inferring either from numeric values. */
+export function validateSourceProvenance(data: UntrustedLensData, surfaceLabels: Set<string>, errors: string[]): void {
+  if (data.sdSource !== undefined && !["source-table", "figure-measured", "heuristic"].includes(data.sdSource)) {
+    errors.push(`"sdSource" must be source-table, figure-measured or heuristic`);
+  }
+  if (data.sourceOmissions === undefined) return;
+  if (!Array.isArray(data.sourceOmissions)) {
+    errors.push(`"sourceOmissions" must be an array when provided`);
+    return;
+  }
+  for (let index = 0; index < data.sourceOmissions.length; index++) {
+    const entry = data.sourceOmissions[index];
+    const at = `"sourceOmissions[${index}]"`;
+    if (!entry || typeof entry !== "object" || Array.isArray(entry)) {
+      errors.push(`${at} must be an object`);
+      continue;
+    }
+    for (const field of Object.keys(entry)) {
+      if (!["kind", "surfaces", "note"].includes(field)) errors.push(`${at} has unknown field ${field}`);
+    }
+    if (!["asphere-coefficients", "asphere-term", "asphere-equation"].includes(entry.kind))
+      errors.push(`${at}.kind must be asphere-coefficients, asphere-term or asphere-equation`);
+    if (typeof entry.note !== "string" || !entry.note.trim()) errors.push(`${at}.note must be non-empty`);
+    if (
+      !Array.isArray(entry.surfaces) ||
+      entry.surfaces.length === 0 ||
+      Array.from(entry.surfaces).some((label) => typeof label !== "string" || !surfaceLabels.has(label)) ||
+      new Set(entry.surfaces).size !== entry.surfaces.length
+    ) {
+      errors.push(`${at}.surfaces must be a non-empty list of unique authored surface labels`);
+    }
+  }
+}
+
 /**
  * Check `sourceErrata`: a corrected entry must name a real value, carry the applied value in this file, and cite
  * enough source-internal evidence; an unresolved entry only needs its note.
@@ -182,6 +216,7 @@ export function validateReferences(
 
   /* ── Source errata name real values and carry the corrected ones ── */
   if (data.sourceErrata !== undefined) validateSourceErrata(data.sourceErrata, data, surfaceLabels, errors);
+  validateSourceProvenance(data, surfaceLabels, errors);
 }
 export function validateSpans(
   data: UntrustedLensData,

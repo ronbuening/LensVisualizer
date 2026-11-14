@@ -2801,3 +2801,43 @@ describe("partial measured line span", () => {
     expect(validateLensData(data).join(" ")).toContain("partial line indices require finite nF > nC when ng is absent");
   });
 });
+
+describe("source omissions and aperture provenance", () => {
+  const omission = { kind: "asphere-coefficients", surfaces: ["1"], note: "Spherical stand-in." };
+  const errors = (fields: Record<string, unknown>) =>
+    validateLensData(makeValid(fields)).filter((message) => /sourceOmissions|sdSource/.test(message));
+  it("accepts explicit declarations and leaves absent provenance undeclared", () => {
+    expect(errors({})).toEqual([]);
+    for (const sdSource of ["source-table", "figure-measured", "heuristic"])
+      expect(errors({ sdSource, sourceOmissions: [omission] })).toEqual([]);
+  });
+  it.each(["asphere-coefficients", "asphere-term", "asphere-equation"])("accepts the %s omission kind", (kind) => {
+    expect(errors({ sourceOmissions: [{ ...omission, kind }] })).toEqual([]);
+  });
+  it.each([
+    [{ sdSource: "inferred" }, "sdSource"],
+    [{ sourceOmissions: null }, "must be an array"],
+    [{ sourceOmissions: [null] }, "must be an object"],
+    [
+      { sourceOmissions: [{ ...omission, kind: "glass" }] },
+      "kind must be asphere-coefficients, asphere-term or asphere-equation",
+    ],
+    [{ sourceOmissions: [{ ...omission, note: " " }] }, "note must be non-empty"],
+    [{ sourceOmissions: [{ ...omission, surfaces: [] }] }, "unique authored surface labels"],
+    [{ sourceOmissions: [{ ...omission, surfaces: ["missing"] }] }, "unique authored surface labels"],
+    [{ sourceOmissions: [{ ...omission, surfaces: [1] }] }, "unique authored surface labels"],
+    [{ sourceOmissions: [{ ...omission, surfaces: ["1", "1"] }] }, "unique authored surface labels"],
+    [{ sourceOmissions: [{ ...omission, extra: true }] }, "unknown field extra"],
+  ])("rejects invalid declarations %j", (fields, message) => {
+    expect(errors(fields).join(" ")).toContain(message);
+  });
+  it("reports canonical validation failures at V2 source paths", () => {
+    const pair = FIXTURE_PAIRS.find((pair) => pair.kind === "lens")!;
+    const input = ingestLens(pair.v2 as LensDataV2Input);
+    const bad = structuredClone(input);
+    bad.prescription.source = { sdSource: "inferred", omissions: [{ ...omission, surfaces: ["missing"] }] } as never;
+    const messages = validateCanonicalLens(bad).join(" ");
+    expect(messages).toContain('"source.sdSource"');
+    expect(messages).toContain('"source.omissions[0]"');
+  });
+});

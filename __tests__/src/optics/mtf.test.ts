@@ -27,7 +27,7 @@ import {
   mtfPrescriptionScale,
 } from "../../../src/optics/analysis/mtf/mtfSupport.js";
 import type { MtfGridCap, MtfOptions } from "../../../src/types/mtf.js";
-import type { FiniteConjugate, RuntimeLens } from "../../../src/types/optics.js";
+import type { FiniteConjugate, RuntimeLens, SourceOmission } from "../../../src/types/optics.js";
 import { LINE_NM } from "../../../src/optics/chromatic/spectralLines.js";
 import { geometricOtf, otfMagnitude } from "../../../src/optics/analysis/mtf/mtfMath.js";
 import { assessMtfDataLimitations } from "../../../src/optics/analysis/mtf/mtfDataLimitations.js";
@@ -1339,6 +1339,126 @@ describe("MTF data limitations", () => {
     spectrum: "reference",
     referenceWavelengthNm: LINE_NM.d,
   } as const;
+  it.each([
+    {
+      kind: "asphere-coefficients",
+      note: "No coefficients are published; the model traces a sphere.",
+      blocking: true,
+      description: "The source omits aspheric coefficients",
+      consequence: "These curves describe the modeled stand-in, not the lens itself.",
+    },
+    {
+      kind: "asphere-term",
+      note: "A10 and A12 are blank; the model takes both terms as zero.",
+      blocking: false,
+      description: "The source leaves individual aspheric terms blank",
+      consequence: "These curves rest on taking those terms as zero.",
+    },
+    {
+      kind: "asphere-equation",
+      note: "The model uses the sibling patent's documented equation.",
+      blocking: false,
+      description: "The source's aspheric equation is absent or ambiguous",
+      consequence: "These curves rest on that documented interpretation.",
+    },
+  ] as const)(
+    "grades a declared $kind omission and names its assumption",
+    ({ kind, note, blocking, description, consequence }) => {
+      const declared = build({
+        ...constructionFixtureData(base),
+        sourceOmissions: [
+          {
+            kind,
+            surfaces: ["1", "2"],
+            note,
+          },
+        ],
+      });
+      expect(assessMtfDataLimitations(prepareRuntimeState(declared, 0, 0), { ...reference, result: null })).toEqual([
+        {
+          kind: "incomplete-prescription",
+          blocking,
+          text: `${description} for surfaces 1, 2: ${note} ${consequence}`,
+        },
+      ]);
+    },
+  );
+  it("does not infer omissions from spherical terms", () => {
+    expect(assessMtfDataLimitations(state, { ...reference, result: null })).toEqual([]);
+  });
+  it.each([false, true])("combines omissions in one entry with stand-in blocking=%s", (blocking) => {
+    const sourceOmissions: SourceOmission[] = [
+      { kind: "asphere-term", surfaces: ["1"], note: "A10 is blank and taken as zero." },
+      { kind: "asphere-equation", surfaces: ["2"], note: "The sibling patent supplies the interpreted equation." },
+    ];
+    if (blocking)
+      sourceOmissions.push({ kind: "asphere-coefficients", surfaces: ["2"], note: "A spherical stand-in is traced." });
+    const lens = build({ ...constructionFixtureData(base), sourceOmissions });
+    const notes = assessMtfDataLimitations(prepareRuntimeState(lens, 0, 0), { ...reference, result: null });
+    expect(notes).toEqual([{ kind: "incomplete-prescription", blocking, text: expect.any(String) }]);
+    for (const omission of sourceOmissions)
+      expect(notes[0].text).toContain(`surface ${omission.surfaces[0]}: ${omission.note}`);
+    expect(notes[0].text).toContain("These curves rest on taking those terms as zero.");
+    expect(notes[0].text).toContain("These curves rest on that documented interpretation.");
+    expect(notes[0].text.includes("These curves describe the modeled stand-in, not the lens itself.")).toBe(blocking);
+  });
+  it.each([undefined, "source-table", "figure-measured", "heuristic"] as const)(
+    "qualifies clear apertures only when their declared source is %s",
+    (sdSource) => {
+      const lens = build({ ...constructionFixtureData(base), sdSource });
+      const notes = assessMtfDataLimitations(prepareRuntimeState(lens, 0, 0), { ...reference, result: null });
+      if (sdSource === undefined || sdSource === "source-table") expect(notes).toEqual([]);
+      else {
+        expect(notes).toEqual([{ kind: "estimated-apertures", blocking: false, text: expect.any(String) }]);
+        expect(notes[0].text).toContain(
+          sdSource === "heuristic" ? "estimated or reconstructed" : "measurement uncertainty",
+        );
+      }
+    },
+  );
+  it("carries converter omissions and aperture uncertainty into the single system warning", () => {
+    const host = teleconverterHostData();
+    const converter = teleconverterFixture();
+    const lens = build(
+      attachTeleconverter(
+        { ...host, sdSource: "source-table" },
+        {
+          ...converter,
+          sdSource: "heuristic",
+          sourceOmissions: [
+            {
+              kind: "asphere-coefficients",
+              surfaces: [converter.surfaces[0].label],
+              note: "A spherical stand-in is traced.",
+            },
+          ],
+        },
+      ),
+    );
+    const notes = assessMtfDataLimitations(prepareRuntimeState(lens, 0, 0), { ...reference, result: null });
+    expect(notes.map(({ kind, blocking }) => [kind, blocking])).toEqual([
+      ["incomplete-prescription", true],
+      ["estimated-apertures", false],
+    ]);
+    expect(notes[0].text).toContain(`surface ${lens.attachedTeleconverter!.firstSurfaceLabel}:`);
+  });
+  it.each([
+    [undefined, undefined, undefined],
+    ["source-table", undefined, undefined],
+    ["source-table", "source-table", "source-table"],
+    ["figure-measured", "source-table", "figure-measured"],
+    [undefined, "figure-measured", "figure-measured"],
+    ["heuristic", "figure-measured", "heuristic"],
+    ["figure-measured", "heuristic", "heuristic"],
+  ] as const)("combines aperture provenance %s / %s as %s", (hostSource, converterSource, expected) => {
+    const lens = build(
+      attachTeleconverter(
+        { ...teleconverterHostData(), sdSource: hostSource },
+        { ...teleconverterFixture(), sdSource: converterSource },
+      ),
+    );
+    expect(lens.source.source.sdSource).toBe(expected);
+  });
   it("ties glass gaps to the charted spectrum and names the estimated glasses", () => {
     // An nd/νd-only glass is a gap in a spectral chart, not in a single-wavelength chart the reader asked for.
     const [estimated] = assessMtfDataLimitations(state, photopic);

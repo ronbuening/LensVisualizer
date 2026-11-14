@@ -61,6 +61,7 @@ const LENS_DATA = {
     patentYear: 2024,
     authors: ["Kyosuke Murakami"],
     assignees: ["Sigma Corporation"],
+    sdSource: "figure-measured",
   },
 
   elements: [

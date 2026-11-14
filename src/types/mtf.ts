@@ -126,6 +126,8 @@ export type MtfDataLimitationKind =
   | "image-plane"
   | "short-field"
   | "scale"
+  | "incomplete-prescription"
+  | "estimated-apertures"
   | "source-erratum"
   | "source-inconsistent";
 

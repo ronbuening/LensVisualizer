@@ -1,0 +1,1 @@
+Added MTF warnings for prescriptions with unpublished aspheres or estimated clear apertures

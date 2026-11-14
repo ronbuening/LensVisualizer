@@ -24,6 +24,23 @@ export function composeTeleconverter(
   const elementOffset = lens.elements.length;
   const idOffset = Math.max(0, ...lens.elements.map((element) => element.id));
   const label = (value: string) => `${PREFIX}${value}`;
+  if (tc.source.omissions?.length) {
+    lens.source.omissions = [
+      ...(lens.source.omissions ?? []),
+      ...tc.source.omissions.map((omission) => ({ ...omission, surfaces: omission.surfaces.map(label) })),
+    ];
+  }
+  // A system carries any declared uncertainty; table provenance requires both parts to declare it.
+  const apertureSources = [lens.source.sdSource, tc.source.sdSource];
+  const sdSource = apertureSources.includes("heuristic")
+    ? "heuristic"
+    : apertureSources.includes("figure-measured")
+      ? "figure-measured"
+      : apertureSources.every((source) => source === "source-table")
+        ? "source-table"
+        : undefined;
+  if (sdSource) lens.source.sdSource = sdSource;
+  else delete lens.source.sdSource;
   const last = lens.surfaces[surfaceOffset - 1];
   const mediumIds = new Map<string, string>();
   for (const medium of tc.media) {

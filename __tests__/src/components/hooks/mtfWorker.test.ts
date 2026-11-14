@@ -9,6 +9,7 @@ import {
   teleconverterHostData,
 } from "../../optics/testLensFixtures.js";
 import { attachFixtureTeleconverter as attachTeleconverter } from "../../optics/constructionFixtures.js";
+import { assessMtfDataLimitations } from "../../../../src/optics/analysis/mtf/mtfDataLimitations.js";
 import { computeMtf } from "../../../../src/optics/analysis/mtf/mtf.js";
 import { prepareRuntimeState } from "../../../../src/optics/state/runtimeAdapters.js";
 import type { MtfOptions } from "../../../../src/types/mtf.js";
@@ -30,6 +31,8 @@ async function loadWorker() {
   vi.resetModules();
   const workerCompiler = await import("../../../../src/optics/prescription/compile.js");
   const compiled = vi.spyOn(workerCompiler, "compileLens");
+  const { runtimeView } = await import("../../../../src/optics/prescription/runtimeView.js");
+  const { prepareRuntimeState: prepareWorkerState } = await import("../../../../src/optics/state/runtimeAdapters.js");
   await import("../../../../src/components/hooks/mtf.worker.js");
   const send = (data: unknown) => port.onmessage!({ data } as MessageEvent);
   const replies = () => port.postMessage.mock.calls.map(([reply]) => reply as MtfWorkerReply);
@@ -42,11 +45,11 @@ async function loadWorker() {
       },
       { timeout: 20000, interval: 5 },
     );
-  return { send, replies, finished, compiled };
+  return { send, replies, finished, compiled, runtimeView, prepareWorkerState };
 }
 
 it("compiles canonical prescriptions in the worker and matches the pure engine for every method", async () => {
-  const { send, finished, compiled } = await loadWorker();
+  const { send, finished, compiled, runtimeView, prepareWorkerState } = await loadWorker();
   send({ type: "compute", id: 1, job: {} });
   expect(await finished(1)).toEqual({ type: "error", id: 1, error: "Error: MTF prescription is unavailable." });
   const L = buildChromaticPositiveElementLens();
@@ -54,6 +57,10 @@ it("compiles canonical prescriptions in the worker and matches the pure engine f
   const plated = build({
     ...constructionFixtureData(L),
     rearPlates: [REAR_PLATE_FIXTURE, { ...REAR_PLATE_FIXTURE, gapAfterMm: 20 }],
+    sourceOmissions: [
+      { kind: "asphere-coefficients", surfaces: [L.source.surfaces[0].label], note: "Spherical stand-in." },
+    ],
+    sdSource: "figure-measured",
   });
   // A composed pair retains its descriptor so plates expand on the correct side of the converter.
   const hostData = teleconverterHostData({
@@ -62,8 +69,24 @@ it("compiles canonical prescriptions in the worker and matches the pure engine f
   const converterData = teleconverterFixture();
   const converted = build(
     attachTeleconverter(
-      { ...hostData, elements: [{ ...hostData.elements[0], glass: "N-BK7" }] },
-      { ...converterData, elements: [{ ...converterData.elements[0], glass: "N-BK7" }] },
+      {
+        ...hostData,
+        elements: [{ ...hostData.elements[0], glass: "N-BK7" }],
+        sourceOmissions: [
+          { kind: "asphere-term", surfaces: [hostData.surfaces[0].label], note: "A10 is blank and taken as zero." },
+        ],
+      },
+      {
+        ...converterData,
+        elements: [{ ...converterData.elements[0], glass: "N-BK7" }],
+        sourceOmissions: [
+          {
+            kind: "asphere-equation",
+            surfaces: [converterData.surfaces[0].label],
+            note: "The sibling patent supplies the interpreted equation.",
+          },
+        ],
+      },
     ),
   );
   const methods = ["geometric", "diffraction"] as const;
@@ -116,6 +139,22 @@ it("compiles canonical prescriptions in the worker and matches the pure engine f
     };
     expect(workerLens).not.toBe(mainLens);
     expect(workerLens).toEqual(records(mainLens));
+    const limitationInput = {
+      preferredSpectrum: "reference",
+      spectrum: "reference",
+      referenceWavelengthNm: 587.6,
+      result: null,
+    } as const;
+    const workerNotes = assessMtfDataLimitations(prepareWorkerState(runtimeView(workerLens), 0, 0), limitationInput);
+    expect(workerNotes).toEqual(assessMtfDataLimitations(prepareRuntimeState(lens, 0, 0), limitationInput));
+    if (lens === plated)
+      expect(workerNotes.map(({ kind }) => kind)).toEqual(["incomplete-prescription", "estimated-apertures"]);
+    if (lens === converted) {
+      expect(workerNotes).toEqual([{ kind: "incomplete-prescription", blocking: false, text: expect.any(String) }]);
+      expect(workerNotes[0].text).toContain("A10 is blank and taken as zero.");
+      expect(workerNotes[0].text).toContain(`surface ${lens.attachedTeleconverter!.firstSurfaceLabel}:`);
+      expect(workerNotes[0].text).toContain("The sibling patent supplies the interpreted equation.");
+    }
     const compilationCount = compiled.mock.calls.length;
     for (const method of methods)
       for (const spectrum of spectra) {
