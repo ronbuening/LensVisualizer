@@ -11,3 +11,17 @@ A scratch adapter ran the existing complete inferred-cut beam search at 41 DC se
 Fresh source-table comparison retained every published d-line index and Abbe number. No C/F/g indices, partial-dispersion deviations, supplier identities, resin/cement identities, or APD classifications were inferred from the Abbe pairs. Each available catalog curve is labeled as a spectral proxy with production supplier unresolved. The six retained curves are J-LAK02, H-LaK6A, S-TIM28, SF1, J-LASFH2, and J-LASF017. The last is a near proxy: its catalog 1.79500/45.31 differs from source 1.796681/45.37 by Δnd=−0.001681 and Δνd=−0.06; the runtime anchors the curve to the source reference index, without establishing the production melt.
 
 Surface/canonical and inferred-cut checks, image-circle and full-format chief-ray coverage, and the f/2 iris-limited aperture check pass. Nine actual SVG focus×DC states were inspected, with finite paths and zero automatic render trim. The shared dispersion, glass-resolution parity, and partial-dispersion suites pass (3 files / 94 tests).
+
+## 2026-11-14 — Published finite-conjugate certification
+
+Patent: US 4,908,639 A, Example 1. Page locators below are one-based PDF pages.
+
+| Zoom / keyframe | Field | Before | After | Source locator | Paraxial offset / diffraction depths |
+|---|---|---|---|---|---|
+| 0 / 1 | `focus.conjugates` | Undeclared | 3100.497 mm, `first-surface` | PDF p.12, Table 1 (First Embodiment), 2 pos; `D0 3100.4970` | -0.001014300 mm / -0.215491; consistent |
+
+- State 0/1: Definition in column 8 immediately above Table 1. d2=5.0000, d6=25.2089 (authored STO→GR=17.2089 plus 8 mm fixed segment), Bf=57.5663 mm.
+
+Reference basis: patent-defined. The source states: “D0 is the distance from the object to the first lens surface”.
+
+All declared states are consistent within the audit’s 25-depth threshold. Existing published-state flags already include these keyframes; the spacings and authored image plane are retained.

@@ -69,3 +69,21 @@ Patent: US 5,717,527, seventh embodiment, Table 8.
 
 - Why the old value differed: printed close rows state no distance; 0.37 m is the old (production) value.
 - `catalog.closeFocusM.marketing` 0.37 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.
+
+## 2026-11-14 — Published finite-conjugate certification
+
+Patent: US 5,717,527, Embodiment 7. Page locators below are one-based PDF pages.
+
+| Zoom / keyframe | Field | Before | After | Source locator | Paraxial offset / diffraction depths |
+|---|---|---|---|---|---|
+| 0 / 1 | `focus.conjugates` | Undeclared | 391.9 mm, `image-plane` | PDF p.69, Table 8 (Embodiment 7), Zooming data for closest photographing, Wide angle end; `R 391.90000` | +0.000445205 mm / +0.022104; consistent |
+| 1 / 1 | `focus.conjugates` | Undeclared | 391.9 mm, `image-plane` | PDF p.69, Table 8 (Embodiment 7), Zooming data for closest photographing, Intermediate position; `R 391.90000` | +0.000347277 mm / +0.011362; consistent |
+| 2 / 1 | `focus.conjugates` | Undeclared | 391.9 mm, `image-plane` | PDF p.69, Table 8 (Embodiment 7), Zooming data for closest photographing, Telephoto end; `R 391.90000` | -0.000305684 mm / -0.007923; consistent |
+
+- State 0/1: Definition begins PDF p.68 (column 22) and continues p.69 (column 23). Table dimensions are mm.
+- State 1/1: Definition begins PDF p.68 (column 22) and continues p.69 (column 23). Table dimensions are mm.
+- State 2/1: Definition begins PDF p.68 (column 22) and continues p.69 (column 23). Table dimensions are mm.
+
+Reference basis: patent-defined. The source states: “R represents an axial distance (object distance) between the object and the image surface”.
+
+All declared states are consistent within the audit’s 25-depth threshold. Existing published-state flags already include these keyframes; the spacings and authored image plane are retained.

@@ -240,6 +240,24 @@ const LENS_DATA = {
       "All three published configurations are exact runtime keyframes; interpolation between them is piecewise linear.",
     // (moved from publishedStations) Every focus keyframe is a source row.
     published: [1, 2],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 240.89,
+        distanceReference: "first-surface",
+        source:
+          "JP H02-19814 A, Example 5, Table 5 (Example 5), β=−0.500 column, PDF p.7: D0 240.890; authored gaps D6 (G1→STO)=14.30500, D11 (G2→G3F)=31.43200, D15 (G3F→G3R; reversing)=7.23800 mm. D0 is from the first-surface vertex to the object (PDF p.5).",
+      },
+      {
+        zoomStation: 0,
+        keyframe: 2,
+        objectDistanceMm: 141.864,
+        distanceReference: "first-surface",
+        source:
+          "JP H02-19814 A, Example 5, Table 5 (Example 5), β=−1.000 column, PDF p.7: D0 141.864; authored gaps D6 (G1→STO)=12.18200, D11 (G2→G3F)=56.80900, D15 (G3F→G3R; reversing)=10.00000 mm. D0 is from the first-surface vertex to the object (PDF p.5).",
+      },
+    ],
   },
 
   gaps: {

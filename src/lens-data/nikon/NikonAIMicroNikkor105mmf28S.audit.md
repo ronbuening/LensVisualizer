@@ -36,3 +36,17 @@ Patent: US 4,392,724, Example 1
 - Replaced the two suppressing unmatched labels with **FF5 loose spectral proxy**. Current HOYA formula-3 coefficients give nd1.592702942/ν35.445619 (catalog nominal1.59270/35.45), versus source1.59507/35.5: Δn−0.002367058, Δν−0.05, accepted by existing compatibility/consistency rules but explicitly not a strict coordinate match. No production supplier, melt, or material identity is inferred. Coverage is now10/10 compatible coefficient curves.
 - Current runtime anchors the borrowed curve to source nd: both G indices remain exactly1.59507. Relative to former Abbe fallback, R changes1.590151109474→1.590185876745 (+0.000034767272), B1.606913644685→1.606907349343 (−0.000006295342), V1.616704457114→1.616817959971 (+0.000113502857), identically for both glasses. These are model/proxy wavelength changes, not patent measurements or numerical partial-dispersion evidence. No per-lens C/F/g or dPgF fields are added.
 - Actual verification: resolver/`assertCatalogConsistent` pass10/10 curves; focused surface/cut guard passes; exact surface arrays and source optical-pair/spectral arrays compare identical to live input. Evidence `/tmp/fb9-105-ff5-proof.json` and `/tmp/fb9-105-ff5-glass.json`. Geometry, focus, aperture, source prose/history and shared engine/catalog/tests remain unchanged.
+
+## 2026-11-14 — Published finite-conjugate certification
+
+Patent: US 4,392,724, Example 1. Page locators below are one-based PDF pages.
+
+| Zoom / keyframe | Field | Before | After | Source locator | Paraxial offset / diffraction depths |
+|---|---|---|---|---|---|
+| 0 / 1 | `focus.conjugates` | Undeclared | 254.9907 mm, `first-surface` | PDF p.21, Table 1 (First Embodiment), d0 header and finite d6/d11 endpoints; `d0 = ∞ ~ 254.9907` | +0.001313993 mm / +0.068237; consistent |
+
+- State 0/1: Table 1 gives d6=20.6820, d11=34.3666 mm. PDF p.20 links d0=254.9907 with β=−0.5; p.24 calls d0 the object distance without specifying its datum.
+
+Reference basis: audit-resolved. The patent prints the distance without an explicit datum definition. The first-surface reference is identified by the conjugate audit, which discriminates the image-plane alternative. The declaration records `referenceBasis: audit-resolved` in its source string because the conjugate schema has no separate reference-basis field.
+
+All declared states are consistent within the audit’s 25-depth threshold. Existing published-state flags already include these keyframes; the spacings and authored image plane are retained.
