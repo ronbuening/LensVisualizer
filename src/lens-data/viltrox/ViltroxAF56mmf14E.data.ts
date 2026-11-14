@@ -259,6 +259,16 @@ const LENS_DATA = {
       "The modeled close endpoint is the patent's 0.63 m state; Viltrox markets the production lens at 0.6 m MFD.",
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 630,
+        distanceReference: "first-surface",
+        source:
+          "CN 211955965 U, Example 1, Table 2, ¶0079–0081 (PDF pp. 8–9), object-distance row 物距, 最近(0.63m) column: D1=5.01 mm, D2=3.85 mm. The patent does not define the distance reference; first-surface reference identified by the conjugate audit (audit-resolved), which rejects the other reference.",
+      },
+    ],
   },
 
   /* (moved from var) Published Example 1 focus gaps: D1 increases and D2 decreases by exactly 4.01 mm. */
