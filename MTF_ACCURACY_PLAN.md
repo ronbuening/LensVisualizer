@@ -244,8 +244,6 @@ S under a day, M one to three days, L longer.
   pool. M.
 - **C32 — RMS wavefront and Strehl per field.** Needs optical-path capture on the production bundles and the
   pairing fix of C13; a ratio of MTF to limit at one frequency is not Strehl. M to L.
-- **C33 — Frequency-view legibility.** Fields differ by colour only there, and a line bridges fields still being
-  computed. Add markers or end labels and a distinct style for the bridged span. S.
 
 ## Optional: External Cross-Check Tool (optiland)
 

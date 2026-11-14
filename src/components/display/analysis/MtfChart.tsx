@@ -65,9 +65,12 @@ interface Series extends SeriesValues {
   label: string;
   color: string;
   marker?: MarkerShape;
-  /** Drawn points; `undefined` connects across pending fields, `null` breaks the line. */
+  /** Drawn points; withheld values break the regular line. */
   sagittalPoints: ChartPoint[];
   tangentialPoints: ChartPoint[];
+  /** Bridges across pending fields only, kept separate from computed spans. */
+  sagittalProvisional?: ChartPoint[];
+  tangentialProvisional?: ChartPoint[];
   /** Points beyond the converged band, drawn dimmed. */
   sagittalDim?: ChartPoint[];
   tangentialDim?: ChartPoint[];
@@ -77,6 +80,11 @@ interface LimitCurvesProps {
   series: readonly Series[];
   xScale: (value: number) => number;
   yScale: (value: number) => number;
+}
+
+interface ProvisionalCurvesProps extends Omit<LimitCurvesProps, "series"> {
+  series: Series;
+  strokeWidth: number;
 }
 
 export default function MtfChart({
@@ -123,7 +131,10 @@ export default function MtfChart({
   const samples = view === "frequency" ? result.frequenciesPerMm : fields.map((f) => fieldHeight(f));
   const edge = view === "field" ? result.geometry?.modeledEdgeHeightMm : undefined;
   const hatched = edge !== undefined && edge < maxX - 1e-6;
-  const marked = view === "field" && fields.length <= MAX_MARKED_FIELDS;
+  const marked = view === "frequency" || fields.length <= MAX_MARKED_FIELDS;
+  const pending =
+    fields.some((field) => field.status === "pending") ||
+    comparison?.fields.some((field) => field.status === "pending");
   const labels = view === "field" ? endLabels(series, xScale, yScale, plotTop, plotBottom) : [];
   const activeX = active !== null ? samples[active] : null;
   const onPointer = (event: PointerEvent<HTMLDivElement>) => {
@@ -258,6 +269,7 @@ export default function MtfChart({
                   strokeWidth={1.1}
                   strokeDasharray={TANGENTIAL_DASH}
                 />
+                <ProvisionalCurves series={s} xScale={xScale} yScale={yScale} strokeWidth={1.1} />
                 {s.sagittalDim ? (
                   <g opacity={DIM_OPACITY}>
                     <path d={gapPath(s.sagittalDim, xScale, yScale)} fill="none" stroke={s.color} strokeWidth={1.1} />
@@ -282,6 +294,7 @@ export default function MtfChart({
                   strokeWidth={2}
                   strokeDasharray={TANGENTIAL_DASH}
                 />
+                <ProvisionalCurves series={s} xScale={xScale} yScale={yScale} strokeWidth={2} />
                 {s.sagittalDim ? (
                   <g opacity={DIM_OPACITY}>
                     <path d={gapPath(s.sagittalDim, xScale, yScale)} fill="none" stroke={s.color} strokeWidth={2} />
@@ -294,7 +307,27 @@ export default function MtfChart({
                     />
                   </g>
                 ) : null}
-                {marked && s.marker
+                {view === "frequency" && s.marker ? (
+                  <g data-testid="mtf-frequency-markers" data-field={s.key}>
+                    {[s.sagittalPoints, s.tangentialPoints, s.sagittalDim ?? [], s.tangentialDim ?? []].map(
+                      (points, axis) => (
+                        <g key={axis} opacity={axis >= 2 ? DIM_OPACITY : 1}>
+                          {frequencyMarkerPoints(points).map((point, i) => (
+                            <Marker
+                              key={i}
+                              shape={s.marker!}
+                              x={xScale(point.x)}
+                              y={yScale(point.y)}
+                              color={s.color}
+                              ring={t.panelBg}
+                            />
+                          ))}
+                        </g>
+                      ),
+                    )}
+                  </g>
+                ) : null}
+                {view === "field" && marked && s.marker
                   ? [...s.sagittalPoints, ...s.tangentialPoints].map((point, i) =>
                       point ? (
                         <Marker
@@ -374,7 +407,13 @@ export default function MtfChart({
       </div>
       <figcaption style={{ color: t.muted, fontSize: 11, display: "flex", flexWrap: "wrap", gap: "4px 12px" }}>
         {series.map((s) => (
-          <LegendItem key={s.key} t={t} color={s.color} marker={marked ? s.marker : undefined} label={s.label} />
+          <LegendItem
+            key={s.key}
+            t={t}
+            color={s.color}
+            marker={marked ? s.marker : undefined}
+            label={view === "frequency" ? `${s.label} (${s.marker} markers)` : s.label}
+          />
         ))}
         <LegendItem t={t} color={t.value} label="Sagittal" />
         <LegendItem t={t} color={t.value} dash={TANGENTIAL_DASH} label="Tangential (meridional)" />
@@ -391,6 +430,7 @@ export default function MtfChart({
         ) : null}
         {hatched ? <LegendItem t={t} color={t.muted} hatch label="Outside model" /> : null}
         {view === "frequency" && diagnostic ? <span>Faded: beyond the converged frequency band.</span> : null}
+        {view === "field" && pending ? <span>Lighter dotted spans bridge fields still calculating.</span> : null}
         <span>
           {diagnostic
             ? "Diagnostic estimates include unconverged values; they are not reliable performance measurements."
@@ -425,10 +465,54 @@ function LimitCurves({ series, xScale, yScale }: LimitCurvesProps) {
               />
             </g>
           ))}
+          <ProvisionalCurves series={s} xScale={xScale} yScale={yScale} strokeWidth={0.9} />
         </g>
       ))}
     </g>
   );
+}
+
+/** Pending spans use the same provisional cue for the main aperture, comparison and pupil limit. */
+function ProvisionalCurves({ series, xScale, yScale, strokeWidth }: ProvisionalCurvesProps) {
+  if (!series.sagittalProvisional?.length && !series.tangentialProvisional?.length) return null;
+  return (
+    <g data-testid="mtf-provisional" opacity={DIM_OPACITY}>
+      {[series.sagittalProvisional, series.tangentialProvisional].map((points, axis) => (
+        <path
+          key={axis}
+          d={gapPath(points ?? [], xScale, yScale)}
+          fill="none"
+          stroke={series.color}
+          strokeWidth={strokeWidth}
+          strokeDasharray="1,3"
+        />
+      ))}
+    </g>
+  );
+}
+
+/** An unavailable value resets the bridge, so it cannot be mistaken for a field still computing. */
+function pendingBridges(points: readonly ChartPoint[]): ChartPoint[] {
+  const bridges: ChartPoint[] = [];
+  let previous: NonNullable<ChartPoint> | null = null;
+  let pending = false;
+  for (const point of points) {
+    if (point === undefined) pending = true;
+    else {
+      if (point && previous && pending) bridges.push(previous, point, null);
+      previous = point;
+      pending = false;
+    }
+  }
+  return bridges;
+}
+
+/** Sample a few existing values inside each visible frequency band instead of crowding every point. */
+function frequencyMarkerPoints(points: readonly ChartPoint[]): NonNullable<ChartPoint>[] {
+  const visible = points.filter((point): point is NonNullable<ChartPoint> => !!point);
+  if (!visible.length) return [];
+  const indices = new Set([0.25, 0.5, 0.75].map((fraction) => Math.round((visible.length - 1) * fraction)));
+  return [...indices].map((i) => visible[i]);
 }
 
 function sortedFields(result: MtfResult): MtfFieldResult[] {
@@ -471,6 +555,8 @@ function fieldSeries(
       const curve = values(axis);
       return fields.map((field, i) => fieldPoint(field, curve[i] ?? undefined));
     };
+    const sagittalPoints = points("sagittal");
+    const tangentialPoints = points("tangential");
     return [
       {
         key: `f${frequency}`,
@@ -479,14 +565,16 @@ function fieldSeries(
         marker: MARKERS[slot],
         sagittal: values("sagittal"),
         tangential: values("tangential"),
-        sagittalPoints: points("sagittal"),
-        tangentialPoints: points("tangential"),
+        sagittalPoints: sagittalPoints.map((point) => point ?? null),
+        tangentialPoints: tangentialPoints.map((point) => point ?? null),
+        sagittalProvisional: pendingBridges(sagittalPoints),
+        tangentialProvisional: pendingBridges(tangentialPoints),
       },
     ];
   });
 }
 
-/** A pending field is skipped so the line connects over it; an unavailable field breaks the line. */
+/** Undefined reserves a pending field for provisional bridging; null breaks every curve. */
 function fieldPoint(field: MtfFieldResult, value: number | undefined): ChartPoint {
   if (field.status === "pending") return undefined;
   const x = fieldHeight(field);
@@ -533,6 +621,7 @@ function frequencySeries(
         key: name,
         label: `${name}${height}`,
         color: t.chartSeries[slot],
+        marker: MARKERS[slot],
         sagittal: result.frequenciesPerMm.map((_, i) => value("sagittal", i)),
         tangential: result.frequenciesPerMm.map((_, i) => value("tangential", i)),
         sagittalPoints: split("sagittal", false),
