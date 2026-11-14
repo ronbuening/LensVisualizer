@@ -342,6 +342,16 @@ const LENS_DATA = {
       "Inner focus by single negative meniscus L7 (G2 / LF). L7 translates rigidly toward the image at close focus over a 9.6026 mm throw. Stepping-motor drive (Sigma published spec); BFD held constant.",
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 740.6522,
+        distanceReference: "first-surface",
+        source:
+          "JP 2021-085935 A, Numerical Example 1, PDF pp. 12-13; [可変間隔データ], 撮影距離850mm column, d0 row: d0 = 740.6522 mm. The surface table lists d0 as the object-plane gap before surface 1. D14=3.7874 mm, D12=12.3908 mm.",
+      },
+    ],
   },
 
   /* (moved from var) ── Variable air spacings (focus mechanism: rigid translation of L7) ── */

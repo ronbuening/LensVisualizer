@@ -389,6 +389,32 @@ const LENS_DATA = {
     closeFocusM: 0.5,
     description:
       "PUBLISHED 0.5 m focus states at all three zoom control points. G4 (L14+L15 with rear resin) translates toward the image plane; only D25 and D29 change with focus and their sum is conserved to patent-table rounding. The correlated SEL18200LE likewise specifies a 0.5 m minimum focus distance.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 384.98,
+        distanceReference: "first-surface",
+        source:
+          "US 8,553,339 B2, Embodiment 1, PDF pp. 34-35 (cols. 8-9); Embodiment 1 proximity-focus table, Wide-angle End, d0 row: d0 = 384.9800 mm. The surface table lists d0 as the object-plane gap before surface 1. D5=1 mm, D14=25.4255 mm, D25=1.6487 mm, BF=18.3076 mm, D29=9.3459 mm.",
+      },
+      {
+        zoomStation: 1,
+        keyframe: 1,
+        objectDistanceMm: 349.241,
+        distanceReference: "first-surface",
+        source:
+          "US 8,553,339 B2, Embodiment 1, PDF pp. 34-35 (cols. 8-9); Embodiment 1 proximity-focus table, Intermediate Range, d0 row: d0 = 349.2410 mm. The surface table lists d0 as the object-plane gap before surface 1. D5=34.0712 mm, D14=6.345 mm, D25=6.521 mm, BF=40.0562 mm, D29=4.4736 mm.",
+      },
+      {
+        zoomStation: 2,
+        keyframe: 1,
+        objectDistanceMm: 310.197,
+        distanceReference: "first-surface",
+        source:
+          "US 8,553,339 B2, Embodiment 1, PDF pp. 34-35 (cols. 8-9); Embodiment 1 proximity-focus table, Telephoto End, d0 row: d0 = 310.1970 mm. The surface table lists d0 as the object-plane gap before surface 1. D5=64.3105 mm, D14=1.7 mm, D25=9.1651 mm, BF=53.5093 mm, D29=1.8296 mm.",
+      },
+    ],
   },
 
   gaps: {
