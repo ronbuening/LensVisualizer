@@ -1790,7 +1790,7 @@ describe("MTF download actions", () => {
     });
   }
 
-  async function showTab(view: "field" | "aperture" = "field") {
+  async function showTab(view: "field" | "frequency" | "aperture" = "field", advanced = true) {
     localStorage.setItem(
       MTF_PREFERENCES_KEY,
       JSON.stringify({
@@ -1798,7 +1798,7 @@ describe("MTF download actions", () => {
         method: "geometric",
         spectrum: "reference",
         focus: "design",
-        advanced: true,
+        advanced,
         frequencies: [10],
       }),
     );
@@ -1825,6 +1825,23 @@ describe("MTF download actions", () => {
       );
     return { ...rendered, worker };
   }
+
+  it.each(["field", "frequency", "aperture"] as const)(
+    "keeps the %s copy and export actions above the collapsed field details",
+    async (view) => {
+      const { container } = await showTab(view, view === "aperture");
+      const details = container.querySelector("details")!;
+      if (view === "aperture") fireEvent.click(details.querySelector("summary")!);
+      expect(details.open).toBe(false);
+      const buttons = ["Copy CSV", "Copy MTF link", "Export"].map((name) => screen.getByRole("button", { name }));
+      const row = buttons[0].parentElement!;
+      expect(within(row).getAllByRole("button")).toEqual(buttons);
+      for (const button of buttons) expect(button.closest("details")).toBeNull();
+      expect(row.nextElementSibling).toBe(details);
+      expect(screen.getByRole("figure").compareDocumentPosition(row) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+      expect(row.style.flexWrap).toBe("wrap");
+    },
+  );
 
   it("downloads the aperture view CSV, keeps its clipboard table and round-trips its shared view", async () => {
     const { blobs, clicks } = downloads();
@@ -1890,7 +1907,7 @@ describe("MTF download actions", () => {
     const { blobs, clicks } = downloads();
     const writeText = vi.fn().mockResolvedValue(undefined);
     vi.stubGlobal("navigator", { ...navigator, clipboard: { writeText } });
-    await showTab();
+    await showTab("field", false);
     const button = screen.getByRole("button", { name: "Export" });
     expect(button.getAttribute("aria-expanded")).toBe("false");
     fireEvent.keyDown(button, { key: "ArrowDown" });
@@ -1921,7 +1938,7 @@ describe("MTF download actions", () => {
       .slice("# shared_link: ".length);
     expect(parseSharedMtfSettings(new URL(link).search)).toMatchObject({
       frequencies: [10],
-      advanced: true,
+      advanced: false,
       method: "geometric",
     });
     expect(clicks[0]).toMatchObject({ attached: true });

@@ -132,6 +132,8 @@ router supplies the address-bar query when `main.tsx` mounts with `createRoot`, 
 absent on subsequent lens-view navigation. Opening a link never saves its settings. Changing a control updates the
 visit's URL and saves only that control as a preference, leaving other shared settings visit-only.
 Warning acknowledgments and diagnostic disclosures are excluded, so a fresh visit still requires its own disclosures.
+Copy CSV, Copy MTF link and Export stay visible in a wrapping row below the chart caption and above the collapsible
+status line, value table and field notes, with confirmation and error messages beside the actions.
 The field summary's keyboard-operable Export menu downloads "CSV — this view", "CSV — all sampled values", SVG
 or PNG through local Blobs and temporary anchors. Copy CSV retains its uncaptioned image-height table in the
 image-height and frequency views. The view download follows the selected chart: the image-height table with field notes, or every frequency for each shown

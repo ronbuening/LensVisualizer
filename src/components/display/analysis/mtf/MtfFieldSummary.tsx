@@ -189,35 +189,7 @@ export default function MtfFieldSummary({
   );
   const noted = result.fields.filter((f) => f.notes.length || (f.status === "unavailable" && f.reason));
   return (
-    <details open={advanced || undefined} style={{ color: t.muted, fontSize: 11 }}>
-      <summary style={{ cursor: "pointer" }}>
-        {(view === "aperture" ? sweepParts : parts)
-          .filter(([n], i) => n > 0 || i < 3)
-          .map(([n, label]) => `${n} ${label}`)
-          .join(" · ") + (view === "aperture" ? " points (one sagittal/tangential pair each)" : "")}
-      </summary>
-      {stale ? <p>Previous settings: values are updating. CSV export is disabled. Downloads are disabled.</p> : null}
-      <MtfValueTable
-        result={result}
-        apertureSamples={view === "aperture" ? apertureSamples : undefined}
-        apertureFields={apertureFields}
-        apertureCaption={apertureCaption}
-        frequencies={frequencies}
-        t={t}
-        diagnostic={diagnostic}
-        comparison={comparison}
-        comparisonLabel={comparisonLabel}
-        mainLabel={mainLabel}
-        diffractionLimit={diffractionLimit}
-        pixelPitchUm={pixelPitchUm}
-        advanced={advanced}
-      />
-      {view === "aperture" ? (
-        <p>
-          Copy CSV emits one row per aperture, field and selected frequency, with sagittal/tangential values, numerical
-          status and applied image plane.
-        </p>
-      ) : null}
+    <div style={{ color: t.muted, fontSize: 11, minWidth: 0 }}>
       <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: 8, marginTop: 6 }}>
         <button
           type="button"
@@ -345,13 +317,43 @@ export default function MtfFieldSummary({
         <span aria-live="polite">{copyStatus}</span>
       </div>
       {exportError ? <p role="alert">{exportError}</p> : null}
-      {!advanced && noted.length ? (
-        <ul style={{ margin: "6px 0 0", paddingLeft: 16 }}>
-          {[...new Set(noted.flatMap((f) => (f.status === "unavailable" ? [f.message] : f.notes)))].map((text) => (
-            <li key={text}>{text}</li>
-          ))}
-        </ul>
-      ) : null}
-    </details>
+      {stale ? <p>Previous settings: values are updating. CSV export is disabled. Downloads are disabled.</p> : null}
+      <details open={advanced || undefined} style={{ color: t.muted, fontSize: 11 }}>
+        <summary style={{ cursor: "pointer" }}>
+          {(view === "aperture" ? sweepParts : parts)
+            .filter(([n], i) => n > 0 || i < 3)
+            .map(([n, label]) => `${n} ${label}`)
+            .join(" · ") + (view === "aperture" ? " points (one sagittal/tangential pair each)" : "")}
+        </summary>
+        <MtfValueTable
+          result={result}
+          apertureSamples={view === "aperture" ? apertureSamples : undefined}
+          apertureFields={apertureFields}
+          apertureCaption={apertureCaption}
+          frequencies={frequencies}
+          t={t}
+          diagnostic={diagnostic}
+          comparison={comparison}
+          comparisonLabel={comparisonLabel}
+          mainLabel={mainLabel}
+          diffractionLimit={diffractionLimit}
+          pixelPitchUm={pixelPitchUm}
+          advanced={advanced}
+        />
+        {view === "aperture" ? (
+          <p>
+            Copy CSV emits one row per aperture, field and selected frequency, with sagittal/tangential values,
+            numerical status and applied image plane.
+          </p>
+        ) : null}
+        {!advanced && noted.length ? (
+          <ul style={{ margin: "6px 0 0", paddingLeft: 16 }}>
+            {[...new Set(noted.flatMap((f) => (f.status === "unavailable" ? [f.message] : f.notes)))].map((text) => (
+              <li key={text}>{text}</li>
+            ))}
+          </ul>
+        ) : null}
+      </details>
+    </div>
   );
 }
