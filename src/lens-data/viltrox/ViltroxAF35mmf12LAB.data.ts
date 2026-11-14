@@ -1,13 +1,13 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 /**
- * CN 115826211 A/B, Example 2, Tables 4–6; representative LAB-family model.
+ * CN 115826211 A/B, Example 2, Tables 4–6; construction matches the LAB optical family.
  * Scale s=1: source radii and distances are already millimetres; no units conversion.
  * GL retains 15.575 mm before / 2.500 mm glass / 0.500 mm after in rearPlates.
- * The pre-GL gap is fixed at both printed focus endpoints. No intermediate cam is verified.
- * Rims are inferred geometry-limited bounds; the iris radius is engine-derived for f/1.2.
+ * The pre-GL gap is fixed at both printed focus endpoints. No intermediate focus cam is published.
+ * Rims are inferred geometry-limited bounds; the iris radius is derived from f/1.2.
  * Back focus and the 0.341084 m object-to-image near conjugate are calculated, not printed.
- * Literal source spacings and image plane are retained, including the infinity focus residual.
- * Default 90% gap-sag; see analysis/audit for severe field clipping and review status.
+ * Source spacings and image plane are retained, including the infinity focus residual.
+ * Facing-surface sag is limited to 90% of each gap; the model has heavy corner vignetting.
  */
 const LENS_DATA = {
   "schema": 2,
@@ -19,152 +19,187 @@ const LENS_DATA = {
     {
       "id": 1,
       "name": "L1",
-      "type": "Lens",
+      "type": "Negative Meniscus",
       "nd": 1.487,
       "vd": 70.44,
       "indexReference": "d",
-      "label": "L1",
-      "glass": "Literal rounded nd/Vd; unmatched glass, approximate dispersion"
+      "label": "Element 1",
+      "glass": "FC5 (Hoya)",
+      "apd": "inferred",
+      "apdNote": "The maker marks L1 as ED; its printed nd/νd is consistent with low-dispersion glass.",
+      "role": "Negative front element of the fixed first group."
     },
     {
       "id": 2,
       "name": "L2",
-      "type": "Lens",
+      "type": "Biconcave Negative",
       "nd": 1.847,
       "vd": 23.785,
       "indexReference": "d",
-      "label": "L2",
-      "glass": "Literal rounded nd/Vd; unmatched glass, approximate dispersion"
+      "label": "Element 2",
+      "glass": "FDS90 (Hoya)",
+      "cemented": "C1",
+      "role": "Dispersive negative partner to L3 in the fixed first group."
     },
     {
       "id": 3,
       "name": "L3",
-      "type": "Lens",
+      "type": "Biconvex Positive",
       "nd": 1.883,
       "vd": 40.805,
       "indexReference": "d",
-      "label": "L3",
-      "glass": "Literal rounded nd/Vd; unmatched glass, approximate dispersion"
+      "label": "Element 3",
+      "glass": "TAFD30 (Hoya)",
+      "cemented": "C1",
+      "role": "High-index positive partner to L2 in the fixed first group."
     },
     {
       "id": 4,
       "name": "L4",
-      "type": "Lens",
+      "type": "Positive Meniscus",
       "nd": 1.81,
       "vd": 40.993,
       "indexReference": "d",
-      "label": "L4",
-      "glass": "Literal rounded nd/Vd; unmatched glass, approximate dispersion"
+      "label": "Element 4",
+      "glass": "D-ZLaF52LA (CDGM)",
+      "role": "Double-sided aspherical element ending the fixed first group."
     },
     {
       "id": 5,
       "name": "L5",
-      "type": "Lens",
+      "type": "Biconvex Positive",
       "nd": 1.946,
       "vd": 17.942,
       "indexReference": "d",
-      "label": "L5",
-      "glass": "Literal rounded nd/Vd; unmatched glass, approximate dispersion"
+      "label": "Element 5",
+      "glass": "H-ZF88 (CDGM)",
+      "cemented": "C2",
+      "role": "High-index positive member of the first floating focus group."
     },
     {
       "id": 6,
       "name": "L6",
-      "type": "Lens",
+      "type": "Biconcave Negative",
       "nd": 1.603,
       "vd": 38.011,
       "indexReference": "d",
-      "label": "L6",
-      "glass": "Literal rounded nd/Vd; unmatched glass, approximate dispersion"
+      "label": "Element 6",
+      "glass": "E-F5 (Hoya)",
+      "cemented": "C2",
+      "role": "Negative partner to L5 in the first floating focus group."
     },
     {
       "id": 7,
       "name": "L7",
-      "type": "Lens",
+      "type": "Positive Meniscus",
       "nd": 1.593,
       "vd": 68.624,
       "indexReference": "d",
-      "label": "L7",
-      "glass": "Literal rounded nd/Vd; unmatched glass, approximate dispersion"
+      "label": "Element 7",
+      "glass": "FCD515 (Hoya)",
+      "cemented": "C3",
+      "apd": "inferred",
+      "apdNote": "The maker marks L7 as ED; its printed nd/νd is consistent with low-dispersion glass.",
+      "role": "Low-dispersion positive member of the fixed group before the stop."
     },
     {
       "id": 8,
       "name": "L8",
-      "type": "Lens",
+      "type": "Negative Meniscus",
       "nd": 1.689,
       "vd": 31.161,
       "indexReference": "d",
-      "label": "L8",
-      "glass": "Literal rounded nd/Vd; unmatched glass, approximate dispersion"
+      "label": "Element 8",
+      "glass": "E-FD8 (Hoya)",
+      "cemented": "C3",
+      "role": "Dispersive negative partner to L7 immediately before the stop."
     },
     {
       "id": 9,
       "name": "L9",
-      "type": "Lens",
+      "type": "Biconvex Positive",
       "nd": 1.593,
       "vd": 68.624,
       "indexReference": "d",
-      "label": "L9",
-      "glass": "Literal rounded nd/Vd; unmatched glass, approximate dispersion"
+      "label": "Element 9",
+      "glass": "FCD515 (Hoya)",
+      "apd": "inferred",
+      "apdNote": "The maker marks L9 as ED; its printed nd/νd is consistent with low-dispersion glass.",
+      "role": "Low-dispersion positive element beginning the second floating focus group."
     },
     {
       "id": 10,
       "name": "L10",
-      "type": "Lens",
+      "type": "Biconvex Positive",
       "nd": 1.569,
       "vd": 71.304,
       "indexReference": "d",
-      "label": "L10",
-      "glass": "Literal rounded nd/Vd; unmatched glass, approximate dispersion"
+      "label": "Element 10",
+      "glass": "K-GFK70 (Sumita)",
+      "cemented": "C4",
+      "apd": "inferred",
+      "apdNote": "The maker marks L10 as ED; its printed nd/νd is consistent with low-dispersion glass.",
+      "role": "Low-dispersion positive partner to L11 in the second floating focus group."
     },
     {
       "id": 11,
       "name": "L11",
-      "type": "Lens",
+      "type": "Negative Meniscus",
       "nd": 1.847,
       "vd": 23.785,
       "indexReference": "d",
-      "label": "L11",
-      "glass": "Literal rounded nd/Vd; unmatched glass, approximate dispersion"
+      "label": "Element 11",
+      "glass": "FDS90 (Hoya)",
+      "cemented": "C4",
+      "role": "Dispersive negative element ending the second floating focus group."
     },
     {
       "id": 12,
       "name": "L12",
-      "type": "Lens",
+      "type": "Positive Meniscus",
       "nd": 1.946,
       "vd": 17.942,
       "indexReference": "d",
-      "label": "L12",
-      "glass": "Literal rounded nd/Vd; unmatched glass, approximate dispersion"
+      "label": "Element 12",
+      "glass": "H-ZF88 (CDGM)",
+      "role": "High-index positive element beginning the fixed rear group."
     },
     {
       "id": 13,
       "name": "L13",
-      "type": "Lens",
+      "type": "Positive Meniscus",
       "nd": 1.593,
       "vd": 68.624,
       "indexReference": "d",
-      "label": "L13",
-      "glass": "Literal rounded nd/Vd; unmatched glass, approximate dispersion"
+      "label": "Element 13",
+      "glass": "FCD515 (Hoya)",
+      "cemented": "C5",
+      "apd": "inferred",
+      "apdNote": "The maker marks L13 as ED; its printed nd/νd is consistent with low-dispersion glass.",
+      "role": "Low-dispersion positive member of the final cemented pair."
     },
     {
       "id": 14,
       "name": "L14",
-      "type": "Lens",
+      "type": "Negative Meniscus",
       "nd": 1.847,
       "vd": 23.785,
       "indexReference": "d",
-      "label": "L14",
-      "glass": "Literal rounded nd/Vd; unmatched glass, approximate dispersion"
+      "label": "Element 14",
+      "glass": "FDS90 (Hoya)",
+      "cemented": "C5",
+      "role": "Dispersive negative partner to L13 in the fixed rear group."
     },
     {
       "id": 15,
       "name": "L15",
-      "type": "Lens",
+      "type": "Biconcave Negative",
       "nd": 1.81,
       "vd": 40.993,
       "indexReference": "d",
-      "label": "L15",
-      "glass": "Literal rounded nd/Vd; unmatched glass, approximate dispersion"
+      "label": "Element 15",
+      "glass": "D-ZLaF52LA (CDGM)",
+      "role": "Double-sided aspherical negative element ending the fixed rear group."
     }
   ],
   "surfaces": [
@@ -374,7 +409,7 @@ const LENS_DATA = {
       "nd": 1.517,
       "vd": 64.199,
       "indexReference": "d",
-      "glass": "Literal rounded nd/Vd; unmatched glass, approximate dispersion",
+      "glass": "H-K9L (CDGM)",
       "gapAfterMm": 0.5,
       "sd": 23,
       "source": "CN 115826211 A/B, Example 2 Table 4, surfaces 27–28"
@@ -421,9 +456,31 @@ const LENS_DATA = {
   "aperture": {
     "nominalFNumber": 1.2,
     "fStops": [
-      1.2
+      1.2,
+      1.4,
+      2,
+      2.8,
+      4,
+      5.6,
+      8,
+      11,
+      16
     ]
   },
+  "groups": [
+    { "text": "G1 — Fixed front", "fromSurface": "1", "toSurface": "7" },
+    { "text": "G2 — Floating focus", "fromSurface": "8", "toSurface": "10" },
+    { "text": "G3 — Fixed", "fromSurface": "11", "toSurface": "13" },
+    { "text": "G4 — Floating focus", "fromSurface": "15", "toSurface": "19" },
+    { "text": "G5 — Fixed rear", "fromSurface": "20", "toSurface": "26" }
+  ],
+  "doublets": [
+    { "text": "C1", "fromSurface": "3", "toSurface": "5" },
+    { "text": "C2", "fromSurface": "8", "toSurface": "10" },
+    { "text": "C3", "fromSurface": "11", "toSurface": "13" },
+    { "text": "C4", "fromSurface": "17", "toSurface": "19" },
+    { "text": "C5", "fromSurface": "22", "toSurface": "24" }
+  ],
   "layout": {
     "yScFill": 0.7
   },
@@ -437,7 +494,7 @@ const LENS_DATA = {
     "published": [
       1
     ],
-    "description": "Two literal published endpoints only: infinity and source near0.206m (datum unspecified). Engine modeled near distance341.084mm object-to-image; do not confuse with source-certified datum. Four gaps move two floating groups. No intermediate cam verified."
+    "description": "PUBLISHED infinity and near focus states. Two floating groups move: G2 shifts 6.151 mm toward the image and G4 shifts 5.066 mm toward the object. The printed near gaps focus an object 0.205016 m before the first lens vertex, or 0.341084 m from the image plane. The patent labels this state 0.206 m without specifying its measurement origin; a first-vertex reference is plausible but unproved. The maker specifies a 0.34 m minimum focus distance. Only the two printed endpoints are modeled; no intermediate focus cam is published."
   },
   "projection": {
     "kind": "rectilinear",
@@ -446,7 +503,7 @@ const LENS_DATA = {
   "checks": {
     "gapSagFrac": 0.9
   },
-  "subtitle": "CN115826211A/B Example2 representative; literal filter and two focus stations",
+  "subtitle": "CN 115826211 A, Example 2 — Viltrox AF 35mm f/1.2 LAB construction",
   "catalog": {
     "lensMounts": [
       "sony-fe",
@@ -467,9 +524,10 @@ const LENS_DATA = {
       "design": 1.2
     },
     "specs": [
-      "15 ELEMENTS / 10 GROUPS PLUS PUBLISHED FILTER",
-      "TWO PUBLISHED FOCUS ENDPOINTS",
-      "INFERRED CLEAR APERTURES"
+      "15 ELEMENTS / 10 GROUPS",
+      "5 ED / 3 HIGH-REFRACTIVE / 2 ASPHERICAL",
+      "F/1.2–16",
+      "MINIMUM FOCUS 0.34 m"
     ]
   },
   "source": {
@@ -488,19 +546,19 @@ const LENS_DATA = {
     "errata": [
       {
         "status": "unresolved",
-        "note": "Representative family-level production association only; manufacturer section does not uniquely discriminate E2 from other patent examples. No source sign repair."
+        "note": "The manufacturer section supports the LAB optical family but does not uniquely identify Example 2 as the retail prescription. Source signs are retained."
       },
       {
         "status": "unresolved",
-        "note": "Literal rounded nd/Vd and all source spacings retained, including filter2.5mm plus final0.5mm air. Infinity paraxial residual -0.045257835mm retained; no refocus."
+        "note": "Printed nd/νd and all source spacings are retained, including the 2.5 mm filter and final 0.5 mm air space. Catalog dispersion curves match the printed glass coordinates at their stated precision; supplier identities remain unknown. The infinity paraxial residual is -0.045257835 mm with no refocus."
       },
       {
         "status": "unresolved",
-        "note": "Near source object0.206m datum unspecified. Literal gaps calculate205.016mm before first vertex /341.084mm object-to-image. This supports but does not prove datum interpretation. Endpoint-only focus, no certified conjugate or intermediate cam."
+        "note": "The patent's 0.206 m near distance has no specified measurement origin. The printed gaps give 205.016 mm before the first vertex and 341.084 mm object-to-image. A first-vertex reference is plausible but unproved. Only the printed endpoints are modeled; neither the finite conjugate nor an intermediate focus cam is published."
       },
       {
         "status": "unresolved",
-        "note": "Clear apertures are inferred geometry-limited model bounds, not published dimensions. Finite-aperture sampled throughput is qualified in analysis; no measured illumination claim."
+        "note": "Clear apertures are inferred geometry-limited bounds, not published dimensions. Heavy corner vignetting is described in the analysis; it is a property of these inferred rims, not a measured retail illumination result."
       }
     ]
   }

@@ -1,4 +1,4 @@
-# Viltrox AF35mm f/1.2 LAB
+# Viltrox AF 35mm f/1.2 LAB
 
 ## Patent Reference and Design Identification
 
@@ -9,7 +9,7 @@
 **Inventor:** Chen Baofeng\
 **Applicant:** Shenzhen Leiying Photoelectric Technology Co., Ltd.\
 **Title:** 超大光圈全画幅广角自动对焦镜头 (*Large-aperture full-frame wide-angle autofocus lens*)\
-**Example details:** Tables 4–6; Figure 2-1; native millimetre scale, no scaling.
+**Example details:** Tables 4–6; Figure 2-1; dimensions in millimetres, no scaling.
 
 This model transcribes Example 2 of CN 115826211 A. The corresponding grant, CN 115826211 B, contains the same numerical prescription. Several features support an association with the Viltrox AF 35mm f/1.2 LAB:
 
@@ -37,91 +37,91 @@ The camera-side GL filter is traced as a rear plate rather than counted among th
 
 ## Element-by-Element Analysis
 
-The descriptions follow the patent's element powers and group membership (¶0005, ¶0010–¶0014). Material identities remain unresolved: the model stores the printed d-line indices and Abbe numbers with approximate dispersion. Standalone element focal lengths and quantitative aberration contributions are not established by the source review.
+The descriptions follow the patent's element powers and group membership (¶0005, ¶0010–¶0014). The model retains the printed d-line indices and Abbe numbers and uses matching catalog dispersion curves as spectral proxies. Factory material identities, standalone element focal lengths and quantitative aberration contributions are not published.
 
 ### L1 — Negative Meniscus, G1
 
-**nd = 1.487, νd = 70.440. Glass: unmatched low-dispersion class.**
+**nd = 1.487, νd = 70.440. Glass: FC5 (Hoya), catalog spectral proxy.**
 
 L1 is the negative front member of net-positive G1. Its high Abbe number is consistent with the maker's ED designation at this position. That agreement does not identify a supplier, melt or anomalous-partial-dispersion curve.
 
 ### L2/L3 — Cemented Negative/Positive Pair, G1
 
-**L2: nd = 1.847, νd = 23.785. Glass: unmatched high-index, high-dispersion class.**\
-**L3: nd = 1.883, νd = 40.805. Glass: unmatched high-index class.**
+**L2: nd = 1.847, νd = 23.785. Glass: FDS90 (Hoya), catalog spectral proxy.**\
+**L3: nd = 1.883, νd = 40.805. Glass: TAFD30 (Hoya), catalog spectral proxy.**
 
-Negative L2 is cemented to positive L3. Their differing Abbe numbers provide a chromatic-balancing pair within the fixed front group. The maker identifies L3 as HR; the model retains the patent coordinates without assigning a commercial glass.
+Negative L2 is cemented to positive L3. Their differing Abbe numbers provide a chromatic-balancing pair within the fixed front group. The maker identifies L3 as HR; the catalog curves do not identify the production supplier.
 
 ### L4 — Positive Two-Sided Asphere, G1
 
-**nd = 1.810, νd = 40.993. Glass: unmatched high-index class.**
+**nd = 1.810, νd = 40.993. Glass: D-ZLaF52LA (CDGM), catalog spectral proxy.**
 
 L4 completes G1 immediately before the first variable gap. Both faces, surfaces 6 and 7, carry the printed aspheric terms. Its position matches the maker's first UA element. The source does not separate its correction into an element-specific aberration budget.
 
 ### L5/L6 — Cemented Positive/Negative Pair, Moving G2
 
-**L5: nd = 1.946, νd = 17.942. Glass: unmatched high-index, high-dispersion class.**\
-**L6: nd = 1.603, νd = 38.011. Glass: unmatched class.**
+**L5: nd = 1.946, νd = 17.942. Glass: H-ZF88 (CDGM), catalog spectral proxy.**\
+**L6: nd = 1.603, νd = 38.011. Glass: E-F5 (Hoya), catalog spectral proxy.**
 
 Positive L5 and negative L6 form the complete negative G2 focus assembly. Its motion changes the air spaces on either side while preserving the cemented interface. The maker identifies L5 as HR. The large dispersion difference is consistent with chromatic balancing inside a moving assembly, without proving a particular secondary-spectrum correction.
 
 ### L7/L8 — Cemented Positive/Negative Pair, Fixed G3
 
-**L7: nd = 1.593, νd = 68.624. Glass: unmatched low-dispersion class.**\
-**L8: nd = 1.689, νd = 31.161. Glass: unmatched higher-dispersion class.**
+**L7: nd = 1.593, νd = 68.624. Glass: FCD515 (Hoya), catalog spectral proxy.**\
+**L8: nd = 1.689, νd = 31.161. Glass: E-FD8 (Hoya), catalog spectral proxy.**
 
 Positive L7 and negative L8 form the fixed negative group immediately before the stop. L7 occupies an ED position in the maker's diagram. The contrasting Abbe numbers provide another chromatic-balancing pair; G3 remains fixed as adjacent G2 moves.
 
 ### L9 — Positive Element, Moving G4
 
-**nd = 1.593, νd = 68.624. Glass: unmatched low-dispersion class.**
+**nd = 1.593, νd = 68.624. Glass: FCD515 (Hoya), catalog spectral proxy.**
 
 L9 begins positive G4 immediately after the stop and its variable air gap. It shares the printed material coordinates of L7 and L13 and occupies another maker-designated ED position. It moves together with L10/L11.
 
 ### L10/L11 — Cemented Positive/Negative Pair, Moving G4
 
-**L10: nd = 1.569, νd = 71.304. Glass: unmatched low-dispersion class.**\
-**L11: nd = 1.847, νd = 23.785. Glass: unmatched high-index, high-dispersion class.**
+**L10: nd = 1.569, νd = 71.304. Glass: K-GFK70 (Sumita), catalog spectral proxy.**\
+**L11: nd = 1.847, νd = 23.785. Glass: FDS90 (Hoya), catalog spectral proxy.**
 
 Positive L10 and negative L11 complete G4. L10 is an ED element in the maker's diagram, paired with a much more dispersive negative element. This carries chromatic balancing into the second moving assembly, consistent with the patent's distributed correction strategy.
 
 ### L12 — Positive Element, Fixed G5
 
-**nd = 1.946, νd = 17.942. Glass: unmatched high-index, high-dispersion class.**
+**nd = 1.946, νd = 17.942. Glass: H-ZF88 (CDGM), catalog spectral proxy.**
 
 L12 begins the fixed rear group. Its material coordinates repeat those of L5, and it occupies the maker's third HR position. The patent's rear-group chromatic condition combines L12 with the following L13/L14 pair rather than treating it as an isolated corrector (¶0009).
 
 ### L13/L14 — Cemented Positive/Negative Pair, Fixed G5
 
-**L13: nd = 1.593, νd = 68.624. Glass: unmatched low-dispersion class.**\
-**L14: nd = 1.847, νd = 23.785. Glass: unmatched high-index, high-dispersion class.**
+**L13: nd = 1.593, νd = 68.624. Glass: FCD515 (Hoya), catalog spectral proxy.**\
+**L14: nd = 1.847, νd = 23.785. Glass: FDS90 (Hoya), catalog spectral proxy.**
 
 Positive L13 and negative L14 form the final cemented pair. L13 is the fifth ED position in the maker's diagram. Their material contrast, considered together with L12, supports the patent's rear-group chromatic-balancing strategy; it does not establish apochromatic performance.
 
 ### L15 — Negative Two-Sided Asphere, Fixed G5
 
-**nd = 1.810, νd = 40.993. Glass: unmatched high-index class.**
+**nd = 1.810, νd = 40.993. Glass: D-ZLaF52LA (CDGM), catalog spectral proxy.**
 
 L15 is the last lens element, with aspheric surfaces 25 and 26. Its material coordinates repeat those of L4, and it matches the maker's second UA position. The rear aspheres provide additional shape variables after the final cemented pair. Their individual aberration contributions and manufacturing process are not established by the numerical tables.
 
 ## Glass Identification and Selection
 
-The source indices are rounded to three decimal places. The d-line reference is supported by the patent's 587.6 nm reference and the independent source review. All material assignments remain unmatched; dispersion derived from nd and νd is approximate. No supplier, historical melt or factory glass identity is established.
+The source indices are rounded to three decimal places. The patent specifies the d-line reference at 587.6 nm. Each catalog row below rounds to the printed nd and differs by less than 0.15 in νd. The catalog curves provide spectral proxies while the printed nd/νd values remain unchanged. Several catalog glasses can share these rounded coordinates; no supplier, historical melt or factory glass identity is established.
 
-| Elements | nd | νd | Maker construction designation |
-| --- | ---: | ---: | --- |
-| L1 | 1.487 | 70.440 | ED |
-| L2, L11, L14 | 1.847 | 23.785 | No special designation established |
-| L3 | 1.883 | 40.805 | HR |
-| L4, L15 | 1.810 | 40.993 | UA aspheres |
-| L5, L12 | 1.946 | 17.942 | HR |
-| L6 | 1.603 | 38.011 | No special designation established |
-| L7, L9, L13 | 1.593 | 68.624 | ED |
-| L8 | 1.689 | 31.161 | No special designation established |
-| L10 | 1.569 | 71.304 | ED |
-| GL rear plate | 1.517 | 64.199 | Camera-side filter |
+| Elements | nd | νd | Catalog spectral proxy | Maker construction designation |
+| --- | ---: | ---: | --- | --- |
+| L1 | 1.487 | 70.440 | FC5 (Hoya) | ED |
+| L2, L11, L14 | 1.847 | 23.785 | FDS90 (Hoya) | No special designation established |
+| L3 | 1.883 | 40.805 | TAFD30 (Hoya) | HR |
+| L4, L15 | 1.810 | 40.993 | D-ZLaF52LA (CDGM) | UA aspheres |
+| L5, L12 | 1.946 | 17.942 | H-ZF88 (CDGM) | HR |
+| L6 | 1.603 | 38.011 | E-F5 (Hoya) | No special designation established |
+| L7, L9, L13 | 1.593 | 68.624 | FCD515 (Hoya) | ED |
+| L8 | 1.689 | 31.161 | E-FD8 (Hoya) | No special designation established |
+| L10 | 1.569 | 71.304 | K-GFK70 (Sumita) | ED |
+| GL rear plate | 1.517 | 64.199 | H-K9L (CDGM) | Camera-side filter |
 
-The repeated low-dispersion positive elements and more dispersive negative partners distribute chromatic balancing across fixed and moving assemblies. The patent explicitly relates combinations involving L1/L5/L6 and L12/L13/L14 to power-weighted Abbe-number conditions (¶0008–¶0009). The available nd/νd coordinates do not establish anomalous partial dispersion, secondary-spectrum performance or an APO classification.
+The repeated low-dispersion positive elements and more dispersive negative partners distribute chromatic balancing across fixed and moving assemblies. The patent explicitly relates combinations involving L1/L5/L6 and L12/L13/L14 to power-weighted Abbe-number conditions (¶0008–¶0009). The five ED tags follow the maker's diagram and compatible material coordinates. They do not establish the production glasses' anomalous partial dispersion, secondary-spectrum performance or an APO classification.
 
 ## Focus Mechanism
 
@@ -134,7 +134,7 @@ The design uses two moving internal focus groups. G2 moves imageward while G4 mo
 | D3 | After the stop, before G4 | 7.857 mm | 2.791 mm |
 | D4 | After surface 19, after G4 | 1.901 mm | 6.967 mm |
 
-The source labels the near row 0.206 m without specifying its distance datum. The literal spacings calculate a conjugate 205.016025 mm before the first vertex, or 341.084025 mm object-to-image. The model records the latter endpoint as 0.341084 m; the maker's separate 0.34 m minimum focus distance is retained as product context. These values support a possible reference-plane explanation but do not prove the patent's intended datum.
+The source labels the near row 0.206 m without specifying its measurement origin. The printed spacings calculate a conjugate 205.016025 mm before the first vertex, or 341.084025 mm from object to image plane. The model records the latter endpoint as 0.341084 m; the maker's separate 0.34 m minimum focus distance is retained as product context. A first-vertex reference for the patent's 0.206 m figure is plausible but unproved. G2 travels 6.151 mm toward the image and G4 travels 5.066 mm toward the object.
 
 An alternative finite-object launch 206 mm before the first vertex retains every source value and gives an axial RMS spot radius of 0.011021 mm, compared with 0.006371 mm at the calculated conjugate. This comparison does not certify either distance as the source's intended datum.
 
@@ -159,25 +159,25 @@ The leading polynomial terms have opposite signs on the L4 faces and negative si
 
 No numerical clear apertures are published. The modeled rims are geometry-limited physical-group bounds, not proportional measurements of the manufacturer or patent drawings. Their broad-front, narrow-rear envelope is qualitatively consistent with those drawings, but the drawings do not establish these dimensions.
 
-Initial larger candidates violated glass-rim, slope and facing-sag bounds. Reducing those candidates to valid bounds, and enlarging unconstrained intermediate groups enough to transmit the nominal axial pupil, produced the retained profile. No source curvature, thickness or material coordinate was changed. The model uses the default 90% gap-sag limit with no override or aperture stop-down. The f/1.2 iris semi-diameter is calculated as 17.343540796 mm rather than published by the patent. The authored and traced rim bounds agree at both endpoints; they remain inferred dimensions.
+The inferred rims satisfy curvature, slope and facing-surface clearance bounds while transmitting the axial pupil at f/1.2. No source curvature, thickness or material coordinate is changed. The iris semi-diameter is derived from the f-number as 17.343540796 mm rather than published by the patent. These rim dimensions apply at both focus endpoints.
 
-At the infinity half-field angle of 32.1°, only **142/812 equally weighted stop-lattice samples reach the image: 17.49% transmitted and 82.51% blocked**. At half that field, 650/812 samples pass (80.05%); all 812/812 axial samples pass. These are severe modeled off-axis losses, not evidence of full edge-pupil transmission.
+The model has **heavy corner vignetting** at infinity. At the 32.1° half-field angle, geometric transmission is 17.49%, with 82.51% blocked; at half that field it is 80.05%, and the axial pupil clears. Most corner loss occurs at the inferred front rim, with additional clipping in the middle and rear groups.
 
-The earlier near calculation launched finite-object rays from 205.016 mm before the first vertex. It passed 302/812 edge samples (37.19%, or 62.81% blocked), 726/812 half-field samples (89.41%) and 812/812 axial samples. This calculation used a different finite-object launch convention from the current application. The validator reports 330/812 samples at 27.13° under the current convention; the earlier near fractions must not be presented as a reproduction of that result.
+For a finite object 205.016 mm before the first vertex, calculated corner transmission is 37.19% (62.81% blocked) and half-field transmission is 89.41%, with the axial pupil clear. These finite-object results use a different illumination geometry from collimated field-angle rays and are not interchangeable with them.
 
-An independent check of the full incident ray lines classified 190 infinity and 34 near attempts without a surface intersection as misses of the inferred first-surface rim, rather than unexplained numerical failures. These fractions describe the model's inferred apertures and sampling. They are not measurements of illumination, coatings or retail vignetting.
+These geometric transmission fractions depend on inferred apertures. They are not measurements of illumination, coatings or retail vignetting. The front-rim dimensions need comparison with the maker's connected construction diagram before the corner losses can be attributed to the production lens.
 
-## Verification Summary and Remaining Limits
+## Model Scope and Limitations
 
-The source review checked all 28 printed surface rows, the four aspheric surfaces and both sets of variable gaps without finding transcription mismatches. Source radii and distances are already in millimetres; no scaling, sign repair, optical refit, filter omission or image-plane replacement was applied.
+The model retains all 28 printed surface rows, the four aspheric surfaces and both sets of variable gaps. Source radii and distances are already in millimetres; no scaling, sign repair, optical refit, filter omission or image-plane replacement is applied.
 
-The literal model gives infinity EFL 34.502313485 mm and near EFL 35.495891329 mm, compared with the printed 34.5 mm and 35.5 mm. The authored image plane retains the infinity paraxial residual of −0.045257835 mm. The printed terminal air space is 0.500 mm, whereas the calculated infinity back focal distance from the plate rear is 0.454742 mm. No refocus is used to conceal this difference.
+The model gives infinity EFL 34.502313485 mm and near EFL 35.495891329 mm, compared with the printed 34.5 mm and 35.5 mm. The image plane retains the infinity paraxial residual of −0.045257835 mm. The printed terminal air space is 0.500 mm, whereas the calculated infinity back focal distance from the plate rear is 0.454742 mm.
 
-The audit distinguishes back focal distance from finite-object imaging. From the last lens vertex, the calculated collimated-light back focal distance is 18.529742165 mm at infinity and 12.653785708 mm at the near configuration. The latter is not the finite-object image distance. At the literal near image plane, calculated object-to-image distance is 341.084025185 mm and magnification is −0.166814075. A diagnostic that shifts the image plane to the infinity best-focus offset reports 342.68 mm instead; that shifted result does not define the modeled endpoint.
+From the last lens vertex, the calculated collimated-light back focal distance is 18.529742165 mm at infinity and 12.653785708 mm at the near configuration. The latter is not the finite-object image distance. At the printed near image plane, calculated object-to-image distance is 341.084025185 mm and magnification is −0.166814075. Shifting that plane to the infinity best-focus offset would give 342.68 mm instead; the model retains the printed plane.
 
-The recorded surface, aperture and image-circle checks pass. Chief-ray field coverage reaches 21.52 mm of the 21.65 mm full-frame semi-diagonal (99.4%), and the corner chief ray clears at 32.2°. These checks do not establish transmission across the full corner pupil or remove the clipping limitation above.
+Chief-ray field coverage reaches 21.52 mm of the 21.65 mm full-frame semi-diagonal (99.4%), and the corner chief ray clears at 32.2°. Chief-ray clearance does not establish transmission across the full corner pupil or remove the clipping limitation above.
 
-The model remains hidden pending application validation. Full-application regression, compatibility with the current application and compiled-browser validation are not established by this optical review. The factory prescription, numerical factory rims, near-distance datum, intermediate focus cam and historical glass identities remain unproved.
+The factory prescription, numerical factory rims, near-distance measurement origin, intermediate focus cam and historical glass identities remain unproved. The maker publishes an f/1.2–16 aperture range for both mounts; the patent's stated design aperture is f/1.2.
 
 ## Sources / References
 
