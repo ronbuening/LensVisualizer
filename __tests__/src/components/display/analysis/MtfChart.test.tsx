@@ -3,7 +3,7 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { cleanup, fireEvent, render, screen, within } from "@testing-library/react";
 import MtfChart from "../../../../../src/components/display/analysis/MtfChart.js";
-import type { MtfApertureSample, MtfResult } from "../../../../../src/types/mtf.js";
+import type { MtfSweepSample, MtfResult } from "../../../../../src/types/mtf.js";
 import { mockTheme } from "../../../../testUtils.js";
 import type { RuntimeLens } from "../../../../../src/types/optics.js";
 import { DEFAULT_MTF_PREFERENCES } from "../../../../../src/utils/state/mtfPreferences.js";
@@ -14,10 +14,11 @@ import {
 } from "../../../../../src/components/display/analysis/mtf/mtfExportContext.js";
 import MtfFieldSummary from "../../../../../src/components/display/analysis/mtf/MtfFieldSummary.js";
 import {
-  mtfApertureCsv,
+  mtfSweepCsv,
   mtfAllSamplesCsv,
   mtfViewCsv,
 } from "../../../../../src/components/display/analysis/mtf/mtfExportCsv.js";
+import { mtfSweepPointStatus } from "../../../../../src/components/display/analysis/mtf/mtfPresentation.js";
 import { mtfCsv } from "../../../../../src/components/display/analysis/mtf/mtfCsv.js";
 import { buildMtfSvg } from "../../../../../src/components/display/analysis/mtf/mtfExportImage.js";
 import {
@@ -194,8 +195,8 @@ describe("MTF export builders", () => {
     };
     const context = contextFor(result, {
       preferences,
-      apertureSamples: samples,
-      apertureCaption: "Holds the charted aperture's image plane.",
+      sweepSamples: samples,
+      sweepCaption: "Holds the charted aperture's image plane.",
       partial: true,
     });
     expect(context.view).toBe("aperture");
@@ -207,11 +208,11 @@ describe("MTF export builders", () => {
       context,
       view: "aperture" as const,
       frequencies: [10, 30] as const,
-      apertureSamples: samples,
-      apertureFields: [0, 0.5, 1],
+      sweepSamples: samples,
+      sweepFields: [0, 0.5, 1],
       diffractionLimit: true,
     };
-    const raw = parseCsv(mtfApertureCsv(options));
+    const raw = parseCsv(mtfSweepCsv(options));
     expect(raw[0]).toEqual([
       "f-number",
       "Field (%)",
@@ -246,7 +247,7 @@ describe("MTF export builders", () => {
     expect(raw[11].slice(4, 7)).toEqual(["", "", "unavailable"]);
     expect(raw[13].slice(4, 7)).toEqual(["", "", "pending"]);
     for (const row of raw.slice(7)) if (row[4] === "") expect(row.slice(11)).toEqual(["", ""]);
-    const diagnostic = parseCsv(mtfApertureCsv({ ...options, diagnostic: true }));
+    const diagnostic = parseCsv(mtfSweepCsv({ ...options, diagnostic: true }));
     expect(diagnostic[7][4]).toBe("0.9000");
     expect(diagnostic[10][4]).toBe("0.6000");
     expect(diagnostic[11][4]).toBe("");
@@ -257,7 +258,7 @@ describe("MTF export builders", () => {
     const all = parseCsv(mtfAllSamplesCsv(options)).filter((row) => !row[0].startsWith("# "));
     expect(all).toHaveLength(1 + 3 * 3 * result.frequenciesPerMm.length);
     expect(all.some((row) => row[2] === "100")).toBe(true);
-    const { container } = render(<MtfChart {...options} t={mockTheme} apertureCaption={context.aperture_sweep} />);
+    const { container } = render(<MtfChart {...options} t={mockTheme} sweepCaption={context.aperture_sweep} />);
     const image = buildMtfSvg(snapshotMtfChart(container.querySelector("figure")!), context, mockTheme);
     expect(image.svg).toContain("# view: aperture");
     expect(image.svg).toContain("f-number");
@@ -1186,7 +1187,7 @@ describe("MTF chart presentation", () => {
 describe("MTF aperture chart", () => {
   it("uses log2 aperture ticks, field shapes, exact readouts and gaps for partial results", () => {
     const result = syntheticResult();
-    const samples: MtfApertureSample[] = [
+    const samples: MtfSweepSample[] = [
       { fNumber: 2, result },
       { fNumber: 2.8, result: null },
       { fNumber: 4, result },
@@ -1194,13 +1195,13 @@ describe("MTF aperture chart", () => {
     const props = {
       result,
       view: "aperture" as const,
-      apertureSamples: samples,
-      apertureFields: [0, 0.5, 1],
+      sweepSamples: samples,
+      sweepFields: [0, 0.5, 1],
       frequencies: [10] as const,
       t: mockTheme,
       advanced: true,
       diffractionLimit: true,
-      apertureCaption: "Holds the charted aperture's image plane.",
+      sweepCaption: "Holds the charted aperture's image plane.",
     };
     const { container, rerender } = render(<MtfChart {...props} />);
     expect(screen.getByRole("figure", { name: "Simulated MTF versus aperture" })).toBeTruthy();
@@ -1226,7 +1227,7 @@ describe("MTF aperture chart", () => {
     expect(live()).toContain("Diffraction limit");
     fireEvent.keyDown(chart, { key: "ArrowRight" });
     expect(live()).toContain("f/2.8 — 10 lp/mm · Center —");
-    rerender(<MtfChart {...props} apertureSamples={samples.map((sample) => ({ ...sample, result }))} />);
+    rerender(<MtfChart {...props} sweepSamples={samples.map((sample) => ({ ...sample, result }))} />);
     expect(
       [...container.querySelectorAll('path[stroke-width="2"]')].every((path) =>
         (path.getAttribute("d") ?? "").includes("L"),
@@ -1252,8 +1253,8 @@ describe("MTF aperture chart", () => {
       <MtfChart
         result={result}
         view="aperture"
-        apertureSamples={[{ fNumber: 16, result }]}
-        apertureFields={[0]}
+        sweepSamples={[{ fNumber: 16, result }]}
+        sweepFields={[0]}
         frequencies={[10]}
         t={mockTheme}
         diffractionLimit
@@ -1277,8 +1278,8 @@ describe("MTF aperture chart", () => {
     const props = {
       result,
       view: "aperture" as const,
-      apertureSamples: samples,
-      apertureFields: [0, 0.5, 1],
+      sweepSamples: samples,
+      sweepFields: [0, 0.5, 1],
       frequencies: [10, 30] as const,
       t: mockTheme,
       diffractionLimit: true,
@@ -1329,4 +1330,96 @@ describe("MTF aperture chart", () => {
     expect(diagnostic[5].slice(4, 6)).toEqual(["", ""]);
     vi.unstubAllGlobals();
   });
+});
+
+describe("MTF zoom chart", () => {
+  it("uses station focal lengths on a log axis, marks only a matching slider position and reads each station's edge", () => {
+    const result = syntheticResult();
+    const short = { ...result, fields: result.fields.filter((field) => [0, 0.5, 0.75].includes(field.fieldFraction)) };
+    const samples: MtfSweepSample[] = [
+      { focalLengthMm: 35, zoomT: 0, fNumber: 4, edgeOverview: true, result: short },
+      { focalLengthMm: 70, zoomT: 0.5, fNumber: 5.6, edgeOverview: true, result: null },
+      { focalLengthMm: 140, zoomT: 1, fNumber: 8, edgeOverview: true, result },
+    ];
+    const props = {
+      result,
+      view: "zoom" as const,
+      sweepSamples: samples,
+      sweepFields: [0, 0.5, 1],
+      frequencies: [10] as const,
+      t: mockTheme,
+      advanced: true,
+      diffractionLimit: true,
+      comparison: result,
+    };
+    const { container, rerender } = render(<MtfChart {...props} currentZoomT={0.5} />);
+    expect(screen.getByRole("figure", { name: "Simulated MTF versus focal length" })).toBeTruthy();
+    expect(screen.getByText("Focal length (mm)")).toBeTruthy();
+    const tickX = (label: string) =>
+      Number([...container.querySelectorAll("svg text")].find((node) => node.textContent === label)!.getAttribute("x"));
+    expect([tickX("35"), tickX("70"), tickX("140")]).toEqual([40, 195, 350]);
+    expect(screen.getByTestId("mtf-current-zoom").textContent).toBe("Current zoom: 70 mm");
+    expect(screen.queryByText(/thin lines/)).toBeNull();
+    expect(screen.queryByTestId("mtf-provisional")).toBeNull();
+    expect(screen.getAllByTestId("mtf-zoom-markers")).toHaveLength(3);
+    const paths = [...container.querySelectorAll('path[stroke-width="2"]')];
+    expect(paths).toHaveLength(6);
+    expect(paths.every((path) => !path.getAttribute("d")!.includes("L"))).toBe(true);
+    fireEvent.keyDown(screen.getByRole("group", { name: /MTF chart values/ }), { key: "Home" });
+    const live = () => container.querySelector('[aria-live="polite"]')!.textContent;
+    expect(live()).toContain("35 mm — 10 lp/mm · Center");
+    expect(live()).toContain("Edge (each station) (converged; stable through: 100 lp/mm) S 0.750 T 0.650");
+    expect(live()).toContain("Diffraction limit");
+    rerender(<MtfChart {...props} currentZoomT={0.4} />);
+    expect(screen.queryByTestId("mtf-current-zoom")).toBeNull();
+    fireEvent.keyDown(screen.getByRole("group", { name: /MTF chart values/ }), { key: "End" });
+    expect(live()).toContain("140 mm —");
+    expect(live()).toContain("S 0.700 T 0.600");
+  });
+
+  it("shares zoom withholding and station-specific field heights across the table and both CSV scopes", () => {
+    const result = syntheticResult();
+    result.fields[0].status = "unconverged";
+    result.fields[2].status = "unavailable";
+    result.fields[2].reason = "outside-modeled-field";
+    const short = { ...result, fields: result.fields.filter((field) => [0, 0.5, 0.75].includes(field.fieldFraction)) };
+    const samples = [
+      { focalLengthMm: 35, zoomT: 0, fNumber: 4, edgeOverview: true, result: short },
+      { focalLengthMm: 140, zoomT: 1, fNumber: 8, edgeOverview: true, result },
+    ];
+    const options = {
+      view: "zoom" as const,
+      sweepSamples: samples,
+      sweepFields: [0, 0.5, 1],
+      frequencies: [10] as const,
+      result,
+      context: { lens_key: "control", view: "zoom" },
+      diffractionLimit: true,
+    };
+    render(<MtfFieldSummary {...options} t={mockTheme} advanced />);
+    expect(screen.getByRole("table", { name: /MTF by focal length/ }).textContent).toContain("35 mm · f/4");
+    const csv = parseCsv(mtfSweepCsv(options));
+    expect(csv[0].slice(0, 4)).toEqual(["Focal length (mm)", "Zoom position", "f-number", "Field (%)"]);
+    expect(csv[1].slice(6, 8)).toEqual(["", ""]);
+    expect(csv[2].slice(6, 8)).toEqual(["", ""]);
+    expect(csv[3].slice(3, 8)).toEqual(["75", "10", "15", "0.7500", "0.6500"]);
+    expect(csv[6].slice(3, 6)).toEqual(["100", "10", "20"]);
+    expect(mtfViewCsv(options)).toContain("# view: zoom");
+    expect(
+      mtfAllSamplesCsv(options)
+        .split("\n")
+        .filter((line) => /^35,/.test(line)),
+    ).toHaveLength(15);
+    const diagnostic = parseCsv(mtfSweepCsv({ ...options, diagnostic: true }));
+    expect(diagnostic[1].slice(6, 8)).toEqual(["0.9000", "0.8000"]);
+    expect(diagnostic[2].slice(6, 8)).toEqual(["", ""]);
+  });
+});
+
+it("reports an exhausted zoom edge as unavailable rather than pending", () => {
+  const result = syntheticResult();
+  result.fields = result.fields
+    .filter((field) => field.fieldFraction === 0 || field.fieldFraction === 0.5)
+    .map((field) => ({ ...field, status: "unavailable", sagittal: [], tangential: [] }));
+  expect(mtfSweepPointStatus({ focalLengthMm: 50, fNumber: 4, edgeOverview: true, result }, 1, 10)).toBe("unavailable");
 });

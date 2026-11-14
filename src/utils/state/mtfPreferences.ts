@@ -8,7 +8,7 @@ import type { MtfFocusMode, MtfGridCap, MtfMethod, MtfSpectrum } from "../../typ
 
 import { MTF_MIN_WAVELENGTH_NM, MTF_MAX_WAVELENGTH_NM } from "../../types/mtf.js";
 
-export type MtfChartView = "field" | "frequency" | "aperture";
+export type MtfChartView = "field" | "frequency" | "aperture" | "zoom";
 export type MtfFrequencyField = "overview" | number;
 export const MTF_PIXEL_PITCHES = [3, 4, 5, 6, 8] as const;
 export type MtfPixelPitch = (typeof MTF_PIXEL_PITCHES)[number];
@@ -88,7 +88,7 @@ const isMethod = oneOf<MtfMethod>(["geometric", "diffraction"]);
 const RETIRED_METHODS: ReadonlyMap<unknown, MtfMethod> = new Map([["geometric-dl", "diffraction"]]);
 const isSpectrum = oneOf<MtfSpectrum>(["reference", "cdf", "photopic", "single"]);
 const isFocus = oneOf<MtfFocusMode>(["auto", "design", "best-axial"]);
-const isView = oneOf<MtfChartView>(["field", "frequency", "aperture"]);
+const isView = oneOf<MtfChartView>(["field", "frequency", "aperture", "zoom"]);
 const isFieldStep = oneOf<MtfFieldStepPercent>(MTF_FIELD_STEPS);
 const isFrequency = oneOf<MtfChartFrequency>(MTF_CHART_FREQUENCIES);
 const isGridCap = oneOf<MtfGridCap>([128, 256]);

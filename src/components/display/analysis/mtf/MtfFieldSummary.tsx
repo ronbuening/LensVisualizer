@@ -1,6 +1,6 @@
 /** Field status counts, the legacy clipboard table and contextual chart downloads. */
 import { useEffect, useId, useRef, useState, type KeyboardEvent, type RefObject } from "react";
-import type { MtfApertureSample, MtfResult } from "../../../../types/mtf.js";
+import type { MtfSweepSample, MtfResult } from "../../../../types/mtf.js";
 import type { Theme } from "../../../../types/theme.js";
 import type {
   MtfChartFrequency,
@@ -10,17 +10,17 @@ import type {
 } from "../../../../utils/state/mtfPreferences.js";
 import { mtfCsv } from "./mtfCsv.js";
 import type { MtfExportContext } from "./mtfExportContext.js";
-import { mtfAperturePointStatus } from "./mtfPresentation.js";
-import { mtfApertureCsv, mtfAllSamplesCsv, mtfViewCsv } from "./mtfExportCsv.js";
+import { mtfSweepPointStatus } from "./mtfPresentation.js";
+import { mtfSweepCsv, mtfAllSamplesCsv, mtfViewCsv } from "./mtfExportCsv.js";
 import { buildMtfSvg } from "./mtfExportImage.js";
 import { downloadMtfBlob, mtfPngBlob, snapshotMtfChart } from "./mtfDownload.js";
 import MtfValueTable from "./MtfValueTable.js";
 
 interface MtfFieldSummaryProps {
   result: MtfResult;
-  apertureSamples?: readonly MtfApertureSample[];
-  apertureFields?: readonly number[];
-  apertureCaption?: string;
+  sweepSamples?: readonly MtfSweepSample[];
+  sweepFields?: readonly number[];
+  sweepCaption?: string;
   frequencies: readonly MtfChartFrequency[];
   t: Theme;
   diagnostic?: boolean;
@@ -43,9 +43,9 @@ interface MtfFieldSummaryProps {
 
 export default function MtfFieldSummary({
   result,
-  apertureSamples = [],
-  apertureFields = [],
-  apertureCaption,
+  sweepSamples = [],
+  sweepFields = [],
+  sweepCaption,
   frequencies,
   t,
   diagnostic = false,
@@ -64,6 +64,7 @@ export default function MtfFieldSummary({
   frequencyField = "overview",
   exportComparison = comparison,
 }: MtfFieldSummaryProps) {
+  const isSweep = view === "aperture" || view === "zoom";
   const [copyStatus, setCopyStatus] = useState<string | null>(null);
   const [exportOpen, setExportOpen] = useState(false);
   const [exportBusy, setExportBusy] = useState(false);
@@ -124,8 +125,8 @@ export default function MtfFieldSummary({
         comparison: exportComparison,
         comparisonFNumber,
         diffractionLimit,
-        apertureSamples,
-        apertureFields,
+        sweepSamples,
+        sweepFields,
       };
       const stem = `${context.lens_key.replace(/[^a-zA-Z0-9_-]/g, "-")}-${view === "field" ? "image-height" : view}-${context.generation_date}`;
       if (kind === "view" || kind === "all") {
@@ -153,8 +154,8 @@ export default function MtfFieldSummary({
     if (stale) return;
     try {
       await navigator.clipboard.writeText(
-        view === "aperture"
-          ? mtfApertureCsv({ apertureSamples, apertureFields, frequencies, diagnostic, diffractionLimit })
+        isSweep
+          ? mtfSweepCsv({ sweepSamples, sweepFields, frequencies, diagnostic, diffractionLimit })
           : mtfCsv(result, frequencies, diagnostic, comparison, diffractionLimit, comparisonFNumber),
       );
       setCopyStatus("Copied");
@@ -179,10 +180,8 @@ export default function MtfFieldSummary({
     [count((f) => f.reason === "outside-modeled-field"), "outside model"],
     [count((f) => f.status === "pending"), "pending"],
   ] as const;
-  const sweepStatuses = apertureSamples.flatMap((sample) =>
-    apertureFields.flatMap((fraction) =>
-      frequencies.map((frequency) => mtfAperturePointStatus(sample, fraction, frequency)),
-    ),
+  const sweepStatuses = sweepSamples.flatMap((sample) =>
+    sweepFields.flatMap((fraction) => frequencies.map((frequency) => mtfSweepPointStatus(sample, fraction, frequency))),
   );
   const sweepParts = (["converged", "unconverged", "unavailable", "pending"] as const).map(
     (status) => [sweepStatuses.filter((value) => value === status).length, status] as const,
@@ -320,16 +319,16 @@ export default function MtfFieldSummary({
       {stale ? <p>Previous settings: values are updating. CSV export is disabled. Downloads are disabled.</p> : null}
       <details open={advanced || undefined} style={{ color: t.muted, fontSize: 11 }}>
         <summary style={{ cursor: "pointer" }}>
-          {(view === "aperture" ? sweepParts : parts)
+          {(isSweep ? sweepParts : parts)
             .filter(([n], i) => n > 0 || i < 3)
             .map(([n, label]) => `${n} ${label}`)
-            .join(" · ") + (view === "aperture" ? " points (one sagittal/tangential pair each)" : "")}
+            .join(" · ") + (isSweep ? " points (one sagittal/tangential pair each)" : "")}
         </summary>
         <MtfValueTable
           result={result}
-          apertureSamples={view === "aperture" ? apertureSamples : undefined}
-          apertureFields={apertureFields}
-          apertureCaption={apertureCaption}
+          sweepSamples={isSweep ? sweepSamples : undefined}
+          sweepFields={sweepFields}
+          sweepCaption={sweepCaption}
           frequencies={frequencies}
           t={t}
           diagnostic={diagnostic}
@@ -340,10 +339,9 @@ export default function MtfFieldSummary({
           pixelPitchUm={pixelPitchUm}
           advanced={advanced}
         />
-        {view === "aperture" ? (
+        {isSweep ? (
           <p>
-            Copy CSV emits one row per aperture, field and selected frequency, with sagittal/tangential values,
-            numerical status and applied image plane.
+            {`Copy CSV emits one row per ${view === "zoom" ? "station" : "aperture"}, field and selected frequency, with sagittal/tangential values, numerical status and applied image plane.`}
           </p>
         ) : null}
         {!advanced && noted.length ? (

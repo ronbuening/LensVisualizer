@@ -197,3 +197,7 @@ describe("MTF preferences", () => {
     expect(getMtfPreferences().maxGridSize).toBe(128);
   });
 });
+
+it("retains the zoom view independently of Advanced for later restoration", () => {
+  expect(parseMtfPreferences({ view: "zoom", advanced: false })).toMatchObject({ view: "zoom", advanced: false });
+});

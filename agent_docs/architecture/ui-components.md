@@ -191,7 +191,7 @@ without overwriting the preference. Its x axis is log2 f-number, with ticks at t
 the comparison selector's slower full stops through `L.maxFstop`, inclusive. Frequencies keep their fixed colors, and
 fields use the frequency view's marker shapes, with hollow markers for isolated diffraction references. The Fields selector chooses one field or the center/50 %/outermost available
 overview; overview waits for the charted result's final edge and keeps those fractions fixed across apertures.
-`useMtfApertureSweep` sends ordinary requests restricted to those fields, scales both aperture radii as for the
+`useMtfSweep` sends ordinary requests restricted to those fields, scales both aperture radii as for the
 comparison, and runs one aperture after another on one retained worker client. Progress names the current aperture
 and ordinal; partial values appear immediately, with gaps for pending apertures and no provisional bridges. The
 view computes only while selected, cancels on optical/settings changes and reuses the client's completed-result
@@ -205,7 +205,26 @@ Copy CSV emits one uncaptioned row per aperture, field and selected frequency wi
 height, plane/shift and notes, plus enabled diffraction references. This-view CSV adds context; all sampled values
 includes every computed frequency at the sweep's sampled fields. Context records `view: aperture`, the sweep policy
 and each aperture's applied plane. SVG/PNG capture the rendered sweep and caption. Stored settings and v1 shared
-links accept the aperture view without changing older defaults. A persisted "Diffraction limit"
+links accept the aperture view without changing older defaults.
+Advanced also offers Zoom for zoom lenses. A stored Zoom view falls back to image height with Advanced off or on a
+prime, preserving the preference. It uses the same sweep hook, series, table, point counts, exports and withholding
+policy. Published infinity stations come from `publishedZoomStations`, defaulting to all authored stations; each
+uses its own wide-open iris through the viewer's controls and ordinary job builder. One worker computes stations
+sequentially with focal-length/ordinal progress and partial results; changes cancel work and completed requests stay
+cached. It does not move sliders. Focal length uses a logarithmic axis and authored design-focal-length ticks; a
+marker identifies a matching current zoom station. The worker restricts each job to center, 50 % and that station's
+outermost field-step position inside its modeled edge, or the selected single field. An unavailable edge field is
+retried inward with the same focus and cached fields. All fractions use a common reference image height (the modeled
+reference height of the first station with resolved geometry when no format is declared), so unreachable heights
+remain unavailable. Edge's actual percentage and mm height can differ by station and are recorded in CSV.
+The caption states infinity, each station's own wide-open aperture and independent focus: best axial focus per
+station, each station's authored design plane, or Auto's per-station plane assessment. Comparison overlay controls
+and requests are hidden. Advanced lists limitations and unsupported reasons per station below its table, without
+one blocking warning over the whole sweep. Clipboard/current-view CSV includes each station's design focal length,
+zoom coordinate, aperture, fields and applied plane; all-values CSV includes every computed frequency there.
+Context records `view: zoom`, policy and station details; SVG/PNG capture the rendered sweep and caption. Stored
+settings and v1 shared links preserve the Zoom view.
+A persisted "Diffraction limit"
 toggle (off by default, disabled with a reason for geometric MTF) draws thin dotted S and dash-dot T references:
 "Diffraction limit of the same traced pupil (no aberration)". References follow the main and comparison curves'
 visibility rules, including stable bands and diagnostic disclosure, and appear in crosshair readouts, the value table and

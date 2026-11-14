@@ -6,8 +6,9 @@
  * their units. Data starts at the first decoded non-comment record.
  */
 import type { RuntimeLens } from "../../../../types/optics.js";
-import type { MtfApertureSample, MtfResult } from "../../../../types/mtf.js";
+import type { MtfSweepSample, MtfResult } from "../../../../types/mtf.js";
 import type { MtfPreferences } from "../../../../utils/state/mtfPreferences.js";
+import { mtfSweepLabel } from "./mtfPresentation.js";
 import { SITE_NAME } from "../../../../utils/catalog/lensMetadata.js";
 import { fopenAtZoomClamped, formatFNumber } from "../../../../optics/optics.js";
 
@@ -32,8 +33,8 @@ interface MtfExportContextInput {
   comparison?: MtfResult | null;
   comparisonFNumber?: number;
   comparisonRequested?: boolean;
-  apertureSamples?: readonly MtfApertureSample[];
-  apertureCaption?: string;
+  sweepSamples?: readonly MtfSweepSample[];
+  sweepCaption?: string;
 }
 
 function marketedFNumberAtZoom(value: number | readonly number[] | undefined, zoomT: number): number | undefined {
@@ -98,17 +99,35 @@ export function buildMtfExportContext(input: MtfExportContextInput): MtfExportCo
       ? `${result.geometry.referenceHeightMm} mm; ${result.geometry.basis}`
       : "not yet available",
     view:
-      preferences.view === "aperture"
-        ? "aperture"
-        : preferences.view === "field"
-          ? "image height"
-          : "spatial frequency",
+      preferences.view === "zoom"
+        ? "zoom"
+        : preferences.view === "aperture"
+          ? "aperture"
+          : preferences.view === "field"
+            ? "image height"
+            : "spatial frequency",
     ...(preferences.view === "aperture"
       ? {
-          aperture_sweep: input.apertureCaption ?? preferences.comparisonFocus,
-          aperture_planes: (input.apertureSamples ?? [])
+          aperture_sweep: input.sweepCaption ?? preferences.comparisonFocus,
+          aperture_planes: (input.sweepSamples ?? [])
             .map(({ fNumber, result }) => `f/${fNumber}: ${result ? focus(result) : "pending"}`)
             .join("; "),
+        }
+      : {}),
+    ...(preferences.view === "zoom"
+      ? {
+          station: `${(input.sweepSamples ?? []).map((sample) => `${sample.focalLengthMm} mm`).join(" / ")}; infinity`,
+          aperture: "each station's own wide-open aperture",
+          focus: "selected image-plane policy independently per station",
+          working_f_number: "per station",
+          zoom_sweep:
+            input.sweepCaption ?? "Published infinity stations, each wide open; focus independently per station.",
+          zoom_stations: (input.sweepSamples ?? [])
+            .map(
+              (sample) =>
+                `${mtfSweepLabel(sample)}; zoom ${sample.zoomT}; f/${sample.fNumber}; ${sample.result ? focus(sample.result) : "pending"}; ${sample.result?.support.message ?? "pending"}; ${(sample.limitations ?? []).join("; ")}`,
+            )
+            .join(" | "),
         }
       : {}),
     values: input.diagnostic ? "diagnostic estimates included" : "converged band only",
@@ -159,6 +178,7 @@ export function mtfCaptionLines(context: MtfExportContext, maxLineLength: number
   const [comparisonAperture, ...comparisonFocus] = context.comparison.split("; ");
   const options = [
     ...(context.aperture_sweep ? [context.aperture_sweep] : []),
+    ...(context.zoom_sweep ? [context.zoom_sweep] : []),
     ...(context.comparison === "off"
       ? []
       : [
@@ -177,8 +197,8 @@ export function mtfCaptionLines(context: MtfExportContext, maxLineLength: number
   return [
     `${context.lens_name} — ${context.source.replaceAll("; ", ", ")}`,
     [
-      aperture,
-      `${Number.parseFloat(focalLength).toFixed(1)} mm`,
+      context.view === "zoom" ? context.aperture : aperture,
+      context.view === "zoom" ? focalLength : `${Number.parseFloat(focalLength).toFixed(1)} mm`,
       distance
         .replace(/^[\d.e+-]+ mm/, (value) => `${Number.parseFloat(value).toFixed(1)} mm`)
         .replace("image-plane", "image plane")
@@ -187,7 +207,7 @@ export function mtfCaptionLines(context: MtfExportContext, maxLineLength: number
         ? []
         : [`reference height ${Number.parseFloat(context.reference_image_height).toFixed(2)} mm`]),
     ].join(" · "),
-    `${context.method} · ${spectrumLabel} · ${captionPlane(context.focus)} · grid cap ${context.grid_cap.split(" ")[0]}`,
+    `${context.method} · ${spectrumLabel} · ${context.view === "zoom" ? "focus independently per station" : captionPlane(context.focus)} · grid cap ${context.grid_cap.split(" ")[0]}`,
     ...(options.length ? [options.join(" · ")] : []),
     `${link} · ${context.generation_date}`,
     context.disclaimer,

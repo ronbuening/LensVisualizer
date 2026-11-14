@@ -300,3 +300,128 @@ it("keys single wavelengths separately in the worker's focus and field caches", 
   expect(results[0].focus!.bestAxialShiftMm).not.toBe(results[1].focus!.bestAxialShiftMm);
   expect(results[0]).toEqual(results[2]);
 });
+
+it("restricts zoom overview to each station's field edge with the same ordinary MTF values and plane", async () => {
+  const { send, finished } = await loadWorker();
+  const lens = buildSimplePositiveElementLens();
+  send({ type: "init", input: structuredClone(canonicalLensFromRuntime(lens)) });
+  const options: MtfOptions = {
+    method: "geometric",
+    spectrum: "reference",
+    focus: "best-axial",
+    pupilSemiDiameterMm: 0.5,
+    stopSemiDiameterMm: 0.5,
+    fieldFractions: [0, 0.25, 0.5, 0.75, 1],
+    frequenciesPerMm: [0, 10, 30],
+    maxGridSize: 32,
+  };
+  const ordinary = computeMtf(...mtfInputs(prepareRuntimeState(lens, 0, 0), options));
+  expect(ordinary.support.available).toBe(true);
+  for (const [index, field] of ["overview", 0.5].entries()) {
+    send({
+      type: "compute",
+      id: index + 1,
+      job: {
+        focusT: 0,
+        zoomT: 0,
+        aberrationT: 0,
+        options,
+        sweep: { candidates: options.fieldFractions, field },
+      },
+    });
+    const reply = await finished(index + 1);
+    expect(reply.type).toBe("result");
+    if (reply.type !== "result") throw new Error("Expected station result");
+    expect(reply.result.focus).toEqual(ordinary.focus);
+    expect(reply.result.fields.map((f) => f.fieldFraction)).toEqual(field === "overview" ? [0, 0.5, 1] : [0.5]);
+    for (const sampled of reply.result.fields)
+      expect(sampled).toEqual(ordinary.fields.find((f) => f.fieldFraction === sampled.fieldFraction));
+  }
+});
+
+it("keeps a common reference height and reports a station's unreachable shared heights as unavailable", async () => {
+  const { send, finished } = await loadWorker();
+  const lens = buildSimplePositiveElementLens();
+  send({ type: "init", input: structuredClone(canonicalLensFromRuntime(lens)) });
+  const options: MtfOptions = {
+    method: "geometric",
+    spectrum: "reference",
+    focus: "design",
+    pupilSemiDiameterMm: 0.5,
+    stopSemiDiameterMm: 0.5,
+    fieldFractions: [0, 0.25, 0.5, 0.75, 1],
+    frequenciesPerMm: [0, 10],
+    maxGridSize: 32,
+  };
+  const ordinary = computeMtf(...mtfInputs(prepareRuntimeState(lens, 0, 0), options));
+  const referenceHeightMm = ordinary.geometry!.referenceHeightMm * 3;
+  send({
+    type: "compute",
+    id: 1,
+    job: {
+      focusT: 0,
+      zoomT: 0,
+      aberrationT: 0,
+      options,
+      sweep: { candidates: options.fieldFractions, field: "overview", referenceHeightMm },
+    },
+  });
+  const reply = await finished(1);
+  if (reply.type !== "result") throw new Error("Expected station result");
+  expect(reply.result.geometry!.referenceHeightMm).toBe(referenceHeightMm);
+  expect(reply.result.fields.map((field) => field.fieldFraction)).toEqual([0, 0.25, 0.5]);
+  expect(reply.result.fields.at(-1)).toMatchObject({
+    reason: "outside-modeled-field",
+    status: "unavailable",
+    targetImageHeightMm: referenceHeightMm * 0.5,
+  });
+  expect(reply.result.fields[1].targetImageHeightMm).toBe(referenceHeightMm * 0.25);
+});
+
+it("finds an inward overview field when the modeled edge has no usable MTF", async () => {
+  const { send, finished } = await loadWorker();
+  const lens = buildSimplePositiveElementLens();
+  const options: MtfOptions = {
+    method: "geometric",
+    spectrum: "reference",
+    focus: "design",
+    pupilSemiDiameterMm: 0.5,
+    stopSemiDiameterMm: 0.5,
+    fieldFractions: [0, 0.25, 0.5, 0.75, 1],
+    frequenciesPerMm: [0, 10],
+    maxGridSize: 32,
+  };
+  const engine = await import("../../../../src/optics/analysis/mtf/mtf.js");
+  const ordinary = computeMtf(...mtfInputs(prepareRuntimeState(lens, 0, 0), options));
+  const steps = engine.computeMtfSteps;
+  const traced = vi.spyOn(engine, "computeMtfSteps").mockImplementation(function* (request, settings, cache) {
+    const result = yield* steps(request, settings, cache);
+    const edge = result.fields.find((field) => field.fieldFraction === 1);
+    if (edge) {
+      edge.status = "unavailable";
+      edge.sagittal = [];
+      edge.tangential = [];
+    }
+    return result;
+  });
+  send({ type: "init", input: structuredClone(canonicalLensFromRuntime(lens)) });
+  send({
+    type: "compute",
+    id: 1,
+    job: {
+      focusT: 0,
+      zoomT: 0,
+      aberrationT: 0,
+      options,
+      sweep: { candidates: options.fieldFractions, field: "overview" },
+    },
+  });
+  const reply = await finished(1);
+  if (reply.type !== "result") throw new Error("Expected station result");
+  expect(traced.mock.calls.map(([, settings]) => settings.fieldFractions)).toEqual([
+    [0, 0.5, 1],
+    [0, 0.5, 0.75],
+  ]);
+  expect(reply.result.fields.at(-1)).toEqual(ordinary.fields.find((field) => field.fieldFraction === 0.75));
+  expect(reply.result.focus).toEqual(ordinary.focus);
+});

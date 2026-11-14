@@ -11,9 +11,14 @@ import { formatFNumber, prepareRuntimeState } from "../../../optics/optics.js";
 import { publishedFocusStations, publishedZoomStations } from "../../../optics/publishedStations.js";
 import { LensDispatchContext, LensStateContext } from "../../../utils/state/LensContext.js";
 import { SET_PATENT_STATION } from "../../../utils/state/lensReducer.js";
-import { useMtfApertureSweep } from "../../hooks/useMtfApertureSweep.js";
-import { mtfComparisonFNumbers, mtfRequestAtAperture } from "./mtf/mtfApertureSweep.js";
-import { mtfSweepFields } from "./mtf/mtfPresentation.js";
+import { useMtfSweep } from "../../hooks/useMtfApertureSweep.js";
+import {
+  mtfApertureRequests,
+  mtfZoomRequests,
+  mtfComparisonFNumbers,
+  mtfRequestAtAperture,
+} from "./mtf/mtfApertureSweep.js";
+import { mtfSweepFields, mtfSweepLabel } from "./mtf/mtfPresentation.js";
 import { useMtfComputation } from "../../hooks/useMtfComputation.js";
 import { useMtfDataWarning } from "../../hooks/useMtfDataWarning.js";
 import { useSharedMtfPreferences } from "../../../utils/state/useSharedMtfPreferences.js";
@@ -92,7 +97,12 @@ export default function MtfTab({
   const [preferences, updatePreferences, sharedSettings, useStoredSettings] = useSharedMtfPreferences();
   const chartRef = useRef<HTMLElement>(null);
   // Keep the stored view so Advanced can restore it; every visible view has a switch-away button.
-  const view = preferences.view === "aperture" && !preferences.advanced ? "field" : preferences.view;
+  const view =
+    ((preferences.view === "aperture" || preferences.view === "zoom") && !preferences.advanced) ||
+    (preferences.view === "zoom" && !L.isZoom)
+      ? "field"
+      : preferences.view;
+  const isSweep = view === "aperture" || view === "zoom";
   const request = useMemo(
     () =>
       analysisContext?.request ??
@@ -117,7 +127,7 @@ export default function MtfTab({
       focus: preferences.focus,
       maxGridSize: preferences.maxGridSize,
       fieldFractions: mtfFieldFractions(preferences.fieldStepPercent),
-      movementActive,
+      movementActive: request.pose?.active ?? movementActive,
     }),
     [
       preferences.method,
@@ -127,6 +137,7 @@ export default function MtfTab({
       spectrum.spectrum,
       preferences.wavelengthNm,
       movementActive,
+      request.pose?.active,
     ],
   );
   const support = useMemo(() => assessMtfSupport(request, options), [request, options]);
@@ -134,13 +145,15 @@ export default function MtfTab({
   const comparisonFNumber = preferences.comparisonFNumber;
   const comparisonAvailable = comparisonFNumbers.includes(comparisonFNumber);
   const comparisonAperture = `f/${comparisonFNumber}`;
-  const comparisonEnabled = view !== "aperture" && comparisonAvailable && preferences.compareF8;
+  const comparisonEnabled = !isSweep && comparisonAvailable && preferences.compareF8;
   const comparisonPolicy =
-    view === "aperture"
-      ? `aperture/${preferences.comparisonFocus}/${preferences.frequencyField}`
-      : comparisonEnabled
-        ? `${preferences.comparisonFocus}/${comparisonFNumber}`
-        : null;
+    view === "zoom"
+      ? `zoom/${preferences.frequencyField}`
+      : view === "aperture"
+        ? `aperture/${preferences.comparisonFocus}/${preferences.frequencyField}`
+        : comparisonEnabled
+          ? `${preferences.comparisonFocus}/${comparisonFNumber}`
+          : null;
   // Disclosure belongs to these controls, not to a later lens, aperture or spectrum.
   const [presentation, setPresentation] = useState({ request, options, comparisonPolicy, diagnostic: false });
   if (
@@ -155,9 +168,9 @@ export default function MtfTab({
     presentation.options === options &&
     presentation.comparisonPolicy === comparisonPolicy &&
     presentation.diagnostic;
-  const job = support.available ? request : null;
+  const job = support.available && view !== "zoom" ? request : null;
   const { result, stale, running, error } = useMtfComputation(L, job, options);
-  const shown = support.available ? result : null;
+  const mainShown = support.available ? result : null;
   const dataLimitations = useMemo(
     () =>
       assessMtfDataLimitations(preparedState, {
@@ -165,7 +178,7 @@ export default function MtfTab({
         wavelengthNm: preferences.wavelengthNm,
         spectrum: spectrum.spectrum,
         referenceWavelengthNm: support.referenceWavelengthNm,
-        result: shown,
+        result: mainShown,
       }),
     [
       preparedState,
@@ -173,12 +186,12 @@ export default function MtfTab({
       preferences.wavelengthNm,
       spectrum.spectrum,
       support.referenceWavelengthNm,
-      shown,
+      mainShown,
     ],
   );
   const [warningAcknowledged, acknowledgeWarning] = useMtfDataWarning(L.source.key, dataLimitations);
   const holdComparison = preferences.comparisonFocus === "hold";
-  const mainShift = !stale ? shown?.focus?.appliedShiftMm : undefined;
+  const mainShift = !stale ? mainShown?.focus?.appliedShiftMm : undefined;
   const comparisonOptions = useMemo(
     () => (holdComparison && mainShift !== undefined ? { ...options, heldFocusShiftMm: mainShift } : options),
     [options, holdComparison, mainShift],
@@ -193,7 +206,7 @@ export default function MtfTab({
       return null;
     return mtfRequestAtAperture(L, job, comparisonFNumber);
   }, [job, comparisonEnabled, comparisonFNumber, holdComparison, mainShift, L]);
-  const sweepFieldKey = mtfSweepFields(shown, preferences.frequencyField).join(",");
+  const sweepFieldKey = mtfSweepFields(mainShown, preferences.frequencyField).join(",");
   const sweepOptions = useMemo(
     () => ({ ...comparisonOptions, fieldFractions: sweepFieldKey.split(",").map(Number) }),
     [comparisonOptions, sweepFieldKey],
@@ -201,19 +214,89 @@ export default function MtfTab({
   // The overview's outermost available field is final only after the charted request completes.
   const sweepReady =
     !stale &&
-    shown &&
+    mainShown &&
     (typeof preferences.frequencyField === "number" || !running) &&
     (!holdComparison || mainShift !== undefined);
-  const sweep = useMtfApertureSweep(
+  const zoomRequests = useMemo(() => (view === "zoom" ? mtfZoomRequests(L, request) : []), [L, request, view]);
+  const sweepRequests =
+    view === "zoom"
+      ? zoomRequests.map((sample) => ({
+          ...sample,
+          edgeOverview: preferences.frequencyField === "overview",
+          sweep: { candidates: options.fieldFractions!, field: preferences.frequencyField },
+        }))
+      : view === "aperture" && sweepReady && job
+        ? mtfApertureRequests(L, job, fNumber)
+        : [];
+  const sweep = useMtfSweep(
     L,
-    view === "aperture" && sweepReady ? job : null,
-    fNumber,
-    sweepOptions,
-    JSON.stringify(preferences),
+    sweepRequests,
+    view === "zoom" ? options : sweepOptions,
+    JSON.stringify({
+      preferences,
+      zoomT: preparedState.zoomT,
+      focusT: preparedState.focusT,
+      aperture: request.aperture,
+    }),
   );
-  const apertureCaption = holdComparison
-    ? "Aperture sweep holds the charted aperture's image plane at every aperture."
-    : "Aperture sweep applies the selected image-plane policy independently at each aperture (refocus).";
+  const sweepSamples = sweep.samples.map((sample, index) => {
+    if (view !== "zoom") return sample;
+    const station = zoomRequests[index];
+    const resolved = resolveMtfSpectrum(
+      station.request.preparedGeometry,
+      preferences.spectrum,
+      preferences.wavelengthNm,
+    );
+    const stationSupport = assessMtfSupport(station.request, {
+      ...options,
+      spectrum: resolved.spectrum,
+      wavelengthNm: preferences.wavelengthNm,
+    });
+    const limitations = assessMtfDataLimitations(station.request.preparedGeometry, {
+      preferredSpectrum: preferences.spectrum,
+      wavelengthNm: preferences.wavelengthNm,
+      spectrum: resolved.spectrum,
+      referenceWavelengthNm: stationSupport.referenceWavelengthNm,
+      result: sample.result,
+    });
+    return {
+      ...sample,
+      limitations: [
+        ...new Set([
+          ...(!stationSupport.available ? [stationSupport.message] : []),
+          ...(sample.result && !sample.result.support.available ? [sample.result.support.message] : []),
+          ...limitations.map((item) => item.text),
+          ...(resolved.note ? [resolved.note] : []),
+        ]),
+      ],
+    };
+  });
+  const shown =
+    view === "zoom"
+      ? (sweep.samples.find((sample) => sample.result?.support.available)?.result ??
+        sweep.samples.find((sample) => sample.result)?.result ??
+        null)
+      : mainShown;
+  const displayStale = view === "zoom" ? false : stale;
+  const displaySupport = view === "zoom" ? (shown?.support ?? support) : support;
+  const displayFields =
+    view === "zoom"
+      ? typeof preferences.frequencyField === "number"
+        ? [preferences.frequencyField]
+        : [0, 0.5, 1]
+      : sweepOptions.fieldFractions;
+  const sweepCaption =
+    view === "zoom"
+      ? "Published zoom stations at infinity, each at its own wide-open aperture. " +
+        (preferences.focus === "best-axial"
+          ? "Best axial focus is found independently per station."
+          : preferences.focus === "design"
+            ? "Design plane uses each station's authored image plane."
+            : "Each station uses its authored design plane unless Auto selects best axial focus for an inconsistent plane.") +
+        " Fields share the lens's reference image height; each station's edge is its outermost available sampled height."
+      : holdComparison
+        ? "Aperture sweep holds the charted aperture's image plane at every aperture."
+        : "Aperture sweep applies the selected image-plane policy independently at each aperture (refocus).";
   const comparison = useMtfComputation(L, comparisonJob, comparisonOptions);
   const comparisonShown = comparisonJob && !comparison.stale && !stale ? comparison.result : null;
   // A result kept from an earlier request says nothing about the label on screen.
@@ -223,6 +306,9 @@ export default function MtfTab({
   const comparisonValues = comparisonShown?.fields.some((field) => field.sagittal.length && field.tangential.length)
     ? comparisonShown
     : null;
+  const unconvergedCount = (
+    view === "zoom" ? sweepSamples.flatMap((sample) => sample.result?.fields ?? []) : (shown?.fields ?? [])
+  ).filter((field) => field.status === "unconverged").length;
   const muted = { color: t.muted, margin: "4px 0" };
   return (
     <section style={{ color: t.value, fontSize: 12 }} aria-label="Simulated MTF">
@@ -247,10 +333,21 @@ export default function MtfTab({
         </p>
       ) : null}
       <p style={muted}>
-        {headerLine(options, support.referenceWavelengthNm, fNumber, focalLengthMm, shown, vignettingOf(shown, stale))}
+        {view === "zoom"
+          ? "MTF across published focal lengths at infinity, each wide open."
+          : headerLine(
+              options,
+              support.referenceWavelengthNm,
+              fNumber,
+              focalLengthMm,
+              shown,
+              vignettingOf(shown, stale),
+            )}
       </p>
-      {spectrum.note ? <p style={muted}>{spectrum.note}</p> : null}
-      <ImagePlaneNote result={shown} t={t} onUseAuto={() => updatePreferences({ focus: "auto" })} />
+      {view !== "zoom" && spectrum.note ? <p style={muted}>{spectrum.note}</p> : null}
+      {view !== "zoom" ? (
+        <ImagePlaneNote result={shown} t={t} onUseAuto={() => updatePreferences({ focus: "auto" })} />
+      ) : null}
       <MtfControls
         t={t}
         preferences={preferences}
@@ -259,16 +356,17 @@ export default function MtfTab({
         comparisonFNumbers={comparisonFNumbers}
         comparisonFNumber={comparisonFNumber}
         result={shown}
+        isZoom={L.isZoom}
       />
-      {view === "aperture" ? (
+      {isSweep ? (
         sweep.error ? (
-          <p role="alert">{`Aperture sweep: ${sweep.error}`}</p>
+          <p role="alert">{`${view === "zoom" ? "Zoom" : "Aperture"} sweep: ${sweep.error}`}</p>
         ) : sweep.running ? (
           <p
             role="status"
             style={muted}
-          >{`Calculating f/${formatFNumber(sweep.samples[sweep.index].fNumber)}, ${sweep.index + 1} of ${sweep.samples.length}…`}</p>
-        ) : !sweepReady ? (
+          >{`Calculating ${mtfSweepLabel(sweep.samples[sweep.index])}, ${sweep.index + 1} of ${sweep.samples.length}…`}</p>
+        ) : view === "aperture" && !sweepReady ? (
           <p role="status" style={muted}>
             Aperture sweep: waiting for the charted aperture's fields and image plane…
           </p>
@@ -287,11 +385,11 @@ export default function MtfTab({
           </p>
         ) : null
       ) : null}
-      {!support.available ? (
+      {view !== "zoom" && !support.available ? (
         <AnalysisEmptyState t={t}>
           <span role="status">{support.message}</span>
         </AnalysisEmptyState>
-      ) : error ? (
+      ) : view !== "zoom" && error ? (
         <p role="alert">{error}</p>
       ) : !shown ? (
         <p role="status" style={muted}>
@@ -299,18 +397,18 @@ export default function MtfTab({
         </p>
       ) : (
         <>
-          {running ? (
+          {view !== "zoom" && running ? (
             <p role="status" style={muted}>
               {stale ? "Updating…" : `Calculating… ${progressText(shown)}`}
             </p>
           ) : null}
-          {!stale ? (
+          {!displayStale ? (
             <div role="note" aria-label="MTF numerical limits" style={{ margin: "8px 0", color: t.value }}>
               <p>
                 {textRun(
                   "Normal view shows converged fields within their stable frequency band.",
-                  shown.fields.some((field) => field.status === "unconverged")
-                    ? ` Main result: ${shown.fields.filter((field) => field.status === "unconverged").length} unconverged fields.`
+                  unconvergedCount > 0
+                    ? ` ${view === "zoom" ? "Sweep" : "Main result"}: ${unconvergedCount} unconverged fields.`
                     : "",
                   comparisonShown?.fields.some((field) => field.status === "unconverged")
                     ? ` ${comparisonAperture} comparison: ${comparisonShown.fields.filter((field) => field.status === "unconverged").length} unconverged fields.`
@@ -330,9 +428,11 @@ export default function MtfTab({
               </label>
             </div>
           ) : null}
-          {stale ? <p role="status">Previous settings are shown while the current calculation updates.</p> : null}
+          {displayStale ? (
+            <p role="status">Previous settings are shown while the current calculation updates.</p>
+          ) : null}
           <MtfDataWarning
-            limitations={dataLimitations}
+            limitations={view === "zoom" ? [] : dataLimitations}
             acknowledged={warningAcknowledged}
             onAcknowledge={acknowledgeWarning}
             t={t}
@@ -340,13 +440,14 @@ export default function MtfTab({
             <MtfChart
               exportRef={chartRef}
               result={shown}
-              apertureSamples={sweep.samples}
-              apertureFields={sweepOptions.fieldFractions}
-              apertureCaption={apertureCaption}
+              sweepSamples={sweepSamples}
+              sweepFields={displayFields}
+              sweepCaption={sweepCaption}
               view={view}
+              currentZoomT={preparedState.zoomT}
               frequencies={preferences.frequencies}
               t={t}
-              stale={stale}
+              stale={displayStale}
               comparison={comparisonShown}
               comparisonLabel={comparisonLabel}
               diagnostic={diagnostic}
@@ -355,7 +456,7 @@ export default function MtfTab({
               frequencyField={preferences.frequencyField}
               pixelPitchUm={preferences.pixelPitchUm}
             />
-            {preferences.advanced ? (
+            {preferences.advanced && view !== "zoom" ? (
               <div style={{ display: "flex", flexWrap: "wrap", gap: 16 }}>
                 <FocusSearch
                   result={shown}
@@ -374,20 +475,20 @@ export default function MtfTab({
                   mainLabel="Main aperture"
                   fNumber={fNumber}
                   frequencies={preferences.frequencies}
-                  stale={stale}
+                  stale={displayStale}
                   t={t}
                 />
               </div>
             ) : null}
             <MtfFieldSummary
               result={shown}
-              apertureSamples={sweep.samples}
-              apertureFields={sweepOptions.fieldFractions}
-              apertureCaption={apertureCaption}
+              sweepSamples={sweepSamples}
+              sweepFields={displayFields}
+              sweepCaption={sweepCaption}
               frequencies={preferences.frequencies}
               t={t}
               diagnostic={diagnostic}
-              stale={stale}
+              stale={displayStale}
               comparison={preferences.advanced ? comparisonShown : comparisonValues}
               comparisonLabel={comparisonLabel}
               comparisonFNumber={comparisonFNumber}
@@ -405,19 +506,18 @@ export default function MtfTab({
                   lens: L,
                   result: shown,
                   preferences: { ...preferences, view },
-                  apertureSamples: view === "aperture" ? sweep.samples : undefined,
-                  apertureCaption: view === "aperture" ? apertureCaption : undefined,
+                  sweepSamples: isSweep ? sweepSamples : undefined,
+                  sweepCaption: isSweep ? sweepCaption : undefined,
                   focalLengthMm: focalLengthMm ?? (request.dynamicEFL || L.EFL),
                   fNumber,
                   zoomT: preparedState.zoomT,
-                  focusT: preparedState.focusT,
+                  focusT: view === "zoom" ? 0 : preparedState.focusT,
                   spectrumNote: spectrum.note,
                   link: buildMtfLink(window.location.href, preferences),
                   date: new Date(),
-                  partial:
-                    view === "aperture"
-                      ? !sweepReady || sweep.running || !!sweep.error
-                      : running || (comparisonEnabled && (comparison.running || !comparisonJob)),
+                  partial: isSweep
+                    ? (view === "aperture" && !sweepReady) || sweep.running || !!sweep.error
+                    : running || (comparisonEnabled && (comparison.running || !comparisonJob)),
                   diagnostic,
                   comparison: comparisonShown,
                   comparisonFNumber,
@@ -425,29 +525,38 @@ export default function MtfTab({
                 })
               }
             />
+            {view === "zoom" && preferences.advanced ? (
+              <ul aria-label="Zoom station limitations" style={{ color: t.muted, paddingLeft: 16 }}>
+                {sweepSamples.map((sample) => (
+                  <li
+                    key={sample.zoomT}
+                  >{`${sample.focalLengthMm} mm · f/${formatFNumber(sample.fNumber)}: ${sample.limitations?.join("; ") || (sample.result ? "No additional data limitations." : "Pending.")}`}</li>
+                ))}
+              </ul>
+            ) : null}
           </MtfDataWarning>
         </>
       )}
       <p style={muted}>{MTF_EXPORT_DISCLAIMER}</p>
       <details style={{ color: t.muted, fontSize: 11 }}>
         <summary style={{ cursor: "pointer" }}>Model assumptions</summary>
-        <p>{support.message}</p>
-        {support.conjugate ? (
+        <p>{displaySupport.message}</p>
+        {displaySupport.conjugate ? (
           <p>
             {textRun(
               "Finite object ",
-              support.conjugate.objectDistanceMm.toFixed(1),
+              displaySupport.conjugate.objectDistanceMm.toFixed(1),
               " mm from",
               " ",
-              support.conjugate.distanceReference === "image-plane" ? "the image plane" : "the first surface",
+              displaySupport.conjugate.distanceReference === "image-plane" ? "the image plane" : "the first surface",
               ". Source:",
               " ",
-              support.conjugate.source,
+              displaySupport.conjugate.source,
             )}
           </p>
         ) : null}
         <ul>
-          {support.limitations.map((text) => (
+          {displaySupport.limitations.map((text) => (
             <li key={text}>{text}</li>
           ))}
         </ul>

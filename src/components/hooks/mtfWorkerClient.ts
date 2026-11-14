@@ -33,6 +33,8 @@ export interface MtfJob {
   zoomT: number;
   aberrationT: number;
   options: MtfOptions;
+  /** Restrict a zoom station's fields after its modeled edge is known on the worker. */
+  sweep?: { candidates: readonly number[]; field: "overview" | number; referenceHeightMm?: number };
 }
 
 export type MtfWorkerRequest =

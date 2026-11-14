@@ -1,8 +1,14 @@
 /** Contextual view/all-sample downloads reuse the chart's numerical disclosure policy. */
-import type { MtfApertureSample, MtfFieldResult, MtfResult } from "../../../../types/mtf.js";
+import type { MtfSweepSample, MtfFieldResult, MtfResult } from "../../../../types/mtf.js";
 import type { MtfChartView, MtfFrequencyField } from "../../../../utils/state/mtfPreferences.js";
 import { mtfCsv } from "./mtfCsv.js";
-import { mtfAperturePointStatus, mtfLimitValue, mtfValueVisible, resolveMtfFrequencyField } from "./mtfPresentation.js";
+import {
+  mtfSweepPointStatus,
+  mtfSweepField,
+  mtfLimitValue,
+  mtfValueVisible,
+  resolveMtfFrequencyField,
+} from "./mtfPresentation.js";
 import { mtfContextBlock, type MtfExportContext } from "./mtfExportContext.js";
 
 interface MtfCsvExportOptions {
@@ -15,8 +21,8 @@ interface MtfCsvExportOptions {
   comparison?: MtfResult | null;
   comparisonFNumber?: number;
   diffractionLimit?: boolean;
-  apertureSamples?: readonly MtfApertureSample[];
-  apertureFields?: readonly number[];
+  sweepSamples?: readonly MtfSweepSample[];
+  sweepFields?: readonly number[];
 }
 
 function textCell(value: string): string {
@@ -47,8 +53,8 @@ function shownFields(result: MtfResult, choice: MtfFrequencyField): MtfFieldResu
  */
 export function mtfViewCsv(options: MtfCsvExportOptions): string {
   const { result, context, frequencies, diagnostic = false, comparison = null, diffractionLimit = false } = options;
-  if (options.view === "aperture")
-    return `${mtfContextBlock({ ...context, export_scope: "this view" })}\n${mtfApertureCsv(options)}`;
+  if (options.view === "aperture" || options.view === "zoom")
+    return `${mtfContextBlock({ ...context, export_scope: "this view" })}\n${mtfSweepCsv(options)}`;
   if (options.view === "frequency") return sampledCsv(options, false);
   const table = mtfCsv(result, frequencies, diagnostic, comparison, diffractionLimit, options.comparisonFNumber).split(
     "\n",
@@ -77,29 +83,31 @@ export function mtfViewCsv(options: MtfCsvExportOptions): string {
  * @returns context comments followed by one row per field and frequency
  */
 export function mtfAllSamplesCsv(options: MtfCsvExportOptions): string {
-  if (options.view === "aperture")
-    return `${mtfContextBlock({ ...options.context, export_scope: "all sampled values" })}\n${mtfApertureCsv(options, true)}`;
+  if (options.view === "aperture" || options.view === "zoom")
+    return `${mtfContextBlock({ ...options.context, export_scope: "all sampled values" })}\n${mtfSweepCsv(options, true)}`;
   return sampledCsv(options, true);
 }
 
 /**
- * Emit the aperture clipboard table, one row per aperture, field and frequency, with applied planes.
+ * Emit the sweep clipboard table, one row per optical state, field and frequency, with applied planes.
  * @param options - sweep samples, selected fields/frequencies and disclosure choices
  * @param all - include every computed frequency at the sweep's sampled fields
  * @returns uncaptioned CSV; pending and undisclosed points have empty numerical cells
  */
-export function mtfApertureCsv(
+export function mtfSweepCsv(
   options: Pick<
     MtfCsvExportOptions,
-    "apertureSamples" | "apertureFields" | "frequencies" | "diagnostic" | "diffractionLimit"
+    "sweepSamples" | "sweepFields" | "frequencies" | "diagnostic" | "diffractionLimit"
   >,
   all = false,
 ): string {
-  const { apertureSamples = [], apertureFields = [], diagnostic = false, diffractionLimit = false } = options;
+  const { sweepSamples = [], sweepFields = [], diagnostic = false, diffractionLimit = false } = options;
   const frequencies = all
-    ? [...new Set(apertureSamples.flatMap(({ result }) => result?.frequenciesPerMm ?? []))].sort((a, b) => a - b)
+    ? [...new Set(sweepSamples.flatMap(({ result }) => result?.frequenciesPerMm ?? []))].sort((a, b) => a - b)
     : options.frequencies;
+  const zoom = sweepSamples.some((sample) => sample.focalLengthMm !== undefined);
   const header = [
+    ...(zoom ? ["Focal length (mm)", "Zoom position"] : []),
     "f-number",
     "Field (%)",
     "Frequency (lp/mm)",
@@ -113,27 +121,30 @@ export function mtfApertureCsv(
     "Notes",
     ...(diffractionLimit ? ["Diffraction limit sagittal", "Diffraction limit tangential"] : []),
   ];
-  const rows = apertureSamples.flatMap((sample) =>
-    apertureFields.flatMap((fraction) =>
+  const rows = sweepSamples.flatMap((sample) =>
+    sweepFields.flatMap((fraction) =>
       frequencies.map((frequency) => {
         const { result } = sample;
-        const field = result?.fields.find((f) => f.fieldFraction === fraction);
+        const field = mtfSweepField(sample, fraction);
         const index = result?.frequenciesPerMm.indexOf(frequency) ?? -1;
         const visible = field && index >= 0 && mtfValueVisible(field, frequency, diagnostic);
         return [
+          ...(zoom ? [sample.focalLengthMm ?? "", sample.zoomT ?? ""] : []),
           sample.fNumber,
-          fraction * 100,
+          (field?.fieldFraction ?? fraction) * 100,
           frequency,
           field?.imageHeightMm ?? field?.targetImageHeightMm ?? "",
           visible ? field.sagittal[index]?.toFixed(4) : "",
           visible ? field.tangential[index]?.toFixed(4) : "",
           textCell(
-            `${mtfAperturePointStatus(sample, fraction, frequency)}${diagnostic ? "; diagnostic estimates included" : ""}`,
+            `${mtfSweepPointStatus(sample, fraction, frequency)}${diagnostic ? "; diagnostic estimates included" : ""}`,
           ),
           field?.convergedThroughLpMm ?? "",
           result?.focus?.mode ?? "",
           result?.focus?.appliedShiftMm ?? "",
-          textCell(notes(field) || result?.support.message || ""),
+          textCell(
+            [notes(field) || result?.support.message || "", ...(sample.limitations ?? [])].filter(Boolean).join("; "),
+          ),
           ...(diffractionLimit
             ? (["sagittal", "tangential"] as const).map((axis) =>
                 result?.method === "diffraction" && field && index >= 0

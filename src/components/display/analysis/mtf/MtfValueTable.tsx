@@ -1,5 +1,5 @@
 /** Numeric sagittal/tangential MTF per field at the displayed frequencies. */
-import type { MtfApertureSample, MtfResult } from "../../../../types/mtf.js";
+import type { MtfSweepSample, MtfResult } from "../../../../types/mtf.js";
 import type { Theme } from "../../../../types/theme.js";
 import type { MtfChartFrequency, MtfPixelPitch } from "../../../../utils/state/mtfPreferences.js";
 import {
@@ -9,16 +9,18 @@ import {
   mtfLimitValue,
   mtfValueVisible,
   mtfFieldStatusLabel,
-  mtfAperturePointStatus,
+  mtfSweepPointStatus,
+  mtfSweepField,
+  mtfSweepLabel,
   mtfStableThroughLabel,
 } from "./mtfPresentation.js";
 import { textRun } from "../../../../utils/text.js";
 
 interface MtfValueTableProps {
   result: MtfResult;
-  apertureSamples?: readonly MtfApertureSample[];
-  apertureFields?: readonly number[];
-  apertureCaption?: string;
+  sweepSamples?: readonly MtfSweepSample[];
+  sweepFields?: readonly number[];
+  sweepCaption?: string;
   frequencies: readonly MtfChartFrequency[];
   t: Theme;
   diagnostic?: boolean;
@@ -30,8 +32,8 @@ interface MtfValueTableProps {
   advanced?: boolean;
 }
 
-interface ApertureValueTableProps {
-  samples: readonly MtfApertureSample[];
+interface SweepValueTableProps {
+  samples: readonly MtfSweepSample[];
   fields: readonly number[];
   frequencies: readonly MtfChartFrequency[];
   t: Theme;
@@ -44,9 +46,9 @@ const STATUS_TEXT = { converged: "", unconverged: "unconverged", unavailable: "�
 
 export default function MtfValueTable({
   result,
-  apertureSamples,
-  apertureFields,
-  apertureCaption,
+  sweepSamples,
+  sweepFields,
+  sweepCaption,
   frequencies,
   t,
   diagnostic = false,
@@ -57,16 +59,16 @@ export default function MtfValueTable({
   pixelPitchUm = null,
   advanced = false,
 }: MtfValueTableProps) {
-  if (apertureSamples)
+  if (sweepSamples)
     return (
-      <ApertureValueTable
-        samples={apertureSamples}
-        fields={apertureFields ?? []}
+      <SweepValueTable
+        samples={sweepSamples}
+        fields={sweepFields ?? []}
         frequencies={frequencies}
         t={t}
         diagnostic={diagnostic}
         diffractionLimit={diffractionLimit}
-        caption={apertureCaption}
+        caption={sweepCaption}
       />
     );
   const showLimit = diffractionLimit && result.method === "diffraction";
@@ -239,7 +241,7 @@ export default function MtfValueTable({
 }
 
 /** Rows stay aligned with aperture ticks while every field/frequency obeys the chart's disclosure. */
-function ApertureValueTable({
+function SweepValueTable({
   samples,
   fields,
   frequencies,
@@ -247,44 +249,48 @@ function ApertureValueTable({
   diagnostic,
   diffractionLimit,
   caption,
-}: ApertureValueTableProps) {
+}: SweepValueTableProps) {
   const cell = { padding: "2px 6px", textAlign: "right" as const };
+  const zoom = samples.some((sample) => sample.focalLengthMm !== undefined);
   const columns = fields.flatMap((fraction) => frequencies.map((frequency) => ({ fraction, frequency })));
   return (
     <div style={{ overflowX: "auto", marginTop: 6 }}>
       <table style={{ borderCollapse: "collapse", color: t.value, fontSize: 10.5 }}>
         <caption style={{ textAlign: "left", color: t.muted, paddingBottom: 4 }}>
-          {`MTF by aperture, sagittal / tangential — ${diagnostic ? "diagnostic estimates included" : "converged values only"}. ${caption ?? ""}${diffractionLimit ? ` ${MTF_DIFFRACTION_LIMIT_LABEL}.` : ""}`}
+          {`MTF by ${zoom ? "focal length" : "aperture"}, sagittal / tangential — ${diagnostic ? "diagnostic estimates included" : "converged values only"}. ${caption ?? ""}${diffractionLimit ? ` ${MTF_DIFFRACTION_LIMIT_LABEL}.` : ""}`}
         </caption>
         <thead>
           <tr>
             <th scope="col" style={cell}>
-              f-number
+              {zoom ? "Focal length / wide-open aperture" : "f-number"}
             </th>
             <th scope="col" style={cell}>
               Image plane / shift (mm)
             </th>
             {columns.map(({ fraction, frequency }) => (
               <th scope="col" style={cell} key={`${fraction}/${frequency}`}>
-                {`${(fraction * 100).toFixed(0)} % · ${frequency} lp/mm S / T; status; stable through${diffractionLimit ? "; limit S / T" : ""}`}
+                {`${zoom && fraction === 1 && samples.some((s) => s.edgeOverview) ? "Edge (each station)" : `${(fraction * 100).toFixed(0)} %`} · ${frequency} lp/mm S / T; status; stable through${diffractionLimit ? "; limit S / T" : ""}`}
               </th>
             ))}
           </tr>
         </thead>
         <tbody>
           {samples.map((sample) => (
-            <tr key={sample.fNumber}>
-              <th scope="row" style={cell}>{`f/${sample.fNumber}`}</th>
+            <tr key={sample.focalLengthMm ?? sample.fNumber}>
+              <th
+                scope="row"
+                style={cell}
+              >{`${zoom ? mtfSweepLabel(sample) : `f/${sample.fNumber}`}${zoom ? ` · f/${sample.fNumber}` : ""}`}</th>
               <td style={cell}>
                 {sample.result?.focus
                   ? `${sample.result.focus.mode} / ${sample.result.focus.appliedShiftMm.toFixed(4)}`
                   : "—"}
               </td>
               {columns.map(({ fraction, frequency }) => {
-                const field = sample.result?.fields.find((f) => f.fieldFraction === fraction);
+                const field = mtfSweepField(sample, fraction);
                 const index = sample.result?.frequenciesPerMm.indexOf(frequency) ?? -1;
                 const visible = field && index >= 0 && mtfValueVisible(field, frequency, diagnostic);
-                const status = mtfAperturePointStatus(sample, fraction, frequency);
+                const status = mtfSweepPointStatus(sample, fraction, frequency);
                 const limitS =
                   field && sample.result?.method === "diffraction" && index >= 0
                     ? mtfLimitValue(field, "sagittal", index, frequency, diagnostic)

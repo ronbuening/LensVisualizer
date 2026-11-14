@@ -1,13 +1,13 @@
-/** A mounted tab retains one cached worker client for its sequential aperture sweep. */
+/** A mounted tab retains one cached worker client for sequential aperture or zoom sweeps. */
 import { useEffect, useMemo, useState } from "react";
 import type { AnalysisRequest } from "../../optics/analysis.js";
-import type { MtfApertureSample, MtfRequestOptions, MtfResult } from "../../types/mtf.js";
+import type { MtfSweepSample, MtfRequestOptions, MtfResult } from "../../types/mtf.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import { mtfApertureRequests } from "../display/analysis/mtf/mtfApertureSweep.js";
 import { MtfWorkerClient, mtfJobForRequest, type MtfJob } from "./mtfWorkerClient.js";
 
 interface SweepState {
-  samples: readonly MtfApertureSample[];
+  samples: readonly MtfSweepSample[];
   running: boolean;
   index: number;
   error: string | null;
@@ -29,20 +29,40 @@ export function useMtfApertureSweep(
   options: MtfRequestOptions,
   settingsKey: string,
 ): SweepState {
+  return useMtfSweep(lens, request ? mtfApertureRequests(lens, request, fNumber) : [], options, settingsKey);
+}
+
+interface SweepRequest extends Omit<MtfSweepSample, "result"> {
+  request: AnalysisRequest;
+  sweep?: MtfJob["sweep"];
+}
+
+/**
+ * Run ordinary optical states sequentially on one cached worker client.
+ * @param lens - client lifetime and prescription identity
+ * @param requests - aperture or zoom stations, empty when inactive
+ * @param options - common method, spectrum and focus controls
+ * @param settingsKey - cancels on presentation changes without discarding cached results
+ * @returns partial samples and current ordinal
+ */
+export function useMtfSweep(
+  lens: RuntimeLens,
+  requests: readonly SweepRequest[],
+  options: MtfRequestOptions,
+  settingsKey: string,
+): SweepState {
   const client = useMemo(
     () => new MtfWorkerClient(lens, () => new Worker(new URL("./mtf.worker.ts", import.meta.url), { type: "module" })),
     [lens],
   );
-  const jobs = request
-    ? mtfApertureRequests(lens, request, fNumber).map((sample) => ({
-        fNumber: sample.fNumber,
-        job: mtfJobForRequest(sample.request, options),
-      }))
-    : [];
+  const jobs = requests.map(({ request, sweep, ...sample }) => ({
+    ...sample,
+    job: { ...mtfJobForRequest(request, options), ...(sweep ? { sweep } : {}) },
+  }));
   const serialized = JSON.stringify(jobs);
   const key = `${settingsKey}/${serialized}`;
   const empty: SweepState = {
-    samples: jobs.map(({ fNumber }) => ({ fNumber, result: null })),
+    samples: jobs.map(({ job: _job, ...sample }) => ({ ...sample, result: null })),
     running: jobs.length > 0,
     index: 0,
     error: null,
@@ -51,22 +71,26 @@ export function useMtfApertureSweep(
   useEffect(() => () => client.dispose(), [client]);
   useEffect(() => {
     let live = true;
-    const queue = JSON.parse(serialized) as Array<{ fNumber: number; job: MtfJob }>;
-    const samples: MtfApertureSample[] = queue.map(({ fNumber }) => ({ fNumber, result: null }));
+    const queue = JSON.parse(serialized) as Array<Omit<MtfSweepSample, "result"> & { job: MtfJob }>;
+    const samples: MtfSweepSample[] = queue.map(({ job: _job, ...sample }) => ({ ...sample, result: null }));
     const publish = (index: number, running: boolean, error: string | null = null) => {
       if (live) setState({ client, key, value: { samples: [...samples], index, running, error } });
     };
     const run = async () => {
+      let referenceHeightMm: number | undefined;
       for (let index = 0; index < queue.length; index++) {
         if (!live) return;
         publish(index, true);
         const accept = (result: MtfResult) => {
           if (!live) return;
-          samples[index] = { fNumber: queue[index].fNumber, result };
+          samples[index] = { ...samples[index], result };
           publish(index, true);
         };
         try {
-          const result = await client.compute(queue[index].job, accept);
+          const job = queue[index].job;
+          if (job.sweep && referenceHeightMm !== undefined) job.sweep.referenceHeightMm = referenceHeightMm;
+          const result = await client.compute(job, accept);
+          referenceHeightMm ??= result.geometry?.referenceHeightMm;
           if (!live) return;
           accept(result);
         } catch (cause) {

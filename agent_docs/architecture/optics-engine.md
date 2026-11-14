@@ -367,13 +367,13 @@ and adds aperture-labelled table rows and appended CSV columns without changing 
 `f/8 ` column prefix stays unchanged at f/8; another stop uses its own prefix, such as `f/5.6 `, for comparison,
 notes and diffraction-limit columns in the clipboard and both contextual CSV scopes. Legends, plane labels,
 crosshair values, Advanced focus/working-aperture blocks, export context and captions name that same aperture.
-Advanced also exposes an Aperture view. With Advanced off, a stored `view: "aperture"` renders image height
-without changing the preference. The sweep starts at the exact charted aperture, then uses the comparison
-selector's slower full stops through `L.maxFstop`, inclusive. Each point is an ordinary request with the same
+Advanced exposes Aperture and, for zoom lenses, Zoom views. With Advanced off, either stored sweep view renders
+image height without changing the preference; a prime also falls back from a stored Zoom view. The Aperture sweep
+starts at the exact charted aperture, then uses the comparison selector's slower full stops through `L.maxFstop`, inclusive. Each point is an ordinary request with the same
 stop/pupil scaling,
 restricted to the center, 50 % and charted result's outermost available field, or the frequency selector's single
 field. Overview waits for the charted result to finish so its edge stays fixed throughout the sweep. One retained
-`useMtfApertureSweep` client runs the apertures sequentially, publishes partial results and reports the current
+`useMtfSweep` client runs the apertures sequentially, publishes partial results and reports the current
 f-number and aperture count. Only the selected view computes; optical/settings changes cancel it and completed
 requests reuse the client's result cache when the view returns. Its plane selector shares `comparisonFocus`:
 refocus applies the selected focus policy independently, while hold uses the charted aperture's exact applied
@@ -383,7 +383,28 @@ marker shapes identify S/T pairs; hollow reference markers keep isolated limit s
 The chart, crosshair/live region, diffraction references, aperture-row value table and CSV share the normal
 stable-band and diagnostic disclosure rules. The status line counts aperture × selected field × selected frequency
 points (one S/T pair each), including frequencies beyond a converged field's stable band as unconverged.
-The persisted view and version-1 shared bundle accept `aperture` while older settings retain their defaults.
+The Zoom view uses `publishedZoomStations`: source-declared published zoom stations, or every authored station when
+none are declared. Every station is at infinity and its own wide-open aperture, using the viewer's
+`fopenAtZoomClamped`, stop rule, prepared state and entrance-pupil controls through `mtfJobForRequest`. The same
+`useMtfSweep` client runs one ordinary job per station sequentially, with station/ordinal progress, partial results,
+cancellation and completed-result caching. It does not move the sliders or run a comparison overlay. The x axis is
+log focal length, with ticks labelled by the authored design focal lengths; a marker identifies the current zoom
+slider position only when it coincides with a published station. Each station applies the selected focus policy
+independently: best axial focus is found per optical state, design uses its authored plane, and Auto assesses that
+plane at that station. The caption states infinity, each station's own wide-open aperture and this focus policy.
+On the worker, the station's modeled field geometry selects center, 50 % and the outermost field-step position
+inside its modeled edge, or the selected single fraction, before tracing pupils. These jobs restrict the field list
+and reuse that geometry in the ordinary engine request. If its edge field is unavailable, the worker tries inward
+field-step positions, retaining the same focus and completed fields, until it finds a usable edge. Fractions share
+the lens's reference image height; without a declared format they share the modeled reference height of the first
+station with resolved geometry. Heights beyond a station's modeled edge remain unavailable. The overview's Edge series follows each station's available edge, with
+actual reference fractions and heights recorded in CSV. The shared sweep chart, crosshair, diffraction-limit
+references, value table, point counts and exports keep the same stable-band and diagnostic withholding rules.
+Advanced lists data limitations and unsupported reasons per station below the table, rather than blocking the whole
+sweep behind one station's warning. Zoom CSV adds design focal length, zoom coordinate and each station's aperture,
+plane and limitations. Context records `view: zoom`, its sweep policy and all stations; SVG/PNG include the rendered
+chart and caption. The persisted view and version-1 shared bundle accept `aperture` and `zoom` while older settings
+retain their defaults.
 The opt-in diffraction limit draws the same traced pupil's aberration-free S/T response as thin dotted and
 dash-dot references, with the same field, stable-band and diagnostic visibility as its curves; geometric mode
 disables it. Crosshair readouts, the value table and CSV include these reference values only when enabled, with

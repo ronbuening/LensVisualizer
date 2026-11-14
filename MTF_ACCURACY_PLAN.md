@@ -210,8 +210,6 @@ S under a day, M one to three days, L longer.
 - **C26 — Through-focus view and a focus offset.** `mtfFocus.ts` already re-lands traced rays on shifted flat and
   curved surfaces, off axis too. A through-focus plot per field and frequency, a user offset, and S/T peak
   positions as a field-curvature readout share that code with Stage 8's band. Depends on C9. L.
-- **C27 — Comparisons beyond f/8.** Any aperture pair, MTF against aperture, and MTF against focal length over a
-  zoom's published stations (369 zooms, 1,092 published stations), each stating its plane. M each.
 - **C28 — Spectrum choices.** A single chosen wavelength exists under Advanced. Still open: R, G and B responses
   on one plane, a g-to-C band, and an illustrative sensor-weighted daylight (M each), with eligibility judged on
   the wavelengths requested.

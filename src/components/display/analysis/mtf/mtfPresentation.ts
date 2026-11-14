@@ -1,6 +1,7 @@
 /** Shared chart/table/export policy: numerical estimates require an explicit diagnostic view. */
+import { formatFNumber } from "../../../../optics/optics.js";
 import type { MtfFrequencyField, MtfPixelPitch } from "../../../../utils/state/mtfPreferences.js";
-import type { MtfApertureSample, MtfFieldResult, MtfResult } from "../../../../types/mtf.js";
+import type { MtfSweepSample, MtfFieldResult, MtfResult } from "../../../../types/mtf.js";
 
 /**
  * Name the numerical status without implying physical accuracy.
@@ -84,10 +85,15 @@ export function mtfSweepFields(result: MtfResult | null, choice: MtfFrequencyFie
  * @param frequency - charted spatial frequency in lp/mm
  * @returns numerical availability, independent of diagnostic disclosure
  */
-export function mtfAperturePointStatus(sample: MtfApertureSample, fraction: number, frequency: number) {
+export function mtfSweepPointStatus(sample: MtfSweepSample, fraction: number, frequency: number) {
   if (!sample.result) return "pending";
-  const field = sample.result.fields.find((f) => f.fieldFraction === fraction);
-  if (!field) return sample.result.support.available ? "pending" : "unavailable";
+  const field = mtfSweepField(sample, fraction);
+  if (!field)
+    return sample.edgeOverview && fraction === 1 && sample.result.fields.length
+      ? "unavailable"
+      : sample.result.support.available
+        ? "pending"
+        : "unavailable";
   if (field.status === "converged" && !mtfValueVisible(field, frequency)) return "unconverged";
   return field.status;
 }
@@ -100,4 +106,38 @@ export function mtfAperturePointStatus(sample: MtfApertureSample, fraction: numb
 export function mtfNyquistLabel(pitch: MtfPixelPitch): string {
   const frequency = 500 / pitch;
   return `Nyquist, ${pitch} µm pixels: ${Number.isInteger(frequency) ? frequency : frequency.toFixed(1)} lp/mm`;
+}
+
+/**
+ * Resolve a shared field slot; zoom overview's edge belongs to each station's own modeled field.
+ * @param sample - aperture or zoom result
+ * @param fraction - reference fraction, with 1 naming the zoom overview edge
+ * @returns field in this sample, or undefined while pending/unsupported
+ */
+export function mtfSweepField(sample: MtfSweepSample, fraction: number): MtfFieldResult | undefined {
+  if (sample.edgeOverview && fraction === 1) {
+    return (
+      sample.result?.fields.filter((f) => f.fieldFraction !== 0 && f.fieldFraction !== 0.5).at(-1) ??
+      sample.result?.fields.at(-1)
+    );
+  }
+  return sample.result?.fields.find((f) => f.fieldFraction === fraction);
+}
+
+/**
+ * Share the axis coordinate across chart, table and export.
+ * @param sample - aperture or zoom station
+ * @returns marked f-number or design focal length in mm
+ */
+export function mtfSweepX(sample: MtfSweepSample): number {
+  return sample.focalLengthMm ?? sample.fNumber;
+}
+
+/**
+ * Label a sample without implying its design focal length is its computed EFL.
+ * @param sample - aperture or zoom station
+ * @returns axis value with units
+ */
+export function mtfSweepLabel(sample: MtfSweepSample): string {
+  return sample.focalLengthMm === undefined ? `f/${formatFNumber(sample.fNumber)}` : `${sample.focalLengthMm} mm`;
 }

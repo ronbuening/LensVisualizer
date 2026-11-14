@@ -30,9 +30,9 @@ const settings: Required<MtfPreferences> = {
 const payload = (raw: unknown) => `1.${btoa(JSON.stringify(raw)).replace(/=+$/, "")}`;
 
 describe("MTF URL state", () => {
-  it("round-trips the aperture view, its field selection and focus policy in additive v1 links", () => {
+  it.each(["aperture", "zoom"] as const)("round-trips the %s view and controls in additive v1 links", (view) => {
     for (const advanced of [true, false]) {
-      const aperture = { ...settings, view: "aperture" as const, advanced };
+      const aperture = { ...settings, view, advanced };
       const link = buildMtfLink("https://example.com/lens/test/?v=1&aperture=0.12345678901234568", aperture);
       expect(parseSharedMtfSettings(new URL(link).search)).toEqual(aperture);
       expect(new URL(link).searchParams.get("aperture")).toBe("0.12345678901234568");

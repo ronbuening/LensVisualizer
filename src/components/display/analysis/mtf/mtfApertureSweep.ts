@@ -1,6 +1,8 @@
-/** Aperture sweeps use the comparison's ordinary request scaling, without changing the engine. */
-import { createAnalysisRequest, type AnalysisRequest } from "../../../../optics/analysis.js";
-import { stopSemiDiameterForFNumber } from "../../../../optics/optics.js";
+/** Aperture and zoom sweeps build ordinary requests from the viewer's physical controls. */
+import { computeFocusEFL, createAnalysisRequest, type AnalysisRequest } from "../../../../optics/analysis.js";
+import { fopenAtZoomClamped, prepareRuntimeState, stopSemiDiameterForFNumber } from "../../../../optics/optics.js";
+import { computeAnalysisFieldGeometryAtState, entrancePupilAtState } from "../../../../optics/fieldGeometry.js";
+import { publishedZoomStations } from "../../../../optics/publishedStations.js";
 import type { RuntimeLens } from "../../../../types/optics.js";
 import { MTF_COMPARISON_F_NUMBERS } from "../../../../utils/state/mtfPreferences.js";
 
@@ -56,4 +58,39 @@ export function mtfApertureRequests(lens: RuntimeLens, request: AnalysisRequest,
       request: mtfRequestAtAperture(lens, request, stop),
     })),
   ];
+}
+
+/**
+ * Build the same wide-open controls as the viewer at each published infinity station.
+ * @param lens - zoom lens with source-declared station provenance
+ * @param request - current controls; only zoom, focus and aperture are replaced
+ * @returns design focal lengths and ordinary station requests; no stations for a prime
+ */
+export function mtfZoomRequests(lens: RuntimeLens, request: AnalysisRequest) {
+  if (!lens.isZoom) return [];
+  return publishedZoomStations(lens).map(({ zoomT, focalLengthMm }) => {
+    const aberrationT = request.preparedGeometry.aberrationT;
+    const preparedState = prepareRuntimeState(lens, 0, zoomT, aberrationT);
+    const fNumber = fopenAtZoomClamped(zoomT, lens);
+    const stop = stopSemiDiameterForFNumber(fNumber, zoomT, lens);
+    const fieldGeometry = computeAnalysisFieldGeometryAtState(0, zoomT, lens, aberrationT);
+    const pupil = entrancePupilAtState(stop, 0, zoomT, lens, fieldGeometry, aberrationT).epSD;
+    const firstOrderRequest = createAnalysisRequest({
+      preparedState,
+      dynamicEFL: lens.EFL,
+      currentEPSD: lens.EP.epSD,
+      currentPhysStopSD: lens.stopPhysSD,
+    });
+    return {
+      fNumber,
+      focalLengthMm,
+      zoomT,
+      request: createAnalysisRequest({
+        preparedState,
+        dynamicEFL: computeFocusEFL(firstOrderRequest),
+        currentEPSD: pupil,
+        currentPhysStopSD: stop,
+      }),
+    };
+  });
 }

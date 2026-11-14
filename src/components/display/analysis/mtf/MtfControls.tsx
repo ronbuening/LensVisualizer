@@ -30,6 +30,7 @@ interface MtfControlsProps {
   comparisonFNumbers: readonly MtfComparisonFNumber[];
   comparisonFNumber: MtfComparisonFNumber;
   result?: MtfResult | null;
+  isZoom?: boolean;
 }
 
 const METHODS: ReadonlyArray<[MtfMethod, string]> = [
@@ -90,13 +91,20 @@ export default function MtfControls({
   comparisonFNumbers,
   comparisonFNumber,
   result = null,
+  isZoom = false,
 }: MtfControlsProps) {
-  const view = preferences.view === "aperture" && !preferences.advanced ? "field" : preferences.view;
+  const view =
+    ((preferences.view === "aperture" || preferences.view === "zoom") && !preferences.advanced) ||
+    (preferences.view === "zoom" && !isZoom)
+      ? "field"
+      : preferences.view;
+  const isSweep = view === "aperture" || view === "zoom";
   const comparisonAvailable = comparisonFNumbers.includes(comparisonFNumber);
   const views: ReadonlyArray<[MtfChartView, string]> = [
     ["field", "Image height"],
     ["frequency", "Frequency"],
     ...(preferences.advanced ? [["aperture", "Aperture"] as [MtfChartView, string]] : []),
+    ...(preferences.advanced && isZoom ? [["zoom", "Zoom"] as [MtfChartView, string]] : []),
   ];
   const selectStyle: CSSProperties = { ...selector(t, false), fontSize: 11, padding: "5px 26px 5px 8px" };
   const touchHelp = useMediaQuery(HOVERLESS_QUERY, { ssrDefault: false });
@@ -264,7 +272,7 @@ export default function MtfControls({
             ) : null}
           </>
         ) : null}
-        {view !== "aperture" ? (
+        {!isSweep ? (
           <ToggleGroup label="Aperture comparison" t={t}>
             <Toggle
               t={t}
@@ -282,7 +290,7 @@ export default function MtfControls({
             </Toggle>
           </ToggleGroup>
         ) : null}
-        {view !== "aperture" && comparisonFNumbers.length > 0 && preferences.advanced ? (
+        {!isSweep && comparisonFNumbers.length > 0 && preferences.advanced ? (
           <Select<MtfComparisonFNumber>
             t={t}
             label="Comparison aperture"
@@ -295,7 +303,7 @@ export default function MtfControls({
             onChange={(comparisonFNumber) => onChange({ comparisonFNumber })}
           />
         ) : null}
-        {view !== "aperture" && comparisonAvailable && preferences.compareF8 ? (
+        {!isSweep && comparisonAvailable && preferences.compareF8 ? (
           <Select
             t={t}
             label={`f/${comparisonFNumber} comparison image plane`}

@@ -32,8 +32,14 @@ import {
 } from "../../../../../src/utils/state/mtfPreferences.js";
 import { buildMtfLink, parseSharedMtfSettings } from "../../../../../src/utils/state/mtfUrlState.js";
 import { resetMtfDataWarnings } from "../../../../../src/utils/state/mtfDataWarnings.js";
-import { useMtfApertureSweep } from "../../../../../src/components/hooks/useMtfApertureSweep.js";
-import { mtfApertureRequests } from "../../../../../src/components/display/analysis/mtf/mtfApertureSweep.js";
+import { useMtfApertureSweep, useMtfSweep } from "../../../../../src/components/hooks/useMtfApertureSweep.js";
+import {
+  mtfApertureRequests,
+  mtfZoomRequests,
+} from "../../../../../src/components/display/analysis/mtf/mtfApertureSweep.js";
+import useLensComputation from "../../../../../src/components/hooks/useLensComputation.js";
+import { mtfJobForRequest } from "../../../../../src/components/hooks/mtfWorkerClient.js";
+import { createAnalysisRequest } from "../../../../../src/optics/analysis.js";
 import { mtfSweepFields } from "../../../../../src/components/display/analysis/mtf/mtfPresentation.js";
 import { MTF_EXPORT_DISCLAIMER } from "../../../../../src/components/display/analysis/mtf/mtfExportContext.js";
 
@@ -1864,7 +1870,7 @@ describe("MTF download actions", () => {
     });
   }
 
-  async function showTab(view: "field" | "frequency" | "aperture" = "field", advanced = true) {
+  async function showTab(view: "field" | "frequency" | "aperture" | "zoom" = "field", advanced = true) {
     localStorage.setItem(
       MTF_PREFERENCES_KEY,
       JSON.stringify({
@@ -1878,11 +1884,12 @@ describe("MTF download actions", () => {
     );
     const worker = stubWorker({
       target: focusedState,
-      ...(view === "aperture" ? { resultForJob: apertureControlResult } : {}),
+      ...(view === "aperture" || view === "zoom" ? { resultForJob: apertureControlResult } : {}),
     });
+    const lens = view === "zoom" ? zoomControlLens() : focusedL;
     const rendered = render(
       <MtfTab
-        L={focusedL}
+        L={lens}
         t={mockTheme}
         preparedState={focusedState}
         currentEPSD={1}
@@ -1893,6 +1900,7 @@ describe("MTF download actions", () => {
     await screen.findByRole("figure");
     const warning = screen.queryByRole("button", { name: "Show chart anyway" });
     if (warning) fireEvent.click(warning);
+    if (view === "zoom") await vi.waitFor(() => expect(worker.calls.compute).toBe(3));
     if (view === "aperture")
       await vi.waitFor(() =>
         expect(screen.getByText(/9 converged · 0 unconverged · 0 unavailable points/)).toBeTruthy(),
@@ -1900,12 +1908,12 @@ describe("MTF download actions", () => {
     return { ...rendered, worker };
   }
 
-  it.each(["field", "frequency", "aperture"] as const)(
+  it.each(["field", "frequency", "aperture", "zoom"] as const)(
     "keeps the %s copy and export actions above the collapsed field details",
     async (view) => {
-      const { container } = await showTab(view, view === "aperture");
+      const { container } = await showTab(view, view === "aperture" || view === "zoom");
       const details = container.querySelector("details")!;
-      if (view === "aperture") fireEvent.click(details.querySelector("summary")!);
+      if (view === "aperture" || view === "zoom") fireEvent.click(details.querySelector("summary")!);
       expect(details.open).toBe(false);
       const buttons = ["Copy CSV", "Copy MTF link", "Export"].map((name) => screen.getByRole("button", { name }));
       const row = buttons[0].parentElement!;
@@ -1947,6 +1955,44 @@ describe("MTF download actions", () => {
       view: "aperture",
       advanced: true,
       frequencies: [10],
+    });
+  });
+
+  it("downloads zoom CSV and SVG and round-trips its shared view", async () => {
+    const { blobs, clicks } = downloads();
+    const writeText = vi.fn().mockResolvedValue(undefined);
+    vi.stubGlobal("navigator", { ...navigator, clipboard: { writeText } });
+    await showTab("zoom");
+    fireEvent.click(screen.getByRole("button", { name: "Copy CSV" }));
+    await vi.waitFor(() => expect(writeText).toHaveBeenCalledTimes(1));
+    expect(writeText.mock.calls[0][0]).toContain("Focal length (mm),Zoom position,f-number");
+    for (const label of ["CSV — this view", "CSV — all sampled values", "SVG"]) {
+      fireEvent.click(screen.getByRole("button", { name: "Export" }));
+      fireEvent.click(screen.getByRole("menuitem", { name: label }));
+      await vi.waitFor(() => expect(clicks).toHaveLength(blobs.length));
+    }
+    expect(clicks).toHaveLength(3);
+    for (const blob of blobs) {
+      const content = await readBlob(blob);
+      expect(content).toContain("view: zoom");
+      expect(content).toContain("each at its own wide-open aperture");
+      expect(content).toContain("comparison: off");
+    }
+    const csv = await readBlob(blobs[0]);
+    expect(csv).toContain("# zoom_stations: 35 mm; zoom 0; f/4;");
+    expect(csv).toContain("140 mm; zoom 1; f/8;");
+    expect(
+      csv
+        .split("\n")
+        .filter((line) => !/^"?# /.test(line))
+        .join("\n"),
+    ).toBe(writeText.mock.calls[0][0]);
+    expect(clicks[0].filename).toMatch(/-zoom-.*-this-view\.csv$/);
+    fireEvent.click(screen.getByRole("button", { name: "Copy MTF link" }));
+    await vi.waitFor(() => expect(writeText).toHaveBeenCalledTimes(2));
+    expect(parseSharedMtfSettings(new URL(writeText.mock.calls[1][0]).search)).toMatchObject({
+      view: "zoom",
+      advanced: true,
     });
   });
 
@@ -2123,6 +2169,22 @@ describe("MTF download actions", () => {
 });
 
 /** A small ordinary result supplies deterministic field availability to the UI scheduling controls. */
+function zoomControlLens(published = false) {
+  return build({
+    ...constructionFixtureData(focusedL),
+    zoomPositions: [35, 70, 140],
+    nominalFno: [4, 5.6, 8],
+    var: {
+      "1": [
+        [5, 5],
+        [7, 7],
+        [9, 9],
+      ],
+    },
+    ...(published ? { publishedStations: { zoom: [0, 2] } } : {}),
+  });
+}
+
 function apertureControlResult(job: MtfJob): MtfResult {
   const base = memoizedMtf(focusedState, { ...referenceOptions, fieldFractions: [0] });
   return {
@@ -2381,4 +2443,221 @@ describe("MTF aperture sweeps", () => {
     );
     expect(calls.compute).toBe(completed);
   });
+});
+
+describe("MTF zoom sweeps", () => {
+  it.each([false, true])(
+    "uses published infinity stations (declared: %s) and the viewer's exact wide-open job",
+    (declared) => {
+      const lens = zoomControlLens(declared);
+      const samples = mtfZoomRequests(lens, analysisRequestForLens(lens, 1, 0.3));
+      expect(samples.map((sample) => sample.focalLengthMm)).toEqual(declared ? [35, 140] : [35, 70, 140]);
+      expect(mtfZoomRequests(focusedL, analysisRequestForLens(focusedL))).toEqual([]);
+      for (const sample of samples) {
+        const { result, unmount } = renderHook(() =>
+          useLensComputation({
+            runtimeLens: lens,
+            lensKey: "synthetic",
+            focusT: 0,
+            zoomT: sample.zoomT,
+            stopdownT: 0,
+            scaleRatio: null,
+            panelId: "zoom-control",
+          }),
+        );
+        const controls = result.current;
+        const tabRequest = createAnalysisRequest({
+          preparedState: prepareRuntimeState(lens, controls.focusT, controls.zoomT, controls.aberrationT),
+          dynamicEFL: controls.dynamicEFL,
+          currentEPSD: controls.currentEPSD,
+          currentPhysStopSD: controls.currentPhysStopSD,
+        });
+        expect(sample.fNumber).toBe(controls.fNumber);
+        expect(mtfJobForRequest(sample.request, referenceOptions)).toEqual(
+          mtfJobForRequest(tabRequest, referenceOptions),
+        );
+        unmount();
+      }
+      expect(samples[0].request.aperture.stopSemiDiameterMm).not.toBe(
+        samples.at(-1)!.request.aperture.stopSemiDiameterMm,
+      );
+    },
+  );
+
+  it("schedules stations sequentially, publishes progress, cancels stale stations and returns to cache", async () => {
+    const lens = zoomControlLens(true);
+    const { calls, finish } = stubWorker({ progress: true, resultForJob: apertureControlResult });
+    const requests = mtfZoomRequests(lens, analysisRequestForLens(lens)).map((sample) => ({
+      ...sample,
+      sweep: { field: "overview" as const, candidates: [0, 0.5, 1] },
+    }));
+    const { result, rerender, unmount } = renderHook(
+      ({ active, settings }) => useMtfSweep(lens, active ? requests : [], referenceOptions, settings),
+      { initialProps: { active: true, settings: "one" } },
+    );
+    await vi.waitFor(() => expect(result.current.samples[0].result).not.toBeNull());
+    expect(calls.jobs.map((job) => job.zoomT)).toEqual([0]);
+    expect(result.current.samples[1].result).toBeNull();
+    await act(async () => finish());
+    expect(result.current.index).toBe(1);
+    expect(calls.jobs.map((job) => job.zoomT)).toEqual([0, 1]);
+    rerender({ active: false, settings: "one" });
+    expect(calls.cancels).toBe(1);
+    await act(async () => finish());
+    expect(result.current.samples).toEqual([]);
+    rerender({ active: true, settings: "two" });
+    await vi.waitFor(() => expect(calls.compute).toBe(3));
+    expect(calls.workers).toBe(1);
+    expect(result.current.samples[0].result).not.toBeNull();
+    await act(async () => finish());
+    expect(result.current.running).toBe(false);
+    rerender({ active: false, settings: "two" });
+    rerender({ active: true, settings: "three" });
+    await vi.waitFor(() => expect(result.current.running).toBe(false));
+    expect(calls.compute).toBe(3);
+    unmount();
+  });
+
+  it.each(["best-axial", "design", "auto"] as const)(
+    "renders station progress and independent %s planes with no overlay or slider updates",
+    async (focus) => {
+      const lens = zoomControlLens(true);
+      localStorage.setItem(
+        MTF_PREFERENCES_KEY,
+        JSON.stringify({
+          view: "zoom",
+          advanced: true,
+          focus,
+          spectrum: "reference",
+          method: "geometric",
+          compareF8: true,
+          comparisonFocus: "hold",
+        }),
+      );
+      const { calls, finish } = stubWorker({ progress: true, resultForJob: apertureControlResult });
+      const dispatch = vi.fn();
+      render(
+        <LensDispatchContext.Provider value={dispatch}>
+          <MtfTab
+            L={lens}
+            t={mockTheme}
+            preparedState={prepareRuntimeState(lens, 1, 1)}
+            currentEPSD={0.2}
+            currentPhysStopSD={0.2}
+            fNumber={16}
+          />
+        </LensDispatchContext.Provider>,
+      );
+      await screen.findByRole("figure", { name: "Simulated MTF versus focal length" });
+      expect(screen.getByText("Calculating 35 mm, 1 of 2…")).toBeTruthy();
+      expect(calls.workers).toBe(1);
+      expect(screen.queryByRole("button", { name: "Compare f/8" })).toBeNull();
+      expect(screen.queryByRole("combobox", { name: "Aperture sweep image plane" })).toBeNull();
+      expect(screen.queryByRole("button", { name: "Show chart anyway" })).toBeNull();
+      expect(screen.getByRole("table", { name: /MTF by focal length/ })).toBeTruthy();
+      expect(screen.getByTestId("mtf-current-zoom")).toBeTruthy();
+      expect(screen.queryByTestId("mtf-provisional")).toBeNull();
+      await act(async () => finish());
+      expect(screen.getByText("Calculating 140 mm, 2 of 2…")).toBeTruthy();
+      await act(async () => finish());
+      expect(calls.jobs).toHaveLength(2);
+      expect(
+        calls.jobs.every(
+          (job) => job.focusT === 0 && job.options.focus === focus && job.options.heldFocusShiftMm === undefined,
+        ),
+      ).toBe(true);
+      expect(dispatch).not.toHaveBeenCalled();
+      fireEvent.click(screen.getByRole("button", { name: "Advanced" }));
+      expect(screen.getByRole("button", { name: "Image height" }).getAttribute("aria-pressed")).toBe("true");
+      expect(screen.queryByRole("button", { name: "Zoom" })).toBeNull();
+      expect(JSON.parse(localStorage.getItem(MTF_PREFERENCES_KEY)!).view).toBe("zoom");
+    },
+  );
+
+  it.each([
+    { zoom: false, advanced: true },
+    { zoom: true, advanced: false },
+  ])("falls back without overwriting a saved zoom view ($zoom, $advanced)", async ({ zoom, advanced }) => {
+    localStorage.setItem(MTF_PREFERENCES_KEY, JSON.stringify({ view: "zoom", advanced, spectrum: "reference" }));
+    const lens = zoom ? zoomControlLens() : focusedL;
+    const { calls } = stubWorker({ resultForJob: apertureControlResult });
+    render(
+      <MtfTab
+        L={lens}
+        t={mockTheme}
+        preparedState={prepareRuntimeState(lens, 0, 0)}
+        currentEPSD={1}
+        currentPhysStopSD={1}
+      />,
+    );
+    await screen.findByRole("figure", { name: "Simulated MTF versus image height" });
+    expect(screen.queryByRole("button", { name: "Zoom" })).toBeNull();
+    expect(calls.workers).toBe(1);
+    expect(JSON.parse(localStorage.getItem(MTF_PREFERENCES_KEY)!).view).toBe("zoom");
+  });
+
+  it("keeps an unsupported station's reason beside the other stations", async () => {
+    const lens = zoomControlLens(true);
+    localStorage.setItem(
+      MTF_PREFERENCES_KEY,
+      JSON.stringify({ view: "zoom", advanced: true, spectrum: "reference", focus: "design" }),
+    );
+    stubWorker({
+      resultForJob: (job) => {
+        const result = apertureControlResult(job);
+        return job.zoomT === 0
+          ? {
+              ...result,
+              fields: [],
+              support: { ...result.support, available: false, message: "Synthetic station unsupported" },
+            }
+          : result;
+      },
+    });
+    render(
+      <MtfTab
+        L={lens}
+        t={mockTheme}
+        preparedState={prepareRuntimeState(lens, 0, 0)}
+        currentEPSD={1}
+        currentPhysStopSD={1}
+      />,
+    );
+    await screen.findByRole("figure", { name: "Simulated MTF versus focal length" });
+    await vi.waitFor(() =>
+      expect(screen.getByRole("list", { name: "Zoom station limitations" }).textContent).toContain(
+        "Synthetic station unsupported",
+      ),
+    );
+    expect(screen.getByRole("table", { name: /MTF by focal length/ }).textContent).toContain("unavailable");
+    expect(screen.queryByRole("button", { name: "Show chart anyway" })).toBeNull();
+  });
+});
+
+it("lists a zoom's scale discrepancy at its own station without blocking other focal lengths", async () => {
+  const lens = build({
+    ...constructionFixtureData(zoomControlLens(true)),
+    zoomPositions: [50, 50.1, 50.2],
+    focalLengthDesign: [50, 50.2],
+    focalLengthMarketing: [50, 100],
+  });
+  localStorage.setItem(
+    MTF_PREFERENCES_KEY,
+    JSON.stringify({ view: "zoom", advanced: true, spectrum: "reference", focus: "best-axial" }),
+  );
+  stubWorker({ resultForJob: apertureControlResult });
+  render(
+    <MtfTab
+      L={lens}
+      t={mockTheme}
+      preparedState={prepareRuntimeState(lens, 0, 0)}
+      currentEPSD={1}
+      currentPhysStopSD={1}
+    />,
+  );
+  await screen.findByRole("figure", { name: "Simulated MTF versus focal length" });
+  const stations = within(screen.getByRole("list", { name: "Zoom station limitations" })).getAllByRole("listitem");
+  expect(stations[0].textContent).not.toContain("differs from the marketed");
+  expect(stations[1].textContent).toContain("50.2 mm) differs from the marketed 100 mm");
+  expect(screen.queryByRole("button", { name: "Show chart anyway" })).toBeNull();
 });
