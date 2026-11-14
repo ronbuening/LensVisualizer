@@ -252,10 +252,10 @@ const LENS_DATA = {
       {
         zoomStation: 0,
         keyframe: 1,
-        objectDistanceMm: 500.07,
+        objectDistanceMm: 500,
         distanceReference: "image-plane",
         source:
-          "JP 2012-234169 A, Example 1, variable-spacing table at the 500 mm shooting distance (d4 5.6552, d9 2.8307); the printed spacings focus 500.07 mm object to image",
+          "JP 2012-234169 A, Example 1, [可変間隔] table (PDF pp. 21–22), 撮影距離 500mm row: d4 5.6552, d9 2.8307. The patent does not define the reference of 撮影距離; the conjugate audit identifies the image-plane reference for this distance, and the first-surface reading is 22 quarter waves out of focus. The printed spacings focus 500.07 mm object to image.",
       },
     ],
     description:
