@@ -66,3 +66,18 @@ The G2 sd (21.2/21.2/20.7 mm) is retained even though FIG. 1 draws about 19.2 mm
 - Read Example 1 Table 1 on PDF page 15 (rendered at 200 dpi): surface 34 d = 28.1625; surfaces 35–36 are the optical member PP, 2.85 mm, nd 1.51680, νd 64.20, θgF 0.53430; surface 36 → image is 1.10 mm. The legacy fold 31.1415 mm reproduces 28.1625 + 2.85/1.5168 + 1.10 = 31.1414 mm.
 - Surface 34 now stores the patent's 28.1625 mm, with `rearPlates` PP labelled N-BK7 (exact 1.51680 / 64.2 row; OHARA S-BSL7 is the 1.51633 variant), dPgF −0.0015 from the printed θgF, and gapAfter 1.10 mm. The focus gaps DD[15]/DD[18] are ahead of the plate and unchanged.
 - Paraxial check against the previous data: EFL identical; defocus changes by 0.00004 mm at infinity and at the close state (rounding in the old 31.1415). Physical track grows by 0.971 mm and now equals the 218.997 mm printed-sum length the analysis quotes.
+
+## 2026-11-14 — Published finite conjugate
+
+Patent: US 2019/0265504 A1, Example 1, Tables 2/3, Close Range (1.57 m) column; PDF page 15.
+
+| State | Field | Before | After | Source evidence |
+| --- | --- | --- | --- | --- |
+| Zoom 0 / keyframe 1 | `focus.conjugates` | absent | `1570` mm, `first-surface` | Printed `Close Range (1.57 m)`; DD[15]=7.08; DD[18]=16.47 mm. |
+
+The patent prints the distance without defining its endpoints. The conjugate audit identifies the
+first-surface reference; the source string records that basis. The authored-plane paraxial
+offset is +0.041880285 mm (+6.841431 diffraction depths); the other
+reference gives +3.759375199 mm (+582.888328 depths).
+The verdict is `consistent` and the reference is discriminated. The existing published flag and
+all optical geometry remain unchanged.
