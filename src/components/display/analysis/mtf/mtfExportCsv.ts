@@ -16,8 +16,9 @@ interface MtfCsvExportOptions {
   diffractionLimit?: boolean;
 }
 
-function cell(value: string | number | null | undefined): string {
-  const text = String(value ?? "");
+function textCell(value: string): string {
+  // CSV quoting does not stop spreadsheets evaluating text as a formula.
+  const text = /^\s*[=+@\t\r-]/.test(value) ? `'${value}` : value;
   return /[",\r\n]/.test(text) ? `"${text.replaceAll('"', '""')}"` : text;
 }
 
@@ -45,7 +46,10 @@ export function mtfViewCsv(options: MtfCsvExportOptions): string {
   const { result, context, frequencies, diagnostic = false, comparison = null, diffractionLimit = false } = options;
   if (options.view === "frequency") return sampledCsv(options, false);
   const table = mtfCsv(result, frequencies, diagnostic, comparison, diffractionLimit).split("\n");
-  const statusColumns = table[0].split(",").flatMap((name, i) => (name.toLowerCase().endsWith("status") ? [i] : []));
+  const header = table[0].split(",");
+  const statusColumns = header.flatMap((name, i) => (name.toLowerCase().endsWith("status") ? [i] : []));
+  // The clipboard table contains only formatted numbers and fixed status/value/plane labels.
+  const textColumns = header.flatMap((name, i) => (/(?:status|values|image plane)$/i.test(name) ? [i] : []));
   const rows = table.map((row, i) => {
     const field = result.fields[i - 1];
     const other = comparison?.fields.find((f) => f.fieldFraction === field?.fieldFraction);
@@ -54,7 +58,8 @@ export function mtfViewCsv(options: MtfCsvExportOptions): string {
       statusColumns.forEach((index) => {
         if (cells[index]) cells[index] += "; diagnostic estimates included";
       });
-    return `${cells.join(",")},${cell(i ? notes(field) : "Notes")}${comparison ? `,${cell(i ? notes(other) : "f/8 notes")}` : ""}`;
+    const safeCells = cells.map((value, index) => (!i || textColumns.includes(index) ? textCell(value) : value));
+    return `${safeCells.join(",")},${textCell(i ? notes(field) : "Notes")}${comparison ? `,${textCell(i ? notes(other) : "f/8 notes")}` : ""}`;
   });
   return `${mtfContextBlock({ ...context, export_scope: "this view" })}\n${rows.join("\n")}`;
 }
@@ -107,9 +112,11 @@ function sampledCsv(options: MtfCsvExportOptions, all: boolean): string {
           field?.imageHeightMm ?? field?.targetImageHeightMm,
           visible ? field.sagittal[index]?.toFixed(4) : "",
           visible ? field.tangential[index]?.toFixed(4) : "",
-          field ? `${field.reason ?? field.status}${diagnostic ? "; diagnostic estimates included" : ""}` : "",
+          textCell(
+            field ? `${field.reason ?? field.status}${diagnostic ? "; diagnostic estimates included" : ""}` : "",
+          ),
           field?.convergedThroughLpMm,
-          notes(field),
+          textCell(notes(field)),
         ];
       }),
       ...limits.flatMap(({ result: source, fields }) => {
@@ -121,5 +128,5 @@ function sampledCsv(options: MtfCsvExportOptions, all: boolean): string {
       }),
     ]),
   );
-  return `${mtfContextBlock({ ...options.context, export_scope: all ? "all sampled values" : "this view" })}\n${[header, ...rows].map((row) => row.map(cell).join(",")).join("\n")}`;
+  return `${mtfContextBlock({ ...options.context, export_scope: all ? "all sampled values" : "this view" })}\n${[header.map(textCell), ...rows].map((row) => row.join(",")).join("\n")}`;
 }

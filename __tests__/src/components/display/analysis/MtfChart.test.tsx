@@ -13,6 +13,7 @@ import {
   MTF_EXPORT_DISCLAIMER,
 } from "../../../../../src/components/display/analysis/mtf/mtfExportContext.js";
 import { mtfAllSamplesCsv, mtfViewCsv } from "../../../../../src/components/display/analysis/mtf/mtfExportCsv.js";
+import { mtfCsv } from "../../../../../src/components/display/analysis/mtf/mtfCsv.js";
 import { buildMtfSvg } from "../../../../../src/components/display/analysis/mtf/mtfExportImage.js";
 import {
   downloadMtfBlob,
@@ -68,6 +69,32 @@ function syntheticResult(): MtfResult {
     focus: null,
     axialVignetting: null,
   };
+}
+
+function parseCsv(csv: string): string[][] {
+  const rows: string[][] = [];
+  let row: string[] = [];
+  let value = "";
+  let quoted = false;
+  for (let i = 0; i < csv.length; i++) {
+    const char = csv[i];
+    if (char === '"') {
+      if (quoted && csv[i + 1] === '"') {
+        value += '"';
+        i++;
+      } else quoted = !quoted;
+    } else if (!quoted && (char === "," || char === "\n")) {
+      row.push(value);
+      value = "";
+      if (char === "\n") {
+        rows.push(row);
+        row = [];
+      }
+    } else value += char;
+  }
+  row.push(value);
+  rows.push(row);
+  return rows;
 }
 
 afterEach(cleanup);
@@ -129,11 +156,7 @@ describe("MTF export builders", () => {
     const lines = [...doc.querySelectorAll('[aria-label="MTF export caption"] text')].map((node) => node.textContent!);
     return { image, doc, lines };
   };
-  const dataRows = (csv: string) =>
-    csv
-      .split("\n")
-      .filter((line) => !line.startsWith("# "))
-      .map((line) => line.split(","));
+  const dataRows = (csv: string) => parseCsv(csv).filter((row) => !row[0].startsWith("# "));
 
   it("records source, optical station, actual spectrum/plane, fallback, UTC date and disclaimer", () => {
     const result = syntheticResult();
@@ -167,8 +190,8 @@ describe("MTF export builders", () => {
       status: "complete",
     });
     const block = mtfContextBlock(context);
-    expect(block.split("\n")).toHaveLength(Object.keys(context).length);
-    expect(block).toContain("# spectrum_fallback_reason: Missing spectral data for a glass");
+    expect(parseCsv(block)).toHaveLength(Object.keys(context).length);
+    expect(block).toContain('"# spectrum_fallback_reason: Missing spectral data\nfor a glass"');
     expect(block).toContain("# shared_link: https://example.com/");
     result.fields[0].status = "pending";
     result.support.conjugate = {
@@ -197,7 +220,7 @@ describe("MTF export builders", () => {
     expect(lines.slice(4).join(" ")).toBe(MTF_EXPORT_DISCLAIMER);
     expect(lines.join(" ")).not.toMatch(/weight|lens key|status:|zoom 0.25/);
     const metadata = doc.querySelector("desc")!.textContent!;
-    expect(metadata.split("\n").map((line) => line.slice(2, line.indexOf(": ")))).toEqual(Object.keys(context));
+    expect(parseCsv(metadata).map(([line]) => line.slice(2, line.indexOf(": ")))).toEqual(Object.keys(context));
     for (const line of captionResult().support.spectralLines) {
       expect(metadata).toContain(`${line.wavelengthNm} nm (weight ${line.weight})`);
     }
@@ -302,12 +325,96 @@ describe("MTF export builders", () => {
       frequencies: [10],
       diffractionLimit: true,
     });
-    const [header, first, ...rest] = csv.split("\n").filter((line) => !line.startsWith("# "));
-    expect(header).toContain("10 lp/mm sagittal,10 lp/mm tangential");
-    expect(header).not.toContain("30 lp/mm");
-    expect(header).toMatch(/diffraction limit tangential,Notes,f\/8 notes$/);
-    expect(first).toContain('"Aim, with ""qualification""",Overlay note');
+    const [header, first, ...rest] = dataRows(csv);
+    expect(header.slice(2, 4)).toEqual(["10 lp/mm sagittal", "10 lp/mm tangential"]);
+    expect(header).not.toContain("30 lp/mm sagittal");
+    expect(header.slice(-3)).toEqual(["f/8 10 lp/mm diffraction limit tangential", "Notes", "f/8 notes"]);
+    expect(first.slice(-2)).toEqual(['Aim, with "qualification"', "Overlay note"]);
     expect(rest).toHaveLength(4);
+  });
+
+  it.each([
+    "=1+1",
+    "+1+1",
+    "-1+1",
+    "@SUM(1)",
+    "\t=1+1",
+    "\tNote",
+    "\rNote",
+    "  =1+1",
+    "  +1+1",
+    "  -1+1",
+    "  @SUM(1)",
+    "  \tNote",
+    "  \rNote",
+    '\n=HYPERLINK("https://example.com", "caption")',
+  ])("neutralizes formula-capable notes and messages before CSV quoting: %j", (text) => {
+    const result = syntheticResult();
+    result.fields[0].notes = [text];
+    const comparison = syntheticResult();
+    comparison.fields[0].message = text;
+    const options = { result, comparison, context: contextFor(result), view: "field" as const, frequencies: [10] };
+    for (const csv of [mtfViewCsv(options), mtfViewCsv({ ...options, view: "frequency" }), mtfAllSamplesCsv(options)]) {
+      const [header, ...rows] = dataRows(csv);
+      expect(rows.every((row) => row.length === header.length)).toBe(true);
+      expect(rows[0][header.indexOf("Notes")]).toBe(`'${text}`);
+      expect(rows[0][header.findIndex((name) => name.toLowerCase() === "f/8 notes")]).toBe(`'${text}`);
+    }
+  });
+
+  it("keeps negative numeric cells numeric while guarding numeric-looking free text", () => {
+    const result = syntheticResult();
+    result.fields[0].imageHeightMm = -1.25;
+    result.fields[0].sagittal[1] = -0.25;
+    result.fields[0].notes = ["-1.25"];
+    const options = { result, context: contextFor(result), view: "field" as const, frequencies: [10] };
+    const [header, first] = dataRows(mtfViewCsv(options));
+    expect(first[header.indexOf("Image height (mm)")]).toBe("-1.250");
+    expect(first[header.indexOf("10 lp/mm sagittal")]).toBe("-0.2500");
+    expect(first[header.indexOf("Notes")]).toBe("'-1.25");
+    for (const csv of [mtfViewCsv({ ...options, view: "frequency" }), mtfAllSamplesCsv(options)]) {
+      const [header, ...rows] = dataRows(csv);
+      const row = rows.find((row) => row[0] === "0" && row[1] === "10")!;
+      expect(row[header.indexOf("Image height (mm)")]).toBe("-1.25");
+      expect(row[header.indexOf("Sagittal")]).toBe("-0.2500");
+      expect(row[header.indexOf("Notes")]).toBe("'-1.25");
+    }
+  });
+
+  it("round-trips single-cell context records by decoding CSV, stripping '# ', then splitting the first ': '", () => {
+    const result = syntheticResult();
+    const context = {
+      ...contextFor(result, { lens: { ...lens, source: { ...lens.source, name: "Lens,=1+1" } } }),
+      source: '  @SUM(1): "source",\r\n# embedded line\n\t=1+1  ',
+      spectrum_fallback_reason: "",
+    };
+    const options = { result, context, view: "field" as const, frequencies: [10] };
+    const block = mtfContextBlock(context);
+    expect(block).toContain('"# lens_name: Lens,=1+1"');
+    expect(block).toContain('""source""');
+    for (const csv of [block, mtfViewCsv(options), mtfAllSamplesCsv(options)]) {
+      const rows = parseCsv(csv).filter((row) => row[0].startsWith("# "));
+      expect(rows.every((row) => row.length === 1)).toBe(true);
+      const parsed = Object.fromEntries(
+        rows.map(([line]) => {
+          const entry = line.slice(2);
+          const separator = entry.indexOf(": ");
+          return [entry.slice(0, separator), entry.slice(separator + 2)];
+        }),
+      );
+      expect(parsed).toMatchObject(context);
+    }
+  });
+
+  it("keeps Copy CSV bytes unchanged when free-text notes and messages contain formulas", () => {
+    const result = syntheticResult();
+    result.fields = result.fields.slice(0, 1);
+    result.fields[0].notes = ["=1+1"];
+    result.fields[0].message = "@SUM(1)";
+    expect(mtfCsv(result, [10])).toBe(
+      "Image height (mm),Field (%),10 lp/mm sagittal,10 lp/mm tangential,Status,Values,Stable through (lp/mm)\n" +
+        "0.000,0,0.9000,0.8000,converged,converged band only,100",
+    );
   });
 
   it("exports each frequency of the shown fields, including independent overlay edges", () => {

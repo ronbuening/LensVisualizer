@@ -133,7 +133,9 @@ or PNG through local Blobs and temporary anchors. Copy CSV retains its uncaption
 download follows the selected chart: the image-height table with field notes, or every frequency for each shown
 field, including independently selected f/8 overview fields. All sampled values includes every field and computed
 frequency. Both CSV downloads preserve withheld cells and opt-in diagnostic disclosure, include enabled f/8 and
-diffraction-limit columns, and start with `# key: value` context lines documented in `mtfExportContext.ts`.
+diffraction-limit columns, neutralize formula-capable text with an apostrophe before CSV quoting, and start with
+single-cell `# key: value` context records documented in `mtfExportContext.ts`. Decode optional CSV quoting before
+stripping `# ` and splitting at the first `: `; quoted context values preserve commas, quotes and newlines.
 Context records the lens/source, focal length and focus station, selected/design/marketed apertures, method,
 actual spectrum and any preferred-spectrum fallback, applied focus shift, grid cap, reference height/basis,
 shared MTF link, UTC generation date, status and prescription disclaimer. CSV context and the SVG's `desc` retain

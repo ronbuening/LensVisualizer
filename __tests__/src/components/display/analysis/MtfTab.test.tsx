@@ -1492,7 +1492,7 @@ describe("MTF download actions", () => {
     expect(
       viewCsv
         .split("\n")
-        .filter((line) => !line.startsWith("# "))
+        .filter((line) => !/^"?# /.test(line))
         .map((line) => line.slice(0, line.lastIndexOf(",")))
         .join("\n"),
     ).toBe(legacy);

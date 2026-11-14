@@ -1,8 +1,9 @@
 /**
  * Reproducible metadata and readable captions for MTF downloads.
- * Context CSV lines are `# key: value`, split at the first `: `; embedded newlines
- * become spaces. Keys use snake_case, dates are UTC, and measurements name their units.
- * Data starts at the first non-comment line and uses ordinary quoted CSV cells.
+ * Each context CSV record is one field: decode optional CSV quoting, strip the
+ * leading `# `, then split `key: value` at the first `: `. Embedded newlines stay
+ * inside quoted fields. Keys use snake_case, dates are UTC, and measurements name
+ * their units. Data starts at the first decoded non-comment record.
  */
 import type { RuntimeLens } from "../../../../types/optics.js";
 import type { MtfResult } from "../../../../types/mtf.js";
@@ -148,9 +149,9 @@ export function mtfCaptionLines(context: MtfExportContext, maxLineLength: number
 }
 
 /**
- * Keep every context value on one comment line so scripts can find the CSV header.
+ * Keep each context record in one CSV cell so punctuation cannot create formula cells.
  * @param context - ordered export metadata
- * @returns newline-separated comment block, without a trailing newline
+ * @returns newline-separated single-cell CSV records, without a trailing newline
  */
 export function mtfContextBlock(context: MtfExportContext): string {
   return Object.entries(context)
@@ -162,7 +163,8 @@ export function mtfContextBlock(context: MtfExportContext): string {
             (_, number: string, unit: string) => `${Number(Number(number).toFixed(6))} ${unit}`,
           )
         : value;
-      return `# ${key}: ${text.replace(/[\r\n]+/g, " ")}`;
+      const line = `# ${key}: ${text}`;
+      return /[",\r\n]/.test(line) ? `"${line.replaceAll('"', '""')}"` : line;
     })
     .join("\n");
 }
