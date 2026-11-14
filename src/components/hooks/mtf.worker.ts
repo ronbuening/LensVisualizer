@@ -75,7 +75,12 @@ function* stationSteps(request: AnalysisRequest, job: MtfJob, cache: MtfJobCache
         result = withEdge(next.value);
         break;
       }
-      yield { ...next.value, ...(next.value.result ? { result: withEdge(next.value.result) } : {}) };
+      // Retry results start before cached fields are restored; retain the last snapshot.
+      if (index > 0 && next.value.result?.fields.some((sample) => sample.status === "pending")) {
+        yield { phase: next.value.phase };
+      } else {
+        yield { ...next.value, ...(next.value.result ? { result: withEdge(next.value.result) } : {}) };
+      }
     }
     const sampled = result.fields.find((sample) => sample.fieldFraction === edge);
     if (

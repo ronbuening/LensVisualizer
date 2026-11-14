@@ -13,7 +13,7 @@ import { attachFixtureTeleconverter as attachTeleconverter } from "../../optics/
 import { assessMtfDataLimitations } from "../../../../src/optics/analysis/mtf/mtfDataLimitations.js";
 import { computeMtf } from "../../../../src/optics/analysis/mtf/mtf.js";
 import { prepareRuntimeState } from "../../../../src/optics/state/runtimeAdapters.js";
-import type { MtfOptions } from "../../../../src/types/mtf.js";
+import type { MtfFieldResult, MtfOptions, MtfResult } from "../../../../src/types/mtf.js";
 import { canonicalLensFromRuntime, compiledLensFromRuntime } from "../../../../src/optics/prescription/identity.js";
 import {
   MtfWorkerClient,
@@ -377,7 +377,16 @@ it("keeps ordinary field heights even when a sweep message contains a foreign re
 });
 
 it("finds an inward overview field when the modeled edge has no usable MTF", async () => {
-  const { send, finished } = await loadWorker();
+  const { send, finished, port } = await loadWorker();
+  vi.useFakeTimers();
+  let now = 0;
+  vi.spyOn(performance, "now").mockImplementation(() => (now += 100));
+  // Capture transport-time values: the engine mutates partial results as it advances.
+  const snapshots: MtfResult[] = [];
+  port.postMessage.mockImplementation((reply: MtfWorkerReply) => {
+    if ((reply.type === "progress" || reply.type === "result") && reply.result)
+      snapshots.push(structuredClone(reply.result));
+  });
   const lens = buildSimplePositiveElementLens();
   const options: MtfOptions = {
     method: "geometric",
@@ -414,18 +423,39 @@ it("finds an inward overview field when the modeled edge has no usable MTF", asy
       sweep: { candidates: options.fieldFractions, field: "overview" },
     },
   });
+  await vi.runAllTimersAsync();
   const reply = await finished(1);
   if (reply.type !== "result") throw new Error("Expected station result");
   expect(traced.mock.calls.map(([, settings]) => settings.fieldFractions)).toEqual([
     [0, 0.5, 1],
     [0, 0.5, 0.75],
   ]);
-  expect(reply.result.fields.at(-1)).toEqual(ordinary.fields.find((field) => field.fieldFraction === 0.75));
+  expect(reply.result.fields).toEqual(ordinary.fields.filter((field) => [0, 0.5, 0.75].includes(field.fieldFraction)));
   expect(reply.result.focus).toEqual(ordinary.focus);
   expect(reply.result.sweepEdge).toEqual({
     fieldFraction: 0.75,
     imageHeightMm: ordinary.fields.find((field) => field.fieldFraction === 0.75)!.imageHeightMm,
   });
+  expect(
+    snapshots.some(
+      (result) =>
+        result.sweepEdge?.fieldFraction === 1 &&
+        [0, 0.5].every((fraction) =>
+          result.fields.some((field) => field.fieldFraction === fraction && field.status !== "pending"),
+        ),
+    ),
+  ).toBe(true);
+  const previousFields = new Map<number, MtfFieldResult>();
+  for (const result of snapshots) {
+    for (const field of result.fields) {
+      const previous = previousFields.get(field.fieldFraction);
+      if (previous) {
+        if (previous.status !== "pending") expect(field.status).not.toBe("pending");
+        expect(field.gridSize).toBeGreaterThanOrEqual(previous.gridSize);
+      }
+      previousFields.set(field.fieldFraction, field);
+    }
+  }
 });
 
 it("matches ordinary no-format fields at every station even when their modeled reference heights differ", async () => {

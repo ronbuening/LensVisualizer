@@ -410,8 +410,10 @@ plane at that station. The caption states infinity, each station's own wide-open
 On the worker, the station's modeled field geometry selects center, 50 % and the outermost field-step position
 inside its modeled edge, or the selected single fraction, before tracing pupils. These jobs restrict the field list
 and reuse that geometry in the ordinary engine request. If its edge field is unavailable, the worker tries inward
-field-step positions, retaining the same focus and completed fields, until it finds a usable edge. The selected
-edge fraction and actual height travel explicitly with each sample, including an edge that falls back to center.
+field-step positions, retaining the same focus and completed fields, until it finds a usable edge. During inward
+retries, progress retains the prior snapshot until no retry field is pending, so completed statuses and grid sizes
+do not regress. The selected edge fraction and actual height travel explicitly with each sample, including an edge
+that falls back to center.
 Every sampled field matches the ordinary request at that station. A declared format supplies the common reference
 height; without one each station retains its own modeled-field reference. Series labels name that station-specific
 basis and the caption states that image heights differ between stations. The crosshair, table and CSV give actual
