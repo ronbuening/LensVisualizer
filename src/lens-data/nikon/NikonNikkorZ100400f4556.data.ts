@@ -415,6 +415,24 @@ const LENS_DATA = {
     closeFocusM: 0.98, // Figure2 finite object distances plus system track, rounded.
     description:
       "Patent G5/G6 floating focus: imageward travel is 1.39/9.708 mm at wide and 30.617/30.999 mm at tele. The 0.382 mm tele D38 change is relative group separation, not G6 travel. Near source figures describe about 0.98 m; VR lateral motion is not simulated.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 745.5,
+        distanceReference: "first-surface",
+        source:
+          "JP 2022-092388 A, Example 1, Table 1 near wide/tele gaps (PDF p. 15), Figure 2(b)/(d), PDF p. 26: D0 = 745.5 mm; D4 [4]=1.5, D9 [9]=1.3, D17 [17]=43.095, D35 [35]=4.59, D38 [38]=22.618, D42 [42]=17.275 mm. First-surface distance reference identified by the conjugate audit; the patent does not explicitly define the reference.",
+      },
+      {
+        zoomStation: 1,
+        keyframe: 1,
+        objectDistanceMm: 695.5,
+        distanceReference: "first-surface",
+        source:
+          "JP 2022-092388 A, Example 1, Table 1 near wide/tele gaps (PDF p. 15), Figure 2(b)/(d), PDF p. 26: D0 = 695.5 mm; D4 [4]=51.5, D9 [9]=25.6, D17 [17]=2.1, D35 [35]=34.084, D38 [38]=9.182, D42 [42]=17.915 mm. First-surface distance reference identified by the conjugate audit; the patent does not explicitly define the reference.",
+      },
+    ],
   },
 
   gaps: {

@@ -1,5 +1,3 @@
-import type { LensDataV2Input } from "../src/types/lensDataV2.js";
-import { createAnalysisRequest } from "../src/optics/analysis.js";
 /**
  * Manufacturer-chart regression report.
  *
@@ -10,36 +8,49 @@ import { createAnalysisRequest } from "../src/optics/analysis.js";
  * against an optical-path autocorrelation of the same rays, and keeps the audit's own values as a frozen reference:
  * the audit ran a method that no longer exists.
  *
- * It traces every configuration at a 256 pupil-grid cap, so it runs only with MTF_CHART_REPORT=1 and is skipped by a
- * plain `npm run generate:reports`. Chart agreement is reported and never asserted, here or in any test.
+ * Tracing every configuration at a 256 pupil-grid cap requires MTF_CHART_REPORT=1; a plain run only refreshes the
+ * report's freshness status from input hashes. Chart agreement is reported and never asserted.
  *
  * Regenerate: `MTF_CHART_REPORT=1 npm run generate:reports -- mtfChartRegression`
  */
+import type { LensDataV2Input } from "../src/types/lensDataV2.js";
+import { createAnalysisRequest } from "../src/optics/analysis.js";
 import { describe, expect, it } from "vitest";
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
-import { env } from "node:process";
-import { combineOtfs, otfMagnitude } from "../src/optics/mtf.js";
-import type { ComplexOtf, MtfSpot } from "../src/optics/mtf.js";
-import { shearedOtf } from "../src/optics/mtf.js";
-import {
-  findMtfFieldFootprint,
-  prepareMtfFieldLaunch,
-  traceMtfStopBundle,
-  traceMtfLaunchPlaneBundle,
-} from "../src/optics/mtf.js";
-import { mtfWaveLattice, waveLatticeOtf, waveLatticePhaseStep } from "../src/optics/mtf.js";
-import { wideOpenStopAtZoom } from "../src/optics/optics.js";
+import { cwd, env } from "node:process";
+import { fNumberAtStopdown, wideOpenStopAtZoom } from "../src/optics/optics.js";
 import { buildLens } from "../src/optics/buildLens.js";
 import { prepareRuntimeState } from "../src/optics/optics.js";
-import { assessMtfSupport, computeMtf } from "../src/optics/mtf.js";
+import { computeMtf } from "../src/optics/mtf.js";
 import { computeAnalysisFieldGeometryAtState, entrancePupilAtState } from "../src/optics/fieldGeometry.js";
-import type { PreparedOpticalState } from "../src/optics/types.js";
-import type { MtfMethod, MtfOptions, MtfResult } from "../src/types/mtf.js";
+import type { MtfMethod, MtfOptions, MtfRequestOptions, MtfResult } from "../src/types/mtf.js";
 import { mtfChartConvention, type MtfChartConvention, type MtfChartMethod } from "./data/mtfChartConventions.js";
-import { correctedSinceAudit } from "./mtfChartLib.js";
+import {
+  chartDeltas,
+  parseChartAnchors,
+  correctedSinceAudit,
+  crossCheckConfiguration,
+  stoppedDownCrossCheck,
+  renderCrossCheckPass,
+  CROSS_CHECK_GRID,
+  CROSS_CHECK_FREQUENCIES,
+  CROSS_CHECK_PHASE_STEP_WAVES,
+} from "./mtfChartLib.js";
+import type { Anchor, ChartDeltas, Curves, CrossCheckPass } from "./mtfChartLib.js";
+import {
+  createMtfChartProvenance,
+  hashMtfChartInputs,
+  MTF_CHART_ANCHORS_PATH as ANCHORS_PATH,
+  mtfChartStatus,
+  parseMtfChartProvenance,
+  renderMtfChartProvenance,
+  summarizeMtfChartConfiguration,
+  updateMtfChartStatus,
+} from "./mtfChartProvenance.js";
+import type { MtfChartProvenance } from "./mtfChartProvenance.js";
 
-const modules = import.meta.glob<{ default: LensDataV2Input }>("../src/lens-data/**/*.data.ts", { eager: true });
-const ANCHORS_PATH = "reports/data/mtfChartAnchors.csv";
+// Lazy imports keep the freshness-only run independent of the catalog's module loading cost.
+const modules = import.meta.glob<{ default: LensDataV2Input }>("../src/lens-data/**/*.data.ts");
 const REPORT_DIR = "agent_docs/generated";
 const REPORT_PATH = `${REPORT_DIR}/mtf-chart-regression.generated.md`;
 const ENABLED = env.MTF_CHART_REPORT === "1";
@@ -54,6 +65,13 @@ const RECORDED_MEAN_ABSOLUTE = 0.0731;
 /** Method of the one-method comparison; pupil, stop and fields are sized per configuration. */
 const DIFFRACTION_METHOD: MtfMethod = "diffraction";
 const FREQUENCIES = [0, 10, 20, 30, 40, 50];
+const CHART_REQUEST_SETTINGS = {
+  method: DIFFRACTION_METHOD,
+  spectrum: "photopic",
+  focus: "best-axial",
+  maxGridSize: 256,
+  frequenciesPerMm: FREQUENCIES,
+} satisfies MtfRequestOptions;
 /** Engine method that stands in for each chart method. Only a geometric chart leaves diffraction out. */
 const ENGINE_METHOD: Record<MtfChartMethod, MtfMethod> = {
   geometric: "geometric",
@@ -74,11 +92,6 @@ const LAST_REPRODUCTION = {
   meanAbsolute: 0.0047,
   meanSigned: -0.0047,
 };
-/** Pupil grid, frequencies and gates of the estimator cross-check. */
-const CROSS_CHECK_GRID = 128;
-const CROSS_CHECK_FREQUENCIES = [10, 30];
-const CROSS_CHECK_PHASE_STEP_WAVES = 0.25;
-const CROSS_CHECK_TOLERANCE = 0.004;
 /** Field bands by upper bound, set between the tenths of the field the anchors sit on. */
 const FIELD_BANDS = [
   { label: "0-0.3", upTo: 0.35 },
@@ -87,46 +100,12 @@ const FIELD_BANDS = [
 ];
 const fieldBand = (fraction: number) => FIELD_BANDS.find((band) => fraction <= band.upTo);
 
-/** One digitized chart value and the audit's own result at the same field and frequency. */
-interface Anchor {
-  key: string;
-  zoomT: number;
-  fieldFraction: number;
-  frequency: number;
-  /** Envelope of the chart's sagittal and meridional strokes, which the digitization does not tell apart. */
-  pairMin: number;
-  pairMax: number;
-  apertureLabel: number;
-  methodPrinted: string;
-  sourceUrl: string;
-  allowance: number;
-  recorded: Curves;
-}
-
-interface Curves {
-  sagittal: number;
-  tangential: number;
-}
-
 interface Sample {
   anchor: Anchor;
   maker: string;
   /** Recomputed with diffraction and under the maker's convention; null where the field has no curve. */
   diffraction: Curves | null;
   convention: Curves | null;
-}
-
-/** Diffraction estimate against the optical-path autocorrelation of the same rays, over one configuration. */
-interface CrossCheck {
-  /** Fields whose phase step stays under the gate at every wavelength, and the fields it rules out. */
-  compared: number;
-  undersampled: number;
-  /** Fields with curves that could not be traced again for the check. */
-  untraced: number;
-  /** |estimate - reference| of every compared S and T value. */
-  gaps: number[];
-  /** Largest phase step of the compared fields, in waves per lattice cell. */
-  largestStep: number;
 }
 
 /** One lens at one zoom position: a single published chart. */
@@ -140,14 +119,14 @@ interface Configuration {
   /** Result of the diffraction method; focus and aperture do not depend on the method. */
   result: MtfResult;
   samples: Sample[];
-  crossCheck: CrossCheck;
+  crossChecks: { wideOpen: CrossCheckPass; stoppedDown: CrossCheckPass };
+  settings: { diffraction: MtfOptions; makerConvention: MtfOptions };
 }
 
 /** Delta of one sample under one comparison; null when the comparison has no curve there. */
-type Comparison = (sample: Sample) => number | null;
+type Comparison = (sample: Sample) => ChartDeltas | null;
 
-const delta = (curves: Curves, anchor: Anchor) =>
-  (curves.sagittal + curves.tangential) / 2 - (anchor.pairMin + anchor.pairMax) / 2;
+const delta = chartDeltas;
 const DIFFRACTION: Comparison = (sample) => sample.diffraction && delta(sample.diffraction, sample.anchor);
 const MAKER_CONVENTION: Comparison = (sample) => sample.convention && delta(sample.convention, sample.anchor);
 const RECORDED: Comparison = (sample) => delta(sample.anchor.recorded, sample.anchor);
@@ -163,53 +142,7 @@ const row = (cells: (string | number)[]) => `| ${cells.join(" | ")} |`;
 /** Code-unit order, so the report sorts the same under every locale. */
 const byText = (a: string, b: string) => (a < b ? -1 : a > b ? 1 : 0);
 
-/** Split one CSV record on commas outside double quotes. Fields here never hold a line break. */
-function splitCsvRecord(record: string): string[] {
-  const cells: string[] = [];
-  let cell = "";
-  let quoted = false;
-  for (let i = 0; i < record.length; i++) {
-    const char = record[i];
-    if (quoted && char === '"' && record[i + 1] === '"') {
-      cell += '"';
-      i++;
-    } else if (char === '"') quoted = !quoted;
-    else if (char === "," && !quoted) {
-      cells.push(cell);
-      cell = "";
-    } else cell += char;
-  }
-  return [...cells, cell];
-}
-
-function readAnchors(): Anchor[] {
-  const [header, ...records] = readFileSync(ANCHORS_PATH, "utf8").trim().split("\n").map(splitCsvRecord);
-  return records.map((cells) => {
-    const text = (column: string) => {
-      const index = header.indexOf(column);
-      if (index < 0) throw new Error(`${ANCHORS_PATH} has no "${column}" column`);
-      return cells[index];
-    };
-    const number = (column: string) => {
-      const value = Number(text(column));
-      if (!Number.isFinite(value)) throw new Error(`${ANCHORS_PATH}: "${column}" of ${cells[0]} is not a number`);
-      return value;
-    };
-    return {
-      key: text("key"),
-      zoomT: number("zoomT"),
-      fieldFraction: number("field_fraction"),
-      frequency: number("frequency_lp_mm"),
-      pairMin: number("manufacturer_pair_min"),
-      pairMax: number("manufacturer_pair_max"),
-      apertureLabel: number("chart_aperture_label"),
-      methodPrinted: text("chart_method_printed"),
-      sourceUrl: text("source_url"),
-      allowance: number("digitization_allowance_mtf"),
-      recorded: { sagittal: number("audit_sagittal"), tangential: number("audit_tangential") },
-    };
-  });
-}
+const readAnchors = () => parseChartAnchors(readFileSync(ANCHORS_PATH, "utf8"));
 
 /** Sagittal and tangential values of one field at one frequency; null when the field returned no curve. */
 function curvesAt(result: MtfResult, fieldIndex: number, frequency: number): Curves | null {
@@ -218,80 +151,6 @@ function curvesAt(result: MtfResult, fieldIndex: number, frequency: number): Cur
   // An unsupported request returns no fields at all; its samples are then listed as missing, not thrown on.
   if (!field || index < 0 || (field.status !== "converged" && field.status !== "unconverged")) return null;
   return { sagittal: field.sagittal[index], tangential: field.tangential[index] };
-}
-
-/**
- * Hold the diffraction estimate against the optical-path autocorrelation, field by field.
- *
- * Both are computed from one bundle per wavelength, traced again with optical paths at a fixed grid: the estimate
- * reads where the rays land, the reference reads how far they travelled. A field counts only where the reference
- * is itself sampled finely enough, a phase step under a quarter wave per cell at every wavelength.
- */
-function crossCheckConfiguration(state: PreparedOpticalState, options: MtfOptions, result: MtfResult): CrossCheck {
-  const charted = result.fields.filter((field) => field.status === "converged" || field.status === "unconverged");
-  const check: CrossCheck = { compared: 0, undersampled: 0, untraced: charted.length, gaps: [], largestStep: 0 };
-  const support = assessMtfSupport(
-    createAnalysisRequest({
-      preparedState: state,
-      dynamicEFL: 0,
-      currentEPSD: options.pupilSemiDiameterMm,
-      currentPhysStopSD: options.stopSemiDiameterMm,
-    }),
-    options,
-  );
-  if (!support.available || !result.focus) return check;
-  const planeZ = state.imgZ + result.focus.appliedShiftMm;
-  for (const field of charted) {
-    if (field.fieldAngleDeg === null) continue;
-    const launch = prepareMtfFieldLaunch(state, options, support, field.fieldAngleDeg);
-    // A bounding-sphere field keeps launch-plane sampling over its footprint, as the product does.
-    const footprint = launch && !launch.aim ? findMtfFieldFootprint(state, options, support, launch) : null;
-    if (!launch || (!launch.aim && !footprint)) continue;
-    const estimate = { sagittal: [] as Weighted[], tangential: [] as Weighted[] };
-    const reference = { sagittal: [] as Weighted[], tangential: [] as Weighted[] };
-    let common: MtfSpot | undefined;
-    let step = 0;
-    let complete = true;
-    for (const line of support.spectralLines) {
-      const extras = { reference: common, opticalPath: true };
-      const bundle = footprint
-        ? traceMtfLaunchPlaneBundle(state, options, support, launch, footprint, CROSS_CHECK_GRID, line, planeZ, extras)
-        : traceMtfStopBundle(state, options, support, launch, CROSS_CHECK_GRID, line, planeZ, extras);
-      const lattice = bundle && mtfWaveLattice(bundle, (common ??= bundle.chief), planeZ);
-      if (!bundle || !lattice || !common) {
-        complete = false;
-        break;
-      }
-      const wavelengthMm = line.wavelengthNm * 1e-6;
-      step = Math.max(step, waveLatticePhaseStep(lattice, wavelengthMm));
-      const weight = line.weight * bundle.rays.reduce((sum, ray) => sum + ray.weight, 0);
-      const sheared = shearedOtf(bundle, common, wavelengthMm, CROSS_CHECK_FREQUENCIES);
-      const wave = waveLatticeOtf(lattice, wavelengthMm, CROSS_CHECK_FREQUENCIES);
-      for (const cut of ["sagittal", "tangential"] as const) {
-        estimate[cut].push({ otf: sheared[cut], weight });
-        reference[cut].push({ otf: wave[cut], weight });
-      }
-    }
-    if (!complete) continue;
-    check.untraced--;
-    if (!(step < CROSS_CHECK_PHASE_STEP_WAVES)) {
-      check.undersampled++;
-      continue;
-    }
-    check.compared++;
-    check.largestStep = Math.max(check.largestStep, step);
-    for (const cut of ["sagittal", "tangential"] as const) {
-      const ours = otfMagnitude(combineOtfs(estimate[cut]));
-      const theirs = otfMagnitude(combineOtfs(reference[cut]));
-      ours.forEach((value, i) => check.gaps.push(Math.abs(value - theirs[i])));
-    }
-  }
-  return check;
-}
-
-interface Weighted {
-  otf: ComplexOtf;
-  weight: number;
 }
 
 /** Trace one chart's configuration with diffraction and, when it differs, under the maker's convention. */
@@ -303,11 +162,8 @@ function runConfiguration(lens: LensDataV2Input, zoomT: number, anchors: Anchor[
   const pupil = entrancePupilAtState(stop, 0, zoomT, L, computeAnalysisFieldGeometryAtState(0, zoomT, L, 0), 0).epSD;
   const fieldFractions = [...new Set(anchors.map((anchor) => anchor.fieldFraction))].sort((a, b) => a - b);
   const options = (method: MtfMethod): MtfOptions => ({
+    ...CHART_REQUEST_SETTINGS,
     method,
-    spectrum: "photopic",
-    focus: "best-axial",
-    maxGridSize: 256,
-    frequenciesPerMm: FREQUENCIES,
     fieldFractions,
     pupilSemiDiameterMm: pupil,
     stopSemiDiameterMm: stop,
@@ -343,6 +199,7 @@ function runConfiguration(lens: LensDataV2Input, zoomT: number, anchors: Anchor[
     convention,
     corrected: correctedSinceAudit(L),
     result,
+    settings: { diffraction: options(DIFFRACTION_METHOD), makerConvention: options(conventionMethod) },
     samples: anchors.map((anchor) => {
       const fieldIndex = fieldFractions.indexOf(anchor.fieldFraction);
       return {
@@ -352,16 +209,32 @@ function runConfiguration(lens: LensDataV2Input, zoomT: number, anchors: Anchor[
         convention: curvesAt(conventionResult, fieldIndex, anchor.frequency),
       };
     }),
-    crossCheck: crossCheckConfiguration(state, options(DIFFRACTION_METHOD), result),
+    crossChecks: {
+      wideOpen: {
+        fNumber: fNumberAtStopdown(0, zoomT, L),
+        focusShiftMm: result.focus?.appliedShiftMm ?? null,
+        check: crossCheckConfiguration(state, options(DIFFRACTION_METHOD), result),
+      },
+      stoppedDown: stoppedDownCrossCheck(L, zoomT, state, options(DIFFRACTION_METHOD)),
+    },
   };
 }
 
 /** Mean signed delta, mean absolute delta and share of negative deltas, as table cells. */
-function deltaCells(samples: Sample[], comparison: Comparison): string[] {
-  const deltas = samples.map(comparison).filter((value) => value !== null);
+function deltaCells(samples: Sample[], comparison: Comparison, metric: keyof ChartDeltas = "midpoint"): string[] {
+  const deltas = samples.map((sample) => comparison(sample)?.[metric] ?? null).filter((value) => value !== null);
   if (!deltas.length) return ["n/a", "n/a", "n/a"];
   const negative = deltas.filter((value) => value < 0).length;
   return [signed(mean(deltas)), fixed(mean(deltas.map(Math.abs))), `${fixed((100 * negative) / deltas.length, 1)}%`];
+}
+
+/** Keep the pair's level and separation beside each other in every chart-comparison group. */
+function pairDeltaCells(samples: Sample[], comparison: Comparison, includeNegative = true): string[] {
+  const midpoint = deltaCells(samples, comparison);
+  return [
+    ...(includeNegative ? midpoint : midpoint.slice(0, 2)),
+    ...deltaCells(samples, comparison, "separation").slice(0, 2),
+  ];
 }
 
 /** diffraction estimate - recorded product for the sagittal and tangential value of every sample. */
@@ -403,7 +276,7 @@ function recordedTable(configurations: Configuration[]): string[] {
   return lines;
 }
 
-function renderReport(configurations: Configuration[]): string {
+function renderReport(configurations: Configuration[], provenance: MtfChartProvenance): string {
   const samples = configurations.flatMap((configuration) => configuration.samples);
   const makers = [...new Set(configurations.map((configuration) => configuration.maker))];
   const groups: [string, Sample[]][] = [
@@ -418,20 +291,26 @@ function renderReport(configurations: Configuration[]): string {
   lines.push(
     "# MTF Chart Regression (auto-generated)",
     "",
+    "Status: current",
+    "",
     `Simulated MTF of ${configurations.length} lens configurations against values digitized from the makers' published`,
     `MTF charts: ${samples.length} samples in \`${ANCHORS_PATH}\`, one per charted field position at`,
     `${frequencies.join(" and ")} lp/mm.`,
     "",
     "**Regenerate this file** by running `MTF_CHART_REPORT=1 npm run generate:reports -- mtfChartRegression`.",
-    "Without the variable the run is skipped, because it traces every configuration at a 256 pupil-grid cap.",
+    "The provenance stamp records the UTC date, checkout, shared settings, per-configuration settings digests and input hashes.",
+    "Without the variable, only the status line is refreshed by comparing input hashes; no lenses are traced.",
+    "",
+    renderMtfChartProvenance(provenance).trimEnd(),
     "",
     "## Reading the Numbers",
     "",
-    "- **Delta** is simulation minus chart, `(S + T) / 2 - (pair_min + pair_max) / 2`, in MTF units on the 0-1",
-    "  scale. A negative delta means the simulation reads below the chart.",
-    "- **Only pair midpoints are compared.** The digitization records the envelope of a chart's two strokes at each",
-    "  image height without assigning them to sagittal and meridional, so a midpoint can hide opposite errors in S",
-    "  and T.",
+    "**Midpoint delta** is simulation minus chart, `(S + T) / 2 - (pair_min + pair_max) / 2`, in MTF units;",
+    "negative means the simulation reads below the chart. **Separation delta** is `|S - T| - (pair_max - pair_min)`:",
+    "positive means more simulated S/T splitting (astigmatism/lateral blur asymmetry), negative less, without",
+    "assigning the chart's strokes to sagittal and meridional. Both have mean signed and mean absolute values;",
+    "neither is a test threshold, and nothing is fitted to the charts.",
+    "",
     `- **Samples are correlated, not independent measurements.** The ${samples.length} samples come from`,
     `  ${configurations.length} charts of ${lensCount} lenses; neighbors on a curve share a prescription, an image plane`,
     "  and a digitization. The means describe this set and carry no confidence interval.",
@@ -482,8 +361,8 @@ function renderReport(configurations: Configuration[]): string {
           " The Audit's Recorded Values), so those rows still include the printed, uncorrected tables."
         : ""),
     "",
-    "| Maker | Comparison | Samples | Mean signed | Mean absolute | Negative |",
-    "|---|---|---:|---:|---:|---:|",
+    "| Maker | Comparison | Samples | Midpoint: signed | absolute | negative | Separation: signed | absolute |",
+    "|---|---|---:|---:|---:|---:|---:|---:|",
   );
   const comparisons: [string, Comparison][] = [
     ["Diffraction", DIFFRACTION],
@@ -493,18 +372,18 @@ function renderReport(configurations: Configuration[]): string {
   for (const [group, members] of groups)
     for (const [label, comparison] of comparisons) {
       const count = members.filter((sample) => comparison(sample) !== null).length;
-      lines.push(row([group, label, count, ...deltaCells(members, comparison)]));
+      lines.push(row([group, label, count, ...pairDeltaCells(members, comparison)]));
     }
   lines.push("");
 
   lines.push(
     "## By Frequency and Field Band",
     "",
-    "Field is the fraction of the reference image height. Each comparison lists mean signed delta, mean absolute",
-    "delta and the share of negative samples.",
+    "Field is the fraction of the reference image height. Each comparison lists mean signed and mean absolute",
+    "midpoint and separation deltas, with the share of negative midpoint samples.",
     "",
-    "| Maker | lp/mm | Field | Samples | Diffraction: signed | absolute | negative | Convention: signed | absolute | negative |",
-    "|---|---:|---|---:|---:|---:|---:|---:|---:|---:|",
+    "| Maker | lp/mm | Field | Samples | Diffraction midpoint: signed | absolute | negative | separation: signed | absolute | Convention midpoint: signed | absolute | negative | separation: signed | absolute |",
+    "|---|---:|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|",
   );
   for (const [group, members] of groups)
     for (const frequency of frequencies)
@@ -518,8 +397,8 @@ function renderReport(configurations: Configuration[]): string {
             frequency,
             band.label,
             inBand.length,
-            ...deltaCells(inBand, DIFFRACTION),
-            ...deltaCells(inBand, MAKER_CONVENTION),
+            ...pairDeltaCells(inBand, DIFFRACTION),
+            ...pairDeltaCells(inBand, MAKER_CONVENTION),
           ]),
         );
       }
@@ -531,10 +410,10 @@ function renderReport(configurations: Configuration[]): string {
     "`Label f/` is the aperture printed on the chart, which the stop rule sizes the iris for; `Vignetted by` names the",
     "surface that clips the axial marginal ray, as the Summary's working f-number reports it. Focus shift is the best",
     "axial focus plane relative to the authored image plane, in mm. Each comparison lists mean signed and mean",
-    "absolute delta.",
+    "absolute midpoint and separation deltas.",
     "",
-    "| Lens | zoomT | Maker | Chart convention | Label f/ | Vignetted by | Focus shift | Diffraction: signed | absolute | Convention: signed | absolute |",
-    "|---|---:|---|---|---:|---|---:|---:|---:|---:|---:|",
+    "| Lens | zoomT | Maker | Chart convention | Label f/ | Vignetted by | Focus shift | Diffraction midpoint: signed | absolute | separation: signed | absolute | Convention midpoint: signed | absolute | separation: signed | absolute |",
+    "|---|---:|---|---|---:|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|",
   );
   for (const { key, zoomT, maker, convention, result, samples: own } of configurations)
     lines.push(
@@ -548,54 +427,82 @@ function renderReport(configurations: Configuration[]): string {
           ? `${result.axialVignetting.surfaceLabel}${result.axialVignetting.beforeStop ? " (before stop)" : ""}`
           : "—",
         result.focus ? signed(result.focus.appliedShiftMm) : "n/a",
-        ...deltaCells(own, DIFFRACTION).slice(0, 2),
-        ...deltaCells(own, MAKER_CONVENTION).slice(0, 2),
+        ...pairDeltaCells(own, DIFFRACTION, false),
+        ...pairDeltaCells(own, MAKER_CONVENTION, false),
       ]),
     );
   lines.push("");
 
-  const checks = configurations.map((configuration) => configuration.crossCheck);
-  const allGaps = checks.flatMap((check) => check.gaps);
-  const comparedFields = checks.reduce((sum, check) => sum + check.compared, 0);
-  const undersampledFields = checks.reduce((sum, check) => sum + check.undersampled, 0);
-  const untracedFields = checks.reduce((sum, check) => sum + check.untraced, 0);
+  const assigned = samples.filter((sample) => sample.anchor.assigned);
+  if (assigned.length) {
+    lines.push(
+      "## Assigned Directions",
+      "",
+      "Rows with explicitly assigned chart strokes also list simulation minus chart per direction (T is meridional).",
+      "Assignment confidence and the verbatim chart aperture are provenance only; missing assignments or curves",
+      "print n/a. Low-confidence assignments are included and labelled, never used as test thresholds or fitted.",
+      "",
+      "| Lens | zoomT | Field | lp/mm | Assignment confidence | Chart stated aperture | Label f/ | Comparison | S delta | T delta |",
+      "|---|---:|---:|---:|---|---|---:|---|---:|---:|",
+    );
+    for (const sample of assigned) {
+      const { anchor } = sample;
+      for (const [label, comparison] of comparisons) {
+        const deltas = comparison(sample);
+        lines.push(
+          row([
+            `\`${anchor.key}\``,
+            anchor.zoomT,
+            anchor.fieldFraction,
+            anchor.frequency,
+            anchor.assignmentConfidence ?? "unspecified",
+            (anchor.statedAperture ?? "unspecified").replace(/\|/g, "\\|"),
+            fixed(anchor.apertureLabel, 2),
+            label,
+            deltas?.sagittal == null ? "n/a" : signed(deltas.sagittal),
+            deltas?.tangential == null ? "n/a" : signed(deltas.tangential),
+          ]),
+        );
+      }
+    }
+    lines.push("");
+  }
+
   lines.push(
     "## Estimator Cross-Check",
     "",
-    "The diffraction estimate is computed from where the rays land. As a check that shares only the ray trace, the",
-    "same bundles are traced with their optical path and the complex pupil is autocorrelated on the stop lattice",
-    "(`waveLatticeOtf`). Both are summed over the photopic lines on the best axial focus plane at a",
-    `${CROSS_CHECK_GRID} pupil grid, and compared at ${CROSS_CHECK_FREQUENCIES.join(" and ")} lp/mm on both cuts. The optical-path route is only`,
-    `valid where its phase turns by less than ${CROSS_CHECK_PHASE_STEP_WAVES} wave from one lattice cell to the next, so a field enters`,
-    "only when every wavelength meets that; fast or strongly aberrated beams do not, and are counted as",
-    "undersampled. This is a consistency check between two routes in one engine, not a comparison with another tool.",
+    "The diffraction estimate reads ray landings; the optical-path route (`waveLatticeOtf`) autocorrelates the",
+    "complex pupil in direction space. The routes share the ray trace, so agreement is not proof against an outside",
+    "reference. Both are summed over the photopic lines on each aperture's own best axial focus plane, at a",
+    `${CROSS_CHECK_GRID}-cell pupil grid and ${CROSS_CHECK_FREQUENCIES.join(", ")} lp/mm on both cuts. The two passes use the same chart field fractions.`,
+    "The stopped-down pass uses f/8, capped at the lens's maximum marked f-number (minimum aperture), and never opens",
+    "past wide open. The actual marked f-number and focus shift from the authored image plane (mm) appear below.",
     "",
-    `| Lens | zoomT | Fields compared | Undersampled | Largest step (waves) | Values | Max abs | Mean abs | Above ${CROSS_CHECK_TOLERANCE} |`,
-    "|---|---:|---:|---:|---:|---:|---:|---:|---:|",
-  );
-  for (const { key, zoomT, crossCheck } of configurations)
-    lines.push(
-      row([
-        `\`${key}\``,
+    `A field is compared only when every wavelength has an invertible direction map and a phase step strictly below`,
+    `${CROSS_CHECK_PHASE_STEP_WAVES} wave per cell, and the spectrally weighted unresolved flux stays within the product's cap.`,
+    "Excluded fields are **not checked**: phase-step exclusions, non-invertible maps (whose gate returns infinity),",
+    "unresolved flux over the cap, and unavailable fields or bundles are counted separately. Each field has one",
+    "exclusion reason; an incomplete spectral bundle is unavailable. Largest excluded step covers phase and map",
+    "exclusions: n/a when neither occurs, and infinity for a non-invertible map. Magnitude gaps are |abs(estimate) - abs(reference)|; complex",
+    "gaps are abs(estimate - reference), after spectral combination. All gaps describe only compared fields.",
+    "These are report diagnostics, never test thresholds.",
+    "",
+    ...renderCrossCheckPass(
+      "Wide open",
+      configurations.map(({ key, zoomT, crossChecks }) => ({
+        key,
         zoomT,
-        crossCheck.compared,
-        crossCheck.undersampled,
-        crossCheck.compared ? fixed(crossCheck.largestStep, 3) : "n/a",
-        crossCheck.gaps.length,
-        crossCheck.gaps.length ? fixed(Math.max(...crossCheck.gaps)) : "n/a",
-        crossCheck.gaps.length ? fixed(mean(crossCheck.gaps)) : "n/a",
-        crossCheck.gaps.filter((gap) => gap > CROSS_CHECK_TOLERANCE).length,
-      ]),
-    );
-  lines.push(
-    "",
-    allGaps.length
-      ? `Over ${comparedFields} fields (${allGaps.length} values): max absolute ${fixed(Math.max(...allGaps))}, mean absolute ` +
-          `${fixed(mean(allGaps))}, ${allGaps.filter((gap) => gap > CROSS_CHECK_TOLERANCE).length} above ${CROSS_CHECK_TOLERANCE}. ` +
-          `${undersampledFields} fields were undersampled for the optical-path route and are not compared` +
-          (untracedFields ? `; ${untracedFields} more could not be traced again for the check.` : ".")
-      : "No field met the phase-step gate.",
-    "",
+        pass: crossChecks.wideOpen,
+      })),
+    ),
+    ...renderCrossCheckPass(
+      "Stopped down",
+      configurations.map(({ key, zoomT, crossChecks }) => ({
+        key,
+        zoomT,
+        pass: crossChecks.stoppedDown,
+      })),
+    ),
   );
 
   const unchanged = configurations.filter((configuration) => !configuration.corrected);
@@ -640,18 +547,53 @@ function renderReport(configurations: Configuration[]): string {
   return lines.join("\n") + "\n";
 }
 
-describe.skipIf(!ENABLED)("MTF chart regression report", () => {
-  it(
+describe("MTF chart regression report", () => {
+  it.skipIf(ENABLED)("refreshes input freshness without tracing", () => {
+    const existing = readFileSync(REPORT_PATH, "utf8");
+    const provenance = parseMtfChartProvenance(existing);
+    const hashes = hashMtfChartInputs(cwd(), Object.keys(provenance?.hashes.lensFiles ?? {}));
+    const updated = updateMtfChartStatus(existing, mtfChartStatus(provenance, hashes));
+    if (updated !== existing) writeFileSync(REPORT_PATH, updated);
+  });
+  it.skipIf(!ENABLED)(
     "emits simulated MTF against the digitized manufacturer charts",
-    () => {
+    async () => {
       const anchors = readAnchors();
       expect(anchors).toHaveLength(ANCHOR_COUNT);
-      const recordedDeltas = anchors.map((anchor) => delta(anchor.recorded, anchor));
+      const recordedDeltas = anchors.map((anchor) => delta(anchor.recorded, anchor).midpoint);
       expect(Math.abs(mean(recordedDeltas) - RECORDED_MEAN_SIGNED)).toBeLessThan(0.0005);
       expect(Math.abs(mean(recordedDeltas.map(Math.abs)) - RECORDED_MEAN_ABSOLUTE)).toBeLessThan(0.0005);
 
-      const lensByKey = new Map(Object.values(modules).map((module) => [module.default.key, module.default]));
+      const loaded = await Promise.all(
+        Object.entries(modules).map(async ([path, load]) => ({
+          path: path.replace(/^\.\.\//, ""),
+          lens: (await load()).default,
+        })),
+      );
+      const lensByKey = new Map(loaded.map(({ lens }) => [lens.key, lens]));
       expect([...new Set(anchors.map((anchor) => anchor.key))].filter((key) => !lensByKey.has(key))).toEqual([]);
+      const keys = new Set(anchors.map((anchor) => anchor.key));
+      const hashes = hashMtfChartInputs(
+        cwd(),
+        loaded.filter(({ lens }) => keys.has(lens.key)).map(({ path }) => path),
+      );
+      const sharedSettings = {
+        focusT: 0,
+        dynamicEFL: 0,
+        diffraction: CHART_REQUEST_SETTINGS,
+        makerConvention:
+          "Same as diffraction except method: geometric charts use geometric; all others use diffraction.",
+        crossCheck: {
+          gridSize: CROSS_CHECK_GRID,
+          frequenciesPerMm: CROSS_CHECK_FREQUENCIES,
+          phaseStepWaves: CROSS_CHECK_PHASE_STEP_WAVES,
+          focus: "best-axial",
+          spectrum: "same as diffraction",
+          fields: "same as diffraction",
+          apertures: "wide open and f/8 or nearest attainable, each at its own best axial focus",
+        },
+      };
+      const provenance = createMtfChartProvenance(cwd(), hashes, { ...sharedSettings });
 
       // One chart per lens and zoom position.
       const charts = new Map<string, Anchor[]>();
@@ -662,9 +604,27 @@ describe.skipIf(!ENABLED)("MTF chart regression report", () => {
       const configurations = [...charts.values()]
         .map((group) => runConfiguration(lensByKey.get(group[0].key)!, group[0].zoomT, group))
         .sort((a, b) => byText(a.maker, b.maker) || byText(a.key, b.key) || a.zoomT - b.zoomT);
+      provenance.settings.configurations = configurations.map(({ key, zoomT, settings, result, crossChecks }) =>
+        summarizeMtfChartConfiguration(
+          {
+            key,
+            zoomT,
+            ...settings,
+            spectralLines: result.support.spectralLines,
+            crossChecks: {
+              wideOpen: { fNumber: crossChecks.wideOpen.fNumber, focusShiftMm: crossChecks.wideOpen.focusShiftMm },
+              stoppedDown: {
+                fNumber: crossChecks.stoppedDown.fNumber,
+                focusShiftMm: crossChecks.stoppedDown.focusShiftMm,
+              },
+            },
+          },
+          sharedSettings,
+        ),
+      );
 
       mkdirSync(REPORT_DIR, { recursive: true });
-      writeFileSync(REPORT_PATH, renderReport(configurations));
+      writeFileSync(REPORT_PATH, renderReport(configurations, provenance));
       // Structural only: every requested field must return curves. How close they sit to a chart is never asserted.
       const withoutCurves = configurations
         .flatMap((configuration) => configuration.samples)

@@ -389,6 +389,32 @@ const LENS_DATA = {
       "PUBLISHED: G2A (L21–L24) translates imageward. The patent close rows use β = −0.03333 and " +
       "object distances from the focal plane of 0.352460, 0.461387, and 0.573028 m at W/M/T; they do not " +
       "represent the production lens's 0.16 m MFD.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 223.4242,
+        distanceReference: "first-surface",
+        source:
+          "JP 2017-068114 A, Example 1, PDF p. 17, Table 3, Variable distance data, near (至近) W / M / T columns, D0 row: D0 = 223.4242 mm to the first surface; D1=19.24919, D2=2.94882, BF=38.05242 mm.",
+      },
+      {
+        zoomStation: 1,
+        keyframe: 1,
+        objectDistanceMm: 334.46,
+        distanceReference: "first-surface",
+        source:
+          "JP 2017-068114 A, Example 1, PDF p. 17, Table 3, Variable distance data, near (至近) W / M / T columns, D0 row: D0 = 334.4600 mm to the first surface; D1=7.69258, D2=3.14643, BF=47.30267 mm.",
+      },
+      {
+        zoomStation: 2,
+        keyframe: 1,
+        objectDistanceMm: 442.926,
+        distanceReference: "first-surface",
+        source:
+          "JP 2017-068114 A, Example 1, PDF p. 17, Table 3, Variable distance data, near (至近) W / M / T columns, D0 row: D0 = 442.9260 mm to the first surface; D1=1.71937, D2=3.21963, BF=56.37761 mm.",
+      },
+    ],
   },
 
   gaps: {

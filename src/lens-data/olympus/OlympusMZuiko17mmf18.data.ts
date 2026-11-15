@@ -226,6 +226,16 @@ const lensData = {
     description: "Inner focus: G2 (L6+L7 and L8) translates object-ward; G1, aperture stop, and G3 remain fixed.",
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 250,
+        distanceReference: "image-plane",
+        source:
+          "JP 2013-186458 A, Numerical Example 3, focus-state table (PDF/printed p. 22), column 物像間距離250mm時 (object-to-image distance 250 mm), defined in paragraph 0076 (PDF p. 18). finite: d9=5.7877, d14=3.4951 mm.",
+      },
+    ],
   },
 
   gaps: { STO: { label: "d9", values: [[7.1972, 5.7877]] }, "14A": { label: "d14", values: [[2.0857, 3.4951]] } },

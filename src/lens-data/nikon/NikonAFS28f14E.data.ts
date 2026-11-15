@@ -340,6 +340,16 @@ const LENS_DATA = {
       "Patent near station: 25 cm object-to-image. Gr2 and stop move 6.30 mm objectward; Gr1 has a 0.02 mm residual from the published gaps. Intermediate motion is interpolated.",
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 105.61,
+        distanceReference: "first-surface",
+        source:
+          "JP 2017-227799 A, Example 1, PDF pp. 12-14, paragraphs 0060/0066, surface data: object row 0(OB) lists Di(mm)=infinity to 105.61, the axial gap to surface 1; D12=1.42 mm and D27=44.77 mm at the near endpoint.",
+      },
+    ],
   },
 
   /* (moved from var) ── Variable air spacings (rear-group unit focus) ──

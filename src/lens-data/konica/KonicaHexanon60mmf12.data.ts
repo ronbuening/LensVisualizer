@@ -174,6 +174,16 @@ const LENS_DATA = {
     closeFocusM: 0.800033079,
     description:
       "CONSTRAINED_RECONSTRUCTION: JP H11-160615 Example 1 publishes D(STO→r10) = 6.70 mm at infinity and 7.90 mm at β = -0.085, with whole-lens extension plus increased front/rear spacing. A fixed-image paraxial solve gives r14→IMG = 33.547968454 mm at the close state and MFD = 0.800033079 m.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 717.02,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.085",
+        source: "JP H11-160615 A, Example 1 (PDF p. 4): prints “β = −0.085” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.08500.",
+      },
+    ],
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
   },

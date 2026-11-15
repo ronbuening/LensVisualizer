@@ -17,3 +17,17 @@ Patent: JP 2023-049919 A, Example 1. Earlier source, independent-calculation and
 - Continuous heights are retained. L4 rear S8 and L5 rear S10 have independent flat concave-end shoulders. Native endpoint/body readings are about 155±3 /184±2 pixels (q≈0.84) and 140±3 /160±2 pixels (q≈0.88). Applied to retained outer radii 13.8/11.3 mm, these imply clear caps about 11.6±0.4/9.9±0.3 mm. Adopt rounded axial cut depths 4.9/1.76 mm, producing clear radii 11.788299/10.008956 mm. Both are drawing inferences; no `rimCutDepthSource` exemption. Other small steps remain without invented depths or opaque interface lands.
 - The full shared inferred-cut guard after all edits passes, including a temporary exact-source ZD0=800 mm first-surface conjugate. Peak uncut-beam reaches are 10.083951/9.194466 mm, with required margin 0.05 mm each and no untraced fields. This temporary diagnostic changes no authored focus control or certification.
 - Canonical checks pass. Nine actual focus/zoom SVG views were inspected: finite paths, connected solids and zero hidden trim. Image-circle finds zero undersized surfaces, the centered format corner clears and native aperture remains iris-limited. Matched 16-point stop-lattice samples retain 8,874, lose 0 and gain 0, as finite counts rather than flux. All R/d, nd/νd, references, stop, focus, aperture and tolerances are invariant. Rounded source residuals and proxy-spectrum/production-correlation limits remain.
+
+## 2026-11-14 — Published finite-conjugate certification
+
+Patent: JP 2023-049919 A, Example 1.
+
+| State (zoom/keyframe) | Field | Before | After | Source |
+|---|---|---|---|---|
+| 0/1 | `focus.conjugates` | Absent | `800` mm, `first-surface` | PDF p. 8, Table 1, フォーカス可変間隔, finite column: `ZD 0 = 800` mm; ZD15=50.34 mm. |
+
+Reference basis: Table 1: OBJ | Infinity | ZD0, immediately before surface 1; ¶0040 defines D(i) in mm. The object row precedes surface 1, so the printed object-side gap is first-surface-referenced.
+
+State 0/1: paraxial image-minus-authored-plane residual -0.033172450598 mm (-2.468453264 diffraction depths); alternate image-plane reference +116.806001342 depths. Verdict: `consistent`; reference discriminated.
+
+Only the conjugate declaration is added; the published flags and all prescription geometry are retained.

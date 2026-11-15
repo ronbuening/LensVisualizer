@@ -528,3 +528,17 @@ Coverage: 14 physical lens elements, 14 authored media, 14 modeled media resolvi
 All fourteen lens-media pairs and their labels are retained. L10's source condition PgF − 0.64435 + 0.00168νd = 0.030 implies PgF 0.6392716 and engine dPgF 0.03059176; retain it with its three-decimal-source uncertainty. L10 stays untagged (`apd: false`); the source spectral condition does not establish an anomalous material identity. L8 and L11 retain qualified APD inferences. No other authored spectral override was found.
 
 Verification: current-label resolver and native-coordinate compatibility sweep plus `assertCatalogConsistent()`; shared `dispersion.test.ts` and `partialDispersionLine.test.ts` checks. No catalog tolerance was relaxed. Full repository gates are recorded by the parent at the three-lens commit boundary.
+
+## 2026-11-14 — Published finite-conjugate certification
+
+Patent: WO 2024/214585 A1, Example 2.
+
+| Zoom / keyframe | Field | Before | After | Source and paraxial residual |
+|---|---|---|---|---|
+| 0 / 1 | `focus.conjugates` | absent | 165 mm, `first-surface` | Example 2, Table 2 variable-spacing data, near wide/middle/tele columns, PDF p. 36 (printed p. 34); 近距離(165mm)合焦時. Image minus authored plane: -0.000154793022 mm (-0.0154078528 diffraction depths); other reference: 814.895665 depths; consistent. |
+| 1 / 1 | `focus.conjugates` | absent | 165 mm, `first-surface` | Example 2, Table 2 variable-spacing data, near wide/middle/tele columns, PDF p. 36 (printed p. 34); 近距離(165mm)合焦時. Image minus authored plane: 0.000341341842 mm (0.0325384485 diffraction depths); other reference: 949.968002 depths; consistent. |
+| 2 / 1 | `focus.conjugates` | absent | 165 mm, `first-surface` | Example 2, Table 2 variable-spacing data, near wide/middle/tele columns, PDF p. 36 (printed p. 34); 近距離(165mm)合焦時. Image minus authored plane: -0.00256547977 mm (-0.232206063 diffraction depths); other reference: -1646.60329 depths; consistent. |
+
+Reference basis: audit-resolved. The patent prints the distance without explicitly defining its reference; the first-surface interpretation is consistent and the image-plane interpretation is rejected by the conjugate audit.
+
+The source gap columns match the authored keyframes. The declarations preserve all optical surfaces, gaps, rear plates and the authored image plane.

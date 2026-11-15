@@ -16,3 +16,14 @@ Patent: US8,867,144B2 Example1.
 - Full source-outline trials rejected: S15landto20.1 causes3.544>3.160mm intrusion;S27to18.6 causes2.049>1.809;S33to14.9 causes2.123>1.831. FrontD1 commoncap38.4 trial makes L2edge−.281mm. Retain these constrained outlines; no arbitrary shortland/unsupportedadjacentcut/tolerance or radius change. Weak nearplanar and cemented endpoint marks do not support new cuts.
   -144405same collimated launches:114775retained,0lost,181gained,29449bothblocked; samplecountsnotflux. Existing source finite spacings preserved; no new inwardcap is introduced.
 - Four focused audits pass:0 surface errors/undersized apertures,9/9 stations≥99% field corner and within3% FNO, no rim/iris/trace failures.27 actual SVG zoom/focus states viewed with0trim and connected compounds.94 shared dispersion/resolver/partial-line tests pass. Source R/d/asphere coefficients/nd/vd/stop/zoom/focus/normalization/tolerances invariant. No live/shared engine/catalog/report/test changes.
+
+## 2026-11-14 — Published finite-conjugate certification
+
+| Zoom / keyframe | Field | Before | After | Source and conjugate residual |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | `focus.conjugates` | No entry | 1065.7 mm, `first-surface` | d0 = 1065.7000 (mm); Embodiment 1, unnumbered close-object table, Wide-Angle column; d0/d7/d10/d17/d22/bf rows; PDF p. 35. Paraxial image minus authored plane +0.123221591 mm (+12.456143 diffraction depths); other reference +122.072321 depths; `consistent`, reference discriminated. Basis: patent-defined. |
+| 1 / 1 | `focus.conjugates` | No entry | 1065.7 mm, `first-surface` | d0 = 1065.7000 (mm); Embodiment 1, unnumbered close-object table, Intermediate column; d0/d7/d10/d17/d22/bf rows; PDF p. 35. Paraxial image minus authored plane +0.131363148 mm (+13.277049 diffraction depths); other reference +250.038243 depths; `consistent`, reference discriminated. Basis: patent-defined. |
+
+“Object Surface ∞ (d0)” precedes Lens Surface #1 in the surface table (PDF pp. 34–35); d is the consecutive surface spacing.
+
+The 2 / 1 state is not declared: the same printed distance leaves +0.359788941 mm (+36.203379 depths) at the authored plane, beyond the 25-depth limit; the other reference leaves +5.033846568 mm (+463.539725 depths).

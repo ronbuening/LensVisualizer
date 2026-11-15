@@ -154,3 +154,14 @@ silhouettes agreed within 2 px on every element used.
   `resolveCompatibleGlass` confirms it) and gapAfter 1.00 mm. Paraxial check against the previous data: EFL identical
   at all three focus keyframes; defocus changes by ≤ 5e-6 mm (the old 5.523 rounded 5.52300). Physical track grows by
   0.477 mm to the patent's TL = 68.3749 mm including the plate.
+
+## 2026-11-14 — Published finite conjugates
+
+Patent: US 2024/0241349 A1.
+
+| Zoom / keyframe | Field | Before | After | Source and paraxial residual |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | `focus.conjugates` | Absent | `1331.625` mm, `first-surface` | US 2024/0241349 A1, Numerical Example 1, Table 1C Middle column (PDF p. 32): d0=1331.6250 mm; d11=7.6379, d15=3.2604, d19=3.3774, d21=6.4569 mm. Table 1A (PDF p. 31) places the variable object-surface interval before surface 1; paragraph 0205 defines d as the surface interval in mm. Signed image-plane offset +0.021737957 mm (+4.453786 diffraction depths); other-reference offset +18.189852 diffraction depths; `ambiguous-reference`. |
+| 0 / 2 | `focus.conjugates` | Absent | `531.6251` mm, `first-surface` | US 2024/0241349 A1, Numerical Example 1, Table 1C Close-object column (PDF p. 32): d0=531.6251 mm; d11=6.4983, d15=4.4001, d19=1.8105, d21=8.0238 mm. Table 1A (PDF p. 31) places the variable object-surface interval before surface 1; paragraph 0205 defines d as the surface interval in mm. Signed image-plane offset +0.058360736 mm (+12.163605 diffraction depths); other-reference offset +100.425742 diffraction depths; `consistent`. |
+
+The Middle state is retained despite `ambiguous-reference`: Table 1A lists the object-surface row with a variable d before surface 1, and paragraph 0205 (PDF p. 30) states “d indicates the surface interval.” This table structure defines d0 as object to first surface. The Close-object state discriminates the same reference. No distance is inferred from the slider labels.

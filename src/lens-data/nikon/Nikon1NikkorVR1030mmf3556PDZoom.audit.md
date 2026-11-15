@@ -37,3 +37,27 @@ Surface geometry and image-circle floors pass with no undersized or skipped entr
 Fig. 30A/B and the local wide/tele silhouettes support the retained SDs and seven aspheric-surface markings. Table 11 orders the zoom stations 10.2 → 20.0 → 29.4 mm. With the image plane fixed, G1 first travels imageward 3.820 mm then objectward 3.040 mm; G2/G3 travel objectward and G4 stays fixed. Infinity-to-near focus moves G3 imageward by 0.410/1.580/3.190 mm at W/M/T. The 0.010-mm middle-state shift of the preceding groups follows the source's rounded D13/D15 sum and is retained.
 
 L24 changes from unflagged to `apd: "inferred"`: its coordinate-compatible J-FKH1 curve has catalog dPgF approximately +0.0337 against the engine baseline. This fills the ED-class diagram color and inspector badge without asserting patent-measured dispersion or a production supplier. No per-lens spectral values are copied from the proxy. Coverage remains 9/9; no new catalog row is needed. The source Nikon Corporation spelling already matches the canonical assignee node.
+
+## 2026-11-14 — Source-backed finite conjugates
+
+Patent: US 2018/0196240 A1.
+
+| Zoom / keyframe | Added distance | Source locator and matching gaps | Paraxial residual |
+| --- | --- | --- | --- |
+| 1 / 1 | 200 mm, image-plane | PDF p. 84; Example 11, Table 11 [Various Data], close-distance M column | -0.016471384 mm; -0.528815 diffraction depths; alternate -24.332328 depths. |
+| 2 / 1 | 200 mm, image-plane | PDF p. 84; Example 11, Table 11 [Various Data], close-distance T column | -0.090412590 mm; -1.779556 diffraction depths; alternate -36.967629 depths. |
+
+- Zoom 1: the patent prints “D 200.00” without an explicit reference definition. The conjugate audit identifies the image-plane reference (`audit-resolved`).
+- Zoom 2: the patent prints “D 200.00” without an explicit reference definition. The conjugate audit identifies the image-plane reference (`audit-resolved`).
+- Wide state remains uncertified: D=200.00 mm has no explicit reference definition, and the image-plane residual (+0.050758465 mm, +3.263648 depths) and first-surface residual (-0.148039724 mm, -9.638445 depths) do not discriminate the reference.
+- The authored gaps and image plane are retained.
+
+## 2026-11-14 — Additional source-backed finite conjugates
+
+| Zoom / keyframe | Source distance and reference | Source locator and matching gaps | Paraxial residual |
+| --- | --- | --- | --- |
+| 0 / 1 | 200 mm, image-plane | US 2018/0196240 A1, Example 11, Table 11 (PDF p. 84), close-distance W column: D=200.00 mm; d6=18.51 mm, d13=1.98 mm, d15=4.95 mm | +0.050758465 mm; +3.268853 quarter waves; alternate -9.593612. |
+
+The reference follows the declared sibling states in the same source table: image-plane for Table 11 M/T, first-surface for Table 4 closest-focus states. These additional rows are within the limit but the audit cannot independently discriminate their references (`ambiguous-reference`).
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.

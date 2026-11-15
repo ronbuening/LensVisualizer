@@ -143,3 +143,14 @@ The clean optical-rim measurements at 600 dpi agree with existing radii within a
 Rechecked Figure 7(a–c) (JP2011048232A.pdf p.15) against local infinity and 1× sections, including the clean lower optical rims at 600 dpi. Retained SDs and all three focus rows; G2 moves imageward while G4/G5 move objectward, with the existing fixed-anchor discrepancy retained. Replaced thirteen code-only labels with their already-selected named spectral proxies, preserving all fourteen curve selections. Added inferred APD color to L11 (H-FK61, ΔPgF ≈ +0.03147). Corrected stale analysis that still put L3 on Abbe fallback. Focus text now explains the physical motion and model scope without implementation labels. Panasonic Corporation matches the source applicant; the intellectual-property company is a distinct assignee.
 
 All six release lenses retain 81/81 catalog-backed elements; no additional curve is needed to fill a coverage gap. Surface, image-circle and aperture audits pass at all ten infinity/zoom stations. The sole field-coverage limitation is Miranda's explicitly declared 22.5° half-field (94% of the full-frame corner); no rim clips its corner chief ray. No new changelog entry was added.
+
+## 2026-11-14 — Finite conjugates from printed magnifications
+
+| Zoom / keyframe | Printed magnification → `sourceMagnification` | Source locator | Solved object distance | Check |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | “×0.50” → `"0.50"` | JP 2011-48232 A, Numerical Example 3 (PDF p. 12) | 107.08 mm, first-surface | in focus 0.49982; at the declared distance 0.49984; +0.05 quarter waves |
+| 0 / 2 | “×1.00” → `"1.00"` | JP 2011-48232 A, Numerical Example 3 (PDF p. 12) | 65.51 mm, first-surface | in focus 1.00202; at the declared distance 1.00191; −0.22 quarter waves |
+
+The patent prints a magnification and no object distance for these states. Each distance is solved from the prescription under `LENS_DATA_SPEC.md` § Finite conjugates: the distance that focuses the state on its image plane when the magnification there rounds to the print, otherwise the distance at the nearest magnification that does. Two independent readings of the patent agree on the printed value and on the gaps of the matching state.
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.

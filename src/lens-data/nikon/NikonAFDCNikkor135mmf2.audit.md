@@ -37,3 +37,14 @@ Fresh source glass review: `patents/US4908639.pdf`, Example 2 Table 2 on PDF pag
 Coverage: 7/7 modeled media, representing 7 physical lens elements. All available curves remain qualified spectral proxies; source coordinates are authoritative, and supplier/melt identity is unconfirmed. No tolerance is relaxed.
 
 Verification: focused surface/inferred-beam and image-circle audits, aperture census after the S5 clear-cap increase, and actual native SVG shapes/render diagnostics at the nine focus×DC endpoint/midpoint states. No hidden rim trim was observed. Current-label glass resolver, `assertCatalogConsistent()` and the shared dispersion/partial-dispersion suites pass (2 files, 93 tests). Full repository gates are recorded by the coordinator at commit time.
+
+## 2026-11-14 — Source-backed finite conjugates
+
+Patent: US 4,908,639 A.
+
+| Zoom / keyframe | Added distance | Source locator and matching gaps | Paraxial residual |
+| --- | --- | --- | --- |
+| 0 / 1 | 3938.0404 mm, first-surface | PDF p. 12; Example 2 / Second Embodiment, Table 2, 2 pos; continued gaps on PDF p. 13: d3=10.0000, d7=30.4792, Bf=67.9540 mm | +0.000905780 mm; +0.196290 diffraction depths; alternate +39.942474 depths. |
+
+- Reference definition: “D0 is the distance from the object to the first lens surface.” (PDF p. 12).
+- The authored gaps and image plane are retained.

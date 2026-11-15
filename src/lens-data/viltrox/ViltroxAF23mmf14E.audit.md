@@ -472,3 +472,11 @@ Directly inspected `patents/CN_211826700_U.pdf`, Example 1 Figure 1 (PDF p.16, 6
 - S10/S12 retain clear caps 10.1/8.9 mm and now extend their drawn lands to 10.4/10.7 mm. Their schematic cap shares are about 0.90/0.80; the larger retained caps reflect the existing ray-constrained model. This does not open an aperture. No further resolved land supports cutting S6/S7/S18/S21 or any convex/cemented face.
 - All eleven nd/νd rows plus GL were checked. Retained the documented L12 1.85→1.83 source-error reconstruction; the fresh table still prints 1.85. All remain unmatched Abbe models at coarse coordinates. ¶0028 supports the two low-dispersion designations but supplies no chemistry or measured partial dispersion; removed L14's speculative fluorophosphate wording. No nC/nF/ng or dPgF was invented.
 - Actual `audit:surface`, `audit:image-circle`, and `audit:aperture` passed. Nine prepared-state SVGs were generated and rasterized; all eleven element paths are finite with zero renderer trim. The fixed prime has no zoom dimension. Focus/source discrepancies already recorded remain unresolved. Shared dispersion, resolver parity and partial-dispersion tests passed (3 files/94 tests).
+
+## 2026-11-14 — Published finite-conjugate certification
+
+| Zoom / keyframe | Field | Before | After | Source and conjugate residual |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | `focus.conjugates` | No entry | 300 mm, `image-plane` | 物距 最近(0.3m); Example 1, Table 2, ¶0082–0083, 最近 column; 物距/D1/D2 rows; PDF p. 8. Paraxial image minus authored plane +0.002026466 mm (+0.842503 diffraction depths); other reference -272.418019 depths; `consistent`, reference discriminated. Basis: audit-resolved. |
+
+The printed object-distance label leaves its reference plane undefined. The conjugate residual identifies the retained reference; the source string records that qualification.

@@ -92,6 +92,19 @@ Redirect stdout to JSON. `mtf-geometric.json`, `mtf-diffraction.json`, `mtf-spec
 the latest corresponding measurements. A rejected field is not a completed MTF timing. Browser latency also includes
 worker startup, debouncing, messages and rendering, which these Node runs do not measure.
 
+## MTF Drift Signature
+
+Run `npm run audit:mtf-drift` before and after changes to tracing, pupil sampling or MTF kernels. This opt-in
+numerical signature check is separate from `npm test` and manufacturer-chart comparisons. The baseline is
+`reports/data/mtfDriftSignature.json`; `npm run audit:mtf-drift -- --update` replaces it after review. Every moved
+value needs an explanation in the PR. The absolute 1e-7 tolerance measures repeatability, never optical accuracy.
+The workload fixes the grid cap at 64 and records the actual grid, including early convergence; it pins numbers
+without judging convergence. It uses the spherical Canon Serenar 50mm f/1.8, retrofocus Sony FE 12–24mm f/2.8 GM
+at 12mm, and Fujifilm GF 80mm f/1.7 at infinity and its verified finite station. Both methods, reference and photopic
+spectra, design and best-axial focus run wide open at fields 0 and 0.7 and 0/10/30/50 lp/mm. Values are rounded to
+1e-9; status and settings changes also fail. Lens-file SHA-256 hashes and a combined hash of sorted optics source
+paths and contents distinguish input edits; moved values with unchanged engine and lens hashes report nondeterminism.
+
 ## Coverage
 
 The rendering suite measures 15 representative lenses across four scenarios:

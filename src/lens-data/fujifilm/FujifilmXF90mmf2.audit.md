@@ -103,3 +103,13 @@ images, not from the OCR layer.
 - Paraxial check against the previous data: EFL identical; defocus changes by −0.0005 mm at infinity and at the
   proximal state (the 1.999 mm rounding of the derived gap). Physical track grows by 2.850 × (1 − 1/1.51633) =
   0.970 mm, to 116.04 mm.
+
+## 2026-11-14 — Finite conjugates from printed magnifications
+
+| Zoom / keyframe | Printed magnification → `sourceMagnification` | Source locator | Solved object distance | Check |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | “β 0.14” → `"0.14"` | US 2016/0274335 A1, Example 1 (PDF p. 21) | 700.59 mm, first-surface | in focus 0.13600; at the declared distance 0.13600; −0.01 quarter waves |
+
+The patent prints a magnification and no object distance for this state. Each distance is solved from the prescription under `LENS_DATA_SPEC.md` § Finite conjugates: the distance that focuses the state on its image plane when the magnification there rounds to the print, otherwise the distance at the nearest magnification that does. Two independent readings of the patent agree on the printed value and on the gaps of the matching state.
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.

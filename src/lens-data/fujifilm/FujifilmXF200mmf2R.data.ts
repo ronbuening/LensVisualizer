@@ -422,6 +422,16 @@ const LENS_DATA = {
       "Inner focus — cemented doublet G2 (L2a+L2b) translates 11.55 mm toward the object between infinity and the patent's close state (1.57 m from the front vertex, ≈1.8 m from the image plane). Driven by twin linear motors for quiet, high-speed autofocus; small moving mass.",
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 1570,
+        distanceReference: "first-surface",
+        source:
+          "US 2019/0265504 A1, Example 1, PDF p. 15, Tables 2/3: Close Range (1.57 m), DD[15]=7.08 mm and DD[18]=16.47 mm. The first-surface reference is identified by the conjugate audit.",
+      },
+    ],
   },
 
   /* (moved from var) ── Variable air spacings (inner focus — G2 translates) ──

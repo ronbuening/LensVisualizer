@@ -182,6 +182,16 @@ const LENS_DATA = {
     description:
       "Inner focus — Group AI (L1–L4) moves forward; AII (L5) and B (L6) remain stationary. " +
       "Separate 4-position click-stopped ring varies d_B0 for soft-focus control.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 849.3,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.11",
+        source: "US 4,124,276, Embodiment 3 (PDF p. 23): prints “magnification of 0.11” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.10829.",
+      },
+    ],
     // (moved from publishedStations) Patent read 2026-10-06: Close-focus d_A7 = 11.433 is the patent's printed FIGS. 10a/10b value (13.45 at
     // magnification 0.11, f = 100) scaled x0.85; the patent states it in text, not in a table.
     published: [1],

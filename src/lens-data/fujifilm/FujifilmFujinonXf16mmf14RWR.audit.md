@@ -11,3 +11,14 @@ Patent: US 2016/0282590 A1, Example 1 (FUJIFILM Corporation; Tables 1–3, Figur
 - S25 `d` and `var` now store the patent `DD25` values, with `rearPlates` PP (N-BK7, the 1.51680 / 64.2 catalog
   match) and `gapAfterMm` 2.1206. Paraxial check against the previous data: EFL and defocus are identical at all
   three focus keyframes (the old fold was exact). Physical track grows by 0.971 mm (2.85 × (1 − 1/1.5168)).
+
+## 2026-11-14 — Finite conjugates from printed magnifications
+
+| Zoom / keyframe | Printed magnification → `sourceMagnification` | Source locator | Solved object distance | Check |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | “β 0.031” → `"0.031"` | US 2016/0282590 A1, Example 1 (PDF p. 15) | 511.61 mm, first-surface | in focus 0.03110; at the declared distance 0.03110; +0.00 quarter waves |
+| 0 / 2 | “β 0.209” → `"0.209"` | US 2016/0282590 A1, Example 1 (PDF p. 15) | 61.42 mm, first-surface | in focus 0.20895; at the declared distance 0.20894; −0.07 quarter waves |
+
+The patent prints a magnification and no object distance for these states. Each distance is solved from the prescription under `LENS_DATA_SPEC.md` § Finite conjugates: the distance that focuses the state on its image plane when the magnification there rounds to the print, otherwise the distance at the nearest magnification that does. Two independent readings of the patent agree on the printed value and on the gaps of the matching state.
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.

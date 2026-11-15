@@ -30,6 +30,8 @@ import type {
   RefractiveIndexReferenceLine,
   ResolvedImageSurfaceData,
   SourceErratum,
+  SourceOmission,
+  SemiDiameterSource,
   SurfaceInteraction,
 } from "../../types/optics.js";
 import type { ImageFormatId, LensMountId } from "../../utils/catalog/lensTaxonomy.js";
@@ -161,6 +163,7 @@ export interface CanonicalConjugate {
   keyframe: number;
   objectDistanceMm: number;
   distanceReference: FiniteConjugate["distanceReference"];
+  sourceMagnification?: string;
   source: string;
 }
 
@@ -300,6 +303,8 @@ export interface CanonicalSource {
   authors?: string[];
   assignees?: string[];
   errata?: SourceErratum[];
+  omissions?: SourceOmission[];
+  sdSource?: SemiDiameterSource;
   issuer?: string;
 }
 

@@ -25,6 +25,8 @@ export function authoredMessages(
     acceptsTeleconverters: "catalog.acceptsTeleconverters",
     opticalConfiguration: "catalog.opticalConfiguration",
     sourceErrata: "source.errata",
+    sourceOmissions: "source.omissions",
+    sdSource: "source.sdSource",
     patentNumber: "source.patentNumber",
     patentExample: "source.example",
     patentAuthors: "source.authors",

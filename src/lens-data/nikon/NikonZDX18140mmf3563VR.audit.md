@@ -117,3 +117,19 @@ The remaining lens media L11, L13, L21–L24, L31g, L32, L35g, L36, L42 and L51 
 `focus.closeFocusM` 0.2 → 0.2 m, with per-station `closeFocusM` 0.2 / 0.4 / 0.4 m. The close-focus distance now records where the authored close row focuses — its paraxial in-focus object-to-image distance — so the close-focus label and `closeFocusM` agree within 2 %. The old value was up to 100.0 % from that row. No gap, keyframe, published flag or other optical value changed.
 
 - Why the old value differed: close rows already reach 0.2 m wide and 0.4 m tele; per-station values record them.
+
+## 2026-11-14 — Published finite conjugates
+
+Patent: WO 2022/264542 A1, Example 1.
+
+| Zoom / keyframe | Field | Before | After | Source and paraxial residual |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | `focus.conjugates` | Undeclared | 96.613 mm, `first-surface` | PDF p30, Table 1, 可変間隔データ, 至近距離合焦状態, W column (gaps continue PDF p31); mm per ¶0107: 物体距離 96.613; gaps 5=1.137, 13=20.855, 26=3.492, 29=12.425, 33=8.272 mm. Offset -0.000389777 mm (-0.027460 diffraction depths); `consistent`. |
+| 1 / 1 | `focus.conjugates` | Undeclared | 280.487 mm, `first-surface` | PDF p30, Table 1, 可変間隔データ, 至近距離合焦状態, M column (gaps continue PDF p31); mm per ¶0107: 物体距離 280.487; gaps 5=18.064, 13=6.402, 26=8.922, 29=10.049, 33=18.869 mm. Offset -0.001467830 mm (-0.050947 diffraction depths); `consistent`. |
+| 2 / 1 | `focus.conjugates` | Undeclared | 248.897 mm, `first-surface` | PDF p30, Table 1, 可変間隔データ, 至近距離合焦状態, T column (gaps continue PDF p31); mm per ¶0107: 物体距離 248.897; gaps 5=38.687, 13=2.04, 26=10.681, 29=9.274, 33=33.216 mm. Offset -0.014131597 mm (-0.308211 diffraction depths); `consistent`. |
+
+The source prints object distances without explicitly defining the reference. The conjugate audit identifies the first-surface reference (`audit-resolved`); the source strings record that provenance.
+
+- 0 / 1: alternate image-plane reference is unavailable: Object is not in front of the first surface..
+- 1 / 1: alternate image-plane reference has offset +4.330013169 mm (+126.504681 diffraction depths).
+- 2 / 1: alternate image-plane reference has offset +46.901056095 mm (+332.720739 diffraction depths).

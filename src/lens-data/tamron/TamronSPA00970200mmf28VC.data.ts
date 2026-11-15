@@ -414,6 +414,24 @@ const LENS_DATA = {
     description:
       "PUBLISHED Example-1 focus states: LG3 alone translates objectward from infinity to the 1.3 m state; " +
       "d10 shortens exactly as d17 lengthens at each zoom position. No internal focus reconstruction is used.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 1065.7,
+        distanceReference: "first-surface",
+        source:
+          "US 8,867,144 B2, Example 1, unnumbered close-object spacing table (PDF p. 35, col. 11), Wide-Angle column: d0=1065.7000 mm, d7=2.2014, d10=18.2357, d17=23.4911, d22=17.8225, bf=57.0050 mm. The surface table places d0 between Object Surface and surface 1 (PDF p. 34).",
+      },
+      {
+        zoomStation: 1,
+        keyframe: 1,
+        objectDistanceMm: 1065.7,
+        distanceReference: "first-surface",
+        source:
+          "US 8,867,144 B2, Example 1, unnumbered close-object spacing table (PDF p. 35, col. 11), Intermediate column: d0=1065.7000 mm, d7=25.5869, d10=8.2041, d17=19.0938, d22=8.8658, bf=57.0050 mm. The surface table places d0 between Object Surface and surface 1 (PDF p. 34).",
+      },
+    ],
   },
 
   gaps: {
