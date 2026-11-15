@@ -290,6 +290,17 @@ const LENS_DATA = {
   ],
   focus: {
     closeFocusM: 0.1844049802420535,
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 60.81,
+        distanceReference: "first-surface",
+        sourceMagnification: "1:1",
+        source:
+          "US 7,286,303 B2, Table 2: the EQUI-MAGNIFICATION FOCUS column prints D(15) = 21.832 and D(19) = 63.767 and no object distance; the distance is solved from the prescription for the printed 1:1 magnification.",
+      },
+    ],
     published: [1],
     description:
       "PUBLISHED floating focus: the patent prints the infinity and equal-magnification (1:1) spacings. Both groups move toward the object, the front group with the stop by 42.325 mm and the rear group by 21.162 mm, so D15 opens from 0.669 to 21.832 mm and the back gap from 42.605 to 63.767 mm. The 1:1 object-to-image distance, 184.40 mm, is calculated from the printed gaps; the patent prints no object distance. Intermediate positions interpolate the gaps linearly, which is not a patent focus cam.",
