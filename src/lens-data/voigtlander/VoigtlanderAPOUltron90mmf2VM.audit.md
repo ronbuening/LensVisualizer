@@ -176,3 +176,17 @@ The absent repository checks are integration checks rather than unresolved optic
 ## 2026-08-01 Repository Integration Gate
 
 This final integration gate supersedes the earlier environment-availability notes. The stored prescription passes the repository surface and image-circle audits, and refreshed glass reports retain 8/8 strict and trusted chromatic coverage with zero catalog mismatches. Typecheck, format check, all 2,528 tests in 213 files, and the 990-route production build pass. Lint reports only the repository's three pre-existing type-assertion warnings and no errors.
+
+## 2026-11-14 — Published finite-conjugate certification
+
+Patent: JP 2026-8235 A, Example 1.
+
+| State (zoom/keyframe) | Field | Before | After | Source |
+|---|---|---|---|---|
+| 0/1 | `focus.conjugates` | Absent | `800` mm, `first-surface` | PDF p. 9, Table 1, 撮影倍率 0.126 column: `ZD0 = 800.00` mm; ZD16=38.36529 mm. |
+
+Reference basis: Table 1: OBJ | Infinity | ZD0, immediately before surface 1; ¶0058 defines D(i) in mm. The object row precedes surface 1, so the printed object-side gap is first-surface-referenced.
+
+State 0/1: paraxial image-minus-authored-plane residual -0.020554148769 mm (-2.732014957 diffraction depths); alternate image-plane reference +224.391195021 depths. Verdict: `consistent`; reference discriminated.
+
+Only the conjugate declaration is added; the published flags and all prescription geometry are retained.

@@ -132,3 +132,15 @@ Reuse the complete Oct30 source/shape review and preserve all older actual dates
 Existing E-FD5 is better constrained than former S-TIM25: evaluated nd1.672699797/ν32.17054165/rawPgF0.596299737 versus1.672699810/32.09920577/0.598882789. Rawθ residual improves+0.002682789→+0.000099737. The source-implied C–F span0.02091078645 is closer to E-FD5’s0.02091042808 than old0.02095689891; effective runtimeν32.09921481→32.17055134. Both runtime variants retain actual sourceθ0.59620006, with d exactly1.67270. The retained official HOYA20260707 AGF row1928 independently confirms the existing six polynomial coefficients; no new catalog row, copied source line index or exact historical identity is claimed.
 
 Native Figure16 p27 bitmap973×705px at399×398ppi confirms the ordinary air-spaced L13/Sm2 and its adjacent compound/asphere/LPF context. Prescription table vector text was rendered at220dpi for reading, not called native220ppi. No geometry/interface edit is made. Only the E13 glass string changes; source numbers/spectral overrides/APD, R/d, rims, stops and controls are exact. Nine focus/zoom layout samples retain identical d surfaces and paths; only E13 C/F/g channels change, all other media/curve channels equal. Public element/table/source wording now names qualified E-FD5 without unsupported titanium chemistry. No complete source-review increment or new production-clearance claim follows.
+
+## 2026-11-14 — Published finite-conjugate certification
+
+Patent: JP2018005099A, Numerical Example 4.
+
+| State (zoom/keyframe) | Field | Before | After | Source and axial residual |
+|---|---|---|---|---|
+| 0/1 | `focus.conjugates` | absent | 681.5 mm, `first-surface` | PDF p.20 (printed p.20), [可変間隔データ], 撮影距離848mm column, d0 row: d0 = 681.5000; d14=6.0661; d19=11.3807; d27=47.4637; BF=1.0000 mm. Offset +0.000113959 mm (+0.033540 diffraction depths), `consistent`; other reference +3.112451901 mm (+843.093747 depths). |
+
+"物面 ∞ (d0)" appears in the d column of [面データ], immediately before surface 1 (PDF/printed p.19); d0 is the object-side surface interval. The declared reference is patent-defined.
+
+The audit uses the open physical stop and the authored image plane. Published flags already include these keyframes. Prescription values, gap schedules and image position are retained.

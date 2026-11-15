@@ -3,8 +3,9 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { cleanup, fireEvent, screen, waitFor, within } from "@testing-library/react";
 import type { ReactElement, ReactNode } from "react";
+import { renderToString } from "react-dom/server";
 import type { PatentExample } from "../../../src/types/optics.js";
-import { Route, Routes, useLocation } from "react-router";
+import { Route, Routes, StaticRouter, useLocation } from "react-router";
 import HomePage from "../../../src/pages/HomePage.js";
 import ArticlesPage from "../../../src/pages/ArticlesPage.js";
 import ArticlePage from "../../../src/pages/ArticlePage.js";
@@ -50,6 +51,12 @@ function renderRoutes(initialEntry: string, routes: ReactElement) {
   return renderPage(routes, { initialEntries: [initialEntry] });
 }
 
+const legacyMtfQueries = [
+  { label: "absent", query: "", carried: "" },
+  { label: "shared", query: "&v=1&mtf=1", carried: "v=1&mtf=1" },
+  { label: "invalid", query: "&v=1&mtf=invalid", carried: "" },
+];
+
 describe("static page renders", () => {
   const scrollTo = vi.fn();
 
@@ -67,9 +74,9 @@ describe("static page renders", () => {
     cleanup();
   });
 
-  it("renders the homepage hero, quick links, and article list", () => {
+  it.each(["", "?v=1&mtf=1"])("renders homepage links without carrying MTF settings: %s", (search) => {
     renderRoutes(
-      "/",
+      `/${search}`,
       <Routes>
         <Route path="/" element={<HomePage />} />
       </Routes>,
@@ -105,11 +112,11 @@ describe("static page renders", () => {
     expect(screen.getByRole("button", { name: /HC/i, pressed: true })).toBeTruthy();
   });
 
-  it("redirects legacy lens query URLs on the homepage", async () => {
+  it.each(legacyMtfQueries)("redirects legacy lens queries with $label MTF settings", async ({ query, carried }) => {
     const lensKey = CATALOG_KEYS[0];
 
     renderRoutes(
-      `/?lens=${lensKey}`,
+      `/?lens=${lensKey}${query}`,
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/lens/:slug" element={<LocationEcho />} />
@@ -117,25 +124,30 @@ describe("static page renders", () => {
     );
 
     await waitFor(() => {
-      expect(screen.getByText(`/lens/${lensKey}/`)).toBeTruthy();
+      expect(screen.getByText(`/lens/${lensKey}/${carried ? `?${carried}` : ""}`)).toBeTruthy();
     });
   });
 
-  it("redirects legacy comparison query URLs and preserves slider params", async () => {
-    const [slugA, slugB] = CATALOG_KEYS;
+  it.each(legacyMtfQueries)(
+    "redirects legacy comparison queries and sliders with $label MTF settings",
+    async ({ query, carried }) => {
+      const [slugA, slugB] = CATALOG_KEYS;
 
-    renderRoutes(
-      `/?a=${slugA}&b=${slugB}&focus=0.4&aperture=0.2&zoom=70`,
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/compare/:slugA/:slugB" element={<LocationEcho />} />
-      </Routes>,
-    );
+      renderRoutes(
+        `/?a=${slugA}&b=${slugB}&focus=0.4&aperture=0.2&zoom=70${query}`,
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/compare/:slugA/:slugB" element={<LocationEcho />} />
+        </Routes>,
+      );
 
-    await waitFor(() => {
-      expect(screen.getByText(`/compare/${slugA}/${slugB}/?focus=0.4&aperture=0.2&zoom=70`)).toBeTruthy();
-    });
-  });
+      await waitFor(() => {
+        expect(
+          screen.getByText(`/compare/${slugA}/${slugB}/?focus=0.4&aperture=0.2&zoom=70${carried ? `&${carried}` : ""}`),
+        ).toBeTruthy();
+      });
+    },
+  );
 
   it("renders the articles archive with article cards", () => {
     renderRoutes(
@@ -210,6 +222,41 @@ describe("static page renders", () => {
     expect(screen.getByText(/Interactive side-by-side comparison available in the viewer above/i)).toBeTruthy();
   });
 
+  it.each([
+    ["no query", "", ""],
+    ["optical state only", "?v=1&focus=0.4&tab=mtf", ""],
+    ["shared defaults", "?v=1&mtf=1&focus=0.4&tab=mtf", "?v=1&mtf=1"],
+    ["shared overrides", "?v=1&mtf=1.eyJtIjoiZ2VvbWV0cmljIn0", "?v=1&mtf=1.eyJtIjoiZ2VvbWV0cmljIn0"],
+    ["invalid settings", "?v=1&mtf=invalid", ""],
+    ["missing view version", "?mtf=1", ""],
+    ["unknown view version", "?v=2&mtf=1", ""],
+    ["duplicate settings", "?v=1&mtf=1&mtf=1", ""],
+  ])("renders matching server and client comparison fallback links with %s", (_label, search, carried) => {
+    const [slugA, slugB] = CATALOG_KEYS;
+    const url = `/compare/${slugA}/${slugB}/${search}`;
+    const routes = (
+      <Routes>
+        <Route path="/compare/:slugA/:slugB" element={<ComparePage />} />
+      </Routes>
+    );
+    const html = renderToString(<StaticRouter location={url}>{routes}</StaticRouter>);
+    const serverContainer = document.createElement("div");
+    serverContainer.innerHTML = html;
+
+    renderRoutes(url, routes);
+
+    for (const body of [serverContainer, document.body]) {
+      const page = within(body);
+      for (const slug of [slugA, slugB]) {
+        expect(page.getByRole("link", { name: LENS_CATALOG[slug].name }).getAttribute("href")).toBe(
+          `/lens/${slug}/${carried}`,
+        );
+      }
+      expect(page.getByRole("link", { name: "Home" }).getAttribute("href")).toBe("/");
+      expect(page.getByRole("link", { name: "Lenses" }).getAttribute("href")).toBe("/lenses/");
+    }
+  });
+
   it("reloads compare fallback content for a hidden configuration variant", () => {
     const variantKey = COMPARISON_CATALOG_KEYS.find((key) => key.endsWith("-tc-in"));
     expect(variantKey).toBeDefined();
@@ -254,7 +301,7 @@ describe("static page renders", () => {
     expect(displaySubtitle).toBeTruthy();
 
     renderRoutes(
-      `/lens/${lensKey}`,
+      `/lens/${lensKey}/?v=1&mtf=1`,
       <Routes>
         <Route path="/lens/:slug" element={<LensPage />} />
       </Routes>,
@@ -263,6 +310,11 @@ describe("static page renders", () => {
     const patentLink = screen.getByRole("link", {
       name: `${lens.source.patentNumber} in Espacenet (opens in a new tab)`,
     });
+    expect(screen.getByRole("link", { name: "Home" }).getAttribute("href")).toBe("/");
+    for (const link of screen.getAllByRole("link")) {
+      const href = link.getAttribute("href") ?? "";
+      if (href.startsWith("/makers/")) expect(href).not.toContain("mtf=");
+    }
     expect(patentLink.getAttribute("href")).toBe(espacenetPatentUrl(lens.source.patentNumber ?? ""));
     expect(patentLink.closest("p")?.textContent?.replace("↗", "")).toBe(displaySubtitle);
     for (const author of lens.source.authors ?? []) expect(patentLink.closest("p")?.textContent).toContain(author);

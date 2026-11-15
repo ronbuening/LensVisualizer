@@ -185,3 +185,15 @@ All 16 authored glass media were checked against every source nd/νd row. Source
 Current resolver coverage: 16/16 modeled media; 16 physical lens elements. Rear plates checked separately: 1.51680/64.2. Available curves remain qualified spectral proxies; supplier, melt and material chemistry are not established. Existing family-based APD flags remain inferred, with no new source-dispersion override.
 
 Verification: focused surface/beam, image-circle and aperture audits; native SVG outlines and render diagnostics at the nine zoom/focus endpoint-and-midpoint states; current-label glass resolver, native-coordinate compatibility and shared glass consistency tests. Full repository gates are recorded by the coordinator at commit time.
+
+## 2026-11-14 — Published finite conjugates
+
+Patent: JP 2018-205527 A. PDF pages below use the one-based PDF page index.
+
+| State (zoom/keyframe) | Field | Before | After | Source and paraxial residual |
+| --- | --- | --- | --- | --- |
+| 0/1 | `focus.conjugates` | Absent | 635.6343 mm, `first-surface` | PDF p. 19, Numerical Example 1, [可変間隔データ], 40倍距離 column; d23=2.8751 mm, d25=2.5210 mm. Offset +0.000765734 mm (+0.305080 diffraction depths); `consistent`. |
+
+[面データ]: "物面 | ∞ | (d0)" immediately before surface 1; "単位：mm" (PDF p. 18). This defines the declared distance from the object plane to the first surface.
+
+The published flags already include the declared keyframes. All gap values, surfaces, image-plane settings and existing focus controls are retained.

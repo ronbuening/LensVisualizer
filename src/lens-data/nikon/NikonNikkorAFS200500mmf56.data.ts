@@ -409,6 +409,32 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 2.2,
     description: "Internal focus via G5 (L5) axial translation toward image. G5 is a negative cemented doublet.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 1890,
+        distanceReference: "first-surface",
+        source:
+          "JP 2014-209144 A, Example 2, ¶0045, 近距離合焦時の可変間隔, 広角 column, PDF p. 11: d0 1890.0000; d25=13.6845 mm; d28=14.3413 mm; other gaps unchanged from infinity.",
+      },
+      {
+        zoomStation: 1,
+        keyframe: 1,
+        objectDistanceMm: 1858.1924,
+        distanceReference: "first-surface",
+        source:
+          "JP 2014-209144 A, Example 2, ¶0045, 近距離合焦時の可変間隔, 中間 column, PDF p. 11: d0 1858.1924; d25=21.5022 mm; d28=21.3957 mm; other gaps unchanged from infinity.",
+      },
+      {
+        zoomStation: 2,
+        keyframe: 1,
+        objectDistanceMm: 1814.6227,
+        distanceReference: "first-surface",
+        source:
+          "JP 2014-209144 A, Example 2, ¶0045, 近距離合焦時の可変間隔, 望遠 column, PDF p. 11: d0 1814.6227; d25=26.1835 mm; d28=40.4924 mm; other gaps unchanged from infinity.",
+      },
+    ],
   },
 
   gaps: {

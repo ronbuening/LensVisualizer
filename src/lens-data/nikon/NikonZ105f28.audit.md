@@ -233,3 +233,14 @@ Coverage: 16 physical lens elements, 16 authored media, 16 modeled media resolvi
 All sixteen source nd/νd pairs and compatible curves are retained. The two source θgF entries, 0.6103 at L12 and L32, give 0.6103 − (0.6438 − 0.001682×25.15) = 0.0088023, exactly the stored engine-baseline deviations. Preserve these source constraints and their APD provenance. No additional source partial dispersion or per-lens line-index overrides were found. Every lens medium resolves to a compatible coefficient-backed curve; no glass identity or supplier claim was added. Geometry, including the existing source-erratum correction on 27A, is outside this glass-only pass and remains unchanged.
 
 Verification: current-label resolver and native-coordinate compatibility sweep plus `assertCatalogConsistent()`; shared `dispersion.test.ts` and `partialDispersionLine.test.ts` checks. No catalog tolerance was relaxed. Full repository gates are recorded by the parent at the three-lens commit boundary.
+
+## 2026-11-14 — Published finite conjugates
+
+Patent: WO 2022/097401 A1, Example 1.
+
+| Zoom / keyframe | Field | Before | After | Source and paraxial residual |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | `focus.conjugates` | Undeclared | 226.746 mm, `first-surface` | PDF p28, Table 1, 可変間隔データ, 中間距離合焦状態 β = −0.5 column; mm per ¶0093: D0 226.746; gaps 7=12.98, 12=16.167, 18=13.161, STO=14.031 mm. Offset -0.000645387 mm (-0.052074 diffraction depths); `consistent`. |
+| 0 / 2 | `focus.conjugates` | Undeclared | 138.188 mm, `first-surface` | PDF p28, Table 1, 可変間隔データ, closest-focus β = −1.0 column; mm per ¶0093: D0 138.188; gaps 7=22.619, 12=6.528, 18=22.947, STO=4.245 mm. Offset -0.000844958 mm (-0.049961 diffraction depths); `consistent`. |
+
+Reference evidence: ¶0091 (PDF p25) states “D0は物体から光学系における最も物体側の光学面までの距離を示す。” Table 1 also lists D0 as the object-side gap before surface 1 (PDF p27).

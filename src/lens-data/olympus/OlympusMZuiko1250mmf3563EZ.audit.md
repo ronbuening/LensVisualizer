@@ -382,3 +382,23 @@ Removed derived zoom stations and focus keyframes that the solves did not need; 
 Against the earlier model at the same slider position and object: added defocus ≤ 0.0223 mm (0.46 R), half-field ≤ 0.054°, stop radius ≤ 0.009 %, f-number ≤ 0.000 %, variable gaps ≤ 0.005 mm, axial diffraction MTF at 30 lp/mm -0.037 at the worst infinity point (wide open, authored plane). Kept station objects, kept gap values and every field outside the thinned arrays are unchanged; published-station EFL, f-number and half-fields are bit-identical; the validator reports no errors.
 
 Text sync: analysis: 198 → 38 intermediate positions; G2 peak D6 9.4745 → 9.4743 mm (still 0.15 mm beyond the printed middle row).
+
+## 2026-11-14 — Published finite conjugates
+
+Patent: JP 2012-173420 A, Numerical Example 2.
+
+| State (zoom/keyframe) | Field | Before | After | Paraxial offset (mm) | Offset (depths of focus) | Other reference (depths) | Verdict |
+|---|---|---|---|---|---|---|---|
+| 0/1 | `focus.conjugates` | absent | 350 mm, `image-plane` | -0.002676174 | -0.171881 | -9.991968 | consistent |
+| 20/1 | `focus.conjugates` | absent | 350 mm, `image-plane` | -0.004275707 | -0.134044 | -19.189560 | consistent |
+| 40/1 | `focus.conjugates` | absent | 350 mm, `image-plane` | -0.010008248 | -0.202826 | -49.965098 | consistent |
+
+Source: JP 2012-173420 A, Numerical Example 2, paragraph 0109 (PDF p. 18), various data 1 (PDF/printed p. 21), 0.35m row.
+
+Distance-reference basis: `audit-resolved`. The patent does not explicitly define the distance reference. The finite-conjugate audit identifies the image-plane reference for each declared state.
+
+- State 0/1: D6=5.3346, D8=31.3775, D14=3.8142, D18=6.8162 mm. The printed finite-spacing column matches these authored gaps.
+- State 20/1: D6=8.0933, D8=13.5815, D14=7.9355, D18=17.732 mm. The printed finite-spacing column matches these authored gaps.
+- State 40/1: D6=4.5785, D8=2.8888, D14=19.7513, D18=20.1237 mm. The printed finite-spacing column matches these authored gaps.
+
+Residuals retain the authored prescription and image plane. Every declared state already has its published-focus flag.

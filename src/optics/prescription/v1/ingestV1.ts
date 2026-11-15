@@ -109,6 +109,8 @@ const LENS_FIELDS: Readonly<Record<keyof LensDataInput, true>> = {
   patentAssignees: true,
   patentYear: true,
   sourceErrata: true,
+  sourceOmissions: true,
+  sdSource: true,
   sourceIssuer: true,
   elementCount: true,
   groupCount: true,
@@ -179,6 +181,8 @@ const TELECONVERTER_FIELDS: Readonly<Record<keyof TeleconverterData, true>> = {
   patentAuthors: true,
   patentAssignees: true,
   patentYear: true,
+  sourceOmissions: true,
+  sdSource: true,
   elementCount: true,
   groupCount: true,
   elements: true,
@@ -237,6 +241,7 @@ const CONJUGATE_FIELDS: Readonly<Record<keyof FiniteConjugate, true>> = {
   zoomT: true,
   objectDistanceMm: true,
   distanceReference: true,
+  sourceMagnification: true,
   source: true,
 };
 
@@ -780,24 +785,36 @@ function ingestConjugates(
     /* The engine matches a conjugate to its station within the tolerance and never reads the coordinate itself. */
     if (keyframe >= 0 && !Object.is(keyframes[keyframe], focusT)) context.ignored[`${at}.focusT`] = focusT;
     if (zoomStation >= 0 && !Object.is(stationCoordinates[zoomStation], zoomT)) context.ignored[`${at}.zoomT`] = zoomT;
-    const out = {
+    const out: CanonicalConjugate = {
       zoomStation,
       keyframe,
       objectDistanceMm: conjugate.objectDistanceMm as number,
       distanceReference: conjugate.distanceReference as CanonicalConjugate["distanceReference"],
+      ...(conjugate.sourceMagnification !== undefined && {
+        sourceMagnification: conjugate.sourceMagnification as string,
+      }),
       source: conjugate.source as string,
     };
-    if (context.sources) recordConjugate(context.sources, index, at, context.ignored);
+    if (context.sources) recordConjugate(context.sources, index, at, context.ignored, out);
     return out;
   });
 }
 
 /** Where a conjugate was read from: its coordinates become the indices that hold them, and set-aside ones say why. */
-function recordConjugate(sources: SourcePaths, index: number, at: string, ignored: Readonly<Record<string, unknown>>) {
+function recordConjugate(
+  sources: SourcePaths,
+  index: number,
+  at: string,
+  ignored: Readonly<Record<string, unknown>>,
+  conjugate: CanonicalConjugate,
+) {
   const from = `finiteConjugates[${index}]`;
   sources.records[at] = from;
   for (const field of ["objectDistanceMm", "distanceReference", "source"]) {
     sources.read[`${at}.${field}`] = `${from}.${field}`;
+  }
+  if (conjugate.sourceMagnification !== undefined) {
+    sources.read[`${at}.sourceMagnification`] = `${from}.sourceMagnification`;
   }
   sources.heldBy[`${from}.focusT`] = `${at}.keyframe`;
   sources.heldBy[`${from}.zoomT`] = `${at}.zoomStation`;
@@ -1023,6 +1040,7 @@ const V1_NAMES = {
     authors: "patentAuthors",
     assignees: "patentAssignees",
     errata: "sourceErrata",
+    omissions: "sourceOmissions",
     issuer: "sourceIssuer",
   },
   focus: { closeFocusM: "closeFocusM", description: "focusDescription" },
@@ -1074,7 +1092,17 @@ function recordLensReads(sources: SourcePaths, lens: Untyped): void {
 
 /** Record the members a V1 file keeps at its top level, where the prescription's `source` holds them. */
 function recordSourceReads(sources: SourcePaths, source: Untyped): void {
-  const fields = ["patentNumber", "example", "patentYear", "authors", "assignees", "errata", "issuer"];
+  const fields = [
+    "patentNumber",
+    "example",
+    "patentYear",
+    "authors",
+    "assignees",
+    "errata",
+    "omissions",
+    "sdSource",
+    "issuer",
+  ];
   recordReads(sources, "source", "", source, fields, V1_NAMES.source);
 }
 
@@ -1086,6 +1114,8 @@ function ingestSource(data: Untyped): Untyped {
   put(source, "authors", data.patentAuthors);
   put(source, "assignees", data.patentAssignees);
   put(source, "errata", data.sourceErrata);
+  put(source, "omissions", data.sourceOmissions);
+  put(source, "sdSource", data.sdSource);
   put(source, "issuer", data.sourceIssuer);
   return source;
 }

@@ -25,3 +25,13 @@ Patent: US 8,767,319 B2
 - The existing absolute figure/aperture discrepancy remains: figure front ≈27.9 mm is below the ≈29.31 mm source entrance-pupil radius. Therefore the new land outline is qualified on the retained working scale, not claimed as exact source mechanical apertures. Other faces retain their prior caps with no further resolved usable land; leader-line contamination of L21 remains rejected.
 - All ten source d-line pairs retain compatible current coefficient curves and qualified counterpart labels. No source C/F/g or numerical partial dispersion is published; no supplier/melt/APD identity or catalog-only spectral override is inferred. Absence of numeric APD evidence is not a measurement of zero anomaly.
 - Focused surface, image-circle, stated-aperture and field checks pass; catalog consistency passes. Nine actual SVG focus-grid views were inspected with connected compound outlines and no automatic rim trimming. Zoom columns repeat this fixed-focal-length lens.
+
+## 2026-11-14 — Source-certified finite conjugates
+
+Patent: US 8,767,319 B2, Example 1, Focus Data, POS2 column.
+
+| Zoom / keyframe | Field | Before | After | Source and axial residual |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | `focus.conjugates` | Absent | 719 mm, `first-surface` | PDF p. 17, Example 1, Focus Data, POS2 column: d0 719.0; -0.000741445 mm (-0.234633 depths of focus), `consistent`. |
+
+- State 0/1: d6=7.706 mm; d15=11.300 mm. Reference evidence: “Surface Data: Object Surface, r=∞, d=d0; next row Surf. No. 1 (PDF p. 17, Unit: mm)”. Alternate-reference residual: +2.130567272 mm (+647.518836 depths of focus).

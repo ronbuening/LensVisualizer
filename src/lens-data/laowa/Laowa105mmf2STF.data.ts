@@ -240,6 +240,16 @@ const LENS_DATA = {
     closeFocusM: 0.8552552510148389,
     description:
       "PUBLISHED infinity and 0.15× states from CN 104991330 B Example 1 (D11 13.5722 → 7.0000 mm, D22 39.6422 → 55.5496 mm). Both positive groups move toward the object, Gr1 by 9.34 mm and Gr2 by 15.91 mm, closing the air space between them by 6.57 mm. The 0.855 m object-to-image distance of the 0.15× state is calculated from those spacings; the patent does not print it, and it is not the marketed 0.9 m minimum focus distance. Positions between the two states are linearly interpolated.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 720.81,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.15",
+        source: "CN 104991330 B, Example 1 (PDF p. 6): prints “0.15倍” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.14998.",
+      },
+    ],
     published: [1],
   },
 

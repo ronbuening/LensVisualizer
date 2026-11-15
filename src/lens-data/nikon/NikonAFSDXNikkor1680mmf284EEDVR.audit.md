@@ -62,3 +62,17 @@ All eighteen source coordinate pairs are unchanged. Sixteen compatible curves re
 The S8 extension preserves all clear caps and coefficients. Fresh current asphere departure / absolute slope checks reproduce S6A(14): +511.8113 µm /14.4179°, S23A(9.6): +17.8080 µm /7.6509°, S32A(12.3): +191.4937 µm /9.1974°. Public existing departure numbers match these unchanged caps.
 
 Focused surface and image-circle checks pass. The nominal-aperture audit proposes no height raises. Actual SVG paths at all nine focus/zoom combinations (0, 0.5, 1) are finite with zero hidden trimming, and the rendered compound outlines were inspected. A temporary source/resolver check covers all 48 modeled media in this triad: 44 compatible catalog curves and four explicit unresolved media. All source nd/νd values and every runtime C/d/F/g channel remain unchanged; `assertCatalogConsistent` passes. Source R/d, aspheric coefficients, stop, focus and zoom controls are unchanged.
+
+## 2026-11-14 — Published finite conjugates
+
+Patent: US 2018/0252903 A1, Example 1.
+
+| Zoom / keyframe | Field | Before | After | Source locator | Paraxial residual |
+| --- | --- | --- | --- | --- | --- |
+| 0 / 1 | `focus.conjugates` | Absent | 219.63 mm, `first-surface` | PDF p. 35, Table 3, Variable distance data, Short distance W / M / T columns, D0 row; D0 = 219.63; D5=0.885, D14=20.061, D22=1.434, D27=9.397, BF=37.994 mm | +0.000424121 mm / +0.048783 depths; consistent |
+| 1 / 1 | `focus.conjugates` | Absent | 203.82 mm, `first-surface` | PDF p. 35, Table 3, Variable distance data, Short distance W / M / T columns, D0 row; D0 = 203.82; D5=15.776, D14=9.596, D22=6.306, D27=4.525, BF=49.378 mm | -0.000383444 mm / -0.028562 depths; consistent |
+| 2 / 1 | `focus.conjugates` | Absent | 178.43 mm, `first-surface` | PDF p. 35, Table 3, Variable distance data, Short distance W / M / T columns, D0 row; D0 = 178.43; D5=31.579, D14=5.033, D22=9.411, D27=1.420, BF=63.528 mm | +0.000618283 mm / +0.030403 depths; consistent |
+
+Reference evidence: D0 denotes the distance from the surface (first surface) closest to the object in the zoom optical system ZL1 to the object, and β denotes a magnification (the same applies to Examples below).
+
+The authored gaps, image plane and published-state flags are retained.

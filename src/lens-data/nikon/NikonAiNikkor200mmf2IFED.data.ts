@@ -222,6 +222,16 @@ const LENS_DATA = {
     closeFocusM: 2.331245682553977,
     description:
       "PUBLISHED internal-focus states from US 4,176,913 A Example 2: the complete negative middle group translates 17.000 mm imageward; D6 increases 41.201→58.201 mm while D11 decreases 22.912→5.912 mm, preserving D6+D11=64.113 mm. The patent labels the close endpoint β≈-0.1; this slider endpoint is not reconstructed from the production 2.5 m MFD.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 2086.59,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.1",
+        source: "US 4,176,913 A, Example 2 (PDF p. 8): prints “β = −0.1” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.10494.",
+      },
+    ],
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
   },

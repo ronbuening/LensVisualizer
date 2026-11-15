@@ -211,6 +211,16 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.16,
     description: "Inner focus: single negative meniscus G7 (GR2) translates axially. Linear AF motor.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 78.78,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.25",
+        source: "US 2013/0033768 A1, Numerical Example 2 (PDF p. 17): prints “β = -0.25” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.24978.",
+      },
+    ],
     // (moved from publishedStations) Patent read 2026-10-06: Close-focus gaps D12 = 5.133 and D14 = 3.474 are the patent's Table 6 short-range row
     // for Example 2 at beta = -0.25, unscaled.
     published: [1],

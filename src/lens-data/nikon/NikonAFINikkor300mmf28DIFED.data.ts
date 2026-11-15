@@ -241,6 +241,16 @@ const LENS_DATA = {
       "PUBLISHED inner focus: negative G2 (surfaces 10-14) translates 10.8889 mm imageward; D9 increases and D14 decreases by the same amount. The authored image plane is fixed at the rounded prescription's infinity bare-air conjugate; the patent's approximately 0.685 mm Bf offset is unresolved and no unprescribed plate is modeled.",
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 2228.5485,
+        distanceReference: "first-surface",
+        source:
+          "JP H04-294310 A, Example 1, paragraph 0026 table (PDF p. 5): D0=2228.5485 mm, defined in paragraph 0025 (PDF p. 4) as object to first lens surface; d9=16.0229 mm, d14=4.9517 mm.",
+      },
+    ],
   },
 
   gaps: { "9": { label: "D9", values: [[5.134, 16.0229]] }, "14": { label: "D14", values: [[15.8406, 4.9517]] } },

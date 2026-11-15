@@ -38,3 +38,15 @@ rows remain class-level because multiple compatible catalogs exist.
 - Source L8 has a resolved concave front end land: measured cap/edge q ≈ 0.84 with native half-edge about 141 px, one-pixel range approximately 0.827–0.853. Adopt S12's existing 14.2 mm clear cap with `rimExtensionSd: 15.3`; continuous rear S13 grows to 15.3 mm. Adopted q = 0.928105 / land 1.1 mm is explicitly farther outward than the measured endpoint, preserving the prior optical cap rather than introducing a new inferred trim. The figure supports the taller outer rim; its clear endpoint is not forced into the tracing aperture. Full G2 16.0 mm trial fails S5→S6: 1.11 mm sag against 0.833 allowed in the unchanged 0.925 mm infinity gap. No land is invented on that continuous source face. Other faces have no additional supported usable cap-end trims.
 - All nine media retain compatible coefficient coverage. Explicit J-SF6/LAC8 labels replace misleading generic unresolved text without changing any selected curve. L9 N-SK10 remains a nonidentical proxy (catalog 1.62278/56.98 versus source 1.62280/56.7); corrected public strict-match/rounding implications. No supplier, melt, composition or quantitative APD is inferred.
 - Focused surface, image-circle, aperture and field checks pass. Nine actual SVG focus/zoom-grid views show connected compound outlines and no automatic rim trim. Catalog consistency passes. Zoom columns repeat this fixed-focal-length lens; the three focus rows exercise its published internal-focus travel.
+
+## 2026-11-14 — Source-certified finite conjugates
+
+Patent: US 4,437,734 A, Example 1, M=−0.504 column, d₀ row.
+
+| Zoom / keyframe | Field | Before | After | Source and axial residual |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | `focus.conjugates` | Absent | 295.169 mm, `first-surface` | PDF p. 15, Example 1, M=−0.504 column, d₀ row: d₀ 295.169; +0.001002554 mm (+0.053322 depths of focus), `consistent`. |
+| 0 / 2 | `focus.conjugates` | Absent | 175.712 mm, `first-surface` | PDF p. 15, Example 1, M=−1.002 column, d₀ row: d₀ 175.712; +0.000952173 mm (+0.050642 depths of focus), `consistent`. |
+
+- State 0/1: d5=16.141 mm; d8=21.192 mm (19.392 mm to STO plus 1.8 mm); Bf=58.798 mm. Reference evidence: “d₀ is distance from the object to the first surface, that is, working distance;”. Alternate-reference residual: +213.534095617 mm (+1378.797198 depths of focus).
+- State 0/2: d5=31.167 mm; d8=6.166 mm (4.366 mm to STO plus 1.8 mm); Bf=58.798 mm. Reference evidence: “d₀ is distance from the object to the first surface, that is, working distance;”. Alternate-reference residual: -170.557884202 mm (-37224.147089 depths of focus).

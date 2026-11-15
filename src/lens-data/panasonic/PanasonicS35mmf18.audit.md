@@ -81,3 +81,13 @@ Patent: CN 216772097 U, Example 1
   defocus changes by at most 0.000006 mm (rounding in the old fold) at infinity and at 0.24 m.
 - Physical track grows by 0.7155 mm (2.10 × (1 − 1/1.51680)) to 101.0 mm, now matching the analysis's quoted S1-to-image
   total.
+
+## 2026-11-14 — Published finite-conjugate certification
+
+Patent: CN 216772097 U.
+
+| Zoom / keyframe | Field | Before | After | Source locator |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | `focus.conjugates` | No declaration | 240 mm, `image-plane` | PDF p. 9; CN 216772097 U, Example 1, paragraphs 0117–0118, MOD column and minimum shooting-distance row: 最短拍摄距离 0.24m. d1=8.7213 mm, d2=0.9347 mm (authored gap 16A=4.20+d2=5.1347 mm). |
+
+- State 0/1: paraxial image offset -0.0537804213474 mm (-12.5212344872 diffraction depths); alternate reference -2.8479674958 mm (-738.408076086 depths). Verdict: `consistent`; reference discriminated: true. The patent gives the distance without a reference definition. The conjugate audit identifies the image-plane reference (`referenceBasis=audit-resolved`).

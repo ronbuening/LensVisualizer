@@ -1,0 +1,1 @@
+Improved MTF warnings, the aperture comparison, chart markers and responsiveness

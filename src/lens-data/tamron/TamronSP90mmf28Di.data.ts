@@ -290,6 +290,24 @@ const LENS_DATA = {
     keyframes: [0, 0.7976078358456278, 1],
     description:
       "Three-group floating inner focus. G2 translates 18.049 mm imageward; G3 and G4 translate 12.300 mm and 17.570 mm objectward from infinity to 1:1. The infinity, 1:2, and 1:1 patent rows are exact focus keyframes.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 217.35,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.5",
+        source: "US 9,063,253 B2, Embodiment 7 (PDF p. 84): prints “Magnification: X0.5” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.49428.",
+      },
+      {
+        zoomStation: 0,
+        keyframe: 2,
+        objectDistanceMm: 140.55,
+        distanceReference: "first-surface",
+        sourceMagnification: "1.0",
+        source: "US 9,063,253 B2, Embodiment 7 (PDF p. 84): prints “Magnification: X1.0” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 1.00033.",
+      },
+    ],
     // (moved from publishedStations) Every focus keyframe is a source row.
     published: [1, 2],
   },

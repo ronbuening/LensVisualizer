@@ -166,3 +166,17 @@ Resolved concave-end lands now use inferred cuts on S2/S10/S12/S18A at depths **
 All ten nd/νd rows match Table 5; four qualified catalog curves and six unmatched Abbe models remain. The source's dPgF values are **0.0376/0.0195**, with no printed normal-line formula or nC/nF/ng. Retained the existing qualified conversions **0.0325/0.015956** and clarified that the normal-line convention is inferred, with Lfc's value catalog-derived. The source does not independently prove that convention, a glass identity or supplier. Removed Lrc's unsupported lanthanum-chemistry claim; analysis now distinguishes numerical agreement under the inferred convention from proof of identical glass.
 
 `audit:surface`, `audit:image-circle` and `audit:aperture` passed, including the full inferred-cut beam guard. Nine prepared-state SVG probes were generated, rasterized and viewed over focus 0/.5/1 and ignored prime zoom: ten finite element paths per state, zero renderer trim. Scoped catalog/resolver consistency and shared dispersion/resolver/partial-dispersion tests passed (3 files/94 tests).
+
+## 2026-11-14 — Published finite-conjugate certification
+
+Patent: JP 2021-043376 A, Example 5.
+
+| State (zoom/keyframe) | Field | Before | After | Source |
+|---|---|---|---|---|
+| 0/1 | `focus.conjugates` | Absent | `370` mm, `first-surface` | PDF p. 27, Table 5, フォーカス可変間隔, F36 column: `ZD 0 = 370.00` mm; ZD10=5.89 mm, ZD14=3.57 mm, ZD19=20.53 mm. |
+
+Reference basis: Table 5: OBJ | Infinity | ZD 0, immediately before surface 1. The object row precedes surface 1, so the printed object-side gap is first-surface-referenced.
+
+State 0/1: paraxial image-minus-authored-plane residual +0.003930838633 mm (+0.625901266 diffraction depths); alternate image-plane reference +379.773934639 depths. Verdict: `consistent`; reference discriminated.
+
+Only the conjugate declaration is added; the published flags and all prescription geometry are retained.

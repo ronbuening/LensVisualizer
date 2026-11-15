@@ -58,3 +58,13 @@ aperture, the drawing is recorded as headroom rather than used.
 
 The validator accepts the new values, the traced edge now reaches 14.18 mm at 32.4° with every rim clear, and the
 image-circle floor reports nothing undersized. No aspheric surface changed.
+
+## 2026-11-14 — Finite conjugates from printed magnifications
+
+| Zoom / keyframe | Printed magnification → `sourceMagnification` | Source locator | Solved object distance | Check |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | “β = −0.041” → `"0.041"` | US 2017/0351051 A1, Example 1 (PDF p. 22) | 534.97 mm, first-surface | in focus 0.04076; at the declared distance 0.04076; −0.00 quarter waves |
+
+The patent prints a magnification and no object distance for this state. Each distance is solved from the prescription under `LENS_DATA_SPEC.md` § Finite conjugates: the distance that focuses the state on its image plane when the magnification there rounds to the print, otherwise the distance at the nearest magnification that does. Two independent readings of the patent agree on the printed value and on the gaps of the matching state.
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.
