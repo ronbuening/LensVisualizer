@@ -230,6 +230,16 @@ const LENS_DATA = {
       "PUBLISHED rear/internal focus: negative G2 (L6+L7, surfaces 12-14) translates 15.53 mm imageward from infinity to 0.900 m; G1 and G3 remain fixed.",
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 900,
+        distanceReference: "image-plane",
+        source:
+          "JP 2018-049102 A, Numerical Example 1, p. 15 variable-gap table: 物体距離 900 mm; d11=17.81 mm, d14=6.99 mm. Distance reference identified by the conjugate audit (audit-resolved).",
+      },
+    ],
   },
 
   /* (moved from var) ── Published focus spacings ── */

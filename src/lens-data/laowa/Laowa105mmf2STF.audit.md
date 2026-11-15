@@ -38,3 +38,13 @@ New positive rows: [SUMITA official AGF](https://www.sumita-opt.co.jp/en/downloa
 L9→LAKN4 evaluated residuals are nd −0.00027578/νd +0.907085, PgF 0.543427. It improves both source-coordinate residuals over existing J-LAK02/S-LAL52, but the remaining Abbe gap makes it explicitly approximate. L11→M-NBFD82 residuals are −0.00063943/+0.157807, PgF 0.581593; the 700-entry existing-catalog scan finds no compatible alternative. Neither source supplies PgF, so no partial residual or historical chemistry is proved. L3/L5 remain unresolved ordinary coordinates; L8 remains unresolved absorbing material.
 
 Only two glass-label strings change in the prescription. All source pairs, numeric spectral fields, APD/absorption metadata, geometry, cuts/shoulders, stops and controls remain identical. Eight elements now use seven qualified catalog curves; the earlier six-element/five-curve disposition above is historical. This changes estimated dispersion only for L9/L11 and adds no complete source/shape review count or production claim.
+
+## 2026-11-14 — Finite conjugates from printed magnifications
+
+| Zoom / keyframe | Printed magnification → `sourceMagnification` | Source locator | Solved object distance | Check |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | “0.15倍” → `"0.15"` | CN 104991330 B, Example 1 (PDF p. 6) | 720.81 mm, first-surface | in focus 0.14998; at the declared distance 0.14998; −0.00 quarter waves |
+
+The patent prints a magnification and no object distance for this state. Each distance is solved from the prescription under `LENS_DATA_SPEC.md` § Finite conjugates: the distance that focuses the state on its image plane when the magnification there rounds to the print, otherwise the distance at the nearest magnification that does. Two independent readings of the patent agree on the printed value and on the gaps of the matching state.
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.

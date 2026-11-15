@@ -163,6 +163,7 @@ export interface CanonicalConjugate {
   keyframe: number;
   objectDistanceMm: number;
   distanceReference: FiniteConjugate["distanceReference"];
+  sourceMagnification?: string;
   source: string;
 }
 

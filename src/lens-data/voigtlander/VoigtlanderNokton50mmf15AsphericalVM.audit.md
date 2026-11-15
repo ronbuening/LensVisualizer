@@ -68,3 +68,17 @@ Sources: JP 2022-012964 A Table 2 and the F10/F14 table (PDF p. 20), ¶0077, and
 - Aperture, image-circle, field-coverage and surface-probe audits are unchanged.
 
 Follow-ups: none.
+
+## 2026-11-14 — Published finite-conjugate certification
+
+Patent: JP 2022-012964 A, Example 2.
+
+| State (zoom/keyframe) | Field | Before | After | Source |
+|---|---|---|---|---|
+| 0/1 | `focus.conjugates` | Absent | `630` mm, `first-surface` | PDF p. 20, Table 2, フォーカス可変間隔, F14 column: `ZD 0 = 630.00` mm; ZD9=5.30 mm, ZD12=0.15 mm, ZD16=29.12 mm. |
+
+Reference basis: Table 2: OBJ | Infinity | ZD 0, immediately before surface 1. The object row precedes surface 1, so the printed object-side gap is first-surface-referenced.
+
+State 0/1: paraxial image-minus-authored-plane residual -0.032547468007 mm (-11.180051217 diffraction depths); alternate image-plane reference +169.565206996 depths. Verdict: `consistent`; reference discriminated.
+
+Only the conjugate declaration is added; the published flags and all prescription geometry are retained.

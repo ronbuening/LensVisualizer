@@ -61,3 +61,26 @@ Consistency: an inconsistency no single value isolates, so the air gaps are re-s
 Follow-ups:
 
 - The R4 / Rn1 contradiction stays open as before; the re-solve does not depend on it.
+
+## 2026-11-14 — Finite conjugates from printed magnifications
+
+| Zoom / keyframe | Printed magnification → `sourceMagnification` | Source locator | Solved object distance | Check |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | “Magnification: X0.5” → `"0.5"` | US 9,063,253 B2, Embodiment 7 (PDF p. 84) | 217.35 mm, first-surface | in focus 0.49428; at the declared distance 0.49428; −0.00 quarter waves |
+| 0 / 2 | “Magnification: X1.0” → `"1.0"` | US 9,063,253 B2, Embodiment 7 (PDF p. 84) | 140.55 mm, first-surface | in focus 1.00033; at the declared distance 1.00028; −0.21 quarter waves |
+
+The patent prints a magnification and no object distance for these states. Each distance is solved from the prescription under `LENS_DATA_SPEC.md` § Finite conjugates: the distance that focuses the state on its image plane when the magnification there rounds to the print, otherwise the distance at the nearest magnification that does. Two independent readings of the patent agree on the printed value and on the gaps of the matching state.
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.
+
+## 2026-11-14 — Conjugate reconciled with the re-solved rows
+
+The 2026-11-14 certification solved its distances on the printed rows; on the rows re-solved 2026-11-03 the prints solve
+to 215.45 and 140.61 mm from the first surface (paraxial magnification 0.50000 and 1.00000).
+
+| Field | Before | After | Justification |
+| --- | --- | --- | --- |
+| `focus.conjugates[0].objectDistanceMm` (1:2) | 217.35 | 215.45 | Audit solved distance on the re-solved 1:2 row |
+| `focus.conjugates[1].objectDistanceMm` (1:1) | 140.55 | 140.61 | Audit solved distance on the re-solved 1:1 row |
+
+- Verdicts consistent (−0.10 / −0.32 depths), magnifications match the solve. No gap, radius or image-plane value changed.

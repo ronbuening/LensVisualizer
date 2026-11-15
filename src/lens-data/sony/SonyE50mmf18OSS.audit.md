@@ -52,3 +52,14 @@ LENS_DATA_SPEC § Image-Plane Consistency: the real-ray axial best focus lies wi
 Follow-ups:
 
 - None.
+
+## 2026-11-14 — Finite conjugates from printed magnifications
+
+| Zoom / keyframe | Printed magnification → `sourceMagnification` | Source locator | Solved object distance | Check |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | “0.025倍” → `"0.025"` | JP 2012-242690 A, Example 2 (PDF p. 11) | 2107.62 mm, first-surface | in focus 0.02403; at the declared distance 0.02450; +5.81 quarter waves |
+| 0 / 2 | “最至近距離（0.142倍）” → `"0.142"` | JP 2012-242690 A, Example 2 (PDF p. 11) | 376.16 mm, first-surface | in focus 0.13926; at the declared distance 0.14150; +22.28 quarter waves |
+
+The patent prints a magnification and no object distance for these states. Each distance is solved from the prescription under `LENS_DATA_SPEC.md` § Finite conjugates: the distance that focuses the state on its image plane when the magnification there rounds to the print, otherwise the distance at the nearest magnification that does. Two independent readings of the patent agree on the printed value and on the gaps of the matching state.
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.

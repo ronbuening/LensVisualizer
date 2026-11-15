@@ -227,6 +227,16 @@ const LENS_DATA = {
     closeFocusM: 1.7947,
     description:
       "PUBLISHED compound internal focus using the patent's D2, D6, and D11 endpoints at infinity and β = −0.12. The infinity BF is re-solved for paraxial focus (printed 44.79 × 1.8 = 80.622 mm), and the close row is re-solved with the patent's Component II/IV motion to focus at β = −0.12, 1603.701 mm from the first surface (1.7947 m object to image). D2 contracts by 2.581 mm and D11 by 17.451 mm (printed 2.574 and 17.406 mm); the D2+D6 totals leave a 0.018 mm Component III residual, as printed, so Component IV shifts 17.469 mm relative to R1.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 1603.7,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.12",
+        source: "US 4,726,669, Example 1 (PDF p. 7): prints “For γ = −0.12” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.11999.",
+      },
+    ],
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
   },

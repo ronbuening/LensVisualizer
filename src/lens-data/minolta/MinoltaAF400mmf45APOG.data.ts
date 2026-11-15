@@ -212,6 +212,16 @@ const LENS_DATA = {
       "their adjacent-gap sum differs by 0.001 mm at close focus because of source rounding.",
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 3000,
+        distanceReference: "image-plane",
+        source:
+          "JP 1996-327896 A, Example 1, Table 1 (PDF p. 3), paragraph 0017 (PDF p. 4): 撮影距離３ｍ; T6=43.262 mm, T12=8.028 mm. The image-plane reference is identified by the conjugate audit (referenceBasis=audit-resolved).",
+      },
+    ],
   },
 
   gaps: { "6": { label: "T6", values: [[29.311, 43.262]] }, "12": { label: "T12", values: [[21.978, 8.028]] } },

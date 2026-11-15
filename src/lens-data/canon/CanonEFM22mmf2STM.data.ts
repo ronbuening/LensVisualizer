@@ -172,6 +172,16 @@ const LENS_DATA = {
     closeFocusM: 0.264,
     description:
       "Patent-tabulated two-gap inner/floating focus from infinity to beta = -0.1x; production 0.15 m MFD is not extrapolated.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 221.72,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.1",
+        source: "US 8,854,747 B2, Example 1 (PDF p. 22): prints “−0.1x” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.09973.",
+      },
+    ],
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
   },

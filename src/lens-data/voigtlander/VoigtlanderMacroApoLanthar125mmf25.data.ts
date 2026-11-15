@@ -235,6 +235,16 @@ const LENS_DATA = {
     closeFocusM: 0.414,
     description:
       "Floating two-group inner focus. Groups 1 and 2 extend forward on a helicoid; Group 3 fixed. Manual focus, no AF motor. 9 rounded aperture blades.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 215.3,
+        distanceReference: "first-surface",
+        sourceMagnification: "1:1",
+        source: "JP 2002-090622 A, Example 2 (PDF p. 4): prints “撮影倍率等倍; D13 = 52.78; D15 = 10.22” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription at that magnification; focused on its image plane the state gives 0.99983.",
+      },
+    ],
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
   },

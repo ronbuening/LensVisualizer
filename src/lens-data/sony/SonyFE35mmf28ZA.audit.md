@@ -73,8 +73,37 @@ LENS_DATA_SPEC § Image-Plane Consistency: source rounding, so the air gaps are 
 - Evidence for the class: two-decimal indices (¶0077); the real-ray axial best focus (+0.387 mm) sat near paraxial focus,
   so the printed plane was not a best-focus plane.
 - Reference choice: ¶0079 does not say where 350 mm is measured from. Object to image plane matches Sony's 0.35 m minimum
-  focus distance; read from the first surface instead, the near row would be D(6)/D(8) 3.166392/3.853608 mm (0.3976 m).
+  focus distance; read from the first surface instead, the near row would be D(6)/D(8) 2.977801/4.042199 mm (0.3981 m) on the re-solved plane.
 
 Follow-ups:
 
 - None.
+
+## 2026-11-14 — Published finite conjugates
+
+Patent: JP 2015-041012 A, Example 1.
+
+| Zoom/keyframe | Before | Added object distance / reference | Source locator | Paraxial offset (mm / diffraction depths) | Other-reference offset (mm / depths) |
+|---|---|---|---|---|---|
+| 0/1 | No conjugate | 350 mm / `first-surface` | PDF p. 12, printed p. 12; paragraph 0079, close focus finite column, 物体距離 row; `最至近距離（物体距離350mm）` | 0.090082125 / 8.6588415 | 0.71077692 / 66.171102 |
+
+The retained rows are `consistent` under the 25-diffraction-depth criterion. Existing gaps, image plane and published flags are retained.
+
+- State 0/1: D6=3.13 mm; BF=3.89 mm.
+
+The distance reference is audit-resolved: the patent gives no explicit reference definition, and only the retained reference is consistent. The conjugate source string records that qualification.
+
+The patent prints object distance without an explicit reference definition; the discriminating audit identifies first-surface.
+
+## 2026-11-14 — Conjugate reconciled with the re-solved rows
+
+The 2026-11-14 certification identified a first-surface reference on the printed rows, whose infinity plane sat
+0.470542 mm in front of focus. On the rows re-solved 2026-11-03 the audit rejects first-surface (−59.4 depths) and
+finds image-plane consistent. On the corrected plane the printed 1.64 mm travel sits nearer the 1.738268 mm an
+object-to-image reading needs than the 1.487801 mm a first-surface reading needs.
+
+| Field | Before | After | Justification |
+| --- | --- | --- | --- |
+| `focus.conjugates[0].distanceReference` | first-surface | image-plane | Audit-resolved on the re-solved rows |
+
+- The printed 350 mm and the declared state are unchanged; `source` records the reference evidence.

@@ -88,3 +88,11 @@ gap is re-solved for infinity, the change is carried to the 0.3 m row, and G3 is
 
 Follow-ups: the D1 + D2 conservation row in Section G of `agent_docs/sd-audit-queue.md` stays open; the tangential
 field-curve erratum is unaffected.
+
+## 2026-11-14 — Published finite-conjugate certification
+
+| Zoom / keyframe | Field | Before | After | Source and conjugate residual |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | `focus.conjugates` | No entry | 300 mm, `image-plane` | 物距 最近(0.3m); Example 1, Table 2, ¶0082–0083, 最近 column; 物距/D1/D2 rows; PDF p. 8. Paraxial image minus authored plane +0.002026466 mm (+0.842503 diffraction depths); other reference -272.418019 depths; `consistent`, reference discriminated. Basis: audit-resolved. |
+
+The printed object-distance label leaves its reference plane undefined. The conjugate residual identifies the retained reference; the source string records that qualification.

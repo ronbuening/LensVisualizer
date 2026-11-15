@@ -38,8 +38,9 @@ export function zoomStationOptions(L: RuntimeLens): StationOption[] {
 /**
  * Build one button per published focus station at a zoom station.
  *
- * A certified conjugate shows the source's own object distance (object to image); any other row shows the focus
- * slider's label for that keyframe, the distance at which the model is in focus. The button title says which kind it is.
+ * A certified conjugate shows its object-to-image distance, the source's own or the one solved from the source's
+ * magnification; any other row shows the focus slider's label for that keyframe, the distance at which the model is
+ * in focus. The button title says which kind it is.
  *
  * @param L - runtime lens object
  * @param zoomIndex - index into `zoomPositions`; 0 for a prime
@@ -59,7 +60,9 @@ export function focusStationOptions(L: RuntimeLens, zoomIndex: number, zoomT: nu
       title: station.isInfinity
         ? "Infinity focus"
         : station.conjugate
-          ? `Source-certified conjugate; the distance is the source's: ${station.conjugate.source}`
+          ? station.conjugate.sourceMagnification !== undefined
+            ? `Source-certified conjugate; the distance is solved from the source's magnification: ${station.conjugate.source}`
+            : `Source-certified conjugate; the distance is the source's: ${station.conjugate.source}`
           : "Source-tabulated focus row; the distance is the focus slider's label for it",
     };
   });

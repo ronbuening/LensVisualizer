@@ -196,3 +196,14 @@ Owner's rule: a land stays only if vignetting improves, drops slightly, or spaci
 
 Worst loss against lands open: 4.6 points before, 2.8 at 18.1° now. The 18.1° corner goes from 29.4 to 31.2 %. The S18 cut is
 unchanged and passes the beam rule.
+
+## 2026-11-14 — Finite conjugates from printed magnifications
+
+| Zoom / keyframe | Printed magnification → `sourceMagnification` | Source locator | Solved object distance | Check |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | “0.5倍” → `"0.5"` | CN 118584637 A, Example 1 (PDF p. 7) | 236.95 mm, first-surface | in focus 0.49825; at the declared distance 0.49824; −0.03 quarter waves |
+| 0 / 2 | “1.0倍” → `"1.0"` | CN 118584637 A, Example 1 (PDF p. 7) | 158.87 mm, first-surface | in focus 0.95666; at the declared distance 0.95670; +0.08 quarter waves |
+
+The patent prints a magnification and no object distance for these states. Each distance is solved from the prescription under `LENS_DATA_SPEC.md` § Finite conjugates: the distance that focuses the state on its image plane when the magnification there rounds to the print, otherwise the distance at the nearest magnification that does. Two independent readings of the patent agree on the printed value and on the gaps of the matching state.
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.

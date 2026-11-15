@@ -63,3 +63,19 @@ Patent: JP 2022-030896 A, Example 1 / FIG. 1
 Text sync: focus.description: "to 0.18 m" → "to the patent's 0.18 m state (measured from the first surface)".
 
 - 2026-11-13 — `source.sdSource: "source-table"` rests on "Note on semi-diameters: clear apertures are patent-listed H values." Source: existing header / audit text; no optical values change.
+
+## 2026-11-14 — Published finite conjugates
+
+Patent: JP 2022-030896 A, Example 1.
+
+| Zoom/keyframe | Before | Added object distance / reference | Source locator | Paraxial offset (mm / diffraction depths) | Other-reference offset (mm / depths) |
+|---|---|---|---|---|---|
+| 0/1 | No conjugate | 180 mm / `first-surface` | PDF p. 13, printed p. 13; Table 3, close focus finite column, 撮影距離 row; `撮影距離 180.000` | 0.21520815 / 24.196677 | 1.7716757 / 185.3748 |
+
+The retained rows are `consistent` under the 25-diffraction-depth criterion. Existing gaps, image plane and published flags are retained.
+
+- State 0/1: D(11)=2.978 mm; D(16)=4.077 mm.
+
+Reference evidence: 「撮影距離」は物体から光学系の最も物体側の面までの光軸上の距離である。
+
+Table 3 prints gap labels D(5) and D(7), with values 4.520/2.978 and 2.535/4.077; these values match the authored D(11) and D(16) keyframes. Paragraph 0076 explicitly defines the first-surface reference.

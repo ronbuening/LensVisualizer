@@ -269,6 +269,16 @@ const LENS_DATA = {
       "(D1 1.00 → 3.922333 mm; D2 4.43 → 1.717667 mm, re-solved for paraxial focus at 0.3 m object to image; printed " +
       "3.76 / 1.88 mm). The printed D1 + D2 grows by 0.21 mm although G2 and G4 are fixed; the printed sums are kept.",
     published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 300,
+        distanceReference: "image-plane",
+        source:
+          "CN 211826700 U, Example 1, Table 2, ¶0082–0083 (PDF pp. 8), object-distance row 物距, 最近(0.3m) column: D1=3.76 mm, D2=1.88 mm. The patent does not define the distance reference; image-plane reference identified by the conjugate audit (audit-resolved), which rejects the other reference.",
+      },
+    ],
   },
 
   gaps: {

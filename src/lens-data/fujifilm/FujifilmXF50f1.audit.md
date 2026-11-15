@@ -74,3 +74,17 @@ CDGM H-ZLaF68N, already in the catalog, matches nd and νd exactly and its own c
 relabelled "H-ZLaF68N (CDGM; its curve reproduces the patent's θgF)". NHG H-ZLaF68L at the same coordinate gives θgF
 0.5709 and is not chosen. The stored dPgF is unchanged. A corpus resolution dump before and after changes only these
 two elements and L12/L33 of the X100V. The analysis L2b/L2d lines and the spectral-proxy summary are updated.
+
+## 2026-11-14 — Published finite conjugate
+
+Patent: US 2021/0231927 A1, Example 3, Table 11, 0.7 m column; paragraph 0213 (PDF p. 79); PDF page 80.
+
+| State | Field | Before | After | Source evidence |
+| --- | --- | --- | --- | --- |
+| Zoom 0 / keyframe 1 | `focus.conjugates` | absent | `700` mm, `image-plane` | Printed `0.7 m`; DD[14]=7.025; DD[22]=18.842 mm. |
+
+The reference is patent-defined: “the object at the distance of 0.7 m (meter) from the object to the image plane Sim”. The authored-plane paraxial
+offset is -0.000499013 mm (-0.387446 diffraction depths); the other
+reference gives -0.568848874 mm (-451.089948 depths).
+The verdict is `consistent` and the reference is discriminated. The existing published flag and
+all optical geometry remain unchanged.

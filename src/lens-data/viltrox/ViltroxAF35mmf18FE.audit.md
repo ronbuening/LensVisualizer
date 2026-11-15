@@ -96,3 +96,11 @@ is therefore moved at both rows instead.
 Follow-ups: the S9 rim trim (+0.4%) could be removed by a small S9 semi-diameter increase in a rim pass. The 0.24 mm
 infinity D1 vertex gap is tight but physical. If the patent's Fig. 1 shows a larger L23–L31
 gap at infinity, revisit the row inconsistency.
+
+## 2026-11-14 — Published finite-conjugate certification
+
+| Zoom / keyframe | Field | Before | After | Source and conjugate residual |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | `focus.conjugates` | No entry | 300 mm, `first-surface` | 物距 最近(0.3m); Example 1, Table 2, ¶0078–0079, 最近 column; 物距/D1/D2 rows; PDF p. 8. Paraxial image minus authored plane -0.054654010 mm (-13.955199 diffraction depths); other reference +381.631125 depths; `consistent`, reference discriminated. Basis: audit-resolved. |
+
+The printed object-distance label leaves its reference plane undefined. The conjugate residual identifies the retained reference; the source string records that qualification.

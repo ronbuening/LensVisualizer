@@ -234,6 +234,16 @@ const LENS_DATA = {
       "Fixed-stop CRC focus: the patent beta=-1/30 calibration and constrained 0.25 m endpoint are exact keyframes; G1 and G2 move objectward at X2/X1 approximately 0.6.",
     // (moved from publishedStations) The intermediate focus row is source-tabulated; the close endpoint is reconstructed.
     published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 457.2746,
+        distanceReference: "first-surface",
+        source:
+          "US 5,434,713 A, Example 1, Table 1 (PDF p. 8): D0=457.2746 mm, defined as object to closest-to-object lens vertex; d7=11.3033 mm (7.2576+4.0457 mm split at STO), Bf=39.0700 mm (authored air-equivalent rear gap 40.7411392405 mm).",
+      },
+    ],
   },
 
   gaps: {

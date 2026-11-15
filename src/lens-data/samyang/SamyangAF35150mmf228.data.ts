@@ -448,6 +448,32 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.331,
     description: "Internal focusing by single negative group Gm3 (L17); D31 increases and D33 decreases.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 157,
+        distanceReference: "first-surface",
+        source:
+          "US 2025/0231383 A1, Embodiment 3 (100-3), TABLE 9, MOD Wide column, PDF p. 25: D0=157.000 mm; D5=1.200 mm, D12=9.037 mm, D18=23.915 mm, D31=6.792 mm, D33=6.648 mm, D41=12.602 mm. TABLE 7: \"Object\" row has D0 in Thickness, immediately before surface 1 (PDF p. 25, printed p. 7); ¶0082 specifies thickness and intervals in millimeters.",
+      },
+      {
+        zoomStation: 1,
+        keyframe: 1,
+        objectDistanceMm: 334.99,
+        distanceReference: "first-surface",
+        source:
+          "US 2025/0231383 A1, Embodiment 3 (100-3), TABLE 9, MOD Middle column, PDF p. 25: D0=334.990 mm; D5=23.041 mm, D12=4.826 mm, D18=10.809 mm, D31=7.233 mm, D33=5.220 mm, D41=27.764 mm. TABLE 7: \"Object\" row has D0 in Thickness, immediately before surface 1 (PDF p. 25, printed p. 7); ¶0082 specifies thickness and intervals in millimeters.",
+      },
+      {
+        zoomStation: 2,
+        keyframe: 1,
+        objectDistanceMm: 635,
+        distanceReference: "first-surface",
+        source:
+          "US 2025/0231383 A1, Embodiment 3 (100-3), TABLE 9, MOD Tele column, PDF p. 25: D0=635.000 mm; D5=49.374 mm, D12=1.849 mm, D18=1.700 mm, D31=8.764 mm, D33=3.700 mm, D41=35.374 mm. TABLE 7: \"Object\" row has D0 in Thickness, immediately before surface 1 (PDF p. 25, printed p. 7); ¶0082 specifies thickness and intervals in millimeters.",
+      },
+    ],
   },
 
   gaps: {

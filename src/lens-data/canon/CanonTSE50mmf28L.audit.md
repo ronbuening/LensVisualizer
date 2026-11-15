@@ -50,3 +50,13 @@ Narrow surface/image-circle/infinity-aperture/full-frame-field gates pass. No cu
 The local original `patents/US_10571651_B2.pdf` was reread for reference provenance and the selected media, separately from the complete 2026-10-30 shape and glass review. PDF p. 17, printed column 11, explicitly defines numerical `nd` and `vd` for the d-line and prints all twelve Numerical Data 1 pairs. PDF p. 14, printed column 5, gives plot wavelengths d 587.56 nm and g 435.8 nm. No individual C/F/g indices or partial ratios are published. Figure 1 on PDF p. 3 was inspected in its native 2560 × 3300, 300 ppi scan to confirm element and bonded-interface correspondence; this was a relevant-geometry check, not a repeated whole-shape review or a new rim measurement. The 180 dpi definition/table renders do not add native scan detail.
 
 All twelve existing `indexReferenceNote` strings contained the same positive source citation, with no actual reference uncertainty. The citation moves to the data header and this record so the inspector correctly labels the verified d-line coordinates as `nd`/`νd`. The twelve source pairs, twelve qualified catalog curve identities and all chromatic R/G/B/V channels remain exactly unchanged. No supplier, melt, chemistry or production identity is inferred. All prescription, clear-cap, shoulder, stop, focus and movement fields remain identical. The source near-f-number contradiction, finite macro clipping, inferred iris and moved-optics limits in the October 30 review remain in force; no new clearance or production claim is made. The June 23/25 and October 30 review dates are retained. This is a source-reference contract correction with zero new whole-lens review count.
+
+## 2026-11-14 — Finite conjugates from printed magnifications
+
+| Zoom / keyframe | Printed magnification → `sourceMagnification` | Source locator | Solved object distance | Check |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | “-0.5 times” → `"0.5"` | US 10,571,651 B2, Numerical Data 1 (PDF p. 17) | 94.3 mm, first-surface | in focus 0.49996; at the declared distance 0.49997; +0.03 quarter waves |
+
+The patent prints a magnification and no object distance for this state. Each distance is solved from the prescription under `LENS_DATA_SPEC.md` § Finite conjugates: the distance that focuses the state on its image plane when the magnification there rounds to the print, otherwise the distance at the nearest magnification that does. Two independent readings of the patent agree on the printed value and on the gaps of the matching state.
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.

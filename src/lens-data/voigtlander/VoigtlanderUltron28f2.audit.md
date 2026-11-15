@@ -88,3 +88,17 @@ so ZD18 is solved at infinity and then at the printed ZD0 = 430 mm from the firs
   surface-probe audits are unchanged.
 
 Follow-ups: the ASP18 A6 reconstruction and the EFL (28.50 mm) summary mismatch stay open.
+
+## 2026-11-14 — Published finite-conjugate certification
+
+Patent: JP 2022-100641 A, Example 1.
+
+| State (zoom/keyframe) | Field | Before | After | Source |
+|---|---|---|---|---|
+| 0/1 | `focus.conjugates` | Absent | `430` mm, `first-surface` | PDF p. 7, Table 1, フォーカス可変間隔, 撮影倍率 0.0676 column: `ZD 0 = 430.00` mm; ZD18=20.33 mm. |
+
+Reference basis: Table 1: OBJ | Infinity | ZD 0, immediately before surface 1; ¶0032 defines D(i) in mm. The object row precedes surface 1, so the printed object-side gap is first-surface-referenced.
+
+State 0/1: paraxial image-minus-authored-plane residual +0.077945415123 mm (+15.057732241 diffraction depths); alternate image-plane reference +78.610457508 depths. Verdict: `consistent`; reference discriminated.
+
+Only the conjugate declaration is added; the published flags and all prescription geometry are retained.

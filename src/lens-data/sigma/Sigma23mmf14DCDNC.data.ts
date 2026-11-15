@@ -268,6 +268,16 @@ const LENS_DATA = {
   ],
 
   focus: {
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 155,
+        distanceReference: "first-surface",
+        source:
+          "JP2024035865A, Numerical Example 1, [可変間隔データ], 0.25m column, d0 row (PDF p.10, printed p.10): d0=155.00 mm; d17=7.3364; d19=3.3069; BF=18.7827 mm. The surface table (p.9) lists d0 in the object-plane d row before surface 1.",
+      },
+    ],
     closeFocusM: 0.25,
     description:
       "Source-tabulated single negative G2/L21 moves imageward by 4.084 mm; all published gaps, fixed G1/stop/G3 and BF are retained. The source near row labels 0.25 m and separately prints d0=155 mm before surface 1 (about 249.322 mm total). Intermediate focus positions are illustrative; Gaussian conjugates and display-distance probes are reported separately.",

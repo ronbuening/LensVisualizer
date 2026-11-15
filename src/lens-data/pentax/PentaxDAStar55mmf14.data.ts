@@ -298,6 +298,16 @@ const LENS_DATA = {
     "description": "PUBLISHED focus: US 2010/0073777 A1, Example 1 prints d15 at infinity (1.00 mm) and at the close state (13.27 mm, M = −0.173). L1–L8 and the iris move 12.27 mm toward the object while L9 and the cover glass stay fixed. The patent prints no object distance; with the image on the rear face of the cover glass, the close spacing focuses at 0.45 m object to image and −0.173×, matching Ricoh's 0.45 m minimum focus and 0.173× maximum magnification. Intermediate positions interpolate d15 linearly.",
     "published": [
       1
+    ],
+    "conjugates": [
+      {
+        "zoomStation": 0,
+        "keyframe": 1,
+        "objectDistanceMm": 344.55,
+        "distanceReference": "first-surface",
+        "sourceMagnification": "0.173",
+        "source": "US 2010/0073777 A1, Embodiment 1, Table 1 (PDF p. 12): the table header prints “M = −0.173”, a magnification with no object distance; the table's only finite state is the closest-distance spacing this keyframe carries (d15 13.27, ¶0054). The object distance is solved from the prescription at that magnification; focused on its image plane the state gives 0.17318."
+      }
     ]
   },
   "aperture": {

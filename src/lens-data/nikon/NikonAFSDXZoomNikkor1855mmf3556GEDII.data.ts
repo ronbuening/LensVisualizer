@@ -221,6 +221,32 @@ const LENS_DATA = {
     closeFocusM: 0.25,
     description:
       "PUBLISHED Example 4 focus: G1 translates toward the object while G2-to-image spacing is unchanged at each zoom position; closest endpoints solve to about 0.250 m from the focal plane. Production MFD 0.28 m is not used to alter the patent model.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 112.06,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.13159",
+        source: "US 2006/0007559 A1, Example 4 (PDF p. 35): prints “β = -0.13159” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.13159.",
+      },
+      {
+        zoomStation: 1,
+        keyframe: 1,
+        objectDistanceMm: 123.32,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.23049",
+        source: "US 2006/0007559 A1, Example 4 (PDF p. 35): prints “β = -0.23049” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription at magnification 0.230485, the nearest value that rounds to the print; focused on its image plane the state gives 0.23048.",
+      },
+      {
+        zoomStation: 2,
+        keyframe: 1,
+        objectDistanceMm: 112.17,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.38023",
+        source: "US 2006/0007559 A1, Example 4 (PDF p. 35): prints “β = -0.38023” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription at magnification 0.380225, the nearest value that rounds to the print; focused on its image plane the state gives 0.38022.",
+      },
+    ],
   },
 
   /* (moved from var) ── Variable air spacings ── */

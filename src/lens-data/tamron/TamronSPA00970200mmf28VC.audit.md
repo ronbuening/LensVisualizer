@@ -36,3 +36,14 @@ real-ray axial best focus lies within 10 depths of the plane at every station.
 Follow-ups:
 
 - None.
+
+## 2026-11-14 — Published finite-conjugate certification
+
+| Zoom / keyframe | Field | Before | After | Source and conjugate residual |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | `focus.conjugates` | No entry | 1065.7 mm, `first-surface` | d0 = 1065.7000 (mm); Embodiment 1, unnumbered close-object table, Wide-Angle column; d0/d7/d10/d17/d22/bf rows; PDF p. 35. Paraxial image minus authored plane +0.123221591 mm (+12.456143 diffraction depths); other reference +122.072321 depths; `consistent`, reference discriminated. Basis: patent-defined. |
+| 1 / 1 | `focus.conjugates` | No entry | 1065.7 mm, `first-surface` | d0 = 1065.7000 (mm); Embodiment 1, unnumbered close-object table, Intermediate column; d0/d7/d10/d17/d22/bf rows; PDF p. 35. Paraxial image minus authored plane +0.131363148 mm (+13.277049 diffraction depths); other reference +250.038243 depths; `consistent`, reference discriminated. Basis: patent-defined. |
+
+“Object Surface ∞ (d0)” precedes Lens Surface #1 in the surface table (PDF pp. 34–35); d is the consecutive surface spacing.
+
+The 2 / 1 state is not declared: the same printed distance leaves +0.359788941 mm (+36.203379 depths) at the authored plane, beyond the 25-depth limit; the other reference leaves +5.033846568 mm (+463.539725 depths).

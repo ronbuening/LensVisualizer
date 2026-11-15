@@ -53,3 +53,14 @@ All six source nd/νd pairs and θgF values match Table 1. Retained all source p
 All selected curves are qualified spectral proxies; source coordinates and any source θgF remain authoritative. No tolerance was relaxed. Focused surface, image-circle and aperture audits pass on this absolute-path candidate; current-label resolver and `assertCatalogConsistent()` pass. Native SVG geometry at nine focus/zoom states has no hidden rim trim; the rendered outlines were inspected. Shared dispersion/partial-dispersion suites passed 2 files / 93 tests for this wave. Full gates and commit integration are performed by the coordinator.
 
 Coupled-outline follow-up: the 16.6 mm continuous S1 cap and S2 land pass focused surface/image-circle/aperture/field checks, with at least 99% format-corner coverage. Nine focus/zoom SVG states were re-rendered and inspected with no hidden trim. Source glass and partial-dispersion values are unchanged.
+
+## 2026-11-14 — Finite conjugates from printed magnifications
+
+| Zoom / keyframe | Printed magnification → `sourceMagnification` | Source locator | Solved object distance | Check |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | “β＝‑0.033” → `"0.033"` | JP 2021-36283 A, Example 1 (PDF p. 11) | 1081 mm, first-surface | in focus 0.03335; at the declared distance 0.03335; +0.00 quarter waves |
+| 0 / 2 | “β＝‑0.237” → `"0.237"` | JP 2021-36283 A, Example 1 (PDF p. 11) | 153.63 mm, first-surface | in focus 0.23666; at the declared distance 0.23666; +0.03 quarter waves |
+
+The patent prints a magnification and no object distance for these states. Each distance is solved from the prescription under `LENS_DATA_SPEC.md` § Finite conjugates: the distance that focuses the state on its image plane when the magnification there rounds to the print, otherwise the distance at the nearest magnification that does. Two independent readings of the patent agree on the printed value and on the gaps of the matching state.
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.

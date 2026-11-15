@@ -106,3 +106,14 @@ analysis departure table now quotes 3A at 17.4 mm (+882.139 µm) and 4A at 14.3 
 
 - Why the old value differed: patent close rows are beta = -0.1 states; 0.35 m is the old (production) value.
 - `catalog.closeFocusM.marketing` 0.35 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.
+
+## 2026-11-14 — Finite conjugates from printed magnifications
+
+| Zoom / keyframe | Printed magnification → `sourceMagnification` | Source locator | Solved object distance | Check |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | “β = −0.1” → `"0.1"` | US 2022/0236544 A1, Example 10 (PDF p. 53) | 181.93 mm, first-surface | in focus 0.09932; at the declared distance 0.09932; −0.00 quarter waves |
+| 2 / 1 | “β = −0.1” → `"0.1"` | US 2022/0236544 A1, Example 10 (PDF p. 53) | 320.73 mm, first-surface | in focus 0.09881; at the declared distance 0.09881; −0.00 quarter waves |
+
+The patent prints a magnification and no object distance for these states. Each distance is solved from the prescription under `LENS_DATA_SPEC.md` § Finite conjugates: the distance that focuses the state on its image plane when the magnification there rounds to the print, otherwise the distance at the nearest magnification that does. Two independent readings of the patent agree on the printed value and on the gaps of the matching state.
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.

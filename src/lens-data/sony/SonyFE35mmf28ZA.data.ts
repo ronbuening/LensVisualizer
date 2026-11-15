@@ -218,6 +218,16 @@ const LENS_DATA = {
     closeFocusM: 0.35,
     description:
       "Inner focus — single negative element (L121/G2) moves object→image by 1.738 mm to the patent's 350 mm state (read as object to image plane). Linear AF motor. The near row is re-solved for paraxial focus; the patent prints 1.64 mm of travel.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 350,
+        distanceReference: "image-plane",
+        source:
+          "JP 2015-041012 A, Example 1, paragraph 0079, close focus finite column, 物体距離 row (PDF p. 12): 最至近距離（物体距離350mm）; D6=3.13 mm; BF=3.89 mm. The patent does not define the distance reference. Image-plane reference identified by the conjugate audit on the re-solved rows (audit-resolved), which rejects first-surface; on the corrected image plane the printed 1.64 mm travel also sits nearer the 1.738 mm an object-to-image reading needs than the 1.488 mm a first-surface reading needs.",
+      },
+    ],
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
   },

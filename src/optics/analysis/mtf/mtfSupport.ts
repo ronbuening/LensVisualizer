@@ -361,7 +361,19 @@ export function mtfAxialImagePlane(state: PreparedGeometry): boolean {
   return !(Math.abs(x) > 1e-10 || Math.abs(y) > 1e-10 || z <= 0);
 }
 
-export function assessMtfSupport(request: AnalysisRequest, settings: MtfRequestOptions): MtfSupport {
+/**
+ * Check the prepared state's path, physical request and spectral prerequisites.
+ *
+ * @param request - prepared optical state and physical apertures
+ * @param settings - requested MTF calculation
+ * @param checks - internal axial audit permits fisheyes and validates each object reference itself
+ * @returns eligibility and the reference-line data needed by tracing
+ */
+export function assessMtfSupport(
+  request: AnalysisRequest,
+  settings: MtfRequestOptions,
+  checks: { axialConjugateAudit?: boolean } = {},
+): MtfSupport {
   const state = request.preparedGeometry;
   const options = resolveMtfOptions(request, settings);
   const { lens } = state;
@@ -428,12 +440,17 @@ export function assessMtfSupport(request: AnalysisRequest, settings: MtfRequestO
       pathReasons,
     };
   };
-  if (!mtfSequentialRefractivePath(state)) return rejectPath();
+  if (!mtfSequentialRefractivePath(state)) {
+    const path = rejectPath();
+    // Axial conjugacy needs no field projection, but every other prerequisite still applies.
+    if (!checks.axialConjugateAudit || path.pathReasons!.some((reason) => reason !== "fisheye-projection")) return path;
+  }
   if (options.movementActive) return reject("active-movement", "MTF is unavailable while tilt or shift is active.");
   if (!mtfAxialImagePlane(state)) return rejectPath();
   if (state.focusT !== 0) {
     const conjugate = mtfFiniteConjugate(state);
-    if (!conjugate || !mtfFiniteObjectPoint(state, conjugate, 0))
+    // The audit validates both distance conventions after these shared eligibility checks.
+    if (!conjugate || (!checks.axialConjugateAudit && !mtfFiniteObjectPoint(state, conjugate, 0)))
       return reject(
         "finite-conjugate-unavailable",
         "Finite MTF requires an explicitly documented focus/zoom station and object-distance convention. Use infinity or a documented station; interpolated focus states are unavailable.",

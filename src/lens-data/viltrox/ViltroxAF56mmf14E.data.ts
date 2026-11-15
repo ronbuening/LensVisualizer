@@ -262,6 +262,16 @@ const LENS_DATA = {
       "patent's 0.63 m state, object to image; Viltrox markets the production lens at 0.6 m MFD.",
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 630,
+        distanceReference: "image-plane",
+        source:
+          "CN 211955965 U, Example 1, Table 2, ¶0079–0081 (PDF pp. 8–9), object-distance row 物距, 最近(0.63m) column: D1=5.01 mm, D2=3.85 mm. The patent does not define the distance reference; image-plane reference identified by the conjugate audit on the re-solved rows (audit-resolved), which rejects first-surface. On the corrected image plane the printed 4.01 mm D1 change also sits nearer the 4.176 mm an object-to-image reading needs than the 3.593 mm a first-surface reading needs.",
+      },
+    ],
   },
 
   /* (moved from var) Published Example 1 focus gaps: printed D1 and D2 change by exactly 4.01 mm; the close row is re-solved. */

@@ -383,6 +383,56 @@ const LENS_DATA = {
     keyframes: [0, 0.2789, 0.3539, 0.4215, 1],
     description:
       "Internal focus via the patent's L1 (E7+E8 cemented doublet), which moves toward the image: 4.43 mm (wide) to 4.01 mm (18 mm and tele) from infinity to a 300 mm object-to-image distance.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 3,
+        objectDistanceMm: 536.77,
+        distanceReference: "first-surface",
+        source:
+          "US 7,359,125 B2, Example 1, Table 1, Variable Distances, Focusing on an intermediate distance, W column, PDF p. 12: D0 536.77; d11=33.18 mm; d14=4.61 mm; Bf=38.70 mm. The first-surface reference is identified by the conjugate audit.",
+      },
+      {
+        zoomStation: 0,
+        keyframe: 4,
+        objectDistanceMm: 125,
+        distanceReference: "first-surface",
+        source:
+          "US 7,359,125 B2, Example 1, Table 1, Variable Distances, Focusing on a close object, W column, PDF p. 12: D0 125.00; d11=36.36 mm; d14=1.43 mm; Bf=38.70 mm. The first-surface reference is identified by the conjugate audit.",
+      },
+      {
+        zoomStation: 1,
+        keyframe: 2,
+        objectDistanceMm: 682.52,
+        distanceReference: "first-surface",
+        source:
+          "US 7,359,125 B2, Example 1, Table 1, Variable Distances, Focusing on an intermediate distance, M column, PDF p. 12: D0 682.52; d11=17.33 mm; d14=4.90 mm; Bf=44.55 mm. The first-surface reference is identified by the conjugate audit.",
+      },
+      {
+        zoomStation: 1,
+        keyframe: 4,
+        objectDistanceMm: 134.71,
+        distanceReference: "first-surface",
+        source:
+          "US 7,359,125 B2, Example 1, Table 1, Variable Distances, Focusing on a close object, M column, PDF p. 12: D0 134.71; d11=20.38 mm; d14=1.85 mm; Bf=44.55 mm. The first-surface reference is identified by the conjugate audit.",
+      },
+      {
+        zoomStation: 2,
+        keyframe: 1,
+        objectDistanceMm: 916.19,
+        distanceReference: "first-surface",
+        source:
+          "US 7,359,125 B2, Example 1, Table 1, Variable Distances, Focusing on an intermediate distance, T column, PDF p. 12: D0 916.19; d11=1.95 mm; d14=5.11 mm; Bf=53.97 mm. The first-surface reference is identified by the conjugate audit.",
+      },
+      {
+        zoomStation: 2,
+        keyframe: 4,
+        objectDistanceMm: 140.46,
+        distanceReference: "first-surface",
+        source:
+          "US 7,359,125 B2, Example 1, Table 1, Variable Distances, Focusing on a close object, T column, PDF p. 12: D0 140.46; d11=5.21 mm; d14=1.85 mm; Bf=53.97 mm. The first-surface reference is identified by the conjugate audit.",
+      },
+    ],
   },
 
   gaps: {

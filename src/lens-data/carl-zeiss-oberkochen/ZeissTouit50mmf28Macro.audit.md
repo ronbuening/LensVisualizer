@@ -31,3 +31,14 @@ Catalog version: local working tree, 2026-06-25
 - Paraxial check against the previous data: EFL and defocus identical at all three focus keyframes (the old fold was
   stored unrounded). Physical track grows by 1.22 × (1 − 1/1.51680) = 0.416 mm, to the 95.37 mm first-surface-to-image
   length the analysis already quotes.
+
+## 2026-11-14 — Finite conjugates from printed magnifications
+
+| Zoom / keyframe | Printed magnification → `sourceMagnification` | Source locator | Solved object distance | Check |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | “β=-0.5” → `"0.5"` | JP 2015-161792 A, Example 1 (PDF p. 15) | 102.44 mm, first-surface | in focus 0.49908; at the declared distance 0.49906; −0.06 quarter waves |
+| 0 / 2 | “β=-0.98” → `"0.98"` | JP 2015-161792 A, Example 1 (PDF p. 15) | 58.79 mm, first-surface | in focus 0.98446; at the declared distance 0.98434; −0.34 quarter waves |
+
+The patent prints a magnification and no object distance for these states. Each distance is solved from the prescription under `LENS_DATA_SPEC.md` § Finite conjugates: the distance that focuses the state on its image plane when the magnification there rounds to the print, otherwise the distance at the nearest magnification that does. Two independent readings of the patent agree on the printed value and on the gaps of the matching state.
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.

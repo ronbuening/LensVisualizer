@@ -12,6 +12,7 @@ import { ASPHERIC_COEFFICIENT_SCHEMA } from "../../../src/types/asphericSchema.j
 import { attachFixtureTeleconverter as attachTeleconverter } from "./constructionFixtures.js";
 import { teleconverterFixture, teleconverterHostData } from "./testLensFixtures.js";
 import { validateSourceProvenance } from "../../../src/optics/prescription/validate/references.js";
+import { parseSourceMagnification } from "../../../src/optics/prescription/sourceMagnification.js";
 
 /* Passthrough mock so a single test can make buildAsphereIndex throw once.
  * buildAsphereIndex cannot be made to throw from plain lens data, so the
@@ -494,9 +495,21 @@ describe("validateLensData", () => {
       [{ ...station, zoomT: 0.5 }],
       [{ ...station, objectDistanceMm: -1 }],
       [{ ...station, distanceReference: "unknown" }],
+      [{ ...station, sourceMagnification: "0.50" }],
+      [{ ...station, distanceReference: "first-surface", sourceMagnification: "-0.5" }],
+      [{ ...station, distanceReference: "first-surface", sourceMagnification: 0.5 }],
     ]) {
       expect(validateLensData(makeValid({ finiteConjugates })).join(" ")).toContain("finiteConjugates");
     }
+    for (const sourceMagnification of ["0.50", "1/10", "1:2", "2"]) {
+      const solved = { ...station, distanceReference: "first-surface", sourceMagnification };
+      expect(validateLensData(makeValid({ finiteConjugates: [solved] }))).toEqual([]);
+    }
+    expect(parseSourceMagnification("0.50")).toEqual({ value: 0.5, halfUnit: 0.005 });
+    expect(parseSourceMagnification("1:2")).toEqual({ value: 0.5, halfUnit: 0 });
+    expect(parseSourceMagnification("2")).toEqual({ value: 2, halfUnit: 0 });
+    for (const text of ["0/1", "1/2.5", "1:01", "01", "00.5", ".5", "-0.5"])
+      expect(parseSourceMagnification(text)).toBeNull();
   });
   it("checks publishedStations against the authored zoom and focus stations", () => {
     const station = { focusT: 1, objectDistanceMm: 700, distanceReference: "image-plane", source: "Synthetic table" };

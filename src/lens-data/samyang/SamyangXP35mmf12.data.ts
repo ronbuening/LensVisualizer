@@ -318,6 +318,16 @@ const LENS_DATA = {
       "objectward shift in the fixed-image-plane chart. The nearest published state corresponds to about 0.34 m.",
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 175.678043,
+        distanceReference: "first-surface",
+        source:
+          "KR 10-2077265 B1, Example 3, Table 9, close-distance column (PDF pp. 14-15): D0=175.678043 mm; Table 7 places D0 between object and surface 1. D1=1.000000, D2=6.565902, D3=42.958030, D4=0.562472 mm; MAG=0.180120. The existing rear-plate mapping stores D3+(D4-0.528568)=42.991934 mm at 23A and gapAfter=0.528568 mm, retaining the printed optical path; post-IMG D5 is excluded as documented in this file.",
+      },
+    ],
   },
 
   /* (moved from var) ── Published two-state focus spacings ── */

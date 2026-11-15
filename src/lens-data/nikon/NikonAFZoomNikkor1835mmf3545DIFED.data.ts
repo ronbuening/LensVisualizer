@@ -286,6 +286,32 @@ const LENS_DATA = {
       "PUBLISHED inner-focus states: G2a translates imageward while d9+d12 is conserved at each zoom position; " +
       "near rows are labeled R=0.33 m. The printed Example 2 d0 row is internally inconsistent with the patent's " +
       "object-to-image definition of R (d0 + S1-to-image track is about 323.330 mm), so d0 is not used to reconstruct movement.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 330,
+        distanceReference: "image-plane",
+        source:
+          "US 2001/0030812 A1, Example 2, Table 2, Variable intervals during Zooming, finite R row, f=18.50037, PDF p.18: R 0.33 m; d0 187.8488; authored gaps D9=32.42986, D12=1.15651, BF=38.29481 mm. R is object to image (paragraph 0050, PDF p.17); the separate printed d0 row conflicts with R.",
+      },
+      {
+        zoomStation: 1,
+        keyframe: 1,
+        objectDistanceMm: 330,
+        distanceReference: "image-plane",
+        source:
+          "US 2001/0030812 A1, Example 2, Table 2, Variable intervals during Zooming, finite R row, f=25.00067, PDF p.18: R 0.33 m; d0 195.2848; authored gaps D9=16.60590, D12=1.34167, BF=46.49762 mm. R is object to image (paragraph 0050, PDF p.17); the separate printed d0 row conflicts with R.",
+      },
+      {
+        zoomStation: 2,
+        keyframe: 1,
+        objectDistanceMm: 330,
+        distanceReference: "image-plane",
+        source:
+          "US 2001/0030812 A1, Example 2, Table 2, Variable intervals during Zooming, finite R row, f=34.00123, PDF p.18: R 0.33 m; d0 195.7094; authored gaps D9=4.95936, D12=1.20604, BF=57.85554 mm. R is object to image (paragraph 0050, PDF p.17); the separate printed d0 row conflicts with R.",
+      },
+    ],
   },
 
   gaps: {

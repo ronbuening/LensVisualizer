@@ -364,6 +364,16 @@ const LENS_DATA = {
       "D0 = 428.00 mm (D11 3.354995 mm, BF 20.236636 mm), 0.5011 m from object to image.",
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 428,
+        distanceReference: "first-surface",
+        source:
+          "JP 2026-98935 A, Example 2, Table 7, 最短撮影距離 column (PDF p. 17): D0=428.00 mm is the object-to-first-surface gap (Table 6, OBJ row, PDF p. 15); D11=3.36 mm, D21=20.28 mm.",
+      },
+    ],
   },
 
   gaps: {

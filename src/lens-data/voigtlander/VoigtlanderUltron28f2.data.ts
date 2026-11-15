@@ -233,6 +233,16 @@ const LENS_DATA = {
       "Source near station: ZD0=430 mm from the first surface. All lenses and stop move together. The printed ZD18 rows (18.40/20.33 mm) are re-solved for paraxial focus at infinity and at ZD0 (18.469147/20.407945 mm, extension 1.938798 mm), which puts the near station 49.22 cm from object to image.",
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 430,
+        distanceReference: "first-surface",
+        source:
+          "JP 2022-100641 A, Example 1, Table 1, フォーカス可変間隔, 撮影倍率 0.0676 column (PDF p. 7): ZD 0=430.00 mm is the object-to-first-surface gap (Table 1, OBJ row, PDF p. 7); ZD18=20.33 mm.",
+      },
+    ],
   },
 
   /* (moved from var) ── Variable air spacings (unit focus) ──

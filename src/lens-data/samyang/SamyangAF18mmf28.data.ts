@@ -274,6 +274,16 @@ const LENS_DATA = {
       "Inner focusing by the positive G21 group (L61 + L71). D1 decreases and D2 increases by 0.932 mm from infinity to 0.25 m, with G11 and G31 fixed.",
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 180.954,
+        distanceReference: "first-surface",
+        source:
+          "WO 2021/246545 A1, Embodiment 1, Table 3, TL=0.25m column, PDF p. 11: D0=180.954 mm; D1=3.734 mm, D2=1.947 mm. Table 1: \"Object\" row has D0 in Thickness, immediately before surface 1 (PDF p. 9, printed p. 8).",
+      },
+    ],
   },
 
   gaps: { STO: { label: "D1", values: [[4.666, 3.734]] }, "14": { label: "D2", values: [[1.015, 1.947]] } },

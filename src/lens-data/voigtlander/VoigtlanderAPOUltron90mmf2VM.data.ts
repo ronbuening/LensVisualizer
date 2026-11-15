@@ -206,6 +206,16 @@ const LENS_DATA = {
       "no internal movement is reconstructed.",
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 800,
+        distanceReference: "first-surface",
+        source:
+          "JP 2026-8235 A, Example 1, Table 1, 撮影倍率 0.126 column (PDF p. 9): ZD0=800.00 mm is the object-to-first-surface gap (Table 1, OBJ row, PDF p. 9); ZD16=38.36529 mm.",
+      },
+    ],
   },
 
   gaps: { "16": { label: "BF", values: [[27.39997, 38.36529]] } },

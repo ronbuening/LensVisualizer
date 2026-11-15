@@ -78,3 +78,24 @@ traces β = −0.119987.
 - Evidence: the 2026-09-25 census numbers above; paraxial checks of the edited file (residual 0 at both rows).
 
 Follow-ups: none; the maker's minimum focus distance is not recorded in `catalog.closeFocusM.marketing`.
+
+## 2026-11-14 — Finite conjugates from printed magnifications
+
+| Zoom / keyframe | Printed magnification → `sourceMagnification` | Source locator | Solved object distance | Check |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | “For γ = −0.12” → `"0.12"` | US 4,726,669, Example 1 (PDF p. 7) | 1597.49 mm, first-surface | in focus 0.12051; at the declared distance 0.12051; +0.00 quarter waves |
+
+The patent prints a magnification and no object distance for this state. Each distance is solved from the prescription under `LENS_DATA_SPEC.md` § Finite conjugates: the distance that focuses the state on its image plane when the magnification there rounds to the print, otherwise the distance at the nearest magnification that does. Two independent readings of the patent agree on the printed value and on the gaps of the matching state.
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.
+
+## 2026-11-14 — Conjugate reconciled with the re-solved rows
+
+The 2026-11-14 certification solved its distance on the printed rows; on the rows re-solved 2026-11-03 the print solves
+to 1603.70 mm from the first surface (paraxial magnification 0.11999).
+
+| Field | Before | After | Justification |
+| --- | --- | --- | --- |
+| `focus.conjugates[0].objectDistanceMm` | 1597.49 | 1603.7 | `npm run audit:finite-conjugates` solved distance on the re-solved close row |
+
+- Verdict consistent, 0.00 depths, magnification matches the solve. No gap, radius or image-plane value changed.

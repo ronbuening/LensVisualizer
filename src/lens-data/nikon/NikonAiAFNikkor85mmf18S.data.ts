@@ -172,6 +172,16 @@ const LENS_DATA = {
       "Published rear focus: L4-L6 translate 12.6617 mm objectward as a rigid group. The inferred fixed stop splits patent d6, so STO-to-L4 changes 18.2330→5.5713 mm while BF changes 38.2080→50.8697 mm; the fixed image plane is preserved and the computed close conjugate is 0.849892 m from the image plane.",
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 850,
+        distanceReference: "image-plane",
+        source:
+          "US 4,812,027 A, Embodiment 1, Table 1 and following paragraph, PDF p. 5: close distance of the order of 0.85 m; d6=14.9713 mm (STO-to-L4=5.5713 mm plus fixed 9.4 mm); Bf=50.8697 mm. The image-plane reference is identified by the conjugate audit.",
+      },
+    ],
   },
 
   /* (moved from var) ── Published rear-focus motion ── */

@@ -54,3 +54,24 @@ is then moved so that row focuses at 0.63 m object to image.
   Aperture, image-circle, field-coverage and surface-probe audits are unchanged.
 
 Follow-ups: none for the image plane.
+
+## 2026-11-14 — Published finite-conjugate certification
+
+| Zoom / keyframe | Field | Before | After | Source and conjugate residual |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | `focus.conjugates` | No entry | 630 mm, `first-surface` | 物距 最近(0.63m); Example 1, Table 2, ¶0079–0081, 最近 column; 物距/D1/D2 rows; PDF p. 8/9. Paraxial image minus authored plane -0.035074284 mm (-14.181235 diffraction depths); other reference +284.786547 depths; `consistent`, reference discriminated. Basis: audit-resolved. |
+
+The printed object-distance label leaves its reference plane undefined. The conjugate residual identifies the retained reference; the source string records that qualification.
+
+## 2026-11-14 — Conjugate reconciled with the re-solved rows
+
+The 2026-11-14 certification identified a first-surface reference on the printed rows, whose infinity plane was off.
+On the rows re-solved 2026-11-03 the audit rejects first-surface (−304 depths) and finds image-plane consistent. On
+the corrected plane the printed 4.01 mm D1 change sits nearer the 4.175783 mm an object-to-image reading needs than
+the 3.592854 mm a first-surface reading needs.
+
+| Field | Before | After | Justification |
+| --- | --- | --- | --- |
+| `focus.conjugates[0].distanceReference` | first-surface | image-plane | Audit-resolved on the re-solved rows |
+
+- The printed 0.63 m and the declared state are unchanged; `source` records the reference evidence.

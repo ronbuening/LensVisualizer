@@ -146,3 +146,15 @@ single relabel fixes the g excess. L5 on HOYA FD140 shifts the whole g curve 0.0
 match. L6 on S-LAH60V cuts the excess to 0.013 at 0.95 but moves paraxial g − d to 0.044. No relabel is proposed.
 Open: the model's g-line spherical aberration exceeds Fig. 2B by 0.01–0.02 mm above 0.85 of the pupil (0.036 mm at
 the rim) while C and the paraxial g focus agree; the patent prints no line indices to settle it.
+
+## 2026-11-14 — Finite conjugate from the printed magnification
+
+| Zoom / keyframe | Printed magnification → `sourceMagnification` | Source locator | Solved object distance | Check |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | “M = −0.173” → `"0.173"` | US 2010/0073777 A1, Embodiment 1, Table 1 header (PDF p. 12) | 344.55 mm, first-surface | in focus 0.17318; at the declared distance 0.17318; +0.02 quarter waves |
+
+The patent prints a magnification and no object distance for this state. The distance is solved from the prescription under `LENS_DATA_SPEC.md` § Finite conjugates: the distance that focuses the state on its image plane, where the magnification rounds to the print.
+
+Where the print sits: M is in the header block of Table 1 (FNO., f, M, W, fB), not in a per-state column, and the symbol list of ¶0053 does not define it. ¶0054 says the variable spacing is printed in the order infinity, closest photographic distance, so the closest state (d15 13.27) is the table's only finite state and the only one a non-zero M can describe. Tables 2 and 3 print the same M with different close spacings (13.30, 13.18). Two independent readings of the patent agree on the printed value, its location and the gaps.
+
+All radii, thicknesses, glasses, gaps, image-plane distances and focus keyframes are retained.
