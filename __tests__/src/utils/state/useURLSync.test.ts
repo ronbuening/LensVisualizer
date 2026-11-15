@@ -9,6 +9,8 @@ import { clearBrowserState, installMatchMediaMock, mockReplaceState } from "../.
 import { focalLengthToZoomT } from "../../../../src/utils/state/zoomConversion.js";
 import type { Dispatch } from "react";
 import type { LensState, LensAction } from "../../../../src/types/state.js";
+import { parseSharedMtfSettings } from "../../../../src/utils/state/mtfUrlState.js";
+import { DEFAULT_MTF_PREFERENCES } from "../../../../src/utils/state/mtfPreferences.js";
 
 function makeState(overrides: Partial<LensState> = {}): LensState {
   return { ...createInitialState({}, {}, true, CATALOG_KEYS), ...overrides };
@@ -149,6 +151,24 @@ describe("useURLSync — zoom initialization", () => {
 /* ── Debounced slider URL update ── */
 
 describe("useURLSync — updateURLWithSliders (debounced)", () => {
+  it.each([false, true])("preserves an explicit MTF override through URL writes (route: %s)", (isLensPage) => {
+    window.history.replaceState({}, "", "/lens/test/?v=1&ad=1&tab=mtf&mtf=1");
+    const dispatch = vi.fn() as unknown as Dispatch<LensAction>;
+    const state = makeState();
+    const { result } = renderHook(() => useURLSync(state, dispatch, null, isLensPage, false));
+    // The legacy surface also writes lens identity immediately on mount.
+    if (!isLensPage) {
+      const immediate = new URL(String(replaceStateSpy.mock.calls.at(-1)![2]), window.location.origin);
+      expect(parseSharedMtfSettings(immediate.search)).toEqual(DEFAULT_MTF_PREFERENCES);
+    }
+    act(() => {
+      result.current.updateURLWithSliders();
+      vi.advanceTimersByTime(100);
+    });
+    const updated = new URL(String(replaceStateSpy.mock.calls.at(-1)![2]), window.location.origin);
+    expect(parseSharedMtfSettings(updated.search)).toEqual(DEFAULT_MTF_PREFERENCES);
+  });
+
   it("preserves the current lens-page pathname when only query params should change", () => {
     const dispatch = vi.fn() as unknown as Dispatch<LensAction>;
     const state: LensState = {

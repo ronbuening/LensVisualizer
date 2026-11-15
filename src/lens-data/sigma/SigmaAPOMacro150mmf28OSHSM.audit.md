@@ -17,3 +17,14 @@ Patent: JP 2012-063403 A, Numerical Example 2 / Figure 8. Earlier source and par
 - Figure8 independently shows exposed flat shoulders: add S8land22.6mm at unchanged22.2mm cap, and S10land21.2mm at unchanged18.55mm cap. A proposed final S33land10.95mm is withdrawn: the full-frame native chief reaches≈11.12mm and the previous10.2mm cap admitted only92% of the centered image radius. Set the entire connected rear L6 compound S31/S32/S33 to common11.3mm, consistent with its drawn square body and allowing≈0.18mm chief clearance. No internal-interface land is used, no literal sphere/gap is changed, and no tolerance is relaxed. Other tiny steps remain constrained without numeric cuts.
 - Canonical and full inferred-cut checks pass; nine actual SVG focus/zoom states inspected,finite paths,connected compounds,zero hidden trim. Native aperture is iris-limited at traced2.919999997 versusF2.92. Native format field improves92→100% and the21.65mm corner chief clears; image-circle0undersized. Matched16-point stop-lattice samples retain5,064,lost0,gained318 (not flux). AllsourceR/d/aspheres(none)/nd/νd/reference/stop/controls/tolerances invariant.
 - Limitations remain: inferred rim dimensions, qualified coefficient spectra, no production-melt proof or source partial ratios; focus interpolation and centered OS geometry do not certify moved-group stabilization aberrations or factory performance.
+
+## 2026-11-14 — Finite conjugates from printed magnifications
+
+| Zoom / keyframe | Printed magnification → `sourceMagnification` | Source locator | Solved object distance | Check |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | “/β/=0.5” → `"0.5"` | JP 2012-063403 A, Numerical Example 2 (PDF p. 14) | 309.24 mm, first-surface | in focus 0.49999; at the declared distance 0.49999; +0.03 quarter waves |
+| 0 / 2 | “/β/=1.0” → `"1.0"` | JP 2012-063403 A, Numerical Example 2 (PDF p. 14) | 186.18 mm, first-surface | in focus 0.99998; at the declared distance 1.00004; +0.25 quarter waves |
+
+The patent prints a magnification and no object distance for these states. Each distance is solved from the prescription under `LENS_DATA_SPEC.md` § Finite conjugates: the distance that focuses the state on its image plane when the magnification there rounds to the print, otherwise the distance at the nearest magnification that does. Two independent readings of the patent agree on the printed value and on the gaps of the matching state.
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.

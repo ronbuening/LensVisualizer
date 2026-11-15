@@ -328,6 +328,16 @@ const LENS_DATA = {
     closeFocusM: 1.0,
     description:
       "Inner focus (IF). G2 cemented doublet (L21+L22) translates 12 mm toward the image side from infinity to the patent close station (β = −0.132, approximately 1 m). G1 and G3 fixed. Lens does not change external length.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 847.84,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.132",
+        source: "WO 2019/116563 A1, Example 3 (PDF p. 15): prints “β＝−0.132” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.13208.",
+      },
+    ],
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
   },

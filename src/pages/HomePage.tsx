@@ -24,7 +24,7 @@ import { HOMEPAGE_ARTICLES, HOMEPAGE_ARTICLE_LIMIT } from "../utils/content/home
 import { publisherJsonLd, webApplicationJsonLd, websiteJsonLd } from "../utils/seo/structuredData.js";
 import useMediaQuery from "../utils/useMediaQuery.js";
 import { PAGE_BASE_STYLE } from "../utils/style/pageStyles.js";
-import { canonicalPagePath } from "../utils/seo/siteUrls.js";
+import { buildLensNavigationUrl } from "../utils/state/mtfUrlState.js";
 
 export default function HomePage() {
   const [searchParams] = useSearchParams();
@@ -36,7 +36,7 @@ export default function HomePage() {
   useEffect(() => {
     const lensKey = searchParams.get("lens");
     if (lensKey && SUMMARY_KEYS.includes(lensKey)) {
-      void navigate(canonicalPagePath(`/lens/${lensKey}`), { replace: true });
+      void navigate(buildLensNavigationUrl(`/lens/${lensKey}`, searchParams.toString()), { replace: true });
       return;
     }
     /* Redirect legacy ?a=KEY&b=KEY comparison URLs to /compare/KEY/KEY */
@@ -48,8 +48,7 @@ export default function HomePage() {
         const val = searchParams.get(key);
         if (val) params.set(key, val);
       }
-      const search = params.toString() ? `?${params.toString()}` : "";
-      void navigate(canonicalPagePath(`/compare/${a}/${b}${search}`), { replace: true });
+      void navigate(buildLensNavigationUrl(`/compare/${a}/${b}`, searchParams.toString(), params), { replace: true });
     }
   }, [searchParams, navigate]);
 

@@ -263,6 +263,32 @@ const LENS_DATA = {
     closeFocusM: 0.3,
     description:
       "PUBLISHED: G1b (hybrid L12 + L13) moves objectward from infinity to the patent's 300 mm state; D2 decreases while D7 increases by the same travel at each zoom station. No internal focus reconstruction is used.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 300,
+        distanceReference: "image-plane",
+        source:
+          "JP 2016-6455 A, Numerical Example 2, Table 6, 近距離物体合焦時 / 短焦点距離端; gaps continue on PDF p. 15: 撮影距離 300 mm; d2=8.003 mm, d7=28.422 mm, d12=2.200 mm, d16=15.481 mm, fB=37.91 mm. The image-plane reference is identified by the conjugate audit (referenceBasis=audit-resolved).",
+      },
+      {
+        zoomStation: 1,
+        keyframe: 1,
+        objectDistanceMm: 300,
+        distanceReference: "image-plane",
+        source:
+          "JP 2016-6455 A, Numerical Example 2, Table 6, 近距離物体合焦時 / 中間焦点距離; gaps continue on PDF p. 15: 撮影距離 300 mm; d2=8.162 mm, d7=12.848 mm, d12=9.540 mm, d16=8.141 mm, fB=45.75 mm. The image-plane reference is identified by the conjugate audit (referenceBasis=audit-resolved).",
+      },
+      {
+        zoomStation: 2,
+        keyframe: 1,
+        objectDistanceMm: 300,
+        distanceReference: "image-plane",
+        source:
+          "JP 2016-6455 A, Numerical Example 2, Table 6, 近距離物体合焦時 / 長焦点距離端; gaps continue on PDF p. 15: 撮影距離 300 mm; d2=8.052 mm, d7=6.559 mm, d12=15.481 mm, d16=2.200 mm, fB=57.43 mm. The image-plane reference is identified by the conjugate audit (referenceBasis=audit-resolved).",
+      },
+    ],
   },
 
   gaps: {

@@ -399,6 +399,29 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.3,
     description: "Inner focus via G5 (L51+L52); translates image-ward for close focus. Two XD linear motors.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 299,
+        distanceReference: "image-plane",
+        source: "WO 2023/153076 A1, Example 8, Table 38 (PDF p. 75), close-focus Wide column: d0 = 299 mm. The table lists d0 as the gap from the object row (0, OBJ) to surface 1, but the state focuses only when the 299 mm is measured to the image plane (+2.48 quarter waves, against −34.56 from the first surface), so it is declared as an object-to-image distance.",
+      },
+      {
+        zoomStation: 1,
+        keyframe: 1,
+        objectDistanceMm: 299,
+        distanceReference: "image-plane",
+        source: "WO 2023/153076 A1, Example 8, Table 38 (PDF p. 75), close-focus Mid column: d0 = 299 mm. The table lists d0 as the gap from the object row (0, OBJ) to surface 1, but the state focuses only when the 299 mm is measured to the image plane (+1.69 quarter waves, against −113.84 from the first surface), so it is declared as an object-to-image distance.",
+      },
+      {
+        zoomStation: 2,
+        keyframe: 1,
+        objectDistanceMm: 299,
+        distanceReference: "image-plane",
+        source: "WO 2023/153076 A1, Example 8, Table 38 (PDF p. 75), close-focus Tele column: d0 = 299 mm. The table lists d0 as the gap from the object row (0, OBJ) to surface 1, but the state focuses only when the 299 mm is measured to the image plane (−6.37 quarter waves, against −434.47 from the first surface), so it is declared as an object-to-image distance.",
+      },
+    ],
   },
 
   /* (moved from var) ── Variable air spacings (zoom + focus) ── */

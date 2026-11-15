@@ -454,6 +454,40 @@ const LENS_DATA = {
     closeFocusM: 0.4924,
     description:
       "Internal focus — G5 (cemented doublet L51+L52) translates toward the image (patent ¶0091). Table 1 G5 travel: 0.89 mm (W), 1.62 mm (M1), 4.31 mm (M2), 9.70 mm (T); near states are β = −0.062 to −0.284 at a calculated 0.49 m (W) to 0.69 m (T) object-to-image distance.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 365.934,
+        distanceReference: "first-surface",
+        source:
+          "JP WO2020/157904 A1, Example 1, Table 1 variable-spacing data, near W/M1/M2/T columns, PDF p. 17: D0 = 365.9340 mm; D1 [6]=1.5, D2 [14]=18.83905, D3 [22]=12.23175, BF [35]=11.78171, D4 [28A]=6.43705, D5 [31A]=9.15661 mm. First-surface distance reference identified by the conjugate audit; the patent does not explicitly define the reference.",
+      },
+      {
+        zoomStation: 1,
+        keyframe: 1,
+        objectDistanceMm: 397.4004,
+        distanceReference: "first-surface",
+        source:
+          "JP WO2020/157904 A1, Example 1, Table 1 variable-spacing data, near W/M1/M2/T columns, PDF p. 17: D0 = 397.4004 mm; D1 [6]=17.29645, D2 [14]=10.91446, D3 [22]=6.39417, BF [35]=22.50112, D4 [28A]=6.05192, D5 [31A]=15.37967 mm. First-surface distance reference identified by the conjugate audit; the patent does not explicitly define the reference.",
+      },
+      {
+        zoomStation: 2,
+        keyframe: 1,
+        objectDistanceMm: 473.8851,
+        distanceReference: "first-surface",
+        source:
+          "JP WO2020/157904 A1, Example 1, Table 1 variable-spacing data, near W/M1/M2/T columns, PDF p. 17: D0 = 473.8851 mm; D1 [6]=38.92328, D2 [14]=4.55495, D3 [22]=3.18615, BF [35]=30.88824, D4 [28A]=10.02051, D5 [31A]=14.61857 mm. First-surface distance reference identified by the conjugate audit; the patent does not explicitly define the reference.",
+      },
+      {
+        zoomStation: 3,
+        keyframe: 1,
+        objectDistanceMm: 503.9147,
+        distanceReference: "first-surface",
+        source:
+          "JP WO2020/157904 A1, Example 1, Table 1 variable-spacing data, near W/M1/M2/T columns, PDF p. 17: D0 = 503.9147 mm; D1 [6]=54.52847, D2 [14]=1.10018, D3 [22]=1.47844, BF [35]=39.045, D4 [28A]=11.69839, D5 [31A]=14.64803 mm. First-surface distance reference identified by the conjugate audit; the patent does not explicitly define the reference.",
+      },
+    ],
   },
 
   /* (moved from var) ── Variable air spacings ──

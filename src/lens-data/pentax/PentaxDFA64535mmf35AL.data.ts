@@ -294,6 +294,16 @@ const LENS_DATA = {
       "PUBLISHED rear focus: G2 (13–19A, including STO) translates 7.810 mm objectward. " +
       "The patent endpoint is m=0.200 and solves to 0.336052 m object-to-image distance; the marketed " +
       "0.3 m / 0.25x values are not forced onto this prescription.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 177.05,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.200",
+        source: "US 2001/0007512 A1, Embodiment 4 (PDF p. 14): prints “x−1/5 (minimum distance); m = 0.200” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.20000.",
+      },
+    ],
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
   },

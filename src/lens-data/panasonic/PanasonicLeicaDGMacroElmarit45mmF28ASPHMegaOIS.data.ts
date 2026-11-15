@@ -277,6 +277,24 @@ const LENS_DATA = {
     keyframes: [0, 0.7769437738467989, 1],
     description:
       "The patent gives infinity, 0.5× and 1× prescriptions. For closer focus, G2 moves toward the image and G4/G5 toward the object. Distances are calculated for this prescription, rather than taken from the production lens's 0.15 m minimum. Intermediate spacings are interpolated. The iris stays at its infinity setting, so finite-focus apertures differ from the patent's tabulated values. Optical stabilization remains centered.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 107.08,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.50",
+        source: "JP 2011-48232 A, Numerical Example 3 (PDF p. 12): prints “×0.50” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.49982.",
+      },
+      {
+        zoomStation: 0,
+        keyframe: 2,
+        objectDistanceMm: 65.51,
+        distanceReference: "first-surface",
+        sourceMagnification: "1.00",
+        source: "JP 2011-48232 A, Numerical Example 3 (PDF p. 12): prints “×1.00” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 1.00202.",
+      },
+    ],
     published: [1, 2],
   },
 

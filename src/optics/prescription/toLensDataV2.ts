@@ -319,7 +319,7 @@ function writeSource(write: Writer, out: Untyped, prescription: CanonicalPrescri
   const source = write.record(out, "", "source", "source");
   const fields = ["patentNumber", "example", "patentYear", "authors", "assignees"];
   write.copy(source, "source", prescription.source, "source", fields);
-  write.copy(source, "source", prescription.source, "source", ["errata", "issuer"]);
+  write.copy(source, "source", prescription.source, "source", ["errata", "omissions", "sdSource", "issuer"]);
   dropIfEmpty(out, "", "source", write.writes);
 }
 
@@ -385,7 +385,7 @@ function writeLens(write: Writer, lens: CanonicalLens): Untyped {
       conjugates.push(record);
       write.item("focus.conjugates", index, at);
       write.copy(record, at, conjugate, at, ["zoomStation", "keyframe", "objectDistanceMm", "distanceReference"]);
-      write.copy(record, at, conjugate, at, ["source"]);
+      write.copy(record, at, conjugate, at, ["sourceMagnification", "source"]);
     });
   }
   if (!lens.zoom && !publishedDefaulted) write.copy(focus, "focus", lens.focus, "focus", ["published"]);

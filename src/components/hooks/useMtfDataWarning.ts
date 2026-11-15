@@ -1,6 +1,6 @@
 /** Whether the reader has dismissed a lens system's MTF data warning on this page. */
 import { useCallback, useSyncExternalStore } from "react";
-import type { MtfDataLimitation } from "../../types/mtf.js";
+import type { MtfDataLimitation, MtfDataLimitationKind } from "../../types/mtf.js";
 import {
   dismissMtfDataWarnings,
   getDismissedMtfDataWarnings,
@@ -13,12 +13,12 @@ import {
  *
  * @param systemKey - lens key, or the composed key of a lens with a converter
  * @param limitations - gaps and notes the warning currently lists
- * @returns whether every blocking kind has been dismissed, and a callback that dismisses them
+ * @returns whether every blocking kind has been dismissed, a dismissal callback and the dismissed kinds
  */
 export function useMtfDataWarning(
   systemKey: string,
   limitations: readonly MtfDataLimitation[],
-): [acknowledged: boolean, acknowledge: () => void] {
+): [acknowledged: boolean, acknowledge: () => void, dismissed: ReadonlySet<MtfDataLimitationKind>] {
   const dismissed = useSyncExternalStore(
     subscribeMtfDataWarnings,
     () => getDismissedMtfDataWarnings(systemKey),
@@ -32,5 +32,5 @@ export function useMtfDataWarning(
       ),
     [systemKey, limitations],
   );
-  return [limitations.every(({ kind, blocking }) => !blocking || dismissed.has(kind)), acknowledge];
+  return [limitations.every(({ kind, blocking }) => !blocking || dismissed.has(kind)), acknowledge, dismissed];
 }

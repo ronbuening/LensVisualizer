@@ -90,3 +90,14 @@ resolves to, minus the engine's line 0.6438 − 0.001682·νd.
   and give the engine-line value; the vendor figures stay, labelled as the vendor's. The data-file header gained a
   partial-dispersion note and both `apdNote` strings were rewritten.
 - `dpgfcheck.mjs` on the edited file: builds and validates; both stored values equal the catalog engine-line figures.
+
+## 2026-11-14 — Finite conjugates from printed magnifications
+
+| Zoom / keyframe | Printed magnification → `sourceMagnification` | Source locator | Solved object distance | Check |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | “撮影倍率: −0.5” → `"0.5"` | WO 2016/136352 A1, Example 2 (PDF p. 25) | 202.58 mm, first-surface | in focus 0.49842; at the declared distance 0.49841; −0.05 quarter waves |
+| 0 / 2 | “撮影倍率: −1.0” → `"1.0"` | WO 2016/136352 A1, Example 2 (PDF p. 25) | 130.18 mm, first-surface | in focus 0.99572; at the declared distance 0.99567; −0.14 quarter waves |
+
+The patent prints a magnification and no object distance for these states. Each distance is solved from the prescription under `LENS_DATA_SPEC.md` § Finite conjugates: the distance that focuses the state on its image plane when the magnification there rounds to the print, otherwise the distance at the nearest magnification that does. Two independent readings of the patent agree on the printed value and on the gaps of the matching state.
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.

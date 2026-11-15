@@ -357,6 +357,24 @@ const LENS_DATA = {
       "Dual inner focus — G2 moves image-ward (+19.0 mm), G3 moves object-ward (+20.7 mm). G1, aperture stop, and G4 are fixed. Constant overall length. Source 1:2 and 1:1 states are retained; closest object-to-image distance is 0.287563 m.",
     // (moved from publishedStations) Every focus keyframe is a source row.
     published: [1, 2],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 226.746,
+        distanceReference: "first-surface",
+        source:
+          "WO 2022/097401 A1, Example 1, Table 1, 可変間隔データ, 中間距離合焦状態 β = −0.5 column; mm per ¶0093, PDF p28: D0 226.746; gaps (mm): 7=12.98, 12=16.167, 18=13.161, STO=14.031. D0 is object to first surface (¶0091, PDF p25; object-side surface-table gap on PDF p27).",
+      },
+      {
+        zoomStation: 0,
+        keyframe: 2,
+        objectDistanceMm: 138.188,
+        distanceReference: "first-surface",
+        source:
+          "WO 2022/097401 A1, Example 1, Table 1, 可変間隔データ, closest-focus β = −1.0 column; mm per ¶0093, PDF p28: D0 138.188; gaps (mm): 7=22.619, 12=6.528, 18=22.947, STO=4.245. D0 is object to first surface (¶0091, PDF p25; object-side surface-table gap on PDF p27).",
+      },
+    ],
   },
 
   gaps: {

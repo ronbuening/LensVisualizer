@@ -208,6 +208,16 @@ const LENS_DATA = {
       "630 mm from object to the first optical surface, equivalent to about 0.699 m object-to-image distance.",
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 630,
+        distanceReference: "first-surface",
+        source:
+          "JP 2022-012964 A, Example 2, Table 2, フォーカス可変間隔, F14 column (PDF p. 20): ZD 0=630.00 mm is the object-to-first-surface gap (Table 2, OBJ row, PDF p. 20); ZD9=5.30 mm, ZD12=0.15 mm, ZD16=29.12 mm.",
+      },
+    ],
   },
 
   /* (moved from var) ── Published unit-focus spacing ── */

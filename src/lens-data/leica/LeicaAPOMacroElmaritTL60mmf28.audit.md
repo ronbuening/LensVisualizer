@@ -71,3 +71,13 @@ clearance. No figure measurement was used.
 The validator accepts the new values, the traced edge now reaches 14.18 mm at 13.2° with every rim clear (100%), and the
 image-circle floor still reports nothing undersized. No aspheric surface changed, and the analysis quotes none of the
 changed semi-diameters (its aspheric departures are given at a fixed h = 10 mm).
+
+## 2026-11-14 — Published finite conjugates
+
+Patent: JP 2016-090725 A, Example 9.
+
+| Zoom / keyframe | Field | Before | After | Source and paraxial residual |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | `focus.conjugates` | Absent | `67.497` mm, `first-surface` | JP 2016-090725 A, Example 9, paragraph 0115 various-data table, POS2 column (PDF p. 26): object=67.497 mm, beta=-1.0; d7=3.050, d13=22.608 mm. The object row in the surface-data table (paragraph 0110, PDF p. 25, unit mm) places the variable d interval between object and surface 1. Signed image-plane offset -0.005918113 mm (-0.338279 diffraction depths); other-reference offset unavailable (object behind first surface); `consistent`. |
+
+The reference follows the surface-data table (paragraph 0110, PDF p. 25, “単位：mm”): the “object” row has d “variable” immediately before surface 1. Paragraph 0115 supplies its finite value in the matching POS2 column.

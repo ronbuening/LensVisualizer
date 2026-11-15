@@ -119,3 +119,17 @@ Deep-copy diagnostic trials on 13A/14A covered sign, ×10, ÷10 and zero per non
 The stored surface validator accepts the revision. The exact stated axial beams are iris-limited at f/3.58, f/4.22 and f/5.76; the image-circle floor has no undersized rim. The prescribed vprobe wide sweep's axis transmission changes 0.929→1.000, while RI is still refused from 29.4° and maxDev remains about 0.092–0.113 at those fields. The prescribed kit mid/tele output is unchanged, but its stop override underfills the current UI beam: it uses 3.97887/2.91508 mm instead of the prepared mid/tele wide-open 5.26252/5.26767 mm. A scratch probe using the current zoom stop and nominal entrance pupil shows post-edit RI refusal from 14.4° at mid and 11.5° at tele. The report retains both sweeps.
 
 Verdict: other — a proven clipped-stated-beam rim was corrected; localization remains unresolved. Do not cap 14A further or alter its printed coefficients solely to obtain RI. The coordinator should queue the unresolved outer-pupil 13A/14A behavior and the kit's zoom-stop override for follow-up; a family-publication comparison or independent exact full-aperture trace may provide new evidence. No shared queue or engine file was edited.
+
+## 2026-11-14 — Source-certified finite conjugates
+
+Patent: JP2021015312A.
+
+| Zoom / keyframe | Field | Before | After | Source and paraxial residual |
+|---|---|---|---|---|
+| 0 / 1 | `focus.conjugates` | No declaration | 1000 mm, `image-plane` | Example 3, Table 11, 有限距離物体合焦時; ¶0059 defines finite state; WIDE: DD[6]=24.57, DD[16]=2.63, DD[18]=6.88 mm (PDF p.11 (printed p.11), ¶0059; gaps PDF p.19 (printed p.19)). Offset -0.000679307 mm / -0.044934 depths; alternate reference -1.3487224178919068 depths; `consistent`. |
+| 1 / 1 | `focus.conjugates` | No declaration | 1000 mm, `image-plane` | Example 3, Table 11, 有限距離物体合焦時; ¶0059 defines finite state; MID: DD[6]=10.26, DD[16]=5.87, DD[18]=12.76 mm (PDF p.11 (printed p.11), ¶0059; gaps PDF p.19 (printed p.19)). Offset -0.005374615 mm / -0.254925 depths; alternate reference -2.737310321050403 depths; `consistent`. |
+| 2 / 1 | `focus.conjugates` | No declaration | 1000 mm, `image-plane` | Example 3, Table 11, 有限距離物体合焦時; ¶0059 defines finite state; TELE: DD[6]=0.34, DD[16]=13.68, DD[18]=16.96 mm (PDF p.11 (printed p.11), ¶0059; gaps PDF p.19 (printed p.19)). Offset +0.010850132 mm / +0.275248 depths; alternate reference -3.703858082462744 depths; `consistent`. |
+
+Reference evidence: “有限距離物体合焦時（像面から１ｍの距離の物体に合焦時）”
+
+The declared states already carry published focus flags. No prescription, gap, image-plane, or existing conjugate value changes.

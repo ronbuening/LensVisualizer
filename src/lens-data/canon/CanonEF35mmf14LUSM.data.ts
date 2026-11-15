@@ -258,6 +258,16 @@ const LENS_DATA = {
       "BF 38.6533555→45.0633555 mm is computed only to preserve the fixed image plane.",
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 300,
+        distanceReference: "image-plane",
+        source:
+          "JP H11-211978 A, Numerical Example 1, p. 5 Table 1, OBJ=300 column: d6=0.43 mm, d13=2.06 mm. Paragraph 0011 (p. 3) defines the object distance as 300 mm from the image plane.",
+      },
+    ],
   },
 
   gaps: {

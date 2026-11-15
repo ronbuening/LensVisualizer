@@ -296,6 +296,24 @@ const LENS_DATA = {
       "PUBLISHED dual-group internal focus: G2 moves toward the image while G3 moves toward the object; the infinity, beta=-0.5, and beta=-1.0 patent rows are exact focus keyframes. Patent beta=-1.0 normalizes to 0.26419491 m object-to-image distance; Nikon markets 0.286 m MFD from the focal plane.",
     // (moved from publishedStations) Every focus keyframe is a source row.
     published: [1, 2],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 206.1164,
+        distanceReference: "first-surface",
+        source:
+          "US 2009/0190220 A1, Example 1, PDF p. 55, Table 1, Variable distance during focusing, beta=-0.50000 / -1.00000 columns, D0 row: D0 = 206.1164 mm to the first surface; d7=10.52739, d12=9.35781, d13=9.51488, d18=11.66338 mm. The first-surface reference is identified by the conjugate audit; the example does not explicitly define D0.",
+      },
+      {
+        zoomStation: 0,
+        keyframe: 2,
+        objectDistanceMm: 133.0597,
+        distanceReference: "first-surface",
+        source:
+          "US 2009/0190220 A1, Example 1, PDF p. 55, Table 1, Variable distance during focusing, beta=-0.50000 / -1.00000 columns, D0 row: D0 = 133.0597 mm to the first surface; d7=17.78094, d12=2.10426, d13=3.18873, d18=17.98953 mm. The first-surface reference is identified by the conjugate audit; the example does not explicitly define D0.",
+      },
+    ],
   },
 
   gaps: {

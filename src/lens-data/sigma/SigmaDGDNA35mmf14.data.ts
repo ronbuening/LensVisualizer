@@ -449,6 +449,16 @@ const sigmaDgDnA35mmF14Data = {
       "Inner focus by the single-element negative middle group L9. The patent 1.47 m row is exact before the constrained 0.30 m endpoint; lens length remains fixed.",
     // (moved from publishedStations) The intermediate focus row is source-tabulated; the close endpoint is reconstructed.
     published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 1346.05,
+        distanceReference: "first-surface",
+        source:
+          "JP 2022-033487 A, Numerical Example 1, PDF pp. 15-16; [可変間隔データ], 1470mm column, d0 row: d0 = 1346.0500 mm. The surface table lists d0 as the object-plane gap before surface 1. D17=11.1422 mm, D15=4.8959 mm.",
+      },
+    ],
   },
 
   gaps: {

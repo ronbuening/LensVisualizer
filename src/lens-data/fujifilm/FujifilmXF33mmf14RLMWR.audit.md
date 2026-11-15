@@ -26,3 +26,17 @@ Patent: US 2022/0276464 A1, Example 3
   old stored 11.4867571842 mm was the recomputed Gaussian BFD rather than the printed fold (11.4871 mm); the new file
   keeps the patent's printed spacings. Physical track grows by 2.85 × (1 − 1/1.5168) = 0.971 mm plus that rounding, to
   83.378 mm.
+
+## 2026-11-14 — Published finite conjugate
+
+Patent: US 2022/0276464 A1, Example 3, Table 11, 0.217 m row; paragraph 0061 (PDF p. 31); PDF page 39.
+
+| State | Field | Before | After | Source evidence |
+| --- | --- | --- | --- | --- |
+| Zoom 0 / keyframe 1 | `focus.conjugates` | absent | `217` mm, `first-surface` | Printed `0.217 m`; DD[11]=1.7684; DD[21]=6.9516 mm. |
+
+The reference is patent-defined: “object distance (distance on the optical axis from the object to the lens surface closest to the object side)”. The authored-plane paraxial
+offset is -0.008793482 mm (-3.437145 diffraction depths); the other
+reference gives +3.039775843 mm (+1043.363611 depths).
+The verdict is `consistent` and the reference is discriminated. The existing published flag and
+all optical geometry remain unchanged.

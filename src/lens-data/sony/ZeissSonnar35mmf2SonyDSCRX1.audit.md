@@ -82,3 +82,14 @@ The data header and analysis now describe the exponent correction, caps, recompu
 field limitation. Used the kit's `vprobe.mjs`, `triage.mjs`, `rayinfo.mjs`, `aberr.mjs`, the LSA helper, and
 the direct surface/aperture/image-circle/field-coverage scripts. Repository-wide gates and the production UI
 review remain with the coordinator under this assignment's scope.
+
+## 2026-11-14 — Finite conjugates from printed magnifications
+
+| Zoom / keyframe | Printed magnification → `sourceMagnification` | Source locator | Solved object distance | Check |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | “shooting magnification: 0.06” → `"0.06"` | US 2014/0071333 A1, Numerical Example 4 (PDF p. 24) | 584.15 mm, first-surface | in focus 0.05879; at the declared distance 0.05879; +0.00 quarter waves |
+| 0 / 2 | “shooting magnification: 0.15” → `"0.15"` | US 2014/0071333 A1, Numerical Example 4 (PDF p. 24) | 239.77 mm, first-surface | in focus 0.14640; at the declared distance 0.14640; +0.01 quarter waves |
+
+The patent prints a magnification and no object distance for these states. Each distance is solved from the prescription under `LENS_DATA_SPEC.md` § Finite conjugates: the distance that focuses the state on its image plane when the magnification there rounds to the print, otherwise the distance at the nearest magnification that does. Two independent readings of the patent agree on the printed value and on the gaps of the matching state.
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.

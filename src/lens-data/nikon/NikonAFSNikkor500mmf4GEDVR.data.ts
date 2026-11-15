@@ -323,6 +323,16 @@ const LENS_DATA = {
       "PUBLISHED — G2 translates 10.84 mm imageward from infinity to the patent 5 m state; no production-MFD extrapolation.",
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 5000,
+        distanceReference: "image-plane",
+        source:
+          "US20090190239A1, Example 1, FIG. 7, EXAMPLE 1: VARIOUS DATA, NEAR POINT (5m) column, PDF p. 8: NEAR POINT (5m) (5000 mm); d11=49.88 mm, d16=13.18 mm. Distance reference identified by the conjugate audit; the patent does not define the reference.",
+      },
+    ],
   },
 
   gaps: { "11": { label: "D11", values: [[39.04, 49.88]] }, "16": { label: "D16", values: [[24.02, 13.18]] } },

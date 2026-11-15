@@ -60,7 +60,7 @@ import useOverlays from "../hooks/useOverlays.js";
 import ViewerChrome from "./lensViewer/ViewerChrome.js";
 import ViewerContent from "./lensViewer/ViewerContent.js";
 import ViewerOverlays from "./lensViewer/ViewerOverlays.js";
-import { canonicalPagePath } from "../../utils/seo/siteUrls.js";
+import { buildLensNavigationUrl } from "../../utils/state/mtfUrlState.js";
 
 const ABOUT_ME_MD = stripFrontmatter(_ABOUT_ME_MD);
 const ABOUT_SITE_MD = stripFrontmatter(_ABOUT_SITE_MD);
@@ -254,17 +254,18 @@ export default function LensVisualization({ initialLensKey, initialLensKeyB }: L
   );
 
   /* ── Lens switching (single-lens mode resets sliders, comparison mode does not) ──
-   * A compare-route switch replaces the path and so drops the query. The URL writer only reruns when the view
-   * state it watches changes, which a switch on the other pane (or a swap of identical converters) does not do,
-   * so it is scheduled explicitly: the surviving pane's `a_tc` / `b_tc` must stay in a shareable URL. */
+   * A compare-route switch carries shared MTF settings but rebuilds other query state.
+   * The URL writer only reruns when the view state it watches changes, which a switch
+   * on the other pane (or a swap of identical converters) does not do, so it is scheduled
+   * explicitly: the surviving pane's `a_tc` / `b_tc` must stay in a shareable URL. */
   const switchLensA = useCallback(
     (key: string) => {
       dispatch({ type: SET_LENS_A, key });
       if (isComparePage) {
-        void navigate(canonicalPagePath(`/compare/${key}/${lensKeyB}`), { replace: true });
+        void navigate(buildLensNavigationUrl(`/compare/${key}/${lensKeyB}`, window.location.search), { replace: true });
         updateURLWithSliders();
       } else if (isLensPage && !state.lens.comparing) {
-        void navigate(canonicalPagePath(`/lens/${key}`), { replace: true });
+        void navigate(buildLensNavigationUrl(`/lens/${key}`, window.location.search), { replace: true });
       }
     },
     [dispatch, isLensPage, isComparePage, lensKeyB, state.lens.comparing, navigate, updateURLWithSliders],
@@ -274,7 +275,7 @@ export default function LensVisualization({ initialLensKey, initialLensKeyB }: L
     (key: string) => {
       dispatch({ type: SET_LENS_B, key });
       if (isComparePage) {
-        void navigate(canonicalPagePath(`/compare/${lensKeyA}/${key}`), { replace: true });
+        void navigate(buildLensNavigationUrl(`/compare/${lensKeyA}/${key}`, window.location.search), { replace: true });
         updateURLWithSliders();
       }
     },
@@ -284,7 +285,9 @@ export default function LensVisualization({ initialLensKey, initialLensKeyB }: L
   const swapLenses = useCallback(() => {
     dispatch({ type: SWAP_LENSES });
     if (isComparePage) {
-      void navigate(canonicalPagePath(`/compare/${lensKeyB}/${lensKeyA}`), { replace: true });
+      void navigate(buildLensNavigationUrl(`/compare/${lensKeyB}/${lensKeyA}`, window.location.search), {
+        replace: true,
+      });
       updateURLWithSliders();
     }
   }, [dispatch, isComparePage, lensKeyA, lensKeyB, navigate, updateURLWithSliders]);

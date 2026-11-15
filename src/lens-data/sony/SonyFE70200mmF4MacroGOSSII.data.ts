@@ -466,6 +466,32 @@ const LENS_DATA = {
     closeFocusM: 2.289,
     description:
       "Published G6 inner focus: 0.55 / 0.76 / 1.10 mm imageward at Wide / Mid / Tele, reaching 2.289 / 3.709 / 5.814 m respectively. Production macro focus is not modeled.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 2119.38,
+        distanceReference: "first-surface",
+        source:
+          "WO 2024/247472 A1, Example 2, Table 8 (PDF p. 36), near Wide column: d0 = 2119.38 mm; 撮影距離 = 2289mm; d6=2.08, d14=16.82, d18=7.75, d22=9.60, d27=5.84, d30=13.21 mm. Table 6 (PDF p. 35) lists d0 as the object-to-first-surface gap.",
+      },
+      {
+        zoomStation: 1,
+        keyframe: 1,
+        objectDistanceMm: 3513.49,
+        distanceReference: "first-surface",
+        source:
+          "WO 2024/247472 A1, Example 2, Table 8 (PDF p. 36), near Mid column: d0 = 3513.49 mm; 撮影距離 = 3709mm; d6=27.85, d14=2.61, d18=10.79, d22=6.12, d27=9.09, d30=24.61 mm. Table 6 (PDF p. 35) lists d0 as the object-to-first-surface gap.",
+      },
+      {
+        zoomStation: 2,
+        keyframe: 1,
+        objectDistanceMm: 5570.44,
+        distanceReference: "first-surface",
+        source:
+          "WO 2024/247472 A1, Example 2, Table 8 (PDF p. 36), near Tele column: d0 = 5570.44 mm; 撮影距離 = 5814mm; d6=75.53, d14=1.50, d18=9.59, d22=5.81, d27=3.90, d30=32.42 mm. Table 6 (PDF p. 35) lists d0 as the object-to-first-surface gap.",
+      },
+    ],
   },
 
   gaps: {

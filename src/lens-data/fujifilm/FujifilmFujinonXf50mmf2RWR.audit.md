@@ -19,3 +19,15 @@ The local-site color audit adds inferred APD to L14: its compatible H-FK61 curve
   reconstructed 0.39 m keyframe, since the old 23.258187976960897 mm was the exact fold. Physical track grows by
   0.972 mm. The 0.39 m endpoint's DD[12]/DD[14] were solved against the folded track and are left unchanged; the
   resulting sensor-plane distance shift is under 1 mm.
+
+## 2026-11-14 — Source-certified finite conjugates
+
+Patent: US10168507.
+
+| Zoom / keyframe | Field | Before | After | Source and paraxial residual |
+|---|---|---|---|---|
+| 0 / 1 | `focus.conjugates` | No declaration | 1000 mm, `first-surface` | Example 4, Table 11, 1 m column; DD[12]=3.51, DD[14]=8.02 mm; distance wording PDF p.14 (column 12) (PDF p.16 (printed column 16)). Offset +0.005297906 mm / +1.024831 depths; alternate reference 36.90768821145679 depths; `consistent`. |
+
+The patent prints the distance without defining its datum. The first-surface reference is identified by the conjugate audit (`referenceBasis: audit-resolved`), which discriminates the alternative. This basis is recorded in the declaration’s `source` and the accompanying results; the current conjugate schema has no separate reference-basis field.
+
+The declared states already carry published focus flags. No prescription, gap, image-plane, or existing conjugate value changes.

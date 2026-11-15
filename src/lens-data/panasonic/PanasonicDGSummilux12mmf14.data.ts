@@ -356,6 +356,16 @@ const LENS_DATA = {
     description: "Internal focus by L12/G3: d22 decreases and d24 increases by 1.6864 mm from infinity to 0.20 m.",
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 111,
+        distanceReference: "first-surface",
+        source:
+          "JP 2017-167327 A, Numerical Example 1, 可変間隔データ, 0.2m column: d0 111.00 mm; d22=2.0736 mm, d24=3.1864 mm, BF=0.9999 mm. PDF p. 10: \"単位：mm\"; surface table \"物面 ∞ (d0)\" immediately precedes surface 1.",
+      },
+    ],
   },
 
   gaps: { "22A": { label: "d22", values: [[3.76, 2.0736]] }, "24": { label: "d24", values: [[1.5, 3.1864]] } },

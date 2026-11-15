@@ -114,3 +114,16 @@ production-supplier uncertainty remains explicit.
 Verification: `assertCatalogConsistent()` and fresh per-element `resolveCompatibleGlass` / compatibility checks pass.
 The existing dispersion and glass-resolution-parity suites pass (2 files, 93 tests).
 `audit:surface` passes after the glass-only changes.
+
+## 2026-11-14 — Published finite-conjugate certification
+
+Patent: WO 2021/117429 A1, Example 1.
+
+| Zoom / keyframe | Field | Before | After | Source and paraxial residual |
+|---|---|---|---|---|
+| 0 / 1 | `focus.conjugates` | absent | 583.6824 mm, `first-surface` | Example 1, Table 1 variable-spacing data, middle/nearest columns, PDF p. 21 (printed p. 19); 物体距離 = 583.6824 mm. Image minus authored plane: 0.000365553216 mm (0.0908679801 diffraction depths); other reference: 38.8513213 depths; consistent. |
+| 0 / 2 | `focus.conjugates` | absent | 81.5339 mm, `first-surface` | Example 1, Table 1 variable-spacing data, middle/nearest columns, PDF p. 21 (printed p. 19); 物体距離 = 81.5339 mm. Image minus authored plane: 0.000157911363 mm (0.0392207975 diffraction depths); other reference: unavailable (Object is not in front of the first surface.); consistent. |
+
+Reference basis: audit-resolved. The patent prints the distance without explicitly defining its reference; the first-surface interpretation is consistent and the image-plane interpretation is rejected by the conjugate audit.
+
+The source gap columns match the authored keyframes. The declarations preserve all optical surfaces, gaps, rear plates and the authored image plane.
