@@ -22,3 +22,13 @@ Patent: US 2013/0033768 A1, Example 2
 - Visually rechecked Example 2, Table 4 in local `patents/US20130033768A1.pdf`; G6 is `nd=1.801`, `νd=45.45`, code 801454 after patent rounding.
 - Relabeled G6 to coefficient-backed HOYA M-TAF31 (`nd=1.80139`, `νd=45.45`, code 801455), a close rounded catalog equivalent consistent with the double-aspherical PGM position.
 - The label leaves Sony's production supplier unspecified. No geometry or authored patent constants changed.
+
+## 2026-11-14 — Finite conjugates from printed magnifications
+
+| Zoom / keyframe | Printed magnification → `sourceMagnification` | Source locator | Solved object distance | Check |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | “β = -0.25” → `"0.25"` | US 2013/0033768 A1, Numerical Example 2 (PDF p. 17) | 78.78 mm, first-surface | in focus 0.24978; at the declared distance 0.24979; +0.07 quarter waves |
+
+The patent prints a magnification and no object distance for this state. Each distance is solved from the prescription under `LENS_DATA_SPEC.md` § Finite conjugates: the distance that focuses the state on its image plane when the magnification there rounds to the print, otherwise the distance at the nearest magnification that does. Two independent readings of the patent agree on the printed value and on the gaps of the matching state.
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.

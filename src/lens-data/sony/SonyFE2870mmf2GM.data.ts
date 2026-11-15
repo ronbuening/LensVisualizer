@@ -528,6 +528,32 @@ const LENS_DATA = {
     description:
       "Dual-group floating inner focus: G5 (L51, negative) moves toward image, " +
       "G6 (L61, positive) moves toward object. Four XD linear motors (two per group).",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 222.83,
+        distanceReference: "first-surface",
+        source:
+          "WO 2025/263124 A1, Example 1, Table 3, Wide finite column, d0 row (PDF p. 27): d0 = 222.83; D5=0.8 mm; D12=23.32 mm; D18=8.07 mm; D26=4.79 mm; D28=5.9 mm; BF=2.07 mm. d0 is the object-to-first-surface gap in the surface table.",
+      },
+      {
+        zoomStation: 1,
+        keyframe: 1,
+        objectDistanceMm: 218.28,
+        distanceReference: "first-surface",
+        source:
+          "WO 2025/263124 A1, Example 1, Table 3, Mid finite column, d0 row (PDF p. 27): d0 = 218.28; D5=13.82 mm; D12=10.61 mm; D18=6.53 mm; D26=6.65 mm; D28=5.39 mm; BF=6.51 mm. d0 is the object-to-first-surface gap in the surface table.",
+      },
+      {
+        zoomStation: 2,
+        keyframe: 1,
+        objectDistanceMm: 207.35,
+        distanceReference: "first-surface",
+        source:
+          "WO 2025/263124 A1, Example 1, Table 3, Tele finite column, d0 row (PDF p. 27): d0 = 207.35; D5=26.1 mm; D12=2.24 mm; D18=5.13 mm; D26=7.1 mm; D28=5.54 mm; BF=14.31 mm. d0 is the object-to-first-surface gap in the surface table.",
+      },
+    ],
   },
 
   /* (moved from var) ── Variable air spacings ──

@@ -218,6 +218,16 @@ const LENS_DATA = {
     keyframes: [0, 0.8669314286221126, 1],
     description:
       "CONSTRAINED_RECONSTRUCTION: the complete rear group Gr translates toward the object with the patent-published beta=0.1 state stored exactly before the reconstructed 0.25 m endpoint. D4 and r19-to-IMG change by equal and opposite amounts to keep the image plane fixed.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 195.11,
+        distanceReference: "first-surface",
+        sourceMagnification: "1/10",
+        source: "JP 1987-249119 A, Example 4 (PDF p. 4): prints “可変間隔（β＝1/10のとき d4＝35.047）” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription at that magnification; focused on its image plane the state gives 0.10000.",
+      },
+    ],
     // (moved from publishedStations) The intermediate focus row is source-tabulated; the close endpoint is reconstructed.
     published: [1],
   },

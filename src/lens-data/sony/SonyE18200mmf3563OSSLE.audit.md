@@ -17,3 +17,15 @@ Patent: US 8,553,339 B2, Example 1
 - Named the resolver-selected catalog equivalents for all 17 physical glass media while explicitly leaving production suppliers unspecified. The two resin layers remain unmatched because the patent does not identify their material.
 - Correlated Sony's two-ED production count to L2 and L16, the two patent positions supported by the high-Abbe/ED-class mapping, using `apd: "inferred"`. No patent `dPgF`, APO claim, or resin Sellmeier curve was invented.
 - Confirmed the corrected display name `SONY E 18-200mm f/3.5-6.3 OSS LE` and retained the documented SEL18200LE correlation caveat.
+
+## 2026-11-14 — Published finite conjugates
+
+Patent: US 8,553,339 B2, Embodiment 1, PDF pp. 34-35 (cols. 8-9).
+
+| Zoom / keyframe | Field | Before | After | Source and conjugacy residual |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | `focus.conjugates` | Undeclared | `384.98` mm, `first-surface` | PDF p. 35, Embodiment 1 proximity-focus table, Wide-angle End, d0 row; offset -0.000528983 mm (-0.035207 diffraction depths), alternate +21.256555 depths; `consistent`. |
+| 1 / 1 | `focus.conjugates` | Undeclared | `349.241` mm, `first-surface` | PDF p. 35, Embodiment 1 proximity-focus table, Intermediate Range, d0 row; offset -0.001271031 mm (-0.033230 diffraction depths), alternate +138.588233 depths; `consistent`. |
+| 2 / 1 | `focus.conjugates` | Undeclared | `310.197` mm, `first-surface` | PDF p. 35, Embodiment 1 proximity-focus table, Telephoto End, d0 row; offset -0.004500319 mm (-0.075087 diffraction depths), alternate +303.469171 depths; `consistent`. |
+
+The surface table lists `d0` on the object-plane row immediately before surface 1, defining the first-surface reference. The existing focus gaps match the finite column at the authored precision; only the conjugate declarations are added.

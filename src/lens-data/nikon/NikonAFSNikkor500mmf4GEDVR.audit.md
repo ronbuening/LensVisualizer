@@ -40,3 +40,13 @@ Compared the local-site infinity/5 m sections with Fig. 1. The focusing group mo
 - Directly inspected original `patents/US20090190239A1.pdf`: Example 1 Fig. 1 PDF p. 2 at 600 dpi (complete three-part optical-rim crops), prescription Fig. 6 p. 7, specification/focus Fig. 7 p. 8, and d-line definitions in ¶0055 p. 24. Every convex/concave face and cemented boundary was inspected. No separately resolved air-facing flat cap-end land supports an extension or inferred trim; the visible group brackets and ray overlays are excluded. Existing cemented steps and source diameter anchors remain. No geometry change.
 - Freshly checked all **14 powered elements**, front protective meniscus P1, and drawn rear GF separately (16 modeled media), against every source nd/vd row. All values are retained, including source νd rounded to one decimal. Current compatible catalog curves cover all 16 media. Labels already qualify HIKARI coordinates as spectral proxies with supplier unconfirmed. The source has no θgF or C/F/g table; none is invented. L1/L2/L5 APD tags stay inference-qualified from the ED-class proxy, not patent-measured anomaly. Published 5 m focus and attribution uncertainty are preserved.
 - Actual verification: focused surface and image-circle audits pass all three candidates (zero undersized/skipped); aperture audit passes all three stated axial beams after the PF cap correction. Native SVG output was inspected at nine focus/zoom states per lens (27 total), with zero renderer trims. Current resolver/catalog consistency passes. Shared dispersion/partial-dispersion suites were already run in this candidate wave (93 passing tests); no engine changes or per-lens tests were added.
+
+## 2026-11-14 — Published finite conjugates
+
+Patent: US20090190239A1, Example 1.
+
+| State (zoom/keyframe) | Field | Before | After | Source and axial residual |
+| --- | --- | --- | --- | --- |
+| 0/1 | `focus.conjugates` | None | 5000 mm, `image-plane` | PDF p. 8, Example 1, FIG. 7, EXAMPLE 1: VARIOUS DATA, NEAR POINT (5m) column; NEAR POINT (5m); d11=49.88 mm, d16=13.18 mm. Image minus authored plane: +0.0061863511 mm (+0.31622464 diffraction depths), `consistent`. Alternate reference: -262.1160711494632 depths. |
+
+The patent labels the matched column “NEAR POINT (5m)” without defining the distance reference. The conjugate audit identifies the image-plane reference: its alternate first-surface offset is −4.8238020587 mm (−262.11607115 depths), versus +0.0061863511 mm (+0.31622464 depths) for the image-plane reference. `source` records this audit-resolved convention; the V2 input schema does not accept a separate `referenceBasis` field.

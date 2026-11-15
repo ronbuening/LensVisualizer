@@ -3,6 +3,7 @@ import type { UntrustedLensData, ExplicitElementSpan } from "./context.js";
 import type { SurfaceData } from "../../../types/optics.js";
 import { TELECONVERTER_LABEL_PREFIX } from "../teleconverterCompatibility.js";
 import { ASPHERIC_COEFFICIENT_SCHEMA } from "../../../types/asphericSchema.js";
+import { sourceProvenanceIssues } from "../../../types/sourceProvenanceSchema.js";
 import { surfaceFitsInsideCentralOpening } from "../../geometry/apertureBands.js";
 import { annularNestedOpeningForSpan, isEmbeddedStop, isAllowedFoldedSpanInternalSurface } from "./aperture.js";
 
@@ -24,6 +25,21 @@ const SOURCE_ERRATUM_EVIDENCE = new Set([
 const SOURCE_ERRATUM_SURFACE_FIELDS = new Set(["R", "d", "nd"]);
 /** A correction needs this many independent kinds of source-internal evidence. */
 const SOURCE_ERRATUM_MIN_EVIDENCE = 2;
+
+/**
+ * Check declared aperture evidence and missing surface definitions with the portable source contract.
+ *
+ * @param data - diagnostic source fields in construction-column form
+ * @param surfaceLabels - labels of the authored surfaces
+ * @param errors - collected validation messages
+ * @returns nothing; appends issues using construction paths for the authored-path adapter
+ */
+export function validateSourceProvenance(data: UntrustedLensData, surfaceLabels: Set<string>, errors: string[]): void {
+  for (const issue of sourceProvenanceIssues(data.sourceOmissions, data.sdSource, surfaceLabels)) {
+    const [field, ...members] = issue.path.replace(/^omissions/, "sourceOmissions").split(".");
+    errors.push(`"${field}"${members.length ? `.${members.join(".")}` : ""} ${issue.message}`);
+  }
+}
 
 /**
  * Check `sourceErrata`: a corrected entry must name a real value, carry the applied value in this file, and cite
@@ -182,6 +198,7 @@ export function validateReferences(
 
   /* ── Source errata name real values and carry the corrected ones ── */
   if (data.sourceErrata !== undefined) validateSourceErrata(data.sourceErrata, data, surfaceLabels, errors);
+  validateSourceProvenance(data, surfaceLabels, errors);
 }
 export function validateSpans(
   data: UntrustedLensData,

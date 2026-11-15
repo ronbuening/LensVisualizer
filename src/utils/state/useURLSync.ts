@@ -132,7 +132,7 @@ export default function useURLSync(
     if (isLensPage && !comparing) return;
     // On compare pages, navigation is handled by LensViewer via React Router
     if (isComparePage) return;
-    const url = buildLegacyLensIdentityUrl(stateRef.current);
+    const url = buildLegacyLensIdentityUrl(stateRef.current, window.location.search);
     const current = window.location.search;
     if (url !== current) {
       history.replaceState(null, "", url || window.location.pathname);

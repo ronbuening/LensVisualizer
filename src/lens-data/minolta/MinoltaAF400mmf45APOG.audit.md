@@ -12,3 +12,14 @@ Patent: JP 1996-327896 A, Example 1
 - Relabeled L3 to coefficient-backed SCHOTT N-KZFS8 as a catalog equivalent. Its evaluated coordinate differs from
   the patent by about `-0.000530 / +1.30`; the annotation leaves the production supplier unspecified.
 - No geometry, authored patent constants, or APD numeric fields changed.
+
+## 2026-11-14 — Source-backed finite conjugates
+
+Patent: JP 1996-327896 A.
+
+| Zoom / keyframe | Added distance | Source locator and matching gaps | Paraxial residual |
+| --- | --- | --- | --- |
+| 0 / 1 | 3000 mm, image-plane | PDF p. 4; ¶0017 defines the right-hand Table 1 endpoints (PDF p. 3): T6=43.262, T12=8.028 mm | +0.217910443 mm; +8.777903 diffraction depths; alternate -268.758106 depths. |
+
+- Zoom 0: the patent prints “撮影距離３ｍ” without an explicit reference definition. The conjugate audit identifies the image-plane reference (`audit-resolved`).
+- The authored gaps and image plane are retained.

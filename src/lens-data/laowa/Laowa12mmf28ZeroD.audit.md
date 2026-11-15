@@ -78,3 +78,13 @@ Coverage remains 13/16; all source numeric/spectral/APD, geometry and control fi
 
 - Why the old value differed: patent close rows are a beta = 0.02 check state, not the production endpoint; 0.18 m is the old (production) value.
 - `catalog.closeFocusM.marketing` 0.18 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.
+
+## 2026-11-14 — Finite conjugates from printed magnifications
+
+| Zoom / keyframe | Printed magnification → `sourceMagnification` | Source locator | Solved object distance | Check |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | “0.02倍” → `"0.02"` | CN 205720849 U, Example 2 (PDF p. 9) | 595.45 mm, first-surface | in focus 0.02066; at the declared distance 0.02066; −0.00 quarter waves |
+
+The patent prints a magnification and no object distance for this state. Each distance is solved from the prescription under `LENS_DATA_SPEC.md` § Finite conjugates: the distance that focuses the state on its image plane when the magnification there rounds to the print, otherwise the distance at the nearest magnification that does. Two independent readings of the patent agree on the printed value and on the gaps of the matching state.
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.

@@ -17,6 +17,11 @@ import type { ElementV2Input, LensDataV2Input, SurfaceV2Input } from "../types/l
 export interface BuilderSurface {
   /** V2 surface label; kept stable so variable gaps and other label references keep working. */
   label: string;
+  /**
+   * Label in the input draft, retained by split copies so source omissions follow their surfaces; not exported.
+   * Newly inserted surfaces use null so reusing a deleted label cannot inherit its source assumptions.
+   */
+  originalLabel?: string | null;
   /** Radius of curvature in mm, or flat. */
   R: number | "flat";
   /** Clear semi-diameter in mm. Left out only on a stop whose radius the engine derives. */
@@ -164,6 +169,7 @@ function readSurface(surface: SurfaceV2Input): BuilderSurface {
   const { d: _d, medium: _medium, label, R, sd, asphere, ...extra } = structuredClone(surface);
   return {
     label,
+    originalLabel: label,
     R,
     ...(sd !== undefined ? { sd } : {}),
     ...(asphere !== undefined ? { asphere } : {}),
@@ -372,9 +378,10 @@ export function toElementModel(draft: LensDataV2Input): ToModelResult {
 
 /**
  * Write the model into a new V2 draft: `elements`, `surfaces` and the scheduled entries of `gaps` come from the model;
- * every other field comes from `draft` unchanged. Numeric surface labels are renumbered when every reference can
- * be remapped. Automatic `L<n>` names follow structural edits only while the original names form the sequence and
- * no existing element has been renamed; explicitly authored names are kept.
+ * other fields come from `draft`, with omission references following retained or split surfaces. Removing an
+ * existing asphere removes its omission references; spherical stand-ins retain theirs. Numeric surface labels are
+ * renumbered when every reference can be remapped. Automatic `L<n>` names follow structural edits only while the
+ * original names form the sequence and no existing element has been renamed; explicitly authored names are kept.
  */
 export function applyElementModel(draft: LensDataV2Input, model: BuilderModel): LensDataV2Input {
   checkModel(model);
@@ -429,6 +436,7 @@ export function applyElementModel(draft: LensDataV2Input, model: BuilderModel): 
   }
   if (Object.keys(gaps).length || draft.gaps !== undefined) next.gaps = gaps;
   else delete next.gaps;
+  updateSourceOmissions(next, draft, model);
   renumber(next, draft);
   return next;
 }
@@ -492,8 +500,8 @@ export function insertElement(model: BuilderModel, itemIndex: number): BuilderMo
       },
     ],
     surfaces: [
-      { label: front, R: sd * 10, sd },
-      { label: rear, R: -sd * 10, sd },
+      { label: front, originalLabel: null, R: sd * 10, sd },
+      { label: rear, originalLabel: null, R: -sd * 10, sd },
     ],
   };
   let following: BuilderGap = { mm: 1.5 };
@@ -529,7 +537,11 @@ export function insertStop(model: BuilderModel, itemIndex: number): BuilderModel
       next.gaps[itemIndex - 1] = { mm: half };
     }
   }
-  next.items.splice(itemIndex, 0, { kind: "stop", key: freshKey(model, "stop"), surface: { label: "STO", R: "flat" } });
+  next.items.splice(itemIndex, 0, {
+    kind: "stop",
+    key: freshKey(model, "stop"),
+    surface: { label: "STO", originalLabel: null, R: "flat" },
+  });
   next.gaps.splice(itemIndex, 0, following);
   return next;
 }
@@ -745,9 +757,32 @@ export function describeShape(
   return `${sign ? `${sign} ` : ""}Meniscus`;
 }
 
-function surfaceFields(surface: BuilderSurface): BuilderSurface {
-  const { extra: _extra, ...fields } = structuredClone(surface);
+function surfaceFields(surface: BuilderSurface): Omit<BuilderSurface, "extra" | "originalLabel"> {
+  const { extra: _extra, originalLabel: _originalLabel, ...fields } = structuredClone(surface);
   return fields;
+}
+
+/** Preserve source assumptions on each surviving copy, before renumbering can reuse a deleted surface's label. */
+function updateSourceOmissions(next: LensDataV2Input, original: LensDataV2Input, model: BuilderModel): void {
+  if (!next.source?.omissions) return;
+  const originalSurfaces = new Map(original.surfaces.map((surface) => [surface.label, surface]));
+  const descendants = new Map<string, BuilderSurface[]>();
+  for (const surface of model.items.flatMap(itemSurfaces)) {
+    if (surface.originalLabel === null) continue;
+    const label = surface.originalLabel ?? surface.label;
+    descendants.set(label, [...(descendants.get(label) ?? []), surface]);
+  }
+  next.source.omissions = next.source.omissions.flatMap((omission) => {
+    const surfaces = omission.surfaces.flatMap((label) => {
+      const retained = descendants.get(label);
+      // An unfinished reference stays visible to validation instead of disappearing on an unrelated edit.
+      if (!retained) return originalSurfaces.has(label) ? [] : [label];
+      return retained
+        .filter((surface) => originalSurfaces.get(label)?.asphere === undefined || surface.asphere !== undefined)
+        .map((surface) => surface.label);
+    });
+    return surfaces.length ? [{ ...omission, surfaces }] : [];
+  });
 }
 
 function curvature(radius: BuilderSurface["R"]): number {
@@ -800,6 +835,7 @@ function renumber(next: LensDataV2Input, original: LensDataV2Input): void {
     ...[...(next.groups ?? []), ...(next.doublets ?? [])].flatMap((a) => [a.fromSurface, a.toSurface]),
     ...(next.opticalPath?.surfaceOrder ?? []),
     ...(next.source?.errata ?? []).flatMap((e) => (e.status === "corrected" ? [e.surface] : [])),
+    ...(next.source?.omissions ?? []).flatMap((omission) => omission.surfaces),
   ];
   for (const label of references) {
     if (!labels.has(label) && original.surfaces.some((s) => s.label === label))
@@ -834,4 +870,5 @@ function renumber(next: LensDataV2Input, original: LensDataV2Input): void {
   if (next.opticalPath?.surfaceOrder) next.opticalPath.surfaceOrder = next.opticalPath.surfaceOrder.map(remap);
   for (const erratum of next.source?.errata ?? [])
     if (erratum.status === "corrected") erratum.surface = remap(erratum.surface);
+  for (const omission of next.source?.omissions ?? []) omission.surfaces = omission.surfaces.map(remap);
 }

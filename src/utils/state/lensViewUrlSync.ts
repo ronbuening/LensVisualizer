@@ -6,6 +6,7 @@ import { focalLengthToZoomT, zoomTToFocalLength, type ZoomConvertibleLens } from
 import type { LensAction, LensState } from "../../types/state.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import { canonicalPagePath } from "../seo/siteUrls.js";
+import { preserveSharedMtfSettings } from "./mtfUrlState.js";
 
 /**
  * lensViewUrlSync — bridges reducer-shaped LensState to the URL surface
@@ -65,6 +66,7 @@ export function buildLensViewSearch(
   isComparePage = false,
 ): string {
   const params = buildLensViewQueryFromState(state, getStateZoom(state, comparisonLenses, currentSearch));
+  preserveSharedMtfSettings(currentSearch, params);
   if (isComparePage && !state.lens.comparing) {
     params.delete("a_el");
     params.delete("b_el");
@@ -93,8 +95,11 @@ export function buildLegacyLensViewUrl(
   return suffix ? `${baseUrl}${baseUrl ? "&" : "?"}${suffix}` : baseUrl;
 }
 
-export function buildLegacyLensIdentityUrl(state: LensState): string {
-  return buildComparisonURL(state.lens.comparing, state.lens.lensKeyA, state.lens.lensKeyB);
+export function buildLegacyLensIdentityUrl(state: LensState, currentSearch = ""): string {
+  const baseUrl = buildComparisonURL(state.lens.comparing, state.lens.lensKeyA, state.lens.lensKeyB);
+  const params = new URLSearchParams();
+  preserveSharedMtfSettings(currentSearch, params);
+  return params.size ? `${baseUrl}&${params}` : baseUrl;
 }
 
 export function zoomActionFromFocalLength(

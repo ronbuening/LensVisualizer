@@ -12,3 +12,15 @@ Patent: US 2020/0073096 A1, Example 3 / Table 9
 - Paraxial check against the previous data: EFL identical; defocus unchanged (< 1e-9 mm) at all three focus
   keyframes. Physical track grows by 0.970 mm to 60.49 mm, so the model image plane is now the patent's physical Sim
   plane, which is the plane the 1.06049 m and reconstructed 0.17 m focus distances were already referenced to.
+
+## 2026-11-14 — Source-certified finite conjugates
+
+Patent: US20200073096A1.
+
+| Zoom / keyframe | Field | Before | After | Source and paraxial residual |
+|---|---|---|---|---|
+| 0 / 1 | `focus.conjugates` | No declaration | 1000 mm, `first-surface` | Example 3, Table 11, 1 m column; DD[15]=3.10, DD[17]=4.51 mm; ¶0083 (PDF p.21 (printed p.9)). Offset +0.000953999 mm / +0.097989 depths; alternate reference 1.8435642521746056 depths; `consistent`. |
+
+The patent prints the distance without defining its datum. The first-surface reference is identified by the conjugate audit (`referenceBasis: audit-resolved`), which discriminates the alternative. This basis is recorded in the declaration’s `source` and the accompanying results; the current conjugate schema has no separate reference-basis field.
+
+The declared states already carry published focus flags. No prescription, gap, image-plane, or existing conjugate value changes.

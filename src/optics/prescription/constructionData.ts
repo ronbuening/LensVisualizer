@@ -69,6 +69,8 @@ export function canonicalConstructionData(lens: CanonicalLens): LensConstruction
     patentAuthors: source.authors,
     patentAssignees: source.assignees,
     sourceErrata: source.errata,
+    sourceOmissions: source.omissions,
+    sdSource: source.sdSource,
     elements: lens.elements.map((element) => elementDisplayData(element, 0)),
     surfaces,
     rearPlates: lens.rearPlates,
@@ -86,6 +88,7 @@ export function canonicalConstructionData(lens: CanonicalLens): LensConstruction
       zoomT: zoom && zoom.stations.length > 1 ? conjugate.zoomStation / (zoom.stations.length - 1) : 0,
       objectDistanceMm: conjugate.objectDistanceMm,
       distanceReference: conjugate.distanceReference,
+      ...(conjugate.sourceMagnification !== undefined && { sourceMagnification: conjugate.sourceMagnification }),
       source: conjugate.source,
     })),
     publishedStations: zoom

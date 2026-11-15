@@ -97,3 +97,15 @@ Retained: patent number, inventor (窪田 高士, Takashi Kubota, sole inventor 
 ## 2026-10-08 — Glass coverage: catalog row for one unresolved element
 
 L2 (1.8061 / 40.4, aspherical) carried the code label 806404 with no catalog row and traced on the Abbe estimate. OHARA's discontinued low-softening-temperature L-LAH81 has exactly that coordinate (1.80610 / 40.40) and was added to the site catalog from the OHARA 2026-07-01 catalog file. The label now names it as a coordinate equivalent, and all ten elements trace on catalog curves. Stored nd and νd are unchanged.
+
+## 2026-11-14 — Published finite-conjugate certification
+
+Patent: JP2012003015A; Example 1, paragraph 0097, Table 2, 物体距離 row / ２００mm時 column.
+
+| State | Field | Before | After | Source evidence |
+| --- | --- | --- | --- | --- |
+| Zoom 0, keyframe 1 | `focus.conjugates` | No declaration | `objectDistanceMm: 200`, `distanceReference: "first-surface"` | `物体距離 ２００mm時`; PDF p. 13. Printed D1=3.85 mm and D2=15.78 mm equal authored gaps STO=3.85 mm and 16=15.78 mm. |
+
+Reference: audit-resolved. The source names an object distance without defining its endpoint; the conjugate check discriminates the `first-surface` reference.
+
+The paraxial image offset is -0.015748501 mm (-1.880111 diffraction depths); verdict `consistent`, `referenceDiscriminated: true`. The alternative `image-plane` reference gives +0.552049083 mm (+64.072448 depths). All authored prescription, focus-gap and image-plane values are retained.

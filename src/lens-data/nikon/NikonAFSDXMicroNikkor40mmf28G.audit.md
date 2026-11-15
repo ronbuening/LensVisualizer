@@ -47,3 +47,16 @@ Patent: US 2011/0170195 A1, Example 1
 - `catalog.closeFocusM.marketing` 0.163 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.
 
 Text sync: header and focus.description: focus.closeFocusM is the 0.15264661 m CLD conjugate; Nikon's 0.163 m is catalog metadata.
+
+## 2026-11-14 — Published finite conjugates
+
+Patent: US 2011/0170195 A1, Example 1.
+
+| Zoom / keyframe | Field | Before | After | Source locator | Paraxial residual |
+| --- | --- | --- | --- | --- | --- |
+| 0 / 1 | `focus.conjugates` | Absent | 80.4055 mm, `first-surface` | PDF p. 27, Table 1, Variable Distances, MID / CLD columns, d0 row; d0 = 80.4055; d1a=3.21650, d1b=4.00000, d2=13.37100 mm | +0.000781631 mm / +0.059292 depths; consistent |
+| 0 / 2 | `focus.conjugates` | Absent | 38.9287 mm, `first-surface` | PDF p. 27, Table 1, Variable Distances, MID / CLD columns, d0 row; d0 = 38.9287; d1a=5.33230, d1b=4.00000, d2=25.70880 mm | +0.002977066 mm / +0.156106 depths; consistent |
+
+Reference evidence: d0 indicates a distance along the optical axis between the object and the first lens group G1
+
+The authored gaps, image plane and published-state flags are retained.

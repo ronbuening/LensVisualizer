@@ -62,3 +62,15 @@ Patent: JP 2016-139125 A, Numerical Example 1
 - `catalog.closeFocusM.marketing` 1.2 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.
 
 Text sync: closeFocusM comment: Example 1 Data 3 rows (1200 mm object distance), object to image.
+
+## 2026-11-14 — Published finite conjugates
+
+Patent: JP 2016-139125 A.
+
+| Zoom / keyframe | Field | Before | After | Source and paraxial residual |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | `focus.conjugates` | Absent | `1200` mm, `first-surface` | JP 2016-139125 A, Numerical Example 1, Data 3 Wide column (PDF p. 22): object distance 1200.0000 mm; d6=1.1675, d16=61.1833, d18=1.0000, d33=4.3347, d36=20.6573, d38=15.2555 mm. Paragraph 0123 defines lengths in mm. The first-surface reference is identified by the conjugate audit (audit-resolved); the patent does not explicitly define the object-distance reference. Signed image-plane offset +0.020699279 mm (+2.058209 diffraction depths); other-reference offset +159.733269 diffraction depths; `consistent`. |
+| 1 / 1 | `focus.conjugates` | Absent | `1200` mm, `first-surface` | JP 2016-139125 A, Numerical Example 1, Data 3 Intermediate column (PDF p. 22): object distance 1200.0000 mm; d6=29.0997, d16=29.6605, d18=4.5905, d33=12.5970, d36=15.6675, d38=11.9830 mm. Paragraph 0123 defines lengths in mm. The first-surface reference is identified by the conjugate audit (audit-resolved); the patent does not explicitly define the object-distance reference. Signed image-plane offset +0.017311669 mm (+1.336505 diffraction depths); other-reference offset +319.663427 diffraction depths; `consistent`. |
+| 2 / 1 | `focus.conjugates` | Absent | `1200` mm, `first-surface` | JP 2016-139125 A, Numerical Example 1, Data 3 Tele column (PDF p. 22): object distance 1200.0000 mm; d6=53.3278, d16=1.0000, d18=9.0230, d33=19.5673, d36=12.2099, d38=8.4703 mm. Paragraph 0123 defines lengths in mm. The first-surface reference is identified by the conjugate audit (audit-resolved); the patent does not explicitly define the object-distance reference. Signed image-plane offset -0.007483640 mm (-0.368856 diffraction depths); other-reference offset +493.060908 diffraction depths; `consistent`. |
+
+The patent prints an object distance without explicitly defining its endpoint. The conjugate audit discriminates the first-surface reference; the provenance is audit-resolved and is stated in each source string. No prescription values or published flags change.

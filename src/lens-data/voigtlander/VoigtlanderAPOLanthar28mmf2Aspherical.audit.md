@@ -312,3 +312,17 @@ Validation: focused runtime/paraxial check; full corpus gates at the ten-lens ch
   four statements that said the file stores or retains the patent's ΔPgF were corrected, the glass section states
   both lines, and the glass table column is headed "Patent ΔPgF". Statements in earlier sections of this log that
   the patent `ΔPgF` values are stored unchanged are superseded by this section.
+
+## 2026-11-14 — Published finite-conjugate certification
+
+Patent: JP 2026-98935 A, Example 2.
+
+| State (zoom/keyframe) | Field | Before | After | Source |
+|---|---|---|---|---|
+| 0/1 | `focus.conjugates` | Absent | `428` mm, `first-surface` | PDF p. 17, Table 7, 最短撮影距離 column: `D0 = 428.00` mm; D11=3.36 mm, D21=20.28 mm. |
+
+Reference basis: Table 6: OBJ | INFINITY | D0; ¶0060: 「Ｄは、一の面から次番号の面までの距離としている。」 The object row precedes surface 1, so the printed object-side gap is first-surface-referenced.
+
+State 0/1: paraxial image-minus-authored-plane residual -0.044408169525 mm (-8.153411169 diffraction depths); alternate image-plane reference +66.964969721 depths. Verdict: `consistent`; reference discriminated.
+
+Only the conjugate declaration is added; the published flags and all prescription geometry are retained.

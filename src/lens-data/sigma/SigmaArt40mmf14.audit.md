@@ -123,3 +123,13 @@ Reuse Oct30 complete source-shape/glass review; preserve May20/July29/Oct6/Oct8 
 Reject H-F6 despite its closer rawpartial0.589748136 versus E-F1’s0.587771428: both fit the coarse source bin; rawnd moves1.625879838→1.624950059 and rawν35.74058970→35.58517293. Effective runtimeν35.74059897→35.63812454 is worse relative to source35.74, while sourceθ0.59 already controls both variants. Retained official HOYA20260707 AGF row6009 confirms E-F1; CDGM’s officialSeptember2026 H-F6 is an existing distinct alternative, not a necessary addition.
 
 Figure1 p19 native1145×693px/398×400ppi confirms the ordinary air-spaced L14 and adjacent bonded pair/rear-asphere context; vector source tables rendered220dpi, no upsampling precision claim. No extra resin/cement/plate is invented. Data is byte-identical, all16 media/partial fields and curves/channels/control geometry unchanged. Only scoped documentary evidence is appended; no new row, whole source-shape count or stronger finite/production claim is made.
+
+## 2026-11-14 — Published finite conjugates
+
+Patent: JP 2020-012952 A, Example 1, PDF pp. 11-12.
+
+| Zoom / keyframe | Field | Before | After | Source and conjugacy residual |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | `focus.conjugates` | Undeclared | `222.499` mm, `first-surface` | PDF p. 12, [可変間隔データ], 393mm column, d0 row; offset +0.001116107 mm (+0.383584 diffraction depths), alternate +3721.225232 depths; `consistent`. |
+
+The surface table lists `d0` on the object-plane row immediately before surface 1, defining the first-surface reference. The existing focus gaps match the finite column at the authored precision; only the conjugate declarations are added.

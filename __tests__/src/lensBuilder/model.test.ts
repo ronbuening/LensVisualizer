@@ -7,14 +7,24 @@ import { commonGlasses, findGlass, searchGlass, nearestGlass } from "../../../sr
 import { ALL_CATALOG_KEYS, authoredInputForKey } from "../../../src/utils/catalog/lensCatalog.js";
 import type { LensDataV2Input } from "../../../src/types/lensDataV2.js";
 
-const catalog = ALL_CATALOG_KEYS.map((k) => authoredInputForKey(k)!).filter((d) => parseUntrustedDraft(d).ok);
+const authored = ALL_CATALOG_KEYS.map((k) => authoredInputForKey(k)!);
+const catalog = authored.filter((d) => parseUntrustedDraft(d).ok);
 const inputs = [
   catalog.find((d) => !d.zoom && !d.opticalPath)!,
   catalog.find((d) => d.zoom && d.gaps && d.surfaces.some((s) => s.asphere))!,
   catalog.find((d) => d.rearPlates?.length)!,
+  authored.find((d) => d.source?.sdSource && d.source.omissions?.some((o) => o.kind === "asphere-coefficients"))!,
+  authored.find((d) => d.source?.sdSource && d.source.omissions?.some((o) => o.kind === "asphere-term"))!,
 ];
 const extensionInput = createTemplate();
 extensionInput.surfaces[0].rimExtensionSd = extensionInput.surfaces[0].sd! + 2;
+const sourceInput = createTemplate();
+sourceInput.source = {
+  issuer: "Synthetic source issuer",
+  sdSource: "figure-measured",
+  omissions: [{ note: "Unpublished coefficients; modeled as a sphere", surfaces: ["1"], kind: "asphere-coefficients" }],
+  errata: [{ status: "unresolved", note: "Synthetic source inconsistency" }],
+};
 
 describe("lens builder authored model", () => {
   it("builds the teaching template with exactly one stop and real glasses", () => {
@@ -32,6 +42,10 @@ describe("lens builder authored model", () => {
       expect(copy).toEqual({ ...input, key: `${input.key}-copy`, name: `${input.name} (copy)`, visible: false });
       copy.surfaces[0].R = 123;
       expect(input.surfaces[0].R).not.toBe(123);
+      if (copy.source?.omissions) {
+        copy.source.omissions[0].surfaces.push("STO");
+        expect(input.source!.omissions![0].surfaces).not.toContain("STO");
+      }
       const another = authoredInputForKey(input.key)!;
       expect(another).toEqual(input);
       expect(another.surfaces).not.toBe(input.surfaces);
@@ -48,18 +62,25 @@ describe("lens builder authored model", () => {
 });
 
 describe("builder transport", () => {
-  it.each([...inputs, extensionInput])("round-trips authored data ($key) through a complete TS file", (input) => {
-    const source = exportDataTs(input);
-    expect(source).toMatch(/^import type \{ LensDataV2Input \} from "\.\.\/types\/lensDataV2.js";/);
-    expect(source).toContain("LENS DATA —");
-    expect(source).toContain("const LENS_DATA = {");
-    expect(source).toMatch(/} satisfies LensDataV2Input;\n\nexport default LENS_DATA;\n$/);
-    const compiled = ts.transpileModule(source, { compilerOptions: { module: ts.ModuleKind.CommonJS } }).outputText;
-    const exports: { default?: LensDataV2Input } = {};
-    new Function("exports", compiled)(exports);
-    expect(exports.default).toEqual(input);
-    expect(importJson(exportJson(input))).toEqual(input);
-  });
+  it.each([...inputs, extensionInput, sourceInput])(
+    "round-trips authored data ($key) through a complete TS file",
+    (input) => {
+      const source = exportDataTs(input);
+      expect(source).toMatch(/^import type \{ LensDataV2Input \} from "\.\.\/types\/lensDataV2.js";/);
+      expect(source).toContain("LENS DATA —");
+      expect(source).toContain("const LENS_DATA = {");
+      expect(source).toMatch(/} satisfies LensDataV2Input;\n\nexport default LENS_DATA;\n$/);
+      const compiled = ts.transpileModule(source, { compilerOptions: { module: ts.ModuleKind.CommonJS } }).outputText;
+      const exports: { default?: LensDataV2Input } = {};
+      new Function("exports", compiled)(exports);
+      expect(exports.default).toEqual(input);
+      expect(importJson(exportJson(input))).toEqual(input);
+      if (input === sourceInput) {
+        expect(Object.keys(exports.default!.source!)).toEqual(["errata", "omissions", "sdSource", "issuer"]);
+        expect(Object.keys(exports.default!.source!.omissions![0])).toEqual(["kind", "surfaces", "note"]);
+      }
+    },
+  );
 
   it("rejects malformed and invalid JSON with readable errors", () => {
     expect(() => importJson("{")).toThrow(/Invalid JSON/);

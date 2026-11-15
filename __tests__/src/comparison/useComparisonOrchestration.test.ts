@@ -17,6 +17,13 @@ import type { LensState } from "../../../src/types/state.js";
 
 const useComparisonModeMock = vi.fn();
 const useStickySlidersMock = vi.fn();
+const sharedMtfValue = `1.${btoa('{ "d": false, "m": "geometric" }').replace(/=+$/, "")}`;
+const navigationQueries = [
+  { label: "absent", search: "?focus=0.5", suffix: "" },
+  { label: "shared", search: `?v=1&mtf=${sharedMtfValue}`, suffix: `?v=1&mtf=${sharedMtfValue}` },
+  { label: "shared defaults", search: "?v=1&mtf=1", suffix: "?v=1&mtf=1" },
+  { label: "invalid", search: "?v=1&mtf=invalid", suffix: "" },
+];
 
 vi.mock("../../../src/comparison/useComparisonMode.js", () => ({
   default: (params: unknown) => useComparisonModeMock(params),
@@ -38,77 +45,82 @@ function buildState(overrides?: Partial<LensState["lens"]>): LensState {
 
 describe("useComparisonOrchestration", () => {
   beforeEach(() => {
+    window.history.replaceState(null, "", "/");
     useComparisonModeMock.mockReset();
     useStickySlidersMock.mockReset();
   });
 
-  it("enters comparison mode, auto-selects a second lens, and initializes the shared aperture", async () => {
-    const dispatch = vi.fn();
-    const navigate = vi.fn();
-    const resetSticky = vi.fn();
-    const prevStopdownT = { current: 0 };
+  it.each(navigationQueries)(
+    "enters comparison and initializes the aperture with $label MTF settings",
+    async ({ search, suffix }) => {
+      window.history.replaceState(null, "", `/lens/lens-a/${search}`);
+      const dispatch = vi.fn();
+      const navigate = vi.fn();
+      const resetSticky = vi.fn();
+      const prevStopdownT = { current: 0 };
 
-    const comparisonLenses = {
-      LA: { FOPEN: 1.4, maxFstop: 16 },
-      LB: { FOPEN: 2.8, maxFstop: 22 },
-    };
+      const comparisonLenses = {
+        LA: { FOPEN: 1.4, maxFstop: 16 },
+        LB: { FOPEN: 2.8, maxFstop: 22 },
+      };
 
-    useComparisonModeMock.mockImplementation(({ comparing }: { comparing: boolean }) => ({
-      comparisonLenses: comparing ? comparisonLenses : null,
-      scaleRatios: null,
-      focusPair: null,
-      aperturePair: comparing ? { commonPoint: Math.log(2.8 / 1.4) / Math.log(22 / 1.4) } : null,
-      zoomPair: null,
-      movementPair: null,
-      handleHeaderHeight: vi.fn(),
-      maxHeaderHeight: 0,
-    }));
+      useComparisonModeMock.mockImplementation(({ comparing }: { comparing: boolean }) => ({
+        comparisonLenses: comparing ? comparisonLenses : null,
+        scaleRatios: null,
+        focusPair: null,
+        aperturePair: comparing ? { commonPoint: Math.log(2.8 / 1.4) / Math.log(22 / 1.4) } : null,
+        zoomPair: null,
+        movementPair: null,
+        handleHeaderHeight: vi.fn(),
+        maxHeaderHeight: 0,
+      }));
 
-    useStickySlidersMock.mockReturnValue({
-      handleSharedFocusChange: vi.fn(),
-      handleSharedStopdownChange: vi.fn(),
-      handleFocusPointerDown: vi.fn(),
-      handleAperturePointerDown: vi.fn(),
-      flashPanel: null,
-      resetSticky,
-      prevStopdownT,
-    });
+      useStickySlidersMock.mockReturnValue({
+        handleSharedFocusChange: vi.fn(),
+        handleSharedStopdownChange: vi.fn(),
+        handleFocusPointerDown: vi.fn(),
+        handleAperturePointerDown: vi.fn(),
+        flashPanel: null,
+        resetSticky,
+        prevStopdownT,
+      });
 
-    const { result, rerender } = renderHook(
-      ({ state }) =>
-        useComparisonOrchestration({
-          state,
-          dispatch,
-          navigate,
-          catalogKeys: ["lens-a", "lens-b", "lens-c"],
-        }),
-      {
-        initialProps: {
-          state: buildState({ comparing: false, lensKeyA: "lens-a", lensKeyB: "lens-a" }),
+      const { result, rerender } = renderHook(
+        ({ state }) =>
+          useComparisonOrchestration({
+            state,
+            dispatch,
+            navigate,
+            catalogKeys: ["lens-a", "lens-b", "lens-c"],
+          }),
+        {
+          initialProps: {
+            state: buildState({ comparing: false, lensKeyA: "lens-a", lensKeyB: "lens-a" }),
+          },
         },
-      },
-    );
+      );
 
-    act(() => {
-      result.current.toggleCompare();
-    });
+      act(() => {
+        result.current.toggleCompare();
+      });
 
-    expect(dispatch).toHaveBeenCalledWith({ type: ENTER_COMPARE, catalogKeys: ["lens-a", "lens-b", "lens-c"] });
-    expect(resetSticky).toHaveBeenCalledTimes(1);
-    expect(navigate).toHaveBeenCalledWith("/compare/lens-a/lens-b/", { replace: false });
+      expect(dispatch).toHaveBeenCalledWith({ type: ENTER_COMPARE, catalogKeys: ["lens-a", "lens-b", "lens-c"] });
+      expect(resetSticky).toHaveBeenCalledTimes(1);
+      expect(navigate).toHaveBeenCalledWith(`/compare/lens-a/lens-b/${suffix}`, { replace: false });
 
-    rerender({
-      state: buildState({ comparing: true, lensKeyA: "lens-a", lensKeyB: "lens-b" }),
-    });
+      rerender({
+        state: buildState({ comparing: true, lensKeyA: "lens-a", lensKeyB: "lens-b" }),
+      });
 
-    const expectedCommonPoint = Math.log(2.8 / 1.4) / Math.log(22 / 1.4);
+      const expectedCommonPoint = Math.log(2.8 / 1.4) / Math.log(22 / 1.4);
 
-    await waitFor(() => {
-      expect(dispatch).toHaveBeenCalledWith({ type: SET_SHARED_STOPDOWN_T, value: expectedCommonPoint });
-    });
+      await waitFor(() => {
+        expect(dispatch).toHaveBeenCalledWith({ type: SET_SHARED_STOPDOWN_T, value: expectedCommonPoint });
+      });
 
-    expect(prevStopdownT.current).toBe(expectedCommonPoint);
-  });
+      expect(prevStopdownT.current).toBe(expectedCommonPoint);
+    },
+  );
 
   it("enters comparison with the active optical configuration in the route", () => {
     const dispatch = vi.fn();
@@ -200,7 +212,8 @@ describe("useComparisonOrchestration", () => {
     expect(navigate).toHaveBeenLastCalledWith("/lens/lens-a/?v=1&tc=tc-14", { replace: false });
   });
 
-  it("exits comparison mode and restores lens A slider values", () => {
+  it.each(navigationQueries)("exits comparison and restores sliders with $label MTF settings", ({ search, suffix }) => {
+    window.history.replaceState(null, "", `/compare/lens-a/lens-b/${search}`);
     const dispatch = vi.fn();
     const navigate = vi.fn();
 
@@ -252,6 +265,6 @@ describe("useComparisonOrchestration", () => {
       shiftA: 4,
       tiltA: -3,
     });
-    expect(navigate).toHaveBeenCalledWith("/lens/lens-a/", { replace: false });
+    expect(navigate).toHaveBeenCalledWith(`/lens/lens-a/${suffix}`, { replace: false });
   });
 });

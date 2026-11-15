@@ -309,3 +309,19 @@ The initial pass retained a pre-existing f/1.858→f/1.92 axial rim limit. Fresh
 The larger rims require S6's inferred cut to move from 2.95 to **3.10 mm**, radius **13.2290362 mm**. Repeated the complete 41-SA fixed-iris search described above with the larger rims and final cut: maximum beam reach **13.1653024 mm**, requiring **13.2153024 mm** including the 0.05 mm margin; the minimum depth is 3.0931938 mm, rounded upward to 3.10. All 41 searches launch; maximum physical-iris residual is 9.76×10⁻⁷ mm. No tolerance or source-depth flag changes.
 
 Final `audit:surface` and `audit:image-circle` pass. `audit:aperture` now gives **f/1.8579999982**, limited by **STO**, matching the stated 1.858. Rebuilt, rasterized and viewed all 9 focus×SA SVG states: six finite element paths each, zero renderer trim. Updated current header/analysis and removed the older geometry-minimum figures that no longer described the revised rims.
+
+## 2026-11-14 — Published finite-conjugate certification
+
+Patent: JP 2026-120386 A, Example 2.
+
+| State (zoom/keyframe) | Field | Before | After | Source |
+|---|---|---|---|---|
+| 0/1 | `focus.conjugates` | Absent | `591.5` mm, `first-surface` | PDF p. 11, Table 7, 最短撮影距離 column: `D0 = 591.50` mm; D10=57.00 mm; Table 8 soft-focus-zero U3=8.730 mm. |
+
+Reference basis: Table 6: OBJ | INFINITY | D0; ¶0062: 「Ｄは、一の面から次番号の面までの距離としている。」 The object row precedes surface 1, so the printed object-side gap is first-surface-referenced.
+
+State 0/1: paraxial image-minus-authored-plane residual +0.000962985399 mm (+0.172219756 diffraction depths); alternate image-plane reference +413.009010874 depths. Verdict: `consistent`; reference discriminated.
+
+The source PDF is `JP_2026120386_A.pdf`; the supplied `CN_120386081_A.pdf` describes an unrelated Sigma zoom and supplies no evidence for this prescription. Table 6 (PDF p. 10) defines D0; Table 7 (p. 11) supplies the focus column and Table 8 supplies the zero-soft-focus U3 state.
+
+Only the conjugate declaration is added; the published flags and all prescription geometry are retained.

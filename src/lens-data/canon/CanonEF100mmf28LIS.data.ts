@@ -266,6 +266,16 @@ const LENS_DATA = {
     closeFocusM: 0.3,
     description:
       "Floating inner focus: negative L2 moves imageward and positive L4 moves objectward from infinity to 1×; L1, L3, and L5 remain stationary.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 134.75,
+        distanceReference: "first-surface",
+        sourceMagnification: "1",
+        source: "US 7,864,451 B2, Numerical Example 1 (PDF p. 19): prints “−1x” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription at that magnification; focused on its image plane the state gives 0.99990.",
+      },
+    ],
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
   },

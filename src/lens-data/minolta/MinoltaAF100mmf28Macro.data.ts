@@ -187,6 +187,24 @@ const LENS_DATA = {
       "Three-group floating focus: Groups I and III move together toward the object, while the negative Group II moves in the same direction by a smaller amount; D8 increases, D12 decreases, and BF lengthens to the β = -1.0 close-focus state.",
     // (moved from publishedStations) Every focus keyframe is a source row.
     published: [1, 2],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 266.4,
+        distanceReference: "first-surface",
+        source:
+          "US 4,764,000, Embodiment 8, Table 8 (PDF p. 21, col. 12), magnification -0.5: object distance -266.4 mm (object-side sign), d8=18.36 mm, d12=10.64 mm; first-surface reference identified by the conjugate audit (audit-resolved).",
+      },
+      {
+        zoomStation: 0,
+        keyframe: 2,
+        objectDistanceMm: 171,
+        distanceReference: "first-surface",
+        source:
+          "US 4,764,000, Embodiment 8, Table 8 (PDF p. 21, col. 12), magnification -1.0: object distance -171.0 mm (object-side sign), d8=27.50 mm, d12=1.50 mm; first-surface reference identified by the conjugate audit (audit-resolved).",
+      },
+    ],
   },
 
   gaps: {

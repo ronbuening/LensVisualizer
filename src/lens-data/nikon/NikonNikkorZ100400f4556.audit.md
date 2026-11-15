@@ -164,3 +164,16 @@ No lens-data or analysis correction was required.
 
 Verification: `assertCatalogConsistent()` and fresh per-element `resolveCompatibleGlass` / compatibility checks pass.
 The existing dispersion and glass-resolution-parity suites pass (2 files, 93 tests).
+
+## 2026-11-14 — Published finite-conjugate certification
+
+Patent: JP 2022-092388 A, Example 1.
+
+| Zoom / keyframe | Field | Before | After | Source and paraxial residual |
+|---|---|---|---|---|
+| 0 / 1 | `focus.conjugates` | absent | 745.5 mm, `first-surface` | Example 1, Table 1 near wide/tele gaps (PDF p. 15), Figure 2(b)/(d), PDF p. 26; D0 = 745.5 mm. Image minus authored plane: -0.00938466497 mm (-0.378420464 diffraction depths); other reference: 187.887222 depths; consistent. |
+| 1 / 1 | `focus.conjugates` | absent | 695.5 mm, `first-surface` | Example 1, Table 1 near wide/tele gaps (PDF p. 15), Figure 2(b)/(d), PDF p. 26; D0 = 695.5 mm. Image minus authored plane: -0.110699743 mm (-2.63505029 diffraction depths); other reference: 580.247451 depths; consistent. |
+
+Reference basis: audit-resolved. The patent prints the distance without explicitly defining its reference; the first-surface interpretation is consistent and the image-plane interpretation is rejected by the conjugate audit.
+
+The source gap columns match the authored keyframes. The declarations preserve all optical surfaces, gaps, rear plates and the authored image plane.
