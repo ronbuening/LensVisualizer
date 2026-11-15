@@ -76,6 +76,14 @@ const LENS_DATA = {
     patentYear: 1999,
     authors: ["Hiltrud Ebbesmeier née Schitthof"],
     assignees: ["Jos. Schneider Optische Werke Kreuznach GmbH & Co. KG"],
+    omissions: [
+      {
+        kind: "asphere-coefficients",
+        surfaces: ["9A"],
+        note: "The patent designates r9 as aspherical but publishes no conic constant or polynomial coefficients; the model traces a sphere.",
+      },
+    ],
+    sdSource: "heuristic",
   },
 
   /* ── Elements ── */

@@ -255,3 +255,18 @@ supplier identification. Related analysis and APD note were synchronized.
 Verification: `assertCatalogConsistent()` and fresh per-element `resolveCompatibleGlass` / compatibility checks pass.
 The existing dispersion and glass-resolution-parity suites pass (2 files, 93 tests).
 `audit:surface` passes after the glass-only changes.
+
+## 2026-11-14 — Published finite-conjugate certification
+
+Patent: JP WO2020/157904 A1, Example 1.
+
+| Zoom / keyframe | Field | Before | After | Source and paraxial residual |
+|---|---|---|---|---|
+| 0 / 1 | `focus.conjugates` | absent | 365.934 mm, `first-surface` | Example 1, Table 1 variable-spacing data, near W/M1/M2/T columns, PDF p. 17; D0 = 365.9340 mm. Image minus authored plane: 0.000382787011 mm (0.0195758702 diffraction depths); other reference: 36.4485202 depths; consistent. |
+| 1 / 1 | `focus.conjugates` | absent | 397.4004 mm, `first-surface` | Example 1, Table 1 variable-spacing data, near W/M1/M2/T columns, PDF p. 17; D0 = 397.4004 mm. Image minus authored plane: 0.000893384555 mm (0.0244942123 diffraction depths); other reference: 68.9383711 depths; consistent. |
+| 2 / 1 | `focus.conjugates` | absent | 473.8851 mm, `first-surface` | Example 1, Table 1 variable-spacing data, near W/M1/M2/T columns, PDF p. 17; D0 = 473.8851 mm. Image minus authored plane: 0.00160732525 mm (0.0330423364 diffraction depths); other reference: 140.025732 depths; consistent. |
+| 3 / 1 | `focus.conjugates` | absent | 503.9147 mm, `first-surface` | Example 1, Table 1 variable-spacing data, near W/M1/M2/T columns, PDF p. 17; D0 = 503.9147 mm. Image minus authored plane: 0.00242886406 mm (0.0452578903 diffraction depths); other reference: 287.797638 depths; consistent. |
+
+Reference basis: audit-resolved. The patent prints the distance without explicitly defining its reference; the first-surface interpretation is consistent and the image-plane interpretation is rejected by the conjugate audit.
+
+The source gap columns match the authored keyframes. The declarations preserve all optical surfaces, gaps, rear plates and the authored image plane.

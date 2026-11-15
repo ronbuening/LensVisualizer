@@ -324,6 +324,32 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.392,
     description: "Front negative group G1 moves object-ward; d10 increases by 38.65 mm at the closest setting.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 391.9,
+        distanceReference: "image-plane",
+        source:
+          "US 5,717,527, Embodiment 7, Table 8 (Embodiment 7), Zooming data for closest photographing, Wide angle end, PDF p.69: R 391.90000; authored gaps D10 / Focus=40.66459, D17=2.05261, D22=40.31604, B.f.=51.03263 mm. R is object to image surface (PDF pp.68-69).",
+      },
+      {
+        zoomStation: 1,
+        keyframe: 1,
+        objectDistanceMm: 391.9,
+        distanceReference: "image-plane",
+        source:
+          "US 5,717,527, Embodiment 7, Table 8 (Embodiment 7), Zooming data for closest photographing, Intermediate position, PDF p.69: R 391.90000; authored gaps D10 / Focus=41.55746, D17=6.74308, D22=17.41585, B.f.=68.34949 mm. R is object to image surface (PDF pp.68-69).",
+      },
+      {
+        zoomStation: 2,
+        keyframe: 1,
+        objectDistanceMm: 391.9,
+        distanceReference: "image-plane",
+        source:
+          "US 5,717,527, Embodiment 7, Table 8 (Embodiment 7), Zooming data for closest photographing, Telephoto end, PDF p.69: R 391.90000; authored gaps D10 / Focus=40.66449, D17=11.45570, D22=1.74949, B.f.=80.19619 mm. R is object to image surface (PDF pp.68-69).",
+      },
+    ],
   },
 
   gaps: {

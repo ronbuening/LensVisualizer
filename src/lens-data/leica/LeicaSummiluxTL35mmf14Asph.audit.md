@@ -33,3 +33,13 @@ The live infinity/close states agree with FIG. 4: the single negative Gr2 elemen
   effective radius) and gapAfter 0.80 mm. Paraxial check against the previous 19.918924 mm fold: EFL identical and
   defocus unchanged at POS1 and POS2 (the fold was carried at full precision).
 - Physical track grows by 0.511 mm to 94.76 mm, now consistent with the patent's printed TL 94.8 mm.
+
+## 2026-11-14 — Published finite-conjugate certification
+
+Patent: EP3029504A1.pdf; source locators below use one-based PDF pages.
+
+| Zoom / keyframe | Field | Before | After | Source and paraxial residual |
+|---|---|---|---|---|
+| 0 / 1 | `focus.conjugates` | Absent | 306 mm, `first-surface` | PDF p. 15, Example 4, Variable Parameters; d14=9.39, d16=5.02; surface table PDF p. 14; offset +0.0060807907464 mm (+2.34977169 depths), other reference 587.539276 depths; `consistent`, reference discriminated. |
+
+State 0/1: reference basis is patent-defined. Surface Data (PDF p. 14): "OB  ∞  variable" immediately precedes surface 1, under the axial-distance d column; paragraph 0050 defines "OB" as "the object surface" and d as "axial distance d (mm)". The distance, focus gaps and image plane are retained without adjustment.

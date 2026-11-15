@@ -44,7 +44,10 @@ npm run audit:catalog-pgf           # glass catalog PgF fields that disagree wit
 npm run audit:dependencies          # Fail on non-allowlisted high/critical npm advisories
 npm run audit:dpgf                  # dPgF values that fit a source normal line instead of the engine's
 npm run audit:field-coverage        # traced analysis half-field vs format corner, and the rim that stops it
+npm run audit:finite-conjugates     # declared finite objects vs paraxial image planes; --json, --strict, --lens, --files
 npm run audit:image-circle          # semi-diameters that cannot cover their own image circle
+npm run audit:mtf-weighting         # Geometric magnitude/complex gaps, diffraction weight sensitivity and gated reference
+npm run audit:mtf-drift             # Opt-in MTF numerical signature check; --update replaces the baseline
 npm run audit:patent-figure         # measure a patent cross-section against a lens data file
 npm run audit:surface               # aspheric domain scan + validator with trial semi-diameters
 npm run audit:rim-cut-probe         # dense grid check of a lens's inferred rim cuts against its beams

@@ -296,6 +296,16 @@ const LENS_DATA = {
       "Floating inner focus: G2 (doublet) and G4 (singlet) move toward object. Macro mode (M2) extends G1–G4 as a unit to 0.17 m.",
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 235,
+        distanceReference: "first-surface",
+        source:
+          "US 2016/0266350 A1, Example 1, FIG. 16, SHORT DISTANCE 1 column (PDF p. 17): object-side gap d0=235 mm; d11=4.4288, d14=4.9755, d17=1.3888, d19=8.6128 mm. The first-surface reference is audit-resolved: 0.066 depths versus 283.897 for the image-plane reference; the table does not expressly define the d0 datum. FIG. 16 BF=1.0763 mm is represented by the existing rear-plate mapping: 21A=2.3752 mm, plate 1.4 mm, gapAfter=1.00114 mm; the 0.07516 mm trailing-gap change is carried before the plate to source precision.",
+      },
+    ],
   },
 
   /* (moved from var) ── Variable air spacings (State M1: infinity to 0.3 m) ──

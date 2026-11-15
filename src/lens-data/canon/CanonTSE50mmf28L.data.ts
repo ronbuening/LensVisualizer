@@ -263,6 +263,16 @@ const LENS_DATA = {
 
   focus: {
     closeFocusM: 0.273,
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 94.3,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.5",
+        source: "US 10,571,651 B2, Numerical Data 1 (PDF p. 17): prints “-0.5 times” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.49996.",
+      },
+    ],
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
   },

@@ -35,3 +35,15 @@ d4 = 1.30 + 4.30 = 5.60 mm that puts Is, the image height, at 12.49 mm, and f·t
 keeps `imageFormat: "aps-c"` (no taxonomy id fits the Foveon sensor) and now sets `imageCircleMm: 24.9`, the sensor
 diagonal. The declared 36.85° field reaches 12.22 mm, 98% of the new corner; the last 2% is the design's barrel
 distortion at the patent field. No semi-diameter or prescription value changed.
+
+## 2026-11-14 — Published finite conjugates
+
+Patent: JP 2008-040033 A. PDF pages below use the one-based PDF page index.
+
+| State (zoom/keyframe) | Field | Before | After | Source and paraxial residual |
+| --- | --- | --- | --- | --- |
+| 0/1 | `focus.conjugates` | Absent | 243.7497 mm, `first-surface` | PDF p. 5, Example 1, ¶0023 (可変間隔), finite column; d10=1.4104 mm, Bf=17.3299 mm. Offset +0.000041023 mm (+0.002163 diffraction depths); `consistent`. |
+
+"Ｏｂｊは被写体からレンズ第１面までの距離を示す。" (¶0017, PDF p. 4; Obj is the distance from the subject to the first lens surface). This defines the declared distance from the object plane to the first surface.
+
+The published flags already include the declared keyframes. All gap values, surfaces, image-plane settings and existing focus controls are retained.

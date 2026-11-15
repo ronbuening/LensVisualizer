@@ -114,3 +114,13 @@ Colour. Printed nd and ng traced through Table 3 reproduce both plots. Infinity 
 The miss is L14. The other 12 elements resolve to catalog curves within 8e-5 of the printed ng. L14 is on the Abbe tier, which reads no lone `ng`, so its g index is 1.45255 against the printed 1.45282. Tracing the printed L14 index alone brings g−d to +30.6 µm. Table 3 prints nd, νd and ng for it and the text names no glass. Those give (ng − nd)/(nF − nC) = 1.228 ± 0.002, on the fluorophosphate line of S-FPL52, S-FPL53 and FCD10A (1.227–1.229) and off CaF₂ at 1.234.
 
 Closed: L14 now carries `dPgF` +0.0542, solved so the Abbe path returns the printed ng 1.45282. It takes g−d from +68.1 µm to +30.0 µm against about +31 µm in Fig. 8A. The value belongs to the engine's Abbe line, so it should not be read as the glass's catalog deviation, which is about +0.044 for this family.
+
+## 2026-11-14 — Finite conjugates from printed magnifications
+
+| Zoom / keyframe | Printed magnification → `sourceMagnification` | Source locator | Solved object distance | Check |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | “β = −0.1258” → `"0.1258"` | US 7,411,745 B2, Example 3 (PDF p. 24) | 1678.45 mm, first-surface | in focus 0.12565; at the declared distance 0.12575; +4.86 quarter waves |
+
+The patent prints a magnification and no object distance for this state. Each distance is solved from the prescription under `LENS_DATA_SPEC.md` § Finite conjugates: the distance that focuses the state on its image plane when the magnification there rounds to the print, otherwise the distance at the nearest magnification that does. Two independent readings of the patent agree on the printed value and on the gaps of the matching state.
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.

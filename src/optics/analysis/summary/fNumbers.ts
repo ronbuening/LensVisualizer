@@ -8,7 +8,7 @@
  */
 
 import type { AnalysisRequest } from "../request.js";
-import type { AimedPupilFieldGeometry, AimedPupilUnaimedReason } from "../pupils/aimedPupil.js";
+import type { AimedPupilFieldGeometry, AimedPupilSpectrum, AimedPupilUnaimedReason } from "../pupils/aimedPupil.js";
 import { prepareAimedPupilLaunch, prepareAimedPupilTrace } from "../pupils/aimedPupil.js";
 import type { PreparedGeometry, Vec3 } from "../../types.js";
 import type { RefractiveIndexReferenceLine } from "../../../types/optics.js";
@@ -18,13 +18,17 @@ import { paraxialObjectVergence } from "../../field/geometry.js";
 import { lensChromaticReference } from "../../chromatic/channels.js";
 
 /** Real working f-number, or why the marginal ray gives none. */
-export type WorkingFNumberResult =
-  /** `indexLine`: the line of the authored indices, d, D or e when shared by every element; d for mixed references. */
-  | { status: "traced"; value: number; indexLine: RefractiveIndexReferenceLine }
+export type WorkingFNumberRayResult =
+  | { status: "traced"; value: number }
   /** A clear aperture stops the marginal ray: before the stop (`blocked`, the aim's outcome) or after it. */
   | { status: "vignetted"; surfaceLabel: string; beforeStop: boolean }
   | { status: "unaimed"; reason: AimedPupilUnaimedReason }
   | { status: "unavailable"; reason: "no-stop" | "object-inside-lens" | TraceFailureReason | "trace-failed" };
+
+/** Summary readout additionally names the line of the authored indices. */
+export type WorkingFNumberResult =
+  | Exclude<WorkingFNumberRayResult, { status: "traced" }>
+  | { status: "traced"; value: number; indexLine: RefractiveIndexReferenceLine };
 
 const AXIAL_FIELD: AimedPupilFieldGeometry = { uField: 0, yChief: 0 };
 
@@ -39,14 +43,34 @@ export function computeWorkingFNumber(request: AnalysisRequest): WorkingFNumberR
   if (!(request.aperture.stopSemiDiameterMm > 0)) return { status: "unavailable", reason: "no-stop" };
   const field = axialObjectField(state);
   if (field === null) return { status: "unavailable", reason: "object-inside-lens" };
-  const launch = prepareAimedPupilLaunch(request, [{ xFraction: 0, yFraction: 1 }], field);
+  const result = traceWorkingFNumber(request, field);
+  return result.status === "traced" ? { ...result, indexLine: authoredIndexLine(state) } : result;
+}
+
+/**
+ * Read the real stop-rim ray's image-side numerical aperture for an explicit axial object.
+ * This lets MTF use its certified source instead of the Summary's paraxial conjugacy.
+ *
+ * @param request - prepared geometry and charted stop radius
+ * @param field - axial collimated launch or finite object point
+ * @param spectrum - indices used by the chart's first spectral line; authored indices when absent
+ * @returns 1 / (2 n′ sin θ′), or the same ray's blocking/trace state
+ */
+export function traceWorkingFNumber(
+  request: AnalysisRequest,
+  field: AimedPupilFieldGeometry,
+  spectrum?: AimedPupilSpectrum,
+): WorkingFNumberRayResult {
+  const state = request.preparedGeometry;
+  if (!(request.aperture.stopSemiDiameterMm > 0)) return { status: "unavailable", reason: "no-stop" };
+  const launch = prepareAimedPupilLaunch(request, [{ xFraction: 0, yFraction: 1 }], field, spectrum);
   if (launch === null) return { status: "unavailable", reason: "no-stop" };
   const marginal = launch.rays[0];
   if (marginal.status === "unaimed") return { status: "unaimed", reason: marginal.reason };
   if (marginal.status === "blocked") {
     return { status: "vignetted", surfaceLabel: surfaceLabel(state, marginal.blockedAtSurfaceIndex), beforeStop: true };
   }
-  const trace = prepareAimedPupilTrace(state, launch).engine({
+  const trace = prepareAimedPupilTrace(state, launch, spectrum).engine({
     origin: marginal.origin,
     direction: marginal.direction,
   });
@@ -61,7 +85,7 @@ export function computeWorkingFNumber(request: AnalysisRequest): WorkingFNumberR
   const sine = sineToNormal(trace.terminalDirection, state.imagePlane.normal);
   const value = 1 / (2 * trace.finalMedium * sine);
   return Number.isFinite(value) && value > 0
-    ? { status: "traced", value, indexLine: authoredIndexLine(state) }
+    ? { status: "traced", value }
     : { status: "unavailable", reason: "trace-failed" };
 }
 

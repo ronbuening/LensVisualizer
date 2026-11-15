@@ -186,6 +186,16 @@ const LENS_DATA = {
     closeFocusM: 1.0,
     description:
       "PUBLISHED — L1-L6 translate together relative to fixed L7 and the image plane; patent d11 increases from 0.880 mm at infinity to 16.339 mm at close focus (β ≈ -0.126).",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 866.81,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.126",
+        source: "JP 1987-244010 A, Example 2 (PDF p. 4): prints “β＝−0.126; d11 0.88〜16.339” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.12570.",
+      },
+    ],
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
   },

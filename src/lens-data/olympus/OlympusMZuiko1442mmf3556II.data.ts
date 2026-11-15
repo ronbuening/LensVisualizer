@@ -240,6 +240,32 @@ const LENS_DATA = {
     closeFocusM: 0.25,
     description:
       "Patent Example 1 second shooting mode: front group G1 shifts object-ward and the single-element G3 focus unit shifts image-ward; G4 remains fixed.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 243.2,
+        distanceReference: "image-plane",
+        source:
+          "US 8,994,842 B2, Example 1, PDF p. 32 (printed col. 20): Object-to-Image Distance (OID) at Close Focus, OID = 243.2 mm at wide/standard/tele; Amount of Movement of Lens Units During Focusing, 2nd Mode. wide: D6 / G1=28.54, D12 / G3 front=2.77, BF=17.15, D14 / G3 rear=7.77 mm.",
+      },
+      {
+        zoomStation: 1,
+        keyframe: 1,
+        objectDistanceMm: 243.2,
+        distanceReference: "image-plane",
+        source:
+          "US 8,994,842 B2, Example 1, PDF p. 32 (printed col. 20): Object-to-Image Distance (OID) at Close Focus, OID = 243.2 mm at wide/standard/tele; Amount of Movement of Lens Units During Focusing, 2nd Mode. standard: D6 / G1=12.41, D12 / G3 front=8.08, BF=17.13, D14 / G3 rear=13.15 mm.",
+      },
+      {
+        zoomStation: 2,
+        keyframe: 1,
+        objectDistanceMm: 243.2,
+        distanceReference: "image-plane",
+        source:
+          "US 8,994,842 B2, Example 1, PDF p. 32 (printed col. 20): Object-to-Image Distance (OID) at Close Focus, OID = 243.2 mm at wide/standard/tele; Amount of Movement of Lens Units During Focusing, 2nd Mode. tele: D6 / G1=4.06, D12 / G3 front=15.37, BF=17.06, D14 / G3 rear=21.47 mm.",
+      },
+    ],
   },
 
   gaps: {

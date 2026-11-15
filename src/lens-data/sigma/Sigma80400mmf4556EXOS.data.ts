@@ -8,7 +8,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * 3000 mm rows; intermediate G4/G6 positions are solved paraxially, the other gaps and the
  * intermediate G7 focus positions are interpolated or derived, not factory cam data.
  * The printed 3000 mm shooting distance is read as object-to-image distance, because the
- * printed rows close at that distance. No finite-distance MTF reference is given.
+ * printed rows close at that distance. The finite MTF declarations use this reference.
  * SDs estimated from the wide-end Fig. 1 (front page, 0.183 mm/px, isotropic), floor-
  * checked by real-ray trace; S9 / S12 stop at the drawn chamfer / flange step.
  * L8 (S13/S14) is 14.7 mm as drawn, which needs gapSagFrac 0.98 against S12 (the faces
@@ -725,6 +725,29 @@ const LENS_DATA = {
     ]
   },
   "focus": {
+    "conjugates": [
+      {
+        "zoomStation": 0,
+        "keyframe": 8,
+        "objectDistanceMm": 3000,
+        "distanceReference": "image-plane",
+        "source": "JP2004061605A, Numerical Example 1, \u00b60018 [\u6709\u9650\u8ddd\u96e2\u64ae\u5f71\u6642\u306e\u5909\u500d\u306b\u304a\u3051\u308b\u53ef\u5909\u9593\u9694], f=81.24 column, \u64ae\u5f71\u8ddd\u96e2 row (PDF p.7, printed p.6): \u64ae\u5f71\u8ddd\u96e2=3000.0; d4=1.3782; d6=2.0675; d14=51.1803; d19=19.3339; d23=10.7260; d30=10.6216; Bf=53.12 mm. Distance reference identified by the conjugate audit (referenceBasis: audit-resolved); the patent does not define the datum."
+      },
+      {
+        "zoomStation": 20,
+        "keyframe": 8,
+        "objectDistanceMm": 3000,
+        "distanceReference": "image-plane",
+        "source": "JP2004061605A, Numerical Example 1, \u00b60018 [\u6709\u9650\u8ddd\u96e2\u64ae\u5f71\u6642\u306e\u5909\u500d\u306b\u304a\u3051\u308b\u53ef\u5909\u9593\u9694], f=180.52 column, \u64ae\u5f71\u8ddd\u96e2 row (PDF p.7, printed p.6): \u64ae\u5f71\u8ddd\u96e2=3000.0; d4=11.6019; d6=49.7449; d14=25.6674; d19=23.4097; d23=6.9444; d30=17.4055; Bf=62.08 mm. Distance reference identified by the conjugate audit (referenceBasis: audit-resolved); the patent does not define the datum."
+      },
+      {
+        "zoomStation": 40,
+        "keyframe": 8,
+        "objectDistanceMm": 3000,
+        "distanceReference": "image-plane",
+        "source": "JP2004061605A, Numerical Example 1, \u00b60018 [\u6709\u9650\u8ddd\u96e2\u64ae\u5f71\u6642\u306e\u5909\u500d\u306b\u304a\u3051\u308b\u53ef\u5909\u9593\u9694], f=389.46 column, \u64ae\u5f71\u8ddd\u96e2 row (PDF p.7, printed p.6): \u64ae\u5f71\u8ddd\u96e2=3000.0; d4=17.3730; d6=91.7874; d14=10.7351; d19=27.3230; d23=3.5447; d30=13.3101; Bf=76.86 mm. Distance reference identified by the conjugate audit (referenceBasis: audit-resolved); the patent does not define the datum."
+      }
+    ],
     "closeFocusM": 3,
     "keyframes": [
       0,

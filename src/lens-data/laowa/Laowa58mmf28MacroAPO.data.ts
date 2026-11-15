@@ -288,6 +288,16 @@ const LENS_DATA = {
     description:
       "Dual-group internal focusing. G2 (L3–L9 + STO) advances 47.0 mm toward object; " +
       "G3 (L10–L14) advances 8.1 mm. G1 (L1–L2) fixed. Constant barrel length (internal focusing).",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 57.84,
+        distanceReference: "first-surface",
+        sourceMagnification: "2.0",
+        source: "CN 116520542 A, Example 2 (PDF p. 8): prints “2.0倍” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 1.95905.",
+      },
+    ],
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
   },

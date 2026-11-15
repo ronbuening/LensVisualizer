@@ -264,6 +264,16 @@ const LENS_DATA = {
     keyframes: [0, 0.5039200468308941, 1],
     description:
       "Inner focus: G1 and G4 remain fixed; G2 travels 15.8404 mm imageward and G3 travels 11.7179 mm objectward from infinity to 1:1; the stop remains fixed.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 2,
+        objectDistanceMm: 106.67,
+        distanceReference: "first-surface",
+        sourceMagnification: "1:1",
+        source: "US 2011/0286116 A1, Embodiment 1 (PDF p. 12): prints “Up to 1:1 Mag” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription at that magnification; focused on its image plane the state gives 0.99679.",
+      },
+    ],
     // (moved from publishedStations) Every focus keyframe is a source row.
     published: [1, 2],
   },

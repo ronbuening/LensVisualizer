@@ -54,6 +54,14 @@ const LENS_DATA = {
     patentYear: 2015,
     authors: ["Tomoki Kono"],
     assignees: ["Sigma Corporation"],
+    omissions: [
+      {
+        kind: "asphere-term",
+        surfaces: ["28A", "29A"],
+        note: "The source leaves A10 blank on surfaces 28/29; the model assumes A10 = 0, a conditional degree-8 truncation with no source-derived error bound.",
+      },
+    ],
+    sdSource: "heuristic",
   },
 
   elements: [

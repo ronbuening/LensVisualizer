@@ -29,6 +29,8 @@ import type {
   RearPlateData,
   RefractiveIndexReferenceLine,
   SourceErratum,
+  SourceOmission,
+  SemiDiameterSource,
   SurfaceInteraction,
 } from "./optics.js";
 
@@ -142,6 +144,8 @@ export interface ConjugateV2Input {
   keyframe: number;
   objectDistanceMm: number;
   distanceReference: FiniteConjugate["distanceReference"];
+  /** Printed magnification magnitude when the distance is solved from it; see LENS_DATA_SPEC.md § Finite conjugates. */
+  sourceMagnification?: string;
   source: string;
 }
 
@@ -222,6 +226,8 @@ export interface SourceV2Input {
   authors?: string[];
   assignees?: string[];
   errata?: SourceErratum[];
+  omissions?: SourceOmission[];
+  sdSource?: SemiDiameterSource;
   /**
    * The organization that issued a non-patent manufacturer source, such as a factory optical data sheet, named as
    * its historical legal entity at the source date. Never set beside `patentNumber`.

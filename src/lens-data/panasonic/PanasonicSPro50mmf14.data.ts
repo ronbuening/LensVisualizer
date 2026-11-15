@@ -329,6 +329,16 @@ const LENS_DATA = {
     // (moved from publishedStations) Patent read 2026-10-06: Close-focus gaps are the patent's Table 3C close-object column for Example 3 (-0.15x, d0
     // = 291.4803 mm): d16 7.5963, d18 12.3145, d20 3.2779.
     published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 291.4803,
+        distanceReference: "first-surface",
+        source:
+          "JP WO2020/158622 A1 (WO 2020/158622 A1), Numerical Example 3, Table 3C, −.1500倍(近接物体) column; gaps continue on PDF p. 23: d0 291.4803 mm; d16=7.5963 mm, d18=12.3145 mm, d20=3.2779 mm. Table 3A (PDF p. 21): \"物面 ∞ 可変\" immediately precedes surface 1; Table 3C identifies that variable object-side surface interval as d0.",
+      },
+    ],
   },
 
   /* (moved from var) ── Variable air spacings (dual inner focus) ──

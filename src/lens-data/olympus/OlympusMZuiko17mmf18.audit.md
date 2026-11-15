@@ -20,3 +20,19 @@ Patent: JP 2013-186458 A, Numerical Example 3
   (gapAfter 0.745 mm). Paraxial check against the previous data: EFL identical and defocus unchanged at infinity and
   close focus (the old fold was carried to 10 decimals). Physical track grows by 1.390 mm to 53.656 mm; the patent's
   TL(in air) 52.27 mm remains the air-equivalent value.
+
+## 2026-11-14 — Published finite conjugates
+
+Patent: JP 2013-186458 A, Numerical Example 3.
+
+| State (zoom/keyframe) | Field | Before | After | Paraxial offset (mm) | Offset (depths of focus) | Other reference (depths) | Verdict |
+|---|---|---|---|---|---|---|---|
+| 0/1 | `focus.conjugates` | absent | 250 mm, `image-plane` | 0.006121482 | 1.664077 | -78.049888 | consistent |
+
+Source: JP 2013-186458 A, Numerical Example 3, focus-state table (PDF/printed p. 22), column 物像間距離250mm時 (object-to-image distance 250 mm), defined in paragraph 0076 (PDF p. 18).
+
+Distance-reference basis: `patent-defined`. The patent states: “物像間距離２５０ｍｍ時は、物像間距離が２５０ｍｍとなるときの物体に合焦した時のことを表している。”
+
+- State 0/1: d9=5.7877, d14=3.4951 mm. The printed finite-spacing column matches these authored gaps.
+
+Residuals retain the authored prescription and image plane. Every declared state already has its published-focus flag.

@@ -64,3 +64,13 @@ The validator accepts the new values, the traced edge now reaches the 14.18 mm c
 the image-circle floor still reports nothing undersized, and no render trim or gap overlap appears. Surface 12's rim
 angle is now 52.3°, the largest in the lens. No aspheric surface changed, and the analysis quotes none of these rims,
 so it is unchanged.
+
+## 2026-11-14 — Published finite conjugates
+
+Patent: JP 2013-156459 A, Numerical Example 4, PDF pp. 13-14.
+
+| Zoom / keyframe | Field | Before | After | Source and conjugacy residual |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | `focus.conjugates` | Undeclared | `959.61` mm, `first-surface` | PDF p. 14, [可変間隔データ], 1000mm column, d0 row; offset -0.003619463 mm (-0.362010 diffraction depths), alternate +3.752005 depths; `consistent`. |
+
+The surface table lists `d0` on the object-plane row immediately before surface 1, defining the first-surface reference. The existing focus gaps match the finite column at the authored precision; only the conjugate declarations are added.

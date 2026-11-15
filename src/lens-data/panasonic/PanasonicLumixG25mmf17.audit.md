@@ -79,3 +79,15 @@ The post-edit `vprobe.mjs` sweep has no `rays-not-localized` reason. RI is avail
 The focused surface validator accepts the stored data; the aperture census retains f/1.76012 with the iris as limiter. The image-circle audit finds no undersized rim, and the chief-ray coverage audit reaches the format corner at 10.82 mm. Final `lsa.mjs` and `aberr.mjs` reproduce the prescription-only baseline. Per-surface scans at the new rims supply the synchronized sag/departure/slope values. Repository-wide gates, queue edits and commits belong to the coordinator under the assignment's file boundary.
 
 Coordinator follow-up: investigate the remaining cosine-map folds separately from the removed turnover continuation, and retain an open source-plot discrepancy until family-publication or other independent source evidence can distinguish a coefficient error from a model mismatch.
+
+## 2026-11-14 — Published finite-conjugate certification
+
+Patent: US 2017/0059832 A1.
+
+| Zoom / keyframe | Field | Before | After | Source locator |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | `focus.conjugates` | No declaration | 939.5121 mm, `first-surface` | PDF p. 22; US 2017/0059832 A1, Numerical Example 4, Table 25, 1011 column: d0 939.5121. d10=3.4869 mm, d12=8.3965 mm, BF=0.00488 mm (authored gap 16=10.80027 mm). |
+| 0 / 2 | `focus.conjugates` | No declaration | 175 mm, `first-surface` | PDF p. 22; US 2017/0059832 A1, Numerical Example 4, Table 25, 246 column: d0 175.0000. d10=8.6131 mm, d12=3.2651 mm, BF=0.00594 mm (authored gap 16=10.80133 mm). |
+
+- State 0/1: paraxial image offset +0.000110379109955 mm (+0.0293357944103 diffraction depths); alternate reference +0.0578283221367 mm (+15.3407603291 depths). Verdict: `consistent`; reference discriminated: true. Reference evidence: Table 22 (same PDF p. 22): "Object surface" has d="Variable" immediately before surface 1; Table 25 identifies that object-side interval as d0.
+- State 0/2: paraxial image offset +0.000116497712753 mm (+0.0271859519168 diffraction depths); alternate reference +2.42456566286 mm (+517.410072076 depths). Verdict: `consistent`; reference discriminated: true. Reference evidence: Table 22 (same PDF p. 22): "Object surface" has d="Variable" immediately before surface 1; Table 25 identifies that object-side interval as d0.

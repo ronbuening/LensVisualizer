@@ -237,6 +237,16 @@ const LENS_DATA = {
       "Rear internal focus: only L11 / LRF moves toward the object at close focus. The gap after 19A contracts while the back-focus gap after 21 increases.",
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 200,
+        distanceReference: "image-plane",
+        source:
+          "US 8,248,716 B2, Numerical Example 1, focus spacings (PDF p. 25, printed col. 18), IO = 20 cm. finite: BF=16.679, LRF gap=1.4977 mm. The image-plane reference is identified by the finite-conjugate audit (audit-resolved); the patent does not explicitly define the reference.",
+      },
+    ],
   },
 
   gaps: { "19A": { label: "LRF gap", values: [[3.0348, 1.4977]] }, "21": { label: "BF", values: [[15.0407, 16.679]] } },

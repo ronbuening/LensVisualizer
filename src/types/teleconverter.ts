@@ -8,7 +8,15 @@
 
 import type { ImageFormatId, LensMountId } from "../utils/catalog/lensTaxonomy.js";
 import type { AsphericCoefficients } from "./asphericSchema.js";
-import type { AnnotationData, ElementData, PatentExample, RearPlateData, SurfaceData } from "./optics.js";
+import type {
+  AnnotationData,
+  ElementData,
+  PatentExample,
+  RearPlateData,
+  SemiDiameterSource,
+  SourceOmission,
+  SurfaceData,
+} from "./optics.js";
 
 /** Numeric teleconverter data for internal checks and archived V1 conversion; author TeleconverterDataV2Input. */
 export interface TeleconverterData {
@@ -42,6 +50,8 @@ export interface TeleconverterData {
   patentAuthors?: string[];
   patentAssignees?: string[];
   patentYear?: number;
+  sourceOmissions?: SourceOmission[];
+  sdSource?: SemiDiameterSource;
   elementCount?: number;
   groupCount?: number;
   elements: ElementData[];

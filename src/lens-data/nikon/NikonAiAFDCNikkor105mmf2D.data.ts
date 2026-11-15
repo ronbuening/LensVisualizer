@@ -207,6 +207,16 @@ const LENS_DATA = {
       "Published rear-focus model from corrected infinity to the patent 1:30 state (D0 3100.497 mm; 3.2280722 m object-to-image-plane). Nikon's production MFD is 0.9 m and is not internally reconstructed. Published DC under/over rows are exact at 1:30 with the Figure-3-inferred stop held at z = 36.0 mm; off-plane focus×DC combinations are disclosed constrained visualization states.",
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 3100.497,
+        distanceReference: "first-surface",
+        source:
+          "US 4,908,639 A, Example 1, Table 1 (First Embodiment), 2 pos, PDF p.12: D0 3100.4970; authored gaps BF=57.56630, STO→GR=17.20890 mm. D0 is object to first lens surface (PDF p.12).",
+      },
+    ],
   },
 
   /* (moved from var) Corrected-focus motion. Patent d2 remains 5.0000 at both published corrected states. */

@@ -157,3 +157,17 @@ Verification: `assertCatalogConsistent()` and fresh per-element `resolveCompatib
 The existing dispersion and glass-resolution-parity suites pass (2 files, 93 tests).
 `audit:surface` passes after the glass-only changes.
 The runtime spectral probe returns PgF 0.56462861 for L3 through the catalog tier, matching the converted source ratio.
+
+## 2026-11-14 — Published finite-conjugate certification
+
+Patent: WO 2024/062958 A1, Example 2.
+
+| Zoom / keyframe | Field | Before | After | Source and paraxial residual |
+|---|---|---|---|---|
+| 0 / 1 | `focus.conjugates` | absent | 2070.5448 mm, `first-surface` | Example 2, Table 6, near wide/middle/tele columns, PDF p. 47 (printed p. 45); d(0) = 2070.5448 mm. Image minus authored plane: 0.0708888270 mm (1.74900926 diffraction depths); other reference: 62.2351970 depths; consistent. |
+| 1 / 1 | `focus.conjugates` | absent | 2070.5449 mm, `first-surface` | Example 2, Table 6, near wide/middle/tele columns, PDF p. 47 (printed p. 45); d(0) = 2070.5449 mm. Image minus authored plane: -0.0396718650 mm (-0.837824476 diffraction depths); other reference: 163.894030 depths; consistent. |
+| 2 / 1 | `focus.conjugates` | absent | 2070.5446 mm, `first-surface` | Example 2, Table 6, near wide/middle/tele columns, PDF p. 47 (printed p. 45); d(0) = 2070.5446 mm. Image minus authored plane: 0.0215587514 mm (0.379574466 diffraction depths); other reference: 342.104317 depths; consistent. |
+
+Reference basis: patent-defined. Table 5, PDF p. 45 (printed p. 43), lists 「物体面」 with d(0) immediately before surface 1. Paragraph 0140 (PDF p. 38) defines d as 「レンズ面の光軸上の間隔」.
+
+The source gap columns match the authored keyframes. The declarations preserve all optical surfaces, gaps, rear plates and the authored image plane.

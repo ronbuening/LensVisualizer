@@ -55,6 +55,22 @@ describe("patent station labels", () => {
     ]);
     expect(options[1].title).toContain("Source-tabulated focus row");
     expect(options[2].title).toBe(`Source-certified conjugate; the distance is the source's: ${source}`);
+    const solved = buildVariableStopGapLens([1, 2, 3], "test-labels-solved", [0, 0.5, 1], {
+      publishedStations: { focus: [1] },
+      finiteConjugates: [
+        {
+          focusT: 1,
+          zoomT: 0,
+          objectDistanceMm: 500,
+          distanceReference: "first-surface",
+          sourceMagnification: "0.10",
+          source,
+        },
+      ],
+    });
+    expect(focusStationOptions(solved, 0, 0)[2].title).toBe(
+      `Source-certified conjugate; the distance is solved from the source's magnification: ${source}`,
+    );
   });
 
   it("adds the total track to a certified distance measured from the first surface", () => {

@@ -242,6 +242,16 @@ const LENS_DATA = {
     closeFocusM: 0.39703262633180925,
     description:
       "Source 1:10 focus station corresponds to about 39.7 cm object-to-image. G1 stays fixed; G2 plus stop and G4 move 3.5248 mm objectward, G3 moves 3.8773 mm. Intermediate motion is interpolated.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 276.18,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.1000",
+        source: "US 5,315,441 A, Embodiment 1 (PDF p. 12): prints “f/β 28.6208 −.1000” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.10002.",
+      },
+    ],
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
   },
