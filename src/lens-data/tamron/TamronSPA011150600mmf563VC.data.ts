@@ -377,6 +377,32 @@ const LENS_DATA = {
     closeFocusM: 2.7,
     description:
       "PUBLISHED inner focus: G4 moves objectward at close focus; source D29/D36 pairs conserve their sum at each zoom position.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 2399.28,
+        distanceReference: "first-surface",
+        source:
+          "US 10,545,321 B2, Example 4, Table 12 (PDF p. 31, col. 16), f=152.1633 column: D(0)=2399.28 mm, D(29)=26.1916, D(36)=15.2450 mm. The preceding paragraph defines D(0) from the front surface of the first lens piece to the object; Table 11 retains D(6)=64.0000, D(16)=34.0551, D(42)=51.0000 mm.",
+      },
+      {
+        zoomStation: 1,
+        keyframe: 1,
+        objectDistanceMm: 2352.02,
+        distanceReference: "first-surface",
+        source:
+          "US 10,545,321 B2, Example 4, Table 12 (PDF p. 31, col. 16), f=297.4851 column: D(0)=2352.02 mm, D(29)=13.2535, D(36)=12.2138 mm. The preceding paragraph defines D(0) from the front surface of the first lens piece to the object; Table 11 retains D(6)=111.2643, D(16)=23.2139, D(42)=77.8106 mm.",
+      },
+      {
+        zoomStation: 2,
+        keyframe: 1,
+        objectDistanceMm: 2320.84,
+        distanceReference: "first-surface",
+        source:
+          "US 10,545,321 B2, Example 4, Table 12 (PDF p. 31, col. 16), f=582.5200 column: D(0)=2320.84 mm, D(29)=12.8804, D(36)=13.6835 mm. The preceding paragraph defines D(0) from the front surface of the first lens piece to the object; Table 11 retains D(6)=142.4400, D(16)=2.0400, D(42)=97.8880 mm.",
+      },
+    ],
   },
 
   gaps: {

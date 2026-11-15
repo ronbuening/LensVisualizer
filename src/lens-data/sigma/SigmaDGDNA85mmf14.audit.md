@@ -55,3 +55,13 @@ Patent: JP 2021-85935, Example 1
 - Left: nothing. No other element carries `dPgF`, none was added (L8 and L10 share the L5 glass but the patent prints
   no `θgF` on their rows), and no element authors `nC`/`nF`/`ng`. No `nd`, `νd`, glass label, `apd` tag or surface
   changed.
+
+## 2026-11-14 — Published finite conjugates
+
+Patent: JP 2021-085935 A, Numerical Example 1, PDF pp. 12-13.
+
+| Zoom / keyframe | Field | Before | After | Source and conjugacy residual |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | `focus.conjugates` | Undeclared | `740.6522` mm, `first-surface` | PDF p. 13, [可変間隔データ], 撮影距離850mm column, d0 row; offset +0.001273599 mm (+0.402164 diffraction depths), alternate +546.581182 depths; `consistent`. |
+
+The surface table lists `d0` on the object-plane row immediately before surface 1, defining the first-surface reference. The existing focus gaps match the finite column at the authored precision; only the conjugate declarations are added.

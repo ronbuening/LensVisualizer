@@ -179,3 +179,15 @@ Coverage: 21 physical lens elements, 21 authored media, 21 modeled media resolvi
 All twenty-one source nd/νd pairs and compatible curves are retained. The source identifies anomalous partial dispersion in the G2 positive lens and gives θgF(L23) = 0.6319: 0.6319 − (0.6438 − 0.001682×27.35) = 0.0341027, consistent with stored rounded dPgF 0.0341. J-SFH4 remains a numerical spectral proxy, not proof of Nikon SR production composition. The six J-FKH1 low-dispersion inferences and CaF2 association remain qualified. J-PSKH4 at L62, N-LAK8 at L72 and N-BK7 at L91 are non-identical compatible proxies; no substitution or supplier identity was inferred. No catalog-only spectral overrides or authored line indices were found.
 
 Verification: current-label resolver and native-coordinate compatibility sweep plus `assertCatalogConsistent()`; shared `dispersion.test.ts` and `partialDispersionLine.test.ts` checks. No catalog tolerance was relaxed. Full repository gates are recorded by the parent at the three-lens commit boundary.
+
+## 2026-11-14 — Finite conjugates from printed magnifications
+
+| Zoom / keyframe | Printed magnification → `sourceMagnification` | Source locator | Solved object distance | Check |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | “β -0.08318” → `"0.08318"` | WO 2020/105104 A1, Example 1 (PDF p. 24) | 767.58 mm, first-surface | in focus 0.08318; at the declared distance 0.08318; −0.00 quarter waves |
+| 1 / 1 | “β -0.14416” → `"0.14416"` | WO 2020/105104 A1, Example 1 (PDF p. 24) | 767.58 mm, first-surface | in focus 0.14416; at the declared distance 0.14416; −0.01 quarter waves |
+| 2 / 1 | “β -0.19832” → `"0.19832"` | WO 2020/105104 A1, Example 1 (PDF p. 24) | 767.03 mm, first-surface | in focus 0.19832; at the declared distance 0.19832; +0.01 quarter waves |
+
+The patent prints a magnification and no object distance for these states. Each distance is solved from the prescription under `LENS_DATA_SPEC.md` § Finite conjugates: the distance that focuses the state on its image plane when the magnification there rounds to the print, otherwise the distance at the nearest magnification that does. Two independent readings of the patent agree on the printed value and on the gaps of the matching state.
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.

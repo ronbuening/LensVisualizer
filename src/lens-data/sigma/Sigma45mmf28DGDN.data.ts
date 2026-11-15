@@ -274,6 +274,16 @@ const LENS_DATA = {
   ],
 
   focus: {
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 172.6297,
+        distanceReference: "first-surface",
+        source:
+          "JP2019211703A, Numerical Example 1, [可変間隔データ], 240 column, d0 row (PDF p.21, printed p.21): d0=172.6297 mm; d5=4.8314; d10=5.2466; BF=2.0000 mm. The surface table (p.20) lists d0 in the object-plane d row before surface 1.",
+      },
+    ],
     closeFocusM: 0.24,
     description:
       "Internal focusing by translating G2 (L3-L5) 3.480 mm toward the object; G1, stop, and G3 remain fixed.",

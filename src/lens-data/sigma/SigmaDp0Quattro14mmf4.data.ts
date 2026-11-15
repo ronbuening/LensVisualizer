@@ -271,6 +271,16 @@ const LENS_DATA = {
       "Patent close focus at 200 mm (object to image); production dp0 Quattro specifies MFD = 18 cm.",
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 117.4043,
+        distanceReference: "first-surface",
+        source:
+          "JP 2016-139087 A, Example 2, PDF pp. 9-10; [可変間隔データ], 200mm column, d0 row: d0 = 117.4043 mm. The surface table lists d0 as the object-plane gap before surface 1. D4=12.9201 mm, D6=8.3541 mm.",
+      },
+    ],
   },
 
   /* (moved from var) ── Variable air spacings (inner focus) ── */

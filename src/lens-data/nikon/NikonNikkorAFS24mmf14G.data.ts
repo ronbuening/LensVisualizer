@@ -284,6 +284,16 @@ const LENS_DATA = {
       "Rear focusing: the complete second lens group Gr2 translates 4.410 mm toward the object side from infinity to close focus while Gr1 remains fixed.",
     // (moved from publishedStations) Every focus keyframe is a source row.
     published: [1, 2],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 717.21,
+        distanceReference: "first-surface",
+        source:
+          "US 8,416,512 B2, Example 3, Variable Distances, POS2 column, PDF p. 35: d0 = 717.21; d8=4.145 mm; BF=38.690 mm. The first-surface reference is identified by the conjugate audit.",
+      },
+    ],
   },
 
   gaps: {

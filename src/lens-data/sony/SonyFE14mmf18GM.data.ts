@@ -353,6 +353,16 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.25,
     description: "Inner focus: L8-L13 (G2F) moves objectward by 1.69 mm; G1 and L14 remain fixed.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 250,
+        distanceReference: "image-plane",
+        source:
+          "WO 2021/199923 A1, Numerical Example 1, Table 3, close focus finite column, 最至近 row (PDF p. 27): 最至近 250mm; D14=4.66 mm; D25=6.47 mm. Distance reference identified by the conjugate audit as image-plane (audit-resolved).",
+      },
+    ],
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
   },

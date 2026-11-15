@@ -233,6 +233,16 @@ const LENS_DATA = {
       "The patent-published |beta| = 0.15 state and the reconstructed 1.0 m endpoint are exact keyframes. " +
       "The endpoint preserves the fixed image plane and patent terminal X2/X3 = 0.7967231325, yielding " +
       "|beta| = 0.1926159803.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 1029.31,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.15",
+        source: "JP 2001-183581 A, Example 1 (PDF p. 5): prints “撮影倍率 0.15” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.15013.",
+      },
+    ],
     // (moved from publishedStations) The intermediate focus row is source-tabulated; the close endpoint is reconstructed.
     published: [1],
   },

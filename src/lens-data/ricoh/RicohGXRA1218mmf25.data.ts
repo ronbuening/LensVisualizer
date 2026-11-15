@@ -260,6 +260,16 @@ const LENS_DATA = {
       "Floating focus — Group 1 (L1–L4 with the stop) and Group 2 (L5–L9) both advance toward the object; Group 2 moves farther (1.68 mm vs 1.07 mm at 200 mm).",
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 200,
+        distanceReference: "first-surface",
+        source:
+          "JP 2012-003015 A, Example 1, Table 2, PDF p. 13, 物体距離 ２００mm時 column: D1=3.85 mm, D2=15.78 mm. Distance reference identified by the conjugate audit (audit-resolved).",
+      },
+    ],
   },
 
   /* (moved from var) ── Variable air spacings (Table 2: INF / 200 mm) ──

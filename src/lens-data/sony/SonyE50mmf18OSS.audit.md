@@ -33,3 +33,14 @@ Independent EFL=51.299977306 agrees with source 51.30. Air BFL=15.514218449 vers
 **Cause/action:** small published-image/paraxial discrepancy; document uncertainty and preserve source values. Offset **+0.045653 → +0.045653 mm**; Section E row deleted, no numerical change/changelog.
 
 Validation: focused runtime/paraxial check; full corpus gates at the ten-lens checkpoint.
+
+## 2026-11-14 — Finite conjugates from printed magnifications
+
+| Zoom / keyframe | Printed magnification → `sourceMagnification` | Source locator | Solved object distance | Check |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | “0.025倍” → `"0.025"` | JP 2012-242690 A, Example 2 (PDF p. 11) | 2107.62 mm, first-surface | in focus 0.02403; at the declared distance 0.02450; +5.81 quarter waves |
+| 0 / 2 | “最至近距離（0.142倍）” → `"0.142"` | JP 2012-242690 A, Example 2 (PDF p. 11) | 376.16 mm, first-surface | in focus 0.13926; at the declared distance 0.14150; +22.28 quarter waves |
+
+The patent prints a magnification and no object distance for these states. Each distance is solved from the prescription under `LENS_DATA_SPEC.md` § Finite conjugates: the distance that focuses the state on its image plane when the magnification there rounds to the print, otherwise the distance at the nearest magnification that does. Two independent readings of the patent agree on the printed value and on the gaps of the matching state.
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.

@@ -23,3 +23,15 @@ Patent: JP 2014-145954 A, Numerical Example 1
   BSC7 (HOYA), matching the file's HOYA element labels and the exact 517/642 coordinate.
 - Paraxial check against the previous data: EFL identical and defocus unchanged at all three focus keyframes (the old
   fold was stored unrounded). Physical track grows by 0.750 mm, t(1 − 1/n), and now matches the patent's 74.02 mm.
+
+## 2026-11-14 — Published finite-conjugate certification
+
+Patent: JP2014145954A, Numerical Example 1.
+
+| State (zoom/keyframe) | Field | Before | After | Source and axial residual |
+|---|---|---|---|---|
+| 0/1 | `focus.conjugates` | absent | 726.0057 mm, `first-surface` | PDF p.9 (printed p.9), [可変間隔データ], 800mm column, d0 row: d0 = 726.0057; d6=6.6783; d10=5.3917 mm. Offset +0.001042671 mm (+0.100423 diffraction depths), `consistent`; other reference +0.553220029 mm (+52.196508 depths). |
+
+"物面 ∞ (d0)" appears in the d column of [面データ], immediately before surface 1 (PDF/printed p.8); d0 is the object-side surface interval. The declared reference is patent-defined.
+
+The audit uses the open physical stop and the authored image plane. Published flags already include these keyframes. Prescription values, gap schedules and image position are retained.

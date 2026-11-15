@@ -612,6 +612,24 @@ const LENS_DATA = {
   },
 
   focus: {
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 500,
+        distanceReference: "image-plane",
+        source:
+          "US20190302431A1, Example 1, Table 2, W-500 mm / T-500 mm columns; W-500 mm: DD[9]=29.531, DD[18]=3.357, DD[26]=2.222, DD[32]=3.325 mm (PDF p.34 (printed p.9), ¶0096; gaps PDF p.35 (printed p.10)): 500 mm (millimeters) from the image plane.",
+      },
+      {
+        zoomStation: 1,
+        keyframe: 1,
+        objectDistanceMm: 500,
+        distanceReference: "image-plane",
+        source:
+          "US20190302431A1, Example 1, Table 2, W-500 mm / T-500 mm columns; T-500 mm: DD[9]=2.986, DD[18]=2.809, DD[26]=6.900, DD[32]=8.958 mm (PDF p.34 (printed p.9), ¶0096; gaps PDF p.35 (printed p.10)): 500 mm (millimeters) from the image plane.",
+      },
+    ],
     closeFocusM: 0.5,
     description:
       "PUBLISHED focus model: G4/Gf moves imageward from infinity to the patent 500 mm-from-image-plane state; DD[26] and DD[32] preserve their sum at each zoom endpoint. The production 0.25 m MFD is not reconstructed.",

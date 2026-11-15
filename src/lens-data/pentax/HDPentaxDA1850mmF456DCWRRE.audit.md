@@ -53,3 +53,17 @@ The earlier `nominalFno` values were the paraxial f-numbers of the `STO` row's 5
 
 - The `STO` row's authored 5.31736 mm is the mean of six paraxial radii from the infinity and 300 mm FNO rows and is about 1.8 % smaller than the 5.4161 mm iris the runtime traces from `nominalFno`. Whether to move it to the real-ray radius is left to the maintainer.
 - The 300 mm FNO row (3.99 / 4.61 / 5.76, PDF p. 14) was not tested against the single radius; the iris check covers the infinity stations only.
+
+## 2026-11-14 — Published finite-conjugate certification
+
+Patent: JP 2016-6455 A.
+
+| Zoom / keyframe | Field | Before | After | Source locator |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | `focus.conjugates` | No declaration | 300 mm, `image-plane` | PDF p. 14; JP 2016-6455 A, Numerical Example 2, Table 6, 近距離物体合焦時 / 短焦点距離端; gaps continue on PDF p. 15: 撮影距離 300. d2=8.003 mm, d7=28.422 mm, d12=2.200 mm, d16=15.481 mm, fB=37.91 mm. |
+| 1 / 1 | `focus.conjugates` | No declaration | 300 mm, `image-plane` | PDF p. 14; JP 2016-6455 A, Numerical Example 2, Table 6, 近距離物体合焦時 / 中間焦点距離; gaps continue on PDF p. 15: 撮影距離 300. d2=8.162 mm, d7=12.848 mm, d12=9.540 mm, d16=8.141 mm, fB=45.75 mm. |
+| 2 / 1 | `focus.conjugates` | No declaration | 300 mm, `image-plane` | PDF p. 14; JP 2016-6455 A, Numerical Example 2, Table 6, 近距離物体合焦時 / 長焦点距離端; gaps continue on PDF p. 15: 撮影距離 300. d2=8.052 mm, d7=6.559 mm, d12=15.481 mm, d16=2.200 mm, fB=57.43 mm. |
+
+- State 0/1: paraxial image offset +0.00228109974074 mm (+0.122543786751 diffraction depths); alternate reference -0.646594776997 mm (-35.2570510218 depths). Verdict: `consistent`; reference discriminated: true. The patent gives the distance without a reference definition. The conjugate audit identifies the image-plane reference (`referenceBasis=audit-resolved`).
+- State 1/1: paraxial image offset +0.00206921254193 mm (+0.0842441926978 diffraction depths); alternate reference -1.7112261981 mm (-73.1975989257 depths). Verdict: `consistent`; reference discriminated: true. The patent gives the distance without a reference definition. The conjugate audit identifies the image-plane reference (`referenceBasis=audit-resolved`).
+- State 2/1: paraxial image offset +0.00386537986272 mm (+0.100954764394 diffraction depths); alternate reference -4.13873653805 mm (-122.013556901 depths). Verdict: `consistent`; reference discriminated: true. The patent gives the distance without a reference definition. The conjugate audit identifies the image-plane reference (`referenceBasis=audit-resolved`).

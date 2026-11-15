@@ -14,3 +14,14 @@ Patent: US 7,715,118 B2, Example 1
 - Glass labels remain unchanged. The patent-code labels `805/254`, `786/442`, `620/603`, and `741/527` remain more accurate than forcing uncertain current catalog names where the match is not exact.
 - APD status remains `false`; the patent lists nd/vd only and no partial-dispersion terms.
 - No patent clear-aperture or semi-diameter table was found. Existing SDs remain unchanged.
+
+## 2026-11-14 — Finite conjugates from printed magnifications
+
+| Zoom / keyframe | Printed magnification → `sourceMagnification` | Source locator | Solved object distance | Check |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | “-0.5 magnification photographic position” → `"0.5"` | US 7,715,118 B2, Example 1 (PDF p. 15) | 64.05 mm, first-surface | in focus 0.49978; at the declared distance 0.49975; −0.08 quarter waves |
+| 0 / 2 | “-1.0 magnification photographic position” → `"1.0"` | US 7,715,118 B2, Example 1 (PDF p. 15) | 29.62 mm, first-surface | in focus 0.99941; at the declared distance 0.99947; +0.10 quarter waves |
+
+The patent prints a magnification and no object distance for these states. Each distance is solved from the prescription under `LENS_DATA_SPEC.md` § Finite conjugates: the distance that focuses the state on its image plane when the magnification there rounds to the print, otherwise the distance at the nearest magnification that does. Two independent readings of the patent agree on the printed value and on the gaps of the matching state.
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.

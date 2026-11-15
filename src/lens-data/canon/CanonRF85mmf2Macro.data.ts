@@ -262,6 +262,24 @@ const LENS_DATA = {
     keyframes: [0, 0.0818, 1],
     description:
       "Unit focus — entire front group L1 (6 elements, 5 groups + aperture stop) translates toward the object. Rear group L2 (6 elements, 6 groups) fixed. Patent d12 grows 2.52 → 3.60 → 29.52 mm (∞, β = −0.02, β = −0.5): 27.0 mm extension at 0.5×.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 4147.93,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.02",
+        source: "US 2021/0072505 A1, Numerical Example 1 (PDF p. 19): prints “imaging magnification -0.02 times” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.02012.",
+      },
+      {
+        zoomStation: 0,
+        keyframe: 2,
+        objectDistanceMm: 214.25,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.5",
+        source: "US 2021/0072505 A1, Numerical Example 1 (PDF p. 19): prints “imaging magnification -0.5 times” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.50014.",
+      },
+    ],
     // (moved from publishedStations) Every focus keyframe is a source row.
     published: [1, 2],
   },

@@ -169,6 +169,16 @@ const LENS_DATA = {
       "Patent three-unit floating short-distance correction; variable-gap endpoint is d0 = 514.966 mm from the first surface and m ≈ -0.10. Production AI-S specification is 0.5 m and 1:7.9.",
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 514.966,
+        distanceReference: "first-surface",
+        source:
+          "US 4,621,909, Embodiment 3, Table 3 (Third Embodiment), β=−0.1 column, PDF p.11: d0 514.966; authored gaps D1=9.55100, D2=2.00300, BF=42.75600 mm. d0 is from the foremost lens surface (PDF p.10).",
+      },
+    ],
   },
 
   gaps: {

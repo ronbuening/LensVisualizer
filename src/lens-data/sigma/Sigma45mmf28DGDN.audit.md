@@ -16,3 +16,15 @@ Patent: JP 2019-211703 A, Numerical Example 1 / FIG. 1
 - Read Numerical Example 1 surfaces 16–18 on printed page (21) of local `patents/JP2019211703A.pdf` (rendered and confirmed against the text layer): d16 = 16.3216, filter F t = 2.5000, nd 1.51633, νd 64.14, PgF 0.5353, BF = 2.0000 at both infinity and 240 mm. Surface 16 now stores the physical 16.3216 mm (was the folded 19.9703 mm); the plate is a camera-fixed `rearPlates` entry labeled F with gapAfterMm 2.0.
 - Glass S-BSL7 (OHARA), an exact nd/νd match accepted by `resolveCompatibleGlass`; dPgF = 0.5353 − normalLinePgF(64.14) = −0.00062.
 - Plate check against the previous data: EFL identical; paraxial defocus changes by 1.7e-5 mm at infinity and close focus (rounding of the old fold). Physical track grows by 0.8513 mm = t(1 − 1/n). `closeFocusM` 0.24 is the patent's quoted 240 mm state and is unchanged.
+
+## 2026-11-14 — Published finite-conjugate certification
+
+Patent: JP2019211703A, Numerical Example 1.
+
+| State (zoom/keyframe) | Field | Before | After | Source and axial residual |
+|---|---|---|---|---|
+| 0/1 | `focus.conjugates` | absent | 172.6297 mm, `first-surface` | PDF p.21 (printed p.21), [可変間隔データ], 240 column, d0 row: d0 = 172.6297; d5=4.8314; d10=5.2466; BF=2.0000 mm. Offset +0.000770206 mm (+0.072114 diffraction depths), `consistent`; other reference +7.068618146 mm (+501.836558 depths). |
+
+"物面 ∞ (d0)" appears in the d column of [面データ], immediately before surface 1 (PDF/printed p.20); d0 is the object-side surface interval. The declared reference is patent-defined.
+
+The audit uses the open physical stop and the authored image plane. Published flags already include these keyframes. Prescription values, gap schedules and image position are retained.

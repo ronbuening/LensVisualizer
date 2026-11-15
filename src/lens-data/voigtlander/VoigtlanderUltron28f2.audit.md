@@ -61,3 +61,17 @@ Best-focus inquiry: the source describes infinity aberration plots but no delibe
 **Cause/action:** source summary/prescription inconsistency; keep published distances and explicitly qualified A6 reconstruction. Offset **+0.069147 → +0.069147 mm**; Section E row deleted. No numerical change/changelog; the existing separate asphere limitation is not declared resolved.
 
 Validation: focused runtime/paraxial check; full corpus gates at the ten-lens checkpoint.
+
+## 2026-11-14 — Published finite-conjugate certification
+
+Patent: JP 2022-100641 A, Example 1.
+
+| State (zoom/keyframe) | Field | Before | After | Source |
+|---|---|---|---|---|
+| 0/1 | `focus.conjugates` | Absent | `430` mm, `first-surface` | PDF p. 7, Table 1, フォーカス可変間隔, 撮影倍率 0.0676 column: `ZD 0 = 430.00` mm; ZD18=20.33 mm. |
+
+Reference basis: Table 1: OBJ | Infinity | ZD 0, immediately before surface 1; ¶0032 defines D(i) in mm. The object row precedes surface 1, so the printed object-side gap is first-surface-referenced.
+
+State 0/1: paraxial image-minus-authored-plane residual +0.077945415123 mm (+15.057732241 diffraction depths); alternate image-plane reference +78.610457508 depths. Verdict: `consistent`; reference discriminated.
+
+Only the conjugate declaration is added; the published flags and all prescription geometry are retained.

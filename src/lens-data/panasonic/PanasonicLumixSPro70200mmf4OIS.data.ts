@@ -407,6 +407,32 @@ const LENS_DATA = {
     closeFocusM: 1,
     description:
       "PUBLISHED: G6 (L13-L14) translates objectward between infinity and the patent's 1.000 m object-to-image state; travel is 2.6344 / 6.2169 / 16.7858 mm at wide / middle / tele. The marketed 0.92 m state is not reconstructed.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 806.2799,
+        distanceReference: "first-surface",
+        source:
+          "JP 2020-086133 A, Numerical Example 6, 可変間隔データ second block, 広角 column: d0 806.2799 mm; d5=0.7606, d12=33.3561, d16 [source label]=3.8230, d18=3.9631, d22=16.5109, d25=5.6367, BF=0.3482 mm (authored gap 41=30.3552 mm). PDF p. 28: \"単位：mm\" and surface table \"物面 ∞ ∞\" immediately before surface 1; PDF p. 30 variable-spacing table names the object-side interval d0.",
+      },
+      {
+        zoomStation: 1,
+        keyframe: 1,
+        objectDistanceMm: 806.2795,
+        distanceReference: "first-surface",
+        source:
+          "JP 2020-086133 A, Numerical Example 6, 可変間隔データ second block, 中間 column: d0 806.2795 mm; d5=20.4344, d12=17.9581, d16 [source label]=1.5039, d18=2.0064, d22=8.8545, d25=13.2914, BF=0.3504 mm (authored gap 41=30.3574 mm). PDF p. 28: \"単位：mm\" and surface table \"物面 ∞ ∞\" immediately before surface 1; PDF p. 30 variable-spacing table names the object-side interval d0.",
+      },
+      {
+        zoomStation: 2,
+        keyframe: 1,
+        objectDistanceMm: 806.2793,
+        distanceReference: "first-surface",
+        source:
+          "JP 2020-086133 A, Numerical Example 6, 可変間隔データ second block, 望遠 column: d0 806.2793 mm; d5=35.3177, d12=1.2210, d16 [source label]=1.5012, d18=3.8630, d22=2.3153, d25=19.8325, BF=0.3486 mm (authored gap 41=30.3556 mm). PDF p. 28: \"単位：mm\" and surface table \"物面 ∞ ∞\" immediately before surface 1; PDF p. 30 variable-spacing table names the object-side interval d0.",
+      },
+    ],
   },
 
   gaps: {

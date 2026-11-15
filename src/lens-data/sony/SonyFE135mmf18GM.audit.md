@@ -42,3 +42,14 @@ Patent: WO 2019/187633, Example 1
   previous data: EFL identical; defocus changes by ≤ 0.00001 mm at all three focus keyframes (rounding only).
 - Physical track grows by 0.852 mm to 145.0 mm, matching the patent's Table 3 L = 145. `closeFocusM` (0.7 m) is
   Sony's published value and is unchanged.
+
+## 2026-11-14 — Published finite conjugates
+
+Patent: JP WO2019/187633 A1 (WO 2019/187633 A1), Numerical Example 1, Tables 1/4, PDF pp. 17-18.
+
+| Zoom / keyframe | Field | Before | After | Source and conjugacy residual |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | `focus.conjugates` | Undeclared | `3944.8322` mm, `first-surface` | PDF p. 18, Table 4, 撮影倍率 -0.03 column, d0 row; offset +0.018351168 mm (+4.461743 diffraction depths), alternate +44.910895 depths; `consistent`. |
+| 0 / 2 | `focus.conjugates` | Undeclared | `559.6264` mm, `first-surface` | PDF p. 18, Table 4, 撮影倍率 -0.25 column, d0 row; offset +0.090449389 mm (+19.647254 diffraction depths), alternate +1853.941590 depths; `consistent`. |
+
+The surface table lists `d0` on the object-plane row immediately before surface 1, defining the first-surface reference. The existing focus gaps match the finite column at the authored precision; only the conjugate declarations are added.

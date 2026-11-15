@@ -301,6 +301,16 @@ const LENS_DATA = {
     // (moved from publishedStations) Patent read 2026-10-06: Close-focus gaps are Example 1 Table 3's closest-distance column (object distance
     // 0.28075 m, beta about -0.5x), reproduced verbatim and unscaled.
     published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 280.75,
+        distanceReference: "first-surface",
+        source:
+          "US 2018/0059384 A1, Example 1, PDF p. 21, Tables 2/3: 0.28075 m; DD[7]=16.729 mm, DD[12]=7.364 mm, DD[16]=12.408 mm, DD[21]=39.331 mm. The first-surface reference is identified by the conjugate audit.",
+      },
+    ],
   },
 
   /* (moved from var) ── Variable air spacings (dual-group inner focus) ──

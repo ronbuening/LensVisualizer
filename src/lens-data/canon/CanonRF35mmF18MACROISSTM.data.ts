@@ -267,6 +267,16 @@ const LENS_DATA = {
     closeFocusM: 0.17,
     description:
       "Published focus: L1 and L2 move together toward the object while L3 stays fixed. Their rear gap increases from 0.95 mm at infinity to 18.25 mm at 0.5× magnification.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 71.68,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.5",
+        source: "US 2019/0113711 A1, Numerical Data 1 (PDF p. 17): prints “-0.5 (Image pickup magnification)” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.49967.",
+      },
+    ],
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
   },

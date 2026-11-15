@@ -28,3 +28,14 @@ S5continuouscap20.5→22.5mm extends to its established doubletbody. S10/S11pres
 All14nd/νd exact from original d-linetable, noactualadditionalindices/partialratio. Remove28catalog-onlyC/F/g/dPgF fields on7glasses; all14labels now resolvecompatiblecoefficients directly. Existing XLD/LDtagsremain inferred; FCD515 chemistry corrected to qualifiedfluorophosphateproxy, production supplier/melt unproved. The2026-10-06 historicalclaim authoredindices drive tracing is superseded. Preserve all R/d/sourceconjugates and+.293897mm paraxialimage residual, dummyairreference normalization and sourceR4/derivedtable contradiction. Identical-launch shape counts73335retained/0lost/495gained/70575bothblocked.
 
 Verification: all52 modeled nd/νd pairs freshly source-checked(48physical glass substrates+4explicit hybrid layers); source R/d/asphere coefficients/focus/stop positions/tolerances invariant. Focused surface/image-circle/field/aperture pass:17stations≥99% source-format corner, all17apertures within3%; full shared inferred-cut guard0errors/no untracedfields. Actual nine-state SVGs per lens rasterized and viewed: connected compounds, max hidden trim0. Existing dispersion/resolver/partial-line3suites94tests pass. Exact identical collimated sample comparisons use144405rays/lens and the same baseline iris to isolate shape; not flux or a finite-conjugate transmission certificate. Updated B028 aperture is independently checked by its source-FNO guard/aperture run.
+
+## 2026-11-14 — Finite conjugates from printed magnifications
+
+| Zoom / keyframe | Printed magnification → `sourceMagnification` | Source locator | Solved object distance | Check |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | “Magnification: X0.5” → `"0.5"` | US 9,063,253 B2, Embodiment 7 (PDF p. 84) | 217.35 mm, first-surface | in focus 0.49428; at the declared distance 0.49428; −0.00 quarter waves |
+| 0 / 2 | “Magnification: X1.0” → `"1.0"` | US 9,063,253 B2, Embodiment 7 (PDF p. 84) | 140.55 mm, first-surface | in focus 1.00033; at the declared distance 1.00028; −0.21 quarter waves |
+
+The patent prints a magnification and no object distance for these states. Each distance is solved from the prescription under `LENS_DATA_SPEC.md` § Finite conjugates: the distance that focuses the state on its image plane when the magnification there rounds to the print, otherwise the distance at the nearest magnification that does. Two independent readings of the patent agree on the printed value and on the gaps of the matching state.
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.

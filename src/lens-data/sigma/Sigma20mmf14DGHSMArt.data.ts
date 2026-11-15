@@ -313,6 +313,16 @@ const LENS_DATA = {
       "Dual-group floating internal focus: L1 is fixed; the patent finite state is stored exactly, followed by a constrained extrapolation of the L2:L3 motion ratio to Sigma's published 0.276 m / 1:7.1 limit.",
     // (moved from publishedStations) The intermediate focus row is source-tabulated; the close endpoint is reconstructed.
     published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 798.2357,
+        distanceReference: "first-surface",
+        source:
+          "JP 2019-117419 A, Numerical Example 1, [可変間隔データ], 撮影距離959mm column, PDF p. 10: d0=798.2357 mm; d11=6.5175 mm, d16=5.7528 mm, d27=37.0527 mm. [面データ]: \"物面 | ∞ | (d0)\" immediately before surface 1; \"単位：mm\" (PDF p. 9).",
+      },
+    ],
   },
 
   gaps: {

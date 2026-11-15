@@ -27,3 +27,18 @@ Patent: US 2018/0210178 A1, Example 1
 - Why the old value differed: the patent's 0.25 m closest-point state is not an object-to-image distance; the row focuses at 0.377 m object to image.
 
 Text sync: analysis: the patent's 0.25 m closest-point state focuses at about 0.38 m object to image.
+
+## 2026-11-14 — Published finite conjugate
+
+Patent: US 2018/0210178 A1, Example 1, Tables 2/3, Closest Point (250 mm) column; PDF page 12.
+
+| State | Field | Before | After | Source evidence |
+| --- | --- | --- | --- | --- |
+| Zoom 0 / keyframe 1 | `focus.conjugates` | absent | `250` mm, `first-surface` | Printed `Closest Point (250 mm)`; DD[12]=5.4732; DD[17]=5.9816 mm. |
+
+The patent prints the distance without defining its endpoints. The conjugate audit identifies the
+first-surface reference; the source string records that basis. The authored-plane paraxial
+offset is +0.014401494 mm (+0.727977 diffraction depths); the other
+reference gives +1.997557443 mm (+95.902456 depths).
+The verdict is `consistent` and the reference is discriminated. The existing published flag and
+all optical geometry remain unchanged.

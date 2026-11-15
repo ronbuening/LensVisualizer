@@ -281,6 +281,16 @@ const LENS_DATA = {
     description:
       "PUBLISHED gap sets for infinity and for a 2500 mm object distance, the only two states the patent tabulates; the model places that object 2497 mm in front of the first surface. G1 is fixed. G2 (auxiliary) and G3 (main) move toward the object independently, by 2.25 mm and 0.91 mm at the near state, and the stop rides with G3; overall length is constant. The 2.62 m near limit is that state's paraxial object-to-image distance, not the marketed 0.5 m minimum focus. Intermediate positions and distance labels are linear interpolations, not a published cam.",
     published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 2500,
+        distanceReference: "first-surface",
+        source:
+          "CN 112285890 B, Example 2, PDF p. 9, paragraph 0081: object distance 2500 mm; D(2)=9.4148, D(9)=10.3063, D(23)=13.7801 mm. The first-surface reference is identified by the conjugate audit (audit-resolved); the patent does not define the distance reference.",
+      },
+    ],
   },
 
   gaps: {
