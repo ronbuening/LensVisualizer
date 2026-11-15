@@ -290,6 +290,24 @@ const LENS_DATA = {
       "Floating inner focus: GR2 (3 elements) moves toward image, GR3 (2 elements) moves toward object. Four XD linear motors, two per group.",
     // (moved from publishedStations) Every focus keyframe is a source row.
     published: [1, 2],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 3944.8322,
+        distanceReference: "first-surface",
+        source:
+          "JP WO2019/187633 A1 (WO 2019/187633 A1), Numerical Example 1, Tables 1/4, PDF pp. 17-18; Table 4, 撮影倍率 -0.03 column, d0 row: d0 = 3944.8322 mm. The surface table lists d0 as the object-plane gap before surface 1. D1=3.96 mm, D2=16.128 mm, BF=13.057 mm, D3=11.599 mm.",
+      },
+      {
+        zoomStation: 0,
+        keyframe: 2,
+        objectDistanceMm: 559.6264,
+        distanceReference: "first-surface",
+        source:
+          "JP WO2019/187633 A1 (WO 2019/187633 A1), Numerical Example 1, Tables 1/4, PDF pp. 17-18; Table 4, 撮影倍率 -0.25 column, d0 row: d0 = 559.6264 mm. The surface table lists d0 as the object-plane gap before surface 1. D1=10.85 mm, D2=9.2381 mm, BF=18.7282 mm, D3=5.9273 mm.",
+      },
+    ],
   },
 
   gaps: {

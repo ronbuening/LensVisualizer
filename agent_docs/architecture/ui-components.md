@@ -111,23 +111,202 @@ distortion and vignetting tabs consume deferred/frozen inputs through `analysisJ
 estimated from nd/νd, or the reference line and the reason when a glass blocks spectral sampling), best axial focus
 (with an explanatory note when the lens data's plane contradicts its own paraxial focus; "Design plane (auto)" and
 "Design plane (always)" remain) and the image-height view at 10 % field steps showing 10 and 30 lp/mm. The header
-names the marked f-number and, when the Summary's working f-number finds the axial marginal ray vignetted
-(`MtfResult.axialVignetting`), the surface that clips it ("f/1.4 (axial beam vignetted at surface 14)"). Each dropdown
+names the marked f-number and, when the MTF's own axial marginal ray is vignetted
+(`MtfResult.axialVignetting`), the surface that clips it ("f/1.4 (axial beam vignetted at surface 14)"). Plane readouts
+follow the applied focus mode: held results name their shift from the authored plane, and the inconsistent-plane
+note describes a held plane as authored only when that shift is exactly zero. Each dropdown
 explains its options in a mouse-hover or keyboard-focus `PortalTooltip`, also linked through `aria-describedby`; on
 hover-less (touch) devices a `HelpTooltipButton` beside each dropdown gives tap access. Method, spectrum, image plane, sampling (128² or 256² cap), view, field step (10/5/2/1 %) and frequency chips
 (10–50 lp/mm) persist in localStorage through `src/utils/state/mtfPreferences.ts` and `useMtfPreferences`, which
-comparison panes share; the existing `tab=mtf` URL selects the tab. Every request computes 0–100 lp/mm for every
-field, so chart-only changes never recompute. `useMtfComputation` debounces settled inputs for 150 ms, keeps earlier
-curves dimmed until the new request reports progress, and cancels superseded work; the mounted tab disposes its worker
-on unmount. `MtfChart` gives each frequency a fixed `chartSeries` slot, labels curve ends, adds marker shapes up to
-21 fields and hatches heights beyond the modeled edge. Its crosshair follows the pointer or the arrow keys
-(Home/End, Escape) and announces values through a polite live region. When the working aperture is faster than
-f/8 and the lens reaches it, "Compare f/8" runs a second worker request with pupil and stop radii scaled by N/8 and
-draws it with thin lines in the same slots. `mtf/MtfControls`, `mtf/MtfFieldSummary` and `mtf/MtfValueTable` hold
-the controls, status counts and per-field values; the table copies as CSV (`mtf/mtfCsv.ts`). When
+comparison panes share; the existing `tab=mtf` URL selects the tab. "Copy MTF link", beside "Copy CSV" in the action
+row, copies the current page URL with an explicit versioned `mtf` bundle containing every non-default MTF
+setting, including chart references and Advanced. It opens the MTF tab, preserves exact optical state, and uses the
+CSV action's clipboard confirmation. Ordinary visits do not write MTF settings to the URL. A valid shared bundle
+overrides stored settings for the visit and both comparison panes. Lens switches, comparison swaps and entering or
+leaving comparison carry the valid bundle unchanged; navigation to other page types does not carry it.
+Comparison fallback lens-title links use `buildLensNavigationUrl` with the router's `location.search` to carry only a
+valid shared bundle. Server rendering receives that query through `StaticRouter`'s URL; queryless renders add no bundle.
+Static prerender routes contain no query, and arbitrary comparison pairs are client-only. On the client, the browser
+router supplies the address-bar query when `main.tsx` mounts with `createRoot`, replacing the static body without hydration.
+"Settings from a shared link" offers "Use my settings" to remove the override, resume stored choices and keep it
+absent on subsequent lens-view navigation. Opening a link never saves its settings. Changing a control updates the
+visit's URL and saves only that control as a preference, leaving other shared settings visit-only.
+Warning acknowledgments and diagnostic disclosures are excluded, so a fresh visit still requires its own disclosures.
+Copy CSV, Copy MTF link and Export stay visible in a wrapping row below the chart caption and above the collapsible
+status line, value table and field notes, with confirmation and error messages beside the actions. The row renders
+before the first result, on errors and for unsupported lenses. Copy MTF link needs only the settings and page URL
+and stays usable in every tab state. Copy CSV and Export are disabled, with a short reason in their titles, when no
+current result is displayed, values are stale or a chart-wide blocking data warning is unacknowledged. In either sweep,
+data actions require at least one sample result for the current sweep settings; the empty chart's placeholder and the
+aperture view's main result do not count. Partial results remain exportable. The action row stays
+outside the warning's inert regions; explicit guards keep copying data and all four downloads behind the warning.
+The action row's keyboard-operable Export menu downloads "CSV — this view", "CSV — all sampled values", SVG
+or PNG through local Blobs and temporary anchors. Copy CSV retains its uncaptioned image-height table in the
+image-height and frequency views. The view download follows the selected chart: the image-height table with field notes, or every frequency for each shown
+field, including independently selected comparison overview fields. All sampled values includes every field and
+computed frequency. Both CSV downloads preserve withheld cells and opt-in diagnostic disclosure, include enabled
+comparison and diffraction-limit columns, neutralize formula-capable text with an apostrophe before CSV quoting, and start with
+single-cell `# key: value` context records documented in `mtfExportContext.ts`. Decode optional CSV quoting before
+stripping `# ` and splitting at the first `: `; quoted context values preserve commas, quotes and newlines.
+Context records the lens/source, focal length and focus station, selected/design/marketed apertures, `working_f_number`
+and, at a finite conjugate, signed `magnification` and `object_distance` with its reference, method,
+actual spectrum and any preferred-spectrum fallback, applied focus shift, grid cap, reference height/basis,
+shared MTF link, UTC generation date, status and prescription disclaimer. Exported zoom apertures identify the
+charted station's design aperture and qualify a single marketed value as catalog metadata. CSV context and the
+SVG's `desc` retain every key and spectral weight with lengths rounded to six decimal places. SVG captures the
+rendered chart and legend with explicit theme colors and font, plus a short, wrapped caption summarizing the lens/source, optical
+station, spectrum, applied plane, grid cap, enabled overlays, diagnostic/partial status, link/date and disclaimer.
+Caption apertures, focal length and plane shifts use the tab's precision; long links end with an ellipsis while
+metadata keeps the full URL. Caption wrapping and link shortening preserve Unicode characters and estimate wider
+glyphs as two columns; the SVG replaces XML-invalid text with U+FFFD (see the optics engine's Simulated MTF section).
+PNG rasterizes the same SVG at 2× resolution and reports unsupported browser paths.
+Current partial results are labelled `status: partial`; superseded results
+disable downloads and Copy CSV.
+Malformed bundles and unknown versions fall back to stored preferences as a whole. Image-height and frequency
+requests compute 0–100 lp/mm for every field, so changes between those views never recompute.
+`useMtfComputation` debounces settled inputs for 150 ms, keeps earlier curves dimmed until the new request reports progress, and cancels superseded work; the mounted tab disposes its worker
+on unmount. Main results, comparisons and sweeps share two page-wide computation slots and one 64 MiB result-cache
+budget, in that priority order and FIFO within each class. Queued work shows “Waiting…”. Running status names
+geometry, focus search, working aperture or the current field/grid/spectral line. Visible progress follows the
+100 ms worker throttle; its polite live announcement updates at most once every three seconds. In the image-height view, `MtfChart` gives each frequency a fixed `chartSeries` slot, labels curve ends,
+adds marker shapes up to 21 fields and hatches heights beyond the modeled edge. Spans across pending fields use
+lighter dotted lines for both axes, the comparison and the diffraction limit, with a caption explaining the style
+while either aperture is computing; unavailable or undisclosed unconverged values leave gaps. Completed results
+retain the regular strokes. In the frequency view, each field's main curve pair carries a distinct marker shape at
+a few sampled frequencies, named and shown in the legend; no field end labels compete with the Nyquist label.
+Solid sagittal, dashed tangential, thin comparison and dotted/dash-dot limit strokes retain their meanings.
+Its crosshair follows the pointer or the arrow keys
+(Home/End, Escape) and announces values through a polite live region. "Compare f/N" runs a second ordinary worker
+request, sizing its stop with `stopSemiDiameterForFNumber` at the current zoom and scaling the entrance pupil by
+the stop-radius ratio. It draws thin lines in the same slots, including faded out-of-band frequency segments when
+diagnostics are disclosed. Advanced reveals a "Comparison aperture" select beside the toggle: full stops
+1/1.4/2/2.8/4/5.6/8/11/16/22/32/45/64/90/128 slower than the charted f-number by more than 0.05 for rounded labels,
+with the exact bound `stop <= L.maxFstop`. The minimum aperture itself is included when it lies in f/1–f/128,
+is slower than the charted aperture by more than 0.05 and is more than 0.05 from every returned attainable full stop.
+A minimum just below a full stop is included exactly, while the unattainable full stop stays excluded.
+`mtfComparisonFNumbers` supplies this range to the tab, select and sweep. The stored choice defaults to f/8.
+In Advanced, an unavailable stored stop disables the overlay and its toggle;
+the title explains the aperture-range requirement. No other stop is substituted or stored. Advanced still lists
+attainable stops, with a disabled placeholder naming the unavailable stored stop; choosing a stop stores it.
+An empty range hides the select. Turning Advanced off restores the regular f/8 comparison and hides the aperture
+select; turning it on restores the stored Advanced aperture. Regular f/8 availability retains the rounded-aperture
+boundary.
+Its progress and errors appear independently of the main result. The overlay labels its applied plane and both its
+authored-plane shift and its shift from the main
+aperture's plane. A persisted plane selector beside the enabled toggle defaults to "Refocus at f/N" (the selected
+focus policy applied independently); "Hold the wide-open plane" waits for the main result's first partial focus
+and uses that exact plane at the comparison aperture. Changing the comparison aperture or plane policy resets
+diagnostic disclosure and removes superseded comparison values. `compareF8` remains the persisted overlay-on
+boolean. Stored options missing `comparisonFNumber` and old shared links default to 8; version-1 link encoding adds
+optional `n` for a non-default comparison f-number, preserving f/8 link bytes.
+Preferences and shared links validate comparison apertures as finite numbers from 1 through 128; availability
+follows the current lens and zoom's attainable-stop list.
+Advanced adds the Aperture chart button. A stored sweep view returns to the last regular image-height or frequency
+view while Advanced is off, without overwriting the sweep preference. Its x axis is log2 f-number, with ticks at
+the exact charted aperture and then
+the comparison selector's slower stops, including a distinct minimum aperture within the shared range. Frequencies
+keep their fixed colors, and fields use the frequency view's marker shapes, with hollow markers for isolated
+diffraction references. The Fields selector chooses one field or the center/50 %/outermost available
+overview; overview waits for the charted result's final edge and keeps those fractions fixed across apertures.
+The waiting message appears only while a supported main computation is pending; unsupported states and errors
+show only the main explanation.
+`useMtfSweep` sends ordinary requests restricted to those fields, scales both aperture radii as for the
+comparison, and runs one aperture after another on one retained worker client. Progress names the current aperture
+and ordinal; partial values appear immediately, with gaps for pending apertures and no provisional bridges. A failed
+aperture retains its error in the table and leaves a chart gap; the queue continues unless cancelled. The
+view computes only while selected, cancels on optical/settings changes and reuses the client's completed-result
+cache on return. A sweep plane selector shares persisted `comparisonFocus`: the selected policy applies
+independently at each aperture, or every point holds the charted aperture's applied plane. The caption states the
+policy; the aperture-row value table and CSV include each applied plane/shift. Overlay controls and requests are
+hidden in this view. Crosshair/keyboard readouts, the live region, diffraction references, table and exports apply
+the same stable-band and diagnostic disclosure as image height. Counts cover aperture × selected field × selected
+frequency points (one S/T pair each), counting a frequency beyond a converged field's stable band as unconverged.
+Copy CSV emits one uncaptioned row per aperture, field and selected frequency with S/T, status, stable band, image
+height, plane/shift and notes, plus enabled diffraction references. This-view CSV adds context; all sampled values
+includes every computed frequency at the sweep's sampled fields. Context records `view: aperture`, the sweep policy
+and each aperture's applied plane. SVG/PNG capture the rendered sweep and caption. Stored settings and v1 shared
+links accept the aperture view without changing older defaults.
+Advanced also offers Zoom for zoom lenses. A stored Zoom view falls back to the remembered regular view with
+Advanced off or on a prime, preserving the preference. It uses the same sweep hook, series, table, point counts, exports and withholding
+policy. Published infinity stations come from `publishedZoomStations`, defaulting to all authored stations; each
+uses its own wide-open iris through the viewer's controls and ordinary job builder. One worker computes stations
+sequentially with focal-length/ordinal progress and partial results; changes cancel work and completed requests stay
+cached. It does not move sliders. Focal length uses a logarithmic axis and authored design-focal-length ticks; a
+marker identifies a matching current zoom station. The worker restricts each job to center, 50 % and that station's
+outermost field-step position inside its modeled edge, or the selected single field. An unavailable edge field is
+retried inward with the same focus and cached fields. The selected edge fraction and mm height travel explicitly
+with the sample, including a fallback to center. Each sampled value equals the ordinary tab at that station. A
+declared format supplies a common reference image height; without one the series are fractions of each station's
+own modeled field and the caption states that image heights differ between stations. Crosshair, table and CSV
+include each station's actual field fraction and mm height, including its edge. Unreachable fields stay unavailable.
+The caption states infinity, each station's own wide-open aperture and independent focus: best axial focus per
+station, each station's authored design plane, or Auto's per-station plane assessment. Comparison overlay controls
+and requests are hidden. A failed station shows its error in the table, leaves a chart gap and allows the queue
+to continue. Both sweeps retain structured limitations per sample. Short-field coverage uses each sample's field
+geometry and the ordinary tab's full field-step grid, independent of the restricted fields computed by the sweep.
+One warning names the affected stations or
+apertures and their limitation texts; “Show chart anyway” acknowledges the listed blocking kinds for that system.
+Until acknowledged, affected samples have no values in the chart, crosshair, table, clipboard or any export,
+including diagnostic estimates. Unaffected samples remain readable and notes remain listed per sample.
+Advanced lists station limitations and unsupported reasons below the table. Clipboard/current-view CSV includes
+each station's design focal length, zoom coordinate, aperture, fields and applied plane; all-values CSV includes
+every computed frequency there.
+Context records `view: zoom`, policy and station details; SVG/PNG capture the rendered sweep and caption. Stored
+settings and v1 shared links preserve the Zoom view.
+A persisted "Diffraction limit"
+toggle (off by default, disabled with a reason for geometric MTF) draws thin dotted S and dash-dot T references:
+"Diffraction limit of the same traced pupil (no aberration)". References follow the main and comparison curves'
+visibility rules, including stable bands and diagnostic disclosure, and appear in crosshair readouts, the value table and
+CSV columns appended after all existing columns. In the frequency view, persisted "Fields" selects Overview
+(center, 50 % and outermost available field) or one computed field labelled by reference-height percentage and mm;
+a saved field missing from the result falls back to Overview. Persisted "Pixel pitch" offers none or 3/4/5/6/8 µm,
+marking Nyquist at 500/pitch lp/mm or labelling it with a right-edge arrow beyond the chart range. The caption and
+accessible value-table caption explain that this is the pixel-grid sampling limit, not a camera or sensor MTF
+prediction. These display controls reuse results without tracing.
+The persisted "Advanced" toggle is off by default. It offers "Single wavelength" in the spectrum selector and, when
+selected, a compact nm input (435.8–656.3 nm, 1 nm steps) and g/F/e/d/C presets. Preset labels round to whole nm but
+select exact reference-line wavelengths. Turning Advanced off removes the single-wavelength option, input and presets,
+and restores the last regular spectrum (photopic by default). Turning it on restores the selected Advanced spectrum
+and wavelength. A native-reference choice carries no glass-data warning. The wavelength persists, travels in
+version-1 share links as an additive field,
+appears in export metadata and captions, and applies to both the main and comparison computations.
+Advanced opens the field table with each field's grid size, largest
+change between the last two grids, stable-through frequency, nonzero unresolved-flux percentage, unaimed and failed
+sample counts, non-stop pupil-sampling location, notes and message. Comparison rows use their own diagnostics,
+including when no comparison curve is available. With Advanced off, notes stay in the deduplicated list below the
+table. Advanced adds the main aperture's field status and stable-through frequency to pointer and keyboard crosshair
+readouts and their polite live region in both chart views, while comparison values retain their compact format.
+Advanced also shows a compact "Focus search" table for the main aperture and enabled comparison: requested
+and applied modes, applied and best-axial shifts from the authored plane, design- and best-plane scores labelled
+"mean axial geometric MTF at 10–50 lp/mm", the signed paraxial-focus minus authored-plane offset and its consistency
+flag. Its caption separates numerical sampling from physical accuracy. Beside it, "Conjugate and working aperture"
+shows infinity or the station's distance and reference, marked and traced working f-numbers, and the on-axis
+diffraction cutoff at the spectrum's first line. Finite charts add signed magnification, its absolute `1:x` ratio,
+and the selected image frequencies translated to object-side lp/mm on axis by `|m|`. The comparison column uses its
+own working aperture, spectrum and magnification. Superseded readouts wait for the current result. On single-lens
+pages with the existing viewer dispatch, eligible finite-station buttons use `SET_PATENT_STATION` to move focus
+and zoom together; the active station includes its traced ratio. Comparison panes and standalone tabs offer no
+station buttons. Field notes retain the engine's method-specific
+qualifications: geometric unresolved flux can carry the 2ε error bound; diffraction omitted flux has no such bound.
+Advanced is independent of "Show diagnostic estimates (unconverged or unverified frequencies)" and does not disclose
+withheld values. Toggling Advanced reuses computations when the effective request settings stay the same.
+`resolveMtfPreferences` supplies effective settings to requests, controls, headers, comparison labels, exports and
+copied links. Stored `regularSpectrum` and `regularView` remember regular choices while `spectrum`, `wavelengthNm`,
+`view` and `comparisonFNumber` retain Advanced choices. Selecting a regular spectrum or view updates its memory;
+regular-mode edits preserve a stored single wavelength or sweep. Older stored shapes and links infer regular choices
+from non-single spectra and non-sweep views, otherwise defaulting to photopic and image height. Copied links encode
+only effective settings and the Advanced flag; live shared visits retain both memories across toggles using additive
+version-1 fields `b` (regular spectrum) and `j` (regular view).
+`mtf/MtfControls`, `mtf/MtfActions`, `mtf/MtfFieldSummary` and `mtf/MtfValueTable` hold
+the controls, result-independent actions, status counts and per-field values; an enabled comparison with values adds
+aperture-labelled table rows and appended aperture-prefixed CSV columns, retaining the main columns and their order. The f/8 column
+names stay unchanged; another aperture replaces only the `f/8 ` prefix, for example `f/5.6 10 lp/mm sagittal`
+and `f/5.6 notes`, including diffraction-limit columns in both CSV scopes. Each aperture keeps its own physical
+image heights, field statuses and stable-band disclosure; missing values stay empty in CSV. The table copies as CSV
+(`mtf/mtfCsv.ts`). When
 `assessMtfDataLimitations` lists a `blocking` gap, `mtf/MtfDataWarning` blurs the chart and field summary, marks them
-`inert` and covers them with a warning card that lists every item. "Show chart anyway" records the blocking kinds for
-that lens system in `src/utils/state/mtfDataWarnings.ts` (`useMtfDataWarning`); the warning then collapses to a
+`inert` in separate regions around the action row and covers the chart with a warning card that lists every item.
+"Show chart anyway" records the blocking kinds for that lens system in `src/utils/state/mtfDataWarnings.ts` (`useMtfDataWarning`); the warning then collapses to a
 `<details>` line above the chart. Non-blocking notes (source errata) never blur the chart and appear in that line
 from the start. Dismissals are in memory only: they survive tab switches, reset on reload, and a kind of gap not yet
 dismissed on that lens brings the card back. Worker caching, numerical status, the gap kinds and
@@ -330,8 +509,15 @@ Every input's accessible name includes its element (`L2 front radius`, `L2 thick
 for display and reveals the exact value on focus, so an untouched field never rewrites authored precision.
 `BuilderTouchContext` raises fields to 16 px below the wide breakpoint so iOS does not zoom.
 
-The form also edits identity, aperture, close focus and vertical fill. Source, catalog, zoom/focus schedules, rear
-plates and all other authored fields survive edits and JSON transport. `.data.ts` export prints the house root-level
+The form also edits identity, aperture, close focus and vertical fill. Source (including `errata`, `omissions` and
+`sdSource`), catalog, zoom/focus schedules, rear plates and all other authored fields survive edits and JSON transport.
+Omission surface labels follow insertions, moves and renumbering; deleted surface references are removed,
+and entries with no remaining surfaces are dropped. Splitting a cemented junction carries its omissions to both
+resulting surfaces because both inherit its shape. Explicitly removing an existing asphere also removes that
+surface's coefficient, term and equation omission references: a deliberately spherical surface needs none of those
+assumptions. A spherical stand-in that already lacks an asphere keeps its declarations through unrelated edits.
+The input gate requires known omission kinds, non-empty notes and non-empty lists of unique, existing surface labels;
+`sdSource` accepts `source-table`, `figure-measured` or `heuristic`. `.data.ts` export prints the house root-level
 type import, header, `const LENS_DATA = { ... } satisfies LensDataV2Input` and default export, using canonical group
 order. It retains authored values, not original source comments; it does not import conversion-only optics code. The
 built-in triplet is a synthetic teaching design with catalog N-BK7/N-F2 glasses, approximately 49 mm EFL at f/2.8,

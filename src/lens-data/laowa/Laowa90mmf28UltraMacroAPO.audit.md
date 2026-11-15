@@ -246,3 +246,14 @@ Preserve completed October 8/October 29 source/shape coverage and dates. Directl
 The official CDGM September 2026 H-ZLAF68C NM/CD row exactly matches the existing H-ZLaF68C B/C coefficients. It evaluates 1.883000091/40.847465, PgF 0.567693, with source residuals +0.001230091/−0.022535 and +0.194748% F−C span error. This is a stronger balanced source-coordinate proxy than TAFD30 or new NHG H-ZLaF68A; the analysis records alternatives and primary links. The runtime retains source nd as its anchor. No historical supplier/melt/chemistry or per-lens measured spectrum is asserted, and no new catalog duplicate is needed.
 
 L9 gains the qualified existing curve, coverage 8/13 → 9/13. Additional NHG 2601 primary data and bounded Osaka/Kuraray public-source screening give no stronger material for the other four unresolved native pairs. All source numeric/spectral/APD, geometry, iris and controls remain identical except the one glass-label selection. Prior shape/finite/interpolation limitations remain applicable.
+
+## 2026-11-14 — Finite conjugates from printed magnifications
+
+| Zoom / keyframe | Printed magnification → `sourceMagnification` | Source locator | Solved object distance | Check |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | “1.0倍” → `"1.0"` | CN 116520542 A, Example 1 (PDF p. 6) | 104 mm, first-surface | in focus 0.99680; at the declared distance 0.99679; −0.01 quarter waves |
+| 0 / 2 | “2.0倍” → `"2.0"` | CN 116520542 A, Example 1 (PDF p. 6) | 73.17 mm, first-surface | in focus 1.95952; at the declared distance 1.95905; −0.19 quarter waves |
+
+The patent prints a magnification and no object distance for these states. Each distance is solved from the prescription under `LENS_DATA_SPEC.md` § Finite conjugates: the distance that focuses the state on its image plane when the magnification there rounds to the print, otherwise the distance at the nearest magnification that does. Two independent readings of the patent agree on the printed value and on the gaps of the matching state.
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.

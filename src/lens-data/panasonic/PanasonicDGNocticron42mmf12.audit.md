@@ -30,3 +30,13 @@ Patent: US 2015/0192839 A1, Numerical Example 5
 - Paraxial check against the previous data: EFL identical; defocus changes by 0.00001 mm at both focus keyframes
   (rounding of 4.2/1.5168 in the retained image plane). Physical track grows by 1.431 mm (t(1 − 1/n)), so the modeled
   track now matches the patent's 92.4997 mm overall length.
+
+## 2026-11-14 — Published finite-conjugate certification
+
+Patent: US 2015/0192839 A1.
+
+| Zoom / keyframe | Field | Before | After | Source locator |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | `focus.conjugates` | No declaration | 407.5 mm, `first-surface` | PDF p. 20; US 2015/0192839 A1, Numerical Example 5, Table 32 (continued), Object distance 500 column: d0 407.5000. d15=6.5938 mm, d17=2.2756 mm. |
+
+- State 0/1: paraxial image offset +1.21800025283e-05 mm (+0.00524740448759 diffraction depths); alternate reference +1.22827655196 mm (+507.202556092 depths). Verdict: `consistent`; reference discriminated: true. Reference evidence: Table 29 (PDF p. 19): "Object surface" has d="Variable" immediately before surface 1; Table 32 names this object-side interval d0.

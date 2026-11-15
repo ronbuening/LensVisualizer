@@ -41,3 +41,18 @@ Each element's `name` is now the patent's reference sign, the same string as its
 | 7 | L7 | L71 | | 14 | L14 | L141 |
 
 The analysis was remapped by element (84 references and the section headings, which now also give the ordinal) and states the convention once. The sections of this log above this one keep the sequential L1–L14. No optical value, glass label, bracket or diagram label changed; the engine reports the same focal length before and after.
+
+## 2026-11-14 — Published finite conjugates
+
+Patent: KR 10-1933088 B1. PDF pages below use the one-based PDF page index.
+
+| State (zoom/keyframe) | Field | Before | After | Source and paraxial residual |
+| --- | --- | --- | --- | --- |
+| 0/1 | `focus.conjugates` | Absent | 411.570745 mm, `first-surface` | PDF p. 13, Numerical Example 1, Table 3 (¶0093), MAG=-1/30 column; D1=18.786854 mm, D2=3.111872 mm. Offset +0.027079364 mm (+2.793606 diffraction depths); `ambiguous-reference`. |
+| 0/2 | `focus.conjugates` | Absent | 94.636274 mm, `first-surface` | PDF p. 13, Numerical Example 1, Table 3 (¶0093), TL=0.2m column; D1=19.865161 mm, D2=2.033566 mm. Offset +0.078295530 mm (+8.057035 diffraction depths); `consistent`. |
+
+Table 1: "object | infinity | D0" in the lens-surface/R/Dn columns, immediately before surface 1 (PDF p. 11, ¶0089). This defines the declared distance from the object plane to the first surface.
+
+State 0/1 is retained on that explicit table definition: both references lie within the 25-depth audit limit. The other (`image-plane`) reference gives +0.182548553 mm (+18.689832 depths); the trace does not discriminate the reference.
+
+The published flags already include the declared keyframes. All gap values, surfaces, image-plane settings and existing focus controls are retained.

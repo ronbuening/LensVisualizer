@@ -82,3 +82,13 @@ Fresh source glass review: `patents/US5315441.pdf`, Embodiment 1 Table 1 and equ
 Coverage: 11/11 modeled media, representing 11 physical lens elements. All available curves remain qualified spectral proxies; source coordinates are authoritative, and supplier/melt identity is unconfirmed. No tolerance is relaxed.
 
 Verification: focused surface/inferred-beam and image-circle audits, aperture census, and actual native SVG shapes/render diagnostics at nine focus/zoom states (prime-lens zoom states coincide). No hidden rim trim was observed. Current-label glass resolver, `assertCatalogConsistent()` and the shared dispersion/partial-dispersion suites pass (2 files, 93 tests). Full repository gates are recorded by the coordinator at commit time.
+
+## 2026-11-14 — Finite conjugates from printed magnifications
+
+| Zoom / keyframe | Printed magnification → `sourceMagnification` | Source locator | Solved object distance | Check |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | “f/β 28.6208 −.1000” → `"0.1000"` | US 5,315,441 A, Embodiment 1 (PDF p. 12) | 276.18 mm, first-surface | in focus 0.10002; at the declared distance 0.10002; −0.00 quarter waves |
+
+The patent prints a magnification and no object distance for this state. Each distance is solved from the prescription under `LENS_DATA_SPEC.md` § Finite conjugates: the distance that focuses the state on its image plane when the magnification there rounds to the print, otherwise the distance at the nearest magnification that does. Two independent readings of the patent agree on the printed value and on the gaps of the matching state.
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.

@@ -1,3 +1,4 @@
+/** Serializes portable authored V2 drafts; TypeScript exports follow the canonical source field order. */
 import type { LensDataV2Input } from "../types/lensDataV2.js";
 import { validateDraft } from "./draft.js";
 import { requireUntrustedDraft, escapeExportString, escapeExportJsonText, MAX_DRAFT_BYTES } from "./untrusted.js";
@@ -46,7 +47,18 @@ const ORDERS: Record<string, string[]> = {
     "fNumber",
     "closeFocusM",
   ],
-  source: ["patentNumber", "example", "patentYear", "authors", "assignees", "errata", "issuer"],
+  source: [
+    "patentNumber",
+    "example",
+    "patentYear",
+    "authors",
+    "assignees",
+    "errata",
+    "omissions",
+    "sdSource",
+    "issuer",
+  ],
+  omissions: ["kind", "surfaces", "note"],
   elements: [
     "id",
     "name",
@@ -122,7 +134,7 @@ const ORDERS: Record<string, string[]> = {
   aperture: ["nominalFNumber", "fStops", "maxFNumber", "step", "blades", "bladeRoundedness"],
   aberrationControl: ["label", "description", "minLabel", "centerLabel", "maxLabel", "step", "gaps"],
   gap: ["label", "values"],
-  conjugates: ["zoomStation", "keyframe", "objectDistanceMm", "distanceReference", "source"],
+  conjugates: ["zoomStation", "keyframe", "objectDistanceMm", "distanceReference", "sourceMagnification", "source"],
   opticalConfiguration: ["groupKey", "label", "order"],
   focalLengthMm: ["marketing", "design"],
   fNumber: ["marketing", "design"],

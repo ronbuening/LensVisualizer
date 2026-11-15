@@ -90,3 +90,5 @@ Retain the missing-asphere qualification and the RI localization refusal. A sour
   maximum aperture angle of at least 1: 5.6"; the Claim 3 table header (col. 4, l. 40) prints "maximum aperture ratio
   at least 1:5.6". The "at least" wording is the patent's; 1:5.6 is the only aperture it states for the example. The
   stop's `nominalFNumber` 5.6 matches it.
+
+- 2026-11-13 — `source.omissions` records the stand-in described by "The asph entry uses the spherical baseline (K=0, all A=0)." `source.sdSource: "heuristic"` rests on "All authored semi-diameters remain estimates and are retained." Source: existing header / audit text; no optical values change.

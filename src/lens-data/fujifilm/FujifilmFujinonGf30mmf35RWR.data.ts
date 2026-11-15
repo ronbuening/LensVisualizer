@@ -377,6 +377,16 @@ const LENS_DATA = {
 
   /* ── Focus / aperture configuration ── */
   focus: {
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 1200,
+        distanceReference: "image-plane",
+        source:
+          "US20210231930A1, Example 1, Table 2, 1.2 m column; DD[8]=5.791, DD[17]=5.619 mm; ¶0085 (PDF p.25 (printed p.8); definition PDF p.24 (printed p.7)): 1.2 m.",
+      },
+    ],
     closeFocusM: 0.32,
     /* ── Focus movement ── */
     keyframes: [0, 0.266666666667, 1],

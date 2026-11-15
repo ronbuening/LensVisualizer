@@ -47,3 +47,13 @@ Infinity, the intermediate |β|=0.025 keyframe, and the |β|=0.125 endpoint are 
 - Surface 22 now stores the printed 14.700 mm, with `rearPlates` CG (N-BK7, the catalog match for 1.5168 / 64.2) and
   gapAfter 1.000 mm. Paraxial check against the previous data: EFL identical and defocus unchanged at all three focus
   states (the old 17.348206751055 mm fold was exact). Physical track grows by 0.852 mm, to 1.190 × EFL.
+
+## 2026-11-14 — Finite conjugates from printed magnifications
+
+| Zoom / keyframe | Printed magnification → `sourceMagnification` | Source locator | Solved object distance | Check |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | “1/40: /β/ 0.025; d1 4.580; d2 12.393” → `"0.025"` | JP 2015-096915 A, Example 2 (PDF p. 21) | 3385.41 mm, first-surface | in focus 0.02477; at the declared distance 0.02477; +0.00 quarter waves |
+
+The patent prints a magnification and no object distance for this state. Each distance is solved from the prescription under `LENS_DATA_SPEC.md` § Finite conjugates: the distance that focuses the state on its image plane when the magnification there rounds to the print, otherwise the distance at the nearest magnification that does. Two independent readings of the patent agree on the printed value and on the gaps of the matching state.
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.

@@ -45,3 +45,14 @@ Patent: WO 2017/138250 A1, Example 2
 
 - L21 remains on the patent Abbe fallback with an explicit unmatched `995293` annotation.
 - Removed the unsupported lanthanum-niobium composition and vendor-class claims from the data and analysis files.
+
+## 2026-11-14 — Finite conjugates from printed magnifications
+
+| Zoom / keyframe | Printed magnification → `sourceMagnification` | Source locator | Solved object distance | Check |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | “β: 0.03” → `"0.03"` | WO 2017/138250 A1, Numerical Example 2 (PDF p. 16) | 1556.13 mm, first-surface | in focus 0.03233; at the declared distance 0.03233; −0.00 quarter waves |
+| 0 / 2 | “β: 0.15” → `"0.15"` | WO 2017/138250 A1, Numerical Example 2 (PDF p. 16) | 336.34 mm, first-surface | in focus 0.14923; at the declared distance 0.14923; +0.03 quarter waves |
+
+The patent prints a magnification and no object distance for these states. Each distance is solved from the prescription under `LENS_DATA_SPEC.md` § Finite conjugates: the distance that focuses the state on its image plane when the magnification there rounds to the print, otherwise the distance at the nearest magnification that does. Two independent readings of the patent agree on the printed value and on the gaps of the matching state.
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.

@@ -201,6 +201,16 @@ const LENS_DATA = {
       "Inner focus — Gr2 and the aperture stop translate 9.6 mm toward the object; Gr1 and Gr3 stay fixed. Source near distance: 719.0 mm before the first vertex, or 0.84537 m to the image plane. Track 126.370 mm.",
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 719,
+        distanceReference: "first-surface",
+        source:
+          "US 8,767,319 B2, Example 1, Focus Data, POS2 column, PDF p. 17: d0 719.0; d6=7.706 mm; d15=11.300 mm.",
+      },
+    ],
   },
 
   /* (moved from var) ── Variable air spacings (inner focus) ──

@@ -34,3 +34,17 @@ Patent: US 2025/0231383 A1, embodiment 100-3
 - Why the old value differed: printed close rows already reach 0.33 m at wide; per-station values record them.
 
 Text sync: analysis: per-station closeFocusM values are the printed close rows (0.331 m at wide, matching the FE figure).
+
+## 2026-11-14 — Published finite conjugates
+
+Patent: US 2025/0231383 A1. PDF pages below use the one-based PDF page index.
+
+| State (zoom/keyframe) | Field | Before | After | Source and paraxial residual |
+| --- | --- | --- | --- | --- |
+| 0/1 | `focus.conjugates` | Absent | 157 mm, `first-surface` | PDF p. 25, Embodiment 3 (100-3), TABLE 9, MOD Wide column; D5=1.200 mm, D12=9.037 mm, D18=23.915 mm, D31=6.792 mm, D33=6.648 mm, D41=12.602 mm. Offset +0.020252108 mm (+4.307122 diffraction depths); `consistent`. |
+| 1/1 | `focus.conjugates` | Absent | 334.99 mm, `first-surface` | PDF p. 25, Embodiment 3 (100-3), TABLE 9, MOD Middle column; D5=23.041 mm, D12=4.826 mm, D18=10.809 mm, D31=7.233 mm, D33=5.220 mm, D41=27.764 mm. Offset +0.038662007 mm (+5.145926 diffraction depths); `consistent`. |
+| 2/1 | `focus.conjugates` | Absent | 635 mm, `first-surface` | PDF p. 25, Embodiment 3 (100-3), TABLE 9, MOD Tele column; D5=49.374 mm, D12=1.849 mm, D18=1.700 mm, D31=8.764 mm, D33=3.700 mm, D41=35.374 mm. Offset -0.022134272 mm (-2.281553 diffraction depths); `consistent`. |
+
+TABLE 7: "Object" row has D0 in Thickness, immediately before surface 1 (PDF p. 25, printed p. 7); ¶0082 specifies thickness and intervals in millimeters. This defines the declared distance from the object plane to the first surface.
+
+The published flags already include the declared keyframes. All gap values, surfaces, image-plane settings and existing focus controls are retained.

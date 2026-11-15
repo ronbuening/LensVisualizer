@@ -262,6 +262,16 @@ const LENS_DATA = {
     closeFocusM: 0.27,
     description:
       "Patent first-group focusing: surfaces 1-20A, including the stop, move objectward while rear group 21-23 remains fixed. The implemented variable gap is patent d20 = 1.10 mm at infinity and 9.71 mm at the patent close state (β≈-0.188).",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 192.39,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.188",
+        source: "JP 2018-180366 A, Numerical Data 1 (PDF p. 13): prints “近距離撮像倍率：−0.188” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.18777.",
+      },
+    ],
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
   },

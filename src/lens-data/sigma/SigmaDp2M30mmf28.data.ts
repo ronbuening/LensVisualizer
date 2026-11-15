@@ -213,6 +213,16 @@ const LENS_DATA = {
       "Front-group unit focus: the patent 1000 mm state is exact before the constrained 0.28 m endpoint; G1 (L1–L5 plus stop) translates objectward.",
     // (moved from publishedStations) The intermediate focus row is source-tabulated; the close endpoint is reconstructed.
     published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 959.61,
+        distanceReference: "first-surface",
+        source:
+          "JP 2013-156459 A, Numerical Example 4, PDF pp. 13-14; [可変間隔データ], 1000mm column, d0 row: d0 = 959.61 mm. The surface table lists d0 as the object-plane gap before surface 1. BF=2.88 mm.",
+      },
+    ],
   },
 
   gaps: { "9A": { label: "BF", values: [[2.32, 2.88, 4.65]] } },

@@ -326,6 +326,16 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   focus: {
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 158,
+        distanceReference: "first-surface",
+        source:
+          "JP2016188967A, Example 1, ¶0097, 各合焦状態の数値データ, close column; D(14)=2.318, D(16)=5.674 mm (PDF p.14 (printed p.14)): 最至近距離（物体距離158.000mm）. Distance reference identified by the conjugate audit (referenceBasis: audit-resolved); the patent does not define the datum.",
+      },
+    ],
     closeFocusM: 0.25,
     description:
       "PUBLISHED inner focus: G12/L121 translates 0.846 mm imageward from infinity to the patent 158.000 mm close state while G11/G13 remain fixed. The patent does not state the 158 mm datum; the supported front-vertex interpretation normalizes to the manufacturer's 0.25 m sensor-plane MFD. No internal focus reconstruction is used.",

@@ -28,6 +28,14 @@ declare module "node:child_process" {
   ): string | Uint8Array;
 }
 
+declare module "node:crypto" {
+  interface Hash {
+    update(data: string | Uint8Array): Hash;
+    digest(encoding: "hex"): string;
+  }
+  export function createHash(algorithm: string): Hash;
+}
+
 declare module "node:fs" {
   export function chmodSync(path: string, mode: number): void;
   export function copyFileSync(source: string, destination: string): void;
@@ -90,8 +98,11 @@ declare module "node:stream" {
 declare module "node:process" {
   export const argv: string[];
   export const env: Record<string, string | undefined>;
+  export const execPath: string;
+  export function cwd(): string;
 }
 
 declare module "node:url" {
   export function fileURLToPath(url: string | URL): string;
+  export function pathToFileURL(path: string): URL;
 }

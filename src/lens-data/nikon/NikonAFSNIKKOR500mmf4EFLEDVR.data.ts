@@ -340,6 +340,24 @@ const LENS_DATA = {
     keyframes: [0, 0.23802029005870562, 1],
     description:
       "PUBLISHED internal focus: G2 (surfaces 12–16) translates imageward with d11 14.505→28.403 mm and d16 36.105→22.207 mm; d11+d16 remains 50.610 mm and the stop is fixed. The patent intermediate row (17.427/33.183 mm) lies exactly at t=0.210246 of this motion. FLG is omitted and the rear air is normalized to 87.868557 mm; the resulting modeled near focal-plane distance is 3.588203 m versus Nikon's rounded 3.6 m specification.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 14656.3,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.033",
+        source: "JP 2015-215560 A, Example 1 (PDF p. 10): prints “β = -0.033” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.03335.",
+      },
+      {
+        zoomStation: 0,
+        keyframe: 2,
+        objectDistanceMm: 3169.3,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.153",
+        source: "JP 2015-215560 A, Example 1 (PDF p. 10): prints “β = -0.153” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.15326.",
+      },
+    ],
     // (moved from publishedStations) Every focus keyframe is a source row.
     published: [1, 2],
   },

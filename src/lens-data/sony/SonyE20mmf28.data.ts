@@ -201,6 +201,16 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.214,
     description: "Rear focus: G4 (L6) moves 1.21 mm imageward from infinity to the patent short-distance state.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 163.02,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.122",
+        source: "US 2014/0204265 A1, Embodiment 4 (PDF p. 22): prints “β -0.122” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription at magnification 0.1215, the nearest value that rounds to the print; focused on its image plane the state gives 0.11168.",
+      },
+    ],
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
   },

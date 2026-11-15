@@ -307,6 +307,32 @@ const LENS_DATA = {
     keyframes: [0, 0.20297806853366232, 0.7062890432451783, 1],
     description:
       "PUBLISHED — L2 moves imageward and L4 moves objectward. The infinity, β=-0.022, β=-0.10, and β=-0.17 patent rows are exact focus keyframes.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 1073.76,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.022",
+        source: "JP 2025-15010 A, Numerical Example 3 (PDF p. 15): prints “全系の横倍率 -0.022” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription at magnification 0.0225, the nearest value that rounds to the print; focused on its image plane the state gives 0.02268.",
+      },
+      {
+        zoomStation: 0,
+        keyframe: 2,
+        objectDistanceMm: 221.7,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.10",
+        source: "JP 2025-15010 A, Numerical Example 3 (PDF p. 15): prints “全系の横倍率 -0.10” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.10048.",
+      },
+      {
+        zoomStation: 0,
+        keyframe: 3,
+        objectDistanceMm: 120.81,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.17",
+        source: "JP 2025-15010 A, Numerical Example 3 (PDF p. 15): prints “全系の横倍率 -0.17” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.17076.",
+      },
+    ],
     // (moved from publishedStations) Every focus keyframe is a source row.
     published: [1, 2, 3],
   },

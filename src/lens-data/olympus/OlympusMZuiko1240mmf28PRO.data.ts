@@ -359,6 +359,32 @@ const LENS_DATA = {
     description:
       "Inner focus via G4 (cemented negative doublet L11+L12). G4 translates toward the image side for close focus. " +
       "All other groups stationary during focus. Supports wobbling for video CDAF.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 250,
+        distanceReference: "image-plane",
+        source:
+          "US 2014/0139720 A1, Example 5, paragraph 0252 (PDF p. 35) and Focus data (PDF p. 39, printed p. 13): object to image distance 0.25 meter. wide: D3=0.8433, D10=19.7674, D21=4.1419, D18=2.4446 mm.",
+      },
+      {
+        zoomStation: 1,
+        keyframe: 1,
+        objectDistanceMm: 250,
+        distanceReference: "image-plane",
+        source:
+          "US 2014/0139720 A1, Example 5, paragraph 0252 (PDF p. 35) and Focus data (PDF p. 39, printed p. 13): object to image distance 0.25 meter. standard: D3=3.1723, D10=6.3586, D21=8.1832, D18=9.8217 mm.",
+      },
+      {
+        zoomStation: 2,
+        keyframe: 1,
+        objectDistanceMm: 250,
+        distanceReference: "image-plane",
+        source:
+          "US 2014/0139720 A1, Example 5, paragraph 0252 (PDF p. 35) and Focus data (PDF p. 39, printed p. 13): object to image distance 0.25 meter. tele: D3=26.5044, D10=1.0555, D21=7.3242, D18=17.5045 mm.",
+      },
+    ],
   },
 
   /* (moved from var) ── Variable air spacings (zoom + focus) ──
