@@ -272,3 +272,17 @@ Checked against local `patents/JPA 2024167569-000000.pdf` (13 pages; confirmed a
   labelled as the vendor's, and the runtime value. The data-file header gained a partial-dispersion note, and the
   analysis sentences and glass table that quoted the old figures now quote the stored ones.
 - The helper `.lens-work/audit-tools/dpgfcheck.mjs` reports the edited file builds and validates.
+
+## 2026-11-14 — Published finite-conjugate certification
+
+Patent: JP 2024-167569 A, Example 1.
+
+| State (zoom/keyframe) | Field | Before | After | Source |
+|---|---|---|---|---|
+| 0/1 | `focus.conjugates` | Absent | `206.4` mm, `first-surface` | PDF p. 7, Table 1, 可変間隔, finite column: `D0 = 206.40` mm; D11=19.41 mm. |
+
+Reference basis: Table 1: OBJ | INFINITY | D0, immediately before surface 1. The object row precedes surface 1, so the printed object-side gap is first-surface-referenced.
+
+State 0/1: paraxial image-minus-authored-plane residual -0.008142829204 mm (-1.297465957 diffraction depths); alternate image-plane reference +180.482776117 depths. Verdict: `consistent`; reference discriminated.
+
+Only the conjugate declaration is added; the published flags and all prescription geometry are retained.

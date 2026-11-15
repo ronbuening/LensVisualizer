@@ -319,6 +319,16 @@ const LENS_DATA = {
 
   /* ── Focus configuration ── */
   focus: {
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 681.5,
+        distanceReference: "first-surface",
+        source:
+          "JP2018005099A, Numerical Example 4, [可変間隔データ], 撮影距離848mm column, d0 row (PDF p.20, printed p.20): d0=681.5000 mm; d14=6.0661; d19=11.3807; d27=47.4637; BF=1.0000 mm. The surface table (p.19) lists d0 in the object-plane d row before surface 1.",
+      },
+    ],
     closeFocusM: 0.85,
     description: "Floating rear focus — G1 fixed, G2A and G2B move independently toward object at close focus.",
     // (moved from publishedStations) The close-focus row is source-tabulated.

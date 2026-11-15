@@ -254,6 +254,24 @@ const LENS_DATA = {
     keyframes: [0, 0.8680068583530708, 1],
     description:
       "Floating focus through the patent's three tabulated states: infinity, 1.0× and 2.0×. G1 (L1) is fixed. G2 (L2–L8 with the stop) moves 25.2 mm toward the object by 1.0× and 42.5 mm by 2.0×. G3 (L9–L13) moves 5.9 mm toward the object by 1.0×, then partly returns, ending 1.2 mm objectward of its infinity position at 2.0×, so the back focus D24 rises and then falls. The 1.0× and 2.0× names are the patent's; the paraxial magnifications of those states are −0.997× and −1.960×. The printed gaps lengthen the track by 0.04 and 0.13 mm and are kept as printed. Positions between the three states are linear interpolations, not a cam law, and the 20 cm end of the slider is the calculated object-to-image distance at 2.0×, not Laowa's stated minimum focus.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 104,
+        distanceReference: "first-surface",
+        sourceMagnification: "1.0",
+        source: "CN 116520542 A, Example 1 (PDF p. 6): prints “1.0倍” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.99680.",
+      },
+      {
+        zoomStation: 0,
+        keyframe: 2,
+        objectDistanceMm: 73.17,
+        distanceReference: "first-surface",
+        sourceMagnification: "2.0",
+        source: "CN 116520542 A, Example 1 (PDF p. 6): prints “2.0倍” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 1.95952.",
+      },
+    ],
     published: [1, 2],
   },
 

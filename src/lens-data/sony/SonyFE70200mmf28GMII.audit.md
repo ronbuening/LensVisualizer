@@ -171,3 +171,15 @@ Source: local `patents/JP2023039817A.pdf`, Example 2. Table 6 is on PDF page 21,
 ### Gap label
 
 - `varLabels` named the gap after surface 28 "BF". Table 8 lists d28 among the variable spacings (7.95, 8.28 and 3.70 mm at infinity; 9.10, 10.36 and 9.03 mm at 1000 mm), Table 10 starts GR8 at surface 29, and Table 6 gives the fixed 28.79 mm after surface 32 as the last spacing before the image plane. The gap is the GR7 to GR8 space, and the label is now "D28", matching D6 to D26.
+
+## 2026-11-14 — Finite conjugates declared as object-to-image distances
+
+| Zoom / keyframe | Source distance and reference | Source locator | Paraxial residual |
+| --- | --- | --- | --- |
+| 0 / 1 | 1000 mm, image-plane | JP 2023-039817 A, Example 2, Table 8 (PDF p. 22), close-focus Wide column: d0 = 1000 mm | +0.162020 mm; +17.63 quarter waves; first-surface −115.73 |
+| 1 / 1 | 1000 mm, image-plane | JP 2023-039817 A, Example 2, Table 8 (PDF p. 22), close-focus Mid column: d0 = 1000 mm | −0.011051 mm; −1.15 quarter waves; first-surface −323.87 |
+| 2 / 1 | 1000 mm, image-plane | JP 2023-039817 A, Example 2, Table 8 (PDF p. 22), close-focus Tele column: d0 = 1000 mm | +0.141189 mm; +14.35 quarter waves; first-surface −696.59 |
+
+The table lists d0 as the gap from the object row (0, OBJ) to surface 1, which reads as an object-to-first-surface distance. Read that way the states do not focus; read as the object-to-image distance they do. They are declared `image-plane` under the ruling recorded in `LENS_DATA_SPEC.md` § Finite conjugates. A second reading of the patent confirms the printed value, its unit and the gaps of each column.
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.

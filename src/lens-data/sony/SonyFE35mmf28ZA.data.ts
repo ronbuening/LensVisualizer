@@ -214,6 +214,16 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.406,
     description: "Inner focus — single negative element (L121/G2) moves object→image. Linear AF motor.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 350,
+        distanceReference: "first-surface",
+        source:
+          "JP 2015-041012 A, Example 1, paragraph 0079, close focus finite column, 物体距離 row (PDF p. 12): 最至近距離（物体距離350mm）; D6=3.13 mm; BF=3.89 mm. Distance reference identified by the conjugate audit as first-surface (audit-resolved).",
+      },
+    ],
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
   },

@@ -144,6 +144,8 @@ export interface ConjugateV2Input {
   keyframe: number;
   objectDistanceMm: number;
   distanceReference: FiniteConjugate["distanceReference"];
+  /** Printed magnification magnitude when the distance is solved from it; see LENS_DATA_SPEC.md § Finite conjugates. */
+  sourceMagnification?: string;
   source: string;
 }
 

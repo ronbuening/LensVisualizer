@@ -459,6 +459,32 @@ const LENS_DATA = {
     closeFocusM: 2,
     description:
       "PUBLISHED internal focus: G1m (L15-L17) translates 17.49408 mm imageward from infinity to the patent's 2 m state; G2/G3 zoom gaps are published. G4m VR decenter is transverse and is not represented as an axial var state.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 1607.6776,
+        distanceReference: "first-surface",
+        source:
+          "US20050157403A1, Example 1, Table 1, Variable distance upon focusing and zooming, <Focused at closest distance>, Wide-angle column, D0 row, PDF p. 28: D0 = 1607.6776 (mm); d7=72.39989 mm, d12=6.35759 mm, d14=5.84488 mm, d21=29.27185 mm, d26=25.24955 mm. Distance reference: ¶0074, PDF p. 27 (printed p. 5); units ¶0075.",
+      },
+      {
+        zoomStation: 1,
+        keyframe: 1,
+        objectDistanceMm: 1607.6776,
+        distanceReference: "first-surface",
+        source:
+          "US20050157403A1, Example 1, Table 1, Variable distance upon focusing and zooming, <Focused at closest distance>, Middle column, D0 row, PDF p. 28: D0 = 1607.6776 (mm); d7=72.39989 mm, d12=6.35759 mm, d14=38.59130 mm, d21=15.53993 mm, d26=6.23504 mm. Distance reference: ¶0074, PDF p. 27 (printed p. 5); units ¶0075.",
+      },
+      {
+        zoomStation: 2,
+        keyframe: 1,
+        objectDistanceMm: 1607.6776,
+        distanceReference: "first-surface",
+        source:
+          "US20050157403A1, Example 1, Table 1, Variable distance upon focusing and zooming, <Focused at closest distance>, Telephoto column, D0 row, PDF p. 28: D0 = 1607.6776 (mm); d7=72.39989 mm, d12=6.35759 mm, d14=54.82963 mm, d21=2.41844 mm, d26=3.11820 mm. Distance reference: ¶0074, PDF p. 27 (printed p. 5); units ¶0075.",
+      },
+    ],
   },
 
   gaps: {

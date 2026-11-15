@@ -15,3 +15,15 @@ Added **inferred**, not patent-listed, APD coloring to L12/L24 (H-FK61 equivalen
   0.020 mm, replacing the air-equivalent 22.941704641350 mm fold. Paraxial check against the previous data: EFL and
   defocus identical at all three focus keyframes (worst difference 2×10⁻¹³ mm). Physical track grows by 1.090 mm, to
   122.432 mm from S1 to the image plane.
+
+## 2026-11-14 — Source-certified finite conjugates
+
+Patent: US20210231930A1.
+
+| Zoom / keyframe | Field | Before | After | Source and paraxial residual |
+|---|---|---|---|---|
+| 0 / 1 | `focus.conjugates` | No declaration | 1200 mm, `image-plane` | Example 1, Table 2, 1.2 m column; DD[8]=5.791, DD[17]=5.619 mm; ¶0085 (PDF p.25 (printed p.8); definition PDF p.24 (printed p.7)). Offset +0.001107298 mm / +0.075520 depths; alternate reference -5.9804110500855865 depths; `consistent`. |
+
+Reference evidence: “The object distance is a distance on the optical axis from the object to the image plane Sim.”
+
+The declared states already carry published focus flags. No prescription, gap, image-plane, or existing conjugate value changes.

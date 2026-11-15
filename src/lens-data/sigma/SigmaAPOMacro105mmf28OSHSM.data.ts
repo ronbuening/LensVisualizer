@@ -304,6 +304,24 @@ const LENS_DATA = {
     keyframes: [0, 0.7874856150695161, 1],
     description:
       "Floating inner focus. L2a (E5-E7) moves imageward and L2c (E9-E11) moves objectward from infinity to 1:1 while L1, L2b/stop, L3a, and L3b remain fixed relative to the image plane.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 228.09,
+        distanceReference: "first-surface",
+        sourceMagnification: "1:2",
+        source: "JP 2012-058682 A, Example 4 (PDF p. 18): prints “撮影倍率 1:2” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription at that magnification; focused on its image plane the state gives 0.49999.",
+      },
+      {
+        zoomStation: 0,
+        keyframe: 2,
+        objectDistanceMm: 144.29,
+        distanceReference: "first-surface",
+        sourceMagnification: "1:1",
+        source: "JP 2012-058682 A, Example 4 (PDF p. 18): prints “撮影倍率 1:1” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription at that magnification; focused on its image plane the state gives 0.99999.",
+      },
+    ],
     // (moved from publishedStations) Patent read 2026-10-06: Focus keyframes 1 and 2 are the patent's Example 4 variable-spacing columns for 1:2 and
     // 1:1 magnification, transcribed unscaled.
     published: [1, 2],

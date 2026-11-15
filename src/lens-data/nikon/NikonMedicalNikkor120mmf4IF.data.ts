@@ -236,6 +236,24 @@ const LENS_DATA = {
       "PUBLISHED — G2 alone translates 30.242 mm toward the image from infinity to the patent -1.002x state; G1, G3, the diaphragm-to-G3 spacing, and the 58.798 mm back focus remain fixed. The published -0.504x intermediate state lies on the same linear translation.",
     // (moved from publishedStations) Every focus keyframe is a source row.
     published: [1, 2],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 295.169,
+        distanceReference: "first-surface",
+        source:
+          "US 4,437,734 A, Example 1, M=−0.504 column, d₀ row, PDF p. 15: d₀ 295.169; d5=16.141 mm; d8=21.192 mm (19.392 mm to STO plus 1.8 mm); Bf=58.798 mm.",
+      },
+      {
+        zoomStation: 0,
+        keyframe: 2,
+        objectDistanceMm: 175.712,
+        distanceReference: "first-surface",
+        source:
+          "US 4,437,734 A, Example 1, M=−1.002 column, d₀ row, PDF p. 15: d₀ 175.712; d5=31.167 mm; d8=6.166 mm (4.366 mm to STO plus 1.8 mm); Bf=58.798 mm.",
+      },
+    ],
   },
 
   gaps: {

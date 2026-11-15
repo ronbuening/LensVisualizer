@@ -305,6 +305,32 @@ const LENS_DATA = {
     keyframes: [0, 0.22912992694228013, 0.7323745404242055, 1],
     description:
       "PUBLISHED floating focus: L2 moves imageward and L3 moves objectward while the stop, L1, L4, and image plane remain fixed. The infinity, 0.1×, 0.5×, and 1.0× patent rows are exact focus keyframes.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 1871.37,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.1",
+        source: "JP 1997-211319 A, Numerical Example 1 (PDF p. 6): prints “0.1x” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.09999.",
+      },
+      {
+        zoomStation: 0,
+        keyframe: 2,
+        objectDistanceMm: 431.89,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.5",
+        source: "JP 1997-211319 A, Numerical Example 1 (PDF p. 6): prints “0.5x” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.50008.",
+      },
+      {
+        zoomStation: 0,
+        keyframe: 3,
+        objectDistanceMm: 252.06,
+        distanceReference: "first-surface",
+        sourceMagnification: "1.0",
+        source: "JP 1997-211319 A, Numerical Example 1 (PDF p. 6): prints “1.0x” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 1.00036.",
+      },
+    ],
     // (moved from publishedStations) Every focus keyframe is a source row.
     published: [1, 2, 3],
   },

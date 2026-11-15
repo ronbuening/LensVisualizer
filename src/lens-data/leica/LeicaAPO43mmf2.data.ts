@@ -382,6 +382,24 @@ const LENS_DATA = {
     description: "Floating inner focus: G2 (L6–L7) and G4 (L10) translate toward object. Constant overall length.",
     // (moved from publishedStations) Every focus keyframe is a source row.
     published: [1, 2],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 1331.625,
+        distanceReference: "first-surface",
+        source:
+          "US 2024/0241349 A1, Numerical Example 1, Table 1C Middle column (PDF p. 32): d0=1331.6250 mm; d11=7.6379, d15=3.2604, d19=3.3774, d21=6.4569 mm. Table 1A (PDF p. 31) places the variable object-surface interval before surface 1; paragraph 0205 defines d as the surface interval in mm.",
+      },
+      {
+        zoomStation: 0,
+        keyframe: 2,
+        objectDistanceMm: 531.6251,
+        distanceReference: "first-surface",
+        source:
+          "US 2024/0241349 A1, Numerical Example 1, Table 1C Close-object column (PDF p. 32): d0=531.6251 mm; d11=6.4983, d15=4.4001, d19=1.8105, d21=8.0238 mm. Table 1A (PDF p. 31) places the variable object-surface interval before surface 1; paragraph 0205 defines d as the surface interval in mm.",
+      },
+    ],
   },
 
   gaps: {

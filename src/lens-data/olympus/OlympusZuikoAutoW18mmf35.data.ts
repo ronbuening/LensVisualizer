@@ -233,6 +233,15 @@ const LENS_DATA = {
   ],
 
   focus: {
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 204.12,
+        distanceReference: "first-surface",
+        source: "US 4,029,397, Embodiment 1, PDF p9 (col. 5): printed object distance 1.134 m × 0.18 = 204.12 mm; d4=24.40 patent units × 0.18 = 4.392 mm. The file header, Patent prescription scale, documents f=100 scaled by 0.18 to 18 mm. The conjugate audit identifies the first-surface reference for this scaled distance; the image-plane reference exceeds the defocus limit.",
+      },
+    ],
     closeFocusM: 0.25,
     /* Patent finite state plus production-calibrated endpoint; total track remains constant. */
     keyframes: [0, 0.8745516541873473, 1],

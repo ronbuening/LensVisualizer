@@ -23,3 +23,15 @@ Patent: WO 2023/153076 A1, Example 8
 - Existing R/d/nd/vd, zoom/focus spacings, high-index/code-backed labels, APD metadata, and SD profile remain consistent with the patent-backed prescription and prior relabel passes.
 - No APD, high-index, glass-label, spacing, or SD edits were needed in this pass.
 - Current generated glass reports show no active Sony catalog-mismatch row for this lens.
+
+## 2026-11-14 — Finite conjugates declared as object-to-image distances
+
+| Zoom / keyframe | Source distance and reference | Source locator | Paraxial residual |
+| --- | --- | --- | --- |
+| 0 / 1 | 299 mm, image-plane | WO 2023/153076 A1, Example 8, Table 38 (PDF p. 75), close-focus Wide column: d0 = 299 mm | +0.048353 mm; +2.48 quarter waves; first-surface −34.56 |
+| 1 / 1 | 299 mm, image-plane | WO 2023/153076 A1, Example 8, Table 38 (PDF p. 75), close-focus Mid column: d0 = 299 mm | +0.033038 mm; +1.69 quarter waves; first-surface −113.84 |
+| 2 / 1 | 299 mm, image-plane | WO 2023/153076 A1, Example 8, Table 38 (PDF p. 75), close-focus Tele column: d0 = 299 mm | −0.126110 mm; −6.37 quarter waves; first-surface −434.47 |
+
+The table lists d0 as the gap from the object row (0, OBJ) to surface 1, which reads as an object-to-first-surface distance. Read that way the states do not focus; read as the object-to-image distance they do. They are declared `image-plane` under the ruling recorded in `LENS_DATA_SPEC.md` § Finite conjugates. A second reading of the patent confirms the printed value, its unit and the gaps of each column.
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.

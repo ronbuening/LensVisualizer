@@ -107,3 +107,17 @@ S3 20.0 (20.2), S4 18.5 (20.2), S5 18.5 (18.5), S10 11.5 (curve end ≈11.0, bla
 ### Analysis sync
 
 - Updated the L14/L15 glass sections and summary text.
+
+## 2026-11-14 — Published finite-conjugate certification
+
+Patent: JP 2025-58577 A, Example 1.
+
+| State (zoom/keyframe) | Field | Before | After | Source |
+|---|---|---|---|---|
+| 0/1 | `focus.conjugates` | Absent | `369.5` mm, `first-surface` | PDF p. 9, Table 1, フォーカス可変間隔, finite column: `ZD0 = 369.5` mm; ZD18=19.36 mm. |
+
+Reference basis: Table 1: OBJ | Infinity | ZD0, immediately before surface 1; ¶0047 defines D(i) in mm. The object row precedes surface 1, so the printed object-side gap is first-surface-referenced.
+
+State 0/1: paraxial image-minus-authored-plane residual -0.018922994204 mm (-7.135827507 diffraction depths); alternate image-plane reference +603.015370611 depths. Verdict: `consistent`; reference discriminated.
+
+Only the conjugate declaration is added; the published flags and all prescription geometry are retained.

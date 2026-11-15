@@ -88,6 +88,7 @@ export function canonicalConstructionData(lens: CanonicalLens): LensConstruction
       zoomT: zoom && zoom.stations.length > 1 ? conjugate.zoomStation / (zoom.stations.length - 1) : 0,
       objectDistanceMm: conjugate.objectDistanceMm,
       distanceReference: conjugate.distanceReference,
+      ...(conjugate.sourceMagnification !== undefined && { sourceMagnification: conjugate.sourceMagnification }),
       source: conjugate.source,
     })),
     publishedStations: zoom

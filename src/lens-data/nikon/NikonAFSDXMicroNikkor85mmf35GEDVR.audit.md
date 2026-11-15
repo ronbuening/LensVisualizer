@@ -43,3 +43,16 @@ Every face of all fourteen elements and four cemented interfaces was checked. No
 All fourteen Table 1 nd/νd pairs are retained. Compatible curves by element are S-LAH66 (L11), S-LAL14 (L12), S-TIH1 (L13), J-LAF01 (L14), N-BK7 (L21/L22/L31), J-SF03 (L23/L42), E-FD4 (L32), J-FKH1 (L33), S-LAH60 (L41), S-NSL3 (L51), S-LAH51 (L52). No source partial dispersion or line-index fields exist. L33’s APD note and public prose now consistently describe the existing tag as a compatible-catalog inference, with production identity and patent anomaly unspecified; no spectral parameter changes.
 
 Focused surface and image-circle checks pass. The nominal-aperture audit proposes no height raises. Actual SVG paths at all nine focus/zoom combinations (0, 0.5, 1) are finite with zero hidden trimming, and the rendered compound outlines were inspected. A temporary source/resolver check covers all 48 modeled media in this triad: 44 compatible catalog curves and four explicit unresolved media. All source nd/νd values and every runtime C/d/F/g channel remain unchanged; `assertCatalogConsistent` passes. Source R/d, aspheric coefficients, stop, focus and zoom controls are unchanged.
+
+## 2026-11-14 — Published finite conjugates
+
+Patent: US 2009/0190220 A1, Example 1.
+
+| Zoom / keyframe | Field | Before | After | Source locator | Paraxial residual |
+| --- | --- | --- | --- | --- | --- |
+| 0 / 1 | `focus.conjugates` | Absent | 206.1164 mm, `first-surface` | PDF p. 55, Table 1, Variable distance during focusing, beta=-0.50000 / -1.00000 columns, D0 row; D0 = 206.1164; d7=10.52739, d12=9.35781, d13=9.51488, d18=11.66338 mm | +0.000173656 mm / +0.008854 depths; consistent |
+| 0 / 2 | `focus.conjugates` | Absent | 133.0597 mm, `first-surface` | PDF p. 55, Table 1, Variable distance during focusing, beta=-0.50000 / -1.00000 columns, D0 row; D0 = 133.0597; d7=17.78094, d12=2.10426, d13=3.18873, d18=17.98953 mm | +0.000247502 mm / +0.009315 depths; consistent |
+
+The example prints D0 without an explicit reference definition. The conjugate audit identifies the first-surface reference (`referenceBasis: audit-resolved` in the evidence record). The image-plane alternative gives +159.703236 mm / +1080.887 depths at keyframe 1; -132.595722 mm / -19571.415 depths at keyframe 2.
+
+The authored gaps, image plane and published-state flags are retained.

@@ -355,6 +355,16 @@ const LENS_DATA = {
       "Floating inner focus. G2 and G3 move toward the object with differential travel (G3 moves ~1 mm farther than G2). G1 fixed; stop attached to G3. HSM ring-type ultrasonic drive.",
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 222.499,
+        distanceReference: "first-surface",
+        source:
+          "JP 2020-012952 A, Example 1, PDF pp. 11-12; [可変間隔データ], 393mm column, d0 row: d0 = 222.4990 mm. The surface table lists d0 as the object-plane gap before surface 1. D14=2.603 mm, D19=6.3421 mm, BF=46.2123 mm.",
+      },
+    ],
   },
 
   /* (moved from var) ── Variable air spacings (floating inner focus) ──

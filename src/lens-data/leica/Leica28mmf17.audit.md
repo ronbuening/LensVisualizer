@@ -118,3 +118,13 @@ arrow).
 - Paraxial check against the previous data: EFL identical; defocus changes by at most 0.00004 mm (the rounding of the
   old 0.9230 mm t/n fold). Physical track grows by 0.477 mm (1.4 × (1 − 1/1.5168)); S1 to S23 now matches the
   patent's 63.98 mm overall length. `closeFocusM` 0.3 was already the physical object-to-image distance and stays.
+
+## 2026-11-14 — Source finite object distances
+
+Patent: US 2016/0266350 A1, Example 1.
+
+| Zoom / keyframe | Field | Before | After | Source and gap mapping |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | `focus.conjugates` | No declaration | 235 mm, `first-surface` | FIG. 16 SHORT DISTANCE 1 matches d11/d14/d17/d19; fixed d21=2.3 plus BF=1.0763 is retained by moving the BF increment before the existing rear plate to printed precision. |
+
+The declarations retain the authored prescription and image plane. The axial consistency diagnostics are 0/1: +0.000226117 mm (+0.065976 quarter-wave depths), other reference +283.896633 depths. No production minimum-focus distance or calculated object distance is certified.

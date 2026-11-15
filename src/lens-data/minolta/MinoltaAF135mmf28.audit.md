@@ -152,3 +152,13 @@ top running from 21.1 mm to the land, no longer applies.
 ## 2026-11-04 — E3 glass label
 
 E3's printed 1.6710/51.7 has no exact catalog row. CDGM H-LaK67 (1.6700/51.7) is 0.001 lower in nd with the same νd, inside the 0.25 νd limit for a nearest-row proxy, so E3 now takes its dispersion curve; the trace keeps the printed nd. The patent prints no colour curves to check it against.
+
+## 2026-11-14 — Finite conjugates from printed magnifications
+
+| Zoom / keyframe | Printed magnification → `sourceMagnification` | Source locator | Solved object distance | Check |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | “When focusing to a magnification β = 1/10, d7 = 19.79 and d10 = 19.23” → `"1/10"` | US 4,610,514, Embodiment 3 (PDF p. 11) | 1404.27 mm, first-surface | in focus 0.10059; at the declared distance 0.10000; −6.98 quarter waves |
+
+The patent prints a magnification and no object distance for this state. Each distance is solved from the prescription under `LENS_DATA_SPEC.md` § Finite conjugates: the distance that focuses the state on its image plane when the magnification there rounds to the print, otherwise the distance at the nearest magnification that does. Two independent readings of the patent agree on the printed value and on the gaps of the matching state.
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.

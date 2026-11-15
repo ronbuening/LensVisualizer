@@ -46,3 +46,13 @@ Validation: focused runtime/paraxial check; full corpus gates at the ten-lens ch
 - Native and 600 dpi Figures 1a/1b show L2's weak concave rear cap continuing to its full body. Restore S4 from 32 to 38.5 mm; this is a continuous cap, not a flat land. Common L3 rims S5/S6 grow from 32 to 32.6 mm, retaining square connectivity and the native f/2.3 beam. Other visible outer corners are oblique bevels, which do not establish flat lands or axial cut depths; no such fields are added.
 - All R/d, source media, stop, focus/aperture controls and tolerances remain unchanged. Canonical validation and the full inferred-cut guard pass. Actual buildLens/computeElementShapes SVGs inspected at nine focus/zoom samples have finite paths and zero hidden trim. Image-circle: zero undersized; format-corner chief clears; exact native f/2.3 is iris-limited.
 - Matched 16-point stop-lattice samples at focus/zoom 0/.5/1 and five common field fractions retain 7,746 previous passing samples, lose zero and gain 240. These sampled counts are not flux. Printed BF residual, rounded coordinate residual and inferred stop split remain limitations; the model is not factory-glass identification.
+
+## 2026-11-14 — Finite conjugates from printed magnifications
+
+| Zoom / keyframe | Printed magnification → `sourceMagnification` | Source locator | Solved object distance | Check |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | “For γ = −0.12” → `"0.12"` | US 4,726,669, Example 1 (PDF p. 7) | 1597.49 mm, first-surface | in focus 0.12051; at the declared distance 0.12051; +0.00 quarter waves |
+
+The patent prints a magnification and no object distance for this state. Each distance is solved from the prescription under `LENS_DATA_SPEC.md` § Finite conjugates: the distance that focuses the state on its image plane when the magnification there rounds to the print, otherwise the distance at the nearest magnification that does. Two independent readings of the patent agree on the printed value and on the gaps of the matching state.
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.

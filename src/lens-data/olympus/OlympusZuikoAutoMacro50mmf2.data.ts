@@ -214,6 +214,16 @@ const LENS_DATA = {
     closeFocusM: 0.24,
     description:
       "Floating element: entire lens advances while the air gap between Group I (L1+L2) and Group II (L3+L4) increases, maintaining aberration correction from infinity to 1:2 magnification.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 122.43,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.50",
+        source: "US 4,708,445, Embodiment 6 (PDF p. 31): prints “(β = 0.50); d4 = 0.0802” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.50006.",
+      },
+    ],
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
   },

@@ -220,6 +220,16 @@ const LENS_DATA = {
     // (moved from publishedStations) Patent read 2026-10-06: Close-focus d4 = 5.28 and d9 = 2.21 are US 7,656,591 Table 1's minimum-imaging-distance
     // row (beta = -0.50, d0 = 72.3 mm); close BF 78.14 is computed, not printed.
     published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 72.3,
+        distanceReference: "first-surface",
+        source:
+          "US 7,656,591 B2, Example 1, Table 1, Variable Distances, minimum imaging distance column, PDF p. 12: d0: 72.3; d4=5.28 mm; d9=2.21 mm; authored Bf=78.14 mm is computed, not printed.",
+      },
+    ],
   },
 
   /* (moved from var) ── Variable air spacings (CRC floating focus) ──

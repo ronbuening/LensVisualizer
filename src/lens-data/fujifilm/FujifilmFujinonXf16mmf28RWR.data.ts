@@ -284,6 +284,16 @@ const LENS_DATA = {
   ],
 
   focus: {
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 1000,
+        distanceReference: "first-surface",
+        source:
+          "US20200073096A1, Example 3, Table 11, 1 m column; DD[15]=3.10, DD[17]=4.51 mm; ¶0083 (PDF p.21 (printed p.9)): 1 m. Distance reference identified by the conjugate audit (referenceBasis: audit-resolved); the patent does not define the datum.",
+      },
+    ],
     closeFocusM: 0.17,
     /* ── Focus mechanism ──
      * focusT = 0: infinity (published)

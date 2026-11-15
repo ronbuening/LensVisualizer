@@ -352,6 +352,7 @@ const schema = object(
               keyframe: number,
               objectDistanceMm: number,
               distanceReference: literal("first-surface", "image-plane"),
+              sourceMagnification: freeText,
               source: freeText,
             },
             ["zoomStation", "keyframe", "objectDistanceMm", "distanceReference", "source"],

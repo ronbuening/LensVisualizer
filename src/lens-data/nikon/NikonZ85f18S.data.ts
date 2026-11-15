@@ -268,6 +268,16 @@ const LENS_DATA = {
       "Source POS2 is 0.8 m object-to-image: Gr2 moves imageward 3.838 mm and Gr3 objectward 6.762 mm. Gr1, stop and Gr4 are fixed (0.001 mm table rounding). Intermediate motion is interpolated; the rounded prescription gives about 0.803 m at POS2.",
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 800,
+        distanceReference: "image-plane",
+        source:
+          "JP 2020-173366 A, Example 3, ¶0070 可変パラメーター, POS2 row, PDF p17: 物体距離 0.8m(POS2); gaps (mm): 7=10.02, 10=9.445, 13=8.821, STO=5.153. Object distance is to the image plane (¶0060).",
+      },
+    ],
   },
 
   /* (moved from var) ── Variable air spacings (floating inner focus) ──

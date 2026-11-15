@@ -118,3 +118,21 @@ Seventeen of the twenty elements (thirteen of the fifteen distinct pairs) are ex
 - L61 named. HIKARI's moulding glass Q-PSKH4S (nd 1.59245, ne 1.594563, νd 66.92) equals the printed 1.59456 / 66.9, and L61 is a double-sided asphere. The row was added to the site catalog from the HIKARI 2025-06-01 data workbook, so L61 traces on its curve. Seventeen of twenty elements are now on catalog curves; L21, L51 and L73 stay Unmatched.
 - `apdNote` on L32, L42 and L43 said "ΔPgF ≈ +0.035 (catalog value)", a figure written for the earlier S-FPL55 label. It now states FCD100's catalog P_g,F 0.5336, about +0.050 above the engine's normal line.
 - `role` strings no longer name S-FPL55 (L32, L42, L43) or quote the printed e-line indices of L41 and L71 as nd, and they describe L13 as a phosphate crown (PCD51) and L24 as a lanthanum crown (LAC14).
+
+## 2026-11-14 — Published finite conjugates
+
+Patent: WO 2025/263124 A1, Example 1.
+
+| Zoom/keyframe | Before | Added object distance / reference | Source locator | Paraxial offset (mm / diffraction depths) | Other-reference offset (mm / depths) |
+|---|---|---|---|---|---|
+| 0/1 | No conjugate | 222.83 mm / `first-surface` | PDF p. 27, printed p. 25; Table 3, Wide finite column, d0 row; `d0 = 222.83` | 0.059562762 / 13.11991 | 5.0239689 / 957.67556 |
+| 1/1 | No conjugate | 218.28 mm / `first-surface` | PDF p. 27, printed p. 25; Table 3, Mid finite column, d0 row; `d0 = 218.28` | 0.062829487 / 13.933921 | 10.963484 / 1775.0759 |
+| 2/1 | No conjugate | 207.35 mm / `first-surface` | PDF p. 27, printed p. 25; Table 3, Tele finite column, d0 row; `d0 = 207.35` | 0.074582682 / 16.331259 | 31.727284 / 3097.1934 |
+
+The retained rows are `consistent` under the 25-diffraction-depth criterion. Existing gaps, image plane and published flags are retained.
+
+- State 0/1: D5=0.8 mm; D12=23.32 mm; D18=8.07 mm; D26=4.79 mm; D28=5.9 mm; BF=2.07 mm.
+- State 1/1: D5=13.82 mm; D12=10.61 mm; D18=6.53 mm; D26=6.65 mm; D28=5.39 mm; BF=6.51 mm.
+- State 2/1: D5=26.1 mm; D12=2.24 mm; D18=5.13 mm; D26=7.1 mm; D28=5.54 mm; BF=14.31 mm.
+
+Reference evidence: Table 1 (PDF p. 26, printed p. 24): "0(OBJ)" has "(d0)" in the di column, immediately before surface 1.
