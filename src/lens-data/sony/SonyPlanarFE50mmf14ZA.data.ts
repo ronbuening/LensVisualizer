@@ -273,6 +273,24 @@ const LENS_DATA = {
     /* ── Variable air spacings (inner focus) ── */
     keyframes: [0, 0.26868481558865914, 1],
     description: "Inner focus — GR2 (L21 + L22, 2 elements) translates axially; GR1 and GR3 fixed. Ring Drive SSM.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 1556.13,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.03",
+        source: "WO 2017/138250 A1, Numerical Example 2 (PDF p. 16): prints “β: 0.03” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.03233.",
+      },
+      {
+        zoomStation: 0,
+        keyframe: 2,
+        objectDistanceMm: 336.34,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.15",
+        source: "WO 2017/138250 A1, Numerical Example 2 (PDF p. 16): prints “β: 0.15” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.14923.",
+      },
+    ],
     // (moved from publishedStations) Every focus keyframe is a source row.
     published: [1, 2],
   },

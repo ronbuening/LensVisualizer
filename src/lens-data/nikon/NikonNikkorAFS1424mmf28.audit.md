@@ -105,3 +105,23 @@ Direct source: `patents/US7359125.pdf`, PDF p. 2 FIG. 1 wide/tele (600 dpi crops
 - Fresh Table 1 check: all 15 material nd/vd pairs retained, including the printed unusual 1.772789/49.45 at S22. Source explicitly uses d = 587.56 nm; no C/F/g indices or partial-dispersion values are published. All 13 available curves are labeled catalog-compatible spectral proxies with source/catalog coordinates and unspecified production supplier. E4 resin identity remains inferred/unresolved; E12 stays unresolved, rather than forcing a 1.7725-class match. ED/APD badges remain inferred, without invented partial data.
 - Canonical/full rim-cut validation, surface and circle checks pass. Current field coverage reaches all three full-frame corners (100%); the older paraxial field-limit note is obsolete. Actual SVGs at all five focus keyframes × three zoom stations were generated and visually checked; all 15 states have zero render trimming. Source close-object D0=125/134.71/140.46 mm with the unchanged runtime iris passes 25/25 axial pupil samples at each station. These are sample counts, not flux estimates.
 - Aperture audit retains the pre-existing tele nonparaxial/stop limit: f/3.00 versus source f/2.88 (+4.2%), classified trace/STO rather than an inferred lens rim. Wide and middle pass. No iris, source R/d, focus motion or tolerance was recalibrated.
+
+## 2026-11-14 — Source-certified finite conjugates
+
+Patent: US 7,359,125 B2, Example 1, Table 1, Variable Distances, Focusing on an intermediate distance, W column.
+
+| Zoom / keyframe | Field | Before | After | Source and axial residual |
+| --- | --- | --- | --- | --- |
+| 0 / 3 | `focus.conjugates` | Absent | 536.77 mm, `first-surface` | PDF p. 12, Example 1, Table 1, Variable Distances, Focusing on an intermediate distance, W column: D0 536.77; +0.001930628 mm (+0.198070 depths of focus), `consistent`. |
+| 0 / 4 | `focus.conjugates` | Absent | 125 mm, `first-surface` | PDF p. 12, Example 1, Table 1, Variable Distances, Focusing on a close object, W column: D0 125.00; +0.001786155 mm (+0.183249 depths of focus), `consistent`. |
+| 1 / 2 | `focus.conjugates` | Absent | 682.52 mm, `first-surface` | PDF p. 12, Example 1, Table 1, Variable Distances, Focusing on an intermediate distance, M column: D0 682.52; -0.004465801 mm (-0.458182 depths of focus), `consistent`. |
+| 1 / 4 | `focus.conjugates` | Absent | 134.71 mm, `first-surface` | PDF p. 12, Example 1, Table 1, Variable Distances, Focusing on a close object, M column: D0 134.71; -0.004163002 mm (-0.427112 depths of focus), `consistent`. |
+| 2 / 1 | `focus.conjugates` | Absent | 916.19 mm, `first-surface` | PDF p. 12, Example 1, Table 1, Variable Distances, Focusing on an intermediate distance, T column: D0 916.19; -0.006730350 mm (-0.690535 depths of focus), `consistent`. |
+| 2 / 4 | `focus.conjugates` | Absent | 140.46 mm, `first-surface` | PDF p. 12, Example 1, Table 1, Variable Distances, Focusing on a close object, T column: D0 140.46; -0.006872278 mm (-0.705099 depths of focus), `consistent`. |
+
+- State 0/3: d11=33.18 mm; d14=4.61 mm; Bf=38.70 mm. The patent does not explicitly define the distance reference; the conjugate check discriminates the declared reference from the alternate. Alternate-reference residual: +0.160356529 mm (+16.388569 depths of focus).
+- State 0/4: d11=36.36 mm; d14=1.43 mm; Bf=38.70 mm. The patent does not explicitly define the distance reference; the conjugate check discriminates the declared reference from the alternate. Alternate-reference residual: Object is not in front of the first surface..
+- State 1/2: d11=17.33 mm; d14=4.90 mm; Bf=44.55 mm. The patent does not explicitly define the distance reference; the conjugate check discriminates the declared reference from the alternate. Alternate-reference residual: +0.130239911 mm (+13.321677 depths of focus).
+- State 1/4: d11=20.38 mm; d14=1.85 mm; Bf=44.55 mm. The patent does not explicitly define the distance reference; the conjugate check discriminates the declared reference from the alternate. Alternate-reference residual: Object is not in front of the first surface..
+- State 2/1: d11=1.95 mm; d14=5.11 mm; Bf=53.97 mm. The patent does not explicitly define the distance reference; the conjugate check discriminates the declared reference from the alternate. Alternate-reference residual: +0.113381879 mm (+11.604459 depths of focus).
+- State 2/4: d11=5.21 mm; d14=1.85 mm; Bf=53.97 mm. The patent does not explicitly define the distance reference; the conjugate check discriminates the declared reference from the alternate. Alternate-reference residual: Object is not in front of the first surface..

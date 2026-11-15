@@ -259,6 +259,16 @@ const LENS_DATA = {
     closeFocusM: 0.486,
     description:
       "Published gap endpoints: L2/FN moves imageward and L3/FP objectward; source prose keeps L1/STO/RF fixed, with a retained 0.02 mm table-track discrepancy. Distance 0.486 m is product metadata and intermediate gaps are interpolated. Source paragraph 0048 prefers a focus-varying iris and near Figure 2(B) states Fno 5.60, but supplies no physical diameter schedule; current fixed derived iris is retained as a model limitation.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 303.99,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.5",
+        source: "JP 2018-132674 A, Numerical Data 1 (PDF p. 11): prints “至近（撮像倍率０．５倍）” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.49985.",
+      },
+    ],
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
   },

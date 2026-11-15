@@ -222,6 +222,16 @@ const LENS_DATA = {
   ],
   focus: {
     closeFocusM: 1.5248,
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 1404.27,
+        distanceReference: "first-surface",
+        sourceMagnification: "1/10",
+        source: "US 4,610,514, Embodiment 3 (PDF p. 11): prints “When focusing to a magnification β = 1/10, d7 = 19.79 and d10 = 19.23” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription at that magnification; focused on its image plane the state gives 0.10059.",
+      },
+    ],
     published: [1],
     description:
       "PUBLISHED internal focus: the cemented doublet of Unit II (E5–E6) moves 7.33 mm toward the image while Units I and III stay fixed. The patent does not say whether the stop moves; it is modelled fixed with Unit I. The near end is the patent's printed β = 1/10 state (d7 = 19.79, d10 = 19.23 at f = 100, scaled ×1.35), at 1.525 m object to image. The production lens focuses to 1.0 m (0.16×); the patent prints no state that close.",

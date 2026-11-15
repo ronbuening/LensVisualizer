@@ -559,7 +559,30 @@ const LENS_DATA = {
   },
   "focus": {
     "closeFocusM": 0.35,
-    "description": "The patent prints infinity and 0.35 m spacings at wide, middle and tele; those six states are exact. G2 is the focusing group and moves objectward for closer focus. The intermediate zoom positions are an inferred reconstruction, not the factory cam: G3 is the variator, G2 follows a single-reversal law (imageward, then objectward, as claim 2 states), and G4 is solved for infinity focus at each position. Between printed stations the near state is solved for the object-to-image distance interpolated between the printed near states, which the patent labels 0.35 m. The marketed minimum focus distance in normal mode is 0.35 m; the macro mode is not modeled."
+    "description": "The patent prints infinity and 0.35 m spacings at wide, middle and tele; those six states are exact. G2 is the focusing group and moves objectward for closer focus. The intermediate zoom positions are an inferred reconstruction, not the factory cam: G3 is the variator, G2 follows a single-reversal law (imageward, then objectward, as claim 2 states), and G4 is solved for infinity focus at each position. Between printed stations the near state is solved for the object-to-image distance interpolated between the printed near states, which the patent labels 0.35 m. The marketed minimum focus distance in normal mode is 0.35 m; the macro mode is not modeled.",
+    "conjugates": [
+      {
+        "zoomStation": 0,
+        "keyframe": 1,
+        "objectDistanceMm": 350,
+        "distanceReference": "image-plane",
+        "source": "JP 2012-173420 A, Numerical Example 2, paragraph 0109 (PDF p. 18), various data 1 (PDF/printed p. 21), 0.35m row. WE: D6=5.3346, D8=31.3775, D14=3.8142, D18=6.8162 mm. The image-plane reference is identified by the finite-conjugate audit (audit-resolved); the patent does not explicitly define the reference."
+      },
+      {
+        "zoomStation": 20,
+        "keyframe": 1,
+        "objectDistanceMm": 350,
+        "distanceReference": "image-plane",
+        "source": "JP 2012-173420 A, Numerical Example 2, paragraph 0109 (PDF p. 18), various data 1 (PDF/printed p. 21), 0.35m row. ST: D6=8.0933, D8=13.5815, D14=7.9355, D18=17.732 mm. The image-plane reference is identified by the finite-conjugate audit (audit-resolved); the patent does not explicitly define the reference."
+      },
+      {
+        "zoomStation": 40,
+        "keyframe": 1,
+        "objectDistanceMm": 350,
+        "distanceReference": "image-plane",
+        "source": "JP 2012-173420 A, Numerical Example 2, paragraph 0109 (PDF p. 18), various data 1 (PDF/printed p. 21), 0.35m row. TE: D6=4.5785, D8=2.8888, D14=19.7513, D18=20.1237 mm. The image-plane reference is identified by the finite-conjugate audit (audit-resolved); the patent does not explicitly define the reference."
+      }
+    ]
   },
   "gaps": {
     "6": {

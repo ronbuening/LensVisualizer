@@ -436,6 +436,16 @@ const LENS_DATA = {
   },
 
   focus: {
+    conjugates: [
+      {
+        zoomStation: 1,
+        keyframe: 1,
+        objectDistanceMm: 1100,
+        distanceReference: "first-surface",
+        source:
+          "JP2023033114A, Example 1, Table 2, 望遠端_至近; DD[5]=31.285, DD[13]=0.945, DD[19]=16.026, DD[22]=7.034 mm (PDF p.49 (printed p.49), ¶0218; gaps PDF p.51 (printed p.51)): １．１ｍ（メートル）.",
+      },
+    ],
     closeFocusM: 0.6,
     /* ── Zoom and focus variable gaps ──
      * focusPositions[1] corresponds to 1.195394397 m from object to the air-equivalent

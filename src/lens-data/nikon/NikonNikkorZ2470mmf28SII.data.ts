@@ -381,6 +381,32 @@ const LENS_DATA = {
     closeFocusM: 0.31946,
     description:
       "Published infinity and near-distance (165 mm) spacing rows at wide/middle/tele. G5 and G6 move independently objectward. The 165 mm first-vertex reference is inferred from conjugate calculations; object-to-image endpoint is about 0.31946 m. Continuous zoom/focus interpolation is schematic, not a source cam or calibrated focus law.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 165,
+        distanceReference: "first-surface",
+        source:
+          "WO 2024/214585 A1, Example 2, Table 2 variable-spacing data, near wide/middle/tele columns, PDF p. 36 (printed p. 34): 近距離(165mm)合焦時; D5 [5]=42.598, D8 [8]=2.356, D13 [13]=1, D18 [18]=9.304, D21 [21]=5.825, D23 [23A]=15.353, D25 [25A]=11.855 mm. First-surface distance reference identified by the conjugate audit; the patent does not explicitly define the reference.",
+      },
+      {
+        zoomStation: 1,
+        keyframe: 1,
+        objectDistanceMm: 165,
+        distanceReference: "first-surface",
+        source:
+          "WO 2024/214585 A1, Example 2, Table 2 variable-spacing data, near wide/middle/tele columns, PDF p. 36 (printed p. 34): 近距離(165mm)合焦時; D5 [5]=5.259, D8 [8]=12.947, D13 [13]=13.547, D18 [18]=5.626, D21 [21]=16.172, D23 [23A]=12.261, D25 [25A]=22.479 mm. First-surface distance reference identified by the conjugate audit; the patent does not explicitly define the reference.",
+      },
+      {
+        zoomStation: 2,
+        keyframe: 1,
+        objectDistanceMm: 165,
+        distanceReference: "first-surface",
+        source:
+          "WO 2024/214585 A1, Example 2, Table 2 variable-spacing data, near wide/middle/tele columns, PDF p. 36 (printed p. 34): 近距離(165mm)合焦時; D5 [5]=1.238, D8 [8]=2.305, D13 [13]=22.4, D18 [18]=2.164, D21 [21]=16.256, D23 [23A]=14.442, D25 [25A]=29.495 mm. First-surface distance reference identified by the conjugate audit; the patent does not explicitly define the reference.",
+      },
+    ],
   },
 
   gaps: {

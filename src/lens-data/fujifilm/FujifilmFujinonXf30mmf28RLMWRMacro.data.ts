@@ -357,6 +357,16 @@ const LENS_DATA = {
 
   /* ── Focus and aperture configuration ── */
   focus: {
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 18.2,
+        distanceReference: "first-surface",
+        source:
+          "CN116500768A, Example 1, Table 2, 最近 column; DD[14]=10.754, DD[19]=4.757 mm (PDF p.25 (specification p.20/41), ¶0317; gaps PDF p.26 (specification p.21/41)): 18.2mm(毫米).",
+      },
+    ],
     closeFocusM: 0.1,
     description: "PUBLISHED endpoints: G2 (L21-L23) moves 8.453 mm imageward; no internal focus reconstruction.",
     // (moved from publishedStations) The close-focus row is source-tabulated.

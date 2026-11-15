@@ -21,3 +21,13 @@ Patent: US 8,854,747 B2, First Numerical Example
 
 - Why the old value differed: patent close state is beta = -0.1; focus description gives the production 0.15 m MFD.
 - `catalog.closeFocusM.marketing` 0.15 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.
+
+## 2026-11-14 — Finite conjugates from printed magnifications
+
+| Zoom / keyframe | Printed magnification → `sourceMagnification` | Source locator | Solved object distance | Check |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | “−0.1x” → `"0.1"` | US 8,854,747 B2, Example 1 (PDF p. 22) | 221.72 mm, first-surface | in focus 0.09973; at the declared distance 0.09973; +0.00 quarter waves |
+
+The patent prints a magnification and no object distance for this state. Each distance is solved from the prescription under `LENS_DATA_SPEC.md` § Finite conjugates: the distance that focuses the state on its image plane when the magnification there rounds to the print, otherwise the distance at the nearest magnification that does. Two independent readings of the patent agree on the printed value and on the gaps of the matching state.
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.

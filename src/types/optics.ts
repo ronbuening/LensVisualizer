@@ -385,6 +385,12 @@ export interface FiniteConjugate {
   zoomT: number;
   objectDistanceMm: number;
   distanceReference: "first-surface" | "image-plane";
+  /**
+   * Magnitude of the magnification the source prints for this state, as printed ("0.50", "1/10", "1:2"). Present
+   * only when the source prints no object distance and `objectDistanceMm` is solved from the prescription. On a
+   * teleconverter-composed lens it stays the bare host's print, which the converter multiplies.
+   */
+  sourceMagnification?: string;
   /** Publication/embodiment/table or other evidence establishing both distance and focus spacings. */
   source: string;
 }
@@ -435,6 +441,19 @@ export interface UnresolvedSourceErratum {
 
 export type SourceErratum = CorrectedSourceErratum | UnresolvedSourceErratum;
 
+/** A source-definition gap addressed by a documented assumption or stand-in. */
+export interface SourceOmission {
+  /** Unpublished asphere coefficients, individual blank terms taken as zero, or an interpreted governing equation. */
+  kind: "asphere-coefficients" | "asphere-term" | "asphere-equation";
+  /** Authored surface labels, including any aspherical suffix. */
+  surfaces: string[];
+  /** What is missing and how it is modeled; name the blank coefficients for asphere-term. */
+  note: string;
+}
+
+/** Evidence for the lens's clear semi-diameters; absence makes no claim about their origin. */
+export type SemiDiameterSource = "source-table" | "figure-measured" | "heuristic";
+
 /** The numerical example of the cited publication a file transcribes; see LENS_DATA_SPEC.md § Patent metadata. */
 export interface PatentExample {
   /** The source's designation in Title Case ("Example 6", "Table IV"), or "Sole example" for an unnumbered one. */
@@ -476,6 +495,8 @@ export interface LensData {
   patentYear?: number;
   /** Departures from, and unresolved contradictions in, the source's printed values; see LENS_DATA_SPEC.md. */
   sourceErrata?: SourceErratum[];
+  sourceOmissions?: SourceOmission[];
+  sdSource?: SemiDiameterSource;
   elementCount?: number;
   groupCount?: number;
   visible?: boolean;

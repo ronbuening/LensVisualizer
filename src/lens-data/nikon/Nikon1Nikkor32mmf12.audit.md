@@ -40,3 +40,14 @@ Reviewed local untracked patent file `patents/WO2014061226A1.pdf`, Example 1 / T
 
 - Why the old value differed: printed close row states no distance; 0.45 m is the old (production) value.
 - `catalog.closeFocusM.marketing` 0.45 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.
+
+## 2026-11-14 — Finite conjugates from printed magnifications
+
+| Zoom / keyframe | Printed magnification → `sourceMagnification` | Source locator | Solved object distance | Check |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | “撮影倍率−０．０１倍” → `"0.01"` | WO 2014/061226 A1, Example 1 (PDF p. 18) | 3300.35 mm, first-surface | in focus 0.00985; at the declared distance 0.00985; +0.00 quarter waves |
+| 0 / 2 | “撮影倍率−０．０７倍” → `"0.07"` | WO 2014/061226 A1, Example 1 (PDF p. 18) | 443.5 mm, first-surface | in focus 0.07469; at the declared distance 0.07469; −0.01 quarter waves |
+
+The patent prints a magnification and no object distance for these states. Each distance is solved from the prescription under `LENS_DATA_SPEC.md` § Finite conjugates: the distance that focuses the state on its image plane when the magnification there rounds to the print, otherwise the distance at the nearest magnification that does. Two independent readings of the patent agree on the printed value and on the gaps of the matching state.
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.

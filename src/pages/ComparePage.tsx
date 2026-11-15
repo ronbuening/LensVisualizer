@@ -5,7 +5,7 @@
  * comparison visualizer (client-only). Follows the LensPage pattern.
  */
 
-import { useParams, Navigate, Link } from "react-router";
+import { useParams, useLocation, Navigate, Link } from "react-router";
 import LensVisualization from "../components/layout/LensViewer.js";
 import SEOHead from "../components/SEOHead.js";
 import ClientOnly from "../components/ClientOnly.js";
@@ -13,6 +13,7 @@ import { COMPARISON_CATALOG_KEYS, LENS_CATALOG } from "../utils/catalog/lensCata
 import { deriveMaker, lensDisplaySubtitle } from "../utils/catalog/lensMetadata.js";
 import { comparePageTitle, comparePageDescription, compareCanonicalURL } from "../comparison/comparisonURLSync.js";
 import { textRun } from "../utils/text.js";
+import { buildLensNavigationUrl } from "../utils/state/mtfUrlState.js";
 
 const CONTENT_STYLE: React.CSSProperties = {
   maxWidth: 960,
@@ -26,6 +27,7 @@ const NAV_STYLE: React.CSSProperties = { marginBottom: "1rem", fontSize: "0.8rem
 const NAV_LINK_STYLE: React.CSSProperties = { color: "#7ec8e3", textDecoration: "none" };
 
 function LensSummary({ lensKey }: { lensKey: string }) {
+  const { search } = useLocation();
   const lens = LENS_CATALOG[lensKey];
   if (!lens) return null;
   const maker = deriveMaker(lens.name, lens.maker);
@@ -33,7 +35,7 @@ function LensSummary({ lensKey }: { lensKey: string }) {
   return (
     <section style={{ marginBottom: "1.5rem" }}>
       <h2 style={{ fontSize: "1rem", fontWeight: 600, marginBottom: "0.25rem" }}>
-        <Link to={`/lens/${lensKey}/`} style={NAV_LINK_STYLE}>
+        <Link to={buildLensNavigationUrl(`/lens/${lensKey}/`, search)} style={NAV_LINK_STYLE}>
           {lens.name}
         </Link>
       </h2>

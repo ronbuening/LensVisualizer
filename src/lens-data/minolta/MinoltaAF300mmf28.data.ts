@@ -210,6 +210,16 @@ const LENS_DATA = {
       "Inner focus by image-side translation of subunit II-2 (L6-L8). Patent Table 9 gives 11.760 mm travel for a 3 m object distance; production MFD is 2.5 m but is not tabulated in the patent.",
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 3000,
+        distanceReference: "image-plane",
+        source:
+          "US 4,518,229, Example 8, Table 9 (PDF p. 14, col. 10): Object Distance 3 m, Movement 11.760 mm; d10=14.760 mm, d15=10.240 mm; image-plane reference identified by the conjugate audit (audit-resolved).",
+      },
+    ],
   },
 
   gaps: { "10": { label: "D10", values: [[3.0, 14.76]] }, "15": { label: "D15", values: [[22.0, 10.24]] } },

@@ -45,3 +45,13 @@ Patent: JP 2002-090622 A, Example 2
 - `catalog.closeFocusM.marketing` 0.38 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.
 
 Text sync: gap comment: the 1:1 row focuses at 0.414 m object to image (Voigtländer quotes 0.38 m).
+
+## 2026-11-14 — Finite conjugates from printed magnifications
+
+| Zoom / keyframe | Printed magnification → `sourceMagnification` | Source locator | Solved object distance | Check |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | “撮影倍率等倍; D13 = 52.78; D15 = 10.22” → `"1:1"` | JP 2002-090622 A, Example 2 (PDF p. 4) | 215.3 mm, first-surface | in focus 0.99983; at the declared distance 1.00004; +0.80 quarter waves |
+
+The patent prints a magnification and no object distance for this state. Each distance is solved from the prescription under `LENS_DATA_SPEC.md` § Finite conjugates: the distance that focuses the state on its image plane when the magnification there rounds to the print, otherwise the distance at the nearest magnification that does. Two independent readings of the patent agree on the printed value and on the gaps of the matching state.
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.

@@ -61,3 +61,13 @@ Patent: JP 2022-33487 A, Numerical Example 1
 - Cross-check of the patent's line: the L1/L2/L5 mean of the patent ΔθgF column is +0.0246 and the L13/L15 mean is −0.0025, matching conditions (1) and (3) in the patent's table (0.025, −0.003).
 - Data file: header note and element-registry comment now state the convention and tabulate θgF, the patent ΔθgF and the stored value. No `apdNote` was added (no element carried one). nd, νd, glass labels, apd tags and surfaces are unchanged.
 - Analysis: added one paragraph in §3 naming the patent's formula and the file's convention; L7 now says its +0.0492 is measured from the patent's line; the L10 text and §4.2 row no longer describe the +0.0072 / +0.0087 pair as a melt residual, since both come from the same θgF on two reference lines. Every ΔθgF in the conditional-expression checks is still the patent's.
+
+## 2026-11-14 — Published finite conjugates
+
+Patent: JP 2022-033487 A, Numerical Example 1, PDF pp. 15-16.
+
+| Zoom / keyframe | Field | Before | After | Source and conjugacy residual |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | `focus.conjugates` | Undeclared | `1346.05` mm, `first-surface` | PDF p. 16, [可変間隔データ], 1470mm column, d0 row; offset +0.000388371 mm (+0.150038 diffraction depths), alternate +32.862534 depths; `consistent`. |
+
+The surface table lists `d0` on the object-plane row immediately before surface 1, defining the first-surface reference. The existing focus gaps match the finite column at the authored precision; only the conjugate declarations are added.

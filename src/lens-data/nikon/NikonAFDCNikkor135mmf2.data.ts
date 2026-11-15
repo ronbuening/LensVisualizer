@@ -187,6 +187,16 @@ const LENS_DATA = {
       "Published rear-focus anchors: corrected infinity to β = -0.0333 at 4.0967736 m object-to-image-plane. GR moves 6.8090 mm objectward while G1 and G2 remain fixed. The production 1.1 m minimum-focus endpoint is not reconstructed. DC motion changes D3 and compensates with GR motion while the inferred stop station remains fixed; the three close DC positions are patent-published.",
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 3938.0404,
+        distanceReference: "first-surface",
+        source:
+          "US 4,908,639 A, Example 2, Table 2, 2 pos (PDF pp. 12–13): D0=3938.0404 mm, defined as object to first lens surface; d3=10.0000 mm, d7=30.4792 mm (8 mm before STO plus 22.4792 mm after), Bf=67.9540 mm.",
+      },
+    ],
   },
 
   gaps: {

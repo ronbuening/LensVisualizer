@@ -353,6 +353,24 @@ const LENS_DATA = {
     closeFocusM: 1.8,
     description:
       "Published front-group focus: G1 moves 10.496 mm objectward at both zoom endpoints; D13 and D18 remain fixed. The patent close states (beta = -0.055 / -0.135) normalize to approximately 1.800 m object-to-image-plane distance.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 1572.59,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.055",
+        source: "JP S62-108218 A, Example 3 (PDF p. 6): prints “β = −0.055” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.05505.",
+      },
+      {
+        zoomStation: 1,
+        keyframe: 1,
+        objectDistanceMm: 1572.47,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.135",
+        source: "JP S62-108218 A, Example 3 (PDF p. 6): prints “β = −0.135” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.13487.",
+      },
+    ],
   },
 
   gaps: {

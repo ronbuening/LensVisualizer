@@ -276,3 +276,13 @@ Reuse actual Oct 29 complete shape/glass review with Oct 7/Oct 10 history retain
 Positive new source: [CDGM official September 2026 Zemax AGF](https://www.cdgmgd.com/downloadFile.htm?uid=3f4d14c82d2c11eeb5ac000c29c8de8c), row 11159 D-ZLAF67, source GC anneal 4°C/h; six verbatim formula 2 coefficients, λ in µm, range 0.365–2.325 µm. It passes unchanged catalog consistency guards. Source L2/S3 remains1.88421/37.00; candidate nd 1.883850025/νd 37.198899 gives residuals −0.000359975/+0.198899 and PgF 0.577684 (no source partial residual available). Existing M-TAFD307 is appreciably farther in index,−0.00218722/+0.221297. D-ZLAF67-25 is a distinct anneal-state row with a farther index. No generic-code reassignment or supplier/chemistry/anneal inference follows.
 
 Bounded all-media search across existing/full prior vendor data and184 NHG2601 headers retains L5/L6/L7/L12 unresolved. SF15's L5 differences +0.00235/+1.13 and S-TIM27's L12 differences about−0.000991/+1.06 are weak approximate windows, not source-spectral evidence. All eight previously active curve choices stay fixed. L2 alone changes from Abbe approximation to a qualified catalog curve; d-line geometry and every numeric/source/APD/asphere/rim/stop/focus field stay equal. Current coverage becomes9/13 lens elements. Existing source aberration-plot discrepancy and runtime/production limits remain; no complete source-shape count, fit or new APD tag is added.
+
+## 2026-11-14 — Published finite conjugates
+
+Patent: CN 112285890 B, Example 2.
+
+| Zoom / keyframe | Field | Before | After | Source and paraxial residual |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | `focus.conjugates` | Absent | `2500` mm, `first-surface` | CN 112285890 B, Example 2, PDF p. 9, paragraph 0081: object distance 2500 mm; D(2)=9.4148, D(9)=10.3063, D(23)=13.7801 mm. The first-surface reference is identified by the conjugate audit (audit-resolved); the patent does not define the distance reference. Signed image-plane offset -0.000988360 mm (-0.853370 diffraction depths); other-reference offset +35.202710 diffraction depths; `consistent`. |
+
+The patent prints an object distance without explicitly defining its endpoint. The conjugate audit discriminates the first-surface reference; the provenance is audit-resolved and is stated in each source string. No prescription values or published flags change.

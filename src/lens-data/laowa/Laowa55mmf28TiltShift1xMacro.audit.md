@@ -209,3 +209,14 @@ Existing and full retained manufacturer tables were reused as the bounded search
 Additional public manufacturer checks: Osaka Gas OKP lists optical polymers at nD1.607–1.656/νD21–27 and requests company/name/email for coefficient downloads; no form was sent. Kuraray PARAPET/KURARITY are PMMA/acrylic polymer products, with no compatible ordinary-glass row identified. LZOS's public catalog page was not usable: its www hostname failed certificate validation, its canonical non-www page returned a JavaScript-cookie redirect, and the web reader returned502. These are bounded source-access/search outcomes, not proof that unpublished glass does not exist.
 
 Retain all 8 active curves,6 unmatched media,2 inferred APD tags and source qualifications. Data remains byte-identical. All R/d, indices/Abbe values, caps, cuts, stops and movement/focus controls are preserved. No new full-lens source/shape review, beam sweep or production claim is added.
+
+## 2026-11-14 — Finite conjugates from printed magnifications
+
+| Zoom / keyframe | Printed magnification → `sourceMagnification` | Source locator | Solved object distance | Check |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | “0.5倍” → `"0.5"` | CN 118671950 A, Example 1 (PDF p. 7) | 107.84 mm, first-surface | in focus 0.49917; at the declared distance 0.49918; +0.04 quarter waves |
+| 0 / 2 | “1.0倍” → `"1.0"` | CN 118671950 A, Example 1 (PDF p. 7) | 75.36 mm, first-surface | in focus 0.96249; at the declared distance 0.96245; −0.08 quarter waves |
+
+The patent prints a magnification and no object distance for these states. Each distance is solved from the prescription under `LENS_DATA_SPEC.md` § Finite conjugates: the distance that focuses the state on its image plane when the magnification there rounds to the print, otherwise the distance at the nearest magnification that does. Two independent readings of the patent agree on the printed value and on the gaps of the matching state.
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.

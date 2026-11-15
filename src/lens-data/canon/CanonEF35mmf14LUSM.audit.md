@@ -98,3 +98,14 @@ The patent names no spectral line for its index and Abbe columns, and the 2026-1
 | Element 9 | 1.83481 / 42.7 | J-LASF05 | +0.000000 | +0.033 |
 | Element 10 | 1.7725 / 49.6 | J-LASF016 | +0.000000 | +0.020 |
 | Element 11 | 1.7725 / 49.6 | J-LASF016 | +0.000000 | +0.020 |
+
+
+## 2026-11-14 — Published finite conjugate
+
+Patent: JP H11-211978 A, Numerical Example 1, ¶0034/Table 1, PDF/printed p. 5; reference definition in ¶0011, p. 3.
+
+| State | Field | Before | After |
+| --- | --- | --- | --- |
+| Zoom station 0, keyframe 1 | `focus.conjugates` | Absent | 300 mm, image-plane reference (patent-defined) |
+
+Table 1 prints `OBJ=300 時`, with d6 = 0.43 mm and d13 = 2.06 mm, matching keyframe 1 exactly. Paragraph 0011 defines the reference: 「物体距離が像面より３００（数値実施例の数値をｍｍで表わしたとき３００ｍｍ）離れたときの近距離の場合を示している。」 This is 300 mm from the image plane. The conjugate audit gives -0.006462068 mm (-2.235349 depths), versus -2.384738560 mm (-873.223905 depths) for a first-surface reference. The accepted row is `consistent` and reference-discriminated.
