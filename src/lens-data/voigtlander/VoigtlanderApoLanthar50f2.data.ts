@@ -265,6 +265,16 @@ const LENS_DATA = {
       "Patent F36 floating focus: front group, Jb, and Ja+LE move 8.94, 8.54, and 5.53 mm toward the object. Close endpoint is 0.455 m from the image plane (370 mm from surface 1). Intermediate motion is interpolated.",
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 370,
+        distanceReference: "first-surface",
+        source:
+          "JP 2021-043376 A, Example 5, Table 5, フォーカス可変間隔, F36 column (PDF p. 27): ZD 0=370.00 mm is the object-to-first-surface gap (Table 5, OBJ row, PDF p. 27); ZD10=5.89 mm, ZD14=3.57 mm, ZD19=20.53 mm.",
+      },
+    ],
   },
 
   /* (moved from var) ── Variable air spacings — F36 focus scheme ──

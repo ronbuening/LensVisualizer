@@ -194,6 +194,16 @@ const LENS_DATA = {
   ],
 
   focus: {
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 726.0057,
+        distanceReference: "first-surface",
+        source:
+          "JP2014145954A, Numerical Example 1, [可変間隔データ], 800mm column, d0 row (PDF p.9, printed p.9): d0=726.0057 mm; d6=6.6783; d10=5.3917 mm. The surface table (p.8) lists d0 in the object-plane d row before surface 1.",
+      },
+    ],
     closeFocusM: 0.5,
     keyframes: [0, 0.6254433871190281, 1],
     description:

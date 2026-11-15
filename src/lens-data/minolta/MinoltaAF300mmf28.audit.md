@@ -33,3 +33,13 @@ Patent: US 4,518,229, Example 8 / Tables 8-9
   `S-LAL52 (OHARA catalog-equivalent to 670571; patent vendor unspecified)`. This selects a
   coefficient-backed dispersion model without claiming an OHARA production blank.
 - Synchronized the analysis narrative and table. No geometry, APD status, or semi-diameter changed.
+
+## 2026-11-14 — Published finite-conjugate certification
+
+Patent: US_4518229_A.pdf; source locators below use one-based PDF pages.
+
+| Zoom / keyframe | Field | Before | After | Source and paraxial residual |
+|---|---|---|---|---|
+| 0 / 1 | `focus.conjugates` | Absent | 3000 mm, `image-plane` | PDF p. 14, Table 9, Example 8 row, col. 10; Table 8 at the same page gives infinity d10=3.000 and d15=22.00; offset -0.00790610807519 mm (-0.730741771 depths), other reference -291.202279 depths; `consistent`, reference discriminated. |
+
+State 0/1: reference basis is audit-resolved. The finite gaps D10=14.76 and D15=10.24 mm follow the explicitly printed 11.760 mm movement. The patent gives no explicit distance reference. First-surface initially yields other-reference; image-plane recheck yields consistent. The distance, focus gaps and image plane are retained without adjustment.

@@ -423,6 +423,24 @@ const LENS_DATA = {
     keyframes: [0, 0.7573770485166879, 1],
     description:
       "Dual floating internal focus: L2 moves toward the image while L3 moves toward the object; L1, the stop, L4, L5, and L6 remain fixed axially.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 309.24,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.5",
+        source: "JP 2012-063403 A, Numerical Example 2 (PDF p. 14): prints “|β|=0.5” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.49999.",
+      },
+      {
+        zoomStation: 0,
+        keyframe: 2,
+        objectDistanceMm: 186.18,
+        distanceReference: "first-surface",
+        sourceMagnification: "1.0",
+        source: "JP 2012-063403 A, Numerical Example 2 (PDF p. 14): prints “|β|=1.0” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.99998.",
+      },
+    ],
     // (moved from publishedStations) Every focus keyframe is a source row.
     published: [1, 2],
   },

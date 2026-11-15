@@ -50,3 +50,19 @@ Validation: focused runtime/paraxial check; full corpus gates at the ten-lens ch
 
 - Why the old value differed: printed close row states no distance; 0.35 m is the old (production) value.
 - `catalog.closeFocusM.marketing` 0.35 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.
+
+## 2026-11-14 — Published finite conjugates
+
+Patent: JP 2015-041012 A, Example 1.
+
+| Zoom/keyframe | Before | Added object distance / reference | Source locator | Paraxial offset (mm / diffraction depths) | Other-reference offset (mm / depths) |
+|---|---|---|---|---|---|
+| 0/1 | No conjugate | 350 mm / `first-surface` | PDF p. 12, printed p. 12; paragraph 0079, close focus finite column, 物体距離 row; `最至近距離（物体距離350mm）` | 0.090082125 / 8.6588415 | 0.71077692 / 66.171102 |
+
+The retained rows are `consistent` under the 25-diffraction-depth criterion. Existing gaps, image plane and published flags are retained.
+
+- State 0/1: D6=3.13 mm; BF=3.89 mm.
+
+The distance reference is audit-resolved: the patent gives no explicit reference definition, and only the retained reference is consistent. The conjugate source string records that qualification.
+
+The patent prints object distance without an explicit reference definition; the discriminating audit identifies first-surface.

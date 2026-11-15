@@ -18,3 +18,13 @@ Surface/image-circle checks pass; infinity aperture and field checks pass. The d
 The 260-field current-iris pupil grid is collimated through focus-adjusted geometry; it is explicitly separate from finite illumination. Actual Gaussian finite-object launches at twenty positive focus positions inverse-solve object height to actual image Y 0/10.82/21.64. All 60 chiefs converge and clear; 8,708 / 11,580 rays pass, 2,872 clip, zero failures/unaimed, identical before and after. Axial minimum169 / 193 retains source S11A/S9 clipping; source close endpoint 169/151/114 of 193 at axis/half/edge. No rim inflation is used to certify those controls.
 
 Source close Gaussian conjugate 0.169415412 m and magnification -0.49967185 remain distinct from rounded display 0.17 m (finite residual -0.14464276 mm). Worst display-distance residual -3.97645984 mm at focus 0.625; Gaussian 0.206201993 m versus display 0.272 m. Maximum sampled relative distance difference 54.7899% at focus 0.05. Two published gap endpoints do not validate all interpolated distance labels. All 715 SVG paths at 65 focus states are finite/closed/connected, zero hidden trim; actual infinity/middle/close renders compared to native Figure 1. Centered IS only; source fidelity, sampled model clearance and production correlation are distinct conclusions.
+
+## 2026-11-14 — Finite conjugates from printed magnifications
+
+| Zoom / keyframe | Printed magnification → `sourceMagnification` | Source locator | Solved object distance | Check |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | “-0.5 (Image pickup magnification)” → `"0.5"` | US 2019/0113711 A1, Numerical Data 1 (PDF p. 17) | 71.68 mm, first-surface | in focus 0.49967; at the declared distance 0.49964; −0.20 quarter waves |
+
+The patent prints a magnification and no object distance for this state. Each distance is solved from the prescription under `LENS_DATA_SPEC.md` § Finite conjugates: the distance that focuses the state on its image plane when the magnification there rounds to the print, otherwise the distance at the nearest magnification that does. Two independent readings of the patent agree on the printed value and on the gaps of the matching state.
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.

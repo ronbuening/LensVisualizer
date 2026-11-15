@@ -133,3 +133,13 @@ The g-line residual is +0.05 to +0.09 mm in all four paraxial and marginal compa
 Sellmeier coverage gives up these four elements. That is the right trade here, because the coverage figure counts how a surface is resolved and says nothing about whether the dispersion matches the prescription.
 
 Correction to the second review above: the file carries `apd: "patent"` on L12 and L22, not `"inferred"`. The paragraph there records the reasoning against; the tag was set to `patent` on col. 6's "special low-dispersion glass", and the PR flags it for the owner.
+
+## 2026-11-14 — Finite conjugates from printed magnifications
+
+| Zoom / keyframe | Printed magnification → `sourceMagnification` | Source locator | Solved object distance | Check |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | “m = 0.00—−0.02—−0.25” → `"0.25"` | US 7,715,116 B2, Embodiment 7 (PDF p. 19) | 1170.05 mm, first-surface | in focus 0.24448; at the declared distance 0.24500; +4.27 quarter waves |
+
+The patent prints a magnification and no object distance for this state. Each distance is solved from the prescription under `LENS_DATA_SPEC.md` § Finite conjugates: the distance that focuses the state on its image plane when the magnification there rounds to the print, otherwise the distance at the nearest magnification that does. Two independent readings of the patent agree on the printed value and on the gaps of the matching state.
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.

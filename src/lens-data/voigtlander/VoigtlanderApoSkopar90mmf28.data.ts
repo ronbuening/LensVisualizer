@@ -186,6 +186,16 @@ const LENS_DATA = {
       "PUBLISHED unit focus: the full optical assembly extends 10.70 mm; BF changes from 39.64 mm at infinity to 50.34 mm at the patent's ZD0 = 800 mm state.",
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 800,
+        distanceReference: "first-surface",
+        source:
+          "JP 2023-049919 A, Example 1, Table 1, フォーカス可変間隔, finite column (PDF p. 8): ZD 0=800 mm is the object-to-first-surface gap (Table 1, OBJ row, PDF p. 8); ZD15=50.34 mm.",
+      },
+    ],
   },
 
   gaps: { "15": { label: "BF", values: [[39.64, 50.34]] } },

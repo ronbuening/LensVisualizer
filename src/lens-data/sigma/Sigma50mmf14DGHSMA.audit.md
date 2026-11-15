@@ -18,3 +18,15 @@ Patent: JP 2015-114366 A, Numerical Example 1 / FIG. 1
 - Native axial span S1x≈94 to S23x≈509 over103.2001mm gives≈4.02px/mm. L2's concave arc ends≈92px from the axis versus≈121px body height:q≈0.76, roughly23±0.5mm clear radius and30±0.5mm body. Adopt common S3/S4 outer28.5mm, constrained below R4=28.7552 rather than forcing the schematic's30mm body. S4 inferred cut depth11.5mm resolves cap23.0026mm; it is a source-shape inference with native-pixel uncertainty, no `rimCutDepthSource` exemption. Other small/oblique corners are retained without numeric cuts.
 - Full shared inferred-cut guard runs after all rim edits and passes with required margin~0.069mm; peak uncut-beam reach22.4892mm at the published finite endpoint/field29.4074°. Temporary source d0=258mm finite-conjugate endpoint also passes; no candidate focus/control/certification is changed. Canonical checks and9 actual SVG views pass,finite paths,zero hidden trim,connected triplet/doublets. Native f1.46 remains iris-limited;format-corner chief clears and image-circle finds nothing undersized.
 - Matched16-point stop-lattice samples retain7,962,lost0,gain168 (not flux). R/d/aspheres/nd/vd/reference/stop/focus/aperture controls and tolerances remain unchanged. Body/cut values are qualified inferred geometry, not manufacturer clear apertures.
+
+## 2026-11-14 — Published finite-conjugate certification
+
+Patent: JP2015114366A, Numerical Example 1.
+
+| State (zoom/keyframe) | Field | Before | After | Source and axial residual |
+|---|---|---|---|---|
+| 0/1 | `focus.conjugates` | absent | 258 mm, `first-surface` | PDF p.12 (printed p.12), [可変間隔データ], 400mm column, d0 row: d0 = 258.0000; d9=1.2000; d14=5.8989; BF=47.6991 mm. Offset +0.000708915 mm (+0.219421 diffraction depths), `consistent`; other reference +9.419181584 mm (+2297.580400 depths). |
+
+"物面 ∞ (d0)" appears in the d column of [面データ], immediately before surface 1 (PDF/printed p.11); d0 is the object-side surface interval. The declared reference is patent-defined.
+
+The audit uses the open physical stop and the authored image plane. Published flags already include these keyframes. Prescription values, gap schedules and image position are retained.

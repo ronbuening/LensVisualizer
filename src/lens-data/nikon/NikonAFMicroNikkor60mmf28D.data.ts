@@ -201,6 +201,24 @@ const LENS_DATA = {
     /* ── Published focus keyframes ── */
     keyframes: [0, 0.857059122392607, 1],
     description: "Published focus states: G1 and G2 move toward the object; G3 remains fixed.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 154.39,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.50000",
+        source: "US 5,751,485, Embodiment 1 (PDF p. 26): prints “β = -0.50000” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.50000.",
+      },
+      {
+        zoomStation: 0,
+        keyframe: 2,
+        objectDistanceMm: 90.44,
+        distanceReference: "first-surface",
+        sourceMagnification: "1.00000",
+        source: "US 5,751,485, Embodiment 1 (PDF p. 26): prints “β = -1.00000” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 1.00000.",
+      },
+    ],
     // (moved from publishedStations) Every focus keyframe is a source row.
     published: [1, 2],
   },

@@ -289,6 +289,24 @@ const LENS_DATA = {
       "PUBLISHED focus keyframes from US 5,402,268 Example 1. G3 moves imageward while G2/G4 remain fixed; source d8 is represented as fixed S8.d plus variable STO.d. G1 reverses at beta=-0.5, where d5 reaches 14.2044 mm before returning to 6.6432 mm at 1:1. STO placement is inferred, not patent-published.",
     // (moved from publishedStations) Every focus keyframe is a source row.
     published: [1, 2],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 480.7237,
+        distanceReference: "first-surface",
+        source:
+          "US 5,402,268, Example 1, PDF p. 7, Table 1, Variable Interval in Zooming, beta=-0.5000 / -1.0000 columns, d0 row: d0 = 480.7237 mm to the first surface; d5=14.2044, d8=17.7426 (S8.d=2.57025 + STO.d=15.17235), d14=32.5222 mm.",
+      },
+      {
+        zoomStation: 0,
+        keyframe: 2,
+        objectDistanceMm: 272.5885,
+        distanceReference: "first-surface",
+        source:
+          "US 5,402,268, Example 1, PDF p. 7, Table 1, Variable Interval in Zooming, beta=-0.5000 / -1.0000 columns, d0 row: d0 = 272.5885 mm to the first surface; d5=6.6432, d8=37.1142 (S8.d=2.57025 + STO.d=34.54395), d14=13.1506 mm.",
+      },
+    ],
   },
 
   gaps: {

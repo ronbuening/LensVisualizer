@@ -208,6 +208,16 @@ const LENS_DATA = {
     keyframes: [0, 0.769, 1],
     description:
       "Unit focus with floating correction — whole lens shifts forward while air space D10 (II₁–II₂) closes in proportion",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 294.93,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.118",
+        source: "US 3,748,022, Sole example (PDF p. 4): prints “magnification of 0.118” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription: it focuses the state on its image plane, where the paraxial magnification is 0.11801.",
+      },
+    ],
     // (moved from publishedStations) Only the listed focus rows are source-tabulated; the others are reconstructed.
     published: [1],
   },

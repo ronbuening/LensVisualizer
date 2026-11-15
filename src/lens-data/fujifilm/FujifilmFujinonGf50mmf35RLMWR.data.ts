@@ -260,6 +260,16 @@ const LENS_DATA = {
   ],
 
   focus: {
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 2000,
+        distanceReference: "first-surface",
+        source:
+          "US20200166730A1, Example 1, Table 3, 2000 mm column; DD[4]=6.03, DD[12]=6.19 mm; ¶0086 (PDF p.21 (printed p.8); definition PDF p.20 (printed p.7)): 2000 mm.",
+      },
+    ],
     closeFocusM: 0.55,
     /* ── Focus mechanism ── */
     keyframes: [0, 0.265586159886505, 1],
