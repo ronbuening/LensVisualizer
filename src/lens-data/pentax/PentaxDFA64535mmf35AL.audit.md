@@ -81,3 +81,13 @@ At infinity the complete sampled field now returns relative illumination, with n
 ### Follow-up
 
 The optional close-focus helper run returns RI at each sampled finite field but reports an axial close-ray focus offset of −7.388 mm. A direct ray from the source-derived object plane (177.054 mm before surface 1 at the published endpoint gaps) instead has near-axis image-plane residual +0.000012 mm; h=1/2.5/5 mm rays give −0.0072/−0.0328/+0.0940 mm. This indicates a finite-launch/helper inconsistency for the coordinator to investigate, not evidence to alter the source gaps or closeFocusM. The source endpoint and interpolation remain unchanged. Broad repository gates and delivery are reserved for the coordinator under the playbook.
+
+## 2026-11-14 — Finite conjugates from printed magnifications
+
+| Zoom / keyframe | Printed magnification → `sourceMagnification` | Source locator | Solved object distance | Check |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | “x−1/5 (minimum distance); m = 0.200” → `"0.200"` | US 2001/0007512 A1, Embodiment 4 (PDF p. 14) | 177.05 mm, first-surface | in focus 0.20000; at the declared distance 0.20001; +0.01 quarter waves |
+
+The patent prints a magnification and no object distance for this state. Each distance is solved from the prescription under `LENS_DATA_SPEC.md` § Finite conjugates: the distance that focuses the state on its image plane when the magnification there rounds to the print, otherwise the distance at the nearest magnification that does. Two independent readings of the patent agree on the printed value and on the gaps of the matching state.
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.

@@ -237,6 +237,16 @@ const LENS_DATA = {
       "PUBLISHED patent states only: infinity to 300 mm object-to-image-plane focus. Group I shifts 0.10 mm imageward while Group II shifts 0.14 mm objectward; the stop remains fixed. The production 1 cm macro endpoint is not reconstructed.",
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 300,
+        distanceReference: "image-plane",
+        source:
+          "JP 2010-72639 A, Example 4, Table 11, PDF p. 16, 300mm column: A=6.02 mm, B=3.68 mm, C=5.66 mm. Paragraph 0106 (PDF p. 17) defines the object as 300 mm from the image plane (像面から３００ｍｍにある物体).",
+      },
+    ],
   },
 
   gaps: {

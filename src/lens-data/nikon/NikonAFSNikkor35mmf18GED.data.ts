@@ -391,6 +391,16 @@ const LENS_DATA = {
     description:
       "G1 stays fixed; G2 and the stop move objectward as one unit. Printed near state (β = −1/30): D0 = 1019.325 mm from the first surface, 1.135 m object-to-image, D7 = 8.063 mm; its BF of 39.572 mm is derived with G1 fixed to the image plane. The 0.25 m end is derived, not printed: rigid G2 moved 8.239 mm (D7 0.976 mm, BF 46.659 mm), modeled β = −0.240 against Nikon's 0.24×.",
     published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 1019.325,
+        distanceReference: "first-surface",
+        source:
+          "JP2015118186A, Numerical Example 1, Table 1, ［可変間隔データ］, 近距離 column, Ｄ０ row, PDF p. 13: Ｄ０ = 1019.325 (mm); D7=8.063 mm. Distance reference: ¶0066, PDF p. 11; units ¶0069.",
+      },
+    ],
   },
   gaps: {
     "7": { label: "D7", values: [[9.215, 8.063, 0.976]] },

@@ -355,6 +355,32 @@ const LENS_DATA = {
       "1.36966 mm at 29.1 mm, 1.80154 mm at 50 mm, and 8.25666 mm at 192 mm. The patent model " +
       "focuses to 0.430 m from the image plane at all three zoom stations; the production lens was " +
       "marketed at 0.44 m.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 314.9335,
+        distanceReference: "first-surface",
+        source:
+          "US 6,621,643 B2, Example 1, Table 1, Variable intervals upon zooming, 7-POS, PDF p.27: D0 314.9335; authored gaps D5 (G1-G2)=0.79962, D14 (G2-G3)=20.51830, D21 (G3-Gm)=5.75080, BF=39.14773 mm. Distance reference identified by the conjugate audit (referenceBasis: audit-resolved); the patent does not define the datum.",
+      },
+      {
+        zoomStation: 1,
+        keyframe: 1,
+        objectDistanceMm: 299.9877,
+        distanceReference: "first-surface",
+        source:
+          "US 6,621,643 B2, Example 1, Table 1, Variable intervals upon zooming, 8-POS, PDF p.27: D0 299.9877; authored gaps D5 (G1-G2)=7.41055, D14 (G2-G3)=13.90737, D21 (G3-Gm)=3.31464, BF=56.52957 mm. Distance reference identified by the conjugate audit (referenceBasis: audit-resolved); the patent does not define the datum.",
+      },
+      {
+        zoomStation: 2,
+        keyframe: 1,
+        objectDistanceMm: 259.2589,
+        distanceReference: "first-surface",
+        source:
+          "US 6,621,643 B2, Example 1, Table 1, Variable intervals upon zooming, 9-POS, PDF p.27: D0 259.2589; authored gaps D5 (G1-G2)=29.90142, D14 (G2-G3)=9.05977, D21 (G3-Gm)=1.46943, BF=81.45950 mm. Distance reference identified by the conjugate audit (referenceBasis: audit-resolved); the patent does not define the datum.",
+      },
+    ],
   },
 
   gaps: {

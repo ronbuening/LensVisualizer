@@ -106,3 +106,13 @@ Direct source: `patents/US3736049.pdf`, PDF p.2 FIG.1 (600dpi/native300dpi), p.5
 - S2 retains its16mm clear cap and gains flat rear land to22mm body. Source q≈315/407=0.774±0.005; adopted16/22=0.727 conservatively retains the cap because the following6.364mm gap bounds the continuous curve near16.4mm. S6 retains13.5mm clear cap and gains rear land to15.8mm, sourceq≈250/292=0.856±0.007/adopt0.854. Both flat spans are resolved beyond scan stroke. No `rimCutDepthMm`; the other small oblique bevels and cemented steps do not establish new independent lands.
 - All9 literal nd/vd pairs freshly match p.5, including source58.1 (not catalog58.17) and unresolvedL8=1.74443/47.9. Source explicitly defines yellow helium d. No partial-dispersion, C/F/g indices or APD claim; none invented. Eight actual resolver curves qualified by source/catalog coordinates and unspecified supplier. L8 remains unresolved; coarse nearest catalog families do not prove its material.
 - Canonical/full cut guard, surface, image-circle, full formatcorner and nominal f2 pass. Nine actual SVG states checked at all three focus keyframes, zero trimming. Modeled closest D0=196.049738mm passes25/25 axial pupil samples at unchanged iris. Preserve the source f/BF conflict, source β−0.1 CRC row and calculated extra back-focus keyframe, without prescription recalibration.
+
+## 2026-11-14 — Finite conjugates from printed magnifications
+
+| Zoom / keyframe | Printed magnification → `sourceMagnification` | Source locator | Solved object distance | Check |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | “β = −1/10” → `"1/10"` | US 3,736,049, Sole example (PDF p. 5) | 267.38 mm, first-surface | in focus 0.09999; at the declared distance 0.10000; +0.05 quarter waves |
+
+The patent prints a magnification and no object distance for this state. Each distance is solved from the prescription under `LENS_DATA_SPEC.md` § Finite conjugates: the distance that focuses the state on its image plane when the magnification there rounds to the print, otherwise the distance at the nearest magnification that does. Two independent readings of the patent agree on the printed value and on the gaps of the matching state.
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.

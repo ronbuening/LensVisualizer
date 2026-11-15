@@ -269,6 +269,8 @@ catalog: {
 | `authors` | `string[]` | Inventors named by the source, in source order, one complete personal name per entry. `[]` means the source names no individual inventor. |
 | `assignees` | `string[]` | Organizational assignees, or organizational applicants where the jurisdiction publishes applicants. One canonical display name per historical legal entity. `[]` means no organizational attribution is supported. |
 | `errata` | `SourceErratum[]` | See [Source errata](#source-errata-sourceerrata). |
+| `omissions` | `SourceOmission[]` | Missing source definitions, terms or equations and their modeled assumptions; see [Surface-definition omissions](#surface-definition-omissions-sourceomissions). Optional; absent makes no claim. |
+| `sdSource` | `"source-table" \| "figure-measured" \| "heuristic"` | Evidence for the lens's clear semi-diameters; see [Clear-aperture provenance](#clear-aperture-provenance-sourcesdsource). Optional; absent means not declared. |
 | `issuer` | `string` | Non-patent manufacturer sources only (a factory optical data sheet, a maker's drawing): the organization that issued the document, as the historical legal entity at its date, in the catalog's canonical assignee form (`"VEB Carl Zeiss Jena"` for a 1958 Jena sheet). Never beside `patentNumber`. |
 
 Patent-backed lens files declare `patentNumber`, `authors` and `assignees` together. Synthetic, reference or
@@ -396,6 +398,62 @@ source: {
 - `unresolved`: the source disagrees with itself and the cause is not isolated. Keep the printed values and state the
   contradiction in `note`.
 - Every entry has a non-empty `note`. Explain each erratum in the file header and the `*.audit.md` sidecar as well.
+
+### Surface-definition omissions (`source.omissions`)
+
+Declare a source-definition gap when the prescription supplies a stand-in or makes a documented assumption.
+The optional list contains at most 250 entries; an empty list declares no omissions. Each entry has only `kind`,
+`surfaces` (1–250 unique existing authored surface labels, including any `A` suffix), and `note`, explaining both
+the omission and how it is modeled. The engine and builder use the same pure contract in
+`src/types/sourceProvenanceSchema.ts`:
+
+- `note` is non-empty after trimming, has no leading or trailing whitespace, and contains at most 4,000 UTF-16 code
+  units (JavaScript string length). Valid text is preserved verbatim.
+- Unicode text, TAB, LF and CR are allowed. Other C0 controls (U+0000–U+001F), DEL/C1 controls (U+007F–U+009F),
+  directional controls U+061C, U+200E–U+200F, U+202A–U+202E and U+2066–U+2069, and lone UTF-16 surrogates are rejected.
+  The builder separately bounds the complete transported draft to 1 MB.
+
+`kind` is one of:
+
+- `"asphere-coefficients"`: the source calls a surface aspheric but publishes no coefficients, so a stand-in
+  surface is traced.
+- `"asphere-term"`: individual coefficients are left blank and taken as zero. Name the terms in `note`.
+- `"asphere-equation"`: the governing equation is absent or ambiguous and a documented interpretation is used,
+  such as an equation supported by a sibling patent.
+
+A term outside the source's defining equation, or a source-published zero, does not establish missing data.
+No declaration is inferred from zero coefficients.
+
+```ts
+omissions: [
+  {
+    kind: "asphere-coefficients",
+    surfaces: ["9A"],
+    note: "The source designates an asphere but supplies no coefficients; the model traces a sphere.",
+  },
+],
+```
+
+The MTF chart lists one `incomplete-prescription` entry containing every omission and its surfaces. It requires
+acknowledgement only when at least one omission is `"asphere-coefficients"`: those curves describe the modeled
+stand-in, not the lens itself. With only `"asphere-term"` or `"asphere-equation"` entries, the chart stays readable
+beside a note that states the zero-term assumption or documented interpretation and that the curves rest on it.
+Keep the evidence in the header and audit sidecar.
+
+### Clear-aperture provenance (`source.sdSource`)
+
+This lens-level declaration describes clear semi-diameters across the refracting surfaces, independently of a
+derived stop radius, drawn outer blank, or `rimCutDepthSource` (which documents only a particular rim cut).
+`"source-table"` means the source lists the clear apertures; `"figure-measured"` means they are measured from the
+source drawing by the [figure procedure](../../agent_docs/patent-figure-sd-audit-procedure.md); `"heuristic"` means
+they are estimated or reconstructed from ray envelopes or other model constraints. Leave mixed or unclear evidence
+undeclared rather than selecting a category from a few surfaces. These three strings are the only accepted values
+in both the engine and builder; omission of the field is allowed and no default is supplied.
+
+The MTF chart lists an `estimated-apertures` note for heuristic apertures and a milder measurement-uncertainty note
+for figure measurements, because off-axis curves depend on these caps. Table values and undeclared provenance
+produce no note. A composed lens and teleconverter retain either part's declared uncertainty; table provenance
+applies to the whole system only when both declare it. Omission labels on a converter acquire its composed prefix.
 
 ## Elements and Media
 
@@ -924,7 +982,7 @@ Each station:
   label interpolates inverse distance between rows. It is not `closeFocusM / focusT`. The close row's distance must be
   the authored close-focus distance within 5 % (`__tests__/src/lens-data/closeFocusEndpoint.test.ts`, which lists its
   exemptions with reasons); a maker's different figure goes in `catalog.closeFocusM.marketing`. Patent-station
-  buttons for source-certified conjugates show the source's own distance.
+  buttons for source-certified conjugates show the source's own distance, or the one solved from its magnification.
 - **Station labels** are compiled into the runtime lens (`L.zoomLabels`). Nothing displays them today; the zoom
   slider shows the station focal lengths.
 - **Computed by `buildLens`**, per station: the EFL (`zoomEFLs`), entrance-pupil semi-diameter (`zoomEPs`),
@@ -1002,6 +1060,14 @@ focus: {
       distanceReference: "image-plane",
       source: "Patent publication, example and tables identifying this finite configuration",
     },
+    {
+      zoomStation: 0,
+      keyframe: 2,
+      objectDistanceMm: 244.92,
+      distanceReference: "first-surface",
+      sourceMagnification: "0.50",
+      source: "Patent publication, example and column printing magnification −0.50; distance solved from the prescription",
+    },
   ],
 },
 ```
@@ -1013,7 +1079,39 @@ focus: {
   identifies the evidence for both the distance and the focus spacings.
 - MTF never infers conjugates from `closeFocusM`, a production MFD or interpolated slider labels; undocumented
   intermediate states stay unavailable. Do not certify calculated focus travel as a published configuration.
+- `distanceReference` is the one the source defines (a defining sentence, or an object row whose gap precedes surface 1
+  in the surface table). Where the source prints a distance without defining its reference, declare it only when the
+  audit below reports `consistent`, meaning the other reference fails or is impossible, and say in `source` that the
+  conjugate audit identified the reference. Other states in the same source table then take that reference. Leave
+  the state undeclared when the source's stated reference and the audit disagree, unless the maintainer has ruled on
+  that source; then declare the ruled reference and say in `source` what the table states and why it is not followed.
+  Ruled so far: the Sony `d0` object rows of the FE 12-24mm F2.8 GM, FE 20-70mm F4 G, FE 70-200mm F2.8 GM II and
+  FE PZ 16-35mm F4 G patents are object-to-image distances, because every state of each table focuses only that way.
+- `sourceMagnification` is for a tabulated state whose source prints a magnification and no object distance. Give the
+  printed magnitude as a string: a decimal exactly as printed, trailing zeros kept (`"0.50"`), or an image-to-object
+  ratio of whole numbers (`"1/10"`, `"1:2"`; 等倍 is `"1:1"`, and a printed 1:2.5 is `"2:5"`). The distance is then solved from the prescription and is always
+  `"first-surface"`: enter a provisional positive `objectDistanceMm`, run the audit below, and write its
+  `Solved distance` to 0.01 mm. The solve takes the distance that focuses the state on its authored image plane when
+  the magnification there rounds to the print, and otherwise the distance at the nearest magnification that does, so
+  a print the prescription misses stays visible as defocus. A ratio or a whole number has no rounding interval.
+  `source` quotes the printed magnification and says the distance is solved. The magnification must be the source's
+  figure for that column or state; a marketed maximum magnification or `closeFocusM` never qualifies.
+- A distance the source measures to a front filter or protective plate that the file does not model is not a
+  first-surface distance. Model the plate or leave the state undeclared.
+- In a scaled transcription the printed distance scales by the file's own stated factor; give the printed value and
+  the factor in `source`.
 - Every conjugate also counts as a published state (below).
+- Run `npm run audit:finite-conjugates` to check declared distances and focus spacings using paraxial defocus
+  wavefront error on the exit-pupil sphere referenced to the authored image plane, at the open physical stop.
+  The limit is 25 quarter waves; the millimetre depth uses the cone from the exit-pupil rim to the authored plane
+  and the image-medium index, with the marginal slope as the telecentric limit. Infinite or virtual images retain
+  a numeric defocus diagnostic but cannot certify consistency. Fisheye axial checks retain the other MTF support prerequisites.
+  See `agent_docs/architecture/optics-engine.md` § Simulated MTF for the measure and distance-reference verdicts.
+  `--lens=<key>`, `--files=<comma-separated data files>`, `--json` and `--strict` support focused authoring checks.
+  A `sourceMagnification` entry is consistent when its distance is inside the limit, is the solved distance as
+  written to 0.01 mm, and has a magnification that rounds to the print.
+  The audit is a screen, not proof: on a short or slow lens a wrong distance can stay inside the limit, so read the
+  printed value, unit, example and close-focus column against the source as well.
 - Source-rounded prescriptions may keep residual defocus: MTF evaluates the authored image plane by default, reports the
   axial best-focus shift as a diagnostic, and moves the plane only when the viewer asks. Do not edit the authored image
   distance to improve simulated MTF.
@@ -1619,7 +1717,7 @@ Code: `src/optics/prescription/ingestV2.ts` unless noted. Each refusal has a syn
 | The stop carries `sd` exactly when its radius is authored | `ingestSurfaces`, with the authority from `stopRadiusAuthority` (`canonical.ts`) |
 
 Ingest copies some records whole and refuses no member inside them: `catalog.opticalConfiguration`, `source.example`,
-the `source.errata` entries, a surface's `diffractive` (and its `terms`) and `interaction` (and its `normal`), `projection`,
+the `source.errata` and `source.omissions` entries, a surface's `diffractive` (and its `terms`) and `interaction` (and its `normal`), `projection`,
 `perspectiveControl` (and its `tiltPivot`), `opticalPath` (and its `imagePlane` and `imagePlane.normal`), and the `groups`
 and `doublets` entries. An unknown member in one of them is refused by the file's `satisfies LensDataV2Input` when it is
 type-checked, not by ingest.
@@ -1642,6 +1740,7 @@ Code: `src/optics/prescription/validate/`.
 | Every surface medium names an element, and every element is some surface's medium; asphere terms finite and known | `validateReferences` (`references.ts`) |
 | Patent metadata completeness, publication-number formatting, party-name rules and no inventor repeated as an assignee; `source.example` is `{ label, id }` with trimmed strings, `id` is what the label gives and `null` exactly for `"Sole example"`, it needs a patent number and does not repeat it; `source.issuer` is a trimmed, conventionally capitalized name and never stands beside a patent number | `validatePatentMetadata`, `validatePatentExample` (`patent.ts`) |
 | `source.errata` entries | `validateSourceErrata` (`references.ts`) |
+| `source.omissions` kinds, bounded unique existing surface labels and trimmed, bounded notes; `source.sdSource` enum | Shared `sourceProvenanceIssues` (`src/types/sourceProvenanceSchema.ts`), called by `validateSourceProvenance` (`references.ts`) and the builder |
 | Element spans: both ends, in order; internal surfaces only an embedded stop or the folded exceptions | `validateSpans` (`references.ts`) |
 | `groups` and `doublets` name existing surfaces | `validateAnnotations` (`references.ts`) |
 | Stations increasing; keyframes begin at 0, end at 1, strictly increasing; conjugates name distinct authored states | `validateStations` (`controls.ts`) |
@@ -2125,7 +2224,7 @@ the map below gives each of its fields' V2 paths.
 | `focalLengthMarketing`, `focalLengthDesign` | `catalog.focalLengthMm.marketing`, `.design` |
 | `apertureMarketing`, `apertureDesign` | `catalog.fNumber.marketing`, `.design` |
 | `closeFocusMarketing` | `catalog.closeFocusM.marketing` |
-| `patentNumber`, `patentYear`, `patentAuthors`, `patentAssignees`, `sourceErrata`, `sourceIssuer` | `source.patentNumber`, `.patentYear`, `.authors`, `.assignees`, `.errata`, `.issuer` |
+| `patentNumber`, `patentYear`, `patentAuthors`, `patentAssignees`, `sourceErrata`, `sourceOmissions`, `sdSource`, `sourceIssuer` | `source.patentNumber`, `.patentYear`, `.authors`, `.assignees`, `.errata`, `.omissions`, `.sdSource`, `.issuer` |
 | `surfaces[].nd` + `surfaces[].elemId` | `surfaces[].medium`: the element id, a `media` id, or left out for air (`elemId: 0`, `nd: 1`) |
 | an air surface with `nd ≠ 1` | an entry in `media` |
 | `elements[].fromSurface` / `toSurface` | `elements[].span: [from, to]` |

@@ -328,6 +328,16 @@ const LENS_DATA = {
       "Inner focus: positive Group G2 behind the aperture stop moves object-ward from infinity to the patent's 0.25 m closest-point state.",
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 250,
+        distanceReference: "first-surface",
+        source:
+          "US 2018/0210178 A1, Example 1, PDF p. 12, Table 3: Closest Point (250 mm), DD[12]=5.4732 mm and DD[17]=5.9816 mm. The first-surface reference is identified by the conjugate audit.",
+      },
+    ],
   },
 
   gaps: { STO: { label: "DD12", values: [[7.4861, 5.4732]] }, "17": { label: "DD17", values: [[3.9687, 5.9816]] } },

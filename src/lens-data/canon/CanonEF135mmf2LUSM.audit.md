@@ -41,3 +41,14 @@ The original explicitly defines d-line index and Abbe number, including d 587.6 
 All ten compatible curves remain qualified proxies. The source publishes no per-element C/F/g indices, partial-dispersion ratio or dPgF; no unsupported numerical spectral override is authored. L2/L4 inferred APD notes now identify the K-PFK80 proxy curve as their sole spectral basis (catalog-derived ΔPgF approximately +0.030), rather than treating Canon's production UD count as evidence of APD. No structured per-lens dPgF is added and no supplier, melt or historical chemistry is identified.
 
 The two light-absorbing films are explicitly located on surfaces 7 and 17 in ¶¶0091–0092. The source supplies transmission conditions but no additional refractive index/thickness or numerical radial law for those coatings. No synthetic cement, refractive resin, filter or rear plate is invented. Apodization transmission and anomalous partial dispersion remain distinct. Public notes keep the later 2018 apodized embodiment separate from Canon's 1996 retail production lens and retain the documented LF1/LF2 source wording inconsistency.
+
+
+## 2026-11-14 — Published finite conjugate
+
+Patent: JP 2018-049102 A, Numerical Example 1, ¶0108, PDF/printed p. 15.
+
+| State | Field | Before | After |
+| --- | --- | --- | --- |
+| Zoom station 0, keyframe 1 | `focus.conjugates` | Absent | 900 mm, image-plane reference (audit-resolved) |
+
+The variable-gap table prints `物体距離` = `900` under `単位 mm`, with d11 = 17.81 mm and d14 = 6.99 mm. Both gaps match keyframe 1 exactly. The text does not define the distance origin. The conjugate audit identifies the image-plane reference: +0.002918751 mm (+0.423683 depths), versus -4.600029552 mm (-720.117910 depths) for a first-surface reference. The accepted row is `consistent` and reference-discriminated.

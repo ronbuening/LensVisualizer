@@ -1,11 +1,30 @@
 /** Explicit inputs and serializable outputs for simulated, image-space lens MTF. */
 import type { FiniteConjugate } from "./optics.js";
+
+/** One aperture or zoom station in a UI sweep; null reserves a pending or withheld point. */
+export interface MtfSweepSample {
+  fNumber: number;
+  focalLengthMm?: number;
+  zoomT?: number;
+  edgeOverview?: boolean;
+  edge?: MtfResult["sweepEdge"];
+  stationFieldReference?: boolean;
+  limitations?: readonly MtfDataLimitation[];
+  notes?: readonly string[];
+  blocked?: boolean;
+  error?: string;
+  result: MtfResult | null;
+}
+
+/** Aperture-only callers share the sweep sample contract. */
+export type MtfApertureSample = MtfSweepSample;
+
 /**
  * `geometric` sums ray landings; `diffraction` shears the traced pupil against itself and weights each overlap by the
  * rays' landing errors, which adds the diffraction of the actual aperture.
  */
 export type MtfMethod = "geometric" | "diffraction";
-export type MtfSpectrum = "reference" | "cdf" | "photopic";
+export type MtfSpectrum = "reference" | "cdf" | "photopic" | "single";
 /**
  * `auto` keeps the authored image plane unless it is inconsistent with the prescription's own paraxial focus, then
  * uses best axial focus; `design` and `best-axial` always apply their plane.
@@ -29,13 +48,37 @@ export type MtfUnavailableReason =
   | "vignetted"
   | "outside-modeled-field";
 
+/** Shared spectral interval covered by every supported glass tier (g through C), in nm. */
+export const MTF_MIN_WAVELENGTH_NM = 435.8;
+export const MTF_MAX_WAVELENGTH_NM = 656.3;
+
+/** A single-line request must carry its physical wavelength through storage and worker transport. */
+type MtfSpectrumOptions =
+  | { spectrum: "single"; wavelengthNm: number }
+  | { spectrum: Exclude<MtfSpectrum, "single">; wavelengthNm?: number };
+
+/** Missing prerequisites within the unsupported-path refusal. */
+export type MtfUnsupportedPathReason =
+  | "fisheye-projection"
+  | "folded-path"
+  | "annular-aperture"
+  | "diffractive-surface"
+  | "blocking-surface"
+  | "tilted-image-plane"
+  | "non-forward-image-plane";
+
 /** Method-specific settings; physical aperture comes from AnalysisRequest. */
-export type MtfRequestOptions = Omit<MtfOptions, "pupilSemiDiameterMm" | "stopSemiDiameterMm">;
+export type MtfRequestOptions = Omit<
+  MtfOptions,
+  "pupilSemiDiameterMm" | "stopSemiDiameterMm" | "spectrum" | "wavelengthNm"
+> &
+  MtfSpectrumOptions;
 
 /** Resolved inputs used by the MTF kernels and the serializable worker protocol. */
-export interface MtfOptions {
+export type MtfOptions = MtfCommonOptions & MtfSpectrumOptions;
+
+interface MtfCommonOptions {
   method: MtfMethod;
-  spectrum: MtfSpectrum;
   pupilSemiDiameterMm: number;
   stopSemiDiameterMm: number;
   movementActive?: boolean;
@@ -46,6 +89,8 @@ export interface MtfOptions {
   maxGridSize?: MtfGridCap;
   /** Image plane for every field. Required: the engine has no default, so scripts and the tab cannot disagree. */
   focus: MtfFocusMode;
+  /** Explicit shift from the authored plane, in mm; overrides focus selection but keeps its diagnostic. */
+  heldFocusShiftMm?: number;
 }
 
 /** One sampled wavelength and its incident (pre-throughput) intensity weight. */
@@ -57,6 +102,8 @@ export interface MtfSpectralLine {
 export interface MtfSupport {
   available: boolean;
   reason: MtfUnavailableReason | null;
+  /** All applicable unsupported-path prerequisites in stable display order; absent for other results. */
+  pathReasons?: readonly MtfUnsupportedPathReason[];
   message: string;
   referenceWavelengthNm: number;
   /**
@@ -64,7 +111,7 @@ export interface MtfSupport {
    * true for spectral runs and for mixed d/e references that need physical conversion.
    */
   useResolvedReference: boolean;
-  /** Incident intensity weights, reference line first; throughput is applied before normalizing the OTF. */
+  /** Actual wavelengths used, reference line first; incident weights precede throughput normalization. */
   spectralLines: MtfSpectralLine[];
   conjugate?: FiniteConjugate;
   limitations: string[];
@@ -92,7 +139,7 @@ export interface MtfFieldGeometry {
 export interface MtfFocus {
   requestedMode: MtfFocusMode;
   /** Plane actually applied to every field. */
-  mode: Exclude<MtfFocusMode, "auto">;
+  mode: Exclude<MtfFocusMode, "auto"> | "held";
   /** Plane shift from the authored image plane applied to every field, in mm (positive away from the lens). */
   appliedShiftMm: number;
   /** Axial best-focus shift from the authored plane; null when the axial bundle could not be scored. */
@@ -107,8 +154,8 @@ export interface MtfFocus {
 }
 
 /**
- * The clear aperture that vignettes the axial marginal ray, the Summary working f-number's `vignetted` state
- * (`computeWorkingFNumber`). The chart header names it beside the marked f-number.
+ * The clear aperture that vignettes the chart's axial marginal ray. The same trace supplies the working f-number;
+ * the chart header names a clip beside the marked f-number.
  */
 export interface MtfAxialVignetting {
   /** Label of the surface that stops the marginal ray. */
@@ -124,6 +171,8 @@ export type MtfDataLimitationKind =
   | "image-plane"
   | "short-field"
   | "scale"
+  | "incomplete-prescription"
+  | "estimated-apertures"
   | "source-erratum"
   | "source-inconsistent";
 
@@ -169,7 +218,9 @@ export interface MtfFieldResult {
   unresolvedInBeamRays: number;
   /**
    * Share of the beam's flux carried by the unaimed and failed samples beside it, which the field is judged by; the
-   * geometric OTF error is at most twice this. Samples that touch no transmitted cell are counted but not in it.
+   * normalized geometric OTF error is at most twice this. The diffraction estimate does not account for this flux
+   * and has no established error bound for its omission. Samples that touch no transmitted cell are counted but
+   * not in it.
    */
   unknownFluxFraction: number;
   /** Largest change between the last two grids at or below the convergence band. */
@@ -184,6 +235,8 @@ export interface MtfFieldResult {
 }
 
 export interface MtfResult {
+  /** Selected overview edge on a restricted worker request; ordinary requests leave it absent. */
+  sweepEdge?: { fieldFraction: number; imageHeightMm: number | null };
   method: MtfMethod;
   spectrum: MtfSpectrum;
   support: MtfSupport;
@@ -191,6 +244,15 @@ export interface MtfResult {
   fields: MtfFieldResult[];
   geometry: MtfFieldGeometry | null;
   focus: MtfFocus | null;
+  /** Physical object used by the chart; null for an unsupported request. Distances use the authored station's reference. */
+  conjugate:
+    | { kind: "infinity" }
+    | { kind: "finite"; objectDistanceMm: number; distanceReference: FiniteConjugate["distanceReference"] }
+    | null;
+  /** 1 / (2 n′ sin θ′) of the real axial stop-rim ray at the first spectral line; null when it cannot pass or trace. */
+  workingFNumber: number | null;
+  /** Signed on-axis chief image height / small object height on the applied image plane; null at infinity or on failure. */
+  magnification: number | null;
   /** Where the axial marginal ray is vignetted; null when it is not, or when the request is unsupported. */
   axialVignetting: MtfAxialVignetting | null;
 }

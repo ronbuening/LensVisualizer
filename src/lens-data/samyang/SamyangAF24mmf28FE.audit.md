@@ -22,3 +22,20 @@ Validation: `audit:surface` and `audit:image-circle` pass. The project's SVG sha
 - `catalog.closeFocusM.marketing` 0.24 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.
 
 Text sync: focus.description and analysis: Samyang's 0.24 m is catalog metadata; the TL=0.2m row focuses at 0.257 m.
+
+## 2026-11-14 — Published finite conjugates
+
+Patent: WO 2020/230915 A1. PDF pages below use the one-based PDF page index.
+
+| State (zoom/keyframe) | Field | Before | After | Source and paraxial residual |
+| --- | --- | --- | --- | --- |
+| 0/1 | `focus.conjugates` | Absent | 993.49977 mm, `first-surface` | PDF p. 17, Embodiment 1, Table 3 (¶0126), MAG=-1/40 column; D1=4.11302 mm, D2=2.35986 mm. Offset +0.036397355 mm (+3.683634 diffraction depths); `ambiguous-reference`. |
+| 0/2 | `focus.conjugates` | Absent | 200.04902 mm, `first-surface` | PDF p. 17, Embodiment 1, Table 3 (¶0126), TL=0.2m column; D1=3.25312 mm, D2=3.21976 mm. Offset +0.061961692 mm (+6.105551 diffraction depths); `consistent`. |
+
+Table 1: "obj | infinity | D0" in Lens surface/R/Dn columns, immediately before surface 1 (PDF p. 16, printed p. 14); ¶0119 specifies Dn in millimeters. This defines the declared distance from the object plane to the first surface.
+
+State 0/1 is retained on that explicit table definition: both references lie within the 25-depth audit limit. The other (`image-plane`) reference gives +0.070890030 mm (+7.161394 depths); the trace does not discriminate the reference.
+
+The close entry uses the printed D0 = 200.04902 mm, not the TL=0.2m column heading. Paragraph 0125 (PDF p. 17, printed p. 15) defines TL as "a distance from an object to the image plane IMG"; the D0 object-row reference is independently explicit in Table 1. The contradictory heading is not used to replace D0 or the authored gaps.
+
+The published flags already include the declared keyframes. All gap values, surfaces, image-plane settings and existing focus controls are retained.

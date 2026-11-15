@@ -390,6 +390,32 @@ const LENS_DATA = {
     closeFocusM: 0.35,
     description:
       "PUBLISHED: Gr2a (cemented L6+L7, surfaces 10-12) translates imageward to the patent's nominal 0.35 m state. The marketed 0.25 m MFD is metadata only; no internal 0.25 m reconstruction is authored.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 195,
+        distanceReference: "first-surface",
+        source:
+          "JP 2018-087903 A, Example 1, paragraph 0068 (PDF p. 16), W column, photographing-distance 350mm block: d0=195.000 mm, d9=26.783 mm, d12=5.750 mm; first-surface reference identified by the conjugate audit (audit-resolved).",
+      },
+      {
+        zoomStation: 1,
+        keyframe: 1,
+        objectDistanceMm: 200.726,
+        distanceReference: "first-surface",
+        source:
+          "JP 2018-087903 A, Example 1, paragraph 0068 (PDF p. 16), M column, photographing-distance 350mm block: d0=200.726 mm, d9=14.553 mm, d12=5.530 mm; first-surface reference identified by the conjugate audit (audit-resolved).",
+      },
+      {
+        zoomStation: 2,
+        keyframe: 1,
+        objectDistanceMm: 198.279,
+        distanceReference: "first-surface",
+        source:
+          "JP 2018-087903 A, Example 1, paragraph 0068 (PDF p. 16), T column, photographing-distance 350mm block: d0=198.279 mm, d9=7.123 mm, d12=5.246 mm; first-surface reference identified by the conjugate audit (audit-resolved).",
+      },
+    ],
   },
 
   gaps: {

@@ -35,3 +35,13 @@ Patent: US 2019/0250367 A1, Example 1
   1.51633 / 64.1) with gapAfter 1.00 mm. Paraxial check against the previous data: EFL identical, defocus unchanged at
   both focus states (worst difference 1e-7 mm). Physical track grows by 0.681 mm to 149.237 mm, matching the patent's
   printed total lens length of 149.24 mm.
+
+## 2026-11-14 — Finite conjugates from printed magnifications
+
+| Zoom / keyframe | Printed magnification → `sourceMagnification` | Source locator | Solved object distance | Check |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | “MAGNIFICATION −0.184” → `"0.184"` | US 2019/0250367 A1, Example 1 (PDF p. 17) | 250.74 mm, first-surface | in focus 0.18452; at the declared distance 0.18450; −0.28 quarter waves |
+
+The patent prints a magnification and no object distance for this state. Each distance is solved from the prescription under `LENS_DATA_SPEC.md` § Finite conjugates: the distance that focuses the state on its image plane when the magnification there rounds to the print, otherwise the distance at the nearest magnification that does. Two independent readings of the patent agree on the printed value and on the gaps of the matching state.
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.

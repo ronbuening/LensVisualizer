@@ -89,3 +89,14 @@ Selected current close geometries, with Gaussian conjugates and their exact aime
 |            0 |                  0 |                  0.254657653 |           0.254658 | 193 / 193 / 181                   | clear / clear / clear |
 
 The largest sampled relative difference between a positive Gaussian object-to-image conjugate and its distance label is 47.025139% at zoom 0, focus 0.05, aberration control 0: Gaussian 2.698090766 m versus label 5.093153065 m. This is a first-order conjugate/control distinction, not a new production-distance measurement. Nominal infinity controls remain in their separate collimated checks; their small rounding residual is not converted into a finite-source claim.
+
+## 2026-11-14 — Finite conjugates from printed magnifications
+
+| Zoom / keyframe | Printed magnification → `sourceMagnification` | Source locator | Solved object distance | Check |
+| --- | --- | --- | --- | --- |
+| 0 / 1 | “−0.5” → `"0.5"` | JP 2021-047297 A, Example 1 (PDF p. 10) | 212.8 mm, first-surface | in focus 0.49999; at the declared distance 0.49998; −0.02 quarter waves |
+| 0 / 2 | “−1.4” → `"1.4"` | JP 2021-047297 A, Example 1 (PDF p. 10) | 92.29 mm, first-surface | in focus 1.39999; at the declared distance 1.39987; −0.17 quarter waves |
+
+The patent prints a magnification and no object distance for these states. Each distance is solved from the prescription under `LENS_DATA_SPEC.md` § Finite conjugates: the distance that focuses the state on its image plane when the magnification there rounds to the print, otherwise the distance at the nearest magnification that does. Two independent readings of the patent agree on the printed value and on the gaps of the matching state.
+
+All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.

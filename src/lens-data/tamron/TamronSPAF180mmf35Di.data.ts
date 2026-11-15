@@ -269,6 +269,24 @@ const LENS_DATA = {
     keyframes: [0, 0.7387189937888587, 1],
     description:
       "Floating internal focus: LG1 and the stop remain fixed; LG2 moves imageward, LG3 moves objectward, and LG4 moves slightly objectward from infinity to 1:1. The infinity, −1/2×, and −1× patent rows are exact focus keyframes.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 424.02,
+        distanceReference: "first-surface",
+        sourceMagnification: "1/2",
+        source: "JP 2003-329924 A, Example 2 (PDF p. 4): prints “−1/2倍” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription at that magnification; focused on its image plane the state gives 0.50000.",
+      },
+      {
+        zoomStation: 0,
+        keyframe: 2,
+        objectDistanceMm: 256.41,
+        distanceReference: "first-surface",
+        sourceMagnification: "1",
+        source: "JP 2003-329924 A, Example 2 (PDF p. 4): prints “−1倍” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription at that magnification; focused on its image plane the state gives 1.00000.",
+      },
+    ],
     // (moved from publishedStations) Every focus keyframe is a source row.
     published: [1, 2],
   },

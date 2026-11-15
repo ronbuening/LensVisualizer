@@ -14,3 +14,15 @@ Patent: US 4,666,260, Example 1 / claim 5
 - Glass labels remain unchanged. The `BPM4 (OHARA legacy, 613/438 short flint)` row remains a legacy/proprietary label because the nearest current catalog candidates do not match closely enough for a relabel.
 - L2 and L3 remain `apd: "inferred"` ED fluorophosphate elements. The patent describes super-low-dispersion positive lenses by Abbe-number condition, but does not tabulate partial dispersion.
 - No patent clear-aperture or semi-diameter table was found. Existing SDs remain unchanged after visual drawing review.
+
+## 2026-11-14 — Published finite-conjugate certification
+
+Patent: US4666260; Column 4, Example 1 table heading WD and final d13 value (62.58); WD definition immediately above under EXAMPLES.
+
+| State | Field | Before | After | Source evidence |
+| --- | --- | --- | --- | --- |
+| Zoom 0, keyframe 2 | `focus.conjugates` | No declaration | `objectDistanceMm: 302.2`, `distanceReference: "first-surface"` | `WD = ∞ − 302.2`; PDF p. 11. Printed d13=62.58 mm equals authored gap 13=61.58 mm + fixed STO.d=1.00 mm. |
+
+Reference: patent-defined. The patent states: “WD, the distance between the object and the first lens surface”.
+
+The paraxial image offset is -0.066999373 mm (-3.565040 diffraction depths); verdict `consistent`, `referenceDiscriminated: true`. The alternative `image-plane` reference gives -351.485183436 mm (-9744.788748 depths). All authored prescription, focus-gap and image-plane values are retained.

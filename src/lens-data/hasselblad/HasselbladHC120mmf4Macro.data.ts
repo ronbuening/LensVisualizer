@@ -202,6 +202,16 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.39,
     description: "Front-group unit focus (L1–L6 translate forward, rear group fixed). Infinity to 1:1.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 144.35,
+        distanceReference: "first-surface",
+        sourceMagnification: "1:1",
+        source: "JP 2004-302170 A, Example 4 (PDF p. 13): prints “等倍” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription at that magnification; focused on its image plane the state gives 1.00017.",
+      },
+    ],
     // (moved from publishedStations) Patent read 2026-10-06: Close-focus D13 = 61.46812 is JP 2004-302170 A Table 4's printed 1:1 (等倍) value 51.78443
     // scaled x1.187; the patent tabulates only infinity and 1:1.
     published: [1],

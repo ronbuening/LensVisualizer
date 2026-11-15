@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 
-import { cleanup, fireEvent, render, screen } from "@testing-library/react";
+import { act, cleanup, fireEvent, render, renderHook, screen } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import type { LensState } from "../../../../src/types/state.js";
 
@@ -254,6 +254,16 @@ import {
   resolveTeleconverterKey,
 } from "../../../../src/utils/catalog/teleconverterCatalog.js";
 import { createInitialState } from "../../../../src/utils/state/lensReducer.js";
+import { useSharedMtfPreferences } from "../../../../src/utils/state/useSharedMtfPreferences.js";
+import { MTF_PREFERENCES_KEY, resetMtfPreferencesCache } from "../../../../src/utils/state/mtfPreferences.js";
+
+const sharedMtfValue = `1.${btoa('{ "d": false, "m": "geometric" }').replace(/=+$/, "")}`;
+const navigationQueries = [
+  { label: "absent", search: "?focus=0.5", suffix: "" },
+  { label: "shared", search: `?v=1&mtf=${sharedMtfValue}`, suffix: `?v=1&mtf=${sharedMtfValue}` },
+  { label: "shared defaults", search: "?v=1&mtf=1", suffix: "?v=1&mtf=1" },
+  { label: "invalid", search: "?v=1&mtf=invalid", suffix: "" },
+];
 
 function makeState(overrides: Partial<LensState> = {}): LensState {
   const base = createInitialState({}, {}, true, ["apo-lanthar-50f2", "sonnar-50f15"]);
@@ -267,7 +277,10 @@ function makeState(overrides: Partial<LensState> = {}): LensState {
 }
 
 beforeEach(() => {
-  mocks.navigate.mockClear();
+  window.history.replaceState(null, "", "/");
+  localStorage.clear();
+  resetMtfPreferencesCache();
+  mocks.navigate.mockReset();
   mocks.dispatch.mockClear();
   mocks.updateURLWithSliders.mockClear();
   mocks.toggleCompare.mockClear();
@@ -369,16 +382,18 @@ describe("LensViewer", () => {
     expect(contentSlot?.style.overflow).toBe("hidden");
   });
 
-  it("navigates lens switches on lens routes", () => {
+  it.each(navigationQueries)("navigates lens switches with $label MTF settings", ({ search, suffix }) => {
+    window.history.replaceState(null, "", `/lens/apo-lanthar-50f2/${search}`);
     render(<LensViewer initialLensKey="apo-lanthar-50f2" />);
 
     fireEvent.click(screen.getByText("switch A"));
 
     expect(mocks.dispatch).toHaveBeenCalledWith({ type: "SET_LENS_A", key: "sonnar-50f15" });
-    expect(mocks.navigate).toHaveBeenCalledWith("/lens/sonnar-50f15/", { replace: true });
+    expect(mocks.navigate).toHaveBeenCalledWith(`/lens/sonnar-50f15/${suffix}`, { replace: true });
   });
 
-  it("navigates compare route lens switches and swaps", () => {
+  it.each(navigationQueries)("navigates compare switches and swaps with $label MTF settings", ({ search, suffix }) => {
+    window.history.replaceState(null, "", `/compare/apo-lanthar-50f2/sonnar-50f15/${search}`);
     mocks.state = makeState({
       lens: {
         ...makeState().lens,
@@ -390,13 +405,48 @@ describe("LensViewer", () => {
 
     render(<LensViewer initialLensKey="apo-lanthar-50f2" initialLensKeyB="sonnar-50f15" />);
 
+    fireEvent.click(screen.getByText("switch A"));
     fireEvent.click(screen.getByText("switch B"));
     fireEvent.click(screen.getByText("swap"));
 
-    expect(mocks.navigate).toHaveBeenCalledWith("/compare/apo-lanthar-50f2/apo-lanthar-50f2/", { replace: true });
-    expect(mocks.navigate).toHaveBeenCalledWith("/compare/sonnar-50f15/apo-lanthar-50f2/", { replace: true });
-    /* Replacing the path drops the query; each switch reschedules the writer so per-pane state survives. */
-    expect(mocks.updateURLWithSliders).toHaveBeenCalledTimes(2);
+    expect(mocks.navigate).toHaveBeenCalledWith(`/compare/sonnar-50f15/sonnar-50f15/${suffix}`, { replace: true });
+    expect(mocks.navigate).toHaveBeenCalledWith(`/compare/apo-lanthar-50f2/apo-lanthar-50f2/${suffix}`, {
+      replace: true,
+    });
+    expect(mocks.navigate).toHaveBeenCalledWith(`/compare/sonnar-50f15/apo-lanthar-50f2/${suffix}`, { replace: true });
+    /* Each switch reschedules the writer so per-pane state survives the path replacement. */
+    expect(mocks.updateURLWithSliders).toHaveBeenCalledTimes(3);
+  });
+
+  it("keeps the shared method after a swap and does not revive it after Use my settings", () => {
+    const stored = JSON.stringify({ method: "diffraction" });
+    localStorage.setItem(MTF_PREFERENCES_KEY, stored);
+    window.history.replaceState(null, "", `/compare/apo-lanthar-50f2/sonnar-50f15/?v=1&mtf=${sharedMtfValue}`);
+    mocks.state = makeState({
+      lens: { ...makeState().lens, lensKeyB: "sonnar-50f15", comparing: true },
+    });
+    mocks.navigate.mockImplementation((url: string) => {
+      window.history.pushState(null, "", url);
+      window.dispatchEvent(new PopStateEvent("popstate"));
+    });
+    const { result } = renderHook(() => useSharedMtfPreferences());
+    const otherPane = renderHook(() => useSharedMtfPreferences());
+    render(<LensViewer initialLensKey="apo-lanthar-50f2" initialLensKeyB="sonnar-50f15" />);
+
+    expect(result.current[0].method).toBe("geometric");
+    fireEvent.click(screen.getByText("swap"));
+    expect(result.current[0].method).toBe("geometric");
+    expect(otherPane.result.current[0].method).toBe("geometric");
+    expect(result.current[2]).toBe(true);
+
+    act(() => result.current[3]());
+    expect(result.current[0].method).toBe("diffraction");
+    expect(otherPane.result.current[0].method).toBe("diffraction");
+    fireEvent.click(screen.getByText("switch A"));
+    expect(mocks.navigate).toHaveBeenLastCalledWith("/compare/sonnar-50f15/sonnar-50f15/", { replace: true });
+    expect(new URLSearchParams(window.location.search).has("mtf")).toBe(false);
+    expect(result.current[2]).toBe(false);
+    expect(localStorage.getItem(MTF_PREFERENCES_KEY)).toBe(stored);
   });
 
   it("offers configuration variants in compare without exposing debug fixtures", () => {

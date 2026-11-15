@@ -281,6 +281,16 @@ const LENS_DATA = {
     closeFocusM: 0.97,
     description:
       "Patent rear/inner focus: Gr1 fixed; the stop plus Gr2 translate objectward by 0.298 mm at the patent 0.020x state. The production 0.15 m / 0.25x close-focus spacing is not published in the patent and is not extrapolated here.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 782.66,
+        distanceReference: "first-surface",
+        sourceMagnification: "0.020",
+        source: "US 2018/0149842 A1, Example 1 (PDF p. 8): prints “0.020 times” for the close-focus state whose gaps this keyframe carries, a magnification with no object distance. The object distance is solved from the prescription at magnification 0.0195, the nearest value that rounds to the print; focused on its image plane the state gives 0.01750.",
+      },
+    ],
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
   },

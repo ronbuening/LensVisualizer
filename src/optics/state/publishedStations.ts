@@ -74,8 +74,9 @@ export interface PublishedFocusStation {
   /** Source-certified conjugate at this station, when the lens declares one. */
   conjugate: FiniteConjugate | null;
   /**
-   * The certified conjugate's object-to-image distance in metres, whichever reference the source states it from; a
-   * source claim. Null without a conjugate.
+   * The certified conjugate's object-to-image distance in metres, whichever reference it is stated from: a source
+   * claim, or solved from the source's magnification when the conjugate carries `sourceMagnification`. Null without
+   * a conjugate.
    */
   certifiedDistanceM: number | null;
 }
@@ -259,6 +260,7 @@ export function publishedFocusStations(L: RuntimeLens, zoomStationIndex = 0): Pu
           zoomT,
           objectDistanceMm: source.objectDistanceMm,
           distanceReference: source.distanceReference,
+          ...(source.sourceMagnification !== undefined && { sourceMagnification: source.sourceMagnification }),
           source: source.source,
         }
       : null;

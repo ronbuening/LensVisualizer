@@ -411,6 +411,32 @@ const LENS_DATA = {
     closeFocusM: 1.5,
     description:
       "PUBLISHED internal focusing: G1R (L14-L15) translates 9.71956 mm toward the object from infinity to the patent's R=1500 mm object-to-image condition; D5 decreases and D9 increases by the same amount at all three zoom stations.",
+    conjugates: [
+      {
+        zoomStation: 0,
+        keyframe: 1,
+        objectDistanceMm: 1241.9566,
+        distanceReference: "first-surface",
+        source:
+          "US20030133200A1, Example 1, Table 1, Variable distance upon focusing and zooming, <Focused at closest distance>, Wide-angle column, D0 row, PDF p. 64: D0 = 1241.9566 (mm); D5=4.43994 mm, D9=12.24271 mm, D16=34.06279 mm, D21=7.92945 mm. Distance reference: ¶0110, PDF p. 63 (printed p. 5); units ¶0111.",
+      },
+      {
+        zoomStation: 1,
+        keyframe: 1,
+        objectDistanceMm: 1241.9566,
+        distanceReference: "first-surface",
+        source:
+          "US20030133200A1, Example 1, Table 1, Variable distance upon focusing and zooming, <Focused at closest distance>, Middle column, D0 row, PDF p. 64: D0 = 1241.9566 (mm); D5=4.43994 mm, D9=26.78505 mm, D16=25.29743 mm, D21=2.15247 mm. Distance reference: ¶0110, PDF p. 63 (printed p. 5); units ¶0111.",
+      },
+      {
+        zoomStation: 2,
+        keyframe: 1,
+        objectDistanceMm: 1241.9566,
+        distanceReference: "first-surface",
+        source:
+          "US20030133200A1, Example 1, Table 1, Variable distance upon focusing and zooming, <Focused at closest distance>, Telephoto column, D0 row, PDF p. 64: D0 = 1241.9566 (mm); D5=4.43994 mm, D9=40.87095 mm, D16=1.96176 mm, D21=11.40223 mm. Distance reference: ¶0110, PDF p. 63 (printed p. 5); units ¶0111.",
+      },
+    ],
   },
 
   gaps: {
