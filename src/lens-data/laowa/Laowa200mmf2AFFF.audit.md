@@ -75,7 +75,7 @@ N-SF66 (Schott), H-FK61 (CDGM) and H-K9L (CDGM) equal E-FDS1, FCD1 and BSC7 at t
 
 **Open.**
 
-- Open: Laowa's own product name is "Laowa 200mm f/2 AF FF"; the file's `name` and `key` use "AF 200mm f/2" and were left as set.
+- Closed: the lens now carries the maker's own product name, "Laowa 200mm f/2 AF FF" (file, key and name renamed).
 - Open: rims are inferred. Against Figure 3 the rear group reads about 16.5 mm (model 16), L5 about 28 mm (29), the front lens about 49 mm (51) and the rear filter about 16.5 mm (22). The corner beam is cut by up to 66 % on one side at the rear group; no rim was changed.
 - Open: the near state has no `focus.conjugates` entry. The patent's object distance is 4000 mm and the model focuses at 4000.01 mm from the first surface, so a first-surface conjugate could be recorded in a later pass.
 - Open: the model stops at the patent's 4 m state; the marketed 1.5 m minimum focus is not modeled.

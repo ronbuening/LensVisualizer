@@ -7,7 +7,7 @@ Fresh full 3D equal-area stop-lattice screen: RAYS.json; each original/intermedi
 
 Inherited unchanged: primary source scan, original independent transcription, literal source geometry checks and dense source-station 3D rays in prior original archive SHA256 ef941479b53cf455c9a0dfd4c6b3f35d6857278ac05b20f76e754f17a34f7824. Prior three-station unified hold retained separately, never overwritten.
 
-Not completed: TypeScript static typecheck, compiled browser/full app regression, current-main compatibility, canonical visible catalog generation, actual mechanical cam verification. No commit, PR, publish or deploy. No factory identity or production-performance claim.
+Closed 2026-11-15 (the items below were settled by the deployment validation and cleanup passes; the real zoom cam remains unknown). Not completed: TypeScript static typecheck, compiled browser/full app regression, current-main compatibility, canonical visible catalog generation, actual mechanical cam verification. No commit, PR, publish or deploy. No factory identity or production-performance claim.
 
 Additional fresh geometry/selector audit: densifying the data to all257 source/calculated rows and between-row midpoints yields zero canonical geometry issues. Non-stop compiled apertures match every authored cap exactly (no trimming). Native `publishedZoomStations` returns precisely indices0/64/128 at zoom0/.5/1, and only infinity focus. d19 range2.85..26.52mm, no reversals; d22 range3.75..12.132645mm with3 sampled slope-sign reversals. Maximum correction displacement2.570145mm relative to baseline group location. These modeled reversals are unsupported as factory cam behavior and explicitly narrow the claim to a computed experimental path.
 
@@ -63,4 +63,55 @@ Open:
   five `specs` lines, element names "Published medium N" (patent names are L11–L14, L21–L22, L31–L35, L41–L42,
   L51–L53), element types and glass labels, station labels, `focus.description`, and the voice of the analysis note
   and of the earlier lines of this file.
-- `visible` is still false.
+- `visible` is still false. (Closed 2026-11-15: the lens is now visible.)
+
+## 2026-11-15 — Cleanup and wording pass
+
+Files were renamed to `OlympusMZuiko825mmf4PRO.*` and the key set to `olympus-mzuiko-8-25-f4-pro` before this pass.
+The optics were not changed: every radius, thickness, index, Abbe value, asphere term, semi-diameter and gap value is
+as before.
+
+Fields changed in the data file:
+
+- `subtitle`: none → "WO 2022/137385 A1, Example 2 — element-by-element match to the maker's construction diagram".
+- `catalog.specs`: the five process lines → "16 ELEMENTS / 10 GROUPS", "1 DSA / 2 EDA / 1 SUPER ED / 1 ED",
+  "1 SUPER HR / 2 HR / 1 HD", "DESIGN f = 8.16–24.51 mm, F/4.08", "MIN. FOCUS 0.23 m". The HR count follows the
+  maker's diagram (two); the maker's English specification list says one.
+- Elements: names "Published medium 1–16" → the patent's L11–L14, L21–L22, L31–L35, L41–L42, L51–L53; `type` "Lens"
+  → shape names from the radii, with "(2× Asph)" on L12 and L51 and "(1× Asph)" on L35; `focalLengthMm` and `role`
+  added; `cemented` C1–C6 on both members of the six cemented pairs.
+- Surface labels of the five aspheric surfaces: 3, 4, 19, 23, 24 → 3A, 4A, 19A, 23A, 24A (house form); gap key 19
+  → 19A. Gap labels D7, D11, D19, D22 and BF added.
+- `groups` G1–G5 and `doublets` C1–C6 added, following the patent's group structure.
+- Zoom station labels: "Source infinity …" and "Calculated infinity; not published …" removed; the first and last
+  stations are labelled "Wide" and "Tele". `published` flags are unchanged (true on stations 0, 64 and 128 only).
+- `aperture.fStops`: [4.08] → [4.08, 5.6, 8, 11, 16, 22] with `maxFNumber` 22 (the maker's minimum aperture).
+- `focus.description` and the header comment rewritten in plain words; the facts are the same.
+
+Glass labels (printed nd / νd against the catalogue row; Δnd, Δνd):
+
+- L13 S-FPL55 (0, 0.00), L21 S-NBH5 (0.00001, 0.00), L31 S-BSL7 (0, 0), L33 S-LAH89 (0, 0), L42 S-LAL19 (0, 0.01),
+  L53 S-FPL51 (0, 0.01): Ohara.
+- L11, L22, L32 TAFD32 (0, 0), L14 TAFD45 (0, 0), L34 TAFD35 (0, 0), L41 FDS18 (0, 0), L52 TAFD55 (0, 0): Hoya.
+- L12 (1.58253 / 59.32) and L35, L51 (1.49650 / 81.53) stay unmatched: the nearest rows are 0.0004 to 0.0006 away
+  in nd.
+- `apd: "inferred"` on L13 (Super ED), L35 and L51 (aspherical ED) and L53 (ED), the positions the maker's diagram
+  marks, each with a one-line note.
+
+Engine numbers before and after are identical: focal length 8.1617 / 14.1433 / 24.5127 mm at the printed positions,
+f/4.08 at every station, stop semi-diameter 3.720 mm at wide, paraxial back focus 14.888 / 14.902 / 14.897 mm. The
+only difference in the built lens is the maximum f-number (16 → 22).
+
+Analysis: title line added, glass section brought in line with the new labels, "Verification Summary" replaced by
+"Model Scope and Limitations", aspheric surface labels noted.
+
+Open:
+
+- Closed: after this pass the surface validation printed OK, the aperture audit found 129 of 129 stations within
+  3 % of the stated f-number with no rim limit, the image-circle audit found nothing undersized, field coverage was
+  ≥ 99 % at all 129 stations, and all thirteen catalog glass labels resolve (three elements stay Unmatched).
+- Rims: at the wide end geometric transmission is 76 % at 53° and 42 % at the 56.1° corner, from the inferred
+  semi-diameters of surfaces 20–22 (9 mm) and 4A (11.5 mm). No rim was changed.
+- Calculated zoom stations: the focusing group overshoots by 2.57 mm between the middle and tele positions.
+- Close focus is not modelled; the patent prints no near state.
+- The earlier lines of this file keep the package's original wording as history.

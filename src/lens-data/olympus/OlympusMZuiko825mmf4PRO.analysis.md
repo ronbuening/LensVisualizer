@@ -1,3 +1,5 @@
+# Olympus M.Zuiko Digital ED 8-25mm f/4 PRO
+
 ## Patent Reference and Design Identification
 
 **Patent:** [WO 2022/137385 A1](https://patents.google.com/patent/WO2022137385A1/en)  
@@ -72,9 +74,9 @@ Focal lengths are thick-lens values in air computed from the data file at the d-
 
 ## Glass Identification
 
-The patent prints only nd and νd and names no glass or maker. The data file carries those printed values and no glass names.
+The patent prints only nd and νd and names no glass or maker. The data file carries the printed values, with a catalogue name where a current catalogue glass has the same nd (within 0.0001) and νd (within 0.15).
 
-Twelve of the sixteen elements have printed values that coincide with a current catalogue glass at the d-line: Ohara S-FPL55 (L13), S-NBH5 (L21), S-BSL7 (L31), S-LAH89 (L33) and S-FPL51 (L53); and Hoya TAFD32 (L11, L22, L32), TAFD45 (L14), TAFD35 (L34), FDS18 (L41) and TAFD55 (L52). These are numerical matches, not statements by the maker. L12, L35, L42 and L51 were not matched to a catalogue glass.
+Thirteen of the sixteen elements have printed values that coincide with a current catalogue glass at the d-line: Ohara S-FPL55 (L13), S-NBH5 (L21), S-BSL7 (L31), S-LAH89 (L33), S-LAL19 (L42) and S-FPL51 (L53); and Hoya TAFD32 (L11, L22, L32), TAFD45 (L14), TAFD35 (L34), FDS18 (L41) and TAFD55 (L52). These are numerical matches, not statements by the maker. L12, L35 and L51 have no exact catalogue match and are labelled unmatched. All three are aspherical elements; the nearest catalogue rows are moulding glasses (Hoya M-BACD12 for L12, and the moulding grade of Hoya FCD1 for L35 and L51), each about 0.0005 away in nd.
 
 All index values are for the helium d-line (587.56 nm), as the patent states.
 
@@ -84,7 +86,7 @@ The patent says that the fourth group moves toward the image when focusing from 
 
 ## Aspherical Surfaces
 
-Five surfaces are aspheric: both sides of L12 (surfaces 3 and 4), the image side of L35 (surface 19) and both sides of L51 (surfaces 23 and 24). The patent's sag equation uses the term (1 + k), so its k is the conic constant K used in the data file.
+Five surfaces are aspheric: both sides of L12 (surfaces 3 and 4), the image side of L35 (surface 19) and both sides of L51 (surfaces 23 and 24). The data file marks them 3A, 4A, 19A, 23A and 24A. The patent's sag equation uses the term (1 + k), so its k is the conic constant K used in the data file.
 
 | Surface | Element  | K      | Terms   |
 | ------- | -------- | ------ | ------- |
@@ -120,12 +122,13 @@ The patent prints one clear aperture, the 39.92 mm effective diameter of the fro
 
 At the wide end the inferred rims cut the corner beam heavily: geometric transmission is 100 % out to 44°, 76 % at 53° and 42 % at the 56.1° corner. The loss comes mainly from the inferred rims of G4 and of the rear surface of L12, not from the prescription. At the middle and tele positions transmission stays at 98 % or better across the field.
 
-## Verification Summary
+## Model Scope and Limitations
 
-- Every surface, aspheric coefficient and printed variable gap of Example 2 was compared with the patent page images; no difference was found.
-- The model reproduces the printed focal lengths, back focus, total length and field angles at the three printed positions, the printed f2 and f4, and the three conditional values (33.08, 2.26, 2.76).
-- Longitudinal spherical aberration at full aperture is at most 0.05 mm at the stations checked.
-- Not covered: close focus, the real zoom cam, and the true clear apertures.
+- The model follows the patent's Example 2 as printed and reproduces its stated focal lengths, back focus, total length and field angles at the three printed zoom positions.
+- It is an infinity-focus model. The patent gives no close-focus spacings, so the 0.23 m minimum focus distance is not modelled.
+- Only the wide, middle and tele positions are printed. The positions between them are calculated and do not follow the real zoom cam.
+- All clear apertures except the front element's are inferred, so corner illumination at the wide end is not that of the production lens.
+- The maker's English specification lists one HR element, while its construction diagram and Japanese launch coverage show two; the specs line follows the diagram. [2, 3]
 
 ## Sources
 
