@@ -45,7 +45,7 @@ Open:
 
 - Name: closed in the cleanup pass below ("Compact" dropped; key, name, subtitle and specs reworded).
 - Glass labels: closed in the cleanup pass below.
-- Rims of L6 and L7 (9.2 and 9.3 mm) are inferred and smaller than the full f/2 real ray needs (9.3 to 10.2 mm on surfaces 11–14); they vignette the corner heavily (64% of one side at surface 14). Compare with Figure 1 in the rim pass.
+- Rims of L6 and L7: closed in the semi-diameter pass below.
 - Mounts rest on a database listing; confirm against a Vivitar catalogue if one becomes available.
 - The patent's 1:10 focus state (Table 7, S4 = .135 normalized) is not modeled.
 - Lens notes wording: closed in the cleanup pass below.
@@ -84,6 +84,43 @@ Open:
 - Product link: no maker cross-section found; which production version (Kino, Komine or another supplier) carries this design is not confirmed.
 - The Vivitar brochure listed in the lens notes' sources was not re-read (the file is too large for the reader used); its 8 elements / 8 groups and 84° figures are the original author's reading.
 - Mounts rest on a lens-database listing; confirm against a Vivitar catalogue if one becomes available.
-- Rims of L6 and L7 (9.2 and 9.3 mm) are inferred and smaller than the full f/2 real ray needs (9.3 to 10.2 mm on surfaces 11–14); they vignette the corner heavily. Compare with FIG. 1 in the rim pass.
+- Rims of L6 and L7: closed in the semi-diameter pass below.
 - The model admits about f/2.19 of real beam on axis because the stop radius is the paraxial f/2 value.
 - The patent's 1:10 focus state (Table 7, S4 = .135 normalized) is not modeled.
+
+## 2026-11-15 — Semi-diameter pass against the patent figure
+
+Source: US 4,258,980 A, drawing sheet 1 (PDF page 2), FIG. 1, which draws the Table 1 form. Measured on the native 300 dpi raster.
+
+Scale: first to last vertex is 1,003 px for 50.016 mm, 20.05 px/mm. Single spans give 19.2 (L4 thickness), 19.7 (S2 air space), 19.8 (L5 thickness), 20.7 (L1 thickness) and 21.9 px/mm (S5 air space), so the figure is to scale within about 10 %. The spacing inside the L6–L7 pair is drawn loosely (L7 is drawn 5.6 mm thick against 4.06 mm), though R11 to R14 as a whole is right (150 px for 7.49 mm). The iris tick sits 28.6 mm behind the front vertex against the model's 28.88 mm, which supports the mid-gap stop position.
+
+Rim readings (top and bottom of the figure) against the file:
+
+| Element | Surfaces | File before | Figure | File after | Note |
+| ------- | -------- | ----------- | ------ | ---------- | ---- |
+| L1 | 1, 2 | 18.4 | 18.5–18.9 | 18.4 | kept, within 3 % |
+| L2 | 3, 4 | 14 (rear curve to 11.4, land to 14) | 14.2–14.3; curve ends near 10.9 | unchanged | kept; the land is drawn |
+| L3 | 5, 6 | 7.8 | 7.8–7.9 | 7.8 | kept |
+| L4 | 7, 8 | 10 | 10.2 | 10 | kept |
+| L5 | 9, 10 | 10.5 | 10.7–10.8 | 10.5 | kept |
+| L6 | 11 | 9.2 | 10.2–10.6, square | 10.4 | raised to the figure |
+| L6 | 12 | 9.2 | meets L7 at the rim | 9.6, land to 10.4 | contact-limited |
+| L7 | 13 | 9.3 | meets L6 at the rim | 9.6, land to 10.6 | contact-limited |
+| L7 | 14 | 9.3 | 10.6–11.2, square | 10.6 | raised to the low end of the figure reading |
+| L8 | 15, 16 | 12.5 | 12.5–12.8 | 12.5 | kept |
+
+L6 and L7 were 11 to 20 % below the figure, and the real f/2 marginal ray also asks for more (9.26, 9.76, 9.75 and 10.21 mm on surfaces 11 to 14). Surfaces 12 and 13 curve toward each other across the 1.656 mm air space and touch at 9.74 mm, which is why the figure draws the two elements meeting at the rim and why the earlier 10.5 / 10.8 mm trial failed. Their curved faces now end at 9.6 mm, where the two sags take 97.1 % of the air space, and flat lands (`rimExtensionSd`) carry the square rims the figure draws. `checks.gapSagFrac` is set to 0.98, the smallest two-decimal value that admits 9.6 mm; the faces do not cross. A 9.7 mm cap would need 0.992 and is not used.
+
+Illumination, wide open at infinity (geometric, percent), before → after: 2.8° 98.1 → 100; 14.1° 87.0 → 96.9; 28.2° 56.1 → 70.1; 36.7° 33.7 → 47.9; 39.5° 25.3 → 37.1; 42.4° 11.2 → 18.6. No field loses light; the largest gain is 15.2 points. The two lands cost nothing: removing them changes no field.
+
+Engine numbers are unchanged: EFL 24.008 mm, f/2, half-field 40.05°, stop radius 8.664 mm. Geometry validation passes with no errors, the aperture audit reports no rim limit, the image-circle check finds nothing undersized, and field coverage is 100 % (42.4° to 21.65 mm).
+
+Metadata: `aperture.blades` 6 added, from the allphotolenses.com listing for the Kino-made Vivitar 24 mm f/2 MC (https://allphotolenses.com/lenses/item/c_1875.html), the same listing that gives the mounts, the f/16 minimum aperture and the 0.3 m minimum focus.
+
+Product name: collector listings and dealer pages call the Kino-made version "Vivitar 24mm f/2 Auto Wide-Angle" and the Komine-made version "Vivitar 24mm f/2 MC Wide Angle" (forum.mflenses.com, kamerastore.com, pentaxforums.com); the exact ring engravings were not seen. The display name "VIVITAR 24mm f/2" covers both and claims no version. No Vivitar catalogue page could be read to settle a fuller official name.
+
+Open:
+
+- Surfaces 12 and 13 still sit below the full f/2 real marginal ray (9.76 mm against a 9.74 mm contact height). This is the printed prescription, not a rim choice.
+- The iris tick in FIG. 1 reads about 9.2 mm in semi-diameter, between the paraxial f/2 stop (8.66 mm) and the real-ray f/2 stop (9.83 mm). No stop change is made; the stop radius follows the stated f/2.
+- Blade count and mounts rest on a database listing and may differ between production versions.

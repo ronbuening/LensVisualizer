@@ -20,9 +20,13 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * STOP (inferred): Figure 1 draws the iris between L4 and L5 without a station; the 3.72 mm air space S4 is split
  * into two 1.86 mm halves. The stop radius is derived from the stated f/2.
  *
- * SEMI-DIAMETERS (inferred): the patent prints no clear apertures. Rims follow the proportions of Figure 1. L2's
- * rear curve ends at 11.4 mm and a flat land continues to the 14 mm front rim (rimExtensionSd), as the figure draws
- * it. L7's rims are 9.3 mm, the smallest value that passes the on-axis f/2 ray.
+ * SEMI-DIAMETERS (inferred): the patent prints no clear apertures. Rims are read from Figure 1, which is drawn to
+ * scale within about 10 % (20 px/mm at 300 dpi), and agree with it within 5 % on every element. L2's rear curve ends
+ * at 11.4 mm and a flat land continues to the 14 mm front rim (rimExtensionSd), as the figure draws it. L6 and L7 are
+ * drawn square at about 10.4 and 10.6 mm and meeting at the rim. Their facing surfaces 12 and 13 touch at a height of
+ * 9.74 mm, so their curved caps end at 9.6 mm and flat lands continue to the element rims; checks.gapSagFrac = 0.98
+ * admits that pair (the faces do not cross). The full f/2 marginal ray would need 9.76 mm there, so the edge contact
+ * of L6 and L7 is a limit of the printed prescription.
  *
  * FOCUS: infinity only. The patent's 1:10 state (Table 7, S4 = .135) is not modeled; closeFocusM = 1e15 marks focus
  * as not modeled. The Vivitar 24mm f/2 focuses to 0.3 m (catalog.closeFocusM.marketing).
@@ -250,27 +254,29 @@ const LENS_DATA = {
       "label": "11",
       "R": -18.72,
       "d": 1.776,
-      "sd": 9.2,
+      "sd": 10.4,
       "medium": 6
     },
     {
       "label": "12",
       "R": 57.096,
       "d": 1.656,
-      "sd": 9.2
+      "sd": 9.6,
+      "rimExtensionSd": 10.4
     },
     {
       "label": "13",
       "R": -58.344,
       "d": 4.056,
-      "sd": 9.3,
+      "sd": 9.6,
+      "rimExtensionSd": 10.6,
       "medium": 7
     },
     {
       "label": "14",
       "R": -17.784,
       "d": 0.192,
-      "sd": 9.3
+      "sd": 10.6
     },
     {
       "label": "15",
@@ -293,6 +299,7 @@ const LENS_DATA = {
   "gaps": {},
   "aperture": {
     "nominalFNumber": 2,
+    "blades": 6,
     "fStops": [
       2,
       2.8,
@@ -316,6 +323,9 @@ const LENS_DATA = {
     }
   ],
   "doublets": [],
+  "checks": {
+    "gapSagFrac": 0.98
+  },
   "layout": {
     "yScFill": 0.3
   }

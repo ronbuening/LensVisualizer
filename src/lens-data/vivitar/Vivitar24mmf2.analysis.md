@@ -101,7 +101,9 @@ The model holds the infinity state only; the 1:10 state is not modeled. The prod
 
 ## Stop and Clear Apertures
 
-FIG. 1 draws the iris between L4 and L5 without giving its position. The model places it at the middle of the 3.72 mm air space. The patent prints no clear apertures, so every semi-diameter is inferred from the proportions of FIG. 1. L2's rear surface is drawn with a flat land outside its curved cap, and the model follows that: the curve ends at 11.4 mm and a land continues to the 14 mm rim.
+FIG. 1 draws the iris between L4 and L5 without giving its position. The model places it at the middle of the 3.72 mm air space. The patent prints no clear apertures, so every semi-diameter is read from FIG. 1, which is drawn to scale within about 10 %. L2's rear surface is drawn with a flat land outside its curved cap, and the model follows that: the curve ends at 11.4 mm and a land continues to the 14 mm rim.
+
+L6 and L7 are drawn square, about 10.4 mm and 10.6 mm in semi-diameter, and meeting at the rim. The prescription confirms the contact: the rear surface of L6 and the front surface of L7 curve toward each other across a 1.66 mm air space and touch at a height of 9.74 mm. The model ends both curved faces at 9.6 mm and continues them as flat lands to the element rims. The full f/2 marginal ray would cross these two surfaces at 9.76 mm, so the edge contact of L6 and L7 is itself a limit on the aperture of the printed prescription.
 
 ## Model Scope and Limitations
 
@@ -109,7 +111,7 @@ The scaled prescription has a paraxial focal length of 24.008 mm. The image plan
 
 The stop radius, 8.66 mm, is the paraxial value for f/2. The prescription's spherical aberration grows steeply at the edge of the pupil: the full f/2 marginal ray would reach 9.83 mm at the stop and focus 1.42 mm short. The real ray that just passes the modeled stop enters at a height of 5.48 mm, so the model admits about f/2.19 of real beam on axis. This is a property of the prescription as printed to three decimals, not of the scaling.
 
-The inferred rims of L6 and L7 cut part of the oblique beam, so corner illumination in the model depends on those inferred values and not on patent data. The model reaches the corner of the 24 × 36 mm frame at a half-field of 42.4°.
+The rims of L6 and L7 cut part of the oblique beam. Wide open, the geometric illumination of the model falls to 70 % at a half-field of 28°, 37 % at 39.5° and 19 % at the 42.4° corner of the 24 × 36 mm frame. These figures depend on rims read from the figure, not on patent data.
 
 ## Sources
 
