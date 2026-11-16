@@ -20,6 +20,12 @@
 /formats/1/2.3-inch-type/ /formats/1-2.3-inch-type/ 301
 /formats/1/1.7-inch-type /formats/1-1.7-inch-type/ 301
 /formats/1/1.7-inch-type/ /formats/1-1.7-inch-type/ 301
+# 2026-11-16: maker slug "p.-angénieux" renamed to plain-ASCII "angenieux", matching
+# every other maker slug. Raw and percent-encoded forms of the old path both redirect.
+/makers/p.-angénieux /makers/angenieux/ 301
+/makers/p.-angénieux/ /makers/angenieux/ 301
+/makers/p.-ang%C3%A9nieux /makers/angenieux/ 301
+/makers/p.-ang%C3%A9nieux/ /makers/angenieux/ 301
 # Client-only comparison pages: serve the app shell with a 200 so arbitrary lens
 # pairs load without a 404. The target must be `/`, not `/index.html`: Cloudflare's
 # parser rejects any `/*` rule whose target ends in `/index` or `/index.html`
