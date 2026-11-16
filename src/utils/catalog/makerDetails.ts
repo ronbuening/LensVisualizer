@@ -28,7 +28,7 @@
  *   2026-07-16  Added Tamron maker entry.
  *   2026-08-06  Added P. Angénieux maker entry.
  *   2026-08-07  Added Mamiya maker entry.
- *   2026-11-15  Added AEG and Meike maker entries.
+ *   2026-11-15  Added AEG maker entry.
  *   2026-04-26  Detail and accuracy pass on Leica (designer attributions,
  *               Solms→Leitz-Park facility history), Fujifilm (X100, GFX,
  *               2006 holding-company rebrand), Canon (Kwanon-vs-Hansa Canon,
@@ -122,14 +122,6 @@ export const MAKER_DETAILS: Record<string, MakerDetails> = {
     history:
       "AEG was founded in Berlin in 1883 as Deutsche Edison-Gesellschaft and took the name Allgemeine Elektricitäts-Gesellschaft in 1887. It was an electrical manufacturer, not a camera maker, and its place in lens history comes from its research institute.\n\nIn 1932 the company applied for German patent DE 620,538, a five-element wide-angle objective covering about 180°, with two diverging menisci ahead of the stop. The design is credited in the literature to Hans Schulz. It was built around 1935 as a 17 mm f/6.3 objective for a cloud-recording camera, and a surviving example has been sold at auction together with a copy of the patent.",
     notableDesigns: "Weitwinkelobjektiv 17mm f/6.3 (DE 620,538)",
-  },
-  // Lens patents: https://patents.google.com/patent/CN216526483U/en
-  meike: {
-    headquarters: "Hong Kong; lens patents filed from Chengdu, China",
-    summary: "Chinese maker of low-cost manual, autofocus and cine lenses for mirrorless mounts.",
-    history:
-      "Meike began with camera accessories such as battery grips, flashes and extension tubes, and added manual-focus prime lenses for mirrorless cameras in the mid-2010s. The brand trades as HongKong Meike Digital Technology Co., Ltd.; lens patents associated with it are filed by Chengdu Weizheng Digital Technology Co., Ltd.\n\nThe range later grew to include compact cine primes for Micro Four Thirds, Super 35 and full-frame cameras, and autofocus primes. The 50mm f/0.95 for APS-C mirrorless mounts was announced in 2022.",
-    notableDesigns: "50mm f/0.95 (APS-C); 85mm f/1.8 AF; Mini Prime cine series",
   },
   agfa: {
     founded: 1867,
@@ -461,6 +453,15 @@ export const MAKER_DETAILS: Record<string, MakerDetails> = {
       "Mamiya Camera was founded in Tokyo in 1940 by camera designer Seiichi Mamiya and financial backer Tsunejiro Sugawara. Its first product, the Mamiya Six folding camera, used a distinctive coupled-back focusing mechanism and established the company's preference for mechanically inventive medium-format equipment. Postwar lines expanded through the Mamiyaflex and C-series twin-lens reflex cameras, Mamiya Press and Universal rangefinders, and 35 mm SLR systems carrying Mamiya-Sekor lenses.\n\nThe RB67, introduced in 1970, became Mamiya's defining professional system: a fully mechanical 6x7 SLR with bellows focusing, rotating backs, and leaf shutters in the lenses. The smaller M645 followed in 1975, while the electronically controlled RZ67 extended the studio platform in 1982. Mamiya later developed two unusually compact interchangeable-lens rangefinder systems, the 6x6 Mamiya 6 and 6x7 Mamiya 7, whose short back-focus freedom supported highly corrected wide-angle and standard lenses.\n\nThe company name changed through Mamiya-OP and Mamiya Digital Imaging as the business moved from film into autofocus 645 cameras and digital backs. Phase One acquired the medium-format camera assets and continued Mamiya-derived 645 bodies and lenses before consolidating the system under the Phase One brand. The historical Mamiya catalog remains unusually broad, spanning compact 35 mm optics, bellows-focused studio lenses, macro and soft-focus specialties, and portable medium-format rangefinder designs.",
     notableDesigns:
       "Mamiya-Sekor lenses, Mamiya C-series TLR, Mamiya Press, RB67, RZ67, M645, Mamiya 6, Mamiya 7, Sekor AF 150mm f/2.8 IF D",
+  },
+  // Company history: Meike corporate site, https://www.mkgrip.com/ (read 2026-11-09)
+  // Patentee: https://patents.google.com/patent/CN217606166U/en
+  meike: {
+    headquarters: "Shenzhen and Chengdu, China; brand company registered in Hong Kong",
+    summary:
+      "Chinese maker of autofocus and manual-focus photographic lenses, cine lenses, flashes and camera accessories sold under the Meike brand.",
+    history:
+      "Meike traces its company to Shenzhen Hengxin Precision, a mould maker founded in July 1997. In December 2005 it became Huitian Mould (Shenzhen) and registered Hong Kong Meike Digital Technology to sell photographic equipment under the Meike name. A Chengdu factory followed in 2009. In July 2019 the Shenzhen company took the name Shenzhen Huitian Film and Television Equipment Co., Ltd. as it expanded into cine lenses, and in 2021 production moved to Chengdu, with research and sales staying in Shenzhen. That Shenzhen company holds CN 217606166 U, the source of the 85mm f/1.8 entry in this catalog.",
   },
   pentax: {
     founded: 1919,
