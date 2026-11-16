@@ -1,4 +1,4 @@
-# Laowa AF 200mm f/2 — CN 120949408 A, Example 2
+# Laowa 200mm f/2 AF FF
 
 ## Patent Reference and Design Identification
 
@@ -11,11 +11,11 @@
 **Title:** 一种大光圈望远镜头及运用该镜头的相机、摄像机 (a large-aperture telephoto lens, and a camera and video camera using it)
 **Example details:** 实施例2, the table at ¶0096–0098, Figures 3 and 4
 
-The patent gives three numerical examples of a 194.5 mm f/2.06 telephoto lens. This file transcribes Example 2. The patent prints f = 194.5254 mm, FNO = 2.06 and a half-field of 6.303°, and its aberration plots run to an image height of 21.60 mm, which is the corner of the 36 × 24 mm format.
+The patent gives three numerical examples of a 194.5 mm f/2.06 telephoto lens. The model uses Example 2. The patent prints f = 194.5254 mm, FNO = 2.06 and a half-field of 6.303°, and its aberration plots run to an image height of 21.60 mm, which is the corner of the 36 × 24 mm format.
 
 Example 2 was chosen because it is the only one of the three that agrees with the construction Laowa publishes for the AF 200mm f/2:
 
-1. **Element and group count.** Laowa lists 11 elements in 9 groups. Example 2 has 11 elements in 9 groups. Example 1 has 10 elements in 8 groups, and Example 3 has 11 elements in 8 groups.
+1. **Element and group count.** Laowa, which sells the lens as the Laowa 200mm f/2 AF FF, lists 11 elements in 9 groups. Example 2 has 11 elements in 9 groups. Example 1 has 10 elements in 8 groups, and Example 3 has 11 elements in 8 groups.
 2. **Special glass positions.** Laowa's diagram marks the first lens as ultra-high-refraction glass, the second as anomalous-dispersion glass, and the third and ninth as extra-low-dispersion glass. In Example 2 these are nd = 1.92286, then 1.45860 / 90.19, then 1.49700 / 81.61 at both L3 and L9. Example 1 uses the 1.45860 glass for L3 and has no separate ninth singlet; Example 3 uses a dense flint for its ninth lens.
 3. **Layout.** The diagram shows two front singlets, a cemented pair, four singlets around the stop, a thin negative singlet and a rear cemented pair, which is the order of Example 2.
 4. **Focal length, aperture and format.** 194.5 mm at f/2.06 on a 21.6 mm image height is a normal design value for a lens sold as 200 mm f/2 for full frame.
@@ -40,11 +40,11 @@ The aperture stop lies between G2 and G3, 5.55 mm behind L7. Its position is pri
 
 ## Element-by-Element Analysis
 
-Focal lengths are thick-lens values in air computed from the data file.
+Focal lengths are thick-lens values in air computed from the prescription.
 
 ### L1 — Positive Meniscus, convex to object
 
-nd = 1.92286, νd = 20.88. Glass: not identified (Laowa: ultra-high-refraction glass). f = +209.0 mm.
+nd = 1.92286, νd = 20.88. Glass: E-FDS1 (Hoya) by exact catalogue match; N-SF66 (Schott) has the same values — dense flint, Laowa's ultra-high-refraction glass. f = +209.0 mm.
 
 A dense flint is an unusual choice for the front positive lens of a telephoto. Its high index keeps the curves shallow (R1 = 168.86 mm), and its strong dispersion is balanced by the two low-dispersion positive lenses that follow.
 
@@ -56,7 +56,7 @@ The weakest positive lens of the front group, placed where the beam is still nea
 
 ### L3 + L4 — Cemented Doublet (G1b)
 
-L3: nd = 1.49700, νd = 81.61. Glass: FCD1 (Hoya) or H-FK61 (CDGM) by exact catalogue match — ED crown. Biconvex, f = +111.8 mm.
+L3: nd = 1.49700, νd = 81.61. Glass: FCD1 (Hoya) by exact catalogue match; H-FK61 (CDGM) has the same values — ED crown. Biconvex, f = +111.8 mm.
 
 L4: nd = 1.89663, νd = 22.56. Glass: not identified — dense flint. Biconcave, f = −57.3 mm.
 
@@ -76,7 +76,7 @@ Separated from L5 by only 0.15 mm, it offsets much of L5's power; the two togeth
 
 ### L7 — Positive Meniscus, convex to object (G2c)
 
-nd = 1.72916, νd = 54.67. Glass: lanthanum crown, 1.72916 class (S-LAL18 of Ohara is 1.72916 / 54.68). f = +98.7 mm.
+nd = 1.72916, νd = 54.67. Glass: TAC8 (Hoya) by exact catalogue match — lanthanum crown. f = +98.7 mm.
 
 The last lens before the stop and the only crown in G2. It sets the convergence of the beam entering the focusing lens.
 
@@ -88,7 +88,7 @@ The only moving element. It weighs little because the beam here is under 19 mm i
 
 ### L9 — Negative Meniscus, convex to object
 
-nd = 1.49700, νd = 81.61. Glass: FCD1 (Hoya) or H-FK61 (CDGM) by exact catalogue match — ED crown. f = −247.9 mm.
+nd = 1.49700, νd = 81.61. Glass: FCD1 (Hoya) by exact catalogue match; H-FK61 (CDGM) has the same values — ED crown. f = −247.9 mm.
 
 A thin (1.0 mm), weak negative lens of ED glass at the front of the rear group, where the off-axis beams are well separated from the axis. It mainly affects lateral colour.
 
@@ -100,29 +100,29 @@ L11: nd = 1.64378, νd = 30.70. Glass: not identified. Biconcave, f = −52.6 mm
 
 Together the pair is positive, f = +84.4 mm. The two glasses have nearly the same dispersion and differ in index by 0.13, so the cemented surface (R20 = −36.01 mm) works mostly on spherical aberration and field curvature and very little on colour.
 
-### Rear filter — Plane-Parallel Plate
+### Rear Filter — Plane-Parallel Plate
 
-nd = 1.51680, νd = 64.20. Glass: H-K9L (CDGM) by exact catalogue match; the common BK7 type. No power.
+nd = 1.51680, νd = 64.20. Glass: BSC7 (Hoya) by exact catalogue match; H-K9L (CDGM) has the same values — the common BK7 type. No power.
 
-A 2.0 mm plate printed in the patent table, 3.0 mm behind L11 and 45.2069 mm ahead of the image. That is far in front of any camera's sensor stack, so it is the lens's own rear filter position and is drawn as part of the lens. Laowa's Sony E and Nikon Z versions take 43 mm rear filters, and the maker asks for filters under 1.5 mm thick; the file keeps the patent's 2 mm plate and makes no claim about the factory filter.
+A 2.0 mm plate printed in the patent table, 3.0 mm behind L11 and 45.2069 mm ahead of the image. That is far in front of any camera's sensor stack, so it is the lens's own rear filter position and is drawn as part of the lens. Laowa's Sony E and Nikon Z versions take 43 mm rear filters, and the maker asks for filters under 1.5 mm thick; the model keeps the patent's 2 mm plate and makes no claim about the factory filter. The plate is not counted among the 11 elements.
 
 ## Glass Selection
 
 | nd | νd | Used in | Identification | Role |
 |---:|---:|---|---|---|
-| 1.92286 | 20.88 | L1 | not identified | High-index front positive |
+| 1.92286 | 20.88 | L1 | E-FDS1 (Hoya), exact | High-index front positive |
 | 1.45860 | 90.19 | L2 | FCD10A (Hoya), exact | Anomalous-dispersion crown |
-| 1.49700 | 81.61 | L3, L9 | FCD1 (Hoya) or H-FK61 (CDGM), exact | ED crown |
+| 1.49700 | 81.61 | L3, L9 | FCD1 (Hoya), exact | ED crown |
 | 1.89663 | 22.56 | L4 | not identified | Flint partner of L3 |
 | 1.87022 | 21.86 | L5 | not identified | High-index positive |
 | 1.78225 | 24.07 | L6 | not identified | Negative flint |
-| 1.72916 | 54.67 | L7 | lanthanum crown, 1.72916 class | Positive crown before the stop |
+| 1.72916 | 54.67 | L7 | TAC8 (Hoya), exact | Positive crown before the stop |
 | 1.61467 | 62.96 | L8 | not identified | Focusing lens |
 | 1.77236 | 33.40 | L10 | not identified | Rear positive |
 | 1.64378 | 30.70 | L11 | not identified | Rear negative |
-| 1.51680 | 64.20 | Filter | H-K9L (CDGM), exact | Plane plate |
+| 1.51680 | 64.20 | Rear filter | BSC7 (Hoya), exact | Plane plate |
 
-The patent names no glasses; it prints d-line indices and Abbe numbers only. Three of the pairs match catalogue glasses exactly at the helium d line, which also confirms the patent's statement that the indices are d-line values. The unidentified glasses are modeled from the printed index and Abbe number, so their colour behaviour away from the d line is approximate.
+The patent names no glasses; it prints d-line indices and Abbe numbers only. Five of the eleven pairs equal catalogue glasses at the helium d line, all of them available from one maker (Hoya); several have twins in other catalogues, so the labels identify a glass type, not a supplier. The exact matches also support the patent's statement that the indices are d-line values. The six unidentified glasses are modeled from the printed index and Abbe number, so their colour behaviour away from the d line is approximate.
 
 The design is unusual in using dense flints (νd 21 to 24) for three positive or front-group lenses, L1, L4 and L5, and leaving the low-dispersion work to L2, L3, L8 and L9.
 
@@ -138,13 +138,13 @@ Inner focus by the single negative lens L8 (G3), which moves toward the image as
 
 Both states are printed in the patent, and the travel between them is 4.56 mm. With the near-state gaps the model focuses on an object 4000.0 mm in front of the first surface, as the patent states; that is 4.20 m from object to image, at a magnification of about −0.048.
 
-The production lens focuses to 1.5 m (0.15×). The patent gives no state closer than 4 m, and this file does not extrapolate, so the focus slider covers infinity to 4.2 m only. Laowa describes the lens as autofocus; the patent does not describe the drive.
+The production lens focuses to 1.5 m (0.15×). The patent gives no state closer than 4 m, and the model does not extrapolate, so the focus slider covers infinity to 4.2 m only. Laowa describes the lens as autofocus; the patent does not describe the drive.
 
 ## Conditional Expressions
 
-The patent lists eleven conditions and a summary table of their values for each example. All were recomputed from the data file.
+The patent lists eleven conditions and a summary table of their values for each example. All were recomputed from the prescription.
 
-| Condition | Range | Patent, Example 2 | From the file |
+| Condition | Range | Patent, Example 2 | Recomputed |
 |---|---|---:|---:|
 | (1) \|FL / F3\| | 2.0 – 4.0 | 2.647 | 2.647 |
 | (2) \|F3 / F4\| | 0.4 – 0.8 | 0.583 | 0.583 |
@@ -158,9 +158,9 @@ The patent lists eleven conditions and a summary table of their values for each 
 | (10) \|F2 / F2c\| | 0.9 – 1.8 | 1.256 | 1.256 |
 | (11) (Vd1 + Vd2) / Vd3 | 0.4 – 1.2 | 0.840 | 0.840 |
 
-Two rows differ slightly because the summary table and the prescription table disagree in the patent itself: the summary gives 62.900 for the focusing lens's Abbe number where the prescription table prints 62.96, and 59.100 where the table values give 81.61 − 22.56 = 59.05. The file keeps the prescription table.
+Two rows differ slightly because the summary table and the prescription table disagree in the patent itself: the summary gives 62.900 for the focusing lens's Abbe number where the prescription table prints 62.96, and 59.100 where the table values give 81.61 − 22.56 = 59.05. The model keeps the prescription table.
 
-## Verification Summary
+## Model Scope and Limitations
 
 | Quantity | Patent | Model |
 |---|---:|---:|
@@ -171,11 +171,11 @@ Two rows differ slightly because the summary table and the prescription table di
 | Image-side gap | 45.2069 mm | 45.2069 mm (paraxial back focus 45.2054 mm) |
 | Near object distance | 4000 mm | 4000.0 mm |
 
-All 23 surfaces, both focus states and the image-side gap were compared with the patent page images, and none differs. Longitudinal spherical aberration at the full aperture is about −0.02 mm, in line with the patent's Figure 4.
+The model carries all 23 surfaces, both focus states and the image-side gap as the patent prints them. Longitudinal spherical aberration at the full aperture is about −0.02 mm, in line with the patent's Figure 4.
 
 **Printed in the patent:** every radius, thickness, index and Abbe number, the stop position, both focus states, the plate and the image-side gap.
 
-**Inferred:** every clear semi-diameter. The patent prints none. The values in the file pass the full axial beam and the chief ray to the 21.6 mm corner, and they agree with Figure 3 to within about 2 mm (rear group about 16.5 mm in the figure against 16 mm in the file, L5 about 28 mm against 29 mm, front lens about 49 mm against 51 mm). The stop radius, 18.46 mm, follows from f/2.06.
+**Inferred:** every clear semi-diameter. The patent prints none. The values in the model pass the full axial beam and the chief ray to the 21.6 mm corner, and they agree with Figure 3 to within about 2 mm (rear group about 16.5 mm in the figure against 16 mm in the model, L5 about 28 mm against 29 mm, front lens about 49 mm against 51 mm). The stop radius, 18.46 mm, follows from f/2.06.
 
 **Vignetting:** with these rims the corner beam at full aperture is cut by up to about two thirds on one side at the rear group and by a quarter to a half at the front group. Because the rims match the patent drawing, this is a property of the design as drawn and not of undersized rims; it is a geometric result from inferred apertures, not a measured illumination figure.
 
