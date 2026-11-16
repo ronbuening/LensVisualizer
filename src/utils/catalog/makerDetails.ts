@@ -31,6 +31,7 @@
  *   2026-11-16  Expanded the Kinoptik, Meike, Schacht, Thypoch, Viltrox, and Yongnuo entries to the
  *               full multi-paragraph form of the established makers; renamed the P. Angénieux slug
  *               to angenieux.
+ *   2026-11-16  Added the ISCO entry in the same form.
  *   2026-04-26  Detail and accuracy pass on Leica (designer attributions,
  *               Solms→Leitz-Park facility history), Fujifilm (X100, GFX,
  *               2006 holding-company rebrand), Canon (Kwanon-vs-Hansa Canon,
@@ -129,17 +130,24 @@ export const MAKER_DETAILS: Record<string, MakerDetails> = {
     notableDesigns:
       "Apochromat 50mm f/2, Apochromat 100mm f/2, Apochromat 150mm f/2.5, Tegea 5.7mm f/1.8, Tegea 9.8mm f/1.8, Super-Tegea 1.9mm f/1.9, Fulgior 50mm f/1.3",
   },
-  // https://cinelenswiki.com/mfg:isco (1936 founding, Tronnier); https://www.filmkorn.org/super8data/database/manufacturers_list/i_/isco.htm (gives 1939)
+  // Founding, wartime work, postwar products and later company history: https://de.wikipedia.org/wiki/ISCO_G%C3%B6ttingen
+  // 30 March 1936 founding and Tronnier: https://cinelenswiki.com/mfg:isco
+  // https://www.filmkorn.org/super8data/database/manufacturers_list/i_/isco.htm (gives 1939)
+  // Camera-lens dates, Reich Air Ministry commission and Iscorama for SLRs: https://photobutmore.de/exakta/isco/
+  // Lens customers and the name restriction until 1953: https://camera-wiki.org/wiki/Isco
+  // Iscorama models: https://en.wikipedia.org/wiki/Iscorama
+  // 1980s restructuring and return to Schneider: https://www.eoshd.com/news/whats-the-story-behind-schneider-kreuznachs-return-of-the-iscorama
   // https://www.pressebox.com/pressrelease/jos-schneider-optische-werke-gmbh/ISK-Optics-merges-with-parent-company-Jos-Schneider-Optische-Werke/boxid/698220
   // https://schneiderkreuznach.com/application/files/5116/8552/3858/Press_Release_Schneider-Kreuznach_introduces_ISCO_Family.pdf
   isco: {
     founded: 1936,
     headquarters: "Göttingen, Germany",
     summary:
-      "Göttingen optical works of the Schneider Kreuznach group, known for Iscaron camera lenses, cine and projection optics, and Iscorama anamorphic attachments.",
+      "Göttingen optical works founded by Schneider Kreuznach in 1936, known for wartime aerial lenses, Westron, Westanar and Tele-Iscaron camera lenses, cinema projection optics, and Iscorama anamorphic attachments.",
     history:
-      "ISCO began in Göttingen in 1936 as a Schneider Kreuznach subsidiary, registered as Jos. Schneider & Co., Optische Werke, Göttingen, with Albrecht Wilhelm Tronnier as its first chief designer; some references date the company to 1939. After the war it made camera lenses such as the Exakta-mount Tele-Iscaron 135mm f/2.8, along with cine and projection lenses, and in the 1960s the Iscorama anamorphic attachments. The Göttingen operation later became Schneider Kreuznach's ISCO Division and, as ISK Optics GmbH, merged into Jos. Schneider Optische Werke GmbH in 2014. US 2,972,285, by Rudolf Solisch for Isco Optische Werke, is the source of the Tele-Iscaron entry in this catalog.",
-    notableDesigns: "Tele-Iscaron 135mm f/2.8; Iscorama anamorphic attachments",
+      "ISCO was founded in Göttingen on 30 March 1936 as Jos. Schneider & Co., Optische Werke, Göttingen, a limited partnership of the Bad Kreuznach lens maker, set up as a second production site under a Reich Air Ministry commission; some references date it to 1939. Albrecht Wilhelm Tronnier, Schneider's chief designer, built up lens production, which began the same year. A new plant opened on Reichsstraße in 1941, and during the Second World War the works was the Luftwaffe's main supplier of aerial-reconnaissance lenses, making about 45,000 of them, partly with forced labour.\n\nAfter the war the Allies dismantled much of the plant. The company made its first cinema-projection lenses in 1946 and spectacle lenses from 1947, and until 1953 it traded as Optische Werke Göttingen because it could not use the ISCO name. Its first anamorphic attachments for widescreen projection followed in 1953, and Kiptar and Super-Kiptar lenses became the core of its projection range.\n\nCamera lenses began in 1951 with fitted lenses such as the Isconar and Westanar for other makers' cameras, among them Balda, Bilora, Franka and Wirgin. Interchangeable lenses for Exakta, Edixa and M42 cameras followed from 1952: the Westar and Westanar standard lenses, the Westagon 50mm f/2, the Westron wide-angles, the Westrogon 24mm f/4 of 1958 and, from 1957, the Tele-Iscaron line. In the 1960s ISCO had about 600 employees, concentrated on lenses and was among the first major makers to use plastic lens mounts. The Iscorama anamorphic attachment for Exakta and M42 cameras appeared in 1967–68 and was followed by the Iscorama 36 and Iscorama 54 and, in 1982, the Iscorama 42.\n\nWhen the Schneider parent company went bankrupt in 1982, ISCO was restructured: Kurt Lindstedt and two partners took it over and renamed it Isco-Optik. The company moved to the Anna-Vandenhoeck-Ring in Göttingen in the late 1980s, began making lenses for digital projectors in 1990 and worked with Texas Instruments on digital cinema from 1995. After a second insolvency in 2003, a Swiss investor took over the business in 2004. It returned to the Schneider group as Schneider Kreuznach ISCO Division (sources give 2008 or 2009), was renamed ISK Optics GmbH in 2011 and merged into Jos. Schneider Optische Werke GmbH in 2014. Schneider revived the ISCO name in 2022 with ISCO4all, which pairs a new ISCORAMA 54 CU-1.5x anamorphic adapter with ISCOspherical cine primes. US 2,972,285, by Rudolf Solisch for Isco Optische Werke, is the source of the Tele-Iscaron entry in this catalog.",
+    notableDesigns:
+      "Westanar 50mm f/2.8, Westagon 50mm f/2, Westrogon 24mm f/4, Westron 35mm f/2.8, Tele-Iscaron 135mm f/2.8, Kiptar projection lenses, Iscorama anamorphic attachments",
   },
   unattributed: {
     headquarters: "Not known",
