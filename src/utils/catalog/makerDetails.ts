@@ -28,6 +28,9 @@
  *   2026-07-16  Added Tamron maker entry.
  *   2026-08-06  Added P. Angénieux maker entry.
  *   2026-08-07  Added Mamiya maker entry.
+ *   2026-11-16  Expanded the Kinoptik, Meike, Schacht, Thypoch, Viltrox, and Yongnuo entries to the
+ *               full multi-paragraph form of the established makers; renamed the P. Angénieux slug
+ *               to angenieux.
  *   2026-04-26  Detail and accuracy pass on Leica (designer attributions,
  *               Solms→Leitz-Park facility history), Fujifilm (X100, GFX,
  *               2006 holding-company rebrand), Canon (Kwanon-vs-Hansa Canon,
@@ -48,11 +51,25 @@ export interface MakerDetails {
 export const MAKER_DETAILS: Record<string, MakerDetails> = {
   // Company history: https://www.hkyongnuo.com/gsjj
   // Shenzhen assignee: https://patents.google.com/patent/CN110146970B/en
+  // First lenses: https://petapixel.com/2014/09/25/yongnuo-50mm-f1-4-looks-like-near-perfect-clone-canon-50mm-f1-4/
+  // https://old.imaging-resource.com/news/2014/12/18/yongnuo-clones-canons-nifty-fifty-down-to-every-last-detail-at-half-the-pri
+  // https://www.imaging-resource.com/news/2015/04/24/yongnuo-unveils-its-35mm-f-2-canon-clone
+  // Micro Four Thirds membership: https://www.olympus-global.com/news/2020/nr01561.html
+  // https://petapixel.com/2020/02/20/yongnuo-and-venus-optics-officially-join-the-micro-four-thirds-standard/
+  // Mirrorless lenses: https://photorumors.com/2019/10/23/yongnuo-42-5mm-f-1-7-mft-lens-officially-announced-currently-in-stock-price-73/
+  // https://petapixel.com/2020/04/14/yongnuo-unveils-nifty-fifty-lens-for-sony-aps-c-cameras/
+  // https://www.cined.com/yongnuo-yn-85mm-f-1-8z-df-dsm-lens-for-nikon-z-cameras-announced/
+  // https://petapixel.com/2023/07/27/yongnuo-has-a-new-50mm-f-1-8-autofocus-lens-for-fujifilm-x-mount/
+  // https://www.diyphotography.net/the-yongnuo-yn-35mm-f-2-is-another-attempt-at-releasing-a-3rd-party-af-lens-for-the-rf-mount/
   yongnuo: {
+    founded: 2006,
     headquarters: "Shenzhen, China",
-    summary: "Chinese photographic-equipment manufacturer producing autofocus lenses and flash equipment.",
+    summary:
+      "Chinese photographic-equipment manufacturer that began with flashes and radio triggers, entered lens making in 2014 with low-cost Canon EF autofocus primes, and now builds autofocus primes for mirrorless mounts.",
     history:
-      "Yongnuo's company history records its first flash in 2009 and its first autofocus lens in 2014. Its lens patents include CN 110146970 B and CN 220171327 U, the sources of the YN 85mm and YN 56mm entries in this catalog.",
+      "Yongnuo was established in Shenzhen in November 2006 by Zhuang Jiannan, with production in the city's Pingshan district and a Hong Kong branch for export sales. The company first sold lighting accessories. Its company history records its first flash in 2009, a new generation of TTL flashes in 2012 and an RT radio trigger in 2016, and the photographic press of the period described it as a maker of low-cost speedlights and radio triggers.\n\nLenses followed in 2014, the year the company gives for its first autofocus lens. In September 2014 it announced a 50mm f/1.4 for Canon EF with a DC focus motor, and by December a 50mm f/1.8 that closely followed Canon's EF 50mm f/1.8 II was on sale. A 35mm f/2 for Canon EF arrived in April 2015, and a 50mm f/1.8 for Nikon F was shown in Shanghai that July.\n\nYongnuo moved into mirrorless systems from 2019. The 42.5mm f/1.7 for Micro Four Thirds was announced in October 2019, and in February 2020 Olympus and Panasonic announced that Yongnuo had joined the Micro Four Thirds System standard group. The YN450, an Android camera with a Micro Four Thirds sensor and a Canon EF mount, was followed in 2021 by the YN455, which takes Micro Four Thirds lenses.\n\nStepping-motor DSM primes extended the lens range to Sony E in 2020, Nikon Z in 2022 and Fujifilm X in 2023, and a 35mm f/2 for Canon RF was on sale in early 2024. The company's lens patents, among them CN 110146970 B and CN 220171327 U, are the sources of the Yongnuo entries in this catalog.",
+    notableDesigns:
+      "YN50mm F1.4, YN50mm F1.8, YN35mm F2, YN42.5mm F1.7M, YN50mm F1.8S DA DSM, YN85mm F1.8Z DF DSM, YN50mm F1.8X DA DSM Pro",
   },
   // Corporate and camera history: company announcements, archived specifications and museum records.
   // https://www.apple.com/sg/newsroom/2026/03/apple-to-celebrate-50-years-of-thinking-different/
@@ -96,15 +113,21 @@ export const MAKER_DETAILS: Record<string, MakerDetails> = {
       "Industar-22; Industar-50 and Industar-50-2; Helios-44 58mm f/2; Helios-40 85mm f/1.5; Zenitar 16mm f/2.8 fisheye; Zorki, Zenit, Krasnogorsk and Horizon cameras",
   },
   // French Ministry of Culture inventory: https://pop.culture.gouv.fr/notice/palissy/IM25001882
+  // Science Museum Group record: https://collection.sciencemuseumgroup.org.uk/people/cp122543
+  // Apochromat design dates and 2015 PL rehousing: https://www.fdtimes.com/2015/11/11/vantage-vintage-kinoptik/
+  // Lens range: https://cinelenswiki.com/mfg:kinoptic and the catalogue tables at https://fr.wikipedia.org/wiki/Kinoptik
+  // Alpa supply: https://en.wikipedia.org/wiki/Alpa
+  // 2003 closure: https://www.vantagefilm.com/file/edee/downloads/rentals/vintage-kinoptik-paris.pdf
   // Tegea designs: US 3,037,426 and Kinoptik product literature cited in the lens analyses.
   kinoptik: {
     founded: 1932,
     headquarters: "Paris, France (historical optical works)",
     summary:
-      "French optical manufacturer known for cinema lenses, including the Tegea wide-angle and Super-Tegea fisheye families.",
+      "French optical manufacturer founded in Paris in 1932, known for Apochromat cine primes, the Tegea wide-angle and Super-Tegea fisheye families, and aerial, industrial and defence optics.",
     history:
-      "Georges Grosset and Georges Perthuis founded Kinoptik in Paris in 1932. The company developed optics for cinema and specialized imaging, including an aerial-photography objective in 1939. Edgard Hugues's large-angular-field patent, assigned to Les Appareils de Precision Kinoptik, describes the three-system designs represented by the Tegea and Super-Tegea models in this catalog. Their production associations remain qualified in the individual lens analyses.",
-    notableDesigns: "Tegea 5.7mm f/1.8, Tegea 9.8mm f/1.8, Super-Tegea 1.9mm f/1.9",
+      "Georges Grosset and Georges Perthuis founded Kinoptik in Paris in 1932. Its early output covered lenses, condensers, viewfinders and other special optics, and in 1939 it produced its first objective designed for aerial photography. From 1944 the company concentrated on lenses and viewfinders for 35 mm cine cameras. Patents of the period name the firm as Les Appareils de Precision Kinoptik.\n\nThe Apochromat cine primes were designed from 1947, beginning with the 100 mm and 150 mm, followed by the 28 mm and 50 mm in 1949 and the 25 mm and 75 mm in 1955. The family eventually ran from 25 mm to 150 mm, mostly at f/2, and was supplied in mounts including Caméflex, Arri and C. Apochromats of 100 mm and 150 mm were also offered for Alpa 35 mm still cameras, and the Fulgior 50mm f/1.3 was made in Rectaflex mount.\n\nThe Tegea wide-angles and the Super-Tegea fisheye extended the cine range to very short focal lengths: the 9.8 mm covered 35 mm film and the 5.7 mm covered 16 mm. Edgard Hugues's large-angular-field patent, filed with a 1957 French priority and assigned to Les Appareils de Precision Kinoptik, describes the three-system designs represented by the Tegea and Super-Tegea models in this catalog. Their production associations remain qualified in the individual lens analyses.\n\nFrom 1953, when it acquired Optique instrumentale Decarris, Kinoptik diversified into microfilm, medical radiology, industrial periscopes and defence optics. SFIM bought the company in 1981, and it went on to add Clavé in 1985, the coating firm MTO in 1988 and the endoscopy maker Bodson in 1993. Kinoptik S.A. closed in 2003. In 2015 Vantage Film acquired the last new Apochromat sets and rehoused them in PL mount.",
+    notableDesigns:
+      "Apochromat 50mm f/2, Apochromat 100mm f/2, Apochromat 150mm f/2.5, Tegea 5.7mm f/1.8, Tegea 9.8mm f/1.8, Super-Tegea 1.9mm f/1.9, Fulgior 50mm f/1.3",
   },
   unattributed: {
     headquarters: "Not established",
@@ -163,13 +186,18 @@ export const MAKER_DETAILS: Record<string, MakerDetails> = {
       "14mm f/2.8 ED AS IF UMC, 85mm f/1.4, 135mm f/2 ED UMC, 24mm f/3.5 Tilt-Shift, XP 14mm f/2.4, AF 35mm f/2.8 FE, AF 35-150mm f/2-2.8, XEEN cinema primes",
   },
   // Company chronology: https://japb.net/business/company-profiles/schacht/
+  // Career dates, Edixa supply and badge names: https://camera-wiki.org/wiki/Schacht
+  // Bertele's work for Schacht (citing Thiele 2007): https://en.wikipedia.org/wiki/Ludwig_Bertele
+  // Period brochures and manuals: https://allphotolenses.com/pdf/c_123.html
   schacht: {
     founded: 1948,
     headquarters: "Ulm, Germany; originally Munich",
-    summary: "German maker of interchangeable photographic lenses, including the Travenar and S-Travenar families.",
+    summary:
+      "German maker of interchangeable photographic lenses, founded by Albert Schacht in Munich in 1948 and based in Ulm from 1954, known for the Travenar, Travegon and Travelon families.",
     history:
-      "Albert Schacht founded the company in Munich in 1948, after a career at Zeiss, ICA, Zeiss Ikon, and Steinheil. The company relocated to Ulm in 1954 and supplied interchangeable lenses for camera systems including Exakta, Leica thread mount, M42, and Praktina. Its lenses carry both Munich and Ulm branding, reflecting the two locations.",
-    notableDesigns: "Travenar 90mm f/2.8, S-Travenar 135mm f/2.8, Travelon, Travegon",
+      "Albert Schacht spent the years from 1919 to 1946 in management at German optical firms, including Carl Zeiss and Zeiss Ikon, and by one account was technical director at Steinheil in Munich from 1939 to 1946. He founded his own company, A. Schacht, in Munich in 1948. The firm moved to Ulm in 1954, and the engraving on its lenses changed from 'A. Schacht München' to 'A. Schacht Ulm', so its lenses carry the branding of both locations.\n\nSchacht made interchangeable lenses for 35 mm cameras rather than cameras of its own, supplying Exakta, Leica thread, M42 and Praktina mounts. Several lenses were standard equipment for the Edixa Reflex and carry Edixa-prefixed names, and a version of the Travegon was sold for Alpa as the Alpagon. The firm also made enlarger lenses.\n\nThe lens families took the names Travenar, Travegon, Travelon, Travegar and Travenon, sometimes combined with the name of the camera system they were built for. They ranged from the Travegon 35mm f/3.5 wide-angle through the Travenar 50mm f/2.8, the fast S-Travelon 50mm f/1.8 and the close-focusing M-Travenar 50mm f/2.8 to the Travenar 90mm and 135mm short telephotos and the Tele-Travelon 200mm. Ludwig Bertele, by then working as an independent designer in Switzerland, developed objectives for Schacht.\n\nThe company was acquired by another industrial group in 1967. In 1969 its optics division was sold on to Will of Wetzlar, and the Schacht machinery was dispersed among Will's facilities. Manufacture of Schacht lenses ended in 1970.",
+    notableDesigns:
+      "Travegon 35mm f/3.5, Travenar 50mm f/2.8, S-Travelon 50mm f/1.8, M-Travenar 50mm f/2.8, Travenar 90mm f/2.8, Travenar 135mm f/3.5, S-Travenar 135mm f/2.8",
   },
   samsung: {
     founded: 1938,
@@ -194,15 +222,21 @@ export const MAKER_DETAILS: Record<string, MakerDetails> = {
   /* Thypoch product pages; patent applicant per CN 118244463 A and CN 118534627 A.
    * https://thypoch.com/en/simera/50mm
    * https://thypoch.com/en/ksana/21mm
+   * Parent group and brand dates: https://www.dzoptics.com/en/
+   * Thypoch newsroom releases, read 2026-11-16 (https://thypoch.com/en/newsroom/<n>): 8 brand debut, 6 first Simera
+   * lenses, 24 mirrorless mounts, 25 Eureka 50mm, 31 Simera 50mm, 34 Simera-C, 112 Simera 21mm, 115 Ksana 21mm,
+   * 117 Eureka 28mm, 118 Voyager 24-50mm, 119 Ksana 35mm, 126 Simera-C 100mm.
+   * Simera 75mm: https://www.digitalcameraworld.com/cameras/lenses/thypoch-unveils-the-simera-75mm-f-1-4-a-classic-medium-telephoto-for-leica-m-mount
    */
   thypoch: {
+    founded: 2023,
     headquarters: "Shenzhen, China",
     summary:
-      "Chinese maker of compact manual-focus rangefinder-style primes, chiefly for Leica M mount, sold in the Simera, Eureka, and Ksana lines.",
+      "Chinese lens brand launched in 2023 by Shenzhen Dongzheng Optical Technology, known for compact manual-focus rangefinder-style primes, chiefly for Leica M mount, sold in the Simera, Eureka, and Ksana lines.",
     history:
-      "Thypoch is a photographic lens brand whose optical patents are filed by Shenzhen Dongzheng Optical Technology Co., Ltd. Its lenses are manual-focus full-frame primes built around the Leica M mount, with some models also offered in mirrorless mounts. The Simera line covers fast f/1.4 primes with floating focus, and the Ksana 21mm f/3.5 is a compact wide-angle.",
+      "Thypoch is the consumer-optics brand of Shenzhen Dongzheng Optical Technology Co., Ltd. (DZO Group), which files its optical patents. The group was established in Shenzhen in 2013 and also sells machine-vision lenses as DZOPTICS and cinema lenses as DZOFILM; it dates the Thypoch brand to 2023. The name combines 'thy' and 'epoch'.\n\nThe brand debuted at Photopia Hamburg in 2023 with two manual-focus rangefinder lenses for Leica M, the Simera 28mm f/1.4 and Simera 35mm f/1.4, which went on sale that November. Both use floating elements for close focus. In May 2024 they were extended to Nikon Z, Fujifilm X, Sony E and Canon RF mounts, and a second series began with the collapsible Eureka 50mm f/2, a six-element double-Gauss design.\n\nThe Simera line grew with a 50mm f/1.4 in August 2024, a 75mm f/1.4 in February 2025 and a 21mm f/1.4 in July 2025. The Simera-C T1.5 cine primes, released at IBC 2024 in collaboration with DZOFILM, reuse the Simera optical formulas; 16mm and 100mm T1.9 lenses completed a seven-lens set in 2026.\n\nA third series, Ksana, opened in January 2026 with the compact Ksana 21mm f/3.5 and added a 35mm f/2 that May, and the Eureka 28mm f/2.8 was released in April 2026. In May 2026 Thypoch announced its first autofocus lens, the Voyager 24-50mm f/2.8 zoom for Sony E.",
     notableDesigns:
-      "Simera 28mm f/1.4, Simera 35mm f/1.4, Simera 50mm f/1.4, Simera 75mm f/1.4, Eureka 50mm f/2, Ksana 21mm f/3.5",
+      "Simera 21mm f/1.4, Simera 28mm f/1.4, Simera 35mm f/1.4, Simera 50mm f/1.4, Simera 75mm f/1.4, Eureka 50mm f/2, Ksana 21mm f/3.5, Voyager 24-50mm f/2.8",
   },
   tokina: {
     founded: 1950,
@@ -347,6 +381,16 @@ export const MAKER_DETAILS: Record<string, MakerDetails> = {
    * https://viltrox.com/pages/about-us
    * https://prtimes.jp/main/html/rd/p/000000001.000157861.html
    */
+  /* History, read 2026-11-16:
+   * First lenses: https://www.digitalcameraworld.com/news/viltrox-85mm-f18-arrives-for-sony-full-frame-e-mount-cameras
+   * f/1.4 trio: https://www.digitalcameraworld.com/news/vitrox-adds-trio-of-fast-af-primes-for-fuji-x-eos-m-and-sony-a6000-shooters
+   * 75mm f/1.2 Pro: https://cined.com/?p=267614
+   * 16mm f/1.8: https://www.newsshooter.com/2023/05/30/viltrox-af-16mm-f-1-8-lens-for-sony-e-mount-full-frame-mirrorless-cameras/
+   * 135mm f/1.8 LAB: https://www.newsshooter.com/2024/11/07/viltrox-af-135mm-f1-8-lab-fe/
+   * 28mm f/4.5: https://digitalcameraworld.com/news/an-unbelievably-small-lens-is-coming-for-sony-e-and-nikon-z-cameras
+   * L-Mount Alliance and cine lines: https://leica-camera.com/en-BE/press/viltrox-joins-l-mount-alliance
+   * Air primes for L-Mount: https://www.newsshooter.com/2026/09/22/viltrox-brings-its-air-series-to-l-mount-with-four-compact-autofocus-primes/
+   */
   /* Representative designs: fast APS-C ultra-wide, full-frame ultra-wide with LCD,
    * autofocus pancake, fast LAB wide-angle, first PRO prime, and HyperVCM LAB telephoto.
    * https://viltrox.com/products/13mm-f14-af-lens-for-fujifilm-x-mount-camera-models
@@ -360,9 +404,9 @@ export const MAKER_DETAILS: Record<string, MakerDetails> = {
     founded: 2009,
     headquarters: "Shenzhen, China",
     summary:
-      "Chinese maker of photographic and cinema lenses, lens adapters, monitors, and lighting equipment, with autofocus primes for APS-C and full-frame mirrorless cameras.",
+      "Chinese maker of photographic and cinema lenses, lens adapters, monitors, and lighting equipment, which began building lenses in 2018 and now offers autofocus primes in Air, Pro and LAB tiers for APS-C and full-frame mirrorless cameras.",
     history:
-      "Viltrox is the imaging-equipment brand of Shenzhen Jueying Technology Co., Ltd., founded in 2009 in Shenzhen. Its range includes photographic accessories and interchangeable lenses for mirrorless camera systems. The AF prime-lens lineup spans compact everyday lenses and large-aperture designs, including the APS-C 27mm f/1.2 and 75mm f/1.2 PRO lenses.",
+      "Viltrox is the imaging-equipment brand of Shenzhen Jueying Technology Co., Ltd., established in Shenzhen in September 2009. The company began as a maker of photographic accessories, including lens adapters, LED lighting, extension tubes and monitors, and it still sells adapters, monitors and lights alongside its lenses.\n\nIt moved into lens manufacture in October 2018 with three primes: manual-focus 20mm f/1.8 and 85mm f/1.8 lenses for Sony E and an autofocus 85mm f/1.8 for Fujifilm X. An autofocus 85mm f/1.8 STM for Sony full-frame cameras followed in May 2019. A trio of APS-C autofocus primes, the 23mm, 33mm and 56mm f/1.4, was shown at IBC 2019, reached Fujifilm X first, and was released for Canon EF-M and Sony E in December 2020.\n\nThe AF 75mm f/1.2 for Fujifilm X, announced in December 2022, opened the Pro series, which also includes the APS-C 27mm f/1.2. The full-frame AF 16mm f/1.8 for Sony E followed in May 2023. Late 2024 brought the AF 135mm f/1.8 LAB, the first full-frame large-aperture autofocus telephoto prime in the LAB series, built around a HyperVCM focus motor, and the fixed-aperture AF 28mm f/4.5 pancake.\n\nViltrox expanded into cinema lenses in 2022 with the EPIC anamorphic primes and LUNA zooms. On September 1, 2025 it became the tenth company to join the L-Mount Alliance, and its Air primes reached L-Mount in September 2026. Its lenses are grouped into LAB, Pro, EVO, Air, Raze and EPIC series and are offered for Sony E, Nikon Z, Fujifilm X, L-Mount, Canon EF-M and DJI DL.",
     notableDesigns:
       "AF 13mm f/1.4, AF 16mm f/1.8, AF 28mm f/4.5 Chip, AF 35mm f/1.2 LAB, AF 75mm f/1.2 PRO, AF 135mm f/1.8 LAB",
   },
@@ -443,14 +487,26 @@ export const MAKER_DETAILS: Record<string, MakerDetails> = {
     notableDesigns:
       "Mamiya-Sekor lenses, Mamiya C-series TLR, Mamiya Press, RB67, RZ67, M645, Mamiya 6, Mamiya 7, Sekor AF 150mm f/2.8 IF D",
   },
-  // Company history: Meike corporate site, https://www.mkgrip.com/ (read 2026-11-09)
+  // Company history: Meike corporate site, https://mkgrip.com/aboutus.html?tid=10004 (read 2026-11-16)
   // Patentee: https://patents.google.com/patent/CN217606166U/en
+  // 2016 manual lenses: https://old.imaging-resource.com/news/2016/05/29/meike-launches-lens-line-with-four-manual-mirrorless-lenses-ranging-from-25
+  // Cine lenses: https://www.fujirumors.com/tag/meike-25mm-t2-2/, https://nofilmschool.com/meikes-new-35mm-cine-lens,
+  // https://www.newsshooter.com/2021/02/23/meike-s35-50mm-t2-1/
+  // Autofocus lenses: https://petapixel.com/2018/04/21/meike-unveils-a-85mm-f-1-8its-first-autofocus-lens/
+  // https://petapixel.com/2020/08/11/meike-unveils-cheap-85mm-f-1-8-for-canon-and-nikon-its-first-af-lens/
+  // https://petapixel.com/2022/06/23/meike-launches-200-85mm-f-1-8-af-lens-for-sony-full-frame-cameras/
+  // https://www.newsshooter.com/2023/11/27/meike-85mm-f1-4-full-frame-auto-focus-portrait-lens/
+  // https://www.diyphotography.net/meike-announced-their-first-af-aps-c-lens-meike-55mm-f-1-4/
+  // https://photorumors.com/2024/11/12/meike-85mm-f-1-8-pro-lens-announced-in-china-e-z-l/
   meike: {
+    founded: 2005,
     headquarters: "Shenzhen and Chengdu, China; brand company registered in Hong Kong",
     summary:
-      "Chinese maker of autofocus and manual-focus photographic lenses, cine lenses, flashes and camera accessories sold under the Meike brand.",
+      "Chinese maker of autofocus and manual-focus photographic lenses, cine lenses, flashes and camera accessories, whose Meike brand was started in 2005 by a Shenzhen mould maker and is now built in Chengdu.",
     history:
-      "Meike traces its company to Shenzhen Hengxin Precision, a mould maker founded in July 1997. In December 2005 it became Huitian Mould (Shenzhen) and registered Hong Kong Meike Digital Technology to sell photographic equipment under the Meike name. A Chengdu factory followed in 2009. In July 2019 the Shenzhen company took the name Shenzhen Huitian Film and Television Equipment Co., Ltd. as it expanded into cine lenses, and in 2021 production moved to Chengdu, with research and sales staying in Shenzhen. That Shenzhen company holds CN 217606166 U, the source of the 85mm f/1.8 entry in this catalog.",
+      "Meike traces its company to Shenzhen Hengxin Precision, a mould maker founded in July 1997. In December 2005 it became Huitian Mould (Shenzhen) and registered Hong Kong Meike Digital Technology to sell photographic equipment under the Meike name. In 2009 it bought land in the Xindu industrial park in Chengdu and built a factory there, setting up Chengdu Weizheng Digital Technology that December.\n\nIn 2016 the photographic press still described Meike as a camera accessory manufacturer. That May it launched a line of manual-focus lenses for mirrorless cameras: a 25mm f/0.95, 28mm f/2.8, 35mm f/1.7 and 50mm f/2.0. A cine 25mm T2.2 was announced in February 2018, and by 2021 the cine range had grown to T2.2 mini primes, Super 35 primes and full-frame T2.1 primes. In July 2019 the Shenzhen company took the name Shenzhen Huitian Film and Television Equipment Co., Ltd. as that work expanded.\n\nMeike's first autofocus lens, an 85mm f/1.8 for Canon EF, was announced in April 2018 and went on sale in August 2020 for Canon EF and Nikon F. An 85mm f/1.8 STM for Sony E followed in June 2022 and an 85mm f/1.4 for Sony E and Nikon Z in November 2023, with an L-mount version in July 2024. A 55mm f/1.4 for APS-C cameras arrived in March 2024 and an 85mm f/1.8 Pro that November.\n\nIn April 2021 the tooling and moulding departments moved from Shenzhen to Chengdu, which became the production base, while research and sales stayed in Shenzhen. The Shenzhen company holds CN 217606166 U, the source of the 85mm f/1.8 entry in this catalog.",
+    notableDesigns:
+      "25mm f/0.95, 35mm f/1.7, 50mm f/1.2, Mini Prime 25mm T2.2, FF Prime 35mm T2.1, AF 85mm f/1.8 STM, AF 85mm f/1.4 STM, AF 55mm f/1.4",
   },
   pentax: {
     founded: 1919,
