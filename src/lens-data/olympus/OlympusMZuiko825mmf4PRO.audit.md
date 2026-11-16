@@ -111,7 +111,53 @@ Open:
   3 % of the stated f-number with no rim limit, the image-circle audit found nothing undersized, field coverage was
   ≥ 99 % at all 129 stations, and all thirteen catalog glass labels resolve (three elements stay Unmatched).
 - Rims: at the wide end geometric transmission is 76 % at 53° and 42 % at the 56.1° corner, from the inferred
-  semi-diameters of surfaces 20–22 (9 mm) and 4A (11.5 mm). No rim was changed.
+  semi-diameters of surfaces 20–22 (9 mm) and 4A (11.5 mm). No rim was changed. (Closed 2026-11-15: see the
+  semi-diameter pass below; the figure draws both no larger than the file, so they stay.)
 - Calculated zoom stations: the focusing group overshoots by 2.57 mm between the middle and tele positions.
 - Close focus is not modelled; the patent prints no near state.
 - The earlier lines of this file keep the package's original wording as history.
+
+## 2026-11-15 — Semi-diameter pass against the patent figure
+
+Source: WO 2022/137385 A1, PDF page 32, Fig. 3, native 300 dpi. Panel (b), the middle position, was measured because
+panel (a) is covered by leader lines; the elements are the same at every position. Scale: first vertex to image plane
+1305 px for 122.62 mm, and the fifth group's front vertex to the image plane 320 px for 29.98 mm, both 10.64–10.67
+px/mm. The drawn front element is 204.5 px high, which is 19.2 mm at that scale against the printed 19.96 mm, so
+the drawing may run about 4 % small in height; the readings below give both.
+
+| Surfaces | Element | File before | Figure (mm) | File after | Reason |
+| --- | --- | --- | --- | --- | --- |
+| 1 | L11 front | 19.96 | 19.2–20.0 | 19.96 | printed effective diameter |
+| 2 | L11 rear | 15.5 | 13.9–14.4 | 15.5 | within 10 %; kept |
+| 3A | L12 front | 14.5 | 13.9–14.4 | 14.5 | agrees |
+| 4A | L12 rear | 11.5 | 10.6–11.0 | 11.5 | within 8 %; kept |
+| 5–7 | L13–L14 | 11.5 | 10.4–11.4 | 11.5 | within noise; kept |
+| 8–10 | L21–L22 | 7 | 6.8–7.0 | 7 | agrees |
+| 12–14 | L31–L32 | 9.5 | 7.6–8.4 | 8.6 | drawn 12–20 % smaller; 8.6 is the smallest value that keeps wide-end light within 3 points |
+| 15–16 | L33 | 10 | 8.8–9.2 | 9.2 | drawn 8–12 % smaller |
+| 17–19A | L34–L35 | 11 | 9.0–9.4 | 9.4 | drawn 15–18 % smaller |
+| 20–22 | L41–L42 | 9 | 8.8–9.2 | 9 | agrees |
+| 23A–24A | L51 | 12 | 10.4–10.8 | 12 | figure value costs 20 points at the tele corner; kept |
+| 25–27 | L52–L53 | 12 | 10.0–10.4 | 12 | figure value costs 18–20 points at the middle and tele corners; kept |
+
+Eight surfaces changed, all in the third group, all reductions toward the figure. The figure gives no support for
+enlarging surfaces 20–22 or 4A, the two rims that set the wide-corner loss: it draws the fourth group at 8.8–9.2 mm
+and smaller than its neighbours, and the rear of L12 at 10.6–11.0 mm. They stay, and the wide-corner loss stays.
+
+Illumination against the starting rims, every eighth zoom station: worst loss 2.7 points (at 44.3°, 8.16 mm); no
+loss at any other station. Wide end before → after: 100 → 99.6 % at 41°, 100 → 97.3 % at 44°, 95.8 → 93.6 % at 47°,
+88.4 → 88.2 % at 50°, 76.5 % at 53° and 42.3 % at 56.1° unchanged. Middle and tele corners unchanged.
+
+After the change: surface validation OK with no errors; aperture audit 129 of 129 stations within 3 % of the stated
+f-number with no rim limit; field coverage 129 of 129 stations at 99 % or more; image circle not undersized. The
+built lens is unchanged in focal length, f-number, half-field and stop radius.
+
+Metadata: `aperture.blades` 7 added (OM System product page: seven aperture blades). The maker's name for
+the lens is "M.Zuiko Digital ED 8-25mm F4.0 PRO"; the file's display name writes the aperture as "f/4".
+
+Open:
+
+- The fifth group is drawn 10–17 % smaller than the model. Matching it would cost about 20 points of corner light at
+  the middle and tele positions, so it is left larger than the figure.
+- Wide corner: 42 % at 56.1°, set by surfaces 20–22 and 4A, both already at the figure's size.
+- The model sketch was compared with the figure by eye only; no side-by-side image at matched scale was made.

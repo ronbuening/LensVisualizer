@@ -11,8 +11,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * (published: false) are calculated: gaps d7, d11 and d27 are interpolated linearly, and the cemented focus group
  * (surfaces 20–22) is shifted between d19 and d22 to hold paraxial focus. Infinity focus only.
  * Inferred: every semi-diameter except surface 1 (the patent prints the front effective diameter, 39.92 mm), and
- * the stop semi-diameter (set from the printed f-number, 4.08, at each station). The last gap d27 is the printed
- * back focus. Glass names are catalogue rows whose nd and νd equal the printed values; the patent names no glass.
+ * the stop semi-diameter. The third group's rims (surfaces 12–19A) follow the patent's Fig. 3(b), held just large
+ * enough that wide-end illumination stays within 3 points of the wider estimate; the other rims are estimates that
+ * agree with the figure within about 10 %, except the fifth group, kept larger than drawn to pass the tele and
+ * middle corner beams. The stop semi-diameter is set from the printed f-number, 4.08, at each station. The last gap
+ * d27 is the printed back focus. Glass names are catalogue rows whose nd and νd equal the printed values; the patent names no glass.
  */
 const LENS_DATA = {
   "schema": 2,
@@ -324,53 +327,53 @@ const LENS_DATA = {
       "label": "12",
       "R": 36.832,
       "d": 5,
-      "sd": 9.5,
+      "sd": 8.6,
       "medium": 7
     },
     {
       "label": "13",
       "R": -15.143,
       "d": 0.8,
-      "sd": 9.5,
+      "sd": 8.6,
       "medium": 8
     },
     {
       "label": "14",
       "R": -419.457,
       "d": 0.2,
-      "sd": 9.5
+      "sd": 8.6
     },
     {
       "label": "15",
       "R": 46.749,
       "d": 3.7,
-      "sd": 10,
+      "sd": 9.2,
       "medium": 9
     },
     {
       "label": "16",
       "R": -46.749,
       "d": 2.87,
-      "sd": 10
+      "sd": 9.2
     },
     {
       "label": "17",
       "R": 38.545,
       "d": 1.1,
-      "sd": 11,
+      "sd": 9.4,
       "medium": 10
     },
     {
       "label": "18",
       "R": 14.392,
       "d": 8.3,
-      "sd": 11,
+      "sd": 9.4,
       "medium": 11
     },
     {
       "label": "19A",
       "R": -28.862,
-      "sd": 11,
+      "sd": 9.4,
       "asphere": {
         "K": 0,
         "A4": 0.0000124216,
@@ -457,7 +460,8 @@ const LENS_DATA = {
       16,
       22
     ],
-    "maxFNumber": 22
+    "maxFNumber": 22,
+    "blades": 7
   },
   "focus": {
     "closeFocusM": 1000000000000000,

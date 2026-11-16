@@ -118,9 +118,9 @@ The printed gaps add up to 131.40, 122.62 and 124.79 mm, while the patent's tota
 
 The stop position is printed (surface 11). Its semi-diameter is not; the model sets it at each station from the printed f/4.08, so it opens from 3.72 mm at wide to 6.78 mm at tele.
 
-The patent prints one clear aperture, the 39.92 mm effective diameter of the front element, and the data file uses it. Every other semi-diameter is inferred. With these rims the on-axis beam is clear at every station and the chief ray reaches the 10.815 mm image corner at every station.
+The patent prints one clear aperture, the 39.92 mm effective diameter of the front element, and the data file uses it. Every other semi-diameter is inferred. The rims of the third group follow the patent's mid-zoom section, Fig. 3(b); the fifth group is kept larger than drawn so that the corner beams pass at the middle and tele positions. With these rims the on-axis beam is clear at every station and the chief ray reaches the 10.815 mm image corner at every station.
 
-At the wide end the inferred rims cut the corner beam heavily: geometric transmission is 100 % out to 44°, 76 % at 53° and 42 % at the 56.1° corner. The loss comes mainly from the inferred rims of G4 and of the rear surface of L12, not from the prescription. At the middle and tele positions transmission stays at 98 % or better across the field.
+At the wide end the inferred rims cut the corner beam heavily: geometric transmission is 97 % at 44°, 88 % at 50°, 76 % at 53° and 42 % at the 56.1° corner. The loss comes mainly from the inferred rims of G4 and of the rear surface of L12, not from the prescription. At the printed middle and tele positions transmission stays at 98 % or better across the field.
 
 ## Model Scope and Limitations
 
