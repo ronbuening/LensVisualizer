@@ -1,9 +1,33 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
-/** Hidden representative research model; literal optics, qualified product association. Integration QA pending. */
+/**
+ * RU 2592746 C1, sole example (Table 2, printed p. 6). Inventor Vladimir Aleksandrovich Bogdankov; patent holder
+ * OAO Krasnogorsk Plant named after S.A. Zverev (KMZ). Application 2015110965, filed 27 March 2015, published
+ * 27 July 2016. The patent states a design for APS-C reflex cameras (25.5 x 18.6 mm), f' = 51.478 mm, relative
+ * aperture 1:1.2, back focus S' = 39.777 mm and system length 119.577 mm. Eight spherical elements in seven groups;
+ * elements 4 and 5 are cemented and the stop sits between elements 3 and 4.
+ *
+ * SCALE: none. R and d are as printed, in millimetres.
+ *
+ * GLASS: Table 2 prints glass names only (TK-21, LF-5, TF-10, TK-14), no indices. The stored values are LZOS
+ * catalogue ne and ve (indexReference "e"); Table 1 gives 0.54607 um the weight 1. With them the paraxial EFL is
+ * 51.4744 mm and the back focus 39.7777 mm against the printed 51.478 and 39.777 (d-line values give 51.492 and
+ * 39.794).
+ *
+ * STOP AND F-NUMBER: the stop is Table 2 row 7 with a printed clear diameter of 25.1 mm. nominalFNumber is the
+ * paraxial f-number that reproduces that 12.55 mm stop radius, f/1.3026; a real axial ray fills the stop at about
+ * f/1.265. The patent's stated 1:1.2 and 41.05 mm entrance pupil are not reached by its own printed diameters: at
+ * f/1.2 the axial beam is cut at surfaces 5, 6, 8, 9 and 16.
+ *
+ * SEMI-DIAMETERS: every sd is the printed clear diameter divided by two; none is inferred. Off-axis vignetting is
+ * heavy and comes from those printed diameters.
+ *
+ * IMAGE PLANE: the last gap is the printed 39.777 mm. FOCUS: infinity only; the patent prints no close-focus
+ * spacing. The maker's 0.45 m is catalog.closeFocusM.marketing.
+ */
 const LENS_DATA = {
   "schema": 2,
   "key": "zenitar-50-f12-s-representative-ru2592746",
-  "maker": "Zenit",
+  "maker": "KMZ",
   "name": "Zenitar 50mm f/1.2 S \u2014 representative patent reconstruction",
   "visible": false,
   "elements": [
@@ -199,8 +223,17 @@ const LENS_DATA = {
   "aperture": {
     "nominalFNumber": 1.3025708965508993,
     "fStops": [
-      1.3025708965508993
-    ]
+      1.3025708965508993,
+      1.4,
+      2,
+      2.8,
+      4,
+      5.6,
+      8,
+      11,
+      16
+    ],
+    "maxFNumber": 16
   },
   "focus": {
     "closeFocusM": 1000000000000000.0,
@@ -223,11 +256,14 @@ const LENS_DATA = {
     "groupCount": 7,
     "focalLengthMm": {
       "marketing": 50,
-      "design": 51.47444663355622
+      "design": 51.4744
     },
     "fNumber": {
       "marketing": 1.2,
       "design": 1.3025708965508993
+    },
+    "closeFocusM": {
+      "marketing": 0.45
     },
     "specs": [
       "REPRESENTATIVE NOT FACTORY EXACT",
@@ -244,10 +280,10 @@ const LENS_DATA = {
       "id": null
     },
     "authors": [
-      "Vladimir A. Bogdankov"
+      "Vladimir Aleksandrovich Bogdankov"
     ],
     "assignees": [
-      "Krasnogorsky Zavod im. S. A. Zvereva"
+      "PJSC Krasnogorsky Zavod named after S. A. Zverev"
     ],
     "errata": [
       {
