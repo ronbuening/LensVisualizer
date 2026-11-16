@@ -62,7 +62,7 @@ src/content/changelog/2026-09/2026-09-07-lens-canon-ef-70-200mm.txt
 ```
 
 For a lens entry, the subject lists the makers in alphabetical order, using the maker folder names under
-`src/lens-data/` reduced to ASCII kebab-case (`carl-zeiss-jena`, `p-angenieux`). If the entry covers only one maker,
+`src/lens-data/` reduced to ASCII kebab-case (`carl-zeiss-jena`, `enna-munchen`). If the entry covers only one maker,
 name the models instead. When the makers do not fit in 48 characters, keep as many as fit and end with `-and-more`.
 
 A file named `2026-11-08-fix-sto-label-overlapping-flat-rim-element.txt` contains:
