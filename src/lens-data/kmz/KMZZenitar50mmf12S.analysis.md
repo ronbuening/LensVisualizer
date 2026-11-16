@@ -92,7 +92,7 @@ Table 2 prints glass names only: ТК-21, ЛФ-5, ТФ-10 and ТК-14 (TK21, LF5
 
 The numbers in the data file are catalogue values for the mercury e line (546.07 nm), not patent values. The e line is chosen because Table 1 of the patent gives the wavelength 0.54607 µm the weight 1, with six other wavelengths from 0.43 to 0.67 µm weighted lower. The choice is supported by the result: with the e-line values the model gives a focal length of 51.4744 mm and a back focus of 39.7777 mm against the printed 51.478 and 39.777 mm, while the d-line values of the same glasses give 51.492 and 39.794 mm.
 
-For colour, TK21 and TK14 follow the LZOS catalogue dispersion curves. LF5 follows CDGM QF3, whose nd and νd (1.57502, 41.31) equal the LZOS LF5 values; this is an equivalent glass, and the supplier of the real element is not known. TF10 has no row in the glass catalogue used here, so its dispersion is estimated from ne and νe.
+For colour, TK21, TK14 and TF10 follow the LZOS catalogue dispersion curves. LF5 follows CDGM QF3, whose nd and νd (1.57502, 41.31) equal the LZOS LF5 values; this is an equivalent glass, and the supplier of the real element is not known.
 
 Catalogue values are nominal. The actual melts used for the calculation or in production are not known.
 

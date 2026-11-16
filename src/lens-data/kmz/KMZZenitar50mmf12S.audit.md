@@ -72,7 +72,42 @@ Open:
 
 - Patent Fig. 1 was not in the copy that was checked, so the printed clear diameters have not been compared with the drawn section. No rim was changed.
 - Off-axis vignetting is heavy (up to about 65 % one-sided at an image height of 14.15 mm). It follows from the printed clear diameters and is left as it is.
-- Aperture blades are not set: the maker's booklet says 9, the text of the maker's product page says 8.
-- TF10 traces on an estimated dispersion curve until the glass catalogue has a row for it.
+- Closed in the semi-diameter pass below: aperture blades set to 9 from the maker's booklet.
+- Closed 2026-11-15: an LZOS TF10 row (fitted to the LZOS index table, nd 1.806274, νd 25.37, ne 1.813767) was added to the glass catalogue and L4 is labelled "TF10 (LZOS)".
 - The design f-number shown is 1.30 from the printed stop, beside the marked f/1.2; the spec line says so.
 - The year the product was designed and first sold was not confirmed from a maker source during this work and is not stated in the analysis.
+
+## 2026-11-15 — Semi-diameter pass against the patent figure
+
+Source: RU 2592746 C1, Table 2 on printed page 6. The copy of the patent that was available has no Fig. 1 (its drawing pages carry Figs. 2–5 only), so there was no section drawing to measure. Table 2 prints a clear diameter for every surface and for the stop, and a printed clear diameter outranks a figure reading.
+
+Result: no rim changed. All 15 lens-surface semi-diameters were compared again with the printed diameters and each equals the printed value divided by two:
+
+| Surface | Printed clear diameter (mm) | Semi-diameter in the file (mm) |
+| ------- | --------------------------- | ------------------------------ |
+| 1       | 54.0                        | 27                             |
+| 2       | 52.0                        | 26                             |
+| 3       | 44.5                        | 22.25                          |
+| 4       | 39.8                        | 19.9                           |
+| 5       | 30.8                        | 15.4                           |
+| 6       | 25.0                        | 12.5                           |
+| Stop    | 25.1                        | 12.55 (from the f-number)      |
+| 8       | 25.2                        | 12.6                           |
+| 9       | 31.4                        | 15.7                           |
+| 10      | 33.8                        | 16.9                           |
+| 11      | 36.5                        | 18.25                          |
+| 12      | 38.4                        | 19.2                           |
+| 13      | 39.6                        | 19.8                           |
+| 14      | 40.0                        | 20                             |
+| 15      | 36.1                        | 18.05                          |
+| 16      | 35.7                        | 17.85                          |
+
+No land, cut or rim extension was added, because no figure was available to show one. Engine values are unchanged: focal length 51.4744 mm, f/1.303, half-field 16°. The surface audit reports no errors and the aperture audit no rim limit. Corner light is as before: up to about 65 % of the beam is cut on one side at an image height of 14.15 mm, by the printed diameters.
+
+Metadata: `aperture.blades` set to 9. The maker's booklet for the Zenitar 1.2/50 S lists 9 aperture blades, and so does the specification table on the maker's product page; only the descriptive text on that page says 8.
+
+Product name: the maker's booklet calls the lens "ZENITAR 1.2/50 S" and the maker's English catalogue page "Zenitar 50mm f/1.2 S". The entry's name, KMZ ZENITAR 50mm f/1.2 S, follows the second form with the house maker prefix, as the f/0.95 and 35 mm entries do. Mounts (Canon EF, Nikon F), APS-C format, 0.45 m minimum focus and the f/16 minimum aperture agree with the booklet.
+
+Open:
+
+- Compare the printed diameters with Fig. 1 when a complete copy of the patent is at hand; element edge shapes (flat lands, square blocks) are not drawn in the model.

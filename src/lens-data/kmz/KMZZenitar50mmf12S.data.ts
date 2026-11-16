@@ -11,9 +11,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * GLASS: Table 2 prints glass names only (TK-21, LF-5, TF-10, TK-14), no indices. The stored values are LZOS
  * catalogue ne and ve (indexReference "e"); Table 1 gives 0.54607 um the weight 1. With them the paraxial EFL is
  * 51.4744 mm and the back focus 39.7777 mm against the printed 51.478 and 39.777 (d-line values give 51.492 and
- * 39.794). TK21 and TK14 trace on the LZOS catalogue rows. LF5 traces on CDGM QF3, whose nd and vd equal the LZOS
- * LF5 values (1.57502 / 41.31); the supplier is not known. TF10 has no catalogue row and stays Unmatched, traced
- * from its ne and ve.
+ * 39.794). TK21, TK14 and TF10 trace on the LZOS catalogue rows. LF5 traces on CDGM QF3, whose nd and vd equal the LZOS
+ * LF5 values (1.57502 / 41.31); the supplier is not known.
  *
  * STOP AND F-NUMBER: the stop is Table 2 row 7 with a printed clear diameter of 25.1 mm. nominalFNumber is the
  * paraxial f-number that reproduces that 12.55 mm stop radius, f/1.3026; a real axial ray fills the stop at about
@@ -77,7 +76,7 @@ const LENS_DATA = {
       "vd": 25.17,
       "indexReference": "e",
       "focalLengthMm": -22.86,
-      "glass": "Unmatched (GOST TF10; LZOS catalogue ne=1.813767, νe=25.17; not in the glass catalog)",
+      "glass": "TF10 (LZOS)",
       "label": "Element 4",
       "role": "Dense-flint negative meniscus behind the stop, concave to the object; front member of the cemented doublet",
       "cemented": "C1"
@@ -264,7 +263,8 @@ const LENS_DATA = {
       11,
       16
     ],
-    "maxFNumber": 16
+    "maxFNumber": 16,
+    "blades": 9
   },
   "focus": {
     "closeFocusM": 1000000000000000.0,
