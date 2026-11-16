@@ -27,9 +27,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  */
 const LENS_DATA = {
   "schema": 2,
-  "key": "vivitar-24mm-f2-compact",
+  "key": "vivitar-24mm-f2",
   "maker": "Vivitar",
-  "name": "VIVITAR 24mm f/2 Compact",
+  "name": "VIVITAR 24mm f/2",
   "subtitle": "US 4,258,980 Table 1 — representative patent, production identity unconfirmed",
   "catalog": {
     "lensMounts": [

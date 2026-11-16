@@ -10,8 +10,7 @@ const LENS_DATA = {
   "schema": 2,
   "key": "laowa-af-200mm-f2",
   "maker": "Laowa",
-  "name": "Laowa AF 200mm f/2",
-  "visible": false,
+  "name": "LAOWA AF 200mm f/2",
   "elements": [
     {
       "id": 1,

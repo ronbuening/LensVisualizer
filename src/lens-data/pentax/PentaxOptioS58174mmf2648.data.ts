@@ -11,10 +11,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  */
 const LENS_DATA = {
   "schema": 2,
-  "key": "pentax-optio-s-representative-e6",
+  "key": "pentax-optio-s-58-174-f26-48",
   "maker": "Pentax",
-  "name": "PENTAX Optio S 5.8–17.4mm f/2.7–5.3 (representative Embodiment 6)",
-  "visible": false,
+  "name": "PENTAX OPTIO S 5.8-17.4mm f/2.6-4.8",
   "subtitle": "Representative patent with derived G1/G2 compensator; published nodes labeled; not factory cam",
   "source": {
     "patentNumber": "US 2003/0197949 A1",

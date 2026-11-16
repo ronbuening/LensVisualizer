@@ -26,10 +26,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  */
 const LENS_DATA = {
   "schema": 2,
-  "key": "zenitar-50-f12-s-representative-ru2592746",
+  "key": "kmz-zenitar-50mm-f12-s",
   "maker": "KMZ",
-  "name": "Zenitar 50mm f/1.2 S \u2014 representative patent reconstruction",
-  "visible": false,
+  "name": "KMZ ZENITAR 50mm f/1.2 S",
   "elements": [
     {
       "id": 1,

@@ -20,10 +20,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  */
 const LENS_DATA = {
   "schema": 2,
-  "key": "aeg-weitwinkel17-de620538-representative",
+  "key": "aeg-weitwinkelobjektiv-17mm-f63",
   "maker": "AEG",
-  "name": "AEG Weitwinkel 17mm f/6.3 patent representative",
-  "visible": false,
+  "name": "AEG WEITWINKELOBJEKTIV 17mm f/6.3",
   "elements": [
     {
       "id": 1,

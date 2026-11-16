@@ -12,10 +12,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  */
 const LENS_DATA = {
   "schema": 2,
-  "key": "olympus-mzuiko-825-f4-e2",
+  "key": "olympus-mzuiko-8-25-f4-pro",
   "maker": "Olympus",
-  "name": "OLYMPUS M.ZUIKO DIGITAL ED 8\u201325mm f/4 PRO (representative Example 2)",
-  "visible": false,
+  "name": "OLYMPUS M.ZUIKO DIGITAL ED 8-25mm f/4 PRO",
   "elements": [
     {
       "id": 1,

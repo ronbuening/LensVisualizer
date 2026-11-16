@@ -21,9 +21,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  */
 const LENS_DATA = {
   "schema": 2,
-  "key": "vivitar-28mm-f2-compact",
+  "key": "vivitar-28mm-f2",
   "maker": "Vivitar",
-  "name": "Vivitar 28mm f/2 Compact",
+  "name": "VIVITAR 28mm f/2",
   "subtitle": "US4258980 Table 2; paraxial infinity image plane, not factory prescription",
   "catalog": {
     "lensMounts": ["pentax-k"],

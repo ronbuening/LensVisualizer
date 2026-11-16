@@ -32,9 +32,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 const LENS_DATA = {
   "schema": 2,
-  "key": "angenieux-retrofocus-r61-lineage-24mm-f35-reconstruction",
+  "key": "angenieux-retrofocus-r61-24mm-f35",
   "maker": "P. Angénieux",
-  "name": "P. ANGÉNIEUX RETROFOCUS 24mm f/3.5 (R61-lineage reconstruction)",
+  "name": "P. ANGÉNIEUX RETROFOCUS TYPE R61 24mm f/3.5",
   "subtitle": "FR 1,214,945 sole example — representative 0.24× model; factory identity unverified",
   "catalog": {
     "lensMounts": [

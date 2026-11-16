@@ -2,9 +2,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 /** Representative Table 1. Derived paraxial image plane; source final gap 13.89 mm retained in audit. No source radii, internal gaps, glasses, clear apertures or stop changed. */
 const LENS_DATA = {
   "schema": 2,
-  "key": "7artisans-50mm-f095-aps-c",
-  "maker": "7Artisans",
-  "name": "7ARTISANS 50mm f/0.95 APS-C",
+  "key": "meike-50mm-f095",
+  "maker": "Meike",
+  "name": "MEIKE 50mm f/0.95",
   "subtitle": "CN216526483U Table 1 \u2014 derived paraxial infinity image plane; retail identity unconfirmed",
   "catalog": {
     "imageFormat": "aps-c",
