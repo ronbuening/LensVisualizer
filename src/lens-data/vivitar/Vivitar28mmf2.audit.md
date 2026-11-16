@@ -71,8 +71,36 @@ Engine numbers before and after are identical: focal length 28.0137 mm, f/2 (sto
 
 Open:
 
-- Rims are estimates, not read from a figure of this example. The real f/2 marginal ray needs 9.49 / 9.50 / 10.06 mm at surfaces 12 / 13 / 14 against stored 9.0 / 9.3 / 9.3, and L6 and L7 touch at 9.50 mm.
+- (Closed 2026-11-15 by the semi-diameter pass below.) Rims are estimates, not read from a figure of this example. The real f/2 marginal ray needs 9.49 / 9.50 / 10.06 mm at surfaces 12 / 13 / 14 against stored 9.0 / 9.3 / 9.3, and L6 and L7 touch at 9.50 mm.
 - The stop is sized paraxially; the real axial beam it admits is about f/2.17.
 - The patent's 1:10 close-focus state (Table 7) is not modeled.
 - Only the Pentax K mount is sourced; other mounts, the maker brochure and a construction diagram of the production lens remain unchecked.
 - Tables 3 and 4 are also 72-degree f/2 examples; nothing found chooses between them and Table 2.
+
+## 2026-11-15 — Semi-diameter pass against the patent figure
+
+Source: US 4,258,980, sheet 1, FIG. 1 (PDF page 2). FIG. 1 draws the Table 1 (84-degree) form, not Table 2, so it was used for proportions only. Its scale was checked on two spans against Table 1: first to last vertex 365 px for 2.084 F and last vertex to focal plane 273 px for 1.59 F (175 and 172 px per focal length at 110 dpi, 2 % apart). Read at that scale the rear-group rim heights stand as L5 : L6 : L7 : L8 = 1 : 0.94 : 1.0 : 1.15, and L6 and L7 are drawn meeting at the rim. The file had 1 : 0.81 : 0.84 : 1.17.
+
+Source geometry: the rear face of L6 (R = 72.324) and the front face of L7 (R = -37.548) across the 1.848 mm air space touch at a semi-diameter of 9.50 mm. The real f/2 marginal ray passes those faces at 9.49 and 9.50 mm, so the prescription itself puts the clear aperture at the contact ring. A rim of 9.49 mm would need a gap fraction of 0.998, above the 0.98 ceiling, so the real f/2 beam cannot be admitted in full; 9.4 mm is the largest one-decimal rim that stays inside 0.98 (remaining air 0.039 mm, fraction 0.979).
+
+| Surface | Before | After | Evidence |
+| ------- | ------ | ----- | -------- |
+| 11 (L6 front) | 9.0 | 9.4 | square with surface 12 |
+| 12 (L6 rear) | 9.0 | 9.4 | contact ring at 9.50 mm; FIG. 1 draws L6 and L7 meeting; real f/2 ray at 9.49 mm |
+| 13 (L7 front) | 9.3 | 9.4 | as surface 12; real f/2 ray at 9.50 mm |
+| 14 (L7 rear) | 9.3 | 10.1 | real f/2 marginal ray at 10.06 mm; the old value clipped the beam just off axis (97.3 % at 2.9 degrees) |
+
+`checks.gapSagFrac` was set to 0.98, the smallest two-decimal value that admits 9.4 mm on the 12-13 air space; the faces do not cross. All other rims are kept: FIG. 1 belongs to a wider-field example, so the front-group heights cannot be read from it, and nothing else clips the axial beam or the chief ray.
+
+Illumination, geometric, wide open, before -> after: 2.9 degrees 97.3 -> 100.0 %; 11.8 degrees 88.5 -> 97.5; 20.6 degrees 67.5 -> 78.1; 29.4 degrees 41.2 -> 52.0; 35.3 degrees 22.6 -> 30.9; 38.2 degrees (corner) 13.0 -> 16.9. No field loses light; the largest gain is 11.0 points. No rim is below its starting value.
+
+Engine values are unchanged: focal length 28.0137 mm, f/2, stop semi-diameter 8.6226 mm, half-field 37.528 degrees. Surface check OK; aperture audit shows no rim, trace or iris limit; image circle not undersized; field coverage 100 % (21.65 mm at 38.2 degrees). The real-ray clearance trace still marks surfaces 12 and 13 as 0.09 and 0.10 mm short of the true f/2 marginal ray, which is the contact limit described above.
+
+Product name: the lens is engraved "Vivitar 28mm 1:2 Auto Wide-Angle" in lens listings (Pentax Forums lens database, serial 22xxxxxx, Kiron-made); the file's name "VIVITAR 28mm f/2" is the short form of that. No further metadata was changed: no source was found for the blade count or for mounts other than Pentax K.
+
+Open:
+
+- The stop is sized paraxially (8.62 mm); a true f/2 beam needs 9.58 mm there. Enlarging it is not recommended while surfaces 12 and 13 cannot pass that beam.
+- Front-group rims (L1-L4) and L8 are unverified estimates; no figure of Table 2 exists.
+- Corner light remains low (16.9 %); the L6/L7 contact ring limits it.
+- Blade count, further mounts and a maker construction diagram remain unsourced.

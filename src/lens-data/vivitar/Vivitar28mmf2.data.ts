@@ -13,7 +13,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * 3.696 mm air space is split 1.672 + 2.024 mm) and every semi-diameter. The stop is sized paraxially for f/2
  * (8.62 mm); by exact ray trace it admits an axial beam of 6.46 mm radius, about f/2.17, because the printed
  * three-decimal prescription has strong marginal spherical aberration. L6 and L7 reach edge contact at a 9.50 mm
- * semi-diameter, the height of the real f/2 marginal ray, so their rims cannot grow to pass it.
+ * semi-diameter, the height of the real f/2 marginal ray. FIG. 1 (drawn for the Table 1 form, used for proportions
+ * only) shows L6 and L7 meeting at the rim, so surfaces 11-13 are set to 9.4 mm, the largest value that keeps the
+ * faces apart, and checks.gapSagFrac is 0.98 for the 12-13 air space. Surface 14 is 10.1 mm, the height of the
+ * real f/2 marginal ray there (10.06 mm).
  *
  * FOCUS: infinity only. The patent's 1:10 close-focus state (Table 7: S4 = 0.116 F with L5-L8 moving
  * differentially) is not modeled; closeFocusM = 1e15 marks focus as not modeled and the minimum focus distance
@@ -235,27 +238,27 @@ const LENS_DATA = {
       "label": "11",
       "R": -16.548,
       "d": 1.484,
-      "sd": 9.0,
+      "sd": 9.4,
       "medium": 6
     },
     {
       "label": "12",
       "R": 72.324,
       "d": 1.848,
-      "sd": 9.0
+      "sd": 9.4
     },
     {
       "label": "13",
       "R": -37.548,
       "d": 3.92,
-      "sd": 9.3,
+      "sd": 9.4,
       "medium": 7
     },
     {
       "label": "14",
       "R": -17.08,
       "d": 0.196,
-      "sd": 9.3
+      "sd": 10.1
     },
     {
       "label": "15",
@@ -303,6 +306,9 @@ const LENS_DATA = {
   "doublets": [],
   "layout": {
     "yScFill": 0.3
+  },
+  "checks": {
+    "gapSagFrac": 0.98
   }
 } satisfies LensDataV2Input;
 export default LENS_DATA;
