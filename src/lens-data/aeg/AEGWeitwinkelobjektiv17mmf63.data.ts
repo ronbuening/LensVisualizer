@@ -68,7 +68,7 @@ const LENS_DATA = {
       "label": "Element 3",
       "focalLengthMm": 12.68,
       "glass": "SK6 (Schott, as printed; HOYA BACD6 catalog curve)",
-      "role": "Crown front element of the cemented positive doublet behind the stop (patent member C).",
+      "role": "Crown front element of the cemented positive doublet behind the stop (front half of patent lens C).",
       "cemented": "C1"
     },
     {
@@ -81,7 +81,7 @@ const LENS_DATA = {
       "label": "Element 4",
       "focalLengthMm": -21.2,
       "glass": "F6 (Schott, as printed; HOYA F6 catalog curve)",
-      "role": "Flint rear element of the cemented doublet, facing the image; the only flint in the design.",
+      "role": "Flint rear element of the cemented doublet (rear half of patent lens C), facing the image; the only flint in the design.",
       "cemented": "C1"
     },
     {

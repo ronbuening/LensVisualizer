@@ -163,3 +163,68 @@ Open:
 - The front element is 54 mm against the drawn 57 to 58 mm, for the reason given above.
 - The stop is at the doublet vertex; the drawing suggests about 0.75 mm ahead of it.
 - No minimum focus distance is known.
+
+## 2026-11-15 — Second review on the local site
+
+Compared: the lens page on the local site (diagram, the five element inspectors, the distortion and vignetting tabs)
+with DE 620,538 page 3 (drawing, 300 dpi scan, the doublet re-read at 600 dpi) and the table on page 2.
+
+Table. All 9 radii, 8 spacings and 5 index / Abbe pairs were read again from page 2 and agree with the file.
+
+Rims, read again and independently (raw readings reduced by 3 %, as in the section above):
+
+| Feature | Stored | This reading | Verdict |
+|---|---|---|---|
+| Front element tip (surface 1) | 54 | 57.2 above the axis, 57.7 below | kept; see below |
+| Second element rim (surface 3) | 26.4 | 26.5 | kept |
+| Doublet front face (surfaces 5, 6) | 7.7 | 7.6 above, 7.8 below | kept |
+| Doublet rear rim (surface 7) | 12 | 11.8 above, 12.5 below | kept |
+| Rear lens (surfaces 8, 9) | 23.8 | 24.1 | kept |
+| Cavity of the second element (surface 4) | 12.2 | 11.7 to 12.3 | kept |
+
+No rim was changed. On the page the two cavities draw as near hemispheres with flat lands, the second element as a
+square-topped block, the doublet with its conical chamfer and the rear lens to a knife edge, all as the drawing has
+them. Step order between neighbours matches the drawing.
+
+Front element. The page ends it at 54 mm and leaves 4.7 mm of air between its land (27.7 mm behind the front vertex)
+and the rim of the second element (32.4 mm); the drawing brings the land back to 31 to 33 mm, where the second
+element seats against it. A land sits at the sag of its cap's last point, so the only way to move it back is to bring
+surface 2 nearer its 26.5 mm radius: 26.49 mm would put the land at 29.3 mm and the tip at 55.4 mm, but needs a
+rim-angle limit of 89° in place of 85.1° (the surface check refuses it at 88.4°). That recovers 1.4 mm of a 3.5 mm
+shortfall for a rim 0.01 mm inside a hemisphere, so it was not done.
+
+Lands. Both lands (surface 2 out to 54 mm, surface 4 out to 26.4 mm) lie outside caps whose semi-diameters equal the
+baseline's, so they block no ray the baseline passed; every other rim is at or above its baseline. The light-cost
+tool does not run on a fisheye projection (it prints no fields). The lands are what closes each element's outline
+behind a hemispherical cavity, and the drawing shows both. Kept.
+
+Labels and inspector. Brackets "A + B" and "C + D" use the patent's lens letters (A, B, C, D; X is the stop, Y the
+image) and span surfaces 1 to 4 and 5 to 9; C1 spans 5 to 7; none collides. Element types agree with the signs of
+the radii; the inspector focal lengths (−83.72, −32.46, +12.68, −21.2, +60.3 mm) agree with a fresh thick-lens
+calculation, and the doublet is +33.64 mm. Changed: the role text of L3 said "patent member C", although C is the
+whole cemented lens; L3 now reads "front half of patent lens C" and L4 "rear half of patent lens C". No
+anomalous-dispersion tag applies and none is set.
+
+Glass. All five labels resolve to exact rows: BAK2 (Sumita) Δnd −3.8e-5 / Δνd +0.08, BACD6 (HOYA) −4.7e-5 / +0.08,
+F6 (HOYA) −4.4e-5 / −0.06, N-SK2 (Schott) −1.9e-5 / −0.05. No constant medium; colour is traced for every element.
+The patent prints no line indices beyond n_d and no aberration curves.
+
+Field and projection. The distortion tab traces the field to the 25.07 mm edge (90°) and shows −4.22 % against the
+equidistant law at the edge, in step with the 4.3 % in the notes. The off-axis ray fan on the diagram is drawn at
+54° (the default 0.6 of the half-field), not at 90°. The vignetting tab states that it is not computed for a
+fisheye projection.
+
+Movement. Infinity only: `gaps` is empty, the focus slider is disabled ("Not modeled") and `focus.description`
+says only what the patent says.
+
+Assignee. "Allgemeine Elektricitäts-Gesellschaft" is the front-page spelling ("Allgemeine Elektricitäts-Gesellschaft
+in Berlin"); no other spelling of it exists in the lens data.
+
+Open:
+
+- The front element is 54 mm against the drawn 57 to 58 mm, and its land stands 4.7 mm ahead of the second element's
+  rim where the drawing seats one on the other.
+- The stop is at the doublet vertex; at 600 dpi the middle of the drawn stop plate is 0.9 mm ahead of it (plate about
+  0.85 mm thick), so 0.75 to 1 mm.
+- The diagram's off-axis fan is at 54°, so the page does not show a 90° ray through the cavities.
+- No minimum focus distance is known.
