@@ -1,5 +1,15 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
-/** Derived cam experiment: published:false stations are calculated, never patent measurements. */
+/**
+ * Source: WO 2022/137385 A1 (Olympus Corporation), Numerical Example 2, in millimetres at the patent's own scale
+ * (scale factor 1, no unit conversion). Radii, thicknesses, nd/νd (d-line), conics and aspheric coefficients are as
+ * printed; the patent's k is this file's K. The stop is the patent's surface 11 and moves with the second group.
+ * Zoom stations 0, 64 and 128 are the three printed positions (wide, middle, tele); the 126 stations between them
+ * (published: false) are calculated: gaps d7, d11 and d27 are interpolated linearly, and the cemented focus group
+ * (surfaces 20–22) is shifted between d19 and d22 to hold paraxial focus. Infinity focus only.
+ * Inferred: every semi-diameter except surface 1 (the patent prints the front effective diameter, 39.92 mm), and
+ * the stop semi-diameter (set from the printed f-number, 4.08, at each station). The last gap d27 is the printed
+ * back focus.
+ */
 const LENS_DATA = {
   "schema": 2,
   "key": "olympus-mzuiko-825-f4-e2",
@@ -388,7 +398,7 @@ const LENS_DATA = {
     ]
   },
   "focus": {
-    "closeFocusM": 1000000000000000.0,
+    "closeFocusM": 1000000000000000,
     "keyframes": [
       0,
       1
@@ -409,6 +419,9 @@ const LENS_DATA = {
     "elementCount": 16,
     "groupCount": 10,
     "imageCircleMm": 21.63,
+    "closeFocusM": {
+      "marketing": 0.23
+    },
     "focalLengthMm": {
       "marketing": [
         8,
@@ -445,12 +458,6 @@ const LENS_DATA = {
     ],
     "assignees": [
       "Olympus Corporation"
-    ],
-    "errata": [
-      {
-        "status": "unresolved",
-        "note": "Rounded literal spacings sum131.40/122.62/124.79mm versus printed totals131.41/122.63/124.79mm. Literal spacings retained; no repair. Product example is representative, not unique factory selector."
-      }
     ]
   },
   "zoom": {
@@ -463,441 +470,441 @@ const LENS_DATA = {
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 8.222558865914236,
+        "focalLengthMm": 8.22256,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 8.22256 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 8.28413454568394,
+        "focalLengthMm": 8.28413,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 8.28413 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 8.346397888067525,
+        "focalLengthMm": 8.3464,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 8.34640 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 8.4093607210685,
+        "focalLengthMm": 8.40936,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 8.40936 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 8.473035136506743,
+        "focalLengthMm": 8.47304,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 8.47304 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 8.53743349724096,
+        "focalLengthMm": 8.53743,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 8.53743 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 8.602568444618445,
+        "focalLengthMm": 8.60257,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 8.60257 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 8.668452906160036,
+        "focalLengthMm": 8.66845,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 8.66845 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 8.735100103488248,
+        "focalLengthMm": 8.7351,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 8.73510 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 8.802523560507012,
+        "focalLengthMm": 8.80252,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 8.80252 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 8.87073711184159,
+        "focalLengthMm": 8.87074,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 8.87074 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 8.939754911547656,
+        "focalLengthMm": 8.93975,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 8.93975 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 9.009591442098575,
+        "focalLengthMm": 9.00959,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 9.00959 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 9.080261523660617,
+        "focalLengthMm": 9.08026,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 9.08026 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 9.151780323665662,
+        "focalLengthMm": 9.15178,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 9.15178 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 9.22416336669176,
+        "focalLengthMm": 9.22416,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 9.22416 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 9.297426544661644,
+        "focalLengthMm": 9.29743,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 9.29743 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 9.371586127370259,
+        "focalLengthMm": 9.37159,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 9.37159 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 9.446658773352047,
+        "focalLengthMm": 9.44666,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 9.44666 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 9.522661541099577,
+        "focalLengthMm": 9.52266,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 9.52266 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 9.599611900645005,
+        "focalLengthMm": 9.59961,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 9.59961 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 9.677527745516441,
+        "focalLengthMm": 9.67753,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 9.67753 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 9.756427405081439,
+        "focalLengthMm": 9.75643,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 9.75643 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 9.836329657290237,
+        "focalLengthMm": 9.83633,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 9.83633 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 9.91725374183155,
+        "focalLengthMm": 9.91725,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 9.91725 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 9.99921937371401,
+        "focalLengthMm": 9.99922,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 9.99922 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 10.082246757286793,
+        "focalLengthMm": 10.08225,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 10.08225 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 10.166356600712817,
+        "focalLengthMm": 10.16636,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 10.16636 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 10.251570130908558,
+        "focalLengthMm": 10.25157,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 10.25157 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 10.33790910896434,
+        "focalLengthMm": 10.33791,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 10.33791 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 10.425395846059267,
+        "focalLengthMm": 10.4254,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 10.42540 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 10.514053219885074,
+        "focalLengthMm": 10.51405,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 10.51405 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 10.603904691593172,
+        "focalLengthMm": 10.6039,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 10.60390 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 10.69497432327903,
+        "focalLengthMm": 10.69497,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 10.69497 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 10.787286796018263,
+        "focalLengthMm": 10.78729,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 10.78729 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 10.880867428468251,
+        "focalLengthMm": 10.88087,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 10.88087 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 10.975742196049023,
+        "focalLengthMm": 10.97574,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 10.97574 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 11.071937750716865,
+        "focalLengthMm": 11.07194,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 11.07194 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 11.169481441343276,
+        "focalLengthMm": 11.16948,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 11.16948 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 11.2684013347116,
+        "focalLengthMm": 11.2684,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 11.26840 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 11.368726237142528,
+        "focalLengthMm": 11.36873,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 11.36873 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 11.470485716758736,
+        "focalLengthMm": 11.47049,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 11.47049 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 11.573710126397748,
+        "focalLengthMm": 11.57371,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 11.57371 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 11.678430627180399,
+        "focalLengthMm": 11.67843,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 11.67843 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 11.784679212740555,
+        "focalLengthMm": 11.78468,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 11.78468 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 11.892488734119627,
+        "focalLengthMm": 11.89249,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 11.89249 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 12.001892925326645,
+        "focalLengthMm": 12.00189,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 12.00189 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 12.112926429561917,
+        "focalLengthMm": 12.11293,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 12.11293 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 12.225624826098525,
+        "focalLengthMm": 12.22562,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 12.22562 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 12.34002465781194,
+        "focalLengthMm": 12.34002,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 12.34002 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 12.45616345934325,
+        "focalLengthMm": 12.45616,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 12.45616 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 12.574079785875817,
+        "focalLengthMm": 12.57408,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 12.57408 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 12.693813242498948,
+        "focalLengthMm": 12.69381,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 12.69381 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 12.815404514124618,
+        "focalLengthMm": 12.8154,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 12.81540 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 12.93889539591476,
+        "focalLengthMm": 12.9389,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 12.93890 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 13.064328824166786,
+        "focalLengthMm": 13.06433,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 13.06433 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 13.191748907593697,
+        "focalLengthMm": 13.19175,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 13.19175 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 13.32120095892197,
+        "focalLengthMm": 13.3212,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 13.32120 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 13.452731526715631,
+        "focalLengthMm": 13.45273,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 13.45273 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 13.586388427317539,
+        "focalLengthMm": 13.58639,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 13.58639 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 13.722220776779231,
+        "focalLengthMm": 13.72222,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 13.72222 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 13.860279022627939,
+        "focalLengthMm": 13.86028,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 13.86028 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 14.000614975293553,
+        "focalLengthMm": 14.00061,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 14.00061 mm",
         "published": false,
@@ -911,441 +918,441 @@ const LENS_DATA = {
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 14.251721803533163,
+        "focalLengthMm": 14.25172,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 14.25172 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 14.361344501433736,
+        "focalLengthMm": 14.36134,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 14.36134 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 14.472168747974935,
+        "focalLengthMm": 14.47217,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 14.47217 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 14.584213716622664,
+        "focalLengthMm": 14.58421,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 14.58421 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 14.697498945781442,
+        "focalLengthMm": 14.6975,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 14.69750 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 14.812044345587585,
+        "focalLengthMm": 14.81204,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 14.81204 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 14.927870204727016,
+        "focalLengthMm": 14.92787,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 14.92787 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 15.044997197265502,
+        "focalLengthMm": 15.045,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 15.04500 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 15.163446389477379,
+        "focalLengthMm": 15.16345,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 15.16345 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 15.283239246657406,
+        "focalLengthMm": 15.28324,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 15.28324 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 15.404397639898384,
+        "focalLengthMm": 15.4044,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 15.40440 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 15.526943852815192,
+        "focalLengthMm": 15.52694,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 15.52694 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 15.650900588193796,
+        "focalLengthMm": 15.6509,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 15.65090 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 15.776290974541102,
+        "focalLengthMm": 15.77629,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 15.77629 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 15.903138572509055,
+        "focalLengthMm": 15.90314,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 15.90314 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 16.031467381163356,
+        "focalLengthMm": 16.03147,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 16.03147 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 16.1613018440637,
+        "focalLengthMm": 16.1613,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 16.16130 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 16.292666855119283,
+        "focalLengthMm": 16.29267,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 16.29267 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 16.425587764178793,
+        "focalLengthMm": 16.42559,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 16.42559 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 16.56009038231028,
+        "focalLengthMm": 16.56009,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 16.56009 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 16.696200986721017,
+        "focalLengthMm": 16.6962,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 16.69620 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 16.83394632526254,
+        "focalLengthMm": 16.83395,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 16.83395 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 16.973353620459896,
+        "focalLengthMm": 16.97335,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 16.97335 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 17.114450572997807,
+        "focalLengthMm": 17.11445,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 17.11445 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 17.25726536458946,
+        "focalLengthMm": 17.25727,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 17.25727 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 17.401826660145343,
+        "focalLengthMm": 17.40183,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 17.40183 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 17.548163609151395,
+        "focalLengthMm": 17.54816,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 17.54816 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 17.696305846155838,
+        "focalLengthMm": 17.69631,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 17.69631 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 17.846283490253253,
+        "focalLengthMm": 17.84628,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 17.84628 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 17.99812714344331,
+        "focalLengthMm": 17.99813,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 17.99813 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 18.151867887728027,
+        "focalLengthMm": 18.15187,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 18.15187 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 18.307537280797348,
+        "focalLengthMm": 18.30754,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 18.30754 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 18.465167350136927,
+        "focalLengthMm": 18.46517,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 18.46517 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 18.624790585374235,
+        "focalLengthMm": 18.62479,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 18.62479 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 18.78643992865982,
+        "focalLengthMm": 18.78644,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 18.78644 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 18.950148762858632,
+        "focalLengthMm": 18.95015,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 18.95015 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 19.115950897302522,
+        "focalLengthMm": 19.11595,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 19.11595 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 19.283880550828094,
+        "focalLengthMm": 19.28388,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 19.28388 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 19.4539723317947,
+        "focalLengthMm": 19.45397,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 19.45397 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 19.62626121474416,
+        "focalLengthMm": 19.62626,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 19.62626 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 19.800782513327093,
+        "focalLengthMm": 19.80078,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 19.80078 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 19.97757184908001,
+        "focalLengthMm": 19.97757,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 19.97757 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 20.15666511559169,
+        "focalLengthMm": 20.15667,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 20.15667 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 20.33809843754632,
+        "focalLengthMm": 20.3381,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 20.33810 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 20.521908124074727,
+        "focalLengthMm": 20.52191,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 20.52191 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 20.70813061578076,
+        "focalLengthMm": 20.70813,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 20.70813 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 20.896802424740027,
+        "focalLengthMm": 20.8968,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 20.89680 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 21.087960066687906,
+        "focalLengthMm": 21.08796,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 21.08796 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 21.281639984525654,
+        "focalLengthMm": 21.28164,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 21.28164 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 21.477878462173226,
+        "focalLengthMm": 21.47788,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 21.47788 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 21.676711527685868,
+        "focalLengthMm": 21.67671,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 21.67671 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 21.8781748444257,
+        "focalLengthMm": 21.87817,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 21.87817 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 22.082303588938153,
+        "focalLengthMm": 22.0823,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 22.08230 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 22.289132314023817,
+        "focalLengthMm": 22.28913,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 22.28913 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 22.498694795316744,
+        "focalLengthMm": 22.49869,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 22.49869 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 22.711023859477613,
+        "focalLengthMm": 22.71102,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 22.71102 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 22.92615119188105,
+        "focalLengthMm": 22.92615,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 22.92615 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 23.144107121416987,
+        "focalLengthMm": 23.14411,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 23.14411 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 23.364920379732673,
+        "focalLengthMm": 23.36492,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 23.36492 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 23.588617831907936,
+        "focalLengthMm": 23.58862,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 23.58862 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 23.81522417517801,
+        "focalLengthMm": 23.81522,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 23.81522 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 24.04476160188694,
+        "focalLengthMm": 24.04476,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 24.04476 mm",
         "published": false,
         "publishedFocus": []
       },
       {
-        "focalLengthMm": 24.27724942236292,
+        "focalLengthMm": 24.27725,
         "nominalFNumber": 4.08,
         "label": "Calculated infinity; not published 24.27725 mm",
         "published": false,
@@ -1381,16 +1388,16 @@ const LENS_DATA = {
           23.53328125
         ],
         [
-          23.344375000000003,
-          23.344375000000003
+          23.344375,
+          23.344375
         ],
         [
           23.15546875,
           23.15546875
         ],
         [
-          22.966562500000002,
-          22.966562500000002
+          22.9665625,
+          22.9665625
         ],
         [
           22.77765625,
@@ -1413,8 +1420,8 @@ const LENS_DATA = {
           22.02203125
         ],
         [
-          21.833125000000003,
-          21.833125000000003
+          21.833125,
+          21.833125
         ],
         [
           21.64421875,
@@ -1445,8 +1452,8 @@ const LENS_DATA = {
           20.51078125
         ],
         [
-          20.321875000000002,
-          20.321875000000002
+          20.321875,
+          20.321875
         ],
         [
           20.13296875,
@@ -1501,8 +1508,8 @@ const LENS_DATA = {
           17.86609375
         ],
         [
-          17.677187500000002,
-          17.677187500000002
+          17.6771875,
+          17.6771875
         ],
         [
           17.48828125,
@@ -1613,8 +1620,8 @@ const LENS_DATA = {
           12.57671875
         ],
         [
-          12.387812499999999,
-          12.387812499999999
+          12.3878125,
+          12.3878125
         ],
         [
           12.19890625,
@@ -1629,8 +1636,8 @@ const LENS_DATA = {
           11.84734375
         ],
         [
-          11.684687499999999,
-          11.684687499999999
+          11.6846875,
+          11.6846875
         ],
         [
           11.52203125,
@@ -1685,8 +1692,8 @@ const LENS_DATA = {
           9.57015625
         ],
         [
-          9.407499999999999,
-          9.407499999999999
+          9.4075,
+          9.4075
         ],
         [
           9.24484375,
@@ -1725,16 +1732,16 @@ const LENS_DATA = {
           7.94359375
         ],
         [
-          7.780937499999999,
-          7.780937499999999
+          7.7809375,
+          7.7809375
         ],
         [
           7.61828125,
           7.61828125
         ],
         [
-          7.4556249999999995,
-          7.4556249999999995
+          7.455625,
+          7.455625
         ],
         [
           7.29296875,
@@ -1769,8 +1776,8 @@ const LENS_DATA = {
           6.154375
         ],
         [
-          5.9917187499999995,
-          5.9917187499999995
+          5.99171875,
+          5.99171875
         ],
         [
           5.8290625,
@@ -1789,16 +1796,16 @@ const LENS_DATA = {
           5.34109375
         ],
         [
-          5.178437499999999,
-          5.178437499999999
+          5.1784375,
+          5.1784375
         ],
         [
           5.01578125,
           5.01578125
         ],
         [
-          4.8531249999999995,
-          4.8531249999999995
+          4.853125,
+          4.853125
         ],
         [
           4.69046875,
@@ -1825,32 +1832,32 @@ const LENS_DATA = {
           3.8771875
         ],
         [
-          3.7145312500000003,
-          3.7145312500000003
+          3.71453125,
+          3.71453125
         ],
         [
-          3.551874999999999,
-          3.551874999999999
+          3.551875,
+          3.551875
         ],
         [
-          3.3892187499999995,
-          3.3892187499999995
+          3.38921875,
+          3.38921875
         ],
         [
           3.2265625,
           3.2265625
         ],
         [
-          3.0639062500000005,
-          3.0639062500000005
+          3.06390625,
+          3.06390625
         ],
         [
-          2.901249999999999,
-          2.901249999999999
+          2.90125,
+          2.90125
         ],
         [
-          2.7385937499999997,
-          2.7385937499999997
+          2.73859375,
+          2.73859375
         ],
         [
           2.5759375,
@@ -1861,20 +1868,20 @@ const LENS_DATA = {
           2.413281249999999
         ],
         [
-          2.2506249999999994,
-          2.2506249999999994
+          2.250625,
+          2.250625
         ],
         [
           2.08796875,
           2.08796875
         ],
         [
-          1.9253125000000004,
-          1.9253125000000004
+          1.9253125,
+          1.9253125
         ],
         [
-          1.7626562499999991,
-          1.7626562499999991
+          1.76265625,
+          1.76265625
         ],
         [
           1.6,
@@ -1997,8 +2004,8 @@ const LENS_DATA = {
           10.786875
         ],
         [
-          10.627500000000001,
-          10.627500000000001
+          10.6275,
+          10.6275
         ],
         [
           10.468125,
@@ -2017,8 +2024,8 @@ const LENS_DATA = {
           9.99
         ],
         [
-          9.830625000000001,
-          9.830625000000001
+          9.830625,
+          9.830625
         ],
         [
           9.67125,
@@ -2037,8 +2044,8 @@ const LENS_DATA = {
           9.193125
         ],
         [
-          9.033750000000001,
-          9.033750000000001
+          9.03375,
+          9.03375
         ],
         [
           8.874375,
@@ -2057,16 +2064,16 @@ const LENS_DATA = {
           8.39625
         ],
         [
-          8.236875000000001,
-          8.236875000000001
+          8.236875,
+          8.236875
         ],
         [
           8.0775,
           8.0775
         ],
         [
-          7.918125000000001,
-          7.918125000000001
+          7.918125,
+          7.918125
         ],
         [
           7.75875,
@@ -2081,64 +2088,64 @@ const LENS_DATA = {
           7.44
         ],
         [
-          7.280625000000001,
-          7.280625000000001
+          7.280625,
+          7.280625
         ],
         [
-          7.121250000000001,
-          7.121250000000001
+          7.12125,
+          7.12125
         ],
         [
-          6.961875000000001,
-          6.961875000000001
+          6.961875,
+          6.961875
         ],
         [
           6.8025,
           6.8025
         ],
         [
-          6.643125000000001,
-          6.643125000000001
+          6.643125,
+          6.643125
         ],
         [
-          6.483750000000001,
-          6.483750000000001
+          6.48375,
+          6.48375
         ],
         [
           6.324375,
           6.324375
         ],
         [
-          6.165000000000001,
-          6.165000000000001
+          6.165,
+          6.165
         ],
         [
           6.005625,
           6.005625
         ],
         [
-          5.846250000000001,
-          5.846250000000001
+          5.84625,
+          5.84625
         ],
         [
-          5.686875000000001,
-          5.686875000000001
+          5.686875,
+          5.686875
         ],
         [
           5.5275,
           5.5275
         ],
         [
-          5.368125000000001,
-          5.368125000000001
+          5.368125,
+          5.368125
         ],
         [
           5.20875,
           5.20875
         ],
         [
-          5.049375000000001,
-          5.049375000000001
+          5.049375,
+          5.049375
         ],
         [
           4.89,
@@ -2157,16 +2164,16 @@ const LENS_DATA = {
           4.73578125
         ],
         [
-          4.684374999999999,
-          4.684374999999999
+          4.684375,
+          4.684375
         ],
         [
           4.63296875,
           4.63296875
         ],
         [
-          4.5815624999999995,
-          4.5815624999999995
+          4.5815625,
+          4.5815625
         ],
         [
           4.53015625,
@@ -2177,8 +2184,8 @@ const LENS_DATA = {
           4.47875
         ],
         [
-          4.4273437499999995,
-          4.4273437499999995
+          4.42734375,
+          4.42734375
         ],
         [
           4.3759375,
@@ -2189,8 +2196,8 @@ const LENS_DATA = {
           4.32453125
         ],
         [
-          4.273124999999999,
-          4.273124999999999
+          4.273125,
+          4.273125
         ],
         [
           4.22171875,
@@ -2213,24 +2220,24 @@ const LENS_DATA = {
           4.01609375
         ],
         [
-          3.9646874999999997,
-          3.9646874999999997
+          3.9646875,
+          3.9646875
         ],
         [
           3.91328125,
           3.91328125
         ],
         [
-          3.8618749999999995,
-          3.8618749999999995
+          3.861875,
+          3.861875
         ],
         [
           3.81046875,
           3.81046875
         ],
         [
-          3.7590624999999998,
-          3.7590624999999998
+          3.7590625,
+          3.7590625
         ],
         [
           3.70765625,
@@ -2241,8 +2248,8 @@ const LENS_DATA = {
           3.65625
         ],
         [
-          3.6048437499999997,
-          3.6048437499999997
+          3.60484375,
+          3.60484375
         ],
         [
           3.5534375,
@@ -2253,8 +2260,8 @@ const LENS_DATA = {
           3.50203125
         ],
         [
-          3.4506249999999996,
-          3.4506249999999996
+          3.450625,
+          3.450625
         ],
         [
           3.39921875,
@@ -2285,8 +2292,8 @@ const LENS_DATA = {
           3.09078125
         ],
         [
-          3.0393749999999997,
-          3.0393749999999997
+          3.039375,
+          3.039375
         ],
         [
           2.98796875,
@@ -2301,8 +2308,8 @@ const LENS_DATA = {
           2.88515625
         ],
         [
-          2.8337499999999998,
-          2.8337499999999998
+          2.83375,
+          2.83375
         ],
         [
           2.78234375,
@@ -2373,8 +2380,8 @@ const LENS_DATA = {
           1.95984375
         ],
         [
-          1.9084375000000002,
-          1.9084375000000002
+          1.9084375,
+          1.9084375
         ],
         [
           1.85703125,
@@ -2385,12 +2392,12 @@ const LENS_DATA = {
           1.805625
         ],
         [
-          1.7542187500000002,
-          1.7542187500000002
+          1.75421875,
+          1.75421875
         ],
         [
-          1.7028125000000003,
-          1.7028125000000003
+          1.7028125,
+          1.7028125
         ],
         [
           1.65140625,
@@ -3461,12 +3468,12 @@ const LENS_DATA = {
           14.8809375
         ],
         [
-          14.881250000000001,
-          14.881250000000001
+          14.88125,
+          14.88125
         ],
         [
-          14.881562500000001,
-          14.881562500000001
+          14.8815625,
+          14.8815625
         ],
         [
           14.881875,
@@ -3485,16 +3492,16 @@ const LENS_DATA = {
           14.8828125
         ],
         [
-          14.883125000000001,
-          14.883125000000001
+          14.883125,
+          14.883125
         ],
         [
-          14.883437500000001,
-          14.883437500000001
+          14.8834375,
+          14.8834375
         ],
         [
-          14.883750000000001,
-          14.883750000000001
+          14.88375,
+          14.88375
         ],
         [
           14.8840625,
@@ -3509,16 +3516,16 @@ const LENS_DATA = {
           14.8846875
         ],
         [
-          14.885000000000002,
-          14.885000000000002
+          14.885,
+          14.885
         ],
         [
-          14.885312500000001,
-          14.885312500000001
+          14.8853125,
+          14.8853125
         ],
         [
-          14.885625000000001,
-          14.885625000000001
+          14.885625,
+          14.885625
         ],
         [
           14.8859375,
@@ -3537,12 +3544,12 @@ const LENS_DATA = {
           14.886875
         ],
         [
-          14.887187500000001,
-          14.887187500000001
+          14.8871875,
+          14.8871875
         ],
         [
-          14.887500000000001,
-          14.887500000000001
+          14.8875,
+          14.8875
         ],
         [
           14.8878125,
@@ -3561,12 +3568,12 @@ const LENS_DATA = {
           14.88875
         ],
         [
-          14.889062500000001,
-          14.889062500000001
+          14.8890625,
+          14.8890625
         ],
         [
-          14.889375000000001,
-          14.889375000000001
+          14.889375,
+          14.889375
         ],
         [
           14.8896875,
@@ -3589,12 +3596,12 @@ const LENS_DATA = {
           14.8909375
         ],
         [
-          14.891250000000001,
-          14.891250000000001
+          14.89125,
+          14.89125
         ],
         [
-          14.891562500000001,
-          14.891562500000001
+          14.8915625,
+          14.8915625
         ],
         [
           14.891875,
@@ -3613,12 +3620,12 @@ const LENS_DATA = {
           14.8928125
         ],
         [
-          14.893125000000001,
-          14.893125000000001
+          14.893125,
+          14.893125
         ],
         [
-          14.893437500000001,
-          14.893437500000001
+          14.8934375,
+          14.8934375
         ],
         [
           14.89375,
@@ -3641,8 +3648,8 @@ const LENS_DATA = {
           14.895
         ],
         [
-          14.895312500000001,
-          14.895312500000001
+          14.8953125,
+          14.8953125
         ],
         [
           14.895625,
@@ -3665,8 +3672,8 @@ const LENS_DATA = {
           14.896875
         ],
         [
-          14.897187500000001,
-          14.897187500000001
+          14.8971875,
+          14.8971875
         ],
         [
           14.8975,
@@ -3689,12 +3696,12 @@ const LENS_DATA = {
           14.89875
         ],
         [
-          14.899062500000001,
-          14.899062500000001
+          14.8990625,
+          14.8990625
         ],
         [
-          14.899375000000001,
-          14.899375000000001
+          14.899375,
+          14.899375
         ],
         [
           14.8996875,
