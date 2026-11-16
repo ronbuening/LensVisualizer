@@ -334,14 +334,30 @@ const LENS_DATA = {
       "values": [
         [
           1.7,
-          2.2342,
-          2.7786,
-          3.3328,
-          3.8971,
-          4.4716,
-          5.0568,
-          5.6529,
-          6.2603
+          2.1982,
+          2.7053,
+          3.221,
+          3.7453,
+          4.2786,
+          4.821,
+          5.3728,
+          5.9343,
+          6.2603,
+          7.0873,
+          7.6794,
+          8.2822,
+          8.8961,
+          9.5214,
+          10.1584,
+          10.8075,
+          11.469,
+          12.1432,
+          12.8306,
+          13.5317,
+          14.2467,
+          14.9761,
+          15.7204,
+          16.4801
         ]
       ]
     },
@@ -350,14 +366,30 @@ const LENS_DATA = {
       "values": [
         [
           30.4956,
-          29.9614,
-          29.417,
-          28.8628,
-          28.2985,
-          27.724,
-          27.1388,
-          26.5427,
-          25.9353
+          29.9974,
+          29.4903,
+          28.9746,
+          28.4503,
+          27.917,
+          27.3746,
+          26.8228,
+          26.2613,
+          25.9353,
+          25.1083,
+          24.5162,
+          23.9134,
+          23.2995,
+          22.6742,
+          22.0372,
+          21.3881,
+          20.7266,
+          20.0524,
+          19.365,
+          18.6639,
+          17.9489,
+          17.2195,
+          16.4752,
+          15.7155
         ]
       ]
     }
@@ -415,22 +447,38 @@ const LENS_DATA = {
     "yScFill": 0.7
   },
   "focus": {
-    "closeFocusM": 4.199386517866485,
+    "closeFocusM": 1.5,
     "keyframes": [
       0,
+      0.041666666666666664,
+      0.08333333333333333,
       0.125,
+      0.16666666666666666,
+      0.20833333333333334,
       0.25,
-      0.375,
+      0.2916666666666667,
+      0.3333333333333333,
+      0.357195,
+      0.4166666666666667,
+      0.4583333333333333,
       0.5,
+      0.5416666666666666,
+      0.5833333333333334,
       0.625,
+      0.6666666666666666,
+      0.7083333333333334,
       0.75,
+      0.7916666666666666,
+      0.8333333333333334,
       0.875,
+      0.9166666666666666,
+      0.9583333333333334,
       1
     ],
     "published": [
-      8
+      9
     ],
-    "description": "Inner focus. The patent prints the gaps for infinity and for an object 4000 mm in front of the first surface, and no other state. The single negative lens L8 (G3) moves 4.56 mm toward the image for the near state; G1, G2, the stop and G4 are fixed and the overall length is constant. The 4.2 m near limit is that state's object-to-image distance, not the marketed 1.5 m minimum focus; the patent prints no closer state. The seven positions between the two printed states are calculated: L8 is placed where each intermediate distance comes to paraxial focus on the fixed image plane. They are not a published cam."
+    "description": "Inner focus: the single negative lens L8 (G3) moves toward the image for nearer objects while G1, G2, the stop and G4 stay fixed and the overall length is constant. The patent prints two states, infinity and an object 4000 mm in front of the first surface (4.2 m object to image), where L8 has moved 4.56 mm. Every other position is calculated: L8 is placed where each distance comes to paraxial focus on the fixed image plane, out to the maker's 1.5 m minimum focus, where it has moved 14.78 mm and the model gives 0.147× against the maker's 0.15×. The calculated positions are not a published cam."
   },
   "projection": {
     "kind": "rectilinear",

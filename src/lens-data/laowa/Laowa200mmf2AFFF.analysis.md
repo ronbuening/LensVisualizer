@@ -138,7 +138,7 @@ Inner focus by the single negative lens L8 (G3), which moves toward the image as
 
 Both states are printed in the patent, and the travel between them is 4.56 mm. With the near-state gaps the model focuses on an object 4000.0 mm in front of the first surface, as the patent states; that is 4.20 m from object to image, at a magnification of about −0.048.
 
-The production lens focuses to 1.5 m (0.15×). The patent gives no state closer than 4 m, and the model does not extrapolate, so the focus slider covers infinity to 4.2 m only. Laowa describes the lens as autofocus; the patent does not describe the drive.
+The production lens focuses to 1.5 m (0.15×). The patent gives no state closer than 4 m. Because L8 is the only moving part and the overall length is fixed, each object distance fixes one position of L8, so the model calculates the positions out to 1.5 m: there L8 has moved 14.78 mm from its infinity position (gaps 16.48 and 15.72 mm on either side of it) and the magnification is 0.147×, in line with the maker's 0.15×. These positions are calculated from the prescription and are not printed in the patent; aberrations at distances closer than 4 m are therefore outside what the patent shows. Laowa describes the lens as autofocus; the patent does not describe the drive.
 
 ## Conditional Expressions
 

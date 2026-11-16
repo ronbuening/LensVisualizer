@@ -155,5 +155,12 @@ Surface 7 is now `sd` 33 with `rimExtensionSd` 40 (before: `sd` 40, no land). Th
 - The delivered file set `focus.step` to 1, so the focus slider could only sit at infinity or at the near state. The line was removed and the slider now moves continuously.
 - With only the two printed states, positions in between were straight-line blends of the two gap sets. The focus readout interpolates inverse distance, and against that readout the blend was out of paraxial focus by up to 0.17 mm at mid-travel (0.13 mm at a quarter and three quarters of the travel).
 - Seven calculated positions were added at focus coordinates 0.125 to 0.875 (object-to-image 33.6, 16.8, 11.2, 8.40, 6.72, 5.60 and 4.80 m). For each, D14 is the value that brings that distance to paraxial focus on the fixed image plane and D16 keeps D14 + D16 = 32.1956 mm: D14 = 2.2342, 2.7786, 3.3328, 3.8971, 4.4716, 5.0568, 5.6529 mm. The two printed states (D14 1.7000 / 6.2603, D16 30.4956 / 25.9353) are unchanged and remain the only published ones (`focus.published` names the last keyframe).
-- Open: the patent prints nothing closer than 4 m, so the model still stops at 4.2 m object-to-image, not the marketed 1.5 m.
+- Closed 2026-11-16: the range was extended to the marketed 1.5 m with calculated positions (next section).
 
+## 2026-11-16 — Focus range extended to 1.5 m with calculated positions
+
+- Owner's decision: extend the focus range from the patent's nearest printed state (4000 mm in front of the first surface, 4.199 m object to image) to the maker's 1.5 m minimum focus.
+- `focus.closeFocusM` 4.1994 → 1.5. Keyframes: 25, at focus coordinates k/24 with the printed near state placed at its own coordinate 1.5 / 4.1994 = 0.357195 (it replaces the neighbouring k = 9 point). `focus.published` names that keyframe; infinity and it are the only printed states and their gaps are unchanged (D14 1.7000 / 6.2603, D16 30.4956 / 25.9353).
+- Every other keyframe is calculated: D14 is the value that brings the keyframe's object-to-image distance (1.5 m ÷ coordinate) to paraxial focus on the fixed image plane, and D16 = 32.1956 − D14. At 1.5 m D14 = 16.4801 and D16 = 15.7155 mm, so L8 has moved 14.78 mm toward the image.
+- Checks: residual paraxial defocus across the slider is at most 0.005 mm; paraxial magnification at 1.5 m is 0.147× against the maker's 0.15×; the surface validation prints OK, the aperture audit shows no rim limit, and the real-ray clearance trace with the 1.5 m gaps shows no axial clip or blocked chief ray.
+- Open: states closer than 4 m are calculated, so their aberrations are not covered by the patent's plots (Figure 4 shows infinity and 4 m only).
