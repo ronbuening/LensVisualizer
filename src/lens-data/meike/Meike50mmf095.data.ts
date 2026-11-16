@@ -22,7 +22,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * than the printed clear diameters of surfaces 5 to 7.
  *
  * SEMI-DIAMETERS: the printed clear diameters divided by two; none is inferred. Two cemented interfaces that Table 1
- * lists twice with a zero air gap are entered once.
+ * lists twice with a zero air gap are entered once. Fig. 1 (15.74 px/mm at 300 dpi, set by the 58.27 mm vertex
+ * length) draws L4 and L5 as square-edged blocks: L4's concave rear face and L5's concave front face each end in a
+ * flat land. rimExtensionSd draws those lands out to the semi-diameter of each pair's cemented junction (7: 16.49,
+ * 9: 14.03); they clip no rays. The figure draws the two blocks about 1 mm taller, 17.5 and 14.9 mm, and the other
+ * edges 0.4 to 1.4 mm beyond the printed clear apertures, as mounting margin.
  *
  * IMAGE PLANE: the final spacing is the d-line paraxial back focus, 14.7591 mm, not the printed 13.89 mm. The printed
  * prescription focuses 0.87 mm behind the printed distance (marginal rays cross the axis within 0.19 mm of the
@@ -223,7 +227,8 @@ const LENS_DATA = {
       "label": "7",
       "R": 14.29,
       "d": 7.85,
-      "sd": 11.795
+      "sd": 11.795,
+      "rimExtensionSd": 16.49
     },
     {
       "label": "STO",
@@ -235,6 +240,7 @@ const LENS_DATA = {
       "R": -21.55,
       "d": 2.9,
       "sd": 10.69,
+      "rimExtensionSd": 14.03,
       "medium": 5
     },
     {
@@ -281,7 +287,8 @@ const LENS_DATA = {
       8,
       11,
       16
-    ]
+    ],
+    "blades": 13
   },
   "layout": {
     "yScFill": 0.3

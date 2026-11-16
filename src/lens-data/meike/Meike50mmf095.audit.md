@@ -44,7 +44,35 @@ Open:
 
 - No Meike construction diagram was found; the element shapes, the glasses and the single low-dispersion position are the patent's, not confirmed for the production lens.
 - The company link between Chengdu Weizheng Digital Technology and Meike rests on one trade-directory page; a registry or maker source would settle it.
-- Rims are the printed clear diameters and were not compared with Fig. 1 edge by edge. The real axial beam at the paraxial pupil overfills surface 6 by 0.05 mm, and F/0.95 is not reachable inside the printed rims of surfaces 5 to 7.
-- `aperture.fStops` begins at the design 0.9846 and no maximum f-number beyond 16 or blade count (13 per the announcement) is entered.
+- (Closed 2026-11-15 by the semi-diameter pass below.) Rims are the printed clear diameters and were not compared with Fig. 1 edge by edge. The real axial beam at the paraxial pupil overfills surface 6 by 0.05 mm, and F/0.95 is not reachable inside the printed rims of surfaces 5 to 7.
+- `aperture.fStops` begins at the design 0.9846. (Blade count entered 2026-11-15, see below; the maker's range ends at f/16, the schema default.)
 - Infinity only; the production focusing movement and the 0.45 m state are not modelled.
 - The cause of the 13.89 mm printed distance (a cover plate) is an inference; the patent tabulates no plate, so none is entered in `rearPlates`.
+
+## 2026-11-15 — Semi-diameter pass against the patent figure
+
+Source: CN 216526483 U, Fig. 1 (drawings p. 1/3), rendered at 300 dpi. Scale 15.74 px/mm from the 58.27 mm first-to-last vertex length (917 px); the vertices of surfaces 2, 4, 6, 10, 11 and 13 and the stop then fall within 0.5 mm of the table, so the figure is drawn to the tabulated prescription.
+
+Rims kept: Table 1 prints a clear diameter for every surface, and a printed diameter outranks a figure reading. All 13 semi-diameters equal the printed diameter halved (53.69, 52.45, 44.00, 41.74, 36.34, 32.98, 23.59, 22.74 stop, 21.38, 28.06, 29.96, 32.42, 31.11 mm). No `sd` was changed.
+
+Figure, for information (edge half-heights against the file's semi-diameters): L1 26.8 mm against 26.845; L2 23.4 against 22.0; L3 19.2 against 18.17; L4 block 17.5 against 16.49 at the junction; L5 block 14.9 against 14.03 at the junction; L6 15.6 against 14.98; L7 16.6 against 16.21. The figure draws element edges 0.4 to 1.4 mm beyond the clear apertures, as mounting margin.
+
+Changed, drawing only: the figure draws L4 and L5 as square-edged blocks, with the concave face on the stop side of each ending in a flat land (L4's rear cap ends about 6.7 mm of sag behind its vertex, a 12.1 mm reading against the printed 11.795; L5's front cap ends 2.6–3.3 mm ahead of its vertex against 2.84 mm for the printed 10.69).
+
+| Surface | Before | After | Evidence |
+| --- | --- | --- | --- |
+| 7 (L4 rear) | sd 11.795, bevelled edge | sd 11.795, `rimExtensionSd` 16.49 | Fig. 1 flat land to the block edge; height held to the cemented junction's 16.49 (figure 17.5) so the block edge stays cylindrical |
+| 9 (L5 front) | sd 10.69, bevelled edge | sd 10.69, `rimExtensionSd` 14.03 | Fig. 1 flat land to the block edge; height held to the junction's 14.03 (figure 14.9) |
+
+The lands lie outside the clear apertures and clip nothing: bundle transmission is unchanged at 100 / 97.0 / 90.9 / 82.7 / 73.1 / 60.3 / 33.5 % for 0 / 2.7 / 5.3 / 8.0 / 10.6 / 13.3 / 16.0° before and after. Engine numbers are unchanged (EFL 50.4815 mm, F/0.9846, stop radius 11.37 mm, half-field 17.51°). The surface audit reports no errors, the aperture audit no rim limit, and field coverage is 100 %.
+
+Metadata: `aperture.blades` 13 added (Meike's June 2022 announcement as reported by Photo Rumors: 13 blades, f/0.95–16, 62 mm filter, 420 g, 0.45 m). Mounts, format and marketing close focus were re-checked against the same source and stand.
+
+Product name: the announcement calls the lens "Meike 50mm f/0.95" (an APS-C manual-focus lens); dealer listings carry the model code MK-50mm F0.95 APS-C. The display name MEIKE 50mm f/0.95 agrees.
+
+Open:
+
+- The axial beam at the paraxial pupil overfills surface 6 by 0.05 mm (16.54 against the printed 16.49 mm). This is the source's geometry and is left.
+- The corner bundle keeps 33.5 % at 16.0°; the patent states a relative illumination above 42 % at the edge of its field (¶0057). The rims are the printed ones, so the difference is not adjusted.
+- The local outline sketch does not draw rim extensions; the two lands should be looked at on the live page.
+
