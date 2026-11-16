@@ -90,3 +90,24 @@ Metadata: `aperture.blades: 8` added (Ricoh Imaging product page: 8 diaphragm bl
 - Open: at the closest distance the wide-open axial ray needs about 17.3 mm at surface 7 and 16.8 / 16.4 mm at surfaces 8 / 9, against rims of 14.9 / 14.9 / 15.3 mm. Surfaces 8 and 9 touch at about 15.85 mm, so no rim can pass that beam, although the patent labels its closest-distance plots 1:3.3 (the full stop-limited beam). The rims stay as drawn; the rear group limits the aperture at close focus.
 - Open: the figure's small bevel at L3's rear corner is not modelled.
 - Open: `sdSource` stays `"heuristic"`.
+
+## 2026-11-16 — Second review on the local site
+
+Compared the local page (infinity, focus 0.2, 0.4, 0.5, 0.6, 0.8 and 1, the movement panel, and the inspector of all seven elements) with US 6,313,955 B1 Fig. 6 and Fig. 9, Table 2 and the Fig. 7, 8 and 10 plots. No rim, label, tag or data value changed; one sentence of the analysis was corrected.
+
+Rims, re-measured on Fig. 6 at 300 dpi below the axis (12.75 px/mm over the 87.83 mm vertex length): L1 28.7, L2 23.8, L3 20.5, L4 15.1, L5 15.6, L6 16.2, L7 19.6 mm against stored 28.5, 23.7, 20.5, 14.9, 15.3, 15.8, 19.2. All within 3 %, step order L4 < L5 < L6 < L7 as drawn. L3's flat top runs from 21.6 to 29.0 mm behind the first vertex in the figure; the model's front rim and the end of the land sit at 21.45 and 29.02 mm. The page draws L3 as the figure does: flat top, short vertical rear face and a chamfer down to the curve end.
+
+Lands and cuts: no face is below its baseline. The one land (`rimExtensionSd` 20.5 on surface 6) leaves the clear semi-diameter at 18.2, so it cannot clip in any state; corner light is 39.8 % at 13.2° with and without it (worst loss 0.0 points). Kept: the figure draws it and it costs nothing.
+
+Movement: Table 2 prints the stop gap 30.18 → 24.56 → 1.22 and fB 76.37 → 81.99 → 105.33, so the rear group moves 28.96 mm toward the object while Gf and the stop stay fixed. Keyframes and both gap rows run infinity → near and are monotonic; every pair sums to 106.55. The seven solved positions focus an object at 1200 / t mm from the image to within 0.0003 mm paraxially. The slider reads 6.00 m / 24.53 at 0.2, 2.40 m / 16.05 at 0.5, 1.50 m / 7.32 at 0.8 and 1.20 m / 1.22 at 1, with no jump.
+
+Closest state with a real object (1035.76 mm ahead of surface 1, exact meridional trace): the ray that fills the 17.42 mm stop needs 17.23 / 16.96 / 17.01 / 16.81 / 16.81 / 16.94 mm at surfaces 7–12 against rims of 14.9 / 14.9 / 15.3 / 15.3 / 15.8 / 15.8, so the clip is real and not a product of the parallel-beam trace (which gives 17.13 mm at surface 7). The rear group passes a stop radius of 15.04 mm: working f/3.58 against f/3.10 for the full stop. Meridional fans pass 86 % of the stop diameter on axis and 81 % at Y = 34.85. At −0.025× the full beam clears (14.88 mm at surface 7). The earlier note that the patent's 1:3.3 label is the full stop-limited value was wrong: the full stop gives 3.10 (3.09 paraxial), and 3.3 equals 2.9 × 1.145, as the 1:3.0 label of Fig. 8 equals 2.9 × 1.025. The analysis now says so. Fig. 9 draws the rear group at the same size, behind a wider stop opening, with L4/L5 and L5/L6 touching at the rim, so the rims stay.
+
+Labels and tags: element types agree with the signs of R, inspector focal lengths equal the computed values (88.67, 196.05, −59.67, 114.07, −72.63, −240.69, 73.18), brackets Gf / Gr are the patent's names over surfaces 1–6 and 7–14, the stop sits between L3 and L4, no aspheres, no cemented pairs. The patent names no special glass, so no `apd` tag. The page shows f/2.9 with "marketed f/2.8" and both values in the spec line.
+
+Glass and colour: all seven rows match the printed digits (largest Δνd 0.07, L2). S-TIM22 on both L3 and L6 follows the table, which prints 1.64769 / 33.8 twice. HOYA's TAF3 is 1.80420, so L4's printed 1.80400 points to the OHARA row. The patent prints no partial dispersion and no index beyond the d line. On-axis focus relative to paraxial d, model against the plots: infinity paraxial C +0.16 (plot about +0.15) and g +0.16 (about +0.11); at the pupil edge C +0.08 (about +0.09), g +0.34 (about +0.29), d −0.04 (about −0.03); closest paraxial C +0.23 (about +0.2), g 0.00 (about −0.03). All inside the reading error of about 0.05 mm.
+
+Assignee: front page prints "Asahi Kogaku Kogyo Kabushiki Kaisha"; the file's "Asahi Kogaku Kogyo Co., Ltd." is the form 29 files use.
+
+- Open: the two close-focus lines above stand (rear group limits the aperture at 1.2 m; L3's small chamfer is drawn by the land, not modelled as glass).
+- Open: the engine half-field of 14.30° against the patent's 13.2° is unchanged.
