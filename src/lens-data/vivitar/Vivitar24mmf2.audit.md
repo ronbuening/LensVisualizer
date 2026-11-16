@@ -124,3 +124,32 @@ Open:
 - Surfaces 12 and 13 still sit below the full f/2 real marginal ray (9.76 mm against a 9.74 mm contact height). This is the printed prescription, not a rim choice.
 - The iris tick in FIG. 1 reads about 9.2 mm in semi-diameter, between the paraxial f/2 stop (8.66 mm) and the real-ray f/2 stop (9.83 mm). No stop change is made; the stop radius follows the stated f/2.
 - Blade count and mounts rest on a database listing and may differ between production versions.
+
+## 2026-11-15 — Second review on the local site
+
+Compared: the local page (diagram, brackets, element inspector for all eight elements) against US 4,258,980 A, FIG. 1 (PDF page 2, 300 dpi raster, 20.05 px/mm), Table 1, Table 7 and the description on PDF page 5.
+
+Change: `focus.description` said the four rear elements "move ahead of the front four". The patent says all elements move forward while the last four move differentially at a faster, linear rate, and Table 7 gives S4 = .135 at 1:10 against .155 at infinity. The text now reads "all elements move forward and the four rear elements L5-L8 move faster, closing the air space between L4 and L5". No rim, land, label or number was changed.
+
+Rims, re-read independently from FIG. 1 (top / bottom, mm): L1 18.9 / 18.5 (file 18.4); L2 14.3 / 14.2 (14); L3 7.9 / 7.8 (7.8); L4 10.1 / 10.2 (10); L5 10.7 / 10.9 (10.5); L6 10.2 / 10.6 (10.4); L7 10.7 / 11.2 (10.6); L8 12.5 / 12.8 (12.5). Every element is within 5 % and the drawn step order (L5 and L7 slightly above L6, L8 above all three) is kept. The figure draws L6 and L7 touching at a height of about 9.6 mm, below their square rims.
+
+L6 and L7 on the page: the two elements meet at the rim without overlapping. At the 9.6 mm cap height the facing sags are 0.813 mm and 0.795 mm of the 1.656 mm air space, leaving 0.048 mm between the two flat lands; the surfaces themselves would touch at 9.74 mm.
+
+Lands (surface 4 to 14 mm, surface 12 to 10.4 mm, surface 13 to 10.6 mm): against the rims before the semi-diameter pass no field loses light (worst loss 0.0 points, largest gain 15.2 points at 33.9°), and restoring any of the three elements wins back 0.0 points. All three lands are drawn in FIG. 1 and stay. No face sits below its earlier value.
+
+Labels: the description names the groups G1 (L1–L3, negative) and G2 (L4–L8, positive, iris between L4 and L5); the figure letters them GP1 and GP2. The brackets G1 (surfaces 1–6) and G2 (7–16) are right and do not collide with the element numbers. Element types agree with the signs of the radii and with the patent's wording (L5 "convex to the image", L7 "positive meniscus convex to the image"). Stored focal lengths agree with the computed values to 0.01 mm. No cemented pair, no asphere, no anomalous-dispersion tag; none is called for.
+
+Movement: infinity only, no variable gap, slider shows "Not modeled".
+
+Distortion against FIG. 3A (Table 1, infinity): model −2.74 % at 31.49°, −2.85 % at 35° and −2.40 % at 39.24°; the plot reads about −2.7 %, −2.8 % and −2.3 %. The patent prints no colour curves.
+
+Glass: all five labels resolve and agree with the printed pairs at the printed precision. Rounded to one decimal, every printed Abbe number equals the HOYA catalog value of the period (LaC14 55.5, BaCD14 60.7, FD1 29.5, FD6 25.5, LaCL60 60.2), while Schott LaK14 (55.4), SK14 (60.6) and SF6 (25.4) do not, and 1.640 / 60.2 exists only as LaCL60. The design was therefore most likely drawn from the HOYA catalog, which fits a lens built in Japan. The glass catalog holds no leaded HOYA FD1 or FD6 row (only the later lead-free E-FD1 and FD60), so SF1 and SF6, the same glass types with νd within 0.07, stay as the labels for L4 and L6.
+
+Engine numbers before and after (identical): EFL 24.008 mm, f/2, stop radius 8.664 mm, half-field 40.05°. Geometry validation passes with no errors; the aperture audit reports no rim limit; image circle 0 undersized; field coverage 100 %.
+
+Assignee: "Vivitar Corporation" matches the patent front page and the spelling used elsewhere in the catalog.
+
+Open:
+
+- L4 and L6 would be better labelled FD1 and FD6 (HOYA) if leaded HOYA rows for those two glasses are ever added to the glass catalog.
+- Surface 4's curved cap (11.4 mm) is above the figure's drawn curve end (about 10.5 mm at the top, 9.0 mm at the bottom of a hand-drawn figure); it is the earlier value and lowering it would be a cut, so it stays.

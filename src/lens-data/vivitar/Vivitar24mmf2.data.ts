@@ -294,7 +294,7 @@ const LENS_DATA = {
   ],
   "focus": {
     "closeFocusM": 1000000000000000.0,
-    "description": "Infinity focus only; the patent's 1:10 close-focus state (Table 7), in which the four rear elements move ahead of the front four, is not modeled. The production lens focuses to 0.3 m."
+    "description": "Infinity focus only; the patent's 1:10 close-focus state (Table 7), in which all elements move forward and the four rear elements L5-L8 move faster, closing the air space between L4 and L5, is not modeled. The production lens focuses to 0.3 m."
   },
   "gaps": {},
   "aperture": {
