@@ -1,3 +1,5 @@
+# KMZ Zenitar 50mm f/1.2 S
+
 ## Patent Reference and Design Identification
 
 **Patent:** [RU 2592746 C1](https://patents.google.com/patent/RU2592746C1/en)
@@ -51,7 +53,7 @@ LF5, ne = 1.578326, νe = 41.05. R = +157.4 / +18.7, thickness 4.25 mm, f = −3
 
 The negative element in front of the stop. Its steep rear surface, 10.2 mm ahead of the stop, is the front half of the Gauss pair of concave surfaces facing the stop.
 
-### D1: L4 + L5 — Cemented Negative Meniscus, Concave to Object
+### C1: L4 + L5 — Cemented Negative Meniscus, Concave to Object
 
 L4: TF10, ne = 1.813767, νe = 25.17. R = −18.45 / −2443, thickness 2.5 mm, f = −22.86 mm.
 L5: TK21. R = −2443 / −29.79, thickness 7.85 mm, f = +45.64 mm.
@@ -89,6 +91,8 @@ Table 2 prints glass names only: ТК-21, ЛФ-5, ТФ-10 and ТК-14 (TK21, LF5
 | TK14  | L7, L8         | 1.615506 | 60.34 |
 
 The numbers in the data file are catalogue values for the mercury e line (546.07 nm), not patent values. The e line is chosen because Table 1 of the patent gives the wavelength 0.54607 µm the weight 1, with six other wavelengths from 0.43 to 0.67 µm weighted lower. The choice is supported by the result: with the e-line values the model gives a focal length of 51.4744 mm and a back focus of 39.7777 mm against the printed 51.478 and 39.777 mm, while the d-line values of the same glasses give 51.492 and 39.794 mm.
+
+For colour, TK21 and TK14 follow the LZOS catalogue dispersion curves. LF5 follows CDGM QF3, whose nd and νd (1.57502, 41.31) equal the LZOS LF5 values; this is an equivalent glass, and the supplier of the real element is not known. TF10 has no row in the glass catalogue used here, so its dispersion is estimated from ne and νe.
 
 Catalogue values are nominal. The actual melts used for the calculation or in production are not known.
 

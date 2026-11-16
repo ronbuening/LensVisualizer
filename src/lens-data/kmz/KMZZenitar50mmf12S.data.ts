@@ -11,7 +11,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * GLASS: Table 2 prints glass names only (TK-21, LF-5, TF-10, TK-14), no indices. The stored values are LZOS
  * catalogue ne and ve (indexReference "e"); Table 1 gives 0.54607 um the weight 1. With them the paraxial EFL is
  * 51.4744 mm and the back focus 39.7777 mm against the printed 51.478 and 39.777 (d-line values give 51.492 and
- * 39.794).
+ * 39.794). TK21 and TK14 trace on the LZOS catalogue rows. LF5 traces on CDGM QF3, whose nd and vd equal the LZOS
+ * LF5 values (1.57502 / 41.31); the supplier is not known. TF10 has no catalogue row and stays Unmatched, traced
+ * from its ne and ve.
  *
  * STOP AND F-NUMBER: the stop is Table 2 row 7 with a printed clear diameter of 25.1 mm. nominalFNumber is the
  * paraxial f-number that reproduces that 12.55 mm stop radius, f/1.3026; a real axial ray fills the stop at about
@@ -29,86 +31,105 @@ const LENS_DATA = {
   "key": "kmz-zenitar-50mm-f12-s",
   "maker": "KMZ",
   "name": "KMZ ZENITAR 50mm f/1.2 S",
+  "subtitle": "RU 2592746 C1, sole example — Zenitar 50mm f/1.2 S production correlation",
   "elements": [
     {
       "id": 1,
-      "name": "TK21 nominal LZOS",
-      "type": "Lens",
+      "name": "L1",
+      "type": "Plano-Convex Positive",
       "nd": 1.659961,
       "vd": 50.81,
       "indexReference": "e",
-      "glass": "TK21 nominal LZOS",
-      "label": "Element 1"
+      "focalLengthMm": 117.61,
+      "glass": "TK21 (LZOS)",
+      "label": "Element 1",
+      "role": "Front collector of component I; convex to the object, plane rear face"
     },
     {
       "id": 2,
-      "name": "TK21 nominal LZOS",
-      "type": "Lens",
+      "name": "L2",
+      "type": "Positive Meniscus",
       "nd": 1.659961,
       "vd": 50.81,
       "indexReference": "e",
-      "glass": "TK21 nominal LZOS",
-      "label": "Element 2"
+      "focalLengthMm": 104.86,
+      "glass": "TK21 (LZOS)",
+      "label": "Element 2",
+      "role": "Positive meniscus of component I, convex to the object"
     },
     {
       "id": 3,
-      "name": "LF5 nominal LZOS",
-      "type": "Lens",
+      "name": "L3",
+      "type": "Negative Meniscus",
       "nd": 1.578326,
       "vd": 41.05,
       "indexReference": "e",
-      "glass": "LF5 nominal LZOS",
-      "label": "Element 3"
+      "focalLengthMm": -37.11,
+      "glass": "QF3 (CDGM; equivalent of GOST LF5; supplier unconfirmed)",
+      "label": "Element 3",
+      "role": "Negative meniscus ahead of the stop, convex to the object; its steep rear surface faces the stop"
     },
     {
       "id": 4,
-      "name": "TF10 nominal LZOS",
-      "type": "Lens",
+      "name": "L4",
+      "type": "Negative Meniscus",
       "nd": 1.813767,
       "vd": 25.17,
       "indexReference": "e",
-      "glass": "TF10 nominal LZOS",
-      "label": "Element 4"
+      "focalLengthMm": -22.86,
+      "glass": "Unmatched (GOST TF10; LZOS catalogue ne=1.813767, νe=25.17; not in the glass catalog)",
+      "label": "Element 4",
+      "role": "Dense-flint negative meniscus behind the stop, concave to the object; front member of the cemented doublet",
+      "cemented": "C1"
     },
     {
       "id": 5,
-      "name": "TK21 nominal LZOS",
-      "type": "Lens",
+      "name": "L5",
+      "type": "Positive Meniscus",
       "nd": 1.659961,
       "vd": 50.81,
       "indexReference": "e",
-      "glass": "TK21 nominal LZOS",
-      "label": "Element 5"
+      "focalLengthMm": 45.64,
+      "glass": "TK21 (LZOS)",
+      "label": "Element 5",
+      "role": "Positive crown meniscus, concave to the object; rear member of the cemented doublet",
+      "cemented": "C1"
     },
     {
       "id": 6,
-      "name": "TK21 nominal LZOS",
-      "type": "Lens",
+      "name": "L6",
+      "type": "Positive Meniscus",
       "nd": 1.659961,
       "vd": 50.81,
       "indexReference": "e",
-      "glass": "TK21 nominal LZOS",
-      "label": "Element 6"
+      "focalLengthMm": 103.47,
+      "glass": "TK21 (LZOS)",
+      "label": "Element 6",
+      "role": "Positive meniscus of component II, concave to the object"
     },
     {
       "id": 7,
-      "name": "TK14 nominal LZOS",
-      "type": "Lens",
+      "name": "L7",
+      "type": "Plano-Convex Positive",
       "nd": 1.615506,
       "vd": 60.34,
       "indexReference": "e",
-      "glass": "TK14 nominal LZOS",
-      "label": "Element 7"
+      "focalLengthMm": 73.42,
+      "glass": "TK14 (LZOS)",
+      "label": "Element 7",
+      "role": "Plano-convex positive with its curved face to the image; the element the patent adds to component II"
     },
     {
       "id": 8,
-      "name": "TK14 nominal LZOS",
-      "type": "Lens",
+      "name": "L8",
+      "type": "Plano-Convex Positive",
       "nd": 1.615506,
       "vd": 60.34,
       "indexReference": "e",
-      "glass": "TK14 nominal LZOS",
-      "label": "Element 8"
+      "focalLengthMm": 94.78,
+      "glass": "TK14 (LZOS)",
+      "label": "Element 8",
+      "role": "Last element, convex to the object with a plane rear face"
     }
   ],
   "surfaces": [
@@ -216,6 +237,17 @@ const LENS_DATA = {
       "sd": 17.85
     }
   ],
+  "groups": [
+    { "text": "I", "fromSurface": "1", "toSurface": "6" },
+    { "text": "II", "fromSurface": "8", "toSurface": "16" }
+  ],
+  "doublets": [
+    {
+      "text": "C1",
+      "fromSurface": "8",
+      "toSurface": "10"
+    }
+  ],
   "layout": {
     "yScFill": 0.7
   },
@@ -236,7 +268,7 @@ const LENS_DATA = {
   },
   "focus": {
     "closeFocusM": 1000000000000000.0,
-    "description": "Infinity only diagnostic"
+    "description": "Infinity focus only; the patent prints one infinity state and no moving group or close-focus spacing. The production lens focuses to 0.45 m."
   },
   "projection": {
     "kind": "rectilinear",
@@ -265,10 +297,11 @@ const LENS_DATA = {
       "marketing": 0.45
     },
     "specs": [
-      "REPRESENTATIVE NOT FACTORY EXACT",
-      "LITERAL STOP / NOMINAL LZOS ne",
-      "INFINITY ONLY",
-      "STRONG FIELD CLIPPING"
+      "8 ELEMENTS / 7 GROUPS",
+      "DESIGN f = 51.48 mm",
+      "F/1.3 AT THE PRINTED STOP · MARKED F/1.2",
+      "ALL SPHERICAL",
+      "MINIMUM FOCUS 0.45 m"
     ]
   },
   "source": {
@@ -287,7 +320,7 @@ const LENS_DATA = {
     "errata": [
       {
         "status": "unresolved",
-        "note": "Printed pupil41.05mm and nominalf1.2 are not reproduced: literalstop25.1mm yields paraxialf1.30257, finite entrance40.70195mm. Catalogne/ve nominal not patent-era melt. Representative2013\u201314 product predates2015filing. No correction applied."
+        "note": "The patent states a relative aperture of 1:1.2 and an entrance pupil of 41.05 mm, but its own Table 2 does not pass that beam. The printed 25.1 mm stop gives a paraxial f/1.3026, and a real axial ray fills it at about f/1.265 (entrance pupil 40.70 mm); at f/1.2 the axial beam is cut at surfaces 5, 6, 8, 9 and 16. The model keeps the printed stop and clear diameters, and no value is corrected."
       }
     ]
   }

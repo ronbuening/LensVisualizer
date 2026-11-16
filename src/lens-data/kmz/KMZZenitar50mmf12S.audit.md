@@ -2,7 +2,7 @@
 
 One representative physical family/one hidden infinity entry. Original Table2 and LZOS glass coordinates independently visually re-entered. All literal radii, spacings, glassnames and caps retained. Explicitne/ve nominalcatalogue reconstruction; no exactfactory/melt identity. Native geometry passed at.90 and stop12.55mm retained through derivedf1.30257. Independent full diagnostics and final bounded native review recorded; raw aperture misses analytically reconciled, not suppressed. Companion analysis gives full counts, sourcefield approximation, strongclipping, pupil mismatch and chronology.
 
-Final authored-triad independent/export review passed: errors=[], identicalOptics=true, hidden. Verified frozenbackup remains a custody prerequisite. Not delivered or deployed. NumericalMTF/chromatic/globalfield tests unperformed, not represented as passed.
+Final authored-triad independent/export review passed: errors=[], identicalOptics=true, hidden (closed 2026-11-15: the entry is now visible as KMZZenitar50mmf12S). Verified frozenbackup remains a custody prerequisite (closed: not a repository requirement). Not delivered or deployed (closed: validated and integrated, see below). NumericalMTF/chromatic/globalfield tests unperformed, not represented as passed.
 
 ## 2026-11-15 — Deployment validation
 
@@ -31,11 +31,48 @@ After the changes: focal length 51.4744 mm, f/1.303 from the 12.55 mm stop, back
 
 Analysis rewritten to the house section skeleton.
 
+Open (all closed or carried forward by the cleanup and wording pass below):
+
+- Closed: file name, `key`, `name`, subtitle and `specs` carried the "representative" wording and capitalised caveats.
+- Closed: element names and glass labels read "TK21 nominal LZOS" and so on.
+- Closed: `focus.description` "Infinity only diagnostic", the run-together erratum note and the wording of the analysis needed rewriting in plain language.
+- Carried forward: whether the displayed design f-number stays 1.30 beside the marketed f/1.2.
+- Carried forward: aperture blades are not set (maker booklet 9, maker's product page text 8).
+- Closed: the 2013–14 design date quoted in the earlier analysis could not be re-read and was dropped from the analysis.
+- Carried forward: patent Fig. 1 has not been compared with the drawn section.
+
+## 2026-11-15 — Cleanup and wording pass
+
+The optics were not touched. Radii, thicknesses, indices, stop and semi-diameters are as delivered; the engine values are identical before and after: focal length 51.47444663 mm, f/1.30257 from the 12.55 mm stop, half-field 16°, back focus 39.7777 mm.
+
+Fields changed in the data file:
+
+- `subtitle`: added, "RU 2592746 C1, sole example — Zenitar 50mm f/1.2 S production correlation".
+- `specs`: the four capitalised caveats → "8 ELEMENTS / 7 GROUPS", "DESIGN f = 51.48 mm", "F/1.3 AT THE PRINTED STOP · MARKED F/1.2", "ALL SPHERICAL", "MINIMUM FOCUS 0.45 m".
+- Elements: `name` → L1–L8; `type` from the signs of R (plano-convex positive, positive meniscus, negative meniscus, negative meniscus, positive meniscus, positive meniscus, plano-convex positive, plano-convex positive); `focalLengthMm` added from the engine (117.61, 104.86, −37.11, −22.86, 45.64, 103.47, 73.42, 94.78); a short `role` on each.
+- `cemented`: "C1" on L4 and L5, with a `doublets` entry over surfaces 8–10 (doublet focal length −62.79 mm). `groups`: I over surfaces 1–6 and II over 8–16, the patent's two components.
+- `focus.description`: "Infinity only diagnostic" → a plain sentence; `closeFocusM` placeholder and the maker's 0.45 m are unchanged.
+- `source.errata`: the one unresolved note reworded in plain language (stated 1:1.2 and 41.05 mm pupil against the printed 25.1 mm stop). The remarks about nominal catalogue glass and the product's date were removed from the erratum; the first is in the header and analysis, the second was not confirmed.
+- Header: one paragraph added on how each glass is traced.
+
+Glass labels (the stored ne and νe are unchanged):
+
+- L1, L2, L5, L6: "TK21 nominal LZOS" → "TK21 (LZOS)". The catalogue row has nd 1.656914, νd 51.12; it reproduces the stored e-line pair, so Δ = 0.
+- L7, L8: "TK14 nominal LZOS" → "TK14 (LZOS)". Row nd 1.613091, νd 60.58; Δ = 0.
+- L3: "LF5 nominal LZOS" → "QF3 (CDGM; equivalent of GOST LF5; supplier unconfirmed)". The catalogue has no LF5 row. QF3 has nd 1.57502, νd 41.31 against LZOS LF5 1.575022, 41.31 (Δnd 2e-6, Δνd 0.00) and reproduces the stored e-line pair. The f/0.95 sibling labels its LF5 element the same way.
+- L4: "TF10 nominal LZOS" → "Unmatched (GOST TF10; LZOS catalogue ne=1.813767, νe=25.17; not in the glass catalog)". No catalogue row lies within the limits; the nearest dense flints (nd 1.80518) are 0.0011 away in nd.
+
+No element carries an anomalous-dispersion tag; the maker publishes no special-glass positions for this lens.
+
+Analysis: title line added, the cemented pair renamed C1, and a paragraph added on how each glass is traced.
+
+Audit results after the pass: surface audit, no errors; aperture audit, within 3 % of the stated f-number with no rim, trace or iris limit; field coverage, nothing below 90 %.
+
 Open:
 
-- File name, `key`, `name`, subtitle and `specs` still carry the "representative" wording and capitalised caveats; bring them to the form of the other KMZ Zenitar entries.
-- Element names and glass labels read "TK21 nominal LZOS" and so on; use plain TK21, LF5, TF10, TK14 and check how they resolve with the e-line reference.
-- `focus.description` "Infinity only diagnostic", the run-together erratum note, and the wording of the two paragraphs at the top of this file need rewriting in plain language.
-- Decide whether the displayed design f-number stays 1.30 (from the printed stop) beside the marketed f/1.2.
-- Aperture blades are not set: the maker booklet says 9, the maker's product page text says 8.
-- Patent Fig. 1 has not been compared with the drawn section.
+- Patent Fig. 1 was not in the copy that was checked, so the printed clear diameters have not been compared with the drawn section. No rim was changed.
+- Off-axis vignetting is heavy (up to about 65 % one-sided at an image height of 14.15 mm). It follows from the printed clear diameters and is left as it is.
+- Aperture blades are not set: the maker's booklet says 9, the text of the maker's product page says 8.
+- TF10 traces on an estimated dispersion curve until the glass catalogue has a row for it.
+- The design f-number shown is 1.30 from the printed stop, beside the marked f/1.2; the spec line says so.
+- The year the product was designed and first sold was not confirmed from a maker source during this work and is not stated in the analysis.
