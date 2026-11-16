@@ -30,7 +30,32 @@ Text and metadata only; radii, thicknesses, indices, semi-diameters, the stop an
 - Analysis: rewritten to the house skeleton with a title, the metadata block, group focal lengths, an element table with shapes, focal lengths and glasses, and a focus section that sets the printed rows beside the model's and states the 0.2–0.5 mm real-ray focus offset. Run counts, hashes and process wording removed; the closing section is now "Model Scope and Limitations".
 - Engine numbers before and after are identical: EFL 118.86438 mm, F/3.99, half-field 25.4538°, stop radius 11.64075 mm, BFD 66.1057 mm; node 67 EFL 96.6846 mm at −0.5000×; node 124 EFL 81.6400 mm at −0.9999×. The surface audit reports no errors, the aperture audit reports no rim limit (within 3 % of F/3.99), and field coverage is at least 99 %.
 - Open: the D12 item in the deployment validation section above still stands.
-- Open: semi-diameters are estimates with no patent values; at infinity the full-field bundle exceeds the stored rim by 6–9 % of its side at surfaces 1, 2, 11 and 12 and 1 % at surface 10. Not compared in detail with the rim heights drawn in Fig. 1.
+- Open: semi-diameters are estimates with no patent values; at infinity the full-field bundle exceeds the stored rim by 6–9 % of its side at surfaces 1, 2, 11 and 12 and 1 % at surface 10. Not compared in detail with the rim heights drawn in Fig. 1. (Closed 2026-11-16: see the semi-diameter pass below.)
 - Open: `focus.closeFocusM` is stored as 0.37360027737281226 (the model's 1:1 object-to-image distance); 0.3736 would carry the same information.
 - Open: no `lensMounts`; the product association is by specification only and no maker construction diagram was found.
 - Open: L9 has no catalog glass; its dispersion comes from nd and νd alone.
+
+## 2026-11-16 — Semi-diameter pass against Fig. 1
+
+Source: JP 2003-185916 A, page 6, Fig. 1 panel (a) (infinity), measured at the raster's native 200 dpi. Scale: first vertex at x = 702 px and image plane at x = 1204 px for the 134.28 mm track give 3.738 px/mm (0.27 mm per pixel); the predicted positions of surfaces 6, 10/11, 13, 14 and 18 fall within 2 px of the drawn vertex crossings. The axis is at y ≈ 797 px. Rims were read on the lower side, which carries no group brackets, and on the upper side where it is clean; the two agree within 1.1 mm.
+
+| Element (surfaces) | Before | Fig. 1 | After | Reason |
+| --- | ---: | ---: | ---: | --- |
+| L1 (1, 2) | 19 | 16.3 | 19 | kept: 18.5 already costs 3.7 points at the corner |
+| L2 (3, 4) | 18 | 15.6 | 17 | partway; 17 costs nothing, 16.5 does |
+| L3 (5, 6) | 16 | 14.7 | 14.7 | figure |
+| L4/L5 (8, 9, 10) | 16 | 15.5 | 15.5 | figure |
+| L6 (11, 12) | 17 | 15.8 | 17 | kept: within reading noise, and 16.5 costs 0.7 point |
+| L7 (13, 14) | 20 | 16.6 | 17.5 | partway; 16.6 costs a further 2.8 points |
+| L8 (15, 16) | 22 | 17.6 | 17.6 | figure |
+| L9 (17, 18) | 24 | 21.1 | 24 | kept: any reduction shrinks the engine half-field (25.45° at 24, 24.37° at 22.2) |
+
+Corner illumination at infinity, wide open, by field (0 / 2.7 / 5.5 / 8.2 / 10.9 / 13.6 / 16.4°): before 100 / 100 / 100 / 100 / 100 / 99.6 / 94.9 %, after 100 / 100 / 100 / 100 / 99.8 / 98.3 / 92.9 %. The worst loss is 2.0 points at 16.4°; restoring L3 alone wins back 1.3 points and L8 alone 1.1. The full figure set would have cost 19.5 points.
+
+At the 1:2 and 1:1 nodes the full-field bundle to Y = 34.85 mm clears every changed rim except surface 5 at 1:2 (15.14 mm against 14.7 mm, 3 % of one side of the fan); no surface clips the axial beam or blocks the chief ray at any of the three states. The surface audit reports no errors, the aperture audit reports no rim limit, the image-circle check lists nothing undersized and field coverage stays at 100 % to 34.85 mm. Engine numbers are unchanged: EFL 118.86438 mm, F/3.99, half-field 25.4538°, stop radius 11.64075 mm, and the three patent focus nodes as before. The model sketch at the figure's scale shows the drawn step order (L3 smallest, the doublet and L6 next, then L7, L8, L9 rising).
+
+No metadata changed. Product name: Mamiya's manual-focus lens is the "Mamiya Sekor Macro MF 120mm F4" (D version January 2008; 33°, 40 cm); the later autofocus lens appears in the Phase One / Mamiya lens overview as "120mm AF f/4" (32°, 37 cm) and in a lens database as "Mamiya Sekor D AF 120mm F/4 Macro" (2011). The 2001 patent agrees with the autofocus lens by specification only, about ten years before that lens, so the patent-design name stays and no `lensMounts` is set.
+
+- Open: L1 and L9 remain about 2.7 mm and 2.9 mm above the figure, and L2, L6 and L7 about 1 mm above it, for the light and field reasons in the table.
+- Open: corner illumination at 1:2 and 1:1 was checked by meridional bundle heights, not with the full-pupil measure used at infinity.
+- Open: no side-by-side composite was made; the model sketch and the figure crop were compared as separate images at the same scale.

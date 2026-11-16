@@ -75,6 +75,6 @@ None. All refracting surfaces are spherical.
 ## Model Scope and Limitations
 
 - The radii, thicknesses, glasses, stop position and the infinity state are the patent's. D12 and the working distance at 1:2 and 1:1 are the model's own, as described above, and every position between the three patent states is interpolated.
-- The patent publishes no clear apertures. The semi-diameters (19 mm at the front element, 16–17 mm around the stop, 20–24 mm in G3) are estimates, so off-axis illumination and vignetting in the viewer depend on them. The stop radius follows from F/3.99.
+- The patent publishes no clear apertures. The semi-diameters (19 mm at the front element, 14.7–17 mm around the stop, 17.5–24 mm in G3) are estimates guided by Fig. 1, so off-axis illumination and vignetting in the viewer depend on them. Fig. 1 draws L1 and L9 smaller (about 16 mm and 21 mm); the model keeps them larger so the corner beam and the traced field are not cut. The stop radius follows from F/3.99.
 - Dispersion comes from the matched catalog glasses where a name is given and from nd and νd alone for L9.
 - The association with the Mamiya AF 120mm f/4 Macro rests on published specifications, not on a maker's diagram or prescription.
