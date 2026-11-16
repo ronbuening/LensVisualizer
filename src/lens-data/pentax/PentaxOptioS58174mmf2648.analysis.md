@@ -6,7 +6,7 @@
 **Published:** October 23, 2003
 **Inventor:** Masaru Eguchi
 **Assignee:** Pentax Corporation
-**Example:** Embodiment 6 — Table 6, Fig. 21, paragraphs 0180–0183; f = 5.80 / 9.60 / 17.40 mm, f/2.7 / 3.5 / 5.3, half-field 33.1° / 20.7° / 11.8°.
+**Example details:** Table 6, Fig. 21, paragraphs 0180–0183; f = 5.80 / 9.60 / 17.40 mm, f/2.7 / 3.5 / 5.3, half-field 33.1° / 20.7° / 11.8°.
 
 The model is the patent's sixth embodiment, not a confirmed factory prescription. The link to the Optio S (2003) rests on the camera's development paper by Nomura and Eguchi, whose [Figure 7](https://www.jstage.jst.go.jp/article/photogrst1964/67/3/67_3_275/_pdf) shows the same layout: two elements, three elements and one element in three groups, with both faces of the second and third elements aspheric and first-group glasses above index 1.8. The focal range (5.8–17.4 mm) and the count of 6 elements in 5 groups also agree. Two points differ: the camera is marketed at f/2.6–4.8 against the patent's f/2.7–5.3, and the paper states that the third group stays fixed during zooming, while Table 6 moves it by 0.38 mm. Embodiment 7 of the same patent fits the camera equally well.
 
