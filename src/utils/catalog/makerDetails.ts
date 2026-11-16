@@ -130,10 +130,10 @@ export const MAKER_DETAILS: Record<string, MakerDetails> = {
       "Apochromat 50mm f/2, Apochromat 100mm f/2, Apochromat 150mm f/2.5, Tegea 5.7mm f/1.8, Tegea 9.8mm f/1.8, Super-Tegea 1.9mm f/1.9, Fulgior 50mm f/1.3",
   },
   unattributed: {
-    headquarters: "Not established",
-    summary: "Lens prescriptions whose manufacturer has not been established from the available sources.",
+    headquarters: "Not known",
+    summary: "Lenses whose maker is not known.",
     history:
-      "Unattributed is a catalog category, not a manufacturing company. An inventor, design-family name or patent owner does not by itself identify the factory that produced a lens. These models retain their source-backed names and inventor attribution while their manufacturer remains unconfirmed. The individual lens notes explain the evidence and any product correlation.",
+      "Unattributed is not a company. It is where this catalog keeps lenses whose maker is not known. A patent names the person who designed a lens and often the company that owned the design, but not always the company that built it. Each lens here keeps the name and designer given in its source, and its notes explain what is known about who made it.",
   },
   agfa: {
     founded: 1867,
