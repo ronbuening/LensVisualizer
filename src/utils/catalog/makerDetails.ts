@@ -28,6 +28,7 @@
  *   2026-07-16  Added Tamron maker entry.
  *   2026-08-06  Added P. Angénieux maker entry.
  *   2026-08-07  Added Mamiya maker entry.
+ *   2026-11-15  Added AEG and Meike maker entries.
  *   2026-04-26  Detail and accuracy pass on Leica (designer attributions,
  *               Solms→Leitz-Park facility history), Fujifilm (X100, GFX,
  *               2006 holding-company rebrand), Canon (Kwanon-vs-Hansa Canon,
@@ -111,6 +112,24 @@ export const MAKER_DETAILS: Record<string, MakerDetails> = {
     summary: "Lens prescriptions whose manufacturer has not been established from the available sources.",
     history:
       "Unattributed is a catalog category, not a manufacturing company. An inventor, design-family name or patent owner does not by itself identify the factory that produced a lens. These models retain their source-backed names and inventor attribution while their manufacturer remains unconfirmed. The individual lens notes explain the evidence and any product correlation.",
+  },
+  // Patent and surviving example: DE 620,538 C; https://www.leitz-auction.com/en/AEG-Weitwinkelobjektiv-Camera/AI-21-13699
+  aeg: {
+    founded: 1883,
+    headquarters: "Berlin, Germany",
+    summary:
+      "German electrical-engineering company whose research institute designed one of the first fisheye objectives in the early 1930s.",
+    history:
+      "AEG was founded in Berlin in 1883 as Deutsche Edison-Gesellschaft and took the name Allgemeine Elektricitäts-Gesellschaft in 1887. It was an electrical manufacturer, not a camera maker, and its place in lens history comes from its research institute.\n\nIn 1932 the company applied for German patent DE 620,538, a five-element wide-angle objective covering about 180°, with two diverging menisci ahead of the stop. The design is credited in the literature to Hans Schulz. It was built around 1935 as a 17 mm f/6.3 objective for a cloud-recording camera, and a surviving example has been sold at auction together with a copy of the patent.",
+    notableDesigns: "Weitwinkelobjektiv 17mm f/6.3 (DE 620,538)",
+  },
+  // Lens patents: https://patents.google.com/patent/CN216526483U/en
+  meike: {
+    headquarters: "Hong Kong; lens patents filed from Chengdu, China",
+    summary: "Chinese maker of low-cost manual, autofocus and cine lenses for mirrorless mounts.",
+    history:
+      "Meike began with camera accessories such as battery grips, flashes and extension tubes, and added manual-focus prime lenses for mirrorless cameras in the mid-2010s. The brand trades as HongKong Meike Digital Technology Co., Ltd.; lens patents associated with it are filed by Chengdu Weizheng Digital Technology Co., Ltd.\n\nThe range later grew to include compact cine primes for Micro Four Thirds, Super 35 and full-frame cameras, and autofocus primes. The 50mm f/0.95 for APS-C mirrorless mounts was announced in 2022.",
+    notableDesigns: "50mm f/0.95 (APS-C); 85mm f/1.8 AF; Mini Prime cine series",
   },
   agfa: {
     founded: 1867,

@@ -1,4 +1,5 @@
 export const MAKER_PREFIXES = [
+  { prefix: "AEG", display: "AEG", slug: "aeg" },
   { prefix: "AGFA", display: "Agfa", slug: "agfa" },
   { prefix: "APPLE", display: "Apple", slug: "apple" },
   { prefix: "CANON", display: "Canon", slug: "canon" },
@@ -33,6 +34,7 @@ export const MAKER_PREFIXES = [
   { prefix: "VOIGTLANDER", display: "Voigtländer", slug: "voigtlander" },
   { prefix: "NIKON", display: "Nikon", slug: "nikon" },
   { prefix: "NIKKOR", display: "Nikon", slug: "nikon" },
+  { prefix: "MEIKE", display: "Meike", slug: "meike" },
   { prefix: "OLYMPUS", display: "Olympus", slug: "olympus" },
   { prefix: "ZUIKO", display: "Olympus", slug: "olympus" },
   { prefix: "PANASONIC", display: "Panasonic", slug: "panasonic" },
