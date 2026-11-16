@@ -1,19 +1,39 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
-/** User-authorized derived image plane; source reference retained separately. */
+/**
+ * Vivitar 28mm f/2 Compact — US 4,258,980 A (Jacob Moskovich; Vivitar Corporation), Table 2 (repeated in claim 6).
+ *
+ * SCALE: the patent tabulates the design at unit focal length; every radius, thickness and air space is the
+ * printed value multiplied by 28 (mm). The scaled prescription computes to f = 28.0137 mm.
+ *
+ * IMAGE PLANE: the patent prints BFL = 1.36 F (two decimals). The last gap here is the paraxial back focus of the
+ * printed prescription, 38.3273 mm (1.3688 F). The patent's printed back focal lengths are truncated paraxial
+ * values (Table 1 computes 1.5969 against a printed 1.59), and its astigmatism plots are zeroed on the axial focus.
+ *
+ * INFERRED VALUES: the stop station (the patent places the iris between L4 and L5 without a distance; the
+ * 3.696 mm air space is split 1.672 + 2.024 mm) and every semi-diameter. The stop is sized paraxially for f/2
+ * (8.62 mm); by exact ray trace it admits an axial beam of 6.46 mm radius, about f/2.17, because the printed
+ * three-decimal prescription has strong marginal spherical aberration. L6 and L7 reach edge contact at a 9.50 mm
+ * semi-diameter, the height of the real f/2 marginal ray, so their rims cannot grow to pass it.
+ *
+ * FOCUS: infinity only. The patent's 1:10 close-focus state (Table 7: S4 = 0.116 F with L5-L8 moving
+ * differentially) is not modeled; closeFocusM = 1e15 marks focus as not modeled and the maker's minimum focus
+ * distance is carried in catalog.closeFocusM.marketing.
+ */
 const LENS_DATA = {
   "schema": 2,
   "key": "vivitar-28mm-f2-compact",
   "maker": "Vivitar",
   "name": "Vivitar 28mm f/2 Compact",
-  "subtitle": "US4258980 Table 2; derived wide-open infinity image plane, not factory prescription",
+  "subtitle": "US4258980 Table 2; paraxial infinity image plane, not factory prescription",
   "catalog": {
+    "lensMounts": ["pentax-k"],
     "imageFormat": "135-full-frame",
     "specs": [
       "8 ELEMENTS / 8 GROUPS",
       "TABLE 2 AT 28\u00d7",
       "72\u00b0 PATENT / 75\u00b0 RETAIL",
       "INFINITY ONLY",
-      "DERIVED F/2 INFINITY IMAGE PLANE +0.113741 MM"
+      "PARAXIAL INFINITY IMAGE PLANE 38.3273 MM"
     ],
     "elementCount": 8,
     "groupCount": 8,
@@ -24,10 +44,13 @@ const LENS_DATA = {
     "fNumber": {
       "marketing": 2,
       "design": 2
+    },
+    "closeFocusM": {
+      "marketing": 0.3
     }
   },
   "source": {
-    "patentNumber": "US 4,258,980",
+    "patentNumber": "US 4,258,980 A",
     "example": {
       "label": "Table 2",
       "id": "2"
@@ -140,13 +163,13 @@ const LENS_DATA = {
     {
       "label": "3",
       "R": 22.232,
-      "d": 1.9600000000000002,
+      "d": 1.96,
       "sd": 14.6,
       "medium": 2
     },
     {
       "label": "4",
-      "R": 11.228000000000002,
+      "R": 11.228,
       "d": 5.684,
       "sd": 10.0,
       "rimExtensionSd": 14.6
@@ -174,13 +197,13 @@ const LENS_DATA = {
     {
       "label": "8",
       "R": 114.912,
-      "d": 1.6720000000000002,
+      "d": 1.672,
       "sd": 10.5
     },
     {
       "label": "STO",
       "R": "flat",
-      "d": 2.0240000000000005
+      "d": 2.024
     },
     {
       "label": "9",
@@ -192,7 +215,7 @@ const LENS_DATA = {
     {
       "label": "10",
       "R": -19.32,
-      "d": 2.3800000000000003,
+      "d": 2.38,
       "sd": 11.1
     },
     {
@@ -204,14 +227,14 @@ const LENS_DATA = {
     },
     {
       "label": "12",
-      "R": 72.32400000000001,
+      "R": 72.324,
       "d": 1.848,
       "sd": 9.0
     },
     {
       "label": "13",
       "R": -37.548,
-      "d": 3.9200000000000004,
+      "d": 3.92,
       "sd": 9.3,
       "medium": 7
     },
@@ -231,13 +254,13 @@ const LENS_DATA = {
     {
       "label": "16",
       "R": -34.608,
-      "d": 38.19374065616819,
+      "d": 38.3273,
       "sd": 13.0
     }
   ],
   "focus": {
     "closeFocusM": 1000000000000000.0,
-    "description": "Infinity only. Image plane moved +0.113740656 mm from literal 38.08 mm rear gap to minimize area-weighted on-axis geometric RMS at f/2. Fixed derived plane, no automatic stopped-down refocus. Not a source plane or factory prescription."
+    "description": "Infinity only. The image plane is the paraxial back focus of the printed Table 2 prescription, 38.3273 mm (1.3688 F); the patent prints BFL = 1.36 F, a truncated paraxial value. The patent's 1:10 close-focus state is not modeled. Not a factory prescription."
   },
   "gaps": {},
   "aperture": {
