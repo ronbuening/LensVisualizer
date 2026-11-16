@@ -14,8 +14,8 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 - **1143** lenses scanned
 - **12890** glass elements examined
-- **2700** elements have multiple coordinate-compatible candidates
-- **493** lens files are affected
+- **2699** elements have multiple coordinate-compatible candidates
+- **492** lens files are affected
 - **276** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
 - **118** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
 
@@ -23,7 +23,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 |---|---:|
 | Smallest reference-index residual | 1570 |
 | Evidence-source priority | 835 |
-| Vendor context | 281 |
+| Vendor context | 280 |
 | Stable canonical-name order | 12 |
 | Smallest Abbe residual | 2 |
 
@@ -1939,7 +1939,6 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `699301 class (vendor unresolved)` | 1.70000 / 30.05 (d) | E-FD15 — smallest d-line \|Δn\| (1.1e-3 vs 1.1e-3) | S-TIM35 (Ohara, code, preferred code row) | 1 | [VILTROX AF 56mm f/1.4 E](../../src/lens-data/viltrox/ViltroxAF56mmf14E.data.ts) L21 |
 | `911353 class (vendor unresolved)` | 1.91000 / 35.26 (d) | H-ZLaF4LA — smallest d-line \|Δn\| (8.2e-4 vs 8.2e-4) | TAFD35 (Hoya, code, preferred code row) | 1 | [VILTROX AF 56mm f/1.4 E](../../src/lens-data/viltrox/ViltroxAF56mmf14E.data.ts) L23 |
 | `729547 class (vendor unresolved)` | 1.73000 / 54.67 (d) | TAC8 — smallest d-line \|Δn\| (8.4e-4 vs 8.4e-4) | S-LAL18 (Ohara, code, preferred code row) | 1 | [VILTROX AF 56mm f/1.4 E](../../src/lens-data/viltrox/ViltroxAF56mmf14E.data.ts) L31 |
-| `N-FK5 (SCHOTT; FK5-class equivalent)` | 1.48700 / 70.40 (d) | N-FK5 — Annotation vendor context matches Schott. | FK5 (Sumita, name, vendor ✗) | 1 | [VIVITAR 28mm f/2](../../src/lens-data/vivitar/Vivitar28mmf2.data.ts) L3 |
 | `SF6 class (SCHOTT legacy; patent 805/255)` | 1.80518 / 25.50 (d) | SF6 — direct name evidence outranks six-digit code evidence. | J-SF6 (Hikari, code, vendor ✗, alternate code row)<br>H-ZF7LA (CDGM, code, vendor ✗, preferred code row)<br>FD60 (Hoya, code, vendor ✗, alternate code row) | 1 | [VIVITAR SERIES 1 135mm f/2.3 AUTO TELEPHOTO](../../src/lens-data/vivitar/VivitarSeries1135mmf23.data.ts) L3 |
 | `N-SSK2 class (SCHOTT; patent 622/531)` | 1.62230 / 53.10 (d) | N-SSK2 — direct name evidence outranks six-digit code evidence. | SSK2 (Sumita, code, vendor ✗, preferred code row) | 1 | [VIVITAR SERIES 1 135mm f/2.3 AUTO TELEPHOTO](../../src/lens-data/vivitar/VivitarSeries1135mmf23.data.ts) L5 |
 | `BSC7 (HOYA) / N-BK7 (Schott)` | 1.51680 / 64.20 (d) | N-BK7 — smallest d-line \|Δn\| (3.5e-8 vs 1.8e-6) | BSC7 (Hoya, name, vendor ✓) | 1 | [VIVITAR SERIES 1 200mm f/3 VMC](../../src/lens-data/vivitar/VivitarSeries1200mmf3.data.ts) L2 |
