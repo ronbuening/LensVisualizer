@@ -73,7 +73,7 @@ const LENS_DATA = {
     "specs": [
       "7 ELEMENTS / 5 GROUPS",
       "ALL SPHERICAL",
-      "F/0.95 MARKETED; PRINTED STOP GIVES F/0.99",
+      "F/0.98 AT THE PRINTED STOP · MARKED F/0.95",
       "MINIMUM FOCUS 0.45 m"
     ]
   },

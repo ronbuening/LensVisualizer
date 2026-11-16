@@ -74,5 +74,29 @@ Open:
 
 - The axial beam at the paraxial pupil overfills surface 6 by 0.05 mm (16.54 against the printed 16.49 mm). This is the source's geometry and is left.
 - The corner bundle keeps 33.5 % at 16.0°; the patent states a relative illumination above 42 % at the edge of its field (¶0057). The rims are the printed ones, so the difference is not adjusted.
-- The local outline sketch does not draw rim extensions; the two lands should be looked at on the live page.
+- (Closed 2026-11-15 by the second review below.) The local outline sketch does not draw rim extensions; the two lands should be looked at on the live page.
+
+## 2026-11-15 — Second review on the local site
+
+Compared: the live page (1400×900, infinity) and the inspector of all seven elements against CN 216526483 U Fig. 1 at matched scale (figure 15.74 px/mm, page 6.61 px/mm), Table 1 (specification p. 4/5) and the text (¶0031, ¶0037–0048, ¶0053–0057). No field of the data file was changed.
+
+Table 1 re-read row by row: all 13 radii, spacings, glass names and clear diameters agree with the file, and each `sd` is the printed diameter halved. The stop row (22.74 mm, 7.85 mm behind L4, 6.11 mm ahead of L5) agrees.
+
+Silhouette: the page draws L4 and L5 as square-edged blocks with a flat land on the stop side of each, as Fig. 1 does. The step order matches the figure: L1 > L2 > L3 > L4 block in front, and L5 block < L6 < L7 behind the stop. The figure's edges stand 0.4 to 1.4 mm beyond the printed clear apertures; the printed diameters are kept.
+
+Lands (both drawing-only): surface 7 `rimExtensionSd` 16.49 and surface 9 `rimExtensionSd` 14.03 cost 0.0 points at every field (bundle transmission 100 / 97.0 / 90.9 / 82.7 / 73.1 / 60.3 / 33.5 % with and without them, at 0 to 16.0°). The figure draws both, so both stay. No face is below its baseline.
+
+Labels and brackets: the patent names no lens groups. Its fU1 and fU2 are the focal lengths of the first and second cemented lenses (reference numerals 91 and 92), which the C1 and C2 brackets already mark over surfaces 5–7 and 9–11, so `groups` stays empty. Element types agree with the signs of the radii and with ¶0048. Stored focal lengths agree with the traced values (71.84, 110.54, 53.86, −19.39, −20.55, 21.48, 44.92 mm; cemented pairs −38.49 and +135.22 mm). The stop is drawn between L4 and L5. No aspheric marker and no `apd` tag: the patent designates no special glass and no maker construction drawing was found.
+
+Movement: none. `gaps` is empty and `focus.description` states infinity only and explains the 14.7591 mm image distance against the printed 13.89 mm.
+
+Glass: all five named glasses resolve to their catalog rows (Δnd ≤ 5e-6, Δνd ≤ 0.01). The patent prints no indices, partial dispersions or line data.
+
+Engine numbers, unchanged: EFL 50.4815 mm, F/0.9846, stop radius 11.37 mm, half-field 17.51°. The surface audit reports no errors, the aperture audit no rim limit, and field coverage is 100 % (14.17 of 14.18 mm at 16.0°).
+
+Open:
+
+- The spec chip reads "PRINTED STOP GIVES F/0.99", while the page's aperture readout shows f/0.98 (the paraxial 0.9846). The 0.99 follows from the 0.05 mm overfill of surface 6; the two numbers on one page read as a contradiction. Not changed here.
+- The inspector shows νd to six decimals (for example 42.725177) because the values were computed from catalog dispersion formulas; the catalogs print two decimals. Not changed here.
+- L3 (FCD515, νd 68.62) carries no `apd` tag. It stays untagged unless a maker source marks a low-dispersion element.
 
