@@ -1,36 +1,33 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
- * FR 1,214,945 — representative R61-lineage 24 mm reconstruction, NOT a
- * literal transcription or a proven factory prescription. Ron authorized the
- * single R15 sign assumption on 2026-11-13 after reviewing both primary sections.
- * Printed R15 = -289.16 and R16 = -67.745 remain unchanged in literal-patent.json
- * and in the original PDF. ONLY this reconstruction uses R15 = +289.16.
- * No other source radius, thickness, index or Abbe number has been changed.
+ * FR 1,214,945 (Pierre Angénieux, published 1960), sole numerical example,
+ * transcribed from the table on page 2 and scaled to a 24 mm lens. The patent
+ * gives a normalized design with F = 100; it does not name a product, and the
+ * link to the 24 mm f/3.5 Retrofocus rests on the period ALPA leaflet (eight
+ * air-spaced elements, 83 degrees, matching section).
  *
- * The normalized reconstruction computes EFL 100.11723261971326 and BFD
- * 153.42839840703797, against source 100 and 153.3. Uniform scale s = 24/100
- * = 0.24 applies to every radius and tabulated distance: actual modeled EFL
- * 24.02813582873119 mm, BFD 36.82281561768913 mm. Last d uses computed infinity
- * BFD; source text BFD would scale to 36.792 mm. No aspheres to rescale.
+ * Signs: the scan prints plus signs faintly, as a short bar whose vertical
+ * stroke often drops out, and minus signs as a long dash. R15 carries the short
+ * plus bar (+289.16), like R14, R7 and R8, so the last element is biconvex as
+ * the patent text and figure show. Every radius, thickness, index and Abbe
+ * number is as printed.
  *
- * The patent supplies no numeric apertures or stop coordinate. STO splits
- * e12 between E6 and E7 equally (1.1256 + 1.1256 mm): inferred from the section,
- * not a source dimension. Its radius is derived by the engine from f/3.5.
- * All surface sd values are inferred spherical clear radii, constrained by
- * ray envelopes, the primary-section shape and native clearance checks.
+ * Scale: s = 24/100 = 0.24 on every radius and distance. The normalized
+ * prescription computes EFL 100.117 and back focus 153.428 against the printed
+ * 100 and 153.3; at scale the EFL is 24.028 mm. No aspheres.
  *
- * Glasses retain the exact nd/Abbe pairs. "raie D" and nd are printed without
- * a chemical/numeric wavelength; helium d is a disclosed engine convention.
- * Unmatched annotations deliberately use Abbe estimates; no supplier, modern
- * catalog identity, partial dispersion, or factory spectral curve is asserted.
+ * Inferred, not printed: the stop position (e12 split equally, 1.1256 + 1.1256
+ * mm, from the figure), the stop radius (derived from f/3.5), every surface
+ * semi-diameter, and the last gap, which is the computed paraxial back focus
+ * 36.8228 mm (the printed 153.3 would scale to 36.792 mm).
  *
- * Infinity only: closeFocusM = 1e9 m is the supported infinity sentinel; no
- * variable gap exists. Period ALPA 16-inch MFD remains separate catalog metadata.
- * The Pignons drawing supports eight singlets, their order and biconvex E8;
- * it supplies no radii and does not itself print R61 or prove retail identity.
- * The unresolved erratum preserves that source uncertainty while disclosing
- * the user-authorized reconstruction exception; no evidence category is faked.
+ * Glass: the patent gives only index and Abbe number, with the index headed
+ * nd "pour la raie D". The helium d reference is kept because d and D differ
+ * by about one unit in the last printed digit. No catalog glass is asserted.
+ *
+ * Infinity only: no variable gap; focus.closeFocusM is the infinity
+ * placeholder and the ALPA leaflet's 16 inch close focus is catalog metadata.
  */
 
 const LENS_DATA = {
@@ -38,10 +35,11 @@ const LENS_DATA = {
   "key": "angenieux-retrofocus-r61-lineage-24mm-f35-reconstruction",
   "maker": "P. Angénieux",
   "name": "P. ANGÉNIEUX RETROFOCUS 24mm f/3.5 (R61-lineage reconstruction)",
-  "subtitle": "FR 1,214,945 sole example — representative 0.24× model; assumed positive R15; factory identity unverified",
+  "subtitle": "FR 1,214,945 sole example — representative 0.24× model; factory identity unverified",
   "catalog": {
     "lensMounts": [
-      "alpa"
+      "alpa",
+      "exakta"
     ],
     "imageFormat": "135-full-frame",
     "specs": [
@@ -49,7 +47,6 @@ const LENS_DATA = {
       "24.028 mm MODELED EFL",
       "f/3.5 MODELED APERTURE",
       "83° PERIOD PRODUCT FIELD",
-      "R15 SIGN ASSUMPTION",
       "INFINITY ONLY"
     ],
     "elementCount": 8,
@@ -76,13 +73,7 @@ const LENS_DATA = {
     "authors": [
       "Pierre Angénieux"
     ],
-    "assignees": [],
-    "errata": [
-      {
-        "status": "unresolved",
-        "note": "The source table prints R15 = −289.16 and R16 = −67.745, giving normalized EFL 253.89824/BFD 400.35502 instead of 100/153.3 and a meniscus final lens. This separately labeled representative reconstruction applies R15 = +289.16 (scaled +69.3984 mm), leaving R16 unchanged; normalized EFL 100.11723/BFD 153.42840. This single-model assumption was explicitly authorized on 2026-11-13. The patent section and period ALPA drawing support the biconvex shape, but no independent numerical correction or exact factory identity is proven. The unresolved badge denotes original-source uncertainty; this is an explicit scoped exception to the normal keep-literal rule, not a verified corrected-source claim."
-      }
-    ]
+    "assignees": []
   },
   "elements": [
     {
@@ -187,13 +178,13 @@ const LENS_DATA = {
       "glass": "Unmatched (FR 1,214,945 coordinate 1.6203/60.20; supplier unspecified; assumed helium d reference)",
       "focalLengthMm": 21.492567711364956,
       "apd": false,
-      "role": "Final converger; biconvex only under the disclosed R15 sign assumption."
+      "role": "Final converger."
     }
   ],
   "surfaces": [
     {
       "label": "1",
-      "R": 54.016799999999996,
+      "R": 54.0168,
       "d": 1.2144,
       "sd": 24.2,
       "medium": 1
@@ -213,7 +204,7 @@ const LENS_DATA = {
     },
     {
       "label": "4",
-      "R": -1214.2463999999998,
+      "R": -1214.2464,
       "d": 0.1224,
       "sd": 18.5
     },
@@ -239,20 +230,20 @@ const LENS_DATA = {
     },
     {
       "label": "8",
-      "R": 15.344879999999998,
+      "R": 15.34488,
       "d": 23.22048,
       "sd": 13.8
     },
     {
       "label": "9",
       "R": 44.5224,
-      "d": 3.6191999999999998,
+      "d": 3.6192,
       "sd": 7,
       "medium": 5
     },
     {
       "label": "10",
-      "R": -74.49119999999999,
+      "R": -74.4912,
       "d": 0.1224,
       "sd": 7
     },
@@ -266,18 +257,18 @@ const LENS_DATA = {
     {
       "label": "12",
       "R": 48.3192,
-      "d": 1.1256000000000002,
+      "d": 1.1256,
       "sd": 6.8
     },
     {
       "label": "STO",
       "R": "flat",
-      "d": 1.1256000000000002
+      "d": 1.1256
     },
     {
       "label": "13",
       "R": -35.1408,
-      "d": 1.6199999999999999,
+      "d": 1.62,
       "sd": 6.5,
       "medium": 7
     },
@@ -289,8 +280,8 @@ const LENS_DATA = {
     },
     {
       "label": "15",
-      "R": 69.39840000000001,
-      "d": 2.6712000000000002,
+      "R": 69.3984,
+      "d": 2.6712,
       "sd": 5.8,
       "medium": 8
     },
@@ -302,7 +293,7 @@ const LENS_DATA = {
     }
   ],
   "focus": {
-    "closeFocusM": 1000000000.0,
+    "closeFocusM": 1e15,
     "description": "NO_INTERNAL_RECONSTRUCTION — infinity-only prescription; no finite-focus motion or close-focus state is modeled. Period 16-inch close focus is product metadata only."
   },
   "aperture": {

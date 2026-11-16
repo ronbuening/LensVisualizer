@@ -8,7 +8,7 @@
 **Inventor:** Pierre Angénieux.
 **Example details:** Sole numerical table on PDF page 2; optical section on PDF page 3. All source lengths are scaled by 0.24 for this representative 24 mm model.
 
-This is a qualified architectural reconstruction of the R61 lineage, not an unchanged patent transcription or a proven factory prescription. The patent itself supplies a normalized design with stated focal length 100. It does not name a 24 mm product, an ALPA mount or R61. Its page-1 prose describes an aperture of the order of 1:3.5 and refers to an earlier application filed 23 September 1957 [1].
+This is a scaled transcription of the patent's sole example, associated with the R61 lineage; it is not a proven factory prescription. The patent itself supplies a normalized design with stated focal length 100. It does not name a 24 mm product, an ALPA mount or R61. Its page-1 prose describes an aperture of the order of 1:3.5 and refers to an earlier application filed 23 September 1957 [1].
 
 The period Pignons ALPA Reflex supplement identifies an Angénieux 24 mm f/3.5, code **exretrof**, with eight air-spaced elements and 83° diagonal coverage of a 24 × 36 mm frame [2, PDF p. 3]. Its section is drawn in the opposite direction to the patent section. Reversing the product drawing into object-to-image order gives the following convergent evidence:
 
@@ -17,17 +17,17 @@ The period Pignons ALPA Reflex supplement identifies an Angénieux 24 mm f/3.5, 
 3. The same ordered rear shapes and the diaphragm between elements 6 and 7.
 4. A biconvex final element in both original drawings.
 
-This supports a representative product-lineage association. The Pignons document does not print R61, numerical radii, glass identities or a patent number in the reviewed section. It cannot establish exact retail identity or prove the numerical value of a replacement radius.
+This supports a representative product-lineage association. The Pignons document does not print R61, numerical radii, glass identities or a patent number in the reviewed section. It cannot establish exact retail identity.
 
-### Explicit R15 reconstruction assumption
+### Reading of the R15 sign
 
-The literal table prints **R15 = −289.16** and **R16 = −67.745**. Those signs make the last element a positive meniscus. Independent tracing of that literal prescription gives normalized EFL **253.89824** and BFD **400.35502**, against the patent's stated **100** and **153.3**. The unchanged PDF and a separate literal transcription remain the source of record.
+The scan prints its plus signs faintly: a short bar about 25 pixels wide at 300 dpi whose hairline vertical stroke often drops out, against a long dash of 36–40 pixels for minus. R15 carries the short bar, exactly like R14, R7 and R8, so the table reads **R15 = +289.16** and **R16 = −67.745**, a biconvex final element, as the patent text ("une lentille convergente") and its section show. Misreading the faint plus as a minus would give normalized EFL **253.89824** and BFD **400.35502**, against the patent's stated **100** and **153.3**.
 
-Only this reconstruction applies **R15 = +289.16**, retaining R16 = −67.745 and every other tabulated radius, spacing, index and Abbe number. It then gives EFL **100.11723**, BFD **153.42840**, and a biconvex final element. This is a specifically authorized sign-error hypothesis, not an independently established numerical erratum. The source uncertainty is disclosed in `source.errata`, the data header, the inline surface comment and the audit. The structured erratum remains `unresolved` because no second qualifying numerical or aberration source was recovered; it must not be read as a claim that an original publication prints the positive value.
+With the table as printed the prescription gives EFL **100.11723** and BFD **153.42840**. Every radius, spacing, index and Abbe number is the printed value; nothing is assumed or corrected, and the data file carries no erratum.
 
 ## Optical Architecture
 
-The design contains **eight spherical elements in eight air-spaced groups**. Component I consists of a negative meniscus, two very weak positive lenses and a second negative meniscus. Component II consists of a biconvex positive lens, a positive meniscus, a biconcave negative lens and the reconstructed biconvex final positive lens [1, pp. 1–3].
+The design contains **eight spherical elements in eight air-spaced groups**. Component I consists of a negative meniscus, two very weak positive lenses and a second negative meniscus. Component II consists of a biconvex positive lens, a positive meniscus, a biconcave negative lens and the biconvex final positive lens [1, pp. 1–3].
 
 The independently computed isolated-component focal lengths are −137.86357 and +109.61011 source units, or −33.08726 and +26.30643 mm at 0.24×. The patent prints −137.80 and +109.67. The negative front component and positive rear component yield a long back focus: the modeled BFD/EFL ratio is **1.53249**. The system is retrofocus under the project's back-focus criterion.
 
@@ -85,15 +85,15 @@ The positive meniscus is the last element ahead of the diaphragm. Its concave im
 
 L7 is the strong negative corrector immediately behind the stop. Its lower Abbe number distinguishes it from the higher-Abbe positive lenses around it. The unequal inferred clear radii preserve the short following air gap without rim cuts or a relaxed gap-sag allowance.
 
-### L8 — Reconstructed Biconvex Positive
+### L8 — Biconvex Positive
 
 **nd = 1.6203, νd = 60.20. Glass: unmatched source coordinate; supplier unspecified. Standalone f = +21.4926 mm.**
 
-L8 closes the positive rear component. Its biconvex form depends explicitly on the positive-R15 assumption. The literal two-negative-radius form remains separately preserved and must not be described as the same reconstructed surface shape.
+L8 closes the positive rear component. Its biconvex form follows from the printed radii, R15 = +289.16 and R16 = −67.745.
 
 ## Glass Identification and Selection
 
-The patent supplies three index/Abbe coordinates and no glass names, supplier assignments, line-index table or anomalous partial-dispersion data. It refers to the spectrum's **D** line and labels the numerical column `nd`, without a numerical wavelength or chemical identification. The model uses the engine's helium-d convention as a disclosed assumption; an explicit sodium-D identification has not been established.
+The patent supplies three index/Abbe coordinates and no glass names, supplier assignments, line-index table or anomalous partial-dispersion data. It refers to the spectrum's **D** line and labels the numerical column `nd`, without a numerical wavelength or chemical identification. The model keeps the helium-d reference: the one recognisable coordinate, 1.6203/60.2, sits near SK16 (nd 1.62041, sodium-D index about 1.6203), which leans towards sodium D, but the two lines differ by only about one unit in the last printed digit.
 
 | Source coordinate | Elements | Modeled dispersion |
 |---|---|---|
@@ -105,13 +105,13 @@ The `Unmatched` annotations prevent a speculative modern glass assignment. The h
 
 ## Focus Mechanism
 
-The source provides one optical prescription and no finite-focus spacing law. The model therefore uses **NO_INTERNAL_RECONSTRUCTION**, no variable gaps, and the supported **1e9 m infinity sentinel** for `focus.closeFocusM`. Both focus endpoints have identical optical geometry; the sentinel is not a physical minimum focus distance.
+The source provides one optical prescription and no finite-focus spacing law. The model therefore uses **NO_INTERNAL_RECONSTRUCTION**, no variable gaps, and the house **1e15 m infinity placeholder** for `focus.closeFocusM`. Both focus endpoints have identical optical geometry; the sentinel is not a physical minimum focus distance.
 
 Pignons lists infinity to **16 inches**, or **0.4064 m**, for the production 24 mm lens [2]. That value is stored separately as marketing metadata. It does not create a close-focus model or establish which elements move. The period 60 mm mechanical length is likewise not the modeled glass track or first-vertex-to-image distance.
 
 ## Numerical Verification and Field Coverage
 
-Independent reduced-angle matrices and a separately implemented sequential paraxial trace agree on both the literal and reconstructed prescriptions. The native builder agrees with the scaled reconstruction to floating-point precision. The aperture audit gives **f/3.499999997**, limited by STO.
+Independent reduced-angle matrices and a separately implemented sequential paraxial trace agree on the printed prescription. The native builder agrees with the scaled prescription to floating-point precision. The aperture audit gives **f/3.499999997**, limited by STO.
 
 Native geometry retains the default validation bounds. The minimum sampled material thickness is **1.2072 mm**, the minimum shared-gap clearance **0.1224 mm**, the largest shared-gap intrusion **83.83%**, and the maximum rim angle **64.0692°**. The iris remains in air through its f/3.5–f/22 stroke. Native render diagnostics hide **0 mm** on every element.
 
