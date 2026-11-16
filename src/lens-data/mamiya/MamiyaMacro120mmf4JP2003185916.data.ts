@@ -32,12 +32,15 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                            ║
  * ║    The patent does not publish clear apertures. Rims are read from  ║
- * ║    Fig. 1(a) (0.27 mm per pixel) where that costs little corner     ║
- * ║    light: L3, the L4/L5 doublet and L8 follow the figure; L2 and    ║
- * ║    L7 are partway toward it; L1, L6 and L9 keep larger estimates    ║
- * ║    because the drawn rims would cut the corner beam or the traced   ║
- * ║    field. The stop radius is derived from the design f-number,      ║
- * ║    F/3.99.                                                          ║
+ * ║    Fig. 1(a) (0.27 mm per pixel) where that costs under a point of  ║
+ * ║    corner light at infinity, 1:2 and 1:1: the L4/L5 doublet follows ║
+ * ║    the figure, L3 is 0.2 mm above it and L2 is partway toward it.   ║
+ * ║    L1, L6 and L9 keep larger estimates because the drawn rims would ║
+ * ║    cut the corner beam or the traced field. L7 and L8 (19.9 and     ║
+ * ║    20 mm; drawn 16.6 and 17.6 mm) are larger because at 1:1, with   ║
+ * ║    G3 64 mm behind G2, the drawn rims would cut the corner beam of  ║
+ * ║    a real object by about a quarter. The stop radius is derived     ║
+ * ║    from the design f-number, F/3.99.                                ║
  * ║                                                                    ║
  * ║  NOTE ON GLASS:                                                     ║
  * ║    nd / νd are the patent's values (d-line). Catalog names are      ║
@@ -227,14 +230,14 @@ const LENS_DATA = {
       label: "5",
       R: 680.66,
       d: 3.8,
-      sd: 14.7,
+      sd: 14.9,
       medium: 3,
     },
     {
       label: "6",
       R: 29.59,
       d: 5.7,
-      sd: 14.7,
+      sd: 14.9,
     },
     {
       label: "STO",
@@ -276,27 +279,27 @@ const LENS_DATA = {
       label: "13",
       R: -270.63,
       d: 4,
-      sd: 17.5,
+      sd: 19.9,
       medium: 7,
     },
     {
       label: "14",
       R: -64.459,
       d: 7.68,
-      sd: 17.5,
+      sd: 19.9,
     },
     {
       label: "15",
       R: -49.995,
       d: 1.8,
-      sd: 17.6,
+      sd: 20,
       medium: 8,
     },
     {
       label: "16",
       R: 81.958,
       d: 5.69,
-      sd: 17.6,
+      sd: 20,
     },
     {
       label: "17",
@@ -387,7 +390,7 @@ const LENS_DATA = {
   groups: [
     { text: "G1 (+)", fromSurface: "1", toSurface: "6" },
     { text: "G2f", fromSurface: "8", toSurface: "10" },
-    { text: "G2b (+)", fromSurface: "11", toSurface: "12" },
+    { text: "G2b", fromSurface: "11", toSurface: "12" },
     { text: "G3 (−)", fromSurface: "13", toSurface: "18" },
   ],
   doublets: [{ text: "C1", fromSurface: "8", toSurface: "10" }],
