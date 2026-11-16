@@ -199,3 +199,54 @@ Open:
 - L2, L3 and L4's edge read 6–8 % larger in the figure than in the file; surface 7 at 14.0 is what sets the 41.33° traced half-field, just short of the declared 41.5°.
 - The front cap of L7 (6.5) is larger than the figure's cap end (about 5.5).
 - Blade count and other mounts (the R61 was offered for several reflex cameras) need a maker or period source.
+
+## 2026-11-15 — Second review on the local site
+
+An independent look at the page as served locally (1400 × 900 shots of the diagram and of each element's inspector) beside the figure on page 3 of FR 1,214,945 and the Pignons ALPA leaflet section. No field of the data file and no line of the analysis changed.
+
+### Rims, lands and cuts
+
+Read again on the 300-dpi figure, axis to rim, at the whole-track scale of 17.34 px per mm: L1 418 px (24.1 mm, file 24.2), L2 and L3 338 px (19.5, file 18.5), L4 256 px (14.8, file 14.0), L5 123 px (7.1, file 7.0), L6 121 px (7.0, file 6.8), L7 rear 136 px (7.8; 7.3 at the rear-component scale, file 7.3), L8 111 px (6.4; 6.0 at the rear-component scale, file 5.8). Every reading is within 10 % of the stored value, and the drawn step order holds on the page: L1 > L2 = L3 > L4 in front, L7 rear > L5 > L6 > L8 behind. No rim moved.
+
+| Item | Baseline | Now | Cost in light | Verdict |
+|---|---:|---:|---:|---|
+| Surface 2 cap with land | 24.2 | 23.1, land to 24.2 | 0.0 points at every field | Keep: the figure ends the cap short of the edge and it costs nothing |
+| Surface 8 cap with land | 13.8 | 13.3, land to 14.0 | 0.0 points at every field | Keep, same reason |
+| Surface 14 raise | 5.8 | 7.3 | 0.0 points | Keep: figure-driven, L7 drawn as the tallest rim of component II |
+
+Worst loss against the baseline rims: 0.0 points (corner 45.5 % at 41.5° in both). On the page the two lands draw as a short step at the outer edge of L1 and L4, where the figure draws a chamfer; L7 shows the slanted front edge running out to its taller rear rim, cupped around L8, as drawn. L1 and L4 show a wider flat edge than the figure (about 6.9 mm against roughly 4 mm) because the printed radii give that edge thickness at the drawn height; the figure is schematic there.
+
+### Labels, brackets and inspector text
+
+- All 16 radii, 15 distances and 8 index and Abbe pairs were read again from the table on page 2 and multiplied by 0.24: no mismatch. Front-page data (P. V. 776.240, filed 9 October 1958, granted 16 November 1959, published 12 April 1960, applicant Pierre Angénieux in person) agree with the analysis; `source.assignees` is empty, as in the four sibling Angénieux files.
+- Brackets "COMPONENT I (NEGATIVE)" over surfaces 1–8 and "COMPONENT II (POSITIVE)" over 9–16 follow the patent's I and II and its text (front component negative, rear positive); they sit clear of each other and of the element numbers. No cemented pair, so no doublet bracket. The patent does not number its lenses; L1–L8 is the sequential form.
+- Element types agree with the signs of the radii, and each role agrees with the patent's description (two outer diverging menisci and two inner converging lenses in front; converging lens, converging meniscus, biconcave lens, converging lens behind). Stored focal lengths agree with a fresh paraxial trace to 0.01 mm (−103.95, 225.02, 225.19, −36.11, 45.45, 39.08, −17.02, 21.49). The inspector shows type, nd, νd, focal length, the Unmatched label and the role for each element; nothing is blank.
+- Stop: drawn between L6 and L7 in the middle of the gap, as the figure's dashed line shows.
+- No `apd` tag and no aspheric marker, correctly.
+
+### Movement
+
+Infinity only. No variable gap exists; the focus panel reads "Not modeled", and `focus.description` states only that the patent prints one prescription and that 0.41 m is the leaflet's figure.
+
+### Glass
+
+All eight stay Unmatched. Line test on the nearest Schott types, computed from their dispersion formulas:
+
+| Printed | Nearest | nd | nD | νd | Finding |
+|---|---|---:|---:|---:|---|
+| 1.6203 / 60.2 | SK16 | 1.62041 | 1.62032 | 60.32 | Equal to the printed index only if it is a sodium-D value; as a d value it is 0.00011 away and prints as 1.6204 |
+| 1.6751 / 32.3 | SF5 | 1.67270 | 1.67252 | 32.21 | 0.0024 away on either line |
+| 1.6498 / 33.7 | SF2 | 1.64769 | 1.64752 | 33.85 | 0.0021 away on either line |
+
+The two flints match no Schott, Hoya, Ohara, Sumita or Hikari row on any line, which points to French melts (Parra-Mantois or Sovirel) not in the catalog. The patent prints no glass name, further line index or partial dispersion, and has only this one example. No constant-index medium is present, so colour stays on for the whole lens, on Abbe-number estimates.
+
+### Results
+
+Built model unchanged: EFL 24.0281 mm, f/3.5, half-field 41.5°, traced half-field 41.33°, stop radius 5.3742 mm. Surface audit OK; aperture audit within 3 % with no rim limit; image circle 0 undersized; field coverage 21.34 of 21.65 mm at the declared 41.5°. On-axis spherical aberration at f/3.5 runs +0.13 mm at the full pupil and −0.15 mm at 0.7 of it, as the analysis states.
+
+Open:
+
+- The crown 1.6203 / 60.2 becomes an exact SK16 match (Δn 0.0000, Δν 0.1) if `indexReference` is changed to sodium D, which the patent's wording "pour la raie D" supports; the evidence is one glass and one unit in the last printed digit. Left as it is for a decision.
+- A Parra-Mantois or Sovirel catalogue of the 1950s would probably name all three glasses.
+- L8 reads 6.0–6.4 mm in the figure against 5.8 (3–9 %, inside the reading error); it is the rim that sets the 45 % corner.
+- The real marginal ray at the paraxial f/3.5 pupil height reaches 5.63 mm at the stop plane against the 5.37 mm derived stop radius; the aperture audit still reports the f-number within 3 %.
