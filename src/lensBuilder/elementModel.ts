@@ -402,8 +402,9 @@ export function toElementModel(draft: LensDataV2Input): ToModelResult {
 /**
  * Write the model into a new V2 draft: `elements`, `surfaces` and the scheduled entries of `gaps` come from the model;
  * other fields come from `draft`, with omission references following retained or split surfaces. Removing an
- * existing asphere removes its omission references; spherical stand-ins retain theirs. Numeric surface labels are
- * renumbered when every reference can be remapped. Automatic `L<n>` names follow structural edits only while the
+ * existing asphere removes its omission references; spherical stand-ins retain theirs. After a structural edit (an item
+ * inserted, removed, moved, cemented or split, or a label changed), numeric surface labels are renumbered when every
+ * reference can be remapped; other edits keep the authored labels, so a copied patent numbering survives. Automatic `L<n>` names follow structural edits only while the
  * original names form the sequence and no existing element has been renamed; explicitly authored names are kept.
  */
 export function applyElementModel(draft: LensDataV2Input, model: BuilderModel): LensDataV2Input {
@@ -457,7 +458,8 @@ export function applyElementModel(draft: LensDataV2Input, model: BuilderModel): 
       };
     else last.d = gap.mm;
   }
-  if (Object.keys(gaps).length || draft.gaps !== undefined) next.gaps = gaps;
+  // A plain object again: the null prototype only guards the label-keyed writes above.
+  if (Object.keys(gaps).length || draft.gaps !== undefined) next.gaps = Object.fromEntries(Object.entries(gaps));
   else delete next.gaps;
   updateSourceOmissions(next, draft, model);
   renumber(next, draft);
@@ -871,11 +873,16 @@ function mergeGaps(first: BuilderGap, second: BuilderGap, thickness: number): Bu
   };
 }
 
-/** Remap authored references together, never a label in isolation. Descriptive labels remain stable. */
+/**
+ * After a structural edit, remap authored references together, never a label in isolation. Descriptive labels remain
+ * stable, and a value-only edit leaves every label as authored.
+ */
 function renumber(next: LensDataV2Input, original: LensDataV2Input): void {
+  // The surface sequence carries the train order; an authored `elements` list out of train order is not an edit.
+  const originalIds = new Set(original.elements.map((e) => e.id));
   const structuralEdit =
     next.elements.length !== original.elements.length ||
-    next.elements.some((e, i) => e.id !== original.elements[i]?.id) ||
+    next.elements.some((e) => !originalIds.has(e.id)) ||
     next.surfaces.length !== original.surfaces.length ||
     next.surfaces.some((s, i) => s.label !== original.surfaces[i]?.label || s.medium !== original.surfaces[i]?.medium);
   const originalNames = new Map(original.elements.map((e) => [e.id, e.name]));
@@ -899,7 +906,7 @@ function renumber(next: LensDataV2Input, original: LensDataV2Input): void {
         `Surface ${label} is still referenced by a control, span, annotation, optical path or erratum; edit that reference in Advanced JSON first.`,
       );
   }
-  if (references.some((label) => !labels.has(label))) return;
+  if (!structuralEdit || references.some((label) => !labels.has(label))) return;
   const mapping = new Map<string, string>();
   let number = 0;
   for (const surface of next.surfaces) {

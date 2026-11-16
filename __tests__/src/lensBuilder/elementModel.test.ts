@@ -379,6 +379,16 @@ describe("element model edits", () => {
     expect(expectBuild(updateSurface(modelOf(draft), 0, 0, { R: 31 }), draft).elements[0].name).toBe("L10");
   });
 
+  it("keeps authored surface numbering through value edits and renumbers after structural edits", () => {
+    const draft = createTemplate();
+    for (const surface of draft.surfaces) if (/^\d+$/.test(surface.label)) surface.label = String(+surface.label + 3);
+    draft.gaps = { "9": draft.gaps!["6"] };
+    const labels = draft.surfaces.map((s) => s.label);
+    const edited = expectBuild(updateSurface(modelOf(draft), 0, 0, { R: 31 }), draft);
+    expect(edited.surfaces.map((s) => s.label)).toEqual(labels);
+    expect(expectBuild(insertElement(modelOf(draft), 0), draft).surfaces[0].label).toBe("1");
+  });
+
   it("retains zoom schedule rows and moves scheduled gap keys with their surfaces", () => {
     const draft = catalogWith((d) => !!d.zoom && Object.keys(d.gaps ?? {}).length > 1);
     const model = modelOf(draft);

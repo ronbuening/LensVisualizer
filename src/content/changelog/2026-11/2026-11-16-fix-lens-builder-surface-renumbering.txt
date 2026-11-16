@@ -1,0 +1,1 @@
+Fixed lens builder edits renumbering the patent surface labels of a copied catalog lens
