@@ -334,6 +334,13 @@ const LENS_DATA = {
       "values": [
         [
           1.7,
+          2.2342,
+          2.7786,
+          3.3328,
+          3.8971,
+          4.4716,
+          5.0568,
+          5.6529,
           6.2603
         ]
       ]
@@ -343,6 +350,13 @@ const LENS_DATA = {
       "values": [
         [
           30.4956,
+          29.9614,
+          29.417,
+          28.8628,
+          28.2985,
+          27.724,
+          27.1388,
+          26.5427,
           25.9353
         ]
       ]
@@ -404,12 +418,19 @@ const LENS_DATA = {
     "closeFocusM": 4.199386517866485,
     "keyframes": [
       0,
+      0.125,
+      0.25,
+      0.375,
+      0.5,
+      0.625,
+      0.75,
+      0.875,
       1
     ],
     "published": [
-      1
+      8
     ],
-    "description": "Inner focus. The patent prints the gaps for infinity and for an object 4000 mm in front of the first surface, and no other state. The single negative lens L8 (G3) moves 4.56 mm toward the image for the near state; G1, G2, the stop and G4 are fixed and the overall length is constant. The 4.2 m near limit is that state's object-to-image distance, not the marketed 1.5 m minimum focus; the patent prints no closer state. Intermediate positions are linear interpolations, not a published cam."
+    "description": "Inner focus. The patent prints the gaps for infinity and for an object 4000 mm in front of the first surface, and no other state. The single negative lens L8 (G3) moves 4.56 mm toward the image for the near state; G1, G2, the stop and G4 are fixed and the overall length is constant. The 4.2 m near limit is that state's object-to-image distance, not the marketed 1.5 m minimum focus; the patent prints no closer state. The seven positions between the two printed states are calculated: L8 is placed where each intermediate distance comes to paraxial focus on the fixed image plane. They are not a published cam."
   },
   "projection": {
     "kind": "rectilinear",

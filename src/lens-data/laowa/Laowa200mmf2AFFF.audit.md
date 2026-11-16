@@ -149,3 +149,11 @@ Surface 7 is now `sd` 33 with `rimExtensionSd` 40 (before: `sd` 40, no land). Th
 
 - Open: the cap on surface 7 ends at 33 mm, 1.4 mm above the Figure 3 reading, because the figure's height costs 2.5 points of off-axis light.
 - Open: colour away from the d line rests on Abbe-number models for six of the eleven glasses.
+
+## 2026-11-15 — Focus slider and calculated intermediate focus positions
+
+- The delivered file set `focus.step` to 1, so the focus slider could only sit at infinity or at the near state. The line was removed and the slider now moves continuously.
+- With only the two printed states, positions in between were straight-line blends of the two gap sets. The focus readout interpolates inverse distance, and against that readout the blend was out of paraxial focus by up to 0.17 mm at mid-travel (0.13 mm at a quarter and three quarters of the travel).
+- Seven calculated positions were added at focus coordinates 0.125 to 0.875 (object-to-image 33.6, 16.8, 11.2, 8.40, 6.72, 5.60 and 4.80 m). For each, D14 is the value that brings that distance to paraxial focus on the fixed image plane and D16 keeps D14 + D16 = 32.1956 mm: D14 = 2.2342, 2.7786, 3.3328, 3.8971, 4.4716, 5.0568, 5.6529 mm. The two printed states (D14 1.7000 / 6.2603, D16 30.4956 / 25.9353) are unchanged and remain the only published ones (`focus.published` names the last keyframe).
+- Open: the patent prints nothing closer than 4 m, so the model still stops at 4.2 m object-to-image, not the marketed 1.5 m.
+
