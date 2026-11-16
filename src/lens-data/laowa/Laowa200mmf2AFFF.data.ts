@@ -8,8 +8,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Semi-diameters were compared with Figure 3, which is drawn to scale (6.834 px/mm at 300 dpi). The focusing lens
  * (19.3 mm) and the rear filter (16.4 mm) are read from it, and so are the flat lands the figure draws outside the
  * concave rear faces of L6 and L8 (caps end at 22.2 and 17.4 mm); the other rims agree within 8 %. The figure
- * also draws a land on the rear face of L4 (cap ending near 31.6 mm); it is not modeled, because it would remove
- * up to 2.5 points of off-axis illumination, so that face keeps its full 40 mm.
+ * also draws a land on the rear face of L4, with the cap ending near 31.6 mm. The model ends that cap at 33 mm
+ * and draws the land out to the 40 mm block edge: a cap at 31.6 mm would remove up to 2.5 points of off-axis
+ * illumination, and 33 mm removes none.
  * The patent names no glasses. Labels are catalogue rows that equal the printed nd and νd; the rest are unmatched
  * and traced from the printed nd and νd alone. The aperture range (f/2–22, 9 blades), the 1.5 m minimum focus,
  * the mounts and the special-glass positions are Laowa's published figures, not the patent's.
@@ -220,7 +221,8 @@ const LENS_DATA = {
       "label": "7",
       "R": 64.722,
       "d": 35.2569,
-      "sd": 40
+      "sd": 33,
+      "rimExtensionSd": 40
     },
     {
       "label": "8",
@@ -404,11 +406,10 @@ const LENS_DATA = {
       0,
       1
     ],
-    "step": 1,
     "published": [
       1
     ],
-    "description": "PUBLISHED gap sets for infinity and for an object 4000 mm in front of the first surface, the only two states the patent tabulates. The single negative lens L8 (G3) moves 4.56 mm toward the image at the near state; G1, G2, the stop and G4 are fixed and the overall length is constant. The 4.2 m near limit is that state's object-to-image distance, not the marketed 1.5 m minimum focus; the patent prints no closer state. Intermediate positions are linear interpolations, not a published cam."
+    "description": "Inner focus. The patent prints the gaps for infinity and for an object 4000 mm in front of the first surface, and no other state. The single negative lens L8 (G3) moves 4.56 mm toward the image for the near state; G1, G2, the stop and G4 are fixed and the overall length is constant. The 4.2 m near limit is that state's object-to-image distance, not the marketed 1.5 m minimum focus; the patent prints no closer state. Intermediate positions are linear interpolations, not a published cam."
   },
   "projection": {
     "kind": "rectilinear",

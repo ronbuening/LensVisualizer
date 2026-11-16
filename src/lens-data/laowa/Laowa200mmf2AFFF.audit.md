@@ -116,5 +116,36 @@ The two modeled lands keep their element's outer height equal to the neighbourin
 **Open.**
 
 - Open: surface 11's land leaves 0.07 mm outside the axial ray, less than one figure pixel; the reading is good to about 0.15 mm.
-- Open: the figure's land on the rear face of L4 is not drawn in the model, so that element's rear rim reaches about 5.5 mm further back than in Figure 3.
+- Open: the figure's land on the rear face of L4 is not drawn in the model, so that element's rear rim reaches about 5.5 mm further back than in Figure 3. (Closed 2026-11-15 by the second review below: the land is modeled with the cap ending at 33 mm.)
 - Open: the engine's tracing half-field fell from 8.13° to 7.89°; it stays well beyond the 6.303° design field.
+
+## 2026-11-15 — Second review on the local site
+
+**Compared.** The live page (infinity, the near state and three intermediate focus positions, and the element inspector for L2, L3, L4, L8, L9 and the rear filter) against CN 120949408 A Figure 3 (PDF page 15), the Example 2 table (pages 9–10), Figure 4 (page 16) and Laowa's construction diagram.
+
+**Change: land on the rear face of L4 (surface 7).** On the page L4 flared 13.8 mm back from its vertex at the rim, while Figure 3 and Laowa's diagram both draw a square block with a flat land outside the concave face. The earlier trial tested only the figure's cap height of 31.6 mm, which sits 0.1 mm outside the 31.50 mm axial ray and costs light off axis. Intermediate cap heights were measured against the starting rims:
+
+| Cap ends at (mm), land to 40 | Worst loss (points) | Field |
+|---:|---:|---|
+| 31.6 (figure reading) | 2.5 | 2.1° |
+| 32.0 | 1.5 | 2.1° |
+| 32.3 | 0.6 | 2.1° |
+| 32.6 | 0.2 | 2.1° |
+| 33.0 | 0.0 | — |
+
+Surface 7 is now `sd` 33 with `rimExtensionSd` 40 (before: `sd` 40, no land). The cap is 4 % above the figure reading and costs no light at any field; the block edge stays at 40 mm, level with surfaces 5 and 6. The rim now sits 9.1 mm behind the vertex instead of 13.8 mm.
+
+**Lands and cuts.** Against the starting rims the lens loses 0.0 points at every field (100.0, 100.0, 98.0, 86.6, 71.8, 55.7, 38.4 % at 0° to 6.3°). Restoring any one of the lands on surfaces 7, 11 and 16, the focusing-lens rim or the filter rim wins back 0.0 points, so all stay as the figure draws them.
+
+**Focus slider.** The `step: 1` entry in `focus` made the slider jump between the two printed states; it was removed, and the slider now moves continuously. Shots at 0.25, 0.5 and 0.75 of the travel show L8 moving steadily toward the image (at the midpoint D14 3.98 mm, D16 28.22 mm, 8.40 m). The patent table gives D(14) 1.7000 → 6.2603 and D(16) 30.4956 → 25.9353 for infinity → 4000 mm, a sum of 32.1956 mm in both states; the file lists both gaps in that order, and Figure 3's "Focus" arrow under G3 points to the image. `focus.description` now opens in plain wording.
+
+**Checked and found correct.** All 23 table rows against the file. Element shapes against the signs of R; stored focal lengths against thick-lens values (all equal to two decimals). Group brackets G1 to G4 use the patent's group names and ranges; the figure's sub-brackets G1a, G1b, G2a, G2b and G2c are named in the element roles and not drawn as a second bracket row. C1 (surfaces 5–7) and C2 (19–21) bracket the two cemented pairs. The stop is drawn between L7 and L8. No aspherical surface in the patent or the file. The `apd: "inferred"` tags on L2, L3 and L9 match the coloured elements of Laowa's diagram (second: anomalous dispersion; third and ninth: extra-low dispersion). The rear filter draws as a plate 16.4 mm high, just above the 16 mm rear group, as in the figure. `source.assignees` and the inventor's romanisation match the other Laowa files.
+
+**Glass.** The five labeled glasses equal catalogue rows at the printed precision, and each of those pairs recurs in Example 1 or Example 3. The six unmatched pairs (1.89663 / 22.56, 1.87022 / 21.86, 1.78225 / 24.07, 1.61467 / 62.96, 1.77236 / 33.40, 1.64378 / 30.70) appear in Example 2 only; Examples 1 and 3 print different one-off pairs in the same positions, so these are optimised values and not catalogue glasses. No catalogue row lies within 0.002 in nd and 1.5 in νd of any of them. The patent prints no glass names, no other line indices and no partial dispersions. Figure 4 plots g, d and C on axis (g about −0.07 mm and C about +0.06 mm near the axis at infinity); with six glasses carrying no printed partial dispersion the model cannot be expected to reproduce those two curves, and it was not tuned to them.
+
+**Engine values, before and after (identical).** EFL 194.5237 mm, f/2.06, half-field 6.303°, tracing half-field 7.89°, stop radius 18.4554 mm. The surface validator reports no errors, the aperture audit no rim limit, and image-circle and field-coverage results are unchanged.
+
+**Open.**
+
+- Open: the cap on surface 7 ends at 33 mm, 1.4 mm above the Figure 3 reading, because the figure's height costs 2.5 points of off-axis light.
+- Open: colour away from the d line rests on Abbe-number models for six of the eleven glasses.
