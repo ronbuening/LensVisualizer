@@ -66,7 +66,7 @@ The last lens stands 23.0 mm behind the doublet. The patent says that the positi
 
 The patent prints both the glass names and the optical values, so nothing is inferred: BaK 2 (1.5400 / 59.6) for both front menisci, SK 6 (1.6138 / 56.3) and F 6 (1.6364 / 35.4) for the doublet, and SK 2 (1.6074 / 56.7) for the rear lens. The indices are printed as n_d. The BaK 2 and SK 2 values agree with present-day catalogue d-line data for glasses of those names (1.53996 / 59.7 and 1.60738 / 56.65), so the helium d-line is used as the reference.
 
-The palette is four ordinary crowns and one flint of the period. BaK 2 and SK 2 agree with a present-day catalogue entry within the printed precision, so those three elements are traced on the catalogue dispersion curves (a BAK2 entry and N-SK2). SK 6 and F 6 have no exact present-day entry; they keep the printed index and Abbe number and are marked as unmatched in the data file.
+The palette is four ordinary crowns and one flint of the period. All five agree with a catalogue entry of the same glass type within the printed precision, so every element is traced on a catalogue dispersion curve: a BAK2 entry, N-SK2, and for SK 6 and F 6 the legacy HOYA equivalents BACD6 (1.61375 / 56.38) and F6 (1.63636 / 35.34).
 
 ## Focus Mechanism
 
@@ -78,9 +78,9 @@ The patent table gives no stop position, no stop diameter and no clear diameters
 
 - The stop is placed at the front vertex of the doublet. The drawing shows it about 1 mm ahead of that vertex.
 - The stop semi-diameter of 3.21 mm is the value that gives f/6.3.
-- Every semi-diameter, and the flat lands around the two cavities, are estimates. They are smaller than the drawing suggests for the front element (48 mm against roughly 58 mm) and for the other elements.
+- Every semi-diameter, and the flat lands around the two cavities, are read from the patent drawing, which is drawn at full size, and checked by ray trace: 54 mm for the front element, 26.4 mm for the second, 7.7 mm for the front of the doublet, 12 mm for its rear surface and 23.8 mm for the rear lens. The drawing shows the front element reaching 57 to 58 mm; the model stops at 54 mm because its flat land lies in the plane where the hemispherical cavity ends, while the drawing continues the cavity a few millimetres further back before the flat begins.
 
-With these rims the full f/6.3 beam passes every surface from the axis to a 90° half-field; the front rim begins to cut the beam at about 93°. The patent says that fields up to 210° can be reached with this type of design, but it does not say what field the example itself covers.
+With these rims the full f/6.3 beam passes every surface from the axis to a 92° half-field, and the chief ray passes to 95.5°. The limit is the rim of the front element's nearly hemispherical inner surface, which cannot be made larger. The patent says that fields up to 210° can be reached with this type of design, but it does not say what field the example itself covers.
 
 Image height grows almost in proportion to field angle: 8.69 mm at 30°, 17.13 mm at 60° and 25.07 mm at 90°. The last value is 4.3 % less than focal length times angle, so the equidistant fisheye projection is the closest standard description. The 50.1 mm image circle in the data file is the traced diameter for a 180° field.
 

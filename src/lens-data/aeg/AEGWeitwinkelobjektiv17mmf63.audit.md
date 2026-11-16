@@ -64,6 +64,7 @@ Open:
   source as screenshots; the full patent PDF has since been read, so that wording should be rewritten.
 - Rims are smaller than the figure draws (front element about 58 mm against 48, second about 27 against 21.5,
   doublet about 12 against 7, rear lens about 24 against 21.5); widening would be needed only for fields beyond 93°.
+  (Closed 2026-11-15 by the semi-diameter pass below.)
 - `AEG` is a new maker and needs an entry in the maker-prefix list.
 - `visible` is still `false`.
 
@@ -108,8 +109,57 @@ Open:
 
 - Rims are smaller than the patent figure draws (front element about 58 mm against 48, second about 27 against
   21.5, doublet about 12 against 7, rear lens about 24 against 21.5). They pass the full beam to 90° and cover
-  about 93°; a rim pass against the figure is still to do.
+  about 93°; a rim pass against the figure is still to do. (Closed 2026-11-15 by the semi-diameter pass below.)
 - The stop is modelled at the r5 vertex; the figure draws it about 1 mm ahead.
 - No minimum focus distance is known for the camera, so `catalog.closeFocusM` is not set.
-- SK 6 and F 6 trace on an Abbe-number dispersion fit because no catalog row exists for them.
+- Closed 2026-11-15: L3 is labelled "SK6 (Schott, as printed; HOYA BACD6 catalog curve)" (Δnd −5e-5, Δνd +0.08) and L4 "F6 (Schott, as printed; HOYA F6 catalog curve)" (Δnd −4e-5, Δνd −0.06); the HOYA F6 legacy row was added to the glass catalog for it.
 - The older opening section of this file keeps its original delivery wording as history.
+
+## 2026-11-15 — Semi-diameter pass against the patent figure
+
+Source: DE 620,538, page 3 (the single drawing sheet), read from the 300 dpi scan.
+
+Scale. The drawing is at full size. Along the axis, the first vertex to the last vertex measures 90.8 mm against the
+table's 90.2 mm, the front vertex to the doublet 50.4 mm against 49.7 mm, and the last vertex to the image line
+30.1 mm against 28.99 mm, all within 4 %. Across the axis, three features with a known size fix the scale: the cavity
+of the front element (a hemisphere of radius 26.5 mm), the cavity of the second element (radius 12.26 mm) and the
+knife edge of the rear lens (the two faces meet at 24.0 mm). All three read about 3 % large, so the heights below
+are the raw readings reduced by 3 %.
+
+| Surface | Before | Figure | After | Evidence |
+|---|---|---|---|---|
+| 1 (front of L1) | 48 | 57 to 58 | 54 | Tip of the front element, by height and by its axial position on the 67 mm arc. Limited to 54: see below. |
+| 2 (cavity of L1) | 26.4, land to 48 | 26.5, land to the tip | 26.4, land to 54 | A full hemisphere in the drawing; kept just inside the radius. The land follows surface 1. |
+| 3 (front of L2) | 21.5 | 26.4 | 26.4 | The second element is drawn as tall as the first cavity. |
+| 4 (cavity of L2) | 12.2, land to 21.5 | 12.2, land to the rim | 12.2, land to 26.4 | A full hemisphere; kept. The land follows surface 3. |
+| 5 (front of L3) | 7 | 7.7 | 7.7 | Flat front face of the doublet. |
+| 6 (cemented) | 7 | 7.7 | 7.7 | The cemented surface ends where the front face ends. |
+| 7 (rear of L4) | 7 | 12.0 | 12 | The flint is drawn with a conical chamfer from the front face out to a 12 mm rear rim. |
+| 8, 9 (L5) | 21.5 | 23.8 | 23.8 | Drawn to a knife edge; edge thickness in the model is 0.16 mm. |
+
+Every change is a raise toward the drawing; no rim was reduced. The front element stops at 54 mm, not 57 to 58 mm:
+the model's flat land lies in the plane of the cavity rim (27.7 mm behind the front vertex), and the 67 mm front arc
+reaches that plane at 54.2 mm. The drawing continues the cavity about 5 mm further back as a short cylinder before
+the flat begins, which the land model cannot represent. The two cavity rims stay at 26.4 mm and 12.2 mm, just
+inside their radii, within the 85.1° rim-angle limit already set.
+
+Results. Focal length 16.6754 mm, f/6.3, stop semi-diameter 3.2107 mm and the engine's 90° half-field are unchanged.
+Surface validation reports no errors, the aperture audit reports no rim limit, and the image-circle audit reports
+the lens not undersized. The engine's vignetting tools do not support the fisheye path, so the field was measured
+with a separate meridional trace: the chief ray passed to 92.25° before and passes to 95.5° now; the full f/6.3
+beam passed to 90° before and passes to 92° now. Share of the meridional beam passing at 91°, 92°, 93°, 94° and 95°:
+76, 41, 10, 0 and 0 % before; 100, 100, 88, 73 and 59 % now. Inside 90° nothing changed (100 % before and after).
+The limit is now the rim of the front element's hemispherical cavity (surface 2), which is source geometry.
+
+Stop. The drawing shows the stop plate about 0.75 mm ahead of the front vertex of the doublet; the model has it at
+the vertex. The difference is small and at the limit of what the drawing resolves, and the stop was not moved.
+
+Metadata. Nothing was added: no period source gives a minimum focus distance or a number of aperture blades. The
+auction description calls the lens "AEG Weitwinkelobjektiv 6.3/1.7cm", and the patent and the 1932 paper by H. Schulz
+call it a "Weitwinkelobjektiv", so the current display name agrees with the sources.
+
+Open:
+
+- The front element is 54 mm against the drawn 57 to 58 mm, for the reason given above.
+- The stop is at the doublet vertex; the drawing suggests about 0.75 mm ahead of it.
+- No minimum focus distance is known.

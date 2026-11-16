@@ -13,11 +13,13 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *  - the last gap, which is the paraxial back focus at infinity;
  *  - the stop position (placed at the r5 vertex; the figure draws it just ahead of the cemented doublet)
  *    and the stop diameter;
- *  - every semi-diameter and the flat outer lands of surfaces 2 and 4. The rims pass the full beam to a
- *    90° half-field and cover about 93°.
+ *  - every semi-diameter and the flat outer lands of surfaces 2 and 4. They are read from the patent drawing,
+ *    which is drawn at full size, and checked by ray trace. The front element stops at 54 mm, short of the
+ *    drawn 57 to 58 mm, because the modelled land lies in the plane of the cavity rim. The rims pass the full
+ *    f/6.3 beam to a 92° half-field and the chief ray to 95.5°, where the hemispherical cavity of L1 ends.
  *
- * Glasses are named in the patent (BaK 2, BaK 2, SK 6, F 6, SK 2). BaK 2 and SK 2 match present-day catalog rows
- * and carry catalog labels; SK 6 and F 6 have no exact row and stay unmatched at the printed values.
+ * Glasses are named in the patent (BaK 2, BaK 2, SK 6, F 6, SK 2). All five agree with a catalog row of the same glass
+ * type within the printed precision and carry catalog labels (SK 6 and F 6 on HOYA's legacy BACD6 and F6 rows).
  *
  * Projection: the patent states no projection law. Traced image height is 25.07 mm at a 90° half-field, 4.3 % under
  * focal length times angle, so the lens is described as an equidistant fisheye with a 50.14 mm image circle for a
@@ -65,7 +67,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "label": "Element 3",
       "focalLengthMm": 12.68,
-      "glass": "Unmatched (SK 6 as printed; nd 1.6138 / νd 56.3)",
+      "glass": "SK6 (Schott, as printed; HOYA BACD6 catalog curve)",
       "role": "Crown front element of the cemented positive doublet behind the stop (patent member C).",
       "cemented": "C1"
     },
@@ -78,7 +80,7 @@ const LENS_DATA = {
       "indexReference": "d",
       "label": "Element 4",
       "focalLengthMm": -21.2,
-      "glass": "Unmatched (F 6 as printed; nd 1.6364 / νd 35.4)",
+      "glass": "F6 (Schott, as printed; HOYA F6 catalog curve)",
       "role": "Flint rear element of the cemented doublet, facing the image; the only flint in the design.",
       "cemented": "C1"
     },
@@ -100,7 +102,7 @@ const LENS_DATA = {
       "label": "1",
       "R": 67,
       "d": 3.5,
-      "sd": 48,
+      "sd": 54,
       "medium": 1
     },
     {
@@ -108,13 +110,13 @@ const LENS_DATA = {
       "R": 26.5,
       "d": 19.9,
       "sd": 26.4,
-      "rimExtensionSd": 48
+      "rimExtensionSd": 54
     },
     {
       "label": "3",
       "R": 43.35,
       "d": 2.2,
-      "sd": 21.5,
+      "sd": 26.4,
       "medium": 2
     },
     {
@@ -122,7 +124,7 @@ const LENS_DATA = {
       "R": 12.26,
       "d": 24.1,
       "sd": 12.2,
-      "rimExtensionSd": 21.5
+      "rimExtensionSd": 26.4
     },
     {
       "label": "STO",
@@ -133,34 +135,34 @@ const LENS_DATA = {
       "label": "5",
       "R": 87.6,
       "d": 6.6,
-      "sd": 7,
+      "sd": 7.7,
       "medium": 3
     },
     {
       "label": "6",
       "R": -8.3,
       "d": 2.6,
-      "sd": 7,
+      "sd": 7.7,
       "medium": 4
     },
     {
       "label": "7",
       "R": -24.2,
       "d": 23,
-      "sd": 7
+      "sd": 12
     },
     {
       "label": "8",
       "R": 81.1,
       "d": 8.3,
-      "sd": 21.5,
+      "sd": 23.8,
       "medium": 5
     },
     {
       "label": "9",
       "R": -64.2,
       "d": 28.988003934,
-      "sd": 21.5
+      "sd": 23.8
     }
   ],
   "gaps": {},
