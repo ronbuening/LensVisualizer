@@ -848,7 +848,7 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [OLYMPUS H.ZUIKO AUTO-W 24mm f/2.8](../../src/lens-data/olympus/OlympusZuiko24mmf28.data.ts) | 8/8 | 8 | 8/8 |
 | [OLYMPUS H.ZUIKO AUTO-W 24mm f/2.8 (US 3,994,574 Design)](../../src/lens-data/olympus/OlympusZuikoAutoW24mmf28.data.ts) | 8/8 | 8 | 8/8 |
 | [OLYMPUS H.ZUIKO AUTO-W 35mm f/2](../../src/lens-data/olympus/OlympusHZuiko35mmf2.data.ts) | 8/8 | 8 | 8/8 |
-| [P. ANGÉNIEUX DEM 180mm f/2.3 APO](../../src/lens-data/p.-angénieux/AngenieuxDEM180mmf23APO.data.ts) | 8/8 | 8 | 8/8 |
+| [P. ANGÉNIEUX DEM 180mm f/2.3 APO](../../src/lens-data/angenieux/AngenieuxDEM180mmf23APO.data.ts) | 8/8 | 8 | 8/8 |
 | [PENTAX SMC F 135mm f/2.8 [IF]](../../src/lens-data/pentax/PentaxF135mmf28IF.data.ts) | 8/8 | 8 | 8/8 |
 | [PENTAX SMC M 20mm f/4](../../src/lens-data/pentax/PentaxM20mmf4.data.ts) | 8/8 | 8 | 8/8 |
 | [PENTAX SMC M* 300mm f/4](../../src/lens-data/pentax/PentaxMStar300mmf4.data.ts) | 8/8 | 8 | 8/8 |
@@ -990,8 +990,8 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [OLYMPUS ZUIKO AUTO-S 50mm f/1.8](../../src/lens-data/olympus/OlympusZuikoAutoS50mmf18.data.ts) | 6/6 | 6 | 6/6 |
 | [OLYMPUS ZUIKO AUTO-T 600mm f/6.5](../../src/lens-data/olympus/OlympusZuiko600mmf65.data.ts) | 6/6 | 6 | 6/6 |
 | [OLYMPUS ZUIKO MC AUTO-W 28mm f/2.8](../../src/lens-data/olympus/OlympusZuiko28mmf28.data.ts) | 6/6 | 6 | 6/6 |
-| [P. ANGÉNIEUX RETROFOCUS TYPE R1 35mm f/2.5](../../src/lens-data/p.-angénieux/AngenieuxRetrofocusR135mmf25.data.ts) | 6/6 | 6 | 6/6 |
-| [P. ANGÉNIEUX RETROFOCUS TYPE R11 28mm f/3.5](../../src/lens-data/p.-angénieux/AngenieuxRetrofocusR1128mmf35.data.ts) | 6/6 | 6 | 6/6 |
+| [P. ANGÉNIEUX RETROFOCUS TYPE R1 35mm f/2.5](../../src/lens-data/angenieux/AngenieuxRetrofocusR135mmf25.data.ts) | 6/6 | 6 | 6/6 |
+| [P. ANGÉNIEUX RETROFOCUS TYPE R11 28mm f/3.5](../../src/lens-data/angenieux/AngenieuxRetrofocusR1128mmf35.data.ts) | 6/6 | 6 | 6/6 |
 | [PENTAX 110 24mm f/2.8](../../src/lens-data/pentax/Pentax11024mmf28.data.ts) | 6/6 | 6 | 6/6 |
 | [PENTAX DA 50mm f/1.8](../../src/lens-data/pentax/PentaxDA50mmf18.data.ts) | 6/6 | 6 | 6/6 |
 | [PENTAX SMC 67 MACRO 100mm f/4](../../src/lens-data/pentax/PentaxSMC67100mmf4.data.ts) | 6/6 | 6 | 6/6 |
@@ -1427,7 +1427,7 @@ Fully strict and line-index-complete trusted lenses are listed above; this table
 | 295 | [LEICA SUMMICRON-C 40mm f/2](../../src/lens-data/leica/LeicaSummicronC40mmf2.data.ts) | 50.0% | 50.0% | 3/6 | 3/6 | 3 | abbe: 3 |
 | 296 | [NIKON NIKKOR 35mm f/2.8 (Nikon 35Ti)](../../src/lens-data/nikon/Nikon35Ti35mmf28.data.ts) | 50.0% | 50.0% | 3/6 | 3/6 | 3 | abbe: 3 |
 | 297 | [MINOLTA AF APO TELE 200mm f/2.8](../../src/lens-data/minolta/MinoltaAF200mmf28.data.ts) | 50.0% | 50.0% | 4/8 | 4/8 | 4 | abbe: 4 |
-| 298 | [P. ANGÉNIEUX TYPE M1 25mm f/0.95](../../src/lens-data/p.-angénieux/AngenieuxTypeM125mmf095.data.ts) | 50.0% | 50.0% | 4/8 | 4/8 | 4 | abbe: 4 |
+| 298 | [P. ANGÉNIEUX TYPE M1 25mm f/0.95](../../src/lens-data/angenieux/AngenieuxTypeM125mmf095.data.ts) | 50.0% | 50.0% | 4/8 | 4/8 | 4 | abbe: 4 |
 | 299 | [PENTAX DA* 300mm f/4 ED [IF] SDM](../../src/lens-data/pentax/PentaxDAStar300mmF4EDIFSDM.data.ts) | 50.0% | 50.0% | 4/8 | 4/8 | 4 | abbe: 4 |
 | 300 | [RODENSTOCK GRANDAGON-N 65mm f/4.5](../../src/lens-data/rodenstock/RodenstockGrandagonN65mmf45.data.ts) | 50.0% | 50.0% | 4/8 | 4/8 | 4 | abbe: 4 |
 | 301 | [VILTROX AF 33mm f/1.4 E](../../src/lens-data/viltrox/ViltroxAF33mmf14E.data.ts) | 50.0% | 50.0% | 5/10 | 5/10 | 5 | abbe: 5 |
@@ -1484,7 +1484,7 @@ Fully strict and line-index-complete trusted lenses are listed above; this table
 | 343 | [CARL ZEISS JENA SONNAR 50mm f/1.5 (US 2,186,621 Design)](../../src/lens-data/carl-zeiss-jena/ZeissJenaSonnar50mmf15US2186621.data.ts) | 0.0% | 0.0% | 0/7 | 0/7 | 7 | abbe: 7 |
 | 344 | [SAMSUNG 4.3mm f/1.5 (Samsung Galaxy S9)](../../src/lens-data/samsung/SamsungGalaxyS9MainWideCameraLens.data.ts) | 0.0% | 0.0% | 0/7 | 0/7 | 7 | abbe: 7 |
 | 345 | [SONY SONNAR T* FE 35mm f/2.8 ZA](../../src/lens-data/sony/SonyFE35mmf28ZA.data.ts) | 0.0% | 0.0% | 0/7 | 0/7 | 7 | abbe: 7 |
-| 346 | [P. ANGÉNIEUX RETROFOCUS TYPE R61 24mm f/3.5](../../src/lens-data/p.-angénieux/AngenieuxRetrofocusR6124mmf35.data.ts) | 0.0% | 0.0% | 0/8 | 0/8 | 8 | abbe: 8 |
+| 346 | [P. ANGÉNIEUX RETROFOCUS TYPE R61 24mm f/3.5](../../src/lens-data/angenieux/AngenieuxRetrofocusR6124mmf35.data.ts) | 0.0% | 0.0% | 0/8 | 0/8 | 8 | abbe: 8 |
 | 347 | [THYPOCH KSANA 21mm f/3.5 ASPH.](../../src/lens-data/thypoch/ThypochKsana21mmf35.data.ts) | 0.0% | 0.0% | 0/8 | 0/8 | 8 | abbe: 8 |
 | 348 | [THYPOCH SIMERA 50mm f/1.4 ASPH.](../../src/lens-data/thypoch/ThypochSimera50mmf14.data.ts) | 0.0% | 0.0% | 0/8 | 0/8 | 8 | abbe: 8 |
 | 349 | [LEICA NOCTILUX-M 35mm f/1.2 ASPH.](../../src/lens-data/leica/LeicaNoctiluxM35mmf12ASPH.data.ts) | 0.0% | 0.0% | 0/10 | 0/10 | 10 | abbe: 10 |
@@ -3520,7 +3520,7 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 5 | Element 3 | abbe | `720521 - high-index lanthanum crown (catalog unresolved)` | No catalog match |
 | 7 | Element 4 | abbe | `721334 - dense lanthanum flint (catalog unresolved)` | No catalog match |
 
-### [P. ANGÉNIEUX TYPE M1 25mm f/0.95](../../src/lens-data/p.-angénieux/AngenieuxTypeM125mmf095.data.ts) - 50.0% trusted (4/8); 50.0% Sellmeier (4/8) - US 2,701,982
+### [P. ANGÉNIEUX TYPE M1 25mm f/0.95](../../src/lens-data/angenieux/AngenieuxTypeM125mmf095.data.ts) - 50.0% trusted (4/8); 50.0% Sellmeier (4/8) - US 2,701,982
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
@@ -3976,7 +3976,7 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 10 | Element 6 | abbe | `630346 - dense flint (patent nd=1.63000, vd=34.57; no exact public catalog match)` | No catalog match |
 | 12A | Element 7 | abbe | `680312 - dense flint (patent nd=1.68000, vd=31.16; no exact public catalog match)` | No catalog match |
 
-### [P. ANGÉNIEUX RETROFOCUS TYPE R61 24mm f/3.5](../../src/lens-data/p.-angénieux/AngenieuxRetrofocusR6124mmf35.data.ts) - 0.0% trusted (0/8); 0.0% Sellmeier (0/8) - FR 1,214,945
+### [P. ANGÉNIEUX RETROFOCUS TYPE R61 24mm f/3.5](../../src/lens-data/angenieux/AngenieuxRetrofocusR6124mmf35.data.ts) - 0.0% trusted (0/8); 0.0% Sellmeier (0/8) - FR 1,214,945
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
