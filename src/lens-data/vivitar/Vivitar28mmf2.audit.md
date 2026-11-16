@@ -83,12 +83,12 @@ Source: US 4,258,980, sheet 1, FIG. 1 (PDF page 2). FIG. 1 draws the Table 1 (84
 
 Source geometry: the rear face of L6 (R = 72.324) and the front face of L7 (R = -37.548) across the 1.848 mm air space touch at a semi-diameter of 9.50 mm. The real f/2 marginal ray passes those faces at 9.49 and 9.50 mm, so the prescription itself puts the clear aperture at the contact ring. A rim of 9.49 mm would need a gap fraction of 0.998, above the 0.98 ceiling, so the real f/2 beam cannot be admitted in full; 9.4 mm is the largest one-decimal rim that stays inside 0.98 (remaining air 0.039 mm, fraction 0.979).
 
-| Surface | Before | After | Evidence |
-| ------- | ------ | ----- | -------- |
-| 11 (L6 front) | 9.0 | 9.4 | square with surface 12 |
-| 12 (L6 rear) | 9.0 | 9.4 | contact ring at 9.50 mm; FIG. 1 draws L6 and L7 meeting; real f/2 ray at 9.49 mm |
-| 13 (L7 front) | 9.3 | 9.4 | as surface 12; real f/2 ray at 9.50 mm |
-| 14 (L7 rear) | 9.3 | 10.1 | real f/2 marginal ray at 10.06 mm; the old value clipped the beam just off axis (97.3 % at 2.9 degrees) |
+| Surface       | Before | After | Evidence                                                                                                |
+| ------------- | ------ | ----- | ------------------------------------------------------------------------------------------------------- |
+| 11 (L6 front) | 9.0    | 9.4   | square with surface 12                                                                                  |
+| 12 (L6 rear)  | 9.0    | 9.4   | contact ring at 9.50 mm; FIG. 1 draws L6 and L7 meeting; real f/2 ray at 9.49 mm                        |
+| 13 (L7 front) | 9.3    | 9.4   | as surface 12; real f/2 ray at 9.50 mm                                                                  |
+| 14 (L7 rear)  | 9.3    | 10.1  | real f/2 marginal ray at 10.06 mm; the old value clipped the beam just off axis (97.3 % at 2.9 degrees) |
 
 `checks.gapSagFrac` was set to 0.98, the smallest two-decimal value that admits 9.4 mm on the 12-13 air space; the faces do not cross. All other rims are kept: FIG. 1 belongs to a wider-field example, so the front-group heights cannot be read from it, and nothing else clips the axial beam or the chief ray.
 
@@ -104,3 +104,32 @@ Open:
 - Front-group rims (L1-L4) and L8 are unverified estimates; no figure of Table 2 exists.
 - Corner light remains low (16.9 %); the L6/L7 contact ring limits it.
 - Blade count, further mounts and a maker construction diagram remain unsourced.
+
+## 2026-11-15 — Second review on the local site
+
+Compared: the live page (infinity, inspector open on L6 and L7) with US 4,258,980 FIG. 1, which draws the Table 1 form and is used for proportions only; Table 2 and Table 7 re-read from the page images; the semi-diameter section above re-measured with the rim-cost and clearance traces.
+
+Change:
+
+| Surface       | Before            | After                           | Evidence                                                                                                                                                               |
+| ------------- | ----------------- | ------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 13 (L7 front) | `sd` 9.4, no land | `sd` 9.4, `rimExtensionSd` 10.1 | FIG. 1 draws L7 as a square-edged block standing slightly above L6; the page drew a slanted edge from 9.4 to 10.1 mm. The land squares L7 at the height of surface 14. |
+
+Lands and cuts: no face is below its starting value. Two lands: surface 4 (to 14.6 mm, from the package) and surface 13 (to 10.1 mm, new). Both cost 0.0 points at every field; the file's curve is unchanged by the new land (corner 16.9 %, worst loss against the starting rims 0.0 points, largest gain 11.0). Surface check OK with `gapSagFrac` 0.98; the land lies outside L6's 9.4 mm rim, so nothing crosses.
+
+Found correct:
+
+- L6 and L7 meet at the rim on the page without overlapping (0.039 mm of air at 9.4 mm).
+- Figure proportions against L5 (figure / file): L1 1.78 / 1.72, L2 1.35 / 1.31, L3 0.73 / 0.73, L4 0.97 / 0.95, L8 1.19 / 1.17. Step order matches. L6 is 0.85 of L5 against the figure's 0.94; the 9.50 mm contact ring of Table 2 sets that.
+- Table 2 spot values at 28x (R5, R9-R13, T5-T6, S4-S6, all eight Nd/Vd) and Table 7 (S4 = 0.116 for Table 2) agree with the file. Element types agree with the signs of the radii; stored focal lengths agree with the computed ones to the printed digits.
+- Brackets G1 (surfaces 1-6) and G2 (7-16) follow the patent text ("first group G1", "group G2"; the figure letters them GP1 and GP2). No cemented pairs, no aspheres, no special-dispersion tags. The stop is drawn between L4 and L5.
+- Movement: no variable gap; the focus slider shows "Not modeled" and `focus.description` states only what the patent says.
+- Glass: all eight labels resolve to rows equal to the printed pairs at the printed precision (largest index difference 4.9e-4 on a three-decimal print, largest Abbe difference 0.08). The patent names no glass and prints no further line indices or partial dispersions.
+- Assignee "Vivitar Corporation" matches the front page and the other Vivitar files.
+- Engine values unchanged: focal length 28.0137 mm, f/2, stop 8.6226 mm, half-field 37.528 degrees. Aperture audit: no rim, trace or iris limit. Image circle not undersized. Field coverage at least 99 %.
+
+Open:
+
+- Closed 2026-11-15: L1 and L3 were relabelled from the modern Schott names N-BK7 and N-FK5 to the equally exact period Hoya rows BSC7 (1.51680 / 64.20) and FC5 (1.48749 / 70.45), and all eight labels now use the "catalog equivalent" wording. The set still mixes Hoya, Schott (SF4, SF6) and Sumita (K-LaK11), because no single vendor has an exact row for every element.
+- Only the Pentax K mount is sourced.
+- The earlier open items stand (paraxial stop, unverified front-group rims, low corner light, 1:10 state not modeled).

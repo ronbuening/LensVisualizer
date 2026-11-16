@@ -75,16 +75,16 @@ The patent prints an index Nd and an Abbe number Vd for each element, to three d
 
 Every printed pair equals a catalogue glass at the printed precision. The labels below are those catalogue equivalents; they do not come from the patent, and the supplier of the production glass is not known.
 
-| Element | Printed Nd / Vd | Catalogue equivalent | Catalogue nd / νd | Class                |
-| ------- | --------------- | -------------------- | ----------------- | -------------------- |
-| L1      | 1.517 / 64.2    | N-BK7 (Schott)       | 1.51680 / 64.17   | borosilicate crown   |
-| L2      | 1.678 / 55.5    | LAC12 (Hoya)         | 1.67790 / 55.52   | lanthanum crown      |
-| L3      | 1.487 / 70.4    | N-FK5 (Schott)       | 1.48749 / 70.41   | fluor crown          |
-| L4      | 1.755 / 27.5    | SF4 (Schott)         | 1.75520 / 27.58   | dense flint          |
-| L5      | 1.640 / 60.2    | LACL60 (Hoya)        | 1.64000 / 60.20   | lanthanum crown      |
-| L6      | 1.805 / 25.5    | SF6 (Schott)         | 1.80518 / 25.43   | dense flint          |
-| L7      | 1.658 / 57.3    | K-LaK11 (Sumita)     | 1.65830 / 57.29   | lanthanum crown      |
-| L8      | 1.697 / 55.5    | LAC14 (Hoya)         | 1.69680 / 55.46   | lanthanum crown      |
+| Element | Printed Nd / Vd | Catalogue equivalent | Catalogue nd / νd | Class              |
+| ------- | --------------- | -------------------- | ----------------- | ------------------ |
+| L1      | 1.517 / 64.2    | BSC7 (Hoya)          | 1.51680 / 64.20   | borosilicate crown |
+| L2      | 1.678 / 55.5    | LAC12 (Hoya)         | 1.67790 / 55.52   | lanthanum crown    |
+| L3      | 1.487 / 70.4    | FC5 (Hoya)           | 1.48749 / 70.45   | fluor crown        |
+| L4      | 1.755 / 27.5    | SF4 (Schott)         | 1.75520 / 27.58   | dense flint        |
+| L5      | 1.640 / 60.2    | LACL60 (Hoya)        | 1.64000 / 60.20   | lanthanum crown    |
+| L6      | 1.805 / 25.5    | SF6 (Schott)         | 1.80518 / 25.43   | dense flint        |
+| L7      | 1.658 / 57.3    | K-LaK11 (Sumita)     | 1.65830 / 57.29   | lanthanum crown    |
+| L8      | 1.697 / 55.5    | LAC14 (Hoya)         | 1.69680 / 55.46   | lanthanum crown    |
 
 The three front elements are all crowns, with an average Abbe number of 63.4, and the two dense flints sit in the rear group: L4 as a positive element and L6 as the strong negative. Conditions (3) and (4) of the patent fix exactly this distribution.
 
@@ -102,12 +102,12 @@ There are none. All sixteen surfaces are spherical; one, the front of L5, is fla
 
 The patent sets four conditions. Values in the last column are computed from the printed table.
 
-| Condition                   | Patent's stated value for Table 2 | Computed from Table 2 |
-| --------------------------- | --------------------------------- | --------------------- |
-| (1) 0.7 F0 < \|F1\| < 1.0 F0 | 0.996                             | 1.002                 |
-| (2) 0.8 F0 < F2 < 1.1 F0    | 0.926                             | 0.929                 |
-| (3) 52 < (V1 + V2 + V3) / 3 < 70 | not stated                   | 63.4                  |
-| (4) 23 < V4 < 33            | 27.5                              | 27.5                  |
+| Condition                        | Patent's stated value for Table 2 | Computed from Table 2 |
+| -------------------------------- | --------------------------------- | --------------------- |
+| (1) 0.7 F0 < \|F1\| < 1.0 F0     | 0.996                             | 1.002                 |
+| (2) 0.8 F0 < F2 < 1.1 F0         | 0.926                             | 0.929                 |
+| (3) 52 < (V1 + V2 + V3) / 3 < 70 | not stated                        | 63.4                  |
+| (4) 23 < V4 < 33                 | 27.5                              | 27.5                  |
 
 The stated F1 sits just inside the upper bound of condition (1); the value computed from the rounded table falls just outside it, by 0.2%.
 
@@ -117,7 +117,7 @@ The stated F1 sits just inside the upper bound of condition (1); the value compu
 - **Image plane (inferred).** The patent prints the back focal length as 1.36 of the focal length, to two decimals only. The model places the image at the paraxial back focus of the printed table, 38.33 mm (1.3688). The patent's printed figures appear to be truncated paraxial values: Table 1 computes to 1.5969 against a printed 1.59, and Table 2 to 1.3688 against 1.36. Its field-curvature plots are drawn from the axial focus, and it gives no spherical-aberration plot or best-focus statement.
 - **Spherical aberration.** Traced exactly, the printed three-decimal prescription is undercorrected: the axial ray crosses 0.13, 0.15, 0.12 and 0.68 mm short of the paraxial focus at 0.5, 0.7, 0.85 and 1.0 of the f/2 pupil radius. Changing any single printed radius, thickness, air space or index by one digit, a transposition or a sign does not remove this, and claim 6 repeats Table 2 digit for digit, so the table is taken as printed. The steep fall at the edge of the pupil is probably an effect of the rounding.
 - **Stop (inferred).** The patent places the iris between L4 and L5 without a distance. The model splits that 3.70 mm air space into 1.67 mm and 2.02 mm. The stop is sized from the paraxial f/2 beam, a semi-diameter of 8.62 mm. Because of the marginal aberration, a real axial ray bundle through that stop has a radius of 6.46 mm at the front of the lens, about f/2.17.
-- **Semi-diameters (inferred).** The patent prints no clear apertures, and Figure 1 is a schematic of the Table 1 form. The rims are estimates. L6 and L7 would touch at their edges at a semi-diameter of 9.50 mm, which is also where a true f/2 marginal ray would pass, so the prescription itself limits how far those two elements can be opened; Figure 1 draws the two elements meeting at the rim. The model sets L6 and the front of L7 to 9.4 mm, just inside contact, and the rear of L7 to 10.1 mm.
+- **Semi-diameters (inferred).** The patent prints no clear apertures, and Figure 1 is a schematic of the Table 1 form. The rims are estimates. L6 and L7 would touch at their edges at a semi-diameter of 9.50 mm, which is also where a true f/2 marginal ray would pass, so the prescription itself limits how far those two elements can be opened; Figure 1 draws the two elements meeting at the rim. The model sets L6 and the front of L7 to 9.4 mm, just inside contact, and the rear of L7 to 10.1 mm. A flat, non-optical land carries L7's front face out to the same 10.1 mm, so the element has a square edge standing slightly above L6, as Figure 1 draws it.
 - **Field.** The patent states a 72° field and plots Table 2 to a half-field of 35°. The model's chief ray reaches the 21.65 mm corner of the 24 × 36 mm frame at 38.2°, slightly beyond the patent's stated field. Light at the corner is low: the full oblique bundle would need a semi-diameter of 13.4 mm at the rear of L6, well beyond the 9.50 mm contact limit, so most of the corner vignetting belongs to the design.
 
 ## Sources

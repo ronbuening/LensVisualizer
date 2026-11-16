@@ -16,7 +16,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * semi-diameter, the height of the real f/2 marginal ray. FIG. 1 (drawn for the Table 1 form, used for proportions
  * only) shows L6 and L7 meeting at the rim, so surfaces 11-13 are set to 9.4 mm, the largest value that keeps the
  * faces apart, and checks.gapSagFrac is 0.98 for the 12-13 air space. Surface 14 is 10.1 mm, the height of the
- * real f/2 marginal ray there (10.06 mm).
+ * real f/2 marginal ray there (10.06 mm); a flat land carries the front face of L7 (surface 13) out to the same
+ * 10.1 mm, so L7 draws with a square edge standing just above L6, as FIG. 1 shows it. The land passes no light.
  *
  * FOCUS: infinity only. The patent's 1:10 close-focus state (Table 7: S4 = 0.116 F with L5-L8 moving
  * differentially) is not modeled; closeFocusM = 1e15 marks focus as not modeled and the minimum focus distance
@@ -81,7 +82,7 @@ const LENS_DATA = {
       "nd": 1.517,
       "vd": 64.2,
       "focalLengthMm": 130.94651,
-      "glass": "N-BK7 (SCHOTT; BK7-class equivalent)",
+      "glass": "BSC7 (HOYA catalog equivalent; production supplier unspecified)",
       "role": "Weak positive front element of the negative front group."
     },
     {
@@ -92,7 +93,7 @@ const LENS_DATA = {
       "nd": 1.678,
       "vd": 55.5,
       "focalLengthMm": -36.052717,
-      "glass": "LAC12 (HOYA catalog-equivalent; production supplier unspecified)",
+      "glass": "LAC12 (HOYA catalog equivalent; production supplier unspecified)",
       "role": "Stronger of the two negative menisci of the front group; its rear surface is the most steeply curved in the lens."
     },
     {
@@ -103,7 +104,7 @@ const LENS_DATA = {
       "nd": 1.487,
       "vd": 70.4,
       "focalLengthMm": -63.227464,
-      "glass": "N-FK5 (SCHOTT; FK5-class equivalent)",
+      "glass": "FC5 (HOYA catalog equivalent; production supplier unspecified)",
       "role": "Second negative meniscus of the front group, in a low-dispersion crown."
     },
     {
@@ -114,7 +115,7 @@ const LENS_DATA = {
       "nd": 1.755,
       "vd": 27.5,
       "focalLengthMm": 40.384289,
-      "glass": "SF4 (SCHOTT legacy catalog-equivalent; production supplier unspecified)",
+      "glass": "SF4 (SCHOTT legacy catalog equivalent; production supplier unspecified)",
       "role": "Dense-flint positive element opening the rear group, ahead of the iris."
     },
     {
@@ -125,7 +126,7 @@ const LENS_DATA = {
       "nd": 1.64,
       "vd": 60.2,
       "focalLengthMm": 30.1875,
-      "glass": "LACL60 (HOYA catalog-equivalent; production supplier unspecified)",
+      "glass": "LACL60 (HOYA catalog equivalent; production supplier unspecified)",
       "role": "Strongest positive element, directly behind the iris with its flat side towards it."
     },
     {
@@ -136,7 +137,7 @@ const LENS_DATA = {
       "nd": 1.805,
       "vd": 25.5,
       "focalLengthMm": -16.605229,
-      "glass": "SF6 (SCHOTT legacy catalog-equivalent; production supplier unspecified)",
+      "glass": "SF6 (SCHOTT legacy catalog equivalent; production supplier unspecified)",
       "role": "Dense-flint negative element, the strongest in the lens, behind a thin curved air space."
     },
     {
@@ -147,7 +148,7 @@ const LENS_DATA = {
       "nd": 1.658,
       "vd": 57.3,
       "focalLengthMm": 44.254597,
-      "glass": "K-LaK11 (SUMITA catalog-equivalent; production supplier unspecified)",
+      "glass": "K-LaK11 (SUMITA catalog equivalent; production supplier unspecified)",
       "role": "Positive meniscus concave to the object; its edge meets L6 at a 9.50 mm semi-diameter."
     },
     {
@@ -158,7 +159,7 @@ const LENS_DATA = {
       "nd": 1.697,
       "vd": 55.5,
       "focalLengthMm": 36.125116,
-      "glass": "LAC14 (HOYA catalog-equivalent; production supplier unspecified)",
+      "glass": "LAC14 (HOYA catalog equivalent; production supplier unspecified)",
       "role": "Biconvex rear element completing the positive rear group."
     }
   ],
@@ -252,6 +253,7 @@ const LENS_DATA = {
       "R": -37.548,
       "d": 3.92,
       "sd": 9.4,
+      "rimExtensionSd": 10.1,
       "medium": 7
     },
     {
