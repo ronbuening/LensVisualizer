@@ -1,0 +1,5 @@
+# Derived-plane isolated audit
+User authorized image-plane adjustment November 15, 2026. Native reference checkout 70600ffc23af48a81994cf8fc834048fdf9d21a1.
+Exactly one optical change: final image interval 13.89 -> 14.759082880782301 mm. All original radii, internal distances, glasses, clear apertures, stop position and 22.74 mm stop diameter retained. Original literal triad and primary evidence preserved under input/checkpoint.
+Fresh native geometry, aperture and field census pass. Plane alternatives and dense ring-sampled RMS solve recorded in evidence. Final 24 MTF cells all converge; see mtf-log.jsonl and full outputs. Paraxial versus RMS-spot and source contradictions are disclosed in analysis. Full app/browser/current-main/polychromatic QA not run. No publishing, deployment or Drive mutation.
+Fresh independent exact sphere/Snell replay agrees with native axis crossings to <1e-9 mm; all direct-ray detector coordinates are explicitly projected from terminal point/direction, not raw trace.y. Marginal spherical aberration remains: at 95% paraxial entrance pupil the derived detector miss is −65.7 µm, versus +415.1 µm printed.
