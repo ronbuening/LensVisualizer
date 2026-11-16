@@ -25,14 +25,14 @@ Changes:
 - `catalog.closeFocusM.marketing`: added 0.3 (listings for the 55 mm Kiron-made version).
 - Float noise rounded: 1.9600000000000002 -> 1.96, 11.228000000000002 -> 11.228, 1.6720000000000002 -> 1.672, 2.0240000000000005 -> 2.024, 2.3800000000000003 -> 2.38, 72.32400000000001 -> 72.324, 3.9200000000000004 -> 3.92.
 - Header comment replaced by a description of source, scale, image plane and inferred values.
-- Analysis: the image-plane section was rewritten for the paraxial plane; the claim "axial aperture f/1.999999998, iris-limited" was corrected (the paraxially sized 8.62 mm stop admits a real axial beam of 6.46 mm radius, about f/2.17); the MTF figures are now marked as computed at the earlier 38.1937 mm plane.
+- Analysis: the image-plane section was rewritten for the paraxial plane; the claim "axial aperture f/1.999999998, iris-limited" was corrected (the paraxially sized 8.62 mm stop admits a real axial beam of 6.46 mm radius, about f/2.17); the MTF and spot figures computed at the earlier 38.1937 mm plane were removed when the analysis was rewritten.
+- Analysis rewritten to the house section skeleton.
 - No semi-diameter was changed. The real f/2 marginal ray needs 9.49 / 9.50 / 10.06 mm at surfaces 12 / 13 / 14 (stored 9.0 / 9.3 / 9.3), but L6 and L7 reach edge contact at 9.50 mm and the surface check allows surface 12 no more than about 9.0 mm before the 12-13 air gap is flagged, so surface 12 cannot be opened; with it fixed, raising 13 and 14 passes no extra light. The aperture audit reports no rim limit as the file stands.
 
 After the changes: focal length 28.0137 mm, f/2.0 (paraxial stop, 8.62 mm), back focus 38.3273 mm with zero paraxial defocus, total length 86.8793 mm, half-field 37.5 degrees. Surface check: OK. Aperture audit: no surface below the on-axis ray. Image circle: not undersized. Field coverage: 100 % (21.65 mm at 38.2 degrees).
 
 Open:
 
-- MTF and spot figures in the analysis were computed at 38.1937 mm and need recomputing at the paraxial plane.
 - Wording, names, keys, spec chips and glass labels ("Unmatched ...") are still in the package's style; the four flint/crown types BK7, FK5, SF4 and SF6 are recognisable, the four lanthanum crowns need matching.
 - Corner light is low (bundle needs 13.4 mm at surface 12; L6/L7 contact limits it to 9.5 mm): mostly the design, partly the inferred rims. Figure 1 is schematic and of the Table 1 form.
 - The patent's 1:10 close-focus state (Table 7: S4 = 0.116 F, L5-L8 moving differentially) is not modeled.

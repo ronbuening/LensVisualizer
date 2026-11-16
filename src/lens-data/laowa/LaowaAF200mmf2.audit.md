@@ -30,6 +30,8 @@ No prescription value, gap, semi-diameter or focus state was changed.
 
 **Audit results.** `audit:surface`: no validation errors. `audit:aperture`: within 3 % of the stated f-number, no rim limit. `audit:image-circle`: not undersized. `audit:field-coverage`: 100 %, 21.60 mm of 21.65 mm, corner clear (both coverage audits run on a copy with `visible: true`). Real-ray clearance at 21.6 mm image height: the axial beam and the chief ray clear every surface; the corner beam is cut by up to 66 % on one side at the rear group (semi-diameter 16 mm) and by 26–45 % at the front group. Figure 3 scales to about 16.5 mm for the rear group, 28 mm for the fifth lens and 49 mm for the front lens, against 16, 29 and 51 mm in the file, so this vignetting belongs to the design as drawn and the rims were left alone.
 
+Analysis rewritten to the house section skeleton.
+
 **Open.**
 
 - Open: the inventor name 李大勇 is romanised as Dayong Li, the form the other Laowa files use; the patent prints no official English spelling.

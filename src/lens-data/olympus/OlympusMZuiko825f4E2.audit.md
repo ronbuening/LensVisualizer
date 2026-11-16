@@ -41,6 +41,7 @@ Changes made at integration:
   23.911093750000003 → 23.91109375). No prescription value, printed gap or solved gap changed beyond 1e-10 mm.
 - Header comment replaced by one block comment stating the source, example, scale, and which values are inferred.
 - Analysis note: the sentence on the total-length difference now says it is rounding only.
+- Analysis rewritten to the house section skeleton.
 
 After the changes: focal length 8.1617–24.5127 mm, f/4.08 at every station; paraxial focus error across all 129
 stations between −0.008 and +0.003 mm. Surface validation: OK, no errors. Aperture audit: no surface below the

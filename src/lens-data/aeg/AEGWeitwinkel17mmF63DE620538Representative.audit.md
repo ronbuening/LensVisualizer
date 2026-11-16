@@ -54,6 +54,8 @@ After the changes: focal length 16.6754 mm, f/6.3, stop semi-diameter 3.211 mm, 
 image-circle audit reports the lens not undersized for 6x9; the field-coverage audit does not apply to fisheye
 projections and skips it.
 
+Analysis rewritten to the house section skeleton.
+
 Open:
 
 - File name, key and `name` still say "Representative"; element names are "Published glass N" although the patent

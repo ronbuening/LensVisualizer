@@ -1,50 +1,113 @@
-# Zenitar 50mm f/1.2 S representative reconstruction
+## Patent Reference and Design Identification
 
-## Source and product correlation
-[RU2592746C1 original-format PDF](https://patents.s3.yandex.net/RU2592746C1_20160727.pdf), Table2 on PDF6, inventor Vladimir A. Bogdankov, KMZ; filedMarch27,2015, publishedJuly27,2016. Yandex-hosted original-format copy, not a patent-office download. Independent original-table visual re-entry agrees with transcription.
-[Maker historical archive](https://www.zenitcamera.com/archive/lenses/zenitar-1-2-50.html) dates the S product design2013–14, serial2014; thus it predates filing. Ordered8-element/7-group topology, designer and specifications support representative association, not exact factory prescription identity. Distinct from earlier C, later full-frame10/8 and ED versions. Maker section is a drawing, not a numerical prescription. A secondary interview editor supplies the patent linkage; do not attribute that explicit linkage to the designer.
-[Maker product brochure](https://www.zenit.photo/upload/iblock/6fa/mhqrzfb5z0a1c4lpowi5pyq8bg32lxy9/booklet_lens_zenitar_1_2_50s_eng.pdf) statesAPS-C,50mm,F1.2,32degrees,8/7,EF/F. Retail32degrees is the displayed field; larger source coverage was separately screened.
+**Patent:** [RU 2592746 C1](https://patents.google.com/patent/RU2592746C1/en)
+**Application Number:** 2015110965
+**Filed:** 27 March 2015
+**Published:** 27 July 2016
+**Inventor:** Vladimir Aleksandrovich Bogdankov
+**Assignee:** PJSC Krasnogorsky Zavod named after S. A. Zverev (the front page prints the company's earlier legal form, OAO)
+**Title:** High-aperture lens (Светосильный объектив)
+**Example details:** Table 2, printed p. 6; spectral weights in Table 1; MTF plots in Figs. 2–5. Native dimensions in millimetres, without scaling.
 
-## Construction and glasses
-Literal Table2 R/d/glass names and all clear diameters retained. Eight spherical elements, seven groups; cemented fourth/fifth elements, stopS7 between third/fourth elements. No aspheres, cover glass or focus movement invented. Infinity only; literal39.777mm final imagegap and total119.577mm. No numerical repair, focus optimization, stop enlargement or inferred cap changes.
-[Original LZOS catalogue](https://lzos.ru/upload/iblock/818/818322c0e82195aba7b3c9b1441649b9.pdf) supplies independently visually audited nominal indices. Dominant patent wavelength.54607um supports the explicit e-reference scenario. Catalogue values are not proven patent-era melt data; radiation-resistant modifications are not assumed. RussianLF5 is not SchottLF5. Engine dispersion from index/Abbe is approximate, not measured spectral behavior. The field namednd in the schema stores ne with explicit indexReference=e; Abbe values are ve, not vd.
+RU 2592746 C1 contains one worked example, the prescription of Table 2. The patent presents it as a fast objective for reflex cameras of APS-C format (25.5 × 18.6 mm), calculated for a focal length of 50 mm and a relative aperture of 1:1.2, with a back focus of at least 39 mm. The listed characteristics of the calculated design are f′ = 51.478 mm, entrance pupil diameter 41.05 mm, back focus S′ = 39.777 mm and system length 119.577 mm. [1, pp. 4–6]
 
-| Glass | ne | ve | nd | vd |
-|---|---:|---:|---:|---:|
-|TK21|1.659961|50.81|1.656914|51.12|
-|TK14|1.615506|60.34|1.613091|60.58|
-|LF5|1.578326|41.05|1.575022|41.31|
-|TF10|1.813767|25.17|1.806274|25.37|
+The example agrees with the KMZ Zenitar 1.2/50 S on several independent points:
 
-## Element-by-element prescription
+1. **Construction.** Table 2 has eight elements in seven groups, all spherical. The maker's booklet lists 7 groups and 8 elements. [2]
+2. **Format and mounts.** The patent is written for APS-C reflex cameras and names the Nikon F mount; the product is an APS-C lens sold in Canon EF and Nikon F mounts. [1, p. 6] [2]
+3. **Focal length and aperture.** The patent's nominal 50 mm and 1:1.2 are the product's marked values.
+4. **Field.** The maker gives an angular field of 32°. The patent's MTF plots run to an image height of 14.15 mm, which is 30.7° across the diagonal at the design focal length.
+5. **Maker and designer.** The patent belongs to the Krasnogorsk plant that builds the lens.
 
-Element1: source surfaces1–2, TK21 nominal LZOS; Rfront=77.62, Rrear=flat, thickness8.1mm; ne=1.659961, ve=50.81; isolated-in-air thick-lens focal length117.61301mm. Isolated power is not installed cemented-group power; no unverified element-specific aberration role is asserted.
+This is a strong correlation, not a statement from the maker. No KMZ document seen here says that Table 2 is the production prescription, and the maker's booklet prints no section drawing to compare. The patent has no other example. A public section drawing of the lens shows the same element shapes, cemented pair and stop position. [3]
 
-Element2: source surfaces3–4, TK21 nominal LZOS; Rfront=39.72, Rrear=85.11, thickness8.7mm; ne=1.659961, ve=50.81; isolated-in-air thick-lens focal length104.86164mm. Isolated power is not installed cemented-group power; no unverified element-specific aberration role is asserted.
+## Optical Architecture
 
-Element3: source surfaces5–6, LF5 nominal LZOS; Rfront=157.4, Rrear=18.7, thickness4.25mm; ne=1.578326, ve=41.05; isolated-in-air thick-lens focal length-37.11084mm. Isolated power is not installed cemented-group power; no unverified element-specific aberration role is asserted.
+The design is a double-Gauss derivative with a long back focus. The patent divides it into two components separated by the aperture stop. Component I is three single elements: a plano-convex positive, a positive meniscus and a negative meniscus, all convex to the object. Component II is a cemented negative meniscus (a negative and a positive element) concave to the object, a positive meniscus concave to the object, a plano-convex positive with its curved face to the image, and a plano-convex positive with its curved face to the object. [1, p. 5]
 
-Element4: source surfaces8–9, TF10 nominal LZOS; Rfront=-18.45, Rrear=-2443, thickness2.5mm; ne=1.813767, ve=25.17; isolated-in-air thick-lens focal length-22.85544mm. Isolated power is not installed cemented-group power; no unverified element-specific aberration role is asserted.
+Against the earlier design it cites as closest (RU 2431165, back focus 33.32 mm), the patent claims the plane front face of the first element, an all-single front component, the added plano-convex element behind the stop and the plane last surface. The stated result is a back focus long enough for reflex cameras, with better resolution and simpler manufacture. [1, pp. 4–5]
 
-Element5: source surfaces9–10, TK21 nominal LZOS; Rfront=-2443, Rrear=-29.79, thickness7.85mm; ne=1.659961, ve=50.81; isolated-in-air thick-lens focal length45.63723mm. Isolated power is not installed cemented-group power; no unverified element-specific aberration role is asserted.
+There are no aspherical surfaces. Three of the sixteen surfaces are plane.
 
-Element6: source surfaces11–12, TK21 nominal LZOS; Rfront=-105.44, Rrear=-42.46, thickness6.5mm; ne=1.659961, ve=50.81; isolated-in-air thick-lens focal length103.46657mm. Isolated power is not installed cemented-group power; no unverified element-specific aberration role is asserted.
+## Element-by-Element Analysis
 
-Element7: source surfaces13–14, TK14 nominal LZOS; Rfront=flat, Rrear=-45.19, thickness7.8mm; ne=1.615506, ve=60.34; isolated-in-air thick-lens focal length73.41927mm. Isolated power is not installed cemented-group power; no unverified element-specific aberration role is asserted.
+Focal lengths are for each element alone in air, computed from the Table 2 radii and thicknesses with the e-line indices given under Glass Identification. The roles are a reading of the prescription and of the patent's own description, not measured aberration contributions.
 
-Element8: source surfaces15–16, TK14 nominal LZOS; Rfront=58.34, Rrear=flat, thickness5.65mm; ne=1.615506, ve=60.34; isolated-in-air thick-lens focal length94.78380mm. Isolated power is not installed cemented-group power; no unverified element-specific aberration role is asserted.
+### L1 — Plano-Convex Positive, Convex to Object
 
-## Aperture and numerical qualifications
-Physical stop diameter25.1mm retained. Schema derives stop from f-number, so authored paraxialf1.30257089655 reproduces12.55mm stopradius exactly; retailf1.2 remains marketing only. First-order EFL51.47444663 and BFD39.77765647mm closely match printed51.478/39.777. Independent finite front-group pupil40.701947mm differs from source41.05 by0.848%; finite source-EFL/pupil ratio1.264755 is also not1.2. Separate nd scenario givesEFL51.492211/BFD39.794207, not substituted into the e model. Exit-pupil source discrepancy remains unvalidated. These are material limitations, not resolved by fitting.
+TK21, ne = 1.659961, νe = 50.81. R = +77.62 / plane, thickness 8.1 mm, f = +117.61 mm.
 
-Native canonical geometry errors=[] at gapSagFrac.90, no override. Literal source caps used. Independent sampled shared-radius gap minimum+.3mm. Engine4caca439fdd7186caf6cf458b1c56e6e114b752b, fetchedmain dedupdb50c52df466bbcf1b9654411b186a27d280f16e; tests are not fullcurrent-main regression.
+The front collector. Its rear face is plane, one of the features the patent claims.
 
-## Native2D finite-ray tests
-N256 requests51468 equal-weight stop-area samples per field. At0/8/16degrees survivor RMS3.675218/7.288920/26.435091um;16degrees16908valid,34560blocked,0unresolved. Launch44428aimed/7040blocked, NOT every requested ray successfully aimed. Raw16degree engine32858clipped+1702noBracket retained; independent analytic intersections prove every noBracket outside literal front radius27mm. No raw rays discarded.
+### L2 — Positive Meniscus, Convex to Object
 
-Patent image rectangle25.5×18.6 has halfdiagonal15.7813972765mm. Derived rectilinear17.043751degree proxy reaches centroid15.367844mm, so is NOT exact sourcecorner. Conservative17.6degree test reaches15.883583mm, beyond corner radius, but is NOT an exact imageheight-directed corner solve or all-field validation. There11090valid/40378blocked/0unresolved, with41506aimed/9962preblocked; raw35758clipped+4620noBracket, all physical misses. About78.45% stop-area sampling is blocked. Edge128→256 conditionalRMS26.800922→26.873472um,0.2707%change; proxy17.043751change0.5383%. This is sampled spot stability, NOT nativeMTF/globalconvergence.
+TK21. R = +39.72 / +85.11, thickness 8.7 mm, f = +104.86 mm.
 
-AllRMS values condition on survivors. Stop-area fractions are not measured illumination, radiometric throughput or entrance-pupil-Jacobian weighting. Strong clipping must not be hidden by only quoting sharp surviving spots. SourceMTFclaim is not validated. No diffractionMTF, polychromatic performance, exactcorner/allintermediatefield proof or factory performance claim.
+The second positive element of the front component. It continues the convergence begun by L1 with a meniscus bent toward the stop.
 
-## Handoff scope
-One physical family, one hidden representative infinity entry, three triad files. Original/source/catalogue and independent native diagnostics support research handoff, not measured product identity. Full-app regression,current-main compatibility,type/catalog integration,compiled-viewer/browser QA remain unperformed. Pupil discrepancy, nominalglassepoch,chronology,fieldcoverage approximation,strongclipping and unperformedMTF/chromatic checks remain explicit. No publish/commit/PR/merge/deploy.
+### L3 — Negative Meniscus, Convex to Object
+
+LF5, ne = 1.578326, νe = 41.05. R = +157.4 / +18.7, thickness 4.25 mm, f = −37.11 mm.
+
+The negative element in front of the stop. Its steep rear surface, 10.2 mm ahead of the stop, is the front half of the Gauss pair of concave surfaces facing the stop.
+
+### D1: L4 + L5 — Cemented Negative Meniscus, Concave to Object
+
+L4: TF10, ne = 1.813767, νe = 25.17. R = −18.45 / −2443, thickness 2.5 mm, f = −22.86 mm.
+L5: TK21. R = −2443 / −29.79, thickness 7.85 mm, f = +45.64 mm.
+Doublet focal length −62.79 mm.
+
+The front surface, 8 mm behind the stop, mirrors the rear of L3. The cemented interface is nearly plane (R = −2443 mm) and joins a dense flint to a crown of much lower dispersion, so it works mainly on colour.
+
+### L6 — Positive Meniscus, Concave to Object
+
+TK21. R = −105.44 / −42.46, thickness 6.5 mm, f = +103.47 mm.
+
+The first of three positive elements that bring the beam back to convergence behind the doublet.
+
+### L7 — Plano-Convex Positive, Convex to Image
+
+TK14, ne = 1.615506, νe = 60.34. R = plane / −45.19, thickness 7.8 mm, f = +73.42 mm.
+
+The element the patent adds behind the second lens of the rear component, compared with the earlier design.
+
+### L8 — Plano-Convex Positive, Convex to Object
+
+TK14. R = +58.34 / plane, thickness 5.65 mm, f = +94.78 mm.
+
+The last element. Its plane rear face sits 39.777 mm from the image. The patent notes that its clear diameter does not exceed 36.1 mm, which lets the lens fit reflex mounts including Nikon F. [1, p. 6]
+
+## Glass Identification
+
+Table 2 prints glass names only: ТК-21, ЛФ-5, ТФ-10 and ТК-14 (TK21, LF5, TF10, TK14). It gives no refractive indices or Abbe numbers. These are Russian GOST glass types; the Russian LF5 is not the Schott glass of the same name.
+
+| Glass | Elements       | ne       | νe    |
+| ----- | -------------- | -------- | ----- |
+| TK21  | L1, L2, L5, L6 | 1.659961 | 50.81 |
+| LF5   | L3             | 1.578326 | 41.05 |
+| TF10  | L4             | 1.813767 | 25.17 |
+| TK14  | L7, L8         | 1.615506 | 60.34 |
+
+The numbers in the data file are catalogue values for the mercury e line (546.07 nm), not patent values. The e line is chosen because Table 1 of the patent gives the wavelength 0.54607 µm the weight 1, with six other wavelengths from 0.43 to 0.67 µm weighted lower. The choice is supported by the result: with the e-line values the model gives a focal length of 51.4744 mm and a back focus of 39.7777 mm against the printed 51.478 and 39.777 mm, while the d-line values of the same glasses give 51.492 and 39.794 mm.
+
+Catalogue values are nominal. The actual melts used for the calculation or in production are not known.
+
+## Focus Mechanism
+
+The patent gives one state, an object at infinity, and no moving group or close-focus spacing. The model is therefore infinity only. The production lens focuses manually to 0.45 m. [2]
+
+## Stop, Clear Apertures and Image Plane
+
+**Printed.** The stop is row 7 of Table 2, 10.2 mm behind L3 and 8 mm ahead of L4, with a clear diameter of 25.1 mm. Table 2 also prints a clear diameter for every lens surface, and the model's semi-diameters are those values divided by two. The last gap is the printed 39.777 mm. Nothing in the prescription is inferred except the glass indices described above.
+
+**Aperture.** The printed diameters do not pass the stated 1:1.2. The 25.1 mm stop corresponds to a paraxial f/1.30, and a real axial ray fills it at about f/1.265. An axial beam of f/1.2 would be cut at surfaces 5, 6, 8, 9 and 16, and the stated 41.05 mm entrance pupil (f/1.254) at surfaces 8 and 9. The model keeps the printed stop and diameters, so its design f-number is 1.30 beside the marked 1.2. The patent's own figures are left as printed and the difference is not corrected.
+
+**Image plane.** The paraxial back focus is 39.7777 mm, so the printed gap is in focus. On-axis longitudinal spherical aberration at f/1.30 is +0.010, +0.007, −0.012 and −0.021 mm at pupil zones 1, 0.85, 0.7 and 0.5.
+
+**Field.** The chief ray reaches both the 14.15 mm image height of the patent's plots and the 15.78 mm half-diagonal of its stated 25.5 × 18.6 mm format. Off-axis vignetting is heavy: at 14.15 mm the printed diameters cut up to about 65 % of the beam on one side, mainly at the rear elements. This comes from the patent's diameters, not from estimated rims.
+
+## Sources
+
+1. RU 2592746 C1, "Светосильный объектив", OAO Krasnogorsky Zavod im. S. A. Zvereva, published 27 July 2016. [Google Patents](https://patents.google.com/patent/RU2592746C1/en)
+2. KMZ, Zenitar 1.2/50 S booklet. [zenit.photo](https://www.zenit.photo/upload/iblock/6fa/mhqrzfb5z0a1c4lpowi5pyq8bg32lxy9/booklet_lens_zenitar_1_2_50s_eng.pdf)
+3. allphotolenses.com, Zenitar 1.2/50 section drawing. [Image](http://allphotolenses.com/public/files/optical/607d6d9a455a68ed6400d0a40e094bee.gif)

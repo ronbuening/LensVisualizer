@@ -29,12 +29,13 @@ Changes made:
 
 After the changes: focal length 51.4744 mm, f/1.303 from the 12.55 mm stop, back focus 39.7777 mm against the printed gap 39.777 mm. Surface audit: no errors. Aperture audit: within 3 % of the stated f-number, no rim, trace or iris limit. Image circle: not undersized for APS-C. Field coverage: 100 %, 14.17 of 14.18 mm at 15.7°, corner clear. One-sided vignetting at the 14.15 mm image height is up to about 65 %, set by the printed diameters.
 
+Analysis rewritten to the house section skeleton.
+
 Open:
 
 - File name, `key`, `name`, subtitle and `specs` still carry the "representative" wording and capitalised caveats; bring them to the form of the other KMZ Zenitar entries.
 - Element names and glass labels read "TK21 nominal LZOS" and so on; use plain TK21, LF5, TF10, TK14 and check how they resolve with the e-line reference.
-- `focus.description` "Infinity only diagnostic", the run-together erratum note, and the wording of the analysis and of the two paragraphs at the top of this file need rewriting in plain language.
+- `focus.description` "Infinity only diagnostic", the run-together erratum note, and the wording of the two paragraphs at the top of this file need rewriting in plain language.
 - Decide whether the displayed design f-number stays 1.30 (from the printed stop) beside the marketed f/1.2.
 - Aperture blades are not set: the maker booklet says 9, the maker's product page text says 8.
-- The design date of 2013–14 quoted in the analysis from the maker's archive page could not be re-read during this check.
 - Patent Fig. 1 has not been compared with the drawn section.

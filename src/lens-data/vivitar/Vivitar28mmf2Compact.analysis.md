@@ -1,29 +1,111 @@
-# Vivitar 28mm f/2 Compact — representative Table 2 checkpoint
+## Patent Reference and Design Identification
 
-This experimental prescription is US4258980 Table2 at exactly28× scale, not a verified production prescription. The manufacturer's brochure confirms eight elements/eight groups and a75° field; the patent gives72°. The brochure28/f2 heading conflicts with its f2.8 aperture-range row. These differences remain explicit.
+**Patent:** US 4,258,980 A  
+**Application Number:** 97,543  
+**Filed:** November 26, 1979  
+**Granted:** March 31, 1981  
+**Inventor:** Jacob Moskovich  
+**Assignee:** Vivitar Corporation  
+**Title:** Retrofocus lens  
+**Example details:** Table 2, repeated in claim 6; printed at unit focal length and scaled here by 28. Figure 1 is a schematic section shared by the examples; Figures 4A–5B plot Table 2's field curvature and distortion.
 
-All radii, axial thicknesses, glass indices/Abbe numbers and inter-element gaps remain literal. Original Claim6 corroborates S1=+0.007 despite a scan mark in Table2. T1=.154 and R10=-.690 are visual readings, not erroneous OCR. Infinity only; no retail close-focus mechanism claimed.
+The patent is a continuation-in-part of an application filed on September 11, 1978. It describes a compact, fast retrofocus lens of eight air-spaced elements for the 24 × 36 mm frame that focuses to a magnification of about 1:10, and gives six examples: Tables 1, 5 and 6 cover an 84° field and Tables 2, 3 and 4 a 72° field, all at f/2.
 
-Clear apertures and stop position are inferred for this Table2 model. Figure1 is schematic/common to several examples. Its rear-vertex/image-plane separation, paired with Table2 BFL38.08mm, gives a provisional scale. Geometric constraints and the stated f/2 axial ray further constrain these estimates. They are not factory measurements.
+The model is Table 2 at 28× and is offered as the patent design, not as a verified factory prescription. The link to the Vivitar 28mm f/2 Compact is moderate:
 
-## Image plane
+1. Lens listings describe a Kiron-made Vivitar 28mm f/2 "Compact" (serial numbers beginning 22, 55 mm filter thread, introduced in 1978) with eight elements in eight groups and a 0.30 m minimum focus.
+2. The patent is assigned to Vivitar, has a 1978 priority, and sets out compactness as its aim.
+3. Table 2 has eight air-spaced elements, f/2 and a 72° field, the 28 mm member of the family when the frame is 24 × 36 mm.
+4. The patent's close focus of about 1:10 is consistent with a minimum focus near 0.3 m.
 
-The patent prints BFL = 1.36 F, which is 38.08 mm at this scale but carries only two decimals. This file uses the paraxial back focus of the printed prescription, **38.3273 mm** (1.3688 F). The patent's printed back focal lengths are truncated paraxial values: Table 1 computes 1.5969 F against a printed 1.59, and Table 2 computes 1.3688 F against 1.36. Its astigmatism plots (Figures 4A and 4B) are zeroed on the axial focus, and it gives no spherical-aberration plot or best-focus statement. All radii, glass, thicknesses, internal gaps, stop and inferred caps are as printed or as inferred above.
+Tables 3 and 4 are also 72°, f/2 examples, and no published construction diagram of the production lens was found to choose between the three. The separate Komine-made Vivitar 28mm f/2 "Close Focus" (49 mm filter, 0.23 m) is a different lens and is not what this file represents.
 
-The printed three-decimal prescription has undercorrected spherical aberration: the axial ray crosses 0.128, 0.148, 0.117 and 0.681 mm short of the paraxial focus at 0.5, 0.7, 0.85 and 1.0 of the f/2 pupil radius. A single-value misprint scan of Table 2 (one digit, transposition or sign changed in any radius, thickness, gap or index; 435 variants that keep the focal length) found no change that removes this or that matches the printed F1, F2 and BFL better, and claim 6 repeats Table 2 digit for digit. An earlier draft of this file placed the image at 38.1937 mm, the on-axis best geometric spot at f/2 (reported RMS radius 3.393 micrometres there against 22.511 at the paraxial focus and 19.256 at 38.08 mm). That plane also rounds to the printed 1.36 F, but the patent does not support a best-spot plane, so the paraxial plane is used.
+## Optical Architecture
 
-## Native checks and optical limits
+Eight spherical elements stand in eight air-spaced groups. A negative front group G1 (L1–L3) is followed by a positive rear group G2 (L4–L8), with the iris between L4 and L5.
 
-Native surface/rim geometry passes with the original inferred caps and default allowance. The stop is sized paraxially for f/2 (8.62 mm semi-diameter); by exact ray trace it admits an axial beam of 6.46 mm radius, about f/2.17. The real f/2 marginal ray would need 9.58 mm at the stop and 9.49, 9.50 and 10.06 mm at surfaces 12, 13 and 14 (stored 9.0, 9.3, 9.3). L6 and L7 reach edge contact at a 9.50 mm semi-diameter, so those rims cannot be opened to pass it. The full-frame corner chief reaches 21.64995 mm at approximately 38.2697 degrees half-field, without rim clips. Chief coverage does not imply good edge transmission or contrast.
+- **G1:** a weak positive meniscus L1, then two negative menisci L2 and L3, all convex to the object.
+- **G2:** a positive meniscus L4 in dense flint, the iris, a plano-convex L5 with its curved side to the image, a biconcave dense-flint L6, a positive meniscus L7 concave to the object, and a biconvex L8.
 
-Fresh reference-wavelength geometric and diffraction MTF converge within 0.01 through 40 lp/mm at on-axis, half, three-quarter and full-frame image height on each of the printed-BFL (38.08 mm), paraxial and best-spot (38.1937 mm) planes (24 cells). Two additional cells at the exact patent 36-degree half-field converge. Up to a 256 pupil grid was required; earlier 32-grid off-axis nonconvergence was not treated as a pass.
+The patent's header gives group focal lengths F1 = −0.996 and F2 = 0.926 for a unit focal length (the heading misprint "F1 32" is corrected to F1 = −0.996 by the patent's certificate of correction). The printed table computes to −1.002 and 0.929, and to a focal length of 1.0005, which is 28.014 mm at this scale. The differences are within what three-decimal rounding of the table can produce.
 
-The following figures were computed at the earlier 38.1937 mm best-spot plane and have not been recomputed for the paraxial plane now in the file. There, d-line diffraction MTF at 20 lp/mm (sagittal/tangential) is 0.930/0.930 on axis, 0.546/0.571 at half image height, 0.490/0.685 at three-quarter height, and only 0.025/0.629 at the 21.65 mm corner. At the patent 36-degree half-field it is 0.175/0.687. These are computed values of the inferred model, not measured factory performance. Numerical convergence does not make the very weak sagittal corner good.
+The back focus is 1.37 times the focal length, which gives the mirror clearance a 35 mm reflex camera needs. The distance from the first surface to the image is 86.88 mm.
 
-A separate 128-grid exit-pupil sample estimates unvignetted fractions of 74.57% at 18 degrees, 20.28% at the patent 36-degree half-field, and 12.89% at the full-frame corner. These fractions are not relative illumination, radiometric throughput, or the proportion of stop-grid rays in the MTF calculation. No failed or unaimed samples were reported for that vignetting check. Clear apertures remain uncertain schematic inferences.
+## Element-by-Element Analysis
 
-## Handoff scope
+Focal lengths are those of each element alone in air, computed from the scaled prescription.
 
-One qualified representative model with the image at the paraxial infinity focus, not a factory identification. Source geometry and severe peripheral limitations remain visible. Full application regression, current-main reconciliation, polychromatic validation and compiled-viewer/browser QA are deferred to integration, not claimed passed. The data file should not be marketed as a faithful production prescription or uniformly sharp model.
+### L1 — Positive Meniscus, Convex to Object
 
-Sources: https://patents.google.com/patent/US4258980 ; https://cameramanuals.org/lenses/vivitar_products.pdf
+nd = 1.517, νd = 64.2. f = +130.95 mm. A weak positive element ahead of the negative menisci.
+
+### L2 — Negative Meniscus, Convex to Object
+
+nd = 1.678, νd = 55.5. f = −36.05 mm. The stronger of the two front negatives; its rear surface, with an 11.23 mm radius, is the most steeply curved in the lens.
+
+### L3 — Negative Meniscus, Convex to Object
+
+nd = 1.487, νd = 70.4. f = −63.23 mm. The second front negative, in a low-dispersion crown.
+
+### L4 — Positive Meniscus, Convex to Object
+
+nd = 1.755, νd = 27.5. f = +40.38 mm. The first element of the rear group and the only high-dispersion positive element; the patent's condition (4) bounds its Abbe number.
+
+### L5 — Plano-Convex Positive
+
+nd = 1.640, νd = 60.2. f = +30.19 mm. Flat towards the iris, curved towards the image. The strongest positive element.
+
+### L6 — Biconcave Negative
+
+nd = 1.805, νd = 25.5. f = −16.61 mm. The strongest element in the lens, in dense flint, separated from L5 by a thin curved air space.
+
+### L7 — Positive Meniscus, Concave to Object
+
+nd = 1.658, νd = 57.3. f = +44.25 mm.
+
+### L8 — Biconvex Positive
+
+nd = 1.697, νd = 55.5. f = +36.13 mm.
+
+## Glass Identification and Selection
+
+The patent prints an index Nd and an Abbe number Vd for each element, to three decimals and one decimal, and names no glass types or maker. At that precision the helium d line and the sodium D line cannot be told apart; the file takes the patent's "d" label as written.
+
+Four of the printed pairs agree with familiar catalogue glasses at the printed precision: 1.517 / 64.2 with BK7, 1.487 / 70.4 with FK5, 1.755 / 27.5 with SF4, and 1.805 / 25.5 with SF6. The other four (1.678 / 55.5, 1.640 / 60.2, 1.658 / 57.3 and 1.697 / 55.5) lie in the lanthanum-crown region and have not been matched to a catalogue glass. None of these names comes from the patent.
+
+## Focus Mechanism
+
+The patent describes focusing by moving the whole lens forward, with L5–L8 allowed to move at a different, linearly related rate from L1–L4. Tables 1–6 print the air space between L4 and L5 at infinity; Table 7 gives its value at 1:10. For Table 2 that space closes from 0.132 to 0.116 of the focal length, 3.70 mm to 3.25 mm at this scale.
+
+The model shows the infinity state only. The 1:10 state is not modelled, because the patent gives the changed air space but not the lens extension that goes with it.
+
+## Aspherical Surfaces
+
+There are none. All sixteen surfaces are spherical; one, the front of L5, is flat.
+
+## Conditional Expressions
+
+The patent sets four conditions. Values in the last column are computed from the printed table.
+
+| Condition                   | Patent's stated value for Table 2 | Computed from Table 2 |
+| --------------------------- | --------------------------------- | --------------------- |
+| (1) 0.7 F0 < \|F1\| < 1.0 F0 | 0.996                             | 1.002                 |
+| (2) 0.8 F0 < F2 < 1.1 F0    | 0.926                             | 0.929                 |
+| (3) 52 < (V1 + V2 + V3) / 3 < 70 | not stated                   | 63.4                  |
+| (4) 23 < V4 < 33            | 27.5                              | 27.5                  |
+
+The stated F1 sits just inside the upper bound of condition (1); the value computed from the rounded table falls just outside it, by 0.2%.
+
+## Back Focus, Stop and Field
+
+- **Scale.** Every radius, thickness and air space is the printed value multiplied by 28. Nothing else was adjusted.
+- **Image plane (inferred).** The patent prints the back focal length as 1.36 of the focal length, to two decimals only. The model places the image at the paraxial back focus of the printed table, 38.33 mm (1.3688). The patent's printed figures appear to be truncated paraxial values: Table 1 computes to 1.5969 against a printed 1.59, and Table 2 to 1.3688 against 1.36. Its field-curvature plots are drawn from the axial focus, and it gives no spherical-aberration plot or best-focus statement.
+- **Spherical aberration.** Traced exactly, the printed three-decimal prescription is undercorrected: the axial ray crosses 0.13, 0.15, 0.12 and 0.68 mm short of the paraxial focus at 0.5, 0.7, 0.85 and 1.0 of the f/2 pupil radius. Changing any single printed radius, thickness, air space or index by one digit, a transposition or a sign does not remove this, and claim 6 repeats Table 2 digit for digit, so the table is taken as printed. The steep fall at the edge of the pupil is probably an effect of the rounding.
+- **Stop (inferred).** The patent places the iris between L4 and L5 without a distance. The model splits that 3.70 mm air space into 1.67 mm and 2.02 mm. The stop is sized from the paraxial f/2 beam, a semi-diameter of 8.62 mm. Because of the marginal aberration, a real axial ray bundle through that stop has a radius of 6.46 mm at the front of the lens, about f/2.17.
+- **Semi-diameters (inferred).** The patent prints no clear apertures, and Figure 1 is a schematic of the Table 1 form. The rims are estimates. L6 and L7 would touch at their edges at a semi-diameter of 9.50 mm, which is also where a true f/2 marginal ray would pass, so the prescription itself limits how far those two elements can be opened.
+- **Field.** The patent states a 72° field and plots Table 2 to a half-field of 35°. The model's chief ray reaches the 21.65 mm corner of the 24 × 36 mm frame at 38.2°, slightly beyond the patent's stated field. Light at the corner is low: the full oblique bundle would need a semi-diameter of 13.4 mm at the rear of L6, well beyond the 9.50 mm contact limit, so most of the corner vignetting belongs to the design.
+
+## Sources
+
+1. US 4,258,980, "Retrofocus Lens", Jacob Moskovich, Vivitar Corporation, granted March 31, 1981: front page, Tables 1, 2 and 7, claim 6, Figures 1 and 4A–5B, certificate of correction. https://patents.google.com/patent/US4258980
+2. Lens listings for the Vivitar 28mm f/2 versions (lens-db.com; apotelyt.com Vivitar catalogue; Pentax Forums lens database), consulted for the production lens's element count, filter thread, minimum focus and makers.
