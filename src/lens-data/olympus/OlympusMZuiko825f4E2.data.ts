@@ -1,0 +1,3967 @@
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
+/** Derived cam experiment: published:false stations are calculated, never patent measurements. */
+const LENS_DATA = {
+  "schema": 2,
+  "key": "olympus-mzuiko-825-f4-e2",
+  "maker": "Olympus",
+  "name": "OLYMPUS M.ZUIKO DIGITAL ED 8\u201325mm f/4 PRO (representative Example 2)",
+  "visible": false,
+  "elements": [
+    {
+      "id": 1,
+      "name": "Published medium 1",
+      "type": "Lens",
+      "nd": 1.8707,
+      "vd": 40.73,
+      "indexReference": "d",
+      "glass": "Original nd/\u03bdd; supplier and melt unverified",
+      "label": "Element 1"
+    },
+    {
+      "id": 2,
+      "name": "Published medium 2",
+      "type": "Lens",
+      "nd": 1.58253,
+      "vd": 59.32,
+      "indexReference": "d",
+      "glass": "Original nd/\u03bdd; supplier and melt unverified",
+      "label": "Element 2"
+    },
+    {
+      "id": 3,
+      "name": "Published medium 3",
+      "type": "Lens",
+      "nd": 1.43875,
+      "vd": 94.66,
+      "indexReference": "d",
+      "glass": "Original nd/\u03bdd; supplier and melt unverified",
+      "label": "Element 3"
+    },
+    {
+      "id": 4,
+      "name": "Published medium 4",
+      "type": "Lens",
+      "nd": 1.95375,
+      "vd": 32.32,
+      "indexReference": "d",
+      "glass": "Original nd/\u03bdd; supplier and melt unverified",
+      "label": "Element 4"
+    },
+    {
+      "id": 5,
+      "name": "Published medium 5",
+      "type": "Lens",
+      "nd": 1.65412,
+      "vd": 39.68,
+      "indexReference": "d",
+      "glass": "Original nd/\u03bdd; supplier and melt unverified",
+      "label": "Element 5"
+    },
+    {
+      "id": 6,
+      "name": "Published medium 6",
+      "type": "Lens",
+      "nd": 1.8707,
+      "vd": 40.73,
+      "indexReference": "d",
+      "glass": "Original nd/\u03bdd; supplier and melt unverified",
+      "label": "Element 6"
+    },
+    {
+      "id": 7,
+      "name": "Published medium 7",
+      "type": "Lens",
+      "nd": 1.51633,
+      "vd": 64.14,
+      "indexReference": "d",
+      "glass": "Original nd/\u03bdd; supplier and melt unverified",
+      "label": "Element 7"
+    },
+    {
+      "id": 8,
+      "name": "Published medium 8",
+      "type": "Lens",
+      "nd": 1.8707,
+      "vd": 40.73,
+      "indexReference": "d",
+      "glass": "Original nd/\u03bdd; supplier and melt unverified",
+      "label": "Element 8"
+    },
+    {
+      "id": 9,
+      "name": "Published medium 9",
+      "type": "Lens",
+      "nd": 1.8515,
+      "vd": 40.78,
+      "indexReference": "d",
+      "glass": "Original nd/\u03bdd; supplier and melt unverified",
+      "label": "Element 9"
+    },
+    {
+      "id": 10,
+      "name": "Published medium 10",
+      "type": "Lens",
+      "nd": 1.91082,
+      "vd": 35.25,
+      "indexReference": "d",
+      "glass": "Original nd/\u03bdd; supplier and melt unverified",
+      "label": "Element 10"
+    },
+    {
+      "id": 11,
+      "name": "Published medium 11",
+      "type": "Lens",
+      "nd": 1.4965,
+      "vd": 81.53,
+      "indexReference": "d",
+      "glass": "Original nd/\u03bdd; supplier and melt unverified",
+      "label": "Element 11"
+    },
+    {
+      "id": 12,
+      "name": "Published medium 12",
+      "type": "Lens",
+      "nd": 1.94595,
+      "vd": 17.98,
+      "indexReference": "d",
+      "glass": "Original nd/\u03bdd; supplier and melt unverified",
+      "label": "Element 12"
+    },
+    {
+      "id": 13,
+      "name": "Published medium 13",
+      "type": "Lens",
+      "nd": 1.72916,
+      "vd": 54.09,
+      "indexReference": "d",
+      "glass": "Original nd/\u03bdd; supplier and melt unverified",
+      "label": "Element 13"
+    },
+    {
+      "id": 14,
+      "name": "Published medium 14",
+      "type": "Lens",
+      "nd": 1.4965,
+      "vd": 81.53,
+      "indexReference": "d",
+      "glass": "Original nd/\u03bdd; supplier and melt unverified",
+      "label": "Element 14"
+    },
+    {
+      "id": 15,
+      "name": "Published medium 15",
+      "type": "Lens",
+      "nd": 2.001,
+      "vd": 29.13,
+      "indexReference": "d",
+      "glass": "Original nd/\u03bdd; supplier and melt unverified",
+      "label": "Element 15"
+    },
+    {
+      "id": 16,
+      "name": "Published medium 16",
+      "type": "Lens",
+      "nd": 1.497,
+      "vd": 81.54,
+      "indexReference": "d",
+      "glass": "Original nd/\u03bdd; supplier and melt unverified",
+      "label": "Element 16"
+    }
+  ],
+  "surfaces": [
+    {
+      "label": "1",
+      "R": 46.327,
+      "d": 2.5,
+      "sd": 19.96,
+      "medium": 1
+    },
+    {
+      "label": "2",
+      "R": 17.9,
+      "d": 4,
+      "sd": 15.5
+    },
+    {
+      "label": "3",
+      "R": 19.926,
+      "d": 2.5,
+      "sd": 14.5,
+      "medium": 2,
+      "asphere": {
+        "K": -0.764,
+        "A4": 2.31201e-07,
+        "A6": -1.2796e-07,
+        "A8": 6.11189e-11,
+        "A10": 2.62381e-12,
+        "A12": -5.25132e-15
+      }
+    },
+    {
+      "label": "4",
+      "R": 9.332,
+      "d": 10,
+      "sd": 11.5,
+      "asphere": {
+        "K": -2,
+        "A4": 0.000173256,
+        "A6": -1.12048e-06,
+        "A8": 2.10241e-09,
+        "A10": 1.31211e-11,
+        "A12": -4.12883e-14
+      }
+    },
+    {
+      "label": "5",
+      "R": -33.734,
+      "d": 1.5,
+      "sd": 11.5,
+      "medium": 3
+    },
+    {
+      "label": "6",
+      "R": 23.614,
+      "d": 4.07,
+      "sd": 11.5,
+      "medium": 4
+    },
+    {
+      "label": "7",
+      "R": 97.69,
+      "sd": 11.5
+    },
+    {
+      "label": "8",
+      "R": 110.972,
+      "d": 3.94,
+      "sd": 7,
+      "medium": 5
+    },
+    {
+      "label": "9",
+      "R": -17.583,
+      "d": 0.82,
+      "sd": 7,
+      "medium": 6
+    },
+    {
+      "label": "10",
+      "R": -86.483,
+      "d": 1.2,
+      "sd": 7
+    },
+    {
+      "label": "STO",
+      "R": "flat"
+    },
+    {
+      "label": "12",
+      "R": 36.832,
+      "d": 5,
+      "sd": 9.5,
+      "medium": 7
+    },
+    {
+      "label": "13",
+      "R": -15.143,
+      "d": 0.8,
+      "sd": 9.5,
+      "medium": 8
+    },
+    {
+      "label": "14",
+      "R": -419.457,
+      "d": 0.2,
+      "sd": 9.5
+    },
+    {
+      "label": "15",
+      "R": 46.749,
+      "d": 3.7,
+      "sd": 10,
+      "medium": 9
+    },
+    {
+      "label": "16",
+      "R": -46.749,
+      "d": 2.87,
+      "sd": 10
+    },
+    {
+      "label": "17",
+      "R": 38.545,
+      "d": 1.1,
+      "sd": 11,
+      "medium": 10
+    },
+    {
+      "label": "18",
+      "R": 14.392,
+      "d": 8.3,
+      "sd": 11,
+      "medium": 11
+    },
+    {
+      "label": "19",
+      "R": -28.862,
+      "sd": 11,
+      "asphere": {
+        "K": 0,
+        "A4": 1.24216e-05,
+        "A6": -2.95451e-08,
+        "A8": 9.23569e-11,
+        "A10": -1.67505e-12
+      }
+    },
+    {
+      "label": "20",
+      "R": 160.981,
+      "d": 2.3,
+      "sd": 9,
+      "medium": 12
+    },
+    {
+      "label": "21",
+      "R": -55.52,
+      "d": 0.85,
+      "sd": 9,
+      "medium": 13
+    },
+    {
+      "label": "22",
+      "R": 21.035,
+      "sd": 9
+    },
+    {
+      "label": "23",
+      "R": 18.4,
+      "d": 7.6,
+      "sd": 12,
+      "medium": 14,
+      "asphere": {
+        "K": 0,
+        "A4": -1.61602e-05,
+        "A6": -1.1656e-07,
+        "A8": 5.50493e-10,
+        "A10": -2.28948e-12
+      }
+    },
+    {
+      "label": "24",
+      "R": -35.483,
+      "d": 0.2,
+      "sd": 12,
+      "asphere": {
+        "K": 0,
+        "A4": 2.17979e-05,
+        "A6": -1.66279e-07,
+        "A8": 8.65173e-10,
+        "A10": -2.46047e-12
+      }
+    },
+    {
+      "label": "25",
+      "R": 600,
+      "d": 1.3,
+      "sd": 12,
+      "medium": 15
+    },
+    {
+      "label": "26",
+      "R": 19.257,
+      "d": 5.98,
+      "sd": 12,
+      "medium": 16
+    },
+    {
+      "label": "27",
+      "R": -71.584,
+      "sd": 12
+    }
+  ],
+  "layout": {
+    "yScFill": 0.7
+  },
+  "aperture": {
+    "fStops": [
+      4.08
+    ]
+  },
+  "focus": {
+    "closeFocusM": 1000000000000000.0,
+    "keyframes": [
+      0,
+      1
+    ],
+    "description": "Infinity only. Original source rows at zoom 0, 0.5 and 1 retained exactly. Other rows are calculated axial group translations that preserve total track/image plane at each zoom and interpolate source paraxial focus residuals; not a measured factory cam path or finite-focus model."
+  },
+  "projection": {
+    "kind": "rectilinear"
+  },
+  "checks": {
+    "gapSagFrac": 0.9
+  },
+  "catalog": {
+    "lensMounts": [
+      "micro-four-thirds"
+    ],
+    "imageFormat": "four-thirds",
+    "elementCount": 16,
+    "groupCount": 10,
+    "imageCircleMm": 21.63,
+    "focalLengthMm": {
+      "marketing": [
+        8,
+        25
+      ],
+      "design": [
+        8.16,
+        24.51
+      ]
+    },
+    "fNumber": {
+      "marketing": 4,
+      "design": 4.08
+    },
+    "specs": [
+      "3 PUBLISHED + 126 CALCULATED INFINITY ZOOM STATIONS",
+      "INFINITY ONLY",
+      "REPRESENTATIVE E2; NOT FACTORY-EXACT",
+      "INFERRED CLEAR APERTURES",
+      "DERIVED CAM EXPERIMENT; INTEGRATION QA PENDING"
+    ]
+  },
+  "source": {
+    "patentNumber": "WO 2022/137385 A1",
+    "patentYear": 2022,
+    "example": {
+      "label": "Example 2",
+      "id": "2"
+    },
+    "authors": [
+      "Yuki Zen",
+      "Koji Nakagawa",
+      "Yasuharu Yamada"
+    ],
+    "assignees": [
+      "Olympus Corporation"
+    ],
+    "errata": [
+      {
+        "status": "unresolved",
+        "note": "Rounded literal spacings sum131.40/122.62/124.79mm versus printed totals131.41/122.63/124.79mm. Literal spacings retained; no repair. Product example is representative, not unique factory selector."
+      }
+    ]
+  },
+  "zoom": {
+    "stations": [
+      {
+        "focalLengthMm": 8.16,
+        "nominalFNumber": 4.08,
+        "label": "Source infinity 8.16166 mm",
+        "published": true,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 8.222558865914236,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 8.22256 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 8.28413454568394,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 8.28413 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 8.346397888067525,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 8.34640 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 8.4093607210685,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 8.40936 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 8.473035136506743,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 8.47304 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 8.53743349724096,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 8.53743 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 8.602568444618445,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 8.60257 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 8.668452906160036,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 8.66845 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 8.735100103488248,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 8.73510 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 8.802523560507012,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 8.80252 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 8.87073711184159,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 8.87074 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 8.939754911547656,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 8.93975 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 9.009591442098575,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 9.00959 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 9.080261523660617,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 9.08026 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 9.151780323665662,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 9.15178 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 9.22416336669176,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 9.22416 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 9.297426544661644,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 9.29743 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 9.371586127370259,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 9.37159 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 9.446658773352047,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 9.44666 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 9.522661541099577,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 9.52266 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 9.599611900645005,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 9.59961 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 9.677527745516441,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 9.67753 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 9.756427405081439,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 9.75643 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 9.836329657290237,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 9.83633 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 9.91725374183155,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 9.91725 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 9.99921937371401,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 9.99922 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 10.082246757286793,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 10.08225 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 10.166356600712817,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 10.16636 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 10.251570130908558,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 10.25157 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 10.33790910896434,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 10.33791 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 10.425395846059267,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 10.42540 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 10.514053219885074,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 10.51405 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 10.603904691593172,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 10.60390 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 10.69497432327903,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 10.69497 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 10.787286796018263,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 10.78729 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 10.880867428468251,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 10.88087 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 10.975742196049023,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 10.97574 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 11.071937750716865,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 11.07194 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 11.169481441343276,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 11.16948 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 11.2684013347116,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 11.26840 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 11.368726237142528,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 11.36873 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 11.470485716758736,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 11.47049 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 11.573710126397748,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 11.57371 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 11.678430627180399,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 11.67843 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 11.784679212740555,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 11.78468 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 11.892488734119627,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 11.89249 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 12.001892925326645,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 12.00189 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 12.112926429561917,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 12.11293 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 12.225624826098525,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 12.22562 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 12.34002465781194,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 12.34002 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 12.45616345934325,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 12.45616 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 12.574079785875817,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 12.57408 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 12.693813242498948,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 12.69381 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 12.815404514124618,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 12.81540 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 12.93889539591476,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 12.93890 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 13.064328824166786,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 13.06433 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 13.191748907593697,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 13.19175 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 13.32120095892197,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 13.32120 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 13.452731526715631,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 13.45273 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 13.586388427317539,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 13.58639 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 13.722220776779231,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 13.72222 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 13.860279022627939,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 13.86028 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 14.000614975293553,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 14.00061 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 14.14,
+        "nominalFNumber": 4.08,
+        "label": "Source infinity 14.14328 mm",
+        "published": true,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 14.251721803533163,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 14.25172 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 14.361344501433736,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 14.36134 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 14.472168747974935,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 14.47217 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 14.584213716622664,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 14.58421 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 14.697498945781442,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 14.69750 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 14.812044345587585,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 14.81204 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 14.927870204727016,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 14.92787 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 15.044997197265502,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 15.04500 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 15.163446389477379,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 15.16345 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 15.283239246657406,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 15.28324 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 15.404397639898384,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 15.40440 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 15.526943852815192,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 15.52694 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 15.650900588193796,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 15.65090 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 15.776290974541102,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 15.77629 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 15.903138572509055,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 15.90314 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 16.031467381163356,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 16.03147 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 16.1613018440637,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 16.16130 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 16.292666855119283,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 16.29267 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 16.425587764178793,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 16.42559 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 16.56009038231028,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 16.56009 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 16.696200986721017,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 16.69620 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 16.83394632526254,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 16.83395 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 16.973353620459896,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 16.97335 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 17.114450572997807,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 17.11445 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 17.25726536458946,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 17.25727 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 17.401826660145343,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 17.40183 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 17.548163609151395,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 17.54816 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 17.696305846155838,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 17.69631 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 17.846283490253253,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 17.84628 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 17.99812714344331,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 17.99813 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 18.151867887728027,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 18.15187 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 18.307537280797348,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 18.30754 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 18.465167350136927,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 18.46517 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 18.624790585374235,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 18.62479 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 18.78643992865982,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 18.78644 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 18.950148762858632,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 18.95015 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 19.115950897302522,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 19.11595 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 19.283880550828094,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 19.28388 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 19.4539723317947,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 19.45397 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 19.62626121474416,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 19.62626 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 19.800782513327093,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 19.80078 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 19.97757184908001,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 19.97757 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 20.15666511559169,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 20.15667 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 20.33809843754632,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 20.33810 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 20.521908124074727,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 20.52191 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 20.70813061578076,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 20.70813 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 20.896802424740027,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 20.89680 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 21.087960066687906,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 21.08796 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 21.281639984525654,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 21.28164 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 21.477878462173226,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 21.47788 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 21.676711527685868,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 21.67671 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 21.8781748444257,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 21.87817 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 22.082303588938153,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 22.08230 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 22.289132314023817,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 22.28913 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 22.498694795316744,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 22.49869 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 22.711023859477613,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 22.71102 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 22.92615119188105,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 22.92615 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 23.144107121416987,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 23.14411 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 23.364920379732673,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 23.36492 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 23.588617831907936,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 23.58862 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 23.81522417517801,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 23.81522 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 24.04476160188694,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 24.04476 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 24.27724942236292,
+        "nominalFNumber": 4.08,
+        "label": "Calculated infinity; not published 24.27725 mm",
+        "published": false,
+        "publishedFocus": []
+      },
+      {
+        "focalLengthMm": 24.51,
+        "nominalFNumber": 4.08,
+        "label": "Source infinity 24.51270 mm",
+        "published": true,
+        "publishedFocus": []
+      }
+    ],
+    "apertureModel": "from-nominal-fno"
+  },
+  "gaps": {
+    "7": {
+      "values": [
+        [
+          24.1,
+          24.1
+        ],
+        [
+          23.911093750000003,
+          23.911093750000003
+        ],
+        [
+          23.7221875,
+          23.7221875
+        ],
+        [
+          23.53328125,
+          23.53328125
+        ],
+        [
+          23.344375000000003,
+          23.344375000000003
+        ],
+        [
+          23.15546875,
+          23.15546875
+        ],
+        [
+          22.966562500000002,
+          22.966562500000002
+        ],
+        [
+          22.77765625,
+          22.77765625
+        ],
+        [
+          22.58875,
+          22.58875
+        ],
+        [
+          22.399843750000002,
+          22.399843750000002
+        ],
+        [
+          22.2109375,
+          22.2109375
+        ],
+        [
+          22.02203125,
+          22.02203125
+        ],
+        [
+          21.833125000000003,
+          21.833125000000003
+        ],
+        [
+          21.64421875,
+          21.64421875
+        ],
+        [
+          21.4553125,
+          21.4553125
+        ],
+        [
+          21.266406250000003,
+          21.266406250000003
+        ],
+        [
+          21.0775,
+          21.0775
+        ],
+        [
+          20.888593750000002,
+          20.888593750000002
+        ],
+        [
+          20.6996875,
+          20.6996875
+        ],
+        [
+          20.51078125,
+          20.51078125
+        ],
+        [
+          20.321875000000002,
+          20.321875000000002
+        ],
+        [
+          20.13296875,
+          20.13296875
+        ],
+        [
+          19.9440625,
+          19.9440625
+        ],
+        [
+          19.75515625,
+          19.75515625
+        ],
+        [
+          19.56625,
+          19.56625
+        ],
+        [
+          19.37734375,
+          19.37734375
+        ],
+        [
+          19.1884375,
+          19.1884375
+        ],
+        [
+          18.99953125,
+          18.99953125
+        ],
+        [
+          18.810625,
+          18.810625
+        ],
+        [
+          18.62171875,
+          18.62171875
+        ],
+        [
+          18.4328125,
+          18.4328125
+        ],
+        [
+          18.243906250000002,
+          18.243906250000002
+        ],
+        [
+          18.055,
+          18.055
+        ],
+        [
+          17.86609375,
+          17.86609375
+        ],
+        [
+          17.677187500000002,
+          17.677187500000002
+        ],
+        [
+          17.48828125,
+          17.48828125
+        ],
+        [
+          17.299375,
+          17.299375
+        ],
+        [
+          17.110468750000003,
+          17.110468750000003
+        ],
+        [
+          16.9215625,
+          16.9215625
+        ],
+        [
+          16.73265625,
+          16.73265625
+        ],
+        [
+          16.54375,
+          16.54375
+        ],
+        [
+          16.35484375,
+          16.35484375
+        ],
+        [
+          16.1659375,
+          16.1659375
+        ],
+        [
+          15.97703125,
+          15.97703125
+        ],
+        [
+          15.788125,
+          15.788125
+        ],
+        [
+          15.59921875,
+          15.59921875
+        ],
+        [
+          15.4103125,
+          15.4103125
+        ],
+        [
+          15.22140625,
+          15.22140625
+        ],
+        [
+          15.0325,
+          15.0325
+        ],
+        [
+          14.84359375,
+          14.84359375
+        ],
+        [
+          14.6546875,
+          14.6546875
+        ],
+        [
+          14.465781250000001,
+          14.465781250000001
+        ],
+        [
+          14.276875,
+          14.276875
+        ],
+        [
+          14.08796875,
+          14.08796875
+        ],
+        [
+          13.8990625,
+          13.8990625
+        ],
+        [
+          13.71015625,
+          13.71015625
+        ],
+        [
+          13.52125,
+          13.52125
+        ],
+        [
+          13.33234375,
+          13.33234375
+        ],
+        [
+          13.1434375,
+          13.1434375
+        ],
+        [
+          12.95453125,
+          12.95453125
+        ],
+        [
+          12.765625,
+          12.765625
+        ],
+        [
+          12.57671875,
+          12.57671875
+        ],
+        [
+          12.387812499999999,
+          12.387812499999999
+        ],
+        [
+          12.19890625,
+          12.19890625
+        ],
+        [
+          12.01,
+          12.01
+        ],
+        [
+          11.84734375,
+          11.84734375
+        ],
+        [
+          11.684687499999999,
+          11.684687499999999
+        ],
+        [
+          11.52203125,
+          11.52203125
+        ],
+        [
+          11.359375,
+          11.359375
+        ],
+        [
+          11.19671875,
+          11.19671875
+        ],
+        [
+          11.0340625,
+          11.0340625
+        ],
+        [
+          10.87140625,
+          10.87140625
+        ],
+        [
+          10.70875,
+          10.70875
+        ],
+        [
+          10.54609375,
+          10.54609375
+        ],
+        [
+          10.3834375,
+          10.3834375
+        ],
+        [
+          10.22078125,
+          10.22078125
+        ],
+        [
+          10.058125,
+          10.058125
+        ],
+        [
+          9.89546875,
+          9.89546875
+        ],
+        [
+          9.7328125,
+          9.7328125
+        ],
+        [
+          9.57015625,
+          9.57015625
+        ],
+        [
+          9.407499999999999,
+          9.407499999999999
+        ],
+        [
+          9.24484375,
+          9.24484375
+        ],
+        [
+          9.0821875,
+          9.0821875
+        ],
+        [
+          8.91953125,
+          8.91953125
+        ],
+        [
+          8.756875,
+          8.756875
+        ],
+        [
+          8.59421875,
+          8.59421875
+        ],
+        [
+          8.4315625,
+          8.4315625
+        ],
+        [
+          8.26890625,
+          8.26890625
+        ],
+        [
+          8.10625,
+          8.10625
+        ],
+        [
+          7.94359375,
+          7.94359375
+        ],
+        [
+          7.780937499999999,
+          7.780937499999999
+        ],
+        [
+          7.61828125,
+          7.61828125
+        ],
+        [
+          7.4556249999999995,
+          7.4556249999999995
+        ],
+        [
+          7.29296875,
+          7.29296875
+        ],
+        [
+          7.1303125,
+          7.1303125
+        ],
+        [
+          6.96765625,
+          6.96765625
+        ],
+        [
+          6.805,
+          6.805
+        ],
+        [
+          6.642343749999999,
+          6.642343749999999
+        ],
+        [
+          6.4796875,
+          6.4796875
+        ],
+        [
+          6.317031249999999,
+          6.317031249999999
+        ],
+        [
+          6.154375,
+          6.154375
+        ],
+        [
+          5.9917187499999995,
+          5.9917187499999995
+        ],
+        [
+          5.8290625,
+          5.8290625
+        ],
+        [
+          5.66640625,
+          5.66640625
+        ],
+        [
+          5.50375,
+          5.50375
+        ],
+        [
+          5.34109375,
+          5.34109375
+        ],
+        [
+          5.178437499999999,
+          5.178437499999999
+        ],
+        [
+          5.01578125,
+          5.01578125
+        ],
+        [
+          4.8531249999999995,
+          4.8531249999999995
+        ],
+        [
+          4.69046875,
+          4.69046875
+        ],
+        [
+          4.5278125,
+          4.5278125
+        ],
+        [
+          4.36515625,
+          4.36515625
+        ],
+        [
+          4.2025,
+          4.2025
+        ],
+        [
+          4.039843749999999,
+          4.039843749999999
+        ],
+        [
+          3.8771875,
+          3.8771875
+        ],
+        [
+          3.7145312500000003,
+          3.7145312500000003
+        ],
+        [
+          3.551874999999999,
+          3.551874999999999
+        ],
+        [
+          3.3892187499999995,
+          3.3892187499999995
+        ],
+        [
+          3.2265625,
+          3.2265625
+        ],
+        [
+          3.0639062500000005,
+          3.0639062500000005
+        ],
+        [
+          2.901249999999999,
+          2.901249999999999
+        ],
+        [
+          2.7385937499999997,
+          2.7385937499999997
+        ],
+        [
+          2.5759375,
+          2.5759375
+        ],
+        [
+          2.413281249999999,
+          2.413281249999999
+        ],
+        [
+          2.2506249999999994,
+          2.2506249999999994
+        ],
+        [
+          2.08796875,
+          2.08796875
+        ],
+        [
+          1.9253125000000004,
+          1.9253125000000004
+        ],
+        [
+          1.7626562499999991,
+          1.7626562499999991
+        ],
+        [
+          1.6,
+          1.6
+        ]
+      ]
+    },
+    "STO": {
+      "values": [
+        [
+          15.09,
+          15.09
+        ],
+        [
+          14.930625,
+          14.930625
+        ],
+        [
+          14.77125,
+          14.77125
+        ],
+        [
+          14.611875,
+          14.611875
+        ],
+        [
+          14.4525,
+          14.4525
+        ],
+        [
+          14.293125,
+          14.293125
+        ],
+        [
+          14.13375,
+          14.13375
+        ],
+        [
+          13.974375,
+          13.974375
+        ],
+        [
+          13.815,
+          13.815
+        ],
+        [
+          13.655625,
+          13.655625
+        ],
+        [
+          13.49625,
+          13.49625
+        ],
+        [
+          13.336875,
+          13.336875
+        ],
+        [
+          13.1775,
+          13.1775
+        ],
+        [
+          13.018125,
+          13.018125
+        ],
+        [
+          12.85875,
+          12.85875
+        ],
+        [
+          12.699375,
+          12.699375
+        ],
+        [
+          12.54,
+          12.54
+        ],
+        [
+          12.380625,
+          12.380625
+        ],
+        [
+          12.22125,
+          12.22125
+        ],
+        [
+          12.061875,
+          12.061875
+        ],
+        [
+          11.9025,
+          11.9025
+        ],
+        [
+          11.743125,
+          11.743125
+        ],
+        [
+          11.58375,
+          11.58375
+        ],
+        [
+          11.424375,
+          11.424375
+        ],
+        [
+          11.265,
+          11.265
+        ],
+        [
+          11.105625,
+          11.105625
+        ],
+        [
+          10.94625,
+          10.94625
+        ],
+        [
+          10.786875,
+          10.786875
+        ],
+        [
+          10.627500000000001,
+          10.627500000000001
+        ],
+        [
+          10.468125,
+          10.468125
+        ],
+        [
+          10.30875,
+          10.30875
+        ],
+        [
+          10.149375,
+          10.149375
+        ],
+        [
+          9.99,
+          9.99
+        ],
+        [
+          9.830625000000001,
+          9.830625000000001
+        ],
+        [
+          9.67125,
+          9.67125
+        ],
+        [
+          9.511875,
+          9.511875
+        ],
+        [
+          9.3525,
+          9.3525
+        ],
+        [
+          9.193125,
+          9.193125
+        ],
+        [
+          9.033750000000001,
+          9.033750000000001
+        ],
+        [
+          8.874375,
+          8.874375
+        ],
+        [
+          8.715,
+          8.715
+        ],
+        [
+          8.555625,
+          8.555625
+        ],
+        [
+          8.39625,
+          8.39625
+        ],
+        [
+          8.236875000000001,
+          8.236875000000001
+        ],
+        [
+          8.0775,
+          8.0775
+        ],
+        [
+          7.918125000000001,
+          7.918125000000001
+        ],
+        [
+          7.75875,
+          7.75875
+        ],
+        [
+          7.599375,
+          7.599375
+        ],
+        [
+          7.44,
+          7.44
+        ],
+        [
+          7.280625000000001,
+          7.280625000000001
+        ],
+        [
+          7.121250000000001,
+          7.121250000000001
+        ],
+        [
+          6.961875000000001,
+          6.961875000000001
+        ],
+        [
+          6.8025,
+          6.8025
+        ],
+        [
+          6.643125000000001,
+          6.643125000000001
+        ],
+        [
+          6.483750000000001,
+          6.483750000000001
+        ],
+        [
+          6.324375,
+          6.324375
+        ],
+        [
+          6.165000000000001,
+          6.165000000000001
+        ],
+        [
+          6.005625,
+          6.005625
+        ],
+        [
+          5.846250000000001,
+          5.846250000000001
+        ],
+        [
+          5.686875000000001,
+          5.686875000000001
+        ],
+        [
+          5.5275,
+          5.5275
+        ],
+        [
+          5.368125000000001,
+          5.368125000000001
+        ],
+        [
+          5.20875,
+          5.20875
+        ],
+        [
+          5.049375000000001,
+          5.049375000000001
+        ],
+        [
+          4.89,
+          4.89
+        ],
+        [
+          4.838593749999999,
+          4.838593749999999
+        ],
+        [
+          4.7871875,
+          4.7871875
+        ],
+        [
+          4.73578125,
+          4.73578125
+        ],
+        [
+          4.684374999999999,
+          4.684374999999999
+        ],
+        [
+          4.63296875,
+          4.63296875
+        ],
+        [
+          4.5815624999999995,
+          4.5815624999999995
+        ],
+        [
+          4.53015625,
+          4.53015625
+        ],
+        [
+          4.47875,
+          4.47875
+        ],
+        [
+          4.4273437499999995,
+          4.4273437499999995
+        ],
+        [
+          4.3759375,
+          4.3759375
+        ],
+        [
+          4.32453125,
+          4.32453125
+        ],
+        [
+          4.273124999999999,
+          4.273124999999999
+        ],
+        [
+          4.22171875,
+          4.22171875
+        ],
+        [
+          4.1703125,
+          4.1703125
+        ],
+        [
+          4.11890625,
+          4.11890625
+        ],
+        [
+          4.0675,
+          4.0675
+        ],
+        [
+          4.01609375,
+          4.01609375
+        ],
+        [
+          3.9646874999999997,
+          3.9646874999999997
+        ],
+        [
+          3.91328125,
+          3.91328125
+        ],
+        [
+          3.8618749999999995,
+          3.8618749999999995
+        ],
+        [
+          3.81046875,
+          3.81046875
+        ],
+        [
+          3.7590624999999998,
+          3.7590624999999998
+        ],
+        [
+          3.70765625,
+          3.70765625
+        ],
+        [
+          3.65625,
+          3.65625
+        ],
+        [
+          3.6048437499999997,
+          3.6048437499999997
+        ],
+        [
+          3.5534375,
+          3.5534375
+        ],
+        [
+          3.50203125,
+          3.50203125
+        ],
+        [
+          3.4506249999999996,
+          3.4506249999999996
+        ],
+        [
+          3.39921875,
+          3.39921875
+        ],
+        [
+          3.3478125,
+          3.3478125
+        ],
+        [
+          3.29640625,
+          3.29640625
+        ],
+        [
+          3.245,
+          3.245
+        ],
+        [
+          3.19359375,
+          3.19359375
+        ],
+        [
+          3.1421875,
+          3.1421875
+        ],
+        [
+          3.09078125,
+          3.09078125
+        ],
+        [
+          3.0393749999999997,
+          3.0393749999999997
+        ],
+        [
+          2.98796875,
+          2.98796875
+        ],
+        [
+          2.9365625,
+          2.9365625
+        ],
+        [
+          2.88515625,
+          2.88515625
+        ],
+        [
+          2.8337499999999998,
+          2.8337499999999998
+        ],
+        [
+          2.78234375,
+          2.78234375
+        ],
+        [
+          2.7309375,
+          2.7309375
+        ],
+        [
+          2.67953125,
+          2.67953125
+        ],
+        [
+          2.628125,
+          2.628125
+        ],
+        [
+          2.57671875,
+          2.57671875
+        ],
+        [
+          2.5253125,
+          2.5253125
+        ],
+        [
+          2.47390625,
+          2.47390625
+        ],
+        [
+          2.4225,
+          2.4225
+        ],
+        [
+          2.37109375,
+          2.37109375
+        ],
+        [
+          2.3196875,
+          2.3196875
+        ],
+        [
+          2.26828125,
+          2.26828125
+        ],
+        [
+          2.216875,
+          2.216875
+        ],
+        [
+          2.16546875,
+          2.16546875
+        ],
+        [
+          2.1140625,
+          2.1140625
+        ],
+        [
+          2.06265625,
+          2.06265625
+        ],
+        [
+          2.01125,
+          2.01125
+        ],
+        [
+          1.95984375,
+          1.95984375
+        ],
+        [
+          1.9084375000000002,
+          1.9084375000000002
+        ],
+        [
+          1.85703125,
+          1.85703125
+        ],
+        [
+          1.805625,
+          1.805625
+        ],
+        [
+          1.7542187500000002,
+          1.7542187500000002
+        ],
+        [
+          1.7028125000000003,
+          1.7028125000000003
+        ],
+        [
+          1.65140625,
+          1.65140625
+        ],
+        [
+          1.6,
+          1.6
+        ]
+      ]
+    },
+    "19": {
+      "values": [
+        [
+          2.85,
+          2.85
+        ],
+        [
+          2.9058827232710853,
+          2.9058827232710853
+        ],
+        [
+          2.9630064035257195,
+          2.9630064035257195
+        ],
+        [
+          3.0213913718435803,
+          3.0213913718435803
+        ],
+        [
+          3.0810585333414124,
+          3.0810585333414124
+        ],
+        [
+          3.1420293854738386,
+          3.1420293854738386
+        ],
+        [
+          3.204326037076121,
+          3.204326037076121
+        ],
+        [
+          3.267971228182736,
+          3.267971228182736
+        ],
+        [
+          3.332988350658713,
+          3.332988350658713
+        ],
+        [
+          3.399401469681706,
+          3.399401469681706
+        ],
+        [
+          3.467235346115565,
+          3.467235346115565
+        ],
+        [
+          3.53651545981788,
+          3.53651545981788
+        ],
+        [
+          3.6072680339269967,
+          3.6072680339269967
+        ],
+        [
+          3.679520060175485,
+          3.679520060175485
+        ],
+        [
+          3.753299325281203,
+          3.753299325281203
+        ],
+        [
+          3.8286344384683915,
+          3.8286344384683915
+        ],
+        [
+          3.9055548601757364,
+          3.9055548601757364
+        ],
+        [
+          3.984090932010063,
+          3.984090932010063
+        ],
+        [
+          4.064273908009682,
+          4.064273908009682
+        ],
+        [
+          4.146135987282905,
+          4.146135987282905
+        ],
+        [
+          4.22971034809316,
+          4.22971034809316
+        ],
+        [
+          4.315031183464942,
+          4.315031183464942
+        ],
+        [
+          4.402133738390235,
+          4.402133738390235
+        ],
+        [
+          4.491054348718949,
+          4.491054348718949
+        ],
+        [
+          4.581830481823076,
+          4.581830481823076
+        ],
+        [
+          4.674500779128708,
+          4.674500779128708
+        ],
+        [
+          4.7691051006164304,
+          4.7691051006164304
+        ],
+        [
+          4.865684571397175,
+          4.865684571397175
+        ],
+        [
+          4.964281630476181,
+          4.964281630476181
+        ],
+        [
+          5.064940081826327,
+          5.064940081826327
+        ],
+        [
+          5.167705147898809,
+          5.167705147898809
+        ],
+        [
+          5.272623525707267,
+          5.272623525707267
+        ],
+        [
+          5.379743445631425,
+          5.379743445631425
+        ],
+        [
+          5.489114733094473,
+          5.489114733094473
+        ],
+        [
+          5.600788873279376,
+          5.600788873279376
+        ],
+        [
+          5.714819079060273,
+          5.714819079060273
+        ],
+        [
+          5.831260362336566,
+          5.831260362336566
+        ],
+        [
+          5.950169608970064,
+          5.950169608970064
+        ],
+        [
+          6.071605657539813,
+          6.071605657539813
+        ],
+        [
+          6.195629382142911,
+          6.195629382142911
+        ],
+        [
+          6.322303779486571,
+          6.322303779486571
+        ],
+        [
+          6.451694060533054,
+          6.451694060533054
+        ],
+        [
+          6.58386774697791,
+          6.58386774697791
+        ],
+        [
+          6.718894772862374,
+          6.718894772862374
+        ],
+        [
+          6.8568475916413565,
+          6.8568475916413565
+        ],
+        [
+          6.9978012890530685,
+          6.9978012890530685
+        ],
+        [
+          7.141833702160644,
+          7.141833702160644
+        ],
+        [
+          7.289025544964508,
+          7.289025544964508
+        ],
+        [
+          7.4394605410131955,
+          7.4394605410131955
+        ],
+        [
+          7.593225563473059,
+          7.593225563473059
+        ],
+        [
+          7.75041078315269,
+          7.75041078315269
+        ],
+        [
+          7.911109825015407,
+          7.911109825015407
+        ],
+        [
+          8.075419933755011,
+          8.075419933755011
+        ],
+        [
+          8.243442149055504,
+          8.243442149055504
+        ],
+        [
+          8.415281491204354,
+          8.415281491204354
+        ],
+        [
+          8.591047157782675,
+          8.591047157782675
+        ],
+        [
+          8.770852732214543,
+          8.770852732214543
+        ],
+        [
+          8.954816405021838,
+          8.954816405021838
+        ],
+        [
+          9.143061208700715,
+          9.143061208700715
+        ],
+        [
+          9.33571526721353,
+          9.33571526721353
+        ],
+        [
+          9.532912061172862,
+          9.532912061172862
+        ],
+        [
+          9.734790709887978,
+          9.734790709887978
+        ],
+        [
+          9.941496271544437,
+          9.941496271544437
+        ],
+        [
+          10.153180062899684,
+          10.153180062899684
+        ],
+        [
+          10.37,
+          10.37
+        ],
+        [
+          10.499377094735724,
+          10.499377094735724
+        ],
+        [
+          10.63104624820743,
+          10.63104624820743
+        ],
+        [
+          10.76505163055781,
+          10.76505163055781
+        ],
+        [
+          10.901438693505792,
+          10.901438693505792
+        ],
+        [
+          11.040254215305978,
+          11.040254215305978
+        ],
+        [
+          11.181546347655974,
+          11.181546347655974
+        ],
+        [
+          11.325364664650547,
+          11.325364664650547
+        ],
+        [
+          11.471760213887116,
+          11.471760213887116
+        ],
+        [
+          11.62078556983369,
+          11.62078556983369
+        ],
+        [
+          11.772494889576713,
+          11.772494889576713
+        ],
+        [
+          11.926943971073488,
+          11.926943971073488
+        ],
+        [
+          12.08419031404144,
+          12.08419031404144
+        ],
+        [
+          12.244293183624439,
+          12.244293183624439
+        ],
+        [
+          12.407313676985634,
+          12.407313676985634
+        ],
+        [
+          12.57331479298399,
+          12.57331479298399
+        ],
+        [
+          12.742361505104643,
+          12.742361505104643
+        ],
+        [
+          12.914520837819715,
+          12.914520837819715
+        ],
+        [
+          13.08986194657189,
+          13.08986194657189
+        ],
+        [
+          13.268456201582126,
+          13.268456201582126
+        ],
+        [
+          13.450377275697594,
+          13.450377275697594
+        ],
+        [
+          13.635701236510169,
+          13.635701236510169
+        ],
+        [
+          13.824506642989537,
+          13.824506642989537
+        ],
+        [
+          14.01687464689379,
+          14.01687464689379
+        ],
+        [
+          14.21288909923518,
+          14.21288909923518
+        ],
+        [
+          14.412636662100013,
+          14.412636662100013
+        ],
+        [
+          14.616206926140677,
+          14.616206926140677
+        ],
+        [
+          14.823692534080312,
+          14.823692534080312
+        ],
+        [
+          15.035189310594909,
+          15.035189310594909
+        ],
+        [
+          15.250796398961818,
+          15.250796398961818
+        ],
+        [
+          15.470616404893438,
+          15.470616404893438
+        ],
+        [
+          15.694755548003254,
+          15.694755548003254
+        ],
+        [
+          15.923323821384844,
+          15.923323821384844
+        ],
+        [
+          16.156435159819065,
+          16.156435159819065
+        ],
+        [
+          16.394207617163694,
+          16.394207617163694
+        ],
+        [
+          16.636763553520055,
+          16.636763553520055
+        ],
+        [
+          16.884229832817653,
+          16.884229832817653
+        ],
+        [
+          17.136738031505402,
+          17.136738031505402
+        ],
+        [
+          17.394424659091918,
+          17.394424659091918
+        ],
+        [
+          17.65743139133621,
+          17.65743139133621
+        ],
+        [
+          17.92590531695113,
+          17.92590531695113
+        ],
+        [
+          18.199999198753357,
+          18.199999198753357
+        ],
+        [
+          18.479871750267534,
+          18.479871750267534
+        ],
+        [
+          18.76568792887489,
+          18.76568792887489
+        ],
+        [
+          19.057619246687217,
+          19.057619246687217
+        ],
+        [
+          19.355844100425358,
+          19.355844100425358
+        ],
+        [
+          19.660548121690127,
+          19.660548121690127
+        ],
+        [
+          19.971924549131995,
+          19.971924549131995
+        ],
+        [
+          20.2901746241577,
+          20.2901746241577
+        ],
+        [
+          20.61550801195458,
+          20.61550801195458
+        ],
+        [
+          20.948143249773295,
+          20.948143249773295
+        ],
+        [
+          21.288308224583794,
+          21.288308224583794
+        ],
+        [
+          21.636240682413778,
+          21.636240682413778
+        ],
+        [
+          21.992188771891954,
+          21.992188771891954
+        ],
+        [
+          22.356411624756277,
+          22.356411624756277
+        ],
+        [
+          22.72917997635073,
+          22.72917997635073
+        ],
+        [
+          23.110776829425753,
+          23.110776829425753
+        ],
+        [
+          23.501498164884545,
+          23.501498164884545
+        ],
+        [
+          23.90165370347892,
+          23.90165370347892
+        ],
+        [
+          24.31156772286525,
+          24.31156772286525
+        ],
+        [
+          24.73157993488394,
+          24.73157993488394
+        ],
+        [
+          25.162046428433904,
+          25.162046428433904
+        ],
+        [
+          25.60334068388635,
+          25.60334068388635
+        ],
+        [
+          26.05585466562151,
+          26.05585466562151
+        ],
+        [
+          26.52,
+          26.52
+        ]
+      ]
+    },
+    "22": {
+      "values": [
+        [
+          3.75,
+          3.75
+        ],
+        [
+          3.904898526728915,
+          3.904898526728915
+        ],
+        [
+          4.05855609647428,
+          4.05855609647428
+        ],
+        [
+          4.210952378156421,
+          4.210952378156421
+        ],
+        [
+          4.362066466658588,
+          4.362066466658588
+        ],
+        [
+          4.511876864526162,
+          4.511876864526162
+        ],
+        [
+          4.66036146292388,
+          4.66036146292388
+        ],
+        [
+          4.807497521817265,
+          4.807497521817265
+        ],
+        [
+          4.953261649341287,
+          4.953261649341287
+        ],
+        [
+          5.097629780318294,
+          5.097629780318294
+        ],
+        [
+          5.240577153884435,
+          5.240577153884435
+        ],
+        [
+          5.38207829018212,
+          5.38207829018212
+        ],
+        [
+          5.522106966073003,
+          5.522106966073003
+        ],
+        [
+          5.6606361898245146,
+          5.6606361898245146
+        ],
+        [
+          5.797638174718798,
+          5.797638174718798
+        ],
+        [
+          5.9330843115316085,
+          5.9330843115316085
+        ],
+        [
+          6.066945139824264,
+          6.066945139824264
+        ],
+        [
+          6.199190317989937,
+          6.199190317989937
+        ],
+        [
+          6.329788591990319,
+          6.329788591990319
+        ],
+        [
+          6.4587077627170935,
+          6.4587077627170935
+        ],
+        [
+          6.585914651906839,
+          6.585914651906839
+        ],
+        [
+          6.711375066535057,
+          6.711375066535057
+        ],
+        [
+          6.835053761609766,
+          6.835053761609766
+        ],
+        [
+          6.95691440128105,
+          6.95691440128105
+        ],
+        [
+          7.0769195181769255,
+          7.0769195181769255
+        ],
+        [
+          7.195030470871291,
+          7.195030470871291
+        ],
+        [
+          7.311207399383569,
+          7.311207399383569
+        ],
+        [
+          7.425409178602827,
+          7.425409178602827
+        ],
+        [
+          7.537593369523819,
+          7.537593369523819
+        ],
+        [
+          7.647716168173673,
+          7.647716168173673
+        ],
+        [
+          7.755732352101191,
+          7.755732352101191
+        ],
+        [
+          7.861595224292733,
+          7.861595224292733
+        ],
+        [
+          7.965256554368576,
+          7.965256554368576
+        ],
+        [
+          8.066666516905526,
+          8.066666516905526
+        ],
+        [
+          8.165773626720624,
+          8.165773626720624
+        ],
+        [
+          8.262524670939728,
+          8.262524670939728
+        ],
+        [
+          8.356864637663433,
+          8.356864637663433
+        ],
+        [
+          8.448736641029935,
+          8.448736641029935
+        ],
+        [
+          8.538081842460187,
+          8.538081842460187
+        ],
+        [
+          8.624839367857088,
+          8.624839367857088
+        ],
+        [
+          8.708946220513427,
+          8.708946220513427
+        ],
+        [
+          8.790337189466946,
+          8.790337189466946
+        ],
+        [
+          8.86894475302209,
+          8.86894475302209
+        ],
+        [
+          8.944698977137627,
+          8.944698977137627
+        ],
+        [
+          9.017527408358644,
+          9.017527408358644
+        ],
+        [
+          9.08735496094693,
+          9.08735496094693
+        ],
+        [
+          9.154103797839355,
+          9.154103797839355
+        ],
+        [
+          9.217693205035493,
+          9.217693205035493
+        ],
+        [
+          9.278039458986806,
+          9.278039458986806
+        ],
+        [
+          9.33505568652694,
+          9.33505568652694
+        ],
+        [
+          9.38865171684731,
+          9.38865171684731
+        ],
+        [
+          9.438733924984593,
+          9.438733924984593
+        ],
+        [
+          9.48520506624499,
+          9.48520506624499
+        ],
+        [
+          9.527964100944498,
+          9.527964100944498
+        ],
+        [
+          9.566906008795648,
+          9.566906008795648
+        ],
+        [
+          9.601921592217323,
+          9.601921592217323
+        ],
+        [
+          9.63289726778546,
+          9.63289726778546
+        ],
+        [
+          9.659714844978161,
+          9.659714844978161
+        ],
+        [
+          9.682251291299284,
+          9.682251291299284
+        ],
+        [
+          9.70037848278647,
+          9.70037848278647
+        ],
+        [
+          9.713962938827141,
+          9.713962938827141
+        ],
+        [
+          9.722865540112025,
+          9.722865540112025
+        ],
+        [
+          9.726941228455562,
+          9.726941228455562
+        ],
+        [
+          9.726038687100315,
+          9.726038687100315
+        ],
+        [
+          9.72,
+          9.72
+        ],
+        [
+          9.838591655264274,
+          9.838591655264274
+        ],
+        [
+          9.95489125179257,
+          9.95489125179257
+        ],
+        [
+          10.068854619442188,
+          10.068854619442188
+        ],
+        [
+          10.180436306494208,
+          10.180436306494208
+        ],
+        [
+          10.28958953469402,
+          10.28958953469402
+        ],
+        [
+          10.396266152344026,
+          10.396266152344026
+        ],
+        [
+          10.500416585349452,
+          10.500416585349452
+        ],
+        [
+          10.601989786112885,
+          10.601989786112885
+        ],
+        [
+          10.700933180166313,
+          10.700933180166313
+        ],
+        [
+          10.797192610423288,
+          10.797192610423288
+        ],
+        [
+          10.890712278926511,
+          10.890712278926511
+        ],
+        [
+          10.981434685958558,
+          10.981434685958558
+        ],
+        [
+          11.06930056637556,
+          11.06930056637556
+        ],
+        [
+          11.154248823014367,
+          11.154248823014367
+        ],
+        [
+          11.23621645701601,
+          11.23621645701601
+        ],
+        [
+          11.315138494895358,
+          11.315138494895358
+        ],
+        [
+          11.390947912180284,
+          11.390947912180284
+        ],
+        [
+          11.463575553428107,
+          11.463575553428107
+        ],
+        [
+          11.532950048417874,
+          11.532950048417874
+        ],
+        [
+          11.598997724302404,
+          11.598997724302404
+        ],
+        [
+          11.66164251348983,
+          11.66164251348983
+        ],
+        [
+          11.720805857010461,
+          11.720805857010461
+        ],
+        [
+          11.776406603106206,
+          11.776406603106206
+        ],
+        [
+          11.828360900764817,
+          11.828360900764817
+        ],
+        [
+          11.876582087899987,
+          11.876582087899987
+        ],
+        [
+          11.920980573859321,
+          11.920980573859321
+        ],
+        [
+          11.961463715919688,
+          11.961463715919688
+        ],
+        [
+          11.99793568940509,
+          11.99793568940509
+        ],
+        [
+          12.030297351038183,
+          12.030297351038183
+        ],
+        [
+          12.05844609510656,
+          12.05844609510656
+        ],
+        [
+          12.082275701996743,
+          12.082275701996743
+        ],
+        [
+          12.101676178615158,
+          12.101676178615158
+        ],
+        [
+          12.116533590180936,
+          12.116533590180936
+        ],
+        [
+          12.1267298828363,
+          12.1267298828363
+        ],
+        [
+          12.13214269647994,
+          12.13214269647994
+        ],
+        [
+          12.132645167182348,
+          12.132645167182348
+        ],
+        [
+          12.128105718494597,
+          12.128105718494597
+        ],
+        [
+          12.11838784090808,
+          12.11838784090808
+        ],
+        [
+          12.103349858663787,
+          12.103349858663787
+        ],
+        [
+          12.082844683048865,
+          12.082844683048865
+        ],
+        [
+          12.05671955124664,
+          12.05671955124664
+        ],
+        [
+          12.024815749732463,
+          12.024815749732463
+        ],
+        [
+          11.98696832112511,
+          11.98696832112511
+        ],
+        [
+          11.94300575331278,
+          11.94300575331278
+        ],
+        [
+          11.892749649574638,
+          11.892749649574638
+        ],
+        [
+          11.836014378309875,
+          11.836014378309875
+        ],
+        [
+          11.772606700868003,
+          11.772606700868003
+        ],
+        [
+          11.702325375842296,
+          11.702325375842296
+        ],
+        [
+          11.624960738045413,
+          11.624960738045413
+        ],
+        [
+          11.5402942502267,
+          11.5402942502267
+        ],
+        [
+          11.448098025416206,
+          11.448098025416206
+        ],
+        [
+          11.348134317586224,
+          11.348134317586224
+        ],
+        [
+          11.240154978108043,
+          11.240154978108043
+        ],
+        [
+          11.123900875243718,
+          11.123900875243718
+        ],
+        [
+          10.999101273649266,
+          10.999101273649266
+        ],
+        [
+          10.865473170574248,
+          10.865473170574248
+        ],
+        [
+          10.722720585115454,
+          10.722720585115454
+        ],
+        [
+          10.570533796521074,
+          10.570533796521074
+        ],
+        [
+          10.408588527134745,
+          10.408588527134745
+        ],
+        [
+          10.23654506511606,
+          10.23654506511606
+        ],
+        [
+          10.054047321566097,
+          10.054047321566097
+        ],
+        [
+          9.860721816113648,
+          9.860721816113648
+        ],
+        [
+          9.656176584378489,
+          9.656176584378489
+        ],
+        [
+          9.44,
+          9.44
+        ]
+      ]
+    },
+    "27": {
+      "values": [
+        [
+          14.88,
+          14.88
+        ],
+        [
+          14.8803125,
+          14.8803125
+        ],
+        [
+          14.880625,
+          14.880625
+        ],
+        [
+          14.8809375,
+          14.8809375
+        ],
+        [
+          14.881250000000001,
+          14.881250000000001
+        ],
+        [
+          14.881562500000001,
+          14.881562500000001
+        ],
+        [
+          14.881875,
+          14.881875
+        ],
+        [
+          14.8821875,
+          14.8821875
+        ],
+        [
+          14.8825,
+          14.8825
+        ],
+        [
+          14.8828125,
+          14.8828125
+        ],
+        [
+          14.883125000000001,
+          14.883125000000001
+        ],
+        [
+          14.883437500000001,
+          14.883437500000001
+        ],
+        [
+          14.883750000000001,
+          14.883750000000001
+        ],
+        [
+          14.8840625,
+          14.8840625
+        ],
+        [
+          14.884375,
+          14.884375
+        ],
+        [
+          14.8846875,
+          14.8846875
+        ],
+        [
+          14.885000000000002,
+          14.885000000000002
+        ],
+        [
+          14.885312500000001,
+          14.885312500000001
+        ],
+        [
+          14.885625000000001,
+          14.885625000000001
+        ],
+        [
+          14.8859375,
+          14.8859375
+        ],
+        [
+          14.88625,
+          14.88625
+        ],
+        [
+          14.8865625,
+          14.8865625
+        ],
+        [
+          14.886875,
+          14.886875
+        ],
+        [
+          14.887187500000001,
+          14.887187500000001
+        ],
+        [
+          14.887500000000001,
+          14.887500000000001
+        ],
+        [
+          14.8878125,
+          14.8878125
+        ],
+        [
+          14.888125,
+          14.888125
+        ],
+        [
+          14.8884375,
+          14.8884375
+        ],
+        [
+          14.88875,
+          14.88875
+        ],
+        [
+          14.889062500000001,
+          14.889062500000001
+        ],
+        [
+          14.889375000000001,
+          14.889375000000001
+        ],
+        [
+          14.8896875,
+          14.8896875
+        ],
+        [
+          14.89,
+          14.89
+        ],
+        [
+          14.8903125,
+          14.8903125
+        ],
+        [
+          14.890625,
+          14.890625
+        ],
+        [
+          14.8909375,
+          14.8909375
+        ],
+        [
+          14.891250000000001,
+          14.891250000000001
+        ],
+        [
+          14.891562500000001,
+          14.891562500000001
+        ],
+        [
+          14.891875,
+          14.891875
+        ],
+        [
+          14.8921875,
+          14.8921875
+        ],
+        [
+          14.8925,
+          14.8925
+        ],
+        [
+          14.8928125,
+          14.8928125
+        ],
+        [
+          14.893125000000001,
+          14.893125000000001
+        ],
+        [
+          14.893437500000001,
+          14.893437500000001
+        ],
+        [
+          14.89375,
+          14.89375
+        ],
+        [
+          14.8940625,
+          14.8940625
+        ],
+        [
+          14.894375,
+          14.894375
+        ],
+        [
+          14.8946875,
+          14.8946875
+        ],
+        [
+          14.895,
+          14.895
+        ],
+        [
+          14.895312500000001,
+          14.895312500000001
+        ],
+        [
+          14.895625,
+          14.895625
+        ],
+        [
+          14.8959375,
+          14.8959375
+        ],
+        [
+          14.89625,
+          14.89625
+        ],
+        [
+          14.8965625,
+          14.8965625
+        ],
+        [
+          14.896875,
+          14.896875
+        ],
+        [
+          14.897187500000001,
+          14.897187500000001
+        ],
+        [
+          14.8975,
+          14.8975
+        ],
+        [
+          14.8978125,
+          14.8978125
+        ],
+        [
+          14.898125,
+          14.898125
+        ],
+        [
+          14.8984375,
+          14.8984375
+        ],
+        [
+          14.89875,
+          14.89875
+        ],
+        [
+          14.899062500000001,
+          14.899062500000001
+        ],
+        [
+          14.899375000000001,
+          14.899375000000001
+        ],
+        [
+          14.8996875,
+          14.8996875
+        ],
+        [
+          14.9,
+          14.9
+        ],
+        [
+          14.9,
+          14.9
+        ],
+        [
+          14.9,
+          14.9
+        ],
+        [
+          14.9,
+          14.9
+        ],
+        [
+          14.9,
+          14.9
+        ],
+        [
+          14.9,
+          14.9
+        ],
+        [
+          14.9,
+          14.9
+        ],
+        [
+          14.9,
+          14.9
+        ],
+        [
+          14.9,
+          14.9
+        ],
+        [
+          14.9,
+          14.9
+        ],
+        [
+          14.9,
+          14.9
+        ],
+        [
+          14.9,
+          14.9
+        ],
+        [
+          14.9,
+          14.9
+        ],
+        [
+          14.9,
+          14.9
+        ],
+        [
+          14.9,
+          14.9
+        ],
+        [
+          14.9,
+          14.9
+        ],
+        [
+          14.9,
+          14.9
+        ],
+        [
+          14.9,
+          14.9
+        ],
+        [
+          14.9,
+          14.9
+        ],
+        [
+          14.9,
+          14.9
+        ],
+        [
+          14.9,
+          14.9
+        ],
+        [
+          14.9,
+          14.9
+        ],
+        [
+          14.9,
+          14.9
+        ],
+        [
+          14.9,
+          14.9
+        ],
+        [
+          14.9,
+          14.9
+        ],
+        [
+          14.9,
+          14.9
+        ],
+        [
+          14.9,
+          14.9
+        ],
+        [
+          14.9,
+          14.9
+        ],
+        [
+          14.9,
+          14.9
+        ],
+        [
+          14.9,
+          14.9
+        ],
+        [
+          14.9,
+          14.9
+        ],
+        [
+          14.9,
+          14.9
+        ],
+        [
+          14.9,
+          14.9
+        ],
+        [
+          14.9,
+          14.9
+        ],
+        [
+          14.9,
+          14.9
+        ],
+        [
+          14.9,
+          14.9
+        ],
+        [
+          14.9,
+          14.9
+        ],
+        [
+          14.9,
+          14.9
+        ],
+        [
+          14.9,
+          14.9
+        ],
+        [
+          14.9,
+          14.9
+        ],
+        [
+          14.9,
+          14.9
+        ],
+        [
+          14.9,
+          14.9
+        ],
+        [
+          14.9,
+          14.9
+        ],
+        [
+          14.9,
+          14.9
+        ],
+        [
+          14.9,
+          14.9
+        ],
+        [
+          14.9,
+          14.9
+        ],
+        [
+          14.9,
+          14.9
+        ],
+        [
+          14.9,
+          14.9
+        ],
+        [
+          14.9,
+          14.9
+        ],
+        [
+          14.9,
+          14.9
+        ],
+        [
+          14.9,
+          14.9
+        ],
+        [
+          14.9,
+          14.9
+        ],
+        [
+          14.9,
+          14.9
+        ],
+        [
+          14.9,
+          14.9
+        ],
+        [
+          14.9,
+          14.9
+        ],
+        [
+          14.9,
+          14.9
+        ],
+        [
+          14.9,
+          14.9
+        ],
+        [
+          14.9,
+          14.9
+        ],
+        [
+          14.9,
+          14.9
+        ],
+        [
+          14.9,
+          14.9
+        ],
+        [
+          14.9,
+          14.9
+        ],
+        [
+          14.9,
+          14.9
+        ],
+        [
+          14.9,
+          14.9
+        ],
+        [
+          14.9,
+          14.9
+        ],
+        [
+          14.9,
+          14.9
+        ]
+      ]
+    }
+  }
+} satisfies LensDataV2Input;
+export default LENS_DATA;
