@@ -6,7 +6,7 @@ G2-only screening:19of129rows unsolved within±2mm and nonmonotonic EFL. G3-only
 Selected two-translation solve preserves summed gap/track while matching piecewise actual source EFL and source focus residual. All129solved; largest nonlinear-equation residual8.1e−14. Source nodes are immutable, not retuned to nominal EFL or zero focus.
 257point native geometry/aperture/focus/EFL/track and1028chief tests pass scoped gates. Fortyphysical-image-height MTFcells converge. Targeted strict TypeScript passes. Source optical data had no repair and caps no inflation.
 Three published stations only;126calculated. d11hasthree sampled reversals, minimum.839594mm; bounded optical model not factorycam or mechanical-clearance proof.
-Full application tests, integration, current-main and browserQA pending. No publishing/Drive/user delivery performed.
+Full application tests, integration, current-main and browserQA pending. No publishing/Drive/user delivery performed. (Closed 2026-11-15: the file is integrated; see the sections below.)
 
 ## 2026-11-15 — Deployment validation
 
@@ -33,3 +33,38 @@ Open:
 - Semi-diameters are inferred and not yet compared with Fig. 21; surface 5 clears the wide-open axial ray with almost no margin (2.35 needed, 2.35 stored).
 - The ray-intercept and MTF convergence samples in the analysis were not repeated for the new calculated rows.
 - Whether another Eguchi filing holds the production design (fixed third group, f/2.6–4.8) was not checked.
+
+## 2026-11-15 — Cleanup and wording pass
+
+No optical value changed: radii, thicknesses, indices, aspheric terms, stop, semi-diameters and all zoom gaps are as left by the deployment validation. Engine numbers before and after are identical: EFL 5.8017mm, f/2.7, half-field 32.49°, stop semi-diameter 2.2678mm, and the same focal length, back focus and track at every one of the 129 stations. Surface audit: no errors. Aperture audit: 129 of 129 stations within 3% of the stated f-number, no rim, trace or iris limit. Field coverage: 129 of 129 stations at 99% or more.
+
+Fields changed:
+- `subtitle`: "Representative patent with derived G1/G2 compensator; published nodes labeled; not factory cam" → "US 2003/0197949 A1, Embodiment 6 — design f/2.7–5.3; correlated to the Optio S zoom".
+- `specs`: four package lines → "6 ELEMENTS / 5 GROUPS", "2 DOUBLE-SIDED ASPHERICAL ELEMENTS", "MARKETED f/2.6–4.8; DESIGN f/2.7–5.3", "1/2.5-TYPE SENSOR".
+- `focus.description`: plain infinity-only sentence; `catalog.closeFocusM.marketing` added as 0.4 (normal range, DPReview specification table; macro 0.18m and super-macro 0.06m modes are named in the analysis).
+- Elements: `type` of L2 and L3 to the house "(2× Asph)" form; `focalLengthMm` and `role` added to all six; cemented id D1 → C1 on L4, L5 and the `doublets` entry.
+- Aspheric surface labels 3, 4, 5, 6 → 3A, 4A, 5A, 6A, with the gap key (4 → 4A) and the G1/G2 bracket ends renamed to match.
+- Zoom station labels: 129 "Source/Calculated infinity … mm" labels → "Wide" on the first and "Tele" on the last; the `published` flags on the three printed stations are unchanged.
+- `rearPlates`: `glass` "S-BSL7" added; `source` reworded to name the patent table.
+- Header comment: station wording only.
+
+Glass labels (printed nd / νd → catalog row, Δnd / Δνd):
+- L1 1.88300 / 40.8 → S-LAH58 (OHARA), −0.000003 / −0.03.
+- L2 and L5 1.84666 / 23.8 → S-TIH53 (OHARA), 0 / −0.02.
+- L3 1.58913 / 61.2 → L-BAL35 (OHARA), 0 / −0.07. The label resolves to the S-BAL35 dispersion row; the L- name is used because a double-sided aspheric element of this size is normally press-moulded.
+- L4 1.83400 / 37.2 → S-LAH60 (OHARA), 0 / −0.04.
+- L6 1.65160 / 58.5 → S-LAL7 (OHARA), −0.000003 / +0.05.
+- Plate 1.51633 / 64.1 → S-BSL7, 0 / +0.04.
+No `apd` tag: the maker publishes no special-dispersion element for this lens.
+
+Analysis: rewritten as public text under the title "Pentax Optio S 5.8–17.4mm f/2.6–4.8". Removed the process sections (sample counts, convergence runs, pending checks) and the discovery-lead note; kept the patent identification, the evidence for and against the product link, the element table (now with glass and focal lengths), and the limits of the model; the intermediate stations are described in two sentences under "Zoom Motion".
+
+Open:
+- Semi-diameters are estimates and have not been compared with Fig. 21; surface 5A clears the wide-open axial ray with almost no margin (2.35 needed, 2.35 stored).
+- L2 is a moulded glass asphere above index 1.8 according to the development paper; its actual moulding glass is not identified (S-TIH53 is the exact catalog match for the printed values).
+- No 1/2.5-type format id exists (5.76 × 4.29mm); `1-2.55-inch-type` stands in.
+- `catalog.closeFocusM.marketing` uses the normal-range 0.4m; decide whether the macro (0.18m) or super-macro (0.06m) limit should be the catalog value.
+- No finite-focus state is modelled; the patent prints none.
+- `aperture.fStops` is 2.7, 8, 11, 16 as delivered; the camera's real stop choices were not checked.
+- Whether another Eguchi filing holds the production design (fixed third group, f/2.6–4.8) was not checked.
+- The title line and first nine lines of this log keep the delivered package's wording as history.

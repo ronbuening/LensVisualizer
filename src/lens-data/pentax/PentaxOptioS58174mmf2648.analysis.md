@@ -1,49 +1,46 @@
-# PENTAX Optio S representative Embodiment 6: derived infinity zoom
+# Pentax Optio S 5.8–17.4mm f/2.6–4.8
 
 ## Patent Identification
-**Patent:** [US20030197949A1](https://patents.google.com/patent/US20030197949A1/en) (grant alias US6917476B2)
-**Published:** 2003
+**Patent:** [US 2003/0197949 A1](https://patents.google.com/patent/US20030197949A1/en) (granted as US 6,917,476 B2)
+**Filed:** April 16, 2003 (Japanese priority April 19, 2002)
+**Published:** October 23, 2003
 **Inventor:** Masaru Eguchi
 **Assignee:** Pentax Corporation
-**Example details:** Table 6, Figure 21, paragraphs 0182–0183; three exact source stations: 5.8/9.6/17.4mm, f/2.7/3.5/5.3;126 additional calculated control rows.
+**Example:** Embodiment 6 — Table 6, Fig. 21, paragraphs 0180–0183; f = 5.80 / 9.60 / 17.40 mm, f/2.7 / 3.5 / 5.3, half-field 33.1° / 20.7° / 11.8°.
 
-This is a representative patent design, not an exact factory Optio S prescription. The [OEM Nomura/Eguchi paper, Figure 7](https://www.jstage.jst.go.jp/article/photogrst1964/67/3/67_3_275/_pdf) supports a 2+3+1 architecture and double-sided aspheric second and third elements. However, the retail G3 stays fixed during zoom while this table changes its rear gap. Retail f/2.6–4.8 also differs from source f/2.7–5.3. No exact factory cam or finite-focus claim is made.
+The model is the patent's sixth embodiment, not a confirmed factory prescription. The link to the Optio S (2003) rests on the camera's development paper by Nomura and Eguchi, whose [Figure 7](https://www.jstage.jst.go.jp/article/photogrst1964/67/3/67_3_275/_pdf) shows the same layout: two elements, three elements and one element in three groups, with both faces of the second and third elements aspheric and first-group glasses above index 1.8. The focal range (5.8–17.4 mm) and the count of 6 elements in 5 groups also agree. Two points differ: the camera is marketed at f/2.6–4.8 against the patent's f/2.7–5.3, and the paper states that the third group stays fixed during zooming, while Table 6 moves it by 0.38 mm. Embodiment 7 of the same patent fits the camera equally well.
 
 ## Optical Architecture
-Six powered elements in five air-separated groups form negative G1 (L1–L2), positive G2 (L3–L5), positive G3 (L6). L4–L5 are cemented at source surface 8. Four aspheric surfaces are on L2 and L3. The explicit stop lies 0.50mm ahead of surface 5. A 2mm camera-side plate follows the last powered surface, with printed fB=0. One file represents this single physical patent design. Three source positions are labeled published;126calculated rows describe a hypothetical infinity zoom trajectory.
+Six elements in five air-separated groups form a negative first group (L1–L2), a positive second group (L3–L5) and a positive third group (L6). L4 and L5 are cemented. The four aspheric surfaces are the two faces of L2 and the two faces of L3. The aperture stop sits 0.50 mm in front of L3 and moves with the second group. A 2.00 mm plane-parallel plate, standing for the cover glass and low-pass filter, follows the third group; the patent places the image on its rear face (fB = 0.00).
+
+This is the negative-lead three-group form common in compact digital cameras of the period. The second group does most of the zooming; the first group moves back and then forward to hold the image; the third group keeps the exit pupil far enough from the sensor and, in the camera, does the focusing. In the Optio S the second group swings off the axis when the lens retracts, which is why it is the smallest in diameter.
 
 ## Element-by-Element Analysis
-| Element | Form | nd | Vd | Role |
-|---|---|---:|---:|---|
-| L1 | Negative Meniscus | 1.883 | 40.8 | G1 front group |
-| L2 | Positive Meniscus (2x Aspheric) | 1.84666 | 23.8 | G1 front group |
-| L3 | Biconvex Positive (2x Aspheric) | 1.58913 | 61.2 | G2 central group |
-| L4 | Positive Meniscus | 1.834 | 37.2 | G2 central group |
-| L5 | Negative Meniscus | 1.84666 | 23.8 | G2 central group |
-| L6 | Biconvex Positive | 1.6516 | 58.5 | G3 rear group |
+| Element | Form | nd | νd | Glass | f (mm) | Role |
+|---|---|---:|---:|---|---:|---|
+| L1 | Negative Meniscus | 1.88300 | 40.8 | S-LAH58 (OHARA) | −8.35 | Negative front element of the first group |
+| L2 | Positive Meniscus (2× Asph) | 1.84666 | 23.8 | S-TIH53 (OHARA) | 19.09 | Positive element of the first group; corrects wide-angle astigmatism and distortion |
+| L3 | Biconvex Positive (2× Asph) | 1.58913 | 61.2 | L-BAL35 (OHARA) | 7.89 | Front element of the second group; controls spherical aberration |
+| L4 | Positive Meniscus | 1.83400 | 37.2 | S-LAH60 (OHARA) | 13.32 | Positive member of the cemented doublet |
+| L5 | Negative Meniscus | 1.84666 | 23.8 | S-TIH53 (OHARA) | −4.63 | Negative member of the cemented doublet |
+| L6 | Biconvex Positive | 1.65160 | 58.5 | S-LAL7 (OHARA) | 12.44 | Third group; sets the exit-pupil position |
 
-Glass names remain explicitly unmatched; literal d-line nd/Vd are retained without vendor substitution or invented partial dispersion. The sparse aspheric coefficients use the printed even-power convention, K=0, on surfaces 3–6.
+The patent prints only nd and νd. All six pairs coincide with OHARA catalog glasses to the printed precision, and the plate with S-BSL7; the production supplier is not known. L3 is labelled with the low-softening-point type L-BAL35 because a double-sided aspheric element of this size is normally press-moulded. The development paper describes L2 as a moulded glass asphere with an index above 1.8; its exact moulding glass is not identified, and S-TIH53 is the catalog glass with the printed values. The aspheric surfaces use conic constant 0 with fourth-, sixth- and eighth-order terms.
+
+The group focal lengths are −17.10, 10.53 and 12.44 mm, which reproduce the patent's condition values (1) to (3) for this embodiment (0.587, 0.955, 0.808).
+
+## Zoom Motion
+The patent prints three zoom positions, and the model reproduces them exactly: focal lengths 5.80, 9.60 and 17.39 mm, with the image within 0.012 mm of the plate's rear face. For the 126 positions in between, the gap behind the third group is interpolated linearly between the printed values and the other two gaps are solved for focal length and focus; these positions are a smooth path through the printed data, not the camera's cam.
+
+Along that path the first-to-second group gap falls steadily from 15.54 to 2.28 mm (stop included), the second-to-third gap rises from 3.20 to 14.19 mm, and the overall length shortens from 34.64 mm at the wide end to about 30.1 mm near 11 mm before growing to 31.99 mm at the long end.
 
 ## Focus, Aperture, and Model Limits
-Infinity-only operation uses the supported large-distance convention. No optical gap varies with the focus slider. Zoom changes only the three source variable gaps, using the derived motion described below. No finite-focus reconstruction is claimed. The stop radius is derived by the engine from the source f-number. Clear semi-diameters (5.5, 4.85, 2.35, 2.15 and 4.2mm by physical group) are diagram-informed heuristic values, not literal source dimensions. Field-dependent vignetting remains; a coarse pupil experiment is not a throughput measurement.
+The model is at infinity focus only; the patent tabulates no finite-distance state. The camera focuses with the third group from 0.4 m in its normal range, with macro (0.18–0.5 m) and super-macro (0.06–0.2 m) modes.
 
-## Validation and Qualifications
-Targeted native ingest, geometry, axial aperture and chief-ray checks passed at all three source nodes. Reference-wavelength geometric and diffraction MTF convergence was checked at the authored image plane, four source-range fields and 0–40lp/mm. This is numerical convergence, not measured factory performance. Full application/typecheck/regression, current-main compatibility, polychromatic and compiled-viewer/browser QA remain pending integration. No geometry override, source-node repair, image-plane refocus or source-plane substitution was used; intermediate group motion is explicitly derived.
+The stop radius is set from the patent's f-number at each printed position and from a linear interpolation of it in between. The patent does not give clear diameters; the semi-diameters are estimates sized to pass the full-aperture axial beam and the image corner, so vignetting toward the corners is indicative only. The image format is entered as the nearest listed sensor size, 1/2.55-type, for the camera's 1/2.5-type sensor.
 
 ## Sources
-- [Original primary patent PDF](https://patentimages.storage.googleapis.com/68/f0/e0/e895d678783a08/US20030197949A1.pdf), Table 6 PDF page 30; Figure 21 PDF page 12.
-- [Pentax OEM development paper](https://www.jstage.jst.go.jp/article/photogrst1964/67/3/67_3_275/_pdf), Figure 7 and discussion of fixed G3.
-- Photons to Photos supplied the discovery lead; transcription is from the primary patent, not a redistribution of its peer record.
-
-
-## Derived zoom compensator
-Source glass, radii, thicknesses, aspheres, cover plate, 0.50mm stop-to-G2 distance and all three source states remain unchanged. Only source-variable gaps d4, d9, d11 vary between them. All six elements stay rigid within G1/G2/G3; the stop moves with G2.
-
-At each of the 126 calculated rows, the rear gap d11 (G3 to plate) is interpolated linearly between the printed values (2.40 to 2.27 from wide to middle, 2.27 to 2.02 from middle to tele). The target EFL is piecewise-linear between the literal prescription's paraxial EFLs (5.8017, 9.6009, 17.3936mm), and the target focus residual is piecewise-linear between the printed stations' own paraxial residuals (0.0001, 0.0007, 0.0122mm behind the plate). d4 and d9 are then solved for those two targets, so total track is a result, not a constraint. The sensor plane and glass are unchanged, and the three printed stations keep every original value.
-
-Across all 129 rows EFL and d9 rise monotonically, d4 and d11 fall monotonically, and the largest paraxial defocus is the printed tele station's own 0.0122mm. Total track falls from 34.64mm at wide to a minimum of 30.12mm near 11.2mm and rises to 31.99mm at tele, the usual U-shaped first-group path of a negative-lead three-group zoom. These are plausible derived optical motions, not a recovered factory mechanism: the OEM paper states the retail third group is fixed during zoom, while this table moves it by 0.38mm. No claim of mechanical packaging clearance beyond optical gap/geometry checks is made.
-
-## Fresh consolidated validation
-After the 2026-11-15 re-solve of the calculated rows, the repository audits were re-run on all 129 rows: surface validation passes, every row is within 3% of its stated f-number with no rim, trace or iris limit, and the 1/2.55-inch-type image circle and corner coverage are met at every row (129 of 129 at 100%). The largest paraxial defocus is 0.0122mm, at the printed tele station. The ray-intercept and MTF convergence samples reported for the earlier calculated rows were not repeated for the new rows; the three printed stations they included are unchanged.
-
-Native published-position selection returns exactly three infinity buttons at0/.5/1 despite129control rows. Ordinary mode now uses the qualified derived optical path; Patent Positions chooses the original rows. No engine changes are required for this experimental cam model. Full-app regression, current-main reconciliation, production render/browserQA and broader spectral validation remain integration work.
+- [US 2003/0197949 A1](https://patentimages.storage.googleapis.com/68/f0/e0/e895d678783a08/US20030197949A1.pdf), Table 6 (page 10 of the specification) and Fig. 21.
+- H. Nomura and M. Eguchi, [development of the sliding lens system of the Optio S](https://www.jstage.jst.go.jp/article/photogrst1964/67/3/67_3_275/_pdf), Journal of the Society of Photographic Science and Technology of Japan 67(3), 2004: Figure 7 and the description of the fixed third group.
+- [ITmedia news, February 4, 2003](https://www.itmedia.co.jp/news/0302/04/nj00_optios.html): announcement, 1/2.5-type sensor and the sliding-lens cutaway.
+- [DPReview, Pentax Optio S review](https://www.dpreview.com/reviews/pentaxoptios/2): f/2.6–4.8 and the focus ranges.

@@ -2,7 +2,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 /**
  * Source: US 2003/0197949 A1 (Masaru Eguchi, PENTAX Corporation), Embodiment 6, Table 6 and Fig. 21.
  * Units are millimetres at the patent's own scale (factor 1); indices are d-line.
- * Printed zoom stations (f = 5.80 / 9.60 / 17.40 mm) are stations 0, 64 and 128 and are kept exactly as printed.
+ * The three printed zoom positions (f = 5.80 / 9.60 / 17.40 mm) are the first, 65th and last of the 129 stations
+ * and are kept exactly as printed.
  * The patent's d4 runs from surface 4 to surface 5; here it is split into the variable gap after surface 4
  * (printed value minus 0.50) and the 0.50 mm stop-to-surface-5 distance the patent states.
  * Inferred, not printed: the 126 intermediate stations (d11 linear between printed values; d4 and d9 solved for the
@@ -14,7 +15,7 @@ const LENS_DATA = {
   "key": "pentax-optio-s-58-174-f26-48",
   "maker": "Pentax",
   "name": "PENTAX OPTIO S 5.8-17.4mm f/2.6-4.8",
-  "subtitle": "Representative patent with derived G1/G2 compensator; published nodes labeled; not factory cam",
+  "subtitle": "US 2003/0197949 A1, Embodiment 6 — design f/2.7–5.3; correlated to the Optio S zoom",
   "source": {
     "patentNumber": "US 2003/0197949 A1",
     "example": {
@@ -37,8 +38,10 @@ const LENS_DATA = {
       "label": "Element 1",
       "nd": 1.883,
       "vd": 40.8,
-      "glass": "Unmatched (nd=1.883, Vd=40.8)",
-      "type": "Negative Meniscus"
+      "glass": "S-LAH58 (OHARA)",
+      "type": "Negative Meniscus",
+      "focalLengthMm": -8.349565176872968,
+      "role": "Negative front element of the first group; high-index glass keeps the group thin"
     },
     {
       "id": 2,
@@ -46,8 +49,10 @@ const LENS_DATA = {
       "label": "Element 2",
       "nd": 1.84666,
       "vd": 23.8,
-      "glass": "Unmatched (nd=1.84666, Vd=23.8)",
-      "type": "Positive Meniscus (2x Aspheric)"
+      "glass": "S-TIH53 (OHARA)",
+      "type": "Positive Meniscus (2× Asph)",
+      "focalLengthMm": 19.09196204479505,
+      "role": "Positive element of the first group; both aspheric faces correct wide-angle astigmatism and distortion"
     },
     {
       "id": 3,
@@ -55,8 +60,10 @@ const LENS_DATA = {
       "label": "Element 3",
       "nd": 1.58913,
       "vd": 61.2,
-      "glass": "Unmatched (nd=1.58913, Vd=61.2)",
-      "type": "Biconvex Positive (2x Aspheric)"
+      "glass": "L-BAL35 (OHARA)",
+      "type": "Biconvex Positive (2× Asph)",
+      "focalLengthMm": 7.89158833041261,
+      "role": "Front positive element of the second group, just behind the stop; both aspheric faces control spherical aberration"
     },
     {
       "id": 4,
@@ -64,9 +71,11 @@ const LENS_DATA = {
       "label": "Element 4",
       "nd": 1.834,
       "vd": 37.2,
-      "glass": "Unmatched (nd=1.834, Vd=37.2)",
+      "glass": "S-LAH60 (OHARA)",
       "type": "Positive Meniscus",
-      "cemented": "D1"
+      "focalLengthMm": 13.318878900548,
+      "role": "Positive member of the cemented doublet in the second group",
+      "cemented": "C1"
     },
     {
       "id": 5,
@@ -74,9 +83,11 @@ const LENS_DATA = {
       "label": "Element 5",
       "nd": 1.84666,
       "vd": 23.8,
-      "glass": "Unmatched (nd=1.84666, Vd=23.8)",
+      "glass": "S-TIH53 (OHARA)",
       "type": "Negative Meniscus",
-      "cemented": "D1"
+      "focalLengthMm": -4.627250061704683,
+      "role": "Negative member of the cemented doublet; its strongly curved rear face diverges the beam toward the third group",
+      "cemented": "C1"
     },
     {
       "id": 6,
@@ -84,8 +95,10 @@ const LENS_DATA = {
       "label": "Element 6",
       "nd": 1.6516,
       "vd": 58.5,
-      "glass": "Unmatched (nd=1.6516, Vd=58.5)",
-      "type": "Biconvex Positive"
+      "glass": "S-LAL7 (OHARA)",
+      "type": "Biconvex Positive",
+      "focalLengthMm": 12.436281824136826,
+      "role": "Single positive element of the third group; sets the exit-pupil position for the sensor"
     }
   ],
   "surfaces": [
@@ -103,7 +116,7 @@ const LENS_DATA = {
       "sd": 5.5
     },
     {
-      "label": "3",
+      "label": "3A",
       "R": 15.066,
       "d": 1.8,
       "sd": 4.85,
@@ -116,7 +129,7 @@ const LENS_DATA = {
       }
     },
     {
-      "label": "4",
+      "label": "4A",
       "R": 209.571,
       "sd": 4.85,
       "asphere": {
@@ -132,7 +145,7 @@ const LENS_DATA = {
       "d": 0.5
     },
     {
-      "label": "5",
+      "label": "5A",
       "R": 6.208,
       "d": 1.8,
       "sd": 2.35,
@@ -145,7 +158,7 @@ const LENS_DATA = {
       }
     },
     {
-      "label": "6",
+      "label": "6A",
       "R": -16.525,
       "d": 0.2,
       "sd": 2.35,
@@ -194,8 +207,9 @@ const LENS_DATA = {
       "thicknessMm": 2,
       "nd": 1.51633,
       "vd": 64.1,
+      "glass": "S-BSL7",
       "gapAfterMm": 0,
-      "source": "Table6 S12-S13, printed fB=0"
+      "source": "US 2003/0197949 A1, Embodiment 6, Table 6 surfaces 12–13; printed fB = 0.00"
     }
   ],
   "aperture": {
@@ -208,17 +222,17 @@ const LENS_DATA = {
   },
   "focus": {
     "closeFocusM": 1000000000000000,
-    "description": "Infinity only. Three exact patent stations; at the other rows the rear gap d11 is interpolated linearly between the printed values and d4, d9 are solved for the row focal length and paraxial focus on the printed image plane. No factory zoom cam or finite focus claim."
+    "description": "Infinity focus only; the patent tabulates no finite-distance state. The camera focuses with the third group, from 0.4 m in its normal range."
   },
   "groups": [
     {
       "text": "G1 (-)",
       "fromSurface": "1",
-      "toSurface": "4"
+      "toSurface": "4A"
     },
     {
       "text": "G2 (+)",
-      "fromSurface": "5",
+      "fromSurface": "5A",
       "toSurface": "9"
     },
     {
@@ -229,7 +243,7 @@ const LENS_DATA = {
   ],
   "doublets": [
     {
-      "text": "D1",
+      "text": "C1",
       "fromSurface": "7",
       "toSurface": "9"
     }
@@ -255,11 +269,14 @@ const LENS_DATA = {
       "marketing": 2.6,
       "design": 2.7
     },
+    "closeFocusM": {
+      "marketing": 0.4
+    },
     "specs": [
-      "REPRESENTATIVE PATENT; NOT FACTORY-EXACT OPTIO S",
-      "6 ELEMENTS / 5 AIR-SEPARATED GROUPS",
-      "3 PUBLISHED + 126 DERIVED INFINITY STATIONS",
-      "DERIVED G1/G2 CAM; CLEAR CAPS UNCHANGED"
+      "6 ELEMENTS / 5 GROUPS",
+      "2 DOUBLE-SIDED ASPHERICAL ELEMENTS",
+      "MARKETED f/2.6–4.8; DESIGN f/2.7–5.3",
+      "1/2.5-TYPE SENSOR"
     ]
   },
   "layout": {
@@ -270,903 +287,776 @@ const LENS_DATA = {
       {
         "focalLengthMm": 5.8,
         "nominalFNumber": 2.7,
-        "label": "Source infinity 5.8 mm",
+        "label": "Wide",
         "published": true,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 5.861022,
         "nominalFNumber": 2.7125,
-        "label": "Calculated infinity 5.861022 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 5.920384,
         "nominalFNumber": 2.725,
-        "label": "Calculated infinity 5.920384 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 5.979747,
         "nominalFNumber": 2.7375,
-        "label": "Calculated infinity 5.979747 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 6.03911,
         "nominalFNumber": 2.75,
-        "label": "Calculated infinity 6.03911 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 6.098472,
         "nominalFNumber": 2.7625,
-        "label": "Calculated infinity 6.098472 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 6.157835,
         "nominalFNumber": 2.775,
-        "label": "Calculated infinity 6.157835 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 6.217197,
         "nominalFNumber": 2.7875,
-        "label": "Calculated infinity 6.217197 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 6.27656,
         "nominalFNumber": 2.8,
-        "label": "Calculated infinity 6.27656 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 6.335922,
         "nominalFNumber": 2.8125,
-        "label": "Calculated infinity 6.335922 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 6.395285,
         "nominalFNumber": 2.825,
-        "label": "Calculated infinity 6.395285 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 6.454647,
         "nominalFNumber": 2.8375,
-        "label": "Calculated infinity 6.454647 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 6.51401,
         "nominalFNumber": 2.85,
-        "label": "Calculated infinity 6.51401 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 6.573373,
         "nominalFNumber": 2.8625,
-        "label": "Calculated infinity 6.573373 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 6.632735,
         "nominalFNumber": 2.875,
-        "label": "Calculated infinity 6.632735 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 6.692097,
         "nominalFNumber": 2.8875,
-        "label": "Calculated infinity 6.692097 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 6.75146,
         "nominalFNumber": 2.9,
-        "label": "Calculated infinity 6.75146 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 6.810823,
         "nominalFNumber": 2.9125,
-        "label": "Calculated infinity 6.810823 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 6.870185,
         "nominalFNumber": 2.925,
-        "label": "Calculated infinity 6.870185 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 6.929547,
         "nominalFNumber": 2.9375,
-        "label": "Calculated infinity 6.929547 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 6.98891,
         "nominalFNumber": 2.95,
-        "label": "Calculated infinity 6.98891 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 7.048272,
         "nominalFNumber": 2.9625,
-        "label": "Calculated infinity 7.048272 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 7.107635,
         "nominalFNumber": 2.975,
-        "label": "Calculated infinity 7.107635 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 7.166998,
         "nominalFNumber": 2.9875,
-        "label": "Calculated infinity 7.166998 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 7.22636,
         "nominalFNumber": 3,
-        "label": "Calculated infinity 7.22636 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 7.285723,
         "nominalFNumber": 3.0125,
-        "label": "Calculated infinity 7.285723 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 7.345085,
         "nominalFNumber": 3.025,
-        "label": "Calculated infinity 7.345085 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 7.404448,
         "nominalFNumber": 3.0375,
-        "label": "Calculated infinity 7.404448 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 7.46381,
         "nominalFNumber": 3.05,
-        "label": "Calculated infinity 7.46381 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 7.523173,
         "nominalFNumber": 3.0625,
-        "label": "Calculated infinity 7.523173 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 7.582535,
         "nominalFNumber": 3.075,
-        "label": "Calculated infinity 7.582535 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 7.641898,
         "nominalFNumber": 3.0875,
-        "label": "Calculated infinity 7.641898 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 7.70126,
         "nominalFNumber": 3.1,
-        "label": "Calculated infinity 7.70126 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 7.760623,
         "nominalFNumber": 3.1125,
-        "label": "Calculated infinity 7.760623 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 7.819985,
         "nominalFNumber": 3.125,
-        "label": "Calculated infinity 7.819985 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 7.879348,
         "nominalFNumber": 3.1375,
-        "label": "Calculated infinity 7.879348 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 7.938711,
         "nominalFNumber": 3.15,
-        "label": "Calculated infinity 7.938711 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 7.998073,
         "nominalFNumber": 3.1625,
-        "label": "Calculated infinity 7.998073 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 8.057436,
         "nominalFNumber": 3.175,
-        "label": "Calculated infinity 8.057436 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 8.116798,
         "nominalFNumber": 3.1875,
-        "label": "Calculated infinity 8.116798 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 8.176161,
         "nominalFNumber": 3.2,
-        "label": "Calculated infinity 8.176161 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 8.235523,
         "nominalFNumber": 3.2125,
-        "label": "Calculated infinity 8.235523 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 8.294886,
         "nominalFNumber": 3.225,
-        "label": "Calculated infinity 8.294886 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 8.354248,
         "nominalFNumber": 3.2375,
-        "label": "Calculated infinity 8.354248 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 8.413611,
         "nominalFNumber": 3.25,
-        "label": "Calculated infinity 8.413611 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 8.472974,
         "nominalFNumber": 3.2625,
-        "label": "Calculated infinity 8.472974 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 8.532336,
         "nominalFNumber": 3.275,
-        "label": "Calculated infinity 8.532336 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 8.591698,
         "nominalFNumber": 3.2875,
-        "label": "Calculated infinity 8.591698 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 8.651061,
         "nominalFNumber": 3.3,
-        "label": "Calculated infinity 8.651061 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 8.710424,
         "nominalFNumber": 3.3125,
-        "label": "Calculated infinity 8.710424 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 8.769786,
         "nominalFNumber": 3.325,
-        "label": "Calculated infinity 8.769786 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 8.829149,
         "nominalFNumber": 3.3375,
-        "label": "Calculated infinity 8.829149 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 8.888511,
         "nominalFNumber": 3.35,
-        "label": "Calculated infinity 8.888511 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 8.947874,
         "nominalFNumber": 3.3625,
-        "label": "Calculated infinity 8.947874 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 9.007236,
         "nominalFNumber": 3.375,
-        "label": "Calculated infinity 9.007236 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 9.066599,
         "nominalFNumber": 3.3875,
-        "label": "Calculated infinity 9.066599 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 9.125961,
         "nominalFNumber": 3.4,
-        "label": "Calculated infinity 9.125961 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 9.185324,
         "nominalFNumber": 3.4125,
-        "label": "Calculated infinity 9.185324 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 9.244686,
         "nominalFNumber": 3.425,
-        "label": "Calculated infinity 9.244686 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 9.304049,
         "nominalFNumber": 3.4375,
-        "label": "Calculated infinity 9.304049 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 9.363412,
         "nominalFNumber": 3.45,
-        "label": "Calculated infinity 9.363412 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 9.422774,
         "nominalFNumber": 3.4625,
-        "label": "Calculated infinity 9.422774 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 9.482137,
         "nominalFNumber": 3.475,
-        "label": "Calculated infinity 9.482137 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 9.541499,
         "nominalFNumber": 3.4875,
-        "label": "Calculated infinity 9.541499 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 9.6,
         "nominalFNumber": 3.5,
-        "label": "Source infinity 9.6 mm",
         "published": true,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 9.722623,
         "nominalFNumber": 3.528125,
-        "label": "Calculated infinity 9.722623 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 9.844385,
         "nominalFNumber": 3.55625,
-        "label": "Calculated infinity 9.844385 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 9.966147,
         "nominalFNumber": 3.584375,
-        "label": "Calculated infinity 9.966147 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 10.087909,
         "nominalFNumber": 3.6125,
-        "label": "Calculated infinity 10.087909 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 10.20967,
         "nominalFNumber": 3.640625,
-        "label": "Calculated infinity 10.20967 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 10.331432,
         "nominalFNumber": 3.66875,
-        "label": "Calculated infinity 10.331432 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 10.453195,
         "nominalFNumber": 3.696875,
-        "label": "Calculated infinity 10.453195 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 10.574956,
         "nominalFNumber": 3.725,
-        "label": "Calculated infinity 10.574956 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 10.696718,
         "nominalFNumber": 3.753125,
-        "label": "Calculated infinity 10.696718 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 10.81848,
         "nominalFNumber": 3.78125,
-        "label": "Calculated infinity 10.81848 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 10.940241,
         "nominalFNumber": 3.809375,
-        "label": "Calculated infinity 10.940241 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 11.062003,
         "nominalFNumber": 3.8375,
-        "label": "Calculated infinity 11.062003 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 11.183765,
         "nominalFNumber": 3.865625,
-        "label": "Calculated infinity 11.183765 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 11.305527,
         "nominalFNumber": 3.89375,
-        "label": "Calculated infinity 11.305527 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 11.427289,
         "nominalFNumber": 3.921875,
-        "label": "Calculated infinity 11.427289 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 11.549051,
         "nominalFNumber": 3.95,
-        "label": "Calculated infinity 11.549051 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 11.670812,
         "nominalFNumber": 3.978125,
-        "label": "Calculated infinity 11.670812 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 11.792574,
         "nominalFNumber": 4.00625,
-        "label": "Calculated infinity 11.792574 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 11.914336,
         "nominalFNumber": 4.034375,
-        "label": "Calculated infinity 11.914336 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 12.036098,
         "nominalFNumber": 4.0625,
-        "label": "Calculated infinity 12.036098 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 12.15786,
         "nominalFNumber": 4.090625,
-        "label": "Calculated infinity 12.15786 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 12.279621,
         "nominalFNumber": 4.11875,
-        "label": "Calculated infinity 12.279621 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 12.401383,
         "nominalFNumber": 4.146875,
-        "label": "Calculated infinity 12.401383 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 12.523145,
         "nominalFNumber": 4.175,
-        "label": "Calculated infinity 12.523145 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 12.644907,
         "nominalFNumber": 4.203125,
-        "label": "Calculated infinity 12.644907 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 12.766669,
         "nominalFNumber": 4.23125,
-        "label": "Calculated infinity 12.766669 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 12.888431,
         "nominalFNumber": 4.259375,
-        "label": "Calculated infinity 12.888431 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 13.010192,
         "nominalFNumber": 4.2875,
-        "label": "Calculated infinity 13.010192 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 13.131954,
         "nominalFNumber": 4.315625,
-        "label": "Calculated infinity 13.131954 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 13.253716,
         "nominalFNumber": 4.34375,
-        "label": "Calculated infinity 13.253716 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 13.375477,
         "nominalFNumber": 4.371875,
-        "label": "Calculated infinity 13.375477 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 13.49724,
         "nominalFNumber": 4.4,
-        "label": "Calculated infinity 13.49724 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 13.619001,
         "nominalFNumber": 4.428125,
-        "label": "Calculated infinity 13.619001 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 13.740763,
         "nominalFNumber": 4.45625,
-        "label": "Calculated infinity 13.740763 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 13.862525,
         "nominalFNumber": 4.484375,
-        "label": "Calculated infinity 13.862525 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 13.984287,
         "nominalFNumber": 4.5125,
-        "label": "Calculated infinity 13.984287 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 14.106049,
         "nominalFNumber": 4.540625,
-        "label": "Calculated infinity 14.106049 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 14.227811,
         "nominalFNumber": 4.56875,
-        "label": "Calculated infinity 14.227811 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 14.349573,
         "nominalFNumber": 4.596875,
-        "label": "Calculated infinity 14.349573 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 14.471334,
         "nominalFNumber": 4.625,
-        "label": "Calculated infinity 14.471334 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 14.593096,
         "nominalFNumber": 4.653125,
-        "label": "Calculated infinity 14.593096 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 14.714858,
         "nominalFNumber": 4.68125,
-        "label": "Calculated infinity 14.714858 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 14.836619,
         "nominalFNumber": 4.709375,
-        "label": "Calculated infinity 14.836619 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 14.958382,
         "nominalFNumber": 4.7375,
-        "label": "Calculated infinity 14.958382 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 15.080143,
         "nominalFNumber": 4.765625,
-        "label": "Calculated infinity 15.080143 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 15.201905,
         "nominalFNumber": 4.79375,
-        "label": "Calculated infinity 15.201905 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 15.323667,
         "nominalFNumber": 4.821875,
-        "label": "Calculated infinity 15.323667 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 15.445428,
         "nominalFNumber": 4.85,
-        "label": "Calculated infinity 15.445428 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 15.56719,
         "nominalFNumber": 4.878125,
-        "label": "Calculated infinity 15.56719 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 15.688952,
         "nominalFNumber": 4.90625,
-        "label": "Calculated infinity 15.688952 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 15.810715,
         "nominalFNumber": 4.934375,
-        "label": "Calculated infinity 15.810715 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 15.932476,
         "nominalFNumber": 4.9625,
-        "label": "Calculated infinity 15.932476 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 16.054237,
         "nominalFNumber": 4.990625,
-        "label": "Calculated infinity 16.054237 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 16.176,
         "nominalFNumber": 5.01875,
-        "label": "Calculated infinity 16.176 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 16.297761,
         "nominalFNumber": 5.046875,
-        "label": "Calculated infinity 16.297761 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 16.419523,
         "nominalFNumber": 5.075,
-        "label": "Calculated infinity 16.419523 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 16.541285,
         "nominalFNumber": 5.103125,
-        "label": "Calculated infinity 16.541285 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 16.663047,
         "nominalFNumber": 5.13125,
-        "label": "Calculated infinity 16.663047 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 16.784809,
         "nominalFNumber": 5.159375,
-        "label": "Calculated infinity 16.784809 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 16.90657,
         "nominalFNumber": 5.1875,
-        "label": "Calculated infinity 16.90657 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 17.028332,
         "nominalFNumber": 5.215625,
-        "label": "Calculated infinity 17.028332 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 17.150094,
         "nominalFNumber": 5.24375,
-        "label": "Calculated infinity 17.150094 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 17.271856,
         "nominalFNumber": 5.271875,
-        "label": "Calculated infinity 17.271856 mm",
         "published": false,
         "publishedFocus": []
       },
       {
         "focalLengthMm": 17.4,
         "nominalFNumber": 5.3,
-        "label": "Source infinity 17.4 mm",
+        "label": "Tele",
         "published": true,
         "publishedFocus": []
       }
@@ -1174,7 +1064,7 @@ const LENS_DATA = {
     "step": 0.004
   },
   "gaps": {
-    "4": {
+    "4A": {
       "label": "d4",
       "values": [
         [
