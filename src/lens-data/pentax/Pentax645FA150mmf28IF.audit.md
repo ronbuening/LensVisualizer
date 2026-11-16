@@ -65,3 +65,28 @@ Wording: subtitle, specs, element types, roles and focal lengths, focus descript
 - Open: at the closest distance the wide-open axial beam (about 17.3 mm at surface 7) exceeds the rear group (14.9 mm), so the rear group limits the aperture there; the L4/L5 and L5/L6 air spaces close near 16 mm, so the rims cannot be raised to pass it. At infinity the rear group trims roughly three quarters of one side of the corner bundle. Both follow the drawn proportions and are left as they are.
 - Open: the engine reports a 14.30° half-field for the 645 format, against the patent's 13.2° at Y = 34.85.
 - Open: no maker construction diagram was found, so Embodiments 1 and 2 cannot be separated by drawing. A maker statement about special low-dispersion glass was seen only second-hand; no `apd` tag was added.
+
+## 2026-11-16 — Semi-diameter pass against Fig. 6
+
+Source: US 6,313,955 B1, PDF p. 5, Fig. 6 (Embodiment 2 at infinity), profiled at 300 dpi below the axis (the side without brackets). Scale 12.752 px/mm from the first to the last vertex (87.83 mm over 1120 px); the vertices of surfaces 4, 6, 7 and 13 and the stop tick fall within 2 px of their computed positions.
+
+| Element | Stored sd | Fig. 6, lower / upper side | Result |
+|---|---:|---:|---|
+| L1 (1, 2) | 28.5 | 28.7 / 28.5 | kept |
+| L2 (3, 4) | 23.7 | 23.8 / 23.8 | kept |
+| L3 front (5) | 20.5 | 20.4 / 20.5 | kept |
+| L3 rear (6) | 18.2 | curve ends near 17.9, flat edge to 20.4 | sd kept (axial ray 18.01); `rimExtensionSd: 20.5` added |
+| L4 (7, 8) | 14.9 | 15.1 / 14.9 | kept |
+| L5 (9, 10) | 15.3 | 15.6 / 15.3 | kept |
+| L6 (11, 12) | 15.8 | 16.2 / 15.8 | kept |
+| L7 (13, 14) | 19.2 | 19.6 / 19.2 | kept |
+
+Every clear semi-diameter is within 3 % of the drawing, so none moved. The one shape difference was L3: the figure draws a square block whose top runs flat to 29.0 mm behind the first vertex, where the stored rims joined in a slant. The land on surface 6 ends at the same 29.0 mm. It adds no clipping: corner illumination is 39.8 % at 13.2° before and after, and no field changed (worst loss 0.0 points). The step order L4 < L5 < L6 < L7 and the touching rims of L4/L5 and L5/L6 match the drawing.
+
+After the change the surface audit reports no errors, the aperture audit reports no rim limit at infinity, the image-circle and field-coverage audits are unchanged, and the engine still gives f 146.970, F2.9 and a 17.42 mm stop radius.
+
+Metadata: `aperture.blades: 8` added (Ricoh Imaging product page: 8 diaphragm blades, minimum aperture F22, which the f-stop list already ends on). Ricoh Imaging writes the product name "smc PENTAX-FA645 150mmF2.8[IF]"; the display name is the same product in the catalog's style, as on the FA 645 120mm sibling. Mount `pentax-645` and format `645` are correct.
+
+- Open: at the closest distance the wide-open axial ray needs about 17.3 mm at surface 7 and 16.8 / 16.4 mm at surfaces 8 / 9, against rims of 14.9 / 14.9 / 15.3 mm. Surfaces 8 and 9 touch at about 15.85 mm, so no rim can pass that beam, although the patent labels its closest-distance plots 1:3.3 (the full stop-limited beam). The rims stay as drawn; the rear group limits the aperture at close focus.
+- Open: the figure's small bevel at L3's rear corner is not modelled.
+- Open: `sdSource` stays `"heuristic"`.

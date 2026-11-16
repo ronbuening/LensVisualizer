@@ -77,9 +77,9 @@ None. Every refracting surface is spherical.
 
 ## Model Scope and Limitations
 
-The patent does not list clear apertures. The semi-diameters are scaled from the element heights drawn in Figure 6 and checked against the wide-open axial beam at infinity, which passes every surface. They are estimates, so off-axis illumination and off-axis image quality in the model are indicative only.
+The patent does not list clear apertures. The semi-diameters are scaled from the element heights drawn in Figure 6 and checked against the wide-open axial beam at infinity, which passes every surface. L3 is drawn as a square block whose rear curve stops short of the edge, so its rear face carries a flat land from 18.2 mm to the 20.5 mm rim. They are estimates, so off-axis illumination and off-axis image quality in the model are indicative only.
 
-The rear group is drawn markedly smaller than the front group, and the air spaces between L4, L5 and L6 close at a height of about 16 mm, which caps the diameter of those elements. Two consequences follow in the model. At infinity the rear group trims a large part of the oblique bundle at the corner of the 645 frame. At the closest distance the rear group sits 1.22 mm behind the stop, where the wide-open axial beam (about 17.3 mm in radius) is larger than L4 (14.9 mm), so the rear group, not the iris, limits the aperture there.
+The rear group is drawn markedly smaller than the front group, and the air spaces between L4, L5 and L6 close at a height of about 16 mm, which caps the diameter of those elements. Two consequences follow in the model. At infinity the rear group trims a large part of the oblique bundle at the corner of the 645 frame. At the closest distance the rear group sits 1.22 mm behind the stop, where the wide-open axial beam (about 17.3 mm in radius) is larger than L4 (14.9 mm), so the rear group, not the iris, limits the aperture there. The patent's closest-distance aberration plots are labelled 1:3.3, the value for the full stop-limited beam, which the drawn rear group could not pass.
 
 Spherical aberration of the model at infinity is −0.04 mm at the edge of the F2.9 pupil. The image plane is the patent's printed back focus in every printed state.
 

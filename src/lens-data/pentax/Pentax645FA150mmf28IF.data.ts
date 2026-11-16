@@ -34,8 +34,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  NOTE ON SEMI-DIAMETERS:                                             ║
  * ║    The patent does not publish clear apertures. Values are scaled    ║
  * ║    from the element heights drawn in Fig. 6 and checked against the  ║
- * ║    wide-open axial beam at infinity. The rear group is smaller than  ║
- * ║    the axial beam at close focus, as drawn in Fig. 9.                ║
+ * ║    wide-open axial beam at infinity. L3 is drawn as a square block:  ║
+ * ║    its rear curve ends near 18 mm and a flat land continues to the   ║
+ * ║    20.5 mm edge (rimExtensionSd on surface 6). The rear group is     ║
+ * ║    smaller than the axial beam at close focus, as drawn in Fig. 9.   ║
  * ║                                                                      ║
  * ║  IMPORTANT: This file describes ONLY the optical design:             ║
  * ║    ✓ Glass elements and surfaces from front element to image plane   ║
@@ -166,7 +168,7 @@ const LENS_DATA = {
     { label: "3", R: 47, d: 5.51, sd: 23.7, medium: 2 },
     { label: "4", R: 73.35, d: 4.9, sd: 23.7 },
     { label: "5", R: 228.536, d: 3, sd: 20.5, medium: 3 },
-    { label: "6", R: 32.889, d: 9.94, sd: 18.2 },
+    { label: "6", R: 32.889, d: 9.94, sd: 18.2, rimExtensionSd: 20.5 },
     { label: "STO", R: "flat" },
     { label: "7", R: 100.59, d: 3.92, sd: 14.9, medium: 4 },
     { label: "8", R: -1020.662, d: 1.56, sd: 14.9 },
@@ -219,7 +221,7 @@ const LENS_DATA = {
   },
 
   /* ── Aperture configuration ── */
-  aperture: { nominalFNumber: 2.9, fStops: [2.9, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22 },
+  aperture: { nominalFNumber: 2.9, fStops: [2.9, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22, blades: 8 },
 
   /* ── Group annotations ── */
   groups: [
