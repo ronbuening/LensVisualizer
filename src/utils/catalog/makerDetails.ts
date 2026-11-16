@@ -31,6 +31,7 @@
  *   2026-11-16  Expanded the Kinoptik, Meike, Schacht, Thypoch, Viltrox, and Yongnuo entries to the
  *               full multi-paragraph form of the established makers; renamed the P. Angénieux slug
  *               to angenieux.
+ *   2026-11-16  Added the SongRaw maker entry in the same multi-paragraph form.
  *   2026-04-26  Detail and accuracy pass on Leica (designer attributions,
  *               Solms→Leitz-Park facility history), Fujifilm (X100, GFX,
  *               2006 holding-company rebrand), Canon (Kwanon-vs-Hansa Canon,
@@ -219,13 +220,24 @@ export const MAKER_DETAILS: Record<string, MakerDetails> = {
     notableDesigns:
       "T-mount, Adapt-A-Matic, Adaptall and Adaptall-2, SP 90mm Macro series, SP AF 60mm f/2 Di II Macro, SP AF 180mm f/3.5 Di Macro, 28-200mm all-in-one zoom, 28-75mm f/2.8, 35-150mm f/2-2.8, SP 150-600mm",
   },
-  // Launch coverage: https://petapixel.com/2025/04/07/new-company-songraw-unveils-first-lens-full-frame-af-50mm-f-1-2-moonlit/
-  // Applicant and address: CN 224176794 U, CN 119667909 A
+  /* Applicant, address, inventor and filing dates: CN 119148346 A (filed 2024-11-12), CN 119667909 A (filed 2025-01-23),
+   * CN 224176794 U.
+   * Launch and founders: https://petapixel.com/2025/04/07/new-company-songraw-unveils-first-lens-full-frame-af-50mm-f-1-2-moonlit/
+   * https://www.cined.com/songraw-af-50mm-f-1-2-moonlit-full-frame-prime-lens-for-sony-e-nikon-z-and-l-mount-released/
+   * Apochromatic claim: https://phillipreeve.net/blog/review-songraw-50mm-1-2-moonlit/
+   * 85mm and company profile: https://www.cined.com/songraw-moonlit-85mm-f-1-2-lens-announced-challenging-the-85mm-classics/
+   * https://petapixel.com/2025/09/16/songraw-expands-its-moonlit-lens-series-with-the-85mm-f-1-2/
+   * CP+ 2026 finishes and launch prices: https://phototrend.fr/2026/03/cp-plus-2026-songraw-af-85-mm-f-12-et-50-mm-f-12-v2/
+   * Simplified editions: https://www.imaging-resource.com/news/songraw-moonlit-simplified-lenses-cut-price-of-f-1-2-primes/
+   * MS review: https://dustinabbott.net/2026/09/songraw-af-85mm-f1-2-ms-review/
+   */
   songraw: {
     headquarters: "Shenzhen, China",
-    summary: "Chinese maker of fast full-frame autofocus primes for Sony E and Nikon Z mounts.",
+    summary:
+      "Chinese lens maker that launched in 2025 with the Moonlit series of full-frame f/1.2 autofocus primes for Sony E and Nikon Z mounts, later joined by lighter, lower-priced silver editions of the same designs.",
     history:
-      "SongRaw announced its first lens, the AF 50mm f/1.2 Moonlit, in April 2025. Its optical patents are filed by Shenzhen Songruo Photography Equipment Co., Ltd.; CN 224176794 U and CN 119667909 A are the sources of the AF 50mm f/1.2 Moonlit and AF 85mm f/1.2 MS entries in this catalog.",
+      "SongRaw is the brand of Shenzhen Songruo Photography Equipment Co., Ltd., based in the Bantian area of Shenzhen's Longgang district, which files its optical patents. Press coverage describes the founders as former engineers and lens designers with backgrounds in the camera-equipment industry; the company makes only lenses and runs its own factory. Its application for a 50mm f/1.2 design was filed in November 2024 and one for an 85mm f/1.2 design in January 2025, both naming Chang Yuwen as inventor.\n\nThe brand's first lens, the AF 50mm f/1.2 Moonlit, was announced in April 2025, and SongRaw described it as the first Chinese full-frame 50mm f/1.2 autofocus lens for mirrorless cameras. It has 15 elements in 10 groups with two aspherical elements, a 13-blade diaphragm, an aperture ring that can be declicked and a stepping-motor (STM) autofocus drive, and SongRaw's marketing describes its colour correction as apochromatic. The Sony E version came first, with Nikon Z and L-mount versions announced alongside it.\n\nThe AF 85mm f/1.2 Moonlit followed at IBC in September 2025 at US$1,299. It uses 18 elements in 10 groups, among them one aspherical, five ED and eleven high-index elements. At CP+ in 2026 SongRaw showed silver versions of both lenses alongside the black Moonlit finish: lighter aluminium bodies without an aperture ring. At NAB in April 2026 these were presented as simplified editions with the same optical designs, priced at about half the originals; the silver 85mm is sold as the AF 85mm f/1.2 MS.\n\nSongRaw's patents CN 224176794 U and CN 119667909 A are the sources of the AF 50mm f/1.2 Moonlit and AF 85mm f/1.2 MS entries in this catalog.",
+    notableDesigns: "AF 50mm f/1.2 Moonlit, AF 85mm f/1.2 Moonlit, AF 85mm f/1.2 MS",
   },
   /* Thypoch product pages; patent applicant per CN 118244463 A and CN 118534627 A.
    * https://thypoch.com/en/simera/50mm
