@@ -41,7 +41,7 @@ All radii and all fifteen tabulated distances use the same scale. There are no a
 
 The figure places the stop between L6 and L7 but gives no dimension for its position or diameter. The data file splits the 9.38-unit gap equally, **1.1256 mm before and after the stop**, which puts it 49.383 mm behind the first vertex. An f/3.5 beam needs an entrance-pupil radius of **3.433 mm** and a stop radius of **5.374 mm**. Both the gap split and the stop size are inferred.
 
-Every clear radius is inferred, because the patent prints none. The semi-diameters, in millimetres, are L1 **24.2/24.2**, L2 **18.5/18.5**, L3 **18.5/18.5**, L4 **14.0/13.8**, L5 **7.0/7.0**, L6 **6.8/6.8**, L7 **6.5/5.8** and L8 **5.8/5.8**. They follow the proportions of the patent figure and the ray bundles of the 83° field; they are not measurements from the drawing.
+Every clear radius is inferred, because the patent prints none. The semi-diameters, in millimetres, are L1 **24.2/23.1**, L2 **18.5/18.5**, L3 **18.5/18.5**, L4 **14.0/13.3**, L5 **7.0/7.0**, L6 **6.8/6.8**, L7 **6.5/7.3** and L8 **5.8/5.8**. They follow the proportions of the patent figure and the ray bundles of the 83° field. The figure ends the concave rear faces of L1 and L4 short of the element edge with a flat land, and the data file does the same, with lands out to 24.2 mm and 14.0 mm. It draws the rear face of L7 as the tallest rim of the rear component, cupped around L8. The figure's axial spacings differ from the table by more than 10 % in places, so it fixes proportions, not dimensions.
 
 ## Element-by-Element Analysis
 
@@ -117,7 +117,7 @@ The prescription reproduces the patent's stated values: focal length 100.117 aga
 
 The declared field is the leaflet's **83° full angle**, or ±41.5°. At that angle the chief ray reaches an image height of **21.34 mm**, 99 % of the 21.65 mm half-diagonal of the full-frame format, and the chief ray to the format corner at 41.9° is clear.
 
-The limits of the model come from what the patent does not print. The stop position, stop size and every clear radius are inferred, so vignetting is an estimate: the inferred rear rims cut 13 % to 25 % of the corner bundle at f/3.5. The glasses are not identified, so colour behaviour rests on Abbe-number estimates. No focusing movement is modelled, and no maker's performance data were found for comparison.
+The limits of the model come from what the patent does not print. The stop position, stop size and every clear radius are inferred, so vignetting is an estimate: the inferred rims of L8 cut 14 % to 25 % of the corner bundle at f/3.5, and the geometric illumination at 41.5° is about 45 % of the axial value. The glasses are not identified, so colour behaviour rests on Abbe-number estimates. No focusing movement is modelled, and no maker's performance data were found for comparison.
 
 ## Sources
 

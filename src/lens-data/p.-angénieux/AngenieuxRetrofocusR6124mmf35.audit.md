@@ -151,7 +151,51 @@ EFL 24.028135828731198 mm, f/3.5, half-field 41.5°, stop radius 5.3741641988077
 Open:
 
 - `patentNumber` is "FR 1,214,945" without a kind code, matching the R11 sibling.
-- Rims are inferred throughout. The rear rims (surfaces 14–16, 5.8 mm) vignette the 41.5° bundle by 13 %, 14 % and 25 % and have not been compared with the patent figure.
+- (Closed 2026-11-15, semi-diameter pass: compared with the figure; surface 14 raised, 15 and 16 kept.) Rims are inferred throughout. The rear rims (surfaces 14–16, 5.8 mm) vignette the 41.5° bundle by 13 %, 14 % and 25 % and have not been compared with the patent figure.
 - `indexReference` is "d"; the patent's wording and the SK16-like crown lean towards sodium D, within one unit of the last printed digit.
 - The Exakta Circle list gives six elements for the R61, against eight in the ALPA leaflet and the patent; a second source for the Exakta-mount version would settle it.
 - No focusing movement is modelled.
+
+## 2026-11-15 — Semi-diameter pass against the patent figure
+
+Source: FR 1,214,945, page 3 (the only figure), measured on the 300-dpi scan; the Pignons ALPA leaflet section was used only to confirm the element shapes.
+
+### Scale
+
+Vertex crossings on the axis (row 1668) against the prescription: first to last vertex 967 px for 55.77 mm, 17.34 px per lens mm. By span: front component 16.5 px/mm, the long air space 17.2, rear component 18.6; L8 is drawn 30 % thicker than the table. The axial spacings therefore depart from the table by more than 10 % in places, and the figure is used for proportions (relative rim heights, lands, step order), with the whole-track scale for heights. Heights at that scale reproduce the two largest starting values: L1 edge 416.5 px = 24.0 mm (file 24.2) and L5 122.5 px = 7.06 mm (file 7.0).
+
+### Readings and decisions
+
+| Surface | Before | Figure | After | Evidence |
+|---|---:|---:|---:|---|
+| 1 | 24.2 | 24.0 | 24.2 | Agrees; kept |
+| 2 | 24.2 | cap ends 19.6–20.2, land to the edge | 23.1, land to 24.2 | The rear curve leaves the vertical edge stroke 345–352 px from the axis (q = 0.84 of the edge); the sag there, 7.5 mm, gives 19.6 mm from the radius |
+| 3–6 | 18.5 | 19.7 | 18.5 | 6 % apart: inside measurement noise; kept |
+| 7 | 14.0 | 15.1 | 14.0 | 8 % apart: inside measurement noise; kept |
+| 8 | 13.8 | cap ends 11.9–12.1, land to the edge | 13.3, land to 14.0 | The curve meets the flat land 205–208 px from the axis (q = 0.78); the sag there, 5.9 mm, gives 12.1 mm from the radius |
+| 9–12 | 7.0 / 7.0 / 6.8 / 6.8 | 7.06 / 7.06 / 7.1 / 7.1 | unchanged | Agree |
+| 13 | 6.5 | cap ends about 5.5, chamfer out to the rim | 6.5 | Kept: the corner beam reaches 5.78 mm here, so a smaller cap would leave no margin; the slanted edge to the taller rear rim now draws the chamfer |
+| 14 | 5.8 | rear face runs to the full rim, 132–138 px: 7.3 at the rear-component scale, 7.7 against L5 | 7.3 | The figure draws L7's rear face as the tallest rim of the rear component, cupped around L8; the file had it lower than L5 and L6. The lower reading is used |
+| 15, 16 | 5.8 | 5.8 at the rear-component scale, 6.2 at the whole-track scale | 5.8 | 0–8 % apart; kept, and with them the corner vignetting |
+
+The caps of surfaces 2 and 8 stop at 23.1 and 13.3 instead of the figure's 20 and 12 because the display's traced half-field is set from first-order chief-ray heights: at 20.2 and 12.0 it fell from 41.33° to 37.65°. 23.1 and 13.3 are the smallest one-decimal values that keep 41.33°. The real corner rays need only 19.30 and 10.90 mm on these faces.
+
+### Results
+
+- Corner illumination, geometric, wide open: 45.5 % at 41.5° before and after; identical at every field (worst loss 0.0 points). Restoring any one of the three changed surfaces wins back 0.0 points.
+- Built model before and after: EFL 24.0281 mm, f/3.5, half-field 41.5°, traced half-field 41.33°, stop radius 5.3742 mm.
+- Surface audit OK; aperture audit within 3 % of f/3.5 with no rim limit; image circle 0 undersized; field coverage 21.34 of 21.65 mm at the declared 41.5°, corner clear at 41.9°.
+- Real-ray clearance at 21.63 mm: no axial clip, no blocked chief ray; surface 14 no longer clips, surfaces 15 and 16 vignette the corner bundle by 14 % and 25 %.
+- Stop: the figure's dashed stop line sits 20 px behind the vertex of surface 12 and 17 px ahead of surface 13, the middle of the gap, as modelled. No stop change is suggested.
+- Comparison image kept outside the repository.
+
+### Product name and metadata
+
+The ALPA leaflet titles the lens "Automatic ALPA Retrofocus 24 mm f/3.5 (Angénieux, Paris)"; the Exakta Circle list enters it as Angénieux R61, 24 mm, f/3.5–22. The display name "P. ANGÉNIEUX RETROFOCUS TYPE R61 24mm f/3.5" follows the R11 sibling and agrees with both. No metadata changed: the mounts (`alpa`, `exakta`), the format, the 0.41 m close focus and the f/22 minimum aperture each agree with one of these two sources, and no source read gives the blade count.
+
+Open:
+
+- The rear caps of L1 and L4 are still deeper than the figure draws them (23.1 against about 20, 13.3 against about 12), held by the traced-field rule above.
+- L2, L3 and L4's edge read 6–8 % larger in the figure than in the file; surface 7 at 14.0 is what sets the 41.33° traced half-field, just short of the declared 41.5°.
+- The front cap of L7 (6.5) is larger than the figure's cap end (about 5.5).
+- Blade count and other mounts (the R61 was offered for several reflex cameras) need a maker or period source.

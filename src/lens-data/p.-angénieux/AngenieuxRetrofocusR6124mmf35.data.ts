@@ -22,6 +22,16 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * semi-diameter, and the last gap, which is the computed paraxial back focus
  * 36.8228 mm (the printed 153.3 would scale to 36.792 mm).
  *
+ * Semi-diameters are estimated from the patent figure (page 3, about 17.3 px
+ * per lens mm at 300 dpi over the whole track) and checked by ray trace. The
+ * figure's axial spacings depart from the table by more than 10 % in places,
+ * so it is used for proportions. It ends the rear caps of L1 and L4 short of
+ * the element edge with a flat land, at about 20 mm and 12 mm. The caps here
+ * stop at 23.1 (surface 2, land to 24.2) and 13.3 (surface 8, land to 14),
+ * the smallest radii that keep the traced field at its full 41.3 degrees. The
+ * figure draws L7's rear face as the tallest rim of the rear component,
+ * wrapping L8: surface 14 is 7.3.
+ *
  * Glass: the patent gives only index and Abbe number, with the index headed
  * nd "pour la raie D". The helium d reference is kept because d and D differ
  * by about one unit in the last printed digit. No catalog row matches the
@@ -193,7 +203,8 @@ const LENS_DATA = {
       "label": "2",
       "R": 29.1408,
       "d": 9.3096,
-      "sd": 24.2
+      "sd": 23.1,
+      "rimExtensionSd": 24.2
     },
     {
       "label": "3",
@@ -232,7 +243,8 @@ const LENS_DATA = {
       "label": "8",
       "R": 15.34488,
       "d": 23.22048,
-      "sd": 13.8
+      "sd": 13.3,
+      "rimExtensionSd": 14
     },
     {
       "label": "9",
@@ -276,7 +288,7 @@ const LENS_DATA = {
       "label": "14",
       "R": 16.4328,
       "d": 0.972,
-      "sd": 5.8
+      "sd": 7.3
     },
     {
       "label": "15",
