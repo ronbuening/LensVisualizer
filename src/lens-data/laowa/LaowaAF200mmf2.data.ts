@@ -1,5 +1,11 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
-/** Hidden representative E2; literal filter, plane and two focus states retained. */
+/**
+ * Laowa AF 200mm f/2, modeled from CN 120949408 A, Example 2 (Anhui Changgeng Optics; Figures 3 and 4).
+ * Values are the patent's own, in millimetres at scale 1 (patent f = 194.5254 mm); all surfaces are spherical.
+ * Radii, thicknesses, d-line indices, Abbe numbers, both focus states (infinity and a 4000 mm object) and the
+ * 45.2069 mm image-side gap are as printed. The 2 mm plane plate is the patent's own rear filter and stays drawn.
+ * The patent prints no clear apertures: every semi-diameter is inferred, and the stop radius follows from f/2.06.
+ */
 const LENS_DATA = {
   "schema": 2,
   "key": "laowa-af-200mm-f2",
@@ -120,7 +126,7 @@ const LENS_DATA = {
     {
       "id": 12,
       "name": "Source filter",
-      "type": "Lens",
+      "type": "Plane-Parallel Plate",
       "nd": 1.5168,
       "vd": 64.2,
       "indexReference": "d",
@@ -342,6 +348,9 @@ const LENS_DATA = {
       "marketing": 2,
       "design": 2.06
     },
+    "closeFocusM": {
+      "marketing": 1.5
+    },
     "specs": [
       "11 GLASS / 9 GROUPS PLUS SOURCE FILTER",
       "BOTH LITERAL FOCUS ENDPOINTS",
@@ -364,23 +373,7 @@ const LENS_DATA = {
     "errata": [
       {
         "status": "unresolved",
-        "note": "Original EPO page images verified; full original PDF not recovered. Cover inventor \u674e\u5927\u52c7 is rendered Dayong Li as a transliteration, not an official English spelling."
-      },
-      {
-        "status": "unresolved",
-        "note": "Source 2mm filter n1.51680/V64.20 and BF45.2069mm retained; maker recommends1.5mm rearfilter, exact factory identity not claimed."
-      },
-      {
-        "status": "unresolved",
-        "note": "Source S15 V62.96 controls; summary62.900 differs."
-      },
-      {
-        "status": "unresolved",
-        "note": "Near source object4000mm before first vertex; no extrapolation to retail1.5m."
-      },
-      {
-        "status": "unresolved",
-        "note": "Geometry-limited inferred caps, not measured. Default90% sag. Quantified off-axis sampled clipping in analysis; full application/current-main/browser QA deferred integration."
+        "note": "The Example 2 table prints an Abbe number of 62.96 for the focusing lens (surface 15), while the conditional-expression summary lists FocVd = 62.900 for the same example. The file keeps the table value."
       }
     ]
   }
