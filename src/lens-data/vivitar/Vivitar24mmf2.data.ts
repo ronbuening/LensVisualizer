@@ -9,6 +9,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * length is multiplied by exactly 24, giving a paraxial EFL of 24.008 mm. Indices and Abbe numbers are as printed
  * (d line).
  *
+ * GLASS: the patent names no glass. The printed pairs agree with catalog rows at the printed precision: 1.697 / 55.5
+ * HOYA LAC14, 1.603 / 60.7 HOYA BACD14, 1.717 / 29.5 SF1, 1.805 / 25.5 SF6 and 1.640 / 60.2 HOYA LACL60. The labels
+ * are catalog equivalents; the production supplier is not known.
+ *
  * IMAGE PLANE: the last gap is the printed BFL, 1.59 x 24 = 38.16 mm. The paraxial back focus of the printed
  * prescription is 38.326 mm (1.5969 normalized). The printed plane lies 0.166 mm inside it, at the zonal best focus
  * of the undercorrected spherical aberration (-0.18 to -0.21 mm between the 0.5 and 0.85 zones), so it is kept.
@@ -18,19 +22,20 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *
  * SEMI-DIAMETERS (inferred): the patent prints no clear apertures. Rims follow the proportions of Figure 1. L2's
  * rear curve ends at 11.4 mm and a flat land continues to the 14 mm front rim (rimExtensionSd), as the figure draws
- * it. L7's rims are 9.3 mm, the smallest value that passes the on-axis f/2 ray of the repo aperture audit.
+ * it. L7's rims are 9.3 mm, the smallest value that passes the on-axis f/2 ray.
  *
  * FOCUS: infinity only. The patent's 1:10 state (Table 7, S4 = .135) is not modeled; closeFocusM = 1e15 marks focus
  * as not modeled. The Vivitar 24mm f/2 focuses to 0.3 m (catalog.closeFocusM.marketing).
  *
- * PRODUCT LINK: the retail identity is plausible but not proven; see the audit log.
+ * PRODUCT LINK: by construction (eight elements in eight groups, f/2, 84 degree field, 1:10 close focus) and by the
+ * Vivitar assignment; no maker diagram confirms it.
  */
 const LENS_DATA = {
   "schema": 2,
   "key": "vivitar-24mm-f2",
   "maker": "Vivitar",
   "name": "VIVITAR 24mm f/2",
-  "subtitle": "US 4,258,980 Table 1 — representative patent, production identity unconfirmed",
+  "subtitle": "US 4,258,980 A, Table 1 — construction-based association with the Vivitar 24mm f/2",
   "catalog": {
     "lensMounts": [
       "nikon-f",
@@ -45,10 +50,10 @@ const LENS_DATA = {
     "imageFormat": "135-full-frame",
     "specs": [
       "8 ELEMENTS / 8 GROUPS",
-      "24× NORMALIZED TABLE 1",
-      "F/2",
-      "84° PATENT FIELD",
-      "INFINITY ONLY"
+      "DESIGN f = 24.01 mm",
+      "DESIGN F/2",
+      "ALL SPHERICAL",
+      "MINIMUM FOCUS 0.3 m"
     ],
     "elementCount": 8,
     "groupCount": 8,
@@ -84,81 +89,89 @@ const LENS_DATA = {
       "id": 1,
       "name": "L1",
       "label": "Element 1",
+      "role": "Weak positive front meniscus of the negative front group; offsets part of the distortion of the two negative menisci behind it.",
       "type": "Positive Meniscus",
       "nd": 1.697,
       "vd": 55.5,
       "focalLengthMm": 127.332994,
-      "glass": "Unmatched (nd=1.697, νd=55.5)"
+      "glass": "LAC14 (HOYA catalog equivalent; production supplier unspecified)"
     },
     {
       "id": 2,
       "name": "L2",
       "label": "Element 2",
+      "role": "First negative meniscus of the front group; its steep rear surface supplies most of the retrofocus divergence.",
       "type": "Negative Meniscus",
       "nd": 1.697,
       "vd": 55.5,
       "focalLengthMm": -30.248592,
-      "glass": "Unmatched (nd=1.697, νd=55.5)"
+      "glass": "LAC14 (HOYA catalog equivalent; production supplier unspecified)"
     },
     {
       "id": 3,
       "name": "L3",
       "label": "Element 3",
+      "role": "Second negative meniscus; completes the negative front group (group focal length about -19 mm).",
       "type": "Negative Meniscus",
       "nd": 1.603,
       "vd": 60.7,
       "focalLengthMm": -41.968903,
-      "glass": "Unmatched (nd=1.603, νd=60.7)"
+      "glass": "BACD14 (HOYA catalog equivalent; production supplier unspecified)"
     },
     {
       "id": 4,
       "name": "L4",
       "label": "Element 4",
+      "role": "Thick positive dense-flint element ahead of the iris; opens the positive rear group and balances the lateral colour of the front crowns.",
       "type": "Biconvex Positive",
       "nd": 1.717,
       "vd": 29.5,
       "focalLengthMm": 31.591273,
-      "glass": "Unmatched (nd=1.717, νd=29.5)"
+      "glass": "SF1 (SCHOTT catalog equivalent; production supplier unspecified)"
     },
     {
       "id": 5,
       "name": "L5",
       "label": "Element 5",
-      "type": "Plano-convex Positive",
+      "role": "Plano-convex crown directly behind the iris; first member of the rear focusing section.",
+      "type": "Plano-Convex Positive",
       "nd": 1.603,
       "vd": 60.7,
       "focalLengthMm": 31.800995,
-      "glass": "Unmatched (nd=1.603, νd=60.7)"
+      "glass": "BACD14 (HOYA catalog equivalent; production supplier unspecified)"
     },
     {
       "id": 6,
       "name": "L6",
       "label": "Element 6",
+      "role": "Biconcave dense-flint element, the only negative element of the rear group; corrects spherical aberration and axial colour.",
       "type": "Biconcave Negative",
       "nd": 1.805,
       "vd": 25.5,
       "focalLengthMm": -17.331699,
-      "glass": "Unmatched (nd=1.805, νd=25.5)"
+      "glass": "SF6 (SCHOTT catalog equivalent; production supplier unspecified)"
     },
     {
       "id": 7,
       "name": "L7",
       "label": "Element 7",
+      "role": "Positive meniscus, concave to the object; shares the rear group's converging power with L8.",
       "type": "Positive Meniscus",
       "nd": 1.64,
       "vd": 60.2,
       "focalLengthMm": 38.469982,
-      "glass": "Unmatched (nd=1.640, νd=60.2)"
+      "glass": "LACL60 (HOYA catalog equivalent; production supplier unspecified)"
     },
     {
       "id": 8,
       "name": "L8",
       "label": "Element 8",
+      "role": "Biconvex final element; completes the rear group and sets the long back focus.",
       "type": "Biconvex Positive",
       "nd": 1.64,
       "vd": 60.2,
       "focalLengthMm": 39.888336,
-      "glass": "Unmatched (nd=1.640, νd=60.2)"
+      "glass": "LACL60 (HOYA catalog equivalent; production supplier unspecified)"
     }
   ],
   "surfaces": [
@@ -275,7 +288,7 @@ const LENS_DATA = {
   ],
   "focus": {
     "closeFocusM": 1000000000000000.0,
-    "description": "Infinity prescription only. Close-focus motion is not modeled."
+    "description": "Infinity focus only; the patent's 1:10 close-focus state (Table 7), in which the four rear elements move ahead of the front four, is not modeled. The production lens focuses to 0.3 m."
   },
   "gaps": {},
   "aperture": {

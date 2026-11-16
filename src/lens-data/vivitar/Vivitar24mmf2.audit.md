@@ -1,4 +1,4 @@
-# Vivitar 24mm f/2 Compact — construction audit
+# Vivitar 24mm f/2 — construction audit
 
 2026-11-15. New independent transcription, not inherited validation. Pin: 70600ffc23af48a81994cf8fc834048fdf9d21a1.
 
@@ -14,7 +14,7 @@ Native build, canonical ingest/geometry, aperture census and field audit passed 
 
 ## Outstanding
 
-Current-main integration, full-corpus typecheck/lint/tests, production-render trim sweep and compiled browser QA not run. Near-focus Table7 not modeled. Private Drive archival/readback to be performed by coordinator; no verified-backup claim here.
+Closed 2026-11-15: the file was brought onto the current branch in the deployment validation below; the remaining checks run with the branch. Near-focus Table 7 not modeled (still open).
 
 ## 2026-11-15 — Deployment validation
 
@@ -43,9 +43,47 @@ After the changes: EFL 24.008 mm, f/2 (stop radius 8.664 mm), paraxial back focu
 
 Open:
 
-- Name: the word "Compact" is not confirmed; the Vivitar brochure the lens notes cite could not be read during validation. Key, name, subtitle and specs wording ("24× NORMALIZED TABLE 1", "INFINITY ONLY") need the cleanup pass.
-- Glass labels read "Unmatched"; LaK14, SK14, SF1, SF6 and LaK21 fit the printed pairs.
+- Name: closed in the cleanup pass below ("Compact" dropped; key, name, subtitle and specs reworded).
+- Glass labels: closed in the cleanup pass below.
 - Rims of L6 and L7 (9.2 and 9.3 mm) are inferred and smaller than the full f/2 real ray needs (9.3 to 10.2 mm on surfaces 11–14); they vignette the corner heavily (64% of one side at surface 14). Compare with Figure 1 in the rim pass.
 - Mounts rest on a database listing; confirm against a Vivitar catalogue if one becomes available.
 - The patent's 1:10 focus state (Table 7, S4 = .135 normalized) is not modeled.
-- The lens notes still carry hand-off wording and repeated per-element boilerplate.
+- Lens notes wording: closed in the cleanup pass below.
+
+## 2026-11-15 — Cleanup and wording pass
+
+Public text and labels only; no radius, thickness, index, stop position, rim or gap was changed.
+
+Fields changed in the data file:
+
+- `subtitle`: "US 4,258,980 Table 1 — representative patent, production identity unconfirmed" → "US 4,258,980 A, Table 1 — construction-based association with the Vivitar 24mm f/2".
+- `specs`: "8 ELEMENTS / 8 GROUPS", "24× NORMALIZED TABLE 1", "F/2", "84° PATENT FIELD", "INFINITY ONLY" → "8 ELEMENTS / 8 GROUPS", "DESIGN f = 24.01 mm", "DESIGN F/2", "ALL SPHERICAL", "MINIMUM FOCUS 0.3 m".
+- `focus.description`: now states infinity focus only, the unmodeled 1:10 state of Table 7 and the 0.3 m production minimum. `focus.closeFocusM` stays 1e15 and `catalog.closeFocusM.marketing` stays 0.3.
+- Element `role` added to all eight elements; L5 `type` "Plano-convex Positive" → "Plano-Convex Positive".
+- Header comment: glass paragraph added, product-link line reworded.
+- "Compact" removed from this log's title and from the lens notes: no Vivitar document that could be read supports the word.
+
+Glass relabels (catalog row against the printed pair; a three-decimal nd is exact at that precision):
+
+- L1, L2: "Unmatched (nd=1.697, νd=55.5)" → LAC14 (HOYA), 1.69680 / 55.46, Δνd −0.04.
+- L3, L5: "Unmatched (nd=1.603, νd=60.7)" → BACD14 (HOYA), 1.60311 / 60.69, Δνd −0.01.
+- L4: "Unmatched (nd=1.717, νd=29.5)" → SF1 (SCHOTT), 1.71736 / 29.51, Δνd +0.01.
+- L6: "Unmatched (nd=1.805, νd=25.5)" → SF6 (SCHOTT), 1.80518 / 25.43, Δνd −0.07.
+- L7, L8: "Unmatched (nd=1.640, νd=60.2)" → LACL60 (HOYA), 1.64000 / 60.20, Δνd 0.00.
+
+Schott LaK14 (55.41) and SK14 (60.60) also fall inside the tolerance for the first two pairs; the Hoya rows are closer and were chosen. LaK21, suggested in the deployment validation, is 1.6405 / 60.1 and is not an exact row for 1.640 / 60.2, so LACL60 is used. All five labels resolve in the glass catalog. No element carries an anomalous-dispersion tag, and the maker publishes no special-glass positions.
+
+Cemented pairs: none; `doublets` stays empty. Groups G1 (surfaces 1–6) and G2 (7–16) keep the patent's names.
+
+Lens notes: title added; process wording, the per-element boilerplate, the private-evidence references and the "Verification Summary" heading removed (now "Model Scope and Limitations"); patent conditions, glass table, focus description from Table 7 and the f/2.19 real-beam note written in plain terms; the brochure is no longer cited for the element count or field, which rest on the patent and the catalog listing.
+
+Engine numbers before and after (identical): EFL 24.00758 mm, f/2, half-field 40.048°, stop radius 8.66413 mm, paraxial back focus 38.3256 mm against the stored 38.16 mm. Geometry validation passes with no errors; the aperture audit reports no rim limit.
+
+Open:
+
+- Product link: no maker cross-section found; which production version (Kino, Komine or another supplier) carries this design is not confirmed.
+- The Vivitar brochure listed in the lens notes' sources was not re-read (the file is too large for the reader used); its 8 elements / 8 groups and 84° figures are the original author's reading.
+- Mounts rest on a lens-database listing; confirm against a Vivitar catalogue if one becomes available.
+- Rims of L6 and L7 (9.2 and 9.3 mm) are inferred and smaller than the full f/2 real ray needs (9.3 to 10.2 mm on surfaces 11–14); they vignette the corner heavily. Compare with FIG. 1 in the rim pass.
+- The model admits about f/2.19 of real beam on axis because the stop radius is the paraxial f/2 value.
+- The patent's 1:10 focus state (Table 7, S4 = .135 normalized) is not modeled.
