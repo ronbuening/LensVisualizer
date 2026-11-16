@@ -1,4 +1,4 @@
-# Derived-plane audit: Vivitar 28 mm f/2 Compact
+# Audit: Vivitar 28mm f/2
 
 Pinned native engine: 70600ffc23af48a81994cf8fc834048fdf9d21a1. The image plane was moved on November 15, 2026 to the on-axis best geometric spot at f/2 (superseded: see the deployment validation section below). Original compact checkpoint restored from private archive, kept unchanged under source/. Original full /tmp checkout was unavailable after environment restart; fresh pinned checkout used.
 
@@ -33,7 +33,46 @@ After the changes: focal length 28.0137 mm, f/2.0 (paraxial stop, 8.62 mm), back
 
 Open:
 
-- Wording, names, keys, spec chips and glass labels ("Unmatched ...") are still in the package's style; the four flint/crown types BK7, FK5, SF4 and SF6 are recognisable, the four lanthanum crowns need matching.
+- (Closed 2026-11-15 by the cleanup and wording pass below.) Wording, names, keys, spec chips and glass labels ("Unmatched ...") are still in the package's style; the four flint/crown types BK7, FK5, SF4 and SF6 are recognisable, the four lanthanum crowns need matching.
 - Corner light is low (bundle needs 13.4 mm at surface 12; L6/L7 contact limits it to 9.5 mm): mostly the design, partly the inferred rims. Figure 1 is schematic and of the Table 1 form.
 - The patent's 1:10 close-focus state (Table 7: S4 = 0.116 F, L5-L8 moving differentially) is not modeled.
 - Further mounts, the maker brochure's 75-degree field and a construction diagram remain unchecked.
+
+## 2026-11-15 — Cleanup and wording pass
+
+The file and key were renamed by the coordinator to `Vivitar28mmf2` / `vivitar-28mm-f2`; the word "Compact" was dropped from the header and the analysis because no Vivitar document supporting it was read.
+
+Fields changed in the data file:
+
+- `subtitle`: "US4258980 Table 2; paraxial infinity image plane, not factory prescription" -> "US 4,258,980 A, Table 2 — construction-based association with the Kiron-made Vivitar 28mm f/2".
+- `specs`: "8 ELEMENTS / 8 GROUPS", "TABLE 2 AT 28×", "72° PATENT / 75° RETAIL", "INFINITY ONLY", "PARAXIAL INFINITY IMAGE PLANE 38.3273 MM" -> "8 ELEMENTS / 8 GROUPS", "ALL SPHERICAL", "f/2", "MINIMUM FOCUS 0.3 m".
+- `focus.description`: now begins "Infinity focus only; ..." and names the unmodeled 1:10 state. `focus.closeFocusM` stays 1e15 and `catalog.closeFocusM.marketing` stays 0.3.
+- Element 5 `type`: "Plano-convex Positive" -> "Plano-Convex Positive". A `role` line was added to each element.
+- Header comment: product named as the Kiron-made version, with a glass paragraph and a statement that this is not the Komine-made Close Focus lens.
+- No cemented pairs: `doublets` stays empty and no element carries `cemented`. Groups G1 (L1-L3) and G2 (L4-L8) follow the patent text.
+- No `apd` tags: the maker publishes no special-dispersion positions for this lens.
+
+Glass labels (printed Nd is exact at three decimals for every row; difference in Abbe number is catalogue minus printed):
+
+- L1: Unmatched -> N-BK7 (SCHOTT; BK7-class equivalent), 1.51680 / 64.17, -0.03.
+- L2: Unmatched -> LAC12 (HOYA), 1.67790 / 55.52, +0.02.
+- L3: Unmatched -> N-FK5 (SCHOTT; FK5-class equivalent), 1.48749 / 70.41, +0.01.
+- L4: Unmatched -> SF4 (SCHOTT legacy), 1.75520 / 27.58, +0.08.
+- L5: Unmatched -> LACL60 (HOYA), 1.64000 / 60.20, 0.00.
+- L6: Unmatched -> SF6 (SCHOTT legacy), 1.80518 / 25.43, -0.07.
+- L7: Unmatched -> K-LaK11 (SUMITA), 1.65830 / 57.29, -0.01.
+- L8: Unmatched -> LAC14 (HOYA), 1.69680 / 55.46, -0.04.
+
+The Schott N-LAK21 row (index 1.64049, Abbe number 60.10) fits L5 less closely than LACL60 and was not used. The vendors are catalogue equivalents only; the patent names no glass.
+
+Analysis: title line added, glass section replaced by the table of catalogue equivalents, and the product paragraph now says which Vivitar 28mm f/2 this is and is not.
+
+Engine numbers before and after are identical: focal length 28.0137 mm, f/2 (stop semi-diameter 8.6226 mm), half-field 37.528 degrees, back focus 38.3273 mm, total length 86.8793 mm. Surface check: OK. Aperture audit: within 3 % of the stated f-number, no rim, trace or iris limit. Field coverage: at least 99 %.
+
+Open:
+
+- Rims are estimates, not read from a figure of this example. The real f/2 marginal ray needs 9.49 / 9.50 / 10.06 mm at surfaces 12 / 13 / 14 against stored 9.0 / 9.3 / 9.3, and L6 and L7 touch at 9.50 mm.
+- The stop is sized paraxially; the real axial beam it admits is about f/2.17.
+- The patent's 1:10 close-focus state (Table 7) is not modeled.
+- Only the Pentax K mount is sourced; other mounts, the maker brochure and a construction diagram of the production lens remain unchecked.
+- Tables 3 and 4 are also 72-degree f/2 examples; nothing found chooses between them and Table 2.

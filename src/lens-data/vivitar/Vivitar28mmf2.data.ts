@@ -1,6 +1,6 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 /**
- * Vivitar 28mm f/2 Compact — US 4,258,980 A (Jacob Moskovich; Vivitar Corporation), Table 2 (repeated in claim 6).
+ * Vivitar 28mm f/2 (Kiron-made version, 55 mm filter thread) — US 4,258,980 A (Jacob Moskovich; Vivitar Corporation), Table 2 (repeated in claim 6).
  *
  * SCALE: the patent tabulates the design at unit focal length; every radius, thickness and air space is the
  * printed value multiplied by 28 (mm). The scaled prescription computes to f = 28.0137 mm.
@@ -16,24 +16,29 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * semi-diameter, the height of the real f/2 marginal ray, so their rims cannot grow to pass it.
  *
  * FOCUS: infinity only. The patent's 1:10 close-focus state (Table 7: S4 = 0.116 F with L5-L8 moving
- * differentially) is not modeled; closeFocusM = 1e15 marks focus as not modeled and the maker's minimum focus
- * distance is carried in catalog.closeFocusM.marketing.
+ * differentially) is not modeled; closeFocusM = 1e15 marks focus as not modeled and the minimum focus distance
+ * of the production lens is carried in catalog.closeFocusM.marketing.
+ *
+ * GLASS: the patent prints Nd to three decimals and Vd to one, and names no glasses. Each label is a catalogue
+ * glass that equals the printed pair at that precision; the supplier of the production glass is not known.
+ *
+ * PRODUCT: associated by construction with the Kiron-made Vivitar 28mm f/2 (eight elements in eight groups,
+ * 0.3 m). It is not the Komine-made Vivitar 28mm f/2 Close Focus (49 mm filter thread, 0.23 m).
  */
 const LENS_DATA = {
   "schema": 2,
   "key": "vivitar-28mm-f2",
   "maker": "Vivitar",
   "name": "VIVITAR 28mm f/2",
-  "subtitle": "US4258980 Table 2; paraxial infinity image plane, not factory prescription",
+  "subtitle": "US 4,258,980 A, Table 2 \u2014 construction-based association with the Kiron-made Vivitar 28mm f/2",
   "catalog": {
     "lensMounts": ["pentax-k"],
     "imageFormat": "135-full-frame",
     "specs": [
       "8 ELEMENTS / 8 GROUPS",
-      "TABLE 2 AT 28\u00d7",
-      "72\u00b0 PATENT / 75\u00b0 RETAIL",
-      "INFINITY ONLY",
-      "PARAXIAL INFINITY IMAGE PLANE 38.3273 MM"
+      "ALL SPHERICAL",
+      "f/2",
+      "MINIMUM FOCUS 0.3 m"
     ],
     "elementCount": 8,
     "groupCount": 8,
@@ -73,7 +78,8 @@ const LENS_DATA = {
       "nd": 1.517,
       "vd": 64.2,
       "focalLengthMm": 130.94651,
-      "glass": "Unmatched (nd=1.517, \u03bdd=64.2)"
+      "glass": "N-BK7 (SCHOTT; BK7-class equivalent)",
+      "role": "Weak positive front element of the negative front group."
     },
     {
       "id": 2,
@@ -83,7 +89,8 @@ const LENS_DATA = {
       "nd": 1.678,
       "vd": 55.5,
       "focalLengthMm": -36.052717,
-      "glass": "Unmatched (nd=1.678, \u03bdd=55.5)"
+      "glass": "LAC12 (HOYA catalog-equivalent; production supplier unspecified)",
+      "role": "Stronger of the two negative menisci of the front group; its rear surface is the most steeply curved in the lens."
     },
     {
       "id": 3,
@@ -93,7 +100,8 @@ const LENS_DATA = {
       "nd": 1.487,
       "vd": 70.4,
       "focalLengthMm": -63.227464,
-      "glass": "Unmatched (nd=1.487, \u03bdd=70.4)"
+      "glass": "N-FK5 (SCHOTT; FK5-class equivalent)",
+      "role": "Second negative meniscus of the front group, in a low-dispersion crown."
     },
     {
       "id": 4,
@@ -103,17 +111,19 @@ const LENS_DATA = {
       "nd": 1.755,
       "vd": 27.5,
       "focalLengthMm": 40.384289,
-      "glass": "Unmatched (nd=1.755, \u03bdd=27.5)"
+      "glass": "SF4 (SCHOTT legacy catalog-equivalent; production supplier unspecified)",
+      "role": "Dense-flint positive element opening the rear group, ahead of the iris."
     },
     {
       "id": 5,
       "name": "L5",
       "label": "Element 5",
-      "type": "Plano-convex Positive",
+      "type": "Plano-Convex Positive",
       "nd": 1.64,
       "vd": 60.2,
       "focalLengthMm": 30.1875,
-      "glass": "Unmatched (nd=1.640, \u03bdd=60.2)"
+      "glass": "LACL60 (HOYA catalog-equivalent; production supplier unspecified)",
+      "role": "Strongest positive element, directly behind the iris with its flat side towards it."
     },
     {
       "id": 6,
@@ -123,7 +133,8 @@ const LENS_DATA = {
       "nd": 1.805,
       "vd": 25.5,
       "focalLengthMm": -16.605229,
-      "glass": "Unmatched (nd=1.805, \u03bdd=25.5)"
+      "glass": "SF6 (SCHOTT legacy catalog-equivalent; production supplier unspecified)",
+      "role": "Dense-flint negative element, the strongest in the lens, behind a thin curved air space."
     },
     {
       "id": 7,
@@ -133,7 +144,8 @@ const LENS_DATA = {
       "nd": 1.658,
       "vd": 57.3,
       "focalLengthMm": 44.254597,
-      "glass": "Unmatched (nd=1.658, \u03bdd=57.3)"
+      "glass": "K-LaK11 (SUMITA catalog-equivalent; production supplier unspecified)",
+      "role": "Positive meniscus concave to the object; its edge meets L6 at a 9.50 mm semi-diameter."
     },
     {
       "id": 8,
@@ -143,7 +155,8 @@ const LENS_DATA = {
       "nd": 1.697,
       "vd": 55.5,
       "focalLengthMm": 36.125116,
-      "glass": "Unmatched (nd=1.697, \u03bdd=55.5)"
+      "glass": "LAC14 (HOYA catalog-equivalent; production supplier unspecified)",
+      "role": "Biconvex rear element completing the positive rear group."
     }
   ],
   "surfaces": [
@@ -260,7 +273,7 @@ const LENS_DATA = {
   ],
   "focus": {
     "closeFocusM": 1000000000000000.0,
-    "description": "Infinity only. The image plane is the paraxial back focus of the printed Table 2 prescription, 38.3273 mm (1.3688 F); the patent prints BFL = 1.36 F, a truncated paraxial value. The patent's 1:10 close-focus state is not modeled. Not a factory prescription."
+    "description": "Infinity focus only; the patent's 1:10 close-focus state, in which L5\u2013L8 move at a different rate from L1\u2013L4, is not modeled. The image plane is the paraxial focus of the printed Table 2 prescription."
   },
   "gaps": {},
   "aperture": {

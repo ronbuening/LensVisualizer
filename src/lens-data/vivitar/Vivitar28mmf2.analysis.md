@@ -1,3 +1,5 @@
+# Vivitar 28mm f/2
+
 ## Patent Reference and Design Identification
 
 **Patent:** US 4,258,980 A  
@@ -11,14 +13,14 @@
 
 The patent is a continuation-in-part of an application filed on September 11, 1978. It describes a compact, fast retrofocus lens of eight air-spaced elements for the 24 × 36 mm frame that focuses to a magnification of about 1:10, and gives six examples: Tables 1, 5 and 6 cover an 84° field and Tables 2, 3 and 4 a 72° field, all at f/2.
 
-The model is Table 2 at 28× and is offered as the patent design, not as a verified factory prescription. The link to the Vivitar 28mm f/2 Compact is moderate:
+The model is Table 2 at 28× and is the patent design, not a verified factory prescription. It is associated with the Kiron-made Vivitar 28mm f/2 by construction, and the link is moderate:
 
-1. Lens listings describe a Kiron-made Vivitar 28mm f/2 "Compact" (serial numbers beginning 22, 55 mm filter thread, introduced in 1978) with eight elements in eight groups and a 0.30 m minimum focus.
+1. Lens listings describe a Kiron-made Vivitar 28mm f/2 (serial numbers beginning 22, 55 mm filter thread, introduced in 1978) with eight elements in eight groups and a 0.30 m minimum focus.
 2. The patent is assigned to Vivitar, has a 1978 priority, and sets out compactness as its aim.
 3. Table 2 has eight air-spaced elements, f/2 and a 72° field, the 28 mm member of the family when the frame is 24 × 36 mm.
 4. The patent's close focus of about 1:10 is consistent with a minimum focus near 0.3 m.
 
-Tables 3 and 4 are also 72°, f/2 examples, and no published construction diagram of the production lens was found to choose between the three. The separate Komine-made Vivitar 28mm f/2 "Close Focus" (49 mm filter, 0.23 m) is a different lens and is not what this file represents.
+Tables 3 and 4 are also 72°, f/2 examples, and no published construction diagram of the production lens was found to choose between the three. Vivitar sold more than one 28mm f/2. This model is the Kiron-made version. It is not the Komine-made Vivitar 28mm f/2 Close Focus (serial numbers beginning 28, 49 mm filter thread, 0.23 m minimum focus), which is a different lens.
 
 ## Optical Architecture
 
@@ -71,7 +73,20 @@ nd = 1.697, νd = 55.5. f = +36.13 mm.
 
 The patent prints an index Nd and an Abbe number Vd for each element, to three decimals and one decimal, and names no glass types or maker. At that precision the helium d line and the sodium D line cannot be told apart; the file takes the patent's "d" label as written.
 
-Four of the printed pairs agree with familiar catalogue glasses at the printed precision: 1.517 / 64.2 with BK7, 1.487 / 70.4 with FK5, 1.755 / 27.5 with SF4, and 1.805 / 25.5 with SF6. The other four (1.678 / 55.5, 1.640 / 60.2, 1.658 / 57.3 and 1.697 / 55.5) lie in the lanthanum-crown region and have not been matched to a catalogue glass. None of these names comes from the patent.
+Every printed pair equals a catalogue glass at the printed precision. The labels below are those catalogue equivalents; they do not come from the patent, and the supplier of the production glass is not known.
+
+| Element | Printed Nd / Vd | Catalogue equivalent | Catalogue nd / νd | Class                |
+| ------- | --------------- | -------------------- | ----------------- | -------------------- |
+| L1      | 1.517 / 64.2    | N-BK7 (Schott)       | 1.51680 / 64.17   | borosilicate crown   |
+| L2      | 1.678 / 55.5    | LAC12 (Hoya)         | 1.67790 / 55.52   | lanthanum crown      |
+| L3      | 1.487 / 70.4    | N-FK5 (Schott)       | 1.48749 / 70.41   | fluor crown          |
+| L4      | 1.755 / 27.5    | SF4 (Schott)         | 1.75520 / 27.58   | dense flint          |
+| L5      | 1.640 / 60.2    | LACL60 (Hoya)        | 1.64000 / 60.20   | lanthanum crown      |
+| L6      | 1.805 / 25.5    | SF6 (Schott)         | 1.80518 / 25.43   | dense flint          |
+| L7      | 1.658 / 57.3    | K-LaK11 (Sumita)     | 1.65830 / 57.29   | lanthanum crown      |
+| L8      | 1.697 / 55.5    | LAC14 (Hoya)         | 1.69680 / 55.46   | lanthanum crown      |
+
+The three front elements are all crowns, with an average Abbe number of 63.4, and the two dense flints sit in the rear group: L4 as a positive element and L6 as the strong negative. Conditions (3) and (4) of the patent fix exactly this distribution.
 
 ## Focus Mechanism
 
