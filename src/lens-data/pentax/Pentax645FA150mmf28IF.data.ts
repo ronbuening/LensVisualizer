@@ -207,7 +207,6 @@ const LENS_DATA = {
     ],
   },
 
-  /* ── Variable air spacings ── */
   gaps: {
     STO: {
       label: "STO–Gr",
