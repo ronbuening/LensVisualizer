@@ -36,7 +36,7 @@ Analysis rewritten to the house section skeleton.
 
 - Open: the inventor name 李大勇 is romanised as Dayong Li, the form the other Laowa files use; the patent prints no official English spelling.
 - Open: the maker asks for rear filters under 1.5 mm thick (Sony E and Nikon Z versions only) and the patent's plate is 2 mm; the file keeps the patent's plate and makes no claim about the factory filter.
-- Open: all semi-diameters are inferred, not printed; a later pass may compare them with Figure 3 in detail.
+- Open: all semi-diameters are inferred, not printed; a later pass may compare them with Figure 3 in detail. (Closed 2026-11-15 by the semi-diameter pass below.)
 - Open: element 12 name and label ("Source filter"), the `specs` chips, the element glass labels, `focus.description` and the wording of the analysis and of the earlier lines of this audit still need the cleanup pass.
 - Open: full application and browser checks have not been run on this file.
 
@@ -76,8 +76,45 @@ N-SF66 (Schott), H-FK61 (CDGM) and H-K9L (CDGM) equal E-FDS1, FCD1 and BSC7 at t
 **Open.**
 
 - Closed: the lens now carries the maker's own product name, "Laowa 200mm f/2 AF FF" (file, key and name renamed).
-- Open: rims are inferred. Against Figure 3 the rear group reads about 16.5 mm (model 16), L5 about 28 mm (29), the front lens about 49 mm (51) and the rear filter about 16.5 mm (22). The corner beam is cut by up to 66 % on one side at the rear group; no rim was changed.
+- Open: rims are inferred. Against Figure 3 the rear group reads about 16.5 mm (model 16), L5 about 28 mm (29), the front lens about 49 mm (51) and the rear filter about 16.5 mm (22). The corner beam is cut by up to 66 % on one side at the rear group; no rim was changed. (Closed 2026-11-15 by the semi-diameter pass below.)
 - Open: the near state has no `focus.conjugates` entry. The patent's object distance is 4000 mm and the model focuses at 4000.01 mm from the first surface, so a first-surface conjugate could be recorded in a later pass.
 - Open: the model stops at the patent's 4 m state; the marketed 1.5 m minimum focus is not modeled.
 - Open: Laowa asks for rear filters under 1.5 mm thick (Sony E and Nikon Z versions); the patent's plate is 2 mm and is kept.
 - Open: six glasses are unmatched and trace from nd and νd alone.
+
+## 2026-11-15 — Semi-diameter pass against the patent figure
+
+**Source.** CN 120949408 A, PDF page 15, Figure 3 (Example 2, infinity), measured at 300 dpi with the axis at row 640.
+
+**Scale.** First vertex at column 677 and image plane at column 2044: 1367 px for 200.0176 mm, 6.834 px/mm (0.1463 mm/px). Seventeen further vertex crossings fall within 1 px of the positions the table predicts, so the drawing is to scale along the axis. Across the axis the scale was checked on the front lens: the R1 = 168.8618 mm arc reaches its rim 49 px behind the vertex, which is the sag at the 48.9 mm rim height read directly.
+
+**Readings and changes** (semi-diameters in mm; one pixel is 0.15 mm).
+
+| Surfaces | Before | Figure | After | Evidence |
+|---|---:|---:|---:|---|
+| 1, 2 (L1) | 51 | 48.9 | 51 | 4 % apart, kept |
+| 3, 4 (L2) | 47 | 45.9 | 47 | 2 % apart, kept |
+| 5, 6 (L3, L4 block) | 40 | 38.9 | 40 | 3 % apart, kept |
+| 7 (L4 rear) | 40 | cap ends 31.6, flat land to the block edge | 40 | The figure draws a land (the face labeled Ra), but modelling it cost 2.5 points at 2.1° and gained nothing, so it is not modeled |
+| 8, 9 (L5) | 29 | 28.2 | 29 | 3 % apart, kept |
+| 10 (L6 front) | 27 | 25.8 | 27 | 5 % apart, kept |
+| 11 (L6 rear) | 27 | cap ends 22.2, land to 25.8 | 22.2, `rimExtensionSd` 27 | Land drawn; axial ray height 22.13 |
+| 12, 13 (L7) | 24 | 22.2 | 24 | 8 % apart, kept |
+| 15 (L8 front) | 22 | 19.3 | 19.3 | 12 % over the figure |
+| 16 (L8 rear) | 22 | cap ends 17.4, land to 19.3 | 17.4, `rimExtensionSd` 19.3 | Land drawn; axial ray height 17.05 |
+| 17–21 (G4) | 16 | 15.5–15.8 | 16 | 2 % apart, kept |
+| 22, 23 (rear filter) | 22 | 16.4 | 16.4 | 34 % over the figure |
+
+The two modeled lands keep their element's outer height equal to the neighbouring face, so the block outlines stay square as drawn. The stop is not an authored radius and was not touched; no stop change is recommended.
+
+**Clearance.** The axial beam at f/2.06 clears every surface at both printed focus states (smallest margins 0.07 mm at surface 11 and 0.35 mm at surface 16), and the chief ray to 21.6 mm clears every surface. The surface validator reports no errors; the aperture audit reports no rim limit; image-circle and field-coverage results are unchanged (21.60 of 21.65 mm, corner clear). Engine values are unchanged: EFL 194.5237 mm, f/2.06, half-field 6.303°, stop radius 18.4554 mm.
+
+**Corner illumination** (geometric, full aperture, infinity): unchanged from the starting rims at every field, 0° 100.0; 1.1° 100.0; 2.1° 98.0; 3.2° 86.6; 4.2° 71.8; 5.3° 55.7; 6.3° 38.4. The focusing-lens and filter rims and the lands on surfaces 11 and 16 cost nothing. A trial land on surface 7 at the figure's 31.6 mm lowered the curve by up to 2.5 points (98.0 → 95.4 at 2.1°) with no gain anywhere, so surface 7 was restored to 40 mm with no land.
+
+**Metadata and name.** Mounts (Sony E, Nikon Z, Canon EF), full-frame format, 9 blades, f/2–22, 1.5 m minimum focus, 200 mm and f/2 marketing values were checked against Laowa's product page (https://www.venuslens.net/product/laowa-200mm-f-2-af-ff/) and needed no change. The maker's product name is "Laowa 200mm f/2 AF FF", which the file's `name` now matches.
+
+**Open.**
+
+- Open: surface 11's land leaves 0.07 mm outside the axial ray, less than one figure pixel; the reading is good to about 0.15 mm.
+- Open: the figure's land on the rear face of L4 is not drawn in the model, so that element's rear rim reaches about 5.5 mm further back than in Figure 3.
+- Open: the engine's tracing half-field fell from 8.13° to 7.89°; it stays well beyond the 6.303° design field.

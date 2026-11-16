@@ -5,6 +5,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Radii, thicknesses, d-line indices, Abbe numbers, both focus states (infinity and a 4000 mm object) and the
  * 45.2069 mm image-side gap are as printed. The 2 mm plane plate is the patent's own rear filter and stays drawn.
  * The patent prints no clear apertures: every semi-diameter is inferred, and the stop radius follows from f/2.06.
+ * Semi-diameters were compared with Figure 3, which is drawn to scale (6.834 px/mm at 300 dpi). The focusing lens
+ * (19.3 mm) and the rear filter (16.4 mm) are read from it, and so are the flat lands the figure draws outside the
+ * concave rear faces of L6 and L8 (caps end at 22.2 and 17.4 mm); the other rims agree within 8 %. The figure
+ * also draws a land on the rear face of L4 (cap ending near 31.6 mm); it is not modeled, because it would remove
+ * up to 2.5 points of off-axis illumination, so that face keeps its full 40 mm.
  * The patent names no glasses. Labels are catalogue rows that equal the printed nd and νd; the rest are unmatched
  * and traced from the printed nd and νd alone. The aperture range (f/2–22, 9 blades), the 1.5 m minimum focus,
  * the mounts and the special-glass positions are Laowa's published figures, not the patent's.
@@ -241,7 +246,8 @@ const LENS_DATA = {
       "label": "11",
       "R": 37.2175,
       "d": 8.4354,
-      "sd": 27
+      "sd": 22.2,
+      "rimExtensionSd": 27
     },
     {
       "label": "12",
@@ -264,13 +270,14 @@ const LENS_DATA = {
       "label": "15",
       "R": 178.4986,
       "d": 1.0,
-      "sd": 22,
+      "sd": 19.3,
       "medium": 8
     },
     {
       "label": "16",
       "R": 35.9698,
-      "sd": 22
+      "sd": 17.4,
+      "rimExtensionSd": 19.3
     },
     {
       "label": "17",
@@ -309,14 +316,14 @@ const LENS_DATA = {
       "label": "22",
       "R": "flat",
       "d": 2.0,
-      "sd": 22,
+      "sd": 16.4,
       "medium": 12
     },
     {
       "label": "23",
       "R": "flat",
       "d": 45.2069,
-      "sd": 22
+      "sd": 16.4
     }
   ],
   "gaps": {
