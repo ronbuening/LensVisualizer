@@ -1955,6 +1955,16 @@ export const OHARA_GLASS_ENTRIES: readonly GlassEntry[] = [
    * rounded six-digit coordinate.
    */
   {
+    name: "BAH32",
+    vendor: "Ohara",
+    B: [1.498643, 0.2175678, 1.559728],
+    C: [0.009643255, 0.04511666, 171.1121],
+    nd: 1.669979,
+    vd: 39.279752,
+    source:
+      "OHARA all-products Zemax catalog 2026-07-01 (OHARA_260701.AGF); vendor Sellmeier coefficients for the discontinued BAH32. It shares a six-digit code with S-BAH32, so code6 is omitted.",
+  },
+  {
     name: "BPH5",
     vendor: "Ohara",
     B: [1.44845677, 0.22044806, 0.99476362],

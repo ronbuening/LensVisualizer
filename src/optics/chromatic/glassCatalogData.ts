@@ -462,6 +462,7 @@ const GLASS_CATALOG_SOURCE_ORDER = [
   "PBH71",
   "S-PHM51",
   "NSL7",
+  "BAH32",
   "BPH5",
   "BSL21",
   "PBH53",
