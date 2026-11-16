@@ -21,7 +21,7 @@ The example agrees with the KMZ Zenitar 1.2/50 S on several independent points:
 4. **Field.** The maker gives an angular field of 32°. The patent's MTF plots run to an image height of 14.15 mm, which is 30.7° across the diagonal at the design focal length.
 5. **Maker and designer.** The patent belongs to the Krasnogorsk plant that builds the lens.
 
-This is a strong correlation, not a statement from the maker. No KMZ document seen here says that Table 2 is the production prescription, and the maker's booklet prints no section drawing to compare. The patent has no other example. A public section drawing of the lens shows the same element shapes, cemented pair and stop position. [3]
+This is a strong correlation, not a statement from the maker. No KMZ document seen here says that Table 2 is the production prescription, and the maker's booklet prints no section drawing to compare. The patent has no other example. A small public section drawing labelled Zenitar 1.2/50 shows the same front half: three single elements convex to the object, the stop, and a cemented pair concave to the object behind it. Its three rear elements are drawn differently from Table 2 (a positive element convex to the object, then two elements that share one drawn boundary and end in a convex last face), so it supports the layout up to the cemented pair and is not evidence for the rear element shapes. [3]
 
 ## Optical Architecture
 

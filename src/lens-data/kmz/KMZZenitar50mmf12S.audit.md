@@ -111,3 +111,24 @@ Product name: the maker's booklet calls the lens "ZENITAR 1.2/50 S" and the make
 Open:
 
 - Compare the printed diameters with Fig. 1 when a complete copy of the patent is at hand; element edge shapes (flat lands, square blocks) are not drawn in the model.
+
+## 2026-11-15 — Second review on the local site
+
+Compared: the live page and the inspector of all eight elements, Table 2 and the text of RU 2592746 C1 (printed pp. 1, 5 and 6), and the public section drawing cited in the analysis. The patent copy has no Fig. 1, so no figure was measured.
+
+Rims: no change. Each of the 15 semi-diameters was read again from Table 2 and equals the printed clear diameter divided by two. The file has no land, cut or rim extension, and its rims equal the rims before the semi-diameter pass, so the light comparison shows no loss at any field (98.8 / 94.5 / 86.2 / 75.7 / 64.3 / 51.1 / 34.3 % at 0 to 15.7°). Engine values are unchanged: focal length 51.4744 mm, f/1.303, half-field 16°. Surface audit: no errors. Aperture audit: no rim limit. Longitudinal spherical aberration at f/1.30: +0.010 / +0.007 / −0.012 / −0.021 mm.
+
+Public drawing: its front half matches the page (plano-convex L1, meniscus L2, negative L3 with the deep rear hollow, stop, cemented pair concave to the object). Its three rear elements do not match Table 2: it draws a positive element convex to the object with a flat rear, then two elements sharing one boundary with a convex last face, where Table 2 has a meniscus concave to the object, a plano-convex with a plane front and a plano-convex with a plane rear, separated by 0.4 and 1.9 mm of air. The analysis said the drawing "shows the same element shapes"; that sentence now says what agrees and what does not. The drawing also shows L3 and the cemented pair as square blocks with flat lands outside the hollows; the page joins the printed diameters with straight edges. No drawing-only land was added, because the patent figure is not at hand and the public drawing is not a reliable picture of this prescription.
+
+Labels and text checked on the page and found correct: element numbers 1–8 are the patent's lens numbers; element types agree with the signs of R and with the patent's wording on p. 5 (plano-convex 1, positive meniscus 2, negative meniscus 3, negative meniscus 4 and positive meniscus 5 cemented, positive meniscus 6, plano-convex 7 convex to the image, plano-convex 8 convex to the object); brackets I (surfaces 1–6) and II (8–16) are the patent's two components either side of the stop; C1 spans surfaces 8–10; the stop is drawn between elements 3 and 4. The inspector shows "ne" and "ve" with the stored e-line values and the engine focal lengths (117.61, 104.86, −37.11, −22.86, 45.64, 103.47, 73.42, 94.78 mm; doublet −62.79 mm). No element carries an anomalous-dispersion tag and the patent names none. The spec line "F/1.3 AT THE PRINTED STOP · MARKED F/1.2" and the aperture panel (f/1.3, marketed f/1.2, stop 25.10 mm) agree with the printed stop.
+
+Movement: none. The file has no variable gap, the focus slider reads "Not modeled", and the focus text states only the patent's single infinity state and the maker's 0.45 m.
+
+Glass: all four labels resolve. Catalogue curves evaluated at the e line against the stored values: TK21 1.659970 / 50.83 (stored 1.659961 / 50.81), TK14 1.615507 / 60.33 (1.615506 / 60.34), TF10 1.813772 / 25.17 (1.813767 / 25.17), CDGM QF3 1.578331 / 41.03 (1.578326 / 41.05). Table 2 prints glass names only, with no index, line data or partial dispersion. The patent prints no colour, astigmatism or distortion curves to compare (Figs. 2–5 are MTF plots).
+
+Assignee: the front page prints OAO "Krasnogorsky zavod im. S.A. Zvereva"; the file uses the one spelling shared by the three KMZ files.
+
+Open:
+
+- Fig. 1 is still not at hand; the square edges and lands of L3 and the cemented pair are not drawn.
+- The cited public drawing differs from Table 2 in the rear three elements; whether it shows this product or an earlier Zenitar 1.2/50 is not known.
