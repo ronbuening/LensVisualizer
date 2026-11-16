@@ -8,6 +8,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * (printed value minus 0.50) and the 0.50 mm stop-to-surface-5 distance the patent states.
  * Inferred, not printed: the 126 intermediate stations (d11 linear between printed values; d4 and d9 solved for the
  * station focal length and paraxial focus), their f-numbers (linear between printed values), and all semi-diameters.
+ * The semi-diameters are estimates that agree with Fig. 21 (scaled from the prescription) within about 5 %.
  * The 2.00 mm plane-parallel plate (surfaces 12-13, printed fB = 0.00) is carried in rearPlates.
  */
 const LENS_DATA = {

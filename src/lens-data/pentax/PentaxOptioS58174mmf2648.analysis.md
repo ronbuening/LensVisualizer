@@ -37,7 +37,7 @@ Along that path the first-to-second group gap falls steadily from 15.54 to 2.28 
 ## Focus, Aperture, and Model Limits
 The model is at infinity focus only; the patent tabulates no finite-distance state. The camera focuses with the third group from 0.4 m in its normal range, with macro (0.18–0.5 m) and super-macro (0.06–0.2 m) modes.
 
-The stop radius is set from the patent's f-number at each printed position and from a linear interpolation of it in between. The patent does not give clear diameters; the semi-diameters are estimates sized to pass the full-aperture axial beam and the image corner, so vignetting toward the corners is indicative only. The image format is entered as the nearest listed sensor size, 1/2.55-type, for the camera's 1/2.5-type sensor.
+The stop radius is set from the patent's f-number at each printed position and from a linear interpolation of it in between. The patent does not give clear diameters; the semi-diameters are estimates that pass the full-aperture axial beam and the image corner and agree with the element heights drawn in Fig. 21 within about 5%, so vignetting toward the corners is indicative only. The image format is entered as the nearest listed sensor size, 1/2.55-type, for the camera's 1/2.5-type sensor.
 
 ## Sources
 - [US 2003/0197949 A1](https://patentimages.storage.googleapis.com/68/f0/e0/e895d678783a08/US20030197949A1.pdf), Table 6 (page 10 of the specification) and Fig. 21.

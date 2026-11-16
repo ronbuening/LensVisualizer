@@ -30,7 +30,7 @@ Open:
 - Glass labels read "Unmatched"; the OHARA matches above are not yet applied.
 - No 1/2.5-type format id exists (5.76 × 4.29mm); `1-2.55-inch-type` is a stand-in.
 - Maker close-focus distance is not recorded.
-- Semi-diameters are inferred and not yet compared with Fig. 21; surface 5 clears the wide-open axial ray with almost no margin (2.35 needed, 2.35 stored).
+- Semi-diameters are inferred and not yet compared with Fig. 21; surface 5 clears the wide-open axial ray with almost no margin (2.35 needed, 2.35 stored). (Closed 2026-11-15: compared in the semi-diameter pass below; no change.)
 - The ray-intercept and MTF convergence samples in the analysis were not repeated for the new calculated rows.
 - Whether another Eguchi filing holds the production design (fixed third group, f/2.6–4.8) was not checked.
 
@@ -60,11 +60,38 @@ No `apd` tag: the maker publishes no special-dispersion element for this lens.
 Analysis: rewritten as public text under the title "Pentax Optio S 5.8–17.4mm f/2.6–4.8". Removed the process sections (sample counts, convergence runs, pending checks) and the discovery-lead note; kept the patent identification, the evidence for and against the product link, the element table (now with glass and focal lengths), and the limits of the model; the intermediate stations are described in two sentences under "Zoom Motion".
 
 Open:
-- Semi-diameters are estimates and have not been compared with Fig. 21; surface 5A clears the wide-open axial ray with almost no margin (2.35 needed, 2.35 stored).
+- Semi-diameters are estimates and have not been compared with Fig. 21; surface 5A clears the wide-open axial ray with almost no margin (2.35 needed, 2.35 stored). (Closed 2026-11-15: compared in the semi-diameter pass below; no change.)
 - L2 is a moulded glass asphere above index 1.8 according to the development paper; its actual moulding glass is not identified (S-TIH53 is the exact catalog match for the printed values).
 - No 1/2.5-type format id exists (5.76 × 4.29mm); `1-2.55-inch-type` stands in.
 - `catalog.closeFocusM.marketing` uses the normal-range 0.4m; decide whether the macro (0.18m) or super-macro (0.06m) limit should be the catalog value.
 - No finite-focus state is modelled; the patent prints none.
-- `aperture.fStops` is 2.7, 8, 11, 16 as delivered; the camera's real stop choices were not checked.
+- `aperture.fStops` is 2.7, 8, 11, 16 as delivered; the camera's real stop choices were not checked. (Checked 2026-11-15: no source with the aperture steps found; left as is.)
 - Whether another Eguchi filing holds the production design (fixed third group, f/2.6–4.8) was not checked.
 - The title line and first nine lines of this log keep the delivered package's wording as history.
+
+## 2026-11-15 — Semi-diameter pass against the patent figure
+
+Source: US 2003/0197949 A1, drawing sheet 11 (PDF page 12), Fig. 21, the wide-end section of Embodiment 6, measured at the scan's own 300 dpi. Scale: first vertex to the plate's rear face is 1230px for the 34.64mm wide-end track, 35.5px/mm; confirmed on the plate thickness (72px, 2.03mm against 2.00), the third-group thickness (71px, 2.00mm against 1.90) and the distance from the first vertex to surface 5A (694px, 19.55mm against 19.54).
+
+| Element | Surfaces | Stored sd (mm) | Fig. 21, above / below axis (mm) | Difference | Decision |
+|---|---|---:|---:|---:|---|
+| L1 | 1, 2 | 5.50 | 5.75 / 5.61 | +3% | kept |
+| L2 | 3A, 4A | 4.85 | 5.04 / 4.87 | +2% | kept |
+| L3 | 5A, 6A | 2.35 | about 2.37 / 2.25 | −2% | kept |
+| L4–L5 | 7, 8, 9 | 2.15 | 2.14 / 2.08 | −2% | kept |
+| L6 | 10, 11 | 4.20 | 4.20 / 4.17 | 0% | kept |
+
+No semi-diameter was changed: every element is within the 5–8% reading noise of the figure, the step order between neighbours (L1 above L2, L3 above the doublet) is as drawn, and every element is square-cut in both the figure and the model. The stop tick in the figure ends about 2.3mm from the axis, against the model's 2.27mm.
+
+One drawn feature is not modelled. Fig. 21 ends the concave rear face of L1 at about 4.8mm and continues with a flat land to the rim, giving an edge about 2.45mm thick; the model carries the curve to 5.5mm. Cutting surface 2 to 4.85mm shortens the traced wide-end half-field from 32.49° to 32.12°, and the full corner bundle needs 5.29mm there, so the land is left out under the rule that a land must not cost field or corner light.
+
+Surface 5A: the wide-open axial ray needs 2.35mm and the stored value is 2.35mm; the figure reads 2.25–2.37mm. It is left as is, because the aperture audit reports no rim limit at any of the 129 stations and a raise would not be supported by the figure.
+
+Results (unchanged from before this pass, since no rim moved): EFL 5.8017mm, f/2.7, engine half-field 32.49°, stop semi-diameter 2.268mm. Surface audit: no errors. Aperture audit: 129 of 129 stations within 3% of the stated f-number, no rim limit. Image circle: not undersized. Field coverage: 129 of 129 stations at 100%. Relative illumination wide open at infinity: wide end 90% at 26.7°, 84% at 29.7°, 64% at 32.7°; middle 89% at 20.4°; long end 96% at 9.7°, 83% at 11.6°.
+
+Metadata checked in this pass, nothing changed: `fStops` (no document with the camera's aperture steps was found); marketed close focus stays at the 0.4m normal range; mounts, format, focal lengths and f-numbers are as set earlier. Product name: reviews and Pentax's own later manuals name the camera "PENTAX Optio S" and its lens "smc PENTAX" 5.8–17.4mm f/2.6–4.8 (DPReview and Imaging Resource reviews of the Optio S; the Optio S5n and S50 manuals give the same lens data), which is what the display name says.
+
+Open:
+- The flat land on the rear of L1 drawn in Fig. 21 is not modelled (see above).
+- Surface 5A has no axial margin beyond the stored 2.35mm.
+- The camera's aperture steps are unconfirmed.
