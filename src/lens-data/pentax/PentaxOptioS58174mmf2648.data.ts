@@ -9,6 +9,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Inferred, not printed: the 126 intermediate stations (d11 linear between printed values; d4 and d9 solved for the
  * station focal length and paraxial focus), their f-numbers (linear between printed values), and all semi-diameters.
  * The semi-diameters are estimates that agree with Fig. 21 (scaled from the prescription) within about 5 %.
+ * Surface 2 ends its curve at 5.0 mm and continues as a flat land to 5.5 mm, as Fig. 21 draws the rear of L1
+ * (curve end read at 4.8-4.9 mm; 5.0 is the smallest value that keeps the traced wide-end field).
  * The 2.00 mm plane-parallel plate (surfaces 12-13, printed fB = 0.00) is carried in rearPlates.
  */
 const LENS_DATA = {
@@ -114,7 +116,8 @@ const LENS_DATA = {
       "label": "2",
       "R": 7.32,
       "d": 1.5,
-      "sd": 5.5
+      "sd": 5,
+      "rimExtensionSd": 5.5
     },
     {
       "label": "3A",
@@ -223,7 +226,7 @@ const LENS_DATA = {
   },
   "focus": {
     "closeFocusM": 1000000000000000,
-    "description": "Infinity focus only; the patent tabulates no finite-distance state. The camera focuses with the third group, from 0.4 m in its normal range."
+    "description": "Infinity focus only; the patent tabulates no finite-distance state. Its text assigns focusing to the first group; the camera's development paper has the third group focus, from 0.4 m in the normal range."
   },
   "groups": [
     {

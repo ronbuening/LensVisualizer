@@ -92,6 +92,34 @@ Results (unchanged from before this pass, since no rim moved): EFL 5.8017mm, f/2
 Metadata checked in this pass, nothing changed: `fStops` (no document with the camera's aperture steps was found); marketed close focus stays at the 0.4m normal range; mounts, format, focal lengths and f-numbers are as set earlier. Product name: reviews and Pentax's own later manuals name the camera "PENTAX Optio S" and its lens "smc PENTAX" 5.8–17.4mm f/2.6–4.8 (DPReview and Imaging Resource reviews of the Optio S; the Optio S5n and S50 manuals give the same lens data), which is what the display name says.
 
 Open:
-- The flat land on the rear of L1 drawn in Fig. 21 is not modelled (see above).
+- The flat land on the rear of L1 drawn in Fig. 21 is not modelled (see above). (Closed 2026-11-15: modelled at 5.0mm in the second review below; the figure's 4.8–4.9mm curve end would shorten the traced field.)
+- Surface 5A has no axial margin beyond the stored 2.35mm.
+- The camera's aperture steps are unconfirmed.
+
+## 2026-11-15 — Second review on the local site
+
+Compared: the live page at 5.8, 7, 8.3, 9.6, 11, 12.5, 14, 15.5 and 17.4mm and the inspector of all six elements, against Fig. 21 (PDF page 12, 300 dpi, 35.5px/mm), Table 6 (page 30), Fig. 37 (page 20), paragraph 0086 and the front page of US 2003/0197949 A1, and against Fig. 7 and section 6 of the Nomura/Eguchi paper.
+
+Changes:
+
+| Item | Before | After | Evidence |
+|---|---|---|---|
+| Surface 2 (rear of L1) | `sd` 5.5, curve to the rim, edge 3.19mm thick | `sd` 5.0 with `rimExtensionSd` 5.5, edge 2.67mm thick | Fig. 21 draws L1 as a square block: the curve ends 4.76mm below and 4.90mm above the axis, then a vertical land to the 5.6–5.7mm rim; edge thickness 89px, 2.5mm. On the page the old rim wrapped round L2 as a pointed bowl. |
+| `focus.description` | "The camera focuses with the third group" | adds that the patent text assigns focusing to the first group | Paragraph 0086: "Focusing is carried out by the negative first lens group 10"; the paper's Fig. 7 and section 6.3 give third-group focusing in the camera. |
+
+Lands and cuts: one land (surface 2), no other face below its starting value. The earlier pass rejected the land at 4.85mm because it shortened the field (32.49° to 32.12°); at 4.9mm the field is still short (32.38°), and 5.0mm is the smallest tenth that keeps 32.49°. Cost of the land at 5.0mm against the starting rims: 0.0 points at every field of all 129 stations and at the eighth-way zoom fractions; restoring the full curve wins back 0.0 points. Verdict: keep (costs nothing, drawn in the figure). Surface audit: no errors with the default checks. Aperture audit: 129 of 129 stations within 3%, no rim limit. Image circle: not undersized. Field coverage: 129 of 129 at 99% or more. Engine half-field 32.49° and f/2.7 before and after.
+
+Checked and found correct:
+- Table 6 against the file: all radii, thicknesses, indices, the three printed gap rows (d4 15.54 / 7.68 / 2.28 less the 0.50 stop offset, d9 3.20 / 6.92 / 14.19, d11 2.40 / 2.27 / 2.02) and the stop 0.50 ahead of surface 5.
+- Zoom direction, wide → tele, measured from the image plane: G1 front vertex 34.64 → 30.37 → 31.99mm (toward the image, minimum 30.12mm at 11.2mm, then toward the object), as Fig. 37 and the paper draw it; stop 15.60 → 19.19 → 26.21mm (G2 toward the object throughout); G3 rear gap 2.40 → 2.27 → 2.02mm (0.38mm toward the image; Fig. 37 is schematic and draws it straight). Stations ascend 5.8 → 17.4 and every gap lists them in that order.
+- Slider smoothness: over 129 stations d9 rises and d4, d11 fall at every step; the largest change of step is at the middle printed station, where the focal-length spacing of the stations doubles (0.059 to 0.122mm per station) while the gap change per mm of focal length stays continuous (d9 0.967 then 0.955 per mm). The nine page shots show no jump.
+- Page legibility: element numbers, the G1 (−) / G2 (+) / G3 (+) brackets, C1, STO and the four A marks are separate at all three printed positions; the cover plate is not drawn, by design.
+- Element types against the signs of R, focal lengths, roles, aspheric labels 3A–6A (the patent's starred surfaces 3–6 only), the C1 doublet on surfaces 7–9.
+- Glass: all six labels resolve inside the exact window (largest Δnd 3e-6, largest Δνd 0.06). The patent prints nd and νd only, so no further identification is available. No `apd` tag, correctly.
+- Assignee: front page "PENTAX Corporation, Tokyo (JP)"; the file's "Pentax Corporation" is the spelling used by the other Pentax Corporation files.
+
+Open:
+- The zoom readout above the slider rounds to whole millimetres ("6 mm" at 5.8, "10 mm" at 9.6); a site matter, not this file.
+- All six glasses tie with HOYA rows of the same printed values (TAFD30, FDS90, BACD5, NBFD10, LAC7); the OHARA names are kept, and the supplier is unknown.
 - Surface 5A has no axial margin beyond the stored 2.35mm.
 - The camera's aperture steps are unconfirmed.
