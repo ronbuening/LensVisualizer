@@ -16,6 +16,13 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *  - every semi-diameter and the flat outer lands of surfaces 2 and 4. The rims pass the full beam to a
  *    90° half-field and cover about 93°.
  *
+ * Glasses are named in the patent (BaK 2, BaK 2, SK 6, F 6, SK 2). BaK 2 and SK 2 match present-day catalog rows
+ * and carry catalog labels; SK 6 and F 6 have no exact row and stay unmatched at the printed values.
+ *
+ * Projection: the patent states no projection law. Traced image height is 25.07 mm at a 90° half-field, 4.3 % under
+ * focal length times angle, so the lens is described as an equidistant fisheye with a 50.14 mm image circle for a
+ * 180° field.
+ *
  * Infinity focus only: the patent gives no focusing movement.
  */
 const LENS_DATA = {
@@ -23,51 +30,69 @@ const LENS_DATA = {
   "key": "aeg-weitwinkelobjektiv-17mm-f63",
   "maker": "AEG",
   "name": "AEG WEITWINKELOBJEKTIV 17mm f/6.3",
+  "subtitle": "DE 620,538 C, sole example — AEG cloud-camera wide-angle objective of c. 1935",
   "elements": [
     {
       "id": 1,
-      "name": "Published glass 1",
-      "type": "Lens",
+      "name": "L1",
+      "type": "Negative Meniscus",
       "nd": 1.54,
       "vd": 59.6,
       "indexReference": "d",
-      "label": "Element 1"
+      "label": "Element 1",
+      "focalLengthMm": -83.72,
+      "glass": "BaK2 (Schott, as printed; Sumita BAK2 catalog curve)",
+      "role": "Large front negative meniscus, convex to the object (patent lens A); its outer surface is concentric with that of L2."
     },
     {
       "id": 2,
-      "name": "Published glass 2",
-      "type": "Lens",
+      "name": "L2",
+      "type": "Negative Meniscus",
       "nd": 1.54,
       "vd": 59.6,
       "indexReference": "d",
-      "label": "Element 2"
+      "label": "Element 2",
+      "focalLengthMm": -32.46,
+      "glass": "BaK2 (Schott, as printed; Sumita BAK2 catalog curve)",
+      "role": "Stronger second negative meniscus (patent lens B) with a nearly hemispherical inner surface facing the stop."
     },
     {
       "id": 3,
-      "name": "Published glass 3",
-      "type": "Lens",
+      "name": "L3",
+      "type": "Biconvex Positive",
       "nd": 1.6138,
       "vd": 56.3,
       "indexReference": "d",
-      "label": "Element 3"
+      "label": "Element 3",
+      "focalLengthMm": 12.68,
+      "glass": "Unmatched (SK 6 as printed; nd 1.6138 / νd 56.3)",
+      "role": "Crown front element of the cemented positive doublet behind the stop (patent member C).",
+      "cemented": "C1"
     },
     {
       "id": 4,
-      "name": "Published glass 4",
-      "type": "Lens",
+      "name": "L4",
+      "type": "Negative Meniscus",
       "nd": 1.6364,
       "vd": 35.4,
       "indexReference": "d",
-      "label": "Element 4"
+      "label": "Element 4",
+      "focalLengthMm": -21.2,
+      "glass": "Unmatched (F 6 as printed; nd 1.6364 / νd 35.4)",
+      "role": "Flint rear element of the cemented doublet, facing the image; the only flint in the design.",
+      "cemented": "C1"
     },
     {
       "id": 5,
-      "name": "Published glass 5",
-      "type": "Lens",
+      "name": "L5",
+      "type": "Biconvex Positive",
       "nd": 1.6074,
       "vd": 56.7,
       "indexReference": "d",
-      "label": "Element 5"
+      "label": "Element 5",
+      "focalLengthMm": 60.3,
+      "glass": "SK2 (Schott, as printed; N-SK2 catalog curve)",
+      "role": "Weak positive rear lens (patent lens D), set 23 mm behind the doublet to flatten the image."
     }
   ],
   "surfaces": [
@@ -139,9 +164,28 @@ const LENS_DATA = {
     }
   ],
   "gaps": {},
+  "groups": [
+    {
+      "text": "A + B",
+      "fromSurface": "1",
+      "toSurface": "4"
+    },
+    {
+      "text": "C + D",
+      "fromSurface": "5",
+      "toSurface": "9"
+    }
+  ],
+  "doublets": [
+    {
+      "text": "C1",
+      "fromSurface": "5",
+      "toSurface": "7"
+    }
+  ],
   "focus": {
     "closeFocusM": 1000000000000000,
-    "description": "Infinity-only representative patent embodiment: all spacings fixed; finite-focus mechanism unspecified, control intentionally has no prescribed motion."
+    "description": "Infinity focus only; the patent prints one set of spacings and describes no focusing movement, so the focus control does not move the lens."
   },
   "aperture": {
     "nominalFNumber": 6.3,
@@ -171,6 +215,12 @@ const LENS_DATA = {
       "fixed-lens-camera"
     ],
     "imageFormat": "6x9",
+    "specs": [
+      "5 ELEMENTS / 4 GROUPS",
+      "ALL SPHERICAL",
+      "F/6.3",
+      "ABOUT 180° FIELD"
+    ],
     "elementCount": 5,
     "groupCount": 4,
     "focalLengthMm": {

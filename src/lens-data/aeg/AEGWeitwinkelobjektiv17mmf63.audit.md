@@ -3,7 +3,7 @@ Source9R/8D/glass transcription independently reviewed against official screensh
 
 Inherited verified diagnostics: 6496skew samples at8fields; original source image and source/product bridge checks; paraxial/scalar independent calculations. Fresh controls: no geometry/image-plane change over0,.5,1. None of these proves exact manufactured boundaries, measured performance, continuous pupil transmission, polychromatic MTF or full app readiness.
 
-Completed: final module strict typecheck/import parity and independent triad acceptance. Pending gate: private archive full readback. Integration-deferred: current-main corpus/full app/compiler viewer/browser QA. Source limitation: official screenshots instead of downloadedPDF. Archive dedup coverage limitation retained. Final qualification decision belongs to production owner; no delivery before next nine-family group.
+Completed: final module strict typecheck/import parity and independent triad acceptance. Pending gate: private archive full readback (closed 2026-11-15: superseded by the deployment validation below). Integration-deferred: current-main corpus/full app/compiler viewer/browser QA (closed 2026-11-15: the lens is in the catalog). Source limitation: official screenshots instead of downloadedPDF (closed 2026-11-15: the full patent PDF was read). Archive dedup coverage limitation retained. Final qualification decision belongs to production owner; no delivery before next nine-family group.
 
 ## 2026-11-15 — Deployment validation
 
@@ -66,3 +66,50 @@ Open:
   doublet about 12 against 7, rear lens about 24 against 21.5); widening would be needed only for fields beyond 93°.
 - `AEG` is a new maker and needs an entry in the maker-prefix list.
 - `visible` is still `false`.
+
+## 2026-11-15 — Cleanup and wording pass
+
+The files were renamed to `AEGWeitwinkelobjektiv17mmf63.*` (key `aeg-weitwinkelobjektiv-17mm-f63`) and the lens made
+visible before this pass. The Open items of the section above about the file name, key, `name`, element names, the
+maker entry and `visible` are closed by that and by the changes below. No radius, spacing, index, Abbe number, stop,
+semi-diameter or gap was changed.
+
+Fields changed in the data file:
+
+- `subtitle`: added, "DE 620,538 C, sole example — AEG cloud-camera wide-angle objective of c. 1935".
+- `catalog.specs`: added, 5 ELEMENTS / 4 GROUPS, ALL SPHERICAL, F/6.3, ABOUT 180° FIELD.
+- Element `name`: "Published glass 1…5" → L1…L5. `type`: "Lens" → Negative Meniscus (L1, L2, L4) and Biconvex
+  Positive (L3, L5), from the signs of the radii. `role` and `focalLengthMm` added (−83.72, −32.46, +12.68, −21.2,
+  +60.3 mm, each element alone in air).
+- `cemented: "C1"` on L3 and L4, with a `doublets` entry C1 over surfaces 5 to 7; `groups` brackets "A + B"
+  (surfaces 1 to 4) and "C + D" (surfaces 5 to 9), after the patent's lens letters.
+- `focus.description`: reworded to "Infinity focus only; …". `focus.closeFocusM` was already the 1e15 placeholder.
+- Header comment: added the glass and projection notes.
+
+Glass labels (printed value against the catalog row):
+
+- L1, L2: none → "BaK2 (Schott, as printed; Sumita BAK2 catalog curve)". Row 1.53996 / 59.7, Δnd −0.00004,
+  Δνd +0.1. The row found for this glass type is Sumita's; the patent's glass is Schott's of 1932.
+- L5: none → "SK2 (Schott, as printed; N-SK2 catalog curve)". Row 1.60738 / 56.65, Δnd −0.00002, Δνd −0.05.
+- L3: none → "Unmatched (SK 6 as printed; nd 1.6138 / νd 56.3)". No catalog row for SK 6.
+- L4: none → "Unmatched (F 6 as printed; nd 1.6364 / νd 35.4)". No catalog row for F 6.
+
+No anomalous-dispersion tag applies to any element.
+
+Engine numbers before and after are identical: focal length 16.6754 mm, f/6.3, half-field 90°, stop semi-diameter
+3.2107 mm, back focus 28.988 mm, total length 119.188 mm. Surface validation reports no errors; the aperture audit
+reports the one station within 3 % of the stated f-number with no rim, trace or iris limit; the field-coverage audit
+skips fisheye projections.
+
+Analysis: title line added, element headings renamed to L1…L5, the glass paragraph updated for the new labels, and
+the "Verification Summary" heading renamed "Patent Values and the Model".
+
+Open:
+
+- Rims are smaller than the patent figure draws (front element about 58 mm against 48, second about 27 against
+  21.5, doublet about 12 against 7, rear lens about 24 against 21.5). They pass the full beam to 90° and cover
+  about 93°; a rim pass against the figure is still to do.
+- The stop is modelled at the r5 vertex; the figure draws it about 1 mm ahead.
+- No minimum focus distance is known for the camera, so `catalog.closeFocusM` is not set.
+- SK 6 and F 6 trace on an Abbe-number dispersion fit because no catalog row exists for them.
+- The older opening section of this file keeps its original delivery wording as history.

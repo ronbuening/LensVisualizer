@@ -1,3 +1,5 @@
+# AEG Weitwinkelobjektiv 17mm f/6.3
+
 ## Patent Reference and Design Identification
 
 **Patent:** DE 620,538 C  
@@ -34,27 +36,27 @@ Traced as printed, the system has a focal length of 16.68 mm, a back focus of 28
 
 Focal lengths are for each element alone in air, computed from the printed radii, thicknesses and indices.
 
-### Element 1 (patent lens A): Negative Meniscus, Convex to Object
+### L1 (patent lens A): Negative Meniscus, Convex to Object
 
 nd = 1.5400, νd = 59.6. Glass: BaK 2 (as printed in the patent). f = −83.7 mm.
 
 The large front meniscus has a 67.0 mm outer radius and a 26.5 mm inner radius. It gives the first, gentler part of the angular compression. Its outer surface is nearly concentric with the outer surface of the second meniscus, so oblique bundles meet both outer surfaces at similar, moderate angles of incidence. The patent states that the outer radii r1 and r3 are smaller than the length of the whole system, which holds here (67.0 mm and 43.35 mm against 90.2 mm).
 
-### Element 2 (patent lens B): Negative Meniscus, Convex to Object
+### L2 (patent lens B): Negative Meniscus, Convex to Object
 
 nd = 1.5400, νd = 59.6. Glass: BaK 2 (as printed in the patent). f = −32.5 mm.
 
 The second meniscus is the stronger of the two. Its inner radius of 12.26 mm forms the deep, nearly hemispherical cavity that faces the stop across a 24.1 mm air space. The drawing shows this element seated behind the flat rim of the first, with a flat land around its own cavity.
 
-### Elements 3 and 4 (patent member C): Cemented Positive Doublet
+### L3 + L4 (patent member C): Cemented Positive Doublet
 
-Element 3: nd = 1.6138, νd = 56.3. Glass: SK 6 (as printed in the patent). f = +12.7 mm.
+L3, biconvex positive: nd = 1.6138, νd = 56.3. Glass: SK 6 (as printed in the patent). f = +12.7 mm.
 
-Element 4: nd = 1.6364, νd = 35.4. Glass: F 6 (as printed in the patent). f = −21.2 mm.
+L4, negative meniscus: nd = 1.6364, νd = 35.4. Glass: F 6 (as printed in the patent). f = −21.2 mm.
 
 The doublet sits directly behind the stop and has a combined focal length of +33.6 mm. The patent specifies a positive lens cemented to a negative lens with the negative lens facing the image. The crown element is biconvex, with a weak front surface (87.6 mm) and a steep cemented surface (−8.3 mm); the flint is a negative meniscus. The 21-point difference in Abbe number across the cemented surface is where the colour introduced by the two front crowns and the rear crown is corrected, and this is the only flint glass in the design.
 
-### Element 5 (patent lens D): Biconvex Positive
+### L5 (patent lens D): Biconvex Positive
 
 nd = 1.6074, νd = 56.7. Glass: SK 2 (as printed in the patent). f = +60.3 mm.
 
@@ -64,7 +66,7 @@ The last lens stands 23.0 mm behind the doublet. The patent says that the positi
 
 The patent prints both the glass names and the optical values, so nothing is inferred: BaK 2 (1.5400 / 59.6) for both front menisci, SK 6 (1.6138 / 56.3) and F 6 (1.6364 / 35.4) for the doublet, and SK 2 (1.6074 / 56.7) for the rear lens. The indices are printed as n_d. The BaK 2 and SK 2 values agree with present-day catalogue d-line data for glasses of those names (1.53996 / 59.7 and 1.60738 / 56.65), so the helium d-line is used as the reference.
 
-All five glasses are ordinary crowns and one flint of the period. The data file's element names do not yet carry these glass names.
+The palette is four ordinary crowns and one flint of the period. BaK 2 and SK 2 agree with a present-day catalogue entry within the printed precision, so those three elements are traced on the catalogue dispersion curves (a BAK2 entry and N-SK2). SK 6 and F 6 have no exact present-day entry; they keep the printed index and Abbe number and are marked as unmatched in the data file.
 
 ## Focus Mechanism
 
@@ -82,7 +84,7 @@ With these rims the full f/6.3 beam passes every surface from the axis to a 90°
 
 Image height grows almost in proportion to field angle: 8.69 mm at 30°, 17.13 mm at 60° and 25.07 mm at 90°. The last value is 4.3 % less than focal length times angle, so the equidistant fisheye projection is the closest standard description. The 50.1 mm image circle in the data file is the traced diameter for a 180° field.
 
-## Verification Summary
+## Patent Values and the Model
 
 | Quantity | Patent | Model |
 |---|---|---|
