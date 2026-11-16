@@ -11,17 +11,17 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **1139** lenses scanned
-- **1120** visible lenses scanned
-- **783** lenses fully covered by trusted chromatic data
-- **778** visible lenses fully covered by trusted chromatic data
-- **775** lenses fully covered by strict Sellmeier data
-- **770** visible lenses fully covered by strict Sellmeier data
+- **1142** lenses scanned
+- **1123** visible lenses scanned
+- **786** lenses fully covered by trusted chromatic data
+- **781** visible lenses fully covered by trusted chromatic data
+- **778** lenses fully covered by strict Sellmeier data
+- **773** visible lenses fully covered by strict Sellmeier data
 - **8** lenses fully covered only after measured line-index data
 - **8** visible lenses fully covered only after measured line-index data
-- **11985 / 12857** non-air surfaces use strict catalog Sellmeier data
+- **12008 / 12880** non-air surfaces use strict catalog Sellmeier data
 - **93.2%** strict Sellmeier surface coverage overall
-- **11999 / 12857** non-air surfaces use trusted chromatic data
+- **12022 / 12880** non-air surfaces use trusted chromatic data
 - **93.3%** trusted chromatic coverage overall
 - **0 / 4** historical sodium D surfaces use name-verified catalog dispersion data
 - **271 / 347** native e-line surfaces use name-verified catalog Sellmeier data
@@ -762,6 +762,7 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [KONICA HEXANON AR 21mm f/2.8](../../src/lens-data/konica/KonicaHexanonAR21mmf28.data.ts) | 9/9 | 9 | 9/9 |
 | [KONICA ZOOM-HEXANON AR 35-70mm f/3.5](../../src/lens-data/konica/KonicaZoomHexanonAR3570mmf35.data.ts) | 9/9 | 9 | 9/9 |
 | [LEICA SUMMILUX-M 35mm f/1.4 ASPHERICAL](../../src/lens-data/leica/LeicaSummiluxM35mmf14Aspherical.data.ts) | 9/9 | 9 | 9/9 |
+| [MAMIYA MACRO 120mm f/4 (JP 2003-185916 A Design)](../../src/lens-data/mamiya/MamiyaMacro120mmf4JP2003185916.data.ts) | 9/9 | 9 | 9/9 |
 | [MAMIYA-SEKOR ZOOM E 28-50mm f/3.5-4.5](../../src/lens-data/mamiya/MamiyaSekorZoomE2850mmf3545.data.ts) | 9/9 | 9 | 9/9 |
 | [MEIKE AF 85mm f/1.8 FF STM](../../src/lens-data/meike/Meike85mmf18.data.ts) | 9/9 | 9 | 9/9 |
 | [NIKON 1 NIKKOR 11-27.5mm f/3.5-5.6](../../src/lens-data/nikon/Nikon1Nikkor1127mmf3556.data.ts) | 9/9 | 9 | 9/9 |
@@ -915,6 +916,8 @@ Six-digit codes are not considered because their encoded coordinates are nd/νd.
 | [PENTAX SMC A 28mm f/2.8](../../src/lens-data/pentax/PentaxA28mmf28.data.ts) | 7/7 | 7 | 7/7 |
 | [PENTAX SMC A ZOOM 35-70mm f/4](../../src/lens-data/pentax/PentaxA3570mmf4.data.ts) | 7/7 | 7 | 7/7 |
 | [PENTAX SMC A* 135mm f/1.8](../../src/lens-data/pentax/PentaxA135mmf18.data.ts) | 7/7 | 7 | 7/7 |
+| [PENTAX SMC FA 645 150mm f/2.8 [IF]](../../src/lens-data/pentax/Pentax645FA150mmf28IF.data.ts) | 7/7 | 7 | 7/7 |
+| [PENTAX SMC FA 645 300mm f/5.6 ED [IF]](../../src/lens-data/pentax/Pentax645FA300mmf56EDIF.data.ts) | 7/7 | 7 | 7/7 |
 | [PENTAX SMC M 28mm f/2.8](../../src/lens-data/pentax/PentaxM28mmf28.data.ts) | 7/7 | 7 | 7/7 |
 | [PENTAX SUPER-TAKUMAR 28mm f/3.5](../../src/lens-data/pentax/PentaxSuperTakumar28mmf35.data.ts) | 7/7 | 7 | 7/7 |
 | [RICOH GR LENS 18.3mm f/2.8 (Ricoh GR / GR II)](../../src/lens-data/ricoh/RicohGR218mmf28.data.ts) | 7/7 | 7 | 7/7 |

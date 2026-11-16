@@ -191,7 +191,7 @@ const LENS_DATA = {
       nd: 1.651,
       vd: 56.2,
       focalLengthMm: 117.7,
-      glass: "Unmatched (patent nd=1.65100, νd=56.2; supplier unconfirmed)",
+      glass: "S-LAL54 (OHARA)",
       apd: false,
       role: "Rear positive element of the fixed G3, facing the image.",
     },

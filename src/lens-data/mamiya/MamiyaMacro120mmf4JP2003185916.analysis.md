@@ -40,13 +40,13 @@ At infinity the model gives an effective focal length of 118.864 mm and a back f
 | L6      | G2b   | Biconvex positive  | 1.61800 | 63.4 |  +96.3 | S-PHM52 (OHARA)   |
 | L7      | G3    | Positive meniscus  | 1.75520 | 27.5 | +111.1 | S-TIH4 (OHARA)    |
 | L8      | G3    | Biconcave negative | 1.76200 | 40.1 |  −40.5 | S-LAM55 (OHARA)   |
-| L9      | G3    | Biconvex positive  | 1.65100 | 56.2 | +117.7 | Unmatched         |
+| L9      | G3    | Biconvex positive  | 1.65100 | 56.2 | +117.7 | S-LAL54 (OHARA)   |
 
 L1 and L2 are convex to the object and share the front group's positive power; L3 returns most of it, with its strongly curved rear surface (R = 29.59 mm) facing the stop. L4 and L5 are cemented, and the pair mirrors L3 across the stop: L4's concave front surface (R = −28.852 mm) faces it from the other side. L6 carries most of the positive power of G2 and is the element whose spacing floats. In G3, L8 supplies the negative power and L7 and L9 flank it.
 
 ## Glass Identification and Selection
 
-The patent gives nd and νd at the d-line and names no supplier. Eight of the nine coordinates coincide with OHARA catalog glasses, and those names are used as catalog matches, not as the patent's own identification: S-PHM52 for L1, L5 and L6, S-FPL51 for L2, S-TIL27 for L3, S-TIL1 for L4, S-TIH4 for L7 and S-LAM55 for L8. L9 (1.65100 / 56.2) has no exact row in the glass catalog used here and keeps the patent's values.
+The patent gives nd and νd at the d-line and names no supplier. All nine coordinates coincide with OHARA catalog glasses, and those names are used as catalog matches, not as the patent's own identification: S-PHM52 for L1, L5 and L6, S-FPL51 for L2, S-TIL27 for L3, S-TIL1 for L4, S-TIH4 for L7, S-LAM55 for L8 and the since-discontinued S-LAL54 for L9.
 
 L2 is the only fluorophosphate crown. The positive power around the stop otherwise rests on the phosphate crown 1.618 / 63.4, used three times, against the light flints of L3 and L4.
 
@@ -76,5 +76,5 @@ None. All refracting surfaces are spherical.
 
 - The radii, thicknesses, glasses, stop position and the infinity state are the patent's. D12 and the working distance at 1:2 and 1:1 are the model's own, as described above, and every position between the three patent states is interpolated.
 - The patent publishes no clear apertures. The semi-diameters (19 mm at the front element, 14.7–17 mm around the stop, 17.5–24 mm in G3) are estimates guided by Fig. 1, so off-axis illumination and vignetting in the viewer depend on them. Fig. 1 draws L1 and L9 smaller (about 16 mm and 21 mm); the model keeps them larger so the corner beam and the traced field are not cut. The stop radius follows from F/3.99.
-- Dispersion comes from the matched catalog glasses where a name is given and from nd and νd alone for L9.
+- Dispersion comes from the matched catalog glasses; the supplier is an inference from the coordinates.
 - The association with the Mamiya AF 120mm f/4 Macro rests on published specifications, not on a maker's diagram or prescription.

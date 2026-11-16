@@ -33,7 +33,7 @@ Text and metadata only; radii, thicknesses, indices, semi-diameters, the stop an
 - Open: semi-diameters are estimates with no patent values; at infinity the full-field bundle exceeds the stored rim by 6–9 % of its side at surfaces 1, 2, 11 and 12 and 1 % at surface 10. Not compared in detail with the rim heights drawn in Fig. 1. (Closed 2026-11-16: see the semi-diameter pass below.)
 - Open: `focus.closeFocusM` is stored as 0.37360027737281226 (the model's 1:1 object-to-image distance); 0.3736 would carry the same information.
 - Open: no `lensMounts`; the product association is by specification only and no maker construction diagram was found.
-- Open: L9 has no catalog glass; its dispersion comes from nd and νd alone.
+- Closed 2026-11-16: L9 is labelled S-LAL54 (OHARA), Δnd 0.000004 / Δνd −0.04; the discontinued row was added to the glass catalog from the OHARA 2026-07-01 Zemax file.
 
 ## 2026-11-16 — Semi-diameter pass against Fig. 1
 

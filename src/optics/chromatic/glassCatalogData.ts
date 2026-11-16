@@ -709,6 +709,7 @@ const GLASS_CATALOG_SOURCE_ORDER = [
   "E-FL6",
   "S-NBH57",
   "S-LAL54Q",
+  "S-LAL54",
   "BASF3",
   "K-LaK10",
   "E-FD80",
