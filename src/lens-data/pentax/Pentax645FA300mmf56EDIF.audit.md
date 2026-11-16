@@ -38,3 +38,27 @@ Open: Embodiments 1 and 3 fit the product equally; Embodiment 1 is a choice, not
 Open: the semi-diameters are estimates. At the 645 corner the bundle is cut 38–45 % one-sided at S1–S6, worst at S5, where L3 is held to 26 mm by the 0.99 mm gap behind L2. No maker cross-section is available to check the rims against.
 Open: the L3 and L4 glass identities rest on nd/νd only; the printed partial dispersion ratios differ from the catalog rows by about 0.004.
 Open: no close-focus state is modeled; the patent prints none.
+
+## 2026-11-16 — Semi-diameter pass against Fig. 1
+
+Source: US 2002/0041452 A1, sheet 1 (PDF page 2), Fig. 1, native 300 dpi raster read at 600 dpi. The scan is sheared and the axis tilts about 2°, so heights were read against the local axis on both sides of it. Axial scale 10.96 px/mm from the S1–S11 vertex span (88.76 mm = 973 px), confirmed on S1–S7 (50.97 mm, 559 px) and S1–S13. Vertical scale checked on the stop ticks: opening ±17.0 mm against a traced stop radius of 16.3–16.8 mm. Reading error is about ±0.5 mm.
+
+| Element | Surfaces | Before | Fig. 1 | After | Reason |
+|---|---|---:|---:|---:|---|
+| L1 | 1, 2 | 31 | 27.2 | 31 | kept: 30 costs no corner light but lowers the engine half-field estimate from 12.12° to 11.7° |
+| L2 | 3, 4 | 30 | 26.0 | 29 | smallest value that keeps the engine half-field at 12.12°; no light cost |
+| L3 | 5, 6 | 26 | 25.0 | 26 | within reading noise; faces S4/S5 would meet near 27.5 mm |
+| L4 | 7, 8 | 22 | 18.0 | 18.6 | figure, kept 0.5 mm above the F5.6 axial ray (18.09); 0.1 point at 2.2° |
+| L5 | 9, 10 | 21 | 18.1 | 18.3 | figure; F5.6 axial ray 18.16; no light cost |
+| L6 | 11, 12 | 19 | 16.9 | 17.2 | figure; F5.6 axial ray 17.01; no light cost |
+| L7 | 13, 14 | 22 | 15.0 | 17 | figure draws it much smaller; 17 costs 0.7 point at the corner, 16.5 would cost 2.5 and 15 about 10 |
+
+Fig. 1 draws every rim just outside the axial beam (the G2 and L6 rims coincide with the F5.6 marginal ray). Fitting all seven to the drawing would take the 6.7° corner from 74.2 % to 55.6 % and the engine half-field to 10.7°, so the cuts are limited to those that cost almost no light.
+
+Corner illumination, wide open, baseline → now: 98.6 → 98.5 % at 2.2°, 93.1 → 93.1 at 3.4°, 87.2 → 87.2 at 4.5°, 80.7 → 80.7 at 5.6°, 74.2 → 73.4 at 6.7°. Worst loss 0.7 point; restoring L7 alone wins it back. Engine EFL 292.353, F5.7, stop radius 16.296 and half-field 12.12° are unchanged. The surface audit reports no errors, the aperture audit no rim, trace or iris limit, the image-circle audit nothing undersized, field coverage at least 99 %, and the real-ray clearance at Y = 34.85 mm shows no axial clip and no blocked chief ray. No `gapSagFrac` override was needed. The one-sided corner cut quoted in the earlier Open line still comes from the front group (L1–L3), which this pass leaves as it was apart from L2.
+
+Metadata: `aperture.blades: 9` added from the Ricoh Imaging product page (https://www.ricoh-imaging.co.jp/english/products/lens/645/telephoto/smcpentax-fa645-300/), which also confirms F5.6–F45, 2.2 m, 7 elements in 7 groups and the 645 mount. The maker writes the product name "smc PENTAX-FA645 300mmF5.6ED[IF]"; the display name carries the same words in the folder's house form.
+
+Open: L1 and L2 remain 14 % and 12 % larger than Fig. 1. Rims of 30 and 27 mm cost no corner light inside the 645 frame and would bring L2 nearly flush with L3 as drawn, at the price of an engine half-field estimate of 11.3° instead of 12.1°.
+Open: L7 remains 13 % larger than Fig. 1 because the drawn rim would darken the corner.
+Open: the stop has no stored semi-diameter; a stop of 16.59 mm would make a nominal F5.6 honest, and the new L4–L6 rims already clear that beam.

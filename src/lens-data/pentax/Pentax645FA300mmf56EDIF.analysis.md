@@ -71,6 +71,6 @@ None; all fourteen surfaces are spherical.
 
 - The paraxial focal length of the model is 292.353 mm and its back focus 116.663 mm, against the printed 292.35 mm and 116.66 mm.
 - The stop radius follows the patent's F5.7, not the marketed F5.6.
-- The patent publishes no clear apertures. The semi-diameters (31, 30, 26, 22, 21, 19 and 22 mm for L1 to L7) are estimates; L3 is held to 26 mm by the narrow air gap behind L2. With these rims the corner of the 645 frame is vignetted by roughly a quarter at full aperture, which reflects the estimates and is not a published property of the lens.
+- The patent publishes no clear apertures. The semi-diameters (31, 29, 26, 18.6, 18.3, 17.2 and 17 mm for L1 to L7) are estimated from Figure 1, which draws each rim just outside the axial beam, and are kept wider than the drawing wherever the smaller rim would darken the corner; L3 is held to 26 mm by the narrow air gap behind L2. With these rims the corner of the 645 frame is vignetted by roughly a quarter at full aperture, which reflects the estimates and is not a published property of the lens.
 - The corner of the 645 frame lies marginally beyond the patent's 6.7° half-field.
 - Figure 1 of the patent is schematic and carries no dimensions; it confirms the group arrangement and the stop position only.

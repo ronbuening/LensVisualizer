@@ -32,8 +32,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                            ║
  * ║    The patent does not publish clear-aperture semi-diameters.       ║
- * ║    Values below are estimates limited by edge thickness and by      ║
- * ║    the 0.99 mm air gap between L2 and L3 (L3 is held to 26 mm).     ║
+ * ║    Values below are estimated from Fig. 1, which draws each rim     ║
+ * ║    just outside the axial beam, and are kept wider than the         ║
+ * ║    drawing wherever the smaller rim would darken the 645 corner.    ║
+ * ║    L3 is held to 26 mm by the 0.99 mm air gap behind L2.            ║
  * ║                                                                    ║
  * ║  NOTE ON FOCUS:                                                     ║
  * ║    Only the infinity prescription is published. closeFocusM =       ║
@@ -173,19 +175,19 @@ const LENS_DATA = {
   surfaces: [
     { label: "1", R: 100.7, d: 7.85, sd: 31, medium: 1 },
     { label: "2", R: -249.207, d: 0.3, sd: 31 },
-    { label: "3", R: 65.656, d: 8.22, sd: 30, medium: 2 },
-    { label: "4", R: -4951.776, d: 0.99, sd: 30 },
+    { label: "3", R: 65.656, d: 8.22, sd: 29, medium: 2 },
+    { label: "4", R: -4951.776, d: 0.99, sd: 29 },
     { label: "5", R: -355.189, d: 3.1, sd: 26, medium: 3 },
     { label: "6", R: 85.68, d: 30.51, sd: 26 },
-    { label: "7", R: 535.1, d: 2.6, sd: 22, medium: 4 },
-    { label: "8", R: 50.46, d: 9.63, sd: 22 },
-    { label: "9", R: 58, d: 3.81, sd: 21, medium: 5 },
-    { label: "10", R: 95, d: 20.25, sd: 21 },
+    { label: "7", R: 535.1, d: 2.6, sd: 18.6, medium: 4 },
+    { label: "8", R: 50.46, d: 9.63, sd: 18.6 },
+    { label: "9", R: 58, d: 3.81, sd: 18.3, medium: 5 },
+    { label: "10", R: 95, d: 20.25, sd: 18.3 },
     { label: "STO", R: "flat", d: 1.5 },
-    { label: "11", R: 2639.805, d: 4.44, sd: 19, medium: 6 },
-    { label: "12", R: -75.123, d: 33.84, sd: 19 },
-    { label: "13", R: -54.636, d: 2.3, sd: 22, medium: 7 },
-    { label: "14", R: -118.5, d: 116.66, sd: 22 },
+    { label: "11", R: 2639.805, d: 4.44, sd: 17.2, medium: 6 },
+    { label: "12", R: -75.123, d: 33.84, sd: 17.2 },
+    { label: "13", R: -54.636, d: 2.3, sd: 17, medium: 7 },
+    { label: "14", R: -118.5, d: 116.66, sd: 17 },
   ],
 
   /* ── Focus configuration ── */
@@ -196,7 +198,7 @@ const LENS_DATA = {
   },
 
   /* ── Aperture configuration ── */
-  aperture: { nominalFNumber: 5.7, fStops: [5.7, 8, 11, 16, 22, 32, 45], maxFNumber: 45 },
+  aperture: { nominalFNumber: 5.7, fStops: [5.7, 8, 11, 16, 22, 32, 45], maxFNumber: 45, blades: 9 },
 
   /* ── Group annotations ── */
   groups: [
