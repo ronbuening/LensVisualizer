@@ -161,3 +161,83 @@ Open:
   the middle and tele positions, so it is left larger than the figure.
 - Wide corner: 42 % at 56.1°, set by surfaces 20–22 and 4A, both already at the figure's size.
 - The model sketch was compared with the figure by eye only; no side-by-side image at matched scale was made.
+  (Closed 2026-11-15: the second review below compared the live page with Fig. 3(b) side by side.)
+
+## 2026-11-15 — Second review on the local site
+
+Compared: the local page at 8.16, 9.5, 11, 12.5, 14.14, 16, 18, 20, 22 and 24.51 mm and the element inspector for
+all 16 elements, against WO 2022/137385 A1 Fig. 3 (PDF page 32, panels a to c), the Example 2 tables (printed
+pp. 16–19) and the front page.
+
+Lands and cuts (the limit applied here is a loss under about 1 point at any field of any zoom position, against the
+rims before the semi-diameter pass):
+
+| Surfaces | Element | Starting rim | Figure (mm) | Earlier today | Now | Verdict |
+| --- | --- | --- | --- | --- | --- | --- |
+| 12–14 | L31–L32 | 9.5 | 7.6–8.4 | 8.6 | 9.0 | cut partly restored |
+| 15–16 | L33 | 10 | 8.8–9.2 | 9.2 | 9.6 | cut partly restored |
+| 17–19A | L34–L35 | 11 | 9.0–9.4 | 9.4 | 9.6 | cut partly restored |
+| 2 | L11 rear | 15.5 | curve ends 13.9–14.4, edge 19.2–20.0 | no land | land to 19.96 | new land, costs nothing |
+| 4A | L12 rear | 11.5 | curve ends 10.6–11.0, edge 13.9–14.4 | no land | land to 14.5 | new land, costs nothing |
+
+- The three cuts together cost 2.7 points at 44.3° at the wide end (and about 2 points at 45.6–47.2° between 8.16 and 8.67 mm), which is
+  not a slight loss. Restoring any one element alone won back only 0.0 to 0.3 points, because L31–L32 and L33 clip
+  the same rays; the cuts had to be eased together. Trials at the wide end: 8.8 / 9.4 / 9.6 loses 1.4 points,
+  9.0 / 9.4 / 9.6 loses 1.3, 9.0 / 9.6 / 9.4 loses 0.8, 9.0 / 9.6 / 9.6 loses 0.4, 9.2 / 9.8 / 9.6 loses nothing.
+  9.0 / 9.6 / 9.6 was taken: it keeps the figure's order (L31–L32 lowest, L33 and L34–L35 level, the fourth group
+  at 9.0 below them) at a worst loss of 0.4 points (44.3°, 8.16 mm; every second zoom station checked). The wide
+  end now reads 99.6 % at 44.3° and 95.8 % at 47.2°, against 100 % and 95.8 % with the starting rims.
+- Fig. 3 draws L11 and L12 as square-edged blocks: the rear curve stops short and a flat land runs out to the
+  height of the front face. The page drew both with a slanted edge. `rimExtensionSd` 19.96 on surface 2 and 14.5
+  on surface 4A draw the lands; they sit outside the clear apertures, so the traced light is the same with and
+  without them, and surface validation passes at the file's `gapSagFrac` 0.9 (the L11 land clears the front rim of
+  L12 by about 0.5 mm, the L12 land clears L13 by about 1.1 mm; the first group's spacings do not change with zoom).
+- Kept as they were: surfaces 1–7 `sd`, 8–10, 20–22 and the fifth group (the earlier pass's reasons hold: matching
+  the fifth group to the figure costs about 20 points at the middle and tele corners).
+
+After the change: surface validation OK; aperture audit 129 of 129 stations within 3 % of the stated f-number, no
+rim limit; image circle not undersized; field coverage 129 of 129 stations at 99 % or more. Built lens before and
+after: focal length 8.1617 mm, f/4.08, engine half-field 46.18°, stop semi-diameter 3.720 mm at the wide end.
+
+Labels and tags, checked on the page and found correct: group brackets G1 (surfaces 1–7), G2 (8–10), G3 (12–19A),
+G4 (20–22), G5 (23A–27), the patent's own group names; cemented brackets C1–C6 on the six cemented pairs (the patent
+names only CL1 and CL2 in the figure); stop between L22 and L31; "A" marks on 3A, 4A, 19A, 23A, 24A and no others
+(the patent stars surfaces 3, 4, 19, 23, 24); element names L11–L53 as in Fig. 3(a); element types agree with the
+signs of the radii; stored focal lengths agree with the thick-lens values within 0.05 mm; the inspector shows
+"APD (INFERRED)" on L13, L35, L51 and L53, the maker's Super ED, EDA, EDA and ED positions. No bracket or label
+collides at any of the ten zoom settings shot.
+
+Movement, wide → middle → tele, as distances from the image plane (the image and G5 are fixed; back focus 14.88 /
+14.90 / 14.90 mm):
+
+- G1 front vertex: 131.40 → 122.62 → 124.79 mm. Toward the image by 8.78 mm, then back toward the object by
+  2.17 mm, as the patent's totals (131.41 / 122.63 / 124.79) and the curved arrows of Fig. 3 show.
+- G2 with the stop: toward the object throughout (3.31 mm, then 12.58 mm).
+- G3: toward the object throughout (13.51 mm, then 15.87 mm).
+- G4: toward the object by 5.99 mm, then toward the image by 0.28 mm between the printed middle and tele positions
+  (d22 3.75 / 9.72 / 9.44). Fig. 3 draws the second arrow straight down.
+- The printed gaps are held exactly at stations 0, 64 and 128: d7 24.10 / 12.01 / 1.60, d11 15.09 / 4.89 / 1.60,
+  d19 2.85 / 10.37 / 26.52, d22 3.75 / 9.72 / 9.44, d27 14.88 / 14.90 / 14.90 (printed pp. 18–19). Stations ascend
+  in focal length; every gap lists them wide → tele; both focus columns are equal (infinity only).
+- Slider: the largest movement of any group between neighbouring stations is 0.25 mm (G3), and the shots at ten
+  focal lengths show no jump. The calculated path has corners at the middle position (G1 turns round there, G2
+  and G3 change speed) and G4 swings out to 45.23 mm at about 18.3 mm before returning to 42.57 mm at tele.
+
+Glass: all thirteen catalogue labels are exact (|Δnd| ≤ 6e-6, |Δνd| ≤ 0.01) and are current Ohara and Hoya rows,
+which suits a 2020 Olympus design. L12 (1.58253 / 59.32) and L35, L51 (1.49650 / 81.53) stay unmatched: the patent
+prints nd and νd only, and the Hoya, Ohara and Sumita catalogue files hold no row inside the window (nearest:
+M-BACD12 1.58313 / 59.46 and MC-FCD1-M20 1.49690 / 81.51). The L12 pair is printed again in Example 3, so it is a
+real glass, most likely a moulded-state index of a catalogue moulding glass. No constant-index medium is used.
+
+Front page: WO 2022/137385 A1, published 30 June 2022, applicant Olympus Corporation, inventors Zen Yuki, Nakagawa
+Koji, Yamada Yasuharu. `source.assignees` uses the spelling the other Olympus Corporation files use.
+
+Open:
+
+- The wide corner is 42 % at 56.1° and 76 % at 53°, set by surfaces 20–22 and 4A at the figure's sizes; unchanged.
+- The fifth group stays 10–17 % larger than drawn, and the third group is now 2–12 % larger than drawn, both for
+  light.
+- The calculated stations between the printed positions are not the real cam (corners at the middle position; G4
+  overshoot of 2.57 mm between middle and tele).
+- The built lens reports an engine half-field of 46.18° at the wide end, while the chief ray reaches the corner at
+  56.1°; not changed by this review and not investigated further.
