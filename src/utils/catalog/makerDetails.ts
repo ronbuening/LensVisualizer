@@ -443,6 +443,15 @@ export const MAKER_DETAILS: Record<string, MakerDetails> = {
     notableDesigns:
       "Mamiya-Sekor lenses, Mamiya C-series TLR, Mamiya Press, RB67, RZ67, M645, Mamiya 6, Mamiya 7, Sekor AF 150mm f/2.8 IF D",
   },
+  // Company history: Meike corporate site, https://www.mkgrip.com/ (read 2026-11-09)
+  // Patentee: https://patents.google.com/patent/CN217606166U/en
+  meike: {
+    headquarters: "Shenzhen and Chengdu, China; brand company registered in Hong Kong",
+    summary:
+      "Chinese maker of autofocus and manual-focus photographic lenses, cine lenses, flashes and camera accessories sold under the Meike brand.",
+    history:
+      "Meike traces its company to Shenzhen Hengxin Precision, a mould maker founded in July 1997. In December 2005 it became Huitian Mould (Shenzhen) and registered Hong Kong Meike Digital Technology to sell photographic equipment under the Meike name. A Chengdu factory followed in 2009. In July 2019 the Shenzhen company took the name Shenzhen Huitian Film and Television Equipment Co., Ltd. as it expanded into cine lenses, and in 2021 production moved to Chengdu, with research and sales staying in Shenzhen. That Shenzhen company holds CN 217606166 U, the source of the 85mm f/1.8 entry in this catalog.",
+  },
   pentax: {
     founded: 1919,
     headquarters: "Tokyo, Japan (Ricoh Imaging Company since 2011)",
