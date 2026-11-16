@@ -314,7 +314,7 @@ export const MAKER_DETAILS: Record<string, MakerDetails> = {
     notableDesigns:
       "LEICA DG SUMMILUX 25mm f/1.4 ASPH, LEICA DG SUMMILUX 12mm f/1.4 ASPH, LUMIX G VARIO 7-14mm f/4 ASPH, LUMIX S PRO 50mm f/1.4, LUMIX S PRO 70-200mm f/2.8 O.I.S., LUMIX S 85mm f/1.8",
   },
-  "p.-angénieux": {
+  angenieux: {
     founded: 1935,
     headquarters: "Saint-Héand, Loire, France",
     summary:
