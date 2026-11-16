@@ -1,13 +1,24 @@
-/** Representative published patent embodiment, NOT a factory-exact prescription.
- * Original-office screenshots verified; original PDF NOT downloaded.
- * All clear apertures/outer lands and exact stop position/diameter are inferred.
- * Near-hemispherical cavities are explicitly described and drawn; 85.1deg rim
- * allowance follows selected inferred caps, not a printed angle. gapSag0.90.
- * Calculated BFD; fixed infinity-only controls. Full app/current-main/browser QA pending.
- * See companion analysis/audit for source, prediction and delivery limitations.
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * AEG Weitwinkelobjektiv 17mm f/6.3 — DE 620,538 C (Allgemeine Elektricitäts-Gesellschaft, issued 1935), sole
+ * numerical example.
+ *
+ * Scale: 1:1. The patent table is printed in millimetres and is used unchanged (no scale factor, no unit
+ * conversion); the resulting focal length is 16.68 mm. Indices are the printed n_d values.
+ *
+ * Not printed in the patent, and therefore inferred here:
+ *  - focal length, f-number, back focus and field angle of the example (the patent states none of them);
+ *    f/6.3 is the nominal aperture of the surviving 1.7 cm lens;
+ *  - the last gap, which is the paraxial back focus at infinity;
+ *  - the stop position (placed at the r5 vertex; the figure draws it just ahead of the cemented doublet)
+ *    and the stop diameter;
+ *  - every semi-diameter and the flat outer lands of surfaces 2 and 4. The rims pass the full beam to a
+ *    90° half-field and cover about 93°.
+ *
+ * Infinity focus only: the patent gives no focusing movement.
  */
-import type { LensDataV2Input } from "../lens_recovery_20261112/LensVisualizer/src/types/lensDataV2.js";
-export default {
+const LENS_DATA = {
   "schema": 2,
   "key": "aeg-weitwinkel17-de620538-representative",
   "maker": "AEG",
@@ -157,11 +168,15 @@ export default {
     "gapSagFrac": 0.9
   },
   "catalog": {
+    "lensMounts": [
+      "fixed-lens-camera"
+    ],
+    "imageFormat": "6x9",
     "elementCount": 5,
     "groupCount": 4,
     "focalLengthMm": {
       "marketing": 17,
-      "design": 16.67540071582021
+      "design": 16.6754
     },
     "fNumber": {
       "marketing": 6.3,
@@ -169,11 +184,17 @@ export default {
     }
   },
   "source": {
-    "patentNumber": "DE 620538",
+    "patentNumber": "DE 620,538 C",
+    "example": {
+      "label": "Sole example",
+      "id": null
+    },
     "patentYear": 1935,
     "authors": [],
     "assignees": [
-      "Allgemeine Elektricitats-Gesellschaft"
+      "Allgemeine Elektricitäts-Gesellschaft"
     ]
   }
 } satisfies LensDataV2Input;
+
+export default LENS_DATA;

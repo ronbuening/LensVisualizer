@@ -1,6 +1,6 @@
 # AEG Weitwinkel17mm f/6.3: representative DE620538 embodiment
 ## Identity and source
-Five elements in four groups. DE620538, filed1932-08-06 and published1935-10-23, assigned to Allgemeine Elektricitats-Gesellschaft. Original official3-page scan read in DEPATIS; screenshots retained, NOT an original PDF download. Original table independently transcribed:9 radii,8 intersurface distances,5 glass entries. Original SK6 settles secondary SK4 discrepancy. No numerical source repair.
+Five elements in four groups. DE620538, filed1932-08-06 and published1935-10-23, assigned to Allgemeine Elektricitäts-Gesellschaft. Original official3-page scan read in DEPATIS; screenshots retained, NOT an original PDF download. Original table independently transcribed:9 radii,8 intersurface distances,5 glass entries. Original SK6 settles secondary SK4 discrepancy. No numerical source repair.
 Primary document: https://depatisnet.dpma.de/DepatisNet/depatisnet?action=pdf&docid=DE000000620538A
 Text/family index: https://patents.google.com/patent/DE620538C/en
 Original screenshot archive: https://drive.google.com/file/d/1yHZLXKilQ9u2hqLhYbvO8JkiYeD0j3Qh/view
