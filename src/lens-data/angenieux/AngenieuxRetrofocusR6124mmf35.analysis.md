@@ -47,63 +47,63 @@ Every clear radius is inferred, because the patent prints none. The semi-diamete
 
 ### L1 — Negative Meniscus
 
-**nd = 1.6203, νd = 60.2. Glass: Unmatched (supplier unconfirmed). f = −103.95 mm.**
+**nD = 1.6203, ν = 60.2. Glass: SK16 (catalog equivalent; supplier unconfirmed). f = −103.95 mm.**
 
 The broad front meniscus begins the negative component. Its rear surface is more strongly curved than its front surface. Together with L4 it supplies the diverging action the patent describes, and it has the largest diameter in the lens.
 
 ### L2 — Biconvex Positive
 
-**nd = 1.6751, νd = 32.3. Glass: Unmatched (supplier unconfirmed). f = +225.02 mm.**
+**nD = 1.6751, ν = 32.3. Glass: Unmatched (supplier unconfirmed). f = +225.02 mm.**
 
 L2 is the first weak positive lens between the negative menisci. The patent requires both inner lenses of the front component to be convergent, with focal lengths greater than five times that of the whole lens. Its computed focal length is 937.57 patent units, against the printed 937.60 [1, pp. 1–2].
 
 ### L3 — Biconvex Positive
 
-**nd = 1.6751, νd = 32.3. Glass: Unmatched (supplier unconfirmed). f = +225.19 mm.**
+**nD = 1.6751, ν = 32.3. Glass: Unmatched (supplier unconfirmed). f = +225.19 mm.**
 
 L3 is a second separate positive element, not cemented to L2. Its computed focal length is 938.30 patent units, against the printed 938.33. Splitting the weak positive power between two air-spaced lenses is the feature the patent claims; it credits the arrangement with better correction of distortion than the 1957 design.
 
 ### L4 — Negative Meniscus
 
-**nd = 1.6203, νd = 60.2. Glass: Unmatched (supplier unconfirmed). f = −36.11 mm.**
+**nD = 1.6203, ν = 60.2. Glass: SK16 (catalog equivalent; supplier unconfirmed). f = −36.11 mm.**
 
 L4 completes component I and is its strongest element. Its steep rear face precedes the long air space of 96.752 patent units (23.22 mm) that separates the two components.
 
 ### L5 — Biconvex Positive
 
-**nd = 1.6203, νd = 60.2. Glass: Unmatched (supplier unconfirmed). f = +45.45 mm.**
+**nD = 1.6203, ν = 60.2. Glass: SK16 (catalog equivalent; supplier unconfirmed). f = +45.45 mm.**
 
 L5 begins component II and restores convergence after the diverging front component. A 0.12 mm air gap separates it from L6; the two are not cemented.
 
 ### L6 — Positive Meniscus
 
-**nd = 1.6203, νd = 60.2. Glass: Unmatched (supplier unconfirmed). f = +39.08 mm.**
+**nD = 1.6203, ν = 60.2. Glass: SK16 (catalog equivalent; supplier unconfirmed). f = +39.08 mm.**
 
 The positive meniscus is the last element ahead of the diaphragm, with its concave side facing the stop.
 
 ### L7 — Biconcave Negative
 
-**nd = 1.6498, νd = 33.7. Glass: Unmatched (supplier unconfirmed). f = −17.02 mm.**
+**nD = 1.6498, ν = 33.7. Glass: Unmatched (supplier unconfirmed). f = −17.02 mm.**
 
 L7 is the strong negative lens immediately behind the stop, and the only flint in the rear component. Its low Abbe number against the crown positive lenses around it carries the colour correction of component II.
 
 ### L8 — Biconvex Positive
 
-**nd = 1.6203, νd = 60.2. Glass: Unmatched (supplier unconfirmed). f = +21.49 mm.**
+**nD = 1.6203, ν = 60.2. Glass: SK16 (catalog equivalent; supplier unconfirmed). f = +21.49 mm.**
 
 L8 closes the rear component and is the strongest positive element. Its biconvex form follows from the printed radii, R15 = +289.16 and R16 = −67.745.
 
 ## Glass Identification and Selection
 
-The patent gives three index and Abbe-number pairs and no glass names, suppliers or partial dispersions. It heads the index column `nd` and describes it as the index "pour la raie D" [1, p. 1]. The data file keeps the helium d line as reference. The crown pair 1.6203 / 60.2 lies close to the dense barium crown SK16 (nd 1.62041, sodium-D index about 1.6203), which leans towards the sodium line, but the two lines differ by only about one unit in the last printed digit.
+The patent gives three index and Abbe-number pairs and no glass names, suppliers or partial dispersions. It heads the index column `nd` and describes it as the index "pour la raie D" [1, p. 1]. The data file follows that wording and treats the indices as sodium-D values (589.3 nm). Read that way the crown pair 1.6203 / 60.2 equals the dense barium crown SK16, whose sodium-D index is 1.62032 (its helium-d index, 1.62041, would print as 1.6204). The two lines differ by only about one unit in the last printed digit, so the choice barely moves the traced focal length.
 
 | Printed pair | Elements | Label |
 |---|---|---|
-| 1.6203 / 60.2 | L1, L4, L5, L6, L8 | Unmatched; nearest type SK16, 0.0001 away in index |
+| 1.6203 / 60.2 | L1, L4, L5, L6, L8 | SK16 (Schott), sodium-D index 1.62032, ν 60.3 |
 | 1.6751 / 32.3 | L2, L3 | Unmatched |
 | 1.6498 / 33.7 | L7 | Unmatched |
 
-No catalog glass matches any of the three pairs at the printed precision, so all eight elements are labelled Unmatched and their dispersion is estimated from the Abbe number. The crown negative menisci with flint positive lenses in the front component, and the flint negative lens among crown positives in the rear, are ordinary achromatizing pairings. The data support no statement about secondary spectrum or about the glass supplier.
+The five crown elements are traced on the SK16 catalog dispersion curve as an equivalent glass; the supplier of the real elements is not known. No catalog glass matches either flint pair at the printed precision (the nearest types, SF5 and SF2, are 0.0024 and 0.0021 away in index), so L2, L3 and L7 are labelled Unmatched and their dispersion is estimated from the Abbe number. The crown negative menisci with flint positive lenses in the front component, and the flint negative lens among crown positives in the rear, are ordinary achromatizing pairings. The data support no statement about secondary spectrum or about the glass supplier.
 
 ## Focus Mechanism
 

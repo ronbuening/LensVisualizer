@@ -250,3 +250,11 @@ Open:
 - A Parra-Mantois or Sovirel catalogue of the 1950s would probably name all three glasses.
 - L8 reads 6.0–6.4 mm in the figure against 5.8 (3–9 %, inside the reading error); it is the rim that sets the 45 % corner.
 - The real marginal ray at the paraxial f/3.5 pupil height reaches 5.63 mm at the stop plane against the 5.37 mm derived stop radius; the aperture audit still reports the f-number within 3 %.
+
+## 2026-11-16 — Sodium-D index reference and SK16 label
+
+- Owner's decision: the indices are traced as sodium-D values, as the patent's own heading says ("nd pour la raie D"). `indexReference` changed from "d" to "D" on all eight elements.
+- L1, L4, L5, L6 and L8 (1.6203 / 60.2) are relabelled "SK16 (Schott catalog equivalent; production supplier unspecified)". Schott SK16 has nD 1.62032 and ν 60.3, so it equals the printed pair at four decimals (Δn 0.0000, Δν 0.1); as a helium-d value it would have printed 1.6204. The label resolves to the catalog's N-SK16 curve.
+- L2/L3 (1.6751 / 32.3) and L7 (1.6498 / 33.7) stay Unmatched on either line: SF5 and SF2 are 0.0024 and 0.0021 away in index. They are probably French melts.
+- The earlier "kept at d" lines in this log are superseded. The evidence for D is the patent wording plus one glass at one last-digit unit.
+

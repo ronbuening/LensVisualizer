@@ -33,9 +33,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * wrapping L8: surface 14 is 7.3.
  *
  * Glass: the patent gives only index and Abbe number, with the index headed
- * nd "pour la raie D". The helium d reference is kept because d and D differ
- * by about one unit in the last printed digit. No catalog row matches the
- * printed pairs exactly, so every glass is labelled Unmatched.
+ * nd "pour la raie D". The indices are therefore traced as sodium-D values
+ * (589.3 nm). Read that way the crown 1.6203 / 60.2 equals Schott SK16
+ * (nD 1.62032), and the five crown elements carry that label as a catalog
+ * equivalent; the two flint pairs match no catalog row and stay Unmatched.
  *
  * Infinity focus only: the patent prints one prescription and no focusing
  * movement. The ALPA leaflet's 16 inch close focus is catalog metadata.
@@ -93,8 +94,8 @@ const LENS_DATA = {
       "type": "Negative Meniscus",
       "nd": 1.6203,
       "vd": 60.2,
-      "indexReference": "d",
-      "glass": "Unmatched (patent nd=1.6203, νd=60.2; supplier unconfirmed)",
+      "indexReference": "D",
+      "glass": "SK16 (Schott catalog equivalent; production supplier unspecified)",
       "focalLengthMm": -103.95403589616163,
       "apd": false,
       "role": "Front negative meniscus of the diverging front component."
@@ -106,8 +107,8 @@ const LENS_DATA = {
       "type": "Biconvex Positive",
       "nd": 1.6751,
       "vd": 32.3,
-      "indexReference": "d",
-      "glass": "Unmatched (patent nd=1.6751, νd=32.3; supplier unconfirmed)",
+      "indexReference": "D",
+      "glass": "Unmatched (patent nD=1.6751, ν=32.3; supplier unconfirmed)",
       "focalLengthMm": 225.0162512801287,
       "apd": false,
       "role": "First of two weak positive lenses between the front negative menisci."
@@ -119,8 +120,8 @@ const LENS_DATA = {
       "type": "Biconvex Positive",
       "nd": 1.6751,
       "vd": 32.3,
-      "indexReference": "d",
-      "glass": "Unmatched (patent nd=1.6751, νd=32.3; supplier unconfirmed)",
+      "indexReference": "D",
+      "glass": "Unmatched (patent nD=1.6751, ν=32.3; supplier unconfirmed)",
       "focalLengthMm": 225.19253600931984,
       "apd": false,
       "role": "Second weak positive lens between the front negative menisci."
@@ -132,8 +133,8 @@ const LENS_DATA = {
       "type": "Negative Meniscus",
       "nd": 1.6203,
       "vd": 60.2,
-      "indexReference": "d",
-      "glass": "Unmatched (patent nd=1.6203, νd=60.2; supplier unconfirmed)",
+      "indexReference": "D",
+      "glass": "SK16 (Schott catalog equivalent; production supplier unspecified)",
       "focalLengthMm": -36.111067891408574,
       "apd": false,
       "role": "Strong negative meniscus completing the front component."
@@ -145,8 +146,8 @@ const LENS_DATA = {
       "type": "Biconvex Positive",
       "nd": 1.6203,
       "vd": 60.2,
-      "indexReference": "d",
-      "glass": "Unmatched (patent nd=1.6203, νd=60.2; supplier unconfirmed)",
+      "indexReference": "D",
+      "glass": "SK16 (Schott catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 45.45386528529418,
       "apd": false,
       "role": "First positive lens of the converging rear component."
@@ -158,8 +159,8 @@ const LENS_DATA = {
       "type": "Positive Meniscus",
       "nd": 1.6203,
       "vd": 60.2,
-      "indexReference": "d",
-      "glass": "Unmatched (patent nd=1.6203, νd=60.2; supplier unconfirmed)",
+      "indexReference": "D",
+      "glass": "SK16 (Schott catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 39.0778412247726,
       "apd": false,
       "role": "Positive meniscus immediately ahead of the stop."
@@ -171,8 +172,8 @@ const LENS_DATA = {
       "type": "Biconcave Negative",
       "nd": 1.6498,
       "vd": 33.7,
-      "indexReference": "d",
-      "glass": "Unmatched (patent nd=1.6498, νd=33.7; supplier unconfirmed)",
+      "indexReference": "D",
+      "glass": "Unmatched (patent nD=1.6498, ν=33.7; supplier unconfirmed)",
       "focalLengthMm": -17.020643768812274,
       "apd": false,
       "role": "Negative corrector immediately behind the stop."
@@ -184,8 +185,8 @@ const LENS_DATA = {
       "type": "Biconvex Positive",
       "nd": 1.6203,
       "vd": 60.2,
-      "indexReference": "d",
-      "glass": "Unmatched (patent nd=1.6203, νd=60.2; supplier unconfirmed)",
+      "indexReference": "D",
+      "glass": "SK16 (Schott catalog equivalent; production supplier unspecified)",
       "focalLengthMm": 21.492567711364956,
       "apd": false,
       "role": "Final positive lens of the rear component."
