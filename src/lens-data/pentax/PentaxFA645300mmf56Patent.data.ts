@@ -46,7 +46,7 @@ const LENS_DATA = {
       "Hiroyasu Ozaki"
     ],
     "assignees": [
-      "Asahi Kogaku Kogyo K.K."
+      "Asahi Kogaku Kogyo Co., Ltd."
     ],
     "sdSource": "heuristic"
   },

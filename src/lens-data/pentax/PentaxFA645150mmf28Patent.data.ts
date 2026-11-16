@@ -39,7 +39,7 @@ const LENS_DATA = {
     },
     patentYear: 2001,
     authors: ["Shuji Yoneyama"],
-    assignees: ["Asahi Kogaku Kogyo K.K."],
+    assignees: ["Asahi Kogaku Kogyo Co., Ltd."],
     sdSource: "heuristic",
   },
   elements: [

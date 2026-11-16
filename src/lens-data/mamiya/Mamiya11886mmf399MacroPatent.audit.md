@@ -13,3 +13,10 @@ The owner requested correction after the Mamiya was omitted from the preceding P
 ## Evidence boundaries
 
 Fresh output, scripts and machine-readable reports are distinct from inherited checkpoint results. Reproduction uses the pinned engine snapshot f5b456fec7b69184844078f6ec6b1ac132f8ec58. Full-app regression, compiled viewer/browser QA and deployment are not claimed by these focused checks. No commit, PR, publishing or deployment performed. This replaces the earlier infinity-only Mamiya model; it is not a new lens-family discovery.
+
+## 2026-11-16 — Deployment validation
+
+Checked independently against JP 2003-185916 A (page image of Table 1): 18 radii, 17 thicknesses, nine glasses, the stop row, D10 at all three states and D12 at infinity match. The model gives f 118.864 (118.86), fb 66.106 (66.11), F3.99 and reproduces Table 5. A Phase One/Mamiya lens overview lists the 120mm AF f/4 Macro as 9 elements in 8 groups, 32°, 37 cm, 1:1, which fits this example; no public construction diagram was found.
+
+- Open: D12 at −0.5× and −1× is the package's re-solve (33.674329 / 64.362725), not the printed 33.57 / 64.07. The printed rows are self-consistent with the printed working distances (magnification −0.50007 / −1.0017 from the first surface) and put the zonal real-ray focus on the image plane, as Example 2's rows also do; the re-solve restores paraxial focus but leaves the real-ray best focus 0.2–0.5 mm ahead of the plane. Printed condition (2) is 1.64 for 33.57 and 1.63 for the re-solve. Restoring the printed anchors and re-solving the intermediate nodes against them is the alternative.
+- Open: name, key, specs, element types and glass labels are still in package wording; five glasses have exact Ohara rows (S-FPL51, S-TIL27, S-TIL1, S-TIH4, S-LAM55). No `lensMounts` is set.

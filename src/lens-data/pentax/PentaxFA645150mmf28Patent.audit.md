@@ -12,3 +12,11 @@
 
 ## Inherited evidence
 Original infinity-only delivery had validated seven geometric MTF field stations and source transcription. Those historical results are not passed off as new finite-focus validation. This revision's fresh checks supersede the original infinity-only limitation only for the two literal published finite states; interpolated states are not source-certified.
+
+## 2026-11-16 — Deployment validation
+
+Checked independently against US 6,313,955 B1 (page image of Table 1): all 14 surfaces, the stop gap and the three focus rows match; no aspheres. The model gives f 146.985 (147.00 printed), F2.9 and 13.2° half-field, and reproduces the Table 4 conditions. Ricoh Imaging lists the smc PENTAX-FA645 150mmF2.8[IF] as 7 elements in 7 groups, inner focus, 1.2 m, 0.15×; Pentax has published no construction diagram, so the product match rests on those figures.
+
+- Assignee changed to the corpus form "Asahi Kogaku Kogyo Co., Ltd." (front page prints Asahi Kogaku Kogyo Kabushiki Kaisha).
+- Open: Embodiment 1's printed back focus sits 0.059 mm behind paraxial focus and its closest row gives 1.198 m object to image. Embodiment 2 (also 7/7) closes on its printed back focus and on 1.200 m exactly, so it may be the better production match. No single-value misprint repairs Embodiment 1 uniquely; printed values are kept.
+- Open: name, key, specs, element types and glass labels are still in package wording. All seven glasses have exact d-line catalog rows (S-LAL18, S-PHM52, S-TIM39, S-LAH65, S-TIM22, S-TIH53, S-LAH60 or equivalents).

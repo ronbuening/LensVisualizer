@@ -12,3 +12,11 @@ Fresh-main filename check f5b456fec7b69184844078f6ec6b1ac132f8ec58: no matching 
 - Data changes: explicit infinity-only subtitle, required closeFocusM disclaimer and source/dispersion/field-boundary header. No optical numerical changes.
 - Fresh independent d-line trace and geometry evidence plus pinned-engine ingestion/reference-geometric MTF recorded in analysis. No failed/unaimed rays in four app fields.
 - Inherited earlier render check remains inherited, not newly run. Full regression/browser and finite-focus validation not claimed.
+
+## 2026-11-16 — Deployment validation
+
+Checked independently against US 2002/0041452 A1 (page image of Table 1): all 14 surfaces and the stop gaps match; no aspheres, no variable gaps printed. The model gives f 292.353 (292.35), F5.7, fB 116.663 (116.66), and reproduces the group focal lengths and Table 6 conditions. The `dPgF` values follow from the printed partial dispersion ratios (0.5774, 0.5703) on the engine normal line. Ricoh Imaging lists the smc PENTAX-FA645 300mmF5.6ED[IF] as 7 elements in 7 groups, ED glass, inner focus, 2.2 m; Pentax has published no construction diagram, so the product match rests on those figures. The FA★645 300mm F4 (8/8) does not fit this patent.
+
+- Assignee changed to the corpus form "Asahi Kogaku Kogyo Co., Ltd.".
+- Open: Embodiments 1 and 3 fit the product equally; Embodiment 1 is a choice, not a proven identity.
+- Open: `focus.closeFocusM` carries the maker's 2.2 m although the model is infinity-only; name, key, specs, element types and glass labels are still in package wording. The corner bundle is cut 38–45 % one-sided at S1–S6 by the inferred rims.
