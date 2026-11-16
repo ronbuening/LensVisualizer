@@ -15,7 +15,7 @@ const LENS_DATA = {
   "schema": 2,
   "key": "pentax-optio-s-58-174-f26-48",
   "maker": "Pentax",
-  "name": "PENTAX OPTIO S 5.8-17.4mm f/2.6-4.8",
+  "name": "PENTAX SMC ZOOM 5.8-17.4mm f/2.6-4.8 (Pentax Optio S)",
   "subtitle": "US 2003/0197949 A1, Embodiment 6 — design f/2.7–5.3; correlated to the Optio S zoom",
   "source": {
     "patentNumber": "US 2003/0197949 A1",

@@ -1,4 +1,4 @@
-# Olympus M.Zuiko Digital ED 8-25mm f/4 PRO
+# Olympus M.Zuiko Digital ED 8-25mm f/4.0 PRO
 
 ## Patent Reference and Design Identification
 

@@ -1,4 +1,4 @@
-# Pentax Optio S 5.8–17.4mm f/2.6–4.8
+# smc Pentax Zoom 5.8–17.4mm f/2.6–4.8 (Pentax Optio S)
 
 ## Patent Identification
 **Patent:** [US 2003/0197949 A1](https://patents.google.com/patent/US20030197949A1/en) (granted as US 6,917,476 B2)

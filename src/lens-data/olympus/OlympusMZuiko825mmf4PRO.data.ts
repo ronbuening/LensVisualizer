@@ -21,7 +21,7 @@ const LENS_DATA = {
   "schema": 2,
   "key": "olympus-mzuiko-8-25-f4-pro",
   "maker": "Olympus",
-  "name": "OLYMPUS M.ZUIKO DIGITAL ED 8-25mm f/4 PRO",
+  "name": "OLYMPUS M.ZUIKO DIGITAL ED 8-25mm f/4.0 PRO",
   "subtitle": "WO 2022/137385 A1, Example 2 — element-by-element match to the maker's construction diagram",
   "elements": [
     {
