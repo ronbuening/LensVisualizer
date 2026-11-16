@@ -1,4 +1,46 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * ╔══════════════════════════════════════════════════════════════════════╗
+ * ║  LENS DATA — MAMIYA MACRO 120mm f/4 (JP 2003-185916 A Design)       ║
+ * ╠══════════════════════════════════════════════════════════════════════╣
+ * ║  Data source: JP 2003-185916 A, Example 1, Table 1 and Fig. 1       ║
+ * ║  (Mamiya-OP / Hideyuki Suga). Positive G1, aperture stop, positive  ║
+ * ║  G2 split into G2f (cemented doublet) and G2b (singlet), and a      ║
+ * ║  negative G3 fixed to the image plane.                              ║
+ * ║  9 elements / 8 air-separated groups; all spherical surfaces.       ║
+ * ║  Patent values: f = 118.86 mm, fb = 66.11 mm, Fn = 3.99, 2ω = 32°.  ║
+ * ║                                                                    ║
+ * ║  NOTE ON IDENTITY:                                                  ║
+ * ║    Entered as a patent design, not as a production lens. By         ║
+ * ║    specification (9 elements / 8 groups, 32°, 1:1 at 37 cm) the     ║
+ * ║    example is closest to the Mamiya AF 120mm f/4 Macro. No maker    ║
+ * ║    construction diagram was found to confirm it, so no mount is     ║
+ * ║    set. No scale factor applied (patent values are in mm).          ║
+ * ║                                                                    ║
+ * ║  NOTE ON FOCUS:                                                     ║
+ * ║    G1 and G2 extend toward the object; D10 (G2f–G2b) closes from    ║
+ * ║    0.70 to 0.20 mm at 1:2 and reopens to 0.70 mm at 1:1. The        ║
+ * ║    patent prints D12 = 33.57 / 64.07 mm and working distances       ║
+ * ║    (object to first surface) 297 / 178 mm at 1:2 / 1:1. The model   ║
+ * ║    uses D12 = 33.674 / 64.363 mm and 296.877 / 177.958 mm so that   ║
+ * ║    each state is in paraxial focus on the fixed image plane at      ║
+ * ║    exactly −0.5× / −1×. Real-ray best focus then lies about         ║
+ * ║    0.2–0.5 mm ahead of that plane. Positions between the three      ║
+ * ║    patent states are interpolated (D10 linear, D12 solved for       ║
+ * ║    focus); they are not a measured cam.                             ║
+ * ║                                                                    ║
+ * ║  NOTE ON SEMI-DIAMETERS:                                            ║
+ * ║    The patent does not publish clear apertures. The values below    ║
+ * ║    are estimates. The stop radius is derived from the design        ║
+ * ║    f-number, F/3.99.                                                ║
+ * ║                                                                    ║
+ * ║  NOTE ON GLASS:                                                     ║
+ * ║    nd / νd are the patent's values (d-line). Catalog names are      ║
+ * ║    exact-coordinate OHARA matches; the patent names no supplier.    ║
+ * ╚══════════════════════════════════════════════════════════════════════╝
+ */
+
 const LENS_DATA = {
   layout: {
     yScFill: 0.42,
@@ -8,7 +50,7 @@ const LENS_DATA = {
   maker: "Mamiya",
   name: "MAMIYA MACRO 120mm f/4 (JP 2003-185916 A Design)",
   subtitle:
-    "JP2003185916A Example 1; representative patent model, retail identity unverified",
+    "JP 2003-185916 A, Example 1 — floating-focus 1:1 macro for the 645 format; closest in specification to the Mamiya AF 120mm f/4 Macro",
   catalog: {
     imageFormat: "645",
     elementCount: 9,
@@ -21,8 +63,10 @@ const LENS_DATA = {
     },
     specs: [
       "9 ELEMENTS / 8 GROUPS",
-      "REPRESENTATIVE PATENT MODEL",
-      "REFINED FLOATING FOCUS TO 1:1",
+      "DESIGN f = 118.86 mm",
+      "DESIGN F/3.99",
+      "ALL SPHERICAL",
+      "1:1 MACRO WITH FLOATING FOCUS",
     ],
   },
   source: {
@@ -41,91 +85,111 @@ const LENS_DATA = {
       id: 1,
       name: "L1",
       label: "Element 1",
-      type: "Patent element",
+      type: "Positive Meniscus",
       nd: 1.618,
       vd: 63.4,
-      glass: "Unmatched (literal patent nd/Vd)",
-      role: "Literal patent index and Abbe number; estimated dispersion, not identified catalog glass.",
+      focalLengthMm: 90.8,
+      glass: "S-PHM52 (OHARA)",
+      apd: false,
+      role: "Front collector of G1; a low-dispersion crown meniscus, convex to the object.",
     },
     {
       id: 2,
       name: "L2",
       label: "Element 2",
-      type: "Patent element",
+      type: "Positive Meniscus",
       nd: 1.497,
       vd: 81.6,
-      glass: "Unmatched (literal patent nd/Vd)",
-      role: "Literal patent index and Abbe number; estimated dispersion, not identified catalog glass.",
+      focalLengthMm: 127.8,
+      glass: "S-FPL51 (OHARA)",
+      apd: false,
+      role: "Second positive meniscus of G1, in a fluorophosphate crown that limits the front group's axial colour.",
     },
     {
       id: 3,
       name: "L3",
       label: "Element 3",
-      type: "Patent element",
+      type: "Negative Meniscus",
       nd: 1.57501,
       vd: 41.5,
-      glass: "Unmatched (literal patent nd/Vd)",
-      role: "Literal patent index and Abbe number; estimated dispersion, not identified catalog glass.",
+      focalLengthMm: -53.9,
+      glass: "S-TIL27 (OHARA)",
+      apd: false,
+      role: "Flint negative meniscus closing G1; its deep rear surface faces the stop.",
     },
     {
       id: 4,
       name: "L4",
       label: "Element 4",
-      type: "Patent element",
+      type: "Biconcave Negative",
       nd: 1.54814,
       vd: 45.8,
-      glass: "Unmatched (literal patent nd/Vd)",
-      role: "Literal patent index and Abbe number; estimated dispersion, not identified catalog glass.",
+      focalLengthMm: -47.0,
+      glass: "S-TIL1 (OHARA)",
+      apd: false,
+      role: "Negative front member of the G2f cemented doublet, concave toward the stop.",
+      cemented: "C1",
     },
     {
       id: 5,
       name: "L5",
       label: "Element 5",
-      type: "Patent element",
+      type: "Biconvex Positive",
       nd: 1.618,
       vd: 63.4,
-      glass: "Unmatched (literal patent nd/Vd)",
-      role: "Literal patent index and Abbe number; estimated dispersion, not identified catalog glass.",
+      focalLengthMm: 53.2,
+      glass: "S-PHM52 (OHARA)",
+      apd: false,
+      role: "Positive rear member of the G2f cemented doublet; the pair has almost no net power (f ≈ −3500 mm).",
+      cemented: "C1",
     },
     {
       id: 6,
       name: "L6",
       label: "Element 6",
-      type: "Patent element",
+      type: "Biconvex Positive",
       nd: 1.618,
       vd: 63.4,
-      glass: "Unmatched (literal patent nd/Vd)",
-      role: "Literal patent index and Abbe number; estimated dispersion, not identified catalog glass.",
+      focalLengthMm: 96.3,
+      glass: "S-PHM52 (OHARA)",
+      apd: false,
+      role: "G2b, the floating singlet that carries most of G2's positive power; its spacing from G2f (D10) changes during focusing.",
     },
     {
       id: 7,
       name: "L7",
       label: "Element 7",
-      type: "Patent element",
+      type: "Positive Meniscus",
       nd: 1.7552,
       vd: 27.5,
-      glass: "Unmatched (literal patent nd/Vd)",
-      role: "Literal patent index and Abbe number; estimated dispersion, not identified catalog glass.",
+      focalLengthMm: 111.1,
+      glass: "S-TIH4 (OHARA)",
+      apd: false,
+      role: "Dense-flint positive meniscus leading the fixed G3, concave to the object.",
     },
     {
       id: 8,
       name: "L8",
       label: "Element 8",
-      type: "Patent element",
+      type: "Biconcave Negative",
       nd: 1.762,
       vd: 40.1,
-      glass: "Unmatched (literal patent nd/Vd)",
-      role: "Literal patent index and Abbe number; estimated dispersion, not identified catalog glass.",
+      focalLengthMm: -40.5,
+      glass: "S-LAM55 (OHARA)",
+      apd: false,
+      role: "Strong negative element that gives the fixed G3 its net negative power.",
     },
     {
       id: 9,
       name: "L9",
       label: "Element 9",
-      type: "Patent element",
+      type: "Biconvex Positive",
       nd: 1.651,
       vd: 56.2,
-      glass: "Unmatched (literal patent nd/Vd)",
-      role: "Literal patent index and Abbe number; estimated dispersion, not identified catalog glass.",
+      focalLengthMm: 117.7,
+      glass: "Unmatched (patent nd=1.65100, νd=56.2; supplier unconfirmed)",
+      apd: false,
+      role: "Rear positive element of the fixed G3, facing the image.",
     },
   ],
   surfaces: [
@@ -291,7 +355,7 @@ const LENS_DATA = {
     ],
     published: [67, 124],
     description:
-      "Floating macro focus. Patent infinity, 1:2 and 1:1 stations are labelled; D12 and first-surface WD at finite stations are re-solved for paraxial focus and nominal magnification. Intermediate D10 motion is a piecewise-linear estimate with independently solved D12 samples, not a factory cam. Rear group and image-plane separation stay fixed.",
+      "Floating focus to 1:1. G1 and G2 extend toward the object while G3 stays fixed 66.11 mm from the image plane; the G2f–G2b gap D10 closes from 0.70 to 0.20 mm at 1:2 and reopens to 0.70 mm at 1:1, as the patent prints. The patent prints D12 = 33.57 / 64.07 mm and working distances 297 / 178 mm at 1:2 / 1:1; the model uses D12 = 33.674 / 64.363 mm so that each state is in paraxial focus on the fixed image plane, and real-ray best focus then lies about 0.2–0.5 mm ahead of that plane. Positions between infinity, 1:2 and 1:1 are interpolated, not a measured cam.",
     conjugates: [
       {
         zoomStation: 0,
@@ -299,7 +363,7 @@ const LENS_DATA = {
         objectDistanceMm: 296.87689256836,
         distanceReference: "first-surface",
         source:
-          "JP2003185916A Example 1 Table 1; paragraph 0016 defines first-surface WD. Source WD 297 mm, magnification -0.5, D10 0.2 mm and D12 33.57 mm. Under owner-authorized refinement, D10 and BFD 66.11 retained; D12 and WD jointly re-solved for exact printed magnification and paraxial focus. WD 296.876892568 mm rounds to the source's integer WD; D12 correction explicitly documented in analysis/audit. No glass or radius changed.",
+          "JP 2003-185916 A, Example 1, Table 1; paragraph 0016 defines the working distance as object to first surface. The patent prints working distance 297 mm, magnification −0.5, D10 0.20 mm and D12 33.57 mm. The model keeps D10 and the 66.11 mm back focus and sets D12 = 33.674 mm and working distance 296.877 mm, which gives paraxial focus on the image plane at exactly −0.5×; the working distance still rounds to the printed 297 mm.",
       },
       {
         zoomStation: 0,
@@ -307,7 +371,7 @@ const LENS_DATA = {
         objectDistanceMm: 177.95755210366912,
         distanceReference: "first-surface",
         source:
-          "JP2003185916A Example 1 Table 1; paragraph 0016 defines first-surface WD. Source WD 178 mm, magnification -1, D10 0.7 mm and D12 64.07 mm. Under owner-authorized refinement, D10 and BFD 66.11 retained; D12 and WD jointly re-solved for exact printed magnification and paraxial focus. WD 177.957552104 mm rounds to the source's integer WD; D12 correction explicitly documented in analysis/audit. No glass or radius changed.",
+          "JP 2003-185916 A, Example 1, Table 1; paragraph 0016 defines the working distance as object to first surface. The patent prints working distance 178 mm, magnification −1, D10 0.70 mm and D12 64.07 mm. The model keeps D10 and the 66.11 mm back focus and sets D12 = 64.363 mm and working distance 177.958 mm, which gives paraxial focus on the image plane at exactly −1×; the working distance still rounds to the printed 178 mm.",
       },
     ],
   },
@@ -316,6 +380,13 @@ const LENS_DATA = {
     fStops: [3.99, 5.6, 8, 11, 16, 22],
     maxFNumber: 22,
   },
+  groups: [
+    { text: "G1 (+)", fromSurface: "1", toSurface: "6" },
+    { text: "G2f", fromSurface: "8", toSurface: "10" },
+    { text: "G2b (+)", fromSurface: "11", toSurface: "12" },
+    { text: "G3 (−)", fromSurface: "13", toSurface: "18" },
+  ],
+  doublets: [{ text: "C1", fromSurface: "8", toSurface: "10" }],
   gaps: {
     "10": {
       label: "D10",

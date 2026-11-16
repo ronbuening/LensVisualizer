@@ -1,67 +1,80 @@
+# Mamiya Macro 120mm f/4 (JP 2003-185916 A Design)
+
 ## Patent Reference and Design Identification
 
-**Patent:** JP2003185916A, Example 1, Table 1 and Figure 1.
+**Patent:** JP 2003-185916 A
 **Inventor:** Hideyuki Suga
 **Applicant:** Mamiya-OP Co., Ltd.
 **Filed:** December 18, 2001
-**Published:** July 3, 2003. Original J-PlatPat numerical tables recovered November 16, 2026. This is a neutral representative 118.86 mm F3.99 macro patent model, not an established MF or AF 120 mm retail prescription.
+**Published:** July 3, 2003
+**Title:** マクロレンズ (Macro Lens)
+**Example details:** 実施例1, Table 1, Fig. 1 (section) and Fig. 5 (aberrations); conditions in Table 5
 
-[Patent text](https://patents.google.com/patent/JP2003185916A/en). Original Tables 1–5 are archived from [J-PlatPat](https://www.j-platpat.inpit.go.jp/), search publication 2003-185916. Source full field is 32 degrees, BFD 66.11 mm, nine elements in eight groups. A period maker overview distinguishes MF 120/4 (33 degrees, 40 cm) from AF 120/4 (32 degrees, 37 cm), both nine/eight: [maker overview](https://www.captureintegration.com/download/PhaseOne_Lens_Overview_3007_web.pdf). Matching count and field alone do not establish factory identity. No mount asserted; 645 coverage is a qualified format inference.
+The patent ([text](https://patents.google.com/patent/JP2003185916A/en); tables on [J-PlatPat](https://www.j-platpat.inpit.go.jp/), publication 2003-185916) describes a macro lens with a field of about 32° that focuses from infinity to life size. Example 1 states f = 118.86 mm, fb = 66.11 mm, Fn = 3.99 and 2ω = 32°, with nine elements in eight groups. Its aberration plots run to an image height of 34.85 mm, the half-diagonal of the 645 format.
+
+The model is entered as a patent design, not as a production lens. A [Phase One / Mamiya lens overview](https://www.captureintegration.com/download/PhaseOne_Lens_Overview_3007_web.pdf) lists two 120 mm f/4 macro lenses, both with nine elements in eight groups and 1:1 magnification: the manual-focus lens at 33° and 40 cm, and the AF lens at 32° and 37 cm. Example 1 agrees with the AF lens on three points:
+
+1. Nine elements in eight groups.
+2. A 32° field.
+3. A 1:1 object-to-image distance of about 373 mm.
+
+The patent text also argues from the short focusing travel an autofocus lens needs. This is agreement by specification only. No maker construction diagram was found to compare with Fig. 1, so no mount is assigned and the 645 format is taken from the patent's image height.
 
 ## Optical Architecture
 
-Three powered groups, positive/positive/negative, with the middle group internally split for floating focus. Three singlets precede the stop; a cemented pair follows, then four singlets. Stop S7 is exactly 5.70 mm after S6 and 5.70 mm before S8. Literal spherical radii, glass indices, glass thicknesses, fixed axial air spaces and source plane retained. D10 follows the printed finite rows; D12 is explicitly re-solved below. No geometry override.
+Three groups, positive / positive / negative. G1 (L1–L3, f ≈ +260 mm) is two positive menisci and a negative meniscus ahead of the aperture stop, which sits 5.70 mm behind G1 and 5.70 mm ahead of G2. G2 (f ≈ +88 mm) is split into G2f, a cemented doublet of almost no net power, and G2b, a biconvex singlet of f ≈ +96 mm. G3 (L7–L9, f ≈ −187 mm) is a positive meniscus, a biconcave negative and a biconvex positive, fixed to the image plane.
+
+G1 and G2 together have f1 ≈ 85.4 mm, so the fixed G3 enlarges their image by f / f1 = 1.39. That is the patent's condition (1), 1.2 < f / f1 < 1.5, which trades focusing travel against the aberration change G3 introduces. Condition (3), 2 < |f3 / f1| < 2.4, evaluates to 2.19. Both match Table 5.
+
+At infinity the model gives an effective focal length of 118.864 mm and a back focus of 66.106 mm, against the printed 118.86 and 66.11.
 
 ## Element-by-Element Analysis
 
-| Element |      nd |   Vd | Structure      |
-| ------- | ------: | ---: | -------------- |
-| L1      | 1.61800 | 63.4 | Singlet        |
-| L2      | 1.49700 | 81.6 | Singlet        |
-| L3      | 1.57501 | 41.5 | Singlet        |
-| L4      | 1.54814 | 45.8 | Cemented to L5 |
-| L5      | 1.61800 | 63.4 | Cemented to L4 |
-| L6      | 1.61800 | 63.4 | Singlet        |
-| L7      | 1.75520 | 27.5 | Singlet        |
-| L8      | 1.76200 | 40.1 | Singlet        |
-| L9      | 1.65100 | 56.2 | Singlet        |
+| Element | Group | Shape              |      nd |   νd | f (mm) | Glass             |
+| ------- | ----- | ------------------ | ------: | ---: | -----: | ----------------- |
+| L1      | G1    | Positive meniscus  | 1.61800 | 63.4 |  +90.8 | S-PHM52 (OHARA)   |
+| L2      | G1    | Positive meniscus  | 1.49700 | 81.6 | +127.8 | S-FPL51 (OHARA)   |
+| L3      | G1    | Negative meniscus  | 1.57501 | 41.5 |  −53.9 | S-TIL27 (OHARA)   |
+| L4      | G2f   | Biconcave negative | 1.54814 | 45.8 |  −47.0 | S-TIL1 (OHARA)    |
+| L5      | G2f   | Biconvex positive  | 1.61800 | 63.4 |  +53.2 | S-PHM52 (OHARA)   |
+| L6      | G2b   | Biconvex positive  | 1.61800 | 63.4 |  +96.3 | S-PHM52 (OHARA)   |
+| L7      | G3    | Positive meniscus  | 1.75520 | 27.5 | +111.1 | S-TIH4 (OHARA)    |
+| L8      | G3    | Biconcave negative | 1.76200 | 40.1 |  −40.5 | S-LAM55 (OHARA)   |
+| L9      | G3    | Biconvex positive  | 1.65100 | 56.2 | +117.7 | Unmatched         |
+
+L1 and L2 are convex to the object and share the front group's positive power; L3 returns most of it, with its strongly curved rear surface (R = 29.59 mm) facing the stop. L4 and L5 are cemented, and the pair mirrors L3 across the stop: L4's concave front surface (R = −28.852 mm) faces it from the other side. L6 carries most of the positive power of G2 and is the element whose spacing floats. In G3, L8 supplies the negative power and L7 and L9 flank it.
 
 ## Glass Identification and Selection
 
-Literal nd/Vd retained. Trade glass and melt identities unknown; chromatic dispersion is approximate from nd/Vd, not measured full spectral data. No catalog substitution.
+The patent gives nd and νd at the d-line and names no supplier. Eight of the nine coordinates coincide with OHARA catalog glasses, and those names are used as catalog matches, not as the patent's own identification: S-PHM52 for L1, L5 and L6, S-FPL51 for L2, S-TIL27 for L3, S-TIL1 for L4, S-TIH4 for L7 and S-LAM55 for L8. L9 (1.65100 / 56.2) has no exact row in the glass catalog used here and keeps the patent's values.
+
+L2 is the only fluorophosphate crown. The positive power around the stop otherwise rests on the phosphate crown 1.618 / 63.4, used three times, against the light flints of L3 and L4.
 
 ## Focus Mechanism
 
-This refinement enables the patent's nominal 1:2 and 1:1 states, retaining infinity unchanged. Paragraph 0016 defines WD as object-to-first-surface distance. The rear negative group remains fixed relative to the image plane; front G1/G2 extend toward the object. D10 first decreases then increases, preserving the floating-focus reversal drawn in Figure 1.
+G3 stays fixed 66.11 mm ahead of the image plane. G1 and G2 extend toward the object, and the spacing D10 between G2f and G2b first closes and then reopens: the patent's claim is that this reversal at about 1:2 keeps the spherical-aberration best focus and the field in step over the whole range. Paragraph 0016 defines the working distance WD as object to first surface.
 
-| State    | Printed WD (mm) | Solved WD (mm) | D10 retained (mm) | Printed D12 (mm) | Solved D12 (mm) | Solved object–image distance (m) |
-| -------- | --------------: | -------------: | ----------------: | ---------------: | --------------: | -------------------------------: |
-| Infinity |        infinity |       infinity |              0.70 |             3.00 |            3.00 |                         infinity |
-| 1:2      |             297 |  296.876892568 |              0.20 |            33.57 |    33.674328998 |                      0.461331222 |
-| 1:1      |             178 |  177.957552104 |              0.70 |            64.07 |    64.362725269 |                      0.373600277 |
+| State    | WD printed (mm) | WD in model (mm) | D10 (mm) | D12 printed (mm) | D12 in model (mm) | Object to image (m) |
+| -------- | --------------: | ---------------: | -------: | ---------------: | ----------------: | ------------------: |
+| Infinity |               ∞ |                ∞ |     0.70 |             3.00 |              3.00 |                   ∞ |
+| 1:2      |             297 |          296.877 |     0.20 |            33.57 |            33.674 |               0.461 |
+| 1:1      |             178 |          177.958 |     0.70 |            64.07 |            64.363 |               0.374 |
 
-The literal finite rows predict image distances 66.281441 and 66.635645 mm, respectively, instead of the retained 66.11 mm source back focus. At the authored plane their paraxial magnifications are −0.498297 and −0.995230. With the owner's authorization, D12 and WD were jointly solved for paraxial focus and exact nominal magnifications −0.5 and −1. D12 changes are +0.104329 and +0.292725 mm. Both derived WD values round to the patent's printed integer WD, but the D12 changes exceed its last printed digit: this is a disclosed modeled refinement, not a claim that every discrepancy is source rounding or that the new gaps are literal factory positions. All original values remain in this table and the archived extraction.
+The model does not use the printed D12 at the two close states. With the printed gaps and working distances the paraxial image falls 66.28 mm and 66.64 mm behind the last surface, 0.17 mm and 0.53 mm beyond the 66.11 mm image plane. The model keeps D10 and the image plane, and sets D12 and the working distance so that each state is in paraxial focus on that plane at exactly −0.5× and −1×. D12 grows by 0.104 mm and 0.293 mm, and both working distances still round to the printed integers.
 
-Source-derived focus nodes are marked published and carry finite conjugates with explicit printed-versus-solved provenance. No `sourceMagnification` override is used because the source actually prints WD. Finite optical audit finds essentially zero paraxial defocus at both solved states, with working f-numbers 5.355775 and 6.719705. The required close-focus scalar is the computed 0.373600277 m object-to-image distance, not an asserted retail MFD.
+This choice has a cost. The design has undercorrected zonal spherical aberration at close range (Fig. 5), and with the printed gaps the mid-zone rays focus on the image plane. With the model's gaps the paraxial focus is on the plane and the real-ray best focus lies about 0.2 mm ahead of it at 1:2 and 0.4–0.5 mm ahead at 1:1. The printed gaps also give the printed value of condition (2), 1.64 %; the model's give 1.63 %.
 
-For intermediate positions D10 is a piecewise-linear estimate in the normalized inverse-distance coordinate, reversing at the source half-magnification node (t=0.809830898). D12 was solved independently at 125 adaptive control points; only infinity and the two source finite positions are published. This is not a recovered mechanical cam. A 1,000-point inter-node sweep found maximum residual image defocus 0.004880 mm. Unsupported intermediate finite-MTF certification is not added. The source plane is not moved to maximize contrast: residual spherical aberration yields real-ray best-focus diagnostics of −0.163010 mm and −0.400066 mm at the two finite states.
+The working f-numbers of the model are 5.36 at 1:2 and 6.72 at 1:1; the patent prints 5.26 and 6.69. The 0.374 m close-focus distance is the model's object-to-image distance at 1:1, not a maker's figure.
 
-Independent Gaussian infinity EFL 118.864380 mm and BFD 66.105674 mm match the rounded source 118.86/66.11. Infinity's −0.004326 mm image-plane residual is unchanged.
+Between infinity, 1:2 and 1:1 the patent gives no positions. D10 is interpolated linearly on each side of the 1:2 state and D12 is set for paraxial focus at each step. That path is an estimate, not the lens's cam.
 
 ## Aspherical Surfaces
 
-None. All refracting surfaces spherical.
+None. All refracting surfaces are spherical.
 
-## Validation and Qualifications
+## Model Scope and Limitations
 
-Fresh refinement checks against engine snapshot f5b456fec7b69184844078f6ec6b1ac132f8ec58:
-
-- Canonical build and full surface geometry validation pass without overrides or geometry changes. Exact equality checks preserve all glass records, radii, semidiameters and surface media from the prior delivery.
-- Both declared finite conjugates pass strict audit as consistent at the authored plane; measured paraxial magnifications are −0.500000000 and −1.000000000.
-- Twenty-one reference-spectrum geometric MTF fields (seven each at infinity, 1:2 and 1:1) converge through 40 lp/mm with no failed or unaimed rays. The fields include the inferred 645-format corner, not a claim of source-measured performance.
-- 324 focus states show zero render trimming and fixed rear-group/image separations. Across those states 41,796 iris-radius samples stay between the adjacent glass surfaces. Infinity's traced axial f-number is tested separately by the aperture audit. Finite near-rim axial rays are also checked.
-- 1,000 intermediate-focus samples quantify the interpolation residual independently of the runtime display label. Maximum absolute paraxial image-plane residual is 0.004880 mm. Only the published finite stations enable source-certified finite MTF.
-
-Clear semidiameters remain estimated, not factory/source rims: per non-stop surface 19/19/18/18/16/16/16/16/16/17/17/20/20/22/22/24/24 mm. Off-axis illumination depends on those estimates and clipping is not removed artificially. Literal nd/Vd imply approximate dispersion, not measured full spectral glass data. MTF is geometric simulation, not measured or diffraction MTF; focused checks are not full-app or browser QA. Remaining integration checks are recorded in the package's validation record.
-
-Inherited source-field result, not rerun as a fresh refinement claim: at the unchanged infinity prescription a 16-degree chief ray mapped to 34.030182 mm height, and reference geometric MTF converged through 40 lp/mm with 12,332 valid, 560 blocked, zero failed or unaimed rays. The 645-format infinity corner lies outside the published 16-degree half-field. The archived original source-field result therefore remains distinct from the fresh format-corner tests.
+- The radii, thicknesses, glasses, stop position and the infinity state are the patent's. D12 and the working distance at 1:2 and 1:1 are the model's own, as described above, and every position between the three patent states is interpolated.
+- The patent publishes no clear apertures. The semi-diameters (19 mm at the front element, 16–17 mm around the stop, 20–24 mm in G3) are estimates, so off-axis illumination and vignetting in the viewer depend on them. The stop radius follows from F/3.99.
+- Dispersion comes from the matched catalog glasses where a name is given and from nd and νd alone for L9.
+- The association with the Mamiya AF 120mm f/4 Macro rests on published specifications, not on a maker's diagram or prescription.
