@@ -4,9 +4,9 @@ const LENS_DATA = {
     yScFill: 0.42,
   },
   schema: 2,
-  key: "mamiya-11886mm-f399-macro-patent-e1",
+  key: "mamiya-macro-120mm-f4-jp2003185916",
   maker: "Mamiya",
-  name: "MAMIYA 118.86mm f/3.99 MACRO PATENT MODEL",
+  name: "MAMIYA MACRO 120mm f/4 (JP 2003-185916 A Design)",
   subtitle:
     "JP2003185916A Example 1; representative patent model, retail identity unverified",
   catalog: {

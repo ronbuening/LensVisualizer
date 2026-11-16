@@ -10,9 +10,9 @@ const LENS_DATA = {
     "yScFill": 0.42
   },
   "schema": 2,
-  "key": "pentax-fa645-300mm-f56-patent-e1",
+  "key": "pentax-645-fa-300mm-f56-ed-if",
   "maker": "Pentax",
-  "name": "PENTAX FA645 300mm f/5.6 PATENT MODEL",
+  "name": "PENTAX SMC FA 645 300mm f/5.6 ED [IF]",
   "subtitle": "US20020041452A1 Embodiment 1; infinity-only representative, factory prescription unverified",
   "catalog": {
     "lensMounts": [

@@ -4,9 +4,9 @@ const LENS_DATA = {
     yScFill: 0.42,
   },
   schema: 2,
-  key: "pentax-fa645-150mm-f28-patent-e1",
+  key: "pentax-645-fa-150mm-f28-if",
   maker: "Pentax",
-  name: "PENTAX FA645 150mm f/2.8 PATENT MODEL",
+  name: "PENTAX SMC FA 645 150mm f/2.8 [IF]",
   subtitle:
     "US6313955B1 Embodiment 1; representative, factory prescription unverified",
   catalog: {
