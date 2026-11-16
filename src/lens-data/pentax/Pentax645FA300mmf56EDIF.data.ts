@@ -25,17 +25,20 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║                                                                    ║
  * ║  NOTE ON GLASS:                                                     ║
  * ║    The patent prints nd and vd for every element and the partial    ║
- * ║    dispersion ratio for L3 (0.5774) and L4 (0.5703) only. Glass     ║
- * ║    names are catalog rows that match the printed nd/vd; the         ║
- * ║    patent names no glass. The two printed ratios are stored as      ║
- * ║    dPgF against the viewer's normal line.                           ║
+ * ║    dispersion ratio for L3 (0.5774) and L4 (0.5703) only; it        ║
+ * ║    names no glass. Labels are catalog rows matching the printed     ║
+ * ║    nd/vd. L3 is BAH32 (ratio 0.5779) and L4 is BPH5 (0.5709),       ║
+ * ║    the older Ohara glasses whose ratios also fit the print; the     ║
+ * ║    current S-BAH32 and S-NBH5 run about 0.004 higher. The two       ║
+ * ║    printed ratios are stored as dPgF against the viewer's normal    ║
+ * ║    line.                                                            ║
  * ║                                                                    ║
  * ║  NOTE ON SEMI-DIAMETERS:                                            ║
  * ║    The patent does not publish clear-aperture semi-diameters.       ║
  * ║    Values below are estimated from Fig. 1, which draws each rim     ║
  * ║    just outside the axial beam, and are kept wider than the         ║
  * ║    drawing wherever the smaller rim would darken the 645 corner.    ║
- * ║    L3 is held to 26 mm by the 0.99 mm air gap behind L2.            ║
+ * ║    L1 and L7 stay about 10 % and 13 % above the drawing.            ║
  * ║                                                                    ║
  * ║  NOTE ON FOCUS:                                                     ║
  * ║    Only the infinity prescription is published. closeFocusM =       ║
@@ -118,10 +121,10 @@ const LENS_DATA = {
       nd: 1.66998,
       vd: 39.3,
       focalLengthMm: -102.74,
-      glass: "S-BAH32 (OHARA)",
+      glass: "BAH32 (OHARA)",
       role: "Negative element closing the first group; achromatizes L1 and L2 across a 0.99 mm air gap.",
       dPgF: -0.0002974,
-      apdNote: "Patent Table 1 prints a partial dispersion ratio of 0.5774; stored as the deviation from the viewer's normal line.",
+      apdNote: "Patent Table 1 prints a partial dispersion ratio of 0.5774 (BAH32: 0.5779), which lies on the normal line.",
     },
     {
       id: 4,
@@ -131,10 +134,12 @@ const LENS_DATA = {
       nd: 1.65412,
       vd: 39.7,
       focalLengthMm: -85.35,
-      glass: "S-NBH5 (OHARA)",
-      role: "Negative front element of the focusing group, concave to the image.",
+      glass: "BPH5 (OHARA)",
+      apd: "patent",
+      role: "Negative front element of the focusing group, concave to the image; anomalous-dispersion flint that trims the secondary spectrum.",
       dPgF: -0.0067246,
-      apdNote: "Patent Table 1 prints a partial dispersion ratio of 0.5703; stored as the deviation from the viewer's normal line.",
+      apdNote:
+        "Patent Table 1 prints a partial dispersion ratio of 0.5703 (BPH5: 0.5709), and the patent text cites the anomalous dispersion of the glass in the negative third and fourth elements.",
     },
     {
       id: 5,
@@ -173,10 +178,10 @@ const LENS_DATA = {
 
   /* ── Surface prescription ── */
   surfaces: [
-    { label: "1", R: 100.7, d: 7.85, sd: 31, medium: 1 },
-    { label: "2", R: -249.207, d: 0.3, sd: 31 },
-    { label: "3", R: 65.656, d: 8.22, sd: 29, medium: 2 },
-    { label: "4", R: -4951.776, d: 0.99, sd: 29 },
+    { label: "1", R: 100.7, d: 7.85, sd: 30, medium: 1 },
+    { label: "2", R: -249.207, d: 0.3, sd: 30 },
+    { label: "3", R: 65.656, d: 8.22, sd: 27, medium: 2 },
+    { label: "4", R: -4951.776, d: 0.99, sd: 27 },
     { label: "5", R: -355.189, d: 3.1, sd: 26, medium: 3 },
     { label: "6", R: 85.68, d: 30.51, sd: 26 },
     { label: "7", R: 535.1, d: 2.6, sd: 18.6, medium: 4 },

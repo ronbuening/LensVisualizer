@@ -18,7 +18,7 @@ The patent describes a compact inner-focusing telephoto of three groups, positiv
 3. Inner focusing by a middle group, consistent with "[IF]".
 4. A focal length of 292.35 mm and F5.7 against the marketed 300 mm and F5.6.
 5. A 13.4° full field against the 13.5° the maker gives for the 645 film format (10.5° is the figure for the smaller digital 645 sensor).
-6. A front semi-diameter near 31 mm, compatible with the lens's 67 mm filter thread.
+6. A front semi-diameter near 30 mm, compatible with the lens's 67 mm filter thread.
 7. An August 2000 priority date and the Pentax corporate predecessor as applicant.
 
 The FA★645 300mm F4 ED [IF] has eight elements in eight groups and does not fit this patent.
@@ -44,7 +44,7 @@ The stop sits 20.25 mm behind L5 and 1.50 mm ahead of L6. The patent's condition
 | L1 | Biconvex Positive | 1.48749 | 70.2 | 148.2 | Low-dispersion front collector |
 | L2 | Biconvex Positive | 1.49700 | 81.6 | 130.5 | ED positive element, near-flat rear face |
 | L3 | Biconcave Negative | 1.66998 | 39.3 | −102.7 | Achromatizing negative of G1 |
-| L4 | Negative Meniscus | 1.65412 | 39.7 | −85.4 | Negative element of the focusing group |
+| L4 | Negative Meniscus | 1.65412 | 39.7 | −85.4 | Negative element of the focusing group, anomalous-dispersion flint |
 | L5 | Positive Meniscus | 1.80518 | 25.4 | 176.8 | Dense-flint positive of the focusing group |
 | L6 | Biconvex Positive | 1.56732 | 42.8 | 128.8 | Positive element behind the stop |
 | L7 | Negative Meniscus | 1.83400 | 37.2 | −123.6 | Negative rear meniscus, concave to the object |
@@ -53,11 +53,13 @@ L1 and L2 share the front group's positive power between two low-dispersion crow
 
 ## Glass Identification and Selection
 
-The patent prints nd and νd for every element and names no glass. Each printed pair coincides with a catalog glass: S-FSL5 (L1), S-FPL51 (L2), S-BAH32 (L3), S-NBH5 (L4), S-TIH6 (L5), S-TIL26 (L6) and S-LAH60 (L7), all Ohara designations. Equivalent glasses from other makers share several of these positions, and the production supplier is not established.
+The patent prints nd and νd for every element and names no glass. Each printed pair coincides with a catalog glass: S-FSL5 (L1), S-FPL51 (L2), BAH32 (L3), BPH5 (L4), S-TIH6 (L5), S-TIL26 (L6) and S-LAH60 (L7), all Ohara designations. Equivalent glasses from other makers share several of these positions, and the production supplier is not established.
 
 L2 is the only ED-class glass in the prescription and is taken as the ED element of the production lens; the maker states that ED glass is used without giving a count or a position.
 
-Table 1 also prints the partial dispersion ratio (ng − nF)/(nF − nC) for L3 (0.5774) and L4 (0.5703). Both are about 0.004 below the current catalog values for S-BAH32 and S-NBH5, so the data file keeps the printed ratios, stored as deviations of −0.0003 and −0.0067 from the normal line 0.6438 − 0.001682·νd.
+Table 1 also prints the partial dispersion ratio (ng − nF)/(nF − nC) for L3 (0.5774) and L4 (0.5703). The patent text says these two negative elements use glass with anomalous dispersion, and the printed ratios agree with Ohara's older glasses of the same nd and νd: BAH32 (0.5779) for L3 and BPH5 (0.5709) for L4. The present-day S-BAH32 (0.5815) and S-NBH5 (0.5738) are about 0.004 higher. L3 and L4 are therefore labelled BAH32 and BPH5. BPH5 lies 0.0067 below the normal line 0.6438 − 0.001682·νd, and BAH32 lies on it. The data file also stores both printed ratios as deviations from that line (−0.0003 and −0.0067).
+
+Traced with these glasses, the paraxial focus sits 0.13 mm behind the d-line focus for the C line and 0.11 mm behind it for the g line; at the full F5.7 aperture the C-line ray crosses 0.15 mm behind and the g-line ray 0.12 mm ahead of it. The patent's spherical-aberration plot shows about 0.12 mm and 0.11 mm on the axis, and about 0.15 mm behind and 0.10 mm ahead at the full aperture.
 
 ## Focus Mechanism
 
@@ -71,6 +73,6 @@ None; all fourteen surfaces are spherical.
 
 - The paraxial focal length of the model is 292.353 mm and its back focus 116.663 mm, against the printed 292.35 mm and 116.66 mm.
 - The stop radius follows the patent's F5.7, not the marketed F5.6.
-- The patent publishes no clear apertures. The semi-diameters (31, 29, 26, 18.6, 18.3, 17.2 and 17 mm for L1 to L7) are estimated from Figure 1, which draws each rim just outside the axial beam, and are kept wider than the drawing wherever the smaller rim would darken the corner; L3 is held to 26 mm by the narrow air gap behind L2. With these rims the corner of the 645 frame is vignetted by roughly a quarter at full aperture, which reflects the estimates and is not a published property of the lens.
+- The patent publishes no clear apertures. The semi-diameters (30, 27, 26, 18.6, 18.3, 17.2 and 17 mm for L1 to L7) are estimated from Figure 1, which draws each rim just outside the axial beam, and are kept wider than the drawing wherever the smaller rim would darken the corner; L1 and L7 remain about 10 % and 13 % larger than drawn for that reason. With these rims the corner of the 645 frame is vignetted by roughly a quarter at full aperture, which reflects the estimates and is not a published property of the lens.
 - The corner of the 645 frame lies marginally beyond the patent's 6.7° half-field.
 - Figure 1 of the patent is schematic and carries no dimensions; it confirms the group arrangement and the stop position only.
