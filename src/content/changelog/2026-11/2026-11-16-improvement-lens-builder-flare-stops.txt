@@ -1,0 +1,1 @@
+Added flare stops to the lens builder, so 33 more catalog lenses open element by element

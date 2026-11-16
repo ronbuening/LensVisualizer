@@ -9,6 +9,7 @@ import {
   elementFocalLength,
   groupFocalLength,
   insertElement,
+  insertFlareStop,
   insertStop,
   moveItem,
   removeElement,
@@ -61,7 +62,7 @@ function catalogWith(predicate: (draft: LensDataV2Input) => boolean): LensDataV2
     const model = toElementModel(draft);
     return (
       model.ok &&
-      model.model.items.every((item) => item.kind === "stop" || item.elements.length === 1 || item.cementName)
+      model.model.items.every((item) => item.kind !== "group" || item.elements.length === 1 || item.cementName)
     );
   });
   expect(found, "The catalog must exercise this supported V2 structure").toBeDefined();
@@ -186,7 +187,7 @@ describe("element model V2 mapping", () => {
     malformed.push([curvedStop, /flat/i]);
     const air = createTemplate();
     delete air.surfaces[0].medium;
-    malformed.push([air, /begin an element/i]);
+    malformed.push([air, /curved surface in air/i]);
     const unfinished = createTemplate();
     unfinished.surfaces.at(-1)!.medium = 3;
     malformed.push([unfinished, /contiguous|end at/i]);
@@ -440,6 +441,32 @@ describe("element model edits", () => {
     expectBuild(moveItem(model, 0, 1));
     expect(() => insertStop(model, 0)).toThrow(/already/);
     expect(() => removeItem(model, 2)).toThrow(/only aperture stop/);
+  });
+
+  it("reads flat air surfaces as flare stops and inserts, resizes, moves and removes them", () => {
+    const draft = createTemplate();
+    draft.surfaces[3].d = 1.5;
+    draft.surfaces.splice(4, 0, { label: "FS", R: "flat", d: 1.5, sd: 9 });
+    const model = modelOf(draft);
+    expect(model.items.map((item) => item.kind)).toEqual(["group", "group", "flare", "stop", "group"]);
+    expect(expectBuild(model, draft)).toStrictEqual(draft);
+    expect(expectBuild(updateSurface(model, 2, 0, { sd: 8 }), draft).surfaces[4]).toEqual({
+      label: "FS",
+      R: "flat",
+      d: 1.5,
+      sd: 8,
+    });
+    expect(() => updateSurface(model, 2, 0, { R: 20 })).toThrow(/flat/);
+    expect(() => updateSurface(model, 2, 0, { sd: undefined })).toThrow(/semi-diameter/);
+    expectBuild(moveItem(model, 2, 1), draft);
+
+    const plain = modelOf();
+    for (let at = 0; at <= plain.items.length; at++) expectBuild(insertFlareStop(plain, at));
+    const inserted = insertFlareStop(plain, 1);
+    // As narrow as the narrower neighbour (L1 Ø22, L2 Ø20), splitting the air it lands in.
+    expect(inserted.items[1]).toMatchObject({ kind: "flare", surface: { R: "flat", sd: 10 } });
+    expect(inserted.gaps[0].mm + inserted.gaps[1].mm).toBeCloseTo(plain.gaps[0].mm);
+    expect(removeItem(inserted, 1)).toStrictEqual(plain);
   });
 
   it("removes items and cemented members while retaining extras and valid surface topology", () => {
