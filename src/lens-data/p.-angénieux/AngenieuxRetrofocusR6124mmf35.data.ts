@@ -3,9 +3,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 /**
  * FR 1,214,945 (Pierre Angénieux, published 1960), sole numerical example,
  * transcribed from the table on page 2 and scaled to a 24 mm lens. The patent
- * gives a normalized design with F = 100; it does not name a product, and the
- * link to the 24 mm f/3.5 Retrofocus rests on the period ALPA leaflet (eight
- * air-spaced elements, 83 degrees, matching section).
+ * gives a normalized design with F = 100 and does not name a product; the
+ * link to the Retrofocus Type R61 24 mm f/3.5 rests on the period ALPA
+ * leaflet (eight air-spaced elements, 83 degrees, matching section).
  *
  * Signs: the scan prints plus signs faintly, as a short bar whose vertical
  * stroke often drops out, and minus signs as a long dash. R15 carries the short
@@ -13,7 +13,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * the patent text and figure show. Every radius, thickness, index and Abbe
  * number is as printed.
  *
- * Scale: s = 24/100 = 0.24 on every radius and distance. The normalized
+ * Scale: 24/100 = 0.24 on every radius and distance. The normalized
  * prescription computes EFL 100.117 and back focus 153.428 against the printed
  * 100 and 153.3; at scale the EFL is 24.028 mm. No aspheres.
  *
@@ -24,10 +24,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *
  * Glass: the patent gives only index and Abbe number, with the index headed
  * nd "pour la raie D". The helium d reference is kept because d and D differ
- * by about one unit in the last printed digit. No catalog glass is asserted.
+ * by about one unit in the last printed digit. No catalog row matches the
+ * printed pairs exactly, so every glass is labelled Unmatched.
  *
- * Infinity only: no variable gap; focus.closeFocusM is the infinity
- * placeholder and the ALPA leaflet's 16 inch close focus is catalog metadata.
+ * Infinity focus only: the patent prints one prescription and no focusing
+ * movement. The ALPA leaflet's 16 inch close focus is catalog metadata.
  */
 
 const LENS_DATA = {
@@ -35,7 +36,7 @@ const LENS_DATA = {
   "key": "angenieux-retrofocus-r61-24mm-f35",
   "maker": "P. Angénieux",
   "name": "P. ANGÉNIEUX RETROFOCUS TYPE R61 24mm f/3.5",
-  "subtitle": "FR 1,214,945 sole example — representative 0.24× model; factory identity unverified",
+  "subtitle": "FR 1,214,945 sole example — correlated to the Type R61",
   "catalog": {
     "lensMounts": [
       "alpa",
@@ -44,10 +45,9 @@ const LENS_DATA = {
     "imageFormat": "135-full-frame",
     "specs": [
       "8 ELEMENTS / 8 GROUPS",
-      "24.028 mm MODELED EFL",
-      "f/3.5 MODELED APERTURE",
-      "83° PERIOD PRODUCT FIELD",
-      "INFINITY ONLY"
+      "f/3.5",
+      "83° PUBLISHED FIELD",
+      "ALL SPHERICAL"
     ],
     "elementCount": 8,
     "groupCount": 8,
@@ -84,10 +84,10 @@ const LENS_DATA = {
       "nd": 1.6203,
       "vd": 60.2,
       "indexReference": "d",
-      "glass": "Unmatched (FR 1,214,945 coordinate 1.6203/60.20; supplier unspecified; assumed helium d reference)",
+      "glass": "Unmatched (patent nd=1.6203, νd=60.2; supplier unconfirmed)",
       "focalLengthMm": -103.95403589616163,
       "apd": false,
-      "role": "Front diverger."
+      "role": "Front negative meniscus of the diverging front component."
     },
     {
       "id": 2,
@@ -97,10 +97,10 @@ const LENS_DATA = {
       "nd": 1.6751,
       "vd": 32.3,
       "indexReference": "d",
-      "glass": "Unmatched (FR 1,214,945 coordinate 1.6751/32.30; supplier unspecified; assumed helium d reference)",
+      "glass": "Unmatched (patent nd=1.6751, νd=32.3; supplier unconfirmed)",
       "focalLengthMm": 225.0162512801287,
       "apd": false,
-      "role": "First weak positive member of the front component."
+      "role": "First of two weak positive lenses between the front negative menisci."
     },
     {
       "id": 3,
@@ -110,10 +110,10 @@ const LENS_DATA = {
       "nd": 1.6751,
       "vd": 32.3,
       "indexReference": "d",
-      "glass": "Unmatched (FR 1,214,945 coordinate 1.6751/32.30; supplier unspecified; assumed helium d reference)",
+      "glass": "Unmatched (patent nd=1.6751, νd=32.3; supplier unconfirmed)",
       "focalLengthMm": 225.19253600931984,
       "apd": false,
-      "role": "Second weak positive member of the front component."
+      "role": "Second weak positive lens between the front negative menisci."
     },
     {
       "id": 4,
@@ -123,7 +123,7 @@ const LENS_DATA = {
       "nd": 1.6203,
       "vd": 60.2,
       "indexReference": "d",
-      "glass": "Unmatched (FR 1,214,945 coordinate 1.6203/60.20; supplier unspecified; assumed helium d reference)",
+      "glass": "Unmatched (patent nd=1.6203, νd=60.2; supplier unconfirmed)",
       "focalLengthMm": -36.111067891408574,
       "apd": false,
       "role": "Strong negative meniscus completing the front component."
@@ -136,10 +136,10 @@ const LENS_DATA = {
       "nd": 1.6203,
       "vd": 60.2,
       "indexReference": "d",
-      "glass": "Unmatched (FR 1,214,945 coordinate 1.6203/60.20; supplier unspecified; assumed helium d reference)",
+      "glass": "Unmatched (patent nd=1.6203, νd=60.2; supplier unconfirmed)",
       "focalLengthMm": 45.45386528529418,
       "apd": false,
-      "role": "Positive collector beginning the rear component."
+      "role": "First positive lens of the converging rear component."
     },
     {
       "id": 6,
@@ -149,7 +149,7 @@ const LENS_DATA = {
       "nd": 1.6203,
       "vd": 60.2,
       "indexReference": "d",
-      "glass": "Unmatched (FR 1,214,945 coordinate 1.6203/60.20; supplier unspecified; assumed helium d reference)",
+      "glass": "Unmatched (patent nd=1.6203, νd=60.2; supplier unconfirmed)",
       "focalLengthMm": 39.0778412247726,
       "apd": false,
       "role": "Positive meniscus immediately ahead of the stop."
@@ -162,7 +162,7 @@ const LENS_DATA = {
       "nd": 1.6498,
       "vd": 33.7,
       "indexReference": "d",
-      "glass": "Unmatched (FR 1,214,945 coordinate 1.6498/33.70; supplier unspecified; assumed helium d reference)",
+      "glass": "Unmatched (patent nd=1.6498, νd=33.7; supplier unconfirmed)",
       "focalLengthMm": -17.020643768812274,
       "apd": false,
       "role": "Negative corrector immediately behind the stop."
@@ -175,10 +175,10 @@ const LENS_DATA = {
       "nd": 1.6203,
       "vd": 60.2,
       "indexReference": "d",
-      "glass": "Unmatched (FR 1,214,945 coordinate 1.6203/60.20; supplier unspecified; assumed helium d reference)",
+      "glass": "Unmatched (patent nd=1.6203, νd=60.2; supplier unconfirmed)",
       "focalLengthMm": 21.492567711364956,
       "apd": false,
-      "role": "Final converger."
+      "role": "Final positive lens of the rear component."
     }
   ],
   "surfaces": [
@@ -294,7 +294,7 @@ const LENS_DATA = {
   ],
   "focus": {
     "closeFocusM": 1e15,
-    "description": "NO_INTERNAL_RECONSTRUCTION — infinity-only prescription; no finite-focus motion or close-focus state is modeled. Period 16-inch close focus is product metadata only."
+    "description": "Infinity focus only; the patent prints one prescription and no focusing movement. The 0.41 m (16 inch) minimum focus is the figure from the period ALPA leaflet."
   },
   "aperture": {
     "nominalFNumber": 3.5,
@@ -316,12 +316,12 @@ const LENS_DATA = {
   },
   "groups": [
     {
-      "text": "FRONT NEGATIVE COMPONENT I",
+      "text": "COMPONENT I (NEGATIVE)",
       "fromSurface": "1",
       "toSurface": "8"
     },
     {
-      "text": "REAR POSITIVE COMPONENT II",
+      "text": "COMPONENT II (POSITIVE)",
       "fromSurface": "9",
       "toSurface": "16"
     }

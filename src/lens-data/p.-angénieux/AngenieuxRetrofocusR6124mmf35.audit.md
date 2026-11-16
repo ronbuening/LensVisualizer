@@ -1,4 +1,4 @@
-# Audit Log — Angénieux Retrofocus 24 mm f/3.5 R61-lineage Reconstruction
+# Audit Log — P. Angénieux Retrofocus Type R61 24mm f/3.5
 
 Patent: FR 1,214,945, sole example, PDF pp. 1–3.
 Engine/catalog baseline: `db50c52df466bbcf1b9654411b186a27d280f16e`.
@@ -15,7 +15,7 @@ All eight source index/Abbe pairs were read from the freshly rendered table and 
 
 | Quantity | Source of record | Reconstruction | Status |
 |---|---:|---:|---|
-| R15, native units | −289.16 | +289.16 | Explicitly authorized single-model sign assumption |
+| R15, native units | −289.16 | +289.16 | Superseded 2026-11-15: the scan prints R15 as plus; no assumption is involved |
 | R16, native units | −67.745 | −67.745 | Unchanged |
 | Other fifteen radii | Printed table | Same signs and values × 0.24 | Fidelity check passed |
 | Fifteen axial intervals | Printed table | Same values × 0.24; e12 split for STO | Fidelity check passed |
@@ -25,7 +25,7 @@ All eight source index/Abbe pairs were read from the freshly rendered table and 
 
 The unchanged literal prescription gives EFL 253.89824385 and BFD 400.35501950 source units. The positive-R15 variant restores the biconvex last element in both original sections and closely reproduces the source summary. The period Pignons drawing supplies no numerical radius and does not prove the replacement value or exact factory identity.
 
-The maintainer specifically approved proceeding on this sign-error assumption on 13 November 2026 after the primary drawing comparison. This overrides the ordinary keep-literal rule only for this separately labeled reconstruction. The source-errata policy normally requires two enumerated kinds of source-internal evidence for a `corrected` entry. A section drawing is not an aberration plot, and the Pignons leaflet is not a family patent publication. No such categories were fabricated. `source.errata` therefore retains an `unresolved` disclosure of the source uncertainty and states the actual applied override. Machine-readable private provenance records printed/applied values, scale and the exact approval reference. The model is not a verified corrected-source transcription.
+(Closed 2026-11-15: R15 is printed positive, so this paragraph no longer applies and the data file carries no erratum.) The maintainer specifically approved proceeding on this sign-error assumption on 13 November 2026 after the primary drawing comparison. This overrides the ordinary keep-literal rule only for this separately labeled reconstruction. The source-errata policy normally requires two enumerated kinds of source-internal evidence for a `corrected` entry. A section drawing is not an aberration plot, and the Pignons leaflet is not a family patent publication. No such categories were fabricated. `source.errata` therefore retains an `unresolved` disclosure of the source uncertainty and states the actual applied override. Machine-readable private provenance records printed/applied values, scale and the exact approval reference. The model is not a verified corrected-source transcription.
 
 The original PDF, archived literal radii, independently authored `literal-patent.json` and sign-preserving `literal-patent.csv` retain negative R15/R16. An automated parity check rejoins the STO split and verifies every source radius, interval, medium assignment and index/Abbe pair, allowing only R15's disclosed sign.
 
@@ -109,8 +109,49 @@ The patent prints no f-number table, field angle, apertures, stop position or cl
 
 Open:
 
-- Name, key, file name and subtitle still say "R61-lineage reconstruction" and "representative"; with the sign question settled this is a plain scaled transcription correlated with the Type R61.
-- The 2026-11-14 sections above and several analysis passages keep the "reconstruction" wording and package terms (private ledgers, literal-patent files, custody checks).
-- Glass labels read "Unmatched (… coordinate …)"; specs chips use "MODELED" and "PERIOD PRODUCT" wording.
+- (Closed 2026-11-15, cleanup pass.) Name, key, file name and subtitle still say "R61-lineage reconstruction" and "representative"; with the sign question settled this is a plain scaled transcription correlated with the Type R61.
+- (Closed 2026-11-15 for the analysis; the 2026-11-14 sections stay as history.) The 2026-11-14 sections above and several analysis passages keep the "reconstruction" wording and package terms (private ledgers, literal-patent files, custody checks).
+- (Closed 2026-11-15, cleanup pass.) Glass labels read "Unmatched (… coordinate …)"; specs chips use "MODELED" and "PERIOD PRODUCT" wording.
 - `patentNumber` is "FR 1,214,945" without a kind code, matching the sibling R11 file; decide the house form.
 - Rear rims (surfaces 14–16) are inferred and not compared with the figure.
+
+## 2026-11-15 — Cleanup and wording pass
+
+Public text and labels only; no radius, thickness, index, Abbe number, stop position or semi-diameter changed. The files now carry the key `angenieux-retrofocus-r61-24mm-f35` and the stem `AngenieuxRetrofocusR6124mmf35`.
+
+### Fields changed
+
+- `subtitle`: "FR 1,214,945 sole example — representative 0.24× model; factory identity unverified" → "FR 1,214,945 sole example — correlated to the Type R61" (the form of the R11 sibling).
+- `catalog.specs`: "24.028 mm MODELED EFL", "f/3.5 MODELED APERTURE", "83° PERIOD PRODUCT FIELD", "INFINITY ONLY" → "f/3.5", "83° PUBLISHED FIELD", "ALL SPHERICAL"; "8 ELEMENTS / 8 GROUPS" kept. The 83° figure is the ALPA leaflet's, cited in the analysis.
+- `focus.description`: the pipeline keyword sentence → "Infinity focus only; the patent prints one prescription and no focusing movement. The 0.41 m (16 inch) minimum focus is the figure from the period ALPA leaflet." `focus.closeFocusM` stays 1e15 and `catalog.closeFocusM.marketing` stays 0.4064.
+- Element `role` text reworded on L1, L2, L3, L5 and L8. Element names L1–L8, labels "Element 1–8" and the eight `type` values were already in house form and agree with the signs of the radii.
+- `groups` text: "FRONT NEGATIVE COMPONENT I" / "REAR POSITIVE COMPONENT II" → "COMPONENT I (NEGATIVE)" / "COMPONENT II (POSITIVE)", the patent's own names. No cemented pairs; `doublets` stays empty.
+- Header comment: process wording removed, the Type R61 named, the glass sentence brought in line with the labels.
+
+### Glass labels
+
+All eight stay Unmatched, in the house form "Unmatched (patent nd=…, νd=…; supplier unconfirmed)" instead of "Unmatched (FR 1,214,945 coordinate …; supplier unspecified; assumed helium d reference)".
+
+| Printed nd / νd | Elements | Nearest catalog row | Δnd | Δνd | Result |
+|---|---|---|---:|---:|---|
+| 1.6203 / 60.2 | L1, L4, L5, L6, L8 | SK16 (Schott N-SK16 1.62041 / 60.32) | 0.00011 | 0.12 | Not exact: 1.6204 at the printed precision; stays Unmatched |
+| 1.6751 / 32.3 | L2, L3 | SF5 (1.67270 / 32.21) | 0.0024 | 0.09 | Stays Unmatched |
+| 1.6498 / 33.7 | L7 | SF2 (1.64769 / 33.85) | 0.0021 | 0.15 | Stays Unmatched |
+
+No `apd` tag: the maker published no special-dispersion element for this lens.
+
+### Analysis
+
+Title line added. The identification section now states the correlation to the Type R61 plainly and cites the Exakta Circle list for the Exakta version. The R15 note is shortened. The section on numerical checks is renamed "Model Scope and Limitations" and keeps only properties of the model; the passages on ray counts, stop-plane sampling, render checks and the spot-size table from the package were removed, as were the pipeline keywords and the references to private source copies. Element headings and glass lines follow the data file.
+
+### Engine numbers before and after (identical)
+
+EFL 24.028135828731198 mm, f/3.5, half-field 41.5°, stop radius 5.374164198807729 mm, back focus 36.8228 mm, first vertex to image 92.5945 mm. Surface audit OK; aperture audit reports no rim limit.
+
+Open:
+
+- `patentNumber` is "FR 1,214,945" without a kind code, matching the R11 sibling.
+- Rims are inferred throughout. The rear rims (surfaces 14–16, 5.8 mm) vignette the 41.5° bundle by 13 %, 14 % and 25 % and have not been compared with the patent figure.
+- `indexReference` is "d"; the patent's wording and the SK16-like crown lean towards sodium D, within one unit of the last printed digit.
+- The Exakta Circle list gives six elements for the R61, against eight in the ALPA leaflet and the patent; a second source for the Exakta-mount version would settle it.
+- No focusing movement is modelled.

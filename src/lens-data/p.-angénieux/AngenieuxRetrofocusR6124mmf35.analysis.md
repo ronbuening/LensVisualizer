@@ -1,135 +1,126 @@
+# P. Angénieux Retrofocus Type R61 24mm f/3.5
+
 ## Patent Reference and Design Identification
 
-**Patent:** FR 1,214,945, *Objectif photographique du type grand-angulaire*.
-**Application Number:** P. V. 776.240.
-**Filed:** 9 October 1958.
-**Granted:** 16 November 1959.
-**Published:** 12 April 1960.
-**Inventor:** Pierre Angénieux.
-**Example details:** Sole numerical table on PDF page 2; optical section on PDF page 3. All source lengths are scaled by 0.24 for this representative 24 mm model.
+**Patent:** FR 1,214,945
+**Application Number:** P. V. 776.240
+**Filed:** 9 October 1958
+**Granted:** 16 November 1959
+**Published:** 12 April 1960
+**Inventor:** Pierre Angénieux
+**Applicant:** Pierre Angénieux (inventor-applicant; no organization named)
+**Title:** *Objectif photographique du type grand-angulaire*
+**Example details:** Sole numerical table on page 2; optical section on page 3. All lengths are scaled by 0.24 from the patent's F = 100.
 
-This is a scaled transcription of the patent's sole example, associated with the R61 lineage; it is not a proven factory prescription. The patent itself supplies a normalized design with stated focal length 100. It does not name a 24 mm product, an ALPA mount or R61. Its page-1 prose describes an aperture of the order of 1:3.5 and refers to an earlier application filed 23 September 1957 [1].
+The data file is a scaled transcription of the patent's sole numerical example. The patent gives a normalized design with stated focal length 100. It does not name a 24 mm product, a camera mount or the type number R61. Its text describes an aperture of the order of 1:3.5 and refers to an earlier application filed on 23 September 1957 [1].
 
-The period Pignons ALPA Reflex supplement identifies an Angénieux 24 mm f/3.5, code **exretrof**, with eight air-spaced elements and 83° diagonal coverage of a 24 × 36 mm frame [2, PDF p. 3]. Its section is drawn in the opposite direction to the patent section. Reversing the product drawing into object-to-image order gives the following convergent evidence:
+The period Pignons ALPA Reflex supplement lists an Angénieux 24 mm f/3.5 Retrofocus with eight air-spaced elements and 83° diagonal coverage of the 24 × 36 mm frame [2, p. 3]. Its section is drawn in the opposite direction to the patent figure. Read in object-to-image order, it agrees with the patent on four points:
 
-1. Eight separate elements, with two weak positive members between the front negative menisci.
+1. Eight separate elements, with two weak positive lenses between the front negative menisci.
 2. Four front elements and four rear elements separated by a long air space.
-3. The same ordered rear shapes and the diaphragm between elements 6 and 7.
-4. A biconvex final element in both original drawings.
+3. The same sequence of rear element shapes, with the diaphragm between elements 6 and 7.
+4. A biconvex final element.
 
-This supports a representative product-lineage association. The Pignons document does not print R61, numerical radii, glass identities or a patent number in the reviewed section. It cannot establish exact retail identity.
+The same lens was sold for the 35 mm Exakta as the Type R61, with automatic diaphragm, from 1959 [3]. The correlation therefore rests on construction, focal length, aperture and date. Neither the leaflet nor the patent prints the type number beside a prescription, so the patent example is not a proven factory prescription.
 
 ### Reading of the R15 sign
 
-The scan prints its plus signs faintly: a short bar about 25 pixels wide at 300 dpi whose hairline vertical stroke often drops out, against a long dash of 36–40 pixels for minus. R15 carries the short bar, exactly like R14, R7 and R8, so the table reads **R15 = +289.16** and **R16 = −67.745**, a biconvex final element, as the patent text ("une lentille convergente") and its section show. Misreading the faint plus as a minus would give normalized EFL **253.89824** and BFD **400.35502**, against the patent's stated **100** and **153.3**.
-
-With the table as printed the prescription gives EFL **100.11723** and BFD **153.42840**. Every radius, spacing, index and Abbe number is the printed value; nothing is assumed or corrected, and the data file carries no erratum.
+The scan prints its plus signs faintly: a short bar whose hairline vertical stroke often drops out, against a long dash for minus. R15 carries the short bar, exactly like R14, R7 and R8, so the table reads **R15 = +289.16** and **R16 = −67.745**. The final element is biconvex, as the patent text ("une lentille convergente") and its figure show. Read as a minus, R15 would give a focal length of 253.9 instead of the stated 100. Every radius, spacing, index and Abbe number in the data file is the printed value.
 
 ## Optical Architecture
 
-The design contains **eight spherical elements in eight air-spaced groups**. Component I consists of a negative meniscus, two very weak positive lenses and a second negative meniscus. Component II consists of a biconvex positive lens, a positive meniscus, a biconcave negative lens and the biconvex final positive lens [1, pp. 1–3].
+The design contains **eight spherical elements in eight air-spaced groups**. Component I consists of a negative meniscus, two very weak positive lenses and a second negative meniscus. Component II consists of a biconvex positive lens, a positive meniscus, a biconcave negative lens and a biconvex positive lens [1, pp. 1–3].
 
-The independently computed isolated-component focal lengths are −137.86357 and +109.61011 source units, or −33.08726 and +26.30643 mm at 0.24×. The patent prints −137.80 and +109.67. The negative front component and positive rear component yield a long back focus: the modeled BFD/EFL ratio is **1.53249**. The system is retrofocus under the project's back-focus criterion.
+The computed focal lengths of the two components are −137.86 and +109.61 patent units, or −33.09 and +26.31 mm at 0.24×. The patent prints −137.80 and +109.67. The negative front component and positive rear component give a long back focus: the ratio of back focus to focal length is **1.53**, which is what lets the lens clear a reflex mirror.
 
 ### Scale, apertures and reference planes
 
-The scale is **24 / 100 = 0.24**, using the patent's nominal focal length. It is not adjusted to make the traced EFL exactly 24 mm. The actual modeled EFL is **24.02813583 mm**, the glass track is **55.77168 mm**, and the computed paraxial last-vertex-to-image distance is **36.82281562 mm**. The first vertex therefore lies **92.59449562 mm** ahead of the image plane. The patent's printed 153.3-unit BFD would instead scale to 36.792 mm; this 0.03082 mm difference is retained as a source discrepancy.
+The scale is **24 / 100 = 0.24**, from the patent's stated focal length. It is not adjusted to make the computed focal length exactly 24 mm. The prescription computes to 100.117 patent units, so the scaled focal length is **24.028 mm**. The glass track is **55.772 mm** and the paraxial distance from the last vertex to the image is **36.823 mm**, which places the first vertex **92.594 mm** ahead of the image plane. The patent's stated back focus of 153.3 would scale to 36.792 mm; the data file uses the computed value, 0.031 mm longer.
 
-The final image spacing uses the computed paraxial BFD. It is a derived infinity plane, not an additional tabulated distance. All radii and all fifteen tabulated intervals use the same scale. There are no aspheric coefficients to transform, and neither source supplies a numerical sensor cover plate or filter prescription.
+All radii and all fifteen tabulated distances use the same scale. There are no aspheric surfaces, and the patent lists no filter or cover plate.
 
-The section locates the stop between L6 and L7, but does not dimension its axial coordinate or radius. The model splits the 9.38-unit gap equally: **1.1256 mm before and after STO**, placing it at **z = 49.38288 mm**. The engine derives a **5.37416420 mm** iris radius from f/3.5 and the entrance-pupil geometry. The entrance-pupil radius is **3.43259083 mm**. Both the gap split and aperture are modeling inferences.
+The figure places the stop between L6 and L7 but gives no dimension for its position or diameter. The data file splits the 9.38-unit gap equally, **1.1256 mm before and after the stop**, which puts it 49.383 mm behind the first vertex. An f/3.5 beam needs an entrance-pupil radius of **3.433 mm** and a stop radius of **5.374 mm**. Both the gap split and the stop size are inferred.
 
-Every clear radius is inferred. The final surface-radius pairs, in millimetres, are L1 **24.2/24.2**, L2 **18.5/18.5**, L3 **18.5/18.5**, L4 **14.0/13.8**, L5 **7.0/7.0**, L6 **6.8/6.8**, L7 **6.5/5.8**, and L8 **5.8/5.8**. The primary sections constrain the broad front-to-rear proportions, while exact ray envelopes and native geometry constrain the apertures. These are not measurements recovered from the drawings. A first estimate of 24.0 mm at L1 missed one edge-pupil target at each signed 41.5° field; 24.2 mm admits those rays without changing source optics or validation limits.
+Every clear radius is inferred, because the patent prints none. The semi-diameters, in millimetres, are L1 **24.2/24.2**, L2 **18.5/18.5**, L3 **18.5/18.5**, L4 **14.0/13.8**, L5 **7.0/7.0**, L6 **6.8/6.8**, L7 **6.5/5.8** and L8 **5.8/5.8**. They follow the proportions of the patent figure and the ray bundles of the 83° field; they are not measurements from the drawing.
 
 ## Element-by-Element Analysis
 
 ### L1 — Negative Meniscus
 
-**nd = 1.6203, νd = 60.20. Glass: unmatched source coordinate; supplier unspecified. Standalone f = −103.9540 mm.**
+**nd = 1.6203, νd = 60.2. Glass: Unmatched (supplier unconfirmed). f = −103.95 mm.**
 
-The broad front meniscus begins the negative component. Its rear surface is more strongly curved than its front surface. Together with L4 it supplies the diverging action described by the patent; its physical aperture is the largest in the reconstruction.
+The broad front meniscus begins the negative component. Its rear surface is more strongly curved than its front surface. Together with L4 it supplies the diverging action the patent describes, and it has the largest diameter in the lens.
 
-### L2 — Weak Biconvex Positive
+### L2 — Biconvex Positive
 
-**nd = 1.6751, νd = 32.30. Glass: unmatched source coordinate; supplier unspecified. Standalone f = +225.0163 mm.**
+**nd = 1.6751, νd = 32.3. Glass: Unmatched (supplier unconfirmed). f = +225.02 mm.**
 
-L2 is the first weak positive member between the negative menisci. The patent specifically makes both internal front-component lenses convergent with focal lengths greater than five times the system focal length. Its computed native focal length is 937.5677 units, consistent with the printed 937.60 [1, pp. 1–2].
+L2 is the first weak positive lens between the negative menisci. The patent requires both inner lenses of the front component to be convergent, with focal lengths greater than five times that of the whole lens. Its computed focal length is 937.57 patent units, against the printed 937.60 [1, pp. 1–2].
 
-### L3 — Weak Biconvex Positive
+### L3 — Biconvex Positive
 
-**nd = 1.6751, νd = 32.30. Glass: unmatched source coordinate; supplier unspecified. Standalone f = +225.1925 mm.**
+**nd = 1.6751, νd = 32.3. Glass: Unmatched (supplier unconfirmed). f = +225.19 mm.**
 
-L3 is a second separate positive element, not a cemented part of L2. Its computed native focal length is 938.3022 units, against the printed 938.33. Splitting the weak positive correction between two air-spaced lenses is a distinguishing structural feature of this example.
+L3 is a second separate positive element, not cemented to L2. Its computed focal length is 938.30 patent units, against the printed 938.33. Splitting the weak positive power between two air-spaced lenses is the feature the patent claims; it credits the arrangement with better correction of distortion than the 1957 design.
 
 ### L4 — Negative Meniscus
 
-**nd = 1.6203, νd = 60.20. Glass: unmatched source coordinate; supplier unspecified. Standalone f = −36.1111 mm.**
+**nd = 1.6203, νd = 60.2. Glass: Unmatched (supplier unconfirmed). f = −36.11 mm.**
 
-L4 completes component I and provides its strongest negative isolated-element power. The steep rear face precedes the 96.752-unit principal component gap. The source gives no clear radius for this steep surface; its inferred 13.8 mm radius remains inside the native rim-slope limit.
+L4 completes component I and is its strongest element. Its steep rear face precedes the long air space of 96.752 patent units (23.22 mm) that separates the two components.
 
 ### L5 — Biconvex Positive
 
-**nd = 1.6203, νd = 60.20. Glass: unmatched source coordinate; supplier unspecified. Standalone f = +45.4539 mm.**
+**nd = 1.6203, νd = 60.2. Glass: Unmatched (supplier unconfirmed). f = +45.45 mm.**
 
-L5 begins component II and restores convergence after the front diverging section. It is followed by a short, positive 0.1224 mm axial air gap. The source spacing is retained rather than merged into a cemented group.
+L5 begins component II and restores convergence after the diverging front component. A 0.12 mm air gap separates it from L6; the two are not cemented.
 
 ### L6 — Positive Meniscus
 
-**nd = 1.6203, νd = 60.20. Glass: unmatched source coordinate; supplier unspecified. Standalone f = +39.0778 mm.**
+**nd = 1.6203, νd = 60.2. Glass: Unmatched (supplier unconfirmed). f = +39.08 mm.**
 
-The positive meniscus is the last element ahead of the diaphragm. Its concave image-side surface shapes the pupil space. The detailed allocation of coma and spherical correction among it and its neighbors is an optical interpretation, not a separate patent claim.
+The positive meniscus is the last element ahead of the diaphragm, with its concave side facing the stop.
 
 ### L7 — Biconcave Negative
 
-**nd = 1.6498, νd = 33.70. Glass: unmatched source coordinate; supplier unspecified. Standalone f = −17.0206 mm.**
+**nd = 1.6498, νd = 33.7. Glass: Unmatched (supplier unconfirmed). f = −17.02 mm.**
 
-L7 is the strong negative corrector immediately behind the stop. Its lower Abbe number distinguishes it from the higher-Abbe positive lenses around it. The unequal inferred clear radii preserve the short following air gap without rim cuts or a relaxed gap-sag allowance.
+L7 is the strong negative lens immediately behind the stop, and the only flint in the rear component. Its low Abbe number against the crown positive lenses around it carries the colour correction of component II.
 
 ### L8 — Biconvex Positive
 
-**nd = 1.6203, νd = 60.20. Glass: unmatched source coordinate; supplier unspecified. Standalone f = +21.4926 mm.**
+**nd = 1.6203, νd = 60.2. Glass: Unmatched (supplier unconfirmed). f = +21.49 mm.**
 
-L8 closes the positive rear component. Its biconvex form follows from the printed radii, R15 = +289.16 and R16 = −67.745.
+L8 closes the rear component and is the strongest positive element. Its biconvex form follows from the printed radii, R15 = +289.16 and R16 = −67.745.
 
 ## Glass Identification and Selection
 
-The patent supplies three index/Abbe coordinates and no glass names, supplier assignments, line-index table or anomalous partial-dispersion data. It refers to the spectrum's **D** line and labels the numerical column `nd`, without a numerical wavelength or chemical identification. The model keeps the helium-d reference: the one recognisable coordinate, 1.6203/60.2, sits near SK16 (nd 1.62041, sodium-D index about 1.6203), which leans towards sodium D, but the two lines differ by only about one unit in the last printed digit.
+The patent gives three index and Abbe-number pairs and no glass names, suppliers or partial dispersions. It heads the index column `nd` and describes it as the index "pour la raie D" [1, p. 1]. The data file keeps the helium d line as reference. The crown pair 1.6203 / 60.2 lies close to the dense barium crown SK16 (nd 1.62041, sodium-D index about 1.6203), which leans towards the sodium line, but the two lines differ by only about one unit in the last printed digit.
 
-| Source coordinate | Elements | Modeled dispersion |
+| Printed pair | Elements | Label |
 |---|---|---|
-| 1.6203 / 60.20 | L1, L4, L5, L6, L8 | Abbe estimate; no identified production curve |
-| 1.6751 / 32.30 | L2, L3 | Abbe estimate; no identified production curve |
-| 1.6498 / 33.70 | L7 | Abbe estimate; no identified production curve |
+| 1.6203 / 60.2 | L1, L4, L5, L6, L8 | Unmatched; nearest type SK16, 0.0001 away in index |
+| 1.6751 / 32.3 | L2, L3 | Unmatched |
+| 1.6498 / 33.7 | L7 | Unmatched |
 
-The `Unmatched` annotations prevent a speculative modern glass assignment. The higher-Abbe negative front lenses with lower-Abbe positive internal members, and the lower-Abbe negative rear corrector with higher-Abbe positive neighbors, are consistent with ordinary chromatic balancing. These data do not justify an APO claim, a secondary-spectrum result or a historical supplier identity. Numerical results below are monochromatic reference-index geometry; predicted color and MTF remain conditional on the glass assumptions.
+No catalog glass matches any of the three pairs at the printed precision, so all eight elements are labelled Unmatched and their dispersion is estimated from the Abbe number. The crown negative menisci with flint positive lenses in the front component, and the flint negative lens among crown positives in the rear, are ordinary achromatizing pairings. The data support no statement about secondary spectrum or about the glass supplier.
 
 ## Focus Mechanism
 
-The source provides one optical prescription and no finite-focus spacing law. The model therefore uses **NO_INTERNAL_RECONSTRUCTION**, no variable gaps, and the house **1e15 m infinity placeholder** for `focus.closeFocusM`. Both focus endpoints have identical optical geometry; the sentinel is not a physical minimum focus distance.
+The patent prints one prescription and no focusing movement, so the data file models infinity focus only and has no variable gap.
 
-Pignons lists infinity to **16 inches**, or **0.4064 m**, for the production 24 mm lens [2]. That value is stored separately as marketing metadata. It does not create a close-focus model or establish which elements move. The period 60 mm mechanical length is likewise not the modeled glass track or first-vertex-to-image distance.
+Pignons lists a focusing range from infinity to **16 inches**, or **0.41 m**, for the production 24 mm lens [2]. That figure is kept as catalog metadata. It does not show which elements move. The leaflet's 60 mm length is a mechanical dimension of the mount, not the glass track.
 
-## Numerical Verification and Field Coverage
+## Model Scope and Limitations
 
-Independent reduced-angle matrices and a separately implemented sequential paraxial trace agree on the printed prescription. The native builder agrees with the scaled prescription to floating-point precision. The aperture audit gives **f/3.499999997**, limited by STO.
+The prescription reproduces the patent's stated values: focal length 100.117 against 100, back focus 153.43 against 153.3, and the four printed focal lengths to within 0.06 units. On axis at f/3.5 the longitudinal spherical aberration stays within about ±0.15 mm.
 
-Native geometry retains the default validation bounds. The minimum sampled material thickness is **1.2072 mm**, the minimum shared-gap clearance **0.1224 mm**, the largest shared-gap intrusion **83.83%**, and the maximum rim angle **64.0692°**. The iris remains in air through its f/3.5–f/22 stroke. Native render diagnostics hide **0 mm** on every element.
+The declared field is the leaflet's **83° full angle**, or ±41.5°. At that angle the chief ray reaches an image height of **21.34 mm**, 99 % of the 21.65 mm half-diagonal of the full-frame format, and the chief ray to the format corner at 41.9° is clear.
 
-The declared period field is **83° full angle**, or **±41.5°**. Its exact chief ray reaches **21.33907105 mm** image height, **98.5638%** of the project's 21.65 mm full-frame corner reference. An additional diagnostic finds a clear chief ray at the corner at **41.86737°**, outside the declared field. The model retains 83° and does not claim that the period number certifies the full format corner. At 30° the chief image height is 13.71403 mm; at 37° it is 17.96394 mm.
-
-An exact diagnostic targets a uniform 317-point disk in the physical stop plane at fields 0°, 10°, 20°, 30°, 37° and ±41.5°, at f/3.5 and f/8. All **4,438** final rays are aimed and transmitted, with no unresolved targets, clipped hits or backward flight segments. This samples the inferred clear apertures; it is not a radiometric illumination calculation or a proof of an entire continuous pupil.
-
-| Half-field | RMS spot radius at the fixed paraxial image plane, f/3.5 | f/8 |
-|---|---:|---:|
-| 0° | 10.649 µm | 2.819 µm |
-| 20° | 53.390 µm | 23.431 µm |
-| 30° | 79.466 µm | 43.670 µm |
-| 37° | 91.079 µm | 48.668 µm |
-| 41.5° | 193.116 µm | 31.081 µm |
-
-These are centroid-relative geometric radii under uniform stop-plane sampling, without diffraction, coatings, production tolerances or verified spectral curves. The large full-aperture edge spot is retained as a numerical limitation of the reconstruction. It is not evidence of production performance. No measured manufacturer MTF or source-provided acceptance threshold was recovered.
+The limits of the model come from what the patent does not print. The stop position, stop size and every clear radius are inferred, so vignetting is an estimate: the inferred rear rims cut 13 % to 25 % of the corner bundle at f/3.5. The glasses are not identified, so colour behaviour rests on Abbe-number estimates. No focusing movement is modelled, and no maker's performance data were found for comparison.
 
 ## Sources
 
-1. Pierre Angénieux, FR 1,214,945, *Objectif photographique du type grand-angulaire*, original three-page scan; numerical table p. 2 and section p. 3. The unchanged private source copy is preserved with its literal transcription and reconstruction audit.
-2. Pignons S.A., *ALPA Reflex 35 mm Supplement*, imprint PSA 2E 261, PDF p. 3, [period product specification and optical section](https://www.cameramanuals.org/alpa/alpa_reflex_supplement.pdf#page=3). The imprint is retained without assigning an exact issue date.
+1. Pierre Angénieux, FR 1,214,945, *Objectif photographique du type grand-angulaire*, published 12 April 1960; numerical table p. 2, section p. 3.
+2. Pignons S.A., *ALPA Reflex 35 mm Supplement*, imprint PSA 2E 261, p. 3, [product specification and optical section](https://www.cameramanuals.org/alpa/alpa_reflex_supplement.pdf#page=3).
+3. Exakta Circle, [summary of Ihagee/Exakta lenses by focal length](https://exaktacircle.org/length.html), entries for the Angénieux R61 24 mm f/3.5 (1959, 1961). The list gives six elements for this lens, against the eight of the ALPA leaflet and the patent.
