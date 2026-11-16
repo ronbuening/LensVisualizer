@@ -7,3 +7,29 @@ Selected two-translation solve preserves summed gap/track while matching piecewi
 257point native geometry/aperture/focus/EFL/track and1028chief tests pass scoped gates. Fortyphysical-image-height MTFcells converge. Targeted strict TypeScript passes. Source optical data had no repair and caps no inflation.
 Three published stations only;126calculated. d11hasthree sampled reversals, minimum.839594mm; bounded optical model not factorycam or mechanical-clearance proof.
 Full application tests, integration, current-main and browserQA pending. No publishing/Drive/user delivery performed.
+
+## 2026-11-15 — Deployment validation
+
+Checked by an independent re-read of the page images of US 2003/0197949 A1 (Table 6 and its aspheric block on PDF page 30, the aspheric equation on page 27, Fig. 21 on page 12, the front page). Checked: all 13 surfaces (r, d, Nd, νd), the stop position (0.50 ahead of surface 5), the four conic values and twelve aspheric coefficients, the nine variable-gap values, the 2.00mm plate and fB = 0.00. No transcription mismatch. The model reproduces the printed f = 5.80 / 9.60 / 17.40 as 5.8017 / 9.6009 / 17.3936, half-fields 33.1 / 20.7 / 11.8° as 33.19 / 20.79 / 11.85° at 3.6mm image height, and conditions (1)–(3) of Table 10 (0.587, 0.955, 0.808) as 0.587, 0.954, 0.808. All six glasses and the plate coincide with OHARA d-line catalog values (S-LAH58, S-TIH53, S-BAL35 or L-BAL35, S-LAH60, S-TIH53, S-LAL7, S-BSL7).
+
+Verdict: valid with notes. The link to the Optio S rests on the Nomura/Eguchi development paper (same inventor), whose Fig. 7 shows the same 2+3+1 layout with both faces of L2 and L3 aspheric and L1, L2 above index 1.8, and on the shared 5.8–17.4mm range and 6 elements / 5 groups. It is not the exact production design: the retail lens is f/2.6–4.8 and its third group is fixed during zoom, while Table 6 is f/2.7–5.3 and moves it. Embodiment 7 fits equally well. The camera uses a 1/2.5-type sensor; the nearest canonical format id is `1-2.55-inch-type`.
+
+Changes:
+- Calculated zoom rows (126): re-solved. Old: G2 and G3 were translated to hold a piecewise-linear total track, which made d11 swing 2.40 → 1.906 → 2.27 → 0.840 → 2.02 with three reversals. New: d11 is linear between the printed values, and d4, d9 are solved for the row focal length and the interpolated printed focus residual. The three printed rows are unchanged. This supersedes the cam description in the lines above. Result over 129 rows: EFL and d9 strictly increasing, d4 and d11 strictly decreasing, largest paraxial defocus 0.0122mm (the printed tele station), total track 34.64 → minimum 30.12 near 11.2mm → 31.99.
+- Calculated-row focal lengths, labels and f-numbers rounded to six decimals (float noise removed).
+- `catalog.lensMounts`: none → `["fixed-lens-camera"]`; `catalog.imageFormat`: none → `"1-2.55-inch-type"`.
+- `catalog.focalLengthMm.marketing`: none → `[5.8, 17.4]`; `catalog.fNumber`: none → marketing 2.6, design 2.7.
+- Header comment replaced by a source/inference block; `subtitle`, one `specs` chip and `focus.description` changed only where they named the old G2/G3 track (now G1/G2 solved, G3 linear).
+- Rims: no change. The planned raises (surfaces 5/6 to 2.41, 7/8 to 2.18) were needed only by the old calculated rows, whose stop demand peaked mid-zoom; with the new rows the aperture audit finds no surface below the on-axis ray.
+- Analysis: the compensator and consolidated-validation sections rewritten for the new rows.
+
+After the change: EFL 5.8017mm at f/2.7 (wide), stop semi-diameter 2.268mm, total track 34.64mm. Surface audit: no errors. Aperture audit: 129 of 129 rows within 3% of the stated f-number, no rim, trace or iris limit. Image circle: not undersized. Field coverage: 129 of 129 rows at 100% (both on a copy with `visible: true`).
+
+Open:
+- Name, key, file name, subtitle, specs and analysis wording still carry package terms ("representative", "source", "caps", run-together numbers).
+- Glass labels read "Unmatched"; the OHARA matches above are not yet applied.
+- No 1/2.5-type format id exists (5.76 × 4.29mm); `1-2.55-inch-type` is a stand-in.
+- Maker close-focus distance is not recorded.
+- Semi-diameters are inferred and not yet compared with Fig. 21; surface 5 clears the wide-open axial ray with almost no margin (2.35 needed, 2.35 stored).
+- The ray-intercept and MTF convergence samples in the analysis were not repeated for the new calculated rows.
+- Whether another Eguchi filing holds the production design (fixed third group, f/2.6–4.8) was not checked.
