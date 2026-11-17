@@ -187,5 +187,94 @@ The worst loss is 0.0 points.
 
 Open:
 
-- S1/S8 stay 0.45 mm under the drawn knife edge unless `checks.maxRimAngleDeg` rises to 71 (S1 at 10.6 mm).
-- S4/S5 sit 0.1–0.2 mm under the figure for the same reason.
+- S1/S8 stay 0.45 mm under the drawn knife edge unless `checks.maxRimAngleDeg` rises to 71 (S1 at 10.6 mm) (closed
+  2026-11-17, second review: kept; 4 % under the drawing and the step order is right).
+- S4/S5 sit 0.1–0.2 mm under the figure for the same reason (closed 2026-11-17, second review: kept, inside the
+  reading spread).
+
+## 2026-11-17 — Second review on the local site
+
+Compared: the local page (1400×900) and the element inspector for L1–L4 against Figure 1 (drawing sheet 1, PDF
+page 1), re-measured from the scan's native 300 dpi raster, independently of the semi-diameter pass.
+
+Scale and axis. The dash-dot axis, fitted over 104 clear columns outside the lens, tilts 1.10° (residual under
+0.6 px). Vertex crossings give S1 → S8 746 px for 22.90 mm (32.58 px/mm), S4 → S5 419 px for 12.98 mm (32.28) and
+S1 → S4 162.5 px for 4.96 mm (32.76). Circle fits to the drawn r1, r8, r4 and r5 arcs over ±64–66° come out 1.1–1.6 %
+above the printed radii at that scale, with no angle-dependent residual (anamorphism under 0.2 %), and their centres
+lie within 0.07 mm of the drawn axis. The diaphragm is drawn 11.42–11.45 mm behind S1 with a 4.06–4.17 mm opening
+radius (model 11.45 mm and 3.97 mm at f/6.3).
+
+Inner shells (the semi-diameter pass raised S3/S6 7.4 → 8 and S4/S5 6.5 → 6.8, a shortfall inside the usual noise
+band). The corners of all four drawn shell ends, outer ink, in mm on the vertex scale:
+
+| Corner | L2 top | L2 bottom | L3 top | L3 bottom | Mean | Line centre |
+| --- | --- | --- | --- | --- | --- | --- |
+| convex face (r3, r6) | 8.11 | 8.27 | 8.09 | 8.29 | 8.19 | ≈ 8.10 |
+| concave face (r4, r5) | 6.84 | 7.01 | 6.93 | 7.03 | 6.95 | ≈ 6.95 |
+
+The bottom ends are drawn about 0.1 mm further round the arc than the top ends. The line-centre correction is about
+0.09 mm on the convex corner (3.5 px face line, 6 px end edge) and 0.01 mm on the concave one. On the scale of the
+drawn radii every height falls 1.3 %, to about 8.0 and 6.86 mm. Verdict: the measurement is confirmed. Figure 1 draws
+the convex faces at 8.0–8.1 mm and the concave faces at 6.86–6.95 mm; the baseline 7.4 and 6.5 sit 8–9 % and 5–7 %
+short, five to six times the reading spread. S3/S6 8 and S4/S5 6.8 stay. In the side-by-side the baseline shell ends
+fall visibly inside the drawn ends; the current ends meet them, and the straight rim joins lean like the drawn radial
+cuts.
+
+Outer shells. The L1/L4 tip reads 10.98 mm above and 10.99 mm below the axis (outer ink), about 10.9 at the line
+centre; the printed radii meet in a knife edge at 10.92 mm. The model's 10.45 mm is 4 % under, inside the reading
+band, and the step order (outer shells well above the inner ones) is right on the page, so S1, S2, S7 and S8 stay.
+The page ends L1/L4 in a 1.08 mm cylindrical edge where the figure draws a point; the point would need
+`maxRimAngleDeg` 77.
+
+`checks.maxRimAngleDeg` 69: S1/S8 at 10.45 mm slope at 68.3°, so 69 is the smallest whole degree that admits them. At
+69° the validator also admits 10.50 mm on S1/S8 and 6.86 mm on S4/S5 (tested), so the header's "the most the check
+allows" was corrected to "just under" those values.
+
+Floors. `clearap.mjs` traces no ray through these near-hemispherical shells (its surface intersection fails to
+converge or meets total reflection at every launch height), so an exact meridional trace with analytic sphere
+intersections was used. The 50° chief ray meets S1 at 10.42, S2 9.62,
+S3 7.39 and S4 6.42 mm (the same behind the stop) and lands at 80.67 mm; at 30°, 40° and 50° it lands 0.9, 1.6 and
+2.5 % beyond f·tan θ. The f/6.3 axial marginal ray peaks at 5.24 mm on S1. Every rim clears both. Field coverage:
+the corner chief ray reaches 80.50 mm at 49.9° and is clear. Aperture: within 3 % of f/6.3, no rim limit. Surface
+validator: OK. The image-circle check again lists S5–S8 under its wide-angle "exit-pupil proxy unreliable" caveat;
+the trace settles them. `catalog.imageCircleMm` 161 is twice the traced 80.67 mm, rounded down: correct.
+
+Lands and cuts: none. Against the pre-pass baseline every face is at or above its old value and there is no
+`rimExtensionSd` or `rimCutDepthMm`; worst loss 0.0 points, with gains up to 24 points (at 44°).
+
+Labels and tags. `name` L1–L4 are the figure's own designations, and the diagram's element numbers 1–4 match them.
+Types agree with the radius signs (L1 positive and L2 negative menisci convex to the object, L3/L4 mirrored), and
+the roles are true. No groups or cemented brackets: the patent names no groups, and l1/l3 are 0.02 mm air spaces.
+The stop sits between L2 and L3 where Figure 1 draws it. No aspheres and no `apd` tags; the patent names no special
+glass. The inspector showed "FL = —" for all four elements; with `focalLengthMm` added it reads +42.9 mm (L1, L4) and
+−60.71 mm (L2, L3).
+
+Movement: infinity only (`closeFocusM` 1e15, no variable gaps, no zoom block). The slider reads "Not modeled", the
+movement view reports no modelled movement, and `focus.description` says only that the patent gives no close-focus
+data. Correct.
+
+Glass. L2/L3 SF1 (Schott) at the D line: 1.71715 / 29.50 against the printed 1.7172 / 29.5 (Δn −0.00005, Δν 0.00).
+Ohara PBH1 and S-TIH1, Hoya E-FD1L and Hikari J-SF1 share its d-line row; Schott is the period and house supplier for
+a 1933 Zeiss Jena design, so the label stays. L1/L4 1.6201 / 60.4 stay unmatched: N-SK16, BACD16 and S-BSM16 give nD
+1.62032 at the D line, Δn +0.00022; Sumita's K-SK16RH shares their d-line row, and the vendor files hold nothing
+closer. Both pairs
+recur in Example 3 (sheet 3), so they are real glasses of the period, but the patent prints only nD and ν: no names,
+no other lines, no partial dispersions. No catalogue row to propose. Colour: the patent prints no aberration curves,
+so there is nothing to compare, and no element is a constant-index medium.
+
+Assignee: the specification heading reads "assignor to the firm of Carl Zeiss, Jena, Germany"; `Carl-Zeiss-Stiftung`
+is the corpus form for that wording (25 files). No variant.
+
+| Field | Before | After | Evidence |
+| --- | --- | --- | --- |
+| L1, L4 `focalLengthMm` | missing ("FL = —") | 42.9 | paraxial element focal length, +42.90 mm |
+| L2, L3 `focalLengthMm` | missing ("FL = —") | −60.71 | paraxial element focal length, −60.71 mm |
+| Header rim note | "the most the 69° check allows" (both lines); convex face "about 8.0 mm" | "just under" 10.50 / 6.86 mm; convex face "8.0–8.1 mm" | validator at 69°; the readings above |
+
+Engine numbers are unchanged: EFL 66.038 mm, f/6.3, stop radius 3.969 mm, half-field 50°, paraxial tracing
+half-field 36.55°.
+
+Open:
+
+- `aperture.fStops` ends at 22, but the page's aperture slider and stop chips end at f/16 (no maximum f-number is
+  set, so the default applies). The patent prints only f/6.3; see the cleanup section's `fStops` line.

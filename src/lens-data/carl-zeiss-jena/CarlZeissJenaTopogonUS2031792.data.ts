@@ -19,10 +19,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * - Stop: the diaphragm drawn in Figure 1 at the middle of the 12.98 mm central air space (6.49 mm each side).
  * - Back focus: the computed paraxial value, 51.94 mm; the patent prints none.
  * - Rims, measured from Figure 1, which is drawn to scale (65.2 px/mm at 600 dpi, axial spans within 1 %):
- *   - L1/L4: drawn to a knife edge at about 10.9 mm. Both faces are 10.45 mm, the most the 69° rim-angle check
- *     allows on S1/S8, and enough to pass the 50° chief ray (10.42 mm there).
- *   - L2/L3: drawn to about 8.0 mm on the convex face and 6.9–7.0 mm on the concave face. Modelled at 8.0 and
- *     6.8 mm, the latter the most the same check allows.
+ *   - L1/L4: drawn to a knife edge at about 10.9 mm. Both faces are 10.45 mm, just under the 10.50 mm the 69°
+ *     rim-angle check allows on S1/S8, and enough to pass the 50° chief ray (10.42 mm there).
+ *   - L2/L3: drawn to about 8.0–8.1 mm on the convex face and 6.9–7.0 mm on the concave face. Modelled at 8.0
+ *     and 6.8 mm, the latter just under the 6.86 mm the same check allows.
  */
 const LENS_DATA = {
   schema: 2,
@@ -74,7 +74,8 @@ const LENS_DATA = {
       glass: "Unmatched (nD 1.6201 / V 60.4)",
       nd: 1.6201,
       vd: 60.4,
-      indexReference: "D"
+      indexReference: "D",
+      focalLengthMm: 42.9
     },
     {
       id: 2,
@@ -85,7 +86,8 @@ const LENS_DATA = {
       glass: "SF1 (Schott)",
       nd: 1.7172,
       vd: 29.5,
-      indexReference: "D"
+      indexReference: "D",
+      focalLengthMm: -60.71
     },
     {
       id: 3,
@@ -96,7 +98,8 @@ const LENS_DATA = {
       glass: "SF1 (Schott)",
       nd: 1.7172,
       vd: 29.5,
-      indexReference: "D"
+      indexReference: "D",
+      focalLengthMm: -60.71
     },
     {
       id: 4,
@@ -107,7 +110,8 @@ const LENS_DATA = {
       glass: "Unmatched (nD 1.6201 / V 60.4)",
       nd: 1.6201,
       vd: 60.4,
-      indexReference: "D"
+      indexReference: "D",
+      focalLengthMm: 42.9
     }
   ],
   surfaces: [
