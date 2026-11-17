@@ -129,6 +129,7 @@ const LENS_DATA = {
       glass: "Unmatched (nd=1.53610, νd=41.42; thin aspheric-layer material)",
       role: "Source Table 13 thin material region at the object-side asphere of physical lens L21.",
       diagramLabel: "L21a",
+      cemented: "H1",
     },
     {
       id: 5,
@@ -142,6 +143,7 @@ const LENS_DATA = {
       glass: "TAFD5F (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Bulk material region of physical lens L21 in G2; bonded directly to L21a.",
       diagramLabel: "L21b",
+      cemented: "H1",
     },
     {
       id: 6,
@@ -281,6 +283,7 @@ const LENS_DATA = {
       glass: "Unmatched (nd=1.53610, νd=41.42; thin aspheric-layer material)",
       role: "Source Table 13 thin material region at the object-side asphere of physical lens L51.",
       diagramLabel: "L51a",
+      cemented: "H2",
     },
     {
       id: 16,
@@ -294,6 +297,7 @@ const LENS_DATA = {
       glass: "P-LASF47 (catalog-compatible spectral proxy; production supplier unspecified)",
       role: "Bulk material region of physical lens L51 in G5; bonded directly to L51a.",
       diagramLabel: "L51b",
+      cemented: "H2",
     },
     {
       id: 17,

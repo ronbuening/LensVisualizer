@@ -100,6 +100,7 @@ const LENS_DATA = {
       nd: 1.6516,
       vd: 58.403057,
       focalLengthMm: 53.9,
+      cemented: "U1",
     },
     {
       id: 4,
@@ -111,6 +112,7 @@ const LENS_DATA = {
       nd: 1.72825,
       vd: 28.32,
       focalLengthMm: -42.06,
+      cemented: "U1",
     },
     {
       id: 5,
@@ -122,6 +124,7 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.784497,
       focalLengthMm: 158.32,
+      cemented: "U2",
     },
     {
       id: 6,
@@ -133,6 +136,7 @@ const LENS_DATA = {
       nd: 1.5168,
       vd: 64.198732,
       focalLengthMm: -43.5,
+      cemented: "U2",
     },
     {
       id: 7,
@@ -144,6 +148,7 @@ const LENS_DATA = {
       nd: 1.84666,
       vd: 23.784497,
       focalLengthMm: -57.08,
+      cemented: "U3",
     },
     {
       id: 8,
@@ -155,6 +160,7 @@ const LENS_DATA = {
       nd: 1.83481,
       vd: 42.725177,
       focalLengthMm: 54.54,
+      cemented: "U3",
     },
     {
       id: 9,

@@ -117,7 +117,8 @@ const LENS_DATA = {
       "glass": "K-GFK70 (SUMITA catalog equivalent; production supplier unspecified)",
       "apd": "inferred",
       "apdNote": "Yongnuo's construction drawing marks this element as low-dispersion glass; the patent nd/νd (1.569/71.31) match K-GFK70, a crown whose catalog ΔPgF is about +0.021.",
-      "role": "Low-dispersion biconvex front element of the cemented doublet at the rear of the first group."
+      "role": "Low-dispersion biconvex front element of the cemented doublet at the rear of the first group.",
+      "cemented": "D1"
     },
     {
       "id": 5,
@@ -128,7 +129,8 @@ const LENS_DATA = {
       "nd": 1.847,
       "vd": 23.79,
       "glass": "S-TIH53 (OHARA catalog equivalent; nearest row to the printed nd 1.847, νd 23.79)",
-      "role": "Dense-flint biconcave rear element of the doublet; corrects the first group's axial colour, and its strongly concave rear surface faces the stop."
+      "role": "Dense-flint biconcave rear element of the doublet; corrects the first group's axial colour, and its strongly concave rear surface faces the stop.",
+      "cemented": "D1"
     },
     {
       "id": 6,
