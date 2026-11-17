@@ -10,9 +10,16 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * The cemented interfaces are R4 (L2/L3) and R7 (L4/L5).
  *
  * INFERRED: the patent prints no diaphragm position and the figure draws no iris. The stop is placed midway through
- * the 19.21 mm central air gap S2, 9.605 mm from each adjacent vertex, and its radius is set for f/2. All
- * semi-diameters are estimates, not printed or measured values. The 68.40 mm image distance after R10 is the
- * calculated paraxial back focus, not a printed value. Only infinity focus is modelled.
+ * the 19.21 mm central air gap S2, 9.605 mm from each adjacent vertex, and its radius is set for f/2. The 68.40 mm
+ * image distance after R10 is the calculated paraxial back focus, not a printed value. Only infinity focus is
+ * modelled.
+ *
+ * SEMI-DIAMETERS: no clear apertures are printed. The rims follow Fig. 1, which is drawn to scale (vertex spacings
+ * agree with the table to within about 3 %). L2/L3 is square-cut at 26.6 mm, the inner rims R5 and R6 are 20.3 mm,
+ * and the rear doublet is 23 mm, all as drawn. The figure draws a short flat land outside each inner rim; R5 and R6
+ * carry it as a drawn edge to 22.2 and 22.1 mm, which does not change the clear aperture. L1 is drawn at about 26.6 mm but kept at 28.1 mm, the smallest rim that
+ * keeps the off-axis illumination within 3 points of the wider starting estimate. L6 stays at 24 mm against about
+ * 22.9 mm drawn, within measurement noise; a smaller L6 would narrow the traced field.
  */
 const LENS_DATA = {
   schema: 2,
@@ -120,27 +127,27 @@ const LENS_DATA = {
       label: "1",
       R: 90.13,
       d: 8.12,
-      sd: 29,
+      sd: 28.1,
       medium: 1,
     },
     {
       label: "2",
       R: 2504.0,
       d: 0.65,
-      sd: 29,
+      sd: 28.1,
     },
     {
       label: "3",
       R: 40.64,
       d: 15.12,
-      sd: 28,
+      sd: 26.6,
       medium: 2,
     },
     {
       label: "4",
       R: 69.6,
       d: 4.38,
-      sd: 26,
+      sd: 26.6,
       medium: 3,
     },
     {
@@ -148,6 +155,7 @@ const LENS_DATA = {
       R: 26.57,
       d: 9.605,
       sd: 20.3,
+      rimExtensionSd: 22.2,
     },
     {
       label: "STO",
@@ -159,6 +167,7 @@ const LENS_DATA = {
       R: -30.47,
       d: 4.38,
       sd: 20.3,
+      rimExtensionSd: 22.1,
       medium: 4,
     },
     {
