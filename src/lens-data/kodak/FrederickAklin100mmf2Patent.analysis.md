@@ -1,13 +1,154 @@
-# Frederick / Aklin US2158179 Figure 2
-1937 filing / 1939 grant, Eastman Kodak. Hidden patent-only high-index four-singlet 100 mm f/2 reference. No factory product or glass-melt identification.
+# KODAK / FREDERICK-AKLIN 100mm f/2 PATENT REFERENCE — US 2,158,179 Figure 2
 
-Primary facsimile https://patentimages.storage.googleapis.com/pdfs/US2158179.pdf
-Record https://patents.google.com/patent/US2158179A/en
+## Patent Reference and Design Identification
 
-Figure 2 values agree between drawing and text: R[96.8,-174.5,-94.1,2170,882,81.5,238,-84.8] mm; successive glass/air lengths[11.9,1.55,4.15,21.8,4.15,2.45,11.9] mm. Glass nD/V pairs1.9007/42.5,1.8049/25.5,1.8049/25.5,1.9007/42.5. All optical numbers literal. Independent and native EFL99.941874747 mm (−0.058125% versus100); calculated BFD74.878196458 mm. No fitted/scaled numerical repair.
+**Patent:** US 2,158,179 A, *Photographic Objective*  
+**Application Number:** Serial No. 144,202  
+**Filed:** May 22, 1937  
+**Granted:** May 16, 1939  
+**Inventors:** Charles W. Frederick; George H. Aklin  
+**Assignee:** Eastman Kodak Company  
+**Example details:** Fig. 2 and its table on the drawing sheet (PDF p. 1); the same values in the specification table (PDF p. 3, col. 1, lines 17–29); f = 100 mm, f/2.0
 
-Estimated midpoint stop10.9 mm into central21.8 mm gap, common clear semi-diameter23 mm. These dimensions are not factory/source measurements. Infinity-only. Native f/2 iris radius20.995717882 mm. Glass dispersion inferred from nD/V normal-line model, not full historical melt spectrum. Source mentions marginal glass contact, but we do not model mechanical seating.
+US 2,158,179 covers four-component objectives with two dispersive (negative) components between two collective
+(positive) components. The patent states the aim as a lens of this type that works well at f/2.0 over a relatively wide
+field. It gives two numerical examples, Fig. 1 and Fig. 2, both at f = 100 mm and f/2.0. The data file transcribes
+Fig. 2. The patent says this form has a larger central air space (21.8 mm against 17.8 mm). Its dispersive glass is only
+0.1 lower in D-line index than the collective glass. The patent credits it with a flatter field and greater covering power
+than Fig. 1. On the drawing sheet, the Fig. 1 table prints the central space as "1.78", a dropped decimal point: the
+specification prints 17.8, and only 17.8 reproduces f = 100 mm (99.99 mm against 94.72 mm).
 
-Figure1 is EXCLUDED: drawing shows central gap1.78 while body table gives17.8. Provisional Fig1 numerical/native pass used text17.8 and is withdrawn as delivery evidence; no source contradiction silently repaired. Figure2 is an alternative embodiment within the same patent, not another discovery family.
+The model is kept at the patent's own 100 mm scale, and nothing in it was scaled, fitted or corrected. Every radius
+(with its printed sign), thickness, air space, D-line index and Abbe number is printed in the patent. The drawing-sheet
+table and the specification table for Fig. 2 agree value for value. The only difference is a misprinted "S3+2.45" in
+the specification, which the drawing sheet gives as S3 = 2.45.
 
-This package passes scoped schema/geometry/render, iris clearance and central90% axial meridional trace. Full nominal pupil edges and off-axis rays clip; no promised wide-angle/whole-field f/2 performance. Reference/CDF MTF support only, not computed/converged MTF. Full-app regression, compiled viewer/browser QA and integration checks pending.
+**Product link.** No production lens is documented for this example, and the file claims none. Eastman Kodak Company
+is the assignee, and Frederick was then head of Kodak's lens-design department. The patent names British Patent 462,304
+as the source of suitable glasses, which places the design in Kodak's high-index glass programme of the late 1930s.
+According to a 1949 account in *Nature*, pilot-plant production of that glass began in September 1937 and the first
+commercial glass was delivered in June 1939. No Kodak lens marketed with this four-singlet f/2 construction has been
+found:
+
+1. Kodak's f/2 Ektar of the period, the 45 mm lens of the Bantam Special (1936–1948), is described as a six-element,
+   four-group double-Gauss design, not four air-spaced singlets.
+2. A later four-element 25 mm f/1.9 Kodak lens described by Aklin belongs to a separate patent (US 2,682,198, 1954). It
+   is at most a related design.
+
+The patent itself places the design after Frederick and Altman's US 1,620,337, which it describes as an f/2.0 lens with
+good definition over a limited field. The subtitle "NO PRODUCTION MATCH" therefore stands.
+
+## Optical Architecture
+
+The design has four air-spaced singlets in four groups, with powers positive–negative–negative–positive:
+
+- the front half is a biconvex collective element (L1) followed closely by a biconcave dispersive element (L2);
+- a 21.8 mm central air space follows;
+- the rear half is a negative meniscus dispersive element (L3) followed closely by a biconvex collective element (L4).
+
+The two halves are nearly mirror images. The element focal lengths are +70.59, −111.96, −111.82 and +70.65 mm, and both
+halves use the same pair of glasses. The patent says each half is achromatized separately.
+
+The patent describes several shape rules that the Fig. 2 numbers follow:
+
+- The outer surface of each element is more strongly curved than its inner surface.
+- The outer surface of each dispersive element is more strongly curved than the facing surface of its collective
+  neighbour.
+- Within each half, the facing surfaces of the collective and dispersive elements meet near their edges. The patent
+  presents this marginal contact as an aid to accurate assembly in quantity production.
+
+In the model, the facing surfaces R2/R3 would touch at a height of about 24.8 mm and R6/R7 at about 24.2 mm. At the
+modelled 23 mm rims, they are about 0.2 mm apart.
+
+The patent does not print or draw a diaphragm. The model places the iris in the middle of the central air space,
+10.9 mm from each neighbouring surface. That is the natural position for a near-symmetric four-component lens, but it is
+inferred. The image plane is the computed paraxial back focus, 74.88 mm behind R8.
+
+## Element-by-Element Analysis
+
+### L1 — Biconvex Positive (front collective element)
+
+`nd = 1.9007, νd = 42.5` (sodium D line, as printed). Focal length +70.59 mm. R1 = +96.8 mm and R2 = −174.5 mm. The
+front surface carries most of the power. The patent's preferred form uses the same glass, of D-line index above 1.70
+(preferably above 1.75), in both collective elements. Here the index is 1.9007, an exceptional value for 1937 glass.
+
+### L2 — Biconcave Negative (front dispersive element)
+
+`nd = 1.8049, νd = 25.5`. Focal length −111.96 mm. R3 = −94.1 mm faces L1 and is the strong surface. R4 = +2170 mm is
+almost flat. The index is 0.0958 below L1's, inside the patent's preferred 0.05–0.15 band. The Abbe number is 40 % lower
+than L1's; the patent asks for at least 15 %, preferably more than 20 %.
+
+### L3 — Negative Meniscus (rear dispersive element)
+
+`nd = 1.8049, νd = 25.5`. Focal length −111.82 mm. R5 = +882 mm is almost flat, and R6 = +81.5 mm is concave toward L4.
+This makes L3 a meniscus rather than the biconcave mirror image of L2. The patent prefers at least one biconcave
+dispersive element but allows either one to be meniscus or plano-concave.
+
+### L4 — Biconvex Positive (rear collective element)
+
+`nd = 1.9007, νd = 42.5`. Focal length +70.65 mm. R7 = +238 mm faces L3, and R8 = −84.8 mm is the strong outer surface.
+The patent observes that the high-index glass is more useful in the rear collective element than in the front one, and
+that the full advantage comes from using it in both.
+
+## Glass Identification and Selection
+
+The patent prints only the D-line index `ND` and the Abbe number `ν` for each glass. It names British Patent 462,304 as
+the source of suitable high-index glasses. The data file stores these pairs with `indexReference: "D"` (sodium D line)
+and no catalogue glass label, so the engine models the dispersion from the index and Abbe number alone. It does not model
+partial dispersion.
+
+| Elements | `ND / ν` (printed) | Role | Comment |
+|---|---:|---|---|
+| L1, L4 | 1.9007 / 42.5 | Collective, high-index | Far above the ordinary crowns of the day; the actual melt is not identified |
+| L2, L3 | 1.8049 / 25.5 | Dispersive, dense flint | Close to the modern SF6 class (about 1.805 / 25.4); a coordinate class only, not a historical identity |
+
+The design depends on the small index step between the two glasses (about 0.1) combined with a large Abbe-number
+difference (42.5 against 25.5). This lets each half correct its own colour while keeping the surface curvatures weak:
+every radius in Fig. 2 is longer than 75 % of the focal length, as claim 2 requires.
+
+## Focus Mechanism
+
+The patent gives no focusing data, object distances or movable spacings. The model is an infinity-focus reference only,
+and no close-focus state is defined.
+
+## Patent Conditions and Model Verification
+
+| Condition (claims 1–2 and description) | Fig. 2 value | Result |
+|---|---:|---|
+| Dispersive glass index above 1.65 | 1.8049 | Satisfied |
+| Collective glass index above 1.70 | 1.9007 | Satisfied |
+| Dispersive element: sum of absolute curvatures × f below 1.4 | L2 1.11; L3 1.34 | Satisfied |
+| Dispersive element: difference of curvatures × f below 1.2 | L2 1.11; L3 1.11 (magnitudes) | Satisfied |
+| Collective element: sum of absolute curvatures × f below 2 | L1 1.61; L4 1.60 | Satisfied |
+| Every radius longer than 75 % of f (claim 2) | shortest 81.5 mm | Satisfied |
+
+The model gives the following first-order values:
+
+- effective focal length 99.94 mm, against the printed 100 mm (−0.06 %);
+- f/2.0 with an iris semi-diameter of 21.00 mm, sized paraxially to the patent's stated aperture;
+- back focus 74.88 mm;
+- 132.78 mm from the first surface to the image, of which 57.90 mm is the lens itself;
+- Petzval sum 0.00528 mm⁻¹.
+
+An independent paraxial trace of the printed table gives the same focal length and back focus.
+
+The semi-diameters are not printed. All four elements are drawn at the same height. The model uses 23 mm rims, raised to
+23.9 mm on R1 and 23.1 mm on R2: that is the least change that passes the full f/2 axial beam set by the paraxially sized
+iris. The rims stay below the heights at which the facing surfaces would touch.
+
+The patent states no field angle or image size. At a 21.63 mm image height (the corner of a 24×36 mm frame, used here
+only as a test height, about 12.2° off axis), the rims trim the oblique bundle by up to about 20 % of its width at the
+front surface and 7 % at the rear surface. The chief ray is not blocked. The engine's 35° default half-field is set by
+the rims, not by the patent.
+
+## Sources
+
+1. Charles W. Frederick and George H. Aklin, **US Patent 2,158,179, "Photographic Objective,"** Eastman Kodak Company,
+   filed May 22, 1937, granted May 16, 1939. Figs. 1–2 and drawing-sheet tables: PDF p. 1; description: PDF p. 2;
+   specification tables and claims: PDF p. 3. https://patents.google.com/patent/US2158179A/en
+2. Rudolf Kingslake and DePaolis, *Nature* 163, 412 (1949): Kodak's rare-earth glass development, pilot plant from
+   September 1937, first commercial glass June 1939. https://www.nature.com/articles/163412a0
+3. Photo Jottings, Kodak Bantam Special review: the 45 mm f/2 Ektar as six elements in four groups, double-Gauss
+   configuration; camera made 1936–1948. https://photojottings.com/?p=22944
+4. G. H. Aklin, *Journal of the SMPTE* 69(4): f/1.9 lenses for 16 mm cameras, including a four-element 25 mm design
+   (US 2,682,198). https://journal.smpte.org/periodicals/Journal%20of%20the%20SMPTE/69/4/20/07268486.pdf

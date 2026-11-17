@@ -1,5 +1,16 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
-/** Literal signed prescription. Midgap stop and clear rims estimated; computed D-line plane. */
+
+/**
+ * US 2,158,179 A (Charles W. Frederick and George H. Aklin, Eastman Kodak Company; filed 1937, granted 1939),
+ * Figure 2 example: four air-spaced singlets, f = 100 mm at f/2.0, kept at the patent's own scale (no scaling).
+ * Radii with their printed signs, thicknesses, air spaces and the sodium D-line indices and Abbe numbers are all
+ * printed in the patent; the drawing-sheet table and the specification table agree.
+ * Inferred values: the stop, which the patent neither prints nor draws, sits in the middle of the 21.8 mm central
+ * air space. The clear semi-diameters are estimated: 23.9 mm and 23.1 mm on the first two surfaces, just enough
+ * to pass the f/2 axial beam, and 23 mm elsewhere. The facing surfaces of each pair would touch at about 24.8 mm
+ * (front) and 24.2 mm (rear), matching the patent's marginal contact. The image plane is the computed paraxial back
+ * focus, 74.88 mm behind the last surface. Infinity focus only: the patent gives no focusing data.
+ */
 const LENS_DATA = {
   "schema": 2,
   "key": "kodak-frederick-aklin-100-f2-us2158179-figure2-patent-reference",
@@ -17,14 +28,14 @@ const LENS_DATA = {
     "elementCount": 4,
     "groupCount": 4,
     "focalLengthMm": {
-      "design": 99.94187474685016
+      "design": 99.94
     },
     "fNumber": {
       "design": 2
     }
   },
   "source": {
-    "patentNumber": "US 2,158,179",
+    "patentNumber": "US 2,158,179 A",
     "example": {
       "label": "Figure 2",
       "id": "2"
@@ -48,7 +59,7 @@ const LENS_DATA = {
       "nd": 1.9007,
       "vd": 42.5,
       "indexReference": "D",
-      "role": "Literal sodium-D index and Abbe number; no factory glass identity or verified melt composition."
+      "role": "Front collective element in high-index glass"
     },
     {
       "id": 2,
@@ -58,7 +69,7 @@ const LENS_DATA = {
       "nd": 1.8049,
       "vd": 25.5,
       "indexReference": "D",
-      "role": "Literal sodium-D index and Abbe number; no factory glass identity or verified melt composition."
+      "role": "Front dispersive element in dense flint"
     },
     {
       "id": 3,
@@ -68,7 +79,7 @@ const LENS_DATA = {
       "nd": 1.8049,
       "vd": 25.5,
       "indexReference": "D",
-      "role": "Literal sodium-D index and Abbe number; no factory glass identity or verified melt composition."
+      "role": "Rear dispersive element in dense flint"
     },
     {
       "id": 4,
@@ -78,7 +89,7 @@ const LENS_DATA = {
       "nd": 1.9007,
       "vd": 42.5,
       "indexReference": "D",
-      "role": "Literal sodium-D index and Abbe number; no factory glass identity or verified melt composition."
+      "role": "Rear collective element in high-index glass"
     }
   ],
   "surfaces": [
@@ -86,14 +97,14 @@ const LENS_DATA = {
       "label": "1",
       "R": 96.8,
       "d": 11.9,
-      "sd": 23,
+      "sd": 23.9,
       "medium": 1
     },
     {
       "label": "2",
       "R": -174.5,
       "d": 1.55,
-      "sd": 23
+      "sd": 23.1
     },
     {
       "label": "3",
