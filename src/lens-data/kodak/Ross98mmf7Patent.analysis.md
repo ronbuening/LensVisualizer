@@ -1,31 +1,155 @@
+# KODAK / F. E. ROSS 98mm f/7 PATENT REFERENCE — US 1,352,028 Figure 1
+
 ## Patent Reference and Design Identification
 
-**Patent:** [US1352028](https://patents.google.com/patent/US1352028), Figure1. Filed March17,1919; granted September7,1920. Inventor Frank E. Ross; assignee Eastman Kodak Company. This is not Ross Ltd of London and no production lens identity is established. Hidden patent-only reconstruction, chosen for its compact five-element/two-group wide-field construction.
+**Patent:** US 1,352,028 A, *Photographic Objective*  
+**Application Number:** Serial No. 283,198  
+**Filed:** March 17, 1919  
+**Granted:** September 7, 1920  
+**Inventor:** Frank E. Ross  
+**Assignee:** Eastman Kodak Company  
+**Example details:** Figure 1, the first of two embodiments; radii, thicknesses and glass table on specification page 1;
+aperture and field statement at the top of page 2. Dimensions are in millimetres and are used without scaling.
+
+The patent describes a photographic objective of two spaced cemented components, one positive and one negative, built
+to cover a wide, flat field free from distortion while staying compact enough for folding cameras. Figure 1 puts the
+negative component in front; Figure 2, which the patent calls its preferred form, reverses the order, works at f/6.0
+and covers 72°. This model transcribes Figure 1, which the patent rates at f/7.0 over a 60° field, with a stated focal
+length of 98.02 mm.
+
+Frank E. Ross (1874–1960) joined Eastman Kodak's research laboratory as a physicist in 1915 and worked on optical design
+there before returning to astronomy, where the Ross coma corrector for large reflectors carries his name. He is not
+connected with the London optical firm Ross Ltd.
+
+No production lens is linked to this example. No Kodak catalogue, museum record or collector source found for this
+review describes a lens with this five-element, two-group construction, and the wide-field "Ross lens" named in Ross's
+Optica biography is a four-lens system. The model is therefore a patent reference with no production match.
 
 ## Optical Architecture
 
-A front cemented triplet is negative and a rear cemented doublet positive. Seven curvature magnitudes, five glass thicknesses and3mm intergroup gap are literal; coordinate signs follow the published Figure1. Negative and positive components are not reversed as in Figure2. No values from Figure2 enter this model.
+The objective has five elements in two cemented groups separated by a 3 mm air space:
 
-The source does not numerically locate an iris or clear rims. The stop is explicitly estimated at the midpoint of the3mm gap. All clear semi-diameters are estimated8mm. An initial9mm heuristic produced native gap-render trims and was reduced, not accommodated with an override. No radius, glass or thickness was modified.
+1. **Front component, negative.** A cemented triplet: an outer biconvex dense flint (L1), a thick positive crown
+   meniscus concave to the front (L2), and an inner biconcave dense flint (L3).
+2. **Rear component, positive.** A cemented doublet: a biconcave telescope flint (L4) and a biconvex barium crown (L5).
 
-## Elements and Glass
+The patent explains the main design choices. Wide field comes from making both components thick, and the errors are
+best balanced by putting most of that thickness in the negative component, especially in its central meniscus. The
+glass components total 14 mm, about one seventh of the focal length, which meets the claims' minimum of one eighth.
+The meniscus is a low-index crown set between two high-index flints, with an index step of 0.090 against the 0.08 the
+claims require. The patent notes that the limiting case would replace the meniscus with an air space, but that would
+add two glass-to-air surfaces and more flare. The 3 mm air space is thinner than the 4 mm meniscus, as the patent
+recommends.
 
-Sodium-D indices/V: L1 dense flint1.61650/36.5; L2 silicate crown1.52650/58.4; L3 dense flint1.61650/36.5; L4 telescope flint1.52110/51.8; L5 barium crown1.61088/57.2. Generic historical glass categories do not identify factory melts. Native normal-line dispersion is approximate. The source also prints G-prime indices, including differing values1.63833 and1.63883 for L1/L3 despite equal nD/V; these are preserved in the source, not silently reconciled or used as a measured dispersion fit.
+The patent also keeps both Gauss (principal) points inside the objective, so that it does not become a telephoto with
+a narrow field. In the model at the D line the first lies 6.29 mm behind R1 and the second 7.50 mm ahead of R7. The
+patent adds that the lens can be used reversed, with R7 facing the subject, but is then less well corrected.
 
-## Focus and Aperture
+The patent gives no iris position. The model places the stop at the middle of the air space, 1.5 mm from each vertex,
+where the drawing marks the space "S". Its semi-diameter, 6.11 mm, sets f/7. The surface semi-diameters (8 mm on every
+surface) are estimates: the drawing is not to scale, since its 1 mm lenses are drawn about half as thick again as they
+should be, so it cannot fix the rims. At 8 mm the f/7 axial beam clears every surface, and the rims of L3 and L4 come
+within about 0.5 mm of each other across the air space, where the drawing shows both edges bevelled.
 
-Infinity only; no finite-focus motion inferred. Literal D-line paraxial EFL98.266909mm and BFD90.765576mm, versus source EFL98.02mm (+0.252%). The source second principal point7.728mm before last surface would imply nominal BFD90.292mm; the computed value differs0.474mm. Retain the literal prescription and computed plane, with this discrepancy disclosed. Neither EFL nor plane was optimized to the source claim.
+## Element-by-Element Analysis
 
-Nominal source f/7. Native estimated-stop radius6.113311mm. Extreme axial pupil-edge samples clip; central90% sampled meridional pupil passes. This is not proof of full nominal throughput. The patent claims60° full field at f/7; the30° half-field is sampled but not established as fully transmitted or optically corrected. The viewer's default half-field43.082° is a software estimate, not a source claim.
+### L1 — Biconvex Positive (outer front element)
 
-## Aspherical Surfaces
+`nD = 1.61650, νD = 36.5.` Glass: dense flint (patent name; historical melt). f = +21.80 mm.
 
-None. All surfaces are spherical.
+The patent's outer biconvex lens of the negative component, in highly refractive flint. It is strongly positive on its
+own, but it is cemented to the meniscus and the inner flint, and the triplet as a whole is weakly negative.
 
-## Validation and Limits
+### L2 — Positive Meniscus (central front element)
 
-Native canonical validation, render-trim and iris-clearance checks pass, with no geometry overrides. Scoped meridional ray tests include0°,5°,10°,30° and the default software half-field. Reference and C/d/F MTF are supported by the engine, but spectral support is not a convergence or quality pass. No numerical MTF performance, full-field sharpness, source correction claim or production identity is asserted. All five glasses use estimated secondary dispersion. Full-app/corpus regression and browser/viewer integration QA remain pending under qualified handoff.
+`nD = 1.52650, νD = 58.4.` Glass: silicate crown (patent name). f = +50.67 mm.
+
+The element the patent stresses most. At 4 mm it is as thick as L1 and four times L3, and its low index against the
+flints on either side makes its two cemented surfaces, R2 and R3, act almost like a weak air lens without adding
+glass-to-air surfaces. Both surfaces are concave to the front, R3 (−13.40 mm) strongly so.
+
+### L3 — Biconcave Negative (inner front element)
+
+`nD = 1.61650, νD = 36.5.` Glass: dense flint (patent name; same glass as L1). f = −14.07 mm.
+
+The strongest element in the lens and the source of the front component's negative power. Its rear surface, R4, is the
+last surface before the air space and is concave toward the stop.
+
+### L4 — Biconcave Negative (front element of the rear doublet)
+
+`nD = 1.52110, νD = 51.8.` Glass: telescope flint (patent name). f = −24.43 mm.
+
+The patent describes the rear component as a barium crown positive lens paired with a negative lens "of glass with a much
+lower index". L4 is that lower-index partner. Its front surface, R5, is concave toward the stop and mirrors R4 across
+the air space.
+
+### L5 — Biconvex Positive (rear element)
+
+`nD = 1.61088, νD = 57.2.` Glass: barium crown (patent name). f = +19.58 mm.
+
+The main positive element of the lens. The doublet L4 + L5 has a focal length of +73.75 mm and supplies the system's
+positive power.
+
+## Glass Identification and Selection
+
+| Element | Patent glass | nD | nG′ (printed) | ν | Role |
+| --- | --- | --- | --- | --- | --- |
+| L1 | Dense flint | 1.61650 | 1.63833 | 36.5 | outer element of the negative triplet |
+| L2 | Silicate crown | 1.52650 | 1.53800 | 58.4 | low-index central meniscus |
+| L3 | Dense flint | 1.61650 | 1.63883 | 36.5 | inner negative element |
+| L4 | Telescope flint | 1.52110 | 1.53397 | 51.8 | low-index negative of the rear doublet |
+| L5 | Barium crown | 1.61088 | 1.62448 | 57.2 | high-index positive of the rear doublet |
+
+The patent prints indices for the sodium D line and for G′ (434.05 nm, a blue hydrogen line often used for
+photographic correction at the time), with an Abbe number for each glass. The model stores the D indices and Abbe numbers as
+historical sodium values. No modern catalog glass matches them closely enough to name (the nearest to the dense flint
+is a modern F4 type at 1.61659 / 36.62), so the glasses carry the patent's names only and colour is estimated from nD
+and ν. The G′ indices are not stored, because the engine's g line (435.8 nm) is a different wavelength.
+
+L1 and L3 share the same glass name, D index and Abbe number but are printed with different G′ indices, 1.63833 and
+1.63883. The second value is the one the patent's own focal length and Gauss points require (see Patent Data Check),
+so L1's printed 1.63833 is very likely a misprint. This affects only the G′ column, which the model does not use.
+
+## Focus Mechanism
+
+The patent gives no focusing data, and the model is infinity only. The image plane sits at the computed D-line paraxial
+back focus, 90.77 mm behind R7, for a total length of 107.77 mm from R1. Because the patent worked its cardinal points
+at G′, its own figures put the focus 90.29 mm behind R7; the model's G′ paraxial focus is 90.30 mm, 0.46 mm shorter
+than at D. That difference is the lens's longitudinal colour between the two lines, not a transcription error.
+
+## Patent Data Check
+
+The patent states the objective's focal length, its two Gauss points and the focal lengths of both components. The
+table below compares them with the model at the D line and at G′. The G′ column uses L3's G′ index for L1.
+
+| Quantity | Patent | Model, D line | Model, G′ line |
+| --- | --- | --- | --- |
+| Focal length | 98.02 | 98.27 | 98.03 |
+| First Gauss point behind R1 | 6.007 | 6.29 | 6.006 |
+| Second Gauss point ahead of R7 | 7.728 | 7.50 | 7.729 |
+| Back focus (focal length − second Gauss point) | 90.29 | 90.77 | 90.30 |
+| Front component focal length | −298.0 | −545.4 | −506.1 |
+| Rear component focal length | +69.4 | +73.75 | +72.5 |
+
+The objective values agree to about 0.01 mm at G′, which confirms both the transcription and the patent's use of G′
+for its calculations. Figure 2 behaves the same way: at G′ its printed table gives 98.035 against the stated 98.028,
+and a second Gauss point of 8.2445 against the stated 8.244. The model keeps the D-line indices and places the image
+at the D-line paraxial focus, so the stated 98.02 mm is 0.25 % shorter than the model's focal length.
+
+The component focal lengths do not agree at either line. No sign change and no single misread radius, thickness or
+index reproduces −298.0 and +69.4 while keeping the objective's focal length and Gauss points, so the printed
+prescription is kept and the difference is recorded as an unresolved source erratum.
+
+At f/7 the axial beam needs 7.02 mm at R1 against the 8 mm rim. At the patent's 30° half-field the chief ray passes
+every surface, and the rims trim the corner beam by up to about 43 % at R1. The viewer's default half-field of 43° is
+an estimate from the rims, not a patent value. At full aperture the real marginal ray needs a stop radius of 6.15 mm,
+slightly more than the paraxial 6.11 mm that sets f/7, so the outermost axial rays are trimmed slightly at the iris.
 
 ## Sources
 
-[Original patent facsimile](https://patentimages.storage.googleapis.com/pdfs/US1352028.pdf), PDF1 drawing; PDF2 Figure1 table and cardinal points; PDF3 aperture/field statement. Facsimile source preserved with hash. Primary scan is authoritative over OCR.
+- US 1,352,028, *Photographic Objective*, Frank E. Ross, assignor to Eastman Kodak Company, granted September 7, 1920:
+  [Google Patents](https://patents.google.com/patent/US1352028),
+  [facsimile PDF](https://patentimages.storage.googleapis.com/pdfs/US1352028.pdf). Figure 1 drawing on sheet 1; Figure 1
+  table and Gauss points on specification page 1; f/7.0 and 60° statement and Figure 2 data on page 2.
+- Optica (formerly OSA), [Frank E. Ross biography](https://www.optica.org/History/Biographies/bios/Frank_E_Ross): Kodak
+  physicist from 1915, wide-field lens work and the four-lens "Ross lens".

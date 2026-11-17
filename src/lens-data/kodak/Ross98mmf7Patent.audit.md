@@ -1,13 +1,85 @@
-# Ross US1352028 Figure1 scoped audit
+# Ross US 1,352,028 Figure 1 audit
 
-Status: hidden patent-only reference; no retail correlation, no publication or deployment.
+## 2026-11-16 — Package transcription
 
-Fresh authoring and native tests use pinned main3fd318c3e82cdbc3e5d3a1ed7bd5abbf4e99bfc2. Full lens-data-body literal ID search1352028/1,352,028 returned no hits; shared-note exact ID search returned no hits. This does not guarantee exhaustive foreign-family aliases or archived deliveries. The source inventor is Frank E. Ross of Kodak, not Ross Ltd. No duplicate counts based on maker naming.
+Hidden patent reference with no production match. The inventor is Frank E. Ross of Eastman Kodak, not Ross Ltd of
+London. A search of the lens data and notes for 1352028 and 1,352,028 found no earlier model of this patent.
 
-Source: https://patentimages.storage.googleapis.com/pdfs/US1352028.pdf; primary facsimile title, attribution and Figure1 checked. All table D-line values preserved. Thicknesses4/4/1/1/4mm, intergroup3mm; signed radii28.4,-24.15,-13.4,25.3,-27.3,24.15,-22.22mm. Full original retained including Figure2, which is excluded from this model.
+Source: US 1,352,028 facsimile (https://patentimages.storage.googleapis.com/pdfs/US1352028.pdf): the drawing sheet,
+title and attribution, the Figure 1 table and the aperture/field statement were checked against the page images. Every
+D-line index and Abbe number in the table is kept. Thicknesses are 4, 4 and 1 mm for L1–L3, 3 mm for the air space and
+1 and 4 mm for L4–L5. Signed radii are 28.4, −24.15, −13.4, 25.3, −27.3, 24.15 and −22.22 mm. Figure 2 is a separate
+embodiment and none of its values are used.
 
-Fresh native canonical errors0, render trims>0.25mm0. Minimum sampled iris clearance0.750304mm in front and0.806718mm behind. No gap-sag override. Estimated rims8mm, midpoint iris1.5mm from either neighboring vertex. Initial9mm rims failed the no-cap-trim gate (0.688781mm trims); debug result is superseded and not evidence of passing9mm rims. Final8mm model rerun passes.
+Estimated rims are 8 mm on every surface, with the iris at the middle of the air space, 1.5 mm from each vertex. A first
+try at 9 mm rims needed drawing trims of up to 0.69 mm where R4 and R5 meet across the air space, and was dropped rather
+than patched with an override. At 8 mm the surface validator reports no errors and no rim trims above 0.25 mm. The smallest
+clearance between the iris and the neighbouring glass is 0.75 mm in front and 0.81 mm behind. No gap-sag override is
+used.
 
-Independent paraxial script and native EFL agree98.266909mm; BFD90.765576mm. Source98.02mm and nominal cardinal-point-derived BFD90.292mm are not exactly reproduced. No scaling or silent numerical repair. Printed G-prime mismatch between L1/L3 not used. Source f/7 and60° full field are source claims, not validated performance.
+Two independent paraxial calculations agree on a D-line focal length of 98.266909 mm and back focus of 90.765576 mm. The
+patent's 98.02 mm and the 90.292 mm back focus implied by its second Gauss point are not reproduced at the D line.
+Nothing was scaled or adjusted to reach them. The printed G′ indices differ between L1 and L3 (1.63833 and 1.63883)
+although both are the same dense flint; they are not used.
 
-See validation.json for every meridional field/pupil result, clipping event, glass support limitation and MTF plane support. Axial central90% tested passes; extreme nominal pupil rays clip. Support availability does not mean MTF computed or converged. Focused data-file TypeScript/lint/format checked separately, not full app. Browser/rendered viewer, full regression, full-field integration and current-head compatibility refresh remain pending. Evidence is freshly generated, not inherited product certification. No archive backup/readback was attempted by this worker.
+At f/7 the central 90 % of the axial beam passes in meridional ray tests; the outermost pupil rays are trimmed slightly
+at the iris. The patent's f/7 and 60° field are source claims, not proven performance.
+
+## 2026-11-16 — Deployment validation
+
+An independent re-read of the patent page images (300 and 600 dpi renders of the drawing sheet and both specification
+pages) checked all 7 radii and their signs, the 6 thicknesses and air space, the 5 D indices, 5 Abbe numbers and 5 G′
+indices, both cemented groups, the stop position and the stated first-order values. The table prints radius magnitudes
+only. The Figure 1 drawing, the text's description of each lens, and a test of every sign combination all support the
+stored signs. No transcription mismatches were found. The patent has two embodiments, so the example label "Figure 1"
+is correct.
+
+Verdict: valid with notes. The +0.25 % focal-length difference is explained: the patent computed its cardinal points
+at the G′ line. With L1's G′ index read as L3's 1.63883, the table gives 98.031 / 6.006 / 7.729 against the stated
+98.02 / 6.007 / 7.728. Figure 2 confirms the same practice: 98.035 against 98.028, and a second Gauss point of 8.2445
+against 8.244. L1's printed 1.63833 is therefore very likely a misprint; the model does not use G′ indices. The stated
+component focal lengths, −298.0 and +69.4, are not reproduced (−545.4 / +73.7 at D, −506.1 / +72.5 at G′). A scan of
+single misread values (each radius, thickness and index) found no change that reproduces them while keeping the
+objective values. No product link: no Kodak product with this construction was found, and the "Ross lens" in Ross's
+Optica biography is a four-lens system.
+
+Changes:
+
+- `source.patentNumber`: `US 1,352,028` → `US 1,352,028 A` (house form with kind code).
+- `catalog.focalLengthMm.design`: `98.2669090047175` → `98.27` (computed D-line value, rounded).
+- `source.errata`: added one unresolved entry for the component focal lengths. The G′ explanation of the stated f and
+  Gauss points is in the header, analysis and this log only, because the model carries no G′ index to correct.
+- Element `role` strings: provenance notes → short optical roles (outer dense flint, central crown meniscus, inner dense
+  flint, rear-doublet telescope flint, rear-doublet barium crown).
+- File header: one plain-English JSDoc block naming the source, example, scale and inferred values.
+- Analysis rewritten to the house section layout, with the bold metadata rows, the G′ explanation and a first-order
+  comparison table.
+
+Prescription, glass, stop, rims and image plane are unchanged.
+
+First order after the changes (`built.mjs`): EFL 98.267 mm, f/7.000, stop semi-diameter 6.113 mm, back focus
+90.766 mm, total length 107.766 mm, half-field estimate 43.08°. `probe.mjs --elements`: L1 +21.80, L2 +50.67,
+L3 −14.07, L4 −24.43, L5 +19.58 mm; front triplet −545.44 mm, rear doublet +73.75 mm.
+
+Audits:
+
+- `audit:surface`: OK.
+- `audit:aperture`: no rim limit (f/7 within 3 %).
+- `audit:image-circle`: skipped (no image format).
+- `audit:field-coverage`: skipped (hidden lens).
+- `clearap.mjs --Y 56.73` (29.9° half-field): no axial clip and no blocked chief ray. The axial ray needs 7.02 mm at R1
+  against the 8 mm rim. The corner beam is trimmed by 43 % at R1, 37 % at R2 and 15 % at R7. The real f/7 marginal
+  ray needs a 6.150 mm stop radius against the paraxial 6.113 mm.
+
+Open:
+
+- Name, key, subtitle and spec chips still use package wording: "KODAK / F. E. ROSS", "PATENT-ONLY REFERENCE",
+  "1919 DESIGN / 1920 GRANT — NO PRODUCTION MATCH". A subtitle such as "US 1,352,028 Figure 1 (1920)" would match the
+  corpus.
+- No catalog glass labels. The 1919 sodium-D glasses fail the d-line match test; the nearest is F4 (Sumita)
+  1.61659 / 36.62 for the dense flint. Colour stays an Abbe-number estimate.
+- Rims are a uniform 8 mm estimate. The drawing is not to scale, so a figure reading cannot set them. The R4/R5 edge gap
+  is about 0.50 mm at 8 mm, and the drawing bevels both edges; left for the semi-diameter pass.
+- Optional: `catalog.imageCircleMm` ≈ 113 (60° at f 98) would bound the analysis field at the patent's 30° half-field
+  instead of the 43° estimate.
+- Patent file: `patents/US1352028A.pdf`.

@@ -1,5 +1,20 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
-/** Literal nD/V and prescription, radii signs from Figure1. Heuristic mid-gap iris and rims. Calculated D-line paraxial plane, not fitted focus or factory identity. */
+/**
+ * US 1,352,028 A (Frank E. Ross, assignor to Eastman Kodak Company; filed March 17, 1919, granted September 7, 1920),
+ * Figure 1, the first of the patent's two numerical examples. Radii, thicknesses, the 3 mm air space, sodium D indices
+ * and Abbe numbers are copied as printed, in millimetres at the patent's own scale (no scaling). The table prints radius
+ * magnitudes only; the signs follow the Figure 1 drawing and the text's description of each lens.
+ *
+ * The patent also prints G′-line (434.05 nm) indices, which are not used here. Its stated focal length (98.02) and
+ * Gauss points (6.007 behind R1, 7.728 ahead of R7) are G′-line values: the table reproduces them (98.03, 6.006,
+ * 7.729) at G′ when L1's printed G′ index 1.63833 is read as L3's 1.63883 for the same dense flint. At the D line the
+ * model's focal length is 98.27 mm. The stated component focal lengths (−298.0 and +69.4) are not reproduced; see
+ * source.errata.
+ *
+ * Inferred: the iris at the middle of the 3 mm air space (the drawing marks the space "S" but gives no stop position),
+ * 8 mm clear semi-diameters on every surface (the drawing is not to scale), and the image plane at the computed D-line
+ * paraxial back focus, 90.77 mm. Infinity only; the patent gives no focusing data.
+ */
 const LENS_DATA = {
   "schema": 2,
   "key": "kodak-ross-98-f7-us1352028-figure1-patent-reference",
@@ -17,14 +32,14 @@ const LENS_DATA = {
     "elementCount": 5,
     "groupCount": 2,
     "focalLengthMm": {
-      "design": 98.2669090047175
+      "design": 98.27
     },
     "fNumber": {
       "design": 7
     }
   },
   "source": {
-    "patentNumber": "US 1,352,028",
+    "patentNumber": "US 1,352,028 A",
     "example": {
       "label": "Figure 1",
       "id": "1"
@@ -35,6 +50,12 @@ const LENS_DATA = {
     ],
     "assignees": [
       "Eastman Kodak Company"
+    ],
+    "errata": [
+      {
+        "status": "unresolved",
+        "note": "The patent states focal lengths of −298.0 for the front component and +69.4 for the rear component. The printed table gives −545.4 and +73.7 at the D line, and −506.1 and +72.5 at the G′ line, where it does reproduce the stated objective focal length (98.02) and both Gauss points once L1's G′ index is read as L3's. No single misread radius, thickness or index reproduces the component values while keeping the objective values, so the printed prescription is kept."
+      }
     ],
     "sdSource": "heuristic"
   },
@@ -48,7 +69,7 @@ const LENS_DATA = {
       "vd": 36.5,
       "indexReference": "D",
       "cemented": "C1",
-      "role": "Literal sodium-D index and V; named generic glass category only, not factory glass. G-prime source values not used."
+      "role": "Outer biconvex dense flint of the negative front triplet"
     },
     {
       "id": 2,
@@ -59,7 +80,7 @@ const LENS_DATA = {
       "vd": 58.4,
       "indexReference": "D",
       "cemented": "C1",
-      "role": "Literal sodium-D index and V; named generic glass category only, not factory glass. G-prime source values not used."
+      "role": "Thick low-index crown meniscus at the centre of the front triplet"
     },
     {
       "id": 3,
@@ -70,7 +91,7 @@ const LENS_DATA = {
       "vd": 36.5,
       "indexReference": "D",
       "cemented": "C1",
-      "role": "Literal sodium-D index and V; named generic glass category only, not factory glass. G-prime source values not used."
+      "role": "Inner biconcave dense flint of the front triplet"
     },
     {
       "id": 4,
@@ -81,7 +102,7 @@ const LENS_DATA = {
       "vd": 51.8,
       "indexReference": "D",
       "cemented": "C2",
-      "role": "Literal sodium-D index and V; named generic glass category only, not factory glass. G-prime source values not used."
+      "role": "Biconcave telescope flint of the positive rear doublet"
     },
     {
       "id": 5,
@@ -92,7 +113,7 @@ const LENS_DATA = {
       "vd": 57.2,
       "indexReference": "D",
       "cemented": "C2",
-      "role": "Literal sodium-D index and V; named generic glass category only, not factory glass. G-prime source values not used."
+      "role": "Biconvex barium crown of the rear doublet"
     }
   ],
   "surfaces": [
