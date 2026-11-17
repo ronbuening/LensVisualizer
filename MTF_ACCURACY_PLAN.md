@@ -230,6 +230,10 @@ analytic tolerances. Do not fit per-lens scales or judge success against native 
 
 ### N3 — Make adaptive convergence require confirmation
 
+The separate sampling change confirms two adjacent comparisons and checks landing-phase sampling for
+wavelengths on the ray-slope fallback. The intermediate 48-, 96- and 192-cell levels are available
+under the existing caps. N4 measures the accuracy, coverage and cost of this policy.
+
 **Files to touch.** `mtf.ts` (`applyConvergence`, `refineMtfFieldSteps`), `mtfConstants.ts` if shared policy constants
 are needed, and `__tests__/src/optics/mtf.test.ts` (modified). Change worker/UI types only if new diagnostics must
 cross that boundary. The current refinement generator is the implementation to extend.

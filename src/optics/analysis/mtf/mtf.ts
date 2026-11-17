@@ -22,6 +22,7 @@ import {
   MTF_FOCUS_FREQUENCIES,
   MTF_FOCUS_GRID,
   MTF_GRID_LADDER,
+  MTF_DIFFRACTION_GRID_LADDER,
   MTF_MAX_FOOTPRINT_EXPANSIONS,
   MTF_MAX_UNKNOWN_FLUX,
   MTF_MIN_RAYS,
@@ -232,8 +233,39 @@ interface WeightedOtf {
 }
 
 export type MtfGridOutcome =
-  | { kind: "curves"; field: MtfFieldResult; openBorders?: MtfOpenBorders }
+  | {
+      kind: "curves";
+      field: MtfFieldResult;
+      openBorders?: MtfOpenBorders;
+      samplingLimit?: number;
+      samplingKey?: string;
+    }
   | { kind: "unavailable"; field: MtfFieldResult; refine: boolean };
+
+/** Nyquist limit for sampled landing phases: a neighbour step of d mm turns ν d cycles.
+ * Inspect both image coordinates across both lattice directions, including a clipped rim. */
+export function landingSamplingLimit(bundle: Pick<MtfBundle, "rows" | "columns" | "rays">): number {
+  const cells = new Array<MtfBundle["rays"][number] | undefined>(bundle.rows * bundle.columns);
+  for (const ray of bundle.rays) cells[ray.row * bundle.columns + ray.column] = ray;
+  let largest = 0;
+  let horizontal = false,
+    vertical = false;
+  for (const ray of bundle.rays) {
+    const at = ray.row * bundle.columns + ray.column;
+    const left = ray.column > 0 && cells[at - 1];
+    const below = ray.row > 0 && cells[at - bundle.columns];
+    if (left) {
+      horizontal = true;
+      largest = Math.max(largest, Math.abs(ray.x - left.x), Math.abs(ray.y - left.y));
+    }
+    if (below) {
+      vertical = true;
+      largest = Math.max(largest, Math.abs(ray.x - below.x), Math.abs(ray.y - below.y));
+    }
+  }
+  if (!horizontal || !vertical) return 0;
+  return largest > 0 ? 0.5 / largest : Infinity;
+}
 
 /** Real per-frequency response on both cuts, with the weight it carries in a spectral mean. */
 interface WeightedLimit {
@@ -286,6 +318,7 @@ function* fieldAtGrid(
   /** Largest share of any wavelength's overlap that comes from pairs straddling a gap in the beam. */
   let straddling = 0;
   const approximateLines: number[] = [];
+  let samplingLimit = Infinity;
   const opticalPath = options.method === "diffraction" && context.frequencies.some((f) => f > 0);
   let commonReference: MtfSpot | undefined;
   /** Whether the reference wavelength's chief ray is stopped by a clear aperture. */
@@ -357,7 +390,10 @@ function* fieldAtGrid(
       if (!response) {
         const approximation = shearedOtf(bundle, commonReference, wavelengthMm, context.frequencies);
         response = approximation;
-        if (opticalPath) approximateLines.push(line.wavelengthNm);
+        if (opticalPath) {
+          approximateLines.push(line.wavelengthNm);
+          samplingLimit = Math.min(samplingLimit, landingSamplingLimit(bundle));
+        }
         approximation.straddling.forEach((share, i) => {
           if (context.frequencies[i] <= MTF_CONVERGENCE_BAND_LPMM) straddling = Math.max(straddling, share);
         });
@@ -408,45 +444,49 @@ function* fieldAtGrid(
   field.sagittal = otfMagnitude(combineOtfs(sagittal));
   field.tangential = otfMagnitude(combineOtfs(tangential));
   if (limits.length) field.diffractionLimit = combineLimits(limits);
-  return { kind: "curves", field, openBorders };
+  return { kind: "curves", field, openBorders, samplingLimit, samplingKey: approximateLines.join(",") };
 }
 
 /* ── Convergence ── */
 
-/**
- * Compare two successive grids at positive frequencies in the convergence band, or all
- * positive frequencies if none is in band. DC alone retains its zero-change comparison.
- * The highest frequency whose running maximum change stays in tolerance is reported in
- * frequency order so higher-frequency charts can show where sampling noise begins.
- */
-function applyConvergence(field: MtfFieldResult, previous: MtfFieldResult | null, frequencies: readonly number[]) {
+/** Qualify requested frequencies independently on adjacent grids that used the same estimator. */
+function applyConvergence(
+  field: MtfFieldResult,
+  previous: MtfFieldResult | null,
+  frequencies: readonly number[],
+  samplingLimit: number,
+  previousStable: readonly boolean[],
+  requireConfirmation: boolean,
+): boolean[] {
   const tolerance = formatMtfTolerance();
-  if (!previous) {
-    field.status = "unconverged";
-    field.message = `Sampling has not converged within ${tolerance} MTF.`;
-    return;
-  }
+  field.status = "unconverged";
+  field.message = `Sampling has not confirmed convergence within ${tolerance} MTF.`;
+  if (!previous) return [];
   const deltas = frequencies.map((_, i) =>
     Math.max(
       Math.abs(field.sagittal[i] - previous.sagittal[i]),
       Math.abs(field.tangential[i] - previous.tangential[i]),
     ),
   );
-  let band = deltas.filter((_, i) => frequencies[i] > 0 && frequencies[i] <= MTF_CONVERGENCE_BAND_LPMM);
-  if (!band.length) band = deltas.filter((_, i) => frequencies[i] > 0);
-  field.maxDelta = Math.max(...(band.length ? band : deltas));
-  let through: number | null = null;
-  const orderedIndices = frequencies.map((_, i) => i).sort((a, b) => frequencies[a] - frequencies[b]);
-  for (const i of orderedIndices) {
-    if (!(deltas[i] <= MTF_CONVERGENCE_TOLERANCE)) break;
-    through = frequencies[i];
+  const inBand = frequencies.some((f) => f > 0 && f <= MTF_CONVERGENCE_BAND_LPMM);
+  const positive = frequencies.some((f) => f > 0);
+  const judged = frequencies.map((f) => (positive ? f > 0 && (!inBand || f <= MTF_CONVERGENCE_BAND_LPMM) : true));
+  field.maxDelta = Math.max(...deltas.filter((_, i) => judged[i]));
+  const stable = deltas.map((delta, i) => delta <= MTF_CONVERGENCE_TOLERANCE && frequencies[i] <= samplingLimit);
+  // DC is normalized exactly. Positive frequencies need two successive successful comparisons.
+  const confirmed = stable.map(
+    (ok, i) => ok && (!requireConfirmation || frequencies[i] === 0 || previousStable[i] === true),
+  );
+  const ordered = frequencies.map((_, i) => i).sort((a, b) => frequencies[a] - frequencies[b]);
+  for (const i of ordered) {
+    if (!confirmed[i]) break;
+    field.convergedThroughLpMm = frequencies[i];
   }
-  field.convergedThroughLpMm = through;
-  field.status = field.maxDelta <= MTF_CONVERGENCE_TOLERANCE ? "converged" : "unconverged";
-  field.message =
-    field.status === "converged"
-      ? `Sampling converged within ${tolerance} MTF.`
-      : `Sampling has not converged within ${tolerance} MTF.`;
+  if (confirmed.every((ok, i) => !judged[i] || ok)) {
+    field.status = "converged";
+    field.message = `Sampling converged within ${tolerance} MTF.`;
+  }
+  return stable;
 }
 
 /**
@@ -475,8 +515,13 @@ function* refineMtfFieldSteps(
   ladder: readonly number[],
   evaluate: (size: number) => MtfGridOutcome | Generator<MtfPhase, MtfGridOutcome>,
   frequencies: readonly number[],
+  requireConfirmation = true,
 ): Generator<MtfFieldStep, void> {
   let previous: MtfFieldResult | null = null;
+  let adjacent: MtfFieldResult | null = null;
+  let lastStable: boolean[] = [];
+  let lastLimit = Infinity;
+  let lastKey: string | undefined;
   /** The last failed level since the last curve. */
   let failed: { size: number; message: string } | null = null;
   const explain = (field: MtfFieldResult) => {
@@ -490,6 +535,8 @@ function* refineMtfFieldSteps(
     const outcome = "kind" in evaluation ? evaluation : yield* evaluation;
     if (outcome.kind === "unavailable") {
       failed = { size, message: outcome.field.message };
+      adjacent = null;
+      lastStable = [];
       if (!outcome.refine) {
         if (previous) explain(previous);
         yield previous ?? outcome.field;
@@ -499,7 +546,26 @@ function* refineMtfFieldSteps(
       continue;
     }
     failed = null;
-    applyConvergence(outcome.field, previous, frequencies);
+    const limit = outcome.samplingLimit ?? Infinity;
+    const sameEstimator = lastKey === outcome.samplingKey;
+    lastStable = applyConvergence(
+      outcome.field,
+      sameEstimator ? adjacent : null,
+      frequencies,
+      Math.min(limit, lastLimit),
+      lastStable,
+      requireConfirmation,
+    );
+    if (requireConfirmation && size === ladder.at(-1) && outcome.field.status === "unconverged") {
+      outcome.field.message = `Sampling reached the ${size}-cell cap before convergence was confirmed.`;
+      if (frequencies.some((f) => f > limit))
+        outcome.field.notes.push(
+          `Adjacent landing phases only support sampling through ${limit.toFixed(1)} lp/mm at this grid.`,
+        );
+    }
+    adjacent = outcome.field;
+    lastLimit = limit;
+    lastKey = outcome.samplingKey;
     yield outcome.field;
     if (outcome.field.status === "converged") return;
     previous = outcome.field;
@@ -537,6 +603,7 @@ function* traceField(
       context.ladder,
       (size) => fieldAtGrid(context, target, launch, sampling, size, phase),
       context.frequencies,
+      options.method === "diffraction",
     );
     return;
   }
@@ -558,6 +625,7 @@ function* traceField(
         size,
         phase,
       );
+      if (outcome.kind === "curves" && expansions) outcome.samplingKey += `/footprint-${expansions}`;
       const open = outcome.kind === "curves" ? outcome.openBorders : undefined;
       if (!open || !(open.x || open.y0 || open.y1)) return outcome;
       if (expansions >= MTF_MAX_FOOTPRINT_EXPANSIONS) {
@@ -571,7 +639,7 @@ function* traceField(
       expansions++;
     }
   };
-  yield* refineMtfFieldSteps(context.ladder, evaluate, context.frequencies);
+  yield* refineMtfFieldSteps(context.ladder, evaluate, context.frequencies, options.method === "diffraction");
 }
 
 /* ── Focus ── */
@@ -757,7 +825,9 @@ export function* computeMtfSteps(
     options,
     support,
     frequencies,
-    ladder: MTF_GRID_LADDER.filter((size) => size <= cap),
+    ladder: (options.method === "diffraction" ? MTF_DIFFRACTION_GRID_LADDER : MTF_GRID_LADDER).filter(
+      (size) => size <= cap,
+    ),
     imagePlaneZ: state.imgZ,
   };
   // Heights past the chief's own clip are placed by the chief traced through every surface.

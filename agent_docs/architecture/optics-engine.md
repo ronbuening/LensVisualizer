@@ -236,9 +236,14 @@ retains lateral color. Every chromatic trace sets `wavelengthNm` beside its indi
 judged at positive requested frequencies at and below 50 lp/mm (absolute change ≤0.01), where a sampled geometric sum
 is not yet dominated by aliasing noise. If none is in that band, all positive requested frequencies decide convergence.
 A DC-only request is `unconverged` on its first successful grid and `converged` after its second, with `maxDelta: 0`.
-Each field reports `convergedThroughLpMm`, the highest requested frequency through which every change stays in
-tolerance, evaluated in frequency order. A finer grid that fails keeps the last good curve as unconverged.
-The axial bundle is re-projected without retracing to find the image plane that maximizes mean axial MTF at
+Diffraction requires two adjacent stable comparisons at each positive frequency. The 48-, 96- and
+192-cell intermediate grids allow confirmation before another full doubling. A change of estimator, a
+widened launch footprint or an unavailable level resets the comparison history. For any wavelength on
+the ray-slope approximation, adjacent landings on both lattice axes must also turn by at most half a
+cycle at the frequency being verified. The geometric chart retains its one-comparison rule.
+Each field reports `convergedThroughLpMm` as a prefix of the requested frequencies in ascending order.
+A capped request keeps its last diagnostic curve and reports whether confirmation succeeded.
+The axial bundle is re-projected without retracing to find the image plane that maximizes mean axial geometric MTF at
 10–50 lp/mm (a scan, then golden-section refinement). The scan spans the flux-weighted axial crossings of the rays
 with 2 % of the flux ignored at each end, so a stray ray cannot stretch its steps past the focus, and it counts the
 virtual crossing of a ray that is already diverging. No candidate plane lies in front of the rearmost point of the

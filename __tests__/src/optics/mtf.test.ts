@@ -44,7 +44,12 @@ import {
 import { shearedOtf } from "../../../src/optics/analysis/mtf/mtfShearedOtf.js";
 import { traceRayClassification } from "../../../src/optics/trace/rayClassification.js";
 import type { MtfBundle } from "../../../src/optics/analysis/mtf/mtfTracing.js";
-import { assessUnresolvedFlux, emptyMtfField, refineMtfField } from "../../../src/optics/analysis/mtf/mtf.js";
+import {
+  assessUnresolvedFlux,
+  emptyMtfField,
+  landingSamplingLimit,
+  refineMtfField,
+} from "../../../src/optics/analysis/mtf/mtf.js";
 import type { MtfGridOutcome } from "../../../src/optics/analysis/mtf/mtf.js";
 import {
   mtfBeamHeight,
@@ -936,15 +941,15 @@ describe("MTF pupil sampling", () => {
       expect(none.reason).toBe("trace-failed");
       expect(none.sagittal).toEqual([]);
       expect(none.message).toMatch(/^6 pupil samples beside the transmitted beam could not be aimed or traced/);
-      // Failing the share on the coarsest grid only, the field refines past it and converges (at 128 cells, as it does
-      // with no unaimed cell at all).
+      // Removing the omitted samples restores the uninjured field. The slope fallback still
+      // needs to resolve its landing phases before diffraction can certify this grid.
       const refined = fieldWith([1, 2, 3], method, [16], 128);
-      expect(refined.status).toBe("converged");
-      expect(refined.gridSize).toBe(128);
+      const healthy = fieldWith([], method, [], 128);
+      expect(refined.status).toBe(healthy.status);
+      expect(refined.convergedThroughLpMm).toBe(healthy.convergedThroughLpMm);
+      expect(refined.gridSize).toBe(healthy.gridSize);
       expect([refined.unaimedRays, refined.unresolvedInBeamRays]).toEqual([0, 0]);
-      expect(refined.notes).toEqual(
-        method === "geometric" ? [] : [expect.stringContaining("ray-slope diffraction estimate")],
-      );
+      expect(refined.notes).toEqual(healthy.notes);
     }
     // A bundle traced directly carries the same counts.
     unaimedCells.at = namedPairs([1], [32]);
@@ -1064,9 +1069,9 @@ describe("MTF refinement and focus", () => {
   // Prescribed successive curves isolate convergence from optical tracing and sampling.
   const refineCurves = (frequencies: readonly number[], previous: number[], current: number[]) => [
     ...refineMtfField(
-      [16, 32],
+      [16, 32, 64],
       (size) => {
-        const values = size === 16 ? previous : current;
+        const values = size === 64 ? current : previous;
         return { kind: "curves", field: { ...emptyMtfField(0), sagittal: values, tangential: values } };
       },
       frequencies,
@@ -1117,6 +1122,51 @@ describe("MTF refinement and focus", () => {
     expect(frequencies).toEqual([40, 0, 100, 20]);
   });
 
+  it("checks landing changes across the shear and requires neighbours on both axes", () => {
+    const ray = (column: number, row: number, x: number, y: number) =>
+      ({ column, row, x, y }) as MtfBundle["rays"][number];
+    const rays = [ray(0, 0, 0, 0), ray(1, 0, 0, 0.025), ray(0, 1, 0.01, 0)];
+    expect(landingSamplingLimit({ rays, columns: 2, rows: 2 })).toBe(20);
+    expect(landingSamplingLimit({ rays: rays.slice(0, 2), columns: 2, rows: 2 })).toBe(0);
+    expect(landingSamplingLimit({ rays: rays.map((r) => ({ ...r, x: 0, y: 0 })), columns: 2, rows: 2 })).toBe(Infinity);
+  });
+  it("resets confirmation after a deceptive agreement, a phase alias, or a change of estimator", () => {
+    const sizes = [16, 32, 48, 64, 96, 128];
+    const values = [0.5, 0.501, 0.54, 0.541, 0.542, 0.542];
+    const run = (limits: number[], keys: string[]) => [
+      ...refineMtfField(
+        sizes,
+        (size) => {
+          const i = sizes.indexOf(size);
+          return {
+            kind: "curves",
+            field: { ...emptyMtfField(0), gridSize: size, sagittal: [1, values[i]], tangential: [1, values[i]] },
+            samplingLimit: limits[i],
+            samplingKey: keys[i],
+          };
+        },
+        [0, 80],
+      ),
+    ];
+    const basic = run([], []);
+    expect(basic.map((field) => field.status)).toEqual([
+      "unconverged",
+      "unconverged",
+      "unconverged",
+      "unconverged",
+      "converged",
+    ]);
+    expect(
+      run(
+        sizes.map(() => 40),
+        [],
+      ).at(-1),
+    ).toMatchObject({ status: "unconverged", convergedThroughLpMm: 0 });
+    const changed = run([], ["slope", "slope", "slope", "mapped", "mapped", "mapped"]);
+    expect(changed[3].maxDelta).toBeNull();
+    expect(changed.at(-1)).toMatchObject({ status: "converged", gridSize: 128, convergedThroughLpMm: 80 });
+  });
+
   it("keeps the last successful grid when finer sampling fails", () => {
     const curves = (value: number): MtfGridOutcome => ({
       kind: "curves",
@@ -1138,9 +1188,10 @@ describe("MTF refinement and focus", () => {
     const kept = run([curves(0.5), curves(0.53), failure(false)]);
     expect(kept).toMatchObject({ status: "unconverged", sagittal: [1, 0.53] });
     expect(kept.maxDelta).toBeCloseTo(0.03, 12);
-    // A failure that asks for finer sampling continues, and the next grid is judged against the last good one.
+    // An unavailable level breaks adjacency; the next curve begins a fresh confirmation history.
     expect(run([curves(0.5), failure(true), curves(0.505)])).toMatchObject({
-      status: "converged",
+      status: "unconverged",
+      maxDelta: null,
       sagittal: [1, 0.505],
     });
     expect(run([failure(false), curves(0.5)]).status).toBe("unavailable");
