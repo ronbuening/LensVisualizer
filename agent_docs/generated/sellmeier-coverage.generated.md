@@ -3822,19 +3822,19 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 1 | Element 1 | abbe | `Unmatched (crown, nD 1.5160 / V 63.8)` | Explicit unmatched/proprietary annotation |
-| 2 | Element 2 | abbe | `Unmatched (flint, nD 1.6182 / V 36.4)` | Explicit unmatched/proprietary annotation |
-| 4 | Element 3 | abbe | `Unmatched (flint, nD 1.6182 / V 36.4)` | Explicit unmatched/proprietary annotation |
-| 6 | Element 4 | abbe | `Unmatched (crown, nD 1.5160 / V 63.8)` | Explicit unmatched/proprietary annotation |
+| 1 | Element I | abbe | `Unmatched (crown, nD 1.5160 / V 63.8)` | Explicit unmatched/proprietary annotation |
+| 2 | Element II | abbe | `Unmatched (flint, nD 1.6182 / V 36.4)` | Explicit unmatched/proprietary annotation |
+| 4 | Element III | abbe | `Unmatched (flint, nD 1.6182 / V 36.4)` | Explicit unmatched/proprietary annotation |
+| 6 | Element IV | abbe | `Unmatched (crown, nD 1.5160 / V 63.8)` | Explicit unmatched/proprietary annotation |
 
 ### [PROJECTION OPTICS SUPER-LITE 100mm f/2.2 (US 1,479,251 Design)](../../src/lens-data/projection-optics/ProjectionOpticsSuperLiteUS1479251.data.ts) - 0.0% trusted (0/4); 0.0% Sellmeier (0/4) - US 1,479,251 A
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 1 | Element 1 | abbe | `Unmatched (borosilicate crown, nD 1.5160 / V 63.8)` | Explicit unmatched/proprietary annotation |
-| 2 | Element 2 | abbe | `Unmatched (dense flint, nD 1.6182 / V 36.4)` | Explicit unmatched/proprietary annotation |
-| 4 | Element 3 | abbe | `Unmatched (borosilicate crown, nD 1.5160 / V 63.8)` | Explicit unmatched/proprietary annotation |
-| 5 | Element 4 | abbe | `Unmatched (dense flint, nD 1.6182 / V 36.4)` | Explicit unmatched/proprietary annotation |
+| 1 | Element I | abbe | `Unmatched (borosilicate crown, nD 1.5160 / V 63.8)` | Explicit unmatched/proprietary annotation |
+| 2 | Element II | abbe | `Unmatched (dense flint, nD 1.6182 / V 36.4)` | Explicit unmatched/proprietary annotation |
+| 4 | Element III | abbe | `Unmatched (borosilicate crown, nD 1.5160 / V 63.8)` | Explicit unmatched/proprietary annotation |
+| 5 | Element IV | abbe | `Unmatched (dense flint, nD 1.6182 / V 36.4)` | Explicit unmatched/proprietary annotation |
 
 ### [SCHNEIDER-KREUZNACH XENAR 200mm f/3.5 (US 2,084,714 Design)](../../src/lens-data/schneider-kreuznach/SchneiderXenarUS2084714.data.ts) - 0.0% trusted (0/4); 0.0% Sellmeier (0/4) - US 2,084,714 A
 
