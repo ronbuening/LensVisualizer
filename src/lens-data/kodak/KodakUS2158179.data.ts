@@ -2,9 +2,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * US 2,158,179 A (Charles W. Frederick and George H. Aklin, Eastman Kodak Company; filed 1937, granted 1939),
- * Figure 2 example: four air-spaced singlets, f = 100 mm at f/2.0, kept at the patent's own scale (no scaling).
+ * Figure 2 example: four air-spaced singlets, f = 100 mm at f/2.0.
  * Radii with their printed signs, thicknesses, air spaces and the sodium D-line indices and Abbe numbers are all
  * printed in the patent; the drawing-sheet table and the specification table agree.
+ * Glass: the dispersive elements' printed nD 1.8049 / V 25.5 matches Schott SF6 at the D line (a catalogue
+ * equivalent, not a documented melt). The collective elements' nD 1.9007 / V 42.5 matches no catalogue glass.
  * Inferred values: the stop, which the patent neither prints nor draws, sits in the middle of the 21.8 mm central
  * air space. The clear semi-diameters are estimated: 23.9 mm and 23.1 mm on the first two surfaces, just enough
  * to pass the f/2 axial beam, and 23 mm elsewhere. The facing surfaces of each pair would touch at about 24.8 mm
@@ -16,14 +18,14 @@ const LENS_DATA = {
   key: "kodak-100mm-f2-us2158179",
   maker: "Kodak",
   name: "KODAK 100mm f/2 (US 2,158,179 Design)",
-  subtitle: "1937 DESIGN / 1939 GRANT \u2014 NO PRODUCTION MATCH",
+  subtitle: "US 2,158,179 A, Figure 2 \u2014 high-index four-singlet f/2 objective",
   visible: true,
   catalog: {
     specs: [
       "4 ELEMENTS / 4 GROUPS",
-      "PATENT-ONLY REFERENCE",
-      "ESTIMATED STOP AND RIMS",
-      "INFINITY ONLY"
+      "ALL SPHERICAL",
+      "DESIGN F/2.0",
+      "1.90-INDEX POSITIVE ELEMENTS"
     ],
     elementCount: 4,
     groupCount: 4,
@@ -59,7 +61,8 @@ const LENS_DATA = {
       nd: 1.9007,
       vd: 42.5,
       indexReference: "D",
-      role: "Front collective element in high-index glass"
+      glass: "Unmatched (nD 1.9007 / V 42.5)",
+      role: "Positive front element in high-index glass"
     },
     {
       id: 2,
@@ -69,17 +72,19 @@ const LENS_DATA = {
       nd: 1.8049,
       vd: 25.5,
       indexReference: "D",
-      role: "Front dispersive element in dense flint"
+      glass: "SF6 (Schott)",
+      role: "Negative element of the front pair; dense flint"
     },
     {
       id: 3,
       name: "L3",
       label: "Element 3",
-      type: "Meniscus Negative",
+      type: "Negative Meniscus",
       nd: 1.8049,
       vd: 25.5,
       indexReference: "D",
-      role: "Rear dispersive element in dense flint"
+      glass: "SF6 (Schott)",
+      role: "Negative element of the rear pair; dense flint"
     },
     {
       id: 4,
@@ -89,7 +94,8 @@ const LENS_DATA = {
       nd: 1.9007,
       vd: 42.5,
       indexReference: "D",
-      role: "Rear collective element in high-index glass"
+      glass: "Unmatched (nD 1.9007 / V 42.5)",
+      role: "Positive rear element in high-index glass"
     }
   ],
   surfaces: [
@@ -152,8 +158,8 @@ const LENS_DATA = {
     }
   ],
   focus: {
-    closeFocusM: 1000000000000000.0,
-    description: "Infinity-only reference, no sourced finite focus motion."
+    closeFocusM: 1e15,
+    description: "Infinity focus only; the patent gives no close-focus data."
   },
   aperture: {
     nominalFNumber: 2,
