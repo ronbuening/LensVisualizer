@@ -18,13 +18,14 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * data. The image circle, 113 mm, is the patent's stated 60° field at its stated 98.02 mm focal length.
  *
  * SEMI-DIAMETERS: estimated from Figure 1, floor-checked by real-ray trace. Measured at 600 dpi the figure is to scale
- * axially (78 px/mm over R1 to R7; the 4 mm lenses within 3 %), but it draws both cemented components as square blocks
- * only about 6.0 mm high, less than the f/7 axial beam needs (7.02 mm at R1). The outer faces therefore keep 8 mm: both
- * blocks at one height as drawn, and any reduction toward the drawing costs corner light (7.8 mm loses 2.7 points at
- * 30°, 7.1 mm about 12). The drawing bevels the two faces across the air space, R4 to 0.87 and R5 to 0.85 of the block
- * height; at that ratio R4 is 7.0 mm and R5 6.8 mm, above both the axial beam (6.13 / 6.17 mm) and the 30° beam
- * (6.51 / 6.67 mm), at no cost in light. Each of those two faces carries a flat land out to the 8 mm block edge
- * (rimExtensionSd), so both blocks keep the drawing's flat tops and only the corners facing the air space are relieved.
+ * axially (78 px/mm over R1 to R7; the 4 mm lenses within 3 %) and across it (arc fits to R1 and R7 agree within 2 %),
+ * but it draws both cemented components as square blocks only about 5.9 mm in semi-diameter, less than the f/7 axial
+ * beam needs (7.02 mm at R1). The outer faces therefore keep 8 mm: both blocks at one height as drawn, and any reduction
+ * toward the drawing costs corner light (both blocks at 7.9 mm lose 2.7 points at 30°, at 7.8 mm 5.1, at 7.1 mm 22).
+ * The drawing bevels both faces across the air space, ending R4 and R5 at 0.79 to 0.80 of the block height; at 0.80
+ * both end at 6.4 mm, above the axial beam (6.13 / 6.17 mm), for at most 0.1 point of corner light. Each of those two
+ * faces carries a flat land out to the 8 mm block edge (rimExtensionSd), so both blocks keep the drawing's flat tops and
+ * only the corners facing the air space are relieved.
  */
 const LENS_DATA = {
   schema: 2,
@@ -81,6 +82,7 @@ const LENS_DATA = {
       nd: 1.6165,
       vd: 36.5,
       indexReference: "D",
+      focalLengthMm: 21.8,
       glass: "F4 (SUMITA catalog equivalent; production supplier unspecified)",
       cemented: "C1",
       role: "Outer biconvex dense flint of the negative front triplet"
@@ -93,6 +95,7 @@ const LENS_DATA = {
       nd: 1.5265,
       vd: 58.4,
       indexReference: "D",
+      focalLengthMm: 50.67,
       glass: "Unmatched (nD 1.52650 / V 58.4, silicate crown)",
       cemented: "C1",
       role: "Thick low-index crown meniscus at the center of the front triplet"
@@ -105,6 +108,7 @@ const LENS_DATA = {
       nd: 1.6165,
       vd: 36.5,
       indexReference: "D",
+      focalLengthMm: -14.07,
       glass: "F4 (SUMITA catalog equivalent; production supplier unspecified)",
       cemented: "C1",
       role: "Inner biconcave dense flint of the front triplet; the strongest negative element"
@@ -117,6 +121,7 @@ const LENS_DATA = {
       nd: 1.5211,
       vd: 51.8,
       indexReference: "D",
+      focalLengthMm: -24.43,
       glass: "Unmatched (nD 1.52110 / V 51.8, telescope flint)",
       cemented: "C2",
       role: "Low-index negative flint of the positive rear doublet"
@@ -129,6 +134,7 @@ const LENS_DATA = {
       nd: 1.61088,
       vd: 57.2,
       indexReference: "D",
+      focalLengthMm: 19.58,
       glass: "Unmatched (nD 1.61088 / V 57.2, barium crown)",
       cemented: "C2",
       role: "Biconvex barium crown carrying the rear doublet's positive power"
@@ -160,7 +166,7 @@ const LENS_DATA = {
       label: "4",
       R: 25.3,
       d: 1.5,
-      sd: 7,
+      sd: 6.4,
       rimExtensionSd: 8
     },
     {
@@ -172,7 +178,7 @@ const LENS_DATA = {
       label: "5",
       R: -27.3,
       d: 1,
-      sd: 6.8,
+      sd: 6.4,
       rimExtensionSd: 8,
       medium: 4
     },
