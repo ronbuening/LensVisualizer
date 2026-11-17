@@ -48,7 +48,7 @@ const LENS_DATA = {
     patentYear: 1940,
     authors: ["Arthur Warmisham", "Charles Gorrie Wynne"],
     assignees: ["Taylor, Taylor & Hobson Limited"],
-    sdSource: "heuristic",
+    sdSource: "figure-measured",
   },
   elements: [
     {

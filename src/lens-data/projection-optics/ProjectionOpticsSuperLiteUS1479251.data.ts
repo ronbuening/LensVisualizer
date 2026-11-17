@@ -44,7 +44,7 @@ const LENS_DATA = {
     patentYear: 1924,
     authors: ["William H. Repp"],
     assignees: [],
-    sdSource: "heuristic",
+    sdSource: "figure-measured",
   },
   elements: [
     {

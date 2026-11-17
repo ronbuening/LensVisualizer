@@ -35,7 +35,7 @@ const LENS_DATA = {
     patentYear: 1935,
     authors: ["Horace William Lee"],
     assignees: ["Kapella Limited"],
-    sdSource: "heuristic",
+    sdSource: "figure-measured",
   },
   elements: [
     { id: 1, name: "L1", label: "Element 1", type: "Positive Meniscus", nd: 1.6135, vd: 59.4, indexReference: "D", glass: "Unmatched (Chance 8065, nD 1.6135 / V 59.4)", role: "Outer positive meniscus of the front collective pair" },
