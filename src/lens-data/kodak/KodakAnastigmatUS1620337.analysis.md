@@ -75,7 +75,7 @@ The patent prints, for each glass, the index for the D line and the G′ line to
 | Barium crown | 1.61088 | 1.62448 | 57.2 | L1, L4 | positive collectors |
 | Dense flint | 1.61680 | 1.63920 | 36.4 | L2, L3 | negative achromatising lenses |
 
-The data file stores the D index and ν, marked as D-line values (sodium, 589.3 nm), which is how the patent labels them. Neither pair matches a current catalogue glass at the D or d line, and the 1920s melts are not identified, so both glasses are labelled as unmatched with their printed values. The G′ indices (434.0 nm) are not stored, because the file format has no G′ field. Colour in the model therefore follows the printed ν, not a fitted dispersion curve.
+The model stores the D index and ν, marked as D-line values (sodium, 589.3 nm), which is how the patent labels them. Neither pair matches a current catalogue glass at the D or d line, and the 1920s melts are not identified, so both glasses are labelled as unmatched with their printed values. The G′ indices (434.0 nm) are not stored, because the file format has no G′ field. Colour in the model therefore follows the printed ν, not a fitted dispersion curve.
 
 The pairing is a conventional achromatising choice. The crown and flint have almost the same index (a difference of 0.006) but very different ν. With nearly equal indices, the Petzval sum depends almost only on how power is split between the positive and negative lenses, so field flattening comes from the spacing and bending of the lenses rather than from an index difference.
 
