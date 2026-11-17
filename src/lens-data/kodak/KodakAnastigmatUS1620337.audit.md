@@ -267,3 +267,83 @@ Open:
 
 - G′ dispersion is not represented.
 - The bevels are drawn as vertical lands. A chamfered land is not a feature of the file format.
+
+## 2026-11-17 — Second review on the local site
+
+Compared: the live page on the branch's local site (diagram, every element inspector, the Vignetting tab and the
+group-movement overlay) against the page-1 figure of `patents/US1620337A.pdf`, re-measured at the scan's native
+resolution (2320 × 3408 px), and against the specification text on page 2.
+
+Figure scale, re-measured: vertex crossings at 879, 1032, 1052, 1104.5, 1329.5, 1379.5, 1418.5 and 1566 px give
+687 px for the printed 54.7 R1–R8 span, 12.56 px per mm; every intermediate vertex lands within 0.3 mm of the
+prescription. The drawn axis line is tilted about 1.3° (1629 px at x 860, 1646 px at x 1600), so heights are half the
+outer top-to-bottom extent of each lens: L1 26.0, L2 26.1, L3 26.0, L4 26.0 mm. This confirms the square tops at 26.
+
+The two bevels, re-measured:
+
+- L2 front: the drawn top corner sits 1.9 mm behind L1's top corner (1.8 mm on the bottom side), and the bevel leaves
+  R2 at about 24.3 mm height. The model's land stands at the R3 cap's sag, 10.06 mm from R1, 0.77 mm behind L1's
+  corner (9.29). It cannot move back: a smaller R3 cap would cut the f/2 axial beam, which needs 22.78 there.
+- L3 rear: the drawn top flat ends 2.9 mm (top) and 2.6 mm (bottom) ahead of L4's front corner, and the bevel meets R7
+  at about 23.2 mm. The model's land stands at 44.09 mm, 1.32 mm ahead of L4's corner (45.41), inside the drawn bevel's
+  axial span (about 42.7 to 44.9).
+
+Each vertical land therefore stands within the bevel it replaces. L1 and L4 draw a top flat of about 4.0 mm at the
+line centres against the model's 3.77, which is within the reading error. No rim changed.
+
+Lands and cuts: no face sits below its baseline, so there are no cuts. Taking out both lands (R3 and R6) changes
+nothing: the transmission row stays 100.0, 99.0, 98.5, 97.6, 96.7, 96.0 and 95.0 % from 0 to 7°, the same as the
+baseline rims. The worst loss against baseline is 0.0 points. The figure draws a bevel at each place, so both lands
+stay.
+
+Changes:
+
+| Field | Before | After | Evidence |
+|---|---|---|---|
+| L1 `focalLengthMm` | missing ("FL = —" in the inspector) | 71.18 | Paraxial in-air focal length at the D line. |
+| L2 `focalLengthMm` | missing | −112.25 | Same. |
+| L3 `focalLengthMm` | missing | −112.21 | Same. |
+| L4 `focalLengthMm` | missing | 71.18 | Same. |
+| `groups` | none | FRONT (surfaces 1–4), REAR (5–8) | Page 2, column 1, lines 30–34: the central space S2 divides "the objective into two components"; claims 2 and 3 claim the same two components. |
+| Analysis | "relative illumination at 7° is 95 %" | 95 % of the axial beam's light at 7°, relative illumination about 93 % | The Vignetting tab shows 95.0 % unvignetted and 92.6 % relative illumination at 7.0°. |
+
+The live page after the edits shows FRONT under L1–L2 and REAR under L3–L4, clear of the element numbers. The
+inspector shows FL +71.18 / −112.25 / −112.21 / +71.18 mm, and the group-movement overlay reports two groups with no
+movement.
+
+Checked and found correct:
+
+- Types agree with the radius signs: L1 and L4 biconvex (+64/−126, +126/−64); L2 biconcave (−77.2/+684.5); L3 a
+  negative meniscus concave towards L4 (+222.2/+52.4).
+- Roles are true. The patent says that each negative lens contacts its positive neighbour at the edge (page 2, lines
+  45–51) and that L4 is "identical both in glass and curvatures with L1" and symmetrically arranged (lines 27–30).
+- Labels L1–L4 are the figure's own numerals.
+- There are no doublets and no `cemented` tags (all four lenses are air-spaced). There are no aspheres and no `apd`
+  tags: the patent names only barium crown and dense flint.
+- The inferred stop is drawn in the middle of S2, between L2 and L3.
+- Movement: there is no gap table and no zoom block. The focus slider reads "Not modeled", and the description states
+  only that the patent gives no close-focus data.
+- The Projection chip shows, and with `fStops: [2]` the page offers no aperture slider. The Vignetting tab's field is
+  the patent's 7.0° (from the 24.6 image circle): edge 95.0 % unvignetted, 92.6 % relative illumination.
+- The engine numbers are unchanged: EFL 100.079, f/2.000, half-field 34.64°, stop semi-diameter 20.93.
+- `audit:surface` is OK, `audit:aperture` reports no rim limit, `audit:image-circle` finds none undersized, and
+  field coverage is 100 % at 7.0°.
+- The real-ray clearance trace at 7° blocks no chief ray. It again flags R3 against a real-marginal-ray f/2 stop of
+  22.36, which would need 24.33, above the 23.86 contact. This is unchanged and was recorded on 2026-11-16.
+
+Glass and colour: neither printed pair has a catalogue or vendor row within |Δn| ≤ 1e-4 and |Δν| ≤ 0.15, at the D
+line or at d. The nearest rows are K-PSK200(M) (Sumita) 1.61083/58.90 and BACD8 (Hoya) 1.61117/55.77 for the crown,
+and F4 (Sumita, Hoya) and PBM4 (Ohara) 1.61659/36.6 and PBM2R (Ohara) 1.62004/36.41 for the flint. Both labels stay
+Unmatched. Beyond D and ν, the patent prints only the G′ indices (crown 1.62448, flint 1.63920; drawing-sheet table
+and page 2 table). It has one example, so no pair can recur, and it prints no aberration curves to compare colour
+against. Neither medium is nD-only: both carry ν, so the lens keeps colour through the Abbe fallback.
+
+Assignee: "Eastman Kodak Company" matches the front page and the corpus spelling.
+
+Open:
+
+- The diagram's off-axis fan is drawn at 20.8° (0.6 of the 34.64° half-field the rims allow), three times the patent's
+  7° field. A `projection: { kind: "rectilinear", fullFieldDeg: 14, maxTraceFieldDeg: 7 }` entry gives an engine
+  half-field of 7° and a 4.2° fan (checked on a scratch copy). That field is outside this review's edit list.
+- G′ dispersion is not represented (unchanged).
+- The bevels are drawn as vertical lands (unchanged).

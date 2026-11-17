@@ -90,7 +90,7 @@ The patent gives only the infinity-conjugate prescription and says nothing about
 - The diaphragm is not printed: the figure shows none and a projection lens of this kind usually has no iris. The model places a stop at the middle of S2, 9.0 behind R4, and F/2 is its only aperture setting. At f/2 the stop's paraxial semi-diameter is 20.93, for an entrance-pupil radius of 25.02.
 - The model is listed as a projection lens with a 24.6 image circle, the patent's 7° field at f = 100. No film format is assigned: the 16 mm frame matches a 2-inch lens, not this f = 100 normalisation.
 - Clear semi-diameters are not printed. They follow the drawing, which shows all four lenses about 26 high: R1, R2, R4, R5, R7 and R8 are 26. Where each negative lens touches its crown, the drawing bevels the edge above the contact point. The model gives R3 a clear cap of 22.8, just enough for the f/2 axial beam and short of the 23.9 contact height, and R6 a cap of 21, below the 22.3 contact; both carry flat lands drawn out to 26. Because L1 and L2 touch at their edges, the drawing lets R2 and R3 come slightly closer across S1 than it normally allows (0.91 of the gap instead of 0.9).
-- At the patent's 7° semi-field (image height 12.3), no surface blocks the chief ray. The R3 cap cuts about 13 % of the oblique beam on one side, R6 about 4 % and R1 about 3 %; relative illumination at 7° is 95 %.
+- At the patent's 7° semi-field (image height 12.3), no surface blocks the chief ray. The R3 cap cuts about 13 % of the oblique beam on one side, R6 about 4 % and R1 about 3 %. At 7° the oblique beam keeps 95 % of the axial beam's light, and relative illumination, which adds the cosine fall-off, is about 93 %.
 
 ## Sources
 
