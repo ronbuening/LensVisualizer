@@ -117,7 +117,7 @@ about 18.0°.
 The rims are not printed; they are estimated from the drawing, which is to scale (its vertex spacings match the table
 within about 5 %). The drawing shows the front lens largest, at about 29.5 mm, with L2 and the cemented pair at
 about 25.5 mm. L2 takes the drawn 25.5 mm on both faces. L1 is 31 mm, within the reading's uncertainty of the
-drawing. The cemented pair is 29.7 mm, the smallest rim that keeps the off-axis light within 3 percentage points of a
+drawing. The cemented pair is 29.66 mm, the smallest rim that keeps the off-axis light within 3 percentage points of a
 lens with 31 mm rims throughout, over the patent's 25° half-field. The drawing bevels L2's rear edge from about 22.7 mm, the height at which the f/3.5 axial
 beam crosses R4, and also bevels the front edge of L3. The model draws both elements with square edges.
 

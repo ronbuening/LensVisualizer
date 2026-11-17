@@ -166,3 +166,76 @@ family level; the 200 mm is the patent's own focal length, not a documented cata
 - Side-by-side and overlay with the drawing: scratch file `overlay.png`, not kept in the repo.
 
 **Open:** none for rims. The f-stop scale, mount and format stay as listed above.
+
+## 2026-11-17 — Second review on the local site
+
+**What was compared.** The live page at infinity, the element inspector for L1–L4 and the movement overlay at the
+far end of the focus slider, against the drawing (PDF p. 1, measured afresh at its native 300 dpi) and the table and
+text (PDF p. 2). Every printed value was re-read against the file at ×200: 7 radii, 6 spacings, 4 indices and 4 Abbe
+numbers agree exactly.
+
+**Figure scale, measured independently.** Line-centre vertex crossings on the 300 dpi page: R1 674, R2 776.5, R3 880,
+R4 927, R5 1029.5, R6 1068.5, R7 1204.5 px. R1 to R7 is 530.5 px for 65.82 mm, 8.06 px/mm, the same scale as the
+600 dpi reading above. Single spacings agree within −4 % to +6 %, except the thin d3 (+12 %). Across the axis, circle
+fits to the drawn outer edges give R1 ≈ 69.5 mm (+7 %) and R7 ≈ 82.0 mm (−3 %). The errors have opposite signs, so
+the drawing is not stretched one way; it is hand-drawn to about ±5 %. The axis line tilts 0.7° across the figure, so
+each height is half the distance between the top and bottom line centres.
+
+**Readings (same as the semi-diameter pass).** L1 237.8 px = 29.5 mm; L2 204.5 px = 25.4 mm; L3 + L4 204.8 px =
+25.4 mm, one flat top. L2 at 25.5 and L1 at 31 sit within the reading error of the drawing (L1 +5 %). The pair, at
+29.7, was 17 % above the drawing and taller than L2, where the drawing has them level. That is the light rule's
+doing, not a misreading.
+
+**Lands and cuts.** No `rimExtensionSd` or `rimCutDepthMm` in the file. Cuts against the common 31 mm baseline,
+measured with the app's full-pupil lattice over 0–25° (the image circle):
+
+| Surfaces | Baseline | Drawing | Before | After | Points lost at 25° | Verdict |
+|---|---:|---:|---:|---:|---:|---|
+| 3, 4 (L2) | 31 | 25.4 | 25.5 | 25.5 | 0.0 | keep: costs no light |
+| 5, 6, 7 (L3 + L4) | 31 | 25.4 | 29.7 | 29.66 | 2.97 | keep, smallest square raise within 3 points |
+
+The pair's floor, read to two decimals, is 29.66 mm (2.97 points); 29.65 mm costs 3.04. At 29.7 the pair sat
+0.04 mm above it, so all three faces now take 29.66 and the pair stays square. L1 is not cut. A trial L1 of 34 mm
+gains up to 9.5 points over the baseline (at 16.7°), which shows the front rim does vignette; the cemented pair
+cannot go much past 32 mm before L4's edge thickness turns negative. Worst loss in the final file: 2.97 points at 25°. Corner light wide open:
+57.6 % baseline, 54.8 % before, 54.6 % after.
+
+**Element focal lengths.** The inspector showed "FL = —" for every element. Added `focalLengthMm` from the paraxial
+in-air values: L1 +99.38, L2 −64.06, L3 −94.14, L4 +54.87 mm. The live inspector now shows them.
+
+**Checked and found correct.**
+
+- Names L1–L4 are the drawing's own L1–L4. The diagram shows the default numbers 1–4 in the same order, so no
+  `diagramLabel` is needed. Types agree with the printed signs (L1 and L4 biconvex, L2 and L3 biconcave). Roles are
+  true. There are no aspheres and no `apd` tags; the patent names no special glass.
+- The C1 bracket covers surfaces 5–7. The inspector reads "DOUBLET C1" on L3 and L4, not "TRIPLET". The stop sits
+  between L2 and L3. An independent trace of a 23° ray through the stop centre leaves R7 at 19.6465° against the
+  printed 19°38′44.6″ (19.6457°) and enters R1 at 18.02°.
+- Movement: no variable gaps and no zoom block. The focus slider reads "Not modeled", the movement overlay reports no
+  modelled focus or zoom movement, and `focus.description` says only that the patent gives no close-focus data.
+- Image circle: the real chief ray at 25° lands at 94.53 mm, so 189 mm stands. The image-circle check reports none
+  undersized, field coverage is 100 %, and the axial beam clears every rim (tightest 1.3 mm, at R3).
+- Engine numbers before and after are identical: EFL 200.218 mm, f/3.5, half-field 33.12°, stop semi-diameter
+  22.73 mm.
+
+**Glass and colour.** The worktree catalogue was scanned at the sodium D line. The nearest rows are:
+
+- for 1.6202 / 60.0, J-SK16, S-BSM16, N-SK16 and Hoya BACD16, all nD 1.62032 (Δn +0.00012; Δν +0.24 to +0.33);
+- for 1.5785 / 42.3, Hoya FL4, nD 1.57833 (Δn −0.00017, Δν −0.60);
+- for 1.5315 / 49.1, Ohara PBL6Y, nD 1.53162 (Δn +0.00012, Δν −0.15).
+
+None is inside the exact window. The vendor AGF files (Hoya, Ohara, Sumita) offer only rows with the same values
+(Sumita LF4, SK16, LLF6; Ohara BSM16, PBL6; Hoya E-FEL6), so there is no row to propose. The patent prints only the
+yellow-ray index and an Abbe number per glass: no names, no other lines, no partial dispersion. The 1.6202 / 60.0
+glass recurs within the example (L1 and L4), so it is probably a real 1935 melt no longer catalogued. The patent
+prints no aberration curves, so there is no colour plot to compare. No element is an index-only medium, so colour
+stays on.
+
+**Assignee.** "Jos. Schneider & Co., Optotechnische Gesellschaft" is the front-page form ("assignor to the
+Corporation of Jos. Schneider & Co., Optotechnische Gesellschaft, Berlin"), the same as the 28–50 mm Xenar file. The
+18 files that read "Jos. Schneider & Co., Optische Werke" carry the firm's later name, not a spelling variant.
+
+**Open:**
+
+- The aperture slider stops at f/16 (the default `aperture.maxFNumber`), so the f/22 in `aperture.fStops` cannot be
+  reached. Either drop 22 or set `maxFNumber: 22`. This adds to the unsourced f-stop scale line above.

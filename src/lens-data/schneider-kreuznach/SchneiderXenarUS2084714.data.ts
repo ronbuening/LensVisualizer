@@ -16,8 +16,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * - Rims: estimated from the patent drawing (to scale: its vertex spacings match the table within about 5 %) and
  *   checked by real-ray trace. The drawing gives L1 about 29.5 mm, L2 about 25.5 mm and the cemented pair about
  *   25.4 mm. L2 takes the drawn 25.5 mm on both faces. L1 keeps 31 mm, within the reading's uncertainty. The cemented
- *   pair takes 29.7 mm, the smallest rim that holds corner light within 3 points of the original common 31 mm rims
- *   across the patent's 25° half-field. Every rim clears the full f/3.5 axial beam.
+ *   pair takes 29.66 mm on all three faces, the smallest square rim that holds corner light within 3 points of the
+ *   original common 31 mm rims across the patent's 25° half-field. Every rim clears the full f/3.5 axial beam.
  * - Image circle: 189 mm, where the real chief ray of the patent's "useful visual field of over 50°" (25° half-field)
  *   lands at 94.5 mm.
  * - Back focus: the computed paraxial back focal distance, 163.95 mm from R7. The patent prints none.
@@ -71,6 +71,7 @@ const LENS_DATA = {
       role: "Front positive collector; strong front surface, almost flat rear",
       nd: 1.6202,
       vd: 60,
+      focalLengthMm: 99.38,
       glass: "Unmatched (nD 1.6202 / V 60.0; no glass name printed)",
       indexReference: "D",
       indexReferenceNote: "The patent gives indices for the yellow ray without naming the line; they are traced as sodium D-line values, the usual convention for a German glass table of 1935."
@@ -83,6 +84,7 @@ const LENS_DATA = {
       role: "Negative flint ahead of the stop; main negative power of the front pair",
       nd: 1.5785,
       vd: 42.3,
+      focalLengthMm: -64.06,
       glass: "Unmatched (nD 1.5785 / V 42.3; no glass name printed)",
       indexReference: "D",
       indexReferenceNote: "The patent gives indices for the yellow ray without naming the line; they are traced as sodium D-line values, the usual convention for a German glass table of 1935."
@@ -95,6 +97,7 @@ const LENS_DATA = {
       role: "Negative front member of the cemented rear pair; almost flat front surface",
       nd: 1.5315,
       vd: 49.1,
+      focalLengthMm: -94.14,
       glass: "Unmatched (nD 1.5315 / V 49.1; no glass name printed)",
       indexReference: "D",
       indexReferenceNote: "The patent gives indices for the yellow ray without naming the line; they are traced as sodium D-line values, the usual convention for a German glass table of 1935.",
@@ -108,6 +111,7 @@ const LENS_DATA = {
       role: "Strong positive rear member of the cemented rear pair",
       nd: 1.6202,
       vd: 60,
+      focalLengthMm: 54.87,
       glass: "Unmatched (nD 1.6202 / V 60.0; no glass name printed)",
       indexReference: "D",
       indexReferenceNote: "The patent gives indices for the yellow ray without naming the line; they are traced as sodium D-line values, the usual convention for a German glass table of 1935.",
@@ -150,21 +154,21 @@ const LENS_DATA = {
       label: "5",
       R: -1159.6,
       d: 4.3,
-      sd: 29.7,
+      sd: 29.66,
       medium: 3
     },
     {
       label: "6",
       R: 52.36,
       d: 17.58,
-      sd: 29.7,
+      sd: 29.66,
       medium: 4
     },
     {
       label: "7",
       R: -84.72,
       d: 163.94874503753675,
-      sd: 29.7
+      sd: 29.66
     }
   ],
   focus: {
