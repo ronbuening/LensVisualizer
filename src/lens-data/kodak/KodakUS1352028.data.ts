@@ -209,7 +209,8 @@ const LENS_DATA = {
       16,
       22,
       32
-    ]
+    ],
+    maxFNumber: 32
   },
   groups: [],
   doublets: [
