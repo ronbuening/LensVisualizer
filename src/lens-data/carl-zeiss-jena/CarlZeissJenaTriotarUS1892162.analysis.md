@@ -1,4 +1,4 @@
-# RICHTER THREE-LENS PATENT REFERENCE — US 1,892,162 A
+# CARL ZEISS JENA TRIOTAR 100mm f/4.5 (US 1,892,162 Design)
 
 ## Patent Reference and Design Identification
 
@@ -19,8 +19,8 @@ vertex) under one quarter of the focal length. The specification states that obj
 usually needed at least four lenses, because three-lens objectives gave distinctly poorer pictures, and it sets out to
 bring a triplet close to four-lens quality. The single example is stated at 1:4.5 and 100 mm.
 
-The model is a hidden patent reference at the patent's own scale. It is not presented as a specific production lens,
-but the patent has a documented association with the Zeiss Triotar:
+The CARL ZEISS JENA TRIOTAR 100mm f/4.5 (US 1,892,162 Design) is modeled at the patent's own 100 mm. The patent has a
+documented association with the Zeiss Triotar:
 
 1. Marco Cavina's history of the Jena 135 mm lenses reproduces this patent, drawing sheet and specification, under the
    caption "Carl Zeiss Jena Triotar 1:4,5 (Robert Richter, Maggio 1930)". He states that the Jena Triotar was computed
@@ -32,10 +32,9 @@ but the patent has a documented association with the Zeiss Triotar:
    the focal length.
 4. The timing fits: German priority 1930, US grant 1932, and a Contax Triotar 8.5 cm f/4 dated to 1932.
 
-The limits are just as clear. No Zeiss document seen for this file publishes a Triotar prescription or names this
-patent, Cavina is a secondary source, and the example is normalised to 100 mm rather than to any marketed Triotar
-focal length. The link is therefore to the Triotar 1:4.5 design family; the model is not a scaled copy of a named
-production lens.
+The limits are just as clear. No Zeiss document found publishes a Triotar prescription or names this patent, Cavina
+is a secondary source, and the example is stated at 100 mm rather than at any marketed Triotar focal length. The link
+is therefore to the Triotar 1:4.5 design family; the model is not a scaled copy of a named production lens.
 
 ## Optical Architecture
 
@@ -68,7 +67,8 @@ normally sits, but it is an inference, not a source fact.
 
 ### L1 / Lens I — Plano-Convex Positive
 
-`nD = 1.6227, ν = 56.9.` Glass: not named in the patent; dense barium crown class (inferred). f = +37.34 mm.
+`nD = 1.6227, ν = 56.9.` Glass: N-SK10 (Schott), the SK10 dense barium crown type; equivalent at the printed
+precision, not named in the patent. f = +37.34 mm.
 
 Lens I is the front collector. Its convex front surface (r1 = +23.25 mm) is one of the two radii the patent
 constrains, and its rear surface is flat (r2 = ∞). At 4.5 mm it is the thickest lens of the three, and its printed
@@ -77,8 +77,8 @@ front surface.
 
 ### L2 / Lens II — Biconcave Negative
 
-`nD = 1.6128, ν = 37.0.` Glass: not named in the patent; ordinary flint, F3 class (Schott F3 is 1.61293 / 36.9 at the
-d line; inferred). f = −28.75 mm.
+`nD = 1.6128, ν = 37.0.` Glass: F3 (Sumita), the F3 ordinary flint type; equivalent at the printed precision, not
+named in the patent. f = −28.75 mm.
 
 Lens II is the dispersive member that corrects the colour and the Petzval sum of the two collectors. Its front face is
 weak (r3 = −78.6 mm) and its rear face strong (r4 = +22.85 mm, the second radius the patent constrains). It is thin
@@ -86,8 +86,8 @@ weak (r3 = −78.6 mm) and its rear face strong (r4 = +22.85 mm, the second radi
 
 ### L3 / Lens III — Biconvex Positive
 
-`nD = 1.6423, ν = 48.0.` Glass: not named in the patent; barium flint class near BaF9 (1.64328 / 47.8 at the d line;
-inferred). f = +72.49 mm.
+`nD = 1.6423, ν = 48.0.` Glass: unmatched; a barium flint close to, but not equal to, BaF9 (Sumita BAF9 is
+1.64317 / 47.7 at the D line). f = +72.49 mm.
 
 Lens III is the rear collector, 10 mm behind lens II. Almost all of its power is at the rear surface
 (r6 = −59.96 mm); the front surface (r5 = +205.0 mm) is nearly flat. The patent's preference for an index above 1.63
@@ -97,14 +97,18 @@ it that way is an interpretation; the patent gives no reason for the choice.
 ## Glass Identification
 
 The patent prints nD and the Abbe number ν for each lens and names no glass types. The data file stores the printed
-pairs with `indexReference: "D"` (the sodium D line) and assigns no catalog glass, so the model's dispersion comes from
-the printed ν values alone.
+pairs with `indexReference: "D"` (the sodium D line). Two of the three pairs match modern catalog rows within the
+printed precision (index within 0.0001, ν within 0.15, both at the D line), and those elements trace on the catalog
+dispersion curve while keeping the printed index. The third has no such row and uses the printed ν.
 
-| Lens | nD | ν | Probable class (inferred) |
-|---|---:|---:|---|
-| I | 1.6227 | 56.9 | dense barium crown |
-| II | 1.6128 | 37.0 | ordinary flint, F3 class |
-| III | 1.6423 | 48.0 | barium flint, near BaF9 |
+| Lens | nD | ν | Catalog glass | Catalog nD / ν at D |
+|---|---:|---:|---|---|
+| I | 1.6227 | 56.9 | N-SK10 (Schott), SK10 type | 1.62268 / 56.97 |
+| II | 1.6128 | 37.0 | F3 (Sumita), F3 type | 1.61279 / 36.94 |
+| III | 1.6423 | 48.0 | unmatched (nearest BAF9, Sumita) | 1.64317 / 47.71 |
+
+SK10 and F3 are Schott type names. The catalog rows are modern equivalents of those types, not the melts Zeiss used,
+which the patent does not identify.
 
 The two collectors use different glasses: a crown (ν = 56.9) in front and a barium flint (ν = 48.0) behind, with an
 ordinary flint (ν = 37.0) between them. The patent publishes no partial dispersions, so no secondary-spectrum claim can
@@ -116,7 +120,7 @@ The patent gives only the infinity state, and the model is infinity-only. No foc
 close-focus value of 10¹⁵ m marks focus as not modeled and is not a minimum focus distance. The patent prints no
 focusing data.
 
-## Verification Summary
+## Model Scope and Limitations
 
 | Quantity | Patent | Model |
 |---|---|---|
@@ -125,30 +129,30 @@ focusing data.
 | Vertex length | 22 % of f | 22.000 mm |
 | First to fourth surface vertex | 9.5 % of f | 9.500 mm |
 | Back focus | not printed | 82.234 mm (computed paraxial) |
-| Picture diagonal | about equal to f (half-field about 26.6°) | engine default display field 35.0° |
+| Picture diagonal | about equal to f (half-field about 26.6°) | not set; the viewer's default field is 35.0° half-field |
 
-Every radius (with its printed sign), thickness, spacing, nD and ν in the data file matches both printed copies of the
-table. The image plane is the computed paraxial back focus of the printed table, because the patent prints no back
-focus. At f/4.5 the real marginal ray crosses the axis about 0.20 mm ahead of that plane, a small undercorrection of
+The radii (with their printed signs), thicknesses, spacings, nD and ν are those printed in both copies of the table.
+The image plane is the computed paraxial back focus of the printed table, because the patent prints no back focus. At f/4.5 the real marginal ray crosses the axis about 0.20 mm ahead of that plane, a small undercorrection of
 spherical aberration.
 
 **Rims and the axial beam.** The semi-diameters are half the printed lens diameters (11.7, 10.4 and 10.0 mm), on both
 faces of each lens. The f/4.5 axial beam clears every rim: its real heights are 11.11, 10.77, 9.72, 9.15, 9.31 and
 9.30 mm at surfaces 1 to 6. The model's iris radius, 9.08 mm, is set from the paraxial f/4.5 pupil, while the real
 marginal ray reaches the iris at 9.21 mm because of the front pair's spherical aberration. The iris therefore trims
-the outermost 1.4 % or so of the entrance-pupil radius (in a 201-ray axial fan, the two outermost rays on each side).
-The effective aperture stays within 3 % of f/4.5. The lens diameters cut nothing on axis.
+the outermost 1.4 % or so of the entrance-pupil radius, and the effective aperture stays within 3 % of f/4.5. The
+axial clipping comes from this paraxially sized iris; the lens diameters cut nothing on axis.
 
 **Off axis.** The printed diameters vignette the oblique beam, as the patent's small lenses imply. At 10° about 13 % of
 the bundle width is cut on one side at lens I; at 20° about 36 % at lens I and 24 % at lens III. At the patent's corner
-(about 26.6°, an image height of 50 mm) the chief ray still clears every rim, but the bundle is heavily vignetted. The surface validator reports no edge-thickness or spacing errors.
+(about 26.6°, an image height of 50 mm) the chief ray still clears every rim, but the bundle is heavily vignetted.
+Every element keeps a positive edge thickness at its printed diameter.
 
 ## Design Heritage and Context
 
 The example belongs to the long line of Zeiss triplets derived from H. Dennis Taylor's Cooke triplet. Its specific
 contribution is a set of spacing and curvature rules meant to let a three-lens objective approach four-lens
-performance at f/4.5 with a short vertex length. Robert Richter, who signed this patent, later designed the Zeiss Topogon wide
-angle (US 2,031,792).
+performance at f/4.5 with a short vertex length. Robert Richter, who signed this patent, later designed the Zeiss
+Topogon wide angle (US 2,031,792).
 
 ## Sources
 

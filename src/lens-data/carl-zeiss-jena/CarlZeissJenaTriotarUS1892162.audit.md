@@ -44,7 +44,8 @@ cemented surfaces and every radius sign agree with the data file.
 An independent re-read of the patent page images checked every radius and its sign, every thickness and spacing, every
 nD and ν, the printed lens diameters, the bibliographic heading (Robert Richter, assignor to the firm Carl Zeiss, Jena;
 filed May 12, 1931, German priority May 27, 1930, granted December 27, 1932) and the section figure. No transcription
-mismatch was found. Verdict: valid as a hidden patent reference. Marco Cavina reproduces this patent as the "Carl Zeiss
+mismatch was found. Verdict: valid as a hidden patent reference (closed 2026-11-17: now public under the Triotar
+name). Marco Cavina reproduces this patent as the "Carl Zeiss
 Jena Triotar 1:4,5 (Robert Richter, Maggio 1930)" and gives the same German filing date. The Triotar 7.5 cm f/4.5 on
 the 1933 Rolleicord I matches the patent's aperture and purpose. The product link is to the Triotar 1:4.5 design family,
 not to a specific production focal length.
@@ -73,16 +74,58 @@ f/4.5 axial beam clears every rim: heights 11.11, 10.77, 9.72, 9.15, 9.31 and 9.
 (9.207 mm), so the outermost two rays on each side of a 201-ray axial fan stop at the iris. The real-ray clearance probe
 finds no axial clipping and no blocked chief ray at 10°, 20° or the patent's corner (about 26.6°, 50 mm image height).
 Off-axis vignetting from the printed diameters is about 36 % of the bundle width on one side at lens I at 20°. The
-image-circle and field-coverage audits skip the file (hidden, no image format).
+image-circle and field-coverage audits skip the file (hidden at the time, no image format).
 
 Open:
 
 - Name, subtitle and specs keep package wording ("PATENT ONLY; RETAIL IDENTITY UNPROVED", "1932 100 mm f/4.5; PATENT
   ONLY"). `focus.description` ("literal nD/V … No production identity") should be plain words and could mention the
-  Triotar 1:4.5 association.
+  Triotar 1:4.5 association. (Closed 2026-11-17.)
 - Element types to house labels (Plano-Convex Positive, Biconcave Negative, Biconvex Positive); element labels "L1",
-  "L2", "L3" could become optical roles.
+  "L2", "L3" could become optical roles. (Closed 2026-11-17.)
 - Glass: no catalog labels. Lens II matches the F3 class (1.61293 / 36.9 at d) and lens III is near BaF9 (1.64328 /
-  47.8); lens I has no close catalog row. Labels only if an exact match is found.
+  47.8); lens I has no close catalog row. Labels only if an exact match is found. (Closed 2026-11-17: a D-line search
+  found N-SK10 exact for lens I as well.)
 - Engine default display field is 35.0° half-field against the patent's picture diagonal of about the focal length
   (about 26.6°).
+
+## 2026-11-17 — Cleanup and wording pass
+
+Data file fields changed (optics, stop, rims and image plane untouched):
+
+- `subtitle`: "1932 100 mm f/4.5; PATENT ONLY" → "US 1,892,162 A, sole example — Zeiss Triotar f/4.5 family".
+- `catalog.specs`: ["3 ELEMENTS / 3 GROUPS", "PATENT ONLY; RETAIL IDENTITY UNPROVED", "SOURCE LENS DIAMETERS;
+  ESTIMATED STOP", "INFINITY ONLY"] → ["3 ELEMENTS / 3 GROUPS", "DESIGN F/4.5", "ALL SPHERICAL"].
+- `focus.description` → "Infinity focus only; the patent gives no close-focus data." `closeFocusM` stays 1e15. No
+  marketed close-focus value is added, because no product source gives one for a 100 mm Triotar.
+- Elements: labels "L1"/"L2"/"L3" → "Element 1"/"Element 2"/"Element 3". Types "Plano-convex"/"Biconcave"/"Biconvex"
+  → "Plano-Convex Positive"/"Biconcave Negative"/"Biconvex Positive". Optical roles added.
+- Glass labels, compared at the D line (catalog nD at 589.29 nm and νD = (nD − 1)/(nF − nC)):
+  - lens I: none → "N-SK10 (Schott)", nD 1.62268 / νD 56.97 against the printed 1.6227 / 56.9 (Δn −1.7e-5, Δν +0.07);
+  - lens II: none → "F3 (Sumita)", 1.61279 / 36.94 against 1.6128 / 37.0 (Δn −1.5e-5, Δν −0.06). S-TIM3 (Ohara),
+    E-F3 (Hoya) and J-F3 (Hikari) also match. The F3 row keeps the Schott type name; no Schott F3 row exists in the
+    catalog;
+  - lens III: none → "Unmatched (nD 1.6423 / V 48.0)". The nearest row, BAF9 (Sumita), is 1.64317 / 47.71 (Δn +8.7e-4),
+    outside tolerance.
+- Header comment: house patent-number form, the Cavina Triotar attribution in one sentence, and the new glass
+  treatment.
+
+Analysis:
+- H1 and the identification paragraph use the new name.
+- Removed "hidden patent reference" and "seen for this file".
+- "Verification Summary" is renamed "Model Scope and Limitations". The ray-fan count is removed, and the axial-clip
+  statement now reads plainly: the paraxially sized iris trims the beam, the printed diameters do not.
+- Glass lines and the glass table now give the catalog equivalents.
+
+Engine numbers before and after are identical (`built.mjs`, `probe.mjs`): EFL 100.0004 mm, f/4.5, half-field 35.04°,
+stop radius 9.080 mm, BFD 82.234 mm, element focal lengths +37.34 / −28.75 / +72.49 mm. Surface audit OK; the aperture
+audit finds no rim limit. Image-circle and field-coverage audits skip the file (no image format).
+
+Open:
+
+- No `catalog.imageFormat` or `lensMounts`: the example is at 100 mm and fits no single documented Triotar product.
+- Rims are the printed lens diameters and the section figure agrees with them; nothing is open for the semi-diameter
+  pass.
+- The viewer's default 35° half-field exceeds the patent's stated coverage (about 26.6°); no data field to narrow it
+  was found.
+- `aperture.fStops` (4.5 to 16) is a default ladder; the patent prints only 1:4.5.

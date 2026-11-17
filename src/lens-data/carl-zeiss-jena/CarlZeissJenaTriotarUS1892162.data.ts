@@ -1,17 +1,21 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
- * US 1,892,162, sole numerical example (drawing sheet and specification p. 2, which print the same table). Robert
+ * US 1,892,162 A, sole numerical example (drawing sheet and specification p. 2, which print the same table). Robert
  * Richter, assignor to the firm Carl Zeiss, Jena. Filed 12 May 1931 with German priority of 27 May 1930; granted
  * 27 December 1932. The patent states a maximum aperture of 1:4.5 and a focal length of 100 mm for a hand-camera
  * objective that covers a picture diagonal about equal to the focal length. Three air-spaced singlets: a plano-convex
- * front lens, a biconcave middle lens and a biconvex rear lens.
+ * front lens, a biconcave middle lens and a biconvex rear lens. Marco Cavina reproduces this patent as the Carl Zeiss
+ * Jena Triotar 1:4.5 (Robert Richter, May 1930); the link is to the Triotar design family, not to one marketed focal
+ * length.
  *
  * SCALE: none. Radii, thicknesses and spacings are as printed in millimetres, with the printed signs; the paraxial EFL
  * of the printed table is 100.0004 mm.
  *
  * GLASS: the patent prints nD and ν for each lens. They are stored as printed with indexReference "D" (sodium D line).
- * The patent names no glass types, and no catalog label is assigned.
+ * The patent names no glass types. Lens I matches Schott N-SK10 and lens II the F3 type (Sumita F3 row) within the
+ * printed precision at the D line, so both trace on those catalog curves. Lens III (nD 1.6423, ν 48.0) matches no
+ * catalog row; its dispersion comes from the printed ν.
  *
  * STOP (inferred): neither the drawing nor the text shows a diaphragm. The iris is placed midway in the 10 mm air space
  * between the middle and rear lenses, 5 mm behind r4, where the between-lens shutter of a hand camera would sit. Its
@@ -30,14 +34,13 @@ const LENS_DATA = {
   key: "carl-zeiss-jena-triotar-100mm-f45-us1892162",
   maker: "Carl Zeiss Jena",
   name: "CARL ZEISS JENA TRIOTAR 100mm f/4.5 (US 1,892,162 Design)",
-  subtitle: "1932 100 mm f/4.5; PATENT ONLY",
+  subtitle: "US 1,892,162 A, sole example — Zeiss Triotar f/4.5 family",
   visible: true,
   catalog: {
     specs: [
       "3 ELEMENTS / 3 GROUPS",
-      "PATENT ONLY; RETAIL IDENTITY UNPROVED",
-      "SOURCE LENS DIAMETERS; ESTIMATED STOP",
-      "INFINITY ONLY",
+      "DESIGN F/4.5",
+      "ALL SPHERICAL",
     ],
     elementCount: 3,
     groupCount: 3,
@@ -63,29 +66,35 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L1",
-      label: "L1",
-      type: "Plano-convex",
+      label: "Element 1",
+      type: "Plano-Convex Positive",
       nd: 1.6227,
       vd: 56.9,
       indexReference: "D",
+      glass: "N-SK10 (Schott)",
+      role: "Front collector; carries most of the positive power, with a flat rear face",
     },
     {
       id: 2,
       name: "L2",
-      label: "L2",
-      type: "Biconcave",
+      label: "Element 2",
+      type: "Biconcave Negative",
       nd: 1.6128,
       vd: 37.0,
       indexReference: "D",
+      glass: "F3 (Sumita)",
+      role: "Flint negative element between the collectors; corrects colour and the Petzval sum",
     },
     {
       id: 3,
       name: "L3",
-      label: "L3",
-      type: "Biconvex",
+      label: "Element 3",
+      type: "Biconvex Positive",
       nd: 1.6423,
       vd: 48.0,
       indexReference: "D",
+      glass: "Unmatched (nD 1.6423 / V 48.0)",
+      role: "Weak high-index rear collector; nearly all its power is at the rear face",
     },
   ],
   surfaces: [
@@ -140,8 +149,7 @@ const LENS_DATA = {
   },
   focus: {
     closeFocusM: 1000000000000000.0,
-    description:
-      "Infinity-only; literal nD/V, signed radii, source lens diameters retained; calculated paraxial BFD; estimated iris midway in final air gap. No production identity.",
+    description: "Infinity focus only; the patent gives no close-focus data.",
   },
   groups: [],
   doublets: [],
