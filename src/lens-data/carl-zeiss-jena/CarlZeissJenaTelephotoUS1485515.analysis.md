@@ -130,7 +130,7 @@ the iris. This comes from the paraxial stop sizing; no lens rim cuts the axial b
 The patent prints no lens diameters and no field angle. The clear semi-diameters are estimates: 8.3 mm at r1, 8.1 mm
 at r2–r4, and 5.2 mm on the rear member. The front values are set just above the f/6.3 axial beam. The drawing shows
 the rear member about as tall as the front member, so the estimated rear rims are smaller than drawn and vignette the
-off-axis beam. The 11° half-field used by the viewer is a default, not a coverage claim from the patent.
+off-axis beam. The 11° half-field shown in the diagram is a default, not a coverage claim from the patent.
 
 ## Sources
 
