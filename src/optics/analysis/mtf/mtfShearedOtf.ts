@@ -1,5 +1,5 @@
 /**
- * Diffraction MTF from sheared rays.
+ * Ray-slope approximation for diffraction MTF on an unresolved optical-path pupil.
  *
  * Hopkins' incoherent OTF at frequency ν is the overlap of the exit pupil with itself sheared by λν,
  * each pupil point weighted by exp(i2π[W(p + s) − W(p − s)]) for half shear s. The wave-aberration
@@ -21,8 +21,8 @@
  * limits it is sampling: the landing error must change slowly from one lattice cell to the next,
  * which grid refinement checks. The per-pair lag is a first-order correction: the five rays stay
  * evenly spaced in cells and the pair carries no Jacobian, and a finer grid does not remove what
- * that leaves. On catalog corners it is within 0.003 up to 55 % of the cutoff, and reaches 0.009
- * near the cutoff, where MTF is under 0.05, on a 55° f/8 corner whose pitch varies 20 %.
+ * that leaves. On a tested f/8 corner the difference from optical-path quadrature persists at
+ * about 0.025 at 100 lp/mm even on a 512-cell grid.
  *
  * A pair whose centre has no ray, because a gap in the beam separates its ends, has no landing
  * errors between them, so the mean of the two ends stands in. The overlap (the aberration-free

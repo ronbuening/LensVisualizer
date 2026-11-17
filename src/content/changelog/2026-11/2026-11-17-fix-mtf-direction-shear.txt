@@ -1,0 +1,1 @@
+Diffraction MTF uses traced optical path and the pupil’s image-space directions on resolved fields, improving high-frequency contrast estimates away from the center. Field notes identify wavelengths that use the ray-slope approximation.

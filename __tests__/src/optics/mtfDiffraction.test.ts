@@ -4,7 +4,12 @@ import { describe, expect, it } from "vitest";
 import { shearedOtf } from "../../../src/optics/analysis/mtf/mtfShearedOtf.js";
 import { geometricOtf, otfMagnitude } from "../../../src/optics/analysis/mtf/mtfMath.js";
 import type { ComplexOtf } from "../../../src/optics/analysis/mtf/mtfMath.js";
-import { mtfWaveLattice, waveLatticeOtf, waveLatticePhaseStep } from "../../../src/optics/analysis/mtf/mtfWavefront.js";
+import {
+  mtfWaveLattice,
+  qualifiedWaveOtf,
+  waveLatticeOtf,
+  waveLatticePhaseStep,
+} from "../../../src/optics/analysis/mtf/mtfWavefront.js";
 import type { MtfWaveLattice } from "../../../src/optics/analysis/mtf/mtfWavefront.js";
 import { traceMtfFieldPupil } from "../../../src/optics/analysis/mtf/mtfTracing.js";
 import type { MtfBundle } from "../../../src/optics/analysis/mtf/mtfTracing.js";
@@ -582,6 +587,20 @@ describe("analytic wave-optics controls", () => {
       expect(Math.abs(otf[cut].real[0] + expected)).toBeLessThan(0.002);
       expect(Math.abs(otf[cut].imaginary[0])).toBeLessThan(0.002);
     }
+  });
+  it("qualifies a mapped pupil before returning its complex OTF and diffraction limit", () => {
+    const lattice = mappedWaveLattice(0.12, 0.08, unaberrated);
+    const response = qualifiedWaveOtf(lattice, wavelengthMm, [0, 0.5 * cutoff])!;
+    for (const cut of ["sagittal", "tangential"] as const) {
+      expect(response[cut].real[1]).toBeCloseTo(circularMtf(0.5), 2);
+      expect(response.limit[cut]).toEqual(response[cut].real);
+      expect(response[cut].imaginary).toEqual([0, 0]);
+    }
+    for (let cell = 0; cell < lattice.pathMm.length; cell++) lattice.pathMm[cell] = ((cell % 2) * wavelengthMm) / 4;
+    expect(qualifiedWaveOtf(lattice, wavelengthMm, [50])).toBeNull();
+    lattice.pathMm.fill(0);
+    lattice.cosineY.fill(0);
+    expect(qualifiedWaveOtf(lattice, wavelengthMm, [50])).toBeNull();
   });
   it("accepts a radially mapped cat's-eye pupil without using folded dark padding", () => {
     const scale = 0.08;

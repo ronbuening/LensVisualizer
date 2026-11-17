@@ -942,7 +942,9 @@ describe("MTF pupil sampling", () => {
       expect(refined.status).toBe("converged");
       expect(refined.gridSize).toBe(128);
       expect([refined.unaimedRays, refined.unresolvedInBeamRays]).toEqual([0, 0]);
-      expect(refined.notes).toEqual([]);
+      expect(refined.notes).toEqual(
+        method === "geometric" ? [] : [expect.stringContaining("ray-slope diffraction estimate")],
+      );
     }
     // A bundle traced directly carries the same counts.
     unaimedCells.at = namedPairs([1], [32]);

@@ -43,6 +43,7 @@ import type { MtfBundle, MtfFieldLaunch, MtfOpenBorders } from "./mtfTracing.js"
 import type { AimedStopLattice } from "../pupils/aimedPupil.js";
 import { expandMtfFootprint } from "./mtfFootprint.js";
 import type { MtfFootprint } from "./mtfFootprint.js";
+import { mtfWaveLattice, qualifiedWaveOtf } from "./mtfWavefront.js";
 import { shearedOtf } from "./mtfShearedOtf.js";
 import { findAxialBestFocus, mtfImagePlaneOffset, mtfNearestImagePlaneZ } from "./mtfFocus.js";
 import { traceWorkingFNumber } from "../summary/fNumbers.js";
@@ -284,6 +285,8 @@ function* fieldAtGrid(
   const limits: WeightedLimit[] = [];
   /** Largest share of any wavelength's overlap that comes from pairs straddling a gap in the beam. */
   let straddling = 0;
+  const approximateLines: number[] = [];
+  const opticalPath = options.method === "diffraction" && context.frequencies.some((f) => f > 0);
   let commonReference: MtfSpot | undefined;
   /** Whether the reference wavelength's chief ray is stopped by a clear aperture. */
   let chiefClipped: boolean | undefined;
@@ -297,6 +300,7 @@ function* fieldAtGrid(
       bundle = traceMtfStopBundle(state, options, support, launch, size, line, context.imagePlaneZ, {
         reference: commonReference,
         coarse: sampling.lattices.get(index),
+        opticalPath,
       });
       if (bundle?.lattice) sampling.lattices.set(index, bundle.lattice);
     } else {
@@ -309,7 +313,7 @@ function* fieldAtGrid(
         size,
         line,
         context.imagePlaneZ,
-        { reference: commonReference },
+        { reference: commonReference, opticalPath },
       );
     }
     if (!bundle) return unavailable("chief-ray-failed", "No valid chief ray reaches the image plane.");
@@ -346,14 +350,21 @@ function* fieldAtGrid(
     const weight = line.weight * transmitted;
     if (options.method === "diffraction") {
       // Every wavelength shears its own lattice; one image reference keeps lateral color in the phase.
-      const sheared = shearedOtf(bundle, commonReference, line.wavelengthNm * 1e-6, context.frequencies);
-      sagittal.push({ otf: sheared.sagittal, weight });
-      tangential.push({ otf: sheared.tangential, weight });
-      limits.push({ ...sheared.limit, weight });
-      // Judged where convergence is: above the band, sampling noise outweighs it.
-      sheared.straddling.forEach((share, i) => {
-        if (context.frequencies[i] <= MTF_CONVERGENCE_BAND_LPMM) straddling = Math.max(straddling, share);
-      });
+      const wavelengthMm = line.wavelengthNm * 1e-6;
+      const lattice = opticalPath && mtfWaveLattice(bundle, commonReference, context.imagePlaneZ);
+      const mirrored = bundle.mirrored && commonReference.x === 0 && target.fieldAngleDeg !== 0;
+      let response = lattice ? qualifiedWaveOtf(lattice, wavelengthMm, context.frequencies, mirrored) : null;
+      if (!response) {
+        const approximation = shearedOtf(bundle, commonReference, wavelengthMm, context.frequencies);
+        response = approximation;
+        if (opticalPath) approximateLines.push(line.wavelengthNm);
+        approximation.straddling.forEach((share, i) => {
+          if (context.frequencies[i] <= MTF_CONVERGENCE_BAND_LPMM) straddling = Math.max(straddling, share);
+        });
+      }
+      sagittal.push({ otf: response.sagittal, weight });
+      tangential.push({ otf: response.tangential, weight });
+      limits.push({ ...response.limit, weight });
       continue;
     }
     // One translation for the entire spectrum preserves lateral color and a common physical plane.
@@ -386,6 +397,10 @@ function* fieldAtGrid(
   }
   if (unresolved.note) field.notes.push(unresolved.note);
   if (chiefClipped) field.notes.push(MTF_CLIPPED_CHIEF_NOTE);
+  if (approximateLines.length)
+    field.notes.push(
+      `The direction-space pupil could not be resolved at ${approximateLines.map((nm) => nm.toFixed(1)).join(", ")} nm. These wavelengths use the approximate ray-slope diffraction estimate.`,
+    );
   if (straddling > MTF_STRADDLING_NOTE_SHARE)
     field.notes.push(
       `${(straddling * 100).toFixed(1)}% of the sheared ray pairs straddle a gap in the transmitted beam; the diffraction estimate approximates their phase.`,

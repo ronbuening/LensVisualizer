@@ -2,9 +2,9 @@
  * Wave-optics OTF of a traced beam from optical path, on the bundle's lattice. Lengths are mm,
  * phases are not wrapped.
  *
- * This is the reference the tests and the chart report hold the sheared-ray estimator against,
- * not a product path: it reads optical path where the estimator reads ray landings, so the two
- * share only the ray trace. It needs the phase to turn by less than a quarter wave from one
+ * The qualified product and the optical-path diagnostic use the same mapped pupil. Comparison
+ * with external quadrature and analytic pupils checks the integration independently. Production
+ * requires the phase to turn by less than a quarter wave from one
  * lattice cell to the next (`waveLatticePhaseStep`) and an invertible direction map. Fast or
  * strongly aberrated beams exceed the phase limit at any practical grid.
  */
@@ -116,7 +116,10 @@ export function mtfWaveLattice(bundle: MtfBundle, reference: MtfSpot, imagePlane
  * @returns largest neighbour step in waves, or infinity for a noninvertible direction map
  */
 export function waveLatticePhaseStep(lattice: MtfWaveLattice, wavelengthMm: number): number {
-  if (waveMesh(lattice) === null) return Infinity;
+  return waveMesh(lattice) === null ? Infinity : neighbourPhaseStep(lattice, wavelengthMm);
+}
+
+function neighbourPhaseStep(lattice: MtfWaveLattice, wavelengthMm: number): number {
   const { columns, rows, amplitude, pathMm } = lattice;
   let step = 0;
   for (let row = 0; row < rows; row++)
@@ -167,28 +170,19 @@ function waveMesh(lattice: MtfWaveLattice): WaveMesh | null {
       mesh.cosineX[cell] = lattice.cosineX[source];
       mesh.cosineY[cell] = lattice.cosineY[source];
     }
-  // Local linear extrapolation uses the nearest measured slope at a rim, not a whole-line average.
-  const extend = (start: number, stride: number, length: number) => {
-    const lit: number[] = [];
-    for (let slot = 0; slot < length; slot++) if (known[start + slot * stride]) lit.push(slot);
-    if (lit.length < 2) return false;
-    let right = 1;
-    for (let slot = 0; slot < length; slot++) {
-      const cell = start + slot * stride;
+  // Only the one-cell ring can bound a lit triangle or enter a lit Jacobian. Fit its two
+  // cosines to nearby measured directions in both axes; extending a whole column before
+  // extending a row biases the rim when an axial pupil is exchanged with its transpose.
+  for (let row = 0; row < rows; row++)
+    for (let column = 0; column < columns; column++) {
+      const cell = row * columns + column;
       if (known[cell]) continue;
-      while (right < lit.length - 1 && lit[right] < slot) right++;
-      const low = lit[right - 1];
-      const high = lit[right];
-      const fraction = (slot - low) / (high - low);
-      for (const coordinate of [mesh.cosineX, mesh.cosineY])
-        coordinate[cell] =
-          coordinate[start + low * stride] * (1 - fraction) + coordinate[start + high * stride] * fraction;
+      let touchesPupil = false;
+      for (let r = Math.max(0, row - 1); r <= Math.min(rows - 1, row + 1); r++)
+        for (let c = Math.max(0, column - 1); c <= Math.min(columns - 1, column + 1); c++)
+          touchesPupil ||= known[r * columns + c] === 1;
+      if (touchesPupil && !extendDirection(mesh, known, row, column)) return null;
     }
-    for (let slot = 0; slot < length; slot++) known[start + slot * stride] = 1;
-    return true;
-  };
-  for (let column = 1; column < columns - 1; column++) extend(column, columns, rows);
-  for (let row = 0; row < rows; row++) if (!extend(row * columns, 1, columns)) return null;
 
   const { cosineX: x, cosineY: y } = mesh;
   const cross = (a: number, b: number, c: number) => (x[b] - x[a]) * (y[c] - y[a]) - (y[b] - y[a]) * (x[c] - x[a]);
@@ -267,6 +261,55 @@ function waveMesh(lattice: MtfWaveLattice): WaveMesh | null {
       mesh.amplitude[cell] /= Math.sqrt(mesh.jacobian[cell]);
     }
   return mesh;
+}
+
+/** Extrapolate an affine direction map at a dark rim vertex from measured non-collinear neighbours. */
+function extendDirection(mesh: WaveMesh, known: Uint8Array, row: number, column: number): boolean {
+  const { rows, columns, cosineX, cosineY } = mesh;
+  for (const radius of [2, 4]) {
+    let n = 0,
+      sx = 0,
+      sy = 0,
+      sxx = 0,
+      sxy = 0,
+      syy = 0;
+    let qx = 0,
+      qy = 0,
+      xqx = 0,
+      yqx = 0,
+      xqy = 0,
+      yqy = 0;
+    for (let r = Math.max(0, row - radius); r <= Math.min(rows - 1, row + radius); r++)
+      for (let c = Math.max(0, column - radius); c <= Math.min(columns - 1, column + radius); c++) {
+        const k = r * columns + c;
+        if (!known[k]) continue;
+        const x = c - column,
+          y = r - row;
+        n++;
+        sx += x;
+        sy += y;
+        sxx += x * x;
+        sxy += x * y;
+        syy += y * y;
+        qx += cosineX[k];
+        qy += cosineY[k];
+        xqx += x * cosineX[k];
+        yqx += y * cosineX[k];
+        xqy += x * cosineY[k];
+        yqy += y * cosineY[k];
+      }
+    // First row of the inverse normal matrix for the fitted constant at (0, 0).
+    const a = sxx * syy - sxy * sxy,
+      b = sy * sxy - sx * syy,
+      c = sx * sxy - sy * sxx;
+    const determinant = n * a + sx * b + sy * c;
+    if (!(determinant > 0)) continue;
+    const k = row * columns + column;
+    cosineX[k] = (a * qx + b * xqx + c * yqx) / determinant;
+    cosineY[k] = (a * qy + b * xqy + c * yqy) / determinant;
+    return true;
+  }
+  return false;
 }
 
 /** A mapped stop triangle, with its affine inverse for direction-coordinate lookups. */
@@ -357,41 +400,76 @@ export function waveLatticeOtf(
 ): { sagittal: ComplexOtf; tangential: ComplexOtf } {
   const mesh = waveMesh(lattice);
   if (mesh === null) throw new RangeError("Wave lattice illuminated direction map must be invertible");
+  const response = mappedOtf(mesh, lattice, wavelengthMm, frequencies);
+  return { sagittal: response.sagittal, tangential: response.tangential };
+}
+
+/** Production uses optical paths only on a resolved, one-to-one direction map. */
+export function qualifiedWaveOtf(
+  lattice: MtfWaveLattice,
+  wavelengthMm: number,
+  frequencies: readonly number[],
+  mirrored = false,
+) {
+  if (!(neighbourPhaseStep(lattice, wavelengthMm) < 0.25)) return null;
+  const mesh = waveMesh(lattice);
+  return mesh && mappedOtf(mesh, lattice, wavelengthMm, frequencies, mirrored && lattice.columns % 2 === 0);
+}
+
+/** Accumulate the zero-phase overlap on the same pairs and quadrature as the complex field. */
+function mappedOtf(
+  mesh: WaveMesh,
+  lattice: MtfWaveLattice,
+  wavelengthMm: number,
+  frequencies: readonly number[],
+  mirrored = false,
+) {
   const at = waveLookup(mesh);
   let energy = 0;
   for (const value of lattice.amplitude) energy += value * value;
-  const cut = (axis: "x" | "y"): ComplexOtf => {
+  // The tracer reconstructs the second half of a meridional pupil by reflection.
+  // The sagittal pairs there are complex conjugates and the tangential pairs identical.
+  const firstColumn = mirrored ? 1 + lattice.columns / 2 : 1;
+  const normalization = mirrored ? energy / 2 : energy;
+  const cut = (axis: "x" | "y") => {
+    const limit: number[] = [];
     const real: number[] = [],
       imaginary: number[] = [];
     for (const frequency of frequencies) {
       if (frequency === 0) {
+        limit.push(1);
         real.push(1);
         imaginary.push(0);
         continue;
       }
       const shear = frequency * wavelengthMm;
       let re = 0,
-        im = 0;
+        im = 0,
+        overlap = 0;
       for (let row = 1; row < mesh.rows - 1; row++)
-        for (let column = 1; column < mesh.columns - 1; column++) {
+        for (let column = firstColumn; column < mesh.columns - 1; column++) {
           const cell = row * mesh.columns + column;
           if (!(mesh.amplitude[cell] > 0)) continue;
           const x = mesh.cosineX[cell],
             y = mesh.cosineY[cell];
-          for (const sign of [-1, 1]) {
+          for (let sign = -1; sign <= 1; sign += 2) {
             const other = at(x + (axis === "x" ? sign * shear : 0), y + (axis === "y" ? sign * shear : 0));
             const pair = (mesh.jacobian[cell] * mesh.amplitude[cell] * other.amplitude) / 2;
             if (!(pair > 0)) continue;
             // A ray's landing offset is minus its path gradient over direction cosine, hence the sign.
             const phase = (sign * 2 * Math.PI * (other.pathMm - mesh.pathMm[cell])) / wavelengthMm;
+            overlap += pair;
             re += pair * Math.cos(phase);
             im += pair * Math.sin(phase);
           }
         }
-      real.push(re / energy);
-      imaginary.push(im / energy);
+      limit.push(Math.min(1, overlap / normalization));
+      real.push(re / normalization);
+      imaginary.push(mirrored && axis === "x" ? 0 : im / normalization);
     }
-    return { real, imaginary };
+    return { otf: { real, imaginary }, limit };
   };
-  return { sagittal: cut("x"), tangential: cut("y") };
+  const x = cut("x"),
+    y = cut("y");
+  return { sagittal: x.otf, tangential: y.otf, limit: { sagittal: x.limit, tangential: y.limit } };
 }
