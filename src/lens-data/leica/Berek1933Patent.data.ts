@@ -1,8 +1,20 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * US 1,899,934 A (Max Berek, Ernst Leitz, granted 1933), Figure 1 example, f/2.
+ * Radii, thicknesses, air spaces, nD and Abbe numbers are copied exactly as printed, with the table's own
+ * signs; the table is normalised to f = 100 (the computed EFL is 99.998 mm). No scaling is applied.
+ * Six spherical elements in four groups; L3/L4 and L5/L6 are the patent's two cemented members.
+ * Inferred, not printed: the iris position (placed in the 7.56 mm air space behind the cemented negative
+ * member, 6.5 mm behind r7 and 1.06 mm ahead of r8), all clear semi-diameters, and the back focus (the
+ * computed paraxial infinity value). The patent states no focal length, field angle or close-focus data.
+ * The concave r7 face would reach 7.41 mm behind its vertex at its 23 mm rim, past the inferred iris plane, so
+ * its rim is cut flat at the iris plane (6.5 mm, cut radius 21.68 mm); no traced beam reaches that radius.
+ */
 const LENS_DATA = {
   schema: 2,
   key: "leitz-berek-us1899934-fig1-patent-reference",
-  maker: "Leitz",
+  maker: "Leica",
   name: "LEITZ / BEREK f/2 PATENT REFERENCE",
   subtitle: "FIGURE 1 \u2014 HIDDEN QUALIFIED REFERENCE",
   visible: false,
@@ -11,21 +23,21 @@ const LENS_DATA = {
     elementCount: 6,
     groupCount: 4,
     focalLengthMm: {
-      design: 99.99753316176383,
+      design: 100,
     },
     fNumber: {
       design: 2,
     },
   },
   source: {
-    patentNumber: "US 1,899,934",
+    patentNumber: "US 1,899,934 A",
     example: {
       label: "Figure 1",
       id: "1",
     },
     patentYear: 1933,
     authors: ["Max Berek"],
-    assignees: ["Ernst Leitz Optische Werke GmbH"],
+    assignees: ["Ernst Leitz GmbH"],
     sdSource: "heuristic",
   },
   elements: [
@@ -55,6 +67,7 @@ const LENS_DATA = {
       nd: 1.689,
       vd: 31.2,
       indexReference: "D",
+      cemented: "D1",
     },
     {
       id: 4,
@@ -64,6 +77,7 @@ const LENS_DATA = {
       nd: 1.6034,
       vd: 38,
       indexReference: "D",
+      cemented: "D1",
     },
     {
       id: 5,
@@ -73,6 +87,7 @@ const LENS_DATA = {
       nd: 1.6034,
       vd: 38,
       indexReference: "D",
+      cemented: "D2",
     },
     {
       id: 6,
@@ -82,6 +97,7 @@ const LENS_DATA = {
       nd: 1.658,
       vd: 51.4,
       indexReference: "D",
+      cemented: "D2",
     },
   ],
   surfaces: [
@@ -130,6 +146,7 @@ const LENS_DATA = {
       R: 39.4,
       d: 6.5,
       sd: 23,
+      rimCutDepthMm: 6.5,
     },
     {
       label: "STO",
@@ -166,7 +183,10 @@ const LENS_DATA = {
     description: "Infinity-only patent reference with computed paraxial BFD; no retail identity.",
   },
   groups: [],
-  doublets: [],
+  doublets: [
+    { text: "D1", fromSurface: "5", toSurface: "7" },
+    { text: "D2", fromSurface: "8", toSurface: "10" },
+  ],
   layout: {
     yScFill: 0.4,
   },
