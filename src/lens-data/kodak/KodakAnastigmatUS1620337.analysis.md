@@ -1,4 +1,4 @@
-# Kodak Frederick–Altman f/2 Projection Objective — US 1,620,337 A
+# KODAK ANASTIGMAT 100mm f/2 (US 1,620,337 Design)
 
 ## Patent Reference and Design Identification
 
@@ -10,9 +10,9 @@
 **Assignee:** Eastman Kodak Company  
 **Example details:** the single numerical example, printed twice: as a table on the drawing sheet (with signed radii) and in the specification (radii as magnitudes only); "aperture = F/2; focal length = 100"
 
-The patent describes an objective "more particularly" for projection: wide aperture, well corrected over a narrow field. Its one worked example is a four-element, four-group f/2 lens at a normalised focal length of 100, computed for a field of 7° from the axis. The specification says that within that field the lens is corrected for spherical and chromatic aberration, astigmatism, coma and flatness of field. The data file transcribes this example at the patent's own scale. It is not scaled to a production focal length.
+The patent describes an objective "more particularly" for projection: wide aperture, well corrected over a narrow field. Its one worked example is a four-element, four-group f/2 lens with a focal length of 100, computed for a field of 7° from the axis. The specification says that within that field the lens is corrected for spherical and chromatic aberration, astigmatism, coma and flatness of field.
 
-The model is a patent reference. Kodak marked production lenses with this patent number, but no production prescription has been published, so the model is not presented as a specific retail lens. The evidence:
+The KODAK ANASTIGMAT 100mm f/2 (US 1,620,337 Design) takes its name from the Kodak Anastigmat f/1.9 25 mm cine lens, which Kodak engraved with this patent number. No production prescription has been published, so the model is the patent's example rather than a measured production lens. The evidence:
 
 1. Both inventors, of Rochester, New York, assigned the patent to Eastman Kodak Company.
 2. A Kodak Anastigmat f/1.9 25 mm cine-camera lens in the Ingenium collection (artifact 2010.0223.001) is engraved "U.S.A. PAT. NOS. 1,620,337 - 1,690,607". The second number, US 1,690,607 (Otto Wittel, Kodak, 1928), covers a focusing objective mount, so the optical patent on that lens is this one.
@@ -75,7 +75,7 @@ The patent prints, for each glass, the index for the D line and the G′ line to
 | Barium crown | 1.61088 | 1.62448 | 57.2 | L1, L4 | positive collectors |
 | Dense flint | 1.61680 | 1.63920 | 36.4 | L2, L3 | negative achromatising lenses |
 
-The data file stores the D index and ν, marked as D-line values (sodium, 589.3 nm), which is how the patent labels them. Neither pair matches a current catalogue glass at the D or d line, and the 1920s melts are not identified, so no catalogue glass is named. The G′ indices (434.0 nm) are not stored, because the file format has no G′ field. Colour in the model therefore follows the printed ν, not a fitted dispersion curve.
+The data file stores the D index and ν, marked as D-line values (sodium, 589.3 nm), which is how the patent labels them. Neither pair matches a current catalogue glass at the D or d line, and the 1920s melts are not identified, so both glasses are labelled as unmatched with their printed values. The G′ indices (434.0 nm) are not stored, because the file format has no G′ field. Colour in the model therefore follows the printed ν, not a fitted dispersion curve.
 
 The pairing is a conventional achromatising choice. The crown and flint have almost the same index (a difference of 0.006) but very different ν. With nearly equal indices, the Petzval sum depends almost only on how power is split between the positive and negative lenses, so field flattening comes from the spacing and bending of the lenses rather than from an index difference.
 
@@ -83,12 +83,12 @@ The pairing is a conventional achromatising choice. The crown and flint have alm
 
 The patent gives only the infinity-conjugate prescription and says nothing about focusing. A projector lens is focused by moving the whole objective. The model is therefore infinity-only, with no internal spacing change, and the image plane is the computed paraxial back focus of 74.34 behind R8. The patent prints no back focus.
 
-## Verification Summary
+## Model Scope and Limitations
 
-- Every printed radius, thickness, air space, D index and ν was checked against the page images of both the drawing sheet and the specification table. The model matches them exactly. Radius signs come from the drawing-sheet table and agree with the figure.
+- Radii, thicknesses, air spaces, D indices and ν are the patent's printed values. Radius signs come from the drawing-sheet table and agree with the figure.
 - Computed D-line focal length: 100.08 against the printed 100 (+0.08 %). Total length from R1 to R8: 54.70. Paraxial back focus: 74.34.
 - The diaphragm is not printed: the figure shows none and a projection lens of this kind usually has no iris. The model places a stop at the middle of S2, 9.0 behind R4. At f/2 its paraxial semi-diameter is 20.93, for an entrance-pupil radius of 25.02.
-- Clear semi-diameters are not printed and are estimated: 26 for R1 and R8, 22.9 and 22.8 for R2 and R3, 23 for R4 and R5, and 21 for R6 and R7. R2 and R3 are set just high enough to pass the f/2 axial beam, short of the 23.9 mm height where L1 and L2 meet. The renderer's cross-gap allowance is raised slightly (to 0.91 of S1) because the patent states that these lenses touch at their edges.
+- Clear semi-diameters are not printed and are estimated: 26 for R1 and R8, 22.9 and 22.8 for R2 and R3, 23 for R4 and R5, and 21 for R6 and R7. R2 and R3 are set just high enough to pass the f/2 axial beam, short of the 23.9 mm height where L1 and L2 meet. Because the patent states that these lenses touch at their edges, the drawing lets the two surfaces come slightly closer across S1 than it normally allows (0.91 of the gap instead of 0.9).
 - At the patent's 7° semi-field (image height 12.3), no surface blocks the chief ray. The estimated rims cut part of the oblique beam, about 12–13 % on one side at R2 and R3.
 
 ## Sources

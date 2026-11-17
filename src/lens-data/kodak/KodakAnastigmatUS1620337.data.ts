@@ -2,12 +2,14 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * US 1,620,337 A (Charles W. Frederick and Fred E. Altman, Eastman Kodak Company; filed 1923, granted 1927),
- * the patent's only numerical example: a four-element, air-spaced f/2 projection objective at the patent's own
- * normalised scale (focal length 100), unscaled.
+ * the patent's only numerical example: a four-element, air-spaced f/2 projection objective with the printed focal
+ * length of 100. Kodak engraved this patent number on its Kodak Anastigmat f/1.9 25 mm cine lens and on a Kodascope
+ * projection lens; no production prescription is published.
  *
  * Printed and transcribed as published: radii R1-R8 (signs from the drawing-sheet table; the specification table
  * prints magnitudes only), thicknesses T1-T4, air spaces S1-S3, and the D-line index and dispersive ratio of each
- * glass. The printed G′-line indices (1.62448 crown, 1.63920 flint) are not stored.
+ * glass. The printed G′-line indices (1.62448 crown, 1.63920 flint) are not stored, and neither glass matches a
+ * catalogue row.
  *
  * Inferred: the stop, placed at the middle of the 18.0 central space (neither the figure nor the text shows one);
  * every clear semi-diameter; and the image plane, which is the computed paraxial back focus at the D line.
@@ -19,14 +21,14 @@ const LENS_DATA = {
   key: "kodak-anastigmat-100mm-f2-us1620337",
   maker: "Kodak",
   name: "KODAK ANASTIGMAT 100mm f/2 (US 1,620,337 Design)",
-  subtitle: "1927 PROJECTION EXAMPLE; HIDDEN QUALIFIED REFERENCE",
+  subtitle: "US 1,620,337 A, sole example — Kodak Anastigmat f/1.9 and Kodascope lenses",
   visible: true,
   catalog: {
     specs: [
       "4 ELEMENTS / 4 GROUPS",
-      "PATENT REFERENCE; RETAIL IDENTITY UNPROVED",
-      "ESTIMATED STOP AND RIMS",
-      "INFINITY ONLY",
+      "ALL SPHERICAL",
+      "DESIGN F/2",
+      "PROJECTION OBJECTIVE",
     ],
     elementCount: 4,
     groupCount: 4,
@@ -53,19 +55,23 @@ const LENS_DATA = {
       id: 1,
       name: "L1",
       label: "L1",
-      type: "Biconvex",
+      type: "Biconvex Positive",
       nd: 1.61088,
       vd: 57.2,
       indexReference: "D",
+      glass: "Unmatched (barium crown, nD 1.61088 / V 57.2)",
+      role: "Front positive collector of the front component",
     },
     {
       id: 2,
       name: "L2",
       label: "L2",
-      type: "Biconcave",
+      type: "Biconcave Negative",
       nd: 1.6168,
       vd: 36.4,
       indexReference: "D",
+      glass: "Unmatched (dense flint, nD 1.61680 / V 36.4)",
+      role: "Achromatising flint of the front component; touches L1 at the rim",
     },
     {
       id: 3,
@@ -75,15 +81,19 @@ const LENS_DATA = {
       nd: 1.6168,
       vd: 36.4,
       indexReference: "D",
+      glass: "Unmatched (dense flint, nD 1.61680 / V 36.4)",
+      role: "Achromatising flint of the rear component, concave toward L4; touches L4 at the rim",
     },
     {
       id: 4,
       name: "L4",
       label: "L4",
-      type: "Biconvex",
+      type: "Biconvex Positive",
       nd: 1.61088,
       vd: 57.2,
       indexReference: "D",
+      glass: "Unmatched (barium crown, nD 1.61088 / V 57.2)",
+      role: "Rear positive collector, identical to L1 and reversed",
     },
   ],
   surfaces: [
@@ -150,9 +160,8 @@ const LENS_DATA = {
     fStops: [2, 2.8, 4, 5.6, 8, 11, 16],
   },
   focus: {
-    closeFocusM: 1000000000000000.0,
-    description:
-      "Infinity-only reciprocal projection reference; computed paraxial BFD. Exact retail prescription not established.",
+    closeFocusM: 1e15,
+    description: "Infinity focus only; the patent gives no close-focus data.",
   },
   groups: [],
   doublets: [],
