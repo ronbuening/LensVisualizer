@@ -23,9 +23,22 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *
  * INFERRED: the patent prints no stop position and the drawing shows none. The iris is placed in the air space a3
  * between the negative member and the rear member, 8.4 mm behind r8 and 3.634 mm ahead of r9, a usual iris
- * position in triplet-derived designs of this kind. All clear semi-diameters are estimates; the patent prints no
- * diameters. The image distance is the computed paraxial back focus, 46.831 mm; the patent prints none. Infinity
- * focus only.
+ * position in triplet-derived designs of this kind. The image distance is the computed paraxial back focus,
+ * 46.831 mm; the patent prints none. Infinity focus only.
+ *
+ * SEMI-DIAMETERS: the patent prints no diameters. The values are read from the Figure 2 drawing, floor-checked by
+ * real-ray trace. Scale: 16.34 px/mm at 600 dpi from the r1-r11 vertex span; arc fits of r8 and r9 put the
+ * vertical scale within 2 % of the axial one.
+ *   - L1 (39.5) agrees with the drawing (about 39.2).
+ *   - Surfaces 3 and 4 stay at 38: the f/1.3 axial ray needs 36.3 at surface 3, above the drawn 35.2 front cap and
+ *     the 36.6 flat edge.
+ *   - Surface 5 is 34.9, where the drawn rear face ends in a small bevel.
+ *   - Surface 6 is 27.5, where the drawn front face ends in a chamfer (about 27.8).
+ *   - Surface 7, the cemented face, is 29.5, the drawn flat edge of the doublet.
+ *   - Surface 8 is 22.3. The drawing ends L5's concave cap at about 24.4, then bevels it out to the flange. At 22.3
+ *     the cap stays just ahead of the inferred stop plane (sag 8.35 mm against the 8.4 mm stop distance), so no
+ *     glass reaches behind the iris. That is within 9 % of the drawn reading.
+ *   - The rear doublet is drawn square-cut at about 24.6 on all three surfaces.
  */
 const LENS_DATA = {
   schema: 2,
@@ -173,7 +186,7 @@ const LENS_DATA = {
       label: "5",
       R: 445.72,
       d: 11.143,
-      sd: 33,
+      sd: 34.9,
     },
     {
       label: "6",
@@ -186,14 +199,14 @@ const LENS_DATA = {
       label: "7",
       R: -40.828,
       d: 5.349,
-      sd: 27.5,
+      sd: 29.5,
       medium: 5,
     },
     {
       label: "8",
       R: 33.963,
       d: 8.4,
-      sd: 27.5,
+      sd: 22.3,
     },
     {
       label: "STO",
@@ -204,21 +217,21 @@ const LENS_DATA = {
       label: "9",
       R: 62.846,
       d: 4.457,
-      sd: 22.5,
+      sd: 24.6,
       medium: 6,
     },
     {
       label: "10",
       R: 54.734,
       d: 12.48,
-      sd: 22.5,
+      sd: 24.6,
       medium: 7,
     },
     {
       label: "11",
       R: -69.71,
       d: 46.83135705853188,
-      sd: 22.5,
+      sd: 24.6,
     },
   ],
   aperture: {

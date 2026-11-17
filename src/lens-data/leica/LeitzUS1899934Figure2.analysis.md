@@ -92,7 +92,16 @@ The single claim states four conditions. Figure 2 satisfies each at its printed 
 
 The patent gives no stop position, and neither figure draws a diaphragm. The model places the iris in the air space a3, 8.4 mm behind r8 and 3.634 mm ahead of r9. This is an inference: a3 is the usual iris position in triplet-derived designs of this kind. The iris radius, 20.36 mm wide open, is set so that the paraxial entrance pupil gives f/1.3; at that radius the iris clears the concave r8 face by 1.63 mm. Real rays at the very edge of the f/1.3 pupil reach the stop plane slightly higher (21.17 mm) because of pupil aberration, so about the outer 3% of the pupil radius is stopped.
 
-The patent prints no diameters. All clear semi-diameters are estimates that pass the full f/1.3 axial beam. The patent drawing suggests somewhat larger diameters for the negative and rear members than the model uses.
+The patent prints no diameters. The clear semi-diameters are read from the Figure 2 drawing, which is to scale along the axis, and every one passes the full f/1.3 axial beam:
+
+- The front meniscus is drawn at about 39 mm.
+- The front doublet's front faces stay at 38 mm. The real f/1.3 marginal ray needs 36.3 mm at r3, slightly more than the 35.2 mm the drawing gives its front cap.
+- The front doublet's rear face ends at 34.9 mm in a small bevel.
+- The negative member's front face ends at 27.5 mm in a chamfer, and its cemented face reaches the drawn edge at 29.5 mm.
+- The deep concave face r8 is kept to 22.3 mm, so that its rim stays ahead of the inferred iris plane. The drawing ends that cap near 24.4 mm and bevels it out to the flange.
+- The rear doublet is drawn square-cut at 24.6 mm.
+
+With these rims, the chief ray clears every surface out to about 18.5° off axis. L1's rim is the first to stop it.
 
 The patent prints no back focus. The image plane is the computed paraxial back focus, 46.83 mm behind r11. The patent also states no picture angle or format, so the default half-field shown is computed from the model's geometry, not taken from the patent.
 

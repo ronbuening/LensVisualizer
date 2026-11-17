@@ -38,8 +38,8 @@
 - Name, subtitle and specs wording: "PATENT REFERENCE", "HIDDEN QUALIFIED REFERENCE", "PATENT ONLY; NO RETAIL MATCH". (Closed 2026-11-17.)
 - `focus.description` wording ("BFD", "retail identity"). (Closed 2026-11-17.)
 - Optional glass labels for the five printed nD/ν pairs. (Closed 2026-11-17: two catalogue equivalents, three Unmatched.)
-- Rims against the drawing (8.17 px/mm along the axis). The drawing reads about L1 39.4, L2/L3 36.7 (the model's s5 at 33 cuts the drawn full-height r5), L4/L5 29.5 and L6/L7 24.6. The model has 39.5, 38/38/33, 27.5 and 22.5. With the drawn rear rims, vignetting at 12.2° falls to 12–17%.
-- The drawing bevels L5's rear face at about 24 mm, while the model's r8 rim at 27.5 mm reaches 14.0 mm behind its vertex. That is past the stop plane, but outside the iris stroke.
+- Rims against the drawing (8.17 px/mm along the axis). The drawing reads about L1 39.4, L2/L3 36.7 (the model's s5 at 33 cuts the drawn full-height r5), L4/L5 29.5 and L6/L7 24.6. The model has 39.5, 38/38/33, 27.5 and 22.5. With the drawn rear rims, vignetting at 12.2° falls to 12–17%. (Closed 2026-11-17 by the semi-diameter pass below.)
+- The drawing bevels L5's rear face at about 24 mm, while the model's r8 rim at 27.5 mm reaches 14.0 mm behind its vertex. That is past the stop plane, but outside the iris stroke. (Closed 2026-11-17: r8 is now 22.3, ahead of the stop plane.)
 
 ## 2026-11-17 — Cleanup and wording pass
 
@@ -84,6 +84,61 @@ Hoya E-FL6 (ΔnD −0.00010) and E-FEL2 tie with the two Ohara rows; Ohara was u
 
 **Open:**
 
-- Rims against the drawing (L2/L3 ≈ 36.7 with s5 at 33, L4/L5 ≈ 29.5, L6/L7 ≈ 24.6), and the L5 rear bevel at about 24 mm. Both are listed above, for the semi-diameter pass.
+- Rims against the drawing (L2/L3 ≈ 36.7 with s5 at 33, L4/L5 ≈ 29.5, L6/L7 ≈ 24.6), and the L5 rear bevel at about 24 mm. Both are listed above, for the semi-diameter pass. (Closed 2026-11-17 by the semi-diameter pass below.)
 - No `imageFormat` or field angle: the patent states none.
 - The `fStops` list beyond f/1.3 is a model default, not printed by the patent.
+
+## 2026-11-17 — Semi-diameter pass against the patent figure
+
+**Source:** US1899934A.pdf, drawing sheet (page 1), Figure 2. It is the only drawing of this example and shows no stop.
+
+**Scale:** rendered at 600 dpi, with 1200 dpi crops of the corners.
+
+- The r1–r11 vertex span is 1,470–1,479 px for 90.47 mm, giving 16.34 px/mm.
+- A second span, r1 to r5 (34.31 mm), gives 16.35 px/mm.
+- Individual glass thicknesses are drawn about 5 % thick and the air spaces 6–8 % thin, so drawn heights carry similar drafting noise.
+- Arc fits of r8 (radius 33.963 mm) and r9 (62.846 mm) through rim and axis points agree with the axial scale within 2 %, so the vertical scale matches.
+- The axis was taken as the midpoint of each doublet's flat top and bottom edges. Those midpoints agree within 1.5 px at 600 dpi.
+
+**Drawn readings:**
+
+- L1 tips: 39.1–39.2.
+- C1: flat edge 36.6, front cap r3 ending at 35.2 in a small chamfer, rear face r5 ending at 34.9 in a bevel.
+- C2: flat edge 29.3–29.7 (mean 29.5), front cap r6 ending at about 27.8 in a chamfer, cemented face r7 reaching the edge. The concave rear cap r8 ends at 24.4, about 10.4 mm behind its vertex, then a bevel runs forward to the flat edge.
+- C3: drawn square-cut at 24.6 on all three faces.
+
+**Changes (before → after):**
+
+- Surface 5: 33 → 34.9. The figure's rear-face cap end. The drawn rear step of C1 is 1.7 mm; the model's was 5 mm.
+- Surface 7: 27.5 → 29.5. The cemented face reaches the drawn flat edge. This also reproduces the drawn front chamfer from r6 at 27.5.
+- Surface 8: 27.5 → 22.3. The figure's cap end is 24.4. At 24.4 the cap would sit 2.0 mm behind the inferred stop plane, and the drawn iris housing (the smaller neighbouring rim) would cross L5's glass. 22.3 is the largest value whose sag (8.35 mm) stays ahead of the 8.4 mm stop distance, 8.6 % under the drawn reading. The old 27.5 put the rim 14.0 mm behind the vertex, past r9's vertex plane.
+- Surfaces 9, 10 and 11: 22.5 → 24.6. The rear doublet is drawn square-cut at this height.
+
+**Kept:**
+
+- Surfaces 1 and 2 at 39.5 (drawn 39.2).
+- Surfaces 3 and 4 at 38. The real f/1.3 marginal ray reaches 36.33 at surface 3, above the drawn 35.2 cap, so the ray floor governs. The drawn 36.6 edge is 3.7 % under the stored value.
+- Surface 6 at 27.5 (drawn cap end about 27.8).
+
+**Clearance and light:**
+
+- `audit:surface`: OK.
+- `audit:aperture`: no rim limit.
+- `clearap`: no `CLIPS-AXIAL` or `BLOCKS-CHIEF` at f/1.3. At 12.2° the rear doublet still vignettes 12–17 % of one side of the bundle, against 20–26 % before.
+- Corner illumination (the engine's vignetting curve; `rimcost --loo` against the committed file):
+  - 12.2°: 63.1 % → 68.3 %
+  - 10.2°: 73.8 % → 77.8 %
+  - 8.1°: 82.9 % → 84.8 %
+  - Worst loss at any field: 0.0 points.
+  - Restoring the old r8 rim wins back nothing.
+- Engine values are unchanged: half-field 19.64°, f/1.3, EFL 99.992 mm, iris radius 20.356 mm.
+- The drawn iris housing falls from 22.5 to 22.3, now just inside the air at the stop plane.
+- The chief ray clears every surface to about 18.5°, limited by L1's rim, as before.
+- `audit:image-circle` and `audit:field-coverage` still skip the lens (no image format).
+
+**Metadata:** no change. No production lens or format is documented. The table is the patent's own f = 100 normalisation, so no film format applies as built. The current name, "LEITZ 100mm f/1.3 (US 1,899,934 Figure 2 Design)", is a patent-design name; no product name exists to compare.
+
+**Open:**
+
+- The inferred stop sits inside the bowl of r8. The drawing's L5 cap and flange end about 10.4–10.7 mm behind r8, so an iris about 10.5 mm behind r8 (1.5 mm ahead of r9) would leave r8 free to take the drawn 24.4. Moving the stop is outside this pass.
+- `source.sdSource` still says "heuristic". The rims are now mostly figure readings, with surfaces 3 and 4 set by the ray floor. The coordinator may switch it to "figure-measured" or leave it.
