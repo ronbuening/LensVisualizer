@@ -3,7 +3,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * US 1,352,028 A (Frank E. Ross, assignor to Eastman Kodak Company; filed March 17, 1919, granted September 7, 1920),
  * Figure 1, the first of the patent's two numerical examples. Radii, thicknesses, the 3 mm air space, sodium D indices
  * and Abbe numbers are copied as printed, in millimetres at the patent's own scale (no scaling). The table prints radius
- * magnitudes only; the signs follow the Figure 1 drawing and the text's description of each lens.
+ * magnitudes only; the signs follow the Figure 1 drawing and the text's description of each lens. The dense flint of
+ * L1 and L3 matches F4 (Sumita) at the sodium D line (nD 1.61644 / νD 36.61) and at G′ (1.63871 against L3's printed
+ * 1.63883); the other three glasses have no exact catalog row and keep the patent's names in Unmatched labels.
  *
  * The patent also prints G′-line (434.05 nm) indices, which are not used here. Its stated focal length (98.02) and
  * Gauss points (6.007 behind R1, 7.728 ahead of R7) are G′-line values: the table reproduces them (98.03, 6.006,
@@ -20,14 +22,15 @@ const LENS_DATA = {
   key: "kodak-98mm-f7-us1352028",
   maker: "Kodak",
   name: "KODAK 98mm f/7 (US 1,352,028 Design)",
-  subtitle: "1919 DESIGN / 1920 GRANT \u2014 NO PRODUCTION MATCH",
+  subtitle: "US 1,352,028 A, Figure 1 \u2014 F. E. Ross wide-field anastigmat",
   visible: true,
   catalog: {
     specs: [
       "5 ELEMENTS / 2 GROUPS",
-      "PATENT-ONLY REFERENCE",
-      "ESTIMATED STOP AND RIMS",
-      "INFINITY ONLY"
+      "ALL SPHERICAL",
+      "DESIGN f = 98.02 mm",
+      "DESIGN F/7",
+      "60° FIELD"
     ],
     elementCount: 5,
     groupCount: 2,
@@ -68,6 +71,7 @@ const LENS_DATA = {
       nd: 1.6165,
       vd: 36.5,
       indexReference: "D",
+      glass: "F4 (SUMITA catalog equivalent; production supplier unspecified)",
       cemented: "C1",
       role: "Outer biconvex dense flint of the negative front triplet"
     },
@@ -79,8 +83,9 @@ const LENS_DATA = {
       nd: 1.5265,
       vd: 58.4,
       indexReference: "D",
+      glass: "Unmatched (nD 1.52650 / V 58.4, silicate crown)",
       cemented: "C1",
-      role: "Thick low-index crown meniscus at the centre of the front triplet"
+      role: "Thick low-index crown meniscus at the center of the front triplet"
     },
     {
       id: 3,
@@ -90,8 +95,9 @@ const LENS_DATA = {
       nd: 1.6165,
       vd: 36.5,
       indexReference: "D",
+      glass: "F4 (SUMITA catalog equivalent; production supplier unspecified)",
       cemented: "C1",
-      role: "Inner biconcave dense flint of the front triplet"
+      role: "Inner biconcave dense flint of the front triplet; the strongest negative element"
     },
     {
       id: 4,
@@ -101,8 +107,9 @@ const LENS_DATA = {
       nd: 1.5211,
       vd: 51.8,
       indexReference: "D",
+      glass: "Unmatched (nD 1.52110 / V 51.8, telescope flint)",
       cemented: "C2",
-      role: "Biconcave telescope flint of the positive rear doublet"
+      role: "Low-index negative flint of the positive rear doublet"
     },
     {
       id: 5,
@@ -112,8 +119,9 @@ const LENS_DATA = {
       nd: 1.61088,
       vd: 57.2,
       indexReference: "D",
+      glass: "Unmatched (nD 1.61088 / V 57.2, barium crown)",
       cemented: "C2",
-      role: "Biconvex barium crown of the rear doublet"
+      role: "Biconvex barium crown carrying the rear doublet's positive power"
     }
   ],
   surfaces: [
@@ -171,8 +179,8 @@ const LENS_DATA = {
     }
   ],
   focus: {
-    closeFocusM: 1000000000000000.0,
-    description: "Infinity-only historical patent reference; no sourced finite focus motion."
+    closeFocusM: 1e15,
+    description: "Infinity focus only; the patent gives no close-focus data."
   },
   aperture: {
     nominalFNumber: 7,
@@ -188,12 +196,12 @@ const LENS_DATA = {
   groups: [],
   doublets: [
     {
-      text: "C1 triplet",
+      text: "C1",
       fromSurface: "1",
       toSurface: "4"
     },
     {
-      text: "C2 doublet",
+      text: "C2",
       fromSurface: "5",
       toSurface: "7"
     }
