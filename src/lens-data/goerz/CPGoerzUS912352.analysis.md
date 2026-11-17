@@ -87,7 +87,7 @@ The US text calls the second quantity "refractive power". Read as focal power, t
 
 Seven of the eight radii match reciprocals of round curvatures to within 0.001 mm: 1/0.023, 1/0.0142, 1/0.0179, 1/0.0061, 1/0.024, 1/0.024 and 1/0.0128. r8 (−34.439 mm) does not, so it was probably solved last to make the focal length exactly 100. The printed values give f = 100.0016, within 0.002 % of the stated 100.
 
-**Clear apertures.** The patent prints no lens diameters. The model uses a common 15 mm semi-diameter on every lens surface. At full aperture the axial marginal ray reaches 14.29 mm on r1, so the axial beam passes. The drawing shows the lenses slightly smaller, about 14.4 mm, with L1's edge about 1.3 mm thick against the model's 0.92 mm.
+**Clear apertures.** The patent prints no lens diameters. The model uses a common 15 mm semi-diameter on every lens surface. At full aperture the axial marginal ray reaches 14.29 mm on r1, so the axial beam passes. The to-scale drawing shows all four lenses square-cut at one height of about 14.2 mm, which is close to that axial beam. The model's rims are therefore about 5 % larger than drawn. As a result, the model's L1 edge is 0.91 mm thick, against about 1.4 mm at the drawn height, and L4's edge is 0.81 mm against about 1.3 mm.
 
 **Off-axis light.** The patent states no field angle. At full aperture the 15 mm rims vignette the off-axis bundle heavily:
 
@@ -95,7 +95,7 @@ Seven of the eight radii match reciprocals of round curvatures to within 0.001 m
 - **20° off axis:** the lower edge of the bundle no longer gets through.
 - **25° and beyond:** only a narrow bundle around the chief ray passes.
 
-The chief ray itself passes without obstruction to 31.3° off axis. This vignetting is what one expects from an f/3.5 portrait-speed objective of 1908 mounted with rims this close to the axial beam.
+The chief ray itself passes without obstruction to about 31.8° off axis. Beyond that, the rear lens (r7, r8) stops it. This vignetting is what one expects from an f/3.5 portrait-speed objective of 1908 mounted with rims this close to the axial beam.
 
 ## Design Heritage and Context
 

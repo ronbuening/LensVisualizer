@@ -50,7 +50,7 @@ Model checks at authoring: no schema errors and no rendered edge trimmed by more
 - Name, subtitle and specs keep package wording: "PATENT REFERENCE", "PATENT-ONLY REFERENCE", "ESTIMATED STOP AND RIMS", "NO PRODUCTION MATCH". "No documented production match" would be more exact. (Closed 2026-11-17: the name was set by the coordinator; subtitle and specs were reworded in the cleanup pass.)
 - The key keeps its delivered form. (Closed 2026-11-17: the key and file names were renamed by the coordinator.)
 - The branch's `scripts/maker-prefixes.mjs` has no GOERZ prefix. The open AddLens261124 branch adds one ("GOERZ" → C. P. Goerz, `goerz/`), so this file should land with or after that branch. (Closed 2026-11-17: the maker prefix is handled by the coordinator.)
-- Rims vs figure, for the SD pass: the to-scale drawing shows semi-diameters of about 14.35–14.4 mm on all four lenses, against the model's 15 mm. The drawn L1 edge is about 1.3 mm thick, the model's 0.92 mm. A 14.4 mm rim would still clear the 14.29 mm axial beam on r1. `sdSource` stays "heuristic" until then.
+- Rims vs figure, for the SD pass: the to-scale drawing shows semi-diameters of about 14.35–14.4 mm on all four lenses, against the model's 15 mm. The drawn L1 edge is about 1.3 mm thick, the model's 0.92 mm. A 14.4 mm rim would still clear the 14.29 mm axial beam on r1. `sdSource` stays "heuristic" until then. (Closed 2026-11-17 by the semi-diameter pass: the figure reads about 14.2 mm; 15 mm is kept.)
 - The drawn diaphragm sits about 5.8 ± 0.3 mm behind r4, against the model's 6.0 mm. That is within drawing precision, so no change.
 - The glass class labels in the analysis (dense barium crown, flint, light flint) are inferred from nD and ν only. No factory glass is identified.
 - Patent file: `patents/US912352A.pdf`.
@@ -98,6 +98,44 @@ The labels resolve to no catalogue glass (checked with `trylabel.mjs`), so the e
 
 **Open:**
 
-- Rims vs figure, for the SD pass: the drawing shows about 14.35–14.4 mm on all four lenses against the model's 15 mm, and L1's drawn edge is about 1.3 mm against the model's 0.92 mm.
+- Rims vs figure, for the SD pass: the drawing shows about 14.35–14.4 mm on all four lenses against the model's 15 mm, and L1's drawn edge is about 1.3 mm against the model's 0.92 mm. (Closed 2026-11-17: see the semi-diameter pass below.)
 - `aperture.fStops` runs to f/22 with no source for the series; it is the usual default stop list.
 - No product source for `lensMounts`, `imageFormat` or `catalog.closeFocusM.marketing`, so all three are left unset.
+
+## 2026-11-17 — Semi-diameter pass against the patent figure
+
+**Source.** US 912,352, the single figure on PDF page 1, rendered at 600 dpi. The scan is rotated by 1.18°, so every measurement was taken in a frame aligned with the drawn axis. Ink-stroke centres were used throughout.
+
+**Scale.**
+- Axial: the r1-to-r8 vertex span is 964 px for the printed 32.0 mm, giving 30.13 px/mm. Individual intervals agree with the table to within about 0.3 mm (d1 4.90 against 5.2, d6 3.52 against 3.6, d7 5.77 against 5.7).
+- Vertical: fitting arcs of the printed radii to r1, r2, r6 and r8 gives 30.3–31.1 px/mm (median 30.3; r7 reads 28.7). The drawing is therefore close to isotropic.
+- The diaphragm ticks sit about 5.6–5.8 mm behind r4 (5.75 mm at the axial scale, 5.6 mm as a fraction of the drawn d4). The model's stop at 6.0 mm is unchanged.
+
+**Figure reading.** All four lenses are drawn square-cut at one height, with half-heights of 428–430 px in the axis frame. That is 14.1–14.3 mm, about 14.2 mm, against the model's common 15 mm (ratio 0.95). Measurement uncertainty is about ±0.2 mm.
+
+**Decision: no change, all eight rims stay at 15 mm.**
+- The 5 % difference is inside the measurement-noise band for a change.
+- The drawn height sits at, or just under, the f/3.5 axial marginal ray on r1 (14.29 mm). The drawing was evidently made just large enough for the axial beam.
+- Cutting to the figure costs corner light beyond the 3-point allowance. A square 14.3 mm on every surface takes the engine vignetting curve at 12.2° from 92.7 % to 84.8 % (−7.9 points; 10.2° from 95.8 % to 89.3 %). Restoring L1 wins back 4.8 points and restoring L4 wins back 3.2 points.
+- The smallest common value within the allowance is 14.8 mm (−2.2 points at 12.2°; 14.7 mm costs −3.0). That is a 1 % change, not worth repainting.
+
+The header comment and the analysis now state the drawn height and the resulting edge thicknesses:
+
+| Edge thickness | At the drawn 14.2 mm | At the model's 15 mm |
+|---|---:|---:|
+| L1 | about 1.37 mm | 0.91 mm |
+| L4 | about 1.34 mm | 0.81 mm |
+
+**Clearance (unchanged rims):**
+- No `CLIPS-AXIAL`. The axial marginal ray is 14.29 mm on r1 and 14.11 on r2, against 15.
+- `audit:surface` OK; `audit:aperture` reports no rim limit.
+- `audit:image-circle` is skipped (no `imageFormat`); `audit:field-coverage` is skipped (the file is hidden).
+- Engine half-field 31.28° and f/3.5, the same before and after.
+- The chief ray passes unblocked to about 31.8°. At 32° it reaches 15.1 and 15.4 mm on r7 and r8, so it is blocked there.
+- The patent states no field angle.
+
+**Metadata.** Unchanged. The patent's f = 100 is a normalisation with no documented product, so no mount, format or image circle applies. The f/22 stop list stays as delivered.
+
+**Product name.** No source names a product for this example. The closest candidate is the Goerz Porträt-Celor f/3.5, known only from a forum quotation of a 1910 handbook. The name "C. P. GOERZ 100mm f/3.5 (US 912,352 Design)" correctly makes no product claim.
+
+**Overlay.** The model outline at the figure's scale over the rotated figure is kept outside the repository, in the session scratch folder as `sd/zschokke/overlay.png`. It shows the model rims about 0.8 mm above the drawn flats, with matching element shapes and spacing.

@@ -7,7 +7,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * νD is derived as (nD − 1)/(nF − nC). The printed G′ indices are not used by the model.
  * Inferred, not printed: the diaphragm at the middle of the 12.0 mm central air space (the
  * to-scale figure draws it about 5.8 mm behind r4), the common 15 mm clear semi-diameter, and the last
- * interval, which is the computed paraxial back focus at the D line. Infinity focus only.
+ * interval, which is the computed paraxial back focus at the D line. The figure draws all four lenses
+ * square-cut at one height of about 14.2 mm, close to the 14.29 mm f/3.5 axial beam on r1. The 15 mm rims
+ * are about 5 % larger; they are kept because smaller rims cut more off-axis light. Infinity focus only.
  */
 const LENS_DATA = {
   schema: 2,
