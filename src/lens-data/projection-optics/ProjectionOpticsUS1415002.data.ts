@@ -6,6 +6,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * focal length at F/2.2: a cemented front pair (equiconvex crown I, plano-concave flint II) and an air-spaced rear
  * pair (negative flint meniscus III, plano-convex crown IV). Four elements in three groups, all spherical.
  *
+ * LABELS: the elements carry the patent's lens numerals I to IV, and the FRONT and REAR brackets are the text's
+ * "front combination" (I + II) and "rear combination" (III + IV).
+ *
  * PRESCRIPTION: R, d, nD and V are as printed for F = 100 mm in the table on page 2 and on the drawing sheet; the
  * paraxial EFL is 99.998 mm. The table prints radius magnitudes only. Signs follow the drawing and the text
  * (equiconvex I, plano-concave II, convex-concave III, convex-plano IV); the patent's stated component focal lengths,
@@ -80,47 +83,55 @@ const LENS_DATA = {
   elements: [
     {
       id: 1,
-      name: "L1",
-      label: "Element 1",
+      name: "I",
+      label: "Element I",
+      diagramLabel: "I",
       type: "Biconvex Positive",
       nd: 1.516,
       vd: 63.8,
       indexReference: "D",
+      focalLengthMm: 57.18,
       glass: "Unmatched (crown, nD 1.5160 / V 63.8)",
       role: "Equiconvex crown of the cemented front pair; carries the pair's positive power",
       cemented: "C1"
     },
     {
       id: 2,
-      name: "L2",
-      label: "Element 2",
+      name: "II",
+      label: "Element II",
+      diagramLabel: "II",
       type: "Plano-Concave Negative",
       nd: 1.6182,
       vd: 36.4,
       indexReference: "D",
+      focalLengthMm: -92.38,
       glass: "Unmatched (flint, nD 1.6182 / V 36.4)",
-      role: "Flint cemented to L1; corrects the front pair's colour and spherical aberration",
+      role: "Flint cemented to lens I; corrects the front pair's colour and spherical aberration",
       cemented: "C1"
     },
     {
       id: 3,
-      name: "L3",
-      label: "Element 3",
+      name: "III",
+      label: "Element III",
+      diagramLabel: "III",
       type: "Negative Meniscus",
       nd: 1.6182,
       vd: 36.4,
       indexReference: "D",
+      focalLengthMm: -201.14,
       glass: "Unmatched (flint, nD 1.6182 / V 36.4)",
       role: "Strong flint meniscus of the rear pair; achromatizes it and, with the following air space, flattens the field"
     },
     {
       id: 4,
-      name: "L4",
-      label: "Element 4",
+      name: "IV",
+      label: "Element IV",
+      diagramLabel: "IV",
       type: "Plano-Convex Positive",
       nd: 1.516,
       vd: 63.8,
       indexReference: "D",
+      focalLengthMm: 110.68,
       glass: "Unmatched (crown, nD 1.5160 / V 63.8)",
       role: "Positive crown of the rear pair, plano face toward the film"
     }
@@ -186,7 +197,19 @@ const LENS_DATA = {
     nominalFNumber: 2.2,
     fStops: [2.2]
   },
-  groups: [],
+  projection: { kind: "rectilinear", fullFieldDeg: 16, maxTraceFieldDeg: 8 },
+  groups: [
+    {
+      text: "FRONT",
+      fromSurface: "1",
+      toSurface: "3"
+    },
+    {
+      text: "REAR",
+      fromSurface: "4",
+      toSurface: "7"
+    }
+  ],
   doublets: [
     {
       text: "C1",

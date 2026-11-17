@@ -20,9 +20,11 @@ The link to a production lens is weak. Projection Optics Company was founded in 
 
 The lens is a four-element, three-group Petzval-type objective with positive power in both halves:
 
-1. A cemented front pair: an equiconvex crown (I) cemented to a plano-concave flint (II). Its focal length is +135.86 mm, 1.359 F, against the patent's "approximately 1.36 times".
+1. A cemented front pair, the patent's "front combination": an equiconvex crown (I) cemented to a plano-concave flint (II). Its focal length is +135.86 mm, 1.359 F, against the patent's "approximately 1.36 times".
 2. A long air space of 28.094 mm.
-3. A rear pair of separate lenses: a strongly curved negative flint meniscus (III) and a plano-convex crown (IV), 5.595 mm apart. Together they have a focal length of +242.43 mm, 2.424 F, against the patent's "about 2.42 times".
+3. A rear pair of separate lenses, the "rear combination": a strongly curved negative flint meniscus (III) and a plano-convex crown (IV), 5.595 mm apart. Together they have a focal length of +242.43 mm, 2.424 F, against the patent's "about 2.42 times".
+
+The diagram labels the lenses I to IV, as the patent numbers them, and brackets the two combinations as FRONT and REAR.
 
 The patent says the front pair is corrected by itself for spherical aberration and colour. The weaker rear pair is also achromatized by itself, and its lens shapes and separations correct the whole system for spherical aberration, coma and flatness of field. The text adds that the glasses and shapes allowed the first air space to be shortened from 46.6 mm in Petzval's original to about 28.2 mm. The table and the drawing both print 28.094 mm, which the model uses.
 
@@ -34,25 +36,25 @@ No stop is printed or drawn. A projection lens of this type normally works at fu
 
 The table prints the radii without signs. The signs in the data file follow the drawing and the text: lens I is described as equiconvex, II as plano-concave, III as a "convex concavo" negative meniscus and IV as "convex plano". With these signs the model reproduces the printed focal length and both stated component ratios. The axial spherical aberration at F/2.2 also stays below 0.3 mm across the pupil, as expected for a corrected projection objective. Reversing the curvature of the rear pair would give a 189 mm system.
 
-### L1 / Lens I — Biconvex Positive (equiconvex)
+### Lens I — Biconvex Positive (equiconvex)
 
 `nd = 1.5160, νd = 63.8.` Glass: Unmatched (crown, nD 1.5160 / V 63.8). `f = +57.18 mm`.
 
 Lens I carries the front pair's positive power. Both faces have the common 57.111 mm radius, so the element is symmetric and is ground with a single tool. Its edge thickness at the 23 mm rim is 1.13 mm, consistent with the thin edge in the drawing.
 
-### L2 / Lens II — Plano-Concave Negative
+### Lens II — Plano-Concave Negative
 
 `nd = 1.6182, νd = 36.4.` Glass: Unmatched (flint, nD 1.6182 / V 36.4). `f = −92.38 mm`.
 
 Lens II is cemented to lens I on the shared 57.111 mm surface. Its rear face is plano. The concave cemented interface, with an index step of about 0.10, corrects the colour and spherical aberration of the front pair. Together with lens I it gives the +135.86 mm front component.
 
-### L3 / Lens III — Negative Meniscus
+### Lens III — Negative Meniscus
 
 `nd = 1.6182, νd = 36.4.` Glass: flint, the same as lens II. `f = −201.14 mm`.
 
 Lens III is the "very pronounced negative meniscus" of the text. Both faces bow toward the screen: the front face has the common 57.111 mm radius and the rear face the stronger 38.314 mm radius. It is only 3.141 mm thick on the axis but 5.98 mm at the rim. With the following air space it supplies the rear group's correction of field curvature and coma.
 
-### L4 / Lens IV — Plano-Convex Positive
+### Lens IV — Plano-Convex Positive
 
 `nd = 1.5160, νd = 63.8.` Glass: crown, the same as lens I. `f = +110.68 mm`.
 
@@ -78,7 +80,7 @@ The patent gives no focusing data, object distances or movements. The model is f
 - **Prescription.** Every radius, thickness, air space, index and V value is the printed one, and the drawing repeats the same values with the radii rounded to two decimals. The table itself misprints three row labels: γ3 for γ5, d7 for d4, and d7 for γ7. Each value is placed by its position.
 - **First order.** The paraxial focal length is 99.998 mm against the printed 100 mm, and the f-number is 2.2.
 - **Spherical aberration.** At F/2.2 the longitudinal spherical aberration is −0.09 mm at the rim of the pupil and at most −0.29 mm in the intermediate zones.
-- **Clear apertures.** The patent calls its drawing a full-size diagram. Calibrated against the printed thicknesses, the drawn diameters measure 46.2 to 46.6 mm, and every surface uses a 23 mm semi-diameter. The drawn edge thicknesses agree with the model's: 1.13 mm for I, 9.35 mm for II, 5.98 mm for III and 1.25 mm for IV. The F/2.2 axial ray reaches 22.73 mm on the front surface, so every rim passes the full axial beam.
+- **Clear apertures.** The patent calls its drawing a full-size diagram. Calibrated against the printed thicknesses, the drawn diameters measure 46.2 to 46.6 mm, and every surface uses a 23 mm semi-diameter. The drawn edge thicknesses agree with the model's: 1.13 mm for I, 9.35 mm for II, 5.98 mm for III and 1.25 mm for IV. The F/2.2 axial ray reaches 22.73 mm on the front surface, so no rim clips the full axial beam.
 - **Iris.** The model's iris is sized from the paraxial entrance pupil. A real marginal ray at that height reaches the iris at 19.12 mm, slightly above the 18.45 mm iris radius, so the outermost real rays of the F/2.2 bundle are stopped there. The real-ray working aperture is about F/2.27.
 - **Field and format.** The patent states no field. It describes lenses for theatre moving-picture projection, which in 1920 meant 35 mm film. The company's own trade listing describes its products as "projection lenses for 35mm theatre projectors" (*Motion Picture Herald*, Better Theatres guide, 1954). The data file therefore uses the 35 mm cinema format and the projection mount category. The format's 13.6 mm half-diagonal is a 7.7° half-field. At that corner the chief ray clears every rim, and the front rims trim about 12 % of the oblique bundle's width on each side. The viewer's default half-field of 28.5° follows from the rims and is not a patent claim.
 - **Aperture settings.** The quick-select aperture list holds only F/2.2. The patent shows no iris, and a projection lens of this kind works at full aperture; the aperture slider below that is a viewer convenience.

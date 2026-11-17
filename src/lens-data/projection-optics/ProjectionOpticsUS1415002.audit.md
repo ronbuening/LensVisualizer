@@ -182,7 +182,8 @@ Identical before and after this pass:
 - **Iris:** the paraxially sized iris trims the outermost real F/2.2 rays (about F/2.27).
 - **Rims:** for the semi-diameter pass, the drawing measures 23.1 to 23.3 mm against the model's 23 mm. (Closed
   2026-11-17: kept at 23 mm, within measurement noise.)
-- **Groups:** `groups` is empty. Front and rear group labels could be added if the viewer wants them.
+- **Groups:** `groups` is empty. Front and rear group labels could be added if the viewer wants them. (Closed
+  2026-11-17: FRONT and REAR brackets added in the second review.)
 
 ## 2026-11-17 — Semi-diameter pass against the patent figure
 
@@ -263,4 +264,86 @@ own title is "Projection Lens".
 ### Open
 
 - **Iris:** the paraxially sized iris trims the outermost real F/2.2 rays (about F/2.27).
-- **Groups:** `groups` is empty.
+- **Groups:** `groups` is empty. (Closed 2026-11-17: FRONT and REAR brackets added in the second review.)
+
+## 2026-11-17 — Second review on the local site
+
+**Compared:** the live page at `http://localhost:5223` (1400 × 900, the inspector for each of the four elements, the
+focus-movement overlay at `focus=1`) against the drawing sheet, PDF p. 1, rendered afresh at 600 dpi, and the
+specification, PDF pp. 2–3.
+
+### Semi-diameters
+
+Measured independently from ink runs along rows and columns of the 600 dpi render:
+
+- **Axial scale:** vertex line centres at 1623.5, 1803.5, 1872.0, 2319.5, 2373.5, 2462.5 and 2563.5 px. The 940 px
+  first-to-last span over 58.229 mm gives 16.14 px/mm. The sub-spans scatter from 15.2 to 17.2 px/mm because the
+  thin elements are only 50 to 100 px wide against an 8 px line.
+- **Rim heights:** the rim line centres sit at rows 2412 and 3162, a 750 px diameter, or 46.47 mm (23.2 mm
+  semi-diameter). The axis, midway at row 2787, is also where the front face's leftmost ink lies. The sag of the
+  57.111 mm front face, 78.5 px to the bottom corner, puts the same rim at 23.05 mm. Outer-ink diameters per
+  element are 758 px (I + II), 757 px (III) and 763 px (IV): the four lenses are drawn level within 0.2 mm of radius,
+  each with a flat rim.
+- **Faces 0.7 mm inside the lower rim:** the front face of I lies 4.52 mm behind its vertex, against 4.53 mm in the
+  model. The rear face of III lies 10.35 mm behind the front vertex of III (model 10.30), and the front face of IV
+  13.20 mm behind it (model 13.27). Only the drawn I/II interface sits about 0.3 mm behind the model's curve, inside
+  the drawing's accuracy. That interface makes lens I's drawn edge look about 0.5 mm thicker than the model's.
+
+**Verdict:** the 23 mm rims on every surface stand, as the semi-diameter section found. Every reading is within
+1.5 % of the stored value, and the page draws all four lenses square-rimmed and level, as the figure does. No rim,
+land or cut changed. Against the baseline rims the rim-cost tool shows a worst loss of 0.0 points from 0° to the 7.7°
+format corner (transmission 100, 100, 100, 99.0, 97.7, 96.3 and 94.5 % at 0, 1.3, 2.6, 3.9, 5.2, 6.4 and 7.7°).
+
+### Changes
+
+| Field | Before | After | Evidence |
+|---|---|---|---|
+| element `name` | L1, L2, L3, L4 | I, II, III, IV | The specification numbers "the lenses from left to right as I, II, III, IV" (PDF p. 3, lines 2–4), and the figure marks them so. |
+| element `label` | Element 1 to Element 4 | Element I to Element IV | Same. |
+| element `diagramLabel` | none (the page showed 1 to 4) | I, II, III, IV | Same; the diagram now carries the figure's numerals. |
+| element `focalLengthMm` | none (the inspector showed "FL = —") | +57.18, −92.38, −201.14, +110.68 mm | Paraxial thick-lens focal lengths of each element in air, from the probe tool. |
+| II `role` | "Flint cemented to L1; …" | "Flint cemented to lens I; …" | Follows the rename. |
+| `groups` | empty | FRONT (surfaces 1–3), REAR (4–7) | The text's "front combination" and "rear combination" (PDF p. 3, lines 35–38; claims 1 and 2). |
+| header comment | — | a LABELS note | Records the numerals and brackets. |
+
+The analysis element headings now read "Lens I" to "Lens IV", and the architecture section names the two
+combinations and the diagram's labels. The clear-aperture bullet's last clause now reads "no rim clips the full axial
+beam", with the same meaning.
+
+### Checked and found correct
+
+- **Silhouette:** the page draws the cemented pair, III and IV at one height, square-rimmed, with the drawn edge
+  thicknesses and the narrow III–IV gap at the rim. The inferred iris sits in the middle of the 28.094 mm space; the
+  patent draws none.
+- **Labels on the page:** I, II, III and IV sit under their lenses, with FRONT and REAR below them and C1 and STO
+  above. Nothing collides. Each inspector shows the type, nD and νD, the new focal length, the `Unmatched` glass line
+  and the role. I and II carry the "DOUBLET C1" tag, and no element reads "TRIPLET".
+- **Types:** biconvex I (+57.111 / −57.111), plano-concave II (−57.111 / plano), negative meniscus III (+57.111 /
+  +38.314, both centres to the film side), plano-convex IV (+57.111 / plano) agree with the radius signs and the text.
+- **Tags:** no `apd` tags. The patent names no special glass and prints no aberration curves, so there is no colour
+  plot to compare.
+- **Movement:** infinity only. There is no gaps block and no zoom block, `closeFocusM` is 1e15, the focus slider
+  reads "Not modeled", and the movement overlay reports no modelled focus or zoom movement. `focus.description`
+  states only what the patent supports.
+- **Engine numbers, before and after:** EFL 99.998 mm, F/2.2, stop radius 18.45 mm, half-field 28.55°.
+  `audit:surface` OK, `audit:aperture` no rim limit, `audit:image-circle` 0 undersized, `audit:field-coverage`
+  13.60 of 13.60 mm at 7.7°, clear. At the format corner (7.73°) the chief ray clears every rim, the axial margin
+  on surface 1 is 0.27 mm, and the oblique bundle loses 12 % per side at surfaces 1 and 2 and 4 % at surface 3.
+- **Glass:** the table prints nD 1.51600 / V 63.8 and 1.61820 / 36.4 (the drawing rounds the indices to four
+  places), at the sodium D line. No catalog row lies within 1e-4 in index and 0.15 in V at that line. The nearest
+  are S-BSL7 / K-BK7 class crowns at nd 1.51633 / 64.1 and F2 class flints at 1.62004 / 36.3–36.4, with Sumita and
+  Hoya F4 at 1.61659 / 36.6. The vendor AGF files hold nothing closer. The patent names no maker or glass type and
+  prints no other line indices, and it has only one example. Both `Unmatched` labels stand, and colour runs from
+  nD and V with normal partial dispersion.
+- **Assignee:** "Projection Optics Company, Inc." matches the specification's heading. No other file in the corpus
+  names this company.
+
+### Open
+
+- **Field:** the engine half-field is 28.55°, set by the rims, so the default off-axis beam is drawn at 17.1°,
+  more than twice the 7.7° format corner. The Super-Lite file declares a 16° full field (8° half). The same
+  declaration here would need a `projection` field change, which this review does not make.
+- **Iris:** the paraxially sized iris still trims the outermost real F/2.2 rays (about F/2.27).
+
+- Field follow-up (2026-11-17): `projection` now declares 16° full field / 8° traced half-field, the smallest whole-degree
+  field that reaches the 35 mm cinema corner (7.7° at f = 100), matching the Super-Lite file. The patent states no field.
