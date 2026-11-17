@@ -208,12 +208,102 @@ carries no product word, which fits family-level evidence.
 **Open:**
 
 - L2′ keeps about 0.04 mm of edge at its 15.02 mm rim.
-- L4's front and rear rims stay stepped.
+- L4's front and rear rims stay stepped. (Closed 2026-11-17 in the second review: the front curve keeps its 12.27 mm
+  cap and now carries the figure's flat land to 13.5 mm, with r9 at 13.5 mm; see below.)
 - The f-stop list beyond f/3.2 is not from a source.
 
 ## 2026-11-17 — Glass coverage pass
 
 - L1 and L3 (printed nD 1.5331 / ν 58.0) now carry `ZNC1 (Hoya catalog equivalent; zinc crown)`. Hoya's discontinued
-  ZNC1 row, added to the catalog in this pass from the vendor's Zemax file, gives nD 1.53312 / ν 58.05 at the sodium D
+  ZNC1 row, added to the catalog in this pass from the vendor's Zemax file, gives nD 1.53307 / ν 58.05 at the sodium D
   line (ΔnD −0.00003, Δν +0.05), inside the exact-match limits. It is the Hoya counterpart of Schott's ZK1 zinc crown;
   the label names a modern catalog equivalent, not the 1926 melt.
+
+## 2026-11-17 — Second review on the local site
+
+**Compared:** the live page on the branch's local server (1400 × 900 and a 3× device-scale shot) against the drawing
+sheet (PDF page 1, native 300 dpi), plus the inspector of all six elements.
+
+**Scale, proved both ways.** Vertex crossings beside the axis give 13.0 px/mm over r1–r4, 13.11 over r1–r9 and 13.07
+over r5–r10 (r1–r11 gives 12.77 only because L5 is drawn 24 % thin). The vertical scale was fitted on the r5 arc
+(R 18.55) from 31 to 131 px above the axis: at 13.0 px/mm the drawn curve sits within 1 px of the true sag at every
+height, while a vertical scale 15 % larger or smaller misses by 10–13 px. The sheet is therefore isotropic, and its
+rims are absolute: L1 13.85, L2′/L2 flat top 13.06, r5 curve end 11.7, L3 10.0, L4 flat top 11.76, L5 12.88 mm, all
+below the f/3.2 axial beam (15.92 / 15.01 / 12.50 / 12.28 / 12.65 / 13.43 mm at the engine's 12.42 mm stop). Diaphragm
+B is drawn open to 9.0 mm. Only proportions are usable; L2′ (at its beam floor) stays the anchor.
+
+| Element | Drawn half-height (px, half the top-to-bottom span) | Ratio to L2′ | Model before | Model after |
+|---|---:|---:|---:|---:|
+| L1 (pointed edge) | 180.0 | 1.060 | 1.065 | 1.065 |
+| L2′/L2 flat top | 169.75 | 1.000 | 1.000 | 1.000 |
+| r5 curve end (then a chamfer) | 152 | 0.895 | 0.871 | 0.871 |
+| L3 | 130.0 | 0.766 | 0.818 | 0.818 |
+| L4 flat top | 152.9 | 0.901 | 0.817 / 0.844 | 0.899 |
+| L5 flat top | 167.5 | 0.987 | 1.065 | 1.065 |
+
+**Change: L4 drawn as the figure draws it.** On the top side the sheet ends r8's curve at L3's rim corner, then draws a
+vertical stroke up to a flat top that runs back to r9; the bottom side draws the same step as a short chamfer. That is
+the rim-extension case of the data spec, which the earlier "square-cut" reading did not use: the curved face cannot
+rise past 12.27 mm without meeting L3, but a flat land does not need to.
+
+| Surface | Before | After | Evidence |
+|---|---|---|---|
+| r8 | sd 12.27 | sd 12.27, `rimExtensionSd` 13.5 | cap ends at L3's rim (12.29) as drawn; land to 0.901 × 15.02 = 13.5 |
+| r9 | sd 12.68 | sd 13.5 | flat top meets r9 at the same height |
+
+- The validator passes at the existing gap-sag factor 0.96 (the land intrudes 1.036 mm of the 1.037 mm allowed into
+  the 1.08 mm gap). At 0.95 both the r7/r8 caps and the land are refused, so 0.96 stays.
+- Light, full-pupil lattice against the rims before the semi-diameter pass: worst loss 0.0 points; gain up to 3.4
+  points (8.1°: 89.2 → 92.6 %; 12.2°: 83.0 → 84.9 %), because r9 no longer clips the beam just off the axis. The land
+  alone changes nothing. The raise is set by the figure; the gain is a by-product and stops growing at 13.5 mm.
+- Engine before = after: EFL 100.1106 mm, f/3.2, half-field 32.04°, stop semi-diameter 12.4216 mm. The real-ray check
+  at 12.2° shows no axial clip and no blocked chief ray. The aperture audit is within 3 % with no rim limit. The
+  image-circle and field-coverage audits skip the file (no image format).
+- The live page now shows L4 as a block standing clearly above L3 (0.89 of L2′ on the 3× shot), as on the sheet.
+
+**Kept:** L1 and L2′ agree within 0.5 %. r5 stays at the stop-plane limit (2.7 % under its drawn proportion). L3 stays
+at its beam floor although the sheet draws it 6.8 % smaller. L5 stays 7.9 % above its drawn proportion: inside the
+noise band, its order against L4 is right, and a cut to the proportional 14.8 mm still costs 4.0 points at 12.2°.
+Lands and cuts: no face sits below its earlier rim; the one land (r8) is drawn by the figure and costs nothing.
+
+**Labels and tags:**
+
+- The diagram showed the runtime numbers 1–6 under the elements while the patent labels them L1, L2′, L2, L3, L4, L5:
+  each element now carries that `diagramLabel` (names unchanged).
+- The inspector showed "FL = —": each element now has `focalLengthMm` (thick lens in air at nD): +73.16, +50.68,
+  −32.27, +131.88, −51.21, +64.85 mm.
+- `groups` was empty: FRONT (r1–r5) and REAR (r6–r11) now bracket the two collective members the claim names
+  (+146.46 and +163.73 mm), as the folder's other Plasmat-family files do. The brackets and labels do not collide.
+- Checked and correct: element types against the signs of R, roles, the C1 bracket on r3–r5 (inspector "DOUBLET C1" on
+  L2′ and L2), the stop between r5 and r6 at the printed b1/b2, no aspheres, no `apd` tags (the patent names no special
+  glass).
+
+**Movement:** infinity only (`closeFocusM` 1e15), no variable gap or zoom block; the focus slider reads "Not modeled"
+and the description says only what the patent says.
+
+**Glass at the D line** (Sellmeier from the catalog):
+
+| Elements | Label | nD (Δ) | νD (Δ) |
+|---|---|---|---|
+| L1, L3 | ZNC1 (Hoya) | 1.53307 (−0.00003) | 58.05 (+0.05) |
+| L2′, L5 | N-BALF4 (Schott) | 1.57946 (−0.00004) | 53.86 (+0.06) |
+| L2, L4 | QF3 (CDGM) | 1.57490 (0.00000) | 41.29 (−0.01) |
+
+- Each is the only exact catalog row at D. N-BALF4 and QF3 now use the corpus "catalog equivalent; production
+  supplier unspecified" form, so the inspector no longer reads them as the 1926 glass.
+- ZNC1's nD in the header and analysis was written 1.53312; the D-line value is 1.53307 (1.53315 is its d-line value),
+  which is what gives the −0.00003 recorded above. Corrected.
+- Vendor rows not in the catalog that are exact at D: Hoya BAFL4 (HOYA20260707_include_obsolete.agf) nD 1.57948 /
+  νD 53.70 (Δ −0.00002 / −0.10); Sumita LF7 (sumita-2025-11-07-all.agf) nD 1.57489 / νD 41.30 (Δ −0.00001 / 0.00).
+  Ohara S-TIL27 and PBL27, Hoya FL7 and Hikari J-LF7 miss on ν by 0.18–0.20.
+- Colour: the patent prints no aberration curves, so there is nothing to compare. All six elements carry catalog
+  dispersion; no medium is index-only.
+
+**Assignee:** none printed (Paul Rudolph, Grossbiesnitz); `assignees: []` is right.
+
+**Open:**
+
+- L2′ keeps about 0.04 mm of edge at its 15.02 mm rim.
+- The f-stop list beyond f/3.2 is not from a source.
+- The patent states no field angle or image format.
+- L5 is 7.9 % above its drawn proportion (kept under the light rule).

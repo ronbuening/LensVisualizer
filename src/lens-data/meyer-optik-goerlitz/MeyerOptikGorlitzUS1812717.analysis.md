@@ -73,13 +73,13 @@ The patent prints three glasses, each used twice, as nD and ν. It gives no glas
 
 | Printed nD | Printed ν | Used in | Catalogue equivalent (at the D line) |
 |---:|---:|---|---|
-| 1.5331 | 58.0 | L1, L3 | Hoya ZNC1 (zinc crown), nD 1.53312 / ν 58.05 |
+| 1.5331 | 58.0 | L1, L3 | Hoya ZNC1 (zinc crown), nD 1.53307 / ν 58.05 |
 | 1.5795 | 53.8 | L2′, L5 | Schott N-BALF4, nD 1.57946 / ν 53.86 |
 | 1.5749 | 41.3 | L2, L4 | CDGM QF3, nD 1.57490 / ν 41.29 |
 
 The patent says the design reaches an anastigmatically flat field "in many cases even without the use of heavy barium crown glass". It chooses glasses for purity and durability. The model stores the printed values against the sodium D line.
 
-The two catalogue equivalents are modern glasses whose indices match the printed pairs. They supply the dispersion curve for L2′, L5, L2 and L4 and do not identify the 1926 melts. The crown of L1 and L3 matches no catalogue row, so its colour is estimated from nD and ν alone.
+The three catalogue equivalents match the printed pairs at the D line within 0.0001 in index and 0.1 in ν. N-BALF4 and QF3 are modern glasses, and ZNC1 is a discontinued Hoya zinc crown of Schott's ZK1 type. They supply the dispersion curves for all six elements and do not identify the 1926 melts.
 
 ## Focus Mechanism
 
@@ -91,12 +91,12 @@ The diaphragm position is printed: 5.41 mm behind r5 and 2.32 mm in front of r6.
 
 The patent prints no lens diameters, so every rim is an estimate:
 
-- L2′, L3 and L4 are set to the smallest values that pass the f/3.2 axial beam: 15.02, 12.29, and 12.27 / 12.68 mm.
+- L2′ and L3 are set to the smallest values that clear the f/3.2 axial beam: 15.02 and 12.29 mm. L4's front curve ends at 12.27 mm, the least height that beam needs there.
 - L2's rear rim is 13.09 mm, the height at which r5 reaches the stop plane, so the glass stays in front of the diaphragm. The drawing shows L2 with a chamfer at that edge.
 - L1 and L5 are 16 mm.
 - L3 and L4 come within about 0.05 mm of each other at their rims. The drawing shows them meeting, and the model allows that close approach.
 
-The drawing sheet shows the same relative rim heights to within about 8 %, but draws the whole lens about 14 % smaller than the f/3.2 beam needs. Its drawn diaphragm opening is also well short of the full aperture. The sheet draws L4 square-cut and taller than L3. The model keeps L4's front rim at 12.27 mm, because the front face cannot rise further without meeting L3.
+The drawing sheet shows the same relative rim heights to within about 8 %, but draws the whole lens about 14 % smaller than the f/3.2 beam needs. Its drawn diaphragm opening is also well short of the full aperture. The sheet draws L4's front curve ending at L3's rim, then a flat land up to a flat top at about 0.90 of L2's height, so L4 stands clearly taller than L3. The model draws L4 the same way: the front curve stops at 12.27 mm, where it would otherwise meet L3, a flat land continues it to 13.5 mm, and the rear face r9 reaches the same 13.5 mm.
 
 The patent states no field angle or image size. The model's default field comes from these estimated rims and is not a patent figure.
 

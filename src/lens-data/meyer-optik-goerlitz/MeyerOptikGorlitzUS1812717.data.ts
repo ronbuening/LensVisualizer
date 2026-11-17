@@ -13,13 +13,14 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Glass: indices are stored against the sodium D line, as printed. L2′/L5 and L2/L4 carry modern catalogue rows
  * that match the printed nD and ν at the D line (N-BALF4: nD 1.57946 / ν 53.86; QF3: nD 1.57490 / ν 41.29); they
  * supply the dispersion curve only and do not name the 1926 melts. L1/L3 (nD 1.5331 / ν 58.0) matches the discontinued
- * Hoya zinc crown ZNC1 (nD 1.53312 / ν 58.05 at the D line), the equivalent of Schott's ZK1 zinc-crown type.
+ * Hoya zinc crown ZNC1 (nD 1.53307 / ν 58.05 at the D line), the equivalent of Schott's ZK1 zinc-crown type.
  *
  * Inferred: the back focus is the computed paraxial value (the patent prints none). Clear semi-diameters are
- * estimates: raised only as far as the f/3.2 axial beam needs, with L2's rear rim held in front of the printed stop
- * plane. The gap-sag check is relaxed to 0.96 because the patent figure draws L3 and L4 meeting at the rim. Against
- * the drawing sheet the relative rim heights agree within about 8 %; the sheet draws the whole lens about 14 % smaller
- * than the f/3.2 beam needs, and draws L4 square-cut at a height its front face cannot reach without meeting L3.
+ * estimates: L2′, L3 and L4's front curve are raised only as far as the f/3.2 axial beam needs, with L2's rear rim
+ * held in front of the printed stop plane. The gap-sag check is relaxed to 0.96 because the patent figure draws L3
+ * and L4 meeting at the rim. Against the drawing sheet the relative rim heights agree within about 8 %; the sheet
+ * draws the whole lens about 14 % smaller than the f/3.2 beam needs. It draws L4's front curve ending at L3's rim, then a vertical land up to a flat top at
+ * 0.90 of L2′'s height: r8 keeps its 12.27 cap with a land to 13.5, and r9 rises to the same 13.5.
  *
  * Infinity only: the patent gives no close-focus data or field angle. No assignee is printed; Rudolph designed for
  * Hugo Meyer & Co. of Görlitz at the time. The German patent DE 456,912 prints this same example as its Example 2, and
@@ -59,7 +60,9 @@ const LENS_DATA = {
       id: 1,
       name: "L1",
       label: "L1",
+      diagramLabel: "L1",
       type: "Positive Meniscus",
+      focalLengthMm: 73.16,
       nd: 1.5331,
       vd: 58,
       indexReference: "D",
@@ -70,11 +73,13 @@ const LENS_DATA = {
       id: 2,
       name: "L2′",
       label: "L2′",
+      diagramLabel: "L2′",
       type: "Plano-Convex Positive",
+      focalLengthMm: 50.68,
       nd: 1.5795,
       vd: 53.8,
       indexReference: "D",
-      glass: "N-BALF4 (Schott)",
+      glass: "N-BALF4 (Schott catalog equivalent; production supplier unspecified)",
       role: "Positive front half of the thick cemented dispersive component",
       cemented: "C1",
     },
@@ -82,11 +87,13 @@ const LENS_DATA = {
       id: 3,
       name: "L2",
       label: "L2",
+      diagramLabel: "L2",
       type: "Plano-Concave Negative",
+      focalLengthMm: -32.27,
       nd: 1.5749,
       vd: 41.3,
       indexReference: "D",
-      glass: "QF3 (CDGM)",
+      glass: "QF3 (CDGM catalog equivalent; production supplier unspecified)",
       role: "Negative rear half of the cemented component, deeply concave toward the stop",
       cemented: "C1",
     },
@@ -94,7 +101,9 @@ const LENS_DATA = {
       id: 4,
       name: "L3",
       label: "L3",
+      diagramLabel: "L3",
       type: "Positive Meniscus",
+      focalLengthMm: 131.88,
       nd: 1.5331,
       vd: 58,
       indexReference: "D",
@@ -105,22 +114,26 @@ const LENS_DATA = {
       id: 5,
       name: "L4",
       label: "L4",
+      diagramLabel: "L4",
       type: "Negative Meniscus",
+      focalLengthMm: -51.21,
       nd: 1.5749,
       vd: 41.3,
       indexReference: "D",
-      glass: "QF3 (CDGM)",
+      glass: "QF3 (CDGM catalog equivalent; production supplier unspecified)",
       role: "Dispersive meniscus of the rear member, concave toward the stop",
     },
     {
       id: 6,
       name: "L5",
       label: "L5",
+      diagramLabel: "L5",
       type: "Positive Meniscus",
+      focalLengthMm: 64.85,
       nd: 1.5795,
       vd: 53.8,
       indexReference: "D",
-      glass: "N-BALF4 (Schott)",
+      glass: "N-BALF4 (Schott catalog equivalent; production supplier unspecified)",
       role: "Rear collective meniscus",
     },
   ],
@@ -181,13 +194,14 @@ const LENS_DATA = {
       R: -25.66,
       d: 3.09,
       sd: 12.27,
+      rimExtensionSd: 13.5,
       medium: 5,
     },
     {
       label: "9",
       R: -208.7,
       d: 8.97,
-      sd: 12.68,
+      sd: 13.5,
     },
     {
       label: "10",
@@ -211,7 +225,10 @@ const LENS_DATA = {
     closeFocusM: 1e15,
     description: "Infinity focus only; the patent gives no close-focus data.",
   },
-  groups: [],
+  groups: [
+    { text: "FRONT", fromSurface: "1", toSurface: "5" },
+    { text: "REAR", fromSurface: "6", toSurface: "11" },
+  ],
   doublets: [{ text: "C1", fromSurface: "3", toSurface: "5" }],
   checks: { gapSagFrac: 0.96 },
   layout: {
