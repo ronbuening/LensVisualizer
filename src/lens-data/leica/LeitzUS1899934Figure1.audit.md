@@ -164,3 +164,9 @@ Open:
   26 mm would cost no light if the drawing is later judged precise enough.
 - The drawn bevels on r5 and r7 run out to a 24.1 mm edge; the model draws the member's edge at 23 mm with a flat land on
   r7 only.
+
+## 2026-11-17 — Glass coverage pass
+
+- L3 (printed nD 1.6890 / ν 31.2) now carries `K-SFLD8W (Sumita catalog equivalent)`. Sumita's K-SFLD8W row, added to
+  the catalog in this pass from the vendor's Zemax file, gives nD 1.68901 / ν 31.16 at the sodium D line (ΔnD −0.00009,
+  Δν −0.04), inside the exact-match limits. Schott N-SF8 misses at the D line by −0.00026 and stays a comparison only.

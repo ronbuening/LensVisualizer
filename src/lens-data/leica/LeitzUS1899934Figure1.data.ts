@@ -5,7 +5,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Radii, thicknesses, air spaces, nD and Abbe numbers are copied exactly as printed, with the table's own
  * signs; the table is normalised to f = 100 (the computed EFL is 99.998 mm). No scaling is applied.
  * Six spherical elements in four groups; L3/L4 and L5/L6 are the patent's two cemented members. The printed
- * nD (sodium D line) values match no catalogue glass at that line, so every glass is left unmatched.
+ * nD (sodium D line) values match no catalogue glass at that line except L3, which matches Sumita K-SFLD8W
+ * (nD 1.68901 / ν 31.16); the other glasses are left unmatched.
  * Inferred, not printed: the iris position (placed in the 7.56 mm air space behind the cemented negative
  * member, 6.5 mm behind r7 and 1.06 mm ahead of r8), all clear semi-diameters, and the back focus (the
  * computed paraxial infinity value). The patent states no focal length, field angle or close-focus data.
@@ -76,7 +77,7 @@ const LENS_DATA = {
       nd: 1.689,
       vd: 31.2,
       indexReference: "D",
-      glass: "Unmatched (nD 1.6890 / V 31.2)",
+      glass: "K-SFLD8W (Sumita catalog equivalent)",
       role: "Positive dense-flint half of the cemented negative middle member.",
       cemented: "C1",
     },

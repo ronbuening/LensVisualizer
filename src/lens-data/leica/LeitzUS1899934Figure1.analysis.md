@@ -38,7 +38,7 @@ L2 is the second half of the split front member, separated from L1 by a 1.00 mm 
 
 ### Elements 3 and 4 (L3 + L4) — Cemented Negative Member
 
-- **L3, Positive Meniscus, concave to the object.** `nD = 1.6890, νD = 31.2.` Glass: Unmatched (nD 1.6890 / V 31.2), an SF8-class dense flint. f = +83.2 mm.
+- **L3, Positive Meniscus, concave to the object.** `nD = 1.6890, νD = 31.2.` Glass: K-SFLD8W (Sumita catalog equivalent), an SF8-class dense flint. f = +83.2 mm.
 - **L4, Biconcave Negative.** `nD = 1.6034, νD = 38.0.` Glass: Unmatched (nD 1.6034 / V 38.0), an F5-class flint. f = −27.8 mm.
 
 This member takes the place of a triplet's negative middle element; together the pair is −38.85 mm. Both of its outer faces are concave (r5 = −57.46 toward the object, r7 = +39.40 toward the image). The interface r6 = −30.55 is a converging cemented face, and the patent's claim is built on it: the index step there must be at least 0.05 (here 1.6890 − 1.6034 = 0.0856), and the step divided by the radius, times the focal length, must exceed 0.1 (here 0.28).
@@ -57,11 +57,11 @@ The patent prints only nD and ν for each element. The data file stores them as 
 | Elements | nD / ν (printed) | Nearest catalogue class | Role |
 |---|---:|---|---|
 | L1, L2 | 1.6185 / 60.5 | No catalogue match | Split front collector |
-| L3 | 1.6890 / 31.2 | SF8 class (Schott N-SF8 nd 1.68894 / νd 31.31) | Positive half of the negative member |
+| L3 | 1.6890 / 31.2 | Sumita K-SFLD8W (nD 1.68901 / νD 31.16 at the D line) | Positive half of the negative member |
 | L4, L5 | 1.6034 / 38.0 | F5 class (Schott F5 nd 1.60342 / νd 38.03) | Negative elements of both cemented members |
 | L6 | 1.6580 / 51.4 | No catalogue match | Positive half of the rear member |
 
-The SF8 and F5 classes agree with the printed values at the helium d line, but at the sodium D line the patent uses they are 0.00026 and 0.00012 lower, outside the printed precision. Every glass is therefore left unmatched; the classes are coordinate comparisons only, and the patent does not name its glasses or their maker.
+Sumita's K-SFLD8W matches L3 at the sodium D line the patent uses (ΔnD −0.00009, Δν −0.04), so L3 traces on that catalog curve; it is a modern equivalent, not a claim about the 1932 melt. Schott N-SF8 and F5 agree with L3 and L4/L5 only at the helium d line; at the D line they are 0.00026 and 0.00012 lower, outside the printed precision, so L4/L5 stay unmatched. The patent does not name its glasses or their maker.
 
 ## Focus Mechanism
 
