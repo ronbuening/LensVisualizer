@@ -90,10 +90,61 @@ granted January 1, 1924. No assignor clause is printed.
 **Open:**
 
 - Cleanup pass: `name`, `key`, `subtitle` ("US1479251A — PATENT-ONLY; RECIPROCAL INFINITY REFERENCE") and the
-  "PATENT-ONLY" spec line need house wording.
-- Cleanup pass: the glass labels "(source constants)" need house wording.
-- Maker profile and folder for "Projection Optics" are shared with US 1,415,002.
+  "PATENT-ONLY" spec line need house wording. (Closed 2026-11-17: renamed by the coordinator; subtitle and specs
+  reworded in the cleanup pass.)
+- Cleanup pass: the glass labels "(source constants)" need house wording. (Closed 2026-11-17: `Unmatched (…)` labels.)
+- Maker profile and folder for "Projection Optics" are shared with US 1,415,002. (Closed 2026-11-17: the coordinator
+  added the maker prefix and the `projection-optics/` folder.)
 - SD pass: the drawing's rear-to-front height ratio (about 0.78) suggests a rear clear radius of about 17.7 mm. The
   plano face 6 is drawn as tall as the crown (model 17 mm against 17.5 mm).
 - Optional: a field closer to the 35 mm projector gate (about 8.4° half-field), documented as period coverage, not as
   a patent value.
+
+## 2026-11-17 — Cleanup and wording pass
+
+The optics are unchanged. No R, d, nd, V, sd, stop or gap value was edited.
+
+**Data file changes:**
+
+- `subtitle`: "US1479251A — PATENT-ONLY; RECIPROCAL INFINITY REFERENCE" → "US 1,479,251 A, sole example — Super-Lite
+  projection lens design".
+- `specs`: ["4 ELEMENTS / 2 GROUPS", "PATENT-ONLY", "PROJECTION DESIGN; INFINITY REFERENCE"] → ["4 ELEMENTS / 2
+  GROUPS", "ALL SPHERICAL", "DESIGN F/2.2", "PROJECTION OBJECTIVE"].
+- `focus.description`: → "Infinity focus only; the patent gives no close-focus data." `closeFocusM` stays 1e15. No
+  marketed minimum focus is added, because no product source gives one.
+- Element `label`s: patent-class wording → "Element 1" to "Element 4".
+- Element `role`s: added plain optical roles.
+- `cemented` ids: "A"/"B" → "C1"/"C2"; `doublets` text likewise. `groups` keep the patent's A and B.
+- Element types are unchanged (Biconvex Positive, Plano-Concave Negative), and they agree with the printed signs.
+- Header comment: the "unscaled" wording is dropped, since the patent itself prints E.F. 100 mm.
+
+**Glass relabels:**
+
+- Crowns L1 and L3: "Borosilicate crown (source constants)" → "Unmatched (borosilicate crown, nD 1.5160 / V 63.8)".
+- Flints L2 and L4: "Dense flint (source constants)" → "Unmatched (dense flint, nD 1.6182 / V 36.4)".
+- No catalogue row is within 1e-4 in index. The nearest crowns are BK7-type rows: K-BK7 and S-BSL7 at 1.51633 / 64.1,
+  and J-BK7 at 1.51680 / 63.88. The nearest flints are F4 at 1.61659 / 36.62 and F2-type rows at 1.62004 / 36.3–36.4.
+- `trylabel.mjs` confirms that both new labels stay unresolved, so the model keeps the printed nD and V.
+
+**Analysis:**
+
+- An H1 with the model name is added.
+- The model is named in its identification sentence, and "patent reference" and "unscaled" wording is removed.
+- Glass first lines and the glass section now match the new labels, with the nearest catalogue families noted.
+- The drawing-label errors (R1 88.57, V 30.4) are now explained once, in the drawing-sheet section.
+
+**Engine numbers** (`built.mjs` / `probe.mjs`), identical before and after:
+
+- EFL 99.9965 mm, f/2.2026.
+- Half-field 3°, stop radius 22.6996 mm at the front vertex.
+- Back focus 39.8225 mm, total track 157.1425 mm.
+
+**Audits:** `audit:surface` OK. `audit:aperture`: within 3 % of the stated f-number, with no rim, trace or iris limit.
+
+**Open:**
+
+- SD pass: the drawing's rear-to-front height ratio (about 0.78) suggests a rear clear radius of about 17.7 mm against
+  the model's 17.5 mm. The plano face 6 is drawn as tall as the crown (model 17 mm).
+- Optional: a field closer to the 35 mm projector gate (about 8.4° half-field), as period coverage.
+- Metadata: no `lensMounts` / `imageFormat`. A projection lens has no camera mount in the taxonomy, and the film
+  format for this 100 mm example is not printed.

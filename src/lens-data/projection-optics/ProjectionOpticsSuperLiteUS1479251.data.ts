@@ -1,8 +1,8 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 /**
  * US 1,479,251 (William H. Repp, filed July 31, 1922, granted January 1, 1924), "Projecting lens": the patent's sole
- * numerical example, E.F. 100 mm, F/2.2. Radii, thicknesses, the 94.54 mm separation, nD and V are copied from the
- * typeset table on printed page 3 in millimetres, unscaled. The patent prints the signs of the radii.
+ * numerical example, E.F. 100 mm, F/2.2. Radii, thicknesses, the 94.54 mm separation, nD and V are copied in
+ * millimetres from the typeset table on printed page 3. The patent prints the signs of the radii.
  *
  * The drawing sheet repeats the example in hand lettering with two errors: it labels the front radius "88.57" (table
  * +82.57) and the flint V "30.4" (table 36.4). The table values are used. They give the printed 39.82 mm back focus
@@ -22,14 +22,10 @@ const LENS_DATA = {
   key: "projection-optics-super-lite-100mm-f22-us1479251",
   maker: "Projection Optics",
   name: "PROJECTION OPTICS SUPER-LITE 100mm f/2.2 (US 1,479,251 Design)",
-  subtitle: "US1479251A — PATENT-ONLY; RECIPROCAL INFINITY REFERENCE",
+  subtitle: "US 1,479,251 A, sole example — Super-Lite projection lens design",
   visible: true,
   catalog: {
-    specs: [
-      "4 ELEMENTS / 2 GROUPS",
-      "PATENT-ONLY",
-      "PROJECTION DESIGN; INFINITY REFERENCE",
-    ],
+    specs: ["4 ELEMENTS / 2 GROUPS", "ALL SPHERICAL", "DESIGN F/2.2", "PROJECTION OBJECTIVE"],
     elementCount: 4,
     groupCount: 2,
     focalLengthMm: { design: 100 },
@@ -47,46 +43,50 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L1",
-      label: "Front borosilicate crown",
+      label: "Element 1",
       type: "Biconvex Positive",
       nd: 1.516,
       vd: 63.8,
       indexReference: "D",
-      glass: "Borosilicate crown (source constants)",
-      cemented: "A",
+      glass: "Unmatched (borosilicate crown, nD 1.5160 / V 63.8)",
+      role: "Equiconvex crown of the weak front doublet; supplies the doublet's positive power",
+      cemented: "C1",
     },
     {
       id: 2,
       name: "L2",
-      label: "Front dense flint",
+      label: "Element 2",
       type: "Plano-Concave Negative",
       nd: 1.6182,
       vd: 36.4,
       indexReference: "D",
-      glass: "Dense flint (source constants)",
-      cemented: "A",
+      glass: "Unmatched (dense flint, nD 1.6182 / V 36.4)",
+      role: "Flint cemented to L1; corrects the front doublet's colour and spherical aberration",
+      cemented: "C1",
     },
     {
       id: 3,
       name: "L3",
-      label: "Rear borosilicate crown",
+      label: "Element 3",
       type: "Biconvex Positive",
       nd: 1.516,
       vd: 63.8,
       indexReference: "D",
-      glass: "Borosilicate crown (source constants)",
-      cemented: "B",
+      glass: "Unmatched (borosilicate crown, nD 1.5160 / V 63.8)",
+      role: "Equiconvex crown of the rear doublet, with half the front radii; the strongest positive element",
+      cemented: "C2",
     },
     {
       id: 4,
       name: "L4",
-      label: "Rear dense flint",
+      label: "Element 4",
       type: "Plano-Concave Negative",
       nd: 1.6182,
       vd: 36.4,
       indexReference: "D",
-      glass: "Dense flint (source constants)",
-      cemented: "B",
+      glass: "Unmatched (dense flint, nD 1.6182 / V 36.4)",
+      role: "Flint cemented to L3; achromatizes the rear doublet, plano face toward the film",
+      cemented: "C2",
     },
   ],
   surfaces: [
@@ -100,8 +100,7 @@ const LENS_DATA = {
   ],
   focus: {
     closeFocusM: 1e15,
-    description:
-      "Fixed at infinity on the screen side; the finite projection throw to the film is not modelled.",
+    description: "Infinity focus only; the patent gives no close-focus data.",
   },
   aperture: {
     nominalFNumber: 2.2026,
@@ -114,8 +113,8 @@ const LENS_DATA = {
     { text: "B", fromSurface: "4", toSurface: "6" },
   ],
   doublets: [
-    { text: "A", fromSurface: "1", toSurface: "3" },
-    { text: "B", fromSurface: "4", toSurface: "6" },
+    { text: "C1", fromSurface: "1", toSurface: "3" },
+    { text: "C2", fromSurface: "4", toSurface: "6" },
   ],
   layout: { yScFill: 0.3 },
 } satisfies LensDataV2Input;

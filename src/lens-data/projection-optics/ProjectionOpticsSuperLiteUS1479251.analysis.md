@@ -1,3 +1,5 @@
+# PROJECTION OPTICS SUPER-LITE 100mm f/2.2 (US 1,479,251 Design)
+
 ## Patent Reference and Design Identification
 
 **Patent:** US 1,479,251, *Projecting lens*  
@@ -6,14 +8,14 @@
 **Granted:** January 1, 1924  
 **Inventor:** William H. Repp, of Rochester, New York  
 **Assignee:** none printed; the patent issued to the inventor  
-**Example details:** sole numerical example, typeset table on printed page 3 (E.F. 100 mm, F/2.2); repeated in hand lettering on the drawing sheet; millimetres, unscaled
+**Example details:** sole numerical example, typeset table on printed page 3 (E.F. 100 mm, F/2.2); repeated in hand lettering on the drawing sheet; millimetres
 
 US 1,479,251 describes a moving-picture projection objective built from two cemented doublets. Each doublet is an
 equiconvex crown cemented to a plano-concave flint. The convex sides face the screen and the plano sides face the film.
-The patent gives one worked example, normalised to an equivalent focal length of 100 mm at F/2.2, and this model
-transcribes it without scaling.
+The patent gives one worked example, for an equivalent focal length of 100 mm at F/2.2.
 
-The model is a patent reference, not a measured production lens. The link to a product is nevertheless strong:
+The PROJECTION OPTICS SUPER-LITE 100mm f/2.2 (US 1,479,251 Design) follows that example; it is not a measured
+production lens. The link to the Super-Lite is nevertheless strong:
 
 1. Repp co-founded the Projection Optics Company of Rochester, New York, in 1918 (Delta Lenses history). His earlier
    projection-lens patent, US 1,415,002 (1922), is assigned to Projection Optics Company, Inc. This patent prints no
@@ -24,10 +26,10 @@ The model is a patent reference, not a measured production lens. The link to a p
    engraved as patent applied for, which fits a 1922 filing and a 1924 grant.
 3. Projection Optics' own Pro-Jex Super-Lite advertisement shows a cutaway of two widely separated doublets in a long
    barrel. The patent has the same layout: a separation about equal to the focal length and a short back focus.
-4. Super-Lite lenses were sold in many focal lengths, first at about f/2.2 and later at f/2 (Delta Lenses lists the post-war Series
-   III C at 4 to 10 inches). No source publishes a production prescription. The patent therefore describes the
-   Super-Lite design principle, but it does not establish that any particular production focal length used this
-   example's exact radii.
+4. Super-Lite lenses were sold in many focal lengths, first at about f/2.2 and later at f/2 (Delta Lenses lists the
+   post-war Series III C at 4 to 10 inches). No source publishes a production prescription. The patent therefore
+   describes the Super-Lite design principle, but it does not establish that any particular production focal length
+   used this example's exact radii.
 
 ## Optical Architecture
 
@@ -61,9 +63,9 @@ film as they do in the drawing.
 
 ### Front doublet A (L1 + L2)
 
-**L1 — Biconvex Positive (equiconvex).** `nd = 1.5160, νd = 63.8. Glass: borosilicate crown (patent class name). f = +81.44 mm.`
+**L1 — Biconvex Positive (equiconvex).** `nd = 1.5160, νd = 63.8. Glass: Unmatched (borosilicate crown, nD 1.5160 / V 63.8). f = +81.44 mm.`
 
-**L2 — Plano-Concave Negative.** `nd = 1.6182, νd = 36.4. Glass: dense flint (patent class name). f = −133.57 mm.`
+**L2 — Plano-Concave Negative.** `nd = 1.6182, νd = 36.4. Glass: Unmatched (dense flint, nD 1.6182 / V 36.4). f = −133.57 mm.`
 
 The low-index crown and high-index flint are cemented at R2 = −82.57 mm, and the flint's plano face points at the film.
 The patent says this doublet is corrected for colour and spherical aberration on its own. Used alone, though, it covers
@@ -73,9 +75,9 @@ earlier Petzval-type design.
 
 ### Rear doublet B (L3 + L4)
 
-**L3 — Biconvex Positive (equiconvex).** `nd = 1.5160, νd = 63.8. Glass: borosilicate crown (patent class name). f = +41.46 mm.`
+**L3 — Biconvex Positive (equiconvex).** `nd = 1.5160, νd = 63.8. Glass: Unmatched (borosilicate crown, nD 1.5160 / V 63.8). f = +41.46 mm.`
 
-**L4 — Plano-Concave Negative.** `nd = 1.6182, νd = 36.4. Glass: dense flint (patent class name). f = −66.77 mm.`
+**L4 — Plano-Concave Negative.** `nd = 1.6182, νd = 36.4. Glass: Unmatched (dense flint, nD 1.6182 / V 36.4). f = −66.77 mm.`
 
 The rear doublet reproduces the front one at half scale, except that the element thicknesses are unchanged. Its
 cemented interface is R5 = −41.28 mm, the strongest curve in the system. The patent compares this curve with the
@@ -94,10 +96,10 @@ V = (nD − 1)/(nF − nC). The model keeps both numbers with the D-line index r
 | Borosilicate crown | 1.5160 | 63.8 | L1, L3 | Positive collective elements |
 | Dense flint | 1.6182 | 36.4 | L2, L4 | Achromatizing partners |
 
-The patent names no maker or catalogue glass, and the model carries no catalogue substitution. Its dispersion is built
-from nD and V alone, so partial dispersion and secondary spectrum are approximations. With V = 36.4, each doublet is
-close to achromatic. The thin-lens longitudinal colour of the front doublet is about 0.5 mm, against about 2.1 mm with
-the 30.4 that the drawing sheet letters.
+The patent names no maker or catalogue glass. No modern catalogue row matches either pair exactly; the nearest,
+BK7-type crowns and F2-type flints, miss the printed indices by more than 0.0001. The model
+therefore carries no catalogue substitution. Its dispersion is built from nD and V alone, so partial dispersion and
+secondary spectrum are approximations. With these values each doublet is close to achromatic.
 
 ## Focus Mechanism
 
@@ -125,7 +127,9 @@ flint thickness labels are illegible.
 
 The other labels agree with the table: 8.54, 94.54, 39.82, 41.28, nD 1.5160 and 1.6182, and V 63.8. The table values are
 used. They reproduce the printed 100 mm E.F. and the 39.82 mm back focus, while an 88.57 mm front radius would put the
-back focus at 44.05 mm. The specification text also cites 41.28 mm as the strongest curve, as in the table.
+back focus at 44.05 mm. With V = 36.4 the thin-lens longitudinal colour of the front doublet is about 0.5 mm; the
+drawing's 30.4 would raise it to about 2.1 mm. The specification text also cites 41.28 mm as the strongest curve, as in
+the table.
 
 ## Design Heritage and Context
 
