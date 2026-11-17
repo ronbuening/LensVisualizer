@@ -1,4 +1,4 @@
-# Tronnier 200 mm f/3.5 (US 2,084,714 A) — audit log
+# SCHNEIDER-KREUZNACH XENAR 200mm f/3.5 (US 2,084,714 Design) — audit log
 
 ## Original transcription notes
 
@@ -66,7 +66,50 @@ reaches a 94.5 mm image height.
   subtitle's "NO PRODUCTION MATCH" could read "Xenar type; production identity unconfirmed". The `specs` "PATENT-ONLY
   REFERENCE" and "ESTIMATED STOP AND RIMS" need rewording: the stop now follows the patent's chief-ray statement, and
   only the rims are estimated. The `key` should be reviewed, and the per-element `indexReferenceNote` text shortened.
+  (Closed 2026-11-17: the files were renamed and reworded; see below.)
 - Semi-diameter pass: the drawing shows L1 at about 29.5 mm and L2, L3 and L4 at about 25.5 mm, against the common
   31 mm. Both readings pass the axial beam (tightest margin about 0.9 mm, at R1). The change was not made here.
 - Glass: no catalogue glass matches the printed indices at d, D or e within 0.00006. The nearest classes are SK16 for
-  1.6202 / 60.0 and LLF6 for 1.5315 / 49.1; there is none for 1.5785 / 42.3. No labels were added.
+  1.6202 / 60.0 and LLF6 for 1.5315 / 49.1; there is none for 1.5785 / 42.3. No labels were added. (Closed
+  2026-11-17: explicit unmatched labels added; see below.)
+
+## 2026-11-17 — Cleanup and wording pass
+
+**Fields changed in the data file.**
+
+- `subtitle`: "1935 DESIGN / 1937 GRANT — NO PRODUCTION MATCH" → "US 2,084,714 A, sole example — Tessar-type Xenar
+  design". The new `name` (set before this pass) carries the Xenar family word. The evidence is a Wikipedia caption,
+  "Xenar (Tronnier, 1935)", on a contributor's redrawing of this patent, together with the Tessar-type construction.
+  It is stated once in the analysis.
+- `specs`: "4 ELEMENTS / 3 GROUPS", "PATENT-ONLY REFERENCE", "ESTIMATED STOP AND RIMS", "INFINITY ONLY" → "4 ELEMENTS /
+  3 GROUPS", "ALL SPHERICAL", "DESIGN f = 200 mm", "DESIGN F/3.5", "FIELD OVER 50°" (the patent's stated useful field).
+- `focus`: `closeFocusM` 1000000000000000.0 → 1e15 (same value); `description` "Infinity-only patent reference." →
+  "Infinity focus only; the patent gives no close-focus data."
+- Elements: added a plain optical `role` to L1–L4. Types are unchanged, since all four agree with the printed signs.
+  `indexReferenceNote` reworded to plain English with the same meaning: yellow-ray indices traced as sodium D values.
+- Cemented pair: `cemented` id "D1" → "C1" on L3 and L4 and `doublets` text "D1" → "C1". This reverses the earlier
+  integration change: "D1" reads as a gap label.
+- Glass: added `Unmatched (nD … / V …; no glass name printed)` labels to all four elements. No exact catalogue row
+  exists within |Δnd| ≤ 1e-4 and |Δνd| ≤ 0.15. The nearest rows are:
+  - N-SK16 1.62041 / 60.32 for 1.6202 / 60.0 (Δnd +0.00021, Δνd +0.32);
+  - Hoya FL4 1.57845 / 41.71 for 1.5785 / 42.3 (Δnd −0.00005, Δνd −0.59);
+  - Ohara PBL6Y 1.53172 / 48.96 for 1.5315 / 49.1 (Δnd +0.00022, Δνd −0.14).
+
+  The labels resolve to no catalogue glass, so tracing still uses the printed index and Abbe number.
+
+**Analysis.** The H1 now uses the model name. The product-link evidence is restated once, at family strength, and the
+"patent reference, not a factory lens" wording is gone. The duplicate scale note was removed from the metadata block
+(the scale is stated once in the prose). The glass paragraph matches the new labels. The heading "Patent Conditions and
+Model Verification" is now "Patent Conditions and Model Scope", and the focus paragraph is in plain words.
+
+**Engine numbers before and after (identical).** EFL 200.218 mm, f/3.5, half-field 33.12°, stop semi-diameter
+22.73 mm, paraxial back focal distance 163.949 mm, total track 229.77 mm. `audit:surface`: OK. `audit:aperture`: no
+rim limit (1 station within 3 % of the stated f-number).
+
+**Open:**
+
+- Semi-diameter pass: the drawing shows L1 at about 29.5 mm and L2, L3 and L4 at about 25.5 mm, against the common
+  31 mm (carried over).
+- `aperture.fStops` lists f/4–f/22 beyond the patent's f/3.5. No product stop scale was found to source it.
+- `catalog.closeFocusM.marketing`, `lensMounts` and `imageFormat` stay unset: no product source documents this
+  focal length.

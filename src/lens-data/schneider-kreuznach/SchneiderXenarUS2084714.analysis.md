@@ -1,4 +1,4 @@
-# Schneider-Kreuznach / Tronnier 200 mm f/3.5 — US 2,084,714 A
+# SCHNEIDER-KREUZNACH XENAR 200mm f/3.5 (US 2,084,714 Design)
 
 ## Patent Reference and Design Identification
 
@@ -8,7 +8,7 @@
 **Granted:** June 22, 1937  
 **Inventor:** Albrecht Wilhelm Tronnier  
 **Assignee:** Jos. Schneider & Co., Optotechnische Gesellschaft  
-**Example details:** one numerical table for focal length 1 (PDF p. 2, column 2) and one drawing (PDF p. 1); scaled ×200 to the 200 mm focal length the patent names for its drawing
+**Example details:** one numerical table for focal length 1 (PDF p. 2, column 2) and one drawing (PDF p. 1)
 
 The patent describes a four-element objective with six air-contacting surfaces: a single positive lens in front, a
 biconcave negative lens behind it, the diaphragm, and a cemented positive pair at the rear. The single table gives
@@ -18,17 +18,18 @@ The text gives the example as f/3.5 with a useful field of over 50°. The model 
 is 200.22 mm, 0.11 % above the nominal 200 mm. That gap is within the rounding of the four-decimal radii, spacings and
 indices. No value has been changed to close it.
 
-The model is a patent reference, not a factory lens. The link to a Schneider product is a type match, not a confirmed
-identity:
+The SCHNEIDER-KREUZNACH XENAR 200mm f/3.5 (US 2,084,714 Design) carries the Xenar name at family level. The evidence:
 
 1. The construction is the Tessar type that Schneider sold as the Xenar: four elements in three groups, a positive
    front singlet, a biconcave negative singlet, the stop, and a cemented negative–positive rear pair.
-2. Schneider made f/3.5 Xenars in the 1930s, including 15 cm and 18 cm sizes for larger-format cameras. The patent's
-   200 mm f/3.5 example is in the same class. That evidence comes from user reports, not from Schneider catalogues.
-3. Wikipedia's Schneider-Kreuznach article captions a redrawing of this patent "Xenar (Tronnier, 1935)". The
+2. Wikipedia's Schneider-Kreuznach article captions a redrawing of this patent "Xenar (Tronnier, 1935)". The
    redrawing on Wikimedia Commons is a contributor's own work and cites no Schneider source.
-4. The Xenar name dates from 1919, before Tronnier's patent. No Schneider document found ties US 2,084,714 to a
-   particular Xenar focal length or production date. The model therefore claims no production identity.
+3. Schneider made f/3.5 Xenars in the 1930s, including 15 cm and 18 cm sizes for larger-format cameras, according to
+   user reports rather than Schneider catalogues. The patent's 200 mm f/3.5 example is in the same class.
+
+The Xenar name dates from 1919, before Tronnier's patent. No Schneider document found ties US 2,084,714 to a particular
+Xenar focal length or production date, so the model stands for the patent's Xenar-type design rather than a specific
+production lens.
 
 ## Optical Architecture
 
@@ -95,14 +96,14 @@ in index) does not change the model in any meaningful way.
 | L3 | 1.5315 / 49.1 | LLF6 class (1.53172 / 48.9) |
 
 None of the three glasses matches a current catalogue entry at the d, D or e line within 0.00006 in index. They are
-period glasses, so the data file carries no glass labels, and colour is modelled from the printed Abbe numbers on the
-normal partial-dispersion line. No partial-dispersion data is printed, so the model supports no secondary-spectrum
+period glasses, so each element's glass is recorded as unmatched with its printed index and Abbe number, and colour
+is modelled from the printed Abbe numbers on the normal partial-dispersion line. No partial-dispersion data is printed, so the model supports no secondary-spectrum
 claim.
 
 ## Focus Mechanism
 
-The patent gives only the infinity state. The model is infinity-only: there is no focus-state table, object distance
-or moving group to reconstruct.
+The patent gives only the infinity state: it prints no focus-state table, object distance or moving group, so the
+model focuses at infinity only.
 
 ## Stop, Rims and Image Plane
 
@@ -121,7 +122,7 @@ beam, so the drawing agrees with an f/3.5 lens whose front element sets the beam
 
 The image plane is the computed paraxial focus, 163.95 mm behind R7. The patent prints no back focus.
 
-## Patent Conditions and Model Verification
+## Patent Conditions and Model Scope
 
 | Patent condition (claim and text) | Model value | Result |
 |---|---:|---|

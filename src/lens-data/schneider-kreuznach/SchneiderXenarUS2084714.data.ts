@@ -22,14 +22,15 @@ const LENS_DATA = {
   key: "schneider-kreuznach-xenar-200mm-f35-us2084714",
   maker: "Schneider-Kreuznach",
   name: "SCHNEIDER-KREUZNACH XENAR 200mm f/3.5 (US 2,084,714 Design)",
-  subtitle: "1935 DESIGN / 1937 GRANT \u2014 NO PRODUCTION MATCH",
+  subtitle: "US 2,084,714 A, sole example \u2014 Tessar-type Xenar design",
   visible: true,
   catalog: {
     specs: [
       "4 ELEMENTS / 3 GROUPS",
-      "PATENT-ONLY REFERENCE",
-      "ESTIMATED STOP AND RIMS",
-      "INFINITY ONLY"
+      "ALL SPHERICAL",
+      "DESIGN f = 200 mm",
+      "DESIGN F/3.5",
+      "FIELD OVER 50\u00b0"
     ],
     elementCount: 4,
     groupCount: 3,
@@ -61,42 +62,50 @@ const LENS_DATA = {
       name: "L1",
       label: "Element 1",
       type: "Biconvex Positive",
+      role: "Front positive collector; strong front surface, almost flat rear",
       nd: 1.6202,
       vd: 60,
+      glass: "Unmatched (nD 1.6202 / V 60.0; no glass name printed)",
       indexReference: "D",
-      indexReferenceNote: "Source says yellow ray; sodium D used as explicit historical convention, not named factory glass."
+      indexReferenceNote: "The patent gives indices for the yellow ray without naming the line; they are traced as sodium D-line values, the usual convention for a German glass table of 1935."
     },
     {
       id: 2,
       name: "L2",
       label: "Element 2",
       type: "Biconcave Negative",
+      role: "Negative flint ahead of the stop; main negative power of the front pair",
       nd: 1.5785,
       vd: 42.3,
+      glass: "Unmatched (nD 1.5785 / V 42.3; no glass name printed)",
       indexReference: "D",
-      indexReferenceNote: "Source says yellow ray; sodium D used as explicit historical convention, not named factory glass."
+      indexReferenceNote: "The patent gives indices for the yellow ray without naming the line; they are traced as sodium D-line values, the usual convention for a German glass table of 1935."
     },
     {
       id: 3,
       name: "L3",
       label: "Element 3",
       type: "Biconcave Negative",
+      role: "Negative front member of the cemented rear pair; almost flat front surface",
       nd: 1.5315,
       vd: 49.1,
+      glass: "Unmatched (nD 1.5315 / V 49.1; no glass name printed)",
       indexReference: "D",
-      indexReferenceNote: "Source says yellow ray; sodium D used as explicit historical convention, not named factory glass.",
-      cemented: "D1"
+      indexReferenceNote: "The patent gives indices for the yellow ray without naming the line; they are traced as sodium D-line values, the usual convention for a German glass table of 1935.",
+      cemented: "C1"
     },
     {
       id: 4,
       name: "L4",
       label: "Element 4",
       type: "Biconvex Positive",
+      role: "Strong positive rear member of the cemented rear pair",
       nd: 1.6202,
       vd: 60,
+      glass: "Unmatched (nD 1.6202 / V 60.0; no glass name printed)",
       indexReference: "D",
-      indexReferenceNote: "Source says yellow ray; sodium D used as explicit historical convention, not named factory glass.",
-      cemented: "D1"
+      indexReferenceNote: "The patent gives indices for the yellow ray without naming the line; they are traced as sodium D-line values, the usual convention for a German glass table of 1935.",
+      cemented: "C1"
     }
   ],
   surfaces: [
@@ -153,8 +162,8 @@ const LENS_DATA = {
     }
   ],
   focus: {
-    closeFocusM: 1000000000000000.0,
-    description: "Infinity-only patent reference."
+    closeFocusM: 1e15,
+    description: "Infinity focus only; the patent gives no close-focus data."
   },
   aperture: {
     nominalFNumber: 3.5,
@@ -171,7 +180,7 @@ const LENS_DATA = {
   groups: [],
   doublets: [
     {
-      text: "D1",
+      text: "C1",
       fromSurface: "5",
       toSurface: "7"
     }
