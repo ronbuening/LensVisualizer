@@ -68,6 +68,7 @@ const LENS_DATA = {
       nd: 1.611,
       vd: 57.2,
       indexReference: "D",
+      focalLengthMm: 35.29,
       glass: "Unmatched (barium crown, nD 1.611 / V 57.2)",
       role: "Front positive crown; with element 2 it forms the weak negative front component.",
     },
@@ -79,7 +80,8 @@ const LENS_DATA = {
       nd: 1.575,
       vd: 41.4,
       indexReference: "D",
-      glass: "J-LF7 (Hikari)",
+      focalLengthMm: -29.53,
+      glass: "J-LF7 (Hikari catalog equivalent; production supplier unspecified)",
       role: "Central negative flint; supplies the triplet's negative power and its colour correction.",
     },
     {
@@ -90,6 +92,7 @@ const LENS_DATA = {
       nd: 1.523,
       vd: 59,
       indexReference: "D",
+      focalLengthMm: 77.46,
       glass: "Unmatched (crown, nD 1.523 / V 59.0)",
       role: "Rear positive meniscus of low-index crown; reduces the spherical over-correction of element 2.",
     },
@@ -111,9 +114,8 @@ const LENS_DATA = {
   aperture: { nominalFNumber: 6.8, fStops: [6.8, 8, 11, 16], maxFNumber: 16 },
   projection: { kind: "rectilinear", fullFieldDeg: 6, maxTraceFieldDeg: 3 },
   groups: [
-    { text: "FRONT", fromSurface: "1", toSurface: "2" },
-    { text: "NEGATIVE", fromSurface: "3", toSurface: "4" },
-    { text: "REAR", fromSurface: "5", toSurface: "6" },
+    { text: "FRONT (−)", fromSurface: "1", toSurface: "4" },
+    { text: "REAR (+)", fromSurface: "5", toSurface: "6" },
   ],
   layout: { yScFill: 0.3 },
 } satisfies LensDataV2Input;
