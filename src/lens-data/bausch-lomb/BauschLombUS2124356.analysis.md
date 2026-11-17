@@ -66,7 +66,7 @@ The patent prints only the sodium D-line index ("D") and the Abbe number (ν) fo
 |---|---|---|---|
 | L1 | 1.6369 / 56.0 | Unmatched | Dense barium crown, SK18 type (about 1.638 / 55.5) |
 | L2 | 1.6707 / 47.4 | Unmatched | Barium flint, BaF10 type (about 1.670 / 47.2) |
-| L3 | 1.4644 / 66.0 | FSL3 (OHARA) | Fluor crown: nD 1.46444 / νD 65.93 at the D line, within the printed precision |
+| L3 | 1.4644 / 66.0 | FSL3 (OHARA catalog equivalent) | Fluor crown: nD 1.46444 / νD 65.93 at the D line, within the printed precision |
 | L4 | 1.6890 / 30.9 | Unmatched | Dense flint, SF8 type (about 1.6887 / 31.1) |
 | L5, L7 | 1.6574 / 50.8 | Unmatched | Extra-dense barium crown, SSK5 type (about 1.658 / 50.8) |
 | L6 | 1.54832 / 53.3 | Unmatched | Barium light flint, BaLF5 type (about 1.547 / 53.6) |
@@ -95,7 +95,7 @@ The clear radii are not published. They are estimated from the patent drawing, w
 
 - **L1 and the front triplet.** The drawing gives about 34.9 mm and 30.4 mm, in agreement with the model within the precision of the drawing.
 - **R6 and the diaphragm.** The drawing ends the deep concave rear face of L4 at about 19.3 mm, well in front of the diaphragm, and the model follows it. The full f/1.5 axial ray meets R6 at 19.27 mm, so this rim is set by the drawing and the axial beam together.
-- **Front edge of L5.** The drawing ends the optical face of L5 at about 19.4 mm and chamfers the edge out to the triplet's rim. The model ends the face at 19.4 mm and draws a flat land out to the 23.1 mm rim.
+- **Front edge of L5.** The drawing ends the optical face of L5 at about 19.4 mm and chamfers the edge out to the triplet's rim. The model ends the face at 19.4 mm, and the straight edge from there to the 23.1 mm end of R8 draws the same slanted chamfer, which meets the top of the triplet where R8 does, as in the drawing.
 - **Rear triplet.** The drawing shows the rear triplet about 23.1 mm high, with the cemented R8 nearly a hemisphere, and the model follows it. At that height R8 (−23.4 mm) meets the rim at a slope of 80.8°, so the file raises its rim-angle allowance to 81°.
 - **Axial beam.** The full f/1.5 axial beam passes every rim. The real marginal ray meets R1 at 33.37 mm, R6 at 19.27 mm, the front of L5 at 18.97 mm and R10 at 14.77 mm.
 - **Off-axis vignetting.** The beam is vignetted off axis: about 91 % of the f/1.5 bundle passes at 10.5° and about 39 % at the patent's 21° half-field, where the chief ray is not blocked. Strong vignetting at full aperture toward the edge of a 42° field is typical of fast lenses of the period.

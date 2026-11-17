@@ -7,8 +7,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * sodium-D indices and Abbe numbers are transcribed from the printed table, which appears identically on the drawing
  * sheet and in the specification. The scan prints radius magnitudes only; the signs follow the figure and the text
  * (L3, L5 and L7 biconvex; L4 and L6 biconcave; the L5/L6 junction concave toward the diaphragm).
- * Glass: L3 matches the FSL3 (OHARA) catalogue row at the sodium D line within the printed precision; the other
- * printed index pairs match no catalogue row and keep their printed values.
+ * Glass: L3 matches the FSL3 (OHARA) catalogue row at the sodium D line within the printed precision (a catalogue
+ * equivalent, not the 1937 melt); the other printed index pairs match no catalogue row and keep their printed values.
+ * Element focal lengths are thick-lens values in air at nD.
  *
  * Stop: printed. S2 = 12.32 mm runs from L4 to the diaphragm X and S3 = 4.08 mm from the diaphragm to L5.
  * Back focus: not printed; the image plane is the computed paraxial back focal distance, 41.193 mm from R10.
@@ -16,7 +17,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * the R6 arc radius) and floor-checked by real-ray trace. L1 (36 mm) and the front triplet (30 mm) agree with the
  * drawn 34.9 and 30.4 mm within measurement noise. R6 ends at 19.3 mm as drawn, just above the f/1.5 axial ray
  * (19.27 mm), so the concave rear face of L4 stops well in front of the diaphragm. L5's front face ends at 19.4 mm,
- * where the drawing starts its edge chamfer, with a flat land out to the 23.1 mm triplet rim. The rear triplet takes
+ * where the drawing starts its edge chamfer; the straight rim edge from there to the 23.1 mm end of R8 is that
+ * chamfer, which the drawing slants to the corner where R8 meets the triplet's top edge. The rear triplet takes
  * the drawn 23.1 mm; there the steep R8 junction (-23.4 mm) reaches an 80.8° rim slope, so checks.maxRimAngleDeg is 81.
  * Focus: the patent gives the infinity state only.
  * No production lens is documented for this example.
@@ -59,6 +61,7 @@ const LENS_DATA = {
       nd: 1.6369,
       vd: 56,
       indexReference: "D",
+      focalLengthMm: 132.5,
       glass: "Unmatched (dense barium crown, nD 1.6369 / V 56.0)",
       role: "High-index front collector; converges the f/1.5 beam into the front triplet",
     },
@@ -70,6 +73,7 @@ const LENS_DATA = {
       nd: 1.6707,
       vd: 47.4,
       indexReference: "D",
+      focalLengthMm: 83.2,
       glass: "Unmatched (barium flint, nD 1.6707 / V 47.4)",
       role: "Positive front member of the negative cemented triplet; its strong front face points toward L1",
       cemented: "C1",
@@ -82,7 +86,8 @@ const LENS_DATA = {
       nd: 1.4644,
       vd: 66,
       indexReference: "D",
-      glass: "FSL3 (OHARA)",
+      focalLengthMm: 166.2,
+      glass: "FSL3 (OHARA catalog equivalent; production supplier unspecified)",
       role: "Low-index positive middle member of the front cemented triplet",
       cemented: "C1",
     },
@@ -94,6 +99,7 @@ const LENS_DATA = {
       nd: 1.689,
       vd: 30.9,
       indexReference: "D",
+      focalLengthMm: -31.5,
       glass: "Unmatched (dense flint, nD 1.6890 / V 30.9)",
       role: "Strong negative flint closing the front triplet; its deep rear face is concave toward the diaphragm",
       cemented: "C1",
@@ -106,6 +112,7 @@ const LENS_DATA = {
       nd: 1.6574,
       vd: 50.8,
       indexReference: "D",
+      focalLengthMm: 33.3,
       glass: "Unmatched (extra-dense barium crown, nD 1.6574 / V 50.8)",
       role: "Thick, strongest positive member of the rear cemented triplet, next to the diaphragm",
       cemented: "C2",
@@ -118,6 +125,7 @@ const LENS_DATA = {
       nd: 1.54832,
       vd: 53.3,
       indexReference: "D",
+      focalLengthMm: -29.8,
       glass: "Unmatched (barium light flint, nD 1.54832 / V 53.3)",
       role: "Low-index negative middle member of the rear triplet; its steep front junction is concave toward the diaphragm",
       cemented: "C2",
@@ -130,6 +138,7 @@ const LENS_DATA = {
       nd: 1.6574,
       vd: 50.8,
       indexReference: "D",
+      focalLengthMm: 69.9,
       glass: "Unmatched (extra-dense barium crown, nD 1.6574 / V 50.8)",
       role: "Weaker positive rear member of the rear cemented triplet",
       cemented: "C2",
@@ -186,7 +195,6 @@ const LENS_DATA = {
       R: 207,
       d: 22.7,
       sd: 19.4,
-      rimExtensionSd: 23.1,
       medium: 5,
     },
     {

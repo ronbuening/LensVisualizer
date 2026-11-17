@@ -199,3 +199,74 @@ search still cannot start past R6, the tool limit described above. `rimcost --lo
 worst loss of 1.4 points at 8.1°, all from the R7 face cut, and the corner (12.2°) goes from 82.6 to 84.9 %. The
 real-ray grid at the patent's field, against the committed rims: 10.5° 91.9 → 90.6 %, 15° 68.6 → 77.7 %,
 18° 49.9 → 60.3 %, 21° 28.7 → 39.3 % and 24° 12.6 → 21.1 %.
+
+## 2026-11-17 — Second review on the local site
+
+Compared: the live page (1400×900 and a 3× shot) with the drawing sheet of US2124356A.pdf, page 1, read at the
+scan's native 300 dpi, and the specification on page 2. The figure is the sole example.
+
+Scale, re-derived: vertex crossings on the axis row give L1 175.5 px for 10.8 mm, the front triplet 361 px for
+21.9 mm and the rear triplet 560.5 px for 34.3 mm (16.25, 16.48 and 16.34 px/mm); 16.35 px/mm is used. Circle fits to
+the drawn arcs (150 to 270 points each, rms 1.0 to 1.5 px) give R1 16.44, R6 16.22 and R8 16.17 px/mm against the
+printed radii; R3 is drawn tighter (15.46). Heights were read from each element's own top-and-bottom midline, so a
+1 % spread in the vertical scale is the reading error.
+
+| Rim | File | Drawing (16.35 / arc scale) | Verdict |
+|---|---:|---:|---|
+| L1 (1, 2) | 36 | 34.8 / 34.6 | 3.4 % high, inside the noise band; step order L1 > front triplet > rear triplet matches. Kept. |
+| Front triplet (3–5) | 30 | 30.3 | Kept. |
+| R6 end | 19.3 | 19.2 / 19.3 | Kept. An independent real-ray trace puts the f/1.5 marginal ray (entrance-pupil radius 33.375 mm) at 19.275 mm on R6 and 18.97 mm on R7. |
+| Diaphragm strokes (inner ends) | stop 18.91 (engine) | 19.0 | The drawn iris opening agrees with the paraxial f/1.5 stop. No change (stop not edited). |
+| R7 face end | 19.4 | 19.1 / 19.2 | 1.6 % high, inside the noise band. Kept. |
+| R7 land (`rimExtensionSd`) | 23.1 | none drawn | Removed; see below. |
+| Rear triplet (8–10) | 23.1 | 22.8 / 23.1 | R8 is drawn to 0.990 of its fitted radius (file 0.987). Kept, with `maxRimAngleDeg` 81 still needed (80.8°). |
+
+The R7 land. The drawing does not draw a vertical stroke at L5's front face. From the face end it draws a straight
+chamfer, 61 px (3.7 mm) tall and 38 to 42 px (2.4 to 2.6 mm) deep, slanting back to the corner where R8 meets the
+triplet's top edge; L5 has no flat top there. With the land the page drew a 3.7 mm vertical step at the face's sag and
+a 2.1 mm flat top on L5 before R8. Without it the renderer joins R7's rim (19.4 mm, sag 0.91 mm) straight to R8's rim
+(23.1 mm, 3.04 mm behind L5's vertex): a chamfer 3.7 mm tall and 2.1 mm deep ending at R8, as drawn. The land is opaque
+drawing only, so it bought no light (`rimcost --noext 7`: identical curve), and the validator passes without it (no
+spacing need). Under the lands rule it goes. `checks.gapSagFrac` is not set, so nothing to lower.
+
+Lands and cuts against the light baseline (`rimcost --loo`, app curve 0–12.2°): unchanged by this review. Worst loss
+1.4 points at 8.1° (96.1 → 94.7 %), all from the R7 face cut (21 → 19.4), which the drawing supports; restoring R6 wins
+back nothing. Corner 82.6 → 84.9 %. Both cuts stay.
+
+Other changes:
+
+- `focalLengthMm` added to all seven elements (the inspector showed "FL = —"): thick-lens values in air at nD, L1
+  +132.5, L2 +83.2, L3 +166.2, L4 −31.5, L5 +33.3, L6 −29.8, L7 +69.9 mm, as quoted in the analysis.
+- L3 `glass`: "FSL3 (OHARA)" → "FSL3 (OHARA catalog equivalent; production supplier unspecified)", the corpus form for
+  a historical design. At the D line FSL3 gives nD 1.46444 / νD 65.93 against the printed 1.4644 / 66.0 (Δn +0.00004,
+  Δν −0.07). Schott FK3 and Hoya FC3 give νD 65.76 (Δν −0.24) and stay out of the window, so FSL3 remains the only exact
+  row. The label still resolves.
+- Header comment: the rim note now describes the chamfer, and the glass note says catalogue equivalent and how the
+  element focal lengths were computed. Analysis: the "Front edge of L5" bullet and the L3 glass-table cell follow.
+
+Checked and found correct: radii, thicknesses, spaces, D indices and ν against both printed tables; the signs against
+the text (L2 positive meniscus, L3 biconvex, L4 biconcave, L5/L7 biconvex, L6 biconcave, R8 concave toward the
+diaphragm); element types and roles; the stop between L4 and L5 at the printed S2/S3; the cemented brackets C1 (3–6)
+and C2 (7–10), with "TRIPLET C1" / "TRIPLET C2" on every member in the inspector; no aspheres; `groups` empty, because
+the claims' three groups are unnamed and the second and third are exactly C1 and C2. Movement: infinity only, no gaps or
+zoom block; the focus slider reads "Not modeled" and the movement view says the lens has no modelled group movement.
+`lsa.mjs`: −0.10 mm at the full pupil, so no sign misprint. Assignee "Bausch & Lomb Optical Company" matches the
+specification heading; no variant spelling elsewhere in the corpus.
+
+Engine, before and after: EFL 100.124 mm, f/1.5, stop radius 18.91 mm, half-field 25.73°, total length 125.113 mm.
+`audit:surface` OK; `audit:aperture` reports no rim, trace or iris limit; `audit:image-circle` and
+`audit:field-coverage` skip the lens (no image format).
+
+Glass and colour: the patent prints only D and ν, names no glass, and has one example; L5 and L7 share 1.6574 / 50.8,
+which suggests a real melt. No catalogue or vendor AGF row lies inside the exact window for the six unmatched pairs. At
+the D line the nearest are S-TIM28 / FD8 for L4 (nD 1.68874, Δn −0.00026, Δν +0.17 / +0.25), S-BAH10 / BAF10 for L2
+(Δn −0.0008), N-SSK5 / J-SSK5 for L5 and L7 (Δn +0.0009), N-BALF5 for L6 (Δn −0.0010) and K-SK18 for L1 (Δn +0.0015). The patent prints no aberration curves, so there is no colour comparison. No
+element is index-only and no partial dispersion is printed.
+
+Open:
+
+- `catalog.imageCircleMm` is unset, so the analysis tabs use a default field (0–12.2°) instead of the patent's 21°
+  half-field. The real chief ray at 21° lands 38.22 mm from the axis (about 76.4 mm diameter; 76.9 mm paraxial).
+- L4's drawn flange: the drawing carries the front triplet's flat top about 4 mm past the R5 junction before L4's
+  chamfer to R6; the renderer can only join R5's rim straight to R6's, so the model's L4 chamfer starts earlier and is
+  steeper. No land or cut shape reproduces it.
