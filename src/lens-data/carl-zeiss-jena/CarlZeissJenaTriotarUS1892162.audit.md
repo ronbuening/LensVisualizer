@@ -119,13 +119,58 @@ Analysis:
 
 Engine numbers before and after are identical (`built.mjs`, `probe.mjs`): EFL 100.0004 mm, f/4.5, half-field 35.04°,
 stop radius 9.080 mm, BFD 82.234 mm, element focal lengths +37.34 / −28.75 / +72.49 mm. Surface audit OK; the aperture
-audit finds no rim limit. Image-circle and field-coverage audits skip the file (no image format).
+audit finds no rim limit. Image-circle and field-coverage audits skip the file (no image format; closed later on
+2026-11-17 by the 100 mm image circle).
 
 Open:
 
 - No `catalog.imageFormat` or `lensMounts`: the example is at 100 mm and fits no single documented Triotar product.
 - Rims are the printed lens diameters and the section figure agrees with them; nothing is open for the semi-diameter
-  pass.
+  pass. (Closed 2026-11-17, semi-diameter pass.)
 - The viewer's default 35° half-field exceeds the patent's stated coverage (about 26.6°); no data field to narrow it
-  was found.
+  was found. (Partly closed 2026-11-17: `catalog.imageCircleMm` 100 now bounds the analysis field and the image-circle
+  check; the drawn default ray field stays 35.04°.)
 - `aperture.fStops` (4.5 to 16) is a default ladder; the patent prints only 1:4.5.
+
+## 2026-11-17 — Semi-diameter pass against the patent figure
+
+Source: `patents/US1892162A.pdf`, page 1, the section figure on the drawing sheet. The scan is native 300 dpi; it was
+measured at 300 dpi with the silhouette profiler and read by eye at 600 dpi. The figure has no stop and no ray
+bundles, but leader lines run to the surfaces from the labels above and below. Rims were therefore read on both sides
+of the axis (axis row 1583) and averaged.
+
+Scale: the vertices read at x ≈ 941, 1013.5, 1067.5, 1090, 1247.5 and 1287.5 px. The front-to-rear vertex span of
+346.5 px against the printed 22.0 mm gives 15.75 px/mm. Two checks: r1 to r4 is 149 px, 9.46 mm against the printed
+9.5 mm; the rear air space l2 is 157.5 px, 10.0 mm against 10.0 mm. The drawing is to scale.
+
+| Element | Stored sd (faces) | Printed Ø/2 | Figure half-height (top / bottom px) | Figure sd, less half a stroke | Ratio |
+| --- | --- | --- | --- | --- | --- |
+| I (1, 2) | 11.7 / 11.7 | 11.7 | 187.5 / 186 | ≈11.75 | 1.00 |
+| II (3, 4) | 10.4 / 10.4 | 10.4 | 166.5 / 168.5 | ≈10.55 | 1.01 |
+| III (5, 6) | 10.0 / 10.0 | 10.0 | 159 / 164.5 | ≈10.2 | 1.02 |
+
+The step order (I > II > III) and the relative heights (II/I 0.90 drawn against 0.89 stored, III/I 0.87 against 0.85)
+agree. The drawn edge thicknesses (about 1.3, 4.4 and 1.7 mm) are close to the model's 1.34, 4.49 and 1.42 mm; the
+drawn III is slightly thicker at the rim, within stroke width. All rims stay as they are: they are the printed lens
+diameters, which outrank a figure reading, and the figure agrees within 3 %. The side-by-side overlay at matched scale
+is kept outside the repository.
+
+Metadata: `catalog.imageCircleMm` none → 100. Source: the specification (page 1, lines 8 to 11) requires these
+objectives to cover a picture whose diagonal is about equal to the focal length. This is the patent's own coverage
+statement for the 100 mm example. With it, the image-circle audit checks the file (0 undersized surfaces) and the
+field-coverage audit finds full chief-ray coverage. `lensMounts` and `imageFormat` stay unset. The patent names no
+film or plate size. A 100 mm diagonal would fit 6 × 9 cm roll film or 6.5 × 9 cm plates, but no 100 mm Triotar
+product was found, and the Triotar 1:4.5 that is documented (7.5 cm on the 1933 Rolleicord I) is a different focal
+length. `focalLengthMm.marketing` and `fNumber.marketing` stay unset for the same reason.
+
+Product name: Cavina, the best source found, captions this patent "Carl Zeiss Jena Triotar 1:4,5". The file's name,
+CARL ZEISS JENA TRIOTAR 100mm f/4.5 (US 1,892,162 Design), carries that family name at the patent's own focal length
+and aperture, with the design suffix. It matches.
+
+Results: engine half-field 35.04° before and after; f/4.5 and stop radius 9.080 mm unchanged. The largest field all
+rims pass is 35.2° (surface 1 limits it), so the patent's 26.6° corner passes unblocked. Corner illumination (geometric
+transmission at full aperture, measured against the starting rims, which are the same) is 62.6 % at 20.5° and 41.9 %
+at 26.4°, with no loss at any field. Surface audit OK; the aperture audit finds no rim limit (within 3 % of f/4.5).
+The image-circle audit reports 0 undersized; field coverage is 99 % or better.
+
+Open: `aperture.fStops` beyond 1:4.5 remain a default ladder.

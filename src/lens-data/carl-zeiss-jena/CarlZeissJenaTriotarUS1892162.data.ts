@@ -22,7 +22,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * radius is derived from the stated f/4.5.
  *
  * SEMI-DIAMETERS: half the printed lens diameters (D_I = 23.4, D_II = 20.8, D_III = 20.0 mm), on both faces of each
- * lens. The f/4.5 axial beam clears every rim.
+ * lens. The f/4.5 axial beam clears every rim. The drawing is to scale (15.75 px/mm at 300 dpi; front-to-rear vertex
+ * and r1-to-r4 spans within 0.5 % of the table) and draws all three lenses within 3 % of these heights.
+ *
+ * IMAGE CIRCLE: 100 mm, from the patent's statement that the objective covers a picture whose diagonal is about equal
+ * to the focal length. The chief ray to that corner (about 26.6°) clears every rim.
  *
  * IMAGE PLANE (computed): the patent prints no back focus. The last spacing is the paraxial back focus of the printed
  * table, 82.234 mm.
@@ -44,6 +48,7 @@ const LENS_DATA = {
     ],
     elementCount: 3,
     groupCount: 3,
+    imageCircleMm: 100,
     focalLengthMm: {
       design: 100,
     },

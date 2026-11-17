@@ -129,7 +129,7 @@ focusing data.
 | Vertex length | 22 % of f | 22.000 mm |
 | First to fourth surface vertex | 9.5 % of f | 9.500 mm |
 | Back focus | not printed | 82.234 mm (computed paraxial) |
-| Picture diagonal | about equal to f (half-field about 26.6°) | not set; the diagram's default field is 35.0° half-field |
+| Picture diagonal | about equal to f (half-field about 26.6°) | 100 mm image circle; the diagram's default ray field is 35.0° half-field |
 
 The radii (with their printed signs), thicknesses, spacings, nD and ν are those printed in both copies of the table.
 The image plane is the computed paraxial back focus of the printed table, because the patent prints no back focus. At f/4.5 the real marginal ray crosses the axis about 0.20 mm ahead of that plane, a small undercorrection of
@@ -144,7 +144,9 @@ axial clipping comes from this paraxially sized iris; the lens diameters cut not
 
 **Off axis.** The printed diameters vignette the oblique beam, as the patent's small lenses imply. At 10° about 13 % of
 the bundle width is cut on one side at lens I; at 20° about 36 % at lens I and 24 % at lens III. At the patent's corner
-(about 26.6°, an image height of 50 mm) the chief ray still clears every rim, but the bundle is heavily vignetted.
+(about 26.6°, an image height of 50 mm) the chief ray still clears every rim, but the bundle is heavily vignetted:
+the model's geometric transmission at full aperture falls to about 63 % at 20.5° and 42 % at 26.4°. The patent
+drawing is to scale and draws the three lenses at the printed diameters.
 Every element keeps a positive edge thickness at its printed diameter.
 
 ## Design Heritage and Context
