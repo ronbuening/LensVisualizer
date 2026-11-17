@@ -62,17 +62,57 @@ Changes:
 
 After the changes: effective focal length 99.998 mm, f/2.00, back focus 69.65 mm, half-field (engine) 27.27°. Surface
 audit OK, including the rim-cut beam check; aperture audit: no rim limit. The image-circle and field-coverage audits
-still skip the file (hidden, no image format).
+still skip the file (hidden, no image format). (Now visible; both audits still skip it for the missing image format.)
 
 Open:
 
 - Wording for the cleanup pass: subtitle "FIGURE 1 — HIDDEN QUALIFIED REFERENCE", specs "PATENT ONLY; NO RETAIL
   MATCH" and "ESTIMATED STOP AND RIMS", the `focus.description` wording, and the `leitz-` prefix of the key now that
-  the maker is Leica. `closeFocusM` is written as 1000000000000000.0.
+  the maker is Leica. `closeFocusM` is written as 1000000000000000.0. (Closed 2026-11-17: key renamed by the
+  coordinator, wording fixed in the cleanup pass.)
 - Glass labels: L3 matches the SF8 class and L4/L5 the F5 class; L1/L2 (1.6185 / 60.5) and L6 (1.6580 / 51.4) have
-  no catalogue match.
+  no catalogue match. (Closed 2026-11-17: all six left unmatched; see the cleanup section.)
 - SD pass: Figure 1, scaled by its own axial length, draws semi-diameters of about 27 mm (front pair), 24.6 mm
   (negative member, with chamfered corners on the r7 side) and 20 mm (rear member), against 26 / 23 / 21.5 mm modelled.
 - Field: the engine's default 27.27° display field is beyond the 23.6° chief-ray limit set by the inferred iris; the
   patent states no field to set instead.
 - The British counterpart (GB 381,135 per the handwritten note) is unverified.
+
+## 2026-11-17 — Cleanup and wording pass
+
+The coordinator renamed the files, key and name (LEITZ 100mm f/2 (US 1,899,934 Figure 1 Design)) and made the lens
+visible. This pass changed only public text and labels; the optics are untouched.
+
+Fields changed:
+
+- `subtitle`: "FIGURE 1 — HIDDEN QUALIFIED REFERENCE" → "US 1,899,934 A, Figure 1 — Leitz split-front triplet".
+- `specs`: "6 ELEMENTS / 4 GROUPS", "PATENT ONLY; NO RETAIL MATCH", "ESTIMATED STOP AND RIMS", "INFINITY ONLY" →
+  "6 ELEMENTS / 4 GROUPS", "ALL SPHERICAL", "DESIGN F/2", "SPLIT-FRONT TRIPLET".
+- `focus.closeFocusM`: 1000000000000000.0 → 1e15 (same value); `focus.description` → "Infinity focus only; the patent
+  gives no close-focus data."
+- Element labels L1–L6 → Element 1–6; types L2 and L6 "Biconvex" → "Biconvex Positive", L4 "Biconcave" →
+  "Biconcave Negative"; a plain optical `role` on every element.
+- Cemented ids D1/D2 → C1/C2 on L3/L4 and L5/L6, and in `doublets`.
+- Glass: every element now carries an `Unmatched (nD … / V …)` label with its printed values. The nearest catalogue
+  rows were checked at the sodium D line the patent uses: Schott N-SF8 for L3 is 0.00026 low in nD (νD 31.30 against
+  31.2) and Schott F5 for L4/L5 is 0.00012 low (νD 38.02 against 38.0), both outside the printed precision, although
+  both agree within 0.0001 at the helium d line. L1/L2 (1.6185 / 60.5) and L6 (1.6580 / 51.4) have no catalogue row.
+- Header comment: one sentence added on the unmatched glasses.
+- Analysis: H1 set to the new name; the model is named in the identification paragraph; the "patent reference"
+  sentence removed; element headings carry the Element numbers; glass lines and the glass table use the unmatched
+  labels with the D-line explanation; "Patent Conditions and Model Verification" renamed "Patent Conditions and Model
+  Scope".
+
+Engine numbers before and after are identical: effective focal length 99.998 mm, f/2.00, half-field 27.27°, iris
+radius 17.97 mm, back focus 69.65 mm. Surface audit OK; aperture audit: no rim limit. The image-circle and
+field-coverage audits skip the lens (no image format).
+
+Open:
+
+- SD pass: the Figure 1 rim readings above (about 27 / 24.6 / 20 mm against 26 / 23 / 21.5 mm modelled) still stand;
+  the drawn chamfers on the r7 side of the cemented negative member fit the rim cut at the iris plane.
+- Field: the default 27.27° display field exceeds the 23.6° chief-ray limit of the inferred iris; the patent prints
+  no field angle.
+- No image format: the patent states none, so the image-circle and field-coverage audits cannot run.
+- The fStops list 2–16 is a default, not printed by the patent.
+- The British counterpart (GB 381,135) is unverified.
