@@ -1,13 +1,26 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
-/** Literal specification TABLE, printed p3/PDFp4, not differing drawing labels.
- * Patent-only reciprocal infinity reference for a projection objective.
- * Front free diameter45.4mm source; rear17.5mm semi-diameter is a documented
- * provisional mechanical aperture, not factory/film-format evidence.
+/**
+ * US 1,479,251 (William H. Repp, filed July 31, 1922, granted January 1, 1924), "Projecting lens": the patent's sole
+ * numerical example, E.F. 100 mm, F/2.2. Radii, thicknesses, the 94.54 mm separation, nD and V are copied from the
+ * typeset table on printed page 3 in millimetres, unscaled. The patent prints the signs of the radii.
+ *
+ * The drawing sheet repeats the example in hand lettering with two errors: it labels the front radius "88.57" (table
+ * +82.57) and the flint V "30.4" (table 36.4). The table values are used. They give the printed 39.82 mm back focus
+ * (88.57 would give 44.05 mm) and near-achromatic doublets (30.4 would overcorrect the colour about fourfold).
+ *
+ * Orientation: the patent projects from the film (right) to the screen (left). The model traces from the screen side
+ * at infinity toward the film, so the convex faces lead and the plano faces point at the film, as drawn.
+ *
+ * Inferred values: the aperture stop sits at the front vertex plane with the printed 45.4 mm free aperture of the front
+ * doublet (the patent draws no iris). The rear-doublet clear radii (17.5 mm, 17 mm on the plano face) are estimates
+ * that clear a 3° field; the drawing's rear/front height ratio (about 0.78) suggests roughly 17.7 mm. The last gap is
+ * the computed paraxial back focus, 39.82254 mm; the patent prints 39.82 mm and says the film sits slightly farther
+ * away at a finite projection throw.
  */
 const LENS_DATA = {
   schema: 2,
   key: "repp-patent-100mm-f22",
-  maker: null,
+  maker: "Projection Optics",
   name: "REPP PATENT 100mm f/2.2 Projection Reference",
   subtitle: "US1479251A — PATENT-ONLY; RECIPROCAL INFINITY REFERENCE",
   visible: false,
@@ -19,8 +32,8 @@ const LENS_DATA = {
     ],
     elementCount: 4,
     groupCount: 2,
-    focalLengthMm: { marketing: 100, design: 99.99649 },
-    fNumber: { marketing: 2.2, design: 2.2025659532520065 },
+    focalLengthMm: { design: 100 },
+    fNumber: { design: 2.2 },
   },
   source: {
     patentNumber: "US 1,479,251 A",
@@ -88,12 +101,12 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 1e15,
     description:
-      "Reciprocal infinity-only reference; finite projection throw not modeled.",
+      "Fixed at infinity on the screen side; the finite projection throw to the film is not modelled.",
   },
   aperture: {
-    nominalFNumber: 2.2025659532520065,
-    fStops: [2.2025659532520065],
-    maxFNumber: 2.2025659532520065,
+    nominalFNumber: 2.2026,
+    fStops: [2.2026],
+    maxFNumber: 2.2026,
   },
   projection: { kind: "rectilinear", fullFieldDeg: 6, maxTraceFieldDeg: 3 },
   groups: [
