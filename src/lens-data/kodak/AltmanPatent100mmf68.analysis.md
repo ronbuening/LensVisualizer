@@ -1,54 +1,131 @@
 ## Patent Reference and Design Identification
 
-**Patent:** US1,880,393A
-**Inventor:** Fred E. Altman
-**Assignee:** Eastman Kodak Company
-**Filed:** November29,1930
-**Granted:** October4,1932
-**Title:** Photographic objective
-**Example details:** Sole numerical construction, specification table PDFpage2; S1=1.98 selected explicitly after comparison with drawing S1=1.89.
+**Patent:** US 1,880,393, *Photographic Objective*  
+**Application Number:** Serial No. 499,006  
+**Filed:** November 29, 1930  
+**Granted:** October 4, 1932  
+**Inventor:** Fred E. Altman  
+**Assignee:** Eastman Kodak Company  
+**Example details:** Sole numerical example, printed twice: the specification table (p. 2) and the table on the drawing sheet beside the single figure (p. 1); dimensions are decimals of the focal length 100.00
 
-This is an unidentified **patent-only** Kodak-assigned design, not a verified named retail lens. Hidden status and unassigned maker avoid presenting factory identity as established.
+The patent describes a three-element, air-spaced photographic objective working at f/6.8. Altman presents it as a
+revision of his earlier f/8 objective of the same type (US 1,658,365), which used barium crown in both positive elements
+and showed pronounced spherical aberration when opened to f/6.8. The new design keeps the front pair substantially as
+before and changes the rear positive element to a meniscus of low-index, low-dispersion glass.
 
-The specification and drawing disagree on the first air gap:1.98 versus1.89. Both are preserved in the audit. At the source's G′ indices, the specification1.98 yields system EFL100.001550 against the stated100.00, compared with100.460513 for1.89. This supports choosing1.98, as authorized, but is not a proof of the original designer's intent: the separately quoted front-component focal length−529.72 is closer with1.89. No radii or glass constants were adjusted to force agreement.
+The file is a patent reference, not a model of a named retail lens. No Kodak lens sold at f/6.8 was found. Kodak's own
+triplets of the same years were sold as Kodak Anastigmat lenses at other apertures: a 1932 620 Kodak Junior in the
+Science Museum Group collection carries a Kodak Anastigmat 100 mm f/6.3, and the 1932–1933 Six-20 was offered with a
+Kodak Anastigmat f/6.3. These belong to the same family of three-element Kodak objectives, but no source ties this
+patent's f/6.8 prescription to any of them.
 
 ## Optical Architecture
 
-Three air-spaced elements, positive–negative–positive. Radii signs derived from the original figure are+24.06,−198.10,−54.52,+24.85,−183.80,−33.36. Center thicknesses2.96,1.18,2.66 and gaps1.98,6.80 are retained. Dimensions use the patent's normalized100 focal-length scale, represented as millimetres; no factory focal length is claimed.
+The objective is a positive–negative–positive air-spaced triplet: a biconvex front lens, a biconcave middle lens and a
+positive meniscus rear lens concave toward the object. The patent treats lenses 1 and 2 as one front component, which
+is weakly negative ("dispersive"), and lens 3 as the rear component. The model has 3 elements in 3 groups, a D-line
+focal length of 99.81 and a back focus of 89.92, measured from the last lens vertex.
+
+The air space between lenses 1 and 2 is small (1.98) and the one between lenses 2 and 3 is large (6.80). The patent
+prints no diaphragm position. The model places the iris at the middle of the 6.80 space, the usual position in a
+triplet of this kind; this is a modelling choice. Its semi-diameter of 6.52 gives the patent's f/6.8.
+
+The patent's claims tie the design to two first-order conditions. The rear meniscus has a focal length of about
+three-quarters of the objective's focal length (+75.68 against 100.00 in the patent's table; +77.46 against 99.81 in the
+model at the D line). The front component is weak: its printed focal length is −529.72, more than five times the
+objective's focal length, as claim 2 requires.
 
 ## Element-by-Element Analysis
 
-### L1: Front positive barium crown
+The patent prints the focal length of each lens. These printed values match a calculation at the patent's G′ indices
+(the hydrogen G′ line, 434.0 nm) rather than at the D line, so both are given below.
 
-nD=1.611, νD=57.2. Glass: barium-crown class; no modern catalog identity asserted. D-line single-element focal length+35.29175mm; at directly printed G′ index1.624,+34.55880mm, closer to source+34.52. Its positive power combines with the middle negative lens to form a weak negative front component.
+### L1 — Biconvex Positive, front barium crown
 
-### L2: Middle biconcave flint
+nd = 1.611, νd = 57.2. Glass: barium crown, by the patent's description; no catalogue glass is named. f = +35.29 mm at
+the D line; +34.56 at the printed G′ index 1.624, against the printed +34.52.
 
-nD=1.573, νD=41.4. Glass: flint class. D-line focal length−29.62959mm; printed G′ index1.593 gives−28.62690mm, near source−28.63. The asymmetric negative element supplies strong negative power between the positive elements.
+The strongly curved front surface (R1 = 24.06) carries most of the element's power, with a weak rear surface
+(R2 = −198.10). With L2 it forms the dispersive front component that balances the two positive lenses.
 
-### L3: Rear positive meniscus
+### L2 — Biconcave Negative, flint
 
-nD=1.523, νD=59.0. Glass: low-index crown class. D-line focal length+77.46001mm; printed G′ index1.534 gives+75.85811mm, closer to source+75.68 but not an exact match. The patent contrasts this low-index rear element with its earlier f/8 design, seeking improved spherical correction at f/6.8.
+nd = 1.575, νd = 41.4. Glass: light flint, by its index and Abbe number. f = −29.53 mm at the D line; −28.63 at the
+printed G′ index 1.593, matching the printed −28.63.
+
+The negative lens is unsymmetrical, as claim 2 states: its rear surface (R4 = 24.85) is about twice as strong as its
+front surface (R3 = −54.52). The patent explains that at f/6.8 this lens over-corrects the spherical aberration, which is
+why the rear element was changed. The index 1.575 used here is the drawing-sheet value; the specification table prints
+1.573 (see The Two Printed Tables).
+
+### L3 — Positive Meniscus, rear low-index crown
+
+nd = 1.523, νd = 59.0. Glass: ordinary crown. f = +77.46 mm at the D line; +75.86 at the printed G′ index 1.534, against
+the printed +75.68.
+
+This element is the patent's point of novelty. A rear positive lens of index below 1.53 for the D line and dispersive
+ratio above 58, bent as a meniscus concave to the front, reduces the spherical over-correction of the negative lens and
+still allows chromatic correction. The glass printed here, 1.523 and 59.0, sits just inside both limits.
 
 ## Glass Identification and Selection
 
-Literal nD and V values are retained. The app's nD/V-derived dispersion is an approximation, not recovered historical melt data. Printed G′ values1.624,1.593,1.534 are preserved as separate evidence and used directly in isolated comparisons. They are NOT assigned to the API's mercury-g field. Source focal-length correspondence strongly suggests shorter-wavelength reference calculations, but the patent does not explicitly identify the wavelength of every focal-length number.
+The patent prints, for each lens, the index for the D line, the index for the G′ line and the dispersive ratio ν:
+
+| Lens | D | G′ | ν | Class |
+|---|---:|---:|---:|---|
+| 1 | 1.611 | 1.624 | 57.2 | Barium crown |
+| 2 | 1.575 (drawing sheet; specification 1.573) | 1.593 | 41.4 | Light flint |
+| 3 | 1.523 | 1.534 | 59.0 | Crown |
+
+The model uses the D-line indices and the printed ν values, with the D line (sodium, 589.3 nm) as reference. The G′
+indices are not entered: the model derives each glass's dispersion from its Abbe number, so its colour behaviour is an
+approximation. With the printed D and G′ indices, the D and G′ paraxial foci of this prescription lie 0.22 apart, which
+fits the patent's statement that the objective is corrected for chromatic aberration. No partial-dispersion data are
+modelled.
 
 ## Focus Mechanism
 
-Patent text permits moving front element1 toward or away from element2. No object-distance/focus-travel schedule is supplied; none is invented. The delivered reference is infinity-only at the independently calculated sodium-D Gaussian BFD89.00202508mm. Its D-line EFL98.89776716mm is retained, not rescaled to nominal100 or moved to the G′ focus.
+The patent says the objective is focused by moving lens 1 toward or away from lens 2 in a screw-threaded mount, so that
+it can be used on a fixed lens board. It prints no focus travel or close-focus spacing, and none is invented here: the
+model is set at infinity only.
 
-## Stop, Aperture and Field Qualifications
+## The Two Printed Tables
 
-No exact diaphragm location or clear diameters were recovered from the source. The stop is a disclosed diagnostic assumption at the midpoint of the6.80mm second air gap; inserting it does not alter total separation. Model f/6.8 is a diagnostic aperture, not independently verified factory pupil placement. Element semi-diameters9.5,9.0,10.0mm are conservative model assumptions, not measurements. They pass default geometry checks and exceed the maximum heights in the sampled rays. ±3° is a limited diagnostic field, not a source-supported image circle. No mount or format is claimed.
+The patent's single example is printed twice, and the two printings differ in two values:
 
-## Verification Summary
+| Value | Specification table (p. 2) | Drawing-sheet table (p. 1) | This file |
+|---|---:|---:|---:|
+| S1, air space between lenses 1 and 2 | 1.98 | 1.89 | 1.98 |
+| Lens 2, index for the D line | 1.573 | 1.575 | 1.575 |
 
-Native canonical validator returns no errors; data-file TypeScript check passes. Independent matrix and native EFL agree for both gaps at both printed spectral-index sets. Near-axis exact Snell crossings converge to the calculated BFDs without adjustment.36 native sampled meridional rays at0°,1°,2°,3° and nine pupil heights show no reported failure or clipping for the selected model. This is limited sampling, not exhaustive skew-pupil coverage or MTF validation.
+**Lens 2 index.** With the specification's 1.573, the D-line focal length is 98.90 against the stated 100.00, and the
+D and G′ foci lie 1.13 apart, although the text calls the objective corrected for chromatic aberration. With the drawing
+sheet's 1.575 these become 99.81 and 0.22. The value 1.575 also fits the printed G′ index and ν of the same glass: the
+ratio (nG′ − nD)/(nF − nC) is 1.30, as for a light flint, against 1.45 with 1.573. The file therefore carries 1.575 and
+records the change as a corrected source erratum.
 
-Full-app regression, current-main integration, compiled browser/viewer QA, physical stop/aperture recovery and dense field analysis remain outstanding. The source inconsistency in front-component focal length remains unresolved.
+**First air space.** The specification's S1 = 1.98 gives a focal length of 100.00 at the printed G′ indices, the
+wavelength at which the patent's own element focal lengths are calculated; the drawing sheet's 1.89 gives 100.46. The
+file keeps 1.98. Neither value reproduces the printed front-component focal length of −529.72: at the G′ indices the
+model gives −545.90 with 1.98 and −520.07 with 1.89. That contradiction is recorded as unresolved.
+
+## Model Assumptions and Verification
+
+- Dimensions are the patent's, normalized to a focal length of 100 and read as millimetres. Radius signs come from the
+  figure; the patent prints magnitudes.
+- Not printed by the patent: the iris position (middle of the 6.80 space), the clear semi-diameters (9.5, 9.0 and
+  10.0 for lenses 1, 2 and 3) and the image plane, which is the computed D-line paraxial back focus of 89.92.
+- The model's D-line focal length is 99.81 and its total length from the front vertex to the image is 105.50.
+- On axis, the longitudinal spherical aberration at the D line is −0.10 mm at full aperture and about −0.20 mm in the
+  zone.
+- The patent states no field angle. The viewer traces ±3°; the assumed rims pass the chief ray to at least ±25°, where
+  the front lens vignettes about a fifth of the oblique beam on one side.
 
 ## Sources
 
-- [Original patent PDF](https://patentimages.storage.googleapis.com/e0/55/cb/a204426fbbbf18/US1880393.pdf), drawing PDFpage1 and specification PDFpage2.
-- [Patent record](https://patents.google.com/patent/US1880393A/en).
+- [US 1,880,393 on Google Patents](https://patents.google.com/patent/US1880393A/en): drawing sheet with figure and
+  table (p. 1), specification and claims (pp. 2–3).
+- [620 Kodak Junior camera, 1932, Science Museum Group](https://collection.sciencemuseumgroup.org.uk/objects/co8204353/620-kodak-junior-camera-rollfilm-camera):
+  Kodak Anastigmat 100 mm f/6.3.
+- [Six-20 Kodak, Art Deco Cameras](https://artdecocameras.com/cameras/kodak/six-20/): 1932–1933, Kodak Anastigmat f/6.3
+  option.
