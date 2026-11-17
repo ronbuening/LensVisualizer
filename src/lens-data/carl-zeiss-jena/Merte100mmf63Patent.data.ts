@@ -1,10 +1,20 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
-/** Normalized f100 interpreted as mm. Source nD retained, Vd absent; constant-index fallback is ONLY monochromatic, not achromatic. nG-prime preserved in analysis, not fitted. Stop location literal; diameter/rims estimated; BFD calculated. */
+
+/**
+ * US 1,485,515 A (Willy Merté, assigned to the firm of Carl Zeiss, Jena; granted 1924), sole numerical example:
+ * a four-element telephoto objective, f/6.3.
+ * Radii, thicknesses, air spaces and sodium-D indices are transcribed as printed for focal length 100 and read as
+ * millimetres; no scale factor is applied.
+ * The patent prints nD and nG′ indices but no Abbe numbers, so no νd is authored and the model is monochromatic.
+ * The diaphragm position is printed: the air space is given as b2 = 5.66 behind r4 and b3 = 18.25 ahead of r5.
+ * Inferred: the stop diameter (from f/6.3), all clear semi-diameters, and the back focus (computed paraxial value).
+ * Infinity focus only; the patent gives no close-focus data.
+ */
 const LENS_DATA = {
   "schema": 2,
   "key": "zeiss-merte-100-f63-us1485515-patent-reference",
-  "maker": "Zeiss",
-  "name": "ZEISS MERTE 100mm f/6.3 PATENT REFERENCE",
+  "maker": "Carl Zeiss Jena",
+  "name": "ZEISS MERTÉ 100mm f/6.3 PATENT REFERENCE",
   "subtitle": "US 1,485,515 \u2014 MONOCHROMATIC SODIUM D",
   "visible": false,
   "catalog": {
@@ -17,14 +27,14 @@ const LENS_DATA = {
     "elementCount": 4,
     "groupCount": 3,
     "focalLengthMm": {
-      "design": 99.97654348426373
+      "design": 99.98
     },
     "fNumber": {
       "design": 6.3
     }
   },
   "source": {
-    "patentNumber": "US 1,485,515",
+    "patentNumber": "US 1,485,515 A",
     "example": {
       "label": "Sole example",
       "id": null
@@ -34,7 +44,7 @@ const LENS_DATA = {
       "Willy Mert\u00e9"
     ],
     "assignees": [
-      "Carl Zeiss"
+      "Carl-Zeiss-Stiftung"
     ],
     "sdSource": "heuristic"
   },
@@ -46,7 +56,7 @@ const LENS_DATA = {
       "type": "Biconvex Positive",
       "nd": 1.59234,
       "indexReference": "D",
-      "role": "Patent element; monochromatic sodium-D reference; no Vd supplied"
+      "role": "Front biconvex collective lens of the positive front member"
     },
     {
       "id": 2,
@@ -55,26 +65,26 @@ const LENS_DATA = {
       "type": "Biconcave Negative",
       "nd": 1.59704,
       "indexReference": "D",
-      "role": "Patent element; monochromatic sodium-D reference; no Vd supplied"
+      "role": "Biconcave dispersive lens of the front member, behind a thin air lens"
     },
     {
       "id": 3,
       "name": "L3",
       "label": "Element 3",
-      "type": "Negative Meniscus",
+      "type": "Positive Meniscus",
       "nd": 1.6241,
       "indexReference": "D",
-      "role": "Patent element; monochromatic sodium-D reference; no Vd supplied",
+      "role": "Positive front lens of the cemented negative rear member",
       "cemented": "C1"
     },
     {
       "id": 4,
       "name": "L4",
       "label": "Element 4",
-      "type": "Positive Meniscus",
+      "type": "Negative Meniscus",
       "nd": 1.499,
       "indexReference": "D",
-      "role": "Patent element; monochromatic sodium-D reference; no Vd supplied",
+      "role": "Negative rear lens of the cemented negative rear member",
       "cemented": "C1"
     }
   ],

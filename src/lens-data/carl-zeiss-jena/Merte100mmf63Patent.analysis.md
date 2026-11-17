@@ -1,18 +1,140 @@
-# Zeiss / Willy Merté US1485515 sole example
+# ZEISS MERTÉ 100mm f/6.3 PATENT REFERENCE — US 1,485,515 A Sole Example
 
-## Identity and scope
-Hidden patent-only **monochromatic sodium-D reference**, not a 120mm retail Tele-Tessar. Patent normalized focal length100 is interpreted as100mm for this reference. November2 association33 was a probable 25cm Tele-Tessar production-family association supported by Zeiss1927 booklet; not factory-exact radii/glasses. The separate120mm calculation is not demonstrated here. This is a prior known discovery newly represented, not a new patent family.
+## Patent Reference and Design Identification
 
-## Literal primary source
-https://patentimages.storage.googleapis.com/49/24/7e/fc27a28e511908/US1485515.pdf#page=2
-US1485515, March4,1924, Willy Merté/Carl Zeiss; sole drawing PDFp1 and table PDFp2. Original explicitly identifies GB145548; German priority date differs by one day between US/GB and DE documents, retained rather than silently repaired.
+**Patent:** US 1,485,515 A, *Telephoto Objective*  
+**Application Number:** Serial No. 492,122  
+**Filed:** August 13, 1921  
+**Granted:** March 4, 1924  
+**Priority:** Germany, June 16, 1919 (also Switzerland, Austria, England, France and Italy, 1920)  
+**Inventor:** Willy Merté  
+**Assignee:** Carl-Zeiss-Stiftung (printed as "the firm of Carl Zeiss, of Jena, Germany")  
+**Example details:** one numerical example and one drawing; table normalized to focal length 100; aperture ratio 1:6.3
 
-R1–R7 +18.091,-38.834,-36.679,+38.740,-10.396,-9.426,-17.130. dI–IV3.329,.83,1.89,.75; air b1=.130,b2=5.66,b3=18.25. b2/b3 straddle the explicitly drawn iris. Four elements, three physical groups; rear cemented interface is literal.
+The patent lists the corresponding foreign filings. They include British Patent 145,548, Swiss Patent 88,402 and French
+Patent 518,732. The US patent states that it was granted under the provisions of the Act of March 3, 1921.
 
-nD=[1.59234,1.59704,1.62410,1.49900]; nG′=[1.60464,1.61718,1.64732,1.50840]. These are indices, **not Abbe numbers**. Native elements retain actual nD and `indexReference:D`, omit vd. Runtime constant-index fallback used exclusively as sodium-D reconstruction; nG′ is preserved here, not fitted or converted. Do not interpret constant index as measured achromatic performance. Native C/d/F MTF correctly reports spectral-data-unavailable; reference589.2938nm remains available.
+The patent contains a single constructional example. The model transcribes it at the printed scale, with focal length
+100 read as millimetres. No scale factor is applied, and the model is not presented as a production lens of any
+particular focal length.
 
-## Modeled choices
-No source dimensions changed. Computed EFL99.9765434843mm is −.0234565% from rounded100; computed BFD49.6286724892mm. Source f/6.3; native paraxial pupil radius7.9346463083mm and stop radius6.4085691826mm. Stop axial coordinate9.949mm is literal, diameter estimated from nominal aperture. Surface semi-diameters8.3,8.1,8.1,8.1,5.2,5.2,5.2mm are engineering estimates, not source dimensions. Infinity-only1e15 sentinel with no finite-focus motion. No asserted format, image circle or coverage.
+The patent itself names no product. The closest documented Zeiss product family is the Tele-Tessar f/6.3. The later
+Contax Tele-Tessar K 18 cm f/6.3 (literature from 1933) is described as a four-element, three-group lens, the same
+element and group count as this example. No source found during validation ties US 1,485,515 to a specific
+Tele-Tessar, and no published Tele-Tessar section was available for comparison. The model is therefore kept as a
+patent reference: at most a related member of the family, not an identified production prescription.
 
-## Validation and limitations
-Fresh native canonical validation, strict focused TypeScript, geometry/render diagnostics, iris-clearance and exact meridional trace tests pass on pinned3fd318c3e82cdbc3e5d3a1ed7bd5abbf4e99bfc2. All renderer trim amounts zero. Iris clearance5.12625395mm before and16.85604510mm after at nominal opening. Nine-point pupil samples at0,5,10 and default11.0033degree half-fields retained in JSON. Axial fractions through±.9 pass; exactly±1 clip at iris due pupil aberration/nominal paraxial-pupil mapping. Do not claim full unvignettedf6.3 throughput. Off-axis clipping is retained, not repaired. Default viewer field is not source-supported coverage. Independent paraxial and near-axis spherical Snell agree. MTF support checked only; no converged MTF curves or color validation. Full-app regression/current-main compatibility/compiled-viewer-browser QA pending integration.
+## Optical Architecture
+
+This is a classic two-member telephoto: a positive front member and a negative rear member separated by a long air
+space that contains the diaphragm. The patent describes this as a well-known type in which:
+
+- the front member consists of two lenses separated by a dispersive air lens;
+- the back member consists of two lenses cemented together;
+- the two lenses in each member have opposite signs.
+
+The claimed improvement is to make the cemented surface of the back member collective (positive). According to the
+patent, this improves spherical, chromatic and especially astigmatic correction at a comparatively large aperture and
+field for a telephoto objective.
+
+The model has four elements in three groups:
+
+| Member | Elements | Focal length (computed) |
+|---|---|---:|
+| Front member | L1 biconvex positive, L2 biconcave negative | +55.93 mm |
+| Rear member | L3 positive meniscus cemented to L4 negative meniscus | −71.43 mm |
+| Complete objective | — | +99.98 mm |
+
+All values come from the paraxial trace at the sodium D line:
+
+- The computed focal length is 99.98 mm, against the printed 100, a difference of −0.02 %.
+- The back focus is 49.63 mm.
+- The distance from the first vertex to the focal plane is 80.47 mm, about 0.80 of the focal length.
+- The rear principal point lies 19.5 mm in front of the first lens surface.
+
+This last result is the condition the patent states for a telephoto, where the length from the front surface to the
+focal plane is shorter than the focal length. The rear member magnifies the front member's image by about 1.79×.
+
+The diaphragm position is printed. The table splits the air space between the members into b2 = 5.66 (from r4 to
+the iris) and b3 = 18.25 (from the iris to r5). The drawing marks the iris at the same place, 9.949 behind the first
+vertex. The model places its stop there.
+
+## Element-by-Element Analysis
+
+### L1 — Biconvex Positive
+
+`nd = 1.59234 (sodium D), νd not printed. Glass: unidentified patent medium (nD and nG′ only). f = +21.30 mm.`
+
+L1 is the front collective lens. It is strongly curved at the front (r1 = +18.091) and weaker at the rear
+(r2 = −38.834), and it provides most of the front member's positive power. Its printed nG′ − nD of 0.01230 marks it as
+the lower-dispersion glass of the front pair.
+
+### L2 — Biconcave Negative
+
+`nd = 1.59704 (sodium D), νd not printed. Glass: unidentified patent medium (nD and nG′ only). f = −31.43 mm.`
+
+L2 is separated from L1 by an air space of only 0.130 at the axis. The two facing radii, r2 = −38.834 and
+r3 = −36.679, are close but not equal, so the gap forms the thin "dispersive air lens" named in the patent. In the
+model this space narrows towards the rim. L2's higher dispersion (nG′ − nD = 0.02014) lets the pair work as an
+achromatized positive front member.
+
+### L3 + L4 — Cemented Rear Member
+
+**L3 — Positive Meniscus.** `nd = 1.62410 (sodium D), νd not printed. Glass: unidentified patent medium (nD and nG′
+only). f = +92.56 mm.`
+
+**L4 — Negative Meniscus.** `nd = 1.49900 (sodium D), νd not printed. Glass: unidentified patent medium (nD and nG′
+only). f = −43.41 mm.`
+
+All three rear radii (r5 = −10.396, r6 = −9.426, r7 = −17.130) are concave toward the object, so the member is a
+deep meniscus that bends around the converging beam from the front member. L3 is the thicker, higher-index lens at
+the front of the pair and is positive. L4 is thinner at the axis, made of a low-index glass, and negative. Together
+they form a net negative member (f = −71.43 mm).
+
+The cemented surface r6 runs from the higher-index L3 to the lower-index L4 and is concave toward the object. This
+gives it collective power: (1.49900 − 1.62410)/(−9.426) = +0.0133 per mm. This is the feature the patent claims. L3
+has the highest dispersion in the system (nG′ − nD = 0.02322) and L4 the lowest (0.00940), so the negative rear
+member is achromatized with a positive high-dispersion lens and a negative low-dispersion lens.
+
+## Glass Identification
+
+The patent prints two indices for each glass, nD and nG′, and no Abbe numbers or glass names:
+
+| Element | nD | nG′ | nG′ − nD | Character |
+|---|---:|---:|---:|---|
+| L1 | 1.59234 | 1.60464 | 0.01230 | crown-like |
+| L2 | 1.59704 | 1.61718 | 0.02014 | flint-like |
+| L3 | 1.62410 | 1.64732 | 0.02322 | flint-like |
+| L4 | 1.49900 | 1.50840 | 0.00940 | crown-like |
+
+The data file records each nD with `indexReference: "D"` (sodium D). The G′ line (434.05 nm) is not one of the
+engine's dispersion inputs, so no νd is authored. The model therefore uses a constant index for each element. It
+represents the monochromatic design only and makes no claim about the chromatic correction the patent describes.
+
+As an author inference, modern catalogue glasses that match both printed values are close to νd ≈ 61 (L1), 39 (L2),
+35.7 (L3) and 66–67 (L4). These are estimates for comparison only; they are not used in the model and do not identify
+the 1919–1921 Schott melts.
+
+## Focus Mechanism
+
+The patent publishes only the infinity prescription, and the model is infinity-focus only. The image plane is the
+computed paraxial back focus, 49.63 mm behind r7. The patent prints no back focus or object distance to compare.
+
+## Aperture, Field and Clear Apertures
+
+The patent recommends the objective up to an aperture ratio of 1:6.3. At f/6.3 the paraxial entrance pupil has a
+radius of 7.93 mm, and the model sizes the stop at a 6.41 mm semi-diameter. The real marginal ray at full aperture
+meets the stop plane slightly higher, at about 6.59 mm, so the outermost zone of the nominal f/6.3 beam is clipped at
+the iris. This comes from the paraxial stop sizing; no lens rim cuts the axial beam.
+
+The patent prints no lens diameters and no field angle. The clear semi-diameters are estimates: 8.3 mm at r1, 8.1 mm
+at r2–r4, and 5.2 mm on the rear member. The front values are set just above the f/6.3 axial beam. The drawing shows
+the rear member about as tall as the front member, so the estimated rear rims are smaller than drawn and vignette the
+off-axis beam. The 11° half-field used by the viewer is a default, not a coverage claim from the patent.
+
+## Sources
+
+- US 1,485,515 A, W. Merté, *Telephoto Objective*, filed August 13, 1921, granted March 4, 1924 (drawing sheet and
+  specification page with the numerical table).
+- Pacific Rim Camera, *Zeiss Contax Tele-Tessar K 180mm f/6.3*, describing a four-element, three-group design:
+  https://pacificrimcamera.com/pp/zicontax180f63.htm
