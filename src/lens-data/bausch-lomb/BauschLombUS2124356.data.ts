@@ -48,7 +48,7 @@ const LENS_DATA = {
     patentYear: 1938,
     authors: ["Wilbur B. Rayton"],
     assignees: ["Bausch & Lomb Optical Company"],
-    sdSource: "heuristic",
+    sdSource: "figure-measured",
   },
   elements: [
     {

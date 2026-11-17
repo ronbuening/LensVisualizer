@@ -56,7 +56,7 @@ const LENS_DATA = {
     patentYear: 1927,
     authors: ["Charles W. Frederick", "Fred E. Altman"],
     assignees: ["Eastman Kodak Company"],
-    sdSource: "heuristic",
+    sdSource: "figure-measured",
   },
   elements: [
     {

@@ -53,7 +53,7 @@ const LENS_DATA = {
     assignees: [
       "Eastman Kodak Company"
     ],
-    sdSource: "heuristic"
+    sdSource: "figure-measured"
   },
   elements: [
     {
