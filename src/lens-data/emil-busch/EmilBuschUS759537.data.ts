@@ -23,114 +23,114 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * BACK FOCUS: not printed; the image plane is the computed paraxial D-line back focus, 250.14 mm behind R4.
  */
 const LENS_DATA = {
-  "schema": 2,
-  "key": "busch-martin-1904-210-f11-patent-reference",
-  "maker": "Emil Busch",
-  "name": "BUSCH / MARTIN 210mm f/11 PATENT REFERENCE",
-  "subtitle": "1901 DESIGN / 1904 GRANT \u2014 MONOCHROME REFERENCE",
-  "visible": false,
-  "catalog": {
-    "specs": [
+  schema: 2,
+  key: "emil-busch-210mm-f11-us759537",
+  maker: "Emil Busch",
+  name: "EMIL BUSCH 210mm f/11 (US 759,537 Design)",
+  subtitle: "1901 DESIGN / 1904 GRANT \u2014 MONOCHROME REFERENCE",
+  visible: true,
+  catalog: {
+    specs: [
       "2 ELEMENTS / 2 GROUPS",
       "PATENT ONLY; NO RETAIL MATCH",
       "ESTIMATED RIMS",
       "INFINITY ONLY"
     ],
-    "elementCount": 2,
-    "groupCount": 2,
-    "focalLengthMm": {
-      "design": 210.19
+    elementCount: 2,
+    groupCount: 2,
+    focalLengthMm: {
+      design: 210.19
     },
-    "fNumber": {
-      "design": 11
+    fNumber: {
+      design: 11
     }
   },
-  "source": {
-    "patentNumber": "US 759,537 A",
-    "example": {
-      "label": "Figure 1",
-      "id": "1"
+  source: {
+    patentNumber: "US 759,537 A",
+    example: {
+      label: "Figure 1",
+      id: "1"
     },
-    "patentYear": 1904,
-    "authors": [
+    patentYear: 1904,
+    authors: [
       "Karl Martin"
     ],
-    "assignees": [
+    assignees: [
       "Rathenower Optische Industrie-Anstalt vormals Emil Busch A.-G."
     ],
-    "sdSource": "heuristic"
+    sdSource: "heuristic"
   },
-  "elements": [
+  elements: [
     {
-      "id": 1,
-      "name": "L1",
-      "label": "Element 1",
-      "type": "Negative Meniscus",
-      "nd": 1.6031,
-      "indexReference": "D",
-      "indexReferenceNote": "Literal sodium D index; no V supplied. Reference-line-only analysis. Source also gives nG-prime but no C/F dispersion."
+      id: 1,
+      name: "L1",
+      label: "Element 1",
+      type: "Negative Meniscus",
+      nd: 1.6031,
+      indexReference: "D",
+      indexReferenceNote: "Literal sodium D index; no V supplied. Reference-line-only analysis. Source also gives nG-prime but no C/F dispersion."
     },
     {
-      "id": 2,
-      "name": "L2",
-      "label": "Element 2",
-      "type": "Positive Meniscus",
-      "nd": 1.4967,
-      "indexReference": "D",
-      "indexReferenceNote": "Literal sodium D index; no V supplied. Reference-line-only analysis. Source also gives nG-prime but no C/F dispersion."
+      id: 2,
+      name: "L2",
+      label: "Element 2",
+      type: "Positive Meniscus",
+      nd: 1.4967,
+      indexReference: "D",
+      indexReferenceNote: "Literal sodium D index; no V supplied. Reference-line-only analysis. Source also gives nG-prime but no C/F dispersion."
     }
   ],
-  "surfaces": [
+  surfaces: [
     {
-      "label": "STO",
-      "R": "flat",
-      "d": 3.79
+      label: "STO",
+      R: "flat",
+      d: 3.79
     },
     {
-      "label": "1",
-      "R": -22.36,
-      "d": 6.15,
-      "sd": 12,
-      "medium": 1
+      label: "1",
+      R: -22.36,
+      d: 6.15,
+      sd: 12,
+      medium: 1
     },
     {
-      "label": "2",
-      "R": -42.56,
-      "d": 3.31,
-      "sd": 12
+      label: "2",
+      R: -42.56,
+      d: 3.31,
+      sd: 12
     },
     {
-      "label": "3",
-      "R": -383.35,
-      "d": 5.73,
-      "sd": 12,
-      "medium": 2
+      label: "3",
+      R: -383.35,
+      d: 5.73,
+      sd: 12,
+      medium: 2
     },
     {
-      "label": "4",
-      "R": -33.64,
-      "d": 250.14071037005343,
-      "sd": 12
+      label: "4",
+      R: -33.64,
+      d: 250.14071037005343,
+      sd: 12
     }
   ],
-  "focus": {
-    "closeFocusM": 1000000000000000.0,
-    "description": "Infinity-only literal Figure 1 patent reference; no exact production identity."
+  focus: {
+    closeFocusM: 1000000000000000.0,
+    description: "Infinity-only literal Figure 1 patent reference; no exact production identity."
   },
-  "aperture": {
-    "nominalFNumber": 11,
-    "fStops": [
+  aperture: {
+    nominalFNumber: 11,
+    fStops: [
       11,
       16,
       22,
       32
     ],
-    "maxFNumber": 32
+    maxFNumber: 32
   },
-  "groups": [],
-  "doublets": [],
-  "layout": {
-    "yScFill": 0.4
+  groups: [],
+  doublets: [],
+  layout: {
+    yScFill: 0.4
   }
 } satisfies LensDataV2Input;
 export default LENS_DATA;

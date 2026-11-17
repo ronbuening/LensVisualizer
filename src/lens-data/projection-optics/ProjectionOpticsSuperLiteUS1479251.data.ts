@@ -19,11 +19,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  */
 const LENS_DATA = {
   schema: 2,
-  key: "repp-patent-100mm-f22",
+  key: "projection-optics-super-lite-100mm-f22-us1479251",
   maker: "Projection Optics",
-  name: "REPP PATENT 100mm f/2.2 Projection Reference",
+  name: "PROJECTION OPTICS SUPER-LITE 100mm f/2.2 (US 1,479,251 Design)",
   subtitle: "US1479251A — PATENT-ONLY; RECIPROCAL INFINITY REFERENCE",
-  visible: false,
+  visible: true,
   catalog: {
     specs: [
       "4 ELEMENTS / 2 GROUPS",

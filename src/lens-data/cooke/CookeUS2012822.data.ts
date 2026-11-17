@@ -16,9 +16,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  */
 const LENS_DATA = {
   schema: 2,
-  key: "kapella-lee-100mm-f1-us2012822-example1",
+  key: "cooke-100mm-f1-us2012822",
   maker: "Cooke",
-  name: "KAPELLA LEE 100mm f/1 PATENT REFERENCE",
+  name: "COOKE 100mm f/1 (US 2,012,822 Design)",
   subtitle: "US 2,012,822 A EXAMPLE 1 — HORACE WILLIAM LEE",
   visible: false,
   catalog: {

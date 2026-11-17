@@ -16,9 +16,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  */
 const LENS_DATA = {
   schema: 2,
-  key: "taylor-hobson-warmisham-wynne-us2194413-fig1-patent-reference",
+  key: "cooke-100mm-f2-us2194413",
   maker: "Cooke",
-  name: "WARMISHAM / WYNNE f/2 PATENT REFERENCE",
+  name: "COOKE 100mm f/2 (US 2,194,413 Design)",
   subtitle: "FIGURE 1; HIDDEN QUALIFIED REFERENCE",
   visible: false,
   catalog: {
