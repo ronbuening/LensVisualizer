@@ -1,9 +1,18 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
-/** Literal signed prescription. Midgap stop and clear rims estimated; computed D-line plane. */
+
+/**
+ * US 912,352 A (Walther Zschokke, Optische Anstalt C. P. Goerz, granted 1909), sole numerical example:
+ * table on PDF page 2, single figure on PDF page 1. Scale factor 1: the patent's f = 100 is read as 100 mm.
+ * The eight signed radii, seven axial intervals, four sodium D indices and four printed C−F differences
+ * are copied as printed; νD is derived as (nD − 1)/(nF − nC). The printed G′ indices are not used by the
+ * model. Inferred, not printed: the diaphragm at the middle of the 12.0 mm central air space (the
+ * to-scale figure draws it about 5.8 mm behind r4), the common 15 mm clear semi-diameter, and the last
+ * interval, which is the computed paraxial back focus at the D line. Infinity focus only.
+ */
 const LENS_DATA = {
   "schema": 2,
   "key": "goerz-zschokke-100-f3-5-us912352-patent-reference",
-  "maker": "Goerz",
+  "maker": "C. P. Goerz",
   "name": "GOERZ / ZSCHOKKE 100mm f/3.5 PATENT REFERENCE",
   "subtitle": "1908 DESIGN / 1909 GRANT \u2014 NO PRODUCTION MATCH",
   "visible": false,
@@ -17,14 +26,14 @@ const LENS_DATA = {
     "elementCount": 4,
     "groupCount": 4,
     "focalLengthMm": {
-      "design": 100.00160777409897
+      "design": 100
     },
     "fNumber": {
       "design": 3.5
     }
   },
   "source": {
-    "patentNumber": "US 912,352",
+    "patentNumber": "US 912,352 A",
     "example": {
       "label": "Sole example",
       "id": null
@@ -34,7 +43,7 @@ const LENS_DATA = {
       "Walther Zschokke"
     ],
     "assignees": [
-      "C. P. Goerz"
+      "Optische Anstalt C. P. Goerz Aktiengesellschaft"
     ],
     "sdSource": "heuristic"
   },
@@ -47,7 +56,7 @@ const LENS_DATA = {
       "nd": 1.6141,
       "vd": 56.443014705882355,
       "indexReference": "D",
-      "role": "Literal sodium-D index; V derived from printed F minus C difference. G-prime index retained in source audit, not fitted. No factory glass identification."
+      "role": "Front positive crown of the front pair"
     },
     {
       "id": 2,
@@ -57,7 +66,7 @@ const LENS_DATA = {
       "nd": 1.6051,
       "vd": 38.15258511979823,
       "indexReference": "D",
-      "role": "Literal sodium-D index; V derived from printed F minus C difference. G-prime index retained in source audit, not fitted. No factory glass identification."
+      "role": "Weaker negative flint of the front pair, ahead of the diaphragm"
     },
     {
       "id": 3,
@@ -67,7 +76,7 @@ const LENS_DATA = {
       "nd": 1.5513,
       "vd": 45.18852459016392,
       "indexReference": "D",
-      "role": "Literal sodium-D index; V derived from printed F minus C difference. G-prime index retained in source audit, not fitted. No factory glass identification."
+      "role": "Symmetric negative flint of the rear pair, behind the diaphragm"
     },
     {
       "id": 4,
@@ -77,7 +86,7 @@ const LENS_DATA = {
       "nd": 1.6141,
       "vd": 56.443014705882355,
       "indexReference": "D",
-      "role": "Literal sodium-D index; V derived from printed F minus C difference. G-prime index retained in source audit, not fitted. No factory glass identification."
+      "role": "Rear positive crown of the rear pair"
     }
   ],
   "surfaces": [
