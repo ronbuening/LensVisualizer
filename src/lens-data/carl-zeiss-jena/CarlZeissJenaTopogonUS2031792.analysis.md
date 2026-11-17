@@ -1,4 +1,4 @@
-# ZEISS / RICHTER 66mm f/6.3 — US 2,031,792 A, Figure 1 (the Topogon patent)
+# CARL ZEISS JENA TOPOGON 66mm f/6.3 (US 2,031,792 Design)
 
 ## Patent Reference and Design Identification
 
@@ -18,7 +18,7 @@ possible when the separation exceeds the full mean. The first constructional exa
 symmetrical, has a focal length of fD = 66.0 mm and is stated to give good central definition at f/6.3 with
 anastigmatic correction over a 100° field. The second example (Figure 2, fD = 75.7 mm) makes only the outer pair
 dissymmetrical to remove distortion for distant objects. The third (Figure 3, fD = 66.1 mm) adds two plane-parallel
-plates for use at both 1:1 and infinite conjugates. This file models only the first example.
+plates for use at both 1:1 and infinite conjugates. The model follows only the first example.
 
 This patent is the patent of the Zeiss Topogon, the four-meniscus wide-angle lens Richter designed at Zeiss:
 
@@ -86,12 +86,14 @@ of the advantages it claims.
 
 ## Glass Identification
 
-The patent prints only an nD index (sodium D line) and an Abbe number ν for each glass, and the model uses those
-values directly. Both pairs match classic Schott types closely: 1.6201 / 60.4 is a dense barium crown of the SK16 kind
-(modern N-SK16 is 1.62041 / 60.32 at the helium d line), and 1.7172 / 29.5 is a dense flint of the SF1 kind (SF1 is
-1.71736 / 29.51). These are catalogue equivalents only. The data file names no glass, and the patent says nothing
-about the supplier or melt. Partial dispersions are not printed, so the model's colour behaviour is an estimate
-derived from nD and ν.
+The patent prints only an nD index (sodium D line) and an Abbe number ν for each glass, and the model keeps those
+values as its reference indices. It names no glass type or supplier.
+
+The inner flint, 1.7172 / 29.5, matches Schott SF1 at the D line (1.71715 / 29.50), so L2 and L3 carry that label
+and trace on the SF1 dispersion curve. The outer crown, 1.6201 / 60.4, is a dense barium crown of the SK16 kind. The
+nearest catalogue row, N-SK16, has an nD of 1.62032, about 0.0002 higher than printed, so L1 and L4 stay
+unmatched. Their colour behaviour is estimated from nD and ν alone. The patent prints no partial dispersions for
+either glass.
 
 ## Focus Mechanism
 
@@ -113,12 +115,12 @@ aperture.
 Clear apertures are not printed either. Each rim was chosen as the smallest that still passes the chief ray at the
 50° edge of the 100° field. The front and rear surfaces (S1, S8) are 10.45 mm, where that chief ray strikes them at
 10.42 mm. The convex faces of the inner menisci (S3, S6) are 7.4 mm, against 7.39 mm for the chief ray. The other
-four surfaces keep estimated values of 10 mm and 6.5 mm, which already clear it. The rim slope of S1 and S8 is 68°,
-steeper than the usual drawing limit, and is allowed explicitly. Figure 1 draws the outer menisci almost to a knife
+four surfaces keep estimated values of 10 mm and 6.5 mm, which already clear it. At 68°, the rim slope of S1 and S8
+is unusually steep, as befits these nearly hemispherical shells. Figure 1 draws the outer menisci almost to a knife
 edge at about 11 mm and the inner menisci slightly larger than modelled, so these rims are, if anything, conservative.
 Toward the edge of the field the rims of the deep shells cut more and more of the oblique beam. On top of that comes
 the natural fall of illumination at such steep angles, so the corners of the 100° field are much darker than the
 centre.
 
-The patent's 100° angle of view is declared in the data file as the lens's full field. The ray diagram's own paraxial
-estimate stops near 37° and would otherwise undercount the coverage the patent states.
+The model takes the patent's 100° angle of view as its full field. A paraxial estimate from the clear apertures alone
+would stop near 37° and undercount the coverage the patent states.

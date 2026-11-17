@@ -8,7 +8,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *
  * Scale: the patent's own millimetres; nothing is scaled or converted. The table prints radii as magnitudes; the
  * signs follow Figure 1 and the text (every concave surface faces the diaphragm). Indices and dispersions are the
- * printed nD (sodium D line) and ν values.
+ * printed nD (sodium D line) and ν values. The inner flint (1.7172 / 29.5) matches Schott SF1 at the D line
+ * (1.71715 / 29.50). The outer crown (1.6201 / 60.4) has no catalogue row within 0.0001; the nearest, N-SK16, has
+ * nD 1.62032.
+ *
+ * Field: the patent's 100° angle of view is declared as the full field (50° half-field).
  *
  * Inferred, not printed:
  * - Stop: the diaphragm drawn in Figure 1 at the middle of the 12.98 mm central air space (6.49 mm each side).
@@ -22,14 +26,15 @@ const LENS_DATA = {
   key: "carl-zeiss-jena-topogon-66mm-f63-us2031792",
   maker: "Carl Zeiss Jena",
   name: "CARL ZEISS JENA TOPOGON 66mm f/6.3 (US 2,031,792 Design)",
-  subtitle: "1933 PRIORITY / 1936 GRANT \u2014 FIGURE 1",
+  subtitle: "US 2,031,792 A, Figure 1 \u2014 Topogon wide-angle design",
   visible: true,
   catalog: {
     specs: [
       "4 ELEMENTS / 4 GROUPS",
-      "PATENT ONLY; NO RETAIL MATCH",
-      "ESTIMATED STOP AND RIMS",
-      "INFINITY ONLY"
+      "DESIGN f = 66.0 mm",
+      "DESIGN F/6.3",
+      "ALL SPHERICAL",
+      "100\u00b0 FIELD"
     ],
     elementCount: 4,
     groupCount: 4,
@@ -61,40 +66,44 @@ const LENS_DATA = {
       name: "L1",
       label: "Element 1",
       type: "Positive Meniscus",
+      role: "Thick front collective shell, concave toward the stop; with L4 it carries all the positive power.",
+      glass: "Unmatched (nD 1.6201 / V 60.4)",
       nd: 1.6201,
       vd: 60.4,
-      indexReference: "D",
-      indexReferenceNote: "Literal sodium D index and dispersion reciprocal V in patent table."
+      indexReference: "D"
     },
     {
       id: 2,
       name: "L2",
       label: "Element 2",
       type: "Negative Meniscus",
+      role: "Thin high-index flint shell just ahead of the stop; its concave face sets the wide central air space.",
+      glass: "SF1 (Schott)",
       nd: 1.7172,
       vd: 29.5,
-      indexReference: "D",
-      indexReferenceNote: "Literal sodium D index and dispersion reciprocal V in patent table."
+      indexReference: "D"
     },
     {
       id: 3,
       name: "L3",
       label: "Element 3",
       type: "Negative Meniscus",
+      role: "Thin high-index flint shell just behind the stop, the mirror image of L2.",
+      glass: "SF1 (Schott)",
       nd: 1.7172,
       vd: 29.5,
-      indexReference: "D",
-      indexReferenceNote: "Literal sodium D index and dispersion reciprocal V in patent table."
+      indexReference: "D"
     },
     {
       id: 4,
       name: "L4",
       label: "Element 4",
       type: "Positive Meniscus",
+      role: "Thick rear collective shell, the mirror image of L1.",
+      glass: "Unmatched (nD 1.6201 / V 60.4)",
       nd: 1.6201,
       vd: 60.4,
-      indexReference: "D",
-      indexReferenceNote: "Literal sodium D index and dispersion reciprocal V in patent table."
+      indexReference: "D"
     }
   ],
   surfaces: [
@@ -157,8 +166,8 @@ const LENS_DATA = {
     }
   ],
   focus: {
-    closeFocusM: 1000000000000000.0,
-    description: "Infinity-only literal Figure 1 patent reference; no exact production identity."
+    closeFocusM: 1e15,
+    description: "Infinity focus only; the patent gives no close-focus data."
   },
   aperture: {
     nominalFNumber: 6.3,

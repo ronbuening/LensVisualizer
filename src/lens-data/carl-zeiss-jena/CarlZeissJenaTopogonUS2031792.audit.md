@@ -44,7 +44,7 @@ l2 / mean(r4, r5) = 12.98 / 7.35 = 1.77 (more than 1 for the 100° form), inner 
 - Rims: none are printed. Figure 1 draws L1/L4 almost to a knife edge at 10.8–11.0 mm. It draws the L2/L3 convex faces
   at about 7.4–8.1 mm and their concave faces at about 6.9 mm.
 - Glass: nD and ν are used as printed. They match Schott SK16 (N-SK16 1.62041 / 60.32) and SF1 (1.71736 / 29.51), but
-  the file carries no glass labels.
+  the file carries no glass labels (closed 2026-11-17: L2/L3 labelled SF1; L1/L4 unmatched).
 
 ## 2026-11-16 — Deployment validation
 
@@ -81,14 +81,51 @@ After the changes, `built.mjs` gives EFL 66.038 mm, f/6.3, stop radius 3.97 mm, 
 tracing half-field 36.55°. The engine's chief-ray solve converges unclipped at 30°, 40°, 45° and 50°. At 50° the image
 height is 80.67 mm, 2.5 % beyond f·tan θ; the distortion is +0.9 % at 30° and +1.6 % at 40°. The meridional fan passes
 100 % of its rays at 30°, 93 % at 35°, 73 % at 40° and 46 % at 45°. `audit:surface`: OK. `audit:aperture --raise`: no
-surface below the axial ray. `audit:image-circle` and `audit:field-coverage` skip the file (no image format; hidden).
+surface below the axial ray. `audit:image-circle` and `audit:field-coverage` skip the file (no image format; hidden
+at that time, now shown).
 
 Open:
 
-- Name, key and subtitle could name the Topogon, for example "ZEISS TOPOGON PATENT 66mm f/6.3".
-- Specs wording: "PATENT ONLY; NO RETAIL MATCH" and "ESTIMATED STOP AND RIMS" do not read well on a public page.
-- Shorter `focus.description` and `indexReferenceNote` wording.
+- Name, key and subtitle could name the Topogon, for example "ZEISS TOPOGON PATENT 66mm f/6.3" (closed 2026-11-17).
+- Specs wording: "PATENT ONLY; NO RETAIL MATCH" and "ESTIMATED STOP AND RIMS" do not read well on a public page
+  (closed 2026-11-17).
+- Shorter `focus.description` and `indexReferenceNote` wording (closed 2026-11-17).
 - Optional `source.example` label "Constructional Example 1", the patent's own term.
-- Optional glass labels SK16 / SF1.
+- Optional glass labels SK16 / SF1 (closed 2026-11-17: SF1 only; SK16 is not an exact row).
 - Rims against Figure 1: L1/L4 to about 10.6 mm, L2/L3 convex faces to about 7.7 mm and concave faces to about
   6.9 mm. That would need `checks.maxRimAngleDeg` 71 and is left for the semi-diameter pass.
+
+## 2026-11-17 — Cleanup and wording pass
+
+The coordinator renamed the file, key and name to CARL ZEISS JENA TOPOGON 66mm f/6.3 (US 2,031,792 Design) and made it
+visible. This pass changed only public text and metadata; the optics are untouched.
+
+- `subtitle`: "1933 PRIORITY / 1936 GRANT — FIGURE 1" → "US 2,031,792 A, Figure 1 — Topogon wide-angle design".
+- `specs`: ["4 ELEMENTS / 4 GROUPS", "PATENT ONLY; NO RETAIL MATCH", "ESTIMATED STOP AND RIMS", "INFINITY ONLY"] →
+  ["4 ELEMENTS / 4 GROUPS", "DESIGN f = 66.0 mm", "DESIGN F/6.3", "ALL SPHERICAL", "100° FIELD"].
+- `focus.closeFocusM`: 1000000000000000.0 → 1e15 (same value). `focus.description`: "Infinity-only literal Figure 1
+  patent reference; no exact production identity." → "Infinity focus only; the patent gives no close-focus data."
+- Glass: L2 and L3 → "SF1 (Schott)". At the sodium D line SF1 gives 1.71715 / 29.50 against the printed 1.7172 / 29.5
+  (Δn −0.00005, Δν 0.00); at the helium d line its catalogue row is 1.71736 / 29.51. L1 and L4 → "Unmatched
+  (nD 1.6201 / V 60.4)". The nearest rows (N-SK16, BACD16, S-BSM16, J-SK16) all give nD 1.62032, Δn +0.00022, which is
+  outside the 0.0001 window.
+- `indexReferenceNote` removed from all four elements. The old text, "Literal sodium D index and dispersion reciprocal V
+  in patent table", only restated `indexReference: "D"`, and the note made the inspector show "n (source)" instead of
+  nD for a line the patent names.
+- Element `role` added for L1–L4 (outer collective shells, inner flint shells beside the stop).
+- Header comment: added the glass match, and that the 100° field is declared as the full field.
+- Analysis: H1 → the new name; glass section rewritten for the new labels; plain wording for the rim-slope and field
+  sentences; "this file" → "the model".
+
+No elements are cemented, so `cemented` and `doublets` stay empty. Engine numbers are identical before and after:
+EFL 66.0378 mm, f/6.3, stop radius 3.9692 mm, half-field 50°, tracing half-field 36.55°, BFD 51.9415 mm, total length
+74.8415 mm. `audit:surface`: OK. `audit:aperture`: within 3 % of the stated f-number, no rim limit.
+
+Open:
+
+- Optional `source.example` label "Constructional Example 1", the patent's own term ("Figure 1" kept).
+- Rims against Figure 1 (L1/L4 about 10.6 mm, L2/L3 convex faces about 7.7 mm, concave faces about 6.9 mm), for the
+  semi-diameter pass.
+- `aperture.fStops` 8–22 are not printed by the patent; there is no product source for a stop scale.
+- No `lensMounts`, `imageFormat` or `closeFocusM.marketing`: the patent design has no documented product format. The
+  100° field needs an image circle of about 161 mm at this scale.
