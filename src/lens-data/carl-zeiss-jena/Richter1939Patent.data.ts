@@ -1,4 +1,30 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * US 2,170,428, sole example (Robert Richter, assignor to the firm of Carl Zeiss, Jena). Filed 24 May 1938 with
+ * German priority of 31 May 1937, granted 22 August 1939. The patent describes the example as a projection objective
+ * of maximum relative aperture 1:1.9 and an angular field of up to about 40°. Four air-spaced single lenses: three
+ * positive (L1, L2, L4) and one negative (L3); nothing is cemented. The table is printed on the drawing sheet and
+ * repeated in the specification; both copies agree.
+ *
+ * SCALE: none. The patent states that its radii, thicknesses and air spaces refer to a focal length of 100 mm; they are
+ * used as printed. The computed paraxial EFL is 99.78 mm (−0.22 %), within the rounding of the printed radii (r2, r5
+ * and r7 are printed to whole millimetres). The surfaces are numbered in the patent's photographing order, with the
+ * projection screen on the object side; the model keeps that order with the object at infinity.
+ *
+ * GLASS: the patent prints nd and ν for each lens. The flint L3, 1.7174 / 29.5, matches Schott SF1 at the helium d
+ * line (nd 1.71736; the sodium D value would be 1.71715), so the indices are read as d-line values. The crown
+ * 1.6138 / 56.3 has no catalogue match; all lenses are traced from their printed nd and ν.
+ *
+ * INFERRED: the patent prints no diaphragm, clear diameters or back focus.
+ * - STOP: placed midway in the 19 mm air space between L3 and L4 (9.5 mm behind r6), the usual iris position for
+ *   this positive–positive–negative–positive form.
+ * - SEMI-DIAMETERS: estimated, not measured from the figure. L2's rear face and L3 are held to 19 mm so that the
+ *   L2/L3 rims stay clear of each other across the 4.5 mm air space. The aperture audit finds no rim limit at f/1.9.
+ * - IMAGE PLANE: the computed paraxial back focus, 63.2102 mm behind r8.
+ *
+ * FOCUS: only the infinity state is modelled; closeFocusM = 1e15 marks focus as not modelled.
+ */
 const LENS_DATA = {
   schema: 2,
   key: "zeiss-richter-us2170428-patent-reference",
@@ -16,21 +42,21 @@ const LENS_DATA = {
     elementCount: 4,
     groupCount: 4,
     focalLengthMm: {
-      design: 99.77549430250204,
+      design: 99.78,
     },
     fNumber: {
       design: 1.9,
     },
   },
   source: {
-    patentNumber: "US 2,170,428",
+    patentNumber: "US 2,170,428 A",
     example: {
       label: "Sole example",
       id: null,
     },
     patentYear: 1939,
     authors: ["Robert Richter"],
-    assignees: ["Carl Zeiss Jena"],
+    assignees: ["Carl-Zeiss-Stiftung"],
     sdSource: "heuristic",
   },
   elements: [
@@ -126,7 +152,7 @@ const LENS_DATA = {
     {
       label: "8",
       R: -46.8,
-      d: 63.210155829439294,
+      d: 63.2102,
       sd: 22,
     },
   ],
@@ -137,7 +163,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 1000000000000000.0,
     description:
-      "Infinity-only reciprocal projection reference; literal nd/V retained; calculated paraxial BFD; estimated iris in final air gap. No production identity.",
+      "Infinity focus only; the patent gives no focusing data. The image plane is the computed paraxial back focus, and the iris is an estimated position midway in the air space between L3 and L4.",
   },
   groups: [],
   doublets: [],
