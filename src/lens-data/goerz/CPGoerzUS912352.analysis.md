@@ -1,4 +1,4 @@
-# GOERZ / ZSCHOKKE 100mm f/3.5 — US 912,352 A
+# C. P. GOERZ 100mm f/3.5 (US 912,352 Design)
 
 ## Patent Reference and Design Identification
 
@@ -8,13 +8,13 @@
 **Granted:** February 16, 1909  
 **Inventor:** Walther Zschokke  
 **Assignee:** Optische Anstalt C. P. Goerz Aktiengesellschaft  
-**Example details:** One numerical table for f = 100 (PDF p. 2) and one section drawing (PDF p. 1); scale factor 1, so the patent's units are read as millimetres.
+**Example details:** One numerical table for f = 100 (PDF p. 2) and one section drawing (PDF p. 1).
 
 Walther Zschokke, a Swiss engineer living in Steglitz near Berlin, assigned this patent to Optische Anstalt C. P. Goerz of Friedenau. It describes a fast four-lens objective made of two separated pairs. Each pair is a positive lens and a negative lens with an air space between them shaped like a positive meniscus. The patent states two further rules: in each pair the negative lens must not exceed the positive lens (see Patent Conditions below), and the focal length of one pair must be at least twice that of the other. Neither pair is corrected on its own. The aberrations of the two pairs are meant to cancel each other, and the patent claims good chromatic and spherical correction at a large opening. The table gives one example at f = 100 and a relative aperture of 1:3.5.
 
-The Austrian patent AT 39,177 B (Optische Anstalt Goerz AG, filed June 30, 1908, published October 11, 1909, titled "Lichtstarkes Objektiv aus vier getrennten Linsen") is the same invention. Google's OCR text of it shows the same radii, indices and 1:3.5 opening.
+The Austrian patent AT 39,177 B (Optische Anstalt Goerz AG, filed June 30, 1908, published October 11, 1909, titled "Lichtstarkes Objektiv aus vier getrennten Linsen") is the same invention and prints the same numerical example.
 
-No commercial lens is documented as this design. It belongs to the Goerz four-singlet, air-spaced family that began with the Celor. A Goerz "Porträt-Celor" at f/3.5 was listed around 1910 (see Design Heritage below). Its date and aperture fit this patent, but no catalogue, museum record or patent citation found during this review connects the two. The model is therefore kept as a patent example with no production identity.
+No commercial lens is documented as this design. It belongs to the Goerz family of four air-spaced singlets that began with the Celor (see Design Heritage below).
 
 ## Optical Architecture
 
@@ -28,25 +28,25 @@ The rear pair is about three times weaker than the front pair, which meets the p
 
 The patent prints no diaphragm position. The drawing is to scale: once its first-to-last vertex span is set to the printed 32.0 mm, every drawn axial interval agrees with the table to within about 0.3 mm. On that scale the drawing puts the diaphragm about 5.8 mm behind r4. The model places the stop at the middle of the 12.0 mm space, 6.0 mm behind r4, and sizes it to 12.10 mm radius so that the entrance pupil gives f/3.5 (entrance-pupil radius 14.29 mm).
 
-The patent also prints no back focus. The last interval in the data file, 85.48 mm from r8, is the computed paraxial image distance at the sodium D line. The lens is 32.0 mm long from first to last vertex and 117.48 mm from the front vertex to the image.
+The patent also prints no back focus. The model's last interval, 85.48 mm from r8, is the computed paraxial image distance at the sodium D line. The lens is 32.0 mm long from first to last vertex and 117.48 mm from the front vertex to the image.
 
 ## Element-by-Element Analysis
 
 ### L1 — Biconvex Positive
 
-`nD = 1.6141, νD = 56.4.` Glass: unidentified dense crown, barium-crown class, inferred from nD and ν only. f = +44.55 mm.
+`nD = 1.6141, νD = 56.4.` Glass: unmatched dense crown, barium-crown class, inferred from nD and ν only. f = +44.55 mm.
 
 The positive element of the front pair. Its front surface (r1 = +43.478 mm) is the strongest converging surface in that pair. Behind it, the meniscus-shaped 1.6 mm air space separates it from L2.
 
 ### L2 — Biconcave Negative
 
-`nD = 1.6051, νD = 38.2.` Glass: unidentified flint, inferred from nD and ν only. f = −68.61 mm.
+`nD = 1.6051, νD = 38.2.` Glass: unmatched flint, inferred from nD and ν only. f = −68.61 mm.
 
 A weak negative flint whose stronger surface (r3 = −55.866 mm) faces the front lens across the air space. Its rear surface is nearly flat (r4 = +163.934 mm) and faces the diaphragm. It has the lowest ν in the lens and is the main achromatizing element of the front pair. Its power is well below that of L1, as the patent requires.
 
 ### L3 — Biconcave Negative
 
-`nD = 1.5513, νD = 45.2.` Glass: unidentified light flint, inferred from nD and ν only. f = −37.50 mm.
+`nD = 1.5513, νD = 45.2.` Glass: unmatched light flint, inferred from nD and ν only. f = −37.50 mm.
 
 The first element behind the diaphragm. It is equi-concave (r5 = −41.667, r6 = +41.667 mm) and is the strongest negative element in the system. It has the lowest index in the lens, so it gives the largest negative contribution to the Petzval sum. The model's total Petzval sum is 0.0040 mm⁻¹ (a Petzval radius of about 2.5 focal lengths).
 
@@ -58,7 +58,7 @@ The rear collective lens. Its strongly curved rear surface (r8 = −34.439 mm) f
 
 ## Glass Identification and Dispersion
 
-For each glass the patent prints three values: the sodium D index (Dn), the index at the hydrogen G′ line (434 nm), and the difference it labels "C−F", meaning nF − nC. The data file stores the D index with `indexReference: "D"` and the Abbe number derived from it, νD = (nD − 1)/(nF − nC):
+For each glass the patent prints three values: the sodium D index (Dn), the index at the hydrogen G′ line (434 nm), and the difference it labels "C−F", meaning nF − nC. The model uses the D index and the Abbe number derived from it, νD = (nD − 1)/(nF − nC):
 
 | Elements | nD | nG′ (printed) | nF − nC (printed) | νD (derived) | Class (inferred) |
 |---|---:|---:|---:|---:|---|
@@ -66,7 +66,7 @@ For each glass the patent prints three values: the sodium D index (Dn), the inde
 | L2 | 1.6051 | 1.6260 | 0.01586 | 38.15 | flint |
 | L3 | 1.5513 | 1.5672 | 0.01220 | 45.19 | light flint |
 
-The model does not use the G′ indices directly; the engine applies its normal partial-dispersion relation to nD and νD. A rough normal-glass estimate from the same nD and ν comes within about 0.0001 of each printed G′ index. So the printed data shows no unusual partial dispersion, and the modelled colour should be close to the patent's glasses. The patent names no glass maker, and no factory melt is identified.
+The model does not use the G′ indices directly; the engine applies its normal partial-dispersion relation to nD and νD. A rough normal-glass estimate from the same nD and ν comes within about 0.0001 of each printed G′ index. So the printed data shows no unusual partial dispersion, and the modelled colour should be close to the patent's glasses. The patent names no glass maker, and no factory melt is identified. No catalogue glass matches within 0.0001 in index. Close catalogue rows are Hoya BACD6 (1.6138 / 56.38) for L1 and L4, Schott F5 (1.6034 / 38.03) for L2 and Schott LLF1 (1.5481 / 45.75) for L3, so the elements carry unmatched glass labels.
 
 In each pair the negative lens has the lower index (1.6051 against 1.6141 in front, 1.5513 against 1.6141 behind).
 
@@ -74,7 +74,7 @@ In each pair the negative lens has the lower index (1.6051 against 1.6141 in fro
 
 The patent gives only the infinity prescription and no focusing data. The model is infinity-only and has no moving groups. A lens of this period would normally have been focused by moving the whole objective, but the patent says nothing about it.
 
-## Patent Conditions and Model Verification
+## Patent Conditions and Model Scope
 
 | Patent statement | Model value | Result |
 |---|---|---|
@@ -85,9 +85,7 @@ The patent gives only the infinity prescription and no focusing data. The model 
 
 The US text calls the second quantity "refractive power". Read as focal power, the rear pair does not satisfy it. Google Patents' machine translation of the Austrian counterpart words the same rule as refractive index, and the example satisfies it in both pairs. The US wording is probably a translation slip, not an error in the table.
 
-Seven of the eight radii match reciprocals of round curvatures to within 0.001 mm: 1/0.023, 1/0.0142, 1/0.0179, 1/0.0061, 1/0.024, 1/0.024 and 1/0.0128. r8 (−34.439 mm) does not, so it was probably solved last to make the focal length exactly 100. The model reproduces f = 100 to within 0.002 %, which supports the transcription.
-
-Google's OCR of the US table reads r8 as 84.439. The page image clearly prints 34.439, and only 34.439 reproduces f = 100.
+Seven of the eight radii match reciprocals of round curvatures to within 0.001 mm: 1/0.023, 1/0.0142, 1/0.0179, 1/0.0061, 1/0.024, 1/0.024 and 1/0.0128. r8 (−34.439 mm) does not, so it was probably solved last to make the focal length exactly 100. The printed values give f = 100.0016, within 0.002 % of the stated 100.
 
 **Clear apertures.** The patent prints no lens diameters. The model uses a common 15 mm semi-diameter on every lens surface. At full aperture the axial marginal ray reaches 14.29 mm on r1, so the axial beam passes. The drawing shows the lenses slightly smaller, about 14.4 mm, with L1's edge about 1.3 mm thick against the model's 0.92 mm.
 
@@ -97,13 +95,13 @@ Google's OCR of the US table reads r8 as 84.439. The page image clearly prints 3
 - **20° off axis:** the lower edge of the bundle no longer gets through.
 - **25° and beyond:** only a narrow bundle around the chief ray passes.
 
-The chief ray itself is traced without obstruction to the viewer's default 31.3° half-field. This vignetting is what one expects from an f/3.5 portrait-speed objective of 1908 mounted with rims this close to the axial beam.
+The chief ray itself passes without obstruction to 31.3° off axis. This vignetting is what one expects from an f/3.5 portrait-speed objective of 1908 mounted with rims this close to the axial beam.
 
 ## Design Heritage and Context
 
 Goerz introduced its four-singlet "Double Anastigmat Celor" in 1898 (Series Ib, f/4.5 to f/5.5) and a cheaper f/6.8 "Syntor" in 1903, according to the 1911 *Encyclopædia Britannica*. The Celor was designed by Emil von Höegh. It was first sold as the Double Anastigmat Goerz Type B and renamed Celor in 1904. Zschokke's 1908 patent keeps the four separated lenses but breaks the near-symmetry of the Celor. One pair is made much weaker than the other, and each pair is left uncorrected on its own, so that it compensates the other at f/3.5.
 
-A forum post quoting a 1910 German photographic handbook lists a Goerz Porträt-Celor at f/3.5 in 15, 24 and 36 cm focal lengths. This review saw that only as quoted text, not the book itself. It is the closest marketed match in date and aperture, but nothing found ties it to this prescription. Zschokke is also credited with the later Goerz Dogmar (sold from about 1914), a separate four-singlet design.
+A forum post quoting a 1910 German photographic handbook lists a Goerz Porträt-Celor at f/3.5 in 15, 24 and 36 cm focal lengths. That lens is the closest marketed match in date and aperture. No catalogue, museum record or patent marking ties it to this prescription, and the handbook is known here only through the quotation. Zschokke is also credited with the later Goerz Dogmar (sold from about 1914). The Dogmar is a separate four-singlet design under a different patent.
 
 ## Sources
 
