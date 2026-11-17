@@ -1,0 +1,11 @@
+# Scoped audit
+- Actual original 3-page facsimile visually read, both repeated Example 1 tables agree. Independent matrix and exact vector Snell trace retained.
+- All literal optical values unchanged. R8 transcription error corrected to printed negative sign before final validation.
+- Original large estimated rims failed geometry/render trimming; final smaller rims remove conflicts without changing optics or overriding gates.
+- Native canonical schema, render diagnostics (no trim over 0.25 mm), full iris-stroke clearance, and 181 central axial samples from -90% to +90% entrance pupil passed.
+- Physical iris radius 16.5359245232 mm; minimum sampled iris clearances 3.8323099261 mm before / 4.7276571532 mm after.
+- Independent seven matched image intercepts agree with native within 6.4e-14 mm. Independent matrix EFL/BFD agree within 1e-9 mm.
+- Scoped TypeScript, eslint and prettier passed. Earlier missing eslint configuration retry resolved by copying existing unchanged config into isolated workspace.
+- Exact full-src optics/types/hooks byte comparison with main 3fd318c3e82cdbc3e5d3a1ed7bd5abbf4e99bfc2 returned zero differences. This is scoped compatibility evidence, not full-app regression.
+- Exact US number absent from 5,422 checked current-main regular source archive members and delivered 25-config child text bodies. Unverified foreign publication alias equivalence remains a limitation.
+- No publish, commit, PR, deploy, user message or external upload performed.
