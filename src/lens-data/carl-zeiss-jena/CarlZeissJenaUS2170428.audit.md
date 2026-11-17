@@ -221,3 +221,6 @@ Open:
   40°"; at the computed EFL that is 72.6 mm (2 × 99.78 × tan 20°). On a scratch copy with 72.6 mm the image-circle
   audit finds nothing undersized and field coverage is 100 % (chief ray clear at 19.9°).
 - A Schott SK6 catalogue row, if one is added, would be the period choice for L1, L2 and L4.
+
+- Image circle (2026-11-17): `catalog.imageCircleMm` 72.6 from the patent's "angular field of up to approximately 40°"
+  (p. 2, col. 1, lines 45–47) at f = 99.78 mm (2 × 99.78 × tan 20°). The patent names no film format.

@@ -44,6 +44,7 @@ const LENS_DATA = {
     specs: ["4 ELEMENTS / 4 GROUPS", "DESIGN F/1.9", "ALL SPHERICAL", "PROJECTION OBJECTIVE"],
     elementCount: 4,
     groupCount: 4,
+    imageCircleMm: 72.6,
     focalLengthMm: {
       design: 99.78,
     },
