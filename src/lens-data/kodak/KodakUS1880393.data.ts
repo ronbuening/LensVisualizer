@@ -15,6 +15,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *
  * Not printed by the patent and inferred here: the diaphragm, placed at the middle of the 6.80 air space between
  * lenses 2 and 3; the clear semi-diameters; and the image plane, which is the computed D-line paraxial back focus.
+ * The semi-diameters (9.5, 9.0, 9.0 for lenses 1 to 3) are estimated from the relative rim heights in the patent
+ * figure, which draws lenses 2 and 3 at about 0.94 of lens 1's height with square-cut rims. The figure is schematic
+ * in its axial spacings, so its absolute scale is not used. All rims clear the f/6.8 axial beam.
  * The patent gives no field angle and no close-focus data; the model is infinity-only. Lens 2 (D 1.575, ν 41.4)
  * matches the catalogue light flint J-LF7, whose dispersion curve also gives the printed G′ index 1.593; lenses 1
  * and 3 match no catalogue glass and take their dispersion from the printed ν.
@@ -97,8 +100,8 @@ const LENS_DATA = {
     { label: "3", R: -54.52, d: 1.18, sd: 9, medium: 2 },
     { label: "4", R: 24.85, d: 3.4, sd: 9 },
     { label: "STO", R: "flat", d: 3.4 },
-    { label: "5", R: -183.8, d: 2.66, sd: 10, medium: 3 },
-    { label: "6", R: -33.36, d: 89.91640595715722, sd: 10 },
+    { label: "5", R: -183.8, d: 2.66, sd: 9, medium: 3 },
+    { label: "6", R: -33.36, d: 89.91640595715722, sd: 9 },
   ],
   focus: {
     closeFocusM: 1e15,
