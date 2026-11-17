@@ -175,9 +175,92 @@ Identical before and after this pass:
 ### Open
 
 - **Image format:** none is set (a 35 mm motion-picture projection format would apply), so the image-circle and
-  coverage audits cannot run.
+  coverage audits cannot run. (Closed 2026-11-17: `35mm-cinema` set in the semi-diameter pass.)
 - **Aperture list:** the f/2.2 to f/22 `fStops` list has no source. The patent shows no iris, and a projection
   objective of this kind works at full aperture. Trimming the list to the design aperture needs an owner decision.
+  (Closed 2026-11-17: trimmed to F/2.2 under the semi-diameter pass brief.)
 - **Iris:** the paraxially sized iris trims the outermost real F/2.2 rays (about F/2.27).
-- **Rims:** for the semi-diameter pass, the drawing measures 23.1 to 23.3 mm against the model's 23 mm.
+- **Rims:** for the semi-diameter pass, the drawing measures 23.1 to 23.3 mm against the model's 23 mm. (Closed
+  2026-11-17: kept at 23 mm, within measurement noise.)
 - **Groups:** `groups` is empty. Front and rear group labels could be added if the viewer wants them.
+
+## 2026-11-17 — Semi-diameter pass against the patent figure
+
+**Source:** `patents/US1415002A.pdf`, PDF p. 1, the drawing sheet. The patent's text calls this a full-size diagram of
+the 100 mm lens, and it is the only example. It was rendered at 600 dpi.
+
+### Scale
+
+There is no drawn axis, so the axis was taken as the midline of each element's top and bottom edges.
+
+- **Axial scale:** first to last vertex along the axis row spans 940 px for 58.229 mm, or 16.14 px/mm (0.683 of full
+  size on the scan). Three sub-spans agree within 2.4 %: the front pair gives 16.20 px/mm, Δ1 15.91 and the rear group
+  16.53.
+- **Vertical scale:** checked on the 57.111 mm front face. The drawn sag from vertex to rim is 78.5 px (4.86 mm), which
+  puts the rim at 23.05 mm by the sphere formula, against 23.2 mm from the drawn half-height. The two directions agree
+  within 1 %.
+
+### Measurements
+
+Line centres were read with a silhouette profile of the lower edge, which carries no leader lines, and checked on
+column cuts.
+
+| Surface | Stored sd | Figure sd | Ratio | Decision |
+|---|---:|---:|---:|---|
+| 1, 2, 3 (cemented I+II, square rim) | 23 | 23.1–23.2 | 1.005 | keep |
+| 4, 5 (III, square rim) | 23 | 23.2 | 1.009 | keep |
+| 6, 7 (IV, square rim) | 23 | 23.3 | 1.013 | keep |
+
+Every reading is within 1.3 % of the stored value, which is measurement noise, so no rim changed. The drawn edge
+thicknesses match the model at 23 mm: 1.13 mm for I, 9.35 mm for II, 5.98 mm for III and 1.25 mm for IV, with a
+2.76 mm III–IV air space at the edge. The drawn I/II interface line is thick, so lens I's drawn edge reads about 0.7 mm
+fuller than the model's, which is within the line weight. An overlay of the model on the figure at 16.14 px/mm puts
+every drawn rim and face within about 0.3 mm of the model (`overlay.png` in the pass's scratch folder).
+
+### Clearance and illumination
+
+Rims are unchanged, so the rim-cost tool shows zero change at every field: relative illumination is 98.8 % at 4.1°,
+96.7 % at 6.1°, 94.2 % at 8.1° and 88.7 % at 12.2°. At the format corner (13.6 mm, 7.73°) the chief ray clears every
+rim, the axial margin on surface 1 is 0.27 mm, and the oblique bundle loses about 12 % of its width on each side at
+surfaces 1 and 2.
+
+The engine half-field is 28.55° before and after, set by the rims. The chief ray first reaches a rim at 36.2°, on
+surface 7. The engine f-number is F/2.2 before and after.
+
+### Metadata changed
+
+| Field | Old | New | Source |
+|---|---|---|---|
+| `catalog.lensMounts` | none | `["projection-lens"]` | The patent title, "Projection Lens", and its theatre-projection purpose. |
+| `catalog.imageFormat` | none | `"35mm-cinema"` | See below. |
+| `aperture.fStops` | f/2.2 to f/22 | `[2.2]` | The patent shows no iris; the brief keeps only the design aperture for an iris-less projection lens. |
+
+The 35 mm cinema format rests on two sources:
+- The specification, lines 17–55 of the first text page, writes for moving-picture theatre projection, which in 1920
+  used 35 mm film.
+- *Motion Picture Herald* (Better Theatres guide, 1954, p. 95) lists Projection Optics Company, Inc. for "projection
+  lenses for 35mm theatre projectors".
+
+A 100 mm (about 4 in) focal length lies in the 2 in to 9 in range the patent says the trade specifies, so the model fits
+the format as built. With the format set, `audit:image-circle` passes (0 undersized) and `audit:field-coverage` reaches
+13.60 of 13.60 mm at 7.7°, clear.
+
+The header comment's semi-diameter note now records the scale proof and overlay, and a format note was added. The
+analysis "Field and format" and "Aperture settings" bullets were updated, and the 1954 listing was added to its sources.
+
+### Results
+
+- `audit:surface`: OK.
+- `audit:aperture`: no rim limit.
+- `built.mjs`: EFL 99.998 mm, F/2.2, stop radius 18.45 mm, half-field 28.55°, identical to before.
+
+### Product name
+
+No source names a product for this design. Delta Lenses suggests only that it "might have been used" for the Pro-Jex
+series. The current name, "PROJECTION OPTICS 100mm f/2.2 (US 1,415,002 Design)", matches the evidence, and the patent's
+own title is "Projection Lens".
+
+### Open
+
+- **Iris:** the paraxially sized iris trims the outermost real F/2.2 rays (about F/2.27).
+- **Groups:** `groups` is empty.

@@ -25,8 +25,13 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * in a mount without an iris the front cell itself would set the aperture.
  *
  * SEMI-DIAMETERS: 23 mm on every surface, from the drawing, which the patent calls a full-size diagram. Calibrated
- * against the printed thicknesses, the drawn diameters measure 46.2 to 46.6 mm, and the drawn edge thicknesses agree
- * with the model's.
+ * against the printed thicknesses (16.14 px/mm at 600 dpi; the vertical scale, checked on the sag of the 57.111 mm
+ * front face, agrees within 1 %), the drawn diameters measure 46.2 to 46.6 mm, and the drawn edge thicknesses agree
+ * with the model's. Overlaid at that scale, every drawn rim lies within 0.3 mm of the model's.
+ *
+ * FORMAT: a 100 mm (about 4 in) objective for theatre moving-picture projection, which the patent describes; the
+ * 35 mm cinema format's 13.6 mm half-diagonal is a 7.7 degree half-field, which every rim passes. The patent shows no
+ * iris, so the aperture list holds only F/2.2.
  *
  * IMAGE PLANE: the computed paraxial back focus, 61.622 mm behind the plano rear of IV; the patent prints none.
  *
@@ -46,6 +51,8 @@ const LENS_DATA = {
       "DESIGN F/2.2",
       "PROJECTION OBJECTIVE"
     ],
+    lensMounts: ["projection-lens"],
+    imageFormat: "35mm-cinema",
     elementCount: 4,
     groupCount: 3,
     focalLengthMm: {
@@ -177,16 +184,7 @@ const LENS_DATA = {
   },
   aperture: {
     nominalFNumber: 2.2,
-    fStops: [
-      2.2,
-      2.8,
-      4,
-      5.6,
-      8,
-      11,
-      16,
-      22
-    ]
+    fStops: [2.2]
   },
   groups: [],
   doublets: [
