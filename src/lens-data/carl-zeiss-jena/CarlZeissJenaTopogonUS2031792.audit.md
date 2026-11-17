@@ -278,3 +278,7 @@ Open:
 
 - `aperture.fStops` ends at 22, but the page's aperture slider and stop chips end at f/16 (no maximum f-number is
   set, so the default applies). The patent prints only f/6.3; see the cleanup section's `fStops` line.
+
+## 2026-11-17 — Aperture slider range
+
+`aperture.maxFNumber`: unset (default 16) → 22. `fStops` lists f/22, which the aperture slider and its stop buttons cut off at the default 16. No optical value changed; the stops beyond the design aperture stay unsourced.

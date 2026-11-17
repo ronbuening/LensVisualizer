@@ -307,3 +307,7 @@ Open:
 
 - Provenance (2026-11-17): `source.sdSource` removed. The rims mix evidence (the back member is figure-measured and the front member sits on the f/6.3 beam floor), and LENS_DATA_SPEC asks that mixed
   clear-aperture evidence stay undeclared.
+
+## 2026-11-17 — Aperture slider range
+
+`aperture.maxFNumber`: unset (default 16) → 22. `fStops` lists f/22, which the aperture slider and its stop buttons cut off at the default 16. No optical value changed; the stops beyond the design aperture stay unsourced.
