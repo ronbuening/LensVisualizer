@@ -8,9 +8,9 @@ or per-lens patent backfills.
 
 ## Summary
 
-- **1145** lenses scanned
-- **12927** non-air surfaces examined
-- **12937** element glass declarations examined
+- **1151** lenses scanned
+- **12993** non-air surfaces examined
+- **13003** element glass declarations examined
 - **220** non-explicit-unmatched annotations did not resolve
 - **116** distinct unresolved glass-like tokens found
 
