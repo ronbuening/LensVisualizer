@@ -9,8 +9,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Inferred, not printed: the iris position (placed in the 7.56 mm air space behind the cemented negative
  * member, 6.5 mm behind r7 and 1.06 mm ahead of r8), all clear semi-diameters, and the back focus (the
  * computed paraxial infinity value). The patent states no focal length, field angle or close-focus data.
- * The concave r7 face would reach 7.41 mm behind its vertex at its 23 mm rim, past the inferred iris plane, so
- * its rim is cut flat at the iris plane (6.5 mm, cut radius 21.68 mm); no traced beam reaches that radius.
+ * Semi-diameters are estimated from Figure 1 (300 dpi scan, about 16.4 px per mm at 600 dpi over the r1–r10
+ * span) and floor-checked by real-ray trace: front pair 26 / 25 mm and the cemented negative member 23 mm
+ * (drawn about 26.7 and 24.1 mm, within drawing noise); rear cemented member 19.7 mm (drawn 19.7 mm).
+ * The figure ends the concave r7 face at 0.81 of the member's edge and bevels out to it, so r7 is cut flat
+ * 4.68 mm behind its vertex (cut radius 18.62 mm), which also keeps its rim ahead of the iris plane; no
+ * traced beam reaches that radius.
  */
 const LENS_DATA = {
   schema: 2,
@@ -159,7 +163,7 @@ const LENS_DATA = {
       R: 39.4,
       d: 6.5,
       sd: 23,
-      rimCutDepthMm: 6.5,
+      rimCutDepthMm: 4.68,
     },
     {
       label: "STO",
@@ -170,21 +174,21 @@ const LENS_DATA = {
       label: "8",
       R: 120.9,
       d: 4.03,
-      sd: 21.5,
+      sd: 19.7,
       medium: 5,
     },
     {
       label: "9",
       R: 33.558,
       d: 12.09,
-      sd: 21.5,
+      sd: 19.7,
       medium: 6,
     },
     {
       label: "10",
       R: -63.51,
       d: 69.65283913735544,
-      sd: 21.5,
+      sd: 19.7,
     },
   ],
   aperture: {

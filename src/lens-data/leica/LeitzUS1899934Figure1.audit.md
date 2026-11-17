@@ -74,6 +74,7 @@ Open:
   no catalogue match. (Closed 2026-11-17: all six left unmatched; see the cleanup section.)
 - SD pass: Figure 1, scaled by its own axial length, draws semi-diameters of about 27 mm (front pair), 24.6 mm
   (negative member, with chamfered corners on the r7 side) and 20 mm (rear member), against 26 / 23 / 21.5 mm modelled.
+  (Closed 2026-11-17 in the semi-diameter pass below.)
 - Field: the engine's default 27.27° display field is beyond the 23.6° chief-ray limit set by the inferred iris; the
   patent states no field to set instead.
 - The British counterpart (GB 381,135 per the handwritten note) is unverified.
@@ -110,9 +111,56 @@ field-coverage audits skip the lens (no image format).
 Open:
 
 - SD pass: the Figure 1 rim readings above (about 27 / 24.6 / 20 mm against 26 / 23 / 21.5 mm modelled) still stand;
-  the drawn chamfers on the r7 side of the cemented negative member fit the rim cut at the iris plane.
+  the drawn chamfers on the r7 side of the cemented negative member fit the rim cut at the iris plane. (Closed
+  2026-11-17 in the semi-diameter pass below.)
 - Field: the default 27.27° display field exceeds the 23.6° chief-ray limit of the inferred iris; the patent prints
   no field angle.
 - No image format: the patent states none, so the image-circle and field-coverage audits cannot run.
 - The fStops list 2–16 is a default, not printed by the patent.
 - The British counterpart (GB 381,135) is unverified.
+
+## 2026-11-17 — Semi-diameter pass against the patent figure
+
+Source: US1899934A.pdf, page 1, Figure 1 (a 300 ppi bilevel scan), measured at 600 dpi. The figure draws no axis
+line, so each element's height is half the distance between its top and bottom outlines. Scale: the r1 to r10 vertex
+span, 1010 px, against 61.64 mm gives 16.39 px per mm. L1 (16.1) and the rear member (16.5) agree within 3 %, but L2 is
+drawn about 17 % too thick and the a2 air space about 20 % too thin, so the drawing is only roughly to scale; readings
+were checked both in millimetres at 16.39 px per mm and as proportions of L1.
+
+| Surfaces | Before | Figure (mm / share of L1) | After | Evidence and reason |
+|---|---:|---:|---:|---|
+| r1, r2 (L1) | 26 | 26.8 / 1.00 | 26 | Within drawing noise (+3 %); kept. |
+| r3, r4 (L2) | 25 | 26.8 / 1.00 | 25 | Drawn level with L1 (+7 % absolute, +4 % as a share of L1); within noise, kept. |
+| r5 | 23 | face ends at 21.6, bevel to the 24.1 edge | 23 | Edge within noise (+5 %). A land at the drawn face end would cut the f/2 axial beam (about 20.4 to 21.2 mm there), so none was added. |
+| r6 (cement) | 23 | 24.1 (runs to the edge) | 23 | Within noise; kept. |
+| r7 cut radius | 21.68 (depth 6.5) | face ends at 0.81 of the edge | 18.62 (depth 4.68) | The figure ends the concave r7 face at q = 0.81 of the member's edge (320 / 395 px; one native pixel gives 0.80 to 0.82) and bevels out to it. Cut radius q × sd = 0.81 × 23 = 18.62 mm, depth 4.68 mm. `sd` stays 23. The cut costs no light and still keeps the rim ahead of the iris plane. |
+| r8, r9, r10 (L5/L6) | 21.5 | 19.7 / 0.74 | 19.7 | Square-cut block, flat top and bottom, 323.5 px. As a share of L1 it would be 19.2 mm, but rims of 19.2 / 19.5 / 19.6 mm lose 4.9 / 3.8 / 3.5 points of corner light; 19.7 mm (the absolute reading) loses 2.9. |
+
+Clearance: the surface audit is OK, including the rim-cut beam check, and the aperture audit finds no rim limit at f/2.
+With the engine iris (17.97 mm) the real axial ray reaches 24.22 mm at r1 and 18.07 to 18.19 mm at r8 to r10; with
+clearap's paraxial iris (18.59 mm) it reaches 18.83 mm at r8, still 0.87 mm inside the rim. No surface blocks the chief
+ray up to 23.5° half-field. The chief-ray limit of about 23.6° is set by the inferred iris, not by any rim.
+
+Light: the app's vignetting curve (0 to 12.2°, wide open, infinity) is unchanged to 6.1°. It reads 92.8 / 87.7 / 81.7 %
+at 8.1 / 10.2 / 12.2°, against 93.2 / 89.2 / 84.6 % before, so the worst loss is 2.9 points at 12.2°. Beyond the
+analysis field, the rear rims trim more of the upper rim rays: 16 to 17 % one-sided at 16° and 30 % at 22°, against 7 to
+8 % and 20 to 23 % at 21.5 mm. The engine half-field stays 27.27° and the f-number f/2.00; EFL 99.998 mm and BFD
+69.65 mm are unchanged.
+
+The rimcost tool's in-place rim trial did not change the traced lens for this file (every trial matched the file).
+All light figures above come from trial copies with the rims written in.
+
+Metadata: no mount, format, image circle or marketing values were added. No product is documented, and the model is the
+patent's f = 100 normalisation, so no film format applies as built. The fStops list stays unsourced. Product name: no
+source names a product for this design. The current name, LEITZ 100mm f/2 (US 1,899,934 Figure 1 Design), describes the
+patent design at its own scale.
+
+Model sketch against the figure at matched scale: `overlay.png` in the scratch directory of this pass, not kept in the
+repository.
+
+Open:
+
+- L2 (25 mm) is drawn level with L1 (26 mm). The 4–7 % difference is within drawing noise and was left; raising L2 to
+  26 mm would cost no light if the drawing is later judged precise enough.
+- The drawn bevels on r5 and r7 run out to a 24.1 mm edge; the model draws the member's edge at 23 mm with a flat land on
+  r7 only.
