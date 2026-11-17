@@ -5,9 +5,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Richter, assignor to the firm Carl Zeiss, Jena. Filed 12 May 1931 with German priority of 27 May 1930; granted
  * 27 December 1932. The patent states a maximum aperture of 1:4.5 and a focal length of 100 mm for a hand-camera
  * objective that covers a picture diagonal about equal to the focal length. Three air-spaced singlets: a plano-convex
- * front lens, a biconcave middle lens and a biconvex rear lens. Marco Cavina reproduces this patent as the Carl Zeiss
- * Jena Triotar 1:4.5 (Robert Richter, May 1930); the link is to the Triotar design family, not to one marketed focal
- * length.
+ * front lens, a biconcave middle lens and a biconvex rear lens, named I, II and III as in the patent's figure and
+ * text. Marco Cavina reproduces this patent as the Carl Zeiss Jena Triotar 1:4.5 (Robert Richter, May 1930); the link
+ * is to the Triotar design family, not to one marketed focal length.
  *
  * SCALE: none. Radii, thicknesses and spacings are as printed in millimetres, with the printed signs; the paraxial EFL
  * of the printed table is 100.0004 mm.
@@ -70,35 +70,41 @@ const LENS_DATA = {
   elements: [
     {
       id: 1,
-      name: "L1",
-      label: "Element 1",
+      name: "I",
+      label: "Element I",
+      diagramLabel: "I",
       type: "Plano-Convex Positive",
       nd: 1.6227,
       vd: 56.9,
       indexReference: "D",
       glass: "N-SK10 (Schott)",
+      focalLengthMm: 37.34,
       role: "Front collector; carries most of the positive power, with a flat rear face",
     },
     {
       id: 2,
-      name: "L2",
-      label: "Element 2",
+      name: "II",
+      label: "Element II",
+      diagramLabel: "II",
       type: "Biconcave Negative",
       nd: 1.6128,
       vd: 37.0,
       indexReference: "D",
       glass: "F3 (Sumita)",
+      focalLengthMm: -28.75,
       role: "Flint negative element between the collectors; corrects colour and the Petzval sum",
     },
     {
       id: 3,
-      name: "L3",
-      label: "Element 3",
+      name: "III",
+      label: "Element III",
+      diagramLabel: "III",
       type: "Biconvex Positive",
       nd: 1.6423,
       vd: 48.0,
       indexReference: "D",
       glass: "Unmatched (nD 1.6423 / V 48.0)",
+      focalLengthMm: 72.49,
       role: "Weak high-index rear collector; nearly all its power is at the rear face",
     },
   ],

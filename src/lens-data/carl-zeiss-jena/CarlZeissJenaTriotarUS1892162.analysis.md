@@ -65,7 +65,7 @@ normally sits, but it is an inference, not a source fact.
 
 ## Element-by-Element Analysis
 
-### L1 / Lens I — Plano-Convex Positive
+### Element I — Plano-Convex Positive
 
 `nD = 1.6227, ν = 56.9.` Glass: N-SK10 (Schott), the SK10 dense barium crown type; equivalent at the printed
 precision, not named in the patent. f = +37.34 mm.
@@ -75,7 +75,7 @@ constrains, and its rear surface is flat (r2 = ∞). At 4.5 mm it is the thickes
 diameter, 23.4 mm, is the largest. With the second surface flat, nearly all of the lens's refraction takes place at the
 front surface.
 
-### L2 / Lens II — Biconcave Negative
+### Element II — Biconcave Negative
 
 `nD = 1.6128, ν = 37.0.` Glass: F3 (Sumita), the F3 ordinary flint type; equivalent at the printed precision, not
 named in the patent. f = −28.75 mm.
@@ -84,7 +84,7 @@ Lens II is the dispersive member that corrects the colour and the Petzval sum of
 weak (r3 = −78.6 mm) and its rear face strong (r4 = +22.85 mm, the second radius the patent constrains). It is thin
 (1.3 mm) and sits only 3.7 mm behind lens I, so lenses I and II form a compact front pair 9.5 mm deep.
 
-### L3 / Lens III — Biconvex Positive
+### Element III — Biconvex Positive
 
 `nD = 1.6423, ν = 48.0.` Glass: unmatched; a barium flint close to, but not equal to, BaF9 (Sumita BAF9 is
 1.64317 / 47.7 at the D line). f = +72.49 mm.

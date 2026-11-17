@@ -174,3 +174,69 @@ at 26.4°, with no loss at any field. Surface audit OK; the aperture audit finds
 The image-circle audit reports 0 undersized; field coverage is 99 % or better.
 
 Open: `aperture.fStops` beyond 1:4.5 remain a default ladder.
+
+## 2026-11-17 — Second review on the local site
+
+Compared: the live page on the branch's dev server (diagram, the inspector of every element, the focus slider and the
+movement overlay) with the section figure on the drawing sheet (PDF page 1, native 300 dpi) and with the specification
+(PDF page 2).
+
+Rims, re-measured independently. The dash-dot axis lies on rows 1583–1584. Lens strokes cross the axis at about 942,
+1013.5, 1068.5, 1092, 1247.5 and 1287.5 px; the front-to-rear vertex span, 345.5 px against the printed 22.0 mm, gives
+15.70 px/mm. Checks on other spans: dI 71.5 px = 4.55 mm (printed 4.5), l2 155.5 px = 9.90 mm (10.0), dIII 40 px =
+2.55 mm (2.5). The flat rim tops read 187.5 / 187 px (top / bottom) for lens I, 166.5 / 168.5 for II and 159 / 164.5
+for III. Less half a stroke of about 5 px, that is 11.74, 10.50 and 10.14 mm against the printed half-diameters 11.7,
+10.4 and 10.0 mm (ratios 1.00, 1.01, 1.01). Each lens is drawn square-cut, with a flat land at one height on both
+faces, as the model has it, and the drawn step order I > II > III holds on the page. A side-by-side of the live page
+at the figure's scale lies on the drawing within a stroke on every lens. No rim changes: they are the printed lens
+diameters. Lands and cuts: none; every `sd` equals the light-rule baseline, and the worst loss against it is 0.0
+points at every field (geometric transmission 100, 98.2, 86.9, 71.7, 62.6 and 41.9 % at 0°, 5.9°, 11.7°, 17.6°,
+20.5° and 26.4°).
+
+Changes (data file):
+
+| Field | Before | After | Evidence |
+| --- | --- | --- | --- |
+| element `name` | L1 / L2 / L3 | I / II / III | the figure labels the lenses I, II, III, and the text and table use the same numerals |
+| element `label` | Element 1 / 2 / 3 | Element I / II / III | follows the names |
+| element `diagramLabel` | none (the diagram showed the ids 1, 2, 3) | I / II / III | as drawn under each lens on the figure |
+| element `focalLengthMm` | none (inspector showed "FL = —") | +37.34 / −28.75 / +72.49 | thick-lens focal lengths in air from the engine, matching the analysis |
+
+The header comment names the lenses I, II and III. The analysis headings follow the new names ("Element I" etc.); the
+prose already used "lens I", "lens II" and "lens III".
+
+Checked and found correct: element types against the radius signs (plano-convex with r2 flat; biconcave with r3
+negative and r4 positive; biconvex with r5 positive and r6 negative); the roles (lens I strongest at +37.34 mm, lens
+III weakest and highest in index); no aspheres, no cemented surfaces, so no `doublets`; no group brackets, since the
+patent names no groups beyond the three lenses; no `apd` tags, as the patent names no special glass; the inferred stop
+drawn between II and III. Movement: no gaps vary and there is no zoom block. `focus.closeFocusM` is 1e15, the focus
+slider reads "Not modeled", the movement overlay reports no modeled focus or zoom movement, and `focus.description`
+says only that the patent gives no close-focus data. Image circle 100 mm: the specification (PDF page 2, column 1,
+lines 7 to 10) asks for a picture whose diagonal is about the focal length. The real chief ray to the 50 mm corner
+leaves at 26.37° and clears every rim, and field coverage is 100 %. Engine numbers are unchanged by these edits:
+EFL 100.0004 mm, f/4.5, half-field 35.04°, stop radius 9.080 mm, back focus 82.234 mm.
+
+Glass, at the D line (catalog nD at 589.29 nm, νD = (nD − 1)/(nF − nC)); the specification itself names the D line:
+
+- Lens I, N-SK10 (Schott): 1.62268 / 56.97 against the printed 1.6227 / 56.9 (Δn −1.7e-5, Δν +0.07), exact.
+  S-BSM10 (Ohara) is also exact (1.62270 / 57.04). Schott, the Jena works that supplied Zeiss, is the era choice. Kept.
+- Lens II, F3 (Sumita): 1.61279 / 36.94 against 1.6128 / 37.0 (Δn −1.5e-5, Δν −0.06), exact. S-TIM3 (Ohara, Δν
+  0.00), E-F3 (Hoya) and J-F3 (Hikari) tie; none is a Schott row, and the Sumita row keeps the Schott type name F3.
+  Kept.
+- Lens III stays unmatched. The patent prints only nD and ν, names no glass, and has no other example in which the
+  pair could recur. The nearest vendor rows at D are the BaF9 types (Sumita BAF9 1.64317 / 47.71, Hoya BAF9
+  1.64316 / 47.93, Ohara BAM9 1.64316 / 47.84), Δn about +8.7e-4 and outside the window. Its dispersion comes from
+  the printed ν.
+- Vendor rows that match lenses I and II exactly at D but are not in the catalog: Sumita SK10 (1.62270 / 56.86),
+  Hoya BACD10 (1.62270 / 56.90), Ohara BSM10 (1.62270 / 57.05), Hoya F3 (1.61278 / 36.96) and Ohara PBM3
+  (1.61278 / 36.99). None is needed, because exact catalog rows already resolve both lenses.
+
+Colour: the patent prints no aberration curves and no partial dispersions, so there is nothing to compare. No element
+is an nd-only medium, so colour stays on for the whole lens.
+
+Assignee: `Carl-Zeiss-Stiftung` matches the corpus form used for the firm Carl Zeiss, Jena at this date (US 2,170,428,
+the Topogon US 2,031,792 and the telephoto US 1,485,515). The front page prints "assignor to the firm Carl Zeiss, of
+Jena, Germany".
+
+The Open lines above on `aperture.fStops`, the absent mount and format ids and the drawn 35° default ray field stay
+open; all three fall outside the rim and label fields.
