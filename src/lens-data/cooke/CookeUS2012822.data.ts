@@ -10,8 +10,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * is estimated from nD and V alone.
  *
  * Inferred, not printed: the iris, placed 18 mm behind R7 inside the 22.94 mm air space S3, where it clears the
- * deeply curved rear face of the cemented pair (its radius gives f/1 paraxially); all clear semi-diameters,
- * estimated from the axial ray envelope; and the 32.177 mm back focus, the computed paraxial image distance for an
+ * deeply curved rear face of the cemented pair (its radius gives f/1 paraxially); the clear semi-diameters, which
+ * agree within about 8 % with Figure 1 (drawn close to scale, about 4.13 px/mm at 300 dpi) and pass the real-ray
+ * axial beam, with L5 square-cut at 29.2 mm as drawn; and the 32.177 mm back focus, the computed paraxial image distance for an
  * object at infinity. The patent prints no back focus, field angle, image size or close-focus data.
  */
 const LENS_DATA = {
@@ -52,8 +53,8 @@ const LENS_DATA = {
     { label: "6", R: -105.16, d: 3.39, sd: 41.5, medium: 4 },
     { label: "7", R: 29.03, d: 18, sd: 26 },
     { label: "STO", R: "flat", d: 4.94 },
-    { label: "8", R: 59.39, d: 13.72, sd: 25, medium: 5 },
-    { label: "9", R: -190.62, d: 32.17678887228511, sd: 23.5 },
+    { label: "8", R: 59.39, d: 13.72, sd: 29.2, medium: 5 },
+    { label: "9", R: -190.62, d: 32.17678887228511, sd: 29.2 },
   ],
   focus: { closeFocusM: 1e15, description: "Infinity focus only; the patent gives no close-focus data." },
   aperture: { nominalFNumber: 1, fStops: [1, 1.4, 2, 2.8, 4, 5.6, 8, 11, 16] },
