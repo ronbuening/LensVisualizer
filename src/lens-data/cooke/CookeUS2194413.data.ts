@@ -17,9 +17,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * SEMI-DIAMETERS: no clear apertures are printed. The rims follow Fig. 1, which is drawn to scale (vertex spacings
  * agree with the table to within about 3 %). L2/L3 is square-cut at 26.6 mm, the inner rims R5 and R6 are 20.3 mm,
  * and the rear doublet is 23 mm, all as drawn. The figure draws a short flat land outside each inner rim; R5 and R6
- * carry it as a drawn edge to 22.2 and 22.1 mm, which does not change the clear aperture. L1 is drawn at about 26.6 mm but kept at 28.1 mm, the smallest rim that
- * keeps the off-axis illumination within 3 points of the wider starting estimate. L6 stays at 24 mm against about
- * 22.9 mm drawn, within measurement noise; a smaller L6 would narrow the traced field.
+ * carry it as a drawn edge to 22.2 and 22.1 mm, which does not change the clear aperture. L1 is drawn at about
+ * 26.6 mm but kept at 28.1 mm, the smallest rim that keeps the off-axis illumination within 3 points of the wider
+ * starting estimate. L6 stays at 24 mm against about 22.9 mm drawn, within measurement noise; a 23 mm L6 would take
+ * another 3.4 points of light at 12.2° and narrow the traced field.
  */
 const LENS_DATA = {
   schema: 2,
@@ -59,6 +60,7 @@ const LENS_DATA = {
       role: "Front collective, nearly plano-convex; its almost flat rear face is the patent's main change for lower distortion",
       nd: 1.613,
       vd: 59.3,
+      focalLengthMm: 152.33,
       indexReference: "D",
       glass: "Unmatched (nD 1.6130 / V 59.3)",
     },
@@ -71,6 +73,7 @@ const LENS_DATA = {
       cemented: "C1",
       nd: 1.613,
       vd: 59.3,
+      focalLengthMm: 132.95,
       indexReference: "D",
       glass: "Unmatched (nD 1.6130 / V 59.3)",
     },
@@ -83,6 +86,7 @@ const LENS_DATA = {
       cemented: "C1",
       nd: 1.6137,
       vd: 37.2,
+      focalLengthMm: -72.85,
       indexReference: "D",
       glass: "Unmatched (nD 1.6137 / V 37.2)",
     },
@@ -95,6 +99,7 @@ const LENS_DATA = {
       cemented: "C2",
       nd: 1.6468,
       vd: 33.8,
+      focalLengthMm: -27.46,
       indexReference: "D",
       glass: "Unmatched (nD 1.6468 / V 33.8)",
     },
@@ -107,6 +112,7 @@ const LENS_DATA = {
       cemented: "C2",
       nd: 1.6437,
       vd: 48.3,
+      focalLengthMm: 35.9,
       indexReference: "D",
       glass: "Unmatched (nD 1.6437 / V 48.3)",
     },
@@ -118,6 +124,7 @@ const LENS_DATA = {
       role: "Rear collective; its glass index above 1.63 is part of the patent's distortion correction",
       nd: 1.6437,
       vd: 48.3,
+      focalLengthMm: 100.29,
       indexReference: "D",
       glass: "Unmatched (nD 1.6437 / V 48.3)",
     },
