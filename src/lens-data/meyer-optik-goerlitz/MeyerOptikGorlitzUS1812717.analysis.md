@@ -1,4 +1,4 @@
-# RUDOLPH 100mm f/3.2 PATENT REFERENCE — US 1,812,717
+# MEYER OPTIK GÖRLITZ 100mm f/3.2 (US 1,812,717 Design)
 
 ## Patent Reference and Design Identification
 
@@ -10,14 +10,13 @@
 **Assignee:** none printed; the patent was granted to the inventor  
 **Example details:** the patent's only numerical example; prescription table on specification page 1, glass table on page 2, and the same data with the cross-section on the drawing sheet  
 
-The patent claims a "rapid five-lens system" in which a convexo-concave dispersive lens and a collective lens bound a biconvex air space. That air space divides the system into two collective members. The collective lens must have a focal length shorter than three times that of the whole objective. The single example is printed as an "objective consisting of five separated lenses", relative opening 1:3.2, focal length 100, diameter 31.3. The model uses the printed values at that scale; nothing is scaled.
+The patent claims a "rapid five-lens system" in which a convexo-concave dispersive lens and a collective lens bound a biconvex air space. That air space divides the system into two collective members. The collective lens must have a focal length shorter than three times that of the whole objective. The single example is printed as an "objective consisting of five separated lenses", relative opening 1:3.2, focal length 100, diameter 31.3.
 
-The link to a production lens is a family relationship, not a confirmed prescription:
+No assignee is printed. Rudolph was designing lenses for Hugo Meyer & Co. of Görlitz at the time, so the model is listed under Meyer Optik Görlitz. The design belongs to his Plasmat lineage there, at family level only:
 
-1. No assignee is printed. Rudolph designed lenses for Hugo Meyer & Co. of Görlitz in the 1920s, and this catalog already files his Kino-Plasmat (DE 401630) and Double-Plasmat (GB 135,853) patents under Meyer Optik Görlitz.
-2. DE 456,912 (Paul Rudolph, filed August 19, 1926, published March 5, 1928) has the same claim: a biconvex air lens bounded by a collecting element whose focal length is under three times the system focal length. It also opens with the same radii (+32.46, +185.5, +29.37). It is very probably the German counterpart of this patent, but it carries four numerical examples and was not compared value by value.
-3. A collector reference, oldlens.com, cites DE 456,912 as the patent of the Hugo Meyer Makro-Plasmat (50 mm and 105 mm f/2.7, six elements in five groups, designer Paul Rudolph). That construction count matches this example.
-4. The Makro-Plasmat was sold at f/2.7, and this example is f/3.2. No maker's construction diagram or production prescription of the original Makro-Plasmat was found. The model is therefore a member of the Makro-Plasmat design family, not the production lens.
+1. The German patent DE 456,912 (Paul Rudolph, filed August 19, 1926, published March 5, 1928) has the same claim. It prints this prescription as its Example 2, beside three other examples.
+2. A collector reference, oldlens.com, cites DE 456,912 as the patent of the Hugo Meyer Makro-Plasmat (50 mm and 105 mm f/2.7, six elements in five groups, designer Paul Rudolph). That construction count matches this example.
+3. The Makro-Plasmat was sold at f/2.7, and this example is f/3.2. No maker's construction diagram or production prescription of the original Makro-Plasmat was found, so the model is a design of that family, not the production lens.
 
 ## Optical Architecture
 
@@ -46,15 +45,15 @@ The drawing sheet notes "Equivalent focus of L3: +111.4 < 300". The printed radi
 
 ### L1 — Positive Meniscus
 
-nD = 1.5331, ν = 58.0; f = +73.16 mm. The front collective lens, convex to the object. Its rear surface (r2 = +185.5) touches L2′ at the vertex.
+nD = 1.5331, ν = 58.0 (no catalogue match); f = +73.16 mm. The front collective lens, convex to the object. Its rear surface (r2 = +185.5) touches L2′ at the vertex.
 
-### L2′ — Plano-Convex (front of the cemented pair)
+### L2′ — Plano-Convex Positive (front of the cemented pair)
 
-nD = 1.5795, ν = 53.8; f = +50.68 mm. Its convex front (r3 = +29.37) faces the object and its flat rear is the cement surface. At the full f/3.2 beam this 4.17 mm-thick element has very little edge left: about 0.04 mm at the modeled 15.02 mm rim.
+nD = 1.5795, ν = 53.8 (Schott N-BALF4 catalogue equivalent); f = +50.68 mm. Its convex front (r3 = +29.37) faces the object and its flat rear is the cement surface. At the full f/3.2 beam this 4.17 mm-thick element has very little edge left: about 0.04 mm at the modeled 15.02 mm rim.
 
-### L2 — Plano-Concave (rear of the cemented pair)
+### L2 — Plano-Concave Negative (rear of the cemented pair)
 
-nD = 1.5749, ν = 41.3; f = −32.27 mm. Its rear surface (r5 = +18.55) is the strongest curve in the lens and faces the stop. Together with L2′ it forms the claim's "very thick dispersive lens" (f = −112.79 mm). The two glasses differ little in index but clearly in dispersion. The patent says such cemented pairs let durable glasses be used.
+nD = 1.5749, ν = 41.3 (CDGM QF3 catalogue equivalent); f = −32.27 mm. Its rear surface (r5 = +18.55) is the strongest curve in the lens and faces the stop. Together with L2′ it forms the claim's "very thick dispersive lens" (f = −112.79 mm). The two glasses differ little in index but clearly in dispersion. The patent says such cemented pairs let durable glasses be used.
 
 ### L3 — Positive Meniscus
 
@@ -72,13 +71,15 @@ nD = 1.5795, ν = 53.8; f = +64.85 mm. The rear collective lens, set 8.97 mm beh
 
 The patent prints three glasses, each used twice, as nD and ν. It gives no glass names.
 
-| Glass | nD | ν | Used in |
-|---|---:|---:|---|
-| A | 1.5331 | 58.0 | L1, L3 |
-| B | 1.5795 | 53.8 | L2′, L5 |
-| C | 1.5749 | 41.3 | L2, L4 |
+| Printed nD | Printed ν | Used in | Catalogue equivalent (at the D line) |
+|---:|---:|---|---|
+| 1.5331 | 58.0 | L1, L3 | none |
+| 1.5795 | 53.8 | L2′, L5 | Schott N-BALF4, nD 1.57946 / ν 53.86 |
+| 1.5749 | 41.3 | L2, L4 | CDGM QF3, nD 1.57490 / ν 41.29 |
 
-The patent says the design reaches an anastigmatically flat field "in many cases even without the use of heavy barium crown glass". It chooses glasses for purity and durability. The model stores the printed values against the sodium D line. Colour is computed from nD and ν alone, because no partial-dispersion data are printed, so secondary-spectrum results are estimates.
+The patent says the design reaches an anastigmatically flat field "in many cases even without the use of heavy barium crown glass". It chooses glasses for purity and durability. The model stores the printed values against the sodium D line.
+
+The two catalogue equivalents are modern glasses whose indices match the printed pairs. They supply the dispersion curve for L2′, L5, L2 and L4 and do not identify the 1926 melts. The crown of L1 and L3 matches no catalogue row, so its colour is estimated from nD and ν alone.
 
 ## Focus Mechanism
 
@@ -93,13 +94,13 @@ The patent prints no lens diameters, so every rim is an estimate:
 - L2′, L3 and L4 are set to the smallest values that pass the f/3.2 axial beam: 15.02, 12.29, and 12.27 / 12.68 mm.
 - L2's rear rim is 13.09 mm, the height at which r5 reaches the stop plane, so the glass stays in front of the diaphragm. The drawing shows L2 with a chamfer at that edge.
 - L1 and L5 are 16 mm.
-- L3 and L4 come within about 0.05 mm of each other at their rims. The drawing shows them meeting, so the model's gap-sag check is relaxed to allow it.
+- L3 and L4 come within about 0.05 mm of each other at their rims. The drawing shows them meeting, and the model allows that close approach.
 
 The patent states no field angle or image size. The model's default field comes from these estimated rims and is not a patent figure.
 
 ## Design Heritage and Context
 
-Paul Rudolph designed the Planar and the Tessar at Carl Zeiss, and later the Plasmat family (from 1918) for Hugo Meyer. This patent applies his Plasmat-era ideas — weak curvatures, a cemented pair of different dispersions, alternating collective and dispersive members — to a faster, unsymmetrical five-component objective. Later lens patents from American Optical and Farrand Optical cite it.
+Paul Rudolph designed the Planar and the Tessar at Carl Zeiss before his later work for Hugo Meyer. This patent combines weak curvatures, a cemented pair of different dispersions, and alternating collective and dispersive members in a faster, unsymmetrical five-component objective. Later lens patents from American Optical and Farrand Optical cite it.
 
 ## Sources
 

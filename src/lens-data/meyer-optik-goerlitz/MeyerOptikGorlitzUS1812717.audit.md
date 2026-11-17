@@ -86,9 +86,62 @@ annotation is recorded as a drawing-sheet inconsistency.
 **Open (cleanup and SD passes):**
 
 - Subtitle "1931 GRANT — HIDDEN QUALIFIED REFERENCE", the spec "ESTIMATED TAPERED RIMS", the name and the key.
+  (Closed 2026-11-17: the coordinator renamed the file and set the name and key; the cleanup pass below rewrote the
+  subtitle and specs.)
 - L2′ keeps only about 0.04 mm of edge at the 15.02 mm rim. This follows from the printed 4.17 mm thickness at full
   aperture.
 - L4 is not square (12.27 / 12.68 mm), because a square 12.68 mm rim would overlap L3. Check it against the figure.
 - L1 and L5 rims (16 mm) have not been checked against the figure.
 - The patent gives no field angle.
-- There are no glass names; the patent prints nD and ν only.
+- There are no glass names; the patent prints nD and ν only. (Closed 2026-11-17: catalogue equivalents added where
+  exact; see below.)
+
+## 2026-11-17 — Cleanup and wording pass
+
+**Fields changed in the data file:**
+
+- `subtitle`: "1931 GRANT — HIDDEN QUALIFIED REFERENCE" → "US 1,812,717 A, sole example — Rudolph Plasmat-lineage
+  design".
+- `specs`: ["6 ELEMENTS / 5 GROUPS", "PATENT ONLY; NO CONFIRMED RETAIL MATCH", "ESTIMATED TAPERED RIMS", "INFINITY
+  ONLY"] → ["6 ELEMENTS / 5 GROUPS", "DESIGN F/3.2", "ALL SPHERICAL"].
+- `focus.closeFocusM`: 1000000000000000.0 → 1e15 (same value). `focus.description`: "Infinity-only patent reference;
+  computed paraxial image plane. No exact production match." → "Infinity focus only; the patent gives no close-focus
+  data."
+- Element `type`: L2′ "Plano-Convex" → "Plano-Convex Positive"; L2 "Plano-Concave" → "Plano-Concave Negative".
+- Element `role`: added a short optical role to all six elements.
+- Labels: kept as the patent's own designations (L1, L2′, L2, L3, L4, L5).
+- Cemented group id: "D1" → "C1" on L2′ and L2 and in the `doublets` entry, so it does not read as a gap label.
+- Header comment: added the glass paragraph and stated the DE 456,912 family evidence plainly.
+
+**Glass relabels.** These are exact at the D line, the line the patent prints; values computed from the catalogue
+Sellmeier data:
+
+- L2′ and L5: none → "N-BALF4 (Schott)". nD 1.57946 against the printed 1.5795 (Δ −0.00004); νD 53.86 against 53.8
+  (Δ +0.06).
+- L2 and L4: none → "QF3 (CDGM)". nD 1.57490 against the printed 1.5749 (Δ 0.00000); νD 41.29 against 41.3
+  (Δ −0.01). Ohara S-TIL27 and Hikari J-LF7 are close in index but miss on ν (41.50, Δ +0.20), so they were not used.
+- L1 and L3: none → "Unmatched (nD 1.5331 / V 58.0)". No catalogue row lies within 0.00015 in nD and 0.3 in ν.
+
+The printed nd / νd values are unchanged.
+
+**Analysis:**
+
+- The H1 now uses the model name.
+- The scaling sentence was removed, because the patent itself prints f = 100.
+- The product evidence is stated once, as Plasmat lineage at family level. DE 456,912 prints this prescription as its
+  Example 2 (radii, spacings and glass checked against Google's text of the German patent). oldlens.com cites
+  DE 456,912 for the Makro-Plasmat, which was sold at f/2.7 against this example's f/3.2.
+- The glass table now shows the catalogue equivalents.
+- The gap-sag wording was made plain.
+- The heritage paragraph no longer repeats the lineage.
+
+**Engine numbers, identical before and after:** EFL 100.1106 mm, f/3.2, half-field 32.04°, stop semi-diameter
+12.4216 mm, BFD 80.5476 mm, total track 117.3276 mm. `audit:surface` is OK. `audit:aperture` is within 3 % with no rim
+limit.
+
+**Open (SD pass):**
+
+- L4 rims are not square (12.27 / 12.68 mm). Check them against the figure, which draws a flat top edge.
+- L1 and L5 rims (16 mm) have not been checked against the figure.
+- L2′ keeps about 0.04 mm of edge at its 15.02 mm rim.
+- The patent gives no field angle or image size.
