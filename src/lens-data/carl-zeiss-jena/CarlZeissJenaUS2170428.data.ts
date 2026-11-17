@@ -59,7 +59,7 @@ const LENS_DATA = {
     patentYear: 1939,
     authors: ["Robert Richter"],
     assignees: ["Carl-Zeiss-Stiftung"],
-    sdSource: "heuristic",
+    sdSource: "figure-measured",
   },
   elements: [
     {

@@ -67,7 +67,7 @@ const LENS_DATA = {
     patentYear: 1933,
     authors: ["Max Berek"],
     assignees: ["Ernst Leitz GmbH"],
-    sdSource: "heuristic",
+    sdSource: "figure-measured",
   },
   elements: [
     {
