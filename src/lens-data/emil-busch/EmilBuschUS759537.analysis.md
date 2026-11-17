@@ -1,4 +1,4 @@
-# Busch / Martin 210 mm f/11 — US 759,537 (1904)
+# EMIL BUSCH 210mm f/11 (US 759,537 Design)
 
 ## Patent Reference and Design Identification
 
@@ -20,7 +20,7 @@ The single worked example gives four radii, two lens thicknesses, one air space,
 4. Astigmatism corrected for a field of 68°.
 5. An equivalent focal distance of 210.
 
-No production lens is named in the patent. The design is the basis of the Busch Omnar, which is covered under Design Heritage and Context below. The model is a reference for the patent example, not a product reconstruction.
+The patent names no production lens; its relation to a Busch product is set out under Design Heritage and Context.
 
 ## Optical Architecture
 
@@ -43,13 +43,13 @@ The patent says earlier two-lens objectives have a value three or four times lar
 
 ### L1 — Negative Meniscus, concave to the object
 
-nD = 1.6031 (sodium D), nG′ = 1.62386; no Abbe number printed. Glass: Schott O. 318 (the patent prints "0.318"). f = −88.22 mm.
+nD = 1.6031 (sodium D), nG′ = 1.62386; no Abbe number printed. Glass: unmatched, the patent's "0.318" (Schott O. 318). f = −88.22 mm.
 
 L1 is the "sufficiently hollow" negative meniscus that the text says compensates the astigmatism of the positive lens. Its front radius, −22.36 mm, is strongly curved, and the lens is 6.15 mm thick on the axis. Its deep concave front lies just behind the diaphragm. The front surface's distance from the stop is the main control of the oblique beams' astigmatism. That is why the stop position matters so much in this design (see Stop Position and Field Correction).
 
 ### L2 — Positive Meniscus, concave to the object
 
-nD = 1.4967 (sodium D), nG′ = 1.50627; no Abbe number printed. Glass: Schott O. 802 (printed "0.802"). f = +73.84 mm.
+nD = 1.4967 (sodium D), nG′ = 1.50627; no Abbe number printed. Glass: unmatched, the patent's "0.802" (Schott O. 802). f = +73.84 mm.
 
 L2 carries all the positive power. Its front radius, −383.35 mm, is nearly flat and its rear radius is −33.64 mm; the lens is 5.73 mm thick. Because its index is lower than the flint's, the patent's argument is that chromatic correction comes from the two glasses' different dispersions at an ordinary index ordering.
 
@@ -62,7 +62,7 @@ L2 carries all the positive power. Its front radius, −383.35 mm, is nearly fla
 
 The table prints each glass's index for the sodium D line and the hydrogen G′ line (434 nm), not an Abbe number. The numbers 0.318 and 0.802 beside them are Schott catalogue designations of the period, O. 318 and O. 802. The Austrian counterpart, AT 8364 B, names them as glasses from the Schott list.
 
-The data file carries nD only, so the model traces at a single wavelength and shows no colour error. The difference nG′ − nD is 0.02076 for L1 and 0.00957 for L2. Read against modern dispersion curves, that suggests Abbe numbers near 38 and 65, an ordinary light flint and crown. Those figures are estimates and are not used. The printed G′ indices still check the transcription: in a paraxial trace the G′ focus lies 0.110 mm beyond the D focus, which is 0.52 per mille of the focal length. The patent states an overcorrection of 0.5 per mille.
+No catalogue glass matches both printed indices, so both labels stay unmatched. The model carries nD only, traces at a single wavelength and shows no colour error. The difference nG′ − nD is 0.02076 for L1 and 0.00957 for L2. Read against modern dispersion curves, that suggests Abbe numbers near 38 and 65, an ordinary light flint and crown. Those figures are estimates and are not used. The printed G′ indices still check the transcription: in a paraxial trace the G′ focus lies 0.110 mm beyond the D focus, which is 0.52 per mille of the focal length. The patent states an overcorrection of 0.5 per mille.
 
 ## Stop Position and Field Correction
 
@@ -71,7 +71,7 @@ The table ends with Δ/2 = 3.79. Figure 2 places the diaphragm midway between tw
 The stop position decides whether the patent's astigmatic correction appears. Coddington traces of the model at 34° half-field, the edge of the stated 68° field, give:
 
 - With the stop at 3.79 mm: sagittal focus +0.70 mm and tangential focus +0.17 mm from the paraxial image plane. The astigmatic difference crosses zero near the edge of the stated field.
-- With the stop at 3.00 mm: the tangential focus moves to +16.5 mm.
+- With the stop 3.00 mm ahead of the first vertex instead, the tangential focus would lie at +16.5 mm.
 
 The patent's anastigmatic flattening therefore depends on the printed stop distance.
 
@@ -79,7 +79,7 @@ The patent's anastigmatic flattening therefore depends on the printed stop dista
 
 The patent gives only the infinity setting. The model has no focus movement. The image plane is the computed paraxial back focus at the D line, 250.14 mm behind the last surface; the patent prints no back focus.
 
-## Model Verification
+## Model Scope and Limitations
 
 | Quantity | Patent | Model |
 |---|---|---|

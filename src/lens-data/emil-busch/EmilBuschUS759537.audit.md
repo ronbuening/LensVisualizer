@@ -88,13 +88,69 @@ Open:
 
 - Maker prefix: `scripts/maker-prefixes.mjs` has no entry for "Emil Busch". The organizer would derive the folder
   `emil/` from the first word, so add `EMIL BUSCH` → `emil-busch`. Use the same maker string for any other Busch
-  file.
+  file. (Closed: the entry was added with the file move.)
 - Wording: `name`, `subtitle`, the "PATENT ONLY; NO RETAIL MATCH" spec (understates the Omnar family link),
   `indexReferenceNote` ("Reference-line-only analysis") and `focus.description` still need the cleanup pass.
+  (Closed 2026-11-17, see below.)
 - `source.example`: "Figure 1" is kept. The patent has one numerical example, which it introduces as shown in
-  Figure 1; decide whether the house form should be "Sole example".
-- Glass labels: Schott O. 318 and O. 802 could go into `glass` on L1 and L2.
+  Figure 1; decide whether the house form should be "Sole example". (Closed: "Figure 1" kept, as the subtitle form
+  follows the figure the file uses.)
+- Glass labels: Schott O. 318 and O. 802 could go into `glass` on L1 and L2. (Closed 2026-11-17: unmatched labels
+  naming them.)
 - Abbe numbers: estimates near 38 and 65 come from nG′ − nD. Enter a νd only if a period Schott list gives O. 318
   and O. 802 values that also match the printed nD and nG′.
 - Rims against Figure 1, for the SD pass: R1 about 10 mm plus a flat land to about 14 mm, R2 about 14 mm, R3/R4
   about 15.4 mm. At 34° the 12 mm rims pass about 64 % of the meridional beam, against about 81 % at the drawn sizes.
+
+## 2026-11-17 — Cleanup and wording pass
+
+The optics are unchanged. No radius, thickness, index, stop or rim was edited.
+
+Data file:
+
+- `subtitle`: "1901 DESIGN / 1904 GRANT — MONOCHROME REFERENCE" → "US 759,537 A, Figure 1 — Busch Omnar-type
+  anastigmat".
+- `specs`: "2 ELEMENTS / 2 GROUPS", "PATENT ONLY; NO RETAIL MATCH", "ESTIMATED RIMS", "INFINITY ONLY" →
+  "2 ELEMENTS / 2 GROUPS", "DESIGN f = 210 mm", "DESIGN F/11", "ALL SPHERICAL", "68° FIELD".
+- `focus.closeFocusM`: 1000000000000000.0 → 1e15 (same value).
+- `focus.description`: → "Infinity focus only; the patent gives no close-focus data."
+- `indexReferenceNote` (both elements): reworded in plain words. The D-line index is as printed; nG′ is printed but
+  no Abbe number.
+- `glass` added:
+  - L1 "Unmatched (Schott O. 318; nD 1.6031, nG′ 1.62386, no Abbe number printed)".
+  - L2 "Unmatched (Schott O. 802; nD 1.4967, nG′ 1.50627, no Abbe number printed)".
+  - Neither label resolves to a catalogue row. The nearest rows are F5 for L1 (nd 1.60342 / νd 38.03, about 0.0002 above
+    the printed nD at the D line and 0.0003 off at G′) and BSC3 / BSL3 for L2 (nd 1.49831, about 0.0015 off). Neither is
+    exact, so both elements stay monochromatic.
+- `role` added to both elements: the flint meniscus that flattens the field and corrects astigmatism; the crown
+  meniscus that carries the positive power.
+- The header comment's glass paragraph now mentions the unmatched labels.
+- No cemented pairs: `groups` and `doublets` stay empty.
+
+Analysis:
+
+- The H1 is now the model name.
+- The Omnar link is stated once, under Design Heritage and Context.
+- "Model Verification" is renamed "Model Scope and Limitations".
+- Glass lines now match the unmatched labels.
+- Process wording was removed ("reference", "reconstruction").
+
+Engine numbers, identical before and after (`built.mjs`, `probe.mjs`):
+
+- EFL 210.193 mm, f/11, stop radius 9.554 mm.
+- Half-field 38.42°, BFD 250.141 mm, total length 269.121 mm.
+- L1 −88.22 mm, L2 +73.84 mm.
+
+Audits:
+
+- `audit:surface`: OK.
+- `audit:aperture`: no rim limit.
+- `audit:image-circle` and `audit:field-coverage`: skipped (no image format).
+
+Open:
+
+- Rims against Figure 1, for the SD pass: R1 about 10 mm with a flat land to about 14 mm, R2 about 14 mm, R3/R4 about
+  15.4 mm.
+- Abbe numbers: enter one only if a period Schott list gives O. 318 and O. 802 values that also match the printed nD
+  and nG′.
+- `catalog.imageFormat` and `lensMounts`: no source states a plate size or mount for this example, so both are unset.
