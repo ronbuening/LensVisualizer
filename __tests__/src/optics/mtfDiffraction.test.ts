@@ -588,6 +588,18 @@ describe("analytic wave-optics controls", () => {
       expect(Math.abs(otf[cut].imaginary[0])).toBeLessThan(0.002);
     }
   });
+  it("retains both complex cuts when a frequency request revisits a mesh triangle", () => {
+    const lattice = mappedWaveLattice(0.12, 0.08, defocus);
+    const frequencies = [50, 51, 0, 52, 50];
+    const together = waveLatticeOtf(lattice, wavelengthMm, frequencies);
+    for (const [i, frequency] of frequencies.entries()) {
+      const single = waveLatticeOtf(lattice, wavelengthMm, [frequency]);
+      for (const cut of ["sagittal", "tangential"] as const) {
+        expect(together[cut].real[i]).toBeCloseTo(single[cut].real[0], 13);
+        expect(together[cut].imaginary[i]).toBeCloseTo(single[cut].imaginary[0], 13);
+      }
+    }
+  });
   it("qualifies a mapped pupil before returning its complex OTF and diffraction limit", () => {
     const lattice = mappedWaveLattice(0.12, 0.08, unaberrated);
     const response = qualifiedWaveOtf(lattice, wavelengthMm, [0, 0.5 * cutoff])!;

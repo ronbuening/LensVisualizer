@@ -159,7 +159,7 @@ the working number unavailable and names its surface (and whether it is before t
 or failed marginal ray also leaves the number null. At a finite station, a chief ray from a 0.01 mm off-axis object
 height supplies signed `magnification` as chief image height / object height on the applied chart plane, including
 a held or best-axial shift. Infinity and failed chief rays carry null magnification. These readouts are cached
-with the focus search and do not change any field values. Advanced shows the working aperture and the on-axis
+with the focus search and do not change any field values. When the axial field uses the same stop grid and image plane as the focus search, it reuses those wavelength bundles within the request. A different image plane traces a fresh bundle. Advanced shows the working aperture and the on-axis
 first-line diffraction cutoff `1/(λ·N_working)`, plus finite object-side frequency examples `ν_object = |m|·ν_image`.
 
 **Ray failures** (`trace/rayClassification.ts`, also used by the aimed launch and the vignetting tab). TIR and aperture

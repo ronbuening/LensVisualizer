@@ -325,7 +325,7 @@ interface WaveTriangle {
 }
 
 /** Index the illuminated mesh triangles in direction-space bins; bins only accelerate exact 2-D lookups. */
-function waveLookup(mesh: WaveMesh): (x: number, y: number) => { amplitude: number; pathMm: number } {
+function waveLookup(mesh: WaveMesh) {
   const { columns, rows, cosineX: x, cosineY: y, amplitude, pathMm } = mesh;
   let minX = Infinity,
     maxX = -Infinity,
@@ -341,7 +341,7 @@ function waveLookup(mesh: WaveMesh): (x: number, y: number) => { amplitude: numb
   const binX = (value: number) =>
     Math.max(0, Math.min(columns - 1, Math.floor(((value - minX) * columns) / (maxX - minX))));
   const binY = (value: number) => Math.max(0, Math.min(rows - 1, Math.floor(((value - minY) * rows) / (maxY - minY))));
-  const bins: WaveTriangle[][] = Array.from({ length: columns * rows }, () => []);
+  const bins: (WaveTriangle[] | undefined)[] = new Array(columns * rows);
   for (const [a, b, c] of mesh.triangles) {
     const ux = x[b] - x[a],
       uy = y[b] - y[a];
@@ -353,26 +353,38 @@ function waveLookup(mesh: WaveMesh): (x: number, y: number) => { amplitude: numb
     const lowY = binY(Math.min(y[a], y[b], y[c])),
       highY = binY(Math.max(y[a], y[b], y[c]));
     for (let by = lowY; by <= highY; by++)
-      for (let bx = lowX; bx <= highX; bx++) bins[by * columns + bx].push(triangle);
+      for (let bx = lowX; bx <= highX; bx++) (bins[by * columns + bx] ??= []).push(triangle);
   }
-  return (targetX, targetY) => {
-    if (targetX >= minX && targetX <= maxX && targetY >= minY && targetY <= maxY)
-      for (const { a, b, c, ux, uy, vx, vy, inverseDet } of bins[binY(targetY) * columns + binX(targetX)]) {
-        const dx = targetX - x[a],
-          dy = targetY - y[a];
-        const u = (dx * vy - dy * vx) * inverseDet;
-        const v = (ux * dy - uy * dx) * inverseDet;
-        const w = 1 - u - v;
-        // Roundoff at shared edges must not open cracks in the mapped pupil.
-        if (Math.min(u, v, w) < -1e-9) continue;
-        const wa = Math.max(0, w) * amplitude[a];
-        const wb = Math.max(0, u) * amplitude[b];
-        const wc = Math.max(0, v) * amplitude[c];
-        const value = wa + wb + wc;
-        // Amplitude weighting leaves a dark cell's undefined phase out of rim interpolation.
-        return { amplitude: value, pathMm: value > 0 ? (wa * pathMm[a] + wb * pathMm[b] + wc * pathMm[c]) / value : 0 };
-      }
-    return { amplitude: 0, pathMm: 0 };
+  // Nearby frequency samples often land inside the same triangle. Reuse it only in its
+  // strict interior. On a shared edge use the bin's original ordering and tolerance.
+  let previous: WaveTriangle | undefined;
+  const sample = { amplitude: 0, pathMm: 0 };
+  function interpolate(triangle: WaveTriangle, targetX: number, targetY: number, margin: number): boolean {
+    const { a, b, c, ux, uy, vx, vy, inverseDet } = triangle;
+    const dx = targetX - x[a];
+    const dy = targetY - y[a];
+    const u = (dx * vy - dy * vx) * inverseDet;
+    const v = (ux * dy - uy * dx) * inverseDet;
+    const w = 1 - u - v;
+    if (Math.min(u, v, w) < margin) return false;
+    const wa = Math.max(0, w) * amplitude[a];
+    const wb = Math.max(0, u) * amplitude[b];
+    const wc = Math.max(0, v) * amplitude[c];
+    sample.amplitude = wa + wb + wc;
+    // A dark vertex has no measured phase.
+    sample.pathMm = sample.amplitude > 0 ? (wa * pathMm[a] + wb * pathMm[b] + wc * pathMm[c]) / sample.amplitude : 0;
+    previous = triangle;
+    return true;
+  }
+  return (targetX: number, targetY: number) => {
+    if (targetX >= minX && targetX <= maxX && targetY >= minY && targetY <= maxY) {
+      if (previous && interpolate(previous, targetX, targetY, 1e-8)) return sample;
+      const candidates = bins[binY(targetY) * columns + binX(targetX)];
+      if (candidates)
+        for (const triangle of candidates) if (interpolate(triangle, targetX, targetY, -1e-9)) return sample;
+    }
+    sample.amplitude = 0;
+    return sample;
   };
 }
 
@@ -432,40 +444,36 @@ function mappedOtf(
   const firstColumn = mirrored ? 1 + lattice.columns / 2 : 1;
   const normalization = mirrored ? energy / 2 : energy;
   const cut = (axis: "x" | "y") => {
-    const limit: number[] = [];
-    const real: number[] = [],
-      imaginary: number[] = [];
-    for (const frequency of frequencies) {
-      if (frequency === 0) {
-        limit.push(1);
-        real.push(1);
-        imaginary.push(0);
-        continue;
-      }
-      const shear = frequency * wavelengthMm;
-      let re = 0,
-        im = 0,
-        overlap = 0;
-      for (let row = 1; row < mesh.rows - 1; row++)
-        for (let column = firstColumn; column < mesh.columns - 1; column++) {
-          const cell = row * mesh.columns + column;
-          if (!(mesh.amplitude[cell] > 0)) continue;
-          const x = mesh.cosineX[cell],
-            y = mesh.cosineY[cell];
-          for (let sign = -1; sign <= 1; sign += 2) {
-            const other = at(x + (axis === "x" ? sign * shear : 0), y + (axis === "y" ? sign * shear : 0));
-            const pair = (mesh.jacobian[cell] * mesh.amplitude[cell] * other.amplitude) / 2;
+    const limit: number[] = new Array(frequencies.length).fill(0);
+    const real: number[] = new Array(frequencies.length).fill(0);
+    const imaginary: number[] = new Array(frequencies.length).fill(0);
+    const shears = frequencies.map((frequency) => frequency * wavelengthMm);
+    const sagittal = axis === "x";
+    for (let row = 1; row < mesh.rows - 1; row++)
+      for (let column = firstColumn; column < mesh.columns - 1; column++) {
+        const cell = row * mesh.columns + column;
+        if (!(mesh.amplitude[cell] > 0)) continue;
+        const x = mesh.cosineX[cell];
+        const y = mesh.cosineY[cell];
+        const weight = mesh.jacobian[cell] * mesh.amplitude[cell];
+        const path = mesh.pathMm[cell];
+        for (let sign = -1; sign <= 1; sign += 2)
+          for (let i = 0; i < shears.length; i++) {
+            if (shears[i] === 0) continue;
+            const shift = sign * shears[i];
+            const other = at(sagittal ? x + shift : x, sagittal ? y : y + shift);
+            const pair = (weight * other.amplitude) / 2;
             if (!(pair > 0)) continue;
-            // A ray's landing offset is minus its path gradient over direction cosine, hence the sign.
-            const phase = (sign * 2 * Math.PI * (other.pathMm - mesh.pathMm[cell])) / wavelengthMm;
-            overlap += pair;
-            re += pair * Math.cos(phase);
-            im += pair * Math.sin(phase);
+            const phase = (sign * 2 * Math.PI * (other.pathMm - path)) / wavelengthMm;
+            limit[i] += pair;
+            real[i] += pair * Math.cos(phase);
+            if (!mirrored || !sagittal) imaginary[i] += pair * Math.sin(phase);
           }
-        }
-      limit.push(Math.min(1, overlap / normalization));
-      real.push(re / normalization);
-      imaginary.push(mirrored && axis === "x" ? 0 : im / normalization);
+      }
+    for (let i = 0; i < frequencies.length; i++) {
+      limit[i] = frequencies[i] === 0 ? 1 : Math.min(1, limit[i] / normalization);
+      real[i] = frequencies[i] === 0 ? 1 : real[i] / normalization;
+      imaginary[i] /= normalization;
     }
     return { otf: { real, imaginary }, limit };
   };

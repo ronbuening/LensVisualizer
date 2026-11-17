@@ -95,6 +95,8 @@ interface MtfJobContext {
   ladder: readonly number[];
   /** Axial image-plane position every field is evaluated on, in mm. */
   imagePlaneZ: number;
+  /** Focus-search bundles available to the axial field at the same stop grid and image plane, for this job only. */
+  axialBundles?: Map<number, MtfBundle>;
 }
 
 /**
@@ -297,11 +299,15 @@ function* fieldAtGrid(
     yield { kind: "field", ...phase, gridSize: size, lineIndex: index + 1, lineCount: support.spectralLines.length };
     let bundle: MtfBundle | null;
     if (sampling.kind === "stop") {
-      bundle = traceMtfStopBundle(state, options, support, launch, size, line, context.imagePlaneZ, {
-        reference: commonReference,
-        coarse: sampling.lattices.get(index),
-        opticalPath,
-      });
+      const axial = target.fieldAngleDeg === 0 ? context.axialBundles?.get(index) : undefined;
+      bundle =
+        axial?.columns === size
+          ? axial
+          : traceMtfStopBundle(state, options, support, launch, size, line, context.imagePlaneZ, {
+              reference: commonReference,
+              coarse: sampling.lattices.get(index),
+              opticalPath,
+            });
       if (bundle?.lattice) sampling.lattices.set(index, bundle.lattice);
     } else {
       bundle = traceMtfLaunchPlaneBundle(
@@ -658,13 +664,16 @@ function* resolveMtfFocus(context: MtfJobContext, axial: MtfAxialBeam | null): G
   const { launch, footprint } = axial;
   const size = Math.min(MTF_FOCUS_GRID, context.ladder.at(-1) ?? MTF_FOCUS_GRID);
   const bundles = [];
+  const recordOpticalPath =
+    Boolean(context.axialBundles) && options.method === "diffraction" && context.frequencies.some((f) => f > 0);
   for (const [index, line] of support.spectralLines.entries()) {
     const bundle = footprint
       ? traceMtfLaunchPlaneBundle(state, options, support, launch, footprint, size, line, state.imgZ)
-      : traceMtfStopBundle(state, options, support, launch, size, line, state.imgZ);
+      : traceMtfStopBundle(state, options, support, launch, size, line, state.imgZ, { opticalPath: recordOpticalPath });
     yield { kind: "focus", lineIndex: index + 1, lineCount: support.spectralLines.length };
     if (!bundle) return checkedFocus();
     bundles.push({ bundle, weight: line.weight });
+    if (bundle.lattice) context.axialBundles?.set(index, bundle);
   }
   const best = findAxialBestFocus(
     bundles,
@@ -791,6 +800,11 @@ export function* computeMtfSteps(
   if (cache?.focus) {
     result.focus = cache.focus;
   } else {
+    if (
+      axial?.launch.aim &&
+      targets.some((target) => target.fieldAngleDeg === 0 && !cache?.fields.has(target.fraction))
+    )
+      context.axialBundles = new Map();
     const steps = resolveMtfFocus(context, axial);
     let next = steps.next();
     while (!next.done) {
@@ -801,6 +815,7 @@ export function* computeMtfSteps(
     if (cache) cache.focus = result.focus;
   }
   context.imagePlaneZ = state.imgZ + result.focus.appliedShiftMm;
+  if (context.imagePlaneZ !== state.imgZ) context.axialBundles = undefined;
   yield { phase: { kind: "aperture" } };
   const readout = cache?.axial ?? resolveMtfAxialReadout(request, context, axial);
   Object.assign(result, readout);
@@ -832,6 +847,7 @@ export function* computeMtfSteps(
         yield { phase: currentPhase, result };
       }
     }
+    if (targets[index].fieldAngleDeg === 0) context.axialBundles = undefined;
     // Only fields that ran to completion are reusable; an abandoned generator stores nothing.
     if (finished && cache) cache.fields.set(fractions[index], copyField(finished));
   }
