@@ -1,14 +1,26 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
- * Booth US1421156A, sole numerical example. PATENT-ONLY, not a retail Pentac claim.
- * Literal source lengths scaled x16 from F=6 1/4 to nominal 100 mm.
- * All radii, thicknesses and clear diameters retained; BFD is on-axis RMS-optimized at sodium D; Gaussian BFD83.724027mm.
- * MONOCHROMATIC DIAGNOSTIC: source gives nD and nG' only, not conventional Abbe.
- * vd is deliberately absent; native engine constant-index fallback is NOT achromatic
- * evidence. nG' is retained in analysis/source.json, never mislabeled as mercury ng.
- * Patent permits stop in either air gap. Position selected by documented comparison.
- * No finite-focus mechanism, image-circle or production manufacturer is asserted.
+ * US 1,421,156 A (Lionel Barton Booth, granted 1922), the patent's sole numerical example.
+ *
+ * Scale: the patent prints its lengths for a focal length F = 6¼. Every radius, thickness, air space and element
+ * diameter is multiplied by 16, giving a nominal 100 mm lens. The printed prescription traces to EFL 100.43 mm at the
+ * sodium D line, 0.43 % above the nominal value; it is left as printed (no radius or spacing is adjusted).
+ *
+ * Glass: the patent prints nD and nG′ (the hydrogen G′ line, 434.05 nm) for its two glasses and no Abbe numbers. The
+ * elements carry the printed nD only, so the model has no dispersion and shows no colour.
+ *
+ * Rims: the clear semi-diameters are half the printed element diameters (2.18, 1.9 and 1.95 before scaling).
+ *
+ * Inferred values:
+ * - Stop: the patent allows the diaphragm in either air space and gives no station. It is placed at the midpoint of
+ *   the rear air space (4.24 mm behind L3 and 4.24 mm ahead of L4); its radius follows from the printed f/3.
+ * - Back focus: the patent prints none. The image plane is at the computed D-line paraxial focus, 83.724 mm behind
+ *   the last surface.
+ * - Field: the patent states no field of view; the 20° full field is a display setting, not a coverage claim.
+ *
+ * No maker is assigned because the patent names no assignee. The design is probably that of the Dallmeyer Pentac
+ * f/2.9 (see the analysis), but no source ties this patent number to that lens.
  */
 const LENS_DATA = {
   schema: 2,
@@ -16,12 +28,12 @@ const LENS_DATA = {
   maker: null,
   name: "BOOTH PATENT 100mm f/3 Monochromatic Reference",
   subtitle: "US1421156A — PATENT-ONLY; D-LINE DIAGNOSTIC; NOT FACTORY-IDENTIFIED",
-  visible: false, // Diagnostic-only; do not publish as a production-correlated color model.
+  visible: false,
   catalog: {
     specs: ["5 ELEMENTS / 3 GROUPS", "PATENT-ONLY", "SODIUM-D MONOCHROMATIC MODEL", "NOMINAL 100mm f/3"],
     elementCount: 5,
     groupCount: 3,
-    focalLengthMm: { marketing: 100, design: 100.427740793352 },
+    focalLengthMm: { marketing: 100, design: 100.43 },
     fNumber: { marketing: 3, design: 3 },
   },
   source: {
@@ -45,15 +57,13 @@ const LENS_DATA = {
     { label: "3", R: -1505.6, d: 8.32, sd: 17.44 },
     { label: "4", R: -43.84, d: 1.6, sd: 15.2, medium: 3 },
     { label: "5", R: 38, d: 4.24, sd: 15.2 },
-    // Rear-gap midpoint is a comparative modeling choice, not a printed stop station.
     { label: "STO", R: "flat", d: 4.24 },
     { label: "6", R: 838.4, d: 1.6, sd: 15.6, medium: 4 },
     { label: "7", R: 39.216, d: 7.84, sd: 15.6, medium: 5 },
-    { label: "8", R: -39.216, d: 83.23666687989012, sd: 15.6 },
+    { label: "8", R: -39.216, d: 83.72402687989012, sd: 15.6 },
   ],
   focus: { closeFocusM: 1e15, description: "Infinity-only D-line diagnostic; no finite-focus schedule is claimed." },
   aperture: { nominalFNumber: 3, fStops: [3, 4, 5.6, 8, 11, 16], maxFNumber: 16 },
-  // Diagnostic sampled field only, NOT a manufacturer image-circle specification.
   projection: { kind: "rectilinear", fullFieldDeg: 20, maxTraceFieldDeg: 10 },
   groups: [
     { text: "FRONT", fromSurface: "1", toSurface: "3" },

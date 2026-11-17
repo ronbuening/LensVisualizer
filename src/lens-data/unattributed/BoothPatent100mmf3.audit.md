@@ -1,33 +1,106 @@
-# Booth patent-only monochromatic reconstruction audit
+# Booth patent reference (US 1,421,156 A) audit
 
-Date: 2026-11-16. Private handoff scope only. No publication, commit or deployment.
+Date of the original transcription: 2026-11-16.
 
 ## Source and identity
 
-US1421156A original scanned PDF, SHA256 `9fd30e0029723146f18a74a8647c0ec55a93e35a8c48d9c48632a8c9a6837da7`. Visual transcription from PDF page 2, not OCR. F=6¼; scale ×16 gives nominal100mm. Unnumbered sole example. Inventor Lionel Barton Booth; no organizational assignee established. Manufacturer is null; hidden file. No Pentac claim.
+Source: the original US 1,421,156 scan, three pages, SHA-256
+`9fd30e0029723146f18a74a8647c0ec55a93e35a8c48d9c48632a8c9a6837da7`. The prescription was transcribed by eye from the
+table on PDF page 2, not from the OCR text layer. The patent prints F = 6¼; all lengths are multiplied by 16 for a
+nominal 100 mm lens. The table is the patent's only, unnumbered example. Inventor: Lionel Barton Booth. The patent
+names no assignee, so the file has no maker and is kept hidden.
 
-Dedup: original research searched pinned main entire src including analysis/catalog bodies for patent numbers (formatted and compact), Pentac and Kinic. Booth number absent; Pentac only incidental in Heliar prose. Private-note literal query for1421156 and Pentac returned no files. Historical alias/delivery completeness beyond that search is not asserted.
+Duplicate search at transcription: the catalogue sources, analyses and catalogue text were searched for the patent
+number (formatted and unformatted), "Pentac" and "Kinic". The patent number was absent; "Pentac" appeared only in
+passing in the Heliar article.
 
-## Fresh checks
+## Checks made at transcription
 
-Baseline engine/source: main `3fd318c3e82cdbc3e5d3a1ed7bd5abbf4e99bfc2`, extracted into isolated booth_build. Dependencies reused read-only from an earlier installed checkout; no shared source changed. Final file has no synthetic Abbe or external glass proxy. Source sodiumD convention is native.
+These checks were run on the file as first delivered, against the repository state of the time.
 
-1. `evidence/final-check.mjs`: literal radii/diameters, hidden diagnostic status, canonical V2 validator, paraxial EFL agreement, ten exact native axial rays, expected spectral blocker. PASS.
-2. `evidence/independent.py`: independent paraxial matrix, exact spherical intersections/vector Snell rays, positive dense-sampled edge/gap clearance; independent/native axial image intercept differences below1e-8mm. PASS.
-3. `evidence/compare.mjs`: two patent-permitted stop-gap midpoints, Gaussian and optimized image planes,5field angles,709 pupil samples per field. Both geometrically valid. Rear midpoint selected; off-axis sample clipping disclosed, all physical apertures unchanged.
-4. Native `scripts/audit-aperture.mjs`: final file, one station within3% of f3, no rim/trace/iris failure. PASS.
-5. Targeted TypeScript check: final data file against pinned types with `tsc --noEmit --skipLibCheck --target ES2022 --module nodenext --moduleResolution nodenext`. PASS, empty log. Not full-app typecheck.
+1. Radii and diameters compared with the patent table; the file loads and passes the lens-data validator; the paraxial
+   EFL agrees with an independent calculation; ten exact axial rays agree with an independent trace.
+2. An independent paraxial matrix calculation and an exact spherical ray trace agree with the engine's axial image
+   intercepts to better than 1e-8 mm. Edge thicknesses and air-gap clearances are positive everywhere inside the
+   printed diameters.
+3. Stop comparison: both gap midpoints the patent allows were traced at five field angles (709 pupil rays each). Both
+   are geometrically valid. The rear midpoint was chosen because it gives smaller off-axis spots; it clips slightly
+   more of the pupil 10° off axis. No rim was changed.
+4. The repository aperture audit found the f/3 axial beam within 3 % of the stated f-number, with no rim, trace or
+   iris failure.
+5. A TypeScript type check of the data file alone passed.
 
-## Explicit model assumptions and limitations
+## Model assumptions and limitations
 
-- Native D-only constant-index diagnostic, no polychromatic performance claim. Original nGprime retained separately, not authored as ng or an Abbe fit. Native spectralMTF blocker remains intentional.
-- Rear stop midpoint is inferred, not specified; source permits either gap. The f3 clear aperture is not misused as physical iris diameter.
-- Gaussian BFD83.72402687989012mm and selected best-focus BFD83.23666687989012mm are distinct computed values. No glass/surface adjustment.
--20degree full field is diagnostic only, not a marketed coverage/format claim.
-- Sampled rear-stop acceptance at10degree field685/709; no claim of full unvignetted coverage. Sampling statistics are not measured brightness.
-- Fixed infinity model, no finite-focus travel, no mount or camera format invented.
-- Full browser/compiled viewer QA, full aggregate regression, current integration-branch compatibility beyond the pinned-main isolated import/types/validator remain pending. Hidden qualified reconstruction, not an ordinary finished color lens.
+- The patent prints nD and nG′ only. The file carries nD alone, so the model has one fixed index per element and shows
+  no colour. The nG′ values are recorded in the analysis, not entered as a g-line index or turned into an Abbe
+  number.
+- The stop position is inferred (the patent allows either air space). The printed clear aperture 2.08 is the f/3
+  entrance pupil, not the iris diameter.
+- As first delivered, the image plane was a best-focus plane 83.237 mm behind the last surface. The paraxial back focus
+  is 83.724 mm. The image plane has since been moved to the paraxial value (see the deployment validation below).
+- The 20° full field is a display setting, not a coverage claim.
+- With the rear stop, 685 of 709 sampled pupil rays pass 10° off axis. This sampling describes vignetting, not
+  measured brightness, and the lens is not claimed to cover a wide field without vignetting.
+- The model is fixed at infinity; no focusing movement, mount or camera format is assumed.
 
-## Evidence directory
+## 2026-11-16 — Deployment validation
 
-`source.json`, original PDF, `stop-comparison.json`, `final-check.json`, `independent.json`, aperture report, source/validation scripts and run instructions. Earlier exploratory scripts are excluded from the handoff to prevent stale-failure logs being mistaken for final evidence.
+An independent check re-read the patent page images at 300–1200 dpi and verified the following against the data file:
+
+- every radius and sign, thickness and air space, and the ×16 scale;
+- both nD values and both nG′ values;
+- the two cemented pairs and the five printed diameters;
+- F = 6¼, the clear aperture 2.08 and F/3;
+- the figure's element shapes (r3 and r6 near flat).
+
+There were no transcription mismatches. A single-digit, sign and transposition misprint scan of every R, d and n
+found no supported alternative to the printed table. The EFL's +0.43 % over 6¼ × 16 is explained by the rounded
+nominal F.
+
+Verdict: valid as a hidden patent reference. The example is probably the Dallmeyer Pentac f/2.9. Two collector
+sources describe the Pentac as Booth's five-element, three-group Heliar-type design for Dallmeyer, marketed in 1920,
+with symmetric glasses and non-mirrored radii. The Science Museum Group credits Booth with Dallmeyer's 1920 Dallon.
+No source cites this patent number, so the attribution is stated as probable and `maker` stays null.
+
+Changes:
+
+- Last air space, surface 8 `d`: 83.23666687989012 → 83.72402687989012. The image plane moves from the delivered
+  best-RMS plane to the computed D-line paraxial focus (house rule; the patent prints no back focus).
+- `catalog.focalLengthMm.design`: 100.427740793352 → 100.43 (rounded).
+- Removed the three `//` comments inside the data object (on `visible`, before the stop surface and before
+  `projection`).
+- Replaced the header comment with a plain-English one: source, ×16 scale, printed and inferred values.
+- Analysis rewritten in plain English. It names the Dallmeyer Pentac as the probable commercial design, with sources,
+  and drops the process notes.
+
+First-order values after the changes (`built.mjs`, `probe.mjs`):
+
+- EFL 100.4277 mm and f/3.000.
+- Stop semi-diameter 13.287 mm.
+- Paraxial back focus 83.724 mm, which equals the last gap, so defocus is 0.
+- Lens length 37.28 mm; vertex-to-image 121.004 mm.
+- Element focal lengths: L1 +37.72, L2 −88.97, L3 −36.86, L4 −75.06 and L5 +33.36 mm.
+- Cemented pairs: front +62.30 mm, rear +56.68 mm.
+
+Audit results:
+
+- `audit:surface`: OK, no validation errors.
+- `audit:aperture`: 1 station within 3 % of f/3, no rim, trace or iris limit; `--raise` lists no surfaces.
+- `audit:image-circle`: skipped (no image format).
+- `audit:field-coverage`: skipped (hidden).
+- `clearap` at image heights 17.7 and 26.9 mm (about 10° and 14°): no clipped axial beam and no blocked chief ray.
+  The front pair's rim vignettes oblique bundles, as the printed diameters imply.
+
+Open:
+
+- Name, key, subtitle and specs still use package wording ("PATENT-ONLY", "D-LINE DIAGNOSTIC", "NOT
+  FACTORY-IDENTIFIED", "Monochromatic Reference"). The subtitle's patent number is not in house form.
+- `focus.description` still says "Infinity-only D-line diagnostic".
+- Glass labels "Unmatched (source nD/nGprime only; constant-index diagnostic)" should give the printed indices in
+  plain form, e.g. `Unmatched (patent nD=1.6109, nG′=1.62411)`.
+- Optional Abbe-number estimates from catalogue fits on nD and nG′: crown νd ≈ 59.0 (SK3/BSM4 class); flint
+  νd ≈ 45.4 (Sumita LLF7 matches both printed indices within 0.0001). Adding them would give the model colour, but
+  they are estimates, not Booth's glasses.
+- `catalog.focalLengthMm.marketing` 100 is the normalised patent value, not a marketed focal length.
+- A product-named Pentac model at a production focal length would need a source that ties this patent to the Pentac.

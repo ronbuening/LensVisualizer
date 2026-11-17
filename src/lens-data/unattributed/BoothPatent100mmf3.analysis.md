@@ -1,69 +1,103 @@
 ## Patent Reference and Design Identification
 
 **Patent:** [US 1,421,156 A](https://patents.google.com/patent/US1421156A/en)  
+**Application Number:** Serial No. 422,900  
 **Filed:** November 9, 1920  
-**Published:** June 27, 1922  
+**Granted:** June 27, 1922  
 **Inventor:** Lionel Barton Booth  
-**Assignee:** No organization identified in the selected publication.  
+**Assignee:** None printed  
 **Title:** Objective for Photographic and Like Purposes  
-**Example details:** Sole unnumbered numerical example, specification page 1 (PDF page 2); all source lengths multiplied by 16, normalizing the printed F = 6¼ to nominal 100 mm.
+**Example details:** The patent's only numerical example, specification page 1 (PDF page 2), drawn in the single figure on PDF page 1. The patent prints its lengths for a focal length F = 6¼; every length here is multiplied by 16, giving a nominal 100 mm lens.
 
-This is a **hidden, patent-only monochromatic reconstruction**, not an identified production lens. No Dallmeyer, Pentac or factory-manufacture association is asserted. The descriptive BOOTH name identifies its inventor, and `maker: null` deliberately avoids an unsupported manufacturer claim.
+Booth's patent describes a five-element, three-group objective for "a very large aperture". It has a cemented positive front pair, a biconcave negative middle lens and a cemented positive rear pair. The worked example is rated at F/3 with a clear aperture of 2.08 for F = 6¼, which is f/3.0 to the printed precision. Booth is described on the patent as a British subject living in Cambridge, England. The patent names no assignee, so the model has no maker.
 
-The scanned table is the source of the radii, lens thicknesses, separations and element diameters. Its f/3 designation and clear aperture 2.08 are retained as the nominal system aperture, not treated as a stop diameter. The literal prescription calculates to 100.427741 mm EFL after the ×16 normalization, approximately 0.428% above nominal; radii are not adjusted to force agreement.
+The example is probably the design of the **Dallmeyer Pentac** f/2.9, a five-element, three-group lens that J. H. Dallmeyer Ltd of London made in several focal lengths. The Science Museum Group holds an 8-inch f/2.9 Pentac from Air Ministry stock (source 3). The link rests on convergent but informal evidence:
+
+1. A collector's history of the 8-inch Pentac states that the Pentac was designed by L. B. Booth for Dallmeyer and reached the market in 1920. It describes the Pentac as a five-element, three-group lens in the Heliar family (source 4). The patent was filed in November 1920.
+2. The Science Museum Group credits L. B. Booth with Dallmeyer's Dallon telephoto lens, first introduced in 1920. This confirms that Booth was designing lenses for Dallmeyer at the same date (source 2).
+3. A forum description of the Pentac calls it a "Heliar type, not quite symmetric" lens whose glasses are symmetric front to rear while its radii are not (source 5). Booth's example fits that description exactly. L1 and L5 share one crown glass and L2 and L4 one flint, but the outer radii differ (r1 = +2.635, r8 = −2.451 before scaling). The same forum post refers to a calculated Pentac performance study whose prescription was taken from a patent (source 7).
+4. Another forum reply describes the Pentac from front to rear as a cemented biconvex lens with a concave-plano partner, a biconcave singlet, then a cemented plano-concave lens with a biconvex partner (source 6). That is the shape sequence of the patent figure, where r3 and r6 are nearly flat.
+5. The Pentac's marketed f/2.9 is close to the patent's F/3.
+
+None of these sources names US 1,421,156, and no Dallmeyer catalogue section drawing or production prescription was found. The attribution is therefore a strong probability, not a documented identity. The model stays a patent reference at the patent's normalised scale rather than a Pentac at a production focal length.
 
 ## Optical Architecture
 
-Five spherical elements form three air-separated groups: positive cemented front doublet, negative central singlet and positive cemented rear doublet. The two positive-power cemented interfaces are central to Booth's stated design principle. All eight distinct optical surfaces and both cemented junctions are retained. There are no aspheres, cover plates or fabricated mechanical details.
+The lens has five spherical elements in three air-separated groups, with power distributed positive–negative–positive:
+
+- **Front group (L1 + L2):** a cemented positive pair, f = +62.30 mm.
+- **Middle group (L3):** a biconcave negative singlet, f = −36.86 mm.
+- **Rear group (L4 + L5):** a cemented positive pair with the negative element in front, f = +56.68 mm.
+
+This is the Heliar arrangement: a Cooke-triplet layout in which both outer positive lenses are cemented doublets. Booth's patent explains it as an extension of an earlier type, a high-index positive lens, an air space, a negative lens and a cemented rear pair. He proposes making the front positive lens a cemented pair like the rear one, with the front pair facing the opposite way.
+
+The defining choice is the glass order inside each cemented pair. The positive "crown" (nD 1.6109) has a **higher** index than the negative flint (nD 1.5485). Both cemented interfaces therefore have positive, collecting power: +0.00132 mm⁻¹ at the front interface and +0.00159 mm⁻¹ at the rear, against a system power of 0.00996 mm⁻¹. Booth states that this collecting power lets the other surfaces be shallower for the same focal length. That in turn reduces spherical aberration, permits a large aperture, and lowers the Petzval sum. The model's Petzval sum is 0.0031 mm⁻¹, a Petzval radius of about 3.2 times the focal length.
+
+At the 100 mm scale the lens is 37.28 mm long from the first to the last vertex. The traced focal length is 100.43 mm at the sodium D line, 0.43 % above the nominal F = 6¼ × 16. A scan for single misprinted digits, signs or transpositions found no value that is both plausible and supported by the page image, so the printed table is kept as it stands. The rounded nominal F = 6¼ explains the difference.
 
 ## Element-by-Element Analysis
 
-### L1 — Front crown, biconvex positive
+### L1 — Biconvex Positive (front crown)
 
-nD = 1.6109; nG′ = 1.62411. Conventional Abbe number and factory glass identity are unknown. Scaled thickness 7.84 mm, source diameter 34.88 mm. L1 is cemented to L2.
+nD = 1.6109, νd not printed (nG′ = 1.62411). Glass: unmatched dense crown. f = +37.72 mm.
 
-### L2 — Front flint, negative meniscus
+L1 is the strongest positive element in the front group. Its front radius (+42.16 mm) is the steepest outer surface of the lens, and its rear surface forms the front cemented interface. The patent prints a 2.18 diameter for both L1 and L2 (34.88 mm at this scale). That rim is only 0.70 mm larger in radius than the f/3 axial beam, and it leaves L1 a thin edge of about 0.73 mm.
 
-nD = 1.5485; nG′ = 1.56424. Thickness 1.60 mm, diameter 34.88 mm. Its nearly planar rear surface retains the literal R = −1505.6 mm.
+### L2 — Negative Meniscus (front flint)
 
-### L3 — Central biconcave negative
+nD = 1.5485, νd not printed (nG′ = 1.56424). Glass: unmatched light flint. f = −88.97 mm.
 
-Same published flint indices as L2. Thickness 1.60 mm, diameter 30.40 mm. Separated from the front doublet by 8.32 mm and from the rear doublet by 8.48 mm. The stop subdivides the second gap without changing that total.
+L2 is cemented to the back of L1. Its rear face is almost flat (−1505.6 mm). Its low index relative to L1 gives the cemented interface its positive power while the element itself remains a weak negative achromatizing partner.
 
-### L4 — Rear flint, negative meniscus
+### L3 — Biconcave Negative (central flint)
 
-Same published flint indices as L2. Thickness 1.60 mm, diameter 31.20 mm. Cemented to L5; literal front radius +838.4 mm.
+nD = 1.5485, νd not printed (nG′ = 1.56424). Glass: the same flint as L2 and L4. f = −36.86 mm.
 
-### L5 — Rear crown, biconvex positive
+L3 is the dispersive middle component. Its two radii (−43.84 and +38.00 mm) are similar in strength, and it sits 8.32 mm behind the front pair and 8.48 mm ahead of the rear pair. The patent requires this flint to have an index at least 0.04 below the crown (here 0.0624 below). Its dispersion must be at least as great as that of the other flints; claim 2 makes all three negative lenses the same glass.
 
-Same published crown indices as L1. Thickness 7.84 mm, diameter 31.20 mm. The rear element has equal-magnitude opposite-sign radii, ±39.216 mm.
+### L4 — Negative Meniscus (rear flint)
 
-## Glass Identification and Spectral Limitations
+nD = 1.5485, νd not printed (nG′ = 1.56424). Glass: the same flint. f = −75.06 mm.
 
-The patent supplies **sodium nD and nG′ only**. Its G′ index is not silently copied into the engine's mercury `ng` field, nor converted into an invented F–C Abbe number. Only native `indexReference: "D"` and literal nD are authored; the supported engine fallback is constant index. Thus this file is valid only for its **D-line monochromatic diagnostic scope**. Color overlays cannot establish chromatic correction, and native spectral MTF correctly reports `a glass has no Abbe number`.
+L4 leads the rear pair with a nearly flat front face (+838.4 mm) and is cemented to L5. The rear pair mirrors the front pair's glass order in reverse, which is what the patent means by a back component "similar in type to the front component but reversed".
 
-Independent first-order calculations using the second set of literal nG′ indices give EFL 100.371945 mm and BFD 83.692127 mm, versus D-line EFL 100.427741 mm and Gaussian BFD 83.724027 mm. This limited two-anchor check is not a continuous dispersion model or achromatism certificate.
+### L5 — Biconvex Positive (rear crown)
 
-## Focus and Stop Placement
+nD = 1.6109, νd not printed (nG′ = 1.62411). Glass: the same crown as L1. f = +33.36 mm.
 
-The patent expressly permits a diaphragm in either airspace, without an exact station. Both gap midpoints were compared without altering optical surfaces or diameters. The **rear-gap midpoint** is selected as a modeling assumption: it improved sampled off-axis D-line spots relative to the front-gap midpoint, with greater clipping at the largest tested field. Stop z is 23.60 mm from the first vertex; native wide-open stop radius is 13.287008 mm.
+L5 is the strongest single element. Its equal and opposite radii (±39.216 mm) make it an equi-convex lens, and its front face is the rear cemented interface. The rear pair's printed diameter is 1.95 (31.2 mm at this scale).
 
-The Gaussian D-line BFD is **83.724027 mm**. The delivered flat image plane instead uses **83.236667 mm**, a computed on-axis f/3 RMS best-focus BFD from a 709-point sampled circular entrance pupil. This is a modeled image-plane adjustment, not a source dimension or a change to the lens prescription. On-axis sampled geometric RMS radius is 28.84 µm there, compared with 65.08 µm at the Gaussian plane. These are geometric spot metrics, not diffraction MTF or measured retail performance.
+## Glass Identification and Selection
 
-Focus is fixed at infinity. The large `closeFocusM` sentinel and absence of variable gaps do not imply a real close-focus specification. The 20° full diagnostic field is a test/display choice, not a claimed image circle or camera-format coverage.
+The patent prints two glasses with sodium D and hydrogen G′ (434.05 nm) indices only:
 
-## Numerical Validation and Qualifications
+| Glass | nD | nG′ | nG′ − nD | Used in | Likely class |
+|---|---:|---:|---:|---|---|
+| Crown | 1.6109 | 1.62411 | 0.01321 | L1, L5 | Dense barium crown |
+| Flint | 1.5485 | 1.56424 | 0.01574 | L2, L3, L4 | Extra-light flint |
 
-Pinned current-main baseline: `3fd318c3e82cdbc3e5d3a1ed7bd5abbf4e99bfc2`.
+The data file carries only the printed nD for each element. With no Abbe number, the model treats every element as having one fixed index, so it shows no colour fringes and cannot be used to judge Booth's chromatic correction.
 
-- Native V2 ingest and canonical source/geometry validator pass with no error and no geometry override.
-- All literal source diameters are retained. Independent dense shared-aperture sag sampling finds positive separation throughout every element and air gap.
-- Native and independent paraxial EFL agree, and ten independent exact Snell-law axial rays agree with native image intercepts within 10⁻⁸ mm.
-- Native aperture audit passes its 3% threshold; the nominal f/3 axial beam is not rim-limited.
-- With the rear stop, the 709-point sampled entrance pupil passes 709 rays at 0°, 2.5° and 5°; 708 at 7.5° and 685 at 10°. The last value is 96.6% sample acceptance, not measured illumination. Do not infer unvignetted 20° coverage.
-- Full application/browser QA, aggregate regression and future integration checks are **not completed**. No finished polychromatic production model is claimed.
+Present-day catalogue glasses give a good indication of the missing Abbe numbers. Fitting catalogue glasses of similar index by the ratio (nD − 1)/(nG′ − nD) gives νd ≈ 59.0 for the crown, close to SK3- and BSM4-class dense barium crowns. It gives νd ≈ 45.4 for the flint. Sumita LLF7 matches both printed flint indices to 0.0001 (νd 45.43). These are estimates of the glass type, not the glasses Booth used: the historical supplier and melts are unknown, and the model does not use them.
+
+## Focus Mechanism
+
+The patent gives no close-focus data and describes no focusing movement inside the lens. The model is therefore fixed at infinity, with no internal spacing that changes.
+
+## Stop, Image Plane and Field
+
+The patent says only that "a diaphragm may be placed in either of the air-spaces according to convenience", and its figure draws no stop. The model places the stop at the midpoint of the rear air space, 4.24 mm behind L3 and 4.24 mm ahead of L4. A ray-trace comparison of the two gap midpoints made for this model favoured the rear position: off-axis spots were smaller, at the cost of slightly more vignetting 10° off axis. Neither position changes the focal length or the axial f/3 beam. At f/3 the stop radius is 13.29 mm and the entrance pupil diameter is 33.48 mm, against the patent's printed clear aperture of 2.08 × 16 = 33.28 mm.
+
+The patent prints no back focus. The image plane is at the computed paraxial focus for the D line, 83.72 mm behind the last surface. The longitudinal spherical aberration at full aperture is +0.09, −0.64, −0.72 and −0.48 mm at 100 %, 85 %, 70 % and 50 % of the pupil radius. This is a typical slightly under-corrected zone for the period, and it means the sharpest full-aperture focus lies about 0.5 mm nearer the lens than the paraxial plane.
+
+All clear semi-diameters are half the patent's printed diameters. The f/3 axial beam clears every rim, and the chief ray clears every rim at least to 14° off axis. Because the front pair's rim is only slightly larger than the axial beam, oblique bundles are clipped at the front of the lens, so the corners of a wide field are noticeably vignetted. The patent states no field of view; the 20° full field shown is a display setting, not a coverage claim.
 
 ## Sources
 
-- [Original patent scan](https://patentimages.storage.googleapis.com/dd/35/57/fcb99a86cce34b/US1421156.pdf), three PDF pages; prescription on PDF page 2.
-- [Patent bibliographic record](https://patents.google.com/patent/US1421156A/en).
+1. Lionel Barton Booth, **US Patent 1,421,156, "Objective for Photographic and Like Purposes,"** filed November 9, 1920, granted June 27, 1922. Figure: PDF p. 1; prescription table and glass indices: specification p. 1 (PDF p. 2); claims: PDF p. 3. https://patents.google.com/patent/US1421156A/en (scan: https://patentimages.storage.googleapis.com/dd/35/57/fcb99a86cce34b/US1421156.pdf)
+2. Science Museum Group, **Dallmeyer 'Dallon' Tele-Anastigmat lens F.5.6**, object record ("Invented by L.B. Booth and first introduced by Dallmeyer in 1920"). https://collection.sciencemuseumgroup.org.uk/objects/co8092853/dallmeyer-dallon-tele-anastigmat-lens-f-5-6
+3. Science Museum Group, **Pentac Lens**, J H Dallmeyer Ltd, 8-inch f/2.9, ex-Air Ministry stock. https://collection.sciencemuseumgroup.org.uk/objects/co8092673/pentac-lens
+4. **The 8 inch Pentac Lens and The Speed Graphic**, collector's history page. https://jolommencam.com/Graflex%20Cameras/aero/Pentac/
+5. MFlenses forum, **"Dallmeyer Pentac 5 3/4" f2.9"** (reply by danfromm on the Pentac's construction). https://forum.mflenses.com/dallmeyer-pentac-5-3-4-f2-9-t75696.html
+6. Photrio forum, **"Optical Design for Dallmeyer Pentac 8-Inch f/2.9 Lens."** https://www.photrio.com/forum/threads/optical-design-for-dallmeyer-pentac-8-inch-f-2-9-lens.216682/
+7. Eric Beltrando, calculated performance of the Dallmeyer Pentac, dioptrique.info, cited in source 5 (not consulted for this analysis). http://www.dioptrique.info/OBJECTIFS10/00472/00472.HTM
