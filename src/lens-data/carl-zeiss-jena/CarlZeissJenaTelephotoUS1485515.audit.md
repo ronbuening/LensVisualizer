@@ -304,3 +304,6 @@ Open:
 - `source.sdSource` is still `"heuristic"`. The three back-member rims are now figure-measured and the four front
   rims sit on the f/6.3 floor. LENS_DATA_SPEC.md ("Clear-aperture provenance") leaves mixed evidence undeclared.
 - Lens I's edge is still thinner than drawn (0.56 at 8.1), as recorded above.
+
+- Provenance (2026-11-17): `source.sdSource` removed. The rims mix evidence (the back member is figure-measured and the front member sits on the f/6.3 beam floor), and LENS_DATA_SPEC asks that mixed
+  clear-aperture evidence stay undeclared.

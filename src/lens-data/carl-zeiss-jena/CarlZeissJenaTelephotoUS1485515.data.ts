@@ -51,7 +51,6 @@ const LENS_DATA = {
     assignees: [
       "Carl-Zeiss-Stiftung"
     ],
-    sdSource: "heuristic"
   },
   elements: [
     {
