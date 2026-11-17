@@ -10,6 +10,9 @@ import type { MtfFocusMode, MtfGridCap } from "../../../types/mtf.js";
 /** Pupil-grid refinement ladder. */
 export const MTF_GRID_LADDER = Object.freeze([16, 32, 64, 128, 256] as const);
 
+/** Intermediate diffraction grids confirm a stable interval without paying for a full doubling. */
+export const MTF_DIFFRACTION_GRID_LADDER = Object.freeze([16, 32, 48, 64, 96, 128, 192, 256] as const);
+
 /** Grid sizes a request may cap refinement at. */
 export const MTF_GRID_CAPS: readonly MtfGridCap[] = Object.freeze([32, 64, 128, 256]);
 /**

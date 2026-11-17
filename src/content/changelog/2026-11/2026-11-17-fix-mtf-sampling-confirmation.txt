@@ -1,0 +1,1 @@
+Diffraction MTF confirms each frequency on two successive grid refinements. The chart reports the verified frequency range when sampling reaches its cap.

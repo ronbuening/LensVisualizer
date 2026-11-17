@@ -230,6 +230,10 @@ analytic tolerances. Do not fit per-lens scales or judge success against native 
 
 ### N3 — Make adaptive convergence require confirmation
 
+The separate sampling change confirms two adjacent comparisons and checks landing-phase sampling for
+wavelengths on the ray-slope fallback. The intermediate 48-, 96- and 192-cell levels are available
+under the existing caps. N4 measures the accuracy, coverage and cost of this policy.
+
 **Files to touch.** `mtf.ts` (`applyConvergence`, `refineMtfFieldSteps`), `mtfConstants.ts` if shared policy constants
 are needed, and `__tests__/src/optics/mtf.test.ts` (modified). Change worker/UI types only if new diagnostics must
 cross that boundary. The current refinement generator is the implementation to extend.
@@ -255,54 +259,88 @@ value must be within 0.003 of the qualified reference. A cap that prevents confi
 nonmonotone, aliased, failed-grid, sparse-frequency and DC-only sequences must exercise the policy. Unavailable
 calculations cannot certify stability.
 
-### N4 — Validate the integrated product and its release cost
+### N4 — Integrated validation and release decision
 
-**Files to touch.** Existing comparator suites/reports; `scripts/benchmark-mtf.mjs` if extra metadata is needed;
-affected MTF component tests; `agent_docs/architecture/optics-engine.md`; and a new user-visible changelog entry.
-Update this plan in place and remove completed work under the documentation policy.
+**The reference controls are ready to merge independently. Hold the estimator and convergence changes.**
+The integrated engine meets all four original discrepancy targets and all seven qualified named targets.
+The optimized estimator still exceeds the photopic p95 budget. The optimized convergence policy exceeds
+the request-time budgets and retains one unresolved full-curve difference on the Lumix S 20–60mm.
+The production source is identical on main and the refreshed controls branch (`932bdbc16`).
+The estimator and integrated source revisions measured below are `6c2bfbe6c` and `76a842ed4`.
 
-**Steps.**
+| Ordinary chart, tangential MTF | Frequency (lp/mm) | Frozen product | Integrated | Independent optiland / S&S-ray OTF |
+| --- | ---: | ---: | ---: | ---: |
+| Pentax FA★ 300mm, wide open, half field, best axial | 50 | 0.70655 | 0.72046 | 0.71847 / 0.71866 |
+| Fujifilm GF 100–200mm at 100mm, f/8, corner, best axial | 100 | 0.03733 | 0.06331 | 0.06405 / 0.06378 |
+| Panasonic G Vario 12–60mm at 60mm, wide open, half field, design plane | 100 | 0.52380 | 0.50298 | 0.50574 / 0.50449 |
+| Fujifilm GF 35–70mm at 70mm, f/8, corner, design plane | 100 | 0.06834 | 0.08061 | 0.08188 / 0.08191 |
 
-1. Rerun all 200 models with identical selections and frozen states. Treat the eight diagnostic models as
-   development witnesses and the remaining 192 as a separate regression cohort, not an untouched statistical
-   holdout. Report availability, unresolved samples, grids and frequency coverage alongside numerical errors.
-   Preserve attribution of optiland's known limitations.
-2. Run fixed-plane and normally re-optimized best-axial comparisons separately. Check geometric-mode stability,
-   finite objects, supported curved sensors, wide-open/f/8, zoom ends, C/d/F and photopic combination. The external
-   monochromatic checks do not validate spectra; independent analytic spectral controls remain necessary.
-3. Verify worker/main-thread parity, cancellation, preferences, field/frequency views, diagnostic toggles and CSV
-   output. The UI already hides or fades frequencies beyond the verified band; preserve that behaviour and add
-   information only if the numerical contract requires it.
-4. Benchmark the same hardware and requests, with warmups and at least five recorded repetitions. Cover reference
-   and photopic spectra, ordinary fields and sweeps, and Standard/Faster settings. Measure median/p95 request time,
-   peak memory, traced samples and cancellation responsiveness.
-5. Use provisional release budgets of ≤20% median and ≤30% p95 request-time regression and ≤25% peak-memory
-   increase. These are proposed engineering budgets, not measured promises. If accuracy and coverage cannot meet
-   them, return the measured alternatives for review instead of weakening numerical qualification.
+With confirmation, all seven qualified named points are within 0.003 of both references on the chart's
+2-lp/mm request. The standalone estimator qualifies on six. The Panasonic G Vario stops at 32 cells
+and gives 0.50820 on the chart, 0.00371 above the independent S&S-ray reference and 0.00246 above
+the optiland wavefront reference.
 
-**Verification.** Focused tests cover existing `mtf.test.ts`, `mtfDiffraction.test.ts`, `mtfWavefront.test.ts`,
-`mtfSpectral.test.ts` and `mtfConjugates.test.ts`; include worker and chart tests when their contract changes.
-Before numerical PRs, run:
+The Sony 20mm corner exceeds the reference phase-step limit. Across both cuts at the diagnostic frequencies,
+the Lumix S 20–60mm telephoto corner at f/8 is the exception to the 0.005 target. At 60 lp/mm tangential,
+the product gives 0.04422, the independently integrated S&S rays give 0.04420 and optiland's raw
+wavefront gives 0.05009. The two reference calculations themselves differ by 0.00589 at this point.
 
-```bash
-npm run typecheck
-npm run format:check
-npm run lint
-npm run test
-node --import ./scripts/ts-js-specifier-hook-register.mjs scripts/benchmark-mtf.mjs --method=diffraction --spectrum=reference --iterations=5 --warmups=1
-node --import ./scripts/ts-js-specifier-hook-register.mjs scripts/benchmark-mtf.mjs --method=diffraction --spectrum=photopic --iterations=5 --warmups=1
-```
+The 200-model rerun covered 1,044 requested states. All 1,042 computable optical-case IDs matched.
+The two f/8 requests for the Canon RF 200–800mm at its f/9.18 telephoto end remain ineligible.
+The comparisons use frozen optiland results and fresh product results at identical image planes.
+All 519 normally re-optimized best-axial cases reproduced the held-plane curves. Of 3,126 fields, 3,082
+produced curves and 44 remained unavailable. The integrated calculation confirms 2,705 fields in the
+main band and 2,225 through 100 lp/mm on the 10-lp/mm diagnostic request. Four fields gained main-band
+confirmation and 358 lost it at the 256-cell cap. Of those 358, 165 had a fallback phase limit below
+50 lp/mm, 89 used the fallback with a phase limit at or above 50, and 104 used the mapped pupil.
+The latter 193 lacked two successive stable comparisons over the main band. Unresolved in-beam count was zero.
 
-Repeat benchmarks with the existing sweep, stopped-down and finite-state flags. The comparator suite is a separate
-explicit validation run with versions, case hashes and qualification attached. Run `npm run build` if route,
-content, metadata or the public validation article changes.
+Among the other 192 models, 260 positive cut/frequency samples had a qualified independent S&S-ray
+reference and verified results from both product revisions. Mean absolute error fell from 0.001273
+to 0.000668. The broader comparison with native optiland FFT had 20,698 matched samples across the
+whole cohort and mean absolute difference of 0.006422 before and 0.006441 after. Its FFT calibration
+limits its use as an accuracy reference.
 
-**Release criteria and rollback.** Meet the frozen accuracy targets; explain every coverage/status regression;
-meet or explicitly approve the measured performance tradeoff. Update numerical limitations and validation wording
-without claiming production-lens accuracy. Follow the numerical-change review rule in `agent_docs/decisions.md`.
-Land estimator and stop-policy changes separately, each revertible with its own tests, notes and changelog. A
-revert restores the previous algorithm, not prescriptions, and must invalidate dependent cached result identities
-where applicable.
+**Accuracy after optimization.** Each optimized revision exactly reproduced its own predecessor on all
+67,804 fixed-plane MTF values and all 33,770 values from rerunning best axial focus. The grids, frequency
+coverage, field status, focus shifts and ray classifications also matched. Across the four performance
+workloads and all four caps, each revision reproduced all 48,960 chart and diffraction-limit samples.
+The integrated cohort also matched the original numerical implementation (`18c78e6d6`).
+
+**Request cost after optimization.** Each supported lens and grid cap had one warmup and five measured
+requests on an Apple M4 Pro with Node 24.15. Times below are pooled median / nearest-rank p95 in seconds
+at Standard quality. The first before/after pair isolates the estimator, and the second holds the
+optimized estimator constant while measuring the convergence change. The review budgets against main
+are +20% median time, +30% p95 and +25% peak RSS.
+
+| Scenario | Main | Estimator before | Estimator after | Confirmation before | Confirmation after |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Reference, three fields | 0.356 / 1.422 | 0.396 / 1.446 | 0.373 / 1.300 | 1.062 / 2.444 | 0.915 / 2.092 |
+| Photopic, three fields | 1.448 / 1.851 | 1.511 / 4.430 | 1.353 / 4.236 | 13.542 / 15.607 | 12.344 / 13.678 |
+| Reference, stopped down, nine fields | 0.212 / 0.705 | 0.232 / 0.713 | 0.214 / 0.695 | 0.479 / 2.197 | 0.475 / 2.005 |
+| Finite C/d/F, three fields | 0.769 / 0.785 | 1.075 / 1.088 | 0.928 / 0.933 | 7.948 / 8.408 | 7.194 / 7.571 |
+
+Photopic peak RSS across all four caps was 657 MiB on main, 681 → 746 MiB for the estimator
+and 1,665 → 616 MiB for confirmation. Finite-object C/d/F still peaks at
+748 MiB with confirmation, 50.3% above main. Relative to their own predecessors, the Standard photopic
+median and p95 fell by 10.4% and 4.4% for the estimator and by 8.8% and 12.4% for confirmation.
+
+The estimator's Standard photopic p95 is 128.9% above main. On the Sony
+12–24mm wide-open corner it reaches 128 cells, compared with 64 on main. The Standard finite C/d/F
+median is 20.6% above main. The integrated Standard photopic median is
+8.53× main and its p95 is 7.39× main. Faster (128 cells) still has a
+4.23× photopic median. Reusing compact per-wavelength pupil data saves intermediate tracing and storage. Each
+newly required grid still needs its own verified pupil and spectral integration.
+
+Geometric-mode sagittal and tangential curves, statuses and grids matched on all 15 fields across five
+benchmark models, including a finite conjugate. On the Sony 12–24mm photopic sweep, the Node worker
+acknowledged five early cancellations in 2.8–27.9 ms on main, 0.1–25.3 ms with the estimator,
+and 0.3–25.2 ms with confirmation. The longest uninterrupted step in the Standard finite C/d/F
+run with confirmation was 1.07 s. The early cancellation measurements cover only the sampled portion of the request.
+
+The remaining release work is to bring the Sony spectral tail and the cost of independently confirmed
+high-resolution grids inside the published budgets, and resolve the two-reference spread on the Lumix S 20–60mm.
+Keep the estimator and confirmation independently revertible.
 
 ### Effort and decision points
 
