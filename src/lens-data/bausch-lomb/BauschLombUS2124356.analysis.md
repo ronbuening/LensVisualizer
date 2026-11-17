@@ -1,4 +1,4 @@
-# Rayton 100 mm f/1.5 — US 2,124,356 Patent Reference
+# BAUSCH & LOMB 100mm f/1.5 (US 2,124,356 Design)
 
 ## Patent Reference and Design Identification
 
@@ -10,16 +10,9 @@
 **Assignee:** Bausch & Lomb Optical Company, Rochester, N.Y.  
 **Example details:** one numerical example, printed on the drawing sheet below the section and again in the specification (col. 1, lines 33–53), headed "1:15" (that is, f/1.5), "f = 100" and "field = 42°"; four claims (Cl. 88—57)
 
-The patent describes a high-speed photographic and projection objective "having a wide picture angle" and well corrected for astigmatism, coma and distortion. It contains a single worked example, stated at f/1.5 with a focal length of 100 mm and a 42° field. The model transcribes that example unscaled. The specification prints the aperture as "1:15" with the decimal point lost; the drawing sheet reads "F 1.5", and the prescription traces to f/1.5 at the stated focal length.
+The patent describes a high-speed photographic and projection objective "having a wide picture angle" and well corrected for astigmatism, coma and distortion. It contains a single worked example, stated at f/1.5 with a focal length of 100 mm and a 42° field, and the BAUSCH & LOMB 100mm f/1.5 (US 2,124,356 Design) follows it as printed. The specification prints the aperture as "1:15" with the decimal point lost; the drawing sheet reads "F 1.5", and the prescription traces to f/1.5 at the stated focal length.
 
-Wilbur B. Rayton spent his career as an optical designer at Bausch & Lomb in Rochester and is best known for a 1937 f/0.59 astronomical camera lens used by Milton Humason (Optica biography; Wikipedia). No Bausch & Lomb production lens has been linked to this example:
-
-1. Bausch & Lomb's motion-picture camera lenses, the Raytar series (from about 1931) and the later Baltar series, are rated at f/2.3 or slower (Eastman Museum collection records; CineLensWiki).
-2. The Super Cinephor projection lenses are recorded at f/2.0 (Eastman Museum), not f/1.5.
-3. The 1937 f/0.59 Rayton lens is a different astronomical design, not this objective.
-4. The patent names no product, and no catalogue or museum record found for this review describes a Bausch & Lomb f/1.5 objective with seven elements in three groups.
-
-The model is therefore a patent reference only. Its 100 mm focal length is the patent's normalization, not a marketed focal length.
+Wilbur B. Rayton spent his career as an optical designer at Bausch & Lomb in Rochester and is best known for a 1937 f/0.59 astronomical camera lens used by Milton Humason (Optica biography; Wikipedia). No production lens is documented for this example. The patent names no product, and the Bausch & Lomb cine and projection lenses on record from the period, the Raytar camera lenses and the Super Cinephor projection lenses, are rated at f/2.0 or slower (Eastman Museum collection records; CineLensWiki). The 100 mm focal length is the patent's own normalization.
 
 ## Optical Architecture
 
@@ -45,46 +38,46 @@ The two deep surfaces on either side of the diaphragm, R6 (+23.68 mm) and the ce
 
 ### L1 — Positive Meniscus, convex to the object
 
-`nd = 1.6369, νd = 56.0.` Glass: unnamed dense barium crown (class). f = +132.5 mm.
+`nd = 1.6369, νd = 56.0.` Glass: Unmatched (dense barium crown class). f = +132.5 mm.
 
 The single collective front element "of highly refractive glass" (claim 1). It carries the f/1.5 axial beam at its full 33.4 mm entrance-pupil radius and converges it into the front triplet. Its weak rear surface (R2 = +309.2 mm) keeps it close to a thick meniscus.
 
 ### Front triplet L2 / L3 / L4 — negative meniscus member
 
-- **L2, Positive Meniscus.** `nd = 1.6707, νd = 47.4.` Glass: unnamed barium flint (class). f = +83.2 mm. Its strong front surface (R3 = +38.36 mm) is the group's surface facing the first group, which the claims call the "positive surface".
-- **L3, Biconvex Positive.** `nd = 1.4644, νd = 66.0.` Glass: unnamed fluor-crown type (class). f = +166.2 mm. The lowest-index glass in the lens, a weakly positive central element.
-- **L4, Biconcave Negative.** `nd = 1.6890, νd = 30.9.` Glass: unnamed dense flint (class). f = −31.5 mm. Its deep rear face (R6 = +23.68 mm) faces the diaphragm.
+- **L2, Positive Meniscus.** `nd = 1.6707, νd = 47.4.` Glass: Unmatched (barium flint class). f = +83.2 mm. Its strong front surface (R3 = +38.36 mm) is the group's surface facing the first group, which the claims call the "positive surface".
+- **L3, Biconvex Positive.** `nd = 1.4644, νd = 66.0.` Glass: FSL3 (OHARA), fluor crown, catalogue equivalent. f = +166.2 mm. The lowest-index glass in the lens, a weakly positive central element.
+- **L4, Biconcave Negative.** `nd = 1.6890, νd = 30.9.` Glass: Unmatched (dense flint class). f = −31.5 mm. Its deep rear face (R6 = +23.68 mm) faces the diaphragm.
 
 Cemented together, the three form the negative member of the patent's claims, with a net focal length of −137.1 mm. The index steps at the two junctions, 1.6707 to 1.4644 and 1.4644 to 1.6890, give the cemented surfaces real refractive power. The Abbe numbers are widely separated (47.4, 66.0, 30.9). Read together, these suggest that the group corrects colour while supplying the negative power that flattens the field. This is an interpretation; the patent gives no aberration discussion beyond its stated objects.
 
 ### Rear triplet L5 / L6 / L7 — positive member
 
-- **L5, Biconvex Positive.** `nd = 1.6574, νd = 50.8.` Glass: unnamed dense barium crown (class). f = +33.3 mm. The thick, strongly positive element next to the diaphragm, 22.7 mm thick on axis.
-- **L6, Biconcave Negative.** `nd = 1.54832, νd = 53.3.` Glass: unnamed barium light flint (class). f = −29.8 mm. The low-index member. Its front face is the steep junction R8 = −23.4 mm, concave toward the diaphragm.
+- **L5, Biconvex Positive.** `nd = 1.6574, νd = 50.8.` Glass: Unmatched (extra-dense barium crown class). f = +33.3 mm. The thick, strongly positive element next to the diaphragm, 22.7 mm thick on axis.
+- **L6, Biconcave Negative.** `nd = 1.54832, νd = 53.3.` Glass: Unmatched (barium light flint class). f = −29.8 mm. The low-index member. Its front face is the steep junction R8 = −23.4 mm, concave toward the diaphragm.
 - **L7, Biconvex Positive.** `nd = 1.6574, νd = 50.8.` Same glass as L5. f = +69.9 mm. The weaker rear positive element.
 
 The triplet's net focal length is +83.0 mm. L6 has a lower index than its neighbours but similar dispersion (νd 53.3 against 50.8). The cemented junctions therefore act mainly on spherical aberration and astigmatism rather than on colour. This is an interpretation from the printed values: the claims stress only the low index of the biconcave member.
 
 ## Glass Identification
 
-The patent prints only the sodium D-line index ("D") and the Abbe number (ν) for each element. It names no glass maker, and the data file carries no catalogue labels. The model stores the printed pairs with the sodium D reference, so colour is modelled from the Abbe numbers alone.
+The patent prints only the sodium D-line index ("D") and the Abbe number (ν) for each element, and names no glass maker. The model keeps the printed pairs with the sodium D reference.
 
-| Element | Printed D / ν | Nearest modern catalogue type (coordinates only) |
-|---|---|---|
-| L1 | 1.6369 / 56.0 | Dense barium crown, SK18 type (about 1.638 / 55.4) |
-| L2 | 1.6707 / 47.4 | Barium flint, BaF10 type (1.670 / 47.2) |
-| L3 | 1.4644 / 66.0 | Fluor crown, FK3 type (1.4645 / 65.8) |
-| L4 | 1.6890 / 30.9 | Dense flint, SF8 type (1.6889 / 31.2) |
-| L5, L7 | 1.6574 / 50.8 | Dense barium crown, SSK5 type (1.658 / 50.9) |
-| L6 | 1.54832 / 53.3 | Barium light flint, BaLF5 type (1.547 / 53.6) |
+| Element | Printed D / ν | Data-file glass | Nearest modern catalogue type |
+|---|---|---|---|
+| L1 | 1.6369 / 56.0 | Unmatched | Dense barium crown, SK18 type (about 1.638 / 55.5) |
+| L2 | 1.6707 / 47.4 | Unmatched | Barium flint, BaF10 type (about 1.670 / 47.2) |
+| L3 | 1.4644 / 66.0 | FSL3 (OHARA) | Fluor crown: nD 1.46444 / νD 65.93 at the D line, within the printed precision |
+| L4 | 1.6890 / 30.9 | Unmatched | Dense flint, SF8 type (about 1.6887 / 31.1) |
+| L5, L7 | 1.6574 / 50.8 | Unmatched | Extra-dense barium crown, SSK5 type (about 1.658 / 50.8) |
+| L6 | 1.54832 / 53.3 | Unmatched | Barium light flint, BaLF5 type (about 1.547 / 53.6) |
 
-These comparisons place each glass in a family only. They do not identify the 1937 Bausch & Lomb melts. No partial-dispersion data exist, so no secondary-spectrum claim is made.
+Only L3 matches a catalogue row exactly. Its colour follows the FSL3 dispersion curve; the other elements are modelled from their printed index and Abbe number. The nearest types place each of the other glasses in a family only, and none of the labels identifies the 1937 Bausch & Lomb melt. No partial-dispersion data exist, so no secondary-spectrum claim is made.
 
 ## Focus Mechanism
 
 The patent gives the infinity state only. It prints no focus travel, close-focus distance or moving group. The model is fixed at infinity. A camera or projector lens of this type would focus by moving the whole objective, but the patent does not say so.
 
-## Model Verification
+## Model Scope and Limitations
 
 | Quantity | Patent | Model |
 |---|---:|---:|
@@ -94,7 +87,7 @@ The patent gives the infinity state only. It prints no focus travel, close-focus
 | Back focal distance | not printed | 41.193 mm from R10 (computed paraxial) |
 | Vertex length R1 to R10 | not printed | 83.92 mm |
 
-The 0.12 % difference from the stated 100 mm is within the rounding of a four-figure table. No source value was changed.
+The 0.12 % difference from the stated 100 mm is within the rounding of a four-figure table; the prescription is used exactly as printed.
 
 The patent prints no back focus, so the image plane is the computed paraxial focus, 41.193 mm behind the last vertex. The diaphragm diameter is not printed either. The model sizes the stop for f/1.5, which gives a paraxial stop radius of 18.91 mm.
 
@@ -113,5 +106,5 @@ The clear radii are not published and are estimated. The values used are 36 mm o
 3. Wikipedia, **Wilbur B. Rayton**. https://en.wikipedia.org/wiki/Wilbur_B._Rayton
 4. George Eastman Museum collection, **Raytar 100mm f/2.3 Motion Picture Lens** (Bausch & Lomb, about 1931). https://collections.eastman.org/objects/92888/raytar-100mm-f23-motion-picture-lens
 5. George Eastman Museum collection, **7 in. f/2.0 Super Cinephor projection lens** (Bausch & Lomb). https://collections.eastman.org/objects/561551/7-in-f20-super-cinephor-projection-lens
-6. CineLensWiki, **Bausch & Lomb** manufacturer page (Raytar, Baltar and Super Baltar series, apertures). https://cinelenswiki.com/mfg:bausch_lomb
+6. CineLensWiki, **Bausch & Lomb** manufacturer page (cine lens series and apertures). https://cinelenswiki.com/mfg:bausch_lomb
 7. Wikipedia, **Zeiss Sonnar** (the 1932 f/1.5 Sonnar's seven-element, three-group construction). https://en.wikipedia.org/wiki/Sonnar

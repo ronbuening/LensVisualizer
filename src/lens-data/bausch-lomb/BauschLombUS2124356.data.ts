@@ -3,27 +3,29 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 /**
  * US 2,124,356 (Wilbur B. Rayton, assignor to Bausch & Lomb Optical Company; filed February 8, 1937, granted
  * July 19, 1938), the patent's only numerical example: a seven-element, three-group f/1.5 photographic objective
- * printed at f = 100 with a 42° field. Radii, thicknesses, air spaces, sodium-D indices and Abbe numbers are
- * transcribed unscaled from the printed table, which appears identically on the drawing sheet and in the
- * specification. The scan prints radius magnitudes only; the signs follow the figure and the text (L3, L5 and L7
- * biconvex; L4 and L6 biconcave; the L5/L6 junction concave toward the diaphragm).
+ * printed at f = 100 with a 42° field, in the Sonnar-type 1-3-3 arrangement. Radii, thicknesses, air spaces,
+ * sodium-D indices and Abbe numbers are transcribed from the printed table, which appears identically on the drawing
+ * sheet and in the specification. The scan prints radius magnitudes only; the signs follow the figure and the text
+ * (L3, L5 and L7 biconvex; L4 and L6 biconcave; the L5/L6 junction concave toward the diaphragm).
+ * Glass: L3 matches the FSL3 (OHARA) catalogue row at the sodium D line within the printed precision; the other
+ * printed index pairs match no catalogue row and keep their printed values.
  *
  * Stop: printed. S2 = 12.32 mm runs from L4 to the diaphragm X and S3 = 4.08 mm from the diaphragm to L5.
  * Back focus: not printed; the image plane is the computed paraxial back focal distance, 41.193 mm from R10.
  * Rims: inferred, not published. The R6 rim is held at 20.77 mm so that the deep concave rear face of L4 stays in
  * front of the printed diaphragm plane. The rear-group rims stay within the rim-slope limit of R8.
  * Focus: the patent gives the infinity state only.
- * No production lens is documented for this example; the model is a patent reference only.
+ * No production lens is documented for this example.
  */
 const LENS_DATA = {
   schema: 2,
   key: "bausch-lomb-100mm-f15-us2124356",
   maker: "Bausch & Lomb",
   name: "BAUSCH & LOMB 100mm f/1.5 (US 2,124,356 Design)",
-  subtitle: "1938 SOLE EXAMPLE; RETAIL IDENTITY UNPROVED",
+  subtitle: "US 2,124,356 A, sole example — Sonnar-type 1-3-3 objective",
   visible: true,
   catalog: {
-    specs: ["7 ELEMENTS / 3 GROUPS", "PATENT REFERENCE", "SOURCE STOP; ESTIMATED RIMS", "INFINITY ONLY"],
+    specs: ["7 ELEMENTS / 3 GROUPS", "ALL SPHERICAL", "DESIGN F/1.5", "TWO CEMENTED TRIPLETS"],
     elementCount: 7,
     groupCount: 3,
     focalLengthMm: {
@@ -53,6 +55,8 @@ const LENS_DATA = {
       nd: 1.6369,
       vd: 56,
       indexReference: "D",
+      glass: "Unmatched (dense barium crown, nD 1.6369 / V 56.0)",
+      role: "High-index front collector; converges the f/1.5 beam into the front triplet",
     },
     {
       id: 2,
@@ -62,7 +66,9 @@ const LENS_DATA = {
       nd: 1.6707,
       vd: 47.4,
       indexReference: "D",
-      cemented: "T1",
+      glass: "Unmatched (barium flint, nD 1.6707 / V 47.4)",
+      role: "Positive front member of the negative cemented triplet; its strong front face points toward L1",
+      cemented: "C1",
     },
     {
       id: 3,
@@ -72,7 +78,9 @@ const LENS_DATA = {
       nd: 1.4644,
       vd: 66,
       indexReference: "D",
-      cemented: "T1",
+      glass: "FSL3 (OHARA)",
+      role: "Low-index positive middle member of the front cemented triplet",
+      cemented: "C1",
     },
     {
       id: 4,
@@ -82,7 +90,9 @@ const LENS_DATA = {
       nd: 1.689,
       vd: 30.9,
       indexReference: "D",
-      cemented: "T1",
+      glass: "Unmatched (dense flint, nD 1.6890 / V 30.9)",
+      role: "Strong negative flint closing the front triplet; its deep rear face is concave toward the diaphragm",
+      cemented: "C1",
     },
     {
       id: 5,
@@ -92,7 +102,9 @@ const LENS_DATA = {
       nd: 1.6574,
       vd: 50.8,
       indexReference: "D",
-      cemented: "T2",
+      glass: "Unmatched (extra-dense barium crown, nD 1.6574 / V 50.8)",
+      role: "Thick, strongest positive member of the rear cemented triplet, next to the diaphragm",
+      cemented: "C2",
     },
     {
       id: 6,
@@ -102,7 +114,9 @@ const LENS_DATA = {
       nd: 1.54832,
       vd: 53.3,
       indexReference: "D",
-      cemented: "T2",
+      glass: "Unmatched (barium light flint, nD 1.54832 / V 53.3)",
+      role: "Low-index negative middle member of the rear triplet; its steep front junction is concave toward the diaphragm",
+      cemented: "C2",
     },
     {
       id: 7,
@@ -112,7 +126,9 @@ const LENS_DATA = {
       nd: 1.6574,
       vd: 50.8,
       indexReference: "D",
-      cemented: "T2",
+      glass: "Unmatched (extra-dense barium crown, nD 1.6574 / V 50.8)",
+      role: "Weaker positive rear member of the rear cemented triplet",
+      cemented: "C2",
     },
   ],
   surfaces: [
@@ -194,13 +210,13 @@ const LENS_DATA = {
     fStops: [1.5, 2, 2.8, 4, 5.6, 8, 11, 16],
   },
   focus: {
-    closeFocusM: 1000000000000000.0,
-    description: "Infinity-only patent reference; computed paraxial BFD; retail identity not established.",
+    closeFocusM: 1e15,
+    description: "Infinity focus only; the patent gives no close-focus data.",
   },
   groups: [],
   doublets: [
-    { text: "T1", fromSurface: "3", toSurface: "6" },
-    { text: "T2", fromSurface: "7", toSurface: "10" },
+    { text: "C1", fromSurface: "3", toSurface: "6" },
+    { text: "C2", fromSurface: "7", toSurface: "10" },
   ],
   layout: {
     yScFill: 0.4,
