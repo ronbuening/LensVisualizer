@@ -142,8 +142,8 @@ describe("element model V2 mapping", () => {
     const last = model.gaps.at(-1)!;
     expect(last).toEqual({ mm: draft.gaps!["6"].values[0][0], schedule: draft.gaps!["6"].values, scheduleLabel: "BF" });
     expect(last.schedule).not.toBe(draft.gaps!["6"].values);
-    const applied = expectBuild(model, draft);
-    expect(applied.elements.slice(0, 2).map((e) => e.cemented)).toEqual(["D1", "D1"]);
+    // The authored run has no cement name, and an unchanged run is written back without one.
+    expect(expectBuild(model, draft)).toStrictEqual(draft);
   });
 
   it("marks aberration-controlled gaps and preserves their ranges", () => {
@@ -563,6 +563,57 @@ describe("element model edits", () => {
         .elements.slice(0, 3)
         .map((e) => e.cemented),
     ).toEqual(["T1", "T1", "T1"]);
+  });
+
+  it("writes authored cement names and element order back until the structure changes", () => {
+    // An unnamed doublet, then a named doublet whose explicit cement layer is unnamed; `elements` lists L2 first.
+    const draft = createTemplate();
+    const [l1, l2, l3] = draft.elements;
+    draft.elements = [
+      l2,
+      l1,
+      { ...l3, cemented: "D1" },
+      { id: 4, name: "C1", label: "Cement layer", type: "Cement Layer", nd: 1.514, vd: 54 },
+      { ...l2, id: 5, name: "L4", label: "Rear flint", type: "Negative Meniscus", cemented: "D1" },
+    ];
+    draft.surfaces = [
+      { label: "1", R: 30, d: 4, sd: 11, medium: 1 },
+      { label: "2", R: -35, d: 2, sd: 10, medium: 2 },
+      { label: "3", R: 35, d: 3, sd: 10 },
+      { label: "STO", R: "flat", d: 3 },
+      { label: "4", R: 50, d: 4, sd: 11, medium: 3 },
+      { label: "5", R: -30, d: 0.01, sd: 11, medium: 4 },
+      { label: "6", R: -30, d: 2, sd: 11, medium: 5 },
+      { label: "7", R: -80, sd: 11 },
+    ];
+    draft.gaps = { "7": draft.gaps!["6"] };
+    const cements = (d: LensDataV2Input) => d.elements.map((e) => [e.name, e.cemented]);
+    expect(expectBuild(modelOf(draft), draft)).toStrictEqual(draft);
+    const edited = expectBuild(updateSurface(modelOf(draft), 2, 0, { R: 52 }), draft);
+    expect(edited).toStrictEqual({
+      ...draft,
+      surfaces: draft.surfaces.map((s) => (s.label === "4" ? { ...s, R: 52 } : s)),
+    });
+    // A structural edit elsewhere keeps both runs as authored and writes `elements` in train order.
+    expect(cements(expectBuild(insertElement(modelOf(draft), 0), draft))).toEqual([
+      ["L6", undefined],
+      ["L1", undefined],
+      ["L2", undefined],
+      ["L3", "D1"],
+      ["C1", undefined],
+      ["L4", "D1"],
+    ]);
+    // A changed run is named as one group again, avoiding the authored name.
+    const shortened = removeElement(modelOf(draft), 2, 1);
+    expect(cements(expectBuild(shortened, draft)).slice(2)).toEqual([
+      ["L3", "D1"],
+      ["L4", "D1"],
+    ]);
+    expect(cements(expectBuild(splitGroup(modelOf(draft), 2, 1), draft)).slice(2)).toEqual([
+      ["L3", undefined],
+      ["C1", "D1"],
+      ["L4", "D1"],
+    ]);
   });
 
   it("refuses impossible edits with BuilderEditError and never mutates the original", () => {

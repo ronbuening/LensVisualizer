@@ -404,8 +404,11 @@ export function toElementModel(draft: LensDataV2Input): ToModelResult {
  * other fields come from `draft`, with omission references following retained or split surfaces. Removing an
  * existing asphere removes its omission references; spherical stand-ins retain theirs. After a structural edit (an item
  * inserted, removed, moved, cemented or split, or a label changed), numeric surface labels are renumbered when every
- * reference can be remapped; other edits keep the authored labels, so a copied patent numbering survives. Automatic `L<n>` names follow structural edits only while the
- * original names form the sequence and no existing element has been renamed; explicitly authored names are kept.
+ * reference can be remapped and `elements` follows the train order; other edits keep the authored labels and element
+ * order, so a copied patent numbering survives. A group that is still one of the draft's glass runs under the same
+ * name keeps each element's authored `cemented` value, including an unnamed cement layer or an unnamed group; other
+ * cemented groups share their name, generated when missing. Automatic `L<n>` names follow structural edits only while
+ * the original names form the sequence and no existing element has been renamed; explicitly authored names are kept.
  */
 export function applyElementModel(draft: LensDataV2Input, model: BuilderModel): LensDataV2Input {
   checkModel(model);
@@ -418,12 +421,16 @@ export function applyElementModel(draft: LensDataV2Input, model: BuilderModel): 
   const usedNames = new Set(
     model.items.flatMap((item) => (item.kind === "group" && item.cementName ? [item.cementName] : [])),
   );
+  const authoredCements = new Map(draft.elements.map((e) => [e.id, e.cemented]));
+  const runs = authoredRuns(draft);
   for (const [i, item] of model.items.entries()) {
     if (item.kind !== "group") {
       next.surfaces.push({ ...structuredClone(item.surface.extra), ...surfaceFields(item.surface) });
     } else {
+      const run = item.elements.map((e) => e.id).join(",");
+      const asAuthored = runs.has(run) && runs.get(run) === item.cementName;
       let cemented = item.cementName;
-      if (item.elements.length > 1 && !cemented) {
+      if (!asAuthored && item.elements.length > 1 && !cemented) {
         const prefix = item.elements.length === 2 ? "D" : "T";
         let n = 1;
         while (usedNames.has(`${prefix}${n}`)) n++;
@@ -431,6 +438,7 @@ export function applyElementModel(draft: LensDataV2Input, model: BuilderModel): 
         usedNames.add(cemented);
       }
       for (const element of item.elements) {
+        const name = asAuthored ? authoredCements.get(element.id) : item.elements.length > 1 ? cemented : undefined;
         next.elements.push({
           ...structuredClone(element.extra),
           id: element.id,
@@ -438,7 +446,7 @@ export function applyElementModel(draft: LensDataV2Input, model: BuilderModel): 
           label: element.label,
           type: element.type,
           ...structuredClone(element.material),
-          ...(item.elements.length > 1 ? { cemented } : {}),
+          ...(name !== undefined ? { cemented: name } : {}),
         });
       }
       for (const [j, surface] of item.surfaces.entries()) {
@@ -462,8 +470,45 @@ export function applyElementModel(draft: LensDataV2Input, model: BuilderModel): 
   if (Object.keys(gaps).length || draft.gaps !== undefined) next.gaps = Object.fromEntries(Object.entries(gaps));
   else delete next.gaps;
   updateSourceOmissions(next, draft, model);
-  renumber(next, draft);
+  const structuralEdit = isStructuralEdit(next, draft);
+  if (!structuralEdit) {
+    const order = new Map(draft.elements.map((e, index) => [e.id, index]));
+    next.elements.sort((a, b) => order.get(a.id)! - order.get(b.id)!);
+  }
+  renumber(next, draft, structuralEdit);
   return next;
+}
+
+/** Each glass run of `draft` (element ids front to rear, comma-joined) with the cemented name `toElementModel` reads. */
+function authoredRuns(draft: LensDataV2Input): Map<string, string | undefined> {
+  const cements = new Map(draft.elements.map((e) => [e.id, e.cemented]));
+  const runs = new Map<string, string | undefined>();
+  let run: number[] = [];
+  const close = () => {
+    const names = new Set(run.map((id) => cements.get(id)).filter((name) => name !== undefined));
+    if (run.length) runs.set(run.join(","), names.size === 1 ? [...names][0] : undefined);
+    run = [];
+  };
+  for (const surface of draft.surfaces) {
+    if (typeof surface.medium === "number") run.push(surface.medium);
+    else close();
+  }
+  close();
+  return runs;
+}
+
+/**
+ * Whether the edit changed the train's structure: elements added or removed, or the surface sequence relabeled or
+ * re-mediated. The surface sequence carries the train order; an authored `elements` list out of train order is not one.
+ */
+function isStructuralEdit(next: LensDataV2Input, original: LensDataV2Input): boolean {
+  const originalIds = new Set(original.elements.map((e) => e.id));
+  return (
+    next.elements.length !== original.elements.length ||
+    next.elements.some((e) => !originalIds.has(e.id)) ||
+    next.surfaces.length !== original.surfaces.length ||
+    next.surfaces.some((s, i) => s.label !== original.surfaces[i]?.label || s.medium !== original.surfaces[i]?.medium)
+  );
 }
 
 /** Set the air after `items[gapIndex]` (a fixed gap, or the first value of a schedule). */
@@ -877,14 +922,7 @@ function mergeGaps(first: BuilderGap, second: BuilderGap, thickness: number): Bu
  * After a structural edit, remap authored references together, never a label in isolation. Descriptive labels remain
  * stable, and a value-only edit leaves every label as authored.
  */
-function renumber(next: LensDataV2Input, original: LensDataV2Input): void {
-  // The surface sequence carries the train order; an authored `elements` list out of train order is not an edit.
-  const originalIds = new Set(original.elements.map((e) => e.id));
-  const structuralEdit =
-    next.elements.length !== original.elements.length ||
-    next.elements.some((e) => !originalIds.has(e.id)) ||
-    next.surfaces.length !== original.surfaces.length ||
-    next.surfaces.some((s, i) => s.label !== original.surfaces[i]?.label || s.medium !== original.surfaces[i]?.medium);
+function renumber(next: LensDataV2Input, original: LensDataV2Input, structuralEdit: boolean): void {
   const originalNames = new Map(original.elements.map((e) => [e.id, e.name]));
   const renumberNames =
     structuralEdit &&

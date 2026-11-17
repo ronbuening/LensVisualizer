@@ -1,0 +1,1 @@
+Fixed lens builder edits rewriting a copied lens's labels, cement names and element order

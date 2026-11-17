@@ -513,6 +513,9 @@ for display and reveals the exact value on focus, so an untouched field never re
 
 The form also edits identity, aperture, close focus and vertical fill. Source (including `errata`, `omissions` and
 `sdSource`), catalog, zoom/focus schedules, rear plates and all other authored fields survive edits and JSON transport.
+Value edits keep the authored surface labels and `elements` order, and a glass run left whole keeps each element's
+authored `cemented` value (an unnamed cement layer stays unnamed); structural edits renumber numeric labels, write
+`elements` in train order and name changed cemented groups (`applyElementModel`).
 Omission surface labels follow insertions, moves and renumbering; deleted surface references are removed,
 and entries with no remaining surfaces are dropped. Splitting a cemented junction carries its omissions to both
 resulting surfaces because both inherit its shape. Explicitly removing an existing asphere also removes that
