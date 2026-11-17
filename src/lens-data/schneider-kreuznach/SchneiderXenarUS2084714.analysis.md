@@ -114,11 +114,15 @@ the image side. A real chief ray crossing the axis at 23° meets that exit angle
 R4, which leaves 3.26 mm to R5. The model places the stop there. On the object side, the same ray enters at
 about 18.0°.
 
-The rims are not printed. Every glass surface carries a common 31 mm semi-diameter, which passes the full f/3.5 axial
-beam: the axial marginal ray reaches 28.6 mm at R1, 24.2 mm at R3 and 24.2 mm at R7. The drawing shows the front lens
-larger than the other three, about 29.5 mm against about 25.5 mm at the same scale. Both readings still pass the axial
-beam, so the drawing agrees with an f/3.5 lens whose front element sets the beam size. The model keeps the common
-31 mm value. With the stop at 9.84 mm, the 31 mm rim of R4 sits 0.32 mm in front of the stop plane.
+The rims are not printed; they are estimated from the drawing, which is to scale (its vertex spacings match the table
+within about 5 %). The drawing shows the front lens largest, at about 29.5 mm, with L2 and the cemented pair at
+about 25.5 mm. L2 takes the drawn 25.5 mm on both faces. L1 is 31 mm, within the reading's uncertainty of the
+drawing. The cemented pair is 29.7 mm, the smallest rim that keeps the off-axis light within 3 percentage points of a
+lens with 31 mm rims throughout, over the patent's 25° half-field. The drawing bevels L2's rear edge from about 22.7 mm, the height at which the f/3.5 axial
+beam crosses R4, and also bevels the front edge of L3. The model draws both elements with square edges.
+
+Every rim passes the full f/3.5 axial beam, which reaches 28.6 mm at R1, 24.2 mm at R3, 22.7 mm at R4 and 24.2 mm at
+R7. The rim of R4 sits 3.6 mm in front of the stop plane.
 
 The image plane is the computed paraxial focus, 163.95 mm behind R7. The patent prints no back focus.
 
@@ -143,8 +147,10 @@ diaphragm space reproduces both figures, and no single plausible misprint in the
 recorded here rather than corrected.
 
 At the patent's 25° half-field, the chief ray crosses R1 at 23.3 mm, inside the 31 mm rim, and reaches an image height
-of 94.5 mm. The lower part of the off-axis bundle is cut by the front rim, the normal mechanical vignetting of an f/3.5
-anastigmat at the edge of its field.
+of 94.5 mm. The model's image circle is therefore 189 mm. Wide open, the geometric transmission falls from 100 % on
+axis to about 81 % at 16.7° and 55 % at 25°. The front rim cuts one side of the off-axis bundle and the cemented pair
+the other, the normal mechanical vignetting of an f/3.5 anastigmat at the edge of its field. The chief ray passes
+every rim out to 33°.
 
 ## Sources
 

@@ -13,8 +13,13 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * - Stop: the table names the second air space (13.10 mm) as the diaphragm space but gives no position inside it. The
  *   stop is placed 9.84 mm behind R4 and 3.26 mm ahead of R5, the position at which a real chief ray crossing the stop
  *   centre at 23° leaves the lens at the patent's stated 19°38′44.6″.
- * - Rims: a common 31 mm semi-diameter on every glass surface; this clears the full f/3.5 axial beam. It is not read
- *   from the figure, which draws the front element larger than the other three.
+ * - Rims: estimated from the patent drawing (to scale: its vertex spacings match the table within about 5 %) and
+ *   checked by real-ray trace. The drawing gives L1 about 29.5 mm, L2 about 25.5 mm and the cemented pair about
+ *   25.4 mm. L2 takes the drawn 25.5 mm on both faces. L1 keeps 31 mm, within the reading's uncertainty. The cemented
+ *   pair takes 29.7 mm, the smallest rim that holds corner light within 3 points of the original common 31 mm rims
+ *   across the patent's 25° half-field. Every rim clears the full f/3.5 axial beam.
+ * - Image circle: 189 mm, where the real chief ray of the patent's "useful visual field of over 50°" (25° half-field)
+ *   lands at 94.5 mm.
  * - Back focus: the computed paraxial back focal distance, 163.95 mm from R7. The patent prints none.
  */
 const LENS_DATA = {
@@ -32,6 +37,7 @@ const LENS_DATA = {
       "DESIGN F/3.5",
       "FIELD OVER 50\u00b0"
     ],
+    imageCircleMm: 189,
     elementCount: 4,
     groupCount: 3,
     focalLengthMm: {
@@ -126,14 +132,14 @@ const LENS_DATA = {
       label: "3",
       R: -117,
       d: 5.76,
-      sd: 31,
+      sd: 25.5,
       medium: 2
     },
     {
       label: "4",
       R: 55.22,
       d: 9.84,
-      sd: 31
+      sd: 25.5
     },
     {
       label: "STO",
@@ -144,21 +150,21 @@ const LENS_DATA = {
       label: "5",
       R: -1159.6,
       d: 4.3,
-      sd: 31,
+      sd: 29.7,
       medium: 3
     },
     {
       label: "6",
       R: 52.36,
       d: 17.58,
-      sd: 31,
+      sd: 29.7,
       medium: 4
     },
     {
       label: "7",
       R: -84.72,
       d: 163.94874503753675,
-      sd: 31
+      sd: 29.7
     }
   ],
   focus: {

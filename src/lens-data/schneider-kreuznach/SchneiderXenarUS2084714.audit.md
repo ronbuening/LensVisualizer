@@ -69,6 +69,7 @@ reaches a 94.5 mm image height.
   (Closed 2026-11-17: the files were renamed and reworded; see below.)
 - Semi-diameter pass: the drawing shows L1 at about 29.5 mm and L2, L3 and L4 at about 25.5 mm, against the common
   31 mm. Both readings pass the axial beam (tightest margin about 0.9 mm, at R1). The change was not made here.
+  (Closed 2026-11-17 by the semi-diameter pass below.)
 - Glass: no catalogue glass matches the printed indices at d, D or e within 0.00006. The nearest classes are SK16 for
   1.6202 / 60.0 and LLF6 for 1.5315 / 49.1; there is none for 1.5785 / 42.3. No labels were added. (Closed
   2026-11-17: explicit unmatched labels added; see below.)
@@ -109,7 +110,59 @@ rim limit (1 station within 3 % of the stated f-number).
 **Open:**
 
 - Semi-diameter pass: the drawing shows L1 at about 29.5 mm and L2, L3 and L4 at about 25.5 mm, against the common
-  31 mm (carried over).
+  31 mm (carried over). (Closed 2026-11-17 by the semi-diameter pass below.)
 - `aperture.fStops` lists f/4–f/22 beyond the patent's f/3.5. No product stop scale was found to source it.
 - `catalog.closeFocusM.marketing`, `lensMounts` and `imageFormat` stay unset: no product source documents this
-  focal length.
+  focal length. (`catalog.imageCircleMm` was added from the patent's field in the semi-diameter pass below; the rest
+  stays open.)
+
+## 2026-11-17 — Semi-diameter pass against the patent figure
+
+**Source and scale.** The only drawing of US 2,084,714 A (PDF p. 1) shows the sole example. It was measured at 600 dpi;
+the optical axis is at page row 3367. Line centres give these vertex positions: R1 48 px, R2 251 px, R3 461 px,
+R4 551 px, R5 763 px, R6 836 px, R7 1106 px (crop x origin 1300). R1 to R7 spans 1058 px against the table's 65.82 mm,
+which is 16.07 px/mm. A second span, Δ1 + d2 + Δ2, is 512 px = 31.85 mm against 31.96 mm (−0.3 %). Single spacings
+agree within 6 % (d1 +5 %, Δ1 −0.3 %, d2 −3 %, Δ2 +0.7 %, d3 +6 %, d4 −4 %), so the drawing is to scale. The drawn sags
+of R3 and R7 at the rim agree with the radii within about 15 %.
+
+**Figure readings** (outline line centres; mean of the upper and lower silhouettes): L1 about 474 px = 29.5 mm, with
+square ends; L2 about 410 px = 25.5 mm, square at the front, with its rear edge bevelled from about 22.7 mm; L3 and L4
+about 409 px = 25.4 mm, one flat top, with L3's front edge bevelled from about 22.4 mm.
+
+**Light cost.** The patent states a useful field of over 50°, so corner light was measured across 0–25° against the
+committed rims (31 mm everywhere). Taking the drawing at face value (29.5 / 25.5 / 25.4) costs 19.8 points at 25°:
+L1 accounts for 5.3 and the cemented pair for 15.2; L2's reduction costs nothing. Within the cemented pair, R5 at
+25.4 costs nothing, while R6 and R7 carry the whole loss. The smallest square rim for the pair within 3 points is
+29.7 mm (2.8 points at 25°; 29.6 mm costs 3.2). L1's drawing reading is within about 5 % of 31 mm, which is
+measurement noise, and lowering it costs light, so L1 stays.
+
+| Surface | Before | After | Evidence |
+|---|---:|---:|---|
+| 1, 2 (L1) | 31 | 31 | drawing 29.5 is within noise; lowering costs 5.3 points |
+| 3, 4 (L2) | 31 | 25.5 | drawing 25.5, square; no light cost; axial beam 24.2 / 22.7 |
+| 5, 6, 7 (L3 + L4) | 31 | 29.7 | drawing 25.4; light rule floor 29.7, kept square as drawn |
+
+The drawn bevels are not modelled. L2's rear bevel starts about where the f/3.5 axial beam crosses R4 (22.7 mm). L3's
+front bevel starts at about 22.4 mm, below the 23.3 mm the axial beam needs at R5. A lower R5 would draw a wedge, not
+the drawing's small corner bevel, so the pair stays square.
+
+**Metadata.** Added `catalog.imageCircleMm: 189`. The patent prints a useful field of "over 50°" (PDF p. 2), and the
+real chief ray at 25° lands at 94.5 mm. With the image circle set, the vignetting analysis samples the patent's
+field instead of the default full-frame 6.2°. `lensMounts`, `imageFormat`, `closeFocusM.marketing` and the f-stop
+scale remain unsourced. On the product name, the best source (Wikipedia's caption) calls this design "Xenar
+(Tronnier, 1935)". The current `name`, "SCHNEIDER-KREUZNACH XENAR 200mm f/3.5 (US 2,084,714 Design)", matches that at
+family level; the 200 mm is the patent's own focal length, not a documented catalogue size.
+
+**Results after the change.**
+- Engine numbers are unchanged: EFL 200.218 mm, f/3.5, engine half-field 33.12°, stop semi-diameter 22.73 mm, BFD
+  163.949 mm.
+- The chief ray passes every rim to 33.1°, the half-field set by R1 both before and after.
+- Corner light (geometric transmission, wide open) before → after: 100 → 100 % on axis, 75.4 → 74.7 % at 19.4°,
+  67.6 → 65.2 % at 22.2°, 57.6 → 54.8 % at 25°. The worst loss is 2.8 points.
+- `audit:surface` OK. `audit:aperture` reports no rim limit. `audit:image-circle` passes the 189 mm circle (0
+  undersized). `audit:field-coverage`: the one station reaches at least 99 %.
+- The real-ray trace at 25° shows no axial clip and no blocked chief ray. The tightest axial margin is 1.3 mm, at R3.
+  The R4 rim sits 3.6 mm in front of the stop plane.
+- Side-by-side and overlay with the drawing: scratch file `overlay.png`, not kept in the repo.
+
+**Open:** none for rims. The f-stop scale, mount and format stay as listed above.
