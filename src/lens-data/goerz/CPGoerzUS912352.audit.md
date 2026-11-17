@@ -198,3 +198,7 @@ The patent prints G′ (434 nm) indices as well, and a normal-dispersion estimat
 
 - Abbe numbers (2026-11-17): `vd` rounded to two decimals (56.44, 38.15, 45.19) from the unrounded quotients of the
   printed C and F indices, which the inspector printed to 15 digits. The change is under 0.003 in ν.
+
+## 2026-11-17 — Aperture slider range
+
+`aperture.maxFNumber`: unset (default 16) → 22. `fStops` lists f/22, which the aperture slider and its stop buttons cut off at the default 16. No optical value changed; the stops beyond the design aperture stay unsourced.
