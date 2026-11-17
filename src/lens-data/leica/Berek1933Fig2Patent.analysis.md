@@ -1,0 +1,7 @@
+# Leitz / Berek f/1.3, US 1,899,934 Figure 2
+
+Patent-only reconstruction of Max Berek's seven-element, four-group alternative, filed in Germany June 6, 1931 and published in the US March 7, 1933. Different from Figure 1's six-element f/2 model, but the same publication family. No exact production counterpart, mount, or image format is established.
+
+The [original patent](https://patentimages.storage.googleapis.com/06/c2/ba/4b7ae2a37e2089/US1899934.pdf) supplies the signed radii, seven glass thicknesses, three air gaps, sodium-D refractive indices and Abbe values. Figure 2 spans the bottom-left and upper-right of PDF page 2, with the cross-section on page 1. Keep the literal source values, including the 0.4457 first gap and the three cemented interfaces. The scale evaluates to approximately 100 under millimetre interpretation; the patent does not give an express 100 mm focal length. EFL 99.991955 mm and paraxial infinity BFD 46.831357 mm are calculated, not factory measurements.
+
+The table states f/1.3. Neither numeric stop location nor clear apertures are given. The model places the iris 8.4 mm behind R8 in the 12.034 mm air gap. The calculated nominal iris radius is 20.3564 mm and the paraxial entrance radius 38.4584 mm. Its model clips the sampled outermost part of the full entrance pupil; dense axial samples through ±0.96 passed, those at ±0.97 through ±1.00 did not. Field clips are substantial at the default viewer angle, which is inferred, not a coverage claim. No close-focus states were invented.
