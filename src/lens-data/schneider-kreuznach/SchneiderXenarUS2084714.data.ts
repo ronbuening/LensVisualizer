@@ -60,7 +60,6 @@ const LENS_DATA = {
     assignees: [
       "Jos. Schneider & Co., Optotechnische Gesellschaft"
     ],
-    sdSource: "heuristic"
   },
   elements: [
     {

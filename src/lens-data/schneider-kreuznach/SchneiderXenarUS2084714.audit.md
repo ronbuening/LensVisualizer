@@ -239,3 +239,6 @@ Corporation of Jos. Schneider & Co., Optotechnische Gesellschaft, Berlin"), the 
 
 - The aperture slider stops at f/16 (the default `aperture.maxFNumber`), so the f/22 in `aperture.fStops` cannot be
   reached. Either drop 22 or set `maxFNumber: 22`. This adds to the unsourced f-stop scale line above.
+
+- Provenance (2026-11-17): `source.sdSource` removed. The rims mix evidence (L2 follows the figure, L1 keeps its estimate and the cemented pair is set by the light rule), and LENS_DATA_SPEC asks that mixed
+  clear-aperture evidence stay undeclared.
