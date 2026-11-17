@@ -210,3 +210,10 @@ carries no product word, which fits family-level evidence.
 - L2′ keeps about 0.04 mm of edge at its 15.02 mm rim.
 - L4's front and rear rims stay stepped.
 - The f-stop list beyond f/3.2 is not from a source.
+
+## 2026-11-17 — Glass coverage pass
+
+- L1 and L3 (printed nD 1.5331 / ν 58.0) now carry `ZNC1 (Hoya catalog equivalent; zinc crown)`. Hoya's discontinued
+  ZNC1 row, added to the catalog in this pass from the vendor's Zemax file, gives nD 1.53312 / ν 58.05 at the sodium D
+  line (ΔnD −0.00003, Δν +0.05), inside the exact-match limits. It is the Hoya counterpart of Schott's ZK1 zinc crown;
+  the label names a modern catalog equivalent, not the 1926 melt.

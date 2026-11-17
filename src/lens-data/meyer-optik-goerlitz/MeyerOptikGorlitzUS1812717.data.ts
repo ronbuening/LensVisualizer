@@ -12,7 +12,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *
  * Glass: indices are stored against the sodium D line, as printed. L2′/L5 and L2/L4 carry modern catalogue rows
  * that match the printed nD and ν at the D line (N-BALF4: nD 1.57946 / ν 53.86; QF3: nD 1.57490 / ν 41.29); they
- * supply the dispersion curve only and do not name the 1926 melts. L1/L3 (nD 1.5331 / ν 58.0) has no matching row.
+ * supply the dispersion curve only and do not name the 1926 melts. L1/L3 (nD 1.5331 / ν 58.0) matches the discontinued
+ * Hoya zinc crown ZNC1 (nD 1.53312 / ν 58.05 at the D line), the equivalent of Schott's ZK1 zinc-crown type.
  *
  * Inferred: the back focus is the computed paraxial value (the patent prints none). Clear semi-diameters are
  * estimates: raised only as far as the f/3.2 axial beam needs, with L2's rear rim held in front of the printed stop
@@ -62,7 +63,7 @@ const LENS_DATA = {
       nd: 1.5331,
       vd: 58,
       indexReference: "D",
-      glass: "Unmatched (nD 1.5331 / V 58.0)",
+      glass: "ZNC1 (Hoya catalog equivalent; zinc crown)",
       role: "Front collective meniscus; touches L2′ on the axis",
     },
     {
@@ -97,7 +98,7 @@ const LENS_DATA = {
       nd: 1.5331,
       vd: 58,
       indexReference: "D",
-      glass: "Unmatched (nD 1.5331 / V 58.0)",
+      glass: "ZNC1 (Hoya catalog equivalent; zinc crown)",
       role: "Weak collective meniscus just behind the stop",
     },
     {

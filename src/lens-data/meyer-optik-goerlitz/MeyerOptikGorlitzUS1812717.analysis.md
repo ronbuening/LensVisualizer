@@ -45,7 +45,7 @@ The drawing sheet notes "Equivalent focus of L3: +111.4 < 300". The printed radi
 
 ### L1 — Positive Meniscus
 
-nD = 1.5331, ν = 58.0 (no catalogue match); f = +73.16 mm. The front collective lens, convex to the object. Its rear surface (r2 = +185.5) touches L2′ at the vertex.
+nD = 1.5331, ν = 58.0 (zinc crown; Hoya ZNC1 equivalent); f = +73.16 mm. The front collective lens, convex to the object. Its rear surface (r2 = +185.5) touches L2′ at the vertex.
 
 ### L2′ — Plano-Convex Positive (front of the cemented pair)
 
@@ -73,7 +73,7 @@ The patent prints three glasses, each used twice, as nD and ν. It gives no glas
 
 | Printed nD | Printed ν | Used in | Catalogue equivalent (at the D line) |
 |---:|---:|---|---|
-| 1.5331 | 58.0 | L1, L3 | none |
+| 1.5331 | 58.0 | L1, L3 | Hoya ZNC1 (zinc crown), nD 1.53312 / ν 58.05 |
 | 1.5795 | 53.8 | L2′, L5 | Schott N-BALF4, nD 1.57946 / ν 53.86 |
 | 1.5749 | 41.3 | L2, L4 | CDGM QF3, nD 1.57490 / ν 41.29 |
 
