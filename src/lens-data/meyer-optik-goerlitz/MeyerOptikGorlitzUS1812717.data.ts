@@ -16,7 +16,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *
  * Inferred: the back focus is the computed paraxial value (the patent prints none). Clear semi-diameters are
  * estimates: raised only as far as the f/3.2 axial beam needs, with L2's rear rim held in front of the printed stop
- * plane. The gap-sag check is relaxed to 0.96 because the patent figure draws L3 and L4 meeting at the rim.
+ * plane. The gap-sag check is relaxed to 0.96 because the patent figure draws L3 and L4 meeting at the rim. Against
+ * the drawing sheet the relative rim heights agree within about 8 %; the sheet draws the whole lens about 14 % smaller
+ * than the f/3.2 beam needs, and draws L4 square-cut at a height its front face cannot reach without meeting L3.
  *
  * Infinity only: the patent gives no close-focus data or field angle. No assignee is printed; Rudolph designed for
  * Hugo Meyer & Co. of Görlitz at the time. The German patent DE 456,912 prints this same example as its Example 2, and

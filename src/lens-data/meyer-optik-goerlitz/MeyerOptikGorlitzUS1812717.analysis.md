@@ -96,6 +96,8 @@ The patent prints no lens diameters, so every rim is an estimate:
 - L1 and L5 are 16 mm.
 - L3 and L4 come within about 0.05 mm of each other at their rims. The drawing shows them meeting, and the model allows that close approach.
 
+The drawing sheet shows the same relative rim heights to within about 8 %, but draws the whole lens about 14 % smaller than the f/3.2 beam needs. Its drawn diaphragm opening is also well short of the full aperture. The sheet draws L4 square-cut and taller than L3. The model keeps L4's front rim at 12.27 mm, because the front face cannot rise further without meeting L3.
+
 The patent states no field angle or image size. The model's default field comes from these estimated rims and is not a patent figure.
 
 ## Design Heritage and Context

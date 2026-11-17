@@ -91,7 +91,8 @@ annotation is recorded as a drawing-sheet inconsistency.
 - L2′ keeps only about 0.04 mm of edge at the 15.02 mm rim. This follows from the printed 4.17 mm thickness at full
   aperture.
 - L4 is not square (12.27 / 12.68 mm), because a square 12.68 mm rim would overlap L3. Check it against the figure.
-- L1 and L5 rims (16 mm) have not been checked against the figure.
+  (Closed 2026-11-17 in the semi-diameter pass: kept, see below.)
+- L1 and L5 rims (16 mm) have not been checked against the figure. (Closed 2026-11-17: checked, kept.)
 - The patent gives no field angle.
 - There are no glass names; the patent prints nD and ν only. (Closed 2026-11-17: catalogue equivalents added where
   exact; see below.)
@@ -141,7 +142,71 @@ limit.
 
 **Open (SD pass):**
 
-- L4 rims are not square (12.27 / 12.68 mm). Check them against the figure, which draws a flat top edge.
-- L1 and L5 rims (16 mm) have not been checked against the figure.
+- L4 rims are not square (12.27 / 12.68 mm). Check them against the figure, which draws a flat top edge. (Closed
+  2026-11-17: kept; the front face cannot reach the drawn square rim, see below.)
+- L1 and L5 rims (16 mm) have not been checked against the figure. (Closed 2026-11-17: checked, kept.)
 - L2′ keeps about 0.04 mm of edge at its 15.02 mm rim.
 - The patent gives no field angle or image size.
+
+## 2026-11-17 — Semi-diameter pass against the patent figure
+
+**Source and scale.** The cross-section is on the drawing sheet (PDF page 1), scanned at a native 300 dpi. It is the
+patent's only example.
+
+- The axis is slightly skewed: the row is 2043 at x 825 and 2037 at x 1350. Rim heights were therefore read as half
+  the top-to-bottom span of each element.
+- Axial scale from the vertex crossings (rows 52 px above and below the axis, sag-corrected): r1–r11 gives 12.77
+  px/mm, r1–r9 13.06 and r5–r10 13.05, so about 12.95 px/mm.
+- Single element thicknesses are drawn 10–20 % off (L1 −15 %, L5 −21 %, L2′ +9 %), so the sheet is a hand drawing and
+  serves for proportions.
+- The diaphragm B sits at x 1065. That puts b1 : b2 at 0.64 : 0.36 against the printed 0.70 : 0.30, about 0.45 mm
+  forward.
+
+**Drawn half-heights (px), with the model's ratio to L2′ in brackets:**
+
+| Element | Drawn half-height | Ratio to L2′ |
+|---|---:|---|
+| L1 (pointed edge) | 181 | 1.07 (model 1.07) |
+| L2′/L2 (flat top) | 170 | 1.00 |
+| r5 rim before the chamfer | 144 | 0.85 (model 0.87) |
+| L3 | 135 | 0.79 (model 0.82) |
+| L4 (square-cut, flat top) | 153 | 0.90 (model 0.82 / 0.84) |
+| L5 (flat top) | 168 | 0.99 (model 1.07) |
+
+At the axial scale the sheet draws every element about 14 % smaller than the model. That is below the f/3.2 axial
+beam everywhere: L1 needs 15.64 mm and the sheet gives 14.0; L2′ needs 15.01 and the sheet gives 13.1. The drawn
+diaphragm opening is 118 px (9.1 mm) against the 12.42 mm iris. So the sheet is not drawn at full aperture, and the
+ray floors set the absolute values.
+
+**Decision: no rim changed.**
+
+- L1, L2′, r5 and L3 agree in proportion within 3 %.
+- L5 is 7.5 % larger than its drawn proportion. That is inside the noise band. A cut to the proportional 14.8 mm would
+  also cost 4.2 points of corner light at 12.2° (83.0 % to 78.8 %), more than the 3-point limit.
+- L4: the sheet draws it square-cut, taller than L3, at a proportional 13.4–13.5 mm. Its rear face (12.68) is at the
+  axial-ray floor (12.675). Its front face cannot follow:
+  - At 12.68 its sag meets L3's rear face across the 1.08 mm gap (combined sag 1.12 mm). That is refused at any
+    gap-sag factor up to the 0.98 cap.
+  - The highest front rim the cap admits is about 12.38 mm, a 0.9 % change, which is noise.
+  - With the printed radii, a square 13.4 mm L4 would wrap around L3's edge, so the drawing is not to scale there.
+- `checks.gapSagFrac` stays 0.96.
+
+**Results (unchanged, before = after):**
+
+- Engine: EFL 100.1106 mm, f/3.2, half-field 32.04°. The chief ray is first blocked at r11 at 33.9°.
+- `audit:surface`: OK.
+- `audit:aperture`: within 3 %, no rim limit.
+- `audit:image-circle` and `audit:field-coverage`: skipped (no image format).
+- Corner illumination: 83.0 % at 12.2°, the same as the baseline.
+- The overlay of the sheet and the model at matched axial scale is kept in the session scratch.
+
+**Metadata:** no mount, format, image circle or marketing values were added. The patent states no format or field, and
+the f = 100, f/3.2 example matches no documented product as built. The nearest product name in the sources is the Hugo
+Meyer Makro-Plasmat, which oldlens.com ties to DE 456,912; it was sold at f/2.7 in 50 mm and 105 mm. The current name
+carries no product word, which fits family-level evidence.
+
+**Open:**
+
+- L2′ keeps about 0.04 mm of edge at its 15.02 mm rim.
+- L4's front and rear rims stay stepped.
+- The f-stop list beyond f/3.2 is not from a source.
