@@ -1,0 +1,1 @@
+Fixed the aperture slider stopping at f/16 on 100 lenses whose stop buttons list f/22 or smaller
