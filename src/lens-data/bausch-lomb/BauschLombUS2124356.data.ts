@@ -17,11 +17,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  */
 const LENS_DATA = {
   schema: 2,
-  key: "bausch-lomb-rayton-us2124356-patent-reference",
+  key: "bausch-lomb-100mm-f15-us2124356",
   maker: "Bausch & Lomb",
-  name: "RAYTON 100 mm f/1.5 PATENT REFERENCE",
+  name: "BAUSCH & LOMB 100mm f/1.5 (US 2,124,356 Design)",
   subtitle: "1938 SOLE EXAMPLE; RETAIL IDENTITY UNPROVED",
-  visible: false,
+  visible: true,
   catalog: {
     specs: ["7 ELEMENTS / 3 GROUPS", "PATENT REFERENCE", "SOURCE STOP; ESTIMATED RIMS", "INFINITY ONLY"],
     elementCount: 7,

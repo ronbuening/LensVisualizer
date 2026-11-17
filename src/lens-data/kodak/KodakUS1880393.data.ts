@@ -19,11 +19,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  */
 const LENS_DATA = {
   schema: 2,
-  key: "altman-patent-100mm-f68",
+  key: "kodak-100mm-f68-us1880393",
   maker: "Kodak",
-  name: "ALTMAN PATENT 100mm f/6.8 Triplet Reference",
+  name: "KODAK 100mm f/6.8 (US 1,880,393 Design)",
   subtitle: "US1880393A — SPECIFICATION S1=1.98; PATENT-ONLY",
-  visible: false,
+  visible: true,
   catalog: {
     specs: ["3 ELEMENTS / 3 GROUPS", "PATENT-ONLY", "SPECIFICATION-TABLE GAP"],
     elementCount: 3,

@@ -16,11 +16,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  */
 const LENS_DATA = {
   schema: 2,
-  key: "kodak-frederick-altman-us1620337-patent-reference",
+  key: "kodak-anastigmat-100mm-f2-us1620337",
   maker: "Kodak",
-  name: "FREDERICK / ALTMAN f/2 PATENT REFERENCE",
+  name: "KODAK ANASTIGMAT 100mm f/2 (US 1,620,337 Design)",
   subtitle: "1927 PROJECTION EXAMPLE; HIDDEN QUALIFIED REFERENCE",
-  visible: false,
+  visible: true,
   catalog: {
     specs: [
       "4 ELEMENTS / 4 GROUPS",

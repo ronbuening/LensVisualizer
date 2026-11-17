@@ -1,6 +1,7 @@
 export const MAKER_PREFIXES = [
   { prefix: "AGFA", display: "Agfa", slug: "agfa" },
   { prefix: "APPLE", display: "Apple", slug: "apple" },
+  { prefix: "BAUSCH & LOMB", display: "Bausch & Lomb", slug: "bausch-lomb" },
   { prefix: "CANON", display: "Canon", slug: "canon" },
   /* "CARL ZEISS JENA" must come before "CARL ZEISS" — startsWith matching is
      order-sensitive, and a Jena lens must not be caught by the generic prefix. */

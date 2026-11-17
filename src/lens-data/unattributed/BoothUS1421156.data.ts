@@ -24,11 +24,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  */
 const LENS_DATA = {
   schema: 2,
-  key: "booth-patent-100mm-f3",
+  key: "booth-100mm-f3-us1421156",
   maker: null,
-  name: "BOOTH PATENT 100mm f/3 Monochromatic Reference",
+  name: "BOOTH 100mm f/3 (US 1,421,156 Design)",
   subtitle: "US1421156A — PATENT-ONLY; D-LINE DIAGNOSTIC; NOT FACTORY-IDENTIFIED",
-  visible: false,
+  visible: true,
   catalog: {
     specs: ["5 ELEMENTS / 3 GROUPS", "PATENT-ONLY", "SODIUM-D MONOCHROMATIC MODEL", "NOMINAL 100mm f/3"],
     elementCount: 5,
