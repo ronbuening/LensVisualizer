@@ -42,7 +42,6 @@ const LENS_DATA = {
     patentYear: 1932,
     authors: ["Fred E. Altman"],
     assignees: ["Eastman Kodak Company"],
-    sdSource: "heuristic",
     errata: [
       {
         status: "corrected",

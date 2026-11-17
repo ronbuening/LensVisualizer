@@ -347,3 +347,6 @@ Open:
   half-field of 7° and a 4.2° fan (checked on a scratch copy). That field is outside this review's edit list.
 - G′ dispersion is not represented (unchanged).
 - The bevels are drawn as vertical lands (unchanged).
+
+- Field follow-up (2026-11-17): `projection` now declares the patent's 7° half-field (14° full), so the diagram's
+  off-axis fan and the analysis tabs use the stated projection field instead of the rims' 34.6° tracing limit.

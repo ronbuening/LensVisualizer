@@ -174,6 +174,7 @@ const LENS_DATA = {
     fStops: [2],
     maxFNumber: 2,
   },
+  projection: { kind: "rectilinear", fullFieldDeg: 14, maxTraceFieldDeg: 7 },
   focus: {
     closeFocusM: 1e15,
     description: "Infinity focus only; the patent gives no close-focus data.",
