@@ -65,3 +65,7 @@ Patent: US 2006/0209426 A1, Example 1
 
 - Why the old value differed: derived inner-focus travel; 2.44 m is the old (production) value.
 - `catalog.closeFocusM.marketing` 2.44 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 45. `fStops` lists f/22, f/32 and f/45, which the slider cut off at the default 16. No optical value changed.

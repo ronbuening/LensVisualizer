@@ -35,3 +35,7 @@ Patent: WO 2023/153076 A1, Example 8
 The table lists d0 as the gap from the object row (0, OBJ) to surface 1, which reads as an object-to-first-surface distance. Read that way the states do not focus; read as the object-to-image distance they do. They are declared `image-plane` under the ruling recorded in `LENS_DATA_SPEC.md` § Finite conjugates. A second reading of the patent confirms the printed value, its unit and the gaps of each column.
 
 All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 22. `fStops` lists f/22, which the slider cut off at the default 16. No optical value changed.

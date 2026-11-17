@@ -47,3 +47,7 @@ Patent: FR 1.066.698, Example 1
 - `catalog.fNumber.design` stays unset. The patent prints no f-number or aperture ratio for Exemple 1 (or Exemple 2):
   pp. 1–2 mention only that earlier Tessars reached f/3.5 (p. 1, left column), and the résumé (p. 2) and the single
   plate (p. 3) give none. The file's f/2.8 is the production identification. No optical value changed.
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 22. `fStops` lists f/22, which the slider cut off at the default 16. No optical value changed.

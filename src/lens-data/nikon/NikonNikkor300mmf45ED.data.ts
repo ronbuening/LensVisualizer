@@ -157,7 +157,7 @@ const LENS_DATA = {
       "Infinity prescription only. The production lens focuses to 4 m by whole-lens movement; the patent supplies no finite-focus spacings.",
   },
 
-  aperture: { nominalFNumber: 4.5, fStops: [4.5, 5.6, 8, 11, 16, 22] },
+  aperture: { nominalFNumber: 4.5, fStops: [4.5, 5.6, 8, 11, 16, 22], maxFNumber: 22 },
 
   projection: { kind: "rectilinear", fullFieldDeg: 8.4, maxTraceFieldDeg: 4.2 },
 

@@ -337,7 +337,7 @@ const LENS_DATA = {
 
   gaps: { "11": { label: "D11", values: [[39.04, 49.88]] }, "16": { label: "D16", values: [[24.02, 13.18]] } },
 
-  aperture: { nominalFNumber: 4.08, fStops: [4.08, 5.6, 8, 11, 16, 22] },
+  aperture: { nominalFNumber: 4.08, fStops: [4.08, 5.6, 8, 11, 16, 22], maxFNumber: 22 },
 
   groups: [
     { text: "G1 +", fromSurface: "1", toSurface: "11" },

@@ -418,7 +418,7 @@ const LENS_DATA = {
   },
 
   /* ── Aperture configuration ── */
-  aperture: { nominalFNumber: 4.08, fStops: [4.08, 4.5, 5, 5.6, 6.3, 8, 11, 16, 22, 32] },
+  aperture: { nominalFNumber: 4.08, fStops: [4.08, 4.5, 5, 5.6, 6.3, 8, 11, 16, 22, 32], maxFNumber: 32 },
 
   perspectiveControl: {
     /* Nikon Imaging lists shift +/-12 mm and tilt +/-7.5 deg:

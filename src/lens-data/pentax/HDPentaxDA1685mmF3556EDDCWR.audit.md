@@ -84,3 +84,7 @@ at the interval midpoint, and the other two stations state what that iris gives.
   value. Any radius in 7.0156–7.0716 mm is equally consistent with Table 2.
 - `apertureDesign` is not set. `nominalFno[0]` 3.5647 is 0.98 % faster than the printed 3.6: inside the one-decimal
   print band (3.55–3.65), outside the 0.5 % the design-f-number sweep treats as the same aperture.
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 22. `fStops` lists f/22, which the slider cut off at the default 16. No optical value changed.

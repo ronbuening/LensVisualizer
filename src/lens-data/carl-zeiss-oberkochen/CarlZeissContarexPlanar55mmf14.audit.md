@@ -34,3 +34,7 @@ Catalog version: local working tree, 2026-06-25
   documented ×55 scale (header "NOTE ON SCALING"; r1 0,8466 → 46.563).
 - `catalog.fNumber.design: 1.4` from the same column, lines 25–26: "Das angegebene Objektiv hat eine Öffnung von
   f:1,4". The stop's `nominalFNumber` 1.4 matches it. No optical value changed.
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 22. `fStops` lists f/22, which the slider cut off at the default 16. No optical value changed.

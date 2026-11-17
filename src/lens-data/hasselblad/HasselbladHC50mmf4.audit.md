@@ -42,3 +42,7 @@ with surface 15 as one element. No figure measurement was used.
 The validator accepts the new values, the traced edge now reaches 34.85 mm at 35.1° with every rim clear (100%), and
 the image-circle floor still reports nothing undersized. All surfaces are spherical, and the analysis quotes none of the
 changed semi-diameters.
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 32. `fStops` lists f/22 and f/32, which the slider cut off at the default 16. No optical value changed.
