@@ -8,10 +8,13 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Glass: the dispersive elements' printed nD 1.8049 / V 25.5 matches Schott SF6 at the D line (a catalogue
  * equivalent, not a documented melt). The collective elements' nD 1.9007 / V 42.5 matches no catalogue glass.
  * Inferred values: the stop, which the patent neither prints nor draws, sits in the middle of the 21.8 mm central
- * air space. The clear semi-diameters are estimated: 23.9 mm and 23.1 mm on the first two surfaces, just enough
- * to pass the f/2 axial beam, and 23 mm elsewhere. The facing surfaces of each pair would touch at about 24.8 mm
- * (front) and 24.2 mm (rear), matching the patent's marginal contact. The image plane is the computed paraxial back
- * focus, 74.88 mm behind the last surface. Infinity focus only: the patent gives no focusing data.
+ * air space. Semi-diameters are measured from Fig. 2, which is drawn to scale (17.0 px/mm at 600 dpi on vertex spans
+ * within 0.3 %): all four elements are square-cut at about 26.5 mm, so the outer faces 1, 4, 5 and 8 carry 26.5 mm.
+ * The facing surfaces of each pair would touch at about 24.8 mm (front) and 24.2 mm (rear); the figure draws them
+ * meeting at about 24.5 and 23.9 mm, the patent's marginal contact. Their clear apertures stay at 23.1 mm (face 2,
+ * the least that passes the f/2 axial beam) and 23 mm (faces 3, 6, 7), and a flat land carries each out to the
+ * 26.5 mm edge. The image plane is the computed paraxial back focus, 74.88 mm behind the last surface. Infinity
+ * focus only: the patent gives no focusing data.
  */
 const LENS_DATA = {
   schema: 2,
@@ -103,27 +106,29 @@ const LENS_DATA = {
       label: "1",
       R: 96.8,
       d: 11.9,
-      sd: 23.9,
+      sd: 26.5,
       medium: 1
     },
     {
       label: "2",
       R: -174.5,
       d: 1.55,
-      sd: 23.1
+      sd: 23.1,
+      rimExtensionSd: 26.5
     },
     {
       label: "3",
       R: -94.1,
       d: 4.15,
       sd: 23,
+      rimExtensionSd: 26.5,
       medium: 2
     },
     {
       label: "4",
       R: 2170,
       d: 10.9,
-      sd: 23
+      sd: 26.5
     },
     {
       label: "STO",
@@ -134,27 +139,29 @@ const LENS_DATA = {
       label: "5",
       R: 882,
       d: 4.15,
-      sd: 23,
+      sd: 26.5,
       medium: 3
     },
     {
       label: "6",
       R: 81.5,
       d: 2.45,
-      sd: 23
+      sd: 23,
+      rimExtensionSd: 26.5
     },
     {
       label: "7",
       R: 238,
       d: 11.9,
       sd: 23,
+      rimExtensionSd: 26.5,
       medium: 4
     },
     {
       label: "8",
       R: -84.8,
       d: 74.87819645751735,
-      sd: 23
+      sd: 26.5
     }
   ],
   focus: {
