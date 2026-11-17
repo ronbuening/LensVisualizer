@@ -13,6 +13,7 @@ import {
   AIMED_PUPIL_RESIDUAL_TOLERANCE,
   prepareAimedPupilLaunch,
   prepareAimedPupilTrace,
+  compactStopSeeds,
   prepareAimedStopLattice,
 } from "../../../../src/optics/analysis/pupils/aimedPupil.js";
 import type { AimedPupilLaunch, AimedPupilRay } from "../../../../src/optics/analysis/pupils/aimedPupil.js";
@@ -501,6 +502,7 @@ describe("prepareAimedStopLattice", () => {
     // The lattice half as fine, aimed first or supplied, seeds the same bits.
     const coarse = prepareAimedStopLattice(request, 16, field)!;
     expect(prepareAimedStopLattice(request, 32, field, undefined, coarse)!.rays).toEqual(fine.rays);
+    expect(prepareAimedStopLattice(request, 32, field, undefined, compactStopSeeds(coarse))!.rays).toEqual(fine.rays);
     // A lattice of the same field key in another state (the stop a micrometre further back) is ignored.
     const base = stopBehindLens();
     const moved = build({
@@ -513,6 +515,7 @@ describe("prepareAimedStopLattice", () => {
     const other = analysisRequestAt(moved, { currentEPSD: 3, currentPhysStopSD: 2 });
     const foreign = prepareAimedStopLattice(other, 16, field)!;
     expect(prepareAimedStopLattice(request, 32, field, undefined, foreign)!.rays).toEqual(fine.rays);
+    expect(prepareAimedStopLattice(request, 32, field, undefined, compactStopSeeds(foreign))!.rays).toEqual(fine.rays);
   });
   it("leaves no cell unaimed that a lone sample aims or blocks, and refuses a size that is no whole number", () => {
     // In n = 1.9 glass, rays above 8 / 1.9 mm reflect totally at the 8 mm rear sphere, and targets past the fold of the

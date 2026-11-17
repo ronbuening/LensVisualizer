@@ -130,7 +130,7 @@ authored ones); finite conjugates aim from the object point. Every aimed ray is 
 the stop at the launch's clip radius. A lit cell weighs 1 times its bulk transmission (uniform amplitude on the
 stop): the geometric OTF sums its landing with that weight and the sheared-ray estimator reads √weight on the lattice.
 On a lens `mtfMirrorSymmetric` accepts, the +x half is traced and mirrored; the ladder's even sizes put no cell on the
-meridian. Each ladder level's lattice is seeded from the same wavelength's lattice half as fine (see Lattices under
+meridian. During refinement the MTF job retains only the two launch and two achieved stop coordinates per cell needed for a later grid. It releases them as each wavelength consumes them. Each ladder level's lattice is seeded from the same wavelength's lattice half as fine (see Lattices under
 [Pupil Convention](#pupil-convention)), so a cell costs about one stop trace where a lone sample spends three to six. The grid ladder, refinement and convergence keep their meaning with
 `gridSize` counted across the stop instead of across the beam, so a vignetted beam fills fewer cells of the same grid
 than before. That coarsening is systematic where the beam is cut, so the outer fields of fast lenses can need 256

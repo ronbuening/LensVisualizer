@@ -26,7 +26,12 @@ import { traceRayClassification } from "../../trace/rayClassification.js";
 import { imageMirrorSymmetricAboutMeridian } from "../../trace/symmetry.js";
 import { launchSurfaceForFieldDeg } from "../../field/projection.js";
 import { prepareAimedStopLatticeForState } from "../pupils/aimedPupil.js";
-import type { AimedPupilFieldGeometry, AimedPupilSpectrum, AimedStopLattice } from "../pupils/aimedPupil.js";
+import type {
+  AimedPupilFieldGeometry,
+  AimedPupilSpectrum,
+  AimedStopLattice,
+  AimedStopSeeds,
+} from "../pupils/aimedPupil.js";
 
 export interface MtfPupilRay extends MtfSpot {
   column: number;
@@ -442,7 +447,7 @@ export function aimMtfStopLattice(
   launch: MtfFieldLaunch,
   gridSize: number,
   line: MtfSpectralLine,
-  coarse?: AimedStopLattice | null,
+  coarse?: AimedStopLattice | AimedStopSeeds | null,
 ): AimedStopLattice | null {
   if (!launch.aim) return null;
   return prepareAimedStopLatticeForState(
@@ -478,7 +483,7 @@ export function traceMtfStopBundle(
   gridSize: number,
   line: MtfSpectralLine,
   imagePlaneZ = state.imgZ,
-  extras: { reference?: MtfSpot; opticalPath?: boolean; coarse?: AimedStopLattice | null } = {},
+  extras: { reference?: MtfSpot; opticalPath?: boolean; coarse?: AimedStopLattice | AimedStopSeeds | null } = {},
 ): MtfBundle | null {
   const lattice = aimMtfStopLattice(state, options, support, launch, gridSize, line, extras.coarse);
   return lattice && traceMtfLattice(state, options, support, launch, lattice, line, imagePlaneZ, extras);
@@ -563,8 +568,6 @@ export function traceMtfLattice(
     outcome[row * n + column] = value;
     if (mirror) outcome[row * n + n - 1 - column] = value;
   };
-  // Every stop cell carries the same weight, so each unresolved cell would carry 1.
-  const unresolvedWeights = new Float64Array(n * n).fill(1);
   lattice.cells.forEach((cell, i) => {
     if (mirror && cell.xFraction < 0) return;
     const samples = mirror ? 2 : 1;
@@ -604,9 +607,11 @@ export function traceMtfLattice(
     bundle.rays.push(ray0);
     if (mirror) bundle.rays.push(mirrorPupilRay(ray0, n));
   });
-  const beside = unresolvedBesideBeam(outcome, unresolvedWeights, n, n);
-  bundle.unresolvedInBeam = beside.count;
-  bundle.unresolvedInBeamWeight = beside.weight;
+  if (bundle.unaimed || bundle.failed) {
+    const beside = unresolvedBesideBeam(outcome, null, n, n);
+    bundle.unresolvedInBeam = beside.count;
+    bundle.unresolvedInBeamWeight = beside.weight;
+  }
   return bundle;
 }
 
@@ -619,14 +624,14 @@ const CELL_UNRESOLVED = 2;
  * `unresolved-in-beam` rule.
  *
  * @param outcome - cell outcomes in row-major order
- * @param weights - the weight each unresolved cell would carry, in the same order
+ * @param weights - the weight each unresolved cell would carry, or null for the unit-weight stop grid
  * @param columns - cells per row
  * @param rows - rows
  * @returns how many unresolved cells lie beside the transmitted beam, and their weight
  */
 function unresolvedBesideBeam(
   outcome: Uint8Array,
-  weights: Float64Array,
+  weights: Float64Array | null,
   columns: number,
   rows: number,
 ): { count: number; weight: number } {
@@ -641,7 +646,7 @@ function unresolvedBesideBeam(
         (lit(row - 1, column) || lit(row + 1, column) || lit(row, column - 1) || lit(row, column + 1))
       ) {
         count++;
-        weight += weights[row * columns + column];
+        weight += weights ? weights[row * columns + column] : 1;
       }
   return { count, weight };
 }

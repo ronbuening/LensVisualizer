@@ -369,9 +369,35 @@ export interface AimedStopLattice extends AimedPupilLaunch {
   cells: readonly StopLatticeCell[];
 }
 
-// The prepared state and field-model key each lattice was aimed with, so a coarser lattice seeds only lattices of its own
-// state, field and spectrum.
-const latticeModelKeys = new WeakMap<AimedStopLattice, { state: PreparedGeometry; key: string }>();
+/** Coarse values needed to seed a finer stop grid. Four doubles per grid position retain
+ * the two launch coordinates and the two achieved stop coordinates of an aimed ray. */
+export interface AimedStopSeeds {
+  cellsAcross: number;
+  coordinates: Float64Array;
+}
+
+type SeedSource = AimedStopLattice | AimedStopSeeds;
+// A seed belongs to one prepared state, field, aperture and wavelength.
+const latticeModelKeys = new WeakMap<SeedSource, { state: PreparedGeometry; key: string }>();
+
+/** Keep only the previous pupil's interpolation data across spectral refinement levels. */
+export function compactStopSeeds(lattice: AimedStopLattice): AimedStopSeeds {
+  const n = lattice.cellsAcross;
+  const coordinates = new Float64Array(4 * n * n).fill(NaN);
+  lattice.cells.forEach((cell, i) => {
+    const ray = lattice.rays[i];
+    if (ray.status !== "aimed") return;
+    const offset = 4 * (cell.row * n + cell.column);
+    coordinates[offset] = ray.launch[0];
+    coordinates[offset + 1] = ray.launch[1];
+    coordinates[offset + 2] = ray.achievedStopMm[0];
+    coordinates[offset + 3] = ray.achievedStopMm[1];
+  });
+  const seeds = { cellsAcross: n, coordinates };
+  const owner = latticeModelKeys.get(lattice);
+  if (owner) latticeModelKeys.set(seeds, owner);
+  return seeds;
+}
 
 /**
  * Aim a regular stop lattice for one field of the request's current state (`stopLattice`, `cellsAcross` cells across
@@ -389,7 +415,7 @@ export function prepareAimedStopLattice(
   cellsAcross: number,
   geometry: AimedPupilFieldGeometry,
   spectrum?: AimedPupilSpectrum,
-  coarse?: AimedStopLattice | null,
+  coarse?: SeedSource | null,
 ): AimedStopLattice | null {
   return prepareAimedStopLatticeForState(
     request.preparedGeometry,
@@ -427,7 +453,7 @@ export function prepareAimedStopLatticeForState(
   cellsAcross: number,
   geometry: AimedPupilFieldGeometry,
   spectrum?: AimedPupilSpectrum,
-  coarse?: AimedStopLattice | null,
+  coarse?: SeedSource | null,
 ): AimedStopLattice | null {
   // A size that is no positive integer is a caller's error (an old argument order passes an object here), never a lattice.
   if (!Number.isInteger(cellsAcross) || cellsAcross < 1)
@@ -451,7 +477,11 @@ export function prepareAimedStopLatticeForState(
     }
   }
   const cells = stopLattice(n);
-  const lattice: AimedStopLattice = { ...aimedLaunch(state, model, R, cells, solve), cellsAcross: n, cells };
+  const lattice: AimedStopLattice = {
+    ...aimedLaunch(state, model, R, cells, solve, { cellsAcross: n, cells }),
+    cellsAcross: n,
+    cells,
+  };
   latticeModelKeys.set(lattice, { state, key });
   return lattice;
 }
@@ -507,6 +537,7 @@ function aimedLaunch(
   R: number,
   samples: readonly AimedPupilSampleInput[],
   solveCanonical: CanonicalSolver,
+  grid?: Pick<AimedStopLattice, "cells" | "cellsAcross">,
 ): AimedPupilLaunch {
   const { frame } = model;
   const toleranceMm = model.toleranceMm;
@@ -518,7 +549,26 @@ function aimedLaunch(
   const defaultWeight = samples.length > 0 ? 1 / samples.length : 1;
   // A mirror image's canonical target is its partner's: solved once per call, the same bits as solving it again.
   const solves = new Map<string, SampleSolve>();
-  const aimCanonical = (canonical: CanonicalTarget): SampleSolve => {
+  // On an even, axis-aligned stop grid each negative column occurs before its positive
+  // partner in the same row. One row holds every outstanding symmetric solve. Arbitrary
+  // sample lists and frames retain the physical-coordinate lookup, including duplicates.
+  const gridSize = grid?.cellsAcross;
+  const rowSolves =
+    gridSize &&
+    gridSize % 2 === 0 &&
+    frame.stopTarget === axisAlignedTarget &&
+    R / gridSize > Math.max(Number.EPSILON * R, Number.MIN_VALUE)
+      ? new Array<SampleSolve>(gridSize)
+      : null;
+  const aimCanonical = (canonical: CanonicalTarget, index: number): SampleSolve => {
+    if (rowSolves && grid) {
+      if (index < 0 || !frame.meridional) return solveCanonical(canonical);
+      const column = grid.cells[index].column;
+      if (column >= grid.cellsAcross / 2) return rowSolves[column];
+      const solved = solveCanonical(canonical);
+      rowSolves[grid.cellsAcross - 1 - column] = solved;
+      return solved;
+    }
     const key = `${keyNumber(canonical.stop[0])},${keyNumber(canonical.stop[1])},${canonical.pinA}`;
     let solve = solves.get(key);
     if (!solve) {
@@ -541,7 +591,7 @@ function aimedLaunch(
         : symmetry === "negate-y"
           ? [xFraction, -yFraction]
           : [xFraction, yFraction];
-    const solved = aimCanonical({ stop: canonical, fractions, pinA: frame.meridional && xFraction === 0 });
+    const solved = aimCanonical({ stop: canonical, fractions, pinA: frame.meridional && xFraction === 0 }, index);
     const solve = mapSolve(solved, symmetry, model.chief);
     const base = {
       index,
@@ -585,13 +635,15 @@ function aimedLaunch(
   };
 
   const chief = toRay(-1, 0, 0, 0);
+  let aimedCount = 0;
+  let blockedCount = 0;
   const rays = samples.map((sample, index) => {
     const ray = toRay(index, sample.xFraction, sample.yFraction, sample.weight ?? defaultWeight);
-    if (ray.status === "unaimed") unaimedByReason[ray.reason]++;
+    if (ray.status === "aimed") aimedCount++;
+    else if (ray.status === "blocked") blockedCount++;
+    else unaimedByReason[ray.reason]++;
     return ray;
   });
-  const aimedCount = rays.filter((ray) => ray.status === "aimed").length;
-  const blockedCount = rays.filter((ray) => ray.status === "blocked").length;
 
   return {
     launchSurface: frame.surface,
@@ -610,64 +662,68 @@ function aimedLaunch(
 }
 
 /** A coarser lattice's aimed launches, indexed for bilinear seeding. */
-interface LatticeSeedMap {
-  /** Cells across the coarse lattice. */
-  cellsAcross: number;
-  /** Launch of each aimed coarse cell at row · cellsAcross + column; null where the cell is not aimed or not in the disc. */
-  launches: (Vec2 | null)[];
-  /** Stop crossing of each aimed coarse cell, indexed alike. */
-  stops: (Vec2 | null)[];
+interface LatticeSeedMap extends AimedStopSeeds {
+  /** Repeating subcell offsets on this refinement share their exact interpolation weights. */
+  stencilAt: (offset: number, nodes: 2 | 4) => LagrangeStencil;
   /** For every coarse grid position, the index of an aimed coarse cell fewest king's moves away; −1 when none is aimed. */
   nearestAimed: Int32Array;
   /** The frame's linear map from normalised stop coordinates to the stop crossing in mm, [∂x/∂u, ∂x/∂v, ∂y/∂u, ∂y/∂v]. */
   stopPerFraction: Matrix2;
 }
 
-function latticeSeedMap(lattice: AimedStopLattice, frame: LaunchFrame, R: number): LatticeSeedMap {
-  const m = lattice.cellsAcross;
-  const launches: (Vec2 | null)[] = new Array(m * m).fill(null);
-  const stops: (Vec2 | null)[] = new Array(m * m).fill(null);
-  lattice.cells.forEach((cell, i) => {
-    const ray = lattice.rays[i];
-    if (ray.status !== "aimed") return;
-    launches[cell.row * m + cell.column] = ray.launch;
-    stops[cell.row * m + cell.column] = ray.achievedStopMm;
-  });
+function latticeSeedMap(source: SeedSource, frame: LaunchFrame, R: number): LatticeSeedMap {
+  const { coordinates, cellsAcross: m } = "coordinates" in source ? source : compactStopSeeds(source);
   const origin = frame.stopTarget(0, 0, R);
   const alongU = frame.stopTarget(1, 0, R);
   const alongV = frame.stopTarget(0, 1, R);
-  // Multi-source breadth-first sweep from the aimed cells: each grid position takes the first aimed cell to reach it.
-  const nearestAimed = new Int32Array(m * m).fill(-1);
-  let frontier: number[] = [];
-  launches.forEach((launch, index) => {
-    if (launch) {
-      nearestAimed[index] = index;
-      frontier.push(index);
-    }
-  });
-  while (frontier.length) {
-    const next: number[] = [];
-    for (const index of frontier) {
-      const row = Math.floor(index / m);
-      const column = index % m;
-      for (let dr = -1; dr <= 1; dr++)
-        for (let dc = -1; dc <= 1; dc++) {
-          const r = row + dr;
-          const c = column + dc;
-          if (r < 0 || c < 0 || r >= m || c >= m || nearestAimed[r * m + c] >= 0) continue;
-          nearestAimed[r * m + c] = nearestAimed[index];
-          next.push(r * m + c);
-        }
-    }
-    frontier = next;
-  }
+  let nearest: Int32Array | undefined;
+  const linear = new Map<number, LagrangeStencil>();
+  const cubic = new Map<number, LagrangeStencil>();
   return {
     cellsAcross: m,
-    launches,
-    stops,
-    nearestAimed,
+    coordinates,
+    get nearestAimed() {
+      return (nearest ??= nearestAimedIndices(coordinates, m));
+    },
+    stencilAt(offset, nodes) {
+      const table = nodes === 4 ? cubic : linear;
+      let stencil = table.get(offset);
+      if (!stencil) {
+        stencil = lagrangeStencil(offset, nodes);
+        table.set(offset, stencil);
+      }
+      return stencil;
+    },
     stopPerFraction: [alongU[0] - origin[0], alongV[0] - origin[0], alongU[1] - origin[1], alongV[1] - origin[1]],
   };
+}
+
+/** Build nearest neighbours only for pupils whose interpolated launch needs a fallback. */
+function nearestAimedIndices(coordinates: Float64Array, m: number): Int32Array {
+  // Multi-source breadth-first sweep from the aimed cells: each grid position takes the first aimed cell to reach it.
+  const nearestAimed = new Int32Array(m * m).fill(-1);
+  const queue = new Int32Array(m * m);
+  let end = 0;
+  for (let index = 0; index < m * m; index++) {
+    if (!Number.isNaN(coordinates[4 * index])) {
+      nearestAimed[index] = index;
+      queue[end++] = index;
+    }
+  }
+  for (let head = 0; head < end; head++) {
+    const index = queue[head];
+    const row = Math.floor(index / m);
+    const column = index % m;
+    for (let dr = -1; dr <= 1; dr++)
+      for (let dc = -1; dc <= 1; dc++) {
+        const r = row + dr;
+        const c = column + dc;
+        if (r < 0 || c < 0 || r >= m || c >= m || nearestAimed[r * m + c] >= 0) continue;
+        nearestAimed[r * m + c] = nearestAimed[index];
+        queue[end++] = r * m + c;
+      }
+  }
+  return nearestAimed;
 }
 
 /**
@@ -705,19 +761,19 @@ function seededAim(model: FieldModel, map: LatticeSeedMap, target: CanonicalTarg
   };
   const window = seedWindow(map, s, t);
   if (!window) return fromNearest(0);
-  const stencilU = lagrangeStencil(s - window.column, window.nodes);
-  const stencilV = lagrangeStencil(t - window.row, window.nodes);
+  const stencilU = map.stencilAt(s - window.column, window.nodes);
+  const stencilV = map.stencilAt(t - window.row, window.nodes);
   const seed: [number, number] = [0, 0];
   // Launch per normalised coordinate: one coarse cell spans 2 / m of it.
   const perU: [number, number] = [0, 0];
   const perV: [number, number] = [0, 0];
   for (let i = 0; i < window.nodes; i++)
     for (let j = 0; j < window.nodes; j++) {
-      const node = map.launches[(window.row + i) * m + window.column + j]!;
+      const node = 4 * ((window.row + i) * m + window.column + j);
       for (const k of [0, 1] as const) {
-        seed[k] += stencilV.weights[i] * stencilU.weights[j] * node[k];
-        perU[k] += stencilV.weights[i] * stencilU.slopes[j] * node[k] * (m / 2);
-        perV[k] += stencilV.slopes[i] * stencilU.weights[j] * node[k] * (m / 2);
+        seed[k] += stencilV.weights[i] * stencilU.weights[j] * map.coordinates[node + k];
+        perU[k] += stencilV.weights[i] * stencilU.slopes[j] * map.coordinates[node + k] * (m / 2);
+        perV[k] += stencilV.slopes[i] * stencilU.weights[j] * map.coordinates[node + k] * (m / 2);
       }
     }
   const fractionPerLaunch = invert2([perU[0], perV[0], perU[1], perV[1]]);
@@ -749,9 +805,12 @@ function nearestAimedCoarseCell(map: LatticeSeedMap, s: number, t: number): { la
   const row = Math.min(m - 1, Math.max(0, Math.round(t)));
   const column = Math.min(m - 1, Math.max(0, Math.round(s)));
   const index = map.nearestAimed[row * m + column];
-  const launch = index >= 0 ? map.launches[index] : null;
-  const stop = index >= 0 ? map.stops[index] : null;
-  return launch && stop ? { launch, stop } : null;
+  if (index < 0) return null;
+  const offset = 4 * index;
+  return {
+    launch: [map.coordinates[offset], map.coordinates[offset + 1]],
+    stop: [map.coordinates[offset + 2], map.coordinates[offset + 3]],
+  };
 }
 
 /** Shifts of a 4-node window from centred, nearest first; a shift past the cell extrapolates. */
@@ -768,7 +827,7 @@ function seedWindow(map: LatticeSeedMap, s: number, t: number): { row: number; c
   const aimed = (row: number, column: number, nodes: number) => {
     if (row < 0 || column < 0 || row + nodes > m || column + nodes > m) return false;
     for (let i = 0; i < nodes; i++)
-      for (let j = 0; j < nodes; j++) if (map.launches[(row + i) * m + column + j] === null) return false;
+      for (let j = 0; j < nodes; j++) if (Number.isNaN(map.coordinates[4 * ((row + i) * m + column + j)])) return false;
     return true;
   };
   const row = Math.floor(t);

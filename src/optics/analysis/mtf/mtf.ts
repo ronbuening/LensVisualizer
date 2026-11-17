@@ -41,7 +41,7 @@ import {
   mtfTraceOptions,
 } from "./mtfTracing.js";
 import type { MtfBundle, MtfFieldLaunch, MtfOpenBorders } from "./mtfTracing.js";
-import type { AimedStopLattice } from "../pupils/aimedPupil.js";
+import { compactStopSeeds, type AimedStopSeeds, type AimedStopLattice } from "../pupils/aimedPupil.js";
 import { expandMtfFootprint } from "./mtfFootprint.js";
 import type { MtfFootprint } from "./mtfFootprint.js";
 import { mtfWaveLattice, qualifiedWaveOtf } from "./mtfWavefront.js";
@@ -286,8 +286,8 @@ function combineLimits(limits: readonly WeightedLimit[]): { sagittal: number[]; 
 
 /** How one field samples its pupil across the grid ladder. */
 type MtfFieldSampling =
-  /** On the real stop; each wavelength's latest lattice seeds its next, finer one. */
-  | { kind: "stop"; lattices: Map<number, AimedStopLattice> }
+  /** On the real stop; each entry holds the compact seed for one future grid and wavelength. */
+  | { kind: "stop"; seeds: Map<number, Map<number, AimedStopSeeds>> }
   /** On the launch plane over a footprint, for a field launched from the bounding sphere. */
   | { kind: "launch-plane"; footprint: MtfFootprint };
 
@@ -338,10 +338,20 @@ function* fieldAtGrid(
           ? axial
           : traceMtfStopBundle(state, options, support, launch, size, line, context.imagePlaneZ, {
               reference: commonReference,
-              coarse: sampling.lattices.get(index),
+              coarse: sampling.seeds.get(size)?.get(index),
               opticalPath,
             });
-      if (bundle?.lattice) sampling.lattices.set(index, bundle.lattice);
+      // A 48-cell level seeds 96, while 32 is still needed for 64. Drop each
+      // parent's data as soon as its line consumes it, and never retain the cap.
+      sampling.seeds.get(size)?.delete(index);
+      if (bundle?.lattice && context.ladder.includes(2 * size)) {
+        let finer = sampling.seeds.get(2 * size);
+        if (!finer) {
+          finer = new Map();
+          sampling.seeds.set(2 * size, finer);
+        }
+        finer.set(index, compactStopSeeds(bundle.lattice));
+      }
     } else {
       bundle = traceMtfLaunchPlaneBundle(
         state,
@@ -604,7 +614,7 @@ function* traceField(
     return;
   }
   if (launch.aim) {
-    const sampling: MtfFieldSampling = { kind: "stop", lattices: new Map() };
+    const sampling: MtfFieldSampling = { kind: "stop", seeds: new Map() };
     yield* refineMtfFieldSteps(
       context.ladder,
       (size) => fieldAtGrid(context, target, launch, sampling, size, phase),

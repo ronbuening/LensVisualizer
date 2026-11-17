@@ -29,14 +29,16 @@ export interface StopLatticeCell {
  */
 export function stopLattice(cellsAcross: number): StopLatticeCell[] {
   const n = cellsAcross;
-  const cells: Omit<StopLatticeCell, "index" | "weight">[] = [];
+  const cells: StopLatticeCell[] = [];
   for (let row = 0; row < n; row++) {
     const yFraction = (2 * row + 1 - n) / n;
     for (let column = 0; column < n; column++) {
       const xFraction = (2 * column + 1 - n) / n;
-      if (xFraction * xFraction + yFraction * yFraction <= 1) cells.push({ row, column, xFraction, yFraction });
+      if (xFraction * xFraction + yFraction * yFraction <= 1)
+        cells.push({ index: cells.length, row, column, xFraction, yFraction, weight: 0 });
     }
   }
   const weight = 1 / cells.length;
-  return cells.map((cell, index) => ({ index, ...cell, weight }));
+  for (const cell of cells) cell.weight = weight;
+  return cells;
 }
