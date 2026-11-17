@@ -2,25 +2,26 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 /**
  * US 2,231,699 A (Harold F. Bennett, Eastman Kodak Company, granted 1941), Figure 1 example: a four-element,
  * two-group telephoto objective, f = 100 mm, f/3.8. Radii, thicknesses, the 39.5 mm group separation and the sodium-D
- * indices and Abbe numbers are copied unchanged at the patent's own f = 100 mm scale (no scaling).
+ * indices and Abbe numbers are copied unchanged from the patent.
  *
  * Inferred, not printed: the stop sits at the middle of the 39.5 mm air space (the patent shows no diaphragm); the clear
  * semi-diameters (13.5 mm front, 10 mm rear) are estimates; the image plane is the computed paraxial back focus at the
- * D line (33.45 mm), since the patent prints no back focus. No production lens is identified with this example.
+ * D line (33.45 mm), since the patent prints no back focus. The patent does not name its glasses: L1 to L3 carry modern
+ * catalog equivalents that match the printed nD and V at the printed precision; L4 has no such match.
  */
 const LENS_DATA = {
   schema: 2,
   key: "kodak-100mm-f38-us2231699",
   maker: "Kodak",
   name: "KODAK 100mm f/3.8 (US 2,231,699 Design)",
-  subtitle: "1939 DESIGN / 1941 GRANT \u2014 NO PRODUCTION MATCH",
+  subtitle: "US 2,231,699 A, Figure 1 \u2014 two-doublet f/3.8 telephoto",
   visible: true,
   catalog: {
     specs: [
       "4 ELEMENTS / 2 GROUPS",
-      "PATENT-ONLY REFERENCE",
-      "ESTIMATED STOP AND RIMS",
-      "INFINITY ONLY"
+      "ALL SPHERICAL",
+      "DESIGN F/3.8",
+      "TELEPHOTO"
     ],
     elementCount: 4,
     groupCount: 2,
@@ -55,17 +56,19 @@ const LENS_DATA = {
       nd: 1.498,
       vd: 67,
       indexReference: "D",
+      glass: "N-BK10 (SCHOTT catalog equivalent; patent nD 1.498 / V 67.0; production supplier unspecified)",
       cemented: "C1",
-      role: "Positive crown of the front cemented doublet."
+      role: "Positive crown of the front cemented doublet; supplies the front component's power."
     },
     {
       id: 2,
       name: "L2",
       label: "Element 2",
-      type: "Plano-concave Negative",
+      type: "Plano-Concave Negative",
       nd: 1.664,
       vd: 35.9,
       indexReference: "D",
+      glass: "J-BASF2 (HIKARI catalog equivalent; patent nD 1.664 / V 35.9; production supplier unspecified)",
       cemented: "C1",
       role: "Negative flint of the front cemented doublet, with a flat rear face."
     },
@@ -77,6 +80,7 @@ const LENS_DATA = {
       nd: 1.516,
       vd: 64.1,
       indexReference: "D",
+      glass: "S-BSL7 (OHARA catalog equivalent; patent nD 1.516 / V 64.1; production supplier unspecified)",
       cemented: "C2",
       role: "Negative crown at the front of the rear cemented doublet."
     },
@@ -88,8 +92,9 @@ const LENS_DATA = {
       nd: 1.639,
       vd: 55.5,
       indexReference: "D",
+      glass: "Unmatched (nD 1.639 / V 55.5)",
       cemented: "C2",
-      role: "Higher-index positive rear element; its cemented face R5 carries the patent's distortion-reducing index step."
+      role: "Higher-index positive rear element; the index step at its cemented face R5 is the patent's means of reducing distortion."
     }
   ],
   surfaces: [
@@ -140,8 +145,8 @@ const LENS_DATA = {
     }
   ],
   focus: {
-    closeFocusM: 1000000000000000.0,
-    description: "Infinity-only patent reference. No sourced finite-focus motion."
+    closeFocusM: 1e15,
+    description: "Infinity focus only; the patent gives no close-focus data."
   },
   aperture: {
     nominalFNumber: 3.8,
