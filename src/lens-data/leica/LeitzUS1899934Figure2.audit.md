@@ -142,7 +142,7 @@ Hoya E-FL6 (ΔnD −0.00010) and E-FEL2 tie with the two Ohara rows; Ohara was u
 **Open:**
 
 - The inferred stop sits inside the bowl of r8. The drawing's L5 cap and flange end about 10.4–10.7 mm behind r8, so an iris about 10.5 mm behind r8 (1.5 mm ahead of r9) would leave r8 free to take the drawn 24.4. Moving the stop is outside this pass. (Closed: done on the coordinator's request, below.)
-- `source.sdSource` still says "heuristic". The rims are now mostly figure readings, with surfaces 3 and 4 set by the ray floor. The coordinator may switch it to "figure-measured" or leave it.
+- `source.sdSource` still says "heuristic". The rims are now mostly figure readings, with surfaces 3 and 4 set by the ray floor. The coordinator may switch it to "figure-measured" or leave it. (Closed 2026-11-17: now "figure-measured".)
 
 **Stop move (same day, on the coordinator's request):** the stop position is inferred, since the patent prints none and the drawing shows none.
 
@@ -161,3 +161,68 @@ Hoya E-FL6 (ΔnD −0.00010) and E-FEL2 tie with the two Ohara rows; Ohara was u
   - 10.2°: 73.8 → 76.5
   - 12.2°: 63.1 → 68.6
   - Worst loss: 0.5 points at 6.1°, within the 3-point limit. `rimcost --loo` shows no rim whose restore wins light back.
+
+## 2026-11-17 — Second review on the local site
+
+**Compared:** the live page (1400×900, local dev server), the element inspector for all seven elements and the focus overlay, against Figure 2 on the drawing sheet, rendered at its native 300 dpi. The page-2 table was re-read against the file: every radius, thickness, air space, nD and ν match, and a3 = 12.034 = 10.35 + 1.684.
+
+**Scale, measured afresh:** the r1 and r11 vertex edges on the axis are 740 px apart for 90.47 mm, 8.18 px/mm at 300 dpi (the earlier 16.34 px/mm at 600 dpi). The r2, r5 and r8 vertices land within 1 px of the prescription at that scale. The axis from the midpoints of the three doublets' flat top and bottom edges agrees within 0.5 px.
+
+**Readings (line centres, mm; stored value in brackets):**
+
+- L1 tips 39.3 (39.5).
+- C1 flat edge 36.6 (38). Rear cap end at a 45° bevel, 35.0 (34.9). L2's drawn edge, about 2.1 mm thick at the top, puts the edge near 37.0.
+- C2 flat edge 29.4 (29.5). The r6 cap ends at the front chamfer at 27.5 (27.5).
+- r8 cap corner: 24.2 read directly, 24.6 from its drawn sag of 10.5 mm (24.4).
+- C3 flat edge 24.5 (24.6).
+
+Every stored rim is inside the reading noise, so no `sd` changes.
+
+**Changes:**
+
+| Field | Before | After | Evidence |
+|---|---|---|---|
+| Surface 5 `rimExtensionSd` | none | 38 | The figure draws C1 square-cut: one flat edge across L2 and L3, with a small bevel at r5. The page drew L3's top as a 3.1 mm slope along its whole 14 mm edge, from the 38 cement rim down to the 34.9 cap. The land squares it as drawn, as surface 8's flange already does for C2. It traces nothing (`rimcost` curves identical with and without it). `audit:surface` OK. |
+| Element `focalLengthMm` | missing; every inspector read "FL = —" | L1 207.8, L2 69.7, L3 −130.7, L4 98.8, L5 −31.9, L6 −971.6, L7 51.1 | Thick-lens focal length of each element in air at its printed nD. These are the values the analysis already quotes. |
+| Header semi-diameter note | said the 36.3 ray floor was above "the 36.6 flat edge" | 38 is 3.7 % above the drawn 36.6 edge; the ray needs 36.3 | 36.3 is below 36.6, so the old sentence was wrong. Added the surface 5 land. |
+
+**Analysis:** the C1 clear-aperture bullets now give the drawn 36.6 mm edge and the new flange. The 35.2 mm "front cap" figure was dropped: on this reading r3's drawn curve follows its radius to the corner within about 0.4 mm.
+
+**Stop move (re-checked; the gap is outside this review's edits):** the move stands.
+
+- The drawing ends L5's cap 10.5 mm behind r8, and a3 is drawn 8 % thin.
+- At the old 8.4 mm, any rim above 22.35 mm would cross the iris plane. That is why the earlier rim was cut to 22.3.
+- 10.35 mm is the least position that keeps the drawn 24.4 cap.
+- The chief ray now clears L1 to 17.86° (`clearap2` at 17.85°: 39.47 mm against the 39.5 rim). The engine's 18.56° default is an estimate slightly beyond that, as 19.64° was beyond 18.5° before.
+
+**Lands and cuts:** `rimcost --loo` against `base1128sd`, 0–12.2°: worst loss 0.0 points.
+
+- Restoring C1, C2 (the surface 8 cut and its land) or C3 wins back 0.0.
+- `--noext 8` and `--ext 5=38` leave the curves unchanged. The figure draws both flanges, so both lands stay.
+- Against the true baseline (old stop, package rims), the engine curve reads: 4.1° 96.1 → 96.0, 6.1° 90.9 → 90.4, 8.1° 82.9 → 84.0, 10.2° 73.8 → 76.5, 12.2° 63.1 → 68.6.
+
+**Labels, tags, inspector:**
+
+- Types agree with the radius signs.
+- Roles are true: L7 is the strongest positive element, f 51.1 against L2's 69.7.
+- The patent names no elements and no groups, so L1–L7 and the empty `groups` stand.
+- C1, C2 and C3 bracket surfaces 3–5, 6–8 and 9–11, the three printed cemented pairs. Each inspector reads "DOUBLET Cn"; none reads "TRIPLET".
+- No aspheres and no `apd` tags; the patent names no glass and prints no partial dispersion.
+- The STO sits in a3 between C2 and C3. Brackets and the STO label do not collide.
+
+**Movement:** none. There is no variable gap and no zoom block. The focus slider reads "Not modeled", and the movement overlay reports no modeled focus or zoom movement. `focus.description` claims nothing the patent does not say.
+
+**Glass and colour:**
+
+- **L5 and L6:** exact at the D line. S-TIL26 is nD 1.56721, νD 42.81 (ΔnD −0.00009, Δν +0.01). S-TIL2 is 1.54062 / 47.22 (−0.00008, +0.02). Hoya E-FL6 and E-FEL2 tie, and no Schott row in the catalogue matches.
+- **Sumita rows not in the catalogue:** `sumita-2025-11-07-all.agf` has two exact rows under the period Schott names, both marked obsolete. LF6 is nD 1.56721, νD 42.80 (−0.00009, 0.00). LLF2 is 1.54062 / 47.22 (−0.00008, +0.02).
+- **Unmatched pairs:** no catalogue row lies within 1e-4 at D for 1.6240/58.2 (L1, L2, L7), 1.6219/36.1 (L3) or 1.6242/44.8 (L4).
+- **What the patent gives:** only nD and ν, with no glass names and no other line. None of Figure 2's pairs recurs in Figure 1.
+- **Colour:** no aberration curves are printed, so there is nothing to compare colour against. Every element carries ν, so none is nD-only.
+
+**Assignee:** "Ernst Leitz GmbH" is the corpus form for the printed "Ernst Leitz, Optische Werke, G.m.b.H."; unchanged.
+
+**Open:**
+
+- The engine's default half-field (18.56°) is slightly beyond the 17.86° at which L1's drawn rim first blocks the chief ray. The patent states no field.
+- The figure bevels the L5 and r5 flanges; a land draws them square.

@@ -31,9 +31,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * real-ray trace. Scale: 16.34 px/mm at 600 dpi from the r1-r11 vertex span; arc fits of r8 and r9 put the
  * vertical scale within 2 % of the axial one.
  *   - L1 (39.5) agrees with the drawing (about 39.2).
- *   - Surfaces 3 and 4 stay at 38: the f/1.3 axial ray needs 36.3 at surface 3, above the drawn 35.2 front cap and
- *     the 36.6 flat edge.
- *   - Surface 5 is 34.9, where the drawn rear face ends in a small bevel.
+ *   - Surfaces 3 and 4 stay at 38, 3.7 % above the doublet's drawn 36.6 flat edge (inside the reading noise). The
+ *     f/1.3 axial ray needs 36.3 at surface 3.
+ *   - Surface 5 is 34.9, where the drawn rear face ends in a small bevel. rimExtensionSd 38 draws the flange out to
+ *     the doublet's flat edge, so C1 renders square-cut as drawn; the land traces nothing.
  *   - Surface 6 is 27.5, where the drawn front face ends in a chamfer (about 27.8).
  *   - Surface 7, the cemented face, is 29.5, the drawn flat edge of the doublet.
  *   - Surface 8 is 24.4, where the drawing ends L5's concave cap. rimExtensionSd 29.5 draws the flange out to the
@@ -78,6 +79,7 @@ const LENS_DATA = {
       nd: 1.624,
       vd: 58.2,
       indexReference: "D",
+      focalLengthMm: 207.8,
       glass: "Unmatched (nD 1.6240 / V 58.2)",
       role: "Front positive meniscus, split from the triplet's front member to share the convergence with C1",
     },
@@ -89,6 +91,7 @@ const LENS_DATA = {
       nd: 1.624,
       vd: 58.2,
       indexReference: "D",
+      focalLengthMm: 69.7,
       glass: "Unmatched (nD 1.6240 / V 58.2)",
       role: "Biconvex crown of the front cemented doublet C1",
       cemented: "C1",
@@ -101,6 +104,7 @@ const LENS_DATA = {
       nd: 1.6219,
       vd: 36.1,
       indexReference: "D",
+      focalLengthMm: -130.7,
       glass: "Unmatched (nD 1.6219 / V 36.1)",
       role: "Thin flint of C1; almost index-matched to L2, so its cemented face works mainly on colour",
       cemented: "C1",
@@ -113,6 +117,7 @@ const LENS_DATA = {
       nd: 1.6242,
       vd: 44.8,
       indexReference: "D",
+      focalLengthMm: 98.8,
       glass: "Unmatched (nD 1.6242 / V 44.8)",
       role: "Positive meniscus of the negative member C2; higher-index side of its collective cemented face",
       cemented: "C2",
@@ -125,6 +130,7 @@ const LENS_DATA = {
       nd: 1.5673,
       vd: 42.8,
       indexReference: "D",
+      focalLengthMm: -31.9,
       glass: "S-TIL26 (OHARA catalog equivalent)",
       role: "Strong negative element of C2; its deeply curved rear face faces the iris",
       cemented: "C2",
@@ -137,6 +143,7 @@ const LENS_DATA = {
       nd: 1.5407,
       vd: 47.2,
       indexReference: "D",
+      focalLengthMm: -971.6,
       glass: "S-TIL2 (OHARA catalog equivalent)",
       role: "Weak negative meniscus at the front of the rear cemented doublet C3",
       cemented: "C3",
@@ -149,6 +156,7 @@ const LENS_DATA = {
       nd: 1.624,
       vd: 58.2,
       indexReference: "D",
+      focalLengthMm: 51.1,
       glass: "Unmatched (nD 1.6240 / V 58.2)",
       role: "Biconvex crown of C3 and the strongest positive element; the rear member carries most of the power",
       cemented: "C3",
@@ -187,6 +195,7 @@ const LENS_DATA = {
       R: 445.72,
       d: 11.143,
       sd: 34.9,
+      rimExtensionSd: 38,
     },
     {
       label: "6",
