@@ -13,9 +13,18 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * model's focal length is 98.27 mm. The stated component focal lengths (−298.0 and +69.4) are not reproduced; see
  * source.errata.
  *
- * Inferred: the iris at the middle of the 3 mm air space (the drawing marks the space "S" but gives no stop position),
- * 8 mm clear semi-diameters on every surface (the drawing is not to scale), and the image plane at the computed D-line
- * paraxial back focus, 90.77 mm. Infinity only; the patent gives no focusing data.
+ * Inferred: the iris at the middle of the 3 mm air space (the drawing marks the space "S" but gives no stop position)
+ * and the image plane at the computed D-line paraxial back focus, 90.77 mm. Infinity only; the patent gives no focusing
+ * data. The image circle, 113 mm, is the patent's stated 60° field at its stated 98.02 mm focal length.
+ *
+ * SEMI-DIAMETERS: estimated from Figure 1, floor-checked by real-ray trace. Measured at 600 dpi the figure is to scale
+ * axially (78 px/mm over R1 to R7; the 4 mm lenses within 3 %), but it draws both cemented components as square blocks
+ * only about 6.0 mm high, less than the f/7 axial beam needs (7.02 mm at R1). The outer faces therefore keep 8 mm: both
+ * blocks at one height as drawn, and any reduction toward the drawing costs corner light (7.8 mm loses 2.7 points at
+ * 30°, 7.1 mm about 12). The drawing bevels the two faces across the air space, R4 to 0.87 and R5 to 0.85 of the block
+ * height; at that ratio R4 is 7.0 mm and R5 6.8 mm, above both the axial beam (6.13 / 6.17 mm) and the 30° beam
+ * (6.51 / 6.67 mm), at no cost in light. Each of those two faces carries a flat land out to the 8 mm block edge
+ * (rimExtensionSd), so both blocks keep the drawing's flat tops and only the corners facing the air space are relieved.
  */
 const LENS_DATA = {
   schema: 2,
@@ -34,6 +43,7 @@ const LENS_DATA = {
     ],
     elementCount: 5,
     groupCount: 2,
+    imageCircleMm: 113,
     focalLengthMm: {
       design: 98.27
     },
@@ -150,7 +160,8 @@ const LENS_DATA = {
       label: "4",
       R: 25.3,
       d: 1.5,
-      sd: 8
+      sd: 7,
+      rimExtensionSd: 8
     },
     {
       label: "STO",
@@ -161,7 +172,8 @@ const LENS_DATA = {
       label: "5",
       R: -27.3,
       d: 1,
-      sd: 8,
+      sd: 6.8,
+      rimExtensionSd: 8,
       medium: 4
     },
     {
