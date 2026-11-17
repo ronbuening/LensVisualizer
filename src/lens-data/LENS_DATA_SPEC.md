@@ -390,8 +390,9 @@ source: {
 
 - `corrected`: the file must carry `applied` at `surface` / `field`, and `evidence` must cite at least two of
   `source-summary` (stated f, F-number, field angle, back focus, total length), `sibling-example` (another example of
-  the same source), `aberration-figure` (the source's own aberration plots), `claims` and `family-publication` (another
-  publication of the same application prints the applied value). A manufacturer chart, a measured lens or "the trace
+  the same source), `source-reprint` (the source prints the same table a second time, with the applied value),
+  `aberration-figure` (the source's own aberration plots), `claims` and `family-publication` (another publication of
+  the same application prints the applied value). A manufacturer chart, a measured lens or "the trace
   looks better" is never evidence.
 - `field` names an asphere term (`K`, `A4`, …), `R`, `d` or `nd`. `nd` is the index of the medium the surface opens
   into; `d` on a gap surface is the gap's first thickness.

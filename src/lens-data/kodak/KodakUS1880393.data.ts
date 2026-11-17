@@ -18,9 +18,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * The semi-diameters (9.5, 9.0, 9.0 for lenses 1 to 3) are estimated from the relative rim heights in the patent
  * figure, which draws lenses 2 and 3 at about 0.94 of lens 1's height with square-cut rims. The figure is schematic
  * in its axial spacings, so its absolute scale is not used. All rims clear the f/6.8 axial beam.
- * The patent gives no field angle and no close-focus data; the model is infinity-only. Lens 2 (D 1.575, ν 41.4)
- * matches the catalogue light flint J-LF7, whose dispersion curve also gives the printed G′ index 1.593; lenses 1
- * and 3 match no catalogue glass and take their dispersion from the printed ν.
+ * The patent gives no field angle and no close-focus data; the model is infinity-only. The traced field, ±26°, is
+ * calculated: the patent claims correction for astigmatism, and at the D line the tangential field returns to the
+ * focal plane at 26.3° and breaks down beyond 32°. The image circle is twice the chief-ray image height at 26°.
+ * Lens 2 (D 1.575, ν 41.4) matches the catalogue light flint J-LF7, whose dispersion curve also gives the printed
+ * G′ index 1.593; lenses 1 and 3 match no catalogue glass and take their dispersion from the printed ν.
  */
 const LENS_DATA = {
   schema: 2,
@@ -35,6 +37,7 @@ const LENS_DATA = {
     groupCount: 3,
     focalLengthMm: { marketing: 100, design: 99.81 },
     fNumber: { marketing: 6.8, design: 6.8 },
+    imageCircleMm: 98,
   },
   source: {
     patentNumber: "US 1,880,393 A",
@@ -49,7 +52,7 @@ const LENS_DATA = {
         field: "nd",
         printed: 1.573,
         applied: 1.575,
-        evidence: ["source-summary", "sibling-example"],
+        evidence: ["source-summary", "source-reprint"],
         note: "The specification table (p. 2) prints lens 2 D = 1.573; the patent's drawing-sheet table of the same example (p. 1) prints 1.575, its only other difference being S1. With 1.573 the D-line focal length is 98.90 against the stated 100.00, and the D and G′ foci lie 1.13 apart although the text calls the objective corrected for chromatic aberration; 1.575 gives 99.81 and 0.22. With the printed G′ 1.593 and ν 41.4, 1.575 gives (nG′ − nD)/(nF − nC) = 1.30, as for a light flint, against 1.45 with 1.573.",
       },
       {
@@ -111,7 +114,7 @@ const LENS_DATA = {
       "Infinity focus only; the patent describes focusing by moving the front lens but gives no close-focus data.",
   },
   aperture: { nominalFNumber: 6.8, fStops: [6.8, 8, 11, 16], maxFNumber: 16 },
-  projection: { kind: "rectilinear", fullFieldDeg: 6, maxTraceFieldDeg: 3 },
+  projection: { kind: "rectilinear", fullFieldDeg: 52, maxTraceFieldDeg: 26 },
   groups: [
     { text: "FRONT (−)", fromSurface: "1", toSurface: "4" },
     { text: "REAR (+)", fromSurface: "5", toSurface: "6" },
