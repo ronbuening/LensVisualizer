@@ -111,7 +111,7 @@ Hoya E-FL6 (ΔnD −0.00010) and E-FEL2 tie with the two Ohara rows; Ohara was u
 
 - Surface 5: 33 → 34.9. The figure's rear-face cap end. The drawn rear step of C1 is 1.7 mm; the model's was 5 mm.
 - Surface 7: 27.5 → 29.5. The cemented face reaches the drawn flat edge. This also reproduces the drawn front chamfer from r6 at 27.5.
-- Surface 8: 27.5 → 22.3. The figure's cap end is 24.4. At 24.4 the cap would sit 2.0 mm behind the inferred stop plane, and the drawn iris housing (the smaller neighbouring rim) would cross L5's glass. 22.3 is the largest value whose sag (8.35 mm) stays ahead of the 8.4 mm stop distance, 8.6 % under the drawn reading. The old 27.5 put the rim 14.0 mm behind the vertex, past r9's vertex plane.
+- Surface 8: 27.5 → 22.3. The figure's cap end is 24.4. At 24.4 the cap would sit 2.0 mm behind the inferred stop plane, and the drawn iris housing (the smaller neighbouring rim) would cross L5's glass. 22.3 is the largest value whose sag (8.35 mm) stays ahead of the 8.4 mm stop distance, 8.6 % under the drawn reading. The old 27.5 put the rim 14.0 mm behind the vertex, past r9's vertex plane. (Superseded by the stop move below: surface 8 is now 24.4.)
 - Surfaces 9, 10 and 11: 22.5 → 24.6. The rear doublet is drawn square-cut at this height.
 
 **Kept:**
@@ -134,11 +134,30 @@ Hoya E-FL6 (ΔnD −0.00010) and E-FEL2 tie with the two Ohara rows; Ohara was u
 - Engine values are unchanged: half-field 19.64°, f/1.3, EFL 99.992 mm, iris radius 20.356 mm.
 - The drawn iris housing falls from 22.5 to 22.3, now just inside the air at the stop plane.
 - The chief ray clears every surface to about 18.5°, limited by L1's rim, as before.
+- (These three lines describe the state before the stop move below.)
 - `audit:image-circle` and `audit:field-coverage` still skip the lens (no image format).
 
 **Metadata:** no change. No production lens or format is documented. The table is the patent's own f = 100 normalisation, so no film format applies as built. The current name, "LEITZ 100mm f/1.3 (US 1,899,934 Figure 2 Design)", is a patent-design name; no product name exists to compare.
 
 **Open:**
 
-- The inferred stop sits inside the bowl of r8. The drawing's L5 cap and flange end about 10.4–10.7 mm behind r8, so an iris about 10.5 mm behind r8 (1.5 mm ahead of r9) would leave r8 free to take the drawn 24.4. Moving the stop is outside this pass.
+- The inferred stop sits inside the bowl of r8. The drawing's L5 cap and flange end about 10.4–10.7 mm behind r8, so an iris about 10.5 mm behind r8 (1.5 mm ahead of r9) would leave r8 free to take the drawn 24.4. Moving the stop is outside this pass. (Closed: done on the coordinator's request, below.)
 - `source.sdSource` still says "heuristic". The rims are now mostly figure readings, with surfaces 3 and 4 set by the ray floor. The coordinator may switch it to "figure-measured" or leave it.
+
+**Stop move (same day, on the coordinator's request):** the stop position is inferred, since the patent prints none and the drawing shows none.
+
+- **Change:** the iris moves back within a3, from 8.4 mm to 10.35 mm behind r8 (3.634 → 1.684 mm ahead of r9). This is the least move that lets r8 take the drawn cap edge, 24.4 mm, whose sag is 10.34 mm. Surface 8 goes from 22.3 to 24.4 with `rimExtensionSd` 29.5. That land draws L5's flange out to the doublet's 29.5 mm flat edge in place of the drawn bevel, and traces nothing.
+- **Clearance:** r9 lies 1.684 mm behind the stop on axis and recedes outward, so the stop clears it. The iris housing (24.4) meets no glass at the stop plane: L5's cap ends 0.01 mm ahead of it, and L6 starts 1.68 mm behind it.
+- **Engine values:** EFL 99.992 mm and f/1.3 are unchanged.
+  - Iris radius: 20.356 → 20.320 mm.
+  - Iris clearance to r8: 3.60 mm (was 1.63).
+  - Real marginal ray at the stop: 21.29 mm (was 21.17). About 4 % of the pupil radius is stopped (was about 3.8 %).
+  - Engine half-field: 19.64° → 18.56°. Moving the iris back raises the chief ray at L1, so the field the rims pass unblocked falls from about 18.5° to about 17.9°. L1's rim, at the drawn 39.5, still limits it; the patent states no field.
+- **Audits:** `audit:surface` OK; `audit:aperture` no rim limit; `clearap` no axial clip, and no chief block below 17.9°.
+- **Corner illumination** against the committed baseline, engine vignetting curve at 0–12.2°:
+  - 4.1°: 96.1 → 96.0
+  - 6.1°: 90.9 → 90.4
+  - 8.1°: 82.9 → 84.0
+  - 10.2°: 73.8 → 76.5
+  - 12.2°: 63.1 → 68.6
+  - Worst loss: 0.5 points at 6.1°, within the 3-point limit. `rimcost --loo` shows no rim whose restore wins light back.

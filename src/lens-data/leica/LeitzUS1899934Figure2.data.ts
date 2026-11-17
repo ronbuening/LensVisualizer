@@ -22,8 +22,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Unmatched.
  *
  * INFERRED: the patent prints no stop position and the drawing shows none. The iris is placed in the air space a3
- * between the negative member and the rear member, 8.4 mm behind r8 and 3.634 mm ahead of r9, a usual iris
- * position in triplet-derived designs of this kind. The image distance is the computed paraxial back focus,
+ * between the negative member and the rear member, a usual iris position in triplet-derived designs of this kind.
+ * It sits 10.35 mm behind r8 and 1.684 mm ahead of r9, just behind the drawn rim of L5's concave rear face (that
+ * face's sag is 10.34 mm at its 24.4 mm cap edge). The image distance is the computed paraxial back focus,
  * 46.831 mm; the patent prints none. Infinity focus only.
  *
  * SEMI-DIAMETERS: the patent prints no diameters. The values are read from the Figure 2 drawing, floor-checked by
@@ -35,9 +36,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *   - Surface 5 is 34.9, where the drawn rear face ends in a small bevel.
  *   - Surface 6 is 27.5, where the drawn front face ends in a chamfer (about 27.8).
  *   - Surface 7, the cemented face, is 29.5, the drawn flat edge of the doublet.
- *   - Surface 8 is 22.3. The drawing ends L5's concave cap at about 24.4, then bevels it out to the flange. At 22.3
- *     the cap stays just ahead of the inferred stop plane (sag 8.35 mm against the 8.4 mm stop distance), so no
- *     glass reaches behind the iris. That is within 9 % of the drawn reading.
+ *   - Surface 8 is 24.4, where the drawing ends L5's concave cap. rimExtensionSd 29.5 draws the flange out to the
+ *     doublet's flat edge, in place of the drawn bevel; the land traces nothing.
  *   - The rear doublet is drawn square-cut at about 24.6 on all three surfaces.
  */
 const LENS_DATA = {
@@ -205,13 +205,14 @@ const LENS_DATA = {
     {
       label: "8",
       R: 33.963,
-      d: 8.4,
-      sd: 22.3,
+      d: 10.35,
+      sd: 24.4,
+      rimExtensionSd: 29.5,
     },
     {
       label: "STO",
       R: "flat",
-      d: 3.634,
+      d: 1.684,
     },
     {
       label: "9",
