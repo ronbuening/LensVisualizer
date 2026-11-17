@@ -2893,7 +2893,7 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 5 | Element 4 | abbe | `Unmatched (nD 1.639 / V 55.5)` | Explicit unmatched/proprietary annotation |
+| 5 | Element IV | abbe | `Unmatched (nD 1.639 / V 55.5)` | Explicit unmatched/proprietary annotation |
 
 ### [KONICA HEXANON 38mm f/2.8 (Konica C35)](../../src/lens-data/konica/KonicaHexanon38mmf28.data.ts) - 75.0% trusted (3/4); 75.0% Sellmeier (3/4) - US 3,615,126
 
@@ -3495,8 +3495,8 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 1 | Element 1 | abbe | `Unmatched (nD 1.9007 / V 42.5)` | Explicit unmatched/proprietary annotation |
-| 7 | Element 4 | abbe | `Unmatched (nD 1.9007 / V 42.5)` | Explicit unmatched/proprietary annotation |
+| 1 | Element 1′ | abbe | `Unmatched (nD 1.9007 / V 42.5)` | Explicit unmatched/proprietary annotation |
+| 7 | Element 4′ | abbe | `Unmatched (nD 1.9007 / V 42.5)` | Explicit unmatched/proprietary annotation |
 
 ### [NIKON SERIES E 135mm f/2.8](../../src/lens-data/nikon/NikonSeriesE135mmf28.data.ts) - 50.0% trusted (2/4); 50.0% Sellmeier (2/4) - US 4,303,314
 
