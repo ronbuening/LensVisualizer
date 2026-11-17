@@ -34,6 +34,7 @@ const LENS_DATA = {
     specs: ["7 ELEMENTS / 3 GROUPS", "ALL SPHERICAL", "DESIGN F/1.5", "TWO CEMENTED TRIPLETS"],
     elementCount: 7,
     groupCount: 3,
+    imageCircleMm: 76.4,
     focalLengthMm: {
       design: 100.12,
     },

@@ -270,3 +270,6 @@ Open:
 - L4's drawn flange: the drawing carries the front triplet's flat top about 4 mm past the R5 junction before L4's
   chamfer to R6; the renderer can only join R5's rim straight to R6's, so the model's L4 chamfer starts earlier and is
   steeper. No land or cut shape reproduces it.
+
+- Image circle (2026-11-17): `catalog.imageCircleMm` 76.4, twice the 38.22 mm height at which the real chief ray of the
+  patent's stated 42° field (21° half-field) lands. The patent names no film format.
