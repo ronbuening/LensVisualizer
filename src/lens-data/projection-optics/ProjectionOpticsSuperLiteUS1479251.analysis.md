@@ -61,11 +61,14 @@ film as they do in the drawing.
 
 ## Element-by-Element Analysis
 
-### Front doublet A (L1 + L2)
+The patent numbers the lenses I to IV from the screen side and calls the two cemented combinations A and B; the
+diagram uses the same designations.
 
-**L1 — Biconvex Positive (equiconvex).** `nd = 1.5160, νd = 63.8. Glass: Unmatched (borosilicate crown, nD 1.5160 / V 63.8). f = +81.44 mm.`
+### Front doublet A (I + II)
 
-**L2 — Plano-Concave Negative.** `nd = 1.6182, νd = 36.4. Glass: Unmatched (dense flint, nD 1.6182 / V 36.4). f = −133.57 mm.`
+**I — Biconvex Positive (equiconvex).** `nd = 1.5160, νd = 63.8. Glass: Unmatched (borosilicate crown, nD 1.5160 / V 63.8). f = +81.44 mm.`
+
+**II — Plano-Concave Negative.** `nd = 1.6182, νd = 36.4. Glass: Unmatched (dense flint, nD 1.6182 / V 36.4). f = −133.57 mm.`
 
 The low-index crown and high-index flint are cemented at R2 = −82.57 mm, and the flint's plano face points at the film.
 The patent says this doublet is corrected for colour and spherical aberration on its own. Used alone, though, it covers
@@ -73,11 +76,11 @@ only a small central field well, because coma and field curvature remain. Its ra
 length is about twice the system's. The patent says they are 1.45 times longer than the corresponding curves of the
 earlier Petzval-type design.
 
-### Rear doublet B (L3 + L4)
+### Rear doublet B (III + IV)
 
-**L3 — Biconvex Positive (equiconvex).** `nd = 1.5160, νd = 63.8. Glass: Unmatched (borosilicate crown, nD 1.5160 / V 63.8). f = +41.46 mm.`
+**III — Biconvex Positive (equiconvex).** `nd = 1.5160, νd = 63.8. Glass: Unmatched (borosilicate crown, nD 1.5160 / V 63.8). f = +41.46 mm.`
 
-**L4 — Plano-Concave Negative.** `nd = 1.6182, νd = 36.4. Glass: Unmatched (dense flint, nD 1.6182 / V 36.4). f = −66.77 mm.`
+**IV — Plano-Concave Negative.** `nd = 1.6182, νd = 36.4. Glass: Unmatched (dense flint, nD 1.6182 / V 36.4). f = −66.77 mm.`
 
 The rear doublet reproduces the front one at half scale, except that the element thicknesses are unchanged. Its
 cemented interface is R5 = −41.28 mm, the strongest curve in the system. The patent compares this curve with the
@@ -93,8 +96,8 @@ V = (nD − 1)/(nF − nC). The model keeps both numbers with the D-line index r
 
 | Glass (patent name) | nD | V | Elements | Role |
 |---|---:|---:|---|---|
-| Borosilicate crown | 1.5160 | 63.8 | L1, L3 | Positive collective elements |
-| Dense flint | 1.6182 | 36.4 | L2, L4 | Achromatizing partners |
+| Borosilicate crown | 1.5160 | 63.8 | I, III | Positive collective elements |
+| Dense flint | 1.6182 | 36.4 | II, IV | Achromatizing partners |
 
 The patent names no maker or catalogue glass. No modern catalogue row matches either pair exactly; the nearest,
 BK7-type crowns and F2-type flints, miss the printed indices by more than 0.0001. The model
@@ -115,7 +118,10 @@ clear radius is 22.7 mm.
 
 The patent prints no rear clear aperture and no field. The rear doublet's clear radius of 17.5 mm on all three faces
 follows the drawing. Scaled to the printed front aperture, the drawn rear doublet is 0.78 of the front's height
-(17.7 mm), and its flint is drawn square-cut at the crown's height.
+(17.7 mm), and its flint is drawn square-cut at the crown's height. The patent says its figure shows the lens at full
+size (printed page 2). Read at the scale of the printed spacings, the drawn front doublet is about 47.6 mm across,
+2.2 mm more than the free aperture, and the rear doublet about 37.2 mm; the same margin leaves a rear clear radius of
+17.5 mm.
 
 The lens is catalogued as a projection objective for 35 mm cinema film. The 27.2 mm format diagonal corresponds to a
 7.9° half-field at this focal length. The model's 16° full field (8° half) is the smallest whole-degree field that

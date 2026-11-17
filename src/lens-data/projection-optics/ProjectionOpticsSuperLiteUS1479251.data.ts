@@ -16,8 +16,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * the drawing: scaled to the printed front aperture, its rear/front height ratio (0.78) gives 17.7 mm, and it draws
  * the flint square-cut at the crown's height. The patent states no field. The declared 16° full field (8° half) is the
  * smallest whole-degree field that reaches the 35 mm cinema corner (7.9°). The real chief ray there clears every rim,
- * and the rear doublet vignettes the oblique beam to about 60 % geometric transmission. The last gap is the computed paraxial back focus, 39.82254 mm;
- * the patent prints 39.82 mm and says the film sits slightly farther away at a finite projection throw.
+ * and the rear doublet vignettes the oblique beam to about 60 % geometric transmission. The last gap is the computed
+ * paraxial back focus, 39.82254 mm; the patent prints 39.82 mm and says the film sits slightly farther away at a finite
+ * projection throw.
+ *
+ * Element names I to IV and the combination letters A and B are the patent's own, from the table and the drawing.
  *
  * Format: a projection objective for 35 mm motion-picture film. The patent is for moving-picture machines, and the
  * Super-Lite was sold for theatre projectors in focal lengths from about 4 in (Delta Lenses history).
@@ -49,50 +52,58 @@ const LENS_DATA = {
   elements: [
     {
       id: 1,
-      name: "L1",
-      label: "Element 1",
+      name: "I",
+      label: "Element I",
       type: "Biconvex Positive",
       nd: 1.516,
       vd: 63.8,
       indexReference: "D",
+      focalLengthMm: 81.44,
       glass: "Unmatched (borosilicate crown, nD 1.5160 / V 63.8)",
       role: "Equiconvex crown of the weak front doublet; supplies the doublet's positive power",
+      diagramLabel: "I",
       cemented: "C1",
     },
     {
       id: 2,
-      name: "L2",
-      label: "Element 2",
+      name: "II",
+      label: "Element II",
       type: "Plano-Concave Negative",
       nd: 1.6182,
       vd: 36.4,
       indexReference: "D",
+      focalLengthMm: -133.57,
       glass: "Unmatched (dense flint, nD 1.6182 / V 36.4)",
-      role: "Flint cemented to L1; corrects the front doublet's colour and spherical aberration",
+      role: "Flint cemented to lens I; corrects the front doublet's colour and spherical aberration",
+      diagramLabel: "II",
       cemented: "C1",
     },
     {
       id: 3,
-      name: "L3",
-      label: "Element 3",
+      name: "III",
+      label: "Element III",
       type: "Biconvex Positive",
       nd: 1.516,
       vd: 63.8,
       indexReference: "D",
+      focalLengthMm: 41.46,
       glass: "Unmatched (borosilicate crown, nD 1.5160 / V 63.8)",
       role: "Equiconvex crown of the rear doublet, with half the front radii; the strongest positive element",
+      diagramLabel: "III",
       cemented: "C2",
     },
     {
       id: 4,
-      name: "L4",
-      label: "Element 4",
+      name: "IV",
+      label: "Element IV",
       type: "Plano-Concave Negative",
       nd: 1.6182,
       vd: 36.4,
       indexReference: "D",
+      focalLengthMm: -66.77,
       glass: "Unmatched (dense flint, nD 1.6182 / V 36.4)",
-      role: "Flint cemented to L3; achromatizes the rear doublet, plano face toward the film",
+      role: "Flint cemented to lens III; achromatizes the rear doublet, plano face toward the film",
+      diagramLabel: "IV",
       cemented: "C2",
     },
   ],
