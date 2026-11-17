@@ -55,6 +55,7 @@ const LENS_DATA = {
       name: "L1",
       label: "Element 1",
       type: "Biconvex Positive",
+      focalLengthMm: 44.55,
       nd: 1.6141,
       vd: 56.443014705882355,
       indexReference: "D",
@@ -66,6 +67,7 @@ const LENS_DATA = {
       name: "L2",
       label: "Element 2",
       type: "Biconcave Negative",
+      focalLengthMm: -68.61,
       nd: 1.6051,
       vd: 38.15258511979823,
       indexReference: "D",
@@ -77,6 +79,7 @@ const LENS_DATA = {
       name: "L3",
       label: "Element 3",
       type: "Biconcave Negative",
+      focalLengthMm: -37.5,
       nd: 1.5513,
       vd: 45.18852459016392,
       indexReference: "D",
@@ -88,6 +91,7 @@ const LENS_DATA = {
       name: "L4",
       label: "Element 4",
       type: "Biconvex Positive",
+      focalLengthMm: 39.69,
       nd: 1.6141,
       vd: 56.443014705882355,
       indexReference: "D",
@@ -170,7 +174,18 @@ const LENS_DATA = {
       22
     ]
   },
-  groups: [],
+  groups: [
+    {
+      text: "FRONT PAIR",
+      fromSurface: "1",
+      toSurface: "4"
+    },
+    {
+      text: "REAR PAIR",
+      fromSurface: "5",
+      toSurface: "8"
+    }
+  ],
   doublets: [],
   layout: {
     yScFill: 0.4

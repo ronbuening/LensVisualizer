@@ -139,3 +139,59 @@ The header comment and the analysis now state the drawn height and the resulting
 **Product name.** No source names a product for this example. The closest candidate is the Goerz Porträt-Celor f/3.5, known only from a forum quotation of a 1910 handbook. The name "C. P. GOERZ 100mm f/3.5 (US 912,352 Design)" correctly makes no product claim.
 
 **Overlay.** The model outline at the figure's scale over the rotated figure is kept outside the repository, in the session scratch folder as `sd/zschokke/overlay.png`. It shows the model rims about 0.8 mm above the drawn flats, with matching element shapes and spacing.
+
+## 2026-11-17 — Second review on the local site
+
+**What was compared.** The live page on the branch's local site (1400×900, before and after the edits below) and the element inspector for all four elements, against the single figure of US 912,352 (PDF p. 1, re-rendered at 600 dpi from the 300 dpi native scan and levelled by 1.24° on the drawn axis line) and the table (PDF p. 2, re-read at 400 dpi). The rims were re-measured from scratch, not copied from the semi-diameter pass.
+
+**Figure scale.**
+- Axial: the r1-to-r8 vertex strokes are 964.5 px apart for the printed 32.0 mm, so 30.14 px/mm. The drawn intervals read 4.92, 1.48, 2.22, 12.33, 1.72, 3.54 and 5.80 mm against the printed 5.2, 1.6, 2.1, 12.0, 1.8, 3.6 and 5.7 mm (largest difference 0.33 mm).
+- Vertical: arcs of the printed radii fitted to the strongly curved faces give 30.4 (r1), 30.4 (r2), 31.0 (r5), 30.6 (r6) and 31.0 px/mm (r8). The weak faces scatter more (r3 32.2, r7 28.4; r4 too flat to fit). The drawing is isotropic to within about 3 %.
+
+**Rims.** All four lenses are drawn square-cut at one height: the flat-top stroke centres sit 426.8 px above and 430.8 px below the drawn axis line on every lens, a half-height of 428.8 px. That is 14.2 mm on the axial scale and 13.8–14.1 mm on the arc scale, against the model's common 15 mm (ratio 0.92–0.95). The earlier reading of about 14.2 mm is confirmed.
+
+**Edge thicknesses.** Measured between stroke centres at the drawn flats, against the model at its 15 mm rims and at a 14.2 mm rim:
+
+| Element | Drawn | Model at 15 mm | Model at 14.2 mm |
+|---|---:|---:|---:|
+| L1 | 1.13 mm | 0.91 mm | 1.37 mm |
+| L2 | 4.4 mm | 4.84 mm | 4.55 mm |
+| L3 | 6.4–6.6 mm | 7.39 mm | 6.79 mm |
+| L4 | 1.40–1.51 mm | 0.81 mm | 1.33 mm |
+
+The drawing's own centre thicknesses are off by the same amounts (d1 drawn 0.28 mm thin, d7 0.10 mm thick), so the drawn edges agree with the model at the drawn height. The thinner L1 and L4 edges on the live page come only from the 15 mm rims.
+
+**Lands and cuts.** No face sits below its baseline rim and there is no land, so the file loses nothing (worst loss 0.0 points on the app's full-pupil lattice, which reaches 12.2° here). Trial cuts, same lattice:
+- A square 14.2 mm on all eight faces costs 9.0 points at 12.2° (92.7 % → 83.6 %). Restoring L1 wins back 5.3 points and L4 3.7 points; L2 and L3 win back nothing.
+- A common 14.7 mm costs 3.0 points and 14.8 mm costs 2.2 points. Either is a 1–2 % change, inside the reading error.
+- Cutting only L2 and L3 to the drawing costs nothing, but it would make L1 and L4 stand 0.8 mm taller than their neighbours, where the figure draws all four level.
+
+**Verdict on rims: no change.** The figure differs by 5–8 %, inside the noise band, and the step order (all four level) already matches. The light rule forbids the full cut.
+
+**Diaphragm.** The drawn diaphragm bars end 402 px above and 378 px below the axis line, an opening of about 12.9 mm radius (12.8 mm on the arc scale), 5.7 mm behind r4. The engine stop is 12.10 mm at 6.0 mm. The bars are schematic and the stop is outside this review's edits; no change.
+
+**Changes made:**
+
+| Field | Before | After | Evidence |
+|---|---|---|---|
+| Element `focalLengthMm` | missing; the inspector showed "FL = —" | L1 +44.55, L2 −68.61, L3 −37.5, L4 +39.69 mm | Thick-lens focal lengths in air from the engine's element probe; the inspector now shows them |
+| `groups` | empty | "FRONT PAIR" (surfaces 1–4) and "REAR PAIR" (5–8) | PDF p. 2, lines 36–39: L1 and L2 form one half, L3 and L4 the other; the claim is for "two uncorrected halves", and the text calls them "two pairs of lenses". The labels sit under the element numbers on the live page without collisions |
+
+**Checked and found correct.**
+- Prescription: all 8 signed radii, 7 intervals, 4 D indices, 4 C−F values and 4 G′ indices match the table. Each derived νD equals (nD − 1)/(nF − nC).
+- Element names L1–L4 are the figure's own designations; the diagram shows the default numbers 1–4. Every `type` agrees with the radius signs. The roles are true: L2 (−68.61 mm) is weaker than L1 (+44.55 mm), and L3 is equi-concave. There are no cemented surfaces or `doublets`, no aspheric faces and no `apd` tags; the patent names no special glass. The stop is drawn between L2 and L3.
+- Movement: infinity only. There is no variable gap and no zoom block. The focus slider reads "Not modeled", and the movement dialog reports no modelled focus or zoom group movement. `focus.description` states only that the patent gives no close-focus data.
+- Engine values are the same before and after: EFL 100.0016 mm, f/3.5, half-field 31.278°, stop radius 12.103 mm. The surface validator is OK. The aperture audit finds no rim limit and stays within 3 % of the stated f-number. The image-circle audit is skipped (no `imageFormat`), and so is field coverage (hidden lens).
+- Off-axis clearance, unchanged: at 15°, up to 34 % of the bundle is clipped per side (r2). The chief ray is blocked on r7 and r8 at 32°, beyond the 31.28° engine half-field. The patent states no field angle.
+- Assignee: "Optische Anstalt C. P. Goerz Aktiengesellschaft" is as printed on PDF p. 2 and is the only Goerz assignee spelling in the corpus.
+
+**Glass and colour.** No glass name is printed, and no catalogue or vendor row matches within the exact window at the D line. The vendor-file candidates (matched at d, so candidates only) are:
+- L1 and L4: Hoya BACD6 and Ohara BSM6, 1.61375 / 56.38 (Δn −0.0004).
+- L2: Hoya F15, 1.60565 / 37.90; the Schott F5 family, 1.60342 / 38.0.
+- L3: Hoya FEL7, 1.54883 / 45.44; Sumita LLF7, 1.54869 / 45.40.
+
+The patent prints G′ (434 nm) indices as well, and a normal-dispersion estimate from nD and νD reproduces each one to within about 0.0002. The patent has only this one example, so no glass recurs across examples; L1 and L4 share one glass. Every element carries nD and νD, so the colour model stays on through the Abbe fallback, and no constant medium is present. The patent prints no aberration curves, so there is no colour comparison. No vendor row is proposed.
+
+**Open:**
+- The inspector prints νD with 15 digits (56.443014705882355, 38.15258511979823, 45.18852459016392), because `vd` stores the unrounded quotient. Two decimals (56.44, 38.15, 45.19) would read cleanly and change the colour model by less than 0.005 in ν. `vd` is outside this review's edits.
+- `aperture.fStops` lists f/22, but the slider and the stop row end at f/16 (the default largest f-number).
