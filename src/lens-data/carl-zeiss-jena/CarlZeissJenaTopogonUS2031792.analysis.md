@@ -112,15 +112,19 @@ space, as the symmetry of the design requires, so the model places it 6.49 mm be
 f/6.3 opening has a radius of 3.97 mm. The drawn opening measures about 4.1 mm, so the figure is consistent with that
 aperture.
 
-Clear apertures are not printed either. Each rim was chosen as the smallest that still passes the chief ray at the
-50° edge of the 100° field. The front and rear surfaces (S1, S8) are 10.45 mm, where that chief ray strikes them at
-10.42 mm. The convex faces of the inner menisci (S3, S6) are 7.4 mm, against 7.39 mm for the chief ray. The other
-four surfaces keep estimated values of 10 mm and 6.5 mm, which already clear it. At 68°, the rim slope of S1 and S8
-is unusually steep, as befits these nearly hemispherical shells. Figure 1 draws the outer menisci almost to a knife
-edge at about 11 mm and the inner menisci slightly larger than modelled, so these rims are, if anything, conservative.
-Toward the edge of the field the rims of the deep shells cut more and more of the oblique beam. On top of that comes
-the natural fall of illumination at such steep angles, so the corners of the 100° field are much darker than the
-centre.
+Clear apertures are not printed either. They follow Figure 1, which is drawn to scale.
 
-The model takes the patent's 100° angle of view as its full field. A paraxial estimate from the clear apertures alone
-would stop near 37° and undercount the coverage the patent states.
+- The figure draws the outer menisci to a knife edge at about 10.9 mm. Both faces of L1 and L4 end at 10.45 mm.
+  That still passes the chief ray at the 50° edge of the field, which meets S1 and S8 at 10.42 mm. It also holds the
+  rim slope of these nearly hemispherical faces to 68°, so the outer shells stop slightly short of the drawn edge.
+- The inner menisci are drawn to about 8.0 mm on the convex face and 7.0 mm on the concave face; they are modelled
+  at 8.0 and 6.8 mm.
+
+Toward the edge of the field the rims of the deep shells cut more and more of the oblique beam. At f/6.3 the whole
+beam passes out to about 38°. About 95 % passes at 41°, three quarters at 44° and 41 % at 47°. At the 50° corner
+only about 2 % gets through. On top of that comes the natural fall of illumination at such steep angles, so the
+corners of the 100° field are much darker than the centre.
+
+The model takes the patent's 100° angle of view as its full field, with a 161 mm image circle (the traced image
+height at 50°). A paraxial estimate from the clear apertures alone would stop near 37° and undercount the coverage
+the patent states.

@@ -12,14 +12,17 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * (1.71715 / 29.50). The outer crown (1.6201 / 60.4) has no catalogue row within 0.0001; the nearest, N-SK16, has
  * nD 1.62032.
  *
- * Field: the patent's 100° angle of view is declared as the full field (50° half-field).
+ * Field: the patent's 100° angle of view is declared as the full field (50° half-field). The 161 mm image circle
+ * is the traced chief-ray height at 50° (80.67 mm), rounded down; the patent states the angle, not a diameter.
  *
  * Inferred, not printed:
  * - Stop: the diaphragm drawn in Figure 1 at the middle of the 12.98 mm central air space (6.49 mm each side).
  * - Back focus: the computed paraxial value, 51.94 mm; the patent prints none.
- * - Rims: S1/S8 10.45 mm and S3/S6 7.4 mm are the least clear apertures that pass the 50° chief ray of the
- *   patent's 100° field (both are below the Figure 1 drawing); S2/S7 10 mm and S4/S5 6.5 mm are estimates.
- *   The steep 68° rim slope of S1/S8 needs the raised rim-angle check.
+ * - Rims, measured from Figure 1, which is drawn to scale (65.2 px/mm at 600 dpi, axial spans within 1 %):
+ *   - L1/L4: drawn to a knife edge at about 10.9 mm. Both faces are 10.45 mm, the most the 69° rim-angle check
+ *     allows on S1/S8, and enough to pass the 50° chief ray (10.42 mm there).
+ *   - L2/L3: drawn to about 8.0 mm on the convex face and 6.9–7.0 mm on the concave face. Modelled at 8.0 and
+ *     6.8 mm, the latter the most the same check allows.
  */
 const LENS_DATA = {
   schema: 2,
@@ -38,6 +41,7 @@ const LENS_DATA = {
     ],
     elementCount: 4,
     groupCount: 4,
+    imageCircleMm: 161,
     focalLengthMm: {
       design: 66.04
     },
@@ -118,20 +122,20 @@ const LENS_DATA = {
       label: "2",
       R: 16.55,
       d: 0.02,
-      sd: 10
+      sd: 10.45
     },
     {
       label: "3",
       R: 9.094,
       d: 0.5,
-      sd: 7.4,
+      sd: 8,
       medium: 2
     },
     {
       label: "4",
       R: 7.35,
       d: 6.49,
-      sd: 6.5
+      sd: 6.8
     },
     {
       label: "STO",
@@ -142,20 +146,20 @@ const LENS_DATA = {
       label: "5",
       R: -7.35,
       d: 0.5,
-      sd: 6.5,
+      sd: 6.8,
       medium: 3
     },
     {
       label: "6",
       R: -9.094,
       d: 0.02,
-      sd: 7.4
+      sd: 8
     },
     {
       label: "7",
       R: -16.55,
       d: 4.44,
-      sd: 10,
+      sd: 10.45,
       medium: 4
     },
     {

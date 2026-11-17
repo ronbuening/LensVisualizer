@@ -125,7 +125,67 @@ Open:
 
 - Optional `source.example` label "Constructional Example 1", the patent's own term ("Figure 1" kept).
 - Rims against Figure 1 (L1/L4 about 10.6 mm, L2/L3 convex faces about 7.7 mm, concave faces about 6.9 mm), for the
-  semi-diameter pass.
+  semi-diameter pass (closed 2026-11-17, semi-diameter pass below).
 - `aperture.fStops` 8–22 are not printed by the patent; there is no product source for a stop scale.
 - No `lensMounts`, `imageFormat` or `closeFocusM.marketing`: the patent design has no documented product format. The
-  100° field needs an image circle of about 161 mm at this scale.
+  100° field needs an image circle of about 161 mm at this scale (image circle closed 2026-11-17: `imageCircleMm`
+  161).
+
+## 2026-11-17 — Semi-diameter pass against the patent figure
+
+Source: `patents/US2031792A.pdf`, page 1 (drawing sheet 1, Figure 1, the modelled example), measured at 600 dpi with
+column scans on both sides of the axis. The scan's axis tilts about 0.8°, so each reading uses the local axis.
+
+Scale: the vertex crossings S1 → S8 span 1492 px for the 22.90 mm vertex length, S4 → S5 838 px for 12.98 mm and
+S1 → S4 324 px for 4.96 mm. That gives 65.2 px/mm, with the three spans agreeing within 1 %. The diaphragm line sits
+11.40 mm behind S1 against the model's 11.45 mm. Its drawn opening, about 4.1 mm in radius, is consistent with the
+3.97 mm f/6.3 stop. The figure is drawn to scale, so its rim readings are used as values.
+
+Readings (outer ink, both sides; line half-width about 0.05 mm):
+
+- L1/L4 knife-edge tip: 10.97 mm above the axis and 10.97 mm below.
+- L2 convex-face (r3) end: 8.05 mm top and 8.10 mm bottom.
+- L2 concave-face (r4) end: 6.94 mm top and 7.02 mm bottom.
+
+| Surfaces | Before | After | Figure | Evidence and limit |
+| --- | --- | --- | --- | --- |
+| S1, S8 | 10.45 | 10.45 | ≈ 10.9 (knife edge) | kept. The 69° rim-angle check caps S1/S8 at 10.50, and 10.45 still passes the 50° chief ray (10.42). |
+| S2, S7 | 10 | 10.45 | ≈ 10.9 (same tip) | The figure ends both faces of L1 at one point. Raised to S1's height so the element ends at one height. |
+| S3, S6 | 7.4 | 8 | ≈ 8.0 | Figure value. Was 7.5 % short. |
+| S4, S5 | 6.5 | 6.8 | ≈ 6.9–7.0 | Figure value, capped at 6.8 by the 69° rim-angle check (the cap is 6.86). |
+
+The L2/L3 shortfall, 6.5–7.5 % in height, sits at the edge of the usual noise band. It was changed for two reasons.
+The measurement is clean: both sides agree within 0.08 mm and the scale is proven to 1 %. On faces this steep, the
+shortfall also shows as a visibly short element in the overlay against the figure. No rim was lowered, so no cut or
+land needs light accounting.
+
+Metadata: `catalog.imageCircleMm` none → 161. Source: the patent's stated 100° angle of view (specification p. 2,
+lines 1–4) for this example at fD = 66.0. The traced chief ray at 50° lands at 80.67 mm, and the value is rounded
+down. Without it the analysis field fell back to the full-frame default (18.1°). No `lensMounts` or `imageFormat`
+was added: the Topogon was an aerial and photogrammetric lens, and no product format fits this 66 mm example.
+Product name: Zeiss's own history and Nasse's 2011 Zeiss article call the lens the Topogon, so the current name
+"CARL ZEISS JENA TOPOGON 66mm f/6.3 (US 2,031,792 Design)" matches.
+
+Results with the final rims:
+
+- `built.mjs` unchanged: EFL 66.038 mm, f/6.3, stop radius 3.969 mm, half-field 50°, paraxial tracing half-field
+  36.55°.
+- The engine's chief-ray solve converges unclipped at 45° and 50°.
+- `audit:surface` OK. `audit:aperture`: within 3 % of f/6.3, no rim limit.
+- `audit:field-coverage`: the corner chief ray reaches 80.50 mm at 49.9° and is clear.
+- `audit:image-circle` now runs (it skipped before, with no circle set). It lists S5–S8 under its wide-angle caveat,
+  "exit-pupil proxy unreliable, verify by trace". The trace above settles them, so they were not raised.
+
+Corner illumination on the app's full-pupil lattice, wide open, baseline → final:
+
+| Field | 32.3° | 35.3° | 38.2° | 41.1° | 44.1° | 47.0° | 49.9° |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Baseline (%) | 99.5 | 95.8 | 86.6 | 72.1 | 51.0 | 23.7 | 0.0 |
+| Final (%) | 100 | 100 | 100 | 95.0 | 75.2 | 41.3 | 1.9 |
+
+The worst loss is 0.0 points.
+
+Open:
+
+- S1/S8 stay 0.45 mm under the drawn knife edge unless `checks.maxRimAngleDeg` rises to 71 (S1 at 10.6 mm).
+- S4/S5 sit 0.1–0.2 mm under the figure for the same reason.
