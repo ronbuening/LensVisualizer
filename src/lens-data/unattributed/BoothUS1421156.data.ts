@@ -11,7 +11,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * elements carry the printed nD only, so the model has no dispersion and shows no colour.
  *
  * Rims: the clear semi-diameters are half the printed element diameters (2.18, 1.9 and 1.95 before scaling). The
- * patent figure, drawn close to scale, shows the same proportions; its rims read 6–9 % larger, within drawing noise.
+ * patent figure shows the same proportions. Its rims read 6–9 % larger than printed on the scale of its vertex
+ * spacings, and within 3 % on the scale implied by its drawn radii.
  *
  * Inferred values:
  * - Stop: the patent allows the diaphragm in either air space and gives no station. It is placed at the midpoint of
@@ -46,11 +47,11 @@ const LENS_DATA = {
     sdSource: "source-table",
   },
   elements: [
-    { id: 1, name: "L1", label: "Element 1", type: "Biconvex Positive", nd: 1.6109, indexReference: "D", glass: "Unmatched (nD 1.6109, nG′ 1.62411)", role: "Positive crown of the cemented front pair", cemented: "C1" },
-    { id: 2, name: "L2", label: "Element 2", type: "Negative Meniscus", nd: 1.5485, indexReference: "D", glass: "Unmatched (nD 1.5485, nG′ 1.56424)", role: "Lower-index flint of the front pair; gives the cemented surface collecting power", cemented: "C1" },
-    { id: 3, name: "L3", label: "Element 3", type: "Biconcave Negative", nd: 1.5485, indexReference: "D", glass: "Unmatched (nD 1.5485, nG′ 1.56424)", role: "Dispersive middle lens between the two positive pairs" },
-    { id: 4, name: "L4", label: "Element 4", type: "Negative Meniscus", nd: 1.5485, indexReference: "D", glass: "Unmatched (nD 1.5485, nG′ 1.56424)", role: "Lower-index flint leading the cemented rear pair", cemented: "C2" },
-    { id: 5, name: "L5", label: "Element 5", type: "Biconvex Positive", nd: 1.6109, indexReference: "D", glass: "Unmatched (nD 1.6109, nG′ 1.62411)", role: "Equi-convex positive crown of the cemented rear pair", cemented: "C2" },
+    { id: 1, name: "L1", label: "Element 1", type: "Biconvex Positive", nd: 1.6109, indexReference: "D", focalLengthMm: 37.72, glass: "Unmatched (nD 1.6109, nG′ 1.62411)", role: "Positive crown of the cemented front pair", cemented: "C1" },
+    { id: 2, name: "L2", label: "Element 2", type: "Negative Meniscus", nd: 1.5485, indexReference: "D", focalLengthMm: -88.97, glass: "Unmatched (nD 1.5485, nG′ 1.56424)", role: "Lower-index flint of the front pair; gives the cemented surface collecting power", cemented: "C1" },
+    { id: 3, name: "L3", label: "Element 3", type: "Biconcave Negative", nd: 1.5485, indexReference: "D", focalLengthMm: -36.86, glass: "Unmatched (nD 1.5485, nG′ 1.56424)", role: "Dispersive middle lens between the two positive pairs" },
+    { id: 4, name: "L4", label: "Element 4", type: "Negative Meniscus", nd: 1.5485, indexReference: "D", focalLengthMm: -75.06, glass: "Unmatched (nD 1.5485, nG′ 1.56424)", role: "Lower-index flint leading the cemented rear pair", cemented: "C2" },
+    { id: 5, name: "L5", label: "Element 5", type: "Biconvex Positive", nd: 1.6109, indexReference: "D", focalLengthMm: 33.36, glass: "Unmatched (nD 1.6109, nG′ 1.62411)", role: "Equi-convex positive crown of the cemented rear pair", cemented: "C2" },
   ],
   surfaces: [
     { label: "1", R: 42.16, d: 7.84, sd: 17.44, medium: 1 },
