@@ -10,9 +10,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Semi-diameters are measured from Figure 1, which is drawn to scale (34.0 px/mm at 600 dpi across the first-to-last
  * vertex span, within 3 % on each doublet and the air gap). Front doublet 13.5 mm, against about 14.0 mm drawn for
  * the curved faces and 13.5 mm where the flat R3 face meets its corner chamfer. Rear doublet: R5 and R6 12.8 mm, the
- * drawn flat rim; R4 10.9 mm, where the drawn R4 arc ends at a bevel that runs out to that rim. The f/3.8 axial
- * beam clears every rim. The patent does not name its glasses: L1 to L3 carry modern
- * catalog equivalents that match the printed nD and V at the printed precision; L4 has no such match.
+ * drawn flat rim; R4 10.9 mm, where the drawn R4 arc ends at a short bevel that runs out to that rim. A flat land
+ * (rimExtensionSd 12.8) stands for the bevel, so L3 draws flat-topped at the rim as in the figure; it lies outside
+ * the clear aperture and stops no light. The f/3.8 axial beam clears every rim. The patent does not name its
+ * glasses: L1 to L3 carry modern catalog equivalents that match the printed nD and V at the printed precision; L4
+ * has no such match.
  */
 const LENS_DATA = {
   schema: 2,
@@ -61,6 +63,7 @@ const LENS_DATA = {
       nd: 1.498,
       vd: 67,
       indexReference: "D",
+      focalLengthMm: 37.47,
       glass: "N-BK10 (SCHOTT catalog equivalent; patent nD 1.498 / V 67.0; production supplier unspecified)",
       cemented: "C1",
       role: "Positive crown of the front cemented doublet; supplies the front component's power."
@@ -73,6 +76,7 @@ const LENS_DATA = {
       nd: 1.664,
       vd: 35.9,
       indexReference: "D",
+      focalLengthMm: -71.46,
       glass: "J-BASF2 (HIKARI catalog equivalent; patent nD 1.664 / V 35.9; production supplier unspecified)",
       cemented: "C1",
       role: "Negative flint of the front cemented doublet, with a flat rear face."
@@ -85,6 +89,7 @@ const LENS_DATA = {
       nd: 1.516,
       vd: 64.1,
       indexReference: "D",
+      focalLengthMm: -23.93,
       glass: "S-BSL7 (OHARA catalog equivalent; patent nD 1.516 / V 64.1; production supplier unspecified)",
       cemented: "C2",
       role: "Negative crown at the front of the rear cemented doublet."
@@ -97,6 +102,7 @@ const LENS_DATA = {
       nd: 1.639,
       vd: 55.5,
       indexReference: "D",
+      focalLengthMm: 32.87,
       glass: "Unmatched (nD 1.639 / V 55.5)",
       cemented: "C2",
       role: "Higher-index positive rear element; the index step at its cemented face R5 is the patent's means of reducing distortion."
@@ -133,6 +139,7 @@ const LENS_DATA = {
       R: -16.45,
       d: 2.9,
       sd: 10.9,
+      rimExtensionSd: 12.8,
       medium: 3
     },
     {
