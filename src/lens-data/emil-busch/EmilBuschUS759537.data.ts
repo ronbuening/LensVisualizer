@@ -79,6 +79,7 @@ const LENS_DATA = {
       nd: 1.6031,
       indexReference: "D",
       indexReferenceNote: "Sodium D index as printed. The patent gives nG′ but no Abbe number, so this element traces at the D line only.",
+      focalLengthMm: -88.22,
       glass: "Unmatched (Schott O. 318; nD 1.6031, nG′ 1.62386, no Abbe number printed)",
       role: "Thick flint meniscus behind the stop; its deep concave front flattens the field and corrects astigmatism"
     },
@@ -90,6 +91,7 @@ const LENS_DATA = {
       nd: 1.4967,
       indexReference: "D",
       indexReferenceNote: "Sodium D index as printed. The patent gives nG′ but no Abbe number, so this element traces at the D line only.",
+      focalLengthMm: 73.84,
       glass: "Unmatched (Schott O. 802; nD 1.4967, nG′ 1.50627, no Abbe number printed)",
       role: "Crown meniscus that carries all of the positive power"
     }

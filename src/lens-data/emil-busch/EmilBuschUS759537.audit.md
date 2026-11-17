@@ -234,3 +234,73 @@ Open:
   - corner light at 37.4° goes from 49.9 % to 79.8 %, and at 34.5° from 54.6 % to 84.6 %;
   - no field loses light;
   - restoring R1 to 12 mm wins back at most 0.2 points.
+
+## 2026-11-17 — Second review on the local site
+
+Compared: the live page on the branch's local server (the standard 1400 × 900 shot and a 4× device-scale shot of the
+diagram, which is only about 40 px wide on the default page because of the 250 mm back focus), the inspector of both
+elements and the focus-movement overlay, against Figure 1 on the drawing sheet (PDF page 1, a 300 dpi scan read at 600
+and 1200 dpi) and the table on specification page 1.
+
+Scale, re-derived (1200 dpi, axis at row 4847.5):
+
+- Axial thicknesses, outer edge to outer edge: L1 200.5 px, L2 187 px, both 32.6 px/mm; their ratio, 1.072, matches
+  the printed 6.15 / 5.73 = 1.073. Allowing for the line width gives about 32 px/mm.
+- The R1 arc fits the printed 22.36 mm at 32 px/mm within 4 px at 13 of 15 heights on both sides of the axis; two
+  upper points near the rim lie 7 px deeper.
+- The diaphragm opening is 300.5 px above and 308.5 px below the axis, 9.55 mm at 31.9 px/mm against f/11's
+  9.554 mm.
+- The R4 arc is engraved flatter (it fits about 36 px/mm) and the air space shorter (85 px, 2.66 mm against the
+  printed 3.31), so neither sets the scale.
+
+Readings against the file, at 32 px/mm:
+
+| Surface | File | Figure | Verdict |
+|---|---|---|---|
+| 1, concave face | 10 | curve leaves the land at 306.5 px above (9.6) and 317.5 px below (9.9); meets the land line's inner edge near 10.3 | keep |
+| 1, land and L1 edge | `rimExtensionSd` 14.4 | top and bottom edges 457.5 / 465.5 px, 14.4 | keep |
+| 2 | 14.4 | runs to the same edge; the top corner lies within 0.25 mm of R2's sag | keep |
+| 3, 4 | 16, square | 254–256 px at 600 dpi, 15.9–16.0, flat top edge | keep |
+
+The figure draws the land as a flat front annulus with a square top edge, which is how the page draws
+`rimExtensionSd`. The drawn land plane lies 38 px (1.2 mm) behind the centre of the diaphragm bar, itself 1.25 mm
+thick; the model puts it 1.43 mm behind the stop plane, at R1's sag for 10 mm. The drawn plane is about 0.45 mm ahead
+of R1's sag at the drawn curve end, an engraving offset: matching it would need the curve to end near 10.8 mm, which
+the drawn curve does not support. A side-by-side of the figure and the live diagram at 16 px/mm shows the heights, the
+land, L1's square top edge and the square-cut L2 as drawn. No rim changes.
+
+Lands and cuts, `rimcost.mjs --loo` against the rims before the semi-diameter pass: the R1 cut (12 → 10) costs at most
+0.2 points (99.8 against 100.0 % at 20.1°), and the file is at or above the baseline at every field: worst loss 0.0,
+gain 30.0 points at 37.4° (49.9 → 79.8 %). Removing the land changes no field. Both stay: the cut costs only slightly
+and the land costs nothing and is drawn.
+
+Change: element `focalLengthMm`. The inspector showed "FL = —" for both elements. L1 −88.22 and L2 +73.84 were added,
+the D-line paraxial values from `probe.mjs --elements` that the analysis already quotes; the inspector now reads
+"FL = −88.22 mm" and "FL = +73.84 mm". Engine EFL 210.193 mm, f/11, stop radius 9.554 mm and half-field 46.60° are
+unchanged.
+
+Checked and found correct:
+
+- `type`: L1 a negative meniscus (R1 −22.36, R2 −42.56, the front more strongly curved), L2 a positive meniscus
+  (R3 −383.35, R4 −33.64), both concave to the object. Roles are true.
+- Names L1 and L2: the patent labels only the surfaces (R1–R4) and spacings (D1–D3). No aspheres, no `apd` tags (the
+  patent names ordinary glasses), and no brackets: two air-spaced singlets, as Figure 1 draws.
+- Stop: drawn 3.79 mm ahead of R1, the printed Δ/2, in front of L1.
+- Movement: no gap or zoom block, `closeFocusM` 1e15, the slider shows "Not modeled", the movement overlay reports no
+  modelled movement, and `focus.description` says only that the patent gives infinity data.
+- Real chief ray (meridional trace): it reaches the 141.5 mm image-circle edge at 37.4° and clears every rim to 54.9°,
+  where R4 limits.
+- `audit:surface` OK; `audit:aperture` no rim limit; `audit:image-circle` 0 undersized; `audit:field-coverage` 100 %
+  at 37.4°, clear. `clearap.mjs` and `clearap2.mjs` find no ray for this file (stop at index 0), so the field-coverage
+  audit and the meridional trace stand in for them.
+
+Glass and colour: both elements stay monochromatic. Every vendor AGF row was evaluated at the D (589.29 nm) and G′
+(434.05 nm) lines; none matches both printed indices within 1e-4. For L1 the nearest are F5, E-F5, PBM5 and S-TIM5
+(nD +0.00018, nG′ +0.00034 to +0.00042); BAM25, BAFD5 and BASF5 match nD within 2e-5 but miss nG′ by 0.002. For L2
+only FCD1-type rows lie within 2e-4 at D, and they miss nG′ by 0.0017. The patent has one example and prints no other
+line, Abbe number or aberration curve. Scaling (nD − 1)/(nG′ − nD) against F5 and N-BK7 gives νd of about 38.3 and 64,
+as the analysis says. The stated 0.5 per mille G′ overcorrection is reproduced paraxially (0.52, recorded above).
+
+Assignee: "Rathenower Optische Industrie-Anstalt vormals Emil Busch A.-G." is the only Busch assignee in the corpus,
+so there is no variant to consolidate. The patent heading prints "Rathenower Optische Industrie, Anstalt, vormals Emil
+Busch, A.-G.".
