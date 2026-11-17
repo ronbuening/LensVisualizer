@@ -101,6 +101,7 @@ Open:
   and O. 802 values that also match the printed nD and nG′.
 - Rims against Figure 1, for the SD pass: R1 about 10 mm plus a flat land to about 14 mm, R2 about 14 mm, R3/R4
   about 15.4 mm. At 34° the 12 mm rims pass about 64 % of the meridional beam, against about 81 % at the drawn sizes.
+  (Closed 2026-11-17 by the semi-diameter pass below.)
 
 ## 2026-11-17 — Cleanup and wording pass
 
@@ -150,7 +151,86 @@ Audits:
 Open:
 
 - Rims against Figure 1, for the SD pass: R1 about 10 mm with a flat land to about 14 mm, R2 about 14 mm, R3/R4 about
-  15.4 mm.
+  15.4 mm. (Closed 2026-11-17 by the semi-diameter pass below.)
 - Abbe numbers: enter one only if a period Schott list gives O. 318 and O. 802 values that also match the printed nD
   and nG′.
 - `catalog.imageFormat` and `lensMounts`: no source states a plate size or mount for this example, so both are unset.
+  (Mount closed 2026-11-17, see below; the format stays open.)
+
+## 2026-11-17 — Semi-diameter pass against the patent figure
+
+Source: US 759,537 A, drawing sheet (PDF page 1), Figure 1, the single objective of the modelled example. The page was
+read at 1200 dpi with the axis at row 4848.
+
+Scale: 31.9 px/mm, from the axial thicknesses of L1 (198 px for 6.15 mm, 32.2 px/mm) and L2 (181 px for 5.73 mm,
+31.6 px/mm). Three checks agree with it:
+
+- The R1 arc: sag 54 px and 66 px at 268 px and 292 px from the axis, the 22.36 mm radius at 31.6 px/mm.
+- The drawn stop opening: 302 px above and 310 px below the axis, 9.6 mm against f/11's 9.55 mm.
+- The stop-to-vertex distance: about 125 px, 3.9 mm against the printed Δ/2 = 3.79.
+
+The drawn air space is shorter than printed (87 px for 3.31 mm), so the figure gives heights and proportions, not
+the gap. Outer heights were read on the clean lower side with the profiler and checked on the upper side.
+
+| Surface | Before | Figure | After | Evidence |
+|---|---|---|---|---|
+| 1 (L1 front, concave) | 12 | curve ends at 320 px = 10.0; flat front land to 461 px = 14.45 | 10, `rimExtensionSd` 14.4 | Figure 1 draws the concave face ending in a vertical land at its edge sag |
+| 2 (L1 rear) | 12 | runs to the 461 px edge = 14.45 | 14.4 | Square outer edge with the land |
+| 3 (L2 front) | 12 | 507–511 px = 16.0 | 16 | L2 drawn square-cut at one height |
+| 4 (L2 rear) | 12 | 507–511 px = 16.0 | 16 | as surface 3 |
+
+The stop and its radius are unchanged. The land sits at R1's sag at 10 mm, 2.36 mm ahead of the vertex and 1.43 mm
+behind the stop plane; the figure draws it about 1.2 mm behind the diaphragm. At 16 mm the edge of L2 is 2.0 mm
+thick; the figure draws about 2.2 mm.
+
+Light and clearance:
+
+- The f/11 axial beam reaches 9.55 mm at R1, so the 10 mm concave face passes it. `audit:aperture` reports no rim
+  limit, and `audit:surface` reports no validation errors with the land included.
+- Chief ray: the old rims passed it to 43.3°; the new ones pass it to 55°.
+- Corner light was measured on a scratch copy given a 283.6 mm image circle, the stated 68° at 210.19 mm, because the
+  file has no format and the app's default field stops at 5.9°. Full-pupil transmission at 34.6° is 54.5 % with the
+  old rims and 84.5 % with the new ones. The new rims gain 30 points there and lose nothing at any field.
+- The 10 mm concave face is the only cut. Restoring it to 12 mm alone wins back at most 0.2 points (at 20–23°), so it
+  stays under the lands rule.
+- On the default field the worst change is a 4.3-point gain.
+
+Engine before and after (`built.mjs`, `probe.mjs`):
+
+- EFL 210.193 mm, f/11 and stop radius 9.554 mm are unchanged.
+- BFD 250.141 mm is unchanged.
+- The default half-field rises from 38.42° to 46.60°, set by the model's geometry, not by the patent.
+
+`sdSource` changes from "heuristic" to "figure-measured". A side-by-side overlay of the figure and the model sketch at
+matched scale was kept outside the repo. The sketch tool draws the land as a slanted line, but the profile, heights and
+stop agree with the figure.
+
+Metadata:
+
+- `catalog.lensMounts` set to `["large-format-lens-board"]`. The patent describes a photographic objective of 210 mm
+  focal length covering 68°, which is a plate-camera lens. A collector's record of the Busch Omnar shows a 255 mm Omnar
+  used on a 13 × 18 cm wooden camera
+  (https://apenasimagens.com/en/omnar-emil-busch-en/). The corpus files the 1902 Heliar patent design the same way.
+- `imageFormat` stays unset. The patent names no plate size. A 283 mm circle would cover 5x7 (218.5 mm diagonal) but
+  not 8x10, and no source ties this example to a format.
+
+Product name: the best source, the 1911 *Encyclopædia Britannica*, calls the commercial lens the Omnar (Series I–III), a
+symmetrical doublet; this file is one half of that type. The current `name`, "EMIL BUSCH 210mm f/11
+(US 759,537 Design)", makes no product claim and matches the evidence. "Omnar" belongs in the subtitle, not the name.
+
+Open:
+
+- `imageFormat` / `imageCircleMm`: 5x7, or a 283 mm circle from the stated 68° field, if the coordinator accepts the
+  patent's angle as the source. Until then the app's analysis field defaults to the 35 mm diagonal (5.9°). (Closed:
+  see the next line.)
+
+`catalog.imageCircleMm` set to 283, the stated 68° at the printed focal distance of 210 (coordinator's decision);
+`imageFormat` stays unset. Results after the change:
+
+- `audit:image-circle`: 0 undersized; the chief ray reaches 141.5 mm at 37.4° off axis, clear.
+- `audit:field-coverage`: 1 station, at least 99 %.
+- `built.mjs`: unchanged; EFL 210.193 mm, f/11, half-field 46.60°.
+- `rimcost --loo` against the baseline:
+  - corner light at 37.4° goes from 49.9 % to 79.8 %, and at 34.5° from 54.6 % to 84.6 %;
+  - no field loses light;
+  - restoring R1 to 12 mm wins back at most 0.2 points.

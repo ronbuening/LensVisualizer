@@ -91,7 +91,7 @@ The patent gives only the infinity setting. The model has no focus movement. The
 | Field with astigmatism corrected | 68° | astigmatic difference −0.5 mm at 34° |
 | Back focus | not printed | 250.14 mm (computed) |
 
-The clear radii are not printed. The model uses an estimated 12 mm on every surface. At that radius the rim of the deep front surface stays 0.30 mm behind the stop plane. No rim cuts the f/11 axial beam, and the chief ray passes the whole stated field. At 34° about two thirds of the meridional beam gets through the 12 mm rims. Figure 1 draws both lenses larger: L1 about 14 mm in radius, with a flat land around a concave face of about 10 mm; L2 about 15 mm. The model therefore vignettes more than the drawing suggests. The viewer's default field, 38.4° half-angle, comes from the model's geometry, not from the patent.
+The clear radii are not printed; they are measured from Figure 1, which is drawn to scale. L1's concave front face ends at 10 mm, and a flat land continues to the element's 14.4 mm edge. That land stands 1.4 mm behind the stop plane, as the figure draws it. L1's rear face runs to the same 14.4 mm edge, and L2 is square-cut at 16 mm. No rim cuts the f/11 axial beam, and the chief ray clears every rim to 55° off axis. The model's 283 mm image circle comes from the stated 68° field at the printed focal distance of 210; the patent names no plate size. The chief ray reaches the edge of that circle 37.4° off axis, a little beyond 34° because of the lens's barrel distortion. About 85 % of the full beam passes at 34°, and about 80 % at the circle's edge. The tracing field, 46.6° half-angle, comes from the model's geometry, not from the patent.
 
 ## Design Heritage and Context
 
