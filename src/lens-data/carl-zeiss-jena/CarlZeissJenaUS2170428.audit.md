@@ -68,8 +68,10 @@ Open:
   catalogue match. (Done 2026-11-17: L3 labelled SF1; the crown does match Hoya BACD6, see below.)
 - Rims against the figure, for the semi-diameter pass. The drawing shows L1 and L2 at about the same height, with L3 at
   about 0.74 and L4 at about 0.81 of L1's height; the model has 0.68 and 0.79. Figure readings are not applied here.
+  (Closed 2026-11-17 by the semi-diameter pass below.)
 - Optional `catalog.imageCircleMm` (about 72.6 mm from the 40° field) so the image-circle audits can run.
 - `aperture.fStops` gives a projection objective an iris scale. This is harmless, but the patent shows no iris.
+  (Closed 2026-11-17: fixed f/1.9 aperture.)
 
 ## 2026-11-17 — Cleanup and wording pass
 
@@ -103,7 +105,57 @@ within 3 % of the stated f-number, no rim limit, and its raise list is empty.
 Open:
 
 - Rims against the figure (semi-diameter pass): the drawing shows L3 at about 0.74 and L4 at about 0.81 of L1's height;
-  the model has 0.68 and 0.79.
+  the model has 0.68 and 0.79. (Closed 2026-11-17 by the semi-diameter pass below.)
 - `aperture.fStops` (1.9 to 16) is not sourced: the patent describes a projection objective and shows no iris.
+  (Closed 2026-11-17: fixed f/1.9 aperture.)
 - Optional `catalog.imageCircleMm` (about 72.6 mm from the 40° field) so the image-circle audits can run.
 - The page was not viewed in the running site: the dev server serves the main checkout, not this worktree.
+
+## 2026-11-17 — Semi-diameter pass against the patent figure
+
+Source: the figure on the drawing sheet of US 2,170,428 (page 1), the only cross-section, of the sole example. It was
+measured at 600 dpi on the lower side of the axis (the upper side carries the r1–r8 leader lines), with the upper side
+used as a check. The drawn element tops sit about 15 px above the axis line for L1 and L2, so each half-height is half
+the full drawn height.
+
+Scale: the drawn vertices fall at 1672, 1838, 1850, 2245, 2345, 2385, 2795 and 2960 px along the axis. The spans give
+21.6, 20.8, 22.2, 20.0, 21.6 and 20.6 px/mm for d1, d2, l2, d3, l3 and d4, and 21.2 px/mm from r1 to r8 (60.7 mm), so
+the drawing is to scale axially within about 5 %. The scale across the axis agrees: at the drawn rim of L4, the r7
+and r8 arcs meet the edge where the printed radii put them (drawn edge 1.27 mm, computed 1.19 mm at the drawn height),
+and L1's front sag at the rim matches r1 within reading error.
+
+| Surface | Before | Drawn | Ratio | After | Evidence |
+|---|---:|---:|---:|---:|---|
+| 1, 2 (L1) | 28 | 26.8 | 0.96 | 28 | within noise; kept |
+| 3 (L2 front) | 28 | 25.4 | 0.91 | 25.4 | the front curve meets L2's cylindrical edge at 25.4 |
+| 4 (L2 rear) | 19 | 20.7 | 1.09 | 20.7 | the bevel meets the rear curve at 20.7 (top 21.0, bottom 20.5) |
+| 5, 6 (L3) | 19 | 19.8 | 1.04 | 19 | within noise; 19.8 would also need a looser L2/L3 gap check |
+| 7, 8 (L4) | 22 | 21.5 | 0.98 | 22 | within noise; kept |
+
+L2 is the one element changed. The drawing shows it with a front rim lower than L1's, a cylindrical edge, and a bevel
+down to a rear rim that stands above L3's. The previous 28 / 19 pair drew it as tall as L1 with its rear corner level
+with L3. The new pair puts L2's front-to-rear rim ratio at 1.23 (drawn 1.23, previously 1.47), and the step from L2's
+rear face down to L3 now runs the way the drawing has it. No `gapSagFrac` was needed: the L2/L3 gap check reads at
+L3's 19 mm rim.
+
+Clearance and light: the f/1.9 axial marginal ray reaches 23.99 mm at surface 3 and 18.53 mm at surface 4, below the
+new rims. At the patent's 20° half-field the chief ray clears every surface and the full oblique bundle reaches
+19.51 mm at surface 3 and 10.51 mm at surface 4. Corner illumination is unchanged: 79.0 % at 12.2°, the edge of the
+default analysis field, and 41.4 % at 19.9° on a scratch copy given the patent's 40° field. Both are the same before
+and after; the restore test wins back 0.0 points for either face. The engine half-field stays 25.08° (limited by
+L1's front rim), and f/1.9 and the 16.61 mm stop radius are unchanged. The surface validator reports no errors, and
+the aperture audit finds no rim limit and lists nothing to raise.
+
+Metadata, sourced from the patent text, which describes the example as a projection objective and draws no iris:
+- `catalog.lensMounts`: none → `projection-lens`.
+- `aperture.fStops`: 1.9 to 16 → `[1.9]`, with `maxFNumber` 1.9 (fixed aperture).
+- `imageFormat` stays unset: the patent names no film or slide format.
+- `imageCircleMm` stays unset: the patent gives only an approximate angular field (about 40°, about 72.6 mm at
+  f = 100), not a printed image diameter.
+
+Name: no product name is documented for this example, so the descriptive `name` stands.
+
+Open:
+
+- `catalog.imageCircleMm`: only if a source states an image diameter or film format. Without it the analysis tabs
+  sample to 12.2°, the default 135-format corner, not to the patent's 20°.

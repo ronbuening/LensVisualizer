@@ -43,9 +43,11 @@ L3 almost cancels it: L1 to L3 together are nearly afocal (f ≈ −1015 mm). L4
 of the system's convergence. The Petzval sum is 0.00379 mm⁻¹, a Petzval radius of about 264 mm or 2.6 times the focal
 length.
 
-The patent prints no diaphragm. The model places an iris midway in the 19 mm air space between L3 and L4, the usual
-stop position for this positive–positive–negative–positive form. That position is an estimate, as are all clear
-semi-diameters.
+The patent prints no diaphragm. The model places a fixed f/1.9 aperture stop midway in the 19 mm air space between L3
+and L4, the usual stop position for this positive–positive–negative–positive form; that position is an estimate. No
+clear diameters are printed either, but the drawing is to scale (its vertex spacings match the table within about
+5 %), so the rims follow it: L1 28 mm, L2 25.4 mm at the front and 20.7 mm at the rear, L3 19 mm and L4 22 mm, each
+within 5 % of the drawn height.
 
 ## Element-by-Element Analysis
 
@@ -64,7 +66,7 @@ inside that window. L1 and L2 are separated by only 0.5 mm on the axis.
 L2 is the thick element of the design: 19.0 mm on the axis, 19 % of the focal length, inside the claimed 12–30 %
 range. Its front surface (r3 = +44.5) is the most strongly curved positive surface in the lens; its concave rear
 (r4 = +70.0) stays within the claim's limit of at most the focal length. The patent drawing shows this element with a
-bevelled rear rim, and the model draws a similar step from the 28 mm front rim to the 19 mm rear rim.
+bevelled rear rim, and the model draws a similar step from the 25.4 mm front rim to the 20.7 mm rear rim.
 
 ### L3 — Biconcave Negative
 
@@ -128,11 +130,11 @@ The single claim states the following conditions. The example satisfies all of t
   0.2 mm, so the difference is within the table's rounding. No single misprinted digit accounts for it.
 - **Aperture:** f/1.9 gives an entrance pupil radius of 26.26 mm and a paraxial stop semi-diameter of 16.61 mm. At full
   aperture the real marginal ray crosses the stop plane at 17.29 mm, higher than the paraxial ray because of the
-  spherical aberration of the lenses ahead of the stop, so the iris trims roughly the outer 4 % of the pupil radius.
+  spherical aberration of the lenses ahead of the stop, so the stop trims roughly the outer 4 % of the pupil radius.
 - **Lengths:** 60.7 mm from r1 to r8, 123.91 mm from r1 to the image.
 - **Field:** at the patent's 40° full field (image height 36.3 mm) the chief ray clears every rim; the 22 mm rims of L4
-  trim about a quarter of the oblique bundle on one side. With the estimated rims, rays can be traced to about 25° from
-  the axis.
+  trim about a quarter of the oblique bundle on one side, and in all about 41 % of the full-aperture beam reaches the
+  image at 19.9°. With these rims, rays can be traced to about 25° from the axis.
 
 ## Design Heritage and Context
 

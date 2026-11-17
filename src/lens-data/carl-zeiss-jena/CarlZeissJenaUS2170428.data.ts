@@ -22,8 +22,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * INFERRED: the patent prints no diaphragm, clear diameters or back focus.
  * - STOP: placed midway in the 19 mm air space between L3 and L4 (9.5 mm behind r6), the usual iris position for
  *   this positive–positive–negative–positive form.
- * - SEMI-DIAMETERS: estimated, not measured from the figure. L2's rear face and L3 are held to 19 mm so that the
- *   L2/L3 rims stay clear of each other across the 4.5 mm air space. No rim cuts the f/1.9 axial beam.
+ * - SEMI-DIAMETERS: from the patent drawing, which is to scale (its vertex spacings match the table within about 5 %,
+ *   21.2 px/mm at 600 dpi). It draws L1 at 26.8, L2 at 25.4 (front) and 20.7 (rear, after a bevel), L3 at 19.8 and
+ *   L4 at 21.5 mm. L2 takes the drawn 25.4 / 20.7; L1 (28), L3 (19) and L4 (22) stay within 5 % of the drawing. L3 is
+ *   held at 19 so that its front rim stays clear of L2's rear face across the 4.5 mm air space. No rim cuts the f/1.9
+ *   axial beam.
  * - IMAGE PLANE: the computed paraxial back focus, 63.2102 mm behind r8.
  *
  * FOCUS: only the infinity state is modelled; closeFocusM = 1e15 marks focus as not modelled.
@@ -36,6 +39,7 @@ const LENS_DATA = {
   subtitle: "US 2,170,428 A, sole example — Ernostar-type projection objective",
   visible: true,
   catalog: {
+    lensMounts: ["projection-lens"],
     specs: ["4 ELEMENTS / 4 GROUPS", "DESIGN F/1.9", "ALL SPHERICAL", "PROJECTION OBJECTIVE"],
     elementCount: 4,
     groupCount: 4,
@@ -121,14 +125,14 @@ const LENS_DATA = {
       label: "3",
       R: 44.5,
       d: 19,
-      sd: 28,
+      sd: 25.4,
       medium: 2,
     },
     {
       label: "4",
       R: 70,
       d: 4.5,
-      sd: 19,
+      sd: 20.7,
     },
     {
       label: "5",
@@ -164,7 +168,8 @@ const LENS_DATA = {
   ],
   aperture: {
     nominalFNumber: 1.9,
-    fStops: [1.9, 2.8, 4, 5.6, 8, 11, 16],
+    fStops: [1.9],
+    maxFNumber: 1.9,
   },
   focus: {
     closeFocusM: 1e15,
