@@ -195,3 +195,6 @@ The patent prints G′ (434 nm) indices as well, and a normal-dispersion estimat
 **Open:**
 - The inspector prints νD with 15 digits (56.443014705882355, 38.15258511979823, 45.18852459016392), because `vd` stores the unrounded quotient. Two decimals (56.44, 38.15, 45.19) would read cleanly and change the colour model by less than 0.005 in ν. `vd` is outside this review's edits.
 - `aperture.fStops` lists f/22, but the slider and the stop row end at f/16 (the default largest f-number).
+
+- Abbe numbers (2026-11-17): `vd` rounded to two decimals (56.44, 38.15, 45.19) from the unrounded quotients of the
+  printed C and F indices, which the inspector printed to 15 digits. The change is under 0.003 in ν.

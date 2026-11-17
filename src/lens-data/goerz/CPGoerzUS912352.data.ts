@@ -57,7 +57,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       focalLengthMm: 44.55,
       nd: 1.6141,
-      vd: 56.443014705882355,
+      vd: 56.44,
       indexReference: "D",
       glass: "Unmatched (nD 1.6141 / V 56.44; no glass name printed)",
       role: "Front positive crown of the front pair"
@@ -69,7 +69,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       focalLengthMm: -68.61,
       nd: 1.6051,
-      vd: 38.15258511979823,
+      vd: 38.15,
       indexReference: "D",
       glass: "Unmatched (nD 1.6051 / V 38.15; no glass name printed)",
       role: "Weaker negative flint of the front pair, ahead of the diaphragm"
@@ -81,7 +81,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       focalLengthMm: -37.5,
       nd: 1.5513,
-      vd: 45.18852459016392,
+      vd: 45.19,
       indexReference: "D",
       glass: "Unmatched (nD 1.5513 / V 45.19; no glass name printed)",
       role: "Symmetric negative flint of the rear pair, behind the diaphragm"
@@ -93,7 +93,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       focalLengthMm: 39.69,
       nd: 1.6141,
-      vd: 56.443014705882355,
+      vd: 56.44,
       indexReference: "D",
       glass: "Unmatched (nD 1.6141 / V 56.44; no glass name printed)",
       role: "Rear positive crown of the rear pair"
