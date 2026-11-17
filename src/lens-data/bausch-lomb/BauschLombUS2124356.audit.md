@@ -29,7 +29,8 @@ There are no mismatches. There are no aspheres and no focus states.
 
 - Back focus: the computed paraxial back focal distance, 41.193 mm from R10.
 - Clear radii: estimated (sdSource heuristic). L1 36 mm; R3–R5 30 mm; R6 20.77 mm; R7–R10 21 mm. The R7–R10 values
-  are held by the rim-slope limit of the steep R8 (−23.4 mm).
+  are held by the rim-slope limit of the steep R8 (−23.4 mm). (Superseded 2026-11-17: R6 19.3 mm and R7 19.4 mm with
+  a land to 21 mm, from the semi-diameter pass below.)
 - Stop radius: sized for f/1.5 (paraxial 18.91 mm). The patent prints the diaphragm position but not its diameter.
 - Aperture scale (f/1.5 to f/16) and the infinity-only focus marker.
 
@@ -46,7 +47,8 @@ The drawing shows seven elements in three groups, two cemented triplets, the ele
 air space between the triplets, all as modelled. Measured at the figure's own scale (about 16.9 px per mm from the
 element thicknesses), the drawn radii are about 33.7 mm for L1, 29.3 mm for the front triplet, 18.6 mm for the R6
 opening and 22.1 mm for the rear triplet. The figure draws S1 several millimetres wide, so it is only approximately to
-scale.
+scale. (Corrected 2026-11-17: re-measured at 600 dpi the scale is 32.7 px/mm, 16.35 at 300 dpi, and the drawn radii are
+about 34.9, 30.4, 19.3 and 23.1 mm; see the semi-diameter pass below.)
 
 ## 2026-11-16 — Deployment validation
 
@@ -92,6 +94,7 @@ Open:
   details entry is still open.)
 - Rims against the figure, for the SD pass: L1 36 mm against about 33.7 mm drawn; R6 20.77 mm against about 18.6 mm
   drawn (the real axial ray needs 19.27 mm); the rear triplet 21 mm against about 22.1 mm drawn, with R8 limiting it.
+  (Closed 2026-11-17 in the semi-diameter pass below.)
 - Element labels ("L1" to "L7") and roles; optional glass-class labels (SK18, BaF10, FK3, SF8, SSK5 and BaLF5 types are
   the nearest coordinates, none an exact historical identification). (Closed 2026-11-17 in the cleanup pass below.)
 - Optional: `catalog.imageCircleMm` about 76.9 mm from the patent's 42° field at f = 100, if the analysis tabs should
@@ -135,6 +138,64 @@ Open:
 - Bausch & Lomb maker details entry (`makerDetails.ts`).
 - Rims against the figure, for the SD pass: L1 36 mm against about 33.7 mm drawn; R6 20.77 mm against about 18.6 mm
   drawn (the real f/1.5 axial ray needs 19.27 mm); the rear triplet 21 mm against about 22.1 mm drawn, held by R8's
-  rim-slope limit.
+  rim-slope limit. (Closed 2026-11-17 in the semi-diameter pass below.)
 - The `fStops` list (f/1.5 to f/16) is a conventional scale; the patent prints only f/1.5.
 - Optional: `catalog.imageCircleMm` about 76.9 mm from the patent's 42° field at f = 100.
+
+## 2026-11-17 — Semi-diameter pass against the patent figure
+
+Source: US2124356A.pdf, page 1, the single section drawing of the sole example, rendered at 600 dpi. The drawing has
+no dash-dot axis, so the axis is the midline of L1's flat top and bottom edges (row 2669). Scale: vertex crossings
+on the axis row give L1 352 px for 10.8 mm, the front triplet 721 px for 21.9 mm and the rear triplet 1121 px for
+34.3 mm, that is 32.6, 32.9 and 32.7 px/mm; 32.7 px/mm is used. The R6 arc from its vertex to its drawn end (sagitta
+321 px, half-chord 631 px) fits a radius of 23.9 mm against the printed 23.68, which confirms the same scale across
+the axis. The air spaces are not to scale (S1 is drawn about 5 mm wide against 0.52 mm), so only the element heights
+are read. The earlier reading of 16.9 px/mm at 300 dpi was about 3 % too large, so the earlier figure radii were
+about 3 % too small.
+
+| Surface | Before | Drawing | After | Evidence and decision |
+|---|---:|---:|---:|---|
+| 1, 2 (L1) | 36 | 34.9 | 36 | 3 % from the drawing, within noise. Kept. |
+| 3–5 (front triplet) | 30 | 30.4 | 30 | Within noise. Kept. |
+| 6 (L4 rear) | 20.77 | 19.3 | 19.3 | The drawn end of the deep concave face, 2.1 mm in front of the diaphragm stroke. It is just above the real f/1.5 axial ray (19.27 mm); no light is lost. |
+| 7 (L5 front) | 21 | 19.4, chamfer to 23.1 | 19.4, land to 21 | The drawing ends the optical face at 19.4 mm and chamfers the edge. A `rimExtensionSd` land to 21 mm keeps the element edge at the triplet height. |
+| 8–10 (rear triplet) | 21 | 23.1 | 21 | The drawing takes R8 almost to a hemisphere. At 23.1 mm R8's rim slope is 80.8° against the 64.2° limit, so the validator refuses it. The square rear triplet stays at 21 mm, the largest height R8 allows. |
+
+Light, against the committed rims (app vignetting curve, full pupil, wide open, 0–12.2°): unchanged to 4.1°. Worst
+loss 1.4 points at 8.1° (96.1 → 94.7 %). Corner 82.6 → 82.1 %. All of the loss comes from the R7 cut: restoring R7
+wins back 1.4 points and restoring R6 wins back none. This is within the 3-point allowance, and the cut matches a
+feature the drawing shows. A separate real-ray grid at the patent's own field: 10.5° 91.9 → 90.6 %, 21° 28.7 → 28.7 %,
+24° 12.6 → 12.6 %. The chief ray is unblocked out to 24°.
+
+After the change: `built.mjs` gives EFL 100.124 mm, f/1.5, stop radius 18.91 mm, back focal distance 41.193 mm and
+half-field 24.16°, all as before. `audit:surface` is OK. `audit:aperture` reports no surface below the on-axis ray and
+no rim, trace or iris limit. `audit:image-circle` and `audit:field-coverage` skip the lens because no image format is
+set. The scratch tool `clearap.mjs` cannot trace this lens: its intersection search starts at the vertex plane, where
+the ray height exceeds R6's radius. The independent sphere-intersection trace above stands in for it.
+
+Metadata: no change. No production lens is documented, so no mount, image format or marketing focal length or
+f-number can be sourced. The patent states a 42° field but no image diameter, so `catalog.imageCircleMm` (about
+76.8 mm at f = 100) stays unset. The `fStops` scale is kept, because the patent describes a photographic objective with
+a diaphragm. The name "BAUSCH & LOMB 100mm f/1.5 (US 2,124,356 Design)" names the patent design and no product; no
+product name exists to match.
+
+Open:
+
+- The drawn 23.1 mm rear triplet would need `checks.maxRimAngleDeg` 81 for R8. It would also gain corner light: in the
+  real-ray grid, 10.5° goes from 90.6 to 94.3 % and 21° from 28.7 to 39.3 %. This is the coordinator's call. (Closed
+  2026-11-17: applied, see the next paragraph. The 94.3 % at 10.5° assumed R7 at 23.1 too; with the R7 face kept at
+  19.4 it is 90.6 %.)
+- Bausch & Lomb maker details entry (`makerDetails.ts`).
+
+Follow-up on the coordinator's instruction, the same day. The rear triplet now takes the drawn height: R8, R9 and R10
+go from 21 to 23.1 mm, and R7's land (`rimExtensionSd`) goes from 21 to 23.1 mm. R7's optical face stays at 19.4 mm,
+where the drawing starts its chamfer. At 23.1 mm, R8 (−23.4 mm) meets the rim at a slope of 80.8°. `checks.maxRimAngleDeg`
+is set to 81, the smallest whole degree that admits it; 80 is refused. The rows above for surfaces 7 and 8–10 therefore
+read "land to 23.1" and "23.1" in the final file. With the final rims, `built.mjs` gives EFL 100.124 mm, f/1.5, stop
+radius 18.91 mm and back focal distance 41.193 mm. The engine half-field rises from 24.16° to 25.73°, because R10 no
+longer limits it. `audit:surface` is OK and `audit:aperture` reports no rim, trace or iris limit. `clearap.mjs` at
+Y = 38.39 mm (ω 21.09°) shows no BLOCKS-CHIEF, with the chief ray at 11.0, 14.2 and 16.0 mm on R8–R10; its axial
+search still cannot start past R6, the tool limit described above. `rimcost --loo` against the committed rims gives a
+worst loss of 1.4 points at 8.1°, all from the R7 face cut, and the corner (12.2°) goes from 82.6 to 84.9 %. The
+real-ray grid at the patent's field, against the committed rims: 10.5° 91.9 → 90.6 %, 15° 68.6 → 77.7 %,
+18° 49.9 → 60.3 %, 21° 28.7 → 39.3 % and 24° 12.6 → 21.1 %.

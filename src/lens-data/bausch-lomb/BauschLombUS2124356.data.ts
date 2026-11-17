@@ -12,8 +12,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *
  * Stop: printed. S2 = 12.32 mm runs from L4 to the diaphragm X and S3 = 4.08 mm from the diaphragm to L5.
  * Back focus: not printed; the image plane is the computed paraxial back focal distance, 41.193 mm from R10.
- * Rims: inferred, not published. The R6 rim is held at 20.77 mm so that the deep concave rear face of L4 stays in
- * front of the printed diaphragm plane. The rear-group rims stay within the rim-slope limit of R8.
+ * Rims: not published; estimated from the drawing (32.7 px/mm at 600 dpi from three element thicknesses, checked on
+ * the R6 arc radius) and floor-checked by real-ray trace. L1 (36 mm) and the front triplet (30 mm) agree with the
+ * drawn 34.9 and 30.4 mm within measurement noise. R6 ends at 19.3 mm as drawn, just above the f/1.5 axial ray
+ * (19.27 mm), so the concave rear face of L4 stops well in front of the diaphragm. L5's front face ends at 19.4 mm,
+ * where the drawing starts its edge chamfer, with a flat land out to the 23.1 mm triplet rim. The rear triplet takes
+ * the drawn 23.1 mm; there the steep R8 junction (-23.4 mm) reaches an 80.8° rim slope, so checks.maxRimAngleDeg is 81.
  * Focus: the patent gives the infinity state only.
  * No production lens is documented for this example.
  */
@@ -170,7 +174,7 @@ const LENS_DATA = {
       label: "6",
       R: 23.68,
       d: 12.32,
-      sd: 20.77,
+      sd: 19.3,
     },
     {
       label: "STO",
@@ -181,28 +185,29 @@ const LENS_DATA = {
       label: "7",
       R: 207,
       d: 22.7,
-      sd: 21,
+      sd: 19.4,
+      rimExtensionSd: 23.1,
       medium: 5,
     },
     {
       label: "8",
       R: -23.4,
       d: 3.6,
-      sd: 21,
+      sd: 23.1,
       medium: 6,
     },
     {
       label: "9",
       R: 57,
       d: 8,
-      sd: 21,
+      sd: 23.1,
       medium: 7,
     },
     {
       label: "10",
       R: -224.2,
       d: 41.193,
-      sd: 21,
+      sd: 23.1,
     },
   ],
   aperture: {
@@ -220,6 +225,9 @@ const LENS_DATA = {
   ],
   layout: {
     yScFill: 0.4,
+  },
+  checks: {
+    maxRimAngleDeg: 81,
   },
 } satisfies LensDataV2Input;
 export default LENS_DATA;

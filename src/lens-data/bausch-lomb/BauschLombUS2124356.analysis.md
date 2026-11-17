@@ -91,13 +91,15 @@ The 0.12 % difference from the stated 100 mm is within the rounding of a four-fi
 
 The patent prints no back focus, so the image plane is the computed paraxial focus, 41.193 mm behind the last vertex. The diaphragm diameter is not printed either. The model sizes the stop for f/1.5, which gives a paraxial stop radius of 18.91 mm.
 
-The clear radii are not published and are estimated. The values used are 36 mm on L1, 30 mm on the front triplet's front and junction surfaces, 20.77 mm on R6, and 21 mm on the rear triplet.
+The clear radii are not published. They are estimated from the patent drawing, whose element thicknesses and R6 curvature are close to scale, and checked against real rays. The model uses 36 mm on L1, 30 mm on the front triplet's outer surfaces, 19.3 mm on R6, 19.4 mm on the front face of L5 and 23.1 mm on the rest of the rear triplet.
 
-- **R6 rim.** R6 is so deep that at 21 mm its rim would reach 0.42 mm behind the printed diaphragm plane. The model therefore holds R6 at 20.77 mm, where the rim stays just in front of the plane. No traced ray reaches that height, so no light is lost.
-- **Rear triplet.** The rear rims are limited by the steep cemented R8.
-- **Axial beam.** The full f/1.5 axial beam passes every rim. The real marginal ray meets R1 at 33.37 mm, R6 at 19.27 mm and R10 at 14.77 mm.
-- **Off-axis vignetting.** The beam is vignetted off axis: about 92 % of the f/1.5 bundle passes at 10.5° and about 29 % at the patent's 21° half-field, where the chief ray is not blocked. Strong vignetting at full aperture toward the edge of a 42° field is typical of fast lenses of the period.
-- **Comparison with the figure.** The patent figure, measured at its own scale, draws L1 at about 33.7 mm, the front triplet at about 29.3 mm, the R6 opening at about 18.6 mm and the rear triplet at about 22.1 mm. The figure is approximate: for example, it draws the 0.52 mm air space S1 several millimetres wide.
+- **L1 and the front triplet.** The drawing gives about 34.9 mm and 30.4 mm, in agreement with the model within the precision of the drawing.
+- **R6 and the diaphragm.** The drawing ends the deep concave rear face of L4 at about 19.3 mm, well in front of the diaphragm, and the model follows it. The full f/1.5 axial ray meets R6 at 19.27 mm, so this rim is set by the drawing and the axial beam together.
+- **Front edge of L5.** The drawing ends the optical face of L5 at about 19.4 mm and chamfers the edge out to the triplet's rim. The model ends the face at 19.4 mm and draws a flat land out to the 23.1 mm rim.
+- **Rear triplet.** The drawing shows the rear triplet about 23.1 mm high, with the cemented R8 nearly a hemisphere, and the model follows it. At that height R8 (−23.4 mm) meets the rim at a slope of 80.8°, so the file raises its rim-angle allowance to 81°.
+- **Axial beam.** The full f/1.5 axial beam passes every rim. The real marginal ray meets R1 at 33.37 mm, R6 at 19.27 mm, the front of L5 at 18.97 mm and R10 at 14.77 mm.
+- **Off-axis vignetting.** The beam is vignetted off axis: about 91 % of the f/1.5 bundle passes at 10.5° and about 39 % at the patent's 21° half-field, where the chief ray is not blocked. Strong vignetting at full aperture toward the edge of a 42° field is typical of fast lenses of the period.
+- **Proportions of the drawing.** The drawing is close to scale inside each group but not in the air spaces: it draws the 0.52 mm air space S1 several millimetres wide.
 
 ## Sources
 
