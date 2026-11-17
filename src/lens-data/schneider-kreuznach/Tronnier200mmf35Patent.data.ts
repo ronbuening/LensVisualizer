@@ -1,8 +1,26 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * Albrecht Wilhelm Tronnier, US 2,084,714 A, "Unsymmetrical Photographic Objective" (Jos. Schneider & Co.,
+ * Optotechnische Gesellschaft; filed October 25, 1935, German priority August 26, 1935; granted June 22, 1937).
+ *
+ * Source: the patent's single numerical example, printed for focal length 1 with radii, thicknesses, air spaces,
+ * refractive indices for the "yellow ray" (stored as the sodium D line) and Abbe numbers. Every radius and spacing is
+ * multiplied by 200 to give the 200 mm focal length the patent names for its drawing. The printed table computes to
+ * f = 1.00109 (EFL 200.22 mm at this scale), within the rounding of its four-decimal values.
+ *
+ * Inferred, not printed:
+ * - Stop: the table names the second air space (13.10 mm) as the diaphragm space but gives no position inside it. The
+ *   stop is placed 9.84 mm behind R4 and 3.26 mm ahead of R5, the position at which a real chief ray crossing the stop
+ *   centre at 23° leaves the lens at the patent's stated 19°38′44.6″.
+ * - Rims: a common 31 mm semi-diameter on every glass surface; this clears the full f/3.5 axial beam. It is not read
+ *   from the figure, which draws the front element larger than the other three.
+ * - Back focus: the computed paraxial back focal distance, 163.95 mm from R7. The patent prints none.
+ */
 const LENS_DATA = {
   "schema": 2,
   "key": "schneider-tronnier-200-f3-5-us2084714-patent-reference",
-  "maker": "Schneider",
+  "maker": "Schneider-Kreuznach",
   "name": "SCHNEIDER / TRONNIER 200mm f/3.5 PATENT REFERENCE",
   "subtitle": "1935 DESIGN / 1937 GRANT \u2014 NO PRODUCTION MATCH",
   "visible": false,
@@ -16,14 +34,14 @@ const LENS_DATA = {
     "elementCount": 4,
     "groupCount": 3,
     "focalLengthMm": {
-      "design": 200.21812162868986
+      "design": 200.22
     },
     "fNumber": {
       "design": 3.5
     }
   },
   "source": {
-    "patentNumber": "US 2,084,714",
+    "patentNumber": "US 2,084,714 A",
     "example": {
       "label": "Sole example",
       "id": null
@@ -33,7 +51,7 @@ const LENS_DATA = {
       "Albrecht Wilhelm Tronnier"
     ],
     "assignees": [
-      "Jos. Schneider & Co."
+      "Jos. Schneider & Co., Optotechnische Gesellschaft"
     ],
     "sdSource": "heuristic"
   },
@@ -67,7 +85,7 @@ const LENS_DATA = {
       "vd": 49.1,
       "indexReference": "D",
       "indexReferenceNote": "Source says yellow ray; sodium D used as explicit historical convention, not named factory glass.",
-      "cemented": "C1"
+      "cemented": "D1"
     },
     {
       "id": 4,
@@ -78,7 +96,7 @@ const LENS_DATA = {
       "vd": 60,
       "indexReference": "D",
       "indexReferenceNote": "Source says yellow ray; sodium D used as explicit historical convention, not named factory glass.",
-      "cemented": "C1"
+      "cemented": "D1"
     }
   ],
   "surfaces": [
@@ -105,13 +123,13 @@ const LENS_DATA = {
     {
       "label": "4",
       "R": 55.22,
-      "d": 6.55,
+      "d": 9.84,
       "sd": 31
     },
     {
       "label": "STO",
       "R": "flat",
-      "d": 6.55
+      "d": 3.26
     },
     {
       "label": "5",
@@ -153,7 +171,7 @@ const LENS_DATA = {
   "groups": [],
   "doublets": [
     {
-      "text": "C1 doublet",
+      "text": "D1",
       "fromSurface": "5",
       "toSurface": "7"
     }
