@@ -4,7 +4,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * US 1,485,515 A (Willy Merté, assigned to the firm of Carl Zeiss, Jena; granted 1924), sole numerical example:
  * a four-element telephoto objective, f/6.3.
  * Radii, thicknesses, air spaces and sodium-D indices are transcribed as printed for focal length 100 and read as
- * millimetres; no scale factor is applied.
+ * millimetres.
  * The patent prints nD and nG′ indices but no Abbe numbers, so no νd is authored and the model is monochromatic.
  * The diaphragm position is printed: the air space is given as b2 = 5.66 behind r4 and b3 = 18.25 ahead of r5.
  * Inferred: the stop diameter (from f/6.3), all clear semi-diameters, and the back focus (computed paraxial value).
@@ -15,14 +15,14 @@ const LENS_DATA = {
   key: "carl-zeiss-jena-telephoto-100mm-f63-us1485515",
   maker: "Carl Zeiss Jena",
   name: "CARL ZEISS JENA TELEPHOTO 100mm f/6.3 (US 1,485,515 Design)",
-  subtitle: "US 1,485,515 \u2014 MONOCHROMATIC SODIUM D",
+  subtitle: "US 1,485,515 A, sole example \u2014 Mert\u00e9 telephoto objective",
   visible: true,
   catalog: {
     specs: [
       "4 ELEMENTS / 3 GROUPS",
-      "PATENT-ONLY MONOCHROME REFERENCE",
-      "NO RETAIL FOCAL-LENGTH IDENTITY",
-      "ESTIMATED CLEAR APERTURES"
+      "ALL SPHERICAL",
+      "DESIGN F/6.3",
+      "TELEPHOTO RATIO 0.80"
     ],
     elementCount: 4,
     groupCount: 3,
@@ -56,6 +56,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.59234,
       indexReference: "D",
+      glass: "Unmatched (nD 1.59234, nG′ 1.60464; no Abbe number printed)",
       role: "Front biconvex collective lens of the positive front member"
     },
     {
@@ -65,6 +66,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.59704,
       indexReference: "D",
+      glass: "Unmatched (nD 1.59704, nG′ 1.61718; no Abbe number printed)",
       role: "Biconcave dispersive lens of the front member, behind a thin air lens"
     },
     {
@@ -74,6 +76,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.6241,
       indexReference: "D",
+      glass: "Unmatched (nD 1.62410, nG′ 1.64732; no Abbe number printed)",
       role: "Positive front lens of the cemented negative rear member",
       cemented: "C1"
     },
@@ -84,6 +87,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.499,
       indexReference: "D",
+      glass: "Unmatched (nD 1.49900, nG′ 1.50840; no Abbe number printed)",
       role: "Negative rear lens of the cemented negative rear member",
       cemented: "C1"
     }
@@ -142,8 +146,8 @@ const LENS_DATA = {
     }
   ],
   focus: {
-    closeFocusM: 1000000000000000.0,
-    description: "Infinity-only patent reference; no finite-focus motion modeled."
+    closeFocusM: 1e15,
+    description: "Infinity focus only; the patent gives no close-focus data."
   },
   aperture: {
     nominalFNumber: 6.3,

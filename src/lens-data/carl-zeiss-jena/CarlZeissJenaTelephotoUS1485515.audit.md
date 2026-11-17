@@ -1,4 +1,4 @@
-# ZEISS MERTÉ 100mm f/6.3 PATENT REFERENCE — Audit Log
+# CARL ZEISS JENA TELEPHOTO 100mm f/6.3 (US 1,485,515 Design) — Audit Log
 
 ## Source
 
@@ -57,7 +57,8 @@ Element focal lengths: L1 +21.30, L2 −31.43, L3 +92.56, L4 −43.41.
 
 - `audit:surface`: OK.
 - `audit:aperture`: no rim limit; f/6.3 within 3 %.
-- `audit:image-circle` and `audit:field-coverage`: skipped (hidden file, no image format).
+- `audit:image-circle` and `audit:field-coverage`: skipped (hidden file, no image format). Since the file became
+  visible on 2026-11-17, both still skip it because it has no image format.
 - `clearap.mjs`: no glass rim cuts the axial f/6.3 beam. The real marginal ray meets the stop plane at about 6.59,
   against the paraxial 6.41, so the outermost zone of the nominal beam is clipped at the iris.
 - The rear rims at 5.2 vignette the off-axis beam by 19–35 % (one side) at 10 mm image height.
@@ -71,7 +72,8 @@ the computed focal length is 99.98, −0.02 % from the printed 100.
 
 Verdict: valid with notes. The patent names no product. The Contax Tele-Tessar K 18 cm f/6.3 has the same
 four-element, three-group count (Pacific Rim Camera), but no source ties this patent to a specific Tele-Tessar. The
-file remains a hidden patent reference with no production match.
+file remains a hidden patent reference with no production match. (Superseded 2026-11-17: the file is now visible as
+CARL ZEISS JENA TELEPHOTO 100mm f/6.3 (US 1,485,515 Design), and the attribution is unchanged.)
 
 Changes made:
 
@@ -99,11 +101,51 @@ Open:
 
 - **Wording (cleanup pass):** `name`, `subtitle` ("MONOCHROMATIC SODIUM D") and `specs` ("PATENT-ONLY MONOCHROME
   REFERENCE", "NO RETAIL FOCAL-LENGTH IDENTITY") need plain-English rewording. The element labels "Element 1–4" are
-  generic. The `key` still reads `zeiss-merte-…`.
+  generic. The `key` still reads `zeiss-merte-…`. (Closed 2026-11-17: the file was renamed and the key, name,
+  subtitle and specs reworded; the generic "Element N" labels are the house form.)
 - **Rims (SD pass):** the drawing shows the rear member about as tall as the front member (about 7.1 against 7.15
   units at the drawing's axial scale). The rear rims of 5.2 are therefore smaller than drawn and vignette the off-axis
   beam. The drawing's front member (about 7.15) is itself smaller than the f/6.3 entrance pupil (7.93), so the drawing
   is not to aperture scale.
 - **Dispersion (optional):** estimated νd values of about 61 / 39 / 35.7 / 66–67 come from modern glasses that match
   both printed nD and nG′. They would follow the estimated-Abbe precedent of the Tessar US 721,240 file. Otherwise the
-  model stays monochromatic.
+  model stays monochromatic. (Closed 2026-11-17: the batch rule keeps nD-and-nG′-only files monochromatic; no Abbe
+  number is authored.)
+
+## 2026-11-17 — Cleanup and wording pass
+
+Fields changed in the data file:
+
+- `subtitle`: `"US 1,485,515 — MONOCHROMATIC SODIUM D"` → `"US 1,485,515 A, sole example — Merté telephoto objective"`.
+- `catalog.specs`: `4 ELEMENTS / 3 GROUPS`, `PATENT-ONLY MONOCHROME REFERENCE`, `NO RETAIL FOCAL-LENGTH IDENTITY`,
+  `ESTIMATED CLEAR APERTURES` → `4 ELEMENTS / 3 GROUPS`, `ALL SPHERICAL`, `DESIGN F/6.3`, `TELEPHOTO RATIO 0.80`.
+  The ratio is the vertex-to-focus length, 80.47, divided by the computed focal length, 99.98.
+- `focus.closeFocusM`: `1000000000000000.0` → `1e15` (same value). `focus.description`: "Infinity-only patent
+  reference; no finite-focus motion modeled." → "Infinity focus only; the patent gives no close-focus data." There is
+  no `catalog.closeFocusM.marketing`, because no product source exists.
+- `glass` on L1–L4 (new): `Unmatched (nD …, nG′ …; no Abbe number printed)` with the printed values. No catalog row
+  is claimed. `glasscheck.mjs` reports each as unresolved by design, so the elements keep their constant index.
+- Header comment: dropped the "no scale factor is applied" clause, because the patent itself prints focal length 100.
+- `type`, `label`, `role`, `cemented` (`C1` on L3 and L4) and `doublets` (`C1`, surfaces 5–7) were checked and kept.
+
+The coordinator had already set the file name, `key`, `name`, `visible` and the plain object keys.
+
+In the analysis, the H1 now uses the model name. The scale sentence and the leftover "patent reference",
+"validation", "engine" and "data file" wording were removed. The Tele-Tessar family is stated once as the nearest
+documented product, with its source. The element glass lines now match the new `glass` strings.
+
+Engine numbers are identical before and after:
+
+- `built.mjs`: EFL 99.97654348426364, f/6.3, half-field 11.0033°, stop semi-diameter 6.408569182636037, total track
+  80.46767248922589.
+- `probe.mjs`: BFD 49.6287 with zero defocus.
+
+`audit:surface` is OK. `audit:aperture` shows no rim limit, with the f-number within 3 %. `audit:image-circle` and
+`audit:field-coverage` skip the file because it has no image format.
+
+Open:
+
+- **Rims (SD pass):** the rear rims (5.2) are smaller than the drawing shows (about 7.1, the same as the front
+  member), as recorded above.
+- **Metadata:** there is no `lensMounts`, `imageFormat` or `closeFocusM.marketing`. The patent states no format or
+  field, and no product is documented.

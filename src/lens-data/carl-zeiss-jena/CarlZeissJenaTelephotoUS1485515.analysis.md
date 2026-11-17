@@ -1,4 +1,4 @@
-# ZEISS MERTÉ 100mm f/6.3 PATENT REFERENCE — US 1,485,515 A Sole Example
+# CARL ZEISS JENA TELEPHOTO 100mm f/6.3 (US 1,485,515 Design)
 
 ## Patent Reference and Design Identification
 
@@ -14,15 +14,15 @@
 The patent lists the corresponding foreign filings. They include British Patent 145,548, Swiss Patent 88,402 and French
 Patent 518,732. The US patent states that it was granted under the provisions of the Act of March 3, 1921.
 
-The patent contains a single constructional example. The model transcribes it at the printed scale, with focal length
-100 read as millimetres. No scale factor is applied, and the model is not presented as a production lens of any
+The patent contains a single constructional example, tabulated for focal length 100. The CARL ZEISS JENA TELEPHOTO
+100mm f/6.3 (US 1,485,515 Design) reads those values as millimetres and does not represent a production lens of any
 particular focal length.
 
-The patent itself names no product. The closest documented Zeiss product family is the Tele-Tessar f/6.3. The later
+The patent itself names no product. The nearest documented Zeiss product is the Tele-Tessar f/6.3 family. The later
 Contax Tele-Tessar K 18 cm f/6.3 (literature from 1933) is described as a four-element, three-group lens, the same
-element and group count as this example. No source found during validation ties US 1,485,515 to a specific
-Tele-Tessar, and no published Tele-Tessar section was available for comparison. The model is therefore kept as a
-patent reference: at most a related member of the family, not an identified production prescription.
+element and group count as this example. No source found ties US 1,485,515 to a specific Tele-Tessar, and no published
+Tele-Tessar section was available for comparison. The design is therefore at most a related member of that family,
+not an identified production prescription.
 
 ## Optical Architecture
 
@@ -63,7 +63,7 @@ vertex. The model places its stop there.
 
 ### L1 — Biconvex Positive
 
-`nd = 1.59234 (sodium D), νd not printed. Glass: unidentified patent medium (nD and nG′ only). f = +21.30 mm.`
+`nd = 1.59234 (sodium D), νd not printed. Glass: Unmatched (nD 1.59234, nG′ 1.60464). f = +21.30 mm.`
 
 L1 is the front collective lens. It is strongly curved at the front (r1 = +18.091) and weaker at the rear
 (r2 = −38.834), and it provides most of the front member's positive power. Its printed nG′ − nD of 0.01230 marks it as
@@ -71,7 +71,7 @@ the lower-dispersion glass of the front pair.
 
 ### L2 — Biconcave Negative
 
-`nd = 1.59704 (sodium D), νd not printed. Glass: unidentified patent medium (nD and nG′ only). f = −31.43 mm.`
+`nd = 1.59704 (sodium D), νd not printed. Glass: Unmatched (nD 1.59704, nG′ 1.61718). f = −31.43 mm.`
 
 L2 is separated from L1 by an air space of only 0.130 at the axis. The two facing radii, r2 = −38.834 and
 r3 = −36.679, are close but not equal, so the gap forms the thin "dispersive air lens" named in the patent. In the
@@ -80,11 +80,11 @@ achromatized positive front member.
 
 ### L3 + L4 — Cemented Rear Member
 
-**L3 — Positive Meniscus.** `nd = 1.62410 (sodium D), νd not printed. Glass: unidentified patent medium (nD and nG′
-only). f = +92.56 mm.`
+**L3 — Positive Meniscus.** `nd = 1.62410 (sodium D), νd not printed. Glass: Unmatched (nD 1.62410, nG′ 1.64732).
+f = +92.56 mm.`
 
-**L4 — Negative Meniscus.** `nd = 1.49900 (sodium D), νd not printed. Glass: unidentified patent medium (nD and nG′
-only). f = −43.41 mm.`
+**L4 — Negative Meniscus.** `nd = 1.49900 (sodium D), νd not printed. Glass: Unmatched (nD 1.49900, nG′ 1.50840).
+f = −43.41 mm.`
 
 All three rear radii (r5 = −10.396, r6 = −9.426, r7 = −17.130) are concave toward the object, so the member is a
 deep meniscus that bends around the converging beam from the front member. L3 is the thicker, higher-index lens at
@@ -107,9 +107,9 @@ The patent prints two indices for each glass, nD and nG′, and no Abbe numbers 
 | L3 | 1.62410 | 1.64732 | 0.02322 | flint-like |
 | L4 | 1.49900 | 1.50840 | 0.00940 | crown-like |
 
-The data file records each nD with `indexReference: "D"` (sodium D). The G′ line (434.05 nm) is not one of the
-engine's dispersion inputs, so no νd is authored. The model therefore uses a constant index for each element. It
-represents the monochromatic design only and makes no claim about the chromatic correction the patent describes.
+The model uses each printed nD at the sodium D line. The patent gives no Abbe numbers, and the G′ line (434.05 nm) is
+not one of the model's dispersion inputs, so each element keeps a constant index. The model therefore represents the
+monochromatic design only and makes no claim about the chromatic correction the patent describes.
 
 As an author inference, modern catalogue glasses that match both printed values are close to νd ≈ 61 (L1), 39 (L2),
 35.7 (L3) and 66–67 (L4). These are estimates for comparison only; they are not used in the model and do not identify
@@ -136,5 +136,6 @@ off-axis beam. The 11° half-field used by the viewer is a default, not a covera
 
 - US 1,485,515 A, W. Merté, *Telephoto Objective*, filed August 13, 1921, granted March 4, 1924 (drawing sheet and
   specification page with the numerical table).
-- Pacific Rim Camera, *Zeiss Contax Tele-Tessar K 180mm f/6.3*, describing a four-element, three-group design:
+- Pacific Rim Camera, *Photographica Pages*, Zeiss Contax Tele-Tessar K 180mm f/6.3, describing a four-element,
+  three-group design:
   https://pacificrimcamera.com/pp/zicontax180f63.htm
