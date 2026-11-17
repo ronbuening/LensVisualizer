@@ -1,5 +1,13 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
-/** Literal Figure 1 nD/V and geometry. Middle-of-gap stop and clear rims are estimates; no iris in patent drawing. BFD calculated at sodium D. No factory product identity. */
+/**
+ * US 2,231,699 A (Harold F. Bennett, Eastman Kodak Company, granted 1941), Figure 1 example: a four-element,
+ * two-group telephoto objective, f = 100 mm, f/3.8. Radii, thicknesses, the 39.5 mm group separation and the sodium-D
+ * indices and Abbe numbers are copied unchanged at the patent's own f = 100 mm scale (no scaling).
+ *
+ * Inferred, not printed: the stop sits at the middle of the 39.5 mm air space (the patent shows no diaphragm); the clear
+ * semi-diameters (13.5 mm front, 10 mm rear) are estimates; the image plane is the computed paraxial back focus at the
+ * D line (33.45 mm), since the patent prints no back focus. No production lens is identified with this example.
+ */
 const LENS_DATA = {
   "schema": 2,
   "key": "kodak-bennett-100-f38-us2231699-figure1-patent-reference",
@@ -17,14 +25,14 @@ const LENS_DATA = {
     "elementCount": 4,
     "groupCount": 2,
     "focalLengthMm": {
-      "design": 100.05834371899277
+      "design": 100.06
     },
     "fNumber": {
       "design": 3.8
     }
   },
   "source": {
-    "patentNumber": "US 2,231,699",
+    "patentNumber": "US 2,231,699 A",
     "example": {
       "label": "Figure 1",
       "id": "1"
@@ -48,7 +56,7 @@ const LENS_DATA = {
       "vd": 67,
       "indexReference": "D",
       "cemented": "C1",
-      "role": "Literal patent nD/V; native Abbe dispersion approximation, not identified factory glass"
+      "role": "Positive crown of the front cemented doublet."
     },
     {
       "id": 2,
@@ -59,7 +67,7 @@ const LENS_DATA = {
       "vd": 35.9,
       "indexReference": "D",
       "cemented": "C1",
-      "role": "Literal patent nD/V; native Abbe dispersion approximation, not identified factory glass"
+      "role": "Negative flint of the front cemented doublet, with a flat rear face."
     },
     {
       "id": 3,
@@ -70,7 +78,7 @@ const LENS_DATA = {
       "vd": 64.1,
       "indexReference": "D",
       "cemented": "C2",
-      "role": "Literal patent nD/V; native Abbe dispersion approximation, not identified factory glass"
+      "role": "Negative crown at the front of the rear cemented doublet."
     },
     {
       "id": 4,
@@ -81,7 +89,7 @@ const LENS_DATA = {
       "vd": 55.5,
       "indexReference": "D",
       "cemented": "C2",
-      "role": "Literal patent nD/V; native Abbe dispersion approximation, not identified factory glass"
+      "role": "Higher-index positive rear element; its cemented face R5 carries the patent's distortion-reducing index step."
     }
   ],
   "surfaces": [

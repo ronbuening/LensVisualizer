@@ -8,7 +8,7 @@
 **Title:** Telephoto objective  
 **Example details:** The Figure 1 drawing sheet and matching specification table, normalized to 100 mm at f/3.8.
 
-This hidden patent-only reference represents a 1939 filing, not a pre-1941 publication. No production lens, mount, film format or factory prescription identity has been established. It is included for the unusually simple four-element telephoto and its stated distortion-reduction objective, not as proof that the claimed aberration correction has been achieved by this reconstruction.
+This model reproduces the first of the patent's two numerical examples (Figure 1), filed in October 1939 and granted in February 1941. No production lens, mount, film format or factory prescription identity has been established. It is included for the unusually simple four-element telephoto and its stated distortion-reduction objective, not as proof that the claimed aberration correction has been achieved by this reconstruction.
 
 ## Optical Architecture
 
@@ -39,7 +39,11 @@ None. All refracting surfaces are spherical or flat.
 
 ## Validation and Limits
 
-The authored file passes the native canonical schema/geometry validator, render-trim checks, sampled iris clearance, and focused file type/lint checks. Thirty-six native meridional samples cover axial, 5°, 10° and default estimated half-field positions. Some samples clip, and several outer rays cannot bracket an intersection; those failures are retained in the audit evidence rather than hidden. This is a scoped qualified handoff, not full-app, full-corpus, browser/viewer or factory-performance certification. The native MTF support check enables reference-wavelength analysis but blocks C/d/F MTF because the V=67 glass lacks partial-dispersion data. No polychromatic MTF, measured MTF or correction claim is made.
+Every radius, thickness, spacing, index and Abbe number was checked against both printed tables, the one on drawing sheet 1 and the one in the specification; they agree with each other and with this model. The computed focal length is 100.06 mm against the printed 100 mm (+0.06 %). The back focus is 33.45 mm and the length from the front vertex to the image is 90.75 mm, a telephoto ratio of about 0.91. The front component computes to +72.16 mm and the rear component to −145.58 mm.
+
+The patent's stated proportions hold for this example. The rear component's outer radii are 0.16 F and 0.34 F (close to the "about 1/6 F" and "about 1/3 F" of the text), its cemented face is 0.525 F, and the components are 0.395 F apart. Across that cemented face the index rises by 0.123 and the Abbe number falls by 8.6, inside the claimed limits of at least 0.07 and at most 15.
+
+The model has limits that come from its estimates, not from the patent. The 10 mm rear clear radius is smaller than the rear doublet drawn in Figure 1, so toward the edge of the default field the rear doublet cuts away much of the oblique beam. The patent states no field angle; the default half-field of about 12.6° is the viewer's own setting. The front crown's Abbe number of 67 lies where glasses with unusual partial dispersion occur, and the patent gives no partial-dispersion data, so the MTF view shows the reference wavelength only. No claim is made about how well the distortion correction stated in the patent is reproduced.
 
 ## Sources
 
