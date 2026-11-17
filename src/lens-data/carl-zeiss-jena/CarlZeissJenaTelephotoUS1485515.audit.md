@@ -228,3 +228,79 @@ Open:
 
 - L1's edge is thinner than drawn (0.56 at 8.1, against about 1.2 at the drawn 7.1). This is a consequence of the
   f/6.3 beam floor.
+
+## 2026-11-17 — Second review on the local site
+
+I compared the live page (1400 × 900, with the element inspector open for each of the four elements) with the only
+figure, US1485515A.pdf page 1, at its native 300 dpi. The scale and rim readings below are my own.
+
+**Scale.** The axis line is tilted 0.96° on the scan, so every height was read perpendicular to the local axis. The
+vertex crossings put r1 → r7 at 1189 px for 30.839, which is 38.56 px per unit. Other spans check against it: r1 → r2
+3.31 (table 3.329), r1 → r5 28.21 (28.199), r5 → r6 1.89 (1.89) and r6 → r7 0.74 (0.75). Only the 0.130 air lens is
+drawn wider, at about 0.39. Across the axis, the drawn r1 face lies within 1 px of the R = 18.091 circle at heights
+5.97 and 7.11. The r5 face lies within 1.3 px of R = 10.396 at 5.71, and the r7 face within 1.2 px of R = 17.13 at
+6.74. The vertical scale therefore equals the axial scale.
+
+**Readings** (centre of the drawn line, top and bottom of the axis):
+
+| Item | Drawn | Model |
+|---|---:|---:|
+| Lenses I and II, outer edge (I square-cut) | 7.15 / 7.18 | 8.1 (f/6.3 floor 7.93 at r1) |
+| r4, end of the chamfer on II | 6.15 / 6.2 | 7.4 (floor 7.37) |
+| Iris opening | 5.78 / 5.89 | stop 6.41 (not authored) |
+| Iris bars behind r1 | 10.13 | 9.949 (printed) |
+| r5, bevelled up to r6 | 6.2 / 6.25 | 6.2 |
+| r6 and r7, flat edge of IV | 7.09 / 7.09 | 7.1 / 7.1 |
+
+The back member matches the drawing exactly. The drawn iris is 0.91 of the model's paraxial f/6.3 stop, and the
+drawn front member is 0.90 of the 7.93 entrance pupil. The figure is therefore drawn for a beam about 0.9 times as
+wide as f/6.3 (about f/6.9), and the f/6.3 floor rightly sets the front rims. The scale itself is not distorted. The
+earlier rims stand, and no rim was changed. The side-by-side of the figure, the model and the live page at one
+scale shows the same picture: the back member coincides with the drawing, and the front member stands about 1 unit
+taller than drawn.
+
+**Lands and cuts.** The file has no `rimExtensionSd` or `rimCutDepthMm`. Against the rims before the semi-diameter
+pass, the whole lens gains at every field, by up to 32.6 points at 11.3°, and its worst loss is 0.0. Restoring r1
+from 8.1 to 8.3 wins back 1.4 points at 11.3°. Restoring r4 from 7.4 to 8.1 wins back 0.2 points at 3.8°. Both cuts
+are within 3 points and both follow the drawn shape (I square-cut, II chamfered at r4), so both stay.
+
+Changes:
+
+| Field | Before | After | Evidence |
+|---|---|---|---|
+| element `name` | L1, L2, L3, L4 | I, II, III, IV | The figure and the table head label the lenses I–IV. This matches the sibling Triotar file, which uses the patent's numerals. |
+| element `label` | Element 1 … Element 4 | Element I … Element IV | same |
+| element `diagramLabel` | none | I, II, III, IV | The diagram showed 1–4 under the elements. |
+| element `focalLengthMm` | none (inspector "FL = —") | +21.3, −31.43, +92.56, −43.41 | Thick-lens values in air at nD. They match the first-order table above. |
+| `groups` | none | FRONT (+) r1–r4, BACK (−) r5–r7 | The patent text names a "front member" of collective power and a "back member" of dispersive effect. The figure marks the back member "(−)". |
+| header comment | — | numerals and members noted | — |
+
+The `.analysis.md` now calls the elements I–IV and states the member names. No other number in it changed.
+
+Checked and found correct:
+
+- `type` agrees with the signs of R: I biconvex, II biconcave, III a positive meniscus (+92.56) and IV a negative
+  meniscus (−43.41), both concave to the object.
+- Every `role` is true.
+- The inspector shows "DOUBLET C1" on III and IV, not a triplet, and the C1 bracket spans r5–r7.
+- The stop sits between II and III at the printed 5.66 / 18.25 split.
+- There are no aspheres, and no `apd` tags; the patent names no special glass.
+- The new group labels sit below the element numerals, with no collision.
+- Movement: there are no variable gaps and no zoom block, and `closeFocusM` is 1e15. The focus slider reads "Not
+  modeled", and `focus.description` says only that the patent gives no close-focus data.
+- Engine values are unchanged: EFL 99.9765, f/6.3, half-field 14.868°, stop semi-diameter 6.4086.
+- `audit:surface` is OK, and `audit:aperture` shows no rim limit, with the f-number within 3 %. `audit:image-circle`
+  and `audit:field-coverage` skip the file because it has no image format.
+- clearap at 26.5 mm image height shows no CLIPS-AXIAL and no BLOCKS-CHIEF.
+- The assignee `Carl-Zeiss-Stiftung` is the corpus form for "the firm of Carl Zeiss, of Jena".
+
+Glass and colour: the patent prints only nD and nG′ (434.05 nm) for each lens. It gives no glass name, no Abbe number
+and no aberration plots, and with one example no pair recurs. The four `Unmatched` labels stand, and the lens stays
+monochromatic. Its constant-index media switch colour off for the whole lens, and the data format has no field for
+the printed nG′.
+
+Open:
+
+- `source.sdSource` is still `"heuristic"`. The three back-member rims are now figure-measured and the four front
+  rims sit on the f/6.3 floor. LENS_DATA_SPEC.md ("Clear-aperture provenance") leaves mixed evidence undeclared.
+- Lens I's edge is still thinner than drawn (0.56 at 8.1), as recorded above.

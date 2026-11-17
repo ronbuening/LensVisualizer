@@ -10,8 +10,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Inferred: the stop diameter (from f/6.3), all clear semi-diameters, and the back focus (computed paraxial value).
  * Semi-diameters are taken from the drawing, which is to scale axially. The rear member is set to the drawn heights:
  * r5 6.2, bevelled up to r6 and r7 at 7.1. The front member is drawn at about 7.1, with r4 bevelled to about 6.2, but
- * that is smaller than the f/6.3 axial beam (7.93 at r1), so it stays just above that beam. L1 is square-cut at 8.1,
- * and r4 is at 7.4, the beam height rounded up.
+ * that is smaller than the f/6.3 axial beam (7.93 at r1), so it stays just above that beam. Lens I is square-cut at
+ * 8.1, and r4 is at 7.4, the beam height rounded up.
+ * Elements carry the patent's lens numerals I–IV; the brackets follow its "front member" and "back member".
  * Infinity focus only; the patent gives no close-focus data.
  */
 const LENS_DATA = {
@@ -55,43 +56,51 @@ const LENS_DATA = {
   elements: [
     {
       id: 1,
-      name: "L1",
-      label: "Element 1",
+      name: "I",
+      label: "Element I",
+      diagramLabel: "I",
       type: "Biconvex Positive",
       nd: 1.59234,
       indexReference: "D",
       glass: "Unmatched (nD 1.59234, nG′ 1.60464; no Abbe number printed)",
+      focalLengthMm: 21.3,
       role: "Front biconvex collective lens of the positive front member"
     },
     {
       id: 2,
-      name: "L2",
-      label: "Element 2",
+      name: "II",
+      label: "Element II",
+      diagramLabel: "II",
       type: "Biconcave Negative",
       nd: 1.59704,
       indexReference: "D",
       glass: "Unmatched (nD 1.59704, nG′ 1.61718; no Abbe number printed)",
+      focalLengthMm: -31.43,
       role: "Biconcave dispersive lens of the front member, behind a thin air lens"
     },
     {
       id: 3,
-      name: "L3",
-      label: "Element 3",
+      name: "III",
+      label: "Element III",
+      diagramLabel: "III",
       type: "Positive Meniscus",
       nd: 1.6241,
       indexReference: "D",
       glass: "Unmatched (nD 1.62410, nG′ 1.64732; no Abbe number printed)",
+      focalLengthMm: 92.56,
       role: "Positive front lens of the cemented negative rear member",
       cemented: "C1"
     },
     {
       id: 4,
-      name: "L4",
-      label: "Element 4",
+      name: "IV",
+      label: "Element IV",
+      diagramLabel: "IV",
       type: "Negative Meniscus",
       nd: 1.499,
       indexReference: "D",
       glass: "Unmatched (nD 1.49900, nG′ 1.50840; no Abbe number printed)",
+      focalLengthMm: -43.41,
       role: "Negative rear lens of the cemented negative rear member",
       cemented: "C1"
     }
@@ -163,7 +172,18 @@ const LENS_DATA = {
       22
     ]
   },
-  groups: [],
+  groups: [
+    {
+      text: "FRONT (+)",
+      fromSurface: "1",
+      toSurface: "4"
+    },
+    {
+      text: "BACK (−)",
+      fromSurface: "5",
+      toSurface: "7"
+    }
+  ],
   doublets: [
     {
       text: "C1",
