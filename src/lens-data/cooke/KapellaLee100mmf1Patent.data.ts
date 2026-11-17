@@ -1,16 +1,23 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 /**
- * US2012822A Example1/Figure1, printedp2. Patent-only reference, not retail identity.
- * Every source length multiplied100; no re-optimization. Native sodium nD/V retained.
- * Stop18mm behindR7 is a mechanical-clearance estimate insideS3, not patent fact.
- * Clear radii are ray-envelope estimates; no published field/format is asserted.
- * Final32.1767888723mm is calculated paraxial BFD; patent does not supply BFD.
- * Missing spectral lines use the engine's D-reference Abbe estimate, not measured color data.
+ * US 2,012,822 A (Horace William Lee, assigned to Kapella Limited, 1935), Example 1, Figure 1: an f/1 objective of
+ * five spherical elements in four groups, printed on specification page 2. The patent gives three examples of unit
+ * equivalent focal length; this file uses Example 1 only.
+ *
+ * Every printed radius, thickness and separation is multiplied by 100, with no further scaling or fitting. The printed
+ * prescription then traces to a paraxial focal length of 100.15 mm. Indices and Abbe numbers are the patent's sodium
+ * D-line nD and V values; the Chance Brothers type numbers it prints do not match a modern catalogue glass, so colour
+ * is estimated from nD and V alone.
+ *
+ * Inferred, not printed: the iris, placed 18 mm behind R7 inside the 22.94 mm air space S3, where it clears the
+ * deeply curved rear face of the cemented pair (its radius is set by the engine for f/1); all clear semi-diameters,
+ * estimated from the axial ray envelope; and the 32.177 mm back focus, the computed paraxial image distance for an
+ * object at infinity. The patent prints no back focus, field angle, image size or close-focus data.
  */
 const LENS_DATA = {
   schema: 2,
   key: "kapella-lee-100mm-f1-us2012822-example1",
-  maker: "Kapella",
+  maker: "Cooke",
   name: "KAPELLA LEE 100mm f/1 PATENT REFERENCE",
   subtitle: "US 2,012,822 A EXAMPLE 1 — HORACE WILLIAM LEE",
   visible: false,
@@ -18,7 +25,7 @@ const LENS_DATA = {
     specs: ["5 ELEMENTS / 4 GROUPS", "PATENT-ONLY RECONSTRUCTION", "INFINITY ONLY", "ESTIMATED STOP AND CLEAR APERTURES"],
     elementCount: 5,
     groupCount: 4,
-    focalLengthMm: { design: 100.14870855218445 },
+    focalLengthMm: { design: 100.15 },
     fNumber: { design: 1 },
   },
   source: {

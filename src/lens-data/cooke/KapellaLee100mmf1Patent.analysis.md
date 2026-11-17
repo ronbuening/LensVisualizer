@@ -1,40 +1,99 @@
 ## Patent Reference and Design Identification
 
-**Patent:** [US 2,012,822 A](https://patents.google.com/patent/US2012822)
-**Inventor:** Horace William Lee
-**Assignee:** Kapella Limited
-**Filed:** July 20, 1934; British priority July 22, 1933
-**Granted:** August 27, 1935
-**Title:** Lens for photographic and like purposes
-**Example details:** Figure 1 and Example 1, original PDF pages 1 and 3 (printed specification page 2).
+**Patent:** US 2,012,822 A, _Lens for Photographic and Like Purposes_  
+**Application Number:** Serial No. 736,161  
+**Filed:** July 20, 1934 (British priority July 22, 1933)  
+**Granted:** August 27, 1935  
+**Inventor:** Horace William Lee  
+**Assignee:** Kapella Limited, Leicester, England  
+**Example details:** Example 1, "Aperture f/1", Figure 1; table on printed specification page 2. The patent gives all three examples at unit equivalent focal length; every length here is multiplied by 100.
 
-This is a hidden **patent-only reference reconstruction**, not an identified commercial Kapella lens. The original prescription is normalized to unit equivalent focal length. All radii, thicknesses and separations are multiplied by 100 to produce a convenient approximately 100 mm model; this is a modeling scale, not evidence of a manufactured focal length. The literal rounded prescription calculates to 100.148709 mm, within 0.149% of the scaled nominal 100 mm. No source radius, thickness, index or dispersion is optimized or repaired. The Photons to Photos/Cox lead helped locate the patent, but a definitive Cox record-to-example correspondence has not been established and is not claimed here.
+The patent describes fast objectives built around a thick compound dispersive meniscus placed between two collective (positive) members. It gives three examples: Example 1 at f/1 with five elements (Figure 1), Example 2 at f/1 with six elements (Figure 2), and Example 3 at f/1.1 with seven elements (Figure 3). Examples 1 and 2 share the same first seven radii and the same front spacings; they differ only in the rear collective member. This file models Example 1 alone.
+
+Horace William Lee was a lens designer at Taylor, Taylor & Hobson of Leicester from 1913 to 1936, the designer of the Opic f/2 and the Speed Panchro family. Kapella Limited, also of Leicester, is the assignee of other Lee patents from those years, including GB 355,452, the inverted telephoto that Wikipedia's Cooke Optics article lists among the company's designs. The file is therefore listed under Cooke as a design from the Taylor Hobson lens office.
+
+No production lens has been identified with this example. No Cooke or Taylor Hobson catalogue lens at f/1 from the 1930s was found, and the patent names no product. E. Kaprelian's 1949 survey "Objective Lenses" in the _Journal of the Society of Motion Picture Engineers_ (vol. 53, p. 91, Fig. 2i, reference 18) cites US 2,012,822 as Lee's f/1 design, as an example of a class of extreme-aperture objectives derived from the Gauss type. The 100 mm focal length is a modelling scale for the patent's unit-focal-length table, not a marketed focal length.
+
+The scaled prescription traces to a paraxial focal length of 100.15 mm, 0.15 % above the nominal 100 mm. Example 2, with the same front, traces to 99.85 mm, so the residual reflects the four-decimal rounding of the printed radii, not a misprint. No radius, thickness, index or Abbe number is altered.
 
 ## Optical Architecture
 
-Five elements form four air-separated groups: two positive menisci, a cemented positive/negative pair acting as the intermediate dispersive member, and a rear positive biconvex element. The ninth and last radius is **negative**. The table states f/1 for Example 1; Examples 2 and 3 are different prescriptions and are not mixed into this file.
+Five spherical elements form four air-separated groups with a positive–positive–negative–positive power sequence:
 
-## Glass and Dispersion
+1. Two positive menisci (L1, L2), both convex toward the object, with their concave sides facing the dispersive member.
+2. A thick cemented meniscus (L3 + L4), convex toward the object and net negative (f = −168.1 mm). It consists of a biconvex crown cemented to a biconcave element of higher index.
+3. A single biconvex rear element (L5), the strongly positive inner collective member.
 
-The source explicitly gives historical sodium **nD**, Abbe V and Chance Brothers catalogue numbers. L1, L2 and L5 retain nD=1.6135, V=59.4, source number 8065. L3 retains 1.6062/59.8, source number 4317. L4 retains 1.6945/30.7; its type number is marked unpublished in the source. Glass names are documentary labels, not verified modern Sellmeier matches. No invented modern replacement is applied. The viewer uses its supported native-D convention and normal-line dispersion estimate from nD/V; secondary spectrum is approximate, not measured.
+Kaprelian describes this class as a Gauss objective that drops the second dispersive meniscus, makes the last element strongly collective and inserts a meniscus between the front element and the dispersive meniscus. That matches Example 1's layout.
+
+The patent states several preferred conditions. Example 1 meets each of them:
+
+| Patent condition | Example 1 |
+|---|---|
+| Index of the biconcave element exceeds that of the biconvex element by at least about 0.07 | 1.6945 − 1.6062 = 0.0883 |
+| Power of the dispersive member's outer convex surface (R5), relative to the whole system, at least the f-number | 1.20 against f/1 |
+| Dispersive member thicker than one quarter of the focal length | 37.09 mm = 0.37 F |
+| Powers of the two collective menisci within a factor of two of each other | ratio 1.09 |
+| Sum of the menisci's powers between one half and three quarters of the system power | 0.66 |
+| Convex radii of the collective components increase outward from the dispersive member | R5 50.42 < R3 73.27 < R1 121.47 mm |
+| Cemented facing surfaces strongly curved, concave toward the light, radius of the order of the focal length | R6 = −105.16 mm |
+
+The patent neither draws nor states an iris position. The model places the iris 18 mm behind the R7 vertex, inside the 22.94 mm air space S3 and 4.94 mm ahead of L5. R7 is very deeply curved (radius 29.03 mm), so its surface lies 9.09 mm behind its vertex at the iris radius and 16.1 mm behind it at its rim; this position keeps the iris clear of that glass. The iris radius, 21.10 mm, gives f/1 by the paraxial definition. The patent prints no back focus. The model places the image at the computed paraxial back focus, 32.18 mm behind R9, for a total length of 124.12 mm from R1 to the image.
+
+## Element-by-Element Analysis
+
+### L1 — Positive Meniscus, convex to object
+
+`nd = 1.6135, νd = 59.4.` Glass: Chance Brothers type 8065 as printed (no modern catalogue match). f = +319.4 mm.
+
+L1 is the outer of the two collective menisci. Its convex front (R1 121.47 mm) has the longest radius of the three convex surfaces that face the incoming light, as the patent prefers. The patent explains that splitting the front collective member into several menisci lets the dispersive member use curves strong enough to reach f/1 while keeping axial and oblique aberrations well corrected.
+
+### L2 — Positive Meniscus, convex to object
+
+`nd = 1.6135, νd = 59.4.` Glass: Chance Brothers type 8065 as printed. f = +292.1 mm.
+
+L2 is the inner collective meniscus. It is slightly stronger than L1, and its front radius (73.27 mm) is shorter. Together the two menisci carry about two thirds of the system's power, inside the patent's preferred half-to-three-quarters range. They are separated by a 0.5 mm air space, as is L2 from the cemented member.
+
+### L3 + L4 — Cemented dispersive meniscus
+
+L3: `nd = 1.6062, νd = 59.8.` Glass: Chance Brothers type 4317 as printed. f = +61.2 mm (biconvex, 33.7 mm thick).
+L4: `nd = 1.6945, νd = 30.7.` Glass: a new Chance glass that the patent says was not yet in the Chance catalogue. f = −32.4 mm (biconcave).
+
+The patent's central idea is this thick compound meniscus. Its strongly convex front (R5 50.42 mm) sits on a high-index crown. The cemented interface R6 (−105.16 mm) is concave toward the light and joins the crown to a flint whose index is 0.088 higher. The very short rear radius (R7 29.03 mm) gives the member its net negative power. Because the index step across R6 is small, the cemented surface adds little power (about −0.08 of the system's), while the large difference in Abbe number across it (59.8 against 30.7) gives the member its colour-correcting role. The member's total thickness, 37.09 mm, is over a third of the focal length.
+
+### L5 — Biconvex Positive
+
+`nd = 1.6135, νd = 59.4.` Glass: Chance Brothers type 8065 as printed. f = +75.4 mm.
+
+L5 is the inner collective member on the concave side of the dispersive meniscus. The patent notes that a single element here gives less risk of flare, while dividing it into two components (as Example 2 does) improves the zonal correction.
+
+## Glass Identification and Selection
+
+The patent defines each glass by its mean refractive index nD, its Abbe V number and its type number in the Chance Brothers optical glass catalogue. The patent calls nD the mean refractive index "as conventionally employed", and the model reads it as the sodium D line (589.3 nm). The difference from the helium d line is far too small to matter here.
+
+| Element | nD / V | Chance type | Role |
+|---|---:|---|---|
+| L1, L2, L5 | 1.6135 / 59.4 | 8065 | Collective crowns |
+| L3 | 1.6062 / 59.8 | 4317 | Crown of the dispersive meniscus |
+| L4 | 1.6945 / 30.7 | not yet catalogued | Higher-index flint of the dispersive meniscus |
+
+The design uses only three glasses: a single dense crown for all three positive singlets, plus the pairing inside the cemented member. No modern catalogue glass is assigned to these historical melts. Colour is estimated from nD and V alone, so secondary spectrum in the model is approximate. The patent publishes no partial-dispersion data.
 
 ## Focus and Aperture
 
-Only infinity is modeled. The 1e15 m close-focus value is a supported UI sentinel, not a commercial minimum distance. The image plane is at calculated paraxial BFD **32.176789 mm**, because the patent provides no BFD. It is not shifted to suppress residual spherical aberration.
+The patent gives no focusing data, so only infinity focus is modelled and no element moves.
 
-The patent does not locate or dimension an iris. A circular stop is therefore **inferred 18 mm after surface R7**, inside the 22.94 mm separation S3. This location leaves physical clearance behind the curved rear face of the compound member; it is not a patent measurement. The engine derives a 21.098446 mm paraxial stop radius for nominal f/1. Pupil aberration means rays at exactly ±100% of the paraxial entrance pupil are clipped by this modeled stop, while the tested central ±90% pass. Thus neither the inferred iris nor effective wide-open throughput is a verified factory property.
+The printed aperture is f/1. Real-ray tracing of the printed prescription shows strong overcorrected spherical aberration at the very edge of the pupil. Measured from the paraxial focus, the axis crossings fall +9.42 mm away at full aperture, +1.27 mm at 85 % of the pupil radius, −0.17 mm at 70 % and −0.37 mm at 50 %. Example 2, which shares the same front, shows a similar +10.7 mm at full aperture, so this is a property of the design, not a transcription error.
 
-## Clear Apertures and Field Limits
+The iris is sized paraxially for f/1. Because of pupil aberration, real axial rays pass it only up to about 91 % of the paraxial entrance-pupil radius: a ray entering at the full radius would reach the iris plane 24.1 mm from the axis. The working real-ray aperture of the model is therefore close to f/1.1. No lens rim cuts the axial beam.
 
-Clear semi-diameters are engineering ray-envelope estimates, not source dimensions. Native geometry validation and render diagnostics report no errors or concealed trimming, without relaxed limits. No original field angle, image circle, camera mount or format is supplied. The viewer's default half-field is not historical coverage evidence. Diagnostic chief-centered ray fans at 5°, 10° and the viewer default show progressively stronger clipping. Do not infer guaranteed field coverage or image quality from the default display.
+## Clear Apertures and Field Coverage
 
-## Validation and Model Qualifications
-
-Pinned LensVisualizer commit 3fd318c3e82cdbc3e5d3a1ed7bd5abbf4e99bfc2: the authored V2 file passes focused strict TypeScript checking, native schema/geometry validation, material-render trim screening and sampled iris-in-air clearance. Native paraxial focus offset is approximately 1.4e-14 mm. Exact meridional ray checks include axial and off-axis samples; clipping outcomes are preserved in the audit evidence rather than hidden. Reference and three-line MTF support checks are available, but this pass does **not** claim computed/converged MTF curves or retail measurements.
-
-Full-application regression, current integration compatibility and compiled-viewer/browser QA remain integration checks. This hidden, assumption-qualified reference must not be represented as a verified production lens.
+The patent gives no field angle, image size or element diameters. All clear semi-diameters in the model are estimates sized to pass the axial beam with a margin. The viewer's default half-field of 19.2° is not a historical coverage figure. In the model, the geometric transmission of the off-axis beam (vignetting only) stays at 100 % to about 4° off axis and falls to 86 % at 10° and 78 % at 12°. At the default field, the rear element's rims are what vignette the corner beam.
 
 ## Sources
 
-- [Original US patent PDF](https://patentimages.storage.googleapis.com/ee/56/60/ecf6fa160dc6b7/US2012822.pdf): original diagram page and Example 1 table visually checked at high resolution.
-- [Patent bibliographic record and text](https://patents.google.com/patent/US2012822).
+- [US 2,012,822 A, original patent PDF](https://patentimages.storage.googleapis.com/ee/56/60/ecf6fa160dc6b7/US2012822.pdf): front page, Figure 1 and the Example 1 table.
+- [US 2,012,822 A, Google Patents record](https://patents.google.com/patent/US2012822).
+- E. Kaprelian, "Objective Lenses", _Journal of the Society of Motion Picture Engineers_ 53 (1949): [p. 91, Fig. 2i](https://lantern.mediahist.org/catalog/journalofsociety53socirich_0094) and [reference list](https://lantern.mediahist.org/catalog/journalofsociety53socirich_0101), reference 18.
+- [Horace William Lee](https://en.wikipedia.org/wiki/Horace_William_Lee) and [Cooke Optics](https://en.wikipedia.org/wiki/Cooke_Optics), Wikipedia.
