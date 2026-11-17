@@ -1,4 +1,37 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * US 1,415,002 A, sole numerical example. William H. Repp, of Rochester, New York, assignor to Projection Optics
+ * Company, Inc.; filed 21 September 1920, granted 2 May 1922. A Petzval-type projection lens of 100 mm equivalent
+ * focal length at F/2.2: a cemented front pair (equiconvex crown I, plano-concave flint II) and an air-spaced rear
+ * pair (negative flint meniscus III, plano-convex crown IV). Four elements in three groups, all spherical.
+ *
+ * SCALE: none. R, d, nD and V are as printed for F = 100 mm in the table on page 2 and on the drawing sheet; the
+ * paraxial EFL is 99.998 mm. The table prints radius magnitudes only. Signs follow the drawing and the text
+ * (equiconvex I, plano-concave II, convex-concave III, convex-plano IV); the patent's stated component focal lengths,
+ * about 1.36 F for the front pair and 2.42 F for the rear pair, are reproduced (1.359 F and 2.424 F). The table
+ * misprints three row labels (gamma-3 for gamma-5, d7 for d4, d7 for gamma-7); each value is placed by position. The
+ * text's rounded 28.2 mm for the first air space differs from the 28.094 mm that the table and the drawing both
+ * print; 28.094 mm is used.
+ *
+ * GLASS: the patent prints the sodium D-line index and V: crown 1.5160 / 63.8 (I and IV), flint 1.6182 / 36.4
+ * (II and III).
+ *
+ * ORIENTATION: the patent puts the screen to the left and the film at the right-hand focal plane, so the model traces
+ * from the screen side at infinity to the film plane.
+ *
+ * STOP: not printed and not drawn. The iris plane is placed in the middle of the 28.094 mm air space, 14.047 mm from
+ * each lens, and sized for F/2.2. The F/2.2 axial beam fills the front lens almost to its rim (22.73 mm of 23 mm), so
+ * in a mount without an iris the front cell itself would set the aperture.
+ *
+ * SEMI-DIAMETERS: 23 mm on every surface, from the drawing, which the patent calls a full-size diagram. Calibrated
+ * against the printed thicknesses, the drawn diameters measure 46.2 to 46.6 mm, and the drawn edge thicknesses agree
+ * with the model's.
+ *
+ * IMAGE PLANE: the computed paraxial back focus, 61.622 mm behind the plano rear of IV; the patent prints none.
+ *
+ * FOCUS: infinity only; closeFocusM = 1e15 marks focus as not modeled.
+ */
 const LENS_DATA = {
   "schema": 2,
   "key": "repp-1922-100-f2-2-projection-patent-reference",
@@ -10,20 +43,20 @@ const LENS_DATA = {
     "specs": [
       "4 ELEMENTS / 3 GROUPS",
       "PROJECTION PATENT; NO RETAIL MATCH",
-      "ESTIMATED STOP AND RIMS",
+      "ESTIMATED STOP; RIMS FROM FIGURE",
       "RECIPROCAL INFINITY ONLY"
     ],
     "elementCount": 4,
     "groupCount": 3,
     "focalLengthMm": {
-      "design": 99.99812523504964
+      "design": 100
     },
     "fNumber": {
       "design": 2.2
     }
   },
   "source": {
-    "patentNumber": "US 1,415,002",
+    "patentNumber": "US 1,415,002 A",
     "example": {
       "label": "Sole example",
       "id": null
@@ -33,9 +66,9 @@ const LENS_DATA = {
       "William H. Repp"
     ],
     "assignees": [
-      "Projection Optics Company Inc."
+      "Projection Optics Company, Inc."
     ],
-    "sdSource": "heuristic"
+    "sdSource": "figure-measured"
   },
   "elements": [
     {
