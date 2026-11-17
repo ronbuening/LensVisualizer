@@ -256,3 +256,9 @@ Open:
 
 - The model's g-line focus lies 0.03 mm nearer the lens than Fig. 2, most likely from L15's estimated partial
   dispersion.
+
+## 2026-11-17 — Continuous focus slider
+
+`focus.step` 1 → 0.008, so the slider moves in 125 steps from infinity to the printed 0.01× state instead of jumping
+between them. Intermediate spacings are interpolated linearly between the two printed rows; `focus.description` now
+says so. No radius, thickness, gap endpoint, glass, rim or stop changed.
