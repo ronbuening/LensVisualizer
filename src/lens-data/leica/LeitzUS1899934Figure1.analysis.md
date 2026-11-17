@@ -57,7 +57,7 @@ The patent prints only nD and ν for each element. The data file stores them as 
 | Elements | nD / ν (printed) | Nearest catalogue class | Role |
 |---|---:|---|---|
 | L1, L2 | 1.6185 / 60.5 | No catalogue match | Split front collector |
-| L3 | 1.6890 / 31.2 | Sumita K-SFLD8W (nD 1.68901 / νD 31.16 at the D line) | Positive half of the negative member |
+| L3 | 1.6890 / 31.2 | Sumita K-SFLD8W (nD 1.68891 / νD 31.16 at the D line) | Positive half of the negative member |
 | L4, L5 | 1.6034 / 38.0 | F5 class (Schott F5 nd 1.60342 / νd 38.03) | Negative elements of both cemented members |
 | L6 | 1.6580 / 51.4 | No catalogue match | Positive half of the rear member |
 
@@ -80,9 +80,9 @@ The claim sets four conditions. At the table's own scale (f = 100), Figure 1 mee
 
 The radii, thicknesses, air spaces, indices and Abbe numbers are those of the printed table, signs included, and the element shapes agree with Figure 1. The model's effective focal length is 99.998 mm, the f-number is 2.00 (entrance pupil radius 25.0 mm, iris radius 17.97 mm), the paraxial back focus is 69.65 mm, and the Petzval sum is 0.00464 per mm (a Petzval radius of about 216 mm, 2.2 times the focal length).
 
-The clear semi-diameters are not printed; they are estimated from Figure 1: 26 mm for L1, 25 mm for L2, 23 mm for the negative member and 19.7 mm for the rear member, which the figure draws as the smallest of the four groups. The full f/2 axial beam passes them all with at least 0.9 mm to spare; the tightest rims are r1 and the rear member. Figure 1 ends the concave r7 face short of the member's edge and bevels out to it; the model cuts that rim flat 4.68 mm behind the r7 vertex (a cut radius of 18.62 mm), which also keeps the glass ahead of the iris plane. No traced beam reaches that radius.
+The clear semi-diameters are not printed; they are estimated from Figure 1: 26 mm for L1 and L2, which the figure draws level, 23 mm for the negative member and 19.7 mm for the rear member, which the figure draws as the smallest of the four groups. The full f/2 axial beam clears them all with at least 0.9 mm to spare; the tightest rims are r1 and the rear member. Figure 1 ends the concave r7 face short of the member's edge and bevels out to it; the model cuts that rim flat 4.68 mm behind the r7 vertex (a cut radius of 18.62 mm), which also keeps the glass ahead of the iris plane. No traced beam reaches that radius.
 
-At a 10° half-field the front rims trim about 15–22 % of the beam on one side and the rear member about 6–8 %; relative illumination is about 88 % at 10° and 82 % at 12°. With the iris where the model puts it, no chief ray passes through the centre of the stop beyond about 23.6° half-field. At 22.5° the chief ray lands at 42.5 mm image height, against 41.4 mm for a distortion-free lens, about +2.6 %. The patent states no field angle, so the viewer's default half-field of about 27° is a display setting and does not describe the design's coverage.
+At a 10° half-field the front rims trim about 12–22 % of the beam on one side (r1 the most) and the rear member about 6–8 %; relative illumination is about 88 % at 10° and 82 % at 12°. With the iris where the model puts it, no chief ray goes through the centre of the stop beyond about 23.6° half-field. At 22.5° the chief ray lands at 42.5 mm image height, against 41.4 mm for a distortion-free lens, about +2.6 %. The patent states no field angle, so the viewer's default half-field of about 27° is a display setting and does not describe the design's coverage.
 
 ## Sources
 
