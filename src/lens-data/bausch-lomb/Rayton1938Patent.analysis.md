@@ -1,15 +1,117 @@
-# Rayton / Bausch & Lomb US2124356: qualified patent-reference handoff
+# Rayton 100 mm f/1.5 — US 2,124,356 Patent Reference
 
-One new 7-element/3-group spherical model, nominal100 mm f/1.5. Application1937-02-08, grant1938-07-19. This is the sole patent example, NOT an authenticated retail Baltar prescription or production-lens match. Source: https://patentimages.storage.googleapis.com/15/c0/44/dac68dbe207256/US2124356.pdf .
+## Patent Reference and Design Identification
 
-## Source and reconstruction
-Both scanned pages visually inspected. Page1 drawing plus page2 bracket/shape orientation establish signed radii +67.2,+309.2,+38.36,+107.22,-269.2,+23.68,+207,-23.4,+57,-224.2 mm. OCR badly corrupts several values; do not reuse unreviewed OCR. Literal glass indices are sodium D (not helium d). Abbe numbers preserved. Literal source stop lies12.32 mm after L4 and4.08 mm before L5. No gap-sag override and no source curvature, index or thickness modification. Computed infinity image distance41.193019275680484 mm; fresh independent EFL100.12374408983965 mm (+0.123744% versus stated100). Clear semi-diameters are HEURISTIC, not factory dimensions:36,36,30,30,30,21,21,21,21,21 mm by numbered interface. Initial larger estimates failed native geometry; final estimates satisfy its limits. Infinity-only; no invented near-focus law.
+**Patent:** US 2,124,356 A, *Photographic Objective*  
+**Application Number:** Serial No. 124,599  
+**Filed:** February 8, 1937  
+**Granted:** July 19, 1938  
+**Inventor:** Wilbur B. Rayton, Rochester, N.Y.  
+**Assignee:** Bausch & Lomb Optical Company, Rochester, N.Y.  
+**Example details:** one numerical example, printed on the drawing sheet below the section and again in the specification (col. 1, lines 33–53), headed "1:15" (that is, f/1.5), "f = 100" and "field = 42°"; four claims (Cl. 88—57)
 
-## Fresh scoped validation
-Native canonical validation, render diagnostics (no trims above0.25 mm), physical iris clearances across256 steps,181 axial rays over ±90% pupil, independent reduced-angle matrix and exact spherical meridional Snell tracing, native/independent image-height agreement maximum3.553e-14 mm. Typecheck, eslint and prettier passed. Minimum iris clearance2.893016 mm before/4.08 mm after. Native field samples at10.5° clipped3/9 and at21° clipped8/9; source42° full picture angle is a patent claim, NOT validated modern image quality/coverage. D/V dispersion is a model approximation. MTF support probes do not constitute MTF performance validation.
+The patent describes a high-speed photographic and projection objective "having a wide picture angle" and well corrected for astigmatism, coma and distortion. It contains a single worked example, stated at f/1.5 with a focal length of 100 mm and a 42° field. The model transcribes that example unscaled. The specification prints the aperture as "1:15" with the decimal point lost; the drawing sheet reads "F 1.5", and the prescription traces to f/1.5 at the stated focal length.
 
-## Remaining integration qualifications
-Hidden visible:false. Full app regression, compiled browser/viewer QA, final current-main compatibility and any publication remain integration work. Engine source compatibility with commit3fd318c3e82cdbc3e5d3a1ed7bd5abbf4e99bfc2 is INHERITED from prior byte comparison, not newly independently redone here. Child remote-main retrieval timed out; root subsequently verified via authenticated GitHub comparison that current main remains identical to3fd318c3e82cdbc3e5d3a1ed7bd5abbf4e99bfc2 on2026-11-17. This fresh pin verification is distinct from inherited engine byte compatibility. Retained source bodies and historical25 inventory give no exact-number implementation match; foreign aliases have not been independently established. Private Drive archival/readback is NOT yet performed in this child. No commit, upload, deployment or direct user delivery.
+Wilbur B. Rayton spent his career as an optical designer at Bausch & Lomb in Rochester and is best known for a 1937 f/0.59 astronomical camera lens used by Milton Humason (Optica biography; Wikipedia). No Bausch & Lomb production lens has been linked to this example:
 
-## Reproduce
-Copy native scripts into a compatible LensVisualizer source tree with installed dependencies and place deliverable files at their stated relative path. Run node --import ./scripts/ts-js-specifier-hook-register.mjs validate.mjs (writes ../validation.json). Run independent.py from this evidence folder after native validation. generate.py recreates the isolated engine data file. crosscheck.json records seven common axial samples; full ±90% dense axial gate is native. Source scans, literal JSON, logs and validation outputs retained.
+1. Bausch & Lomb's motion-picture camera lenses, the Raytar series (from about 1931) and the later Baltar series, are rated at f/2.3 or slower (Eastman Museum collection records; CineLensWiki).
+2. The Super Cinephor projection lenses are recorded at f/2.0 (Eastman Museum), not f/1.5.
+3. The 1937 f/0.59 Rayton lens is a different astronomical design, not this objective.
+4. The patent names no product, and no catalogue or museum record found for this review describes a Bausch & Lomb f/1.5 objective with seven elements in three groups.
+
+The model is therefore a patent reference only. Its 100 mm focal length is the patent's normalization, not a marketed focal length.
+
+## Optical Architecture
+
+The objective has seven elements in three air-separated groups, arranged positive–negative–positive:
+
+| Group | Elements | Construction | Focal length |
+|---|---|---|---:|
+| 1 | L1 | Positive meniscus, convex to the object | +132.5 mm |
+| 2 | L2–L4 | Cemented triplet, a meniscus convex to the object | −137.1 mm |
+| 3 | L5–L7 | Cemented triplet, biconvex overall | +83.0 mm |
+
+The diaphragm sits in the air space between the two triplets. The patent prints its position: S2 = 12.32 mm from L4 to the diaphragm X and S3 = 4.08 mm from the diaphragm to L5. The model places the stop exactly there.
+
+The layout is the 1–3–3 seven-element arrangement of the Zeiss Sonnar 5 cm f/1.5 of 1932, and the front half is closely related. In both, a high-index positive meniscus is followed by a cemented meniscus triplet made of a positive meniscus, a low-index biconvex lens and a strong biconcave flint. The rear triplets differ. The Sonnar's rear triplet is negative–positive–negative. Rayton's is positive–negative–positive: a biconcave lens of low index cemented between two biconvex lenses of higher index (claims 3 and 4). The text and claims fix the rear group's form:
+
+- L5 and L7 have unequal power, and the stronger one, L5, faces the diaphragm.
+- The L5/L6 junction is "very highly curved and concave toward the diaphragm"; the L6/L7 junction is weaker and convex toward the front.
+- L5 is about two thirds as thick as the whole rear group (claim 2): 22.7 mm of 34.3 mm, a ratio of 0.66.
+
+The two deep surfaces on either side of the diaphragm, R6 (+23.68 mm) and the cemented R8 (−23.4 mm), are both concave toward it. Their centres of curvature lie about 11.4 mm and 3.4 mm behind the stop. This near-symmetry about the stop is the usual means of holding coma and distortion at large apertures. That reading is an interpretation: the patent states only the shapes.
+
+## Element-by-Element Analysis
+
+### L1 — Positive Meniscus, convex to the object
+
+`nd = 1.6369, νd = 56.0.` Glass: unnamed dense barium crown (class). f = +132.5 mm.
+
+The single collective front element "of highly refractive glass" (claim 1). It carries the f/1.5 axial beam at its full 33.4 mm entrance-pupil radius and converges it into the front triplet. Its weak rear surface (R2 = +309.2 mm) keeps it close to a thick meniscus.
+
+### Front triplet L2 / L3 / L4 — negative meniscus member
+
+- **L2, Positive Meniscus.** `nd = 1.6707, νd = 47.4.` Glass: unnamed barium flint (class). f = +83.2 mm. Its strong front surface (R3 = +38.36 mm) is the group's surface facing the first group, which the claims call the "positive surface".
+- **L3, Biconvex Positive.** `nd = 1.4644, νd = 66.0.` Glass: unnamed fluor-crown type (class). f = +166.2 mm. The lowest-index glass in the lens, a weakly positive central element.
+- **L4, Biconcave Negative.** `nd = 1.6890, νd = 30.9.` Glass: unnamed dense flint (class). f = −31.5 mm. Its deep rear face (R6 = +23.68 mm) faces the diaphragm.
+
+Cemented together, the three form the negative member of the patent's claims, with a net focal length of −137.1 mm. The index steps at the two junctions, 1.6707 to 1.4644 and 1.4644 to 1.6890, give the cemented surfaces real refractive power. The Abbe numbers are widely separated (47.4, 66.0, 30.9). Read together, these suggest that the group corrects colour while supplying the negative power that flattens the field. This is an interpretation; the patent gives no aberration discussion beyond its stated objects.
+
+### Rear triplet L5 / L6 / L7 — positive member
+
+- **L5, Biconvex Positive.** `nd = 1.6574, νd = 50.8.` Glass: unnamed dense barium crown (class). f = +33.3 mm. The thick, strongly positive element next to the diaphragm, 22.7 mm thick on axis.
+- **L6, Biconcave Negative.** `nd = 1.54832, νd = 53.3.` Glass: unnamed barium light flint (class). f = −29.8 mm. The low-index member. Its front face is the steep junction R8 = −23.4 mm, concave toward the diaphragm.
+- **L7, Biconvex Positive.** `nd = 1.6574, νd = 50.8.` Same glass as L5. f = +69.9 mm. The weaker rear positive element.
+
+The triplet's net focal length is +83.0 mm. L6 has a lower index than its neighbours but similar dispersion (νd 53.3 against 50.8). The cemented junctions therefore act mainly on spherical aberration and astigmatism rather than on colour. This is an interpretation from the printed values: the claims stress only the low index of the biconcave member.
+
+## Glass Identification
+
+The patent prints only the sodium D-line index ("D") and the Abbe number (ν) for each element. It names no glass maker, and the data file carries no catalogue labels. The model stores the printed pairs with the sodium D reference, so colour is modelled from the Abbe numbers alone.
+
+| Element | Printed D / ν | Nearest modern catalogue type (coordinates only) |
+|---|---|---|
+| L1 | 1.6369 / 56.0 | Dense barium crown, SK18 type (about 1.638 / 55.4) |
+| L2 | 1.6707 / 47.4 | Barium flint, BaF10 type (1.670 / 47.2) |
+| L3 | 1.4644 / 66.0 | Fluor crown, FK3 type (1.4645 / 65.8) |
+| L4 | 1.6890 / 30.9 | Dense flint, SF8 type (1.6889 / 31.2) |
+| L5, L7 | 1.6574 / 50.8 | Dense barium crown, SSK5 type (1.658 / 50.9) |
+| L6 | 1.54832 / 53.3 | Barium light flint, BaLF5 type (1.547 / 53.6) |
+
+These comparisons place each glass in a family only. They do not identify the 1937 Bausch & Lomb melts. No partial-dispersion data exist, so no secondary-spectrum claim is made.
+
+## Focus Mechanism
+
+The patent gives the infinity state only. It prints no focus travel, close-focus distance or moving group. The model is fixed at infinity. A camera or projector lens of this type would focus by moving the whole objective, but the patent does not say so.
+
+## Model Verification
+
+| Quantity | Patent | Model |
+|---|---:|---:|
+| Focal length | 100 | 100.12 mm (+0.12 %) |
+| f-number | 1.5 | 1.5 (entrance-pupil radius 33.37 mm) |
+| Field | 42° (21° half-field) | Chief ray at 21° lands 38.2 mm from the axis |
+| Back focal distance | not printed | 41.193 mm from R10 (computed paraxial) |
+| Vertex length R1 to R10 | not printed | 83.92 mm |
+
+The 0.12 % difference from the stated 100 mm is within the rounding of a four-figure table. No source value was changed.
+
+The patent prints no back focus, so the image plane is the computed paraxial focus, 41.193 mm behind the last vertex. The diaphragm diameter is not printed either. The model sizes the stop for f/1.5, which gives a paraxial stop radius of 18.91 mm.
+
+The clear radii are not published and are estimated. The values used are 36 mm on L1, 30 mm on the front triplet's front and junction surfaces, 20.77 mm on R6, and 21 mm on the rear triplet.
+
+- **R6 rim.** R6 is so deep that at 21 mm its rim would reach 0.42 mm behind the printed diaphragm plane. The model therefore holds R6 at 20.77 mm, where the rim stays just in front of the plane. No traced ray reaches that height, so no light is lost.
+- **Rear triplet.** The rear rims are limited by the steep cemented R8.
+- **Axial beam.** The full f/1.5 axial beam passes every rim. The real marginal ray meets R1 at 33.37 mm, R6 at 19.27 mm and R10 at 14.77 mm.
+- **Off-axis vignetting.** The beam is vignetted off axis: about 92 % of the f/1.5 bundle passes at 10.5° and about 29 % at the patent's 21° half-field, where the chief ray is not blocked. Strong vignetting at full aperture toward the edge of a 42° field is typical of fast lenses of the period.
+- **Comparison with the figure.** The patent figure, measured at its own scale, draws L1 at about 33.7 mm, the front triplet at about 29.3 mm, the R6 opening at about 18.6 mm and the rear triplet at about 22.1 mm. The figure is approximate: for example, it draws the 0.52 mm air space S1 several millimetres wide.
+
+## Sources
+
+1. Wilbur B. Rayton, **US Patent 2,124,356, "Photographic Objective,"** assignor to Bausch & Lomb Optical Company, filed February 8, 1937, granted July 19, 1938. Drawing sheet with prescription table: p. 1; specification, numerical example and claims: p. 2. https://patents.google.com/patent/US2124356A/en
+2. Optica (Optical Society of America), **Wilbur Bramley Rayton** biography. https://optica.org/history/biographies/bios/wilbur-bramley-rayton
+3. Wikipedia, **Wilbur B. Rayton**. https://en.wikipedia.org/wiki/Wilbur_B._Rayton
+4. George Eastman Museum collection, **Raytar 100mm f/2.3 Motion Picture Lens** (Bausch & Lomb, about 1931). https://collections.eastman.org/objects/92888/raytar-100mm-f23-motion-picture-lens
+5. George Eastman Museum collection, **7 in. f/2.0 Super Cinephor projection lens** (Bausch & Lomb). https://collections.eastman.org/objects/561551/7-in-f20-super-cinephor-projection-lens
+6. CineLensWiki, **Bausch & Lomb** manufacturer page (Raytar, Baltar and Super Baltar series, apertures). https://cinelenswiki.com/mfg:bausch_lomb
+7. Wikipedia, **Zeiss Sonnar** (the 1932 f/1.5 Sonnar's seven-element, three-group construction). https://en.wikipedia.org/wiki/Sonnar

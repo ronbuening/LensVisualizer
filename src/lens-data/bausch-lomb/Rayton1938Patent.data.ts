@@ -1,4 +1,20 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * US 2,124,356 (Wilbur B. Rayton, assignor to Bausch & Lomb Optical Company; filed February 8, 1937, granted
+ * July 19, 1938), the patent's only numerical example: a seven-element, three-group f/1.5 photographic objective
+ * printed at f = 100 with a 42° field. Radii, thicknesses, air spaces, sodium-D indices and Abbe numbers are
+ * transcribed unscaled from the printed table, which appears identically on the drawing sheet and in the
+ * specification. The scan prints radius magnitudes only; the signs follow the figure and the text (L3, L5 and L7
+ * biconvex; L4 and L6 biconcave; the L5/L6 junction concave toward the diaphragm).
+ *
+ * Stop: printed. S2 = 12.32 mm runs from L4 to the diaphragm X and S3 = 4.08 mm from the diaphragm to L5.
+ * Back focus: not printed; the image plane is the computed paraxial back focal distance, 41.193 mm from R10.
+ * Rims: inferred, not published. The R6 rim is held at 20.77 mm so that the deep concave rear face of L4 stays in
+ * front of the printed diaphragm plane. The rear-group rims stay within the rim-slope limit of R8.
+ * Focus: the patent gives the infinity state only.
+ * No production lens is documented for this example; the model is a patent reference only.
+ */
 const LENS_DATA = {
   schema: 2,
   key: "bausch-lomb-rayton-us2124356-patent-reference",
@@ -7,23 +23,18 @@ const LENS_DATA = {
   subtitle: "1938 SOLE EXAMPLE; RETAIL IDENTITY UNPROVED",
   visible: false,
   catalog: {
-    specs: [
-      "7 ELEMENTS / 3 GROUPS",
-      "PATENT REFERENCE; NOT A VERIFIED RETAIL BALTAR",
-      "SOURCE STOP; ESTIMATED RIMS",
-      "INFINITY ONLY",
-    ],
+    specs: ["7 ELEMENTS / 3 GROUPS", "PATENT REFERENCE", "SOURCE STOP; ESTIMATED RIMS", "INFINITY ONLY"],
     elementCount: 7,
     groupCount: 3,
     focalLengthMm: {
-      design: 100.12374408983965,
+      design: 100.12,
     },
     fNumber: {
       design: 1.5,
     },
   },
   source: {
-    patentNumber: "US 2,124,356",
+    patentNumber: "US 2,124,356 A",
     example: {
       label: "Sole example",
       id: null,
@@ -51,51 +62,57 @@ const LENS_DATA = {
       nd: 1.6707,
       vd: 47.4,
       indexReference: "D",
+      cemented: "T1",
     },
     {
       id: 3,
       name: "L3",
       label: "L3",
-      type: "Biconvex",
+      type: "Biconvex Positive",
       nd: 1.4644,
       vd: 66,
       indexReference: "D",
+      cemented: "T1",
     },
     {
       id: 4,
       name: "L4",
       label: "L4",
-      type: "Biconcave",
+      type: "Biconcave Negative",
       nd: 1.689,
       vd: 30.9,
       indexReference: "D",
+      cemented: "T1",
     },
     {
       id: 5,
       name: "L5",
       label: "L5",
-      type: "Biconvex",
+      type: "Biconvex Positive",
       nd: 1.6574,
       vd: 50.8,
       indexReference: "D",
+      cemented: "T2",
     },
     {
       id: 6,
       name: "L6",
       label: "L6",
-      type: "Biconcave",
+      type: "Biconcave Negative",
       nd: 1.54832,
       vd: 53.3,
       indexReference: "D",
+      cemented: "T2",
     },
     {
       id: 7,
       name: "L7",
       label: "L7",
-      type: "Biconvex",
+      type: "Biconvex Positive",
       nd: 1.6574,
       vd: 50.8,
       indexReference: "D",
+      cemented: "T2",
     },
   ],
   surfaces: [
@@ -137,7 +154,7 @@ const LENS_DATA = {
       label: "6",
       R: 23.68,
       d: 12.32,
-      sd: 21,
+      sd: 20.77,
     },
     {
       label: "STO",
@@ -168,7 +185,7 @@ const LENS_DATA = {
     {
       label: "10",
       R: -224.2,
-      d: 41.193019275680484,
+      d: 41.193,
       sd: 21,
     },
   ],
@@ -178,11 +195,13 @@ const LENS_DATA = {
   },
   focus: {
     closeFocusM: 1000000000000000.0,
-    description:
-      "Infinity-only patent reference; computed paraxial BFD; retail identity not established.",
+    description: "Infinity-only patent reference; computed paraxial BFD; retail identity not established.",
   },
   groups: [],
-  doublets: [],
+  doublets: [
+    { text: "T1", fromSurface: "3", toSurface: "6" },
+    { text: "T2", fromSurface: "7", toSurface: "10" },
+  ],
   layout: {
     yScFill: 0.4,
   },
