@@ -1,8 +1,31 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * US 1,899,934, "Ultralight Intensive Objective", Max Berek, assigned to Ernst Leitz, Optische Werke, G.m.b.H.,
+ * Wetzlar. Filed July 20, 1932 (German priority June 6, 1931); granted March 7, 1933. The patent prints two
+ * examples, headed by figure: Figure 1 (1:2.0, six elements) and Figure 2 (1:1.3, seven elements). This file
+ * transcribes Figure 2 (printed p. 2, left column lines 42-50 and right column lines 51-55).
+ *
+ * PRESCRIPTION: radii r1-r11 with their printed signs, glass thicknesses d1-d7, air spaces a1-a3, and the printed
+ * nD and ν for each element, all exactly as printed. Three cemented pairs: L2/L3 at r4, L4/L5 at r7, L6/L7 at r10,
+ * as both the table and the drawing show. Seven elements in four groups.
+ *
+ * SCALE: none. The patent prints no focal length; the table as printed computes to EFL 99.99 mm, so it is the
+ * usual normalisation to f = 100. The claim's conditions (cement-face index step 0.0569, (n' - n)f/r = 0.139,
+ * a2/a3 = 0.93, total air 0.26 of the length) all hold at this scale.
+ *
+ * GLASS: the table heads its index column nD (sodium D line) and prints ν, so the elements use
+ * indexReference "D". No partial-dispersion data are printed; no catalogue glass is named.
+ *
+ * INFERRED: the patent prints no stop position and the drawing shows none. The iris is placed in the air space a3
+ * between the negative member and the rear member, 8.4 mm behind r8 and 3.634 mm ahead of r9, a usual iris
+ * position in triplet-derived designs of this kind. All clear semi-diameters are estimates (the patent prints no diameters). The image
+ * distance is the computed paraxial back focus, 46.831 mm; the patent prints none. Infinity focus only.
+ */
 const LENS_DATA = {
   schema: 2,
   key: "leitz-berek-us1899934-fig2-patent-reference",
-  maker: "Leitz",
+  maker: "Leica",
   name: "LEITZ / BEREK f/1.3 PATENT REFERENCE",
   subtitle: "FIGURE 2 \u2014 HIDDEN QUALIFIED REFERENCE",
   visible: false,
@@ -16,21 +39,21 @@ const LENS_DATA = {
     elementCount: 7,
     groupCount: 4,
     focalLengthMm: {
-      design: 99.99195539633102,
+      design: 99.99,
     },
     fNumber: {
       design: 1.3,
     },
   },
   source: {
-    patentNumber: "US 1,899,934",
+    patentNumber: "US 1,899,934 A",
     example: {
       label: "Figure 2",
       id: "2",
     },
     patentYear: 1933,
     authors: ["Max Berek"],
-    assignees: ["Ernst Leitz Optische Werke GmbH"],
+    assignees: ["Ernst Leitz GmbH"],
     sdSource: "heuristic",
   },
   elements: [
@@ -51,6 +74,7 @@ const LENS_DATA = {
       nd: 1.624,
       vd: 58.2,
       indexReference: "D",
+      cemented: "D1",
     },
     {
       id: 3,
@@ -60,6 +84,7 @@ const LENS_DATA = {
       nd: 1.6219,
       vd: 36.1,
       indexReference: "D",
+      cemented: "D1",
     },
     {
       id: 4,
@@ -69,6 +94,7 @@ const LENS_DATA = {
       nd: 1.6242,
       vd: 44.8,
       indexReference: "D",
+      cemented: "D2",
     },
     {
       id: 5,
@@ -78,6 +104,7 @@ const LENS_DATA = {
       nd: 1.5673,
       vd: 42.8,
       indexReference: "D",
+      cemented: "D2",
     },
     {
       id: 6,
@@ -87,6 +114,7 @@ const LENS_DATA = {
       nd: 1.5407,
       vd: 47.2,
       indexReference: "D",
+      cemented: "D3",
     },
     {
       id: 7,
@@ -96,6 +124,7 @@ const LENS_DATA = {
       nd: 1.624,
       vd: 58.2,
       indexReference: "D",
+      cemented: "D3",
     },
   ],
   surfaces: [
@@ -188,7 +217,11 @@ const LENS_DATA = {
       "Infinity-only patent reference with computed paraxial BFD; no retail identity.",
   },
   groups: [],
-  doublets: [],
+  doublets: [
+    { text: "D1", fromSurface: "3", toSurface: "5" },
+    { text: "D2", fromSurface: "6", toSurface: "8" },
+    { text: "D3", fromSurface: "9", toSurface: "11" },
+  ],
   layout: {
     yScFill: 0.4,
   },
