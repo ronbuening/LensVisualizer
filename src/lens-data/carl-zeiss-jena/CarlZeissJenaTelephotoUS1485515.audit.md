@@ -51,6 +51,7 @@ Element focal lengths: L1 +21.30, L2 −31.43, L3 +92.56, L4 −43.41.
 - **Back focus:** the computed paraxial value, 49.6287. The patent prints none.
 - **Stop diameter:** the paraxial f/6.3 size, 6.41 semi-diameter, with an entrance pupil radius of 7.93.
 - **Clear semi-diameters:** estimated (`sdSource: "heuristic"`): 8.3 at r1, 8.1 at r2–r4, 5.2 at r5–r7.
+  (Superseded 2026-11-17: now 8.1 / 8.1 / 8.1 / 7.4 / 6.2 / 7.1 / 7.1, from the figure and the f/6.3 beam floor.)
 - **Dispersion:** no νd is authored because the patent prints only nD and nG′. The model is monochromatic.
 
 ## Validator Results
@@ -61,7 +62,8 @@ Element focal lengths: L1 +21.30, L2 −31.43, L3 +92.56, L4 −43.41.
   visible on 2026-11-17, both still skip it because it has no image format.
 - `clearap.mjs`: no glass rim cuts the axial f/6.3 beam. The real marginal ray meets the stop plane at about 6.59,
   against the paraxial 6.41, so the outermost zone of the nominal beam is clipped at the iris.
-- The rear rims at 5.2 vignette the off-axis beam by 19–35 % (one side) at 10 mm image height.
+- The rear rims at 5.2 vignette the off-axis beam by 19–35 % (one side) at 10 mm image height. (Superseded
+  2026-11-17: the figure-based rear rims no longer vignette at 10 mm.)
 
 ## 2026-11-16 — Deployment validation
 
@@ -106,7 +108,7 @@ Open:
 - **Rims (SD pass):** the drawing shows the rear member about as tall as the front member (about 7.1 against 7.15
   units at the drawing's axial scale). The rear rims of 5.2 are therefore smaller than drawn and vignette the off-axis
   beam. The drawing's front member (about 7.15) is itself smaller than the f/6.3 entrance pupil (7.93), so the drawing
-  is not to aperture scale.
+  is not to aperture scale. (Closed 2026-11-17 by the semi-diameter pass below.)
 - **Dispersion (optional):** estimated νd values of about 61 / 39 / 35.7 / 66–67 come from modern glasses that match
   both printed nD and nG′. They would follow the estimated-Abbe precedent of the Tessar US 721,240 file. Otherwise the
   model stays monochromatic. (Closed 2026-11-17: the batch rule keeps nD-and-nG′-only files monochromatic; no Abbe
@@ -146,6 +148,83 @@ Engine numbers are identical before and after:
 Open:
 
 - **Rims (SD pass):** the rear rims (5.2) are smaller than the drawing shows (about 7.1, the same as the front
-  member), as recorded above.
+  member), as recorded above. (Closed 2026-11-17 by the semi-diameter pass below.)
 - **Metadata:** there is no `lensMounts`, `imageFormat` or `closeFocusM.marketing`. The patent states no format or
   field, and no product is documented.
+
+## 2026-11-17 — Semi-diameter pass against the patent figure
+
+The source is US1485515A.pdf, page 1, the only figure, which shows the sole example. It was rendered at 300 and 600 dpi.
+The scan is tilted about 0.95°, so heights were measured from the local axis.
+
+The drawing is to scale along the axis, at 38.62 px per unit at 300 dpi:
+
+| Span | Table | Drawing |
+|---|---:|---:|
+| r1 → r7 | 30.839 | 1191 px (the scale) |
+| r1 → r5 | 28.199 | 28.17 |
+| r1 → stop "×" | 9.949 | about 10.1 |
+
+The r1 arc also confirms the scale across the axis: R = 18.091 gives a sag of 1.47 at the drawn 7.15 height, against
+1.53 measured. The drawing is therefore read at its absolute scale, not for proportions only.
+
+Drawing readings, top and bottom of the axis:
+
+| Item | Drawn height |
+|---|---:|
+| L1 (square-cut; r1 and r2 at one height) | 7.10–7.15 |
+| L2 r3 | 7.1 |
+| L2 r4 (chamfered down from the top edge) | 6.2 |
+| Stop opening | 5.84 |
+| L3 r5 (bevelled up to r6) | 6.2 |
+| r6 and r7 (L4's flat edge) | 7.07–7.15 |
+
+The whole front member is drawn smaller than the f/6.3 axial beam: the real marginal ray reaches 7.93, 7.81, 7.77 and
+7.37 at r1–r4. The ray floor therefore governs the front, and the drawing governs the rear.
+
+| Surface | Before | After | Evidence |
+|---|---:|---:|---|
+| r1 | 8.3 | 8.1 | L1 is drawn square-cut. r2 was kept and r1 matched to it (floor 7.93); raising r2 would close the 0.13 air lens. |
+| r2 | 8.1 | 8.1 | kept (floor 7.81) |
+| r3 | 8.1 | 8.1 | kept (floor 7.77) |
+| r4 | 8.1 | 7.4 | The drawing shows r4 chamfered to 0.87 of the element height. The floor is 7.37, rounded up. |
+| r5 | 5.2 | 6.2 | figure |
+| r6 | 5.2 | 7.1 | figure |
+| r7 | 5.2 | 7.1 | figure |
+
+The stop is unchanged at the engine's 6.41. No `gapSagFrac` change was needed.
+
+Results after the change:
+
+- `audit:surface` is OK.
+- `audit:aperture` shows no rim limit, with the f-number within 3 %.
+- `audit:image-circle` and `audit:field-coverage` skip the file (no image format).
+- clearap at 26.5 mm image height shows no CLIPS-AXIAL and no BLOCKS-CHIEF.
+- `built.mjs`: EFL 99.9765 and f/6.3 are unchanged. The half-field rises from 11.00° to 14.87°, now limited by r7, the
+  largest field the final rims pass unblocked.
+
+Wide-open geometric illumination against the baseline rims, with leave-one-out restore costs from rimcost:
+
+| Field | Baseline | Final |
+|---|---:|---:|
+| 3.8° | 96.5 % | 99.0 % |
+| 5.6° | 82.2 % | 97.2 % |
+| 7.5° | 66.3 % | 92.3 % |
+| 9.4° | 49.9 % | 81.5 % |
+| 11.3° | 34.1 % | 66.7 % |
+
+There is no loss at any field. The r1 cut costs 1.4 points at 11.3°, and the r4 cut 0.2 points at 3.8°. Both are
+within the 3-point rule and both match the drawn shape.
+
+The overlay of the model on the figure at matched scale is in the session scratch (`sd/merte/overlay.png`). The rear
+member and its r5 bevel coincide with the drawing. The front member stays about 1 unit taller than drawn because of
+the f/6.3 beam.
+
+Metadata: nothing was added. The model is the patent's f = 100 normalisation with no documented product or format, so
+`lensMounts`, `imageFormat` and `imageCircleMm` stay unset. The `name` uses the patent's own title, "Telephoto
+Objective". The nearest documented product name, Tele-Tessar, is not supported for this patent.
+
+Open:
+
+- L1's edge is thinner than drawn (0.56 at 8.1, against about 1.2 at the drawn 7.1). This is a consequence of the
+  f/6.3 beam floor.

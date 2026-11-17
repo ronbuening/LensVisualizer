@@ -8,6 +8,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * The patent prints nD and nG′ indices but no Abbe numbers, so no νd is authored and the model is monochromatic.
  * The diaphragm position is printed: the air space is given as b2 = 5.66 behind r4 and b3 = 18.25 ahead of r5.
  * Inferred: the stop diameter (from f/6.3), all clear semi-diameters, and the back focus (computed paraxial value).
+ * Semi-diameters are taken from the drawing, which is to scale axially. The rear member is set to the drawn heights:
+ * r5 6.2, bevelled up to r6 and r7 at 7.1. The front member is drawn at about 7.1, with r4 bevelled to about 6.2, but
+ * that is smaller than the f/6.3 axial beam (7.93 at r1), so it stays just above that beam. L1 is square-cut at 8.1,
+ * and r4 is at 7.4, the beam height rounded up.
  * Infinity focus only; the patent gives no close-focus data.
  */
 const LENS_DATA = {
@@ -97,7 +101,7 @@ const LENS_DATA = {
       label: "1",
       R: 18.091,
       d: 3.329,
-      sd: 8.3,
+      sd: 8.1,
       medium: 1
     },
     {
@@ -117,7 +121,7 @@ const LENS_DATA = {
       label: "4",
       R: 38.74,
       d: 5.66,
-      sd: 8.1
+      sd: 7.4
     },
     {
       label: "STO",
@@ -128,21 +132,21 @@ const LENS_DATA = {
       label: "5",
       R: -10.396,
       d: 1.89,
-      sd: 5.2,
+      sd: 6.2,
       medium: 3
     },
     {
       label: "6",
       R: -9.426,
       d: 0.75,
-      sd: 5.2,
+      sd: 7.1,
       medium: 4
     },
     {
       label: "7",
       R: -17.13,
       d: 49.6286724892259,
-      sd: 5.2
+      sd: 7.1
     }
   ],
   focus: {

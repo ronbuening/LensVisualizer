@@ -127,10 +127,17 @@ radius of 7.93 mm, and the model sizes the stop at a 6.41 mm semi-diameter. The 
 meets the stop plane slightly higher, at about 6.59 mm, so the outermost zone of the nominal f/6.3 beam is clipped at
 the iris. This comes from the paraxial stop sizing; no lens rim cuts the axial beam.
 
-The patent prints no lens diameters and no field angle. The clear semi-diameters are estimates: 8.3 mm at r1, 8.1 mm
-at r2–r4, and 5.2 mm on the rear member. The front values are set just above the f/6.3 axial beam. The drawing shows
-the rear member about as tall as the front member, so the estimated rear rims are smaller than drawn and vignette the
-off-axis beam. The 11° half-field shown in the diagram is a default, not a coverage claim from the patent.
+The patent prints no lens diameters and no field angle. The clear semi-diameters are therefore taken from the drawing,
+which is to scale along the axis. The rear member follows the drawn heights: r5 ends at 6.2 mm and is bevelled up to
+the 7.1 mm rims of r6 and r7.
+
+The drawing shows the front member at about the same 7.1 mm, with r4 bevelled to about 6.2 mm. That is smaller than
+the f/6.3 axial beam needs (7.93 mm at r1), so the front surfaces sit just outside the beam instead. L1 is square-cut
+at 8.1 mm, r3 is 8.1 mm and r4 is 7.4 mm.
+
+With these rims, the chief ray passes up to a 14.9° half-field, the limit set by r7. Geometric illumination wide open
+is about 92 % at 7.5° and 67 % at 11.3°. The 14.9° half-field shown in the diagram is a model limit, not a coverage
+claim from the patent.
 
 ## Sources
 
