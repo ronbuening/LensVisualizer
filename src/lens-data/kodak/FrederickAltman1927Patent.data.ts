@@ -1,4 +1,19 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * US 1,620,337 A (Charles W. Frederick and Fred E. Altman, Eastman Kodak Company; filed 1923, granted 1927),
+ * the patent's only numerical example: a four-element, air-spaced f/2 projection objective at the patent's own
+ * normalised scale (focal length 100), unscaled.
+ *
+ * Printed and transcribed as published: radii R1-R8 (signs from the drawing-sheet table; the specification table
+ * prints magnitudes only), thicknesses T1-T4, air spaces S1-S3, and the D-line index and dispersive ratio of each
+ * glass. The printed G′-line indices (1.62448 crown, 1.63920 flint) are not stored.
+ *
+ * Inferred: the stop, placed at the middle of the 18.0 central space (neither the figure nor the text shows one);
+ * every clear semi-diameter; and the image plane, which is the computed paraxial back focus at the D line.
+ * The patent states that each negative lens touches its positive neighbour at the edge, so the S1 air space closes
+ * near 23.9 mm height; the cross-gap limit is relaxed slightly so R2/R3 pass the full f/2 axial beam.
+ */
 const LENS_DATA = {
   schema: 2,
   key: "kodak-frederick-altman-us1620337-patent-reference",
@@ -16,14 +31,14 @@ const LENS_DATA = {
     elementCount: 4,
     groupCount: 4,
     focalLengthMm: {
-      design: 100.07863175683997,
+      design: 100.08,
     },
     fNumber: {
       design: 2,
     },
   },
   source: {
-    patentNumber: "US 1,620,337",
+    patentNumber: "US 1,620,337 A",
     example: {
       label: "Sole example",
       id: null,
@@ -83,13 +98,13 @@ const LENS_DATA = {
       label: "2",
       R: -126,
       d: 1.5,
-      sd: 22.5,
+      sd: 22.9,
     },
     {
       label: "3",
       R: -77.2,
       d: 4.1,
-      sd: 22.5,
+      sd: 22.8,
       medium: 2,
     },
     {
@@ -143,6 +158,9 @@ const LENS_DATA = {
   doublets: [],
   layout: {
     yScFill: 0.4,
+  },
+  checks: {
+    gapSagFrac: 0.91,
   },
 } satisfies LensDataV2Input;
 export default LENS_DATA;
