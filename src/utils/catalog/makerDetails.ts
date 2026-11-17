@@ -37,6 +37,7 @@
  *               RF-mount throat clarification, USM/IS/DO/BR optical history),
  *               Nikon (NK founders, AF mount generations, Z-mount geometry),
  *               and Ricoh (GR Digital and GXR eras).
+ *   2026-11-17  Added Emil Busch and Projection Optics maker entries.
  */
 
 export interface MakerDetails {
@@ -155,6 +156,29 @@ export const MAKER_DETAILS: Record<string, MakerDetails> = {
     notableDesigns:
       "Lithagon 35mm lenses, Super-Lithagon 35mm f/1.9, Ennalyt 50mm lenses, Tele-Ennalyt 400mm f/4.5, Enna 85-250mm tele-zoom",
   },
+  // Duncker, the 1801 privilege with Wagener and the grinding-machine patent (NDB, 1959):
+  // https://www.deutsche-biographie.de/sfz12095.html
+  // Duncker's 1792 start, Eduard Duncker, cameras from 1852, the 1872 AG, Zeiss glass, ROJA, Vademecum, 1910 range:
+  // https://camera-wiki.org/wiki/Emil_Busch
+  // Spectacles, 1908 name, 10×80 binocular, postwar Rathenower Optische Werke and VEB Carl Zeiss Jena:
+  // https://collection.sciencemuseumgroup.org.uk/people/cp105648/emil-busch-ag
+  // 1872 company name, 1927 Zeiss majority, wartime destruction:
+  // https://stereoscopyhistory.net/compendium/emil-busch
+  // Pantoskop as Busch's own wide-angle objective (Steinheil company archive record):
+  // https://digital.deutsches-museum.de/en/digital-catalogue/archive-item/FA%2520005%252F2140/
+  // Karl Martin, Omnar and Bis-Telar (1911 Encyclopædia Britannica, "Photography"):
+  // https://en.wikisource.org/wiki/1911_Encyclop%C3%A6dia_Britannica/Photography
+  // Martin's patent and its assignee:
+  // https://patents.google.com/patent/US759537A/en
+  "emil-busch": {
+    founded: 1801,
+    headquarters: "Rathenow, Brandenburg, Germany (historical optical works)",
+    summary:
+      "German optical manufacturer in Rathenow, descended from the optical works Johann Heinrich August Duncker founded there in 1801, that made spectacles, cameras and photographic lenses including the Pantoskop wide-angle, the Omnar anastigmat and the Bis-Telar telephoto.",
+    history:
+      "The Rathenow optical works descend from Johann Heinrich August Duncker, a preacher in the town, who began making optical instruments in 1792. In 1801 he and Samuel Christoph Wagener received a royal privilege for the Königlich privilegierte Optische Industrie-Anstalt, and Duncker a patent for a multi-spindle lens-grinding machine he had invented. His son Eduard Duncker took over in 1819 and built the firm into a large spectacle maker, then passed the management to his nephew Emil Busch (1820–1888).\n\nBusch began making cameras in 1852, and in 1865 the firm introduced his Pantoskop, a wide-angle objective for landscapes, architecture and reproductions. In 1872 the business became a joint-stock company, the Rathenower Optische Industrie-Anstalt vormals Emil Busch A.-G., which drew its optical glass from Zeiss. Its photographic range also included Rapid-Aplanats and the Vademecum, a cased set of lens elements that combined into objectives of several focal lengths.\n\nKarl Martin of the Busch works showed in 1902 that separated lenses of the older optical glasses could give an objective corrected spherically, chromatically and for astigmatism, and Busch issued the Omnar anastigmat on that principle the same year, first at f/7.7 and later at f/5.5 and f/4.5. Martin's US 759,537, filed in 1901 and granted in 1904 with the firm as assignee, is the source of the Emil Busch entry in this catalog. The Bis-Telar telephoto followed at f/9 in 1905 and at f/7 in 1908, and the Glaukar f/3.1 anastigmat was part of the 1910 range.\n\nThe company took the name Emil Busch AG Optische Industrie in 1908, and many of its products were badged ROJA. Carl Zeiss acquired a majority of the shares in the late 1920s, after which Busch stopped making photographic lenses and continued making cameras; in the 1930s it developed a 10×80 binocular that was widely used in the Second World War. The Rathenow works were destroyed at the end of the war. They became the state-owned Rathenower Optische Werke in 1946 and VEB Rathenower Optische Werke in 1948, later part of VEB Carl Zeiss Jena.",
+    notableDesigns: "Pantoskop, Rapid-Aplanat, Vademecum lens set, Omnar, Bis-Telar, Glaukar f/3.1",
+  },
   kodak: {
     founded: 1892,
     headquarters: "Rochester, New York, United States",
@@ -174,6 +198,23 @@ export const MAKER_DETAILS: Record<string, MakerDetails> = {
       "Meyer Optik Görlitz began on April 1, 1896, when optician Hugo Meyer and businessman Heinrich Schätze founded the Optisch-Mechanische Industrie-Anstalt Hugo Meyer & Co. in Görlitz. Early success came from Aristostigmat and Euryplan-related optics, and the firm expanded into photographic and projection lenses before World War I. In 1920 Meyer began working with former Zeiss designer Paul Rudolph, gaining access to the Plasmat patent family and strengthening its position in high-speed and anastigmatic lens design.\n\nBy the 1930s the company, renamed Optische und Feinmechanische Werke Hugo Meyer & Co., was a major lens producer. Postwar East German nationalization turned it into VEB Feinoptisches Werk Görlitz, and the Meyer name remained visible on many M42, Exakta, Praktica, and medium-format lenses through the 1950s and 1960s. The Trioplan triplets became famous for bright-edged out-of-focus highlights, while Primoplan, Orestor, Orestegor, Lydith, and Domiplan lenses made Meyer a practical alternative to Carl Zeiss Jena in the East German camera ecosystem.\n\nIndustrial consolidation absorbed Meyer into VEB Pentacon in 1968 and later into the Carl Zeiss Jena combine. The Meyer-Optik name disappeared from new lenses after the early 1970s, and the briefly independent post-reunification Feinoptisches Werk Görlitz GmbH closed in 1991. The brand was revived in 2014 by net SE/Globell through crowdfunded reinterpretations, collapsed again during the 2018 insolvency, and was subsequently acquired by OPC Optical Precision Components Europe. The modern Meyer Optik Görlitz line focuses on German-assembled character lenses inspired by the Trioplan, Primoplan, and other historic formulas.",
     notableDesigns:
       "Trioplan 100mm f/2.8, Trioplan 50mm f/2.9, Primoplan 58mm f/1.9, Orestor 135mm f/2.8, Orestegor 200mm f/4, Lydith 30mm f/3.5, Domiplan 50mm f/2.8",
+  },
+  // Founders, Crown Optical, Pro-Jex, Super-Lite series, Repp's 1938 exit, John R. Miles, Hilux, London, Beseler:
+  // https://deltalenses.com/the-projection-optics-story/
+  // 1918 founding by Repp, State Street and Lyell Avenue addresses, Beseler ownership (Kingslake, 1974):
+  // https://www.graflex.org/articles/kingslake/
+  // Repp's patents:
+  // https://patents.google.com/patent/US1415002A/en
+  // https://patents.google.com/patent/US1479251A/en
+  "projection-optics": {
+    founded: 1918,
+    headquarters: "Rochester, New York, United States (historical optical works)",
+    summary:
+      "American maker of motion-picture projection lenses, founded in Rochester, New York, in 1918 and known for the Super-Lite series and the later Hilux and Super-Hilux lenses.",
+    history:
+      "Projection Optics Company was founded in Rochester in 1918 by the lens designer William H. Repp with William Fouquet and a partner named Kirchgesser, who had worked together at the Crown Optical Company. The firm started at 203 State Street, Crown Optical's address from 1917, and moved to 330 Lyell Avenue in 1930. Its main products were projection lenses for professional motion-picture projectors.\n\nRepp designed the early lenses. His US 1,415,002, filed in 1920 and granted in 1922 with the company as assignee, describes a four-element f/2.2 projection objective arranged so that other focal lengths needed only two new curves; lenses sold as Pro-Jex were advertised from 1920. His second patent, US 1,479,251, filed in 1922 and granted to him in 1924, is an f/2.2 lens of two cemented doublets for motion-picture projectors and the design of the Super-Lite, a name first used in a 1922 advertisement for a series launched in 1923. The two patents are the sources of the Projection Optics entries in this catalog.\n\nThe Super-Lite was made in several diameters, from Series I to Series IV, and the Bi-Focal Super-Lite, a varifocal projection lens, followed at f/2.5 in 1929 and was later made at f/2. Repp sold his shares in 1938, and later designs came from the outside firm of John R. Miles. The uncemented f/1.8 Hilux succeeded the Super-Lite in the early 1950s, followed by the Super-Hilux in 1955 and an f/1.4 Super-Hilux announced at the end of 1957. The company also made anamorphic projection lenses, 8 mm and 16 mm projection lenses, slide-projector lenses and overhead projectors.\n\nProjection Optics opened a London subsidiary in 1955. It was later bought by Beseler and continued under its new owner as a largely autonomous business making projection lenses.",
+    notableDesigns:
+      "Pro-Jex, Super-Lite Series I–IV, Bi-Focal Super-Lite, Super-Lite III C, Hilux, Super-Hilux, Super-Hilux f/1.4",
   },
   samyang: {
     founded: 1972,
