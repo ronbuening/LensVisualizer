@@ -807,4 +807,15 @@ export const SUMITA_GLASS_ENTRIES: readonly GlassEntry[] = [
     source:
       "SUMITA official all-glass Zemax catalog header2026/08/21; accessed2026-10-31. Legacy LAKN4 literal formula1 row; no source supplier, melt, chemistry or process identity implied. https://www.sumita-opt.co.jp/en/download/",
   },
+  /* Exact patent coordinates for the Leitz US 1,899,934 Figure 1 L3 dense flint (nD 1.6890 / V 31.2). */
+  {
+    name: "K-SFLD8W",
+    vendor: "Sumita",
+    polynomial: [2.7616037, -0.011625188, 0.029251663, 0.0013183689, -0.000044020904, 0.00001048639],
+    nd: 1.6891,
+    vd: 31.2,
+    PgF: 0.5986,
+    source:
+      "SUMITA all-glass Zemax catalog (sumita-2025-11-07-all.agf), K-SFLD8W row; vendor formula-1 polynomial. It shares the six-digit code 689312 with E-FD8 and other rows, so code6 is omitted.",
+  },
 ];
