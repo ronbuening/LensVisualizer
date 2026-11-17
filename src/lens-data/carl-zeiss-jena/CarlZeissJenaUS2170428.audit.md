@@ -110,6 +110,7 @@ Open:
   (Closed 2026-11-17: fixed f/1.9 aperture.)
 - Optional `catalog.imageCircleMm` (about 72.6 mm from the 40° field) so the image-circle audits can run.
 - The page was not viewed in the running site: the dev server serves the main checkout, not this worktree.
+  (Closed 2026-11-17: viewed on the local site in the second review below.)
 
 ## 2026-11-17 — Semi-diameter pass against the patent figure
 
@@ -159,3 +160,64 @@ Open:
 
 - `catalog.imageCircleMm`: only if a source states an image diameter or film format. Without it the analysis tabs
   sample to 12.2°, the default 135-format corner, not to the patent's 20°.
+
+## 2026-11-17 — Second review on the local site
+
+Compared: the lens page on the local site (diagram and the inspector of all four lenses) with the figure on the
+drawing sheet of US 2,170,428, re-measured at the scan's native 300 dpi. The scan is turned by 0.82°, so heights were
+read from a fitted axis line and averaged above and below it, at the centre of the drawn outline. The eight vertex
+crossings give 10.59 px/mm from r1 to r8 (60.7 mm), 10.49 px/mm over r1–r4 and 10.50 px/mm over r5–r8. Across the
+axis the r6 arc (R 34.3) sits where the printed radius puts it at heights of 60 to 190 px, within 1–2 px, so the
+drawing has one scale both ways. Readings at 10.55 px/mm: L1 26.6, L2 flat edge 25.4, L2 bevel meeting the rear face
+at 20.5 (20.7 above the axis, 20.2 below), L3 19.6, L4 21.2 mm. These confirm the semi-diameter pass's readings.
+
+What differed on the page: the renderer joins L2's 25.4 mm front rim to its 20.7 mm rear rim with one straight
+edge, so L2 showed a top sloping down over its whole 14 mm length. The figure draws a flat edge at 25.4 mm for about
+10 mm and then a short bevel down to the end of the rear face; at the start of the bevel the page sat 3.4 mm (13 %)
+below the drawing.
+
+| Item | Before | After | Evidence |
+|---|---:|---:|---|
+| Face 4 (L2 rear) `rimExtensionSd` | none | 25.4 | drawn flat edge at 25.4; the land keeps it flat to the rear face, standing in for the 45° bevel, which the renderer cannot draw; `sd` stays at the drawn 20.7, so no clear aperture is added |
+| Element `focalLengthMm` | none (inspector read "FL = —") | L1 +119.43, L2 +155.07, L3 −37.94, L4 +58.66 | computed in air from the printed values |
+
+Lands and cuts against the rims before the semi-diameter pass:
+- Face 3, 28 → 25.4 (cut): kept. It costs 0.0 points at every field to 12.2°, and 0.0 to 19.9° on a scratch copy
+  given the patent's 40° field (41.4 % at 19.9° before and after).
+- Face 4 land to 25.4 (new): kept. It costs 0.0 points (rims and clear apertures unchanged), the surface validator
+  accepts it, and the figure draws glass out to 25.4 mm along that edge.
+- L1, L3 and L4 stay at 28, 19 and 22, within 5 % of the drawing. L1 at the drawn 26.6 would cost 5.1 points at 14.2°
+  (40° field), and its f/1.9 axial floor is 26.26 mm.
+- Worst loss against those rims, final file: 0.0 points.
+
+Engine numbers, before and after: EFL 99.7755 mm, f/1.9, stop semi-diameter 16.61 mm, half-field 25.08°, total length
+123.91 mm. The surface validator reports no errors, the aperture audit finds no rim limit, and at the patent's 20°
+half-field no axial ray clips and the chief ray clears every surface.
+
+Checked and found right: the element types agree with the printed radius signs; the roles are true (L1 to L3 together
+nearly afocal, L4 at +58.66 mm); the labels L1–L4 are the patent's lens numerals and surfaces 1–8 its r1–r8; nothing
+is cemented and the patent names no groups, so the page carries no group or cement brackets; no aspheric surface and
+no `apd` tag (the patent names no special glass); the inferred stop sits in the L3–L4 air space. Movement: infinity
+only, no variable gap or zoom block, the focus slider reads "Not modeled", and the focus text states only that the
+patent gives no close-focus data. The projection mount and the fixed f/1.9 match the text ("a projection objective
+... maximum relative aperture of 1:1.9"). `Carl-Zeiss-Stiftung` is the corpus's form for "the firm of Carl Zeiss".
+
+Glass: compared at the d, D and e lines, both printed pairs match catalogue rows only at d (BACD6 nD 1.61366 and SF1
+nD 1.71715 miss at D), so `indexReference` "d" stands. SF1 (Schott) is the Jena glass of its day; the other exact
+rows (J-SF1, S-TIH1, PBH1, E-FD1L) are later equivalents. BACD6 (Hoya) is the only catalogue row for 1.6138 / 56.3.
+Ohara BSM6 (OHARA_260701.AGF, nd 1.61375, νd 56.37, obsolete) is equally exact and not in the catalogue; it is no
+nearer the period. The Schott glass of this class, SK6, is in neither the catalogue nor the local vendor files, so
+BACD6 stays. The patent prints no line indices, partial dispersions or aberration curves, so no colour comparison is
+possible; no element uses a constant-index medium.
+
+Figure against table: the figure draws L1's rear face slightly concave, its rim about 1.0 mm behind the vertex at
+25.6 mm, where both copies of the table print r2 = −500. With r2 = +500 the EFL would be 117.9 mm against the stated
+100 mm, so the printed value stands and the drawing is approximate there. This is why the page draws L1 with a
+2.2 mm edge where the figure shows about 4 mm.
+
+Open:
+
+- `catalog.imageCircleMm`: the text (page 2, column 1, lines 45–47) states "an angular field of up to approximately
+  40°"; at the computed EFL that is 72.6 mm (2 × 99.78 × tan 20°). On a scratch copy with 72.6 mm the image-circle
+  audit finds nothing undersized and field coverage is 100 % (chief ray clear at 19.9°).
+- A Schott SK6 catalogue row, if one is added, would be the period choice for L1, L2 and L4.

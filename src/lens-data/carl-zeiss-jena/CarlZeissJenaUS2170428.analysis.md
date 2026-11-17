@@ -46,8 +46,8 @@ length.
 The patent prints no diaphragm. The model places a fixed f/1.9 aperture stop midway in the 19 mm air space between L3
 and L4, the usual stop position for this positive–positive–negative–positive form; that position is an estimate. No
 clear diameters are printed either, but the drawing is to scale (its vertex spacings match the table within about
-5 %), so the rims follow it: L1 28 mm, L2 25.4 mm at the front and 20.7 mm at the rear, L3 19 mm and L4 22 mm, each
-within 5 % of the drawn height.
+5 %), so the rims follow it: L1 28 mm, L2 25.4 mm at the front and 20.7 mm at the rear (with a flat land out to its
+25.4 mm edge), L3 19 mm and L4 22 mm, each within 5 % of the drawn height.
 
 ## Element-by-Element Analysis
 
@@ -66,7 +66,9 @@ inside that window. L1 and L2 are separated by only 0.5 mm on the axis.
 L2 is the thick element of the design: 19.0 mm on the axis, 19 % of the focal length, inside the claimed 12–30 %
 range. Its front surface (r3 = +44.5) is the most strongly curved positive surface in the lens; its concave rear
 (r4 = +70.0) stays within the claim's limit of at most the focal length. The patent drawing shows this element with a
-bevelled rear rim, and the model draws a similar step from the 25.4 mm front rim to the 20.7 mm rear rim.
+flat edge at about 25.4 mm that bevels down to the end of the concave rear face at about 20.7 mm. The model ends the
+rear face at 20.7 mm and closes the edge with a flat land out to 25.4 mm, so the element keeps its drawn flat edge;
+the land stands in for the bevel and adds no clear aperture.
 
 ### L3 — Biconcave Negative
 

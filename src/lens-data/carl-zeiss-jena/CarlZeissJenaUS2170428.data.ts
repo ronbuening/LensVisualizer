@@ -26,7 +26,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *   21.2 px/mm at 600 dpi). It draws L1 at 26.8, L2 at 25.4 (front) and 20.7 (rear, after a bevel), L3 at 19.8 and
  *   L4 at 21.5 mm. L2 takes the drawn 25.4 / 20.7; L1 (28), L3 (19) and L4 (22) stay within 5 % of the drawing. L3 is
  *   held at 19 so that its front rim stays clear of L2's rear face across the 4.5 mm air space. No rim cuts the f/1.9
- *   axial beam.
+ *   axial beam. L2's drawn edge runs flat at 25.4 and then bevels down to the rear curve; a land on its rear face
+ *   (rimExtensionSd 25.4) keeps that flat edge in the drawing, standing in for the bevel. It adds no clear aperture.
  * - IMAGE PLANE: the computed paraxial back focus, 63.2102 mm behind r8.
  *
  * FOCUS: only the infinity state is modelled; closeFocusM = 1e15 marks focus as not modelled.
@@ -69,6 +70,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.6138,
       vd: 56.3,
+      focalLengthMm: 119.43,
       glass: "BACD6 (Hoya)",
       indexReference: "d",
       role: "Front positive lens with a strongly curved front face and a nearly flat rear face.",
@@ -80,6 +82,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.6138,
       vd: 56.3,
+      focalLengthMm: 155.07,
       glass: "BACD6 (Hoya)",
       indexReference: "d",
       role: "Thick positive meniscus, convex to the front; with L1 it forms the strong positive front pair.",
@@ -91,6 +94,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.7174,
       vd: 29.5,
+      focalLengthMm: -37.94,
       glass: "SF1 (Schott)",
       indexReference: "d",
       role: "The only negative lens and the only flint; it almost cancels the front pair's power and corrects colour.",
@@ -102,6 +106,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.6138,
       vd: 56.3,
+      focalLengthMm: 58.66,
       glass: "BACD6 (Hoya)",
       indexReference: "d",
       role: "Rear positive collector behind the iris; it supplies nearly all of the system's power.",
@@ -133,6 +138,7 @@ const LENS_DATA = {
       R: 70,
       d: 4.5,
       sd: 20.7,
+      rimExtensionSd: 25.4,
     },
     {
       label: "5",
