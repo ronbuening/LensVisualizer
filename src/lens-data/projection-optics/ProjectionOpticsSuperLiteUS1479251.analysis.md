@@ -113,11 +113,17 @@ The patent states the free aperture of the front system as 45.4 mm, so 100 : 45.
 iris. The model places the aperture stop at the front vertex plane with that 45.4 mm diameter. The front doublet's
 clear radius is 22.7 mm.
 
-The patent prints no rear clear aperture and no field. The rear doublet's clear radius of 17.5 mm (17 mm on its plano
-face) is an estimate that passes a 3° half-field. The drawing's rear-to-front height ratio, about 0.78, suggests
-roughly 17.7 mm. The model's 6° full field is a display choice, not a source value. A 35 mm projector gate of the period
-has a half diagonal of about 14.4 mm, which corresponds to about 8.4° at this focal length. At that angle the chief ray
-still clears the rear doublet, but the modelled rear rims cut most of one side of the oblique beam.
+The patent prints no rear clear aperture and no field. The rear doublet's clear radius of 17.5 mm on all three faces
+follows the drawing. Scaled to the printed front aperture, the drawn rear doublet is 0.78 of the front's height
+(17.7 mm), and its flint is drawn square-cut at the crown's height.
+
+The lens is catalogued as a projection objective for 35 mm cinema film. The 27.2 mm format diagonal corresponds to a
+7.9° half-field at this focal length. The model's 16° full field (8° half) is the smallest whole-degree field that
+reaches that corner; it is not a patent value. A period 35 mm projector gate, about 14.4 mm in half diagonal,
+corresponds to about 8.4°.
+
+At both angles the chief ray clears every rim, but the rear doublet cuts most of one side of the oblique beam (about
+71–84 %). Geometric transmission falls from 98.9 % at 4° to 60.5 % at 7.9°.
 
 ## Drawing Sheet and Table
 

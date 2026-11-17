@@ -12,10 +12,15 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * at infinity toward the film, so the convex faces lead and the plano faces point at the film, as drawn.
  *
  * Inferred values: the aperture stop sits at the front vertex plane with the printed 45.4 mm free aperture of the front
- * doublet (the patent draws no iris). The rear-doublet clear radii (17.5 mm, 17 mm on the plano face) are estimates
- * that clear a 3° field; the drawing's rear/front height ratio (about 0.78) suggests roughly 17.7 mm. The last gap is
- * the computed paraxial back focus, 39.82254 mm; the patent prints 39.82 mm and says the film sits slightly farther
- * away at a finite projection throw.
+ * doublet (the patent draws no iris). The rear doublet's clear radius, 17.5 mm on all three faces, is estimated from
+ * the drawing: scaled to the printed front aperture, its rear/front height ratio (0.78) gives 17.7 mm, and it draws
+ * the flint square-cut at the crown's height. The patent states no field. The declared 16° full field (8° half) is the
+ * smallest whole-degree field that reaches the 35 mm cinema corner (7.9°). The real chief ray there clears every rim,
+ * and the rear doublet vignettes the oblique beam to about 60 % geometric transmission. The last gap is the computed paraxial back focus, 39.82254 mm;
+ * the patent prints 39.82 mm and says the film sits slightly farther away at a finite projection throw.
+ *
+ * Format: a projection objective for 35 mm motion-picture film. The patent is for moving-picture machines, and the
+ * Super-Lite was sold for theatre projectors in focal lengths from about 4 in (Delta Lenses history).
  */
 const LENS_DATA = {
   schema: 2,
@@ -25,6 +30,8 @@ const LENS_DATA = {
   subtitle: "US 1,479,251 A, sole example — Super-Lite projection lens design",
   visible: true,
   catalog: {
+    lensMounts: ["projection-lens"],
+    imageFormat: "35mm-cinema",
     specs: ["4 ELEMENTS / 2 GROUPS", "ALL SPHERICAL", "DESIGN F/2.2", "PROJECTION OBJECTIVE"],
     elementCount: 4,
     groupCount: 2,
@@ -96,7 +103,7 @@ const LENS_DATA = {
     { label: "3", R: "flat", d: 94.54, sd: 22.7 },
     { label: "4", R: 41.28, d: 8.54, sd: 17.5, medium: 3 },
     { label: "5", R: -41.28, d: 2.85, sd: 17.5, medium: 4 },
-    { label: "6", R: "flat", d: 39.82254, sd: 17 },
+    { label: "6", R: "flat", d: 39.82254, sd: 17.5 },
   ],
   focus: {
     closeFocusM: 1e15,
@@ -107,7 +114,7 @@ const LENS_DATA = {
     fStops: [2.2026],
     maxFNumber: 2.2026,
   },
-  projection: { kind: "rectilinear", fullFieldDeg: 6, maxTraceFieldDeg: 3 },
+  projection: { kind: "rectilinear", fullFieldDeg: 16, maxTraceFieldDeg: 8 },
   groups: [
     { text: "A", fromSurface: "1", toSurface: "3" },
     { text: "B", fromSurface: "4", toSurface: "6" },

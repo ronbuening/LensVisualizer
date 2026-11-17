@@ -96,7 +96,8 @@ granted January 1, 1924. No assignor clause is printed.
 - Maker profile and folder for "Projection Optics" are shared with US 1,415,002. (Closed 2026-11-17: the coordinator
   added the maker prefix and the `projection-optics/` folder.)
 - SD pass: the drawing's rear-to-front height ratio (about 0.78) suggests a rear clear radius of about 17.7 mm. The
-  plano face 6 is drawn as tall as the crown (model 17 mm against 17.5 mm).
+  plano face 6 is drawn as tall as the crown (model 17 mm against 17.5 mm). (Closed 2026-11-17: face 6 raised to
+  17.5 mm, square as drawn; 17.5 kept on faces 4 and 5 as within noise of 17.7.)
 - Optional: a field closer to the 35 mm projector gate (about 8.4° half-field), documented as period coverage, not as
   a patent value.
 
@@ -144,7 +145,82 @@ The optics are unchanged. No R, d, nd, V, sd, stop or gap value was edited.
 **Open:**
 
 - SD pass: the drawing's rear-to-front height ratio (about 0.78) suggests a rear clear radius of about 17.7 mm against
-  the model's 17.5 mm. The plano face 6 is drawn as tall as the crown (model 17 mm).
+  the model's 17.5 mm. The plano face 6 is drawn as tall as the crown (model 17 mm). (Closed 2026-11-17 in the
+  semi-diameter pass.)
 - Optional: a field closer to the 35 mm projector gate (about 8.4° half-field), as period coverage.
 - Metadata: no `lensMounts` / `imageFormat`. A projection lens has no camera mount in the taxonomy, and the film
-  format for this 100 mm example is not printed.
+  format for this 100 mm example is not printed. (Closed 2026-11-17: the taxonomy has a `projection-lens` mount id, and
+  the Super-Lite sources support 35 mm theatre film; set in the semi-diameter pass.)
+
+## 2026-11-17 — Semi-diameter pass against the patent figure
+
+**Source.** The figure is the drawing sheet of US 1,479,251 (PDF page 1), measured at 600 dpi. It is the patent's only
+figure, and it draws the sole example.
+
+**Scale.** Two axial spans give the scale:
+
+- The front plano face to the rear crown vertex is 1429 px for the printed 94.54 mm: 15.12 px/mm.
+- The rear plano face to the film line is 601 px for the printed 39.82 mm: 15.09 px/mm.
+- The whole lens-to-film span gives 14.98 px/mm.
+- The drawn doublet thicknesses run about 5 % thin.
+- The scan is rotated by about 1.4°, and heights were read against the local axis of each doublet.
+
+**Heights.** Each doublet is drawn as a rectangle whose top and bottom edges are clean horizontal lines.
+
+- Front doublet: half-height 358.75 px, or 23.8 mm at 15.05 px/mm, against the printed 45.4 mm free aperture (22.7 mm).
+- Rear doublet: half-height 280.0 px, or 18.6 mm at 15.05 px/mm.
+- The rear/front ratio is 0.780, which gives 17.7 mm when scaled to the printed front aperture.
+- The flint's plano face meets the top edge at the same height as the crown and the cemented face.
+
+| Surface | Before | Figure | After | Evidence |
+|---|---:|---:|---:|---|
+| 1, 2, 3 | 22.7 | 23.8 axial scale | 22.7 | Printed free aperture outranks the figure (+5 %, within noise) |
+| 4, 5 | 17.5 | 17.7 relative / 18.6 axial | 17.5 | Within noise (+1 % against the printed front aperture) |
+| 6 | 17.0 | square with 4 and 5 | 17.5 | Flint drawn square-cut; the 17 → 17.5 mm step was a visible shape error |
+
+The rear crown's edge at 17.5 mm is 0.75 mm. The drawing shows a near-knife edge of about 1 mm at 15 px/mm.
+
+**Clearance and light:**
+
+- Corner illumination over the declared 3° field is unchanged: 99.3 % at 3° before and after. The leave-one-out worst
+  loss is 0.0 points, and restoring face 6 to 17 mm wins back 0.0 points.
+- At the 35 mm cinema corner (Y = 13.6 mm, 7.93°), the chief ray clears every rim. Rear-doublet one-sided vignetting
+  is 72 / 76 / 71 % on faces 4, 5 and 6; before, it was 72 / 76 / 76 %.
+- At a period projector-gate corner (Y = 14.38 mm, 8.4°), the figures are 81 / 84 / 81 %.
+
+**Audits:**
+
+- `audit:surface`: OK.
+- `audit:aperture`: no rim limit.
+- `audit:image-circle`: 0 undersized. It was skipped before, without a format.
+- `audit:field-coverage`: 38 %, diagnosis "declared". The corner at 7.9° is clear; coverage stops at the declared 3°
+  projection field, not at a rim.
+- Engine half-field: 3.00° before and after. Tracing half-field: 9.18° → 9.33°.
+- EFL 99.9965 mm, f/2.2026 and back focus 39.8225 mm are unchanged.
+
+**Metadata.** `catalog.lensMounts` is now `["projection-lens"]` and `catalog.imageFormat` is now `"35mm-cinema"`. The
+sources:
+
+- The patent addresses moving-picture machines.
+- The 1923 *Exhibitors Trade Review* notice, reproduced by Delta Lenses, says the Super-Lite was made to fit all makes
+  of motion picture machines.
+- Delta Lenses' history lists the Super-Lite Series III C in theatre focal lengths from 102 mm.
+- A 100 mm objective as built fits 35 mm theatre projection.
+
+Name check: the trade sources call the product the Super-Lite, made by the Projection Optics Co. The current `name`,
+"PROJECTION OPTICS SUPER-LITE 100mm f/2.2 (US 1,479,251 Design)", matches.
+
+**Open:**
+
+- The declared 6° full field (`projection.fullFieldDeg` 6, `maxTraceFieldDeg` 3) covers 38 % of the 35 mm cinema
+  diagonal. Widening it to about 15.9° full field would let the analysis tabs reach the format corner, which the rims
+  pass. That is a field change outside this pass. (Closed 2026-11-17, see the field follow-up below.)
+
+**Field follow-up.** On the coordinator's request, `projection` changed from 6 / 3 to `fullFieldDeg` 16 /
+`maxTraceFieldDeg` 8, the smallest whole-degree field covering the 35 mm cinema corner (7.93°). The patent states no
+field. Results:
+
+- Engine half-field 3° → 8°. EFL 99.9965 mm, f/2.2026 and back focus 39.8225 mm are unchanged.
+- Geometric transmission: 98.9 % at 4°, 76.0 % at 6.6°, 60.5 % at 7.9°.
+- `audit:surface` OK; `audit:aperture` no rim limit; `audit:image-circle` 0 undersized.
+- `audit:field-coverage`: 38 % ("declared") → ≥ 99 % ("ok").
