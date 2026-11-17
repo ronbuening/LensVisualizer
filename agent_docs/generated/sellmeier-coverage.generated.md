@@ -3200,7 +3200,7 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 5 | Element 3 | abbe | `Unmatched (nD 1.6423 / V 48.0)` | Explicit unmatched/proprietary annotation |
+| 5 | Element III | abbe | `Unmatched (nD 1.6423 / V 48.0)` | Explicit unmatched/proprietary annotation |
 
 ### [NIKON 28mm f/3.5 (Nikon AF600 / AF600 QD)](../../src/lens-data/nikon/Nikon28mmf35MacroAf600QD.data.ts) - 66.7% trusted (2/3); 66.7% Sellmeier (2/3) - JP H06-235857 A
 
@@ -3830,10 +3830,10 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 1 | Element 1 | constant | `Unmatched (nD 1.59234, nG′ 1.60464; no Abbe number printed)` | Explicit unmatched/proprietary annotation |
-| 3 | Element 2 | constant | `Unmatched (nD 1.59704, nG′ 1.61718; no Abbe number printed)` | Explicit unmatched/proprietary annotation |
-| 5 | Element 3 | constant | `Unmatched (nD 1.62410, nG′ 1.64732; no Abbe number printed)` | Explicit unmatched/proprietary annotation |
-| 6 | Element 4 | constant | `Unmatched (nD 1.49900, nG′ 1.50840; no Abbe number printed)` | Explicit unmatched/proprietary annotation |
+| 1 | Element I | constant | `Unmatched (nD 1.59234, nG′ 1.60464; no Abbe number printed)` | Explicit unmatched/proprietary annotation |
+| 3 | Element II | constant | `Unmatched (nD 1.59704, nG′ 1.61718; no Abbe number printed)` | Explicit unmatched/proprietary annotation |
+| 5 | Element III | constant | `Unmatched (nD 1.62410, nG′ 1.64732; no Abbe number printed)` | Explicit unmatched/proprietary annotation |
+| 6 | Element IV | constant | `Unmatched (nD 1.49900, nG′ 1.50840; no Abbe number printed)` | Explicit unmatched/proprietary annotation |
 
 ### [CARL ZEISS JENA TESSAR 144mm f/5.5](../../src/lens-data/carl-zeiss-jena/ZeissTessar144f55.data.ts) - 0.0% trusted (0/4); 0.0% Sellmeier (0/4) - US 721,240
 
