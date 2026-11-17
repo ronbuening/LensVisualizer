@@ -15,17 +15,19 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *
  * Not printed by the patent and inferred here: the diaphragm, placed at the middle of the 6.80 air space between
  * lenses 2 and 3; the clear semi-diameters; and the image plane, which is the computed D-line paraxial back focus.
- * The patent gives no field angle and no close-focus data; the model is infinity-only.
+ * The patent gives no field angle and no close-focus data; the model is infinity-only. Lens 2 (D 1.575, ν 41.4)
+ * matches the catalogue light flint J-LF7, whose dispersion curve also gives the printed G′ index 1.593; lenses 1
+ * and 3 match no catalogue glass and take their dispersion from the printed ν.
  */
 const LENS_DATA = {
   schema: 2,
   key: "kodak-100mm-f68-us1880393",
   maker: "Kodak",
   name: "KODAK 100mm f/6.8 (US 1,880,393 Design)",
-  subtitle: "US1880393A — SPECIFICATION S1=1.98; PATENT-ONLY",
+  subtitle: "US 1,880,393 A, sole example — Kodak f/6.8 air-spaced triplet",
   visible: true,
   catalog: {
-    specs: ["3 ELEMENTS / 3 GROUPS", "PATENT-ONLY", "SPECIFICATION-TABLE GAP"],
+    specs: ["3 ELEMENTS / 3 GROUPS", "ALL SPHERICAL", "DESIGN F/6.8", "AIR-SPACED TRIPLET"],
     elementCount: 3,
     groupCount: 3,
     focalLengthMm: { marketing: 100, design: 99.81 },
@@ -58,32 +60,35 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L1",
-      label: "Front barium crown",
+      label: "Element 1",
       type: "Biconvex Positive",
       nd: 1.611,
       vd: 57.2,
       indexReference: "D",
-      glass: "Barium crown (source constants)",
+      glass: "Unmatched (barium crown, nD 1.611 / V 57.2)",
+      role: "Front positive crown; with element 2 it forms the weak negative front component.",
     },
     {
       id: 2,
       name: "L2",
-      label: "Middle flint",
+      label: "Element 2",
       type: "Biconcave Negative",
       nd: 1.575,
       vd: 41.4,
       indexReference: "D",
-      glass: "Flint (source constants)",
+      glass: "J-LF7 (Hikari)",
+      role: "Central negative flint; supplies the triplet's negative power and its colour correction.",
     },
     {
       id: 3,
       name: "L3",
-      label: "Rear low-index crown",
+      label: "Element 3",
       type: "Positive Meniscus",
       nd: 1.523,
       vd: 59,
       indexReference: "D",
-      glass: "Low-index crown (source constants)",
+      glass: "Unmatched (crown, nD 1.523 / V 59.0)",
+      role: "Rear positive meniscus of low-index crown; reduces the spherical over-correction of element 2.",
     },
   ],
   surfaces: [
@@ -98,7 +103,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 1e15,
     description:
-      "Infinity-only diagnostic. Patent front-cell focus mentioned, but finite schedule not supplied or modeled.",
+      "Infinity focus only; the patent describes focusing by moving the front lens but gives no close-focus data.",
   },
   aperture: { nominalFNumber: 6.8, fStops: [6.8, 8, 11, 16], maxFNumber: 16 },
   projection: { kind: "rectilinear", fullFieldDeg: 6, maxTraceFieldDeg: 3 },
