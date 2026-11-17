@@ -1,4 +1,22 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * Robert Richter (Carl Zeiss, Jena), US 2,031,792 A, "Anastigmatic objective for photography and projection":
+ * filed 25 July 1934 (German priority 26 July 1933), granted 25 February 1936. This is the patent of the Zeiss
+ * Topogon. The file transcribes the first constructional example (Figure 1): a symmetrical objective of four single
+ * menisci, all concave toward the diaphragm, with fD = 66.0 mm, f/6.3 and a 100° angle of view.
+ *
+ * Scale: the patent's own millimetres; nothing is scaled or converted. The table prints radii as magnitudes; the
+ * signs follow Figure 1 and the text (every concave surface faces the diaphragm). Indices and dispersions are the
+ * printed nD (sodium D line) and ν values.
+ *
+ * Inferred, not printed:
+ * - Stop: the diaphragm drawn in Figure 1 at the middle of the 12.98 mm central air space (6.49 mm each side).
+ * - Back focus: the computed paraxial value, 51.94 mm; the patent prints none.
+ * - Rims: S1/S8 10.45 mm and S3/S6 7.4 mm are the least clear apertures that pass the 50° chief ray of the
+ *   patent's 100° field (both are below the Figure 1 drawing); S2/S7 10 mm and S4/S5 6.5 mm are estimates.
+ *   The steep 68° rim slope of S1/S8 needs the raised rim-angle check.
+ */
 const LENS_DATA = {
   "schema": 2,
   "key": "zeiss-richter-1936-66-f6-3-patent-reference",
@@ -16,14 +34,14 @@ const LENS_DATA = {
     "elementCount": 4,
     "groupCount": 4,
     "focalLengthMm": {
-      "design": 66.03779478699285
+      "design": 66.04
     },
     "fNumber": {
       "design": 6.3
     }
   },
   "source": {
-    "patentNumber": "US 2,031,792",
+    "patentNumber": "US 2,031,792 A",
     "example": {
       "label": "Figure 1",
       "id": "1"
@@ -33,7 +51,7 @@ const LENS_DATA = {
       "Robert Richter"
     ],
     "assignees": [
-      "Carl Zeiss, Jena"
+      "Carl-Zeiss-Stiftung"
     ],
     "sdSource": "heuristic"
   },
@@ -84,7 +102,7 @@ const LENS_DATA = {
       "label": "1",
       "R": 11.25,
       "d": 4.44,
-      "sd": 10,
+      "sd": 10.45,
       "medium": 1
     },
     {
@@ -97,7 +115,7 @@ const LENS_DATA = {
       "label": "3",
       "R": 9.094,
       "d": 0.5,
-      "sd": 6.5,
+      "sd": 7.4,
       "medium": 2
     },
     {
@@ -122,7 +140,7 @@ const LENS_DATA = {
       "label": "6",
       "R": -9.094,
       "d": 0.02,
-      "sd": 6.5
+      "sd": 7.4
     },
     {
       "label": "7",
@@ -135,7 +153,7 @@ const LENS_DATA = {
       "label": "8",
       "R": -11.25,
       "d": 51.94152153724732,
-      "sd": 10
+      "sd": 10.45
     }
   ],
   "focus": {
@@ -154,6 +172,14 @@ const LENS_DATA = {
   },
   "groups": [],
   "doublets": [],
+  "projection": {
+    "kind": "rectilinear",
+    "fullFieldDeg": 100,
+    "maxTraceFieldDeg": 50
+  },
+  "checks": {
+    "maxRimAngleDeg": 69
+  },
   "layout": {
     "yScFill": 0.4
   }
