@@ -1,4 +1,4 @@
-# Repp1922ProjectionPatent audit
+# ProjectionOpticsUS1415002 audit
 
 ## Source
 
@@ -102,21 +102,82 @@ The prescription, rims, stop and image plane are unchanged.
 
 ### Open
 
-- **Wording:**
+- **Wording:** (closed 2026-11-17: name and key set at the rename, the rest in the cleanup pass)
   - `name`: "REPP 1922 100mm f/2.2 PROJECTION PATENT REFERENCE".
   - `subtitle`: "1920 DESIGN / 1922 GRANT — RECIPROCAL INFINITY REFERENCE".
   - Specs: "PROJECTION PATENT; NO RETAIL MATCH" and "RECIPROCAL INFINITY ONLY".
   - `focus.description`: "No finite theater conjugate validation".
   - The repeated `indexReferenceNote` text.
   - `key`.
-- **Element labels:**
+- **Element labels:** (type capitalisation closed 2026-11-17; "Element N" labels kept as the house form)
   - `type` capitalisation "Plano-concave Negative" / "Plano-convex Positive" should become the house forms
     "Plano-Concave Negative" / "Plano-Convex Positive".
   - Generic labels "Element 1" to "Element 4".
-- **Glass labels:** none are set. Period crown and flint equivalents are optional.
+- **Glass labels:** none are set. Period crown and flint equivalents are optional. (Closed 2026-11-17: no exact
+  catalog row; `Unmatched` labels set.)
 - **Image format:** none set. A 35 mm motion-picture projection format would let the image-circle and coverage audits
   run.
 - **Iris:** the paraxially sized iris trims the outermost real F/2.2 rays (about F/2.27). A front-rim-limited
   aperture would be closer to an iris-less projection mount.
 - **Rims:** the semi-diameter pass may refine the 23 mm rims against the drawing (measured 23.1 to 23.3 mm).
 - **Aperture list:** the f/2.2 to f/22 list has no source.
+
+## 2026-11-17 — Cleanup and wording pass
+
+The files were renamed to `ProjectionOpticsUS1415002.*` and made visible at the rename; `key` and `name` were set then.
+This pass changed only public text and labels. The prescription, rims, stop and image plane are unchanged.
+
+### Changes
+
+| Field | Old | New |
+|---|---|---|
+| `subtitle` | "1920 DESIGN / 1922 GRANT — RECIPROCAL INFINITY REFERENCE" | "US 1,415,002 A, sole example — Petzval-type projection objective" |
+| `specs` | "4 ELEMENTS / 3 GROUPS", "PROJECTION PATENT; NO RETAIL MATCH", "ESTIMATED STOP; RIMS FROM FIGURE", "RECIPROCAL INFINITY ONLY" | "4 ELEMENTS / 3 GROUPS", "ALL SPHERICAL", "DESIGN F/2.2", "PROJECTION OBJECTIVE" |
+| `focus.closeFocusM` | `1000000000000000.0` | `1e15` (same value) |
+| `focus.description` | package wording | "Infinity focus only; the patent gives no close-focus data. Light enters from the screen side and focuses on the film plane." |
+| L2 `type` | "Plano-concave Negative" | "Plano-Concave Negative" |
+| L4 `type` | "Plano-convex Positive" | "Plano-Convex Positive" |
+| `indexReferenceNote` | "Literal sodium D index and dispersion reciprocal V in patent table." on every element | removed |
+| `glass` | none | "Unmatched (crown, nD 1.5160 / V 63.8)" for L1 and L4; "Unmatched (flint, nD 1.6182 / V 36.4)" for L2 and L3 |
+| `role` | none | a plain optical role for each element |
+| `doublets` text | "C1 doublet" | "C1" |
+| Header comment | "SCALE: none." | "PRESCRIPTION:" (the patent itself prints F = 100 mm) |
+
+The removed `indexReferenceNote` belongs to sources that name no spectral line, and it makes the inspector show
+"n (source)". This patent names the sodium D line, so the inspector now shows nD and νD.
+
+There is no exact catalog row for either glass:
+- **Crown, 1.5160 / 63.8:** the nearest are BK7-class rows at 1.51633 / 64.06–64.14 (Δnd +3.3e-4).
+- **Flint, 1.6182 / 36.4:** the nearest are F2-class rows at 1.62004 / 36.26–36.40 (Δnd +1.8e-3) and Sumita F4 at
+  1.61659 / 36.62.
+
+Both labels were checked to resolve to no catalog glass, so tracing still uses the printed nD and V. `cemented` C1 is
+on L1 and L2, with one `doublets` entry spanning surfaces 1 to 3.
+
+The analysis H1 and the sentence naming the model use the new name. The process-style phrase about a patent reference
+without a production match became one plain sentence that no production lens is documented. "Apertures and Model
+Verification" was renamed "Model Scope and Limitations", the pupil-zone list was condensed into one spherical-aberration
+statement, and a note was added that the aperture scale beyond F/2.2 has no source. The glass section names the
+nearest catalog rows.
+
+### Engine numbers
+
+Identical before and after this pass:
+- `built.mjs`: EFL 99.99813 mm, F/2.2, half-field 28.548°, stop radius 18.4477 mm, total track 119.851 mm.
+- `probe.mjs`: back focus 61.622 mm and track 58.229 mm at both focus keys.
+
+### Audit results
+
+- `audit:surface`: OK.
+- `audit:aperture`: within 3 % of F/2.2, no rim limit.
+- `audit:image-circle` and `audit:field-coverage`: still skip the file, because it has no `imageFormat`.
+
+### Open
+
+- **Image format:** none is set (a 35 mm motion-picture projection format would apply), so the image-circle and
+  coverage audits cannot run.
+- **Aperture list:** the f/2.2 to f/22 `fStops` list has no source. The patent shows no iris, and a projection
+  objective of this kind works at full aperture. Trimming the list to the design aperture needs an owner decision.
+- **Iris:** the paraxially sized iris trims the outermost real F/2.2 rays (about F/2.27).
+- **Rims:** for the semi-diameter pass, the drawing measures 23.1 to 23.3 mm against the model's 23 mm.
+- **Groups:** `groups` is empty. Front and rear group labels could be added if the viewer wants them.

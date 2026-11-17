@@ -6,7 +6,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * focal length at F/2.2: a cemented front pair (equiconvex crown I, plano-concave flint II) and an air-spaced rear
  * pair (negative flint meniscus III, plano-convex crown IV). Four elements in three groups, all spherical.
  *
- * SCALE: none. R, d, nD and V are as printed for F = 100 mm in the table on page 2 and on the drawing sheet; the
+ * PRESCRIPTION: R, d, nD and V are as printed for F = 100 mm in the table on page 2 and on the drawing sheet; the
  * paraxial EFL is 99.998 mm. The table prints radius magnitudes only. Signs follow the drawing and the text
  * (equiconvex I, plano-concave II, convex-concave III, convex-plano IV); the patent's stated component focal lengths,
  * about 1.36 F for the front pair and 2.42 F for the rear pair, are reproduced (1.359 F and 2.424 F). The table
@@ -37,14 +37,14 @@ const LENS_DATA = {
   key: "projection-optics-100mm-f22-us1415002",
   maker: "Projection Optics",
   name: "PROJECTION OPTICS 100mm f/2.2 (US 1,415,002 Design)",
-  subtitle: "1920 DESIGN / 1922 GRANT \u2014 RECIPROCAL INFINITY REFERENCE",
+  subtitle: "US 1,415,002 A, sole example \u2014 Petzval-type projection objective",
   visible: true,
   catalog: {
     specs: [
       "4 ELEMENTS / 3 GROUPS",
-      "PROJECTION PATENT; NO RETAIL MATCH",
-      "ESTIMATED STOP; RIMS FROM FIGURE",
-      "RECIPROCAL INFINITY ONLY"
+      "ALL SPHERICAL",
+      "DESIGN F/2.2",
+      "PROJECTION OBJECTIVE"
     ],
     elementCount: 4,
     groupCount: 3,
@@ -79,18 +79,20 @@ const LENS_DATA = {
       nd: 1.516,
       vd: 63.8,
       indexReference: "D",
-      indexReferenceNote: "Literal sodium D index and dispersion reciprocal V in patent table.",
+      glass: "Unmatched (crown, nD 1.5160 / V 63.8)",
+      role: "Equiconvex crown of the cemented front pair; carries the pair's positive power",
       cemented: "C1"
     },
     {
       id: 2,
       name: "L2",
       label: "Element 2",
-      type: "Plano-concave Negative",
+      type: "Plano-Concave Negative",
       nd: 1.6182,
       vd: 36.4,
       indexReference: "D",
-      indexReferenceNote: "Literal sodium D index and dispersion reciprocal V in patent table.",
+      glass: "Unmatched (flint, nD 1.6182 / V 36.4)",
+      role: "Flint cemented to L1; corrects the front pair's colour and spherical aberration",
       cemented: "C1"
     },
     {
@@ -101,17 +103,19 @@ const LENS_DATA = {
       nd: 1.6182,
       vd: 36.4,
       indexReference: "D",
-      indexReferenceNote: "Literal sodium D index and dispersion reciprocal V in patent table."
+      glass: "Unmatched (flint, nD 1.6182 / V 36.4)",
+      role: "Strong flint meniscus of the rear pair; achromatizes it and, with the following air space, flattens the field"
     },
     {
       id: 4,
       name: "L4",
       label: "Element 4",
-      type: "Plano-convex Positive",
+      type: "Plano-Convex Positive",
       nd: 1.516,
       vd: 63.8,
       indexReference: "D",
-      indexReferenceNote: "Literal sodium D index and dispersion reciprocal V in patent table."
+      glass: "Unmatched (crown, nD 1.5160 / V 63.8)",
+      role: "Positive crown of the rear pair, plano face toward the film"
     }
   ],
   surfaces: [
@@ -168,8 +172,8 @@ const LENS_DATA = {
     }
   ],
   focus: {
-    closeFocusM: 1000000000000000.0,
-    description: "Reciprocal infinity-only reference; patent intended for projection. Film at right focal plane in original orientation. No finite theater conjugate validation."
+    closeFocusM: 1e15,
+    description: "Infinity focus only; the patent gives no close-focus data. Light enters from the screen side and focuses on the film plane."
   },
   aperture: {
     nominalFNumber: 2.2,
@@ -187,7 +191,7 @@ const LENS_DATA = {
   groups: [],
   doublets: [
     {
-      text: "C1 doublet",
+      text: "C1",
       fromSurface: "1",
       toSurface: "3"
     }
