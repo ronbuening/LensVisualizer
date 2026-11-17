@@ -10,7 +10,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Glass: the patent prints nD and nG′ (the hydrogen G′ line, 434.05 nm) for its two glasses and no Abbe numbers. The
  * elements carry the printed nD only, so the model has no dispersion and shows no colour.
  *
- * Rims: the clear semi-diameters are half the printed element diameters (2.18, 1.9 and 1.95 before scaling).
+ * Rims: the clear semi-diameters are half the printed element diameters (2.18, 1.9 and 1.95 before scaling). The
+ * patent figure, drawn close to scale, shows the same proportions; its rims read 6–9 % larger, within drawing noise.
  *
  * Inferred values:
  * - Stop: the patent allows the diaphragm in either air space and gives no station. It is placed at the midpoint of
@@ -33,8 +34,8 @@ const LENS_DATA = {
     specs: ["5 ELEMENTS / 3 GROUPS", "ALL SPHERICAL", "DESIGN F/3"],
     elementCount: 5,
     groupCount: 3,
-    focalLengthMm: { marketing: 100, design: 100.43 },
-    fNumber: { marketing: 3, design: 3 },
+    focalLengthMm: { design: 100.43 },
+    fNumber: { design: 3 },
   },
   source: {
     patentNumber: "US 1,421,156 A",
