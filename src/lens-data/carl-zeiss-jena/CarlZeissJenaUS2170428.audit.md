@@ -6,7 +6,8 @@
   values refer to a focal length of 100 mm and are used without scaling.
 - Transcribed: radii r1–r8 with their printed signs, thicknesses d1–d4, air spaces l1–l3, nd and ν for each lens. No
   source radius, thickness, air space or index was changed.
-- Kept as a hidden patent reference: one configuration, no production lens identified.
+- Kept as a hidden patent reference: one configuration, no production lens identified. (Closed 2026-11-17: the file
+  is now visible as CARL ZEISS JENA 100mm f/1.9 (US 2,170,428 Design); still no production lens identified.)
 
 ## Inferred values
 
@@ -62,10 +63,47 @@ against 19).
 Open:
 
 - Name, subtitle and specs wording ("PATENT ONLY", "PATENT REFERENCE; RETAIL IDENTITY UNPROVED") and the key, for the
-  cleanup pass.
+  cleanup pass. (Done 2026-11-17.)
 - Optional glass label for L3: Schott SF1 matches at the d line (1.71736 / 29.51). The crown 1.6138 / 56.3 has no
-  catalogue match.
+  catalogue match. (Done 2026-11-17: L3 labelled SF1; the crown does match Hoya BACD6, see below.)
 - Rims against the figure, for the semi-diameter pass. The drawing shows L1 and L2 at about the same height, with L3 at
   about 0.74 and L4 at about 0.81 of L1's height; the model has 0.68 and 0.79. Figure readings are not applied here.
 - Optional `catalog.imageCircleMm` (about 72.6 mm from the 40° field) so the image-circle audits can run.
 - `aperture.fStops` gives a projection objective an iris scale. This is harmless, but the patent shows no iris.
+
+## 2026-11-17 — Cleanup and wording pass
+
+Fields changed in the data file:
+
+- `subtitle`: "1939 FOUR-LENS PROJECTION OBJECTIVE; PATENT ONLY" → "US 2,170,428 A, sole example — Ernostar-type
+  projection objective".
+- `catalog.specs`: "4 ELEMENTS / 4 GROUPS", "PATENT REFERENCE; RETAIL IDENTITY UNPROVED", "ESTIMATED STOP AND RIMS",
+  "INFINITY ONLY" → "4 ELEMENTS / 4 GROUPS", "DESIGN F/1.9", "ALL SPHERICAL", "PROJECTION OBJECTIVE".
+- `focus.closeFocusM`: 1000000000000000.0 → 1e15 (same value). `focus.description` → "Infinity focus only; the patent
+  gives no close-focus data." The iris position and the paraxial image plane stay stated in the header comment and the
+  analysis.
+- Element `type`: L1 and L4 "Biconvex" → "Biconvex Positive"; L3 "Biconcave" → "Biconcave Negative"; L2 stays
+  "Positive Meniscus". Labels stay L1–L4, the patent's own lens numerals.
+- Element `role`: added a plain optical role to each lens.
+- Glass labels (exact rows, checked against the printed nd / ν):
+  - L1, L2, L4: none → "BACD6 (Hoya)", nd 1.613753 / νd 56.378 against 1.6138 / 56.3 (Δnd −0.00005, Δνd +0.08).
+  - L3: none → "SF1 (Schott)", nd 1.71736 / νd 29.51 against 1.7174 / 29.5 (Δnd −0.00004, Δνd +0.01).
+  - The trace keeps the printed nd; the labels supply the dispersion curves.
+- Header comment: Ernostar-type arrangement and "no production lens documented" stated once; glass paragraph updated
+  for the two labels; "the aperture audit finds no rim limit" reworded as "no rim cuts the f/1.9 axial beam".
+
+Analysis: H1 now uses the lens name; the "patent reference" wording is removed; the no-product statement is one sentence;
+the glass lines and glass table name BACD6 and SF1 as catalogue equivalents; "Verification Summary" is renamed "Model
+Scope and Limitations", and the misprint-scan wording now describes the source, not the check.
+
+Engine numbers before and after are identical: EFL 99.7755 mm, f/1.9, paraxial back focus 63.2102 mm, stop
+semi-diameter 16.611 mm, rim-limited half-field 25.08°, total length 123.9102 mm. `audit:surface` OK; `audit:aperture`
+within 3 % of the stated f-number, no rim limit, and its raise list is empty.
+
+Open:
+
+- Rims against the figure (semi-diameter pass): the drawing shows L3 at about 0.74 and L4 at about 0.81 of L1's height;
+  the model has 0.68 and 0.79.
+- `aperture.fStops` (1.9 to 16) is not sourced: the patent describes a projection objective and shows no iris.
+- Optional `catalog.imageCircleMm` (about 72.6 mm from the 40° field) so the image-circle audits can run.
+- The page was not viewed in the running site: the dev server serves the main checkout, not this worktree.
