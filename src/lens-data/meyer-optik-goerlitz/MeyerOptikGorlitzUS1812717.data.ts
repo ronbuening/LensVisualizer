@@ -20,11 +20,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  */
 const LENS_DATA = {
   schema: 2,
-  key: "rudolph-us1812717-100-f32-patent-reference",
+  key: "meyer-optik-gorlitz-100mm-f32-us1812717",
   maker: "Meyer Optik Görlitz",
-  name: "RUDOLPH 100mm f/3.2 PATENT REFERENCE",
+  name: "MEYER OPTIK GÖRLITZ 100mm f/3.2 (US 1,812,717 Design)",
   subtitle: "1931 GRANT — HIDDEN QUALIFIED REFERENCE",
-  visible: false,
+  visible: true,
   catalog: {
     specs: ["6 ELEMENTS / 5 GROUPS", "PATENT ONLY; NO CONFIRMED RETAIL MATCH", "ESTIMATED TAPERED RIMS", "INFINITY ONLY"],
     elementCount: 6,

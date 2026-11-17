@@ -24,11 +24,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  */
 const LENS_DATA = {
   schema: 2,
-  key: "leitz-berek-us1899934-fig2-patent-reference",
+  key: "leitz-100mm-f13-us1899934-figure-2",
   maker: "Leica",
-  name: "LEITZ / BEREK f/1.3 PATENT REFERENCE",
+  name: "LEITZ 100mm f/1.3 (US 1,899,934 Figure 2 Design)",
   subtitle: "FIGURE 2 \u2014 HIDDEN QUALIFIED REFERENCE",
-  visible: false,
+  visible: true,
   catalog: {
     specs: [
       "7 ELEMENTS / 4 GROUPS",

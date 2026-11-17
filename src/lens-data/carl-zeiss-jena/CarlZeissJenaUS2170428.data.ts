@@ -27,11 +27,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  */
 const LENS_DATA = {
   schema: 2,
-  key: "zeiss-richter-us2170428-patent-reference",
+  key: "carl-zeiss-jena-100mm-f19-us2170428",
   maker: "Carl Zeiss Jena",
-  name: "RICHTER f/1.9 PATENT REFERENCE",
+  name: "CARL ZEISS JENA 100mm f/1.9 (US 2,170,428 Design)",
   subtitle: "1939 FOUR-LENS PROJECTION OBJECTIVE; PATENT ONLY",
-  visible: false,
+  visible: true,
   catalog: {
     specs: [
       "4 ELEMENTS / 4 GROUPS",

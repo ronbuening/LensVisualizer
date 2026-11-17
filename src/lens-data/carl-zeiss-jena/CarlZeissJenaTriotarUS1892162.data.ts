@@ -27,11 +27,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  */
 const LENS_DATA = {
   schema: 2,
-  key: "zeiss-richter-us1892162-patent-reference",
+  key: "carl-zeiss-jena-triotar-100mm-f45-us1892162",
   maker: "Carl Zeiss Jena",
-  name: "RICHTER THREE-LENS PATENT REFERENCE",
+  name: "CARL ZEISS JENA TRIOTAR 100mm f/4.5 (US 1,892,162 Design)",
   subtitle: "1932 100 mm f/4.5; PATENT ONLY",
-  visible: false,
+  visible: true,
   catalog: {
     specs: [
       "3 ELEMENTS / 3 GROUPS",
