@@ -2,7 +2,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * US 2,158,179 A (Charles W. Frederick and George H. Aklin, Eastman Kodak Company; filed 1937, granted 1939),
- * Figure 2 example: four air-spaced singlets, f = 100 mm at f/2.0.
+ * Figure 2 example: four air-spaced singlets (the patent's lenses 1′ to 4′), f = 100 mm at f/2.0.
  * Radii with their printed signs, thicknesses, air spaces and the sodium D-line indices and Abbe numbers are all
  * printed in the patent; the drawing-sheet table and the specification table agree.
  * Glass: the dispersive elements' printed nD 1.8049 / V 25.5 matches Schott SF6 at the D line (a catalogue
@@ -58,45 +58,53 @@ const LENS_DATA = {
   elements: [
     {
       id: 1,
-      name: "L1",
-      label: "Element 1",
+      name: "1′",
+      label: "Element 1′",
+      diagramLabel: "1′",
       type: "Biconvex Positive",
       nd: 1.9007,
       vd: 42.5,
       indexReference: "D",
+      focalLengthMm: 70.59,
       glass: "Unmatched (nD 1.9007 / V 42.5)",
       role: "Positive front element in high-index glass"
     },
     {
       id: 2,
-      name: "L2",
-      label: "Element 2",
+      name: "2′",
+      label: "Element 2′",
+      diagramLabel: "2′",
       type: "Biconcave Negative",
       nd: 1.8049,
       vd: 25.5,
       indexReference: "D",
+      focalLengthMm: -111.96,
       glass: "SF6 (Schott)",
       role: "Negative element of the front pair; dense flint"
     },
     {
       id: 3,
-      name: "L3",
-      label: "Element 3",
+      name: "3′",
+      label: "Element 3′",
+      diagramLabel: "3′",
       type: "Negative Meniscus",
       nd: 1.8049,
       vd: 25.5,
       indexReference: "D",
+      focalLengthMm: -111.82,
       glass: "SF6 (Schott)",
       role: "Negative element of the rear pair; dense flint"
     },
     {
       id: 4,
-      name: "L4",
-      label: "Element 4",
+      name: "4′",
+      label: "Element 4′",
+      diagramLabel: "4′",
       type: "Biconvex Positive",
       nd: 1.9007,
       vd: 42.5,
       indexReference: "D",
+      focalLengthMm: 70.65,
       glass: "Unmatched (nD 1.9007 / V 42.5)",
       role: "Positive rear element in high-index glass"
     }
