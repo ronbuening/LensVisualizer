@@ -104,10 +104,11 @@ Open:
   batch form "KODAK FREDERICK-ALTMAN 100mm f/2 PATENT REFERENCE". (Closed 2026-11-17: renamed and reworded; see the
   cleanup section below.)
 - An optional `catalog.imageCircleMm` of about 24.6 (the patent's 7° field) for field-dependent analyses. Without it,
-  the engine's field comes from the rims (34.5° half-field).
+  the engine's field comes from the rims (34.5° half-field). (Closed 2026-11-17: set to 24.6 in the semi-diameter
+  pass.)
 - Rims against the figure, for the SD pass. The drawing shows all four lenses with outer semi-diameters of about 25–26
   at the drawn scale, with small chamfers where the lenses meet. The model's R4 and R5 (23) and R6 and R7 (21) are
-  smaller than the drawn outer edges.
+  smaller than the drawn outer edges. (Closed 2026-11-17: see the semi-diameter pass.)
 - G′ indices are not represented. An honest dispersion fit would need period glass data matching both the D and G′
   indices.
 
@@ -165,10 +166,104 @@ Audit results:
 Open:
 
 - `catalog.imageCircleMm` of about 24.6 (the patent's 7° field) is still not set. Field-dependent analyses use the
-  rim-limited 34.5° half-field.
+  rim-limited 34.5° half-field. (Closed 2026-11-17: set to 24.6.)
 - Rims against the figure (SD pass): the drawing shows outer semi-diameters of about 25–26 for all four lenses. The
-  model's R4 and R5 (23) and R6 and R7 (21) are smaller.
+  model's R4 and R5 (23) and R6 and R7 (21) are smaller. (Closed 2026-11-17: see the semi-diameter pass.)
 - `aperture.fStops` runs f/2–f/16. A projection objective of this kind usually has no iris, and the patent prints only
-  F/2, so the stop list is unsourced.
-- No `lensMounts` or `imageFormat`: no production prescription is tied to this example.
+  F/2, so the stop list is unsourced. (Closed 2026-11-17: F/2 only.)
+- No `lensMounts` or `imageFormat`: no production prescription is tied to this example. (Mount closed 2026-11-17:
+  `projection-lens`. The format stays unset.)
 - G′ dispersion is still unrepresented (see above).
+
+## 2026-11-17 — Semi-diameter pass against the patent figure
+
+Source: `patents/US1620337A.pdf`, page 1, the single axial section of the only example. Measured at the scan's native
+resolution (2320 × 3408 px; 300 dpi in the Google copy).
+
+Scale: the drawn vertex span from R1 to R8 is 688 px for the printed 54.7, which gives 12.58 px per mm. Read at that
+scale, the drawing reproduces every printed spacing within about 3 %: T1 12.2 (printed 12.0), S1 1.59 (1.5), T2 4.2
+(4.1), S2 17.8 (18.0), T3 4.13 (4.1), S3 3.0 (3.0), T4 11.7 (12.0). The figure is therefore used for heights as well as
+proportions.
+
+The scan is slightly skewed: the top-side heights of L1 and L2 read about 9 px more than the bottom-side ones. Half the
+full height was used for each lens:
+
+| Lens | Top | Bottom | Half-height | In mm |
+|---|---|---|---|---|
+| L1 | 336.5 | 317 | 326.8 px | 26.0 |
+| L2 | 335 | 318.5 | 326.8 px | 26.0 |
+| L3 | 327 | 323.5 | 325.3 px | 25.9 |
+| L4 | 325.5 | 326.5 | 326.0 px | 25.9 |
+
+All four lenses are drawn square-topped at the same height.
+
+Where the lenses touch:
+
+- L1/L2: the drawing marks the contact at 308 px (top) and 292 px (bottom), a mean of 23.85 mm. That matches the
+  23.86 computed from R2, R3 and S1. Above it, L1's rear face R2 continues on its sphere to the top flat, while L2's
+  front edge is bevelled back to its top flat 12.2 behind R1.
+- L3/L4: the contact reads 287 px on the clean top side (22.8 mm). The computed contact is 22.32, and the bottom side
+  is crossed by the R6 leader. Above it, L3's rear edge is bevelled and L4's front face R7 continues to the top.
+
+Changes (old → new, evidence):
+
+| Surface | Old sd | New sd | Evidence |
+|---|---|---|---|
+| R1 | 26 | 26 (kept) | Figure 26.0. |
+| R2 | 22.9 | 26 | L1 drawn square at 26.0, with R2 reaching the top; 12 % mismatch. |
+| R3 | 22.8 | 22.8, plus `rimExtensionSd` 26 | Cap kept. The f/2 axial beam needs 22.78, and the cap is 4 % under the 23.85 contact, which is noise. A land to 26 stands for the bevel above the contact. |
+| R4 | 23 | 26 | L2 drawn 26.0 at the rear; 12 % mismatch. |
+| R5 | 23 | 26 | L3 drawn 25.9 at the front; 12 % mismatch. |
+| R6 | 21 | 21, plus `rimExtensionSd` 26 | Cap kept; 6 % under the 22.3 contact, which is noise. A land to 26 stands for the bevel. |
+| R7 | 21 | 26 | L4 drawn square at 25.9, with R7 reaching the top; 24 % mismatch. |
+| R8 | 26 | 26 (kept) | Figure 25.9. |
+
+How the lands behave: they are vertical where the drawing draws a short bevel. They change no ray, and they clear the
+facing surface across S1 and S3. `checks.gapSagFrac` stays 0.91, since the R3 cap is unchanged. No face sits below its
+baseline value, so nothing here is a cut.
+
+Clearance (exact meridional trace at f/2 and the patent's 7°, image height 12.29):
+
+- No surface blocks the chief ray.
+- Oblique-beam vignetting is 13 % on one side at R3, 4 % at R6 and 3 % at R1. Before this pass it was also 12 % at
+  R2 and 5–7 % at R4 and R7.
+- The engine's paraxial f/2 axial beam is clear: the aperture audit shows no rim limit.
+- On a real-marginal-ray f/2 basis, R3 would need 24.33. That is above the 23.86 contact, so no rim can meet it, as
+  recorded earlier.
+
+Light and field:
+
+- Corner illumination at 7° is 95.0 % before and after. The leave-one-out restore of each changed element wins back
+  0.0 points, so the raises are for the drawing only.
+- Without the new image circle, the 12.2° edge of the default range went from 88.7 % to 89.2 %.
+- Engine half-field: 34.51° → 34.64°. The paraxial chief-ray limit stays R8 at 44.0°. EFL 100.079 and f/2.000 are
+  unchanged.
+
+Metadata added:
+
+- `catalog.lensMounts` `["projection-lens"]`: the patent describes the lens as "more particularly" for projection, and
+  claims 4 and 7 claim "an objective designed for projection purposes".
+- `catalog.imageCircleMm` 24.6: the patent's "field of 7 degrees from the axis" at f = 100.08.
+- `aperture.fStops` [2] and `maxFNumber` 2: the patent prints only F/2, for a projection objective with no iris. This
+  follows the Leica Colorplan projection lens in the corpus.
+
+`imageFormat` stays unset. The f = 100 normalisation does not fit a film format as built: the 16 mm frame suits the
+2-inch Kodascope lens, not a 100 mm lens.
+
+Audit results afterwards:
+
+- `audit:surface`: OK.
+- `audit:aperture`: no rim limit.
+- `audit:image-circle`: 0 undersized.
+- `audit:field-coverage`: at least 99 % at the 24.6 circle.
+
+Product name: the engraving on the patent-marked cine lens reads "KODAK ANASTIGMAT F-1.9 25MM" (Ingenium
+2010.0223.001). The Kodascope projection lens record (Ingenium 2009.0389.002) gives no product name, and the Science
+Museum Group's Model B record calls its lens an "anastigmat projection lens". The current name, KODAK ANASTIGMAT 100mm
+f/2 (US 1,620,337 Design), matches the engraved family name. Its 100mm f/2 is the patent's design, not a product
+rating.
+
+Open:
+
+- G′ dispersion is not represented.
+- The bevels are drawn as vertical lands. A chamfered land is not a feature of the file format.

@@ -87,9 +87,10 @@ The patent gives only the infinity-conjugate prescription and says nothing about
 
 - Radii, thicknesses, air spaces, D indices and ν are the patent's printed values. Radius signs come from the drawing-sheet table and agree with the figure.
 - Computed D-line focal length: 100.08 against the printed 100 (+0.08 %). Total length from R1 to R8: 54.70. Paraxial back focus: 74.34.
-- The diaphragm is not printed: the figure shows none and a projection lens of this kind usually has no iris. The model places a stop at the middle of S2, 9.0 behind R4. At f/2 its paraxial semi-diameter is 20.93, for an entrance-pupil radius of 25.02.
-- Clear semi-diameters are not printed and are estimated: 26 for R1 and R8, 22.9 and 22.8 for R2 and R3, 23 for R4 and R5, and 21 for R6 and R7. R2 and R3 are set just high enough to pass the f/2 axial beam, short of the 23.9 mm height where L1 and L2 meet. Because the patent states that these lenses touch at their edges, the drawing lets the two surfaces come slightly closer across S1 than it normally allows (0.91 of the gap instead of 0.9).
-- At the patent's 7° semi-field (image height 12.3), no surface blocks the chief ray. The estimated rims cut part of the oblique beam, about 12–13 % on one side at R2 and R3.
+- The diaphragm is not printed: the figure shows none and a projection lens of this kind usually has no iris. The model places a stop at the middle of S2, 9.0 behind R4, and F/2 is its only aperture setting. At f/2 the stop's paraxial semi-diameter is 20.93, for an entrance-pupil radius of 25.02.
+- The model is listed as a projection lens with a 24.6 image circle, the patent's 7° field at f = 100. No film format is assigned: the 16 mm frame matches a 2-inch lens, not this f = 100 normalisation.
+- Clear semi-diameters are not printed. They follow the drawing, which shows all four lenses about 26 high: R1, R2, R4, R5, R7 and R8 are 26. Where each negative lens touches its crown, the drawing bevels the edge above the contact point. The model gives R3 a clear cap of 22.8, just enough for the f/2 axial beam and short of the 23.9 contact height, and R6 a cap of 21, below the 22.3 contact; both carry flat lands drawn out to 26. Because L1 and L2 touch at their edges, the drawing lets R2 and R3 come slightly closer across S1 than it normally allows (0.91 of the gap instead of 0.9).
+- At the patent's 7° semi-field (image height 12.3), no surface blocks the chief ray. The R3 cap cuts about 13 % of the oblique beam on one side, R6 about 4 % and R1 about 3 %; relative illumination at 7° is 95 %.
 
 ## Sources
 
