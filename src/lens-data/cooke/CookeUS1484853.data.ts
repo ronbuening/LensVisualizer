@@ -55,7 +55,6 @@ const LENS_DATA = {
     patentYear: 1924,
     authors: ["Arthur Warmisham"],
     assignees: [],
-    sdSource: "heuristic",
   },
   elements: [
     {
