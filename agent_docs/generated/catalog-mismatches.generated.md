@@ -14,11 +14,11 @@ with words like "probable" or "approx").
 
 ## Summary
 
-- **1152** lenses scanned
-- **13201** glass surfaces examined
-- **13168** surfaces with non-empty `glass` strings
+- **1158** lenses scanned
+- **13255** glass surfaces examined
+- **13222** surfaces with non-empty `glass` strings
 - **272 / 348** native e-line surfaces resolve by explicit name or alias
-- **12279** of those resolved to a catalog entry
+- **12318** of those resolved to a catalog entry
 - **0** mismatches found (0.0% of resolved surfaces)
 - **0** distinct lens files affected
 
