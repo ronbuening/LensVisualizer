@@ -1,16 +1,16 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
- * Kodak projection objective — US 1,620,339 A (Charles W. Frederick and Donald L. Wood, Eastman Kodak Company,
- * granted March 8, 1927), sole numerical example.
+ * KODAK 100mm f/2.5 (US 1,620,339 Design) — projection objective for home projectors, US 1,620,339 A
+ * (Charles W. Frederick and Donald L. Wood, Eastman Kodak Company, granted March 8, 1927), sole numerical example.
  *
  * Source: the table printed on the drawing sheet and repeated in the specification. Radii, thicknesses, the air
  * space S, the D-line indices and the dispersive ratios ν are the printed values. The patent prints radii as
  * magnitudes; the signs follow the drawing and the claims (biconvex crown cemented to a negative flint meniscus,
  * then a positive crown meniscus with its convex side toward the front component).
  *
- * Scale: the patent's own normalisation, equivalent focal length 100, aperture f/2.5. No scale factor is applied.
- * The printed table computes to a focal length of 99.98 mm.
+ * The patent states an equivalent focal length of 100 and an aperture of f/2.5; the printed table computes to a
+ * focal length of 99.98 mm.
  *
  * Direction: the model runs from the cemented front component to the film gate, with the object at infinity. In
  * a projector the light travels the other way, from the gate to a screen at a finite distance, which the patent
@@ -25,21 +25,19 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *   length of 31.3.
  *
  * Dispersion: the patent prints nD, nG′ (1.534, 1.639, 1.534) and ν. The model uses nD and ν.
+ *
+ * Glass: the patent calls the two glasses white optical crown and dense flint and names no maker. No current
+ * catalog glass matches the printed values closely enough, so the labels state the printed numbers.
  */
 const LENS_DATA = {
   schema: 2,
   key: "kodak-100mm-f25-us1620339",
   maker: "Kodak",
   name: "KODAK 100mm f/2.5 (US 1,620,339 Design)",
-  subtitle: "1927 100 mm f/2.5; reciprocal infinity reference; PATENT ONLY",
+  subtitle: "US 1,620,339 A, sole example — home-projector objective",
   visible: true,
   catalog: {
-    specs: [
-      "3 ELEMENTS / 2 GROUPS",
-      "PATENT ONLY; NO RETAIL IDENTITY",
-      "ESTIMATED FRONT IRIS AND RIMS",
-      "RECIPROCAL INFINITY REFERENCE ONLY",
-    ],
+    specs: ["3 ELEMENTS / 2 GROUPS", "ALL SPHERICAL", "DESIGN F/2.5", "PROJECTION OBJECTIVE"],
     elementCount: 3,
     groupCount: 2,
     focalLengthMm: {
@@ -64,40 +62,43 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L1",
-      label: "L1",
-      type: "Biconvex",
+      label: "Element 1",
+      type: "Biconvex Positive",
+      glass: "Unmatched (white optical crown, nD 1.523 / V 59.0)",
       nd: 1.523,
       vd: 59,
       indexReference: "D",
       indexReferenceNote: "Patent prints nD 1.523, nG′ 1.534 and ν 59.0; the model uses nD and ν.",
       focalLengthMm: 73.64,
-      role: "Front biconvex crown of the cemented front component",
-      cemented: "D1",
+      role: "Positive crown of the cemented front component",
+      cemented: "C1",
     },
     {
       id: 2,
       name: "L2",
-      label: "L2",
-      type: "Meniscus",
+      label: "Element 2",
+      type: "Negative Meniscus",
+      glass: "Unmatched (dense flint, nD 1.617 / V 36.4)",
       nd: 1.617,
       vd: 36.4,
       indexReference: "D",
       indexReferenceNote: "Patent prints nD 1.617, nG′ 1.639 and ν 36.4; the model uses nD and ν.",
       focalLengthMm: -127.07,
-      role: "Negative flint meniscus cemented behind L1",
-      cemented: "D1",
+      role: "Negative flint of the cemented front component; corrects colour",
+      cemented: "C1",
     },
     {
       id: 3,
       name: "L3",
-      label: "L3",
-      type: "Meniscus",
+      label: "Element 3",
+      type: "Positive Meniscus",
+      glass: "Unmatched (white optical crown, nD 1.523 / V 59.0)",
       nd: 1.523,
       vd: 59,
       indexReference: "D",
       indexReferenceNote: "Patent prints nD 1.523, nG′ 1.534 and ν 59.0; the model uses nD and ν.",
       focalLengthMm: 93.98,
-      role: "Rear positive crown meniscus close to the film gate",
+      role: "Rear collecting meniscus close to the film gate",
     },
   ],
   surfaces: [
@@ -142,17 +143,17 @@ const LENS_DATA = {
   ],
   aperture: {
     nominalFNumber: 2.5,
-    maxFNumber: 22, fStops: [2.5, 2.8, 4, 5.6, 8, 11, 16, 22],
+    maxFNumber: 22,
+    fStops: [2.5, 2.8, 4, 5.6, 8, 11, 16, 22],
   },
   focus: {
     closeFocusM: 1e15,
-    description:
-      "Reciprocal infinity-only reference, front-to-film direction. Not a finite-conjugate projector simulation. Source nominal 100 mm f/2.5 and back focal length 31.3; the calculated D-line back focus of 31.4082 mm is used rather than fitted. Estimated iris 1 mm before the front surface and 22 mm clear semi-diameter rims; neither is specified by the patent. No projector magnification, gate format or production identity claimed.",
+    description: "Infinity focus only; the patent gives no close-focus data, screen distance or film size.",
   },
   groups: [],
   doublets: [
     {
-      text: "D1",
+      text: "C1",
       fromSurface: "1",
       toSurface: "3",
     },
