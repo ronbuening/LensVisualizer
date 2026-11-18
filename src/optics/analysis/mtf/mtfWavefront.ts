@@ -273,12 +273,12 @@ function waveMesh(lattice: MtfWaveLattice): WaveMesh | null {
 
   const { cosineX: x, cosineY: y } = mesh;
   const cross = (a: number, b: number, c: number) => (x[b] - x[a]) * (y[c] - y[a]) - (y[b] - y[a]) * (x[c] - x[a]);
-  // Removing shared edges leaves the boundary of the actual interpolation support,
-  // including holes and disconnected pieces, rather than the extrapolated rectangle.
-  const edges = new Map<number, [number, number, number]>();
-  const edge = (a: number, b: number, c: number) => {
-    const key = Math.min(a, b) * cells + Math.max(a, b);
-    if (!edges.delete(key)) edges.set(key, [a, b, c]);
+  // Shared edges cancel. A triangle touching a lit vertex borders empty support only
+  // across two dark vertices, when the opposite vertex of its neighbor is dark too.
+  // The one-cell padding keeps all lit vertices strictly inside the lattice.
+  const boundary: [number, number, number][] = [];
+  const addBoundary = (a: number, b: number, c: number, opposite: number) => {
+    if (!(mesh.amplitude[a] > 0 || mesh.amplitude[b] > 0 || mesh.amplitude[opposite] > 0)) boundary.push([a, b, c]);
   };
   let orientation = 0;
   for (let row = 0; row < rows - 1; row++)
@@ -295,13 +295,14 @@ function waveMesh(lattice: MtfWaveLattice): WaveMesh | null {
         orientation ||= Math.sign(det);
         if (orientation * det <= 0) return null;
         mesh.triangles.push([a, b, c]);
-        edge(a, b, c);
-        edge(b, c, a);
-        edge(c, a, b);
+        // The regular triangulation alternates the two halves of each square. Across
+        // any edge, the neighboring triangle completes a parallelogram in lattice indices.
+        addBoundary(a, b, c, a + b - c);
+        addBoundary(b, c, a, b + c - a);
+        addBoundary(c, a, b, c + a - b);
       }
     }
   // Consistent orientation and disjoint boundaries rule out folds within each piece.
-  const boundary = [...edges.values()];
   for (let i = 0; i < boundary.length; i++) {
     const [a, b] = boundary[i];
     for (let j = i + 1; j < boundary.length; j++) {
@@ -404,11 +405,12 @@ interface WaveTriangle {
   a: number;
   b: number;
   c: number;
-  ux: number;
-  uy: number;
-  vx: number;
-  vy: number;
-  inverseDet: number;
+  originX: number;
+  originY: number;
+  duDx: number;
+  duDy: number;
+  dvDx: number;
+  dvDy: number;
   /** Quadratic path corrections on the three edges. Zero on an edge with a missing ray. */
   ab: number;
   ac: number;
@@ -444,15 +446,17 @@ function waveLookup(mesh: WaveMesh, extendRimPhase: boolean) {
       uy = y[b] - y[a];
     const vx = x[c] - x[a],
       vy = y[c] - y[a];
+    const inverseDet = 1 / (ux * vy - uy * vx);
     const triangle = {
       a,
       b,
       c,
-      ux,
-      uy,
-      vx,
-      vy,
-      inverseDet: 1 / (ux * vy - uy * vx),
+      originX: x[a],
+      originY: y[a],
+      duDx: vy * inverseDet,
+      duDy: -vx * inverseDet,
+      dvDx: -uy * inverseDet,
+      dvDy: ux * inverseDet,
       ab: edgeCorrection(a, b),
       ac: edgeCorrection(a, c),
       bc: edgeCorrection(b, c),
@@ -469,14 +473,25 @@ function waveLookup(mesh: WaveMesh, extendRimPhase: boolean) {
   // strict interior. On a shared edge use the bin's original ordering and tolerance.
   let previous: WaveTriangle | undefined;
   const sample = { amplitude: 0, pathMm: 0 };
-  function interpolate(triangle: WaveTriangle, targetX: number, targetY: number, margin: number): boolean {
-    const { a, b, c, ux, uy, vx, vy, inverseDet } = triangle;
-    const dx = targetX - x[a];
-    const dy = targetY - y[a];
-    const u = (dx * vy - dy * vx) * inverseDet;
-    const v = (ux * dy - uy * dx) * inverseDet;
+  let sampleU = 0,
+    sampleV = 0;
+  function contains(triangle: WaveTriangle, targetX: number, targetY: number, margin: number): boolean {
+    const dx = targetX - triangle.originX,
+      dy = targetY - triangle.originY;
+    const u = dx * triangle.duDx + dy * triangle.duDy;
+    const v = dx * triangle.dvDx + dy * triangle.dvDy;
     const w = 1 - u - v;
     if (Math.min(u, v, w) < margin) return false;
+    sampleU = u;
+    sampleV = v;
+    return true;
+  }
+  function value(triangle: WaveTriangle, targetX: number, targetY: number) {
+    previous = triangle;
+    const { a, b, c } = triangle;
+    const u = sampleU,
+      v = sampleV,
+      w = 1 - u - v;
     const wa = Math.max(0, w) * amplitude[a];
     const wb = Math.max(0, u) * amplitude[b];
     const wc = Math.max(0, v) * amplitude[c];
@@ -492,6 +507,8 @@ function waveLookup(mesh: WaveMesh, extendRimPhase: boolean) {
     } else {
       // At a clipped rim only the lit vertices measure a phase. Interpolate on their
       // segment (or point), then continue its measured slope to the actual shear endpoint.
+      const dx = targetX - triangle.originX,
+        dy = targetY - triangle.originY;
       const aw = amplitude[a] > 0 ? Math.max(0, w) : 0;
       const bw = amplitude[b] > 0 ? Math.max(0, u) : 0;
       const cw = amplitude[c] > 0 ? Math.max(0, v) : 0;
@@ -508,18 +525,19 @@ function waveLookup(mesh: WaveMesh, extendRimPhase: boolean) {
         i * j * triangle.ab +
         i * k * triangle.ac +
         j * k * triangle.bc +
-        gx * (dx - j * ux - k * vx) +
-        gy * (dy - j * uy - k * vy);
+        gx * (dx - j * (x[b] - x[a]) - k * (x[c] - x[a])) +
+        gy * (dy - j * (y[b] - y[a]) - k * (y[c] - y[a]));
     }
-    previous = triangle;
-    return true;
+    return sample;
   }
   return (targetX: number, targetY: number) => {
+    if (previous && contains(previous, targetX, targetY, 1e-8)) return value(previous, targetX, targetY);
     if (targetX >= minX && targetX <= maxX && targetY >= minY && targetY <= maxY) {
-      if (previous && interpolate(previous, targetX, targetY, 1e-8)) return sample;
       const candidates = bins[binY(targetY) * columns + binX(targetX)];
       if (candidates)
-        for (const triangle of candidates) if (interpolate(triangle, targetX, targetY, -1e-9)) return sample;
+        for (const candidate of candidates) {
+          if (contains(candidate, targetX, targetY, -1e-9)) return value(candidate, targetX, targetY);
+        }
     }
     sample.amplitude = 0;
     return sample;
