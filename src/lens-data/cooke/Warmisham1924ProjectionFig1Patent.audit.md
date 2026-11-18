@@ -1,0 +1,6 @@
+# Fresh scoped audit
+Native canonical/schema geometry zero errors; no render trims>0.25mm; no geometry allowance override. External estimated iris has 1mm minimum clearance to first glass surface; preceding side is empty space (JSON minBefore=null represents unbounded clearance, not a failed test). Source 81.28mm pupil retained. All 201 dense axial pupil samples pass, including required central±90%. Independent ABCD matches native EFL and BFD within7.11e-15mm; 9 exact intersection/vector Snell image intercepts through±99% agree within 1.8652e-14mm. Numerical consistency only, not retail/quality proof.
+
+Off-axis sampling is explicitly LIMITED: 5deg 6/9 clipped, 10deg 9/9, 20deg 9/9. Does not reproduce the source's comparative illumination calculation, source 5deg field illumination, complete pupil mapping or full-field MTF. No optimized aperture/field tuning attempted. Iris/rims estimated.
+
+Fresh scoped TypeScript and ESLint pass. Native MTF support/plane diagnostics recorded, not performance values. Full-app regression, current-main integration and compiled-viewer/browser QA remain outstanding. Engine inherited from parent-pinned main 3fd318c3e82cdbc3e5d3a1ed7bd5abbf4e99bfc2; numerical tests freshly rerun. Patent-only reciprocity/infinity scope and source residuals must remain disclosed on integration.

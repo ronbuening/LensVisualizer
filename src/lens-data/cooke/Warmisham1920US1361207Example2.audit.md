@@ -1,0 +1,5 @@
+# Scoped audit: Warmisham Example II
+
+Original patent drawing and table visually read. Radii, axial intervals and glass entries are in the nested archive's literal.json and source renderings. The iris and 11.5 mm rims are estimates. The 101.560529 mm computed D focal length, versus nominal 100 mm, is disclosed without fitting. The Example I focal discrepancy is separately retained and is not a second build.
+
+The native schema, rendering trim, geometry, and scoped TypeScript gates passed. Native full axial sample: 195/201; central 90% all passed. Off-axis results are diagnostic, not a coverage guarantee. ID and signed normalized-radius comparison against 1,215 source bodies at main 68cec1e (including all 58 delivered historical configurations and both Group 12 companions) found no candidate duplicate. The nested archive contains the original source, scripts, and raw results. Hidden patent reference only. Latest-main integration, full application, compiled viewer/browser, and deployment unverified.
