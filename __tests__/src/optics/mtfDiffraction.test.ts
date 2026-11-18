@@ -537,6 +537,39 @@ describe("analytic wave-optics controls", () => {
       expect(Math.abs(otf[cut].imaginary[1])).toBeLessThan(1e-12);
     }
   });
+  it("preserves complex tilt on a thin clipped strip sheared along either image axis", () => {
+    // A sheared parallelogram has an analytic overlap in its original affine coordinates. A linear
+    // path adds a known complex rotation. These two quantities test geometry and phase independently.
+    const n = 64;
+    const width = 48;
+    const height = 8;
+    const pitch = 0.002;
+    const lattice = aberratedWaveLattice(unaberrated, na, wavelengthMm, n);
+    for (let row = 0; row < n; row++) {
+      for (let column = 0; column < n; column++) {
+        const cell = row * n + column;
+        lattice.amplitude[cell] = Number(column >= 8 && column < 8 + width && row >= 28 && row < 28 + height);
+        lattice.cosineX[cell] = pitch * (column + row / 2);
+        lattice.cosineY[cell] = pitch * row;
+        lattice.pathMm[cell] = wavelengthMm * ((column + row / 2) / 16 - row / 8);
+      }
+    }
+    const lags = [0, 2, 4, 8, 12];
+    const otf = waveLatticeOtf(
+      lattice,
+      wavelengthMm,
+      lags.map((lag) => (lag * pitch) / wavelengthMm),
+    );
+    for (const cut of ["sagittal", "tangential"] as const) {
+      for (const [i, lag] of lags.entries()) {
+        const alongX = cut === "sagittal";
+        const overlap = alongX ? 1 - lag / width : (1 - lag / (2 * width)) * Math.max(0, 1 - lag / height);
+        const tilt = 2 * Math.PI * lag * (alongX ? 1 / 16 : -1 / 8);
+        expect(otf[cut].real[i]).toBeCloseTo(overlap * Math.cos(tilt), 10);
+        expect(otf[cut].imaginary[i]).toBeCloseTo(overlap * Math.sin(tilt), 10);
+      }
+    }
+  });
   it("holds the perpendicular direction coordinate fixed on a coupled area-preserving map", () => {
     const lattice = mappedWaveLattice(0, 0.2, defocus);
     expect(waveLatticePhaseStep(lattice, wavelengthMm)).toBeLessThan(0.025);
