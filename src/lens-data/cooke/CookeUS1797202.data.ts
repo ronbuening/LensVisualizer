@@ -9,6 +9,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * then traces to a paraxial focal length of 108.35 mm against the printed 108.4. Indices and dispersions are the
  * patent's sodium D-line nD and V values for Chance Brothers glasses 9002, 7863, 5093 and 4873.
  *
+ * Elements are named L1–L6 from the front. The patent's own designations for Figure 3 are members A6 and B6 (cemented
+ * elements a6 and b6) in the front component and L6, M6 and N6 in the back component; each element's role gives its
+ * patent designation, so the patent's L6 is L4 here. The group brackets mark the patent's front and back components.
+ *
  * The patent prints a zero axial air space between R9 and R10. It is kept as printed: the two rear positive elements
  * touch at the vertex and the air space opens away from the axis because R10 is the steeper curve.
  *
@@ -63,8 +67,8 @@ const LENS_DATA = {
       nd: 1.5736,
       vd: 57.7,
       indexReference: "D",
-      glass: "Unmatched (nD 1.5736 / V 57.7, Chance 9002)",
-      role: "Front positive meniscus of the divided front component",
+      glass: "Unmatched (nD 1.5736 / V 57.7, Chance type 9002)",
+      role: "Front positive meniscus of the divided front component (patent member A6)",
     },
     {
       id: 2,
@@ -75,8 +79,8 @@ const LENS_DATA = {
       nd: 1.529,
       vd: 51.6,
       indexReference: "D",
-      glass: "Unmatched (nD 1.5290 / V 51.6, Chance 7863)",
-      role: "Biconvex crown of the cemented front pair",
+      glass: "Unmatched (nD 1.5290 / V 51.6, Chance type 7863)",
+      role: "Biconvex crown of the cemented front pair (patent element a6 of member B6)",
       cemented: "C1",
     },
     {
@@ -88,8 +92,8 @@ const LENS_DATA = {
       nd: 1.6512,
       vd: 33.5,
       indexReference: "D",
-      glass: "Unmatched (nD 1.6512 / V 33.5, Chance 5093)",
-      role: "Biconcave flint of the cemented front pair",
+      glass: "Unmatched (nD 1.6512 / V 33.5, Chance type 5093)",
+      role: "Biconcave flint of the cemented front pair (patent element b6 of member B6)",
       cemented: "C1",
     },
     {
@@ -101,8 +105,8 @@ const LENS_DATA = {
       nd: 1.6512,
       vd: 33.5,
       indexReference: "D",
-      glass: "Unmatched (nD 1.6512 / V 33.5, Chance 5093)",
-      role: "Divergent flint meniscus leading the back component",
+      glass: "Unmatched (nD 1.6512 / V 33.5, Chance type 5093)",
+      role: "Divergent flint meniscus leading the back component (patent member L6)",
     },
     {
       id: 5,
@@ -113,8 +117,8 @@ const LENS_DATA = {
       nd: 1.6129,
       vd: 59.3,
       indexReference: "D",
-      glass: "Unmatched (nD 1.6129 / V 59.3, Chance 4873)",
-      role: "First convergent crown meniscus of the back component",
+      glass: "Unmatched (nD 1.6129 / V 59.3, Chance type 4873)",
+      role: "First convergent crown meniscus of the back component (patent member M6)",
     },
     {
       id: 6,
@@ -125,8 +129,8 @@ const LENS_DATA = {
       nd: 1.6129,
       vd: 59.3,
       indexReference: "D",
-      glass: "Unmatched (nD 1.6129 / V 59.3, Chance 4873)",
-      role: "Second convergent crown meniscus of the back component",
+      glass: "Unmatched (nD 1.6129 / V 59.3, Chance type 4873)",
+      role: "Second convergent crown meniscus of the back component (patent member N6)",
     },
   ],
   surfaces: [
@@ -216,7 +220,18 @@ const LENS_DATA = {
     closeFocusM: 1e15,
     description: "Infinity focus only; the patent gives no close-focus data.",
   },
-  groups: [],
+  groups: [
+    {
+      text: "FRONT",
+      fromSurface: "1",
+      toSurface: "5",
+    },
+    {
+      text: "BACK",
+      fromSurface: "6",
+      toSurface: "11",
+    },
+  ],
   doublets: [
     {
       text: "C1",
