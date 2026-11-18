@@ -1,0 +1,5 @@
+# Scoped audit: Frederick–Wood Kodak US1620339
+
+Drawing and printed tables corroborate literal optical prescription and signs. The geometry screen used 1,001 samples per pair over 0–22 mm. Minimum glass-edge thickness was 2.640890 mm. Independent first-order and exact near-axis Snell calculations agreed at BFD 31.408229 mm. The published 31.3 mm was not fitted. Fresh scoped schema, render trim, and TypeScript passed. Native transmission was 201/201 axial, 9/9 at 5°, 5/9 at 10°, and 0/9 at 15°; no image circle is inferred. D and exact source G results are retained separately.
+
+This hidden model is a reciprocal infinity reference with estimated 1 mm front iris placement and 22 mm rims. It does not model the finite projection application or identify a production assembly. Dedup covered 1,213 complete bodies at main 68cec1e, including all 58 delivered historical configurations. Full application, latest-main integration, compiled viewer/browser, finite projector performance, and deployment are not verified. See nested source and validation files.

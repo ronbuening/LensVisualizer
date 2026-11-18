@@ -1,0 +1,2 @@
+# Audit status
+Independent primary table/drawing-table agreement; native schema and scoped TypeScript pass; reference paraxial and geometric screen preserved. Literal data not modified. Estimated stop/rims, D-only dispersion limitation, outer pupil clipping and integration QA debt explicitly disclosed in analysis. No factory match claimed. No Fig3 repair. No source or full-app validation claims beyond retained tests.

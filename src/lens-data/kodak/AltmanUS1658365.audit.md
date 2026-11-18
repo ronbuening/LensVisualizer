@@ -1,0 +1,7 @@
+# Validation and limitations
+Fresh checks in g11_prewar: primary facsimile transcription; independent ABCD and spherical vector-Snell ray tracer; independent 1001-point gap/edge scan; canonical native validator; native construction, signed19 central90%-pupil rays, infinity focus residual, field sampling; TypeScript typecheck; full-body historical/current-reference dedup.
+No geometry override. All sampled physical intervals positive, minimum glass1.058819657mm and air1.367736961mm at8mm estimated semidiameters. Maximum rim slope.3552189. No TIR on independent nominal f/8 axial rays. Native and independent axial focus agree <1e-9mm for18 noncentral tested rays.
+Full source bodies scanned (3868 textual members/files), not filenames alone. Patent1658365 appears only in prior research/interwar-anglo.md, not a built model. Six-radius fingerprint absent. Root current-main check still required at delivery.
+Native optical engine inherited from tenth_prewar's private baseline3fd318c3e82cdbc3e5d3a1ed7bd5abbf4e99bfc2; this model and all optical results above are freshly calculated, not inherited validation claims.
+Full-app regression, production current-main compatibility, compiled-viewer/browser QA remain integration checks under qualified handoff. No publish/deploy or commercial-match claim.
+See sibling analysis for printed-vs-handwritten R1 discrepancy, signs, estimated iris/rims, D/V approximation, vignetting, and unvalidated source32° claim.

@@ -1,0 +1,10 @@
+# Altman / Eastman Kodak US1658365 preferred example (1928)
+Patent-only reference, not an identified production lens. The patent assigns the design to Eastman Kodak and explicitly targets compact, rugged, inexpensive folding hand cameras. No retail identity or factory optical constants proven.
+Primary source: https://patents.google.com/patent/US1658365A/en
+Facsimile: https://patentimages.storage.googleapis.com/9a/e9/21/27f630f237a336/US1658365.pdf
+PDF page2 printed preferred-example table supplies normalized radii, thicknesses, spacings, D indices and V. PDF page1 drawing supplies curvature directions. 3 elements/3 air-spaced groups; positive/negative/positive with rear positive meniscus convex outward.
+At 100mm nominal display scale: signed R=23.9,-197,-54.1,24.7,-146.4,-35.6mm; axial glass/air=2.6,1.8,1.2,6.6,2.6mm. No radius fitting or spacing repair. Source design range f/7.5–8; model f/8.
+Important source discrepancy: drawing's handwritten table R1 appears 2.39, whereas printed preferred-example table explicitly .239. Model follows printed table .239, which agrees with quoted individual focal length ~.343. This is a disclosed choice between source renderings, not invented correction. Signs are inferred from unambiguous section orientation because table magnitudes are unsigned.
+Source G-prime1.624/1.593 is retained in evidence, not mapped to native g-line. Runtime D/V interpolation is approximate, not a complete measured dispersion curve.
+Model choices: equal8mm clear semidiameters and midpoint stop within the6.6mm rear gap are estimates, not tabulated source data. No measured barrel or shutter geometry. Infinity-only, BFD solved paraxially from literal source. EFL99.748300243mm (-0.2517% from nominal100), BFD91.232536144mm.
+Source claims coverage32° from axis; not independently validated. Runtime projection currently limited to10°. Native81-ray disk grids pass69/81 on-axis,70/81 at5°,74/81 at10°; boundary clipping/nonlinear pupil mapping exists and is not masked. All19 signed rays through central90% pupil pass. No claim of modern full-aperture field performance.
