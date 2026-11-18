@@ -12,7 +12,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * a separate example and is not modelled here.
  *
  * GLASS: the text table prints n_d and ν; the drawing sheet prints nD over the same numbers. The values are traced as
- * d-line data. The patent names no glass type.
+ * helium d-line data: the specification's table heading governs, and Merté's US 2,171,274 (Zeiss, 1939) heads its
+ * table n_d the same way with indices that match helium-d catalogue rows. No catalogue row matches any of these four
+ * glasses at d, D or e, so the numbers alone cannot settle the line; at these dispersions d and D differ by about
+ * 0.0001 in index. The same four glasses recur in Table 2. The patent names no glass type.
  *
  * STOP: printed. The diaphragm lies b1 = 110.28 mm behind the front member and b2 = 2.36 mm ahead of the second.
  *
@@ -63,7 +66,6 @@ const LENS_DATA = {
     patentYear: 1938,
     authors: ["Willy Merté"],
     assignees: ["Carl-Zeiss-Stiftung"],
-    sdSource: "heuristic",
   },
   elements: [
     {
@@ -74,9 +76,8 @@ const LENS_DATA = {
       nd: 1.62313,
       vd: 57,
       indexReference: "d",
-      indexReferenceNote: "The text table prints n_d; the drawing sheet prints nD for the same values.",
       focalLengthMm: -345.96,
-      glass: "Unmatched (nD 1.62313 / V 57.0)",
+      glass: "Unmatched (nd 1.62313 / ν 57.0)",
       role: "Large negative front element; bends rays from nearly the whole forward half-sphere toward the stop.",
     },
     {
@@ -88,7 +89,7 @@ const LENS_DATA = {
       vd: 58.9,
       indexReference: "d",
       focalLengthMm: 73.44,
-      glass: "Unmatched (nD 1.51746 / V 58.9)",
+      glass: "Unmatched (nd 1.51746 / ν 58.9)",
       role: "Positive meniscus just behind the stop, concave toward the front; carries most of the positive power.",
     },
     {
@@ -100,7 +101,7 @@ const LENS_DATA = {
       vd: 49.6,
       indexReference: "d",
       focalLengthMm: -25.04,
-      glass: "Unmatched (nD 1.55088 / V 49.6)",
+      glass: "Unmatched (nd 1.55088 / ν 49.6)",
       role: "Negative front lens of the cemented rear pair.",
       cemented: "C1",
     },
@@ -113,7 +114,7 @@ const LENS_DATA = {
       vd: 60.6,
       indexReference: "d",
       focalLengthMm: 31.78,
-      glass: "Unmatched (nD 1.60284 / V 60.6)",
+      glass: "Unmatched (nd 1.60284 / ν 60.6)",
       role: "Positive rear lens of the cemented rear pair; the cemented surface is convergent.",
       cemented: "C1",
     },

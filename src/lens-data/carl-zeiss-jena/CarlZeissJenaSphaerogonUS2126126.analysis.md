@@ -59,7 +59,7 @@ Radii −16.15, +100.88 and −23.08 mm, thicknesses 2.99 and 6.42 mm. The paten
 
 ## Glass Identification
 
-The patent gives an index and a ν value for each lens and no glass names. The text table heads the index "n_d"; the drawing sheet heads the same numbers "nD". The difference between the helium d and sodium D lines is far below anything visible in this model, and the values are traced as d-line data. Three are crowns (ν of 57 to 61) and L3 is the lowest-ν glass of the set (ν = 49.6). None matched a current catalogue glass closely enough to name.
+The patent gives an index and a ν value for each lens and no glass names. The text table heads the index "n_d"; the drawing sheet heads the same numbers "nD". The values are traced as helium d-line data, following the specification's table; Merté's later Zeiss telephoto patent, US 2,171,274, heads its table the same way, and its indices match helium-d catalogue glasses. At these dispersions the helium d and sodium D lines differ by about 0.0001 in index, far below anything visible in this model. The same four glasses recur unchanged in the patent's second example. Three are crowns (ν of 57 to 61) and L3 is the lowest-ν glass of the set (ν = 49.6). None matches a catalogue glass at the d, D or e line closely enough to name, so the model takes each glass's dispersion from its printed ν.
 
 ## Field and Projection
 
@@ -67,14 +67,14 @@ The patent states the field ("up to approximately 180°") and no projection law.
 
 | Half-field | Image height |
 |---|---|
-| 10° | 17.5 mm |
-| 30° | 51.6 mm |
-| 60° | 94.1 mm |
+| 10° | 17.4 mm |
+| 30° | 51.4 mm |
+| 60° | 94.0 mm |
 | 88° | about 111 mm |
 
 The image of the full half-sphere is therefore a circle a little over 220 mm across, about 2.2 focal lengths. The mapping lies between the orthographic law (100 mm at 90°) and the equal-area law (141 mm at 90°). The data file declares the equal-area fisheye law, the nearer of the two the viewer supports, so distortion figures shown against that reference include a large real departure and should be read with that in mind.
 
-The patent prints no lens diameters. Figure 1 is drawn to scale, and the rims in the model are read from it: L2 at 11.4 mm and the cemented pair at 13.8 mm from the axis. The front element is 114.4 mm on its flat face and 92.8 mm on its concave face, the heights the chief ray of an 88° half-field needs and within about 5 % of the drawing, which shows a 120.5 mm blank bevelled down to a 94 mm concave face. The viewer traces a half-field of 76°, the widest at which its chief-ray solve is dependable with these rims. At f/8 the rims pass the whole axial beam; at the widest traced field they pass about four fifths of the beam that fills the stop.
+The patent prints no lens diameters. Figure 1 is drawn to scale, and the rims in the model are read from it: L2 at 11.4 mm and the cemented pair at 13.8 mm from the axis. The front element is 114.4 mm on its flat face and 92.8 mm on its concave face, the heights the chief ray of an 88° half-field needs and within about 5 % of the drawing, which shows a 120.5 mm blank bevelled down to a 94 mm concave face. The viewer traces a half-field of 76°, the widest at which its chief-ray solve is dependable with these rims. At f/8 the rims admit the whole axial beam; at the widest traced field they admit about four fifths of the beam that fills the stop.
 
 ## Focus Mechanism
 
