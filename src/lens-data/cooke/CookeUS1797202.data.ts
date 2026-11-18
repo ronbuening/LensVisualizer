@@ -13,9 +13,16 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * touch at the vertex and the air space opens away from the axis because R10 is the steeper curve.
  *
  * Inferred, not printed: the stop, placed midway in the 32.6 mm air space between the front and rear components (the
- * patent mentions no diaphragm); the clear semi-diameters (the drawing is diagrammatic and gives no usable heights);
- * and the 51.29 mm back focus, which is the computed paraxial image distance for an object at infinity. The patent
- * prints no back focus, field angle, image size or close-focus data.
+ * patent mentions no diaphragm), and the 51.29 mm back focus, which is the computed paraxial image distance for an
+ * object at infinity. The patent prints no back focus, field angle, image size or close-focus data.
+ *
+ * Semi-diameters are estimated; the patent prints no diameters. Figure 3 is not to scale (its axial spacings disagree
+ * with the table by more than a factor of two), so it is used for proportions only. It draws all six elements at one
+ * height, with square-cut rims, and draws L4's rear face meeting L5's front face at the rim. The front component is
+ * 40 mm, above the 36.1 mm the f/1.5 axial beam reaches at the first surface; a lower L1 rim costs corner light. The
+ * rear component is 34 mm on every surface: there the L4–L5 air space has narrowed to 0.26 mm (it closes at 34.6 mm)
+ * and L5's edge to 0.69 mm, so the rear group cannot reach the front height the figure draws. `checks.gapSagFrac`
+ * 0.95 admits the 34 mm rim across the L4–L5 air space, where the faces do not cross.
  */
 const LENS_DATA = {
   schema: 2,
@@ -165,40 +172,40 @@ const LENS_DATA = {
       label: "6",
       R: 116.93,
       d: 4.7,
-      sd: 32,
+      sd: 34,
       medium: 4,
     },
     {
       label: "7",
       R: 47.11,
       d: 4.7,
-      sd: 32,
+      sd: 34,
     },
     {
       label: "8",
       R: 62.5,
       d: 8,
-      sd: 32,
+      sd: 34,
       medium: 5,
     },
     {
       label: "9",
       R: 211.9,
       d: 0,
-      sd: 32,
+      sd: 34,
     },
     {
       label: "10",
       R: 59.1,
       d: 8,
-      sd: 32,
+      sd: 34,
       medium: 6,
     },
     {
       label: "11",
       R: 133.3,
       d: 51.2915,
-      sd: 32,
+      sd: 34,
     },
   ],
   aperture: {
@@ -217,6 +224,9 @@ const LENS_DATA = {
       toSurface: "5",
     },
   ],
+  checks: {
+    gapSagFrac: 0.95,
+  },
   layout: {
     yScFill: 0.4,
   },
