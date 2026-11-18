@@ -53,3 +53,7 @@ Patent: JP WO2019/187633 A1 (WO 2019/187633 A1), Numerical Example 1, Tables 1/4
 | 0 / 2 | `focus.conjugates` | Undeclared | `559.6264` mm, `first-surface` | PDF p. 18, Table 4, 撮影倍率 -0.25 column, d0 row; offset +0.090449389 mm (+19.647254 diffraction depths), alternate +1853.941590 depths; `consistent`. |
 
 The surface table lists `d0` on the object-plane row immediately before surface 1, defining the first-surface reference. The existing focus gaps match the finite column at the authored precision; only the conjugate declarations are added.
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 22. `fStops` lists f/22, which the slider cut off at the default 16. No optical value changed.

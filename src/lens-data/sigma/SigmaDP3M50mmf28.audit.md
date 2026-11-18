@@ -75,3 +75,7 @@ Patent: JP 2014-126652 A, Example 3
 - `catalog.closeFocusM.marketing` 0.225 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.
 
 Text sync: closeFocusM comment: the patent close row, object to image; Sigma's 22.5 cm is catalog metadata.
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 22. `fStops` lists f/22, which the slider cut off at the default 16. No optical value changed.

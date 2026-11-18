@@ -325,7 +325,7 @@ const LENS_DATA = {
   gaps: { "14A": { label: "D14", values: [[1.8, 8.7213]] }, "16A": { label: "D16", values: [[12.056, 5.1347]] } },
 
   /* ── Aperture configuration ── */
-  aperture: { nominalFNumber: 1.871, fStops: [1.871, 2, 2.5, 2.8, 3.5, 4, 5.6, 8, 11, 16, 22] },
+  aperture: { nominalFNumber: 1.871, fStops: [1.871, 2, 2.5, 2.8, 3.5, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22 },
 
   /* ── Cover glass CG (patent surfaces 28–29): traced, not drawn ── */
   rearPlates: [

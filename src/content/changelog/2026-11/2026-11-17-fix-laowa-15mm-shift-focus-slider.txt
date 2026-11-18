@@ -1,0 +1,1 @@
+Fixed the LAOWA 15mm f/4.5 Zero-D Shift focus slider jumping straight to close focus
