@@ -14,10 +14,17 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * focus at this scale, against +0.06 mm and +0.08 mm for Examples II and III. Rounding of the table does not explain
  * the difference and no single misprinted value was found, so the printed numbers are kept unchanged.
  *
- * Inferred, not printed: the iris, placed at the middle of the 20 mm air space S2 (the figure draws no diaphragm);
- * the clear semi-diameters, which pass the f/2 axial beam and are larger than Figure 1 draws them; and the 65.773 mm
- * back focus, the computed paraxial image distance for an object at infinity. The patent prints no back focus, field
- * angle, image size or close-focus data.
+ * Inferred, not printed: the iris, placed at the middle of the 20 mm air space S2 (the figure draws no diaphragm),
+ * and the 65.773 mm back focus, the computed paraxial image distance for an object at infinity. The patent prints no
+ * back focus, field angle, image size or close-focus data.
+ *
+ * SEMI-DIAMETERS: estimated from Figure 1, which is drawn to scale (about 7.95 px/mm at 300 dpi, checked on the
+ * vertex spacings and on the sags of R5 and R8), and floor-checked by real-ray trace at f/2. The front cemented pair
+ * (24.6) and the clear radius of R6 (17.5, where the figure draws a chamfer to the rear pair's flat top) follow the
+ * figure; R5 (20) agrees with it. The figure draws L1 at about 26.9, the rear pair at about 19.0 and L6 at about
+ * 18.4. L1 (29) is kept, within the measurement margin; R7/R8 (22) and L6 (23.5) stay larger than drawn because
+ * the figure values would cut corner illumination by up to 29 points at the 12.2 degree field edge of the
+ * illumination curve. R7/R8 are also near the 22.2 mm limit set by L5's edge thickness.
  */
 const LENS_DATA = {
   schema: 2,
@@ -144,14 +151,14 @@ const LENS_DATA = {
       label: "3",
       R: 40.4,
       d: 14.6,
-      sd: 27,
+      sd: 24.6,
       medium: 2,
     },
     {
       label: "4",
       R: 226.7,
       d: 4,
-      sd: 27,
+      sd: 24.6,
       medium: 3,
     },
     {
@@ -169,7 +176,7 @@ const LENS_DATA = {
       label: "6",
       R: -28.9,
       d: 4,
-      sd: 20,
+      sd: 17.5,
       medium: 4,
     },
     {
@@ -189,14 +196,14 @@ const LENS_DATA = {
       label: "9",
       R: 178.9,
       d: 8.1,
-      sd: 25,
+      sd: 23.5,
       medium: 6,
     },
     {
       label: "10",
       R: -104,
       d: 65.77349297099042,
-      sd: 25,
+      sd: 23.5,
     },
   ],
   aperture: {
