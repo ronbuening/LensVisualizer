@@ -13,7 +13,7 @@ The model is the first numerical example of US 1,643,865. The patent concerns th
 
 Example 1 is printed at a focal length of 100 mm with an effective aperture of f/9, and the model uses those printed values.
 
-The patent names no product. A link to the Goerz Frontar, the simple achromat of the Box-Tengor cameras, is plausible but undocumented: a collectors' forum quotes Goerz text saying the lens speed had been raised by more than a stop to 1:9, which matches this patent's purpose and aperture, but no source ties the Frontar to this patent and no Frontar construction diagram was found to compare.
+The patent names no product, and none is tied to this example. The nearest Goerz lens of the period is the Frontar of the Box-Tengor camera, recorded on a 1925 Goerz Box-Tengor and listed by collectors as a two-element 105 mm f/11 lens. That aperture fits the patent's f/11 Example 2 at least as well as the f/9 Example 1 modelled here. No source links the Frontar to this patent, and no Frontar construction diagram was found to compare.
 
 ## Optical Architecture
 
@@ -70,4 +70,5 @@ What is printed: every radius, thickness, index and ν, the stop position, the d
 ## Sources
 
 - US 1,643,865 A, drawing sheet and specification pages 1–3.
-- forum.mflenses.com, "Goerz Frontar 90mm f/8" (collectors' discussion quoting Goerz text on the 1:9 Frontar), used only for the product comparison above.
+- collection-appareils.fr, Goerz Box Tengor record (camera 10977): a 1925 Goerz Box-Tengor with a Frontar lens.
+- Flickr "Box Tengor gallery" group page: Goerz Frontar 105 mm f/11, two elements in one group.

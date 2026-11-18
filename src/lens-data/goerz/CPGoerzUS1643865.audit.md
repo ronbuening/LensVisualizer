@@ -77,7 +77,31 @@ Engine numbers before and after are identical: focal length 100.0024 mm, f/8.99,
 
 Open:
 
-- Rims are the patent's printed 14.7 mm free diameter; Fig. 1 draws the glass slightly larger than the clear diameter, which is left for the semi-diameter pass.
+- Rims are the patent's printed 14.7 mm free diameter; Fig. 1 draws the glass slightly larger than the clear diameter, which is left for the semi-diameter pass. Closed 2026-11-18: the printed diameter is kept (see the semi-diameter pass below).
 - No `imageFormat` or `lensMounts`: the patent states no format or field.
 - Frontar link: a maker catalogue or construction diagram is needed before any product name is used.
 - The patent's nF and nG′ values are not used; they could support a fitted dispersion curve later.
+
+## 2026-11-18 — Semi-diameter pass against the patent figure
+
+Source: US 1,643,865 A, drawing sheet (PDF page 1), Fig. 1, which is the figure of Example 1. The sheet is a 300 dpi bilevel scan, measured at 600 dpi.
+
+Scale: the front vertex lies at x 2424 px and the rear vertex at x 2560 px, giving 136 px for the printed 4.25 mm, or 32.0 px/mm. The diaphragm tick lies at x 2916 px, 356 px behind the rear vertex for the printed 11.5 mm, or 31.0 px/mm. The two spans agree within 3 %, so the figure is drawn to scale; front vertex to diaphragm gives 31.24 px/mm, used below. Check: the inner ends of the diaphragm ticks sit 146 px above and 139 px below the axis, a radius of 4.56 mm against the printed 9.1 mm diameter (radius 4.55).
+
+| Surface | sd before | Figure reading | Ratio | sd after | Evidence |
+| --- | --- | --- | --- | --- | --- |
+| 1 | 7.35 | about 8.3 (265 px above, 250 px below the axis) | 1.12 | 7.35 | printed free diameter 14.7 mm |
+| 2 | 7.35 | same square edge | 1.12 | 7.35 | printed free diameter 14.7 mm |
+| 3 | 7.35 | same square edge | 1.12 | 7.35 | printed free diameter 14.7 mm |
+
+No rim changed. The patent prints the free diameter of the lens (14.7 mm), which outranks a figure reading. Fig. 1 draws the cemented pair as one square-edged blank about 16.5 mm across, a mounting margin outside the clear diameter. The model already keeps all three faces at one height, as the square edge in the drawing does. A matched-scale overlay of the figure and the model shows the vertices, thicknesses and diaphragm position and opening in agreement; only the drawn blank edge stands about 0.9 mm outside the model's clear rim.
+
+Clearance and illumination (unchanged): the full f/8.99 axial beam passes, with marginal heights 5.56, 5.39 and 5.22 mm on surfaces 1–3 against 7.35. The engine's geometric transmission is 100 % to 6°, 97.2 % at 8.1°, 91.8 % at 10.1° and 84.9 % at 12.1°; the worst loss against the baseline is 0.0 points. The engine half-field is 22.14° before and after, set by the chief ray at surface 1. A real-ray trace puts the chief ray at the surface 1 rim at about 23.4°; the patent states no field, so no rim was raised for it. Focal length 100.0024 mm and f/8.99 are unchanged. The surface check reports no errors and the aperture check reports no rim, trace or iris limit. The image-circle and field-coverage checks skip the file (no image format, not visible).
+
+Metadata: no `lensMounts`, `imageFormat` or image circle added. The patent states no format or field, and no source ties this example to a camera.
+
+Product name: the Goerz Box-Tengor (1925 onward, 6×9 cm on 120 film) used a lens marked Frontar (collection-appareils.fr Goerz Box Tengor record, 1925, which gives no focal length or aperture); the Flickr Box Tengor gallery group lists it as a two-element 105 mm f/11. A museum listing of 1:11 110 mm appeared only in a search excerpt and was not read. Example 1 is f/9; Example 2 of the same patent is f/11. The current name, "C. P. GOERZ 100mm f/9 (US 1,643,865 Design)", claims no product and matches the evidence.
+
+Open:
+
+- Whether Example 2 (f/11) fits the Box-Tengor Frontar better than Example 1; needs a Goerz catalogue or a construction diagram of the Frontar.

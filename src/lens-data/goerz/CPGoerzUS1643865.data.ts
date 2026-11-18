@@ -8,6 +8,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * PRINTED: radii +21, -35, +38.82; thicknesses 3 and 1.25; crown 510/634 (nD 1.5096, v 63.4) and flint 549/471
  * (nD 1.5490, v 47.1) from the Sendlinger Optische Glaswerke catalogue; stop distance 11.5 behind the last vertex;
  * diaphragm diameter 9.1; free lens diameter 14.7 (semi-diameter 7.35 on all three surfaces); aperture f/9.
+ * Fig. 1 is drawn to scale (its diaphragm opening measures 9.1 mm) and shows the square-edged glass blank about
+ * 16.5 mm across, a mounting margin outside the printed free diameter; the printed clear diameter is used.
  * Indices are sodium D; v is the patent's (nD - 1)/(nF - nC). The patent also prints nF and nG', which are not used.
  * INFERRED: only the image distance. The last gap is the computed paraxial back focus at D (81.808 mm behind the
  * diaphragm, 93.308 mm behind the last vertex). The 8.99 opening is what the printed 9.1 mm diaphragm gives.
