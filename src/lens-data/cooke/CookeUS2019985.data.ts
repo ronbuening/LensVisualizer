@@ -21,6 +21,13 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * tenth of the central air space between them and the front one stops 0.05 mm short of the iris plane. The model
  * therefore passes a real on-axis beam of about f/1.52 rather than the full f/1.4.
  *
+ * The drawing is used for proportions only: at its own scale it draws every rim smaller than the f/1.4 beam needs. It
+ * draws the front single lens about a tenth taller than the rear pair and the two rear single lenses, which share one
+ * flat top line. The front single lens (10 mm) and the two rear single lenses (9 mm) are kept at the heights that
+ * hold corner illumination; the rear cemented pair is drawn square-topped, so its junction is set level with its rear
+ * face at 9 mm. The front cemented pair cannot reach its drawn height (about 5 % above the rear group) because of
+ * its edge-thickness limit.
+ *
  * The three printed glasses (nD 1.6135 / V 59.4, 1.579 / 40.4 and 1.6437 / 48.3) match no catalogue row, so colour
  * is estimated from nD and V alone. No production lens is documented for this design.
  */
@@ -193,7 +200,7 @@ const LENS_DATA = {
       label: "7",
       R: 96.52,
       d: 5.334,
-      sd: 8,
+      sd: 9,
       medium: 5,
     },
     {
