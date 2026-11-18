@@ -1,28 +1,59 @@
-# Audit Log - Kapella / Lee US2117252 Example I
+# Audit Log - Lee US 2,117,252 Example I
 
-## 2026-11-17 - Primary-source isolated build
+## 2026-11-17 - Initial build from the patent
 
-Visually checked ExampleI table on PDF page2 and Figure1 on page1. Correct inventor is Horace William Lee. Literal D-line index/Abbe values and signed prescription preserved at uniform×100 scale. Nominal100mm versus computed100.5901819mm residual disclosed, not fitted away. No exact retail/factory identity established.
+The Example I table on PDF page 2 and Figure 1 on page 1 were checked by eye. The inventor is Horace William Lee. The D-line index and Abbe values and the signed prescription are kept as printed, at a uniform scale of ×100. The difference between the nominal 100 mm and the computed 100.59 mm focal length is disclosed, not fitted away. No retail or factory identity is established.
 
 ### Inferences and geometry
 
-Central iris midpoint10+10mm and all rims are estimated. Initial24mm surface7/8 rims failed positive edge thickness; final22mm rims pass. This changes inferred aperture only, not literal optics. Both0.005 source outer gaps preserved. Calculated paraxial BFD65.77349297mm, not a source-tabulated dimension. No gap-sag override or glass substitution.
+The iris, at the middle of the central air space (10 mm + 10 mm), and all rims are estimated. A first estimate of 24 mm for the rims of surfaces 7 and 8 gave negative edge thickness; the final 22 mm rims pass. This changes the inferred aperture only, not the printed optics. Both printed outer gaps of 0.005 are kept. The paraxial back focus of 65.773 mm is calculated, not a printed dimension. No gap-sag override and no glass substitution.
 
-### Fresh verification
+### Verification at the time of the build
 
-| Gate | Outcome | Evidence |
-|---|---|---|
-| Native canonical | Zero errors | validation.json, native.log |
-| Render diagnostics | Zero trim | validation.json |
-| Iris stroke256 intervals | Positive3.801071/4.920362mm clearance | validation.json |
-| Independent geometry1001 samples/interface | Minimum0.297906mm, positive | independent-geometry.json |
-| Axial native | All181±90% samples and extra±99% pass | validation.json |
-| Independent matrix | EFL100.59018189784487; BFD65.77349297099042mm | independent.json |
-| Independent exact Snell | Nine common samples; max4.263256414560601e-14mm image-height difference | crosscheck.json |
-| Scoped TypeScript/eslint/prettier | Passed | typecheck.log, lint.log, format.log |
+| Check | Outcome |
+|---|---|
+| Data-file validation | No errors |
+| Drawing diagnostics | No trimmed rims |
+| Iris clearance, sampled at 256 positions | 3.80 mm ahead of the iris and 4.92 mm behind it |
+| Separation of neighbouring surfaces, 1001 samples each | Positive everywhere, minimum 0.298 mm |
+| Axial rays | All 181 samples across ±90 % of the pupil pass; rays at ±99 % also pass |
+| Separate matrix calculation | Focal length 100.590 mm, back focus 65.773 mm |
+| Separate exact ray trace | Nine rays agree with the engine to better than 1e-13 mm in image height |
 
-Field diagnostics clip2/9 at10° and6/9 at20°. No source coverage or modern image-quality confirmation follows. Full-app regression and compiled browser/viewer QA remain integration tasks. D/V dispersion approximate. Model hidden.
+At trial field angles of 10° and 20°, 2 of 9 and 6 of 9 sampled rays were clipped. These angles are exploratory; the patent states no field. Colour from nD and V is approximate. The model is hidden.
 
-### Dedup and provenance
+### Duplicate check
 
-Fresh scan of3400 retained lens source bodies finds zero normalized exact-patent hits; no data body matches at least6/10 distinctive scaled radii. Parent must reconcile its current37 delivered configurations and concurrent jobs; no duplicate among the known historical patent inventory supplied to this worker. Foreign aliases not independently established or counted. Engine/main pin3fd318c3e82cdbc3e5d3a1ed7bd5abbf4e99bfc2 is inherited from previous verified work; no fresh remote main fetch here. No unrelated checkout/dependencies included in ZIP. No upload, user send, commit, publish or deploy; private backup/readback remains parent-owned.
+A scan of the existing lens files found no file citing this patent and none sharing six or more of the ten scaled radii.
+
+## 2026-11-17 — Deployment validation
+
+Checked independently against the 300 dpi page images of US 2,117,252: all ten radii with signs, six thicknesses, three separations, six nD and six V values of Example I, the ×100 scale on every value, the two cemented interfaces, Figure 1 (element shapes and order) and the front-page bibliography. No transcription mismatch was found.
+
+Verdict: valid with fixes. The file is a faithful copy of Example I and is distinct from the other Cooke patent designs (US 1,955,591, US 2,194,413, US 2,502,509). The product link is a family link only: the George Eastman Museum record for a Cooke Speed Panchro 35 mm f/2, serial 306506, reports this patent number engraved on the rim (read through search-result excerpts; the page itself could not be opened), but no source says which example was manufactured.
+
+Finding kept on record: as printed, Example I is spherically under-corrected. The f/2 marginal ray focuses 0.775 mm short of the paraxial focus (0.37 mm short at 70 % of the aperture), against +0.06 mm and +0.08 mm for Examples II and III. Rounding does not explain it (Examples II and III rounded to three decimals stay at +0.04 and +0.09 mm), and a scan of single-digit changes, transpositions and sign changes in every radius, thickness and separation found no single value that restores the correction. Examples II and III trace to 100.75 mm, so the 0.59 % focal-length excess is common to the patent's round "1.0". The printed values are unchanged.
+
+Changes:
+
+- `maker`: "Kapella" → "Cooke" (house maker for Kapella-assigned Taylor, Taylor & Hobson designs).
+- `source.patentNumber`: "US 2,117,252" → "US 2,117,252 A" (house form).
+- `catalog.focalLengthMm.design`: 100.59018189784487 → 100.59 (rounding).
+- Elements L2, L3: added `cemented: "C1"`; L4, L5: added `cemented: "C2"`; `doublets`: [] → C1 (surfaces 3 to 5) and C2 (surfaces 6 to 8). The patent prints both pairs as cemented.
+- Elements: added `glass` notes carrying the printed Chance type numbers (610533, 623562, 608396, 605380, 621572, 623562), `focalLengthMm` (137.39, 76.56, −45.91, −28.84, 35.46, 106.67) and short optical `role` strings.
+- `focus.closeFocusM`: 1000000000000000.0 → 1e15 (same value).
+- Added the header comment to the data file (source, scale, inferred values, the spherical-aberration finding).
+- Analysis rewritten to the standard sections with the patent, inventor, assignee and date rows; this audit log reworded in plain terms.
+- No prescription value and no rim was changed.
+
+First-order values after the changes: focal length 100.590 mm, f/2.000, back focus 65.773 mm (paraxial), total length 138.47 mm, iris radius 16.36 mm.
+
+Audit results: surface validation reports no errors; the aperture audit reports no rim, trace or iris limit at f/2; the real-ray clearance check shows no clipping of the axial beam. The image-circle and field-coverage audits do not apply (no image format; hidden file).
+
+Open:
+
+- Whether to re-author the model from Example II (or III), which is well corrected as printed, instead of Example I.
+- Rims against Figure 1: the figure (about 3.98 px/mm at 150 dpi, drawn near scale) reads about 26.9 mm for L1, 24.8 mm for the front pair, 19.0 mm for the rear pair and 18.4 mm for L6, against 29, 27, 20 to 22 and 25 in the file. The figure values still pass the f/2 axial beam (25.15, 23.2, 18.3 and 17.8 mm needed).
+- Naming and wording: key, file name, `name`, `subtitle` ("PATENT-ONLY RECONSTRUCTION") and `specs` ("PATENT ONLY; NO RETAIL MATCH", "ESTIMATED STOP AND RIMS") to the house forms, for example "COOKE 100mm f/2 (US 2,117,252 Design)"; element labels "L1" to "L6"; element types to the house wording.
+- Glass labels: no modern catalogue match was sought beyond a quick look (only loose neighbours for 623562 and 605380).
+- The Eastman Museum record should be opened directly to confirm the engraved patent numbers.

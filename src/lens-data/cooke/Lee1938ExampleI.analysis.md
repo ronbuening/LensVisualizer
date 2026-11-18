@@ -1,52 +1,106 @@
-# Kapella / Horace William Lee Example I 100 mm f/2
+# Lee f/2 Objective — US 2,117,252 Example I
 
 ## Patent Reference and Design Identification
 
-[US2117252, Lens for photography and the like](https://patentimages.storage.googleapis.com/90/e3/13/aefd805db44bfc/US2117252.pdf), Example I / Figure 1. Inventor **Horace William Lee**, assigned Kapella Limited. British priority18 December1935; US application17 December1936; grant10 May1938. Primary table and drawing visually inspected. No verified production-lens identity is claimed. This is not Arthur Warmisham's US1797202 or US2130760, nor Lee's earlier US2012822.
+**Patent:** US 2,117,252 A, _Lens for Photography and the Like_  
+**Application Number:** Serial No. 116,388  
+**Filed:** December 17, 1936 (British priority December 18, 1935)  
+**Granted:** May 10, 1938  
+**Inventor:** Horace William Lee  
+**Assignee:** Kapella Limited, Leicester, England  
+**Example details:** Example I, "Aperture F/2", "Equivalent focal length 1.0", Figure 1; table on printed specification page 1.
+
+The patent describes fast objectives of the double-Gauss kind: two cemented meniscus components with their concave outer surfaces facing each other across a central air space, set between two single positive elements. It presents itself as an improvement on Lee's earlier US 1,955,591, the first Speed Panchro patent, and its stated aim is better correction of spherical aberration while keeping distortion corrected. It gives three examples, all at f/2 and unit focal length, drawn in Figures 1 to 3. They share the same six glasses and thicknesses and differ mainly in the two cemented surfaces and small adjustments to the other radii. This model follows Example I alone.
+
+Kapella Limited of Leicester held the patents of Lee and his colleagues at Taylor, Taylor & Hobson, the makers of Cooke lenses, which is why the model is filed under Cooke. The link to a product is a family link, not an identification. The George Eastman Museum's record for a Cooke Speed Panchro 35 mm f/2 (serial 306506) reports this patent number engraved on the lens rim together with US 1,955,591 and three British patents, so the patent was marked on Speed Panchro lenses of the late 1930s. That record was read through search-result excerpts only, because the museum page itself could not be opened. No source says which of the three examples, if any, was manufactured, or at which focal lengths, and no published construction diagram of the lens was found to compare against.
+
+Every printed radius, thickness and separation is multiplied by 100. The printed table then traces to a focal length of 100.59 mm, 0.59 % above the nominal 100. Examples II and III trace to 100.75 mm in the same way, so the patent's "1.0" is a round figure for all three examples and not a sign of a misprint in this one.
 
 ## Optical Architecture
 
-Six spherical elements in four air-spaced groups: positive front meniscus singlet, a cemented positive/negative meniscus doublet, a cemented biconcave/biconvex doublet, and rear biconvex singlet. Opposing inner concave surfaces enclose the central gap. The patent seeks improved residual spherical aberration over its cited US1955591; that comparison is a source claim, not a measured result of this reconstruction.
+The lens has six spherical elements in four air-spaced groups:
 
-## Prescription and Scale
+1. L1, a positive meniscus, convex to the front.
+2. L2 + L3, a cemented meniscus (positive meniscus crown in front, negative meniscus flint behind), concave to the rear. Its net focal length is −204.3 mm.
+3. L4 + L5, a cemented meniscus (biconcave flint in front, biconvex crown behind), concave to the front. Its net focal length is about −2590 mm, so it is almost without power.
+4. L6, a biconvex positive element with its stronger curve to the rear.
 
-Source EFL1.0 at f/2 is uniformly scaled ×100 to a nominal100mm model. The literal rounded prescription yields independent **EFL100.59018189784487mm**, **+0.5901819%** from nominal. This residual is retained, not corrected by fitting. Calculated paraxial infinity **BFD65.77349297099042mm** supplies the final image distance; the patent does not tabulate that exact BFD.
+The two outer air spaces are 0.5 mm each and the central air space is 20 mm. The length from the first to the last surface is 72.7 mm, the computed back focus is 65.77 mm and the total length to the image is 138.47 mm.
 
-| Interface | Radius mm | Following distance mm | Following element |
+The patent prints no diaphragm position and Figure 1 draws none. The model places the iris at the middle of the central air space, 10 mm from each neighbouring surface; its radius of 16.36 mm is the one that gives f/2. The clear diameters of the glass are also not printed. The model's rims are estimates that pass the full f/2 axial beam; they are 8 to 36 % larger than Figure 1 draws them (see the audit log).
+
+### Spherical aberration of Example I as printed
+
+As printed, Example I is spherically under-corrected. At this scale the f/2 marginal ray crosses the axis 0.775 mm short of the paraxial focus, and the ray at 70 % of the aperture 0.37 mm short. Traced the same way, Examples II and III give +0.06 mm and +0.08 mm at the margin, which is the well-corrected state the patent describes. Rounding the tables of Examples II and III to the three decimals used in Example I leaves them at +0.04 mm and +0.09 mm, so rounding does not explain the difference. A search over single-digit changes, digit transpositions and sign changes in every radius, thickness and separation found no single alteration that restores the correction while keeping the focal length. The printed numbers are therefore kept unchanged, and the model should be read as Example I as printed, not as the best performance the patent offers.
+
+## Element-by-Element Analysis
+
+Focal lengths are those of each element alone in air, at the model scale.
+
+### L1 — Positive Meniscus
+
+R1 = +64.4, R2 = +265, thickness 8 mm. nD 1.6100, V 53.3. f = +137.39 mm. The front collector; its stronger curve faces outwards, as the patent requires of both outer elements.
+
+### L2 — Positive Meniscus (front cemented pair)
+
+R3 = +40.4, R4 = +226.7, thickness 14.6 mm. nD 1.6234, V 56.2. f = +76.56 mm. The thick crown of the front meniscus component.
+
+### L3 — Negative Meniscus (front cemented pair)
+
+R4 = +226.7, R5 = +24.7, thickness 4 mm. nD 1.6083, V 39.6. f = −45.91 mm. Its deep rear surface faces the iris.
+
+### L4 — Biconcave (rear cemented pair)
+
+R6 = −28.9, R7 = +46.4, thickness 4 mm. nD 1.6054, V 38.0. f = −28.84 mm. Its front surface is the concave outer surface of the rear component, on which the patent's first claim places limits.
+
+### L5 — Biconvex (rear cemented pair)
+
+R7 = +46.4, R8 = −37.4, thickness 13 mm. nD 1.6209, V 57.2. f = +35.46 mm.
+
+### L6 — Biconvex
+
+R9 = +178.9, R10 = −104, thickness 8.1 mm. nD 1.6234, V 56.2. f = +106.67 mm. The rear collector, in the same glass as L2.
+
+## Glass Identification and Selection
+
+The patent gives each glass by its "mean refractive index nD", its Abbe V number and a six-digit type number from the Chance Brothers optical glass catalogue. The indices are therefore sodium D-line values, and the data file marks them so.
+
+| Element | nD | V | Chance type number |
 |---|---:|---:|---|
-| 1 | 64.4 | 8 | 1 |
-| 2 | 265 | 0.5 | Air |
-| 3 | 40.4 | 14.6 | 2 |
-| 4 | 226.7 | 4 | 3 |
-| 5 | 24.7 | 10 | Air |
-| STO | flat | 10 | Air |
-| 6 | -28.9 | 4 | 4 |
-| 7 | 46.4 | 13 | 5 |
-| 8 | -37.4 | 0.5 | Air |
-| 9 | 178.9 | 8.1 | 6 |
-| 10 | -104 | 65.773492971 | Air |
+| L1 | 1.6100 | 53.3 | 610533 |
+| L2 | 1.6234 | 56.2 | 623562 |
+| L3 | 1.6083 | 39.6 | 608396 |
+| L4 | 1.6054 | 38.0 | 605380 |
+| L5 | 1.6209 | 57.2 | 621572 |
+| L6 | 1.6234 | 56.2 | 623562 |
 
-## Glass Reference and Identification
+All six glasses have indices between 1.605 and 1.624: dense barium crowns for the positive elements and flints of nearly the same index for the negative ones. This is the point of the invention. In each cemented pair the positive element has the higher index, by 0.0151 in the front pair and 0.0155 in the rear, within the limit of 0.03 set by claim 1.
 
-Primary prose and table explicitly identify sodium **D**, preserved as `indexReference: "D"`, not helium d. Source Chance Brothers catalogue/type coordinates are preserved in the facsimile, not treated as verified modern Sellmeier identities or historic production melts. No catalog substitution was made. Index/Abbe-based dispersion is approximate.
+None of these glasses is matched to a modern catalogue glass in the model. Colour behaviour is computed from nD and V alone and is approximate.
 
-| Element | Shape | nD | V |
-|---|---|---:|---:|
-| L1 | Positive Meniscus | 1.61 | 53.3 |
-| L2 | Positive Meniscus | 1.6234 | 56.2 |
-| L3 | Negative Meniscus | 1.6083 | 39.6 |
-| L4 | Biconcave | 1.6054 | 38 |
-| L5 | Biconvex | 1.6209 | 57.2 |
-| L6 | Biconvex | 1.6234 | 56.2 |
+## Focus Mechanism
 
-## Explicit Reconstruction Estimates
+The patent gives no focusing data, close-focus distance or moving groups. The model is fixed at infinity, with the image plane at the computed paraxial back focus of 65.77 mm.
 
-Exact iris axial coordinate and clear apertures are not numerically specified. A midpoint stop is estimated in the20mm central gap, preserving10+10mm. Surface clear semi-diameters are **29,29,27,27,20,20,22,22,25,25mm**. An initial24mm estimate at surfaces7/8 gave negative edge thickness; reducing those inferred rims to22mm resolves it without changing source optics. No gap-sag override. The two source0.005 outer gaps remain0.5mm; no source radius/index/thickness is silently repaired.
+## Aspherical Surfaces
 
-Infinity-only using calculated BFD and `closeFocusM: 1e15`; no invented close-focus mechanism.
+There are none. All ten surfaces are spherical.
 
-## Verification Summary
+## Patent Conditions and Model Verification
 
-Native canonical validation zero errors; render trims zero. Iris stroke sampled256 intervals: minimum clearance3.801071mm before /4.920362mm after. Independent1001-point sampling of neighboring interfaces gives positive glass/air separation, minimum0.297906mm. All181 axial samples across±90% pupil pass; additional±99% rays also pass. Nine shared independent exact-Snell/native image heights agree within4.2633e-14mm. Scoped strict TypeScript, eslint and prettier pass.
+| Quantity | Patent | Model |
+|---|---|---|
+| Equivalent focal length | 1.0 (nominal) | 100.59 mm at ×100 |
+| Aperture | f/2 | f/2.00 |
+| Rear component, concave outer radius R6 (claim 1: 0.2 to 0.3 of the focal length) | 0.289 | 0.287 of the computed focal length |
+| Rear component, convex outer radius R8 (claim 1: 0.25 to 0.4) | 0.374 | 0.372 of the computed focal length |
+| Index excess of crown over flint in each pair (claim 1: not more than 0.03) | 0.0151, 0.0155 | same |
+| Back focus | not printed | 65.77 mm (computed) |
 
-At diagnostic10° and20° field angles,2/9 and6/9 samples clip. These field angles are exploratory, not patent coverage specifications. No full-field image-quality, historical factory performance, APO or MTF guarantee is made; MTF support probes are not MTF performance validation. Full-app regression, compiled viewer/browser QA and final current-main compatibility remain integration work. Hidden `visible:false`.
+All ten radii with their signs, six thicknesses, three separations, six indices and six V numbers were compared with the page image of the patent and agree with the data file. The f/2 axial beam passes every surface without clipping. The patent states no field angle or image size, so the model makes no claim about coverage.
+
+## Sources
+
+- US 2,117,252 A, H. W. Lee, "Lens for Photography and the Like", granted May 10, 1938: drawing sheet (Figures 1 to 3) and specification pages 1 and 2.
+- US 1,955,591 A, H. W. Lee, the earlier design this patent improves on.
+- George Eastman Museum, object record "Cooke Speed Panchro f/2 35mm lens", https://collections.eastman.org/objects/51701/cooke-speed-panchro-f2-35mm-lens (rim engraving; read through search-result excerpts).
