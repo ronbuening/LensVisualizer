@@ -33,19 +33,19 @@ Computed from the printed table at the D line, the objective has a focal length 
 
 Focal lengths are for each lens alone in air at the D line.
 
-### Element 1 (patent lens I) — Biconvex Positive
+### Element I — Biconvex Positive
 
 `nD = 1.60958`, `f = +88.75 mm`. Radii +56.0 and −1500.0 mm, thickness 9.0 mm. The rear face is almost flat, so the lens is close to plano-convex with the curved side toward the object. It supplies the front collecting power.
 
-### Element 2 (patent lens II) — Biconcave Negative
+### Element II — Biconcave Negative
 
 `nD = 1.67330`, `f = −48.05 mm`. Radii −55.0 and +80.0 mm, thickness 2.5 mm, 17.0 mm behind lens I. This is the only flint in the system and the only negative lens; it carries the correction of colour, spherical aberration and field curvature against the three crowns.
 
-### Element 3 (patent lens III) — Positive Meniscus
+### Element III — Positive Meniscus
 
 `nD = 1.60958`, `f = +89.64 mm`. Radii −373.0 and −48.0 mm, thickness 7.0 mm, 12.0 mm behind lens II with the diaphragm in that space. Its weak concave face is turned toward the diaphragm, as the patent requires of one of the two rear lenses.
 
-### Element 4 (patent lens IV) — Biconvex Positive
+### Element IV — Biconvex Positive
 
 `nD = 1.60958`, `f = +159.91 mm`. Radii +194.0 and −194.0 mm, thickness 5.0 mm, 1.5 mm behind lens III. It is equiconvex ("both curves alike" in the patent's wording) and adds the remaining positive power.
 
@@ -58,7 +58,7 @@ The patent prints two indices for each glass, at the D line and at the G′ line
 | I, III, IV | 1.60958 | 1.62273 |
 | II | 1.67330 | 1.70141 |
 
-No glass maker or catalogue type is named. The three positive lenses share one dense barium crown and the negative lens is a dense flint. Because no Abbe number is printed, the model is traced at the D line only and shows no colour. Rough Abbe numbers can be estimated from the printed D-to-G′ differences (about 58 for the crown and about 32 for the flint), but they are estimates and are not used in the model.
+No glass maker or catalogue type is named. The three positive lenses share one dense barium crown and the negative lens is a dense flint. The crown recurs in Figure 3 (nD 1.60960 with the same nG′ 1.62273), so it is a real melt rather than a computed value; the flint of Figure 3 is a different glass. Because no Abbe number is printed, the model is traced at the D line only and shows no colour. Rough Abbe numbers can be estimated from the printed D-to-G′ differences (about 59 for the crown and about 32 for the flint), but they are estimates and are not used in the model. The nearest modern catalogue types, SK3 for the crown and SF5 for the flint, sit about 0.0008–0.0009 below the printed nD and are not matches.
 
 With the printed G′ indices the paraxial focal length is 100.286 mm and the back focus 78.997 mm, against 100.405 mm and 79.046 mm at D, so the two printed lines focus within 0.05 mm of each other.
 
@@ -68,7 +68,7 @@ The printed table gives 100.405 mm at the D line, 0.40 % above the stated 100 mm
 
 ## Aperture, Stop and Semi-Diameters
 
-The patent gives the diameter as 50 mm without saying which lens or opening it refers to. Against a focus of 100 mm that is a nominal f/2, and the model uses f/2.
+The patent gives the diameter as 50 mm without saying which lens or opening it refers to. Against a focus of 100 mm that is a nominal f/2, and the model uses f/2. The iris is sized by the paraxial f/2 rule (19.31 mm semi-diameter). Lenses I and II image it with strong pupil aberration, so the real axial ray that grazes the iris edge enters lens I at about 23.5 mm and the real-ray aperture is about f/2.13.
 
 The following are modelling estimates, not printed values:
 

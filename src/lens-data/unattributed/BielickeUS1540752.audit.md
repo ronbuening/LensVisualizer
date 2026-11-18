@@ -102,3 +102,38 @@ Metadata: no change. The patent states no format, field or mount, and no product
 Open:
 
 - Lens III's edge is 0.82 mm thick at the 25 mm rim. The figure draws a thicker edge, but its curvatures are exaggerated, so this is not taken as a reason to lower the rim.
+
+## 2026-11-18 — Second review on the local site
+
+Compared: the live page (diagram and the inspector of every element) against Figure 4 on the drawing sheet, rendered at the scan's native 300 dpi, and against the specification text on pages 1–2.
+
+Figure re-measured independently (axis on row 1600, lower side, which carries no leader lines): half-heights 151 px (lens I), 153 (II), 152–153 (III) and 152 (IV, knife edge); the diaphragm strokes end 125 px above and 120 px below the axis. Vertex crossings sit at 1314, 1361.5, 1474.5, 1493, 1597, 1639.5, 1659 and 1700.5 px, so first to last vertex is 386.5 px for 54.0 mm (7.16 px/mm), while single spans run from 5.3 px/mm (lens I) to 13 px/mm (l3). The figure is schematic and gives proportions only, as the semi-diameter pass found.
+
+Silhouette against the live page:
+
+- All four lenses are drawn at one height within 1.5 %; the page draws them at 25.11 / 25.00 mm. Agrees.
+- Lens I square-cut with an almost flat rear face, lens II biconcave and square-cut: the page matches both.
+- Diaphragm: drawn at 0.48 of the l2 space (5.8 mm on the printed 12.0 mm) with an opening of 0.80 of the lens height; the model has 6.0 mm and 19.31 / 25 = 0.77. Agrees.
+- Lens III is drawn with a flat-topped edge about 0.6 of its centre thickness; the model's edge is 0.82 mm (0.12). The figure draws r5 with 12 px of sag and r6 with 29.5 px (ratio 2.5) where the printed radii give 0.84 and 7.03 mm (ratio 8.4), so the drawn edge is not to scale. A drawn-proportion edge would need lens III at about 18 mm, inside the axial beam (20.1–20.4 mm there at the real-ray aperture). Kept.
+- Lens IV is drawn to a knife edge; with the printed ±194 mm radii that needs about 31 mm, above the printed 50 mm diameter. Kept at 25 mm (1.77 mm edge).
+
+Rims: no change. Lens I's 25.11 mm passes the paraxial f/2 pupil (25.10 mm). The iris is sized by the paraxial rule (19.31 mm), and the real axial ray that grazes it enters lens I at 23.54 mm, so the real-ray aperture is about f/2.13 and the extra 0.11 mm above the printed 25.00 mm carries no light; it is invisible on the page and stands as decided earlier. Lands and cuts: none (no face sits below the pre-pass rims and there is no `rimExtensionSd` or `rimCutDepthMm`); the light-rule comparison against the pre-pass rims gives a worst loss of 0.0 points (100.0, 100.0, 98.9, 96.0, 92.3, 88.4, 84.1 % at 0–12.2°, unchanged).
+
+Labels changed (the patent numbers its lenses I–IV in Figure 4 and throughout the text; the page drew 1–4):
+
+| Element | Before (`name` / `label` / drawn) | After |
+|---|---|---|
+| 1 | L1 / Element 1 / 1 | I / Element I / I (`diagramLabel`) |
+| 2 | L2 / Element 2 / 2 | II / Element II / II |
+| 3 | L3 / Element 3 / 3 | III / Element III / III |
+| 4 | L4 / Element 4 / 4 | IV / Element IV / IV |
+
+The analysis headings follow; the header comment says the names are the patent's lens numbers. On the page the four labels sit clear of each other and of the stop and image labels.
+
+Rechecked and found correct: `type` strings against the radius signs (I +56 / −1500 biconvex, II −55 / +80 biconcave, III −373 / −48 positive meniscus concave to the object, IV ±194 equiconvex); thick-lens focal lengths 88.75, −48.05, 89.64 and 159.91 mm, recomputed; roles (collective / dispersive wording is the patent's, crown / flint follows from the printed D-to-G′ spreads, 0.01315 and 0.02811); no cemented surfaces, so no `doublets`, and the patent names no groups; no `apd` tags (the patent names no special glass). Movement: no gaps and no zoom block, `closeFocusM` 1e15, the focus slider reads "Not modeled", and the focus description says only that the patent gives infinity data. Engine EFL 100.405 mm, f/2.0, stop 19.31 mm and half-field 30.09° are the same before and after. Surface check OK; aperture check iris-limited within 3 %; image-circle and field-coverage checks skip the lens (no format).
+
+Glass and colour: a two-line scan of the repository catalogue and the Hoya, Ohara and Sumita vendor files, at D (589.29 nm) and G′ (434.05 nm), finds no row matching both printed indices. Nearest crown rows: Sumita VC79 (nD 1.60960, +0.00002, but nG′ 1.62302, +0.00029; not in the repository catalogue and not of the period) and SK3 / BACD3 (nD −0.00086). Nearest flint rows: the SF5 family (Schott SF5 / N-SF5, Ohara S-TIM25 / PBM25, Hoya E-FD5 / FD5, Sumita SF5), nD −0.00078 and nG′ −0.0007 to −0.0010. The crown recurs in Figure 3 (nD 1.60960, the same nG′ 1.62273), so it is a real melt; the flint does not recur. The D-to-G′ spreads put the Abbe numbers near 59 (crown) and 32 (flint); the analysis now says 59 where it said 58. The patent prints nothing else (no glass name, no Abbe number, no other line). All four elements stay index-only, which keeps colour off for the whole lens, as the rule for nD / nG′-only files requires. No catalogue row is proposed. No assignee is printed and `source.assignees` is empty.
+
+Open:
+
+- The printed nG′ (G′ = 434.05 nm) has no element field (`ng` is 435.83 nm), so the second printed line is recorded only in the notes.

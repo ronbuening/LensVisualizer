@@ -6,6 +6,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ("Focus 100 mm, Diameter 50 mm"); no scaling or unit conversion is applied.
  * Radii, signs, glass thicknesses, air spaces and nD are the printed values; the
  * drawing-sheet table and the typeset table in the specification agree.
+ * Element names are the patent's lens numbers I–IV (Figure 4 and the text).
  *
  * FOCAL LENGTH: the printed table gives a paraxial focal length of 100.405 mm at
  * the D line and 100.286 mm with the printed G' indices. The patent's own ratios
@@ -22,8 +23,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * it is placed mid-way in the 12.0 mm air space, as Figure 4 draws it); all
  * semi-diameters (25 mm from the printed 50 mm diameter, which Figure 4 draws
  * as the common height of all four lenses; lens I is 25.11 mm on both faces so
- * the f/2 axial beam of the 100.405 mm D-line focal length is not cut and its
- * square-cut edge stays square, as drawn; checked by real-ray trace); the back focus (computed D-line paraxial image distance). The patent
+ * the paraxial f/2 pupil of the 100.405 mm D-line focal length (50.2 mm) is not
+ * cut and its square-cut edge stays square, as drawn; the iris-limited real
+ * beam needs about 23.5 mm there; checked by real-ray trace); the back focus
+ * (computed D-line paraxial image distance). The patent
  * states no field angle, back focus or close-focus data.
  *
  * PRODUCT LINK: none is named in the patent. Bielicke designed the Astro-Berlin
@@ -66,8 +69,9 @@ const LENS_DATA = {
   elements: [
     {
       id: 1,
-      name: "L1",
-      label: "Element 1",
+      name: "I",
+      label: "Element I",
+      diagramLabel: "I",
       type: "Biconvex Positive",
       nd: 1.60958,
       indexReference: "D",
@@ -78,8 +82,9 @@ const LENS_DATA = {
     },
     {
       id: 2,
-      name: "L2",
-      label: "Element 2",
+      name: "II",
+      label: "Element II",
+      diagramLabel: "II",
       type: "Biconcave Negative",
       nd: 1.6733,
       indexReference: "D",
@@ -90,8 +95,9 @@ const LENS_DATA = {
     },
     {
       id: 3,
-      name: "L3",
-      label: "Element 3",
+      name: "III",
+      label: "Element III",
+      diagramLabel: "III",
       type: "Positive Meniscus",
       nd: 1.60958,
       indexReference: "D",
@@ -102,8 +108,9 @@ const LENS_DATA = {
     },
     {
       id: 4,
-      name: "L4",
-      label: "Element 4",
+      name: "IV",
+      label: "Element IV",
+      diagramLabel: "IV",
       type: "Biconvex Positive",
       nd: 1.60958,
       indexReference: "D",
