@@ -11,8 +11,14 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * The patent prints nD and nG′ (hydrogen Hγ) indices but no Abbe numbers, so the model carries none and is
  * monochromatic.
  * The diaphragm position is printed: b1 = b2 = 1.5 on either side of it.
- * Inferred: the stop diameter (from 1:12.5), all clear semi-diameters (estimates, not source dimensions), the back
- * focus (computed paraxial value, 98.2832) and the 5° trace field. The patent states no field angle.
+ * Inferred: the stop diameter (from 1:12.5), all clear semi-diameters, the back focus (computed paraxial value,
+ * 98.2832) and the 5° trace field. The patent states no field angle.
+ * Semi-diameters are estimated from the drawing, which is to scale axially (about 64 px/mm at 600 dpi over the
+ * 10.1 mm vertex length), and checked against the f/12.5 axial beam. Both pairs are drawn with one outer height of
+ * about 4.4; the model keeps 4.2 for the outer faces (surfaces 1, 5 and 6), so the rear lens is square-cut as drawn.
+ * The positive meniscus L2 is drawn running out to a knife edge at about 3.7; surfaces 2 and 3 stay at 4.0, where
+ * its edge is 0.135 mm (it reaches zero at about 4.07). L3's front face is drawn ending at about 3.66, just under the
+ * f/12.5 axial beam there (3.68), with a chamfer up to the outer height; surface 4 stays at 4.0.
  * Infinity focus only; the patent gives no close-focus data.
  */
 const LENS_DATA = {
@@ -131,7 +137,7 @@ const LENS_DATA = {
       label: "5",
       R: 18.6,
       d: 1.8,
-      sd: 4,
+      sd: 4.2,
       medium: 4,
     },
     {

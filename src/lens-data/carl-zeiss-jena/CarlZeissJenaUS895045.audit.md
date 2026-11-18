@@ -34,7 +34,7 @@ Open:
 
 - Closed 2026-11-17 (cleanup pass): name, key, subtitle, specs, element labels and types now in house form.
 - Glass labels: closed 2026-11-17 (Unmatched labels added). Still open: an Abbe number needs a period Schott list matched on both nD and nG′; until then the model is monochromatic.
-- Rims against the figure: the drawing suggests semi-diameters near 5, against 4.0–4.2 in the model; L2's edge is already 0.135 mm at 4.0.
+- Rims against the figure: closed 2026-11-18. Measured at the drawing's own scale the outer height is about 4.4, not 5; see the semi-diameter pass below.
 - Trace field: 5° is far below what a wide-angle type of this family covers; the patent states no field.
 - No image format or mount is set.
 - Closed 2026-11-17: `aperture.maxFNumber` 22 set.
@@ -59,8 +59,36 @@ Engine numbers before and after are identical: focal length 101.11015, f/12.5, h
 Open:
 
 - Abbe numbers: need a period Schott list matched on both nD and nG′.
-- Rims against the figure: the drawing suggests semi-diameters near 5, against 4.0–4.2 in the model; L2's edge is 0.135 mm at 4.0.
+- Rims against the figure: closed 2026-11-18 (semi-diameter pass below).
 - Trace field is 5°; the patent states no field, and the chief ray clears the present rims to about 40°.
 - `lensMounts`, `imageFormat` and an image circle are not set; the patent states no format or field.
 - No close-focus distance: no product source.
 - The Series IV catalogue description should be confirmed from a catalogue or book before it is relied on.
+
+## 2026-11-18 — Semi-diameter pass against the patent figure
+
+Source: US 895,045, drawing sheet (page 1), the single figure, which shows Example 1. The scan is 300 dpi; it was rendered at 600 and 1200 dpi.
+
+Scale: the axis lies at row 3091.5 of the 600 dpi page. Vertex crossings read just below the axis at x = 2055, 2240, 2325, 2508, 2587 and 2702 give 63.8, 65.4, 61.0, 71.8 and 63.9 px/mm for d1, d2, the air space, d3 and d4, and 64.1 px/mm over the whole 10.1 mm. The stop line stands at x ≈ 2420, close to midway in the air space as printed (b1 = b2). The drawn curves of r2 and r3 lie within about 0.2 mm of the printed radii at this scale, at heights from 2 to 3.7 mm. So the figure is to scale, and 64 px/mm is used for heights as well.
+
+Readings (line centres, both sides of the axis, in mm), against the file:
+
+| Surface | File before | Figure | File after | Note |
+| --- | --- | --- | --- | --- |
+| 1 | 4.2 | 4.40 / 4.42 | 4.2 | L1 runs flat to the outer height; 5 % difference, kept |
+| 2 | 4.0 | about 3.73 | 4.0 | L2 drawn to a knife edge where r2 meets r3; the model's L2 edge is 0.135 mm at 4.0 and zero at about 4.07 |
+| 3 | 4.0 | about 3.7 | 4.0 | as surface 2; lowering would cut off-axis light (axial beam 3.67 here) |
+| 4 | 4.0 | 3.66 / 3.67 | 4.0 | L3's front face ends at a chamfer; the f/12.5 axial beam needs 3.68, so the figure value cannot be used |
+| 5 | 4.0 | about 4.4 | 4.2 | the cemented face reaches the flat outer edge of the rear pair: L4 is drawn square-cut |
+| 6 | 4.2 | 4.33 / 4.50 | 4.2 | 5 % difference, kept |
+
+The drawing shows both pairs at one outer height of about 4.4. The model keeps 4.2 for the outer faces, which is 5 % under that and within reading noise. Surface 5 was the only clear shape error: at 4.0 it left L4 stepped and L3's rear face lower than the outer edge, which the figure does not show. It now matches surface 6, so L4 is square-cut and L3 steps up from 4.0 at the front to 4.2 at the rear, as the drawn chamfer does. Nothing was lowered.
+
+Light and clearance: corner illumination at the 5° trace field is 95.7 % before and 97.1 % after (no loss at any sampled field; gains of 0.2 to 1.4 points from 2.5° outward). Restoring surface 5 to 4.0 would win back nothing. On a copy traced to 40°, transmission rises 1.2 to 1.6 points from 4° to 12°. Engine half-field is 5° before and after (the trace-field setting). The widest unblocked field the engine estimates is 42.1° before and after, limited by surface 1. f/12.5, focal length 101.11015, stop semi-diameter 3.68222 and back focus 98.2832 are unchanged. Surface validation OK; aperture audit: within 3 % of the stated f-number, no rim, trace or iris limit. Image-circle and field-coverage audits skip the file (no image format). The real-ray clearance tools could not solve a chief ray for this file, so the 5° and 40° checks use the engine vignetting curve.
+
+Metadata: the patent states no format, field or mount, and the model is at the patent's normalised f = 100, so `lensMounts`, `imageFormat` and an image circle stay unset. The f-stop list (12.5, 16, 22) is not printed in the patent and is left as it is.
+
+Open:
+
+- Abbe numbers, trace field, mount and format, close focus and the Series IV source stay open as listed above.
+- The outer rims could go to 4.4 to match the drawing exactly. That is within reading noise, so they were not changed.
