@@ -1,31 +1,58 @@
-# Audit Log - Merté / Zeiss US2171274 Figure 1
+# Audit Log - Merté / Zeiss US 2,171,274 Figure 1
 
-Patent: US2171274 Figure 1. Data stem: `Merte1939Figure1`.
+Patent: US 2,171,274 A, Figure 1. Data stem: `Merte1939Figure1`.
 
-## 2026-11-17 - Source-literal isolated build
+## 2026-11-17 - Build from the patent table
 
-- Visually checked original Figure1/table sheet; retained signed radii, n_d/V, all thicknesses and total airspaces. Figure2 C-line embodiment remains a separate hold, not a second build.
-- Computed paraxial infinity BFD; source focal residual +0.0276745% retained rather than fitted away.
-- Estimated iris at midpoint of first17.61mm air gap. The Arizona reconstruction was not independently consulted for this build and is not treated as patent authority. Clear rims are heuristic, without gap-sag override.
-- No exact production model, factory prescription or melt identity established.
+- The Figure 1 drawing sheet and its table were read by eye; signed radii, n_d and Abbe numbers, all thicknesses and both air gaps were kept as printed. The Figure 2 example (C-line indices) was not built.
+- The image plane is the computed paraxial back focus for an object at infinity. The printed table computes to a focal length 0.028 % longer than the patent's 100 mm; this was kept and not fitted away.
+- The iris was first placed at the midpoint of the 17.61 mm first air gap (8.805 mm each side). Clear rims are estimates.
+- No production model, factory prescription or glass melt was identified.
 
-### Fresh scoped verification
+### Checks at build time (stop at the midpoint)
 
-| Gate | Result | Evidence |
-|---|---|---|
-| Canonical native model | Zero errors | validation.json / native.log |
-| Render diagnostics | Zero trim amounts | validation.json |
-| Iris stroke | Positive clearances8.805/7.539746mm | validation.json |
-| Independent geometry1001 samples per interval | Positive, minimum0.219195mm | independent-geometry.json |
-| Dense axial tracing | 181/181 samples across±90% pupil pass | validation.json |
-| Independent paraxial | EFL100.02767451625678; BFD51.174791009025206mm | independent.json |
-| Independent exact Snell/native comparison | Seven samples; max1.1546319456101628e-14mm | crosscheck.json |
-| Scoped strict TypeScript/eslint/prettier | Passed | typecheck.log / lint.log / format.log |
+| Check | Result |
+|---|---|
+| Engine model builds | No errors |
+| Iris clearance to the neighbouring glass | 8.805 mm in front, 7.54 mm behind |
+| Surface separations, 1001 samples per interval | All positive, smallest 0.219 mm |
+| On-axis rays across ±90 % of the paraxial pupil | 181 of 181 pass |
+| Independent paraxial calculation | EFL 100.0277 mm, back focus 51.1748 mm |
+| Independent exact ray trace against the engine | Seven rays agree to within 1.2e-14 mm |
 
-### Limits
+### Limits noted at build time
 
-±99% axial samples clip at iris; paraxial pupil radius is not an exact full-pupil admission guarantee. Diagnostic field samples clip2/9 at3.75° and4/9 at7.5°. No guaranteed full-field performance, MTF quality or near-focus capability. Full-app regression and compiled-viewer/browser QA remain integration tasks. Model hidden pending integration.
+On-axis rays at ±99 % of the paraxial pupil clip at the iris, so the paraxial pupil radius slightly overstates the real pupil. Sample off-axis rays clip 2 of 9 at 3.75° and 4 of 9 at 7.5°. No close-focus behaviour is modelled.
 
-### Deduplication and provenance
+## 2026-11-17 — Deployment validation
 
-Fresh retained-source exact-number search found zero hits across3400 lens source bodies. Earlier scout checked prescription fingerprints and34 historical delivered/held configurations with no match; this is inherited scout evidence, not a new exhaustive remote inventory audit. Foreign aliases not independently established. Retained main pin3fd318c3e82cdbc3e5d3a1ed7bd5abbf4e99bfc2 and engine compatibility are inherited from parent/prior verified work; no fresh remote-main fetch was performed here. No unrelated checkout is included in the evidence ZIP. No upload, publication, commit, deployment or user delivery occurred; private archival/readback remains parent-owned.
+Checked against 300 dpi renders of the patent pages, independently of the notes above: all eight radii and their signs, five glass thicknesses, both air gaps, five n_d values and five Abbe numbers, on both the drawing-sheet table and the typeset table on page 1. No mismatch. The front page gives Willy Merté, Jena, as inventor, assignor to the firm Carl Zeiss, Jena; filed June 12, 1937 (Germany June 22, 1936); granted August 29, 1939. The patent has two examples, so the "Figure 1" example label is right.
+
+Verdict: valid, with the form fixes below. No production lens is linked to this example: no catalogue page or construction diagram of a five-element Zeiss telephoto of this layout was found, so it stays a hidden patent design at the patent's 100 mm scale.
+
+Changes made:
+
+- `maker`: "Zeiss" → "Carl Zeiss Jena" (house maker for Carl Zeiss patents).
+- `source.patentNumber`: "US 2,171,274" → "US 2,171,274 A" (house form).
+- `source.assignees`: "Carl Zeiss" → "Carl-Zeiss-Stiftung" (the corpus spelling for "the firm Carl Zeiss").
+- `source.authors`: same name, written with the accented letter in place of an escape code.
+- `catalog.focalLengthMm.design`: 100.02767451625677 → 100.03 (rounding).
+- Last gap: 51.17479100902517 → 51.1748 (rounding; still the paraxial back focus).
+- `closeFocusM`: 1000000000000000.0 → 1e15 (same value).
+- L2, L3, L4: added `cemented: "T1"`, and `doublets` now marks surfaces 3 to 6, because the patent draws and describes these three lenses as one cemented part.
+- Stop position: 8.805 / 8.805 mm → 10.3 / 7.31 mm (behind r2 / ahead of r3). The stop is not dimensioned in the patent; the drawing shows it at about 58 % of the gap, and the surface audit stays clean with it there. The printed 17.61 mm total is unchanged.
+- Added a plain header comment to the data file stating the source, scale and what is inferred.
+- Analysis rewritten to the standard layout with the patent, inventor and grant rows; run-together numbers removed; the 15° field stated as the full angle.
+- This audit log: process wording removed from the earlier entry; its figures are unchanged.
+
+First-order values after the changes: EFL 100.0277 mm, f/4.000, paraxial back focus 51.1748 mm, first vertex to image 98.1548 mm, stop semi-diameter 9.00 mm. Element focal lengths: L1 +47.18, L2 −11.63, L3 +12.25, L4 −16.93, L5 +34.03 mm; cemented triplet −17.30 mm.
+
+Audit results: surface audit OK, no errors. Aperture audit: no surface below the on-axis f/4 ray (on-axis ray heights 12.50, 12.25, 7.28, 6.86, 6.58, 5.99, 6.53, 6.49 mm against rims 13.5, 13.5, 8, 8, 8, 8, 10, 10 mm). Image-circle and field-coverage audits skip the file because it is hidden and has no image format. A separate ray trace gives a chief-ray image height of 13.14 mm at 7.5° with about 76 % of the on-axis beam width passing, and nothing passing at 15° off axis, so the patent's "approximately 15°" is the full field angle.
+
+Open:
+
+- Name, key, file name, subtitle and specs wording ("PATENT-ONLY RECONSTRUCTION", "PATENT ONLY; NO RETAIL MATCH") for the cleanup pass.
+- Element roles and per-element focal lengths are not yet in the data file; glasses carry no catalogue labels.
+- Rims against the drawing: Figure 1 reads about 13.1 mm (L1), 8.6 mm (triplet) and 8.9 mm (L5) against the modelled 13.5, 8 and 10 mm.
+- No image format or mount is set.
+- Empty `groups` array.

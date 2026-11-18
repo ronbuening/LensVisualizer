@@ -1,53 +1,84 @@
-# Merté / Zeiss Figure 1 100 mm f/4 Patent Reference
+# Merté / Zeiss Telephoto 100 mm f/4 — US 2,171,274 Figure 1
 
 ## Patent Reference and Design Identification
 
-[US2171274, Telephotographic objective](https://patentimages.storage.googleapis.com/pdfs/US2171274.pdf), Figure 1. Willy Merté; Carl Zeiss, Jena. German priority 22 June 1936; US application 12 June 1937; grant 29 August 1939. The original Figure 1 sheet and numerical table were visually reviewed. The model is patent-only; no exact retail or production identity is established.
+**Patent:** US 2,171,274 A, *Telephotographic objective*  
+**Filed:** June 12, 1937 (German priority June 22, 1936)  
+**Granted:** August 29, 1939  
+**Inventors:** Willy Merté  
+**Assignee:** Carl-Zeiss-Stiftung (the patent reads "assignor to the firm Carl Zeiss, Jena, Germany")  
+**Example details:** Figure 1 and its table; the first of two numerical examples, both normalised to a focal length of 100 mm
+
+The model is the Figure 1 example of [US 2,171,274](https://patentimages.storage.googleapis.com/pdfs/US2171274.pdf). The patent gives it a relative aperture of 1:4 and an "exceedingly sharp" image field of approximately 15°, with distortion corrected and colour corrected for the D and G′ lines. The second example (Figure 2, six elements, 1:6.3, about 30°) is not modelled.
+
+No production lens is identified with this example. Carl Zeiss is the patent owner, which is why the model is filed under Carl Zeiss Jena, but no Zeiss catalogue page, construction diagram or other source was found that shows a five-element telephoto of this layout, so the model is offered as a patent design only and is kept at the patent's own 100 mm scale.
 
 ## Optical Architecture
 
-Five spherical elements in three air-spaced groups: a plano-convex front singlet, a negative cemented triplet, and a positive rear singlet. The rear singlet and triplet form the patent's compound rear system. Its geometry distinguishes this model from the separately queued US2126126 and from this patent's unbuilt Figure 2.
+Five spherical elements in three air-spaced groups:
 
-The printed normalization is 100 mm, f/4. Literal radii, glass thicknesses and air gaps are retained without scaling or repairs. Independent EFL is **100.02767451625677 mm**, +0.0276745% versus source normalization; calculated paraxial BFD is **51.17479100902517 mm**. Total first-vertex-to-image track is **98.15479100902517 mm**, shorter than its EFL, consistent with a telephoto layout. The BFD is calculated, not a separately printed exact source dimension.
+- a positive front system, the single plano-convex lens L1;
+- the inner part of the negative system, a cemented triplet L2 + L3 + L4 (biconcave, biconvex, biconcave) with strong negative power;
+- the outer part of the negative system, the single biconvex lens L5, which is positive on its own.
 
-## Literal Prescription
+The diaphragm sits in the long air gap between L1 and the triplet. A positive front lens followed at a distance by a negative rear system puts both principal points in front of the first surface, which is the telephoto condition the patent claims. The patent's particular point is the split negative system: a strongly dispersive inner part and a weak convergent outer part, separated by an air gap, are used to stop distortion growing steadily with field angle.
 
-| Interface | Radius mm | Following distance mm | Following glass |
-|---|---:|---:|---|
-| 1 | 26.057 | 4.55 | 1 |
-| 2 | flat | 8.805 | Air |
-| STO | flat | 8.805 | Air |
-| 3 | -25.924 | 1.8 | 2 |
-| 4 | 9.077 | 7.37 | 3 |
-| 5 | -24.582 | 5.21 | 4 |
-| 6 | 18.515 | 7.98 | Air |
-| 7 | 39.119 | 2.46 | 5 |
-| 8 | -53.602 | 51.174791009 | Air |
+Computed from the printed table, the focal length is 100.03 mm, the paraxial back focus is 51.17 mm and the distance from the first vertex to the image is 98.15 mm, a telephoto ratio of 0.98. The patent says the back focus is about half the focal length and that the total length is shorter than the focal length; both hold.
 
-## Glass Identification
+## Element-by-Element Analysis
 
-Figure 1 explicitly labels refractive indices **n_d**; the model preserves `indexReference: "d"`. The following index/Abbe pairs are literal source values, not historical melt or catalog-glass identifications. Dispersion derived from these pairs is approximate; no APO or glass-supplier claim is supported.
+Focal lengths are computed for each element in air from the printed radii, thicknesses and indices.
 
-| Element | Shape | n_d | V |
-|---|---|---:|---:|
-| L1 | Plano-convex | 1.55226 | 63.3 |
-| L2 | Biconcave | 1.56735 | 42.8 |
-| L3 | Biconvex | 1.5891 | 61.3 |
-| L4 | Biconcave | 1.59667 | 39.1 |
-| L5 | Biconvex | 1.67165 | 32.3 |
+| Element | Shape | Radii (mm) | Thickness (mm) | Focal length (mm) |
+|---|---|---|---:|---:|
+| L1 | Plano-convex | +26.057 / flat | 4.55 | +47.18 |
+| L2 | Biconcave | −25.924 / +9.077 | 1.80 | −11.63 |
+| L3 | Biconvex | +9.077 / −24.582 | 7.37 | +12.25 |
+| L4 | Biconcave | −24.582 / +18.515 | 5.21 | −16.93 |
+| L5 | Biconvex | +39.119 / −53.602 | 2.46 | +34.03 |
+
+The cemented triplet L2 + L3 + L4 has a net focal length of −17.30 mm. The air gaps are 17.61 mm (L1 to the triplet, containing the diaphragm) and 7.98 mm (triplet to L5).
+
+L1 carries all of the front positive power on its curved first surface; its rear is flat. Inside the triplet the thick biconvex crown L3 is enclosed by two flint negatives, and the two steep cemented surfaces (radii 9.077 and 24.582 mm) do the colour correction. L5 is a thin, high-index positive lens of dense flint whose first surface, facing the triplet, is convergent, as claim 1 requires.
+
+## Glass Identification and Selection
+
+The Figure 1 table prints a refractive index headed n_d and an Abbe number for each glass. The model uses those printed pairs unchanged with the helium d line as the reference, as printed. No catalogue glass names are assigned.
+
+| Element | n_d | ν |
+|---|---:|---:|
+| L1 | 1.55226 | 63.3 |
+| L2 | 1.56735 | 42.8 |
+| L3 | 1.58910 | 61.3 |
+| L4 | 1.59667 | 39.1 |
+| L5 | 1.67165 | 32.3 |
+
+L1 and L3 are crowns; L2 and L4 are light flints; L5 is a dense flint. Because only one index and the Abbe number are printed for each glass, colour behaviour in the model is an approximation built from those two numbers.
 
 ## Stop, Apertures and Focus
 
-The patent drawing places the iris in the first airspace but supplies no numerical coordinate. This reconstruction explicitly uses its midpoint, **8.805 mm after the front lens and 8.805 mm before the triplet**. This is an estimate, not a measured patent dimension or a claim about the Arizona educational reconstruction. Numbered-surface clear semi-diameters are estimated as **13.5,13.5,8,8,8,8,10,10 mm**. No geometry allowance override is used. No source curvature, glass index, thickness, or total airspace was changed.
+The patent draws the diaphragm in the first air gap but gives no dimension for it. The model places it 10.3 mm behind the flat rear of L1 and 7.31 mm ahead of the triplet, a reading of the Figure 1 drawing; the two parts add up to the printed 17.61 mm. At f/4 the stop semi-diameter is 9.00 mm.
 
-Infinity only: the final image plane uses calculated paraxial BFD and the supported `closeFocusM: 1e15` convention. No near-focus law or mechanical travel is invented.
+Clear semi-diameters are not printed either. The model uses 13.5 mm for L1, 8 mm for the triplet and 10 mm for L5, which are close to the proportions of the drawing (about 13.1, 8.6 and 8.9 mm). The on-axis f/4 beam passes every surface with room to spare.
 
-## Validation and Limits
+The image plane is the computed paraxial focus; the patent prints no back focus figure. The model is an infinity-focus design only, since the patent describes no focusing movement.
 
-Fresh native canonical validation has zero errors; render trims are zero. The physical iris sweep across 256 intervals retains minimum before/after clearances **8.805 / 7.539746 mm**. Independent 1001-point interface checks retain positive separations, minimum **0.219195 mm**. All181 axial samples across ±90% of the paraxial pupil pass. Seven shared exact-Snell/native image-height checks agree within **1.1547e-14 mm**. Scoped strict TypeScript, eslint and prettier passed.
+## Patent Conditions and Model Verification
 
-Exploratory ±99% axial samples clip at the iris in both native and independent tracing: the paraxial pupil is not an exact fully admitted pupil boundary. At3.75° and7.5°, respectively2/9 and4/9 diagnostic samples clip. The source calls the image field approximately15° without the present work establishing whether that is a full or half angle; the selected diagnostic samples do not certify coverage. Source assertions of sharpness/distortion correction, and MTF support probes, are not measured or validated image-quality results.
+| Quantity | Patent | Model |
+|---|---|---|
+| Focal length | 100 mm | 100.03 mm (+0.03 %) |
+| Relative aperture | 1:4 | f/4.0 |
+| Back focus | about half the focal length | 51.17 mm |
+| Total length | shorter than the focal length | 98.15 mm |
+| Image field | approximately 15° | 15° full angle (see below) |
 
-**Figure 2 is not included:** its source indices are explicitly solar C-line, unsupported by the current native d/D/e convention. No relabeling or substituted index conversion was made.
+The conditions of claim 1 hold: the front system's power is 2.12 times that of the whole objective (the claim asks for between 1.5 and 5 times); the outer part of the negative system is weaker than the inner part (focal lengths +34.03 mm against −17.30 mm); and the gap inside the negative system, 7.98 mm, is more than one third of the 17.61 mm gap in front of it. Claim 3 also holds: the inner part is stronger than the front system. Claim 2, which asks for a weaker outer part and a longer inner gap, describes Figure 2 and not this example.
 
-Hidden (`visible:false`), qualified handoff. Full-app regression, compiled browser/viewer QA and final integration compatibility remain outstanding. See companion audit for fresh versus inherited evidence.
+The patent does not say whether its 15° is the full field or the half field. Ray tracing settles it as the full angle: at 7.5° off axis the chief ray reaches an image height of 13.1 mm and about three quarters of the on-axis beam width still passes, while at 15° off axis no light passes through the modelled lens at all. The corresponding image circle at this scale is about 26 mm.
+
+Every radius, thickness, air gap, index and Abbe number was compared with both the drawing-sheet table and the typeset table in the patent text; the two agree with each other and with the model.
+
+## Sources
+
+- US 2,171,274 A, Willy Merté, *Telephotographic objective*, granted August 29, 1939: drawing sheet 1 (Figure 1 and table) and specification page 1.
