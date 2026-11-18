@@ -164,7 +164,7 @@ const LENS_DATA = {
   ],
   "aperture": {
     "nominalFNumber": 4.5,
-    "fStops": [
+    "maxFNumber": 22, "fStops": [
       4.5,
       5.6,
       8,
