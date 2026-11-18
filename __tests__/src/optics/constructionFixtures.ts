@@ -49,6 +49,16 @@ export function constructionFixtureData(lens: RuntimeLens | CanonicalLens): Lens
   return fixture;
 }
 
+/** Construction data with a new aperture range; listed stops past `maxFstop` are dropped, as validation requires. */
+export function apertureRangeFixtureData(
+  lens: RuntimeLens | CanonicalLens,
+  nominalFno: number,
+  maxFstop: number,
+): LensData {
+  const data = constructionFixtureData(lens);
+  return { ...data, nominalFno, maxFstop, fstopSeries: data.fstopSeries.filter((stop) => stop <= maxFstop) };
+}
+
 /** Lazy so tests that only need a few mutation fixtures do not compile the catalog. */
 export const CATALOG_CONSTRUCTION_FIXTURES: Record<string, LensData> = {};
 for (const key of Object.keys(LENS_CATALOG)) {

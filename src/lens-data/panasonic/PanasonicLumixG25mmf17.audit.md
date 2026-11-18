@@ -91,3 +91,7 @@ Patent: US 2017/0059832 A1.
 
 - State 0/1: paraxial image offset +0.000110379109955 mm (+0.0293357944103 diffraction depths); alternate reference +0.0578283221367 mm (+15.3407603291 depths). Verdict: `consistent`; reference discriminated: true. Reference evidence: Table 22 (same PDF p. 22): "Object surface" has d="Variable" immediately before surface 1; Table 25 identifies that object-side interval as d0.
 - State 0/2: paraxial image offset +0.000116497712753 mm (+0.0271859519168 diffraction depths); alternate reference +2.42456566286 mm (+517.410072076 depths). Verdict: `consistent`; reference discriminated: true. Reference evidence: Table 22 (same PDF p. 22): "Object surface" has d="Variable" immediately before surface 1; Table 25 identifies that object-side interval as d0.
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 22. `fStops` lists f/22, which the slider cut off at the default 16. No optical value changed.

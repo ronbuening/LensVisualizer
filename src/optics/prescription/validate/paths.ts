@@ -48,6 +48,7 @@ export function authoredMessages(
       },
     );
     message = message.replace(/^zoomStopSemiDiameters\b/, names.zoomStopSemiDiameters);
+    message = message.replaceAll('"maxFstop"', `"${names.maxFstop}"`);
     /* Station-indexed forms: '"publishedStations.focus"[n] …' and '… zoom station n, which "publishedStations.zoom"
      * omits'. A V2 zoom holds both facts on its station record. */
     const indexed = message.match(/^"publishedStations\.focus"\[(\d+)\]/);

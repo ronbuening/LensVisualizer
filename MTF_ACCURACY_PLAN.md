@@ -11,7 +11,8 @@ A reader asked how the MTF implementation was validated. An audit of 44 products
 digitized Sigma and Nikon chart values) found our curves systematically lower than published charts: mean signed
 difference −0.063, mean absolute 0.073, with four drastic cases. A review against optiland (MIT) and the patents
 found that **the MTF mathematics is sound; the drift comes from what the engine is fed and what it is compared
-with.** The one approximation in the engine itself, the diffraction product, has been replaced.
+with.** The diffraction product has been replaced. Cross-engine follow-up has also isolated limitations in the
+current diffraction estimator and its sampling stop rule; the focused numerical workstream below addresses them.
 
 1. **The core is correct.** Ray trace, geometric OTF, units, signs and sagittal/tangential naming agree with an
    independent d-line tracer and with optiland's conventions; the polychromatic combination is pinned by analytic
@@ -29,11 +30,12 @@ with.** The one approximation in the engine itself, the diffraction product, has
 5. **A field slope remains**: slightly high on axis, low by about 0.02 / 0.06 at 10 / 30 lp/mm by 70 % field. It
    tracks clear apertures inferred from drawings and the single axial focus plane, which cannot be verified and are
    to be shown as uncertainty, not tuned. *Stage 8.*
-6. **No catalog lens has been compared with another tool.** A published Cooke triplet has
-   (`scripts/mtf-external-reference.mjs`): first-order values and single rays match OpticStudio to the printed
-   precision and axial MTF within 0.006 (60 lp/mm on a 256-cell pupil), while off axis the tools differ by up to
-   0.047, which follows the pupil convention (candidate C8). The catalog check is an optional diagnostic (last
-   section); no stage depends on it.
+6. **The external comparator has checked 200 catalog models at matched monochromatic states.** Its native FFT
+   differences require attribution: optiland has its own intersection and pupil-calibration limitations. Follow-up
+   with optical-path OTF estimates and fixed-grid S&S calculations identifies two S&S improvements: sampling can
+   stop prematurely, and the diffraction estimator has a residual that refinement does not remove. See
+   [Focused numerical accuracy workstream](#focused-numerical-accuracy-workstream). This comparison does not
+   establish production-lens accuracy, spectral accuracy or the correct physical prescription.
 
 Where the comparison stands (19 digitized configurations, mean signed / mean absolute, from
 `agent_docs/generated/mtf-chart-regression.generated.md`): −0.027 / 0.046 with diffraction for every maker and
@@ -59,7 +61,7 @@ investigation and are replaced by regenerated ones as stages land.
 | Complex OTFs summed across wavelengths before the modulus, one reference point | `src/optics/analysis/mtf/mtfMath.ts` |
 | Footprint traced through the real clear apertures | `src/optics/analysis/mtf/mtfFootprint.ts` |
 | Field as a fraction of the format half-diagonal in real chief-ray height | `src/optics/analysis/mtf/mtfFields.ts` |
-| Sampling convergence (128 → 256 changes ≤ 0.01) and the best-axial search (its optimum in 52 of 52) | `src/optics/analysis/mtf/mtfFocus.ts` |
+| Best-axial search against the existing estimator (its optimum in 52 of 52); recheck after changing that estimator | `src/optics/analysis/mtf/mtfFocus.ts` |
 | Photopic spectrum: monochromatic, C/d/F and broad white all fit charts worse; its nine-node quadrature is within 0.0004 of a 73-line integral | `src/optics/analysis/mtf/mtfSupport.ts` |
 | The 256-cell default cap: 256 → 512 moves ≤ 0.0012 (four lenses, both methods, 10/30/50 lp/mm); the steps are not monotone, so no Richardson extrapolation | `src/optics/analysis/mtf/mtfConstants.ts` |
 | Shear scaling from traced directions (no infinity-focus or flat-image shortcut), each wavelength's own cutoff, and the same line × flux weights in both methods | `src/optics/analysis/mtf/mtfShearedOtf.ts` |
@@ -75,7 +77,9 @@ investigation and are replaced by regenerated ones as stages land.
 | H | Clear apertures inferred from drawings, undisclosed | −5 % semi-diameter ≈ +0.02 / +0.04 off axis | 8 |
 | I | One axial focus plane; field foci sit 20–125 µm away | 0.005 mean; up to 0.28 at 30 lp/mm tangential on four lenses | 8 |
 | K | 125 lenses trace more than 3 % from their label on axis: a rim on 116, a trace failure or the iris itself on the rest (`npm run audit:aperture`) | Traced aperture differs from the label | queue |
-| L | No external validation of a real lens | — | optional tool |
+| L | External checks validate matched monochromatic prescriptions, not production-lens performance or spectra | Attribution and coverage remain necessary | numerical workstream |
+| M | One successful adjacent-grid comparison can end sampling too early | Pentax FA★ 300mm: 0.70655 at 32 cells versus 0.71848 at 512, at 50 lp/mm | N3 |
+| N | The local sheared-pupil approximation can retain error on a refined grid | GF 100–200mm: 0.03912 at 512 cells versus independent OTF estimates 0.06372–0.06405 at 100 lp/mm | N2 |
 
 ### Cannot be known — surface, never fit
 
@@ -108,11 +112,202 @@ focus choice or stop sizing; those need analytic controls.
 - Chart agreement is reported, never a test threshold. `npm test` asserts physics only.
 - Nothing is tuned per lens. Conventions are per maker with a basis tag (documented, inferred, unknown).
 - The 33 undigitized audit configurations stay an untouched holdout.
-- Wording: "about 0.03 remains unexplained after the factors we tested"; "19 configurations from two makers,
-  digitized with a heuristic ±0.035 allowance"; "the kernels are checked against exact Hopkins integrals; no real
-  lens has been compared with another tool". Only if the optional cross-check has been run, the last becomes "rays
-  and monochromatic diffraction MTF agree with optiland within stated tolerances given identical indices and
-  apertures; dispersion, white-light weighting and focus choice are not covered".
+- Chart-audit wording stays scoped to that report: "about 0.03 remains unexplained after the factors we tested";
+  "19 configurations from two makers, digitized with a heuristic ±0.035 allowance". For the external comparison,
+  describe matched monochromatic prescription models, numerical qualifications and exceptions. Do not claim
+  universal agreement with native optiland FFT or validation of dispersion, white-light weighting, physical stop
+  sizing, production lenses or a manufacturer's focus policy.
+
+## Focused numerical accuracy workstream
+
+### High-level overview
+
+Two changes address different errors. **N2 corrects the diffraction estimator**, where finer sampling approaches a
+biased answer. **N3 strengthens convergence**, where the estimator could give a sufficiently accurate answer but
+stops tracing too soon. Raising every grid cap cannot solve the first problem and is an unnecessarily expensive
+response to the second.
+
+Recommended sequence: freeze the evidence (N1), develop the estimator correction (N2), calibrate the sampling rule
+against the corrected estimator (N3), then validate the integrated product and its cost (N4). Keep estimator and
+convergence changes in separate numerical PRs so their effects remain attributable. This is a proposed workstream
+alongside the existing prescription and presentation stages, not a prescription-data repair.
+
+### Evidence and limits
+
+The witnesses use frozen prescriptions and image planes at 587.5618 nm. All entries are tangential MTF, normalized
+from 0 to 1. The independent columns are the OTF of S&S optical-path rays and the OTF of optiland's raw wavefront,
+rather than optiland's native FFT calibration.
+
+| Witness state | Field | lp/mm | Current adaptive S&S | Fixed 512-cell S&S | Independent OTF estimates |
+| --- | --- | ---: | ---: | ---: | ---: |
+| Pentax FA★ 300mm f/2.8, wide open, best axial plane | Half field | 50 | 0.70655 (32 cells) | 0.71848 | 0.71847–0.71860 |
+| Fujifilm GF 100–200mm at 100mm, f/8, best axial plane | Corner | 100 | 0.03733 (64 cells) | 0.03912 | 0.06372–0.06405 |
+| Panasonic G Vario 12–60mm at 60mm, wide open, design plane | Half field | 100 | 0.52641 (32 cells) | 0.52184 | 0.50441–0.50574 |
+| Fujifilm GF 35–70mm at 70mm, f/8, design plane | Corner | 100 | 0.06834 (64 cells) | 0.06894 | 0.08188–0.08196 |
+
+In the last three witnesses, 256 → 512 changes the product value by less than 0.00013. This establishes a
+persistent estimator difference, but does not uniquely identify its mathematical cause. Candidate contributions
+include the locally linear shear, the 2-D pupil-area measure, phase integration and pupil-edge interpolation.
+Separate them before selecting the implementation.
+
+The eight-state diagnostic is available in the external comparator as `ss-mtf-followup-20261117`. The frozen numerical controls preserve
+the case IDs, actual frequency requests, fingerprints, reference qualifications and curve vectors. Rounded values in this table are explanations, not test fixtures.
+
+### Scope and data-type contract
+
+- Preserve the exact tracer, prescriptions, glass indices, aperture geometry, field targeting, image-surface
+  geometry and existing pupil-illumination convention. Incident-flux weighting remains the separate C8 decision.
+  Keep the current scalar diffraction model; vector diffraction, polarization and new coating physics are
+  separate work.
+- Keep the public `AnalysisRequest` / `MtfRequestOptions` → `MtfResult` seam. `MtfFieldResult.maxDelta` describes
+  sampling change, not physical accuracy; `convergedThroughLpMm` describes a verified prefix of the requested
+  frequencies. `status`, `gridSize`, unresolved counts and diagnostic notes remain explicit. Add a numerical
+  domain reason only if the selected estimator needs it; propagate any type change through the worker and UI.
+- Preserve complex spectral summation, one common image reference and each wavelength's shear. Do not average
+  magnitudes in place of complex OTFs. Keep finite-conjugate and curved-image computations on their current paths.
+- Retain Standard's 256-cell cap and Faster's 128-cell cap as the initial implementation constraint. A 512-cell
+  diagnostic is a reference calculation, not a universal new default. Numerical changes follow the review rule
+  in `agent_docs/decisions.md`; the targets below are proposed acceptance criteria.
+- Preserve unsupported-class guards. These fixes do not unlock mirrors, annular pupils, fisheyes or diffractive
+  surfaces. An uncertified numerical domain must be qualified or withheld explicitly, with its coverage counted.
+- Compare fixed image planes first. Rerun normal best-axial selection separately after integration: an estimator
+  change can move its optimum even when focus-selection code is unchanged.
+
+### Frozen numerical controls
+
+The N1 baseline is `reports/data/mtfNumericalReference.json`. It identifies the 200-model cohort manifest,
+the selection and comparisons by hash, and preserves eight frozen prescriptions' state identifiers,
+index rows, requests, curves, ray counts and independent reference qualifications. The comparator suite
+`ss-mtf-followup-20261117` holds the original cases. Diagnostic and UI requests use 10 and 2 lp/mm spacing
+respectively. Each was replayed at its adaptive grid, alongside sparse, high-only and DC requests.
+For the Panasonic G Vario witness the UI request uses 64 cells where the diagnostic request uses 32.
+
+The S&S-ray reference was independently refined from 256 to 512 cells. Seven named points meet the paired
+reference criteria (maximum final grid change 0.001, phase step below a quarter wave, named-point spread
+at most 0.002). The Sony 20mm corner exceeds the phase limit at 512 cells and remains a diagnostic.
+Analytic pupils in the diffraction suite cover complex phase, nonlinear maps, cross-axis coupling and
+clipped support, including a thin affine pupil with an exact complex overlap. Regression assertions for
+the stopping policy belong with its implementation in N3.
+
+### N2 — Correct the diffraction estimator's coordinate treatment
+
+**Files to touch.** `src/optics/analysis/mtf/mtfShearedOtf.ts` and `mtf.ts` (modified); `mtfTracing.ts` only if the
+chosen product method needs optical-path capture. A new pure helper such as `mtfDirectionOtf.ts` is appropriate
+only after prototyping determines its responsibility. Keep `mtfWavefront.ts` independently useful as a reference;
+change `src/optics/mtf.ts` or `src/types/mtf.ts` only if a documented public-contract change requires it.
+
+**Mathematical target.** Let p be stop coordinates and q the existing image-tangent optical-direction coordinates,
+including image-space index. For a nonsingular map, J = |det(dq/dp)| converts stop area to direction area. With
+flux density F per unit stop area, direction-space amplitude is proportional to sqrt(F/J). The normalized OTF
+correlates the complex field at q ± λν/2 and integrates over direction area. Interpret discrete ray weights
+consistently with their cell area: adding a Jacobian multiplier to the current stop-grid weights alone is not
+this transformation.
+
+**Steps.**
+
+1. Use the synthetic controls to isolate mapping, amplitude/area, phase-quadrature and boundary errors. Check
+   complex OTF as well as magnitude so phase mistakes cannot produce a misleadingly improved MTF.
+2. Prototype a 2-D coordinate-correct calculation, using the current direction-mesh reference for comparison.
+   Locate both endpoints at the exact required direction-space shear while holding the perpendicular direction
+   coordinate fixed. Do not use one centre-cell pitch to approximate the whole displacement along a stop row.
+3. Evaluate two concrete implementation routes: correct the ray-slope method's endpoints, measure and phase
+   integral; or use the existing optical-path method within its certified domain. The latter is not an automatic
+   replacement: fast/aberrated beams can fail its quarter-wave phase condition or direction-map invertibility.
+4. Choose one product strategy from measured accuracy, coverage and cost. Reuse appropriate pure geometry helpers,
+   but retain analytic or external quadrature independent of the production implementation. Shared-code agreement
+   alone is not independent validation.
+5. Integrate through the current per-field/per-line orchestration. Preserve DC normalization, physical cutoff,
+   spectral phase, bulk-transmission weights, symmetry, image tangents and the same-pupil aberration-free response.
+   Refine an under-resolved domain and explicitly qualify or withhold an uncertified result at the cap.
+
+**Proposed acceptance targets.** On qualified dense analytic controls, absolute complex-OTF error ≤0.001. At the
+named catalog points, MTF error ≤0.003 against each qualified independent reference; across both cuts at 0–100 lp/mm
+on qualified witness curves, ≤0.005. Freeze these targets before evaluating algorithms. Preserve tighter existing
+analytic tolerances. Do not fit per-lens scales or judge success against native optiland FFT alone.
+
+### N3 — Make adaptive convergence require confirmation
+
+**Files to touch.** `mtf.ts` (`applyConvergence`, `refineMtfFieldSteps`), `mtfConstants.ts` if shared policy constants
+are needed, and `__tests__/src/optics/mtf.test.ts` (modified). Change worker/UI types only if new diagnostics must
+cross that boundary. The current refinement generator is the implementation to extend.
+
+**Steps.**
+
+1. Prototype requiring two successful refinement comparisons before a frequency is declared stable. Reset
+   confirmation after a failed/unavailable grid or an excessive change: a stale comparison cannot certify a
+   later level. Handle DC-only requests explicitly rather than imposing an unrelated phase test on them.
+2. Evaluate a separate aliasing safeguard based on the selected estimator's supported phase or landing-error
+   variation between neighbouring samples. Several aliased grids can agree, so confirmation alone is not proof
+   of resolved sampling. A failed optical-path reference gate does not by itself invalidate the ray-slope method.
+3. Derive `convergedThroughLpMm` from confirmed per-frequency history in frequency order. Distinguish convergence
+   in the ≤50-lp/mm band from higher-frequency verification; do not certify 100 lp/mm solely because chart
+   frequencies settled. Measure the cost of requesting extra high-frequency refinement separately.
+4. At the cap, retain the last useful diagnostic curve with its appropriate unverified/unconverged status. Do not
+   relax 0.01, silently raise the cap or remove samples to obtain a converged label.
+5. Calibrate against N1 and the corrected N2 estimator. Choose the least expensive policy meeting the numerical
+   targets; a higher universal minimum grid is a comparison option, not the assumed solution.
+
+**Exit criteria.** The Pentax witness must no longer stop at the misleading 32-cell result; its normal adaptive
+value must be within 0.003 of the qualified reference. A cap that prevents confirmation must be reported. Synthetic
+nonmonotone, aliased, failed-grid, sparse-frequency and DC-only sequences must exercise the policy. Unavailable
+calculations cannot certify stability.
+
+### N4 — Validate the integrated product and its release cost
+
+**Files to touch.** Existing comparator suites/reports; `scripts/benchmark-mtf.mjs` if extra metadata is needed;
+affected MTF component tests; `agent_docs/architecture/optics-engine.md`; and a new user-visible changelog entry.
+Update this plan in place and remove completed work under the documentation policy.
+
+**Steps.**
+
+1. Rerun all 200 models with identical selections and frozen states. Treat the eight diagnostic models as
+   development witnesses and the remaining 192 as a separate regression cohort, not an untouched statistical
+   holdout. Report availability, unresolved samples, grids and frequency coverage alongside numerical errors.
+   Preserve attribution of optiland's known limitations.
+2. Run fixed-plane and normally re-optimized best-axial comparisons separately. Check geometric-mode stability,
+   finite objects, supported curved sensors, wide-open/f/8, zoom ends, C/d/F and photopic combination. The external
+   monochromatic checks do not validate spectra; independent analytic spectral controls remain necessary.
+3. Verify worker/main-thread parity, cancellation, preferences, field/frequency views, diagnostic toggles and CSV
+   output. The UI already hides or fades frequencies beyond the verified band; preserve that behaviour and add
+   information only if the numerical contract requires it.
+4. Benchmark the same hardware and requests, with warmups and at least five recorded repetitions. Cover reference
+   and photopic spectra, ordinary fields and sweeps, and Standard/Faster settings. Measure median/p95 request time,
+   peak memory, traced samples and cancellation responsiveness.
+5. Use provisional release budgets of ≤20% median and ≤30% p95 request-time regression and ≤25% peak-memory
+   increase. These are proposed engineering budgets, not measured promises. If accuracy and coverage cannot meet
+   them, return the measured alternatives for review instead of weakening numerical qualification.
+
+**Verification.** Focused tests cover existing `mtf.test.ts`, `mtfDiffraction.test.ts`, `mtfWavefront.test.ts`,
+`mtfSpectral.test.ts` and `mtfConjugates.test.ts`; include worker and chart tests when their contract changes.
+Before numerical PRs, run:
+
+```bash
+npm run typecheck
+npm run format:check
+npm run lint
+npm run test
+node --import ./scripts/ts-js-specifier-hook-register.mjs scripts/benchmark-mtf.mjs --method=diffraction --spectrum=reference --iterations=5 --warmups=1
+node --import ./scripts/ts-js-specifier-hook-register.mjs scripts/benchmark-mtf.mjs --method=diffraction --spectrum=photopic --iterations=5 --warmups=1
+```
+
+Repeat benchmarks with the existing sweep, stopped-down and finite-state flags. The comparator suite is a separate
+explicit validation run with versions, case hashes and qualification attached. Run `npm run build` if route,
+content, metadata or the public validation article changes.
+
+**Release criteria and rollback.** Meet the frozen accuracy targets; explain every coverage/status regression;
+meet or explicitly approve the measured performance tradeoff. Update numerical limitations and validation wording
+without claiming production-lens accuracy. Follow the numerical-change review rule in `agent_docs/decisions.md`.
+Land estimator and stop-policy changes separately, each revertible with its own tests, notes and changelog. A
+revert restores the previous algorithm, not prescriptions, and must invalidate dependent cached result identities
+where applicable.
+
+### Effort and decision points
+
+Allow roughly 1–2 engineering days for N1, 5–10 for N2, 2–4 for N3 and 2–4 for N4: approximately 2–4 weeks,
+subject to the estimator prototype. N1 can expose a reference limitation; N2 selects the product strategy and
+supported numerical domain; N3 selects the confirmation policy; N4 decides readiness from accuracy, coverage and
+cost. These are planning estimates, not a delivery commitment. Source audits, new illumination conventions, new
+lens-class support and a general optical-engine rewrite remain separate work.
 
 ## Open Stages
 
@@ -176,16 +371,12 @@ S under a day, M one to three days, L longer.
   audit compares the product estimator with the direction-space reference fed incident flux on the 64 of 72
   samples its gate passes: up to 0.030, about 0.004 mean off axis, which mixes the weights with the estimator's
   own error; feeding flux weights to the sheared estimator is not the correction, since it has no direction-space
-  Jacobian (C10). Against OpticStudio on a published Cooke triplet (`scripts/mtf-external-reference.mjs`) the
+  Jacobian (N2). Against OpticStudio on a published Cooke triplet (`scripts/mtf-external-reference.mjs`) the
   off-axis difference of up to 0.047 falls to 0.008 when the paraxial entrance pupil is sampled as the source
   does. Open: the owner's ruling on making incident flux the product weight (it leaves the OpticStudio and CODE V
   pupil convention); the geometric method is ready, the diffraction estimator needs the measure first. M to L.
-- **C9 — Two aliased grids can agree.** Convergence compares successive grids, so a blur far coarser than the
-  lattice can read the same wrong value on both: a 1.6 mm landing disc reads 1.0 at 10/30/50 lp/mm on 16 and 32
-  cells. The default 0–100 lp/mm sweep catches that case, and it takes a blur of millimetres, so the exposure is
-  soft-focus designs and far-off design planes (Pentax F 85mm Soft: a 20 lp/mm focus peak moved 9 mm between 64
-  and 256 cells). Candidate: keep a field unconverged while adjacent landings differ by more than half a cycle at
-  a judged frequency. Needed before any single-frequency focus option. M.
+- **C9 — Two aliased grids can agree.** Included in N3's convergence/aliasing work above. Its phase-resolution
+  safeguard is also a prerequisite for a single-frequency focus option; see C26.
 - **C11 — Rim cells are all-or-nothing.** A cell counts when its centre lies in the stop. Area weights with traced
   boundary cells cut an analytic disc's error at 32 cells from 0.0044 to 0.0003; weights on the kept cells alone
   do nothing, and the sheared estimator needs its own treatment. The gain is speed (tolerance at a coarser grid),
@@ -224,27 +415,15 @@ S under a day, M one to three days, L longer.
 - **C32 — RMS wavefront and Strehl per field.** Needs optical-path capture on the production bundles and the
   pairing fix of C13; a ratio of MTF to limit at one frequency is not Strehl. M to L.
 
-## Optional: External Cross-Check Tool (optiland)
+## External cross-check tool (optiland)
 
-A standalone diagnostic, outside the stage order. Build it when an outside reference is wanted, for example before
-publishing a validation claim that names third-party software.
+The standalone `LensVisualizerRayTraceComparator` project already provides the exporter, LV binding, frozen cases,
+optical-engine adapters, result store and reports. Reuse it for N1–N4 rather than implementing the older proposed
+second exporter/Python integration inside S&S. Optiland stays optional and outside S&S's unit-test dependency
+tree. Analytic controls are the CI physics gate; external runs supply reviewed, versioned numerical evidence.
 
-- **What it adds.** L: the analytic controls prove the kernels and two in-engine routes cross-check each other, but
-  no real multi-element lens has been traced by other code in this repo. Rung-by-rung agreement with optiland would
-  separate engine error from data error with an outside witness.
-- **What it does not add.** Accuracy: every measured error in this plan was found and can be fixed without it. It is
-  monochromatic, so it cannot check dispersion, the white-light sum, focus choice or stop sizing.
-- **Changes.** `scripts/mtf-crossval-export.mjs` exports the prepared state (resolved gaps, rear plates, runtime
-  stop, clear radii), per-wavelength fixed indices, our launch rays and an input hash. A Python script under
-  `scripts/optiland/` builds each case with `IdealMaterial`, `RadialAperture` on every surface and the stop,
-  `float_by_stop_size`, robust aiming, angle fields on +Y (mirrored), and never `image_solve` or the `.zmx` reader
-  (it drops A18/A20). It injects our rays and runs `ScalarFFTMTF` with explicit sampling (512 rays, 1024 grid).
-  Committed `reports/data/mtfOptilandReference.json`; a parity report that marks a case STALE on a hash mismatch.
-  Only optiland's `DoubleGauss` sample enters `npm test`, as an inline synthetic prescription.
-- **Acceptance.** Paraxial 1e-9; single rays 1e-8 mm; geometric MTF on identical rays 1e-7; optical path 2e-5
-  waves; FFT MTF differences recorded against the current estimator. Ray rungs run at all five spectral lines.
-- **Benchmark set.** canon-ef-135-f2l-usm, fujifilm-fujinon-gf-63mm-f28-r-wr, sigma-35mm-f14-dg-hsm-a, nikkor-z50f12,
-  sony-fe-20mm-f18-g, sony-fe-400mm-f28-gm-oss, sigma-105mm-f28-dg-dn-macro-art, nikon-z-24-70f4s (both ends),
-  nikon-z-mc-105f28, nikon-z-135f18-plena, sigma-45mm-f28-dg-dn-contemporary.
-- **If built.** Add `agent_docs/gotchas.md` entries for optiland's defaults (paraxial aiming, non-clipping stop,
-  inconsistent T/S labels in `ThroughFocusMTF` and `MTFvsField`).
+Compare the built prescription and indices before rays, rays before optical path, and optical path before MTF.
+For diffraction attribution, retain native FFT as a diagnostic and use qualified raw-wavefront OTF alongside the
+independent calculation from S&S rays. A numerical failure or failed reference qualification is unjudged coverage,
+not agreement. Reference files carry source/configuration hashes and become stale when their inputs change.
+Stage 9 must quote the qualifications and exceptions.

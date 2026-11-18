@@ -113,3 +113,7 @@ The Section F d9 hypothesis remains open pending a source-errata decision; this 
 ### Source thickness discrepancy recheck
 
 Table 7 (PDF page 23) and repeated claim 16 (page 27) of US 4,699,475 both print d9 = 1.0 mm; related Tables 4–6 print 3.5 mm. Native Figure 14 gives an L5/L8 center-thickness ratio of about 29/28 pixels, supporting a thicker L5 without uniquely establishing 3.5 mm. Substituting 3.5 still leaves back-focus residuals of +0.248/+0.352/+0.568 mm at the three source stations and does not reconcile the printed focal lengths. Figure track ratios also favor a thicker L5, but no independent exact track is tabulated. The literal d9 remains; the suspected error is unresolved. No fitted prescription, image-plane or tolerance change was made.
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 22. `fStops` lists f/22, which the slider cut off at the default 16. No optical value changed.

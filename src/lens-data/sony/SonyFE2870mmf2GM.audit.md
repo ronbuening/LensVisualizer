@@ -136,3 +136,7 @@ The retained rows are `consistent` under the 25-diffraction-depth criterion. Exi
 - State 2/1: D5=26.1 mm; D12=2.24 mm; D18=5.13 mm; D26=7.1 mm; D28=5.54 mm; BF=14.31 mm.
 
 Reference evidence: Table 1 (PDF p. 26, printed p. 24): "0(OBJ)" has "(d0)" in the di column, immediately before surface 1.
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 22. `fStops` lists f/22, which the slider cut off at the default 16. No optical value changed.

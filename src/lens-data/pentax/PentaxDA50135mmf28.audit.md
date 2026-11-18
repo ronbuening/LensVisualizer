@@ -33,3 +33,7 @@ Patent: US 7,289,274 B1, Embodiment 5 / Table 5
 - Existing glass labels remain unchanged after the prior relabel pass; no new catalog-backed corrections were identified.
 - APD status remains `false`; the patent identifies ED-role elements by high Abbe number but does not provide partial-dispersion data.
 - The variable-aperture diaphragm and fixed flare stop remain consistent with the patent drawing. No patent clear-aperture or semi-diameter table was found, so existing SD estimates remain unchanged.
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 22. `fStops` lists f/22, which the slider cut off at the default 16. No optical value changed.
