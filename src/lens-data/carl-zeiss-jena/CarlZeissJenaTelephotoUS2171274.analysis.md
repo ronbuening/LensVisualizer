@@ -43,23 +43,23 @@ L1 carries all of the front positive power on its curved first surface; its rear
 
 ## Glass Identification and Selection
 
-The Figure 1 table prints a refractive index headed n_d and an Abbe number for each glass. The model uses those printed pairs unchanged, with the helium d line as the reference. Two of the five match rows of present-day glass catalogues within the printed precision; these rows only name a glass with the same index and Abbe number and do not show which melts Zeiss used.
+The Figure 1 table prints a refractive index headed n_d and an Abbe number for each glass. The model uses those printed pairs unchanged, with the helium d line as the reference. Three of the five match rows of present-day glass catalogues within the printed precision; these rows only name a glass with the same index and Abbe number and do not show which melts Zeiss used.
 
 | Element | n_d | ν | Catalogue row |
 |---|---:|---:|---|
-| L1 | 1.55226 | 63.3 | none (nearest: Schott N-PSK3, 1.55232 / 63.46) |
+| L1 | 1.55226 | 63.3 | Hoya PCD3, 1.55232 / 63.42 |
 | L2 | 1.56735 | 42.8 | Hoya E-FL6, 1.56732 / 42.84 |
 | L3 | 1.58910 | 61.3 | SK5 (Sumita row), 1.58913 / 61.26 |
 | L4 | 1.59667 | 39.1 | none |
 | L5 | 1.67165 | 32.3 | none |
 
-L1 and L3 are crowns; L2 and L4 are light flints; L5 is a dense flint. For L1, L4 and L5 only the printed index and Abbe number are available, so their colour behaviour in the model is an approximation built from those two numbers.
+L1 and L3 are crowns; L2 and L4 are light flints; L5 is a dense flint. For L4 and L5 only the printed index and Abbe number are available, so their colour behaviour in the model is an approximation built from those two numbers.
 
 ## Stop, Apertures and Focus
 
 The patent draws the diaphragm in the first air gap but gives no dimension for it. The model places it 10.3 mm behind the flat rear of L1 and 7.31 mm ahead of the triplet, a reading of the Figure 1 drawing; the two parts add up to the printed 17.61 mm. At f/4 the stop semi-diameter is 9.00 mm.
 
-Clear semi-diameters are not printed either. The model uses 13.5 mm for L1, 8 mm for the triplet and 10 mm for L5, which are close to the proportions of the drawing (about 13.1, 8.6 and 8.9 mm). The on-axis f/4 beam passes every surface with room to spare.
+Clear semi-diameters are not printed either. The model uses 13.5 mm for L1, 8 mm for the triplet and 10 mm for L5. Figure 1, scaled from its vertex spacings, draws about 13.9, 7.6 and 9.3 mm. It also draws L2 standing out beyond L3 and L4 to about 9.0 mm with bevelled corners; the model shows that step as a flat land on the front of L2 out to 9.0 mm, outside the clear aperture. L5 and the rear face of L4 are wider in the model than in the drawing, since the drawn sizes would cut off-axis light. The on-axis f/4 beam passes every surface with room to spare, and the chief ray passes the rims out to about 11° off axis.
 
 The image plane is the computed paraxial focus; the patent prints no back focus figure. The model is an infinity-focus design only, since the patent describes no focusing movement.
 

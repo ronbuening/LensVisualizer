@@ -14,15 +14,23 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * - Stop position. The drawing shows the diaphragm in the first air gap without a dimension. It is placed
  *   10.3 mm behind r2 and 7.31 mm ahead of r3, read from the Figure 1 drawing; the two parts add up to the
  *   printed 17.61 mm.
- * - Clear semi-diameters of every surface (estimated; close to the drawing).
+ * - Clear semi-diameters of every surface, estimated and checked against Figure 1 (drawn at about 16.2 px per
+ *   lens mm at 300 dpi, from the vertex spacings): L1 13.5 (drawn about 13.9), the triplet 8 (drawn about 7.6,
+ *   with L2 standing out to about 9.0 and both outer corners bevelled), L5 10 (drawn about 9.3). L2's front
+ *   carries a drawn rim land out to 9.0 mm (rimExtensionSd), which adds no clear aperture. The triplet's 8 mm
+ *   is within drawing accuracy; the bevelled rear face of L4 (about 6.5 mm) and L5 are kept wider than drawn
+ *   because reducing them would cut off-axis light.
  * - Back focus. The last gap is the computed paraxial back focus, 51.1748 mm. The patent only says the
  *   back focus is about half the focal length.
  *
  * The printed table computes to a focal length of 100.03 mm (+0.03 %).
  *
- * Glass names: L2 and L3 match catalog rows within the printed precision (Hoya E-FL6, Sumita SK5);
- * these are modern rows with the same index and Abbe number, not a statement of the glass Zeiss used.
- * L1, L4 and L5 match no catalog row and keep their printed index and Abbe number.
+ * Image circle: 26.34 mm, from the patent's stated image field of approximately 15° (full angle) at the
+ * design focal length, 2 × 100.03 × tan 7.5°. The patent states no film format.
+ *
+ * Glass names: L1, L2 and L3 match catalog rows within the printed precision (Hoya PCD3, Hoya E-FL6,
+ * Sumita SK5); these are modern rows with the same index and Abbe number, not a statement of the glass
+ * Zeiss used. L4 and L5 match no catalog row and keep their printed index and Abbe number.
  */
 const LENS_DATA = {
   schema: 2,
@@ -35,6 +43,7 @@ const LENS_DATA = {
     specs: ["5 ELEMENTS / 3 GROUPS", "DESIGN F/4", "ALL SPHERICAL", "TELEPHOTO"],
     elementCount: 5,
     groupCount: 3,
+    imageCircleMm: 26.34,
     focalLengthMm: {
       design: 100.03,
     },
@@ -62,7 +71,7 @@ const LENS_DATA = {
       nd: 1.55226,
       vd: 63.3,
       focalLengthMm: 47.18,
-      glass: "Unmatched (nd 1.55226 / V 63.3, crown)",
+      glass: "PCD3 (HOYA catalog equivalent; production supplier unspecified)",
       role: "Front positive lens; supplies all the converging power ahead of the stop.",
       indexReference: "d",
     },
@@ -142,6 +151,7 @@ const LENS_DATA = {
       R: -25.924,
       d: 1.8,
       sd: 8,
+      rimExtensionSd: 9,
       medium: 2,
     },
     {
