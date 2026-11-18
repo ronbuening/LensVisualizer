@@ -11,13 +11,22 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *
  * Inferred, not printed: the diaphragm, which the patent places between the two meniscus components without a
  * position and which Fig. 6 does not draw; it is set midway through the 16 mm central air space S2. The 71.1054 mm
- * image distance is the calculated paraxial back focus for an object at infinity. The clear semi-diameters are
- * estimates, not figure measurements. Only infinity focus is modelled.
+ * image distance is the calculated paraxial back focus for an object at infinity. Only infinity focus is modelled.
+ *
+ * SEMI-DIAMETERS: no clear apertures are printed. Fig. 6 is drawn to scale (vertex spacings and the arcs of R1, R6 and
+ * R10 agree with the table at about 12.5 px/mm at 600 dpi). Measured from it: L1 about 24 mm, the front triplet's
+ * square top about 22.4 mm, the rims of L4 and L5 beside the diaphragm about 16.4 mm, the rear triplet's square top
+ * about 19 mm, and L8 about 19 mm. L8 is square-cut at 19.1 mm, where the f/2 marginal ray crosses it. The other rims
+ * depart from the drawing where the rays or the glass require it. L1 is square-cut at 25.8 mm, not the drawn 24: the
+ * f/2 entrance beam needs 25.1 mm there, and 25.8 mm keeps the off-axis light within 3 points of the earlier
+ * estimate. The rims beside the diaphragm stay at 17.5 mm because the axial beam at the aperture actually reached
+ * needs 17.3 mm at R5. L2 stays at 23 mm and L7 (with L6, drawn square-topped with it) at 18.3 mm, because with the
+ * printed thicknesses the edge of L2 closes at about 23.06 mm and the edge of L7 at about 18.4 mm; the drawing gives
+ * L7 a slightly thicker edge than the table.
  *
  * Aperture reached: f/2 is the paraxial aperture. The real f/2 marginal ray needs 23.2 mm at R3 and R4 and about
- * 19.6 mm at R9 and R10, but with the printed thicknesses the edge of L2 closes at about 23.06 mm and the edge of L7
- * at about 18.4 mm, so those rims cannot grow. With the rims as stored, the widest axial ray that passes enters at
- * 23.39 mm, which is about f/2.15.
+ * 19.6 mm at R9 and R10, which the edge limits above do not allow. The widest axial ray that passes enters at
+ * 23.74 mm, about f/2.11, limited at R9 and R10. The chief ray passes every rim out to about 29 degrees off axis.
  */
 const LENS_DATA = {
   schema: 2,
@@ -46,7 +55,7 @@ const LENS_DATA = {
     patentYear: 1938,
     authors: ["Arthur Warmisham"],
     assignees: ["Kapella Limited"],
-    sdSource: "heuristic",
+    sdSource: "figure-measured",
   },
   elements: [
     {
@@ -157,14 +166,14 @@ const LENS_DATA = {
       label: "1",
       R: 69.25,
       d: 8.2,
-      sd: 28,
+      sd: 25.8,
       medium: 1,
     },
     {
       label: "2",
       R: 263.2,
       d: 0.1,
-      sd: 28,
+      sd: 25.8,
     },
     {
       label: "3",
@@ -209,34 +218,34 @@ const LENS_DATA = {
       label: "8",
       R: -21.32,
       d: 3,
-      sd: 17.5,
+      sd: 18.3,
       medium: 6,
     },
     {
       label: "9",
       R: 200,
       d: 5.5,
-      sd: 18,
+      sd: 18.3,
       medium: 7,
     },
     {
       label: "10",
       R: -38.7,
       d: 0.1,
-      sd: 18,
+      sd: 18.3,
     },
     {
       label: "11",
       R: 208.3,
       d: 6,
-      sd: 25,
+      sd: 19.1,
       medium: 8,
     },
     {
       label: "12",
       R: -100.12,
       d: 71.1054,
-      sd: 25,
+      sd: 19.1,
     },
   ],
   aperture: {
