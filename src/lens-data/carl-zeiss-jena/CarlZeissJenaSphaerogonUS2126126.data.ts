@@ -17,10 +17,13 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * STOP: printed. The diaphragm lies b1 = 110.28 mm behind the front member and b2 = 2.36 mm ahead of the second.
  *
  * INFERRED: the patent prints no diameters and no back focus. The last gap is the computed paraxial back focus
- * (157.88 mm). The rims are estimates sized from the rays: the front element (114.4 mm on the flat face, 92.8 mm on
- * the concave face) and the cemented rear member (11.3 mm) are as large as the chief ray of an 88-degree half-field
- * needs, which is inside what Figure 1 draws (about 120, 94 and 14 mm); the middle meniscus and the front of the
- * rear member stay at 10 mm, where their air gap closes near 10.8 mm.
+ * (157.88 mm). The rims are estimated from Figure 1, which is drawn to scale (about 6.34 px/mm at 300 dpi, checked on
+ * the front-face-to-stop and front-face-to-last-vertex spans), and checked by real-ray trace. The front element keeps
+ * 114.4 mm on the flat face and 92.8 mm on the concave face, the heights the chief ray of an 88-degree half-field
+ * needs and within about 5 % of the drawn 120.5 mm blank and 94 mm concave rim (the figure bevels the edge between
+ * them). The middle meniscus is 11.4 mm on both faces, square-cut as drawn. The cemented rear member is 13.8 mm on
+ * the cemented and rear faces; its concave front face stays at 10 mm, where Figure 1 ends the curve and bevels out to
+ * the full diameter; the air gap to the meniscus is only 0.35 mm there and the two faces would meet near 11.2 mm.
  *
  * FIELD: the patent states an image angle up to approximately 180 degrees and gives no projection law. A real chief
  * ray lands 94.0 mm off axis at 60 degrees and about 111 mm near 88 degrees, between the orthographic and equal-area
@@ -138,14 +141,14 @@ const LENS_DATA = {
       label: "3",
       R: -42.7,
       d: 6.81,
-      sd: 10,
+      sd: 11.4,
       medium: 2,
     },
     {
       label: "4",
       R: -21.2,
       d: 1.31,
-      sd: 10,
+      sd: 11.4,
     },
     {
       label: "5",
@@ -158,14 +161,14 @@ const LENS_DATA = {
       label: "6",
       R: 100.88,
       d: 6.42,
-      sd: 11.3,
+      sd: 13.8,
       medium: 4,
     },
     {
       label: "7",
       R: -23.08,
       d: 157.8809,
-      sd: 11.3,
+      sd: 13.8,
     },
   ],
   aperture: {

@@ -55,7 +55,7 @@ L3, Biconcave Negative: nd = 1.55088, νd = 49.6. f = −25.0 mm.
 L4, Biconvex Positive: nd = 1.60284, νd = 60.6. f = +31.8 mm.
 Glass: not named in the patent. The pair together: f = −452 mm.
 
-Radii −16.15, +100.88 and −23.08 mm, thicknesses 2.99 and 6.42 mm. The patent recommends making the rear member from two lenses of different refractive index joined by a convergent cemented surface, which is what the higher-index positive L4 behind the lower-index negative L3 provides. The 1.31 mm air space between L2 and L3 closes toward the rim, which limits how large these lenses can be.
+Radii −16.15, +100.88 and −23.08 mm, thicknesses 2.99 and 6.42 mm. The patent recommends making the rear member from two lenses of different refractive index joined by a convergent cemented surface, which is what the higher-index positive L4 behind the lower-index negative L3 provides. The 1.31 mm air space between L2 and L3 closes toward the rim, so L3's concave front face ends near 10 mm from the axis; Figure 1 bevels the pair from there out to its full diameter.
 
 ## Glass Identification
 
@@ -74,7 +74,7 @@ The patent states the field ("up to approximately 180°") and no projection law.
 
 The image of the full half-sphere is therefore a circle a little over 220 mm across, about 2.2 focal lengths. The mapping lies between the orthographic law (100 mm at 90°) and the equal-area law (141 mm at 90°). The data file declares the equal-area fisheye law, the nearer of the two the viewer supports, so distortion figures shown against that reference include a large real departure and should be read with that in mind.
 
-The patent prints no lens diameters. The rims in the model are estimates, made just large enough for the chief ray of an 88° half-field and no larger than Figure 1 draws. The viewer traces a half-field of 76°, the widest at which its chief-ray solve is dependable with these rims.
+The patent prints no lens diameters. Figure 1 is drawn to scale, and the rims in the model are read from it: L2 at 11.4 mm and the cemented pair at 13.8 mm from the axis. The front element is 114.4 mm on its flat face and 92.8 mm on its concave face, the heights the chief ray of an 88° half-field needs and within about 5 % of the drawing, which shows a 120.5 mm blank bevelled down to a 94 mm concave face. The viewer traces a half-field of 76°, the widest at which its chief-ray solve is dependable with these rims. At f/8 the rims pass the whole axial beam; at the widest traced field they pass about four fifths of the beam that fills the stop.
 
 ## Focus Mechanism
 

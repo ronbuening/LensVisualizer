@@ -48,7 +48,7 @@ Open:
 
 - Name, key, subtitle and specs wording ("NOT FACTORY IDENTITY", "NOT PROVEN RETAIL IDENTITY") for the cleanup pass; whether the name should mention the Sphaerogon.
 - `indexReference` stays "d" (text table); the drawing sheet prints nD. Glass labels: none of the four matched a catalogue glass.
-- Rims against Figure 1 for the semi-diameter pass: front element about 120 mm overall and 94 mm clear, L2 about 11.5 mm, rear pair about 14 mm; the off-axis bundle is heavily vignetted at the widest fields with the present minimum rims.
+- Rims against Figure 1 for the semi-diameter pass: front element about 120 mm overall and 94 mm clear, L2 about 11.5 mm, rear pair about 14 mm; the off-axis bundle is heavily vignetted at the widest fields with the present minimum rims. (Closed 2026-11-18: L2 and the rear pair now follow the figure; the front element was within 5 % and kept; the stop-filled beam loses about a fifth at 76°, see the semi-diameter pass.)
 - Projection: neither supported fisheye law fits the real mapping well; an image circle (about 223 mm at 180° for 100 mm) is not declared.
 - Whether the traced half-field can go beyond 76° is a question for the chief-ray solve, not this file.
 
@@ -70,8 +70,40 @@ Engine numbers before and after are identical: focal length 100.1186 mm, f/8, st
 
 Open:
 
-- Rims against Figure 1 for the semi-diameter pass: front element about 120 mm overall and 94 mm clear, middle meniscus about 11.5 mm, rear pair about 14 mm.
+- Rims against Figure 1 for the semi-diameter pass: front element about 120 mm overall and 94 mm clear, middle meniscus about 11.5 mm, rear pair about 14 mm. (Closed 2026-11-18 in the semi-diameter pass.)
 - No lens mount, image format or image circle is declared; the patent states the field (about 180°) and no format. The traced image circle would be about 223 mm at 180° for the 100 mm focal length.
 - Neither supported fisheye law fits the real mapping closely; the traced half-field is 76° against the patent's roughly 90°.
 - `indexReference` is "d" from the text table; the drawing sheet prints nD.
 - Whether DE 672 393 prints the same numbers has not been checked.
+
+## 2026-11-18 — Semi-diameter pass against the patent figure
+
+Source: `patents/US2126126A.pdf`, page 1 (drawing sheet 1, Figure 1), the example this file models. The sheet is a 300 dpi bitonal scan; it was measured at its native 300 dpi with the silhouette profiler and checked by eye on a 600 dpi render.
+
+Scale: the figure is drawn to scale. The optical axis lies on row 1663. The flat front face crosses the axis at x = 713.5, the diaphragm bar at x = 1454 and the last vertex at x = 1581. Front face to diaphragm is 740.5 px for 116.83 mm (d1 + b1), giving 6.34 px/mm. Front face to last vertex is 867.5 px for 136.72 mm, giving 6.35 px/mm. Diaphragm to last vertex is 127 px for 19.89 mm, giving 6.39 px/mm. An overlay of the model section on the scan at 6.34 px/mm puts the concave face of L1 and the rear group's vertices on the drawn lines. Heights are the mean of the upper and lower outlines (the scan sits a few pixels off centre), less half the drawn line width of about 5 px.
+
+| Surface | Before | Figure 1 | After | Evidence |
+|---|---|---|---|---|
+| 1 (L1 flat front) | 114.4 | 120.5 (blank top) | 114.4 | Within about 5 %; kept. The 88° chief ray needs 114.3 here. |
+| 2 (L1 concave) | 92.8 | 94 (where the curve meets the drawn bevel) | 92.8 | Within about 1.5 %; kept. |
+| 3, 4 (L2) | 10 | 11.4, square-cut | 11.4 | Figure 14 % larger, both faces drawn to one height. |
+| 5 (L3 front) | 10 | about 10.4, then a bevel out to the full diameter | 10 | Within about 4 %; kept. The air gap to L2 is 0.35 mm at 10 mm and the faces would meet near 11.2 mm. |
+| 6, 7 (L3/L4 cemented face, L4 rear) | 11.3 | 13.8 (flat top of the pair; the rear face runs to it) | 13.8 | Figure 22 % larger. |
+
+All four changes are raises: no face is below its starting value, so nothing has to earn its light. The figure draws L1 with a flat top at 120.5 mm that bevels down to the 94 mm concave rim, and draws L3 with a bevel from its front face up to the pair's flat top. The viewer joins each element's two rims with a straight edge, so both bevels appear as single diagonal edges.
+
+Clearance: the surface check passes, and the aperture check finds no rim below the f/8 axial beam. The axial marginal ray needs 8.28, 8.73, 8.65, 9.54 and 10.05 mm on surfaces 3 to 7. Nothing is trimmed in the drawing. The iris stays in air, 110.12 mm behind L1 and 1.56 mm ahead of L2. The image-circle and field-coverage checks skip the file because it declares no image format.
+
+Engine numbers before and after are identical: focal length 100.1186 mm, f/8, stop radius 8.2423 mm, back focus 157.8809 mm, half-field 76°. The viewer's chief-ray solve converges at every half-degree to 76° before and after.
+
+Illumination: the viewer's vignetting analysis does not run on fisheye-projection lenses, so the illumination check was made two ways:
+
+- A separate grid trace of the beam that fills the f/8 stop, launched at the true field angle, gives this transmission (before → after): 100 → 100 % to 30°, 94.9 → 96.8 % at 45°, 85.1 → 87.7 % at 60°, 79.6 → 82.4 % at 70°, and 77.1 → 79.9 % at 76°.
+- The viewer's vignetting curve on a copy without the fisheye projection (rectilinear launch, traced only to 12.4°) loses nothing and gains up to 3 points.
+
+Metadata: no lens mount, image format or image circle is set. The Sphaerogon prototypes were 16 and 19 mm lenses (Cavina), but this model is the patent's 100 mm normalisation, whose 180° image circle is about 223 mm across, so no real format fits it as built. The patent states only the 1:8 aperture. The f-stop list and `maxFNumber` are kept. The best source (Marco Cavina's Perimetar, Sphaerogon, Pleon study) names the design "Carl Zeiss Jena Sphaerogon type #1"; the file's name "CARL ZEISS JENA SPHAEROGON 100mm f/8 (US 2,126,126 Design)" matches it at the patent's scale.
+
+Open:
+
+- L1's flat face could go to the drawn 120.5 mm blank height if a closer silhouette is wanted. That is a 5 % raise; it costs no light and was left inside measurement noise.
+- The drawn bevels on L1 and on the front of L3 cannot be shown, because the viewer joins rims with straight edges.
