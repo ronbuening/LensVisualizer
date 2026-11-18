@@ -13,16 +13,16 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * position and which Fig. 6 does not draw; it is set midway through the 16 mm central air space S2. The 71.1054 mm
  * image distance is the calculated paraxial back focus for an object at infinity. Only infinity focus is modelled.
  *
- * SEMI-DIAMETERS: no clear apertures are printed. Fig. 6 is drawn to scale (vertex spacings and the arcs of R1, R6 and
- * R10 agree with the table at about 12.5 px/mm at 600 dpi). Measured from it: L1 about 24 mm, the front triplet's
- * square top about 22.4 mm, the rims of L4 and L5 beside the diaphragm about 16.4 mm, the rear triplet's square top
- * about 19 mm, and L8 about 19 mm. L8 is square-cut at 19.1 mm, where the f/2 marginal ray crosses it. The other rims
- * depart from the drawing where the rays or the glass require it. L1 is square-cut at 25.8 mm, not the drawn 24: the
- * f/2 entrance beam needs 25.1 mm there, and 25.8 mm keeps the off-axis light within 3 points of the earlier
- * estimate. The rims beside the diaphragm stay at 17.5 mm because the axial beam at the aperture actually reached
- * needs 17.3 mm at R5. L2 stays at 23 mm and L7 (with L6, drawn square-topped with it) at 18.3 mm, because with the
- * printed thicknesses the edge of L2 closes at about 23.06 mm and the edge of L7 at about 18.4 mm; the drawing gives
- * L7 a slightly thicker edge than the table.
+ * SEMI-DIAMETERS: no clear apertures are printed. Fig. 6 is drawn to scale except that the two 0.1 mm air spaces are
+ * drawn about 1.2 mm wide: the vertex span R3 to R10 and the arcs of R3, R5, R7 and R10 fit the table at about
+ * 12.2 px/mm at 600 dpi. Measured from it: L1 about 24.5 mm, the front triplet's square top about 22.8 mm, the rims of
+ * L4 and L5 beside the diaphragm about 16.7 and 17.0 mm, the rear triplet's square top about 19.5 mm, and L8 about
+ * 19.4 mm. L2 is square-cut at 23 mm and L8 at 19.1 mm, where the f/2 marginal ray crosses it. The other rims depart
+ * from the drawing where the rays or the glass require it. L1 is square-cut at 25.8 mm, not the drawn 24.5: a smaller
+ * L1 trims the oblique beams by more than 3 points of light against the earlier estimate. The rims beside the
+ * diaphragm stay at 17.5 mm because the axial beam at the aperture actually reached needs 17.3 mm at R5. L7 (with L6,
+ * drawn square-topped with it) stays at 18.3 mm because with the printed thicknesses its edge closes at about 18.4 mm
+ * (that of L2 at about 23.06 mm); the drawing gives L7 a thicker edge than the table.
  *
  * Aperture reached: f/2 is the paraxial aperture. The real f/2 marginal ray needs 23.2 mm at R3 and R4 and about
  * 19.6 mm at R9 and R10, which the edge limits above do not allow. The widest axial ray that passes enters at
@@ -55,7 +55,6 @@ const LENS_DATA = {
     patentYear: 1938,
     authors: ["Arthur Warmisham"],
     assignees: ["Kapella Limited"],
-    sdSource: "figure-measured",
   },
   elements: [
     {
