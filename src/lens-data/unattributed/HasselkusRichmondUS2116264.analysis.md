@@ -39,23 +39,23 @@ Two features of the printed table stand out. The two negative shells are identic
 
 The focal lengths below are computed for each element alone in air from the printed radii, thicknesses and Nd.
 
-### L1 / Lens I — Positive Meniscus
+### Lens I — Positive Meniscus
 
 R1 = +36.15 mm, R2 = +54.15 mm, thickness 14.33 mm, Nd 1.6202, ν 60.4. Focal length +134.39 mm. This is the strongest positive element. The patent requires the single front positive lens to be stronger than either of the two rear positive lenses, and it is.
 
-### L2 / Lens II — Negative Meniscus
+### Lens II — Negative Meniscus
 
 R3 = +29.45 mm, R4 = +23.75 mm, thickness 1.61 mm, Nd 1.7174, ν 29.5. Focal length −193.93 mm. A thin dense-flint shell that supplies negative power close to the diaphragm for colour correction and field flattening.
 
-### L3 / Lens III — Negative Meniscus
+### Lens III — Negative Meniscus
 
 R5 = −23.75 mm, R6 = −29.45 mm, thickness 1.61 mm, Nd 1.7174, ν 29.5. Focal length −193.93 mm. The mirror image of lens II. The patent asks only that the two negative lenses have approximately the same radii; the example makes them identical.
 
-### L4 / Lens IV — Positive Meniscus
+### Lens IV — Positive Meniscus
 
 R7 = −55.65 mm, R8 = −44.05 mm, thickness 6.20 mm, Nd 1.6202, ν 60.4. Focal length +282.87 mm.
 
-### L5 / Lens V — Positive Meniscus
+### Lens V — Positive Meniscus
 
 R9 = −47.90 mm, R10 = −38.95 mm, thickness 10.70 mm, Nd 1.6202, ν 60.4. Focal length +230.59 mm. This is the added lens that distinguishes the patent from the earlier four-meniscus form.
 
@@ -68,7 +68,7 @@ The patent prints three figures for each of two glasses and names neither:
 | I, IV, V | 1.6202 | 1.6329 | 60.4 |
 | II, III | 1.7174 | 1.7492 | 29.5 |
 
-The model traces the printed Nd and ν as helium d-line values. The first pair is a dense barium crown and the second a dense flint; the patent names neither and the supplier of the 1936 melts is unknown. The flint agrees with the Schott SF1 catalogue row (1.71736, 29.51) at the printed precision, and the data file labels it SF1 on that basis; the trace keeps the printed Nd. The crown is 0.0002 from the nearest catalogue row, SK16 (1.62041, 60.32), which is outside the tolerance for a label, so it stays unmatched. The printed Ng values are recorded in the data file as notes.
+The model traces the printed Nd and ν as helium d-line values. The first pair is a dense barium crown and the second a dense flint; the patent names neither and the supplier of the 1936 melts is unknown. The flint agrees with the Schott SF1 catalogue row (1.71736, 29.51) at the printed precision, and the data file labels it SF1 on that basis; the trace keeps the printed Nd. The crown is 0.0002 from the nearest catalogue row, SK16 (1.62041, 60.32), which is outside the tolerance for a label, so it stays unmatched. The table names its lines with the subscripts d and g, and the numbers confirm helium d rather than the older sodium D line: the flint's printed Ng − Nd, 0.0318, equals the SF1 catalogue's ng − nd, while measured from sodium D the same glass gives 0.0320. The printed Ng values are not entered separately, because the model already reproduces both: it traces the crown at a g-line index of 1.63291, estimated from Nd and ν, and the flint at 1.74920 on the SF1 curve.
 
 ## Focus Mechanism
 
@@ -98,7 +98,7 @@ The patent's conditions hold in the model: every radius is shorter than the foca
 
 At F/5.6 the marginal axial ray of the printed prescription focuses 1.91 mm beyond the paraxial focus, the 85 % zone 0.42 mm beyond it, and the 70 % and 50 % zones 0.19 mm and 0.32 mm short of it. That is the usual zonal pattern of this lens type at an aperture the patent itself calls approximate.
 
-The field needs a note. The drawing is to scale, and it draws each lens with its convex face running out to the element's edge and its concave face, the one toward the diaphragm, ending a little lower with a short flat step square to the axis. The model follows it. The rims are the heights a chief ray reaches at the stated 50° half-field, all within the drawn outlines: the convex faces end at 33.4 mm (I), 23.7 mm (II, III), 33.4 mm (IV) and 35.8 mm (V), and the concave faces end lower with drawn flat steps out to the element's edge. The outer surfaces of lenses I and V turn steeply near their rims, as drawn: at its 33.4 mm rim the front surface is tilted 67.5° from the plane square to the axis, beyond the 64.2° the model allows by default, so this lens carries a 68° limit. The chief ray then passes every rim to a half-field of 50.0°, an image height of about 231.5 mm, which is the patent's 100° field. Off-axis bundles are progressively vignetted well before that edge, as the drawing's small inner shells also imply.
+The field needs a note. The drawing is to scale, and it draws each lens with its convex face running out to the element's edge and its concave face, the one toward the diaphragm, ending a little lower with a short flat step square to the axis. The model follows it. The rims are the heights a chief ray reaches at the stated 50° half-field, all within the drawn outlines: the convex faces end at 33.4 mm (I), 23.7 mm (II, III), 33.4 mm (IV) and 35.8 mm (V), and the concave faces end lower with drawn flat steps out to the element's edge. The outer surfaces of lenses I and V turn steeply near their rims, as drawn: at its 33.4 mm rim the front surface is tilted 67.5° from the plane square to the axis, beyond the 64.2° the model allows by default, so this lens carries a 68° limit. The chief ray then passes every rim to a half-field of 50.0°, an image height of about 231.5 mm, which is the patent's 100° field; the concave face of lens V, kept at the top of its drawn height, is the rim that ends it. Off-axis bundles are progressively vignetted well before that edge, as the drawing's small inner shells also imply.
 
 ## Sources
 

@@ -17,7 +17,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * 1.7174 / 1.7492 / 29.5 for lenses II and III. The patent names no glass. The flint pair is the Schott SF1
  * catalogue row (1.71736 / 29.51) at the printed precision and carries that label; the crown pair matches no
  * catalogue row within 0.0001 (the nearest, SK16 at 1.62041 / 60.3, is 0.0002 away) and stays unmatched. The trace
- * keeps the printed Nd in both cases.
+ * keeps the printed Nd in both cases. The table names its lines (subscripts d and g) and they read as helium d: the
+ * flint's printed Ng − Nd, 0.0318, is SF1's ng − nd (0.03180), against 0.03201 from the sodium D line. The traced g
+ * indices, 1.63291 (crown, normal-line estimate) and 1.74920 (flint, SF1 curve), reproduce both printed Ng values.
  *
  * STOP (inferred): the drawing shows the diaphragm A in the 40.56 mm central air space s2 but the table gives it no
  * position. It is placed at the middle, 20.28 mm from each neighbouring surface, where the drawing shows it.
@@ -29,7 +31,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * axis. Read from the drawing, the convex faces reach about 34.3 (I), 24.1 (II, III), 33.4 (IV) and 35.9 mm (V),
  * and the concave faces end at about 33.0, 20.8, 21.0, 32.0 and 33.75 mm (±0.15 mm). Each rim is the height a
  * chief ray reaches at the patent's 50° half-field (image height 231.8 mm), rounded up to 0.1 mm, except lens IV,
- * which is drawn larger than that and keeps its drawn rims. No rim exceeds the drawing:
+ * which is drawn larger than that and keeps its drawn rims, and R9, rounded down to stay on the drawing. No rim
+ * exceeds the drawing:
  * - Lens I: R1 33.4 mm (50° chief ray 33.38). R2 32.5 mm with a flat land (rimExtensionSd) to 33.4 mm, as drawn.
  * - Lenses II and III: 23.7 mm on the convex faces and 20.6 mm on the concave ones (50° chief ray 23.63 and 20.50);
  *   the concave faces carry lands out to 23.7 mm.
@@ -39,8 +42,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *   the upper end of its drawing reading.
  * The lands are drawn only and do not affect the trace. R1 and R10 run past the validator's default rim-slope limit
  * (64.2°), as the drawing shows them; checks.maxRimAngleDeg = 68 is the smallest whole degree that admits R1 at
- * 33.4 mm (67.5°). The chief ray passes every rim to a half-field of 50.0° (image height about 231.5 mm), the
- * patent's 100° field; R1 stops it just past that. Off-axis bundles are vignetted well before the edge.
+ * 33.4 mm (67.5°). The chief ray passes every rim to a half-field of 50.0° (49.97°, image height about 231.5 mm),
+ * the patent's 100° field: R9, held 0.02 mm under the 50° chief ray at the top of its drawing reading, stops it
+ * there, and R1 would stop it at 50.05°. Off-axis bundles are vignetted well before the edge.
  *
  * IMAGE PLANE (computed): the patent prints no back focus. The final spacing is the paraxial back focus of the
  * printed prescription, 152.9768 mm.
@@ -80,66 +84,66 @@ const LENS_DATA = {
   elements: [
     {
       id: 1,
-      name: "L1",
-      label: "Element 1",
+      name: "I",
+      label: "Element I",
+      diagramLabel: "I",
       type: "Positive Meniscus",
       glass: "Unmatched (Nd 1.6202 / V 60.4)",
       nd: 1.6202,
       vd: 60.4,
       indexReference: "d",
-      indexReferenceNote: "The patent prints Nd 1.6202, Ng 1.6329 and ν 60.4 for lenses I, IV and V.",
       focalLengthMm: 134.39,
       role: "Thick front positive crown meniscus, concave to the stop",
     },
     {
       id: 2,
-      name: "L2",
-      label: "Element 2",
+      name: "II",
+      label: "Element II",
+      diagramLabel: "II",
       type: "Negative Meniscus",
       glass: "SF1 (Schott)",
       nd: 1.7174,
       vd: 29.5,
       indexReference: "d",
-      indexReferenceNote: "The patent prints Nd 1.7174, Ng 1.7492 and ν 29.5 for lenses II and III.",
       focalLengthMm: -193.93,
       role: "Thin negative flint shell in front of the stop",
     },
     {
       id: 3,
-      name: "L3",
-      label: "Element 3",
+      name: "III",
+      label: "Element III",
+      diagramLabel: "III",
       type: "Negative Meniscus",
       glass: "SF1 (Schott)",
       nd: 1.7174,
       vd: 29.5,
       indexReference: "d",
-      indexReferenceNote: "The patent prints Nd 1.7174, Ng 1.7492 and ν 29.5 for lenses II and III.",
       focalLengthMm: -193.93,
-      role: "Thin negative flint shell behind the stop, mirror image of L2",
+      role: "Thin negative flint shell behind the stop, mirror image of lens II",
     },
     {
       id: 4,
-      name: "L4",
-      label: "Element 4",
+      name: "IV",
+      label: "Element IV",
+      diagramLabel: "IV",
       type: "Positive Meniscus",
       glass: "Unmatched (Nd 1.6202 / V 60.4)",
       nd: 1.6202,
       vd: 60.4,
       indexReference: "d",
-      indexReferenceNote: "The patent prints Nd 1.6202, Ng 1.6329 and ν 60.4 for lenses I, IV and V.",
       focalLengthMm: 282.87,
       role: "First rear positive crown meniscus",
     },
     {
       id: 5,
-      name: "L5",
-      label: "Element 5",
+      name: "V",
+      label: "Element V",
+      diagramLabel: "V",
       type: "Positive Meniscus",
       glass: "Unmatched (Nd 1.6202 / V 60.4)",
       nd: 1.6202,
       vd: 60.4,
       indexReference: "d",
-      indexReferenceNote: "The patent prints Nd 1.6202, Ng 1.6329 and ν 60.4 for lenses I, IV and V.",
       focalLengthMm: 230.59,
       role: "Added deep rear positive crown meniscus",
     },
