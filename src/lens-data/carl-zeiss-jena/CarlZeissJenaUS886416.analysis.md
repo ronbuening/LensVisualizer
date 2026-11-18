@@ -1,4 +1,4 @@
-# Rudolph symmetric double objective, 100 mm f/6.3 — US 886,416 Example 2
+# CARL ZEISS JENA 100mm f/6.3 (US 886,416 Design) — US 886,416 Example 2
 
 ## Patent Reference and Design Identification
 
@@ -10,9 +10,9 @@
 **Assignee:** Carl-Zeiss-Stiftung (the patent's wording is "the firm of Carl Zeiss, of Jena")  
 **Example details:** Example 2, Fig. 2; table on specification page 1, tabulated for a focal length of 100
 
-The model is the second of the patent's two numerical examples. Example 1 (Fig. 1) is a single cemented triplet of relative aperture 1:11 with the diaphragm in front. Example 2 (Fig. 2) places two equal triplets symmetrically in front of and behind the diaphragm to make a double objective of relative aperture 1:6.3, which the patent describes as spherically, astigmatically and chromatically corrected. Example 2 is the one modelled here.
+The CARL ZEISS JENA 100mm f/6.3 (US 886,416 Design) is the second of the patent's two numerical examples. Example 1 (Fig. 1) is a single cemented triplet of relative aperture 1:11 with the diaphragm in front. Example 2 (Fig. 2) places two equal triplets symmetrically in front of and behind the diaphragm to make a double objective of relative aperture 1:6.3, which the patent describes as spherically, astigmatically and chromatically corrected. Example 2 is the one modelled here.
 
-The patent names no product. The nearest Zeiss product is the Doppel-Amatar 1:6.8, a symmetric lens of two cemented triplets sold from about 1910; the Science Museum Group holds a 180 mm example. Collectors have suggested that this patent covers the Amatar, but that link is not documented by Zeiss material found for this file, the patent example is f/6.3 where the product is f/6.8, and the centre element of the patent triplet is biconvex where a Zeiss brochure section is reported to show a plano-convex one. The link is therefore unproven, and the model is presented as a patent design at the patent's own scale, not as a production lens.
+The patent names no product and none is documented for this design. Collectors have linked the patent to the Zeiss Doppel-Amatar 1:6.8, a symmetric lens of two cemented triplets from about 1910, but that suggestion comes from a forum discussion that could be read only as search-result summaries, the product is f/6.8 where the patent example is f/6.3, and the link is unproven. The design is therefore shown at the patent's own focal length of 100.
 
 ## Optical Architecture
 
@@ -48,15 +48,15 @@ The patent identifies each glass by two refractive indices: nD for the solar D l
 | II | L2, L5 | 1.5832 | 1.5972 |
 | III | L1, L6 | 1.6240 | 1.6448 |
 
-No Abbe number and no glass type or maker is printed. The data file stores the printed nD values with the sodium D reference and gives no dispersion, so the model is monochromatic: it shows the geometry and the D-line ray paths but not the colour correction that the patent claims. No modern catalogue glass was found that matches any of the three, and no period glass was identified, so the elements carry no glass name.
+No Abbe number and no glass type or maker is printed. The data file stores the printed nD values with the sodium D reference and gives no dispersion, so the model is monochromatic: it shows the geometry and the D-line ray paths but not the colour correction that the patent claims. No modern catalogue glass matches any of the three and no period glass was identified, so each element is labelled as unmatched with its two printed indices.
 
 ## Focus Mechanism
 
 The patent gives no focusing data, object distance or close-focus state. A lens of this kind was focused by moving the whole objective, but the model holds only the infinity state and no spacing moves.
 
-## Model Verification
+## Model Scope and Limitations
 
-Every printed value was compared with the patent page image: four radii, three thicknesses, the diaphragm distance and three indices, each used twice because the objective is symmetric. All agree. The table prints radii without signs; the signs in the data file follow Fig. 2 and the wording of the claims.
+The model uses the printed radii, thicknesses, diaphragm distance and indices, each twice because the objective is symmetric. The table prints radii without signs; the signs in the data file follow Fig. 2 and the wording of the claims.
 
 | Quantity | Patent | Model |
 |---|---:|---:|
@@ -72,5 +72,4 @@ Three things in the model are not printed in the patent. The clear radii, 8.5 mm
 ## Sources
 
 1. Paul Rudolph, **US Patent 886,416, "Photographic Objective,"** assigned to the firm of Carl Zeiss, Jena; filed July 12, 1907, granted May 5, 1908. Example 2 and Fig. 2. https://patents.google.com/patent/US886416
-2. Science Museum Group, **Zeiss Doppel-Amatar lens**, 180 mm f/6.8 (object record, no optical section). https://collection.sciencemuseumgroup.org.uk/objects/co8207117/zeiss-doppell-amatar-lens
-3. Photrio forum, **"Zeiss Doppel-Amatar on the auction site"**, collector discussion of the Amatar's construction and of this patent, known here from search summaries only. https://www.photrio.com/forum/threads/zeiss-doppel-amatar-on-the-auction-site.89108
+2. Photrio forum, **"Zeiss Doppel-Amatar on the auction site"**, collector discussion of the Doppel-Amatar and of this patent. The page could not be opened; its content is known here from search-result summaries only. https://www.photrio.com/forum/threads/zeiss-doppel-amatar-on-the-auction-site.89108

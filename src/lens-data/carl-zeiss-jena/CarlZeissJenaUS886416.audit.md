@@ -21,13 +21,37 @@ Source: US 886,416 (Paul Rudolph, assigned to the firm of Carl Zeiss; granted 19
 
 **First-order values after the changes.** Focal length 99.867 mm, f/6.3, back focus 91.181 mm (paraxial, zero defocus), vertex length 19.8 mm, total length 110.981 mm, stop radius 6.89 mm. Each cemented triplet: 173.58 mm.
 
-**Validator results.** Surface audit: no errors. Aperture audit: within 3 % of the stated f-number, no rim, trace or iris limit. Real-ray clearance at f/6.3 and a 8.7 mm image height (5°): no axial clipping and no blocked chief ray. The image-circle and field-coverage audits skip the lens (no image format; hidden).
+**Validator results.** Surface audit: no errors. Aperture audit: within 3 % of the stated f-number, no rim, trace or iris limit. Real-ray clearance at f/6.3 and a 8.7 mm image height (5°): no axial clipping and no blocked chief ray. The image-circle and field-coverage audits skip the lens (no image format; the file was not yet public at that date).
 
 **Open:**
 
-- Name, key, subtitle and specs are as delivered ("D-line patent reference", "NO VERIFIED PRODUCTION MATCH", "PATENT REFERENCE", `focus.description`) and need the house wording; the file stem may also change.
-- `closeFocusM: 1e15` awaits the house infinity form.
+- Name, key, subtitle and specs are as delivered ("D-line patent reference", "NO VERIFIED PRODUCTION MATCH", "PATENT REFERENCE", `focus.description`) and need the house wording; the file stem may also change. (Closed 2026-11-17: renamed and reworded.)
+- `closeFocusM: 1e15` awaits the house infinity form. (Closed 2026-11-17: `1e15` is the house form for an infinity-only model.)
 - Rims are estimates (8.5 / 7.8 mm); Fig. 2 scales to roughly 7.4 mm. For the semi-diameter pass.
 - The 5° trace field is arbitrary; the patent states no field.
 - Dispersion: the patent prints nG′ (1.4714, 1.5972, 1.6448) but no Abbe number. A two-term fit through nD and nG′ gives roughly ν ≈ 67, 53 and 38 for glasses I, II and III. These are estimates, not source data, and are not in the model; no modern or period glass was matched.
 - Product link to the Doppel-Amatar remains unproven; no public optical section was obtained.
+
+## 2026-11-17 — Cleanup and wording pass
+
+**Fields changed.**
+
+- `subtitle`: "1908 SYMMETRIC CEMENTED TRIPLETS; NO VERIFIED PRODUCTION MATCH" → "US 886,416 A, Example 2 — Rudolph symmetric double objective".
+- `specs`: "6 ELEMENTS / 2 GROUPS", "D-LINE ONLY", "PATENT REFERENCE" → "6 ELEMENTS / 2 GROUPS", "DESIGN F/6.3", "ALL SPHERICAL". No focal-length line, because the patent itself prints f = 100.
+- `focus.description`: "Infinity-only patent reconstruction." → "Infinity focus only; the patent gives no close-focus data." `closeFocusM` stays `1e15`; no marketed close focus is recorded because no product is documented.
+- Element `type`: "Biconvex" → "Biconvex Positive" (L2, L5); "Biconcave" → "Biconcave Negative" (L3, L4). "Negative Meniscus" kept (L1, L6).
+- Cemented group ids: `T1`, `T2` → `C1`, `C2` on all six elements and in `doublets` (one entry per triplet).
+- Header comment: the phrase about scaling removed (the patent prints f = 100); a note added that no glass is identified.
+
+**Glass labels.** None existed. Added `Unmatched (nD 1.6240, nG′ 1.6448)` on L1 and L6, `Unmatched (nD 1.5832, nG′ 1.5972)` on L2 and L5, `Unmatched (nD 1.4626, nG′ 1.4714)` on L3 and L4. The patent prints no Abbe number, so no catalogue row can be tested at the house tolerance and none is claimed; the model stays monochromatic.
+
+**Analysis.** Title and first sentence now use the catalogue name. The product paragraph is reduced to one statement: no product is documented, and the Doppel-Amatar suggestion rests on a forum page that returned an access error and was read only as search-result summaries. The Science Museum entry was removed from the sources because it too was seen only as a search result. "Model Verification" renamed "Model Scope and Limitations" and its checking sentence removed. The glass section now describes the unmatched labels.
+
+**Engine numbers, before and after (identical).** Focal length 99.8670960451683 mm, f/6.3, half field 5°, stop radius 6.8879701492116565 mm, back focus 91.1810 mm, total length 110.981 mm. Surface audit: no errors. Aperture audit: within 3 % of the stated f-number, no rim, trace or iris limit.
+
+**Open:**
+
+- Rims are estimates (8.5 mm outer, 7.8 mm inner) against roughly 7.4 mm scaled from Fig. 2; L2 and L5 have an edge about 0.17 mm thick at 7.8 mm. For the semi-diameter pass.
+- `lensMounts`, `imageFormat` and an image circle are not set: the patent states no format, field angle or image size. The 5° trace field is a working value.
+- Dispersion: an Abbe number could only be estimated from nD and nG′ (roughly 67, 53 and 38 for glasses I, II and III); not applied.
+- Product link to the Doppel-Amatar is unproven; no maker catalogue or optical section was obtained.

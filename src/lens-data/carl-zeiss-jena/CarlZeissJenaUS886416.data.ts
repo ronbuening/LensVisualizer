@@ -7,11 +7,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * not used here.
  *
  * The patent tabulates the example for a focal length of 100, and every printed radius, thickness and distance is
- * used unchanged, with no scaling or fitting. The printed prescription traces to a paraxial focal length of 99.87 mm.
+ * used as printed. The printed prescription traces to a paraxial focal length of 99.87 mm.
  * The table prints radii as magnitudes; their signs follow Figure 2 and the claims (the collective cemented surface
  * is convex toward the diaphragm, the dispersive one concave toward it). The diaphragm position is printed: b = 2.7
  * on each side. Indices are the patent's nD values for the solar D line. The patent also prints nG' for each glass
- * (1.4714, 1.5972, 1.6448 for glasses I, II, III) but no Abbe number, so the model carries no dispersion.
+ * (1.4714, 1.5972, 1.6448 for glasses I, II, III) but no Abbe number, so the model carries no dispersion
+ * and no glass is identified.
  *
  * Inferred, not printed: the clear semi-diameters (8.5 mm on the outer faces, 7.8 mm inside, estimates that pass the
  * f/6.3 axial beam; Figure 2 scales to roughly 7.4 mm); the 91.181 mm back focus, which is the computed paraxial image
@@ -23,10 +24,10 @@ const LENS_DATA = {
   key: "carl-zeiss-jena-100mm-f63-us886416",
   maker: "Carl Zeiss Jena",
   name: "CARL ZEISS JENA 100mm f/6.3 (US 886,416 Design)",
-  subtitle: "1908 SYMMETRIC CEMENTED TRIPLETS; NO VERIFIED PRODUCTION MATCH",
+  subtitle: "US 886,416 A, Example 2 — Rudolph symmetric double objective",
   visible: true,
   catalog: {
-    specs: ["6 ELEMENTS / 2 GROUPS", "D-LINE ONLY", "PATENT REFERENCE"],
+    specs: ["6 ELEMENTS / 2 GROUPS", "DESIGN F/6.3", "ALL SPHERICAL"],
     elementCount: 6,
     groupCount: 2,
     focalLengthMm: { design: 99.87 },
@@ -48,53 +49,58 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       focalLengthMm: -34.93,
       nd: 1.624,
+      glass: "Unmatched (nD 1.6240, nG′ 1.6448)",
       indexReference: "D",
       role: "Outer negative meniscus of the front cemented triplet",
-      cemented: "T1",
+      cemented: "C1",
     },
     {
       id: 2,
       name: "L2",
       label: "Element 2",
-      type: "Biconvex",
+      type: "Biconvex Positive",
       focalLengthMm: 15.71,
       nd: 1.5832,
+      glass: "Unmatched (nD 1.5832, nG′ 1.5972)",
       indexReference: "D",
       role: "Biconvex collective core of the front cemented triplet",
-      cemented: "T1",
+      cemented: "C1",
     },
     {
       id: 3,
       name: "L3",
       label: "Element 3",
-      type: "Biconcave",
+      type: "Biconcave Negative",
       focalLengthMm: -31.89,
       nd: 1.4626,
+      glass: "Unmatched (nD 1.4626, nG′ 1.4714)",
       indexReference: "D",
       role: "Low-index biconcave element facing the diaphragm",
-      cemented: "T1",
+      cemented: "C1",
     },
     {
       id: 4,
       name: "L4",
       label: "Element 4",
-      type: "Biconcave",
+      type: "Biconcave Negative",
       focalLengthMm: -31.89,
       nd: 1.4626,
+      glass: "Unmatched (nD 1.4626, nG′ 1.4714)",
       indexReference: "D",
       role: "Low-index biconcave element facing the diaphragm",
-      cemented: "T2",
+      cemented: "C2",
     },
     {
       id: 5,
       name: "L5",
       label: "Element 5",
-      type: "Biconvex",
+      type: "Biconvex Positive",
       focalLengthMm: 15.71,
       nd: 1.5832,
+      glass: "Unmatched (nD 1.5832, nG′ 1.5972)",
       indexReference: "D",
       role: "Biconvex collective core of the rear cemented triplet",
-      cemented: "T2",
+      cemented: "C2",
     },
     {
       id: 6,
@@ -103,9 +109,10 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       focalLengthMm: -34.93,
       nd: 1.624,
+      glass: "Unmatched (nD 1.6240, nG′ 1.6448)",
       indexReference: "D",
       role: "Outer negative meniscus of the rear cemented triplet",
-      cemented: "T2",
+      cemented: "C2",
     },
   ],
   surfaces: [
@@ -120,10 +127,10 @@ const LENS_DATA = {
     { label: "9", R: -22.6, d: 91.181, sd: 8.5 },
   ],
   doublets: [
-    { text: "T1", fromSurface: "1", toSurface: "4" },
-    { text: "T2", fromSurface: "6", toSurface: "9" },
+    { text: "C1", fromSurface: "1", toSurface: "4" },
+    { text: "C2", fromSurface: "6", toSurface: "9" },
   ],
-  focus: { closeFocusM: 1e15, description: "Infinity-only patent reconstruction." },
+  focus: { closeFocusM: 1e15, description: "Infinity focus only; the patent gives no close-focus data." },
   aperture: { nominalFNumber: 6.3, fStops: [6.3, 8, 11, 16] },
   projection: { kind: "rectilinear", maxTraceFieldDeg: 5 },
   layout: { yScFill: 0.5 },
