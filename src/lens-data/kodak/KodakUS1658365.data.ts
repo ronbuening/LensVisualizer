@@ -24,11 +24,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  */
 const LENS_DATA = {
   schema: 2,
-  key: "altman-us1658365-1928-patent",
+  key: "kodak-100mm-f8-us1658365",
   maker: "Kodak",
-  name: "ALTMAN / KODAK US1658365 100mm f/8 — patent reference",
+  name: "KODAK 100mm f/8 (US 1,658,365 Design)",
   subtitle: "1928 COMPACT FOLDING-CAMERA TRIPLET; NO VERIFIED RETAIL IDENTITY",
-  visible: false,
+  visible: true,
   catalog: {
     specs: ["3 ELEMENTS / 3 GROUPS", "ESTIMATED IRIS / RIMS", "PATENT REFERENCE"],
     elementCount: 3,

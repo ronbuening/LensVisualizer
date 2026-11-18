@@ -17,11 +17,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  */
 const LENS_DATA = {
   schema: 2,
-  key: "zeiss-ikon-bertele-us2141733-fig2-patent-reference",
+  key: "carl-zeiss-jena-100mm-f12-us2141733",
   maker: "Carl Zeiss Jena",
-  name: "BERTELE f/1.2 PATENT REFERENCE",
+  name: "CARL ZEISS JENA 100mm f/1.2 (US 2,141,733 Design)",
   subtitle: "1938 FIGURE 2; PATENT ONLY",
-  visible: false,
+  visible: true,
   catalog: {
     specs: [
       "6 ELEMENTS / 4 GROUPS",

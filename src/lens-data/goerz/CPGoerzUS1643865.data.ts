@@ -17,9 +17,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  */
 const LENS_DATA = {
   schema: 2,
-  key: "goerz-weidert-us1643865-example1-patent-reference",
+  key: "c-p-goerz-100mm-f9-us1643865",
   maker: "C. P. Goerz",
-  name: "WEIDERT TWO-LENS PATENT REFERENCE",
+  name: "C. P. GOERZ 100mm f/9 (US 1,643,865 Design)",
   subtitle: "1927 EXAMPLE 1; PATENT ONLY",
   visible: false,
   catalog: {

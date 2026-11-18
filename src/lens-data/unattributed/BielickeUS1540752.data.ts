@@ -26,11 +26,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  */
 const LENS_DATA = {
   schema: 2,
-  key: "bielicke-us1540752-fig4-patent-reference",
+  key: "bielicke-100mm-f2-us1540752",
   maker: null,
-  name: "BIELICKE FOUR-SINGLET PATENT REFERENCE",
+  name: "BIELICKE 100mm f/2 (US 1,540,752 Design)",
   subtitle: "1925 Fig.4 100 mm nominal f/2; PATENT ONLY",
-  visible: false,
+  visible: true,
   catalog: {
     specs: [
       "4 ELEMENTS / 4 GROUPS",

@@ -35,11 +35,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  */
 const LENS_DATA = {
   schema: 2,
-  key: "hasselkus-richmond-us2116264-patent-reference",
+  key: "hasselkus-richmond-195mm-f56-us2116264",
   maker: null,
-  name: "FIVE-MENISCUS WIDE-ANGLE PATENT REFERENCE",
+  name: "HASSELKUS & RICHMOND 195mm f/5.6 (US 2,116,264 Design)",
   subtitle: "1938 f/5.6; PATENT ONLY",
-  visible: false,
+  visible: true,
   catalog: {
     specs: ["5 ELEMENTS / 5 GROUPS", "PATENT ONLY; RETAIL IDENTITY UNPROVED", "ESTIMATED STOP AND RIMS", "INFINITY ONLY"],
     elementCount: 5,

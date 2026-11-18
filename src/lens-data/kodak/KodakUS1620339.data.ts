@@ -28,11 +28,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  */
 const LENS_DATA = {
   schema: 2,
-  key: "kodak-frederick-wood-us1620339-patent-reference",
+  key: "kodak-100mm-f25-us1620339",
   maker: "Kodak",
-  name: "FREDERICK-WOOD PROJECTION PATENT REFERENCE",
+  name: "KODAK 100mm f/2.5 (US 1,620,339 Design)",
   subtitle: "1927 100 mm f/2.5; reciprocal infinity reference; PATENT ONLY",
-  visible: false,
+  visible: true,
   catalog: {
     specs: [
       "3 ELEMENTS / 2 GROUPS",
