@@ -13,10 +13,14 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * biconcave elements, close behind the nearly flat rear face of L3; it is placed 1.9 mm behind R5, leaving 5.6 mm to
  * R6, where it clears both glass faces. Its radius follows from f/1 paraxially (34.04 mm). Because the design has
  * strong pupil aberration, the real axial ray that grazes this stop enters at a height of 44.6 mm,
- * so the model passes about f/1.09 by real rays, not the full 48.5 mm front aperture. Also inferred: the 42 mm
- * semi-diameters of surfaces 4 to 12, which clear that axial beam and the chief ray of the patent's 14 degree
- * semi-field but are not figure readings; and the 60.5498 mm back focus, the computed paraxial image distance for an
- * object at infinity. The patent prints no back focus and no close-focus data.
+ * so the model passes about f/1.09 by real rays, not the full 48.5 mm front aperture. Figure 1 is drawn close to
+ * scale (about 4.28 px/mm at 300 dpi: first to last vertex 647 px for 151.1 mm; the drawn diaphragm opening, about
+ * 35 mm in radius, agrees with the 34.04 mm stop). The other semi-diameters are measured from it: the two biconcave
+ * elements are drawn square-cut at about 41.1 to 41.4 mm and keep 42 mm; L5 is drawn to a knife edge at about
+ * 50 mm, where its two faces meet, and is set to 49.8 mm (edge 0.12 mm); the cemented rear pair is drawn square-cut
+ * at about 50 mm and takes 50 mm on all three faces. These rims clear the axial beam and the chief ray of the
+ * patent's 14 degree semi-field. Also inferred: the 60.5498 mm back focus, the computed paraxial image distance for
+ * an object at infinity. The patent prints no back focus and no close-focus data.
  */
 const LENS_DATA = {
   schema: 2,
@@ -45,7 +49,6 @@ const LENS_DATA = {
     patentYear: 1933,
     authors: ["Arthur Warmisham"],
     assignees: ["Kapella Limited"],
-    sdSource: "heuristic",
   },
   elements: [
     {
@@ -193,34 +196,34 @@ const LENS_DATA = {
       label: "8",
       R: 833.3,
       d: 22,
-      sd: 42,
+      sd: 49.8,
       medium: 5,
     },
     {
       label: "9",
       R: -71.01,
       d: 0.2,
-      sd: 42,
+      sd: 49.8,
     },
     {
       label: "10",
       R: 100,
       d: 47,
-      sd: 42,
+      sd: 50,
       medium: 6,
     },
     {
       label: "11",
       R: -63.05,
       d: 4.9,
-      sd: 42,
+      sd: 50,
       medium: 7,
     },
     {
       label: "12",
       R: -161.1,
       d: 60.5498,
-      sd: 42,
+      sd: 50,
     },
   ],
   aperture: {
