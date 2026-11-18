@@ -31,9 +31,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  */
 const LENS_DATA = {
   schema: 2,
-  key: "carl-zeiss-jena-100mm-f125-us1021337",
+  key: "carl-zeiss-jena-protarlinse-100mm-f125-us1021337",
   maker: "Carl Zeiss Jena",
-  name: "CARL ZEISS JENA 100mm f/12.5 (US 1,021,337 Design)",
+  name: "CARL ZEISS JENA PROTARLINSE 100mm f/12.5 (US 1,021,337 Design)",
   subtitle: "US 1,021,337 A, sole example — development of the Series VII Protar lens",
   visible: true,
   catalog: {

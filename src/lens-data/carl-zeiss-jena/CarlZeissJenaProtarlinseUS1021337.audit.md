@@ -1,4 +1,4 @@
-# Audit log — CARL ZEISS JENA 100mm f/12.5 (US 1,021,337 Design)
+# Audit log — CARL ZEISS JENA PROTARLINSE 100mm f/12.5 (US 1,021,337 Design)
 
 ## Author's checks — November 17, 2026
 

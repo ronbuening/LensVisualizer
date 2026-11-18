@@ -1,4 +1,4 @@
-# CARL ZEISS JENA 100mm f/12.5 (US 1,021,337 Design)
+# CARL ZEISS JENA PROTARLINSE 100mm f/12.5 (US 1,021,337 Design)
 
 ## Patent Reference and Design Identification
 
