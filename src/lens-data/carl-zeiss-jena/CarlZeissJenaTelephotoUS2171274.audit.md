@@ -117,3 +117,47 @@ Open:
 - `catalog.imageCircleMm`: unset → 26.34. Source: page 1 of the patent says the Figure 1 example "produces an exceedingly sharp image field of approximately 15° at a ratio of aperture of 1:4"; the earlier ray trace showed this is the full angle. 2 × 100.03 × tan 7.5° = 26.34 mm. No film format or mount is set, because the patent names none.
 - Engine numbers unchanged: EFL 100.0277 mm, f/4.000, back focus 51.1748 mm, half-field 10.95°, stop semi-diameter 8.997 mm. Only element 1's dispersion curve changes, from the two printed numbers to the catalogue row.
 - Image-circle audit: 0 undersized. Field-coverage audit: the chief ray reaches the full 13.17 mm corner at 7.5° with no rim in the way (100 %). Surface audit OK; aperture audit shows no rim, trace or iris limit.
+
+## 2026-11-18 — Second review on the local site
+
+Compared: the local page (`/lens/carl-zeiss-jena-telephoto-100mm-f4-us2171274`, 1400 × 900, and the inspector of every element) against drawing sheet 1, Figure 1, re-measured at 300 and 600 dpi; the printed table and specification page 1; the light-rule baseline (rims before the semi-diameter section above).
+
+Figure scale, re-derived: r1 to r8 on the axis is 761.5 px for 46.98 mm, 16.21 px/mm. The vertical scale was checked on two arcs: the cemented face r4 (R 9.077) reaches the L3 rim height of 124 px at page column 1143, where a 16.21 px/mm circle puts it at 123 px; r1 (R 26.057) reaches L1's 225 px rim at column 754 against 755 measured. The page axis tilts about 2.5 px over the figure, so heights were read from the local axis (row 1293 at L1, 1292 at the triplet, 1291 at L5), on both sides, less half a stroke.
+
+| Element | Model sd | Figure (top / bottom) | Decision |
+|---|---:|---:|---|
+| L1 | 13.5 | 13.9 / 13.9 | 3 % low; kept. |
+| L2 outer rim | land 9.0 | 9.0 / 8.9 | Matches; the face r3 ends at about 7.3 to 7.65 in a 45° chamfer, within 8 % of 8. Kept. |
+| L3, L4 | 8 | 7.65 / 7.55 | 5 % high. Lowering all four triplet faces to 7.6 costs 1.9 points at 5° (full pupil); inside the 10 % band and the step order (L2 proud of L3/L4) is right on the page. Kept. |
+| L4 rear corner | 8 | chamfer to about 6.5 | Kept square for light (the earlier 8 to 13 point cost stands). |
+| L5 | 10 | 9.4 / 9.3 | 7 % high. At 9.3 the full-pupil transmission falls 7.6 points at 7.5° (76.6 to 69.0 %). Kept. |
+
+Rims: no change. The live render keeps the drawn height order L1 > L5 > L2 > L3/L4. The one shape the renderer cannot draw is L2's flat 9.0 mm top with chamfers at both ends: the land is vertical at the r3 rim and the top edge then runs straight to the cemented rim at 8, so L2 reads as a slight wedge. The diaphragm tick sits 10.2 mm behind r2 in the figure (column 929.5) against the model's 10.3 mm.
+
+Lands and cuts: no face is below its baseline. The only land, `rimExtensionSd` 9 on surface 3, costs 0.0 points at every field to 7.5° (full pupil, against the baseline) and is drawn in the figure, so it stays.
+
+Changes:
+
+| Field | Before | After | Evidence |
+|---|---|---|---|
+| L3 `glass` | SK5 (Schott) | N-SK5 (SCHOTT catalog equivalent; production supplier unspecified) | The old label named Schott but resolved to the Sumita SK5 row, while the header and analysis named Sumita. Schott N-SK5 (1.58913 / 61.27) is exact against the printed 1.58910 / 61.3 (Δnd +0.00003, Δνd −0.03), Schott is the period vendor for a Jena design, and the label now resolves to the vendor it names. |
+| `groups` | G1, G2, G3 | G1 (+), G2 (−), G3 (+) | Figure 1 marks (+) under L1, (−) under the triplet and (+) beside L5; the brackets still cover surfaces 1–2, 3–6, 7–8. No collision on the page. |
+| Header comment | Sumita SK5 | Schott N-SK5; d-line evidence and the figure's power marks | — |
+| Analysis | SK5 (Sumita row) | Schott N-SK5 row; d-line evidence; a paragraph on D–G′ colour in the model | — |
+
+Engine numbers before and after are identical: EFL 100.0277 mm, f/4.000, half-field 10.95°, stop semi-diameter 8.997 mm, back focus 51.1748 mm. Wide-open transmission (full pupil) 100.0 / 100.0 / 100.0 / 100.0 / 98.9 / 89.3 / 76.6 % at 0 / 1.2 / 2.5 / 3.7 / 5.0 / 6.2 / 7.5°. A separate meridional trace passes 53 % at 10° and nothing at 15°, so the patent's 15° is the full field and the 26.34 mm image circle (2 × 100.03 × tan 7.5°) stands. Surface audit OK; aperture audit within 3 % of f/4 with no rim, trace or iris limit; image-circle audit 0 undersized; field coverage 100 % at 7.5°.
+
+Re-checked and correct: element names L1–L5 are the patent's own; `type` strings agree with the radius signs; computed element focal lengths +47.18, −11.63, +12.25, −16.93, +34.03 mm and the triplet −17.30 mm equal the stored values; roles are true (L2 is the strongest element, |f| 11.63 mm); the cemented triplet C1 covers surfaces 3–6 and the inspector of L2, L3 and L4 reads "TRIPLET C1", which is right for three lenses cemented together; no aspheric surfaces and no `apd` tags, as the patent names no special glass; the stop sits between L1 and the triplet. Movement: no gaps block, no zoom, `closeFocusM` 1e15; the slider reads "Not modeled", the movement overlay reports no modelled group movement, and `focus.description` states only that the patent gives no close-focus data.
+
+Glass and colour:
+
+- Reference line: the table is headed n_d while the text speaks of the D and G′ lines. At the helium d line E-FL6 is 0.00003 from the printed 1.56735 and N-SK5 0.00003 from 1.58910; at sodium D E-FL6 is 0.00015 off. The d reference is right.
+- L1 PCD3 (Hoya, 1.55232 / 63.42; Δnd +0.00006, Δνd +0.12) is the only exact row; Schott N-PSK3 misses by Δνd +0.16. L2 E-FL6 is exact; Sumita LF6 (1.56732 / 42.80) and Ohara S-TIL26 are equally exact, but none is a period vendor, so E-FL6 stays.
+- L4 (1.59667 / 39.1) and L5 (1.67165 / 32.3): the patent prints only n_d and ν for them, no names or other lines (drawing sheet 1 and page 1). Nearest vendor rows are F8 / E-F8 / S-TIM8 at 1.59551 and SF5 / E-FD5 at 1.67270, both about 0.001 off in index. Neither pair recurs in Figure 2, whose table gives C-line indices for six different glasses. Both stay unmatched, on the normal-line dispersion model.
+- Colour against the patent's claim of correction for D and G′: the model's d and g (435.8 nm) foci meet at 70 % of the f/4 pupil radius (−0.020 and −0.030 mm from the image plane). Paraxially g lies 0.21 mm short of d (C +0.16 mm, F −0.19 mm); at the full pupil it lies 0.39 mm beyond. With every glass on the normal-line model instead of the three catalogue rows these figures move by no more than about 0.02 mm, so the colour comes from the printed indices and Abbe numbers, not from the labels. The patent prints no aberration curves to compare.
+
+Assignee: `Carl-Zeiss-Stiftung` is the corpus spelling (27 files) for the front page's "assignor to the firm Carl Zeiss, Jena, Germany". No change.
+
+Open:
+
+- L2's flat top and chamfers (Figure 1) cannot be drawn with a land on the front face alone; the render shows a straight edge from the 9.0 mm land to the 8 mm cemented rim.

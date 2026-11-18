@@ -49,11 +49,13 @@ The Figure 1 table prints a refractive index headed n_d and an Abbe number for e
 |---|---:|---:|---|
 | L1 | 1.55226 | 63.3 | Hoya PCD3, 1.55232 / 63.42 |
 | L2 | 1.56735 | 42.8 | Hoya E-FL6, 1.56732 / 42.84 |
-| L3 | 1.58910 | 61.3 | SK5 (Sumita row), 1.58913 / 61.26 |
+| L3 | 1.58910 | 61.3 | Schott N-SK5, 1.58913 / 61.27 |
 | L4 | 1.59667 | 39.1 | none |
 | L5 | 1.67165 | 32.3 | none |
 
-L1 and L3 are crowns; L2 and L4 are light flints; L5 is a dense flint. For L4 and L5 only the printed index and Abbe number are available, so their colour behaviour in the model is an approximation built from those two numbers.
+L1 and L3 are crowns; L2 and L4 are light flints; L5 is a dense flint. For L4 and L5 only the printed index and Abbe number are available, so their colour behaviour in the model is an approximation built from those two numbers. The indices are helium d values: Hoya E-FL6 agrees with L2 to 0.00003 at the d line but differs by 0.00015 at the sodium D line.
+
+The patent claims colour correction for the D and G′ lines. In the model the yellow and blue foci meet in the outer zone of the aperture: rays at 70 % of the f/4 pupil radius cross the axis about 0.01 mm apart at d (587.6 nm) and g (435.8 nm, next to G′ at 434.0 nm). Near the axis the blue focus lies about 0.2 mm short of the yellow one, and at the rim of the f/4 pupil about 0.4 mm beyond it.
 
 ## Stop, Apertures and Focus
 

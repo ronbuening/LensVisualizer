@@ -29,8 +29,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * design focal length, 2 × 100.03 × tan 7.5°. The patent states no film format.
  *
  * Glass names: L1, L2 and L3 match catalog rows within the printed precision (Hoya PCD3, Hoya E-FL6,
- * Sumita SK5); these are modern rows with the same index and Abbe number, not a statement of the glass
- * Zeiss used. L4 and L5 match no catalog row and keep their printed index and Abbe number.
+ * Schott N-SK5); these are modern rows with the same index and Abbe number, not a statement of the glass
+ * Zeiss used. L4 and L5 match no catalog row and keep their printed index and Abbe number. The printed
+ * indices are helium d values: E-FL6 lies 0.00003 from the printed index at d but 0.00015 at sodium D.
+ * The figure's power marks are (+) for L1, (-) for the triplet and (+) for L5.
  */
 const LENS_DATA = {
   schema: 2,
@@ -96,7 +98,7 @@ const LENS_DATA = {
       nd: 1.5891,
       vd: 61.3,
       focalLengthMm: 12.25,
-      glass: "SK5 (Schott)",
+      glass: "N-SK5 (SCHOTT catalog equivalent; production supplier unspecified)",
       role: "Thick positive crown core of the cemented triplet; its two cemented faces correct colour.",
       indexReference: "d",
       cemented: "C1",
@@ -197,9 +199,9 @@ const LENS_DATA = {
     description: "Infinity focus only; the patent gives no close-focus data.",
   },
   groups: [
-    { text: "G1", fromSurface: "1", toSurface: "2" },
-    { text: "G2", fromSurface: "3", toSurface: "6" },
-    { text: "G3", fromSurface: "7", toSurface: "8" },
+    { text: "G1 (+)", fromSurface: "1", toSurface: "2" },
+    { text: "G2 (−)", fromSurface: "3", toSurface: "6" },
+    { text: "G3 (+)", fromSurface: "7", toSurface: "8" },
   ],
   doublets: [{ text: "C1", fromSurface: "3", toSurface: "6" }],
   layout: {
