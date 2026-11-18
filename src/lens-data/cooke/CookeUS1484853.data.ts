@@ -22,9 +22,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  */
 const LENS_DATA = {
   schema: 2,
-  key: "cooke-254mm-f31-us1484853",
+  key: "cooke-10in-f31-us1484853",
   maker: "Cooke",
-  name: "COOKE 254mm f/3.1 (US 1,484,853 Design)",
+  name: "COOKE 10 in f/3.1 (US 1,484,853 Design)",
   subtitle: "US 1,484,853 A, sole example — Warmisham short-back-focus projection lens",
   visible: false,
   catalog: {

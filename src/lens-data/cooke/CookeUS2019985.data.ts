@@ -33,9 +33,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  */
 const LENS_DATA = {
   schema: 2,
-  key: "cooke-26mm-f14-us2019985",
+  key: "cooke-1in-f14-us2019985",
   maker: "Cooke",
-  name: "COOKE 26mm f/1.4 (US 2,019,985 Design)",
+  name: "COOKE 1 in f/1.4 (US 2,019,985 Design)",
   subtitle: "US 2,019,985 A, sole example — H. W. Lee f/1.4 objective",
   visible: false,
   catalog: {
