@@ -27,7 +27,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * - Image plane: the last gap is the computed paraxial back focus, 31.4082 mm. The patent prints a back focal
  *   length of 31.3.
  *
- * Dispersion: the patent prints nD, nG′ (1.534, 1.639, 1.534) and ν. The model uses nD and ν.
+ * Dispersion: the patent states that its indices are for the D line (p. 1, lines 61–63) and prints nD, nG′ (1.534,
+ * 1.639, 1.534) and ν. The model uses nD and ν; the printed G′ indices are recorded here and in the analysis only.
  *
  * Glass: the patent calls the two glasses white optical crown and dense flint and names no maker. No current
  * catalog glass matches the printed values closely enough, so the labels state the printed numbers.
@@ -72,7 +73,6 @@ const LENS_DATA = {
       nd: 1.523,
       vd: 59,
       indexReference: "D",
-      indexReferenceNote: "Patent prints nD 1.523, nG′ 1.534 and ν 59.0; the model uses nD and ν.",
       focalLengthMm: 73.64,
       role: "Positive crown of the cemented front component",
       cemented: "C1",
@@ -86,7 +86,6 @@ const LENS_DATA = {
       nd: 1.617,
       vd: 36.4,
       indexReference: "D",
-      indexReferenceNote: "Patent prints nD 1.617, nG′ 1.639 and ν 36.4; the model uses nD and ν.",
       focalLengthMm: -127.07,
       role: "Negative flint of the cemented front component; corrects colour",
       cemented: "C1",
@@ -100,7 +99,6 @@ const LENS_DATA = {
       nd: 1.523,
       vd: 59,
       indexReference: "D",
-      indexReferenceNote: "Patent prints nD 1.523, nG′ 1.534 and ν 59.0; the model uses nD and ν.",
       focalLengthMm: 93.98,
       role: "Rear collecting meniscus close to the film gate",
     },
