@@ -165,7 +165,7 @@ const LENS_DATA = {
   ],
   aperture: {
     nominalFNumber: 2,
-    fStops: [2, 2.8, 4, 5.6, 8, 11, 16, 22],
+    maxFNumber: 22, fStops: [2, 2.8, 4, 5.6, 8, 11, 16, 22],
   },
   focus: {
     closeFocusM: 1e15,

@@ -63,7 +63,7 @@ const LENS_DATA = {
     description:
       "Infinity only. The patent table is normalized to focal length 1; the model is scaled by 100. Computed D-line focal length 99.75 mm.",
   },
-  aperture: { nominalFNumber: 8, fStops: [8, 11, 16, 22] },
+  aperture: { nominalFNumber: 8, maxFNumber: 22, fStops: [8, 11, 16, 22] },
   projection: { kind: "rectilinear", maxTraceFieldDeg: 32 },
   layout: { yScFill: 0.5 },
 } satisfies LensDataV2Input;
