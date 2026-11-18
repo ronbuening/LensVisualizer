@@ -1,9 +1,105 @@
-# Warmisham / Kapella US1797202 Figure3 f1.5 patent reference
+# Warmisham f/1.5 Petzval-type objective — US 1,797,202
 
-Primary https://patentimages.storage.googleapis.com/pdfs/US1797202.pdf . Original3-page source downloaded, drawing and page3 table visually read. Correct inventor ARTHUR WARMISHAM, not H.W.Lee; assignee Kapella Limited. US grant1931-03-17; GB priority1925-09-26. Six elements/five physical groups: front singlet+cemented doublet, rear negative singlet+two positive singlets. Only Fig3 numerical example modeled.
+## Patent Reference and Design Identification
 
-Uniform display scale100mm per source length unit, NOT focal fitting: source nominal EFL1.084 becomes108.4mm; literal matrix/native EFL108.35141906269203mm (-0.04481636%); calculated paraxial BFD51.29149374807145mm. Source optical constants remain unchanged. R11=+1.3330. SourceD9-10 = .000 AIR retained between R9 and R10 as two distinct interfaces, despite same glass on each side of the air. Do not merge into a cemented surface or invent a finite axial gap. Off-axis air opens naturally because the surfaces have differing curvatures. Zero vertex contact is source evidence, not a manufacturability endorsement.
+**Patent:** US 1,797,202 A, *Photographic and Projection Objective*  
+**Application Number:** Serial No. 132,591  
+**Filed:** August 30, 1926 (priority: Great Britain, September 26, 1925)  
+**Granted:** March 17, 1931  
+**Inventors:** Arthur Warmisham  
+**Assignee:** Kapella Limited, Leicester, England  
+**Example details:** the single numerical example on specification page 2, which the patent says applies to Fig. 3; lengths printed with a focal length of 1.084 and multiplied here by 100
 
-Source indices are explicit uppercaseD (sodium), V values and Chance catalogue 9002/7863/5093/4873 retained literally, no modern glass substitution. Native generic dispersion is not a measured Chance melt model. Iris position estimated midway in source D5-6=.326 gap (16.3+16.3mm at scale100); rims estimated40mm front pair of groups and32mm rear. No source iris coordinate or source clear diameters. Infinity-only reciprocal modeling with paraxial image plane, not optimized full-field image quality.
+The patent gives one numerical example. Its text says the example "may be taken to apply" to the objective of Figure 3, and the table's eleven radii and ten axial distances match that figure's six elements. The British counterpart is GB 258,092; only its abstract was read, so nothing here depends on it.
 
-GB258092 abstract supports related Warmisham/Kapella f1.5 Petzval modification, but GB ExampleII scan has NOT been verified, so no exact publication-equivalence or second-model claim. Source: https://patents.google.com/patent/GB258092A/en . Do not identify this as named Maximum f2 (GB180949) or museum152mm f3.1 Maximum. No production identity established. Hidden patent-only reference. Parent delivery-ledger search found no prior US1797202 handoff; retained main has no normalized patent or distinctive fingerprint hit. One configuration/one new checked US patent, not multiple drawings counted separately.
+The model is a patent reference, not a reconstruction of a named product. Kapella Limited held the patents of Taylor, Taylor & Hobson, the makers of Cooke lenses, and Warmisham was that firm's designer, which is why the file sits with the Cooke designs. No product link is established:
+
+1. The patent names no product, focal length or film format.
+2. The Cooke Optics lens compendium records a surviving 1 inch Kinic marked f/1.5, but it describes the Kinic series as a three-lens anastigmat and gives no construction for the f/1.5 sample.
+3. No published construction diagram of a six-element f/1.5 Cooke Petzval-type lens was found to compare with Figure 3.
+
+The 108 mm focal length is only the result of multiplying the patent's unit by 100. It does not point to a lens sold at that focal length.
+
+## Optical Architecture
+
+The design is a Petzval-type objective: two widely separated positive components with no negative component between them. The conventional Petzval form has one positive member in front and, in the back component, one negative and one positive member. The patent's argument is that this limits the usable aperture to about f/2, because the zonal spherical aberration cannot be removed beyond it. Warmisham's remedy is to divide the positive power among more members.
+
+Figure 3 divides both components, giving six elements in five groups:
+
+- Front component: a positive meniscus (L1) followed, across a 0.2 mm air space, by a cemented pair of a biconvex crown and a biconcave flint (L2 + L3). The cemented pair has a focal length of about 277.8 mm.
+- A 32.6 mm air space.
+- Back component: a negative meniscus (L4) and two positive menisci (L5, L6). All three are convex toward the front.
+
+The patent's claims rest on the two rear positive members being "unsymmetrical" and presenting their more deeply curved surfaces toward the front component. The printed radii agree: 62.5 against 211.9 mm for L5 and 59.1 against 133.3 mm for L6.
+
+The printed prescription traces to a paraxial focal length of 108.35 mm, 0.05 % below the printed 1.084 × 100 = 108.4 mm, with a paraxial back focus of 51.29 mm and an overall length of 141.89 mm from the front vertex to the image.
+
+The patent mentions no diaphragm and prints no clear diameters. The model places a stop midway in the 32.6 mm air space and uses estimated rims of 40 mm (front component) and 32 mm (back component). The drawing is diagrammatic, with heights far too small for an f/1.5 beam, so it cannot supply the diameters. In the model the outermost few percent of the f/1.5 axial beam is cut at the stop, because the stop is sized from the paraxial beam while the real edge ray, bent by spherical aberration, arrives higher.
+
+## Element-by-Element Analysis
+
+### L1 — Positive Meniscus, convex to the front
+
+`nd = 1.5736, νd = 57.7.` Glass: Chance Brothers type 9002 (patent values; no modern equivalent assigned). `f = +356.5 mm.`
+
+L1 is the extra convergent member that Figure 3 adds ahead of the usual front doublet. It is weak, and it takes part of the front component's positive power so that the cemented pair behind it can work at gentler curves.
+
+### L2 — Biconvex Positive (cemented to L3)
+
+`nd = 1.5290, νd = 51.6.` Glass: Chance Brothers type 7863. `f = +87.7 mm.`
+
+L2 is the strongest element in the lens and the 21 mm thick crown of the front achromat. Its rear surface, radius −119.05 mm, is the cemented interface and the only surface in the lens that is concave toward the front.
+
+### L3 — Biconcave Negative (cemented to L2)
+
+`nd = 1.6512, νd = 33.5.` Glass: Chance Brothers type 5093. `f = −114.2 mm.`
+
+L3 is the flint of the front achromat. Its rear surface is nearly flat (radius 200 mm).
+
+### L4 — Negative Meniscus, convex to the front
+
+`nd = 1.6512, νd = 33.5.` Glass: Chance Brothers type 5093. `f = −124.5 mm.`
+
+L4 is the divergent member of the back component, in the same flint as L3. Its strongly curved rear surface (radius 47.11 mm) faces the first rear crown across a 4.7 mm air space.
+
+### L5 — Positive Meniscus, convex to the front
+
+`nd = 1.6129, νd = 59.3.` Glass: Chance Brothers type 4873. `f = +141.8 mm.`
+
+L5 is the first of the two convergent members into which the patent divides the rear positive lens. For the corresponding pair in Figure 2 the text recommends crown glass of high refractive index, and the example follows that here.
+
+### L6 — Positive Meniscus, convex to the front
+
+`nd = 1.6129, νd = 59.3.` Glass: Chance Brothers type 4873. `f = +166.4 mm.`
+
+L6 repeats L5 in the same glass with slightly less power. The patent prints an axial air space of .000 between L5 and L6, so the two touch at the vertex. The air space opens away from the axis because L6's front surface (radius 59.1 mm) is steeper than L5's rear surface (radius 211.9 mm); at the modelled 32 mm rim the gap is about 7 mm. Figure 3 draws a small gap on the axis, but the figure is not to scale. The model keeps the printed zero and treats the two surfaces as separate air-glass surfaces.
+
+## Glass Identification and Selection
+
+The patent defines each glass by its mean refractive index nD, its "mean dispersive power" V and a Chance Brothers catalogue type number. The index is for the sodium D line, and the data file records it as such.
+
+| Element | nD | V | Chance type | Kind |
+|---|---|---|---|---|
+| L1 | 1.5736 | 57.7 | 9002 | Barium crown |
+| L2 | 1.5290 | 51.6 | 7863 | Light crown-flint |
+| L3, L4 | 1.6512 | 33.5 | 5093 | Dense flint |
+| L5, L6 | 1.6129 | 59.3 | 4873 | Dense barium crown |
+
+The "Kind" column is a description from the index and dispersion alone, not a catalogue name. No modern catalogue glass has been assigned, so colour in the model is estimated from the printed nD and V of each glass rather than from measured dispersion curves.
+
+## Focus Mechanism
+
+The patent gives no focusing data, close-focus distance or conjugates other than infinity. The model is fixed at infinity focus, and the image plane is the computed paraxial focus of the printed prescription. A lens of this kind would be focused by moving the whole objective.
+
+## Model Verification
+
+- Every printed radius (with its sign), axial distance, index and V value was compared with the page image of the patent table; all agree with the data file after the uniform multiplication by 100.
+- Paraxial focal length 108.35 mm against the printed 108.4 mm (−0.05 %); relative aperture f/1.5 as printed.
+- Inferred values: stop position, clear semi-diameters and the 51.29 mm back focus.
+- The patent states no field angle, so the model makes no claim about off-axis coverage.
+
+## Sources
+
+- US 1,797,202 A, *Photographic and Projection Objective*, Arthur Warmisham, assignor to Kapella Limited, granted March 17, 1931 (drawing sheet and specification pages 1–2).
+- GB 258,092, *Improvements in lens systems*, A. Warmisham and Kapella Ltd. (abstract only): https://patents.google.com/patent/GB258092A/en
+- Cooke Optics, lens compendium, Kinic entry: https://cookeoptics.com/compendium/
