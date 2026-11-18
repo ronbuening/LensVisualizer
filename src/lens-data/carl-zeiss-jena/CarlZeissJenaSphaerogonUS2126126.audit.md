@@ -40,7 +40,7 @@ Changes:
 - Specs line "INFINITY ONLY; FULL FIELD UNVERIFIED" → "INFINITY ONLY; ABOUT 180° FIELD PER PATENT"; focus description rewritten in plain words.
 - Header comment added; object keys unquoted; analysis rewritten to the standard sections.
 
-After the changes: focal length 100.1186 mm, f/8 (stop radius 8.24 mm, sized from the 100 mm projection constant), back focus 157.8809 mm, half-field 76°. Surface check: no errors. Aperture check: no surface below the axial beam. Image-circle and field-coverage checks skip the file because it is hidden and declares no image format.
+After the changes: focal length 100.1186 mm, f/8 (stop radius 8.24 mm, sized from the 100 mm projection constant), back focus 157.8809 mm, half-field 76°. Surface check: no errors. Aperture check: no surface below the axial beam. Image-circle and field-coverage checks skip the file because it was hidden at the time and declares no image format (the file is now visible; it still declares no image format).
 
 Field reached: an independent real-ray trace passes the chief ray through every rim up to about 88° (it fails at total reflection in the front element just beyond that). The viewer's own chief-ray solve converges at every half-degree up to 76° with these rims and only intermittently from 76.5° to 84.5°, so 76° is declared. With rims well beyond the figure (140 and 110 mm on the front element) the same solve reaches 86°, so the shortfall comes from the margin the solve needs around the chief ray, not from the prescription.
 
@@ -51,3 +51,27 @@ Open:
 - Rims against Figure 1 for the semi-diameter pass: front element about 120 mm overall and 94 mm clear, L2 about 11.5 mm, rear pair about 14 mm; the off-axis bundle is heavily vignetted at the widest fields with the present minimum rims.
 - Projection: neither supported fisheye law fits the real mapping well; an image circle (about 223 mm at 180° for 100 mm) is not declared.
 - Whether the traced half-field can go beyond 76° is a question for the chief-ray solve, not this file.
+
+## 2026-11-17 — Cleanup and wording pass
+
+No optical value, rim, stop or projection field was changed.
+
+Fields changed:
+
+- `subtitle`: "1938 f/8 FOUR-ELEMENT PATENT REFERENCE; NOT FACTORY IDENTITY" → "US 2,126,126 A, Figure 1 — Sphaerogon type 1 fisheye design".
+- `specs`: the three lines about patent identity, stop distances, rims and infinity focus → "DESIGN F/8", "ALL SPHERICAL", "ABOUT 180° FIELD" (the element and group line is kept).
+- Element labels "L1"–"L4" → "Element 1"–"Element 4"; roles reworded; cemented pair id D1 → C1 on L3, L4 and in `doublets`.
+- Glass strings added: "Unmatched (nD 1.62313 / V 57.0)", "Unmatched (nD 1.51746 / V 58.9)", "Unmatched (nD 1.55088 / V 49.6)", "Unmatched (nD 1.60284 / V 60.6)". No catalogue row lies within 0.0001 in index and 0.15 in ν of any of the four, so none is named.
+- `focus.description` shortened to the infinity-only sentence; the f-stop lines put one per line.
+- Header comment: a paragraph on the Sphaerogon link added.
+- Analysis: title set to the lens name; the Cavina listing quoted by its own title and cited by page address; two sentences about scale shortened.
+
+Engine numbers before and after are identical: focal length 100.1186 mm, f/8, stop radius 8.2423 mm, half-field 76°, back focus 157.8809 mm. Surface check: no errors. Aperture check: no rim limit.
+
+Open:
+
+- Rims against Figure 1 for the semi-diameter pass: front element about 120 mm overall and 94 mm clear, middle meniscus about 11.5 mm, rear pair about 14 mm.
+- No lens mount, image format or image circle is declared; the patent states the field (about 180°) and no format. The traced image circle would be about 223 mm at 180° for the 100 mm focal length.
+- Neither supported fisheye law fits the real mapping closely; the traced half-field is 76° against the patent's roughly 90°.
+- `indexReference` is "d" from the text table; the drawing sheet prints nD.
+- Whether DE 672 393 prints the same numbers has not been checked.

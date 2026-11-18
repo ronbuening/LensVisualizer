@@ -3,6 +3,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Willy Merté's 180-degree wide-angle objective, US 2,126,126 A (granted 9 August 1938, German priority
  * 26 November 1935), Figure 1 with Table 1: four elements in three members at about f/8.
  *
+ * PRODUCT LINK: Marco Cavina's study of the Zeiss Sphaerogon lists these radii, thicknesses and glasses as
+ * "Sphaerogon type #1 (for F=100mm)", the formula of the 1.6 cm and 1.9 cm f/8 prototypes. The patent names no
+ * product; the file stays at the patent's 100 mm.
+ *
  * SOURCE AND SCALE: every radius, thickness, air space, index and ν is as printed for a total focal length of 100 mm;
  * nothing is rescaled. The computed paraxial focal length is 100.12 mm. Figure 2 / Table 2 (meniscus front member) is
  * a separate example and is not modelled here.
@@ -29,14 +33,14 @@ const LENS_DATA = {
   key: "carl-zeiss-jena-sphaerogon-100mm-f8-us2126126",
   maker: "Carl Zeiss Jena",
   name: "CARL ZEISS JENA SPHAEROGON 100mm f/8 (US 2,126,126 Design)",
-  subtitle: "1938 f/8 FOUR-ELEMENT PATENT REFERENCE; NOT FACTORY IDENTITY",
+  subtitle: "US 2,126,126 A, Figure 1 — Sphaerogon type 1 fisheye design",
   visible: true,
   catalog: {
     specs: [
       "4 ELEMENTS / 3 GROUPS",
-      "PATENT FIGURE 1; NOT PROVEN RETAIL IDENTITY",
-      "SOURCE STOP DISTANCES; ESTIMATED RIMS",
-      "INFINITY ONLY; ABOUT 180° FIELD PER PATENT",
+      "DESIGN F/8",
+      "ALL SPHERICAL",
+      "ABOUT 180° FIELD",
     ],
     elementCount: 4,
     groupCount: 3,
@@ -62,49 +66,53 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L1",
-      label: "L1",
+      label: "Element 1",
       type: "Plano-Concave Negative",
       nd: 1.62313,
       vd: 57,
       indexReference: "d",
       indexReferenceNote: "The text table prints n_d; the drawing sheet prints nD for the same values.",
       focalLengthMm: -345.96,
-      role: "Large divergent front member that bends the half-sphere of object space toward the stop.",
+      glass: "Unmatched (nD 1.62313 / V 57.0)",
+      role: "Large negative front element; bends rays from nearly the whole forward half-sphere toward the stop.",
     },
     {
       id: 2,
       name: "L2",
-      label: "L2",
+      label: "Element 2",
       type: "Positive Meniscus",
       nd: 1.51746,
       vd: 58.9,
       indexReference: "d",
       focalLengthMm: 73.44,
-      role: "Convergent middle meniscus just behind the stop, concave toward the front member.",
+      glass: "Unmatched (nD 1.51746 / V 58.9)",
+      role: "Positive meniscus just behind the stop, concave toward the front; carries most of the positive power.",
     },
     {
       id: 3,
       name: "L3",
-      label: "L3",
+      label: "Element 3",
       type: "Biconcave Negative",
       nd: 1.55088,
       vd: 49.6,
       indexReference: "d",
       focalLengthMm: -25.04,
-      role: "Negative front lens of the cemented rear member.",
-      cemented: "D1",
+      glass: "Unmatched (nD 1.55088 / V 49.6)",
+      role: "Negative front lens of the cemented rear pair.",
+      cemented: "C1",
     },
     {
       id: 4,
       name: "L4",
-      label: "L4",
+      label: "Element 4",
       type: "Biconvex Positive",
       nd: 1.60284,
       vd: 60.6,
       indexReference: "d",
       focalLengthMm: 31.78,
-      role: "Positive rear lens of the cemented rear member; the cemented surface is convergent.",
-      cemented: "D1",
+      glass: "Unmatched (nD 1.60284 / V 60.6)",
+      role: "Positive rear lens of the cemented rear pair; the cemented surface is convergent.",
+      cemented: "C1",
     },
   ],
   surfaces: [
@@ -162,12 +170,13 @@ const LENS_DATA = {
   ],
   aperture: {
     nominalFNumber: 8,
-    maxFNumber: 22, fStops: [8, 11, 16, 22],
+    maxFNumber: 22,
+    fStops: [8, 11, 16, 22],
   },
   focus: {
     closeFocusM: 1e15,
     description:
-      "Infinity only. The patent gives one focus state for Figure 1 and no focusing movement; the last gap is the computed paraxial back focus.",
+      "Infinity focus only; the patent gives no close-focus data. The last gap is the computed paraxial back focus.",
   },
   projection: {
     kind: "fisheye-equisolid",
@@ -178,7 +187,7 @@ const LENS_DATA = {
   groups: [],
   doublets: [
     {
-      text: "D1",
+      text: "C1",
       fromSurface: "5",
       toSurface: "7",
     },

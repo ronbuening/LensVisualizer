@@ -1,4 +1,4 @@
-# Merté 180° Wide-Angle Objective, f/8 (US 2,126,126, Figure 1)
+# CARL ZEISS JENA SPHAEROGON 100mm f/8 (US 2,126,126 Design)
 
 ## Patent Reference and Design Identification
 
@@ -12,15 +12,15 @@
 
 The patent describes objectives for very large image fields, "for instance an angle of 180°", built from three air-spaced members: a divergent front member, a convergent middle meniscus and a divergent rear meniscus, the two menisci turning their concave sides toward the front. It gives two numerical examples. Figure 1 has a plano-concave front lens; Figure 2 replaces it with a meniscus and is not modelled here. Both are stated to be spherically corrected for an aperture of approximately 1:8.
 
-This file transcribes Figure 1 / Table 1 at the patent's own 100 mm scale. All seven radii, the four thicknesses, the three air spaces (including the two diaphragm distances), and the four index and ν pairs are as printed. The computed paraxial focal length is 100.12 mm, 0.12 % above the stated 100 mm, which is within the rounding of the table.
+The model follows Figure 1 / Table 1. All seven radii, the four thicknesses, the three air spaces (including the two diaphragm distances), and the four index and ν pairs are as printed. The computed paraxial focal length is 100.12 mm, 0.12 % above the stated 100 mm, which is within the rounding of the table.
 
 **Link to a production lens.** The design is plausibly the first formula of the Zeiss Sphaerogon, the experimental 180° lens Merté developed at Jena in 1935 and 1936:
 
-1. Marco Cavina's study of the Perimetar, Sphaerogon and Pleon lists a "Sphaerogon type 1" for a 100 mm focal length with the same seven radii, thicknesses and four glasses as Table 1 (his single stop spacing of 112.64 mm is the sum of the patent's 110.28 and 2.36 mm).
+1. Marco Cavina's study of the Perimetar, Sphaerogon and Pleon lists a "Sphaerogon type #1 (for F=100mm)" with the same seven radii, thicknesses and four glasses as Table 1 (his single stop spacing of 112.64 mm is the sum of the patent's 110.28 and 2.36 mm).
 2. Cavina ties that formula to the 1.6 cm and 1.9 cm f/8 Sphaerogon prototypes, four lenses in three groups, which covered about 165° in trials.
 3. A figure from Merté's own later account, captioned with the German patent D.R.P. 672 393 of 1935, shows the same section with correction curves drawn out to 90° off axis.
 
-The patent itself names no product, and no factory drawing of a built lens has been compared with this table, so the link is stated as plausible, not proven. The model stays at the patent's 100 mm scale and should not be read as a 16 mm or 19 mm production lens. Later Sphaerogons with six and eight elements are different formulas.
+The patent itself names no product, and no factory drawing of a built lens has been compared with this table, so the link is stated as plausible, not proven. The model is not a 16 mm or 19 mm production lens. Later Sphaerogons with six and eight elements are different formulas.
 
 ## Optical Architecture
 
@@ -83,5 +83,5 @@ The patent gives one state, for a distant object, and describes no focusing move
 ## Sources
 
 - US 2,126,126, "Photographic Objective", Willy Merté, assignor to the firm Carl Zeiss, Jena; granted 9 August 1938.
-- Marco Cavina, "Perimetar, Sphaerogon, Pleon" (marcocavina.com): Sphaerogon type 1 prescription listing and Merté's figure for D.R.P. 672 393.
+- Marco Cavina, "Perimetar, Sphaerogon, Pleon", https://www.marcocavina.com/articoli_fotografici/CZJ_Perimetar_Sphaerogon_Pleon/00_pag.htm : the "Sphaerogon type #1 (for F=100mm)" prescription listing, the prototype account and Merté's figure for D.R.P. 672 393.
 - Wikipedia, "Fisheye lens": Sphaerogon history and the DE 672 393 / US 2,126,126 patent pair.
