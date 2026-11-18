@@ -20,11 +20,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  */
 const LENS_DATA = {
   schema: 2,
-  key: "rudolph-us1021337-fig1-d-line",
+  key: "carl-zeiss-jena-100mm-f125-us1021337",
   maker: "Carl Zeiss Jena",
-  name: "RUDOLPH US1021337 Fig. 1 100mm f/12.5 — D-line patent reference",
+  name: "CARL ZEISS JENA 100mm f/12.5 (US 1,021,337 Design)",
   subtitle: "1912 ZEISS QUADRUPLE SINGLE OBJECTIVE; NO VERIFIED PRODUCTION MATCH",
-  visible: false,
+  visible: true,
   catalog: {
     specs: ["4 ELEMENTS / 1 GROUP", "D-LINE ONLY", "PATENT REFERENCE"],
     elementCount: 4,

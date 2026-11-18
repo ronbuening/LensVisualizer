@@ -22,11 +22,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  */
 const LENS_DATA = {
   schema: 2,
-  key: "zeiss-merte-us2171274-figure-1",
+  key: "carl-zeiss-jena-telephoto-100mm-f4-us2171274",
   maker: "Carl Zeiss Jena",
-  name: "MERTE FIGURE 1 100 mm f/4",
+  name: "CARL ZEISS JENA TELEPHOTO 100mm f/4 (US 2,171,274 Design)",
   subtitle: "1939 FIGURE 1; PATENT-ONLY RECONSTRUCTION",
-  visible: false,
+  visible: true,
   catalog: {
     specs: [
       "5 ELEMENTS / 3 GROUPS",

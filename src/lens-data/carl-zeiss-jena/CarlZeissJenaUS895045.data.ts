@@ -17,11 +17,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  */
 const LENS_DATA = {
   schema: 2,
-  key: "rudolph-us895045-example1-d-line",
+  key: "carl-zeiss-jena-100mm-f125-us895045",
   maker: "Carl Zeiss Jena",
-  name: "RUDOLPH US895045 Example 1 100mm f/12.5 — D-line patent reference",
+  name: "CARL ZEISS JENA 100mm f/12.5 (US 895,045 Design)",
   subtitle: "1908 ZEISS DOUBLE OBJECTIVE; NO VERIFIED PRODUCTION MATCH",
-  visible: false,
+  visible: true,
   catalog: {
     specs: ["4 ELEMENTS / 2 GROUPS", "D-LINE ONLY", "PATENT REFERENCE"],
     elementCount: 4,

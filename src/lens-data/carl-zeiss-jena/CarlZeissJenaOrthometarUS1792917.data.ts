@@ -21,11 +21,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  */
 const LENS_DATA = {
   schema: 2,
-  key: "zeiss-merte-us1792917-patent-reference",
+  key: "carl-zeiss-jena-orthometar-100mm-f45-us1792917",
   maker: "Carl Zeiss Jena",
-  name: "MERTE DOUBLE OBJECTIVE PATENT REFERENCE",
+  name: "CARL ZEISS JENA ORTHOMETAR 100mm f/4.5 (US 1,792,917 Design)",
   subtitle: "1931 100 mm f/4.5; PATENT ONLY",
-  visible: false,
+  visible: true,
   checks: { gapSagFrac: 0.96 },
   catalog: {
     specs: [

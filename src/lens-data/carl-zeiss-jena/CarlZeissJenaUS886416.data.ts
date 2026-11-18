@@ -20,11 +20,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  */
 const LENS_DATA = {
   schema: 2,
-  key: "rudolph-us886416-example2-d-line",
+  key: "carl-zeiss-jena-100mm-f63-us886416",
   maker: "Carl Zeiss Jena",
-  name: "RUDOLPH US886416 Example 2 100mm f/6.3 — D-line patent reference",
+  name: "CARL ZEISS JENA 100mm f/6.3 (US 886,416 Design)",
   subtitle: "1908 SYMMETRIC CEMENTED TRIPLETS; NO VERIFIED PRODUCTION MATCH",
-  visible: false,
+  visible: true,
   catalog: {
     specs: ["6 ELEMENTS / 2 GROUPS", "D-LINE ONLY", "PATENT REFERENCE"],
     elementCount: 6,

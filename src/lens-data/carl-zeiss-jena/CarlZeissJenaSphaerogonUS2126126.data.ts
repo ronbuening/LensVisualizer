@@ -26,11 +26,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  */
 const LENS_DATA = {
   schema: 2,
-  key: "zeiss-merte-us2126126-fig1-patent-reference",
+  key: "carl-zeiss-jena-sphaerogon-100mm-f8-us2126126",
   maker: "Carl Zeiss Jena",
-  name: "MERTE WIDE-ANGLE FIGURE 1 PATENT REFERENCE",
+  name: "CARL ZEISS JENA SPHAEROGON 100mm f/8 (US 2,126,126 Design)",
   subtitle: "1938 f/8 FOUR-ELEMENT PATENT REFERENCE; NOT FACTORY IDENTITY",
-  visible: false,
+  visible: true,
   catalog: {
     specs: [
       "4 ELEMENTS / 3 GROUPS",
