@@ -1,24 +1,76 @@
-## Patent Reference / Design Identification
-**Patent:** US 2,141,733
-**Filed:** October 28, 1937 (Germany July 20, 1937)
-**Granted:** December 27, 1938
-**Inventor:** Ludwig Bertele
-**Assignee:** Zeiss Ikon Aktiengesellschaft
-**Title:** Lens system
+# Bertele f/1.2 objective — US 2,141,733 Figure 2
 
-Figure 2, lower table on [primary patent page 2](https://patentimages.storage.googleapis.com/d3/42/c7/b523a7403030f8/US2141733.pdf#page=2), transcribed literally. This is a patent-only model; no production-lens correspondence established. The source gives 100 mm, f/1.2, and ±10 degree picture angle. Figure 1 is not included because its printed rear radius differs materially; no implicit correction is made.
+## Patent Reference and Design Identification
+
+**Patent:** US 2,141,733 A, *Lens System*  
+**Application Number:** Serial No. 171,459  
+**Filed:** October 28, 1937 (priority: Germany, July 20, 1937)  
+**Published:** December 27, 1938  
+**Inventors:** Ludwig Bertele  
+**Assignee:** Zeiss Ikon AG  
+**Example details:** second numerical example, Fig. 2; given for a focal length of 100 mm, relative aperture 1:1.2, picture angle ±10°
+
+The patent describes a lens "of extremely large relative aperture" for cameras and projectors, built from three units separated by air: a collective front lens, a thick cemented meniscus with its convex side toward the object, and a collective rear unit. It gives two numerical examples. In the first (Fig. 1) the rear unit is a single lens; in the second (Fig. 2), modelled here, it is split into two separate plano-convex lenses. The front lens and the cemented meniscus are identical in both examples.
+
+The model is the Fig. 2 table copied at the patent's own scale. The first example is not modelled: its table prints the front radius of the rear lens as +5.17, which cannot be right for that lens and is probably a misprint of the +52.17 printed in the second example.
+
+No production lens is identified with this design. A search of the published Sonnar histories found Bertele's f/2 and f/1.5 Sonnars but no f/1.2 lens from Zeiss Ikon or Carl Zeiss at this date. The design is a relative of the Sonnar family: a front collective, a thick cemented triplet meniscus and a rear collective. The narrow ±10° field suggests a cine, projection or screen-photography use, but the patent does not say so. The file sits with the Carl Zeiss Jena lenses because that is where Bertele's other Zeiss Ikon patents are kept, not because a Jena product is known.
 
 ## Optical Architecture
-Six elements in four air-separated groups: front positive singlet, a thick cemented triplet with negative rear element, and two positive rear singlets. The center triplet exceeds40% of system focal length. The two rear singlets share the same vertex plane but are not cemented; literal zero axial air opens away from axis. Calculated EFL100.009529 mm and BFD30.053277 mm.
+
+Six elements in four air-separated groups, all spherical or flat:
+
+- L1, a positive meniscus, convex to the object.
+- L2 + L3 + L4, a cemented triplet forming a thick meniscus: a positive meniscus, a low-index biconvex lens and a strong biconcave flint whose deep concave rear surface (radius 32.44 mm) faces the stop space.
+- L5 and L6, two plano-convex lenses with their curved faces toward the object. The patent prints the air space between them as 0.00: the flat rear face of L5 touches the vertex of L6 on the axis and the gap opens toward the rim. They are not cemented.
+
+The patent labels the two rear lenses L6 and L7 in Fig. 2, keeping L5 for the single rear lens of Fig. 1. The model numbers them L5 and L6 in order.
+
+The patent's central idea is the thickness of the cemented meniscus. Bertele states that raising the aperture of a conventional design from 1:1.4 to 1:1.2 bends the spherical-aberration curve badly, and that making the meniscus thicker than 40 % of the focal length gives a favourable curve while still allowing the other errors to be corrected. In this example the meniscus is 45.28 mm thick on the axis for a 100 mm focal length.
+
+The model computes a focal length of 100.01 mm against the patent's 100 mm, a back focus of 30.05 mm, and a length of 99.45 mm from the first to the last surface.
 
 ## Element-by-Element Analysis
-L1 positive meniscus collects the beam. L2 positive meniscus and L3 biconvex are cemented to rear negative L4. L5 and L6 are separate plano-convex positive singlets. Curvatures and glasses are literal; allocation of individual aberration-correction roles is not independently demonstrated.
 
-## Glass Identification / Selection
-Source nd/V retained for all six elements; lowercase d reference. No modern glass match asserted. Abbe-based dispersion is approximate and must not be mistaken for measured melt data.
+Focal lengths are for each element alone in air, computed from the printed data.
+
+| Element | Shape | nd | ν | Focal length (mm) |
+|---|---|---|---|---|
+| L1 | Positive meniscus | 1.6664 | 48.6 | +170.4 |
+| L2 | Positive meniscus (cemented) | 1.6203 | 60.2 | +131.7 |
+| L3 | Biconvex (cemented) | 1.4645 | 65.7 | +199.2 |
+| L4 | Biconcave (cemented) | 1.7552 | 27.5 | −37.7 |
+| L5 | Plano-convex | 1.7015 | 41.2 | +74.4 |
+| L6 | Plano-convex | 1.7015 | 41.2 | +408.2 |
+
+The cemented triplet as a whole is negative, with a focal length of −155.2 mm. L5 carries most of the rear unit's power; L6 is a weak lens that takes over part of the bending the single rear lens of Fig. 1 had to do alone.
+
+## Glass Identification and Selection
+
+The patent prints a refractive index nd and an Abbe number ν for every element, and the model uses those values unchanged. No glass names are given in the patent and none are assigned here.
+
+The choice of glasses follows the patent's claims: the biconvex middle lens of the triplet (nd 1.4645) has a lower index than the biconcave lens behind it (nd 1.7552). That index step at the cemented surface, together with the dense flint's low Abbe number of 27.5, does the colour correction inside the thick meniscus. Both rear lenses use the same glass.
 
 ## Focus Mechanism
-Infinity-only calculated paraxial back focus, not a physical focus mechanism or close-focus claim. Stop and clear apertures are estimates. Central90% axial pupil passes; extreme pupil and off-axis samples clip as documented in audit. No full image-quality validation.
 
-## Aspherical Surfaces
-None. All ten refracting surfaces are spherical or planar. Full-app/browser/current-main integration testing remains pending.
+The patent gives data for an object at infinity only and describes no focusing arrangement. The model is therefore fixed at infinity, with the image plane at the computed paraxial back focus of 30.05 mm behind the last surface. The patent prints no back focus.
+
+## Patent Conditions and Model Verification
+
+The claims set two numerical limits, and the example meets both:
+
+- The concave rear surface of the meniscus has a radius between 0.28 and 0.5 of the focal length: 32.44 mm, or 0.32.
+- The axial thickness of the meniscus is between 0.4 and 0.6 of the focal length: 45.28 mm, or 0.45.
+
+Three things in the model are not printed in the patent:
+
+- The stop. The patent draws no diaphragm. The model places one 12 mm behind the concave rear surface of the triplet, inside the printed 23.61 mm air space.
+- The lens diameters. All clear rims are estimates. They pass the axial f/1.2 beam at every lens and the central ray of the patent's 10° field; the edge of the 10° beam is partly cut.
+- The back focus, computed as described above.
+
+Because of spherical aberration in the front half, the real edge ray of the f/1.2 beam reaches the stop slightly higher (19.2 mm) than the paraxial value the stop is sized from (18.1 mm), so the outermost part of the f/1.2 pupil is trimmed at the stop. Traced along the axis, longitudinal spherical aberration is +0.57 mm at the edge of the pupil and −0.23 mm at 70 % of it.
+
+## Sources
+
+- US 2,141,733, *Lens System*, Ludwig Bertele, assignor to Zeiss Ikon Aktiengesellschaft, Dresden; patented December 27, 1938. Text, both tables and Figs. 1–2.
+- Wikipedia, "Zeiss Sonnar" and "Ludwig Bertele" (https://en.wikipedia.org/wiki/Zeiss_Sonnar, https://en.wikipedia.org/wiki/Ludwig_Bertele), consulted for the production Sonnar apertures; neither lists an f/1.2 lens.

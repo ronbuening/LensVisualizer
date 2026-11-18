@@ -1,8 +1,24 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * US 2,141,733 A (Ludwig Bertele, Zeiss Ikon AG, granted 27 December 1938), second numerical example (Fig. 2).
+ *
+ * The patent gives the data for a focal length of 100 mm, a relative aperture of 1:1.2 and a picture angle of
+ * +/-10 degrees. Radii, thicknesses, air spaces, nd and Abbe numbers are copied from the lower table on page 1 of the
+ * specification at the patent's own scale (no scaling). The two rear lenses are separate, with a printed axial air
+ * space of 0.00: they touch on the axis and are not cemented.
+ *
+ * Inferred, not printed: the stop position (12 mm behind R6, inside the printed 23.61 mm air space; the patent
+ * draws no diaphragm), every semi-diameter, and the back focus (computed paraxial value, 30.0533 mm).
+ * The engine sizes the stop from the paraxial f/1.2 beam; the real marginal ray is slightly higher at the stop, so
+ * the outermost few per cent of the f/1.2 pupil is cut by the stop itself, not by a lens rim.
+ *
+ * No production lens is identified with this example.
+ */
 const LENS_DATA = {
   schema: 2,
   key: "zeiss-ikon-bertele-us2141733-fig2-patent-reference",
-  maker: "Zeiss Ikon",
+  maker: "Carl Zeiss Jena",
   name: "BERTELE f/1.2 PATENT REFERENCE",
   subtitle: "1938 FIGURE 2; PATENT ONLY",
   visible: false,
@@ -17,21 +33,21 @@ const LENS_DATA = {
     elementCount: 6,
     groupCount: 4,
     focalLengthMm: {
-      design: 100.0095292890771,
+      design: 100.01,
     },
     fNumber: {
       design: 1.2,
     },
   },
   source: {
-    patentNumber: "US 2,141,733",
+    patentNumber: "US 2,141,733 A",
     example: {
       label: "Figure 2",
       id: "2",
     },
     patentYear: 1938,
     authors: ["Ludwig Bertele"],
-    assignees: ["Zeiss Ikon Aktiengesellschaft"],
+    assignees: ["Zeiss Ikon AG"],
     sdSource: "heuristic",
   },
   elements: [
@@ -52,6 +68,7 @@ const LENS_DATA = {
       nd: 1.6203,
       vd: 60.2,
       indexReference: "d",
+      cemented: "T1",
     },
     {
       id: 3,
@@ -61,6 +78,7 @@ const LENS_DATA = {
       nd: 1.4645,
       vd: 65.7,
       indexReference: "d",
+      cemented: "T1",
     },
     {
       id: 4,
@@ -70,6 +88,7 @@ const LENS_DATA = {
       nd: 1.7552,
       vd: 27.5,
       indexReference: "d",
+      cemented: "T1",
     },
     {
       id: 5,
@@ -159,7 +178,7 @@ const LENS_DATA = {
     {
       label: "10",
       R: "flat",
-      d: 30.053277025514724,
+      d: 30.0533,
       sd: 25,
     },
   ],
@@ -168,12 +187,12 @@ const LENS_DATA = {
     fStops: [1.2, 1.4, 2, 2.8, 4, 5.6, 8, 11, 16],
   },
   focus: {
-    closeFocusM: 1000000000000000.0,
+    closeFocusM: 1e15,
     description:
       "Infinity-only patent Fig2; literal nd/V and zero rear axial AIR gap retained; computed paraxial BFD. Estimated iris 12mm after R6; estimated rims; no exact production identity.",
   },
   groups: [],
-  doublets: [],
+  doublets: [{ text: "T1", fromSurface: "3", toSurface: "6" }],
   layout: {
     yScFill: 0.4,
   },
