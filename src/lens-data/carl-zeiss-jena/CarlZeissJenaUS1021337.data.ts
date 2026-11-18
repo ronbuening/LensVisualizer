@@ -17,10 +17,17 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * nD only and is therefore monochromatic. The nG' column is not used; its value for lens II (1.6308)
  * is probably a misprint, since only a value near 1.637 gives the colour correction the patent states.
  *
- * INFERRED: the back focus (computed paraxial image distance for an infinite object, 109.1747),
- * all clear semi-diameters (4.5, set to pass the f/12.5 axial beam; the patent prints none and
- * Fig. 1 is not to scale) and the 5-degree trace field (the patent states no field).
- * The stop position is printed (b); its opening follows from 1:12.5.
+ * INFERRED: the back focus (computed paraxial image distance for an infinite object, 109.1747)
+ * and the 5-degree trace field (the patent states no field). The stop position is printed (b);
+ * its opening follows from 1:12.5.
+ *
+ * SEMI-DIAMETERS: the patent prints none. All five faces carry 4.5, one height, because Fig. 1
+ * draws the cemented group as a square-cut cylinder. Fig. 1 is close to scale overall (about
+ * 80 px/mm at 600 dpi from the stop-to-r1 and r1-to-r5 spans, which agree within 3 %; the drawn
+ * stop opening, 3.87, matches the f/12.5 pupil, 3.96). At that scale the drawn rim is about 4.67,
+ * within 4 % of the model value, and the rim sags of r1 and r5 agree with 4.5-4.7. The f/12.5
+ * axial beam reaches 4.41 at surface 5; lens II comes to a knife edge at about 4.93, as the
+ * figure nearly draws it. The small bevel drawn on the front corner is not modelled.
  */
 const LENS_DATA = {
   schema: 2,

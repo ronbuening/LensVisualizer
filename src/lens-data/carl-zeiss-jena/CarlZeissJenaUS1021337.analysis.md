@@ -84,9 +84,10 @@ The patent says nothing about focusing, and a single objective of this kind was 
 ## Model Scope and Limitations
 
 - **Printed in the patent:** five radii with their signs, four thicknesses, the diaphragm distance b, four D-line indices, the relative aperture 1:12.5.
-- **Inferred:** the back focus (computed); the clear semi-diameters, all 4.5, chosen to pass the f/12.5 axial beam (the marginal ray reaches 4.41 at the last surface); the 5° trace field. The patent states no field and no diameters, and Fig. 1 is not drawn to scale (the diaphragm distance scales to about 1.4 against the printed 2.34).
-- **Limit on the diameters:** the second lens reaches zero edge thickness at a semi-diameter of about 5.1, so the printed thicknesses themselves cap the clear aperture a little above the present value.
-- **Field:** the 5° half-field is a display setting, far inside the roughly 80° coverage reported for the Protar. Off-axis performance of the model has not been assessed.
+- **Inferred:** the back focus (computed); the clear semi-diameters; the 5° trace field. The patent states no field and no diameters.
+- **Diameters:** all five faces are 4.5, one height, because Fig. 1 draws the cemented group as a square-cut cylinder. The figure is close to scale overall: its diaphragm-to-lens and lens-length spans give the same scale within 3 %, and its drawn diaphragm opening matches the f/12.5 pupil. At that scale the drawn rim is about 4.67, within 4 % of the model. The f/12.5 axial beam reaches 4.41 at the last surface.
+- **Limit on the diameters:** the second lens comes to a knife edge at a semi-diameter of about 4.93, very nearly as Fig. 1 draws it, so the printed thicknesses themselves cap the clear aperture a little above the present value.
+- **Field:** the 5° half-field is a display setting. The rims pass the chief ray to about 40° half-field (the rear surface limits it), consistent with the roughly 80° coverage reported for the Protar. Off-axis image quality of the model has not been assessed.
 
 ## Sources
 

@@ -34,7 +34,7 @@ The file was delivered with `visible: false` (closed: it is now visible).
 **Open:**
 
 - Name, key (`-d-line` suffix), subtitle, specs and element labels ("Patent I") keep the delivered wording for the cleanup pass; the name still says 100mm. (Closed by the cleanup pass below.)
-- Field and rims: the 5° trace field and the uniform 4.5 rims are placeholders. The patent states no field, the Series VII lens is reported at about 80–85°, Fig. 1 is not to scale, and lens II reaches zero edge thickness at a semi-diameter of about 5.1. Off-axis clearance has not been checked.
+- Field and rims: the 5° trace field and the uniform 4.5 rims are placeholders. The patent states no field, the Series VII lens is reported at about 80–85°, Fig. 1 is not to scale, and lens II reaches zero edge thickness at a semi-diameter of about 5.1. Off-axis clearance has not been checked. (Closed 2026-11-18 by the semi-diameter pass: rims kept; Fig. 1 is close to scale overall; the knife edge is at about 4.93; the chief ray clears to about 40°.)
 - Abbe numbers: the nG′ − nD differences suggest roughly 66, 56 (with a corrected lens II value), 53 and 38.5 for lenses I–IV; no modern catalogue glass matched, and a period Schott list has not been consulted. The model stays monochromatic until one is.
 - `closeFocusM: 1e15` awaits the house infinity form. (Closed: kept as the infinity-only placeholder.)
 
@@ -57,7 +57,35 @@ Optics, stop and rims were not touched.
 
 **Open:**
 
-- Rims and field (SD pass): uniform 4.5 rims and a 5° trace field are placeholders; the patent states no field or diameters, Fig. 1 is not to scale, the Protar is reported at about 80° coverage, and lens II reaches zero edge thickness at a semi-diameter of about 5.1.
+- Rims and field (SD pass): uniform 4.5 rims and a 5° trace field are placeholders; the patent states no field or diameters, Fig. 1 is not to scale, the Protar is reported at about 80° coverage, and lens II reaches zero edge thickness at a semi-diameter of about 5.1. (Closed 2026-11-18 by the semi-diameter pass below, which corrects the scale and edge statements.)
 - `lensMounts`, `imageFormat` and image circle are not set: the patent states no format or field.
 - Abbe numbers: rough values from nG′ − nD (about 66, 56 with a corrected lens II, 53, 38.5) are not in the data; a period Schott list has not been consulted.
 - The name carries 100mm (the patent's nominal focal length) while the table computes to 99.00.
+
+## 2026-11-18 — Semi-diameter pass against the patent figure
+
+**Source.** US 1,021,337, drawing sheet (PDF page 1), Fig. 1, the figure of the sole numerical example. Measured from the 300 dpi scan rendered at 600 dpi; axis on page row 3199.
+
+**Scale.** Diaphragm tick and axis cross at page column about 1932, r1 vertex about 2123, r5 vertex about 2466. Stop to r1 vertex: 191 px for the printed 2.34, 81.6 px/mm. r1 to r5 vertex: 345 px for 4.34, 79.5 px/mm. Stop to r5: 536 px for 6.68, 80.2 px/mm, used below. The two spans agree within 3 %, so Fig. 1 is close to scale overall. The single thicknesses vary more (d_I 83, d_II 74, d_III 73, d_IV 106 px/mm), so they are read as proportions only. Check on a third quantity: the drawn diaphragm opening is 310 px half-height (318 above, 303 below), 3.87 mm, against the model's f/12.5 stop radius of 3.96 (−2 %). This corrects the earlier note that Fig. 1 is not to scale: that reading measured from the drawn rim edge, not from the r1 vertex.
+
+**Rims.** Fig. 1 draws the cemented group as a square-cut cylinder, with all faces ending at one height and a small bevel (about 0.25 mm) on the front corner. Rim half-height at line centre is 371 px below and 378 px above the axis: 4.63–4.71 mm, mean about 4.67. Independent checks from the drawn rim sags: r1 vertex 73 px behind the front rim edge (0.91 mm; the model sag is 0.88 at 4.5 and 0.95 at 4.67), and r5 rim 65 px ahead of the r5 vertex (0.81 mm; the model gives 0.78 at 4.5 and 0.84 at 4.67). Lens II is drawn nearly knife-edged at the rim. In the model, its edge is 0.31 mm at 4.5, 0.17 at 4.7 and zero at about 4.93; the earlier "about 5.1" was an overestimate.
+
+| Surface | Stored sd | Fig. 1 | Ratio | Decision |
+|---|---|---|---|---|
+| 1 | 4.5 | about 4.67 (sag check 4.5–4.67) | 1.04 | kept, within noise |
+| 2 | 4.5 | about 4.67 | 1.04 | kept |
+| 3 | 4.5 | about 4.67 | 1.04 | kept |
+| 4 | 4.5 | about 4.67 | 1.04 | kept |
+| 5 | 4.5 | about 4.67 (sag check 4.5–4.67) | 1.04 | kept |
+
+No rim was changed. The difference is under 5 %, and the square-cut rim is already one height. The overlay of the model on Fig. 1 at 80.2 px/mm, aligned at the r1 vertex, shows the surfaces, the stop position and the stop opening on the figure's lines, and the model rim about 13 px (0.17 mm) inside the drawn rim. The front bevel is not modelled: a land on r1 near 4.25 would cost light at the trace field, and lands must earn their light.
+
+**Clearance and light.** Rims are unchanged from the baseline. The f/12.5 axial marginal ray reaches 3.96 at surface 1 and 4.41 at surface 5, against 4.5. The engine half-field is 5° before and after; vignetting at 5° is 96.2 % before and after, with zero worst loss against the baseline. The chief ray passes the rims to 40.3° half-field, limited by surface 5 (then 4 at 42.9°), consistent with the roughly 80° coverage reported for the Protar. The surface audit reports no errors and the aperture audit no rim limit. The image-circle and field-coverage audits skip the file, which has no image format.
+
+**Metadata.** `lensMounts`, `imageFormat` and image circle stay unset. The patent states no plate size or field, and the model is the patent's focal length 100 normalisation of a lens Zeiss sold in a range of focal lengths, so no format fits it as built.
+
+**Name.** References call the product the Protar lens (Protarlinse) Series VII, and the patent itself writes "Series VII (Protar-lens 1:12.5)". The model name carries no product word, which fits the evidence: the patent names that lens as the one it improves, but no source shows that this table was produced.
+
+**Open:**
+
+- Abbe numbers for the four glasses, if a period Schott list is consulted (unchanged from the earlier passes).
