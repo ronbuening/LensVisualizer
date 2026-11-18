@@ -81,7 +81,7 @@ What is printed and what is inferred:
 - Printed and copied without change: ten radii, five thicknesses, four air spaces, and Nd and ν for both glasses. Every value was checked against the page image and none differs.
 - Inferred from the drawing and text: the signs of the radii (the table prints magnitudes only).
 - Inferred: the diaphragm position, taken as the middle of the 40.56 mm central air space, which is where the drawing shows it.
-- Inferred: every clear semi-diameter. The patent prints no diameters.
+- Inferred: every clear semi-diameter. The patent prints no diameters; the values are read from the drawing, which is to scale.
 - Computed: the back focus.
 
 First-order results of the model:
@@ -92,13 +92,13 @@ First-order results of the model:
 | Relative aperture | about F/5.6 | F/5.6 (stop semi-diameter 13.14 mm) |
 | Back focus | not printed | 152.98 mm |
 | First to last surface | not printed | 75.19 mm |
-| Field of view | approximately 100° | about 95° (see below) |
+| Field of view | approximately 100° | 100° (chief ray to 50.0°; see below) |
 
 The patent's conditions hold in the model: every radius is shorter than the focal length, the negative lenses share their radii, and lens I (+134.39 mm) is stronger than lens IV (+282.87 mm) or lens V (+230.59 mm).
 
 At F/5.6 the marginal axial ray of the printed prescription focuses 1.91 mm beyond the paraxial focus, the 85 % zone 0.42 mm beyond it, and the 70 % and 50 % zones 0.19 mm and 0.32 mm short of it. That is the usual zonal pattern of this lens type at an aperture the patent itself calls approximate.
 
-The field needs a caution. The clear semi-diameters are set to the heights a chief ray needs at a half-field of about 47.7°. A wider field would need the front surface to be opened beyond the steepest rim the model allows on a spherical surface (32.5 mm on a 36.15 mm radius); the full 50° needs about 33.4 mm there and 35.8 mm on the last surface. The drawing shows the outer lenses carried almost to full hemispheres, so the real design reaches its stated field; the model stops about 2° short of it on each side. Off-axis bundles are progressively vignetted well before the limit, as the drawing's small inner shells also imply.
+The field needs a note. The drawing is to scale, and it draws each lens with its convex face running out to the element's edge and its concave face, the one toward the diaphragm, ending a little lower with a short flat step square to the axis. The model follows it. The rims are the heights a chief ray reaches at the stated 50° half-field, all within the drawn outlines: the convex faces end at 33.4 mm (I), 23.7 mm (II, III), 33.4 mm (IV) and 35.8 mm (V), and the concave faces end lower with drawn flat steps out to the element's edge. The outer surfaces of lenses I and V turn steeply near their rims, as drawn: at its 33.4 mm rim the front surface is tilted 67.5° from the plane square to the axis, beyond the 64.2° the model allows by default, so this lens carries a 68° limit. The chief ray then passes every rim to a half-field of 50.0°, an image height of about 231.5 mm, which is the patent's 100° field. Off-axis bundles are progressively vignetted well before that edge, as the drawing's small inner shells also imply.
 
 ## Sources
 

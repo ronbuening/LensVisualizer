@@ -22,13 +22,25 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * STOP (inferred): the drawing shows the diaphragm A in the 40.56 mm central air space s2 but the table gives it no
  * position. It is placed at the middle, 20.28 mm from each neighbouring surface, where the drawing shows it.
  *
- * SEMI-DIAMETERS (inferred): the patent prints no diameters. The rims are the heights the chief ray needs to pass
- * at a half-field of about 47.7°, rounded up to 0.1 mm. That is the widest field the front surface allows inside
- * the validator's rim-slope limit (32.5 mm on R1 = 36.15 mm); the full 50° would need about 33.4 mm there and
- * 35.8 mm on the last surface. Surfaces 4 and 5 are set at 20 mm, a little more than the chief
- * ray needs. All values are at or below the rims scaled from the drawing (about 34 mm for lens I, 23.6 mm for
- * lenses II and III, 35 mm for lenses IV and V). The model therefore passes a chief ray over about 95° of the
- * patent's roughly 100° field; off-axis bundles are vignetted before that.
+ * SEMI-DIAMETERS (inferred): the patent prints no diameters. The drawing is to scale (7.91 px per mm at 300 dpi:
+ * the first-to-last vertex span and the central air space both agree with the table within 1 %, and the outer arcs
+ * of R1 and R10 lie on the drawn outlines). It draws every lens with its convex face running out to the element's
+ * edge and its concave face, the one toward the diaphragm, ending a little lower with a short stroke square to the
+ * axis. Read from the drawing, the convex faces reach about 34.3 (I), 24.1 (II, III), 33.4 (IV) and 35.9 mm (V),
+ * and the concave faces end at about 33.0, 20.8, 21.0, 32.0 and 33.75 mm (±0.15 mm). Each rim is the height a
+ * chief ray reaches at the patent's 50° half-field (image height 231.8 mm), rounded up to 0.1 mm, except lens IV,
+ * which is drawn larger than that and keeps its drawn rims. No rim exceeds the drawing:
+ * - Lens I: R1 33.4 mm (50° chief ray 33.38). R2 32.5 mm with a flat land (rimExtensionSd) to 33.4 mm, as drawn.
+ * - Lenses II and III: 23.7 mm on the convex faces and 20.6 mm on the concave ones (50° chief ray 23.63 and 20.50);
+ *   the concave faces carry lands out to 23.7 mm.
+ * - Lens IV: 32 mm on R7 with a land to 33.4 mm, and 33.4 mm on R8, read from the drawing (the 50° chief ray needs
+ *   31.13 and 32.78).
+ * - Lens V: 33.9 mm on R9 with a land to 35.8 mm, and 35.8 mm on R10 (50° chief ray 33.92 and 35.75); R9 sits at
+ *   the upper end of its drawing reading.
+ * The lands are drawn only and do not affect the trace. R1 and R10 run past the validator's default rim-slope limit
+ * (64.2°), as the drawing shows them; checks.maxRimAngleDeg = 68 is the smallest whole degree that admits R1 at
+ * 33.4 mm (67.5°). The chief ray passes every rim to a half-field of 50.0° (image height about 231.5 mm), the
+ * patent's 100° field; R1 stops it just past that. Off-axis bundles are vignetted well before the edge.
  *
  * IMAGE PLANE (computed): the patent prints no back focus. The final spacing is the paraxial back focus of the
  * printed prescription, 152.9768 mm.
@@ -137,27 +149,29 @@ const LENS_DATA = {
       label: "1",
       R: 36.15,
       d: 14.33,
-      sd: 32.5,
+      sd: 33.4,
       medium: 1,
     },
     {
       label: "2",
       R: 54.15,
       d: 0.06,
-      sd: 29.1,
+      sd: 32.5,
+      rimExtensionSd: 33.4,
     },
     {
       label: "3",
       R: 29.45,
       d: 1.61,
-      sd: 22.8,
+      sd: 23.7,
       medium: 2,
     },
     {
       label: "4",
       R: 23.75,
       d: 20.28,
-      sd: 20,
+      sd: 20.6,
+      rimExtensionSd: 23.7,
     },
     {
       label: "STO",
@@ -168,40 +182,43 @@ const LENS_DATA = {
       label: "5",
       R: -23.75,
       d: 1.61,
-      sd: 20,
+      sd: 20.6,
+      rimExtensionSd: 23.7,
       medium: 3,
     },
     {
       label: "6",
       R: -29.45,
       d: 0.06,
-      sd: 22.8,
+      sd: 23.7,
     },
     {
       label: "7",
       R: -55.65,
       d: 6.2,
-      sd: 29.4,
+      sd: 32,
+      rimExtensionSd: 33.4,
       medium: 4,
     },
     {
       label: "8",
       R: -44.05,
       d: 0.06,
-      sd: 31.4,
+      sd: 33.4,
     },
     {
       label: "9",
       R: -47.9,
       d: 10.7,
-      sd: 32.4,
+      sd: 33.9,
+      rimExtensionSd: 35.8,
       medium: 5,
     },
     {
       label: "10",
       R: -38.95,
       d: 152.9768,
-      sd: 34.8,
+      sd: 35.8,
     },
   ],
   aperture: {
@@ -215,6 +232,9 @@ const LENS_DATA = {
   },
   groups: [],
   doublets: [],
+  checks: {
+    maxRimAngleDeg: 68,
+  },
   layout: {
     yScFill: 0.4,
   },
