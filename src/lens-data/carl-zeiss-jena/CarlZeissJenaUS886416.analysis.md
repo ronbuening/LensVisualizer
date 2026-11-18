@@ -1,4 +1,4 @@
-# CARL ZEISS JENA 100mm f/6.3 (US 886,416 Design) — US 886,416 Example 2
+# CARL ZEISS JENA 100mm f/6.3 (US 886,416 Design)
 
 ## Patent Reference and Design Identification
 
