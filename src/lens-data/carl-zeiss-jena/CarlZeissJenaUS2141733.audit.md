@@ -1,4 +1,4 @@
-# Bertele f/1.2 objective, US 2,141,733 Figure 2 — audit log
+# CARL ZEISS JENA 100mm f/1.2 (US 2,141,733 Design) — audit log
 
 ## Source
 
@@ -34,7 +34,7 @@ Claim limits: R6 / f = 0.32 (limits 0.28 to 0.5); meniscus thickness / f = 0.45 
 
 Checked against the patent page images (400 dpi crops of the Fig. 2 table and the drawing), independently of the original author's notes: all 10 radii with their signs, 6 thicknesses, 3 air spaces, 6 nd and 6 ν values, the cemented surfaces, the element shapes and count against Fig. 2, and the front-page names and dates. No transcription mismatch was found.
 
-Verdict: valid, with integration fixes. The model reproduces the patent's 100 mm focal length to 0.01 %. No product link: published Sonnar histories list Bertele's f/2 and f/1.5 lenses but no f/1.2 lens, so the design is kept as a hidden patent reference.
+Verdict: valid, with integration fixes. The model reproduces the patent's 100 mm focal length to 0.01 %. No product link: published Sonnar histories list Bertele's f/2 and f/1.5 lenses but no f/1.2 lens, so the design is kept as a patent design without a product name (shown publicly since the cleanup pass of the same date).
 
 Changes made:
 
@@ -57,12 +57,45 @@ Audit results:
 - Surface validator: no errors.
 - Aperture audit: no surface below the on-axis f/1.2 ray; no raise proposed.
 - Real-ray clearance at f/1.2 and 17.63 mm image height (the patent's 10°): no axial clipping at any rim and the chief ray passes. The axial edge ray needs 41.67 mm at surface 1 (rim 44) and 19.97 mm at surface 6 (rim 28). The real edge ray reaches the stop at 19.21 mm against the 18.06 mm stop, so the stop trims the outermost part of the f/1.2 pupil. At 10° the lower edge of the beam is cut.
-- Image-circle and field-coverage audits skip the file: it is hidden and carries no image format.
+- Image-circle and field-coverage audits skip the file: it carries no image format (and was hidden at the time).
 
 Open:
 
-- Key, file name, name, subtitle and specs still carry the delivered wording ("PATENT REFERENCE", "PATENT ONLY; RETAIL IDENTITY UNPROVED", "ESTIMATED STOP AND RIMS", "LITERAL ZERO AXIAL REAR AIR GAP"); `focus.description` likewise.
-- `closeFocusM: 1e15` to be set to the house infinity-only form.
-- Rear elements could be relabelled L6 and L7 to follow the patent's Fig. 2 lettering; element focal lengths and roles are not yet in the data file.
+- Closed 2026-11-17 (renamed and reworded in the cleanup pass): key, file name, name, subtitle and specs still carried the delivered wording ("PATENT REFERENCE", "PATENT ONLY; RETAIL IDENTITY UNPROVED", "ESTIMATED STOP AND RIMS", "LITERAL ZERO AXIAL REAR AIR GAP"); `focus.description` likewise.
+- Closed 2026-11-17 (cleanup pass): `closeFocusM: 1e15` kept as the infinity-only placeholder with a plain focus description.
+- Closed 2026-11-17 (cleanup pass): element focal lengths and roles added. Rear elements stay L5 and L6 in order; the analysis notes the patent's L6 / L7 lettering.
 - Semi-diameters are estimates and have not been compared with the proportions drawn in Fig. 2; `sdSource` is "heuristic".
-- No glass names assigned; no image format or mount assigned.
+- Closed in part 2026-11-17 (cleanup pass): glass names assigned where an exact row exists. No image format or mount assigned.
+
+## 2026-11-17 — Cleanup and wording pass
+
+Fields changed in the data file:
+
+- `subtitle`: "1938 FIGURE 2; PATENT ONLY" → "US 2,141,733 A, Figure 2 — Bertele f/1.2 design".
+- `specs`: the five delivered lines → "6 ELEMENTS / 4 GROUPS", "DESIGN F/1.2", "ALL SPHERICAL", "±10° FIELD" (the field is the patent's stated picture angle).
+- `focus.description`: replaced by "Infinity focus only; the patent gives no close-focus data." `closeFocusM` stays 1e15.
+- Elements: `label` "L1"–"L6" → "Element 1"–"Element 6"; `type` to the house shape names; `focalLengthMm` added (170.44, 131.66, 199.16, −37.68, 74.37, 408.17); a plain `role` on each.
+- Cemented triplet id "T1" → "C1" on elements 2 to 4 and in `doublets` (one entry, surfaces 3 to 6).
+- Header comment: one sentence reworded, and the Sonnar-family relation added.
+
+Glass labels (printed value against the catalogue row):
+
+- Element 3: none → "FK3 (Schott)", Δnd 0.0000, Δν +0.07.
+- Element 4: none → "SF4 (Schott)", Δnd 0.0000, Δν +0.08.
+- Elements 5 and 6: none → "BASF7 (Sumita)", Δnd +0.00004, Δν −0.05. The glass catalogue has this type only as Sumita BASF7 and Hoya BAFD7 rows; "BaSF7 (Schott)" resolves to the Sumita row.
+- Element 1: "Unmatched (nd 1.6664 / V 48.6)". Nearest is the BaF11 type at 1.66672 / 48.4, Δnd 0.0003, outside the limit.
+- Element 2: "Unmatched (nd 1.6203 / V 60.2)". Nearest is SK16 at 1.62041 / 60.3, Δnd 0.00011, just outside the limit.
+
+No `apd` tags: the patent designates no special-dispersion glass.
+
+Analysis: title set to the lens name; the glass section rewritten for the labels above; the product sentence reduced to one statement; the last section renamed "Patent Conditions and Model Scope".
+
+Engine numbers before and after this pass are identical: focal length 100.0095 mm, f/1.2, default half-field 18.50°, stop semi-diameter 18.0567 mm, back focus 30.0533 mm. Surface validator: no errors. Aperture audit: within 3 % of the stated f-number, no rim, trace or iris limit.
+
+Open:
+
+- Semi-diameters are estimates (`sdSource` "heuristic") and have not been compared with Fig. 2. In the figure the front lens is slightly taller than the cemented meniscus and the rear pair is roughly half the front height; the present 44 / 42 / 25 mm follow that order. At the patent's 10° the lower edge of the beam is cut.
+- No `lensMounts` or `imageFormat`: the patent states a ±10° picture angle but no format. The default half-field shown (18.5°) is wider than the patent's field.
+- `groups` is empty.
+- Elements 1 and 2 have no exact catalogue row.
+- The rear elements are numbered 5 and 6, not the patent's L6 and L7.

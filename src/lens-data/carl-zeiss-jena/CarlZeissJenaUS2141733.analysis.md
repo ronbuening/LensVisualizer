@@ -1,4 +1,4 @@
-# Bertele f/1.2 objective — US 2,141,733 Figure 2
+# CARL ZEISS JENA 100mm f/1.2 (US 2,141,733 Design)
 
 ## Patent Reference and Design Identification
 
@@ -12,9 +12,9 @@
 
 The patent describes a lens "of extremely large relative aperture" for cameras and projectors, built from three units separated by air: a collective front lens, a thick cemented meniscus with its convex side toward the object, and a collective rear unit. It gives two numerical examples. In the first (Fig. 1) the rear unit is a single lens; in the second (Fig. 2), modelled here, it is split into two separate plano-convex lenses. The front lens and the cemented meniscus are identical in both examples.
 
-The model is the Fig. 2 table copied at the patent's own scale. The first example is not modelled: its table prints the front radius of the rear lens as +5.17, which cannot be right for that lens and is probably a misprint of the +52.17 printed in the second example.
+The prescription is the Fig. 2 table at the patent's own scale. The first example is not modelled: its table prints the front radius of the rear lens as +5.17, which cannot be right for that lens and is probably a misprint of the +52.17 printed in the second example.
 
-No production lens is identified with this design. A search of the published Sonnar histories found Bertele's f/2 and f/1.5 Sonnars but no f/1.2 lens from Zeiss Ikon or Carl Zeiss at this date. The design is a relative of the Sonnar family: a front collective, a thick cemented triplet meniscus and a rear collective. The narrow ±10° field suggests a cine, projection or screen-photography use, but the patent does not say so. The file sits with the Carl Zeiss Jena lenses because that is where Bertele's other Zeiss Ikon patents are kept, not because a Jena product is known.
+The design is a relative of the Sonnar family: a front collective, a thick cemented triplet meniscus and a rear collective, here split into two lenses. No production lens is documented for it: the published Sonnar histories list Bertele's f/2 and f/1.5 lenses but no f/1.2 lens from Zeiss Ikon or Carl Zeiss at this date. Zeiss Ikon was the patent owner; the lenses for its cameras were made by Carl Zeiss Jena. The narrow ±10° field suggests a cine, projection or screen-photography use, but the patent does not say so.
 
 ## Optical Architecture
 
@@ -47,7 +47,7 @@ The cemented triplet as a whole is negative, with a focal length of −155.2 mm.
 
 ## Glass Identification and Selection
 
-The patent prints a refractive index nd and an Abbe number ν for every element, and the model uses those values unchanged. No glass names are given in the patent and none are assigned here.
+The patent prints a refractive index nd and an Abbe number ν for every element and names no glasses. Three of the five printed pairs coincide with catalogue glass types, and those elements carry the catalogue name: L3 is Schott FK3 (1.4645 / 65.77), L4 is Schott SF4 (1.7552 / 27.58), and L5 and L6 match the BaSF7 type (1.70154 / 41.15, labelled from the Sumita catalogue row). L1 (1.6664 / 48.6) and L2 (1.6203 / 60.2) are close to the BaF11 and SK16 types but differ in the fourth decimal of the index, so they are left unmatched and traced from the printed values. The names identify glass types; the melts Zeiss actually used are not known.
 
 The choice of glasses follows the patent's claims: the biconvex middle lens of the triplet (nd 1.4645) has a lower index than the biconcave lens behind it (nd 1.7552). That index step at the cemented surface, together with the dense flint's low Abbe number of 27.5, does the colour correction inside the thick meniscus. Both rear lenses use the same glass.
 
@@ -55,14 +55,14 @@ The choice of glasses follows the patent's claims: the biconvex middle lens of t
 
 The patent gives data for an object at infinity only and describes no focusing arrangement. The model is therefore fixed at infinity, with the image plane at the computed paraxial back focus of 30.05 mm behind the last surface. The patent prints no back focus.
 
-## Patent Conditions and Model Verification
+## Patent Conditions and Model Scope
 
 The claims set two numerical limits, and the example meets both:
 
 - The concave rear surface of the meniscus has a radius between 0.28 and 0.5 of the focal length: 32.44 mm, or 0.32.
 - The axial thickness of the meniscus is between 0.4 and 0.6 of the focal length: 45.28 mm, or 0.45.
 
-Three things in the model are not printed in the patent:
+Three things in the prescription are not printed in the patent:
 
 - The stop. The patent draws no diaphragm. The model places one 12 mm behind the concave rear surface of the triplet, inside the printed 23.61 mm air space.
 - The lens diameters. All clear rims are estimates. They pass the axial f/1.2 beam at every lens and the central ray of the patent's 10° field; the edge of the 10° beam is partly cut.

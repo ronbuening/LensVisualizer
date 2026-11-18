@@ -10,26 +10,21 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *
  * Inferred, not printed: the stop position (12 mm behind R6, inside the printed 23.61 mm air space; the patent
  * draws no diaphragm), every semi-diameter, and the back focus (computed paraxial value, 30.0533 mm).
- * The engine sizes the stop from the paraxial f/1.2 beam; the real marginal ray is slightly higher at the stop, so
- * the outermost few per cent of the f/1.2 pupil is cut by the stop itself, not by a lens rim.
+ * The stop is sized from the paraxial f/1.2 beam; the real marginal ray is slightly higher at the stop, so the
+ * outermost few per cent of the f/1.2 pupil is cut by the stop itself, not by a lens rim.
  *
- * No production lens is identified with this example.
+ * The design is a relative of the Sonnar family with the rear collective split into two lenses. No production lens
+ * is documented for it.
  */
 const LENS_DATA = {
   schema: 2,
   key: "carl-zeiss-jena-100mm-f12-us2141733",
   maker: "Carl Zeiss Jena",
   name: "CARL ZEISS JENA 100mm f/1.2 (US 2,141,733 Design)",
-  subtitle: "1938 FIGURE 2; PATENT ONLY",
+  subtitle: "US 2,141,733 A, Figure 2 — Bertele f/1.2 design",
   visible: true,
   catalog: {
-    specs: [
-      "6 ELEMENTS / 4 GROUPS",
-      "PATENT ONLY; RETAIL IDENTITY UNPROVED",
-      "ESTIMATED STOP AND RIMS",
-      "LITERAL ZERO AXIAL REAR AIR GAP",
-      "INFINITY ONLY",
-    ],
+    specs: ["6 ELEMENTS / 4 GROUPS", "DESIGN F/1.2", "ALL SPHERICAL", "±10° FIELD"],
     elementCount: 6,
     groupCount: 4,
     focalLengthMm: {
@@ -54,59 +49,77 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L1",
-      label: "L1",
-      type: "Positive meniscus",
+      label: "Element 1",
+      type: "Positive Meniscus",
       nd: 1.6664,
       vd: 48.6,
       indexReference: "d",
+      focalLengthMm: 170.44,
+      glass: "Unmatched (nd 1.6664 / V 48.6)",
+      role: "Collective front lens, convex to the object.",
     },
     {
       id: 2,
       name: "L2",
-      label: "L2",
-      type: "Positive meniscus",
+      label: "Element 2",
+      type: "Positive Meniscus",
       nd: 1.6203,
       vd: 60.2,
       indexReference: "d",
-      cemented: "T1",
+      focalLengthMm: 131.66,
+      glass: "Unmatched (nd 1.6203 / V 60.2)",
+      role: "Positive front member of the thick cemented meniscus.",
+      cemented: "C1",
     },
     {
       id: 3,
       name: "L3",
-      label: "L3",
-      type: "Biconvex",
+      label: "Element 3",
+      type: "Biconvex Positive",
       nd: 1.4645,
       vd: 65.7,
       indexReference: "d",
-      cemented: "T1",
+      focalLengthMm: 199.16,
+      glass: "FK3 (Schott)",
+      role: "Low-index positive middle member of the cemented meniscus.",
+      cemented: "C1",
     },
     {
       id: 4,
       name: "L4",
-      label: "L4",
-      type: "Biconcave",
+      label: "Element 4",
+      type: "Biconcave Negative",
       nd: 1.7552,
       vd: 27.5,
       indexReference: "d",
-      cemented: "T1",
+      focalLengthMm: -37.68,
+      glass: "SF4 (Schott)",
+      role: "Dense-flint negative rear member of the cemented meniscus; its deep concave surface faces the stop.",
+      cemented: "C1",
     },
     {
       id: 5,
       name: "L5",
-      label: "L5",
-      type: "Plano-convex",
+      label: "Element 5",
+      type: "Plano-Convex Positive",
       nd: 1.7015,
       vd: 41.2,
       indexReference: "d",
+      focalLengthMm: 74.37,
+      glass: "BASF7 (Sumita)",
+      role: "Main positive lens of the split rear collective.",
     },
     {
       id: 6,
       name: "L6",
-      label: "L6",
-      type: "Plano-convex",
+      label: "Element 6",
+      type: "Plano-Convex Positive",
       nd: 1.7015,
       vd: 41.2,
       indexReference: "d",
+      focalLengthMm: 408.17,
+      glass: "BASF7 (Sumita)",
+      role: "Weak positive rear lens of the split rear collective.",
     },
   ],
   surfaces: [
@@ -188,11 +201,10 @@ const LENS_DATA = {
   },
   focus: {
     closeFocusM: 1e15,
-    description:
-      "Infinity-only patent Fig2; literal nd/V and zero rear axial AIR gap retained; computed paraxial BFD. Estimated iris 12mm after R6; estimated rims; no exact production identity.",
+    description: "Infinity focus only; the patent gives no close-focus data.",
   },
   groups: [],
-  doublets: [{ text: "T1", fromSurface: "3", toSurface: "6" }],
+  doublets: [{ text: "C1", fromSurface: "3", toSurface: "6" }],
   layout: {
     yScFill: 0.4,
   },
