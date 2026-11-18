@@ -751,6 +751,8 @@ const GLASS_CATALOG_SOURCE_ORDER = [
   "MP-TAFD51-50",
   "BSM18",
   "S-LAL11",
+  "ADF455",
+  "K-PMK30",
   "MP-LAC14-80",
 ] as const;
 
