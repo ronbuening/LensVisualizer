@@ -4,7 +4,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * US 1,643,865 A, Example 1 / Fig. 1 (Franz Weidert, Optische Anstalt C. P. Goerz Aktiengesellschaft; granted 1927,
  * German priority 1923): a cemented two-lens achromat with the diaphragm behind the lens.
  *
- * SCALE: the patent's own, fD = 100 mm, all lengths in millimetres. Nothing is rescaled.
+ * UNITS: millimetres, at the patent's printed focal length fD = 100 mm.
  * PRINTED: radii +21, -35, +38.82; thicknesses 3 and 1.25; crown 510/634 (nD 1.5096, v 63.4) and flint 549/471
  * (nD 1.5490, v 47.1) from the Sendlinger Optische Glaswerke catalogue; stop distance 11.5 behind the last vertex;
  * diaphragm diameter 9.1; free lens diameter 14.7 (semi-diameter 7.35 on all three surfaces); aperture f/9.
@@ -20,14 +20,14 @@ const LENS_DATA = {
   key: "c-p-goerz-100mm-f9-us1643865",
   maker: "C. P. Goerz",
   name: "C. P. GOERZ 100mm f/9 (US 1,643,865 Design)",
-  subtitle: "1927 EXAMPLE 1; PATENT ONLY",
+  subtitle: "US 1,643,865 A, Example 1 — cemented achromat with rear diaphragm",
   visible: false,
   catalog: {
     specs: [
       "2 ELEMENTS / 1 GROUP",
-      "PATENT ONLY; RETAIL IDENTITY UNPROVED",
-      "LITERAL REAR STOP AND CLEAR DIAMETER",
-      "INFINITY ONLY",
+      "ALL SPHERICAL",
+      "DESIGN F/9",
+      "REAR DIAPHRAGM",
     ],
     elementCount: 2,
     groupCount: 1,
@@ -53,24 +53,28 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L1",
-      label: "L1",
-      type: "Biconvex",
+      label: "Element 1",
+      type: "Biconvex Positive",
       nd: 1.5096,
       vd: 63.4,
       indexReference: "D",
-      role: "Front biconvex crown",
-      cemented: "D1",
+      glass: "Unmatched (nD 1.5096 / V 63.4, Sendlinger crown 510/634)",
+      focalLengthMm: 26.23,
+      role: "Front crown; supplies all of the positive power",
+      cemented: "C1",
     },
     {
       id: 2,
       name: "L2",
-      label: "L2",
-      type: "Biconcave",
+      label: "Element 2",
+      type: "Biconcave Negative",
       nd: 1.549,
       vd: 47.1,
       indexReference: "D",
-      role: "Cemented rear flint",
-      cemented: "D1",
+      glass: "Unmatched (nD 1.5490 / V 47.1, Sendlinger flint 549/471)",
+      focalLengthMm: -33.33,
+      role: "Cemented rear flint; corrects colour across a weak cemented surface",
+      cemented: "C1",
     },
   ],
   surfaces: [
@@ -102,15 +106,16 @@ const LENS_DATA = {
   ],
   aperture: {
     nominalFNumber: 8.99,
-    maxFNumber: 32, fStops: [8.99, 11, 16, 22, 32],
+    maxFNumber: 32,
+    fStops: [8.99, 11, 16, 22, 32],
   },
   focus: {
     closeFocusM: 1e15,
     description:
-      "Infinity-only patent Example 1. Printed D-line indices and v, printed 14.7 mm free lens diameter and 9.1 mm diaphragm 11.5 mm behind the last vertex. Computed paraxial image plane. No production lens is identified; the spherical undercorrection is the patent's own.",
+      "Infinity focus only; the patent gives no close-focus data. The image plane is the computed paraxial focus at the D line.",
   },
   groups: [],
-  doublets: [{ text: "D1", fromSurface: "1", toSurface: "3" }],
+  doublets: [{ text: "C1", fromSurface: "1", toSurface: "3" }],
   layout: {
     yScFill: 0.4,
   },

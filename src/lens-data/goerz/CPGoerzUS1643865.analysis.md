@@ -1,4 +1,4 @@
-# Weidert Two-Lens Objective — US 1,643,865 Example 1
+# C. P. GOERZ 100mm f/9 (US 1,643,865 Design)
 
 ## Patent Reference and Design Identification
 
@@ -11,9 +11,9 @@
 
 The model is the first numerical example of US 1,643,865. The patent concerns the cheapest class of camera lens: the cemented two-lens achromat. It describes the older "French landscape lens", which carries its diaphragm and shutter in front of the glass, and proposes instead a two-lens objective with the diaphragm behind it, so that the shutter is protected, the camera is shorter, and the aperture can be larger than before.
 
-Example 1 is printed at a focal length of 100 mm with an effective aperture of f/9. The model keeps that scale; nothing is rescaled to a production focal length.
+Example 1 is printed at a focal length of 100 mm with an effective aperture of f/9, and the model uses those printed values.
 
-The patent names no product. The nearest candidate is the Goerz Frontar, the simple lens fitted to Goerz (later Zeiss Ikon) Box-Tengor and Roll-Tengor cameras from the mid-1920s. Collectors describe the Frontar as a two-element achromat, and a period Goerz advertisement quoted on a collectors' forum says its speed had been raised by more than a stop, to 1:9, which is the purpose and the aperture this patent states. That makes the link plausible, but it is undocumented: no source found ties the Frontar to this patent, no construction diagram of the Frontar was found to compare, and Example 3 of the same patent is also f/9. The model is therefore presented as a patent design, not as a Frontar.
+The patent names no product. A link to the Goerz Frontar, the simple achromat of the Box-Tengor cameras, is plausible but undocumented: a collectors' forum quotes Goerz text saying the lens speed had been raised by more than a stop to 1:9, which matches this patent's purpose and aperture, but no source ties the Frontar to this patent and no Frontar construction diagram was found to compare.
 
 ## Optical Architecture
 
@@ -30,13 +30,13 @@ Computed from the printed values, the focal length is 100.00 mm, and the 9.1 mm 
 
 ## Element-by-Element Analysis
 
-### L1 — Biconvex Crown
+### Element 1 — Biconvex Positive Crown
 
 `nD = 1.5096, ν = 63.4.` Radii +21 and −35 mm, centre thickness 3 mm. Standalone focal length in air +26.23 mm. It supplies all of the positive power.
 
-### L2 — Biconcave Flint
+### Element 2 — Biconcave Negative Flint
 
-`nD = 1.5490, ν = 47.1.` Radii −35 (cemented to L1) and +38.82 mm, centre thickness 1.25 mm. Standalone focal length in air −33.33 mm. It corrects colour; the small index step at the cemented surface (1.5096 to 1.5490) keeps that surface nearly neutral, as the patent requires.
+`nD = 1.5490, ν = 47.1.` Radii −35 (cemented to Element 1) and +38.82 mm, centre thickness 1.25 mm. Standalone focal length in air −33.33 mm. It corrects colour; the small index step at the cemented surface (1.5096 to 1.5490) keeps that surface nearly neutral, as the patent requires.
 
 ## Glass Identification and Selection
 
@@ -51,9 +51,9 @@ The model uses the printed nD and ν at the sodium D line. No modern catalogue g
 
 ## Focus Mechanism
 
-The patent gives no focusing data. The model is an infinity-only reference: the image plane is the computed paraxial focus at the D line, 81.81 mm behind the diaphragm (93.31 mm behind the last glass surface). Cameras of this class were fixed-focus or focused by moving the whole lens.
+The patent gives no focusing data. The model is focused at infinity only: the image plane is the computed paraxial focus at the D line, 81.81 mm behind the diaphragm (93.31 mm behind the last glass surface).
 
-## Patent Conditions and Model Verification
+## Patent Conditions and Model Scope
 
 | Quantity | Patent | Model |
 | --- | --- | --- |
@@ -70,4 +70,4 @@ What is printed: every radius, thickness, index and ν, the stop position, the d
 ## Sources
 
 - US 1,643,865 A, drawing sheet and specification pages 1–3.
-- Collectors' discussions of the Goerz Frontar (photrio.com, "Goerz Frontar lens on Zeiss Ikon"; forum.mflenses.com, "Goerz Frontar 90mm f/8"), used only for the product comparison above.
+- forum.mflenses.com, "Goerz Frontar 90mm f/8" (collectors' discussion quoting Goerz text on the 1:9 Frontar), used only for the product comparison above.

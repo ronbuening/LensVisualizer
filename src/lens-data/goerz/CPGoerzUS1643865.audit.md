@@ -60,3 +60,24 @@ Open:
 - `closeFocusM: 1e15` to the house infinity form.
 - No `imageFormat` or `lensMounts`; set them only if a product identity is established.
 - Frontar link: a maker catalogue or construction diagram would be needed before any product name is used.
+
+## 2026-11-17 — Cleanup and wording pass
+
+Fields changed (optics, rims and stop untouched):
+
+- `subtitle`: "1927 EXAMPLE 1; PATENT ONLY" → "US 1,643,865 A, Example 1 — cemented achromat with rear diaphragm".
+- `specs`: "PATENT ONLY; RETAIL IDENTITY UNPROVED", "LITERAL REAR STOP AND CLEAR DIAMETER", "INFINITY ONLY" → "ALL SPHERICAL", "DESIGN F/9", "REAR DIAPHRAGM" ("2 ELEMENTS / 1 GROUP" kept).
+- `focus.description`: reduced to "Infinity focus only; the patent gives no close-focus data. The image plane is the computed paraxial focus at the D line." `closeFocusM` stays 1e15.
+- Elements: labels "L1"/"L2" → "Element 1"/"Element 2"; types "Biconvex"/"Biconcave" → "Biconvex Positive"/"Biconcave Negative"; `focalLengthMm` +26.23 and −33.33 added; roles reworded; cemented id `D1` → `C1` on both elements and in `doublets`.
+- Glass labels added. No catalogue row is exact, so both stay unmatched: Element 1 "Unmatched (nD 1.5096 / V 63.4, Sendlinger crown 510/634)" (nearest row Sumita BK1, Δn +0.0005, Δν −0.05); Element 2 "Unmatched (nD 1.5490 / V 47.1, Sendlinger flint 549/471)" (nearest row Sumita LLF7, Δn −0.0003, Δν −1.7).
+- Header comment: the scale line now states only the units and printed focal length.
+- Analysis: title set to the lens name; element headings follow the new labels; the Frontar passage cut to one sentence resting on the one forum page that could be read (the second forum page could not be opened and is no longer cited); the model-check heading renamed "Patent Conditions and Model Scope".
+
+Engine numbers before and after are identical: focal length 100.0024 mm, f/8.99, stop radius 4.5499 mm, half-field 22.14°, back focus 81.8080 mm behind the diaphragm. The surface check reports no errors and the aperture check reports no rim limit.
+
+Open:
+
+- Rims are the patent's printed 14.7 mm free diameter; Fig. 1 draws the glass slightly larger than the clear diameter, which is left for the semi-diameter pass.
+- No `imageFormat` or `lensMounts`: the patent states no format or field.
+- Frontar link: a maker catalogue or construction diagram is needed before any product name is used.
+- The patent's nF and nG′ values are not used; they could support a fitted dispersion curve later.
