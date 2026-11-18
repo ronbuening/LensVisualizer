@@ -19,8 +19,21 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *
  * Inferred, not printed: the stop position (the midpoint of the 6.6 mm rear air space, which the patent says holds
  * the diaphragm and shutter), all clear semi-diameters (a uniform 8 mm) and the back focus (the computed paraxial
- * D-line value). The patent states coverage of 32 degrees from the axis; with these rims the chief ray passes to
- * that angle but the front element vignettes the oblique beam heavily beyond about 25 degrees.
+ * D-line value).
+ *
+ * Semi-diameters: the drawing is close to scale along the axis (about 36.5 px/mm at 300 dpi; the 14.8 mm vertex
+ * length and each thickness and air space agree within about 10 %). It draws all three elements square-cut at one
+ * height, about 6.2 mm at the model's scale, which is no more than the f/8 axial beam at the front surface
+ * (6.23 mm). The uniform 8 mm is kept: rims at the drawn height would cut the oblique light by up to 44 points
+ * near 29 degrees, and even a uniform 7.8 mm costs 4.6 points at 32 degrees.
+ *
+ * Field: the patent states that the objective fully covers 32 degrees from the axis at F/7.5 to F/8. The image
+ * circle, 124.7 mm, is 2 x 99.75 mm x tan 32 degrees. With these rims the chief ray passes to 42 degrees; geometric
+ * transmission is about 83 % at 26 degrees and 64 % at 32 degrees, limited by the front element.
+ *
+ * Mount: the patent says each objective is individually fitted to the folding hand camera it is used on, on a fixed
+ * lens board, so the catalog lists it as a fixed-lens camera objective. No film format is set: no source ties this
+ * prescription at 100 mm to a film size.
  */
 const LENS_DATA = {
   schema: 2,
@@ -33,8 +46,10 @@ const LENS_DATA = {
     specs: ["3 ELEMENTS / 3 GROUPS", "ALL SPHERICAL", "DESIGN F/8", "AIR-SPACED TRIPLET"],
     elementCount: 3,
     groupCount: 3,
+    lensMounts: ["fixed-lens-camera"],
     focalLengthMm: { design: 99.75 },
     fNumber: { design: 8 },
+    imageCircleMm: 124.7,
   },
   source: {
     patentNumber: "US 1,658,365 A",
