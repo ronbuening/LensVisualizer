@@ -1,20 +1,87 @@
-# Warmisham US1361207 Example II (1920), patent-only reference
+# Warmisham four-lens objective, f/4.5 — US 1,361,207 Example II
 
-Fresh qualified scoped reconstruction, hidden by default. Four air-spaced singlets, source nominal unit focus and f/4.5, scaled uniformly to nominal 100 mm. No production lens identification or deployment claim.
+## Patent Reference and Design Identification
 
-## Sources and literal audit
-Primary facsimile: https://patentimages.storage.googleapis.com/83/30/4c/e74a3a6b4bf9e4/US1361207.pdf . Granted December 7, 1920 to Arthur Warmisham, assigned Taylor, Taylor & Hobson. Page 1 drawing and page 3 Example II table visually checked; scan PNGs retained. Source explicitly marks nD, V, radius signs, and nominal f/4.5. Table values at 100 mm scale: radii +34.09, −408.1, −41.43, +104.9, −1440, +36.98, +133.6, −33.52 mm; thicknesses 2.57, 0.9, 0.9, 2.65 mm; air spaces 10.89, 1.42, 9.09 mm. Glass nD 1.6116, 1.6206, 1.6206, 1.6116; V 56.4, 36.2, 36.2, 56.4. Two inner biconcave and two outer biconvex singlets. No guessed blue-line conversion.
+**Patent:** US 1,361,207 A, *Lens*  
+**Application Number:** Serial No. 210,705  
+**Filed:** January 7, 1918  
+**Granted:** December 7, 1920  
+**Inventors:** Arthur Warmisham  
+**Assignee:** Taylor, Taylor & Hobson Limited  
+**Example details:** Example II, Fig. 2, specification page 2; unit focal length, multiplied by 100 here
 
-## Explicit assumptions and limitations
-Source nominal EFL 100 mm; independent literal computation gives 101.5605289999 mm (+1.5605%), BFD 85.6177964735 mm. Do not normalize away this discrepancy or claim exact numerical reproduction of source stated unit focal length. Image plane is calculated, not a measured housing or flange value. Midpoint iris splits the 1.42 mm source central gap into 0.71 + 0.71 mm; axial iris position is an estimate. Clear semi-diameters 11.5 mm are estimated and not production dimensions. Initial 12 mm rims produced negative rear edge thickness; they were reduced to physically viable 11.5 mm without changing primary optics or f-number. No gap-sag override. Native dispersion from nD/V is approximate. No specific real-world focal-length product match.
+The model is the second of the two numerical examples in US 1,361,207. Both examples are f/4.5 objectives of four simple lenses separated by air, given for an equivalent focal length of 1.00. The British specification GB 113,590 A (application dated November 27, 1917) prints the same Example II table, value for value.
 
-Example I was also screened but is NOT included: literal EFL 108.094628 mm at the same nominal 100 mm scale, +8.09%; source page 2 r2 −0.9152 is visibly preserved. Do not silently replace with an assumed value. Tronnier US1987878 was rejected for this pass because source uses an unspecified violet reference. US2158179 was caught as already delivered. No new count for these leads.
+This patent family is the one associated with the Cooke Aviar, the four-element air-spaced anastigmat that Taylor, Taylor & Hobson introduced during the First World War. The link between the Aviar name and this particular example is weak, and the model claims no production identity:
 
-## Validation
-Fresh native schema passes, zero significant render trims, all central 90% axial pupil rays pass. Full sampled pupil: 195/201 axial, 6/9 at 5°, 6/9 at 10°, 4/9 at 15°. Clipping is disclosed; these are diagnostic ray counts, not useful image-circle guarantees or published field reproduction. Native physical stop radius 8.499502 mm at f/4.5. Independent exact Snell near-axis BFD 85.6177964735 agrees with ABCD. All adjacent surfaces checked at 1,001 radial positions to estimated 11.5 mm rim, positive separation; minimum glass edge 0.119691 mm, minimum iris clearance 0.077732 mm. Strict scoped TypeScript passes. Full-app regression, current-main integration, compiled viewer/browser QA, and exhaustive aberration/MTF convergence remain outstanding. Existing g12_kodak native engine copied; all claimed model checks rerun, no inherited passes.
+1. The assignee is Taylor, Taylor & Hobson, and Arthur Warmisham was the firm's designer. Reference sources connect the Aviar with British patent 113,590.
+2. Example I is the wide-field form at f/4.5 and is the example usually matched to the Aviar. It is modelled separately in this collection as a Cooke Aviar.
+3. Example II is described by the patent as a design for "objectives of long focal length" that need very high correction "over a field of moderate extent". No catalogue, museum record or published section found so far ties that form to a named Aviar series or focal length.
 
-## Dedup
-Authenticated current main 68cec1ee298be6353c61a0dfd5529024046e332b checked. 1,140 pinned catalog bodies plus eight authenticated blob-SHA checked delta bodies, initial 25 models (32 source members), and eleven delivered trios (33): 1,213 complete bodies. No publication or six-radius normalized consecutive fingerprint hit at 0.6% including whole-sign reversal. Separately checked held Group12 Altman US1658365 and Kodak US1620339. No universal family-dedup claim.
+Example II is therefore presented as a patent design from the Aviar family, at the patent's own normalised scale, rather than as a specific lens that was sold.
 
-## Reproduce
-Python analyze.py, generate.py, geometry.py and ray_screen.py regenerate literal calculations and model. Native engine copy of baseline mamiya_refine/repo via g12_kodak is local engine/. Its source/dependencies are not duplicated in this compact evidence archive. Copy model to src/lens-data/taylor and validate.mjs to engine root; run node --import ./scripts/ts-js-specifier-hook-register.mjs validate.mjs. Run node_modules/.bin/tsc --noEmit --strict --skipLibCheck --target ES2022 --module nodenext --moduleResolution nodenext src/lens-data/taylor/Warmisham1920US1361207Example2.data.ts. Numeric duplicate script expects the retained corpus named above. No uploads or external writes performed.
+## Optical Architecture
+
+The objective is an unsymmetrical four-element, four-group dialyte: positive, negative, diaphragm space, negative, positive. Each half is a biconvex crown and a biconcave flint separated by an air space shaped like a positive meniscus. All eight surfaces are spherical.
+
+The patent's stated invention is the orientation of the two negative lenses. Earlier four-lens designs turned one negative lens with its deeper curve toward the diaphragm and the other with its shallower curve toward it. Warmisham turns the shallow face of both negatives toward the middle air space, which in turn calls for a shallower inner surface on the rear positive lens. Example II follows this: the inner faces are R4 = +104.9 mm and R5 = −1440 mm, against outer faces of −41.43 mm and +36.98 mm, and all four elements present their weaker surface to the centre.
+
+Compared with Example I, the outer air spaces are much longer (10.89 mm and 9.09 mm, against a middle space of only 1.42 mm) and the elements are thin, so the two negative lenses sit close together at the centre of a long, open barrel. The length from first to last surface is 28.42 mm for a focal length of about 100 mm.
+
+The patent draws no diaphragm and gives no stop position. The model places the stop at the midpoint of the middle air space, 0.71 mm from each inner surface, with a radius of 8.50 mm so that the entrance pupil gives f/4.5.
+
+## Element-by-Element Analysis
+
+Focal lengths are those of each element alone in air, computed from the printed values at the model's scale.
+
+### L1 — Biconvex Positive
+
+`nD = 1.6116, V = 56.4`, dense baryta crown. `f = +51.56 mm`. R1 = +34.09 mm, R2 = −408.1 mm, thickness 2.57 mm. Nearly plano-convex, with the strong surface facing the object. It is the front collective lens.
+
+### L2 — Biconcave Negative
+
+`nD = 1.6206, V = 36.2`, heavy flint. `f = −47.74 mm`. R3 = −41.43 mm, R4 = +104.9 mm, thickness 0.90 mm. The deep surface faces L1 and the shallow one faces the diaphragm space.
+
+### L3 — Biconcave Negative
+
+`nD = 1.6206, V = 36.2`, heavy flint. `f = −58.08 mm`. R5 = −1440 mm, R6 = +36.98 mm, thickness 0.90 mm. Almost plano-concave, with the nearly flat face toward the diaphragm space.
+
+### L4 — Biconvex Positive
+
+`nD = 1.6116, V = 56.4`, dense baryta crown. `f = +44.08 mm`. R7 = +133.6 mm, R8 = −33.52 mm, thickness 2.65 mm. The rear collective lens; its inner surface is the shallow one, as the patent's argument requires.
+
+## Glass Identification and Selection
+
+The patent names only two glasses, by type: a dense baryta crown (nD 1.6116, V 56.4) for both positive lenses and a heavy flint (nD 1.6206, V 36.2) for both negative lenses. The British text defines nD as the index for sodium D light and V as (nD − 1) divided by the difference of the F and C indices. The model stores these printed values with the sodium D line as reference. No maker, melt or catalogue number is given, and the model does not assign catalogue glasses; colour behaviour is estimated from nD and V alone.
+
+Example II differs from Example I mainly here. Example I uses light flints of lower index than the crown (1.5682 and 1.5502). In Example II the negative lenses have a higher index than the positives, which the patent calls "immaterial to the application of my invention", adding that one negative could be made higher and the other lower with suitable changes to curves and spaces.
+
+## Focus Mechanism
+
+The patent gives no focusing data, back focus or mount. The model is an infinity-focus design only, and the image plane is the computed paraxial focus, 85.618 mm behind the last surface.
+
+## Aspherical Surfaces
+
+None. Every surface is spherical.
+
+## Patent Conditions and Model Verification
+
+The patent has no numerical conditions; its claims describe the layout and the inward-facing shallow surfaces, which the model satisfies as noted above.
+
+| Quantity | Patent | Model |
+| --- | --- | --- |
+| Equivalent focal length | 1.00 (100 mm at ×100) | 101.56 mm |
+| Aperture | F/4.5 | f/4.5 |
+| Back focus | not printed | 85.618 mm (computed) |
+| First to last surface | not printed | 28.42 mm |
+
+The focal length traced from the printed table is 1.56 % longer than the stated value. All eight radii, seven thicknesses and separations and both glasses were read from the page image and agree with the model, and GB 113,590 A prints the same numbers, so the difference is not a slip in one edition. A trial of single-digit, digit-swap and sign changes on each radius and spacing found about twenty changes that would bring the focal length within 0.4 % of 100 mm, none of them distinctly better corrected than the rest, so no misprint could be singled out. The printed table is kept unchanged. As printed, the marginal f/4.5 ray focuses about 0.45 mm beyond the paraxial focus.
+
+Inferred values, not printed in the patent: the stop position and radius, the 11.5 mm clear semi-diameters (chosen to pass the f/4.5 axial beam, which needs 11.28 mm at the front surface) and the back focus. Because the rims are only just larger than the axial beam, the model vignettes strongly off axis; the patent states no field angle to compare with. Fig. 2 draws the outer lenses about one fifth taller than the inner ones, which the uniform rims do not reproduce.
+
+## Sources
+
+- US 1,361,207, *Lens*, Arthur Warmisham, assignor to Taylor, Taylor & Hobson Ltd., granted December 7, 1920 (Fig. 2; Example II, specification page 2).
+- GB 113,590 A, Warmisham and Taylor, Taylor & Hobson, application dated November 27, 1917 (Example II, page 2; text on page 3).
+- Wikimedia Commons, redrawn patent figure "Warmisham US1361207A (Aviar, 1917)": https://en.wikipedia.com/wiki/File:Warmisham_US1361207A_(Aviar,_1917).svg
+- Science Museum Group collection, Cooke Aviar lens records, e.g. https://collection.sciencemuseumgroup.org.uk/objects/co8092659/cooke-aviar-lens
