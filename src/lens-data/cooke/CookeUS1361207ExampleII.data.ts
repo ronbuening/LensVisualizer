@@ -19,11 +19,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *
  * Semi-diameters are estimated from Fig. 2, which is schematic in its axial spacings (scale about 32 px/mm at 600 dpi
  * from first to last vertex), so its rim heights are used as proportions, checked against the f/4.5 axial beam by
- * real-ray trace. The outer positives stay at 11.5 mm: Fig. 2 draws them at about 11.1 (element 1) and 10.5
- * (element 4) mm, within measurement noise, and the f/4.5 beam needs 11.28 mm at surface 1. The inner negatives are
- * drawn about 0.81 times the height of element 1 with a bevel on the face toward the diaphragm: 9.3 mm on their outer
- * faces (surfaces 3 and 6) and 8.8 mm on the faces beside the diaphragm (surfaces 4 and 5), where the f/4.5 beam
- * reaches 8.75 mm. Element 4's edge is 0.12 mm thick at its rim.
+ * real-ray trace. The outer positives stay at 11.5 mm: Fig. 2 draws lens I at about 11.1 mm and lens IV about 0.95
+ * times as tall as lens I, the f/4.5 beam needs 11.28 mm at surface 1, and lowering lens IV to 10.9 mm would cost
+ * 4.3 points of light at 12°. The inner negatives II and III are drawn about 0.81 times the height of lens I with a
+ * bevel on the face toward the diaphragm: 9.3 mm on their outer faces (surfaces 3 and 6) and 8.8 mm on the faces
+ * beside the diaphragm (surfaces 4 and 5), where the f/4.5 beam reaches 8.75 mm. Lens IV's edge is 0.12 mm thick at
+ * its rim. Elements carry the patent's lens numerals I–IV; the brackets mark the two halves of the claims.
  */
 const LENS_DATA = {
   schema: 2,
@@ -57,8 +58,9 @@ const LENS_DATA = {
   elements: [
     {
       id: 1,
-      name: "L1",
-      label: "Element 1",
+      name: "I",
+      label: "Element I",
+      diagramLabel: "I",
       type: "Biconvex Positive",
       glass: "Unmatched (nD 1.6116 / V 56.4, dense baryta crown)",
       role: "Front collective crown, strong surface toward the object",
@@ -70,8 +72,9 @@ const LENS_DATA = {
     },
     {
       id: 2,
-      name: "L2",
-      label: "Element 2",
+      name: "II",
+      label: "Element II",
+      diagramLabel: "II",
       type: "Biconcave Negative",
       glass: "Unmatched (nD 1.6206 / V 36.2, heavy flint)",
       role: "Front dispersive flint, shallow surface toward the diaphragm space",
@@ -83,8 +86,9 @@ const LENS_DATA = {
     },
     {
       id: 3,
-      name: "L3",
-      label: "Element 3",
+      name: "III",
+      label: "Element III",
+      diagramLabel: "III",
       type: "Biconcave Negative",
       glass: "Unmatched (nD 1.6206 / V 36.2, heavy flint)",
       role: "Rear dispersive flint, nearly flat surface toward the diaphragm space",
@@ -96,8 +100,9 @@ const LENS_DATA = {
     },
     {
       id: 4,
-      name: "L4",
-      label: "Element 4",
+      name: "IV",
+      label: "Element IV",
+      diagramLabel: "IV",
       type: "Biconvex Positive",
       glass: "Unmatched (nD 1.6116 / V 56.4, dense baryta crown)",
       role: "Rear collective crown, shallow surface toward the diaphragm space",
@@ -176,6 +181,10 @@ const LENS_DATA = {
     closeFocusM: 1e15,
     description: "Infinity focus only; the patent gives no close-focus data.",
   },
+  groups: [
+    { text: "FRONT HALF", fromSurface: "1", toSurface: "4" },
+    { text: "REAR HALF", fromSurface: "5", toSurface: "8" },
+  ],
   layout: {
     yScFill: 0.4,
   },

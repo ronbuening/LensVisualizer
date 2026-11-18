@@ -90,6 +90,50 @@ Metadata: no mount, image format or image circle was added. The model is the pat
 
 Open:
 
-- `source.sdSource` is still "heuristic"; with the rims now taken from the proportions of Fig. 2, "figure-measured" may be the better value. Left for the coordinator, since this pass changes rims only.
-- Element 4 is drawn 5–9 % smaller than modelled; lowering it costs more corner light than the allowance, and its 0.12 mm edge also stops it from growing.
+- `source.sdSource` is still "heuristic"; with the rims now taken from the proportions of Fig. 2, "figure-measured" may be the better value. Left for the coordinator, since this pass changes rims only. (Closed 2026-11-18: "heuristic" fits; see the second review below.)
+- Element 4 is drawn 5–9 % smaller than modelled; lowering it costs more corner light than the allowance, and its 0.12 mm edge also stops it from growing. (Closed 2026-11-18: re-measured at 0.95 times lens I and kept; see below.)
+
+## 2026-11-18 — Second review on the local site
+
+Compared: the live page at 1400 × 900 (diagram and the inspector of all four elements) with Fig. 2 read at the scan's native resolution (page 1 is a 2320 × 3408 px bilevel image), and the specification pages for the table, glass names and text. Every printed radius, thickness, separation, nD and V of Example II was re-read on specification page 2 (lines 1–20) and agrees with the file at ×100.
+
+Rims, re-measured. The axis line drifts about 4 px across the figure, so each element was read against its local axis, to the centre of the outline stroke, on both sides. Vertex strokes give 458 px for the 28.42 mm first-to-last span (16.1 px/mm), but the single spans run from 13.3 px/mm (the flints) to 21.0 px/mm (lens I), and an arc fit to r1 gives 520–650 px against a drawn r2 of about 1100 px where the printed ratio is 12 : 1, so the figure is schematic in both directions and only its proportions are used.
+
+| Element | Figure height (top / bottom, px) | Ratio to lens I | At lens I = 11.5 mm | Model | Verdict |
+|---|---|---:|---:|---:|---|
+| I (surfaces 1, 2) | 180.5 / 177.0 | 1.00 | 11.5 | 11.5 | Held by the f/4.5 beam (11.28 mm at surface 1). |
+| II outer face, flat top (3) | 146.0 / 145.5 | 0.815 | 9.4 | 9.3 | Agrees. |
+| II chamfer end (4) | 133.5 / 127.5 | 0.73 | 8.4 | 8.8 | Beam floor 8.75 mm governs. |
+| III chamfer end (5) | 133.5 / 130.5 | 0.74 | 8.5 | 8.8 | Beam floor 8.72 mm governs. |
+| III outer face, flat top (6) | 147.5 / 144.5 | 0.817 | 9.4 | 9.3 | Agrees. |
+| IV (7, 8) | 172.0 / 166.5 | 0.947 | 10.9 | 11.5 | 5 % above the reading; kept (below). |
+
+No rim was changed. Lens IV is 5 % above the proportional reading, inside the 10 % band, and I and IV are not neighbours, so no step order is wrong; lowering it to 10.9 mm costs 4.3 points of light at 12°, and 11.1 mm costs 3.0 points for a change inside the reading error. The flint cuts (surfaces 3–6, 11.5 → 9.3 / 8.8 mm against the package rims) cost nothing: the light-rule measure against the package file gives 100, 99.9, 96.9, 93.4, 89.5, 83.5 and 75.7 % at 0–12° for both, worst loss 0.0 points, and restoring either flint wins back 0.0 points. The flints keep their separate face values, which stand for the drawn flat top and chamfer toward the diaphragm. The engine numbers are unchanged: focal length 101.5605 mm, f/4.5, stop radius 8.4995 mm, half field 26.60°. The surface validator reports no errors, the aperture audit reports the lens within 3 % of f/4.5 with no rim limit, and the full-pupil longitudinal spherical aberration is +0.454 mm, as the analysis states.
+
+Labels and brackets changed:
+
+| Field | Before | After | Evidence |
+|---|---|---|---|
+| Element `name` | L1, L2, L3, L4 | I, II, III, IV | Fig. 2 and the glass table (page 2, lines 15–19) number the lenses I–IV. |
+| Element `label` | Element 1 … Element 4 | Element I … Element IV | As above. |
+| Element `diagramLabel` | none (the diagram showed 1–4) | I, II, III, IV | As above; `name` and `diagramLabel` agree. |
+| `groups` | none | FRONT HALF (surfaces 1–4), REAR HALF (5–8) | Claims 1 and 2 (page 2, lines 57–83): two halves separated by a median air space, each a positive and a negative lens. |
+
+On the live page the numerals sit under each element (III is raised clear of II), the two bracket labels sit under them without touching, the movement overlay reports two groups and no modelled movement, and each inspector reads the new heading with its type, sodium-D note, n and V, focal length, glass label and role.
+
+Checked and found correct: element types against the signs of R (I and IV biconvex, II and III biconcave); roles (both negatives and the rear positive turn their shallower face to the middle air space, as the invention requires); element focal lengths 51.56, −47.74, −58.08 and 44.08 mm against the traced values; no cemented surfaces, so no `doublets` and no `cemented` tags; no aspheres and no `A` labels; no `apd` tag (the patent names only a dense baryta crown and a heavy flint); the stop between II and III at the middle of S2 (the patent draws no diaphragm); specs. Movement: infinity only, `closeFocusM` 1e15, no gap table and no zoom block; the focus slider shows "Not modeled" and `focus.description` says only that the patent gives no close-focus data.
+
+Glass and colour: compared at the sodium D line, no catalogue row lies within the exact window for either glass. Nearest for the flint (nD 1.6206, V 36.2): Ohara TIM11 at nD 1.62080 / V 35.87 (ΔnD +0.00020, ΔV −0.33) and the F2 family (Schott F2, Hoya E-F2, Ohara S-TIM2, Hikari J-F2) at nD 1.61989 (ΔnD −0.00071). For the crown (nD 1.6116, V 56.4) no row comes within 0.0008 in index at D; the nearest at d are Hoya BACD8 1.61117 / 55.77, Sumita SK1 1.61025 / 56.50 and Hoya BACD6 1.61375 / 56.38, and the vendor AGF files give the same candidates. The patent prints only nD, V and the type names (page 2, lines 15–19); the crown recurs as lenses I and IV of Example I (page 1), so it is a real melt, while the flint appears only in Example II. No partial dispersion or other line is printed, and the patent prints no aberration curves to compare colour against. Colour is computed from nD and V through the Abbe fallback; no medium is constant.
+
+Text: the header's rim note now gives lens IV as about 0.95 times the height of lens I with the 4.3-point cost, instead of "10.5 mm, within measurement noise", and uses the lens numerals. In the analysis, the element headings use the numerals, a sentence names the numerals and the two halves, and the Commons source link is corrected from an en.wikipedia.com address to its commons.wikimedia.org page, whose description says the drawing is redrawn from Fig. 1, so the Aviar title attaches to Example I.
+
+Assignee: "Taylor, Taylor & Hobson Limited" (front page "Taylor, Taylor & Hobson Ltd.") is the only Taylor, Taylor & Hobson entry among the lens files; no variant to consolidate.
+
+`source.sdSource` stays "heuristic", and that reading fits: the figure has no usable scale, so every absolute rim hangs on the f/4.5 beam, with the figure giving only proportions. The earlier suggestion of "figure-measured" is not supported.
+
+Open:
+
+- The stop is inferred at the middle of S2; the patent shows none.
+- The printed table computes to 101.56 mm against the stated 100 mm; no misprint established in either print.
+- Whether to cite GB 113,590 A (1918) instead of the US grant.
 

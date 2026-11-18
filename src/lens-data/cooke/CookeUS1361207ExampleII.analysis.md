@@ -14,7 +14,7 @@ The COOKE 100mm f/4.5 (US 1,361,207 Example II Design) is the second of the two 
 
 This patent family is the one associated with the Cooke Aviar, the four-element air-spaced anastigmat that Taylor, Taylor & Hobson introduced during the First World War. The link between the Aviar name and this particular example is weak:
 
-1. The assignee is Taylor, Taylor & Hobson, and Arthur Warmisham was the firm's designer. Wikipedia's Cooke Optics article lists British patent 113,590 against the Aviar, and Wikimedia Commons titles its redrawing of this patent's figure "Aviar, 1917".
+1. The assignee is Taylor, Taylor & Hobson, and Arthur Warmisham was the firm's designer. Wikipedia's Cooke Optics article lists British patent 113,590 against the Aviar, and Wikimedia Commons titles its redrawing of this patent's Fig. 1 (Example I) "Aviar, 1917".
 2. Example I is the wide-field form at f/4.5 and is the example matched to the Aviar itself.
 3. Example II is described by the patent as a design for "objectives of long focal length" that need very high correction "over a field of moderate extent". No catalogue, museum record or published section found so far ties that form to a named Aviar series or focal length.
 
@@ -32,21 +32,21 @@ The patent draws no diaphragm and gives no stop position. The model places the s
 
 ## Element-by-Element Analysis
 
-Focal lengths are those of each element alone in air, computed from the printed values at the model's scale.
+Focal lengths are those of each element alone in air, computed from the printed values at the model's scale. The elements carry the patent's lens numerals I to IV, and the diagram brackets the front half (I and II) and the rear half (III and IV) on either side of the median air space, as the claims divide the objective.
 
-### Element 1 (L1) — Biconvex Positive
+### Element I — Biconvex Positive
 
 `nD = 1.6116, V = 56.4`, dense baryta crown. `f = +51.56 mm`. R1 = +34.09 mm, R2 = −408.1 mm, thickness 2.57 mm. Nearly plano-convex, with the strong surface facing the object. It is the front collective lens.
 
-### Element 2 (L2) — Biconcave Negative
+### Element II — Biconcave Negative
 
-`nD = 1.6206, V = 36.2`, heavy flint. `f = −47.74 mm`. R3 = −41.43 mm, R4 = +104.9 mm, thickness 0.90 mm. The deep surface faces L1 and the shallow one faces the diaphragm space.
+`nD = 1.6206, V = 36.2`, heavy flint. `f = −47.74 mm`. R3 = −41.43 mm, R4 = +104.9 mm, thickness 0.90 mm. The deep surface faces lens I and the shallow one faces the diaphragm space.
 
-### Element 3 (L3) — Biconcave Negative
+### Element III — Biconcave Negative
 
 `nD = 1.6206, V = 36.2`, heavy flint. `f = −58.08 mm`. R5 = −1440 mm, R6 = +36.98 mm, thickness 0.90 mm. Almost plano-concave, with the nearly flat face toward the diaphragm space.
 
-### Element 4 (L4) — Biconvex Positive
+### Element IV — Biconvex Positive
 
 `nD = 1.6116, V = 56.4`, dense baryta crown. `f = +44.08 mm`. R7 = +133.6 mm, R8 = −33.52 mm, thickness 2.65 mm. The rear collective lens; its inner surface is the shallow one, as the patent's argument requires.
 
@@ -83,6 +83,6 @@ Inferred values, not printed in the patent: the stop position and radius, the cl
 
 - US 1,361,207, *Lens*, Arthur Warmisham, assignor to Taylor, Taylor & Hobson Ltd., granted December 7, 1920 (Fig. 2; Example II, specification page 2).
 - GB 113,590 A, Warmisham and Taylor, Taylor & Hobson, application dated November 27, 1917 (Example II, page 2; text on page 3).
-- Wikimedia Commons, redrawn patent figure "Warmisham US1361207A (Aviar, 1917)": https://en.wikipedia.com/wiki/File:Warmisham_US1361207A_(Aviar,_1917).svg
+- Wikimedia Commons, redrawn patent figure "Warmisham US1361207A (Aviar, 1917)", drawn from Fig. 1: https://commons.wikimedia.org/wiki/File:Warmisham_US1361207A_(Aviar,_1917).svg
 - Wikipedia, "Cooke Optics" (Aviar and patent 113,590).
 - Science Museum Group collection, Cooke Aviar lens, f/4.5, 6 inch, about 1920: https://collection.sciencemuseumgroup.org.uk/objects/co8092659/cooke-aviar-lens
