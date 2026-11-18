@@ -206,6 +206,7 @@ const GLASS_CATALOG_SOURCE_ORDER = [
   "LAC6",
   "BAFD10",
   "SBF2",
+  "PCD3",
   "NBFD25",
   "NBFD29",
   "NBFD32",
