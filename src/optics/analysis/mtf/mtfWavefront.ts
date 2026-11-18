@@ -8,6 +8,8 @@
  * lattice cell to the next (`waveLatticePhaseStep`) and an invertible direction map. Fast or
  * strongly aberrated beams exceed the phase limit at any practical grid.
  */
+import { MTF_CONVERGENCE_TOLERANCE } from "./mtfConstants.js";
+import { cross, dot, subtract } from "../../math/vector.js";
 import type { Vec3 } from "../../types.js";
 import type { ComplexOtf, MtfSpot } from "./mtfMath.js";
 import type { MtfBundle, MtfPupilRay } from "./mtfTracing.js";
@@ -53,6 +55,8 @@ export function rayOpticalPathToImageMm(ray: MtfPupilRay["trace"], image: Vec3, 
 export interface MtfWaveLattice {
   columns: number;
   rows: number;
+  /** Both cuts are equivalent under axial rotation about the chosen reference. */
+  axial?: boolean;
   /** √flux per cell in row-major order, 0 where no ray transmits. */
   amplitude: Float64Array;
   /** Optical path difference from the reference ray in mm; meaningful where amplitude is positive. */
@@ -60,7 +64,14 @@ export interface MtfWaveLattice {
   /** Index-scaled cosines along the reference's image-coordinate tangents; meaningful where amplitude is positive. */
   cosineX: Float64Array;
   cosineY: Float64Array;
+  /** First derivatives of optical path with respect to the two index-scaled tangent coordinates. */
+  pathGradient?: { x: Float64Array; y: Float64Array };
 }
+
+const FLAT_TANGENTS: readonly [Vec3, Vec3] = [
+  [1, 0, 0],
+  [0, 1, 0],
+];
 
 /**
  * Sample a traced bundle's wavefront on its lattice.
@@ -85,11 +96,15 @@ export function mtfWaveLattice(bundle: MtfBundle, reference: MtfSpot, imagePlane
   const lattice: MtfWaveLattice = {
     columns,
     rows,
+    axial: bundle.rotationallySymmetric && reference.x === 0 && reference.y === 0,
     amplitude: new Float64Array(cells),
     pathMm: new Float64Array(cells),
     cosineX: new Float64Array(cells),
     cosineY: new Float64Array(cells),
   };
+  if (bundle.landingPlaneZ !== undefined) {
+    lattice.pathGradient = { x: new Float64Array(cells), y: new Float64Array(cells) };
+  }
   let datum: number | undefined;
   for (const ray of bundle.rays) {
     const path = rayOpticalPathToImageMm(ray.trace, image, bundle.objectPoint);
@@ -99,10 +114,53 @@ export function mtfWaveLattice(bundle: MtfBundle, reference: MtfSpot, imagePlane
     const cell = ray.row * columns + ray.column;
     lattice.amplitude[cell] = Math.sqrt(ray.weight);
     lattice.pathMm[cell] = path - datum;
+    if (lattice.pathGradient) {
+      if (shape === null && bundle.landingPlaneZ === imagePlaneZ) {
+        // On the measured flat plane the two derivatives are the lateral displacements in mm.
+        lattice.pathGradient.x[cell] = reference.x - ray.x;
+        lattice.pathGradient.y[cell] = reference.y - ray.y;
+      } else {
+        // For image tangents U,V, solve image − terminal = a·U + b·V + t·direction.
+        // Optical direction has constant length, so its variation annihilates t·direction.
+        // The two remaining coordinates are exactly dW/d(n·d·U) and dW/d(n·d·V).
+        const [u, v] = tangents ?? FLAT_TANGENTS;
+        const direction = ray.trace.terminalDirection;
+        const vCrossRay = cross(v, direction);
+        const denominator = dot(u, vCrossRay);
+        if (!(Math.abs(denominator) > 1e-12)) {
+          delete lattice.pathGradient;
+        } else {
+          const offset = subtract(image, ray.trace.terminalPoint);
+          lattice.pathGradient.x[cell] = dot(offset, vCrossRay) / denominator;
+          lattice.pathGradient.y[cell] = dot(offset, cross(direction, u)) / denominator;
+        }
+      }
+    }
     lattice.cosineX[cell] = mtfImageAxisCosine(ray, 0, tangents);
     lattice.cosineY[cell] = mtfImageAxisCosine(ray, 1, tangents);
   }
   return lattice;
+}
+
+/** The square mesh and its diagonals are invariant under transposition and central inversion.
+ * Check the traced mask, weights and phase before exploiting the optical symmetry: a nearly
+ * clipped ray or an inaccurate aim can break it even for a rotationally symmetric prescription. */
+function sampledAxialSymmetry(lattice: MtfWaveLattice, wavelengthMm: number): boolean {
+  const { columns, rows, amplitude, pathMm } = lattice;
+  if (!lattice.axial || rows !== columns || columns % 2 !== 0) return false;
+  const phaseToleranceMm = wavelengthMm * 1e-5;
+  for (let cell = 0; cell < amplitude.length; cell++) {
+    const opposite = amplitude.length - 1 - cell;
+    const transposed = (cell % columns) * columns + Math.floor(cell / columns);
+    if (amplitude[cell] !== amplitude[opposite] || amplitude[cell] !== amplitude[transposed]) return false;
+    if (
+      amplitude[cell] > 0 &&
+      (Math.abs(pathMm[cell] - pathMm[opposite]) > phaseToleranceMm ||
+        Math.abs(pathMm[cell] - pathMm[transposed]) > phaseToleranceMm)
+    )
+      return false;
+  }
+  return true;
 }
 
 /**
@@ -134,6 +192,30 @@ function neighbourPhaseStep(lattice: MtfWaveLattice, wavelengthMm: number): numb
   return step / wavelengthMm;
 }
 
+/** A dark vertex supplies no path. Extend phase past the last ray only when the
+ * independent landing slopes reproduce adjacent measured paths along both lattice axes. */
+function resolvedPathSlopes(lattice: MtfWaveLattice, wavelengthMm: number): boolean {
+  const { pathGradient, amplitude, pathMm, cosineX, cosineY, columns, rows } = lattice;
+  if (!pathGradient) return false;
+  const { x: slopeX, y: slopeY } = pathGradient;
+  // Scale the slope consistency check to half the MTF tolerance per endpoint, using |exp(iδ)−1| ≤ |δ|.
+  // This checks the measured support; it does not bound the unseen phase beyond its edge.
+  const maxErrorMm = (wavelengthMm * MTF_CONVERGENCE_TOLERANCE) / (4 * Math.PI);
+  function agrees(i: number, j: number) {
+    if (!amplitude[j]) return true;
+    const predicted =
+      ((slopeX[i] + slopeX[j]) * (cosineX[j] - cosineX[i]) + (slopeY[i] + slopeY[j]) * (cosineY[j] - cosineY[i])) / 2;
+    return Math.abs(pathMm[j] - pathMm[i] - predicted) <= maxErrorMm;
+  }
+  for (let row = 0; row < rows; row++)
+    for (let col = 0; col < columns; col++) {
+      const i = row * columns + col;
+      if (!amplitude[i]) continue;
+      if ((col + 1 < columns && !agrees(i, i + 1)) || (row + 1 < rows && !agrees(i, i + columns))) return false;
+    }
+  return true;
+}
+
 /** Direction-space mesh, padded by one dark cell so interpolation reaches the pupil rim. */
 interface WaveMesh extends MtfWaveLattice {
   /** Absolute direction-area Jacobian per unit lattice-index area. */
@@ -158,6 +240,7 @@ function waveMesh(lattice: MtfWaveLattice): WaveMesh | null {
     jacobian: new Float64Array(cells),
     triangles: [],
   };
+  if (lattice.pathGradient) mesh.pathGradient = { x: new Float64Array(cells), y: new Float64Array(cells) };
   const known = new Uint8Array(cells);
   for (let row = 0; row < lattice.rows; row++)
     for (let column = 0; column < lattice.columns; column++) {
@@ -167,6 +250,10 @@ function waveMesh(lattice: MtfWaveLattice): WaveMesh | null {
       known[cell] = 1;
       mesh.amplitude[cell] = lattice.amplitude[source];
       mesh.pathMm[cell] = lattice.pathMm[source];
+      if (mesh.pathGradient && lattice.pathGradient) {
+        mesh.pathGradient.x[cell] = lattice.pathGradient.x[source];
+        mesh.pathGradient.y[cell] = lattice.pathGradient.y[source];
+      }
       mesh.cosineX[cell] = lattice.cosineX[source];
       mesh.cosineY[cell] = lattice.cosineY[source];
     }
@@ -322,10 +409,15 @@ interface WaveTriangle {
   vx: number;
   vy: number;
   inverseDet: number;
+  /** Quadratic path corrections on the three edges. Zero on an edge with a missing ray. */
+  ab: number;
+  ac: number;
+  bc: number;
+  litCount: number;
 }
 
 /** Index the illuminated mesh triangles in direction-space bins; bins only accelerate exact 2-D lookups. */
-function waveLookup(mesh: WaveMesh) {
+function waveLookup(mesh: WaveMesh, extendRimPhase: boolean) {
   const { columns, rows, cosineX: x, cosineY: y, amplitude, pathMm } = mesh;
   let minX = Infinity,
     maxX = -Infinity,
@@ -342,12 +434,30 @@ function waveLookup(mesh: WaveMesh) {
     Math.max(0, Math.min(columns - 1, Math.floor(((value - minX) * columns) / (maxX - minX))));
   const binY = (value: number) => Math.max(0, Math.min(rows - 1, Math.floor(((value - minY) * rows) / (maxY - minY))));
   const bins: (WaveTriangle[] | undefined)[] = new Array(columns * rows);
+  const gradient = mesh.pathGradient;
+  const edgeCorrection = (i: number, j: number) =>
+    gradient && amplitude[i] > 0 && amplitude[j] > 0
+      ? 0.5 * ((gradient.x[i] - gradient.x[j]) * (x[j] - x[i]) + (gradient.y[i] - gradient.y[j]) * (y[j] - y[i]))
+      : 0;
   for (const [a, b, c] of mesh.triangles) {
     const ux = x[b] - x[a],
       uy = y[b] - y[a];
     const vx = x[c] - x[a],
       vy = y[c] - y[a];
-    const triangle = { a, b, c, ux, uy, vx, vy, inverseDet: 1 / (ux * vy - uy * vx) };
+    const triangle = {
+      a,
+      b,
+      c,
+      ux,
+      uy,
+      vx,
+      vy,
+      inverseDet: 1 / (ux * vy - uy * vx),
+      ab: edgeCorrection(a, b),
+      ac: edgeCorrection(a, c),
+      bc: edgeCorrection(b, c),
+      litCount: Number(amplitude[a] > 0) + Number(amplitude[b] > 0) + Number(amplitude[c] > 0),
+    };
     const lowX = binX(Math.min(x[a], x[b], x[c])),
       highX = binX(Math.max(x[a], x[b], x[c]));
     const lowY = binY(Math.min(y[a], y[b], y[c])),
@@ -371,8 +481,36 @@ function waveLookup(mesh: WaveMesh) {
     const wb = Math.max(0, u) * amplitude[b];
     const wc = Math.max(0, v) * amplitude[c];
     sample.amplitude = wa + wb + wc;
-    // A dark vertex has no measured phase.
-    sample.pathMm = sample.amplitude > 0 ? (wa * pathMm[a] + wb * pathMm[b] + wc * pathMm[c]) / sample.amplitude : 0;
+    if (!gradient || (triangle.litCount !== 3 && !extendRimPhase) || !(sample.amplitude > 0)) {
+      // Without a usable derivative, interpolate the measured paths at lit vertices.
+      sample.pathMm = sample.amplitude > 0 ? (wa * pathMm[a] + wb * pathMm[b] + wc * pathMm[c]) / sample.amplitude : 0;
+    } else if (triangle.litCount === 3) {
+      // Barycentric interpolation plus the three edge curvature terms is exact for any
+      // quadratic path. Flux and phase are separate, even when the Jacobian or transmission varies.
+      sample.pathMm =
+        w * pathMm[a] + u * pathMm[b] + v * pathMm[c] + w * u * triangle.ab + w * v * triangle.ac + u * v * triangle.bc;
+    } else {
+      // At a clipped rim only the lit vertices measure a phase. Interpolate on their
+      // segment (or point), then continue its measured slope to the actual shear endpoint.
+      const aw = amplitude[a] > 0 ? Math.max(0, w) : 0;
+      const bw = amplitude[b] > 0 ? Math.max(0, u) : 0;
+      const cw = amplitude[c] > 0 ? Math.max(0, v) : 0;
+      const sum = aw + bw + cw;
+      const i = aw / sum,
+        j = bw / sum,
+        k = cw / sum;
+      const gx = i * gradient.x[a] + j * gradient.x[b] + k * gradient.x[c];
+      const gy = i * gradient.y[a] + j * gradient.y[b] + k * gradient.y[c];
+      sample.pathMm =
+        i * pathMm[a] +
+        j * pathMm[b] +
+        k * pathMm[c] +
+        i * j * triangle.ab +
+        i * k * triangle.ac +
+        j * k * triangle.bc +
+        gx * (dx - j * ux - k * vx) +
+        gy * (dy - j * uy - k * vy);
+    }
     previous = triangle;
     return true;
   }
@@ -436,13 +574,17 @@ function mappedOtf(
   frequencies: readonly number[],
   mirrored = false,
 ) {
-  const at = waveLookup(mesh);
+  const at = waveLookup(mesh, resolvedPathSlopes(lattice, wavelengthMm));
   let energy = 0;
   for (const value of lattice.amplitude) energy += value * value;
   // The tracer reconstructs the second half of a meridional pupil by reflection.
   // The sagittal pairs there are complex conjugates and the tangential pairs identical.
-  const firstColumn = mirrored ? 1 + lattice.columns / 2 : 1;
-  const normalization = mirrored ? energy / 2 : energy;
+  // In an axial pupil central inversion conjugates the opposite half, and transposition
+  // exchanges the two cuts. Neither operation changes the triangulation diagonal.
+  const axial = sampledAxialSymmetry(lattice, wavelengthMm);
+  const half = mirrored || axial;
+  const firstColumn = half ? 1 + lattice.columns / 2 : 1;
+  const normalization = half ? energy / 2 : energy;
   const cut = (axis: "x" | "y") => {
     const limit: number[] = new Array(frequencies.length).fill(0);
     const real: number[] = new Array(frequencies.length).fill(0);
@@ -467,7 +609,7 @@ function mappedOtf(
             const phase = (sign * 2 * Math.PI * (other.pathMm - path)) / wavelengthMm;
             limit[i] += pair;
             real[i] += pair * Math.cos(phase);
-            if (!mirrored || !sagittal) imaginary[i] += pair * Math.sin(phase);
+            if (!half || !sagittal) imaginary[i] += pair * Math.sin(phase);
           }
       }
     for (let i = 0; i < frequencies.length; i++) {
@@ -478,6 +620,6 @@ function mappedOtf(
     return { otf: { real, imaginary }, limit };
   };
   const x = cut("x"),
-    y = cut("y");
+    y = axial ? { otf: { real: [...x.otf.real], imaginary: [...x.otf.imaginary] }, limit: [...x.limit] } : cut("y");
   return { sagittal: x.otf, tangential: y.otf, limit: { sagittal: x.limit, tangential: y.limit } };
 }

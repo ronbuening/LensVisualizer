@@ -200,6 +200,14 @@ integrates endpoint pairs with direction-area weight J. It averages the equivale
 to preserve symmetry on the sampled grid. Pairs across an obstruction still count without sampling dark midpoints.
 Dark rim cells carry locally fitted affine map coordinates and zero amplitude; only triangles touching a lit vertex enter
 the endpoint lookup, and a point outside that support contributes zero.
+On the requested flat image plane, reference position minus landing gives the optical-path derivative with
+respect to index-scaled direction cosine. A curved image uses the displacement to the ray along the two
+local image tangents at the reference point. A lit triangle uses these derivatives for quadratic phase interpolation,
+independently of transmission. A partially lit triangle extends the measured slope only if trapezoidal integration
+of adjacent ray slopes agrees with the traced path change along both grid axes to half the MTF tolerance in radians.
+Otherwise it interpolates measured paths on the illuminated vertices. A singular tangent projection also uses sampled paths.
+For a centered rotationally symmetric refractive pupil, equal measured flux and path agreement within 0.00001 wave
+under transposition and central inversion allow one half-pupil integral to supply both axial cuts.
 The external comparator independently integrates a bilinearly mapped pupil on S&S rays and optiland wavefronts.
 It is valid only while the phase turns less than a quarter wave per lattice cell (`waveLatticePhaseStep`),
 which returns infinity for a folded or degenerate map on that interpolation support. Consistent triangle orientation,

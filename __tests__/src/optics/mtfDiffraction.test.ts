@@ -575,6 +575,69 @@ describe("analytic wave-optics controls", () => {
       }
     }
   });
+  it("recovers quadratic phase between lit rays and uses measured slopes only at a consistent rim", () => {
+    const n = 16,
+      width = 8,
+      pitch = 0.002,
+      shear = 0.6;
+    const lattice = aberratedWaveLattice(unaberrated, na, wavelengthMm, n);
+    const path = (x: number) => 0.004 * x * x + 0.02 * x;
+    const slope = (x: number) => 0.008 * x + 0.02;
+    lattice.pathGradient = { x: new Float64Array(n * n), y: new Float64Array(n * n) };
+    for (let row = 0; row < n; row++)
+      for (let col = 0; col < n; col++) {
+        const i = row * n + col,
+          x = col - 4;
+        lattice.amplitude[i] = Number(x >= 0 && x < width && row >= 4 && row < 12);
+        lattice.cosineX[i] = pitch * x;
+        lattice.cosineY[i] = pitch * row;
+        lattice.pathMm[i] = wavelengthMm * path(x);
+        lattice.pathGradient.x[i] = (wavelengthMm * slope(x)) / pitch;
+      }
+    // One-dimensional reference independent of the triangular lookup. The partial last cell
+    // continues the tangent at its only measured x-coordinate; interior pairs use the exact path.
+    let real = 0,
+      imaginary = 0;
+    for (let x = 0; x < width; x++)
+      for (const sign of [-1, 1]) {
+        const target = x + sign * shear;
+        const outside = target < 0 || target > width - 1;
+        const other = outside ? path(x) + sign * shear * slope(x) : path(target);
+        const pair = (outside ? 1 - shear : 1) / (2 * width);
+        const phase = sign * 2 * Math.PI * (other - path(x));
+        real += pair * Math.cos(phase);
+        imaginary += pair * Math.sin(phase);
+      }
+    const frequencies = [(shear * pitch) / wavelengthMm];
+    const result = qualifiedWaveOtf(lattice, wavelengthMm, frequencies)!;
+    expect(result.sagittal.real[0]).toBeCloseTo(real, 11);
+    expect(result.sagittal.imaginary[0]).toBeCloseTo(imaginary, 11);
+    lattice.pathMm.fill(0);
+    lattice.pathGradient.x.fill(wavelengthMm / pitch);
+    const inconsistent = qualifiedWaveOtf(lattice, wavelengthMm, frequencies)!;
+    expect(inconsistent.sagittal.real).toEqual(inconsistent.limit.sagittal);
+    expect(inconsistent.sagittal.imaginary).toEqual([0]);
+  });
+
+  it("reduces an axial pupil only when its measured illumination and phase share the symmetry", () => {
+    const lattice = aberratedWaveLattice(defocus, na, wavelengthMm, 32);
+    const frequencies = [0, 23, 71];
+    const compare = () => {
+      const full = waveLatticeOtf({ ...lattice, axial: false }, wavelengthMm, frequencies);
+      const axial = waveLatticeOtf({ ...lattice, axial: true }, wavelengthMm, frequencies);
+      for (const cut of ["sagittal", "tangential"] as const)
+        for (const part of ["real", "imaginary"] as const)
+          full[cut][part].forEach((value, i) => expect(axial[cut][part][i]).toBeCloseTo(value, 11));
+      return axial;
+    };
+    expect(compare().sagittal.imaginary).toEqual([0, 0, 0]);
+    const cell = 16 * 32 + 24;
+    lattice.pathMm[cell] += wavelengthMm / 10;
+    expect(compare().sagittal.imaginary.some((value) => value !== 0)).toBe(true);
+    lattice.amplitude[cell] = 0;
+    compare();
+  });
+
   it("holds the perpendicular direction coordinate fixed on a coupled area-preserving map", () => {
     const lattice = mappedWaveLattice(0, 0.2, defocus);
     expect(waveLatticePhaseStep(lattice, wavelengthMm)).toBeLessThan(0.025);

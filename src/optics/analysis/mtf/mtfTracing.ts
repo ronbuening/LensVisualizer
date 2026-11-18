@@ -71,6 +71,10 @@ export interface MtfBundle {
   rows: number;
   /** True when one half pupil was traced and mirrored about the meridional plane. */
   mirrored: boolean;
+  /** Centered axial source, radial surfaces and circular clearances on a flat image. */
+  rotationallySymmetric?: boolean;
+  /** Image-plane vertex at which the stored ray landings were measured. */
+  landingPlaneZ?: number;
   /** Cell pitch in mm: on the stop for stop sampling, on the launch plane otherwise. */
   stepMm: number;
   objectPoint?: Vec3;
@@ -551,6 +555,21 @@ export function traceMtfLattice(
     columns: n,
     rows: n,
     mirrored: mirror,
+    landingPlaneZ: imagePlaneZ,
+    rotationallySymmetric:
+      mirror &&
+      launch.fieldAngleDeg === 0 &&
+      launch.centerY === 0 &&
+      launch.direction[0] === 0 &&
+      launch.direction[1] === 0 &&
+      (!launch.objectPoint || (launch.objectPoint[0] === 0 && launch.objectPoint[1] === 0)) &&
+      state.lens.imageSurface === null &&
+      state.surfaces.every(
+        (surface) =>
+          surface.profile.kind !== "tilted-plane" &&
+          surface.interaction.type === "refract" &&
+          !surface.interaction.normal,
+      ),
     stepMm: (2 * lattice.stopSemiDiameterMm) / n,
     objectPoint: launch.objectPoint,
     openBorders: { x: false, y0: false, y1: false },
@@ -705,6 +724,7 @@ export function traceMtfLaunchPlaneBundle(
     columns: grid.columns,
     rows: grid.rows,
     mirrored: mirror,
+    landingPlaneZ: imagePlaneZ,
     stepMm: grid.step,
     objectPoint: launch.objectPoint,
     openBorders: { x: false, y0: false, y1: false },
