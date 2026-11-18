@@ -29,3 +29,7 @@ Patent: US 3,838,911, Example 1
 ## 2026-11-10 — Metadata fill
 
 - `catalog.fNumber.design` = 3.5: `patents/US3838911.pdf` PDF p4, col. 2, line ~51, Embodiment 1 footer "F 1 : 3.5" (a stray print mark follows the 5); claim 1 restates "F 1 : 3.5" at PDF p5, col. 4, line ~8. Stop `nominalFNumber` 3.5 is not faster.
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 22. `fStops` lists f/22, which the slider cut off at the default 16. No optical value changed.

@@ -468,7 +468,7 @@ const LENS_DATA = {
     },
   },
 
-  aperture: { fStops: [4.09, 4.79, 5.85, 8, 11, 16, 22] },
+  aperture: { fStops: [4.09, 4.79, 5.85, 8, 11, 16, 22], maxFNumber: 22 },
 
   // Patent Fig. 17: two functional groups, with all six lenses air-separated.
   groups: [

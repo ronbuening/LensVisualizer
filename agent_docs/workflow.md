@@ -41,7 +41,7 @@ npm run generate:sa-figure-svgs     # Regenerate static spherical-aberration art
 npm run generate:holiday-branding   # Recolor the base marks into public/branding/holiday/
 npm run audit:aperture              # traced vs stated f-number per lens and zoom station, and what limits it
 npm run audit:catalog-pgf           # glass catalog PgF fields that disagree with the entry's own curve
-npm run audit:dependencies          # Fail on non-allowlisted high/critical npm advisories
+npm run audit:dependencies          # Fail on non-allowlisted high/critical npm advisories or stale allowlist entries
 npm run audit:dpgf                  # dPgF values that fit a source normal line instead of the engine's
 npm run audit:field-coverage        # traced analysis half-field vs format corner, and the rim that stops it
 npm run audit:finite-conjugates     # declared finite objects vs paraxial image planes; --json, --strict, --lens, --files

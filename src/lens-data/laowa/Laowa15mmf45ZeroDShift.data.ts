@@ -526,10 +526,10 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 1.637235799270479,
     keyframes: [0, 1],
-    step: 1,
+    step: 0.008,
     published: [1],
     description:
-      "PUBLISHED infinity and 0.01× states from CN 110955036 B Example 1 (D4 7.9482 → 7.9700 mm, D14 4.7930 → 4.4451 mm, D29 51.7633 → 52.0821 mm). G1 stays fixed, G2 moves 0.022 mm toward the image and G3 about 0.32 mm toward the object. The 1.64 m object-to-image distance of the 0.01× state is calculated from those spacings; the patent does not print it, and it is not the marketed 0.2 m minimum focus distance. The focus control steps between the two printed states only.",
+      "PUBLISHED infinity and 0.01× states from CN 110955036 B Example 1 (D4 7.9482 → 7.9700 mm, D14 4.7930 → 4.4451 mm, D29 51.7633 → 52.0821 mm). G1 stays fixed, G2 moves 0.022 mm toward the image and G3 about 0.32 mm toward the object. The 1.64 m object-to-image distance of the 0.01× state is calculated from those spacings; the patent does not print it, and it is not the marketed 0.2 m minimum focus distance. Positions between the two printed states are interpolated linearly and are not published.",
   },
   gaps: {
     "4": {

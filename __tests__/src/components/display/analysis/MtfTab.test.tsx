@@ -1,5 +1,5 @@
 // @vitest-environment jsdom
-import { constructionFixtureData } from "../../../optics/constructionFixtures.js";
+import { apertureRangeFixtureData, constructionFixtureData } from "../../../optics/constructionFixtures.js";
 import { createAnalysisComputationContext } from "../../../../../src/optics/analysis/analysisContext.js";
 import { mtfInputs } from "../../../optics/testLensFixtures.js";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
@@ -1801,7 +1801,7 @@ describe("MTF export and aperture comparison", () => {
   )(
     "retains f/8 availability at charted f/$charted × minimum f/$minimum with Advanced off",
     async ({ charted, minimum }) => {
-      const lens = build({ ...constructionFixtureData(focusedL), nominalFno: 2, maxFstop: minimum });
+      const lens = build(apertureRangeFixtureData(focusedL, 2, minimum));
       const compareF8Available = !!charted && charted < 8 - 0.05 && minimum >= 8;
       localStorage.setItem(
         MTF_PREFERENCES_KEY,
@@ -2701,7 +2701,7 @@ describe("MTF aperture sweeps", () => {
     { current: 4, open: 2.8, max: 7.9999999995, expected: [4, 5.6, 7.9999999995] },
     { current: 4, open: 2.8, max: 15.99, expected: [4, 5.6, 8, 11, 15.99] },
   ])("builds the current-down request list at f/$current", ({ current, open, max, expected }) => {
-    const lens = build({ ...constructionFixtureData(focusedL), nominalFno: open, maxFstop: max });
+    const lens = build(apertureRangeFixtureData(focusedL, open, max));
     const request = analysisRequestForLens(lens);
     const samples = mtfApertureRequests(lens, request, current);
     expect(samples.map((sample) => sample.fNumber)).toEqual(expected);

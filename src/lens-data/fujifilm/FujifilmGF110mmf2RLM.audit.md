@@ -72,3 +72,7 @@ Patent: US 2018/0100988 A1, Example 1 (Tables 1-3)
 - The element with patent nd 1.51680 / νd 64.2 was labelled S-BSL7 (OHARA), which is the 1.51633 / 64.14 glass and
   only matched within tolerance. It is now labelled as the N-BK7 (SCHOTT) class, an exact coordinate match, the same
   class the rear plate uses. The production supplier remains unspecified; the analysis glass table and sources follow.
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 22. `fStops` lists f/22, which the slider cut off at the default 16. No optical value changed.

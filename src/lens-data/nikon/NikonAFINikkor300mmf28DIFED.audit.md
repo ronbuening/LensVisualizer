@@ -49,3 +49,7 @@ Patent: JP H04-294310 A.
 
 - Reference definition: “D0は物体から第１レンズ面までの距離を表している。” (PDF p. 4, ¶0025).
 - The authored gaps and image plane are retained.
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 22. `fStops` lists f/22, which the slider cut off at the default 16. No optical value changed.

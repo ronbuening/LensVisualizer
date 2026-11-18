@@ -49,3 +49,7 @@ Distance-reference basis: `patent-defined`. The patent states: “a distance bet
 - State 2/1: D5=53.87892, D11=1.91217, D19=12.71907, BF=3.64447, D22=6.51353 mm. The printed finite-spacing column matches these authored gaps.
 
 Residuals retain the authored prescription and image plane. Every declared state already has its published-focus flag.
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 22. `fStops` lists f/22, which the slider cut off at the default 16. No optical value changed.
