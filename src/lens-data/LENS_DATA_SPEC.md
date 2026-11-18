@@ -163,7 +163,7 @@ export default LENS_DATA;
 | `key` | `string` | required | Unique identifier and catalog key, e.g. `"nokton-50f1"`. Lowercase `a-z`/`0-9` words separated by single hyphens, with no periods or other punctuation: the key becomes the `/lens/` URL and the `cfg` query value, so write f-numbers like `f14` or `f35-56`. |
 | `maker` | `string \| null` | inferred | Canonical maker-page name (`"Nikon"`, `"Voigtländer"`), used for maker pages and SEO. Left out, it is inferred from `name` by prefix matching. `null` records an unconfirmed maker: the lens goes to the Unattributed category and the SEO manufacturer claim is omitted. |
 | `name` | `string` | required | Display name, following the convention below. |
-| `subtitle` | `string` | | Compact patent / design-correlation context. The UI header uses it when structured patent metadata is unavailable, and several corpus reports read it for source matching. The transcribed example's home is `source.example`; a subtitle that names an example must name the same one, and a sole example's subtitle may cite its table but not number the example (corpus sweep). |
+| `subtitle` | `string` | | Compact patent / design-correlation context. The UI header uses it when structured patent or literature metadata is unavailable, and several corpus reports read it for source matching. The transcribed example's home is `source.example`; a subtitle that names an example must name the same one, and a sole example's subtitle may cite its table but not number the example (corpus sweep). |
 | `visible` | `boolean` | `true` | `false` hides the lens from the catalog without removing its file. |
 | `publishedAt` | `string` | Git-derived | Explicit UTC ISO timestamp (`YYYY-MM-DDTHH:mm:ssZ`) for a newly published replacement model. It overrides inherited file publication history in recent lenses, feeds and SEO; last-modified stays Git-derived but cannot precede publication. Omit for ordinary additions and routine corrections. |
 
@@ -335,7 +335,8 @@ A prescription printed in published secondary literature — a book, treatise, j
 neither a patent nor the manufacturer's own document — is a **literature reconstruction**. Its file records the work in
 `source.literature`, lives in `src/lens-data/literature/`, and carries no patent metadata (`patentNumber`, `example`,
 `patentYear`, `authors`, `assignees`) and no `issuer`. The field defines the category; the folder mirrors it, and a
-corpus check keeps the two together.
+corpus check keeps the two together. The relationship maps leave literature reconstructions out; the lens header shows
+the citation where a patent line would go, and the lens library's Source filter lists them as published literature.
 
 | Member | Type | Description |
 | --- | --- | --- |

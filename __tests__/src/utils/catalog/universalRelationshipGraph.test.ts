@@ -4,11 +4,12 @@
 
 import { describe, expect, it } from "vitest";
 import { ASSIGNEES } from "../../../../src/utils/catalog/assigneeCatalog.js";
-import { LENS_SUMMARIES, SUMMARY_KEYS } from "../../../../src/utils/catalog/lensSummaries.js";
+import { LENS_SUMMARIES, SUMMARY_KEYS, type LensSummary } from "../../../../src/utils/catalog/lensSummaries.js";
 import { AUTHORS } from "../../../../src/utils/catalog/authorCatalog.js";
 import { MAKER_CORPORATE_FAMILIES } from "../../../../src/utils/catalog/makerCorporateFamilies.js";
 import {
   buildUniversalRelationshipGraph,
+  isRelationshipMapLens,
   isUniversalCorporateEdge,
   universalConnectedComponents,
 } from "../../../../src/utils/catalog/universalRelationshipGraph.js";
@@ -148,6 +149,10 @@ describe("buildUniversalRelationshipGraph", () => {
       const summary = LENS_SUMMARIES[key];
       if (summary.patentNumber?.trim()) continue;
       const node = graph.nodes.find((entry) => entry.id === `lens:${key}`);
+      if (summary.sourceLiterature) {
+        expect(node, `${key}: a literature reconstruction stays off the map`).toBeUndefined();
+        continue;
+      }
       expect(node).toMatchObject({ kind: "lens", name: summary.name, lens: { key } });
       expect(graph.patents.some((patent) => patent.lenses.some((lens) => lens.key === key))).toBe(false);
       const edges = graph.edges.filter((edge) => edge.from === node!.id || edge.to === node!.id);
@@ -165,6 +170,31 @@ describe("buildUniversalRelationshipGraph", () => {
     expect(graph.edges.length).toBe(
       graph.stats.patentRelationships + graph.stats.corporateRelationships + graph.stats.catalogRelationships,
     );
+  });
+
+  it("leaves literature reconstructions off the map, maker hub and all", () => {
+    const base: LensSummary = {
+      key: "synthetic-book-model",
+      name: "SYNTHETIC BOOK MODEL f/4",
+      maker: "Synthetic Book Maker",
+      visible: true,
+    };
+    const literature = { authors: ["Moritz von Rohr"], title: "Synthetic treatise", year: 1899, locator: "p. 1" };
+    expect(isRelationshipMapLens(base)).toBe(true);
+    expect(isRelationshipMapLens({ ...base, sourceLiterature: literature })).toBe(false);
+    expect(isRelationshipMapLens({ ...base, visible: false })).toBe(false);
+
+    const drawn = buildUniversalRelationshipGraph({ summaries: [base], includeCorporateRelationships: false });
+    expect(drawn.nodes.map((node) => node.id)).toEqual(
+      expect.arrayContaining(["lens:synthetic-book-model", "maker:synthetic-book-maker"]),
+    );
+    const left = buildUniversalRelationshipGraph({
+      summaries: [{ ...base, sourceLiterature: literature }],
+      includeCorporateRelationships: false,
+    });
+    expect(left.nodes.some((node) => node.kind === "lens" || node.kind === "maker")).toBe(false);
+    expect(left.edges.some((edge) => edge.kind === "catalog-maker")).toBe(false);
+    expect(left.patents).toEqual([]);
   });
 
   it("partitions every node into exactly one deterministic component", () => {
