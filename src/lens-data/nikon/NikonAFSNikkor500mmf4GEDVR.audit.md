@@ -50,3 +50,7 @@ Patent: US20090190239A1, Example 1.
 | 0/1 | `focus.conjugates` | None | 5000 mm, `image-plane` | PDF p. 8, Example 1, FIG. 7, EXAMPLE 1: VARIOUS DATA, NEAR POINT (5m) column; NEAR POINT (5m); d11=49.88 mm, d16=13.18 mm. Image minus authored plane: +0.0061863511 mm (+0.31622464 diffraction depths), `consistent`. Alternate reference: -262.1160711494632 depths. |
 
 The patent labels the matched column “NEAR POINT (5m)” without defining the distance reference. The conjugate audit identifies the image-plane reference: its alternate first-surface offset is −4.8238020587 mm (−262.11607115 depths), versus +0.0061863511 mm (+0.31622464 depths) for the image-plane reference. `source` records this audit-resolved convention; the V2 input schema does not accept a separate `referenceBasis` field.
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 22. `fStops` lists f/22, which the slider cut off at the default 16. No optical value changed.

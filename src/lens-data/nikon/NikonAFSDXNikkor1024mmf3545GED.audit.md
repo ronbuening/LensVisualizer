@@ -66,3 +66,7 @@ All sixteen source nd/νd rows are freshly confirmed and retained. Fourteen comp
 The current exact field audit reaches the 14.175 mm format corner at W/M/T (half-fields 54.9958°/42.1113°/30.8581°, no corner rim clip), including the original-cap baseline. This supersedes the historical 12 mm/85% wide-field limitation. Source Formula (14), Ymax/Fw1.254, remains quoted separately and is not rewritten to match runtime coverage. Public current prose is synchronized.
 
 Focused surface and image-circle checks pass. The nominal-aperture audit proposes no height raises. Actual SVG paths at all nine focus/zoom combinations (0, 0.5, 1) are finite with zero hidden trimming, and the rendered compound outlines were inspected. A temporary source/resolver check covers all 48 modeled media in this triad: 44 compatible catalog curves and four explicit unresolved media. All source nd/νd values and every runtime C/d/F/g channel remain unchanged; `assertCatalogConsistent` passes. Source R/d, aspheric coefficients, stop, focus and zoom controls are unchanged.
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 22. `fStops` lists f/22, which the slider cut off at the default 16. No optical value changed.

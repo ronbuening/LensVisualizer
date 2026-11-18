@@ -21,3 +21,7 @@ Patent: US 2001/0050819 A1
 - `catalog.focalLengthMm.design: 80` from US 2001/0050819 A1 p. 6 (PDF p. 12), left column, the middle row of
   Table 3 (Embodiment 3): "f = 100.000 mm Bf = 76.090 mm FNO = 2.9 2ω = 46.7°", times the ×0.80 scale in the data
   header. `catalog.fNumber.design` was already 2.9 and is unchanged. No optical value changed.
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 32. `fStops` lists f/22 and f/32, which the slider cut off at the default 16. No optical value changed.

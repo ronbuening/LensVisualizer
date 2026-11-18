@@ -180,3 +180,7 @@ Reference basis: Table 5: OBJ | Infinity | ZD 0, immediately before surface 1. T
 State 0/1: paraxial image-minus-authored-plane residual +0.003930838633 mm (+0.625901266 diffraction depths); alternate image-plane reference +379.773934639 depths. Verdict: `consistent`; reference discriminated.
 
 Only the conjugate declaration is added; the published flags and all prescription geometry are retained.
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 22. `fStops` lists f/22, which the slider cut off at the default 16. No optical value changed.

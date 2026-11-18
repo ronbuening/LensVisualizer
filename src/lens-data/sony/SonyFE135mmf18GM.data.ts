@@ -318,7 +318,7 @@ const LENS_DATA = {
   },
 
   /* ── Aperture configuration ── */
-  aperture: { nominalFNumber: 1.854, fStops: [1.854, 2, 2.5, 2.8, 4, 5.6, 8, 11, 16, 22] },
+  aperture: { nominalFNumber: 1.854, fStops: [1.854, 2, 2.5, 2.8, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22 },
 
   /* ── Filter FL (patent Table 1 surfaces 25–26): traced, not drawn ── */
   rearPlates: [

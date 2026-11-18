@@ -20,3 +20,7 @@ Patent: JP 2003-270529 A, Example 1 / Table 1 / Figure 1.
 
 - `catalog.fNumber.design` set to 4: JP 2003-270529 A ¶0012 (PDF p. 3, left column), the Example 1 specification
   "f = 197mm, F_no = 4, ω = 6.2°". The stop's `nominalFNumber` 4 matches it.
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 22. `fStops` lists f/22, which the slider cut off at the default 16. No optical value changed.

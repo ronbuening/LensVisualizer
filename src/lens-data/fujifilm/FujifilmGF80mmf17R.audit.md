@@ -172,3 +172,7 @@ the unrelated Table 2 TL erratum. `audit:patent-figure` on FIG. 2 (same crop) ca
 contaminates it (25.6 mm in figure units). The L22/L23 junction at 17.4 mm stays inside L22's drawn rim (19.87–20.79 mm
 in figure units, against 20.0 mm in the data). The validator reports no errors, and the axial beam traces at f/1.75
 with no rim clip. Wide open at design focus the vignetting tab reads RI at all eight fields, 0.06 at 19°.
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 22. `fStops` lists f/22, which the slider cut off at the default 16. No optical value changed.

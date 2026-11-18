@@ -75,3 +75,7 @@ Validation: focused runtime/paraxial check; full corpus gates at the ten-lens ch
 
 - `catalog.fNumber.design: 4.0` from US 6,445,511 B1 col. 6, l. 41 (PDF p. 10), the middle portion of Table 3
   (Embodiment 3): "f = 1.0 FNO = 4.0 ω = 9.5°". The stop's `nominalFNumber` 4.0 matches it. No optical value changed.
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 45. `fStops` lists f/22, f/32 and f/45, which the slider cut off at the default 16. No optical value changed.
