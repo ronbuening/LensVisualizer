@@ -1,4 +1,4 @@
-# Merté / Zeiss Telephoto 100 mm f/4 — US 2,171,274 Figure 1
+# CARL ZEISS JENA TELEPHOTO 100mm f/4 (US 2,171,274 Design)
 
 ## Patent Reference and Design Identification
 
@@ -11,7 +11,7 @@
 
 The model is the Figure 1 example of [US 2,171,274](https://patentimages.storage.googleapis.com/pdfs/US2171274.pdf). The patent gives it a relative aperture of 1:4 and an "exceedingly sharp" image field of approximately 15°, with distortion corrected and colour corrected for the D and G′ lines. The second example (Figure 2, six elements, 1:6.3, about 30°) is not modelled.
 
-No production lens is identified with this example. Carl Zeiss is the patent owner, which is why the model is filed under Carl Zeiss Jena, but no Zeiss catalogue page, construction diagram or other source was found that shows a five-element telephoto of this layout, so the model is offered as a patent design only and is kept at the patent's own 100 mm scale.
+The name follows the patent: it is titled "Telephotographic objective" and is owned by Carl Zeiss. No production Zeiss lens is documented as using this five-element layout, so the model stands for the patent design at the focal length the patent prints.
 
 ## Optical Architecture
 
@@ -43,17 +43,17 @@ L1 carries all of the front positive power on its curved first surface; its rear
 
 ## Glass Identification and Selection
 
-The Figure 1 table prints a refractive index headed n_d and an Abbe number for each glass. The model uses those printed pairs unchanged with the helium d line as the reference, as printed. No catalogue glass names are assigned.
+The Figure 1 table prints a refractive index headed n_d and an Abbe number for each glass. The model uses those printed pairs unchanged, with the helium d line as the reference. Two of the five match rows of present-day glass catalogues within the printed precision; these rows only name a glass with the same index and Abbe number and do not show which melts Zeiss used.
 
-| Element | n_d | ν |
-|---|---:|---:|
-| L1 | 1.55226 | 63.3 |
-| L2 | 1.56735 | 42.8 |
-| L3 | 1.58910 | 61.3 |
-| L4 | 1.59667 | 39.1 |
-| L5 | 1.67165 | 32.3 |
+| Element | n_d | ν | Catalogue row |
+|---|---:|---:|---|
+| L1 | 1.55226 | 63.3 | none (nearest: Schott N-PSK3, 1.55232 / 63.46) |
+| L2 | 1.56735 | 42.8 | Hoya E-FL6, 1.56732 / 42.84 |
+| L3 | 1.58910 | 61.3 | SK5 (Sumita row), 1.58913 / 61.26 |
+| L4 | 1.59667 | 39.1 | none |
+| L5 | 1.67165 | 32.3 | none |
 
-L1 and L3 are crowns; L2 and L4 are light flints; L5 is a dense flint. Because only one index and the Abbe number are printed for each glass, colour behaviour in the model is an approximation built from those two numbers.
+L1 and L3 are crowns; L2 and L4 are light flints; L5 is a dense flint. For L1, L4 and L5 only the printed index and Abbe number are available, so their colour behaviour in the model is an approximation built from those two numbers.
 
 ## Stop, Apertures and Focus
 
@@ -63,7 +63,7 @@ Clear semi-diameters are not printed either. The model uses 13.5 mm for L1, 8 mm
 
 The image plane is the computed paraxial focus; the patent prints no back focus figure. The model is an infinity-focus design only, since the patent describes no focusing movement.
 
-## Patent Conditions and Model Verification
+## Patent Conditions and Model Scope
 
 | Quantity | Patent | Model |
 |---|---|---|
@@ -76,8 +76,6 @@ The image plane is the computed paraxial focus; the patent prints no back focus 
 The conditions of claim 1 hold: the front system's power is 2.12 times that of the whole objective (the claim asks for between 1.5 and 5 times); the outer part of the negative system is weaker than the inner part (focal lengths +34.03 mm against −17.30 mm); and the gap inside the negative system, 7.98 mm, is more than one third of the 17.61 mm gap in front of it. Claim 3 also holds: the inner part is stronger than the front system. Claim 2, which asks for a weaker outer part and a longer inner gap, describes Figure 2 and not this example.
 
 The patent does not say whether its 15° is the full field or the half field. Ray tracing settles it as the full angle: at 7.5° off axis the chief ray reaches an image height of 13.1 mm and about three quarters of the on-axis beam width still passes, while at 15° off axis no light passes through the modelled lens at all. The corresponding image circle at this scale is about 26 mm.
-
-Every radius, thickness, air gap, index and Abbe number was compared with both the drawing-sheet table and the typeset table in the patent text; the two agree with each other and with the model.
 
 ## Sources
 

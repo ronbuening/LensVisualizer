@@ -1,11 +1,11 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
- * Willy Merté telephoto objective, US 2,171,274 A (granted 29 August 1939), Figure 1.
+ * Carl Zeiss Jena telephoto objective by Willy Merté, US 2,171,274 A (granted 29 August 1939), Figure 1.
  *
  * Source: the Figure 1 table of the patent (drawing sheet 1 and the printed table on page 1 agree).
  * The patent has two numerical examples; Figure 2 is not modelled here.
- * Scale: the patent's own normalisation, focal length 100 mm at 1:4. No scaling or unit conversion is applied.
+ * The patent prints the example at a focal length of 100 mm and an aperture of 1:4.
  * Printed and copied as printed: all eight radii with their signs, five glass thicknesses, both air gaps
  * (l1 = 17.61, l2 = 7.98), and the refractive index nd and Abbe number of each of the five glasses.
  * L2, L3 and L4 are cemented into one triplet.
@@ -19,21 +19,20 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *   back focus is about half the focal length.
  *
  * The printed table computes to a focal length of 100.03 mm (+0.03 %).
+ *
+ * Glass names: L2 and L3 match catalog rows within the printed precision (Hoya E-FL6, Sumita SK5);
+ * these are modern rows with the same index and Abbe number, not a statement of the glass Zeiss used.
+ * L1, L4 and L5 match no catalog row and keep their printed index and Abbe number.
  */
 const LENS_DATA = {
   schema: 2,
   key: "carl-zeiss-jena-telephoto-100mm-f4-us2171274",
   maker: "Carl Zeiss Jena",
   name: "CARL ZEISS JENA TELEPHOTO 100mm f/4 (US 2,171,274 Design)",
-  subtitle: "1939 FIGURE 1; PATENT-ONLY RECONSTRUCTION",
+  subtitle: "US 2,171,274 A, Figure 1 — Merté distortion-corrected telephoto",
   visible: true,
   catalog: {
-    specs: [
-      "5 ELEMENTS / 3 GROUPS",
-      "PATENT ONLY; NO RETAIL MATCH",
-      "ESTIMATED STOP AND RIMS",
-      "INFINITY ONLY",
-    ],
+    specs: ["5 ELEMENTS / 3 GROUPS", "DESIGN F/4", "ALL SPHERICAL", "TELEPHOTO"],
     elementCount: 5,
     groupCount: 3,
     focalLengthMm: {
@@ -58,49 +57,64 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L1",
-      label: "L1",
-      type: "Plano-convex",
+      label: "Element 1",
+      type: "Plano-Convex Positive",
       nd: 1.55226,
       vd: 63.3,
+      focalLengthMm: 47.18,
+      glass: "Unmatched (nd 1.55226 / V 63.3, crown)",
+      role: "Front positive lens; supplies all the converging power ahead of the stop.",
       indexReference: "d",
     },
     {
       id: 2,
       name: "L2",
-      label: "L2",
-      type: "Biconcave",
+      label: "Element 2",
+      type: "Biconcave Negative",
       nd: 1.56735,
       vd: 42.8,
+      focalLengthMm: -11.63,
+      glass: "E-FL6 (HOYA catalog equivalent; production supplier unspecified)",
+      role: "Front negative flint of the cemented triplet, the strongest element of the design.",
       indexReference: "d",
-      cemented: "T1",
+      cemented: "C1",
     },
     {
       id: 3,
       name: "L3",
-      label: "L3",
-      type: "Biconvex",
+      label: "Element 3",
+      type: "Biconvex Positive",
       nd: 1.5891,
       vd: 61.3,
+      focalLengthMm: 12.25,
+      glass: "SK5 (Schott)",
+      role: "Thick positive crown core of the cemented triplet; its two cemented faces correct colour.",
       indexReference: "d",
-      cemented: "T1",
+      cemented: "C1",
     },
     {
       id: 4,
       name: "L4",
-      label: "L4",
-      type: "Biconcave",
+      label: "Element 4",
+      type: "Biconcave Negative",
       nd: 1.59667,
       vd: 39.1,
+      focalLengthMm: -16.93,
+      glass: "Unmatched (nd 1.59667 / V 39.1, flint)",
+      role: "Rear negative flint of the cemented triplet.",
       indexReference: "d",
-      cemented: "T1",
+      cemented: "C1",
     },
     {
       id: 5,
       name: "L5",
-      label: "L5",
-      type: "Biconvex",
+      label: "Element 5",
+      type: "Biconvex Positive",
       nd: 1.67165,
       vd: 32.3,
+      focalLengthMm: 34.03,
+      glass: "Unmatched (nd 1.67165 / V 32.3, dense flint)",
+      role: "Weak positive rear lens, the outer part of the negative system; it holds distortion down.",
       indexReference: "d",
     },
   ],
@@ -170,11 +184,14 @@ const LENS_DATA = {
   },
   focus: {
     closeFocusM: 1e15,
-    description:
-      "Infinity-only patent reference; computed paraxial BFD; retail identity not established.",
+    description: "Infinity focus only; the patent gives no close-focus data.",
   },
-  groups: [],
-  doublets: [{ text: "T1", fromSurface: "3", toSurface: "6" }],
+  groups: [
+    { text: "G1", fromSurface: "1", toSurface: "2" },
+    { text: "G2", fromSurface: "3", toSurface: "6" },
+    { text: "G3", fromSurface: "7", toSurface: "8" },
+  ],
+  doublets: [{ text: "C1", fromSurface: "3", toSurface: "6" }],
   layout: {
     yScFill: 0.4,
   },
