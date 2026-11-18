@@ -3636,9 +3636,9 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 1 | Element 1 | abbe | `Unmatched (Nd 1.6202 / V 60.4)` | Explicit unmatched/proprietary annotation |
-| 7 | Element 4 | abbe | `Unmatched (Nd 1.6202 / V 60.4)` | Explicit unmatched/proprietary annotation |
-| 9 | Element 5 | abbe | `Unmatched (Nd 1.6202 / V 60.4)` | Explicit unmatched/proprietary annotation |
+| 1 | Element I | abbe | `Unmatched (Nd 1.6202 / V 60.4)` | Explicit unmatched/proprietary annotation |
+| 7 | Element IV | abbe | `Unmatched (Nd 1.6202 / V 60.4)` | Explicit unmatched/proprietary annotation |
+| 9 | Element V | abbe | `Unmatched (Nd 1.6202 / V 60.4)` | Explicit unmatched/proprietary annotation |
 
 ### [KODAK ENLARGING EKTAR 100mm f/4.5](../../src/lens-data/kodak/KodakEnlargingEktar100mmf45.data.ts) - 40.0% trusted (2/5); 40.0% Sellmeier (2/5) - US 2,279,384
 
@@ -3874,10 +3874,10 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 1 | Element 1 | constant | `Unmatched (nD 1.60958, nG′ 1.62273; no Abbe number printed)` | Explicit unmatched/proprietary annotation |
-| 3 | Element 2 | constant | `Unmatched (nD 1.67330, nG′ 1.70141; no Abbe number printed)` | Explicit unmatched/proprietary annotation |
-| 5 | Element 3 | constant | `Unmatched (nD 1.60958, nG′ 1.62273; no Abbe number printed)` | Explicit unmatched/proprietary annotation |
-| 7 | Element 4 | constant | `Unmatched (nD 1.60958, nG′ 1.62273; no Abbe number printed)` | Explicit unmatched/proprietary annotation |
+| 1 | Element I | constant | `Unmatched (nD 1.60958, nG′ 1.62273; no Abbe number printed)` | Explicit unmatched/proprietary annotation |
+| 3 | Element II | constant | `Unmatched (nD 1.67330, nG′ 1.70141; no Abbe number printed)` | Explicit unmatched/proprietary annotation |
+| 5 | Element III | constant | `Unmatched (nD 1.60958, nG′ 1.62273; no Abbe number printed)` | Explicit unmatched/proprietary annotation |
+| 7 | Element IV | constant | `Unmatched (nD 1.60958, nG′ 1.62273; no Abbe number printed)` | Explicit unmatched/proprietary annotation |
 
 ### [CARL ZEISS JENA TESSAR 144mm f/5.5](../../src/lens-data/carl-zeiss-jena/ZeissTessar144f55.data.ts) - 0.0% trusted (0/4); 0.0% Sellmeier (0/4) - US 721,240
 

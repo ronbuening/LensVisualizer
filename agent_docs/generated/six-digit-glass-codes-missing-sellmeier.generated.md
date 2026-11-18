@@ -399,7 +399,7 @@ Completion counts are conditional on finding a source-verified catalog identity 
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
 |---|---|---|---|---|---|---|---|
-| L1 (Element 1) | 1 | `Unmatched (Chance type 610533, nD 1.6100 / V 53.3)` | 1.61000 / 53.30 | No catalog entry | abbe | patents/US2117252A.pdf | Explicit disposition in data |
+| L1 (Element 1) | 1 | `Unmatched (Chance type 610533, nD 1.61 / V 53.3)` | 1.61000 / 53.30 | No catalog entry | abbe | patents/US2117252A.pdf | Explicit disposition in data |
 | L2 (Element 2) | 3 | `Unmatched (Chance type 623562, nD 1.6234 / V 56.2)` | 1.62340 / 56.20 | No catalog entry | abbe | patents/US2117252A.pdf | Explicit disposition in data |
 | L3 (Element 3) | 4 | `Unmatched (Chance type 608396, nD 1.6083 / V 39.6)` | 1.60830 / 39.60 | No catalog entry | abbe | patents/US2117252A.pdf | Explicit disposition in data |
 | L4 (Element 4) | 6 | `Unmatched (Chance type 605380, nD 1.6054 / V 38.0)` | 1.60540 / 38.00 | No catalog entry | abbe | patents/US2117252A.pdf | Explicit disposition in data |
