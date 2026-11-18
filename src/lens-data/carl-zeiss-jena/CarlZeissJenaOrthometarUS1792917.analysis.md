@@ -84,9 +84,9 @@ Inferred for the model:
 
 - **Back focus.** The patent prints none. The image plane is placed at the computed paraxial image distance, 86.7413 behind the last surface.
 - **Diaphragm opening.** A radius of 9.24 mm, the value that gives f/4.5 at the computed focal length.
-- **Clear diameters.** The patent prints none, so every semi-diameter is an estimate. The outer pairs are set to 12 mm. The inner menisci and the surfaces facing them are set to the smallest values that pass the f/4.5 axial beam: 9.8 mm on r3 and r4, 9.4 mm on r5, 9.2 mm on r6 and 9.4 mm on r7. At 9.8 mm the air space between r3 and r4 has almost closed, so those rims are near the largest the printed geometry allows.
+- **Clear diameters.** The patent prints none, so every semi-diameter is an estimate that follows the proportions of the drawing. The drawing shows the outer pairs about 1.26 times as tall as the menisci, each pair square-rimmed with a bevel down to the flint face that meets the meniscus, and that flint face ending at about the meniscus rim height. Drawn to the table's axial scale, every element is about 9 % smaller than the f/4.5 axial beam needs, so the beam sets the overall size. The inner menisci and the faces next to them are the smallest that pass it: 9.8 mm on r3 and r4, 9.4 mm on r5, 9.2 mm on r6, 9.4 mm on r7 and 9.5 mm on r8. The outer pairs are set to 12 mm in the drawing's proportion. At 9.8 mm the air space between r3 and r4 has almost closed, so those rims are near the largest the printed geometry allows.
 
-With these rims the full f/4.5 axial beam passes. At the edge of the stated field, 32.5° off axis, the central ray passes every surface, and about half of the beam's width is cut off at the outer pairs. The patent prints no diameters, so that amount of corner darkening is a property of the estimated rims, not a statement from the patent.
+With these rims the full f/4.5 axial beam passes. At the edge of the stated field, 32.5° off axis, the central ray passes every surface, and about half of the beam's width is cut off at the outer pairs, leaving about 35 % of the axial illumination by geometric vignetting alone. The patent prints no diameters, so that amount of corner darkening is a property of the estimated rims, not a statement from the patent.
 
 ## Model Scope and Limitations
 

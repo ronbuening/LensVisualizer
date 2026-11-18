@@ -12,9 +12,13 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * nD and ν, relative aperture 1:4.5 and a 65° image field.
  *
  * Inferred: the back focus (computed paraxial image distance, 86.7413; the patent prints none), the diaphragm
- * opening (from f/4.5) and every semi-diameter (the patent prints no diameters). The inner meniscus rims are the
- * smallest that pass the f/4.5 axial beam. The 0.75 air space between r3 and r4 closes near a height of 10, so
- * those two rims sit just inside that limit and the gap check is relaxed to 0.96 to admit them.
+ * opening (from f/4.5) and every semi-diameter (the patent prints no diameters). Semi-diameters follow the
+ * proportions of the drawing and are floor-checked by a real-ray trace. The drawing shows every element about 9 %
+ * smaller than the f/4.5 axial beam allows, so the beam sets the overall size: the inner meniscus rims are the
+ * smallest that pass it. The 0.75 air space between r3 and r4 closes near a height of 10, so those two rims sit
+ * just inside that limit and the gap check is relaxed to 0.96 to admit them. The outer pairs are drawn
+ * square-rimmed with a bevel down to the flint face that meets the meniscus; r3 and r8 are set lower than the pair
+ * rims to match.
  *
  * The construction is the Orthometar type that Zeiss sold at f/4.5. The link is to the lens family: no production
  * prescription has been compared, and the patent does not use the name.
@@ -29,6 +33,7 @@ const LENS_DATA = {
   checks: { gapSagFrac: 0.96 },
   catalog: {
     specs: ["6 ELEMENTS / 4 GROUPS", "DESIGN F/4.5", "ALL SPHERICAL", "65° FIELD"],
+    imageCircleMm: 127.6,
     elementCount: 6,
     groupCount: 4,
     focalLengthMm: {
@@ -183,7 +188,7 @@ const LENS_DATA = {
       label: "8",
       R: -18.14,
       d: 1.88,
-      sd: 10,
+      sd: 9.5,
       medium: 5,
     },
     {
