@@ -19,19 +19,18 @@
 - `maker`: "Kapella" → "Cooke" (house maker for Kapella-assigned Taylor-Hobson patents).
 - `source.patentNumber`: "US 2,019,985" → "US 2,019,985 A".
 - Rims, surfaces 3 and 4: 8 → 8.24. The f/1.4 on-axis beam needs 8.23; L2 has zero edge thickness at about 8.24, so 8.3 is not possible.
-- Rim, surface 5: 5.65 → 5.7. The beam needs 6.01, but the rim of this concave face reaches the iris plane at 5.70 (and would meet the facing rim of surface 6 at about 5.9), so it stops at the cap.
-- Rim, surface 6: 5.65 → 6.08 (on-axis beam).
+- Rims, surfaces 5 and 6: kept at the delivered 5.65. The f/1.4 beam needs 6.01 and 6.07, but these two concave faces look at each other across the 4.953 mm central air space: at 5.65 their rims already take nine tenths of it, the rim of surface 5 reaches the iris plane at 5.70, and the rims would meet near 5.9. A first attempt at 5.7 and 6.08 put the iris plane in the rim of surface 5 and made the drawing trim surface 6 by 0.43 mm, so it was withdrawn. The iris stays at the middle of the air space, 2.4765 + 2.4765 mm.
 - `cemented` tags "D1" (L2, L3) and "D2" (L4, L5) and matching `doublets` entries added.
 - L1 `type`: "Meniscus" → "Positive Meniscus"; element `focalLengthMm` and plain optical `role` strings added.
 - Float noise rounded (3.8099999999999996 → 3.81, 154.93999999999997 → 154.94, 4.444999999999999 → 4.445, −8.889999999999999 → −8.89, 1.5239999999999998 → 1.524, design focal length → 26.31, last gap 15.424884074336912 → 15.4249); `closeFocusM` written as 1e15.
 - `focus.description` rewritten in plain words (it had run-together numbers and a "central 90 %" statement that no longer applies).
 - Header comment added; keys unquoted; analysis rewritten to the house section layout.
 
-**After the changes.** Focal length 26.3105 mm, f/1.4 nominal (iris semi-diameter 6.09 mm), paraxial back focus 15.4249 mm (equal to the last gap), length 38.92 mm. Surface audit: OK, no validation errors. Aperture audit: one remaining limit, surface 5 at 5.7 against 6.1 needed for f/1.4 (7 %), which is the geometric cap described above; the real on-axis beam passes cleanly at about f/1.5 and is trimmed by 2 % on one side at f/1.47. Image-circle and field-coverage audits do not run: the patent states no image format or field and the file is hidden.
+**After the changes.** Focal length 26.3105 mm, f/1.4 nominal (iris semi-diameter 6.09 mm), paraxial back focus 15.4249 mm (equal to the last gap), length 38.92 mm. Surface audit: OK, no validation errors. Aperture audit: two remaining limits, surfaces 5 and 6 at 5.65 against about 6.0 and 6.1 needed for f/1.4, which is the geometric cap described above; the real on-axis beam passes cleanly at f/1.52 and is trimmed by 1 % on one side at f/1.5. Iris-in-air check: the rim of surface 5 stops 0.053 mm in front of the iris plane and surface 6 is 0.45 mm behind it, at the full 6.09 mm iris radius. Drawing check: no surface is trimmed. Image-circle and field-coverage audits do not run: the patent states no image format or field and the file is hidden.
 
 **Open:**
 
 - Name, key, file name, subtitle and specs wording ("PATENT ONLY; RETAIL IDENTITY UNPROVED") for the cleanup pass.
 - Glass labels: none given; the patent prints nD and V only.
-- Rims against the drawing: all rims are inferred and were not measured from the figure; the drawing shows a bevel on the front cemented pair facing the iris that the model does not have. Whether to keep f/1.4 as the stated aperture or state f/1.5, and whether the inferred iris should move to free surface 5, is for the semi-diameter pass.
+- Rims against the drawing: all rims are inferred and were not measured from the figure; the drawing shows a bevel on the front cemented pair facing the iris that the model does not have. Whether to keep f/1.4 as the stated aperture or state f/1.5, and whether the central rims should be bevelled as drawn to pass more of the beam, is for the semi-diameter pass.
 - No field of view or image format is set.

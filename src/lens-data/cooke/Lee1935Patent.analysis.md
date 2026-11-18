@@ -63,7 +63,7 @@ All 12 radii, 7 thicknesses, 4 separations, 7 indices and 7 V values were compar
 | Quantity | Patent | Model |
 | --- | --- | --- |
 | Focal length | "one inch" (25.4 mm) | 26.31 mm |
-| Aperture | f/1.4 | f/1.4 nominal; about f/1.5 passed on axis |
+| Aperture | f/1.4 | f/1.4 nominal; about f/1.52 passed on axis |
 | Back focus | not printed | 15.42 mm (computed paraxial) |
 | Length, first surface to image | not printed | 38.92 mm |
 | Field of view | not stated | not set |
@@ -75,7 +75,7 @@ As printed, the on-axis rays focus 1.04 mm beyond the paraxial focus at the edge
 Inferred rather than printed:
 
 - The iris. The drawing shows no diaphragm; it is placed at the middle of the central air space.
-- The clear diameters. They follow the on-axis beam where the printed geometry allows. L2 runs out of edge thickness at a semi-diameter of 8.24 mm, and the concave rear face of L3 reaches the iris plane at 5.7 mm. With those limits the model passes a real on-axis beam of about f/1.5, not the full f/1.4. The patent drawing shows a bevel on the front pair at this corner, which the model does not reproduce.
+- The clear diameters. They follow the on-axis beam where the printed geometry allows. L2 runs out of edge thickness at a semi-diameter of 8.24 mm. The two concave faces either side of the iris are held at 5.65 mm, where their rims leave a tenth of the central air space between them and the front one stops 0.05 mm short of the iris plane; the f/1.4 beam would need 6.01 and 6.07 mm there. With those limits the model passes a real on-axis beam of about f/1.52, not the full f/1.4. The patent drawing shows a bevel on the front pair at this corner, which the model does not reproduce.
 - The back focus, taken as the paraxial image distance.
 
 ## Sources

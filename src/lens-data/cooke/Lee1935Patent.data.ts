@@ -15,10 +15,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * drawing shows no diaphragm; the clear semi-diameters; and the 15.4249 mm back focus, which is the computed
  * paraxial image distance for an object at infinity. The patent prints no back focus, field angle or image size.
  *
- * The semi-diameters are set by the on-axis beam where the printed geometry allows it. Three of them are capped by
+ * The semi-diameters are set by the on-axis beam where the printed geometry allows it. Four of them are capped by
  * that geometry: the front cemented pair's first two surfaces at 8.24 mm, where its biconvex element runs out of
- * edge thickness, and the concave face ahead of the iris at 5.7 mm, where its rim reaches the iris plane. The model
- * therefore passes a real on-axis beam of about f/1.5 rather than the full f/1.4.
+ * edge thickness, and the two concave faces either side of the iris at 5.65 mm, where their rims leave only a
+ * tenth of the central air space between them and the front one stops 0.05 mm short of the iris plane. The model
+ * therefore passes a real on-axis beam of about f/1.52 rather than the full f/1.4.
  */
 const LENS_DATA = {
   schema: 2,
@@ -169,7 +170,7 @@ const LENS_DATA = {
       label: "5",
       R: 7.7978,
       d: 2.4765,
-      sd: 5.7,
+      sd: 5.65,
     },
     {
       label: "STO",
@@ -180,7 +181,7 @@ const LENS_DATA = {
       label: "6",
       R: -8.89,
       d: 0.508,
-      sd: 6.08,
+      sd: 5.65,
       medium: 4,
     },
     {
