@@ -1,4 +1,84 @@
-# Lee / Kapella large-aperture objective (US2019985)
-Horace William Lee’s seven-element, five-group patent embodiment, filed 1930 and granted 1935. This is a patent-only model; no retail or factory identity established. [Primary patent](https://patents.google.com/patent/US2019985A/en). The archived printed table and drawing, not an inferred production prescription, govern the model.
+# Lee / Kapella large-aperture objective — US 2,019,985
 
-The source says one inch at f/1.4; the literal radii, spacings and glass indices yield 26.310480 mm EFL and 15.424884 mm BFD at infinity. The 3.58% difference from one inch is disclosed, not rescaled away. The iris position is estimated at the middle of the central 0.195-inch gap; aperture is derived for nominal f/1.4. Physical rims are estimated. The central 90% axial pupil passes in the native trace, with 185/201 samples across the full axial disk. Off-axis diagnostic transmission is 6/9 at 10°, 4/9 at 20° and 0/9 at 32.5°; this does not establish published field coverage or historical image quality.
+## Patent Reference and Design Identification
+
+**Patent:** US 2,019,985, _Lens_  
+**Application Number:** Serial No. 504,944  
+**Filed:** December 26, 1930  
+**Granted:** November 5, 1935  
+**Inventors:** Horace William Lee  
+**Assignee:** Kapella Limited, Leicester, England  
+**Example details:** the single table and single drawing of the specification; dimensions in inches
+
+The model is the only numerical example of US 2,019,985. The patent describes it as a lens "of one inch focal length" with an aperture of f/1.4, and gives one table of radii, thicknesses, separations, sodium D-line refractive indices and V values. Every printed length is multiplied by 25.4 to give millimetres; nothing else is scaled or fitted.
+
+This is a patent design, not an identified production lens. Lee designed for Taylor, Taylor & Hobson, whose patents of this period were held by Kapella Limited, and the lens is filed under Cooke for that reason. Cooke's own history pages mention two fast Lee designs of the same years, an f/1.4 Ultra Speed Panchro (tied there to the earlier US 1,779,257) and a 58 mm f/1.3 Super Speed Panchro released in 1930. Neither is linked by any source found to this seven-element form, no one-inch f/1.4 Cooke lens was found, and no published construction diagram was found to compare with the patent drawing. The product link is therefore open.
+
+## Optical Architecture
+
+The patent starts from Lee's earlier f/2 design (British patent 157,040): two cemented meniscus dispersive members with their concave faces towards each other, between two outer collective members. The new step is to make one collective member, preferably the rear one, of two simple lenses, which the patent says allows f/1.4 or more with a flat field.
+
+The example has seven spherical elements in five groups:
+
+- a single positive meniscus in front (the front collective member);
+- a cemented pair, biconvex crown then biconcave flint, with a combined focal length of about −164 mm;
+- the central air space of 0.195 inch (4.953 mm), where the iris sits;
+- a second cemented pair, biconcave flint then biconvex crown, about −207 mm;
+- two plano-convex lenses with their curved faces towards each other (the split rear collective member).
+
+The patent asks that each of the two rear lenses have one curvature at least three times the other and that the more deeply curved faces face each other. Both rear lenses have one flat face, so the example meets this.
+
+## Element-by-Element Analysis
+
+Focal lengths are computed in air from the printed values at the model's scale.
+
+### L1 — Positive Meniscus
+
+Radii +22.86 and +154.94 mm, thickness 3.81 mm, nD 1.6135, V 59.4, focal length +43.24 mm. The front collective member.
+
+### L2 and L3 — Front Cemented Dispersive Meniscus
+
+L2 is a thick biconvex crown (radii +11.176 and −41.91 mm, thickness 4.445 mm, nD 1.6135, V 59.4, +14.85 mm). L3 is a thin biconcave flint (radii −41.91 and +7.7978 mm, thickness 0.508 mm, nD 1.579, V 40.4, −11.31 mm). L2 has almost no edge thickness left at the height the f/1.4 beam needs, which limits its clear diameter.
+
+### L4 and L5 — Rear Cemented Dispersive Meniscus
+
+L4 is a thin biconcave flint (radii −8.89 and +96.52 mm, thickness 0.508 mm, nD 1.579, V 40.4, −14.03 mm). L5 is a thick biconvex crown of a different, denser glass (radii +96.52 and −13.2842 mm, thickness 5.334 mm, nD 1.6437, V 48.3, +18.49 mm).
+
+### L6 and L7 — Split Rear Collective Member
+
+L6 is plano-convex with its flat face forward (rear radius −28.448 mm, thickness 2.032 mm, +46.37 mm). L7 is plano-convex with its flat face to the rear (front radius +44.196 mm, thickness 1.524 mm, +72.04 mm). Both are nD 1.6135, V 59.4. The air spaces around them are 0.127 mm.
+
+## Glass Identification and Selection
+
+The patent prints, for each element, the refractive index for the sodium D line and V = (nD − 1)/(nF − nC). It names no glass maker or type number. Three glasses are used: a dense barium crown (1.6135 / 59.4) for all four collective lenses and the front crown, a light flint (1.579 / 40.4) for both negative elements, and a denser crown (1.6437 / 48.3) for the rear cemented crown. The model uses the printed pairs as they stand, so colour is estimated from nD and V alone.
+
+## Focus Mechanism
+
+The patent gives no focusing data, close-focus distance or moving groups. The model is fixed at infinity.
+
+## Patent Conditions and Model Verification
+
+All 12 radii, 7 thicknesses, 4 separations, 7 indices and 7 V values were compared with the page image and agree with the model. Signs follow the printed "Plus" and "Minus" (plus when convex to the incident light).
+
+| Quantity | Patent | Model |
+| --- | --- | --- |
+| Focal length | "one inch" (25.4 mm) | 26.31 mm |
+| Aperture | f/1.4 | f/1.4 nominal; about f/1.5 passed on axis |
+| Back focus | not printed | 15.42 mm (computed paraxial) |
+| Length, first surface to image | not printed | 38.92 mm |
+| Field of view | not stated | not set |
+
+The computed focal length is 3.6 % longer than one inch. The radii are printed to only one to three figures (0.9, 6.1, 0.44 inch); rounding the first radius alone moves the focal length by about 1.7 %. A scan of 393 single-value misreadings (one digit, a sign, or two digits exchanged in one radius or thickness) found no change that the page supports, so the difference is treated as rounding in the printed table. The model keeps the printed values and is not rescaled to one inch.
+
+As printed, the on-axis rays focus 1.04 mm beyond the paraxial focus at the edge of the f/1.4 pupil, 0.33 mm at 85 % of it and 0.09 mm at 70 %.
+
+Inferred rather than printed:
+
+- The iris. The drawing shows no diaphragm; it is placed at the middle of the central air space.
+- The clear diameters. They follow the on-axis beam where the printed geometry allows. L2 runs out of edge thickness at a semi-diameter of 8.24 mm, and the concave rear face of L3 reaches the iris plane at 5.7 mm. With those limits the model passes a real on-axis beam of about f/1.5, not the full f/1.4. The patent drawing shows a bevel on the front pair at this corner, which the model does not reproduce.
+- The back focus, taken as the paraxial image distance.
+
+## Sources
+
+- US 2,019,985, H. W. Lee, _Lens_, granted November 5, 1935: <https://patents.google.com/patent/US2019985A/en>
+- Cooke Optics, company history pages (Lee's Opic, Speed Panchro, Ultra Speed and Super Speed Panchro designs): <https://cookeoptics.com/cooke-history/>
