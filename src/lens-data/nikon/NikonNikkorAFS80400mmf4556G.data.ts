@@ -451,7 +451,7 @@ const LENS_DATA = {
     }, // BF: last surface→image, zoom only
   },
 
-  aperture: { fStops: [4.5, 5, 5.6, 6.3, 8, 11, 16, 22, 32], blades: 9 },
+  aperture: { fStops: [4.5, 5, 5.6, 6.3, 8, 11, 16, 22, 32], maxFNumber: 32, blades: 9 },
 
   /* ── Group and doublet annotations ── */
   groups: [

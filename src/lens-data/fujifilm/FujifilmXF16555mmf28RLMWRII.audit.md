@@ -92,3 +92,7 @@ image-circle floor reports nothing undersized. The analysis departure table now 
 
 - Left as stored: all sixteen values, because each equals the printed θgF minus the engine's line.
 - No element authors `nC`, `nF` or `ng`, and none uses `indexReference: "e"`, so neither special case applied.
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 22. `fStops` lists f/22, which the slider cut off at the default 16. No optical value changed.

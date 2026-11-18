@@ -39,3 +39,7 @@ Patent: US 716,035
 ### Batch follow-up
 
 Explicit image-circle proxy check with source semi-height 40 mm: minimum distance ahead of image is 85.52 mm, so Y minus distance times max(1,Y/f) is non-positive at every surface. No floor violation; this does not establish corner performance.
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 32. `fStops` lists f/22 and f/32, which the slider cut off at the default 16. No optical value changed.

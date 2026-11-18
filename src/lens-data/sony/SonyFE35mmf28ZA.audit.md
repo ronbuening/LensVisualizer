@@ -107,3 +107,7 @@ object-to-image reading needs than the 1.487801 mm a first-surface reading needs
 | `focus.conjugates[0].distanceReference` | first-surface | image-plane | Audit-resolved on the re-solved rows |
 
 - The printed 350 mm and the declared state are unchanged; `source` records the reference evidence.
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 22. `fStops` lists f/22, which the slider cut off at the default 16. No optical value changed.

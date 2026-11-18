@@ -256,7 +256,7 @@ const LENS_DATA = {
   gaps: { "9": { label: "D9", values: [[5.134, 16.0229]] }, "14": { label: "D14", values: [[15.8406, 4.9517]] } },
 
   // The stop radius is derived from the design f-number, f/2.9.
-  aperture: { nominalFNumber: 2.9, fStops: [2.9, 4, 5.6, 8, 11, 16, 22] },
+  aperture: { nominalFNumber: 2.9, fStops: [2.9, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22 },
 
   groups: [
     { text: "G1", fromSurface: "1", toSurface: "9" },

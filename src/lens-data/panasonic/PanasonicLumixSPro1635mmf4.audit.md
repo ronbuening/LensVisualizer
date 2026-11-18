@@ -137,3 +137,7 @@ app-derived sampled station, re-solved for paraxial focus; the infinity D17/D20 
   undersized), field coverage (≥ 99 % at all 33 stations) and the surface probe (no validation errors) are unchanged.
 
 Follow-ups: none for the image plane. A re-solve claims no misprint, so `source.errata` is unchanged.
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 22. `fStops` lists f/22, which the slider cut off at the default 16. No optical value changed.

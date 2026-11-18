@@ -119,3 +119,7 @@ Reference evidence: “an object at a distance of 500 mm (millimeters) from the 
 The wide station is retained on the patent’s explicit image-plane definition; the two references are numerically ambiguous there.
 
 The declared states already carry published focus flags. No prescription, gap, image-plane, or existing conjugate value changes.
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 22. `fStops` lists f/22, which the slider cut off at the default 16. No optical value changed.

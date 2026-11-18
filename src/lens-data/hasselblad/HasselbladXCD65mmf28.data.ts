@@ -284,7 +284,7 @@ const LENS_DATA = {
   },
 
   /* ── Aperture configuration ── */
-  aperture: { nominalFNumber: 2.8, fStops: [2.8, 3.2, 3.5, 4, 4.5, 5, 5.6, 6.3, 8, 11, 16, 22, 32] },
+  aperture: { nominalFNumber: 2.8, fStops: [2.8, 3.2, 3.5, 4, 4.5, 5, 5.6, 6.3, 8, 11, 16, 22, 32], maxFNumber: 32 },
 
   /* ── Cover glass (patent Fig. 2 surfaces 18–20, cemented pair): traced, not drawn ── */
   rearPlates: [

@@ -547,7 +547,7 @@ const LENS_DATA = {
     },
   },
 
-  aperture: { fStops: [4, 4.5, 5, 5.6, 6.3, 8, 11, 16, 22], blades: 9 },
+  aperture: { fStops: [4, 4.5, 5, 5.6, 6.3, 8, 11, 16, 22], maxFNumber: 22, blades: 9 },
 
   /* ── Group and cemented-pair annotations ── */
   groups: [

@@ -395,7 +395,7 @@ const LENS_DATA = {
     },
   },
 
-  aperture: { fStops: [3.5, 4, 5.6, 8, 11, 16, 22], blades: 7 },
+  aperture: { fStops: [3.5, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22, blades: 7 },
 
   groups: [
     { text: "G1", fromSurface: "1", toSurface: "5" },

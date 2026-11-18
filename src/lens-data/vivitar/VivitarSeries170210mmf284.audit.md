@@ -149,3 +149,7 @@ Follow-ups:
   there with its two kinds of evidence (stated EFL, total-track conservation across Table IV and Table III's same slip).
 - The analysis's 1.6 m wide-end minimum focus claim contradicts a front unit-focus group fixed during zoom, which focuses
   the same object distance at every focal length; it needs a source or removal.
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 22. `fStops` lists f/22, which the slider cut off at the default 16. No optical value changed.

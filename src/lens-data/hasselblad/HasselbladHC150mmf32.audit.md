@@ -70,3 +70,7 @@ Figure / SD check:
 - `catalog.fNumber.design: 3.2` from US 2002/0075570 A1 p. 4 (PDF p. 15), left column, the middle portion of
   Table 1-continued (Embodiment 1): "Fno. = 3.2 ω = 13.1°". The stop's `nominalFNumber` 3.2 matches it. No optical
   value changed.
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 45. `fStops` lists f/22, f/32 and f/45, which the slider cut off at the default 16. No optical value changed.

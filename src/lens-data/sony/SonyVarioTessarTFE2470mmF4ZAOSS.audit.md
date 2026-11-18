@@ -605,3 +605,7 @@ Open: L4/L5 stay about 15 % shorter than drawn and L3 still wraps L4 (see above)
 
 - Why the old value differed: derived close rows aimed at Sony's 0.4 m MFD the focus description names.
 - `catalog.closeFocusM.marketing` 0.4 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 22. `fStops` lists f/22, which the slider cut off at the default 16. No optical value changed.
