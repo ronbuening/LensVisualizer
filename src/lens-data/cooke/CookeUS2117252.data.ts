@@ -53,7 +53,6 @@ const LENS_DATA = {
     patentYear: 1938,
     authors: ["Horace William Lee"],
     assignees: ["Kapella Limited"],
-    sdSource: "heuristic",
   },
   elements: [
     {
@@ -65,7 +64,7 @@ const LENS_DATA = {
       vd: 53.3,
       indexReference: "D",
       focalLengthMm: 137.39,
-      glass: "Unmatched (Chance type 610533, nD 1.6100 / V 53.3)",
+      glass: "Unmatched (Chance type 610533, nD 1.61 / V 53.3)",
       role: "Front positive meniscus",
     },
     {
