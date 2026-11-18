@@ -1,4 +1,4 @@
-# Hasselkus and Richmond Five-Meniscus Wide-Angle Objective — US 2,116,264
+# HASSELKUS & RICHMOND 195mm f/5.6 (US 2,116,264 Design)
 
 ## Patent Reference and Design Identification
 
@@ -13,11 +13,11 @@ The patent names no assignee; it issued to the two inventors, both of Clapham, L
 
 No production lens is identified with this design. The reasons are set out so that a reader can judge them:
 
-1. The patent is unassigned. Both inventors give Clapham, London as their address, and collector literature credits the same two men with the Ross Xpres design, so a connection with Ross Ltd of Clapham is likely. The patent itself does not name Ross.
-2. The best-known Ross wide-angle lens of the period, the Wide Angle Xpres f/4, is described by users as a Plasmat-type lens with cemented components. That is a different construction from the five separate menisci of this patent, so it is not this design.
+1. The patent is unassigned. Both inventors give Clapham, London as their address, and a collector reference lists the same two men as the designers of Ross Xpres lenses, so a connection with Ross of London is likely. Neither that reference nor the patent states their employer.
+2. The best-known Ross wide-angle lens of the period, the Wide Angle Xpres f/4, is described in the same collector reference as a Plasmat-type lens, which has cemented components. That is a different construction from the five separate menisci of this patent, so it is not this design.
 3. No maker's catalogue, museum record or published section drawing was found that shows a five-meniscus Ross lens of 194.5 mm (about 7⅝ inches) at f/5.6.
 
-The model is therefore a patent reference only. Its maker is left unset and it is hidden from the public catalogue.
+The model therefore represents the patent example alone, at the patent's own 194.5 mm scale, and is filed under the inventors' names with no maker.
 
 ## Optical Architecture
 
@@ -68,13 +68,13 @@ The patent prints three figures for each of two glasses and names neither:
 | I, IV, V | 1.6202 | 1.6329 | 60.4 |
 | II, III | 1.7174 | 1.7492 | 29.5 |
 
-The model traces the printed Nd and ν as helium d-line values. The first pair is a dense barium crown and the second a dense flint; they lie close to the modern Schott catalogue rows N-SK16 (1.62041, 60.32) and SF1 (1.71736, 29.51). That closeness is an observation, not an identification: the 1936 melts and their supplier are unknown, and no catalogue glass is substituted in the model. The printed Ng values are recorded in the data file as notes and are not used in the trace.
+The model traces the printed Nd and ν as helium d-line values. The first pair is a dense barium crown and the second a dense flint; the patent names neither and the supplier of the 1936 melts is unknown. The flint agrees with the Schott SF1 catalogue row (1.71736, 29.51) at the printed precision, and the data file labels it SF1 on that basis; the trace keeps the printed Nd. The crown is 0.0002 from the nearest catalogue row, SK16 (1.62041, 60.32), which is outside the tolerance for a label, so it stays unmatched. The printed Ng values are recorded in the data file as notes.
 
 ## Focus Mechanism
 
 The patent gives one infinity prescription and says nothing about focusing. No focus movement is modeled. The image plane is placed at the computed paraxial back focus, 152.98 mm behind the last surface, because the patent prints no back focus.
 
-## Patent Conditions and Model Verification
+## Patent Conditions and Model Scope
 
 What is printed and what is inferred:
 
@@ -92,17 +92,16 @@ First-order results of the model:
 | Relative aperture | about F/5.6 | F/5.6 (stop semi-diameter 13.14 mm) |
 | Back focus | not printed | 152.98 mm |
 | First to last surface | not printed | 75.19 mm |
-| Field of view | approximately 100° | chief ray passes to about 95° |
+| Field of view | approximately 100° | about 95° (see below) |
 
 The patent's conditions hold in the model: every radius is shorter than the focal length, the negative lenses share their radii, and lens I (+134.39 mm) is stronger than lens IV (+282.87 mm) or lens V (+230.59 mm).
 
 At F/5.6 the marginal axial ray of the printed prescription focuses 1.91 mm beyond the paraxial focus, the 85 % zone 0.42 mm beyond it, and the 70 % and 50 % zones 0.19 mm and 0.32 mm short of it. That is the usual zonal pattern of this lens type at an aperture the patent itself calls approximate.
 
-The field needs a caution. The clear semi-diameters are set to the heights a chief ray needs at a half-field of about 47.7°. A wider field would need the front surface to be opened beyond the rim-slope limit the validator allows for a spherical surface (32.5 mm on a 36.15 mm radius); the full 50° needs about 33.4 mm there and 35.8 mm on the last surface. The drawing shows the outer lenses carried almost to full hemispheres, so the real design reaches its stated field; the model stops about 2° short of it on each side. Off-axis bundles are progressively vignetted well before the limit, as the drawing's small inner shells also imply.
+The field needs a caution. The clear semi-diameters are set to the heights a chief ray needs at a half-field of about 47.7°. A wider field would need the front surface to be opened beyond the steepest rim the model allows on a spherical surface (32.5 mm on a 36.15 mm radius); the full 50° needs about 33.4 mm there and 35.8 mm on the last surface. The drawing shows the outer lenses carried almost to full hemispheres, so the real design reaches its stated field; the model stops about 2° short of it on each side. Off-axis bundles are progressively vignetted well before the limit, as the drawing's small inner shells also imply.
 
 ## Sources
 
 - US 2,116,264, *Objective Suitable for Photographic Purposes*, J. W. Hasselkus and G. A. Richmond, patented May 3, 1938: https://patents.google.com/patent/US2116264
 - British patent specification 423,156, cited in the patent as the earlier four-meniscus form (not consulted).
-- Collector page crediting Hasselkus and Richmond with the Ross Xpres design: https://www.oldlens.com/rossxpres50f19.html
-- User discussion of the Ross 5 inch f/4 Wide Angle Xpres and its Plasmat-type construction: https://www.photrio.com/forum/threads/ross-5-f-4-wide-angle-weirdness.216174/
+- Collector reference on the Ross Xpres lenses, naming Hasselkus and Richmond as designers and the Wide-Angle Xpres as a Plasmat type: https://www.oldlens.com/rossxpres50f19.html

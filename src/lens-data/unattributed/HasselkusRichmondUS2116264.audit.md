@@ -46,9 +46,34 @@ Field reached: a closed-form sphere-and-Snell trace through the centre of the st
 
 Open:
 
-- Name, key, subtitle, specs and file name are as delivered and still carry "PATENT ONLY" and "RETAIL IDENTITY UNPROVED" wording for the cleanup pass. Suggested form: maker unset, a name citing "US 2,116,264 Design" and the 194.5 mm f/5.6 figures.
-- `closeFocusM: 1e15` awaits the house form for an infinity-only model.
+- (Closed 2026-11-17 by the cleanup pass.) Name, key, subtitle, specs and file name are as delivered and still carry "PATENT ONLY" and "RETAIL IDENTITY UNPROVED" wording for the cleanup pass. Suggested form: maker unset, a name citing "US 2,116,264 Design" and the 194.5 mm f/5.6 figures.
+- (Closed 2026-11-17: `1e15` is the house placeholder.) `closeFocusM: 1e15` awaits the house form for an infinity-only model.
 - Rims against the drawing: lens I reads about 34 mm, lenses II and III about 23.6 mm (wrapping almost to the stop plane), lenses IV and V about 35 mm. The last 2° of half-field needs `checks.maxRimAngleDeg` of about 68° and those drawing rims.
 - The engine's own first-order half-field figure is 36.1° (limited by surface 1), well below the real chief-ray limit, because a first-order estimate understates this near-concentric design. Decide whether the lens needs a declared trace field.
-- Glass labels: the printed pairs lie close to Schott N-SK16 and SF1; none is assigned. The printed Ng (1.6329, 1.7492) could be given to the trace if wanted.
+- (Closed 2026-11-17: see the cleanup section.) Glass labels: the printed pairs lie close to Schott N-SK16 and SF1; none is assigned. The printed Ng (1.6329, 1.7492) could be given to the trace if wanted.
 - British specification 423,156 (the four-meniscus predecessor) and any Ross catalogue showing a five-meniscus wide-angle lens were not found.
+
+## 2026-11-17 — Cleanup and wording pass
+
+Optics, stop and rims are unchanged. Engine numbers before and after are identical: focal length 194.9271 mm, F/5.6, first-order half-field 36.11°, stop semi-diameter 13.1395 mm, back focus 152.9768 mm. The surface validator reports no errors and the aperture audit reports no rim limit (on-axis f-number within 3 % of the stated value).
+
+Fields changed:
+
+- `subtitle`: "1938 f/5.6; PATENT ONLY" → "US 2,116,264 A, sole example — five-meniscus wide-angle design".
+- `specs`: "5 ELEMENTS / 5 GROUPS", "PATENT ONLY; RETAIL IDENTITY UNPROVED", "ESTIMATED STOP AND RIMS", "INFINITY ONLY" → "5 ELEMENTS / 5 GROUPS", "ALL SPHERICAL", "DESIGN f = 194.5 mm", "DESIGN F/5.6", "100° FIELD". The focal length and field are the patent's stated values.
+- `focus.description` → "Infinity focus only; the patent gives no close-focus data."
+- Element labels "L1"–"L5" → "Element 1"–"Element 5".
+- Glass, elements 2 and 3: none → "SF1 (Schott)". Printed 1.7174 / 29.5 against the catalogue 1.71736 / 29.51: Δnd 0.00004, Δνd 0.01. The label resolves in the glass catalogue.
+- Glass, elements 1, 4 and 5: none → "Unmatched (Nd 1.6202 / V 60.4)". Nearest rows are the SK16 types at 1.62041 / 60.3: Δnd 0.00021, outside the 0.0001 limit.
+- Header comment: glass paragraph updated to match; one process word removed.
+- No cemented surfaces, so no `cemented` tags or `doublets` entries.
+
+Analysis: title set to the lens name; the Ross connection restated at the strength of its one source (a collector page that lists the inventors as Ross Xpres designers and calls the Wide-Angle Xpres a Plasmat type; it does not state their employer); glass section brought into line with the labels; one forum citation that had been read only as a search excerpt removed; section heading "Model Verification" renamed "Model Scope".
+
+Open:
+
+- Rims against the drawing, for the semi-diameter pass: lens I about 34 mm (file 32.5 / 29.1), lenses II and III about 23.6 mm (file 22.8 / 20), lenses IV and V about 35 mm (file 29.4–34.8). The chief ray passes to a half-field of 47.7°; the last 2° needs a relaxed rim-slope limit on surface 1.
+- The first-order half-field figure the page shows is 36.1°, below the real chief-ray limit. A declared trace field may be wanted.
+- `lensMounts`, `imageFormat` and an image circle are not set: the patent states a field angle but no plate format.
+- The printed Ng values (1.6329, 1.7492) are held as notes only.
+- British specification 423,156 and any Ross catalogue showing a five-meniscus wide-angle lens were not found; the inventors' employer is not documented.

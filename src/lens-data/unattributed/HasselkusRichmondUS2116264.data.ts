@@ -14,7 +14,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * turns its concave side to the diaphragm.
  *
  * GLASS: the patent prints Nd, Ng and ν for two glasses: 1.6202 / 1.6329 / 60.4 for lenses I, IV and V, and
- * 1.7174 / 1.7492 / 29.5 for lenses II and III. The model traces the printed Nd and ν; the patent names no glass.
+ * 1.7174 / 1.7492 / 29.5 for lenses II and III. The patent names no glass. The flint pair is the Schott SF1
+ * catalogue row (1.71736 / 29.51) at the printed precision and carries that label; the crown pair matches no
+ * catalogue row within 0.0001 (the nearest, SK16 at 1.62041 / 60.3, is 0.0002 away) and stays unmatched. The trace
+ * keeps the printed Nd in both cases.
  *
  * STOP (inferred): the drawing shows the diaphragm A in the 40.56 mm central air space s2 but the table gives it no
  * position. It is placed at the middle, 20.28 mm from each neighbouring surface, where the drawing shows it.
@@ -22,7 +25,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * SEMI-DIAMETERS (inferred): the patent prints no diameters. The rims are the heights the chief ray needs to pass
  * at a half-field of about 47.7°, rounded up to 0.1 mm. That is the widest field the front surface allows inside
  * the validator's rim-slope limit (32.5 mm on R1 = 36.15 mm); the full 50° would need about 33.4 mm there and
- * 35.8 mm on the last surface. Surfaces 4 and 5 keep the delivered 20 mm, which is a little more than the chief
+ * 35.8 mm on the last surface. Surfaces 4 and 5 are set at 20 mm, a little more than the chief
  * ray needs. All values are at or below the rims scaled from the drawing (about 34 mm for lens I, 23.6 mm for
  * lenses II and III, 35 mm for lenses IV and V). The model therefore passes a chief ray over about 95° of the
  * patent's roughly 100° field; off-axis bundles are vignetted before that.
@@ -38,10 +41,10 @@ const LENS_DATA = {
   key: "hasselkus-richmond-195mm-f56-us2116264",
   maker: null,
   name: "HASSELKUS & RICHMOND 195mm f/5.6 (US 2,116,264 Design)",
-  subtitle: "1938 f/5.6; PATENT ONLY",
+  subtitle: "US 2,116,264 A, sole example — five-meniscus wide-angle design",
   visible: true,
   catalog: {
-    specs: ["5 ELEMENTS / 5 GROUPS", "PATENT ONLY; RETAIL IDENTITY UNPROVED", "ESTIMATED STOP AND RIMS", "INFINITY ONLY"],
+    specs: ["5 ELEMENTS / 5 GROUPS", "ALL SPHERICAL", "DESIGN f = 194.5 mm", "DESIGN F/5.6", "100° FIELD"],
     elementCount: 5,
     groupCount: 5,
     focalLengthMm: {
@@ -66,8 +69,9 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L1",
-      label: "L1",
+      label: "Element 1",
       type: "Positive Meniscus",
+      glass: "Unmatched (Nd 1.6202 / V 60.4)",
       nd: 1.6202,
       vd: 60.4,
       indexReference: "d",
@@ -78,8 +82,9 @@ const LENS_DATA = {
     {
       id: 2,
       name: "L2",
-      label: "L2",
+      label: "Element 2",
       type: "Negative Meniscus",
+      glass: "SF1 (Schott)",
       nd: 1.7174,
       vd: 29.5,
       indexReference: "d",
@@ -90,8 +95,9 @@ const LENS_DATA = {
     {
       id: 3,
       name: "L3",
-      label: "L3",
+      label: "Element 3",
       type: "Negative Meniscus",
+      glass: "SF1 (Schott)",
       nd: 1.7174,
       vd: 29.5,
       indexReference: "d",
@@ -102,8 +108,9 @@ const LENS_DATA = {
     {
       id: 4,
       name: "L4",
-      label: "L4",
+      label: "Element 4",
       type: "Positive Meniscus",
+      glass: "Unmatched (Nd 1.6202 / V 60.4)",
       nd: 1.6202,
       vd: 60.4,
       indexReference: "d",
@@ -114,8 +121,9 @@ const LENS_DATA = {
     {
       id: 5,
       name: "L5",
-      label: "L5",
+      label: "Element 5",
       type: "Positive Meniscus",
+      glass: "Unmatched (Nd 1.6202 / V 60.4)",
       nd: 1.6202,
       vd: 60.4,
       indexReference: "d",
@@ -198,12 +206,12 @@ const LENS_DATA = {
   ],
   aperture: {
     nominalFNumber: 5.6,
-    maxFNumber: 22, fStops: [5.6, 8, 11, 16, 22],
+    maxFNumber: 22,
+    fStops: [5.6, 8, 11, 16, 22],
   },
   focus: {
     closeFocusM: 1e15,
-    description:
-      "Infinity only. Printed radii, thicknesses, air gaps and Nd/ν are kept as they stand; the back focus is the computed paraxial value; the central iris position and the rim diameters are estimated. The chief ray clears to about 95° of the patent's roughly 100° field. No production lens is identified.",
+    description: "Infinity focus only; the patent gives no close-focus data.",
   },
   groups: [],
   doublets: [],
