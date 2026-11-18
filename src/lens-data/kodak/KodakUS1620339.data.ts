@@ -18,9 +18,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *
  * Inferred values (not printed in the patent):
  * - Stop: the patent shows no diaphragm. A flat stop is placed 1 mm in front of the first surface and its radius
- *   is set by f/2.5.
- * - Semi-diameters: 22 mm on every surface, chosen to pass the f/2.5 axial beam. The patent gives no clear
- *   diameters and states no field.
+ *   is set by f/2.5. The patent describes no iris, so f/2.5 is the only aperture.
+ * - Semi-diameters: 22 mm on every surface. The patent gives no clear diameters and states no field. The drawing
+ *   is schematic (glass thicknesses drawn 28–46 % too thick against the air space, weak curves exaggerated), so it
+ *   gives proportions only: it draws the cemented front pair and the rear meniscus at the same height (ratio 0.98)
+ *   with square-cut rims, as the model does. 22 mm passes the f/2.5 axial beam (20.0 mm at the first surface) and
+ *   leaves the rear meniscus a 2.64 mm edge.
  * - Image plane: the last gap is the computed paraxial back focus, 31.4082 mm. The patent prints a back focal
  *   length of 31.3.
  *
@@ -37,6 +40,7 @@ const LENS_DATA = {
   subtitle: "US 1,620,339 A, sole example — home-projector objective",
   visible: true,
   catalog: {
+    lensMounts: ["projection-lens"],
     specs: ["3 ELEMENTS / 2 GROUPS", "ALL SPHERICAL", "DESIGN F/2.5", "PROJECTION OBJECTIVE"],
     elementCount: 3,
     groupCount: 2,
@@ -143,8 +147,8 @@ const LENS_DATA = {
   ],
   aperture: {
     nominalFNumber: 2.5,
-    maxFNumber: 22,
-    fStops: [2.5, 2.8, 4, 5.6, 8, 11, 16, 22],
+    maxFNumber: 2.5,
+    fStops: [2.5],
   },
   focus: {
     closeFocusM: 1e15,
