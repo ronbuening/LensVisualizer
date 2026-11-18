@@ -11,6 +11,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * sign or a transposition in one radius or thickness) found no change that the page supports, so the difference is
  * taken as rounding in the table and is kept. Indices and V values are the patent's sodium D-line figures.
  *
+ * Element names are the patent's reference numerals: 5 is the front lens, 1 and 2 the front cemented pair, 3 and 4
+ * the rear cemented pair, and 6 and 7 the two rear single lenses.
+ *
  * Inferred, not printed: the iris, placed at the middle of the 0.195 inch (4.953 mm) central air space, where the
  * drawing shows no diaphragm; the clear semi-diameters; and the 15.4249 mm back focus, which is the computed
  * paraxial image distance for an object at infinity. The patent prints no back focus, field angle or image size.
@@ -63,8 +66,9 @@ const LENS_DATA = {
   elements: [
     {
       id: 1,
-      name: "L1",
-      label: "Element 1",
+      name: "L5",
+      label: "Element 5",
+      diagramLabel: "5",
       type: "Positive Meniscus",
       focalLengthMm: 43.24,
       nd: 1.6135,
@@ -75,8 +79,9 @@ const LENS_DATA = {
     },
     {
       id: 2,
-      name: "L2",
-      label: "Element 2",
+      name: "L1",
+      label: "Element 1",
+      diagramLabel: "1",
       type: "Biconvex Positive",
       focalLengthMm: 14.85,
       nd: 1.6135,
@@ -88,8 +93,9 @@ const LENS_DATA = {
     },
     {
       id: 3,
-      name: "L3",
-      label: "Element 3",
+      name: "L2",
+      label: "Element 2",
+      diagramLabel: "2",
       type: "Biconcave Negative",
       focalLengthMm: -11.31,
       nd: 1.579,
@@ -101,8 +107,9 @@ const LENS_DATA = {
     },
     {
       id: 4,
-      name: "L4",
-      label: "Element 4",
+      name: "L3",
+      label: "Element 3",
+      diagramLabel: "3",
       type: "Biconcave Negative",
       focalLengthMm: -14.03,
       nd: 1.579,
@@ -114,21 +121,23 @@ const LENS_DATA = {
     },
     {
       id: 5,
-      name: "L5",
-      label: "Element 5",
+      name: "L4",
+      label: "Element 4",
+      diagramLabel: "4",
       type: "Biconvex Positive",
       focalLengthMm: 18.49,
       nd: 1.6437,
       vd: 48.3,
       indexReference: "D",
       glass: "Unmatched (nD 1.6437 / V 48.3)",
-      role: "Biconvex crown of the rear cemented dispersive meniscus",
+      role: "Biconvex barium-flint positive of the rear cemented dispersive meniscus",
       cemented: "C2",
     },
     {
       id: 6,
       name: "L6",
       label: "Element 6",
+      diagramLabel: "6",
       type: "Plano-Convex Positive",
       focalLengthMm: 46.37,
       nd: 1.6135,
@@ -141,6 +150,7 @@ const LENS_DATA = {
       id: 7,
       name: "L7",
       label: "Element 7",
+      diagramLabel: "7",
       type: "Plano-Convex Positive",
       focalLengthMm: 72.04,
       nd: 1.6135,
