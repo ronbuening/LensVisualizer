@@ -14,10 +14,19 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * (1.4714, 1.5972, 1.6448 for glasses I, II, III) but no Abbe number, so the model carries no dispersion
  * and no glass is identified.
  *
- * Inferred, not printed: the clear semi-diameters (8.5 mm on the outer faces, 7.8 mm inside, estimates that pass the
- * f/6.3 axial beam; Figure 2 scales to roughly 7.4 mm); the 91.181 mm back focus, which is the computed paraxial image
- * distance for an object at infinity; and the 5 degree trace field. The patent states no field angle, image size,
+ * Inferred, not printed: the 91.181 mm back focus, which is the computed paraxial image distance for an object at
+ * infinity; the 5 degree trace field; and the clear semi-diameters. The patent states no field angle, image size,
  * lens diameter or close-focus data.
+ *
+ * SEMI-DIAMETERS: estimated from Figure 2, which is drawn close to scale (about 35.5 px/mm at 600 dpi, from the
+ * 19.8 mm first-to-last vertex span; the two 2.7 mm diaphragm distances and the element thicknesses agree within
+ * about 5 %), and checked by real-ray trace. The figure draws each triplet square-cut at about 7.6 mm, with the
+ * collective element II meeting that edge almost at a knife edge (the prescription closes it at about 7.93 mm), and
+ * ends the diaphragm-side face of element I at about 6.4 mm, with a 45 degree bevel out to the edge. The cemented
+ * faces keep 7.8 mm. The faces beside the diaphragm take 7.0 and 6.9 mm, just above the f/6.3 axial beam (6.94 and
+ * 6.80 mm), so the drawn bevel line is not followed further. The rear face takes 7.8 mm, square with its cemented
+ * face as drawn. The front face takes 8.3 mm: the axial beam needs 7.93 mm there, and 8.3 mm keeps the 5 degree
+ * field at 97.5 % of its light.
  */
 const LENS_DATA = {
   schema: 2,
@@ -116,15 +125,15 @@ const LENS_DATA = {
     },
   ],
   surfaces: [
-    { label: "1", R: 22.6, d: 2.1, medium: 1, sd: 8.5 },
+    { label: "1", R: 22.6, d: 2.1, medium: 1, sd: 8.3 },
     { label: "2", R: 10.7, d: 4.1, medium: 2, sd: 7.8 },
     { label: "3", R: -54.8, d: 1, medium: 3, sd: 7.8 },
-    { label: "4", R: 20.3, d: 2.7, sd: 7.8 },
+    { label: "4", R: 20.3, d: 2.7, sd: 7 },
     { label: "STO", R: "flat", d: 2.7 },
-    { label: "6", R: -20.3, d: 1, medium: 4, sd: 7.8 },
+    { label: "6", R: -20.3, d: 1, medium: 4, sd: 6.9 },
     { label: "7", R: 54.8, d: 4.1, medium: 5, sd: 7.8 },
     { label: "8", R: -10.7, d: 2.1, medium: 6, sd: 7.8 },
-    { label: "9", R: -22.6, d: 91.181, sd: 8.5 },
+    { label: "9", R: -22.6, d: 91.181, sd: 7.8 },
   ],
   doublets: [
     { text: "C1", fromSurface: "1", toSurface: "4" },

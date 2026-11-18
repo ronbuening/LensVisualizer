@@ -67,7 +67,7 @@ The model uses the printed radii, thicknesses, diaphragm distance and indices, e
 
 The focal length differs from the stated 100 by 0.13 %, which is within the rounding of a table printed to one decimal place.
 
-Three things in the model are not printed in the patent. The clear radii, 8.5 mm on the outer faces and 7.8 mm inside, are estimates that pass the full f/6.3 axial beam; Fig. 2 scales to roughly 7.4 mm. The image plane is the computed paraxial focus for an object at infinity. The 5° trace field is a working value only, because the patent states no field angle or image size.
+Three things in the model are not printed in the patent. The clear radii are estimated from Fig. 2, which is drawn close to scale: it shows each triplet square-cut at about 7.6 mm, with the diaphragm-side face of element I ending at about 6.4 mm in a bevel. The model keeps 7.8 mm on the cemented faces and the rear face, 7.0 and 6.9 mm on the faces beside the diaphragm, and 8.3 mm on the front face, because the full f/6.3 axial beam needs 7.93 mm at the front face and 6.94 and 6.80 mm beside the diaphragm. At the 5° edge of the traced field the model passes 97.5 % of the axial light. The image plane is the computed paraxial focus for an object at infinity. The 5° trace field is a working value only, because the patent states no field angle or image size.
 
 ## Sources
 
