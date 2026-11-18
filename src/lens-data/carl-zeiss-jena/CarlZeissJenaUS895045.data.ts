@@ -3,12 +3,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 /**
  * US 895,045 A (Paul Rudolph, assignor to the firm of Carl Zeiss, Jena; filed July 12, 1907, patented Aug. 4, 1908),
  * Example 1, the example shown in the patent drawing: an unsymmetrical double objective of two cemented pairs, 1:12.5.
- * Radii, thicknesses, air spaces and solar D-line indices are transcribed as printed for "a focal length 100" and
- * read as millimetres; no scale factor is applied.
+ * Radii, thicknesses, air spaces and solar D-line indices are as printed for "a focal length 100", read as
+ * millimetres.
  * The printed table computes to a focal length of 101.11, 1.11 % above the stated 100. Example 2 of the same patent
  * computes to 100.00, and no misprint could be established for Example 1 (a change of 0.05 in r1 alone moves the
  * focal length by about 1 %), so the printed one-decimal values are kept unchanged.
- * The patent prints nD and nG′ (hydrogen Hγ) indices but no Abbe numbers, so no νd is authored and the model is
+ * The patent prints nD and nG′ (hydrogen Hγ) indices but no Abbe numbers, so the model carries none and is
  * monochromatic.
  * The diaphragm position is printed: b1 = b2 = 1.5 on either side of it.
  * Inferred: the stop diameter (from 1:12.5), all clear semi-diameters (estimates, not source dimensions), the back
@@ -20,10 +20,10 @@ const LENS_DATA = {
   key: "carl-zeiss-jena-100mm-f125-us895045",
   maker: "Carl Zeiss Jena",
   name: "CARL ZEISS JENA 100mm f/12.5 (US 895,045 Design)",
-  subtitle: "1908 ZEISS DOUBLE OBJECTIVE; NO VERIFIED PRODUCTION MATCH",
+  subtitle: "US 895,045 A, Example 1 — Rudolph unsymmetrical double objective",
   visible: true,
   catalog: {
-    specs: ["4 ELEMENTS / 2 GROUPS", "D-LINE ONLY", "PATENT REFERENCE"],
+    specs: ["4 ELEMENTS / 2 GROUPS", "ALL SPHERICAL", "DESIGN F/12.5", "UNSYMMETRICAL DOUBLE OBJECTIVE"],
     elementCount: 4,
     groupCount: 2,
     focalLengthMm: {
@@ -48,45 +48,49 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L1",
-      label: "Patent L1",
+      label: "Element 1",
       type: "Negative Meniscus",
       nd: 1.6489,
       indexReference: "D",
+      glass: "Unmatched (nD 1.6489, nG′ 1.6744; no Abbe number printed)",
       focalLengthMm: -14.81,
-      role: "Front dispersive flint meniscus of the cemented front pair",
+      role: "Negative front meniscus of the cemented front pair, in the most dispersive glass",
       cemented: "C1",
     },
     {
       id: 2,
       name: "L2",
-      label: "Patent L2",
+      label: "Element 2",
       type: "Positive Meniscus",
       nd: 1.6031,
       indexReference: "D",
+      glass: "Unmatched (nD 1.6031, nG′ 1.6239; no Abbe number printed)",
       focalLengthMm: 13.46,
-      role: "High-index collective meniscus of the cemented front pair",
+      role: "Positive high-index meniscus of the cemented front pair",
       cemented: "C1",
     },
     {
       id: 3,
       name: "L3",
-      label: "Patent L3",
-      type: "Biconcave",
+      label: "Element 3",
+      type: "Biconcave Negative",
       nd: 1.5154,
       indexReference: "D",
+      glass: "Unmatched (nD 1.5154, nG′ 1.5275; no Abbe number printed)",
       focalLengthMm: -14.54,
-      role: "Dispersive low-index lens of the cemented rear pair",
+      role: "Negative low-index lens of the cemented rear pair",
       cemented: "C2",
     },
     {
       id: 4,
       name: "L4",
-      label: "Patent L4",
-      type: "Biconvex",
+      label: "Element 4",
+      type: "Biconvex Positive",
       nd: 1.6112,
       indexReference: "D",
+      glass: "Unmatched (nD 1.6112, nG′ 1.6260; no Abbe number printed)",
       focalLengthMm: 13.51,
-      role: "Collective high-index crown of the cemented rear pair",
+      role: "Positive high-index lens of the cemented rear pair",
       cemented: "C2",
     },
   ],
@@ -143,7 +147,8 @@ const LENS_DATA = {
   },
   aperture: {
     nominalFNumber: 12.5,
-    maxFNumber: 22, fStops: [12.5, 16, 22],
+    maxFNumber: 22,
+    fStops: [12.5, 16, 22],
   },
   projection: {
     kind: "rectilinear",

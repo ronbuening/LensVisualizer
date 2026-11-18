@@ -28,13 +28,39 @@ Changes made:
 
 First-order values after the changes: focal length 101.1102, f/12.5 (stop semi-diameter 3.682), back focus 98.2832, total length 108.3832.
 
-Audit results: surface validation OK. Aperture audit: within 3 % of the stated f-number, no rim, trace or iris limit. Image-circle and field-coverage audits skip the file (hidden, no image format). A separate chief-ray trace passes the estimated rims at 39.6° off axis (height 3.53 at surface 1, 2.93 at surface 6).
+Audit results: surface validation OK. Aperture audit: within 3 % of the stated f-number, no rim, trace or iris limit. Image-circle and field-coverage audits skipped the file (no image format; it was hidden at the time, since made visible). A separate chief-ray trace passes the estimated rims at 39.6° off axis (height 3.53 at surface 1, 2.93 at surface 6).
 
 Open:
 
-- Name, key, subtitle and specs keep the delivered wording ("D-line patent reference", "NO VERIFIED PRODUCTION MATCH", "D-LINE ONLY", "PATENT REFERENCE"); element labels "Patent L1" and types "Biconcave" / "Biconvex" need the house forms.
-- Glass labels: none authored. An Abbe number needs a period Schott list matched on both nD and nG′; until then the model is monochromatic.
+- Closed 2026-11-17 (cleanup pass): name, key, subtitle, specs, element labels and types now in house form.
+- Glass labels: closed 2026-11-17 (Unmatched labels added). Still open: an Abbe number needs a period Schott list matched on both nD and nG′; until then the model is monochromatic.
 - Rims against the figure: the drawing suggests semi-diameters near 5, against 4.0–4.2 in the model; L2's edge is already 0.135 mm at 4.0.
 - Trace field: 5° is far below what a wide-angle type of this family covers; the patent states no field.
 - No image format or mount is set.
-- `aperture.maxFNumber` is not set although the stop list runs to f/22.
+- Closed 2026-11-17: `aperture.maxFNumber` 22 set.
+
+## 2026-11-17 — Cleanup and wording pass
+
+Public text only; no radius, thickness, index, stop or rim changed.
+
+Fields changed:
+
+- `subtitle`: "1908 ZEISS DOUBLE OBJECTIVE; NO VERIFIED PRODUCTION MATCH" → "US 895,045 A, Example 1 — Rudolph unsymmetrical double objective".
+- `specs`: "4 ELEMENTS / 2 GROUPS", "D-LINE ONLY", "PATENT REFERENCE" → "4 ELEMENTS / 2 GROUPS", "ALL SPHERICAL", "DESIGN F/12.5", "UNSYMMETRICAL DOUBLE OBJECTIVE".
+- Element `label`: "Patent L1"–"Patent L4" → "Element 1"–"Element 4". `type`: "Biconcave" → "Biconcave Negative" (L3), "Biconvex" → "Biconvex Positive" (L4). Roles reworded to plain positive/negative descriptions without glass-family words the patent does not print.
+- `glass`: none → "Unmatched (nD …, nG′ …; no Abbe number printed)" on all four elements, with the printed values. No catalogue row was tried: the patent prints no Abbe number, so no exact match is possible and the model stays monochromatic.
+- Header comment: two sentences shortened. `aperture` block laid out one property per line.
+- `cemented` C1 (L1, L2) and C2 (L3, L4) and the two `doublets` entries were already in place and are unchanged.
+
+Analysis: title set to the lens name; the focal-length difference is now stated once (in the scope section); the "Verification" heading renamed "Patent Conditions and Model Scope"; the Series IV description is marked as resting on a search excerpt (the forum page returned an error when opened) and the "renamed Protar in 1900" date was dropped because the cited page gives no date.
+
+Engine numbers before and after are identical: focal length 101.11015, f/12.5, half-field 5°, stop semi-diameter 3.68222, back focus 98.2832. Surface validation OK; aperture audit reports no rim, trace or iris limit.
+
+Open:
+
+- Abbe numbers: need a period Schott list matched on both nD and nG′.
+- Rims against the figure: the drawing suggests semi-diameters near 5, against 4.0–4.2 in the model; L2's edge is 0.135 mm at 4.0.
+- Trace field is 5°; the patent states no field, and the chief ray clears the present rims to about 40°.
+- `lensMounts`, `imageFormat` and an image circle are not set; the patent states no format or field.
+- No close-focus distance: no product source.
+- The Series IV catalogue description should be confirmed from a catalogue or book before it is relied on.
