@@ -78,10 +78,46 @@ Open:
 
 - Name, key, subtitle, specs and the focus description still use working wording ("PATENT ONLY; RETAIL IDENTITY
   UNPROVED", "LITERAL STOP POSITION; ESTIMATED RIMS", "Not factory identity"); the subtitle's "100 mm" is the
-  patent's 100 units. File name and key to the house pattern.
+  patent's 100 units. File name and key to the house pattern. (Closed 2026-11-17: renamed and reworded.)
 - Element types "Meniscus" could say positive meniscus; elements have no roles, focal lengths or glass labels.
+  (Closed 2026-11-17 in the cleanup pass.)
 - Rims against the figure: the drawing shows the outer pairs at roughly 10.9 mm and the menisci at roughly 8.6 mm at
   the figure's scale, against 12 and 9.2–9.8 in the model. The outer rims and the corner darkening are for the
   semi-diameter pass.
 - No image format or mount is set; the patent is given at a normalised focal length.
-- Orthometar link: a maker's diagram or catalogue prescription would be needed before naming the product.
+- Orthometar link: a maker's diagram or catalogue prescription would be needed before naming the product. (Closed
+  2026-11-17: the name now carries the family word; the link is stated as a family link only.)
+
+## 2026-11-17 — Cleanup and wording pass
+
+Fields changed (no optical value, rim, stop or gap allowance changed):
+
+- `subtitle`: "1931 100 mm f/4.5; PATENT ONLY" → "US 1,792,917 A, sole example — Orthometar-type double objective".
+- `specs`: the three working lines replaced by "DESIGN F/4.5", "ALL SPHERICAL" and "65° FIELD" (the patent's stated
+  field); "6 ELEMENTS / 4 GROUPS" kept.
+- `focus.description`: now "Infinity focus only; the patent gives no close-focus data." `closeFocusM` stays 1e15.
+- Elements: labels "Element 1" to "Element 6"; types Biconvex Positive, Biconcave Negative, Positive Meniscus,
+  Positive Meniscus, Biconcave Negative, Biconvex Positive; `focalLengthMm` 33.94, −28.41, 115.87, 113.82, −27.03,
+  31.93; a plain role on each.
+- Cemented ids: "D1" / "D2" → "C1" / "C2" on both members of each pair and in `doublets`.
+- Header comment: the closing paragraph now states the Orthometar link as a family link.
+- Analysis: title set to the lens name; the product link stated once at its strength; the scale remark removed
+  (the patent itself prints a focal length of 100); "Model Verification" renamed "Model Scope and Limitations".
+
+Glass labels: no catalog row lies within 0.0001 in index and 0.15 in Abbe number of any of the three printed glasses,
+so each element carries an "Unmatched" label with its printed values. Nearest rows, for the record: 1.61087 / 55.8,
+Hoya BACD8 1.61117 / 55.77 (Δn +0.0003); 1.53994 / 47.4, Ohara S-TIL2 1.54072 / 47.23 (Δn +0.0008); 1.56064 / 61.1,
+Ohara S-BAL50 1.55963 / 61.17 (Δn −0.0010).
+
+Engine numbers before and after this pass are identical: focal length 100.15266512809433, f/4.5, half field
+39.4967°, diaphragm radius 9.239634, back focus 86.7413. The surface check reports no errors and the aperture check
+reports no rim limit.
+
+Open:
+
+- Rims against the figure: outer pairs about 10.9 mm and menisci about 8.6 mm at the figure's scale, against 12 and
+  9.2–9.8 in the model; for the semi-diameter pass. The menisci cannot go below the f/4.5 axial beam.
+- No `imageFormat`, `lensMounts` or image circle: the patent states a 65° field and no film size or mount.
+- The name's "100mm" is the patent's focal length of 100 units, not a catalogue focal length.
+- Period glass identification (Schott melt types for the three glasses) not attempted.
+- A maker's diagram or published prescription of a production Orthometar has still not been compared.

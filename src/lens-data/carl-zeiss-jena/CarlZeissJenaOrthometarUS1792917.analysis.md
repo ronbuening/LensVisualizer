@@ -1,4 +1,4 @@
-# Merté Double Objective f/4.5 — US 1,792,917
+# CARL ZEISS JENA ORTHOMETAR 100mm f/4.5 (US 1,792,917 Design)
 
 ## Patent Reference and Design Identification
 
@@ -12,11 +12,7 @@
 
 The patent contains a single numerical example and a single figure. The data file stores that example as printed: ten radii with their signs, six glass thicknesses, two air spaces, the two distances from the diaphragm to the neighbouring surfaces, and a refractive index nD and Abbe number ν for each of three glasses. The text table and the lettering on the drawing sheet agree in every value. The patent states that the objective "sharply covers at a relative aperture of 1:4.5 an image field of 65°", and that each half may also be used on its own.
 
-The values are kept at the patent's own scale, a focal length of 100 units, read as millimetres. The model's name describes it as a patent reference and it claims no production lens. The link to a product is a plausible one, not a proven one:
-
-1. The assignee is Carl Zeiss, and the inventor was a Zeiss designer. The German priority date is 1926, and Zeiss sold lenses named Orthometar with an aperture of f/4.5 in the following decade.
-2. Wikimedia Commons carries a redrawing of this patent's figure under the title "Merté US1792917A (Orthometar, 1927)", and its general diagram of the Orthometar type shows the same layout: two cemented outer pairs and two inner air-spaced menisci around a central diaphragm.
-3. The patent does not use the name Orthometar, and no maker's publication of a production prescription was found to compare against. A 35 mm f/4.5 Orthometar for the Contax, sold from 1937, shows the name was used across formats, so a 100-unit patent example cannot be tied to one catalogue lens.
+The link to the Orthometar is at the level of the lens family, not of a production prescription. The patent's construction, two cemented outer pairs and two inner air-spaced menisci around a central diaphragm, is the Orthometar type. Wikimedia Commons carries a redrawing of this patent's figure under the title "Merté US1792917A (Orthometar, 1927)", and its general diagram of the Orthometar type shows the same layout. Zeiss sold lenses under that name at f/4.5, among them a 35 mm f/4.5 Orthometar for the Contax from 1937. The patent itself does not use the name, and no maker's publication of a production prescription was found to compare against, so the 100-unit example cannot be tied to one catalogue lens.
 
 ## Optical Architecture
 
@@ -74,7 +70,7 @@ The patent prints three glasses, each used twice in mirror positions, and gives 
 | II and V | 1.53994 | 47.4 | Extra-light flint |
 | III and IV | 1.56064 | 61.1 | Barium crown |
 
-The data file stores the printed values with the sodium D line as the index reference and gives the glasses no catalogue names. The class names in the table are a reading of the printed numbers, not statements from the patent. In each cemented pair the positive element has the higher index and the lower dispersion, which is the arrangement of the "new achromat" that allows a flat field together with colour correction.
+The data file stores the printed values with the sodium D line as the index reference. None of the three glasses matches a current catalogue glass closely enough to take its name, so each is labelled with its printed values only. The class names in the table are a reading of the printed numbers, not statements from the patent. In each cemented pair the positive element has the higher index and the lower dispersion, which is the arrangement of the "new achromat" that allows a flat field together with colour correction.
 
 ## Focus Mechanism
 
@@ -92,7 +88,7 @@ Inferred for the model:
 
 With these rims the full f/4.5 axial beam passes. At the edge of the stated field, 32.5° off axis, the central ray passes every surface, and about half of the beam's width is cut off at the outer pairs. The patent prints no diameters, so that amount of corner darkening is a property of the estimated rims, not a statement from the patent.
 
-## Model Verification
+## Model Scope and Limitations
 
 | Quantity | Patent | Model |
 | --- | --- | --- |
@@ -102,7 +98,9 @@ With these rims the full f/4.5 axial beam passes. At the edge of the stated fiel
 | Back focus | not printed | 86.74 |
 | First to last surface | 30.33 (sum of printed values) | 30.33 |
 
-The focal length of the printed table is 0.15 % longer than the nominal 100, which is within what the table's rounding to two decimals explains. The longitudinal spherical aberration computed from the printed values is +0.29 mm for the marginal ray at f/4.5 and reaches −0.62 mm at 70 % of the aperture: the margin is brought close to the paraxial focus and a zonal residual remains, as expected for a corrected design of this date. Nothing in the table suggested a misprint.
+The focal length of the printed table is 0.15 % longer than the nominal 100, which is within what the table's rounding to two decimals explains. The longitudinal spherical aberration computed from the printed values is +0.29 mm for the marginal ray at f/4.5 and reaches −0.62 mm at 70 % of the aperture: the margin is brought close to the paraxial focus and a zonal residual remains, as expected for a corrected design of this date. Nothing in the table suggests a misprint.
+
+The model covers infinity focus only. Its clear diameters and its corner illumination are estimates, as set out above, and it carries no image format, because the patent states a field angle and no film size.
 
 ## Sources
 
