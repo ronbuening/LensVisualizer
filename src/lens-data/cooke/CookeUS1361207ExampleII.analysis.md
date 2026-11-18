@@ -77,7 +77,7 @@ The patent has no numerical conditions; its claims describe the layout and the i
 
 The focal length traced from the printed table is 1.56 % longer than the stated value. GB 113,590 A prints the same numbers, so the difference is not a slip in one edition, and no single misprinted radius or spacing that would explain it could be identified. The printed table is kept unchanged. As printed, the marginal f/4.5 ray focuses about 0.45 mm beyond the paraxial focus.
 
-Inferred values, not printed in the patent: the stop position and radius, the 11.5 mm clear semi-diameters (chosen to pass the f/4.5 axial beam, which needs 11.28 mm at the front surface) and the back focus. Because the rims are only just larger than the axial beam, the model vignettes strongly off axis; the patent states no field angle to compare with. Fig. 2 draws the outer lenses about one fifth taller than the inner ones, which the uniform rims do not reproduce.
+Inferred values, not printed in the patent: the stop position and radius, the clear semi-diameters and the back focus. The semi-diameters follow the proportions of Fig. 2, whose axial spacings are schematic. The two crowns are 11.5 mm, close to the f/4.5 axial beam, which needs 11.28 mm at the front surface; the rear crown's edge is then only 0.12 mm thick. The two flints are drawn about four fifths the height of the front crown, with a bevel on the face toward the diaphragm, and are modelled at 9.3 mm on their outer faces and 8.8 mm beside the diaphragm, where the axial beam reaches 8.75 mm. Because the outer rims are only just larger than the axial beam, the model vignettes strongly off axis: geometric transmission falls to about 84 % at 10° and 76 % at 12°. The patent states no field angle to compare with.
 
 ## Sources
 

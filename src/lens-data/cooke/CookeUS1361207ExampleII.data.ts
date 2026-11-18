@@ -13,9 +13,17 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * is kept as it stands. Indices and Abbe numbers are the patent's sodium D-line nD and V values.
  *
  * Inferred, not printed: the iris, placed at the midpoint of the 1.42 mm middle air space S2 (0.71 mm on either
- * side; the patent draws no diaphragm), with its radius derived from f/4.5; the 11.5 mm clear semi-diameters, which
- * pass the f/4.5 axial beam and are not figure readings; and the 85.618 mm back focus, the computed paraxial image
- * distance for an object at infinity. The patent prints no back focus, field angle, image size or close-focus data.
+ * side; the patent draws no diaphragm), with its radius derived from f/4.5; the clear semi-diameters; and the
+ * 85.618 mm back focus, the computed paraxial image distance for an object at infinity. The patent prints no back
+ * focus, field angle, image size or close-focus data.
+ *
+ * Semi-diameters are estimated from Fig. 2, which is schematic in its axial spacings (scale about 32 px/mm at 600 dpi
+ * from first to last vertex), so its rim heights are used as proportions, checked against the f/4.5 axial beam by
+ * real-ray trace. The outer positives stay at 11.5 mm: Fig. 2 draws them at about 11.1 (element 1) and 10.5
+ * (element 4) mm, within measurement noise, and the f/4.5 beam needs 11.28 mm at surface 1. The inner negatives are
+ * drawn about 0.81 times the height of element 1 with a bevel on the face toward the diaphragm: 9.3 mm on their outer
+ * faces (surfaces 3 and 6) and 8.8 mm on the faces beside the diaphragm (surfaces 4 and 5), where the f/4.5 beam
+ * reaches 8.75 mm. Element 4's edge is 0.12 mm thick at its rim.
  */
 const LENS_DATA = {
   schema: 2,
@@ -118,14 +126,14 @@ const LENS_DATA = {
       label: "3",
       R: -41.43,
       d: 0.9,
-      sd: 11.5,
+      sd: 9.3,
       medium: 2,
     },
     {
       label: "4",
       R: 104.9,
       d: 0.71,
-      sd: 11.5,
+      sd: 8.8,
     },
     {
       label: "STO",
@@ -136,14 +144,14 @@ const LENS_DATA = {
       label: "5",
       R: -1440,
       d: 0.9,
-      sd: 11.5,
+      sd: 8.8,
       medium: 3,
     },
     {
       label: "6",
       R: 36.98,
       d: 9.09,
-      sd: 11.5,
+      sd: 9.3,
     },
     {
       label: "7",
