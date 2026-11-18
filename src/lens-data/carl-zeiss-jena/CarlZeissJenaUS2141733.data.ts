@@ -10,6 +10,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *
  * Inferred, not printed: the stop position (12 mm behind R6, inside the printed 23.61 mm air space; the patent
  * draws no diaphragm), every semi-diameter, and the back focus (computed paraxial value, 30.0533 mm).
+ *
+ * Semi-diameters are measured from Fig. 2, which is drawn to scale (about 10.8 px/mm at 400 dpi, checked on the
+ * vertex spacings and on the sags of R1 and R6): the cemented triplet is square-cut at 37.3 mm, R6 ends at 21.8 mm
+ * where the drawn chamfer starts, and both rear lenses are square-cut at 26.7 mm. The front lens keeps 44 mm, within
+ * 3 % of the drawn 42.6 mm. Every rim clears the axial f/1.2 beam (37.3 mm against 36.8 mm needed at R3).
+ * The image circle is twice the image height of the patent's +/-10 degree picture angle at f = 100 mm.
  * The stop is sized from the paraxial f/1.2 beam; the real marginal ray is slightly higher at the stop, so the
  * outermost few per cent of the f/1.2 pupil is cut by the stop itself, not by a lens rim.
  *
@@ -25,6 +31,7 @@ const LENS_DATA = {
   visible: true,
   catalog: {
     specs: ["6 ELEMENTS / 4 GROUPS", "DESIGN F/1.2", "ALL SPHERICAL", "±10° FIELD"],
+    imageCircleMm: 35.3,
     elementCount: 6,
     groupCount: 4,
     focalLengthMm: {
@@ -43,7 +50,7 @@ const LENS_DATA = {
     patentYear: 1938,
     authors: ["Ludwig Bertele"],
     assignees: ["Zeiss Ikon AG"],
-    sdSource: "heuristic",
+    sdSource: "figure-measured",
   },
   elements: [
     {
@@ -140,28 +147,28 @@ const LENS_DATA = {
       label: "3",
       R: 53.61,
       d: 16.39,
-      sd: 42,
+      sd: 37.3,
       medium: 2,
     },
     {
       label: "4",
       R: 137.78,
       d: 16.11,
-      sd: 42,
+      sd: 37.3,
       medium: 3,
     },
     {
       label: "5",
       R: -271.11,
       d: 12.78,
-      sd: 42,
+      sd: 37.3,
       medium: 4,
     },
     {
       label: "6",
       R: 32.44,
       d: 12,
-      sd: 28,
+      sd: 21.8,
     },
     {
       label: "STO",
@@ -172,27 +179,27 @@ const LENS_DATA = {
       label: "7",
       R: 52.17,
       d: 10,
-      sd: 25,
+      sd: 26.7,
       medium: 5,
     },
     {
       label: "8",
       R: "flat",
       d: 0,
-      sd: 25,
+      sd: 26.7,
     },
     {
       label: "9",
       R: 286.33,
       d: 5.56,
-      sd: 25,
+      sd: 26.7,
       medium: 6,
     },
     {
       label: "10",
       R: "flat",
       d: 30.0533,
-      sd: 25,
+      sd: 26.7,
     },
   ],
   aperture: {

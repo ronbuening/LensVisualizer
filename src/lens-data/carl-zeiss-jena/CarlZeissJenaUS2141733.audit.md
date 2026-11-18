@@ -21,7 +21,7 @@ The first example (Fig. 1) prints R7 = +5.17 for its single rear lens, probably 
 ## Values not printed in the patent
 
 - Stop: placed 12 mm behind R6, splitting the printed 23.61 mm air space as 12 + 11.61. The patent draws no diaphragm.
-- Semi-diameters (mm): 44, 44, 42, 42, 42, 28, 25, 25, 25, 25. All are estimates.
+- Semi-diameters (mm): 44, 44, 42, 42, 42, 28, 25, 25, 25, 25. All are estimates. (Superseded 2026-11-18 by the figure measurements below.)
 - Back focus: the computed paraxial value, 30.0533 mm.
 
 ## First-order results
@@ -64,7 +64,7 @@ Open:
 - Closed 2026-11-17 (renamed and reworded in the cleanup pass): key, file name, name, subtitle and specs still carried the delivered wording ("PATENT REFERENCE", "PATENT ONLY; RETAIL IDENTITY UNPROVED", "ESTIMATED STOP AND RIMS", "LITERAL ZERO AXIAL REAR AIR GAP"); `focus.description` likewise.
 - Closed 2026-11-17 (cleanup pass): `closeFocusM: 1e15` kept as the infinity-only placeholder with a plain focus description.
 - Closed 2026-11-17 (cleanup pass): element focal lengths and roles added. Rear elements stay L5 and L6 in order; the analysis notes the patent's L6 / L7 lettering.
-- Semi-diameters are estimates and have not been compared with the proportions drawn in Fig. 2; `sdSource` is "heuristic".
+- Closed 2026-11-18 (semi-diameter pass): Semi-diameters are estimates and have not been compared with the proportions drawn in Fig. 2; `sdSource` is "heuristic".
 - Closed in part 2026-11-17 (cleanup pass): glass names assigned where an exact row exists. No image format or mount assigned.
 
 ## 2026-11-17 — Cleanup and wording pass
@@ -94,8 +94,47 @@ Engine numbers before and after this pass are identical: focal length 100.0095 m
 
 Open:
 
-- Semi-diameters are estimates (`sdSource` "heuristic") and have not been compared with Fig. 2. In the figure the front lens is slightly taller than the cemented meniscus and the rear pair is roughly half the front height; the present 44 / 42 / 25 mm follow that order. At the patent's 10° the lower edge of the beam is cut.
-- No `lensMounts` or `imageFormat`: the patent states a ±10° picture angle but no format. The default half-field shown (18.5°) is wider than the patent's field.
+- Closed 2026-11-18 (semi-diameter pass; the rear pair measures about 63 % of the front height, not half): Semi-diameters are estimates (`sdSource` "heuristic") and have not been compared with Fig. 2. In the figure the front lens is slightly taller than the cemented meniscus and the rear pair is roughly half the front height; the present 44 / 42 / 25 mm follow that order. At the patent's 10° the lower edge of the beam is cut.
+- Closed in part 2026-11-18 (`imageCircleMm` 35.3 added from the stated picture angle; mount and format stay unset): No `lensMounts` or `imageFormat`: the patent states a ±10° picture angle but no format. The default half-field shown (18.5°) is wider than the patent's field.
 - `groups` is empty.
 - Elements 1 and 2 have no exact catalogue row.
 - The rear elements are numbered 5 and 6, not the patent's L6 and L7.
+
+## 2026-11-18 — Semi-diameter pass against the patent figure
+
+Source: US 2,141,733 A, drawing sheet (page 1 of the PDF), Fig. 2, rendered at 400 dpi from a 300 dpi scan. Fig. 2 is the drawing of the modelled example.
+
+Scale. The axis lies on page row 3231. Vertex crossings read beside the axis give R1 at column 980 and R10 at 2052. That is 1072 px for the printed 99.45 mm, or 10.78 px/mm. Single spans agree within 4 %: R1–R2 10.6, R3–R4 10.7, R4–R5 10.8, R5–R6 10.6, R6–R7 10.5 and R7–R8 10.8 px/mm. The vertical scale was checked on two sags. R6 at its drawn end (21.8 mm) has a computed sag of 8.42 mm, or 91 px; the drawing shows 93 px. R1 at the front-lens rim (42.6 mm) has a computed sag of 10.4 mm, or 112 px; the drawing shows 110–120 px. The figure is drawn to scale in both directions.
+
+Readings. Each value is half of the top-to-bottom height of a flat run in the silhouette profile, cross-checked by eye on the crop. Label strokes above L3 and beside R9 were excluded.
+
+| Surface | Before | Figure | After | Evidence |
+|---|---|---|---|---|
+| 1, 2 (L1) | 44 | 42.6 (459 px) | 44 | Square-cut. 3 % from the drawing, within noise; the drawn edge thickness (5.75 mm) lies between the values at 42.6 (6.0) and 44 (5.4). Kept. |
+| 3, 4, 5 (triplet) | 42 | 37.3 (402 px) | 37.3 | Square-cut flat top shared by all three lenses; 11 % below the old value. The drawn L2 edge of 5.8 mm matches 6.4 mm at 37.3 (2.7 mm at 42). The axial f/1.2 ray needs 36.79 mm at R3. |
+| 6 (R6) | 28 | 21.8 (235 px) | 21.8 | The end of the concave curve, where the drawn chamfer to the flat top begins; 22 % below the old value. The axial ray needs 19.97 mm. The chamfer is sloped, not vertical, so no `rimExtensionSd`; the renderer's straight edge from R5's rim follows it closely. |
+| 7, 8 (first rear lens) | 25 | 26.7 (285–290 px) | 26.7 | Square-cut. +7 %, at the edge of noise. Confirmed by the drawn edge thickness of 2.8 mm (2.65 mm at 26.7, 3.6 mm at 25). Raising it costs no light. |
+| 9, 10 (second rear lens) | 25 | 26.7 | 26.7 | Square-cut at the same height as the first rear lens in the drawing. |
+
+The stop is unchanged (12 mm behind R6, engine radius 18.06 mm). R6's rim now lies 8.4 mm behind its vertex, so the glass no longer reaches the stop plane. The iris check finds no glass inside the iris radius on either side: margins 6.51 mm before and 14.83 mm after. The render-trim check reports no material trim. The validator needed no `gapSagFrac`.
+
+Light. Corner illumination at the patent's 10.1° image corner is 79.7 % before and after. The worst loss at any field is 0.9 points, at 3.4°, from the triplet rim at 37.3. The leave-one-out restore wins back 0.9 points for the triplet and R6 and nothing for the rear pair, so the cut meets the 3-point rule.
+
+Real-ray clearance at f/1.2 and 17.63 mm image height shows no axial clip and no blocked chief ray.
+
+Engine numbers after the pass: focal length 100.0095 mm, f/1.200, stop semi-diameter 18.06 mm, back focus 30.0533 mm (unchanged). The default half-field goes from 18.50° to 18.18°, now limited by the triplet rim at R3. That is the largest field the final rims pass unblocked, and it is still wider than the patent's stated 10°; no rim was widened for it.
+
+Metadata:
+
+- `catalog.imageCircleMm` 35.3 mm is twice the image height of the patent's stated picture angle (±10° at f = 100 mm: 100 × tan 10° = 17.63 mm). This follows the corpus practice of twice the source image height.
+- The image-circle audit (0 undersized) and field-coverage audit (≥ 99 % at the corner) now run and pass.
+- `source.sdSource`: "heuristic" → "figure-measured".
+- No mount or image format: the patent names neither, and no product is documented.
+- The name "CARL ZEISS JENA 100mm f/1.2 (US 2,141,733 Design)" agrees with the patent's own focal length and aperture; there is no product name to compare it with.
+
+Surface validator: no errors. Aperture audit: within 3 % of the stated f-number, no rim, trace or iris limit.
+
+Open:
+
+- None for the rims.
+- The front lens could go to the drawn 42.6 mm if a later pass wants an exact figure fit; the difference is within noise.

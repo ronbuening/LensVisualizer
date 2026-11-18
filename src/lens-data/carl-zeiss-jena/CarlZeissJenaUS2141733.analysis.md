@@ -65,7 +65,7 @@ The claims set two numerical limits, and the example meets both:
 Three things in the prescription are not printed in the patent:
 
 - The stop. The patent draws no diaphragm. The model places one 12 mm behind the concave rear surface of the triplet, inside the printed 23.61 mm air space.
-- The lens diameters. All clear rims are estimates. They pass the axial f/1.2 beam at every lens and the central ray of the patent's 10° field; the edge of the 10° beam is partly cut.
+- The lens diameters. The patent prints none; they are measured from Fig. 2, which is drawn to scale. The front lens has a clear semi-diameter of 44 mm. The cemented triplet is square-cut at 37.3 mm, and its concave rear surface ends at 21.8 mm, where the drawing starts a chamfer. Both rear lenses are square-cut at 26.7 mm. These rims pass the full axial f/1.2 beam; at the patent's 10° field about 80 % of the axial illumination reaches the image.
 - The back focus, computed as described above.
 
 Because of spherical aberration in the front half, the real edge ray of the f/1.2 beam reaches the stop slightly higher (19.2 mm) than the paraxial value the stop is sized from (18.1 mm), so the outermost part of the f/1.2 pupil is trimmed at the stop. Traced along the axis, longitudinal spherical aberration is +0.57 mm at the edge of the pupil and −0.23 mm at 70 % of it.
