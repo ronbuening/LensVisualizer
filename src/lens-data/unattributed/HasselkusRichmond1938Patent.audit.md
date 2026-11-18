@@ -1,0 +1,7 @@
+# Scoped fresh audit: US2116264 five menisci
+
+Fresh native build and canonical schema/geometry validation: pass, zero errors. Native render diagnostics: no trim above 0.25 mm; physical iris clearance >16.3142 mm each side across its full radius. Dense axial f/5.6 pupil: all 201 samples -100% to +100% traverse; required central +/-90% gate passes. Independently implemented reduced-angle ABCD and Newton intersection/vector Snell reproduce native EFL/BFD and nine sampled image intercepts to <1e-9 mm (maximum 7.29e-14 mm). No geometry override.
+
+Fresh scoped data-file TypeScript and ESLint pass. Evidence files preserve actual checks. Native MTF support and design-plane diagnostic are recorded but no MTF values, optical quality promise, or full-field result is asserted. The 10-degree pupil sample clips one of nine rays, 20 degrees clips three of nine: estimated rims are conservative and off-axis coverage is NOT qualified. Patent's 100-degree full field remains only its stated design intent.
+
+No full-app regression, fresh current-main integration, compiled-viewer/browser QA, or production correlation performed. Engine is inherited local snapshot identified by parent as matching 3fd318c3e82cdbc3e5d3a1ed7bd5abbf4e99bfc2; exact numerical evidence is fresh. Factory glass identities, glass diameters, axial iris coordinate, image-plane tolerances and actual retail realization unverified. Hidden patent-only, infinity-only reference. Preserve scope qualifications at integration.

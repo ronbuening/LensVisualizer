@@ -1,0 +1,15 @@
+# Hasselkus / Richmond US2116264, 1938
+Primary source: https://patents.google.com/patent/US2116264A/en
+Primary PDF: https://patentimages.storage.googleapis.com/15/41/8b/4f8235c05bdc5f/US2116264.pdf
+
+The downloaded three-page original was rendered and visually inspected, especially page 2 table and page 1 drawing. Google Patents HTML OMITTED the numerical table; the initial no-prescription suspicion was withdrawn after PDF inspection. This is FIVE separate menisci, not four: one front positive, two inner negatives, two rear positives. All concavities face the central diaphragm. The patent cites earlier British specification 423,156 as prior art, not an established equivalent. Retrieval of that GB record did not succeed, and no alias or source-equivalence claim is made.
+
+Table magnitudes in mm: R=36.15,54.15,29.45,23.75,23.75,29.45,55.65,44.05,47.90,38.95. Signed sequential radii are ++++------, from the drawing and expressly described concavity orientations. Thicknesses=14.33,1.61,1.61,6.20,10.70; four air spaces=.06,40.56,.06,.06. n_d=1.6202/V60.4 for I,IV,V; n_d=1.7174/V29.5 for II,III. The extra short-wavelength index column is transcribed in the preserved scan but not used to invent a dispersion curve. The native glass model uses the literal n_d/V pair under its ordinary supported dispersion convention. No catalog glass substitution.
+
+Source focal length 194.5 mm; source design objective about f/5.6 and approximately 100-degree full field. Literal d-line paraxial calculation gives 194.92710999441644 mm (+0.219593827463% versus 194.5). This small source/table residual is disclosed, not repaired by changing radii, glass, or scale. Calculated paraxial BFD 152.9768202512519 mm is a derived image plane, not a factory measurement or claimed optimum polychromatic plane.
+
+Physical stop is shown centrally but not dimensioned axially; we estimate it halfway through the 40.56 mm central airspace (20.28 +20.28). Rim semi-diameters 28,20,20,28,28 mm are conservative model assumptions, not measured barrel/glass diameters. No geometry allowance override used. Full-field coverage or f/5.6 MTF is not established: fresh ray audit is scoped on-axis and samples 10/20 degree fields only. Source 100-degree claim is NOT an achieved validation claim.
+
+Production: no authenticated manufacturer catalog/model, measured production prescription, or contemporaneous product link recovered in this pass. Do not label this Topogon, Metrogon, Mamiya-Sekor, or Ross retail lens merely from similar layout. Maker field names the inventors and means design attribution only. Hidden patent reference; not a factory replica.
+
+Dedup: 1,140 *.data.ts in retained current-main source snapshot scanned; no exact 2116264 token and no prescription candidate matching 4 of 10 distinctive values. Parent-provided 31 delivered historical configurations checked; no duplicate. No newly verified alias is assumed. Main pin from parent is 3fd318c3e82cdbc3e5d3a1ed7bd5abbf4e99bfc2; live current-main/integration checks remain parent/integration responsibility.
