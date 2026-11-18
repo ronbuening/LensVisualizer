@@ -272,6 +272,7 @@ catalog: {
 | `omissions` | `SourceOmission[]` | Missing source definitions, terms or equations and their modeled assumptions; see [Surface-definition omissions](#surface-definition-omissions-sourceomissions). Optional; absent makes no claim. |
 | `sdSource` | `"source-table" \| "figure-measured" \| "heuristic"` | Evidence for the lens's clear semi-diameters; see [Clear-aperture provenance](#clear-aperture-provenance-sourcesdsource). Optional; absent means not declared. |
 | `issuer` | `string` | Non-patent manufacturer sources only (a factory optical data sheet, a maker's drawing): the organization that issued the document, as the historical legal entity at its date, in the catalog's canonical assignee form (`"VEB Carl Zeiss Jena"` for a 1958 Jena sheet). Never beside `patentNumber`. |
+| `literature` | `LiteratureSource` | The published secondary work that prints the prescription; see [Literature reconstructions](#literature-reconstructions-sourceliterature). Never beside patent metadata or `issuer`. |
 
 Patent-backed lens files declare `patentNumber`, `authors` and `assignees` together. Synthetic, reference or
 independently measured prescriptions with no patent source leave all three out. A prescription transcribed from a
@@ -327,6 +328,43 @@ source: {
 - Build metadata generation checks curated historical assignee aliases and legal-form start years derived from the
   corporate-history registry's successor dates, plus a short list of curated overrides. These checks flag impossible
   or non-canonical values for source review; they never infer or rewrite an assignee.
+
+### Literature reconstructions (`source.literature`)
+
+A prescription printed in published secondary literature — a book, treatise, journal article or teaching text that is
+neither a patent nor the manufacturer's own document — is a **literature reconstruction**. Its file records the work in
+`source.literature`, lives in `src/lens-data/literature/`, and carries no patent metadata (`patentNumber`, `example`,
+`patentYear`, `authors`, `assignees`) and no `issuer`. The field defines the category; the folder mirrors it, and a
+corpus check keeps the two together.
+
+| Member | Type | Description |
+| --- | --- | --- |
+| `authors` | `string[]` | Required. The work's authors in title-page order, one complete personal name each, romanized, without honorifics. |
+| `title` | `string` | Required. The title as printed, in its original language. |
+| `year` | `number` | Required. Year of the edition used. |
+| `publisher`, `place` | `string` | The publisher and place of publication, as printed. |
+| `locator` | `string` | Required. Where the prescription is printed, as the work numbers it: `"p. 250, Fig. 100"`. |
+| `url` | `string` | An absolute `https` link to the scan used, page-anchored where possible. |
+| `after` | `string` | The earlier work the publication says it took the data from, when it names one: `"J. M. Eder (1893)"`. |
+
+```ts
+source: {
+  sdSource: "figure-measured",
+  literature: {
+    authors: ["Moritz von Rohr"],
+    title: "Theorie und Geschichte des photographischen Objektivs",
+    year: 1899,
+    publisher: "Julius Springer",
+    place: "Berlin",
+    locator: "p. 250, Fig. 100",
+    url: "https://www.e-rara.ch/download/pdf/4637944.pdf#page=6",
+  },
+},
+```
+
+The citation's authors wrote the book, not the lens: never copy them into `authors`, and name the designer and any
+manufacturer in the analysis. A patent the work mentions is related context for the analysis, not the source of the
+numbers; when the patent prints the same prescription, transcribe the patent instead.
 
 ### The transcribed example (`source.example`)
 
@@ -1738,7 +1776,7 @@ Code: `src/optics/prescription/validate/`.
 | Labels unique and not reserved; `R`, `d`, `sd` present; `sd` positive; `innerSd` non-negative and below `sd`; `rimCutDepthMm` positive, and not on the stop, an annular or diffractive surface, one with an `interaction` or a folded lens; `rimCutDepthSource` a non-empty string beside a `rimCutDepthMm`; `interaction` enums and normals; `diffractive` only on refracting surfaces; `stopPlacement` only on `STO`; exactly one `STO` | `validateSurfaces` (`schema.ts`) |
 | Element ids unique; `maxSdRatio` ≥ 1; `indexReference`, `apd` and `absorptionCoefficientPerMm` valid; no absorption on folded paths | `validateElements` (`schema.ts`) |
 | Every surface medium names an element, and every element is some surface's medium; asphere terms finite and known | `validateReferences` (`references.ts`) |
-| Patent metadata completeness, publication-number formatting, party-name rules and no inventor repeated as an assignee; `source.example` is `{ label, id }` with trimmed strings, `id` is what the label gives and `null` exactly for `"Sole example"`, it needs a patent number and does not repeat it; `source.issuer` is a trimmed, conventionally capitalized name and never stands beside a patent number | `validatePatentMetadata`, `validatePatentExample` (`patent.ts`) |
+| Patent metadata completeness, publication-number formatting, party-name rules and no inventor repeated as an assignee; `source.example` is `{ label, id }` with trimmed strings, `id` is what the label gives and `null` exactly for `"Sole example"`, it needs a patent number and does not repeat it; `source.issuer` is a trimmed, conventionally capitalized name and never stands beside a patent number; `source.literature` holds only its members, with `authors`, `title`, `year` and `locator`, person-name rules for `authors`, a whole `year` no later than the current one and an `https` `url`, and never stands beside patent metadata or `issuer` | `validatePatentMetadata`, `validatePatentExample` (`patent.ts`) |
 | `source.errata` entries | `validateSourceErrata` (`references.ts`) |
 | `source.omissions` kinds, bounded unique existing surface labels and trimmed, bounded notes; `source.sdSource` enum | Shared `sourceProvenanceIssues` (`src/types/sourceProvenanceSchema.ts`), called by `validateSourceProvenance` (`references.ts`) and the builder |
 | Element spans: both ends, in order; internal surfaces only an embedded stop or the folded exceptions | `validateSpans` (`references.ts`) |
@@ -2224,7 +2262,7 @@ the map below gives each of its fields' V2 paths.
 | `focalLengthMarketing`, `focalLengthDesign` | `catalog.focalLengthMm.marketing`, `.design` |
 | `apertureMarketing`, `apertureDesign` | `catalog.fNumber.marketing`, `.design` |
 | `closeFocusMarketing` | `catalog.closeFocusM.marketing` |
-| `patentNumber`, `patentYear`, `patentAuthors`, `patentAssignees`, `sourceErrata`, `sourceOmissions`, `sdSource`, `sourceIssuer` | `source.patentNumber`, `.patentYear`, `.authors`, `.assignees`, `.errata`, `.omissions`, `.sdSource`, `.issuer` |
+| `patentNumber`, `patentYear`, `patentAuthors`, `patentAssignees`, `sourceErrata`, `sourceOmissions`, `sdSource`, `sourceIssuer`, `sourceLiterature` | `source.patentNumber`, `.patentYear`, `.authors`, `.assignees`, `.errata`, `.omissions`, `.sdSource`, `.issuer`, `.literature` |
 | `surfaces[].nd` + `surfaces[].elemId` | `surfaces[].medium`: the element id, a `media` id, or left out for air (`elemId: 0`, `nd: 1`) |
 | an air surface with `nd ≠ 1` | an entry in `media` |
 | `elements[].fromSurface` / `toSurface` | `elements[].span: [from, to]` |

@@ -25,6 +25,17 @@ sourceInput.source = {
   omissions: [{ note: "Unpublished coefficients; modeled as a sphere", surfaces: ["1"], kind: "asphere-coefficients" }],
   errata: [{ status: "unresolved", note: "Synthetic source inconsistency" }],
 };
+const literatureInput = createTemplate();
+literatureInput.source = {
+  sdSource: "heuristic",
+  literature: {
+    locator: "p. 1, Fig. 1",
+    year: 1899,
+    title: "Synthetic treatise",
+    authors: ["Synthetic Author"],
+    url: "https://example.org/treatise.pdf#page=1",
+  },
+};
 
 describe("lens builder authored model", () => {
   it("builds the teaching template with exactly one stop and real glasses", () => {
@@ -62,7 +73,7 @@ describe("lens builder authored model", () => {
 });
 
 describe("builder transport", () => {
-  it.each([...inputs, extensionInput, sourceInput])(
+  it.each([...inputs, extensionInput, sourceInput, literatureInput])(
     "round-trips authored data ($key) through a complete TS file",
     (input) => {
       const source = exportDataTs(input);
@@ -78,6 +89,16 @@ describe("builder transport", () => {
       if (input === sourceInput) {
         expect(Object.keys(exports.default!.source!)).toEqual(["errata", "omissions", "sdSource", "issuer"]);
         expect(Object.keys(exports.default!.source!.omissions![0])).toEqual(["kind", "surfaces", "note"]);
+      }
+      if (input === literatureInput) {
+        expect(Object.keys(exports.default!.source!)).toEqual(["sdSource", "literature"]);
+        expect(Object.keys(exports.default!.source!.literature!)).toEqual([
+          "authors",
+          "title",
+          "year",
+          "locator",
+          "url",
+        ]);
       }
     },
   );

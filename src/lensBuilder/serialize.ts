@@ -57,6 +57,7 @@ const ORDERS: Record<string, string[]> = {
     "omissions",
     "sdSource",
     "issuer",
+    "literature",
   ],
   omissions: ["kind", "surfaces", "note"],
   elements: [
@@ -140,6 +141,7 @@ const ORDERS: Record<string, string[]> = {
   fNumber: ["marketing", "design"],
   closeFocusM: ["marketing"],
   example: ["label", "id"],
+  literature: ["authors", "title", "year", "publisher", "place", "locator", "url", "after"],
   projection: ["kind", "focalLengthMm", "fullFieldDeg", "imageCircleMm", "maxTraceFieldDeg"],
   opticalPath: ["mode", "surfaceOrder", "imagePlane", "maxInteractions"],
   imageSurface: ["R", "asphere", "cylindrical", "curvedAlong", "sd", "source"],

@@ -284,4 +284,13 @@ describe("lens patent metadata", () => {
       expect(data.patentAssignees, `${path}: patentAssignees should be omitted`).toBeUndefined();
     }
   });
+
+  it("keeps literature reconstructions, and only them, in src/lens-data/literature/", () => {
+    for (const [path, { default: data }] of Object.entries(modules)) {
+      expect(
+        data.sourceLiterature !== undefined,
+        `${path}: source.literature and the literature/ folder go together`,
+      ).toBe(path.includes("/lens-data/literature/"));
+    }
+  });
 });
