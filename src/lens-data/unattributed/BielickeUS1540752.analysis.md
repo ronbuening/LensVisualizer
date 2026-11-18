@@ -1,4 +1,4 @@
-# Bielicke Four-Singlet Objective — US 1,540,752 Figure 4
+# BIELICKE 100mm f/2 (US 1,540,752 Design)
 
 ## Patent Reference and Design Identification
 
@@ -10,11 +10,11 @@
 **Assignee:** None named in the publication  
 **Example details:** Figure 4 and its table, "Focus 100 mm, Diameter 50 mm"
 
-The patent describes a fast objective of four single, air-spaced lenses and gives two numerical examples, Figure 3 (diameter 42 mm) and Figure 4 (diameter 50 mm), both at a stated focus of 100 mm. This file transcribes Figure 4 at the patent's own scale. The table is printed twice, once on the drawing sheet and once in the typeset specification, and the two agree for every radius, thickness, air space and index.
+The patent describes a fast objective of four single, air-spaced lenses and gives two numerical examples, Figure 3 (diameter 42 mm) and Figure 4 (diameter 50 mm), both at a stated focus of 100 mm. The BIELICKE 100mm f/2 (US 1,540,752 Design) follows Figure 4 at the patent's own scale. The table is printed twice, once on the drawing sheet and once in the typeset specification, and the two agree for every radius, thickness, air space and index.
 
 Figure 3 is not modelled. Its printed table computes to a focal length of about 94 mm rather than the stated 100 mm, which suggests a misprint somewhere in that example; no attempt is made here to repair it.
 
-**Product link.** The patent names no product and no company. William F. Bielicke was the co-founder and designer of Astro-Gesellschaft Bielicke & Co. in Berlin (founded 1922), and one of the two witnesses who signed the drawing sheet is Gramatzki, his partner in that firm. Collector references cite this patent, together with German patent DE 440,229, as the basis of the Astro-Berlin Tachar lenses, which are described as four elements in four groups in the f/1.8 and f/2.3 versions. That makes the patent plausibly the origin of the Tachar family. No published production prescription has been found, and Figure 4 is an f/2 example while the documented Tachars are f/1.8 and f/2.3, so this file is a patent reference and not a model of a particular Tachar.
+**Product link.** The patent names no product and no company. William F. Bielicke was the co-founder and designer of Astro-Gesellschaft Bielicke & Co. in Berlin (founded 1922), and one of the two witnesses who signed the drawing sheet is Gramatzki, his partner in that firm. Collector references cite this patent, together with German patent DE 440,229, as the basis of the Astro-Berlin Tachar lenses, which are described as four elements in four groups in the f/1.8 and f/2.3 versions. That makes the patent plausibly the origin of the Tachar family. No published production prescription has been found, and Figure 4 is an f/2 example while the documented Tachars are f/1.8 and f/2.3, so the link is to the Tachar family and not to a particular Tachar lens. Both collector pages were read through search excerpts only.
 
 ## Optical Architecture
 
@@ -33,19 +33,19 @@ Computed from the printed table at the D line, the objective has a focal length 
 
 Focal lengths are for each lens alone in air at the D line.
 
-### L1 / Lens I — Biconvex Positive
+### Element 1 (patent lens I) — Biconvex Positive
 
 `nD = 1.60958`, `f = +88.75 mm`. Radii +56.0 and −1500.0 mm, thickness 9.0 mm. The rear face is almost flat, so the lens is close to plano-convex with the curved side toward the object. It supplies the front collecting power.
 
-### L2 / Lens II — Biconcave Negative
+### Element 2 (patent lens II) — Biconcave Negative
 
 `nD = 1.67330`, `f = −48.05 mm`. Radii −55.0 and +80.0 mm, thickness 2.5 mm, 17.0 mm behind lens I. This is the only flint in the system and the only negative lens; it carries the correction of colour, spherical aberration and field curvature against the three crowns.
 
-### L3 / Lens III — Positive Meniscus
+### Element 3 (patent lens III) — Positive Meniscus
 
 `nD = 1.60958`, `f = +89.64 mm`. Radii −373.0 and −48.0 mm, thickness 7.0 mm, 12.0 mm behind lens II with the diaphragm in that space. Its weak concave face is turned toward the diaphragm, as the patent requires of one of the two rear lenses.
 
-### L4 / Lens IV — Biconvex Positive
+### Element 4 (patent lens IV) — Biconvex Positive
 
 `nD = 1.60958`, `f = +159.91 mm`. Radii +194.0 and −194.0 mm, thickness 5.0 mm, 1.5 mm behind lens III. It is equiconvex ("both curves alike" in the patent's wording) and adds the remaining positive power.
 
@@ -58,7 +58,7 @@ The patent prints two indices for each glass, at the D line and at the G′ line
 | I, III, IV | 1.60958 | 1.62273 |
 | II | 1.67330 | 1.70141 |
 
-No glass maker or catalogue type is named. The three positive lenses share one dense barium crown and the negative lens is a dense flint. Because no Abbe number is printed, the model is traced at the D line only and shows no colour. Rough Abbe numbers can be estimated from the printed D-to-G′ differences (about 58 for the crown and about 32 for the flint), but they are estimates and are not used in the data file.
+No glass maker or catalogue type is named. The three positive lenses share one dense barium crown and the negative lens is a dense flint. Because no Abbe number is printed, the model is traced at the D line only and shows no colour. Rough Abbe numbers can be estimated from the printed D-to-G′ differences (about 58 for the crown and about 32 for the flint), but they are estimates and are not used in the model.
 
 With the printed G′ indices the paraxial focal length is 100.286 mm and the back focus 78.997 mm, against 100.405 mm and 79.046 mm at D, so the two printed lines focus within 0.05 mm of each other.
 
@@ -80,7 +80,7 @@ The patent states no field angle, so no coverage is claimed. Traced at the D lin
 
 ## Focus
 
-The patent gives infinity data only. The model is an infinity-only reference with no focusing movement.
+The patent gives infinity data only. The model is focused at infinity only and has no focusing movement.
 
 ## Sources
 

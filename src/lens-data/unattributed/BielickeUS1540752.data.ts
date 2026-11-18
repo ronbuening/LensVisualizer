@@ -15,7 +15,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * is fitted to make the D-line value 100 mm.
  *
  * DISPERSION: the patent prints nD and nG' only (crown 1.60958 / 1.62273, flint
- * 1.67330 / 1.70141) and no Abbe numbers. The model is D-line only.
+ * 1.67330 / 1.70141) and no Abbe numbers, so the model is traced at the D line
+ * only and shows no colour.
  *
  * INFERRED: the stop position (the patent says only "between lens II and III";
  * it is placed mid-way in the 12.0 mm air space, as Figure 4 draws it); all
@@ -23,20 +24,23 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * at 25.11 mm so the f/2 axial beam of the 100.405 mm D-line focal length is not
  * cut); the back focus (computed D-line paraxial image distance). The patent
  * states no field angle, back focus or close-focus data.
+ *
+ * PRODUCT LINK: none is named in the patent. Bielicke designed the Astro-Berlin
+ * Tachar lenses, and collector references cite this patent for the four-element
+ * Tachar; no production prescription is published, so this is a family link only.
  */
 const LENS_DATA = {
   schema: 2,
   key: "bielicke-100mm-f2-us1540752",
   maker: null,
   name: "BIELICKE 100mm f/2 (US 1,540,752 Design)",
-  subtitle: "1925 Fig.4 100 mm nominal f/2; PATENT ONLY",
+  subtitle: "US 1,540,752 A, Figure 4 — four air-spaced singlets",
   visible: true,
   catalog: {
     specs: [
       "4 ELEMENTS / 4 GROUPS",
-      "PATENT ONLY; NO RETAIL IDENTITY",
-      "ESTIMATED MIDGAP STOP AND 50MM RIMS",
-      "D-LINE ONLY; INFINITY ONLY",
+      "ALL SPHERICAL",
+      "DESIGN F/2",
     ],
     elementCount: 4,
     groupCount: 4,
@@ -62,44 +66,48 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L1",
-      label: "L1",
+      label: "Element 1",
       type: "Biconvex Positive",
       nd: 1.60958,
       indexReference: "D",
-      indexReferenceNote: "Patent nD. The patent also prints nG' = 1.62273 and no Abbe number.",
+      indexReferenceNote: "Patent nD. The patent also prints nG′ = 1.62273 and no Abbe number.",
+      glass: "Unmatched (nD 1.60958, nG′ 1.62273; no Abbe number printed)",
       focalLengthMm: 88.75,
       role: "Front collective crown, strong face toward the object.",
     },
     {
       id: 2,
       name: "L2",
-      label: "L2",
+      label: "Element 2",
       type: "Biconcave Negative",
       nd: 1.6733,
       indexReference: "D",
-      indexReferenceNote: "Patent nD. The patent also prints nG' = 1.70141 and no Abbe number.",
+      indexReferenceNote: "Patent nD. The patent also prints nG′ = 1.70141 and no Abbe number.",
+      glass: "Unmatched (nD 1.67330, nG′ 1.70141; no Abbe number printed)",
       focalLengthMm: -48.05,
       role: "Dispersive flint ahead of the diaphragm.",
     },
     {
       id: 3,
       name: "L3",
-      label: "L3",
+      label: "Element 3",
       type: "Positive Meniscus",
       nd: 1.60958,
       indexReference: "D",
-      indexReferenceNote: "Patent nD. The patent also prints nG' = 1.62273 and no Abbe number.",
+      indexReferenceNote: "Patent nD. The patent also prints nG′ = 1.62273 and no Abbe number.",
+      glass: "Unmatched (nD 1.60958, nG′ 1.62273; no Abbe number printed)",
       focalLengthMm: 89.64,
       role: "Collective crown meniscus behind the diaphragm, weak concave face toward it.",
     },
     {
       id: 4,
       name: "L4",
-      label: "L4",
+      label: "Element 4",
       type: "Biconvex Positive",
       nd: 1.60958,
       indexReference: "D",
-      indexReferenceNote: "Patent nD. The patent also prints nG' = 1.62273 and no Abbe number.",
+      indexReferenceNote: "Patent nD. The patent also prints nG′ = 1.62273 and no Abbe number.",
+      glass: "Unmatched (nD 1.60958, nG′ 1.62273; no Abbe number printed)",
       focalLengthMm: 159.91,
       role: "Rear equiconvex collective crown.",
     },
@@ -165,12 +173,13 @@ const LENS_DATA = {
   ],
   aperture: {
     nominalFNumber: 2,
-    maxFNumber: 22, fStops: [2, 2.8, 4, 5.6, 8, 11, 16, 22],
+    maxFNumber: 22,
+    fStops: [2, 2.8, 4, 5.6, 8, 11, 16, 22],
   },
   focus: {
     closeFocusM: 1e15,
     description:
-      "Infinity-only patent Figure 4 at the D line. The image plane is the computed paraxial back focus, not a flange distance. The printed 100 mm focus and 50 mm diameter are read as a nominal f/2; the mid-gap stop and the semi-diameters are modelling estimates. No colour correction is modelled.",
+      "Infinity focus only; the patent gives no close-focus data. The image plane is the computed D-line paraxial back focus, not a flange distance.",
   },
   groups: [],
   doublets: [],
