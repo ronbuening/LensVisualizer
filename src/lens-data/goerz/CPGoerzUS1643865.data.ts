@@ -12,7 +12,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * 16.5 mm across, a mounting margin outside the printed free diameter; the printed clear diameter is used.
  * Indices are sodium D; v is the patent's (nD - 1)/(nF - nC). The patent also prints nF and nG', which are not used.
  * INFERRED: only the image distance. The last gap is the computed paraxial back focus at D (81.808 mm behind the
- * diaphragm, 93.308 mm behind the last vertex). The 8.99 opening is what the printed 9.1 mm diaphragm gives.
+ * diaphragm, 93.308 mm behind the last vertex). The aperture f/8.99 is computed from the printed 9.1 mm diaphragm.
  * The printed design is deliberately under-corrected for spherical aberration: the patent states 3.1 mm at 5.56 mm
  * incidence, and the model gives 3.09 mm. That is a property of the design, not a focus error.
  * The patent states no field angle and names no product.
