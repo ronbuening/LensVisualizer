@@ -186,3 +186,74 @@ Open:
 - `imageFormat` and `lensMounts` need a product source for the format.
 - The name's "100mm" is the patent's normalised focal length; no 100 mm production Orthometar is documented in the
   sources consulted.
+
+## 2026-11-18 — Second review on the local site
+
+Compared: the local page (1400×900 and a 3× device-scale shot) against the drawing sheet of US 1,792,917 rendered at its
+native 300 dpi and at 286 dpi to match the page's 14.9 px/mm, side by side and overlaid; every element inspector; the
+focus overlay and the closest-focus slider position; the typeset text page.
+
+Figure scale, re-measured independently: the drawn axis lies at row 1598 (300 dpi). Vertex line centres sit at columns
+1006 (r1) and 1482 (r10), 476 px for the table's 30.33, so 15.69 px/mm. Two inner vertices check it: r5 predicted at
+1189, found 1186–1191; r6 predicted at 1278, found 1277–1280. The vertical scale agrees: r1 meets the flat pair rim
+38 px behind its vertex, and R 25.9 gives 37.5 px of sag at the measured rim height. Line-centre readings, mean of top
+and bottom: front pair 10.85, rear pair 10.93, III 8.64, IV 8.64, flint chamfer ends on r3 and r8 about 8.55. The
+drawn pair-to-meniscus ratio is 1.26. These agree with the semi-diameter pass within 0.1.
+
+Changes:
+
+| Item | Before | After | Evidence |
+| --- | --- | --- | --- |
+| r5 `sd` | 9.4 | 9.8 | III is drawn square-cut: its top and bottom rim lines are flat from face to face (columns 1171–1208). Both faces take the larger face's beam-driven height (r4, 9.8; floor 9.70). |
+| r6 `sd` | 9.2 | 9.4 | IV is drawn square-cut the same way (columns 1263–1317). Both faces take r7's height (floor 9.33). |
+| Element `name` / `label` | L1–L6 / Element 1–6 | I–VI / Element I–VI | The drawing and the glass table designate the lenses I to VI. |
+| `diagramLabel` | none (ids 1–6 shown) | I–VI | The page now prints I to VI under the elements, as the figure does. |
+
+Both raises are light-neutral and change no clearance result. The f/4.5 axial beam and the 32.5° central ray pass every
+surface. Illumination at the app's field points is 100.0 / 97.9 / 95.3 / 92.3 / 88.1 / 83.3 / 77.9 / 70.9 / 63.1 / 54.5 /
+45.3 / 35.1 % from 0° to 32.5°, the same before and after. Surfaces 5 and 6 now cut 9 % and 10 % of the 32.5° beam
+width, against 14 % and 13 % before; the outer pairs still cut 50–55 % and set the corner. The surface check reports no
+errors, the aperture check reports no rim limit, the image-circle check passes, and field coverage reaches the 32.5°
+corner. Engine values are unchanged: half field 39.4967°, focal length 100.1527, f/4.5, diaphragm radius 9.2396.
+
+Lands and cuts: the file has no land. The one cut against the pre-pass rims is r8, 10 → 9.5, and it costs 0.2 points at
+17.7°. That is slight, so it stays. Worst loss against the baseline: 0.2 points.
+
+Kept after re-checking:
+
+- Outer pairs stay at 12. The drawing is 10.9, but the f/4.5 entrance beam needs 11.13 at r1. The drawn menisci (8.64)
+  are 6–11 % below their beam floors, so the drawing is uniformly small. Scaled so its pairs read 12, it gives menisci of
+  9.5 and chamfer ends of 9.4, which matches the model within reading error.
+- The site draws the flint's free edge as one straight slope from the pair rim to r3 (or r8). The figure draws a flat rim
+  and a 45° chamfer. A rim extension would draw a vertical land rather than a chamfer, so the slope stays.
+- `gapSagFrac` 0.96 is still the smallest two-decimal value that works: r3 and r4 at 9.8 take 0.713 of the 0.75 gap,
+  a fraction of 0.951.
+
+Labels, tags and movement re-checked:
+
+- Types agree with the radius signs. Inspector focal lengths are +33.94, −28.41, +115.87, +113.82, −27.03 and +31.93.
+  The cemented pairs are −557.5 and −681.7. The inspectors read "DOUBLET C1" and "DOUBLET C2".
+- The stop sits at the printed b1/b2 position between III and IV. No group brackets are shown, and the patent names no
+  groups. There is no `apd` tag, and the patent names no special glass.
+- The file is infinity-only: no variable gap and no zoom block. The focus slider reads "Not modeled", and the focus
+  overlay reports no modelled movement. The focus description states only that the patent gives no close-focus data.
+
+Glass and colour: the text table and the drawing both print "nD", so `indexReference` "D" is right and no
+`indexReferenceNote` is needed. Each of the three glasses is used twice in mirror positions. Converted to the D line,
+no modern or obsolete Hoya, Ohara, Sumita or Schott row lies within 1e-4 / 0.15 of a printed pair. The nearest rows are:
+
+- BACD8 (Hoya), about +0.0002 at D
+- E-FEL2 / S-TIL2 / LLF2, about +0.0007
+- S-BAL50 (Ohara), about −0.0011
+
+The patent prints no other line indices, partial dispersions or aberration curves, so no colour comparison is possible.
+Every element carries ν, so colour runs on the Abbe fallback, with no nd-only medium.
+
+Assignee "Carl-Zeiss-Stiftung" is the corpus's form for "the firm Carl Zeiss, Jena" (27 files). The author "Willy Merté"
+matches the other three Merté files.
+
+Open:
+
+- 1920s Schott melt types for the three glasses are not in the glass catalog. The modern and obsolete vendor files have
+  no exact row.
+- The flint chamfers (on II and V) remain drawn as straight slopes.

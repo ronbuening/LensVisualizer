@@ -14,11 +14,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Inferred: the back focus (computed paraxial image distance, 86.7413; the patent prints none), the diaphragm
  * opening (from f/4.5) and every semi-diameter (the patent prints no diameters). Semi-diameters follow the
  * proportions of the drawing and are floor-checked by a real-ray trace. The drawing shows every element about 9 %
- * smaller than the f/4.5 axial beam allows, so the beam sets the overall size: the inner meniscus rims are the
- * smallest that pass it. The 0.75 air space between r3 and r4 closes near a height of 10, so those two rims sit
- * just inside that limit and the gap check is relaxed to 0.96 to admit them. The outer pairs are drawn
- * square-rimmed with a bevel down to the flint face that meets the meniscus; r3 and r8 are set lower than the pair
- * rims to match.
+ * smaller than the f/4.5 axial beam allows, so the beam sets the overall size: each inner meniscus is drawn
+ * square-cut and takes both faces at the height its larger face needs to pass the beam (III at 9.8, IV at 9.4).
+ * The 0.75 air space between r3 and r4 closes near a height of 10, so those two rims sit just inside that limit and
+ * the gap check is relaxed to 0.96 to admit them. The outer pairs are drawn square-rimmed with a bevel down to the
+ * flint face that meets the meniscus; r3 and r8 are set lower than the pair rims to match. Element names I to VI
+ * are the patent's.
  *
  * The construction is the Orthometar type that Zeiss sold at f/4.5. The link is to the lens family: no production
  * prescription has been compared, and the patent does not use the name.
@@ -57,8 +58,9 @@ const LENS_DATA = {
   elements: [
     {
       id: 1,
-      name: "L1",
-      label: "Element 1",
+      name: "I",
+      label: "Element I",
+      diagramLabel: "I",
       type: "Biconvex Positive",
       nd: 1.61087,
       vd: 55.8,
@@ -70,8 +72,9 @@ const LENS_DATA = {
     },
     {
       id: 2,
-      name: "L2",
-      label: "Element 2",
+      name: "II",
+      label: "Element II",
+      diagramLabel: "II",
       type: "Biconcave Negative",
       nd: 1.53994,
       vd: 47.4,
@@ -83,8 +86,9 @@ const LENS_DATA = {
     },
     {
       id: 3,
-      name: "L3",
-      label: "Element 3",
+      name: "III",
+      label: "Element III",
+      diagramLabel: "III",
       type: "Positive Meniscus",
       nd: 1.56064,
       vd: 61.1,
@@ -95,8 +99,9 @@ const LENS_DATA = {
     },
     {
       id: 4,
-      name: "L4",
-      label: "Element 4",
+      name: "IV",
+      label: "Element IV",
+      diagramLabel: "IV",
       type: "Positive Meniscus",
       nd: 1.56064,
       vd: 61.1,
@@ -107,8 +112,9 @@ const LENS_DATA = {
     },
     {
       id: 5,
-      name: "L5",
-      label: "Element 5",
+      name: "V",
+      label: "Element V",
+      diagramLabel: "V",
       type: "Biconcave Negative",
       nd: 1.53994,
       vd: 47.4,
@@ -120,8 +126,9 @@ const LENS_DATA = {
     },
     {
       id: 6,
-      name: "L6",
-      label: "Element 6",
+      name: "VI",
+      label: "Element VI",
+      diagramLabel: "VI",
       type: "Biconvex Positive",
       nd: 1.61087,
       vd: 55.8,
@@ -164,7 +171,7 @@ const LENS_DATA = {
       label: "5",
       R: 35.54,
       d: 2.9,
-      sd: 9.4,
+      sd: 9.8,
     },
     {
       label: "STO",
@@ -175,7 +182,7 @@ const LENS_DATA = {
       label: "6",
       R: -33.12,
       d: 3.96,
-      sd: 9.2,
+      sd: 9.4,
       medium: 4,
     },
     {

@@ -24,41 +24,41 @@ The computed focal length of the printed table is 100.15, the back focus is 86.7
 
 ## Element-by-Element Analysis
 
-### L1 / Element I — Biconvex Positive, Front Cemented Pair
+### Element I — Biconvex Positive, Front Cemented Pair
 
 nD = 1.61087, ν = 55.8. Glass: dense barium crown class. f = +33.9 mm.
 
 The front element carries most of the positive power of the front half. Its strongly curved first surface (r1 = +25.90) and weak cemented surface (r2 = −96.10) keep the cemented interface nearly flat, so the pair's chromatic correction comes mainly from the difference in dispersion and little from interface curvature.
 
-### L2 / Element II — Biconcave Negative, Front Cemented Pair
+### Element II — Biconcave Negative, Front Cemented Pair
 
 nD = 1.53994, ν = 47.4. Glass: extra-light flint class. f = −28.4 mm.
 
-Cemented behind L1, this element has the lower index and the higher dispersion of the pair. Its deep rear surface (r3 = +18.41) faces the first meniscus across an air space of only 0.75. Taken together, L1 and L2 form a weak negative component, f = −557 mm.
+Cemented behind I, this element has the lower index and the higher dispersion of the pair. Its deep rear surface (r3 = +18.41) faces the first meniscus across an air space of only 0.75. Taken together, I and II form a weak negative component, f = −557 mm.
 
-### L3 / Element III — Positive Meniscus, Concave Toward the Diaphragm
+### Element III — Positive Meniscus, Concave Toward the Diaphragm
 
 nD = 1.56064, ν = 61.1. Glass: barium crown class. f = +115.9 mm.
 
 The meniscus is convex toward the object (r4 = +23.78, r5 = +35.54). Its front surface is flatter than the surface r3 it follows, so the thin air space between them narrows toward the rim, and the two surfaces would touch at a height of about 10 mm. That geometry limits how large this element can be.
 
-### L4 / Element IV — Positive Meniscus, Concave Toward the Diaphragm
+### Element IV — Positive Meniscus, Concave Toward the Diaphragm
 
-nD = 1.56064, ν = 61.1. Glass: the same barium crown as L3. f = +113.8 mm.
+nD = 1.56064, ν = 61.1. Glass: the same barium crown as III. f = +113.8 mm.
 
-The mirror counterpart of L3 behind the diaphragm (r6 = −33.12, r7 = −22.74), with nearly the same focal length. The air space behind it is 1.57, about twice that of the front half.
+The mirror counterpart of III behind the diaphragm (r6 = −33.12, r7 = −22.74), with nearly the same focal length. The air space behind it is 1.57, about twice that of the front half.
 
-### L5 / Element V — Biconcave Negative, Rear Cemented Pair
+### Element V — Biconcave Negative, Rear Cemented Pair
 
-nD = 1.53994, ν = 47.4. Glass: the same extra-light flint as L2. f = −27.0 mm.
+nD = 1.53994, ν = 47.4. Glass: the same extra-light flint as II. f = −27.0 mm.
 
-The counterpart of L2. Its front surface (r8 = −18.14) faces the rear meniscus, and its rear surface (r9 = +77.38) is cemented to L6.
+The counterpart of II. Its front surface (r8 = −18.14) faces the rear meniscus, and its rear surface (r9 = +77.38) is cemented to VI.
 
-### L6 / Element VI — Biconvex Positive, Rear Cemented Pair
+### Element VI — Biconvex Positive, Rear Cemented Pair
 
-nD = 1.61087, ν = 55.8. Glass: the same dense barium crown as L1. f = +31.9 mm.
+nD = 1.61087, ν = 55.8. Glass: the same dense barium crown as I. f = +31.9 mm.
 
-The rear element closes the system with r10 = −25.37. With L5 it forms a weak negative component, f = −682 mm.
+The rear element closes the system with r10 = −25.37. With V it forms a weak negative component, f = −682 mm.
 
 ## Glass Identification and Selection
 
@@ -84,7 +84,7 @@ Inferred for the model:
 
 - **Back focus.** The patent prints none. The image plane is placed at the computed paraxial image distance, 86.7413 behind the last surface.
 - **Diaphragm opening.** A radius of 9.24 mm, the value that gives f/4.5 at the computed focal length.
-- **Clear diameters.** The patent prints none, so every semi-diameter is an estimate that follows the proportions of the drawing. The drawing shows the outer pairs about 1.26 times as tall as the menisci, each pair square-rimmed with a bevel down to the flint face that meets the meniscus, and that flint face ending at about the meniscus rim height. Drawn to the table's axial scale, every element is about 9 % smaller than the f/4.5 axial beam needs, so the beam sets the overall size. The inner menisci and the faces next to them are the smallest that pass it: 9.8 mm on r3 and r4, 9.4 mm on r5, 9.2 mm on r6, 9.4 mm on r7 and 9.5 mm on r8. The outer pairs are set to 12 mm in the drawing's proportion. At 9.8 mm the air space between r3 and r4 has almost closed, so those rims are near the largest the printed geometry allows.
+- **Clear diameters.** The patent prints none, so every semi-diameter is an estimate that follows the proportions of the drawing. The drawing shows the outer pairs about 1.26 times as tall as the menisci, each pair square-rimmed with a bevel down to the flint face that meets the meniscus, and that flint face ending at about the meniscus rim height. Both menisci are drawn square-cut, with flat rims. Drawn to the table's axial scale, every element is about 9 % smaller than the f/4.5 axial beam needs, so the beam sets the overall size. Each meniscus takes both faces at the height its larger face needs to clear the beam: 9.8 mm for III (r4 and r5), 9.4 mm for IV (r6 and r7). The flint faces next to them are 9.8 mm on r3 and 9.5 mm on r8, and the outer pairs are set to 12 mm in the drawing's proportion. At 9.8 mm the air space between r3 and r4 has almost closed, so those rims are near the largest the printed geometry allows.
 
 With these rims the full f/4.5 axial beam passes. At the edge of the stated field, 32.5° off axis, the central ray passes every surface, and about half of the beam's width is cut off at the outer pairs, leaving about 35 % of the axial illumination by geometric vignetting alone. The patent prints no diameters, so that amount of corner darkening is a property of the estimated rims, not a statement from the patent.
 
