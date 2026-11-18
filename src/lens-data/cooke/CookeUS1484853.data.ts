@@ -1,7 +1,7 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 /**
- * US 1,484,853 A (Arthur Warmisham, of Leicester, England; granted 26 February 1924, no assignee printed), the sole
- * numerical example, Figure 1: a Petzval-type projection lens of four spherical elements in two cemented doublets
+ * US 1,484,853 A (Arthur Warmisham, of Leicester, England; granted 26 February 1924, no assignee printed; filed under
+ * Cooke because Warmisham was the designer at Taylor, Taylor & Hobson), the sole numerical example, Figure 1: a Petzval-type projection lens of four spherical elements in two cemented doublets
  * with a short back focus. Figure 2 of the patent is a conventional Petzval lens quoted from von Rohr for comparison
  * and is not modelled.
  *
@@ -22,14 +22,15 @@ const LENS_DATA = {
   key: "cooke-254mm-f31-us1484853",
   maker: "Cooke",
   name: "COOKE 254mm f/3.1 (US 1,484,853 Design)",
-  subtitle: "1924; SOURCE COMPARISON APERTURE; NOT MAXIMUM RETAIL IDENTITY",
+  subtitle: "US 1,484,853 A, sole example — Warmisham short-back-focus projection lens",
   visible: false,
   catalog: {
     specs: [
       "4 ELEMENTS / 2 GROUPS",
-      "PATENT FIGURE 1; NO RETAIL IDENTITY",
-      "SOURCE 3.20-INCH COMPARISON APERTURE",
-      "ESTIMATED IRIS PLANE/RIMS; INFINITY ONLY",
+      "ALL SPHERICAL",
+      "DESIGN f = 10 in (254 mm)",
+      "DESIGN F/3.1",
+      "PROJECTION OBJECTIVE",
     ],
     elementCount: 4,
     groupCount: 2,
@@ -55,54 +56,54 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L1",
-      label: "L1",
+      label: "Element 1",
       type: "Biconvex Positive",
       nd: 1.509,
       vd: 64.3,
       indexReference: "D",
       focalLengthMm: 246,
-      glass: "Unmatched (Chance type 646, nD 1.509 / V 64.3)",
+      glass: "Unmatched (nD 1.509 / V 64.3, Chance type 646)",
       role: "Biconvex crown of the front cemented doublet",
-      cemented: "D1",
+      cemented: "C1",
     },
     {
       id: 2,
       name: "L2",
-      label: "L2",
+      label: "Element 2",
       type: "Negative Meniscus",
       nd: 1.651,
       vd: 33.5,
       indexReference: "D",
       focalLengthMm: -452.5,
-      glass: "Unmatched (Chance type 5093, nD 1.651 / V 33.5)",
+      glass: "Unmatched (nD 1.651 / V 33.5, Chance type 5093)",
       role: "Meniscus flint of the front cemented doublet",
-      cemented: "D1",
+      cemented: "C1",
     },
     {
       id: 3,
       name: "L3",
-      label: "L3",
+      label: "Element 3",
       type: "Biconvex Positive",
       nd: 1.509,
       vd: 64.3,
       indexReference: "D",
       focalLengthMm: 97.2,
-      glass: "Unmatched (Chance type 646, nD 1.509 / V 64.3)",
+      glass: "Unmatched (nD 1.509 / V 64.3, Chance type 646)",
       role: "Thick biconvex crown of the rear cemented doublet",
-      cemented: "D2",
+      cemented: "C2",
     },
     {
       id: 4,
       name: "L4",
-      label: "L4",
+      label: "Element 4",
       type: "Plano-Concave Negative",
       nd: 1.651,
       vd: 33.5,
       indexReference: "D",
       focalLengthMm: -196.3,
-      glass: "Unmatched (Chance type 5093, nD 1.651 / V 33.5)",
+      glass: "Unmatched (nD 1.651 / V 33.5, Chance type 5093)",
       role: "Plano-concave flint of the rear cemented doublet",
-      cemented: "D2",
+      cemented: "C2",
     },
   ],
   surfaces: [
@@ -159,12 +160,12 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 1e15,
     description:
-      "Infinity only, drawn with the screen side on the left as in patent Figure 1; inch dimensions multiplied by 25.4; printed nD and V retained; 3.20-inch free aperture of the front component; stop plane (1 mm before the first vertex) and rims inferred; back focus computed. Not a factory-identified lens.",
+      "Infinity focus only; the patent gives no close-focus data. The lens is drawn with the screen side on the left, as in patent Figure 1.",
   },
   groups: [],
   doublets: [
-    { text: "D1", fromSurface: "1", toSurface: "3" },
-    { text: "D2", fromSurface: "4", toSurface: "6" },
+    { text: "C1", fromSurface: "1", toSurface: "3" },
+    { text: "C2", fromSurface: "4", toSurface: "6" },
   ],
   layout: {
     yScFill: 0.4,
