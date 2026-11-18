@@ -59,6 +59,12 @@ catalog mount/format taxonomy unless a separate reference-fixture convention is 
 The hidden Nikon 61mm f/2.88 and Pentax 87.8mm f/2.9 macro patent designs match no production lens, so no camera
 mount applies; each carries the image format its patent implies.
 
+### Literature reconstructions
+
+`src/lens-data/literature/*.data.ts` models a book's normalized prescription, not a product, so it never takes mount or
+format ids (the validator refuses them) and stays out of the counts and queues here. See
+[Literature reconstructions](../src/lens-data/LENS_DATA_SPEC.md#literature-reconstructions-sourceliterature).
+
 ### Remaining public image-format questions
 
 The source review covers every public record still lacking `imageFormat`. Do not turn a family resemblance, chosen

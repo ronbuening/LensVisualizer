@@ -188,6 +188,12 @@ For a historical numerical reconstruction whose focal/aperture ratings remain un
 example in the title instead of a focal length and f-number the example does not reproduce. Keep the literal source
 ratings and computed behavior explicitly distinguished in the specs and source notes.
 
+A [literature reconstruction](#literature-reconstructions-sourceliterature) names the design and its printed aperture,
+then the work and figure in parentheses, with no focal length: a work that normalizes every lens to one focal length
+describes no product. The maker prefix follows the rules above when `maker` is set; with `maker: null` the name opens
+with the designer or design type. Examples: `VOIGTLÄNDER PETZVAL PORTRAIT f/3.4 (von Rohr 1899, Fig. 100)`,
+`FRENCH LANDSCAPE f/12.1 (von Rohr 1899, Fig. 54)`.
+
 ### Catalog (`catalog`)
 
 Everything the catalog, header and index read about the product, as opposed to the prescription.
@@ -366,6 +372,35 @@ source: {
 The citation's authors wrote the book, not the lens: never copy them into `authors`, and name the designer and any
 manufacturer in the analysis. A patent the work mentions is related context for the analysis, not the source of the
 numbers; when the patent prints the same prescription, transcribe the patent instead.
+
+Authoring rules for the rest of the file:
+
+- **`maker`**: the firm the work, or other cited evidence, credits with making the design; `null` when none is
+  established. The work's author is never the maker.
+- **`key`**: `<maker-or-designer>-<design>-<design year>-<work author>-<work year>`, e.g.
+  `voigtlander-petzval-portrait-1840-von-rohr-1899`. No `-d-line`, `-reference` or `reference-` tokens; a `reference-`
+  key would file the lens as a debug fixture.
+- **`name`**: design, printed aperture, then the work and figure; see
+  [Display Name Convention](#display-name-convention).
+- **`subtitle`**: design context only ("Thicknesses and rear air gap assumed by von Rohr"). The header shows the
+  citation in its place.
+- **`catalog.specs`**: the element/group count, then the work's scale and spectral limit where they apply
+  (`"NORMALIZED f = 100 mm"`, `"nD ONLY"`). Leave out words the citation already carries ("HISTORICAL REFERENCE").
+- **`catalog.focalLengthMm.design`** and **`catalog.fNumber.design`**: the focal length and aperture the work prints
+  (von Rohr's `100`), not a computed EFL; the traced EFL must still lie within the 0.8–1.25 window.
+- **`catalog.lensMounts`** and **`catalog.imageFormat`**: never set (the validator refuses them, and `marketing`
+  values), and no row in `agent_docs/lens-mount-format-backfill.md`. A normalized book prescription describes no
+  product.
+- **Indices**: a work that prints only nD — nineteenth-century sources give the Fraunhofer sodium D line — takes
+  `indexReference: "D"`, no `vd`, and `glass: "Unmatched (historical nD only, no dispersion published)"`. Add `vd`
+  only when the work defines its dispersion figure as (nD − 1)/(nF − nC); never take a modern catalog glass as a proxy.
+- **Values the work marks as assumed** (thicknesses, gaps, an index estimated from density, a distance measured from
+  its drawing) stay as printed. The analysis's reconstruction-status section names them; the file corrects only a
+  proven misprint, through `source.errata`.
+- **Rims**: `source.sdSource` is `"figure-measured"` when the clear radii come from the work's drawing by the
+  [figure procedure](../../agent_docs/patent-figure-sd-audit-procedure.md), `"heuristic"` otherwise. When the drawing
+  cannot pass the printed field angle, cap `projection.maxTraceFieldDeg` below it and state the printed angle in the
+  analysis rather than widening rims past the drawing.
 
 ### The transcribed example (`source.example`)
 
@@ -1777,7 +1812,7 @@ Code: `src/optics/prescription/validate/`.
 | Labels unique and not reserved; `R`, `d`, `sd` present; `sd` positive; `innerSd` non-negative and below `sd`; `rimCutDepthMm` positive, and not on the stop, an annular or diffractive surface, one with an `interaction` or a folded lens; `rimCutDepthSource` a non-empty string beside a `rimCutDepthMm`; `interaction` enums and normals; `diffractive` only on refracting surfaces; `stopPlacement` only on `STO`; exactly one `STO` | `validateSurfaces` (`schema.ts`) |
 | Element ids unique; `maxSdRatio` ≥ 1; `indexReference`, `apd` and `absorptionCoefficientPerMm` valid; no absorption on folded paths | `validateElements` (`schema.ts`) |
 | Every surface medium names an element, and every element is some surface's medium; asphere terms finite and known | `validateReferences` (`references.ts`) |
-| Patent metadata completeness, publication-number formatting, party-name rules and no inventor repeated as an assignee; `source.example` is `{ label, id }` with trimmed strings, `id` is what the label gives and `null` exactly for `"Sole example"`, it needs a patent number and does not repeat it; `source.issuer` is a trimmed, conventionally capitalized name and never stands beside a patent number; `source.literature` holds only its members, with `authors`, `title`, `year` and `locator`, person-name rules for `authors`, a whole `year` no later than the current one and an `https` `url`, and never stands beside patent metadata or `issuer` | `validatePatentMetadata`, `validatePatentExample` (`patent.ts`) |
+| Patent metadata completeness, publication-number formatting, party-name rules and no inventor repeated as an assignee; `source.example` is `{ label, id }` with trimmed strings, `id` is what the label gives and `null` exactly for `"Sole example"`, it needs a patent number and does not repeat it; `source.issuer` is a trimmed, conventionally capitalized name and never stands beside a patent number; `source.literature` holds only its members, with `authors`, `title`, `year` and `locator`, person-name rules for `authors`, a whole `year` no later than the current one and an `https` `url`, and never stands beside patent metadata, `issuer`, `lensMounts`, `imageFormat` or a `marketing` focal length or f-number | `validatePatentMetadata`, `validatePatentExample` (`patent.ts`) |
 | `source.errata` entries | `validateSourceErrata` (`references.ts`) |
 | `source.omissions` kinds, bounded unique existing surface labels and trimmed, bounded notes; `source.sdSource` enum | Shared `sourceProvenanceIssues` (`src/types/sourceProvenanceSchema.ts`), called by `validateSourceProvenance` (`references.ts`) and the builder |
 | Element spans: both ends, in order; internal surfaces only an embedded stop or the folded exceptions | `validateSpans` (`references.ts`) |

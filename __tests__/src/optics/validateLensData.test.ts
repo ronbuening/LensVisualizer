@@ -273,6 +273,7 @@ describe("validateLensData", () => {
         [{ ...metadata, sourceLiterature: literature }, "never stands beside"],
         [{ sourceIssuer: "Fixture Optical Works", sourceLiterature: literature }, "never stands beside"],
         [{ patentYear: 1899, sourceLiterature: literature }, "never stands beside"],
+        [{ lensMounts: ["leica-m"], focalLengthMarketing: 100, sourceLiterature: literature }, "describes no product"],
         [{ sourceLiterature: { ...literature, locator: undefined } }, "locator is required"],
         [{ sourceLiterature: { ...literature, authors: [] } }, "non-empty array of personal names"],
         [{ sourceLiterature: { ...literature, authors: ["MORITZ VON ROHR"] } }, "conventional capitalization"],

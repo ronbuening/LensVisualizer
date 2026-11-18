@@ -169,6 +169,8 @@ const PATENT_AND_ISSUER_FIELDS = [
   "patentAssignees",
   "sourceIssuer",
 ] as const;
+/* A normalized book prescription describes no product, so it carries no product catalog facts. */
+const PRODUCT_FIELDS = ["lensMounts", "imageFormat", "focalLengthMarketing", "apertureMarketing"] as const;
 
 /** A trimmed, single-spaced, NFKC string; `true` when it is one. */
 function citationText(value: unknown, at: string, errors: string[]): value is string {
@@ -191,6 +193,12 @@ function validateSourceLiterature(data: UntrustedLensData, errors: string[]): vo
   if (beside.length) {
     errors.push(
       `"sourceLiterature" names a published secondary source and never stands beside ${beside.map((f) => `"${f}"`).join(", ")}`,
+    );
+  }
+  const product = PRODUCT_FIELDS.filter((field) => data[field] !== undefined);
+  if (product.length) {
+    errors.push(
+      `"sourceLiterature" marks a literature reconstruction, which describes no product: leave out ${product.map((f) => `"${f}"`).join(", ")}`,
     );
   }
   if (literature === null || typeof literature !== "object" || Array.isArray(literature)) {

@@ -26,6 +26,8 @@ sourceInput.source = {
   errata: [{ status: "unresolved", note: "Synthetic source inconsistency" }],
 };
 const literatureInput = createTemplate();
+// A literature reconstruction describes no product, so it carries no image format.
+delete literatureInput.catalog?.imageFormat;
 literatureInput.source = {
   sdSource: "heuristic",
   literature: {
