@@ -15,7 +15,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *
  * Indices: the patent prints the D index, the G' index and the dispersive ratio for each glass. The model uses the
  * D index and the printed ratio. The patent's focal lengths are G'-line values: the prescription computes to
- * 99.98 mm at G' and 99.75 mm at D.
+ * 99.98 mm at G' and 99.75 mm at D. The G' indices (434.0 nm) are not stored, since the engine's blue line is g
+ * (435.8 nm); its inferred G' - D differences, 0.0136 and 0.0176, match the printed 0.013 and 0.018 within rounding.
  *
  * Inferred, not printed: the stop position (the midpoint of the 6.6 mm rear air space, which the patent says holds
  * the diaphragm and shutter), all clear semi-diameters (a uniform 8 mm) and the back focus (the computed paraxial
