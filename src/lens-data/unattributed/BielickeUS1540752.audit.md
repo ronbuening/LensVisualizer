@@ -17,7 +17,7 @@ The 12.0 mm air space is entered as 6 + 6 mm around the stop.
 ## Inferred values
 
 - Stop position: mid-way in the 12.0 mm space between lenses II and III. The patent gives no dimension; Figure 4 draws the diaphragm about there.
-- Semi-diameters: 25 mm from the printed 50 mm diameter; front surface 25.11 mm (see below).
+- Semi-diameters: 25 mm from the printed 50 mm diameter; lens I 25.11 mm on both faces (see below).
 - Back focus: computed D-line paraxial value, 79.0457 mm.
 - Dispersion: none. The model is D-line only.
 
@@ -49,7 +49,7 @@ Open:
 
 - Name, key, subtitle and specs wording ("PATENT ONLY", "NO RETAIL IDENTITY", "ESTIMATED MIDGAP STOP AND 50MM RIMS") for the cleanup pass; element labels are "L1"–"L4" and there are no glass labels. (Closed 2026-11-17 by the cleanup and wording pass below.)
 - Optional Abbe-number estimates from the printed nG′ − nD differences (about 58.5 for the crown, about 31.5–32 for the flint); a period glass catalogue should be checked before any value is entered.
-- Rims against Figure 4: all rims are from the printed 50 mm diameter; the figure has not been used to size individual elements.
+- Rims against Figure 4: all rims are from the printed 50 mm diameter; the figure has not been used to size individual elements. (Closed 2026-11-18 by the semi-diameter pass below.)
 - Whether to record the Astro-Berlin Tachar family link in the catalogue fields.
 - Figure 3 of the same patent computes to about 94 mm from its printed table and is not modelled.
 
@@ -74,7 +74,31 @@ Engine numbers before and after are identical: EFL 100.40491043206832 mm, f/2, s
 Open:
 
 - Abbe-number estimates from the printed nG′ − nD differences (about 58.5 for the crown, about 31.5–32 for the flint) are not entered; a period glass catalogue should be checked first.
-- Rims against Figure 4: all rims come from the printed 50 mm diameter (front surface 25.11 mm); the figure has not been used to size individual elements.
+- Rims against Figure 4: all rims come from the printed 50 mm diameter (front surface 25.11 mm); the figure has not been used to size individual elements. (Closed 2026-11-18 by the semi-diameter pass below.)
 - `lensMounts`, `imageFormat` and an image circle are not set: the patent states no format or field angle.
 - The Astro-Berlin Tachar link rests on collector pages read through search excerpts; a primary source (Astro catalogue or DE 440,229) would firm it up.
 - Figure 3 of the same patent computes to about 94 mm from its printed table and is not modelled.
+
+## 2026-11-18 — Semi-diameter pass against the patent figure
+
+Source: US 1,540,752 A, drawing sheet (page 1), Figure 4, measured at 600 dpi with the axis on row 3201.
+
+Scale: Figure 4 is schematic. From the first to the last vertex it spans 773 px for 54.0 mm (14.3 px/mm), but the single spans disagree well beyond 10 %: lens I thickness 10.4 px/mm, lens II 15.6, lens III 12.1, lens IV 16.8; air space l1 13.2, l2 17.3, l3 26. The figure is therefore used for proportions only. The patent's printed "Diameter 50 mm" outranks any figure reading; it does not say which surface it belongs to.
+
+Figure reading (half-heights from the axis, lower and upper side): lens I 300 / 311 px with a flat, square-cut edge; lens II 304 / 309 px, square-cut; lens III 304 / 306 px, square-cut; lens IV about 302 / 295 px, drawn to a knife edge. All four lenses are drawn at the same height within about 3 %, which agrees with one common 50 mm diameter. The figure exaggerates the curvatures (lens IV's knife edge, lens III's thick edge), so edge thickness is not taken from it.
+
+| Surface | Before | After | Evidence |
+|---|---|---|---|
+| 1 | 25.11 | 25.11 | Printed 50 mm diameter, raised 0.11 mm earlier so the f/2 axial beam (25.10 mm here) is not cut. Kept. |
+| 2 | 25.00 | 25.11 | Lens I is drawn square-cut, so its rear face takes the front face's height. Costs no light. |
+| 3–8 | 25.00 | 25.00 | Printed 50 mm diameter; the figure draws lenses II–IV at the same height as lens I. Kept. |
+
+Clearance after the change: no axial clipping at f/2 and no blocked chief ray at a 15 mm image height. The front rim limits the chief ray at 30.1° (lens I rear face at 35.6°); the engine half-field is 30.09° before and after, at f/2.0 with a stop semi-diameter of 19.31 mm. The patent states no field, and no rim was widened for one.
+
+Corner illumination (engine vignetting curve, wide open): 100.0, 100.0, 98.9, 96.0, 92.3, 88.4 and 84.1 % at 0 to 12.2°, identical to the rims before this pass (worst loss 0.0 points). Surface check OK; aperture check reports no rim limit. Image-circle and field-coverage checks skip the lens because it has no image format.
+
+Metadata: no change. The patent states no format, field or mount, and no production source gives one, so `lensMounts`, `imageFormat` and an image circle stay unset. The best product name in the sources is the Astro-Berlin Tachar (Pan-Tachar, Astro-Tachar). The present name, without a product word, fits a family-level link.
+
+Open:
+
+- Lens III's edge is 0.82 mm thick at the 25 mm rim. The figure draws a thicker edge, but its curvatures are exaggerated, so this is not taken as a reason to lower the rim.

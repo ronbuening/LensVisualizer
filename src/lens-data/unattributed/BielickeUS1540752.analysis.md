@@ -73,7 +73,7 @@ The patent gives the diameter as 50 mm without saying which lens or opening it r
 The following are modelling estimates, not printed values:
 
 - **Stop position.** The patent says only that a diaphragm is placed between lenses II and III. The model puts it half-way along the 12.0 mm air space, which is where Figure 4 draws it.
-- **Semi-diameters.** All surfaces are given 25 mm from the printed 50 mm diameter, except the front surface, which is 25.11 mm so that the f/2 axial beam at the computed 100.405 mm focal length (a 50.2 mm entrance pupil) is not cut by the front rim.
+- **Semi-diameters.** All surfaces are given 25 mm from the printed 50 mm diameter, and Figure 4 draws all four lenses at about the same height. Lens I is 25.11 mm on both faces so that the f/2 axial beam at the computed 100.405 mm focal length (a 50.2 mm entrance pupil) is not cut by the front rim, and its edge stays square as drawn.
 - **Image plane.** The patent prints no back focus. The model uses the computed D-line paraxial back focus, 79.0457 mm.
 
 The patent states no field angle, so no coverage is claimed. Traced at the D line, the printed design has a marginal longitudinal spherical aberration of about +1.84 mm at f/2, falling to +0.09 mm at 0.85 of the aperture and −0.40 mm at 0.7.

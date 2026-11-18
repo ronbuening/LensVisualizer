@@ -20,9 +20,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *
  * INFERRED: the stop position (the patent says only "between lens II and III";
  * it is placed mid-way in the 12.0 mm air space, as Figure 4 draws it); all
- * semi-diameters (25 mm from the printed 50 mm diameter, with the front surface
- * at 25.11 mm so the f/2 axial beam of the 100.405 mm D-line focal length is not
- * cut); the back focus (computed D-line paraxial image distance). The patent
+ * semi-diameters (25 mm from the printed 50 mm diameter, which Figure 4 draws
+ * as the common height of all four lenses; lens I is 25.11 mm on both faces so
+ * the f/2 axial beam of the 100.405 mm D-line focal length is not cut and its
+ * square-cut edge stays square, as drawn; checked by real-ray trace); the back focus (computed D-line paraxial image distance). The patent
  * states no field angle, back focus or close-focus data.
  *
  * PRODUCT LINK: none is named in the patent. Bielicke designed the Astro-Berlin
@@ -124,7 +125,7 @@ const LENS_DATA = {
       label: "2",
       R: -1500,
       d: 17,
-      sd: 25,
+      sd: 25.11,
     },
     {
       label: "3",
