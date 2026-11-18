@@ -897,7 +897,7 @@ Exactly one surface is labelled `"STO"`. It is normally flat (`R: "flat"`) in an
 | --- | --- | --- | --- |
 | `nominalFNumber` | `number` | | The f-number the stop opens to: the source's design value, never the faster marketed number (that is `catalog.fNumber.marketing`). A prime or a constant-aperture zoom writes it here; a variable-aperture zoom writes one per station instead (`zoom.stations[i].nominalFNumber`). Exactly one of the two. |
 | `fStops` | `number[]` | required | F-stop values for the quick-select buttons. |
-| `maxFNumber` | `number` | `16` | Largest f-number on the aperture slider. |
+| `maxFNumber` | `number` | `16` | Largest f-number on the aperture slider. Validation rejects any `fStops` entry above it, so set it when the stops pass f/16. |
 | `step` | `number` | `0.004` | Aperture slider step. |
 | `blades` | `number` | | Number of aperture blades (reserved for polygonal bokeh). |
 | `bladeRoundedness` | `number` | | Blade roundedness 0–1 (reserved; 0 straight polygon, 1 circular). |
@@ -1661,7 +1661,7 @@ the default does not serve the lens.
 | `focus.keyframes` | `[0, 1]` | Infinity and close focus. |
 | `focus.step` | `0.004` | Focus slider step. |
 | `zoom.stations[i].published`, `.publishedFocus`; `focus.published` | `true`, `[]`; `[]` | Every station published, at infinity alone. |
-| `aperture.maxFNumber` | `16` | Largest f-number on the aperture slider. |
+| `aperture.maxFNumber` | `16` | Largest f-number on the aperture slider; every `aperture.fStops` entry must be at or below it. |
 | `aperture.step` | `0.004` | Aperture slider step. |
 | `layout.svgW` | `1080` | Diagram width (px). |
 | `layout.svgH` | `490` | Diagram height (px). |

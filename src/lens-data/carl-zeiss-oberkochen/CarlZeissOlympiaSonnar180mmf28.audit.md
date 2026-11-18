@@ -49,3 +49,7 @@ Validation: focused runtime/paraxial check; full corpus gates at the ten-lens ch
 - `catalog.fNumber.design: 2.8` from DE 1,268,404 p. 1, col. 2, lines 38–40: "Die Objektive gemäß Fig. 1 und 2
   haben die Öffnung f:2,8" (Tabelle II is the Fig. 2 example). The stop's `nominalFNumber` 2.8 matches it. No optical
   value changed.
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 22. `fStops` lists f/22, which the slider cut off at the default 16. No optical value changed.

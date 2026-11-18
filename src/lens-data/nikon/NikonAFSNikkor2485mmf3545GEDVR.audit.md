@@ -54,3 +54,7 @@ no duplicate assignee spelling in this batch requires consolidation.
 - S6A/S7 continuous caps12.8→14.6mm and S8 cap10.2→11.0mm with outer14.6 land restore the connected L21 hybrid body. Native first/last span~570px/85.88mm⇒6.64px/mm; body/cap radii~97/73px give q≈.75±.018, adopted.753. Every convex/concave face and bonded boundary was checked; no additional independently resolved exposed land warrants clipping. Broad front blank, surface leaders, and brackets are excluded. ActualSVG verifies no detached wing. Source S6A coefficients unchanged; new14.6mm departure−.262016111mm, rimangle5.86419°, synchronized publicly.
 - Fresh Figure8 confirms FNO3.50/5.00/5.78, retaining the explicit Table13 3.60/5.80 discrepancy and existing plot calibration. No focus/control/prescription/tolerance changes.
 - Surface/circle pass; three axial aperture stations iris-limited within3%; three formatcorners>=99%. Nine actualSVG states have18finite paths/zero trim and finalraster inspected. All18 sourcepairs/catalog checks pass; shared dispersion/parity/partial tests3files94pass.
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 22. `fStops` lists f/22, which the slider cut off at the default 16. No optical value changed.

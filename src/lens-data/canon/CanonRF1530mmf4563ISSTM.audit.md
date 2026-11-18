@@ -75,3 +75,7 @@ All-media relabel leads were also evaluated and retained as bounded trials. E3/E
 | E13 / R24 | 1.80400 / 46.5 | TAF3D (retained) | +0.000198282 | +0.000000 |
 
 Private proof confirms canonical deep equality after excluding only glass labels and the positive bibliographic notes. All retained dispersion channels are exactly equal; source G/nd is exactly equal for every medium. New curve channels and the corrected inspector-label semantics are recorded separately from geometry. Focused formatting/diff checks are run on the nine owned files; full repository gates and reports are coordinator-owned.
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 22. `fStops` lists f/22, which the slider cut off at the default 16. No optical value changed.

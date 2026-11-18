@@ -343,7 +343,7 @@ const LENS_DATA = {
   },
 
   /* ── Aperture configuration ── */
-  aperture: { nominalFNumber: 1.76012, fStops: [1.76012, 2, 2.8, 4, 5.6, 8, 11, 16, 22], blades: 7 },
+  aperture: { nominalFNumber: 1.76012, fStops: [1.76012, 2, 2.8, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22, blades: 7 },
 
   /* ── Plane-parallel plate M (patent surfaces 17–18): traced, not drawn ── */
   rearPlates: [

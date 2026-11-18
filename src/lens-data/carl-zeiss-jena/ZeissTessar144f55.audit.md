@@ -42,3 +42,7 @@ Catalog version: local working tree, 2026-06-25
 ### Batch follow-up
 
 Metadata gate correction: canonical assignee is Carl-Zeiss-Stiftung under the repository 1891–2003 alias rule. Source wording Carl Zeiss remains explicitly identified in the analysis; no claim that the patent prints the canonical modern catalog label.
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 32. `fStops` lists f/22 and f/32, which the slider cut off at the default 16. No optical value changed.
