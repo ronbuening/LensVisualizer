@@ -284,7 +284,6 @@ const LENS_DATA = {
 
   focus: {
     closeFocusM: 0.18,
-    step: 1,
     description:
       "Infinity focus only; every air gap stays fixed. The patent describes floating focus: G1 (G1a–G1c) and G2 (G2a–G2c, with the stop) both move toward the object, G1 by 0.62 times the travel of G2, so the gap d11 ahead of the stop narrows. It tabulates one near state: d11 = 2.30 mm (5.96 mm at infinity) at OBJ = 50, read as an object 50 mm ahead of the first surface, about 1:2.6. That state is not modeled because the patent prints no image distance for it. The 38.58 mm image distance at infinity is the paraxial back focus of the printed table; the patent prints no back focus. The production lens focuses to 0.18 m (1:2.7); that is product data, not modeled focus travel.",
   },

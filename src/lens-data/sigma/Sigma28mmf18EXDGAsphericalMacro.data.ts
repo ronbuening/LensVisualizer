@@ -261,7 +261,6 @@ const LENS_DATA = {
 
   focus: {
     closeFocusM: 0.2,
-    step: 1,
     description:
       "Infinity focus only; every air gap stays fixed. The patent describes floating focus in which both groups advance and the gap d11 ahead of the stop closes, and it tabulates one near state: d11 = 3.08 mm (6.81 mm at infinity) at an object 55 mm in front of the first surface, about 1:2.6, with the stop moving with the rear group. That state is not modeled because the patent prints no image distance for it. The 38.52 mm image distance at infinity is the paraxial back focus of the printed table; the patent prints no back focus. Sigma's 0.20 m minimum focus distance is product data, not modeled focus travel.",
   },
