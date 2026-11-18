@@ -134,6 +134,8 @@ Rechecked and found correct: `type` strings against the radius signs (I +56 / �
 
 Glass and colour: a two-line scan of the repository catalogue and the Hoya, Ohara and Sumita vendor files, at D (589.29 nm) and G′ (434.05 nm), finds no row matching both printed indices. Nearest crown rows: Sumita VC79 (nD 1.60960, +0.00002, but nG′ 1.62302, +0.00029; not in the repository catalogue and not of the period) and SK3 / BACD3 (nD −0.00086). Nearest flint rows: the SF5 family (Schott SF5 / N-SF5, Ohara S-TIM25 / PBM25, Hoya E-FD5 / FD5, Sumita SF5), nD −0.00078 and nG′ −0.0007 to −0.0010. The crown recurs in Figure 3 (nD 1.60960, the same nG′ 1.62273), so it is a real melt; the flint does not recur. The D-to-G′ spreads put the Abbe numbers near 59 (crown) and 32 (flint); the analysis now says 59 where it said 58. The patent prints nothing else (no glass name, no Abbe number, no other line). All four elements stay index-only, which keeps colour off for the whole lens, as the rule for nD / nG′-only files requires. No catalogue row is proposed. No assignee is printed and `source.assignees` is empty.
 
+Index reference: the specification names the line ("nD and nG′ respectively denote the refractive indices for the D line and for the G′ line", page 2, lines 25–28), so the four `indexReferenceNote` entries, which are for sources whose line is unspecified, were removed; the inspector now reads nD and νD, and the printed nG′ values stay in the header comment and the glass labels.
+
 Open:
 
 - The printed nG′ (G′ = 434.05 nm) has no element field (`ng` is 435.83 nm), so the second printed line is recorded only in the notes.
