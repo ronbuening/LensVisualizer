@@ -143,7 +143,7 @@ const LENS_DATA = {
   },
   aperture: {
     nominalFNumber: 12.5,
-    fStops: [12.5, 16, 22],
+    maxFNumber: 22, fStops: [12.5, 16, 22],
   },
   projection: {
     kind: "rectilinear",

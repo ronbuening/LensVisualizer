@@ -95,7 +95,7 @@ const LENS_DATA = {
     { label: "5", R: -13.4, d: 109.1747, sd: 4.5 },
   ],
   focus: { closeFocusM: 1e15, description: "Infinity-only patent reconstruction." },
-  aperture: { nominalFNumber: 12.5, fStops: [12.5, 16, 22] },
+  aperture: { nominalFNumber: 12.5, maxFNumber: 22, fStops: [12.5, 16, 22] },
   projection: { kind: "rectilinear", maxTraceFieldDeg: 5 },
   doublets: [{ text: "Q1", fromSurface: "1", toSurface: "5" }],
   layout: { yScFill: 0.5 },
