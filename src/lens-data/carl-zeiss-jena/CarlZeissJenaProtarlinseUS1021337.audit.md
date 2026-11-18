@@ -58,9 +58,9 @@ Optics, stop and rims were not touched.
 **Open:**
 
 - Rims and field (SD pass): uniform 4.5 rims and a 5° trace field are placeholders; the patent states no field or diameters, Fig. 1 is not to scale, the Protar is reported at about 80° coverage, and lens II reaches zero edge thickness at a semi-diameter of about 5.1. (Closed 2026-11-18 by the semi-diameter pass below, which corrects the scale and edge statements.)
-- `lensMounts`, `imageFormat` and image circle are not set: the patent states no format or field.
+- `lensMounts`, `imageFormat` and image circle are not set: the patent states no format or field. (Closed 2026-11-18: they stay unset, as the semi-diameter pass below decided; no format fits the f = 100 normalisation.)
 - Abbe numbers: rough values from nG′ − nD (about 66, 56 with a corrected lens II, 53, 38.5) are not in the data; a period Schott list has not been consulted.
-- The name carries 100mm (the patent's nominal focal length) while the table computes to 99.00.
+- The name carries 100mm (the patent's nominal focal length) while the table computes to 99.00. (Closed 2026-11-18: kept; the name uses the patent's nominal 100, `catalog.focalLengthMm.design` carries 99, and the header and analysis explain the rounding.)
 
 ## 2026-11-18 — Semi-diameter pass against the patent figure
 
@@ -89,3 +89,27 @@ No rim was changed. The difference is under 5 %, and the square-cut rim is alrea
 **Open:**
 
 - Abbe numbers for the four glasses, if a period Schott list is consulted (unchanged from the earlier passes).
+
+## 2026-11-18 — Second review on the local site
+
+**Compared.** The local page (1400×900, and a 4× device-scale shot of the cross-section), the inspector for elements 1–4 and the focus overlay at both slider ends, against Fig. 1 of US 1,021,337 re-measured from the 300 dpi scan rendered at 600 dpi, and the text page.
+
+**Figure scale, re-measured.** The axis lies on page row 3198 at the lens (the scan tilts about 0.5°: row 3194 at the diaphragm, 3201 behind the lens). Diaphragm B bar centre at column 1934.5, r1 vertex line centre 2123, r5 vertex 2467. Stop to r1: 188.5 px for 2.34 (80.6 px/mm); r1 to r5: 344 px for 4.34 (79.3 px/mm); stop to r5: 532.5 px for 6.68 (79.7 px/mm), used below. The drawn diaphragm opening is 317 px above and 304 px below the axis, 3.90 mm on average, against the model's f/12.5 radius of 3.96. The model's five surfaces, overlaid on Fig. 1 at 79.7 px/mm and aligned at the r1 vertex, fall on every drawn surface line.
+
+**Rims.** Rim line centres lie 377.5 px above and 371.5 px below the axis: 4.74 and 4.66, mean 4.70. Sag checks: the r5 rim is 67 px ahead of its vertex (0.84 mm, which r5 = −13.4 reaches at 4.67); the r1 rim is 66.5 px ahead of its vertex (0.83 mm, reached at 4.40). The model's 4.5 is 2–4 % inside these readings, within the reading error, and the square-cut group is already one height, so no rim changed; this agrees with the semi-diameter pass. Fig. 1 draws small bevels, about 0.15–0.25 mm, on both front corners; they stay unmodelled, since a land there would only cost light.
+
+**Lands and cuts.** None. Against the base rims the worst loss is 0.0 points at every field to 5°; transmission at 5° is 96.2 % in both.
+
+**Live page.** The group renders as the square-cut cylinder of Fig. 1, with the stop 2.34 ahead of r1 and the surface curvatures and r1/r5 rim sags as drawn. The STO and C1 labels sit side by side without touching. The element numbers 1–4 under the group run in the same order as the patent's I–IV. The group is small on the page because the 109 mm back focus sets the drawing scale.
+
+**Labels, tags and movement.** Types agree with the radius signs and with the patent's words (front lens biconcave, second biconvex, third concavo-convex and collective, rear lens concavo-convex and dispersive). The inspector focal lengths −18.9, +12.49, +32.48 and −21.53 match the paraxial element focal lengths. All four elements read "CEMENTED C1": the inspector reserves DOUBLET and TRIPLET for two and three members, so the quadruplet shows no false TRIPLET. One `doublets` bracket, C1, spans surfaces 1–5, and there is no group bracket, which fits one group. No surface is aspheric and no element carries an `apd` tag; the patent names no special glass. Names L1–L4 and labels Element 1–4 follow the patent's I–IV in order, and the analysis headings give both. Movement: there is no variable gap and no zoom block, and `closeFocusM` is 1e15. The focus slider reads "Not modeled", the movement overlay reports no modelled focus or zoom group movement, and the focus description says only that the patent gives no close-focus data, which is true.
+
+**Numbers (unchanged).** EFL 98.997, f/12.5, stop radius 3.960, engine half-field 5°, chief ray clear of the rims to 40.3°. The f/12.5 axial marginal ray reaches 3.96, 4.11, 4.17, 4.25 and 4.41 at surfaces 1–5 against rims of 4.5. Spherical aberration is −1.31 at the margin and −1.52 at 0.85 of the aperture, as the analysis states. The surface audit reports no validation errors; the aperture audit is within 3 % of the stated f-number with no rim limit; the image-circle and field-coverage audits skip the file (no image format).
+
+**Glass and colour.** The four glasses were checked against all 733 catalog rows at both printed lines, D (589.29 nm) and G′ (Hγ, 434.05 nm). No row matches both. Lens I: nearest N-BK10 (nD −0.00015, nG′ −0.00033). Lens II: N-SK10 and S-BSM10 match nD at D (1.62268, 1.62270), but their nG′ is 1.6366 against the printed 1.6308. Lens III: the LF5 light flints match nD at D within 0.00002, but their nG′ is 0.0048 high, so they are not the glass. Lens IV: nearest E-F1 and F13, 0.0018 low at D. The vendor AGF files, searched at the d line, offer no closer candidate and no row to propose. All four labels stay `Unmatched` and the model stays monochromatic. The engine's `ng` is the 435.83 nm g line, not G′, so the printed nG′ column cannot be stored as printed. The patent prints no aberration curves to compare. For lens II, a paraxial trace with the printed G′ indices puts the G′ focus at 119.05 behind the last vertex against 109.17 at D; equal back foci need nG′(II) = 1.6373, and N-SK10's 1.6366 leaves 1.03 between them. This supports the analysis's misprint reading, and one sentence on the matching modern glasses was added to the analysis.
+
+**Other records.** Since the semi-diameter pass the display name and key have gained PROTARLINSE and the files have been renamed to CarlZeissJenaProtarlinseUS1021337; that pass's remark that the name carries no product word describes the earlier name. The assignee "Carl-Zeiss-Stiftung" matches the front page ("the firm of Carl Zeiss, of Jena") and is the corpus's canonical form. Two `Open:` lines in the cleanup section were closed in place.
+
+**Open:**
+
+- Abbe numbers, if a period Schott list with nD and nG′ is consulted (unchanged).

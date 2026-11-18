@@ -75,7 +75,7 @@ The patent characterises each glass by two indices, nD and nG′, and gives no A
 | III | 1.5813 | 1.5952 | 0.0139 |
 | IV | 1.6275 | 1.6487 | 0.0212 |
 
-The nG′ printed for lens II (1.6308) is probably a misprint: with it the G′ back focus is 119.05 against 109.17 at the D line, contrary to the patent's statement that the objective is chromatically corrected, while a value near 1.637 brings the two lines together; the model does not use nG′, so nothing in it depends on this.
+The nG′ printed for lens II (1.6308) is probably a misprint: with it the G′ back focus is 119.05 against 109.17 at the D line, contrary to the patent's statement that the objective is chromatically corrected, while a value near 1.637 brings the two lines together; the model does not use nG′, so nothing in it depends on this. Modern dense barium crowns with the same nD (Schott N-SK10, Ohara S-BSM10) have nG′ of about 1.6366, which fits that reading; one matching index does not identify the glass, so lens II stays unnamed.
 
 ## Focus Mechanism
 
