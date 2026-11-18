@@ -10,7 +10,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Every printed radius, thickness and separation is multiplied by 100, with no further scaling or fitting. The
  * printed table then traces to a paraxial focal length of 101.56 mm, 1.56 % above the patent's stated 1.00 (100 mm
  * at this scale). GB 113,590 A prints the same Example II numbers, so the residual belongs to the printed table and
- * is kept as it stands. Indices and Abbe numbers are the patent's sodium D-line nD and V values.
+ * is kept as it stands. Indices and Abbe numbers are the patent's sodium D-line nD and V values; GB 113,590 A
+ * defines nD as the index for sodium D light and V as (nD − 1) / (nF − nC), so `indexReference` is "D".
  *
  * Inferred, not printed: the iris, placed at the midpoint of the 1.42 mm middle air space S2 (0.71 mm on either
  * side; the patent draws no diaphragm), with its radius derived from f/4.5; the clear semi-diameters; and the
@@ -68,7 +69,6 @@ const LENS_DATA = {
       nd: 1.6116,
       vd: 56.4,
       indexReference: "D",
-      indexReferenceNote: "Patent nD and V for the sodium D line.",
     },
     {
       id: 2,
@@ -82,7 +82,6 @@ const LENS_DATA = {
       nd: 1.6206,
       vd: 36.2,
       indexReference: "D",
-      indexReferenceNote: "Patent nD and V for the sodium D line.",
     },
     {
       id: 3,
@@ -96,7 +95,6 @@ const LENS_DATA = {
       nd: 1.6206,
       vd: 36.2,
       indexReference: "D",
-      indexReferenceNote: "Patent nD and V for the sodium D line.",
     },
     {
       id: 4,
@@ -110,7 +108,6 @@ const LENS_DATA = {
       nd: 1.6116,
       vd: 56.4,
       indexReference: "D",
-      indexReferenceNote: "Patent nD and V for the sodium D line.",
     },
   ],
   surfaces: [

@@ -119,7 +119,9 @@ Labels and brackets changed:
 | Element `diagramLabel` | none (the diagram showed 1–4) | I, II, III, IV | As above; `name` and `diagramLabel` agree. |
 | `groups` | none | FRONT HALF (surfaces 1–4), REAR HALF (5–8) | Claims 1 and 2 (page 2, lines 57–83): two halves separated by a median air space, each a positive and a negative lens. |
 
-On the live page the numerals sit under each element (III is raised clear of II), the two bracket labels sit under them without touching, the movement overlay reports two groups and no modelled movement, and each inspector reads the new heading with its type, sodium-D note, n and V, focal length, glass label and role.
+On the live page the numerals sit under each element (III is raised clear of II), the two bracket labels sit under them without touching, the movement overlay reports two groups and no modelled movement, and each inspector reads the new heading with its type, nD and νD, focal length, glass label and role.
+
+The four `indexReferenceNote` entries ("Patent nD and V for the sodium D line.") were removed: the specification reserves the note for sources whose line is unspecified, and this patent and GB 113,590 A define nD as sodium D with V = (nD − 1) / (nF − nC), now stated in the header comment. The inspector now reads nD / νD instead of n (source) / ν (source).
 
 Checked and found correct: element types against the signs of R (I and IV biconvex, II and III biconcave); roles (both negatives and the rear positive turn their shallower face to the middle air space, as the invention requires); element focal lengths 51.56, −47.74, −58.08 and 44.08 mm against the traced values; no cemented surfaces, so no `doublets` and no `cemented` tags; no aspheres and no `A` labels; no `apd` tag (the patent names only a dense baryta crown and a heavy flint); the stop between II and III at the middle of S2 (the patent draws no diaphragm); specs. Movement: infinity only, `closeFocusM` 1e15, no gap table and no zoom block; the focus slider shows "Not modeled" and `focus.description` says only that the patent gives no close-focus data.
 
