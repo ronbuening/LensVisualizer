@@ -1,13 +1,111 @@
-# Merté / Zeiss US1792917, sole example (1931)
+# Merté Double Objective f/4.5 — US 1,792,917
 
-Qualified scoped hidden patent-only reconstruction: six elements / four groups, nominal 100 mm f/4.5. No exact production identity established. Literal nD and V, signed radii and thicknesses, and central diaphragm intervals b1=2.90 and b2=2.80 retained. Calculated infinity image plane, EFL 100.152665128 mm; BFD 86.741268809 mm. V-based dispersion is approximate, not measured spectral glass.
+## Patent Reference and Design Identification
 
-Primary original: https://patentimages.storage.googleapis.com/86/b4/7c/86523aa7270cf3/US1792917.pdf . Both pages inspected. A low-resolution provisional reading of drawing dV as 1.08 was withdrawn after a 400 dpi crop independently confirmed 1.88; the printed table also states 1.88. This is corrected reading, not optical repair. Crop and full pages retained. No alternative thickness modeled.
+**Patent:** US 1,792,917, *Photographic Objective*  
+**Application Number:** Serial No. 221,592  
+**Filed:** September 23, 1927 (German priority September 28, 1926)  
+**Granted:** February 17, 1931  
+**Inventor:** Willy Merté  
+**Assignee:** Carl-Zeiss-Stiftung (the patent reads "the firm Carl Zeiss, of Jena")  
+**Example details:** one numerical example, given both in the text table and on the drawing sheet, for a focal length of 100 units
 
-Physical rims absent from source: estimated surface semi-diameters 12,12,9,9,9, [stop],9,9,10,12,12 mm. The iris axial position is literal; physical iris radius 9.239634 mm inferred from source f/4.5 and computed entrance pupil. Initial uniform 13 mm rims geometrically failed the 0.75 mm gap, uniform 9 mm clipped axial rays; per-surface conservative rims above pass default geometry with no override. Off-axis coverage is NOT validated: source claims 65 degrees full field but these bounded rims transmit only 5/9 at 10 degrees,4/9 at20,1/9 at32.5; full axial185/201, central90%181/181. Model is a source-based pre-integration reference, not a proven usable full-field production design.
+The patent contains a single numerical example and a single figure. The data file stores that example as printed: ten radii with their signs, six glass thicknesses, two air spaces, the two distances from the diaphragm to the neighbouring surfaces, and a refractive index nD and Abbe number ν for each of three glasses. The text table and the lettering on the drawing sheet agree in every value. The patent states that the objective "sharply covers at a relative aperture of 1:4.5 an image field of 65°", and that each half may also be used on its own.
 
-Fresh gates: native schema/canonical/default geometry and render trimming pass; all181 central90% axial rays transmit. Independent reduced-angle matrix and exact meridional Snell at nine aperture fractions crosscheck native central rays to8.9e-15 mm. Independent1001-point sag sampling in all intervals positive. Strict scoped TypeScript passes. Native MTF support probe is compatibility only, not MTF validation. Full-app regression, current-main compatibility/integration and compiled-viewer/browser QA pending.
+The values are kept at the patent's own scale, a focal length of 100 units, read as millimetres. The model's name describes it as a patent reference and it claims no production lens. The link to a product is a plausible one, not a proven one:
 
-Full-body dedup of1140 retained catalog bodies plus initial25 and nine trios (52 distinct historical filenames) finds no US1792917. Parent owns fresh authenticated delta and additional alias check. Retained app engine/dependencies are inherited, scripts and checks fresh. No publication, commit or deployment.
+1. The assignee is Carl Zeiss, and the inventor was a Zeiss designer. The German priority date is 1926, and Zeiss sold lenses named Orthometar with an aperture of f/4.5 in the following decade.
+2. Wikimedia Commons carries a redrawing of this patent's figure under the title "Merté US1792917A (Orthometar, 1927)", and its general diagram of the Orthometar type shows the same layout: two cemented outer pairs and two inner air-spaced menisci around a central diaphragm.
+3. The patent does not use the name Orthometar, and no maker's publication of a production prescription was found to compare against. A 35 mm f/4.5 Orthometar for the Contax, sold from 1937, shows the name was used across formats, so a 100-unit patent example cannot be tied to one catalogue lens.
 
-Reproduction: use compatible retained application engine/dependencies; run generate.py, node --import ./scripts/ts-js-specifier-hook-register.mjs validate.mjs from engine, then independent.py and geometry.py. Scoped tsc: --noEmit --strict --skipLibCheck --target ES2022 --module nodenext --moduleResolution nodenext src/lens-data/zeiss/Merte1931Patent.data.ts . Next alternate cursor Lee US2019985: primary recovered, numerical table visually read, preliminary generation only, no qualified build or completion credit; keep separate from this package.
+## Optical Architecture
+
+The objective is an unsymmetrical double objective of six elements in four groups, with the power order negative, positive, diaphragm, positive, negative when counted by group. Each half consists of a cemented pair on the outside, made of a biconvex and a biconcave element, and a single positive meniscus on the inside that faces the diaphragm with its concave side. The two halves resemble each other but are not identical; the front half is slightly longer and its radii differ from the rear half's by a few percent.
+
+The patent's claim rests on how the two halves correct astigmatism. Each half is described as tested alone, with parallel light entering from the meniscus side through a small diaphragm placed there. At larger field angles the sagittal and tangential image points of one half then lie in the opposite order to those of the other half, so that the two halves compensate each other when combined. The patent presents this as the means of getting a good correction over a large field.
+
+The computed focal length of the printed table is 100.15, the back focus is 86.74 and the length from the first to the last surface is 30.33.
+
+## Element-by-Element Analysis
+
+### L1 / Element I — Biconvex Positive, Front Cemented Pair
+
+nD = 1.61087, ν = 55.8. Glass: dense barium crown class. f = +33.9 mm.
+
+The front element carries most of the positive power of the front half. Its strongly curved first surface (r1 = +25.90) and weak cemented surface (r2 = −96.10) keep the cemented interface nearly flat, so the pair's chromatic correction comes mainly from the difference in dispersion and little from interface curvature.
+
+### L2 / Element II — Biconcave Negative, Front Cemented Pair
+
+nD = 1.53994, ν = 47.4. Glass: extra-light flint class. f = −28.4 mm.
+
+Cemented behind L1, this element has the lower index and the higher dispersion of the pair. Its deep rear surface (r3 = +18.41) faces the first meniscus across an air space of only 0.75. Taken together, L1 and L2 form a weak negative component, f = −557 mm.
+
+### L3 / Element III — Positive Meniscus, Concave Toward the Diaphragm
+
+nD = 1.56064, ν = 61.1. Glass: barium crown class. f = +115.9 mm.
+
+The meniscus is convex toward the object (r4 = +23.78, r5 = +35.54). Its front surface is flatter than the surface r3 it follows, so the thin air space between them narrows toward the rim, and the two surfaces would touch at a height of about 10 mm. That geometry limits how large this element can be.
+
+### L4 / Element IV — Positive Meniscus, Concave Toward the Diaphragm
+
+nD = 1.56064, ν = 61.1. Glass: the same barium crown as L3. f = +113.8 mm.
+
+The mirror counterpart of L3 behind the diaphragm (r6 = −33.12, r7 = −22.74), with nearly the same focal length. The air space behind it is 1.57, about twice that of the front half.
+
+### L5 / Element V — Biconcave Negative, Rear Cemented Pair
+
+nD = 1.53994, ν = 47.4. Glass: the same extra-light flint as L2. f = −27.0 mm.
+
+The counterpart of L2. Its front surface (r8 = −18.14) faces the rear meniscus, and its rear surface (r9 = +77.38) is cemented to L6.
+
+### L6 / Element VI — Biconvex Positive, Rear Cemented Pair
+
+nD = 1.61087, ν = 55.8. Glass: the same dense barium crown as L1. f = +31.9 mm.
+
+The rear element closes the system with r10 = −25.37. With L5 it forms a weak negative component, f = −682 mm.
+
+## Glass Identification and Selection
+
+The patent prints three glasses, each used twice in mirror positions, and gives an index nD and an Abbe number ν for each. It names no glass maker and no catalogue numbers.
+
+| Elements | nD | ν | Class |
+| --- | --- | --- | --- |
+| I and VI | 1.61087 | 55.8 | Dense barium crown |
+| II and V | 1.53994 | 47.4 | Extra-light flint |
+| III and IV | 1.56064 | 61.1 | Barium crown |
+
+The data file stores the printed values with the sodium D line as the index reference and gives the glasses no catalogue names. The class names in the table are a reading of the printed numbers, not statements from the patent. In each cemented pair the positive element has the higher index and the lower dispersion, which is the arrangement of the "new achromat" that allows a flat field together with colour correction.
+
+## Focus Mechanism
+
+The patent gives data for an object at infinity only and describes no focusing arrangement. The data file is an infinity-only model; an objective of this kind would be focused by moving the whole lens.
+
+## Printed and Inferred Values
+
+Printed in the patent and stored unchanged: all radii, thicknesses and air spaces; the diaphragm position, 2.90 behind r5 and 2.80 in front of r6; nD and ν; the relative aperture 1:4.5; the 65° field.
+
+Inferred for the model:
+
+- **Back focus.** The patent prints none. The image plane is placed at the computed paraxial image distance, 86.7413 behind the last surface.
+- **Diaphragm opening.** A radius of 9.24 mm, the value that gives f/4.5 at the computed focal length.
+- **Clear diameters.** The patent prints none, so every semi-diameter is an estimate. The outer pairs are set to 12 mm. The inner menisci and the surfaces facing them are set to the smallest values that pass the f/4.5 axial beam: 9.8 mm on r3 and r4, 9.4 mm on r5, 9.2 mm on r6 and 9.4 mm on r7. At 9.8 mm the air space between r3 and r4 has almost closed, so those rims are near the largest the printed geometry allows.
+
+With these rims the full f/4.5 axial beam passes. At the edge of the stated field, 32.5° off axis, the central ray passes every surface, and about half of the beam's width is cut off at the outer pairs. The patent prints no diameters, so that amount of corner darkening is a property of the estimated rims, not a statement from the patent.
+
+## Model Verification
+
+| Quantity | Patent | Model |
+| --- | --- | --- |
+| Focal length | 100 | 100.15 |
+| Relative aperture | 1:4.5 | f/4.5 |
+| Image field | 65° | central ray passes to 32.5° off axis |
+| Back focus | not printed | 86.74 |
+| First to last surface | 30.33 (sum of printed values) | 30.33 |
+
+The focal length of the printed table is 0.15 % longer than the nominal 100, which is within what the table's rounding to two decimals explains. The longitudinal spherical aberration computed from the printed values is +0.29 mm for the marginal ray at f/4.5 and reaches −0.62 mm at 70 % of the aperture: the margin is brought close to the paraxial focus and a zonal residual remains, as expected for a corrected design of this date. Nothing in the table suggested a misprint.
+
+## Sources
+
+- US 1,792,917, *Photographic Objective*, Willy Merté, assignor to the firm Carl Zeiss, Jena; granted February 17, 1931. Text table and drawing sheet.
+- Wikimedia Commons, "Merté US1792917A (Orthometar, 1927)" (redrawing of the patent figure) and "Orthometar.jpg" (general diagram of the Orthometar type): https://commons.wikimedia.org/wiki/File:Orthometar.jpg
+- Pacific Rim Camera, Photographica Pages, Contax 35 mm f/4.5 Orthometar (introduced 1937): https://pacificrimcamera.com/pp/zicontax35orth4.htm
