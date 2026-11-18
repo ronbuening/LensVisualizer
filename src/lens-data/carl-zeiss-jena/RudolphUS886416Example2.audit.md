@@ -1,0 +1,2 @@
+# Audit
+Literal primary 1908 patent Example2. Source pages1–2 visually transcribed, b each half directly labeled. Signs from drawing, no magnitude fitting. D-line only. Isolated native and independent tests freshly run, not inherited. See REBUILD and JSON evidence. Retained source-tree search for886416 and nD1.4626 is recorded by worker; parent final dedup is required. No exact product attribution. Example1 explicitly held and excluded.

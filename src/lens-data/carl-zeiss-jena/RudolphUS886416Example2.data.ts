@@ -1,0 +1,9 @@
+import type { LensDataV2Input } from '../../types/lensDataV2.js';
+const LENS_DATA={schema:2,key:'rudolph-us886416-example2-d-line',maker:null,name:'RUDOLPH US886416 Example 2 100mm f/6.3 — D-line patent reference',subtitle:'1908 SYMMETRIC CEMENTED TRIPLETS; NO VERIFIED PRODUCTION MATCH',visible:false,catalog:{specs:['6 ELEMENTS / 2 GROUPS','D-LINE ONLY','PATENT REFERENCE'],elementCount:6,groupCount:2,focalLengthMm:{design:100},fNumber:{design:6.3}},elements:[
+{id:1,name:'L1',label:'Patent glass 1',type:'Negative Meniscus',nd:1.624,indexReference:'D'},
+{id:2,name:'L2',label:'Patent glass 2',type:'Biconvex',nd:1.5832,indexReference:'D'},
+{id:3,name:'L3',label:'Patent glass 3',type:'Biconcave',nd:1.4626,indexReference:'D'},
+{id:4,name:'L4',label:'Patent glass 4',type:'Biconcave',nd:1.4626,indexReference:'D'},
+{id:5,name:'L5',label:'Patent glass 5',type:'Biconvex',nd:1.5832,indexReference:'D'},
+{id:6,name:'L6',label:'Patent glass 6',type:'Negative Meniscus',nd:1.624,indexReference:'D'},
+],surfaces:[{label:'1',R:22.6,d:2.1,medium:1,sd:8.5},{label:'2',R:10.7,d:4.1,medium:2,sd:7.8},{label:'3',R:-54.8,d:1,medium:3,sd:7.8},{label:'4',R:20.3,d:2.7,sd:7.8},{label:'STO',R:'flat',d:2.7},{label:'6',R:-20.3,d:1,medium:4,sd:7.8},{label:'7',R:54.8,d:4.1,medium:5,sd:7.8},{label:'8',R:-10.7,d:2.1,medium:6,sd:7.8},{label:'9',R:-22.6,d:91.18100437324723,sd:8.5},],focus:{closeFocusM:1e15,description:'Infinity-only patent reconstruction.'},aperture:{nominalFNumber:6.3,fStops:[6.3,8,11,16]},projection:{kind:'rectilinear',maxTraceFieldDeg:5},layout:{yScFill:.5}} satisfies LensDataV2Input; export default LENS_DATA;

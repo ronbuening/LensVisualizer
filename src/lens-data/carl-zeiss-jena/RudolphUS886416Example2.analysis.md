@@ -1,0 +1,11 @@
+# Qualified scoped candidate: Rudolph US886416 Example2
+
+1908 primary patent https://patentimages.storage.googleapis.com/c1/e7/98/fd62061d0bcf5b/US886416.pdf, page1 Fig2 and page2 lower numerical table visually checked. Filing1907-07-12. Carl Zeiss assignee; no proven retail production identity. Distinct from US895045. Six elements/two cemented triplets, symmetric, nominal100mm f/6.3. b=2.7 each side of diaphragm (two separate b labels in diagram), total air gap5.4. Radii signs follow diagram. D-line monochromatic only; printed Gprime index is not an Abbe number, no Vd supplied.
+
+Literal optics retained: EFL99.86709604516827mm (-0.132904% vs nominal), BFD91.18100437324723mm; total track19.8mm, image at110.98100437324723mm. No focus-fitting of glass or radii. Infinity only. Rims estimated8.5 external/7.8 internal; not patent dimensions. No source f/number relaxation or geometry override. Representative patent embodiment, not factory prescription.
+
+Fresh checks: source arrays/index mode assertions, native default geometry,19/19 axial meridional central90% pupil,81/81 disk on-axis and2.5deg;78/81 at5deg with estimated rims. Independent ABCD and spherical Snell traces incl full nominal aperture; geometry sampled1001 points each adjacent pair, minimum glass edge0.166666mm, air2.283330mm. TypeScript one-file compile passes. The finite5deg test field is an engineering test, not a verified coverage claim. No broadband MTF validation. Native source copy is retained3fd318c3 baseline; current-main final integration, full-app/browser QA remain pending. Parent must perform final latest-main/delivery ledger dedup.
+
+Rebuild: copy model to src/lens-data/reference in retained baseline; place prewar.test.ts and prewar.config.mjs in repository root. Run vitest run --config prewar.config.mjs. Test writes ../example2/native-results.json, so create corresponding output dir or adjust output path. Run python preflight.py and geometry.py with numpy installed. tsc --noEmit --target ES2022 --module ESNext --moduleResolution Bundler --skipLibCheck src/lens-data/reference/RudolphUS886416Example2.data.ts.
+
+The separate Example1 archive is HELD and is not part of this qualified candidate. No upload or delivery by this worker.

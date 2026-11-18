@@ -1,0 +1,7 @@
+# Fresh scoped audit
+
+Native canonical schema/geometry: zero errors. Render diagnostics: no trim>0.25mm. Iris blade clearance across physical radius: minimum110.122005mm toward preceding surface and1.555034mm toward following. No gap-sag override. Dense on-axis f8 pupil201 samples:199 pass; exact-100%/+100% pupil-edge rays clip. All181 central±90% samples pass. Independent exact intersection/vector Snell nine rays through±99% agree with native image intercepts to4.2633e-14mm; independent matrix EFL/BFD agree exactly to shown precision. This is numerical consistency, not factory fidelity or optical-quality validation.
+
+Fresh scoped TypeScript and ESLint pass. Native MTF support diagnostics recorded but no MTF values or full-field performance promised. Sampled10deg and20deg clipping explicitly disclosed in analysis. No full-app regression, compiled-viewer/browser QA, fresh live-main integration or production numerical comparison. Inherited engine snapshot pinned by parent to main3fd318c3e82cdbc3e5d3a1ed7bd5abbf4e99bfc2; numerical/schema checks are fresh. Integration checks remain outstanding under qualified-handoff split.
+
+Dedup scout scanned1,140 retained *.data.ts for normalizedUS2126126, Sphaerogon/DE672393 alias leads and distinctive prescription fingerprint; no hit. Checked prior31 historical configurations plus group3; distinct. DE672393 source-equivalence not verified. This packet contains one configuration from one patent, not two. Fig2 excluded.

@@ -1,0 +1,158 @@
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
+const LENS_DATA = {
+  schema: 2,
+  key: "zeiss-merte-us2171274-figure-1",
+  maker: "Zeiss",
+  name: "MERTE FIGURE 1 100 mm f/4",
+  subtitle: "1939 FIGURE 1; PATENT-ONLY RECONSTRUCTION",
+  visible: false,
+  catalog: {
+    specs: [
+      "5 ELEMENTS / 3 GROUPS",
+      "PATENT ONLY; NO RETAIL MATCH",
+      "ESTIMATED STOP AND RIMS",
+      "INFINITY ONLY",
+    ],
+    elementCount: 5,
+    groupCount: 3,
+    focalLengthMm: {
+      design: 100.02767451625677,
+    },
+    fNumber: {
+      design: 4,
+    },
+  },
+  source: {
+    patentNumber: "US 2,171,274",
+    example: {
+      label: "Figure 1",
+      id: "1",
+    },
+    patentYear: 1939,
+    authors: ["Willy Mert\u00e9"],
+    assignees: ["Carl Zeiss"],
+    sdSource: "heuristic",
+  },
+  elements: [
+    {
+      id: 1,
+      name: "L1",
+      label: "L1",
+      type: "Plano-convex",
+      nd: 1.55226,
+      vd: 63.3,
+      indexReference: "d",
+    },
+    {
+      id: 2,
+      name: "L2",
+      label: "L2",
+      type: "Biconcave",
+      nd: 1.56735,
+      vd: 42.8,
+      indexReference: "d",
+    },
+    {
+      id: 3,
+      name: "L3",
+      label: "L3",
+      type: "Biconvex",
+      nd: 1.5891,
+      vd: 61.3,
+      indexReference: "d",
+    },
+    {
+      id: 4,
+      name: "L4",
+      label: "L4",
+      type: "Biconcave",
+      nd: 1.59667,
+      vd: 39.1,
+      indexReference: "d",
+    },
+    {
+      id: 5,
+      name: "L5",
+      label: "L5",
+      type: "Biconvex",
+      nd: 1.67165,
+      vd: 32.3,
+      indexReference: "d",
+    },
+  ],
+  surfaces: [
+    {
+      label: "1",
+      R: 26.057,
+      d: 4.55,
+      sd: 13.5,
+      medium: 1,
+    },
+    {
+      label: "2",
+      R: "flat",
+      d: 8.805,
+      sd: 13.5,
+    },
+    {
+      label: "STO",
+      R: "flat",
+      d: 8.805,
+    },
+    {
+      label: "3",
+      R: -25.924,
+      d: 1.8,
+      sd: 8,
+      medium: 2,
+    },
+    {
+      label: "4",
+      R: 9.077,
+      d: 7.37,
+      sd: 8,
+      medium: 3,
+    },
+    {
+      label: "5",
+      R: -24.582,
+      d: 5.21,
+      sd: 8,
+      medium: 4,
+    },
+    {
+      label: "6",
+      R: 18.515,
+      d: 7.98,
+      sd: 8,
+    },
+    {
+      label: "7",
+      R: 39.119,
+      d: 2.46,
+      sd: 10,
+      medium: 5,
+    },
+    {
+      label: "8",
+      R: -53.602,
+      d: 51.17479100902517,
+      sd: 10,
+    },
+  ],
+  aperture: {
+    nominalFNumber: 4,
+    fStops: [4, 5.6, 8, 11, 16],
+  },
+  focus: {
+    closeFocusM: 1000000000000000.0,
+    description:
+      "Infinity-only patent reference; computed paraxial BFD; retail identity not established.",
+  },
+  groups: [],
+  doublets: [],
+  layout: {
+    yScFill: 0.4,
+  },
+} satisfies LensDataV2Input;
+export default LENS_DATA;
