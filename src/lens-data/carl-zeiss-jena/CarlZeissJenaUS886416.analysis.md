@@ -32,7 +32,7 @@ Focal lengths are for each element alone in air. The rear half repeats the front
 
 ### L2 and L5 — biconvex positive element (patent glass II)
 
-`nD = 1.5832`, `f = +15.71 mm`. Radii 10.7 and 54.8 mm, centre thickness 4.1 mm. This is the only positive element of each half and carries all of its converging power. With the inferred 7.8 mm clear radius its edge is about 0.17 mm thick, which agrees with the near knife-edge drawn in Fig. 2.
+`nD = 1.5832`, `f = +15.71 mm`. Radii 10.7 and 54.8 mm, centre thickness 4.1 mm. This is the only positive element of each half and carries all of its converging power. At the 7.8 mm clear radius its edge is about 0.17 mm thick. Fig. 2 also draws a thin edge, about 0.6 mm at its slightly smaller rim of about 7.45 mm.
 
 ### L3 and L4 — biconcave negative element (patent glass I)
 
@@ -67,7 +67,7 @@ The model uses the printed radii, thicknesses, diaphragm distance and indices, e
 
 The focal length differs from the stated 100 by 0.13 %, which is within the rounding of a table printed to one decimal place.
 
-Three things in the model are not printed in the patent. The clear radii are estimated from Fig. 2, which is drawn close to scale: it shows each triplet square-cut at about 7.6 mm, with the diaphragm-side face of element I ending at about 6.4 mm in a bevel. The model keeps 7.8 mm on the cemented faces and the rear face, 7.0 and 6.9 mm on the faces beside the diaphragm, and 8.3 mm on the front face, because the full f/6.3 axial beam needs 7.93 mm at the front face and 6.94 and 6.80 mm beside the diaphragm. At the 5° edge of the traced field the model passes 97.5 % of the axial light. The image plane is the computed paraxial focus for an object at infinity. The 5° trace field is a working value only, because the patent states no field angle or image size.
+Three things in the model are not printed in the patent. The clear radii are estimated from Fig. 2, which is drawn to scale: it shows each triplet square-cut at about 7.45 mm, with the diaphragm-side face of element I ending at about 6.3 mm in a bevel. Its diaphragm opening, about 5.25 mm in radius, is nearer f/8 than f/6.3, so the drawing is not at full aperture, and the full f/6.3 beam is wider than the drawn front edge. The model keeps 7.8 mm on the cemented faces and the rear face, 7.0 and 6.9 mm on the faces beside the diaphragm, and 8.3 mm on the front face, because the full f/6.3 axial beam needs 7.93 mm at the front face and 6.94 and 6.80 mm beside the diaphragm. At the 5° edge of the traced field the model transmits 97.5 % of the axial light. The image plane is the computed paraxial focus for an object at infinity. The 5° trace field is a working value only, because the patent states no field angle or image size.
 
 ## Sources
 

@@ -85,3 +85,36 @@ No land or rim cut was added. A rim extension draws a vertical land, which does 
 
 - Element I's drawn 45° bevel is approximated by the sloped edge between surfaces 3 and 4 (and 6 and 7). The model cannot draw a chamfer on a face whose curve must reach the axial beam above the drawn bevel start.
 - Surface 1 stays 0.7 mm above the drawn edge for corner light, so the front triplet shows a 0.5 mm step at the front edge where the figure draws it flat.
+
+## 2026-11-18 — Second review on the local site
+
+**Compared.** The local page at 1400×900 and the inspector of all six elements, against US 886,416 Fig. 2 rendered at 600 dpi from the 300 dpi scan and read column by column, and against the table on specification page 1 (right column, lines 89–100).
+
+**Figure scale, re-derived.** The drawn axis line runs about 0.8° off the lens's own axis: the triplets' flat edges are centred about 7 px lower at the rear triplet than at the front. Heights were therefore read from each triplet's own mid-line between its top and bottom edges, which also explains the earlier top/bottom difference (273–275 against 264–266 px from the axis line). The near-axis crossings of the eight faces (line centres) span 703.5 px for the 19.8 mm vertex length, 35.5 px/mm, and every vertex and the diaphragm bars lie within 3 px (0.08 mm) of their prescription positions at that scale. Radially, the 10.7 mm cemented face fits the same scale: its drawn sag at 3.94, 5.62 and 7.01 mm height is 27.2, 56.2 and 93.2 px, against 26.7, 56.5 and 92.8 px computed. Element II's drawn edge at 7.23 mm height is 0.82 mm thick, and the prescription gives 0.81 mm. The figure is to scale in both directions.
+
+**Figure readings.** Flat edge 7.44 mm (front) and 7.45 mm (rear) at the line centre, 7.57 and 7.60 mm to the outside of the line; element II is about 0.6 mm thick there, not a knife edge. The diaphragm-side face of element I ends at 6.25 and 6.32 mm, then a 45° bevel runs out to the flat. The diaphragm opening is 186.5 px, 5.25 mm in radius, about f/8.3 at this scale: the figure is not drawn at full aperture, and at f/6.3 the axial beam needs 7.93 mm at surface 1, above the drawn edge.
+
+| Surface | Model | Figure | f/6.3 axial beam | Verdict |
+|---|---:|---:|---:|---|
+| 1 | 8.3 | 7.44–7.59 | 7.93 | Keep. Beam floor plus light: 8.2 loses 3.2 points at 5° against the earlier rims, 8.1 loses 4.3 |
+| 2, 3 | 7.8 | 7.44–7.59 | 7.41 / 7.33 | Keep: 3–5 %, inside the reading error. Lowering them would deepen the step at surface 1; raising them toward 7.93 would make element II a knife edge the figure does not draw |
+| 4 | 7.0 | 6.25 | 6.94 | Keep: beam floor. The straight join from surface 3 reaches 7.38 mm at the drawn bevel start (figure 7.44), so the slope stands in for the bevel |
+| 6 | 6.9 | 6.32 | 6.80 | Keep: beam floor |
+| 7, 8 | 7.8 | 7.45–7.60 | 7.01 / 7.07 | Keep: reading error |
+| 9 | 7.8 | 7.45–7.60 | 7.37 | Keep: square with surface 8 as drawn |
+
+No rim changed. The overlay of the model on the figure puts every face on its drawn curve.
+
+**Lands and cuts.** No land. The four cuts (surfaces 1, 4, 6 and 9 below the earlier 8.5, 7.8, 7.8 and 8.5 mm) give 100 / 100 / 100 / 99.8 / 99.4 / 98.5 / 97.5 % at 0 / 0.8 / 1.7 / 2.5 / 3.3 / 4.2 / 5.0°, a worst loss of 2.5 points at 5°, inside the 3-point allowance; restoring surfaces 1 and 4 wins back 1.4 points and surfaces 6 and 9 1.1. Kept. Trading the front step for the bevel does not work: surface 1 at 8.0 with surfaces 4 and 6 restored to 7.8 loses 5.3 points.
+
+**Labels, tags and movement.** Element types agree with the radius signs (L1 and L6 meniscus, L2 and L5 biconvex, L3 and L4 biconcave), and the inspector focal lengths (−34.93, +15.71, −31.89 mm) match the thick-lens values. Both triplets read TRIPLET C1 and TRIPLET C2 in the inspector, which is right. The C1 (surfaces 1–4) and C2 (6–9) brackets and the stop, 2.7 mm from each inner vertex, sit where the figure draws them, with no label collisions. No group bracket is added: the patent names no groups and C1 and C2 already bracket the two components. Element names stay L1–L6: the patent's I, II and III name the glass kinds and repeat in both halves. No aspheric surface and no `apd` tag; the patent names no special glass. The L3 and L4 roles were identical; each now names its triplet. The lens is infinity-only with no gap or zoom block, the focus slider reads "Not modeled", and the focus description says only that the patent gives no close-focus data.
+
+**Glass and colour.** The patent prints nD and nG′ only (I 1.4626 / 1.4714, II 1.5832 / 1.5972, III 1.6240 / 1.6448), with no Abbe number, glass name or maker. A scan of the 733 catalog rows and of the Hoya, Ohara and Sumita vendor files at the sodium D (589.29 nm) and hydrogen G′ (434.05 nm) lines finds no row within 1e-4 at both lines. The nearest are FK3 / FSL3 / FC3 for glass I (+0.0018 at D), K-CSK158 for glass II (+0.0007 at D, −0.0002 at G′) and BAM21 / BAFD1 for glass III (+0.0019 at D). The pairs do not recur in Example 1, which uses 1.4967, 1.6128 and 1.6570. The labels stay unmatched and the model stays monochromatic. The patent prints no aberration curves, so there is no colour comparison.
+
+**Assignee.** `Carl-Zeiss-Stiftung` matches the front page ("assignor to the firm of Carl Zeiss, of Jena") and the form used by the corpus's other pre-war Jena patents; no variant.
+
+**Engine numbers, unchanged.** Focal length 99.867 mm, f/6.3, half field 5°, chief ray unblocked to 41.9°, stop radius 6.888 mm. Surface audit: no errors. Aperture audit: within 3 % of the stated f-number, no rim, trace or iris limit. The image-circle and field-coverage audits skip the lens (no image format). Longitudinal spherical aberration is +0.31 mm at full aperture and −0.63 mm at the 0.7 zone, a corrected zonal pattern consistent with the chosen radius signs.
+
+**Text.** The L3 and L4 roles name their triplets. The header semi-diameter note and the analysis restate the readings (7.45 mm edge, 6.3 mm bevel start, element II about 0.6 mm thick at the drawn edge) and give the drawn 5.25 mm diaphragm opening as the reason the f/6.3 front face exceeds the drawing.
+
+**Open:** the two lines of the semi-diameter section stand (sloped edge for the drawn bevel; 0.5 mm step at the front edge). The 5° trace field is a working value; the patent states no field.
