@@ -22,9 +22,9 @@ Six elements in four air-separated groups, all spherical or flat:
 
 - L1, a positive meniscus, convex to the object.
 - L2 + L3 + L4, a cemented triplet forming a thick meniscus: a positive meniscus, a low-index biconvex lens and a strong biconcave flint whose deep concave rear surface (radius 32.44 mm) faces the stop space.
-- L5 and L6, two plano-convex lenses with their curved faces toward the object. The patent prints the air space between them as 0.00: the flat rear face of L5 touches the vertex of L6 on the axis and the gap opens toward the rim. They are not cemented.
+- L6 and L7, two plano-convex lenses with their curved faces toward the object. The patent prints the air space between them as 0.00: the flat rear face of L6 touches the vertex of L7 on the axis and the gap opens toward the rim. They are not cemented.
 
-The patent labels the two rear lenses L6 and L7 in Fig. 2, keeping L5 for the single rear lens of Fig. 1. The model numbers them L5 and L6 in order.
+The element names are the patent's. It letters the two rear lenses L6 and L7 in Fig. 2 and keeps L5 for the single rear lens of Fig. 1, so there is no L5 in this lens. The group brackets FRONT, MENISCUS and REAR are the patent's three units: the front collective lens, the cemented meniscus unit and the collective unit facing the focal point.
 
 The patent's central idea is the thickness of the cemented meniscus. Bertele states that raising the aperture of a conventional design from 1:1.4 to 1:1.2 bends the spherical-aberration curve badly, and that making the meniscus thicker than 40 % of the focal length gives a favourable curve while still allowing the other errors to be corrected. In this example the meniscus is 45.28 mm thick on the axis for a 100 mm focal length.
 
@@ -40,14 +40,14 @@ Focal lengths are for each element alone in air, computed from the printed data.
 | L2 | Positive meniscus (cemented) | 1.6203 | 60.2 | +131.7 |
 | L3 | Biconvex (cemented) | 1.4645 | 65.7 | +199.2 |
 | L4 | Biconcave (cemented) | 1.7552 | 27.5 | −37.7 |
-| L5 | Plano-convex | 1.7015 | 41.2 | +74.4 |
-| L6 | Plano-convex | 1.7015 | 41.2 | +408.2 |
+| L6 | Plano-convex | 1.7015 | 41.2 | +74.4 |
+| L7 | Plano-convex | 1.7015 | 41.2 | +408.2 |
 
-The cemented triplet as a whole is negative, with a focal length of −155.2 mm. L5 carries most of the rear unit's power; L6 is a weak lens that takes over part of the bending the single rear lens of Fig. 1 had to do alone.
+The cemented triplet as a whole is negative, with a focal length of −155.2 mm. L6 carries most of the rear unit's power; L7 is a weak lens that takes over part of the bending the single rear lens of Fig. 1 had to do alone.
 
 ## Glass Identification and Selection
 
-The patent prints a refractive index nd and an Abbe number ν for every element and names no glasses. Three of the five printed pairs coincide with catalogue glass types, and those elements carry the catalogue name: L3 is Schott FK3 (1.4645 / 65.77), L4 is Schott SF4 (1.7552 / 27.58), and L5 and L6 match the BaSF7 type (1.70154 / 41.15, labelled from the Sumita catalogue row). L1 (1.6664 / 48.6) and L2 (1.6203 / 60.2) are close to the BaF11 and SK16 types but differ in the fourth decimal of the index, so they are left unmatched and traced from the printed values. The names identify glass types; the melts Zeiss actually used are not known.
+The patent prints a refractive index nd and an Abbe number ν for every element and names no glasses. Three of the five printed pairs coincide with catalogue glass types, and those elements carry the catalogue name: L3 is Schott FK3 (1.4645 / 65.77), L4 is Schott SF4 (1.7552 / 27.58), and L6 and L7 match the BaSF7 type (1.70154 / 41.15, labelled from the Sumita catalogue row). L1 (1.6664 / 48.6) and L2 (1.6203 / 60.2) are close to the BaF11 and SK16 types but differ in the fourth decimal of the index, so they are left unmatched and traced from the printed values. L2's pair would be SK16 if read at the sodium D line, but SF4 fits the printed index only at the helium d line, so the table is read at d throughout. The names identify glass types; the melts Zeiss actually used are not known.
 
 The choice of glasses follows the patent's claims: the biconvex middle lens of the triplet (nd 1.4645) has a lower index than the biconcave lens behind it (nd 1.7552). That index step at the cemented surface, together with the dense flint's low Abbe number of 27.5, does the colour correction inside the thick meniscus. Both rear lenses use the same glass.
 
@@ -65,7 +65,7 @@ The claims set two numerical limits, and the example meets both:
 Three things in the prescription are not printed in the patent:
 
 - The stop. The patent draws no diaphragm. The model places one 12 mm behind the concave rear surface of the triplet, inside the printed 23.61 mm air space.
-- The lens diameters. The patent prints none; they are measured from Fig. 2, which is drawn to scale. The front lens has a clear semi-diameter of 44 mm. The cemented triplet is square-cut at 37.3 mm, and its concave rear surface ends at 21.8 mm, where the drawing starts a chamfer. Both rear lenses are square-cut at 26.7 mm. These rims pass the full axial f/1.2 beam; at the patent's 10° field about 80 % of the axial illumination reaches the image.
+- The lens diameters. The patent prints none; they are measured from Fig. 2, which is drawn to scale. The front lens has a clear semi-diameter of 44 mm. The cemented triplet is square-cut at 37.3 mm, and its flat top runs back almost to the vertex plane of the concave rear surface. That surface is clear to 21.8 mm, where the drawing starts a chamfer to the edge; the diagram shows this rim as a flat annulus out to 37.3 mm. Both rear lenses are square-cut at 26.7 mm. These rims pass the full axial f/1.2 beam; at the patent's 10° field about 80 % of the axial illumination reaches the image.
 - The back focus, computed as described above.
 
 Because of spherical aberration in the front half, the real edge ray of the f/1.2 beam reaches the stop slightly higher (19.2 mm) than the paraxial value the stop is sized from (18.1 mm), so the outermost part of the f/1.2 pupil is trimmed at the stop. Traced along the axis, longitudinal spherical aberration is +0.57 mm at the edge of the pupil and −0.23 mm at 70 % of it.

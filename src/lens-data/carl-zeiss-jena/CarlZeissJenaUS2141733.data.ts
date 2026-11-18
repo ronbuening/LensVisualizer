@@ -13,8 +13,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *
  * Semi-diameters are measured from Fig. 2, which is drawn to scale (about 10.8 px/mm at 400 dpi, checked on the
  * vertex spacings and on the sags of R1 and R6): the cemented triplet is square-cut at 37.3 mm, R6 ends at 21.8 mm
- * where the drawn chamfer starts, and both rear lenses are square-cut at 26.7 mm. The front lens keeps 44 mm, within
- * 3 % of the drawn 42.6 mm. Every rim clears the axial f/1.2 beam (37.3 mm against 36.8 mm needed at R3).
+ * where the drawn chamfer starts, and both rear lenses are square-cut at 26.7 mm. The figure carries the triplet's flat
+ * top almost to R6's vertex plane before the chamfer, so R6 has a drawn land (rimExtensionSd) out to 37.3 mm; it traces
+ * nothing. The front lens keeps 44 mm, within 4 % of the drawn 42.4-42.6 mm. Every rim clears the axial f/1.2 beam
+ * (37.3 mm against 36.8 mm needed at R3). Element names and diagram labels are the patent's: L1-L4, then L6 and L7
+ * for the rear pair (the patent keeps L5 for the single rear lens of Fig. 1); the groups are its three units.
  * The image circle is twice the image height of the patent's +/-10 degree picture angle at f = 100 mm.
  * The stop is sized from the paraxial f/1.2 beam; the real marginal ray is slightly higher at the stop, so the
  * outermost few per cent of the f/1.2 pupil is cut by the stop itself, not by a lens rim.
@@ -64,6 +67,7 @@ const LENS_DATA = {
       focalLengthMm: 170.44,
       glass: "Unmatched (nd 1.6664 / V 48.6)",
       role: "Collective front lens, convex to the object.",
+      diagramLabel: "L1",
     },
     {
       id: 2,
@@ -77,6 +81,7 @@ const LENS_DATA = {
       glass: "Unmatched (nd 1.6203 / V 60.2)",
       role: "Positive front member of the thick cemented meniscus.",
       cemented: "C1",
+      diagramLabel: "L2",
     },
     {
       id: 3,
@@ -90,6 +95,7 @@ const LENS_DATA = {
       glass: "FK3 (Schott)",
       role: "Low-index positive middle member of the cemented meniscus.",
       cemented: "C1",
+      diagramLabel: "L3",
     },
     {
       id: 4,
@@ -103,10 +109,11 @@ const LENS_DATA = {
       glass: "SF4 (Schott)",
       role: "Dense-flint negative rear member of the cemented meniscus; its deep concave surface faces the stop.",
       cemented: "C1",
+      diagramLabel: "L4",
     },
     {
       id: 5,
-      name: "L5",
+      name: "L6",
       label: "Element 5",
       type: "Plano-Convex Positive",
       nd: 1.7015,
@@ -115,10 +122,11 @@ const LENS_DATA = {
       focalLengthMm: 74.37,
       glass: "BASF7 (Sumita)",
       role: "Main positive lens of the split rear collective.",
+      diagramLabel: "L6",
     },
     {
       id: 6,
-      name: "L6",
+      name: "L7",
       label: "Element 6",
       type: "Plano-Convex Positive",
       nd: 1.7015,
@@ -127,6 +135,7 @@ const LENS_DATA = {
       focalLengthMm: 408.17,
       glass: "BASF7 (Sumita)",
       role: "Weak positive rear lens of the split rear collective.",
+      diagramLabel: "L7",
     },
   ],
   surfaces: [
@@ -169,6 +178,7 @@ const LENS_DATA = {
       R: 32.44,
       d: 12,
       sd: 21.8,
+      rimExtensionSd: 37.3,
     },
     {
       label: "STO",
@@ -210,7 +220,11 @@ const LENS_DATA = {
     closeFocusM: 1e15,
     description: "Infinity focus only; the patent gives no close-focus data.",
   },
-  groups: [],
+  groups: [
+    { text: "FRONT", fromSurface: "1", toSurface: "2" },
+    { text: "MENISCUS", fromSurface: "3", toSurface: "6" },
+    { text: "REAR", fromSurface: "7", toSurface: "10" },
+  ],
   doublets: [{ text: "C1", fromSurface: "3", toSurface: "6" }],
   layout: {
     yScFill: 0.4,

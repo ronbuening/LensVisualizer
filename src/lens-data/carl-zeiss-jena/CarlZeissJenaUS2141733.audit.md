@@ -96,9 +96,9 @@ Open:
 
 - Closed 2026-11-18 (semi-diameter pass; the rear pair measures about 63 % of the front height, not half): Semi-diameters are estimates (`sdSource` "heuristic") and have not been compared with Fig. 2. In the figure the front lens is slightly taller than the cemented meniscus and the rear pair is roughly half the front height; the present 44 / 42 / 25 mm follow that order. At the patent's 10° the lower edge of the beam is cut.
 - Closed in part 2026-11-18 (`imageCircleMm` 35.3 added from the stated picture angle; mount and format stay unset): No `lensMounts` or `imageFormat`: the patent states a ±10° picture angle but no format. The default half-field shown (18.5°) is wider than the patent's field.
-- `groups` is empty.
+- Closed 2026-11-18 (second review: FRONT, MENISCUS and REAR brackets for the patent's three units): `groups` is empty.
 - Elements 1 and 2 have no exact catalogue row.
-- The rear elements are numbered 5 and 6, not the patent's L6 and L7.
+- Closed 2026-11-18 (second review: names and diagram labels are now the patent's L1–L4, L6, L7): The rear elements are numbered 5 and 6, not the patent's L6 and L7.
 
 ## 2026-11-18 — Semi-diameter pass against the patent figure
 
@@ -137,4 +137,57 @@ Surface validator: no errors. Aperture audit: within 3 % of the stated f-number,
 Open:
 
 - None for the rims.
-- The front lens could go to the drawn 42.6 mm if a later pass wants an exact figure fit; the difference is within noise.
+- Closed 2026-11-18 (second review: re-measured 42.4 mm at the line centre and 42.6 mm at the outer edge; 44 kept, inside the reading band, with the drawn step order): The front lens could go to the drawn 42.6 mm if a later pass wants an exact figure fit; the difference is within noise.
+
+## 2026-11-18 — Second review on the local site
+
+Compared: the live page (1400×900 at infinity, the element inspector for all six elements, the focus-movement panel) against Fig. 2 rendered at the scan's native 300 dpi, and the specification text on page 2 of the PDF.
+
+Figure scale, measured afresh. The axis lies on page rows 2422–2424 (tilt under 0.2°). Vertex crossings: R1 735, R2 850, R3 862, R4 994, R5 1124, R6 1227, R7 1412, R8/R9 about 1494, R10 1540. The span R3–R6 inside the cemented block is 365 px for 45.28 mm (8.06 px/mm) and R1–R10 is 804 px for 99.45 mm (8.08 px/mm); the draughtsman widened the printed 0.56 mm air space l1 to about 1.5 mm. Half the top-to-bottom height of the R6 arc at four columns gives a vertical scale of 8.08–8.22 px/mm, so the figure is to scale in both directions. The R6 arc sits 2–3 px below the drawn axis, so every height below is half the full top-to-bottom height.
+
+Readings (line centre / outer edge of the stroke): L1 flat 42.4 / 42.6 mm; triplet flat top 37.0 / 37.3 mm; R6 cap end 21.9 mm, 8.44 mm behind its vertex (the computed sag at 21.8 mm is 8.42 mm); rear pair 26.5 / 26.7 mm. These agree with the rims set earlier today within 1 %, except L1 at 44 mm (3–4 % above), which stays inside the reading band with the drawn step order.
+
+### Change: L4's rear rim
+
+The figure carries the triplet's flat top at 37.3 mm past R5 to about 1 mm in front of R6's vertex plane (0.7 mm on the upper side, 1.4 mm on the lower), then draws a straight chamfer to the R6 cap end (9.5 mm along the axis, 15.4 mm in height). The renderer joined R5's rim straight to R6's cap end, so the live page drew L4 as a wedge: at the chamfer corner the outline stood 9.3 mm below the drawn top, and about 110 mm² of drawn glass was missing on each side. The earlier note that the straight join follows the chamfer closely does not hold on the page.
+
+| Surface | Before | After | Evidence |
+|---|---|---|---|
+| 6 (R6) | `sd` 21.8, no land | `sd` 21.8, `rimExtensionSd` 37.3 | Fig. 2 flat top of L4 at 37.3 mm; land at the cap's edge sag (8.42 mm), 3.58 mm in front of the stop plane |
+
+With the land the triplet's flat top runs unbroken to the rear land, as drawn; the only departure left is the chamfer corner, about 74 mm² of extra glass per side, at most 8.1 mm from the drawn chamfer line. No surface field draws a sloped chamfer, so the square corner is the nearer of the two pictures (side by side with the figure, the drawn outline matches everywhere except that corner). The land traces nothing. Surface validator: no errors, no `gapSagFrac` needed. The iris check finds no glass inside the iris (margins 6.51 mm before and 14.83 mm after) and the render-trim check reports no material trim.
+
+Lands and cuts against the base1201sd rims (`rimcost.mjs --loo`, wide open, 0–10.1°):
+
+| Surface | Kind | Baseline | Final | Light | Verdict |
+|---|---|---|---|---|---|
+| 3, 4, 5 | cut | 42 | 37.3 | 0.9 points at 3.4° (restoring them with R6 wins it back) | keep: slight |
+| 6 | cut and land | 28 | 21.8, land 37.3 | land 0.0 (identical curve with and without it) | keep: drawn, costs nothing |
+| 7–10 | raised | 25 | 26.7 | 0.0 | figure-driven |
+
+Final curve 100.0, 100.0, 98.9, 95.8, 91.2, 85.9, 79.7 % at 0, 1.7, 3.4, 5.1, 6.8, 8.4 and 10.1°; worst loss 0.9 points at 3.4°, unchanged.
+
+### Labels, brackets and tags
+
+- Element names: L5, L6 → L6, L7, the letters Fig. 2 and the text give the rear pair (L5 is Fig. 1's single rear lens). `diagramLabel` L1, L2, L3, L4, L6, L7 added, so the label row under the diagram reads in the patent's letters (it showed ids 1–6). The inspector reads "Element 5 L6" and "Element 6 L7".
+- Groups: none → FRONT (surfaces 1–2), MENISCUS (3–6) and REAR (7–10), the patent's three units: the front unit, the "meniscus unit", and the third unit "facing the focal point". The movement panel reports 3 groups and no movement.
+- The C1 bracket spans 3–6; the inspector reads TRIPLET C1 on L2, L3 and L4, which is right. Shape types agree with the radius signs. Inspector focal lengths match the paraxial trace (170.44, 131.66, 199.16, −37.68, 74.37, 408.17 mm). Roles are true. No `apd` tags (the patent names no special glass); no aspheres.
+- Movement: no variable gap and no zoom; the focus slider reads "Not modeled" and the description states only that the patent gives no close-focus data.
+
+Engine numbers before and after: focal length 100.0095 mm, f/1.200, stop semi-diameter 18.06 mm, half-field 18.18°, back focus 30.0533 mm, all unchanged. Aperture audit within 3 % with no rim, trace or iris limit; image-circle audit 0 undersized; field coverage at or above 99 %.
+
+### Glass and colour
+
+Line test against the catalogue (exact window |Δn| ≤ 1e-4, |Δν| ≤ 0.15):
+
+- L3 FK3: Δn 0.00000 at d, −0.00006 at D.
+- L4 SF4: Δn 0.00000 at d; no row within 2e-4 at D.
+- L6, L7 BaSF7: Δn +0.00004 at d, −0.00011 at D.
+- L2 (1.6203 / 60.2): SK16 rows are +0.00011 at d (outside) but 1.62032 / 60.24–60.33 at D (inside).
+- L1 (1.6664 / 48.6): BaF11 rows are +0.00032 at d and +0.0002 / −0.23 to −0.28 at D; outside at both.
+
+SF4 fits the printed index only at d, so the table stays at d and L2 stays unmatched; the analysis states the D-line reading. `agfnear.py` at d finds no vendor row closer than the catalogue's BaF11/BAH11 (1.66672) and SK16/BSM16 (1.62041). The patent prints only nd and ν; both pairs also appear in the Fig. 1 table, because the front lens and meniscus are the same lenses, so that is not independent evidence. No aberration curves are printed, so there is no colour plot to compare. No constant or nd-only medium; no printed line index is missing.
+
+Assignee "Zeiss Ikon AG" matches the front page ("Zeiss Ikon Aktiengesellschaft") and the corpus spelling used in seven files.
+
+Open: nothing new. The earlier line on elements 1 and 2 (no exact catalogue row) stands.
