@@ -3867,10 +3867,10 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 1 | Element 1 | abbe | `Unmatched (nD 1.62313 / V 57.0)` | Explicit unmatched/proprietary annotation |
-| 3 | Element 2 | abbe | `Unmatched (nD 1.51746 / V 58.9)` | Explicit unmatched/proprietary annotation |
-| 5 | Element 3 | abbe | `Unmatched (nD 1.55088 / V 49.6)` | Explicit unmatched/proprietary annotation |
-| 6 | Element 4 | abbe | `Unmatched (nD 1.60284 / V 60.6)` | Explicit unmatched/proprietary annotation |
+| 1 | Element 1 | abbe | `Unmatched (nd 1.62313 / ν 57.0)` | Explicit unmatched/proprietary annotation |
+| 3 | Element 2 | abbe | `Unmatched (nd 1.51746 / ν 58.9)` | Explicit unmatched/proprietary annotation |
+| 5 | Element 3 | abbe | `Unmatched (nd 1.55088 / ν 49.6)` | Explicit unmatched/proprietary annotation |
+| 6 | Element 4 | abbe | `Unmatched (nd 1.60284 / ν 60.6)` | Explicit unmatched/proprietary annotation |
 
 ### [CARL ZEISS JENA TESSAR 144mm f/5.5](../../src/lens-data/carl-zeiss-jena/ZeissTessar144f55.data.ts) - 0.0% trusted (0/4); 0.0% Sellmeier (0/4) - US 721,240
 
@@ -3975,12 +3975,12 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 1 | Element 1 | abbe | `Unmatched (nD 1.61087 / V 55.8 as printed; no catalog row)` | Explicit unmatched/proprietary annotation |
-| 2 | Element 2 | abbe | `Unmatched (nD 1.53994 / V 47.4 as printed; no catalog row)` | Explicit unmatched/proprietary annotation |
-| 4 | Element 3 | abbe | `Unmatched (nD 1.56064 / V 61.1 as printed; no catalog row)` | Explicit unmatched/proprietary annotation |
-| 6 | Element 4 | abbe | `Unmatched (nD 1.56064 / V 61.1 as printed; no catalog row)` | Explicit unmatched/proprietary annotation |
-| 8 | Element 5 | abbe | `Unmatched (nD 1.53994 / V 47.4 as printed; no catalog row)` | Explicit unmatched/proprietary annotation |
-| 9 | Element 6 | abbe | `Unmatched (nD 1.61087 / V 55.8 as printed; no catalog row)` | Explicit unmatched/proprietary annotation |
+| 1 | Element I | abbe | `Unmatched (nD 1.61087 / V 55.8 as printed; no catalog row)` | Explicit unmatched/proprietary annotation |
+| 2 | Element II | abbe | `Unmatched (nD 1.53994 / V 47.4 as printed; no catalog row)` | Explicit unmatched/proprietary annotation |
+| 4 | Element III | abbe | `Unmatched (nD 1.56064 / V 61.1 as printed; no catalog row)` | Explicit unmatched/proprietary annotation |
+| 6 | Element IV | abbe | `Unmatched (nD 1.56064 / V 61.1 as printed; no catalog row)` | Explicit unmatched/proprietary annotation |
+| 8 | Element V | abbe | `Unmatched (nD 1.53994 / V 47.4 as printed; no catalog row)` | Explicit unmatched/proprietary annotation |
+| 9 | Element VI | abbe | `Unmatched (nD 1.61087 / V 55.8 as printed; no catalog row)` | Explicit unmatched/proprietary annotation |
 
 ### [CARL ZEISS JENA PANCOLAR 50mm f/2](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaPancolar50mmf2.data.ts) - 0.0% trusted (0/6); 0.0% Sellmeier (0/6) - GB 850,117
 
