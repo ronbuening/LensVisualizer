@@ -13,9 +13,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *
  * Inferred, not printed: the stop plane, placed 1 mm in front of the first vertex (the patent defines the working
  * aperture as the free aperture of the front component, 3.20 inches or about f/3.1, which the stop radius reproduces);
- * the clear semi-diameters (42 mm front, 32 mm rear; the rear value is the least that passes the chief ray at the
- * patent's stated 5 degree half-field, while Figure 1 draws both components about 39 mm); and the back focus, which is
- * the computed paraxial image distance for an object at infinity.
+ * the clear semi-diameters, estimated from Figure 1, which is drawn to scale (5.85 px/mm at 600 dpi, checked on the
+ * first-to-last vertex span and on the back focus to the film): the rear doublet is square-cut at 39.1 mm as drawn;
+ * the front doublet keeps 42 mm, a little above the figure's 39.5 mm, because it must pass the patent's 3.20-inch free
+ * aperture (40.64 mm) and the 5 degree pencil behind it; and the back focus, which is the computed paraxial image
+ * distance for an object at infinity. The 35 mm cinema format follows from the patent's own statement that its 5 degree
+ * field is that of a 5-inch lens on the usual kinematograph film (an object about 22 mm wide); the lens has no iris.
  */
 const LENS_DATA = {
   schema: 2,
@@ -25,6 +28,8 @@ const LENS_DATA = {
   subtitle: "US 1,484,853 A, sole example — Warmisham short-back-focus projection lens",
   visible: false,
   catalog: {
+    lensMounts: ["projection-lens"],
+    imageFormat: "35mm-cinema",
     specs: [
       "4 ELEMENTS / 2 GROUPS",
       "ALL SPHERICAL",
@@ -136,26 +141,27 @@ const LENS_DATA = {
       label: "4",
       R: 74.6252,
       d: 28.6512,
-      sd: 32,
+      sd: 39.1,
       medium: 3,
     },
     {
       label: "5",
       R: -127.762,
       d: 5.2324,
-      sd: 32,
+      sd: 39.1,
       medium: 4,
     },
     {
       label: "6",
       R: "flat",
       d: 63.477,
-      sd: 32,
+      sd: 39.1,
     },
   ],
   aperture: {
     nominalFNumber: 3.1274,
-    fStops: [3.1274, 4, 5.6, 8, 11, 16],
+    fStops: [3.1274],
+    maxFNumber: 3.1274,
   },
   focus: {
     closeFocusM: 1e15,
