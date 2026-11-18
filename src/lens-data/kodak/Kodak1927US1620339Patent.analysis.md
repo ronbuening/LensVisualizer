@@ -1,24 +1,95 @@
-# Frederick–Wood Kodak projection objective, US1620339 (1927)
+# Kodak Projection Objective 100 mm f/2.5 — US 1,620,339
 
-Qualified hidden patent-only reciprocal-infinity reference. No production lens identity or actual projector conjugate claimed. Not a freshly discovered patent family or deployed model.
+## Patent Reference and Design Identification
 
-## Primary source and visual audit
-https://patentimages.storage.googleapis.com/9d/5b/2b/b0dc4ec36ae7d6/US1620339.pdf
-Inventors Charles W. Frederick and Donald L. Wood; assignee Eastman Kodak Company. Filed May 20, 1926, granted March 8, 1927. Original three-page PDF retained. Drawing and printed tables on pages 1–2 visually read. Light in this model travels from the front cemented pair toward the film-gate side (reciprocal to projection). Drawing and claims establish signed radii +82.8, −69.2, −601.9, +40.7, +220.7 mm. Axial intervals 9.4, 3.8, 96.7 air, 8.0 mm; three elements, two groups. nD 1.523, 1.617, 1.523; source nG 1.534, 1.639, 1.534; source dispersive ratios 59.0, 36.4, 59.0. Native nD/V dispersion is an approximation, not a guaranteed reconstruction of exact printed nG. Exact G indices are preserved and independently traced paraxially.
+**Patent:** US 1,620,339 A, *Projection Objective*  
+**Application Number:** Serial No. 110,533  
+**Filed:** May 20, 1926  
+**Granted:** March 8, 1927  
+**Inventors:** Charles W. Frederick; Donald L. Wood  
+**Assignee:** Eastman Kodak Company  
+**Example details:** one table, printed on the drawing sheet and repeated in the specification (p. 1, lines 55–80)
 
-## Explicit modeling assumptions
-The source states nominal 100mm EFL, f/2.5 and 31.3mm BFD. Calculated D BFD31.408229 is used, not fitted to printed31.3. No radius, index, glass thickness or group gap changed. Estimated iris is 1mm in front of the first vertex and all glass semi-diameters are 22mm; patent does not locate an iris or give clear diameters. Native nominal f/2.5 sets pupil radius19.996702mm. These estimates are for a controlled reference, not historical construction evidence. The flat iris adds no power. No gap-sag override.
+The patent contains a single numerical example, and the data file transcribes it at the patent's own scale: equivalent focal length 100, aperture f/2.5, back focal length 31.3. No scale factor is applied.
 
-An actual projector has a finite film-to-screen conjugate; the source gives no screen distance, magnification, film size or usable field. This file deliberately provides only the supported reciprocal infinity reference, and does not silently invent a finite projector configuration. The calculated rear image plane is not a housing, flange or verified gate dimension. Image-quality/coverage claims cannot be inferred from this file. Visible=false.
+The specification says the objective is meant for "small and inexpensive projectors intended for home and amateur use". It asks for three things at once: low cost, a wide aperture so that a small incandescent lamp gives a bright picture, and reasonably good correction. That purpose fits Kodak's 16 mm home projectors of the mid-1920s, and museum records list 2-inch projection lenses on the Kodascope Model B and Model C. No source found during the check ties this prescription, or an f/2.5 aperture, to a particular Kodascope lens, and the patent names no product. The model is therefore a patent design only. It is kept at the patent's scale and is not presented as a production lens.
 
-## Fresh validation
-Independent reduced-angle matrices: D EFL99.9835085989mm, BFD31.4082292221mm; front cemented pair EFL167.1108210794mm, near printed167.0. Exact source G calculation: EFL99.1842798471mm, BFD30.9707457792mm. Independent exact Snell axial trace near axis reproduces BFD31.4082292213mm; outer nominal pupil longitudinal spherical aberration −0.189861mm relative to D paraxial plane.
+## Optical Architecture
 
-1,001 radial samples per adjacent surface pair over 0–22mm have positive physical separations, minimum glass edge2.640890mm, with 1mm minimum front-iris clearance. Native schema validation gives no errors, zero significant render trims, and scoped TypeScript check passes. Native ray sample transmission: 201/201 axial including full nominal pupil; 9/9 at5°,5/9 at10°,0/9 at15°. Off-axis figures are diagnostic sampled-ray counts, not an image-circle guarantee. No optics fitted to improve transmission. All validation outputs retained.
+The objective has three elements in two groups, both positive, separated by a long air space.
 
-Full application regression, latest-main integration compatibility, compiled-viewer/browser QA, exhaustive aperture/field/MTF convergence and actual finite projection validation remain outstanding integration work. Validation engine inherited from g11_reserve, pinned historical engine; the fresh checks above rerun for this model, not inherited success claims.
+- The front component is a cemented pair: a biconvex crown (L1) followed by a negative flint meniscus (L2). Its combined focal length is 167.11 mm in the model; the patent prints 167.0.
+- The rear component is a single positive crown meniscus (L3) with its convex side toward the front component and its concave side toward the film gate.
+- The air space between the components is 96.7 mm, almost the whole focal length.
 
-## Dedup and reproducibility
-Authenticated main read on November17 remains 68cec1ee298be6353c61a0dfd5529024046e332b. Reused its verified complete eight-file delta and checked blob hashes. Read all 1,140 base model bodies, 32 original archive bodies representing25 unique models, all11 later trios/33 models, and eight delta bodies:1,213 full source bodies. No exact patent match or five-nonflat-radius normalized fingerprint at0.6% tolerance (including whole sign reversal). This does not claim universal patent-family dedup. US1620337 Frederick–Altman is a different design.
+The patent explains the layout. The rear meniscus sits very close to the gate, so the objective has a very short back focal length. Placed there, it collects most of the light leaving the gate and bends it into a beam that the simple front component can pass. The claims record the proportions: the separation is more than ninety percent of the focal length, the aperture is greater than f/3, and every radius is at least forty percent of the focal length. In the example the shortest radius is 40.7 and the separation is 96.7.
 
-Reproduce: python analyze.py; python generate.py; python geometry.py; python ray_screen.py. generate.py uses the retained workspace metadata template tenth_interwar/metadata-template.json; a self-contained copy is included as metadata-template.json. Use the archived lens data if applying elsewhere. For native checks, use inherited local g11_reserve/engine or the pinned engine source and dependencies, copy the lens to src/lens-data/kodak, copy validate.mjs to engine root, then run node --import ./scripts/ts-js-specifier-hook-register.mjs validate.mjs. Scoped tsc: --noEmit --strict --skipLibCheck --target ES2022 --module nodenext --moduleResolution nodenext src/lens-data/kodak/Kodak1927US1620339Patent.data.ts. No external data changed or user delivery performed.
+The patent also lists what keeps the lens cheap: only three elements, only two kinds of glass, both inexpensive, and no steep curves.
+
+The data file runs in the reverse of the projection direction, from the cemented front component to the film gate, with the object at infinity. This is the usual way to evaluate a projection lens and it is how the patent's focal length and back focal length are defined.
+
+## Element-by-Element Analysis
+
+### L1 — Biconvex Crown
+
+`nD = 1.523, ν = 59.0.` Radii +82.8 and −69.2, thickness 9.4. Focal length in air +73.64 mm (patent: +73.6).
+
+L1 supplies the positive power of the front component. It is cemented to L2 at the −69.2 surface.
+
+### L2 — Negative Flint Meniscus
+
+`nD = 1.617, ν = 36.4.` Radii −69.2 and −601.9, thickness 3.8. Focal length in air −127.07 mm (patent: −127.1).
+
+L2 is the only flint element. Cemented behind L1, it corrects the colour and part of the spherical aberration of the two crown elements. Its rear surface is nearly flat.
+
+### L3 — Positive Crown Meniscus
+
+`nD = 1.523, ν = 59.0.` Radii +40.7 and +220.7, thickness 8.0. Focal length in air +93.98 mm (patent: +94.0).
+
+L3 is the rear component. It stands 96.7 mm behind L2 and about 31 mm in front of the image plane. Its front surface, radius 40.7, is the strongest curve in the objective.
+
+## Glass Identification and Selection
+
+The patent prints three values for each glass: the index for the D line, the index for the G′ line, and the dispersive ratio ν.
+
+| Element | nD    | nG′   | ν    | Patent description  |
+| ------- | ----- | ----- | ---- | ------------------- |
+| L1, L3  | 1.523 | 1.534 | 59.0 | white optical crown |
+| L2      | 1.617 | 1.639 | 36.4 | dense flint         |
+
+The patent says both glasses "are in common use" and gives no maker or catalogue name, so the data file stores the printed numbers without a catalogue label. The indices are marked as D-line (sodium) values, as printed. The model derives its colour behaviour from nD and ν. The printed G′ indices are not stored in the model; used directly, they give a focal length of 99.18 mm and a back focus of 30.97 mm for that line.
+
+## Focus Mechanism
+
+The patent describes no focusing movement and gives no screen distance, magnification or film size. In a projector of this kind the whole objective would slide in its mount to focus the screen image, but that is general practice, not something the patent states. The model is fixed at infinity focus.
+
+## Aspherical Surfaces
+
+There are none. All five surfaces are spherical.
+
+## Model Verification and Inferred Values
+
+Values computed from the data file, compared with the patent:
+
+| Quantity                       | Patent | Model     |
+| ------------------------------ | ------ | --------- |
+| Equivalent focal length        | 100    | 99.98 mm  |
+| Aperture                       | f/2.5  | f/2.50    |
+| Back focal length              | 31.3   | 31.41 mm  |
+| Front component focal length   | 167.0  | 167.11 mm |
+| First surface to last surface  | —      | 118.9 mm  |
+| First surface to image plane   | —      | 150.31 mm |
+
+The image plane is the computed paraxial focus, 31.4082 mm behind the last surface. That is 0.11 mm longer than the printed 31.3. At the edge of the f/2.5 aperture the model's rays focus 0.19 mm short of the paraxial plane, so the printed figure is consistent with a focus chosen part-way across the aperture.
+
+Three things in the model are not printed in the patent:
+
+1. The stop. The patent shows no diaphragm. The model places a flat stop 1 mm in front of the first surface, with a radius of 20.0 mm set by f/2.5.
+2. The clear diameters. Every surface has a 22 mm semi-diameter, enough to pass the full f/2.5 axial beam. The drawing shows the front and rear components at about the same diameter.
+3. The field. The patent states none. With these rims the full beam passes to about 7° off axis (image height about 12 mm); at 10° the rear element cuts part of the beam, and the central ray is blocked near 12°.
+
+## Sources
+
+- US 1,620,339 A, *Projection Objective*, C. W. Frederick and D. L. Wood, Eastman Kodak Company, granted March 8, 1927.
+- George Eastman Museum, collection records for the Kodascope Model B and Kodascope Model C (2-inch projection lens), collections.eastman.org.
+- Science Museum Group, collection record for the Kodak Kodascope Model B 16 mm projector, collection.sciencemuseumgroup.org.uk.
