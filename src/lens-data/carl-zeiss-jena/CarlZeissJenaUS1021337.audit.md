@@ -1,12 +1,12 @@
-# Audit log — Rudolph US 1,021,337 Fig. 1
+# Audit log — CARL ZEISS JENA 100mm f/12.5 (US 1,021,337 Design)
 
 ## Author's checks — November 17, 2026
 
-Drawing and table of the patent PDF inspected and transcribed literally: pass. Independent paraxial and spherical ray calculation: pass; the near-axis back focus agrees within 1e-5 mm. Glass thickness is positive at 1001 radial samples in each of the four lenses; the minimum rim thickness is 0.309 mm, in lens II. The repository geometry validation passes at default settings with no errors and no overrides. Nineteen axial rays across ±90 % of the entrance pupil pass, and the near-axis image intercept agrees; an 81-point pupil grid passes 81 of 81 rays on axis and 76 of 81 at 2.5° and 5°.
+Drawing and table of the patent PDF inspected and transcribed: pass. Independent paraxial and spherical ray calculation: pass; the near-axis back focus agrees within 1e-5 mm. Glass thickness is positive at 1001 radial samples in each of the four lenses; the minimum rim thickness is 0.309 mm, in lens II. The repository geometry validation passes at default settings with no errors and no overrides. Nineteen axial rays across ±90 % of the entrance pupil pass, and the near-axis image intercept agrees; an 81-point pupil grid passes 81 of 81 rays on axis and 76 of 81 at 2.5° and 5°.
 
 A duplicate search for patent numbers 1,035,408, 1,021,337 and 1,053,128 across the lens-data folder and the delivered packages found nothing. The patent is distinct from the earlier US 532,398 design and is not offered as a retail product.
 
-The file is a hidden reference model (`visible: false`).
+The file was delivered with `visible: false` (closed: it is now visible).
 
 ## 2026-11-17 — Deployment validation
 
@@ -33,7 +33,31 @@ The file is a hidden reference model (`visible: false`).
 
 **Open:**
 
-- Name, key (`-d-line` suffix), subtitle, specs and element labels ("Patent I") keep the delivered wording for the cleanup pass; the name still says 100mm.
+- Name, key (`-d-line` suffix), subtitle, specs and element labels ("Patent I") keep the delivered wording for the cleanup pass; the name still says 100mm. (Closed by the cleanup pass below.)
 - Field and rims: the 5° trace field and the uniform 4.5 rims are placeholders. The patent states no field, the Series VII lens is reported at about 80–85°, Fig. 1 is not to scale, and lens II reaches zero edge thickness at a semi-diameter of about 5.1. Off-axis clearance has not been checked.
 - Abbe numbers: the nG′ − nD differences suggest roughly 66, 56 (with a corrected lens II value), 53 and 38.5 for lenses I–IV; no modern catalogue glass matched, and a period Schott list has not been consulted. The model stays monochromatic until one is.
-- `closeFocusM: 1e15` awaits the house infinity form.
+- `closeFocusM: 1e15` awaits the house infinity form. (Closed: kept as the infinity-only placeholder.)
+
+## 2026-11-17 — Cleanup and wording pass
+
+Optics, stop and rims were not touched.
+
+**Fields changed.**
+
+- `subtitle`: "1912 ZEISS QUADRUPLE SINGLE OBJECTIVE; NO VERIFIED PRODUCTION MATCH" → "US 1,021,337 A, sole example — development of the Series VII Protar lens".
+- `specs`: "4 ELEMENTS / 1 GROUP", "D-LINE ONLY", "PATENT REFERENCE" → "4 ELEMENTS / 1 GROUP", "DESIGN F/12.5", "ALL SPHERICAL", "CEMENTED QUADRUPLET".
+- `focus.description`: "Infinity-only patent reconstruction." → "Infinity focus only; the patent gives no close-focus data." `closeFocusM` stays 1e15.
+- Element labels "Patent I–IV" → "Element 1–4"; types "Biconcave" → "Biconcave Negative", "Biconvex" → "Biconvex Positive"; the role of element 3 reworded.
+- Cemented group id `Q1` → `C1` on all four elements and in the single `doublets` entry spanning surfaces 1–5.
+- Glass: each element now carries an `Unmatched (nD … / nG′ …; no Abbe number printed)` label. The patent prints no Abbe numbers, so no catalogue row can be matched and the model stays monochromatic.
+- Header comment: the scaling remark removed (the patent itself prints focal length 100); the Series VII Protar lineage and the lens II nG′ note added.
+- Analysis: title set to the model name; section "Model Notes and Verification" renamed "Model Scope and Limitations"; the nG′ misprint passage reduced to one sentence; the 1911 Britannica citation and the 85° figure removed, because that page was seen only as a search excerpt.
+
+**Engine numbers before and after (identical).** EFL 98.99705, f/12.5, half-field 5°, stop semi-diameter 3.95988, back focus 109.1747. The surface audit reports no validation errors; the aperture audit reports no rim, trace or iris limit.
+
+**Open:**
+
+- Rims and field (SD pass): uniform 4.5 rims and a 5° trace field are placeholders; the patent states no field or diameters, Fig. 1 is not to scale, the Protar is reported at about 80° coverage, and lens II reaches zero edge thickness at a semi-diameter of about 5.1.
+- `lensMounts`, `imageFormat` and image circle are not set: the patent states no format or field.
+- Abbe numbers: rough values from nG′ − nD (about 66, 56 with a corrected lens II, 53, 38.5) are not in the data; a period Schott list has not been consulted.
+- The name carries 100mm (the patent's nominal focal length) while the table computes to 99.00.

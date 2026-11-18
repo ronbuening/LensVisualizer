@@ -5,13 +5,17 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * "Quadruple-Lens Objective". The patent has one numerical example, drawn in Fig. 1: a single
  * objective of four lenses cemented together with a front diaphragm, relative aperture 1:12.5.
  *
- * SCALE: the patent's own, "focal length 100". Nothing is rescaled. The printed radii, thicknesses,
- * diaphragm distance b = 2.34 and sodium D-line indices are copied exactly. The table is printed to
- * 0.1 in the radii, so it computes to a focal length of 99.00 rather than 100; a rounding step of
- * 0.05 in r1 or r5 alone moves the focal length by more than 1.5, so no misprint is implied.
+ * The patent calls the design an improvement of the four-lens single objective of US 532,398,
+ * supplied by Zeiss as Series VII (Protar lens 1:12.5). No source shows that this table was produced.
+ *
+ * PRINTED: the radii, thicknesses, diaphragm distance b = 2.34 and sodium D-line indices are the
+ * patent's values for "focal length 100". The radii are printed to 0.1, so the table computes to a
+ * focal length of 99.00 rather than 100; a rounding step of 0.05 in r1 or r5 alone moves the focal
+ * length by more than 1.5, so no misprint is implied.
  *
  * DISPERSION: the patent prints nD and nG' (hydrogen 434 nm) but no Abbe numbers. The model carries
- * nD only and is therefore monochromatic. The nG' column is not used.
+ * nD only and is therefore monochromatic. The nG' column is not used; its value for lens II (1.6308)
+ * is probably a misprint, since only a value near 1.637 gives the colour correction the patent states.
  *
  * INFERRED: the back focus (computed paraxial image distance for an infinite object, 109.1747),
  * all clear semi-diameters (4.5, set to pass the f/12.5 axial beam; the patent prints none and
@@ -23,10 +27,10 @@ const LENS_DATA = {
   key: "carl-zeiss-jena-100mm-f125-us1021337",
   maker: "Carl Zeiss Jena",
   name: "CARL ZEISS JENA 100mm f/12.5 (US 1,021,337 Design)",
-  subtitle: "1912 ZEISS QUADRUPLE SINGLE OBJECTIVE; NO VERIFIED PRODUCTION MATCH",
+  subtitle: "US 1,021,337 A, sole example — development of the Series VII Protar lens",
   visible: true,
   catalog: {
-    specs: ["4 ELEMENTS / 1 GROUP", "D-LINE ONLY", "PATENT REFERENCE"],
+    specs: ["4 ELEMENTS / 1 GROUP", "DESIGN F/12.5", "ALL SPHERICAL", "CEMENTED QUADRUPLET"],
     elementCount: 4,
     groupCount: 1,
     focalLengthMm: { design: 99 },
@@ -44,46 +48,50 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L1",
-      label: "Patent I",
-      type: "Biconcave",
+      label: "Element 1",
+      type: "Biconcave Negative",
       nd: 1.4979,
       indexReference: "D",
+      glass: "Unmatched (nD 1.4979 / nG′ 1.5074; no Abbe number printed)",
       focalLengthMm: -18.9,
       role: "Low-index biconcave front lens facing the diaphragm.",
-      cemented: "Q1",
+      cemented: "C1",
     },
     {
       id: 2,
       name: "L2",
-      label: "Patent II",
-      type: "Biconvex",
+      label: "Element 2",
+      type: "Biconvex Positive",
       nd: 1.6227,
       indexReference: "D",
+      glass: "Unmatched (nD 1.6227 / nG′ 1.6308 as printed; no Abbe number printed)",
       focalLengthMm: 12.49,
       role: "High-index biconvex crown carrying most of the positive power.",
-      cemented: "Q1",
+      cemented: "C1",
     },
     {
       id: 3,
       name: "L3",
-      label: "Patent III",
+      label: "Element 3",
       type: "Positive Meniscus",
       nd: 1.5813,
       indexReference: "D",
+      glass: "Unmatched (nD 1.5813 / nG′ 1.5952; no Abbe number printed)",
       focalLengthMm: 32.48,
-      role: "Positive meniscus of raised index, the subject of the patent.",
-      cemented: "Q1",
+      role: "Positive meniscus whose raised index is the patent's improvement.",
+      cemented: "C1",
     },
     {
       id: 4,
       name: "L4",
-      label: "Patent IV",
+      label: "Element 4",
       type: "Negative Meniscus",
       nd: 1.6275,
       indexReference: "D",
+      glass: "Unmatched (nD 1.6275 / nG′ 1.6487; no Abbe number printed)",
       focalLengthMm: -21.53,
       role: "Dispersive rear meniscus with a convex rear surface.",
-      cemented: "Q1",
+      cemented: "C1",
     },
   ],
   surfaces: [
@@ -94,10 +102,10 @@ const LENS_DATA = {
     { label: "4", R: -6.6, d: 0.66, sd: 4.5, medium: 4 },
     { label: "5", R: -13.4, d: 109.1747, sd: 4.5 },
   ],
-  focus: { closeFocusM: 1e15, description: "Infinity-only patent reconstruction." },
+  focus: { closeFocusM: 1e15, description: "Infinity focus only; the patent gives no close-focus data." },
   aperture: { nominalFNumber: 12.5, maxFNumber: 22, fStops: [12.5, 16, 22] },
   projection: { kind: "rectilinear", maxTraceFieldDeg: 5 },
-  doublets: [{ text: "Q1", fromSurface: "1", toSurface: "5" }],
+  doublets: [{ text: "C1", fromSurface: "1", toSurface: "5" }],
   layout: { yScFill: 0.5 },
 } satisfies LensDataV2Input;
 
