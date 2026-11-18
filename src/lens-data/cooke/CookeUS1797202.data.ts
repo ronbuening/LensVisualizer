@@ -19,9 +19,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  */
 const LENS_DATA = {
   schema: 2,
-  key: "warmisham-us1797202-fig3-patent-reference",
+  key: "cooke-108mm-f15-us1797202",
   maker: "Cooke",
-  name: "WARMISHAM PETZVAL FIGURE 3 PATENT REFERENCE",
+  name: "COOKE 108mm f/1.5 (US 1,797,202 Design)",
   subtitle: "1931 f/1.5; PATENT ONLY; NOT MAXIMUM RETAIL IDENTITY",
   visible: false,
   catalog: {

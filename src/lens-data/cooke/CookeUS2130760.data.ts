@@ -21,9 +21,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  */
 const LENS_DATA = {
   schema: 2,
-  key: "kapella-warmisham-us2130760-example-ii",
+  key: "cooke-100mm-f2-us2130760",
   maker: "Cooke",
-  name: "WARMISHAM EXAMPLE II 100.4 mm f/2",
+  name: "COOKE 100mm f/2 (US 2,130,760 Design)",
   subtitle: "1938 FIGURE 6; PATENT-ONLY RECONSTRUCTION",
   visible: false,
   catalog: {

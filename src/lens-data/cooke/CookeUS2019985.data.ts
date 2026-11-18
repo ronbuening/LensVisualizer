@@ -23,9 +23,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  */
 const LENS_DATA = {
   schema: 2,
-  key: "kapella-lee-us2019985-patent-reference",
+  key: "cooke-26mm-f14-us2019985",
   maker: "Cooke",
-  name: "LEE LARGE-APERTURE PATENT REFERENCE",
+  name: "COOKE 26mm f/1.4 (US 2,019,985 Design)",
   subtitle: "1935 1 INCH f/1.4; PATENT ONLY",
   visible: false,
   catalog: {

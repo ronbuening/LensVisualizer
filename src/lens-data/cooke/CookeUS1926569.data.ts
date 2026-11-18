@@ -20,9 +20,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  */
 const LENS_DATA = {
   schema: 2,
-  key: "kapella-warmisham-us1926569-fig1-patent-reference",
+  key: "cooke-97mm-f1-us1926569",
   maker: "Cooke",
-  name: "WARMISHAM f/1 PATENT REFERENCE",
+  name: "COOKE 97mm f/1 (US 1,926,569 Design)",
   subtitle: "1933 FIGURE 1; PATENT ONLY",
   visible: false,
   catalog: {

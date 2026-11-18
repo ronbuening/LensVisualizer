@@ -18,9 +18,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  */
 const LENS_DATA = {
   "schema": 2,
-  "key": "warmisham-us1361207-example2-patent-reference",
+  "key": "cooke-100mm-f45-us1361207-example-ii",
   "maker": "Cooke",
-  "name": "WARMISHAM FOUR-SINGLET PATENT",
+  "name": "COOKE 100mm f/4.5 (US 1,361,207 Example II Design)",
   "subtitle": "1920 Example II 100 mm f/4.5; PATENT ONLY",
   "visible": false,
   "catalog": {

@@ -19,9 +19,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  */
 const LENS_DATA = {
   schema: 2,
-  key: "warmisham-us1484853-fig1-patent-reference",
+  key: "cooke-254mm-f31-us1484853",
   maker: "Cooke",
-  name: "WARMISHAM PROJECTION FIGURE 1 PATENT REFERENCE",
+  name: "COOKE 254mm f/3.1 (US 1,484,853 Design)",
   subtitle: "1924; SOURCE COMPARISON APERTURE; NOT MAXIMUM RETAIL IDENTITY",
   visible: false,
   catalog: {
