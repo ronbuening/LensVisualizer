@@ -17,8 +17,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * 10.1 mm vertex length), and checked against the f/12.5 axial beam. Both pairs are drawn with one outer height of
  * about 4.4; the model keeps 4.2 for the outer faces (surfaces 1, 5 and 6), so the rear lens is square-cut as drawn.
  * The positive meniscus L2 is drawn running out to a knife edge at about 3.7; surfaces 2 and 3 stay at 4.0, where
- * its edge is 0.135 mm (it reaches zero at about 4.07). L3's front face is drawn ending at about 3.66, just under the
- * f/12.5 axial beam there (3.68), with a chamfer up to the outer height; surface 4 stays at 4.0.
+ * its edge is 0.135 mm (it reaches zero at about 4.18). L3's front face is drawn ending at about 3.66, just under the
+ * f/12.5 axial beam there (3.68), with a chamfer up to the outer height; surface 4 stays at 4.0. The drawn diaphragm
+ * opening is about 3.3, smaller than the 3.68 that 1:12.5 needs, so the drawing's inner rims sit at or just under
+ * the f/12.5 beam.
  * Infinity focus only; the patent gives no close-focus data.
  */
 const LENS_DATA = {
