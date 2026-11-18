@@ -1,6 +1,39 @@
-# Fresh scoped audit
-Native canonical/schema geometry zero errors; no render trims>0.25mm; no geometry allowance override. External estimated iris has 1mm minimum clearance to first glass surface; preceding side is empty space (JSON minBefore=null represents unbounded clearance, not a failed test). Source 81.28mm pupil retained. All 201 dense axial pupil samples pass, including required central±90%. Independent ABCD matches native EFL and BFD within7.11e-15mm; 9 exact intersection/vector Snell image intercepts through±99% agree within 1.8652e-14mm. Numerical consistency only, not retail/quality proof.
+# Audit log — Warmisham projection lens, US 1,484,853 Figure 1
 
-Off-axis sampling is explicitly LIMITED: 5deg 6/9 clipped, 10deg 9/9, 20deg 9/9. Does not reproduce the source's comparative illumination calculation, source 5deg field illumination, complete pupil mapping or full-field MTF. No optimized aperture/field tuning attempted. Iris/rims estimated.
+## Package audit (as delivered)
 
-Fresh scoped TypeScript and ESLint pass. Native MTF support/plane diagnostics recorded, not performance values. Full-app regression, current-main integration and compiled-viewer/browser QA remain outstanding. Engine inherited from parent-pinned main 3fd318c3e82cdbc3e5d3a1ed7bd5abbf4e99bfc2; numerical tests freshly rerun. Patent-only reciprocity/infinity scope and source residuals must remain disclosed on integration.
+The data file passes the geometry checks with no errors and no drawing trims above 0.25 mm. The inferred stop plane sits 1 mm in front of the first glass surface, with open space ahead of it. The patent's 81.28 mm (3.20 in) pupil is kept. All 201 sampled axial rays across the pupil pass. A separate paraxial matrix calculation agrees with the traced focal length and back focus to rounding error, and nine exactly traced rays out to 99 per cent of the pupil agree at the image to the same level. These are checks of numerical consistency only; they say nothing about a production lens or its image quality.
+
+Off-axis sampling at delivery was limited: with the delivered rims, 6 of 9 sampled rays were cut at 5°, and all 9 at 10° and 20°. The model does not reproduce the patent's comparative illumination calculation, its 5° field illumination, or full-field performance. Nothing was optimised for aperture or field. The stop plane and rims are estimates.
+
+The model is an infinity-only reference drawn with the screen side on the left; the small differences from the patent's stated focal length and back focus are kept as they are.
+
+## 2026-11-17 — Deployment validation
+
+Checked independently against the page images of the patent (a 5-page scan confirmed to be US 1,484,853, "Projection Lens", A. Warmisham, filed August 30, 1922, granted February 26, 1924): all 6 radii, 4 thicknesses, the separation S and the 4 index and V pairs in the table on specification page 2; the sign convention against the text and Figure 1; the stated focal lengths and back focus; the stated aperture and field; the front-page names.
+
+Verdict: valid with fixes. The table is transcribed without error and reproduces the patent's first-order values. The patent prints no assignee. A Taylor-Hobson "Maximum" projection lens of 6 in f/3.1 exists (Science Museum Group, object 1979-559/1376) and matches the patent's f/3.1 working aperture, but nothing found ties it to this patent, so no product is claimed.
+
+Changes made:
+
+- `maker`: "Arthur Warmisham" → "Cooke". An inventor is not a maker; Warmisham was Taylor, Taylor & Hobson's designer.
+- `source.patentNumber`: "US 1,484,853" → "US 1,484,853 A" (house form). `assignees` stays empty: none is printed.
+- `source.example`: Figure 1, id "1" → "Sole example", id null. The patent has one numerical example of the invention; Figure 2 is a quoted earlier lens.
+- Surfaces 4, 5, 6 `sd`: 24 → 32. At 24 the rims blocked the central ray of the patent's stated 5° half-field, which meets the rear doublet at 31.1, 29.3 and 28.8 mm. 32 is the least round value that passes it and is below the Figure 1 reading of about 39 mm.
+- Elements: `type` "Patent element" → Biconvex Positive, Negative Meniscus, Biconvex Positive, Plano-Concave Negative; added `focalLengthMm` (246, −452.5, 97.2, −196.3), `glass` notes with the printed Chance type numbers 646 and 5093, plain `role` text, and `cemented` tags D1 and D2.
+- `doublets`: empty → D1 (surfaces 1–3) and D2 (surfaces 4–6).
+- Rounding only: design focal length 254.19707874143657 → 254.2; design f-number 3.127424689240115 → 3.13; `nominalFNumber` and first f-stop → 3.1274 (keeps the 40.64 mm stop radius); R2 −227.07599999999996 → −227.076; thicknesses 8.839199999999998 → 8.8392, 332.73999999999995 → 332.74, 28.651199999999996 → 28.6512, 5.232399999999999 → 5.2324; back focus 63.47700618775093 → 63.477; `closeFocusM` written as 1e15.
+- `focus.description` reworded in plain English; a header comment added; keys unquoted.
+- Analysis rewritten to the standard sections.
+
+First-order values after the changes: focal length 254.197 mm (patent 10 in = 254.0 mm, +0.08 %); f/3.127 with a 40.64 mm stop radius; back focus 63.477 mm (patent 2.508 in = 63.70 mm); length from first surface to image 457.67 mm; front component 529.14 mm (patent 20.86 in), rear component 170.85 mm (patent 6.73 in). The model now traces a half-field of 5.1°.
+
+Audit results: surface check OK, no errors. Aperture check: within 3 % of the stated f-number, no rim, trace or iris limit. Image-circle and field-coverage checks skip the lens (hidden, no image format). Formatting check passes.
+
+Open:
+
+- Name, key, file name, subtitle, specs and focus wording are as delivered and need the house form (for example "COOKE PROJECTION 10 in f/3.1 (US 1,484,853 Design)", file `CookeUS1484853`).
+- Rims against Figure 1: the figure, drawn to scale, shows both doublets at about 39 mm semi-diameter (front 42 and rear 32 in the file). At 5° the full beam needs about 44 mm at the rear doublet, so some vignetting remains either way.
+- The printed back focus (63.70 mm) could replace the computed 63.477 mm if the house prefers the printed value.
+- The Chance glasses have no catalogue match; colour comes from nD and V only.
+- The Taylor-Hobson "Maximum" link needs a maker catalogue or a construction diagram before any product name is used.
