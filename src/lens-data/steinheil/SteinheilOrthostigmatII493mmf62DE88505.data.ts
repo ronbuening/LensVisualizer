@@ -36,8 +36,6 @@ const LENS_DATA = {
   maker: "Steinheil",
   name: "STEINHEIL ORTHOSTIGMAT TYPE II 493mm f/6.2 (DE 88505 Design)",
   subtitle: "DE 88505 C — the first of the patent's two unnumbered examples; the slower universal form",
-  visible: false,
-
   catalog: {
     specs: [
       "6 ELEMENTS / 2 GROUPS",

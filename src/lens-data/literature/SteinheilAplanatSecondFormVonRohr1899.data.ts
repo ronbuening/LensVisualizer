@@ -33,8 +33,6 @@ const LENS_DATA = {
   maker: "Steinheil",
   name: "STEINHEIL APLANAT SECOND FORM f/7.7 (von Rohr 1899, Fig. 111)",
   subtitle: "Two cemented flint pairs about a central stop; undated later form of the 1866 Aplanat",
-  visible: false,
-
   catalog: {
     specs: ["4 ELEMENTS / 2 GROUPS", "NORMALIZED f = 100 mm", "nD ONLY"],
     elementCount: 4,

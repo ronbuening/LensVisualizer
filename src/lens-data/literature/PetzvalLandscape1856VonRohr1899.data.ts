@@ -37,8 +37,6 @@ const LENS_DATA = {
   maker: null,
   name: "PETZVAL LANDSCAPE SECOND FORM f/8.1 (von Rohr 1899, Fig. 103)",
   subtitle: "The 1856 landscape lens as von Rohr tried it: the 1840 data with the negative lens reversed",
-  visible: false,
-
   catalog: {
     specs: ["4 ELEMENTS / 3 GROUPS", "NORMALIZED f = 100 mm", "nD ONLY"],
     elementCount: 4,

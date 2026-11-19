@@ -33,8 +33,6 @@ const LENS_DATA = {
   maker: "Carl Zeiss Jena",
   name: "CARL ZEISS JENA PLANAR f/3.3 (von Rohr 1899, Fig. 146)",
   subtitle: "Portrait form of Rudolph's Planar from von Rohr's own data; halves not quite symmetric",
-  visible: false,
-
   catalog: {
     specs: ["6 ELEMENTS / 4 GROUPS", "NORMALIZED f = 100 mm", "nD ONLY"],
     elementCount: 6,

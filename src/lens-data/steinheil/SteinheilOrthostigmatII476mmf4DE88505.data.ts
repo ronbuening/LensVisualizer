@@ -42,8 +42,6 @@ const LENS_DATA = {
   maker: "Steinheil",
   name: "STEINHEIL ORTHOSTIGMAT TYPE II 476mm f/4 (DE 88505 Design)",
   subtitle: "DE 88505 C — the second of the patent's two unnumbered examples; the fast portrait form",
-  visible: false,
-
   catalog: {
     specs: [
       "6 ELEMENTS / 2 GROUPS",

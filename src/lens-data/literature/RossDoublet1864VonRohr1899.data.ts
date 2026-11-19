@@ -36,8 +36,6 @@ const LENS_DATA = {
   maker: "Ross",
   name: "ROSS DOUBLET f/19.4 (von Rohr 1899, Fig. 76)",
   subtitle: "Unsymmetrical wide-angle doublet; thicknesses from the drawing, indices from specific gravity",
-  visible: false,
-
   catalog: {
     specs: ["4 ELEMENTS / 2 GROUPS", "NORMALIZED f = 100 mm", "nD ONLY"],
     elementCount: 4,

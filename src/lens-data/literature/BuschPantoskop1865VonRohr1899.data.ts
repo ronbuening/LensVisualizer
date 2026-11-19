@@ -32,8 +32,6 @@ const LENS_DATA = {
   maker: "Busch",
   name: "BUSCH PANTOSKOP f/30.4 (von Rohr 1899, Fig. 108)",
   subtitle: "Two deep crown-flint menisci about a central stop; Busch's 1865 modification of the globe lens",
-  visible: false,
-
   catalog: {
     specs: ["4 ELEMENTS / 2 GROUPS", "NORMALIZED f = 100 mm", "nD ONLY"],
     elementCount: 4,

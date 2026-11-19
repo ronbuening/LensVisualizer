@@ -32,8 +32,6 @@ const LENS_DATA = {
   maker: "Goerz",
   name: "GOERZ VON HÖEGH FOUR-SINGLET OBJECTIVE f/7.6 (von Rohr 1899, Fig. 147)",
   subtitle: "Two identical air-spaced crown and flint halves about a central stop; English patent of 1898",
-  visible: false,
-
   catalog: {
     specs: ["4 ELEMENTS / 4 GROUPS", "NORMALIZED f = 100 mm", "nD ONLY"],
     elementCount: 4,

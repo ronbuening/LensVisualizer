@@ -36,8 +36,6 @@ const LENS_DATA = {
   maker: "Voigtländer",
   name: "VOIGTLÄNDER CEMENTED-REAR PETZVAL PORTRAIT f/3.5 (von Rohr 1899, Fig. 107)",
   subtitle: "Voigtländer's 1878 modification of the Petzval portrait objective; thicknesses assumed by von Rohr",
-  visible: false,
-
   catalog: {
     specs: ["4 ELEMENTS / 2 GROUPS", "NORMALIZED f = 100 mm", "nD ONLY"],
     elementCount: 4,

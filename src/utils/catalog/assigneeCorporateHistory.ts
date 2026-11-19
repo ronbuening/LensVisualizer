@@ -1070,6 +1070,16 @@ export const ASSIGNEE_CORPORATE_HISTORY: Partial<Record<string, AuthoredCorporat
       },
     ],
   },
+  "Voigtländer & Sohn": {
+    corporateFamily: [
+      {
+        family: "Voigtländer",
+        effectiveFrom: "1756",
+        sourceUrl: SOURCES.voigtlanderHistory,
+        note: "The style printed on DE 90482 C (1895), before the firm was a stock company; the start date marks the documented brand lineage, as for Voigtländer & Sohn AG.",
+      },
+    ],
+  },
   "Voigtländer & Sohn AG": {
     corporateFamily: [
       {

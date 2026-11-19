@@ -34,8 +34,6 @@ const LENS_DATA = {
   maker: "Voigtländer",
   name: "VOIGTLÄNDER PETZVAL PORTRAIT f/3.4 (von Rohr 1899, Fig. 100)",
   subtitle: "Petzval's 1840 portrait objective; thicknesses and rear air gap assumed by von Rohr",
-  visible: false,
-
   catalog: {
     specs: ["4 ELEMENTS / 3 GROUPS", "NORMALIZED f = 100 mm", "nD ONLY"],
     elementCount: 4,

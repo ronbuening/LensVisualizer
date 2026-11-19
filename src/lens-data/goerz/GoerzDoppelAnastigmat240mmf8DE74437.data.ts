@@ -43,8 +43,6 @@ const LENS_DATA = {
   maker: "Goerz",
   name: "GOERZ DOPPEL-ANASTIGMAT 240mm f/8 (DE 74437 Design)",
   subtitle: "DE 74437 C — the patent's sole numerical example, drawn at natural size in Fig. 3",
-  visible: false,
-
   catalog: {
     specs: [
       "6 ELEMENTS / 2 GROUPS",

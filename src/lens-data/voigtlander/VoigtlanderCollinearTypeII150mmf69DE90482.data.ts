@@ -41,8 +41,6 @@ const LENS_DATA = {
   maker: "Voigtländer",
   name: "VOIGTLÄNDER COLLINEAR TYPE II 150mm f/6.9 (DE 90482 Design)",
   subtitle: "DE 90482 C — Kaempfer's three-meniscus Collinear Type II; never introduced, not the Series II Collinear",
-  visible: false,
-
   catalog: {
     specs: [
       "6 ELEMENTS / 2 GROUPS",

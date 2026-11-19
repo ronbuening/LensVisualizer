@@ -30,8 +30,6 @@ const LENS_DATA = {
   maker: "Steinheil",
   name: "STEINHEIL PERISKOP f/40 (von Rohr 1899, Fig. 109)",
   subtitle: "Two identical uncorrected crown menisci about a central stop; English patent of 1865",
-  visible: false,
-
   catalog: {
     specs: ["2 ELEMENTS / 2 GROUPS", "NORMALIZED f = 100 mm", "nD ONLY"],
     elementCount: 2,

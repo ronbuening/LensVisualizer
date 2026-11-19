@@ -26,9 +26,7 @@ const LENS_DATA = {
   key: "carl-zeiss-jena-anastigmatlinse-von-rohr-1899",
   maker: "Carl Zeiss Jena",
   name: "CARL ZEISS JENA ANASTIGMATLINSE f/12.5 (von Rohr 1899, Fig. 140)",
-  subtitle: "Rudolph's four-part cemented Series VII single anastigmat, later long-focus form",
-  visible: false,
-  catalog: {
+  subtitle: "Rudolph's four-part cemented Series VII single anastigmat, later long-focus form",  catalog: {
     specs: ["4 ELEMENTS / 1 GROUP", "NORMALIZED f = 100 mm", "nD ONLY"],
     elementCount: 4,
     groupCount: 1,

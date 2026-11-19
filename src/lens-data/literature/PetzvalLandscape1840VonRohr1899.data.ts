@@ -33,8 +33,6 @@ const LENS_DATA = {
   maker: "Voigtländer",
   name: "VOIGTLÄNDER PETZVAL LANDSCAPE FIRST FORM f/8.1 (von Rohr 1899, Fig. 101)",
   subtitle: "Petzval's 1840 calculation, set aside after Voigtländer's trials; thicknesses and spacings assumed by von Rohr",
-  visible: false,
-
   catalog: {
     specs: ["4 ELEMENTS / 3 GROUPS", "NORMALIZED f = 100 mm", "nD ONLY"],
     elementCount: 4,

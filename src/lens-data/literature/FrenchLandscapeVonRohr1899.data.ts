@@ -32,8 +32,6 @@ const LENS_DATA = {
   maker: null,
   name: "FRENCH LANDSCAPE f/12.1 (von Rohr 1899, Fig. 54)",
   subtitle: "Français's lens as von Rohr's type of the Chevalier form; thicknesses from a drawing, nD from density",
-  visible: false,
-
   catalog: {
     specs: ["2 ELEMENTS / 1 GROUP", "NORMALIZED f = 100 mm", "nD ONLY"],
     elementCount: 2,

@@ -32,8 +32,6 @@ const LENS_DATA = {
   maker: "Dallmeyer",
   name: "DALLMEYER RAPID LANDSCAPE f/11 (von Rohr 1899, Fig. 77)",
   subtitle: "Triple cemented landscape meniscus of 1865 behind a front stop; thicknesses and stop distance from a drawing",
-  visible: false,
-
   catalog: {
     specs: ["3 ELEMENTS / 1 GROUP", "NORMALIZED f = 100 mm", "nD ONLY"],
     elementCount: 3,

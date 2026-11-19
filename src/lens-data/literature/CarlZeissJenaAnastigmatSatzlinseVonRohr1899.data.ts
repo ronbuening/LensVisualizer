@@ -29,9 +29,7 @@ const LENS_DATA = {
   key: "carl-zeiss-jena-anastigmat-satzlinse-1891-von-rohr-1899",
   maker: "Carl Zeiss Jena",
   name: "CARL ZEISS JENA ANASTIGMAT-SATZLINSE f/14.4 (von Rohr 1899, Fig. 137)",
-  subtitle: "Rudolph's cemented landscape lens of late 1891, the Series VI type",
-  visible: false,
-  catalog: {
+  subtitle: "Rudolph's cemented landscape lens of late 1891, the Series VI type",  catalog: {
     specs: ["3 ELEMENTS / 1 GROUP", "NORMALIZED f = 100 mm", "nD ONLY"],
     elementCount: 3,
     groupCount: 1,
