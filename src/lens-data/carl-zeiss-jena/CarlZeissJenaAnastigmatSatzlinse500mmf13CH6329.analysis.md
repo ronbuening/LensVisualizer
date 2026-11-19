@@ -12,7 +12,7 @@
 Brennweite 500 mm"; every length is scaled ×500 here
 
 The patent sets out to bring into one cemented lens the correction that the anastigmat doublets reached with two
-separate members. In Rudolph's double objectives one member is an achromat whose positive lens has the higher index,
+separate members. In such double objectives, "in bekannter Weise", one member is an achromat whose positive lens has the higher index,
 the other one whose indices are graded the opposite way, so that the cemented surface of one acts as a collecting
 surface and that of the other as a dispersing one, both for the focal length and for the spherical aberration. The
 patent says the same opposed action can be had inside a single cemented lens if it is made of three parts: either a
@@ -57,8 +57,8 @@ of the old achromats; at r3 the flint meets the heaviest baryta crown L3, the or
 possible. One old and one new achromat share the middle lens, the opposed gradation of the claim inside one cemented
 lens. Von Rohr files the type under "2aα" in his scheme of single lenses derived from the anastigmat doublet.
 
-The Petzval sum is 6.80 × 10⁻⁴ mm⁻¹, a Petzval radius of 1471 mm or 2.9 f, about half that of a thin single crown
-lens of the same focal length. The concave front face is the main reason: its negative Petzval contribution offsets
+The Petzval sum is 6.80 × 10⁻⁴ mm⁻¹, about half that of a thin single crown lens of the same focal length, a Petzval
+radius of 1471 mm or 2.9 f. The concave front face is the main reason: its negative Petzval contribution offsets
 most of the rear face's.
 
 ## Element-by-Element Analysis
@@ -129,7 +129,7 @@ Coddington traces along the real chief ray, measured along the axis from the par
 the lens), put the tangential and sagittal images at +11.7 and −12.3 mm at 34°: a difference of 24.0 mm with their
 mean 0.3 mm inside the image plane. Reduced to f = 100 the difference is 4.79 mm, von Rohr's "about 4.8 mm" at 34°,
 and the flattening he describes. Beyond that the astigmatism grows fast: at 45° the two images lie 79.2 and 4.4 mm
-beyond the image plane. The 90° of the patent is a coverage figure, met at smaller stops; f/16 and f/22 are provided.
+beyond the image plane. Neither the patent nor von Rohr says at what stop the 90° is meant; f/16 and f/22 are provided.
 
 The clear radii are measured from Fig. 2, which is close to scale along the axis: the stop sits about 0.011 f in front
 of r1 for a printed 0.0104, and r1 is drawn with its printed curvature, while r4 is drawn flatter than printed. The
@@ -142,12 +142,15 @@ cannot be reached; the model takes 22.5 mm on all four faces.
 Moritz von Rohr's *Theorie und Geschichte des photographischen Objektivs* (1899) prints this example reduced to
 f = 100 as Fig. 137, "P. Rudolph: Anastigmat-Satzlinse": r = 14.2, 5.5, 20.7 and 12.6, d = 1.7, 0.5 and 1.4, a stop
 distance of 1.0 and the patent's three nD values, computed for 1:14.4 and ω = 34°. Every value is the patent's table
-×100 rounded to 0.1. He reports full correction of the margin at about 1:12.5 with a zone of about −1.1 mm, and an
+×100 rounded to 0.1. His caption gives the source as "P. Rudolph. 1.", which in his bibliography (p. 424) is the
+German patent 56109 of 1890 on the Anastigmat doublet; his text on pp. 373 and 377 cites entry 6, the British patent
+4692 of 1893, for these lenses, so the caption's 1 reads as a misprint for 6. He reports full correction of the margin at about 1:12.5 with a zone of about −1.1 mm (the patent table corrects the
+margin near 1:13.55 and is +1.41 mm long at 1:12.5, reduced to f = 100), and an
 astigmatic difference of about 4.8 mm at 34°.
 
 Von Rohr's account (pp. 373–379) gives the history. Rudolph found the type at the end of 1891 but at first gave
 priority to the new f/4.5, f/6.3 and f/9 doublets. When news of Goerz's Doppel-Anastigmat application reached him, he
-filed the single lenses abroad; the German application was refused, but a right of prior use remained, and the 1891
+filed the single lenses for patents in several countries; under German patent law the German application was refused, but a right of prior use remained, and the 1891
 construction was made as Series VI at 1:14.5. Von Rohr concludes that Rudolph (end of 1891) and E. von Höegh (end of
 1892) found the astigmatically corrected single lens of this type independently, and that Rudolph's construction data
 were the first to be printed. He also judges it the first landscape lens since Thomas Grubb's to claim spherical
@@ -164,7 +167,8 @@ two achromats of normal glass pairs; its correction, especially of astigmatism, 
 
 - Paul Rudolph, CH 6329, *Dreifache Linse für photographische Objektive*, filed 15 February 1893, published
   15 August 1893: [Espacenet](https://worldwide.espacenet.com/patent/search?q=pn%3DCH6329A) original-document scan
-  (four pages: description on page 1, description and the two examples on page 2, uses and claim on page 3, drawing
+  (four pages: description on page 1, description, the two examples and the start of the uses on page 2, the rest of
+  the uses and the claim on page 3, drawing
   sheet with Figs. 1 and 2 on page 4).
 - Moritz von Rohr, *Theorie und Geschichte des photographischen Objektivs* (Berlin: Julius Springer, 1899), p. 374,
   Fig. 137 (table, figure and text): [e-rara scan, p. 374](https://www.e-rara.ch/download/pdf/4637944.pdf#page=130);

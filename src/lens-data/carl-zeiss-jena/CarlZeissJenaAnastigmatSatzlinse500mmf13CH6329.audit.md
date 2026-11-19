@@ -6,13 +6,16 @@ Patent: CH 6329, Beispiel 2 (page 2), drawn as Fig. 2
 
 ### Sources
 
-- The original-document scan of CH 6329 A from Espacenet: four bilevel pages, 2592 × 3508 px (300 ppi on A4), read
+- The original-document scan of CH 6329 A from Espacenet: four bilevel pages, 2592 × 3508 px (300 ppi), read
   on the page images, not on OCR. Page 1: header and description; page 2: description, Beispiel 1 and Beispiel 2;
-  page 3: uses of the lens and the patent claim; page 4: drawing sheet with Figs. 1 and 2. The family holds no other
+  the uses of the lens begin in its right column; page 3: the rest of the uses and the patent claim; page 4: drawing sheet with Figs. 1 and 2. The family holds no other
   member.
 - Von Rohr's citation: British patent 4692 of 22 April 1893 (bibliography p. 424, Rudolph entry 6, "auf Ser. VI").
   Google Patents and Espacenet have no record of GB189304692A; DEPATISnet holds the number with no pages. The Swiss
   patent, by the same inventor for the same two lens forms, is the one examined.
+- Von Rohr's Fig. 137 caption reads "Quelle: P. Rudolph. 1."; Rudolph entry 1 (p. 424) is D.R.P. 56109 of 1890, the
+  Anastigmat doublet, while entry 6 (E.P. 4692 of 22 April 1893, "auf Ser. VI") lists pp. 373/374 and 377 and is
+  cited as "(6.)" in the text on pp. 373 and 377. The caption's 1 is read as a misprint for 6.
 - Reference: the audited literature file `literature/CarlZeissJenaAnastigmatSatzlinseVonRohr1899` (von Rohr 1899,
   p. 374, Fig. 137; glass names and ν̄ on p. 373; history pp. 373–379), used for the comparison below and removed by
   this change.
@@ -47,7 +50,7 @@ transcribed here. The patent prints no back focus, aberration figures, nC, nF or
   2.94 f). The engine build gives the same EFL and a stop (entrance-pupil) radius of 19.240 mm at f/13.
 - Element focal lengths (thick, in air): L1 +79.8, L2 −37.9, L3 +65.1 mm.
 - Longitudinal spherical aberration at f/13 (engine trace): +3.001 (pupil rim), −4.428 (0.85), −5.674 (0.7),
-  −3.971 mm (0.5); zero crossing near 1:13.55; deepest zone −5.70 mm at 13.85 mm height.
+  −3.971 mm (0.5); zero crossing near 1:13.55; deepest zone −5.70 mm at 13.87 mm height.
 - Coddington astigmatism along the exact chief ray, from the paraxial image plane (+ away from the lens): 20°
   T −4.33 / S −7.92; 27° −1.54 / −11.63; 34° +11.72 / −12.25 (difference 23.97 mm, mean −0.27); 45° +79.15 / +4.35.
 - Chief-ray image height 317.26 mm at 34° and 440.43 mm at 45° (f·tan ω 337.42 and 500.25).
@@ -74,8 +77,8 @@ about 90°.
 Fig. 2 is measured on page 4 at 300 ppi. The diaphragm is drawn as a vertical line at x ≈ 1145–1151 px with a gap
 around the axis for the "b" label; the lens outline puts r1's vertex at x 1190 and r4's at 1326, about 136 px for the
 0.0358 f vertex length (about 3800 px per f). The stop line lies about 43 px in front of r1, 0.011 f against the
-printed 0.0104. r1 is drawn at its printed curvature (sag 10 px at 108 px height, 31 px at 186 px, against 10.8 and
-32.7 computed); r4 is drawn flatter (16 px at 180 px against 34.9). The cemented lens is drawn square-ended, its top
+printed 0.0104. r1 is drawn at its printed curvature (sag 10 px at 108 px height, 31 px at 182.5 px, against 10.9 and
+31.7 computed at 3800 px per f); r4 is drawn flatter (16 px at 180 px against 35.1). The cemented lens is drawn square-ended, its top
 and bottom edges at y 1792.5 and 2158.5 px: 366 px tall, a semi-height of 183 px, 0.048 f or 24.1 mm at f = 500. L1 and
 L3 run out at the top and bottom edges.
 
@@ -96,7 +99,7 @@ errors.
 
 ### Model decisions
 
-- `maker` "Carl Zeiss Jena" (D3: the works von Rohr credits, which issued the type as Series VI); file in
+- `maker` "Carl Zeiss Jena": the works von Rohr credits, which issued the type as Series VI; file in
   `carl-zeiss-jena/`. Name `CARL ZEISS JENA ANASTIGMAT-SATZLINSE 500mm f/13 (CH 6329 Design)`, the example's own
   ratings; key `carl-zeiss-jena-anastigmat-satzlinse-500mm-f13-ch6329`.
 - `patentNumber` "CH 6329": the document prints no kind code, and the corpus's other Swiss patents are cited without
@@ -113,5 +116,5 @@ errors.
 ### Open limitations
 
 - The model is monochromatic although the patent prints nG₁.
-- The rims are capped inside the knife edges; Fig. 2 draws the lens 1.6 mm taller, with r4 flatter than printed.
+- The rims are capped inside the knife edges; Fig. 2 draws the lens 1.6 mm larger in semi-height, with r4 flatter than printed.
 - The British patent 4692 of 1893 and its *British Journal of Photography* reprint were not seen.

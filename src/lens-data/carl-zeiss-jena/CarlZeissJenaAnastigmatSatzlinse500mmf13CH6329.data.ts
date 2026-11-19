@@ -16,7 +16,7 @@ The radii are signed; the signs agree with Fig. 2 (stop in front, the group conc
 
 Scaling: every length x 500, the focal length the patent states for the example and its figure. The table traces to
 EFL 500.251 mm (+0.05 %). Von Rohr 1899, p. 374, Fig. 137 ("P. Rudolph: Anastigmat-Satzlinse") prints this example
-x 100 rounded to 0.1 mm with the same three nD values (his L2 index footnoted as a misprint corrected in the British
+x 100 rounded to 0.1 mm with the same three nD values (his footnote corrects a misprint of the L2 index in the British
 Journal of Photography; the patent prints his corrected value).
 
 Model additions: the last gap, the computed paraxial back focus 546.460 mm; the f-stop list; infinity focus only;
