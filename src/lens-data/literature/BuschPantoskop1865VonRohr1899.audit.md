@@ -155,3 +155,7 @@ table to compare and no patent office searched. The file was not converted to a 
 - Rims are an estimate set by the 49° chief ray and smaller than both drawings.
 - nD only; von Rohr prints no dispersion, so no chromatic behaviour is modelled. The flint label rests on the index.
 - `maker` stays null: von Rohr credits Emil Busch of Rathenow, whose firm is not a catalog maker.
+
+## 2026-11-18 — Maker set
+
+- `maker` is now "Busch": the catalog added Busch as a maker after this audit, and von Rohr credits Emil Busch of Rathenow. The name keeps its maker prefix.

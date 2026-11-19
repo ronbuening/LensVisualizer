@@ -1,5 +1,5 @@
 /*
-VON HÖEGH FOUR-SINGLET OBJECTIVE f/7.6 (von Rohr 1899, Fig. 147)
+GOERZ VON HÖEGH FOUR-SINGLET OBJECTIVE f/7.6 (von Rohr 1899, Fig. 147)
 
 Source: Moritz von Rohr, Theorie und Geschichte des photographischen Objektivs (Berlin: Julius Springer, 1899),
 p. 392, Fig. 147: "E. von Höegh: Objektiv mit acht reflektirenden Flächen". Quelle: E. von Höegh 9, which von Rohr's
@@ -29,8 +29,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 const LENS_DATA = {
   schema: 2,
   key: "hoegh-four-singlet-1898-von-rohr-1899",
-  maker: null,
-  name: "VON HÖEGH FOUR-SINGLET OBJECTIVE f/7.6 (von Rohr 1899, Fig. 147)",
+  maker: "Goerz",
+  name: "GOERZ VON HÖEGH FOUR-SINGLET OBJECTIVE f/7.6 (von Rohr 1899, Fig. 147)",
   subtitle: "Two identical air-spaced crown and flint halves about a central stop; English patent of 1898",
   visible: false,
 

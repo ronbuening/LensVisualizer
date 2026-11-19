@@ -161,3 +161,7 @@ a patent lens.
 - `maker` stays null. Von Rohr credits A. Steinheil and the Optisch-astronomische Werkstätte of C. A. Steinheil in
   Munich (C. A. Steinheil Söhne from 1865), with a Voigtländer manufacturing licence of 1865; Steinheil is not a
   catalog maker.
+
+## 2026-11-18 — Maker set
+
+- `maker` is now "Steinheil": the catalog added Steinheil as a maker after this audit, and von Rohr credits C. A. Steinheil Söhne. The name keeps its maker prefix.

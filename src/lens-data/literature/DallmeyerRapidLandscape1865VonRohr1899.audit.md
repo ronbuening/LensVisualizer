@@ -148,3 +148,7 @@ come from van Monckhoven, not from the patent.
 - nD only: the colour correction of the crown–flint–crown triplet is not modelled.
 - Van Monckhoven's p. 126 and the 1864 patent were not seen.
 - `maker` stays null. Von Rohr credits J. H. Dallmeyer, London, as designer and maker.
+
+## 2026-11-18 — Maker set
+
+- `maker` is now "Dallmeyer": the catalog added Dallmeyer as a maker after this audit, and von Rohr credits J. H. Dallmeyer, London. The name keeps its maker prefix.

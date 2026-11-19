@@ -29,7 +29,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 const LENS_DATA = {
   schema: 2,
   key: "dallmeyer-rapid-landscape-1865-von-rohr-1899",
-  maker: null,
+  maker: "Dallmeyer",
   name: "DALLMEYER RAPID LANDSCAPE f/11 (von Rohr 1899, Fig. 77)",
   subtitle: "Triple cemented landscape meniscus of 1865 behind a front stop; thicknesses and stop distance from a drawing",
   visible: false,

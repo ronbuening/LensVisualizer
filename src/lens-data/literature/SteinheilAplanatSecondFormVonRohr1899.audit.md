@@ -142,3 +142,7 @@ converted to a patent lens.
 - Design date unknown (p. 297): after the 1866/67 patent form in von Rohr's sequence, before Eder's book of 1891.
 - `maker` stays null: von Rohr credits A. Steinheil, whose firm C. A. Steinheil Söhne (Munich) is not a catalog
   maker.
+
+## 2026-11-18 — Maker set
+
+- `maker` is now "Steinheil": the catalog added Steinheil as a maker after this audit, and von Rohr credits C. A. Steinheil Söhne. The name keeps its maker prefix.

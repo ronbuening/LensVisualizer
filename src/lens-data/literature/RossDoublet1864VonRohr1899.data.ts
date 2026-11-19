@@ -33,7 +33,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 const LENS_DATA = {
   schema: 2,
   key: "ross-doublet-1864-von-rohr-1899",
-  maker: null,
+  maker: "Ross",
   name: "ROSS DOUBLET f/19.4 (von Rohr 1899, Fig. 76)",
   subtitle: "Unsymmetrical wide-angle doublet; thicknesses from the drawing, indices from specific gravity",
   visible: false,

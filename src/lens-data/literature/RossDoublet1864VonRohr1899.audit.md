@@ -163,3 +163,7 @@ patent lens.
   file); e-rara answered with a browser-verification page, so the anchor is unconfirmed.
 - nD only; von Rohr prints no dispersion, so no chromatic behaviour is modelled.
 - `maker` stays null: von Rohr credits Th. Ross, who is not a catalog maker.
+
+## 2026-11-18 — Maker set
+
+- `maker` is now "Ross": the catalog added Ross as a maker after this audit, and von Rohr credits Th. Ross. The name keeps its maker prefix.

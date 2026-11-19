@@ -116,3 +116,7 @@ located, so whether it prints a numerical table is unknown. The file was not con
 - nD only; no chromatic behaviour is modelled.
 - The English patent number, its text and the 1898 British Journal notice remain unchecked.
 - `maker` stays null: the bibliography credits C. P. Goerz jointly with von Höegh, and Goerz is not a catalog maker.
+
+## 2026-11-18 — Maker set
+
+- `maker` is now "Goerz": the catalog added Goerz as a maker after this audit, and von Rohr credits C. P. Goerz, Berlin. The name keeps its maker prefix.

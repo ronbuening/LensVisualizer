@@ -30,7 +30,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 const LENS_DATA = {
   schema: 2,
   key: "steinheil-aplanat-second-form-von-rohr-1899",
-  maker: null,
+  maker: "Steinheil",
   name: "STEINHEIL APLANAT SECOND FORM f/7.7 (von Rohr 1899, Fig. 111)",
   subtitle: "Two cemented flint pairs about a central stop; undated later form of the 1866 Aplanat",
   visible: false,

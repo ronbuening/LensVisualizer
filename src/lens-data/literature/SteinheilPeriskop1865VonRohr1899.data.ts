@@ -27,7 +27,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 const LENS_DATA = {
   schema: 2,
   key: "steinheil-periskop-1865-von-rohr-1899",
-  maker: null,
+  maker: "Steinheil",
   name: "STEINHEIL PERISKOP f/40 (von Rohr 1899, Fig. 109)",
   subtitle: "Two identical uncorrected crown menisci about a central stop; English patent of 1865",
   visible: false,

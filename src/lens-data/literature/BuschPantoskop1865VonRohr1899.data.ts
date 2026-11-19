@@ -29,7 +29,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 const LENS_DATA = {
   schema: 2,
   key: "busch-pantoskop-1865-von-rohr-1899",
-  maker: null,
+  maker: "Busch",
   name: "BUSCH PANTOSKOP f/30.4 (von Rohr 1899, Fig. 108)",
   subtitle: "Two deep crown-flint menisci about a central stop; Busch's 1865 modification of the globe lens",
   visible: false,
