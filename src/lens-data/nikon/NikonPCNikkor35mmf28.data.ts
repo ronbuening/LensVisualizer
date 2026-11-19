@@ -221,7 +221,7 @@ const LENS_DATA = {
       "NO_INTERNAL_RECONSTRUCTION: DE 1 497 540 A1 Example III publishes only the infinity prescription; no internal focus spacing is modeled. The 0.3 m catalog MFD is metadata from a later same-name Nikon manual and does not define a patent focus state.",
   },
 
-  aperture: { nominalFNumber: 2.8, fStops: [2.8, 4, 5.6, 8, 11, 16, 22, 32] },
+  aperture: { nominalFNumber: 2.8, fStops: [2.8, 4, 5.6, 8, 11, 16, 22, 32], maxFNumber: 32 },
 
   projection: { kind: "rectilinear", fullFieldDeg: 75, maxTraceFieldDeg: 37.5 },
 

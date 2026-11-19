@@ -561,7 +561,7 @@ const LENS_DATA = {
     },
   },
 
-  aperture: { fStops: [2.8, 3.2, 3.5, 4, 4.5, 5.6, 8, 11, 16, 22] },
+  aperture: { fStops: [2.8, 3.2, 3.5, 4, 4.5, 5.6, 8, 11, 16, 22], maxFNumber: 22 },
 
   /* ── Group and doublet annotations ── */
   groups: [

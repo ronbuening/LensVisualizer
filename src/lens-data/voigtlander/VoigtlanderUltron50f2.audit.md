@@ -17,3 +17,7 @@ Retrieved missing US2627204.pdf from Google Patents, kept ignored. Example II ta
 - Added source-design aperture2, scaled focalLengthDesign50 and complete publication identifier. Distinguished source55° useful field from modeled35mm46.8° crop. Isolated element focal lengths recalculated.
 - Replaced four unresolved chemistry labels with qualified K-LaK11, S-TIM6, LAC13 and S-BAH28 coordinate proxies; retained compatible N-SK16/SF2. No supplier, thorium/lanthanum chemistry or APD claim follows from these matches.
 - Three regressions pass. Production baseline and local infinity/near/midpoint/f16 inspected: near1.00m BF37.63, midpoint2.00m BF36.24; EFL50mm unchanged, f16 stop2.07mm. Batch31–40 full gates/commit pending.
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 22. `fStops` lists f/22, which the slider cut off at the default 16. No optical value changed.

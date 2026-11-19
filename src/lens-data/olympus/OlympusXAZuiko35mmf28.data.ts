@@ -168,7 +168,7 @@ const LENS_DATA = {
   focus: { closeFocusM: 0.85, description: "Coupled rangefinder focus, 0.85 m to infinity. Patent is infinity-only." },
 
   /* ── Aperture configuration ── */
-  aperture: { nominalFNumber: 2.8, fStops: [2.8, 4, 5.6, 8, 11, 16, 22] },
+  aperture: { nominalFNumber: 2.8, fStops: [2.8, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22 },
 
   /* ── Group and doublet annotations ── */
   groups: [

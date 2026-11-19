@@ -330,7 +330,7 @@ const LENS_DATA = {
     },
   },
 
-  aperture: { fStops: [4, 4.5, 5.6, 8, 11, 16, 22], blades: 7 },
+  aperture: { fStops: [4, 4.5, 5.6, 8, 11, 16, 22], maxFNumber: 22, blades: 7 },
 
   groups: [
     { text: "U1 (-)", fromSurface: "1A", toSurface: "6" },

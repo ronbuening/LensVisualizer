@@ -69,3 +69,7 @@ Patent: WO 2023/181666 A1, Example 4.
 | 2 / 1 | `focus.conjugates` | No declaration | 151.21 mm, `first-surface` | Table 18 Tele beta=-0.292, d20=1.98 and fixed d21=-1.10 map exactly to file gap 20=0.88; all other gaps match, and printed d0=151.21 mm passes. |
 
 The declarations retain the authored prescription and image plane. The axial consistency diagnostics are 0/1: +0.004619763 mm (+0.488790 quarter-wave depths), other reference unavailable, 1/1: +0.054340432 mm (+5.493510 quarter-wave depths), other reference +1423.661428 depths, 2/1: -0.084841548 mm (-8.227594 quarter-wave depths), other reference unavailable. No production minimum-focus distance or calculated object distance is certified.
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 22. `fStops` lists f/22, which the slider cut off at the default 16. No optical value changed.

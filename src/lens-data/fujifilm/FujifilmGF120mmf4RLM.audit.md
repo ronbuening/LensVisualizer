@@ -64,3 +64,7 @@ offset is +0.001611994 mm (+0.070848 diffraction depths); the other
 reference gives -1541.434551944 mm (-196.484544 depths).
 The verdict is `consistent` and the reference is discriminated. The existing published flag and
 all optical geometry remain unchanged.
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 32. `fStops` lists f/22 and f/32, which the slider cut off at the default 16. No optical value changed.

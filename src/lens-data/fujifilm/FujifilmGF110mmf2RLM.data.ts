@@ -299,7 +299,7 @@ const LENS_DATA = {
   gaps: { STO: { label: "D(G1–G2)", values: [[4.7, 15.88]] }, "14": { label: "D(G2–G3)", values: [[18.19, 7.01]] } },
 
   /* ── Aperture configuration ── */
-  aperture: { nominalFNumber: 2.06, fStops: [2.06, 2.8, 4, 5.6, 8, 11, 16, 22], blades: 9 },
+  aperture: { nominalFNumber: 2.06, fStops: [2.06, 2.8, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22, blades: 9 },
 
   /* ── Plane-parallel plate PP (patent Table 1 surfaces 25–26): traced, not drawn ── */
   rearPlates: [
