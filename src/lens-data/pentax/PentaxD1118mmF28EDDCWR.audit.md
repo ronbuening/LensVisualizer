@@ -23,3 +23,7 @@ Patent: US 2018/0164556 A1, Numerical Example 1
 - OHARA PBL1/S-TIL1, HOYA E-FEL1, and SUMITA LLF1/LLF7 converge on the same light-flint family. The closest group is `nd = 1.54814`, `vd = 45.75–45.90`, safely inside the runtime compatibility window.
 - Their coefficient curves are materially interchangeable at the trace lines: across Schott LLF1, OHARA S-TIL1, and HOYA E-FEL1, the largest evaluated index spread is about `0.000032` at the g line.
 - Relabeled L14 to HOYA E-FEL1 as the catalog equivalent because its `45.82` Abbe number has the smallest residual against the patent row. The annotation explicitly leaves the production supplier unspecified.
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 22. `fStops` lists f/22, which the slider cut off at the default 16. No optical value changed.

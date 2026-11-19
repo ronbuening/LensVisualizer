@@ -74,3 +74,7 @@ Patent: JP 2016-139125 A.
 | 2 / 1 | `focus.conjugates` | Absent | `1200` mm, `first-surface` | JP 2016-139125 A, Numerical Example 1, Data 3 Tele column (PDF p. 22): object distance 1200.0000 mm; d6=53.3278, d16=1.0000, d18=9.0230, d33=19.5673, d36=12.2099, d38=8.4703 mm. Paragraph 0123 defines lengths in mm. The first-surface reference is identified by the conjugate audit (audit-resolved); the patent does not explicitly define the object-distance reference. Signed image-plane offset -0.007483640 mm (-0.368856 diffraction depths); other-reference offset +493.060908 diffraction depths; `consistent`. |
 
 The patent prints an object distance without explicitly defining its endpoint. The conjugate audit discriminates the first-surface reference; the provenance is audit-resolved and is stated in each source string. No prescription values or published flags change.
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 22. `fStops` lists f/22, which the slider cut off at the default 16. No optical value changed.

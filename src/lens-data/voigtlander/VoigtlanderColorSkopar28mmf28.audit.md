@@ -212,3 +212,7 @@ This final integration gate supersedes the earlier environment-availability note
 - The L3 and L4 `apdNote` strings keep the Cosina-diagram statement and now quote the PgF of the stored line indices, the runtime value, and HOYA's catalog `ΔPg,F` labelled as being against HOYA's own line. A header note in the data file states that `dPgF` is PgF minus the engine's line, that the patent prints no PgF and defines no line, and names HOYA's C7–F2 line as the origin of the earlier numbers. In the analysis, the sentence saying the data stores HOYA `dPgF` values and the sentence quoting +0.0137 / +0.0067 now label those as HOYA's catalog deviations and give the stored engine-line values.
 - Left as stored: L5 and L6 at −0.0093. The engine-line value of their own line indices is −0.009538, 0.000238 away, which is inside the 0.0003 keep-as-is tolerance, so the number was not re-rounded.
 - Left alone: L1 and L8 carry no `dPgF` and none was added. L1 authors `nC`/`nF`/`ng`; L8 stays at `nd`/`νd` because the NBFD13 / M-NBFD130 process variant is unresolved. No element uses `indexReference: "e"`. The 0.0137 / 0.0067 figures in the earlier glass-audit section above are the catalog deviations as recorded at that time and are left as history.
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 22. `fStops` lists f/22, which the slider cut off at the default 16. No optical value changed.

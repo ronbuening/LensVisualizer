@@ -209,7 +209,7 @@ const LENS_DATA = {
   gaps: { "7": { label: "D(A7)", values: [[2.346, 11.433]] } },
 
   /* ── Aperture configuration ── */
-  aperture: { nominalFNumber: 2.8, fStops: [2.8, 4, 5.6, 8, 11, 16, 22], blades: 8 },
+  aperture: { nominalFNumber: 2.8, fStops: [2.8, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22, blades: 8 },
 
   /* ── Aberration control (soft-focus ring) ──
    *  The separate Varisoft ring opens d_B0 from the sharp #0 setting to

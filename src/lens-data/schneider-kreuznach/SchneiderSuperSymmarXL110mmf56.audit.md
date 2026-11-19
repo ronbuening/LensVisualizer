@@ -92,3 +92,7 @@ Retain the missing-asphere qualification and the RI localization refusal. A sour
   stop's `nominalFNumber` 5.6 matches it.
 
 - 2026-11-13 — `source.omissions` records the stand-in described by "The asph entry uses the spherical baseline (K=0, all A=0)." `source.sdSource: "heuristic"` rests on "All authored semi-diameters remain estimates and are retained." Source: existing header / audit text; no optical values change.
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 45. `fStops` lists f/22, f/32 and f/45, which the slider cut off at the default 16. No optical value changed.

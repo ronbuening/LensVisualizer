@@ -67,3 +67,7 @@ Patent: US6560042; Column 9, Numerical Example 3, Table 3 header u/m/fB rows and
 Reference: audit-resolved. The source names an object distance without defining its endpoint; the conjugate check discriminates the `image-plane` reference.
 
 The paraxial image offset is +0.002929997 mm (+0.652466 diffraction depths); verdict `consistent`, `referenceDiscriminated: true`. The alternative `first-surface` reference gives -1.657295707 mm (-389.350862 depths). All authored prescription, focus-gap and image-plane values are retained.
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 22. `fStops` lists f/22, which the slider cut off at the default 16. No optical value changed.

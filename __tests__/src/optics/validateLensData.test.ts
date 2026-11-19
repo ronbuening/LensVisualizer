@@ -886,6 +886,18 @@ describe("validateLensData", () => {
     expect(errors.some((e) => e.includes('"fstopSeries"'))).toBe(true);
   });
 
+  it("rejects listed f-stops past the aperture slider's end, and names the V2 fields", () => {
+    const error = `"fstopSeries" lists 22 above "maxFstop" (16), past the aperture slider's end; set "maxFstop" to 22`;
+    expect(validateLensData(makeValid({ fstopSeries: [2, 16, 22] }))).toEqual([error]);
+    expect(validateLensData(makeValid({ fstopSeries: [2, 16, 22], maxFstop: 22 }))).toEqual([]);
+    const pair = FIXTURE_PAIRS.find((pair) => pair.family === "prime");
+    if (!pair || pair.kind !== "lens") throw new Error("missing prime fixture");
+    const v2 = { ...pair.v2, aperture: { ...pair.v2.aperture, fStops: [2, 16, 22] } } as LensDataV2Input;
+    expect(validateCanonicalLens(ingestLens(v2))).toEqual([
+      error.replace('"fstopSeries"', '"aperture.fStops"').replaceAll('"maxFstop"', '"aperture.maxFNumber"'),
+    ]);
+  });
+
   it("catches duplicate surface labels", () => {
     const data = makeValid({
       surfaces: [
