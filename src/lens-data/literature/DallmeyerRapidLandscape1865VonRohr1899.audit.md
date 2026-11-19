@@ -134,8 +134,9 @@ Meridional transmission (share of the stop diameter, exact trace) with the 10 mm
 Von Rohr names J. H. Dallmeyer 3, "Improvements in the construction of lenses, which improvements are especially
 applicable to lenses for photographic purposes", English patent 2539 of 14 October 1864 "auf die dreifache
 Landschaftslinse" (bibliography p. 408, cited for p. 192). DEPATISnet holds the record GB000186402539A with no page
-images (0 pages); Google Patents has no record (GB186402539A); Espacenet refused the request (403). Result: **not
-checked**, no facsimile reachable, so whether the patent prints a numerical table is unknown. Von Rohr's numbers
+images (0 pages); Google Patents has no record (GB186402539A); Espacenet, checked in a browser on 2026-11-19, has no
+record either: it holds only four GB documents published in 1864–65 and no Dallmeyer document before 1890. Result:
+**not checked**, no facsimile reachable, so whether the patent prints a numerical table is unknown. Von Rohr's numbers
 come from van Monckhoven, not from the patent.
 
 ### Open limitations

@@ -104,14 +104,24 @@ L3 0.36.
 ### Patent check (D6)
 
 Von Rohr's bibliography names E.P. 4692 of 1893 (Rudolph 6) for Series VI. Google Patents has no record of
-GB189304692A; DEPATISnet holds the number with no pages and empty bibliographic fields; Espacenet refused
-non-browser access (HTTP 403). The patent text was not seen, so whether it prints a numerical table, and whether that
-table matches Fig. 137, is unknown. Von Rohr states that the British patent printed Rudolph's detailed construction
-data (p. 377) and that his table is reduced to fD = 100 mm.
+GB189304692A; DEPATISnet holds the number with no pages and empty bibliographic fields; Espacenet (checked in a
+browser, 2026-11-19) has no record either.
+
+Espacenet does hold the Swiss patent of the same invention with page images: CH 6329 A, Dr. Paul Rudolph, Jena,
+"Dreifache Linse für photographische Objektive", filed 15 February 1893, published 15 August 1893 (4 pages; no other
+family member). It prints two examples in units of the focal length. Beispiel 2, the type with a negative middle lens
+(Fig. 2), is this table: r1 = −0.1423, r2 = −0.0547, r3 = +0.2073, r4 = −0.1260; d1 = 0.0167, d2 = 0.0052,
+d3 = 0.0139, b = 0.0104; nD 1.52246, 1.56724, 1.61120, with nG₁ (Hγ) 1.53373, 1.58092, 1.62483. Every value von Rohr
+prints is that table ×100, rounded to 0.1, and the patent's signs are the model's. L2 = 1.56724 is printed there
+without the misprint von Rohr's footnote corrects in the British Journal of Photography. The patent gives 1:13
+(opening 0.077) and a field angle of about 90°, where von Rohr computes 1:14.4 and ω = 34°.
+
+Result: **identical table found** (Swiss counterpart, CH 6329 A, Beispiel 2). Under D6 the lens qualifies for
+re-filing as a patent lens; not yet done.
 
 ### Open limitations
 
 - Plate IV (aberration curves for Fig. 137) was not consulted.
-- The British patent and the B.J. 1893 reprint were not compared with the book's table.
+- The British patent and the B.J. 1893 reprint were not seen; the Swiss counterpart CH 6329 A was compared.
 - The model is monochromatic (nD only); von Rohr's ν̄ is not an Abbe number.
 - Rims rest on a 33-pixel-tall drawing; the figure's stop spacing is not drawn to scale.
