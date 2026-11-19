@@ -10,13 +10,6 @@
 
 import type { CorporateFamilyPeriod } from "../../types/catalog.js";
 
-export const MAKER_CORPORATE_FAMILIES: Readonly<Record<string, readonly CorporateFamilyPeriod[]>> = {
-  kmz: [
-    {
-      family: "KMZ",
-      effectiveFrom: "1942",
-      sourceUrl: "https://bigenc.ru/c/krasnogorskii-zavod-imeni-s-a-zvereva-dfb513",
-      note: "The catalog maker KMZ is the Krasnogorsk Mechanical Plant, organized in Krasnogorsk in 1942.",
-    },
-  ],
-};
+/* Empty since the KMZ entry's only model, the Industar ITMO 2013 teaching prescription, became a literature
+   reconstruction, which the map leaves out. */
+export const MAKER_CORPORATE_FAMILIES: Readonly<Record<string, readonly CorporateFamilyPeriod[]>> = {};

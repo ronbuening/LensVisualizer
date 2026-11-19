@@ -189,8 +189,9 @@ example in the title instead of a focal length and f-number the example does not
 ratings and computed behavior explicitly distinguished in the specs and source notes.
 
 A [literature reconstruction](#literature-reconstructions-sourceliterature) names the design and its printed aperture,
-then the work and figure in parentheses, with no focal length: a work that normalizes every lens to one focal length
-describes no product. The maker prefix follows the rules above when `maker` is set; with `maker: null` the name opens
+then the work and figure in parentheses. When the work normalizes every lens to one focal length (von Rohr's f = 100),
+the name carries no focal length, since that scale describes no product; a work that prints its example at real scale
+keeps the printed focal length (`KMZ INDUSTAR 52.39mm f/3.56 (Ivanov 2013, Variant 2)`). The maker prefix follows the rules above when `maker` is set; with `maker: null` the name opens
 with the designer or design type. Examples: `VOIGTLÄNDER PETZVAL PORTRAIT f/3.4 (von Rohr 1899, Fig. 100)`,
 `FRENCH LANDSCAPE f/12.1 (von Rohr 1899, Fig. 54)`.
 
@@ -385,7 +386,7 @@ Authoring rules for the rest of the file:
 - **`subtitle`**: design context only ("Thicknesses and rear air gap assumed by von Rohr"). The header shows the
   citation in its place.
 - **`catalog.specs`**: the element/group count, then the work's scale and spectral limit where they apply
-  (`"NORMALIZED f = 100 mm"`, `"nD ONLY"`). Leave out words the citation already carries ("HISTORICAL REFERENCE").
+  (`"NORMALIZED f = 100 mm"` for a normalized work, `"nD ONLY"`). Leave out words the citation already carries ("HISTORICAL REFERENCE").
 - **`catalog.focalLengthMm.design`** and **`catalog.fNumber.design`**: the focal length and aperture the work prints
   (von Rohr's `100`), not a computed EFL; the traced EFL must still lie within the 0.8–1.25 window.
 - **`catalog.lensMounts`** and **`catalog.imageFormat`**: never set (the validator refuses them, and `marketing`

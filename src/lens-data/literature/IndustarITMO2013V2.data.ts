@@ -1,7 +1,7 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
- * Lens Patent — Industar - ITMO2013 Variant2 source model — 2 Data
+ * KMZ Industar 52.39mm f/3.56, literature reconstruction: Ivanov (ITMO 2013), Appendix 1.2 Variant 2.
  * Source: Ivanov, ITMO 2013, Appendix 1.2 Variant 2, p.51; schematic p.50.
  * https://books.ifmo.ru/file/pdf/1465.pdf
  * Four elements / three groups. A source-book model, not a confirmed
@@ -33,8 +33,8 @@ const LENS_DATA = {
   schema: 2,
   key: "industar-itmo2013-v2",
   maker: "KMZ",
-  name: "KMZ INDUSTAR 52.39mm f/3.56 (ITMO 2013 Variant 2)",
-  subtitle: "Ivanov / ITMO 2013, Appendix 1.2 Variant 2, pp.50–51; qualified catalog-glass model",
+  name: "KMZ INDUSTAR 52.39mm f/3.56 (Ivanov 2013, Variant 2)",
+  subtitle: "Industar-50-family teaching prescription; catalog glass for the grades the book names",
 
   catalog: {
     specs: ["4 ELEMENTS / 3 GROUPS", "52.3909 mm MODEL EFL", "11.8 mm PUBLISHED DIAPHRAGM", "FIXED INFINITY MODEL"],
@@ -44,8 +44,17 @@ const LENS_DATA = {
     fNumber: { design: 3.5647432498262934 },
   },
 
-  // Non-patent book prescription: no patent number or named patent parties.
-  source: { authors: [], assignees: [] },
+  source: {
+    literature: {
+      authors: ["A. N. Ivanov"],
+      title: "Проектирование узлов оптико-электронных приборов. Методические указания к выполнению курсового проекта",
+      year: 2013,
+      publisher: "ITMO",
+      place: "Saint Petersburg",
+      locator: "Appendix 1.2, Variant 2, p. 51 (schematic p. 50)",
+      url: "https://books.ifmo.ru/file/pdf/1465.pdf",
+    },
+  },
 
   elements: [
     {

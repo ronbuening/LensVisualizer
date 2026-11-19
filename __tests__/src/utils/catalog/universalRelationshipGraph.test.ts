@@ -27,13 +27,15 @@ describe("buildUniversalRelationshipGraph", () => {
     for (const patent of graph.patents) expect(ids.has(patent.id), patent.patentNumber).toBe(true);
   });
 
-  it("retains every visible model and every authored patent-party relationship", () => {
+  it("retains every visible model but literature reconstructions, and every authored patent-party relationship", () => {
     const graph = buildUniversalRelationshipGraph();
     const representedKeys = new Set([
       ...graph.patents.flatMap((patent) => patent.lenses.map((lens) => lens.key)),
       ...graph.nodes.flatMap((node) => (node.kind === "lens" ? [node.lens.key] : [])),
     ]);
-    expect([...representedKeys].sort()).toEqual([...SUMMARY_KEYS].sort());
+    const mapKeys = SUMMARY_KEYS.filter((key) => isRelationshipMapLens(LENS_SUMMARIES[key]));
+    expect(mapKeys.length).toBeLessThan(SUMMARY_KEYS.length);
+    expect([...representedKeys].sort()).toEqual(mapKeys.sort());
 
     for (const key of SUMMARY_KEYS) {
       const summary = LENS_SUMMARIES[key];
