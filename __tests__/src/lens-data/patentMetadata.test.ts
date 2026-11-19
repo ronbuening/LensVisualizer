@@ -88,6 +88,8 @@ const MISSING_PATENT_EXAMPLE: readonly string[] = [
   "minolta-md-50f17",
   "nikon-nikkor-15mm-f56",
   "olympus-zuiko-auto-s-50f18",
+  "steinheil-orthostigmat-ii-476mm-f4-de88505",
+  "steinheil-orthostigmat-ii-493mm-f62-de88505",
 ];
 
 const ORDINALS = [
