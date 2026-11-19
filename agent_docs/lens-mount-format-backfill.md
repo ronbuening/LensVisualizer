@@ -7,11 +7,11 @@ the fields unset and add a note here until a source check resolves it.
 
 ## Current Coverage
 
-- Total lens data files, literature reconstructions excluded: **1160**
+- Total lens data files, literature reconstructions excluded: **1161**
 - Files with both `lensMounts` and `imageFormat`: **1106**
-- Files missing `lensMounts`: **45** (30 public lenses, 2 hidden patent designs and 13 hidden reference fixtures)
-- Files missing `imageFormat`: **38** (26 public lenses and 12 hidden reference fixtures)
-- Files missing both fields: **29**
+- Files missing `lensMounts`: **46** (31 public lenses, 2 hidden patent designs and 13 hidden reference fixtures)
+- Files missing `imageFormat`: **39** (27 public lenses and 12 hidden reference fixtures)
+- Files missing both fields: **30**
 - Formats currently in use: `1-1.7-inch-type`, `1-1.8-inch-type`, `1-2.3-inch-type`, `1-2.55-inch-type`,
   `1-2.7-inch-type`, `1-inch-type`, `1.25-inch-tube`, `1.5-inch-type`, `110`, `135-full-frame`,
   `16mm-cinema`, `2-3-inch-type`, `35mm-cinema`, `44x33`, `4x5`, `5x7`, `645`, `6x6`, `6x7`, `6x9`, `8x10`,
@@ -47,6 +47,7 @@ with remaining compatibility questions explained in the lens analysis.
 | Russar-21; Russar-22 | Experimental prescription sources lack a manufacturer-issued standardized production fitting. |
 | Voigtländer Dynar | Normalized patent model lacks a selected commercial installation; leave mount and format unset. |
 | Goerz Doppel-Anastigmat 240mm f/8 (DE 74437); Steinheil Orthostigmat Type II 493mm f/6.2 and 476mm f/4 (DE 88505); Voigtländer Collinear Type II 150mm f/6.9 (DE 90482) | 1890s view-camera objectives in barrel. The patents draw flanged cells but name no camera, plate size or lens board, and the Collinear Type II and the fast Orthostigmat were never sold; `large-format-lens-board` needs a period catalog that ties each example to a product. |
+| Carl Zeiss Jena Anastigmat-Satzlinse 500mm f/13 (CH 6329) | A cemented single lens given in units of the focal length. The patent draws no cell and names no camera, plate size or lens board, and its 500 mm f/13 example is not a catalogued Series VI lens (rated 1:14.5). |
 | Carl Zeiss Jena PI-Flektogon 30mm f/2.8 | The 1975 factory sheet names no fitting. Its archive host ties only a *similar* SO-4 2,8/30 to the Stasi HFK camera, which was screw-mounted but whose thread no source names. |
 | Zeiss S-Biogon 40mm f/5.6 | Microfilm reduction lens installed in the Zeiss Mikrobox recorder. The sources give only an M50 × 0.75 rear thread, an industrial thread with no canonical mount id; do not assign a camera mount from the Biogon family name. |
 | Voigtländer Cine-Tele-Anastigmat 100mm f/4.5 | No manufacturer or period source names this product. Voigtländer’s catalogue Nr. 1709.7.25 and its price list of about 1930 offer only the Tele-Dynar f/6.3 as a telephoto, so no camera fitting can be tied to the research-correlated name. |
@@ -79,6 +80,7 @@ patent scaling, angular field, or circular image into an unsupported rectangular
 | Kinoptik Super-Tegea 1.9mm | Manufacturer brochures establish an 8.7 mm circular image and multiple applications, not a single rectangular capture frame. Keep `imageCircleMm`. |
 | Nikon Ultra-Micro-Nikkor 29.5mm | Fixed-conjugate photolithography objective; its reduction ratio/field does not imply a consumer film or sensor class. |
 | Goerz Doppel-Anastigmat 240mm f/8; Steinheil Orthostigmat Type II 493mm and 476mm; Voigtländer Collinear Type II 150mm | The patents give focal lengths and apertures but no plate size; von Rohr's field angles describe coverage, not a recording frame. A period catalog listing the plate size for the matching focal length is needed. |
+| Carl Zeiss Jena Anastigmat-Satzlinse 500mm f/13 | The patent's "about 90°" field angle describes coverage at small stops, not a plate; no source ties the 500 mm example to a plate size. |
 | Zeiss Biotar 50mm f/1.4; Kodak Ektar 52mm f/1.5; Schneider Xenar 50mm f/2.8 | The cited sources do not securely identify the selected scaled patent example with a production variant’s recording frame. Family listings alone do not resolve that boundary. |
 | Russar-21; Russar-22 | Experimental/patent field evidence lacks a manufacturer-issued recording-frame specification for these exact prototypes. |
 | Meyer Kino-Plasmat 100mm; Double-Plasmat 135mm | Exact production mapping and format are not established by the source set; chosen scales and historic specimen names do not supply them. |
