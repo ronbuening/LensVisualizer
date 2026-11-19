@@ -490,7 +490,7 @@ const LENS_DATA = {
     },
   },
 
-  aperture: { fStops: [4, 5.6, 8, 11, 16, 22] },
+  aperture: { fStops: [4, 5.6, 8, 11, 16, 22], maxFNumber: 22 },
 
   /* ── Plane-parallel member PP (patent surfaces 29–30): traced, not drawn ── */
   rearPlates: [

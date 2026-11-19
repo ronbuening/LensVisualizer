@@ -10,3 +10,7 @@ Direct source: `patents/JPB 1963026133-000000.pdf`, PDF p.1 sole prescription/d-
 - All6 printed nd/vd pairs retained; p.1 defines n relative to the d line. No partial/spectral rows or APD claim. Six curves labeled qualified near spectral proxies; source low-precision indices remain literal. L6 changed from N-BK7 (nd1.5168, error+0.0005) to S-BSL7 (1.51633/64.14, Δnd+0.00003/Δvd+0.14). Other near curves retained honestly, notably N-SK16 source1.6212/60.1 vs1.62041/60.32. Supplier/period/melt identities unresolved.
 - Canonical/full cut guard, surface, circle, f3.5 and full formatcorner pass; nine actual SVG states inspected with zero trim. Axial97/97 samples at∞/mid/close pass; close modeled D0=512.817434 additionally25/25. No source finite law is claimed.
 - Identical-launch union over focus0/.5/1, fields0/5/10/15/20/25/30/35/37.5/37.71° and97 stop samples:5335 traces,4236 retained,317 gained,612 lost. Baseline transmitted maxS1/S2=19.845260/18.221456mm, safely below new23.4; losses occur at the source-restored smaller rear apertures (old transmitted rear reaches9.448018mm versus source≈6.7), gains at enlarged S3. Candidate max transmittedS1/S2=23.336427/22.062240. These are discrete sample counts, not flux percentages or measured production vignetting. Source field-edge illumination prose cannot be calibrated from these samples. R/d, stop and focus controls unchanged.
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 22. `fStops` lists f/22, which the slider cut off at the default 16. No optical value changed.

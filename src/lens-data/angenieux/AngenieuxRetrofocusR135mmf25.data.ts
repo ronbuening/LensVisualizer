@@ -172,7 +172,7 @@ const LENS_DATA = {
       "NO_INTERNAL_RECONSTRUCTION — GB 673,358 A publishes one fixed infinity prescription and no moving-group or object-distance table. The 0.914m catalog value is representative Exakta production metadata only; no focus var is authored.",
   },
 
-  aperture: { nominalFNumber: 2.5, fStops: [2.5, 2.8, 3.5, 4, 5.6, 8, 11, 16, 22] },
+  aperture: { nominalFNumber: 2.5, fStops: [2.5, 2.8, 3.5, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22 },
 
   projection: { kind: "rectilinear", fullFieldDeg: 65, maxTraceFieldDeg: 32.5 },
 

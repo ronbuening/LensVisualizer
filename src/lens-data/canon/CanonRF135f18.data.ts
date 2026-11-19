@@ -316,7 +316,7 @@ const LENS_DATA = {
   },
 
   /* ── Aperture configuration ── */
-  aperture: { nominalFNumber: 1.86, fStops: [1.86, 2, 2.5, 2.8, 3.5, 4, 4.5, 5.6, 6.3, 8, 11, 16, 22] },
+  aperture: { nominalFNumber: 1.86, fStops: [1.86, 2, 2.5, 2.8, 3.5, 4, 4.5, 5.6, 6.3, 8, 11, 16, 22], maxFNumber: 22 },
 
   /* ── Rear plate (patent surfaces 31–32): traced, not drawn ── */
   rearPlates: [

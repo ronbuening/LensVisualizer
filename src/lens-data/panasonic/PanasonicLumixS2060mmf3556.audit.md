@@ -110,3 +110,7 @@ meniscus), is unchanged. The wide analysis field now runs to 47.4° (20.08 mm, 9
 `focus.closeFocusM` 0.15 → 0.15 m, with per-station `closeFocusM` 0.15 / 0.213 / 0.4 m. The close-focus distance now records where the authored close row focuses — its paraxial in-focus object-to-image distance — so the close-focus label and `closeFocusM` agree within 2 %. The old value was up to 166.7 % from that row. No gap, keyframe, published flag or other optical value changed.
 
 - Why the old value differed: derived close rows already follow the production 0.15 m / 0.40 m MFDs; per-station values record them.
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 22. `fStops` lists f/22, which the slider cut off at the default 16. No optical value changed.

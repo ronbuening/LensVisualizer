@@ -42,3 +42,7 @@ Patent: JP 2015-111192 A, Example 1
 - Removed only the 6 repeated positive d-line citations from the uncertainty-only `indexReferenceNote` field. Their provenance is preserved in the data header and analysis. Every `indexReference: "d"` remains. The previous annotations incorrectly selected `n (source)` / `ν (source)` inspector labels despite the explicit d definition.
 - No actual uncertain-reference or rounding note was removed. Source pairs, genuine partials/line indices, APD, curve identities, R/d/sd, rim fields and all controls remain identical. Four compiled channel indices and sampled state geometry are checked against the frozen baseline; compatible-curve counts are unchanged. Existing source/clearance/production limitations remain; no new historical supplier, melt or chemistry is identified.
 - Genuine L5 `dPgF: 0.0141`, `apd: "patent"` and the prior published θ/Abbe rounding discussion are retained unchanged.
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 22. `fStops` lists f/18, f/20 and f/22, which the slider cut off at the default 16. No optical value changed.

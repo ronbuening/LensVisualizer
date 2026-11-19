@@ -474,6 +474,7 @@ export function buildVignettedRimCutLens({
     key,
     nominalFno,
     fstopSeries: [nominalFno, nominalFno * 2],
+    maxFstop: nominalFno * 2,
     imageFormat: "135-full-frame",
     elements: [1, ...(front ? [2] : []), ...(rear ? [3] : [])].map((id) => ({
       ...BASE_ELEMENT,

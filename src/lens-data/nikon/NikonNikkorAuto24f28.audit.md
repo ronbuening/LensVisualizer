@@ -37,3 +37,7 @@ Direct source: `patents/US3622227.pdf`, PDF p.2 FIG.1 and p.4 Example I, rendere
 All9 nd values and8 explicit Abbe entries match Example I. L6 vd26.1 is omitted in its own source row and remains an inference from equal-index L7, disclosed in the annotation/comment; it is not claimed as independently printed. Source headings nd/vd establish the d-line convention. No C/F/g indices, partial-dispersion table or APD material claim appears. All9 resolver curves are now labeled qualified spectral proxies with source/catalog coordinates and unspecified supplier; no inferred production identity.
 
 Canonical/full inferred-cut validation, surface, image-circle, formatcorner and nominal f2.8 pass. Nine actual SVG focus/render states checked, zero trimming. Existing modeled finite D0=206.091265mm passes25/25 axial pupil samples at fixed runtime iris6.302650; the finite prescription is calculated, not published. Source R/d/BF, inferred stop/CRC travel and all controls preserved.
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 22. `fStops` lists f/22, which the slider cut off at the default 16. No optical value changed.

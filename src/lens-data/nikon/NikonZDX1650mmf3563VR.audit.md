@@ -143,3 +143,7 @@ Runtime limitation: `buildSpectralIndex` preserves ng without synthesizing C/F, 
 - Why the old value differed: derived close rows already follow the production MFDs the focus description lists; per-station values record them.
 
 Text sync: header: "closeFocusM remains scalar" → per-station values record the three solved distances.
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 22. `fStops` lists f/22, which the slider cut off at the default 16. No optical value changed.

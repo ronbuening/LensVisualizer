@@ -58,3 +58,7 @@ Patent: US 4,189,212, Example 8 / Claim 20.
 - Every source R/d/material pair, stop convention, zoom/focus control, source back focus and tolerance remains unchanged. Surface, image-circle, all three nominal apertures and all three ≥99% field stations pass. Nine actual SVG states were inspected: finite compound outlines and zero hidden renderer trim.
 - Focused shared dispersion/glass consistency tests: 2 files/93 tests passed. Candidate AST scan: 3 data files/197 object literals, zero duplicate keys or parse errors. A dedicated pair/curve comparison verified all 43 source pairs, unchanged curve selections and channels, and source-prescription/control invariants across this triad.
 - Dense S6 probe: 21×21 states/grid 41/0.5°, 19,195,159 rays; refined reach 17.2438 < cap 18.720769−margin 0.0562 mm, zero clipped/within-margin rays and no unlaunchable fields.
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 22. `fStops` lists f/22, which the slider cut off at the default 16. No optical value changed.

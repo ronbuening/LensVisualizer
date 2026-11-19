@@ -359,7 +359,7 @@ const LENS_DATA = {
   gaps: { "4": { label: "DD4", values: [[16.34, 1.932]] }, "15A": { label: "BF", values: [[2.32, 16.728]] } },
 
   /* ── Aperture configuration ── */
-  aperture: { nominalFNumber: 1.75, fStops: [1.7, 2, 2.8, 4, 5.6, 8, 11, 16, 22], blades: 9 },
+  aperture: { nominalFNumber: 1.75, fStops: [1.7, 2, 2.8, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22, blades: 9 },
 
   /* ── Optical member PP (patent Table 1 surfaces 23–24): traced, not drawn ── */
   rearPlates: [

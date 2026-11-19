@@ -12,3 +12,7 @@ Source: `patents/DE_1497540_A1.pdf`, PDF pp.15–16 Beispiel III table and p.22 
 - All 8 source n/ν pairs retained and all 8 actual catalog curves explicitly qualified; d-line assumption is now disclosed per element because Example III headings do not state wavelength. No source spectral indices, partial-dispersion or APD material claim is supplied. K10 remains compatible, not historical-supplier proof.
 - Preserve existing R11+176.6 correction and all powered R/d/stop/controls. Clarify the source-internal limitation: the printed−176.6 and Abb.3 sketch give a negative meniscus; a negative-L6 description alone does not prove the positive sign. Existing correction instead follows the published f/BF and homologous ExampleIV evidence. No new prescription correction is made.
 - Canonical/full inferred-cut guard, surface, circle, f2.8 and full formatcorner pass. Independent dense probe: grid 41,0.5° field,21 focus positions,759654 beam rays. S4refinedreach13.3793 versus cap 15.7053; S10reach7.7060 versus cap 8.0128,required margin.05 mm;zero clipped, within-margin or untraced fields. Nine actual SVG states inspected,zero hidden trimming. Minimum common-edge thickness≈.2483 mm; maximum spherical cap slope47.854°. No finite focus state is invented and perspective-control settings are preserved.
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 32. `fStops` lists f/22 and f/32, which the slider cut off at the default 16. No optical value changed.

@@ -142,7 +142,7 @@ const LENS_DATA = {
 
   gaps: { "12": { label: "BF", values: [[37.1, 38.602]] } },
 
-  aperture: { nominalFNumber: 3.5, fStops: [3.5, 4, 5.6, 8, 11, 16, 22] },
+  aperture: { nominalFNumber: 3.5, fStops: [3.5, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22 },
 
   groups: [
     { text: "FRONT", fromSurface: "1", toSurface: "4" },
