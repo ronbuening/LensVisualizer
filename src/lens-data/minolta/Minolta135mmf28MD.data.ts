@@ -136,7 +136,7 @@ const LENS_DATA = {
       "NO_INTERNAL_RECONSTRUCTION: the patent publishes no focus-moving spacing state; 1.5 m is product MFD metadata only.",
   },
 
-  aperture: { nominalFNumber: 2.8, fStops: [2.8, 4, 5.6, 8, 11, 16, 22] },
+  aperture: { nominalFNumber: 2.8, fStops: [2.8, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22 },
 
   groups: [],
   doublets: [],

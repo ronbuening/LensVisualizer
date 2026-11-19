@@ -65,3 +65,7 @@ Patent: US 7,656,591 B2, Example 1, Table 1, Variable Distances, minimum imaging
 | 0 / 1 | `focus.conjugates` | Absent | 72.3 mm, `first-surface` | PDF p. 12, Example 1, Table 1, Variable Distances, minimum imaging distance column: d0: 72.3; +0.002718088 mm (+0.172525 depths of focus), `consistent`. |
 
 - State 0/1: d4=5.28 mm; d9=2.21 mm; authored Bf=78.14 mm is computed, not printed. Reference evidence: “d0 denotes a distance between the object and the first lens surface”. Alternate-reference residual: Object is not in front of the first surface..
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 32. `fStops` lists f/22 and f/32, which the slider cut off at the default 16. No optical value changed.

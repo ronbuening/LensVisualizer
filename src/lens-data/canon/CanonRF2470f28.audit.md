@@ -65,3 +65,7 @@ The [0086]/Fig.9 all-objectward narrative contradicts literal camera-relative L2
 Narrow surface/image-circle checks pass; 65/65 infinity aperture/field checks pass. Geometry-identical clone differs≤3.6×10⁻¹⁵mm; focus 0→1 has zero live position/iris change. Current iris 9.011390/11.039213/12.606889mm gives paraxialF2.91; real collimated 2.939369/2.965203/2.988002 is distinct from nominal-input stop heights 9.104236/11.257390/12.967065. Printed stop ED25.91 is not a proven physical iris schedule.
 
 Collimated 65 × 3 × 97 grid: 18,915 rays, axial/chief clear, 3,337 ordinary clips, 119 bounded cap misses (75 first/44 next), zero seed/unexplained/unaimed failures. Source 21.64 endpoint grid: 873 rays, axial/chief clear, 155 clips, 10 bounded misses (five first/five next). No actual finite-object focus claim follows from inert controls. Worst illustrative intermediate infinity BF residual−1.046683mm atzoom 0.265625 is retained without fitting. All 1,365 contour states contain 21 connected/closed/finite paths with zero renderer trim. Actual final source-zoom SVGs compared with native Fig.9. Source fidelity, sampled runtime clearance and product correlation remain separate; finite/moved-IS/marginal/outer-piston/material limits are public in the [analysis](CanonRF2470f 28.analysis.md).
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 22. `fStops` lists f/22, which the slider cut off at the default 16. No optical value changed.

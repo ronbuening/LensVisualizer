@@ -76,3 +76,7 @@ Patent: US 2018/0252903 A1, Example 1.
 Reference evidence: D0 denotes the distance from the surface (first surface) closest to the object in the zoom optical system ZL1 to the object, and β denotes a magnification (the same applies to Examples below).
 
 The authored gaps, image plane and published-state flags are retained.
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 22. `fStops` lists f/22, which the slider cut off at the default 16. No optical value changed.

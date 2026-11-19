@@ -173,3 +173,7 @@ Against the earlier model at the same slider position and object: added defocus 
 The far-focus label error is the infinity defocus expressed as a distance: near the 0.003 focus cutoff a few micrometres of image-side defocus move the in-focus distance by tens or hundreds of metres. Close-focus labels at kept keyframes are unchanged.
 
 Text sync: header: sampled focus error ≤ 0.005 mm → ≤ 0.007 mm at infinity, ≤ 0.017 mm near focus; analysis: seventeen → nine focus keyframes, between-keyframe defocus about 0.004 → 0.016 mm.
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 22. `fStops` lists f/22, which the slider cut off at the default 16. No optical value changed.

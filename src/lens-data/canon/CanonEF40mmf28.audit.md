@@ -105,3 +105,7 @@ printed effective-ray diameter. The printed aperture sets the loss, and the land
 - `catalog.fNumber.design: 2.8` from US 8,970,966 B2 PDF p. 13, col. 13, lines 60–65, the Numerical Example 2
   "various data" table: "Fno 2.80" beside focal length 39.00. The stop's `nominalFNumber` 2.8 matches it. No optical
   value changed.
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 22. `fStops` lists f/22, which the slider cut off at the default 16. No optical value changed.

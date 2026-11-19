@@ -7,9 +7,9 @@ the fields unset and add a note here until a source check resolves it.
 
 ## Current Coverage
 
-- Total lens data files: **1154**
-- Files with both `lensMounts` and `imageFormat`: **1103**
-- Files missing `lensMounts`: **42** (27 public lenses, 2 hidden patent designs and 13 hidden reference fixtures)
+- Total lens data files: **1160**
+- Files with both `lensMounts` and `imageFormat`: **1108**
+- Files missing `lensMounts`: **43** (28 public lenses, 2 hidden patent designs and 13 hidden reference fixtures)
 - Files missing `imageFormat`: **35** (23 public lenses and 12 hidden reference fixtures)
 - Files missing both fields: **26**
 - Formats currently in use: `1-1.7-inch-type`, `1-1.8-inch-type`, `1-2.3-inch-type`, `1-2.55-inch-type`,
@@ -44,6 +44,7 @@ with remaining compatibility questions explained in the lens analysis.
 | Meyer Kino-Plasmat 100mm; Double-Plasmat 135mm | Historical barrel/specimen evidence and normalized patent scaling do not select a standard factory camera mount. |
 | Mamiya Macro 120mm f/4 (JP 2003-185916 A Design) | The example fits the Mamiya 645 AF 120mm f/4 Macro by specification only (9/8, 32°, 1:1); no maker section was found to confirm the product, so no mount is assigned. |
 | Minor Photographic Objective 65mm f/2 | US 1,360,667 Figure 2 establishes no production manufacturer, mount, camera format, or image circle. The approximately 65° field and ambiguous focal distance do not establish a format. |
+| Tamron 45.3mm f/2.8 Macro (US 7,286,303 Design) | A patent design with no identified retail lens; the patent's 21.633 mm image height sets the 135 format but names no camera mount. |
 | Russar-21; Russar-22 | Experimental prescription sources lack a manufacturer-issued standardized production fitting. |
 | KMZ Industar ITMO Variant 2; Voigtländer Dynar | Teaching/normalized patent models lack a selected commercial installation; leave mount and format unset. |
 | Carl Zeiss Jena PI-Flektogon 30mm f/2.8 | The 1975 factory sheet names no fitting. Its archive host ties only a *similar* SO-4 2,8/30 to the Stasi HFK camera, which was screw-mounted but whose thread no source names. |

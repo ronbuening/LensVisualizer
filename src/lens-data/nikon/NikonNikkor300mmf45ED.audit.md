@@ -21,3 +21,7 @@ The October 30, 2026 review inspected every optical face in US 3,774,991 Fig. 1A
 All six source d-line index/Abbe pairs were checked afresh in Example I (PDF page 11, column 5). Four media resolve to compatible catalog spectral proxies: H-LaF3B, BAF12, N-SK16 and F2. The two 1.48606/81.5 fluophosphate positions remain unresolved. The named proxies qualify the current wavelength model and leave its coefficients and source anchors unchanged; they do not identify a historical supplier, melt or production material. The patent's qualitative secondary-spectrum explanation supplies no numeric per-glass partial dispersion or complete C/F/g indices, so none is fabricated.
 
 Canonical surface validation, inferred-cut beam proof where applicable, image-circle and aperture audits pass. All three format corners reach at least 99%; the 27 actual SVG states are finite with no hidden trim. Powered radii, thicknesses, spacing, source glass coordinates, stop placement, focus controls and tolerances are unchanged. Catalog curve identities and coefficients remain identical; no catalog line samples are promoted to source measurements.
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 22. `fStops` lists f/22, which the slider cut off at the default 16. No optical value changed.

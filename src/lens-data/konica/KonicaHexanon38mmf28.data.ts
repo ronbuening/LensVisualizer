@@ -132,7 +132,7 @@ const LENS_DATA = {
 
   gaps: { STO: { label: "BF", values: [[27.8273158541, 29.4258861114]] } },
 
-  aperture: { nominalFNumber: 2.824, fStops: [2.824, 4, 5.6, 8, 11, 16, 22] },
+  aperture: { nominalFNumber: 2.824, fStops: [2.824, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22 },
 
   groups: [
     { text: "G1", fromSurface: "1", toSurface: "2" },

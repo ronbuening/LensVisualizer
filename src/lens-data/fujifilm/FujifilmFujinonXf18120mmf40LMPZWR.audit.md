@@ -66,3 +66,7 @@ Patent: JP2023033114A.
 Reference evidence: “実施例１では、最も物体側のレンズ面から至近物体までの光軸上の距離は１．１ｍ（メートル）である。”
 
 The declared states already carry published focus flags. No prescription, gap, image-plane, or existing conjugate value changes.
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 22. `fStops` lists f/22, which the slider cut off at the default 16. No optical value changed.

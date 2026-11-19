@@ -62,3 +62,7 @@ Additional compatible curves (catalog minus source coordinates):
 |---|---|---|---|---|
 | L5 | 1.55 / 45.4 (d) | J-LLF1 | -0.001860 | 0.110 |
 | L7 | 1.61 / 38 (d) | S-TIM3 | 0.002929 | -0.995 |
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 22. `fStops` lists f/22, which the slider cut off at the default 16. No optical value changed.

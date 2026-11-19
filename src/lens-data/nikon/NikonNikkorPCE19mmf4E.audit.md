@@ -57,3 +57,7 @@ Patent: JP 2017-161685 A, Example 1.
 Reference basis: patent-defined. Paragraph 0067 (PDF p. 14): 「ＯＢ：物面」 and 「軸上面間隔ｄ（ｍｍ）」; surface row 0(OB) precedes surface 1 and prints d = ∞〜80.48.
 
 The source gap columns match the authored keyframes. The declarations preserve all optical surfaces, gaps, rear plates and the authored image plane.
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 32. `fStops` lists f/22 and f/32, which the slider cut off at the default 16. No optical value changed.

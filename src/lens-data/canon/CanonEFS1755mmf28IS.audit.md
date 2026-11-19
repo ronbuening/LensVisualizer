@@ -89,3 +89,7 @@ Existing OHARA PBH53 is a closer qualified proxy to those three actual spectral 
 The two source1.51640/52.2 resin layers remain chemically unresolved. A nearby ordinary-glass coordinate does not establish a resin formulation, and its published source C/F/g points are already retained; no unused or fitted material row is added. Original review dates, all source R/d, aspheres, caps, stop and focus/zoom/IS limits remain as previously documented.
 
 Catalog source reinspection: [OHARA official downloads](https://www.ohara-gmbh.com/dialog-downloads/downloads.html), retained `OHARA_260529.AGF`, discontinued `NM PBH53`/`CD` row. The six literal polynomial coefficients exactly match the registered row. No historical production identity is inferred.
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 22. `fStops` lists f/22, which the slider cut off at the default 16. No optical value changed.

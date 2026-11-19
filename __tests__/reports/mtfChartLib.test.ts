@@ -37,7 +37,7 @@ import * as mtf from "../../src/optics/mtf.js";
 import { prepareRuntimeState, stopSemiDiameterForFNumber } from "../../src/optics/optics.js";
 import { buildSimplePositiveElementLens } from "../src/optics/testLensFixtures.js";
 import type { MtfOptions, MtfResult } from "../../src/types/mtf.js";
-import { buildFixtureLens as buildLens, constructionFixtureData } from "../src/optics/constructionFixtures.js";
+import { apertureRangeFixtureData, buildFixtureLens as buildLens } from "../src/optics/constructionFixtures.js";
 import type { LensData, SourceErratum } from "../../src/types/optics.js";
 import { FIXTURE_PAIRS } from "../src/optics/prescription/ingestV2Fixtures.js";
 
@@ -333,7 +333,7 @@ describe("MTF chart report helpers", () => {
   ])("sizes the stopped-down pass to the attainable f-number $expected", ({ wideOpen, minimumAperture, expected }) => {
     const lens = buildSimplePositiveElementLens();
     // Only the aperture range is varied; the optical geometry stays synthetic and fixed.
-    const ranged = buildLens({ ...constructionFixtureData(lens), nominalFno: wideOpen, maxFstop: minimumAperture });
+    const ranged = buildLens(apertureRangeFixtureData(lens, wideOpen, minimumAperture));
     const state = prepareRuntimeState(ranged, 0, 0);
     const result = { fields: [], focus: { appliedShiftMm: 0.012 } } as unknown as MtfResult;
     const compute = vi.spyOn(mtf, "computeMtfSteps").mockImplementation(function* () {
