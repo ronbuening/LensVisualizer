@@ -35,3 +35,7 @@ Compared the rendered local-site diagram directly with the exact local patent fi
 The five separate elements, all-spherical tags, numeric labels, stop behind L4, and single rear element agree with Fig. 1 at 1.35x scale. No zoom applies; focus stays disabled because no focus-moving spacing is published. L1 now names the actual K-SK7 (SUMITA) runtime proxy instead of the ambiguous SK7-class label. All five elements retain catalog coverage, without claiming original suppliers.
 
 Validation: surface, image-circle, and traced field-coverage audits passed. The batch render sweep covered 918 zoom/focus states with zero hidden rim trim; catalog consistency and mismatch checks passed. Full typecheck, formatting, lint, 287 test files / 2,833 tests, and production build passed. The existing changelog is unchanged. Fuji capitalization and Minolta translated corporate-style aliases now have shared metadata regression guards; distinct historical entities remain separate.
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 22. `fStops` lists f/22, which the slider cut off at the default 16. No optical value changed.

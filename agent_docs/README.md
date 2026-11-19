@@ -64,6 +64,9 @@ Tags: `[policy]` how we work · `[recipe]` steps for one change type · `[archit
 - [queue] [`proprietary-glass-backfill.md`](proprietary-glass-backfill.md) — patent line-index backfill for proprietary glasses
 - [queue] [`dispersion-estimate-exploration.md`](dispersion-estimate-exploration.md) — paused proposal: narrow the MTF warning's estimated-dispersion blur and refit the nd/νd estimate; findings and the audit script
 - [queue] [`seo-optimization-plan.md`](seo-optimization-plan.md) — SEO rollout and Search Console triage, blocked on user-supplied inputs
+- [queue] [`search-traffic-actions.md`](search-traffic-actions.md) — quick snippet, opening-paragraph and crawl fixes from the November 2026 Bing and Google exports
+- [queue] [`search-traffic-research.md`](search-traffic-research.md) — lens families, mounts and features to investigate from the same exports, with open questions
+- [queue] [`article-preplanning.md`](article-preplanning.md) — candidate articles with target queries, overlap to check and outlines
 
 ## Records
 

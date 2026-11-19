@@ -112,3 +112,7 @@ An independent check of this entry on the same day. No semi-diameter or other da
 - The rendered section at 134.911 mm and at 203.786 mm was compared with FIG. 4 again: same element order, same relative sizes, the G2 pinch between S8 and S9 in the same place.
 - Analysis note, "Aperture Stop": the paragraph said one stop semi-diameter corresponds to f/2.89 at the wide end and f/4.01 at the telephoto end, and named only G1 and G2 ahead of the stop. It now names G3a as well, gives the paraxial reading of the printed column (a 14.9 mm stop gives f/2.90 / 3.48 / 4.01), the fixed iris of 15.92 mm with f/2.89 and f/3.46 traced on it, and the telephoto limit at S8/S9 (15.62 mm needed, surfaces meet at 15.26 mm, f/4.11 ceiling, f/4.36 traced at the 14.45 mm rims).
 - Data-file header: the semi-diameter note described every surface as cleared by 8-10 %, which S8/S9 are not. The S8/S9 exception and a NOTE ON APERTURE with the traced f-numbers were added, and the box borders, which did not line up, were aligned at 75 columns.
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 22. `fStops` lists f/22, which the slider cut off at the default 16. No optical value changed.

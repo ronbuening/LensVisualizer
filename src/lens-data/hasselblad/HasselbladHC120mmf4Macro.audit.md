@@ -57,3 +57,7 @@ Patent: JP 2004-302170 A, Example 4 / Table 4
 The patent prints a magnification and no object distance for this state. Each distance is solved from the prescription under `LENS_DATA_SPEC.md` § Finite conjugates: the distance that focuses the state on its image plane when the magnification there rounds to the print, otherwise the distance at the nearest magnification that does. Two independent readings of the patent agree on the printed value and on the gaps of the matching state.
 
 All radii, thicknesses, glasses, gaps, image-plane distances, existing conjugates and focus keyframes are retained.
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 45. `fStops` lists f/22, f/32 and f/45, which the slider cut off at the default 16. No optical value changed.

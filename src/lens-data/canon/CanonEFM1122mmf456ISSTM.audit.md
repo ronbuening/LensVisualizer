@@ -15,3 +15,7 @@ Patent: US 2014/0098253 A1, Numerical Example 3, Figure 5
 - Confirmed the wide-middle-tele order. U1 moves 3.58 mm imageward at middle and returns to 1.69 mm imageward at tele; U2 and U4 move 14.96 mm objectward, and U3 moves 14.51 mm objectward at tele.
 - Confirmed that only U3 focuses, moving 1.449509 mm imageward at wide and 3.466319 mm imageward at tele in the constrained 0.15 m reconstruction.
 - All 12 elements remain strict Sellmeier-covered through coordinate-compatible, supplier-neutral catalog proxies. No new assignment or tolerance change was needed.
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 22. `fStops` lists f/22, which the slider cut off at the default 16. No optical value changed.

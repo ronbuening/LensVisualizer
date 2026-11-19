@@ -24,3 +24,7 @@ Patent: US 4,235,521, Embodiment 1 / FIG. 2
 ## 2026-11-10 — Metadata fill
 
 - `catalog.fNumber.design` = 2.8: `patents/US4235521.pdf` PDF p7, col. 4, line ~61, Embodiment 1 footer "f = 100  f_B = 38.85  F 2.8". Stop `nominalFNumber` 2.8 is not faster.
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 22. `fStops` lists f/22, which the slider cut off at the default 16. No optical value changed.

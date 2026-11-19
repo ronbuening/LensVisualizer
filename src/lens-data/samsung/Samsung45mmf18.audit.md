@@ -63,3 +63,7 @@ classification. `apd: false` remains appropriate because the patent provides no 
 
 - Why the old value differed: printed row (D0 = 407.1 mm) focuses at 0.490 m object to image; 0.45 m is the old (production) value.
 - `catalog.closeFocusM.marketing` 0.45 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 22. `fStops` lists f/22, which the slider cut off at the default 16. No optical value changed.

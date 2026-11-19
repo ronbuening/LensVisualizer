@@ -112,3 +112,7 @@ Selected current close geometries, with Gaussian conjugates and their exact aime
 |            1 |                  0 |                  0.200000000 |           0.200000 | 193 / 168 / 147                   | clear / clear / clear   |
 
 The largest sampled relative difference between a positive Gaussian object-to-image conjugate and its distance label is 92.440222% at zoom 0.25, focus 0.05, aberration control 0: Gaussian 0.302391116 m versus label 4.000000000 m. This is a first-order conjugate/control distinction, not a new production-distance measurement. Nominal infinity controls remain in their separate collimated checks; their small rounding residual is not converted into a finite-source claim.
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 22. `fStops` lists f/22, which the slider cut off at the default 16. No optical value changed.
