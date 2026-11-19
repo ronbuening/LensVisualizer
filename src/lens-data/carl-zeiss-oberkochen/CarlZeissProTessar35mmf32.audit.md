@@ -52,3 +52,7 @@ Catalog version: local working tree, 2026-06-25
   r1 1,01065 → 35.373).
 - `catalog.fNumber.design: 3.2` from the same column, lines 37–38: "Das Öffnungsverhältnis für das Beispiel beträgt
   1:3,2". The stop's `nominalFNumber` 3.2 matches it. No optical value changed.
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 22. `fStops` lists f/22, which the slider cut off at the default 16. No optical value changed.

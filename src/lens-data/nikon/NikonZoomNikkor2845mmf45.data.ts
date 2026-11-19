@@ -306,7 +306,7 @@ const LENS_DATA = {
   },
 
   // Patent aperture ratio F/4.5 for the whole focal range (col. 8; Fig. 12(a)-(c)); the iris is traced per keyframe.
-  aperture: { nominalFNumber: 4.5, fStops: [4.5, 5.6, 8, 11, 16, 22] },
+  aperture: { nominalFNumber: 4.5, fStops: [4.5, 5.6, 8, 11, 16, 22], maxFNumber: 22 },
 
   groups: [
     { text: "G1 (-)", fromSurface: "1", toSurface: "5" },

@@ -21,3 +21,7 @@ Patent: GB 673,358 A, Example I / Figure 1.
 - Rechecked the supplied viewer screenshot against Example I / Figure 1. The prescription, element types, cemented topology, all-spherical flag, and stored semi-diameters remain source-consistent; both focused geometry audits pass.
 - Added source-facing diagram identifiers `1`, `2`, `3`, `4`, `5a`, and `5b`. Renamed the displayed cemented pair from the internal `D1` shorthand to the patent-derived component label `L5`.
 - Reconfirmed `P. ANGÉNIEUX RETROFOCUS TYPE R1 35mm f/2.5` and the romanized inventor name `Pierre Angénieux`.
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 22. `fStops` lists f/22, which the slider cut off at the default 16. No optical value changed.

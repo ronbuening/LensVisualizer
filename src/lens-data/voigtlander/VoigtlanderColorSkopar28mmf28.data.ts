@@ -248,7 +248,7 @@ const LENS_DATA = {
   },
 
   /* ── Aperture and viewer controls ── */
-  aperture: { nominalFNumber: 2.85, fStops: [2.8, 4, 5.6, 8, 11, 16, 22], blades: 10 },
+  aperture: { nominalFNumber: 2.85, fStops: [2.8, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22, blades: 10 },
 
   /* ── Group and cemented-assembly annotations ── */
   groups: [

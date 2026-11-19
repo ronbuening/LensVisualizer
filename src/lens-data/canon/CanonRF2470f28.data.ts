@@ -692,6 +692,7 @@ const LENS_DATA = {
   aperture: {
     nominalFNumber: 2.91,
     fStops: [2.91, 4, 5.6, 8, 11, 16, 22],
+    maxFNumber: 22,
   },
   groups: [
     {

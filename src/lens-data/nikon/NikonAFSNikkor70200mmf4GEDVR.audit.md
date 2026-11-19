@@ -23,3 +23,7 @@ Compared wide/middle/tele local-site sections with Fig. 1; retained SDs. G2 move
 - Directly viewed `patents/US20170315337A1.pdf`, Example1 Figure1/PDF2 at600dpi, Table1/d-line definition/PDF35. Every convex/concave face and bonded boundary inspected. G2 and last-meniscus concave arcs reach their optical rims; small bevels are unresolved at native stroke width. No additional land/clip is justified; leaders/brackets excluded. All SDs, source spacings, focus availability and tolerances retained, including0.001mm source-gap rounding.
 - All20 source nd/vd pairs exact, all20 current catalog curves retained with qualified spectral-proxy labels. No patent C/F/g or partial-dispersion table. Existing catalog-normal-line deviations remain distinct from the runtime baseline/patent evidence; three inferred J-FKH1 roles stay qualified. No source spectral fields or supplier identity invented.
 - Source FNO4.1 agrees with current fixediris calibration4.0997 at printed precision. Three aperture stations iris-limited within3%, three formatcorners>=99%; surface/circle pass. Nine actualSVG states have20finite paths/zero trim; finalraster inspected.20sourcepairs/catalog consistency and sharedglass3files94testspass. Numeric close-focus law remains unavailable.
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 22. `fStops` lists f/22, which the slider cut off at the default 16. No optical value changed.

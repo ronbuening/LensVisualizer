@@ -344,7 +344,7 @@ const LENS_DATA = {
   gaps: { "18": { label: "D18", values: [[11.681, 3.035]] }, "26A": { label: "BF", values: [[56.5, 65.146]] } },
 
   /* ── Aperture configuration ── */
-  aperture: { nominalFNumber: 3.6, fStops: [3.6, 4, 5.6, 8, 11, 16, 22, 32] },
+  aperture: { nominalFNumber: 3.6, fStops: [3.6, 4, 5.6, 8, 11, 16, 22, 32], maxFNumber: 32 },
 
   perspectiveControl: {
     /* Nikon USA's launch release lists shift +/-11.5 mm and tilt +/-8.5 deg:

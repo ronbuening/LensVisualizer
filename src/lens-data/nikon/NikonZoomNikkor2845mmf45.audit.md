@@ -69,3 +69,7 @@ Checked the original untracked `patents/US3771853.pdf` directly; SHA-256 `4a8ac9
 Figure 5 shows an independent flat outer land on S2. Its existing curved cap stays 22.1 mm and the body extends to 25.8 mm, matching S1; q = 0.85659. The upper/lower source joins differ by scan/drawing asymmetry, so this is a schematic estimate rather than a manufacturing cut measurement. G2’s cemented piece now has common 9.6 mm rims (S7 9→9.6, S8 8.7→9.6); S10 follows its partner at 7.6 mm; the G3 compound uses common 6.1 mm (S11 5.7→6.1, S12 5.9→6.1). These outward restorations preserve existing clear rays. The front cemented pair’s diagonal end bevel is not converted into a flat concave trim. Rear 6.2/8.0 mm rims remain as previously read from the same figure.
 
 All five zoom stations pass surface, format-corner, image-circle and nominal aperture checks; all nine actual SVG states are finite with zero hidden trim. The source stop topology is supported by Figure 5, but its midpoint in the 4.8 mm gap is still inferred; the prose that explicitly places the stop belongs to Embodiment II. Corrected that wording only. The earlier r14 Certificate-of-Correction value, powered radii/thicknesses, zoom motion, inferred image gaps and f/4.5 iris law are retained.
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 22. `fStops` lists f/22, which the slider cut off at the default 16. No optical value changed.

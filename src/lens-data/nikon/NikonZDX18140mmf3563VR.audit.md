@@ -133,3 +133,7 @@ The source prints object distances without explicitly defining the reference. Th
 - 0 / 1: alternate image-plane reference is unavailable: Object is not in front of the first surface..
 - 1 / 1: alternate image-plane reference has offset +4.330013169 mm (+126.504681 diffraction depths).
 - 2 / 1: alternate image-plane reference has offset +46.901056095 mm (+332.720739 diffraction depths).
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 22. `fStops` lists f/22, which the slider cut off at the default 16. No optical value changed.

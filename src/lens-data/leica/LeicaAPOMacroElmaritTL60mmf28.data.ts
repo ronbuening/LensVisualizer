@@ -283,7 +283,7 @@ const LENS_DATA = {
   gaps: { STO: { label: "D(ST)", values: [[23.096, 3.05]] }, "12A": { label: "BF(Gr2)", values: [[2.561, 22.608]] } },
 
   /* ── Aperture configuration ── */
-  aperture: { nominalFNumber: 2.9, fStops: [2.9, 4, 5.6, 8, 11, 16, 22, 32] },
+  aperture: { nominalFNumber: 2.9, fStops: [2.9, 4, 5.6, 8, 11, 16, 22, 32], maxFNumber: 32 },
 
   /* ── Cover glass (patent surfaces 21–22): traced, not drawn ── */
   rearPlates: [
