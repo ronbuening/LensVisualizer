@@ -1,56 +1,64 @@
 /*
-GOERZ VON HÖEGH FOUR-SINGLET OBJECTIVE f/7.6 (von Rohr 1899, Fig. 147)
+GOERZ DOUBLE OBJECTIVE 240mm f/7.6 (GB 1898/12,859, sole example)
 
-Source: Moritz von Rohr, Theorie und Geschichte des photographischen Objektivs (Berlin: Julius Springer, 1899),
-p. 392, Fig. 147: "E. von Höegh: Objektiv mit acht reflektirenden Flächen". Quelle: E. von Höegh 9, which von Rohr's
-bibliography (p. 415) lists under E. von Höegh and C. P. Goerz with the English patent number left blank and the
-notice "A new Goerz lens", British Journal of Photography 45 (1898), No. 2000, pp. 570-571. The text dates the design
-to an English patent of 1898 and a German application.
+Source: British patent No. 12,859 of A.D. 1898, Carl Paul Goerz and Emil von Hoegh, Friedenau near Berlin, "Improved
+Double Objective for Photographic and the like purposes", application 8 June 1898, complete specification accepted
+6 August 1898; read on the page images of the Espacenet original document (GB189812859A, five pages). The patent
+prints one numerical example, without a number, on page 2: "The constructional elements of a double objective of this
+kind". It is the English patent of 1898 that von Rohr cites for his Fig. 147 without a number.
 
-Printed by von Rohr: reduced to fD = 100 mm; computed for 1:7.6 and omega = 30 1/2 deg; r1 = r8 = 24.4,
-r2 = r7 = 53.8, r3 = r6 = 36.6, r4 = r5 = 29.6; d1 = d4 = 2.0, d2 = d3 = 0.9; b1 = b4 = 0.7 (crown to flint),
-b2 = b3 = 2.5 (flint to stop); nD L1 = L4 = 1.6112 (heaviest baryta crown, nu-bar 45.9), L2 = L3 = 1.5356
-(borosilicate flint, nu-bar 39.1). Text results: spherical zones at most -0.1 mm with correction at about 1:10;
-oblique pencils satisfactory to about 30 deg; astigmatism strictly corrected at 28 deg. Von Rohr marks no value as
-assumed.
+Printed by the patent, for one half (the "single system" of Fig. 1, biconcave lens L1 on the stop side): R1 = 71.973,
+R2 = 88.944, R3 = 130.924, R4 = 59.309; d1 = 2.246 (thickness of L1), d2 = 1.813 (air space), d3 = 4.934
+(thickness of L2); Δ = 12.043 (air space between both single systems); nD L1 = 1.5356, L2 = 1.6112; relative
+dispersion (nD - 1)/(nC - nF) L1 = 50.8, L2 = 58.6; focal length 240 mm, effective aperture 32 mm, effective angle of
+the image over 80°. The radii are printed unsigned. Signs follow the claim and Figs. 1 and 3: L1 biconcave, L2
+biconvex, the two halves mirrored about the stop with the biconcave lenses inside. The front half here is the
+patent's half reversed (L2 outside), so the file's surfaces 1-4 are the patent's R4-R1 and 5-8 its R1-R4.
 
-Model additions: radius signs from Fig. 147 (L1 and L4 biconvex, L2 and L3 biconcave, halves mirrored about the
-stop); last gap = computed paraxial back focus 95.175. The rounded table gives EFL 100.82 (+0.82 %), inside the
-half-digit rounding of the table. Clear radii 7.0 on every surface are kept from the package as heuristic values: the
-f/7.6 axial beam and the chief ray at the printed 30.5 deg pass; Fig. 147 draws all four lenses at about 6.3 mm, below
-the f/7.6 axial beam at the front lens (6.63 mm). Stop radius derived from 1:7.6; f-stop list added; field limited to
-the printed omega. Element focal lengths are computed (thick, in air).
+Native patent scale; no scaling. The example traces to EFL 243.032 mm (+1.26 % on the stated 240). The f-number,
+7.6, is the traced EFL over the 32 mm effective aperture (the patent prints no ratio). Von Rohr 1899, p. 392, Fig. 147
+("E. von Höegh: Objektiv mit acht reflektirenden Flächen") prints this example divided by about 2.432, his own
+reduction to f = 100, and rounded to 0.1 mm, listed from the front: his r1-r4 are R4, R3, R2, R1.
 
-Indices are nD only (indexReference "D"): von Rohr's nu-bar is (nD - 1)/(nG' - nD), a photographic blue figure, not
-an Abbe number, so the model is monochromatic and no catalog glass is substituted.
+Model additions: the stop, centred in Δ (6.0215 + 6.0215; Fig. 3 draws the diaphragm there); the last gap, the
+computed paraxial back focus 229.115 mm; the f-stop list; the field limit 40°, half the printed "over 80°"; element
+focal lengths, computed thick in air. Clear radii 17.8 mm on every surface from Fig. 3, measured on the rear half,
+which is drawn close to the printed axial spacings; the front half is drawn about 0.82-0.87 of its size, although the
+table defines two equal halves.
+
+Indices: sodium D (indexReference "D"), the patent's "refractive index for line D", with its relative dispersion
+across C and F stored as νD. Neither pair matches a catalog glass at d; no catalog glass is substituted. The glass
+names in the labels are von Rohr's (p. 392); the patent names none.
 */
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 const LENS_DATA = {
   schema: 2,
-  key: "hoegh-four-singlet-1898-von-rohr-1899",
+  key: "goerz-double-objective-240mm-f76-gb189812859",
   maker: "Goerz",
-  name: "GOERZ VON HÖEGH FOUR-SINGLET OBJECTIVE f/7.6 (von Rohr 1899, Fig. 147)",
-  subtitle: "Two identical air-spaced crown and flint halves about a central stop; English patent of 1898",
+  name: "GOERZ DOUBLE OBJECTIVE 240mm f/7.6 (GB 1898/12,859 Design)",
+  subtitle: "GB 1898/12,859 — von Höegh's four air-spaced lenses, two crown–flint halves about a central stop",
   catalog: {
-    specs: ["4 ELEMENTS / 4 GROUPS", "NORMALIZED f = 100 mm", "nD ONLY"],
+    specs: [
+      "4 ELEMENTS / 4 GROUPS",
+      "f = 240 mm PATENT / 243.03 mm TRACED",
+      "f/7.6 (32 mm EFFECTIVE APERTURE)",
+      "2ω > 80° (PATENT)",
+      "nD / νD",
+      "ALL-SPHERICAL",
+    ],
     elementCount: 4,
     groupCount: 4,
-    focalLengthMm: { design: 100 },
+    focalLengthMm: { design: 240 },
     fNumber: { design: 7.6 },
   },
   source: {
-    sdSource: "heuristic",
-    literature: {
-      authors: ["Moritz von Rohr"],
-      title: "Theorie und Geschichte des photographischen Objektivs",
-      year: 1899,
-      publisher: "Julius Springer",
-      place: "Berlin",
-      locator: "p. 392, Fig. 147",
-      url: "https://www.e-rara.ch/download/pdf/4637944.pdf#page=148",
-      after: "E. von Höegh",
-    },
+    patentNumber: "GB 1898/12,859",
+    example: { label: "Sole example", id: null },
+    patentYear: 1898,
+    authors: ["Carl Paul Goerz", "Emil von Höegh"],
+    assignees: [],
+    sdSource: "figure-measured",
   },
 
   elements: [
@@ -60,10 +68,11 @@ const LENS_DATA = {
       label: "Heaviest baryta crown",
       type: "Biconvex Positive",
       nd: 1.6112,
+      vd: 58.6,
       indexReference: "D",
-      focalLengthMm: 27.7,
-      glass: "Unmatched (historical nD only, no dispersion published)",
-      role: "Outer collective of the front half; high-index crown carrying the strongest surface, r1.",
+      focalLengthMm: 67.5,
+      glass: "Unmatched (GB 1898/12,859 nD/νD only)",
+      role: "Outer collective of the front half (the patent's L2, reversed); high-index crown carrying the strongest surface.",
     },
     {
       id: 2,
@@ -71,10 +80,11 @@ const LENS_DATA = {
       label: "Borosilicate flint",
       type: "Biconcave Negative",
       nd: 1.5356,
+      vd: 50.8,
       indexReference: "D",
-      focalLengthMm: -30.4,
-      glass: "Unmatched (historical nD only, no dispersion published)",
-      role: "Lower-index negative lens of the front half, behind a thin air meniscus; concave face toward the stop.",
+      focalLengthMm: -73.9,
+      glass: "Unmatched (GB 1898/12,859 nD/νD only)",
+      role: "Low-index biconcave lens of the front half (the patent's L1), behind the air lens; concave toward the stop.",
     },
     {
       id: 3,
@@ -82,10 +92,11 @@ const LENS_DATA = {
       label: "Borosilicate flint",
       type: "Biconcave Negative",
       nd: 1.5356,
+      vd: 50.8,
       indexReference: "D",
-      focalLengthMm: -30.4,
-      glass: "Unmatched (historical nD only, no dispersion published)",
-      role: "Mirror of L2: negative flint of the rear half, concave face toward the stop.",
+      focalLengthMm: -73.9,
+      glass: "Unmatched (GB 1898/12,859 nD/νD only)",
+      role: "The patent's L1 in the rear half: low-index biconcave lens next to the stop.",
     },
     {
       id: 4,
@@ -93,34 +104,35 @@ const LENS_DATA = {
       label: "Heaviest baryta crown",
       type: "Biconvex Positive",
       nd: 1.6112,
+      vd: 58.6,
       indexReference: "D",
-      focalLengthMm: 27.7,
-      glass: "Unmatched (historical nD only, no dispersion published)",
-      role: "Mirror of L1: outer collective of the rear half.",
+      focalLengthMm: 67.5,
+      glass: "Unmatched (GB 1898/12,859 nD/νD only)",
+      role: "The patent's L2 in the rear half: outer high-index collective.",
     },
   ],
   surfaces: [
-    { label: "1", R: 24.4, d: 2, sd: 7, medium: 1 },
-    { label: "2", R: -53.8, d: 0.7, sd: 7 },
-    { label: "3", R: -36.6, d: 0.9, sd: 7, medium: 2 },
-    { label: "4", R: 29.6, d: 2.5, sd: 7 },
-    { label: "STO", R: "flat", d: 2.5 },
-    { label: "5", R: -29.6, d: 0.9, sd: 7, medium: 3 },
-    { label: "6", R: 36.6, d: 0.7, sd: 7 },
-    { label: "7", R: 53.8, d: 2, sd: 7, medium: 4 },
-    { label: "8", R: -24.4, d: 95.175, sd: 7 },
+    { label: "1", R: 59.309, d: 4.934, sd: 17.8, medium: 1 }, // R4; sd from Fig. 3 (rear half)
+    { label: "2", R: -130.924, d: 1.813, sd: 17.8 }, // R3
+    { label: "3", R: -88.944, d: 2.246, sd: 17.8, medium: 2 }, // R2
+    { label: "4", R: 71.973, d: 6.0215, sd: 17.8 }, // R1; Δ = 12.043 split at the centre
+    { label: "STO", R: "flat", d: 6.0215 },
+    { label: "5", R: -71.973, d: 2.246, sd: 17.8, medium: 3 }, // R1
+    { label: "6", R: 88.944, d: 1.813, sd: 17.8 }, // R2
+    { label: "7", R: 130.924, d: 4.934, sd: 17.8, medium: 4 }, // R3
+    { label: "8", R: -59.309, d: 229.115, sd: 17.8 }, // R4; computed paraxial back focus
   ],
 
   focus: {
     closeFocusM: 1e15,
-    description: "Infinity only; von Rohr computes the design for a distant object.",
+    description: "Infinity-only patent example; the patent gives no close-focus data.",
   },
-  aperture: { nominalFNumber: 7.6, fStops: [7.6, 8, 11, 16], maxFNumber: 16 },
-  projection: { kind: "rectilinear", maxTraceFieldDeg: 30.5 },
+  aperture: { nominalFNumber: 7.6, fStops: [7.6, 11, 16, 22], maxFNumber: 22 },
+  projection: { kind: "rectilinear", maxTraceFieldDeg: 40 },
 
   groups: [
-    { text: "FRONT HALF", fromSurface: "1", toSurface: "4" },
-    { text: "REAR HALF", fromSurface: "5", toSurface: "8" },
+    { text: "FRONT", fromSurface: "1", toSurface: "4" },
+    { text: "REAR", fromSurface: "5", toSurface: "8" },
   ],
 
   layout: { yScFill: 0.5 },

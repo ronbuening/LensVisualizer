@@ -1,176 +1,168 @@
-# Von Höegh Four-Singlet Objective f/7.6 — von Rohr 1899, Fig. 147
+# Goerz Double Objective 240mm f/7.6 — GB 1898/12,859
 
-## Source and Design Identification
+## Patent Reference and Design Identification
 
-**Source:** Moritz von Rohr, *Theorie und Geschichte des photographischen Objektivs* (Berlin: Julius Springer, 1899), p. 392, Fig. 147
-**Data after:** E. von Höegh (caption "Quelle: E. von Höegh 9."; bibliography entry 9 on p. 415, an English patent whose number von Rohr leaves blank)
-**Designer:** Emil von Höegh
-**Manufacturer:** C. P. Goerz, Berlin (bibliography entry 9 is listed under von Höegh and C. P. Goerz; its published notice is titled "A new Goerz lens")
-**Source dated:** 1899
-**Design dated:** 1898
+**Patent:** GB 1898/12,859 (British patent No. 12,859 of A.D. 1898, complete specification)<br>
+**Filed:** 8 June 1898 (date of application)<br>
+**Published:** 6 August 1898 (accepted)<br>
+**Inventors:** Carl Paul Goerz, Emil von Höegh<br>
+**Applicants:** Carl Paul Goerz and Emil von Hoegh, of Friedenau near Berlin, "Opticians"; agents W. P. Thompson & Co.,
+London<br>
+**Title:** *Improved Double Objective for Photographic and the like purposes*<br>
+**Example details:** the one numerical example, unnumbered, on page 2, given for one half (Fig. 1) and the air space
+between the halves (Fig. 3); f = 240 mm, effective aperture 32 mm
 
-Fig. 147 is captioned "E. von Höegh: Objektiv mit acht reflektirenden Flächen" (objective with eight reflecting
-surfaces). Von Rohr places it among the last objective forms of his historical survey: a construction by E. von
-Höegh with eight free surfaces, patented in England in 1898 and applied for, with some restrictions, as a patent in
-Germany. It consists of two identical halves, each formed of one crown and one flint lens, and von Rohr notes that in
-this it agrees with a type proposed by R. Morrison and Fr. von Voigtländer at the time of the old glasses.
+The patent starts from the cemented three-lens anastigmat, in which one contact surface collects and the other
+disperses the light. The patentees reasoned that the correction depends on the index difference across these
+surfaces, and that replacing glass-to-glass contacts by glass-to-air surfaces would raise those differences six or
+seven times. The result is a half of only two single lenses separated by air: a biconcave lens L1 of low index and a
+biconvex lens L2 of high index. The patent derives it from the three-lens system by lowering the index of the enclosed
+lens until it becomes air, so that the middle member is an air lens between a biconcave and a biconvex lens. Its own
+figures give the index steps as 0.06 and 0.10 at the two contact surfaces of a cemented triplet and 0.53 and 0.61 at
+the two air surfaces of the new half.
 
-The source named under the figure, von Höegh 9, appears in the bibliography as "Objektiv mit 8 reflektirenden
-Flächen (Zweilinsen-Objektiv)", credited jointly to E. von Höegh and C. P. Goerz. The entry gives the English patent
-as "E. P. . . . ." with no number and refers to a notice titled "A new Goerz lens" in *The British Journal of
-Photography* 45 (1898), No. 2000, pp. 570–571, and in the *British Journal Almanac* for 1899, pp. 813–815. Neither
-notice was consulted for this reconstruction. Von Rohr reduces the design to a focal length of 100 mm and computes
-it for 1:7.6 and a half-field ω = 30½°.
+The text describes how the form was found. Equations for spherical correction and the sine condition gave candidate
+forms, each checked by a trigonometric marginal ray; their field was examined with a principal ray at 32°. Every
+candidate showed strongly curved astigmatic image surfaces, least so with the shortest first lens, and the patentees
+gave up the strict sine condition in each half to bring the two astigmatic image points together in the image plane,
+removing the axial spherical aberration by trigonometric trial. A single half then showed a slight lack of sharpness,
+which the text attributes to the neglected sine condition; two halves "exactly centrally united" (Fig. 3) gave a
+double objective with the flat anastigmatic field of the best double anastigmats at a larger opening.
 
-## Reconstruction Status
+The claim protects the two-lens half: a simple or composite biconcave lens of low refracting power and a simple or
+composite biconvex lens of high refraction separated by air, the facing surface of the biconcave lens acting as a
+disperser with a greater curvature than the collecting surface behind it, and a double objective of two equal or
+similar halves. Figs. 4 to 6 show either lens or both made of two cemented lenses of nearly equal index, which the
+text offers as a way to complete the achromatism with the available glasses.
 
-**Printed by von Rohr.** All eight radius magnitudes as four symmetric pairs (r1 = r8 = 24.4, r2 = r7 = 53.8,
-r3 = r6 = 36.6, r4 = r5 = 29.6), the lens thicknesses d1 = d4 = 2.0 and d2 = d3 = 0.9, the crown-to-flint air spaces
-b1 = b4 = 0.7, the flint-to-stop distances b2 = b3 = 2.5, the two nD values, the reduction to fD = 100 mm, the
-computation aperture 1:7.6 and the half-field ω = 30½°. The text beside the table gives the glass names with their
-ν̄ figures and the results of von Rohr's own ray trace: the spherical zones are small, at most −0.1 mm for the
-aperture of about 1:10 at which the spherical correction holds; the oblique pencils are satisfactory up to a
-chief-ray inclination of about 30°; astigmatism is strictly corrected at 28°; and the departures from a flat field
-are not considerable.
-
-**Assumed, measured or estimated by von Rohr.** Nothing. The table marks no thickness, spacing or index as assumed.
-It is a reduction to f = 100, rounded to 0.1 mm.
-
-**Added by this model.**
-
-- Radius signs, read from Fig. 147: L1 and L4 biconvex, L2 and L3 biconcave, the rear half the mirror image of the
-  front about a central stop. The symmetric table (r1 = r8 and so on) and von Rohr's "two identical halves" agree.
-- The last gap, 95.175 mm, is the computed paraxial back focus; von Rohr prints no back focus.
-- Clear radii of 7.0 mm on every surface, a heuristic estimate, not a measurement. The stop radius (6.083 mm) is
-  derived from 1:7.6.
-- The f-stop list 7.6–8–11–16, the 30.5° field limit (the printed ω) and the element focal lengths, computed thick in
-  air.
-
-**Printed against modelled.** The printed table traces to an EFL of 100.82 mm, 0.82 % long of the stated 100 mm.
-The f-number is f/7.6 at the model's own EFL, an entrance-pupil radius of 6.633 mm. The longitudinal spherical
-aberration at the f/7.6 pupil is +0.591 mm at the rim, +0.190 mm at 0.85, +0.011 mm at 0.7 and −0.049 mm at 0.5 of
-the pupil: the marginal ray crosses zero near 1:11.1 and the undercorrected zone reaches −0.05 mm near 1:15.5. Von
-Rohr reports correction near 1:10 with a zone of −0.1 mm, and astigmatism corrected at 28°, where the model's
-sagittal and tangential foci meet at 30.45°. All three differences lie inside the rounding of the table. The system
-is most sensitive to the thin air space b1: within its rounding interval, b1 = b4 = 0.73 mm gives an EFL of
-100.29 mm, spherical correction near 1:9.85, a zone of −0.08 mm and astigmatic correction at 28.4°. That value is an
-illustration of the rounding only; the file keeps the printed 0.7.
+The patent names Goerz and von Höegh together, both as applicants. Von Rohr (1899) gives the design to von Höegh and
+cites "an English patent of 1898" for it without a number. The example's ratings, 240 mm and 32 mm, are not tied by
+the patent to a catalogued product, so the file carries no mount or format and names the example in its title.
 
 ## Optical Architecture
 
-The objective is a symmetrical doublet of four separate lenses, positive–negative–stop–negative–positive. Each half
-is an air-spaced achromat: a biconvex crown outside and a biconcave flint next to the stop, separated by a thin air
-space. Unlike von Höegh's earlier Doppel-Anastigmat (Fig. 138), which uses a cemented triplet in each half, every
-lens here stands free, so the objective has eight glass–air surfaces and no cemented contact.
+The objective is a symmetrical double lens of four separate lenses: positive, negative, stop, negative, positive.
+Each half is an air-spaced achromat, a biconvex crown outside and a biconcave flint next to the stop, 1.813 mm apart
+on the axis. The halves are 12.043 mm apart, and the model centres the stop between them, where Fig. 3 draws the
+diaphragm. The vertex length is 30.03 mm.
 
-| Surface | Index step | Surface power (mm⁻¹) | Character |
+| Surface | Index step | Surface power (mm⁻¹) | Patent's role |
 |---|---|---|---|
-| r1 = 24.4 | air → 1.6112 | +0.0251 | outer collective face of the crown |
-| r2 = −53.8 | 1.6112 → air | +0.0114 | rear face of the crown |
-| r3 = −36.6 | air → 1.5356 | −0.0146 | front face of the flint |
-| r4 = 29.6 | 1.5356 → air | −0.0181 | inner face, concave toward the stop |
+| r1 = +59.309 (R4) | air → 1.6112 | +0.01031 | outer collective face |
+| r2 = −130.924 (R3) | 1.6112 → air | +0.00467 | collecting surface S of the air lens |
+| r3 = −88.944 (R2) | air → 1.5356 | −0.00602 | dispersing surface Z of the air lens, the more curved |
+| r4 = +71.973 (R1) | 1.5356 → air | −0.00744 | inner face, concave toward the stop |
 
-Each half has a focal length of +184.9 mm at the model's scale, about 1.8 times that of the pair, and the two halves
-sit 5.0 mm apart across the stop. The total length from first to last vertex is 12.2 mm. The Petzval sum of the
-objective is 0.00257 mm⁻¹, a Petzval radius of about 389 mm or 3.9 f.
+The rear half mirrors these surfaces. The example traces to an EFL of 243.032 mm, 1.26 % above the stated 240 mm,
+with a paraxial back focus of 229.115 mm. Each half has a focal length of +444.6 mm, 1.83 times that of the pair. The
+Petzval sum is 1.052 × 10⁻³ mm⁻¹, a Petzval radius of 951 mm or 3.9 f.
 
-The air space between crown and flint takes the place of a cemented junction. It is 0.70 mm thick on the axis and
-thins to 0.48 mm at a height of 7 mm, and the two faces that bound it have a combined power of −0.0033 mm⁻¹. Small
-changes of this space move the focal length, the spherical correction and the astigmatic correction together, as the
-rounding analysis above shows, which makes it the main correcting element of the design.
+The two faces bounding the air lens have a combined power of −0.00135 mm⁻¹. The air space is 1.813 mm on the axis and
+1.23 mm at the 17.8 mm rim, and, as the patent's own account of its trial calculations implies, the thickness of this
+space and the spacing of the halves are the main correcting variables.
 
 ## Element-by-Element Analysis
 
-### L1 / L4 — Biconvex Positive, outer collective
+### L1 / L4 — Biconvex Positive, outer crown
 
-nD = 1.6112 (sodium D), no νd published; ν̄ = 45.9. Glass: heaviest baryta crown, unmatched. f = +27.7 mm.
+nD = 1.6112, νD = 58.6 (sodium D). Glass: Unmatched (patent nD/νD only); von Rohr's heaviest baryta crown.
+f = +67.5 mm.
 
-The outer crown carries most of the positive power of its half at its strongly curved outer face (r1 = 24.4). Its
-index is the higher of the two glasses, so its positive power adds less to the Petzval sum than an ordinary crown of
-the same power would. Its rear face is weaker (r2 = −53.8) and convex toward the air space. With the printed radii L1
-reaches a knife edge at a radius of about 8.1 mm; at the 7 mm rim its edge is 0.52 mm thick. L4 is its mirror image.
+The patent's L2, the high-index biconvex lens. Its strongly curved outer face carries most of the positive power of
+its half; its inner face is the collecting surface of the air lens. With the printed radii it reaches a knife edge at
+19.85 mm and keeps 0.98 mm at the 17.8 mm rim. L4 is its mirror image.
 
 ### L2 / L3 — Biconcave Negative, inner flint
 
-nD = 1.5356 (sodium D), no νd published; ν̄ = 39.1. Glass: borosilicate flint, unmatched. f = −30.4 mm.
+nD = 1.5356, νD = 50.8 (sodium D). Glass: Unmatched (patent nD/νD only); von Rohr's borosilicate flint.
+f = −73.9 mm.
 
-The flint is nearly as strong as the crown but of opposite sign, so each half keeps only a weak net positive power.
-Its rear face, r4 = 29.6, is concave toward the stop and is the strongest negative surface of the system; it makes
-the largest negative contribution to the Petzval sum. With the flint of lower index than the crown, the negative lens
-contributes more to the Petzval sum per unit of power than the positive one, which is how the pair flattens the
-field while it achromatizes. L3 mirrors L2 in the rear half.
+The patent's L1, the low-index biconcave lens. Its outer face is the dispersing surface of the air lens, more deeply
+curved than the crown face it faces, as the claim requires; its inner face, concave toward the stop, is the
+strongest negative surface of the system and the largest negative term of the Petzval sum. Because this lens has the
+lower index, its negative power contributes more to the Petzval sum per unit of power than the crown's positive power,
+which is how the pair flattens the field. The lens is 2.246 mm thick on the axis and 6.28 mm at the rim. L3 mirrors
+it.
 
-## Glass Selection
+## Glass Identification and Selection
 
-| Von Rohr's name | nD | ν̄ | Elements | Role |
+The patent gives each glass its index for the D line and its "relative dispersion", (nD − 1) divided by the
+dispersion between the C and F lines, which is the Abbe number νD.
+
+| Element | nD | νD | Von Rohr's name (p. 392) | ν̄ (von Rohr) |
 |---|---|---|---|---|
-| Schwerstes Baryt-Crown (heaviest baryta crown) | 1.6112 | 45.9 | L1, L4 | high-index positive lenses |
-| Borosilikat-Flint (borosilicate flint) | 1.5356 | 39.1 | L2, L3 | lower-index negative lenses |
+| L1, L4 (patent L2) | 1.6112 | 58.6 | Schwerstes Baryt-Crown (heaviest baryta crown) | 45.9 |
+| L2, L3 (patent L1) | 1.5356 | 50.8 | Borosilikat-Flint (borosilicate flint) | 39.1 |
 
-Von Rohr's ν̄ is (nD − 1)/(nG′ − nD), the dispersion figure defined by the column heads of his glass table on
-p. 339. It measures dispersion toward the photographically active blue (G′ line) rather than across the F–C
-interval, so it is not an Abbe number and cannot be converted to νd. The model therefore keeps nD only, with no Abbe
-number and no modern catalog glass as a proxy, and is monochromatic.
+The file stores both values with `indexReference` "D", so the engine traces C, D and F from the patent's own pairs and
+estimates g. Neither pair reproduces a modern catalog glass at the helium d line (the nearest differ by more than
+0.001 in index), and no catalog glass is substituted. Von Rohr's ν̄ = (nD − 1)/(nG′ − nD) is a different figure, for
+the photographically active blue, and is given only for comparison with his text.
 
-The pairing is the reverse of the old achromat: the crown has the higher index and the flint the lower, a combination
-that became possible with the Jena glasses and that keeps the Petzval sum low while the two lenses achromatize each
-other. The difference in ν̄ is small (45.9 against 39.1), so each lens must be strong. In a thin-lens estimate
-computed here, the terms φ/ν̄ of one half are +0.00079 mm⁻¹ for the crown and −0.00084 mm⁻¹ for the flint, nearly
-cancelling, which is the condition for bringing the D and G′ foci of each half together.
+The pairing reverses the old achromat: the crown has the higher index and the lower dispersion, a combination the Jena
+baryta glasses made possible. The νD difference is modest, 58.6 against 50.8, so both lenses must be strong. The
+patent adds that if the achromatism of the halves can be reached only approximately with the glasses available, one
+lens can be made of two cemented lenses of nearly equal index and different dispersion.
+
+## Focus Mechanism
+
+The patent gives only the infinity prescription. The model is infinity-only: the last gap is the computed paraxial
+back focus, and no focusing motion or close-focus spacing is modelled.
 
 ## Aperture, Field and Rims
 
-Von Rohr computes the objective for 1:7.6. The model sets the iris from that aperture: the entrance-pupil radius is
-6.633 mm at the model's EFL and the physical stop radius 6.083 mm. The f/7.6 axial beam reaches 6.63 mm at r1 and
-6.34 mm at r8, inside the 7.0 mm rims.
+The patent gives an effective aperture of 32 mm for its 240 mm objective. At the traced EFL that is f/7.6, which the
+model uses: an entrance-pupil radius of 15.99 mm and a stop radius of 14.62 mm. The axial beam reaches 15.99 mm at r1
+and 15.25 mm at r8, inside the 17.8 mm rims. Traced on axis, the longitudinal spherical aberration is +0.88 mm at the
+rim of the pupil, +0.12 mm at 0.85, −0.18 mm at 0.7 and −0.21 mm at 0.5; the marginal ray crosses zero near 1:9.4 and
+the deepest zone is −0.23 mm at a height of 9.3 mm. Reduced to f = 100 the zone is −0.09 mm.
 
-The printed half-field is ω = 30½°, a 61° field. The 7.0 mm rims pass the chief ray at 30.5°, with chief heights of
-3.34 mm at r1 and r8, and the paraxial rim limit is 51.1°. The oblique beams are vignetted mainly at the rear half: a
-meridional trace computed for this model passes about 82 % of the stop diameter at 20°, 67 % at 28° and 61 % at
-30.5°. The field is limited to the printed 30.5° without widening any rim.
+The patent claims an effective angle of the image of over 80°, and the model traces to ω = 40°. The chief ray passes
+there at heights of 13.0, 11.4, 8.0 and 6.3 mm on r1 to r4, with the entrance pupil close to folding: at 38° and 40°
+two rays from the field direction pass through the centre of the stop. A meridional trace passes about 87 % of the
+stop-filling beam at 20°, 71 % at 28°, 60 % at 32° and 16 % at 40°; the paraxial rim limit is 52.0°, at r1 and r8.
+Coddington traces along the chief ray put the tangential and sagittal images 0.87 and 0.72 mm inside the image plane
+at 28°, where they nearly meet; at 32°, the patent's test angle, they lie 7.4 mm inside and 3.5 mm beyond it. Distortion
+is +0.2 % at 28° and +1.3 % at 40°, a slight pincushion. Neither the patent nor von Rohr says at what stop the
+"over 80°" is meant; f/11, f/16 and f/22 are provided.
 
-The 7.0 mm rims are an estimate, not a measurement of the drawing. Fig. 147 is drawn to scale for the
-printed axial distances: its vertex spacings, scaled from the 12.2 mm total length, agree with the table to within
-about 0.1 mm. It draws all four lenses at one height of about 6.3 mm and the stop opening at about 6.0 mm, close to
-the model's f/7.6 stop. The drawn lens height is smaller than the f/7.6 axial beam at the front lens (6.63 mm), so
-the drawing cannot be taken literally at that level of detail; rims set to the drawing would clip the printed
-aperture at surfaces 1 to 3.
-
-Within the field, the model's sagittal focus lies 0.99 mm in front of the paraxial image plane at 20° and the
-tangential 0.51 mm in front; at 28° they lie 0.19 mm in front and 0.87 mm behind; at 30.5° both lie about 0.7 mm
-behind. The largest astigmatic difference, about 1.15 mm, occurs near 27°. Distortion at 30.5° is +0.25 %, a slight
-pincushion, as expected of a symmetrical objective used at infinity.
+The clear radii are measured from Fig. 3, which the patent marks as "a reproduction of the original on a reduced
+scale". Its rear half is drawn close to the printed spacings (crown 64.5 px, air 19.5 px and flint 32.5 px for
+4.934, 1.813 and 2.246 mm) and stands 17.8 mm in semi-height at that scale, the value the model takes for every
+surface. The front half is drawn smaller, about 0.82–0.87 of the rear half in both height and thickness, although the
+table describes two equal halves; at the rear half's scale it would be 14.6 mm in semi-height, too small for the
+32 mm aperture, so it is not used. The drawn diaphragm opening, about 13.0 mm in radius, is smaller than the 14.62 mm
+stop the stated aperture needs; the model sizes the stop from the aperture.
 
 ## Design Heritage and Context
 
-Von Rohr ties the arrangement to older proposals. On p. 319 he shows, as Fig. 120, Fr. von Voigtländer's scheme of
-1879 for an objective with eight reflecting surfaces, a symmetrical lens whose front and rear members each consisted
-of two separate lenses; it was not introduced, and its construction data are unknown. R. Morrison's constructions are
-discussed on pp. 225–226, which were not consulted for this reconstruction. Von Rohr does not spell out the
-difference; on this reading it lies in the glasses, since the old crowns and flints could not give a flint of lower
-index than the crown, which von Höegh's heaviest baryta crown and borosilicate flint provide.
+Moritz von Rohr's *Theorie und Geschichte des photographischen Objektivs* (1899) prints this example as Fig. 147,
+"E. von Höegh: Objektiv mit acht reflektirenden Flächen", reduced to f = 100 and listed from the front:
+r = 24.4, 53.8, 36.6 and 29.6, d = 2.0 and 0.9, b1 = 0.7 and b2 = 2.5, with the patent's two nD values, computed for
+1:7.6 and ω = 30½°. These are the patent's values divided by about 2.432 and rounded to 0.1. He reports spherical
+zones of at most −0.1 mm with correction at about 1:10, oblique pencils satisfactory to about 30° and astigmatism
+strictly corrected at 28°; reduced to f = 100 this file gives a zone of −0.09 mm, correction near 1:9.4 and the
+astigmatic images almost coincident at 28°.
 
-The objective follows von Höegh's Doppel-Anastigmat of 1892, the cemented-triplet doublet sold by Goerz. Early in
-1899, as von Rohr reports on the same page, von Höegh followed it with a second construction (bibliography entry 10,
-English patent 2854 of 8 February 1899): a single objective of two lenses with four reflecting surfaces, derived from
-the two cell types of the Doppel-Anastigmat by giving up the dispersive cemented surface, separating the formerly
-cemented lenses by a positive air meniscus and changing the order of the glasses. Its patent claim covered use as a
-single lens or as a doublet of two such systems. Von Rohr could not compute it, since no construction data were
-given.
+Von Rohr dates the construction to an English patent of 1898 and a German application made with some restrictions,
+and lists the notice "A new Goerz lens" in *The British Journal of Photography* of 1898. He relates the form to older
+proposals for objectives with eight free surfaces, among them Fr. von Voigtländer's scheme of 1879 (his Fig. 120),
+whose construction data are unknown. On the same page he reports von Höegh's next construction of early 1899, English
+patent 2854 of 8 February 1899: a single objective of two lenses derived from the cell types of the Doppel-Anastigmat
+by separating the formerly cemented lenses by a positive air meniscus.
 
-Von Rohr gives no trade name for the objective of Fig. 147. Later histories associate von Höegh's air-spaced
-four-lens doublet of 1898 with the Goerz Celor; von Rohr does not make that link, and it was not checked against a
-Goerz catalogue for this reconstruction.
-
-The English patent itself is not the source of the numbers in the file. Von Rohr leaves its number blank, and the
-patent text was not located, so whether it prints a numerical table is not known. The fD = 100 reduction shows only
-that von Rohr worked from a design at another scale.
+The objective follows von Höegh's Doppel-Anastigmat of 1892, the cemented-triplet double lens Goerz sold from 1893.
+Later histories link the air-spaced four-lens double of 1898 to the Goerz Celor; neither the patent nor von Rohr
+names it, and the link was not checked against a Goerz catalogue.
 
 ## Sources
 
+- Carl Paul Goerz and Emil von Hoegh, GB 1898/12,859, *Improved Double Objective for Photographic and the like
+  purposes*, application 8 June 1898, accepted 6 August 1898:
+  [Espacenet](https://worldwide.espacenet.com/patent/search?q=pn%3DGB189812859A) original-document scan (five pages:
+  description on pages 1–3 with the example on page 2, claim on pages 3–4, drawing sheet with Figs. 1–6 on page 5).
 - Moritz von Rohr, *Theorie und Geschichte des photographischen Objektivs* (Berlin: Julius Springer, 1899), p. 392
-  and Fig. 147: [p. 392](https://www.e-rara.ch/download/pdf/4637944.pdf#page=148). Fig. 120 on
-  [p. 319](https://www.e-rara.ch/download/pdf/4637944.pdf#page=75) and the glass-table definition of ν̄ on
-  [p. 339](https://www.e-rara.ch/download/pdf/4637944.pdf#page=95).
-- The same work, Litteraturverzeichniss, entries von Höegh 9 and 10 on
+  and Fig. 147: [p. 392](https://www.e-rara.ch/download/pdf/4637944.pdf#page=148); Fig. 120 on
+  [p. 319](https://www.e-rara.ch/download/pdf/4637944.pdf#page=75); the definition of ν̄ on
+  [p. 339](https://www.e-rara.ch/download/pdf/4637944.pdf#page=95); bibliography entries E. von Höegh 9 and 10 on
   [p. 415](https://www.e-rara.ch/download/pdf/4637806.pdf#page=18).
