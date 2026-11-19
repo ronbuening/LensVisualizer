@@ -122,3 +122,7 @@ Distance-reference basis: `patent-defined`. The patent states: “the distance f
 - State 2/1: D3=26.5044, D10=1.0555, D21=7.3242, D18=17.5045 mm. d18 infinity + 4.431 mm; d21 infinity - 4.431 mm, using the printed G4 imageward movement; zoom-only gaps unchanged.
 
 Residuals retain the authored prescription and image plane. Every declared state already has its published-focus flag.
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 22. `fStops` lists f/22, which the slider cut off at the default 16. No optical value changed.

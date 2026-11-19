@@ -148,7 +148,7 @@ const LENS_DATA = {
   gaps: { "11": { label: "BF", values: [[34.86, 37.62656437420401]] } },
 
   /* ── Aperture configuration ── */
-  aperture: { nominalFNumber: 2.0, fStops: [2, 2.8, 4, 5.6, 8, 11, 16, 22] },
+  aperture: { nominalFNumber: 2.0, fStops: [2, 2.8, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22 },
 
   /* ── Group and doublet annotations ── */
   groups: [

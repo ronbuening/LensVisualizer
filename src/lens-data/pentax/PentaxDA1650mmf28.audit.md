@@ -62,3 +62,7 @@ reach the corner (41.2° / 26.6° / 16.1°, 100%) with every rim clear. Surface 
 wide corner chief ray at 9.86 mm inside its 10.0 mm rim and is unchanged, since L21 is a strong meniscus. The resin
 layer's rim thickness falls from 0.206 mm at 10.6 mm to 0.075 mm at 13.5 mm, and the 6A rim departure is now +533.9 µm
 (was +203.1 µm); the analysis file quotes neither, nor any other changed rim.
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 22. `fStops` lists f/22, which the slider cut off at the default 16. No optical value changed.

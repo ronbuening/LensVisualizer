@@ -58,3 +58,7 @@ Catalog version: local working tree, 2026-05-19
 - `catalog.fNumber.design: 2` from GB 850,117 p. 2 (scanned, no text layer): the "1:2" in the heading row of the
   numerical table at the top of the page ("f = 100 1:2 S′ = 72.4"), repeated in Claim 2, right column, lines 57–60
   ("a relative aperture of 1:2"). The stop's `nominalFNumber` 2.0 matches it. No optical value changed.
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 22. `fStops` lists f/22, which the slider cut off at the default 16. No optical value changed.

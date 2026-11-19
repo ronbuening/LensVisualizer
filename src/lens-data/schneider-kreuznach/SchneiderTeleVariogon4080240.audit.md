@@ -36,3 +36,7 @@ The rendered field audit still exposes front-aperture vignetting: the reachable 
 - Moving/rear concave ends and all compounds were inspected. Their few-pixel corners and oblique bevels do not independently resolve flat lands. No rim extension, interface land or inferred cut added. Preserve the shared-band moving rims and every constrained reconstructed zoom gap, inferred stop location, focus restriction and existing tolerances.
 - Canonical/surface validation passes and image-circle zero undersized. Actual production SVGs at 9 focus/zoom views inspected; 387 source/intermediate control states have finite geometry and zero hidden trim. All 65 axial aperture stations remain within 3%. Source-appropriate field audit remains 77–99% of centered full-frame corner across zoom; tele improves about 15.69→17.99 mm (72%→83% of 21.65 mm). This is a qualified vignetting limit, not full production coverage. The source does not determine reliable apertures sufficient to remove it.
 - Common-field 16×16 stop lattice at 3 focus × 3 zoom × 5 field fractions: 7098 retained, 0 lost, 402 gained rays, sampled counts rather than flux. New rays follow source-supported continuous-cap growth; no stop move or f-number fit. R/d/nd/νd, stop/aperture/focus/zoom controls and tolerances unchanged.
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 22. `fStops` lists f/22, which the slider cut off at the default 16. No optical value changed.

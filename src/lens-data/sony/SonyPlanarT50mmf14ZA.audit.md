@@ -32,3 +32,7 @@ Patent: US 2014/0071331 A1, Example 4
 - Replaced unsupported HIKARI names on L3 (`1.851348 / 40.1`, code 851401) and L8 (`1.768015 / 49.2`, code 768492) with the exact coefficient-backed HOYA coordinate equivalents M-TAFD305 and M-TAF101.
 - The patent names no glass supplier, so both annotations explicitly describe catalog spectral models rather than Sony's production melts.
 - Synchronized the analysis. No geometry or authored patent constants changed.
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 22. `fStops` lists f/22, which the slider cut off at the default 16. No optical value changed.

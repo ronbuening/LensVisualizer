@@ -147,3 +147,7 @@ Original scanned Numerical Example4 PDFp15 and correct Figure7 PDFp8 at600dpi re
 - All 18 existing qualified curves still resolve. Source ¶0048 / PDF p. 13 explicitly defines d 587.6 nm, F 486.1 nm and C 656.3 nm. No numerical line-index/partial overrides exist. Native scan is 300 ppi; prior 600 dpi figure renders were 2× upsampling.
 - Runtime-only expansion: 21 focus states (two source endpoints + 19 intervals), 3,087 aimed pupils; all 1,029 axial rays and 63 chiefs clear, zero unaimed. Infinity/half/near bundles 49/45/22, 49/47/28, 49/49/28. All 17 actual element paths finite/closed/connected, zero hidden trim. No new geometry/glass defect found.
 - Prose qualification only: physical half/near object-to-image distances are 1,146.414736 / 699.881196 mm, whereas retained near label 699.370427 mm references the air-equivalent plane. Source overall 148.55 mm versus literal air-equivalent 148.569231 mm remains unresolved, with rounding an unproved hypothesis. Source gaps, media, stops, controls, plate and all data bytes remain unchanged; source/production/material limits retained.
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 22. `fStops` lists f/22, which the slider cut off at the default 16. No optical value changed.

@@ -94,3 +94,7 @@ The tab's wide endpoint (55.85°) exceeds the source's 53.5677°, but both faile
 Coordinator follow-up: retain the localization issue as open; investigate source-supported effective apertures or the
 peripheral trace/aiming model before claiming RI. Do not apply a static 16A/17A turnover cap that loses the stated
 aperture. Full gates and any shared-engine or queue changes remain coordinator work under this assignment's scope.
+
+## 2026-11-17 — Aperture slider limit
+
+- `aperture.maxFNumber`: unset (default 16) → 22. `fStops` lists f/22, which the slider cut off at the default 16. No optical value changed.
