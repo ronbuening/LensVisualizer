@@ -7,9 +7,9 @@ the fields unset and add a note here until a source check resolves it.
 
 ## Current Coverage
 
-- Total lens data files, literature reconstructions excluded: **1154**
-- Files with both `lensMounts` and `imageFormat`: **1101**
-- Files missing `lensMounts`: **44** (29 public lenses, 2 hidden patent designs and 13 hidden reference fixtures)
+- Total lens data files, literature reconstructions excluded: **1160**
+- Files with both `lensMounts` and `imageFormat`: **1106**
+- Files missing `lensMounts`: **45** (30 public lenses, 2 hidden patent designs and 13 hidden reference fixtures)
 - Files missing `imageFormat`: **38** (26 public lenses and 12 hidden reference fixtures)
 - Files missing both fields: **29**
 - Formats currently in use: `1-1.7-inch-type`, `1-1.8-inch-type`, `1-2.3-inch-type`, `1-2.55-inch-type`,
@@ -43,6 +43,7 @@ with remaining compatibility questions explained in the lens analysis.
 | Nikon Ultra-Micro-Nikkor 29.5mm | Photolithography installation; its optical back focus and reduction ratio do not identify a consumer camera mount. |
 | Meyer Kino-Plasmat 100mm; Double-Plasmat 135mm | Historical barrel/specimen evidence and normalized patent scaling do not select a standard factory camera mount. |
 | Minor Photographic Objective 65mm f/2 | US 1,360,667 Figure 2 establishes no production manufacturer, mount, camera format, or image circle. The approximately 65° field and ambiguous focal distance do not establish a format. |
+| Tamron 45.3mm f/2.8 Macro (US 7,286,303 Design) | A patent design with no identified retail lens; the patent's 21.633 mm image height sets the 135 format but names no camera mount. |
 | Russar-21; Russar-22 | Experimental prescription sources lack a manufacturer-issued standardized production fitting. |
 | Voigtländer Dynar | Normalized patent model lacks a selected commercial installation; leave mount and format unset. |
 | Goerz Doppel-Anastigmat 240mm f/8 (DE 74437); Steinheil Orthostigmat Type II 493mm f/6.2 and 476mm f/4 (DE 88505); Voigtländer Collinear Type II 150mm f/6.9 (DE 90482) | 1890s view-camera objectives in barrel. The patents draw flanged cells but name no camera, plate size or lens board, and the Collinear Type II and the fast Orthostigmat were never sold; `large-format-lens-board` needs a period catalog that ties each example to a product. |
