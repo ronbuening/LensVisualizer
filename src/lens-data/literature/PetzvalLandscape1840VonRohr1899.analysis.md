@@ -89,7 +89,7 @@ The front lens is the portrait objective's front lens. The radii of Fig. 100, 52
 
 ### L1 — Biconvex Positive, front crown
 
-nD = 1.517 (sodium D), no dispersion published. Glass: crown, unmatched. f = +19.5 mm.
+nD = 1.517 (sodium D), no dispersion published. Glass: old low-index crown, unmatched. f = +19.5 mm.
 
 The collective member of the system. Its strongly curved rear face (r2 = −17.6 mm) is cemented to L2. With von Rohr's
 assumed centre thickness of 2.5 mm the lens runs out to a knife edge at a radius of 6.91 mm, which bounds the clear
@@ -105,7 +105,7 @@ of +59.3 mm.
 
 ### L3 — Biconcave Negative, rear crown
 
-nD = 1.517 (sodium D), no dispersion published. Glass: crown, unmatched. f = −38.3 mm.
+nD = 1.517 (sodium D), no dispersion published. Glass: old low-index crown, unmatched. f = −38.3 mm.
 
 The strong negative member of the rear pair, 1.2 mm behind the stop. Its two concave faces (r4 = −53.5, r5 = +31.5 mm)
 carry most of the negative contribution to the Petzval sum. In the second form of Fig. 103 this lens is turned round,

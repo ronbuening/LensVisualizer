@@ -28,7 +28,8 @@ const LENS_DATA = {
   key: "carl-zeiss-jena-abbe-rudolph-triplet-1888-von-rohr-1899",
   maker: "Carl Zeiss Jena",
   name: "CARL ZEISS JENA ABBE–RUDOLPH TRIPLET f/7.2 (von Rohr 1899, Fig. 125)",
-  subtitle: "Achromatic symmetrical form, 1888/89; data supplied by von Rohr",  catalog: {
+  subtitle: "Achromatic symmetrical form, 1888/89; data supplied by von Rohr",
+  catalog: {
     specs: ["5 ELEMENTS / 3 GROUPS", "NORMALIZED f = 100 mm", "nD ONLY"],
     elementCount: 5,
     groupCount: 3,
@@ -118,7 +119,7 @@ const LENS_DATA = {
     { label: "7", R: -39.2, d: 3.4, sd: 10, medium: 5 },
     { label: "8", R: -26.2, d: 90.238, sd: 10 },
   ],
-  focus: { closeFocusM: 1e15, description: "Infinity only; von Rohr gives the design for a distant object." },
+  focus: { closeFocusM: 1e15, description: "Infinity only; von Rohr computes the lens for a distant object." },
   aperture: { nominalFNumber: 7.2, fStops: [7.2, 8, 11, 16], maxFNumber: 16 },
   projection: { kind: "rectilinear", maxTraceFieldDeg: 26.5 },
   groups: [

@@ -116,7 +116,7 @@ const LENS_DATA = {
 
   focus: {
     closeFocusM: 1e15,
-    description: "Infinity-only historical reconstruction; no finite-focus motion.",
+    description: "Infinity only; von Rohr computes the lens for a distant object.",
   },
   aperture: { nominalFNumber: 7.7, fStops: [7.7, 9.1, 11, 16, 22, 32], maxFNumber: 32 },
   projection: { kind: "rectilinear", maxTraceFieldDeg: 30 },

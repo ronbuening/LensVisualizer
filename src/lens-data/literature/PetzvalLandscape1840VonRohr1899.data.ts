@@ -58,7 +58,7 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L1",
-      label: "Crown",
+      label: "Old low-index crown",
       type: "Biconvex Positive",
       nd: 1.517,
       indexReference: "D",
@@ -82,7 +82,7 @@ const LENS_DATA = {
     {
       id: 3,
       name: "L3",
-      label: "Crown",
+      label: "Old low-index crown",
       type: "Biconcave Negative",
       nd: 1.517,
       indexReference: "D",
@@ -115,7 +115,7 @@ const LENS_DATA = {
 
   focus: {
     closeFocusM: 1e15,
-    description: "Infinity only: von Rohr computes the lens for a distant object; no focusing movement is modelled.",
+    description: "Infinity only; von Rohr computes the lens for a distant object.",
   },
   aperture: { nominalFNumber: 8.1, fStops: [8.1, 11, 16, 22, 32], maxFNumber: 32 },
   projection: { kind: "rectilinear", maxTraceFieldDeg: 30 },

@@ -26,7 +26,8 @@ const LENS_DATA = {
   key: "carl-zeiss-jena-anastigmatlinse-von-rohr-1899",
   maker: "Carl Zeiss Jena",
   name: "CARL ZEISS JENA ANASTIGMATLINSE f/12.5 (von Rohr 1899, Fig. 140)",
-  subtitle: "Rudolph's four-part cemented Series VII single anastigmat, later long-focus form",  catalog: {
+  subtitle: "Rudolph's four-part cemented Series VII single anastigmat, later long-focus form",
+  catalog: {
     specs: ["4 ELEMENTS / 1 GROUP", "NORMALIZED f = 100 mm", "nD ONLY"],
     elementCount: 4,
     groupCount: 1,
@@ -53,7 +54,9 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.51743,
       indexReference: "D",
+      focalLengthMm: -17.3,
       glass: "Unmatched (historical nD only, no dispersion published)",
+      role: "Front negative of the new pair, concave toward the stop; its index lies below L2, so the cemented face r2 collects weakly.",
       cemented: "Q1",
     },
     {
@@ -63,7 +66,9 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 1.61002,
       indexReference: "D",
+      focalLengthMm: 12.7,
       glass: "Unmatched (historical nD only, no dispersion published)",
+      role: "High-index positive of the new pair and the strongest element; its knife edge at 4.97 mm bounds the clear diameter.",
       cemented: "Q1",
     },
     {
@@ -73,7 +78,9 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.51156,
       indexReference: "D",
+      focalLengthMm: 37,
       glass: "Unmatched (historical nD only, no dispersion published)",
+      role: "Low-index positive of the old pair, concave toward the stop; the index falls into it across the middle cemented face r3.",
       cemented: "Q1",
     },
     {
@@ -83,7 +90,9 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.58254,
       indexReference: "D",
+      focalLengthMm: -26,
       glass: "Unmatched (historical nD only, no dispersion published)",
+      role: "Higher-index negative of the old pair; its front face r4, the deepest curve of the lens, is the dispersing surface.",
       cemented: "Q1",
     },
   ],
@@ -97,11 +106,11 @@ const LENS_DATA = {
   ],
   focus: {
     closeFocusM: 1e15,
-    description: "Infinity only; von Rohr gives no focusing data. The image plane is the computed paraxial focus.",
+    description: "Infinity only; von Rohr computes the lens for a distant object.",
   },
   aperture: { nominalFNumber: 12.5, fStops: [12.5, 16, 22], maxFNumber: 22 },
   projection: { kind: "rectilinear", maxTraceFieldDeg: 34 },
-  groups: [{ text: "G1", fromSurface: "1", toSurface: "5" }],
+  groups: [{ text: "CEMENTED QUADRUPLET", fromSurface: "1", toSurface: "5" }],
   doublets: [{ text: "Q1", fromSurface: "1", toSurface: "5" }],
   layout: { yScFill: 0.5 },
 } satisfies LensDataV2Input;
