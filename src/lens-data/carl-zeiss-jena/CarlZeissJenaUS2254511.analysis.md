@@ -32,7 +32,7 @@ Element focal lengths below are calculated in air, distinct from combined group 
 
 nd = 1.6202, νd = 60.3. Glass: Unmatched. f = +132.31 mm.
 
-The 9.8 mm front collector lies between R1 = +74.40 and R2 = +756.80 mm. Both clear radii are inferred at 37 mm; a 0.24 mm air space follows.
+The 9.8 mm front collector lies between R1 = +74.40 and R2 = +756.80 mm. Both faces end square at 37 mm, close to the drawn 35.8 mm and just outside the 35.7 mm f/1.4 entrance beam; a 0.24 mm air space follows.
 
 ### C1 — L2–L4 Cemented Triplet
 
@@ -42,7 +42,7 @@ The 9.8 mm front collector lies between R1 = +74.40 and R2 = +756.80 mm. Both cl
 | L3      | 1.4450 | 68.4 | Unmatched    | +162.89 mm          | Low-index biconvex middle member |
 | L4      | 1.7219 | 28.1 | Unmatched    | −34.20 mm           | Biconcave negative rear member   |
 
-Thicknesses are 11.10, 8.4, and 2.0 mm; R4/R5 are cemented interfaces. The negative triplet faces convex toward L1. R3–R6 clear radii are 32, 31, 31, and 21.5 mm; only R5 is figure-measured. The strongly curved R6 constrains iris clearance.
+Thicknesses are 11.10, 8.4, and 2.0 mm; R4/R5 are cemented interfaces. The negative triplet faces convex toward L1. As drawn, it is square-cut at 31 mm through R3–R5, and R6 ends at 21.5 mm. The drawing gives L4 a flat shoulder and a chamfer down to R6; the model draws that edge as one straight line from R5 to R6. The strongly curved R6 constrains iris clearance.
 
 ### C2 — L5–L8 Cemented Quadruplet
 
@@ -53,7 +53,7 @@ Thicknesses are 11.10, 8.4, and 2.0 mm; R4/R5 are cemented interfaces. The negat
 | L7      | 1.6689 | 48.8 | Unmatched       | +27.81 mm           | Strong biconvex positive third member |
 | L8      | 1.6102 | 56.5 | SK1 (Sumita)    | −50.22 mm           | Negative rear meniscus                |
 
-Thicknesses are 8.0, 1.2, 20.0, and 2.6 mm, with three cemented interfaces. R7–R10 have inferred 21 mm clear radii; R11 is 23.9 mm from the drawing. The index ordering follows the patent.
+Thicknesses are 8.0, 1.2, 20.0, and 2.6 mm, with three cemented interfaces. R7–R10 end at 21 mm, the drawn height of the quadruplet's front, and L8's rear R11 at 23.9 mm. The drawing steps L8 out to its full edge just behind the cemented R10 rim; the model's L8 edge slopes from R10 to R11 instead. The index ordering follows the patent.
 
 ## Glass Identification and Dispersion
 
@@ -71,7 +71,7 @@ Paraxial EFL is 100.007 mm, 0.007% above nominal. Computed BFD is 46.04 mm, plac
 
 Diaphragm B measures about 89.6% through the R6–R7 gap; no station or diameter is printed. The inferred 90% station splits the gap into 12.15/1.35 mm at z = 43.69 mm. A midpoint iris would intersect the middle group.
 
-The nominal/paraxial f/1.4 gives a 41.09 mm iris diameter. Finite tracing admits an entrance beam radius of 34.87 mm versus the nominal 35.72 mm, corresponding to f/1.43. R6's 21.5 mm clear radius avoids cutting the axial beam as the smaller figure reading would. The iris limits that beam.
+The nominal/paraxial f/1.4 gives a 41.09 mm iris diameter. Finite tracing admits an entrance beam radius of 34.87 mm versus the nominal 35.72 mm, corresponding to f/1.43. R6's 21.5 mm clear radius stays slightly above its drawn 20.7 mm, which only just meets the 20.7 mm axial beam the iris admits there. The iris limits that beam.
 
 ## Field Coverage and Model Limits
 

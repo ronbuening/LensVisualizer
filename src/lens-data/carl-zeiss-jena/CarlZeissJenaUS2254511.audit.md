@@ -26,7 +26,7 @@ The iris lies at z = 43.69 mm, inferred at 90% of the 13.50 mm second air space.
 
 The retained iris has adjacent surface-cap clearances of 0.318 and 1.052 mm. Clearance remains with iris positions from 88–92% through the gap and rim variations of ±0.1 mm. The minimum separation across the second gap is 2.129 mm.
 
-R5 and R11 clear radii are measured from the figure; the others remain inferred. R6 retains 21.5 mm because its approximately 20.4 mm drawing height would cut the axial beam.
+Every clear radius has been compared with the drawing (rim review below). R6 retains 21.5 mm: the drawing gives about 20.7 mm, the same height as the axial beam the iris admits there.
 
 The ±22.5° field is inferred from the description's approximately 45° picture angle for earlier f/1.5 objectives and claims 3–4 applying the larger aperture at the same angle. The 84.8 mm image circle is calculated from the real chief-ray height.
 
@@ -54,9 +54,18 @@ No production lens is documented. The Carl Zeiss Jena listing identifies no reta
 
 These corrections leave EFL at 100.007 mm, nominal aperture at f/1.40, BFD at 46.04 mm, total track at 122.88 mm, and iris radius at 20.546 mm. Printed radii, thicknesses, indices, Abbe numbers, and air spaces are unchanged, as are the inferred stop position and calculated image plane.
 
-## Remaining Questions
+### 2026-11-20 rim review
 
-Compare the remaining inferred rims with the figure, especially R1/R2 at 37 mm versus approximately 36.2 mm drawn. Preserve R6's axial-beam clearance when assessing its smaller drawing height.
+- Source: the drawing on PDF page 1, read at 400 dpi. It is drawn to scale: the R1–R11 vertex span is 811 px for 76.84 mm (10.55 px/mm); at that scale the R6–R7 gap reads 13.6 mm (13.50 printed), R9–R10 19.9 mm (20.0) and the last surface to the image line 46.3 mm (46.04 calculated). Heights were read as half the distance between the top and bottom outlines; the R1 and R6 sags at the drawn rims give the same heights within about 2%, so both directions share one scale.
+- R1/R2: 37 mm kept. Drawn 35.8 mm, within 3.5%; the f/1.4 entrance beam is 35.7 mm, and 36 mm would cost up to 3.2 points of transmission around 14°.
+- R3: 32 → 31 mm. The drawing square-cuts the triplet at 30.9 mm, with L2's front ending at the common edge; 32 mm left L2 standing 1 mm above L3 and L4. No transmission changes at any field, and the f/1.4 axial ray at R3 (30.8 mm) still clears.
+- R4, R5: 31 mm kept (drawn 30.9 mm).
+- R6: 21.5 mm kept. Drawn about 20.7 mm, within 4%, at the height of the axial beam the iris admits there (20.7 mm).
+- R7–R10: 21 mm kept (drawn 21.0 mm). R11: 23.9 mm kept (drawn 24.1 mm).
+- Not representable: L4's drawn flat shoulder and chamfer, which the model draws as one straight edge from R5 to R6, and L8's drawn step out to its full edge just behind the cemented R10 rim, which the model draws as a slope from R10 to R11. A land cannot sit on a cemented face, and a land on R6 would draw a square block far from the drawn chamfer.
+- After the review, every surface check passes, the iris alone limits the f/1.4 beam, the half-field stays 22.5° with the corner chief ray clear of every rim, and transmission stays 38.8% at 22.5° (no loss at any field). EFL, aperture, BFD and track are unchanged.
+
+## Remaining Questions
 
 L1, L3, L4, L6, and L7 material identities and measured spectral dispersion remain unknown. Exact iris diameter and station, measured chromatic performance, polychromatic MTF, and transmission performance are undocumented.
 

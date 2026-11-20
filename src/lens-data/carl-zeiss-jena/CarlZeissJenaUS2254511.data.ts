@@ -5,8 +5,13 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Radii, thicknesses, air gaps, nd and Abbe numbers follow the table in mm;
  * no dimensional conversion is applied. The iris lies at an inferred 90%
  * of the R6–R7 gap, consistent with the drawing, and is sized from f/1.4.
- * R5 and R11 clear radii are measured from the figure; the other rims are
- * inferred. The image plane is the computed paraxial infinity focus.
+ * Clear radii are checked against the patent drawing, which is to scale
+ * (about 10.55 px/mm at 400 dpi). The cemented triplet is square-cut at
+ * 31 mm, the rear quadruplet front at 21 mm and L8's rear at 23.9 mm, as
+ * drawn. L1 is 37 mm (drawn 35.8, the f/1.4 entrance beam is 35.7) and
+ * R6 is 21.5 mm (drawn 20.7, the iris-limited axial beam is 20.7), so
+ * corner light is not lost. The image plane is the computed paraxial
+ * infinity focus.
  */
 const LENS_DATA = {
   schema: 2,
@@ -166,7 +171,7 @@ const LENS_DATA = {
       label: "3",
       R: 38.16,
       d: 11.1,
-      sd: 32,
+      sd: 31,
       medium: 2,
     },
     {
