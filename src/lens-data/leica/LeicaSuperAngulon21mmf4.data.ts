@@ -6,13 +6,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * focus are retained; indices and Abbe numbers use the patent's d line.
  * The stop position is inferred at the midpoint of d6, consistent with Fig. 1,
  * and its radius is derived from f/4. Fig. 1 is drawn to scale: the S3, S4,
- * S10, S12 and S13 rims are measured from it. S1, S2, S5, S6 and S11 are
- * estimates within about 6% of the drawing. L5 and L6 keep 4.3 mm rims, above
- * the drawn 3.7 mm, because the drawn rim would darken the outer field. Fig. 2
- * plots to 45 degrees half-field, while the production lens is specified at
- * 92 degrees full field. Only infinity spacings are supplied. Catalog glass
- * names denote spectral equivalents; the production suppliers and melts are
- * unspecified.
+ * S7 to S10, S12 and S13 rims are measured from it. S1, S2, S5, S6 and S11 are
+ * estimates within about 6% of the drawing. Fig. 2 plots to 45 degrees
+ * half-field, while the production lens is specified at 92 degrees full field.
+ * Only infinity spacings are supplied. Catalog glass names denote spectral
+ * equivalents; the production suppliers and melts are unspecified.
  */
 
 const LENS_DATA = {
@@ -219,21 +217,21 @@ const LENS_DATA = {
       label: "7",
       R: 115.5966,
       d: 0.5397,
-      sd: 4.3,
+      sd: 3.7,
       medium: 5,
     },
     {
       label: "8",
       R: 5.8695,
       d: 4.1958,
-      sd: 4.3,
+      sd: 3.7,
       medium: 6,
     },
     {
       label: "9",
       R: -5.733,
       d: 5.9955,
-      sd: 4.3,
+      sd: 3.7,
       medium: 7,
     },
     {

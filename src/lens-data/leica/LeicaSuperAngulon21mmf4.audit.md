@@ -16,7 +16,7 @@ At the patent's f′ = 100 scale, calculated longitudinal spherical aberration i
 
 ## Values Not Printed in the Patent
 
-The patent gives no clear semi-diameters. S3, S4, S10, S12 and S13 follow the optical rims in Fig. 1; the other clear radii are estimates checked against the figure (see the rim review below). The stop lies halfway along the 1.659 mm S6–S7 air space, split into two 0.8295 mm distances. Its radius is derived from f/4. Total length and individual element powers are calculated. No finite-focus spacings, focus travel or partial-dispersion values are printed.
+The patent gives no clear semi-diameters. S3, S4, S7–S10, S12 and S13 follow the optical rims in Fig. 1; the other clear radii are estimates checked against the figure (see the rim review below). The stop lies halfway along the 1.659 mm S6–S7 air space, split into two 0.8295 mm distances. Its radius is derived from f/4. Total length and individual element powers are calculated. No finite-focus spacings, focus travel or partial-dispersion values are printed.
 
 Seven glasses have catalog dispersion equivalents; two retain only their printed index and Abbe number. No original glass supplier or melt is established. No separate spectral indices or anomalous-dispersion designations have been added.
 
@@ -75,9 +75,34 @@ The full f/4 beam now passes undimmed to about 32°. Geometric transmission rise
 
 - L3 (1.58904 / 53.16) is now BALF6, Sumita: Δnd −3.5×10⁻⁷, Δνd +0.0069. L5 (1.52944 / 51.80) is now KZF2, Sumita: Δnd −1.2×10⁻⁶, Δνd +0.0106. Both differences are catalog Sellmeier C/d/F values minus the printed pair. Both rows are the older Schott types BaLF6 and KzF2. Seven of the nine glasses now have catalog equivalents; L1 and L8 remain unidentified. The printed indices and Abbe numbers are unchanged, so focal length and back focus are unchanged.
 
+### 2026-11-20 second review on the local site
+
+The live diagram, each element's details panel and the colour view were compared with Fig. 1, Fig. 2 and the patent text. Fig. 1 was measured again at 300 dpi: the S1 and S13 vertices lie 1379 px apart against 44.53 mm, or 31.0 px/mm; the S1–S6 span gives 31.1 px/mm, and the S1 and S13 sags at their drawn rims agree with the printed radii within 3 px, so both directions share one scale. The axis line tilts by about 7 px across the drawing, so heights were taken from the local axis on both sides and averaged at the line centre.
+
+| Surface | Model before (mm) | Fig. 1 (mm) | Model after (mm) | Reason |
+| ------- | ----------------: | ----------: | ---------------: | ------ |
+| S1 | 12.5 | 11.8 | 12.5 | Kept: 6% above the drawing, and L1 is still drawn taller than L9 |
+| S2 | 8.3 | 8.6 | 8.3 | Kept: within 4% |
+| S3, S4 | 7.4, 6.2 | 7.45, 6.3 | 7.4, 6.2 | Agree |
+| S5, S6 | 5.5 | 5.2 | 5.5 | Kept: within 6%; L3 still steps down to L4 as drawn |
+| S7–S9 | 4.3 | 3.7 | 3.7 | Changed to the drawing |
+| S10 | 5.9 | 5.85 | 5.9 | Agrees |
+| S11 | 6.8 | 6.9 | 6.8 | Kept: at 6.9 mm the rim slope is 64.6°, above the 64.2° limit |
+| S12, S13 | 8.8, 11.3 | 8.75, 11.3 | 8.8, 11.3 | Agree |
+
+S7, S8 and S9 changed from 4.3 to 3.7 mm. Fig. 1 draws L5 as a square block 3.7 mm high, and the L6 faces meet it at the same height; 4.3 mm was 16% above the drawing. The earlier rim review kept 4.3 mm by measuring the cost of the drawn rim against the raised S4 and S10 rims. Measured against the rims before that review, as the rule for cuts requires, the whole lens loses at most 2.2 points of light, at 25.9°, and still gains up to 19.5 points beyond 34°; a second set of field angles offset by about 1° gives at most 2.1 points, at 26.5°. That is within the 3-point limit, so the drawn rim is used. The f/4 axial beam reaches 3.38, 3.26 and 3.00 mm at S7, S8 and S9, inside the new rims. The whole f/4 beam now reaches the image out to about 17°; geometric transmission is 98% at 23°, 94% at 29°, 89% at 34.5°, 78% at 40.3°, 67% at 43.1° and 52% at 46°. EFL 20.997 mm, f/4.00, the 46° half-field, the 99% chief-ray coverage and the clear format corner are unchanged, and the surface checks find no errors.
+
+Lands and cuts: the file has no rim extensions or cut depths. The faces below their starting values are S3 (8.3 → 7.4 mm, which costs no light at any field) and S7–S9 (above). A drawn 11.8 mm S1 would also cost no light, but the 6% difference does not justify a change.
+
+Labels, tags and movement: element names L1–L9 and groups I–IV follow Fig. 1, and the cemented brackets C1–C4 span S1–S3, S4–S6, S7–S10 and S11–S13. The details panel reads DOUBLET for C1, C2 and C4 and TRIPLET for C3. Every element type agrees with the signs of its radii, and the panel focal lengths agree with thick-element values recomputed from the prescription; L2 (+698.8 mm) and L8 (−140.8 mm) were checked by hand. The stop is drawn between S6 and S7, as in Fig. 1. No element carries an anomalous-dispersion tag; the patent prints only nd and νd and names no special glass. The lens is infinity-only: the focus control is disabled and shows the plain description, and there is no zoom control.
+
+Glass and colour: BALF6 and KZF2 (Sumita) resolve on the page for L3 and L5. The patent prints only nd and νd, twice (description and claim 2), so L1 (1.65830 / 57.49) and L8 (1.53375 / 55.37) have nothing further. The nearest vendor rows for L1 are LaK11-type glasses at νd 57.26–57.33; for L8 the nearest rows differ by at least 0.0006 in nd and 0.26 in νd. Neither element has an exact match. Sumita BAF5 (νd 49.30) also matches L4, slightly closer than the Hoya BAF5 in use (49.34); both copy the Schott type BaF5, so the label stays. No element uses constant dispersion: the colour view and the chromatic tab trace all four lines. Fig. 2 prints no colour curves.
+
+Astigmatism: Fig. 2's field curves were read at each 5° mark and compared with sagittal and meridional foci computed along the real chief ray at the f′ = 100 scale, relative to the paraxial focus. The sagittal curve agrees throughout: −0.18, −0.45, −0.93 and −1.73 mm at 30°, 35°, 40° and 45°, against about −0.19, −0.54, −0.95 and −1.74 mm in the figure. The meridional curve agrees at 25° and 30° (−0.55 and −0.68 mm against about −0.55 and −0.73 mm), lies 0.06–0.09 mm further from the image plane at 10° and 15°, and falls short beyond 30°: −0.75, −0.69 and −0.44 mm at 35°, 40° and 45° against about −0.87, −0.95 and −0.88 mm. A stop about 0.7 of the way along the S6–S7 air space would match the meridional curve but carry the sagittal curve to −1.93 mm at 45°; Fig. 1 draws the stop at about 0.44 of that space, so the midpoint stop stays.
+
 ## Remaining Questions
 
-- S1, S2, S5, S6 and S11 are estimates within about 6% of Fig. 1; L5 and L6 deliberately stay larger than drawn.
+- S1, S2, S5, S6 and S11 are estimates within about 6% of Fig. 1.
 - L1 and L8 lack named glass equivalents. Production suppliers, melts and the missing partial-dispersion values remain unknown.
 - No finite-focus prescription or factory statement confirming the exact numerical product design has been found. No manufacturer image-circle diameter is documented in the cited sources, so that value is omitted.
 - Numerical convergence on the steep S11/S12 surfaces can fail beyond about 41.5°. Full-pupil illumination remains uncertain.
