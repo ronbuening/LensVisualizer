@@ -12,8 +12,8 @@
  */
 import { execFileSync } from "node:child_process";
 
-// Advisory id -> why it cannot apply here. Empty while nothing needs an exception.
-const ALLOWLIST = new Map([]);
+// Entries are [advisory id, reason it cannot apply here].
+const ALLOWLIST = new Map();
 
 const FAIL_SEVERITIES = new Set(["high", "critical"]);
 
