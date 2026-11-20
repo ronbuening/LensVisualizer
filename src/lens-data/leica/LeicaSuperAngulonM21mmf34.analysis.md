@@ -34,7 +34,7 @@ Element focal lengths describe each element in air; they do not separate its abe
 
 ## Glass identification
 
-The glass values use the patent's yellow d line; exact catalog matches confirm the helium d line (587.6 nm). The patent prints only “(gelbe) d-Linie”. Seven catalog curves match the printed index and Abbe coordinates within |Δnd| ≤ 0.0001 and |Δνd| ≤ 0.15. These matches supply dispersion curves without proving the historical supplier or melt. L2 remains unmatched. The German table prints νd = 42.82 for L5; the US family claim prints 42.32. The German value is retained. [1, 5]
+The glass values use the patent's yellow d line; exact catalog matches confirm the helium d line (587.6 nm). The patent prints only “(gelbe) d-Linie”. Seven catalog curves differ from the printed values by at most 5×10⁻⁶ in nd and 0.0869 in νd. These matches supply dispersion curves without proving the historical supplier or melt. L2 remains unmatched. The German table prints νd = 42.82 for L5; the US family claim prints 42.32. The German value is retained. [1, 5]
 
 ## Focus mechanism and conjugates
 
@@ -46,9 +46,9 @@ All twelve refracting surfaces are spherical. No aspherical terms are printed or
 
 ## Apertures, image plane and model limits
 
-The iris is inferred at the midpoint of the printed diaphragm space, z = 24.027 mm; Fig. 1 places it at about 48% of that space. Its 3.828 mm radius follows the f/3.4 aperture. The patent gives no clear diameters. S1, S3 and S10 use Fig. 1 readings of 14.2, 7.0 and 6.5 mm; the other rims remain estimates. L2 has a beveled rim with unequal face extents in Fig. 1, so S4 remains 6.0 mm. Raising S3 from 6.0 to 7.0 mm opens the meridional bundle at 30° (1:3.41 → 1:3.17) and 40° (1:3.94 → 1:3.76); the 45° ratio stays about 1:5.87, compared with about 1:6.0 in Fig. 2. S12 remains 11.0 mm: raising it to 11.5 mm gains light only at the checked 46.3° corner, outside the declared 45° field. These bundle-width comparisons are not measurements of radiometric illumination. [1]
+The iris is inferred at the midpoint of the printed diaphragm space, z = 24.027 mm; Fig. 1 places it at about 48% of that space. Its 3.828 mm radius follows the f/3.4 aperture. The patent gives no clear diameters. S1, S3 and S10 use Fig. 1 readings of 14.2, 7.0 and 6.5 mm; the other rims are estimates. L2 has a beveled rim with unequal face extents in Fig. 1, consistent with S4's 6.0 mm semi-diameter. The ratios of EFL to admitted meridional bundle width are 1:3.17 at 30°, 1:3.76 at 40° and about 1:5.87 at 45°, compared with about 1:6.0 at 45° in Fig. 2. S12's 11.0 mm semi-diameter admits the same meridional width as 11.5 mm at these angles; the larger rim admits more light only at the 46.3° corner, outside the 45° field. These bundle-width comparisons are not measurements of radiometric illumination. [1]
 
-The declared 45° field reaches 96% of the 24×36 mm corner height. A geometrically clear corner does not imply full-pupil transmission. The short 8.19 mm back focus places the rear vertex about 19.6 mm behind the Leica M flange, explaining the deep rear assembly that fouls the M5/CL meter arm on early barrels; later barrels have a clearance cutout. [3]
+The 45° field reaches 96% of the 24×36 mm corner height. A geometrically clear corner does not imply full-pupil transmission. The short 8.19 mm back focus places the rear vertex about 19.6 mm behind the Leica M flange, explaining the deep rear assembly that fouls the M5/CL meter arm on early barrels; later barrels have a clearance cutout. [3]
 
 ## Sources
 
