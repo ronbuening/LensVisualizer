@@ -11,19 +11,19 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **1169** lenses scanned
-- **1148** visible lenses scanned
+- **1188** lenses scanned
+- **1167** visible lenses scanned
 - **795** lenses fully covered by trusted chromatic data
 - **789** visible lenses fully covered by trusted chromatic data
 - **787** lenses fully covered by strict Sellmeier data
 - **781** visible lenses fully covered by strict Sellmeier data
 - **8** lenses fully covered only after measured line-index data
 - **8** visible lenses fully covered only after measured line-index data
-- **12264 / 13192** non-air surfaces use strict catalog Sellmeier data
-- **93.0%** strict Sellmeier surface coverage overall
-- **12278 / 13192** non-air surfaces use trusted chromatic data
-- **93.1%** trusted chromatic coverage overall
-- **0 / 4** historical sodium D surfaces use name-verified catalog dispersion data
+- **12264 / 13273** non-air surfaces use strict catalog Sellmeier data
+- **92.4%** strict Sellmeier surface coverage overall
+- **12278 / 13273** non-air surfaces use trusted chromatic data
+- **92.5%** trusted chromatic coverage overall
+- **0 / 85** historical sodium D surfaces use name-verified catalog dispersion data
 - **271 / 347** native e-line surfaces use name-verified catalog Sellmeier data
 
 ## Native E-Line Catalog Matches
@@ -1433,7 +1433,7 @@ Fully strict and line-index-complete trusted lenses are listed above; this table
 | 303 | [VOIGTLÄNDER NOKTON 60mm f/0.95](../../src/lens-data/voigtlander/VoigtlanderNokton60mmf95.data.ts) | 54.5% | 54.5% | 6/11 | 6/11 | 5 | abbe: 5 |
 | 304 | [MINOLTA AF 24-105mm f/3.5-4.5 (D)](../../src/lens-data/minolta/MinoltaAF24105mmf3545D.data.ts) | 53.8% | 53.8% | 7/13 | 7/13 | 6 | abbe: 6 |
 | 305 | [SONY FE 400-800mm f/6.3-8 G OSS](../../src/lens-data/sony/SonyFE400800mmF638GOSS.data.ts) | 51.9% | 51.9% | 14/27 | 14/27 | 13 | abbe: 13 |
-| 306 | [KMZ INDUSTAR 52.39mm f/3.56 (ITMO 2013 Variant 2)](../../src/lens-data/kmz/IndustarITMO2013V2.data.ts) | 50.0% | 50.0% | 2/4 | 2/4 | 2 | abbe: 2 |
+| 306 | [KMZ INDUSTAR 52.39mm f/3.56 (Ivanov 2013, Variant 2)](../../src/lens-data/literature/IndustarITMO2013V2.data.ts) | 50.0% | 50.0% | 2/4 | 2/4 | 2 | abbe: 2 |
 | 307 | [NIKON SERIES E 135mm f/2.8](../../src/lens-data/nikon/NikonSeriesE135mmf28.data.ts) | 50.0% | 50.0% | 2/4 | 2/4 | 2 | abbe: 2 |
 | 308 | [LEICA SUMMICRON-C 40mm f/2](../../src/lens-data/leica/LeicaSummicronC40mmf2.data.ts) | 50.0% | 50.0% | 3/6 | 3/6 | 3 | abbe: 3 |
 | 309 | [NIKON NIKKOR 35mm f/2.8 (Nikon 35Ti)](../../src/lens-data/nikon/Nikon35Ti35mmf28.data.ts) | 50.0% | 50.0% | 3/6 | 3/6 | 3 | abbe: 3 |
@@ -1479,30 +1479,49 @@ Fully strict and line-index-complete trusted lenses are listed above; this table
 | 341 | [APPLE WIDE 4.36mm f/1.6 (Apple iPhone 12)](../../src/lens-data/apple/AppleiPhone12MainWideCameraLens.data.ts) | 14.3% | 14.3% | 1/7 | 1/7 | 6 | abbe: 6 |
 |  | **0-4.9% coverage** |  |  |  |  |  |  |
 | 342 | [REFERENCE Mangin Second-Surface Mirror](../../src/lens-data/reference/ReferenceManginSecondSurfaceMirror.data.ts) *(hidden)* | 0.0% | 0.0% | 0/1 | 0/1 | 1 | abbe: 1 |
-| 343 | [NIKON UV-NIKKOR AUTO 55mm f/4](../../src/lens-data/nikon/NikonUvNikkor55mmf4.data.ts) | 0.0% | 0.0% | 0/3 | 0/3 | 3 | abbe: 3 |
-| 344 | [CARL ZEISS JENA TESSAR 144mm f/5.5](../../src/lens-data/carl-zeiss-jena/ZeissTessar144f55.data.ts) | 0.0% | 0.0% | 0/4 | 0/4 | 4 | abbe: 4 |
-| 345 | [FUJIFILM FUJINAR 210mm f/4.5](../../src/lens-data/fujifilm/FujifilmFujinar210mmf45.data.ts) | 0.0% | 0.0% | 0/4 | 0/4 | 4 | constant: 4 |
-| 346 | [MINOR PHOTOGRAPHIC OBJECTIVE (Figure 2 patent reconstruction)](../../src/lens-data/unattributed/MinorUS1360667Figure2.data.ts) *(hidden)* | 0.0% | 0.0% | 0/4 | 0/4 | 4 | lineIndices: 4 |
-| 347 | [VOIGTLÄNDER CINE-TELE-ANASTIGMAT 100mm f/4.5 (patent model)](../../src/lens-data/voigtlander/VoigtlanderCineTeleAnastigmat100mmf45.data.ts) | 0.0% | 0.0% | 0/4 | 0/4 | 4 | abbe: 4 |
-| 348 | [SCHNEIDER-KREUZNACH TELE-XENAR 180mm f/4.5](../../src/lens-data/schneider-kreuznach/SchneiderTeleXenar180mmf45.data.ts) | 0.0% | 0.0% | 0/5 | 0/5 | 5 | abbe: 5 |
-| 349 | [VOIGTLÄNDER DYNAR 100mm f/6](../../src/lens-data/voigtlander/VoigtlanderDynarF6.data.ts) | 0.0% | 0.0% | 0/5 | 0/5 | 5 | constant: 5 |
-| 350 | [VOIGTLÄNDER HELIAR (Symmetric) f/4](../../src/lens-data/voigtlander/VoigtlanderHeliar.data.ts) | 0.0% | 0.0% | 0/5 | 0/5 | 5 | abbe: 5 |
-| 351 | [VOIGTLÄNDER HELIAR 100mm f/4.5 (Second Asymmetric Form)](../../src/lens-data/voigtlander/VoigtlanderHeliarF45SecondAsymmetric.data.ts) | 0.0% | 0.0% | 0/5 | 0/5 | 5 | constant: 5 |
-| 352 | [VOIGTLÄNDER TELE-DYNAR 100mm f/6.3 (patent-normalized)](../../src/lens-data/voigtlander/VoigtlanderTeleDynar100mmf63.data.ts) | 0.0% | 0.0% | 0/5 | 0/5 | 5 | abbe: 5 |
-| 353 | [APPLE WIDE 4.10mm f/1.8 (Apple iPhone 7)](../../src/lens-data/apple/AppleiPhone7WideCameraLens.data.ts) | 0.0% | 0.0% | 0/6 | 0/6 | 6 | abbe: 6 |
-| 354 | [CARL ZEISS JENA PANCOLAR 50mm f/2](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaPancolar50mmf2.data.ts) | 0.0% | 0.0% | 0/6 | 0/6 | 6 | abbe: 6 |
-| 355 | [MEYER OPTIK GÖRLITZ KINO-PLASMAT 100mm f/2](../../src/lens-data/meyer-optik-goerlitz/MeyerOptikGorlitz100mmf2KinoPlasmat.data.ts) | 0.0% | 0.0% | 0/6 | 0/6 | 6 | constant: 6 |
-| 356 | [MINOLTA AUTO TELE ROKKOR-PF 100mm f/2](../../src/lens-data/minolta/Minolta100mmf2AutoTeleRokkor.data.ts) | 0.0% | 0.0% | 0/6 | 0/6 | 6 | abbe: 6 |
-| 357 | [CARL ZEISS JENA PI-FLEKTOGON 30mm f/2.8 (1975 e-line reconstruction)](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaPIFlektogon30mmf28Printed1975ELine.data.ts) | 0.0% | 0.0% | 0/7 | 0/7 | 7 | constant: 7 |
-| 358 | [CARL ZEISS JENA SONNAR 50mm f/1.5 (US 2,186,621 Design)](../../src/lens-data/carl-zeiss-jena/ZeissJenaSonnar50mmf15US2186621.data.ts) | 0.0% | 0.0% | 0/7 | 0/7 | 7 | abbe: 7 |
-| 359 | [LEITZ SUMMAREX 85mm f/1.5](../../src/lens-data/leica/LeicaSummarex85mmf15.data.ts) | 0.0% | 0.0% | 0/7 | 0/7 | 7 | abbe: 7 |
-| 360 | [SAMSUNG 4.3mm f/1.5 (Samsung Galaxy S9)](../../src/lens-data/samsung/SamsungGalaxyS9MainWideCameraLens.data.ts) | 0.0% | 0.0% | 0/7 | 0/7 | 7 | abbe: 7 |
-| 361 | [SONY SONNAR T* FE 35mm f/2.8 ZA](../../src/lens-data/sony/SonyFE35mmf28ZA.data.ts) | 0.0% | 0.0% | 0/7 | 0/7 | 7 | abbe: 7 |
-| 362 | [THYPOCH KSANA 21mm f/3.5 ASPH.](../../src/lens-data/thypoch/ThypochKsana21mmf35.data.ts) | 0.0% | 0.0% | 0/8 | 0/8 | 8 | abbe: 8 |
-| 363 | [THYPOCH SIMERA 50mm f/1.4 ASPH.](../../src/lens-data/thypoch/ThypochSimera50mmf14.data.ts) | 0.0% | 0.0% | 0/8 | 0/8 | 8 | abbe: 8 |
-| 364 | [LEICA NOCTILUX-M 35mm f/1.2 ASPH.](../../src/lens-data/leica/LeicaNoctiluxM35mmf12ASPH.data.ts) | 0.0% | 0.0% | 0/10 | 0/10 | 10 | abbe: 10 |
-| 365 | [VILTROX AF 23mm f/1.4](../../src/lens-data/viltrox/ViltroxAF23mmf14E.data.ts) | 0.0% | 0.0% | 0/11 | 0/11 | 11 | abbe: 11 |
-| 366 | [VILTROX MF 20mm f/1.8](../../src/lens-data/viltrox/ViltroxMF20mmf18FE.data.ts) | 0.0% | 0.0% | 0/12 | 0/12 | 12 | abbe: 12 |
+| 343 | [FRENCH LANDSCAPE f/12.1 (von Rohr 1899, Fig. 54)](../../src/lens-data/literature/FrenchLandscapeVonRohr1899.data.ts) | 0.0% | 0.0% | 0/2 | 0/2 | 2 | constant: 2 |
+| 344 | [STEINHEIL PERISKOP f/40 (von Rohr 1899, Fig. 109)](../../src/lens-data/literature/SteinheilPeriskop1865VonRohr1899.data.ts) | 0.0% | 0.0% | 0/2 | 0/2 | 2 | constant: 2 |
+| 345 | [CARL ZEISS JENA ANASTIGMAT-SATZLINSE 500mm f/13 (CH 6329 Design)](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaAnastigmatSatzlinse500mmf13CH6329.data.ts) | 0.0% | 0.0% | 0/3 | 0/3 | 3 | constant: 3 |
+| 346 | [DALLMEYER RAPID LANDSCAPE f/11 (von Rohr 1899, Fig. 77)](../../src/lens-data/literature/DallmeyerRapidLandscape1865VonRohr1899.data.ts) | 0.0% | 0.0% | 0/3 | 0/3 | 3 | constant: 3 |
+| 347 | [NIKON UV-NIKKOR AUTO 55mm f/4](../../src/lens-data/nikon/NikonUvNikkor55mmf4.data.ts) | 0.0% | 0.0% | 0/3 | 0/3 | 3 | abbe: 3 |
+| 348 | [BUSCH PANTOSKOP f/30.4 (von Rohr 1899, Fig. 108)](../../src/lens-data/literature/BuschPantoskop1865VonRohr1899.data.ts) | 0.0% | 0.0% | 0/4 | 0/4 | 4 | constant: 4 |
+| 349 | [CARL ZEISS JENA ANASTIGMATLINSE f/12.5 (von Rohr 1899, Fig. 140)](../../src/lens-data/literature/CarlZeissJenaAnastigmatlinseVonRohr1899.data.ts) | 0.0% | 0.0% | 0/4 | 0/4 | 4 | constant: 4 |
+| 350 | [CARL ZEISS JENA TESSAR 144mm f/5.5](../../src/lens-data/carl-zeiss-jena/ZeissTessar144f55.data.ts) | 0.0% | 0.0% | 0/4 | 0/4 | 4 | abbe: 4 |
+| 351 | [FUJIFILM FUJINAR 210mm f/4.5](../../src/lens-data/fujifilm/FujifilmFujinar210mmf45.data.ts) | 0.0% | 0.0% | 0/4 | 0/4 | 4 | constant: 4 |
+| 352 | [GOERZ DOUBLE OBJECTIVE 240mm f/7.6 (GB 1898/12,859 Design)](../../src/lens-data/goerz/GoerzDoubleObjective240mmf76GB189812859.data.ts) | 0.0% | 0.0% | 0/4 | 0/4 | 4 | abbe: 4 |
+| 353 | [MINOR PHOTOGRAPHIC OBJECTIVE (Figure 2 patent reconstruction)](../../src/lens-data/unattributed/MinorUS1360667Figure2.data.ts) *(hidden)* | 0.0% | 0.0% | 0/4 | 0/4 | 4 | lineIndices: 4 |
+| 354 | [PETZVAL LANDSCAPE SECOND FORM f/8.1 (von Rohr 1899, Fig. 103)](../../src/lens-data/literature/PetzvalLandscape1856VonRohr1899.data.ts) | 0.0% | 0.0% | 0/4 | 0/4 | 4 | constant: 4 |
+| 355 | [ROSS DOUBLET f/19.4 (von Rohr 1899, Fig. 76)](../../src/lens-data/literature/RossDoublet1864VonRohr1899.data.ts) | 0.0% | 0.0% | 0/4 | 0/4 | 4 | constant: 4 |
+| 356 | [STEINHEIL APLANAT SECOND FORM f/7.7 (von Rohr 1899, Fig. 111)](../../src/lens-data/literature/SteinheilAplanatSecondFormVonRohr1899.data.ts) | 0.0% | 0.0% | 0/4 | 0/4 | 4 | constant: 4 |
+| 357 | [VOIGTLÄNDER CEMENTED-REAR PETZVAL PORTRAIT f/3.5 (von Rohr 1899, Fig. 107)](../../src/lens-data/literature/VoigtlanderPortrait1878VonRohr1899.data.ts) | 0.0% | 0.0% | 0/4 | 0/4 | 4 | constant: 4 |
+| 358 | [VOIGTLÄNDER CINE-TELE-ANASTIGMAT 100mm f/4.5 (patent model)](../../src/lens-data/voigtlander/VoigtlanderCineTeleAnastigmat100mmf45.data.ts) | 0.0% | 0.0% | 0/4 | 0/4 | 4 | abbe: 4 |
+| 359 | [VOIGTLÄNDER PETZVAL LANDSCAPE FIRST FORM f/8.1 (von Rohr 1899, Fig. 101)](../../src/lens-data/literature/PetzvalLandscape1840VonRohr1899.data.ts) | 0.0% | 0.0% | 0/4 | 0/4 | 4 | constant: 4 |
+| 360 | [VOIGTLÄNDER PETZVAL PORTRAIT f/3.4 (von Rohr 1899, Fig. 100)](../../src/lens-data/literature/VoigtlanderPetzvalPortrait1840VonRohr1899.data.ts) | 0.0% | 0.0% | 0/4 | 0/4 | 4 | constant: 4 |
+| 361 | [CARL ZEISS JENA ABBE–RUDOLPH TRIPLET f/7.2 (von Rohr 1899, Fig. 125)](../../src/lens-data/literature/CarlZeissJenaAbbeRudolphTripletVonRohr1899.data.ts) | 0.0% | 0.0% | 0/5 | 0/5 | 5 | constant: 5 |
+| 362 | [SCHNEIDER-KREUZNACH TELE-XENAR 180mm f/4.5](../../src/lens-data/schneider-kreuznach/SchneiderTeleXenar180mmf45.data.ts) | 0.0% | 0.0% | 0/5 | 0/5 | 5 | abbe: 5 |
+| 363 | [VOIGTLÄNDER DYNAR 100mm f/6](../../src/lens-data/voigtlander/VoigtlanderDynarF6.data.ts) | 0.0% | 0.0% | 0/5 | 0/5 | 5 | constant: 5 |
+| 364 | [VOIGTLÄNDER HELIAR (Symmetric) f/4](../../src/lens-data/voigtlander/VoigtlanderHeliar.data.ts) | 0.0% | 0.0% | 0/5 | 0/5 | 5 | abbe: 5 |
+| 365 | [VOIGTLÄNDER HELIAR 100mm f/4.5 (Second Asymmetric Form)](../../src/lens-data/voigtlander/VoigtlanderHeliarF45SecondAsymmetric.data.ts) | 0.0% | 0.0% | 0/5 | 0/5 | 5 | constant: 5 |
+| 366 | [VOIGTLÄNDER TELE-DYNAR 100mm f/6.3 (patent-normalized)](../../src/lens-data/voigtlander/VoigtlanderTeleDynar100mmf63.data.ts) | 0.0% | 0.0% | 0/5 | 0/5 | 5 | abbe: 5 |
+| 367 | [APPLE WIDE 4.10mm f/1.8 (Apple iPhone 7)](../../src/lens-data/apple/AppleiPhone7WideCameraLens.data.ts) | 0.0% | 0.0% | 0/6 | 0/6 | 6 | abbe: 6 |
+| 368 | [CARL ZEISS JENA PANCOLAR 50mm f/2](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaPancolar50mmf2.data.ts) | 0.0% | 0.0% | 0/6 | 0/6 | 6 | abbe: 6 |
+| 369 | [CARL ZEISS JENA PLANAR f/3.3 (von Rohr 1899, Fig. 146)](../../src/lens-data/literature/CarlZeissJenaPlanarVonRohr1899.data.ts) | 0.0% | 0.0% | 0/6 | 0/6 | 6 | constant: 6 |
+| 370 | [GOERZ DOPPEL-ANASTIGMAT SERIES III 240mm f/7.7](../../src/lens-data/goerz/GoerzDoppelAnastigmatSeriesIII240mmf77.data.ts) | 0.0% | 0.0% | 0/6 | 0/6 | 6 | constant: 6 |
+| 371 | [MEYER OPTIK GÖRLITZ KINO-PLASMAT 100mm f/2](../../src/lens-data/meyer-optik-goerlitz/MeyerOptikGorlitz100mmf2KinoPlasmat.data.ts) | 0.0% | 0.0% | 0/6 | 0/6 | 6 | constant: 6 |
+| 372 | [MINOLTA AUTO TELE ROKKOR-PF 100mm f/2](../../src/lens-data/minolta/Minolta100mmf2AutoTeleRokkor.data.ts) | 0.0% | 0.0% | 0/6 | 0/6 | 6 | abbe: 6 |
+| 373 | [STEINHEIL ORTHOSTIGMAT TYPE II 476mm f/4 (DE 88505 Design)](../../src/lens-data/steinheil/SteinheilOrthostigmatII476mmf4DE88505.data.ts) | 0.0% | 0.0% | 0/6 | 0/6 | 6 | constant: 6 |
+| 374 | [STEINHEIL ORTHOSTIGMAT TYPE II 493mm f/6.2 (DE 88505 Design)](../../src/lens-data/steinheil/SteinheilOrthostigmatII493mmf62DE88505.data.ts) | 0.0% | 0.0% | 0/6 | 0/6 | 6 | constant: 6 |
+| 375 | [VOIGTLÄNDER COLLINEAR TYPE II 150mm f/6.9 (DE 90482 Design)](../../src/lens-data/voigtlander/VoigtlanderCollinearTypeII150mmf69DE90482.data.ts) | 0.0% | 0.0% | 0/6 | 0/6 | 6 | constant: 6 |
+| 376 | [CARL ZEISS JENA PI-FLEKTOGON 30mm f/2.8 (1975 e-line reconstruction)](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaPIFlektogon30mmf28Printed1975ELine.data.ts) | 0.0% | 0.0% | 0/7 | 0/7 | 7 | constant: 7 |
+| 377 | [CARL ZEISS JENA SONNAR 50mm f/1.5 (US 2,186,621 Design)](../../src/lens-data/carl-zeiss-jena/ZeissJenaSonnar50mmf15US2186621.data.ts) | 0.0% | 0.0% | 0/7 | 0/7 | 7 | abbe: 7 |
+| 378 | [LEITZ SUMMAREX 85mm f/1.5](../../src/lens-data/leica/LeicaSummarex85mmf15.data.ts) | 0.0% | 0.0% | 0/7 | 0/7 | 7 | abbe: 7 |
+| 379 | [SAMSUNG 4.3mm f/1.5 (Samsung Galaxy S9)](../../src/lens-data/samsung/SamsungGalaxyS9MainWideCameraLens.data.ts) | 0.0% | 0.0% | 0/7 | 0/7 | 7 | abbe: 7 |
+| 380 | [SONY SONNAR T* FE 35mm f/2.8 ZA](../../src/lens-data/sony/SonyFE35mmf28ZA.data.ts) | 0.0% | 0.0% | 0/7 | 0/7 | 7 | abbe: 7 |
+| 381 | [THYPOCH KSANA 21mm f/3.5 ASPH.](../../src/lens-data/thypoch/ThypochKsana21mmf35.data.ts) | 0.0% | 0.0% | 0/8 | 0/8 | 8 | abbe: 8 |
+| 382 | [THYPOCH SIMERA 50mm f/1.4 ASPH.](../../src/lens-data/thypoch/ThypochSimera50mmf14.data.ts) | 0.0% | 0.0% | 0/8 | 0/8 | 8 | abbe: 8 |
+| 383 | [LEICA NOCTILUX-M 35mm f/1.2 ASPH.](../../src/lens-data/leica/LeicaNoctiluxM35mmf12ASPH.data.ts) | 0.0% | 0.0% | 0/10 | 0/10 | 10 | abbe: 10 |
+| 384 | [VILTROX AF 23mm f/1.4](../../src/lens-data/viltrox/ViltroxAF23mmf14E.data.ts) | 0.0% | 0.0% | 0/11 | 0/11 | 11 | abbe: 11 |
+| 385 | [VILTROX MF 20mm f/1.8](../../src/lens-data/viltrox/ViltroxMF20mmf18FE.data.ts) | 0.0% | 0.0% | 0/12 | 0/12 | 12 | abbe: 12 |
 
 ## Missing Surface Details
 
@@ -3577,12 +3596,12 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 29 | Element L72 | abbe | `670266 — catalog unresolved (supplier unconfirmed)` | No catalog match |
 | ... | ... | ... | ... | 5 more missing surfaces |
 
-### [KMZ INDUSTAR 52.39mm f/3.56 (ITMO 2013 Variant 2)](../../src/lens-data/kmz/IndustarITMO2013V2.data.ts) - 50.0% trusted (2/4); 50.0% Sellmeier (2/4)
+### [KMZ INDUSTAR 52.39mm f/3.56 (Ivanov 2013, Variant 2)](../../src/lens-data/literature/IndustarITMO2013V2.data.ts) - 50.0% trusted (2/4); 50.0% Sellmeier (2/4)
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 1 | Element 1 | abbe | `Unmatched (TK14; PG&F 2010 d-line proxy; historic melt unconfirmed)` | Explicit unmatched/proprietary annotation |
-| 6 | Element 4 | abbe | `Unmatched (TK14; PG&F 2010 d-line proxy; historic melt unconfirmed)` | Explicit unmatched/proprietary annotation |
+| 1 | TK14 dense crown | abbe | `Unmatched (TK14; PG&F 2010 d-line proxy; historic melt unconfirmed)` | Explicit unmatched/proprietary annotation |
+| 6 | TK14 dense crown | abbe | `Unmatched (TK14; PG&F 2010 d-line proxy; historic melt unconfirmed)` | Explicit unmatched/proprietary annotation |
 
 ### [NIKON SERIES E 135mm f/2.8](../../src/lens-data/nikon/NikonSeriesE135mmf28.data.ts) - 50.0% trusted (2/4); 50.0% Sellmeier (2/4) - US 4,303,314
 
@@ -3919,6 +3938,36 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 12A | Element 6 | abbe | `Unmatched (545560 patent material coordinate)` | Explicit unmatched/proprietary annotation |
 | 14A | Element 7 | abbe | `Unmatched (545560 patent material coordinate)` | Explicit unmatched/proprietary annotation |
 
+### [FRENCH LANDSCAPE f/12.1 (von Rohr 1899, Fig. 54)](../../src/lens-data/literature/FrenchLandscapeVonRohr1899.data.ts) - 0.0% trusted (0/2); 0.0% Sellmeier (0/2)
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Old silicate flint | constant | `Unmatched (historical nD only, no dispersion published)` | Explicit unmatched/proprietary annotation |
+| 2 | Old silicate crown | constant | `Unmatched (historical nD only, no dispersion published)` | Explicit unmatched/proprietary annotation |
+
+### [STEINHEIL PERISKOP f/40 (von Rohr 1899, Fig. 109)](../../src/lens-data/literature/SteinheilPeriskop1865VonRohr1899.data.ts) - 0.0% trusted (0/2); 0.0% Sellmeier (0/2)
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Crown | constant | `Unmatched (historical nD only, no dispersion published)` | Explicit unmatched/proprietary annotation |
+| 3 | Crown | constant | `Unmatched (historical nD only, no dispersion published)` | Explicit unmatched/proprietary annotation |
+
+### [CARL ZEISS JENA ANASTIGMAT-SATZLINSE 500mm f/13 (CH 6329 Design)](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaAnastigmatSatzlinse500mmf13CH6329.data.ts) - 0.0% trusted (0/3); 0.0% Sellmeier (0/3) - CH 6329
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Ordinary silicate crown | constant | `Unmatched (CH 6329 nD/nG₁ only, no nC or nF published)` | Explicit unmatched/proprietary annotation |
+| 2 | Baryta light flint | constant | `Unmatched (CH 6329 nD/nG₁ only, no nC or nF published)` | Explicit unmatched/proprietary annotation |
+| 3 | Heaviest baryta crown | constant | `Unmatched (CH 6329 nD/nG₁ only, no nC or nF published)` | Explicit unmatched/proprietary annotation |
+
+### [DALLMEYER RAPID LANDSCAPE f/11 (von Rohr 1899, Fig. 77)](../../src/lens-data/literature/DallmeyerRapidLandscape1865VonRohr1899.data.ts) - 0.0% trusted (0/3); 0.0% Sellmeier (0/3)
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Old low-index crown | constant | `Unmatched (historical nD only, no dispersion published)` | Explicit unmatched/proprietary annotation |
+| 2 | Flint | constant | `Unmatched (historical nD only, no dispersion published)` | Explicit unmatched/proprietary annotation |
+| 3 | Old low-index crown | constant | `Unmatched (historical nD only, no dispersion published)` | Explicit unmatched/proprietary annotation |
+
 ### [NIKON UV-NIKKOR AUTO 55mm f/4](../../src/lens-data/nikon/NikonUvNikkor55mmf4.data.ts) - 0.0% trusted (0/3); 0.0% Sellmeier (0/3) - JP S42-9417 B
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
@@ -3926,6 +3975,24 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 1 | Element 1 | abbe | `Unmatched UV crown (BK7/S-BSL7 class; stored index is n365=1.537, not catalog nd)` | Explicit unmatched/proprietary annotation |
 | 3 | Element 2 | abbe | `Unmatched UV light flint (J-LLF2/S-TIL2 class; stored index is n365=1.56818, not catalog nd)` | Explicit unmatched/proprietary annotation |
 | 5 | Element 3 | abbe | `Unmatched UV crown (BK7/S-BSL7 class; stored index is n365=1.537, not catalog nd)` | Explicit unmatched/proprietary annotation |
+
+### [BUSCH PANTOSKOP f/30.4 (von Rohr 1899, Fig. 108)](../../src/lens-data/literature/BuschPantoskop1865VonRohr1899.data.ts) - 0.0% trusted (0/4); 0.0% Sellmeier (0/4)
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Old low-index crown | constant | `Unmatched (historical nD only, no dispersion published)` | Explicit unmatched/proprietary annotation |
+| 2 | Flint | constant | `Unmatched (historical nD only, no dispersion published)` | Explicit unmatched/proprietary annotation |
+| 4 | Flint | constant | `Unmatched (historical nD only, no dispersion published)` | Explicit unmatched/proprietary annotation |
+| 5 | Old low-index crown | constant | `Unmatched (historical nD only, no dispersion published)` | Explicit unmatched/proprietary annotation |
+
+### [CARL ZEISS JENA ANASTIGMATLINSE f/12.5 (von Rohr 1899, Fig. 140)](../../src/lens-data/literature/CarlZeissJenaAnastigmatlinseVonRohr1899.data.ts) - 0.0% trusted (0/4); 0.0% Sellmeier (0/4)
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Lower-index negative (new pair) | constant | `Unmatched (historical nD only, no dispersion published)` | Explicit unmatched/proprietary annotation |
+| 2 | Higher-index positive (new pair) | constant | `Unmatched (historical nD only, no dispersion published)` | Explicit unmatched/proprietary annotation |
+| 3 | Lower-index positive (old pair) | constant | `Unmatched (historical nD only, no dispersion published)` | Explicit unmatched/proprietary annotation |
+| 4 | Higher-index negative (old pair) | constant | `Unmatched (historical nD only, no dispersion published)` | Explicit unmatched/proprietary annotation |
 
 ### [CARL ZEISS JENA TESSAR 144mm f/5.5](../../src/lens-data/carl-zeiss-jena/ZeissTessar144f55.data.ts) - 0.0% trusted (0/4); 0.0% Sellmeier (0/4) - US 721,240
 
@@ -3945,6 +4012,51 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 5 | Element 3 | constant | `Unmatched (N=1.5293; Abbe number and spectral reference not published)` | Explicit unmatched/proprietary annotation |
 | 6 | Element 4 | constant | `Unmatched (N=1.6227; Abbe number and spectral reference not published)` | Explicit unmatched/proprietary annotation |
 
+### [GOERZ DOUBLE OBJECTIVE 240mm f/7.6 (GB 1898/12,859 Design)](../../src/lens-data/goerz/GoerzDoubleObjective240mmf76GB189812859.data.ts) - 0.0% trusted (0/4); 0.0% Sellmeier (0/4) - GB 1898/12,859
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Heaviest baryta crown | abbe | `Unmatched (GB 1898/12,859 nD/νD only)` | Explicit unmatched/proprietary annotation |
+| 3 | Borosilicate flint | abbe | `Unmatched (GB 1898/12,859 nD/νD only)` | Explicit unmatched/proprietary annotation |
+| 5 | Borosilicate flint | abbe | `Unmatched (GB 1898/12,859 nD/νD only)` | Explicit unmatched/proprietary annotation |
+| 7 | Heaviest baryta crown | abbe | `Unmatched (GB 1898/12,859 nD/νD only)` | Explicit unmatched/proprietary annotation |
+
+### [PETZVAL LANDSCAPE SECOND FORM f/8.1 (von Rohr 1899, Fig. 103)](../../src/lens-data/literature/PetzvalLandscape1856VonRohr1899.data.ts) - 0.0% trusted (0/4); 0.0% Sellmeier (0/4)
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Old low-index crown | constant | `Unmatched (historical nD only, no dispersion published)` | Explicit unmatched/proprietary annotation |
+| 2 | Flint | constant | `Unmatched (historical nD only, no dispersion published)` | Explicit unmatched/proprietary annotation |
+| 4 | Old low-index crown | constant | `Unmatched (historical nD only, no dispersion published)` | Explicit unmatched/proprietary annotation |
+| 6 | Flint | constant | `Unmatched (historical nD only, no dispersion published)` | Explicit unmatched/proprietary annotation |
+
+### [ROSS DOUBLET f/19.4 (von Rohr 1899, Fig. 76)](../../src/lens-data/literature/RossDoublet1864VonRohr1899.data.ts) - 0.0% trusted (0/4); 0.0% Sellmeier (0/4)
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Old low-index crown | constant | `Unmatched (historical nD only, no dispersion published)` | Explicit unmatched/proprietary annotation |
+| 2 | Flint | constant | `Unmatched (historical nD only, no dispersion published)` | Explicit unmatched/proprietary annotation |
+| 4 | Old low-index crown | constant | `Unmatched (historical nD only, no dispersion published)` | Explicit unmatched/proprietary annotation |
+| 5 | Flint | constant | `Unmatched (historical nD only, no dispersion published)` | Explicit unmatched/proprietary annotation |
+
+### [STEINHEIL APLANAT SECOND FORM f/7.7 (von Rohr 1899, Fig. 111)](../../src/lens-data/literature/SteinheilAplanatSecondFormVonRohr1899.data.ts) - 0.0% trusted (0/4); 0.0% Sellmeier (0/4)
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Higher-index flint | constant | `Unmatched (historical nD only, no dispersion published)` | Explicit unmatched/proprietary annotation |
+| 2 | Lower-index flint | constant | `Unmatched (historical nD only, no dispersion published)` | Explicit unmatched/proprietary annotation |
+| 4 | Lower-index flint | constant | `Unmatched (historical nD only, no dispersion published)` | Explicit unmatched/proprietary annotation |
+| 5 | Higher-index flint | constant | `Unmatched (historical nD only, no dispersion published)` | Explicit unmatched/proprietary annotation |
+
+### [VOIGTLÄNDER CEMENTED-REAR PETZVAL PORTRAIT f/3.5 (von Rohr 1899, Fig. 107)](../../src/lens-data/literature/VoigtlanderPortrait1878VonRohr1899.data.ts) - 0.0% trusted (0/4); 0.0% Sellmeier (0/4)
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Old low-index crown | constant | `Unmatched (historical nD only, no dispersion published)` | Explicit unmatched/proprietary annotation |
+| 2 | Flint | constant | `Unmatched (historical nD only, no dispersion published)` | Explicit unmatched/proprietary annotation |
+| 4 | Old low-index crown | constant | `Unmatched (historical nD only, no dispersion published)` | Explicit unmatched/proprietary annotation |
+| 5 | Flint | constant | `Unmatched (historical nD only, no dispersion published)` | Explicit unmatched/proprietary annotation |
+
 ### [VOIGTLÄNDER CINE-TELE-ANASTIGMAT 100mm f/4.5 (patent model)](../../src/lens-data/voigtlander/VoigtlanderCineTeleAnastigmat100mmf45.data.ts) - 0.0% trusted (0/4); 0.0% Sellmeier (0/4) - DE 444150 C
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
@@ -3953,6 +4065,34 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 2 | Element 2 | abbe | `Unmatched (vintage flint; native sodium D coordinates)` | Explicit unmatched/proprietary annotation |
 | 4 | Element 3 | abbe | `Unmatched (vintage light flint; native sodium D coordinates)` | Explicit unmatched/proprietary annotation |
 | 6 | Element 4 | abbe | `Unmatched (vintage flint; native sodium D coordinates)` | Explicit unmatched/proprietary annotation |
+
+### [VOIGTLÄNDER PETZVAL LANDSCAPE FIRST FORM f/8.1 (von Rohr 1899, Fig. 101)](../../src/lens-data/literature/PetzvalLandscape1840VonRohr1899.data.ts) - 0.0% trusted (0/4); 0.0% Sellmeier (0/4)
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Old low-index crown | constant | `Unmatched (historical nD only, no dispersion published)` | Explicit unmatched/proprietary annotation |
+| 2 | Flint | constant | `Unmatched (historical nD only, no dispersion published)` | Explicit unmatched/proprietary annotation |
+| 4 | Old low-index crown | constant | `Unmatched (historical nD only, no dispersion published)` | Explicit unmatched/proprietary annotation |
+| 6 | Flint | constant | `Unmatched (historical nD only, no dispersion published)` | Explicit unmatched/proprietary annotation |
+
+### [VOIGTLÄNDER PETZVAL PORTRAIT f/3.4 (von Rohr 1899, Fig. 100)](../../src/lens-data/literature/VoigtlanderPetzvalPortrait1840VonRohr1899.data.ts) - 0.0% trusted (0/4); 0.0% Sellmeier (0/4)
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Old low-index crown | constant | `Unmatched (historical nD only, no dispersion published)` | Explicit unmatched/proprietary annotation |
+| 2 | Flint | constant | `Unmatched (historical nD only, no dispersion published)` | Explicit unmatched/proprietary annotation |
+| 4 | Flint | constant | `Unmatched (historical nD only, no dispersion published)` | Explicit unmatched/proprietary annotation |
+| 6 | Old low-index crown | constant | `Unmatched (historical nD only, no dispersion published)` | Explicit unmatched/proprietary annotation |
+
+### [CARL ZEISS JENA ABBE–RUDOLPH TRIPLET f/7.2 (von Rohr 1899, Fig. 125)](../../src/lens-data/literature/CarlZeissJenaAbbeRudolphTripletVonRohr1899.data.ts) - 0.0% trusted (0/5); 0.0% Sellmeier (0/5)
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Front collective lens | constant | `Unmatched (historical nD only, no dispersion published)` | Explicit unmatched/proprietary annotation |
+| 3 | Middle lens, front shell | constant | `Unmatched (historical nD only, no dispersion published)` | Explicit unmatched/proprietary annotation |
+| 4 | Middle lens, biconvex core | constant | `Unmatched (historical nD only, no dispersion published)` | Explicit unmatched/proprietary annotation |
+| 5 | Middle lens, rear shell | constant | `Unmatched (historical nD only, no dispersion published)` | Explicit unmatched/proprietary annotation |
+| 7 | Rear collective lens | constant | `Unmatched (historical nD only, no dispersion published)` | Explicit unmatched/proprietary annotation |
 
 ### [SCHNEIDER-KREUZNACH TELE-XENAR 180mm f/4.5](../../src/lens-data/schneider-kreuznach/SchneiderTeleXenar180mmf45.data.ts) - 0.0% trusted (0/5); 0.0% Sellmeier (0/5) - DE 471565 C
 
@@ -4026,6 +4166,28 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 7 | Element 5 | abbe | `SSK / LaK (Jena in-house, 662/561)` | No catalog match |
 | 9 | Element 6 | abbe | `SSK / LaK (Jena in-house, 662/561)` | No catalog match |
 
+### [CARL ZEISS JENA PLANAR f/3.3 (von Rohr 1899, Fig. 146)](../../src/lens-data/literature/CarlZeissJenaPlanarVonRohr1899.data.ts) - 0.0% trusted (0/6); 0.0% Sellmeier (0/6)
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | New high-index crown | constant | `Unmatched (historical nD only, no dispersion published)` | Explicit unmatched/proprietary annotation |
+| 3 | New high-index crown | constant | `Unmatched (historical nD only, no dispersion published)` | Explicit unmatched/proprietary annotation |
+| 4 | Flint | constant | `Unmatched (historical nD only, no dispersion published)` | Explicit unmatched/proprietary annotation |
+| 6 | Flint | constant | `Unmatched (historical nD only, no dispersion published)` | Explicit unmatched/proprietary annotation |
+| 7 | New high-index crown | constant | `Unmatched (historical nD only, no dispersion published)` | Explicit unmatched/proprietary annotation |
+| 9 | New high-index crown | constant | `Unmatched (historical nD only, no dispersion published)` | Explicit unmatched/proprietary annotation |
+
+### [GOERZ DOPPEL-ANASTIGMAT SERIES III 240mm f/7.7](../../src/lens-data/goerz/GoerzDoppelAnastigmatSeriesIII240mmf77.data.ts) - 0.0% trusted (0/6); 0.0% Sellmeier (0/6) - DE 74437 C
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Heavy barium silicate crown | constant | `Unmatched (DE 74437 C nD/nG′ only, no nC or nF published)` | Explicit unmatched/proprietary annotation |
+| 2 | Baryta light flint | constant | `Unmatched (DE 74437 C nD/nG′ only, no nC or nF published)` | Explicit unmatched/proprietary annotation |
+| 3 | Soft silicate crown | constant | `Unmatched (DE 74437 C nD/nG′ only, no nC or nF published)` | Explicit unmatched/proprietary annotation |
+| 5 | Soft silicate crown | constant | `Unmatched (DE 74437 C nD/nG′ only, no nC or nF published)` | Explicit unmatched/proprietary annotation |
+| 6 | Baryta light flint | constant | `Unmatched (DE 74437 C nD/nG′ only, no nC or nF published)` | Explicit unmatched/proprietary annotation |
+| 7 | Heavy barium silicate crown | constant | `Unmatched (DE 74437 C nD/nG′ only, no nC or nF published)` | Explicit unmatched/proprietary annotation |
+
 ### [MEYER OPTIK GÖRLITZ KINO-PLASMAT 100mm f/2](../../src/lens-data/meyer-optik-goerlitz/MeyerOptikGorlitz100mmf2KinoPlasmat.data.ts) - 0.0% trusted (0/6); 0.0% Sellmeier (0/6) - DE 401630
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
@@ -4047,6 +4209,39 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 6 | Element 4 | abbe | `668358 — supplier unresolved` | No catalog match |
 | 8 | Element 5 | abbe | `575391 — supplier unresolved` | No catalog match |
 | 10 | Element 6 | abbe | `704408 — supplier unresolved` | No catalog match |
+
+### [STEINHEIL ORTHOSTIGMAT TYPE II 476mm f/4 (DE 88505 Design)](../../src/lens-data/steinheil/SteinheilOrthostigmatII476mmf4DE88505.data.ts) - 0.0% trusted (0/6); 0.0% Sellmeier (0/6) - DE 88505 C
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Baryta flint | constant | `Unmatched (DE 88505 C nD/nF only, no nC published)` | Explicit unmatched/proprietary annotation |
+| 2 | Borosilicate crown | constant | `Unmatched (DE 88505 C nD/nF only, no nC published)` | Explicit unmatched/proprietary annotation |
+| 3 | Ordinary light flint | constant | `Unmatched (DE 88505 C nD/nF only, no nC published)` | Explicit unmatched/proprietary annotation |
+| 5 | Ordinary light flint | constant | `Unmatched (DE 88505 C nD/nF only, no nC published)` | Explicit unmatched/proprietary annotation |
+| 6 | Borosilicate crown | constant | `Unmatched (DE 88505 C nD/nF only, no nC published)` | Explicit unmatched/proprietary annotation |
+| 7 | Baryta flint | constant | `Unmatched (DE 88505 C nD/nF only, no nC published)` | Explicit unmatched/proprietary annotation |
+
+### [STEINHEIL ORTHOSTIGMAT TYPE II 493mm f/6.2 (DE 88505 Design)](../../src/lens-data/steinheil/SteinheilOrthostigmatII493mmf62DE88505.data.ts) - 0.0% trusted (0/6); 0.0% Sellmeier (0/6) - DE 88505 C
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Heaviest baryta crown | constant | `Unmatched (DE 88505 C nD/nF only, no nC published)` | Explicit unmatched/proprietary annotation |
+| 2 | High-dispersion crown | constant | `Unmatched (DE 88505 C nD/nF only, no nC published)` | Explicit unmatched/proprietary annotation |
+| 3 | Baryta light flint | constant | `Unmatched (DE 88505 C nD/nF only, no nC published)` | Explicit unmatched/proprietary annotation |
+| 5 | Baryta light flint | constant | `Unmatched (DE 88505 C nD/nF only, no nC published)` | Explicit unmatched/proprietary annotation |
+| 6 | High-dispersion crown | constant | `Unmatched (DE 88505 C nD/nF only, no nC published)` | Explicit unmatched/proprietary annotation |
+| 7 | Heaviest baryta crown | constant | `Unmatched (DE 88505 C nD/nF only, no nC published)` | Explicit unmatched/proprietary annotation |
+
+### [VOIGTLÄNDER COLLINEAR TYPE II 150mm f/6.9 (DE 90482 Design)](../../src/lens-data/voigtlander/VoigtlanderCollinearTypeII150mmf69DE90482.data.ts) - 0.0% trusted (0/6); 0.0% Sellmeier (0/6) - DE 90482 C
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Baryta light flint | constant | `Unmatched (DE 90482 C nD/nF only, no nC published)` | Explicit unmatched/proprietary annotation |
+| 2 | High-dispersion crown | constant | `Unmatched (DE 90482 C nD/nF only, no nC published)` | Explicit unmatched/proprietary annotation |
+| 3 | Heaviest baryta crown | constant | `Unmatched (DE 90482 C nD/nF only, no nC published)` | Explicit unmatched/proprietary annotation |
+| 5 | Heaviest baryta crown | constant | `Unmatched (DE 90482 C nD/nF only, no nC published)` | Explicit unmatched/proprietary annotation |
+| 6 | High-dispersion crown | constant | `Unmatched (DE 90482 C nD/nF only, no nC published)` | Explicit unmatched/proprietary annotation |
+| 7 | Baryta light flint | constant | `Unmatched (DE 90482 C nD/nF only, no nC published)` | Explicit unmatched/proprietary annotation |
 
 ### [CARL ZEISS JENA PI-FLEKTOGON 30mm f/2.8 (1975 e-line reconstruction)](../../src/lens-data/carl-zeiss-jena/CarlZeissJenaPIFlektogon30mmf28Printed1975ELine.data.ts) - 0.0% trusted (0/7); 0.0% Sellmeier (0/7)
 

@@ -62,4 +62,20 @@ describe("lens analysis files", () => {
       expect(offenders, `see the Required Section Skeleton in src/lens-data/LENS_ANALYSIS_SPEC.md`).toEqual([]);
     });
   }
+
+  it("gives every literature reconstruction its source block and reconstruction status", () => {
+    const LITERATURE_CHECKS: { label: string; ok: (text: string) => boolean }[] = [
+      { label: "**Source:**", ok: (text) => /^\*\*Source:\*\* \S/m.test(text) },
+      { label: "**Source dated:**", ok: (text) => /^\*\*Source dated:\*\* \S/m.test(text) },
+      { label: "**Designer:** or **Manufacturer:**", ok: (text) => /^\*\*(Designer|Manufacturer):\*\* \S/m.test(text) },
+      { label: "no **Patent:** line", ok: (text) => !/^\*\*Patent:/m.test(text) },
+      { label: "a Reconstruction status section", ok: (text) => /^## .*reconstruction status/im.test(text) },
+    ];
+    const offenders = FILES.filter((path) => path.includes("/literature/")).flatMap((path) =>
+      LITERATURE_CHECKS.filter(({ ok }) => !ok(TEXTS.get(path)!)).map(
+        ({ label }) => `${relative(lensDataRoot, path)}: ${label}`,
+      ),
+    );
+    expect(offenders, "see the literature block in src/lens-data/LENS_ANALYSIS_SPEC.md").toEqual([]);
+  });
 });
