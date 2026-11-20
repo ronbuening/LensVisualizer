@@ -8,11 +8,14 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * follows f/5.6. The image plane uses the printed 34.775 mm back focus.
  * Semi-diameters are read from Fig. 1(a), whose vertex spacings match the
  * table to about 3 %, and are checked by real-ray trace.
- * S1, S3, S7 and S8 follow the drawing; L1, L7 and L8 carry the flat outer
- * lands the figure draws (S2 to 20 mm, S11 to 13 mm, S13 to 17 mm). S10/S11
- * keep 10 mm clear caps, because the spheres cross beyond about 10.4 mm, with
- * lands to the drawn rims. The cemented junctions S6 and S9 are compromises:
- * the figure sets the small L4 and L5 into larger L3 and L6 faces.
+ * S1, S3, S5, S7 and S8 follow the drawing; L1, L2, L7 and L8 carry the flat
+ * outer lands the figure draws (S2 to 20 mm, S4 to 12.7 mm, S11 to 13 mm, S13
+ * to 17 mm). S4 keeps a 10.5 mm clear cap because it would cross S5 at about
+ * 11.2 mm. S10/S11 keep 10 mm clear caps, because the spheres cross beyond
+ * about 10.4 mm, with lands to the drawn rims. The cemented junctions S6 and
+ * S9 follow the square tops drawn on L3 (12.5 mm) and L6 (11.6 mm, the
+ * steepest rim allowed on S9); the figure sets the small L4 and L5 into these
+ * faces at about 7.2 mm, so they are drawn tapering toward the stop.
  * Glass names supply catalog dispersion curves, not confirmed production materials.
  */
 const LENS_DATA = {
@@ -177,19 +180,20 @@ const LENS_DATA = {
       R: 21.4135,
       d: 1.1685,
       sd: 10.5,
+      rimExtensionSd: 12.7,
     },
     {
       label: "5",
       R: 32.2615,
       d: 14.2,
-      sd: 12,
+      sd: 12.5,
       medium: 3,
     },
     {
       label: "6",
       R: -21.037,
       d: 2,
-      sd: 11,
+      sd: 12.5,
       medium: 4,
     },
     {
@@ -214,7 +218,7 @@ const LENS_DATA = {
       label: "9",
       R: 12.9995,
       d: 19.65,
-      sd: 10,
+      sd: 11.6,
       medium: 6,
     },
     {

@@ -75,7 +75,7 @@ The full f/4 beam now passes undimmed to about 32°. Geometric transmission rise
 
 - L3 (1.58904 / 53.16) is now BALF6, Sumita: Δnd −3.5×10⁻⁷, Δνd +0.0069. L5 (1.52944 / 51.80) is now KZF2, Sumita: Δnd −1.2×10⁻⁶, Δνd +0.0106. Both differences are catalog Sellmeier C/d/F values minus the printed pair. Both rows are the older Schott types BaLF6 and KzF2. Seven of the nine glasses now have catalog equivalents; L1 and L8 remain unidentified. The printed indices and Abbe numbers are unchanged, so focal length and back focus are unchanged.
 
-### 2026-11-20 second review on the local site
+### 2026-11-20 final check against the drawing
 
 The live diagram, each element's details panel and the colour view were compared with Fig. 1, Fig. 2 and the patent text. Fig. 1 was measured again at 300 dpi: the S1 and S13 vertices lie 1379 px apart against 44.53 mm, or 31.0 px/mm; the S1–S6 span gives 31.1 px/mm, and the S1 and S13 sags at their drawn rims agree with the printed radii within 3 px, so both directions share one scale. The axis line tilts by about 7 px across the drawing, so heights were taken from the local axis on both sides and averaged at the line centre.
 

@@ -36,7 +36,7 @@ The surfaces stay clear of each other; the iris sets the full aperture. The esti
 
 The 72.5 mm stop-to-film distance places the stop 37.016 mm behind the first vertex. It divides d7 into 1.4055 mm before and 1.8445 mm after the stop; those separate distances are inferred and agree with Fig. 1(a). The stop radius follows f/5.6.
 
-Clear radii are not tabulated. The front radius of 20 mm, L2's 12.7 mm front radius, the central radii of 7.2 mm and the flat outer lands on L1, L7 and L8 follow Fig. 1(a); the other clear radii are estimates checked against the drawing (see the rim review below). The text's 44 mm front diameter exceeds the drawing's approximately 40 mm diameter and does not uniquely establish a clear optical rim.
+Clear radii are not tabulated. The front radius of 20 mm, L2's 12.7 mm front radius, the central radii of 7.2 mm and the flat outer lands on L1, L2, L7 and L8 follow Fig. 1(a); the other clear radii are estimates checked against the drawing (see the rim reviews below). The text on p. 3 gives the front element's effective diameter as about 44 mm, larger than the drawing's approximately 40 mm; the model follows the drawing.
 
 The 10 mm clear radii at S10/S11 and their opaque outer lands, to 12 mm on L6 and 13 mm on L7, are inferred. Extending both spheres across the 0.47 mm air space would make them cross beyond about 10.4 mm radius, short of the approximately 12–13 mm outer silhouette. The lands retain the clear apertures while avoiding an overlap; their exact shape is unknown.
 
@@ -93,9 +93,30 @@ Every rim was compared with Fig. 1(a) on p. 4, which is drawn to scale: the firs
 
 Geometric pupil transmission is unchanged at every field from 0° to 45°: 100% to 30°, 96.5% at 33°, 88.5% at 36°, 76.5% at 39°, 61.8% at 42° and 45.2% at 45°. Restoring S3 to 14 mm or removing any of the lands wins back nothing. The 45° chief ray crosses S1 at 17.4 mm and S3 at 8.9 mm; the f/5.6 axial beam is untouched. EFL, f/5.6, the 45° half-field and the 97% coverage of the 6×9 half-diagonal are unchanged.
 
+### 2026-11-20 final check against the drawing
+
+The section shown on the local site was compared with Fig. 1(a) on p. 4, measured again from the 300 dpi scan. The first-to-last vertex span (621.5 px for 74.74 mm) and the first-vertex-to-image span (910 px for 109.52 mm) both give 8.31 px/mm. The steep front face of L6 and the rear face of L8 follow their table radii at that scale in height too, so the drawing is not stretched; L1's faces are drawn more strongly curved than the table, but their rim sags match a 20.2 mm rim. Readings are line centres on the upper half: L1 top 20.2 mm, with S2's curve ending at 15.6 mm; L2 and L3 tops both 12.5 mm, with L2's rear face drawn against L3's front face up to the top; L3's square top runs to its rear face at 12.3–12.5 mm; L4 and L5 7.2 mm; L6 top 12.0 mm, with its rear face meeting L7 at about 10.8 mm; L7's front step from 10.6 mm to a 13.2 mm top; L8's front step from 13.0 mm to a 17.3 mm top.
+
+| Surface | Before | After | Reason |
+| --- | --- | --- | --- |
+| S4, L2 rear | 10.5 mm | 10.5 mm, opaque land to 12.7 mm | The figure draws L2 square, level with L3. The face cannot pass about 11.2 mm, where it would cross S5, so the land carries L2's rim to S3's 12.7 mm. |
+| S5, L3 front | 12.0 mm | 12.5 mm | L3's drawn top, level with L2; at 12.0 mm the page drew L3 lower than L2. |
+| S6, L3/L4 junction | 11.0 mm | 12.5 mm | L3's square top reaches its rear face at 12.3–12.5 mm. L4, drawn as a 7.2 mm block, still tapers toward the stop, now from 12.5 mm. |
+| S9, L5/L6 junction | 10.0 mm | 11.6 mm | L6's square top is drawn at 12.0 mm. 11.6 mm is the largest radius within the rim-slope limit on this 13.0 mm radius face; 12.0 mm would need a 67° rim. L6's top now rises from 11.6 to 12 mm instead of from 10 to 12 mm. |
+
+The junction radii and the new land stop no traced ray. Geometric pupil transmission is the same at every field from 0° to 45° (100% to 30°, 96.5% at 33°, 88.5% at 36°, 76.5% at 39°, 61.8% at 42° and 45.2% at 45°), and the largest loss against the rims before today's rim work is 0.0 points. EFL 49.998 mm, f/5.6, the 45° half-field and the 97% coverage of the 6×9 half-diagonal are unchanged; the f/5.6 axial beam is not limited by any rim, and the 44.9° chief ray reaches 48.66 mm without clipping.
+
+Lands and cuts: the S2 land (20 mm), the new S4 land (12.7 mm), the S10 land (12 mm), the S11 land (13 mm), the S13 land (17 mm) and the S3 rim (12.7 mm against an earlier 14 mm) each cost 0.0 points. S2, S3, S11 and S13 follow drawn steps; the S4 and S10 lands are needed for spacing, since their faces would otherwise cross the neighbouring faces. All are kept. S1 20 mm, S2 16 mm, S3 12.7 mm, S7/S8 7.2 mm, the S10/S11 10 mm clear caps, S12 13 mm, S13 13.5 mm and S14 17 mm stay within the reading error.
+
+The text on p. 3 gives, for 6×9 use at 50 mm and 90°, a front-element effective diameter of about 44 mm and a filter effective diameter of about 62 mm. A 22 mm front radius adds no light at any field and would draw L1 about 9% taller than Fig. 1(a), so S1 stays at the drawn 20 mm; the analysis now describes the text's value as an effective diameter.
+
+Labels on the page: L1–L8 follow Fig. 1(a); each type agrees with its radius signs, and the listed focal lengths recompute exactly. C1 (S5–S7) and C2 (S8–S10) mark the cemented pairs, and A1 (S1–S7) and A2 (S8–S14) are the figure's upper brackets, of which B1–B4 are subdivisions. The stop sits 1.41 mm behind S7; the figure draws it 1.44 mm behind. There are no aspheric or anomalous-dispersion marks, as the patent names none. The lens is shown at infinity only: the focus control reads "Not modeled" with the plain description, and there is no zoom control.
+
+Glass: all eight labels resolve within 0.15 in νd. The printed pairs match six old Sumita catalogue rows exactly: LAK6 (L1, already used), BAK4 1.56883/56.00 (L2), SSK5 1.65844/50.80 (L3, L8), LLF1 1.54814/45.90 (L4), KF5 (L5, already used) and SF10 1.72825/28.30 (L7). L6 fits Ohara LAL7 (1.65160/58.52) best. Sumita BAK4, SSK5, LLF1 and SF10 are not yet in the glass catalog, so the Hoya and Schott labels stay for now. The colour view traces C, d, F and g through every element, and no element falls back to constant dispersion. The patent prints no colour curves: Fig. 2 shows spherical aberration with the sine condition, astigmatism and distortion only.
+
 ## Remaining Questions
 
 - The S10/S11 lands and 10 mm clear caps need stronger dimensional evidence before any further enlargement. The stepped cemented pairs L3/L4 and L5/L6 remain approximated by single junction radii.
-- The text's 44 mm front diameter and the drawing's approximately 40 mm diameter remain unresolved.
+- The text's front-element effective diameter of about 44 mm and the drawing's approximately 40 mm diameter remain unresolved; a 22 mm front radius would add no light.
 - The exact production prescription, supplier and melt identities, measured partial dispersions and near-focus spacings remain unconfirmed. No manufacturer optical diagram has been located.
 - No measured image-circle diameter is documented.
