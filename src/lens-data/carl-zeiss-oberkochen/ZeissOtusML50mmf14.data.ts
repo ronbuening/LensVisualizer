@@ -5,10 +5,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * at the printed millimetre scale, without rescaling. Radii, thicknesses, nd, νd,
  * stop position and the three aspheric polynomials are printed values.
  * S26 uses Table 4's plane base; Table 2 instead prints R = −2000 mm. The plane
- * reproduces Table 1's EFL (50.137 vs 50.15 mm), Gr2 (67.11 vs 67.14 mm) and
- * Gr222 (−140.53 vs −140.15 mm), and Fig. 2's near-zero d-line spherical aberration.
+ * reproduces Table 1's EFL (50.137 vs 50.15 mm), second-group focal length
+ * (67.11 vs 67.14 mm) and final-element focal length (−140.53 vs −140.15 mm),
+ * and Fig. 2's near-zero d-line spherical aberration.
  * With −2000 mm, EFL is 49.761 mm and the axial RMS spot is 54.6 rather than
- * 9.8 µm on the printed image plane. Table 2 likely repeats Examples 2/3's radius.
+ * 9.8 µm on the printed image plane. Table 2 likely repeats the radius used in
+ * Examples 2 and 3.
  * Clear semi-diameters are estimates; the iris radius is derived from the printed
  * design aperture, approximately f/1.44.
  * The printed infinity image gap 18.69 mm is retained (paraxial BF 18.692 mm).
@@ -67,7 +69,7 @@ const LENS_DATA = {
         printed: -2000,
         applied: 1e15,
         evidence: ["source-summary", "aberration-figure"],
-        note: "Table 2 prints R = −2000 mm; Table 4 prints INFINITY, retained as the plane base. The plane reproduces Table 1 EFL 50.15 mm, Gr2 67.14 mm and Gr222 −140.15 mm much more closely, and agrees with the near-zero d-line spherical aberration in Fig. 2. Table 2 likely repeats the radius used in Examples 2 and 3.",
+        note: "Table 2 prints R = −2000 mm; Table 4 prints INFINITY, retained as the plane base. The plane reproduces Table 1's EFL of 50.15 mm, second-group focal length of 67.14 mm and final-element focal length of −140.15 mm much more closely, and agrees with the near-zero d-line spherical aberration in Fig. 2. Table 2 likely repeats the radius used in Examples 2 and 3.",
       },
     ],
   },
@@ -96,7 +98,7 @@ const LENS_DATA = {
       glass: "S-NPH1 (OHARA catalog equivalent; production supplier unspecified)",
       apd: "patent",
       apdNote:
-        "Patent ¶0038 identifies G1's positive lens with νd = 22.76 as having positive anomalous partial dispersion; its S-NPH1 catalog equivalent agrees with Gr1P ΔPgF = +0.023.",
+        "Patent ¶0038 identifies the front-group positive lens with νd = 22.76 as having positive anomalous partial dispersion; its S-NPH1 catalog equivalent agrees with the patent's ΔPgF = +0.023 for that lens.",
       role: "High-dispersion positive element of the fixed first group.",
     },
     {
