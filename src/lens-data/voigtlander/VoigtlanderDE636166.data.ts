@@ -15,7 +15,7 @@ const LENS_DATA = {
   key: "voigtlander-100mm-f28-de636166",
   maker: "Voigtländer",
   name: "VOIGTLÄNDER 100mm f/2.8 (DE 636,166 Design)",
-  subtitle: "DE 636,166 C, Sole example — Hans Deser Heliar-type design",
+  subtitle: "DE 636,166 C, sole example — Voigtländer / Deser",
   source: {
     patentNumber: "DE 636,166 C",
     patentYear: 1936,
@@ -36,7 +36,7 @@ const LENS_DATA = {
     fNumber: {
       design: 2.8,
     },
-    specs: ["5 ELEMENTS / 3 GROUPS", "DESIGN F/2.8", "ALL SPHERICAL", "HELIAR-TYPE"],
+    specs: ["5 ELEMENTS / 3 GROUPS", "DESIGN f = 100 mm", "DESIGN F/2.8", "ALL SPHERICAL"],
   },
   elements: [
     {
@@ -171,7 +171,6 @@ const LENS_DATA = {
   aperture: {
     nominalFNumber: 2.8,
     fStops: [2.8, 4, 5.6, 8, 11, 16],
-    maxFNumber: 16,
   },
   projection: {
     kind: "rectilinear",

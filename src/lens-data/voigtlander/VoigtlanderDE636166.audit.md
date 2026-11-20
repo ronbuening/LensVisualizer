@@ -1,35 +1,53 @@
 # VOIGTLÄNDER 100mm f/2.8 (DE 636,166 Design) — Audit Log
 
-## Earlier optical findings
+## Source
 
-The original analysis recorded the literal 45 mm vertex track, computed sodium-D EFL of 99.999136874 mm and paraxial BFD of 78.991478548 mm. The nominal marginal ray crossed the axis at 123.782600326 mm, ahead of the 123.991478548 mm paraxial image plane, with a −0.037997 mm intercept at that plane. The image plane was not shifted to reduce spherical aberration.
+[DE 636,166 C, _Photographisches Objektiv_](https://patents.google.com/patent/DE636166C/de), Hans Deser, Voigtländer & Sohn AG, sole numerical example. The [original patent scan](https://depatisnet.dpma.de/DepatisNet/depatisnet?window=1&space=menu&content=treffer&action=pdf&docid=DE000000636166A) gives an effective date of August 29, 1933, a grant announcement on September 17, 1936, and publication on October 5, 1936. The prescription and drawing are on specification p. 2 and the drawing sheet.
 
-The original geometry checks found a minimum edge thickness of 2.302339 mm, minimum air-gap clearances of 4.959249 and 6.344096 mm, and maximum sag intrusion below 30%. Small changes in rim radius and iris position preserved positive edges and clearances. The 18.5 mm front rims were rounded above a 17.85699 mm entrance-ray height plus 0.5 mm margin; the second-interface axial height was 17.26545 mm. The remaining 15.25 mm rims included margins above the nominal axial ray heights. These were aperture estimates, not published dimensions.
+## Transcription Check
 
-No separate audit log accompanied those findings. They are retained here as earlier results rather than evidence of factory dimensions or production performance.
+All eight radii, five glass thicknesses, two air spaces and five sodium-D index/Abbe pairs agree with the printed table. Surface 3 is plane. Elements I/II and IV/V form the cemented doublets. The 9 mm rear air space is preserved as two 4.5 mm spaces around the inferred iris. No scale change was applied; the patent states f = 100 mm and f/2.8.
 
-## 2026-11-20 — Deployment validation and cleanup
+The central biconcave lens has nD = 1.58131, below the patent's 1.59 limit. The rear cemented-interface radius has magnitude 20.5 mm, satisfying 17 mm ≤ 20.5 mm ≤ min(28.33 mm, 23.8 mm), from the front interface's 85 mm radius and the nominal 35.7 mm entrance opening.
 
-An independent validator read all eight radii, five thicknesses, two air spaces and five nD/Abbe pairs from the patent page images, and checked the drawing, dates, authorship, aperture, paraxial image plane and claim inequalities. Verdict: valid with notes; every printed prescription number agrees. The pages were also inspected during this cleanup. No product link is documented: the five-element/three-group arrangement has a Dynar-style front doublet (biconvex element outside) and a rear doublet in the original Heliar orientation (negative meniscus outside), which supports a design-family comparison only.
+## First-Order Check
 
-The following changes preserve the printed prescription, inferred stop position and every rim:
+The sodium-D EFL is 100.00 mm, the paraxial f-number is 2.80, and the back focal distance is 78.99 mm. The vertex track is 45 mm, placing the paraxial infinity image plane 123.99 mm behind the first vertex with zero defocus. The nominal marginal ray crosses the axis at 123.78 mm and has an image-plane intercept of −0.038 mm. The image plane was not shifted to reduce spherical aberration.
 
-- File form: import from `../main/src/types/lensDataV2.js` → `../../types/lensDataV2.js`; `const data` / `export default data` → `const LENS_DATA` / `export default LENS_DATA`. Added one source header identifying the inferred iris, rims and paraxial image plane. `visible`: implicit → `true`.
-- `key`: `deser-de636166-100mm-f28-patent-reference` → `voigtlander-100mm-f28-de636166`.
-- `name`: `DESER DE636166 — 100mm f/2.8 PATENT REFERENCE` → `VOIGTLÄNDER 100mm f/2.8 (DE 636,166 Design)`. Maker remains `Voigtländer`.
-- `subtitle`: the former process description → `DE 636,166 C, Sole example — Hans Deser Heliar-type design`.
-- `catalog.specs`: six lines describing preparation and limitations → `5 ELEMENTS / 3 GROUPS`, `DESIGN F/2.8`, `ALL SPHERICAL`, `HELIAR-TYPE`. Counts and design focal length/aperture remain 5/3, 100 mm and f/2.8; no marketing values, mount or format were added.
-- Element labels: shape names → `Element 1` through `Element 5`; the shape-derived types remain correct. Added plain optical roles and focal lengths in air from the element probe: absent → +44.66, −146.22, −36.63, +27.65 and −54.17 mm.
-- Cemented metadata: absent → `C1` on elements 1/2 and `C2` on elements 4/5, with matching brackets spanning surfaces 1–3 and 6–8. Group captions: `G1 (2 cemented)`, `G2 (1)`, `G3 (2 cemented)` → `Front doublet`, `Central singlet`, `Rear doublet`.
-- Glass labels: the generic unmatched description → `LF5 (Schott)` on elements 2/3 and `BASF3 (Sumita)` on element 5. At the sodium-D line, LF5 gives ΔnD = +0.000005473 and ΔνD = +0.042526; BASF3 gives ΔnD = −0.000001044 and ΔνD = +0.031596. Each label was checked with the catalog resolver using reference `D`; the resolved vendors are Schott and Sumita. These are spectral equivalents, not historical supplier identifications.
-- Elements 1/4: the generic unmatched description → `Unmatched (nD 1.65772 / ν 51.2)`. All five `indexReference` values remain `D`; the repetitive uncertainty notes were removed because the patent explicitly names nD. No spectral samples were present to remove, and no anomalous-dispersion tags were added.
-- Focus distance: `1000000000000000` → `1e15`, numerically identical. Focus description: the former process wording → `Infinity focus only; the patent gives no close-focus spacing or movement.`
-- Analysis: added the exact-name H1 and required Patent/Inventors/Assignee/Published rows; corrected spacing and publication dates; documented the catalog equivalents, Heliar/Dynar arrangement and absent product link. Removed the unsupported 52° mention, editor instructions and sampling totals; replaced the former checks section with aberration correction and model limits. The patent itself prints f = 100 mm.
+Pupil aberration gives a real admitted aperture of about f/2.86. Longitudinal spherical aberration is approximately −0.21 mm at the margin and −0.25 mm at the 0.7 pupil zone. The patent states a zonal error of 0.18% of focal length, or 0.18 mm, and astigmatic deviations below 1%, or 1 mm, without specifying a field angle.
 
-After formatting, every numeric `built.mjs` output is identical to the original: EFL 99.99913687397263 mm, FOPEN 2.8, half-field 5°, stop radius 13.781348807553915 mm and total track 123.99147854817156 mm. The paraxial probe gives BFD 78.99147854817156 mm, zero image-plane defocus and unchanged infinity-only focus states. Real admitted aperture remains about f/2.856 because of pupil aberration.
+The surface geometry has no edge-thickness or overlap errors. Minimum edge thickness is 2.30 mm, minimum air-gap clearances are 4.96 and 6.34 mm, and maximum sag intrusion is below 30%. Earlier small variations in rim radius and iris position preserved positive edges and clearances. The aperture is within 3% of the stated f-number, with no rim limit, tracing failure or iris limit; no clear radius requires enlargement.
 
-Surface audit: OK, no errors. Aperture audit: one station within 3% of the stated f-number; zero rim, trace, iris or failed cases. The aperture-raise check found zero surfaces requiring a raise. Image-circle and field-coverage audits on the visible file both skip because neither a published format nor image circle is available. A check with an assumed 17.5 mm circle (not added to the file), covering the chosen 5° range, gives zero undersized surfaces, zero skips, 100% rounded coverage and a clear corner. The real-ray clear-aperture probe at 5° and at image height 8.75 mm reports no axial clipping or blocked chief ray. Normal full-bundle vignetting remains at several rims.
+The 5.0° half-field and the separate 8.75 mm image-height check show no axial clipping or blocked chief ray. Vignetting of the full ray bundle remains at several rims. Coverage of a particular image format cannot be established without a documented image format or image circle. An earlier calculation using an assumed 17.5 mm circle found no undersized surfaces and approximately 100% coverage with a clear corner; that assumed circle is not part of the prescription and establishes no camera format.
 
-Formatting and whitespace checks pass for all three files. The analysis has the exact-name H1, all four required metadata rows and eleven section headings. The data file contains no `//` comments.
+## Values Not Printed in the Patent
 
-Open: retain the 5° half-field because the patent gives no field angle for its correction claim. The iris midpoint and all rims remain inferred; a later semi-diameter review should compare optical rims against the drawing, whose heights agree within about 3%, without treating leader lines as glass edges. Elements 1/4 remain unmatched, and historical suppliers are unresolved. No source establishes a product, mount, image format, image circle or minimum focus distance; the assumed-circle coverage check establishes none of these.
+The patent gives no iris position or diameter, clear radii, field angle, back focal distance or close-focus movement. The iris is inferred halfway through the rear air space, 27.5 mm behind the first vertex, and its 13.78 mm radius is calculated for paraxial f/2.8. Infinity focus alone is described.
+
+The front doublet's 18.5 mm clear radii were rounded above the nominal 17.86 mm entrance-ray height plus a 0.5 mm margin; the second interface's nominal axial height is 17.27 mm. The other clear radii are 15.25 mm, exceeding nominal axial heights of 14.69 and 13.89 mm at the central singlet and a maximum of 14.74 mm in the rear doublet. These optical rims agree with the drawing within about 3%, including the front element's edge thickness. They are estimates rather than factory dimensions; dimension leaders are excluded from the optical edges.
+
+The 5.0° half-field is retained as a chosen calculation range. The f-stop list from f/2.8 to f/16 is a calculation range, with no documented physical minimum aperture.
+
+## Product Identification
+
+No product is documented. The five-element, three-group arrangement belongs to the Heliar family. Its front doublet is Dynar-style, with the biconvex element outside and the negative element toward the center; the rear follows the original Heliar orientation, with the negative meniscus outside and the biconvex element toward the center. This establishes design family only. No product diagram, mount, image format, image circle or marketed minimum focus distance is documented.
+
+## Corrections, 2026-11-20
+
+- The catalog name and key were changed to identify Voigtländer, the 100 mm focal length, f/2.8 aperture and patent design. The entry was made explicitly visible. The introductory note distinguishes the printed prescription from inferred iris, rims, image plane and field.
+- The subtitle now reads “DE 636,166 C, sole example — Voigtländer / Deser”, replacing the description of the Heliar design with the assignee and inventor. The spec chips now read “5 ELEMENTS / 3 GROUPS”, “DESIGN f = 100 mm”, “DESIGN F/2.8” and “ALL SPHERICAL”. The focal-length chip replaces the Heliar-family chip; earlier descriptions of preparation and limitations were removed. The design focal length and aperture remain 100 mm and f/2.8, with no marketing values.
+- Element labels were changed from shape names to “Element 1” through “Element 5”; the optical types remain correct. Optical roles and calculated focal lengths in air were added: +44.66, −146.22, −36.63, +27.65 and −54.17 mm. The front and rear doublets have combined focal lengths of +62.03 and +56.97 mm.
+- Cemented-pair labels C1 and C2 were added to elements 1/2 and 4/5, with brackets spanning surfaces 1–3 and 6–8. Group captions were simplified to “Front doublet”, “Central singlet” and “Rear doublet”.
+- Previously unmatched glass labels on elements 2/3 were replaced by LF5 (Schott), and element 5 by BASF3 (Sumita). At sodium D, LF5 differs from the printed values by ΔnD = +5.47 × 10⁻⁶ and ΔνD = +0.043; BASF3 differs by ΔnD = −1.04 × 10⁻⁶ and ΔνD = +0.032. Both labels identify compatible catalog glasses for dispersion calculations, without identifying historical suppliers or melts.
+- Elements 1/4 retain their unmatched 1.65772/51.2 pair in shorter glass descriptions. All five elements retain the printed sodium-D reference. Repetitive uncertainty notes were removed because the table explicitly names nD. No additional wavelength indices or anomalous-dispersion designations were added.
+- The infinity-distance notation was shortened without changing its value or adding a finite-focus state. The focus description now states that the patent gives no close-focus spacing or movement.
+- The explicit `aperture.maxFNumber` value of 16 was removed because the patent gives no physical stop limit; the existing f-stop list and default f/16 range are unchanged. No diaphragm blade count, blade roundness, mount, image format or marketing values were added.
+- The analysis title and patent, inventor, assignee and publication details were aligned with the source. Spacing and dates were corrected; glass equivalents, the Heliar/Dynar arrangement and absence of a documented product were explained. An unsupported 52.0° field statement was removed. Instructions about preparing the entry and counts of traced rays were removed; the optical limitations remain. Computed lengths, apertures and glass differences are now rounded to useful precision. The audit was organized by source, optical findings, corrections and remaining questions.
+
+After these changes, the EFL remains 100.00 mm, paraxial f-number 2.80, BFD 78.99 mm, iris radius 13.78 mm and image-plane position 123.99 mm; the 5.0° half-field and infinity focus are unchanged. Radii, thicknesses, refractive indices, Abbe numbers, air spaces, iris position and clear radii were preserved.
+
+## Remaining Questions
+
+The iris midpoint, all clear radii and chosen field remain inferred. Agreement of the drawn optical rims within about 3% does not establish manufacturing apertures. The patent gives no field angle for its astigmatism claim. Elements 1/4 remain unmatched, and historical suppliers and melts remain unknown for every element.
+
+No source establishes a product, diaphragm blade count or roundness, physical minimum aperture, mount, image format, image circle or minimum focus distance. These values are omitted. Mechanical baffles, stray-light rejection, measured chromatic aberration, polychromatic MTF, transmission and production performance remain undocumented.
