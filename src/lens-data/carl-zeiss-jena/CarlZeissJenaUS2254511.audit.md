@@ -14,7 +14,7 @@ The drawing confirms eight elements in three air-separated groups: a singlet, a 
 
 Before and after the changes recorded below, EFL is 100.007 mm, nominal aperture is f/1.40, BFD is 46.04 mm, total track is 122.88 mm, and iris radius is 20.546 mm. EFL exceeds the printed 100 mm by 0.007%. The patent prints f/1.4 but no BFD; the drawing suggests about 46.3 mm. The calculated paraxial image plane is retained.
 
-The three group focal lengths are +132.31, −150.78, and +89.35 mm. Finite-pupil tracing gives approximately f/1.43 rather than the nominal/paraxial f/1.40, within 3% of the stated aperture. The iris limits the axial beam; no lens rim limits it. Checks find no edge-thickness or overlap errors and no iris or tracing failures.
+The three group focal lengths are +132.31, −150.78, and +89.35 mm. Finite-pupil tracing gives approximately f/1.43 rather than the nominal/paraxial f/1.40, within 3% of the stated aperture. The surfaces stay clear of each other; the iris sets the full aperture.
 
 At 22.5°, the real chief ray reaches 42.39 mm of the 42.40 mm image radius and clears every rim. The 84.8 mm image circle contains this field to within 1%. Geometric transmission at that angle increased from 28.7% to 38.8% after the rim corrections below; R11 accounts for the gain, while R5 neither gains nor costs light. This does not establish uniform illumination or production image quality.
 
@@ -34,23 +34,23 @@ Catalog glass curves supply spectral estimates for three elements; the other fiv
 
 ## Product Identification
 
+The patent was [filed by Zeiss Ikon AG](https://patents.google.com/patent/US2254511A/en), the [Carl Zeiss Foundation's camera company](https://law.justia.com/cases/federal/appellate-courts/F2/433/686/340144/), where Bertele designed the [Sonnar lenses made and sold by Carl Zeiss Jena](https://zeissikonveb.de/start/objektive/normalobjektive/sonnar.html); this site lists his Zeiss Ikon patent designs under [Carl Zeiss Jena](https://surfaceandstop.com/authors/ludwig-bertele/).
+
 No production lens is documented. The Carl Zeiss Jena listing identifies no retail model, mount, image format, or glass supplier. The seven-element f/2 DE 700,699 is a different design and is not this patent's US family counterpart.
 
 ## Corrections, 2026-11-20
 
-- The earlier Bertele-only name and identifying key were replaced by the present Carl Zeiss Jena name and key; the maker changed from Zeiss Ikon to Carl Zeiss Jena, and the lens was made visible in the catalog. The assignee's full legal wording was shortened to Zeiss Ikon AG. The patent number, 1941 year, sole example, and Ludwig Bertele authorship remain unchanged.
-- The subtitle now reads “US 2,254,511 A, sole example — Zeiss Ikon / Bertele,” replacing the earlier Bertele f/1.4 wording and identifying both assignee and inventor. The specifications now read “8 ELEMENTS / 3 GROUPS,” “DESIGN f = 100 mm,” “DESIGN F/1.4,” “ALL SPHERICAL,” and “45° FIELD.” The design focal length was added; the field chip now states the full angle rather than ±22.5°. Earlier editorial statements were removed from the specifications.
-- The source header now distinguishes printed dimensions and units from the inferred iris and rims and the calculated image plane.
+- The earlier Bertele-only name was replaced by the present Carl Zeiss Jena name. The assignee's full legal wording was shortened to Zeiss Ikon AG. The patent number, 1941 year, sole example, and Ludwig Bertele authorship remain unchanged.
+- The subtitle now reads “US 2,254,511 A, sole example — Zeiss Ikon / Bertele,” replacing the earlier Bertele f/1.4 wording and identifying both assignee and inventor. The specifications now read “8 ELEMENTS / 3 GROUPS,” “DESIGN f = 100 mm,” “DESIGN F/1.4,” “ALL SPHERICAL,” and “45° FIELD.”
 - All eight refractive-index references changed from sodium D to helium d, following the printed nd heading, read at about 587.6 nm. The inaccurate sodium-D notes were removed; printed indices and Abbe numbers did not change.
-- L2 changed from unmatched glass to BAFD7 (Hoya), with catalog-minus-patent Δnd = +0.00004 and Δνd = +0.05. L5 changed to K-SK18 (Sumita), +0.00004/0.00; L8 changed to SK1 (Sumita), +0.00005/0.00. Each label resolves to the stated maker's catalog entry within the adopted 0.0001/0.15 tolerances. No measured spectral indices were copied.
-- L1, L3, L4, L6, and L7 retain unmatched glass labels, now including their printed nd/νd pairs; no catalog entry meets both tolerances. No anomalous-partial-dispersion designation was added.
-- Element labels changed from shape names to Element 1–8, with plain optical roles and calculated in-air focal lengths of +132.31, +94.62, +162.89, −34.20, +139.82, −65.10, +27.81, and −50.22 mm. Stored values agree with the thick-lens calculations; element types remain unchanged.
+- L2 changed from unmatched glass to BAFD7 (Hoya), with catalog-minus-patent Δnd = +0.00004 and Δνd = +0.05. L5 changed to K-SK18 (Sumita), +0.00004/0.00; L8 changed to SK1 (Sumita), +0.00005/0.00. No measured spectral indices were copied.
+- L1, L3, L4, L6, and L7 retain unmatched glass labels with their printed nd/νd pairs. No anomalous-partial-dispersion designation was added.
+- Element labels changed from shape names to Element 1–8, with plain optical roles and calculated in-air focal lengths of +132.31, +94.62, +162.89, −34.20, +139.82, −65.10, +27.81, and −50.22 mm. Element types remain unchanged.
 - Cemented membership C1 was added to L2–L4 and C2 to L5–L8, with brackets spanning surfaces 3–6 and 7–11. These identify a triplet and quadruplet. The three existing group brackets remain.
 - The half-field increased from 5° to 22.5°, and the calculated 84.8 mm image circle was added, following the field interpretation above.
-- R5's clear radius increased from 29.5 to 31 mm and R11's from 21 to 23.9 mm to follow the figure. Both retain surface clearance and the axial beam. The blanket rim-origin label was removed because the evidence now combines measured and inferred values. R6 remains 21.5 mm.
+- R5's clear radius increased from 29.5 to 31 mm and R11's from 21 to 23.9 mm to follow the figure. Both retain surface clearance and the axial beam. R6 remains 21.5 mm.
 - The focus description now states infinity focus only and the absence of close-focus spacings or a mechanism. The infinity-distance value remains unchanged; no finite-focus or zoom states were added.
-- The explicit f/16 maximum was removed because the patent supplies no minimum aperture. The conventional stops from f/1.4 through f/16 remain, with f/16 as the default limit.
-- The analysis now uses the displayed lens name and consistent patent, inventor, assignee, and publication rows. It corrects the field interpretation, index line, glass labels, and DE 700,699 relationship; describes architecture, elements, focus, iris, field limits, and sources in plain technical English; and rounds calculated values sensibly. The audit records these findings in the sections above.
+- The explicit f/16 maximum was removed because the patent supplies no minimum aperture. The conventional stops from f/1.4 through f/16 remain.
 
 These corrections leave EFL at 100.007 mm, nominal aperture at f/1.40, BFD at 46.04 mm, total track at 122.88 mm, and iris radius at 20.546 mm. Printed radii, thicknesses, indices, Abbe numbers, and air spaces are unchanged, as are the inferred stop position and calculated image plane.
 

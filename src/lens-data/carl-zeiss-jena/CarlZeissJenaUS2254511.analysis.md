@@ -12,7 +12,7 @@
 
 **Filed:** March 8, 1940; German priority February 28, 1939
 
-The sole numerical example prints 100 mm and f/1.4. All eleven spherical radii, eight thicknesses, two air spaces, and eight nd/ν pairs retain their printed scale. The table supplies the prescription; the drawing supplies arrangement and approximate aperture geometry. [Patent scan](https://patentimages.storage.googleapis.com/23/32/db/87601938e01b5d/US2254511.pdf).
+The sole numerical example prints 100 mm and f/1.4. All eleven spherical radii, eight thicknesses, two air spaces, and eight nd/νd pairs retain their printed scale. The table supplies the prescription; the drawing supplies arrangement and approximate aperture geometry. [Patent scan](https://patentimages.storage.googleapis.com/23/32/db/87601938e01b5d/US2254511.pdf).
 
 No production lens is documented. This eight-element design is not the US family member of the seven-element f/2 DE 700,699. The Carl Zeiss Jena attribution establishes no retail model, mount, format, or glass supplier.
 
@@ -59,7 +59,7 @@ Thicknesses are 8.0, 1.2, 20.0, and 2.6 mm, with three cemented interfaces. R7�
 
 The printed nd heading is read as the d line (about 587.6 nm). No measured spectral indices or partial dispersions are supplied.
 
-L2's BAFD7 (Hoya), L5's K-SK18 (Sumita), and L8's SK1 (Sumita) have catalog-minus-patent Δnd/Δνd of +0.00004/+0.05, +0.00004/0.00, and +0.00005/0.00. These meet 0.0001/0.15 tolerances but establish no historical supplier or melt. Their catalog curves supply spectral estimates; the other five glasses use index/Abbe estimates. Measured chromatic, polychromatic MTF, and transmission performance remain unknown.
+L2's BAFD7 (Hoya), L5's K-SK18 (Sumita), and L8's SK1 (Sumita) have catalog-minus-patent Δnd/Δνd of +0.00004/+0.05, +0.00004/0.00, and +0.00005/0.00. These differences establish no historical supplier or melt. Their catalog curves supply spectral estimates; the other five glasses use index/Abbe estimates. Measured chromatic, polychromatic MTF, and transmission performance remain unknown.
 
 ## Focus Mechanism
 
@@ -71,13 +71,13 @@ Paraxial EFL is 100.007 mm, 0.007% above nominal. Computed BFD is 46.04 mm, plac
 
 Diaphragm B measures about 89.6% through the R6–R7 gap; no station or diameter is printed. The inferred 90% station splits the gap into 12.15/1.35 mm at z = 43.69 mm. A midpoint iris would intersect the middle group.
 
-The nominal/paraxial f/1.4 gives a 41.09 mm iris diameter. Finite tracing admits axial launch radius 34.87 mm versus the nominal 35.72 mm, corresponding to f/1.43. Nominal f/1.4 is retained. R6 stays 21.5 mm because the smaller figure reading cuts the axial beam. The iris limits that beam.
+The nominal/paraxial f/1.4 gives a 41.09 mm iris diameter. Finite tracing admits an entrance beam radius of 34.87 mm versus the nominal 35.72 mm, corresponding to f/1.43. R6's 21.5 mm clear radius avoids cutting the axial beam as the smaller figure reading would. The iris limits that beam.
 
 ## Field Coverage and Model Limits
 
-At 22.5°, the chief ray reaches 42.39 mm of the declared 42.40 mm image radius with every rim clear. Off-axis vignetting remains; geometric coverage establishes no illumination or production image-quality performance.
+At 22.5°, the chief ray reaches 42.39 mm of the 42.40 mm image radius with every rim clear. Off-axis vignetting remains; geometric coverage establishes no illumination or production image-quality performance.
 
-Remaining inferred rims need comparison with the figure, especially R1/R2: 37 mm versus approximately 36.2 mm drawn. Stop diameter, exact station, and image plane are calculated or inferred; the powered prescription is printed.
+Stop diameter, exact station, and image plane are calculated or inferred; the powered prescription is printed.
 
 ## Sources
 
