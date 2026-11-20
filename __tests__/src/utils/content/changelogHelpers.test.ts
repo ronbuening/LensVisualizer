@@ -10,6 +10,7 @@ import {
   CHANGELOG_ENTRY_TYPES,
   CHANGELOG_TYPE_COLORS,
   CHANGELOG_TYPE_LABELS,
+  articleUpdatedOn,
   changelogEntryId,
   formatDisplayDate,
   groupChangelogByDate,
@@ -20,6 +21,20 @@ import { stripFrontmatter } from "../../../../src/utils/content/stripFrontmatter
 
 const entry = (over: Partial<ChangelogEntry> = {}): ChangelogEntry =>
   ({ date: "2026-08-04", type: "feature", summary: "Example summary", ...over }) as ChangelogEntry;
+
+describe("articleUpdatedOn", () => {
+  it.each([
+    ["2026-03-24", "2026-07-25", "2026-07-25"],
+    ["2026-12-31", "2027-01-01", "2027-01-01"],
+    ["2026-03-24", "2026-03-24", null],
+    ["2026-03-24", "2026-03-23", null],
+    ["2026-03-24", undefined, null],
+    ["2026-03-24", null, null],
+    [undefined, "2026-07-25", null],
+  ])("selects the updated day for publication %s and modification %s", (publishedOn, lastModified, expected) => {
+    expect(articleUpdatedOn(publishedOn, lastModified)).toBe(expected);
+  });
+});
 
 describe("formatDisplayDate", () => {
   it.each([
