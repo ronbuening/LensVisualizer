@@ -13,7 +13,7 @@ The patent is a Zusatz, or addition, to application Sch 16212 IX/42h. Its f′ =
 
 The patent likely describes the Leica Super-Angulon 21mm f/4: Schneider's 1957 filing precedes the Photokina 1958 introduction, and the sole example matches the product's f/4 aperture and nine elements in four groups. The [published product section](http://allphotolenses.com/public/files/optical/86649b22361edca67e5766be172191bd.jpg) also has the same 2+2+3+2 arrangement and element shapes. A factory statement identifying the exact numerical prescription has not been found.
 
-The [Leitz lens brochure](https://www.pacificrimcamera.com/rl/01191/01191.pdf), PDF p. 2, specifies nine elements, a 92° angle, f/4–22 and versions 11102 for Leica M2/M3 and 11002 in screw mount. Summichronica identifies [11102 as SUMOM](https://www.summichronica.com/bayonet-mount-lenses-21mm) and the [screw-mount version as SUOON](https://www.summichronica.com/screw-mount-lenses-21mm). The [product review and specifications](https://www.kenrockwell.com/leica/21mm-f4.htm) document Schneider manufacture, the 1958 introduction, four groups and 0.4 m minimum focus; the screw-mount history also records the Photokina introduction and both mounts. The lens was sold for Leica M and LTM cameras using 24×36 mm film. Fig. 2 extends to 45° half-field, or 90° full field, distinct from the marketed 92° angle.
+The [Leitz lens brochure](https://www.pacificrimcamera.com/rl/01191/01191.pdf), PDF p. 2, specifies nine elements, a 92° angle, f/4–22 and versions 11102 for Leica M2/M3 and 11002 in screw mount. Summichronica identifies [11102 as SUMOM](https://www.summichronica.com/bayonet-mount-lenses-21mm) and the [screw-mount version as SUOON](https://www.summichronica.com/screw-mount-lenses-21mm). The [product review and specifications](https://www.kenrockwell.com/leica/21mm-f4.htm) document Schneider manufacture, the 1958 introduction, four groups and 0.4 m minimum focus; the screw-mount history also records the Photokina introduction and both mounts. The lens was sold for Leica M and Leica thread-mount cameras using 24×36 mm film. Fig. 2 extends to 45° half-field, or 90° full field, distinct from the marketed 92° angle.
 
 ## Optical Architecture
 
@@ -65,7 +65,7 @@ L9: nd = 1.65844, νd = 50.84. Glass: N-SSK5 (Schott catalog equivalent). f = �
 | L8       | 1.53375 / 55.37 | Unmatched               |
 | L9       | 1.65844 / 50.84 | N-SSK5, Schott          |
 
-The five named glasses agree within 0.0001 in nd and 0.15 in νd. Their catalog dispersion curves are spectral equivalents; the original suppliers and melts remain unknown. Four glasses retain the patent coordinates without a named catalog curve. Ohara S-LAL11 is close to L1 in index but differs by −0.1574 in νd; Hoya SBF2 differs from L5 by −0.1569. Both fall outside that Abbe limit. The patent supplies no partial-dispersion values, so the remaining glasses use Abbe-based dispersion and secondary-spectrum behavior remains uncertain.
+Among the five named catalog equivalents, the largest absolute differences are 8.21×10⁻⁶ in nd (L6, N-SSK8) and 0.0869 in νd (L4, BAF5). Their catalog dispersion curves are spectral equivalents; the original suppliers and melts remain unknown. Four glasses retain the patent's printed indices and Abbe numbers without a named catalog curve. Ohara S-LAL11 and Hoya SBF2 are close in index to L1 and L5, respectively, but each has a νd lower by about 0.16. The patent supplies no partial-dispersion values, so the remaining glasses use Abbe-based dispersion and secondary-spectrum behavior remains uncertain.
 
 ## Focus Mechanism
 
@@ -77,7 +77,7 @@ The calculated EFL is 20.997 mm, against the scaled 21.00 mm source value, and t
 
 The stop position is inferred at the midpoint of the 1.659 mm air gap between S6 and S7, consistent with Fig. 1. Its 3.411 mm radius is derived from f/4. The production aperture range through f/22 follows Leitz literature; the cited product review records nine straight diaphragm blades.
 
-The patent prints no clear semi-diameters. S12 = 8.8 mm and S13 = 11.3 mm follow the Fig. 1 optical rims; the other rims remain estimates. At 45° the chief ray meets S12/S13 at 7.96/10.32 mm. At the 24×36 mm corner, about 46.2°, those heights are 8.10/10.61 mm, within the adopted rims. At the declared 46° half-field the chief-ray image height is 21.52 mm, about 99% of the 21.65 mm format radius, and the actual format-corner chief ray is clear. Full-pupil illumination and production light transmission remain uncertain. The ray display uses a smaller 36.2° half-field.
+The patent prints no clear semi-diameters. S12 = 8.8 mm and S13 = 11.3 mm follow the Fig. 1 optical rims; the other rims remain estimates. At 45° the chief ray meets S12/S13 at 7.96/10.32 mm. At the 24×36 mm corner, about 46.2°, those heights are 8.10/10.61 mm, within the adopted rims. At 46° half-field the chief-ray image height is 21.52 mm, about 99% of the 21.65 mm format radius, and the actual format-corner chief ray is clear. Full-pupil illumination and production light transmission remain uncertain.
 
 ## Aberrations and Model Scope
 
