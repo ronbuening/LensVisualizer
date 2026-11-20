@@ -39,7 +39,7 @@ L1/L2 provide net negative power; L3/L4 share plane surface 5. L5 is the more di
 
 ## Glass Identification and Selection
 
-The indices refer to helium d. For L1, L2, L4, L5 and L6, Δnd = 0; Δνd is +0.08, −0.09, +0.05, 0 and 0 respectively. L5 matches Sumita LF7, the light flint of Schott's LF7 type, exactly. Sumita LAK6 is discontinued. Historical suppliers and melts remain unknown. L3 has no close match. Unlisted partial dispersion and apochromatic performance remain unestablished.
+The indices refer to helium d. For L1, L2, L4, L5 and L6, Δnd = 0; Δνd is +0.08, −0.09, +0.05, 0 and 0 respectively. L5 matches Sumita LF7, the light flint of Schott's LF7 type, exactly. Sumita LAK6 is discontinued. Historical suppliers and melts remain unknown. L3 (1.72019 / 50.3) matches no catalog glass: the nearest, LaK10-type glasses at 1.7200 / 50.3, are 0.0002 lower in nd. Unlisted partial dispersion and apochromatic performance remain unestablished.
 
 ## Focus Mechanism
 

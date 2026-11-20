@@ -83,10 +83,21 @@ EFL is 35.003 mm, f-number is 3.5, BFD is 33.656 mm, total track is 62.85 mm, ir
 
 - L5: Unmatched → LF7 (Sumita), an exact row (Δnd 0, Δνd 0) added to the glass catalog for this lens; Hikari J-LF7, the nearest row before, differs by +0.21 in νd.
 
+### 2026-11-20 review on the local site
+
+- Compared the local page (normal and three-times resolution), every element's inspector, the chromatic tab and the movement overlay with the patent drawing on PDF p. 4 at 300 dpi.
+- Drawing scale, measured again: 11.82 px per patent millimetre over Beispiel 1's 86.0 mm vertex span, with l1, d3, d4, l2 and d6 each within 1.3%. The drawing's "Film" line lies 99.5 mm behind the last vertex, against Beispiel 1's computed 98.5 mm back focus. The drawing is Beispiel 1 to scale, so only shapes and ratios carry over to Beispiel 2.
+- New readings at the 35 mm scale, as half the rim-to-rim width: front rim 11.8 mm; L2's rear curve ends at 7.6 mm and its flat step at 9.15 mm (0.65 and 0.77 of the front rim; the model has 0.68 and 0.75); group B 5.9–6.0 mm; L4's rear curve ends at 4.8 mm (0.80 of B's edge; the model has 0.81); group C square at 4.55 mm; the iris mark at 3.5 mm, 0.3 mm in front of L5. These agree with the rim review within reading error, so no rim changed. The drawing's 45° chamfers on L2 and L4 appear on the page as flat steps, with a straight edge from L2's step to the front rim; that is the closest the diagram can draw.
+- Light, against the rims before the rim review: restoring the L2 or L4 step recovers 0.0 points, and group C squared at 6.7 mm costs 1.9 points at 32°, the worst loss. All three stay. Group C at 6.6 mm would cost 3.0 points; L2's rear curve at 8.0 mm or group B at 6.3 mm would cost 9.5 and 14.8 points, so the drawing's smaller B and C remain out of reach.
+- EFL 35.003 mm, f/3.5 and the 32.0° half-field are unchanged; the f/3.5 axial beam clears every surface and the 32.1° corner chief ray clears.
+- On the page: names L1–L6 and groups A, B and C follow the patent; brackets C1–C3 span surfaces 1–3, 4–6 and 7–9 without collisions; each inspector shows the right shape, glass and focal length (+40.71, −21.19, +23.92, −24.19, −20.79 and +11.73 mm; cemented groups −51.26, +83.05 and +23.65 mm). The iris sits between B and C, and there are no aspheric marks or special-glass tags, as in the patent. Infinity only: the movement overlay reports no moving group, and the focus panel carries the plain description.
+- Glass: L5's LF7 (Sumita) resolves to 1.57501 / 41.30. L1, L2, L4 and L6 match at Δnd 0 within 0.09 in νd. L3 (1.72019 / 50.3) still matches no catalog glass: the nearest LaK10-type rows (Sumita K-LaK10, Hoya LAC10, Ohara S-LAL10, Hikari J-LAK10) lie at 1.7200 / 50.2–50.35, 0.0002 lower in nd. The patent prints only nd and ν, and Beispiel 1 uses a different L3 glass. L3 uses the Abbe estimate; no element lacks dispersion data. The patent prints no aberration curves for a colour comparison.
+- Text: the analysis now names L3's nearest catalog glasses instead of saying it has no close match.
+
 ## Remaining Questions
 
 - No Schacht factory prescription or maker optical drawing establishes the product identification conclusively.
 - No Beispiel 2 drawing or production lens measurement fixes the rim sizes; the rims follow the Beispiel 1 drawing's shapes within the f/3.5 beam and corner-light limits. Iris placement remains inferred.
-- L3 has no close catalog match. Historical glass suppliers, melts and unlisted partial dispersion remain unknown; apochromatic performance is not established.
+- L3 matches no catalog glass; the nearest LaK10-type rows are 0.0002 lower in nd. Historical glass suppliers, melts and unlisted partial dispersion remain unknown; apochromatic performance is not established.
 - No finite-focus spacing law is published. The 0.5 m minimum and eight-blade, f/16 specifications come from the M42 reference, likely describing the early chrome version; other versions differ.
 - No cited source describes blade roundedness, so that value is omitted. The 64° design field does not establish an independently measured production image-circle diameter, which is also omitted.
