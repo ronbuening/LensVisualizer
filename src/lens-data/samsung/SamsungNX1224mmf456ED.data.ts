@@ -9,7 +9,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * (drawn to scale, 15.78 px/mm at 300 dpi, matching the printed vertex spacings
  * and the wide-end track) and checked by real-ray trace at all 101 stations. The
  * rear lands on surfaces 2 and 4 follow the drawn vertical edges of L1 and L2.
- * The 28 mm image circle is an estimate. Only infinity focus is included.
+ * L10's front face is drawn ending near 5.6 mm with a vertical edge out to its
+ * rim; its clear radius stays at 6.4 mm to keep corner light, with a land to 7.4.
+ * The 28.5 mm image circle is the patent's printed image height (14.25 mm, FIG. 10). Only infinity focus is included.
  */
 const LENS_DATA = {
   schema: 2,
@@ -51,7 +53,7 @@ const LENS_DATA = {
       "1 ED ELEMENT",
       "2 ASPHERICAL ELEMENTS",
     ],
-    imageCircleMm: 28,
+    imageCircleMm: 28.5,
   },
   elements: [
     {
@@ -300,7 +302,8 @@ const LENS_DATA = {
       label: "18",
       R: -22.568,
       d: 1.5,
-      sd: 7.2,
+      sd: 6.4,
+      rimExtensionSd: 7.4,
       medium: 10,
     },
     {
@@ -930,7 +933,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 1000000000000000,
     description:
-      "The patent also tabulates finite-focus states corresponding to 0.24 m object-to-image; interpolation from infinity misses focus, so only infinity is modeled.",
+      "Shown at infinity focus only. The patent focuses by moving the G3 doublet toward the image and lists close-focus states for a 0.24 m object-to-image distance; those states are not included.",
   },
   gaps: {
     "4": {

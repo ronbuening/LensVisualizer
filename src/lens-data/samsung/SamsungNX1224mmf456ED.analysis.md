@@ -81,7 +81,7 @@ The 1.2 mm biconcave element is cemented to the 6.5 mm biconvex element at S16. 
 
 nd = 1.77250, νd = 49.62. Glass: TAF1 (Hoya catalog equivalent). f = −75.01 mm.
 
-The 1.5 mm final element is separated from L9 by 1 mm. Its rear surface S19 is aspherical, providing an additional correction surface near the image side.
+The 1.5 mm final element is separated from L9 by 1 mm. Its rear surface S19 is aspherical, providing an additional correction surface near the image side. Figure 9 draws the concave front face ending short of the rim, followed by a flat vertical edge; the front clear radius is 6.4 mm, with an opaque land out to the 7.4 mm rim.
 
 ## Glass Identification and Selection
 
@@ -119,9 +119,9 @@ The opposite signs of the leading terms on L2 provide different peripheral depar
 
 ## Apertures, Field and Model Limits
 
-The patent prints no clear diameters. The radii are measured from Figure 9, which is drawn to scale: its vertex spacings and wide-end track agree with the table within about 1 %. They are 17.7 mm at S1 (drawn about 18.1 mm), 11.2 mm at S2 with its land to 17.7 mm, 12.2 / 10.5 mm at L2 with its land to 12.2 mm, 11.6 mm at L3, 9.1 / 8.6 / 8.6 mm at L4–L5, 5.9 mm at L6, 5.7 mm at L7 and L8, 6.8 mm at L9's rear and 7.2 / 7.4 mm at L10. The middle and tele panels draw the same heights. Every radius clears the axial beam at the printed f-number at all 101 zoom stations; the iris is drawn at about 4.7 mm radius at the wide end, close to the calculated 4.60 mm. The whole pupil is not transmitted at the widest fields, and the drawing does not establish the physical clear apertures.
+The patent prints no clear diameters. The radii are measured from Figure 9, which is drawn to scale: its vertex spacings and wide-end track agree with the table within about 1 %. They are 17.7 mm at S1 (drawn about 18.1 mm), 11.2 mm at S2 with its land to 17.7 mm, 12.2 / 10.5 mm at L2 with its land to 12.2 mm, 11.6 mm at L3, 9.1 / 8.6 / 8.6 mm at L4–L5, 5.9 mm at L6, 5.7 mm at L7 and L8, 6.8 mm at L9's rear and 6.4 / 7.4 mm at L10, whose front face ends at 6.4 mm with a land out to 7.4 mm. Figure 9 ends that face nearer 5.6 mm; the larger radius keeps light at the wide-angle corners. The middle and tele panels draw the same heights. Every radius clears the axial beam at the printed f-number at all 101 zoom stations; the iris is drawn at about 4.7 mm radius at the wide end, close to the calculated 4.60 mm. The whole pupil is not transmitted at the widest fields, and the drawing does not establish the physical clear apertures.
 
-The retained 28 mm image circle is an estimate. At the printed middle and tele half-fields of 39.5° and 32°, real chief rays reach about 14.35 and 14.38 mm, suggesting approximately 28.7 mm diameter. The modeled 14 mm corner is reached at every zoom station. At wide and tele the corresponding half-fields are 51.0° and 31.3°, with calculated geometric pupil transmission of 65.9% and 99.4%. These are properties of the adopted apertures, without coatings, sensor cover glass or production baffles; they are not measured retail illumination.
+The 28.5 mm image circle is the patent's printed image height of 14.25 mm (FIG. 10). At the printed middle and tele half-fields of 39.5° and 32°, real chief rays reach about 14.35 and 14.38 mm.
 
 ## Sources
 
