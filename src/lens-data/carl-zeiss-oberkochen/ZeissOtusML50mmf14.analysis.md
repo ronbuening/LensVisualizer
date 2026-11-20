@@ -35,7 +35,7 @@ L1 spreads the incoming bundle before the positive elements.
 
 nd = 1.80809, νd = 22.76. Glass: S-NPH1 (OHARA equivalent). f = +140.43 mm.
 
-This high-dispersion positive element is the inferred APD flint in G1. Its catalog partial dispersion agrees with the patent's Gr1P value, ΔPgF = 0.023.
+Patent ¶0038 identifies G1's positive lens with νd = 22.76 as having positive anomalous partial dispersion, establishing L2 as an APD element. Its catalog partial dispersion agrees with the patent's Gr1P value, ΔPgF = 0.023.
 
 ### L3 — Biconvex Positive
 
@@ -53,7 +53,7 @@ This weak positive phosphate crown is an inferred APD position between L3 and th
 
 nd = 1.55298, νd = 55.07. Glass: J-KZFH4 (Hikari equivalent). f = −200.08 mm.
 
-L5 completes G1. Its catalog equivalent has negative anomalous partial dispersion, supporting the inferred APD designation.
+L5 completes G1. Patent ¶0040 identifies G1's negative lens with νd = 55.07 as having negative anomalous partial dispersion, establishing L5 as an APD element; its catalog equivalent has the same dispersion sign.
 
 ### L6 — Positive Meniscus, Aspherical
 
@@ -113,7 +113,7 @@ Both S25 and S26 are aspherical. Although S26 has a plane base, its polynomial p
 
 All eleven distinct nd/νd pairs resolve to catalog rows within |Δnd| ≤ 0.000005 and |Δνd| ≤ 0.004483. The reference is helium d, 587.56 nm. Catalog curves supply dispersion while the printed nd/νd remain unchanged; production melts and suppliers are unspecified.
 
-Four APD positions are inferred from the [maker's special-glass count and optical section](https://www.zeiss.com/photonics-and-optics/en/photography/products/lenses-for-mirrorless-system-cameras/otus-ml-lenses.html) and compatible glass properties: L2, L4, L5 and L7.
+The four-APD-element count is reported by [LensTip](https://www.lenstip.com/2210-Carl_Zeiss_Otus_ML_50_mm_f_1.4-lens_specifications.html) and [PetaPixel](https://petapixel.com/2025/02/26/a-closer-look-at-the-zeiss-otus-ml-50mm-f-1-4-and-85mm-f-1-4-lenses-and-their-unique-promises/). [ZEISS's optical-section legend](https://www.zeiss.com/photonics-and-optics/en/photography/products/lenses-for-mirrorless-system-cameras/otus-ml-lenses.html) marks APD glass without printing a count. The patent explicitly identifies L2 and L5 in ¶0038 and ¶0040; L4 and L7 remain inferred from the optical section and compatible glass properties.
 
 ## Focus Mechanism
 

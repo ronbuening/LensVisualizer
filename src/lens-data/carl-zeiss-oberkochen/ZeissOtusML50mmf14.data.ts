@@ -31,7 +31,7 @@ const LENS_DATA = {
     groupCount: 11,
     focalLengthMm: {
       marketing: 50,
-      design: 50.14,
+      design: 50.15,
     },
     fNumber: {
       marketing: 1.4,
@@ -93,9 +93,9 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: 140.43,
       glass: "S-NPH1 (OHARA catalog equivalent; production supplier unspecified)",
-      apd: "inferred",
+      apd: "patent",
       apdNote:
-        "ZEISS identifies four APD elements; this high-dispersion position matches S-NPH1, consistent with the patent’s Gr1P partial-dispersion value.",
+        "Patent ¶0038 identifies G1's positive lens with νd = 22.76 as having positive anomalous partial dispersion; its S-NPH1 catalog equivalent agrees with Gr1P ΔPgF = +0.023.",
       role: "High-dispersion positive element of the fixed first group.",
     },
     {
@@ -122,7 +122,7 @@ const LENS_DATA = {
       glass: "J-PSKH8 (Hikari catalog equivalent; production supplier unspecified)",
       apd: "inferred",
       apdNote:
-        "ZEISS identifies four APD elements; the printed nd/νd at this crown position match the anomalous-dispersion phosphate crown J-PSKH8.",
+        "LensTip and PetaPixel report four APD elements; this inferred crown position has printed nd/νd matching the anomalous-dispersion phosphate crown J-PSKH8.",
       role: "Positive crown element of the fixed first group.",
     },
     {
@@ -135,9 +135,9 @@ const LENS_DATA = {
       indexReference: "d",
       focalLengthMm: -200.08,
       glass: "J-KZFH4 (Hikari catalog equivalent; production supplier unspecified)",
-      apd: "inferred",
+      apd: "patent",
       apdNote:
-        "ZEISS identifies four APD elements; this negative meniscus matches J-KZFH4, a glass with negative anomalous partial dispersion.",
+        "Patent ¶0040 identifies G1's negative lens with νd = 55.07 as having negative anomalous partial dispersion; its catalog equivalent is J-KZFH4.",
       role: "Negative meniscus at the rear of the fixed first group.",
     },
     {
@@ -164,7 +164,7 @@ const LENS_DATA = {
       glass: "FCD1 (HOYA catalog equivalent; production supplier unspecified)",
       apd: "inferred",
       apdNote:
-        "ZEISS identifies four APD elements; this low-dispersion positive member matches the anomalous-dispersion ED crown FCD1.",
+        "LensTip and PetaPixel report four APD elements; this inferred low-dispersion positive member matches the anomalous-dispersion ED crown FCD1.",
       role: "Low-dispersion positive member of the first cemented pair.",
       cemented: "C1",
     },
