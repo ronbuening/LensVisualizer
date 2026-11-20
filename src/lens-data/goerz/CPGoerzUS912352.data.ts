@@ -14,10 +14,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 const LENS_DATA = {
   schema: 2,
   key: "c-p-goerz-100mm-f35-us912352",
-  maker: "C. P. Goerz",
+  maker: "Goerz",
   name: "C. P. GOERZ 100mm f/3.5 (US 912,352 Design)",
   subtitle: "US 912,352 A, sole example \u2014 Celor-type dialyte objective",
-  visible: false,
+  visible: true,
   catalog: {
     specs: [
       "4 ELEMENTS / 4 GROUPS",

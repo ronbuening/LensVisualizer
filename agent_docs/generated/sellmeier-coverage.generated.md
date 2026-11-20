@@ -12,7 +12,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **1189** lenses scanned
-- **1165** visible lenses scanned
+- **1166** visible lenses scanned
 - **793** lenses fully covered by trusted chromatic data
 - **787** visible lenses fully covered by trusted chromatic data
 - **785** lenses fully covered by strict Sellmeier data
@@ -1480,7 +1480,7 @@ Fully strict and line-index-complete trusted lenses are listed above; this table
 | 343 | [DALLMEYER RAPID LANDSCAPE f/11 (von Rohr 1899, Fig. 77)](../../src/lens-data/literature/DallmeyerRapidLandscape1865VonRohr1899.data.ts) | 0.0% | 0.0% | 0/3 | 0/3 | 3 | constant: 3 |
 | 344 | [NIKON UV-NIKKOR AUTO 55mm f/4](../../src/lens-data/nikon/NikonUvNikkor55mmf4.data.ts) | 0.0% | 0.0% | 0/3 | 0/3 | 3 | abbe: 3 |
 | 345 | [BUSCH PANTOSKOP f/30.4 (von Rohr 1899, Fig. 108)](../../src/lens-data/literature/BuschPantoskop1865VonRohr1899.data.ts) | 0.0% | 0.0% | 0/4 | 0/4 | 4 | constant: 4 |
-| 346 | [C. P. GOERZ 100mm f/3.5 (US 912,352 Design)](../../src/lens-data/goerz/CPGoerzUS912352.data.ts) *(hidden)* | 0.0% | 0.0% | 0/4 | 0/4 | 4 | abbe: 4 |
+| 346 | [C. P. GOERZ 100mm f/3.5 (US 912,352 Design)](../../src/lens-data/goerz/CPGoerzUS912352.data.ts) | 0.0% | 0.0% | 0/4 | 0/4 | 4 | abbe: 4 |
 | 347 | [CARL ZEISS JENA ANASTIGMATLINSE f/12.5 (von Rohr 1899, Fig. 140)](../../src/lens-data/literature/CarlZeissJenaAnastigmatlinseVonRohr1899.data.ts) | 0.0% | 0.0% | 0/4 | 0/4 | 4 | constant: 4 |
 | 348 | [CARL ZEISS JENA TESSAR 144mm f/5.5](../../src/lens-data/carl-zeiss-jena/ZeissTessar144f55.data.ts) | 0.0% | 0.0% | 0/4 | 0/4 | 4 | abbe: 4 |
 | 349 | [FUJIFILM FUJINAR 210mm f/4.5](../../src/lens-data/fujifilm/FujifilmFujinar210mmf45.data.ts) | 0.0% | 0.0% | 0/4 | 0/4 | 4 | constant: 4 |
@@ -3966,6 +3966,15 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 | 2 | Flint | constant | `Unmatched (historical nD only, no dispersion published)` | Explicit unmatched/proprietary annotation |
 | 4 | Flint | constant | `Unmatched (historical nD only, no dispersion published)` | Explicit unmatched/proprietary annotation |
 | 5 | Old low-index crown | constant | `Unmatched (historical nD only, no dispersion published)` | Explicit unmatched/proprietary annotation |
+
+### [C. P. GOERZ 100mm f/3.5 (US 912,352 Design)](../../src/lens-data/goerz/CPGoerzUS912352.data.ts) - 0.0% trusted (0/4); 0.0% Sellmeier (0/4) - US 912,352 A
+
+| Surface | Element | Runtime quality | Glass annotation | Reason |
+|---|---|---|---|---|
+| 1 | Element 1 | abbe | `Unmatched (nD 1.6141 / V 56.44; no glass name printed)` | Explicit unmatched/proprietary annotation |
+| 3 | Element 2 | abbe | `Unmatched (nD 1.6051 / V 38.15; no glass name printed)` | Explicit unmatched/proprietary annotation |
+| 5 | Element 3 | abbe | `Unmatched (nD 1.5513 / V 45.19; no glass name printed)` | Explicit unmatched/proprietary annotation |
+| 7 | Element 4 | abbe | `Unmatched (nD 1.6141 / V 56.44; no glass name printed)` | Explicit unmatched/proprietary annotation |
 
 ### [CARL ZEISS JENA ANASTIGMATLINSE f/12.5 (von Rohr 1899, Fig. 140)](../../src/lens-data/literature/CarlZeissJenaAnastigmatlinseVonRohr1899.data.ts) - 0.0% trusted (0/4); 0.0% Sellmeier (0/4)
 

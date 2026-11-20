@@ -202,3 +202,11 @@ The patent prints G′ (434 nm) indices as well, and a normal-dispersion estimat
 ## 2026-11-17 — Aperture slider range
 
 `aperture.maxFNumber`: unset (default 16) → 22. `fStops` lists f/22, which the aperture slider and its stop buttons cut off at the default 16. No optical value changed; the stops beyond the design aperture stay unsourced.
+
+## 2026-11-20 — Shown
+
+`visible`: false → true, at the owner's request. The file stayed hidden only because the Goerz maker prefix and
+profile were on another branch; main now has both. `maker`: "C. P. Goerz" → "Goerz", to match main's two Goerz
+lenses; the name keeps its `C. P. GOERZ` prefix, which maps to the Goerz maker page. No production lens is tied to
+the example (see Product link above). No mount, format or image circle is set, since the patent prints no field or
+plate size, so `audit:field-coverage` and `audit:image-circle` still skip the file, as they skip main's Goerz lenses.
