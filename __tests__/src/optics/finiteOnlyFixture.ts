@@ -1,5 +1,13 @@
-import type { LensDataV2Input } from "../../../../src/types/lensDataV2.js";
-export function finiteFixture(): LensDataV2Input {
+/**
+ * A synthetic finite-only singlet: a stop 1 mm ahead of a biconvex f ≈ 50 mm element, with a 1:1 state at
+ * coordinate 0 (object 99 mm from the stop plane) and a farther default state at 1. Each gap puts its object's paraxial
+ * image on the authored plane, and `closeFocusM` is the 1:1 state's object-to-image distance.
+ *
+ * Data only, with no engine imports, so the browser spec can load it as well.
+ */
+import type { LensDataV2Input } from "../../../src/types/lensDataV2.js";
+
+export function finiteOnlyFixture(): LensDataV2Input {
   return {
     schema: 2,
     key: "synthetic-finite-only",
@@ -42,7 +50,7 @@ export function finiteFixture(): LensDataV2Input {
       ],
     },
     gaps: { "2": { values: [[100, 5900 / 89]] } },
-    aperture: { nominalFNumber: 8, fStops: [8, 11, 16], maxFNumber: 16 },
+    aperture: { nominalFNumber: 8, fStops: [8], maxFNumber: 8 },
     projection: { kind: "rectilinear", maxTraceFieldDeg: 2 },
     layout: { yScFill: 0.5 },
   };

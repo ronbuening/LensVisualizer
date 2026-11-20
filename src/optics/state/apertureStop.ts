@@ -161,7 +161,6 @@ function scheduledStop(constants: Pick<LensConstants, "isZoom" | "zoomStopSDs" |
  */
 export function stopForFNumber(lens: StopRuleLens & Pick<CompiledLens, "constants">, fNumber: number, zoomT: number) {
   const wideOpen = wideOpenStop(lens, zoomT);
-  if ("variables" in lens && (lens as CompiledLens).variables.finiteOnly) return wideOpen;
   if (!(fNumber > wideOpenFNumber(lens.constants, zoomT))) return wideOpen;
   return Math.min(wideOpen, fNumberRuleStop(lens, fNumber, zoomT));
 }

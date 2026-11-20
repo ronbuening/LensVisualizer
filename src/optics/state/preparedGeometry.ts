@@ -1,4 +1,3 @@
-import { normalizeFiniteFocus } from "./finiteFocus.js";
 /**
  * Prepared geometry — one bounded cache for focus, zoom, and aberration state.
  *
@@ -13,6 +12,7 @@ import { clamp, normalizeControlT } from "../math/numerics.js";
 import type { CompiledStateSurface, CompiledLens, Plane3, PreparedOpticalState } from "../types.js";
 import { OpticsPreparationError } from "../types.js";
 import { resolveControlledThickness, buildZPositions } from "./layout.js";
+import { normalizeFiniteFocus } from "./finiteFocus.js";
 
 const PREPARED_STATE_CACHE_LIMIT = 96;
 // Canonical catalog identities outlive viewers. Bound retained geometry across lens switches too,
@@ -48,16 +48,7 @@ export function prepareState(
   zoomTInput: number,
   aberrationTInput = 0,
 ): PreparedOpticalState {
-  const focusT = lens.variables.finiteOnly
-    ? normalizeFiniteFocus(
-        { focus: { finiteOnly: lens.variables.finiteOnly, keyframes: lens.variables.focusPositions } },
-        focusTInput,
-      )
-    : normalizePreparedControl(focusTInput, "focusT");
-  const zoomT = lens.variables.finiteOnly ? 0 : normalizePreparedControl(zoomTInput, "zoomT");
-  const aberrationT = lens.variables.finiteOnly
-    ? 0
-    : normalizePreparedAberrationControl(aberrationTInput, lens.aberrationControl?.centerLabel != null);
+  const [focusT, zoomT, aberrationT] = preparedControls(lens, focusTInput, zoomTInput, aberrationTInput);
   let states = PREPARED_STATE_BY_LENS.get(lens);
   if (!states) {
     states = [];
@@ -101,19 +92,32 @@ export function prepareStateUncached(
   zoomTInput: number,
   aberrationTInput = 0,
 ): PreparedOpticalState {
-  return buildPreparedState(
-    lens,
-    lens.variables.finiteOnly
-      ? normalizeFiniteFocus(
-          { focus: { finiteOnly: lens.variables.finiteOnly, keyframes: lens.variables.focusPositions } },
-          focusTInput,
-        )
-      : normalizePreparedControl(focusTInput, "focusT"),
-    lens.variables.finiteOnly ? 0 : normalizePreparedControl(zoomTInput, "zoomT"),
-    lens.variables.finiteOnly
-      ? 0
-      : normalizePreparedAberrationControl(aberrationTInput, lens.aberrationControl?.centerLabel != null),
-  );
+  return buildPreparedState(lens, ...preparedControls(lens, focusTInput, zoomTInput, aberrationTInput));
+}
+
+/**
+ * Validate and resolve the controls a state is prepared at. A finite-only lens snaps focus to an authored state and
+ * has no zoom or aberration travel, so its other controls resolve to 0.
+ */
+function preparedControls(
+  lens: CompiledLens,
+  focusTInput: number,
+  zoomTInput: number,
+  aberrationTInput: number,
+): [focusT: number, zoomT: number, aberrationT: number] {
+  const finiteOnly = lens.variables.finiteOnly;
+  if (finiteOnly) {
+    return [
+      normalizeFiniteFocus({ focus: { finiteOnly, keyframes: lens.variables.focusPositions } }, focusTInput),
+      0,
+      0,
+    ];
+  }
+  return [
+    normalizePreparedControl(focusTInput, "focusT"),
+    normalizePreparedControl(zoomTInput, "zoomT"),
+    normalizePreparedAberrationControl(aberrationTInput, lens.aberrationControl?.centerLabel != null),
+  ];
 }
 
 function buildPreparedState(

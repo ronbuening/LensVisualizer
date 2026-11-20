@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import { CATALOG_CONSTRUCTION_FIXTURES, buildFixtureLens as buildLens } from "../optics/constructionFixtures.js";
 import { modeledFocusDistanceAt } from "../../../src/optics/state/fieldAdapters.js";
 import { closeFocusAtZoom, zoomIndexToT } from "../../../src/optics/state/stationTables.js";
+import { validateFiniteOnlyStates } from "../../../src/optics/validation.js";
 
 /**
  * Data contract: the close-focus distance is where the close row focuses.
@@ -10,6 +11,9 @@ import { closeFocusAtZoom, zoomIndexToT } from "../../../src/optics/state/statio
  * distance) lies within `CLOSE_FOCUS_LABEL_FRACTION` of the authored close-focus distance: the station's own
  * `closeFocusM`, else `focus.closeFocusM`. A maker's production figure that differs belongs in
  * `catalog.closeFocusM.marketing`, which the focus readout names beside the label.
+ *
+ * A finite-only lens has no close row. It is held to `validateFiniteOnlyStates`, the rule the Lens Builder applies:
+ * `closeFocusM` names its nearest authored state, and each state's conjugate is one its prescription focuses.
  */
 
 /** Share by which the close row's modeled distance may differ from the authored close-focus distance. */
@@ -37,6 +41,10 @@ describe("close-focus endpoint", () => {
     const found: string[] = [];
     for (const data of Object.values(CATALOG_CONSTRUCTION_FIXTURES)) {
       const L = buildLens(data);
+      if (L.isFiniteOnly) {
+        found.push(...validateFiniteOnlyStates(L).map((issue) => `${data.key} ${issue}`));
+        continue;
+      }
       const stations = (L.isZoom && L.zoomPositions?.length) || 1;
       for (let zoomIndex = 0; zoomIndex < stations; zoomIndex++) {
         const zoomT = zoomIndexToT(zoomIndex, stations);

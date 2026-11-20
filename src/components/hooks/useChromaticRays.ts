@@ -180,7 +180,6 @@ export default function useChromaticRays({
     const channels = filterChannels(chromR, chromG, chromB, chromV);
     if (channels.length === 0) return { segments: [], offAxisZoneRays: [], error: null };
     try {
-      if (L.source?.focus?.finiteOnly) return { segments: [], offAxisZoneRays: [], error: null };
       const out: ChromaticRaySegment[] = [];
       // The off-axis fan's fraction is chosen from every zone channel, so hidden channels are traced but not drawn.
       const offAxisZoneRays: ChromaticFanRay[] = [];
@@ -405,7 +404,6 @@ export default function useChromaticRays({
 
   const onAxisChromSpread = useMemo((): ChromaticRayFanSpread | null => {
     if (!L || !showChromatic || !showOnAxis || chromaticResult.error) return null;
-    if (L.source?.focus?.finiteOnly) return null;
     // Fixed indices make every color identical; that is missing data, not zero color error.
     if (summarizeDispersionQuality(L) === "constant") return null;
     const channels = filterChannels(chromR, chromG, chromB, chromV);
@@ -443,7 +441,6 @@ export default function useChromaticRays({
 
   const offAxisChromSpread = useMemo((): ChromaticRayFanSpread | null => {
     if (!L || !showChromatic || chromaticResult.error) return null;
-    if (L.source?.focus?.finiteOnly) return null;
     if (summarizeDispersionQuality(L) === "constant") return null;
     const channels = filterChannels(chromR, chromG, chromB, chromV);
     if (channels.length < 2) return null;

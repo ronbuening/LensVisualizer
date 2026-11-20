@@ -29,6 +29,7 @@ import {
   publishedZoomStations,
 } from "../../optics/publishedStations.js";
 import { snapToZeroStop } from "../../utils/style/sliderStops.js";
+import { selector } from "../../utils/style/styles.js";
 import { focusStationOptions, focusTAfterZoomStep, patentStationNotes, zoomStationOptions } from "./patentStations.js";
 import SliderControl from "./SliderControl.js";
 import SliderResetButton from "./SliderResetButton.js";
@@ -353,13 +354,14 @@ export default function DiagramControls({
         </SliderControl>
       )}
 
-      {showSliders && L.source?.focus?.finiteOnly && (
-        <label style={{ color: t.desc, fontSize: 11 }}>
+      {showSliders && L.isFiniteOnly && (
+        <label style={{ display: "flex", flexDirection: "column", gap: 4, color: t.label, fontSize: 10 }}>
           FINITE OBJECT
           <select
             aria-label="Finite focus state"
             value={focusT}
             onChange={(event) => handleFocusChange(Number(event.target.value))}
+            style={{ ...selector(t, false), fontSize: 11 }}
           >
             {L.source.focus.keyframes.map((value, index) => (
               <option key={value} value={value}>
@@ -367,10 +369,12 @@ export default function DiagramControls({
               </option>
             ))}
           </select>
-          <div>Only explicit finite states; no interpolated focus travel.</div>
+          <span style={{ color: t.muted }}>
+            {`Authored states only, no focus travel between them. Fixed iris \u00d8${(2 * currentPhysStopSD).toFixed(2)} mm.`}
+          </span>
         </label>
       )}
-      {showSliders && !L.source?.focus?.finiteOnly && (
+      {showSliders && !L.isFiniteOnly && (
         <SliderControl
           t={t}
           compact={compact}
@@ -557,12 +561,7 @@ export default function DiagramControls({
         />
       )}
 
-      {showApertureControl && L.source?.focus?.finiteOnly && (
-        <div
-          style={{ color: t.desc, fontSize: 11 }}
-        >{`Fixed authored iris: Ø${(2 * currentPhysStopSD).toFixed(2)} mm`}</div>
-      )}
-      {showApertureControl && !L.source?.focus?.finiteOnly && (
+      {showApertureControl && (
         <SliderControl
           t={t}
           compact={compact}

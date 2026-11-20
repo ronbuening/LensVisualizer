@@ -1,32 +1,25 @@
-/** Optional finite-only focus domain. Coordinates name explicit states, never an infinity endpoint or a cam. */
-import { findCompiledLens } from "../prescription/identity.js";
-import type { RuntimeLens } from "../../types/optics.js";
+/**
+ * Optional finite-only focus domain. Its coordinates name authored finite states: never an infinity endpoint and
+ * never a cam, so a coordinate between states snaps to the nearest one.
+ */
 import type { CanonicalFocus } from "../prescription/canonical.js";
 
-export type FiniteFocusSource = {
-  focus: {
-    finiteOnly?: CanonicalFocus["finiteOnly"];
-    keyframes?: readonly number[];
-    conjugates?: CanonicalFocus["conjugates"];
-  };
-};
-/** Resolve an absent/invalid control to the authored finite default; valid coordinates snap to explicit states. */
-export function normalizeFiniteFocus(source: FiniteFocusSource, proposed?: number): number {
-  const focus = source.focus;
-  if (!focus?.finiteOnly) return proposed ?? 0;
-  const keyframes = focus.keyframes ?? [0, 1];
-  const fallback = keyframes[focus.finiteOnly.defaultKeyframe];
-  if (proposed === undefined || !Number.isFinite(proposed) || proposed < 0 || proposed > 1) return fallback;
-  return keyframes.reduce((best, t) => (Math.abs(t - proposed) < Math.abs(best - proposed) ? t : best), keyframes[0]);
-}
-export function finiteFocusConjugate(source: FiniteFocusSource, proposed: number) {
-  if (!source.focus?.finiteOnly) return undefined;
-  const t = normalizeFiniteFocus(source, proposed);
-  const index = (source.focus.keyframes ?? [0, 1]).indexOf(t);
-  return source.focus.conjugates?.find((c) => c.zoomStation === 0 && c.keyframe === index);
+/** The focus fields the domain reads; canonical, compiled and authored V2 focus records all supply them. */
+export interface FiniteFocusSource {
+  readonly focus: { readonly finiteOnly?: CanonicalFocus["finiteOnly"]; readonly keyframes?: readonly number[] };
 }
 
-/** Read the opt-in without touching a caller's lens properties; legacy infinity labels accept sparse controls. */
-export function isFiniteOnlyRuntime(lens: RuntimeLens): boolean {
-  return Boolean(findCompiledLens(lens)?.variables.finiteOnly);
+/**
+ * Resolve a proposed focus coordinate in the finite-only domain.
+ *
+ * @param source - lens or draft focus record; an ordinary one returns `proposed` unchanged (0 when absent)
+ * @param proposed - requested coordinate; absent, non-finite or outside [0, 1] resolves to the authored default
+ * @returns the coordinate of the nearest authored finite state
+ */
+export function normalizeFiniteFocus(source: FiniteFocusSource, proposed?: number): number {
+  const { finiteOnly, keyframes = [0, 1] } = source.focus;
+  if (!finiteOnly) return proposed ?? 0;
+  if (proposed === undefined || !Number.isFinite(proposed) || proposed < 0 || proposed > 1)
+    return keyframes[finiteOnly.defaultKeyframe];
+  return keyframes.reduce((best, t) => (Math.abs(t - proposed) < Math.abs(best - proposed) ? t : best), keyframes[0]);
 }

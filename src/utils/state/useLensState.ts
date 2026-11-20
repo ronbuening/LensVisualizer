@@ -1,10 +1,9 @@
-import { finiteFocusState } from "./finiteFocusState.js";
-import type { LensDataV2Input } from "../../types/lensDataV2.js";
 /**
  * Custom hook wrapping useReducer for LensViewer state.
  *
  * Handles initialization from localStorage prefs + URL params,
- * merging with precedence: URL > prefs > defaults.
+ * merging with precedence: URL > prefs > defaults. A finite-only lens's focus is kept on its authored states
+ * (`finiteFocusState`).
  */
 
 import { useReducer, useEffect, useRef, type Dispatch } from "react";
@@ -16,11 +15,17 @@ import useMediaQuery from "../useMediaQuery.js";
 import type { LensState, LensAction, URLState } from "../../types/state.js";
 import { LENS_CATALOG, resolveOpticalConfigurationKey } from "../catalog/lensCatalog.js";
 import { resolveTeleconverterKey } from "../catalog/teleconverterCatalog.js";
+import { finiteFocusState } from "./finiteFocusState.js";
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
+/** The catalog record whose focus domain governs the view; read in place, never cloned. */
 function catalogFocusSource(key?: string) {
   return key !== undefined && Object.hasOwn(LENS_CATALOG, key) ? LENS_CATALOG[key] : undefined;
 }
 
+/**
+ * @param authoredDraft - the Lens Builder's draft, whose focus domain governs the view instead of the catalog's
+ */
 export default function useLensState(
   catalogKeys: string[],
   initialLensKey?: string,
@@ -32,6 +37,7 @@ export default function useLensState(
   const isWide = useMediaQuery("(min-width: 900px)", { ssrDefault: false, clientOnly: true });
 
   const [state, dispatch] = useReducer(
+    // Re-created each render so it reads the current draft; it stays pure for a given draft.
     (state: LensState, action: LensAction) => {
       const next = lensReducer(state, action);
       const source = authoredDraft ?? catalogFocusSource(next.lens.selectedConfigurationKey ?? next.lens.lensKeyA);
@@ -96,19 +102,20 @@ export default function useLensState(
     },
   );
 
-  // Imports can retain their key while changing the finite domain. Ordinary edits keep their existing state.
+  /* A draft that enters, leaves or redefines a finite-only domain (an import can keep its key) resets the view to the
+     new default. Other edits, ordinary drafts included, keep the current state. */
   const draftFocusIdentity = JSON.stringify([
     authoredDraft?.key,
     authoredDraft?.focus.finiteOnly,
     authoredDraft?.focus.keyframes,
   ]);
-  const draftIdentity = useRef({ identity: draftFocusIdentity, finiteOnly: Boolean(authoredDraft?.focus.finiteOnly) });
+  const draftFiniteOnly = Boolean(authoredDraft?.focus.finiteOnly);
+  const previousDraft = useRef({ identity: draftFocusIdentity, finiteOnly: draftFiniteOnly });
   useEffect(() => {
-    const previous = draftIdentity.current;
+    const previous = previousDraft.current;
     if (previous.identity === draftFocusIdentity) return;
-    const finiteOnly = Boolean(authoredDraft?.focus.finiteOnly);
-    draftIdentity.current = { identity: draftFocusIdentity, finiteOnly };
-    if (previous.finiteOnly || finiteOnly) dispatch({ type: "RESET_SLIDERS" });
-  }, [authoredDraft, draftFocusIdentity]);
+    previousDraft.current = { identity: draftFocusIdentity, finiteOnly: draftFiniteOnly };
+    if (previous.finiteOnly || draftFiniteOnly) dispatch({ type: "RESET_SLIDERS" });
+  }, [draftFocusIdentity, draftFiniteOnly]);
   return [state, dispatch, isWide];
 }

@@ -3,8 +3,6 @@
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { createRef, type ReactNode, type RefObject } from "react";
 import { afterEach, describe, expect, it, vi } from "vitest";
-import buildLens from "../../../../../src/optics/buildLens.js";
-import { finiteFixture } from "../../../optics/finiteOnly/fixture.js";
 import LensDiagramLoadedState from "../../../../../src/components/layout/lensDiagram/LensDiagramLoadedState.js";
 import themes from "../../../../../src/utils/theme/themes.js";
 import { buildSimplePositiveElementLens } from "../../../optics/testLensFixtures.js";
@@ -20,18 +18,8 @@ vi.mock("../../../../../src/components/layout/OverlayModal.js", () => ({
 }));
 
 vi.mock("../../../../../src/components/layout/DiagramControlPanel.js", () => ({
-  default: ({
-    onToggleEffectiveAperture,
-    rayTracksF,
-  }: {
-    onToggleEffectiveAperture: () => void;
-    rayTracksF: boolean;
-  }) => (
-    <button
-      data-ray-tracks={String(rayTracksF)}
-      data-testid="diagram-control-panel"
-      onClick={onToggleEffectiveAperture}
-    >
+  default: ({ onToggleEffectiveAperture }: { onToggleEffectiveAperture: () => void }) => (
+    <button data-testid="diagram-control-panel" onClick={onToggleEffectiveAperture}>
       Toggle aperture
     </button>
   ),
@@ -42,16 +30,13 @@ vi.mock("../../../../../src/components/layout/lensDiagram/DiagramViewport.js", (
     viewBoxOverride,
     fillAvailableHeight,
     onOpenAsphericCompare,
-    showChromatic,
   }: {
-    showChromatic: boolean;
     viewBoxOverride?: string;
     fillAvailableHeight?: boolean;
     onOpenAsphericCompare: (eid: number) => void;
   }) => (
     <div
       data-testid="diagram-viewport"
-      data-chromatic={String(showChromatic)}
       data-view-box={viewBoxOverride ?? ""}
       data-fill-height={String(fillAvailableHeight ?? false)}
     >
@@ -305,17 +290,4 @@ describe("LensDiagramLoadedState", () => {
     );
     expect(screen.queryByTestId("aspheric-overlay")).toBeNull();
   });
-});
-
-it("keeps finite object rays and labels truthful when color and collimated preferences are saved", () => {
-  const props = baseProps();
-  props.displayFlags = { ...props.displayFlags, showChromatic: true, rayTracksF: false };
-  render(<LensDiagramLoadedState {...props} />);
-  expect(screen.getByTestId("diagram-viewport").dataset.chromatic).toBe("true");
-  expect(screen.getByTestId("diagram-control-panel").dataset.rayTracks).toBe("false");
-  cleanup();
-  props.computed = { ...props.computed, L: buildLens(finiteFixture()) };
-  render(<LensDiagramLoadedState {...props} />);
-  expect(screen.getByTestId("diagram-viewport").dataset.chromatic).toBe("false");
-  expect(screen.getByTestId("diagram-control-panel").dataset.rayTracks).toBe("true");
 });

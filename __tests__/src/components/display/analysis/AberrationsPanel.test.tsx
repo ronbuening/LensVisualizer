@@ -95,7 +95,7 @@ const baseProps = {
 };
 
 function makePreparedState(overrides: Partial<PreparedOpticalState> = {}): PreparedOpticalState {
-  const lens = { key: "prepared-runtime" } as CompiledLens;
+  const lens = { key: "prepared-runtime", flags: {} } as CompiledLens;
   associateRuntimeView(lens, { N: 2, key: "prepared-runtime" } as unknown as RuntimeLens);
   return {
     lens,

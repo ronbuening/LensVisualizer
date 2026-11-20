@@ -2,7 +2,7 @@
 
 import type { ParaxialTraceResult, RayTraceResult, RuntimeLens } from "../../types/optics.js";
 import type { FieldGeometryState, VectorFieldRayLaunch } from "../field/launch.js";
-import { FOCUS_INFINITY_CUTOFF } from "./focusDistance.js";
+import { FOCUS_INFINITY_CUTOFF, isInfinityFocus } from "./focusDistance.js";
 import { compiledLensFromRuntime, findCompiledLens } from "../prescription/identity.js";
 import { prepareState, prepareStateUncached } from "./preparedGeometry.js";
 import { clampStationControl, focusInterpolationSegment, stationSegment } from "./stationTables.js";
@@ -368,8 +368,8 @@ export function entrancePupilAtState(
  * @returns relative conjugate correction, zero at infinity focus
  */
 export function conjugateKForRuntimeLens(focusT: number, zoomT: number, L: RuntimeLens, aberrationT = 0): number {
-  // Infinity never inspected the runtime lens; keep that short circuit before preparation.
-  if (focusT < FOCUS_INFINITY_CUTOFF) return 0;
+  // Neither infinity nor a finite-only lens has a correction; keep both short circuits before preparation.
+  if (L.isFiniteOnly || focusT < FOCUS_INFINITY_CUTOFF) return 0;
   return conjugateK(prepareState(compiledLensFromRuntime(L), focusT, zoomT, aberrationT));
 }
 
@@ -388,7 +388,7 @@ export function paraxialObjectVergenceForRuntimeLens(
   L: RuntimeLens,
   aberrationT = 0,
 ): number {
-  if (focusT < FOCUS_INFINITY_CUTOFF) return 0;
+  if (isInfinityFocus(focusT, L.isFiniteOnly)) return 0;
   return paraxialObjectVergence(prepareState(compiledLensFromRuntime(L), focusT, zoomT, aberrationT));
 }
 
@@ -436,9 +436,11 @@ function rowFocusVergences(compiled: CompiledLens): (number | null)[][] {
  * @param zoomT - normalized zoom position
  * @returns metres; `Infinity` below the infinity cutoff or at or beyond infinity; `null` on a folded path, where the
  *   focus control moves no gap at the bracketing stations, or for a runtime the canonical compiler did not build, so
- *   the caller keeps the slider convention
+ *   the caller keeps the slider convention; also `null` on a finite-only lens, whose discrete states carry their
+ *   authored distances (`focusDistanceAt`) and have no rows to interpolate
  */
 export function modeledFocusDistanceAt(focusT: number, L: RuntimeLens, zoomT = 0): number | null {
+  if (L.isFiniteOnly) return null;
   if (focusT < FOCUS_INFINITY_CUTOFF) return Infinity;
   if (L.isFoldedOptics) return null;
   const compiled = findCompiledLens(L);

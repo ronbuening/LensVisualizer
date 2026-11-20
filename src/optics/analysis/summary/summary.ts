@@ -78,7 +78,7 @@ export function computeOpticalSummary(request: AnalysisRequest): OpticalSummaryM
     !state.lens.flags.isFoldedOptics && totalTrackMm !== null && currentEFLMm !== null && Math.abs(currentEFLMm) > 1e-9
       ? finiteOrNull(totalTrackMm / Math.abs(currentEFLMm))
       : null;
-  const infinityEFLMm = state.lens.variables?.finiteOnly ? null : finiteOrNull(eflAtZoom(state.zoomT, L));
+  const infinityEFLMm = state.lens.flags.isFiniteOnly ? null : finiteOrNull(eflAtZoom(state.zoomT, L));
   const breathingPercent =
     currentEFLMm !== null && infinityEFLMm !== null && Math.abs(infinityEFLMm) > 1e-9
       ? (100 * (currentEFLMm - infinityEFLMm)) / infinityEFLMm

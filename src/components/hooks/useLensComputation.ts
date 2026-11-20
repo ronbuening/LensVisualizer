@@ -1,4 +1,3 @@
-import { normalizeFiniteFocus } from "../../optics/optics.js";
 /**
  * useLensComputation — Custom hook consolidating all memoized optical
  * calculations: lens building, layout, coordinate transforms, element
@@ -16,7 +15,7 @@ import { normalizeFiniteFocus } from "../../optics/optics.js";
 import { useMemo, useRef } from "react";
 import { resolveLensSystemData } from "../../utils/catalog/teleconverterCatalog.js";
 import { stopSemiDiameterForFNumber, wideOpenStopAtZoom } from "../../optics/optics.js";
-import { fNumberAtStopdown } from "../../optics/optics.js";
+import { fNumberAtStopdown, normalizeFiniteFocus } from "../../optics/optics.js";
 import { buildLens, withImageSurfaceSection } from "../../optics/buildLens.js";
 import type { CardinalElements } from "../../optics/analysis.js";
 import { computeCardinalElements, computeFocusEFL, createAnalysisRequest } from "../../optics/analysis.js";
@@ -136,10 +135,11 @@ export default function useLensComputation({
     [snapToPublishedStations, L, requestedZoomT, requestedFocusT],
   );
   const proposedFocusT = station ? station.focusT : requestedFocusT;
-  const focusT = L?.source?.focus?.finiteOnly ? normalizeFiniteFocus(L.source, proposedFocusT) : proposedFocusT;
-  const zoomT = L?.source?.focus?.finiteOnly ? 0 : station ? station.zoomT : requestedZoomT;
-  const aberrationT = station || L?.source?.focus?.finiteOnly ? 0 : requestedAberrationT;
-  const stopdownT = station || L?.source?.focus?.finiteOnly ? 0 : requestedStopdownT;
+  // A finite-only lens shows an authored state even before the reducer has adopted its default.
+  const focusT = L?.isFiniteOnly ? normalizeFiniteFocus(L.source, proposedFocusT) : proposedFocusT;
+  const zoomT = station ? station.zoomT : requestedZoomT;
+  const aberrationT = station ? 0 : requestedAberrationT;
+  const stopdownT = station ? 0 : requestedStopdownT;
 
   /* ── Layout ──
    * Compute surface z-positions with a fixed reference: infinity focus at the

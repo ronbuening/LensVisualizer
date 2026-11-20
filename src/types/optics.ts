@@ -669,6 +669,8 @@ export interface RuntimeLens {
   /** Curved image surface at the image plane; null for a flat image. */
   readonly imageSurface: import("../optics/types.js").ImageSurfaceShape | null;
   readonly isFoldedOptics: boolean;
+  /** `focus.finiteOnly` is declared: focus coordinates name authored finite states, never infinity. */
+  readonly isFiniteOnly: boolean;
   readonly stopIdx: number;
   readonly stopPhysSD: number;
   readonly EFL: number;

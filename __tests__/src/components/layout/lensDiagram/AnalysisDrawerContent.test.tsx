@@ -36,7 +36,7 @@ const {
   mockOpticalSummaryTab: vi.fn(),
   mockPreparedState: {
     cacheKey: "test:0:0:0",
-    lens: { key: "test-lens" },
+    lens: { key: "test-lens", flags: {} },
     focusT: 0,
     zoomT: 0,
     aberrationT: 0,
@@ -369,7 +369,7 @@ describe("AnalysisDrawerContent", () => {
     const lensB = { ...baseProps.L } as RuntimeLens;
     const stateFor = (lens: RuntimeLens) => {
       const key = lens === lensB ? "lens-b" : "lens-a";
-      return { ...mockPreparedState, cacheKey: `${key}:0:0:0`, lens: { key } };
+      return { ...mockPreparedState, cacheKey: `${key}:0:0:0`, lens: { key, flags: {} } };
     };
     const contextFor = (lens: RuntimeLens) =>
       ({ cacheKey: "centered", pose: { active: false }, state: stateFor(lens) }) as unknown as PerspectiveTraceContext;

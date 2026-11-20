@@ -98,17 +98,9 @@ export default function MtfTab({
   movementActive = false,
 }: MtfTabProps) {
   const [storedPreferences, updatePreferences, sharedSettings, useStoredSettings] = useSharedMtfPreferences();
-  const resolvedPreferences = resolveMtfPreferences(storedPreferences, L.isZoom);
-  const finiteOnly = Boolean(L.source?.focus?.finiteOnly);
-  const fNumber = finiteOnly ? undefined : requestedFNumber;
-  const preferences = finiteOnly
-    ? {
-        ...resolvedPreferences,
-        spectrum: "reference" as const,
-        view: resolvedPreferences.view === "aperture" ? ("field" as const) : resolvedPreferences.view,
-        compareF8: false,
-      }
-    : resolvedPreferences;
+  const preferences = resolveMtfPreferences(storedPreferences, L);
+  // A finite-only lens's nominal f-number is a software reference, not a marked or comparable aperture.
+  const fNumber = L.isFiniteOnly ? undefined : requestedFNumber;
   const chartRef = useRef<HTMLElement>(null);
   const view = preferences.view;
   const isSweep = view === "aperture" || view === "zoom";
@@ -150,7 +142,7 @@ export default function MtfTab({
     ],
   );
   const support = useMemo(() => assessMtfSupport(request, options), [request, options]);
-  const comparisonFNumbers = finiteOnly ? [] : mtfComparisonFNumbers(fNumber, L.maxFstop);
+  const comparisonFNumbers = mtfComparisonFNumbers(fNumber, L.maxFstop);
   const comparisonFNumber = preferences.comparisonFNumber;
   const comparisonAvailable = comparisonFNumbers.includes(comparisonFNumber);
   const comparisonAperture = `f/${comparisonFNumber}`;
@@ -421,7 +413,7 @@ export default function MtfTab({
         comparisonFNumber={comparisonFNumber}
         result={shown}
         isZoom={L.isZoom}
-        finiteOnly={finiteOnly}
+        finiteOnly={L.isFiniteOnly}
       />
       {isSweep ? (
         sweep.error ? (

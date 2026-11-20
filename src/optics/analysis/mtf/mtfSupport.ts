@@ -447,7 +447,7 @@ export function assessMtfSupport(
   }
   if (options.movementActive) return reject("active-movement", "MTF is unavailable while tilt or shift is active.");
   if (!mtfAxialImagePlane(state)) return rejectPath();
-  if (state.focusT !== 0 || state.lens.variables?.finiteOnly) {
+  if (state.focusT !== 0 || state.lens.flags.isFiniteOnly) {
     const conjugate = mtfFiniteConjugate(state);
     // The audit validates both distance conventions after these shared eligibility checks.
     if (!conjugate || (!checks.axialConjugateAudit && !mtfFiniteObjectPoint(state, conjugate, 0)))

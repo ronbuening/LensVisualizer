@@ -64,6 +64,8 @@ export default function DiagramLegend({
   onOpenAbbeDiagram,
 }: DiagramLegendProps) {
   const missingDispersion = summarizeDispersionQuality(L) === "constant";
+  // A finite-only lens always traces from its authored object, whatever the saved ray mode.
+  const rayOrigin = L.isFiniteOnly ? "from object" : rayTracksF ? "tracks focus" : "from \u221e";
   const hasAbbeData = L.elements.some((e) => e.vd != null);
   const mirrorKinds = new Set(
     L.S?.filter((surface) => surface.interaction?.type === "reflect").map(
@@ -186,9 +188,7 @@ export default function DiagramLegend({
                 <line x1="0" y1="3" x2="14" y2="3" stroke={t.rayWarm} strokeWidth="1.5" />
                 <line x1="0" y1="7" x2="14" y2="7" stroke={t.rayCool} strokeWidth="1.5" />
               </svg>
-              <span style={{ color: t.legendText }}>
-                {`On-axis rays${rayTracksF ? " (tracks focus)" : " (from \u221e)"}`}
-              </span>
+              <span style={{ color: t.legendText }}>{`On-axis rays (${rayOrigin})`}</span>
             </div>
           )}
           {showOffAxis !== "off" && (
@@ -214,7 +214,7 @@ export default function DiagramLegend({
                 />
               </svg>
               <span style={{ color: t.legendText }}>
-                {`Off-axis rays (${(halfFieldAtZoom(zoomT, L) * L.offAxisFieldFrac).toFixed(1)}\u00b0${ENABLE_EDGE_PROJECTION && showOffAxis === "edge" ? ", edge proj" : ""})${rayTracksF ? " tracks focus" : " from \u221e"}`}
+                {`Off-axis rays (${(halfFieldAtZoom(zoomT, L) * L.offAxisFieldFrac).toFixed(1)}\u00b0${ENABLE_EDGE_PROJECTION && showOffAxis === "edge" ? ", edge proj" : ""}) ${rayOrigin}`}
               </span>
             </div>
           )}

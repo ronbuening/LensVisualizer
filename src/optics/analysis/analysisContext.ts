@@ -86,7 +86,7 @@ export function createAnalysisComputationContext(
   const perspectiveCacheKey = perspectiveTraceContext?.cacheKey ?? "centered";
   let diagnosticKey: string | undefined;
   const sectionAvailability = (section: AnalysisSectionId): AnalysisSectionAvailability => {
-    if (preparedState.lens?.variables?.finiteOnly && section !== "summary" && section !== "mtf")
+    if (preparedState.lens.flags.isFiniteOnly && section !== "summary" && section !== "mtf")
       return {
         section,
         available: false,

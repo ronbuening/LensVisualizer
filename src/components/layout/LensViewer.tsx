@@ -303,14 +303,14 @@ export default function LensVisualization({ initialLensKey, initialLensKeyB }: L
    * §3  RENDER HELPERS — pre-built JSX fragments
    * ===================================================================== */
 
-  const showCompareBtn = true;
+  // A finite-only lens has discrete states that the shared focus slider cannot express.
+  const finiteOnly = Boolean(LENS_CATALOG[diagramLensKey]?.focus.finiteOnly);
+  const showCompareBtn = !finiteOnly;
 
   /* ── Controls bar props (shared between comparison and mobile instances) ── */
   const controlsBarProps = {
     theme: t,
-    finiteOnly: Boolean(
-      LENS_CATALOG[diagramLensKey]?.focus?.finiteOnly || (comparing && LENS_CATALOG[lensKeyB]?.focus?.finiteOnly),
-    ),
+    finiteOnly,
     showOnAxis,
     showOffAxis,
     rayDensity,

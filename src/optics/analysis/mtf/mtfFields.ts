@@ -76,7 +76,7 @@ const FINITE_TABLE_STEPS = 16;
  * @returns half field in degrees, before any image-format cap
  */
 export function mtfModeledHalfField(state: PreparedGeometry): number {
-  return state.focusT === 0 && !state.lens.variables?.finiteOnly
+  return state.focusT === 0 && !state.lens.flags.isFiniteOnly
     ? computeFieldGeometryAtState(0, state.zoomT, runtimeView(state.lens), state.aberrationT).halfFieldDeg
     : halfFieldAtZoom(state.zoomT, runtimeView(state.lens));
 }
@@ -119,7 +119,7 @@ export function resolveMtfFieldGeometry(
   chiefHeight: MtfChiefHeight,
   beyond?: MtfBeyondChiefClip,
 ): MtfFieldGeometry | null {
-  if (state.lens.variables?.finiteOnly) {
+  if (state.lens.flags.isFiniteOnly) {
     const actualChiefHeight = chiefHeight;
     chiefHeight = (angle) => (angle <= startDeg + 1e-10 ? actualChiefHeight(angle) : NaN);
     beyond = undefined;

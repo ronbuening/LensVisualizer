@@ -49,6 +49,8 @@ export type LensViewQueryState = Partial<
 
 export interface BuildLensViewQueryOptions extends LensViewQueryState {
   comparing?: boolean;
+  /** Focus coordinate hydration restores when `focus` is absent; 0 unless a finite-only lens defaults elsewhere. */
+  defaultFocus?: number;
 }
 
 /**
@@ -200,6 +202,7 @@ export function buildLensViewQuery({
   comparing = false,
   zoom,
   focus,
+  defaultFocus = 0,
   aperture,
   aberration,
   shift,
@@ -237,7 +240,8 @@ export function buildLensViewQuery({
   if (usesV1ViewState) params.set("v", "1");
   if (zoom != null && zoom > 0) params.set("zoom", String(zoom));
   // Preserve exact slider state: rounding normalized values changes restored distances and f-numbers.
-  if (focus != null && focus > 0) params.set("focus", String(focus));
+  // Omit only the lens's own default, which hydration restores: 0, or a finite-only lens's authored default state.
+  if (focus != null && (defaultFocus ? focus !== defaultFocus : focus > 0)) params.set("focus", String(focus));
   if (!comparing && aberration != null && Math.abs(aberration) > 1e-9) params.set("aberration", String(aberration));
   if (aperture != null && aperture > 0) params.set("aperture", String(aperture));
   if (shift != null && Math.abs(shift) > 1e-9) params.set("shift", String(shift));
@@ -270,7 +274,16 @@ export function buildLensViewQuery({
   return params;
 }
 
-export function buildLensViewQueryFromState(state: LensState, zoom: number | null | undefined): URLSearchParams {
+/**
+ * @param state - reducer state to serialize
+ * @param zoom - focal length to write, already converted from the zoom control
+ * @param defaultFocus - focus coordinate a single-lens URL may omit (a finite-only lens's default state); 0 otherwise
+ */
+export function buildLensViewQueryFromState(
+  state: LensState,
+  zoom: number | null | undefined,
+  defaultFocus = 0,
+): URLSearchParams {
   const { comparing } = state.lens;
   const sliders = comparing
     ? {
@@ -291,6 +304,7 @@ export function buildLensViewQueryFromState(state: LensState, zoom: number | nul
     comparing,
     ...sliders,
     zoom,
+    defaultFocus: comparing ? 0 : defaultFocus,
     configurationKey:
       !comparing && state.lens.selectedConfigurationKey !== state.lens.lensKeyA
         ? state.lens.selectedConfigurationKey

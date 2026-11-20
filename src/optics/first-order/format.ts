@@ -1,4 +1,3 @@
-import { isFiniteOnlyRuntime } from "../state/finiteFocus.js";
 /**
  * Optics formatting helpers — small presentation strings for distance, f-number and Petzval values.
  *
@@ -84,7 +83,8 @@ export function marketedApertureNote(
 
 /**
  * The object distance a focus label reports: where the prepared state is paraxially in focus, or the slider
- * convention (closeFocus / focusT) on a folded path or where the focus control moves no gap.
+ * convention (closeFocus / focusT) on a folded path or where the focus control moves no gap. A finite-only state
+ * reports its authored object-to-image distance (`focusDistanceAt`).
  *
  * @param t - normalized focus slider, 0=infinity and 1=close focus
  * @param L - runtime lens object
@@ -92,7 +92,7 @@ export function marketedApertureNote(
  * @returns object-to-image distance in metres; `Infinity` at or beyond infinity; `null` when none is defined
  */
 export function focusLabelDistanceM(t: number, L: RuntimeLens, zoomT = 0): number | null {
-  if (isFiniteOnlyRuntime(L)) return focusDistanceAt(t, L, zoomT);
+  if (L.isFiniteOnly) return focusDistanceAt(t, L, zoomT);
   if (t < FOCUS_INFINITY_CUTOFF) return Infinity;
   return modeledFocusDistanceAt(t, L, zoomT) ?? focusDistanceAt(t, L, zoomT);
 }

@@ -3,13 +3,24 @@
    lensReducer.test.ts createInitialState tests: "uses defaults when prefs and URL are empty", "URL params
    override prefs", "prefs override defaults", and "panel expanded defaults to isWide". This file keeps only
    the hook-specific wiring (tuple shape, URL parsing/validation, prefs handling, dispatch round-trips). */
-import { describe, it, expect, beforeEach } from "vitest";
+import { describe, it, expect, beforeEach, vi } from "vitest";
 import { renderHook, act } from "@testing-library/react";
 import useLensState from "../../../../src/utils/state/useLensState.js";
 import { PREFS_KEY } from "../../../../src/utils/state/preferences.js";
 import { CATALOG_KEYS, COMPARISON_CATALOG_KEYS } from "../../../../src/utils/catalog/lensCatalog.js";
 import { ALL_TELECONVERTER_KEYS, resolveTeleconverterKey } from "../../../../src/utils/catalog/teleconverterCatalog.js";
 import { clearBrowserState, installMatchMediaMock } from "../../../testUtils.js";
+import { finiteOnlyFixture } from "../../optics/finiteOnlyFixture.js";
+import type { LensDataV2Input } from "../../../../src/types/lensDataV2.js";
+
+/* No catalog lens is finite-only yet: add the synthetic one as a hidden entry, beside the real catalog. */
+vi.mock("../../../../src/utils/catalog/lensCatalog.js", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("../../../../src/utils/catalog/lensCatalog.js")>();
+  const { ingestLens } = await import("../../../../src/optics/buildLens.js");
+  const { finiteOnlyFixture } = await import("../../optics/finiteOnlyFixture.js");
+  const fixture = finiteOnlyFixture();
+  return { ...actual, LENS_CATALOG: { ...actual.LENS_CATALOG, [fixture.key]: ingestLens(fixture).prescription } };
+});
 
 /* ── Mock window.matchMedia (not implemented in jsdom) ── */
 
@@ -210,5 +221,40 @@ describe("useLensState — dispatch", () => {
     });
 
     expect(result.current[0].lens.lensKeyA).toBe(newKey);
+  });
+});
+
+describe("useLensState — finite-only focus", () => {
+  const finite = finiteOnlyFixture();
+
+  it("starts a finite-only catalog entry at its authored default and resets back to it", () => {
+    const { result } = renderHook(() => useLensState([finite.key], finite.key));
+    expect(result.current[0].sliders.focusT).toBe(1);
+    act(() => result.current[1]({ type: "SET_FOCUS_T", value: 0 }));
+    expect(result.current[0].sliders.focusT).toBe(0);
+    act(() => result.current[1]({ type: "RESET_SLIDERS" }));
+    expect(result.current[0].sliders.focusT).toBe(1);
+  });
+
+  it("adopts a Builder draft's default when the draft enters, redefines or leaves the domain", () => {
+    const ordinary: LensDataV2Input = { ...finite, key: "ordinary", focus: { closeFocusM: 1, keyframes: [0, 1] } };
+    const { result, rerender } = renderHook(({ draft }) => useLensState([draft.key], draft.key, undefined, draft), {
+      initialProps: { draft: ordinary },
+    });
+    const setFocus = (value: number) => act(() => result.current[1]({ type: "SET_FOCUS_T", value }));
+    expect(result.current[0].sliders.focusT).toBe(0);
+    rerender({ draft: finite });
+    expect(result.current[0].sliders.focusT).toBe(1);
+    // An edit outside the focus domain keeps the chosen state.
+    setFocus(0);
+    rerender({ draft: { ...finite, name: "Edited name" } });
+    expect(result.current[0].sliders.focusT).toBe(0);
+    // A new default under the same key is adopted.
+    setFocus(1);
+    rerender({ draft: { ...finite, focus: { ...finite.focus, finiteOnly: { defaultKeyframe: 0 } } } });
+    expect(result.current[0].sliders.focusT).toBe(0);
+    setFocus(1);
+    rerender({ draft: ordinary });
+    expect(result.current[0].sliders.focusT).toBe(0);
   });
 });

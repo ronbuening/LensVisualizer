@@ -419,11 +419,19 @@ export default function BuilderEditor({
                 const aperture = { ...draft.aperture };
                 if (!s.trim()) delete aperture.nominalFNumber;
                 else aperture.nominalFNumber = Number(s);
+                // A finite-only iris is fixed: its one stop and maximum follow the reference f-number.
+                if (draft.focus.finiteOnly && aperture.nominalFNumber !== undefined)
+                  Object.assign(aperture, { fStops: [aperture.nominalFNumber], maxFNumber: aperture.nominalFNumber });
                 onChange({ ...draft, aperture });
               }}
             />
             <CommitInput
-              label={draft.focus.finiteOnly ? "Finite label distance (m)" : "Close focus (m)"}
+              label="Close focus (m)"
+              title={
+                draft.focus.finiteOnly
+                  ? "focus.closeFocusM: the object-to-image distance of the nearest authored finite state"
+                  : undefined
+              }
               value={draft.focus.closeFocusM}
               theme={t}
               numeric

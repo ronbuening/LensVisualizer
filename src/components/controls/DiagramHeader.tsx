@@ -18,6 +18,7 @@ import PatentNumberLink from "../content/PatentNumberLink.js";
 import { eflAtZoomClamped as eflAtZoom, formatDist, formatFNumber } from "../../optics/optics.js";
 import { fisheyeProjectionFocalLengthAtZoom, isFisheyeProjection } from "../../optics/projection.js";
 import { toggleGroup, toggleBtn, headerStrip } from "../../utils/style/styles.js";
+import { FiniteOnlyColorNote, FiniteOnlyRayMode } from "./FiniteOnlyNotes.js";
 import CollapseButton from "./CollapseButton.js";
 import LensTaxonomyBadges from "./LensTaxonomyBadges.js";
 import CardinalControls from "./CardinalControls.js";
@@ -350,7 +351,7 @@ const DiagramHeader = memo(
               >
                 {L.isZoom && <span>{`${eflAtZoom(zoomT, L).toFixed(0)} mm`}</span>}
                 <span>{formatDist(focusT, L, zoomT)}</span>
-                {!L.source?.focus?.finiteOnly && <span>{`f/${formatFNumber(fNumber)}`}</span>}
+                {!L.isFiniteOnly && <span>{`f/${formatFNumber(fNumber)}`}</span>}
                 <span>{compactFocalReadout}</span>
               </div>
             )}
@@ -407,8 +408,8 @@ const DiagramHeader = memo(
                 />
                 {/* Ray mode */}
                 <div style={toggleGroup(t, { width: "100%" })}>
-                  {L.source?.focus?.finiteOnly ? (
-                    <span style={{ padding: 8 }}>FINITE OBJECT</span>
+                  {L.isFiniteOnly ? (
+                    <FiniteOnlyRayMode t={t} />
                   ) : (
                     [
                       { label: "FROM \u221e", val: false, icon: "\u2225" },
@@ -453,8 +454,8 @@ const DiagramHeader = memo(
                   ))}
                 </div>
                 {/* Chromatic */}
-                {L.source?.focus?.finiteOnly ? (
-                  <span>Chromatic analysis unavailable for this finite-only reference</span>
+                {L.isFiniteOnly ? (
+                  <FiniteOnlyColorNote t={t} />
                 ) : (
                   <ChromaticControls
                     t={t}

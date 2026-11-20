@@ -136,7 +136,11 @@ function catalogKeysWithOpticalConfigurations(keys: readonly string[]): string[]
   return sortLensKeysByName([...expanded]);
 }
 
-const COMPARISON_CATALOG_KEYS = catalogKeysWithOpticalConfigurations(CATALOG_KEYS);
+/* Shared comparison focus is a continuous distance; a finite-only lens has only discrete authored states. Read as
+   authored, so listing ingests no lens. */
+const COMPARISON_CATALOG_KEYS = catalogKeysWithOpticalConfigurations(CATALOG_KEYS).filter(
+  (key) => !INPUTS[key]?.focus.finiteOnly,
+);
 
 /* Analysis markdown is code-split: the non-eager glob maps each file to a
  * dynamic importer, so ~10 MB of prose is fetched per lens on demand instead

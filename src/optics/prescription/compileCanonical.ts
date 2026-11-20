@@ -176,6 +176,7 @@ function compileFlags(input: LensConstruction): CompiledLensFlags {
   return Object.freeze({
     isZoom: input.isZoom,
     isFoldedOptics: input.isFoldedOptics,
+    isFiniteOnly: input.data.finiteOnlyFocus !== undefined,
     hasPerspectiveControl: input.data.perspectiveControl != null,
     hasAberrationControl: input.aberrationControl !== null,
   });

@@ -11,6 +11,7 @@ import type { LensData, RuntimeLens } from "../../../../src/types/optics.js";
 import { formatDist, formatFNumber } from "../../../../src/optics/optics.js";
 import type { ParaxialWorkingFNumberResult } from "../../../../src/optics/optics.js";
 import { LENS_CATALOG } from "../../../../src/utils/catalog/lensCatalog.js";
+import { finiteOnlyFixture } from "../../optics/finiteOnlyFixture.js";
 
 afterEach(() => cleanup());
 
@@ -164,6 +165,21 @@ describe("DiagramControls", () => {
 
     expect(screen.queryByText("APERTURE")).toBeNull();
     expect(screen.getByText("FOCUS")).toBeTruthy();
+  });
+
+  it("offers a finite-only lens's authored states and fixed iris instead of focus and aperture sliders", () => {
+    const L = build(finiteOnlyFixture());
+    const { callbacks } = renderControls(L, { focusT: 1 });
+    expect(screen.queryByText("FOCUS")).toBeNull();
+    expect(screen.queryByText("APERTURE")).toBeNull();
+    const select = screen.getByLabelText("Finite focus state") as HTMLSelectElement;
+    expect([...select.options].map((option) => option.textContent)).toEqual([
+      `State 1: ${formatDist(0, L)}`,
+      `State 2: ${formatDist(1, L)}`,
+    ]);
+    expect(screen.getByText(/Fixed iris \u00d84\.00 mm/)).toBeTruthy();
+    fireEvent.change(select, { target: { value: "0" } });
+    expect(callbacks.onFocusChange).toHaveBeenCalledWith(0);
   });
 
   it("keeps the aperture slider for adjustable-aperture lenses", () => {

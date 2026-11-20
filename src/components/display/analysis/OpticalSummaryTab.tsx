@@ -125,15 +125,15 @@ export default function OpticalSummaryTab({
 
       <SummarySection title="Aperture And Field" t={t}>
         <span style={{ color: t.muted, fontSize: 9, lineHeight: 1.45 }}>
-          {L.source?.focus?.finiteOnly
+          {L.isFiniteOnly
             ? "Finite-only reference with a fixed authored physical iris. Working f-numbers use the actual finite object conjugate. Unsupported analyses are unavailable."
             : "The stop gives a paraxial entrance pupil of F/N at infinity focus, F the focal length (a fisheye's projection focal length) and N the marked f-number, and stays fixed as focus changes. A published zoom iris schedule, a fixed iris, or a stop inside glass or in a folded path keeps its own wide-open size. Image-space f/# is EFL / EPD, paraxial; paraxial working f/# is 1 / (2n′|u′|) of the paraxial marginal ray; working f/# is 1 / (2n′ sin θ′) of the real marginal ray through the stop rim. Both working values are at the current object distance."}
         </span>
-        {fNumber && !L.source?.focus?.finiteOnly ? (
+        {fNumber && !L.isFiniteOnly ? (
           <AnalysisMetricRow label="Marked" value={`f/${formatMarkedFNumber(fNumber)}`} t={t} />
         ) : null}
         <AnalysisMetricRow
-          label={L.source?.focus?.finiteOnly ? "Intrinsic EFL/EPD" : "Image-space f/#"}
+          label={L.isFiniteOnly ? "Intrinsic EFL/EPD" : "Image-space f/#"}
           value={formatFNumber(summary.imageSpaceFNumber)}
           t={t}
         />

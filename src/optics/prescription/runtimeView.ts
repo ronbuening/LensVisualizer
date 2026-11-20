@@ -20,6 +20,7 @@ export function runtimeView(lens: CompiledLens): RuntimeLens {
   const control = lens.aberrationControl;
   const runtime = Object.freeze({
     source: lens.source,
+    isFiniteOnly: lens.flags.isFiniteOnly,
     ...(lens.attachedTeleconverter ? { attachedTeleconverter: lens.attachedTeleconverter } : {}),
     S: lens.constructionSurfaces.map((surface, i) => ({ ...surface, sd: lens.surfaces[i].sd })),
     N: lens.surfaces.length,

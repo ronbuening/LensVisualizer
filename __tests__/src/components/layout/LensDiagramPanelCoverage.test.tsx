@@ -366,6 +366,14 @@ describe("LensDiagramPanel orchestration", () => {
     );
   });
 
+  it("keeps a saved color preference out of a finite-only lens's ray tracing and diagram", () => {
+    mocks.lensComputation.mockReturnValue(computation({ L: { ...runtimeLens(), isFiniteOnly: true } }));
+    const state = makeState();
+    renderPanel(makeState({ rays: { ...state.rays, showChromatic: true } }));
+    expect(mocks.rayTracing.mock.calls.at(-1)?.[0]).toMatchObject({ showChromatic: false });
+    expect(mocks.loadedState.mock.calls.at(-1)?.[0]).toMatchObject({ displayFlags: { showChromatic: false } });
+  });
+
   it("tracks hover locally and dispatches selected element changes", () => {
     const dispatch = vi.fn<Dispatch<LensAction>>();
     renderPanel(makeState(), dispatch);

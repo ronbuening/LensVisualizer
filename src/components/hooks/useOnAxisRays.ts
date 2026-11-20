@@ -7,13 +7,13 @@
  * show the extrapolated path of rays clipped by the aperture stop.
  */
 import { useMemo } from "react";
-import { traceFiniteFocusFan, traceRay } from "../../optics/optics.js";
+import { traceRay } from "../../optics/optics.js";
 import { tracePerspectiveDiagramFan } from "../../optics/perspective.js";
 import type { PerspectiveTraceContext } from "../../optics/perspective.js";
 import { obstructionAwareRayFractionsForDensity } from "../../optics/optics.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import type { RayDensity } from "../../types/state.js";
-import { compileRaySegment } from "./raySegmentUtils.js";
+import { compileFiniteFocusFan, compileRaySegment } from "./raySegmentUtils.js";
 
 export interface RaySegment {
   sp: number[][];
@@ -69,26 +69,15 @@ export default function useOnAxisRays({
     try {
       const out: RaySegment[] = [];
       const fractions = obstructionAwareRayFractionsForDensity(L, L.rayFractions, rayDensity, currentEPSD);
-      if (L.source?.focus?.finiteOnly) {
-        return {
-          segments: traceFiniteFocusFan(L, focusT, currentPhysStopSD, currentEPSD, 0, fractions, undefined, zPos).map(
-            (result) =>
-              compileRaySegment(
-                result.pts,
-                result.ghostPts,
-                result.u,
-                result.clipped,
-                sx,
-                sy,
-                clampedRayEnd,
-                IMG_MM,
-                undefined,
-                result.reachedImagePlane,
-                true,
-              ),
-          ),
-          error: null,
+      if (L.isFiniteOnly) {
+        const request = {
+          focusT,
+          stopSemiDiameterMm: currentPhysStopSD,
+          entrancePupilSemiDiameterMm: currentEPSD,
+          fractions,
+          zPos,
         };
+        return { segments: compileFiniteFocusFan(L, request, sx, sy, clampedRayEnd, IMG_MM), error: null };
       }
       if (perspectiveTraceContext?.pose.active) {
         const fan = tracePerspectiveDiagramFan({

@@ -1007,6 +1007,9 @@ export function ingestLensV2(input: LensDataV2Input, request?: IngestRequest): I
   const zoom = zoomRead?.zoom;
   const stationCount = zoom?.stations.length ?? 1;
 
+  const surfaceInteractions = authoredSurfaces.map((surface) => surface.interaction as { type?: unknown } | undefined);
+  const folded = Boolean(data.opticalPath || surfaceInteractions.some((it) => it && it.type !== "refract"));
+
   const focusRecord = nested(data, "focus", "", FOCUS_FIELDS, context) ?? {};
   requireFields(focusRecord, ["closeFocusM"], "focus", context);
   const keyframes = withDefault(focusRecord, "focus.keyframes", context);
@@ -1033,15 +1036,18 @@ export function ingestLensV2(input: LensDataV2Input, request?: IngestRequest): I
     if (!domain || !isIndexIn(index, 0, (keyframeCount ?? 0) - 1))
       context.issues.push("focus.finiteOnly.defaultKeyframe must name an authored finite state");
     focus.finiteOnly = { defaultKeyframe: index as number };
+    const projectionKind = (data.projection as Untyped | undefined)?.kind;
     if (
       zoom ||
-      data.opticalPath ||
+      folded ||
       data.perspectiveControl ||
       data.aberrationControl ||
-      ((data.projection as Untyped)?.kind && (data.projection as Untyped).kind !== "rectilinear")
+      data.imageSurface ||
+      (data.catalog as Untyped | undefined)?.acceptsTeleconverters ||
+      (projectionKind !== undefined && projectionKind !== "rectilinear")
     )
       context.issues.push(
-        "focus.finiteOnly supports sequential rectilinear primes without movement or aberration controls",
+        "focus.finiteOnly supports sequential rectilinear primes with a flat image, without movement, aberration controls or teleconverters",
       );
   }
   if (context.sources) {
@@ -1069,9 +1075,8 @@ export function ingestLensV2(input: LensDataV2Input, request?: IngestRequest): I
     focus.published = [];
   } else ingestPublishedStations(zoomRead?.stations, zoom, focusRecord, focus, keyframeCount, context);
 
-  const surfaceInteractions = authoredSurfaces.map((surface) => surface.interaction as { type?: unknown } | undefined);
   const stopAuthority = stopRadiusAuthority({
-    folded: Boolean(data.opticalPath || surfaceInteractions.some((it) => it && it.type !== "refract")),
+    folded,
     hasSchedule: zoom?.stations.some((station) => station.stopSemiDiameter !== undefined) ?? false,
     finiteOnly: Boolean(focus.finiteOnly),
     stopInsideElement: authoredSurfaces.some(
@@ -1114,6 +1119,14 @@ export function ingestLensV2(input: LensDataV2Input, request?: IngestRequest): I
   put(aperture, "blades", apertureRecord.blades);
   put(aperture, "bladeRoundedness", apertureRecord.bladeRoundedness);
   aperture.stopRadius = stopAuthority;
+  if (focus.finiteOnly) {
+    const stops = apertureRecord.fStops;
+    const nominal = apertureRecord.nominalFNumber;
+    if (!Array.isArray(stops) || stops.length !== 1 || stops[0] !== nominal || aperture.maxFNumber !== nominal)
+      context.issues.push(
+        "focus.finiteOnly has a fixed iris: set aperture.fStops to [nominalFNumber] and aperture.maxFNumber to nominalFNumber",
+      );
+  }
   if (context.sources) {
     const fields = ["nominalFNumber", "fStops", "blades", "bladeRoundedness"];
     recordReads(context.sources, "aperture", "aperture", aperture, fields);

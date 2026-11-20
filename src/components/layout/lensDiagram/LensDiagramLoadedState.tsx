@@ -76,7 +76,7 @@ export default function LensDiagramLoadedState({
     zoomPanActive,
     showOnAxis,
     showOffAxis,
-    showChromatic: requestedShowChromatic,
+    showChromatic,
     showPupils,
     showCardinals,
     showCardinalFocal,
@@ -92,7 +92,7 @@ export default function LensDiagramLoadedState({
     chromG,
     chromB,
     chromV,
-    rayTracksF: requestedRayTracksF,
+    rayTracksF,
     flashVisible,
     flashKey,
     flashFading,
@@ -107,8 +107,6 @@ export default function LensDiagramLoadedState({
     abbeShowGlassType,
     patentPositions,
   } = displayFlags;
-  const showChromatic = requestedShowChromatic && !L.source?.focus?.finiteOnly;
-  const rayTracksF = L.source?.focus?.finiteOnly ? true : requestedRayTracksF;
   const { onHover, onSelect, zoomHook, onZoomPanToggle, onSliderInteractionChange } = interactions;
   const rootStyle = fillAvailableHeight
     ? {
