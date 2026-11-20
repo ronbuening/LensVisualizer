@@ -1,67 +1,166 @@
+# ZEISS OTUS ML 50mm f/1.4
+
 ## Patent Reference and Design Identification
 
-**Patent:** JP 2026-105585 A, 光学レンズ系 (optical lens system)
-**Inventor:** Tatsuya Moriyama (森山 達也; transliteration)
-**Applicant:** Cosina Co., Ltd. (株式会社コシナ)
-**Filed:** December 16, 2024
-**Published:** June 26, 2026
-**Example details:** Example 1, printed page 9 Table 2; page 10 Tables 3 and 4
+**Patent:** JP 2026-105585 A, 光学レンズ系 (Optical lens system)\
+**Inventors:** Tatsuya Moriyama (森山 達也)\
+**Assignee:** Cosina Co., Ltd. (株式会社コシナ)\
+**Filed:** 16 December 2024\
+**Published:** 26 June 2026\
+**Example details:** Example 1, Table 1 summary, Table 2 prescription, Tables 3–4 focus spacings and aspheres; Figs. 1–2
 
-This is the explicitly authorized **Table 4 reconstruction hypothesis**. Table 2 prints S26 radius −2000.000 mm, whereas Table 4 explicitly gives an INFINITY base while retaining its aspheric polynomial. This model uses that plane base and all Table 4 coefficients literally. It does not assert an official correction. Examples 2 and 3 consistently use −2000 in their separate tables; they establish no general plane-base convention.
+Example 1 best fits the production Otus ML 50mm f/1.4: 14 elements/11 groups, two aspherical elements, four APD candidates and 499.54 mm near focus at approximately 1:7.45. Example 2 has 15/12; Example 3 has three aspherical elements. [Cosina](https://www.cosina.co.jp/zeiss/otus-ml/otus-ml-1-4-50/) and [ZEISS](https://www.zeiss.com/content/dam/pno/downloads/photo-lenses/datasheets/otus-ml-lenses/datasheet-zeiss-otus-ml-1450.pdf) specify full-frame 50 mm f/1.4, 0.50 m, 1:7.3 and E/RF/Z mounts. [CameraLabs](https://www.cameralabs.com/zeiss-otus-ml-50mm-f1-4-review/2/) measured 1:7.5. The patent's 46.24° field lies between Cosina's 45.65° and ZEISS's 47°. The production association is strong.
 
-The user-supplied original JP_2026105585_A.pdf is 529,881 bytes, SHA-256 `2d06c012d8c6b6a4e492d615ef680e4169352f90ef5c893bba51ce47f0c280ab`. The parent/source specialist inspected these original pages twice. This executor used that verified transcription and independently checked optics; it has not materialized or visually inspected those PDF bytes. The original remains in the user's Library. Bibliographic corroboration is the [J-GLOBAL record](https://jglobal.jst.go.jp/en/detail?JGLOBAL_ID=202603007546980750).
+[ZEISS announced the lens on 25 February 2025](https://www.zeiss.com/photonics-and-optics/en/home/content/newsroom/news-overview/2025/new-otus-ml.html); Cosina lists availability on 30 May for E/RF and 30 July for Z.
 
-The [Cosina Otus ML 1.4/50 specification and optical section](https://www.cosina.co.jp/zeiss/otus-ml/otus-ml-1-4-50/) strongly support association: 14 elements/11 groups, two aspheric elements, approximately 50 mm f/1.4, and 0.50 m near focus. The patent prints 50.15 mm, f/1.435 and 46.24° full field; retail specifies 45.65° and 1:7.3. Similarity is not an exact factory prescription or independently verified production-example identity. This recovers the existing November 2 unbuilt held research card, not a new discovery.
-
-## Reconstruction Status
-
-All radii, thicknesses, indices, Abbe numbers, stop station, and three complete aspheric polynomials are literal, with the disclosed Table 4 S26 choice. There are no added plates, lenses or baffles. Two source focus states are preserved exactly: D10/D26 = 7.56/18.69 mm at infinity and 0.70/25.55 mm at object-to-first-vertex distance 394.90 mm. G1 S1–10 is fixed; G2 S11–26, including the iris, translates 6.86 mm toward the object. The detector remains z = 104.64 mm.
-
-Clear semidiameters are **modeled estimates**, not drawing dimensions or factory readings: S1–S26 = [29,29,27.5,27.5,27,27,26.5,26.5,24,23,19,19,18,18,15,derived iris,15,15.5,15.5,16.5,16.5,15.8,15.8,13.5,13.5,15] mm. The initial unconstrained optical survey exceeded physical glass-edge bounds. Its first authoring trial failed three edge-thickness checks and the rear gap check; a second trial still crossed L12 by 0.012 mm. Those trials are retained. Only the estimated apertures were reduced to positive-edge, default-gap-sag bounds. No source shape, spacing, coefficient, material or check limit was altered. Peripheral clipping remains in results instead of widening apertures to rescue rays.
+S26 follows Table 4's INFINITY base over Table 2's −2000 mm. The plane agrees with the patent's first-order summary and Fig. 2. Table 2 likely repeats Examples 2/3, which consistently use −2000 mm.
 
 ## Optical Architecture
 
-Fourteen elements occupy eleven cemented/air-spaced components, with cemented interfaces S14, S18 and S23. The fixed front group has five elements. The moving rear group contains the iris and nine elements. S11 is one aspheric element face; S25/S26 form the double-sided rear aspheric element. All use K = 0 and conventional conic sag plus A4 through A20. S26 remains aspheric despite its flat base curvature.
+ZEISS calls the production design a Distagon. G1 has five fixed elements; G2 has nine moving elements and the iris. Cemented pairs C1, C2 and C3 span S13–S15, S17–S19 and S22–S24, with in-air focal lengths −57.01, −577.15 and −53.71 mm.
+
+The patent's millimetre prescription is unscaled. Stop position, spacings and aspheres are printed; rims are estimated, iris radius is derived, and intermediate focus positions are inferred. The printed 18.69 mm image gap is retained without added plates or baffles.
 
 ## Element-by-Element Analysis
 
-| Element | Faces | Source nd | Source νd |
-|---|---|---:|---:|
-| L1 | S1–S2 | 1.72047 | 34.71 |
-| L2 | S3–S4 | 1.80809 | 22.76 |
-| L3 | S5–S6 | 1.76385 | 48.49 |
-| L4 | S7–S8 | 1.62846 | 59.17 |
-| L5 | S9–S10 | 1.55298 | 55.07 |
-| L6 | S11–S12 | 1.85135 | 40.10 |
-| L7 | S13–S14 | 1.49700 | 81.61 |
-| L8 | S14–S15 | 1.77047 | 29.74 |
-| L9 | S17–S18 | 1.77047 | 29.74 |
-| L10 | S18–S19 | 1.76385 | 48.49 |
-| L11 | S20–S21 | 2.00100 | 29.13 |
-| L12 | S22–S23 | 1.95375 | 32.32 |
-| L13 | S23–S24 | 1.77047 | 29.74 |
-| L14 | S25–S26 | 1.80835 | 40.55 |
+Focal lengths are for individual elements in air.
 
-No exact supplier or measured dispersion curve is assigned. Optical claims here are reference d-line only (native 587.5618 nm); other runtime channels inferred from Abbe numbers are estimates. No calibrated chromatic or polychromatic claim follows.
+### L1 — Biconcave Negative
 
-## Focus and Aperture
+nd = 1.72047, νd = 34.71. Glass: S-NBH8 (OHARA equivalent). f = −46.00 mm.
 
-Independent first-order calculation gives infinity EFL 50.136533870 mm and BFD 18.691854447 mm, versus printed 50.15/18.69. At the published near geometry, the 394.90 mm first-vertex object has computed image gap 25.547365667 mm versus printed 25.55. The actual source image gap remains unchanged. The native conjugate audit reports −0.002634333 mm defocus (−0.793 diffraction depths), consistent at the declared first-surface reference; treating 394.90 mm as object-to-image instead gives +2.63277 mm and fails. Source object-to-image distance is 394.90 + 79.09 + 25.55 = 499.54 mm, consistent with the approximately 0.50 m retail boundary without equating vertex distance to barrel working distance.
+L1 spreads the incoming bundle before the positive elements.
 
-Between the two source rows the application interpolates the **group displacement**, keeping the fixed detector. At focus coordinates .25/.50/.75 the calculated conjugate distances before S1 are approximately 1537.40/774.38/520.93 mm. These are derived positions, not published focus rows, measured cams or certified finite MTF states. The app leaves finite MTF unavailable at undeclared intermediate states. Ordinary diagram rays can be shown collimated or with focus tracking; collimated rays at the near geometry must not be described as source finite image quality.
+### L2 — Biconvex Positive
 
-The source nominal f/1.435 is retained. The app's ordinary-prime pupil convention derives physical iris diameter 27.473421944 mm. Native finite acceptance reaches entrance radius 16.624827742 mm, equivalent to f/1.507881304; it clips at the iris. This is not asserted to be factory aperture. Independently launching the source nominal paraxial pupil radius gives iris radius 14.513191848 mm and an axial crossing −0.070560778 mm relative to the published image plane, consistent with the upstream approximately −0.071 mm Figure 2 spherical trend. That ray is outside the saved app-derived iris: the trend comparison is an independent source diagnostic, not a claim that native nominal-aperture plots use the identical physical pupil. Iris diameter ±2% is documented as sensitivity, not saved prescription edits.
+nd = 1.80809, νd = 22.76. Glass: S-NPH1 (OHARA equivalent). f = +140.43 mm.
 
-## Validation, Field and MTF
+This high-dispersion positive element is the inferred APD flint in G1. Its catalog partial dispersion agrees with the patent's Gr1P value, ΔPgF = 0.023.
 
-Default geometry passes with **no overrides or hidden trim**. Baseline minimum glass edge is approximately 0.06791 mm; the largest sampled cross-gap intrusion fraction is 0.87710, below default 0.90. Both 0.10 mm center gaps retain positive real clearance. Sixty-three geometry cases cover 21 focus positions and clear-radius estimates ±0.05 mm; all retain physical clearance, fixed detector and zero trim. This verifies mathematical geometry, not manufacturing tolerances or retainer clearances.
+### L3 — Biconvex Positive
 
-Two physical 3D ray passes cover five focus geometries including the exact near object, with field and pupil azimuth sampling. Their 18,077 combined samples yield 13,292 detector arrivals, 4,180 explicit clips and 605 raw native `noBracket` misses. Every raw miss is classified **blocked by the existing native aperture-exclusion proof**, not silently discarded or asserted to be a completed ray; no unresolved ray remains. All sampled chief rays complete. Independent analytic-sag/vector-Snell and native completed surface hits agree within 2.7e−11 mm. Physical input-disc counts are not throughput estimates. Near physical surveys use object-side angles, which are not the same as a fixed image diagonal.
+nd = 1.76385, νd = 48.49. Glass: S-LAH96 (OHARA equivalent). f = +69.23 mm.
 
-Quantitative reference-line **geometric MTF** targets the modeled 43.3 mm image circle at center, half-height and corner. The source infinity and near states have zero unknown flux and converge using maximum lattice caps 64/128/256: the infinity corner needs 256; near corner converges at 128. Saved evidence retains lower-resolution unconverged results and the final converged results. These values include the estimated aperture geometry and native iris convention; no source MTF curve, retail comparison, diffraction-OTF qualification or calibrated spectral comparison is asserted. The source comparison available here is spherical trend, not measured MTF. Builder/browser analysis-panel rendering is a separate UI-health check.
+L3 supplies the strongest positive element power in the fixed group.
 
-## Design Heritage and Remaining Scope
+### L4 — Biconvex Positive
 
-Bounded dedup re-pins current main and all 19 open PR heads, checks all 2,366 retained actual source bodies and 2,438 historical numerical profiles, and verifies 26 readable archive byte hashes. No identifier or normalized uniform-scale/reversed signed 25-boundary match is found. This is not exhaustive inaccessible private history. The old November 2 card is acknowledged, not rebuilt as a second discovery.
+nd = 1.62846, νd = 59.17. Glass: J-PSKH8 (Hikari equivalent). f = +168.95 mm.
 
-This private hidden file is an app-ready **Table 4 patent reconstruction hypothesis** for bundle review. No catalog registration, branch publication, production identity, finite focus beyond the two source endpoints, factory clear apertures, throughput, flare/baffle model, mechanical tolerance or delivery credit is implied. Original Table 2 evidence is retained read-only; no alternate −2000 mm native model is built.
+This weak positive phosphate crown is an inferred APD position between L3 and the rear negative meniscus of G1.
+
+### L5 — Negative Meniscus
+
+nd = 1.55298, νd = 55.07. Glass: J-KZFH4 (Hikari equivalent). f = −200.08 mm.
+
+L5 completes G1. Its catalog equivalent has negative anomalous partial dispersion, supporting the inferred APD designation.
+
+### L6 — Positive Meniscus, Aspherical
+
+nd = 1.85135, νd = 40.10. Glass: M-TAFD305 (HOYA equivalent). f = +57.56 mm.
+
+The first element of G2 has the S11 asphere and moves with the focusing group.
+
+### L7 — Positive Meniscus, C1
+
+nd = 1.49700, νd = 81.61. Glass: FCD1 (HOYA equivalent). f = +100.67 mm.
+
+The inferred ED/APD crown is cemented to L8 at S14, ahead of the iris.
+
+### L8 — Negative Meniscus, C1
+
+nd = 1.77047, νd = 29.74. Glass: NBFD29 (HOYA equivalent). f = −34.70 mm.
+
+The dispersive negative member makes C1 net negative and bounds the air space before the iris.
+
+### L9 — Biconcave Negative, C2
+
+nd = 1.77047, νd = 29.74. Glass: NBFD29 (HOYA equivalent). f = −24.09 mm.
+
+This strong negative element sits immediately behind the iris and is cemented to L10 at S18.
+
+### L10 — Biconvex Positive, C2
+
+nd = 1.76385, νd = 48.49. Glass: S-LAH96 (OHARA equivalent). f = +25.35 mm.
+
+L10 balances L9, leaving C2 weakly negative.
+
+### L11 — Biconvex Positive
+
+nd = 2.00100, νd = 29.13. Glass: TAFD55 (HOYA equivalent). f = +27.20 mm.
+
+The high-index positive singlet follows C2.
+
+### L12 — Positive Meniscus, C3
+
+nd = 1.95375, νd = 32.32. Glass: S-LAH98 (OHARA equivalent). f = +33.28 mm.
+
+L12 is the positive member of C3, cemented to L13 at S23.
+
+### L13 — Biconcave Negative, C3
+
+nd = 1.77047, νd = 29.74. Glass: NBFD29 (HOYA equivalent). f = −20.71 mm.
+
+The negative member leaves C3 net negative before the final asphere.
+
+### L14 — Negative Meniscus, Aspherical
+
+nd = 1.80835, νd = 40.55. Glass: L-LAH84 (OHARA equivalent). f = −140.53 mm.
+
+Both S25 and S26 are aspherical. Although S26 has a plane base, its polynomial produces a curved profile; the patent describes the element as a negative meniscus.
+
+## Glass Identification and Selection
+
+All eleven distinct nd/νd pairs resolve to catalog rows within |Δnd| ≤ 0.000005 and |Δνd| ≤ 0.004483. The reference is helium d, 587.56 nm. Catalog curves supply dispersion while the printed nd/νd remain unchanged; production melts and suppliers are unspecified.
+
+Four APD positions are inferred from the [maker's special-glass count and optical section](https://www.zeiss.com/photonics-and-optics/en/photography/products/lenses-for-mirrorless-system-cameras/otus-ml-lenses.html) and compatible glass properties: L2, L4, L5 and L7.
+
+## Focus Mechanism
+
+G1 stays fixed; G2 and the iris move 6.86 mm toward the object. D10 + D26 = 26.25 mm holds the image plane at 104.64 mm. The printed near distance is 394.90 mm before S1, or 499.54 mm to the image; marketing specifies 0.50 m.
+
+| Coordinate | D10 (mm) |  D26 (mm) | Readout (m) | Basis    |
+| ---------- | -------: | --------: | ----------: | -------- |
+| 0          | 7.560000 | 18.690000 |    Infinity | Table 3  |
+| 0.25       | 6.168629 | 20.081371 |    1.997574 | Inferred |
+| 0.50       | 4.595947 | 21.654053 |    0.998787 | Inferred |
+| 0.75       | 2.794444 | 23.455556 |    0.665858 | Inferred |
+| 1          | 0.700000 | 25.550000 |    0.499394 | Table 3  |
+
+Intermediate control points reduce worst readout-distance defocus from −0.4584 to −0.0411 mm. Piecewise linear travel is inferred, without a measured cam. The printed near conjugate has image error −0.002634 mm, magnification −0.13413. Printed-spacing rounding explains the small readout discrepancy.
+
+## Aspherical Surfaces
+
+S11 on L6 and S25/S26 on L14 carry the three printed aspheres. All use standard (1 + K) conic sag, K = 0, plus A4–A20.
+
+| Term |         S11 |         S25 |         S26 |
+| ---- | ----------: | ----------: | ----------: |
+| A4   |  −1.9551e−6 |  −8.3587e−5 |  −6.6648e−5 |
+| A6   |  −3.6039e−9 |  +2.3742e−7 |  +3.0363e−7 |
+| A8   | +1.7572e−12 |  −2.1119e−9 |  −2.4798e−9 |
+| A10  | −9.2051e−15 | +1.2180e−11 | +1.6564e−11 |
+| A12  | −5.2524e−18 | −2.4470e−14 | −5.2910e−14 |
+| A14  | +8.4241e−22 | −3.9679e−18 | +6.3909e−17 |
+| A16  | −6.4123e−24 | +2.0037e−20 | +7.1911e−21 |
+| A18  |           0 | +3.4759e−23 |           0 |
+| A20  |           0 |           0 |           0 |
+
+Negative A4 bends the outer profiles away from their bases. S26 gives approximately −1.67 mm sag at height 15 mm despite its plane base.
+
+## Image Plane, Aperture and Model Limits
+
+| Quantity (mm)              | Table 1 | S26 plane | S26 −2000 |
+| -------------------------- | ------: | --------: | --------: |
+| EFL                        |   50.15 |   50.1365 |    49.761 |
+| BFD                        |   18.69 |   18.6919 |    18.552 |
+| G2 focal length            |   67.14 |     67.11 |     66.25 |
+| Final-element focal length | −140.15 |   −140.53 |   −149.07 |
+
+At the source pupil, full/half-pupil d-line longitudinal spherical aberration is −0.071/−0.016 mm with the plane, versus −0.266/−0.166 mm with −2000 mm. Axial RMS spots on the printed image plane are 9.8 versus 54.6 µm. Fig. 2's near-zero d-line curve supports Table 4.
+
+The paraxial F1.435 stop rule gives iris radius 13.7367 mm; pupil aberration makes real-ray acceptance approximately f/1.51. Estimated rims and the derived iris limit production-performance comparisons. The 23.12° half-field reaches the 24×36 mm corner; geometry passes without overrides. Fig. 1 is schematic, and its rear-group outlines await a separate rim review.
+
+## Sources
+
+- JP 2026-105585 A, Tables 1–4 and Figs. 1–2; [J-GLOBAL bibliography](https://jglobal.jst.go.jp/en/detail?JGLOBAL_ID=202603007546980750).
+- Cosina and ZEISS specifications, optical section, announcement and CameraLabs measurements linked above.
