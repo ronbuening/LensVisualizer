@@ -818,7 +818,16 @@ export const SUMITA_GLASS_ENTRIES: readonly GlassEntry[] = [
     source:
       "SUMITA official all-glass Zemax catalog header2026/08/21; accessed2026-10-31. Legacy LAKN4 literal formula1 row; no source supplier, melt, chemistry or process identity implied. https://www.sumita-opt.co.jp/en/download/",
   },
-  /* BALF6 and KZF2: exact rows for the Leica Super-Angulon 21mm f/4 (2026-11-20). */
+  /* LF7, BALF6 and KZF2: exact rows for the Schacht Travegon 35mm and Leica Super-Angulon 21mm f/4 (2026-11-20). */
+  {
+    name: "LF7",
+    vendor: "Sumita",
+    polynomial: [2.42488, -0.007996794, 0.01885122, 0.000431583, 8.179374e-06, 1.572052e-06],
+    nd: 1.57501,
+    vd: 41.3,
+    source:
+      "SUMITA all-glass Zemax catalog (2025-11-07), formula-1 coefficients for LF7; https://www.sumita-opt.co.jp/en/download/",
+  },
   {
     name: "BALF6",
     vendor: "Sumita",

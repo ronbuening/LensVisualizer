@@ -606,6 +606,7 @@ const GLASS_CATALOG_SOURCE_ORDER = [
   "FL1",
   "BAFD3",
   "SK1",
+  "LF7",
   "BALF6",
   "KZF2",
   "J-SF7",
