@@ -14,7 +14,7 @@ The prescription follows Example 1 at its printed millimetre scale, without scal
 The association with the 1997 Olympus μ[mju:]-II, also called Stylus Epic, is circumstantial:
 
 1. Olympus filed the application about a year before the camera's introduction.
-2. The product has a fixed 35 mm f/2.8 lens with four elements in four groups and an aspherical element, according to the [Olympus release reproduced by Wanafoto](https://wanafoto.blogspot.com/1997/02/) under 19 February 1997.
+2. The product has a fixed 35 mm f/2.8 lens with four elements in four groups and an aspherical element, according to the [Olympus release reproduced by Wanafoto](https://wanafoto.blogspot.com/1997/02/olympus-mju-ii-compact-camera.html) under 19 February 1997.
 3. The maker's [18 February 1997 specifications](https://www.olympus.co.jp/jp/news/1997a/nr970218mju2spj.html) give a 24 × 36 mm frame, 0.35 m minimum focus and an exposure range ending at f/11. These support the fixed-camera mount, 135 full-frame format and marketing minimum-focus metadata. [135compact](https://135compact.com/135_olympus_mjuII.htm) and [Wikipedia's Stylus Epic entry](https://en.wikipedia.org/wiki/Olympus_Stylus_Epic) corroborate the main specifications and alternate name.
 
 All five patent examples have four elements in four groups and an asphere on L4's rear surface. Examples 1–3 place the stop before L3; Examples 4–5 place it after L3. The published product specifications do not distinguish these alternatives. Example 1 is therefore a plausible association, with moderate-to-strong evidence for the patent family but no proof of the exact production example. No maker construction diagram establishing that identity was found.
@@ -107,6 +107,6 @@ Semi-diameters are inferred rather than printed. Figure 1 suggests outer radii o
 
 - [JP 3610160 B2](https://patents.google.com/patent/JP3610160B2/en), numerical Example 1, Figures 1, 7 and 8; design discussion in ¶0012, ¶0018, ¶0021, ¶0026, ¶0028, ¶0030 and ¶0054–0055; aspheric equation in ¶0063–0064.
 - [Olympus μ-II specifications, 18 February 1997](https://www.olympus.co.jp/jp/news/1997a/nr970218mju2spj.html), fixed lens, 135 film, 24 × 36 mm frame, 35 mm f/2.8, four elements/four groups, 0.35 m focus and f/11 exposure endpoint.
-- [Olympus introduction reproduced by Wanafoto, 19 February 1997](https://wanafoto.blogspot.com/1997/02/), entry “Olympus µ [mju:]-II Compact Camera,” including the four-element/four-group construction and aspherical lens. The individual article URL was unavailable; the monthly archive retains its text.
+- [Olympus introduction reproduced by Wanafoto, 19 February 1997](https://wanafoto.blogspot.com/1997/02/olympus-mju-ii-compact-camera.html), entry “Olympus µ [mju:]-II Compact Camera,” including the four-element/four-group construction and aspherical lens.
 - [135compact, Olympus mju II](https://135compact.com/135_olympus_mjuII.htm), product specifications.
 - [Wikipedia, Olympus Stylus Epic](https://en.wikipedia.org/wiki/Olympus_Stylus_Epic), alternate product name, introduction year and focus range.
