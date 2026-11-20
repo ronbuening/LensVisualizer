@@ -3,7 +3,9 @@ import {
   ALL_CATALOG_ENTRIES,
   buildImageFormatOptions,
   buildMountOptions,
+  buildSourceKindOptions,
   defaultCustomFilter,
+  lensSourceKind,
   DEBUG_CATALOG_ENTRIES,
   catalogEntriesForView,
   groupByAssignee,
@@ -28,7 +30,7 @@ const TEST_BOUNDS: FilterBounds = {
 
 function entry(
   key: string,
-  overrides: Partial<Pick<CatalogLensEntry, "lensMounts" | "imageFormat">> = {},
+  overrides: Partial<Pick<CatalogLensEntry, "lensMounts" | "imageFormat" | "sourceKind">> = {},
 ): CatalogLensEntry {
   return {
     key,
@@ -37,6 +39,7 @@ function entry(
     focalRange: [50, 50],
     aperture: 2,
     patentYear: 2021,
+    sourceKind: null,
     lensMounts: [],
     imageFormat: null,
     ...overrides,
@@ -111,6 +114,26 @@ describe("lens index catalog metadata filters", () => {
       ),
     ).toBe(false);
     expect(matchesCustomFilter(unknownFormat, defaultCustomFilter(TEST_BOUNDS), TEST_BOUNDS)).toBe(true);
+  });
+
+  it("classifies each lens by its source document and filters on it", () => {
+    const summary = (fields: Partial<LensSummary>) =>
+      ({ key: "s", name: "S", visible: true, ...fields }) as LensSummary;
+    const literature = { authors: ["Moritz von Rohr"], title: "Synthetic treatise", year: 1899, locator: "p. 1" };
+    expect(lensSourceKind(summary({ patentNumber: "US 1,234,567" }))).toBe("patent");
+    expect(lensSourceKind(summary({ sourceIssuer: "Fixture Optical Works" }))).toBe("maker-document");
+    expect(lensSourceKind(summary({ sourceLiterature: literature }))).toBe("literature");
+    expect(lensSourceKind(summary({}))).toBeNull();
+
+    const book = entry("book", { sourceKind: "literature" });
+    const patent = entry("patent", { sourceKind: "patent" });
+    const unsourced = entry("unsourced");
+    expect(buildSourceKindOptions([unsourced, book, patent, patent])).toEqual([
+      { id: "patent", label: "Patents", count: 2 },
+      { id: "literature", label: "Published literature", count: 1 },
+    ]);
+    const onlyBooks = { ...defaultCustomFilter(TEST_BOUNDS), sourceKinds: ["literature" as const] };
+    expect([book, patent, unsourced].filter((e) => matchesCustomFilter(e, onlyBooks, TEST_BOUNDS))).toEqual([book]);
   });
 });
 

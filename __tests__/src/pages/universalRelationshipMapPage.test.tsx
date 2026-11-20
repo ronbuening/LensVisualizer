@@ -201,7 +201,9 @@ describe("UniversalRelationshipMapPage", () => {
     router.dispose();
   });
 
-  it.each(["author", "assignee", "patent", "organization", "family", "maker", "lens"] as const)(
+  /* No catalog model draws a maker hub now: the non-patent models carry an issuer or are literature reconstructions,
+     which stay off the map. universalRelationshipGraph.test.ts covers maker hubs with a synthetic model. */
+  it.each(["author", "assignee", "patent", "organization", "family", "lens"] as const)(
     "restores shared %s selection and requests focus after mounting",
     async (kind) => {
       const node = buildUniversalRelationshipGraph().nodes.find((n) => n.kind === kind)!;
