@@ -29,7 +29,7 @@ The surfaces stay clear of each other; the iris sets the full aperture at all 10
 
 The patent prints three infinity zoom states. The other 98 stations, per-station iris radii, paraxial image distances, clear radii and 28 mm image circle are calculated or inferred. D1 varies linearly between each pair of printed states, reversing direction at the middle state. D2 and D3 decrease monotonically and are calculated to interpolate focal length and back focal distance. This motion does not establish the production cam. Only infinity focus is included.
 
-The clear radii combine ray heights with Figure 9 bounds. S1 is 17.7 mm, below the approximately 18.1 mm figure reading and above the approximately 17.65 mm front ray height. G3 admits the approximately 8.1 mm front ray height, with smaller downstream radii following the bundle, within the approximately 9.1 / 8.7 mm figure bounds. Rear radii follow the approximately 5.9 mm L6, 5.7 mm L7/L8, 6.8 mm L9 rear and 7.4 mm L10 readings. Some off-axis clipping remains where the full iris bundle exceeds those bounds. The physical iris diameter is not printed; the figure reading of approximately 4.67 mm radius is close to the calculated 4.60 mm wide-end radius.
+The clear radii are measured from Figure 9, which is drawn to scale. S1 is 17.7 mm, below the approximately 18.1 mm figure reading and above the approximately 17.65 mm front ray height. L2 is 12.2 mm at the front with a 10.5 mm rear cap and land, L3 11.6 mm, and G3 9.1 / 8.6 / 8.6 mm, following the drawing. Rear radii follow the approximately 5.9 mm L6, 5.7 mm L7/L8, 6.8 mm L9 rear and 7.3 mm L10 readings. Some off-axis clipping remains at the widest fields. The physical iris diameter is not printed; the figure reading of approximately 4.67 mm radius is close to the calculated 4.60 mm wide-end radius.
 
 ## Product Identification
 
@@ -88,10 +88,19 @@ S2 retains its 11.2 mm optical cap and gained a 17.7 mm opaque rim extension fol
 
 At the same 28 mm-circle corner fields of 51.0° wide and 31.3° tele, the calculated full-pupil geometric transmission increased from 6.75% to 48.82% and from 61.77% to 99.44%, respectively. These figures describe the adopted apertures, without production transmission claims. The larger clear radii do not affect the first-order quantities in the table above.
 
+2026-11-20 rim review:
+
+- Figure 9 (sheet 17, page 18 of the PDF) is drawn to scale: at 300 dpi the S1–S9, S11–S19 and S1–image spans give 15.6–15.9 px/mm, 15.78 px/mm overall, and the drawn iris (about 4.7 mm radius) matches the calculated 4.60 mm wide-end radius. Heights were read on both sides of the axis in the wide panel and checked in the middle and tele panels, which draw the same heights.
+- L2: S3 10.3 → 12.2 mm, where the front face is drawn straight to the rim; S4 9.4 → 10.5 mm, where the drawn rear cap ends, with a new opaque land out to 12.2 mm along the drawn vertical edge.
+- L3: S5 9.3 → 11.6 mm and S6 9.0 → 11.6 mm; the figure draws a square rim at about 11.6 mm.
+- L4–L5: S7 8.2 → 9.1 mm, S8 7.8 → 8.6 mm and S9 7.4 → 8.6 mm; the figure draws L4 at about 9.1 mm and L5 square at about 8.6 mm.
+- Kept: S1 17.7 mm (drawn about 18.1 mm, within reading error), S2 11.2 mm with its land (drawn cap end about 11.15 mm), and S11–S19, which agree with the drawing within about 0.1 mm.
+- No radius was reduced. The surfaces stay clear of each other at every zoom station, every radius clears the axial beam at the printed f-number at all 101 stations, and every station still reaches the 14 mm corner. Geometric transmission at the 51.0° wide corner rises from 48.8% to 65.9%; the middle (95.4% at 38.8°) and tele (99.4% at 31.3°) corners are unchanged, and no field at any of the 101 stations loses light. Focal lengths, f-numbers and field angles are unchanged.
+
 ## Remaining Questions
 
 Table 15's finite states are not included. They correspond to 240 mm object-to-image and 0.076 / 0.107 / 0.140× magnification. A two-state focus interpolation would miss focus by about 0.09 / 0.16 / 0.27 mm at mid-travel, requiring intermediate focus positions.
 
-The 28 mm image circle remains an estimate, compared with approximately 28.7 mm implied by the source fields. The unchanged S2–S6 caps and remaining wide-field clipping need comparison with Figure 9, including whether larger G3 rims closer to its outer outline are warranted. The adopted G3 radii admit the approximately 8.1 mm front height, but agreement with every drawn pupil ray is not established.
+The 28 mm image circle remains an estimate, compared with approximately 28.7 mm implied by the source fields.
 
 The production choice among Examples 2, 3 and 5, exact glass melts, physical iris diameter, baffles and sensor stack remain unresolved. The cited product specifications give no numerical blade curvature; the circular roundedness follows the published diaphragm description. The optional rear filter has no prescribed dimensions and remains omitted.

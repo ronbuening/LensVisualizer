@@ -43,20 +43,20 @@ The 3 mm front meniscus contributes negative power to G1. Its front clear radius
 
 nd = 1.77250, νd = 49.62. Glass: TAF1 (Hoya catalog equivalent). f = −19.26 mm.
 
-The 1.7 mm rear element completes the negative front group. Both surfaces are aspherical, providing correction within the strongly diverging front section. The fixed L1–L2 separation is 8.110 mm.
+The 1.7 mm rear element completes the negative front group. Both surfaces are aspherical, providing correction within the strongly diverging front section. The fixed L1–L2 separation is 8.110 mm. The nearly flat front face has a 12.2 mm clear radius; the concave rear cap ends at 10.5 mm, with an opaque vertical land out to 12.2 mm, as Figure 9 draws it.
 
 ### L3 — Positive Meniscus
 
 nd = 1.84666, νd = 23.78. Glass: FDS90 (Hoya catalog equivalent). f = +43.47 mm.
 
-The 3.210 mm singlet forms positive group G2. Variable gaps D1 and D2 separate it from G1 and G3.
+The 3.210 mm singlet forms positive group G2. Variable gaps D1 and D2 separate it from G1 and G3. Both faces have an 11.6 mm clear radius, matching the square rim in Figure 9.
 
 ### L4–L5 — Positive Cemented Focusing Doublet C1
 
 L4: nd = 1.84666, νd = 23.78. Glass: FDS90 (Hoya catalog equivalent). f = −48.58 mm.\
 L5: nd = 1.60342, νd = 38.01. Glass: E-F5 (Hoya catalog equivalent). f = +24.53 mm.
 
-The 1 mm negative meniscus is cemented to the 4 mm biconvex positive element at S8. Together they have a focal length of +51.02 mm. The lower-Abbe negative member and higher-Abbe positive member provide a chromatic power balance. Table 15 describes focusing by changing the air gaps on either side of this group. The adopted clear radii at S7–S9 are 8.2 / 7.8 / 7.4 mm, within the Figure 9 rim bounds and large enough for its approximately 8.1 mm G3 ray height at the front face.
+The 1 mm negative meniscus is cemented to the 4 mm biconvex positive element at S8. Together they have a focal length of +51.02 mm. The lower-Abbe negative member and higher-Abbe positive member provide a chromatic power balance. Table 15 describes focusing by changing the air gaps on either side of this group. The clear radii are 9.1 mm at S7 and 8.6 mm at S8 and S9: Figure 9 draws L4 slightly taller than L5, whose rim is square.
 
 ### L6 — Low-Dispersion Positive Meniscus
 
@@ -119,9 +119,9 @@ The opposite signs of the leading terms on L2 provide different peripheral depar
 
 ## Apertures, Field and Model Limits
 
-The clear radii are inferred and stay within Figure 9's measured bounds. S1 remains below the approximately 18.1 mm drawing reading; the G3 radii remain below approximately 9.1 / 8.7 mm. Rear radii are bounded by approximately 5.9 mm at L6, 5.7 mm at L7 and L8, 6.8 mm at L9's rear and 7.4 mm at L10. The whole pupil is not transmitted at every field, and the drawing does not establish all physical clear apertures.
+The patent prints no clear diameters. The radii are measured from Figure 9, which is drawn to scale: its vertex spacings and wide-end track agree with the table within about 1 %. They are 17.7 mm at S1 (drawn about 18.1 mm), 11.2 mm at S2 with its land to 17.7 mm, 12.2 / 10.5 mm at L2 with its land to 12.2 mm, 11.6 mm at L3, 9.1 / 8.6 / 8.6 mm at L4–L5, 5.9 mm at L6, 5.7 mm at L7 and L8, 6.8 mm at L9's rear and 7.2 / 7.4 mm at L10. The middle and tele panels draw the same heights. Every radius clears the axial beam at the printed f-number at all 101 zoom stations; the iris is drawn at about 4.7 mm radius at the wide end, close to the calculated 4.60 mm. The whole pupil is not transmitted at the widest fields, and the drawing does not establish the physical clear apertures.
 
-The retained 28 mm image circle is an estimate. At the printed middle and tele half-fields of 39.5° and 32°, real chief rays reach about 14.35 and 14.38 mm, suggesting approximately 28.7 mm diameter. The modeled 14 mm corner is reached at every zoom station. At wide and tele the corresponding half-fields are 51.0° and 31.3°, with calculated geometric pupil transmission of 48.82% and 99.44%. These are properties of the adopted apertures, without coatings, sensor cover glass or production baffles; they are not measured retail illumination.
+The retained 28 mm image circle is an estimate. At the printed middle and tele half-fields of 39.5° and 32°, real chief rays reach about 14.35 and 14.38 mm, suggesting approximately 28.7 mm diameter. The modeled 14 mm corner is reached at every zoom station. At wide and tele the corresponding half-fields are 51.0° and 31.3°, with calculated geometric pupil transmission of 65.9% and 99.4%. These are properties of the adopted apertures, without coatings, sensor cover glass or production baffles; they are not measured retail illumination.
 
 ## Sources
 

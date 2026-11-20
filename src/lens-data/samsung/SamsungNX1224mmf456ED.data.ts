@@ -5,8 +5,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * at the printed scale. Radii, thicknesses, d-line glass data, three aspheres,
  * stop position and three infinity zoom states are printed. The other 98 zoom
  * states and paraxial image distances are calculated; the iris radius follows
- * the printed f-number at each station. Clear radii combine ray estimates with
- * Figure 9 bounds; the rear land on surface 2 follows its drawn vertical edge.
+ * the printed f-number at each station. Clear radii are measured from Figure 9
+ * (drawn to scale, 15.78 px/mm at 300 dpi, matching the printed vertex spacings
+ * and the wide-end track) and checked by real-ray trace at all 101 stations. The
+ * rear lands on surfaces 2 and 4 follow the drawn vertical edges of L1 and L2.
  * The 28 mm image circle is an estimate. Only infinity focus is included.
  */
 const LENS_DATA = {
@@ -189,7 +191,7 @@ const LENS_DATA = {
       label: "3",
       R: 3231.806,
       d: 1.7,
-      sd: 10.3,
+      sd: 12.2,
       medium: 2,
       asphere: {
         K: 0,
@@ -202,7 +204,8 @@ const LENS_DATA = {
     {
       label: "4",
       R: 14.805,
-      sd: 9.4,
+      sd: 10.5,
+      rimExtensionSd: 12.2,
       asphere: {
         K: 0,
         A4: -0.0000354777,
@@ -215,32 +218,32 @@ const LENS_DATA = {
       label: "5",
       R: 33.642,
       d: 3.21,
-      sd: 9.3,
+      sd: 11.6,
       medium: 3,
     },
     {
       label: "6",
       R: 374.122,
-      sd: 9,
+      sd: 11.6,
     },
     {
       label: "7",
       R: 26.177,
       d: 1,
-      sd: 8.2,
+      sd: 9.1,
       medium: 4,
     },
     {
       label: "8",
       R: 15.716,
       d: 4,
-      sd: 7.8,
+      sd: 8.6,
       medium: 5,
     },
     {
       label: "9",
       R: -230.085,
-      sd: 7.4,
+      sd: 8.6,
     },
     {
       label: "STO",
