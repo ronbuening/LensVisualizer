@@ -36,9 +36,9 @@ The surfaces stay clear of each other; the iris sets the full aperture. The esti
 
 The 72.5 mm stop-to-film distance places the stop 37.016 mm behind the first vertex. It divides d7 into 1.4055 mm before and 1.8445 mm after the stop; those separate distances are inferred and agree with Fig. 1(a). The stop radius follows f/5.6.
 
-Clear radii are not tabulated. The front radius of 20 mm and the central radii of 7.2 mm follow Fig. 1(a); the other clear radii remain estimates. The text's 44 mm front diameter exceeds the drawing's approximately 40 mm diameter and does not uniquely establish a clear optical rim.
+Clear radii are not tabulated. The front radius of 20 mm, L2's 12.7 mm front radius, the central radii of 7.2 mm and the flat outer lands on L1, L7 and L8 follow Fig. 1(a); the other clear radii are estimates checked against the drawing (see the rim review below). The text's 44 mm front diameter exceeds the drawing's approximately 40 mm diameter and does not uniquely establish a clear optical rim.
 
-The 10 mm clear radii at S10/S11 and their opaque outer lands extending to 12 mm are inferred. Extending both spheres across the 0.47 mm air space would make them cross beyond about 10.4 mm radius, short of the approximately 12–13 mm outer silhouette. The lands retain the clear apertures while avoiding an overlap; their exact shape is unknown.
+The 10 mm clear radii at S10/S11 and their opaque outer lands, to 12 mm on L6 and 13 mm on L7, are inferred. Extending both spheres across the 0.47 mm air space would make them cross beyond about 10.4 mm radius, short of the approximately 12–13 mm outer silhouette. The lands retain the clear apertures while avoiding an overlap; their exact shape is unknown.
 
 Commercial glass names and measured partial dispersions are not supplied. The catalog glasses below supply estimated dispersion curves. They do not establish the production supplier, melt or historical purchase. The d-line indices and Abbe numbers remain the patent's values; no C-, F- or g-line indices are printed. No anomalous-dispersion glass is identified by the patent.
 
@@ -79,9 +79,23 @@ Differences are catalog minus printed source values. Each element uses the d-lin
 
 EFL is 49.998 mm, maximum aperture is f/5.60, paraxial back focus is 34.774 mm, last-surface-to-image distance is 34.775 mm, total track is 109.52 mm, stop radius is 5.549 mm and half-field is 45.0°.
 
+### 2026-11-20 rim review
+
+Every rim was compared with Fig. 1(a) on p. 4, which is drawn to scale: the first-to-last vertex span and the d2, d5, d9 and d12 spacings agree with the table to within about 3%, and the drawn stop sits 1.3 mm behind S7, against 1.41 mm in the model. Readings were taken on the upper half, away from the label leaders.
+
+- S1 stays 20 mm (drawn 20.2–20.4 mm). S2 stays 16 mm (drawn 15.7–16.5 mm) and gains an opaque land to 20 mm, the flat rear step and square top the figure draws on L1.
+- S3 is reduced from 14 to 12.7 mm, L2's drawn front rim. S4 stays 10.5 mm: the figure draws L2's rear rim at about 11.9 mm, touching L3, but the two spherical faces cross at about 11.2 mm, and the largest rim that keeps the usual clearance between them is about 10.7 mm.
+- S5 stays 12 mm (drawn 12.8 mm, within the reading tolerance).
+- The cemented junctions S6 and S9 stay 11 and 10 mm. The figure draws L4 and L5 as small square-edged elements of about 7.2 mm radius set into L3 and L6 faces that reach about 12.4 mm. One radius per junction cannot show those steps; raising the junctions would only enlarge the tapered outlines of L4 and L5.
+- S7 and S8 stay 7.2 mm (drawn 7.1–7.3 mm).
+- S10 keeps its 10 mm clear radius and land to 12 mm; the figure draws L6's rear face meeting L7 at about 11.3 mm and L6's top at about 12.4 mm. S11's land is extended from 12 to 13 mm to match the flat front step and square top drawn on L7 (13.1–13.3 mm). S12 stays 13 mm.
+- S13 stays 13.5 mm (drawn 13.1 mm) and gains an opaque land to 17 mm, the flat front step drawn on L8. S14 stays 17 mm (drawn 17.3 mm).
+
+Geometric pupil transmission is unchanged at every field from 0° to 45°: 100% to 30°, 96.5% at 33°, 88.5% at 36°, 76.5% at 39°, 61.8% at 42° and 45.2% at 45°. Restoring S3 to 14 mm or removing any of the lands wins back nothing. The 45° chief ray crosses S1 at 17.4 mm and S3 at 8.9 mm; the f/5.6 axial beam is untouched. EFL, f/5.6, the 45° half-field and the 97% coverage of the 6×9 half-diagonal are unchanged.
+
 ## Remaining Questions
 
-- The remaining estimated rims need comparison with the complete patent figure. The S10/S11 lands and 10 mm clear caps need stronger dimensional evidence before any further enlargement.
+- The S10/S11 lands and 10 mm clear caps need stronger dimensional evidence before any further enlargement. The stepped cemented pairs L3/L4 and L5/L6 remain approximated by single junction radii.
 - The text's 44 mm front diameter and the drawing's approximately 40 mm diameter remain unresolved.
 - The exact production prescription, supplier and melt identities, measured partial dispersions and near-focus spacings remain unconfirmed. No manufacturer optical diagram has been located.
 - No measured image-circle diameter is documented.

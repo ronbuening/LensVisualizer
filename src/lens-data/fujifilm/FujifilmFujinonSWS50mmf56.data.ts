@@ -6,9 +6,13 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * f and Bf; 0.383 would give Bf = 0.6990 instead of the printed 0.6955.
  * The stop splits d7 using the stated 72.5 mm stop-to-film distance; its radius
  * follows f/5.6. The image plane uses the printed 34.775 mm back focus.
- * S1, S7 and S8 rims follow Fig. 1; other clear radii remain estimates.
- * S10/S11 retain 10 mm clear caps with inferred opaque lands to the figure's
- * approximately 12 mm outer rims, avoiding intersecting spherical edges.
+ * Semi-diameters are read from Fig. 1(a), whose vertex spacings match the
+ * table to about 3 %, and are checked by real-ray trace.
+ * S1, S3, S7 and S8 follow the drawing; L1, L7 and L8 carry the flat outer
+ * lands the figure draws (S2 to 20 mm, S11 to 13 mm, S13 to 17 mm). S10/S11
+ * keep 10 mm clear caps, because the spheres cross beyond about 10.4 mm, with
+ * lands to the drawn rims. The cemented junctions S6 and S9 are compromises:
+ * the figure sets the small L4 and L5 into larger L3 and L6 faces.
  * Glass names supply catalog dispersion curves, not confirmed production materials.
  */
 const LENS_DATA = {
@@ -159,12 +163,13 @@ const LENS_DATA = {
       R: 18.9305,
       d: 13.9415,
       sd: 16,
+      rimExtensionSd: 20,
     },
     {
       label: "3",
       R: 30.7105,
       d: 2.3,
-      sd: 14,
+      sd: 12.7,
       medium: 2,
     },
     {
@@ -224,7 +229,7 @@ const LENS_DATA = {
       R: -16.4655,
       d: 3.25,
       sd: 10,
-      rimExtensionSd: 12,
+      rimExtensionSd: 13,
       medium: 7,
     },
     {
@@ -238,6 +243,7 @@ const LENS_DATA = {
       R: -15.7435,
       d: 2,
       sd: 13.5,
+      rimExtensionSd: 17,
       medium: 8,
     },
     {
