@@ -1,29 +1,73 @@
-# AstrHori 40mm f/5.6 M representative reconstruction
+# 7ARTISANS 40mm f/5.6 (CN 221175107 U Design)
 
-2026-11-15. User-authorized estimated stop placement. Qualified exploratory model, not a factory prescription. Hidden pending integration.
+## Patent Reference and Design Identification
 
-## Source and identity
-[CN221175107U](https://patents.google.com/patent/CN221175107U/en), [original PDF](https://patentimages.storage.googleapis.com/a8/c9/ad/0a67407ffcaec7/CN221175107U.pdf). Table on PDF p6, diagram and analysis figures retained in evidence. Author Changjia Liu; assignee Shenzhen Seven Artisans Photoelectric Technology Co., Ltd. Published 2024-06-18. [Distributor](https://www.stkb.jp/shopdetail/000000002008/) identifies the AstrHori M-mount 40/5.6 as 7 elements /5 groups with five-blade iris. This supports a representative association, not factory identity. This is not a GFX lens.
+**Patent:** [CN 221175107 U](https://patents.google.com/patent/CN221175107U/en), _A 40 mm F5.6 full-frame lens_
 
-The twelve refracting surfaces, seven printed nd/Vd pairs and all eleven internal spacings are literal. Two cemented pairs are retained. No glass catalog replacement, asphere or invented source value. The table takes precedence over more coarsely rounded indices in surrounding prose.
+**Inventors:** Changjia Liu (刘昌家)
 
-## Explicit estimates, not measurements
-The patent supplies no stop plane, surface clear apertures or final image distance. Its Figure5 pupil radius is 3.5mm. Literal d-line EFL40.430566mm implies f/5.775795 at that pupil, rather than exactly marketing f/5.6. Preserve the source pupil, do not enlarge it to force the marketing number.
+**Assignee:** Shenzhen 7Artisans Photoelectric Technology Co., Ltd. (深圳市七工匠光电科技有限公司)
 
-Estimate the iris midway in the 3.13mm air gap after L1: 1.565mm after source S2, z3.995mm from S1. Split that air gap without changing the optical prescription. This is a physically roomy front internal gap and a viable hypothesis, not a dimension read from the patent figure or distributor photograph. Figure1 is not uniformly scaled, so it cannot uniquely locate the iris. A five-blade polygon is not modeled; the native circular aperture approximation is used.
+**Filed:** 14 December 2023
 
-Inferred semi-diameters for source S1–12: 6.5,6.5,5.2,5.2,6.5,6.5,6.5,7,7,7,9.8,9.8mm. These are heuristic aperture envelopes consistent with native geometry and the tested beam, not source clear apertures. Rear cap trials with8.2mm violated the default gap-sag geometry gate; reduced inferred caps to7mm rather than relaxing the gate. The model consequently includes corner vignetting. No gap-sag override.
+**Published:** 18 June 2024 (utility-model grant)
 
-The omitted image gap is derived, not transcribed:23.834523458mm after S12. Start at the d-line paraxial image gap23.9483072mm and minimize axial transverse RMS over512 uniformly area-weighted entrance-pupil annuli;505 clear rays retained. The resulting shift is−0.113783742mm. RMS7.239116→2.008840µm; largest sampled radius13.134940→3.282236µm. This is an axial d-line best-RMS convention, not a factory flange position or a polychromatic/all-field optimum. Infinity-only supported; no finite-focus validation.
+**Example details:** Sole example, prescription on PDF p. 6; dimensions in millimetres without scaling.
 
-## Numerical results
-Pinned engine70600ffc23af48a81994cf8fc834048fdf9d21a1, native literal d-line587.5618nm, physical image heights0,10.8165,16.22475,21.633mm, fixed derived image plane. Exact trace terminal rays are explicitly projected to image plane; raw trace.y is not treated as an image intercept.
+The patent title and paragraph 0041 identify a full-frame design with nominal focal length 40 mm and aperture f/5.6. These are design specifications; no production mount or minimum focusing distance is established. No 7Artisans product with this prescription is documented; the AstrHori 40mm f/5.6 shares the focal length, aperture and 7/5 count but is a different company's earlier lens. Its [January 2022 announcement](https://photorumors.com/2022/01/18/another-new-rockstar-lens-40mm-f-5-6-lens-for-leica-m-mount-not-for-e-mount/) predates this filing by about 23 months; the [AstrHori product listing](https://www.stkb.jp/shopdetail/000000002008/) supplies the shared construction count.
 
-Native geometry passes; native aperture audit is within3% and iris limited. Targeted strict TypeScript passes. Geometric and diffraction MTF each converge at all four field points through40lp/mm (max grid128). Diffraction30lp/mm sagittal/tangential:0mm .84652/.84652;10.8165mm .81999/.80036;16.22475mm .74182/.53860;21.633mm .76107/.46184. Corner sampling2266 valid/962 blocked, no failed rays; about29.8% blocked sampling cells. No claim of exact irradiance from that simple count. The literal representative model does not reproduce the patent's stated full-field >.7 value in tangential response. Preserve that mismatch, not a factory-performance claim.
+## Optical Architecture
 
-Sensitivity: stop z3.495,3.995,4.495mm passes chiefs through28° without clipping at current heuristic caps. Front-stop hypotheses at−1,−.5,−.1mm clip at S10 at28°; rear-gap hypotheses have front clipping or failed extreme-field chief solve. These outcomes depend on inferred caps and do not establish a unique real stop position.
+Seven spherical glass elements form five groups: a positive front meniscus, a negative cemented pair, a positive cemented pair, a positive rear meniscus and a negative final meniscus. The cemented pairs are L2–L3 and L4–L5, with combined focal lengths of approximately −30.57 mm and +22.37 mm. The separated rear menisci provide additional bending freedom.
 
-Predictions for non-destructive future checks, all z relative to sourceS1, positive imageward; small-angle exact-ray extrapolation approximates paraxial pupils. At stop z3.495/3.995/4.495mm, physical iris diameters6.40723/6.34873/6.29024mm; entrance pupil z2.73079/3.33308/3.94658mm and diameter7mm; exit pupil z10.50329/11.11154/11.71279mm, diameters7.08734/6.98203/6.87793mm. No actual sample measurement or mount-envelope validation is claimed.
+## Element-by-Element Analysis
 
-## Integration still outstanding
-Full-app regression, current-main compatibility, catalog dedup audit, compiled-viewer/browser QA, finite focus, polychromatic validation and independent pupil/iris measurements. Retain hidden status and explicit inferred-stop/derived-plane/representative qualifications. No publication, deployment or production readiness is asserted.
+### L1 — Positive Meniscus
+
+nd = 1.75500, νd = 52.32. Glass: H-LaK53B (CDGM). In-air f = +59.84 mm. This positive singlet precedes the inferred iris.
+
+### L2–L3 — First Cemented Pair
+
+L2: nd = 1.49700, νd = 81.60. Glass named by the patent: FCD1. In-air f = +15.83 mm. L3: nd = 1.62005, νd = 36.35. Glass: H-F4 (CDGM). In-air f = −10.20 mm.
+
+The low-dispersion positive member and more dispersive biconcave member share S4. The pair has negative net power despite the positive front member.
+
+### L4–L5 — Second Cemented Pair
+
+L4: nd = 2.00330, νd = 28.32. Glass: H-ZLaF92 (CDGM). In-air f = +8.33 mm. L5: nd = 1.72825, νd = 28.32. Glass: H-ZF4AGT (CDGM). In-air f = −12.04 mm.
+
+The high-index biconvex element and biconcave partner share S7. Their equal Abbe numbers do not establish an achromatic doublet; this pair supplies positive net power.
+
+### L6 — Positive Meniscus
+
+nd = 2.00330, νd = 28.32. Glass: H-ZLaF92 (CDGM). In-air f = +27.21 mm. The claims call L6 negative, but R = −60/−19.19 mm and its centre thickness give positive power; Fig. 1 also draws a thicker centre.
+
+### L7 — Negative Meniscus
+
+nd = 1.80518, νd = 25.46. Glass: H-ZF7LAGT (CDGM). In-air f = −27.09 mm. This negative singlet follows L6 and is the last optical element.
+
+## Glass Identification and Selection
+
+Claim 9 and paragraph 0036 name the materials. The model uses their catalog coordinates in place of the rounded table entries. CDGM gives [H-LaK53B as 1.75500/52.32](https://www.cdgmgd.com/webapp/pdf/H-LaK53B.pdf), [H-F4 as 1.62005/36.35](https://www.cdgmgd.com/webapp/pdf/H-F4.pdf), [H-ZLaF92 as 2.00330/28.32](https://www.cdgmgd.com/webapp/pdf/H-ZLaF92.pdf), and [H-ZF4AGT/H-ZF7LAGT as 1.72825/28.32 and 1.80518/25.46](https://www.cdgmgd.com/go.htm?k=High_Transmittance_Optical_Glass&url=goods). In particular, L4 and L6 replace the printed index 2 with 2.00330; the structured source notes disclose this rounding correction.
+
+The six CDGM elements retain their patent-named identity but have no matching dispersion rows in the model's glass catalog. Their labels therefore retain “Unmatched”, and their spectral behavior uses the nd/νd approximation. FCD1 resolves to Hoya's 1.49700/81.61 catalog curve, differing from the printed pair by Δnd = 0 and Δνd = +0.01. That curve is a spectral proxy: the patent calls the glass domestic and does not establish Hoya supply. No apochromatic performance is established by these data.
+
+## Focus, Stop and Image Plane
+
+Only infinity focus is modeled; the patent supplies no finite-focus spacings. The iris lies halfway through the 3.13 mm L1–L2 gap, 3.995 mm behind S1. This inferred position is supported by the near-zero distortion, but the drawing does not dimension the stop. The model uses a circular iris.
+
+The last air gap is the computed d-line paraxial BFD, 23.50776306 mm. The patent prints no image distance. The resulting EFL is 39.8413 mm and total track is 50.9978 mm. The modeled aperture follows the stated f/5.6; Fig. 5's 3.50 mm entrance-pupil radius instead implies f/5.6916 at this EFL.
+
+## Field Performance and Model Limits
+
+At the patent's 26.616° half-field, the chief ray reaches 19.964 mm image height with −0.00385% distortion, close to the plotted 20 mm and 0.0024%. The field curves are less closely reproduced: calculated tangential and sagittal shifts are −0.347 and −0.210 mm relative to paraxial focus, whereas the patent's plotted range is approximately −0.1 to +0.2 mm. Fig. 5 places its image plane about 0.08–0.14 mm inside paraxial focus, so the reference planes differ.
+
+All clear radii are inferred. The rear 7 mm radii retain corner vignetting because S8 and S9 meet near 7.45 mm; Fig. 1 draws a larger outline, about 8.2 mm, and its air gaps are not uniformly scaled. Full-frame corner chief rays pass, while marginal rays are vignetted. Figure-to-rim correspondence and the remaining field-curvature discrepancy remain unresolved.
+
+The Zemax footers identify “HPF40-III.ZMX” and a “U.S.Patent 4143944” starting sample; they do not identify a production lens.
+
+## Sources
+
+- [Original patent PDF](https://patentimages.storage.googleapis.com/a8/c9/ad/0a67407ffcaec7/CN221175107U.pdf): front-page ownership and dates, claim 9, paragraphs 0035–0041, prescription on p. 6, Figs. 1–6.
+- CDGM material sheets and product table linked above: named-glass coordinates.
+- AstrHori announcement and distributor listing linked above: chronology and shared specifications only.
