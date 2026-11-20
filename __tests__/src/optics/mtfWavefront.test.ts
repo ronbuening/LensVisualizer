@@ -107,6 +107,18 @@ describe("curved MTF wavefront reference", () => {
       expect(lattice.cosineY[cell]).toBeCloseTo((Math.sqrt(7) / 4) * dy + 0.75 * dz, 14);
     });
     expect(waveLatticeOtf(lattice, wavelengthMm, frequencies).tangential.real).toEqual([1, 0]);
+    // Construct a ray with known displacements in the actual image tangent plane.
+    const [u, v] = shape.imageTangentsAt(reference.x, reference.y);
+    const direction = rays[0].trace.terminalDirection;
+    const image = [0, 15, shape.sagAt(0, 15)];
+    const displacement = (i: number) => image[i] - 0.08 * u[i] + 0.04 * v[i] - 7 * direction[i];
+    const trace = { ...rays[0].trace, terminalPoint: [displacement(0), displacement(1), displacement(2)] as const };
+    const measured = { ...curved, landingPlaneZ: 0, rays: [{ ...rays[0], trace }] };
+    const gradient = mtfWaveLattice(measured, reference, 0)!.pathGradient!;
+    expect(gradient.x[0]).toBeCloseTo(0.08, 12);
+    expect(gradient.y[0]).toBeCloseTo(-0.04, 12);
+    const grazing = { ...measured, rays: [{ ...rays[0], trace: { ...trace, terminalDirection: u } }] };
+    expect(mtfWaveLattice(grazing, reference, 0)!.pathGradient).toBeUndefined();
   });
 
   it.each([undefined, true] as const)(

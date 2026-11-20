@@ -191,6 +191,9 @@ the stopping policy belong with its implementation in N3.
 
 ### N2 — Correct the diffraction estimator's coordinate treatment
 
+The implementation uses the traced optical path on a qualified two-dimensional mesh. Per-wavelength
+ray-slope fallback is identified in the field notes. Catalog-wide coverage and release cost are evaluated in N4.
+
 **Files to touch.** `src/optics/analysis/mtf/mtfShearedOtf.ts` and `mtf.ts` (modified); `mtfTracing.ts` only if the
 chosen product method needs optical-path capture. A new pure helper such as `mtfDirectionOtf.ts` is appropriate
 only after prototyping determines its responsibility. Keep `mtfWavefront.ts` independently useful as a reference;

@@ -18,6 +18,7 @@ import {
   resolveMtfSpectrum,
 } from "../../../src/optics/analysis/mtf/mtfSupport.js";
 import { combineOtfs, geometricOtf, otfMagnitude } from "../../../src/optics/analysis/mtf/mtfMath.js";
+import { mtfWaveLattice, qualifiedWaveOtf } from "../../../src/optics/analysis/mtf/mtfWavefront.js";
 import { shearedOtf } from "../../../src/optics/analysis/mtf/mtfShearedOtf.js";
 import { mtfIndexResolver, traceMtfFieldPupil } from "../../../src/optics/analysis/mtf/mtfTracing.js";
 import { findAxialBestFocus, mtfNearestImagePlaneZ } from "../../../src/optics/analysis/mtf/mtfFocus.js";
@@ -261,14 +262,25 @@ describe("qualified spectral MTF", () => {
       const dense = Array.from({ length: 73 }, (_, i) => {
         const wavelengthNm = 470 + 2.5 * i;
         const line = { wavelengthNm, weight: photopicV(wavelengthNm) * (i === 0 || i === 72 ? 1.25 : 2.5) };
-        const bundle = traceMtfFieldPupil(state, request, support, field.fieldAngleDeg!, field.gridSize, line)!;
+        const bundle = traceMtfFieldPupil(
+          state,
+          request,
+          support,
+          field.fieldAngleDeg!,
+          field.gridSize,
+          line,
+          state.imgZ,
+          method === "diffraction",
+        )!;
         expect(bundle.failed + bundle.unaimed).toBe(0);
         const weight = line.weight * bundle.rays.reduce((sum, ray) => sum + ray.weight, 0);
         // On axis every wavelength's chief lands at the origin, so both estimators share that reference.
+        const lattice = method === "diffraction" && mtfWaveLattice(bundle, bundle.chief, state.imgZ);
+        const mapped = lattice && qualifiedWaveOtf(lattice, wavelengthNm * 1e-6, request.frequenciesPerMm!);
         const otf =
           method === "geometric"
             ? geometricOtf(bundle.rays, request.frequenciesPerMm!, "x")
-            : shearedOtf(bundle, { x: 0, y: 0, weight: 1 }, wavelengthNm * 1e-6, request.frequenciesPerMm!).sagittal;
+            : (mapped || shearedOtf(bundle, bundle.chief, wavelengthNm * 1e-6, request.frequenciesPerMm!)).sagittal;
         return { otf, weight };
       });
       const expected = otfMagnitude(combineOtfs(dense));

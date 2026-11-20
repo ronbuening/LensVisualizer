@@ -4,7 +4,12 @@ import { describe, expect, it } from "vitest";
 import { shearedOtf } from "../../../src/optics/analysis/mtf/mtfShearedOtf.js";
 import { geometricOtf, otfMagnitude } from "../../../src/optics/analysis/mtf/mtfMath.js";
 import type { ComplexOtf } from "../../../src/optics/analysis/mtf/mtfMath.js";
-import { mtfWaveLattice, waveLatticeOtf, waveLatticePhaseStep } from "../../../src/optics/analysis/mtf/mtfWavefront.js";
+import {
+  mtfWaveLattice,
+  qualifiedWaveOtf,
+  waveLatticeOtf,
+  waveLatticePhaseStep,
+} from "../../../src/optics/analysis/mtf/mtfWavefront.js";
 import type { MtfWaveLattice } from "../../../src/optics/analysis/mtf/mtfWavefront.js";
 import { traceMtfFieldPupil } from "../../../src/optics/analysis/mtf/mtfTracing.js";
 import type { MtfBundle } from "../../../src/optics/analysis/mtf/mtfTracing.js";
@@ -570,6 +575,69 @@ describe("analytic wave-optics controls", () => {
       }
     }
   });
+  it("recovers quadratic phase between lit rays and uses measured slopes only at a consistent rim", () => {
+    const n = 16,
+      width = 8,
+      pitch = 0.002,
+      shear = 0.6;
+    const lattice = aberratedWaveLattice(unaberrated, na, wavelengthMm, n);
+    const path = (x: number) => 0.004 * x * x + 0.02 * x;
+    const slope = (x: number) => 0.008 * x + 0.02;
+    lattice.pathGradient = { x: new Float64Array(n * n), y: new Float64Array(n * n) };
+    for (let row = 0; row < n; row++)
+      for (let col = 0; col < n; col++) {
+        const i = row * n + col,
+          x = col - 4;
+        lattice.amplitude[i] = Number(x >= 0 && x < width && row >= 4 && row < 12);
+        lattice.cosineX[i] = pitch * x;
+        lattice.cosineY[i] = pitch * row;
+        lattice.pathMm[i] = wavelengthMm * path(x);
+        lattice.pathGradient.x[i] = (wavelengthMm * slope(x)) / pitch;
+      }
+    // One-dimensional reference independent of the triangular lookup. The partial last cell
+    // continues the tangent at its only measured x-coordinate; interior pairs use the exact path.
+    let real = 0,
+      imaginary = 0;
+    for (let x = 0; x < width; x++)
+      for (const sign of [-1, 1]) {
+        const target = x + sign * shear;
+        const outside = target < 0 || target > width - 1;
+        const other = outside ? path(x) + sign * shear * slope(x) : path(target);
+        const pair = (outside ? 1 - shear : 1) / (2 * width);
+        const phase = sign * 2 * Math.PI * (other - path(x));
+        real += pair * Math.cos(phase);
+        imaginary += pair * Math.sin(phase);
+      }
+    const frequencies = [(shear * pitch) / wavelengthMm];
+    const result = qualifiedWaveOtf(lattice, wavelengthMm, frequencies)!;
+    expect(result.sagittal.real[0]).toBeCloseTo(real, 11);
+    expect(result.sagittal.imaginary[0]).toBeCloseTo(imaginary, 11);
+    lattice.pathMm.fill(0);
+    lattice.pathGradient.x.fill(wavelengthMm / pitch);
+    const inconsistent = qualifiedWaveOtf(lattice, wavelengthMm, frequencies)!;
+    expect(inconsistent.sagittal.real).toEqual(inconsistent.limit.sagittal);
+    expect(inconsistent.sagittal.imaginary).toEqual([0]);
+  });
+
+  it("reduces an axial pupil only when its measured illumination and phase share the symmetry", () => {
+    const lattice = aberratedWaveLattice(defocus, na, wavelengthMm, 32);
+    const frequencies = [0, 23, 71];
+    const compare = () => {
+      const full = waveLatticeOtf({ ...lattice, axial: false }, wavelengthMm, frequencies);
+      const axial = waveLatticeOtf({ ...lattice, axial: true }, wavelengthMm, frequencies);
+      for (const cut of ["sagittal", "tangential"] as const)
+        for (const part of ["real", "imaginary"] as const)
+          full[cut][part].forEach((value, i) => expect(axial[cut][part][i]).toBeCloseTo(value, 11));
+      return axial;
+    };
+    expect(compare().sagittal.imaginary).toEqual([0, 0, 0]);
+    const cell = 16 * 32 + 24;
+    lattice.pathMm[cell] += wavelengthMm / 10;
+    expect(compare().sagittal.imaginary.some((value) => value !== 0)).toBe(true);
+    lattice.amplitude[cell] = 0;
+    compare();
+  });
+
   it("holds the perpendicular direction coordinate fixed on a coupled area-preserving map", () => {
     const lattice = mappedWaveLattice(0, 0.2, defocus);
     expect(waveLatticePhaseStep(lattice, wavelengthMm)).toBeLessThan(0.025);
@@ -582,6 +650,32 @@ describe("analytic wave-optics controls", () => {
       expect(Math.abs(otf[cut].real[0] + expected)).toBeLessThan(0.002);
       expect(Math.abs(otf[cut].imaginary[0])).toBeLessThan(0.002);
     }
+  });
+  it("retains both complex cuts when a frequency request revisits a mesh triangle", () => {
+    const lattice = mappedWaveLattice(0.12, 0.08, defocus);
+    const frequencies = [50, 51, 0, 52, 50];
+    const together = waveLatticeOtf(lattice, wavelengthMm, frequencies);
+    for (const [i, frequency] of frequencies.entries()) {
+      const single = waveLatticeOtf(lattice, wavelengthMm, [frequency]);
+      for (const cut of ["sagittal", "tangential"] as const) {
+        expect(together[cut].real[i]).toBeCloseTo(single[cut].real[0], 13);
+        expect(together[cut].imaginary[i]).toBeCloseTo(single[cut].imaginary[0], 13);
+      }
+    }
+  });
+  it("qualifies a mapped pupil before returning its complex OTF and diffraction limit", () => {
+    const lattice = mappedWaveLattice(0.12, 0.08, unaberrated);
+    const response = qualifiedWaveOtf(lattice, wavelengthMm, [0, 0.5 * cutoff])!;
+    for (const cut of ["sagittal", "tangential"] as const) {
+      expect(response[cut].real[1]).toBeCloseTo(circularMtf(0.5), 2);
+      expect(response.limit[cut]).toEqual(response[cut].real);
+      expect(response[cut].imaginary).toEqual([0, 0]);
+    }
+    for (let cell = 0; cell < lattice.pathMm.length; cell++) lattice.pathMm[cell] = ((cell % 2) * wavelengthMm) / 4;
+    expect(qualifiedWaveOtf(lattice, wavelengthMm, [50])).toBeNull();
+    lattice.pathMm.fill(0);
+    lattice.cosineY.fill(0);
+    expect(qualifiedWaveOtf(lattice, wavelengthMm, [50])).toBeNull();
   });
   it("accepts a radially mapped cat's-eye pupil without using folded dark padding", () => {
     const scale = 0.08;
