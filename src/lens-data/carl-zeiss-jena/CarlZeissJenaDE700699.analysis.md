@@ -24,39 +24,39 @@ A positive front singlet precedes a net-negative cemented triplet and a net-posi
 
 The patent places a biconcave dispersing element between two collecting elements in the rear component. Each collecting element has a higher refractive index than the dispersing glass. The text presents this arrangement as a way to reduce residual distortion rather than to increase sharpness (patent p. 2, description and claim).
 
-The computed paraxial EFL is 100.0123199 mm, about 0.012% above the printed 100 mm. The patent supplies no image-plane distance. The model uses a calculated paraxial BFD of 54.5351647 mm, stored as 54.5352 mm, for a first-vertex-to-image distance of 122.1052 mm. The image plane remains paraxial; the full f/2 marginal ray crosses the axis near 122.2399 mm and has a residual height of about 0.0347 mm at the modeled plane.
+The computed paraxial EFL is 100.012 mm, about 0.012% above the printed 100 mm. The patent supplies no image-plane distance. The calculated paraxial BFD is 54.535 mm, giving a first-vertex-to-image distance of 122.105 mm. The stored image distance differs from the calculated value by less than 0.0001 mm. The full f/2 marginal ray crosses the axis near 122.24 mm and has a residual height of about 0.035 mm at the modeled plane.
 
 ## Element-by-Element Analysis
 
 ### G1 — L1 Positive Meniscus
 
-nd = 1.6204, νd = 60.3. Glass: N-SK16 (Schott catalog proxy). In-air f = +131.30 mm.
+nd = 1.6204, νd = 60.3. Glass: N-SK16 (Schott catalog equivalent). In-air f = +131.30 mm.
 
 The front collecting meniscus is 6.79 mm thick. Its 28 mm semi-diameters follow the drawing. The catalog curve matches the printed optical coordinates closely; the historical glass supplier is unknown.
 
 ### G2 — Cemented L2–L4 (C1)
 
-| Element | Shape              | nd     | νd   | Glass curve         | In-air focal length |
-| ------- | ------------------ | ------ | ---- | ------------------- | ------------------- |
-| L2      | Positive meniscus  | 1.7016 | 41.2 | BAFD7 (Hoya proxy)  | +95.27 mm           |
-| L3      | Biconvex positive  | 1.5400 | 59.6 | BAK2 (Sumita proxy) | +104.00 mm          |
-| L4      | Biconcave negative | 1.6883 | 31.2 | Unmatched           | −33.27 mm           |
+| Element | Shape              | nd     | νd   | Glass curve             | In-air focal length |
+| ------- | ------------------ | ------ | ---- | ----------------------- | ------------------- |
+| L2      | Positive meniscus  | 1.7016 | 41.2 | BAFD7 (Hoya equivalent)  | +95.27 mm           |
+| L3      | Biconvex positive  | 1.5400 | 59.6 | BAK2 (Sumita equivalent) | +104.00 mm          |
+| L4      | Biconcave negative | 1.6883 | 31.2 | Unmatched               | −33.27 mm           |
 
 The two positive elements precede the stronger negative member, producing a net-negative middle component. Their thicknesses are 7.17, 7.55 and 1.89 mm. R3–R5 use the drawing's approximately 23.7 mm rims. R6 retains a 16.8 mm clear radius because the f/2 axial marginal reaches about 16.59 mm there.
 
 ### G3 — Cemented L5–L7 (C2)
 
-| Element | Shape              | nd     | νd   | Glass curve           | In-air focal length |
-| ------- | ------------------ | ------ | ---- | --------------------- | ------------------- |
-| L5      | Positive meniscus  | 1.6204 | 60.3 | N-SK16 (Schott proxy) | +104.04 mm          |
-| L6      | Biconcave negative | 1.5174 | 52.4 | S-NSL36 (Ohara proxy) | −41.07 mm           |
-| L7      | Biconvex positive  | 1.6689 | 48.8 | Unmatched             | +45.23 mm           |
+| Element | Shape              | nd     | νd   | Glass curve               | In-air focal length |
+| ------- | ------------------ | ------ | ---- | ------------------------- | ------------------- |
+| L5      | Positive meniscus  | 1.6204 | 60.3 | N-SK16 (Schott equivalent) | +104.04 mm          |
+| L6      | Biconcave negative | 1.5174 | 52.4 | S-NSL36 (Ohara equivalent) | −41.07 mm           |
+| L7      | Biconvex positive  | 1.6689 | 48.8 | Unmatched                 | +45.23 mm           |
 
 The rear triplet places the lower-index negative element between two positive members, as the claim specifies. The thicknesses are 10.76, 1.13 and 22.46 mm. R7 retains a 17 mm clear radius for the axial beam, which reaches about 16.38 mm. R8–R10 follow the approximately 23.7 mm figure rims. These are optical clear radii, not production barrel dimensions.
 
 ## Glass Identification and Dispersion
 
-The table prints lowercase nd; five of seven nd/νd pairs match catalog d-line rows and none match sodium D, so the model uses the d line for all seven elements. Five elements admit close catalog curves: L1/L5 N-SK16, L2 BAFD7, L3 BAK2 and L6 S-NSL36. Their evaluated differences from the printed coordinates are at most 0.000057 in nd and 0.08 in νd. These catalog names identify modern equivalents matched by refractive index and dispersion, not the 1938 melts or their suppliers. L4 and L7 remain explicitly unmatched because no catalog row meets the stricter coordinate limits used here.
+The table prints lowercase nd; five of seven nd/νd pairs match catalog d-line rows and none match sodium D, so the model uses the d line for all seven elements. Five elements admit close catalog curves: L1/L5 N-SK16, L2 BAFD7, L3 BAK2 and L6 S-NSL36. Their evaluated differences from the printed coordinates are at most 0.000057 in nd and 0.08 in νd. These catalog names identify modern equivalents matched by refractive index and dispersion, not the 1938 melts or their suppliers. No catalog row matches L4 or L7 within 0.0001 in nd and 0.15 in νd, so both remain unidentified.
 
 The printed nd/νd pairs remain unchanged. The unmatched elements use an Abbe-based dispersion estimate. No measured partial dispersion, transmission or production polychromatic performance is established by the patent table.
 
@@ -66,11 +66,11 @@ Only infinity focus is modeled. The patent gives no near-focus spacings or focus
 
 ## Published Iris Station and Inferred Clear Apertures
 
-The table locates the iris 31.28 mm after the first vertex, splitting the second air space into 7.50 mm after R6 and 1.94 mm before R7. The stop diameter is not printed. The paraxial f/2 convention gives a 32.6086402 mm iris diameter, or 16.3043201 mm radius.
+The table locates the iris 31.28 mm after the first vertex, splitting the second air space into 7.50 mm after R6 and 1.94 mm before R7. The stop diameter is not printed. The paraxial f/2 convention gives a 32.609 mm iris diameter, or 16.304 mm radius.
 
-Real marginal tracing requires a slightly larger stop radius, about 16.49 mm, to pass an exact f/2 entrance radius of 25.00308 mm. The modeled iris admits about 24.72895 mm, equivalent to f/2.02217. This small difference is retained. Neither an alternative iris diameter nor a change to the printed prescription is used to remove it.
+Real marginal tracing requires a slightly larger stop radius, about 16.49 mm, to pass an exact f/2 entrance radius of 25.003 mm. The modeled iris admits about 24.729 mm, equivalent to f/2.02. The difference between paraxial and finite-aperture f-numbers is retained with the printed prescription.
 
-The drawing suggests roughly 16 mm at R6/R7; the retained 16.8/17 mm values preserve the f/2 axial beam. The other rims follow the figure. The mixed evidence is stated explicitly. Edge thicknesses, air-gap intrusion and clearance from the stop plane pass the surface check without a geometry override.
+The drawing suggests roughly 16 mm at R6/R7; the retained 16.8/17 mm values preserve the f/2 axial beam. The other rims follow the figure. A check of the surface geometry finds no edge-thickness, overlap or stop-clearance errors.
 
 ## Modeled Field and Distortion
 

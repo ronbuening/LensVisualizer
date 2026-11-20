@@ -15,7 +15,7 @@ const LENS_DATA = {
   key: "carl-zeiss-jena-100mm-f2-de700699",
   maker: "Carl Zeiss Jena",
   name: "CARL ZEISS JENA 100mm f/2 (DE 700,699 Design)",
-  subtitle: "DE 700,699 C, Sole example — improved-distortion Sonnar design",
+  subtitle: "DE 700,699 C, sole example — Zeiss Ikon / Bertele",
   visible: true,
   source: {
     patentNumber: "DE 700,699 C",
@@ -212,7 +212,6 @@ const LENS_DATA = {
   aperture: {
     nominalFNumber: 2,
     fStops: [2, 2.8, 4, 5.6, 8, 11, 16],
-    maxFNumber: 16,
   },
   projection: {
     kind: "rectilinear",
