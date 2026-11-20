@@ -9,7 +9,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **1170** lenses scanned
+- **1189** lenses scanned
 - **1673** total code-only elements found
 - **298** elements in this report
 - **126** distinct lens files affected
@@ -300,13 +300,6 @@ Completion counts are conditional on finding a source-verified catalog identity 
 | L6 (Element 6) | 12A | `Unmatched (545560 patent material coordinate)` | 1.54500 / 56.00 | No catalog entry | abbe | patents/US20180364457A1.pdf | Explicit disposition in data |
 | L7 (Element 7) | 14A | `Unmatched (545560 patent material coordinate)` | 1.54500 / 56.00 | No catalog entry | abbe | patents/US20180364457A1.pdf | Explicit disposition in data |
 
-### [C. P. GOERZ 100mm f/9 (US 1,643,865 Design)](../../src/lens-data/goerz/CPGoerzUS1643865.data.ts) - US 1,643,865 A
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
-|---|---|---|---|---|---|---|---|
-| L1 (Element 1) | 1 | `Unmatched (nD 1.5096 / V 63.4, Sendlinger crown 510/634)` | 1.50960 / 63.40 | No catalog entry | abbe | patents/US1643865A.pdf | Explicit disposition in data |
-| L2 (Element 2) | 2 | `Unmatched (nD 1.5490 / V 47.1, Sendlinger flint 549/471)` | 1.54900 / 47.10 | No catalog entry | abbe | patents/US1643865A.pdf | Explicit disposition in data |
-
 ### [CANON EF-M 18-55mm f/3.5-5.6 IS STM](../../src/lens-data/canon/CanonEFM1855mmf3556ISSTM.data.ts) - US 2013/0335830 A1
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
@@ -464,6 +457,13 @@ Completion counts are conditional on finding a source-verified catalog identity 
 |---|---|---|---|---|---|---|---|
 | L14 (Element 4) | 6 | `667311 - dense flint (patent nd=1.66680, vd=31.1; no exact public catalog match)` | 1.66680 / 31.10 | No catalog entry | abbe | patents/US20140247506A1.pdf | Reviewed sidecar hit |
 | L17 (Element 7) | 12A | `803404 - PGM lanthanum heavy flint (patent nd=1.80348, vd=40.4; no exact public catalog match)` | 1.80348 / 40.40 | No catalog entry | abbe | patents/US20140247506A1.pdf | Reviewed sidecar hit |
+
+### [GOERZ 100mm f/9 (US 1,643,865 Design)](../../src/lens-data/goerz/GoerzUS1643865.data.ts) - US 1,643,865 A
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
+|---|---|---|---|---|---|---|---|
+| L1 (Element 1) | 1 | `Unmatched (nD 1.5096 / V 63.4, Sendlinger crown 510/634)` | 1.50960 / 63.40 | No catalog entry | abbe | patents/US1643865A.pdf | Explicit disposition in data |
+| L2 (Element 2) | 2 | `Unmatched (nD 1.5490 / V 47.1, Sendlinger flint 549/471)` | 1.54900 / 47.10 | No catalog entry | abbe | patents/US1643865A.pdf | Explicit disposition in data |
 
 ### [KINOPTIK SUPER-TEGEA 1.9mm f/1.9 FISHEYE](../../src/lens-data/kinoptik/KinoptikSuperTegea19mmf19Fisheye.data.ts) - US 3,037,426
 

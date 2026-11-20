@@ -19,9 +19,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  */
 const LENS_DATA = {
   schema: 2,
-  key: "c-p-goerz-100mm-f9-us1643865",
-  maker: "C. P. Goerz",
-  name: "C. P. GOERZ 100mm f/9 (US 1,643,865 Design)",
+  key: "goerz-100mm-f9-us1643865",
+  maker: "Goerz",
+  name: "GOERZ 100mm f/9 (US 1,643,865 Design)",
   subtitle: "US 1,643,865 A, Example 1 — cemented achromat with rear diaphragm",
   visible: false,
   catalog: {

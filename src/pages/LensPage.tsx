@@ -9,6 +9,7 @@ import { useParams, Navigate, Link } from "react-router";
 import LensVisualization from "../components/layout/LensViewer.js";
 import SEOHead from "../components/SEOHead.js";
 import ClientOnly from "../components/ClientOnly.js";
+import LiteratureCitation from "../components/content/LiteratureCitation.js";
 import PatentNumberLink from "../components/content/PatentNumberLink.js";
 import { LENS_CATALOG, hasMdForKey } from "../utils/catalog/lensCatalog.js";
 import { teleconverterSummariesForLens } from "../utils/catalog/teleconverterSummaries.js";
@@ -20,6 +21,7 @@ import {
   lensJsonLd,
   deriveMaker,
   lensDisplaySubtitle,
+  lensLiteratureSource,
   lensPatentAttribution,
   patentExampleSuffix,
   SITE_URL,
@@ -65,6 +67,7 @@ export default function LensPage() {
   const hasAnalysis = ENABLE_ANALYSIS_VIEW && hasMdForKey(slug);
   const displaySubtitle = lensDisplaySubtitle(lens);
   const patentAttribution = lensPatentAttribution(lens);
+  const literature = lensLiteratureSource(lens);
 
   return (
     <>
@@ -118,6 +121,8 @@ export default function LensPage() {
                       )}
                     </span>
                   </>
+                ) : literature ? (
+                  <LiteratureCitation literature={literature} color="#7ec8e3" />
                 ) : (
                   displaySubtitle
                 )}

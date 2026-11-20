@@ -9,7 +9,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **1170** lenses scanned
+- **1189** lenses scanned
 - **1673** total code-only elements found
 - **1673** elements in this report
 - **275** distinct lens files affected
@@ -460,13 +460,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L5 (Element 5) | 10A | `Unmatched (671195 patent material coordinate)` | 1.67100 / 19.50 | No catalog entry | abbe | patents/US20180364457A1.pdf | Explicit disposition in data |
 | L6 (Element 6) | 12A | `Unmatched (545560 patent material coordinate)` | 1.54500 / 56.00 | No catalog entry | abbe | patents/US20180364457A1.pdf | Explicit disposition in data |
 | L7 (Element 7) | 14A | `Unmatched (545560 patent material coordinate)` | 1.54500 / 56.00 | No catalog entry | abbe | patents/US20180364457A1.pdf | Explicit disposition in data |
-
-### [C. P. GOERZ 100mm f/9 (US 1,643,865 Design)](../../src/lens-data/goerz/CPGoerzUS1643865.data.ts) - US 1,643,865 A
-
-| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
-|---|---|---|---|---|---|---|---|
-| L1 (Element 1) | 1 | `Unmatched (nD 1.5096 / V 63.4, Sendlinger crown 510/634)` | 1.50960 / 63.40 | No catalog entry | abbe | patents/US1643865A.pdf | Explicit disposition in data |
-| L2 (Element 2) | 2 | `Unmatched (nD 1.5490 / V 47.1, Sendlinger flint 549/471)` | 1.54900 / 47.10 | No catalog entry | abbe | patents/US1643865A.pdf | Explicit disposition in data |
 
 ### [CANON 10.2-30.6mm f/2-4.9 (Canon PowerShot G9 X)](../../src/lens-data/canon/CanonPowerShotG9X.data.ts) - JP 2016-161889 A
 
@@ -1159,6 +1152,13 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L21 (Element L21) | 15 | `954323 high-index lanthanum-flint class (supplier unconfirmed)` | 1.95375 / 32.33 | J-LASFH21 (trusted Sellmeier) | sellmeier | patents/JP2023001878A.pdf | No review-record hit |
 | L22 (Element L22) | 16 | `457903 fluorophosphate/ED class (supplier unconfirmed)` | 1.45650 / 90.27 | H-FK71 (trusted Sellmeier) | sellmeier | patents/JP2023001878A.pdf | No review-record hit |
 | L25 (Element L25) | 21 | `497816 fluorophosphate/ED class (supplier unconfirmed)` | 1.49700 / 81.54 | H-FK61 (trusted Sellmeier) | sellmeier | patents/JP2023001878A.pdf | No review-record hit |
+
+### [GOERZ 100mm f/9 (US 1,643,865 Design)](../../src/lens-data/goerz/GoerzUS1643865.data.ts) - US 1,643,865 A
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
+|---|---|---|---|---|---|---|---|
+| L1 (Element 1) | 1 | `Unmatched (nD 1.5096 / V 63.4, Sendlinger crown 510/634)` | 1.50960 / 63.40 | No catalog entry | abbe | patents/US1643865A.pdf | Explicit disposition in data |
+| L2 (Element 2) | 2 | `Unmatched (nD 1.5490 / V 47.1, Sendlinger flint 549/471)` | 1.54900 / 47.10 | No catalog entry | abbe | patents/US1643865A.pdf | Explicit disposition in data |
 
 ### [HASSELBLAD HC 50mm f/3.5 II](../../src/lens-data/hasselblad/HasselbladHC3550II.data.ts) - US 2012/0063011 A1
 

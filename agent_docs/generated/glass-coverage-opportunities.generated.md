@@ -9,9 +9,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **1170** lenses scanned (**1147** visible)
-- **12206 / 13151** non-air surfaces use strict catalog Sellmeier data (92.8%)
-- **12224 / 13151** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 93.0%)
+- **1189** lenses scanned (**1166** visible)
+- **12206 / 13232** non-air surfaces use strict catalog Sellmeier data (92.2%)
+- **12224 / 13232** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 92.4%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
 - **298** code-only missing-Sellmeier elements in Sweep 2: **27** active unreviewed, **165** self-recording explicit dispositions, **0** dispositions missing any review record

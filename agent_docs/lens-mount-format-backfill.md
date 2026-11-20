@@ -7,11 +7,11 @@ the fields unset and add a note here until a source check resolves it.
 
 ## Current Coverage
 
-- Total lens data files: **1182**
+- Total lens data files, literature reconstructions excluded: **1187**
 - Files with both `lensMounts` and `imageFormat`: **1113**
-- Files missing `lensMounts`: **58** (36 public lenses, 9 hidden patent designs and 13 hidden reference fixtures)
-- Files missing `imageFormat`: **53** (34 public lenses, 7 hidden patent designs and 12 hidden reference fixtures)
-- Files missing both fields: **42**
+- Files missing `lensMounts`: **62** (40 public lenses, 9 hidden patent designs and 13 hidden reference fixtures)
+- Files missing `imageFormat`: **58** (39 public lenses, 7 hidden patent designs and 12 hidden reference fixtures)
+- Files missing both fields: **46**
 - Formats currently in use: `1-1.7-inch-type`, `1-1.8-inch-type`, `1-2.3-inch-type`, `1-2.55-inch-type`,
   `1-2.7-inch-type`, `1-inch-type`, `1.25-inch-tube`, `1.5-inch-type`, `110`, `135-full-frame`,
   `16mm-cinema`, `2-3-inch-type`, `35mm-cinema`, `44x33`, `4x5`, `5x7`, `645`, `6x6`, `6x7`, `6x9`, `8x10`,
@@ -45,7 +45,9 @@ with remaining compatibility questions explained in the lens analysis.
 | Minor Photographic Objective 65mm f/2 | US 1,360,667 Figure 2 establishes no production manufacturer, mount, camera format, or image circle. The approximately 65° field and ambiguous focal distance do not establish a format. |
 | Tamron 45.3mm f/2.8 Macro (US 7,286,303 Design) | A patent design with no identified retail lens; the patent's 21.633 mm image height sets the 135 format but names no camera mount. |
 | Russar-21; Russar-22 | Experimental prescription sources lack a manufacturer-issued standardized production fitting. |
-| KMZ Industar ITMO Variant 2; Voigtländer Dynar | Teaching/normalized patent models lack a selected commercial installation; leave mount and format unset. |
+| Voigtländer Dynar | Normalized patent model lacks a selected commercial installation; leave mount and format unset. |
+| Goerz Double Objective 240mm f/7.6 (GB 1898/12,859); Steinheil Orthostigmat Type II 493mm f/6.2 and 476mm f/4 (DE 88505); Voigtländer Collinear Type II 150mm f/6.9 (DE 90482) | 1890s view-camera objectives in barrel. The patents draw flanged cells but name no camera, plate size or lens board, and the Collinear Type II and the fast Orthostigmat were never sold; `large-format-lens-board` needs a period catalog that ties each example to a product. |
+| Carl Zeiss Jena Anastigmat-Satzlinse 500mm f/13 (CH 6329) | A cemented single lens given in units of the focal length. The patent draws no cell and names no camera, plate size or lens board, and its 500 mm f/13 example is not a catalogued Series VI lens (rated 1:14.5). |
 | Carl Zeiss Jena PI-Flektogon 30mm f/2.8 | The 1975 factory sheet names no fitting. Its archive host ties only a *similar* SO-4 2,8/30 to the Stasi HFK camera, which was screw-mounted but whose thread no source names. |
 | Zeiss S-Biogon 40mm f/5.6 | Microfilm reduction lens installed in the Zeiss Mikrobox recorder. The sources give only an M50 × 0.75 rear thread, an industrial thread with no canonical mount id; do not assign a camera mount from the Biogon family name. |
 | Voigtländer Cine-Tele-Anastigmat 100mm f/4.5 | No manufacturer or period source names this product. Voigtländer’s catalogue Nr. 1709.7.25 and its price list of about 1930 offer only the Tele-Dynar f/6.3 as a telephoto, so no camera fitting can be tied to the research-correlated name. |
@@ -62,9 +64,15 @@ The hidden Nikon 61mm f/2.88 and Pentax 87.8mm f/2.9 macro patent designs match 
 mount applies; each carries the image format its patent implies.
 
 The hidden Cooke US 1,361,207 Example II, US 1,797,202, US 1,926,569, US 2,019,985, US 2,117,252 and US 2,130,760
-and C. P. Goerz US 1,643,865 patent designs are shown once the Cooke and Goerz maker entries land; no source supplies a
-mount or format for them. The hidden Cooke US 1,484,853 projection lens carries `projection-lens` and `35mm-cinema`
-from its patent text.
+and Goerz US 1,643,865 patent designs have no source that supplies a mount or format; the Cooke designs are shown once a
+Cooke maker entry lands. The hidden Cooke US 1,484,853 projection lens carries `projection-lens` and `35mm-cinema` from
+its patent text.
+
+### Literature reconstructions
+
+`src/lens-data/literature/*.data.ts` models a book's normalized prescription, not a product, so it never takes mount or
+format ids (the validator refuses them) and stays out of the counts and queues here. See
+[Literature reconstructions](../src/lens-data/LENS_DATA_SPEC.md#literature-reconstructions-sourceliterature).
 
 ### Remaining public image-format questions
 
@@ -77,7 +85,9 @@ patent scaling, angular field, or circular image into an unsupported rectangular
 | Apple iPhone 7 Wide; iPhone 12 Wide | Apple’s cited product specifications do not give active sensor dimensions or establish the patent’s production identity. The iPhone 12 patent image circle remains explicit; neither receives a guessed inch-type format. |
 | Kinoptik Super-Tegea 1.9mm | Manufacturer brochures establish an 8.7 mm circular image and multiple applications, not a single rectangular capture frame. Keep `imageCircleMm`. |
 | Nikon Ultra-Micro-Nikkor 29.5mm | Fixed-conjugate photolithography objective; its reduction ratio/field does not imply a consumer film or sensor class. |
-| KMZ Industar ITMO Variant 2 | Teaching prescription lacks a verified factory/camera-format mapping. |
+| Goerz Double Objective 240mm f/7.6; Steinheil Orthostigmat Type II 493mm and 476mm; Voigtländer Collinear Type II 150mm | The patents give focal lengths and apertures but no plate size; their field angles and von Rohr's describe coverage, not a recording frame. A period catalog listing the plate size for the matching focal length is needed. |
+| Goerz Doppel-Anastigmat Series III 240mm f/7.7 | A collector record lists the Series III No. 4 for whole-plate (6½ × 8½ in), which has no canonical format id; the Goerz catalogue's plate sizes for the series were not seen. |
+| Carl Zeiss Jena Anastigmat-Satzlinse 500mm f/13 | The patent's "about 90°" field angle describes coverage, not a plate; no source ties the 500 mm example to a plate size. |
 | Zeiss Biotar 50mm f/1.4; Kodak Ektar 52mm f/1.5; Schneider Xenar 50mm f/2.8 | The cited sources do not securely identify the selected scaled patent example with a production variant’s recording frame. Family listings alone do not resolve that boundary. |
 | Russar-21; Russar-22 | Experimental/patent field evidence lacks a manufacturer-issued recording-frame specification for these exact prototypes. |
 | Meyer Kino-Plasmat 100mm; Double-Plasmat 135mm | Exact production mapping and format are not established by the source set; chosen scales and historic specimen names do not supply them. |
