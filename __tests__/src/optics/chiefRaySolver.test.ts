@@ -334,24 +334,45 @@ describe.each(["object-plane", "bounding-sphere"] as const)("%s bracket refineme
       expect(height(root)).not.toBeNull();
       expect(Math.abs(height(root)!)).toBeLessThan(1e-7);
       expect(root).toBeCloseTo(0.13, 7);
-      expect(samples.length).toBeGreaterThanOrEqual(4 * 97);
+      // Four failed scans, eight traces on the rim below the lone clear sample, one boundary midpoint,
+      // refinement and the independent residual retrace.
+      expect(samples.length).toBe(4 * 97 + 8 + 1 + result.iterations + 1);
     });
 
     it("recovers a root next to a clipped-to-valid boundary", () => {
-      const { result, root } = solveStopFunction((x) => (x > -0.14 && x <= -0.12 ? x + 0.13 : null));
+      const { result, root, samples } = solveStopFunction((x) => (x > -0.14 && x <= -0.12 ? x + 0.13 : null));
       expect(result.status).toBe("converged");
       expect(root).toBeCloseTo(-0.13, 7);
+      // The first recorded rim holds the root: one boundary midpoint, refinement and the residual retrace.
+      expect(samples.length).toBe(4 * 97 + 1 + result.iterations + 1);
     });
 
+    // Each case reaches the boundary search; its trace count shows how far it got before rejection.
     it.each([
-      (x: number) => (x >= 0.12 && x < 0.14 ? x + 1 : null),
-      () => null,
-      (x: number) => (x >= 0.12 && x < 0.14 ? (x < 0.13 ? -1 : 1) : null),
-      (x: number) => (x < 0.13 ? -1 : x > 0.14 ? 1 : null),
-    ])("rejects a clipped root, a fully blocked domain and disconnected signs", (height) => {
+      {
+        name: "a root inside the clipped region",
+        height: (x: number) => (x >= 0.12 && x < 0.14 ? x + 1 : null),
+        iterations: 0,
+        traces: 4 * 97 + 32,
+      },
+      { name: "a fully blocked domain", height: () => null, iterations: 0, traces: 4 * 97 },
+      {
+        name: "a sign step without a root",
+        height: (x: number) => (x >= 0.12 && x < 0.14 ? (x < 0.13 ? -1 : 1) : null),
+        iterations: 26,
+        traces: 4 * 97 + 36,
+      },
+      {
+        name: "a root inside a clipped gap of the recovered bracket",
+        height: (x: number) => (x >= 0.12 && x < 0.14 && !(x >= 0.135 && x < 0.1352) ? x - 0.1351 : null),
+        iterations: 5,
+        traces: 4 * 97 + 16,
+      },
+    ])("rejects $name", ({ height, iterations, traces }) => {
       const { result, samples } = solveStopFunction(height);
-      expect(result.status).not.toBe("converged");
-      expect(samples.length).toBeLessThanOrEqual(4 * 97 + 128);
+      expect(result.status).toBe("bracket-failed");
+      expect(result.iterations).toBe(iterations);
+      expect(samples.length).toBe(traces);
     });
   }
 
@@ -461,8 +482,8 @@ describe.each(["object-plane", "bounding-sphere"] as const)("%s bracket refineme
     const { result, root, samples } = solveStopFunction((x) => (Math.abs(x) < 0.01 || Math.abs(x) >= 0.5 ? null : x));
     expect(result.status).toBe("bracket-failed");
     expect(result.iterations).toBe(0);
-    if (surface === "object-plane") expect(samples.length).toBe(4 * 97 + 2);
-    else expect(samples.length).toBeLessThanOrEqual(4 * 97 + 128);
+    // Bounding-sphere failures then spend the whole boundary budget on the four clear/clipped rims.
+    expect(samples.length).toBe(4 * 97 + (surface === "object-plane" ? 2 : 128));
     expect(Math.abs(root)).toBeCloseTo(1 / 48, 12);
   });
 });
