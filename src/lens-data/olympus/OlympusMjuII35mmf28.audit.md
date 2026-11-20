@@ -1,4 +1,4 @@
-# OLYMPUS 35mm f/2.8 (Olympus μ[mju:]-II) — Audit Log
+# OLYMPUS LENS 35mm f/2.8 (Olympus μ[mju:]-II) — Audit Log
 
 ## Source
 
@@ -48,7 +48,7 @@ The Olympus filing precedes the camera's introduction by about a year. Timing, c
 
 ## Corrections, 2026-11-20
 
-- The lens is identified by the product name, OLYMPUS 35mm f/2.8 (Olympus μ[mju:]-II).
+- The lens is identified by the product name, OLYMPUS LENS 35mm f/2.8 (Olympus μ[mju:]-II), following the lens marking listed in Olympus's 18 February 1997 specifications ("オリンパスレンズ35mm F2.8").
 - The subtitle identifies Example 1, Olympus and the inventors. The specifications give four elements in four groups, design focal length 33.91 mm, design aperture f/2.89 and one aspherical surface.
 - The fixed-camera mount and 0.35 m marketed minimum focus were added from Olympus's specifications. Olympus, the 135 full-frame format, 4/4 counts, marketed 35 mm f/2.8, design 33.91 mm f/2.89, f/11 endpoint and 0.35 m focus limit were already correct. The stop choices remain f/2.89, f/4, f/5.6, f/8 and f/11; they illustrate apertures within the camera's programmed range rather than documented manual detents.
 - The four calculated element focal lengths and descriptions of their optical roles were added. L4 is a Negative Meniscus with an aspherical rear surface. Figure 7 provides the d-line evidence. No cemented pairs exist.

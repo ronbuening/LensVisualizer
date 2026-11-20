@@ -35,7 +35,7 @@ const LENS_DATA = {
   },
   key: "olympus-mju-ii-35-f28",
   maker: "Olympus",
-  name: "OLYMPUS 35mm f/2.8 (Olympus μ[mju:]-II)",
+  name: "OLYMPUS LENS 35mm f/2.8 (Olympus μ[mju:]-II)",
   subtitle: "JP 3610160 B2, Example 1 — Olympus / Takahashi, Shimizu & Takato",
   catalog: {
     lensMounts: ["fixed-lens-camera"],

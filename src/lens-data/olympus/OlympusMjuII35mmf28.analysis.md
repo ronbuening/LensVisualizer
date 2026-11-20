@@ -1,4 +1,4 @@
-# OLYMPUS 35mm f/2.8 (Olympus μ[mju:]-II)
+# OLYMPUS LENS 35mm f/2.8 (Olympus μ[mju:]-II)
 
 ## Patent Reference and Design Identification
 
