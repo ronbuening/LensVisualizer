@@ -2,9 +2,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 /**
  * DE 1,273,853 B, sole example, uniformly scaled by 0.21 from f = 100 to
  * 21 mm; radii, thicknesses, air gaps and the printed back focus are in mm.
- * The patent supplies all radii, spacings and helium d-line glass values.
+ * The patent supplies all radii and spacings. Glass values use the patent's
+ * yellow d line; exact catalog matches confirm the helium d line (587.6 nm).
  * The iris is inferred at the midpoint of the printed diaphragm space, with
- * its radius derived from f/3.4. S1 and S10 rims follow Fig. 1; the remaining
+ * its radius derived from f/3.4. S1, S3 and S10 rims follow Fig. 1; the remaining
  * rims are estimates. The image plane uses the printed 8.19 mm back focus,
  * rather than the computed paraxial 8.1930 mm. L5 follows the German table's
  * Abbe number 42.82; the US family claim instead prints 42.32.
@@ -40,13 +41,7 @@ const LENS_DATA = {
       marketing: 3.4,
       design: 3.4,
     },
-    specs: [
-      "8 ELEMENTS / 4 GROUPS",
-      "DESIGN f = 21.00 mm",
-      "DESIGN F/3.4",
-      "ALL-SPHERICAL",
-      "90° PATENT FIELD / 92° MARKETED ANGLE",
-    ],
+    specs: ["8 ELEMENTS / 4 GROUPS", "DESIGN f = 21.00 mm", "DESIGN F/3.4", "ALL-SPHERICAL", "90° PATENT FIELD"],
   },
   source: {
     patentNumber: "DE 1,273,853 B",
@@ -180,7 +175,7 @@ const LENS_DATA = {
       label: "3",
       R: 12.9633,
       d: 1.5225,
-      sd: 6,
+      sd: 7,
       medium: 2,
     },
     {
