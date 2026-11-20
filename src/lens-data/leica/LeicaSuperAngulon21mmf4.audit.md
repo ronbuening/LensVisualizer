@@ -16,7 +16,7 @@ At the patent's f′ = 100 scale, calculated longitudinal spherical aberration i
 
 ## Values Not Printed in the Patent
 
-The patent gives no clear semi-diameters. S12 = 8.8 mm and S13 = 11.3 mm follow the optical rims in Fig. 1; the other clear radii remain estimates. S11 reads about 6.9 mm in the figure, compared with the retained 6.8 mm. The stop lies halfway along the 1.659 mm S6–S7 air space, split into two 0.8295 mm distances. Its radius is derived from f/4. Total length and individual element powers are calculated. No finite-focus spacings, focus travel or partial-dispersion values are printed.
+The patent gives no clear semi-diameters. S3, S4, S10, S12 and S13 follow the optical rims in Fig. 1; the other clear radii are estimates checked against the figure (see the rim review below). The stop lies halfway along the 1.659 mm S6–S7 air space, split into two 0.8295 mm distances. Its radius is derived from f/4. Total length and individual element powers are calculated. No finite-focus spacings, focus travel or partial-dispersion values are printed.
 
 Five glasses have catalog dispersion equivalents; four retain only their printed index and Abbe number. No original glass supplier or melt is established. No separate spectral indices or anomalous-dispersion designations have been added.
 
@@ -53,9 +53,27 @@ Before the rim corrections, the corner chief ray reached S12 at 8.09 mm and was 
 
 A diameter estimate based on exit-pupil geometry still suggests larger clear radii at S11–S13: 9.10/12.61/13.68 mm versus 6.8/8.8/11.3 mm. This approximation is unreliable for this wide-angle design. S11's radius of curvature has magnitude 7.638 mm, so a 9.10 mm clear radius would exceed the sphere itself. Direct corner-chief tracing confirms access to the format corner; it does not establish full-pupil illumination.
 
+### 2026-11-20 rim review
+
+Fig. 1 (drawing sheet, 300 dpi) is drawn to scale. The first-to-last vertex span measures 1380 px against 44.53 mm, or 31.0 px/mm; the S2–S3, S5–S6 and S9–S10 spans agree within about 3%, the S11 and S13 sags at their drawn rims agree within 5 px, and the drawn iris sits near the middle of the S6–S7 air space. Rim heights were read from both sides of the axis and averaged.
+
+| Surface | Before (mm) | Fig. 1 (mm) | After (mm) | Reason |
+| ------- | ----------: | ----------: | ---------: | ------ |
+| S1 | 12.5 | 11.8 | 12.5 | Within 6%; kept |
+| S2 | 8.3 | 8.8 | 8.3 | Within 6%; kept |
+| S3 | 8.3 | 7.4 | 7.4 | Figure; costs no light at any field |
+| S4 | 5.5 | 6.2 | 6.2 | Figure; L3 is drawn larger than L4 |
+| S5, S6 | 5.5 | 5.2 | 5.5 | Within 6%; kept |
+| S7–S9 | 4.3 | 3.7 | 4.3 | Kept; the drawn rim would remove 6 points at 29° and 10–13 points at 34–40° |
+| S10 | 5.2 | 5.9 | 5.9 | Figure; L7's flat outer rim |
+| S11 | 6.8 | 6.9 | 6.8 | Within 2%; 6.9 mm exceeds the surface-slope limit |
+| S12, S13 | 8.8, 11.3 | 8.8, 11.3 | 8.8, 11.3 | Earlier figure readings confirmed |
+
+The full f/4 beam now passes undimmed to about 32°. Geometric transmission rises from 80% to 99% at 34.5°, from 60% to 91% at 40.3°, from 48% to 77% at 43.1° and from 35% to 59% at 46°. No field loses light against the starting rims. The gain comes from the S4 and S10 raises; the S3 change costs nothing. The traced half-field, f/4.00 aperture and corner coverage are unchanged, and the surface checks pass.
+
 ## Remaining Questions
 
-- Clear radii other than S12/S13 remain estimates; the difference between the S11 figure reading of about 6.9 mm and the retained 6.8 mm is unresolved.
+- S1, S2, S5, S6 and S11 are estimates within about 6% of Fig. 1; L5 and L6 deliberately stay larger than drawn.
 - L1, L3, L5 and L8 lack named glass equivalents. Production suppliers, melts and the missing partial-dispersion values remain unknown.
 - No finite-focus prescription or factory statement confirming the exact numerical product design has been found. No manufacturer image-circle diameter is documented in the cited sources, so that value is omitted.
 - Numerical convergence on the steep S11/S12 surfaces can fail beyond about 41.5°. Full-pupil illumination remains uncertain.

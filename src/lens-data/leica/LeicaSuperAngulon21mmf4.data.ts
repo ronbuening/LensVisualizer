@@ -5,11 +5,14 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * to millimetres at 21 mm. Radii, thicknesses and the scaled 7.728 mm back
  * focus are retained; indices and Abbe numbers use the patent's d line.
  * The stop position is inferred at the midpoint of d6, consistent with Fig. 1,
- * and its radius is derived from f/4. S12/S13 rims are measured from Fig. 1;
- * the other rims are estimates. Fig. 2 plots to 45 degrees half-field, while
- * the production lens is specified at 92 degrees full field. Only infinity
- * spacings are supplied. Catalog glass names denote spectral equivalents;
- * the production suppliers and melts are unspecified.
+ * and its radius is derived from f/4. Fig. 1 is drawn to scale: the S3, S4,
+ * S10, S12 and S13 rims are measured from it. S1, S2, S5, S6 and S11 are
+ * estimates within about 6% of the drawing. L5 and L6 keep 4.3 mm rims, above
+ * the drawn 3.7 mm, because the drawn rim would darken the outer field. Fig. 2
+ * plots to 45 degrees half-field, while the production lens is specified at
+ * 92 degrees full field. Only infinity spacings are supplied. Catalog glass
+ * names denote spectral equivalents; the production suppliers and melts are
+ * unspecified.
  */
 
 const LENS_DATA = {
@@ -185,13 +188,13 @@ const LENS_DATA = {
       label: "3",
       R: 9.4647,
       d: 7.497,
-      sd: 8.3,
+      sd: 7.4,
     },
     {
       label: "4",
       R: 13.0578,
       d: 1.4511,
-      sd: 5.5,
+      sd: 6.2,
       medium: 3,
     },
     {
@@ -237,7 +240,7 @@ const LENS_DATA = {
       label: "10",
       R: -15.6618,
       d: 6.5583,
-      sd: 5.2,
+      sd: 5.9,
     },
     {
       label: "11",
