@@ -12,17 +12,8 @@
  */
 import { execFileSync } from "node:child_process";
 
-const ALLOWLIST = new Map([
-  [
-    "GHSA-fc5q-39xc-vjpf",
-    "picomatch ReDoS on single-branch repeated extglobs such as +(*). picomatch " +
-      "is a dev-only dependency (vite, vitest, tinyglobby, fdir) and is not in " +
-      "the shipped site; the only globs it compiles are the project's own " +
-      "config and script patterns, never untrusted input. No patched release " +
-      "exists (the advisory covers <= 4.0.7, the latest). Remove this entry once " +
-      "a fixed picomatch is published and the lockfile picks it up.",
-  ],
-]);
+// Entries are [advisory id, reason it cannot apply here].
+const ALLOWLIST = new Map();
 
 const FAIL_SEVERITIES = new Set(["high", "critical"]);
 
