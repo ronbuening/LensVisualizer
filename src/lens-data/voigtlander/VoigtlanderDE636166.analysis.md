@@ -14,7 +14,7 @@
 
 **Example details:** Sole numerical example, specification p. 2 and drawing sheet; f = 100 mm, f/2.8, five elements in three groups.
 
-This Heliar-type objective has two positive cemented doublets surrounding a negative singlet. No product link, mount, format or marketed minimum focus distance is documented. The front doublet is Heliar-style, with its negative element toward the center; the rear is Dynar-style, with its biconvex positive element toward the center. These comparisons establish design family only.
+This Heliar-type objective has two positive cemented doublets surrounding a negative singlet. No product link, mount, format or marketed minimum focus distance is documented. The front doublet is Dynar-style, with its biconvex element outside and its negative element toward the center; the rear keeps the original Heliar orientation, with its negative meniscus outside and its biconvex element toward the center. These comparisons establish design family only.
 
 The table supplies eight radii, five thicknesses, two air spaces and five nD/Abbe pairs. Surface 3 is plane. Stop position, field angle, back focus and close focus are unspecified ([DE 636,166 C](https://patents.google.com/patent/DE636166C/de), specification p. 2 and drawing sheet).
 
@@ -68,7 +68,7 @@ The chosen 5° half-field establishes no source image circle or camera format. A
 
 The patent constrains the magnitude of the rear cemented-interface radius to at least one fifth and at most one third of the front cemented-interface radius, and at most two thirds of the effective opening. The example satisfies these conditions: 17 mm ≤ 20.5 mm ≤ min(28.33 mm, 23.8 mm), using the 35.7 mm nominal entrance opening.
 
-The patent claims a spherical zonal error of 0.18% of focal length (0.18 mm) and astigmatic deviations below 1% (1 mm). Modeled longitudinal spherical aberration is about −0.21 mm at the margin and −0.25 mm at the 0.7 zone, of the same order as the stated zonal error. The astigmatism claim has no stated field angle.
+The patent's description states a spherical zonal error of 0.18% of focal length (0.18 mm) and astigmatic deviations below 1% (1 mm). Modeled longitudinal spherical aberration is about −0.21 mm at the margin and −0.25 mm at the 0.7 zone, of the same order as the stated zonal error. The astigmatism claim has no stated field angle.
 
 The inferred iris and rims limit conclusions about off-axis illumination. Close focus, mechanical baffles, stray-light rejection and production performance are not established by the patent prescription.
 
