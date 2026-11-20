@@ -24,7 +24,7 @@ A positive front singlet precedes a net-negative cemented triplet and a net-posi
 
 The patent places a biconcave dispersing element between two collecting elements in the rear component. Each collecting element has a higher refractive index than the dispersing glass. The text presents this arrangement as a way to reduce residual distortion rather than to increase sharpness (patent p. 2, description and claim).
 
-The computed paraxial EFL is 100.012 mm, about 0.012% above the printed 100 mm. The patent supplies no image-plane distance. The calculated paraxial BFD is 54.535 mm, giving a first-vertex-to-image distance of 122.105 mm. The stored image distance differs from the calculated value by less than 0.0001 mm. The full f/2 marginal ray crosses the axis near 122.24 mm and has a residual height of about 0.035 mm at the modeled plane.
+The computed paraxial EFL is 100.012 mm, about 0.012% above the printed 100 mm. The patent supplies no image-plane distance. The calculated paraxial BFD is 54.535 mm, giving a first-vertex-to-image distance of 122.105 mm. The full f/2 marginal ray crosses the axis near 122.24 mm and has a residual height of about 0.035 mm at the modeled plane.
 
 ## Element-by-Element Analysis
 
@@ -56,7 +56,7 @@ The rear triplet places the lower-index negative element between two positive me
 
 ## Glass Identification and Dispersion
 
-The table prints lowercase nd; five of seven nd/νd pairs match catalog d-line rows and none match sodium D, so the model uses the d line for all seven elements. Five elements admit close catalog curves: L1/L5 N-SK16, L2 BAFD7, L3 BAK2 and L6 S-NSL36. Their evaluated differences from the printed coordinates are at most 0.000057 in nd and 0.08 in νd. These catalog names identify modern equivalents matched by refractive index and dispersion, not the 1938 melts or their suppliers. No catalog row matches L4 or L7 within 0.0001 in nd and 0.15 in νd, so both remain unidentified.
+The table prints lowercase nd; five of seven nd/νd pairs match catalog d-line rows and none match sodium D, so the model uses the d line for all seven elements. Five elements admit close catalog curves: L1/L5 N-SK16, L2 BAFD7, L3 BAK2 and L6 S-NSL36. Their evaluated differences from the printed coordinates are at most 0.000057 in nd and 0.08 in νd. These catalog names identify modern equivalents matched by refractive index and dispersion, not the 1938 melts or their suppliers. L4 and L7 remain unidentified.
 
 The printed nd/νd pairs remain unchanged. The unmatched elements use an Abbe-based dispersion estimate. No measured partial dispersion, transmission or production polychromatic performance is established by the patent table.
 
@@ -70,13 +70,13 @@ The table locates the iris 31.28 mm after the first vertex, splitting the second
 
 Real marginal tracing requires a slightly larger stop radius, about 16.49 mm, to pass an exact f/2 entrance radius of 25.003 mm. The modeled iris admits about 24.729 mm, equivalent to f/2.02. The difference between paraxial and finite-aperture f-numbers is retained with the printed prescription.
 
-The drawing suggests roughly 16 mm at R6/R7; the retained 16.8/17 mm values preserve the f/2 axial beam. The other rims follow the figure. A check of the surface geometry finds no edge-thickness, overlap or stop-clearance errors.
+The drawing suggests roughly 16 mm at R6/R7; the retained 16.8/17 mm values preserve the f/2 axial beam. The other rims follow the figure.
 
 ## Modeled Field and Distortion
 
 The patent prints no field angle or image format. The [historical distortion plot](https://impro.usercontent.one/appid/oneComWsb/domain/zeissikonveb.de/media/zeissikonveb.de/onewebmedia/Marco/Carl%20Zeiss%20Jena/Sonnar%202,0%20verbesserte%20Verzeichnung.jpg), labeled “nach DRP 700.699,” extends to 22° half-field and shows about +0.98% pincushion distortion there. The model gives +0.27% at 10°, +0.58% at 15° and +0.98% at 22°, consistent with that curve.
 
-The declared half-field is 22°. The real chief ray reaches approximately 40.805 mm at the paraxial image plane, giving an inferred 81.61 mm image-circle diameter at the printed 100 mm scale. This is an analysis bound derived from the historical plot and ray trace, not a published production image format. The chief ray reaches the boundary without rim blockage; off-axis marginal rays remain vignetted. With the larger rear rims, the one-sided R10 bundle-width clipping estimate falls from about 80% to 40% at 22°; this is not an area-weighted transmission measurement.
+The half-field is 22°. The real chief ray reaches approximately 40.805 mm at the paraxial image plane, giving an inferred 81.61 mm image-circle diameter at the printed 100 mm scale. This is an analysis bound derived from the historical plot and ray trace, not a published production image format. The chief ray reaches the boundary without rim blockage; off-axis marginal rays remain vignetted. The one-sided R10 bundle-width clipping estimate is about 40% at 22°; this is not an area-weighted transmission measurement.
 
 ## Sources
 
