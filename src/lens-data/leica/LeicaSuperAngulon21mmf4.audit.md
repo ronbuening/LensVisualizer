@@ -18,7 +18,7 @@ At the patent's f′ = 100 scale, calculated longitudinal spherical aberration i
 
 The patent gives no clear semi-diameters. S3, S4, S10, S12 and S13 follow the optical rims in Fig. 1; the other clear radii are estimates checked against the figure (see the rim review below). The stop lies halfway along the 1.659 mm S6–S7 air space, split into two 0.8295 mm distances. Its radius is derived from f/4. Total length and individual element powers are calculated. No finite-focus spacings, focus travel or partial-dispersion values are printed.
 
-Five glasses have catalog dispersion equivalents; four retain only their printed index and Abbe number. No original glass supplier or melt is established. No separate spectral indices or anomalous-dispersion designations have been added.
+Seven glasses have catalog dispersion equivalents; two retain only their printed index and Abbe number. No original glass supplier or melt is established. No separate spectral indices or anomalous-dispersion designations have been added.
 
 ## Product Identification
 
@@ -45,7 +45,7 @@ Catalog Sellmeier C/d/F results minus the patent's printed values:
 | L7 | Unresolved, 1.78470 / 26.10 | SF56A, Schott | +1.09×10⁻⁶ | −0.0232 |
 | L9 | Unresolved, 1.65844 / 50.84 | N-SSK5, Schott | +5.85×10⁻⁸ | +0.0429 |
 
-Among the five named catalog equivalents, the largest absolute differences are 8.21×10⁻⁶ in nd (L6, N-SSK8) and 0.0869 in νd (L4, BAF5). Ohara S-LAL11 differs from L1 by −4.40×10⁻⁶ in nd and about −0.16 in νd. Hoya SBF2 differs from L5 by −9.14×10⁻⁸ in nd and about −0.16 in νd; its stated catalog νd is 51.64. L1 and L5 remain unidentified, as do L3 and L8. The original suppliers remain unknown.
+Among the five named catalog equivalents, the largest absolute differences are 8.21×10⁻⁶ in nd (L6, N-SSK8) and 0.0869 in νd (L4, BAF5). Ohara S-LAL11 differs from L1 by −4.40×10⁻⁶ in nd and about −0.16 in νd. Hoya SBF2 differs from L5 by −9.14×10⁻⁸ in nd and about −0.16 in νd; its stated catalog νd is 51.64. L1 and L5 remained unidentified at this stage, as did L3 and L8. The original suppliers remain unknown.
 
 The resulting EFL is 20.997 mm, aperture f/4.00, paraxial BFD 7.737 mm, final air gap 7.728 mm, stop radius 3.411 mm and total length 52.26 mm. The surfaces stay clear of each other; the iris sets the full aperture.
 
@@ -71,9 +71,13 @@ Fig. 1 (drawing sheet, 300 dpi) is drawn to scale. The first-to-last vertex span
 
 The full f/4 beam now passes undimmed to about 32°. Geometric transmission rises from 80% to 99% at 34.5°, from 60% to 91% at 40.3°, from 48% to 77% at 43.1° and from 35% to 59% at 46°. No field loses light against the starting rims. The gain comes from the S4 and S10 raises; the S3 change costs nothing. The traced half-field, f/4.00 aperture and corner coverage are unchanged, and the surface checks pass.
 
+### 2026-11-20 glass
+
+- L3 (1.58904 / 53.16) is now BALF6, Sumita: Δnd −3.5×10⁻⁷, Δνd +0.0069. L5 (1.52944 / 51.80) is now KZF2, Sumita: Δnd −1.2×10⁻⁶, Δνd +0.0106. Both differences are catalog Sellmeier C/d/F values minus the printed pair. Both rows are the older Schott types BaLF6 and KzF2. Seven of the nine glasses now have catalog equivalents; L1 and L8 remain unidentified. The printed indices and Abbe numbers are unchanged, so focal length and back focus are unchanged.
+
 ## Remaining Questions
 
 - S1, S2, S5, S6 and S11 are estimates within about 6% of Fig. 1; L5 and L6 deliberately stay larger than drawn.
-- L1, L3, L5 and L8 lack named glass equivalents. Production suppliers, melts and the missing partial-dispersion values remain unknown.
+- L1 and L8 lack named glass equivalents. Production suppliers, melts and the missing partial-dispersion values remain unknown.
 - No finite-focus prescription or factory statement confirming the exact numerical product design has been found. No manufacturer image-circle diameter is documented in the cited sources, so that value is omitted.
 - Numerical convergence on the steep S11/S12 surfaces can fail beyond about 41.5°. Full-pupil illumination remains uncertain.

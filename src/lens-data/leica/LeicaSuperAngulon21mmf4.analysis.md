@@ -33,13 +33,13 @@ L2: nd = 1.46450, νd = 65.79. Glass: FK3 (Schott catalog equivalent). f = +698.
 
 ### C2 — Front Positive Doublet, L3–L4
 
-L3: nd = 1.58904, νd = 53.16. Glass: Unmatched. f = −22.17 mm. The negative meniscus faces the outer front component and joins L4 at S5.
+L3: nd = 1.58904, νd = 53.16. Glass: BALF6 (Sumita catalog equivalent). f = −22.17 mm. The negative meniscus faces the outer front component and joins L4 at S5.
 
 L4: nd = 1.60729, νd = 49.25. Glass: BAF5 (Hoya catalog equivalent). f = +9.50 mm. The thick biconvex element supplies the positive power before the stop. S4–S6 together have f = +16.77 mm.
 
 ### C3 — Rear Positive Triplet, L5–L7
 
-L5: nd = 1.52944, νd = 51.80. Glass: Unmatched. f = −11.70 mm. This negative meniscus begins the triplet immediately behind the stop.
+L5: nd = 1.52944, νd = 51.80. Glass: KZF2 (Sumita catalog equivalent). f = −11.70 mm. This negative meniscus begins the triplet immediately behind the stop.
 
 L6: nd = 1.61772, νd = 49.78. Glass: N-SSK8 (Schott catalog equivalent). f = +5.45 mm. The strongly positive biconvex center is cemented between two negative menisci.
 
@@ -57,15 +57,15 @@ L9: nd = 1.65844, νd = 50.84. Glass: N-SSK5 (Schott catalog equivalent). f = �
 | -------- | --------------- | ----------------------- |
 | L1       | 1.65830 / 57.49 | Unmatched               |
 | L2       | 1.46450 / 65.79 | FK3, Schott             |
-| L3       | 1.58904 / 53.16 | Unmatched               |
+| L3       | 1.58904 / 53.16 | BALF6, Sumita           |
 | L4       | 1.60729 / 49.25 | BAF5, Hoya              |
-| L5       | 1.52944 / 51.80 | Unmatched               |
+| L5       | 1.52944 / 51.80 | KZF2, Sumita            |
 | L6       | 1.61772 / 49.78 | N-SSK8, Schott          |
 | L7       | 1.78470 / 26.10 | SF56A, Schott           |
 | L8       | 1.53375 / 55.37 | Unmatched               |
 | L9       | 1.65844 / 50.84 | N-SSK5, Schott          |
 
-Among the five named catalog equivalents, the largest absolute differences are 8.21×10⁻⁶ in nd (L6, N-SSK8) and 0.0869 in νd (L4, BAF5). Their catalog dispersion curves are spectral equivalents; the original suppliers and melts remain unknown. Four glasses retain the patent's printed indices and Abbe numbers without a named catalog curve. Ohara S-LAL11 and Hoya SBF2 are close in index to L1 and L5, respectively, but each has a νd lower by about 0.16. The patent supplies no partial-dispersion values, so the remaining glasses use Abbe-based dispersion and secondary-spectrum behavior remains uncertain.
+Among the seven named catalog equivalents, the largest absolute differences are 8.21×10⁻⁶ in nd (L6, N-SSK8) and 0.0869 in νd (L4, BAF5). Sumita BALF6 and KZF2 match L3 and L5 to within 1.2×10⁻⁶ in nd and 0.011 in νd; they correspond to the older Schott types BaLF6 (barium light flint) and KzF2 (short flint). Their catalog dispersion curves are spectral equivalents; the original suppliers and melts remain unknown. Two glasses, L1 and L8, retain the patent's printed indices and Abbe numbers without a named catalog curve. Ohara S-LAL11 is close in index to L1 but has a νd lower by about 0.16. The patent supplies no partial-dispersion values, so the remaining glasses use Abbe-based dispersion and secondary-spectrum behavior remains uncertain.
 
 ## Focus Mechanism
 
@@ -83,7 +83,7 @@ The patent prints no clear semi-diameters, but Fig. 1 is drawn to scale. Its opt
 
 At the patent's f′ = 100 scale, the calculated longitudinal spherical aberration is approximately −0.25 mm at f/4 and −0.90 mm at the intermediate zone corresponding to f/5.57. Fig. 2 reads approximately −0.28 and −0.94 mm. At 45° the calculated distortion is −9.9‰, compared with approximately −7.6‰ from Fig. 2; the sign and curve shape agree, while the magnitude differs. These comparisons describe the printed prescription and the figure's reading precision, rather than measured product performance.
 
-Unknown clear apertures, inferred stop dimensions, four unresolved glasses and absent finite-focus spacings limit predictions of vignetting, chromatic behavior and close-focus performance. No aspherical terms or variable internal gaps are introduced.
+Unknown clear apertures, inferred stop dimensions, two unresolved glasses and absent finite-focus spacings limit predictions of vignetting, chromatic behavior and close-focus performance. No aspherical terms or variable internal gaps are introduced.
 
 ## Sources
 
