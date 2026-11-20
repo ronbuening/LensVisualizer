@@ -62,7 +62,7 @@ The last air gap is the computed d-line paraxial BFD, 23.51 mm. The patent print
 
 At the patent's 26.6° half-field, the chief ray reaches 19.96 mm image height with −0.00385% distortion, close to the plotted 20 mm and 0.0024%. The field curves are less closely reproduced: calculated tangential and sagittal shifts are −0.347 and −0.210 mm relative to paraxial focus, whereas the patent's plotted range is approximately −0.1 to +0.2 mm. Fig. 5 places its image plane about 0.08–0.14 mm inside paraxial focus, so the reference planes differ.
 
-All clear radii are inferred. The rear 7 mm radii retain corner vignetting because S8 and S9 meet near 7.45 mm; Fig. 1 draws a larger outline, about 8.2 mm, and its air gaps are not uniformly scaled. Full-frame corner chief rays pass, while marginal rays are vignetted.
+The clear radii are estimated from Fig. 1, whose glass thicknesses and surface sags fix its scale but whose air gaps are not drawn to scale. L1's rear curve ends at 5.3 mm and L7's front curve at 7.7 mm; each continues as a flat land to the element's edge, as drawn. The figure draws L5 and L6 at about 8.2 mm, but with the printed 0.94 mm gap their facing surfaces would meet near 7.45 mm, so both stop at 7.3 mm. Wide open, geometric transmission is 94.5% at 25.7° and 78.3% at the 28.5° full-frame corner, where the corner chief ray passes and the rear rims trim the outer part of the beam.
 
 The Zemax footers identify “HPF40-III.ZMX” and “U.S.Patent 4143944” as a starting design; they do not identify a production lens.
 

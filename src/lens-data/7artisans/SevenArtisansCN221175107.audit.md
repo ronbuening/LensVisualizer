@@ -14,7 +14,7 @@ The printed nd/νd pairs are 1.755/52.33, 1.497/81.6, 1.62/36.35, 2/28.32, 1.728
 
 ## First-Order Check
 
-The current model gives EFL 39.84 mm, f/5.60, paraxial BFD 23.51 mm and total track 51.00 mm. Its iris radius is 3.226 mm and nominal half-field is 27.8°. The last air gap places the image plane at paraxial focus. The patent states 40 mm and f/5.6; its Fig. 5 entrance-pupil radius of 3.50 mm would instead give f/5.69 at the current EFL.
+The current model gives EFL 39.84 mm, f/5.60, paraxial BFD 23.51 mm and total track 51.00 mm. Its iris radius is 3.226 mm and nominal half-field is 28.8°. The last air gap places the image plane at paraxial focus. The patent states 40 mm and f/5.6; its Fig. 5 entrance-pupil radius of 3.50 mm would instead give f/5.69 at the current EFL.
 
 For comparison, the original printed-index model gave EFL 40.43 mm, f/5.78, paraxial BFD 23.95 mm, total track 51.32 mm, iris radius 3.174 mm and half-field 27.8°. Its former 23.83 mm image gap minimized axial RMS spot size 0.114 mm inside paraxial focus. Moving to that plane reduced d-line axial RMS radius from 7.24 to 2.01 µm and the largest traced transverse radius from 13.13 to 3.28 µm. The following historical diffraction MTF values at 30 lp/mm apply only to those printed indices and that former image plane:
 
@@ -29,7 +29,7 @@ Those tangential values did not reproduce the patent's full-field claim above 0.
 
 With the current indices, exact spherical tracing at the patent's 26.6° half-field gives image height 19.96 mm and distortion −0.00385%, compared with the plotted 20 mm and 0.0024%. Tangential and sagittal shifts are −0.347 and −0.210 mm relative to paraxial focus, outside the patent's stated range of approximately −0.1 to +0.2 mm. Fig. 5 places its image plane about 0.08–0.14 mm inside paraxial focus, so the reference planes differ.
 
-The surfaces stay clear of each other; the iris sets the full aperture. At 28.5°, the corner chief ray reaches 21.63 mm without obstruction; S10 causes about 64% one-side meridional vignetting.
+The surfaces stay clear of each other; the iris sets the full aperture. At 28.5°, the corner chief ray reaches 21.63 mm without obstruction; S10 trims about 47% of one side of the meridional beam.
 
 ## Values Not Printed in the Patent
 
@@ -45,7 +45,7 @@ Stop sensitivity was checked for the original printed-index model at a fixed f/5
 
 Each entrance pupil had a 7 mm diameter. The positions were obtained by small-angle exact-ray extrapolation; they are predictions rather than measured dimensions or mount-clearance data.
 
-The rear clear radii are inferred as 7 mm. S8 and S9 meet near 7.45 mm, although Fig. 1 draws an outline near 8.2 mm. The drawing's air gaps are not uniformly scaled: the L3–L4 gap appears about 4 mm wide against the printed 0.1 mm. Full-frame corner chief rays pass, while marginal rays are vignetted.
+The clear radii are estimated from Fig. 1 (see the rim review below). The drawing's air gaps are not uniformly scaled: the L3–L4 gap appears about 4 mm wide against the printed 0.1 mm. Full-frame corner chief rays pass, while the outer part of the corner beam is vignetted.
 
 ## Product Identification
 
@@ -75,9 +75,20 @@ No 7Artisans product with this prescription is documented. The AstrHori 40mm f/5
 
 The model gives EFL 39.84 mm, f/5.60, BFD 23.51 mm, iris radius 3.226 mm, half-field 27.8° and total track 51.00 mm.
 
+### 2026-11-20 rim review
+
+Fig. 1 (PDF p. 8) was measured at the drawing's own resolution. All seven glass thicknesses give 28.8–30.0 px/mm (mean 29.0), and the drawn sags of S1, S4, S7, S11 and S12 agree with the radii at that scale. The air gaps do not: L1–L2 is drawn 1.6 mm (printed 3.13), L3–L4 4.2 mm (0.1) and L5–L6 2.4 mm (0.94), while L6–L7 matches at 1.3 mm. The figure therefore sets rim heights, not spacings. Drawn heights: L1 6.5, L2 5.2, L3 and L4 6.5, L5 and L6 8.2, L7 10.2 mm; L1's rear curve ends at 5.3 mm and L7's front curve at 7.7 mm, each followed by a flat land.
+
+- S2: 6.5 → 5.3 mm, with rimExtensionSd 6.5 mm for the drawn land. The corner beam reaches only 4.1 mm there, so no light is lost.
+- S8, S9 and S10: 7.0 → 7.3 mm. The figure draws L5's rear face and L6 at 8.2 mm, but with the printed 0.94 mm gap S8 and S9 meet near 7.45 mm. 7.3 mm is the largest 0.1 mm step that keeps them apart; checks.gapSagFrac 0.96 admits that pair (0.95 does not). L6 stays square-cut, as drawn.
+- S11: 9.8 → 7.7 mm, with rimExtensionSd 9.8 mm. This matches the drawn end of the front curve, where L7 nests against L6, and gives a 4.1 mm edge thickness against the drawn 3.9–4.0 mm. The former 9.8 mm curve gave a 6.6 mm edge.
+- Kept: S1 6.5, S3/S4 5.2, S5–S7 6.5 and S12 9.8 mm, all within 4% of the drawing.
+
+Wide-open geometric transmission changed from 99.0/85.8/67.8% to 100/94.5/78.3% at 22.8°/25.7°/28.5°. No field lost light, and the modelled half-field rose from 27.8° to 28.8°. The f-number stays f/5.6 with no rim limiting the axial beam. The corner chief ray still reaches 21.63 mm at 28.5°. The surface, aperture, image-circle and field-coverage checks pass.
+
 ## Remaining Questions
 
-- Every inferred clear rim still needs a complete comparison with Fig. 1. The rear-surface intersection and the drawing's nonuniform air-gap scale prevent adopting its larger outlines directly.
+- L5's rear face and L6 remain about 0.9 mm smaller than drawn because the printed 0.94 mm gap does not leave room for the figure's 8.2 mm outline.
 - No published dispersion data are available for H-LaK53B, H-F4 and H-ZLaF92. Colour in their four elements is approximated from nd/νd. FCD1's domestic material identity and supplier remain uncertain.
 - The field-curvature discrepancy is unresolved. The initial MTF values do not establish the patent's full-field MTF claim for the current model, and no apochromatic performance is established.
 - No product, production mount, marketing specifications, minimum focus distance, finite-focus spacings, mechanical stop range, diaphragm blade count or blade roundedness is documented. Physical iris dimensions also remain unconfirmed.

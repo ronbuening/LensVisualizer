@@ -10,7 +10,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * FCD1 resolves to Hoya as a spectral proxy; the patent describes domestic glass and does not establish Hoya as
  * its supplier.
  * The stop is inferred midway through the 3.13 mm L1-L2 gap, consistent with the patent's near-zero distortion.
- * Rims are inferred. The 7 mm rear rims avoid S8 and S9 meeting at about 7.45 mm.
+ * Rims are estimated from Fig. 1 and checked by real-ray trace. The figure's glass thicknesses and surface sags give
+ * 29.0 px/mm at 150 dpi, but its air gaps are not to scale, so it sets rim heights only. It draws L1 at 6.5 mm, L2 at
+ * 5.2 mm, L3 and L4 at 6.5 mm, L5 and L6 at 8.2 mm and L7 at 10.2 mm. L1's rear curve ends at 5.3 mm and L7's front
+ * curve at 7.7 mm, each followed by a flat land (rimExtensionSd 6.5 and 9.8 mm). With the printed 0.94 mm gap, S8
+ * and S9 would meet at about 7.45 mm, so L5's rear face and L6 stop at 7.3 mm; checks.gapSagFrac 0.96 admits the
+ * S8/S9 pair. L7 stays at 9.8 mm, within 4 % of the drawing.
  * The final air gap is the computed paraxial back focus, since the patent prints no image distance.
  * Nominal f = 40 mm and F/5.6 follow the text; the 3.50 mm entrance-pupil radius in Fig. 5 implies about F/5.69.
  * The prescription models infinity focus only; no finite-focus spacings or production mount are documented.
@@ -43,7 +48,7 @@ const LENS_DATA = {
     },
     authors: ["Changjia Liu"],
     assignees: ["Shenzhen 7Artisans Photoelectric Technology Co., Ltd."],
-    sdSource: "heuristic",
+    sdSource: "figure-measured",
     errata: [
       {
         status: "corrected",
@@ -160,7 +165,8 @@ const LENS_DATA = {
       label: "2",
       R: 22.3,
       d: 1.565,
-      sd: 6.5,
+      sd: 5.3,
+      rimExtensionSd: 6.5,
     },
     {
       label: "STO",
@@ -205,26 +211,27 @@ const LENS_DATA = {
       label: "8",
       R: 58.77,
       d: 0.94,
-      sd: 7,
+      sd: 7.3,
     },
     {
       label: "9",
       R: -60,
       d: 2.73,
-      sd: 7,
+      sd: 7.3,
       medium: 6,
     },
     {
       label: "10",
       R: -19.19,
       d: 1.3,
-      sd: 7,
+      sd: 7.3,
     },
     {
       label: "11",
       R: -11.6,
       d: 3,
-      sd: 9.8,
+      sd: 7.7,
+      rimExtensionSd: 9.8,
       medium: 7,
     },
     {
@@ -245,6 +252,7 @@ const LENS_DATA = {
   layout: {
     yScFill: 0.4,
   },
+  checks: { gapSagFrac: 0.96 },
   groups: [],
   doublets: [
     {
