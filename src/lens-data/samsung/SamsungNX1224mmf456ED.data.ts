@@ -14,7 +14,7 @@ const LENS_DATA = {
   key: "samsung-nx-12-24mm-f4-56-ed",
   maker: "Samsung",
   name: "SAMSUNG 12-24mm f/4-5.6 ED",
-  subtitle: "US 2013/0235465 A1, Example 5 — Samsung NX 12-24mm production correlation",
+  subtitle: "US 2013/0235465 A1, Example 5 — Samsung / Arimoto",
   visible: true,
   source: {
     patentNumber: "US 2013/0235465 A1",
@@ -42,7 +42,13 @@ const LENS_DATA = {
     closeFocusM: {
       marketing: 0.24,
     },
-    specs: ["10 ELEMENTS / 8 GROUPS", "DESIGN F/4.1–5.8", "1 ED ELEMENT", "2 ASPHERICAL ELEMENTS"],
+    specs: [
+      "10 ELEMENTS / 8 GROUPS",
+      "DESIGN f = 12.36–23.40 mm",
+      "DESIGN F/4.1–5.8",
+      "1 ED ELEMENT",
+      "2 ASPHERICAL ELEMENTS",
+    ],
     imageCircleMm: 28,
   },
   elements: [
@@ -1352,6 +1358,8 @@ const LENS_DATA = {
   aperture: {
     fStops: [4.1, 5.6, 8, 11, 16, 22],
     maxFNumber: 22,
+    blades: 7,
+    bladeRoundedness: 1,
   },
   projection: {
     kind: "rectilinear",

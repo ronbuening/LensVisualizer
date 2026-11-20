@@ -1,30 +1,56 @@
 # SAMSUNG 12-24mm f/4-5.6 ED — Audit Log
 
-## Source Prescription
+## Source
 
-US 2013/0235465 A1, Example 5, Figure 9 and Tables 13–15 supplies the 19-surface, ten-element prescription at its printed millimetre scale. Three infinity zoom states are printed. The other 98 stations, per-station iris radii, image distances, clear radii and 28 mm image circle are calculated or inferred. The model includes infinity focus only.
+[US 2013/0235465 A1](https://patents.google.com/patent/US20130235465A1/en), Example 5, Figure 9 and Tables 13–15 supplies the 19-surface, ten-element prescription at its printed millimetre scale. The inventor is Tetsuya Arimoto and the assignee is Samsung Electronics Co., Ltd. The granted family member is [US 9,341,825 B2](https://patents.google.com/patent/US9341825B2/en).
 
-## 2026-11-20 — Deployment validation and cleanup
+## Transcription Check
 
-An independent validator re-read the 300 dpi page images on pages 27–28: all 19 radii and axial spacings, ten nd/νd pairs, S10 and its 2.5 mm following airspace, two cemented interfaces, all 15 asphere values and all three printed D1/D2/D3 rows matched without transcription errors. Equation 8 uses the standard (K + 1) convention, so K = 0 remains correct. The verdict was valid with notes concerning rims, the index line, glass labels and wording. Figure 9's wide view and enlarged G3/G4 view were also inspected during this review.
+A comparison with pages 27–28 at 300 dpi found no transcription errors in the 19 radii and axial spacings, ten nd/νd pairs, S10 and its 2.5 mm following airspace, two cemented interfaces, all 15 asphere values or the three printed D1/D2/D3 rows. The printed wide, middle and tele rows are retained exactly. Equation 8 uses the standard (K + 1) convention, consistent with K = 0. Figure 9's wide view and enlarged G3/G4 view support the element shapes, cemented pairs, stop position and four-group layout. The clear radii, wavelength reference and glass descriptions required the corrections below.
 
-The patent-family association with Samsung's NX 12-24mm is strong: ten elements/eight groups, one ED and two aspherical elements, 0.24 m and 0.14× agree with the product references. Choosing Example 5 over Examples 2 and 3 remains uncertain; all three match those specifications, while Example 5 has the shorter wide-end track, approximately 95.9 versus 99.0 mm. Sources are [LensTip](https://www.lenstip.com/1086-Samsung_NX_12-24_mm_f_4.0-5.6_ED-lens_specifications.html), [Imaging Resource](https://www.imaging-resource.com/lenses/samsung/12-24mm-f4-5.6-ed-nx/specifications/) and [DPReview](https://www.dpreview.com/products/samsung/lenses/samsung_12-24_4-5p6/). The analysis now mentions the granted family member, US 9,341,825 B2.
+## First-Order Check
 
-Changes to identity, structure and public text:
+Wide / middle / tele values after the corrections are:
 
-- Import: `../main/src/types/lensDataV2.js` → `../../types/lensDataV2.js`; constant/export: `data` → `LENS_DATA`. Added one header identifying printed and inferred quantities.
-- Key: `samsung-arimoto-us20130235465-example5-reference` → `samsung-nx-12-24mm-f4-56-ed`; name: `ARIMOTO US20130235465 — EXAMPLE 5 ZOOM REFERENCE` → `SAMSUNG 12-24mm f/4-5.6 ED`. Maker remains Samsung. Visibility: implicit → explicit `true`.
-- Subtitle: `Patent-only infinity / D-line reference · modeled 28 mm circle · estimated apertures and solved cam` → `US 2013/0235465 A1, Example 5 — Samsung NX 12-24mm production correlation`.
-- Specs: eight lines describing preparation and testing → `10 ELEMENTS / 8 GROUPS`, `DESIGN F/4.1–5.8`, `1 ED ELEMENT`, `2 ASPHERICAL ELEMENTS`.
-- Catalog mount/format: absent → `samsung-nx` / `aps-c`; marketed focal length: absent → `[12, 24]` mm; marketed f-number: absent → `4`; marketed minimum focus: absent → `0.24` m. These come from the cited product references. The f-number marketing field accepts a scalar, so the tele-end f/5.6 is retained in the name and analysis. Existing element/group counts remain 10/8 and design values remain 12.36–23.40 mm, f/4.1 at wide.
-- Element labels: `L1`…`L10` → `Element 1`…`Element 10`; added plain optical roles and in-air focal lengths −25.12, −19.26, +43.47, −48.58, +24.53, +30.06, +25.28, −9.55, +16.41 and −75.01 mm. Existing shape types agree with the radius signs and remain unchanged.
-- Cemented annotations: absent → C1 on L4/L5, spanning S7–S9, and C2 on L8/L9, spanning S15–S17; both pairs have matching group annotations.
-- Index reference: `D` plus explanatory notes → omitted, using the default helium d line, on all ten elements. Printed nd and νd remain unchanged.
-- L6 ED designation: absent → `apd: "inferred"`, with a note explaining the FCD1 coordinate match and inferred product position.
-- Focus description: wording about preparation, separate checks and unsupported retail identity → plain infinity-only description with the Table 15 near-state limitation. `focus.closeFocusM` remains 1e15. All 101 stations, including their labels, apertures and every gap value, remain numerically unchanged; the 0.002 zoom step remains.
-- `source.sdSource`: `heuristic` → removed because the rims now combine ray estimates and figure bounds.
+| Quantity | Wide | Middle | Tele |
+| --- | ---: | ---: | ---: |
+| Printed focal length (mm) | 12.36 | 18.00 | 23.40 |
+| Calculated effective focal length (mm) | 12.364 | 18.005 | 23.401 |
+| Printed and nominal f-number | 4.10 | 4.73 | 5.80 |
+| Calculated stop radius (mm) | 4.60 | 4.78 | 4.52 |
+| Paraxial back focal distance (mm) | 21.631 | 29.408 | 36.851 |
+| First vertex to image (mm) | 95.91 | 89.72 | 90.04 |
 
-Glass labels changed from the common `Unmatched (literal patent Nd/Vd; no exact catalog glass identity asserted)` text to the following Hoya equivalents, in the neighbouring files' `NAME (HOYA catalog equivalent; production supplier unspecified)` form. All ten labels resolve to Hoya catalog glasses. Differences below are catalog minus printed values.
+The iris radii are calculated from the printed nominal f-numbers, so aperture agreement follows from that calculation. The image plane is the paraxial plane; no aberration-minimizing shift is applied. Maximum interpolation defocus is 0.00037 mm. Interpolating only the three printed gap rows would miss focus by 0.705 mm.
+
+A check of the surface geometry found no edge-thickness or overlap errors, including the variable air gaps. All 101 zoom stations have an effective aperture within 3% of nominal, with no limit from an optical rim, ray-trace failure or iris inconsistency. The image-circle check found no undersized circle or omitted case. Every station reaches the 14 mm corner, with approximately 100% field coverage and no unsolved or omitted station.
+
+## Values Not Printed in the Patent
+
+The patent prints three infinity zoom states. The other 98 stations, per-station iris radii, paraxial image distances, clear radii and 28 mm image circle are calculated or inferred. D1 varies linearly between each pair of printed states, reversing direction at the middle state. D2 and D3 decrease monotonically and are calculated to interpolate focal length and back focal distance. This motion does not establish the production cam. Only infinity focus is included.
+
+The clear radii combine ray heights with Figure 9 bounds. S1 is 17.7 mm, below the approximately 18.1 mm figure reading and above the approximately 17.65 mm front ray height. G3 admits the approximately 8.1 mm front ray height, with smaller downstream radii following the bundle, within the approximately 9.1 / 8.7 mm figure bounds. Rear radii follow the approximately 5.9 mm L6, 5.7 mm L7/L8, 6.8 mm L9 rear and 7.4 mm L10 readings. Some off-axis clipping remains where the full iris bundle exceeds those bounds. The physical iris diameter is not printed; the figure reading of approximately 4.67 mm radius is close to the calculated 4.60 mm wide-end radius.
+
+## Product Identification
+
+The patent family closely matches Samsung's NX 12-24mm f/4-5.6 ED: ten elements in eight groups, one ED and two aspherical elements, 0.24 m minimum focus and 0.14× maximum magnification agree with [LensTip](https://www.lenstip.com/1086-Samsung_NX_12-24_mm_f_4.0-5.6_ED-lens_specifications.html), [Imaging Resource](https://www.imaging-resource.com/lenses/samsung/12-24mm-f4-5.6-ed-nx/specifications/) and [DPReview](https://www.dpreview.com/products/samsung/lenses/samsung_12-24_4-5p6/). Those references support Samsung NX mount, APS-C format, marketed 12–24 mm and f/4–5.6. LensTip and Imaging Resource confirm seven diaphragm blades and f/22 minimum aperture; Imaging Resource describes a circular diaphragm.
+
+Examples 2, 3 and 5 all fit the published construction and close-focus specifications. Example 5 has a shorter wide-end optical track, approximately 95.9 versus 99.0 mm, but optical track and external barrel length differ. No manufacturer construction diagram establishes a unique example. Examples 1 and 4 have eleven elements and do not match the product count.
+
+## Corrections, 2026-11-20
+
+- Replaced the earlier name and key with the product name and its corresponding key. Samsung remains the maker, and visibility is now explicit. Corrected the type import and made the constant declaration and export consistent. Added a header separating printed, calculated and inferred quantities.
+- Replaced the subtitle's status description with the patent number, Example 5, assignee and inventor surname: “US 2013/0235465 A1, Example 5 — Samsung / Arimoto”. Replaced the eight earlier descriptive lines with construction, design aperture, one ED element and two aspherical elements; added “DESIGN f = 12.36–23.40 mm” to distinguish the printed range from the marketed range.
+- Added Samsung NX mount, APS-C format, marketed 12–24 mm, wide-end f/4 and 0.24 m minimum focus from the product references. The `catalog.fNumber.marketing` field accepts one number, so the tele-end f/5.6 remains in the name and analysis. Element/group counts remain 10/8; design metadata remains 12.36–23.40 mm and wide-end f/4.1.
+- Added seven diaphragm blades and circular roundedness from Imaging Resource, with the blade count also confirmed by LensTip. Retained the design stop list from f/4.1 through f/22 and the sourced f/22 minimum aperture.
+- Expanded the element labels to “Element 1” through “Element 10” and added optical roles. Added in-air focal lengths of −25.12, −19.26, +43.47, −48.58, +24.53, +30.06, +25.28, −9.55, +16.41 and −75.01 mm. Shape descriptions already agree with the radius signs.
+- Added C1 on L4/L5, spanning S7–S9, and C2 on L8/L9, spanning S15–S17, with matching cemented-pair brackets. Retained the four G1–G4 brackets.
+- Corrected all ten elements from the sodium D reference to the helium d reference by removing the incorrect explicit reference and its notes. Printed nd and νd are unchanged. Removed earlier sodium-D MTF values, which no longer apply after the wavelength and dispersion corrections.
+- Added the inferred ED designation to L6, with a note explaining the FCD1 coordinate match and uncertain product position.
+- Replaced the focus description with the infinity-only scope and Table 15 near-state limitation. The focus distance setting remains effectively infinite. All 101 stations, their labels, apertures and gaps, and the 0.002 zoom increment are unchanged.
+- Removed the description attributing all clear radii to one source because the radii combine ray estimates and drawing bounds. Clarified the analysis's current clear radii, printed versus inferred quantities, example uncertainty and marketed versus design apertures. Removed magnification from the Imaging Resource citation's summary and repeated discussion of unresolved questions.
+
+Replaced the unidentified glass descriptions with Hoya catalog equivalents. Each label resolves to a catalog row. Differences are catalog minus printed values:
 
 | Element | New glass | Δnd |   Δνd |
 | ------- | --------- | --: | ----: |
@@ -39,9 +65,9 @@ Glass labels changed from the common `Unmatched (literal patent Nd/Vd; no exact 
 | L9      | FC5       |   0 | +0.01 |
 | L10     | TAF1      |   0 | +0.01 |
 
-No catalog-copied nC/nF/ng values were present. These coordinate matches supply spectral curves without identifying the production melt.
+No separate C-, F- or g-line indices copied from a catalog were present. The coordinate matches supply spectral curves without identifying the production supplier or melt.
 
-Clear semi-diameters changed only upward, within the Figure 9 readings. S1 uses 17.7 mm, below the approximately 18.1 mm figure bound, covering a traced wide-field front height of approximately 17.65 mm. G3 uses a rounded envelope around the approximately 8.1 mm front ray height, with smaller downstream radii following that bundle. L6–L10 remain bounded by the figure readings, retaining clipping where the full iris bundle exceeds them.
+Clear semi-diameters were increased within Figure 9's readings to admit the reported ray heights:
 
 | Surface | Old sd (mm) | New sd (mm) |
 | ------- | ----------: | ----------: |
@@ -59,14 +85,14 @@ Clear semi-diameters changed only upward, within the Figure 9 readings. S1 uses 
 | S18     |         5.4 |         7.2 |
 | S19     |         5.9 |         7.4 |
 
-S2 keeps its 11.2 mm optical cap and gains a 17.7 mm opaque rim extension, following Figure 9's vertical rear land. This addition changes the outline without opening or cutting the optical cap. S2–S6 clear radii remain unchanged. No curvature, thickness, asphere, stop position or zoom gap changed, and no geometry override was added.
+S2 retains its 11.2 mm optical cap and gained a 17.7 mm opaque rim extension following Figure 9's vertical rear land. The extension changes the outline without opening or cutting the optical cap. S2–S6 clear radii are unchanged. No curvature, thickness, asphere, stop position or zoom gap changed, and no exception to the geometric checks was added. The printed millimetre scale and paraxial image plane are retained.
 
-First-order quantities remain unchanged: wide / middle / tele EFL = 12.3637 / 18.0055 / 23.4008 mm; nominal f-number = 4.10 / 4.73 / 5.80; stop radius = 4.5957 / 4.7832 / 4.5249 mm; BFD = 21.6314 / 29.4076 / 36.8514 mm; total track = 95.9134 / 89.7236 / 90.0364 mm. Maximum interpolation defocus is 0.00037 mm.
+At the same 28 mm-circle corner fields of 51.0° wide and 31.3° tele, the calculated full-pupil geometric transmission increased from 6.75% to 48.82% and from 61.77% to 99.44%, respectively. These figures describe the adopted apertures, without production transmission claims. The first-order quantities in the table above are unchanged by the radius, wording and metadata corrections.
 
-Checks after the changes: surface audit OK, including the variable-gap geometry; aperture audit 101/101 stations within 3% of nominal, with zero rim, trace, iris or failed limits; image-circle audit one checked, zero undersized and zero skipped; field-coverage audit 101/101 stations reach the 14 mm corner, approximately 100% coverage, zero unsolved or skipped. At the same 28 mm-circle corner fields of 50.9538° wide and 31.3106° tele, the engine's full-pupil geometric transmission changes from 6.7534% → 48.8228% and 61.7720% → 99.4424%, respectively. These figures describe the adopted model apertures, without production transmission claims.
+## Remaining Questions
 
-The analysis distinguishes printed and inferred data, the patent-family association and uncertain example choice, and the marketed aperture from the design aperture. Earlier sodium-D MTF values were removed because they do not apply after the index-line and dispersion corrections.
+Table 15's finite states are not included. They correspond to 240 mm object-to-image and 0.076 / 0.107 / 0.140× magnification. A two-state focus interpolation would miss focus by about 0.09 / 0.16 / 0.27 mm at mid-travel, requiring intermediate focus positions.
 
-Open: Table 15's finite states remain uninstalled. They correspond to 240 mm object-to-image and 0.076 / 0.107 / 0.140× magnification; a two-state focus interpolation would miss focus by about 0.09 / 0.16 / 0.27 mm at mid-travel, requiring intermediate focus positions. The 28 mm image circle remains an estimate, compared with approximately 28.7 mm implied by the source fields. A later rim review should compare the unchanged S2–S6 caps and remaining wide-field clipping with Figure 9, and determine whether larger G3 rims closer to its outer outline are warranted. The adopted G3 radii admit the reported approximately 8.1 mm front height; complete agreement with every drawn pupil ray is not established. The production choice among Examples 2, 3 and 5, exact glass melts, physical iris diameter, baffles and sensor stack remain unresolved.
+The 28 mm image circle remains an estimate, compared with approximately 28.7 mm implied by the source fields. The unchanged S2–S6 caps and remaining wide-field clipping need comparison with Figure 9, including whether larger G3 rims closer to its outer outline are warranted. The adopted G3 radii admit the approximately 8.1 mm front height, but agreement with every drawn pupil ray is not established.
 
-Second review fixes: Removed process commentary from this audit, removed magnification from the Imaging Resource citation, and described the inferred clear radii as their current state within Figure 9's readings. Removed the analysis's repeated remaining-work paragraph; the unresolved optical questions remain under Open. The prescription is unchanged.
+The production choice among Examples 2, 3 and 5, exact glass melts, physical iris diameter, baffles and sensor stack remain unresolved. The cited product specifications give no numerical blade curvature; the circular roundedness follows the published diaphragm description. The optional rear filter has no prescribed dimensions and remains omitted.

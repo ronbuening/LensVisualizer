@@ -10,9 +10,9 @@
 **Filed:** January 29, 2013.\
 **Example details:** Example 5, Figure 9 and Tables 13–15, at the printed millimetre scale.
 
-The patent family has a strong circumstantial association with the Samsung NX 12-24mm f/4-5.6 ED. The product has ten elements in eight groups, one ED element, two aspherical elements, 0.24 m minimum focus and 0.14× maximum magnification. These agree with Examples 2, 3 and 5; the published product specifications do not distinguish those examples. Example 5 is selected because its approximately 95.9 mm wide-end optical track is shorter than the approximately 99.0 mm alternatives, making it a plausible compact-barrel choice. Optical track and external barrel length measure different things, so this does not establish the production prescription. No manufacturer construction diagram establishes a unique example. Examples 1 and 4 have eleven elements and do not fit the published count. [LensTip](https://www.lenstip.com/1086-Samsung_NX_12-24_mm_f_4.0-5.6_ED-lens_specifications.html), [Imaging Resource](https://www.imaging-resource.com/lenses/samsung/12-24mm-f4-5.6-ed-nx/specifications/), [DPReview](https://www.dpreview.com/products/samsung/lenses/samsung_12-24_4-5p6/).
+The patent family has a strong circumstantial association with the Samsung NX 12-24mm f/4-5.6 ED. The product has ten elements in eight groups, one ED element, two aspherical elements, 0.24 m minimum focus and 0.14× maximum magnification. These agree with Examples 2, 3 and 5; the published product specifications do not distinguish those examples. Example 5 is selected because its approximately 95.9 mm wide-end optical track is shorter than the approximately 99.0 mm tracks in Examples 2 and 3, making it a plausible choice for a compact barrel. Optical track and external barrel length measure different things, so this does not establish the production prescription. No manufacturer construction diagram establishes a unique example. Examples 1 and 4 have eleven elements and do not fit the published count. [LensTip](https://www.lenstip.com/1086-Samsung_NX_12-24_mm_f_4.0-5.6_ED-lens_specifications.html), [Imaging Resource](https://www.imaging-resource.com/lenses/samsung/12-24mm-f4-5.6-ed-nx/specifications/), [DPReview](https://www.dpreview.com/products/samsung/lenses/samsung_12-24_4-5p6/).
 
-The marketed range is 12–24 mm at f/4–5.6 for Samsung NX, APS-C. Example 5 instead prints 12.36 / 18.00 / 23.40 mm at f/4.1 / 4.73 / 5.8, with full angular fields of 103° / 79° / 64°. Those source values remain distinct from the retail specifications. The catalog stores the wide-end marketed f-number, 4, because that field accepts one number; the full marketed range appears in the lens name and here.
+The marketed range is 12–24 mm at f/4–5.6 for Samsung NX, APS-C, with a seven-blade circular diaphragm that stops down to f/22. Example 5 instead prints 12.36 / 18.00 / 23.40 mm at f/4.1 / 4.73 / 5.8, with full angular fields of 103° / 79° / 64°. Those source values remain distinct from the retail specifications.
 
 ## Optical Architecture
 
@@ -22,12 +22,12 @@ The three printed infinity states retain D1 = 4.500 / 5.250 / 5.100 mm, D2 = 14.
 
 | Quantity                          |    Wide |  Middle |    Tele |
 | --------------------------------- | ------: | ------: | ------: |
-| Effective focal length (mm)       | 12.3637 | 18.0055 | 23.4008 |
+| Effective focal length (mm)       |  12.364 |  18.005 |  23.401 |
 | Nominal f-number                  |    4.10 |    4.73 |    5.80 |
-| Paraxial back focal distance (mm) | 21.6314 | 29.4076 | 36.8514 |
-| First vertex to image (mm)        | 95.9134 | 89.7236 | 90.0364 |
+| Paraxial back focal distance (mm) |  21.631 |  29.408 |  36.851 |
+| First vertex to image (mm)        |   95.91 |   89.72 |   90.04 |
 
-Back focal distance is not printed. The image plane is the calculated paraxial plane, without a shift to minimize aberrations. The iris radius is calculated from each station's nominal aperture; its wide / middle / tele values are 4.5957 / 4.7832 / 4.5249 mm. Agreement with the printed f-numbers follows from that iris calculation.
+Back focal distance is not printed. The image plane is the calculated paraxial plane, without a shift to minimize aberrations. The iris radius is calculated from each station's nominal aperture; its wide / middle / tele values are 4.60 / 4.78 / 4.52 mm. Agreement with the printed f-numbers follows from that iris calculation.
 
 ## Element-by-Element Analysis
 
@@ -101,9 +101,9 @@ The catalog curves supply wavelength dependence. No separate C-, F- or g-line in
 
 ## Focus Mechanism and Zoom Motion
 
-The model includes infinity focus only. The product's 0.24 m minimum focus is catalog metadata. Table 15 prints finite states whose object-to-image distance is 240 mm and whose magnifications are 0.076 / 0.107 / 0.140×. D1 stays fixed; D2 increases while D3 decreases, moving G3 toward the image side. A direct infinity-to-near interpolation misses focus at mid-travel by approximately 0.09 / 0.16 / 0.27 mm, so these states require intermediate focus positions before a continuous focus range can be included.
+The model includes infinity focus only. The product's minimum focus distance is 0.24 m. Table 15 prints finite states whose object-to-image distance is 240 mm and whose magnifications are 0.076 / 0.107 / 0.140×. D1 stays fixed; D2 increases while D3 decreases, moving G3 toward the image side. A direct infinity-to-near interpolation misses focus at mid-travel by approximately 0.09 / 0.16 / 0.27 mm, so these states require intermediate focus positions before a continuous focus range can be included.
 
-There are 101 infinity zoom stations. The three printed stations are retained exactly. Between them, D1 follows a piecewise-linear motion, including its reversal at the middle station. D2 and D3 are calculated so that effective focal length and paraxial back focal distance interpolate between the printed states; both gaps decrease monotonically. These 98 intermediate states describe an inferred optical motion, without establishing the production cam. Maximum independently sampled interpolation defocus is 0.00037 mm; interpolation from only the three printed gap rows would miss focus by 0.705 mm.
+There are 101 infinity zoom stations. The three printed stations are retained exactly. Between them, D1 follows a piecewise-linear motion, including its reversal at the middle station. D2 and D3 are calculated so that effective focal length and paraxial back focal distance interpolate between the printed states; both gaps decrease monotonically. These 98 intermediate states describe an inferred optical motion, without establishing the production cam. Maximum interpolation defocus is 0.00037 mm; interpolation from only the three printed gap rows would miss focus by 0.705 mm.
 
 ## Aspherical Surfaces
 
@@ -121,11 +121,11 @@ The opposite signs of the leading terms on L2 provide different peripheral depar
 
 The clear radii are inferred and stay within Figure 9's measured bounds. S1 remains below the approximately 18.1 mm drawing reading; the G3 radii remain below approximately 9.1 / 8.7 mm. Rear radii are bounded by approximately 5.9 mm at L6, 5.7 mm at L7 and L8, 6.8 mm at L9's rear and 7.4 mm at L10. The whole pupil is not transmitted at every field, and the drawing does not establish all physical clear apertures.
 
-The retained 28 mm image circle is an estimate. At the printed middle and tele half-fields of 39.5° and 32°, real chief rays reach about 14.35 and 14.38 mm, suggesting approximately 28.7 mm diameter. The modeled 14 mm corner is reached at every zoom station. At wide and tele the corresponding half-fields are 50.9538° and 31.3106°, with calculated geometric pupil transmission of 48.82% and 99.44%. These are properties of the adopted apertures, without coatings, sensor cover glass or production baffles; they are not measured retail illumination.
+The retained 28 mm image circle is an estimate. At the printed middle and tele half-fields of 39.5° and 32°, real chief rays reach about 14.35 and 14.38 mm, suggesting approximately 28.7 mm diameter. The modeled 14 mm corner is reached at every zoom station. At wide and tele the corresponding half-fields are 51.0° and 31.3°, with calculated geometric pupil transmission of 48.82% and 99.44%. These are properties of the adopted apertures, without coatings, sensor cover glass or production baffles; they are not measured retail illumination.
 
 ## Sources
 
 - [US 2013/0235465 A1](https://patents.google.com/patent/US20130235465A1/en), front page, Figure 9, equation 8 and Tables 13–15; [US 9,341,825 B2](https://patents.google.com/patent/US9341825B2/en), granted family member.
-- [LensTip product specifications](https://www.lenstip.com/1086-Samsung_NX_12-24_mm_f_4.0-5.6_ED-lens_specifications.html), product range, construction, Samsung NX mount, minimum focus and September 2012 announcement.
-- [Imaging Resource product specifications](https://www.imaging-resource.com/lenses/samsung/12-24mm-f4-5.6-ed-nx/specifications/), APS-C format, aperture range, special elements and internal focusing.
+- [LensTip product specifications](https://www.lenstip.com/1086-Samsung_NX_12-24_mm_f_4.0-5.6_ED-lens_specifications.html), product range, construction, Samsung NX mount, minimum focus, seven diaphragm blades, f/22 minimum aperture and September 2012 announcement.
+- [Imaging Resource product specifications](https://www.imaging-resource.com/lenses/samsung/12-24mm-f4-5.6-ed-nx/specifications/), APS-C format, aperture range, seven-blade circular diaphragm, special elements and internal focusing.
 - [DPReview product specifications](https://www.dpreview.com/products/samsung/lenses/samsung_12-24_4-5p6/), APS-C format, construction, special elements and close-focus data.
