@@ -1,55 +1,85 @@
+# CARL ZEISS JENA 100mm f/2 (DE 700,699 Design)
+
 ## Patent Reference and Design Identification
 
-**Patent:** DE 700,699 A; DE700699C is a mirror alias, not a second design.
-**Filed:** January 9, 1938, Z 0024325.
-**Published:** January 3, 1941.
-**Inventor:** Ludwig Bertele.
-**Assignee:** Zeiss Ikon Aktiengesellschaft.
-**Example details:** German numerical example at100mm, nominalf/2; seven elements in three groups1|3|3.
+**Patent:** DE 700,699 C, _Photographisches Objektiv_
 
-App-ready patent-only reconstruction under the repository nominal/paraxial aperture convention. It is not an85mmretail Sonnar or Jupiter-9 and does not substitute US2188523 or the eight-element US2254511. The parent researcher visually verified the original German table and DPMA entry. Local web attempts were inaccessible, so this is attributed primary transcription rather than local pixel verification.
+**Filed:** 9 January 1938
+
+**Published:** 3 January 1941; grant announced 28 November 1940
+
+**Inventors:** Ludwig Bertele
+
+**Assignee:** Zeiss Ikon AG
+
+**Example details:** Sole numerical example, printed F = 100 mm and 1:2; seven elements in three groups.
+
+The Patentschrift supplies the sole example at its printed 100 mm scale. Its ten radii, seven glass thicknesses and nd/νd pairs, 0.38 mm first air space and 9.44 mm stop space are retained without rescaling (patent p. 2 and drawing sheet).
+
+The historical [Sonnar account at zeissikonveb.de](https://www.zeissikonveb.de/start/objektive/normalobjektive/sonnar.html), section 5.2, identifies DRP 700.699 as Bertele's improved-distortion Sonnar 2/5 cm and states that it did not reach series production. No production product is identified with this prescription. Similarity to the 1–3–3 layout of the Contax Sonnar 85/2 or Jupiter-9 does not establish a product link. US 2,254,511 is a different eight-element f/1.4 design, rather than a family publication of this patent.
 
 ## Optical Architecture
 
-A singlet precedes two cemented triplets. All ten signed radii, seven glass thicknesses and nD/Abbe pairs, the0.38mmfirst air gap, and published7.50/1.94mmiris split are literal. No baffle, asphere, artificial gap, refractive-index fit or geometry override is added. EFL100.012319904mm is not rescaled to100mm. No source image gap is printed: BFD54.535164674mm and Gaussian infinity imagez122.105164674mm are calculated. The fullf/2marginal focuses atz122.239921854mm; Gaussian-plane marginal height0.03466631mm is preserved, not fitted away.
+A positive front singlet precedes a net-negative cemented triplet and a net-positive rear triplet, giving a positive–negative–positive component sequence. Their computed in-air focal lengths are +131.30, −203.41 and +111.27 mm. All ten refracting surfaces are spherical.
+
+The patent places a biconcave dispersing element between two collecting elements in the rear component. Each collecting element has a higher refractive index than the dispersing glass. The text presents this arrangement as a way to reduce residual distortion rather than to increase sharpness (patent p. 2, description and claim).
+
+The computed paraxial EFL is 100.0123199 mm, about 0.012% above the printed 100 mm. The patent supplies no image-plane distance. The model uses a calculated paraxial BFD of 54.5351647 mm, stored as 54.5352 mm, for a first-vertex-to-image distance of 122.1052 mm. The image plane remains paraxial; the full f/2 marginal ray crosses the axis near 122.2399 mm and has a residual height of about 0.0347 mm at the modeled plane.
 
 ## Element-by-Element Analysis
 
 ### G1 — L1 Positive Meniscus
 
-nD=1.6204, νD=60.3; unidentified historical glass. Thickness6.79mm. Both optical clear radii are estimated26.5mm, based on the finitef/2input envelope plus margin and positive-edge checks.
+nd = 1.6204, νd = 60.3. Glass: N-SK16 (Schott catalog proxy). In-air f = +131.30 mm.
 
-### G2 — Cemented L2–L4
+The front collecting meniscus is 6.79 mm thick. Its 28 mm semi-diameters follow the drawing. The catalog curve matches the printed optical coordinates closely; the historical glass supplier is unknown.
 
-L2 nD/νD=1.7016/41.2, L3=1.5400/59.6, L4=1.6883/31.2; all glass identities unmatched. Thicknesses7.17,7.55,1.89mm. The positive-meniscus/biconvex/biconcave shapes retain the German signed boundaries. Clear radii R3–R6 are estimated24.5,23,22.5,16.8mm. Independent fullf/2marginal R6height16.58690mm was used to size the unprinted exit aperture before authoring, rather than claiming a drawing measurement.
+### G2 — Cemented L2–L4 (C1)
 
-### G3 — Cemented L5–L7
+| Element | Shape              | nd     | νd   | Glass curve         | In-air focal length |
+| ------- | ------------------ | ------ | ---- | ------------------- | ------------------- |
+| L2      | Positive meniscus  | 1.7016 | 41.2 | BAFD7 (Hoya proxy)  | +95.27 mm           |
+| L3      | Biconvex positive  | 1.5400 | 59.6 | BAK2 (Sumita proxy) | +104.00 mm          |
+| L4      | Biconcave negative | 1.6883 | 31.2 | Unmatched           | −33.27 mm           |
 
-L5 nD/νD=1.6204/60.3, L6=1.5174/52.4, L7=1.6689/48.8; unidentified historical glasses. Thicknesses10.76,1.13,22.46mm. The rear group has three elements, not the four in US2254511. Its four clear radii are estimated17mm. No production barrel or mechanical outer diameter is inferred.
+The two positive elements precede the stronger negative member, producing a net-negative middle component. Their thicknesses are 7.17, 7.55 and 1.89 mm. R3–R5 use the drawing's approximately 23.7 mm rims. R6 retains a 16.8 mm clear radius because the f/2 axial marginal reaches about 16.59 mm there.
+
+### G3 — Cemented L5–L7 (C2)
+
+| Element | Shape              | nd     | νd   | Glass curve           | In-air focal length |
+| ------- | ------------------ | ------ | ---- | --------------------- | ------------------- |
+| L5      | Positive meniscus  | 1.6204 | 60.3 | N-SK16 (Schott proxy) | +104.04 mm          |
+| L6      | Biconcave negative | 1.5174 | 52.4 | S-NSL36 (Ohara proxy) | −41.07 mm           |
+| L7      | Biconvex positive  | 1.6689 | 48.8 | Unmatched             | +45.23 mm           |
+
+The rear triplet places the lower-index negative element between two positive members, as the claim specifies. The thicknesses are 10.76, 1.13 and 22.46 mm. R7 retains a 17 mm clear radius for the axial beam, which reaches about 16.38 mm. R8–R10 follow the approximately 23.7 mm figure rims. These are optical clear radii, not production barrel dimensions.
 
 ## Glass Identification and Dispersion
 
-The seven source sodium-D/Abbe pairs are retained. Native G equals each literal nD; auxiliary channels use an uncalibrated Abbe approximation, with no matched catalog melt. Only D-line geometry/rays are independently checked. No calibrated chromatic, polychromaticMTF, transmission or retail-performance claim follows from panel rendering.
+The table heading prints lowercase nd, identifying the helium d line at 587.6 nm. All seven elements use that reference. Five elements admit close catalog curves: L1/L5 N-SK16, L2 BAFD7, L3 BAK2 and L6 S-NSL36. Their evaluated differences from the printed coordinates are at most 0.000057 in nd and 0.08 in νd. These curves are spectral proxies; they do not identify the original supplier or melt. L4 and L7 remain explicitly unmatched because no catalog row meets the stricter coordinate limits used here.
+
+The printed nd/νd pairs remain unchanged. The unmatched elements use an Abbe-based dispersion estimate. No measured partial dispersion, transmission or production polychromatic performance is established by the patent table.
 
 ## Focus Mechanism
 
-Infinity only, no source close-focus states or retail focusing mechanism. The very large software close-focus setting is a historical infinity-only convention. Gaussian image focus is computed and retained; finite best focus is not substituted.
+Only infinity focus is modeled. The patent gives no near-focus spacings or focusing mechanism, and no marketed minimum focus distance is assigned. All groups remain fixed relative to one another. The calculated paraxial image plane is retained rather than moved to the full-aperture marginal focus.
 
-## Published Iris Station and Estimated Apertures
+## Published Iris Station and Inferred Clear Apertures
 
-The source iris station is fixed31.28mm from the first vertex:7.50mmafterR6 and1.94mmbeforeR7. This split is not estimated or varied. Clear radii are reasoned finite-ray envelopes with modest rounded margins, constrained by positive edges, source spherical domains and actual air/iris clearance. Sensitivity±0.1mm remains valid with zero render trim. The first air gap's minimum is0.38mm; second-gap baseline minimum1.510575mm and maximum intrusion83.998% remain inside the default90%rule. No override is needed.
+The table locates the iris 31.28 mm after the first vertex, splitting the second air space into 7.50 mm after R6 and 1.94 mm before R7. The stop diameter is not printed. The paraxial f/2 convention gives a 32.6086402 mm iris diameter, or 16.3043201 mm radius.
 
-Source nominalf/2 derives a native paraxial irisdiameter32.60864022mm. Direct finite tracing admits input radius24.72894732mm versus thef/2reference25.00307998mm: the modeled finite entrance-pupil equivalent isf/2.02217099, with first boundary lossSTO. The two quantities are not silently equated. The saved source nominal remainsf/2. The repository derives the ordinary-prime stop paraxially; exact finite equality is not its acceptance requirement.
+Real marginal tracing requires a slightly larger stop radius, about 16.49 mm, to pass an exact f/2 entrance radius of 25.00308 mm. The modeled iris admits about 24.72895 mm, equivalent to f/2.02217. This small difference is retained. Neither an alternative iris diameter nor a change to the printed prescription is used to remove it.
 
-An independent finite-derived iris estimate32.97333872mm at the same published station passes all577axial f/2samples when supplied only to a diagnostic trace option. Opening clearances0.970958/0.880146mm remain positive. Iris±2%diagnostic sensitivity brackets the difference; source nominal2 and every R/d/n remain unchanged in the saved draft. These are model estimates, not factory hardware or another authored variant. Existing Builder nominal-f-number tuning can indirectly adjust a derived iris, but no such change is saved here. The finite-f2 estimate corresponds to Builder nominal input1.97787919; the ordinary viewer cannot open beyondf/2.
+The drawing suggests roughly 16 mm at R6/R7; the retained 16.8/17 mm values preserve the f/2 axial beam. The other rims follow the figure. The mixed evidence is stated explicitly. Edge thicknesses, air-gap intrusion and clearance from the stop plane pass the surface check without a geometry override.
 
-## Modeled Field and Verification
+## Modeled Field and Distortion
 
-The10°fullfield is chosen for diagnosis, not source coverage, image format or retail behavior. Six cases at half-fields0/1/2.5/5/7.5°,577samples each, give17,310launches:15,645complete,1,665explicit clips, zero raw or unresolved native failures. All sampled chiefs complete. Baseline at0/1/2.5/5° has505/505/520/532arrivals of577; losses atSTO, outerR6 and frontR1 remain visible. Outside the declared field, cap losses also reach cemented R9 and rearR10; no wider-field qualification is claimed. Counts are not area-weighted throughput.
+The patent prints no field angle or image format. The [historical distortion plot](https://impro.usercontent.one/appid/oneComWsb/domain/zeissikonveb.de/media/zeissikonveb.de/onewebmedia/Marco/Carl%20Zeiss%20Jena/Sonnar%202,0%20verbesserte%20Verzeichnung.jpg), labeled “nach DRP 700.699,” extends to 22° half-field and shows about +0.98% pincushion distortion there. The model gives +0.27% at 10°, +0.58% at 15° and +0.98% at 22°, consistent with that curve.
 
-Independent signed-sphere/vector-Snell completed hits agree within1.12e−13mm and Gaussian image points within1.04e−13mm. Types, format, native JSON roundtrip and scoped shared tests/viewer health are checked separately. App-ready for the disclosed infinity/D-line diagnostic scope; exact finitef/2, retail coverage and calibrated spectral claims are not made.
+The declared half-field is 22°. The real chief ray reaches approximately 40.805 mm at the paraxial image plane, giving an inferred 81.61 mm image-circle diameter at the printed 100 mm scale. This is an analysis bound derived from the historical plot and ray trace, not a published production image format. The chief ray reaches the boundary without rim blockage; off-axis marginal rays remain vignetted. With the larger rear rims, the one-sided R10 bundle-width clipping estimate falls from about 80% to 40% at 22°; this is not an area-weighted transmission measurement.
 
 ## Sources
 
-- [German table reproduction](https://impro.usercontent.one/appid/oneComWsb/domain/zeissikonveb.de/media/zeissikonveb.de/onewebmedia/Marco/Carl%20Zeiss%20Jena/DE700699%20verzeichnungsfreies%20Sonnar-3.jpg?resize=1024%2B2130&quality=90), parent primary visual verification.
-- [DPMA DE700699A index](https://depatisnet.dpma.de/DepatisNet/depatisnet?action=bibdat&docid=DE000000700699A), parent verified dates/identifier. A/C are retained as aliases.
+- DE 700,699 C, _Photographisches Objektiv_: front page for inventor, applicant and issue date; p. 2 for the sole numerical table and claim; drawing sheet for component shapes and rim estimates. [Patent reproduction](https://impro.usercontent.one/appid/oneComWsb/domain/zeissikonveb.de/media/zeissikonveb.de/onewebmedia/Marco/Carl%20Zeiss%20Jena/DE700699%20verzeichnungsfreies%20Sonnar-3.jpg?resize=1024%2B2130&quality=90).
+- Marco Kröger, [Sonnar](https://www.zeissikonveb.de/start/objektive/normalobjektive/sonnar.html), section 5.2: historical identification, absence of series production and comparison of distortion curves.
+- [DPMA bibliographic index](https://depatisnet.dpma.de/DepatisNet/depatisnet?action=bibdat&docid=DE000000700699A); the indexed A identifier does not change the issued Patentschrift's C designation used here.
