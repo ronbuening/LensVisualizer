@@ -12,6 +12,7 @@
  */
 import { execFileSync } from "node:child_process";
 
+// Entries are [advisory id, reason it cannot apply here].
 const ALLOWLIST = new Map();
 
 const FAIL_SEVERITIES = new Set(["high", "critical"]);
