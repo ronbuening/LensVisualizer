@@ -292,7 +292,8 @@ export default function UniversalRelationshipMapPage() {
               tracing, inventor affiliations, company bridges, a comparison matrix, company chords, and patent evidence
               lanes. Patents connect their inventors and assignees; dated corporate records reconnect historical company
               names. Non-patent models connect to the issuer of their manufacturer document or, failing that, their
-              explicit catalog maker grouping. A neighborhood halo does not imply corporate ownership.
+              explicit catalog maker grouping. Models reconstructed from published literature are not drawn. A
+              neighborhood halo does not imply corporate ownership.
             </p>
             {phone && (
               <button
