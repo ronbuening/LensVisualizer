@@ -219,17 +219,17 @@ const LENS_DATA = {
   },
   groups: [
     {
-      text: "G1 (1)",
+      text: "G1 (+)",
       fromSurface: "1",
       toSurface: "2",
     },
     {
-      text: "G2 (3 cemented)",
+      text: "G2 (−)",
       fromSurface: "3",
       toSurface: "6",
     },
     {
-      text: "G3 (3 cemented)",
+      text: "G3 (+)",
       fromSurface: "7",
       toSurface: "10",
     },
