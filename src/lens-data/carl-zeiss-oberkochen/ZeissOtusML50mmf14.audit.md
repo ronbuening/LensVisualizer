@@ -1,77 +1,98 @@
-# ZEISS OTUS ML 50mm f/1.4 — Audit
+# ZEISS OTUS ML 50mm f/1.4 — Audit Log
 
-## 2026-11-20 — Deployment validation and cleanup
+## Source
 
-An independent validator checked the page images at 300 dpi: all 26 surface rows including STO, nd/νd for 14 elements, the three aspheres and their 30 conic/polynomial values, and D0/D10/D26 at both printed focus states; no transcription mismatch was found. Verdict: valid with notes; Example 1 is the strongest Otus ML 50 correlation because its 14/11 construction, two aspherical elements, four APD candidates and near conjugate fit the published product, whereas Example 2 is 15/12 and Example 3 has three aspherical elements.
+JP 2026-105585 A, 光学レンズ系 (Optical lens system), Example 1, Tables 1–4 and Figs. 1–2. Inventor: Tatsuya Moriyama; assignee: Cosina Co., Ltd. Filed 16 December 2024; published 26 June 2026. The [J-GLOBAL bibliography](https://jglobal.jst.go.jp/en/detail?JGLOBAL_ID=202603007546980750) agrees with the front page.
 
-### Source conflict and retained optics
+Table 1 gives the first-order summary, Table 2 the prescription, Table 3 the infinity and near-focus spacings, and Table 4 the aspheres. Dimensions are millimetres without rescaling. The refractive-index reference is helium d, 587.56 nm.
 
-S26 remains a plane base with its original aspheric polynomial. Table 2 prints −2000 mm but Table 4 prints INFINITY. With the plane, EFL = 50.137 mm, Gr2 = 67.11 mm and Gr222 = −140.53 mm, compared with Table 1's 50.15, 67.14 and −140.15 mm. With −2000 mm they become 49.761, 66.25 and −149.07 mm. On the printed image plane, axial d-line RMS spot is 9.8 µm with the plane versus 54.6 µm with −2000 mm; full/half-pupil longitudinal spherical aberration is −0.071/−0.016 versus −0.266/−0.166 mm. Fig. 2 stays near zero. Table 2 likely repeats the radius from Examples 2/3, which print it consistently.
+## Transcription Check
 
-Source errata: absent → one corrected S26/R entry, printed −2000 → plane, with source-summary and aberration-figure evidence. Its numeric applied value 1e15 is the schema's plane representation after conversion; the surface itself keeps `R: "flat"`. This records resolution of the internal table conflict rather than claiming an official patent correction.
+The patent pages at 300 dpi were checked for all 26 surface rows including the stop, all 14 elements' nd/νd pairs, the three aspheres' 30 conic and polynomial terms, and D0/D10/D26 at both printed focus states. No transcription mismatch was found apart from the conflicting S26 base radius within the patent itself. The aspheres use the standard (1 + K) conic form, with K = 0 and terms A4–A20.
 
-All prescription radii, thicknesses, aspheric terms, stop position, nd/νd and rims remain unchanged. The printed 18.69 mm infinity image gap remains; no best-spot image-plane shift is applied. The paraxial iris radius stays 13.7367109719 mm; pupil aberration gives real-ray acceptance about f/1.51 rather than the source F1.435. Fig. 1 topology and stop station agree, but its schematic iris and rear-group rims do not supply reliable dimensional replacements.
+Table 2 prints S26 R = −2000 mm; Table 4 prints INFINITY. S26 retains Table 4's plane base and the original polynomial. With the plane, EFL = 50.137 mm, G2 focal length = 67.11 mm and final-element focal length = −140.53 mm, against Table 1's 50.15, 67.14 and −140.15 mm. With −2000 mm these become 49.761, 66.25 and −149.07 mm. Infinity BFD is 18.692 mm with the plane and 18.552 mm with −2000 mm, against 18.69 mm printed.
 
-### Fields changed
+On the printed image plane, axial d-line RMS spot radius is 9.8 µm with the plane and 54.6 µm with −2000 mm. Full/half-pupil longitudinal spherical aberration is −0.071/−0.016 mm versus −0.266/−0.166 mm. Fig. 2's near-zero d-line curve supports the plane. Table 2 likely repeats Examples 2/3's radius, which those examples print consistently. This interpretation of conflicting tables is not an official patent correction.
 
-- Key: `cosina-jp2026105585-example1-table4-reconstruction` → `zeiss-otus-ml-50mm-f14`.
-- Maker: `Cosina` → `Carl Zeiss Oberkochen`; name: `COSINA JP2026-105585 EXAMPLE 1 — TABLE 4 RECONSTRUCTION` → `ZEISS OTUS ML 50mm f/1.4`. Assignee remains `Cosina Co., Ltd.`.
-- Visible: false → true.
-- Subtitle: the earlier plane-base claim and production caveats → `JP 2026-105585 A, Example 1 — patent design matching the production layout`.
-- Specs: six lines about the source-table choice and modeling → `14 ELEMENTS / 11 GROUPS`, `DESIGN f = 50.15 mm`, `DESIGN F/1.435`, `3 ASPHERICAL SURFACES / 2 ELEMENTS`, `4 APD ELEMENTS`.
-- Catalog mounts/format: absent → `sony-fe`, `nikon-z`, `canon-rf` / `135-full-frame`; marketing focal length/aperture: absent → 50 mm / 1.4; marketing minimum focus: absent → 0.5 m, from Cosina and ZEISS. Existing element/group counts 14/11 remain.
-- Catalog design focal length: 50.15 mm, the stated Table 1 value, matching the specs and analysis. Design f-number stays 1.435.
-- Element labels: L1…L14 → Element 1…Element 14; short optical roles and individual in-air focal lengths added for all 14 elements. L6 type: Positive Meniscus → Positive Meniscus (Asph); L14: Plano-Concave Negative (Asph) → Negative Meniscus (Asph).
-- Cemented metadata: absent → C1 on L7/L8, C2 on L9/L10, C3 on L12/L13, with matching doublets spanning S13–15, S17–19 and S22–24.
-- APD metadata: absent → patent tags on L2 and L5 (¶0038 and ¶0040), inferred tags on L4 and L7, and explanatory notes consistent with S-NPH1, J-PSKH8, J-KZFH4 and FCD1 properties. LensTip and PetaPixel report four APD elements; ZEISS's optical-section legend marks APD glass without printing a count. Neither high-index L11 nor ordinary dense-flint elements acquire a tag.
-- Focus description and conjugate source: earlier wording → plain descriptions of printed endpoints, inferred intermediate travel and the first-surface distance reference. `focus.closeFocusM` remains 0.49954 m = (394.90 + 104.64)/1000.
+Fig. 1 agrees with the element arrangement, shapes and stop position. It is not to scale: its iris and rear-group rims do not provide reliable dimensional replacements. The rear meniscus remains curved through its polynomial despite its plane base; S26 sag is approximately −1.67 mm at height 15 mm.
 
-### Focus-distance correction
+## First-Order Check
 
-The original two-state linear blend reported approximately 0.999 m at t = 0.5 while focusing around 0.879 m. The original worst image error at the reported distance is −0.4583737 mm at t = 0.544.
+The retained infinity prescription gives EFL 50.137 mm, approximately 0.03% below the stated 50.15 mm; BFD 18.692 mm; paraxial f-number approximately 1.44; iris radius 13.74 mm; half-field 23.1°; and total track 104.64 mm. The printed 18.69 mm last gap is retained without a shift to the smallest spot. Pupil aberration gives real-ray acceptance approximately f/1.51. Near-focus EFL is 49.141 mm.
 
-Keyframes: [0, 1] → [0, 0.25, 0.5, 0.75, 1]. D10 and D26 were independently solved to six decimals against the engine's inverse-distance readout, leaving the printed endpoint pairs unchanged:
+A check of surface geometry finds no edge-thickness or overlap errors across the five focus positions. The axial aperture is within 3% of the stated f-number, with no limit from a glass rim, failed ray trace or iris. The image circle is sufficient, with no omitted cases. Chief-ray field coverage is 100% at a 1.01 coverage-ratio threshold, reaching 21.65 of 21.65 mm at the corner. The printed near conjugate has image offset −0.003 mm, approximately −0.79 quarter-wave depths, and magnification −0.134. Its object distance is measured from the first surface, separately from object-to-image distance.
 
-| t    | D10 old (linear blend, mm) | D10 new (mm) | D26 old (mm) | D26 new (mm) | Final readout (m) |
-| ---- | -------------------------: | -----------: | -----------: | -----------: | ----------------: |
-| 0    |                   7.560000 |     7.560000 |    18.690000 |    18.690000 |          Infinity |
-| 0.25 |                   5.845000 |     6.168629 |    20.405000 |    20.081371 |          1.997574 |
-| 0.5  |                   4.130000 |     4.595947 |    22.120000 |    21.654053 |          0.998787 |
-| 0.75 |                   2.415000 |     2.794444 |    23.835000 |    23.455556 |          0.665858 |
-| 1    |                   0.700000 |     0.700000 |    25.550000 |    25.550000 |          0.499394 |
+At image height 21.63 mm, neither the axial beam nor the chief ray is clipped at infinity or the final focus position. The extreme upper ray cannot be traced: the pupil corresponding to the printed f-number is larger than the chosen iris, and the estimated rims retain peripheral vignetting. Chief-ray coverage does not establish full-pupil transmission.
 
-D10 + D26 remains 26.25 mm throughout. The published focus index and finite-conjugate keyframe move 1 → 4; intermediate indices 1–3 remain inferred and are not source-certified finite states. A 0.001-coordinate sweep gives worst image error −0.0411136 mm at t = 0.878, within 0.05 mm. Each finite keyframe is in focus at its own readout to numerical precision. The unchanged endpoint focuses at object-to-S1 distance 394.753641 mm, versus printed 394.90 mm.
+## Values Not Printed in the Patent
 
-Using the paraxial infinity plane, 0.001854447 mm behind the printed plane, gives 394.65 mm from S1 at the final keyframe and total track 104.6419 mm. The retained printed plane at 104.64 mm gives 394.753641 mm and the readout distances above.
+- Clear semi-diameters are estimates.
+- Iris radius is derived from the printed design f-number, 1.435; it is not a dimension supplied by Fig. 1.
+- The three intermediate focus positions are paraxial solutions; piecewise linear travel between them is inferred rather than a measured cam.
+- Near-focus distance 0.49954 m is derived from (394.90 + 104.64)/1000, object to image. The product specification rounds this to 0.50 m.
+- The 43.3 mm image-circle entry is the rounded diagonal of a 24×36 mm frame; ZEISS quotes 43 mm for the production lens.
+- Glass labels identify catalog equivalents, supplying dispersion beyond nd/νd; production suppliers and melts are unspecified.
+- L4 and L7 are inferred APD positions from the optical section and compatible glass properties. The patent explicitly identifies anomalous partial dispersion for L2 and L5.
+- Ten diaphragm blades come from the [ZEISS Otus ML series description](https://www.zeiss.com/photonics-and-optics/en/photography/products/lenses-for-mirrorless-system-cameras/otus-ml-lenses.html); the f/1.4–f/16 stop range comes from the [ZEISS 50 mm data sheet](https://www.zeiss.com/content/dam/pno/downloads/photo-lenses/datasheets/otus-ml-lenses/datasheet-zeiss-otus-ml-1450.pdf) and [Cosina specifications](https://www.cosina.co.jp/zeiss/otus-ml/otus-ml-1-4-50/).
 
-### Glass relabels
+## Product Identification
 
-Every old label was `Unmatched (literal patent nd/vd; supplier not established)`. Each new label identifies a catalog equivalent with production supplier unspecified; the catalog vendor is listed below. Deltas are catalog-row minus printed nd/νd, preserving the patent's d reference.
+Example 1 likely describes the ZEISS Otus ML 50mm f/1.4. Its 14 elements in 11 groups, two aspherical elements, four APD candidates and 499.54 mm near conjugate at approximately 1:7.45 fit the production lens. Example 2 has 15 elements in 12 groups; Example 3 has three aspherical elements. ZEISS calls the production design a Distagon.
 
-| Element(s)  | New glass / resolved vendor |          Δnd |       Δνd |
-| ----------- | --------------------------- | -----------: | --------: |
-| L1          | S-NBH8 / Ohara              |    −0.000003 |         0 |
-| L2          | S-NPH1 / Ohara              |    +0.000005 | +0.000817 |
-| L3, L10     | S-LAH96 / Ohara             |            0 | −0.001308 |
-| L4          | J-PSKH8 / Hikari            |            0 |         0 |
-| L5          | J-KZFH4 / Hikari            |    +0.000001 |         0 |
-| L6          | M-TAFD305 / Hoya            | −0.000001878 | +0.004483 |
-| L7          | FCD1 / Hoya                 |            0 |         0 |
-| L8, L9, L13 | NBFD29 / Hoya               |            0 |         0 |
-| L11         | TAFD55 / Hoya               |            0 |         0 |
-| L12         | S-LAH98 / Ohara             |            0 |         0 |
-| L14         | L-LAH84 / Ohara             |            0 | −0.001497 |
+[Cosina](https://www.cosina.co.jp/zeiss/otus-ml/otus-ml-1-4-50/) and [ZEISS](https://www.zeiss.com/content/dam/pno/downloads/photo-lenses/datasheets/otus-ml-lenses/datasheet-zeiss-otus-ml-1450.pdf) specify full-frame coverage, 50 mm, f/1.4, 0.50 m minimum focus, 1:7.3 maximum magnification, and Sony E, Nikon Z and Canon RF mounts. [CameraLabs](https://www.cameralabs.com/zeiss-otus-ml-50mm-f1-4-review/2/) measured approximately 1:7.5. The patent's 46.2° field lies between Cosina's 45.7° and ZEISS's 47°.
 
-All eleven distinct pairs meet |Δnd| ≤ 0.0001 and |Δνd| ≤ 0.15. S-NPH1 also reproduces the Table 1 Gr1P ΔPgF of approximately +0.023. Catalog curves replace Abbe-only dispersion; the patent's nd/νd remain unchanged and no production melt identity is asserted.
+[LensTip](https://www.lenstip.com/2210-Carl_Zeiss_Otus_ML_50_mm_f_1.4-lens_specifications.html) and [PetaPixel](https://petapixel.com/2025/02/26/a-closer-look-at-the-zeiss-otus-ml-50mm-f-1-4-and-85mm-f-1-4-lenses-and-their-unique-promises/) report four APD elements. ZEISS's optical-section legend marks APD glass without printing a count. The patent's ¶0038 and ¶0040 establish L2 and L5 as APD; L4 and L7 remain inferred.
 
-### Optical results and checks
+[ZEISS announced the lens on 25 February 2025](https://www.zeiss.com/photonics-and-optics/en/home/content/newsroom/news-overview/2025/new-otus-ml.html). Cosina lists availability on 30 May 2025 for E/RF and 30 July 2025 for Z.
 
-Before → after: EFL 50.13653386996 → 50.13653386996 mm; FOPEN 1.435 → 1.435; stop radius 13.73671097193 → 13.73671097193 mm; half-field 23.12° → 23.12°; total track 104.64 → 104.64 mm. Infinity BFD 18.6918544471 → 18.6918544471 mm; retained last gap 18.69 → 18.69 mm. Near EFL stays 49.1412 mm.
+## Corrections, 2026-11-20
 
-Surface audit: OK, no validation errors, including the corrected-source entry and five focus states. Aperture audit: one lens/one station within 3% of the stated f-number; zero rim, trace, iris or failed stations. Image-circle audit: one checked, zero undersized, zero skipped. Field coverage at threshold 1.01: 100%, modeled half-field 23.1° reaches 21.65 of 21.65 mm, corner clear, zero skipped. The declared near conjugate at 0/4 passes the finite-conjugate audit with image offset −0.002634333 mm, −0.7929921 quarter-wave depths, and first-surface distance reference distinguished from object-to-image.
+- The patent-based name and key were replaced by the product name, ZEISS OTUS ML 50mm f/1.4, and its product key. Maker changed from Cosina to Carl Zeiss Oberkochen; patent assignee remains Cosina Co., Ltd. The lens was made visible in the catalog.
+- The subtitle's earlier discussion of the source conflict and product resemblance was replaced by the patent, example, assignee and inventor: “JP 2026-105585 A, Example 1 — Cosina / Moriyama”.
+- Six explanatory chips were replaced by construction and design specifications. The final chips are “14 ELEMENTS / 11 GROUPS”, “DESIGN f = 50.15 mm”, “DESIGN F/1.44”, “3 ASPHERICAL SURFACES” and “4 APD ELEMENTS”. The aspherical count now uses the common surface-count form; the displayed f-number is rounded while the numerical design value remains 1.435.
+- Missing mounts, full-frame format and marketing values were added from Cosina and ZEISS: Sony E, Nikon Z, Canon RF, 50 mm, f/1.4 and 0.50 m minimum focus. The 14/11 construction remains. Design focal length was briefly changed from 50.15 to 50.14 mm, then restored to Table 1's 50.15 mm.
+- Element labels L1–L14 became Element 1–Element 14; short optical roles and individual in-air focal lengths were added. L6 was identified as aspherical; L14 changed from plano-concave to the patent's negative-meniscus description. Cemented-pair annotations were added for L7/L8, L9/L10 and L12/L13, spanning S13–S15, S17–S19 and S22–S24. Their in-air focal lengths are −57.01, −577.15 and −53.71 mm.
+- APD annotations were added for L2, L4, L5 and L7. L2 and L5 changed from inferred to patent-supported, citing ¶0038 and ¶0040. L4 and L7 remain inferred. The four-element count is attributed to LensTip and PetaPixel; high index alone does not establish APD for L11 or the dense flints.
+- A source-conflict entry was added for S26, recording Table 2's −2000 mm and Table 4's plane with first-order and aberration evidence. Its applied value 1e15 denotes the plane; the surface remains `R: "flat"`. The plane, polynomial, other radii, thicknesses, nd/νd, stop position, rims, field and printed image plane were retained.
+- Focus descriptions now distinguish printed endpoints, inferred intermediate travel and first-surface distance. The existing G1 and G2 group brackets identify the fixed group and the moving group with iris; their boundaries remain unchanged.
+- Ten diaphragm blades were added from ZEISS. The existing design stop sequence and f/16 upper limit agree with the published product range and remain unchanged.
+- Technical wording was simplified throughout the three records; the audit was reorganized without removing optical uncertainties.
 
-At image height 21.63 mm, infinity and focus keyframe 4, neither the axial beam nor the chief ray is clipped. The extreme upper ray cannot be traced; the source-sized pupil is larger than the saved iris and the rim estimates retain peripheral vignetting. Chief coverage does not establish full-pupil transmission.
+The earlier two-position linear focus travel reported approximately 0.999 m at t = 0.5 while focusing near 0.879 m. Its worst image error at the displayed distance was −0.458 mm at t = 0.544. Three intermediate positions were added at t = 0.25, 0.50 and 0.75, solving the two gaps to six decimal places while retaining both printed endpoints. Values below are rounded for display.
 
-Open: compare estimated rear-group semi-diameters to Fig. 1; assess peripheral vignetting. Catalog equivalents do not establish production suppliers or melts. The L4 and L7 APD assignments remain inferred.
+| t | D10 before (mm) | D10 after (mm) | D26 before (mm) | D26 after (mm) | Final distance (m) |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| 0 | 7.560 | 7.560 | 18.690 | 18.690 | Infinity |
+| 0.25 | 5.845 | 6.169 | 20.405 | 20.081 | 1.998 |
+| 0.50 | 4.130 | 4.596 | 22.120 | 21.654 | 0.999 |
+| 0.75 | 2.415 | 2.794 | 23.835 | 23.456 | 0.666 |
+| 1 | 0.700 | 0.700 | 25.550 | 25.550 | 0.499 |
 
-Second review fixes: catalog design focal length 50.14 → 50.15 mm to match Table 1 and the specs. L2 and L5 APD status changed from inferred to patent, citing ¶0038's positive and ¶0040's negative anomalous partial dispersion; L4 and L7 remain inferred. The four-element APD count is attributed to LensTip and PetaPixel; ZEISS's section legend marks APD glass without printing a count. Non-optical process commentary was removed.
+D10 + D26 remains 26.25 mm: G1 stays fixed, G2 and the iris move 6.86 mm toward the object, and the image plane stays at 104.64 mm. The printed near-focus and finite-conjugate indices changed from 1 to 4; positions 1–3 remain inferred. The worst distance-readout image error is now −0.041 mm at t = 0.878, within 0.05 mm. Each finite control position focuses at its own displayed distance to numerical precision. The final position focuses 394.754 mm before S1, compared with 394.90 mm printed. At the paraxial infinity plane, 0.002 mm behind the printed plane, it focuses at 394.65 mm from S1 with total track 104.642 mm. The printed image plane is retained.
+
+Previously unidentified glasses received the following catalog-equivalent labels. Differences are catalog row minus printed nd/νd; all printed indices and Abbe numbers remain unchanged.
+
+| Element(s) | Glass / catalog maker | Δnd | Δνd |
+| --- | --- | ---: | ---: |
+| L1 | S-NBH8 / OHARA | −0.000003 | 0 |
+| L2 | S-NPH1 / OHARA | +0.000005 | +0.000817 |
+| L3, L10 | S-LAH96 / OHARA | 0 | −0.001308 |
+| L4 | J-PSKH8 / Hikari | 0 | 0 |
+| L5 | J-KZFH4 / Hikari | +0.000001 | 0 |
+| L6 | M-TAFD305 / HOYA | −0.000001878 | +0.004483 |
+| L7 | FCD1 / HOYA | 0 | 0 |
+| L8, L9, L13 | NBFD29 / HOYA | 0 | 0 |
+| L11 | TAFD55 / HOYA | 0 | 0 |
+| L12 | S-LAH98 / OHARA | 0 | 0 |
+| L14 | L-LAH84 / OHARA | 0 | −0.001497 |
+
+All eleven distinct pairs meet |Δnd| ≤ 0.0001 and |Δνd| ≤ 0.15; the actual maxima are 0.000005 and 0.004483. S-NPH1 also reproduces Table 1's Gr1P ΔPgF of approximately +0.023. Catalog curves replace dispersion estimated from the Abbe number alone, without establishing a production melt or supplier.
+
+After these corrections, infinity EFL is 50.137 mm, BFD 18.692 mm, paraxial f-number approximately 1.44, iris radius 13.74 mm, half-field 23.1° and total track 104.64 mm; near-focus EFL is 49.141 mm. These values are identical before and after the final wording and blade-count changes, including all five focus positions. Surface geometry remains free of edge-thickness and overlap errors, with no axial aperture limit from glass rims.
+
+## Remaining Questions
+
+- Compare the estimated rear-group semi-diameters with Fig. 1 and assess peripheral vignetting; full-pupil transmission remains unestablished.
+- Catalog equivalents do not identify production suppliers or melts. L4 and L7 APD positions remain inferred.
+- The cited primary sources do not give a numerical blade-curvature value, so blade roundedness is left unspecified.
+- The S26 table conflict remains a source inconsistency; the plane has the stronger first-order and aberration evidence.

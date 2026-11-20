@@ -9,8 +9,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Gr222 (−140.53 vs −140.15 mm), and Fig. 2's near-zero d-line spherical aberration.
  * With −2000 mm, EFL is 49.761 mm and the axial RMS spot is 54.6 rather than
  * 9.8 µm on the printed image plane. Table 2 likely repeats Examples 2/3's radius.
- * Clear semi-diameters are estimates; the iris radius is derived from F1.435.
- * The printed infinity image gap 18.69 mm is retained (paraxial BF 18.6919 mm).
+ * Clear semi-diameters are estimates; the iris radius is derived from the printed
+ * design aperture, approximately f/1.44.
+ * The printed infinity image gap 18.69 mm is retained (paraxial BF 18.692 mm).
  * Table 3 prints infinity and the 394.90 mm object-to-first-surface near state.
  * G1 is fixed; G2 and the iris move 6.86 mm toward the object, holding the image
  * plane at 104.64 mm. Three intermediate gap pairs are inferred paraxial focus
@@ -21,7 +22,7 @@ const LENS_DATA = {
   key: "zeiss-otus-ml-50mm-f14",
   maker: "Carl Zeiss Oberkochen",
   name: "ZEISS OTUS ML 50mm f/1.4",
-  subtitle: "JP 2026-105585 A, Example 1 — patent design matching the production layout",
+  subtitle: "JP 2026-105585 A, Example 1 — Cosina / Moriyama",
   visible: true,
   catalog: {
     lensMounts: ["sony-fe", "nikon-z", "canon-rf"],
@@ -43,8 +44,8 @@ const LENS_DATA = {
     specs: [
       "14 ELEMENTS / 11 GROUPS",
       "DESIGN f = 50.15 mm",
-      "DESIGN F/1.435",
-      "3 ASPHERICAL SURFACES / 2 ELEMENTS",
+      "DESIGN F/1.44",
+      "3 ASPHERICAL SURFACES",
       "4 APD ELEMENTS",
     ],
   },
@@ -499,6 +500,7 @@ const LENS_DATA = {
     nominalFNumber: 1.435,
     fStops: [1.435, 2, 2.8, 4, 5.6, 8, 11, 16],
     maxFNumber: 16,
+    blades: 10,
   },
   projection: {
     kind: "rectilinear",

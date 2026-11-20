@@ -9,7 +9,7 @@
 **Published:** 26 June 2026\
 **Example details:** Example 1, Table 1 summary, Table 2 prescription, Tables 3–4 focus spacings and aspheres; Figs. 1–2
 
-Example 1 best fits the production Otus ML 50mm f/1.4: 14 elements/11 groups, two aspherical elements, four APD candidates and 499.54 mm near focus at approximately 1:7.45. Example 2 has 15/12; Example 3 has three aspherical elements. [Cosina](https://www.cosina.co.jp/zeiss/otus-ml/otus-ml-1-4-50/) and [ZEISS](https://www.zeiss.com/content/dam/pno/downloads/photo-lenses/datasheets/otus-ml-lenses/datasheet-zeiss-otus-ml-1450.pdf) specify full-frame 50 mm f/1.4, 0.50 m, 1:7.3 and E/RF/Z mounts. [CameraLabs](https://www.cameralabs.com/zeiss-otus-ml-50mm-f1-4-review/2/) measured 1:7.5. The patent's 46.24° field lies between Cosina's 45.65° and ZEISS's 47°. The production association is strong.
+Example 1 likely describes the production Otus ML 50mm f/1.4: 14 elements/11 groups, two aspherical elements, four APD candidates and 499.54 mm near focus at approximately 1:7.45. Example 2 has 15/12; Example 3 has three aspherical elements. [Cosina](https://www.cosina.co.jp/zeiss/otus-ml/otus-ml-1-4-50/) and [ZEISS](https://www.zeiss.com/content/dam/pno/downloads/photo-lenses/datasheets/otus-ml-lenses/datasheet-zeiss-otus-ml-1450.pdf) specify full-frame 50 mm f/1.4, 0.50 m, 1:7.3 and E/RF/Z mounts. [CameraLabs](https://www.cameralabs.com/zeiss-otus-ml-50mm-f1-4-review/2/) measured 1:7.5. The patent's 46.2° field lies between Cosina's 45.7° and ZEISS's 47°.
 
 [ZEISS announced the lens on 25 February 2025](https://www.zeiss.com/photonics-and-optics/en/home/content/newsroom/news-overview/2025/new-otus-ml.html); Cosina lists availability on 30 May for E/RF and 30 July for Z.
 
@@ -19,7 +19,7 @@ S26 follows Table 4's INFINITY base over Table 2's −2000 mm. The plane agrees 
 
 ZEISS calls the production design a Distagon. G1 has five fixed elements; G2 has nine moving elements and the iris. Cemented pairs C1, C2 and C3 span S13–S15, S17–S19 and S22–S24, with in-air focal lengths −57.01, −577.15 and −53.71 mm.
 
-The patent's millimetre prescription is unscaled. Stop position, spacings and aspheres are printed; rims are estimated, iris radius is derived, and intermediate focus positions are inferred. The printed 18.69 mm image gap is retained without added plates or baffles.
+The unscaled millimetre prescription prints stop position, spacings and aspheres; rims are estimated, iris radius derived, and intermediate focus positions inferred. The printed 18.69 mm image gap is retained without plates or baffles.
 
 ## Element-by-Element Analysis
 
@@ -107,7 +107,7 @@ The negative member leaves C3 net negative before the final asphere.
 
 nd = 1.80835, νd = 40.55. Glass: L-LAH84 (OHARA equivalent). f = −140.53 mm.
 
-Both S25 and S26 are aspherical. Although S26 has a plane base, its polynomial produces a curved profile; the patent describes the element as a negative meniscus.
+S25 and S26 are aspherical. S26's plane base and polynomial produce a curved profile; the patent describes a negative meniscus.
 
 ## Glass Identification and Selection
 
@@ -119,15 +119,15 @@ The four-APD-element count is reported by [LensTip](https://www.lenstip.com/2210
 
 G1 stays fixed; G2 and the iris move 6.86 mm toward the object. D10 + D26 = 26.25 mm holds the image plane at 104.64 mm. The printed near distance is 394.90 mm before S1, or 499.54 mm to the image; marketing specifies 0.50 m.
 
-| Coordinate | D10 (mm) |  D26 (mm) | Readout (m) | Basis    |
-| ---------- | -------: | --------: | ----------: | -------- |
-| 0          | 7.560000 | 18.690000 |    Infinity | Table 3  |
-| 0.25       | 6.168629 | 20.081371 |    1.997574 | Inferred |
-| 0.50       | 4.595947 | 21.654053 |    0.998787 | Inferred |
-| 0.75       | 2.794444 | 23.455556 |    0.665858 | Inferred |
-| 1          | 0.700000 | 25.550000 |    0.499394 | Table 3  |
+| Coordinate | D10 (mm) | D26 (mm) | Readout (m) | Basis    |
+| ---------- | -------: | -------: | ----------: | -------- |
+| 0          |    7.560 |   18.690 |    Infinity | Table 3  |
+| 0.25       |    6.169 |   20.081 |       1.998 | Inferred |
+| 0.50       |    4.596 |   21.654 |       0.999 | Inferred |
+| 0.75       |    2.794 |   23.456 |       0.666 | Inferred |
+| 1          |    0.700 |   25.550 |       0.499 | Table 3  |
 
-Intermediate control points reduce worst readout-distance defocus from −0.4584 to −0.0411 mm. Piecewise linear travel is inferred, without a measured cam. The printed near conjugate has image error −0.002634 mm, magnification −0.13413. Printed-spacing rounding explains the small readout discrepancy.
+Intermediate control points reduce worst readout-distance defocus from −0.458 to −0.041 mm. Piecewise linear travel is inferred, without a measured cam. The printed near conjugate has image error −0.003 mm, magnification −0.134. Printed-spacing rounding explains the small readout discrepancy.
 
 ## Aspherical Surfaces
 
@@ -151,16 +151,16 @@ Negative A4 bends the outer profiles away from their bases. S26 gives approximat
 
 | Quantity (mm)              | Table 1 | S26 plane | S26 −2000 |
 | -------------------------- | ------: | --------: | --------: |
-| EFL                        |   50.15 |   50.1365 |    49.761 |
-| BFD                        |   18.69 |   18.6919 |    18.552 |
+| EFL                        |   50.15 |    50.137 |    49.761 |
+| BFD                        |   18.69 |    18.692 |    18.552 |
 | G2 focal length            |   67.14 |     67.11 |     66.25 |
 | Final-element focal length | −140.15 |   −140.53 |   −149.07 |
 
 At the source pupil, full/half-pupil d-line longitudinal spherical aberration is −0.071/−0.016 mm with the plane, versus −0.266/−0.166 mm with −2000 mm. Axial RMS spots on the printed image plane are 9.8 versus 54.6 µm. Fig. 2's near-zero d-line curve supports Table 4.
 
-The paraxial F1.435 stop rule gives iris radius 13.7367 mm; pupil aberration makes real-ray acceptance approximately f/1.51. Estimated rims and the derived iris limit production-performance comparisons. The 23.12° half-field reaches the 24×36 mm corner; geometry passes without overrides. Fig. 1 is schematic, and its rear-group outlines await a separate rim review.
+The paraxial aperture, approximately f/1.44, gives iris radius 13.74 mm; pupil aberration reduces real-ray acceptance to approximately f/1.51. The production lens has ten diaphragm blades and an f/1.4–f/16 range. Estimated rims and iris limit performance comparisons. Chief rays reach the 24×36 mm corner at 23.1° half-field; surface geometry has no edge-thickness or overlap errors. Fig. 1 is not to scale; rear rims need comparison.
 
 ## Sources
 
 - JP 2026-105585 A, Tables 1–4 and Figs. 1–2; [J-GLOBAL bibliography](https://jglobal.jst.go.jp/en/detail?JGLOBAL_ID=202603007546980750).
-- Cosina and ZEISS specifications, optical section, announcement and CameraLabs measurements linked above.
+- [ZEISS Otus ML series](https://www.zeiss.com/photonics-and-optics/en/photography/products/lenses-for-mirrorless-system-cameras/otus-ml-lenses.html), ten diaphragm blades; [ZEISS 50 mm data sheet](https://www.zeiss.com/content/dam/pno/downloads/photo-lenses/datasheets/otus-ml-lenses/datasheet-zeiss-otus-ml-1450.pdf), f/1.4–f/16 stop range.
