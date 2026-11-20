@@ -77,11 +77,14 @@ describe("parseLensIndexUrlState", () => {
     expect(serialize(parse("?group=inventor"))).toBe("group=inventor");
   });
 
-  it("drops unknown makers, mounts, and formats", () => {
-    const state = parse("?makers=canon,not-a-maker&mounts=canon-rf,not-a-mount&formats=aps-c,not-a-format");
+  it("drops unknown makers, mounts, formats, and sources", () => {
+    const state = parse(
+      "?makers=canon,not-a-maker&mounts=canon-rf,not-a-mount&formats=aps-c,not-a-format&sources=literature,toString,patent,literature",
+    );
     expect(state.customFilter.makerSlugs).toEqual(["canon"]);
     expect(state.customFilter.lensMountIds).toEqual(["canon-rf"]);
     expect(state.customFilter.imageFormatIds).toEqual(["aps-c"]);
+    expect(state.customFilter.sourceKinds).toEqual(["patent", "literature"]);
   });
 
   it("deduplicates and orders list params deterministically", () => {
@@ -130,7 +133,7 @@ describe("serializeLensIndexUrlState", () => {
 
   it("round-trips every field", () => {
     const search =
-      "?group=inventor&view=debug&makers=canon,nikon&mounts=canon-rf,nikon-z&formats=aps-c&focalMin=24&focalMax=200&apertureMin=1.4&apertureMax=5.6&yearMin=1970&yearMax=2020";
+      "?group=inventor&view=debug&makers=canon,nikon&mounts=canon-rf,nikon-z&formats=aps-c&sources=literature&focalMin=24&focalMax=200&apertureMin=1.4&apertureMax=5.6&yearMin=1970&yearMax=2020";
     const parsed = parse(search);
     const reparsed = parse(`?${serialize(parsed)}`);
 
@@ -164,6 +167,7 @@ describe("isSameCustomFilter", () => {
     ["makerSlugs", { makerSlugs: ["canon"] }],
     ["lensMountIds", { lensMountIds: ["canon-rf"] }],
     ["imageFormatIds", { imageFormatIds: ["aps-c"] }],
+    ["sourceKinds", { sourceKinds: ["literature"] }],
   ])("detects a change in %s", (_field, patch) => {
     expect(isSameCustomFilter(base, { ...base, ...patch })).toBe(false);
   });

@@ -14,7 +14,7 @@
 
 import summariesJson from "../../generated/lens-summaries.json";
 import buildMeta from "../../generated/client-metadata.json";
-import type { OpticalConfigurationData, PatentExample } from "../../types/optics.js";
+import type { LiteratureSource, OpticalConfigurationData, PatentExample } from "../../types/optics.js";
 import type { LensMountId, ImageFormatId } from "./lensTaxonomy.js";
 
 export interface LensSummary {
@@ -34,6 +34,8 @@ export interface LensSummary {
   patentYear?: number;
   /** The organization that issued a non-patent manufacturer source. */
   sourceIssuer?: string;
+  /** The published secondary work that prints a literature reconstruction. */
+  sourceLiterature?: LiteratureSource;
   lensMounts?: LensMountId[];
   imageFormat?: ImageFormatId;
   opticalConfiguration?: OpticalConfigurationData;

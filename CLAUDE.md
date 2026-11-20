@@ -124,6 +124,8 @@ Read the smallest relevant doc before changing an area. `agent_docs/README.md` i
 ## Adding Content
 
 - Lens: `agent_docs/adding_a_lens.md` (template, `satisfies LensDataV2Input`, optional `*.analysis.md`, canonical mount/format ids).
+  A prescription from a book or journal is a literature reconstruction in its own `literature/` folder:
+  `src/lens-data/LENS_DATA_SPEC.md` § Literature reconstructions.
 - Teleconverter: `agent_docs/adding_a_teleconverter.md` (`satisfies TeleconverterDataV2Input`;
   hosts declare `catalog.acceptsTeleconverters`).
 - Mount diagram: `src/mounts/MOUNT_SVG_SPEC.md`, then `npm run generate:mount-svgs`.
