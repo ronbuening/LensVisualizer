@@ -9,6 +9,7 @@
 import { Link } from "react-router";
 import LensEntryLink from "../../components/content/LensEntryLink.js";
 import { getMakerDetails } from "../../utils/catalog/makerDetails.js";
+import { literatureShortCitation } from "../../utils/catalog/lensPatentMetadata.js";
 import { isImageFormatId, isLensMountId } from "../../utils/catalog/lensTaxonomy.js";
 import type { LensLibraryBreadcrumbContext, LensLinkTarget } from "./clusterLinks.js";
 import { canonicalPagePath } from "../../utils/seo/siteUrls.js";
@@ -24,6 +25,7 @@ import {
   yearGroupAnchorId,
 } from "./groupAnchors.js";
 import type {
+  CatalogLensEntry,
   GroupMode,
   ImageFormatGroup,
   MakerGroup,
@@ -192,7 +194,7 @@ function PatentPartySections({
               key={`${group.id}-${entry.key}`}
               lensKey={entry.key}
               text={entry.data.name}
-              meta={entry.data.patentNumber ?? (entry.data.patentYear ? String(entry.data.patentYear) : null)}
+              meta={lensEntrySourceMeta(entry.data)}
               theme={theme}
               hrefForLens={hrefForLens}
             />
@@ -326,6 +328,12 @@ function ImageFormatSections({
   );
 }
 
+/** The source shown beside a lens entry: its patent number, its literature citation, or its patent year. */
+function lensEntrySourceMeta(data: CatalogLensEntry["data"]): string | null {
+  if (data.patentNumber) return data.patentNumber;
+  if (data.sourceLiterature) return literatureShortCitation(data.sourceLiterature);
+  return data.patentYear ? String(data.patentYear) : null;
+}
 export default function LensIndexResults({
   groupMode,
   makerGroups,

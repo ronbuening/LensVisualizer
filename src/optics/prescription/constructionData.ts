@@ -71,6 +71,8 @@ export function canonicalConstructionData(lens: CanonicalLens): LensConstruction
     sourceErrata: source.errata,
     sourceOmissions: source.omissions,
     sdSource: source.sdSource,
+    sourceIssuer: source.issuer,
+    sourceLiterature: source.literature,
     elements: lens.elements.map((element) => elementDisplayData(element, 0)),
     surfaces,
     rearPlates: lens.rearPlates,

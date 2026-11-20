@@ -32,7 +32,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 const LENS_DATA = {
   schema: 2,
   key: "emil-busch-210mm-f11-us759537",
-  maker: "Emil Busch",
+  maker: "Busch",
   name: "EMIL BUSCH 210mm f/11 (US 759,537 Design)",
   subtitle: "US 759,537 A, Figure 1 \u2014 Busch Omnar-type anastigmat",
   visible: true,

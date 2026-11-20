@@ -27,6 +27,8 @@ import type {
   FocalSubGroup,
   ImageFormatGroup,
   ImageFormatOption,
+  LensSourceKind,
+  SourceKindOption,
   LensIndexViewMode,
   MakerGroup,
   MakerOption,
@@ -81,6 +83,27 @@ function lensAperture(data: LensSummary): number | null {
   return data.nominalFno ?? null;
 }
 
+/** Source kinds in filter order, with their chip labels. */
+export const SOURCE_KIND_LABELS: Readonly<Record<LensSourceKind, string>> = {
+  patent: "Patents",
+  "maker-document": "Maker documents",
+  literature: "Published literature",
+};
+const SOURCE_KIND_ORDER = Object.keys(SOURCE_KIND_LABELS) as LensSourceKind[];
+
+/** Whether a string names a lens source kind. */
+export function isLensSourceKind(value: string): value is LensSourceKind {
+  return Object.hasOwn(SOURCE_KIND_LABELS, value);
+}
+
+/** The kind of document a lens comes from: a patent, its maker's own document, or published literature. */
+export function lensSourceKind(data: LensSummary): LensSourceKind | null {
+  if (data.patentNumber?.trim()) return "patent";
+  if (data.sourceIssuer?.trim()) return "maker-document";
+  if (data.sourceLiterature) return "literature";
+  return null;
+}
+
 function buildCatalogEntries(keys: readonly string[]): CatalogLensEntry[] {
   return keys.map((key) => {
     const data = LENS_SUMMARIES[key];
@@ -94,6 +117,7 @@ function buildCatalogEntries(keys: readonly string[]): CatalogLensEntry[] {
       focalRange: lensFocalRange(data),
       aperture: lensAperture(data),
       patentYear: data.patentYear ?? null,
+      sourceKind: lensSourceKind(data),
       lensMounts,
       imageFormat,
     };
@@ -140,6 +164,7 @@ export function defaultCustomFilter(bounds: FilterBounds): CustomFilterState {
     makerSlugs: [],
     lensMountIds: [],
     imageFormatIds: [],
+    sourceKinds: [],
   };
 }
 
@@ -195,6 +220,17 @@ export function buildImageFormatOptions(entries: CatalogLensEntry[]): ImageForma
   );
 }
 
+export function buildSourceKindOptions(entries: CatalogLensEntry[]): SourceKindOption[] {
+  const counts = new Map<LensSourceKind, number>();
+  for (const entry of entries) {
+    if (entry.sourceKind) counts.set(entry.sourceKind, (counts.get(entry.sourceKind) ?? 0) + 1);
+  }
+  return SOURCE_KIND_ORDER.flatMap((id) => {
+    const count = counts.get(id);
+    return count ? [{ id, label: SOURCE_KIND_LABELS[id], count }] : [];
+  });
+}
+
 /**
  * Test whether a catalog entry survives the active custom-filter state.
  *
@@ -213,6 +249,8 @@ export function matchesCustomFilter(entry: CatalogLensEntry, filter: CustomFilte
   const imageFormatMatch =
     filter.imageFormatIds.length === 0 ||
     (entry.imageFormat !== null && filter.imageFormatIds.includes(entry.imageFormat.id));
+  const sourceMatch =
+    filter.sourceKinds.length === 0 || (entry.sourceKind !== null && filter.sourceKinds.includes(entry.sourceKind));
   const focalMatch =
     entry.focalRange === null
       ? filter.focalMin === bounds.focalMin && filter.focalMax === bounds.focalMax
@@ -226,7 +264,7 @@ export function matchesCustomFilter(entry: CatalogLensEntry, filter: CustomFilte
       ? filter.patentYearMin === bounds.patentYearMin && filter.patentYearMax === bounds.patentYearMax
       : entry.patentYear >= filter.patentYearMin && entry.patentYear <= filter.patentYearMax;
 
-  return makerMatch && mountMatch && imageFormatMatch && focalMatch && apertureMatch && patentYearMatch;
+  return makerMatch && mountMatch && imageFormatMatch && sourceMatch && focalMatch && apertureMatch && patentYearMatch;
 }
 
 /**
@@ -246,7 +284,8 @@ export function hasActiveCustomFilters(filter: CustomFilterState, bounds: Filter
     filter.patentYearMax !== bounds.patentYearMax ||
     filter.makerSlugs.length > 0 ||
     filter.lensMountIds.length > 0 ||
-    filter.imageFormatIds.length > 0
+    filter.imageFormatIds.length > 0 ||
+    filter.sourceKinds.length > 0
   );
 }
 
@@ -501,3 +540,4 @@ export const FILTER_BOUNDS = buildFilterBounds(CATALOG_ENTRIES);
 export const MAKER_OPTIONS = buildMakerOptions(CATALOG_ENTRIES);
 export const MOUNT_OPTIONS = buildMountOptions(CATALOG_ENTRIES);
 export const IMAGE_FORMAT_OPTIONS = buildImageFormatOptions(CATALOG_ENTRIES);
+export const SOURCE_KIND_OPTIONS = buildSourceKindOptions(CATALOG_ENTRIES);

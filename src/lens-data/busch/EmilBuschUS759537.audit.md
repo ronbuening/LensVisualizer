@@ -304,3 +304,12 @@ as the analysis says. The stated 0.5 per mille G′ overcorrection is reproduced
 Assignee: "Rathenower Optische Industrie-Anstalt vormals Emil Busch A.-G." is the only Busch assignee in the corpus,
 so there is no variant to consolidate. The patent heading prints "Rathenower Optische Industrie, Anstalt, vormals Emil
 Busch, A.-G.".
+
+## 2026-11-20 — Maker merged into Busch
+
+Main added a Busch maker for the von Rohr Pantoskop (`maker: "Busch"`, slug `busch`, with an `EMIL BUSCH` prefix)
+while this file used its own "Emil Busch" maker and `emil-busch` slug. To keep one maker page for the Rathenow
+works, `maker` is now "Busch", the file moves to `busch/`, and the separate `emil-busch` maker profile is dropped; its
+paragraph on Karl Martin, the Omnar and this patent moved into the Busch profile. The name keeps its `EMIL BUSCH`
+prefix, which maps to `busch`. The two profiles disagreed on the founding year (Busch 1800 from NDB 3; the dropped
+profile 1801, the year of the royal privilege in NDB 4); the Busch profile's 1800 stands.

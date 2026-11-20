@@ -5,13 +5,15 @@
  * the complete visible catalog network. Patent authorship/assignment edges are
  * joined by the assignee-only corporate history emitted at build time. Shared
  * corporate-family records become hub nodes, while relationship targets that
- * are not catalog assignees become external organization nodes.
+ * are not catalog assignees become external organization nodes. Literature
+ * reconstructions (`source.literature`) stay off the map: a book's citation is
+ * not a patent party, maker document or corporate relationship.
  */
 
 import { ASSIGNEES, getAssigneeByName } from "./assigneeCatalog.js";
 import { AUTHORS, getAuthorByName } from "./authorCatalog.js";
 import { catalogCollator } from "./collation.js";
-import { LENS_SUMMARIES, SUMMARY_KEYS } from "./lensSummaries.js";
+import { LENS_SUMMARIES, SUMMARY_KEYS, type LensSummary } from "./lensSummaries.js";
 import { MAKER_CORPORATE_FAMILIES } from "./makerCorporateFamilies.js";
 import { deriveMaker } from "./lensMetadata.js";
 import type { PatentLensRef } from "../../types/catalog.js";
@@ -108,6 +110,13 @@ export interface UniversalRelationshipGraph {
 
 export interface UniversalRelationshipGraphOptions {
   includeCorporateRelationships?: boolean;
+  /** The visible lens summaries to draw; the catalog's by default. */
+  summaries?: readonly LensSummary[];
+}
+
+/** Whether a lens belongs on the relationship maps: every visible lens but a literature reconstruction. */
+export function isRelationshipMapLens(summary: LensSummary): boolean {
+  return summary.visible && summary.sourceLiterature === undefined;
 }
 
 const NODE_KIND_ORDER: Record<UniversalNodeKind, number> = {
@@ -193,6 +202,7 @@ export function buildUniversalRelationshipGraph(
   options: UniversalRelationshipGraphOptions = {},
 ): UniversalRelationshipGraph {
   const includeCorporateRelationships = options.includeCorporateRelationships ?? true;
+  const summaries = (options.summaries ?? SUMMARY_KEYS.map((key) => LENS_SUMMARIES[key])).filter(isRelationshipMapLens);
   const nodesById = new Map<string, UniversalRelationshipNode>();
   const edges: UniversalRelationshipEdge[] = [];
   let edgeIndex = 0;
@@ -213,16 +223,14 @@ export function buildUniversalRelationshipGraph(
     nodesById.set(id, { id, kind: "assignee", name: assignee.name, ref, patentCount: assignee.patentCount });
   }
 
-  const patents: GraphPatentNode[] = aggregatePatentRecords(SUMMARY_KEYS.map((key) => LENS_SUMMARIES[key])).map(
-    (record) => ({
-      id: patentId(record.patentNumber),
-      patentNumber: record.patentNumber,
-      patentYear: record.patentYear,
-      authors: record.authors,
-      assignees: record.assignees,
-      lenses: record.lenses,
-    }),
-  );
+  const patents: GraphPatentNode[] = aggregatePatentRecords(summaries).map((record) => ({
+    id: patentId(record.patentNumber),
+    patentNumber: record.patentNumber,
+    patentYear: record.patentYear,
+    authors: record.authors,
+    assignees: record.assignees,
+    lenses: record.lenses,
+  }));
 
   for (const patent of patents) {
     nodesById.set(patent.id, { id: patent.id, kind: "patent", name: patent.patentNumber, patent });
@@ -248,12 +256,12 @@ export function buildUniversalRelationshipGraph(
     return id;
   };
 
-  // Book-derived models have lens identity and catalog maker grouping, not
+  // Models without a patent have lens identity and catalog maker grouping, not
   // fabricated patent publications or patent-party attribution. A manufacturer
   // document's issuer is the dated legal entity, so it groups the model there
   // in place of the undated catalog maker hub.
-  for (const key of SUMMARY_KEYS) {
-    const summary = LENS_SUMMARIES[key];
+  for (const summary of summaries) {
+    const key = summary.key;
     if (summary.patentNumber?.trim()) continue;
     const id = `lens:${key}`;
     nodesById.set(id, {
