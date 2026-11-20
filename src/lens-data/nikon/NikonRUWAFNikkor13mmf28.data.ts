@@ -13,6 +13,17 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  trace of the tabulated prescription gives EFL = 12.3995 mm and    ║
  * ║  BFD = 39.3394 mm from R17 to the paraxial image plane.            ║
  * ║                                                                    ║
+ * ║  WATER MEDIUM (2026-11-03): LensVisualizer launches rays in air, so ║
+ * ║  a zero-power artificial WTR plane 0.001 mm before R1 establishes  ║
+ * ║  the water medium, as on the R-UW 20-35mm. WTR is not a patent      ║
+ * ║  surface and is not counted in the element or group totals.        ║
+ * ║  Without it the model traced R1 from air: EFL 15.348 mm and the     ║
+ * ║  image plane 1.153 mm behind paraxial focus; with it, EFL 12.3995  ║
+ * ║  mm and zero offset. A flat air-water entry caps the in-water ray  ║
+ * ║  angle at 48.6°, so the traced field (30.7° half field in air) is  ║
+ * ║  far short of the 85.3° underwater half field; tracing that field  ║
+ * ║  needs an object-space medium in the launch path.                  ║
+ * ║                                                                    ║
  * ║  Stop handling: the patent table does not assign an axial stop     ║
  * ║  coordinate, but FIG. 1 places SP between G4 and G5, close to G5.  ║
  * ║  The 10.30 mm R9-R10 air gap is therefore split as                 ║
@@ -182,7 +193,10 @@ const LENS_DATA = {
     },
   ],
 
+  media: [{ id: "m1", nd: 1.33306 }],
+
   surfaces: [
+    { label: "WTR", R: "flat", d: 0.001, sd: 50.0, medium: "m1" },
     { label: "1", R: 54.988, d: 8.0, sd: 44.5, medium: 1 },
     { label: "2", R: 39.999, d: 20.0, sd: 35.8 },
     { label: "3", R: 107.519, d: 3.0, sd: 19.8, medium: 2 },
@@ -220,6 +234,7 @@ const LENS_DATA = {
   },
 
   groups: [
+    { text: "WATER", fromSurface: "WTR", toSurface: "WTR" },
     { text: "G1", fromSurface: "1", toSurface: "2" },
     { text: "G2", fromSurface: "3", toSurface: "4" },
     { text: "G3", fromSurface: "5", toSurface: "6" },

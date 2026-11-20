@@ -45,3 +45,36 @@ The file had kept the printed values d-referenced and every element Unmatched, b
 - `catalog.closeFocusM.marketing` 0.35 m keeps the maker's figure; the focus readout names it beside the close-focus label where the two differ by more than 2 %.
 
 Text sync: analysis: the close endpoint is labelled 0.387 m; the 0.35 m production figure is marketed metadata.
+
+## 2026-11-03 — Image-plane consistency (erratum)
+
+KR 10-2127451 B1 Example 4 Table 10 (PDF p. 15) prints d14 = 16.862, Filter t = 2.500 (1.51680 / 64.20) and
+d16 = 0.500 mm to the image. With that path the plane sat 0.500018 mm before paraxial focus (50.6 depths at F/2.9).
+Two independent kinds of source-internal evidence isolate d16 as printed 0.500 mm short:
+
+- **source-summary:** with d16 = 1.000 mm, the printed D1/D2 rows of Table 12 (PDF pp. 15–16) focus at Table 12's own
+  D0. Infinity, the MAG = −1/40 row and the TL = 0.3 m row land at ∞, 1426.24 and 302.02 mm. Their Gaussian
+  magnifications are −0.024956 and −0.123151, against the printed 0.025 and 0.123. With 0.500 mm the rows focused at
+  3314.83 and 339.54 mm. OAL = 46.500 mm equals first vertex to the filter's rear face (27.13861 + 16.862 + 2.500),
+  which supports d14 as printed and points at d16.
+- **aberration-figure:** FIG. 8 (PDF p. 25), the Example 4 ray fan at HFOV 32.37°, shows a flat axial fan on its
+  ±0.05 mm scale. A 0.5 mm defocus at F/2.9 would tilt it by about ±0.086 mm. The Table 12 "in Air" 19.70033 mm
+  distance would tilt it by about ±0.033 mm, so the fan rejects that path too.
+
+| Field | Before | After | Justification |
+| --- | --- | --- | --- |
+| `rearPlates[0].gapAfterMm` (d16) | 0.5 | 1.0 | Corrected erratum (source-summary, aberration-figure) |
+| `focus.closeFocusM` | 0.387 | 0.3495 | TL = 0.3 m row object to image 349.523 mm |
+| `focus.keyframes[1]` | 0.237653048385 | 0.237152 | 0.3495 / 1.473736 (MAG = −1/40 row object to image) |
+
+- Residual: +0.500018 → +0.000018 mm. EFL unchanged (35.182840 mm); track 47.000607 → 47.500607 mm. D1/D2 travel is
+  unchanged (printed rows kept).
+- Close focus 0.387 → 0.3495 m; `catalog.closeFocusM.marketing` stays 0.35 m (Samyang's image-sensor-to-object MFD).
+- `source.errata` cannot record this correction. The validator accepts only a lens surface's R, d or nd, and a
+  rear-plate gap belongs to the synthetic surface `RP1b`, which `surface` cannot name. A test entry naming `RP1b` was
+  rejected ("surface must match a surface label"). The correction is therefore recorded in the other three places: the
+  inline comment on `gapAfterMm`, the data-file header and this entry.
+- No focus gap moved. Aperture, image-circle, field-coverage (90–99 % bucket) and surface-probe audits are unchanged.
+
+Follow-ups: the Table 12 "in Air" 19.70032771 mm value remains unexplained. Allowing `source.errata` to name a
+rear-plate gap would let this correction be disclosed in the MTF tab.

@@ -7,8 +7,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Source HG (R1/R2, 5.00 mm, N1=1.516330/nu1=64.1, D2=1.50 mm) is restored as the integral member
  * included in the selected numerical configuration and figure. The general c-7 alternative-member clause
  * does not describe an optional/removable accessory. All 17 media / 13 groups now include HG and required FL.
- * Existing powered R/d, L2 focus keyframes, stop/aperture rule and pre-existing gapSagFrac 0.96 are unchanged.
- * Source plates are physical: FL t=2.20 mm, D29=30.00 mm and trailing D31+D32=70.28 mm; inactive FC is omitted.
+ * The HG restoration left powered R/d, L2 focus keyframes, stop/aperture rule and gapSagFrac 0.96 unchanged.
+ * Source plates are physical: FL t=2.20 mm, D29=30.00 mm and printed trailing D31+D32=70.28 mm (re-solved below);
+ * inactive FC is omitted.
  *
  * The patent names no spectral line (PDF p. 78 col. 32). 17 of 17 printed pairs, including HG and FL, match catalog
  * d-line coordinates and none match the e-line, so the table is read as d-line. 17 media use catalog curves as
@@ -16,17 +17,18 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * authored. Product UD/fluorite associations remain correlations and do not identify historical chemistry,
  * supplier or melt. The original N/nu values are never replaced by catalog data.
  *
- * Source f=490.56 mm differs from literal EFL=491.356789 mm; the printed 102.48 mm physical R29-to-image
- * path is 0.670443 mm short of derived infinity focus. Table 3 condition (21) also differs slightly.
- * These contradictions remain source.errata unresolved; no radius/gap is fitted to hide them.
+ * Source f=490.56 mm differs from literal EFL=491.356789 mm, and Table 3 condition (21) also differs slightly.
+ * These contradictions remain source.errata unresolved; no radius is fitted to hide them.
+ * Image-plane re-solve (2026-11-03): the printed 102.48 mm physical R29-to-image path was 0.670443 mm short of
+ * paraxial infinity focus, so the final gap S31 is 70.28 -> 70.950443 mm and the reconstructed close row's L2 gaps
+ * are re-solved for 4.5 m (D12 37.353982 -> 37.160657, D15 76.716018 -> 76.909343 mm).
  *
  * Figure-based caps and five outer shoulders preserve clear apertures and connected bonded geometry.
  * No inferred cut, interface land, resin wing or unsupported compound block is introduced. Source infinity
  * aperture/field checks pass; 201 focus states render finite connected contours with zero hidden trimming.
- * The near-infinity cam interval includes a virtual conjugate because of the retained source image-plane
- * discrepancy. A separate 101-control positive-object clearance probe is not a focus-certification claim.
- * With HG/FL physical, the unchanged cam's close conjugate is 4.5 m; closeFocusM now reports that coordinate
- * consequence, replacing the old plate-omission normalization. No source finite-distance table is invented.
+ * A separate 101-control positive-object clearance probe is not a focus-certification claim.
+ * With HG/FL physical, the re-solved close row's conjugate is 4.5 m object to image, Canon's closest focusing
+ * distance. No source finite-distance table is invented.
  * Only centered IS is represented; moved-state and attached-converter clearance remain unverified.
  */
 
@@ -64,7 +66,7 @@ const LENS_DATA = {
     errata: [
       {
         status: "unresolved",
-        note: "Numerical Example 24 (PDF p. 79, cols. 33–34) states f=490.56 mm, while its literal prescription gives EFL=491.356789 mm. The printed physical R29-to-image path is 30.00+2.20+31.34+38.94=102.48 mm, versus independently derived paraxial focus 103.150443 mm. Table 3 condition (21), PDF p. 79 col. 34, prints f1c/f=0.7065, versus 0.706739 from the literal group and stated f. The certificate (PDF pp. 82–83) does not amend Example 24. No single supported cause is isolated; source R/d and image gaps are retained, without fitting a radius or gap to the summary.",
+        note: "Numerical Example 24 (PDF p. 79, cols. 33–34) states f=490.56 mm, while its literal prescription gives EFL=491.356789 mm. Table 3 condition (21), PDF p. 79 col. 34, prints f1c/f=0.7065, versus 0.706739 from the literal group and stated f. The certificate (PDF pp. 82–83) does not amend Example 24. No single supported cause is isolated; source R/d are retained, without fitting a radius to the summary. (The separate 0.670443 mm image-plane residual is re-solved in the final gap; see header.)",
       },
     ],
   },
@@ -318,20 +320,20 @@ const LENS_DATA = {
     // Its sd follows original Fig. 87; the numerical table lists none.
     // Gap to the image: D31 + D32 to the image, inactive FC plane R32 omitted
     { label: "30", R: "flat", d: 2.2, sd: 25, medium: 17 },
-    { label: "31", R: "flat", d: 70.28, sd: 25 }, // drop-in filter → image plane
+    { label: "31", R: "flat", d: 70.950443, sd: 25 }, // drop-in filter → image plane; printed 31.34 + 38.94 = 70.28; re-solved for paraxial focus
   ],
 
   /* ── Focus configuration ── */
   focus: {
     closeFocusM: 4.5,
     description:
-      "CONSTRAINED_RECONSTRUCTION: the source-defined cemented L2 moves imageward; unchanged D12/D15 keyframes retain the original 16.833981615 mm travel and 114.07 mm gap sum. With the selected source HG and FL traced physically, the derived close conjugate is 4.5 m, the original external product constraint. The patent publishes no finite-object spacing table. Source infinity focal/image-plane inconsistency remains unresolved; centered IS only.",
+      "CONSTRAINED_RECONSTRUCTION: the source-defined cemented L2 moves imageward 16.640657 mm with a constant 114.07 mm D12+D15 sum; the close row is solved so the lens focuses at 4.5 m object to image, Canon's closest focusing distance, with HG and FL traced physically. The patent publishes no finite-object spacing table. The final gap is re-solved for paraxial infinity focus; the source focal-length inconsistency remains unresolved; centered IS only.",
   },
 
   /* (moved from var) ── Focus variables ── */
   gaps: {
-    "12": { label: "L2 FRONT GAP", values: [[20.52, 37.35398161538062]] },
-    "15": { label: "L2 REAR GAP", values: [[93.55, 76.71601838461939]] },
+    "12": { label: "L2 FRONT GAP", values: [[20.52, 37.160657]] }, // close row was 37.353982 (reconstructed); re-solved for 4.5 m after the final-gap re-solve
+    "15": { label: "L2 REAR GAP", values: [[93.55, 76.909343]] }, // close row was 76.716018 (reconstructed); re-solved for 4.5 m after the final-gap re-solve
   },
 
   /* ── Aperture configuration ── */

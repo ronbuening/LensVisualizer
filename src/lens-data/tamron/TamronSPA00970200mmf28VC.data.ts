@@ -17,6 +17,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Glass: all23source nd/vd retained.92catalog-only C/F/g/dPgF copies removed; the runtime
  * supplies23 compatible catalog curves as qualified spectral proxies. Named HOYA references
  * do not prove supplier/melt. Five LD/XLD-position APD tags stay inferred, not source measurements.
+ * Image plane kept as a best-focus plane (LENS_DATA_SPEC Image-Plane Consistency): paraxial offset +0.073 / −0.100 /
+ * +0.095 mm (7.4 / 10.1 / 9.7 depths at f/2.90); real-ray axial best focus −0.006 / −0.062 / −0.008 mm (≤ 6.3 depths).
  */
 
 const LENS_DATA = {

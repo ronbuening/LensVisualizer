@@ -16,3 +16,23 @@ Source: local `patents/JPA 1982108817-000000.pdf`, Example 1, PDF p.3 lower righ
 The smaller source gap triggered the conservative 95% sag-budget guard, although physical surfaces retain about 0.054 mm clearance. Kept inferred apertures unchanged and set the documented gapSagFrac to 0.96; buildLens geometry checks pass. This does not alter optical positions. Updated dependent analysis, deleted Section E row and recorded the prescription correction in the changelog.
 
 Validation: focused runtime/paraxial check; full corpus gates at the ten-lens checkpoint.
+
+## 2026-11-03 — Image-plane consistency (re-solve)
+
+| Field | Before | After | Justification |
+| --- | --- | --- | --- |
+| S11 `d` (image distance) | 34.9995 | 35.379606 | Re-solved for paraxial infinity focus; printed fB 69.999 × 0.5 kept in the inline comment |
+
+- Residual: +0.380106 → 0 mm (99.8 depths at f/1.8 before). EFL 50.248647 mm unchanged; track 65.5245 →
+  65.904606 mm (track/EFL 1.30401 → 1.31157). No focus travel is modeled; closeFocusM 0.55 unchanged.
+- Evidence: the Example 1 table (JP S57-108817, PDF p. 3 / printed p. 85, re-read at 400 dpi) matches all 11 radii,
+  10 spacings and 6 indices at ×0.5. The table computes f = 100.497 and fB = 70.759 against the printed 100 and
+  69.999. A single-value scan for f = 100 finds no plausible digit slip that also gives fB = 69.999 (the nearest,
+  n1 1.67003 → 1.6750, would replace a real 670/472 glass). The census real-ray axial best focus, +0.348 mm, sits
+  near paraxial focus, so fB is not a best-focus plane. d9 is smudged in the scan; reading 0.20 would close the
+  Σd gap of 0.010 but not the back focus.
+- Aperture, image-circle, field-coverage and surface-probe audits are unchanged.
+- Text sync: header (source-numerics box and note), inline comments, analysis (first-order mismatch paragraph, track
+  and ratios, image-plane section).
+
+Follow-ups: none.

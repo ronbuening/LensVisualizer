@@ -250,7 +250,8 @@ near object (¶0030). It does not publish close-focus spacings, focus travel, or
 uses the disclosed `CONSTRAINED_RECONSTRUCTION` rather than presenting inferred rows as patent facts.
 
 The reconstruction normalizes Panasonic's 0.25 m minimum-focus specification to the sensor plane. The three published
-zoom anchors are retained, and 30 derived control points are inserted along the same piecewise-linear infinity zoom path.
+zoom anchors are retained, and 30 derived control points are inserted along their piecewise-linear zoom path: D9, D17
+and D20 are interpolated between the anchors, and each point's back focus is solved for paraxial focus at infinity.
 At all 33 control points, G3 moves imageward: D17 increases by the focus travel and D20 decreases by the same
 amount. Their sum remains constant, G4 and the image plane remain fixed, and the complete object-to-image matrix is
 solved to the finite-conjugate imaging condition.
@@ -263,9 +264,18 @@ solved to the finite-conjugate imaging condition.
 
 The telephoto-end result agrees with Panasonic's rounded approximately 0.23× maximum magnification. That agreement is a
 validation of the constrained model, not evidence that the manufacturer used these exact reconstructed gap values. The
-30 additional control points are modeling values, not patent rows: each preserves the interpolated infinity zoom path,
-conserves D17 + D20, and is independently solved at 250 mm. A 33-knot reconstruction reduces the maximum sampled
-between-knot object-distance error from 39.2 mm for the original three-row interpolation to 0.246 mm. The patent's
+30 additional control points are modeling values, not patent rows: each keeps the interpolated D9/D17/D20 spacings,
+re-solves its back focus for infinity, conserves D17 + D20, and is independently solved at 250 mm. A 33-knot
+reconstruction reduces the maximum sampled between-knot close-focus object-distance error from 39.2 mm for the original
+three-row interpolation to 0.256 mm, and keeps the infinity image within 0.31 depths of focus between knots.
+
+Interpolating the back focus linearly with the other gaps does not keep the image on the sensor: before the 2026-11-03
+re-solve the derived infinity rows sat 0.17-0.99 mm short of the plane (up to 50 depths of focus at f/4.1, worst near
+20 mm and 29 mm), so the lens focused 0.45-4 m away at its infinity end. The anchors focus as printed (-0.0002 mm).
+Solving the back focus moves the whole lens 0.17-0.99 mm toward the sensor at those points and leaves their focal
+lengths unchanged; using G3 for it instead would close D17 below zero near 29 mm. With the back focus solved, the
+G3 close-focus travel rises smoothly from 1.747 mm at the wide anchor through 2.520 mm at the middle anchor to
+3.455 mm at the tele anchor (previously it dipped to 1.343 mm near 18.8 mm and to 2.273 mm near 26.5 mm). The patent's
 stated purpose is to reduce the change in field angle during focusing; no independent quantitative breathing percentage
 is claimed here.
 

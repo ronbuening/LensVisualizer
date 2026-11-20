@@ -64,9 +64,11 @@ focus group: a single negative meniscus. G4 is a net-positive rear group formed 
 patent uses its axial thickness as a design constraint governing exit-pupil placement and the trade between image-height
 stability and spherical/astigmatic correction (¶0071-¶0074).
 
-The source GL plane-parallel filter behind L42 is traced via `rearPlates`: 17.01 mm
-of air, 2.00 mm glass at nd=1.52/νd=64.2 and 1.00 mm of air. The physical image
-distance is 20.01 mm; its paraxial air equivalent remains 19.325789 mm.
+The source GL plane-parallel filter behind L42 is traced via `rearPlates`. The printed rear path is 17.01 mm of air,
+2.00 mm glass at nd=1.52/νd=64.2 and 1.00 mm of air: 20.01 mm physical, 19.325789 mm air-equivalent. With the
+printed two-decimal indices the paraxial infinity focus lies 0.365898 mm beyond that plane, within the spread that
+index rounding alone produces (about ±0.4 mm). The model therefore re-solves the first air gap for paraxial focus,
+17.01 → 17.375898 mm, keeping the plate and its 1.00 mm air: 20.375898 mm physical, 19.691687 mm air-equivalent.
 
 The patent publishes no clear semi-diameters and no stop diameter. The stop semi-diameter and all element semi-diameters
 in the data file are therefore modeling inferences, not source measurements. The stop is calibrated to the rounded-index
@@ -75,8 +77,8 @@ exact-ray envelopes, the patent section drawing, and the current geometry limits
 (`s = 1.0`). The patent states that all ten lens elements are spherical, so no aspheric coefficient transformation
 applies.
 
-The computed project track is much longer than the model EFL (`TL/EFL = 2.527`), and the air-equivalent rear spacing is
-shorter than the EFL (`BFD/EFL = 0.573`). Under the project definitions, the design is therefore neither telephoto nor
+The computed project track is much longer than the model EFL (`TL/EFL = 2.538`), and the air-equivalent rear spacing is
+shorter than the EFL (`BFD/EFL = 0.583`). Under the project definitions, the design is therefore neither telephoto nor
 retrofocus.
 
 ## Element-by-Element Analysis
@@ -194,18 +196,22 @@ The patent publishes only d-line refractive indices and Abbe numbers. Catalog cu
 The focus model is **PUBLISHED**, not reconstructed. G1, G2, and G4 remain fixed relative to the image plane; the single
 negative L31/G3 group moves toward the image as focus changes from infinity to the published 0.4 m state (¶0057).
 
-| Published spacing | Infinity | 0.4 m state | Change |
-|---|---:|---:|---:|
-| D1, after L23 / before L31 | 1.00 mm | 4.94 mm | +3.94 mm |
-| D2, after L31 / before L41 | 6.24 mm | 2.29 mm | -3.95 mm |
+| Spacing | Infinity | 0.4 m state, printed | 0.4 m state, model | Change (model) |
+|---|---:|---:|---:|---:|
+| D1, after L23 / before L31 | 1.00 mm | 4.94 mm | 5.220467 mm | +4.220467 mm |
+| D2, after L31 / before L41 | 6.24 mm | 2.29 mm | 2.009533 mm | -4.230467 mm |
 
-The D1 change places the L31 vertex **3.94 mm toward the image**. Ideally the two adjacent gaps would conserve their sum
-for a rigidly translating single element, but the published totals are 7.24 mm and 7.23 mm. The data retains this 0.01
-mm difference as source rounding rather than silently altering either endpoint.
+The printed D1 change places the L31 vertex 3.94 mm toward the image. Ideally the two adjacent gaps would conserve their
+sum for a rigidly translating single element, but the published totals are 7.24 mm and 7.23 mm. The data retains this
+0.01 mm difference as source rounding rather than silently altering either endpoint.
 
-The patent labels the near endpoint simply as 0.4 m and does not define the mechanical reference plane for that
-distance. Viltrox likewise markets a 0.4 m minimum focus distance. The analysis therefore treats 0.4 m as the published
-focus-state label and does not claim that the patent's distance datum has been uniquely recovered.
+The patent labels the near endpoint simply as 0.4 m and does not define its reference plane. The model reads it as
+object to image. With the infinity residual removed, the printed travel focuses at 0.422 m object to image, against
+0.486 m for a first-vertex reading. Re-solved at 0.4 m object to image, the state's magnification is −0.102, matching
+Viltrox's 0.1× and 0.4 m minimum focus distance. The sibling utility model CN 211826700 U, filed the same day, prints
+a 0.3 m state that focuses at 0.3 m object to image. After the S20 re-solve, the 0.4 m row is re-solved by moving L31
+alone, keeping its printed D1 + D2. L31 then travels **4.220467 mm toward the image** (printed 3.94 mm), and
+`closeFocusM` is 0.4 m. The D2 rim clearance at the 0.4 m state is 0.40 mm (0.68 mm with the printed row).
 
 Viltrox's product specification identifies the production drive as **STM + lead screw** and the mechanism as internal
 focus. The patent establishes the optical movement but does not specify that production motor architecture, so the drive
@@ -253,20 +259,21 @@ load-bearing results are:
 | Quantity | Infinity | Published / comparison |
 |---|---:|---:|
 | Computed EFL | 33.754006 mm | Patent: 33.21 mm |
-| Computed close-state EFL | 32.607944 mm | Patent: 32.08 mm |
+| Computed close-state EFL | 32.513290 mm | Patent: 32.08 mm |
 | Modeled wide-open f-number | 1.400000 | Patent aberration plots: f/1.4 |
-| Physical L42-rear→IMG spacing | 20.01 mm | Source physical distance with GL: 20.01 mm |
+| Physical L42-rear→IMG spacing | 20.375898 mm | Source physical distance with GL: 20.01 mm |
 | Petzval sum, `Σ φ/(n·n′)` | +0.005283735 mm⁻¹ | Reciprocal: +189.260 mm |
 
-The approximately 1.64% focal-length difference at both focus endpoints follows from tracing the patent's indices
-exactly as printed to two decimal places. A source-precision sensitivity calculation shows that the patent's stated
+The focal-length differences, 1.64% at infinity and 1.35% at the re-solved 0.4 m state, follow from tracing the
+patent's indices exactly as printed to two decimal places. The patent's own Table 9 sides with the traced value:
+its F1a/F (−1.24) and F1b/F (0.84) reproduce with 33.754 mm (−1.252, 0.843) but not with 33.21 mm (−1.272, 0.857). A source-precision sensitivity calculation shows that the patent's stated
 33.21/32.08 mm focal lengths are compatible with indices lying inside the printed two-decimal rounding intervals; the
 data file does not substitute a fitted index set.
 
 Sequential height/reduced-angle tracing and an independent ABCD calculation agree to machine precision. The stored
 per-element focal lengths also reproduce from the finished arrays. With the inferred semi-diameters, the modeled
-geometry satisfies edge-thickness, actual rim-slope, and shared-band cross-gap constraints at both published mechanical
-focus configurations. Exact-ray containment passes for the infinity field set and for a finite-conjugate proxy traced
+geometry satisfies edge-thickness, actual rim-slope, and shared-band cross-gap constraints at both modeled focus
+configurations. Exact-ray containment passes for the infinity field set and for a finite-conjugate proxy traced
 through the published close-focus configuration; the latter is not used to redefine the patent's 0.4 m distance datum.
 
 ### Patent-figure SD review (2026-09-10 UTC)
@@ -291,6 +298,8 @@ Reviewed the local `patents/CN211826699U.pdf`, PDF page 16, Figure 1, at 600 dpi
 
 MTF audit: all Example 1 source rows match; GL is restored via
 rearPlates at its physical gaps. EFL 33.754006 differs from printed
-33.21 mm; physical BFL 20.375898 differs from image distance 20.01.
-The +0.365898 mm source contradiction remains. Tier A source search
-is exhausted: no theta-gF, delta-PgF or line indices for L14; see audit.
+33.21 mm. The physical paraxial BFL, 20.375898 mm, differed from the
+printed image distance, 20.01 mm; on 2026-11-03 the S20 air gap was
+re-solved to 17.375898 mm and the 0.4 m row re-solved by L31 (see Focus Mechanism).
+Tier A source search is exhausted: no theta-gF, delta-PgF or line
+indices for L14; see audit.

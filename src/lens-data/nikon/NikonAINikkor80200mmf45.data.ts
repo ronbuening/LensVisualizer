@@ -25,8 +25,13 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║                                                                    ║
  * ║  SOURCE CORRECTION:                                                 ║
  * ║  The descriptive Embodiment 1 table's middle D5 value, 28.213 mm,  ║
- * ║  is retained. Claim 9 prints 28.313 mm, which breaks the fixed      ║
- * ║  relay-position sum by 0.100 mm and gives poorer cardinal matches.  ║
+ * ║  is the printed basis (re-solved below). Claim 9 prints 28.313 mm,  ║
+ * ║  which breaks the fixed relay-position sum by 0.100 mm and gives    ║
+ * ║  poorer cardinal matches.                                           ║
+ * ║                                                                    ║
+ * ║  IMAGE PLANE: D5 at infinity 3.229 / 28.213 / 44.014 → 3.036476 /    ║
+ * ║  28.069189 / 43.894724 mm, re-solved for paraxial focus by G1 (the   ║
+ * ║  printed spacings left the plane 0.083-0.322 mm beyond focus).       ║
  * ║                                                                    ║
  * ║  NOTE ON STOP:                                                      ║
  * ║  Fig. 1 shows the stop in D13, but the table omits its split and    ║
@@ -72,10 +77,10 @@ const LENS_DATA = {
   catalog: {
     lensMounts: ["nikon-f"],
     imageFormat: "135-full-frame",
-    specs: ["12 ELEMENTS / 9 GROUPS", "COMPUTED EFL 80.102-199.912 mm", "F/4.5", "ALL-SPHERICAL", "FRONT-GROUP FOCUS"],
+    specs: ["12 ELEMENTS / 9 GROUPS", "COMPUTED EFL 79.972-200.020 mm", "F/4.5", "ALL-SPHERICAL", "FRONT-GROUP FOCUS"],
     elementCount: 12,
     groupCount: 9,
-    focalLengthMm: { marketing: [80, 200], design: [80.102454, 199.911568] },
+    focalLengthMm: { marketing: [80, 200], design: [79.972468, 200.019948] },
     fNumber: { marketing: 4.5, design: 4.5 },
   },
 
@@ -273,12 +278,13 @@ const LENS_DATA = {
   },
 
   gaps: {
+    // Infinity column printed 3.229 / 28.213 / 44.014; re-solved for paraxial focus (G1 focus per station).
     "5": {
       label: "D5 / FOCUS",
       values: [
-        [3.229, 13.097762345],
-        [28.213, 38.130810487],
-        [44.014, 53.956507521],
+        [3.036476, 13.097762345],
+        [28.069189, 38.130810487],
+        [43.894724, 53.956507521],
       ],
     },
     "10": {

@@ -26,8 +26,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  apertures. Figure 2 review enlarged surfaces 3–5 and 10–15,     ║
  * ║  capped where literal drawing rims would cross optical surfaces.║
  * ║                                                                    ║
- * ║  IMAGE PLANE: source rear spacing 21.841 mm is preserved. The     ║
- * ║  computed Gaussian BFD is a distinct quantity (~22.378 mm).       ║
+ * ║  IMAGE PLANE: source rear spacing 21.841 mm re-solved to the      ║
+ * ║  computed Gaussian BFD, 22.377889 mm (see note below).            ║
  * ║                                                                    ║
  * ║  GLASS: patent nd/νd values are retained at the d line. Generic   ║
  * ║  class/Unmatched labels avoid asserting historical supplier melts ║
@@ -40,8 +40,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * MTF source audit: Table 2 matches all prescription entries, including
  * the R=15, K=-1 paraboloid and the split 5.97 mm stop gap. The source
  * prints EFL 9.759 and image distance 21.841 mm; independent values are
- * 9.784067 and 22.377889 mm. Retain this source contradiction (+0.536889
- * mm defocus); no supported single misprint resolves it. See audit.
+ * 9.784067 and 22.377889 mm. No supported single misprint resolves this.
+ * Image-plane re-solve (LENS_DATA_SPEC Image-Plane Consistency, 2026-11-03):
+ * S15 d 21.841 → 22.377889 mm puts the infinity row in paraxial focus
+ * (was +0.536889 mm, 114 depths at f/2). See audit.
  */
 
 const LENS_DATA = {
@@ -229,7 +231,7 @@ const LENS_DATA = {
     { label: "12", R: 20.1, d: 0.86, sd: 12, medium: 8 },
     { label: "13", R: 15.21, d: 5.46, sd: 12 },
     { label: "14", R: 23.96, d: 2.68, sd: 10.3, medium: 9 },
-    { label: "15", R: -176.94, d: 21.841, sd: 10.3 },
+    { label: "15", R: -176.94, d: 22.377889, sd: 10.3 }, // printed 21.841; re-solved for paraxial focus
   ],
 
   /* Production close-focus value is metadata only; no finite-focus optical movement is reconstructed. */

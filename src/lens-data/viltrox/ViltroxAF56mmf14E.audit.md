@@ -25,6 +25,36 @@ Validation: focused runtime/paraxial check; full corpus gates at the ten-lens ch
 
 Text sync: analysis: the patent's 0.63 m state focuses at about 0.71 m object to image.
 
+## 2026-11-03 — Image-plane consistency (re-solve)
+
+Source: CN 211955965 U Example 1, Tables 1–2 (PDF pp. 7–8; "最近(0.63m)" on p. 8). The file matches the print; the
+printed rows did not focus with the printed two-decimal indices. Back focus first, per LENS_DATA_SPEC Image-Plane
+Consistency: the S20 air gap is re-solved for paraxial infinity focus, the change is carried to the close row, and L31
+is then moved so that row focuses at 0.63 m object to image.
+
+| Field | Before | After | Justification |
+| --- | --- | --- | --- |
+| S20 `d` | 13.67 | 14.180324 | Back focus re-solved for paraxial infinity focus; GL and its 1.00 mm air unchanged |
+| D1 (gap after S14), 0.63 m | 5.01 | 5.175783 | L31 moved for paraxial focus at 0.63 m object to image |
+| D2 (gap after S16), 0.63 m | 3.85 | 3.684217 | Same move; D1 + D2 = 8.86 mm kept |
+| `focus.closeFocusM` | 0.711 | 0.63 | The re-solved row's object-to-image distance |
+| `catalog.closeFocusM.marketing` | 0.6 | 0.6 | Viltrox's figure, unchanged |
+
+- Residual at infinity: +0.510324 → 0.000000 mm (218 depths at f/1.41). L31 travel 4.01 → 4.175783 mm. EFL
+  56.234583 mm unchanged at infinity; close EFL 53.3112 → 53.169196 mm (printed 55.90 / 52.89). Track 85.99 →
+  86.500324 mm.
+- Close focus: the 0.63 m is read as object to image. With the residual removed, the printed travel focuses at
+  0.652 m object to image (index-rounding spread 0.643–0.662 m), against 0.716 m for a first-surface reading. The
+  re-solved state's β −0.101 matches Viltrox's 0.1× (first-surface reading: −0.087). The printed row with its residual
+  did land 625.4 mm from surface 1, so the first-surface reading is not excluded; it would need 3.62 mm of travel
+  (−10%) against 4.18 mm (+4%) here. The 0.711 m relabel measured the residual.
+- Cause: the indices are printed to two decimals, which spread infinity focus by σ ≈ 0.51 mm; EFL 56.23 against the
+  printed 55.90 mm is within the matching σ ≈ 0.50 mm.
+- Clearance: D2 rim minimum 6.919 / 2.743 mm at infinity / 0.63 m (was 2.909 mm at 0.63 m); D1 1.000 / 5.176 mm.
+  Aperture, image-circle, field-coverage and surface-probe audits are unchanged.
+
+Follow-ups: none for the image plane.
+
 ## 2026-11-14 — Published finite-conjugate certification
 
 | Zoom / keyframe | Field | Before | After | Source and conjugate residual |
@@ -32,3 +62,16 @@ Text sync: analysis: the patent's 0.63 m state focuses at about 0.71 m object to
 | 0 / 1 | `focus.conjugates` | No entry | 630 mm, `first-surface` | 物距 最近(0.63m); Example 1, Table 2, ¶0079–0081, 最近 column; 物距/D1/D2 rows; PDF p. 8/9. Paraxial image minus authored plane -0.035074284 mm (-14.181235 diffraction depths); other reference +284.786547 depths; `consistent`, reference discriminated. Basis: audit-resolved. |
 
 The printed object-distance label leaves its reference plane undefined. The conjugate residual identifies the retained reference; the source string records that qualification.
+
+## 2026-11-14 — Conjugate reconciled with the re-solved rows
+
+The 2026-11-14 certification identified a first-surface reference on the printed rows, whose infinity plane was off.
+On the rows re-solved 2026-11-03 the audit rejects first-surface (−304 depths) and finds image-plane consistent. On
+the corrected plane the printed 4.01 mm D1 change sits nearer the 4.175783 mm an object-to-image reading needs than
+the 3.592854 mm a first-surface reading needs.
+
+| Field | Before | After | Justification |
+| --- | --- | --- | --- |
+| `focus.conjugates[0].distanceReference` | first-surface | image-plane | Audit-resolved on the re-solved rows |
+
+- The printed 0.63 m and the declared state are unchanged; `source` records the reference evidence.

@@ -120,3 +120,34 @@ Retained all station labels, marketing values, prescription geometry and image d
 The approved proposal independently reproduced infinity EFLs of 19.833025763378–613.643291786978 mm; those traced results remain documented separately. Both endpoint comparisons in the historical zoom-metadata check now have zero difference. This is a metadata correction, not a source-prescription correction.
 
 The existing unresolved `source.errata` entry and Section G investigation are retained unchanged; metadata agreement does not resolve the source contradiction.
+
+## 2026-11-03 — Image-plane consistency (erratum)
+
+Scope: the image-plane census (`scripts/audit-mtf.mjs --focus`) flagged all nine Table IB stations at infinity. Under
+the Image-Plane Consistency rule the printed rows are kept: the residual is a focus drift across the zoom against a
+claimed fixed image plane, which no rounding-sized gap change explains (maintainer ruling recorded in
+`agent_docs/decisions.md`, 2026-11-03).
+
+| Field | Before | After | Justification |
+| --- | --- | --- | --- |
+| Data values | printed ×20 | unchanged | kept under the rule's drift case; the existing `unresolved` erratum covers it |
+| Header | source-contradiction note | adds one "Image plane kept" line | records the rule and the reason |
+
+- Residual (unchanged): paraxial focus +1.408 / +1.454 / +1.602 / +1.972 / +2.491 / +3.579 / +6.426 / +9.982 /
+  +14.193 mm behind the plane at the nine stations (272 to 704 depths). Real-ray axial best focus lies with it:
+  +1.34 mm at 20 mm, +9.76 mm at 500 mm, and +13.71 mm at 592 mm (0.48 mm in front of paraxial focus).
+- No travel, EFL or close-focus change. `focus.closeFocusM` stays 0.85 (product metadata; the model has no close row).
+- Evidence: the file equals the print ×20 at every value (independent retype, 2026-10-07 entry); the drift grows
+  roughly with the square of the focal length, the signature of component 1's +0.44 % focal-length excess over
+  Table IA, which Example 2 repeats; claim 1 (col. 10, ll. 59–61) claims an invariable image plane and col. 5 states
+  one 0.162 back focus. A per-station back focus would need +1.408 to +14.193 mm (a 12.8 mm zoom-dependent back focus
+  the patent denies); moving L1, the patent's focusing lens, needs +4.07 to +4.51 mm at 290–592 mm and has no solution
+  at 20 mm.
+- The census's real-ray best focus at 592 mm read −0.759 mm. That figure is a search artefact: the MTF best-focus scan
+  stops at ±10 mm, short of the true +13.71 mm, and within the scan a regular ray lattice on the ~2 mm defocused spot
+  aliases onto the scored frequencies (x-OTF 0.66 / 0.62 / 0.52 / 0.53 / 0.45 at 10–50 lp/mm at −0.76 mm).
+
+Follow-ups:
+
+- The Section G queue row for the source contradiction stays open (coordinator).
+- The MTF best-focus search cap and lattice aliasing are an engine follow-up, not a data issue.

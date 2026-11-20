@@ -16,7 +16,7 @@ The correlation rests on several convergent points:
 1. Samyang specifies the production lens as a 35 mm f/2.8 autofocus prime for full-frame Sony E mount, while Example 4 is a 35.18 mm, F2.90 design. The final modeled prescription gives an infinity EFL of 35.182840213 mm and uses the patent design aperture F/2.899, keeping those design values separate from the marketed 35 mm and f/2.8.
 2. The production lens is specified as **7 elements in 6 groups**. Example 4 contains the same seven elements and six air-separated optical groups.
 3. Samyang specifies **two aspherical lenses**. Example 4 likewise places aspheric surfaces on two physical elements: L2 has surface 3A, while L7 has surfaces 13A and 14A. Thus three aspherical surfaces occur on two aspherical elements.
-4. Samyang specifies a 0.35 m minimum focusing distance and 0.12× maximum magnification. The patent close state gives a magnification of 0.123. Although its column heading says `TL=0.3m`, the published D0 plus OAL equals 348.5219835 mm, consistent with approximately 0.35 m measured from image sensor to object.
+4. Samyang specifies a 0.35 m minimum focusing distance and 0.12× maximum magnification. The patent close state gives a magnification of 0.123. Although its column heading says `TL=0.3m`, the published D0 of 302.0219835 mm plus the 47.500607 mm first-vertex-to-image track equals 349.52 mm (348.52 mm with the 46.500 mm OAL), consistent with the 0.35 m Samyang measures from image sensor to object.
 5. Samyang's instruction manual explicitly describes the production lens as an **inner-focus** design. Example 4 focuses by translating the two-element G24 group while G14 and G34 remain fixed.
 6. Samyang announced the AF 35mm F2.8 FE on 2017-06-05 and stated global availability from July 2017. The patent application followed on 2018-06-05, so the filing chronology is compatible with a post-release patent filing for the same optical concept.
 
@@ -48,7 +48,7 @@ The aperture stop is explicitly published as surface 5 and is normalized to the 
 
 The patent calls this family “telephoto type” because its effective focal length is longer than its back focal distance (¶0052). The verified Example 4 Gaussian BFD is 19.510224994 mm and its EFL is 35.182840213 mm. Under the project's stricter full-track terminology, however, the first-vertex-to-Gaussian-image track is 46.648832044 mm, giving track/EFL = 1.325897; this analysis therefore does not use **telephoto** as the LensVisualizer architectural label. It is also not **retrofocus**, because BFD/EFL = 0.554538 and thus BFD is not greater than EFL.
 
-The patent’s plane-parallel Filter at surfaces 15–16 is traced through rearPlates with Table 10’s physical gaps. The competing Table 12 “in Air” value is documented below; it does not equal that path’s air equivalent.
+The patent’s plane-parallel Filter at surfaces 15–16 is traced through rearPlates with Table 10’s 16.862 mm gap and 2.500 mm plate. The filter-to-image gap d16 is corrected from the printed 0.500 mm to 1.000 mm, as explained below. The competing Table 12 “in Air” value is documented below; it does not equal that path’s air equivalent.
 
 ## Element-by-Element Analysis
 
@@ -140,9 +140,9 @@ Example 4 uses a **published inner-focus** mechanism; no constrained reconstruct
 
 The infinity-to-close G24 translation is **2.638416687 mm toward the image side**. The maximum spread in D1+D2 over the three published states is only 1.0×10⁻⁹ mm at the printed precision, so the two changing gaps describe a rigidly translating focus group rather than a floating change of internal G24 geometry. Independent conjugate tracing gives a maximum solved image-distance variation from surface 14A of 0.000111 mm across the same three source states, supporting the fixed-image internal-focus interpretation.
 
-The intermediate data-file focus coordinate `focusT = 0.237653048385` is a normalized UI mapping derived from the current LensVisualizer distance convention. It is not a patent-published mechanical coordinate. The underlying D1/D2 values themselves are published.
+The intermediate data-file focus coordinate `focusT = 0.237152` (0.3495 m over that row's 1.473736 m object-to-image distance) is a normalized UI mapping derived from the current LensVisualizer distance convention. It is not a patent-published mechanical coordinate. The underlying D1/D2 values themselves are published.
 
-The patent's close column is internally inconsistent in its distance label. It is headed `TL=0.3m`, but the same row gives D0 = 302.0219835 mm and OAL = 46.500 mm, summing to 348.5219835 mm. Samyang defines minimum focusing distance from image sensor to object and specifies 0.35 m for the production lens. The final model therefore retains the patent's published spacing row, labels its close endpoint with the 0.387 m object-to-image distance that row focuses at, and keeps the 0.35 m production figure as marketed metadata; it does not rewrite or reconstruct the patent spacings.
+The patent's close column is internally inconsistent in its distance label. It is headed `TL=0.3m`, but the same row gives D0 = 302.0219835 mm and OAL = 46.500 mm, summing to 348.5219835 mm. With the corrected rear gap, all three printed D1/D2 rows focus exactly at their printed D0, and their Gaussian magnifications are −0.024956 and −0.123151 against the printed 0.025 and 0.123. The close row is then 349.52 mm from object to image. The model labels its close endpoint 0.3495 m, matching Samyang's 0.35 m image-sensor-to-object minimum focusing distance, which stays as marketed metadata. The patent spacings are kept as printed.
 
 ## Aspherical Surfaces
 
@@ -207,9 +207,9 @@ Because Example 4 does not publish semi-diameters, all lens-surface `sd` values 
 
 Several source/reference-plane discrepancies remain intentionally visible:
 
-- Patent Table 10 gives 16.862 mm from surface 14 to the Filter, while Table 12 gives a filter-absent `in Air` distance of 19.70032771 mm. The previous model used the latter; the 2026-09-25 audit restores the explicit physical path.
-- The former 19.70032771 mm rear spacing is 0.190102716 mm longer than the independently derived Gaussian BFL of 19.510224994 mm.
-- The source OAL of 46.500 mm differs from the Gaussian first-vertex-to-image track by −0.148832044 mm and from the former filter-absent track by −0.338934760 mm. No unreported rear-spacing correction is inserted to force agreement.
+- Patent Table 10 gives 16.862 mm from surface 14 to the Filter, a 2.500 mm filter and 0.500 mm from the filter to the image. With that path the image plane sits 0.500 mm before paraxial focus (51 depths at F/2.9); its air equivalent, 19.010207 mm, is 0.500 mm short of the 19.510225 mm Gaussian BFL.
+- **Corrected d16 = 1.000 mm (2026-11-03).** Two kinds of source-internal evidence place the image 0.500 mm further back. First (source summary), with d16 = 1.000 the printed D1/D2 rows focus at Table 12's own D0 values (∞, 1426.235, 302.022 mm) and reproduce its magnifications. Second (aberration figure), Fig. 8, the Example 4 ray fan at HFOV 32.37°, shows a flat axial fan on its ±0.05 mm scale, where a 0.5 mm defocus at F/2.9 would tilt it by about ±0.086 mm. OAL = 46.500 mm is exactly first vertex to the filter's rear face (27.1386 + 16.862 + 2.500), so it supports the printed d14 and isolates d16. `source.errata` can name only a lens surface's R, d or nd, not a rear-plate gap, so the correction is recorded on the value, in the data-file header and in the audit log.
+- Table 12 also gives a filter-absent `in Air` distance of 19.70032771 mm, which the model used before 2026-09-25. It is 0.190102716 mm longer than the Gaussian BFL, and the flat Fig. 8 fan rejects it as well; it remains unexplained.
 - Table 13 prints `LT = 27.13801 mm`, while direct summation of the Example 4 active lens stack gives 27.13860705 mm, a 0.00059705 mm source-level discrepancy.
 - Patent ¶0059's functional-group power signs conflict with the numerical prescription, as described above.
 
@@ -233,7 +233,8 @@ No dimensional scaling is applied. The marketed 35 mm / f/2.8 values remain cata
 
 MTF source audit: all powered radii, gaps, raw index/Abbe pairs and three
 K/A4–A10 sets match Tables 10–12. Restoring the printed physical filter path
-changes offset −0.190103 to +0.500018 mm because the previously used “in Air”
+changed offset −0.190103 to +0.500018 mm because the previously used “in Air”
 row is not the air equivalent of that path. EFL 35.182840 vs 35.179406;
-air BFL 19.510225 vs physical path reduced to 19.010207 mm. Source conflict
-retained explicitly; no invented gap reconciles the competing printed values.
+air BFL 19.510225 vs physical path reduced to 19.010207 mm. On 2026-11-03 the
+filter-to-image gap was corrected to 1.000 mm (offset +0.000018 mm); see
+the Verification Summary.

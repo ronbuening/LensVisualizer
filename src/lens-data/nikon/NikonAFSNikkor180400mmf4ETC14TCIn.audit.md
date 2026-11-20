@@ -71,3 +71,30 @@ The TC-engaged prescription retains its authored labels and patent coordinates. 
 - Current compatible curves cover 26/35 powered elements, plus each filter plate separately (27/36 drawn media). The shared unresolved coordinates L23, L43, L44, L45, L47, L48, L49, L410 and converter Lx2 remain at source coordinates without forced identities. Catalog/plate labels now explicitly remain qualified spectral proxies; common public analysis records both configurations' coverage. The patent's 8/4 converter versus marketed 8/5 group distinction, reconstructed focus, and physical filters are preserved.
 - Full current catalog inspection found no strict coordinate match for the unresolved media. L23/L49/L410 have only looser nonidentical candidates (e.g. L49 LAH53 differs by about 0.000178 in index and −0.8415 in Abbe number), so no source coordinate or unresolved label is changed merely to force coverage.
 - Actual verification: focused surface audit passes; image-circle audit checks all three candidates with zero undersized/skipped. Native SVG output was inspected at nine focus/zoom states per lens (27 total), with zero renderer trims. Current resolver/catalog consistency passes; the shared dispersion and partial-dispersion suites pass 93 tests. No clear-cap change required an aperture recalibration.
+
+## 2026-11-03 — Image-plane consistency (re-solve)
+
+Source: `patents/WO2019131993A1.pdf`, Table 10 on PDF pp. 63–64 and Table 8 on pp. 59–61, checked visually. Every
+R, d, nd and νd, FL1, FL2 and d70 = 0.100 match. The printed group focal lengths reproduce (Gx −231.726 against
+−231.698, 4D 1095.693 against 1095.700) and the printed TL 392.268 equals the spacing sum. The Table 10 summary does
+not reproduce: f = 257.052 / 420.020 / 548.825 is exactly 1.40006 × Table 8's f, while the prescription gives
+258.113 / 421.911 / 551.584 (converter magnification 1.408), and Bf 52.827 is printed constant over zoom although the
+paraxial value is 53.281 / 53.324 / 53.379. The converter-out file reproduces Table 8's zoom-varying Bf to 0.001 mm. No
+single Gx value fixes both f and a constant Bf. The real-ray axial best focus (+0.427 / +0.495 / +0.506 mm) tracks the
+paraxial offset, so the plane is not a best-focus plane.
+
+| Field | Before | After | Justification |
+| --- | --- | --- | --- |
+| S67 `d` (to FL2) | 51.409 | 51.911458 | One back-focus value for all stations, minimax in depths; the infinity G1B gaps are shared with the TC-out file (`opticalConfigurationParity.test.ts`) |
+| Gap 9 close, wide / mid / tele | 27.108738 / 26.975463 / 26.942994 | 26.881632 / 26.904851 / 26.911234 | G1B re-solved for 2.000 m object-to-image after carrying the S67 change |
+| Gap 13 close, wide / mid / tele | 7.290262 / 7.423537 / 7.456006 | 7.517368 / 7.494149 / 7.487766 | Same solve; the G1B gap sum stays 34.399 mm |
+
+- Residual at infinity: +0.453602 / +0.496756 / +0.551451 mm (11.7 / 12.8 / 14.2 depths) → −0.048856 / −0.005702 /
+  +0.048993 mm (1.3 / 0.1 / 1.3 depths). Infinity G1B gaps unchanged.
+- G1B close travel 20.124738 / 19.991463 / 19.958994 → 19.897632 / 19.920851 / 19.927234 mm.
+- Physical track 392.272 → 392.774 mm. EFL unchanged (258.113 / 421.911 / 551.584 mm).
+- Close focus: close rows now image at 2.000 m physical (were 2.001193 m, solved on the air-equivalent track);
+  `closeFocusM` stays 2.
+
+Follow-ups: the shared analysis `NikonAFSNikkor180400mmf4ETC14.analysis.md` (converter-out stem) still quotes the old
+TC-in G1B travel table, the 2.001193 m close distance and the 51.409 mm spacing; update it with this re-solve.

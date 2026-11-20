@@ -123,27 +123,34 @@ there; check them against the patent figure.
 
 ## Section E — MTF image-plane census
 
-These lenses place their image plane away from their own prescription's paraxial focus at infinity, by more than
+These lens stations place their image plane away from their own prescription's paraxial focus at infinity, by more than
 `MTF_IMAGE_PLANE_DEPTHS` (10) diffraction depths of focus (2λN² at the d line and the open f-number). At the authored
 plane their MTF collapses; the MTF tab's default best axial focus (and its "Design plane (auto)" option) refocuses
 them and says why. Where diagnosed, the
 source's printed back focus contradicts its prescription; undiagnosed rows may be transcription errors. Folding a listed plate to its air-equivalent, or
 modeling it in `rearPlates`, leaves paraxial defocus unchanged, so plates alone rarely explain these offsets.
-Regenerate (about three minutes):
+Regenerate (seconds; every zoom station, hidden configuration members and lenses the MTF cannot trace are included,
+and `--min-depths=N` lowers the threshold):
 
 ```bash
 node --import ./scripts/ts-js-specifier-hook-register.mjs scripts/audit-mtf.mjs --focus
 ```
 
-Work each row with [lens-patent-audit.md](lens-patent-audit.md) and the source PDF. Correct transcription errors,
-and model plates the source lists in `rearPlates`. Where the source itself is inconsistent, follow the source-errata
-standard in [lens-patent-audit.md](lens-patent-audit.md#source-errata) (an unresolved contradiction is queued in
-Section G), then delete the row here. Offset is paraxial focus minus the authored plane (positive: the plane sits in front of focus).
+Work each row under [Image-Plane Consistency](../src/lens-data/LENS_DATA_SPEC.md#image-plane-consistency): correct
+transcription errors and model artefacts, re-solve rounded or inconsistent rows back focus first, and keep a deliberate
+best-focus plane (the kept lenses are listed in [decisions.md](decisions.md)). A source contradiction is judged by the
+source-errata standard in [lens-patent-audit.md](lens-patent-audit.md#source-errata); an unresolved one is queued in
+Section G. Delete the row here when it is done. Offset is paraxial focus minus the authored plane (positive: the plane
+sits in front of focus).
 
 | Lens                                    | File                                          | Offset (mm) | Depths | Cause                                                                                        | Status                                                                        |
 | --------------------------------------- | --------------------------------------------- | ----------- | ------ | -------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
 | NIKON R-UW AF ZOOM-NIKKOR 20-35mm f/2.8 | `nikon/NikonRUWAFZoomNikkor2035mmf28.data.ts` | +0.220      | 24     | Water interface is already traced; several existing source emendations remain unverified     | partial (rear plate migrated; source reconstruction unresolved)               |
-| HASSELBLAD XCD 45mm f/3.5               | `hasselblad/HasselbladXCD3545.data.ts`        | +0.171      | 12     | Data note: source infinity BF 26.88 mm kept although the raw prescription computes otherwise | blocked (patent missing: WO2017221949A1; only Japanese republication present) |
+| NIKON AI ZOOM-NIKKOR 35-105mm f/3.5-4.5 S | `nikon/NikonAIZoomNikkor35105mmf3545.data.ts` | +0.942 / +1.330 / +1.677 | 66 / 71 / 71 | Table 7's d9 = 1.0 against 3.5 in Tables 4–6 leaves EFL 3.4 % long and the plane off at every station; with 3.5 the remainder is sibling-sized. Decide d9 (Sections F and G), then re-solve BF per station (52.607839 / 65.652104 / 78.807634 with d9 = 3.5) | blocked (d9 ruling) |
+| PENTAX SMC TAKUMAR 6x7 600mm f/4         | `pentax/PentaxSMCTakumar6x7600mmf4.data.ts`   | −0.203      | 11     | Added after this census pass (#949). The header puts the plane at the printed whole length L × 6 and calls the 0.20 mm rounding of L (no printed back focus); real-ray best focus (+0.288 mm) lies on the other side of the plane. Classify it under Image-Plane Consistency | todo |
+| KMZ ZENITAR 35mm f/1                     | `kmz/KMZZenitar35mmf1.data.ts`                | +0.110      | 93     | Added after this census pass (#964). The header keeps the printed d18 = 17.3 mm as the patent's stated "plane of best setting" (d-line zone rays cross at 17.28–17.32 mm); census real-ray best focus +0.024 mm (20 depths at f/1). Confirm the source-convention keep case and list it in decisions.md | todo |
+| KMZ ZENITAR 50mm f/0.95                  | `kmz/KMZZenitar50mmf095.data.ts`              | +0.022      | 21     | Added after this census pass (#964). Same stated best-setting plane (printed d18 = 23.7 mm); census real-ray best focus −0.013 mm (12 depths at f/0.95). As for the 35 mm | todo |
+| YONGNUO YN 56mm f/1.4 S DA DSM WL PRO    | `yongnuo/YongnuoYN56mmf14.data.ts`            | +0.033      | 13     | Added after this census pass (#969). Plane at the printed 1 mm behind the cover plate; real-ray best focus +0.004 mm (1.5 depths), inside the keep window. Add the best-focus header note and list it in decisions.md | todo |
 
 ## Section F — traced field coverage below 90%
 
@@ -269,6 +276,8 @@ standard in [lens-patent-audit.md](lens-patent-audit.md#source-errata).
 | Files with comment-only source corrections                                                          | Lens files whose headers describe an erratum or misprint in the source but carry no `sourceErrata` entry, from before the field existed (`grep -rli "erratum\|misprint" src/lens-data --include="*.data.ts"`). The MTF tab discloses nothing for them.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | Record each as a `corrected` or `unresolved` entry under the standard, then delete this row.                                                                                                                                                                                                                                                                                              |
 | [Pentax-M 50mm f/1.7](../src/lens-data/pentax/PentaxM50mmf17.audit.md) | US 3,817,603, Table 1: r4 corrected from printed 94.93 to 94.39 (DE 2224723 A1 text). F12 still traces to 62.056 against printed 62.12 (−0.10%), which the German text repeats; normalized EFL is 99.971 against nominal 100. | Keep the corrected r4 and the printed remainder. View a page image of the DE 2224723 table, then add `family-publication` to the erratum. Do not fit a second value to F12. |
 | [Pentax-F 135mm f/2.8 [IF]](../src/lens-data/pentax/PentaxF135mmf28IF.audit.md) | US 4,793,698, Example 1: element 18 prints νd 27.5 in the table and claim 7, while nd 1.76182 is SF14 at 26.5 and Figs. 2/3 fit 26.5; Example 4 prints 26.5 for that element. `corrected` errata take no `vd` field. | Printed `vd` stays and the S-TIH14 label carries the dispersion. If `vd` joins the erratum fields, record it as `corrected` with `sibling-example` and `aberration-figure`. |
+| [Mamiya AF APO 300mm f/4.5 IF](../src/lens-data/mamiya/MamiyaAFAPO300mmf45IF.audit.md) | JP H10-206729 A Table 1 heads the close column "object distance 700 from the image plane" (2.103 m at scale), but its printed d8/d12 focus near 3.03 m with printed or catalog-class indices; no rounding reconciles them. Recorded as `unresolved`. | Establish whether the heading or the spacings are misprinted with two kinds of source evidence; until then the close row keeps only the carried back-focus re-solve. |
+| [Sigma 24mm f/1.4 DG DN Art](../src/lens-data/sigma/Sigma24mmf14ArtDN.audit.md) | JP 2023-074094 A Example 1 traces to f = 24.0037 mm and a 116.762 mm track against the stated 23.86 / 113.95 mm, and its printed G2 travel is about 40 % longer than the 136.5 mm near state needs; no single or paired R, d or nd fixes f, BF and track together, and Example 2 fails the same way. Recorded as `unresolved`. | Find the misprint with two kinds of source evidence; keep the re-solved back focus and close row until then. |
 
 ## Section H — stop opens wider than the source design f-number
 

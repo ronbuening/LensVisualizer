@@ -37,8 +37,8 @@ match the printed signs and magnitudes, and the first-order focal length returns
 The design is a seven-element, seven-group retrofocus wide-angle lens. The implemented first-order model gives an effective
 focal length of `28.009933 mm` and a back focal distance of `36.714083 mm` measured from the last refracting-surface vertex.
 Because the verified BFD exceeds the verified EFL, the design satisfies the project's numerical retrofocus criterion. The
-implemented last-surface-to-image spacing remains the separately sourced, scaled patent value of `36.96 mm`; the difference
-from the computed BFL is retained rather than concealed.
+patent's printed back focus scales to `36.96 mm`, which would leave the image plane `0.245917 mm` beyond paraxial focus; the
+model places the image at the paraxial focus, `36.714083 mm` behind the last vertex (see the image-plane note below).
 
 The first three elements form a net divergent subsystem with an air-boundary EFL of `-61.016024 mm`. The four rear elements
 form a net convergent subsystem with an air-boundary EFL of `+30.456367 mm`. These are subsystem powers calculated from the
@@ -182,7 +182,7 @@ numerical tolerance.
 |---|---:|---|
 | Effective focal length | 28.009933 mm | Patent normalization ×28 = 28.000000 mm |
 | Back focal distance from surface 14 | 36.714083 mm | Published BFD ×28 = 36.960000 mm |
-| Scaled published image-plane spacing | 36.960000 mm | Implemented as surface-14 `d` |
+| Surface-14 `d` (image-plane spacing) | 36.714083 mm | Re-solved for paraxial focus; published 36.960000 mm |
 | Front L1–L3 subsystem EFL | -61.016024 mm | Computed from implemented model |
 | Rear L4–L7 subsystem EFL | +30.456367 mm | Computed from implemented model |
 | Normalized Petzval sum | 0.237835 | Patent Example 2 table: 0.2380 |
@@ -193,6 +193,15 @@ source corrections rather than a silent typographical assumption.
 
 The model is numerically retrofocus because its verified back focal distance exceeds its verified EFL. Its verified total
 track does not meet the project's `TL/EFL < 1` telephoto criterion, so no telephoto classification is applied.
+
+## Image plane
+
+Example 2 prints a back focus of 1.32 (36.96 mm scaled). With the Petzval-supported r9/r12 emendations, the printed
+prescription's paraxial back focus is 1.3112 (36.714083 mm), which rounds to 1.31, not 1.32; all other printed values
+match and no plate is listed. Example 1's printed 1.30 reproduces its own prescription (1.3025), so the patent's back-focus
+figures are otherwise paraxial, but no single value isolates Example 2's 0.009 discrepancy. The model therefore re-solves
+the surface-14 spacing so the image lies at paraxial focus (36.96 → 36.714083 mm; residual −0.245917 → 0 mm). EFL stays
+28.009933 mm; the track from the first vertex to the image becomes 86.015 mm (86.261 mm with the printed back focus).
 
 ## Sources and References
 
@@ -211,10 +220,3 @@ track does not meet the project's `TL/EFL < 1` telephoto criterion, so no teleph
 ### Catalog proxy labels
 
 The viewer names the compatible catalog curve explicitly while retaining the original coordinate code and the supplier/melt qualification. The selected curves are unchanged: L2 → LAFN7, L3 → N-BK7, L4 → S-BAH10, L6 → LAC10, L7 → N-BK7. These labels identify spectral proxies, not production glass suppliers.
-
-## Image-plane source audit (2026-09-25)
-
-MTF source audit: Example 2 retains published BF=1.32 ×28 =36.96 mm.
-With the already documented Petzval-supported R9/R12 source emendations,
-paraxial BFL is 36.714083 mm (offset −0.245917 mm), EFL 28.009933 mm.
-All other printed values match; no plate is present. Preserve the source BF.

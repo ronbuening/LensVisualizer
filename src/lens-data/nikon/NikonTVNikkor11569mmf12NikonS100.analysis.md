@@ -89,10 +89,13 @@ The patent's three station labels and the catalog design endpoints retain its st
 | Middle | 28.0 mm | 28.031359 mm | 16.637279 mm |
 | Tele | 69.0 mm | 66.962358 mm | 16.628655 mm |
 
-The small BFD offsets from the published 16.54 mm are consistent across the corrected three-state model and are retained
-rather than absorbed into an invented rear spacing. Likewise, the patent's prose total length of 162.7 mm is not equated
-with the explicit first-vertex-to-image prescription track, which is 152.53, 152.53, and 152.54 mm at wide, middle, and
-tele. The reference extent of the 162.7 mm prose value is not defined well enough to force those unlike quantities to
+The printed Bf of 16.54 mm sits about 0.1 mm short of these paraxial back focal distances at every station, which
+puts the image plane 0.089–0.099 mm in front of paraxial focus (about 52–58 depths of focus at f/1.2). The model
+therefore re-solves the single fixed back-focus gap to the middle station's 16.637279 mm. That leaves +0.0015 mm at wide
+and −0.0086 mm at tele, within 1 and 6 depths. Radii, thicknesses, indices, the prism and the zoom spacings are
+unchanged. Likewise, the patent's prose total length of 162.7 mm is not equated with the explicit first-vertex-to-image
+prescription track, which is 152.627, 152.627, and 152.637 mm at wide, middle, and tele with the re-solved back focus
+(152.53, 152.53 and 152.54 mm with the printed Bf). The reference extent of the 162.7 mm prose value is not defined well enough to force those unlike quantities to
 match.
 
 ### Supported middle-state source correction
@@ -244,7 +247,7 @@ inequality.
 
 `nd = 1.51680`, `νd = 64.2`. Glass: **517642 — BK7-class (vendor unresolved)**. `f = +44.199 mm`.
 
-L10 is the final positive component of G5 and lies immediately ahead of the published `Bf = 16.54 mm` image-space gap.
+L10 is the final positive component of G5 and lies immediately ahead of the image-space gap (printed `Bf = 16.54 mm`, modeled as 16.637279 mm).
 The patent treats G5 as part of the positive rear relay and discusses rear-group surface curvature partly in terms of
 suppressing ghost reflections from the image-pickup surface. The model does not convert that system-level ghost-control
 argument into an unsupported claim about L10 alone.
@@ -314,7 +317,7 @@ published ranges.
 | 3 | `60 > νAP − νAN > 30` | 32.600000 | Pass |
 | 4 | `60 > νBP − νBN > 20` | 32.600000 | Pass |
 | 5 | `0.7 < D/f5 < 1.5` | 1.238993 | Pass |
-| 6 | `1.0 < Rc/Bf < 5.0` | 1.063543 (r23) / 1.195284 (r25) | Pass under either plausible locator |
+| 6 | `1.0 < Rc/Bf < 5.0` | 1.063543 (r23) / 1.195284 (r25), with the printed Bf | Pass under either plausible locator |
 | 7 | `0.5 < f1/FT < 1.5` | 0.917810 | Pass |
 | 8 | `−5.0 < f1/f2 < −3.7` | −4.216744 | Pass |
 | 9 | `2.5 < f3/f2 < 3.0` | 2.700000 | Pass |

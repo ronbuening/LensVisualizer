@@ -8,7 +8,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  Fixed job-card correlation: Viltrox AF 50mm F1.8 FE.                    ║
  * ║  11 elements / 10 air-separated groups; 4 patent functional groups.      ║
  * ║  Four aspherical surfaces on L23 and L31.                                ║
- * ║  Focus status: PUBLISHED. G3/L31 alone moves imageward 5.75 mm.          ║
+ * ║  Focus status: PUBLISHED. G3/L31 alone moves imageward 5.691799 mm.      ║
  * ║                                                                            ║
  * ║  SOURCE CORRECTION — ASPHERES:                                            ║
  * ║  Patent Table 3 prints coefficient rows 13–16, but Example 1 Table 1,    ║
@@ -18,10 +18,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  surface labels.                                                           ║
  * ║                                                                            ║
  * ║  REAR FILTER: Source GL is traced in rearPlates, hidden from drawing. ║
- * ║  S22 d=28.44 mm; GL t=2.00 mm, nd=1.52, vd=64.2; final air=1.00 mm. ║
- * ║  Source contradiction: physical BFL 32.428687 vs image distance 31.44 ║
- * ║  mm. Restoring GL leaves the +0.988687 mm paraxial offset unchanged.   ║
- * ║  The published rounded prescription is retained without focus tuning. ║
+ * ║  GL t=2.00 mm, nd=1.52, vd=64.2; final air=1.00 mm.                  ║
+ * ║  IMAGE-PLANE RE-SOLVE (2026-11-03): the printed rows left infinity     ║
+ * ║  focus 0.988687 mm beyond the image plane. S22 28.44 → 29.428687 mm;  ║
+ * ║  the 0.5 m row (from the first vertex) is re-solved by L31:           ║
+ * ║  D1 6.75 → 6.691799, D2 2.86 → 2.918201 mm. EFL is unchanged.         ║
  * ║                                                                            ║
  * ║  SCALE: s=1. No uniform scaling is applied.                               ║
  * ║                                                                            ║
@@ -70,6 +71,7 @@ const LENS_DATA = {
     groupCount: 10,
     focalLengthMm: { marketing: 50, design: 49.073753 },
     fNumber: { marketing: 1.8, design: 1.8 },
+    closeFocusM: { marketing: 0.55 },
   },
 
   source: {
@@ -247,18 +249,21 @@ const LENS_DATA = {
     { label: "19", R: 49.05, d: 7.3, sd: 14.6, medium: 10 },
     { label: "20", R: -40.26, d: 0.1, sd: 14.6 },
     { label: "21", R: 927.62, d: 1, sd: 13.9, medium: 11 },
-    { label: "22", R: 41.83, d: 28.44, sd: 13.5 },
+    { label: "22", R: 41.83, d: 29.428687, sd: 13.5 }, // printed 28.44; re-solved for paraxial focus
   ],
 
   focus: {
-    closeFocusM: 0.72,
+    closeFocusM: 0.594,
     description:
-      "PUBLISHED: G3/L31 alone translates 5.75 mm imageward from infinity to the patent's 0.5 m object-distance state; the patent does not define that distance's reference plane, so this is not asserted as the production sensor-plane MFD.",
+      "PUBLISHED: G3/L31 alone translates 5.691799 mm imageward (printed 5.75 mm) from infinity to the patent's 0.5 m object-distance state, read from the first vertex (0.594 m object to image). The close row is re-solved for paraxial focus: D1 6.691799 mm, D2 2.918201 mm (printed 6.75 / 2.86). Viltrox markets 0.55 m.",
     // (moved from publishedStations) The close-focus row is source-tabulated.
     published: [1],
   },
 
-  gaps: { "16A": { label: "D1", values: [[1, 6.75]] }, "18A": { label: "D2", values: [[8.61, 2.86]] } },
+  gaps: {
+    "16A": { label: "D1", values: [[1, 6.691799]] }, // printed 1.00 / 6.75; 0.5 m row re-solved for paraxial focus
+    "18A": { label: "D2", values: [[8.61, 2.918201]] }, // printed 8.61 / 2.86; 0.5 m row re-solved for paraxial focus
+  },
 
   aperture: { nominalFNumber: 1.8, fStops: [1.8, 2, 2.8, 4, 5.6, 8, 11, 16] },
 

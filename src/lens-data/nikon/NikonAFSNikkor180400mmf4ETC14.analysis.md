@@ -360,15 +360,17 @@ focus positions are solved separately because Gx changes the finite-conjugate re
 | TC out, 183.6 mm | 19.898423 | 6.984 → 26.882423 | 27.415 → 7.516577 | −0.117801 |
 | TC out, 300.0 mm | 19.906745 | 6.984 → 26.890745 | 27.415 → 7.508255 | −0.192501 |
 | TC out, 392.0 mm | 19.909432 | 6.984 → 26.893432 | 27.415 → 7.505568 | −0.251543 |
-| TC in, 257.052 mm | 20.124738 | 6.984 → 27.108738 | 27.415 → 7.290262 | −0.165563 |
-| TC in, 420.020 mm | 19.991463 | 6.984 → 26.975463 | 27.415 → 7.423537 | −0.270183 |
-| TC in, 548.825 mm | 19.958994 | 6.984 → 26.942994 | 27.415 → 7.456006 | −0.352869 |
+| TC in, 257.052 mm | 19.897632 | 6.984 → 26.881632 | 27.415 → 7.517368 | −0.166064 |
+| TC in, 420.020 mm | 19.920851 | 6.984 → 26.904851 | 27.415 → 7.494149 | −0.271407 |
+| TC in, 548.825 mm | 19.927234 | 6.984 → 26.911234 | 27.415 → 7.487766 | −0.354671 |
 
-The modeled tele-end magnitudes, 0.2515x without Gx and 0.3529x with Gx, are close to Nikon's marketed 0.25x and 0.36x
+The modeled tele-end magnitudes, 0.2515x without Gx and 0.3547x with Gx, are close to Nikon's marketed 0.25x and 0.36x
 maximum reproduction ratios. They are reconstruction results, not production measurements. The small residuals reflect
-the rounded patent prescription and the imposed 2.0 m image-plane distance. That distance was solved on the
+the rounded patent prescription and the imposed 2.0 m image-plane distance. The converter-out distance was solved on the
 air-equivalent track; with FL1 and FL2 now at their printed physical positions, the image plane sits 1.192511 mm further
-back, so the same keyframes give a physical object-to-image distance of 2.001193 m with unchanged magnifications.
+back, so its keyframes give a physical object-to-image distance of 2.001193 m with unchanged magnifications. The
+converter-in close rows were re-solved after that file's back-focus re-solve (Verification Summary) and image at
+2.000 m physical.
 
 ## Chromatic Correction Strategy
 
@@ -454,13 +456,18 @@ independent ordinary-angle ABCD implementation agree to floating-point precision
 | TC out, wide | 183.600 | 183.329809 | 52.841092 | 392.285000 | 4.080000 |
 | TC out, middle | 300.000 | 299.590409 | 52.862857 | 392.285000 | 4.081545 |
 | TC out, tele | 392.000 | 391.534943 | 52.890425 | 392.284000 | 4.083209 |
-| TC in, wide | 257.052 | 258.113085 | 53.281167 | 392.272000 | 5.744300 |
-| TC in, middle | 420.020 | 421.911480 | 53.324321 | 392.272000 | 5.748016 |
-| TC in, tele | 548.825 | 551.583895 | 53.379016 | 392.271000 | 5.752315 |
+| TC in, wide | 257.052 | 258.113085 | 53.281167 | 392.774458 | 5.744300 |
+| TC in, middle | 420.020 | 421.911480 | 53.324321 | 392.774458 | 5.748016 |
+| TC in, tele | 548.825 | 551.583895 | 53.379016 | 392.773458 | 5.752315 |
 
 The converter-out residuals are −0.15% or less. The converter-in residuals are approximately +0.41% to +0.50%. The
 rounded active arrays therefore compute conversion factors of 1.407917, 1.408294, and 1.408773 rather than exactly 1.4.
-The published radii, indices, and converter spacings are retained; no corrective scaling is applied.
+The published radii, indices, and converter spacings are retained; no corrective scaling is applied. Table 10's
+printed spacings leave the converter-in image plane 0.454 / 0.497 / 0.551 mm short of paraxial focus, and its summary
+(f exactly 1.40006 times Table 8's, Bf 52.827 mm at every state) does not reproduce; no single value isolates why. The
+converter-in file therefore re-solves its last air space once, 51.409 → 51.911458 mm, the value that minimizes the
+largest residual over the three states: −0.049 / −0.006 / +0.049 mm, within 1.3 depths of focus at f/5.75. The G1B
+infinity spacings stay shared with the converter-out file.
 
 One physical stop semi-diameter, 17.601593578 mm, is used in both configurations. The per-state `nominalFno` values are
 the exact modeled values required to preserve that stop in the rounded active arrays. Nikon's marketed f/4 and f/5.6 and
@@ -477,10 +484,11 @@ The patent's two optical filters are modeled at their printed positions (¶0254;
 Table 10 surfaces 62–63 and 69–70; both 1.51680 / 63.88). FL1 (1.5 mm) sits inside G4D between the L49+L410 pair and
 L411 with 6.5 mm of air on each side; this is the slip-in filter position, and Nikon's user's manual says a filter must
 be inserted in the slip-in holder, which ships with a 40.5 mm NC filter, so FL1 is drawn as a plane-parallel plate but
-not counted in `elementCount`. FL2 (2.0 mm) lies behind the last lens, 10.827 + 40.582 mm after L412 (the same-index
-dummy plane between them is folded out) and 0.114 mm (TC out) or 0.100 mm (TC in) ahead of the image plane; it is
-traced as a rear plate but not drawn. Physical tracks therefore equal the sums of the printed spacings (392.285 /
-392.272 mm at wide) and exceed the former air-equivalent tracks by 1.5(1 − 1/1.5168) + 2.0(1 − 1/1.5168) = 1.192511 mm;
+not counted in `elementCount`. FL2 (2.0 mm) lies behind the last lens, 10.827 + 40.582 mm after L412 as printed (the same-index
+dummy plane between them is folded out; the converter-in file re-solves that 51.409 mm space to 51.911458 mm) and
+0.114 mm (TC out) or 0.100 mm (TC in) ahead of the image plane; it is traced as a rear plate but not drawn. Physical
+tracks therefore equal the sums of the authored spacings (392.285 mm at wide without the converter, as printed; 392.774
+mm with it, against the printed 392.272 mm) and exceed the former air-equivalent tracks by 1.5(1 − 1/1.5168) + 2.0(1 − 1/1.5168) = 1.192511 mm;
 the patent's "TL (air-equivalent)" row converts FL2 only. The production protective glass and mechanical parts are not
 included.
 

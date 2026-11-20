@@ -264,7 +264,7 @@ compares the authored plane with the prescription's paraxial focus at infinity: 
 depths of focus, 2λN² at the d line and the open f-number, the plane is flagged as inconsistent lens data.
 `focus: "auto"` applies best axial focus only to flagged lenses and keeps the design plane otherwise, so the
 spherical-aberration focus shift of fast classic designs stays visible there. `scripts/audit-mtf.mjs --focus` lists the
-flagged lenses, and Section E of `agent_docs/sd-audit-queue.md` queues them. Finite rays share one isotropic object
+flagged zoom stations of every lens, and Section E of `agent_docs/sd-audit-queue.md` queues them. Finite rays share one isotropic object
 point, are aimed from it at the stop and include spherical launch phase; their weights are uniform on the stop like
 every field's. Only `finiteConjugates` stations are
 eligible; see `src/lens-data/LENS_DATA_SPEC.md` for source requirements.

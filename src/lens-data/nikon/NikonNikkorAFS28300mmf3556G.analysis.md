@@ -34,15 +34,15 @@ The patent-listed group focal lengths are:
 
 The strict optical telephoto condition is satisfied at the long end: the patent total length at telephoto is 232.653 mm against a listed focal length of 292.00 mm, giving $TL/f \approx 0.797$. At the wide end, the back focal length is longer than the focal length: $BF/f = 38.422 / 28.79 \approx 1.335$, reflecting the long rear clearance required by a Nikon F-mount SLR mirror box.
 
-A re-run paraxial trace using the corrected Table 2 prescription gives the following first-order values. S16 is corrected from 1.000 mm to the printed .100 mm. The remaining discrepancies are source contradictions, not established rounding error: all other prescription entries match, but the printed focal lengths, Bf and total lengths are not reproduced. No rear plate is listed and no single further source-supported misprint resolves them. Preserve the source values instead of tuning focus.
+Table 2 prints d25, the air space between the L41-L42 doublet and the L43 hybrid, as 2.586 mm. That value contradicts the table's own summary in four places at once: the G4 focal length computes to −26.505 mm against the printed −25.979 mm; the spacing sums fall 2.302 / 2.303 / 2.304 mm short of the printed total lengths at every zoom state; the focal lengths come out at 28.448 / 99.281 / 290.495 mm; and the image plane lies 0.822 / 0.349 / 0.217 mm short of paraxial focus. Changing d25 to 4.889 mm, and no other single value, reconciles all of them, and the patent's FIG. 5A–C plot spherical aberration from zero at the printed back focus, which the printed spacing's 0.82 mm wide-end defocus would not allow. The model therefore carries d25 = 4.889 mm as a recorded source erratum. S16 keeps the printed .100 mm. A re-run paraxial trace gives:
 
 | Position | Patent EFL | Computed EFL | EFL residual | Patent Bf | Computed BFD |
 |---|---:|---:|---:|---:|---:|
-| Wide | 28.790 mm | 28.448 mm | −0.342 mm | 38.422 mm | 39.244 mm |
-| Mid | 100.000 mm | 99.281 mm | −0.719 mm | 65.896 mm | 66.245 mm |
-| Tele | 292.000 mm | 290.495 mm | −1.505 mm | 79.261 mm | 79.478 mm |
+| Wide | 28.790 mm | 28.820 mm | +0.030 mm | 38.422 mm | 38.423 mm |
+| Mid | 100.000 mm | 100.001 mm | +0.001 mm | 65.896 mm | 65.902 mm |
+| Tele | 292.000 mm | 292.035 mm | +0.035 mm | 79.261 mm | 79.275 mm |
 
-The resulting wide-infinity image-plane offset is +0.822078 mm. Tabulated spacings plus Bf sum to 157.586 / 202.890 / 230.349 mm rather than the printed TL values 159.888 / 205.193 / 232.653 mm. Both sets of source numbers remain disclosed.
+The remaining image-plane offsets are +0.001 / +0.006 / +0.014 mm, well under the depth of focus. Tabulated spacings plus Bf now sum to 159.889 / 205.193 / 232.652 mm against the printed TL 159.888 / 205.193 / 232.653 mm.
 
 The stop semi-diameter implied by the patent focal lengths and f-numbers is roughly constant: 10.02 mm at the wide end, 9.95 mm at the middle position, and 10.40 mm at the telephoto end after tracing the entrance-pupil magnification back to the aperture stop. The current runtime derives the wide-open stop from each design station’s focal length and f-number; 10.5 mm is not an authored fixed iris.
 
@@ -153,7 +153,7 @@ L42 reduces the net negative power of the VR doublet and controls chromatic imag
 L43r: nd = 1.55389, νd = 38.09. Catalog proxy: hybrid-layer medium; resin interpretation, chemistry and cure unspecified. f ≈ +14603 mm as a standalone layer.
 L43g: nd = 1.72916, νd = 54.66. Catalog proxy: J-LAK18 (HIKARI) / S-LAL18 class. f = −64.6 mm.
 
-The prescription lists a 0.190 mm medium (1.55389 / 38.09) followed by a 1.200 mm glass substrate. A resin layer is the working hybrid interpretation; the table does not identify its chemistry or cure. Surface 26 and surface 27 share the same base radius, but surface 27 is aspherical. That pattern supports a hybrid-asphere interpretation, with the optical departure at the internal junction. Paragraph 0105 permits resin-on-glass manufacture in general but does not specify UV curing or prove the production process for L43. The patent prose describes L43 as having an aspherical surface facing the object side; the numerical table shows that the aspherical prescription is surface 27, the resin-to-glass junction.
+The prescription lists a 0.190 mm medium (1.55389 / 38.09) followed by a 1.200 mm glass substrate, 4.889 mm behind L42 in the model (Table 2 misprints that air space as 2.586 mm; see Optical Architecture). A resin layer is the working hybrid interpretation; the table does not identify its chemistry or cure. Surface 26 and surface 27 share the same base radius, but surface 27 is aspherical. That pattern supports a hybrid-asphere interpretation, with the optical departure at the internal junction. Paragraph 0105 permits resin-on-glass manufacture in general but does not specify UV curing or prove the production process for L43. The patent prose describes L43 as having an aspherical surface facing the object side; the numerical table shows that the aspherical prescription is surface 27, the resin-to-glass junction.
 
 ### Group 5 — Rear Positive Imaging Group
 
@@ -222,7 +222,7 @@ The lens uses internal focusing. The complete second lens group G2 moves toward 
 | Mid | 0.691 mm | 37.442 → 36.751 | 13.263 → 13.954 |
 | Tele | 3.344 mm | 63.214 → 59.870 | 1.585 → 4.929 |
 
-The larger telephoto-end travel is expected. At long focal lengths the internal focusing group has to compensate for much larger image-conjugate sensitivity than it does at the wide end. Nikon's production specification gives a 0.5 m minimum focus distance throughout the zoom range and a maximum reproduction ratio of 0.32× at telephoto.
+The larger telephoto-end travel is expected. At long focal lengths the internal focusing group has to compensate for much larger image-conjugate sensitivity than it does at the wide end. The patent's "close shooting range" rows state no object distance; with the corrected d25 they focus at 0.974 / 3.005 / 7.258 m object to image, which the model uses as its close-focus distances. Nikon's production specification gives a 0.5 m minimum focus distance throughout the zoom range and a maximum reproduction ratio of 0.32× at telephoto.
 
 ## Aspherical Surfaces
 
@@ -269,7 +269,7 @@ These values explain the design balance. G2 must be strong enough for the zoom r
 
 The patent PDF was rendered and the numerical table was checked against the image, not only the parsed text. The rendered table shows two places where OCR can drop the leading digit in a thickness value: surface 32 has d = 1.100 mm and surface 33 has d = 1.600 mm. Using 0.100 / 0.600 there produces a visibly wrong paraxial trace; using 1.100 / 1.600 restores the expected EFL and BFD agreement.
 
-Independent paraxial checks were run for EFL, BFD, stop semi-diameter, group powers, element powers, focus-gap conservation, asphere conic conversion, Petzval sum, edge thickness, and cross-gap sag intrusion. The final data file keeps the patent radii, thicknesses, refractive indices, Abbe numbers, aspheric coefficients, and variable gaps unchanged except for label conversion and renderer-required semi-diameter estimates.
+Independent paraxial checks were run for EFL, BFD, stop semi-diameter, group powers, element powers, focus-gap conservation, asphere conic conversion, Petzval sum, edge thickness, and cross-gap sag intrusion. The final data file keeps the patent radii, thicknesses, refractive indices, Abbe numbers, aspheric coefficients, and variable gaps unchanged except for the corrected d25 (4.889 mm for the printed 2.586 mm; see Optical Architecture), label conversion and renderer-required semi-diameter estimates.
 
 The computed surface-by-surface Petzval sum is approximately +0.002141 mm⁻¹, corresponding to a Petzval radius of about −467 mm. This value is small relative to the focal length range and is consistent with the design's use of several negative groups and a final rear asphere to manage full-frame field curvature.
 
@@ -285,4 +285,6 @@ The computed surface-by-surface Petzval sum is approximately +0.002141 mm⁻¹, 
 
 The fresh Fig. 4 review adds a concave rear land on S7: the optical cap stays12.4 mm and the drawn rim becomes15.8 mm, matching its working front height. Continuous source outlines open S11/12/13A to 11.1 mm, the hybrid frontS26 to 9.5 mm, and S33/34/35A to 12.8 mm. All three hybrid faces now span9.5 mm with a connected compound outline. Final asphere departures from the paraxial spheres are+.363739 mm atS6A15.8, −.008853 mm atS13A11.1, +.145192 mm atS27A9.5 and−.197388 mm atS35A12.8.
 
-The source figure suggests a smaller front rim (about29.5 mm). That reduction would cut the existing full beam: the independent full-range screen/refinement reaches33.419896 mm atS1 before its clearance margin. The existing38/31/31 mm front caps therefore remain a disclosed working-aperture departure from the drawing. No additional inward clipping or unsupported cement-interface land is introduced. The published prescription/summary discrepancies remain; changed outlines do not fit radii, spacings or image focus to the printed summary.
+The source figure suggests a smaller front rim (about29.5 mm). That reduction would cut the existing full beam: the independent full-range screen/refinement reaches33.419896 mm atS1 before its clearance margin. The existing38/31/31 mm front caps therefore remain a disclosed working-aperture departure from the drawing. No additional inward clipping or unsupported cement-interface land is introduced. The changed outlines do not fit radii, spacings or image focus to the printed summary.
+
+These outlines were measured with the printed d25 of 2.586 mm. The corrected 4.889 mm air space places L43 and G5 2.303 mm further behind L42, which raises the off-axis beam at the hybrid and rear-group faces; their rims have not been re-measured against Fig. 4 since, so no semi-diameter was changed.

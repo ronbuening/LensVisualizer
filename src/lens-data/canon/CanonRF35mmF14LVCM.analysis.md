@@ -35,7 +35,7 @@ The data file resolves the design into five patent functional units, B1 through 
 | B4   | L8–L11   |     +41.220267 mm | Moves toward object |
 | B5   | L12–L14  |    -132.323400 mm | Fixed               |
 
-This power distribution does not justify forcing the lens into a classical named family. Under the project's quantitative definitions, it is neither telephoto nor retrofocus. Using the final data array, total track to the authored image plane divided by EFL is 3.492596, while BFD/EFL is 0.452562; neither satisfies the required telephoto (`TL/EFL < 1`) or retrofocus (`BFD > EFL`) test. The first-to-last refracting-surface length is separately 103.102 mm, or 3.037585 EFL. The architecture is more usefully described as a five-unit, internally focusing wide-angle prime with two independently translating positive units and a stop between the fixed negative B3 unit and the moving positive B4 unit.
+This power distribution does not justify forcing the lens into a classical named family. Under the project's quantitative definitions, it is neither telephoto nor retrofocus. Using the final data array, total track to the image plane divided by EFL is 3.490147, while BFD/EFL is 0.452562; neither satisfies the required telephoto (`TL/EFL < 1`) or retrofocus (`BFD > EFL`) test. The first-to-last refracting-surface length is separately 103.102 mm, or 3.037585 EFL. The architecture is more usefully described as a five-unit, internally focusing wide-angle prime with two independently translating positive units and a stop between the fixed negative B3 unit and the moving positive B4 unit.
 
 B1 is a large front unit with mixed internal power. Its first two elements are negative, but the strong positive L3 and L5 contributions make the unit positive overall. B2 is a single positive meniscus and the first moving focus unit. B3 is a fixed negative meniscus immediately in front of the aperture stop. B4 is the dominant positive rear-middle unit and the second moving focus unit. B5 is a fixed negative rear unit that completes the image-side power distribution.
 
@@ -153,7 +153,7 @@ The data model reduces the authored semi-diameter of L13's rear surface `26` to 
 
 $n_d = 1.613$, $\nu_d = 44.27$. Glass: S-NBM51 (OHARA) coordinate proxy; patent vendor unresolved. $f=-201.545627$ mm.
 
-L14 is the final physical element and is a comparatively weak negative meniscus when isolated. Together with the slightly negative C3 pair, it brings the complete B5 unit to -132.323400 mm. The image plane follows its rear surface by the patent's 15.444 mm air-equivalent back-focus distance.
+L14 is the final physical element and is a comparatively weak negative meniscus when isolated. Together with the slightly negative C3 pair, it brings the complete B5 unit to -132.323400 mm. The image plane follows its rear surface by 15.360904 mm, the paraxial back focus of the literal data (the patent prints 15.444 mm).
 
 Its moderate index and Abbe number differ from both the dense C3 front element and the recurring NBFD29-coordinate negative glasses. That gives the fixed rear unit a final independent material degree of freedom before the image plane.
 
@@ -243,7 +243,7 @@ The verified dimensional terms are $D_{12}=3.800$ mm, $D_{34}=18.126$ mm, $T_2=4
 
 The final data arrays were independently evaluated with sequential height/reduced-angle tracing and a separate ABCD matrix calculation. The two methods agree to a maximum matrix-element difference of $7.1054\times10^{-15}$.
 
-The computed effective focal length is 33.942091880 mm, compared with the patent's rounded 34.0 mm. The computed back focal distance is 15.360904237 mm, compared with the patent's 15.444 mm. Rounding of three-decimal indices is a possible contributor, not an established cause. Paragraph 0079 explicitly defines infinity paraxial quantities. Structured unresolved source errata retain these discrepancies and the 103.102 versus 103.101 mm optical-track residual; no index/radius or unsupported rear plate is fitted to force agreement.
+The computed effective focal length is 33.942091880 mm, compared with the patent's rounded 34.0 mm. The computed back focal distance is 15.360904237 mm, compared with the patent's 15.444 mm. Rounding of three-decimal indices is a possible contributor, not an established cause. Paragraph 0079 explicitly defines infinity paraxial quantities. The model re-solves the final gap to 15.360904 mm (2026-11-03) so the image plane lies at paraxial focus; the focal-length discrepancy stays a structured unresolved erratum, and the 103.102 versus 103.101 mm optical track differs only in the last printed digit. No index, radius or unsupported rear plate is fitted to force agreement.
 
 The aperture stop is source surface 15, labeled `STO` in the data model. Patent $\Phi$ is defined as an effective diameter (¶0078); its relationship to a manufactured iris is not established here. If the published stop $\Phi=27.298$ mm were treated as the physical aperture, the rounded prescription would model approximately F/1.425 rather than F/1.46. Under the canonical ordinary-prime rule, the modeled primary stop semi-diameter is an inferred value of 13.324145 mm, solved from the final prescription to reproduce the design F-number. The independently recomputed value is F/1.459999950.
 
@@ -271,8 +271,8 @@ No uniform scale is applied: $s=1$. Consequently all radii, spacings, semi-diame
 MTF source audit: all Example 2 Table 3/4 values match, including the more
 precise aspheric base radii . EFL 33.942092 vs printed 34.0 and BFL
 15.360904 vs 15.444 leave −0.083096 mm offset. Paragraph 0079 defines
-back focus as paraxial, not a designer best-focus convention. Keep the
-printed prescription; no rear plate or supported single misprint explains it.
+back focus as paraxial, not a designer best-focus convention. No rear plate
+or supported single misprint explains it. (Superseded 2026-11-03: S28 re-solved to 15.360904 mm.)
 
 ## Original shape/glass and runtime review — 2026-10-30
 
@@ -284,7 +284,7 @@ The only distinct modeled geometry is source infinity. Twenty-one focus probes 0
 
 A denser collimated probe uses 71 distinct angles from 0 through 34.5 degrees in .5-degree increments plus the inverse generic-corner angle 34.8, with 49 disk-pupil points each (3,479 rays before and after). Restored 19F changes survivors at 28 degrees 21→19 and 29.5 degrees 18→17; at 34.5/34.8 it also becomes the first clip for two previously downstream-clipped samples without changing survivors. 10F causes no newly lost sample in this grid. At the published 30.5-degree field the bundle remains 17/49. No missing flare aperture is declared harmless solely because the axial bundle passes .
 
-Generic inverse image-height field coverage reaches 21.65 mm at 34.8 degrees and passes 100%; the direct published 30.5-degree chief reaches 18.752021 mm,86.6144% of the generic corner and 93.6197% of the published 20.03 mm image-height reference. These are different field conventions. Native Figure 5 distortion at the source field is approximately −7.2±.2%, versus the literal model's−6.2090%; it is retained as a source/model residual, not proof of a unique prescription error. Source fidelity, sampled clearance and the commercial full-frame correlation remain separate conclusions.
+Generic inverse image-height field coverage reaches 21.65 mm at about 34.9 degrees and passes 100%; on the re-solved image plane the direct published 30.5-degree chief reaches 18.730 mm, 86.51% of the generic corner and 93.51% of the published 20.03 mm image-height reference (18.752021 mm on the printed plane). These are different field conventions. Native Figure 5 distortion at the source field is approximately −7.2±.2%, versus the literal model's−6.2090%; it is retained as a source/model residual, not proof of a unique prescription error. Source fidelity, sampled clearance and the commercial full-frame correlation remain separate conclusions.
 
 Narrow source/surface, image-circle, wide-open aperture and inverse field audits pass; image-circle reports 0 undersized and the full cut probe reports no inferred cuts. Source/table residuals, retained S26 policy constraint and absent numerical close-focus reconstruction remain explicit limitations. Source metadata now records printed 34.0 mm rather than computed EFL, and the first aperture menu option is printed F1.46 rather than marketedf1.4; the existing inferred primary iris, stops, media, aspheres and controls are unchanged.
 

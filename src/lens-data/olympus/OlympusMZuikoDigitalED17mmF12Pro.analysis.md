@@ -20,8 +20,8 @@ The convergent evidence is:
    matching the manufacturer’s construction count. [1, 2]
 2. The computed infinity EFL is 16.671803 mm and the aperture computed from the printed iris is F/1.239908; the
    marketed specifications are 17 mm and F/1.2. The data file keeps both the design and the marketed values. [1, 2]
-3. The patent's closest object-to-image distance is 199.99 mm,
-   consistent with the marketed 0.2 m minimum focus distance. [1, 2]
+3. The patent's closest state puts the object 94.99 mm from the first vertex. With the model's re-solved back focus,
+   that is 200.01 mm from the image, consistent with the marketed 0.2 m minimum focus distance. [1, 2]
 4. The patent has 6 aspherical surfaces on three elements, and its internal focusing unit is a cemented
    doublet. Olympus describes a lightweight MSC focusing unit and ED-DSA construction for the product, without identifying
    a particular patent glass melt or every aspheric element. [1, 3]
@@ -31,7 +31,7 @@ The convergent evidence is:
 The production lens uses the Micro Four Thirds mount and Four Thirds format. Its marketed full field is
 65°, whereas the patent’s infinity summary states 67.55°. The traced prescription does not reproduce that field
 together with the printed image height, as discussed below. Neither number is substituted for the other. The marketed maximum magnification 0.15× is likewise distinct from the
-computed signed Gaussian close-state magnification -0.144600. [1–3]
+computed signed Gaussian close-state magnification -0.144608. [1–3]
 
 ## Optical Architecture
 
@@ -53,14 +53,16 @@ L11 and positive L12 subunits; the patent calls the latter negative–positive a
 statement about the subassembly rather than an unqualified classification of the whole lens. [1, printed columns 5–8]
 
 Reference planes matter for the complete system. At infinity, the computed Gaussian BFD from the last lens vertex is
-15.782773 mm in air alone. Including the camera plate’s focus shift gives 17.182282 mm, slightly greater than the EFL;
-from the plate exit the Gaussian focus is 2.072282 mm away. These cardinal distances are distinct from the patent’s
-fixed image-plane location, 104.99 mm behind the first vertex.
+15.782773 mm in air alone. Including the camera plate’s focus shift gives 17.182282 mm, slightly greater than the EFL.
+The printed spacings put the image plane 2.05 mm behind the plate, 104.99 mm behind the first vertex, which leaves it
+0.022282 mm short of that Gaussian focus. The model re-solves the air gap ahead of the plate (see below), so its image
+plane sits at the Gaussian focus, 105.012282 mm behind the first vertex at infinity.
 
 The patent’s camera plate C is kept in the model as a physical rear plate: 4.11 mm thick, nd = 1.51633, νd = 64.14,
-with 11.00 mm of air before it and 2.05 mm after it. It is traced but not drawn as a lens element, and the printed
-gaps are not folded into an air-equivalent distance. The air-equivalent rear distance, 15.760492 mm, is quoted for
-comparison only. [1, PDF page 26, printed column 15; page 30]
+with 11.022282 mm of air before it and 2.05 mm after it. The printed 11.00 mm gap ahead of the plate is re-solved for
+paraxial focus at infinity; the plate and its 2.05 mm exit gap are as printed. The plate is traced but not drawn as a
+lens element, and the gaps are not folded into an air-equivalent distance. The air-equivalent rear distance,
+15.782774 mm (15.760492 mm with the printed gap), is quoted for comparison only. [1, PDF page 26, printed column 15; page 30]
 
 No dimensional scaling is applied. Published radii, thicknesses, gaps and asphere coefficients remain in millimetre-based
 units. Clear semi-diameters are estimated from the ends of the optical curves in Figure 4, excluding mechanical flanges
@@ -200,23 +202,28 @@ describe that glass, not a confirmed production melt. [5]
 ## Focus Mechanism
 
 The patent specifies internal focusing by translating the negative cemented G3 imageward while G1, G2 and G4 are fixed.
-All three focus states the patent tabulates are used as printed; no focus cam or further state is reconstructed. The
+All three focus states the patent tabulates are used, at their printed object distances; no focus cam or further state
+is reconstructed. The
 manufacturer describes MSC focusing and a manual-focus clutch, but does not identify the moving group’s prescription
 or a motor technology beyond that description. [1, printed columns 18–19; 3]
 
-| Patent state | Object to first vertex, mm | d22, mm | d25, mm | First vertex to image, mm | Object to image, mm |
-| ------------ | -------------------------: | ------: | ------: | ------------------------: | ------------------: |
-| INF          |                          ∞ |    1.98 |    7.57 |                    104.99 |                   ∞ |
-| CL1          |                     813.34 |    2.34 |    7.21 |                    104.99 |              918.33 |
-| CL2          |                      94.99 |    4.65 |    4.91 |                    105.00 |              199.99 |
+| Patent state | Object to first vertex, mm | Printed d22 / d25, mm | Model d22 / d25, mm | First vertex to image (model), mm | Object to image (model), mm |
+| ------------ | -------------------------: | --------------------: | ------------------: | --------------------------------: | --------------------------: |
+| INF          |                          ∞ |           1.98 / 7.57 |         1.98 / 7.57 |                        105.012282 |                           ∞ |
+| CL1          |                     813.34 |           2.34 / 7.21 | 2.335907 / 7.214093 |                        105.012282 |                  918.352282 |
+| CL2          |                      94.99 |           4.65 / 4.91 | 4.641371 / 4.918629 |                        105.022282 |                  200.012282 |
 
-The front variable gap records total G3 travel of 2.67 mm, while the rear gap records 2.66 mm. The 0.01 mm mismatch is
-rounding in the patent and is left as printed. The close distance quoted from the image is distinct from the patent’s
-object-to-first-vertex distance. Printed magnifications are -0.02 and -0.15; the Gaussian values computed from the
-prescription are -0.020001 and -0.144600. The CL2 difference is not fully explained by rounding and is left unresolved.
+With the rounded table the image plane sat 0.022282 mm before paraxial focus at infinity, and 0.018467 and
+0.014780 mm before it at CL1 and CL2, about 12 depths of focus at f/1.24. The model first re-solves the air gap ahead of
+the camera plate for infinity (11.00 → 11.022282 mm). It then re-solves G3's position at CL1 and CL2 so that each
+state focuses at its printed object distance. G3's travel becomes 2.661371 mm by d22 and 2.651371 mm by d25
+(printed 2.67 and 2.66 mm); the 0.01 mm difference between the two is the patent's own rounding and is kept. The close
+distance quoted from the image is distinct from the patent’s object-to-first-vertex distance. Printed magnifications
+are -0.02 and -0.15; the Gaussian values of the model states are -0.020001 and -0.144608. The CL2 difference is not
+fully explained by rounding and is left unresolved.
 
-Between the printed states the model interpolates the two gaps, and the object-to-image distance it displays there is
-interpolated in reciprocal distance between ∞, 918.33 mm and 199.99 mm. Those intermediate readings are estimates, not
+Between the published states the model interpolates the two gaps, and the object-to-image distance it displays there is
+interpolated in reciprocal distance between ∞, 918.35 mm and 200.01 mm. Those intermediate readings are estimates, not
 patent data.
 
 ## Aspherical Surfaces
@@ -374,17 +381,17 @@ dimensionless. The three focus offsets have no printed counterpart.
 | F-number from the Gaussian pupil, INF            |   1.14886753 |    1.24 |   -0.0911324671 |
 | F-number from the Gaussian pupil, CL1            |   1.14712332 |    1.24 |   -0.0928766827 |
 | F-number from the Gaussian pupil, CL2            |   1.12994307 |    1.25 |    -0.120056932 |
-| Gaussian focus beyond the printed image, INF     | 0.0222816538 |       — |               — |
-| Gaussian focus beyond the printed image, CL1     | 0.0184673255 |       — |               — |
-| Gaussian focus beyond the printed image, CL2     | 0.0147803504 |       — |               — |
+| Gaussian focus beyond the image, printed INF     | 0.0222816538 |       — |               — |
+| Gaussian focus beyond the image, printed CL1     | 0.0184673255 |       — |               — |
+| Gaussian focus beyond the image, printed CL2     | 0.0147803504 |       — |               — |
 | Rectilinear paraxial full field, INF             |   65.9187637 |   67.55 |      -1.6312363 |
 | Rectilinear paraxial full field, CL1             |   66.3847717 |    67.6 |     -1.21522835 |
 | Rectilinear paraxial full field, CL2             |   66.6930275 |   67.51 |    -0.816972536 |
 | Image height at the printed INF field            |   10.4894899 |   10.81 |    -0.320510101 |
 | Full field reaching the printed INF image height |    69.358847 |   67.55 |     +1.80884705 |
 | EFL, INF (page 31)                               |   16.6718033 |  16.671 | +0.000803331391 |
-| EFL, CL2                                         |   16.3971808 |   16.39 |  +0.00718075262 |
-| Magnification, CL2                               | -0.144600159 |   -0.15 |  +0.00539984107 |
+| EFL, CL2                                         |   16.3983990 |   16.39 |       +0.008399 |
+| Magnification, CL2                               |    -0.144608 |   -0.15 |       +0.005392 |
 | G1 EFL (page 30)                                 |  -36.7141527 |  -36.72 |  +0.00584731607 |
 | G1 EFL (page 31)                                 |  -36.7141527 | -36.722 |  +0.00784731607 |
 | G2 EFL (page 30)                                 |   25.7144848 |   25.72 |  -0.00551519555 |
@@ -405,7 +412,8 @@ The Gaussian f-numbers describe the paraxial pupil, not the finite-aperture pupi
 paraxial fields omit distortion and so do not resolve the separate field and image-height difference above. The page-31
 summary gives more digits than the page-30 unit-focal-length table; both are kept. The gap-sum difference reflects
 independently rounded printed gaps. The three source conflicts recorded in the data file are unresolved, and no
-printed value is corrected.
+printed value is corrected. The three focus-offset rows describe the printed spacings; the model re-solves the gap ahead
+of the plate and the CL1/CL2 G3 gaps to remove them, which claims no misprint.
 
 If the printed close-focus fields are read as object-point angles from the first vertex, the chief-ray image heights
 are 10.2822602 mm at CL1 and 8.8372037 mm at CL2, against the printed 10.89 mm and 10.79 mm. The patent does not state
