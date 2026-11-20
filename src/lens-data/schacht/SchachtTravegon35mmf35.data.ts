@@ -116,7 +116,7 @@ const LENS_DATA = {
       vd: 41.3,
       indexReference: "d",
       focalLengthMm: -20.79,
-      glass: "Unmatched (nd 1.57501 / νd 41.3)",
+      glass: "LF7 (Sumita)",
       role: "Negative front member of collecting group C.",
       cemented: "C3",
     },

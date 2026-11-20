@@ -50,7 +50,7 @@ AllPhotoLenses lists eight blades and f/3.5–16, likely for the early chrome ve
 - The former 1 m modeled focus limit was replaced by infinity-only operation, with `focus.closeFocusM` set to `1e15` and a description stating that no finite-focus spacings are supplied. The 0.5 m product minimum is recorded separately.
 - Generic element descriptions were replaced by the actual shapes: positive meniscus, negative meniscus, plano-convex positive, plano-concave negative, biconcave negative and biconvex positive. Each element received its positive or negative role in A, B or C. Calculated in-air focal lengths were added: +40.71, −21.19, +23.92, −24.19, −20.79 and +11.73 mm.
 - Brackets identify cemented pairs C1–C3 and the patent's groups A, B and C over surfaces 1–3, 4–6 and 7–9.
-- Four previously unidentified glasses received catalog equivalents, with the differences below measured as catalog minus printed coordinates. L3 and L5 remain unidentified at the printed nd/νd values.
+- Four previously unidentified glasses received catalog equivalents, with the differences below measured as catalog minus printed coordinates. L3 remains unidentified at the printed nd/νd values; L5 is matched under 2026-11-20 glass below.
 
 | Element | Former description → catalog equivalent | Δnd | Δνd |
 | --- | --- | ---: | ---: |
@@ -59,7 +59,7 @@ AllPhotoLenses lists eight blades and f/3.5–16, likely for the early chrome ve
 | L4 | Unmatched → FF5 (Hoya) | 0 | +0.05 |
 | L6 | Unmatched → LAK6 (Sumita) | 0 | 0 |
 
-Discontinued Sumita LAK6 matches the printed coordinates exactly; Hoya LAC6 has Δnd = 0 and Δνd = −0.14. Hikari J-LF7, nearest to L5, has Δνd = +0.21; L5 remains unidentified at nd 1.57501 and νd 41.3. L3 remains unidentified at nd 1.72019 and νd 50.3. These equivalents do not identify a historical supplier or melt.
+Discontinued Sumita LAK6 matches the printed coordinates exactly; Hoya LAC6 has Δnd = 0 and Δνd = −0.14. L3 remains unidentified at nd 1.72019 and νd 50.3. These equivalents do not identify a historical supplier or melt.
 
 - An eight-blade iris was added from AllPhotoLenses, likely describing the early chrome version. The f/3.5–16 range follows that source; the later six-blade, f/22 version is described separately.
 
@@ -79,10 +79,14 @@ EFL is 35.003 mm, f-number is 3.5, BFD is 33.656 mm, total track is 62.85 mm, ir
   - Group C at 6.7 mm: 6.6 mm costs 3.0 points at 32° and 6.5 mm costs 4.3. The drawing's 4.6 mm is inside the f/3.5 axial beam, which is 4.75–4.98 mm here; it is smaller than that beam in Beispiel 1 too, so the drawing is not literal there.
 - Results: at f/3.5 the rims pass 58.6% of the beam at 32° (60.5% before) and 69.5% at 29.1° (70.6%), unchanged at smaller angles. EFL 35.003 mm, f/3.5 and the 32° half-field are unchanged. The axial beam clears every surface, no chief ray is blocked, and corner coverage stays at 99%. Surface and aperture checks pass, and the iris still sets the full aperture.
 
+### 2026-11-20 glass
+
+- L5: Unmatched → LF7 (Sumita), an exact row (Δnd 0, Δνd 0) added to the glass catalog for this lens; Hikari J-LF7, the nearest row before, differs by +0.21 in νd.
+
 ## Remaining Questions
 
 - No Schacht factory prescription or maker optical drawing establishes the product identification conclusively.
 - No Beispiel 2 drawing or production lens measurement fixes the rim sizes; the rims follow the Beispiel 1 drawing's shapes within the f/3.5 beam and corner-light limits. Iris placement remains inferred.
-- L3 and L5 have no close catalog match. Historical glass suppliers, melts and unlisted partial dispersion remain unknown; apochromatic performance is not established.
+- L3 has no close catalog match. Historical glass suppliers, melts and unlisted partial dispersion remain unknown; apochromatic performance is not established.
 - No finite-focus spacing law is published. The 0.5 m minimum and eight-blade, f/16 specifications come from the M42 reference, likely describing the early chrome version; other versions differ.
 - No cited source describes blade roundedness, so that value is omitted. The 64° design field does not establish an independently measured production image-circle diameter, which is also omitted.

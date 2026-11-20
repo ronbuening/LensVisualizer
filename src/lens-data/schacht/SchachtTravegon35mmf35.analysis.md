@@ -32,14 +32,14 @@ The first air gap follows the table's 18.26 mm over the text's inconsistent 0.18
 | L2      | Negative meniscus / C1      | 1.50137 / 56.5  | K10 (Schott)       |        −21.19 |
 | L3      | Plano-convex positive / C2  | 1.72019 / 50.3  | Unmatched          |        +23.92 |
 | L4      | Plano-concave negative / C2 | 1.59270 / 35.4  | FF5 (Hoya)         |        −24.19 |
-| L5      | Biconcave negative / C3     | 1.57501 / 41.3  | Unmatched          |        −20.79 |
+| L5      | Biconcave negative / C3     | 1.57501 / 41.3  | LF7 (Sumita)       |        −20.79 |
 | L6      | Biconvex positive / C3      | 1.64250 / 58.1  | LAK6 (Sumita)      |        +11.73 |
 
 L1/L2 provide net negative power; L3/L4 share plane surface 5. L5 is the more dispersive partner of positive L6. The listed individual powers are in air, distinct from assembly powers.
 
 ## Glass Identification and Selection
 
-The indices refer to helium d. For L1, L2, L4 and L6, Δnd = 0; Δνd is +0.08, −0.09, +0.05 and 0 respectively. Sumita LAK6 is discontinued. Historical suppliers and melts remain unknown. L3 and L5 have no close match; J-LF7, nearest to L5, differs in νd by +0.21. Unlisted partial dispersion and apochromatic performance remain unestablished.
+The indices refer to helium d. For L1, L2, L4, L5 and L6, Δnd = 0; Δνd is +0.08, −0.09, +0.05, 0 and 0 respectively. L5 matches Sumita LF7, the light flint of Schott's LF7 type, exactly. Sumita LAK6 is discontinued. Historical suppliers and melts remain unknown. L3 has no close match. Unlisted partial dispersion and apochromatic performance remain unestablished.
 
 ## Focus Mechanism
 
