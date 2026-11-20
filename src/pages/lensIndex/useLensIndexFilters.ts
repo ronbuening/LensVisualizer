@@ -15,7 +15,7 @@ import {
   numericFilterInputValues,
 } from "./catalog.js";
 import { isSameCustomFilter } from "./urlState.js";
-import type { CatalogLensEntry, CustomFilterState, FilterBounds, NumericFilterField } from "./types.js";
+import type { CatalogLensEntry, CustomFilterState, FilterBounds, LensSourceKind, NumericFilterField } from "./types.js";
 import type { ImageFormatId, LensMountId } from "../../utils/catalog/lensTaxonomy.js";
 import { catalogCollator } from "../../utils/catalog/collation.js";
 
@@ -44,6 +44,8 @@ interface LensIndexFiltersResult {
   clearMountSelection: () => void;
   toggleImageFormat: (formatId: ImageFormatId) => void;
   clearImageFormatSelection: () => void;
+  toggleSourceKind: (kind: LensSourceKind) => void;
+  clearSourceKindSelection: () => void;
   applyNumericField: (field: NumericFilterField, value: number) => void;
   handleNumericInputChange: (field: NumericFilterField, value: string) => void;
   commitNumericInput: (field: NumericFilterField) => void;
@@ -163,6 +165,20 @@ export default function useLensIndexFilters({
       imageFormatIds: [],
     }));
 
+  const toggleSourceKind = (kind: LensSourceKind) =>
+    setCustomFilter((previous) => ({
+      ...previous,
+      sourceKinds: previous.sourceKinds.includes(kind)
+        ? previous.sourceKinds.filter((id) => id !== kind)
+        : [...previous.sourceKinds, kind],
+    }));
+
+  const clearSourceKindSelection = () =>
+    setCustomFilter((previous) => ({
+      ...previous,
+      sourceKinds: [],
+    }));
+
   const handleNumericInputChange = (field: NumericFilterField, value: string) =>
     setFilterInputValues((previous) => ({
       ...previous,
@@ -210,6 +226,8 @@ export default function useLensIndexFilters({
     clearMountSelection,
     toggleImageFormat,
     clearImageFormatSelection,
+    toggleSourceKind,
+    clearSourceKindSelection,
     applyNumericField,
     handleNumericInputChange,
     commitNumericInput,

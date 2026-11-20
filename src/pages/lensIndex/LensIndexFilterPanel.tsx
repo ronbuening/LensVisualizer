@@ -13,9 +13,11 @@ import type {
   CustomFilterState,
   FilterBounds,
   ImageFormatOption,
+  LensSourceKind,
   MakerOption,
   MountOption,
   NumericFilterField,
+  SourceKindOption,
 } from "./types.js";
 import type { Theme } from "../../types/theme.js";
 import type { ImageFormatId, LensMountId } from "../../utils/catalog/lensTaxonomy.js";
@@ -30,6 +32,7 @@ interface LensIndexFilterPanelProps {
   patentDecadeOptions: PatentDecadeOption[];
   mountOptions: MountOption[];
   imageFormatOptions: ImageFormatOption[];
+  sourceKindOptions: SourceKindOption[];
   filterInputValues: Record<NumericFilterField, string>;
   activeFilters: boolean;
   onClearFilters: () => void;
@@ -39,6 +42,8 @@ interface LensIndexFilterPanelProps {
   onToggleMount: (mountId: LensMountId) => void;
   onClearImageFormatSelection: () => void;
   onToggleImageFormat: (formatId: ImageFormatId) => void;
+  onClearSourceKindSelection: () => void;
+  onToggleSourceKind: (kind: LensSourceKind) => void;
   onApplyNumericField: (field: NumericFilterField, value: number) => void;
   onNumericInputChange: (field: NumericFilterField, value: string) => void;
   onNumericInputCommit: (field: NumericFilterField) => void;
@@ -245,6 +250,7 @@ export default function LensIndexFilterPanel({
   patentDecadeOptions,
   mountOptions,
   imageFormatOptions,
+  sourceKindOptions,
   filterInputValues,
   activeFilters,
   onClearFilters,
@@ -254,6 +260,8 @@ export default function LensIndexFilterPanel({
   onToggleMount,
   onClearImageFormatSelection,
   onToggleImageFormat,
+  onClearSourceKindSelection,
+  onToggleSourceKind,
   onApplyNumericField,
   onNumericInputChange,
   onNumericInputCommit,
@@ -375,7 +383,7 @@ export default function LensIndexFilterPanel({
         <div>
           <h2 style={{ ...FILTER_TITLE_STYLE, marginBottom: "0.25rem" }}>Custom Filter</h2>
           <p style={{ margin: 0, fontSize: "0.78rem", color: t.muted }}>
-            Adjust the ranges below and optionally select makers, mounts, or image formats.
+            Adjust the ranges below and optionally select makers, mounts, image formats, or sources.
           </p>
         </div>
         <button
@@ -522,6 +530,18 @@ export default function LensIndexFilterPanel({
           onClear={onClearImageFormatSelection}
           getId={(format) => format.id}
           getLabel={(format) => `${format.label} (${format.count})`}
+        />
+
+        <FilterChipSection
+          theme={t}
+          title="Source"
+          allLabel="All Sources"
+          options={sourceKindOptions}
+          selectedIds={customFilter.sourceKinds}
+          onToggle={onToggleSourceKind}
+          onClear={onClearSourceKindSelection}
+          getId={(kind) => kind.id}
+          getLabel={(kind) => `${kind.label} (${kind.count})`}
         />
       </div>
     </section>

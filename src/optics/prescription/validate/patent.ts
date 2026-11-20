@@ -13,6 +13,15 @@ function normalizedNameKey(value: string): string {
     .replace(/[^\p{L}\p{N}]/gu, "");
 }
 
+/** Romanized, without honorifics, in conventional capitalization: the rules a printed personal name keeps. */
+function personNameIssues(value: string, at: string, errors: string[]): void {
+  if ([...value].some((character) => /\p{Letter}/u.test(character) && !/\p{Script=Latin}/u.test(character))) {
+    errors.push(`${at} must be romanized`);
+  }
+  if (/\b(?:Dr|Prof)\.?\b/i.test(value)) errors.push(`${at} must omit honorifics`);
+  if (/\b\p{Lu}{2,}\b/u.test(value)) errors.push(`${at} must use conventional capitalization`);
+}
+
 function validateNames(
   data: UntrustedLensData,
   field: "patentAuthors" | "patentAssignees",
@@ -37,11 +46,7 @@ function validateNames(
     if (value.normalize("NFKC") !== value) errors.push(`${at} must use normalized Unicode (NFKC)`);
     if (/[()]/.test(value)) errors.push(`${at} must omit parenthetical source annotations`);
     if (field === "patentAuthors") {
-      if ([...value].some((character) => /\p{Letter}/u.test(character) && !/\p{Script=Latin}/u.test(character))) {
-        errors.push(`${at} must be romanized`);
-      }
-      if (/\b(?:Dr|Prof)\.?\b/i.test(value)) errors.push(`${at} must omit honorifics`);
-      if (/\b\p{Lu}{2,}\b/u.test(value)) errors.push(`${at} must use conventional capitalization`);
+      personNameIssues(value, at, errors);
     } else {
       if (/^[^\p{Ll}]*\p{Lu}[^\p{Ll}]*$/u.test(value)) errors.push(`${at} must use conventional capitalization`);
       if (/\b(?:Co|Corp|Inc|Ltd|KK)\b(?!\.)/.test(value)) errors.push(`${at} must use canonical corporate suffixes`);
@@ -154,8 +159,95 @@ function validateSourceIssuer(data: UntrustedLensData, errors: string[]): void {
   if (/^[^\p{Ll}]*\p{Lu}[^\p{Ll}]*$/u.test(issuer)) errors.push('"sourceIssuer" must use conventional capitalization');
 }
 
+const LITERATURE_FIELDS = ["authors", "title", "year", "publisher", "place", "locator", "url", "after"] as const;
+const LITERATURE_REQUIRED: readonly string[] = ["authors", "title", "year", "locator"];
+const PATENT_AND_ISSUER_FIELDS = [
+  "patentNumber",
+  "patentExample",
+  "patentYear",
+  "patentAuthors",
+  "patentAssignees",
+  "sourceIssuer",
+] as const;
+/* A normalized book prescription describes no product, so it carries no product catalog facts. */
+const PRODUCT_FIELDS = ["lensMounts", "imageFormat", "focalLengthMarketing", "apertureMarketing"] as const;
+
+/** A trimmed, single-spaced, NFKC string; `true` when it is one. */
+function citationText(value: unknown, at: string, errors: string[]): value is string {
+  if (typeof value !== "string" || !value.trim() || value.trim() !== value || /\s{2,}|[\t\n]/.test(value)) {
+    errors.push(`${at} must be a non-empty, trimmed, single-spaced string`);
+    return false;
+  }
+  if (value.normalize("NFKC") !== value) errors.push(`${at} must use normalized Unicode (NFKC)`);
+  return true;
+}
+
+/**
+ * A literature reconstruction's citation: the published secondary work that prints the prescription. It never stands
+ * beside patent metadata or a manufacturer document's issuer, which name other kinds of source.
+ */
+function validateSourceLiterature(data: UntrustedLensData, errors: string[]): void {
+  const literature: unknown = data.sourceLiterature;
+  if (literature === undefined) return;
+  const beside = PATENT_AND_ISSUER_FIELDS.filter((field) => data[field] !== undefined);
+  if (beside.length) {
+    errors.push(
+      `"sourceLiterature" names a published secondary source and never stands beside ${beside.map((f) => `"${f}"`).join(", ")}`,
+    );
+  }
+  const product = PRODUCT_FIELDS.filter((field) => data[field] !== undefined);
+  if (product.length) {
+    errors.push(
+      `"sourceLiterature" marks a literature reconstruction, which describes no product: leave out ${product.map((f) => `"${f}"`).join(", ")}`,
+    );
+  }
+  if (literature === null || typeof literature !== "object" || Array.isArray(literature)) {
+    errors.push('"sourceLiterature" must be an object with "authors", "title", "year" and "locator"');
+    return;
+  }
+  const record = literature as Record<string, unknown>;
+  const known = new Set<string>(LITERATURE_FIELDS);
+  const extra = Object.keys(record).filter((field) => !known.has(field));
+  if (extra.length) errors.push(`"sourceLiterature" holds no ${extra.map((f) => `"${f}"`).join(", ")}`);
+  for (const field of LITERATURE_FIELDS) {
+    const value = record[field];
+    const at = `"sourceLiterature" ${field}`;
+    if (value === undefined) {
+      if (LITERATURE_REQUIRED.includes(field)) errors.push(`${at} is required`);
+      continue;
+    }
+    if (field === "authors") {
+      if (!Array.isArray(value) || value.length === 0) {
+        errors.push(`${at} must be a non-empty array of personal names`);
+        continue;
+      }
+      if (new Set(value).size !== value.length) errors.push(`${at} entries must be unique`);
+      value.forEach((name: unknown, i) => {
+        const nameAt = `"sourceLiterature" authors[${i}]`;
+        if (!citationText(name, nameAt, errors)) return;
+        if (/\bet al\.?\b/i.test(name)) errors.push(`${nameAt} must list every named author explicitly`);
+        personNameIssues(name, nameAt, errors);
+      });
+    } else if (field === "year") {
+      const latest = new Date().getUTCFullYear();
+      if (typeof value !== "number" || !Number.isInteger(value) || value < 1500 || value > latest) {
+        errors.push(`${at} must be a whole year from 1500 to ${latest}`);
+      }
+    } else if (citationText(value, at, errors) && field === "url") {
+      let url: URL | undefined;
+      try {
+        url = new URL(value);
+      } catch {
+        url = undefined;
+      }
+      if (url?.protocol !== "https:") errors.push(`${at} must be an absolute https URL`);
+    }
+  }
+}
+
 export function validatePatentMetadata(data: UntrustedLensData, errors: string[]): void {
   validateSourceIssuer(data, errors);
+  validateSourceLiterature(data, errors);
   validatePatentExample(data.patentExample, data.patentNumber, errors);
   // A year alone also dates synthetic fixtures. Empty party lists can describe a non-patent source.
   if (

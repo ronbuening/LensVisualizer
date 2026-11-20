@@ -31,6 +31,8 @@
  *   2026-11-16  Expanded the Kinoptik, Meike, Schacht, Thypoch, Viltrox, and Yongnuo entries to the
  *               full multi-paragraph form of the established makers; renamed the P. Angénieux slug
  *               to angenieux.
+ *   2026-11-18  Added Busch, Dallmeyer, Goerz, Ross, and Steinheil maker entries for the historical
+ *               literature reconstructions and patent lenses.
  *   2026-04-26  Detail and accuracy pass on Leica (designer attributions,
  *               Solms→Leitz-Park facility history), Fujifilm (X100, GFX,
  *               2006 holding-company rebrand), Canon (Kwanon-vs-Hansa Canon,
@@ -210,6 +212,95 @@ export const MAKER_DETAILS: Record<string, MakerDetails> = {
       "Albert Schacht spent the years from 1919 to 1946 in management at German optical firms, including Carl Zeiss and Zeiss Ikon, and by one account was technical director at Steinheil in Munich from 1939 to 1946. He founded his own company, A. Schacht, in Munich in 1948. The firm moved to Ulm in 1954, and the engraving on its lenses changed from 'A. Schacht München' to 'A. Schacht Ulm', so its lenses carry the branding of both locations.\n\nSchacht made interchangeable lenses for 35 mm cameras rather than cameras of its own, supplying Exakta, Leica thread, M42 and Praktina mounts. Several lenses were standard equipment for the Edixa Reflex and carry Edixa-prefixed names, and a version of the Travegon was sold for Alpa as the Alpagon. The firm also made enlarger lenses.\n\nThe lens families took the names Travenar, Travegon, Travelon, Travegar and Travenon, sometimes combined with the name of the camera system they were built for. They ranged from the Travegon 35mm f/3.5 wide-angle through the Travenar 50mm f/2.8, the fast S-Travelon 50mm f/1.8 and the close-focusing M-Travenar 50mm f/2.8 to the Travenar 90mm and 135mm short telephotos and the Tele-Travelon 200mm. Ludwig Bertele, by then working as an independent designer in Switzerland, developed objectives for Schacht.\n\nThe company was acquired by another industrial group in 1967. In 1969 its optics division was sold on to Will of Wetzlar, and the Schacht machinery was dispersed among Will's facilities. Manufacture of Schacht lenses ended in 1970.",
     notableDesigns:
       "Travegon 35mm f/3.5, Travenar 50mm f/2.8, S-Travelon 50mm f/1.8, M-Travenar 50mm f/2.8, Travenar 90mm f/2.8, Travenar 135mm f/3.5, S-Travenar 135mm f/2.8",
+  },
+  // Emil Busch and the Duncker founding (NDB 3, 1957): https://www.deutsche-biographie.de/sfz11230.html
+  // Company chronology: https://collection.sciencemuseumgroup.org.uk/people/cp105648/emil-busch-ag
+  // 1872 company name and Pantoskop: https://stereoscopyhistory.net/compendium/emil-busch
+  busch: {
+    founded: 1800,
+    headquarters: "Rathenow, Germany",
+    summary:
+      "German optical works in Rathenow, led from 1845 by Emil Busch, which made spectacle lenses, opera glasses, binoculars, cameras and photographic lenses, among them the Pantoskop wide-angle objective of 1865.",
+    history:
+      "The firm descends from the Königlich Privilegierte Rathenowische Optische Industrie-Anstalt, which the Rathenow pastor Johann Heinrich August Duncker founded in 1800. His son Eduard Duncker led it after him, and in 1845 Eduard handed the management to his nephew Emil Busch (1820–1888), who had joined the firm in 1840. Busch turned the workshop into an industrial operation, introducing steam power in 1846 and building new machines for grinding spectacle and optical lenses. Its opera glasses gave the firm an international reputation.\n\nBusch began making photographic cameras in 1852. Production of the Pantoskop (also spelled Pantoscop), a wide-angle objective he developed, began in 1865, and the lens became widely praised. In 1872 Busch converted the company into a joint-stock company, the Rathenower Optische Industrie-Anstalt vormals Emil Busch AG. He also supported the founding of the Schott optical glassworks in Jena, and he died in Rathenow in 1888.\n\nThe company was renamed Emil Busch AG Optische Industrie in 1908. Carl Zeiss acquired a majority of its shares in the late 1920s, after which Busch stopped making photographic lenses but continued to make cameras. In 1946 the business became the state-owned Rathenower Optische Werke GmbH, and from 1948 VEB Rathenower Optische Werke, which later became part of VEB Carl Zeiss Jena.",
+    notableDesigns: "Pantoskop wide-angle objective, opera glasses, Galilean and prism binoculars",
+  },
+  // J. H. and T. R. Dallmeyer (1911 Britannica): https://en.wikisource.org/wiki/1911_Encyclop%C3%A6dia_Britannica/Dallmeyer,_John_Henry
+  // Lens dates (1911 Britannica, Photography): https://en.wikisource.org/wiki/Page:EB1911_-_Volume_21.djvu/533
+  // https://en.wikisource.org/wiki/Page:EB1911_-_Volume_21.djvu/534
+  // https://en.wikisource.org/wiki/Page:EB1911_-_Volume_21.djvu/535
+  // https://en.wikisource.org/wiki/Page:EB1911_-_Volume_21.djvu/536
+  // Founding after Ross's death: https://en.wikipedia.org/wiki/Ross_(optics)
+  // Company registration, works and 1974 sale: https://www.gracesguide.co.uk/J._H._Dallmeyer
+  // Later owners: https://collection.sciencemuseumgroup.org.uk/people/cp35932/j-h-dallmeyer-ltd
+  // Bergheim lens: https://en.wikipedia.org/wiki/Thomas_Rudolphus_Dallmeyer
+  dallmeyer: {
+    founded: 1860,
+    headquarters: "London, England",
+    summary:
+      "London optical firm founded by John Henry Dallmeyer, son-in-law of Andrew Ross, known for portrait, landscape and rectilinear photographic lenses, photoheliographs, and the telephoto lens his son Thomas Rudolphus Dallmeyer patented in 1891.",
+    history:
+      "John Henry Dallmeyer was born in Loxten, Westphalia, in 1830 and apprenticed to an optician in Osnabrück. He came to London in 1851, worked for the optician W. Hewitt and then for Andrew Ross, who engaged him as scientific adviser to test and finish high-grade instruments, and he married Ross's second daughter, Hannah. When Ross died in 1859, Dallmeyer inherited a third of his fortune and the telescope-making part of the business, and in 1860 he set up his own optical firm in London.\n\nDallmeyer moved from astronomical work to photographic lenses. His Quick Acting portrait lenses date from 1860, the Triple Achromatic from 1861, the Wide Angle Landscape lens from 1865, and the Patent Portrait Lens and the Wide Angle Rectilinear from 1866. Within a year of Steinheil's Aplanat of 1866 came the Rapid Rectilinear, an f/8 symmetrical doublet built on the same principle. Dallmeyer also built photoheliographs for the Wilna observatory in 1863, Harvard College Observatory in 1864 and the British government in 1873. Ill health led him to give up supervising the workshops around 1880, and he died at sea off New Zealand on 30 December 1883.\n\nHis son Thomas Rudolphus Dallmeyer (1859–1906) took over the business. He patented the first practical telephoto lens in 1891, wrote the standard text Telephotography in 1899, and was president of the Royal Photographic Society from 1900 to 1903. The firm was registered as J. H. Dallmeyer Ltd in 1892, and from 1896 it issued H. L. Aldis's Stigmatic anastigmats in series.\n\nBy 1922 the company had a factory at Church End Works in Willesden, north-west London, and in both World Wars it made gun sights and other military equipment. Lens manufacture continued into the 1970s. Watshams bought J. H. Dallmeyer Ltd in 1974, and the business later passed through other optical groups into Thales.",
+    notableDesigns:
+      "Triple Achromatic, Wide Angle Landscape, Patent Portrait Lens, Wide Angle Rectilinear, Rapid Rectilinear, Rapid Landscape, telephoto lens, Stigmatic, Dallmeyer-Bergheim soft-focus portrait lens",
+  },
+  // Carl Paul Goerz (NDB 6, 1964): https://www.deutsche-biographie.de/sfz21445.html
+  // Emil von Höegh (NDB): https://www.deutsche-biographie.de/sfz32800.html
+  // Company chronology: https://collection.sciencemuseumgroup.org.uk/people/cp1132/c-p-goerz
+  // https://collection.sciencemuseumgroup.org.uk/people/cp133159
+  // Schöneberg start, Friedenau works, 1893 licences: https://de.wikipedia.org/wiki/Optische_Anstalt_C._P._Goerz
+  // American company: https://en.wikipedia.org/wiki/Goerz_(company)
+  // Doppel-Anastigmat dates (1911 Britannica): https://en.wikisource.org/wiki/Page:EB1911_-_Volume_21.djvu/535
+  // Dagor name after 1904: https://collection.sciencemuseumgroup.org.uk/objects/co8939872/a-double-anastigmat-series-iii-dagor-lens
+  // Hypergon patent: https://collection.sciencemuseumgroup.org.uk/objects/co8210853/hypergon-dopel-anastigmat-wide-angle-lens-serie-x-no-1
+  // Celor: https://en.wikipedia.org/wiki/Emil_von_H%C3%B6egh
+  goerz: {
+    founded: 1886,
+    headquarters: "Berlin-Friedenau, Germany",
+    summary:
+      "Berlin optical company founded by Carl Paul Goerz in 1886, maker of Emil von Höegh's Doppel-Anastigmat (Dagor) and Hypergon lenses, Anschütz focal-plane cameras and military optics, which merged into Zeiss Ikon in 1926.",
+    history:
+      "Carl Paul Goerz (1854–1923) trained at Emil Busch's optical works in Rathenow from 1870 to 1873 and then travelled as a salesman for optical and precision-mechanics firms. In 1886 he started a mail-order business in Berlin for mathematical instruments and drawing equipment, and he added cameras to its range in 1887. In 1888 he took over F. A. Hintze's workshop in Schöneberg and began making cameras himself, and in 1889 he acquired the rights to Ottomar Anschütz's focal-plane shutter. From 1890 the firm traded as Optische Anstalt C. P. Goerz.\n\nIn 1892 Emil von Höegh (1865–1915) came to Goerz with the design for a new anastigmat, and the firm hired him at once. Goerz secured the patent in 1892 and issued the Doppel-Anastigmat in 1893, the first symmetrical anastigmat to combine a flat, astigmatism-free field with wide coverage; after 1904 it was sold as the Dagor. Licences went to Ross in London and Karl Fritsch in Vienna in 1893, and the firm completed its 100,000th lens in 1901. Von Höegh also designed the Hypergon, a 135-degree wide-angle patented in 1900, and the Celor, before leaving Goerz in 1902.\n\nThe company became a joint-stock company in 1903, with its works on Rheinstraße in Berlin-Friedenau, and set up a military department the same year. By then it had sales branches or factories in Paris (from 1893), London (from 1899) and New York, with St Petersburg and others to follow. A film factory in Berlin-Zehlendorf was added in 1908, and the workforce grew to about 2,500 by 1911 and roughly 10,000 by 1917, much of it making military optics.\n\nThe loss of military work after the First World War left the company in financial difficulty. In 1926 it merged with Ica, Contessa-Nettel and Ernemann to form Zeiss Ikon, and Goerz lens production largely ended. The New York company, the C. P. Goerz American Optical Company, was independent of the merger and continued to make lenses until Schneider Optics took it over in 1972.",
+    notableDesigns:
+      "Doppel-Anastigmat (Dagor), Hypergon wide-angle, Celor, Goerz-Anschütz focal-plane camera, Tenax cameras",
+  },
+  // Andrew and Thomas Ross (Darwin Correspondence Project): https://epsilon.ac.uk/view/dcp-data/nameregs/nameregs_4081
+  // https://epsilon.ac.uk/view/dcp-data/nameregs/nameregs_4085
+  // Apprenticeship and early addresses: https://www.gracesguide.co.uk/Andrew_Ross
+  // Thomas Ross's death: https://www.gracesguide.co.uk/Thomas_Ross_(1818-1870)
+  // Company names and dates: https://collection.sciencemuseumgroup.org.uk/people/cp29165/ross-and-company
+  // https://collection.sciencemuseumgroup.org.uk/people/cp35931/ross-limited
+  // https://www.gracesguide.co.uk/Ross
+  // Clapham works, wartime and 1975 sale: https://claphamsociety.com/article/25-from-ross-to-experian/
+  // Licences, Mill Hill and Avimo: https://en.wikipedia.org/wiki/Ross_(optics)
+  // Lens dates (1911 Britannica, Photography): https://en.wikisource.org/wiki/Page:EB1911_-_Volume_21.djvu/534
+  // https://en.wikisource.org/wiki/Page:EB1911_-_Volume_21.djvu/535
+  // Xpres: https://collection.sciencemuseumgroup.org.uk/objects/co8092587/xpres-lens-6-inch
+  ross: {
+    founded: 1830,
+    headquarters: "London, England; works at Clapham Common from the 1890s",
+    summary:
+      "London optical firm founded by Andrew Ross in 1830, maker of microscopes, telescopes and some of the earliest English photographic lenses, which later built Zeiss and Goerz anastigmats under licence and became Ross Ltd and then Ross Ensign.",
+    history:
+      "Andrew Ross (1798–1859) was apprenticed to the London optician John Corless from 1813 and set up his own business in Clerkenwell in 1830. Around 1837 to 1841 he made microscope objectives to Joseph Jackson Lister's new design, and he was a founder member of the Microscopical Society of London in 1841. From about 1840 he also made camera lenses of two achromatic groups; the lens he made for H. Collen was the first corrected so that its visual and chemical foci coincided.\n\nWhen Andrew Ross died in 1859 his son Thomas took over the business, which became Ross & Co., while his son-in-law John Henry Dallmeyer inherited the telescope side and set up his own firm. Thomas Ross issued the Actinic Triplets in 1861 and the Actinic Doublets in 1864; the doublets, modelled on the Collen lens, were unsymmetrical and faster than Harrison's Globe lens. Thomas Ross died in 1870. In 1888 H. L. H. Schroeder designed the Concentric lens for the firm, a flat-field, astigmatism-free symmetrical doublet issued in 1892.\n\nIn the 1890s Ross made Zeiss and Goerz lenses under licence for Britain and its empire, taking the English licence for Zeiss's anastigmats in 1890 and for the Goerz Doppel-Anastigmat in 1893. The company bought premises on Clapham Common North Side in 1891 and was floated as Ross Ltd in 1897. During the First World War the government took its entire output and placed it in charge of the Zeiss factory at Mill Hill, and in 1915–16 Ross put up a new factory building at Clapham. Its later camera lenses included the Xpres series.\n\nRoss merged with Barnet Ensign in 1948 to form Barnet Ensign Ross, renamed Ross Ensign in 1954, and stopped making cameras in 1961 while continuing binoculars and other optics. The company was sold in 1975, when manufacturing at Clapham ended, and the business passed to Avimo, later part of Thales.",
+    notableDesigns:
+      "Actinic Triplet, Actinic Doublet, Rapid Symmetrical, Portable Symmetrical, Concentric lens, Xpres, Goerz Double Anastigmat under licence",
+  },
+  // Firm history (Deutsches Museum archive finding aid FA 005, 2023):
+  // https://www.deutsches-museum.de/assets/Forschung/Archiv/Download/Findbuecher_PDF/FA_005_Steinheil.pdf
+  // Hugo Adolph Steinheil (NDB 25, 2013): https://www.deutsche-biographie.de/117657867.html
+  // Periskop, Aplanat and Orthostigmat (1911 Britannica, Photography):
+  // https://en.wikisource.org/wiki/Page:EB1911_-_Volume_21.djvu/534
+  // https://en.wikisource.org/wiki/Page:EB1911_-_Volume_21.djvu/536
+  // Company record: https://collection.sciencemuseumgroup.org.uk/people/cp116351
+  steinheil: {
+    founded: 1855,
+    headquarters: "Munich, Germany; Ismaning from 1969",
+    summary:
+      "Munich optical and astronomical works founded by Carl August von Steinheil in 1855, whose Periskop, Aplanat, Antiplanet and Orthostigmat lenses shaped nineteenth-century photographic optics, and which later made Cassar, Quinar and Culminar lenses alongside telescopes, spectrographs and military optics.",
+    history:
+      "Carl August von Steinheil (1801–1870), astronomer, physicist and telegraph pioneer, registered the Optische und astronomische Werkstätte C. A. Steinheil in Schwabing, near Munich, in March 1855. His son Hugo Adolph Steinheil (1832–1893) did most of the optical calculation, and his elder son Eduard joined in 1860 to run the technical and commercial side. The workshop moved into Munich in 1862. In 1865 Carl August withdrew and Adolph bought the business, sharing it with Eduard, and from 1 January 1868 it traded as C. A. Steinheil Söhne.\n\nApplying Philipp Ludwig von Seidel's methods of ray calculation, the firm brought out the Periskop in 1865, a nearly distortion-free wide-angle of two simple crown menisci around a central stop, and in 1866 Adolph Steinheil's Aplanat, which applied the same symmetrical principle with achromatized components. The Aplanat won a gold medal at the 1867 Paris exhibition, and wide-angle, reproduction and portrait forms followed until 1896. Adolph introduced the Antiplanet in 1881. In March 1893 the firm completed the six-element Orthostigmat anastigmat, but C. P. Goerz had filed a similar design three months earlier and the German patent was delayed, so the lens was first produced at a Paris branch, C. A. Steinheil fils, opened in 1895.\n\nAdolph died in November 1893, and his son Rudolf Steinheil (1865–1930), co-owner since 1890, led the firm. The Orthostigmat Type II entered production in 1896, followed by the Triplar portrait lens, the four-element Unofocal, the Cassar triplet from 1919 and the Quinar of 1925, alongside large observatory objectives and spectrographs. After Rudolf's death the firm passed to his five daughters and became Optische Werke C. A. Steinheil Söhne GmbH in 1937; its postwar range included binoculars, spectrographs, the Casca 35 mm camera and Culminar lenses.\n\nThe American Elgeet Optical Company bought a controlling share in 1962 and sold it to Lear Siegler in 1963. The business was reorganized as Steinheil-Lear Siegler AG from 1968, moved to Ismaning by the end of 1969 and concentrated on military, surveying and industrial optics. British Aerospace bought it in 1987 as Steinheil Optronik and closed it in 1995.",
+    notableDesigns: "Periskop, Aplanat, Antiplanet, Orthostigmat, Triplar, Unofocal, Cassar, Quinar, Culminar",
   },
   samsung: {
     founded: 1938,
