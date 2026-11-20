@@ -1137,6 +1137,14 @@ export const ASSIGNEE_CORPORATE_HISTORY: Partial<Record<string, AuthoredCorporat
     ],
   },
   "Zeiss Ikon AG": {
+    successorOf: [
+      {
+        organization: "C. P. Goerz",
+        effectiveDate: "1926",
+        sourceUrl: SOURCES.zeissIkon,
+        note: "The museum record lists Goerz among the four German camera companies combined to form Zeiss Ikon in 1926.",
+      },
+    ],
     subsidiaryOf: [
       {
         organization: "Carl-Zeiss-Stiftung",
