@@ -43,11 +43,11 @@ The printed indices use the helium d line. Four catalog equivalents meet |Δnd| 
 
 ## Focus Mechanism
 
-Only infinity focus is modeled; no finite-focus spacings are printed. The catalog's 0.5 m minimum comes from the [AllPhotoLenses M42 entry](https://allphotolenses.com/lenses/item/c_3226.html). [Kamerastore](https://kamerastore.com/en-us/products/a-schacht-ulm-35mm-f3-5-r-travegon-exakta) documents Exakta; [Flashback Camera's rangefinder-coupled Leica-thread version](https://flashbackcamera.jp/en/products/024698-leica-copy-travegon-35mm-f35-l) instead focuses to 1 m.
+Only infinity focus is modeled; no finite-focus spacings are printed. The catalog's 0.5 m minimum comes from the [AllPhotoLenses M42 entry](https://allphotolenses.com/lenses/item/c_3226.html). An [MFlenses forum thread](https://forum.mflenses.com/schacht-travegon-vs-other-retrofocus-wide-angles-t52837.html) describes an automatic Exakta-mount version, and [Flashback Camera](https://flashbackcamera.jp/en/products/024698-leica-copy-travegon-35mm-f35-l) lists a rangefinder-coupled Leica-thread version.
 
 ## Image Plane, Iris and Field Limits
 
-Computed EFL is 35.003215 mm at f/3.5; paraxial BFD is 33.655721 mm, total track 62.849221 mm, and infinity defocus zero. [US 2,772,601](https://patents.google.com/patent/US2772601A/en) Example 2 rounds the same design at about 1.0055×. Its back-focus convention is paraxial, without conflict: US Example 1's 98.5 mm agrees with the German example's computed 98.54 mm.
+Computed EFL is 35.003215 mm at f/3.5; paraxial BFD is 33.655721 mm, total track 62.849221 mm, and infinity defocus zero. [US 2,772,601](https://patents.google.com/patent/US2772601A/en) Example 2 rounds the same design at about 1.0055×. Its back-focus convention is paraxial, without conflict: US Example 1's 98.5 mm agrees with the computed 98.54 mm of German Beispiel 1.
 
 The iris retains 5.06 before and 2.90 after it in patent units: the printed order puts it 1.015 mm behind r6, inside L4's 1.82 mm sag at sd 7 mm. Both drawings support placement near C. Modeled z = 23.0965 mm and inferred radius = 4.570632 mm.
 

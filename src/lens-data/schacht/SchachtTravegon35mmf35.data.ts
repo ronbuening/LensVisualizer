@@ -1,6 +1,6 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 /**
- * DE 1,020,809 B, Beispiel 2: all radii and axial distances are scaled by 0.35
+ * DE 1,020,809 B, Example 2 (Beispiel 2): all radii and axial distances are scaled by 0.35
  * from the printed 100 mm design to the 35 mm Travegon correlation, in millimetres.
  * Glass coordinates are printed nd/νd values; catalog labels do not identify the
  * production supplier. Surface rims are inferred. The iris radius is derived
@@ -16,7 +16,7 @@ const LENS_DATA = {
   key: "schacht-travegon-35mm-f35",
   maker: "Schacht",
   name: "SCHACHT TRAVEGON 35mm f/3.5",
-  subtitle: "DE 1,020,809 B, Beispiel 2 — Travegon production correlation",
+  subtitle: "DE 1,020,809 B, Example 2 — Travegon production correlation",
   catalog: {
     lensMounts: ["exakta", "m42", "leica-ltm"],
     imageFormat: "135-full-frame",
@@ -38,7 +38,7 @@ const LENS_DATA = {
   source: {
     patentNumber: "DE 1,020,809 B",
     example: {
-      label: "Beispiel 2",
+      label: "Example 2",
       id: "2",
     },
     patentYear: 1957,
