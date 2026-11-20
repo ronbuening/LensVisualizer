@@ -13,6 +13,7 @@
 import { textRun } from "../../utils/text.js";
 import { forwardRef, memo } from "react";
 import InventorLinks from "../content/InventorLinks.js";
+import LiteratureCitation from "../content/LiteratureCitation.js";
 import PatentNumberLink from "../content/PatentNumberLink.js";
 import { eflAtZoomClamped as eflAtZoom, formatDist, formatFNumber } from "../../optics/optics.js";
 import { fisheyeProjectionFocalLengthAtZoom, isFisheyeProjection } from "../../optics/projection.js";
@@ -26,6 +27,7 @@ import { lensChromaticReference } from "../../optics/chromatic.js";
 import { ENABLE_CARDINAL_ELEMENTS } from "../../utils/featureFlags.js";
 import {
   lensDisplaySubtitle,
+  lensLiteratureSource,
   lensPatentAttribution,
   patentExampleSuffix,
 } from "../../utils/catalog/lensPatentMetadata.js";
@@ -151,6 +153,7 @@ const DiagramHeader = memo(
     const projection = L.projection ?? { kind: "rectilinear" };
     const displaySubtitle = lensDisplaySubtitle(L.source);
     const patentAttribution = lensPatentAttribution(L.source);
+    const literature = lensLiteratureSource(L.source);
     /* With a converter attached the title names the whole system; photo searches and the second patent line
        still need the two parts separately. A converter covered by the lens's own patent example is not repeated. */
     const teleconverter = L.attachedTeleconverter;
@@ -256,6 +259,12 @@ const DiagramHeader = memo(
                         </span>
                       )}
                     </span>
+                  ) : literature ? (
+                    <LiteratureCitation
+                      literature={literature}
+                      color={t.descLinkColor}
+                      linkStyle={{ transition: "color 0.3s" }}
+                    />
                   ) : (
                     <span>{displaySubtitle}</span>
                   )}

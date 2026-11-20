@@ -28,6 +28,7 @@ export interface CatalogLensEntry {
   focalRange: [number, number] | null;
   aperture: number | null;
   patentYear: number | null;
+  sourceKind: LensSourceKind | null;
   lensMounts: LensMountMetadata[];
   imageFormat: ImageFormatMetadata | null;
 }
@@ -40,6 +41,15 @@ export interface MakerOption {
 
 export interface MountOption {
   id: LensMountId;
+  label: string;
+  count: number;
+}
+
+/** The kind of document a lens prescription comes from; a lens that records none has no kind. */
+export type LensSourceKind = "patent" | "maker-document" | "literature";
+
+export interface SourceKindOption {
+  id: LensSourceKind;
   label: string;
   count: number;
 }
@@ -102,6 +112,7 @@ export interface CustomFilterState extends FilterBounds {
   makerSlugs: string[];
   lensMountIds: LensMountId[];
   imageFormatIds: ImageFormatId[];
+  sourceKinds: LensSourceKind[];
 }
 
 export type NumericFilterField = keyof FilterBounds;

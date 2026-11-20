@@ -5,6 +5,7 @@ import {
   makerDisplayName,
   lensPatentReference,
   lensPatentAttribution,
+  literatureShortCitation,
   lensDisplaySubtitle,
   lensPageTitle,
   lensPageDescription,
@@ -18,6 +19,7 @@ import {
   SITE_URL,
 } from "../../../../src/utils/catalog/lensMetadata.js";
 import buildMeta from "../../../../src/generated/build-metadata.json";
+import { literatureCitation } from "../../../../src/utils/catalog/lensPatentMetadata.js";
 import type { LensData } from "../../../../src/types/optics.js";
 
 /* ── helpers ── */
@@ -32,7 +34,12 @@ function makeLens(overrides: Partial<LensData> = {}): import("../../../../src/op
   return {
     ...fields,
     catalog: { specs: fields.specs },
-    source: { patentNumber: fields.patentNumber, example: fields.patentExample, authors: fields.patentAuthors },
+    source: {
+      patentNumber: fields.patentNumber,
+      example: fields.patentExample,
+      authors: fields.patentAuthors,
+      literature: fields.sourceLiterature,
+    },
   } as unknown as import("../../../../src/optics/buildLens.js").CanonicalLens;
 }
 
@@ -300,6 +307,57 @@ describe("lensDisplaySubtitle", () => {
     expect(lensDisplaySubtitle(makeLens({ patentNumber: "US 1", patentAuthors: undefined }))).toBe(
       "US Patent 2019/0234567",
     );
+  });
+});
+
+/* ── literature reconstructions ── */
+
+describe("literature citations", () => {
+  const literature = {
+    authors: ["Moritz von Rohr"],
+    title: "Theorie und Geschichte des photographischen Objektivs",
+    year: 1899,
+    publisher: "Julius Springer",
+    place: "Berlin",
+    locator: "p. 250, Fig. 100",
+    url: "https://www.e-rara.ch/download/pdf/4637944.pdf#page=6",
+    after: "J. M. Eder (1893)",
+  };
+  const book = () =>
+    makeLens({
+      name: "VOIGTLÄNDER PETZVAL PORTRAIT f/3.4",
+      patentNumber: undefined,
+      patentAuthors: undefined,
+      subtitle: "DE 1234 mentioned in passing",
+      sourceLiterature: literature,
+    });
+
+  it("cites the work in full and in short, keeping surname particles", () => {
+    expect(literatureCitation(literature)).toBe(
+      "Moritz von Rohr, Theorie und Geschichte des photographischen Objektivs (Berlin: Julius Springer, 1899), " +
+        "p. 250, Fig. 100; after J. M. Eder (1893)",
+    );
+    expect(literatureShortCitation(literature)).toBe("von Rohr 1899");
+    expect(literatureShortCitation({ ...literature, authors: ["Rudolf Kingslake", "R. Barry Johnson"] })).toBe(
+      "Kingslake and Johnson 1899",
+    );
+    expect(literatureCitation({ authors: ["A. Author"], title: "T", year: 1900, locator: "p. 1" })).toBe(
+      "A. Author, T (1900), p. 1",
+    );
+  });
+
+  it("shows the citation in place of a subtitle and never reads a patent from it", () => {
+    expect(lensDisplaySubtitle(book())).toBe(literatureCitation(literature));
+    expect(lensPatentReference(book())).toBeNull();
+    expect(lensPageDescription(book())).toContain("prescription published in von Rohr 1899");
+    expect(lensPageDescription(book())).not.toContain("patent");
+    expect(lensJsonLd(book(), "voigtlander-petzval-portrait").isBasedOn).toMatchObject({
+      "@type": "Book",
+      name: literature.title,
+      author: [{ "@type": "Person", name: "Moritz von Rohr" }],
+      datePublished: "1899",
+      url: literature.url,
+    });
   });
 });
 
