@@ -1,5 +1,5 @@
 /*
-GOERZ DOPPEL-ANASTIGMAT 240mm f/8 (DE 74437 C, sole numerical example)
+GOERZ DOPPEL-ANASTIGMAT SERIES III 240mm f/7.7 (DE 74437 C, sole numerical example)
 
 Source: Kaiserliches Patentamt, Patentschrift Nr. 74437 (Klasse 57: Photographie), C. P. Goerz in Schöneberg bei
 Berlin, "Sphärisch, chromatisch und astigmatisch corrigirtes Objectiv", patented from 20 December 1892, issued
@@ -21,6 +21,13 @@ back focus of 223.265 mm against the printed central-ray focus of 223.275 mm; th
 this example divided by 2.4 and rounded to 0.1 mm; every entry agrees except r2 = r7, which the patent's 54.324
 reduces to 22.6 where von Rohr prints 22.7.
 
+Production identity: the example is catalogue No. 4, the 240 mm size, of the Series III Doppel-Anastigmat, which Goerz
+rated 1:7.7 (von Rohr 1899). A surviving Series III No. 4, 240 mm, serial 16411 (about 1893), has an iris
+whose Goerz scale starts at 6, i.e. f/8, the patent's largest effective aperture (earlyphotography.co.uk, entry L186,
+which cites DRP 74437 for the type). No Goerz catalogue prints a prescription, so the match rests on the shared focal
+length and aperture and on the series' patent. `fNumber.marketing` is the series rating, `design` the patent's 1:8.
+No `imageFormat`: that record lists the lens for whole-plate (6.5 x 8.5 in), which has no canonical format id.
+
 Model additions: the stop, centred in the 11.00 mm air space (5.5 + 5.5; Fig. 3 draws the stop plate there), its
 radius derived from 1:8; the last gap, the computed paraxial back focus; the f-stop list; the field limit 36 deg,
 von Rohr's computed half-field (the patent computes astigmatism with a 30 deg chief ray and prints no field angle);
@@ -39,23 +46,24 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 const LENS_DATA = {
   schema: 2,
-  key: "goerz-doppel-anastigmat-240mm-f8-de74437",
+  key: "goerz-doppel-anastigmat-series-iii-240mm-f77",
   maker: "Goerz",
-  name: "GOERZ DOPPEL-ANASTIGMAT 240mm f/8 (DE 74437 Design)",
+  name: "GOERZ DOPPEL-ANASTIGMAT SERIES III 240mm f/7.7",
   subtitle: "DE 74437 C — the patent's sole numerical example, drawn at natural size in Fig. 3",
   catalog: {
+    lensMounts: ["large-format-lens-board"],
     specs: [
       "6 ELEMENTS / 2 GROUPS",
       "f = 240 mm PATENT / 240.24 mm TRACED",
-      "f/8",
+      "f/8 PATENT / f/7.7 MARKETED",
       "2ω = 72° (VON ROHR)",
       "nD ONLY",
       "ALL-SPHERICAL",
     ],
     elementCount: 6,
     groupCount: 2,
-    focalLengthMm: { design: 240 },
-    fNumber: { design: 8 },
+    focalLengthMm: { marketing: 240, design: 240 },
+    fNumber: { marketing: 7.7, design: 8 },
   },
   source: {
     patentNumber: "DE 74437 C",
@@ -160,7 +168,7 @@ const LENS_DATA = {
 
   focus: {
     closeFocusM: 1e15,
-    description: "Infinity-only patent example; the patent gives no close-focus data.",
+    description: "Infinity only; the patent gives no close-focus data.",
   },
   aperture: { nominalFNumber: 8, fStops: [8, 11, 16, 22], maxFNumber: 22 },
   projection: { kind: "rectilinear", maxTraceFieldDeg: 36 },

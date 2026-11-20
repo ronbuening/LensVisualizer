@@ -1,4 +1,4 @@
-# Goerz Doppel-Anastigmat 240mm f/8 (DE 74437 C) — audit log
+# Goerz Doppel-Anastigmat Series III 240mm f/7.7 (DE 74437 C) — audit log
 
 Patent: DE 74437 C, its sole numerical example (page 2), drawn as Fig. 3
 
@@ -142,3 +142,23 @@ model sizes the stop from the stated 30 mm aperture, as the stop rule requires.
   the stated aperture.
 - Reading the patentee "C. P. Goerz" as an organization is a judgment; the document does not say whether the firm or
   the person holds the patent.
+
+## 2026-11-19 — Re-filed as the Series III No. 4
+
+The first entry ruled out a production lens because the example's 1:8 is not the series' 1:7.7 rating; no Goerz
+catalogue was checked. A collector record ([Early Photography, entry L186](http://www.earlyphotography.co.uk/site/entry_L186.html))
+lists a Series III No. 4, f/7.7, 240 mm, serial 16411 (about 1893), whose iris is marked in Goerz scale 6–384
+(f/8–f/64), listed for whole-plate, with DRP 74437/1892 among its references. The patent example has the same 240 mm
+focal length, the same f/8 widest opening, and the series' patent, so the file now names the product.
+
+- Name `GOERZ DOPPEL-ANASTIGMAT SERIES III 240mm f/7.7`; key `goerz-doppel-anastigmat-series-iii-240mm-f77`; files
+  renamed from `GoerzDoppelAnastigmat240mmf8DE74437`, which was never published.
+- `focalLengthMm` `{ marketing: 240, design: 240 }`; `fNumber` `{ marketing: 7.7, design: 8 }`. The stop still opens
+  to the patent's f/8; spec line `f/8 PATENT / f/7.7 MARKETED`.
+- `lensMounts` `["large-format-lens-board"]`: the lens was sold in a flanged barrel for a view-camera lens board.
+- No `imageFormat`: whole-plate (6½ × 8½ in) has no canonical format id.
+- Prescription, rims, stop and field unchanged.
+
+Limitation: no catalogue prints the production prescription, so the identification is by focal length, aperture and
+patent, not a measured lens. The Goerz catalogue pages for the Series III sizes were not seen; the No. 4 = 240 mm
+pairing comes from the collector record.

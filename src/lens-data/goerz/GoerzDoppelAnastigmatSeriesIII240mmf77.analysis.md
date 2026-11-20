@@ -1,4 +1,4 @@
-# Goerz Doppel-Anastigmat 240mm f/8 — DE 74437 C
+# Goerz Doppel-Anastigmat Series III 240mm f/7.7 — DE 74437 C
 
 ## Patent Reference and Design Identification
 
@@ -32,9 +32,15 @@ The patent prints a single numerical example, with no number, and Fig. 3 draws i
 barrel with a plate stop through a slot between the cells. The document names only C. P. Goerz as patentee. The
 design is Emil von Höegh's: von Rohr (1899) lists the patent under his name, and von Höegh, who had worked on
 photographic objectives in Paul Wächter's workshop in Friedenau, brought the design to Goerz. The firm sold the type
-as the Doppel-Anastigmat, later as the Dagor. The example's own ratings, 240 mm and 1:8, are not those of a
-catalogued series (Series III was rated 1:7.7, Series IV 1:11), so the file carries no mount or format and names
-the example in its title.
+as the Doppel-Anastigmat, later as the Dagor.
+
+The example is a production size. Goerz numbered the Series III lenses by focal length, and No. 4 is the 240 mm lens,
+sold in a flanged barrel. The series was rated 1:7.7, a little faster than the patent's 1:8, but a surviving No. 4
+from about 1893 (serial 16411) has an iris whose Goerz scale opens to 6, which is f/8, the patent's largest effective
+aperture. No Goerz catalogue prints a prescription, so the identification rests on the shared focal length and
+aperture and on the patent the series was sold under; the file names the product and keeps the patent's 1:8 as its
+design aperture. It takes the large-format lens-board mount. The same record lists the No. 4 for whole-plate
+(6½ × 8½ in), a plate with no canonical format id, so the file carries no format.
 
 ## Optical Architecture
 
@@ -184,3 +190,6 @@ the patent's title names; the same separate correction is what lets each cell se
   [p. 377](https://www.e-rara.ch/download/pdf/4637944.pdf#page=133),
   [p. 378](https://www.e-rara.ch/download/pdf/4637944.pdf#page=134); bibliography entry E. von Höegh 2 on p. 415,
   the definition of ν̄ on p. 339.
+- Early Photography (Antique and Vintage Cameras), [Doppel Anastigmat](http://www.earlyphotography.co.uk/site/entry_L186.html):
+  a Series III No. 4, f/7.7, 240 mm, serial 16411 (about 1893), iris in Goerz scale 6–384 (f/8–f/64), listed for
+  whole-plate; its references include DRP 74437/1892 and BP 23378/1892.
