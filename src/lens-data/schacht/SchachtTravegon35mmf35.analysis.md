@@ -16,11 +16,11 @@
 
 **Example details:** Beispiel 2, table on PDF p. 2 and claim 5 on p. 3
 
-Beispiel 2's radii and axial distances are scaled by 0.35 from 100 to 35 mm. The Travegon link is moderate: [AllPhotoLenses](https://allphotolenses.com/lenses/item/c_3226.html) credits Bertele, lists 35 mm f/3.5 and 6/3 construction, and its [schematic](http://allphotolenses.com/public/files/optical/b361f4c9a9c43e7ab72b9a1b1571b10c.png) shows Beispiel 2's flat interface and thick L4. No Schacht factory prescription confirms the link.
+Beispiel 2's radii and axial distances are scaled by 0.35 from 100 to 35 mm. It may be the Travegon's design: [AllPhotoLenses](https://allphotolenses.com/lenses/item/c_3226.html) credits Bertele, lists 35 mm f/3.5 and six elements in three groups, and its [diagram](http://allphotolenses.com/public/files/optical/b361f4c9a9c43e7ab72b9a1b1571b10c.png) shows Beispiel 2's flat interface and thick L4. No Schacht factory prescription confirms the identification.
 
 ## Optical Architecture
 
-Three cemented doublets form an all-spherical negative–positive–positive wide-angle objective. A is a diverging meniscus convex toward the object; B and C collect the beam around the iris. Their focal lengths are −51.26, +83.05 and +23.65 mm.
+Three cemented doublets form an all-spherical negative–positive–positive wide-angle objective. The patent calls them Glieder A, B and C: A is a diverging meniscus convex toward the object; B and C collect the beam around the iris. Their focal lengths are −51.26, +83.05 and +23.65 mm.
 
 The first air gap follows the table's 18.26 mm over the text's inconsistent 0.1836 F. Group A's printed −1.47 F approximates the calculated −1.465 F.
 
@@ -43,16 +43,18 @@ The printed indices use the helium d line. Four catalog equivalents meet |Δnd| 
 
 ## Focus Mechanism
 
-Only infinity focus is modeled; no finite-focus spacings are printed. The catalog's 0.5 m minimum comes from the [AllPhotoLenses M42 entry](https://allphotolenses.com/lenses/item/c_3226.html). An [MFlenses forum thread](https://forum.mflenses.com/schacht-travegon-vs-other-retrofocus-wide-angles-t52837.html) describes an automatic Exakta-mount version, and [Flashback Camera](https://flashbackcamera.jp/en/products/024698-leica-copy-travegon-35mm-f35-l) lists a rangefinder-coupled Leica-thread version.
+Only infinity focus is modeled; no finite-focus spacings are printed. The 0.5 m minimum comes from the [AllPhotoLenses M42 entry](https://allphotolenses.com/lenses/item/c_3226.html). An [MFlenses forum thread](https://forum.mflenses.com/schacht-travegon-vs-other-retrofocus-wide-angles-t52837.html) describes an automatic Exakta-mount version, also listed by [Kamerastore](https://kamerastore.com/en-us/products/a-schacht-ulm-35mm-f3-5-r-travegon-exakta); [Flashback Camera](https://flashbackcamera.jp/en/products/024698-leica-copy-travegon-35mm-f35-l) lists a rangefinder-coupled Leica-thread version with a 1 m minimum.
 
 ## Image Plane, Iris and Field Limits
 
-Computed EFL is 35.003215 mm at f/3.5; paraxial BFD is 33.655721 mm, total track 62.849221 mm, and infinity defocus zero. [US 2,772,601](https://patents.google.com/patent/US2772601A/en) Example 2 rounds the same design at about 1.0055×. Its back-focus convention is paraxial, without conflict: US Example 1's 98.5 mm agrees with the computed 98.54 mm of German Beispiel 1.
+Computed EFL is 35.003 mm at f/3.5; paraxial BFD is 33.656 mm, total track 62.85 mm, and infinity defocus zero. [US 2,772,601](https://patents.google.com/patent/US2772601A/en) Example 2 rounds the same design at about 1.0055×. Its back-focus convention is paraxial: US Example 1's 98.5 mm agrees with the computed 98.54 mm of German Beispiel 1.
 
-The iris retains 5.06 before and 2.90 after it in patent units: the printed order puts it 1.015 mm behind r6, inside L4's 1.82 mm sag at sd 7 mm. Both drawings support placement near C. Modeled z = 23.0965 mm and inferred radius = 4.570632 mm.
+The iris has 5.06 before and 2.90 after it in patent units, reversing the printed order. That order would put it 1.015 mm behind surface 6, inside L4's 1.82 mm sag at a 7 mm semi-diameter. Both drawings support placement near C. Its modeled position is 23.10 mm from the first vertex, with an inferred radius of 4.571 mm.
+
+The iris has eight blades and an f/3.5–16 range, following the early M42 version in AllPhotoLenses. Its later black version has six blades and reaches f/22; those mechanical specifications are distinct.
 
 Rims are inferred, including the 12.5 mm front rims. The stated 32° half-field reaches 21.54 of the 21.65 mm film half-diagonal; the 32.1° corner chief ray clears. Surface 8 retains one-sided clipping, so full-pupil transmission and measured production coverage remain unknown.
 
 ## Sources
 
-The linked patents, product reference and seller listings supply the evidence. No maker optical drawing was found.
+The linked patents supply the prescription and group names; [AllPhotoLenses](https://allphotolenses.com/lenses/item/c_3226.html) supplies the product construction, early eight-blade iris, f/3.5–16 range and 0.5 m minimum. Kamerastore documents Exakta, and Flashback Camera documents Leica thread and its 1 m minimum. No maker optical drawing or description of blade roundedness was found.

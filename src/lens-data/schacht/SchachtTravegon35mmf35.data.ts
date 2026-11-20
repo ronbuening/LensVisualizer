@@ -1,14 +1,16 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 /**
  * DE 1,020,809 B, Example 2 (Beispiel 2): all radii and axial distances are scaled by 0.35
- * from the printed 100 mm design to the 35 mm Travegon correlation, in millimetres.
+ * from the printed 100 mm design to 35 mm for comparison with the Travegon,
+ * in millimetres.
  * Glass coordinates are printed nd/νd values; catalog labels do not identify the
  * production supplier. Surface rims are inferred. The iris radius is derived
  * from f/3.5, and the image plane is the computed paraxial infinity back focus.
  * The iris split keeps 5.06 before and 2.90 after it in the patent's units,
  * reversing the printed order: the other order puts it 1.015 mm behind r6,
- * inside L4's 1.82 mm sag at sd 7 mm. The patent figure and the AllPhotoLenses
- * diagram both place the iris near group C. No finite-focus state is supplied.
+ * inside L4's 1.82 mm sag at a 7 mm semi-diameter. The patent figure and the
+ * AllPhotoLenses diagram both place the iris near group C. No finite-focus
+ * state is supplied.
  */
 const LENS_DATA = {
   schema: 2,
@@ -16,7 +18,7 @@ const LENS_DATA = {
   key: "schacht-travegon-35mm-f35",
   maker: "Schacht",
   name: "SCHACHT TRAVEGON 35mm f/3.5",
-  subtitle: "DE 1,020,809 B, Example 2 — Travegon production correlation",
+  subtitle: "DE 1,020,809 B, Example 2 — Bertele",
   catalog: {
     lensMounts: ["exakta", "m42", "leica-ltm"],
     imageFormat: "135-full-frame",
@@ -33,7 +35,7 @@ const LENS_DATA = {
     closeFocusM: {
       marketing: 0.5,
     },
-    specs: ["6 ELEMENTS / 3 GROUPS", "DESIGN F/3.5", "ALL-SPHERICAL"],
+    specs: ["6 ELEMENTS / 3 GROUPS", "DESIGN F/3.5", "ALL SPHERICAL"],
   },
   source: {
     patentNumber: "DE 1,020,809 B",
@@ -201,12 +203,18 @@ const LENS_DATA = {
     nominalFNumber: 3.5,
     fStops: [3.5, 4, 5.6, 8, 11, 16],
     maxFNumber: 16,
+    blades: 8,
   },
   projection: {
     kind: "rectilinear",
     fullFieldDeg: 64,
     maxTraceFieldDeg: 32,
   },
+  groups: [
+    { text: "A", fromSurface: "1", toSurface: "3" },
+    { text: "B", fromSurface: "4", toSurface: "6" },
+    { text: "C", fromSurface: "7", toSurface: "9" },
+  ],
   doublets: [
     { text: "C1", fromSurface: "1", toSurface: "3" },
     { text: "C2", fromSurface: "4", toSurface: "6" },
