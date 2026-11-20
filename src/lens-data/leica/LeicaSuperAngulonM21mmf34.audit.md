@@ -76,8 +76,20 @@ The first-order values are EFL 21.021 mm, f/3.40, paraxial back focus 8.193 mm, 
 - Every other rim stays within about 8% of the drawing. S2 at 7.9 mm, the steepest rim its curvature allows, would raise the 45° transmission from 52% to 69%. Fig. 1's drawn arc supports 7.5 mm, so no light-driven raise was made. Fig. 1's flat tops on L1, L7 and L8 are drawn as straight edges between the two face rims.
 - The meridional bundle ratios are now 1:3.23 at 30°, 1:3.76 at 40° and 1:5.88 at 45°. Edge thickness, rim slope, air-gap clearance, the stop clearance and the full f/3.4 axial beam all pass.
 
+### 2026-11-20 second review on the local site
+
+- The live page, each element's detail panel and the chromatic analysis were compared with Fig. 1, Fig. 2 and the page 2 table. All radii, spacings, indices and Abbe numbers match the table after the 0.21 scaling.
+- Fig. 1 was measured again at 600 dpi. The S1 to S12 vertex span is 2490 px for the printed 213.78, or 55.46 px per mm at 21 mm; L3's thickness and the S8 to S10 span agree within 0.7%. Circle fits to the drawn S2, S4, S5 and S11 arcs give radii 5–11% larger than printed, so a rim read from its drawn height can sit up to about 8% above the same rim read from its axial position on the printed curve.
+- Readings at 21 mm, drawn height first, with the file's value in brackets: S1 14.3 (14.2); S2 8.1, or 7.5 on the printed curve (7.5); S3 7.1 (7.0); the shared L3 and L4 edge at S4 and S5 5.7 (6.0); the end of S6's curved face 4.2 above the axis and 4.6 below (4.2, with the land to 6.0); the end of S7's face 3.8 and L5's edge 4.7 (4.8); S8 and S9 4.7 (4.8); S10 6.7 (6.5); S11 6.9, or 7.1 on the printed curve (7.0); S12 11.8, or 11.6 on the printed curve (11.0). Every rim lies within about 8% of a reading and the height order between neighbouring elements matches the drawing, so no rim changed.
+- S6 is the only face below its value before the rim review. Wide open, the whole lens loses at most 2.4 points of light against those earlier rims, at 33° (98.7% to 96.3%), and the land costs nothing. Both stay. Raising S12 to the drawn 11.6–11.8 mm would change no meridional bundle inside the 45° field.
+- Names L1–L8, members I–IV, the cemented triplets C1 and C2 and their brackets follow the patent. The detail panels read TRIPLET C1 and C2, every shape agrees with the signs of its radii, and the stored focal lengths match the computed ones. The patent names no special glass, so no element carries a special-glass tag. The stop sits between L4 and L5.
+- The lens is infinity-only: the focus control shows the infinity state with the plain description, and there is no zoom control.
+- The seven catalog curves match the printed values within 5×10⁻⁶ in nd and 0.09 in νd. No vendor row matches L2; the nearest, at nd 1.72342, differ by 3×10⁻⁴. The patent prints only nd and νd and has one example, so L2 cannot be identified further. L2 takes its dispersion from its Abbe number, so no element is shown with constant dispersion.
+- Fig. 2's distortion at 45° reads −1.36%, against −1.32% relative to 21 mm in the model. Fig. 2 labels its coma curves 1:3.98, 1:4.55, 1:5.40 and 1:6.00 at 20°, 30°, 40° and 45°. The model reproduces only the 45° label, and only as EFL over the incident-height width; the beam width across the ray and the image-side cone do no better. The analysis sentence that quoted only the 45° label now quotes all four. The data file is unchanged.
+
 ## Remaining Questions
 
+- Fig. 2 does not define the measure behind its oblique aperture labels, and the model does not reproduce them at 20°, 30° or 40°.
 - Sagittal transmission is not established by the meridional widths. The straight connecting edges on L1, L7 and L8 do not show Fig. 1's short flat tops beside the bevels.
 - L2's material identity and all historical glass suppliers remain unknown. The catalog curves do not prove supplier or melt identity.
 - No finite-focus prescription or manufacturer confirmation of the exact factory prescription is available. Product references disagree about designer and patent attribution.
