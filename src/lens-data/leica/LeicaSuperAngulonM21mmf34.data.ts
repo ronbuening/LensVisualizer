@@ -5,10 +5,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * The patent supplies all radii and spacings. Glass values use the patent's
  * yellow d line; exact catalog matches confirm the helium d line (587.6 nm).
  * The iris is inferred at the midpoint of the printed diaphragm space, with
- * its radius derived from f/3.4. S1, S3 and S10 rims follow Fig. 1; the remaining
- * rims are estimates. The image plane uses the printed 8.19 mm back focus,
- * rather than the computed paraxial 8.193 mm. L5 follows the German table's
- * Abbe number 42.82; the US family claim instead prints 42.32.
+ * its radius derived from f/3.4. The patent prints no clear diameters; every rim
+ * is read from Fig. 1, which is drawn to scale. S6 ends at the bevel Fig. 1 draws
+ * on L4's rear face, with a drawn land out to the 6.0 mm edge. The remaining
+ * rims lie within about 8% of the drawing. The image plane uses the printed
+ * 8.19 mm back focus, rather than the computed paraxial 8.193 mm. L5 follows
+ * the German table's Abbe number 42.82; the US family claim instead prints 42.32.
  */
 const LENS_DATA = {
   schema: 2,
@@ -196,7 +198,8 @@ const LENS_DATA = {
       label: "6",
       R: -56.8176,
       d: 0.86835,
-      sd: 6,
+      sd: 4.2,
+      rimExtensionSd: 6,
     },
     {
       label: "STO",

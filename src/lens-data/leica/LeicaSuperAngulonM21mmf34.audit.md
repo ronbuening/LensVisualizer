@@ -8,7 +8,7 @@ The front page, prescription table and Fig. 1 have been examined. All dimensions
 
 ## Transcription Check
 
-All twelve radii, eleven thicknesses and air gaps, the printed back focus, eight index/Abbe pairs and the diaphragm space agree with the German table after scaling. There are no transcription mismatches. The two equal distances around the iris total the printed diaphragm space of 8.27 before scaling; its midpoint is consistent with the approximately 48% position drawn in Fig. 1.
+All twelve radii, eleven thicknesses and air gaps, the printed back focus, eight index/Abbe pairs and the diaphragm space agree with the German table after scaling. There are no transcription mismatches. The two equal distances around the iris total the printed diaphragm space of 8.27 before scaling; its midpoint is consistent with Fig. 1, which draws the two iris bars at about 45% and 58% of that space.
 
 The patent specifies the yellow d line. The catalog matches support the helium d wavelength of 587.6 nm, and the d-line reference is retained for every element. L5 uses νd = 42.82 from the German table. The US description also gives 42.82, but its claim table gives 42.32; the claim value is not substituted.
 
@@ -25,7 +25,7 @@ The 45° field reaches 96% of the 24×36 mm corner height: 20.72 of 21.65 mm. Th
 ## Values Not Printed in the Patent
 
 - The iris position is inferred at the midpoint of the diaphragm space, and its radius is calculated from f/3.4. Neither is a printed physical iris measurement.
-- The patent gives no clear diameters. S1, S3 and S10 use Fig. 1 readings of 14.2, 7.0 and 6.5 mm; other semi-diameters remain estimates.
+- The patent gives no clear diameters. Every semi-diameter is read from Fig. 1, which is drawn to scale; S6 also carries a drawn land out to 6.0 mm. The rim review below gives the readings.
 - Individual element focal lengths in air and the two triplet focal lengths are calculated. The latter are 19.08 and 23.14 mm. Element powers do not isolate aberration contributions inside the cemented triplets.
 - Catalog curves supply spectral behavior for seven glasses. Their agreement with printed index and Abbe values does not establish the historical supplier or melt. L2 has no identified catalog equivalent. No extra spectral-line indices or anomalous-dispersion designations have been added.
 - The 0.4 m product focus limit, four diaphragm blades and f/22 minimum aperture come from product references; the patent supplies no finite-focus prescription or movement law.
@@ -67,9 +67,18 @@ Each assigned curve differs by at most 5×10⁻⁶ in nd and 0.0869 in νd. Prin
 
 The first-order values are EFL 21.021 mm, f/3.40, paraxial back focus 8.193 mm, printed image gap 8.190 mm, total track 53.084 mm, half-field 45.0° and iris radius 3.828 mm.
 
+### 2026-11-20 rim review
+
+- Fig. 1 on printed sheet 1 is drawn to scale. At 600 dpi the first-to-last vertex span is 2491 px for the printed 213.78, or 55.5 px per mm at 21 mm. The 36.50 thickness of L3 and the 44.59 span from r8 to r10 agree within 0.6%. Only the image distance s′ is drawn long. Heights are read as half the distance between the top and bottom outlines, which cancels the slight tilt of the scanned axis.
+- Readings at 21 mm compared with the file: S1 14.3 (14.2); S2 7.5 to 8.1 (7.5); S3 7.1 (7.0); S4 and S5 5.7 (6.0); S6 4.1 to 4.2 for the curved face, then a bevel to L4's 5.7 mm edge (6.0); S7 3.8 for the curved face, then a small chamfer to L5's 4.7 mm edge (4.8); S8 and S9 4.7 (4.8); S10 6.7 (6.5); S11 7.1 to 7.4 (7.0); S12 10.8 to 11.8 (11.0). The two S2 and S12 values come from the drawn heights and from the drawn arcs at the printed radii; the stored values fall inside both ranges.
+- S6 changed from 6.0 to 4.2 mm, the end of the curved face before Fig. 1's bevel. A flat land at the face's rim carries the drawn edge out to 6.0 mm, so L4 keeps the square top it shares with L3. The 4.2 mm rim clears the f/3.4 axial beam, about 4.0 mm there. Wide-open geometric transmission falls by at most 2.4 points, at 33°: 98.7% to 96.3%. The 45° corner stays at 52.0%, and the field and f-number are unchanged.
+- S7 stays 4.8 mm. The start of Fig. 1's chamfer, about 3.8 mm, lies inside the f/3.4 axial beam, so it cannot be a clear-aperture edge. Moving the rim to the smallest value within the light limit, 4.1 mm, would not change the drawing, because S7 is nearly flat.
+- Every other rim stays within about 8% of the drawing. S2 at 7.9 mm, the steepest rim its curvature allows, would raise the 45° transmission from 52% to 69%. Fig. 1's drawn arc supports 7.5 mm, so no light-driven raise was made. Fig. 1's flat tops on L1, L7 and L8 are drawn as straight edges between the two face rims.
+- The meridional bundle ratios are now 1:3.23 at 30°, 1:3.76 at 40° and 1:5.88 at 45°. Edge thickness, rim slope, air-gap clearance, the stop clearance and the full f/3.4 axial beam all pass.
+
 ## Remaining Questions
 
-- The estimated rims and differences between clear apertures and outer triplet boundaries still need a complete comparison with Fig. 1. S3 follows the figure at 7.0 mm; S12 remains 11.0 mm for the field-dependent reason above. Sagittal transmission is not established by the meridional widths.
+- Sagittal transmission is not established by the meridional widths. The straight connecting edges on L1, L7 and L8 do not show Fig. 1's short flat tops beside the bevels.
 - L2's material identity and all historical glass suppliers remain unknown. The catalog curves do not prove supplier or melt identity.
 - No finite-focus prescription or manufacturer confirmation of the exact factory prescription is available. Product references disagree about designer and patent attribution.
 - No measured image-circle diameter or numerical blade-roundedness value was found, so neither is added.
