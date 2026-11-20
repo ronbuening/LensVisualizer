@@ -14,7 +14,7 @@ const LENS_DATA = {
   maker: "Carl Zeiss Jena",
   name: "CARL ZEISS JENA 100mm f/1.4 (US 2,254,511 Design)",
   visible: true,
-  subtitle: "US 2,254,511 A, Sole example — Bertele f/1.4 design",
+  subtitle: "US 2,254,511 A, sole example — Zeiss Ikon / Bertele",
   source: {
     patentNumber: "US 2,254,511 A",
     patentYear: 1941,
@@ -35,7 +35,13 @@ const LENS_DATA = {
       design: 1.4,
     },
     imageCircleMm: 84.8,
-    specs: ["8 ELEMENTS / 3 GROUPS", "DESIGN F/1.4", "ALL SPHERICAL", "±22.5° FIELD"],
+    specs: [
+      "8 ELEMENTS / 3 GROUPS",
+      "DESIGN f = 100 mm",
+      "DESIGN F/1.4",
+      "ALL SPHERICAL",
+      "45° FIELD",
+    ],
   },
   elements: [
     {
@@ -230,7 +236,6 @@ const LENS_DATA = {
   aperture: {
     nominalFNumber: 1.4,
     fStops: [1.4, 2, 2.8, 4, 5.6, 8, 11, 16],
-    maxFNumber: 16,
   },
   projection: {
     kind: "rectilinear",

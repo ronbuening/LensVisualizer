@@ -65,13 +65,13 @@ L2's BAFD7 (Hoya), L5's K-SK18 (Sumita), and L8's SK1 (Sumita) have catalog-minu
 
 The model is fixed at infinity. Finite-focus spacings, mechanism, and product minimum-focus distance are undocumented.
 
-Paraxial EFL is 100.0074 mm, 0.007% above nominal. Computed BFD is 46.0395 mm, placing the image at z = 122.8795 mm from R1. No BFD is printed; the drawing suggests 46.3 mm. The paraxial plane is retained. The nominal f/1.4 axial reference ray focuses at z ≈ 121.9881 mm and reaches that plane at −0.3461 mm, showing spherical aberration.
+Paraxial EFL is 100.007 mm, 0.007% above nominal. Computed BFD is 46.04 mm, placing the image at z = 122.88 mm from R1. No BFD is printed; the drawing suggests 46.3 mm. The paraxial plane is retained. The nominal f/1.4 axial reference ray focuses at z ≈ 121.99 mm and reaches that plane at −0.346 mm, showing spherical aberration.
 
 ## Iris and Aperture Geometry
 
 Diaphragm B measures about 89.6% through the R6–R7 gap; no station or diameter is printed. The inferred 90% station splits the gap into 12.15/1.35 mm at z = 43.69 mm. A midpoint iris would intersect the middle group.
 
-The nominal/paraxial f/1.4 gives a 41.0928 mm iris diameter. Finite tracing admits axial launch radius 34.8682 mm versus the nominal 35.7169 mm, corresponding to f/1.434. Nominal f/1.4 is retained. R6 stays 21.5 mm because the smaller figure reading cuts the axial beam. The iris limits that beam.
+The nominal/paraxial f/1.4 gives a 41.09 mm iris diameter. Finite tracing admits axial launch radius 34.87 mm versus the nominal 35.72 mm, corresponding to f/1.43. Nominal f/1.4 is retained. R6 stays 21.5 mm because the smaller figure reading cuts the axial beam. The iris limits that beam.
 
 ## Field Coverage and Model Limits
 
