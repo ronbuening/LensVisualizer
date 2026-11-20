@@ -1,6 +1,7 @@
 import { buildComparisonURL } from "./parseComparisonParams.js";
 import { buildLensViewQueryFromState, parseLensViewQuery } from "./lensViewUrlState.js";
 import { LENS_CATALOG } from "../catalog/lensCatalog.js";
+import { normalizeFiniteFocus } from "../../optics/optics.js";
 import { SET_SHARED_ZOOM_T, SET_ZOOM_T } from "./lensReducer.js";
 import { focalLengthToZoomT, zoomTToFocalLength, type ZoomConvertibleLens } from "./zoomConversion.js";
 import type { LensAction, LensState } from "../../types/state.js";
@@ -47,6 +48,12 @@ export function getUrlZoomLens(state: LensState, comparisonLenses: ComparisonLen
     : getCatalogZoomLens(state.lens.selectedConfigurationKey);
 }
 
+/** The focus coordinate a single-lens URL may omit: a finite-only lens's authored default, else 0. */
+export function getCatalogDefaultFocus(lensKey: string): number {
+  const lens = LENS_CATALOG[lensKey];
+  return lens?.focus.finiteOnly ? normalizeFiniteFocus(lens) : 0;
+}
+
 export function getStateZoom(
   state: LensState,
   comparisonLenses: ComparisonLensesParam,
@@ -65,7 +72,11 @@ export function buildLensViewSearch(
   currentSearch: string,
   isComparePage = false,
 ): string {
-  const params = buildLensViewQueryFromState(state, getStateZoom(state, comparisonLenses, currentSearch));
+  const params = buildLensViewQueryFromState(
+    state,
+    getStateZoom(state, comparisonLenses, currentSearch),
+    getCatalogDefaultFocus(state.lens.selectedConfigurationKey),
+  );
   preserveSharedMtfSettings(currentSearch, params);
   if (isComparePage && !state.lens.comparing) {
     params.delete("a_el");

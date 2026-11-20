@@ -13,7 +13,7 @@ import type { PerspectiveTraceContext } from "../../optics/perspective.js";
 import { obstructionAwareRayFractionsForDensity } from "../../optics/optics.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import type { RayDensity } from "../../types/state.js";
-import { compileRaySegment } from "./raySegmentUtils.js";
+import { compileFiniteFocusFan, compileRaySegment } from "./raySegmentUtils.js";
 
 export interface RaySegment {
   sp: number[][];
@@ -69,6 +69,16 @@ export default function useOnAxisRays({
     try {
       const out: RaySegment[] = [];
       const fractions = obstructionAwareRayFractionsForDensity(L, L.rayFractions, rayDensity, currentEPSD);
+      if (L.isFiniteOnly) {
+        const request = {
+          focusT,
+          stopSemiDiameterMm: currentPhysStopSD,
+          entrancePupilSemiDiameterMm: currentEPSD,
+          fractions,
+          zPos,
+        };
+        return { segments: compileFiniteFocusFan(L, request, sx, sy, clampedRayEnd, IMG_MM), error: null };
+      }
       if (perspectiveTraceContext?.pose.active) {
         const fan = tracePerspectiveDiagramFan({
           context: perspectiveTraceContext,

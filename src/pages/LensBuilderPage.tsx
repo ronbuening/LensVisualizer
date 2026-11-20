@@ -102,7 +102,7 @@ function LensBuilderEditor({
     if (!fallback.ok) throw new Error(fallback.issues.join("\n"));
     return { result, lens: result.ok ? result.lens : fallback.lens, draft: initial.draft };
   });
-  const [state, dispatch, isWide] = useLensState([initial.draft.key], initial.draft.key);
+  const [state, dispatch, isWide] = useLensState([initial.draft.key], initial.draft.key, undefined, draft);
   /* The element whose editor card is hovered or focused; the diagram highlights it like its own hover. */
   const [highlight, setHighlight] = useState<number | null>(null);
   /* Theme and ray-toggle preferences are shared with the lens pages, as on any viewer route. */

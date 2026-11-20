@@ -407,8 +407,8 @@ export default function BuilderEditor({
         <Section title="Aperture and focus" theme={t}>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: 6 }}>
             <CommitInput
-              label="Nominal f-number"
-              caption="f-number"
+              label={draft.focus.finiteOnly ? "Intrinsic reference f-number" : "Nominal f-number"}
+              caption={draft.focus.finiteOnly ? "intrinsic reference N" : "f-number"}
               value={draft.aperture.nominalFNumber ?? ""}
               theme={t}
               numeric
@@ -419,11 +419,19 @@ export default function BuilderEditor({
                 const aperture = { ...draft.aperture };
                 if (!s.trim()) delete aperture.nominalFNumber;
                 else aperture.nominalFNumber = Number(s);
+                // A finite-only iris is fixed: its one stop and maximum follow the reference f-number.
+                if (draft.focus.finiteOnly && aperture.nominalFNumber !== undefined)
+                  Object.assign(aperture, { fStops: [aperture.nominalFNumber], maxFNumber: aperture.nominalFNumber });
                 onChange({ ...draft, aperture });
               }}
             />
             <CommitInput
               label="Close focus (m)"
+              title={
+                draft.focus.finiteOnly
+                  ? "focus.closeFocusM: the object-to-image distance of the nearest authored finite state"
+                  : undefined
+              }
               value={draft.focus.closeFocusM}
               theme={t}
               numeric
@@ -437,20 +445,22 @@ export default function BuilderEditor({
               numeric
               onCommit={(s) => onChange({ ...draft, layout: { ...draft.layout, yScFill: Number(s) } })}
             />
-            <div style={{ gridColumn: "1 / -1" }}>
-              <CommitInput
-                label="F-stops"
-                labelMode="side"
-                value={draft.aperture.fStops.join(", ")}
-                theme={t}
-                onCommit={(s) => {
-                  const stops = s.split(",").map((x) => x.trim());
-                  if (stops.some((x) => !x || !Number.isFinite(Number(x))))
-                    throw new Error("Use comma-separated finite f-numbers");
-                  onChange({ ...draft, aperture: { ...draft.aperture, fStops: stops.map(Number) } });
-                }}
-              />
-            </div>
+            {!draft.focus.finiteOnly && (
+              <div style={{ gridColumn: "1 / -1" }}>
+                <CommitInput
+                  label="F-stops"
+                  labelMode="side"
+                  value={draft.aperture.fStops.join(", ")}
+                  theme={t}
+                  onCommit={(s) => {
+                    const stops = s.split(",").map((x) => x.trim());
+                    if (stops.some((x) => !x || !Number.isFinite(Number(x))))
+                      throw new Error("Use comma-separated finite f-numbers");
+                    onChange({ ...draft, aperture: { ...draft.aperture, fStops: stops.map(Number) } });
+                  }}
+                />
+              </div>
+            )}
           </div>
         </Section>
 

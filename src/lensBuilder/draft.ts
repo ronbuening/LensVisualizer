@@ -1,5 +1,5 @@
 import { buildLens, ingestLens } from "../optics/buildLens.js";
-import { validateCanonicalLens } from "../optics/validation.js";
+import { validateCanonicalLens, validateFiniteOnlyStates } from "../optics/validation.js";
 import type { LensDataV2Input } from "../types/lensDataV2.js";
 import type { RuntimeLens } from "../types/optics.js";
 import { requireUntrustedDraft, parseUntrustedDraft } from "./untrusted.js";
@@ -85,7 +85,10 @@ export function validateDraft(draft: LensDataV2Input): DraftValidation {
     draft = gate.draft;
     const issues = validateCanonicalLens(ingestLens(draft));
     if (issues.length) return { ok: false, issues: authoredIssues(draft, issues) };
-    return { ok: true, lens: buildLens(draft) };
+    const lens = buildLens(draft);
+    // A finite-only draft is drawn from its conjugates, so they must agree with the prescription before it shows.
+    const finiteIssues = validateFiniteOnlyStates(lens);
+    return finiteIssues.length ? { ok: false, issues: finiteIssues } : { ok: true, lens };
   } catch (error) {
     const issues = error && typeof error === "object" && "issues" in error ? error.issues : undefined;
     return {

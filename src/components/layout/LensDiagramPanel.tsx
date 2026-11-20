@@ -116,7 +116,7 @@ export default function LensDiagramPanel({
     showOnAxis,
     showOffAxis,
     rayDensity,
-    showChromatic,
+    showChromatic: requestedShowChromatic,
     chromR,
     chromG,
     chromB,
@@ -197,7 +197,7 @@ export default function LensDiagramPanel({
   const useSideLayout = useSideLayoutDetection({
     enabled: sideLayoutEnabled,
     containerRef: panelContainerRef,
-    deps: [systemKey, showSliders, showControls, showChromatic],
+    deps: [systemKey, showSliders, showControls, requestedShowChromatic],
   });
 
   /* ── Lens computation (build, layout, transforms, shapes, aperture) ── */
@@ -250,6 +250,8 @@ export default function LensDiagramPanel({
     snapToPublishedStations: patentPositionsActive,
     imageSection: lens.comparing ? "long" : imageSection,
   });
+  /* A finite-only lens has no validated chromatic trace; the saved preference returns with the next ordinary lens. */
+  const showChromatic = requestedShowChromatic && !L?.isFiniteOnly;
   const resolvedMovement = movement ?? { shiftMm: 0, tiltDeg: 0, active: false };
   const foldedHitOrderLabels = useMemo(
     () =>

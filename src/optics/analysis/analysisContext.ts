@@ -12,6 +12,7 @@ import { createAnalysisRequest } from "./request.js";
 import type { AnalysisRequest, AnalysisRequestParams } from "./request.js";
 import {
   analysisSectionAvailability,
+  AnalysisSectionUnavailableError,
   assertAnalysisSectionAvailable,
   assertCenteredAnalysisSectionAvailable,
 } from "./analysisMovementSupport.js";
@@ -84,11 +85,28 @@ export function createAnalysisComputationContext(
   } = request;
   const perspectiveCacheKey = perspectiveTraceContext?.cacheKey ?? "centered";
   let diagnosticKey: string | undefined;
+  const sectionAvailability = (section: AnalysisSectionId): AnalysisSectionAvailability => {
+    if (preparedState.lens.flags.isFiniteOnly && section !== "summary" && section !== "mtf")
+      return {
+        section,
+        available: false,
+        movementActive: false,
+        mode: "unavailable",
+        reason: "This analysis has not been validated for finite-only object conjugates.",
+      };
+    return analysisSectionAvailability(section, perspectiveTraceContext);
+  };
+  const assertFiniteAvailability = (section: AnalysisSectionId) => {
+    const available = sectionAvailability(section);
+    if (!available.available) throw new AnalysisSectionUnavailableError(section, available.reason!);
+  };
   const computeSection = <Result>(section: AnalysisSectionId, compute: () => Result): Result => {
+    assertFiniteAvailability(section);
     assertAnalysisSectionAvailable(section, perspectiveTraceContext);
     return compute();
   };
   const computeCenteredSection = <Result>(section: AnalysisSectionId, compute: () => Result): Result => {
+    assertFiniteAvailability(section);
     assertCenteredAnalysisSectionAvailable(section, perspectiveTraceContext);
     return compute();
   };
@@ -127,7 +145,7 @@ export function createAnalysisComputationContext(
     },
     perspectiveCacheKey,
     movementActive: perspectiveTraceContext?.pose.active ?? false,
-    sectionAvailability: (section) => analysisSectionAvailability(section, perspectiveTraceContext),
+    sectionAvailability,
     ...perspectiveJobs,
     computeOpticalSummary: () =>
       (opticalSummary ??= computeSection("summary", () => analysisJobs.computeOpticalSummary(request))),

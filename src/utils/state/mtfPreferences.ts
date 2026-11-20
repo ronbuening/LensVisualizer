@@ -176,11 +176,15 @@ export function parseMtfPreferences(raw: unknown): MtfPreferences {
  * Resolve the settings used by requests, controls, exports and explicit share links.
  * Hidden Advanced choices stay stored so re-enabling Advanced restores them.
  * @param preferences - validated stored or visit-specific choices
- * @param isZoom - whether the current lens offers a zoom sweep
+ * @param lens - whether the current lens offers a zoom sweep, and whether it is finite-only (reference line at a
+ *   fixed iris: no spectrum choice, aperture sweep or comparison stop)
  * @returns effective settings without mutating either set of remembered choices
  */
-export function resolveMtfPreferences(preferences: MtfPreferences, isZoom = true): MtfPreferences {
-  return {
+export function resolveMtfPreferences(
+  preferences: MtfPreferences,
+  { isZoom = true, isFiniteOnly = false }: { isZoom?: boolean; isFiniteOnly?: boolean } = {},
+): MtfPreferences {
+  const resolved: MtfPreferences = {
     ...preferences,
     ...(!preferences.advanced
       ? {
@@ -192,6 +196,9 @@ export function resolveMtfPreferences(preferences: MtfPreferences, isZoom = true
       : {}),
     ...(preferences.advanced && preferences.view === "zoom" && !isZoom ? { view: preferences.regularView } : {}),
   };
+  if (!isFiniteOnly) return resolved;
+  const view = resolved.view === "aperture" ? preferences.regularView : resolved.view;
+  return { ...resolved, spectrum: "reference", view, compareF8: false };
 }
 
 /**

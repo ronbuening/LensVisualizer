@@ -612,7 +612,7 @@ describe("geometric MTF", () => {
     expect(dark.fields[2]).toMatchObject({ status: "unavailable", reason: "outside-modeled-field" });
   });
   it("keeps an edge extension only while the unchecked chief's height keeps rising", () => {
-    const state = { lens: { source: { catalog: { imageCircleMm: 60 } } } } as unknown as Parameters<
+    const state = { lens: { flags: {}, source: { catalog: { imageCircleMm: 60 } } } } as unknown as Parameters<
       typeof resolveMtfFieldGeometry
     >[0];
     // Heights in mm equal the field angle in degrees: the chief clips at 10°, the beam goes dark at 20°.
@@ -629,7 +629,7 @@ describe("geometric MTF", () => {
     expect(resolveMtfFieldGeometry(state, 8, chief)!.modeledEdgeHeightMm).toBeCloseTo(10, 6);
     // The extension stops at the format corner like the chief's own edge does.
     const corner = resolveMtfFieldGeometry(
-      { lens: { source: { catalog: { imageCircleMm: 30 } } } } as unknown as typeof state,
+      { lens: { flags: {}, source: { catalog: { imageCircleMm: 30 } } } } as unknown as typeof state,
       8,
       chief,
       { reference: rising, beam: lit(rising) },

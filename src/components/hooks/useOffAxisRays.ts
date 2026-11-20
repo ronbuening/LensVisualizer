@@ -8,14 +8,14 @@
  */
 import { useMemo } from "react";
 import { offsetVectorFieldRay } from "../../optics/fieldGeometry.js";
-import { traceRay, traceRayVector } from "../../optics/optics.js";
+import { halfFieldAtZoom, traceRay, traceRayVector } from "../../optics/optics.js";
 import { cameraDirectionForDiagramField, tracePerspectiveDiagramFan } from "../../optics/perspective.js";
 import type { PerspectiveTraceContext } from "../../optics/perspective.js";
 import { obstructionAwareRayFractionsForDensity } from "../../optics/optics.js";
 import type { RuntimeLens } from "../../types/optics.js";
 import type { RaySegment } from "./useOnAxisRays.js";
 import type { OffAxisMode, RayDensity } from "../../types/state.js";
-import { compileRaySegment } from "./raySegmentUtils.js";
+import { compileFiniteFocusFan, compileRaySegment } from "./raySegmentUtils.js";
 import { computeOffAxisTraceGeometry } from "./offAxisRayUtils.js";
 
 interface UseOffAxisRaysParams {
@@ -66,6 +66,17 @@ export default function useOffAxisRays({
     if (!L || showOffAxis === "off") return { segments: [], error: null };
     try {
       const out: RaySegment[] = [];
+      if (L.isFiniteOnly) {
+        const request = {
+          focusT,
+          stopSemiDiameterMm: currentPhysStopSD,
+          entrancePupilSemiDiameterMm: currentEPSD,
+          fieldAngleDeg: halfFieldAtZoom(0, L) * L.offAxisFieldFrac,
+          fractions: obstructionAwareRayFractionsForDensity(L, L.offAxisFractions, rayDensity, currentEPSD),
+          zPos,
+        };
+        return { segments: compileFiniteFocusFan(L, request, sx, sy, clampedRayEnd, IMG_MM), error: null };
+      }
       const geometry = computeOffAxisTraceGeometry({
         L,
         zPos,

@@ -187,15 +187,16 @@ export default function AnalysisDrawerContent({
       refractive sequence, so the tab is hidden here instead of showing misleading pupil, field, or off-axis results.
     </div>
   );
-  const movementUnavailableSections = ANALYSIS_TAB_SECTIONS[activeTab].filter(
-    (section) => !analysisContext.sectionAvailability(section).available,
+  const tabAvailability = ANALYSIS_TAB_SECTIONS[activeTab].map((section) =>
+    analysisContext.sectionAvailability(section),
   );
-  const movementUnsupported =
-    analysisContext.movementActive && movementUnavailableSections.length === ANALYSIS_TAB_SECTIONS[activeTab].length;
-  const movementUnsupportedContent = (
+  // A tab renders while any section can; the sections themselves explain a partial guard.
+  const tabUnavailable = tabAvailability.every((availability) => !availability.available);
+  const unavailableContent = (
     <div style={noticeStyle}>
-      This analysis tab is not available while tilt or shift is active. Its centered-lens computation is suppressed
-      until each section uses the fixed-sensor perspective trace context.
+      {analysisContext.movementActive
+        ? "This analysis tab is not available while tilt or shift is active. Its centered-lens computation is suppressed until each section uses the fixed-sensor perspective trace context."
+        : tabAvailability[0]?.reason}
     </div>
   );
   const withAnalysisNotices = (content: ReactNode) => (
@@ -210,8 +211,8 @@ export default function AnalysisDrawerContent({
   return withAnalysisNotices(
     foldedUnsupported
       ? foldedUnsupportedContent
-      : movementUnsupported
-        ? movementUnsupportedContent
+      : tabUnavailable
+        ? unavailableContent
         : ANALYSIS_TAB_RENDERERS[activeTab]({
             L,
             t,

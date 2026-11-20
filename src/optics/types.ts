@@ -226,6 +226,8 @@ export interface PathSpec {
 export interface VariableSpec {
   isZoom: boolean;
   focusPositions: readonly number[];
+  /** The finite-only domain's default state; `flags.isFiniteOnly` is the predicate. */
+  finiteOnly?: Readonly<{ defaultKeyframe: number }>;
   zoomPositions: readonly number[] | null;
   zoomLabels: readonly string[] | null;
   zoomStep: number;
@@ -278,6 +280,8 @@ export interface AuthoredRayFans {
 export interface CompiledLensFlags {
   isZoom: boolean;
   isFoldedOptics: boolean;
+  /** `focus.finiteOnly` is declared: focus coordinates name authored finite states, never infinity. */
+  isFiniteOnly: boolean;
   hasPerspectiveControl: boolean;
   hasAberrationControl: boolean;
 }
@@ -286,6 +290,7 @@ export interface CompiledLensFlags {
 export type LensConstants = Omit<
   RuntimeLens,
   | "source"
+  | "isFiniteOnly"
   | "attachedTeleconverter"
   | "S"
   | "N"

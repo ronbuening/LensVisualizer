@@ -5,4 +5,5 @@ export { default as validateTeleconverterData } from "./prescription/validate/te
 export { rimCutBeamReach, validateRimCutBeams } from "./prescription/validate/rimCutBeams.js";
 export type { RimCutBeamCheck, RimCutBeamPoint, RimCutBeamReach } from "./prescription/validate/rimCutBeams.js";
 export { rimCutDenseProbe } from "./prescription/validate/rimCutProbe.js";
+export { validateFiniteOnlyStates } from "./prescription/validate/finiteOnlyStates.js";
 export type { RimCutProbe, RimCutProbeCut, RimCutProbeOptions } from "./prescription/validate/rimCutProbe.js";

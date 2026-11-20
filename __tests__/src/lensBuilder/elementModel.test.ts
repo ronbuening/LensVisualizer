@@ -23,6 +23,7 @@ import {
   type BuilderModel,
 } from "../../../src/lensBuilder/elementModel.js";
 import type { LensDataV2Input } from "../../../src/types/lensDataV2.js";
+import { finiteOnlyFixture } from "../optics/finiteOnlyFixture.js";
 import { ALL_CATALOG_KEYS, authoredInputForKey } from "../../../src/utils/catalog/lensCatalog.js";
 
 // These tests protect the shared editor contract, using catalog structures rather than per-lens constants.
@@ -191,6 +192,7 @@ describe("element model V2 mapping", () => {
     unfinished.surfaces.at(-1)!.medium = 3;
     malformed.push([unfinished, /contiguous|end at/i]);
     malformed.push([{ ...createTemplate(), imageSurface: { R: -80, sd: 22 } }, /curved image surface/i]);
+    malformed.push([finiteOnlyFixture(), /finite-only/i]);
     for (const [draft, reason] of malformed) {
       const result = toElementModel(draft);
       expect(result.ok).toBe(false);

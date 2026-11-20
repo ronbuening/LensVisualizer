@@ -93,12 +93,14 @@ export default function MtfTab({
   currentEPSD,
   currentPhysStopSD,
   analysisContext,
-  fNumber,
+  fNumber: requestedFNumber,
   focalLengthMm,
   movementActive = false,
 }: MtfTabProps) {
   const [storedPreferences, updatePreferences, sharedSettings, useStoredSettings] = useSharedMtfPreferences();
-  const preferences = resolveMtfPreferences(storedPreferences, L.isZoom);
+  const preferences = resolveMtfPreferences(storedPreferences, L);
+  // A finite-only lens's nominal f-number is a software reference, not a marked or comparable aperture.
+  const fNumber = L.isFiniteOnly ? undefined : requestedFNumber;
   const chartRef = useRef<HTMLElement>(null);
   const view = preferences.view;
   const isSweep = view === "aperture" || view === "zoom";
@@ -411,6 +413,7 @@ export default function MtfTab({
         comparisonFNumber={comparisonFNumber}
         result={shown}
         isZoom={L.isZoom}
+        finiteOnly={L.isFiniteOnly}
       />
       {isSweep ? (
         sweep.error ? (

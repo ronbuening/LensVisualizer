@@ -83,6 +83,7 @@ export function canonicalConstructionData(lens: CanonicalLens): LensConstruction
     nominalFno: aperture.nominalFNumber ?? list(zoom?.stations.map((station) => station.nominalFNumber)),
     closeFocusM: focus.closeFocusM,
     focusPositions: focus.keyframes,
+    ...(focus.finiteOnly ? { finiteOnlyFocus: focus.finiteOnly } : {}),
     focusStep: focus.step,
     focusDescription: focus.description,
     finiteConjugates: focus.conjugates?.map((conjugate) => ({
