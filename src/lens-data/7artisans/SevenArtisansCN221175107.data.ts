@@ -4,9 +4,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * CN 221175107 U, sole example, prescription on PDF page 6; dimensions are in millimetres at the printed scale.
  * Radii and internal spacings follow the table. The patent names the glasses; their catalog nd and Abbe numbers
  * replace the rounded table values. In particular, H-ZLaF92 on L4 and L6 has nd 2.00330 rather than the printed 2;
- * this substitution is recorded below. CDGM's H-F4 sheet gives 1.62005/36.35. Four named CDGM elements
- * (L1, L3, L4 and L6) have no published dispersion data; colour is approximated from nd/νd.
- * L5 and L7 resolve to CDGM H-ZF4A and H-ZF7LA, with the same constants as the patent's high-transmittance grades.
+ * this substitution is recorded below. CDGM's H-F4 sheet gives 1.62005/36.35. All six CDGM elements trace on CDGM
+ * catalog dispersion: L1 H-LaK53B, L3 H-F4, L4 and L6 H-ZLaF92, and L5 and L7 on H-ZF4A and H-ZF7LA, which have
+ * the same constants as the patent's high-transmittance grades H-ZF4AGT and H-ZF7LAGT.
  * FCD1 resolves to Hoya as a spectral proxy; the patent describes domestic glass and does not establish Hoya as
  * its supplier.
  * The stop is inferred midway through the 3.13 mm L1-L2 gap, consistent with the patent's near-zero distortion.
@@ -48,7 +48,6 @@ const LENS_DATA = {
     },
     authors: ["Changjia Liu"],
     assignees: ["Shenzhen 7Artisans Photoelectric Technology Co., Ltd."],
-    sdSource: "figure-measured",
     errata: [
       {
         status: "corrected",
@@ -78,7 +77,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 1.755,
       vd: 52.32,
-      glass: "Unmatched (H-LaK53B, CDGM; nd 1.755 / νd 52.32)",
+      glass: "H-LaK53B (CDGM)",
       role: "Positive front singlet",
       focalLengthMm: 59.84,
     },
@@ -101,7 +100,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.62005,
       vd: 36.35,
-      glass: "Unmatched (H-F4, CDGM; nd 1.62005 / νd 36.35)",
+      glass: "H-F4 (CDGM)",
       cemented: "C1",
       role: "Negative member of the first cemented pair",
       focalLengthMm: -10.2,
@@ -113,7 +112,7 @@ const LENS_DATA = {
       type: "Biconvex Positive",
       nd: 2.0033,
       vd: 28.32,
-      glass: "Unmatched (H-ZLaF92, CDGM; nd 2.0033 / νd 28.32)",
+      glass: "H-ZLaF92 (CDGM)",
       cemented: "C2",
       role: "Positive member of the second cemented pair",
       focalLengthMm: 8.33,
@@ -137,7 +136,7 @@ const LENS_DATA = {
       type: "Positive Meniscus",
       nd: 2.0033,
       vd: 28.32,
-      glass: "Unmatched (H-ZLaF92, CDGM; nd 2.0033 / νd 28.32)",
+      glass: "H-ZLaF92 (CDGM)",
       role: "Positive rear meniscus",
       focalLengthMm: 27.21,
     },

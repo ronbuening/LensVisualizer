@@ -69,8 +69,7 @@ No 7Artisans product with this prescription is documented. The AstrHori 40mm f/5
 | L7, H-ZF7LAGT | 1.805 / 25.4 | 1.80518 / 25.46 | +0.00018 / +0.06 |
 
 - L2 uses Hoya's FCD1 dispersion curve, differing from the printed values by Δnd = 0 and Δνd = +0.01. This is a spectral proxy, since the patent calls all glasses domestic and does not establish Hoya supply. No anomalous-dispersion designation or additional spectral-line indices are given.
-- L5 and L7 use CDGM H-ZF4A and H-ZF7LA dispersion curves for the patent's high-transmittance grades H-ZF4AGT and H-ZF7LAGT. The curves differ from the named glasses' values by Δnd = 0 for both; Δνd = −0.001203 for L5 and −0.003744 for L7. Four elements (L1, L3, L4 and L6) comprise three distinct named glasses without published dispersion data; colour is approximated from nd/νd.
-- Changed the final air gap from the former 23.83 mm axial best-RMS plane to the 23.51 mm paraxial BFD. Set nominal aperture to the printed f/5.6 instead of f/5.78. Removed f/22 from the aperture range because it belonged to the unrelated AstrHori lens. The modeled range is f/5.6–16; no mechanical stop range is documented.
+- L5 and L7 use CDGM H-ZF4A and H-ZF7LA dispersion curves for the patent's high-transmittance grades H-ZF4AGT and H-ZF7LAGT. The curves differ from the named glasses' values by Δnd = 0 for both; Δνd = −0.001203 for L5 and −0.003744 for L7.- Changed the final air gap from the former 23.83 mm axial best-RMS plane to the 23.51 mm paraxial BFD. Set nominal aperture to the printed f/5.6 instead of f/5.78. Removed f/22 from the aperture range because it belonged to the unrelated AstrHori lens. The modeled range is f/5.6–16; no mechanical stop range is documented.
 - Changed `focus.closeFocusM` from 1e9 to 1e15 and described infinity focus only because no finite-focus prescription is published. No focus states, radii, internal distances, stop position, clear radii or dimensional scale were altered today.
 
 The model gives EFL 39.84 mm, f/5.60, BFD 23.51 mm, iris radius 3.226 mm, half-field 27.8° and total track 51.00 mm.
@@ -84,11 +83,15 @@ Fig. 1 (PDF p. 8) was measured at the drawing's own resolution. All seven glass 
 - S11: 9.8 → 7.7 mm, with rimExtensionSd 9.8 mm. This matches the drawn end of the front curve, where L7 nests against L6, and gives a 4.1 mm edge thickness against the drawn 3.9–4.0 mm. The former 9.8 mm curve gave a 6.6 mm edge.
 - Kept: S1 6.5, S3/S4 5.2, S5–S7 6.5 and S12 9.8 mm, all within 4% of the drawing.
 
-Wide-open geometric transmission changed from 99.0/85.8/67.8% to 100/94.5/78.3% at 22.8°/25.7°/28.5°. No field lost light, and the modelled half-field rose from 27.8° to 28.8°. The f-number stays f/5.6 with no rim limiting the axial beam. The corner chief ray still reaches 21.63 mm at 28.5°. The surface, aperture, image-circle and field-coverage checks pass.
+Wide-open geometric transmission changed from 99.0/85.8/67.8% to 100/94.5/78.3% at 22.8°/25.7°/28.5°. No field lost light, and the modelled half-field rose from 27.8° to 28.8°. The f-number stays f/5.6 with no rim limiting the axial beam. The corner chief ray still reaches 21.63 mm at 28.5°. The surface, aperture, image-circle and field-coverage checks pass. Because S8–S10 are held below the drawn 8.2 mm by the S8/S9 geometry, the rim evidence is mixed, so the file declares no clear-aperture provenance.
+
+### 2026-11-20 glass
+
+- L1, L3, L4 and L6 now carry the CDGM names H-LaK53B, H-F4 and H-ZLaF92 and trace on CDGM's catalog dispersion for those glasses, with unchanged nd/νd (1.75500/52.32, 1.62005/36.35, 2.00330/28.32). All six CDGM-named elements now use CDGM curves, and L2 uses Hoya's FCD1 curve. The L4/L6 index correction for the printed value 2 stands as recorded above.
 
 ## Remaining Questions
 
 - L5's rear face and L6 remain about 0.9 mm smaller than drawn because the printed 0.94 mm gap does not leave room for the figure's 8.2 mm outline.
-- No published dispersion data are available for H-LaK53B, H-F4 and H-ZLaF92. Colour in their four elements is approximated from nd/νd. FCD1's domestic material identity and supplier remain uncertain.
+- FCD1's domestic material identity and supplier remain uncertain.
 - The field-curvature discrepancy is unresolved. The initial MTF values do not establish the patent's full-field MTF claim for the current model, and no apochromatic performance is established.
 - No product, production mount, marketing specifications, minimum focus distance, finite-focus spacings, mechanical stop range, diaphragm blade count or blade roundedness is documented. Physical iris dimensions also remain unconfirmed.
