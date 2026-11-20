@@ -4,9 +4,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * CN 221175107 U, sole example, prescription on PDF page 6; dimensions are in millimetres at the printed scale.
  * Radii and internal spacings follow the table. The patent names the glasses; their catalog nd and Abbe numbers
  * replace the rounded table values. In particular, H-ZLaF92 on L4 and L6 has nd 2.00330 rather than the printed 2;
- * source.errata records this substitution. CDGM's H-F4 sheet gives 1.62005/36.35. The six named CDGM elements
- * have no matching dispersion rows in the local catalog and retain an explicit Unmatched label. FCD1 resolves to
- * Hoya as a spectral proxy; the patent describes domestic glass and does not establish Hoya as its supplier.
+ * source.errata records this substitution. CDGM's H-F4 sheet gives 1.62005/36.35. Four named CDGM elements
+ * (L1, L3, L4 and L6) have no matching dispersion rows in the local catalog and retain an explicit Unmatched label.
+ * L5 and L7 resolve to CDGM H-ZF4A and H-ZF7LA, with the same constants as the patent's high-transmittance grades.
+ * FCD1 resolves to Hoya as a spectral proxy; the patent describes domestic glass and does not establish Hoya as
+ * its supplier.
  * The stop is inferred midway through the 3.13 mm L1-L2 gap, consistent with the patent's near-zero distortion.
  * Rims are inferred. The 7 mm rear rims avoid S8 and S9 meeting at about 7.45 mm; no gap-sag override is used.
  * The final air gap is the computed paraxial back focus, since the patent prints no image distance.
@@ -118,7 +120,7 @@ const LENS_DATA = {
       type: "Biconcave Negative",
       nd: 1.72825,
       vd: 28.32,
-      glass: "Unmatched (H-ZF4AGT, CDGM; nd 1.72825 / νd 28.32)",
+      glass: "H-ZF4A (CDGM; the patent names the high-transmittance grade H-ZF4AGT, same constants)",
       cemented: "C2",
       role: "Negative member of the second cemented pair",
       focalLengthMm: -12.04,
@@ -141,7 +143,7 @@ const LENS_DATA = {
       type: "Negative Meniscus",
       nd: 1.80518,
       vd: 25.46,
-      glass: "Unmatched (H-ZF7LAGT, CDGM; nd 1.80518 / νd 25.46)",
+      glass: "H-ZF7LA (CDGM; the patent names the high-transmittance grade H-ZF7LAGT, same constants)",
       role: "Negative rear meniscus",
       focalLengthMm: -27.09,
     },
