@@ -176,6 +176,7 @@ const SOURCE_FIELDS: Fields<SourceV2Input> = {
   omissions: true,
   sdSource: true,
   issuer: true,
+  literature: true,
 };
 
 /** A converter's source: V1 holds no errata for one. */

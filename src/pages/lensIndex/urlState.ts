@@ -12,7 +12,13 @@ import {
   isLensMountId,
 } from "../../utils/catalog/lensTaxonomy.js";
 import buildMeta from "../../generated/client-metadata.json";
-import { clampNumericFilterValue, defaultCustomFilter, hasActiveCustomFilters } from "./catalog.js";
+import {
+  SOURCE_KIND_LABELS,
+  clampNumericFilterValue,
+  defaultCustomFilter,
+  hasActiveCustomFilters,
+  isLensSourceKind,
+} from "./catalog.js";
 import type { CustomFilterState, FilterBounds, GroupMode, LensIndexViewMode, NumericFilterField } from "./types.js";
 import { catalogCollator } from "../../utils/catalog/collation.js";
 
@@ -76,6 +82,11 @@ function sortedKnownFormats(values: string[]): CustomFilterState["imageFormatIds
   );
 }
 
+function sortedKnownSourceKinds(values: string[]): CustomFilterState["sourceKinds"] {
+  const order = Object.keys(SOURCE_KIND_LABELS);
+  return [...new Set(values.filter(isLensSourceKind))].sort((a, b) => order.indexOf(a) - order.indexOf(b));
+}
+
 function parseNumericParam(
   params: URLSearchParams,
   param: string,
@@ -112,6 +123,7 @@ export function parseLensIndexUrlState(
     makerSlugs: sortedKnownMakers(parseListParam(params.get("makers")), knownMakerSlugs),
     lensMountIds: sortedKnownMounts(parseListParam(params.get("mounts"))),
     imageFormatIds: sortedKnownFormats(parseListParam(params.get("formats"))),
+    sourceKinds: sortedKnownSourceKinds(parseListParam(params.get("sources"))),
   };
 
   for (const { param, field, step } of NUMERIC_PARAMS) {
@@ -149,6 +161,7 @@ export function serializeLensIndexUrlState({
   if (customFilter.makerSlugs.length > 0) params.set("makers", customFilter.makerSlugs.join(","));
   if (customFilter.lensMountIds.length > 0) params.set("mounts", customFilter.lensMountIds.join(","));
   if (customFilter.imageFormatIds.length > 0) params.set("formats", customFilter.imageFormatIds.join(","));
+  if (customFilter.sourceKinds.length > 0) params.set("sources", customFilter.sourceKinds.join(","));
 
   for (const { param, field } of NUMERIC_PARAMS) {
     if (customFilter[field] !== bounds[field]) params.set(param, String(customFilter[field]));
@@ -168,7 +181,8 @@ export function isSameCustomFilter(a: CustomFilterState, b: CustomFilterState): 
     a.patentYearMax === b.patentYearMax &&
     a.makerSlugs.join(",") === b.makerSlugs.join(",") &&
     a.lensMountIds.join(",") === b.lensMountIds.join(",") &&
-    a.imageFormatIds.join(",") === b.imageFormatIds.join(",")
+    a.imageFormatIds.join(",") === b.imageFormatIds.join(",") &&
+    a.sourceKinds.join(",") === b.sourceKinds.join(",")
   );
 }
 

@@ -1095,6 +1095,16 @@ export const ASSIGNEE_CORPORATE_HISTORY: Partial<Record<string, AuthoredCorporat
       },
     ],
   },
+  "Voigtländer & Sohn": {
+    corporateFamily: [
+      {
+        family: "Voigtländer",
+        effectiveFrom: "1756",
+        sourceUrl: SOURCES.voigtlanderHistory,
+        note: "The style printed on DE 90482 C (1895), before the firm was a stock company; the start date marks the documented brand lineage, as for Voigtländer & Sohn AG.",
+      },
+    ],
+  },
   "Voigtländer & Sohn AG": {
     corporateFamily: [
       {
@@ -1152,6 +1162,14 @@ export const ASSIGNEE_CORPORATE_HISTORY: Partial<Record<string, AuthoredCorporat
     ],
   },
   "Zeiss Ikon AG": {
+    successorOf: [
+      {
+        organization: "C. P. Goerz",
+        effectiveDate: "1926",
+        sourceUrl: SOURCES.zeissIkon,
+        note: "The museum record lists Goerz among the four German camera companies combined to form Zeiss Ikon in 1926.",
+      },
+    ],
     subsidiaryOf: [
       {
         organization: "Carl-Zeiss-Stiftung",

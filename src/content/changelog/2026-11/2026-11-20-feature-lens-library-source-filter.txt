@@ -1,0 +1,1 @@
+Added a Source filter to the lens library that separates lenses taken from patents, from makers' own documents and from published literature
