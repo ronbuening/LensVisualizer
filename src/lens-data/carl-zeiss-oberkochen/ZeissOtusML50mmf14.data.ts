@@ -11,8 +11,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * With −2000 mm, EFL is 49.761 mm and the axial RMS spot is 54.6 rather than
  * 9.8 µm on the printed image plane. Table 2 likely repeats the radius used in
  * Examples 2 and 3.
- * Clear semi-diameters are estimates; the iris radius is derived from the printed
- * design aperture, approximately f/1.44.
+ * Clear semi-diameters are estimates. Fig. 1 is drawn to scale apart from its iris
+ * marks: it draws L6, C1 and S25 within 4 % of these rims, C2 5–8 % smaller and
+ * the other faces 7–21 % smaller (L1 23.2 against 29.0 mm, C3 12.5 against
+ * 15.8 mm). Those drawn rims would cut wide-open
+ * corner illumination at 23.1° from 66 % to 34 %, so the larger estimates are kept.
+ * The iris radius is derived from the printed design aperture, approximately f/1.44.
  * The printed infinity image gap 18.69 mm is retained (paraxial BF 18.692 mm).
  * Table 3 prints infinity and the 394.90 mm object-to-first-surface near state.
  * G1 is fixed; G2 and the iris move 6.86 mm toward the object, holding the image

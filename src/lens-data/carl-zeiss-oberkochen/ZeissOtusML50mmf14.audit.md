@@ -14,7 +14,7 @@ Table 2 prints S26 R = −2000 mm; Table 4 prints INFINITY. S26 retains Table 4'
 
 On the printed image plane, axial d-line RMS spot radius is 9.8 µm with the plane and 54.6 µm with −2000 mm. Full/half-pupil longitudinal spherical aberration is −0.071/−0.016 mm versus −0.266/−0.166 mm. Fig. 2's near-zero d-line curve supports the plane. Table 2 likely repeats the radius used in Examples 2 and 3, which those examples print consistently. This interpretation of conflicting tables is not an official patent correction.
 
-Fig. 1 agrees with the element arrangement, shapes and stop position. It is not to scale: its iris and rear-group rims do not provide reliable dimensional replacements. The rear meniscus remains curved through its polynomial despite its plane base; S26 sag is approximately −1.67 mm at height 15 mm.
+Fig. 1 agrees with the element arrangement, shapes and stop position. It is drawn to scale apart from its iris marks; its rims are compared with the file under the 2026-11-20 rim review below. The rear meniscus remains curved through its polynomial despite its plane base; S26 sag is approximately −1.67 mm at height 15 mm.
 
 ## First-Order Check
 
@@ -88,9 +88,16 @@ The largest absolute differences between catalog and patent values are 5×10⁻�
 
 Infinity EFL is 50.137 mm, BFD 18.692 mm, paraxial f-number approximately 1.44, iris radius 13.74 mm, half-field 23.1° and total track 104.64 mm; near-focus EFL is 49.141 mm.
 
+### 2026-11-20 rim review
+
+- Fig. 1 (page 22) is drawn to scale at 16.67 px/mm at 300 dpi. Every vertex crossing from S1 to the image plane lies within 2 px of its prescription position, and L1's drawn edge thickness, 10.1 mm, is within 3 % of the 10.3 mm its two faces give at the drawn rim height. Only the iris marks are not to scale.
+- Drawn rims, every element cut square, against the file: L1 23.2 vs 29.0 mm; L2 22.7 vs 27.5; L3 22.7 vs 27.0; L4 21.8 vs 26.5; L5 20.2 vs 24.0/23.0; L6 18.7 vs 19.0; C1 17.4 vs 18.0, with a flat land on L8 inside 14.5 mm against S15's 15.0; C2 14.2 vs 15.0/15.5/15.5; L11 14.1 vs 16.5; C3 12.5 vs 15.8/15.8/13.5; L14 13.1 vs 13.5/15.0.
+- The drawn rims sit just above the f/1.435 axial beam; L5's 20.2 mm meets the beam's 20.25 mm. With all of them, wide-open illumination at infinity would fall from 65.9 % to 33.9 % at 23.1° and from 79.7 % to 46.4 % at 20.2°, and at close focus from 83.8 % to 58.8 % at 20.5°. Taken one element at a time, the cuts cost 6 to 17 points, except L6 (1.8 points) and C1 (none). Moving either the front group or the rear group a fifth of the way to the drawing costs 2 to 3 points, a change inside the 5–8 % reading noise.
+- No rim changed: the larger estimates are kept for their light, and L6, C1 and S25 already agree with the drawing within 4 %, C2 within 8 %. The traced half-field stays 23.1° and the aperture approximately f/1.44; the axial beam and the corner chief ray stay clear at all five focus positions.
+
 ## Remaining Questions
 
-- Compare the estimated rear-group semi-diameters with Fig. 1 and assess peripheral vignetting; full-pupil transmission remains unestablished.
+- Fig. 1 draws most rims 7–21 % smaller than the model keeps. Whether the production lens vignettes as strongly as the drawn rims imply is not established.
 - Catalog equivalents do not identify production suppliers or melts. L4 and L7 APD positions remain inferred.
 - The cited primary sources do not give a numerical blade-curvature value, so blade roundedness is left unspecified.
 - The S26 table conflict remains a source inconsistency; the plane has the stronger first-order and aberration evidence.

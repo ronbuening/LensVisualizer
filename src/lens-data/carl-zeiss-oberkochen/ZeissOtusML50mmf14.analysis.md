@@ -158,7 +158,9 @@ Negative A4 bends the outer profiles away from their bases. S26 gives approximat
 
 At the source pupil, full/half-pupil d-line longitudinal spherical aberration is −0.071/−0.016 mm with the plane, versus −0.266/−0.166 mm with −2000 mm. Axial RMS spots on the printed image plane are 9.8 versus 54.6 µm. Fig. 2's near-zero d-line curve supports Table 4.
 
-The paraxial aperture, approximately f/1.44, gives iris radius 13.74 mm; pupil aberration reduces real-ray acceptance to approximately f/1.51. The production lens has ten diaphragm blades and an f/1.4–f/16 range. Estimated rims and iris limit performance comparisons. Chief rays reach the 24×36 mm corner at 23.1° half-field. The surfaces stay clear of each other; the iris sets the full aperture. Fig. 1 is not to scale.
+The paraxial aperture, approximately f/1.44, gives iris radius 13.74 mm; pupil aberration reduces real-ray acceptance to approximately f/1.51. The production lens has ten diaphragm blades and an f/1.4–f/16 range. Estimated rims and iris limit performance comparisons. Chief rays reach the 24×36 mm corner at 23.1° half-field. The surfaces stay clear of each other; the iris sets the full aperture.
+
+Fig. 1 is drawn to scale apart from its iris marks. It draws L6, the first cemented pair and L14's front face within 4 % of the model's rims and the second cemented pair 5–8 % smaller; the front group, L11, the rear cemented pair and L14's rear face are drawn 7–21 % smaller; L1, for example, is 23.2 mm against 29.0 mm. The drawn rims clear the f/1.435 axial beam by little, and with them wide-open illumination at 23.1° would fall from 66 % to about 34 % at infinity, and at 20.5° from 84 % to 59 % at close focus. The model keeps its larger estimated rims for that light.
 
 ## Sources
 
