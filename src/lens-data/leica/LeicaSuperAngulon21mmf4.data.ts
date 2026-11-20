@@ -2,7 +2,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * DE 1,107,416 B, sole numerical example: the f = 100 table is scaled by 0.21
- * to millimetres at 21 mm. Radii, thicknesses and the printed 7.728 mm back
+ * to millimetres at 21 mm. Radii, thicknesses and the scaled 7.728 mm back
  * focus are retained; indices and Abbe numbers use the patent's d line.
  * The stop position is inferred at the midpoint of d6, consistent with Fig. 1,
  * and its radius is derived from f/4. S12/S13 rims are measured from Fig. 1;
@@ -18,7 +18,7 @@ const LENS_DATA = {
   key: "leica-super-angulon-21mm-f4",
   maker: "Leica",
   name: "LEICA SUPER-ANGULON 21mm f/4",
-  subtitle: "DE 1,107,416 B, Sole example — strong Super-Angulon production correlation",
+  subtitle: "DE 1,107,416 B, sole example — Schneider / Klemt & Macher",
   catalog: {
     lensMounts: ["leica-m", "leica-ltm"],
     imageFormat: "135-full-frame",
@@ -32,7 +32,7 @@ const LENS_DATA = {
       marketing: 4,
       design: 4,
     },
-    specs: ["9 ELEMENTS / 4 GROUPS", "DESIGN f = 21.00 mm", "DESIGN F/4", "ALL SPHERICAL", "92° MARKETED FIELD"],
+    specs: ["9 ELEMENTS / 4 GROUPS", "DESIGN F/4", "ALL SPHERICAL", "92° FIELD"],
     closeFocusM: {
       marketing: 0.4,
     },
@@ -261,13 +261,15 @@ const LENS_DATA = {
     },
   ],
   focus: {
-    closeFocusM: 1000000000000000.0,
+    closeFocusM: 1e15,
     description: "Infinity focus only; the patent gives no close-focus spacings. The production lens focuses to 0.4 m.",
   },
   aperture: {
     nominalFNumber: 4,
     fStops: [4, 5.6, 8, 11, 16, 22],
     maxFNumber: 22,
+    blades: 9,
+    bladeRoundedness: 0,
   },
   projection: {
     kind: "rectilinear",
@@ -278,6 +280,12 @@ const LENS_DATA = {
     scFill: 0.6,
     yScFill: 0.45,
   },
+  groups: [
+    { text: "I", fromSurface: "1", toSurface: "3" },
+    { text: "II", fromSurface: "4", toSurface: "6" },
+    { text: "III", fromSurface: "7", toSurface: "10" },
+    { text: "IV", fromSurface: "11", toSurface: "13" },
+  ],
   doublets: [
     {
       text: "C1",
