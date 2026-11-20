@@ -44,6 +44,7 @@ const LENS_DATA = {
   catalog: {
     lensMounts: ["nikon-f"],
     imageFormat: "135-full-frame",
+    imageCircleMm: 44,
     specs: [
       "3 elements / 2 groups",
       "f = 20.0 mm (scaled from patent f = 100)",
