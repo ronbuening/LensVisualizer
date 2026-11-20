@@ -69,6 +69,24 @@ const LENS_DATA = {
     // Omission kinds: asphere-coefficients (stand-in), asphere-term (zero), asphere-equation (interpretation).
     // sdSource: "figure-measured", // source-table | figure-measured | heuristic; leave mixed/unknown provenance out
   },
+  /* A prescription printed in a book or journal (not a patent, not a maker's document) replaces the patent fields
+   * above with a citation, lives in src/lens-data/literature/ and stays off the relationship maps. See
+   * LENS_DATA_SPEC.md § Literature reconstructions for its name, key, specs, catalog and index rules.
+   *
+   * source: {
+   *   sdSource: "figure-measured",
+   *   literature: {
+   *     authors: ["Moritz von Rohr"], // the work's authors, never copied into patent authors
+   *     title: "Theorie und Geschichte des photographischen Objektivs",
+   *     year: 1899,
+   *     publisher: "Julius Springer", // optional
+   *     place: "Berlin", // optional
+   *     locator: "p. 250, Fig. 100", // where the prescription is printed
+   *     url: "https://www.e-rara.ch/download/pdf/4637944.pdf#page=6", // optional, https, page-anchored
+   *     // after: "J. M. Eder (1893)", // only when the work names where it took the numbers
+   *   },
+   * },
+   */
 
   /* ── Elements ── one entry per physical glass/mirror element, front to rear; each id a unique positive integer and
    *    the medium of at least one surface. See LENS_DATA_SPEC.md § Elements and Media and § Glass Identification.

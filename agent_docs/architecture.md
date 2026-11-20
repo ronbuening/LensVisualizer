@@ -93,7 +93,8 @@ src/optics/               - Pure optical engine and analysis helpers
 src/types/                - Shared TypeScript types
 src/utils/                - State, URL sync, themes, catalog, SEO, metadata utilities
 src/lens-data/            - Auto-registered `*.data.ts` prescriptions, `*.teleconverter.ts` converters,
-                            `*.analysis.md` notes, `*.audit.md` logs
+                            `*.analysis.md` notes, `*.audit.md` logs, in maker folders; `reference/` holds hidden
+                            engine fixtures and `literature/` book-sourced reconstructions
 src/mounts/               - Mount diagram `*.mount.ts` specs, barrel, schema, and authoring guide
 src/content/              - Auto-registered markdown articles, static content, and changelog/ entry files
 src/benchmarks/           - Optics/render benchmark harness (npm run benchmark:optics-rendering)

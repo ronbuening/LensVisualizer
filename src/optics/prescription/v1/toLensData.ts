@@ -82,6 +82,7 @@ export const V1_PRINT_ORDER = {
     "sourceOmissions",
     "sdSource",
     "sourceIssuer",
+    "sourceLiterature",
     "elementCount",
     "groupCount",
     "visible",
@@ -513,6 +514,7 @@ function buildLensView(
   put(out, "sourceOmissions", source.omissions);
   put(out, "sdSource", source.sdSource);
   put(out, "sourceIssuer", source.issuer);
+  put(out, "sourceLiterature", source.literature);
   put(out, "elementCount", catalog.elementCount);
   put(out, "groupCount", catalog.groupCount);
   putDefaulted(out, lensRow("visible"), "", lens.visible, view);
