@@ -9,7 +9,7 @@ import type { CanonicalLens } from "../../optics/buildLens.js";
 import buildMeta from "../../generated/client-metadata.json";
 import makerPrefixes from "../../generated/maker-prefixes.json";
 import { canonicalPageUrl, SITE_URL } from "../seo/siteUrls.js";
-import { lensPatentReference } from "./lensPatentMetadata.js";
+import { lensLiteratureSource, lensPatentReference, literatureShortCitation } from "./lensPatentMetadata.js";
 
 const SITE_NAME = "Surface & Stop";
 const SOCIAL_IMAGE_PATH = "/branding/social-dark.png";
@@ -84,14 +84,36 @@ export function lensPageTitle(lens: CanonicalLens): string {
   return `${lens.name} — Optical Cross-Section & Ray Tracing | ${SITE_NAME}`;
 }
 
-/** Generate a meta description from lens specs and patent metadata. */
+/** Generate a meta description from lens specs and patent or literature metadata. */
 export function lensPageDescription(lens: CanonicalLens): string {
   const specStr = lensSpecSummary(lens);
-  const patentRef = lensPatentReference(lens);
   const specClause = specStr ? ` (${specStr})` : "";
+  const literature = lensLiteratureSource(lens);
+  if (literature) {
+    const base = `${lens.name}${specClause}: optical analysis of the prescription published in ${literatureShortCitation(literature)}, interactive ray tracing, and aberration tools.`;
+    return truncateAtWord(base);
+  }
+  const patentRef = lensPatentReference(lens);
   const patentClause = patentRef ? ` from ${patentRef}` : "";
   const base = `${lens.name}${specClause}: patent-derived optical analysis${patentClause}, interactive ray tracing, and aberration tools.`;
   return truncateAtWord(base);
+}
+
+/** The work a lens page is based on, for JSON-LD: the source patent or the published literature. */
+function lensBasedOn(lens: CanonicalLens): Record<string, unknown> | null {
+  const literature = lensLiteratureSource(lens);
+  if (literature) {
+    return {
+      "@type": "Book",
+      name: literature.title,
+      author: literature.authors.map((name) => ({ "@type": "Person", name })),
+      datePublished: String(literature.year),
+      ...(literature.publisher ? { publisher: { "@type": "Organization", name: literature.publisher } } : {}),
+      ...(literature.url ? { url: literature.url } : {}),
+    };
+  }
+  const patentRef = lensPatentReference(lens);
+  return patentRef ? { "@type": "CreativeWork", name: patentRef } : null;
 }
 
 /** Canonical URL for a lens page. */
@@ -126,14 +148,7 @@ export function lensJsonLd(lens: CanonicalLens, lensKey: string): Record<string,
     mainEntityOfPage: lensCanonicalURL(lensKey),
     author: { "@type": "Person", name: "Ron Buening" },
     publisher: { "@type": "Organization", name: SITE_NAME, url: SITE_URL },
-    ...(lensPatentReference(lens)
-      ? {
-          isBasedOn: {
-            "@type": "CreativeWork",
-            name: lensPatentReference(lens),
-          },
-        }
-      : {}),
+    ...(lensBasedOn(lens) ? { isBasedOn: lensBasedOn(lens) } : {}),
     ...(freshness
       ? {
           datePublished: freshness.publishedOn,
@@ -155,8 +170,10 @@ export function lensJsonLd(lens: CanonicalLens, lensKey: string): Record<string,
 export { comparePageTitle, comparePageDescription, compareCanonicalURL } from "../../comparison/comparisonURLSync.js";
 export {
   lensDisplaySubtitle,
+  lensLiteratureSource,
   lensPatentAttribution,
   lensPatentReference,
+  literatureShortCitation,
   patentExampleSuffix,
 } from "./lensPatentMetadata.js";
 

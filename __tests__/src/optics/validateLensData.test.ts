@@ -253,6 +253,42 @@ describe("validateLensData", () => {
       }
     });
 
+    it("accepts a literature citation and refuses one beside a patent or issuer, incomplete or malformed", () => {
+      const literature = {
+        authors: ["Moritz von Rohr"],
+        title: "Theorie und Geschichte des photographischen Objektivs",
+        year: 1899,
+        publisher: "Julius Springer",
+        place: "Berlin",
+        locator: "p. 250, Fig. 100",
+        url: "https://www.e-rara.ch/download/pdf/4637944.pdf#page=6",
+        after: "J. M. Eder (1893)",
+      };
+      const data = makeValid({ sourceLiterature: literature });
+      expect(validateLensData(data)).toEqual([]);
+      expect(validateCanonicalLens(ingestLens(data as LensDataInput))).toEqual([]);
+      const { publisher: _publisher, place: _place, url: _url, after: _after, ...required } = literature;
+      expect(validateLensData(makeValid({ sourceLiterature: required }))).toEqual([]);
+      for (const [fields, error] of [
+        [{ ...metadata, sourceLiterature: literature }, "never stands beside"],
+        [{ sourceIssuer: "Fixture Optical Works", sourceLiterature: literature }, "never stands beside"],
+        [{ patentYear: 1899, sourceLiterature: literature }, "never stands beside"],
+        [{ lensMounts: ["leica-m"], focalLengthMarketing: 100, sourceLiterature: literature }, "describes no product"],
+        [{ sourceLiterature: { ...literature, locator: undefined } }, "locator is required"],
+        [{ sourceLiterature: { ...literature, authors: [] } }, "non-empty array of personal names"],
+        [{ sourceLiterature: { ...literature, authors: ["MORITZ VON ROHR"] } }, "conventional capitalization"],
+        [{ sourceLiterature: { ...literature, authors: ["Prof. Moritz von Rohr"] } }, "omit honorifics"],
+        [{ sourceLiterature: { ...literature, title: " Theorie" } }, "trimmed, single-spaced"],
+        [{ sourceLiterature: { ...literature, year: 1899.5 } }, "whole year"],
+        [{ sourceLiterature: { ...literature, url: "http://example.org/scan.pdf" } }, "https URL"],
+        [{ sourceLiterature: { ...literature, page: 250 } }, 'holds no "page"'],
+      ] as const) {
+        const errors = validateLensData(makeValid(fields));
+        expect(errors, error).toHaveLength(1);
+        expect(errors[0]).toContain(error);
+      }
+    });
+
     it("accepts an example whose id its label gives, and refuses one without a patent number", () => {
       for (const [label, id] of [
         ["Example 6", "6"],
