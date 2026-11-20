@@ -1,50 +1,59 @@
-# LEICA SUPER-ANGULON-M 21mm f/3.4 — private patent-derived tuning draft
+# LEICA SUPER-ANGULON-M 21mm f/3.4
 
 ## Patent reference and identification
 
 **Patent:** [DE 1,273,853 B](https://patents.google.com/patent/DE1273853B/)
-**Published:** 1968 (year retained from structured publication source)
+**Filed:** 8 March 1961
+**Published:** 25 July 1968
 **Inventors:** Karl Heinrich Macher
-**Applicant:** Jos. Schneider & Co., Optische Werke
+**Assignee:** Jos. Schneider & Co., Optische Werke
+**Example details:** Sole example, printed page 2, Fig. 1; dimensions multiplied by 0.21 from the patent's f = 100 to 21 mm.
 
-The structured example is Sole example. This is a patent-derived representative for in-app tuning, not an exact factory prescription or a validated retail reconstruction. Optical branch/source discrepancies and variants remain separate in the retained evidence. No new supplier, measured aperture or production identity is inferred.
+The association with the Super-Angulon-M is strong: Schneider's sole example combines f/3.4, a 90° field and eight elements in four groups, and its 1961 filing precedes the product's 1963 introduction. The German and US family publications identify Macher. Product references confirm Schneider's design and manufacture for Leica, the 8/4 construction and launch date. This converging evidence supports the association without establishing a manufacturer-confirmed factory prescription. [1–4]
 
-## Optical architecture and modeled field
+## Optical architecture
 
-Patent-derived infinity tuning model. Estimated clear apertures and stepped outer geometry; sampled clipping is modeled vignetting, not retail performance.
+The approximately symmetrical wide-angle design has negative outer menisci surrounding two positive cemented triplets. Each triplet contains a positive biconvex element between two negative menisci. The iris lies between the triplets. Their combined focal lengths in air are 19.08 and 23.14 mm; the outer negative elements expand the field. [1]
 
-Native computed EFL: 21.020574 mm. Modeled full field: 90°; maximum traced half-field: 45°. Source/image-plane choice retained at native z=53.0838 mm. Native default geometry validation passes with zero rendering trim. Chief rays at0,half of the stated maximum,and the maximum reach the final surface without clipping. This does not prove measured retail coverage or full-pupil transmission.
+The computed EFL is 21.0206 mm, 0.10% above the nominal 21 mm, at f/3.4. The first-to-last surface length is 44.8938 mm. The printed 8.1900 mm back focus places the image at z = 53.0838 mm; the paraxial back focus is 8.1930 mm. At the patent's 45° half-field the chief-ray image height is 20.72 mm and distortion is about −1.32%, consistent with Fig. 2. The patent's 90° field remains distinct from Leitz's marketed 92° angle. [1, 2]
 
-## Elements and source glass data
+## Element-by-element analysis
 
-| Element | Label | Printed n | Abbe number | Surface span |
-| --- | --- | ---: | ---: | --- |
-| 1 | L1 | 1.52249 | 59.64 | automatic source-surface assignment |
-| 2 | L2 | 1.72372 | 38.09 | automatic source-surface assignment |
-| 3 | L3 | 1.60729 | 49.25 | automatic source-surface assignment |
-| 4 | L4 | 1.56013 | 47.03 | automatic source-surface assignment |
-| 5 | L5 | 1.56732 | 42.82 | automatic source-surface assignment |
-| 6 | L6 | 1.62299 | 58.12 | automatic source-surface assignment |
-| 7 | L7 | 1.717 | 47.9 | automatic source-surface assignment |
-| 8 | L8 | 1.54072 | 47.22 | automatic source-surface assignment |
+| Element | Printed nd / νd | Catalog curve   | Focal length in air | Position                               |
+| ------- | --------------- | --------------- | ------------------: | -------------------------------------- |
+| L1      | 1.52249 / 59.64 | K5 (Sumita)     |           −21.51 mm | Front negative meniscus, S1–S2         |
+| L2      | 1.72372 / 38.09 | Unmatched       |           −24.97 mm | Front of triplet C1, S3–S4             |
+| L3      | 1.60729 / 49.25 | BAF5 (Hoya)     |             7.49 mm | Positive center of C1, S4–S5           |
+| L4      | 1.56013 / 47.03 | FEL3 (Hoya)     |           −15.30 mm | Iris-side negative member of C1, S5–S6 |
+| L5      | 1.56732 / 42.82 | S-TIL26 (Ohara) |           −11.97 mm | Iris-side negative member of C2, S7–S8 |
+| L6      | 1.62299 / 58.12 | BACD15 (Hoya)   |             5.89 mm | Positive center of C2, S8–S9           |
+| L7      | 1.71700 / 47.90 | S-LAM3 (Ohara)  |           −15.47 mm | Rear of triplet C2, S9–S10             |
+| L8      | 1.54072 / 47.22 | S-TIL2 (Ohara)  |           −19.95 mm | Rear negative meniscus, S11–S12        |
 
-Published powers and spacings are preserved. The glass-index/Abbe palette controls paraxial power and the modeled dispersion; exact commercial glass identification and unlisted spectral departures are not established. Per-element powers are not separately measured here. Do not infer a supplier from the source index pair alone.
+Element focal lengths describe each element in air; they do not separate its aberration contribution within a cemented triplet.
 
-## Estimated apertures, rims and tuning limits
+## Glass identification
 
-Exact German d-line table at.21 scale, US scan cross-check retained. Estimated midpoint iris z24.02715mm. Rear triplet clear endpoints are inferred; real outer bodies are stepped. Published R/d/n and source BFD8.190mm are retained, computed8.193009mm is separate. At45deg current model transmits175/577 unweighted sampled rays;7S8 whole-sphere misses are retained as entry to unavailable sphere regions, not repaired by radius enlargement. Next tuning step: inspect stepped-body and rear aperture assumptions;90deg modeled field is not the retail92deg measurement.
-
-Published radii, spacings, source glass data and image-plane choices remain in the retained baselines. Ordinary clipping and every sampled miss are retained in diagnostics; sample counts are not radiometric throughput.
-
+The patent explicitly specifies the yellow helium d-line, 587.6 nm. Seven catalog curves match the printed index and Abbe coordinates within |Δnd| ≤ 0.0001 and |Δνd| ≤ 0.15. These matches supply dispersion curves without proving the historical supplier or melt. L2 remains unmatched. The German table prints νd = 42.82 for L5; the US family claim prints 42.32. The German value is retained. [1, 5]
 
 ## Focus mechanism and conjugates
 
-Infinity-only static prescription. The closeFocusM field is a schema placeholder; focus movement and finite conjugates are not reconstructed. The viewer's focus control remains disabled. Keep the source plane or explicitly documented German computed plane; do not silently optimize refocus or substitute another patent branch.
+The prescription describes infinity focus only; the patent supplies no near-focus state or movement law. Leitz specifies manual focusing to 0.4 m for product 11103, retained as product metadata. Its f/22 minimum aperture is also included. [2, 3]
 
-## Validation and sensitivity scope
+## Aspherical surfaces
 
-These four models are tuning drafts, not newly qualified lenses. Native build/render/fidelity and0/mid/edge chief checks are recorded in tuning-pass-20261118/evidence/native-check.json. Prior aperture/iris/branch sensitivities remain in the cumulative checkpoint; they are not new measurements. Current modeled vignetting and analysis outputs describe these explicit estimated boundaries. Unweighted ray counts are not throughput. Desktop/mobile viewer, formatting, types and targeted regression evidence are supplied in the delivery.
+All twelve refracting surfaces are spherical. No aspherical terms are printed or inferred. [1]
 
-## Sources and next steps
+## Apertures, image plane and model limits
 
-Use the linked primary numerical source and the preserved baselines before changing any optical value. Tune estimated clear-versus-outer endpoints and iris assumptions within positive edge thickness, non-crossing gaps and declared field limits. Expand field only after tracing the new range. Retain failed/clipped rays in diagnostics. Additional factory measurements may improve realism but are not a prerequisite for using this disclosed tuning draft.
+The iris is inferred at the midpoint of the printed diaphragm space, z = 24.0272 mm; Fig. 1 places it at about 48% of that space. Its 3.8284 mm radius follows the f/3.4 aperture. The patent gives no clear diameters. S1 and S10 use Fig. 1 readings of 14.2 and 6.5 mm; the other rims remain estimates, including the stepped triplet boundaries. The resulting 45° meridional ratio is about 1:5.87, compared with about 1:6.0 in Fig. 2. This bundle-width comparison is not a measurement of radiometric illumination. [1]
+
+The declared 45° field reaches 96% of the 24×36 mm corner height. A geometrically clear corner does not imply full-pupil transmission. The short 8.19 mm back focus places the rear vertex about 19.6 mm behind the Leica M flange, explaining the deep rear assembly that fouls the M5/CL meter arm on early barrels; later barrels have a clearance cutout. [3]
+
+## Sources
+
+1. [DE 1,273,853 B](https://patents.google.com/patent/DE1273853B/), front page, sole prescription on printed page 2, Figs. 1–2 and claims.
+2. Leitz, [General Catalogue for the LEICA System](https://www.pacificrimcamera.com/rl/03898/03898.pdf), Super-Angulon 21 mm f/3.4, product 11103: 92°, eight elements, manual focus to 40 cm and f/22. The [Leitz system brochure](https://www.pacificrimcamera.com/rl/01571/01571.pdf), printed p. 15, also lists four components.
+3. Hamish Gill, [Leica 21mm f/3.4 Super-Angulon review](https://www.35mmc.com/24/06/2019/leica-21mm-f-3-4-super-angulon-review/), 24 June 2019: Schneider manufacture, 1963 launch, 0.4 m focus and M5/CL clearance.
+4. [AllPhotoLenses, c_2888](https://allphotolenses.com/lenses/item/c_2888.html): Leica M, 35 mm format, Schneider manufacture, 1963 introduction and 8/4 construction. Its aperture and focus entries differ from the Leitz catalog; the catalog supplies those values. See also [CineLensWiki's product entry](https://cinelenswiki.com/lens:leicamsuper-angulon21mmf_3.4).
+5. [US 3,209,649 A](https://patents.google.com/patent/US3209649A/en), family publication; the differing L5 Abbe value is not substituted for the German table.
