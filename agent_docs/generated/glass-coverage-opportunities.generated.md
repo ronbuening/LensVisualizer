@@ -10,10 +10,10 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 ## Summary
 
 - **1188** lenses scanned (**1167** visible)
-- **12225 / 13241** non-air surfaces use strict catalog Sellmeier data (92.3%)
-- **12243 / 13241** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 92.5%)
-- **0** mismatch surfaces in Sweep 1 across **0** lens files
-- **0** Sweep 1 surfaces have a matching untracked local patent PDF
+- **12226 / 13241** non-air surfaces use strict catalog Sellmeier data (92.3%)
+- **12244 / 13241** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 92.5%)
+- **1** mismatch surfaces in Sweep 1 across **1** lens files
+- **1** Sweep 1 surfaces have a matching untracked local patent PDF
 - **290** code-only missing-Sellmeier elements in Sweep 2: **27** active unreviewed, **157** self-recording explicit dispositions, **0** dispositions missing any review record
 - **0** unresolved named-token elements in Sweep 2B, producing **0** token occurrences across **0** distinct tokens
 - **20** Tier A proprietary backfill rows in Sweep 3
@@ -24,6 +24,7 @@ Patent PDFs under `patents/` are untracked local references. A missing local pat
 
 | Lens | Patent | Surface | Ref | Current label | Stored n/ν | Best candidate(s) | localPatentPath | localPatentStatus |
 |---|---|---|---|---|---|---|---|---|
+| [OLYMPUS ZUIKO AUTO-W 21mm f/2](../../src/lens-data/olympus/OlympusZuikoAuto21mmf2.data.ts) | US 4,210,388 | 12 | d | `593348 — LF7-class light flint (no exact public catalog match)` | 1.59340 / 34.80 | S-FTM16 (Δn=-0.0007, Δν=+0.51)<br>FF5 (Δn=-0.0007, Δν=+0.65) | patents/US4210388.pdf | Matched untracked local patent PDF |
 
 ## Near-Complete Visible Lenses - Glass Opportunities
 
@@ -122,6 +123,7 @@ These lenses are missing trusted chromatic data only on glass elements. One or t
 | [MINOLTA MD 50mm f/1.7](../../src/lens-data/minolta/Minolta50mmf17MD.data.ts) | JP S60-111215 A | [PDF](../../patents/JPS60111215A.pdf) | 83.3% (5/6) | 83.3% (5/6) | 1 | 10 [glass] (Element 6: `Unmatched (781446 high-index mid-dispersion glass; no compatible public coefficient row)`) | abbe: 1 |
 | [MINOLTA SUPER ROKKOR 5cm f/1.8](../../src/lens-data/minolta/MinoltaSuperRokkor5cmf18.data.ts) | JP S38-11587 B | [PDF](../../patents/JPS3811587B.pdf) | 83.3% (5/6) | 83.3% (5/6) | 1 | 7 [glass] (Element 4: `Unmatched (patent nd 1.5749, νd 39.2; no exact catalog row; supplier unspecified)`) | abbe: 1 |
 | [PENTAX SMC TAKUMAR 6x7 600mm f/4](../../src/lens-data/pentax/PentaxSMCTakumar6x7600mmf4.data.ts) | US 3,502,393 | [PDF](../../patents/US3502393.pdf) | 83.3% (5/6) | 83.3% (5/6) | 1 | 5 [glass] (Element 3: `Unmatched (512598 crown; no public catalog row)`) | abbe: 1 |
+| [SCHACHT TRAVEGON 35mm f/3.5](../../src/lens-data/schacht/SchachtTravegon35mmf35.data.ts) | DE 1,020,809 B | [PDF](../../patents/DE1020809B.pdf) | 83.3% (5/6) | 83.3% (5/6) | 1 | 4 [glass] (Element 3: `Unmatched (nd 1.72019 / νd 50.3)`) | abbe: 1 |
 | [SCHNEIDER-KREUZNACH APO-SYMMAR 100mm f/5.6](../../src/lens-data/schneider-kreuznach/SchneiderAPOSymmar100mmf56.data.ts) | US 6,028,720 | [PDF](../../patents/US6028720.pdf) | 83.3% (5/6) | 83.3% (5/6) | 1 | 4 [glass] (Element 3: `Unmatched (phosphate crown class, ne=1.5223, ve=69.5; no public catalog match — possible special melt or discontinued glass)`) | abbe: 1 |
 | [SCHNEIDER-KREUZNACH SUPER-SYMMAR XL 110mm f/5.6 ASPHERIC](../../src/lens-data/schneider-kreuznach/SchneiderSuperSymmarXL110mmf56.data.ts) | US 5,870,234 | [PDF](../../patents/US5870234.pdf) | 83.3% (5/6) | 83.3% (5/6) | 1 | 1 [glass] (Element 1: `Unmatched (Schott KF9; patent e-line ne=1.52583, ve=51.25 stored as nd/vd)`) | abbe: 1 |
 | [RUSSAR-21 60mm f/18](../../src/lens-data/unattributed/Russar21.data.ts) | US 2,516,724 A | [PDF](../../patents/US2516724.pdf) | 83.3% (5/6) | 83.3% (5/6) | 1 | 1 [glass] (Element 1: `Unmatched (Lenzos L-67; nd=1.6395, vd=43.3; reference wavelength unstated)`) | abbe: 1 |

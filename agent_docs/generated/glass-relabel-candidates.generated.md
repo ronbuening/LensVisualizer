@@ -19,11 +19,20 @@ Abbe number both match within tolerance (Δn ±0.003, Δν ±2).
 - **No candidate**: relabel as `Unmatched (...reason)` and add a row to
   [glass-relabel-followup.md](../glass-relabel-followup.md) for per-lens patent verification.
 
-**Scope**: 0 mismatched surfaces across 0 unique groups.
+**Scope**: 1 mismatched surfaces across 1 unique groups.
+
+## stored (d: n=1.59340, ν=34.80) [code=593/348]  — 1 surface, current label resolves to LF7
+
+Candidates:
+- **S-FTM16** (nd=1.59270, νd=35.31, Δn=-0.0007, Δν=+0.51, codeΔ=5.4)
+- **FF5** (nd=1.59270, νd=35.45, Δn=-0.0007, Δν=+0.65, codeΔ=6.8)
+
+Surfaces:
+- [OLYMPUS ZUIKO AUTO-W 21mm f/2](../../src/lens-data/olympus/OlympusZuikoAuto21mmf2.data.ts) `12`: `593348 — LF7-class light flint (no exact public catalog match)`
 
 ---
 
 ## Summary
 
-- **0** (nd, vd) groups have at least one candidate (0 surfaces) — actionable relabels.
+- **1** (nd, vd) groups have at least one candidate (1 surfaces) — actionable relabels.
 - **0** (nd, vd) groups have NO candidate (0 surfaces) — needs patent verification or Unmatched relabeling.
