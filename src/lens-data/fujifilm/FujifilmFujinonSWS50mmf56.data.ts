@@ -17,7 +17,7 @@ const LENS_DATA = {
   key: "fujifilm-fujinon-sw-s-50mm-f56",
   maker: "Fujifilm",
   name: "FUJIFILM FUJINON SW S 50mm f/5.6",
-  subtitle: "JP S50-96221 A, Sole example — Fujica G690/GL690 super-wide",
+  subtitle: "JP S50-96221 A, sole example — Fuji Photo Optical / Doi & Sakai",
   catalog: {
     lensMounts: ["fuji-g690"],
     imageFormat: "6x9",
@@ -32,7 +32,7 @@ const LENS_DATA = {
       design: 5.6,
     },
     closeFocusM: { marketing: 1 },
-    specs: ["8 ELEMENTS / 6 GROUPS", "DESIGN f = 50.00 mm", "DESIGN F/5.6", "ALL SPHERICAL"],
+    specs: ["8 ELEMENTS / 6 GROUPS", "ALL SPHERICAL", "DESIGN F/5.6", "90° FIELD"],
   },
   source: {
     patentNumber: "JP S50-96221 A",
@@ -256,7 +256,12 @@ const LENS_DATA = {
     nominalFNumber: 5.6,
     fStops: [5.6, 8, 11, 16, 22, 32],
     maxFNumber: 32,
+    blades: 5,
   },
+  groups: [
+    { text: "A1", fromSurface: "1", toSurface: "7" },
+    { text: "A2", fromSurface: "8", toSurface: "14" },
+  ],
   doublets: [
     { text: "C1", fromSurface: "5", toSurface: "7" },
     { text: "C2", fromSurface: "8", toSurface: "10" },

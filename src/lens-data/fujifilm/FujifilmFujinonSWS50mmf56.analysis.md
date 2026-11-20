@@ -1,6 +1,6 @@
 # FUJIFILM FUJINON SW S 50mm f/5.6
 
-## Patent reference and identification
+## Patent Reference and Design Identification
 
 **Patent:** [JP S50-96221 A](https://patents.google.com/patent/JPS5096221A/)
 **Filed:** 1973-12-24
@@ -11,15 +11,15 @@
 
 The patent's f = 1 table is scaled by 50 to millimetres. It specifies f/5.6, a 90° full field and eight elements in six groups. These values strongly connect the example to the Fujinon SW S 50mm f/5.6 for the Fujica G690/GL690 interchangeable-lens 6×9 rangefinder system. The December 1973 filing also coincides with the GL690's introduction. The [Fujica GL690/GM670 instruction manual](https://www.cameramanuals.org/fuji_pdf/fujica_gl690_gm670.pdf) lists the 50mm f/5.6 interchangeable lens and its external finder.
 
-[Lallement's G690 lens reference](https://www.lallement.com/pictures/lenses.htm) gives the f/5.6–32 aperture range, 90° field, 1 m minimum focus distance, eight elements in six groups and 72 mm filter diameter. [Kamerastore's retailer listing](https://kamerastore.com/products/fujica-fujinon-50mm-f5-6-sw-s-fujica-g690) also reports eight elements in six groups, the G690 mount and 1 m close focus; these are retailer specifications. No manufacturer optical diagram or production prescription has been found to establish an exact product identity.
+[Lallement's G690 lens reference](https://www.lallement.com/pictures/lenses.htm) gives the f/5.6–32 aperture range, 90° field, 1 m minimum focus distance, eight elements in six groups and 72 mm filter diameter. [Kamerastore's retailer listing](https://kamerastore.com/products/fujica-fujinon-50mm-f5-6-sw-s-fujica-g690) also reports eight elements in six groups, the G690 mount, 1 m close focus, five diaphragm blades and the lens's own leaf shutter, with speeds of 1–1/500 s plus B. No manufacturer optical diagram or production prescription has been found to establish an exact product identity.
 
 ## Optical architecture and modeled field
 
-The all-spherical design has two negative front singlets, two positive cemented doublets around the stop, and two negative rear singlets. Its six air-separated groups have a negative–negative–positive–positive–negative–negative power sequence. The front doublet C1, L3/L4, has a standalone focal length of +44.24 mm; the rear doublet C2, L5/L6, is stronger at +23.68 mm.
+The all-spherical design has two negative front singlets, two positive cemented doublets around the stop, and two negative rear singlets. Its six air-separated groups have a negative–negative–positive–positive–negative–negative power sequence. Fig. 1(a) divides the lens into A1 (L1–L4) and A2 (L5–L8), subdivided into B1 (L1), B2 (L2–L4), B3 (L5–L7) and B4 (L8). The front doublet C1, L3/L4, has a standalone focal length of +44.24 mm; the rear doublet C2, L5/L6, is stronger at +23.68 mm.
 
-The computed EFL is 49.998315 mm and the paraxial back focal distance is 34.7741 mm, close to the printed 50 mm and 34.775 mm. The image plane retains that printed back focus, giving a 109.5155 mm total track. The stop lies 37.0155 mm behind the first vertex, derived from the patent's 72.5 mm stop-to-film distance; its split of the central gap is inferred rather than tabulated. The model opens at f/5.6.
+The computed EFL is 49.998 mm and the paraxial back focal distance is 34.774 mm, close to the printed 50 mm and 34.775 mm. The image plane retains that printed back focus, giving a 109.52 mm total track. The stop lies 37.016 mm behind the first vertex, derived from the patent's 72.5 mm stop-to-film distance; its split of the central gap is inferred rather than tabulated. The model opens at f/5.6.
 
-At the declared 45° half-field the chief ray reaches 48.7885 mm image height, approximately −2.4% distortion and 96.6% of the catalog's 50.5 mm 6×9 half-diagonal. This agrees with the general shape of Fig. 2(c); the declared field is retained rather than enlarged to the format corner.
+At the patent's 45° half-field the chief ray reaches 48.79 mm image height, approximately −2.4% distortion and 96.6% of the 50.5 mm 6×9 format half-diagonal. This agrees with the general shape of Fig. 2(c); the modeled field retains the patent's stated coverage.
 
 ## Element-by-element analysis
 
@@ -57,4 +57,4 @@ The 0.47 mm gap between S10/S11 prevents extending their spherical caps to the a
 - [JP S50-96221 A](https://patents.google.com/patent/JPS5096221A/), Table 1, Figs. 1–2 and amendment dated 1974-03-19.
 - [Fujica GL690/GM670 instruction manual](https://www.cameramanuals.org/fuji_pdf/fujica_gl690_gm670.pdf), interchangeable lenses and special viewfinders.
 - [Lallement, Fujica G690 series](https://www.lallement.com/pictures/G690.html) and [lens specifications](https://www.lallement.com/pictures/lenses.htm), camera introduction, format, focus and aperture range.
-- [Kamerastore, Fujica Fujinon 50mm f/5.6 SW S](https://kamerastore.com/products/fujica-fujinon-50mm-f5-6-sw-s-fujica-g690), retailer's mount, eight-element/six-group and close-focus specifications.
+- [Kamerastore, Fujica Fujinon 50mm f/5.6 SW S](https://kamerastore.com/products/fujica-fujinon-50mm-f5-6-sw-s-fujica-g690), retailer's mount, construction, close-focus, five-blade diaphragm and leaf-shutter specifications.

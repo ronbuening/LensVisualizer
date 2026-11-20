@@ -1,67 +1,89 @@
-# FUJIFILM FUJINON SW S 50mm f/5.6 — audit log
+# FUJIFILM FUJINON SW S 50mm f/5.6 — Audit Log
 
-## 2026-11-20 — Deployment validation and cleanup
+## Source
 
-The independent validator re-read the 600-dpi patent page images: Table 1 on p. 3, all 14 radii, 13 thicknesses/gaps, eight nd/νd pairs and Bf, together with Fig. 1, the front-page bibliography and the amendment on p. 5. Every dimensional table value matches the delivered prescription at ×50; there are no aspheres or variable gaps. Verdict: valid with notes about inferred apertures and product identification.
+[JP S50-96221 A](https://patents.google.com/patent/JPS5096221A/) was filed on 1973-12-24 and published on 1975-07-31. The inventors are Ryoichi Doi and Yutaka Sakai; the assignee is Fuji Photo Optical Co., Ltd. The prescription is the sole numerical example in Table 1 on p. 3, scaled from f = 1 to 50 mm. Fig. 1(a) supplies the section and component names; Figs. 2(a–c) show aberrations. The amendment dated 1974-03-19 appears on p. 5.
 
-The example strongly matches the Fujinon SW S 50mm f/5.6 for the Fujica G690/GL690 6×9 bayonet system: f = 50 mm, f/5.6, 90° full field, eight elements/six groups and a December 1973 filing near the GL690 introduction. [Lallement's camera history](https://www.lallement.com/pictures/G690.html) and [lens specifications](https://www.lallement.com/pictures/lenses.htm), the [Fujica instruction manual](https://www.cameramanuals.org/fuji_pdf/fujica_gl690_gm670.pdf), and [Kamerastore's retailer listing](https://kamerastore.com/products/fujica-fujinon-50mm-f5-6-sw-s-fujica-g690) support this association; the retailer lists eight elements/six groups, the G690 mount and 1 m minimum focus distance. The retailer's specification is not a manufacturer prescription. No maker optical diagram was found.
+Product references are the [Fujica GL690/GM670 instruction manual](https://www.cameramanuals.org/fuji_pdf/fujica_gl690_gm670.pdf), [Lallement's camera history](https://www.lallement.com/pictures/G690.html) and [lens specifications](https://www.lallement.com/pictures/lenses.htm), and [Kamerastore's Fujinon SW S 50mm listing](https://kamerastore.com/products/fujica-fujinon-50mm-f5-6-sw-s-fujica-g690).
 
-The A publication's d9 = 0.393 is retained. It gives normalized f = 0.99997 and Bf = 0.69548 against the printed 1.0 and 0.6955. A value of 0.383, previously attributed to an unexamined grant, would give Bf = 0.6990 and contradict the printed back focus. The 1974-03-19 amendment on p. 5 changes claims and prose only: the definition of fA1 as the combined focal length of L1–L4, the dB3/dB2 typo, a misprint and a duplicated phrase. It changes no numerical table values.
+## Transcription Check
 
-### Data and wording changes
+All 14 radii, 13 thicknesses and air spaces, eight d-line index/Abbe-number pairs and the back focus were compared with Table 1. Every dimensional value agrees at ×50. There are no aspheres or variable air spaces.
 
-- File declaration: `const data` → `const LENS_DATA`, matching default export; quoted object keys → plain identifiers. The type import and `satisfies LensDataV2Input` remain. Obvious floating-point noise was rounded back to the source decimal values, with no meaningful first-order change.
-- `visible`: false → true. `key`: `fujinon-sws-50-patent-tuning` → `fujifilm-fujinon-sw-s-50mm-f56`. `name`: `FUJIFILM FUJINON SWS 50mm f/5.6` → `FUJIFILM FUJINON SW S 50mm f/5.6`. `maker` remains Fujifilm.
-- Header/subtitle: removed alternate-value and private-work terminology. The header now describes the actual source, scaling, inferred stop and rims, printed image plane and catalog-glass uncertainty. Subtitle → `JP S50-96221 A, Sole example — Fujica G690/GL690 super-wide`.
-- `catalog.specs`: six lines containing duplicated infinity scope and private-work labels → `8 ELEMENTS / 6 GROUPS`, `DESIGN f = 50.00 mm`, `DESIGN F/5.6`, `ALL SPHERICAL`.
-- `source.example`: `{ label: "Table 1", id: "1" }` → `{ label: "Sole example", id: null }`. Patent number, 1975 publication year, assignee Fuji Photo Optical Co., Ltd. and authors Ryoichi Doi/Yutaka Sakai remain; author spelling matches the sibling SW 65 record.
-- `catalog.lensMounts`: absent → `["fuji-g690"]`; `imageFormat` remains `6x9`. Existing counts 8/6, marketed/design focal length 50 mm and f-number 5.6 remain. `catalog.closeFocusM.marketing`: absent → 1 m, supported by the cited references.
-- `focus.closeFocusM`: 1 → 1e15; description → `Infinity focus only; the patent supplies no close-focus spacings. The production lens focuses to 1 m.` The patent provides no near state and no finite-focus motion was added.
-- `aperture.fStops`: `[5.6, 8, 11, 16]` → `[5.6, 8, 11, 16, 22, 32]`; `maxFNumber`: 16 → 32. Lallement's lens table documents the production f/5.6–32 range.
-- Every element now has a plain optical role and its standalone in-air focal length from the element probe: L1 −58.60, L2 −136.60, L3 +21.63, L4 −34.68, L5 −25.45, L6 +15.45, L7 −73.43, L8 −44.95 mm. Existing shape labels agree with the radius signs.
-- Cemented ids: L3/L4 `D3` → `C1`, L5/L6 `D4` → `C2`; added matching doublet spans S5–S7 and S8–S10. No anomalous-dispersion tags were added.
-- `source.sdSource`: `heuristic` → omitted because the rims now mix figure readings and estimates. No prescription, stop position, image plane, index reference or declared field was changed beyond removing float noise.
+The A publication prints d9 = 0.393. That value gives normalized f = 0.99997 and back focus 0.69548, agreeing with the printed 1.0 and 0.6955. The value 0.383, previously attributed to an unexamined grant, would give back focus 0.6990. It was not substituted. The amendment changes the definition of fA1 to the combined focal length of L1–L4, corrects the dB3/dB2 wording and a misprint, and removes a duplicated phrase; it changes no numerical table values.
 
-### Glass labels
+## First-Order Check
 
-All eight old labels were `Unmatched (source nd=…; exact glass unproven)`. Each replacement was checked with the shared label resolver; the vendor actually resolved is listed below. Deltas are catalog minus printed source values. Older catalog designations were preferred to reformulated N-glass names where a compatible older row exists. These are dispersion equivalents, not evidence of the production supplier, glass melt or historical procurement.
+| Quantity | Patent at 50 mm scale | Model |
+| --- | ---: | ---: |
+| Effective focal length (mm) | 50.000 | 49.998 |
+| Maximum aperture | f/5.6 | f/5.60 |
+| Paraxial back focal distance (mm) | 34.775 | 34.774 |
+| Last surface to image plane (mm) | 34.775 | 34.775 |
+| Full field | 90.0° | 90.0° |
+| Total first-surface-to-image distance (mm) | — | 109.52 |
+| Stop radius (mm) | — | 5.549 |
 
-| Element | New label     | Resolved vendor |       Δnd |       Δνd |
-| ------- | ------------- | --------------- | --------: | --------: |
-| L1      | LAK6 (Sumita) | Sumita          |         0 |         0 |
-| L2      | BAC4 (HOYA)   | Hoya            |         0 |     +0.04 |
-| L3, L8  | BACED5 (HOYA) | Hoya            |         0 |     +0.06 |
-| L4      | LLF1 (Schott) | Schott          |         0 |     −0.15 |
-| L5      | KF5 (Sumita)  | Sumita          |         0 |         0 |
-| L6      | LAL7 (OHARA)  | Ohara           | −0.000003 | +0.019433 |
-| L7      | SF10 (Schott) | Schott          |         0 |     +0.11 |
+The printed image plane differs from paraxial best focus by 0.0009 mm. The focal length, f-number, back focus, stop radius, field and focus states are unchanged by the metadata and wording changes. The older paraxial field estimate of 37.1° does not replace the modeled 45.0° half-field.
 
-The existing lowercase d-line reference and printed nd/νd remain on all elements. No per-element C/F/g anchors were present to remove. The KF5 label resolves to Sumita, even when a Schott suffix is supplied, so the authored suffix explicitly names Sumita.
+The Petzval sum multiplied by focal length is −0.0065, against Table 2's −0.00649. The stated conditions are satisfied: fA2/|fA1| is 0.13, dB3/dB2 is 1.29, and d12 is 0.170f.
 
-### Rims and field transmission
+At 45.0° the chief ray reaches 48.79 mm image height, about −2.4% distortion and 96.6% of the 50.50 mm 6×9 half-diagonal, consistent with Fig. 2(c). The format corner lies at about 46.0° and is clear. The difference in image height follows from retaining the patent's 90.0° field.
 
-Fig. 1(a) supports the approximately 20 mm front semi-diameter and 7.2 mm central endpoints. S1 sd: 18 → 20 mm; S7: 11 → 7.2 mm; S8: 10 → 7.2 mm. The S7/S8 changes match the figure and cost no light from 0° to 45°. At S7/S8 the exact axial marginal heights are 5.616/5.601 mm and the 45° chief heights are 1.137/1.497 mm, so the smaller rims cut neither beam.
+A check of the surface geometry finds no edge-thickness or overlap errors. The effective aperture is within 3% of f/5.6 and is limited by the diaphragm, with no clear-rim limit or tracing failure. The estimated apertures accommodate the format corner; all checked field directions were resolved.
 
-S10/S11 retain a 10 mm clear radius; `rimExtensionSd`: absent → 12 mm on each. The approximate 12–13 mm outer silhouette cannot be represented by continuing both spheres: they cross beyond about 10.4 mm across the 0.47 mm source gap. The opaque lands preserve the existing clear caps and pass surface/gap checks. They do not admit additional rays; their exact shape remains inferred.
+## Values Not Printed in the Patent
 
-The engine's 64-cell stop lattice at 45° gives geometric pupil transmission 600/3228 = 18.5874% before, and 1458/3228 = 45.1673% after, with no unaimed or failed samples. The whole 45° gain, 18.6% → 45.2%, comes from S1's 18 → 20 mm change. Comparing the final geometry to the S1-only change at 0°, 5°, 10°, 15°, 20°, 25°, 30°, 35°, 40° and 45° gives identical transmission, so the central reductions and outer lands lose no sampled light throughout the declared field. This is geometric pupil transmission, not measured radiometric illumination.
+The 72.5 mm stop-to-film distance places the stop 37.016 mm behind the first vertex. It divides d7 into 1.4055 mm before and 1.8445 mm after the stop; those separate distances are inferred and agree with Fig. 1(a). The stop radius follows f/5.6.
 
-### First-order values and checks
+Clear radii are not tabulated. The front radius of 20 mm and the central radii of 7.2 mm follow Fig. 1(a); the other clear radii remain estimates. The text's 44 mm front diameter exceeds the drawing's approximately 40 mm diameter and does not uniquely establish a clear optical rim.
 
-| Quantity                                     |          Before |           After |
-| -------------------------------------------- | --------------: | --------------: |
-| EFL, built summary (mm)                      | 49.998314913231 | 49.998314913231 |
-| FOPEN, built summary                         |             5.6 |             5.6 |
-| Paraxial BFD, element/first-order probe (mm) |         34.7741 |         34.7741 |
-| Stored final gap (mm)                        |         34.7750 |         34.7750 |
-| Total track (mm)                             |        109.5155 |        109.5155 |
-| Stop radius (mm)                             |  5.548900923969 |  5.548900923969 |
-| Declared half-field                          |             45° |             45° |
+The 10 mm clear radii at S10/S11 and their opaque outer lands extending to 12 mm are inferred. Extending both spheres across the 0.47 mm air space would make them cross beyond about 10.4 mm radius, short of the approximately 12–13 mm outer silhouette. The lands retain the clear apertures while avoiding an overlap; their exact shape is unknown.
 
-The residual difference from the printed back focus is 0.0009 mm. The older paraxial tracing-field estimate also remains 37.117081°; it is not the declared 45° analysis field. The public description now separates the product association, optical architecture, individual elements, glass equivalents, infinity-only focus, and inferred apertures. It removes the duplicated table identifier, broken spacing, private-work vocabulary, references to unrelated models/files and the unrelated German image-plane instruction. `Applicant` → `Assignee`; publication year-only wording → 1975-07-31. No prior audit companion existed, so this log records the source review and decisions.
+Commercial glass names and measured partial dispersions are not supplied. The catalog glasses below supply estimated dispersion curves. They do not establish the production supplier, melt or historical purchase. The d-line indices and Abbe numbers remain the patent's values; there were no separate C-, F- or g-line values to remove. No anomalous-dispersion glass is identified by the patent.
 
-Surface audit: OK, no validation errors. Aperture audit: one lens/one station within 3% of f/5.6; zero rim, trace, iris or failed limits. Image-circle audit: one lens checked, zero undersized, zero skipped. Field-coverage audit: 97% (96.61% before display rounding), 45° → 48.79 mm of the 50.50 mm half-diagonal, limited by the declared field; the format corner is about 46.0° and clear. No stations were unsolved or skipped.
+The patent supplies infinity data only. The product's 1 m minimum focus distance and f/5.6–32 aperture range come from the product references. Five diaphragm blades are reported by Kamerastore; blade curvature is not documented.
 
-Open: other estimated rims need a complete figure-based SD review; the S10/S11 land geometry and 10 mm clear caps need stronger dimensional evidence before any further opening. The prose's 44 mm front diameter and approximately 40 mm drawn diameter differ. Production prescription/supplier identity, actual partial dispersion and near-focus spacings remain unconfirmed. No maker optical diagram was located.
+## Product Identification
 
-Second review fixes: Removed procedural wording while preserving the source facts, transmission numbers and open questions. Both rim descriptions now attribute the entire 45° gain to S1, state that the figure-matched S7/S8 reductions cost no light from 0° to 45°, and retain the S10/S11 10 mm clear radius beneath the opaque lands. The analysis now cites Lallement for all five production specifications: f/5.6–32, 90°, 1 m minimum focus, eight elements/six groups and a 72 mm filter.
+The example is likely the design of the Fujinon SW S 50mm f/5.6 for the Fujica G690/GL690 6×9 interchangeable-lens bayonet system. The 50 mm focal length, f/5.6 aperture, 90.0° field, eight elements in six groups, and December 1973 filing near the GL690 introduction support the association. The maker's manual lists the 50mm f/5.6 interchangeable lens and its external finder.
+
+Lallement documents the construction, aperture range, field, 1 m minimum focus distance and 72 mm filter. Kamerastore also gives the G690 mount, eight elements in six groups, 1 m close focus, five diaphragm blades and the lens's own leaf shutter, with 1–1/500 s plus B. These are retailer specifications, rather than a manufacturer prescription. No manufacturer optical diagram or exact production prescription has been located.
+
+## Corrections, 2026-11-20
+
+- The name and public address were replaced by the product name, with the spacing “SW S”; the lens was made visible in the catalog. Fujifilm remains the maker. Notation and numeric formatting were made consistent, and rounding artifacts were removed without changing the source dimensions or optical results.
+- The example identification was corrected from a table number to the sole numerical example. Publication information now gives 1975-07-31; the bibliographic label now says assignee. The patent number, publication year, inventor names and assignee were retained.
+- The header now explains scaling, the retained d9 value, inferred stop placement and rims, the printed image plane and glass uncertainty. The subtitle changed from a camera-system description to “JP S50-96221 A, sole example — Fuji Photo Optical / Doi & Sakai”.
+- Repetitive specification lines were replaced by construction, design aperture and spherical-surface information. The redundant “DESIGN f = 50.00 mm” chip was then removed because design and marketed focal lengths agree. The final chips are “8 ELEMENTS / 6 GROUPS”, “ALL SPHERICAL”, “DESIGN F/5.6” and “90° FIELD”.
+- The G690 mount and marketed 1 m close focus were added from the product references. The 6×9 format, eight-element/six-group construction, and marketed/design values of 50 mm and f/5.6 were retained. The modeled close-focus endpoint was changed from 1 m to infinity because no near-focus prescription is printed; the focus description distinguishes that limit from the production lens's 1 m capability.
+- The stop list was extended from f/5.6–16 to f/5.6–32, and the maximum f-number from 16 to 32, following Lallement's table. The previously unspecified diaphragm blade count is now five, following Kamerastore. Blade curvature remains unspecified.
+- Element roles and focal lengths in air were added: L1 −58.60, L2 −136.60, L3 +21.63, L4 −34.68, L5 −25.45, L6 +15.45, L7 −73.43 and L8 −44.95 mm. Shape descriptions agree with the radius signs. The front and rear cemented pairs were relabeled D3 → C1 and D4 → C2, with spans S5–S7 and S8–S10. Their combined focal lengths are +44.24 and +23.68 mm. No anomalous-dispersion tags were added.
+- A1 and A2 annotations were added over S1–S7 and S8–S14, following Fig. 1(a). The analysis explains their subdivisions: B1 contains L1, B2 contains L2–L4, B3 contains L5–L7 and B4 contains L8.
+- Glass labels that previously described the material identity as unknown were replaced by the catalog names below. The source refractive indices and Abbe numbers were retained. Older compatible glass designations were preferred where available. Each name selects a catalog row within 0.000003 in nd and 0.15 in νd. KF5 selects Sumita's curve even when described elsewhere as Schott, so its vendor is explicitly Sumita.
+
+| Element | Catalog label | Catalog vendor | Δnd | Δνd |
+| --- | --- | --- | ---: | ---: |
+| L1 | LAK6 (Sumita) | Sumita | 0 | 0 |
+| L2 | BAC4 (HOYA) | Hoya | 0 | +0.04 |
+| L3, L8 | BACED5 (HOYA) | Hoya | 0 | +0.06 |
+| L4 | LLF1 (Schott) | Schott | 0 | −0.15 |
+| L5 | KF5 (Sumita) | Sumita | 0 | 0 |
+| L6 | LAL7 (OHARA) | Ohara | −0.000003 | +0.02 |
+| L7 | SF10 (Schott) | Schott | 0 | +0.11 |
+
+Differences are catalog minus printed source values. The lowercase d-line reference remains on every element.
+
+- The front clear radius at S1 was increased from 18 to 20 mm; the central radii at S7/S8 were reduced from 11/10 to 7.2 mm to match Fig. 1(a). At S7/S8, axial marginal-ray heights are 5.616/5.601 mm and the 45.0° chief-ray heights are 1.137/1.497 mm, so neither beam is cut by the central reductions.
+- S10/S11 retained their 10 mm clear radii and gained opaque lands to 12 mm. These extensions admit no additional rays and avoid intersecting edges. The blanket description of the rims as estimated was removed because they now combine figure readings with estimates.
+- Geometric pupil transmission at 45.0° increased from 18.6% to 45.2%, entirely because of the S1 change. Comparisons at 0.0° through 45.0° in 5.0° increments show no additional light loss from the central reductions or outer lands. All intended ray directions were found, with no tracing failures. This is geometric pupil transmission; measured illumination, coating losses and absorption remain unknown.
+- The analysis now separates product identification, architecture, element roles, glass equivalents, infinity-only focus and inferred apertures. Duplicated table information, broken spacing, unrelated lens references and an unrelated image-plane instruction were removed. Citations now identify the source of all production specifications. This log was reorganized around the source facts, optical checks, corrections and remaining questions.
+
+After these corrections, EFL is 49.998 mm, maximum aperture is f/5.60, paraxial back focus is 34.774 mm, stored back focus is 34.775 mm, total track is 109.52 mm, stop radius is 5.549 mm and half-field is 45.0°. The metadata and wording changes leave those values and all focus spacings unchanged.
+
+## Remaining Questions
+
+- The remaining estimated rims need comparison with the complete patent figure. The S10/S11 lands and 10 mm clear caps need stronger dimensional evidence before any further enlargement.
+- The text's 44 mm front diameter and the drawing's approximately 40 mm diameter remain unresolved.
+- The exact production prescription, supplier and melt identities, measured partial dispersions and near-focus spacings remain unconfirmed. No manufacturer optical diagram has been located.
+- The cited sources do not establish diaphragm blade curvature, a separate measured image-circle diameter or dedicated teleconverter compatibility; those optional values remain unspecified.
