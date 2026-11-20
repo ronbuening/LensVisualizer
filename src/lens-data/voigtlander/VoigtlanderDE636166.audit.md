@@ -16,9 +16,9 @@ The sodium-D EFL is 100.00 mm, the paraxial f-number is 2.80, and the back focal
 
 Pupil aberration gives a real admitted aperture of about f/2.86. Longitudinal spherical aberration is approximately −0.21 mm at the margin and −0.25 mm at the 0.7 pupil zone. The patent states a zonal error of 0.18% of focal length, or 0.18 mm, and astigmatic deviations below 1%, or 1 mm, without specifying a field angle.
 
-The surface geometry has no edge-thickness or overlap errors. Minimum edge thickness is 2.30 mm, minimum air-gap clearances are 4.96 and 6.34 mm, and maximum sag intrusion is below 30%. Earlier small variations in rim radius and iris position preserved positive edges and clearances. The aperture is within 3% of the stated f-number, with no rim limit, tracing failure or iris limit; no clear radius requires enlargement.
+Minimum edge thickness is 2.30 mm, minimum air-gap clearances are 4.96 and 6.34 mm, and maximum sag intrusion is below 30%. The surfaces stay clear of each other; the iris sets the full aperture.
 
-The 5.0° half-field and the separate 8.75 mm image-height check show no axial clipping or blocked chief ray. Vignetting of the full ray bundle remains at several rims. Coverage of a particular image format cannot be established without a documented image format or image circle. An earlier calculation using an assumed 17.5 mm circle found no undersized surfaces and approximately 100% coverage with a clear corner; that assumed circle is not part of the prescription and establishes no camera format.
+The 5.0° half-field and the separate 8.75 mm image-height check show no axial clipping or blocked chief ray. Vignetting of the full ray bundle remains at several rims. Coverage of a particular image format cannot be established without a documented image format or image circle.
 
 ## Values Not Printed in the Patent
 
@@ -34,15 +34,10 @@ No product is documented. The five-element, three-group arrangement belongs to t
 
 ## Corrections, 2026-11-20
 
-- The catalog name and key were changed to identify Voigtländer, the 100 mm focal length, f/2.8 aperture and patent design. The entry was made explicitly visible. The introductory note distinguishes the printed prescription from inferred iris, rims, image plane and field.
-- The subtitle now reads “DE 636,166 C, sole example — Voigtländer / Deser”, replacing the description of the Heliar design with the assignee and inventor. The spec chips now read “5 ELEMENTS / 3 GROUPS”, “DESIGN f = 100 mm”, “DESIGN F/2.8” and “ALL SPHERICAL”. The focal-length chip replaces the Heliar-family chip; earlier descriptions of preparation and limitations were removed. The design focal length and aperture remain 100 mm and f/2.8, with no marketing values.
 - Element labels were changed from shape names to “Element 1” through “Element 5”; the optical types remain correct. Optical roles and calculated focal lengths in air were added: +44.66, −146.22, −36.63, +27.65 and −54.17 mm. The front and rear doublets have combined focal lengths of +62.03 and +56.97 mm.
 - Cemented-pair labels C1 and C2 were added to elements 1/2 and 4/5, with brackets spanning surfaces 1–3 and 6–8. Group captions were simplified to “Front doublet”, “Central singlet” and “Rear doublet”.
 - Previously unmatched glass labels on elements 2/3 were replaced by LF5 (Schott), and element 5 by BASF3 (Sumita). At sodium D, LF5 differs from the printed values by ΔnD = +5.47 × 10⁻⁶ and ΔνD = +0.043; BASF3 differs by ΔnD = −1.04 × 10⁻⁶ and ΔνD = +0.032. Both labels identify compatible catalog glasses for dispersion calculations, without identifying historical suppliers or melts.
-- Elements 1/4 retain their unmatched 1.65772/51.2 pair in shorter glass descriptions. All five elements retain the printed sodium-D reference. Repetitive uncertainty notes were removed because the table explicitly names nD. No additional wavelength indices or anomalous-dispersion designations were added.
-- The infinity-distance notation was shortened without changing its value or adding a finite-focus state. The focus description now states that the patent gives no close-focus spacing or movement.
-- The explicit `aperture.maxFNumber` value of 16 was removed because the patent gives no physical stop limit; the existing f-stop list and default f/16 range are unchanged. No diaphragm blade count, blade roundness, mount, image format or marketing values were added.
-- The analysis title and patent, inventor, assignee and publication details were aligned with the source. Spacing and dates were corrected; glass equivalents, the Heliar/Dynar arrangement and absence of a documented product were explained. An unsupported 52.0° field statement was removed. Instructions about preparing the entry and counts of traced rays were removed; the optical limitations remain. Computed lengths, apertures and glass differences are now rounded to useful precision. The audit was organized by source, optical findings, corrections and remaining questions.
+- Elements 1/4 retain their unmatched 1.65772/51.2 pair. All five elements retain the printed sodium-D reference. No additional wavelength indices or anomalous-dispersion designations were added.
 
 After these changes, the EFL remains 100.00 mm, paraxial f-number 2.80, BFD 78.99 mm, iris radius 13.78 mm and image-plane position 123.99 mm; the 5.0° half-field and infinity focus are unchanged. Radii, thicknesses, refractive indices, Abbe numbers, air spaces, iris position and clear radii were preserved.
 
