@@ -1,6 +1,6 @@
 # LEICA SUPER-ANGULON-M 21mm f/3.4
 
-## Patent reference and identification
+## Patent Reference and Design Identification
 
 **Patent:** [DE 1,273,853 B](https://patents.google.com/patent/DE1273853B/)
 **Filed:** 8 March 1961
@@ -9,13 +9,13 @@
 **Assignee:** Jos. Schneider & Co., Optische Werke
 **Example details:** Sole example, printed page 2, Fig. 1; dimensions multiplied by 0.21 from the patent's f = 100 to 21 mm.
 
-The association with the Super-Angulon-M is strong: Schneider's sole example combines f/3.4, a 90° field and eight elements in four groups, and its 1961 filing precedes the product's 1963 introduction. The German and US family publications identify Macher. Product references confirm Schneider's design and manufacture for Leica, the 8/4 construction and launch date. This converging evidence supports the association without establishing a manufacturer-confirmed factory prescription. [1–4]
+The design likely belongs to the Super-Angulon-M: Schneider's sole example combines f/3.4, a 90° field and eight elements in four groups, and its 1961 filing precedes the product's 1963 introduction. The German and US family publications identify Macher. Product references confirm Schneider's design and manufacture for Leica, the 8/4 construction and launch date. Leitz lists the product as code 11103; no manufacturer statement identifies this exact table as the factory prescription. [1–5, 7]
 
 ## Optical architecture
 
-The approximately symmetrical wide-angle design has negative outer menisci surrounding two positive cemented triplets. Each triplet contains a positive biconvex element between two negative menisci. The iris lies between the triplets. Their combined focal lengths in air are 19.08 and 23.14 mm; the outer negative elements expand the field. [1]
+The approximately symmetrical wide-angle design has negative outer menisci surrounding two positive cemented triplets. The patent names these four members I–IV: front meniscus I, triplets II and III, and rear meniscus IV. Each triplet contains a positive biconvex element between two negative menisci. The iris lies between the triplets. Their combined focal lengths in air are 19.08 and 23.14 mm; the outer negative elements expand the field. [1, 5]
 
-The computed EFL is 21.0206 mm, 0.10% above the nominal 21 mm, at f/3.4. The first-to-last surface length is 44.8938 mm. The printed 8.1900 mm back focus places the image at z = 53.0838 mm; the paraxial back focus is 8.1930 mm. At the patent's 45° half-field the chief-ray image height is 20.72 mm. Distortion is about −1.32% relative to the nominal 21 mm, consistent with Fig. 2, or −1.42% relative to the computed 21.02 mm EFL used by the app. [1]
+The computed EFL is 21.02 mm, 0.10% above the nominal 21 mm, at f/3.4. The first-to-last surface length is 44.894 mm. The printed 8.190 mm back focus places the image at z = 53.084 mm; the paraxial back focus is 8.193 mm. At the patent's 45° half-field the chief-ray image height is 20.72 mm. Distortion is about −1.32% relative to the nominal 21 mm, consistent with Fig. 2, or −1.42% relative to the computed EFL. [1]
 
 ## Element-by-element analysis
 
@@ -38,7 +38,7 @@ The glass values use the patent's yellow d line; exact catalog matches confirm t
 
 ## Focus mechanism and conjugates
 
-The prescription describes infinity focus only; the patent supplies no near-focus state or movement law. The product metadata retains the 0.4 m close focus reported by 35mmc and the f/22 minimum aperture listed by CineLensWiki, which also lists the 8/4 construction. [2, 3]
+The prescription describes infinity focus only; the patent supplies no near-focus state or movement law. The product focuses to 0.4 m and stops down to f/22. Leitz distinguishes this manual close-focus limit from rangefinder coupling, which ends at 0.7 m on the listed M2/M4/M5 bodies and 1 m on the M3. Its diaphragm has four blades. [2, 3, 6, 7]
 
 ## Aspherical surfaces
 
@@ -46,7 +46,7 @@ All twelve refracting surfaces are spherical. No aspherical terms are printed or
 
 ## Apertures, image plane and model limits
 
-The iris is inferred at the midpoint of the printed diaphragm space, z = 24.0272 mm; Fig. 1 places it at about 48% of that space. Its 3.8284 mm radius follows the f/3.4 aperture. The patent gives no clear diameters. S1, S3 and S10 use Fig. 1 readings of 14.2, 7.0 and 6.5 mm; the other rims remain estimates. L2 has a beveled rim with unequal face extents in Fig. 1, so S4 remains 6.0 mm. Raising S3 from 6.0 to 7.0 mm opens the meridional bundle at 30° (1:3.41 → 1:3.17) and 40° (1:3.94 → 1:3.76); the 45° ratio stays about 1:5.87, compared with about 1:6.0 in Fig. 2. S12 remains 11.0 mm: raising it to 11.5 mm gains light only at the checked 46.3° corner, outside the declared 45° field. These bundle-width comparisons are not measurements of radiometric illumination. [1]
+The iris is inferred at the midpoint of the printed diaphragm space, z = 24.027 mm; Fig. 1 places it at about 48% of that space. Its 3.828 mm radius follows the f/3.4 aperture. The patent gives no clear diameters. S1, S3 and S10 use Fig. 1 readings of 14.2, 7.0 and 6.5 mm; the other rims remain estimates. L2 has a beveled rim with unequal face extents in Fig. 1, so S4 remains 6.0 mm. Raising S3 from 6.0 to 7.0 mm opens the meridional bundle at 30° (1:3.41 → 1:3.17) and 40° (1:3.94 → 1:3.76); the 45° ratio stays about 1:5.87, compared with about 1:6.0 in Fig. 2. S12 remains 11.0 mm: raising it to 11.5 mm gains light only at the checked 46.3° corner, outside the declared 45° field. These bundle-width comparisons are not measurements of radiometric illumination. [1]
 
 The declared 45° field reaches 96% of the 24×36 mm corner height. A geometrically clear corner does not imply full-pupil transmission. The short 8.19 mm back focus places the rear vertex about 19.6 mm behind the Leica M flange, explaining the deep rear assembly that fouls the M5/CL meter arm on early barrels; later barrels have a clearance cutout. [3]
 
@@ -57,3 +57,5 @@ The declared 45° field reaches 96% of the 24×36 mm corner height. A geometrica
 3. Hamish Gill, [Leica 21mm f/3.4 Super-Angulon review](https://www.35mmc.com/24/06/2019/leica-21mm-f-3-4-super-angulon-review/), 24 June 2019: Schneider manufacture, 1963 launch, 0.4 m focus and M5/CL clearance.
 4. [AllPhotoLenses, c_2888](https://allphotolenses.com/lenses/item/c_2888.html): Leica M, 35 mm format, Schneider manufacture, 1963 introduction and 8/4 construction. Its f/32 and 1 m entries are not used; minimum aperture and close focus follow sources 2 and 3.
 5. [US 3,209,649 A](https://patents.google.com/patent/US3209649A/en), family publication; the differing L5 Abbe value is not substituted for the German table.
+6. Paul Kay, [Leica 21mm f/3.4 Super-Angulon M](https://marinewildlife.co.uk/info/leica-21mm-f3-4-super-angulon-m/), technical information and first-hand account: four diaphragm blades, f/3.4–22 and 0.4 m focus. Its different designer and patent attribution is not used to identify this prescription.
+7. Leitz, [General Catalogue, p. 106](https://www.pacificrimcamera.com/rl/03321/03321.pdf): Super-Angulon-M code 11103, eight elements, f/22 minimum aperture, 0.4 m manual focus and separate rangefinder-coupling limits.

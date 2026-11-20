@@ -7,7 +7,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * The iris is inferred at the midpoint of the printed diaphragm space, with
  * its radius derived from f/3.4. S1, S3 and S10 rims follow Fig. 1; the remaining
  * rims are estimates. The image plane uses the printed 8.19 mm back focus,
- * rather than the computed paraxial 8.1930 mm. L5 follows the German table's
+ * rather than the computed paraxial 8.193 mm. L5 follows the German table's
  * Abbe number 42.82; the US family claim instead prints 42.32.
  */
 const LENS_DATA = {
@@ -24,7 +24,7 @@ const LENS_DATA = {
   key: "leica-super-angulon-m-21mm-f34",
   maker: "Leica",
   name: "LEICA SUPER-ANGULON-M 21mm f/3.4",
-  subtitle: "DE 1,273,853 B, Sole example — Schneider Super-Angulon production correlation",
+  subtitle: "DE 1,273,853 B, sole example — Schneider / Macher",
   catalog: {
     lensMounts: ["leica-m"],
     imageFormat: "135-full-frame",
@@ -41,7 +41,7 @@ const LENS_DATA = {
       marketing: 3.4,
       design: 3.4,
     },
-    specs: ["8 ELEMENTS / 4 GROUPS", "DESIGN f = 21.00 mm", "DESIGN F/3.4", "ALL-SPHERICAL", "90° PATENT FIELD"],
+    specs: ["8 ELEMENTS / 4 GROUPS", "DESIGN F/3.4", "ALL SPHERICAL", "90° FIELD"],
   },
   source: {
     patentNumber: "DE 1,273,853 B",
@@ -248,7 +248,14 @@ const LENS_DATA = {
     nominalFNumber: 3.4,
     fStops: [3.4, 4, 5.6, 8, 11, 16, 22],
     maxFNumber: 22,
+    blades: 4,
   },
+  groups: [
+    { text: "I", fromSurface: "1", toSurface: "2" },
+    { text: "II", fromSurface: "3", toSurface: "6" },
+    { text: "III", fromSurface: "7", toSurface: "10" },
+    { text: "IV", fromSurface: "11", toSurface: "12" },
+  ],
   doublets: [
     { text: "C1", fromSurface: "3", toSurface: "6" },
     { text: "C2", fromSurface: "7", toSurface: "10" },
