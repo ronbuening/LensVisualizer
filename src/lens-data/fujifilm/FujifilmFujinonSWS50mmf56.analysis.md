@@ -1,50 +1,60 @@
-# FUJIFILM FUJINON SWS 50mm f/5.6 — private patent-derived tuning draft
+# FUJIFILM FUJINON SW S 50mm f/5.6
 
 ## Patent reference and identification
 
 **Patent:** [JP S50-96221 A](https://patents.google.com/patent/JPS5096221A/)
-**Published:** 1975 (year retained from structured publication source)
+**Filed:** 1973-12-24
+**Published:** 1975-07-31
 **Inventors:** Ryoichi Doi; Yutaka Sakai
-**Applicant:** Fuji Photo Optical Co., Ltd.
+**Assignee:** Fuji Photo Optical Co., Ltd.
+**Example details:** Sole numerical example, Table 1; section in Fig. 1(a).
 
-The structured example is Table 1 1. This is a patent-derived representative for in-app tuning, not an exact factory prescription or a validated retail reconstruction. Optical branch/source discrepancies and variants remain separate in the retained evidence. No new supplier, measured aperture or production identity is inferred.
+The patent's f = 1 table is scaled by 50 to millimetres. It specifies f/5.6, a 90° full field and eight elements in six groups. These values strongly connect the example to the Fujinon SW S 50mm f/5.6 for the Fujica G690/GL690 interchangeable-lens 6×9 rangefinder system. The December 1973 filing also coincides with the GL690's introduction. The [Fujica GL690/GM670 instruction manual](https://www.cameramanuals.org/fuji_pdf/fujica_gl690_gm670.pdf) lists the 50mm f/5.6 interchangeable lens and its external finder.
+
+[Lallement's G690 lens reference](https://www.lallement.com/pictures/lenses.htm) gives the 90° field, 1 m minimum focus distance and f/5.6–32 aperture range. [Kamerastore's retailer listing](https://kamerastore.com/products/fujica-fujinon-50mm-f5-6-sw-s-fujica-g690) reports eight elements in six groups, the G690 mount and 1 m close focus; the element/group count is a retailer specification. No manufacturer optical diagram or production prescription has been found to establish an exact product identity.
 
 ## Optical architecture and modeled field
 
-Application .393 branch, infinity tuning model. Estimated rims/clear apertures; drawing transverse scale uncalibrated. Grant .383 remains a separate sensitivity.
+The all-spherical design has two negative front singlets, two positive cemented doublets around the stop, and two negative rear singlets. Its six air-separated groups have a negative–negative–positive–positive–negative–negative power sequence. The front doublet C1, L3/L4, has a standalone focal length of +44.24 mm; the rear doublet C2, L5/L6, is stronger at +23.68 mm.
 
-Native computed EFL: 49.998315 mm. Modeled full field: 90°; maximum traced half-field: 45°. Source/image-plane choice retained at native z=109.5155 mm. Native default geometry validation passes with zero rendering trim. Chief rays at0,half of the stated maximum,and the maximum reach the final surface without clipping. This does not prove measured retail coverage or full-pupil transmission.
+The computed EFL is 49.998315 mm and the paraxial back focal distance is 34.7741 mm, close to the printed 50 mm and 34.775 mm. The image plane retains that printed back focus, giving a 109.5155 mm total track. The stop lies 37.0155 mm behind the first vertex, derived from the patent's 72.5 mm stop-to-film distance; its split of the central gap is inferred rather than tabulated. The model opens at f/5.6.
 
-## Elements and source glass data
+At the declared 45° half-field the chief ray reaches 48.7885 mm image height, approximately −2.4% distortion and 96.6% of the catalog's 50.5 mm 6×9 half-diagonal. This agrees with the general shape of Fig. 2(c); the declared field is retained rather than enlarged to the format corner.
 
-| Element | Label | Printed n | Abbe number | Surface span |
-| --- | --- | ---: | ---: | --- |
-| 1 | L1 | 1.6425 | 58.1 | automatic source-surface assignment |
-| 2 | L2 | 1.56883 | 56 | automatic source-surface assignment |
-| 3 | L3 | 1.65844 | 50.8 | automatic source-surface assignment |
-| 4 | L4 | 1.54814 | 45.9 | automatic source-surface assignment |
-| 5 | L5 | 1.5231 | 50.9 | automatic source-surface assignment |
-| 6 | L6 | 1.6516 | 58.5 | automatic source-surface assignment |
-| 7 | L7 | 1.72825 | 28.3 | automatic source-surface assignment |
-| 8 | L8 | 1.65844 | 50.8 | automatic source-surface assignment |
+## Element-by-element analysis
 
-Published powers and spacings are preserved. The glass-index/Abbe palette controls paraxial power and the modeled dispersion; exact commercial glass identification and unlisted spectral departures are not established. Per-element powers are not separately measured here. Do not infer a supplier from the source index pair alone.
+| Element | Printed nd |   νd | Standalone f (mm) | Catalog equivalent | Optical role                                        |
+| ------- | ---------: | ---: | ----------------: | ------------------ | --------------------------------------------------- |
+| L1      |    1.64250 | 58.1 |            −58.60 | LAK6 (Sumita)      | Front negative meniscus accepting the wide field    |
+| L2      |    1.56883 | 56.0 |           −136.60 | BAC4 (HOYA)        | Weak negative meniscus before C1                    |
+| L3      |    1.65844 | 50.8 |            +21.63 | BACED5 (HOYA)      | Biconvex positive member of C1                      |
+| L4      |    1.54814 | 45.9 |            −34.68 | LLF1 (Schott)      | Biconcave flint member of C1                        |
+| L5      |    1.52310 | 50.9 |            −25.45 | KF5 (Sumita)       | Negative meniscus member of C2                      |
+| L6      |    1.65160 | 58.5 |            +15.45 | LAL7 (OHARA)       | Strong biconvex positive member of C2               |
+| L7      |    1.72825 | 28.3 |            −73.43 | SF10 (Schott)      | Rear negative flint meniscus                        |
+| L8      |    1.65844 | 50.8 |            −44.95 | BACED5 (HOYA)      | Final negative meniscus shaping exit rays and field |
 
-## Estimated apertures, rims and tuning limits
+These focal lengths describe each element in air; the cemented pairs' powers include their shared refracting interfaces.
 
-Application d9=.393 retained; grant .383 is a separate controlled sensitivity, never merged. Fixed source image109.5155mm; iris37.0155mm derives from72.5mm source distance. Aperture diameters are paraxial model estimates. Transverse Fig1 scale is uncalibrated: drawn front~40.4mm versus prose~44mm does not establish clear diameter. S10/S11 have a .47mm source airgap; current common10mm endpoint leaves.1123mm gap. Next tuning step: adjust clear versus outer endpoints within positive-gap geometry. Source indices are lowercase d-line; no exact supplier glass claim.
+## Glass identification
 
-Published radii, spacings, source glass data and image-plane choices remain in the retained baselines. Ordinary clipping and every sampled miss are retained in diagnostics; sample counts are not radiometric throughput.
+The source gives d-line refractive indices and Abbe numbers, with no commercial glass names or measured partial dispersions. The listed catalog equivalents agree within 0.000003 in nd and 0.15 in νd and supply estimated spectral curves. Their vendor names do not identify Fujifilm's suppliers or production melts. No element is identified as anomalous-dispersion glass by the patent.
 
+The positive members of C1/C2 use higher-index crowns paired with lower-index, more dispersive negative members. The rear SF10-class meniscus adds a distinctly more dispersive glass to the otherwise crown-rich palette. Unpublished spectral differences remain uncertain.
 
 ## Focus mechanism and conjugates
 
-Infinity-only static prescription. The closeFocusM field is a schema placeholder; focus movement and finite conjugates are not reconstructed. The viewer's focus control remains disabled. Keep the source plane or explicitly documented German computed plane; do not silently optimize refocus or substitute another patent branch.
+Only the infinity state is modeled. The patent supplies no near-focus spacings or moving-group table. The production lens's documented 1 m minimum focus distance is recorded separately; no finite-focus motion is inferred from it.
 
-## Validation and sensitivity scope
+## Apertures and model scope
 
-These four models are tuning drafts, not newly qualified lenses. Native build/render/fidelity and0/mid/edge chief checks are recorded in tuning-pass-20261118/evidence/native-check.json. Prior aperture/iris/branch sensitivities remain in the cumulative checkpoint; they are not new measurements. Current modeled vignetting and analysis outputs describe these explicit estimated boundaries. Unweighted ray counts are not throughput. Desktop/mobile viewer, formatting, types and targeted regression evidence are supplied in the delivery.
+Clear apertures are not tabulated. Fig. 1 gives an approximate 20 mm front semi-diameter and 7.2 mm rims at surfaces 7/8; these retain the f/5.6 axial beam and the 45° chief ray. Other clear radii remain estimates. The prose's 44 mm front diameter exceeds the drawing's approximately 40 mm diameter and does not uniquely establish a clear optical rim.
 
-## Sources and next steps
+The 0.47 mm gap between S10/S11 prevents extending their spherical caps to the approximately 12–13 mm outer radii drawn for L6/L7. The model retains 10 mm clear caps and adds opaque lands to 12 mm. This avoids intersecting surfaces without opening those apertures. The resulting geometric pupil transmission at 45° is approximately 45.17%; coating losses, absorption and measured production illumination are not established.
 
-Use the linked primary numerical source and the preserved baselines before changing any optical value. Tune estimated clear-versus-outer endpoints and iris assumptions within positive edge thickness, non-crossing gaps and declared field limits. Expand field only after tracing the new range. Retain failed/clipped rays in diagnostics. Additional factory measurements may improve realism but are not a prerequisite for using this disclosed tuning draft.
+## Sources
+
+- [JP S50-96221 A](https://patents.google.com/patent/JPS5096221A/), Table 1, Figs. 1–2 and amendment dated 1974-03-19.
+- [Fujica GL690/GM670 instruction manual](https://www.cameramanuals.org/fuji_pdf/fujica_gl690_gm670.pdf), interchangeable lenses and special viewfinders.
+- [Lallement, Fujica G690 series](https://www.lallement.com/pictures/G690.html) and [lens specifications](https://www.lallement.com/pictures/lenses.htm), camera introduction, format, focus and aperture range.
+- [Kamerastore, Fujica Fujinon 50mm f/5.6 SW S](https://kamerastore.com/products/fujica-fujinon-50mm-f5-6-sw-s-fujica-g690), retailer's mount, eight-element/six-group and close-focus specifications.
