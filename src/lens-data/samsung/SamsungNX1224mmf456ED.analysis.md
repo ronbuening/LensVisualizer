@@ -119,15 +119,13 @@ The opposite signs of the leading terms on L2 provide different peripheral depar
 
 ## Apertures, Field and Model Limits
 
-The clear radii are inferred. Selected undersized rims have been widened within Figure 9's measured bounds, retaining the existing smaller front-group caps elsewhere. S1 remains below the approximately 18.1 mm drawing reading; the G3 radii remain below approximately 9.1 / 8.7 mm. Rear radii are bounded by approximately 5.9 mm at L6, 5.7 mm at L7 and L8, 6.8 mm at L9's rear and 7.4 mm at L10. The whole pupil is not transmitted at every field, and the drawing does not establish all physical clear apertures.
+The clear radii are inferred and stay within Figure 9's measured bounds. S1 remains below the approximately 18.1 mm drawing reading; the G3 radii remain below approximately 9.1 / 8.7 mm. Rear radii are bounded by approximately 5.9 mm at L6, 5.7 mm at L7 and L8, 6.8 mm at L9's rear and 7.4 mm at L10. The whole pupil is not transmitted at every field, and the drawing does not establish all physical clear apertures.
 
 The retained 28 mm image circle is an estimate. At the printed middle and tele half-fields of 39.5° and 32°, real chief rays reach about 14.35 and 14.38 mm, suggesting approximately 28.7 mm diameter. The modeled 14 mm corner is reached at every zoom station. At wide and tele the corresponding half-fields are 50.9538° and 31.3106°, with calculated geometric pupil transmission of 48.82% and 99.44%. These are properties of the adopted apertures, without coatings, sensor cover glass or production baffles; they are not measured retail illumination.
-
-Remaining work concerns figure-to-rim agreement, the 28 versus approximately 28.7 mm field extent, and a continuous finite-focus motion. Prescription fidelity and the product correlation do not establish measured product MTF.
 
 ## Sources
 
 - [US 2013/0235465 A1](https://patents.google.com/patent/US20130235465A1/en), front page, Figure 9, equation 8 and Tables 13–15; [US 9,341,825 B2](https://patents.google.com/patent/US9341825B2/en), granted family member.
 - [LensTip product specifications](https://www.lenstip.com/1086-Samsung_NX_12-24_mm_f_4.0-5.6_ED-lens_specifications.html), product range, construction, Samsung NX mount, minimum focus and September 2012 announcement.
-- [Imaging Resource product specifications](https://www.imaging-resource.com/lenses/samsung/12-24mm-f4-5.6-ed-nx/specifications/), APS-C format, aperture range, special elements, magnification and internal focusing.
+- [Imaging Resource product specifications](https://www.imaging-resource.com/lenses/samsung/12-24mm-f4-5.6-ed-nx/specifications/), APS-C format, aperture range, special elements and internal focusing.
 - [DPReview product specifications](https://www.dpreview.com/products/samsung/lenses/samsung_12-24_4-5p6/), APS-C format, construction, special elements and close-focus data.
