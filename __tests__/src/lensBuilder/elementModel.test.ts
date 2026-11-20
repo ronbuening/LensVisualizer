@@ -9,6 +9,7 @@ import {
   elementFocalLength,
   groupFocalLength,
   insertElement,
+  insertFlareStop,
   insertStop,
   moveItem,
   removeElement,
@@ -61,7 +62,7 @@ function catalogWith(predicate: (draft: LensDataV2Input) => boolean): LensDataV2
     const model = toElementModel(draft);
     return (
       model.ok &&
-      model.model.items.every((item) => item.kind === "stop" || item.elements.length === 1 || item.cementName)
+      model.model.items.every((item) => item.kind !== "group" || item.elements.length === 1 || item.cementName)
     );
   });
   expect(found, "The catalog must exercise this supported V2 structure").toBeDefined();
@@ -141,8 +142,8 @@ describe("element model V2 mapping", () => {
     const last = model.gaps.at(-1)!;
     expect(last).toEqual({ mm: draft.gaps!["6"].values[0][0], schedule: draft.gaps!["6"].values, scheduleLabel: "BF" });
     expect(last.schedule).not.toBe(draft.gaps!["6"].values);
-    const applied = expectBuild(model, draft);
-    expect(applied.elements.slice(0, 2).map((e) => e.cemented)).toEqual(["D1", "D1"]);
+    // The authored run has no cement name, and an unchanged run is written back without one.
+    expect(expectBuild(model, draft)).toStrictEqual(draft);
   });
 
   it("marks aberration-controlled gaps and preserves their ranges", () => {
@@ -186,7 +187,7 @@ describe("element model V2 mapping", () => {
     malformed.push([curvedStop, /flat/i]);
     const air = createTemplate();
     delete air.surfaces[0].medium;
-    malformed.push([air, /begin an element/i]);
+    malformed.push([air, /curved surface in air/i]);
     const unfinished = createTemplate();
     unfinished.surfaces.at(-1)!.medium = 3;
     malformed.push([unfinished, /contiguous|end at/i]);
@@ -378,6 +379,16 @@ describe("element model edits", () => {
     expect(expectBuild(updateSurface(modelOf(draft), 0, 0, { R: 31 }), draft).elements[0].name).toBe("L10");
   });
 
+  it("keeps authored surface numbering through value edits and renumbers after structural edits", () => {
+    const draft = createTemplate();
+    for (const surface of draft.surfaces) if (/^\d+$/.test(surface.label)) surface.label = String(+surface.label + 3);
+    draft.gaps = { "9": draft.gaps!["6"] };
+    const labels = draft.surfaces.map((s) => s.label);
+    const edited = expectBuild(updateSurface(modelOf(draft), 0, 0, { R: 31 }), draft);
+    expect(edited.surfaces.map((s) => s.label)).toEqual(labels);
+    expect(expectBuild(insertElement(modelOf(draft), 0), draft).surfaces[0].label).toBe("1");
+  });
+
   it("retains zoom schedule rows and moves scheduled gap keys with their surfaces", () => {
     const draft = catalogWith((d) => !!d.zoom && Object.keys(d.gaps ?? {}).length > 1);
     const model = modelOf(draft);
@@ -440,6 +451,32 @@ describe("element model edits", () => {
     expectBuild(moveItem(model, 0, 1));
     expect(() => insertStop(model, 0)).toThrow(/already/);
     expect(() => removeItem(model, 2)).toThrow(/only aperture stop/);
+  });
+
+  it("reads flat air surfaces as flare stops and inserts, resizes, moves and removes them", () => {
+    const draft = createTemplate();
+    draft.surfaces[3].d = 1.5;
+    draft.surfaces.splice(4, 0, { label: "FS", R: "flat", d: 1.5, sd: 9 });
+    const model = modelOf(draft);
+    expect(model.items.map((item) => item.kind)).toEqual(["group", "group", "flare", "stop", "group"]);
+    expect(expectBuild(model, draft)).toStrictEqual(draft);
+    expect(expectBuild(updateSurface(model, 2, 0, { sd: 8 }), draft).surfaces[4]).toEqual({
+      label: "FS",
+      R: "flat",
+      d: 1.5,
+      sd: 8,
+    });
+    expect(() => updateSurface(model, 2, 0, { R: 20 })).toThrow(/flat/);
+    expect(() => updateSurface(model, 2, 0, { sd: undefined })).toThrow(/semi-diameter/);
+    expectBuild(moveItem(model, 2, 1), draft);
+
+    const plain = modelOf();
+    for (let at = 0; at <= plain.items.length; at++) expectBuild(insertFlareStop(plain, at));
+    const inserted = insertFlareStop(plain, 1);
+    // As narrow as the narrower neighbour (L1 Ø22, L2 Ø20), splitting the air it lands in.
+    expect(inserted.items[1]).toMatchObject({ kind: "flare", surface: { R: "flat", sd: 10 } });
+    expect(inserted.gaps[0].mm + inserted.gaps[1].mm).toBeCloseTo(plain.gaps[0].mm);
+    expect(removeItem(inserted, 1)).toStrictEqual(plain);
   });
 
   it("removes items and cemented members while retaining extras and valid surface topology", () => {
@@ -526,6 +563,57 @@ describe("element model edits", () => {
         .elements.slice(0, 3)
         .map((e) => e.cemented),
     ).toEqual(["T1", "T1", "T1"]);
+  });
+
+  it("writes authored cement names and element order back until the structure changes", () => {
+    // An unnamed doublet, then a named doublet whose explicit cement layer is unnamed; `elements` lists L2 first.
+    const draft = createTemplate();
+    const [l1, l2, l3] = draft.elements;
+    draft.elements = [
+      l2,
+      l1,
+      { ...l3, cemented: "D1" },
+      { id: 4, name: "C1", label: "Cement layer", type: "Cement Layer", nd: 1.514, vd: 54 },
+      { ...l2, id: 5, name: "L4", label: "Rear flint", type: "Negative Meniscus", cemented: "D1" },
+    ];
+    draft.surfaces = [
+      { label: "1", R: 30, d: 4, sd: 11, medium: 1 },
+      { label: "2", R: -35, d: 2, sd: 10, medium: 2 },
+      { label: "3", R: 35, d: 3, sd: 10 },
+      { label: "STO", R: "flat", d: 3 },
+      { label: "4", R: 50, d: 4, sd: 11, medium: 3 },
+      { label: "5", R: -30, d: 0.01, sd: 11, medium: 4 },
+      { label: "6", R: -30, d: 2, sd: 11, medium: 5 },
+      { label: "7", R: -80, sd: 11 },
+    ];
+    draft.gaps = { "7": draft.gaps!["6"] };
+    const cements = (d: LensDataV2Input) => d.elements.map((e) => [e.name, e.cemented]);
+    expect(expectBuild(modelOf(draft), draft)).toStrictEqual(draft);
+    const edited = expectBuild(updateSurface(modelOf(draft), 2, 0, { R: 52 }), draft);
+    expect(edited).toStrictEqual({
+      ...draft,
+      surfaces: draft.surfaces.map((s) => (s.label === "4" ? { ...s, R: 52 } : s)),
+    });
+    // A structural edit elsewhere keeps both runs as authored and writes `elements` in train order.
+    expect(cements(expectBuild(insertElement(modelOf(draft), 0), draft))).toEqual([
+      ["L6", undefined],
+      ["L1", undefined],
+      ["L2", undefined],
+      ["L3", "D1"],
+      ["C1", undefined],
+      ["L4", "D1"],
+    ]);
+    // A changed run is named as one group again, avoiding the authored name.
+    const shortened = removeElement(modelOf(draft), 2, 1);
+    expect(cements(expectBuild(shortened, draft)).slice(2)).toEqual([
+      ["L3", "D1"],
+      ["L4", "D1"],
+    ]);
+    expect(cements(expectBuild(splitGroup(modelOf(draft), 2, 1), draft)).slice(2)).toEqual([
+      ["L3", undefined],
+      ["C1", "D1"],
+      ["L4", "D1"],
+    ]);
   });
 
   it("refuses impossible edits with BuilderEditError and never mutates the original", () => {

@@ -200,6 +200,7 @@ const LENS_DATA = {
       focalLengthMm: 419.53096866181676,
       role: "0.150 mm aspherical resin layer on the front of L27; a separate medium, not a twelfth glass element.",
       diagramLabel: "L27r",
+      cemented: "H1",
     },
     {
       id: 12,
@@ -213,6 +214,7 @@ const LENS_DATA = {
       focalLengthMm: 136.22389772466977,
       role: "Positive glass meniscus, concave to the object, under the resin layer.",
       diagramLabel: "L27g",
+      cemented: "H1",
     },
   ],
   surfaces: [

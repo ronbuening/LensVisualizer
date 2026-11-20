@@ -119,6 +119,7 @@ const LENS_DATA = {
       glass: "Unmatched bonded aspherical resin (patent medium; no published dispersion coefficients)",
       role: "Thin object-side aspherical resin layer of physical lens L21.",
       diagramLabel: "L21r",
+      cemented: "H1",
     },
     {
       id: 5,
@@ -132,6 +133,7 @@ const LENS_DATA = {
       glass: "J-LASF09A (supplier-neutral catalog proxy)",
       role: "Glass substrate of physical lens L21; combined resin+glass L21 power is verified separately.",
       diagramLabel: "L21",
+      cemented: "H1",
     },
     {
       id: 6,

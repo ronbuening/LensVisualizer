@@ -72,7 +72,8 @@ const LENS_DATA = {
       "indexReference": "d",
       "focalLengthMm": -108.399192,
       "glass": "E-FD7 (HOYA catalog equivalent; production supplier unspecified)",
-      "role": "Negative front member of the first cemented doublet; catalog-equivalent glass, production melt unidentified."
+      "role": "Negative front member of the first cemented doublet; catalog-equivalent glass, production melt unidentified.",
+      "cemented": "D1"
     },
     {
       "id": 2,
@@ -85,7 +86,8 @@ const LENS_DATA = {
       "indexReference": "d",
       "focalLengthMm": 32.562689,
       "glass": "K-LaK9 (SUMITA catalog equivalent; production supplier unspecified)",
-      "role": "Positive rear member of the first cemented doublet; catalog-equivalent glass, production melt unidentified."
+      "role": "Positive rear member of the first cemented doublet; catalog-equivalent glass, production melt unidentified.",
+      "cemented": "D1"
     },
     {
       "id": 3,
@@ -98,7 +100,8 @@ const LENS_DATA = {
       "indexReference": "d",
       "focalLengthMm": 49.483499,
       "glass": "LAF2 (HOYA catalog equivalent; production supplier unspecified)",
-      "role": "Positive front member of the second cemented doublet; catalog-equivalent glass, production melt unidentified."
+      "role": "Positive front member of the second cemented doublet; catalog-equivalent glass, production melt unidentified.",
+      "cemented": "D2"
     },
     {
       "id": 4,
@@ -111,7 +114,8 @@ const LENS_DATA = {
       "indexReference": "d",
       "focalLengthMm": -31.451035,
       "glass": "SF2 (Schott catalog equivalent; production supplier unspecified)",
-      "role": "Negative rear member of the second cemented doublet, bordering the central diaphragm gap; catalog-equivalent glass, production melt unidentified."
+      "role": "Negative rear member of the second cemented doublet, bordering the central diaphragm gap; catalog-equivalent glass, production melt unidentified.",
+      "cemented": "D2"
     },
     {
       "id": 5,
@@ -124,7 +128,8 @@ const LENS_DATA = {
       "indexReference": "d",
       "focalLengthMm": 37.400408,
       "glass": "LAK6 (SUMITA catalog equivalent; production supplier unspecified)",
-      "role": "Positive front member of the rear cemented triplet; catalog-equivalent glass, production melt unidentified."
+      "role": "Positive front member of the rear cemented triplet; catalog-equivalent glass, production melt unidentified.",
+      "cemented": "T1"
     },
     {
       "id": 6,
@@ -137,7 +142,8 @@ const LENS_DATA = {
       "indexReference": "d",
       "focalLengthMm": -16.288861,
       "glass": "FF5 (HOYA catalog equivalent; production supplier unspecified)",
-      "role": "Negative middle member of the rear cemented triplet; catalog-equivalent glass, production melt unidentified."
+      "role": "Negative middle member of the rear cemented triplet; catalog-equivalent glass, production melt unidentified.",
+      "cemented": "T1"
     },
     {
       "id": 7,
@@ -150,7 +156,8 @@ const LENS_DATA = {
       "indexReference": "d",
       "focalLengthMm": 31.476193,
       "glass": "S-LAL8 (OHARA catalog equivalent; production supplier unspecified)",
-      "role": "Positive rear member of the rear cemented triplet; catalog-equivalent glass, production melt unidentified."
+      "role": "Positive rear member of the rear cemented triplet; catalog-equivalent glass, production melt unidentified.",
+      "cemented": "T1"
     },
     {
       "id": 8,

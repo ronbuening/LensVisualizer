@@ -101,7 +101,8 @@ const LENS_DATA = {
       "apd": "inferred",
       "apdNote": "Fujifilm's construction drawing places ED glass at physical element 4 (patent L14), consistent with the patent's nd = 1.49700 and νd = 81.61; HOYA FCD1 is the coordinate equivalent, and the production melt is not published.",
       "focalLengthMm": 33.411874098271845,
-      "role": "Positive low-dispersion member of the first cemented doublet, ahead of the stop."
+      "role": "Positive low-dispersion member of the first cemented doublet, ahead of the stop.",
+      "cemented": "D1"
     },
     {
       "id": 5,
@@ -114,7 +115,8 @@ const LENS_DATA = {
       "glass": "E-CF6 (HOYA catalog equivalent; production supplier unspecified)",
       "apd": false,
       "focalLengthMm": -27.61492311351216,
-      "role": "Negative rear member of the first cemented doublet, ahead of the stop."
+      "role": "Negative rear member of the first cemented doublet, ahead of the stop.",
+      "cemented": "D1"
     },
     {
       "id": 6,
@@ -127,7 +129,8 @@ const LENS_DATA = {
       "glass": "S-LAH55V (OHARA catalog equivalent; production supplier unspecified)",
       "apd": false,
       "focalLengthMm": -18.834495304764154,
-      "role": "Negative front member of the second cemented doublet, behind the stop."
+      "role": "Negative front member of the second cemented doublet, behind the stop.",
+      "cemented": "D2"
     },
     {
       "id": 7,
@@ -140,7 +143,8 @@ const LENS_DATA = {
       "glass": "E-CF6 (HOYA catalog equivalent; production supplier unspecified)",
       "apd": false,
       "focalLengthMm": 34.086496804537006,
-      "role": "Positive rear member of the second cemented doublet, behind the stop."
+      "role": "Positive rear member of the second cemented doublet, behind the stop.",
+      "cemented": "D2"
     },
     {
       "id": 8,

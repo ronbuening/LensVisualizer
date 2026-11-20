@@ -99,6 +99,7 @@ const LENS_DATA = {
       glass: "TAFD30 (supplier-neutral catalog proxy)",
       role: "Primary glass body of the inferred S3-S5 composite asphere piece.",
       diagramLabel: "L2",
+      cemented: "H1",
     },
     {
       id: 3,
@@ -112,6 +113,7 @@ const LENS_DATA = {
       glass: "Unmatched (thin composite-asphere layer coordinate 536412; no public catalog identity established)",
       role: "Thin modeled medium terminating at aspherical S5A; retained separately from the substrate.",
       diagramLabel: "L2c",
+      cemented: "H1",
     },
     {
       id: 4,
@@ -283,6 +285,7 @@ const LENS_DATA = {
       glass: "Unmatched (thin composite-asphere layer coordinate 515500; no public catalog identity established)",
       role: "Thin modeled aspheric medium at S24A-S25; retained separately from its substrate.",
       diagramLabel: "L14c",
+      cemented: "H2",
     },
     {
       id: 16,
@@ -296,6 +299,7 @@ const LENS_DATA = {
       glass: "E-FL5 (supplier-neutral catalog proxy)",
       role: "Substrate of the inferred S24-S26 rear composite asphere piece.",
       diagramLabel: "L14",
+      cemented: "H2",
     },
   ],
 

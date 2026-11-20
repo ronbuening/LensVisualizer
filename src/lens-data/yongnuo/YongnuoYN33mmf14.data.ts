@@ -109,7 +109,8 @@ const LENS_DATA = {
       "nd": 1.772,
       "vd": 49.6,
       "glass": "H-LaF50B (CDGM catalog equivalent; production supplier unspecified)",
-      "role": "Thick positive meniscus, concave to the object, at the front of the cemented G3/G4 pair."
+      "role": "Thick positive meniscus, concave to the object, at the front of the cemented G3/G4 pair.",
+      "cemented": "D1"
     },
     {
       "id": 4,
@@ -120,7 +121,8 @@ const LENS_DATA = {
       "nd": 1.883,
       "vd": 40.79,
       "glass": "H-ZLaF68C (CDGM catalog equivalent; production supplier unspecified)",
-      "role": "High-index negative meniscus cemented behind G3; the pair is a nearly afocal meniscus shell (about −794 mm) concave to the object."
+      "role": "High-index negative meniscus cemented behind G3; the pair is a nearly afocal meniscus shell (about −794 mm) concave to the object.",
+      "cemented": "D1"
     },
     {
       "id": 5,
@@ -142,7 +144,8 @@ const LENS_DATA = {
       "nd": 1.593,
       "vd": 68.62,
       "glass": "FCD515 (HOYA catalog equivalent; production supplier unspecified)",
-      "role": "Fluor-crown-class (νd 68.6) biconvex element at the front of the cemented G6/G7 pair ahead of the stop."
+      "role": "Fluor-crown-class (νd 68.6) biconvex element at the front of the cemented G6/G7 pair ahead of the stop.",
+      "cemented": "D2"
     },
     {
       "id": 7,
@@ -153,7 +156,8 @@ const LENS_DATA = {
       "nd": 1.762,
       "vd": 26.62,
       "glass": "H-ZF12 (CDGM catalog equivalent; production supplier unspecified)",
-      "role": "Biconcave flint cemented to G6; the pair is negative (about −57 mm) and is the first group's crown–flint achromat, with its strongly curved rear face toward the stop."
+      "role": "Biconcave flint cemented to G6; the pair is negative (about −57 mm) and is the first group's crown–flint achromat, with its strongly curved rear face toward the stop.",
+      "cemented": "D2"
     },
     {
       "id": 8,

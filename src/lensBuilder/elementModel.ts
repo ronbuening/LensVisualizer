@@ -2,7 +2,7 @@
  * Element-centric editing model for the lens builder.
  *
  * The builder edits a lens as an optical train read front to rear: air-separated groups (a single element, or
- * elements cemented together) and the aperture stop, each followed by an air gap. Everything that belongs to one
+ * elements cemented together), the aperture stop and any flare stops, each followed by an air gap. Everything that belongs to one
  * element (material, centre thickness, its surfaces' radii, diameters and aspheric terms) lives on that element or its
  * group, instead of being spread across rows of the V2 surface list.
  *
@@ -76,7 +76,17 @@ export interface BuilderStop {
   surface: BuilderSurface;
 }
 
-export type BuilderItem = BuilderGroup | BuilderStop;
+/**
+ * A flat surface in air other than the aperture stop: a flare cutter, fixed stop or source dummy plane. Its clear
+ * semi-diameter clips the beam, so it keeps its authored label and diameter; the train can hold any number of them.
+ */
+export interface BuilderFlareStop {
+  kind: "flare";
+  key: string;
+  surface: BuilderSurface;
+}
+
+export type BuilderItem = BuilderGroup | BuilderStop | BuilderFlareStop;
 
 /** The air after one item. */
 export interface BuilderGap {
@@ -135,7 +145,7 @@ function itemAt(model: BuilderModel, index: number): BuilderItem {
 
 function groupAt(model: BuilderModel, index: number): BuilderGroup {
   const item = itemAt(model, index);
-  if (item.kind !== "group") fail("Choose a glass group, rather than the aperture stop.");
+  if (item.kind !== "group") fail("Choose a glass group, rather than a stop.");
   return item;
 }
 
@@ -202,13 +212,20 @@ function minGap(gap: BuilderGap): number {
   return gap.schedule ? Math.min(...gap.schedule.flat()) : gap.mm;
 }
 
-function validateSurface(surface: BuilderSurface, stop = false): void {
+function isFlat(R: BuilderSurface["R"]): boolean {
+  return R === "flat" || Math.abs(R) > 1e10;
+}
+
+function validateSurface(surface: BuilderSurface, kind: BuilderItem["kind"] = "group"): void {
+  const stop = kind === "stop";
   if (surface.R !== "flat" && (!Number.isFinite(surface.R) || surface.R === 0))
     fail("A surface radius must be finite and nonzero, or flat.");
-  if (stop && surface.R !== "flat" && Math.abs(surface.R) <= 1e10) fail("The aperture stop must stay flat.");
+  if (stop && !isFlat(surface.R)) fail("The aperture stop must stay flat.");
+  if (kind === "flare" && !isFlat(surface.R)) fail("A flare stop must stay flat.");
   if (stop && surface.sd !== undefined)
     fail("The air stop's radius comes from the aperture or zoom schedule; leave its semi-diameter unset.");
   if (surface.sd !== undefined) positive(surface.sd, "Semi-diameter");
+  else if (kind === "flare") fail("A flare stop needs a clear semi-diameter.");
   else if (!stop) fail("A glass surface needs a clear semi-diameter.");
   if (surface.asphere && Object.values(surface.asphere).some((value) => !Number.isFinite(value)))
     fail("Aspheric coefficients must be finite numbers.");
@@ -237,7 +254,7 @@ function checkModel(model: BuilderModel): void {
     if (item.kind === "stop") {
       stops++;
       if (item.surface.label !== "STO") fail("The aperture stop must be labelled STO.");
-    } else {
+    } else if (item.kind === "group") {
       if (!item.elements.length || item.surfaces.length !== item.elements.length + 1)
         fail("A group needs one more surface than elements.");
       for (const element of item.elements) {
@@ -248,10 +265,10 @@ function checkModel(model: BuilderModel): void {
       }
     }
     for (const surface of itemSurfaces(item)) {
-      if (!surface.label || labels.has(surface.label) || (item.kind === "group" && surface.label === "STO"))
-        fail("Surface labels must be unique, with STO reserved for the stop.");
+      if (!surface.label || labels.has(surface.label) || (item.kind !== "stop" && surface.label === "STO"))
+        fail("Surface labels must be unique, with STO reserved for the aperture stop.");
       labels.add(surface.label);
-      validateSurface(surface, item.kind === "stop");
+      validateSurface(surface, item.kind);
     }
     const gap = model.gaps[i];
     nonnegative(gap.mm, "Air spacing");
@@ -271,9 +288,10 @@ function checkModel(model: BuilderModel): void {
 }
 
 /**
- * Read a V2 draft into the element model. Returns `ok: false` with readable reasons when the draft uses structure the
- * model cannot show (folded or mirror paths, `media` layers, a stop inside an element, element `span`s, more or fewer
- * than one stop, surfaces whose media do not form contiguous element runs).
+ * Read a V2 draft into the element model. A flat surface in air other than STO becomes a flare stop. Returns `ok: false`
+ * with readable reasons when the draft uses structure the model cannot show (folded or mirror paths, `media` layers, a
+ * stop inside an element, element `span`s, more or fewer than one stop, a curved surface in air, surfaces whose media
+ * do not form contiguous element runs).
  */
 export function toElementModel(draft: LensDataV2Input): ToModelResult {
   const reasons: string[] = [];
@@ -321,8 +339,13 @@ export function toElementModel(draft: LensDataV2Input): ToModelResult {
       appendGap(surface);
       continue;
     }
+    if (surface.medium === undefined && isFlat(surface.R)) {
+      model.items.push({ kind: "flare", key: `flare:${surface.label}`, surface: readSurface(surface) });
+      appendGap(surface);
+      continue;
+    }
     if (typeof surface.medium !== "number") {
-      reasons.push(`Surface ${surface.label} does not begin an element or mark the stop.`);
+      reasons.push(`Surface ${surface.label} is a curved surface in air, which the element editor cannot show.`);
       break;
     }
     const group: BuilderGroup = { kind: "group", key: `group:${surface.medium}`, elements: [], surfaces: [] };
@@ -379,9 +402,13 @@ export function toElementModel(draft: LensDataV2Input): ToModelResult {
 /**
  * Write the model into a new V2 draft: `elements`, `surfaces` and the scheduled entries of `gaps` come from the model;
  * other fields come from `draft`, with omission references following retained or split surfaces. Removing an
- * existing asphere removes its omission references; spherical stand-ins retain theirs. Numeric surface labels are
- * renumbered when every reference can be remapped. Automatic `L<n>` names follow structural edits only while the
- * original names form the sequence and no existing element has been renamed; explicitly authored names are kept.
+ * existing asphere removes its omission references; spherical stand-ins retain theirs. After a structural edit (an item
+ * inserted, removed, moved, cemented or split, or a label changed), numeric surface labels are renumbered when every
+ * reference can be remapped and `elements` follows the train order; other edits keep the authored labels and element
+ * order, so a copied patent numbering survives. A group that is still one of the draft's glass runs under the same
+ * name keeps each element's authored `cemented` value, including an unnamed cement layer or an unnamed group; other
+ * cemented groups share their name, generated when missing. Automatic `L<n>` names follow structural edits only while
+ * the original names form the sequence and no existing element has been renamed; explicitly authored names are kept.
  */
 export function applyElementModel(draft: LensDataV2Input, model: BuilderModel): LensDataV2Input {
   checkModel(model);
@@ -394,12 +421,16 @@ export function applyElementModel(draft: LensDataV2Input, model: BuilderModel): 
   const usedNames = new Set(
     model.items.flatMap((item) => (item.kind === "group" && item.cementName ? [item.cementName] : [])),
   );
+  const authoredCements = new Map(draft.elements.map((e) => [e.id, e.cemented]));
+  const runs = authoredRuns(draft);
   for (const [i, item] of model.items.entries()) {
-    if (item.kind === "stop") {
+    if (item.kind !== "group") {
       next.surfaces.push({ ...structuredClone(item.surface.extra), ...surfaceFields(item.surface) });
     } else {
+      const run = item.elements.map((e) => e.id).join(",");
+      const asAuthored = runs.has(run) && runs.get(run) === item.cementName;
       let cemented = item.cementName;
-      if (item.elements.length > 1 && !cemented) {
+      if (!asAuthored && item.elements.length > 1 && !cemented) {
         const prefix = item.elements.length === 2 ? "D" : "T";
         let n = 1;
         while (usedNames.has(`${prefix}${n}`)) n++;
@@ -407,6 +438,7 @@ export function applyElementModel(draft: LensDataV2Input, model: BuilderModel): 
         usedNames.add(cemented);
       }
       for (const element of item.elements) {
+        const name = asAuthored ? authoredCements.get(element.id) : item.elements.length > 1 ? cemented : undefined;
         next.elements.push({
           ...structuredClone(element.extra),
           id: element.id,
@@ -414,7 +446,7 @@ export function applyElementModel(draft: LensDataV2Input, model: BuilderModel): 
           label: element.label,
           type: element.type,
           ...structuredClone(element.material),
-          ...(item.elements.length > 1 ? { cemented } : {}),
+          ...(name !== undefined ? { cemented: name } : {}),
         });
       }
       for (const [j, surface] of item.surfaces.entries()) {
@@ -434,11 +466,49 @@ export function applyElementModel(draft: LensDataV2Input, model: BuilderModel): 
       };
     else last.d = gap.mm;
   }
-  if (Object.keys(gaps).length || draft.gaps !== undefined) next.gaps = gaps;
+  // A plain object again: the null prototype only guards the label-keyed writes above.
+  if (Object.keys(gaps).length || draft.gaps !== undefined) next.gaps = Object.fromEntries(Object.entries(gaps));
   else delete next.gaps;
   updateSourceOmissions(next, draft, model);
-  renumber(next, draft);
+  const structuralEdit = isStructuralEdit(next, draft);
+  if (!structuralEdit) {
+    const order = new Map(draft.elements.map((e, index) => [e.id, index]));
+    next.elements.sort((a, b) => order.get(a.id)! - order.get(b.id)!);
+  }
+  renumber(next, draft, structuralEdit);
   return next;
+}
+
+/** Each glass run of `draft` (element ids front to rear, comma-joined) with the cemented name `toElementModel` reads. */
+function authoredRuns(draft: LensDataV2Input): Map<string, string | undefined> {
+  const cements = new Map(draft.elements.map((e) => [e.id, e.cemented]));
+  const runs = new Map<string, string | undefined>();
+  let run: number[] = [];
+  const close = () => {
+    const names = new Set(run.map((id) => cements.get(id)).filter((name) => name !== undefined));
+    if (run.length) runs.set(run.join(","), names.size === 1 ? [...names][0] : undefined);
+    run = [];
+  };
+  for (const surface of draft.surfaces) {
+    if (typeof surface.medium === "number") run.push(surface.medium);
+    else close();
+  }
+  close();
+  return runs;
+}
+
+/**
+ * Whether the edit changed the train's structure: elements added or removed, or the surface sequence relabeled or
+ * re-mediated. The surface sequence carries the train order; an authored `elements` list out of train order is not one.
+ */
+function isStructuralEdit(next: LensDataV2Input, original: LensDataV2Input): boolean {
+  const originalIds = new Set(original.elements.map((e) => e.id));
+  return (
+    next.elements.length !== original.elements.length ||
+    next.elements.some((e) => !originalIds.has(e.id)) ||
+    next.surfaces.length !== original.surfaces.length ||
+    next.surfaces.some((s, i) => s.label !== original.surfaces[i]?.label || s.medium !== original.surfaces[i]?.medium)
+  );
 }
 
 /** Set the air after `items[gapIndex]` (a fixed gap, or the first value of a schedule). */
@@ -541,6 +611,38 @@ export function insertStop(model: BuilderModel, itemIndex: number): BuilderModel
     kind: "stop",
     key: freshKey(model, "stop"),
     surface: { label: "STO", originalLabel: null, R: "flat" },
+  });
+  next.gaps.splice(itemIndex, 0, following);
+  return next;
+}
+
+/**
+ * Insert a flare stop before `items[itemIndex]`: a flat surface in air, as wide as the narrowest neighbouring surface,
+ * splitting the air it lands in as `insertStop` does.
+ */
+export function insertFlareStop(model: BuilderModel, itemIndex: number): BuilderModel {
+  indexIn(itemIndex, model.items.length + 1, "insertion position");
+  const next = structuredClone(model);
+  const neighbours = [model.items[itemIndex - 1], model.items[itemIndex]].filter((item): item is BuilderItem => !!item);
+  const diameters = neighbours
+    .flatMap(itemSurfaces)
+    .flatMap((surface) => (surface.sd === undefined ? [] : [surface.sd]));
+  let following: BuilderGap = { mm: 1.5 };
+  if (itemIndex > 0) {
+    const gap = editableGap(model, itemIndex - 1);
+    const half = minGap(gap) / 2;
+    next.gaps[itemIndex - 1] = offsetGap(gap, -half);
+    following = { mm: half };
+    if (itemIndex === model.items.length) {
+      following = next.gaps[itemIndex - 1];
+      next.gaps[itemIndex - 1] = { mm: half };
+    }
+  }
+  const [label] = freshLabels(model, 1);
+  next.items.splice(itemIndex, 0, {
+    kind: "flare",
+    key: freshKey(model, `flare:${label}`),
+    surface: { label, originalLabel: null, R: "flat", sd: diameters.length ? Math.min(...diameters) : 10 },
   });
   next.gaps.splice(itemIndex, 0, following);
   return next;
@@ -670,7 +772,7 @@ export function updateElement(
 
 export type SurfacePatch = Partial<Pick<BuilderSurface, "R" | "sd" | "asphere">>;
 
-/** Patch `group.surfaces[surfaceIndex]`, or the stop's surface when the item is the stop (`surfaceIndex` 0). */
+/** Patch `group.surfaces[surfaceIndex]`, or a stop's surface when the item is a stop or flare stop (`surfaceIndex` 0). */
 export function updateSurface(
   model: BuilderModel,
   itemIndex: number,
@@ -684,9 +786,10 @@ export function updateSurface(
   const edited = { ...surfaces[surfaceIndex], ...structuredClone(patch) };
   if (patch.sd === undefined && Object.hasOwn(patch, "sd")) delete edited.sd;
   if (patch.asphere === undefined && Object.hasOwn(patch, "asphere")) delete edited.asphere;
-  validateSurface(edited, item.kind === "stop");
-  if (next.items[itemIndex].kind === "stop") next.items[itemIndex].surface = edited;
-  else surfaces[surfaceIndex] = edited;
+  validateSurface(edited, item.kind);
+  const target = next.items[itemIndex];
+  if (target.kind === "group") surfaces[surfaceIndex] = edited;
+  else target.surface = edited;
   return next;
 }
 
@@ -815,13 +918,11 @@ function mergeGaps(first: BuilderGap, second: BuilderGap, thickness: number): Bu
   };
 }
 
-/** Remap authored references together, never a label in isolation. Descriptive labels remain stable. */
-function renumber(next: LensDataV2Input, original: LensDataV2Input): void {
-  const structuralEdit =
-    next.elements.length !== original.elements.length ||
-    next.elements.some((e, i) => e.id !== original.elements[i]?.id) ||
-    next.surfaces.length !== original.surfaces.length ||
-    next.surfaces.some((s, i) => s.label !== original.surfaces[i]?.label || s.medium !== original.surfaces[i]?.medium);
+/**
+ * After a structural edit, remap authored references together, never a label in isolation. Descriptive labels remain
+ * stable, and a value-only edit leaves every label as authored.
+ */
+function renumber(next: LensDataV2Input, original: LensDataV2Input, structuralEdit: boolean): void {
   const originalNames = new Map(original.elements.map((e) => [e.id, e.name]));
   const renumberNames =
     structuralEdit &&
@@ -843,7 +944,7 @@ function renumber(next: LensDataV2Input, original: LensDataV2Input): void {
         `Surface ${label} is still referenced by a control, span, annotation, optical path or erratum; edit that reference in Advanced JSON first.`,
       );
   }
-  if (references.some((label) => !labels.has(label))) return;
+  if (!structuralEdit || references.some((label) => !labels.has(label))) return;
   const mapping = new Map<string, string>();
   let number = 0;
   for (const surface of next.surfaces) {
