@@ -1,48 +1,58 @@
-# SCHACHT TRAVEGON 35mm f/3.5 — private patent-derived tuning draft
+# SCHACHT TRAVEGON 35mm f/3.5
 
-## Patent reference and identification
+## Patent Reference and Design Identification
 
-**Patent:** [DE 1,020,809 B](https://patents.google.com/patent/DE1020809B/)
-**Published:** 1957 (year retained from structured publication source)
-**Inventors:** Ludwig Jakob Bertele
-**Applicant:** 
+**Patent:** [DE 1,020,809 B, _Objektiv_](https://patents.google.com/patent/DE1020809B/)
 
-The structured example is Example 2 2. This is a patent-derived representative for in-app tuning, not an exact factory prescription or a validated retail reconstruction. Optical branch/source discrepancies and variants remain separate in the retained evidence. No new supplier, measured aperture or production identity is inferred.
+**Inventors:** Ludwig Bertele
 
-## Optical architecture and modeled field
+**Assignee:** None; personal application by Ludwig Bertele, Heerbrugg
 
-Patent-derived infinity tuning model. Estimated clear apertures/rims and representative iris; modeled vignetting is not retail performance.
+**Filed:** 12 January 1955
 
-Native computed EFL: 35.003215 mm. Modeled full field: 64°; maximum traced half-field: 32°. Source/image-plane choice retained at native z=62.84922094887836 mm. Native default geometry validation passes with zero rendering trim. Chief rays at0,half of the stated maximum,and the maximum reach the final surface without clipping. This does not prove measured retail coverage or full-pupil transmission.
+**Published:** 12 December 1957
 
-## Elements and source glass data
+**Priority:** Switzerland, 18 June 1954
 
-| Element | Label | Printed n | Abbe number | Surface span |
-| --- | --- | ---: | ---: | --- |
-| 1 | L1 | 1.717 | 47.9 | automatic source-surface assignment |
-| 2 | L2 | 1.50137 | 56.5 | automatic source-surface assignment |
-| 3 | L3 | 1.72019 | 50.3 | automatic source-surface assignment |
-| 4 | L4 | 1.5927 | 35.4 | automatic source-surface assignment |
-| 5 | L5 | 1.57501 | 41.3 | automatic source-surface assignment |
-| 6 | L6 | 1.6425 | 58.1 | automatic source-surface assignment |
+**Example details:** Beispiel 2, table on PDF p. 2 and claim 5 on p. 3
 
-Published powers and spacings are preserved. The glass-index/Abbe palette controls paraxial power and the modeled dispersion; exact commercial glass identification and unlisted spectral departures are not established. Per-element powers are not separately measured here. Do not infer a supplier from the source index pair alone.
+Beispiel 2's radii and axial distances are scaled by 0.35 from 100 to 35 mm. The Travegon link is moderate: [AllPhotoLenses](https://allphotolenses.com/lenses/item/c_3226.html) credits Bertele, lists 35 mm f/3.5 and 6/3 construction, and its [schematic](http://allphotolenses.com/public/files/optical/b361f4c9a9c43e7ab72b9a1b1571b10c.png) shows Beispiel 2's flat interface and thick L4. No Schacht factory prescription confirms the link.
 
-## Estimated apertures, rims and tuning limits
+## Optical Architecture
 
-Representative iris z23.0965 mm, with printed gap portions reversed relative to the other preserved option; exact source orientation unproven. Clear front/cemented radii12.5mm and other endpoints are estimated tuning inputs, not measured factory rims. Both orientations and previous smaller-front variants remain in evidence. Actual24x36 corner tracing at32.11855deg was clear under this model. Gaussian BFD33.65572mm is computed from German Example2; conflicting US datum is not substituted. Next tuning step: review front/cemented and rear contact apertures without changing published powers.
+Three cemented doublets form an all-spherical negative–positive–positive wide-angle objective. A is a diverging meniscus convex toward the object; B and C collect the beam around the iris. Their focal lengths are −51.26, +83.05 and +23.65 mm.
 
-Published radii, spacings, source glass data and image-plane choices remain in the retained baselines. Ordinary clipping and every sampled miss are retained in diagnostics; sample counts are not radiometric throughput.
+The first air gap follows the table's 18.26 mm over the text's inconsistent 0.1836 F. Group A's printed −1.47 F approximates the calculated −1.465 F.
 
+## Element-by-Element Analysis
 
-## Focus mechanism and conjugates
+| Element | Shape / pair                | Printed nd / νd | Catalog equivalent | In-air f (mm) |
+| ------- | --------------------------- | --------------- | ------------------ | ------------: |
+| L1      | Positive meniscus / C1      | 1.71700 / 47.9  | LAF3 (Hoya)        |        +40.71 |
+| L2      | Negative meniscus / C1      | 1.50137 / 56.5  | K10 (Schott)       |        −21.19 |
+| L3      | Plano-convex positive / C2  | 1.72019 / 50.3  | Unmatched          |        +23.92 |
+| L4      | Plano-concave negative / C2 | 1.59270 / 35.4  | FF5 (Hoya)         |        −24.19 |
+| L5      | Biconcave negative / C3     | 1.57501 / 41.3  | Unmatched          |        −20.79 |
+| L6      | Biconvex positive / C3      | 1.64250 / 58.1  | LAK6 (Sumita)      |        +11.73 |
 
-Infinity-only static prescription. The closeFocusM field is a schema placeholder; focus movement and finite conjugates are not reconstructed. The viewer's focus control remains disabled. Keep the source plane or explicitly documented German computed plane; do not silently optimize refocus or substitute another patent branch.
+L1/L2 provide net negative power; L3/L4 share plane surface 5. L5 is the more dispersive partner of positive L6. The listed individual powers are in air, distinct from assembly powers.
 
-## Validation and sensitivity scope
+## Glass Identification and Selection
 
-These four models are tuning drafts, not newly qualified lenses. Native build/render/fidelity and0/mid/edge chief checks are recorded in tuning-pass-20261118/evidence/native-check.json. Prior aperture/iris/branch sensitivities remain in the cumulative checkpoint; they are not new measurements. Current modeled vignetting and analysis outputs describe these explicit estimated boundaries. Unweighted ray counts are not throughput. Desktop/mobile viewer, formatting, types and targeted regression evidence are supplied in the delivery.
+The printed indices use the helium d line. Four catalog equivalents meet |Δnd| ≤ 0.0001 and |Δνd| ≤ 0.15; discontinued Sumita LAK6 matches exactly. Historical suppliers and melts remain unknown. L3 has no exact match; J-LF7's νd 41.51 exceeds L5's 41.3 by 0.21. Unlisted partial dispersion and APO performance remain unestablished.
 
-## Sources and next steps
+## Focus Mechanism
 
-Use the linked primary numerical source and the preserved baselines before changing any optical value. Tune estimated clear-versus-outer endpoints and iris assumptions within positive edge thickness, non-crossing gaps and declared field limits. Expand field only after tracing the new range. Retain failed/clipped rays in diagnostics. Additional factory measurements may improve realism but are not a prerequisite for using this disclosed tuning draft.
+Only infinity focus is modeled; no finite-focus spacings are printed. The catalog's 0.5 m minimum comes from the [AllPhotoLenses M42 entry](https://allphotolenses.com/lenses/item/c_3226.html). [Kamerastore](https://kamerastore.com/en-us/products/a-schacht-ulm-35mm-f3-5-r-travegon-exakta) documents Exakta; [Flashback Camera's rangefinder-coupled Leica-thread version](https://flashbackcamera.jp/en/products/024698-leica-copy-travegon-35mm-f35-l) instead focuses to 1 m.
+
+## Image Plane, Iris and Field Limits
+
+Computed EFL is 35.003215 mm at f/3.5; paraxial BFD is 33.655721 mm, total track 62.849221 mm, and infinity defocus zero. [US 2,772,601](https://patents.google.com/patent/US2772601A/en) Example 2 rounds the same design at about 1.0055×. Its back-focus convention is paraxial, without conflict: US Example 1's 98.5 mm agrees with the German example's computed 98.54 mm.
+
+The iris retains 5.06 before and 2.90 after it in patent units: the printed order puts it 1.015 mm behind r6, inside L4's 1.82 mm sag at sd 7 mm. Both drawings support placement near C. Modeled z = 23.0965 mm and inferred radius = 4.570632 mm.
+
+Rims are inferred, including the 12.5 mm front rims. The stated 32° half-field reaches 21.54 of the 21.65 mm film half-diagonal; the 32.1° corner chief ray clears. Surface 8 retains one-sided clipping, so full-pupil transmission and measured production coverage remain unknown.
+
+## Sources
+
+The linked patents, product reference and seller listings supply the evidence. No maker optical drawing was found.

@@ -1,206 +1,220 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
-/** Patent-derived infinity tuning model. Estimated clear apertures/rims and representative iris; modeled vignetting is not retail performance. Original source R/d/n and variants retained in baseline and previous checkpoints. */
-const data = {
-  "schema": 2,
-  "visible": false,
-  "key": "schacht-travegon-35-patent-tuning",
-  "maker": "Schacht",
-  "name": "SCHACHT TRAVEGON 35mm f/3.5",
-  "subtitle": "Patent-derived infinity tuning model. Estimated clear apertures/rims and representative iris; modeled vignetting is not retail performance.",
-  "catalog": {
-    "imageFormat": "135-full-frame",
-    "elementCount": 6,
-    "groupCount": 3,
-    "focalLengthMm": {
-      "marketing": 35,
-      "design": 35
+/**
+ * DE 1,020,809 B, Beispiel 2: all radii and axial distances are scaled by 0.35
+ * from the printed 100 mm design to the 35 mm Travegon correlation, in millimetres.
+ * Glass coordinates are printed nd/νd values; catalog labels do not identify the
+ * production supplier. Surface rims are inferred. The iris radius is derived
+ * from f/3.5, and the image plane is the computed paraxial infinity back focus.
+ * The iris split keeps 5.06 before and 2.90 after it in the patent's units,
+ * reversing the printed order: the other order puts it 1.015 mm behind r6,
+ * inside L4's 1.82 mm sag at sd 7 mm. The patent figure and the AllPhotoLenses
+ * diagram both place the iris near group C. No finite-focus state is supplied.
+ */
+const LENS_DATA = {
+  schema: 2,
+  visible: true,
+  key: "schacht-travegon-35mm-f35",
+  maker: "Schacht",
+  name: "SCHACHT TRAVEGON 35mm f/3.5",
+  subtitle: "DE 1,020,809 B, Beispiel 2 — Travegon production correlation",
+  catalog: {
+    lensMounts: ["exakta", "m42", "leica-ltm"],
+    imageFormat: "135-full-frame",
+    elementCount: 6,
+    groupCount: 3,
+    focalLengthMm: {
+      marketing: 35,
+      design: 35,
     },
-    "fNumber": {
-      "marketing": 3.5,
-      "design": 3.5
+    fNumber: {
+      marketing: 3.5,
+      design: 3.5,
     },
-    "specs": [
-      "6 ELEMENTS / 3 GROUPS",
-      "PATENT REPRESENTATIVE",
-      "ESTIMATED IRIS",
-      "INFINITY ONLY",
-      "PRIVATE TUNING MODEL",
-      "ESTIMATED APERTURES / RIMS",
-      "INFINITY ONLY"
-    ]
+    closeFocusM: {
+      marketing: 0.5,
+    },
+    specs: ["6 ELEMENTS / 3 GROUPS", "DESIGN F/3.5", "ALL-SPHERICAL"],
   },
-  "source": {
-    "patentNumber": "DE 1,020,809 B",
-    "example": {
-      "label": "Example 2",
-      "id": "2"
+  source: {
+    patentNumber: "DE 1,020,809 B",
+    example: {
+      label: "Beispiel 2",
+      id: "2",
     },
-    "patentYear": 1957,
-    "authors": [
-      "Ludwig Jakob Bertele"
-    ],
-    "assignees": [],
-    "sdSource": "heuristic"
+    patentYear: 1957,
+    authors: ["Ludwig Bertele"],
+    assignees: [],
+    sdSource: "heuristic",
   },
-  "elements": [
+  elements: [
     {
-      "id": 1,
-      "name": "L1",
-      "label": "Element 1",
-      "type": "Source Cemented Element",
-      "nd": 1.717,
-      "vd": 47.9,
-      "indexReference": "d",
-      "glass": "Unmatched (source nd=1.717,vd=47.9; supplier unproven)",
-      "cemented": "D1"
+      id: 1,
+      name: "L1",
+      label: "Element 1",
+      type: "Positive Meniscus",
+      nd: 1.717,
+      vd: 47.9,
+      indexReference: "d",
+      focalLengthMm: 40.71,
+      glass: "LAF3 (Hoya)",
+      role: "Positive front member of diverging group A.",
+      cemented: "C1",
     },
     {
-      "id": 2,
-      "name": "L2",
-      "label": "Element 2",
-      "type": "Source Cemented Element",
-      "nd": 1.50137,
-      "vd": 56.5,
-      "indexReference": "d",
-      "glass": "Unmatched (source nd=1.50137,vd=56.5; supplier unproven)",
-      "cemented": "D1"
+      id: 2,
+      name: "L2",
+      label: "Element 2",
+      type: "Negative Meniscus",
+      nd: 1.50137,
+      vd: 56.5,
+      indexReference: "d",
+      focalLengthMm: -21.19,
+      glass: "K10 (Schott)",
+      role: "Negative rear member of diverging group A.",
+      cemented: "C1",
     },
     {
-      "id": 3,
-      "name": "L3",
-      "label": "Element 3",
-      "type": "Source Cemented Element",
-      "nd": 1.72019,
-      "vd": 50.3,
-      "indexReference": "d",
-      "glass": "Unmatched (source nd=1.72019,vd=50.3; supplier unproven)",
-      "cemented": "D2"
+      id: 3,
+      name: "L3",
+      label: "Element 3",
+      type: "Plano-Convex Positive",
+      nd: 1.72019,
+      vd: 50.3,
+      indexReference: "d",
+      focalLengthMm: 23.92,
+      glass: "Unmatched (nd 1.72019 / νd 50.3)",
+      role: "Positive front member of collecting group B.",
+      cemented: "C2",
     },
     {
-      "id": 4,
-      "name": "L4",
-      "label": "Element 4",
-      "type": "Source Cemented Element",
-      "nd": 1.5927,
-      "vd": 35.4,
-      "indexReference": "d",
-      "glass": "Unmatched (source nd=1.5927,vd=35.4; supplier unproven)",
-      "cemented": "D2"
+      id: 4,
+      name: "L4",
+      label: "Element 4",
+      type: "Plano-Concave Negative",
+      nd: 1.5927,
+      vd: 35.4,
+      indexReference: "d",
+      focalLengthMm: -24.19,
+      glass: "FF5 (Hoya)",
+      role: "Negative rear member of collecting group B.",
+      cemented: "C2",
     },
     {
-      "id": 5,
-      "name": "L5",
-      "label": "Element 5",
-      "type": "Source Cemented Element",
-      "nd": 1.57501,
-      "vd": 41.3,
-      "indexReference": "d",
-      "glass": "Unmatched (source nd=1.57501,vd=41.3; supplier unproven)",
-      "cemented": "D3"
+      id: 5,
+      name: "L5",
+      label: "Element 5",
+      type: "Biconcave Negative",
+      nd: 1.57501,
+      vd: 41.3,
+      indexReference: "d",
+      focalLengthMm: -20.79,
+      glass: "Unmatched (nd 1.57501 / νd 41.3)",
+      role: "Negative front member of collecting group C.",
+      cemented: "C3",
     },
     {
-      "id": 6,
-      "name": "L6",
-      "label": "Element 6",
-      "type": "Source Cemented Element",
-      "nd": 1.6425,
-      "vd": 58.1,
-      "indexReference": "d",
-      "glass": "Unmatched (source nd=1.6425,vd=58.1; supplier unproven)",
-      "cemented": "D3"
-    }
+      id: 6,
+      name: "L6",
+      label: "Element 6",
+      type: "Biconvex Positive",
+      nd: 1.6425,
+      vd: 58.1,
+      indexReference: "d",
+      focalLengthMm: 11.73,
+      glass: "LAK6 (Sumita)",
+      role: "Positive rear member of collecting group C.",
+      cemented: "C3",
+    },
   ],
-  "surfaces": [
+  surfaces: [
     {
-      "label": "1",
-      "R": 25.6865,
-      "d": 3.1324999999999994,
-      "sd": 12.5,
-      "medium": 1
+      label: "1",
+      R: 25.6865,
+      d: 3.1325,
+      sd: 12.5,
+      medium: 1,
     },
     {
-      "label": "2",
-      "R": 203.0385,
-      "d": 0.8715,
-      "sd": 12.5,
-      "medium": 2
+      label: "2",
+      R: 203.0385,
+      d: 0.8715,
+      sd: 12.5,
+      medium: 2,
     },
     {
-      "label": "3",
-      "R": 10.083499999999999,
-      "d": 6.391,
-      "sd": 8.5
+      label: "3",
+      R: 10.0835,
+      d: 6.391,
+      sd: 8.5,
     },
     {
-      "label": "4",
-      "R": 17.2305,
-      "d": 3.4824999999999995,
-      "sd": 7,
-      "medium": 3
+      label: "4",
+      R: 17.2305,
+      d: 3.4825,
+      sd: 7,
+      medium: 3,
     },
     {
-      "label": "5",
-      "R": "flat",
-      "d": 7.4479999999999995,
-      "sd": 7,
-      "medium": 4
+      label: "5",
+      R: "flat",
+      d: 7.448,
+      sd: 7,
+      medium: 4,
     },
     {
-      "label": "6",
-      "R": 14.3395,
-      "d": 1.7709999999999997,
-      "sd": 7
+      label: "6",
+      R: 14.3395,
+      d: 1.771,
+      sd: 7,
     },
     {
-      "label": "STO",
-      "R": "flat",
-      "d": 1.015
+      label: "STO",
+      R: "flat",
+      d: 1.015,
     },
     {
-      "label": "7",
-      "R": -170.56199999999998,
-      "d": 0.8715,
-      "sd": 6.5,
-      "medium": 5
+      label: "7",
+      R: -170.562,
+      d: 0.8715,
+      sd: 6.5,
+      medium: 5,
     },
     {
-      "label": "8",
-      "R": 12.879999999999999,
-      "d": 4.2105,
-      "sd": 6.5,
-      "medium": 6
+      label: "8",
+      R: 12.88,
+      d: 4.2105,
+      sd: 6.5,
+      medium: 6,
     },
     {
-      "label": "9",
-      "R": -15.854999999999999,
-      "d": 33.65572094887836,
-      "sd": 7.5
-    }
+      label: "9",
+      R: -15.855,
+      d: 33.65572094887836,
+      sd: 7.5,
+    },
   ],
-  "focus": {
-    "closeFocusM": 1,
-    "description": "Static infinity branch. Required closeFocusM is a placeholder; no finite-focus prescription reconstructed."
+  focus: {
+    closeFocusM: 1e15,
+    description: "Infinity focus only; the patent gives no finite-focus spacings.",
   },
-  "aperture": {
-    "nominalFNumber": 3.5,
-    "fStops": [
-      3.5,
-      4,
-      5.6,
-      8,
-      11,
-      16
-    ],
-    "maxFNumber": 16
+  aperture: {
+    nominalFNumber: 3.5,
+    fStops: [3.5, 4, 5.6, 8, 11, 16],
+    maxFNumber: 16,
   },
-  "projection": {
-    "kind": "rectilinear",
-    "fullFieldDeg": 64,
-    "maxTraceFieldDeg": 32
+  projection: {
+    kind: "rectilinear",
+    fullFieldDeg: 64,
+    maxTraceFieldDeg: 32,
   },
-  "layout": {
-    "scFill": 0.6,
-    "yScFill": 0.4
-  }
+  doublets: [
+    { text: "C1", fromSurface: "1", toSurface: "3" },
+    { text: "C2", fromSurface: "4", toSurface: "6" },
+    { text: "C3", fromSurface: "7", toSurface: "9" },
+  ],
+  layout: {
+    scFill: 0.6,
+    yScFill: 0.4,
+  },
 } satisfies LensDataV2Input;
-export default data;
+export default LENS_DATA;
