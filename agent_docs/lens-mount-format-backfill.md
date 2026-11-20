@@ -80,7 +80,7 @@ patent scaling, angular field, or circular image into an unsupported rectangular
 | Kinoptik Super-Tegea 1.9mm | Manufacturer brochures establish an 8.7 mm circular image and multiple applications, not a single rectangular capture frame. Keep `imageCircleMm`. |
 | Nikon Ultra-Micro-Nikkor 29.5mm | Fixed-conjugate photolithography objective; its reduction ratio/field does not imply a consumer film or sensor class. |
 | Goerz Doppel-Anastigmat 240mm f/8; Goerz Double Objective 240mm f/7.6; Steinheil Orthostigmat Type II 493mm and 476mm; Voigtländer Collinear Type II 150mm | The patents give focal lengths and apertures but no plate size; their field angles and von Rohr's describe coverage, not a recording frame. A period catalog listing the plate size for the matching focal length is needed. |
-| Carl Zeiss Jena Anastigmat-Satzlinse 500mm f/13 | The patent's "about 90°" field angle describes coverage at small stops, not a plate; no source ties the 500 mm example to a plate size. |
+| Carl Zeiss Jena Anastigmat-Satzlinse 500mm f/13 | The patent's "about 90°" field angle describes coverage, not a plate; no source ties the 500 mm example to a plate size. |
 | Zeiss Biotar 50mm f/1.4; Kodak Ektar 52mm f/1.5; Schneider Xenar 50mm f/2.8 | The cited sources do not securely identify the selected scaled patent example with a production variant’s recording frame. Family listings alone do not resolve that boundary. |
 | Russar-21; Russar-22 | Experimental/patent field evidence lacks a manufacturer-issued recording-frame specification for these exact prototypes. |
 | Meyer Kino-Plasmat 100mm; Double-Plasmat 135mm | Exact production mapping and format are not established by the source set; chosen scales and historic specimen names do not supply them. |
