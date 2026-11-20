@@ -1,36 +1,38 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
-/** PRIVATE canonical Fig1-constrained representative draft. Qualification pending
- * post-integration corpus/build checks; NOT a factory prescription.
- * Parent originalJP3610160B2 printedp14 Fig1 at4x cropRect105,65,245,225 reports
- * vertexpixels126,173,189,206,248,286,460,484, axisy287, track358px=21.0641mm.
- * Measured outerhalfheights/track .327,.289,.310,.411 =>6.9,6.1,6.5,8.7mm, coarse .1-.3mm.
- * L4 opticalcurveends front7.1,rear7.7-7.9, outershoulder8.7 is NOT clearaperture.
- * Native opaque rimExtensionSd8.7 represents flatlands; actualbevel not reconstructed.
- * L1front6.9,rear5.9 keepsbaseline rearclearhypothesis, envelope6.9. L2 6.1both,
- * L3 6.5both are drawing-envelope-as-curve-end hypotheses (no separate endpoints).
- * L4 rear7.8 midpoint testedwith7.7/7.9 sensitivity. No radii enlarged to rescue failed rays.
- * SourceR/d/n/asphere/irisstation/imageplane unchanged. No validation overrides or refocus.
- * Source irisdiameter unpublished; engine f2.89 paraxialstop estimate unchanged, NOT drawing5.3fit.
- * d is a labeledmodelconvention, NOT explicitlyverifiedglass-table reference.
+/**
+ * JP 3610160 B2, Example 1, at the printed millimetre scale (factor 1; no unit conversion).
+ * Radii, thicknesses, indices, Abbe numbers and the rear asphere follow the patent.
+ * The printed 2.49 mm L2-to-L3 gap is split 1.60 / 0.89 mm at the stated stop position.
+ * The iris radius is inferred from f/2.89, not from the drawing's approximately 5.3 mm radius.
+ * Figure 1 suggests outer radii of 6.9, 6.1, 6.5 and 8.7 mm, with 0.1–0.3 mm uncertainty.
+ * L1's rear clear radius of 5.9 mm is inferred to avoid overlap with L2; L2 and L3 use
+ * their drawing envelopes as curve ends because separate endpoints are indistinct.
+ * L4's clear radii are inferred as 7.1 / 7.8 mm; the rear reading spans 7.7–7.9 mm.
+ * Its 8.7 mm opaque flat lands follow the drawing's step; the bevel shape is unknown.
+ * No rim is enlarged to pass rays. The infinity image plane uses the printed fb = 14.6687 mm.
+ * Whole-unit focus to 0.35 m is described by the patent, but its spacings are not tabulated.
+ * The rear gap alone varies to an inferred 18.87 mm, with three inferred intermediate states.
+ * The helium d-line reference follows the d/g/F/C labels in Figure 7; glass suppliers are unknown.
  */
-const data = {
+const LENS_DATA = {
   schema: 2,
-  visible: false,
+  visible: true,
   layout: {
     scFill: 0.6,
     yScFill: 0.45,
   },
   focus: {
     closeFocusM: 0.35,
+    keyframes: [0, 0.25, 0.5, 0.75, 1],
     description:
-      "Infinity-only static prescription. No variable gaps and no finite-conjugate reconstruction; closeFocusM is a required schema/UI placeholder, not a validated endpoint.",
+      "Whole-unit focus from infinity to 0.35 m: all four elements and the iris move 4.2013 mm toward the object. Only the rear gap changes, from the printed 14.6687 mm to an inferred 18.87 mm; the three intermediate spacings are also inferred.",
   },
-  key: "olympus-mju-ii-35mm-f28-patent",
+  key: "olympus-mju-ii-35-f28",
   maker: "Olympus",
-  name: "OLYMPUS μ-II 35mm f/2.8",
-  subtitle:
-    "JP 3610160 B2 Example 1 — representative patent model; factory identity unproven",
+  name: "OLYMPUS 35mm f/2.8 (Olympus μ[mju:]-II)",
+  subtitle: "JP 3610160 B2, Example 1 — possible Olympus μ[mju:]-II correlation",
   catalog: {
+    lensMounts: ["fixed-lens-camera"],
     imageFormat: "135-full-frame",
     elementCount: 4,
     groupCount: 4,
@@ -42,12 +44,10 @@ const data = {
       marketing: 2.8,
       design: 2.89,
     },
-    specs: [
-      "4 ELEMENTS / 4 GROUPS",
-      "PATENT REPRESENTATIVE",
-      "INFINITY ONLY",
-      "1 ASPHERICAL SURFACE",
-    ],
+    closeFocusM: {
+      marketing: 0.35,
+    },
+    specs: ["4 ELEMENTS / 4 GROUPS", "DESIGN f = 33.91 mm", "DESIGN F/2.89", "1 ASPHERICAL SURFACE"],
   },
   source: {
     patentNumber: "JP 3610160 B2",
@@ -68,10 +68,10 @@ const data = {
       type: "Positive Meniscus",
       nd: 1.7432,
       vd: 49.31,
-      glass: "Unmatched (source n=1.7432, Abbe=49.31; supplier unproven)",
+      focalLengthMm: 20.69,
+      glass: "S-LAM60 (Ohara)",
       indexReference: "d",
-      indexReferenceNote:
-        "d-line model convention supported by parent-side pixel verification of d/g/F/C aberration labels. Source table uses plain n/Abbe without explicit reference-line statement; glass-table d reference and exact glass identity are not asserted.",
+      role: "Positive front collector",
     },
     {
       id: 2,
@@ -80,10 +80,10 @@ const data = {
       type: "Biconcave Negative",
       nd: 1.72825,
       vd: 28.46,
-      glass: "Unmatched (source n=1.72825, Abbe=28.46; supplier unproven)",
+      focalLengthMm: -16.21,
+      glass: "S-TIH10 (Ohara)",
       indexReference: "d",
-      indexReferenceNote:
-        "d-line model convention supported by parent-side pixel verification of d/g/F/C aberration labels. Source table uses plain n/Abbe without explicit reference-line statement; glass-table d reference and exact glass identity are not asserted.",
+      role: "Dispersive negative element ahead of the iris",
     },
     {
       id: 3,
@@ -92,22 +92,22 @@ const data = {
       type: "Biconvex Positive",
       nd: 1.7859,
       vd: 44.19,
-      glass: "Unmatched (source n=1.7859, Abbe=44.19; supplier unproven)",
+      focalLengthMm: 20.5,
+      glass: "S-LAH51 (Ohara)",
       indexReference: "d",
-      indexReferenceNote:
-        "d-line model convention supported by parent-side pixel verification of d/g/F/C aberration labels. Source table uses plain n/Abbe without explicit reference-line statement; glass-table d reference and exact glass identity are not asserted.",
+      role: "Positive element behind the iris",
     },
     {
       id: 4,
       name: "L4",
       label: "Element 4",
-      type: "Negative Meniscus (1× Asph)",
+      type: "Negative Meniscus",
       nd: 1.52542,
       vd: 55.78,
-      glass: "Unmatched (source n=1.52542, Abbe=55.78; supplier unproven)",
+      focalLengthMm: -62.97,
+      glass: "Unmatched (COP resin, Zeonex type; nd 1.52542 / νd 55.78)",
       indexReference: "d",
-      indexReferenceNote:
-        "d-line model convention supported by parent-side pixel verification of d/g/F/C aberration labels. Source table uses plain n/Abbe without explicit reference-line statement; glass-table d reference and exact glass identity are not asserted.",
+      role: "Negative rear resin element with an aspherical image-side surface",
     },
   ],
   surfaces: [
@@ -166,7 +166,6 @@ const data = {
     {
       label: "8A",
       R: -11.8346,
-      d: 14.6687,
       sd: 7.8,
       asphere: {
         K: 0,
@@ -178,6 +177,12 @@ const data = {
       rimExtensionSd: 8.7,
     },
   ],
+  gaps: {
+    "8A": {
+      label: "BF",
+      values: [[14.6687, 15.535, 16.506, 17.6069, 18.87]],
+    },
+  },
   aperture: {
     nominalFNumber: 2.89,
     fStops: [2.89, 4, 5.6, 8, 11],
@@ -189,4 +194,4 @@ const data = {
     maxTraceFieldDeg: 32,
   },
 } satisfies LensDataV2Input;
-export default data;
+export default LENS_DATA;
