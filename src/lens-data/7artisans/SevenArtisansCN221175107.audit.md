@@ -69,7 +69,8 @@ No 7Artisans product with this prescription is documented. The AstrHori 40mm f/5
 | L7, H-ZF7LAGT | 1.805 / 25.4 | 1.80518 / 25.46 | +0.00018 / +0.06 |
 
 - L2 uses Hoya's FCD1 dispersion curve, differing from the printed values by Δnd = 0 and Δνd = +0.01. This is a spectral proxy, since the patent calls all glasses domestic and does not establish Hoya supply. No anomalous-dispersion designation or additional spectral-line indices are given.
-- L5 and L7 use CDGM H-ZF4A and H-ZF7LA dispersion curves for the patent's high-transmittance grades H-ZF4AGT and H-ZF7LAGT. The curves differ from the named glasses' values by Δnd = 0 for both; Δνd = −0.001203 for L5 and −0.003744 for L7.- Changed the final air gap from the former 23.83 mm axial best-RMS plane to the 23.51 mm paraxial BFD. Set nominal aperture to the printed f/5.6 instead of f/5.78. Removed f/22 from the aperture range because it belonged to the unrelated AstrHori lens. The modeled range is f/5.6–16; no mechanical stop range is documented.
+- L5 and L7 use CDGM H-ZF4A and H-ZF7LA dispersion curves for the patent's high-transmittance grades H-ZF4AGT and H-ZF7LAGT. The curves differ from the named glasses' values by Δnd = 0 for both; Δνd = −0.001203 for L5 and −0.003744 for L7.
+- Changed the final air gap from the former 23.83 mm axial best-RMS plane to the 23.51 mm paraxial BFD. Set nominal aperture to the printed f/5.6 instead of f/5.78. Removed f/22 from the aperture range because it belonged to the unrelated AstrHori lens. The modeled range is f/5.6–16; no mechanical stop range is documented.
 - Changed `focus.closeFocusM` from 1e9 to 1e15 and described infinity focus only because no finite-focus prescription is published. No focus states, radii, internal distances, stop position, clear radii or dimensional scale were altered today.
 
 The model gives EFL 39.84 mm, f/5.60, BFD 23.51 mm, iris radius 3.226 mm, half-field 27.8° and total track 51.00 mm.
@@ -89,9 +90,29 @@ Wide-open geometric transmission changed from 99.0/85.8/67.8% to 100/94.5/78.3% 
 
 - L1, L3, L4 and L6 now carry the CDGM names H-LaK53B, H-F4 and H-ZLaF92 and trace on CDGM's catalog dispersion for those glasses, with unchanged nd/νd (1.75500/52.32, 1.62005/36.35, 2.00330/28.32). All six CDGM-named elements now use CDGM curves, and L2 uses Hoya's FCD1 curve. The L4/L6 index correction for the printed value 2 stands as recorded above.
 
+### 2026-11-20 final check against the drawing
+
+The page was compared with Fig. 1 measured afresh at its own 150 dpi resolution. The seven glass thicknesses give 28.8–30.0 px/mm (29.0 overall), and the drawn sags of S1 and S12 at their rims match the radii at that scale across the axis as well as along it. The L6–L7 gap is drawn 1.29 mm against the printed 1.3 mm; the other air gaps are not to scale. Drawn heights: L1, L3 and L4 6.48 mm, L2 5.24 mm, L5 and L6 8.24 mm, L7 10.24 mm (10.07 mm where its corner bevel begins). L1's rear curve ends at 5.4 mm. L7's front curve ends at 7.66 mm, exactly where it meets L6's rear face; the printed radii and gap put that meeting at 7.67 mm.
+
+| Item | Before | After | Reason |
+| --- | --- | --- | --- |
+| S9 and S10 (L6) | 7.3 mm | 8.2 mm | Drawn at 8.24 mm and square-cut. The 7.45 mm meeting point of S8 and S9 limits only L5's rear face, which stays at 7.3 mm; S9 clears it. |
+| S11 cap (L7) | 7.7 mm | 7.6 mm | With L6 at its drawn height, S10 and S11 would cross at 7.67 mm. At 7.6 mm they are 0.03 mm apart, as the drawing shows them touching. The flat land still runs to 9.8 mm. |
+| checks.gapSagFrac | 0.96 | 0.98 | The S11 land takes 1.267 mm of the 1.300 mm S10–S11 gap; 0.97 allows only 1.261 mm. |
+| L2 tag | none | inferred APD | Claim 9 and paragraph 0036 name FCD1, a fluorophosphate extra-low-dispersion crown; catalog P g,F = 0.5389, about 0.032 above the normal line. The patent does not discuss partial dispersion. |
+
+Against the rims before today's rim review, wide-open transmission is unchanged through 22.8° and rises at 25.7° and 28.5° (85.8/67.8% → 99.9/87.7%; the rims set earlier today gave 94.5/78.3%). No field loses light. The S11 cap is a cut needed for spacing: restoring its 9.8 mm curve would make S10 and S11 overlap. The L1 cap and land cost no light and match the drawing, so they stay. The model's half-field moved from 28.8° to 28.6°, now set by the S11 cap, still beyond the 28.5° full-frame corner, where the chief ray reaches 21.65 mm unobstructed. The aperture stays f/5.6 with no rim limiting the axial beam; EFL 39.84 mm is unchanged. Kept: S1 6.5, S2 5.3 with its 6.5 mm land, S3/S4 5.2, S5–S7 6.5, S8 7.3 and S12 9.8 mm (4.3% under the drawing).
+
+Two differences from the drawing remain. L5's rear face stays 0.9 mm under the drawn 8.2 mm, because with the printed 0.94 mm gap its curve would cross L6's front face. The site joins a cemented element's front and rear rims with a straight edge, and a flat land cannot be added on a cemented face, so L3 and L5 show slanted tops where Fig. 1 draws a flat step at S4 and S7.
+
+Labels on the page agree with the figure and prescription: L1–L7 follow the figure's numerals 1–7, element types agree with the radius signs, and the inspector focal lengths (+59.84, +15.83, −10.20, +8.33, −12.04, +27.21 and −27.09 mm) agree with a fresh paraxial calculation. The cemented brackets C1 (S3–S5) and C2 (S6–S8) enclose L2–L3 and L4–L5; no group brackets are drawn because the patent names no groups; the iris sits between L1 and L2. The focus block shows infinity only, with a plain description, and nothing moves.
+
+All seven glass labels resolve to exact catalog rows: against the printed values, Δnd ≤ 0.00025 and Δνd ≤ 0.06, apart from the recorded L4/L6 index erratum. CDGM H-FK61 is an equally exact row for L2; FCD1 stays because the patent names it. No element uses constant dispersion, and the chromatic tab compares all four lines. Against Fig. 5, each line's paraxial focus relative to the d line is g −0.025, F −0.036, e −0.017 and C +0.028 mm in the patent and −0.026, −0.040, −0.020 and +0.032 mm in the model. The spread between lines at the 3.5 mm pupil rim agrees within 0.005 mm, so the glass choices reproduce the patent's colour correction. The model's d-line spherical aberration at that rim, −0.18 mm, is larger than the plotted −0.155 mm. With the printed index 2 on L4 and L6 it would be about −0.14 mm, so Fig. 5 does not settle that erratum either way.
+
 ## Remaining Questions
 
-- L5's rear face and L6 remain about 0.9 mm smaller than drawn because the printed 0.94 mm gap does not leave room for the figure's 8.2 mm outline.
+- L5's rear face remains about 0.9 mm smaller than drawn because the printed 0.94 mm gap does not leave room for both it and L6 at the figure's 8.2 mm outline.
+- The site draws a cemented pair's outer edge as a straight line between the two rims, so L3 and L5 show slanted tops where Fig. 1 draws a flat step at the cemented face (L3 from 5.2 to 6.5 mm, L5 from 6.5 to 8.2 mm).
 - FCD1's domestic material identity and supplier remain uncertain.
 - The field-curvature discrepancy is unresolved. The initial MTF values do not establish the patent's full-field MTF claim for the current model, and no apochromatic performance is established.
 - No product, production mount, marketing specifications, minimum focus distance, finite-focus spacings, mechanical stop range, diaphragm blade count or blade roundedness is documented. Physical iris dimensions also remain unconfirmed.
