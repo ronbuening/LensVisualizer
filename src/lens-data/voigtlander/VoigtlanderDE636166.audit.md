@@ -41,8 +41,15 @@ No product is documented. The five-element, three-group arrangement belongs to t
 
 After these changes, the EFL remains 100.00 mm, paraxial f-number 2.80, BFD 78.99 mm, iris radius 13.78 mm and image-plane position 123.99 mm; the 5.0° half-field and infinity focus are unchanged. Radii, thicknesses, refractive indices, Abbe numbers, air spaces, iris position and clear radii were preserved.
 
+**2026-11-20 rim review**
+
+- The drawing sheet is to scale. At 300 dpi the vertex spacings give 11.83 px/mm over the 12 mm from surface 1 to surface 3, 11.75 px/mm over the 20 mm from surface 3 to surface 6, and 11.83 px/mm over the 33 mm from surface 3 to surface 8.
+- Drawn rims, taken as half the distance between the top and bottom edge lines: front doublet 18.55 mm, central lens 15.47 mm, rear doublet 15.38 mm. The file's 18.5, 15.25 and 15.25 mm are within 0.3%, 1.4% and 0.9% of these readings.
+- All three groups are drawn square-cut. The cemented interfaces at surfaces 2 and 7 meet the flat rim where their radii place them. Drawn over the sheet at the same scale, the model outline follows every edge within one line width, about 0.6 mm.
+- No clear radius was changed, because every reading is within measurement noise. Relative illumination at the 5.0° half-field stays at 96.5%, and the f-number stays 2.80. The surface check reports no errors, and the aperture check finds no rim limiting the f/2.8 beam.
+
 ## Remaining Questions
 
-The iris midpoint, all clear radii and chosen field remain inferred. Agreement of the drawn optical rims within about 3% does not establish manufacturing apertures. The patent gives no field angle for its astigmatism claim. Elements 1/4 remain unmatched, and historical suppliers and melts remain unknown for every element.
+The iris midpoint, all clear radii and chosen field remain inferred. The clear radii agree with the to-scale drawing within 1.5%, but this does not establish manufacturing apertures. The patent gives no field angle for its astigmatism claim. Elements 1/4 remain unmatched, and historical suppliers and melts remain unknown for every element.
 
 No source establishes a product, diaphragm blade count or roundness, physical minimum aperture, mount, image format, image circle or minimum focus distance. These values are omitted. Mechanical baffles, stray-light rejection, measured chromatic aberration, polychromatic MTF, transmission and production performance remain undocumented.

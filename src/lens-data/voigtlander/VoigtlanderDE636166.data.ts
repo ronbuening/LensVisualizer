@@ -5,7 +5,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * The patent gives f = 100 mm, f/2.8, and sodium-D indices with Abbe numbers.
  * Radii, thicknesses and air spaces follow the printed table. The iris position
  * is inferred at the midpoint of the 9 mm rear air space, split 4.5/4.5 mm;
- * its radius is derived from f/2.8. All clear semi-diameters are inferred.
+ * its radius is derived from f/2.8. Clear semi-diameters are inferred from the
+ * f/2.8 axial beam; they lie within 1.5 % of the rims on the to-scale drawing
+ * sheet (18.55, 15.47 and 15.38 mm), and each group is square-cut as drawn.
  * The image plane is calculated from the paraxial infinity back focus.
  * The 5° half-field is a model choice; the patent states no field angle.
  */

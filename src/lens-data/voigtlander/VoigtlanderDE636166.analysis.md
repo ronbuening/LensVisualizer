@@ -62,7 +62,7 @@ The model describes infinity focus only, at the calculated paraxial image plane.
 
 The iris is inferred at the midpoint of the 9 mm air space after surface 5: 27.5 mm behind the first vertex, with 4.5 mm on each side. Its computed radius is 13.78 mm for paraxial f/2.8. Pupil aberration reduces the admitted real entrance radius to about 17.51 mm, corresponding to f/2.86. The difference is an optical property of the inferred stop placement.
 
-The chosen 5° half-field establishes no source image circle or camera format. All rims are inferred and agree with the drawing within about 3%. Minimum modeled edge thickness is about 2.30 mm.
+The chosen 5° half-field establishes no source image circle or camera format. All rims are inferred from the f/2.8 axial beam. The drawing sheet is to scale, and its rims measure about 18.6 mm at the front doublet, 15.5 mm at the central lens and 15.4 mm at the rear doublet; the model's 18.5 and 15.25 mm rims lie within 1.5% of those readings. As drawn, each group is square-cut, and both cemented interfaces run out to the full rim. Minimum modeled edge thickness is about 2.30 mm.
 
 ## Aberration Correction and Model Limits
 
