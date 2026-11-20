@@ -1,11 +1,21 @@
-import type { LensDataV2Input } from "../main/src/types/lensDataV2.js";
-const data = {
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * US 2013/0235465 A1, Example 5, Tables 13–15 and Figure 9, in millimetres
+ * at the printed scale. Radii, thicknesses, d-line glass data, three aspheres,
+ * stop position and three infinity zoom states are printed. The other 98 zoom
+ * states and paraxial image distances are calculated; the iris radius follows
+ * the printed f-number at each station. Clear radii combine ray estimates with
+ * Figure 9 bounds; the rear land on surface 2 follows its drawn vertical edge.
+ * The 28 mm image circle is an estimate. Only infinity focus is included.
+ */
+const LENS_DATA = {
   schema: 2,
-  key: "samsung-arimoto-us20130235465-example5-reference",
+  key: "samsung-nx-12-24mm-f4-56-ed",
   maker: "Samsung",
-  name: "ARIMOTO US20130235465 — EXAMPLE 5 ZOOM REFERENCE",
-  subtitle:
-    "Patent-only infinity / D-line reference · modeled 28 mm circle · estimated apertures and solved cam",
+  name: "SAMSUNG 12-24mm f/4-5.6 ED",
+  subtitle: "US 2013/0235465 A1, Example 5 — Samsung NX 12-24mm production correlation",
+  visible: true,
   source: {
     patentNumber: "US 2013/0235465 A1",
     patentYear: 2013,
@@ -15,159 +25,143 @@ const data = {
     },
     authors: ["Tetsuya Arimoto"],
     assignees: ["Samsung Electronics Co., Ltd."],
-    sdSource: "heuristic",
   },
   catalog: {
+    lensMounts: ["samsung-nx"],
+    imageFormat: "aps-c",
     elementCount: 10,
     groupCount: 8,
     focalLengthMm: {
+      marketing: [12, 24],
       design: [12.36, 23.4],
     },
     fNumber: {
+      marketing: 4,
       design: 4.1,
     },
-    specs: [
-      "PATENT-ONLY REFERENCE · NOT A FACTORY NX12–24 PRESCRIPTION",
-      "SOURCE 3 INFINITY ANCHORS · COMPUTED INTERMEDIATE CAM",
-      "SOURCE 2 ASPHERICAL ELEMENTS / 3 SURFACES",
-      "DERIVED IRIS DIAMETER · ESTIMATED CLEAR RADII",
-      "BARE GLASS · NO UNSPECIFIED OPTIONAL FILTER",
-      "APP-READY INFINITY / SODIUM D REFERENCE",
-      "CHOSEN 28 mm MODELED IMAGE CIRCLE · NOT OEM COVERAGE",
-      "SOURCE FINITE STATES PRESERVED IN EVIDENCE · NO FINITE SCHEDULE",
-    ],
+    closeFocusM: {
+      marketing: 0.24,
+    },
+    specs: ["10 ELEMENTS / 8 GROUPS", "DESIGN F/4.1–5.8", "1 ED ELEMENT", "2 ASPHERICAL ELEMENTS"],
     imageCircleMm: 28,
   },
   elements: [
     {
       id: 1,
       name: "L1",
-      label: "L1",
+      label: "Element 1",
       type: "Negative Meniscus",
       nd: 1.83481,
       vd: 42.72,
-      indexReference: "D",
-      indexReferenceNote:
-        "Literal Nd/Vd. No exact glass/melt or verified calibrated dispersion claimed; D-line only.",
-      glass:
-        "Unmatched (literal patent Nd/Vd; no exact catalog glass identity asserted)",
+      focalLengthMm: -25.12,
+      glass: "TAFD5F (HOYA catalog equivalent; production supplier unspecified)",
+      role: "Negative front meniscus of G1.",
     },
     {
       id: 2,
       name: "L2",
-      label: "L2",
+      label: "Element 2",
       type: "Negative Meniscus",
       nd: 1.7725,
       vd: 49.62,
-      indexReference: "D",
-      indexReferenceNote:
-        "Literal Nd/Vd. No exact glass/melt or verified calibrated dispersion claimed; D-line only.",
-      glass:
-        "Unmatched (literal patent Nd/Vd; no exact catalog glass identity asserted)",
+      focalLengthMm: -19.26,
+      glass: "TAF1 (HOYA catalog equivalent; production supplier unspecified)",
+      role: "Aspherical negative rear element of G1.",
     },
     {
       id: 3,
       name: "L3",
-      label: "L3",
+      label: "Element 3",
       type: "Positive Meniscus",
       nd: 1.84666,
       vd: 23.78,
-      indexReference: "D",
-      indexReferenceNote:
-        "Literal Nd/Vd. No exact glass/melt or verified calibrated dispersion claimed; D-line only.",
-      glass:
-        "Unmatched (literal patent Nd/Vd; no exact catalog glass identity asserted)",
+      focalLengthMm: 43.47,
+      glass: "FDS90 (HOYA catalog equivalent; production supplier unspecified)",
+      role: "Positive singlet forming G2.",
     },
     {
       id: 4,
       name: "L4",
-      label: "L4",
+      label: "Element 4",
       type: "Negative Meniscus",
       nd: 1.84666,
       vd: 23.78,
-      indexReference: "D",
-      indexReferenceNote:
-        "Literal Nd/Vd. No exact glass/melt or verified calibrated dispersion claimed; D-line only.",
-      glass:
-        "Unmatched (literal patent Nd/Vd; no exact catalog glass identity asserted)",
+      focalLengthMm: -48.58,
+      glass: "FDS90 (HOYA catalog equivalent; production supplier unspecified)",
+      cemented: "C1",
+      role: "Negative front member of the G3 cemented doublet.",
     },
     {
       id: 5,
       name: "L5",
-      label: "L5",
+      label: "Element 5",
       type: "Biconvex Positive",
       nd: 1.60342,
       vd: 38.01,
-      indexReference: "D",
-      indexReferenceNote:
-        "Literal Nd/Vd. No exact glass/melt or verified calibrated dispersion claimed; D-line only.",
-      glass:
-        "Unmatched (literal patent Nd/Vd; no exact catalog glass identity asserted)",
+      focalLengthMm: 24.53,
+      glass: "E-F5 (HOYA catalog equivalent; production supplier unspecified)",
+      cemented: "C1",
+      role: "Positive rear member of the G3 cemented doublet.",
     },
     {
       id: 6,
       name: "L6",
-      label: "L6",
+      label: "Element 6",
       type: "Positive Meniscus",
       nd: 1.497,
       vd: 81.61,
-      indexReference: "D",
-      indexReferenceNote:
-        "Literal Nd/Vd. No exact glass/melt or verified calibrated dispersion claimed; D-line only.",
-      glass:
-        "Unmatched (literal patent Nd/Vd; no exact catalog glass identity asserted)",
+      focalLengthMm: 30.06,
+      glass: "FCD1 (HOYA catalog equivalent; production supplier unspecified)",
+      apd: "inferred",
+      apdNote:
+        "FCD1 matches the low-dispersion glass expected for the product's single ED element; the position is inferred from Example 5.",
+      role: "Low-dispersion positive meniscus at the front of G4.",
     },
     {
       id: 7,
       name: "L7",
-      label: "L7",
+      label: "Element 7",
       type: "Biconvex Positive",
       nd: 1.48749,
       vd: 70.44,
-      indexReference: "D",
-      indexReferenceNote:
-        "Literal Nd/Vd. No exact glass/melt or verified calibrated dispersion claimed; D-line only.",
-      glass:
-        "Unmatched (literal patent Nd/Vd; no exact catalog glass identity asserted)",
+      focalLengthMm: 25.28,
+      glass: "FC5 (HOYA catalog equivalent; production supplier unspecified)",
+      role: "Positive singlet in the rear group.",
     },
     {
       id: 8,
       name: "L8",
-      label: "L8",
+      label: "Element 8",
       type: "Biconcave Negative",
       nd: 1.883,
       vd: 40.8,
-      indexReference: "D",
-      indexReferenceNote:
-        "Literal Nd/Vd. No exact glass/melt or verified calibrated dispersion claimed; D-line only.",
-      glass:
-        "Unmatched (literal patent Nd/Vd; no exact catalog glass identity asserted)",
+      focalLengthMm: -9.55,
+      glass: "TAFD30 (HOYA catalog equivalent; production supplier unspecified)",
+      cemented: "C2",
+      role: "Negative front member of the rear cemented doublet.",
     },
     {
       id: 9,
       name: "L9",
-      label: "L9",
+      label: "Element 9",
       type: "Biconvex Positive",
       nd: 1.48749,
       vd: 70.44,
-      indexReference: "D",
-      indexReferenceNote:
-        "Literal Nd/Vd. No exact glass/melt or verified calibrated dispersion claimed; D-line only.",
-      glass:
-        "Unmatched (literal patent Nd/Vd; no exact catalog glass identity asserted)",
+      focalLengthMm: 16.41,
+      glass: "FC5 (HOYA catalog equivalent; production supplier unspecified)",
+      cemented: "C2",
+      role: "Positive rear member of the rear cemented doublet.",
     },
     {
       id: 10,
       name: "L10",
-      label: "L10",
+      label: "Element 10",
       type: "Negative Meniscus",
       nd: 1.7725,
       vd: 49.62,
-      indexReference: "D",
-      indexReferenceNote:
-        "Literal Nd/Vd. No exact glass/melt or verified calibrated dispersion claimed; D-line only.",
-      glass:
-        "Unmatched (literal patent Nd/Vd; no exact catalog glass identity asserted)",
+      focalLengthMm: -75.01,
+      glass: "TAF1 (HOYA catalog equivalent; production supplier unspecified)",
+      role: "Aspherical negative meniscus at the rear of G4.",
     },
   ],
   surfaces: [
@@ -175,7 +169,7 @@ const data = {
       label: "1",
       R: 35.537,
       d: 3,
-      sd: 15.8,
+      sd: 17.7,
       medium: 1,
     },
     {
@@ -183,6 +177,7 @@ const data = {
       R: 12.683,
       d: 8.11,
       sd: 11.2,
+      rimExtensionSd: 17.7,
     },
     {
       label: "3",
@@ -226,20 +221,20 @@ const data = {
       label: "7",
       R: 26.177,
       d: 1,
-      sd: 5.7,
+      sd: 8.2,
       medium: 4,
     },
     {
       label: "8",
       R: 15.716,
       d: 4,
-      sd: 5.4,
+      sd: 7.8,
       medium: 5,
     },
     {
       label: "9",
       R: -230.085,
-      sd: 4.9,
+      sd: 7.4,
     },
     {
       label: "STO",
@@ -250,59 +245,59 @@ const data = {
       label: "11",
       R: 14.289,
       d: 3,
-      sd: 5.3,
+      sd: 5.9,
       medium: 6,
     },
     {
       label: "12",
       R: 304.443,
       d: 2.55,
-      sd: 5.1,
+      sd: 5.9,
     },
     {
       label: "13",
       R: 19.022,
       d: 2.4,
-      sd: 4.6,
+      sd: 5.7,
       medium: 7,
     },
     {
       label: "14",
       R: -33.561,
       d: 1.2,
-      sd: 4.4,
+      sd: 5.7,
     },
     {
       label: "15",
       R: -20.891,
       d: 1.2,
-      sd: 4,
+      sd: 5.7,
       medium: 8,
     },
     {
       label: "16",
       R: 14.528,
       d: 6.5,
-      sd: 3.8,
+      sd: 5.7,
       medium: 9,
     },
     {
       label: "17",
       R: -15.186,
       d: 1,
-      sd: 5.1,
+      sd: 6.8,
     },
     {
       label: "18",
       R: -22.568,
       d: 1.5,
-      sd: 5.4,
+      sd: 7.2,
       medium: 10,
     },
     {
       label: "19",
       R: -38.034,
-      sd: 5.9,
+      sd: 7.4,
       asphere: {
         K: 0,
         A4: 0.0000671962,
@@ -926,7 +921,7 @@ const data = {
   focus: {
     closeFocusM: 1000000000000000,
     description:
-      "Infinity-only scoped patent reference. Exact printed finite rows pass separate native diagnostics but are not installed: no continuous finite zoom/focus schedule is supported by three source rows. No retail focus/coverage identity. Cam is computed, clear radii estimated; modeled image circle 28 mm.",
+      "Infinity focus only. The patent also tabulates finite-focus states corresponding to 0.24 m object-to-image; continuous close focusing requires additional intermediate positions.",
   },
   gaps: {
     "4": {
@@ -1384,8 +1379,12 @@ const data = {
       toSurface: "19",
     },
   ],
+  doublets: [
+    { text: "C1", fromSurface: "7", toSurface: "9" },
+    { text: "C2", fromSurface: "15", toSurface: "17" },
+  ],
   layout: {
     yScFill: 0.5,
   },
 } satisfies LensDataV2Input;
-export default data;
+export default LENS_DATA;
