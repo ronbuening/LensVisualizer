@@ -1791,6 +1791,23 @@ describe("MTF data limitations", () => {
     expect(notes[0].text).toContain(`surface 1, R) contradicts the source's own data`);
     expect(notes[0].text).toContain(`the source prints ${-front.R}, this prescription uses ${front.R}`);
     expect(notes[1].text).toContain("these curves describe the printed table: The table traces to a shorter");
+    // A plane is authored as a huge radius; the note names it rather than printing the sentinel.
+    const flattened = build({
+      ...constructionFixtureData(base),
+      sourceErrata: [
+        {
+          status: "corrected",
+          surface: "1",
+          field: "R",
+          printed: 1e15,
+          applied: front.R,
+          evidence: ["source-summary", "sibling-example"],
+          note: "One table prints the surface flat; the other prints its curvature.",
+        },
+      ],
+    });
+    const planeNote = assessMtfDataLimitations(prepareRuntimeState(flattened, 0, 0), { ...reference, result: null })[0];
+    expect(planeNote.text).toContain(`the source prints a plane (infinite radius), this prescription uses ${front.R}`);
     expect(assessMtfDataLimitations(state, photopic).every(({ blocking }) => blocking)).toBe(true);
   });
 });
