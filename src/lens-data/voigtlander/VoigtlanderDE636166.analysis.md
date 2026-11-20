@@ -1,57 +1,78 @@
+# VOIGTLÄNDER 100mm f/2.8 (DE 636,166 Design)
+
 ## Patent Reference and Design Identification
 
-**Patent:** DE 636,166 C (DPMA scan identifier DE636166A).
-**Inventor:** Hans Deser.
-**Applicant:** Voigtländer & Sohn AG.
-**Effective date:** August 29, 1933, as reported from the original scan by the source researcher.
-**Published:** October 5, 1936, in the patent index; the index's same-day priority metadata is not substituted for the original effective date.
-**Example details:** Numerical table at100 mm, nominalf/2.8; five elements in three groups2|1|2.
+**Patent:** DE 636,166 C, _Photographisches Objektiv_.
 
-This is a private patent-only reconstruction. No retail Heliar identity, mount, format, or measured production performance is assigned. The parent source specialist visually checked all three original pages. This executor independently reproduced the optical calculation from that attributed transcription; its direct DPMA web open was inaccessible. Google Patents OCR corroborates the topology and table but is not the primary transcription. PlaneR3 is retained as `flat`, not zero curvature radius.
+**Inventors:** Hans Deser.
+
+**Assignee:** Voigtländer & Sohn AG.
+
+**Effective date:** August 29, 1933.
+
+**Published:** October 5, 1936; grant announced September 17, 1936.
+
+**Example details:** Sole numerical example, specification p. 2 and drawing sheet; f = 100 mm, f/2.8, five elements in three groups.
+
+This Heliar-type objective has two positive cemented doublets surrounding a negative singlet. No product link, mount, format or marketed minimum focus distance is documented. The front doublet is Heliar-style, with its negative element toward the center; the rear is Dynar-style, with its biconvex positive element toward the center. These comparisons establish design family only.
+
+The table supplies eight radii, five thicknesses, two air spaces and five nD/Abbe pairs. Surface 3 is plane. Stop position, field angle, back focus and close focus are unspecified ([DE 636,166 C](https://patents.google.com/patent/DE636166C/de), specification p. 2 and drawing sheet).
 
 ## Optical Architecture
 
-Two cemented collecting doublets bracket a separate biconcave singlet. Eight interfaces describe five glasses: L1/L2 shareR2, L4/L5 shareR7. Literal vertex track45 mm, all thicknesses/gaps/radii and source nD/Abbe pairs are unchanged. No baffle, asphere, fitted index, gap increase or geometry override is present.
+The groups have positive–negative–positive power. Elements 1/2 share surface 2 in C1; elements 4/5 share surface 7 in C2. Vertex track is 45 mm. All curved surfaces are spherical.
 
-The independent sodium-D matrix gives EFL99.999136874 mm and rear-vertex BFD78.991478548 mm. No source image gap is supplied: Gaussian infinity imagez123.991478548 mm is calculated. The full nominal entrance marginal lands about−.037997 mm at that plane and crosses the axis atz123.782600326 mm; the image plane is not adjusted to hide this spherical aberration.
+At the sodium-D reference line, the computed EFL is 99.999136874 mm and the paraxial back focal distance is 78.991478548 mm. The resulting image plane is 123.991478548 mm behind the first vertex. The nominal marginal ray crosses the axis about 0.209 mm ahead of that plane; the image plane remains the paraxial infinity plane.
 
 ## Element-by-Element Analysis
 
-### G1 — Cemented Front Doublet
+### C1 — Front Cemented Doublet
 
-L1: nD=1.65772, νD=51.2; unmatched historical glass. Biconvex positive, thickness9 mm, R1+43/R2−85 mm. L2: nD=1.58131, νD=40.8; unmatched historical glass. Plano-concave negative, thickness3 mm, rearR3plane. Estimated common clear radius18.5 mm is the smallest half-millimeter rounding above the17.85699 mm nominal launch plus a chosen0.5 mm margin; the second-interface axial height is17.26545 mm. It is an optical aperture estimate, not a measured mechanical rim.
+Element 1: nD = 1.65772, νD = 51.2. Glass: Unmatched. Focal length in air: +44.66 mm. This 9 mm thick biconvex positive element has radii +43 and −85 mm.
 
-### G2 — Biconcave Singlet
+Element 2: nD = 1.58131, νD = 40.8. Glass: LF5 (Schott), a catalog equivalent. Focal length in air: −146.22 mm. The 3 mm thick plano-concave negative element shares the −85 mm cemented interface and ends at plane surface 3. The pair has a net focal length of +62.03 mm.
 
-L3: nD=1.58131, νD=40.8; unmatched glass. Thickness4 mm, R4−58/R5+34.5 mm. It lies7 mm after the front doublet and9 mm before the rear doublet. Estimated clear radius15.25 mm covers the14.68678/13.88976 mm nominal axial surface heights with modest margin. No source52° field is assigned.
+The inferred 18.5 mm clear radius at all three interfaces allows a margin above the nominal 17.85699 mm entrance-ray height.
 
-### G3 — Cemented Rear Doublet
+### Element 3 — Central Biconcave Singlet
 
-L4: nD=1.65772, νD=51.2; unmatched glass. Biconvex positive, thickness10 mm, R6+130/R7−20.5 mm. L5: nD=1.60704, νD=40.2; unmatched glass. Negative meniscus, thickness3 mm, R8−57.45 mm. Their three clear radii are estimated15.25 mm, a quarter-millimeter rounding above the14.74356 mm maximum nominal axial hit plus a small margin. Source dimensions remain unchanged; no inferred mechanical barrel is drawn.
+nD = 1.58131, νD = 40.8. Glass: LF5 (Schott), a catalog equivalent. Focal length in air: −36.63 mm. This 4 mm thick negative element has radii −58 and +34.5 mm. It lies 7 mm behind the front doublet and 9 mm ahead of the rear doublet. Its index meets the patent's limit nD ≤ 1.59 for the central biconcave lens.
+
+The inferred 15.25 mm clear radii exceed the nominal axial ray heights of 14.68678 and 13.88976 mm at its two surfaces.
+
+### C2 — Rear Cemented Doublet
+
+Element 4: nD = 1.65772, νD = 51.2. Glass: Unmatched. Focal length in air: +27.65 mm. This 10 mm thick biconvex positive element has radii +130 and −20.5 mm.
+
+Element 5: nD = 1.60704, νD = 40.2. Glass: BASF3 (Sumita), a catalog equivalent. Focal length in air: −54.17 mm. The 3 mm thick negative meniscus shares the −20.5 mm cemented interface and ends at radius −57.45 mm. The pair has a net focal length of +56.97 mm.
+
+All three interfaces have inferred 15.25 mm clear radii, above the maximum nominal axial ray height of 14.74356 mm in this group.
 
 ## Glass Identification and Dispersion
 
-The literal nD/Abbe pairs remain unidentified historical glasses. No catalog name, measured curve or melt is invented. All native sodium-D indices equal the source numbers. Native Abbe fallback supports auxiliary display channels, but only sodium-D rays are independently validated. No calibrated chromatic aberration, polychromaticMTF or transmission claim is made.
+Every element retains the printed sodium-D reference at 589.3 nm. Schott LF5 matches elements 2 and 3 within ΔnD = +0.00000547 and ΔνD = +0.04253. Sumita BASF3 matches element 5 within ΔnD = −0.00000104 and ΔνD = +0.03160. These catalog equivalents supply dispersion curves, without establishing the historical supplier or melt. Printed indices and Abbe numbers remain unchanged.
+
+Elements 1 and 4 share the unmatched 1.65772/51.2 pair. Their wavelength dependence is estimated from the printed Abbe number. The combined glass information does not establish measured chromatic aberration, polychromatic MTF or transmission performance.
 
 ## Focus Mechanism
 
-Infinity only. No source close-focus motion, finite schedule, travel or drive is inferred. The computed Gaussian infinity plane is retained. This diagnostic does not claim a manufactured camera configuration.
+The model describes infinity focus only, at the calculated paraxial image plane. The patent gives no close-focus spacing, group movement, travel or drive mechanism.
 
-## Estimated Iris, Aperture and Field
+## Inferred Iris, Aperture and Field
 
-The source supplies neither iris station nor physical diameter. A representative iris is placed halfway through the9 mm air gap afterR5: z27.5 mm, split4.5/4.5 mm. Native ordinary-prime paraxial F/N determines estimated diameter27.562698 mm at unchanged source nominalf/2.8. The finite admitted entrance radius17.506783 mm corresponds to EFL/(2r)=f/2.8560112; this is not the app's image-space working f-number.
+The iris is inferred at the midpoint of the 9 mm air space after surface 5: 27.5 mm behind the first vertex, with 4.5 mm on each side. Its computed radius is 13.781348808 mm for paraxial f/2.8. Pupil aberration reduces the admitted real entrance radius to about 17.506783 mm, corresponding to f/2.856. The difference is an optical property of the inferred stop placement.
 
-The ordinary viewer cannot open beyond nominal. Builder can indirectly enlarge the automatic iris by editing Nominal f-number. A calculated diameter28.139625 mm would require approximately2.74259348 in that input to admit the nominal entrance marginal. That is a diagnostic estimate, not a saved change or a factory setting; revalidate geometry, rays and the altered aperture label after tuning. The saved file remainsf/2.8.
+The chosen 5° half-field establishes no source image circle or camera format. All rims are inferred and agree with the drawing within about 3%. Minimum modeled edge thickness is about 2.30 mm.
 
-Chosen full diagnostic field10° is a deliberately narrow modeling scope, not source coverage or retail format. Chiefs complete through the5° half-field and the outside-scope7.5° diagnostic. Baseline577-ray pupil sampling has505 arrivals at each0/1/2.5/5° field; losses remain visible iris/front/rear aperture clipping. No full-pupil transmission or retail vignetting claim follows from that sampling.
+## Aberration Correction and Model Limits
 
-## Verification and Limits
+The patent constrains the magnitude of the rear cemented-interface radius to at least one fifth and at most one third of the front cemented-interface radius, and at most two thirds of the effective opening. The example satisfies these conditions: 17 mm ≤ 20.5 mm ≤ min(28.33 mm, 23.8 mm), using the 35.7 mm nominal entrance opening.
 
-Six cases vary clear radii±.1 mm, estimated iris station45/50/55% of the9 mm gap, and nativef/4 control without changing optical prescription or source nominal. Total17310 rays:15123 arrivals,2187 explicit clips, zero raw/unresolved failures. Independent vector Snell hits and image intersections agree below8.5e-14 mm. Sampled physical edges remain positive; baseline minimum element edge2.302339 mm. Airgap minimum clearances4.959249 and6.344096 mm; maximum sag intrusion below30%. Iris opening and whole-neighbor-cap clearances are positive for all cases. No trim or override.
+The patent claims a spherical zonal error of 0.18% of focal length (0.18 mm) and astigmatic deviations below 1% (1 mm). Modeled longitudinal spherical aberration is about −0.21 mm at the margin and −0.25 mm at the 0.7 zone, of the same order as the stated zonal error. The astigmatism claim has no stated field angle.
 
-These are bounded discrete tests, not exhaustive field/pupil proof. Estimates remain tunable, and no factory clear-aperture fit, oblique spectral performance, close focus, stray-light rejection or quantitative throughput is validated. Baffles are omitted.
+The inferred iris and rims limit conclusions about off-axis illumination. Close focus, mechanical baffles, stray-light rejection and production performance are not established by the patent prescription.
 
 ## Sources
 
-- [Original DPMA scan](https://depatisnet.dpma.de/DepatisNet/depatisnet?window=1&space=menu&content=treffer&action=pdf&docid=DE000000636166A), original-pixel transcription attributed to the parent source specialist.
-- [Patent OCR/index](https://patents.google.com/patent/DE636166C/de), corroboration only.
+- [DE 636,166 C, patent text and index](https://patents.google.com/patent/DE636166C/de): bibliography, numerical example and correction claims.
+- [Original DPMA scan](https://depatisnet.dpma.de/DepatisNet/depatisnet?window=1&space=menu&content=treffer&action=pdf&docid=DE000000636166A): original title page, specification table and drawing sheet.
