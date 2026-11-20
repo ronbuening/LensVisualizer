@@ -4,13 +4,13 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * CN 221175107 U, sole example, prescription on PDF page 6; dimensions are in millimetres at the printed scale.
  * Radii and internal spacings follow the table. The patent names the glasses; their catalog nd and Abbe numbers
  * replace the rounded table values. In particular, H-ZLaF92 on L4 and L6 has nd 2.00330 rather than the printed 2;
- * source.errata records this substitution. CDGM's H-F4 sheet gives 1.62005/36.35. Four named CDGM elements
- * (L1, L3, L4 and L6) have no matching dispersion rows in the local catalog and retain an explicit Unmatched label.
+ * this substitution is recorded below. CDGM's H-F4 sheet gives 1.62005/36.35. Four named CDGM elements
+ * (L1, L3, L4 and L6) have no matching catalog dispersion curves and retain an explicit Unmatched label.
  * L5 and L7 resolve to CDGM H-ZF4A and H-ZF7LA, with the same constants as the patent's high-transmittance grades.
  * FCD1 resolves to Hoya as a spectral proxy; the patent describes domestic glass and does not establish Hoya as
  * its supplier.
  * The stop is inferred midway through the 3.13 mm L1-L2 gap, consistent with the patent's near-zero distortion.
- * Rims are inferred. The 7 mm rear rims avoid S8 and S9 meeting at about 7.45 mm; no gap-sag override is used.
+ * Rims are inferred. The 7 mm rear rims avoid S8 and S9 meeting at about 7.45 mm; the usual air-gap clearance is retained.
  * The final air gap is the computed paraxial back focus, since the patent prints no image distance.
  * Nominal f = 40 mm and F/5.6 follow the text; the 3.50 mm entrance-pupil radius in Fig. 5 implies about F/5.69.
  * The prescription models infinity focus only; no finite-focus spacings or production mount are documented.
@@ -20,7 +20,7 @@ const LENS_DATA = {
   key: "7artisans-40mm-f56-cn221175107",
   maker: "7Artisans",
   name: "7ARTISANS 40mm f/5.6 (CN 221175107 U Design)",
-  subtitle: "CN 221175107 U, Sole example — full-frame 7Artisans design",
+  subtitle: "CN 221175107 U, sole example — 7Artisans / Liu",
   visible: true,
   catalog: {
     imageFormat: "135-full-frame",
@@ -240,8 +240,7 @@ const LENS_DATA = {
   },
   aperture: {
     nominalFNumber: 5.6,
-    fStops: [5.6, 8, 11, 16, 22],
-    maxFNumber: 22,
+    fStops: [5.6, 8, 11, 16],
   },
   layout: {
     yScFill: 0.4,
