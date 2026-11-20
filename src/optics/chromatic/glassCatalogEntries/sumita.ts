@@ -822,7 +822,7 @@ export const SUMITA_GLASS_ENTRIES: readonly GlassEntry[] = [
   {
     name: "LF7",
     vendor: "Sumita",
-    polynomial: [2.42488, -0.007996794, 0.01885122, 0.000431583, 8.179374e-06, 1.572052e-06],
+    polynomial: [2.42488, -0.007996794, 0.01885122, 0.000431583, 8.179374e-6, 1.572052e-6],
     nd: 1.57501,
     vd: 41.3,
     source:
@@ -831,7 +831,7 @@ export const SUMITA_GLASS_ENTRIES: readonly GlassEntry[] = [
   {
     name: "BALF6",
     vendor: "Sumita",
-    polynomial: [2.481179, -0.009366379, 0.01529493, 0.0003339513, -1.845922e-06, 5.775652e-07],
+    polynomial: [2.481179, -0.009366379, 0.01529493, 0.0003339513, -1.845922e-6, 5.775652e-7],
     nd: 1.58904,
     vd: 53.2,
     source:
@@ -840,7 +840,7 @@ export const SUMITA_GLASS_ENTRIES: readonly GlassEntry[] = [
   {
     name: "KZF2",
     vendor: "Sumita",
-    polynomial: [2.302323, -0.01089367, 0.01293123, 0.0004196721, -1.913714e-05, 1.530982e-06],
+    polynomial: [2.302323, -0.01089367, 0.01293123, 0.0004196721, -1.913714e-5, 1.530982e-6],
     nd: 1.52944,
     vd: 51.8,
     source:
