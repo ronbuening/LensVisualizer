@@ -33,3 +33,12 @@ catalog row fitted to the LZOS clear-glass catalogue's TK14 index table over 365
 matches the stored coordinate exactly (nd 1.613091 vs 1.61309, νd 60.58 vs 60.58), and its g-line index 1.625606 equals
 the PG&F ng 1.62561 the file carried, so that ng was dropped. L3 (OF1) is unchanged. Coverage rises from 1/4 to 3/4
 elements.
+
+## 2026-11-19 — Literature category
+
+- Moved from `kmz/` to `literature/`: the source is a published teaching book, so the file now records it in
+  `source.literature` (A. N. Ivanov, ITMO 2013, Appendix 1.2 Variant 2, p. 51) and drops the empty patent party lists.
+  As a literature reconstruction it stays off the relationship maps.
+- Name changed from "(ITMO 2013 Variant 2)" to "(Ivanov 2013, Variant 2)" to cite the work as author and year; the key is
+  unchanged. Maker KMZ, specs, optics and glass are unchanged.
+- The analysis now opens with the literature source block and gains a Reconstruction Status section.

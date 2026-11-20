@@ -60,6 +60,26 @@ For a non-patent prescription, use `**Source:**`, `**Manufacturer:**` (or a supp
 association separately as unverified. The data file omits the entire patent metadata tuple, as specified in
 `LENS_DATA_SPEC.md`; when it records the document's `source.issuer`, the `**Manufacturer:**` row names that entity.
 
+A [literature reconstruction](LENS_DATA_SPEC.md#literature-reconstructions-sourceliterature) (`source.literature`)
+opens with this block, kept in step with the data file's citation:
+
+```md
+**Source:** Moritz von Rohr, *Theorie und Geschichte des photographischen Objektivs* (Berlin: Julius Springer, 1899), p. 250, Fig. 100
+**Data after:** ... <!-- only when the work names where it took the numbers: Eder 1893, van Monckhoven -->
+**Designer:** Joseph Petzval
+**Manufacturer:** Voigtländer <!-- only when the work or other cited evidence credits one -->
+**Source dated:** 1899
+**Design dated:** 1840 <!-- the design's own date, when known -->
+```
+
+It also carries a **Reconstruction status** H2, placed after the identification section, that sorts every number into
+three groups: values the work prints; values the work itself says were assumed, measured from its drawing or estimated
+(thicknesses von Rohr says he chose arbitrarily, an index estimated from density); and values this model adds (radius
+signs read from the figure, back focus, clear radii and their provenance, f-stop list, field cap). State the printed
+focal length, aperture and field angle beside the model's EFL, f-number and traced field, and any rounding residual.
+A related patent belongs in this section or the heritage section, marked as context, never as the source of the
+numbers.
+
 A reader who knows the lens but not the patent should be able to verify the identification from this section alone.
 
 ### 2. Optical Architecture
