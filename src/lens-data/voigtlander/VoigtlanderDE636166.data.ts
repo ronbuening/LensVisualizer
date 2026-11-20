@@ -43,8 +43,9 @@ const LENS_DATA = {
   elements: [
     {
       id: 1,
-      name: "L1",
-      label: "Element 1",
+      name: "I",
+      label: "Element I",
+      diagramLabel: "I",
       type: "Biconvex Positive",
       nd: 1.65772,
       vd: 51.2,
@@ -56,8 +57,9 @@ const LENS_DATA = {
     },
     {
       id: 2,
-      name: "L2",
-      label: "Element 2",
+      name: "II",
+      label: "Element II",
+      diagramLabel: "II",
       type: "Plano-Concave Negative",
       nd: 1.58131,
       vd: 40.8,
@@ -69,8 +71,9 @@ const LENS_DATA = {
     },
     {
       id: 3,
-      name: "L3",
-      label: "Element 3",
+      name: "III",
+      label: "Element III",
+      diagramLabel: "III",
       type: "Biconcave Negative",
       nd: 1.58131,
       vd: 40.8,
@@ -81,8 +84,9 @@ const LENS_DATA = {
     },
     {
       id: 4,
-      name: "L4",
-      label: "Element 4",
+      name: "IV",
+      label: "Element IV",
+      diagramLabel: "IV",
       type: "Biconvex Positive",
       nd: 1.65772,
       vd: 51.2,
@@ -94,8 +98,9 @@ const LENS_DATA = {
     },
     {
       id: 5,
-      name: "L5",
-      label: "Element 5",
+      name: "V",
+      label: "Element V",
+      diagramLabel: "V",
       type: "Negative Meniscus",
       nd: 1.60704,
       vd: 40.2,
@@ -185,7 +190,7 @@ const LENS_DATA = {
       toSurface: "3",
     },
     {
-      text: "Central singlet",
+      text: "Singlet",
       fromSurface: "4",
       toSurface: "5",
     },
