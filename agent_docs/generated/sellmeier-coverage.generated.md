@@ -3462,8 +3462,8 @@ Incomplete visible lenses, still ordered by descending trusted chromatic complet
 
 | Surface | Element | Runtime quality | Glass annotation | Reason |
 |---|---|---|---|---|
-| 1 | Element 1 | abbe | `Unmatched (nD 1.65772 / ν 51.2)` | Explicit unmatched/proprietary annotation |
-| 6 | Element 4 | abbe | `Unmatched (nD 1.65772 / ν 51.2)` | Explicit unmatched/proprietary annotation |
+| 1 | Element I | abbe | `Unmatched (nD 1.65772 / ν 51.2)` | Explicit unmatched/proprietary annotation |
+| 6 | Element IV | abbe | `Unmatched (nD 1.65772 / ν 51.2)` | Explicit unmatched/proprietary annotation |
 
 ### [VILTROX AF 35mm f/1.8 FE](../../src/lens-data/viltrox/ViltroxAF35mmf18FE.data.ts) - 60.0% trusted (6/10); 60.0% Sellmeier (6/10) - CN 211955963 U
 
