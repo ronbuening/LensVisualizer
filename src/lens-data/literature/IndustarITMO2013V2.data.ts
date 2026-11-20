@@ -1,7 +1,7 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
- * Lens Patent — Industar - ITMO2013 Variant2 source model — 2 Data
+ * KMZ Industar 52.39mm f/3.56, literature reconstruction: Ivanov (ITMO 2013), Appendix 1.2 Variant 2.
  * Source: Ivanov, ITMO 2013, Appendix 1.2 Variant 2, p.51; schematic p.50.
  * https://books.ifmo.ru/file/pdf/1465.pdf
  * Four elements / three groups. A source-book model, not a confirmed
@@ -33,8 +33,8 @@ const LENS_DATA = {
   schema: 2,
   key: "industar-itmo2013-v2",
   maker: "KMZ",
-  name: "KMZ INDUSTAR 52.39mm f/3.56 (ITMO 2013 Variant 2)",
-  subtitle: "Ivanov / ITMO 2013, Appendix 1.2 Variant 2, pp.50–51; qualified catalog-glass model",
+  name: "KMZ INDUSTAR 52.39mm f/3.56 (Ivanov 2013, Variant 2)",
+  subtitle: "Industar-50-family teaching prescription; catalog glass for the grades the book names",
 
   catalog: {
     specs: ["4 ELEMENTS / 3 GROUPS", "52.3909 mm MODEL EFL", "11.8 mm PUBLISHED DIAPHRAGM", "FIXED INFINITY MODEL"],
@@ -44,57 +44,70 @@ const LENS_DATA = {
     fNumber: { design: 3.5647432498262934 },
   },
 
-  // Non-patent book prescription: no patent number or named patent parties.
-  source: { authors: [], assignees: [] },
+  source: {
+    literature: {
+      authors: ["A. N. Ivanov"],
+      title: "Проектирование узлов оптико-электронных приборов. Методические указания к выполнению курсового проекта",
+      year: 2013,
+      publisher: "ITMO",
+      place: "Saint Petersburg",
+      locator: "Appendix 1.2, Variant 2, p. 51 (schematic p. 50)",
+      url: "https://books.ifmo.ru/file/pdf/1465.pdf",
+    },
+  },
 
   elements: [
     {
       id: 1,
       name: "L1",
-      label: "Element 1",
+      label: "TK14 dense crown",
       type: "Plano-Convex",
       nd: 1.61309,
       vd: 60.58,
       indexReference: "d",
-      focalLengthMm: 27.891500432,
+      focalLengthMm: 27.9,
       glass: "Unmatched (TK14; PG&F 2010 d-line proxy; historic melt unconfirmed)",
+      role: "Front plano-convex collective, convex toward the object; the first member of the Tessar-type layout.",
       ng: 1.62561,
     },
     {
       id: 2,
       name: "L2",
-      label: "Element 2",
+      label: "LF5 light flint",
       type: "Biconcave Negative",
       nd: 1.57502,
       vd: 41.31,
       indexReference: "d",
-      focalLengthMm: -17.521390717,
+      focalLengthMm: -17.5,
       glass: "LF5 (PG&F coordinate); QF3 (CDGM spectral proxy; historic melt unconfirmed)",
+      role: "Biconcave negative ahead of the stop; the dispersive middle member.",
       ng: 1.59281,
     },
     {
       id: 3,
       name: "L3",
-      label: "Element 3",
+      label: "OF1 special flint",
       type: "Negative Meniscus",
       nd: 1.52949,
       vd: 51.81,
       indexReference: "d",
-      focalLengthMm: -29.647366552,
+      focalLengthMm: -29.6,
       glass: "SBF2 (HOYA) class (OF1 / KzF2-type special flint, 529516; spectral proxy, historic melt unconfirmed)",
+      role: "Weak negative meniscus opening the rear cemented pair behind the stop.",
       cemented: "D1",
       ng: 1.54225,
     },
     {
       id: 4,
       name: "L4",
-      label: "Element 4",
+      label: "TK14 dense crown",
       type: "Biconvex Positive",
       nd: 1.61309,
       vd: 60.58,
       indexReference: "d",
-      focalLengthMm: 15.684475563,
+      focalLengthMm: 15.7,
       glass: "Unmatched (TK14; PG&F 2010 d-line proxy; historic melt unconfirmed)",
+      role: "Biconvex rear collective cemented to L3; the strongest positive element.",
       cemented: "D1",
       ng: 1.62561,
     },

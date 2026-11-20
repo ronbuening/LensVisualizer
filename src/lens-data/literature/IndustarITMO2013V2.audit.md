@@ -25,3 +25,12 @@ Compared the local-site section with the original p.51 clear-diameter table agai
 ### Maker attribution
 
 Assigned explicit maker KMZ and a manufacturer-first display name, preserving the lens key and ITMO Variant 2 qualification. The KMZ archive credits the Industar-50 calculation to M. D. Maltsev at KMZ; the book's pp.5–6 worked example identifies an OPAL-library Industar-50 with the selected variant's radii and internal spacings. Industar is the lens family, while KMZ supplies the documented maker/design association. This does not establish a particular factory production prescription. Sources: https://www.zenitcamera.com/archive/lenses/industar-50.html and the original ITMO book.
+
+## 2026-11-19 — Literature category
+
+- Moved from `kmz/` to `literature/`: the source is a published teaching book, so the file now records it in
+  `source.literature` (A. N. Ivanov, ITMO 2013, Appendix 1.2 Variant 2, p. 51) and drops the empty patent party lists.
+  As a literature reconstruction it stays off the relationship maps.
+- Name changed from "(ITMO 2013 Variant 2)" to "(Ivanov 2013, Variant 2)" to cite the work as author and year; the key is
+  unchanged. Maker KMZ, specs, optics and glass are unchanged.
+- The analysis now opens with the literature source block and gains a Reconstruction Status section.

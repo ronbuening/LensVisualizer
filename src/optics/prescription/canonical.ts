@@ -23,6 +23,7 @@ import type {
   FiniteConjugate,
   LensProjectionConfig,
   LensData,
+  LiteratureSource,
   OpticalConfigurationData,
   OpticalPathData,
   PatentExample,
@@ -306,6 +307,7 @@ export interface CanonicalSource {
   omissions?: SourceOmission[];
   sdSource?: SemiDiameterSource;
   issuer?: string;
+  literature?: LiteratureSource;
 }
 
 export interface CanonicalLayout {

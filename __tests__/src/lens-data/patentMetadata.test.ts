@@ -88,6 +88,8 @@ const MISSING_PATENT_EXAMPLE: readonly string[] = [
   "minolta-md-50f17",
   "nikon-nikkor-15mm-f56",
   "olympus-zuiko-auto-s-50f18",
+  "steinheil-orthostigmat-ii-476mm-f4-de88505",
+  "steinheil-orthostigmat-ii-493mm-f62-de88505",
 ];
 
 const ORDINALS = [
@@ -282,6 +284,15 @@ describe("lens patent metadata", () => {
       expect(data.patentNumber, `${path}: patentNumber should be omitted`).toBeUndefined();
       expect(data.patentAuthors, `${path}: patentAuthors should be omitted`).toBeUndefined();
       expect(data.patentAssignees, `${path}: patentAssignees should be omitted`).toBeUndefined();
+    }
+  });
+
+  it("keeps literature reconstructions, and only them, in src/lens-data/literature/", () => {
+    for (const [path, { default: data }] of Object.entries(modules)) {
+      expect(
+        data.sourceLiterature !== undefined,
+        `${path}: source.literature and the literature/ folder go together`,
+      ).toBe(path.includes("/lens-data/literature/"));
     }
   });
 });
