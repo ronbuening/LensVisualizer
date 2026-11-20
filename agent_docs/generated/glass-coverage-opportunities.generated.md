@@ -9,9 +9,9 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **1163** lenses scanned (**1142** visible)
-- **12200 / 13122** non-air surfaces use strict catalog Sellmeier data (93.0%)
-- **12218 / 13122** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 93.1%)
+- **1188** lenses scanned (**1167** visible)
+- **12225 / 13241** non-air surfaces use strict catalog Sellmeier data (92.3%)
+- **12243 / 13241** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 92.5%)
 - **0** mismatch surfaces in Sweep 1 across **0** lens files
 - **0** Sweep 1 surfaces have a matching untracked local patent PDF
 - **290** code-only missing-Sellmeier elements in Sweep 2: **27** active unreviewed, **157** self-recording explicit dispositions, **0** dispositions missing any review record
@@ -96,6 +96,7 @@ These lenses are missing trusted chromatic data only on glass elements. One or t
 | [CANON 10.2-30.6mm f/2-4.9 (Canon PowerShot G9 X)](../../src/lens-data/canon/CanonPowerShotG9X.data.ts) | JP 2016-161889 A | [PDF](../../patents/JP2016161889A.pdf) | 87.5% (7/8) | 87.5% (7/8) | 1 | 9 [glass] (L23 (G2n): `Unmatched (special high-dispersion glass; patent points to an SnO-rich JP2012-193065 class)`) | abbe: 1 |
 | [FUJIFILM FUJINON 23mm f/2 (Fujifilm X100)](../../src/lens-data/fujifilm/FujifilmX10023mmf2.data.ts) | US 2012/0069456 A1 | [PDF](../../patents/US20120069456A1.pdf) | 87.5% (7/8) | 87.5% (7/8) | 1 | 10A [glass] (Element 6: `Unmatched (569586 patent molded crown; no exact public catalog identity)`) | abbe: 1 |
 | [FUJIFILM FUJINON 23mm f/2 (Fujifilm X100V)](../../src/lens-data/fujifilm/FujifilmX100V23mmf2.data.ts) | US 2020/0333569 A1 | [PDF](../../patents/US20200333569A1.pdf) | 87.5% (7/8) | 87.5% (7/8) | 1 | 7A [glass] (Element 5: `Unmatched (near TAFD33 (HOYA), Δnd = 0.0017; possibly precision-molded proprietary)`) | abbe: 1 |
+| [LEICA SUPER-ANGULON-M 21mm f/3.4](../../src/lens-data/leica/LeicaSuperAngulonM21mmf34.data.ts) | DE 1,273,853 B | [PDF](../../patents/DE1273853B.pdf) | 87.5% (7/8) | 87.5% (7/8) | 1 | 3 [glass] (Element 2: `Unmatched (nd 1.72372 / νd 38.09)`) | abbe: 1 |
 | [MAMIYA SEKOR AF 150mm f/2.8 IF D](../../src/lens-data/mamiya/MamiyaSekorDAF150mmf28IF.data.ts) | JP 2001-183581 A | [PDF](../../patents/JP_2001183581_A.pdf) | 87.5% (7/8) | 87.5% (7/8) | 1 | 13 [glass] (Element 7: `Unmatched (nd=1.806098, νd=40.34; no exact current catalog identity)`) | abbe: 1 |
 | [MINOLTA AF 100mm f/2.8 Macro](../../src/lens-data/minolta/MinoltaAF100mmf28Macro.data.ts) | US 4,764,000 | [PDF](../../patents/US4764000.pdf) | 87.5% (7/8) | 87.5% (7/8) | 1 | 13 [glass] (Element 7: `807316 - dense lanthanum flint (patent nd=1.80741, vd=31.59; unresolved)`) | abbe: 1 |
 | [MINOLTA AF 135mm f/2.8 [T4.5] STF](../../src/lens-data/minolta/MinoltaSTF135mmf28T45.data.ts) | JP 1999-231209 A | [PDF](../../patents/JPA 1999231209-000000.pdf) | 87.5% (7/8) | 87.5% (7/8) | 1 | 9 [glass] (Element 5: `507589 — bulk absorbing ND glass (catalog unresolved; patent α=0.55)`) | abbe: 1 |
