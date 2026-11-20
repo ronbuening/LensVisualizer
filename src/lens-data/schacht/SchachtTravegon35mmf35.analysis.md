@@ -49,11 +49,11 @@ Only infinity focus is modeled; no finite-focus spacings are printed. The 0.5 m 
 
 Computed EFL is 35.003 mm at f/3.5; paraxial BFD is 33.656 mm, total track 62.85 mm, and infinity defocus negligible. [US 2,772,601](https://patents.google.com/patent/US2772601A/en) Example 2 rounds the same design at about 1.0055×. Its back-focus convention is paraxial: US Example 1's 98.5 mm agrees with the computed 98.54 mm of German Beispiel 1.
 
-The iris has 5.06 before and 2.90 after it in patent units, reversing the printed order. That order would put it 1.015 mm behind surface 6, inside L4's 1.82 mm sag at a 7 mm semi-diameter. Both drawings support placement near C. Its modeled position is 23.10 mm from the first vertex, with an inferred radius of 4.571 mm.
+The iris has 5.06 before and 2.90 after it in patent units, reversing the printed order. That order would put it 1.015 mm behind surface 6, inside L4's rear rim, which reaches 1.18 mm behind the vertex where its curve ends at 5.7 mm. Both drawings support placement near C. Its modeled position is 23.10 mm from the first vertex, with an inferred radius of 4.571 mm.
 
 AllPhotoLenses lists eight iris blades and an f/3.5–16 range, likely for the early chrome version. The later black version has six blades and reaches f/22.
 
-Rims are inferred, including the 12.5 mm front rims. The stated 32° half-field reaches 21.54 of the 21.65 mm film half-diagonal; the 32.1° corner chief ray clears. Surface 8 retains one-sided clipping, so full-pupil transmission and measured production coverage remain unknown.
+No rim is printed, so all are inferred. The patent's only drawing shows Beispiel 1, which is drawn to scale along the axis, so it guides shapes and proportions rather than sizes. As drawn there, group C is square-cut, here at 6.7 mm. L4's rear curve ends short of its edge, here at 5.7 mm with a flat step out to the 7 mm edge it shares with L3. L2's rear curve ends in a flat step, here from 8.5 to 9.4 mm, before the chamfer to the 12.5 mm front rim. The drawing makes groups B and C smaller still relative to the front group, but at those sizes they would cut the f/3.5 beam or corner light, so the larger rims stay. The stated 32° half-field reaches 21.54 of the 21.65 mm film half-diagonal, and the 32.1° corner chief ray clears. At f/3.5 the rims pass about 70% of the beam at 29° and 59% at 32°, with group C clipping one side of the corner beam. Measured production coverage is unknown.
 
 ## Sources
 

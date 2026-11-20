@@ -22,15 +22,15 @@ The first air gap follows the table's 18.26 mm rather than the text's inconsiste
 | Iris radius | Not printed | 4.571 mm |
 | Infinity image defocus | Not printed | ≈0 mm |
 
-The three cemented-group focal lengths are −51.26, +83.05 and +23.65 mm. The surfaces stay clear of each other; the iris sets the full aperture. At 32° half-field, the chief-ray image height is 21.54 mm, or 99% of the 21.65 mm film half-diagonal; the 32.1° corner chief ray clears. At image height 21.63 mm, there is no axial clipping or blocked chief ray, but surface 8 gives 14% one-sided vignetting. Full-pupil transmission at the corner remains unknown.
+The three cemented-group focal lengths are −51.26, +83.05 and +23.65 mm. The surfaces stay clear of each other; the iris sets the full aperture. At 32° half-field, the chief-ray image height is 21.54 mm, or 99% of the 21.65 mm film half-diagonal; the 32.1° corner chief ray clears. At image height 21.63 mm, there is no axial clipping or blocked chief ray, but group C's rim clips one side of the beam (10% at surface 8, 15% at surface 9). At f/3.5 the rims pass 58.6% of the beam at 32°.
 
 [US 2,772,601](https://patents.google.com/patent/US2772601A/en) Example 2 rounds the same design at about 1.0055 times the German dimensions. Its back-focus number is not legible in the available text extraction. Its convention is paraxial: Example 1 prints 98.5 mm, agreeing with the computed 98.54 mm of German Beispiel 1. The paraxial image plane used here is consistent with that convention.
 
 ## Values Not Printed in the Patent
 
-All clear semi-diameters are inferred, including the 12.5 mm front rims. The patent drawing depicts Beispiel 1, so it supports the architecture without specifying the exact Beispiel 2 rims. Front, cemented and rear-contact rims still need comparison with suitable source figures.
+All clear semi-diameters are inferred, including the 12.5 mm front rims. The patent drawing depicts Beispiel 1, so it supports the architecture and proportions without specifying the exact Beispiel 2 rims; the 2026-11-20 rim review below compares them with it.
 
-The model places 5.06 before the iris and 2.90 after it in patent units, reversing the printed order. The printed order would place the iris 1.015 mm behind surface 6, inside L4's 1.82 mm sag at a 7 mm semi-diameter. The patent drawing and [AllPhotoLenses diagram](http://allphotolenses.com/public/files/optical/b361f4c9a9c43e7ab72b9a1b1571b10c.png) place the iris near C. The retained position is 23.10 mm from the first vertex; the radius is derived from f/3.5. Physical iris placement remains inferred.
+The model places 5.06 before the iris and 2.90 after it in patent units, reversing the printed order. The printed order would place the iris 1.015 mm behind surface 6, inside L4's rear rim, which reaches 1.18 mm behind the vertex where its curve ends at 5.7 mm. The patent drawing and [AllPhotoLenses diagram](http://allphotolenses.com/public/files/optical/b361f4c9a9c43e7ab72b9a1b1571b10c.png) place the iris near C. The retained position is 23.10 mm from the first vertex; the radius is derived from f/3.5. Physical iris placement remains inferred.
 
 The image plane is the calculated paraxial infinity back focus. The 0.5 m minimum, eight-blade diaphragm and f/3.5–16 stop range are product data, not patent values. No anomalous-dispersion designation or separately tabulated spectral-line indices have been added.
 
@@ -65,10 +65,24 @@ Discontinued Sumita LAK6 matches the printed coordinates exactly; Hoya LAC6 has 
 
 EFL is 35.003 mm, f-number is 3.5, BFD is 33.656 mm, total track is 62.85 mm, iris radius is 4.571 mm and half-field is 32.0°. Infinity defocus is negligible.
 
+### 2026-11-20 rim review
+
+- Source: the patent's only drawing (PDF p. 4) shows Beispiel 1. Its vertex spacings match Beispiel 1's table at 11.8 px per patent millimetre at 300 dpi: 1,017 px from first to last vertex for 86.0 mm, with l1 and d6 within 1%. L1's drawn knife edge lies within 5% of the computed one, so the drawing is close to scale. Beispiel 2's thicknesses differ (L4 is twice as thick), so only shapes and relative heights were taken from it.
+- Readings at the 35 mm scale: front rims 11.8 mm; L2's rear curve ends at 7.7 mm, then a flat step to 8.9 mm and a chamfer to the 11.8 mm edge; L3 and L4 share a 6.0 mm edge; L4's rear curve ends at 4.9 mm with chamfered corners; group C is square-cut at 4.6 mm; the iris is drawn at 3.5 mm.
+- Surface 3: 8.5 mm kept, with a new flat step out to 9.4 mm. In the drawing the step ends at 0.76 of the element's edge height.
+- Surface 6: 7 → 5.7 mm, with a flat step out to the 7 mm edge. The drawn curve ends at 0.82 of the edge. The old 7 mm rim also reached 0.05 mm past the iris plane.
+- Surfaces 7 and 8: 6.5 → 6.7 mm. Surface 9: 7.5 → 6.7 mm. Group C is now square-cut, as drawn.
+- Kept:
+  - Front rims, 12.5 mm: 6% above the drawing's proportion, and L1 runs nearly to a knife edge as drawn. At 12.0 mm the corner would lose 0.6 points.
+  - L2's rear curve, 8.5 mm: 8.0 mm would cut 7.7 points of corner light.
+  - L3 and the cemented face, 7 mm: 6.3 mm would cut 13 points at 29°.
+  - Group C at 6.7 mm: 6.6 mm costs 3.0 points at 32° and 6.5 mm costs 4.3. The drawing's 4.6 mm is inside the f/3.5 axial beam, which is 4.75–4.98 mm here; it is smaller than that beam in Beispiel 1 too, so the drawing is not literal there.
+- Results: at f/3.5 the rims pass 58.6% of the beam at 32° (60.5% before) and 69.5% at 29.1° (70.6%), unchanged at smaller angles. EFL 35.003 mm, f/3.5 and the 32° half-field are unchanged. The axial beam clears every surface, no chief ray is blocked, and corner coverage stays at 99%. Surface and aperture checks pass, and the iris still sets the full aperture.
+
 ## Remaining Questions
 
 - No Schacht factory prescription or maker optical drawing establishes the product identification conclusively.
-- The inferred semi-diameters and iris placement still need direct confirmation; off-axis pupil clipping remains as described above.
+- No Beispiel 2 drawing or production lens measurement fixes the rim sizes; the rims follow the Beispiel 1 drawing's shapes within the f/3.5 beam and corner-light limits. Iris placement remains inferred.
 - L3 and L5 have no close catalog match. Historical glass suppliers, melts and unlisted partial dispersion remain unknown; apochromatic performance is not established.
 - No finite-focus spacing law is published. The 0.5 m minimum and eight-blade, f/16 specifications come from the M42 reference, likely describing the early chrome version; other versions differ.
 - No cited source describes blade roundedness, so that value is omitted. The 64° design field does not establish an independently measured production image-circle diameter, which is also omitted.

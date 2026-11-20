@@ -4,11 +4,17 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * from the printed 100 mm design to 35 mm for comparison with the Travegon,
  * in millimetres.
  * Glass coordinates are printed nd/νd values; catalog labels do not identify the
- * production supplier. Surface rims are inferred. The iris radius is derived
- * from f/3.5, and the image plane is the computed paraxial infinity back focus.
+ * production supplier. Surface rims are inferred: the patent's only drawing
+ * shows Example 1, so it sets proportions, not sizes. Following it, group C is
+ * square-cut at 6.7 mm, L4's rear curve ends at 5.7 mm with a flat step out to
+ * the 7 mm edge, and L2's rear curve ends in a flat step out to 9.4 mm. The
+ * drawing's smaller group B and C rims would cut the f/3.5 beam or corner
+ * light, so those rims stay larger. The iris radius is derived from f/3.5, and
+ * the image plane is the computed paraxial infinity back focus.
  * The iris split keeps 5.06 before and 2.90 after it in the patent's units,
  * reversing the printed order: the other order puts it 1.015 mm behind r6,
- * inside L4's 1.82 mm sag at a 7 mm semi-diameter. The patent figure and the
+ * inside L4's rear rim, which reaches 1.18 mm behind the vertex where its
+ * curve ends at 5.7 mm. The patent figure and the
  * AllPhotoLenses diagram both place the iris near group C. No finite-focus
  * state is supplied.
  */
@@ -148,6 +154,7 @@ const LENS_DATA = {
       R: 10.0835,
       d: 6.391,
       sd: 8.5,
+      rimExtensionSd: 9.4,
     },
     {
       label: "4",
@@ -167,7 +174,8 @@ const LENS_DATA = {
       label: "6",
       R: 14.3395,
       d: 1.771,
-      sd: 7,
+      sd: 5.7,
+      rimExtensionSd: 7,
     },
     {
       label: "STO",
@@ -178,21 +186,21 @@ const LENS_DATA = {
       label: "7",
       R: -170.562,
       d: 0.8715,
-      sd: 6.5,
+      sd: 6.7,
       medium: 5,
     },
     {
       label: "8",
       R: 12.88,
       d: 4.2105,
-      sd: 6.5,
+      sd: 6.7,
       medium: 6,
     },
     {
       label: "9",
       R: -15.855,
       d: 33.6557,
-      sd: 7.5,
+      sd: 6.7,
     },
   ],
   focus: {
