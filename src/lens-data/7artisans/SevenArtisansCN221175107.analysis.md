@@ -14,7 +14,7 @@
 
 **Example details:** Sole example, prescription on PDF p. 6; dimensions in millimetres without scaling.
 
-The patent title and paragraph 0041 identify a full-frame design with nominal focal length 40 mm and aperture f/5.6. These are design specifications; no production mount or minimum focusing distance is established. No 7Artisans product with this prescription is documented; the AstrHori 40mm f/5.6 shares the focal length, aperture and 7/5 count but is a different company's earlier lens. Its [January 2022 announcement](https://photorumors.com/2022/01/18/another-new-rockstar-lens-40mm-f-5-6-lens-for-leica-m-mount-not-for-e-mount/) predates this filing by about 23 months; the [AstrHori product listing](https://www.stkb.jp/shopdetail/000000002008/) supplies the shared construction count.
+The patent title and paragraph 0041 identify a full-frame design with nominal focal length 40 mm and aperture f/5.6. These are design specifications; no production mount or minimum focusing distance is established. No 7Artisans product with this prescription is documented; the AstrHori 40mm f/5.6 shares the focal length, aperture and seven-element, five-group construction but is a different company's earlier lens. Its [January 2022 announcement](https://photorumors.com/2022/01/18/another-new-rockstar-lens-40mm-f-5-6-lens-for-leica-m-mount-not-for-e-mount/) predates this filing by about 23 months; the [AstrHori product listing](https://www.stkb.jp/shopdetail/000000002008/) supplies the shared construction count.
 
 ## Optical Architecture
 
@@ -50,7 +50,7 @@ nd = 1.80518, νd = 25.46. Glass: H-ZF7LAGT (CDGM). In-air f = −27.09 mm. This
 
 Claim 9 and paragraph 0036 name the materials. The model uses their catalog indices and Abbe numbers in place of the rounded table entries. CDGM gives [H-LaK53B as 1.75500/52.32](https://www.cdgmgd.com/webapp/pdf/H-LaK53B.pdf), [H-F4 as 1.62005/36.35](https://www.cdgmgd.com/webapp/pdf/H-F4.pdf), [H-ZLaF92 as 2.00330/28.32](https://www.cdgmgd.com/webapp/pdf/H-ZLaF92.pdf), and [H-ZF4AGT/H-ZF7LAGT as 1.72825/28.32 and 1.80518/25.46](https://www.cdgmgd.com/go.htm?k=High_Transmittance_Optical_Glass&url=goods). In particular, L4 and L6 replace the printed index 2 with 2.00330.
 
-Four CDGM elements (L1, L3, L4 and L6), representing three distinct patent-named glasses, have no matching dispersion rows in the model's glass catalog. Their labels therefore retain “Unmatched”, and their spectral behavior uses the nd/νd approximation. L5 resolves to H-ZF4A (CDGM) and L7 to H-ZF7LA (CDGM), which have the same constants as the patent-named high-transmittance grades H-ZF4AGT and H-ZF7LAGT. FCD1 resolves to Hoya's 1.49700/81.61 catalog curve, differing from the printed pair by Δnd = 0 and Δνd = +0.01. That curve is a spectral proxy: the patent calls the glass domestic and does not establish Hoya supply. No apochromatic performance is established by these data.
+Four CDGM elements (L1, L3, L4 and L6), representing three distinct patent-named glasses, have no published dispersion data; colour is approximated from nd/νd. L5 uses the H-ZF4A (CDGM) dispersion curve and L7 the H-ZF7LA (CDGM) curve, which have the same constants as the patent-named high-transmittance grades H-ZF4AGT and H-ZF7LAGT. FCD1 uses Hoya's 1.49700/81.61 catalog curve, differing from the printed pair by Δnd = 0 and Δνd = +0.01. That curve is a spectral proxy: the patent calls the glass domestic and does not establish Hoya supply. No apochromatic performance is established by these data.
 
 ## Focus, Stop and Image Plane
 
@@ -62,7 +62,7 @@ The last air gap is the computed d-line paraxial BFD, 23.51 mm. The patent print
 
 At the patent's 26.6° half-field, the chief ray reaches 19.96 mm image height with −0.00385% distortion, close to the plotted 20 mm and 0.0024%. The field curves are less closely reproduced: calculated tangential and sagittal shifts are −0.347 and −0.210 mm relative to paraxial focus, whereas the patent's plotted range is approximately −0.1 to +0.2 mm. Fig. 5 places its image plane about 0.08–0.14 mm inside paraxial focus, so the reference planes differ.
 
-All clear radii are inferred. The rear 7 mm radii retain corner vignetting because S8 and S9 meet near 7.45 mm; Fig. 1 draws a larger outline, about 8.2 mm, and its air gaps are not uniformly scaled. Full-frame corner chief rays pass, while marginal rays are vignetted. Figure-to-rim correspondence and the remaining field-curvature discrepancy remain unresolved.
+All clear radii are inferred. The rear 7 mm radii retain corner vignetting because S8 and S9 meet near 7.45 mm; Fig. 1 draws a larger outline, about 8.2 mm, and its air gaps are not uniformly scaled. Full-frame corner chief rays pass, while marginal rays are vignetted.
 
 The Zemax footers identify “HPF40-III.ZMX” and “U.S.Patent 4143944” as a starting design; they do not identify a production lens.
 
