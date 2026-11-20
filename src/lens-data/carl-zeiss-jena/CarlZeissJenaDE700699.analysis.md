@@ -56,7 +56,7 @@ The rear triplet places the lower-index negative element between two positive me
 
 ## Glass Identification and Dispersion
 
-The table heading prints lowercase nd, identifying the helium d line at 587.6 nm. All seven elements use that reference. Five elements admit close catalog curves: L1/L5 N-SK16, L2 BAFD7, L3 BAK2 and L6 S-NSL36. Their evaluated differences from the printed coordinates are at most 0.000057 in nd and 0.08 in νd. These curves are spectral proxies; they do not identify the original supplier or melt. L4 and L7 remain explicitly unmatched because no catalog row meets the stricter coordinate limits used here.
+The table prints lowercase nd; five of seven nd/νd pairs match catalog d-line rows and none match sodium D, so the model uses the d line for all seven elements. Five elements admit close catalog curves: L1/L5 N-SK16, L2 BAFD7, L3 BAK2 and L6 S-NSL36. Their evaluated differences from the printed coordinates are at most 0.000057 in nd and 0.08 in νd. These catalog names identify modern equivalents matched by refractive index and dispersion, not the 1938 melts or their suppliers. L4 and L7 remain explicitly unmatched because no catalog row meets the stricter coordinate limits used here.
 
 The printed nd/νd pairs remain unchanged. The unmatched elements use an Abbe-based dispersion estimate. No measured partial dispersion, transmission or production polychromatic performance is established by the patent table.
 
