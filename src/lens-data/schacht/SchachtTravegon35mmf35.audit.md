@@ -83,7 +83,7 @@ EFL is 35.003 mm, f-number is 3.5, BFD is 33.656 mm, total track is 62.85 mm, ir
 
 - L5: Unmatched → LF7 (Sumita), an exact row (Δnd 0, Δνd 0) added to the glass catalog for this lens; Hikari J-LF7, the nearest row before, differs by +0.21 in νd.
 
-### 2026-11-20 review on the local site
+### 2026-11-20 final check against the drawing
 
 - Compared the local page (normal and three-times resolution), every element's inspector, the chromatic tab and the movement overlay with the patent drawing on PDF p. 4 at 300 dpi.
 - Drawing scale, measured again: 11.82 px per patent millimetre over Beispiel 1's 86.0 mm vertex span, with l1, d3, d4, l2 and d6 each within 1.3%. The drawing's "Film" line lies 99.5 mm behind the last vertex, against Beispiel 1's computed 98.5 mm back focus. The drawing is Beispiel 1 to scale, so only shapes and ratios carry over to Beispiel 2.

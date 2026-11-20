@@ -68,7 +68,7 @@ The older SK16 spelling also identifies the modern N-SK16 curve; neither spellin
 - The drawing chamfers both triplets from the R6/R7 curve ends out to their full height. The straight edges joining the model's rims follow those chamfers about as closely as square lands at R6/R7 would, so no land was added.
 - Wide-open geometric transmission is unchanged: 98.6% at 8.3°, 92.8% at 13.8°, 77.3% at 19.3° and 64.9% at 22.0°. The 22.0° half-field and f/2 are unchanged.
 
-### 2026-11-20 second review on the local site
+### 2026-11-20 final check against the drawing
 
 - The live diagram was compared with the drawing sheet (PDF page 3) at 600 dpi. The 67.57 mm span from R1 to R10 measures 1,632 px, or 24.15 px/mm. The sheet is slightly sheared, so each surface's upper half sits up to 0.7 mm behind its lower half; heights and sags were therefore read as the mean of the two halves. Read that way, the drawn sags of R1 and R10 at about 23 mm height (4.06 and 3.00 mm) agree with the printed radii (3.96 and 3.01 mm), so the scale holds across the axis as well as along it.
 - Rims read again at the centres of the ink lines: front lens 28.15 mm (model 28), middle triplet 23.6 mm and rear triplet 23.7 mm (model 23.7 for both). The R6 curve ends at 15.6–15.9 mm and the R7 curve at 15.2–16.0 mm; the model's 16.8 and 17 mm stay on the f/2 axial beam (16.59 and 16.38 mm), 7% and 9% above the drawing. No clear radius changed.

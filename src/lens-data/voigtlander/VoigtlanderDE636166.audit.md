@@ -48,7 +48,7 @@ After these changes, the EFL remains 100.00 mm, paraxial f-number 2.80, BFD 78.9
 - All three groups are drawn square-cut. The cemented interfaces at surfaces 2 and 7 meet the flat rim where their radii place them. Drawn over the sheet at the same scale, the model outline follows every edge within one line width, about 0.6 mm.
 - No clear radius was changed, because every reading is within measurement noise. Relative illumination at the 5.0° half-field stays at 96.5%, and the f-number stays 2.80. The surface check reports no errors, and the aperture check finds no rim limiting the f/2.8 beam.
 
-### 2026-11-20 second review on the local site
+### 2026-11-20 final check against the drawing
 
 - The page was compared with a fresh measurement of the drawing sheet at 300 dpi. The 45 mm vertex span from surface 1 to surface 8 gives 11.82 px/mm, and the drawn 43 mm front radius fits a 512 px circle, or 11.92 px/mm, so the sheet has nearly the same scale in both directions. Taken at the centre of the edge lines, the drawn rims are 18.53 mm for the front doublet, 15.46 mm for the central lens and 15.44 mm for the rear doublet. The model's 18.5, 15.25 and 15.25 mm lie within 0.2%, 1.4% and 1.2% of these readings. The taller front doublet ahead of two equal-height groups matches the drawing, and every group stays square-cut. No clear radius was changed; the model outline over the sheet stays within one line width of every edge.
 - Every clear radius equals its starting value, and the lens uses no land or rim cut. Light at every field angle is therefore unchanged: 100% out to 2.5° and 96.5% at the 5.0° half-field. The f-number stays 2.80 and the half-field 5.0°.

@@ -65,7 +65,7 @@ These corrections leave EFL at 100.007 mm, nominal aperture at f/1.40, BFD at 46
 - Not representable: L4's drawn flat shoulder and chamfer, which the model draws as one straight edge from R5 to R6, and L8's drawn step out to its full edge just behind the cemented R10 rim, which the model draws as a slope from R10 to R11. A land cannot sit on a cemented face, and a land on R6 would draw a square block far from the drawn chamfer.
 - After the review, every surface check passes, the iris alone limits the f/1.4 beam, the half-field stays 22.5° with the corner chief ray clear of every rim, and transmission stays 38.8% at 22.5° (no loss at any field). EFL, aperture, BFD and track are unchanged.
 
-### 2026-11-20 second review on the local site
+### 2026-11-20 final check against the drawing
 
 - The live diagram was compared with the drawing on PDF page 1 at 400 dpi. The scale holds in both directions: the R1–R11 vertex span gives 10.56 px/mm, and circle fits to the drawn R1, R6 and R10 arcs return about 785, 265 and 255 px against the printed 786, 269 and 249 px.
 - Rims read again from the drawing (half the top-to-bottom distance, at the ink-line centres): L1 35.7 mm (model 37), the square triplet edge 30.8 (31), the R6 corner 20.7 (21.5), the square quadruplet front 20.8 (21) and L8's outer edge 23.9 (23.9). Every model rim lies within 4% of the drawing, and the two that sit above it are held for light: L1 at 36 mm would lose 3.2 points near 14°, and R6 sits on the axial beam the iris admits there. No rim changed.

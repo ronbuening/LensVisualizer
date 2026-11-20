@@ -76,7 +76,7 @@ The first-order values are EFL 21.021 mm, f/3.40, paraxial back focus 8.193 mm, 
 - Every other rim stays within about 8% of the drawing. S2 at 7.9 mm, the steepest rim its curvature allows, would raise the 45° transmission from 52% to 69%. Fig. 1's drawn arc supports 7.5 mm, so no light-driven raise was made. Fig. 1's flat tops on L1, L7 and L8 are drawn as straight edges between the two face rims.
 - The meridional bundle ratios are now 1:3.23 at 30°, 1:3.76 at 40° and 1:5.88 at 45°. Edge thickness, rim slope, air-gap clearance, the stop clearance and the full f/3.4 axial beam all pass.
 
-### 2026-11-20 second review on the local site
+### 2026-11-20 final check against the drawing
 
 - The live page, each element's detail panel and the chromatic analysis were compared with Fig. 1, Fig. 2 and the page 2 table. All radii, spacings, indices and Abbe numbers match the table after the 0.21 scaling.
 - Fig. 1 was measured again at 600 dpi. The S1 to S12 vertex span is 2490 px for the printed 213.78, or 55.46 px per mm at 21 mm; L3's thickness and the S8 to S10 span agree within 0.7%. Circle fits to the drawn S2, S4, S5 and S11 arcs give radii 5–11% larger than printed, so a rim read from its drawn height can sit up to about 8% above the same rim read from its axial position on the printed curve.
