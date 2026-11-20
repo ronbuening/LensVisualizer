@@ -1,3 +1,8 @@
+/**
+ * Build metadata helpers shared by article, lens, and route generators.
+ * Git history is indexed once for publication and content freshness lookups.
+ */
+
 import { execFileSync } from "node:child_process";
 import { readdirSync, readFileSync } from "node:fs";
 import { isAbsolute, join, relative, resolve, sep } from "node:path";
@@ -95,8 +100,8 @@ export function assertFullGitHistory({ cwd, execFileImpl = execFileSync, allowFe
  * commit and the last line is the oldest reachable commit for the file.
  * The published date is the oldest commit's. The modified date is the newest
  * commit's that is not format-only: converting a file changes nothing a
- * reader sees. A file whose every commit is format-only keeps its oldest
- * commit's date.
+ * reader sees. The history lookup's predicate also skips pure renames for that
+ * file. A file whose every commit is skipped keeps its oldest commit's date.
  */
 export function parseGitLogDates(raw, { isFormatOnly = isFormatOnlyCommit } = {}) {
   const lines = raw
@@ -221,8 +226,9 @@ function indexGitHistory(raw) {
     if (token === "" || commits.length === 0) continue;
     const commit = commits.length - 1;
     if (token[0] === "R") {
-      touch(tokens[i + 1], { commit });
-      touch(tokens[i + 2], { commit, renamedFrom: tokens[i + 1] });
+      const pureRename = token === "R100";
+      touch(tokens[i + 1], { commit, pureRename });
+      touch(tokens[i + 2], { commit, pureRename, renamedFrom: tokens[i + 1] });
       i += 2;
     } else if (token[0] === "C") {
       /* -M never reports copies; should one appear, its source is unchanged and its destination starts anew. */
@@ -244,6 +250,7 @@ function indexGitHistory(raw) {
  * that `--follow` printed for a file, newest first, with the history before a rename continuing under the old path.
  * It does not follow copies: a new file that resembles an existing one starts its own history, where `--follow` gave
  * it the other file's (see agent_docs/decisions.md, page freshness).
+ * Pure renames stay in `log` for publication history but do not advance freshness.
  *
  * A directory that is not a repository, or a git failure, leaves the history empty, so every file falls back.
  *
@@ -275,19 +282,21 @@ export function gitHistory({ cwd = process.cwd(), execFileImpl = execFileSync } 
     return prefix + fromCwd.split(sep).join("/");
   };
 
-  const log = (filePath) => {
+  const fileHistory = (filePath) => {
     index ??= read();
     const { prefix, commits, touches } = index;
     const lines = [];
+    const pureRenameCommits = new Set();
     let path = repoPath(filePath, prefix);
     /* Walk order is newest first, so the history before a rename is the old path's commits after the renaming one. */
     let after = -1;
     while (path !== null) {
       const entries = touches.get(path) ?? [];
       path = null;
-      for (const { commit, renamedFrom } of entries) {
+      for (const { commit, renamedFrom, pureRename } of entries) {
         if (commit <= after) continue;
         lines.push(commits[commit]);
+        if (pureRename) pureRenameCommits.add(commits[commit].split("\t")[1]);
         if (renamedFrom !== undefined) {
           path = renamedFrom;
           after = commit;
@@ -295,11 +304,20 @@ export function gitHistory({ cwd = process.cwd(), execFileImpl = execFileSync } 
         }
       }
     }
-    return lines.join("\n");
+    return { raw: lines.join("\n"), pureRenameCommits };
   };
 
-  const fileFreshness = (filePath, { fallbackDate } = {}) =>
-    parseGitLogDates(log(filePath)) ?? fallbackFreshness(fallbackDate);
+  const log = (filePath) => fileHistory(filePath).raw;
+
+  const fileFreshness = (filePath, { fallbackDate } = {}) => {
+    const { raw, pureRenameCommits } = fileHistory(filePath);
+    return (
+      parseGitLogDates(raw, {
+        // A commit can rename this file unchanged while editing another file.
+        isFormatOnly: (entry) => pureRenameCommits.has(entry.commit) || isFormatOnlyCommit(entry),
+      }) ?? fallbackFreshness(fallbackDate)
+    );
+  };
 
   /*
    * The first path with history wins. A file moved in the working tree but not yet committed has none at its new path,
@@ -307,7 +325,7 @@ export function gitHistory({ cwd = process.cwd(), execFileImpl = execFileSync } 
    */
   const firstFileFreshness = (filePaths, { fallbackDate } = {}) => {
     for (const filePath of filePaths) {
-      const freshness = parseGitLogDates(log(filePath));
+      const freshness = fileFreshness(filePath);
       if (freshness) return freshness;
     }
     return fallbackFreshness(fallbackDate);
