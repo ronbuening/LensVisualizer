@@ -50,6 +50,4 @@ Before → after: `built.mjs` EFL 35.00321534932997 → 35.00321534932995 mm, FO
 
 Focused audit results: surface geometry OK, no validation errors; aperture 1/1 station within 3% of stated f-number, with zero rim, trace, iris or failed stations; image-circle 1 checked, 0 undersized, 0 skipped; field coverage at `--below=1.01` 99%, 21.54 of 21.65 mm at 32°, with the 32.1° corner chief ray clear, 0 skipped. The validator's clear-aperture check at image height 21.63 mm found no axial clipping or blocked chief ray, but reported 14% one-sided vignetting at surface 8 and no lower boundary ray.
 
-Formatting and text checks: all three files pass Prettier; the data object contains no line comments, and the analysis contains the four required bold rows and seven H2 sections.
-
 Open: all surface semi-diameters remain heuristic; a later SD pass must compare the front/cemented and rear-contact rims with source figures. The patent drawing depicts Beispiel 1, so it establishes architecture rather than exact Beispiel 2 rims. Physical iris placement remains inferred despite the geometric support for the retained split. No factory prescription, production melt identity, or finite-focus spacing law is established; the catalog's 0.5 m minimum is variant-specific. The inferred rims' off-axis pupil clipping remains unaltered.
