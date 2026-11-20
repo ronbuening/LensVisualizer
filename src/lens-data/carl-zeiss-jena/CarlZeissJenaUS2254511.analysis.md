@@ -57,7 +57,7 @@ Thicknesses are 8.0, 1.2, 20.0, and 2.6 mm, with three cemented interfaces. R7�
 
 ## Glass Identification and Dispersion
 
-The printed nd heading identifies the helium d line, approximately 587.6 nm. No measured spectral indices or partial dispersions are supplied.
+The printed nd heading is read as the d line (about 587.6 nm). No measured spectral indices or partial dispersions are supplied.
 
 L2's BAFD7 (Hoya), L5's K-SK18 (Sumita), and L8's SK1 (Sumita) have catalog-minus-patent Δnd/Δνd of +0.00004/+0.05, +0.00004/0.00, and +0.00005/0.00. These meet 0.0001/0.15 tolerances but establish no historical supplier or melt. Their catalog curves supply spectral estimates; the other five glasses use index/Abbe estimates. Measured chromatic, polychromatic MTF, and transmission performance remain unknown.
 
