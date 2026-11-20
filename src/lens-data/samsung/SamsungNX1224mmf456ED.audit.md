@@ -23,7 +23,7 @@ Wide / middle / tele values after the corrections are:
 
 The iris radii are calculated from the printed nominal f-numbers, so aperture agreement follows from that calculation. The image plane is the paraxial plane; no aberration-minimizing shift is applied. Maximum interpolation defocus is 0.00037 mm. Interpolating only the three printed gap rows would miss focus by 0.705 mm.
 
-A check of the surface geometry found no edge-thickness or overlap errors, including the variable air gaps. All 101 zoom stations have an effective aperture within 3% of nominal, with no limit from an optical rim, ray-trace failure or iris inconsistency. The image-circle check found no undersized circle or omitted case. Every station reaches the 14 mm corner, with approximately 100% field coverage and no unsolved or omitted station.
+The surfaces stay clear of each other; the iris sets the full aperture at all 101 zoom stations. Every station reaches the 14 mm corner.
 
 ## Values Not Printed in the Patent
 
@@ -39,18 +39,17 @@ Examples 2, 3 and 5 all fit the published construction and close-focus specifica
 
 ## Corrections, 2026-11-20
 
-- Replaced the earlier name and key with the product name and its corresponding key. Samsung remains the maker, and visibility is now explicit. Corrected the type import and made the constant declaration and export consistent. Added a header separating printed, calculated and inferred quantities.
+- Adopted the product name, with Samsung as the maker.
 - Replaced the subtitle's status description with the patent number, Example 5, assignee and inventor surname: “US 2013/0235465 A1, Example 5 — Samsung / Arimoto”. Replaced the eight earlier descriptive lines with construction, design aperture, one ED element and two aspherical elements; added “DESIGN f = 12.36–23.40 mm” to distinguish the printed range from the marketed range.
-- Added Samsung NX mount, APS-C format, marketed 12–24 mm, wide-end f/4 and 0.24 m minimum focus from the product references. The `catalog.fNumber.marketing` field accepts one number, so the tele-end f/5.6 remains in the name and analysis. Element/group counts remain 10/8; design metadata remains 12.36–23.40 mm and wide-end f/4.1.
+- Added Samsung NX mount, APS-C format, marketed 12–24 mm, wide-end f/4 and 0.24 m minimum focus from the product references. The tele-end aperture is f/5.6. Construction is ten elements in eight groups; the printed design range is 12.36–23.40 mm, with a wide-end aperture of f/4.1.
 - Added seven diaphragm blades and circular roundedness from Imaging Resource, with the blade count also confirmed by LensTip. Retained the design stop list from f/4.1 through f/22 and the sourced f/22 minimum aperture.
 - Expanded the element labels to “Element 1” through “Element 10” and added optical roles. Added in-air focal lengths of −25.12, −19.26, +43.47, −48.58, +24.53, +30.06, +25.28, −9.55, +16.41 and −75.01 mm. Shape descriptions already agree with the radius signs.
 - Added C1 on L4/L5, spanning S7–S9, and C2 on L8/L9, spanning S15–S17, with matching cemented-pair brackets. Retained the four G1–G4 brackets.
 - Corrected all ten elements from the sodium D reference to the helium d reference by removing the incorrect explicit reference and its notes. Printed nd and νd are unchanged. Removed earlier sodium-D MTF values, which no longer apply after the wavelength and dispersion corrections.
 - Added the inferred ED designation to L6, with a note explaining the FCD1 coordinate match and uncertain product position.
 - Replaced the focus description with the infinity-only scope and Table 15 near-state limitation. The focus distance setting remains effectively infinite. All 101 stations, their labels, apertures and gaps, and the 0.002 zoom increment are unchanged.
-- Removed the description attributing all clear radii to one source because the radii combine ray estimates and drawing bounds. Clarified the analysis's current clear radii, printed versus inferred quantities, example uncertainty and marketed versus design apertures. Removed magnification from the Imaging Resource citation's summary and repeated discussion of unresolved questions.
 
-Replaced the unidentified glass descriptions with Hoya catalog equivalents. Each label resolves to a catalog row. Differences are catalog minus printed values:
+Replaced the unidentified glass descriptions with Hoya catalog equivalents. Differences are catalog minus printed values:
 
 | Element | New glass | Δnd |   Δνd |
 | ------- | --------- | --: | ----: |
@@ -85,9 +84,9 @@ Clear semi-diameters were increased within Figure 9's readings to admit the repo
 | S18     |         5.4 |         7.2 |
 | S19     |         5.9 |         7.4 |
 
-S2 retains its 11.2 mm optical cap and gained a 17.7 mm opaque rim extension following Figure 9's vertical rear land. The extension changes the outline without opening or cutting the optical cap. S2–S6 clear radii are unchanged. No curvature, thickness, asphere, stop position or zoom gap changed, and no exception to the geometric checks was added. The printed millimetre scale and paraxial image plane are retained.
+S2 retains its 11.2 mm optical cap and gained a 17.7 mm opaque rim extension following Figure 9's vertical rear land. The extension changes the outline without opening or cutting the optical cap. S2–S6 clear radii are unchanged. The printed millimetre scale and paraxial image plane are retained.
 
-At the same 28 mm-circle corner fields of 51.0° wide and 31.3° tele, the calculated full-pupil geometric transmission increased from 6.75% to 48.82% and from 61.77% to 99.44%, respectively. These figures describe the adopted apertures, without production transmission claims. The first-order quantities in the table above are unchanged by the radius, wording and metadata corrections.
+At the same 28 mm-circle corner fields of 51.0° wide and 31.3° tele, the calculated full-pupil geometric transmission increased from 6.75% to 48.82% and from 61.77% to 99.44%, respectively. These figures describe the adopted apertures, without production transmission claims. The larger clear radii do not affect the first-order quantities in the table above.
 
 ## Remaining Questions
 

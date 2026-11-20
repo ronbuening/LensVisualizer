@@ -85,7 +85,7 @@ The 1.5 mm final element is separated from L9 by 1 mm. Its rear surface S19 is a
 
 ## Glass Identification and Selection
 
-All printed nd and νd values remain unchanged. They refer to the helium d line, approximately 587.6 nm. Catalog coordinate matches support the following dispersion curves, without establishing a production supplier or melt.
+The patent's nd and νd values refer to the helium d line, approximately 587.6 nm. Catalog coordinate matches support the following dispersion curves, without establishing a production supplier or melt.
 
 | Elements | Hoya catalog equivalent | Printed nd / νd | Catalog minus printed Δnd / Δνd |
 | -------- | ----------------------- | --------------- | ------------------------------- |
@@ -101,7 +101,7 @@ The catalog curves supply wavelength dependence. No separate C-, F- or g-line in
 
 ## Focus Mechanism and Zoom Motion
 
-The model includes infinity focus only. The product's minimum focus distance is 0.24 m. Table 15 prints finite states whose object-to-image distance is 240 mm and whose magnifications are 0.076 / 0.107 / 0.140×. D1 stays fixed; D2 increases while D3 decreases, moving G3 toward the image side. A direct infinity-to-near interpolation misses focus at mid-travel by approximately 0.09 / 0.16 / 0.27 mm, so these states require intermediate focus positions before a continuous focus range can be included.
+The product's minimum focus distance is 0.24 m. Table 15 prints finite states whose object-to-image distance is 240 mm and whose magnifications are 0.076 / 0.107 / 0.140×. D1 stays fixed; D2 increases while D3 decreases, moving G3 toward the image side. A direct infinity-to-near interpolation misses focus at mid-travel by approximately 0.09 / 0.16 / 0.27 mm, so only infinity is modeled.
 
 There are 101 infinity zoom stations. The three printed stations are retained exactly. Between them, D1 follows a piecewise-linear motion, including its reversal at the middle station. D2 and D3 are calculated so that effective focal length and paraxial back focal distance interpolate between the printed states; both gaps decrease monotonically. These 98 intermediate states describe an inferred optical motion, without establishing the production cam. Maximum interpolation defocus is 0.00037 mm; interpolation from only the three printed gap rows would miss focus by 0.705 mm.
 
