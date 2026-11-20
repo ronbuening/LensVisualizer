@@ -12,10 +12,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * 9.8 µm on the printed image plane. Table 2 likely repeats the radius used in
  * Examples 2 and 3.
  * Clear semi-diameters are estimates. Fig. 1 is drawn to scale apart from its iris
- * marks: it draws L6, C1 and S25 within 4 % of these rims, C2 5–8 % smaller and
- * the other faces 7–21 % smaller (L1 23.2 against 29.0 mm, C3 12.5 against
- * 15.8 mm). Those drawn rims would cut wide-open
- * corner illumination at 23.1° from 66 % to 34 %, so the larger estimates are kept.
+ * marks: it draws L6, C1 and S25 within 4 % of these rims, C2 8 % smaller, L9 and
+ * S26 about 12 % smaller, and G1 and C3 14–18 % smaller (L1 23.2 against 27.5 mm,
+ * C3 12.5 against 15.2 mm). The flat lands on S15 and S24 follow the figure's
+ * steps, and L5, C2 and C3 are square-cut as drawn. The drawn rims would cut
+ * wide-open corner illumination at 23.1° from 65 % to 31 %, so the larger
+ * estimates are kept.
  * The iris radius is derived from the printed design aperture, approximately f/1.44.
  * The printed infinity image gap 18.69 mm is retained (paraxial BF 18.692 mm).
  * Table 3 prints infinity and the 394.90 mm object-to-first-surface near state.
@@ -68,7 +70,7 @@ const LENS_DATA = {
     errata: [
       {
         status: "corrected",
-        surface: "26",
+        surface: "26A",
         field: "R",
         printed: -2000,
         applied: 1e15,
@@ -81,6 +83,7 @@ const LENS_DATA = {
     {
       id: 1,
       name: "L1",
+      diagramLabel: "L1",
       label: "Element 1",
       type: "Biconcave Negative",
       nd: 1.72047,
@@ -93,6 +96,7 @@ const LENS_DATA = {
     {
       id: 2,
       name: "L2",
+      diagramLabel: "L2",
       label: "Element 2",
       type: "Biconvex Positive",
       nd: 1.80809,
@@ -102,12 +106,13 @@ const LENS_DATA = {
       glass: "S-NPH1 (OHARA catalog equivalent; production supplier unspecified)",
       apd: "patent",
       apdNote:
-        "Patent ¶0038 identifies the front-group positive lens with νd = 22.76 as having positive anomalous partial dispersion; its S-NPH1 catalog equivalent agrees with the patent's ΔPgF = +0.023 for that lens.",
+        "Patent ¶0038–¶0039 identify the front-group positive lens with νd = 22.76 as having positive anomalous partial dispersion; its S-NPH1 catalog equivalent agrees with the patent's ΔPgF = +0.023 for that lens.",
       role: "High-dispersion positive element of the fixed first group.",
     },
     {
       id: 3,
       name: "L3",
+      diagramLabel: "L3",
       label: "Element 3",
       type: "Biconvex Positive",
       nd: 1.76385,
@@ -120,6 +125,7 @@ const LENS_DATA = {
     {
       id: 4,
       name: "L4",
+      diagramLabel: "L4",
       label: "Element 4",
       type: "Biconvex Positive",
       nd: 1.62846,
@@ -135,6 +141,7 @@ const LENS_DATA = {
     {
       id: 5,
       name: "L5",
+      diagramLabel: "L5",
       label: "Element 5",
       type: "Negative Meniscus",
       nd: 1.55298,
@@ -150,8 +157,9 @@ const LENS_DATA = {
     {
       id: 6,
       name: "L6",
+      diagramLabel: "L6",
       label: "Element 6",
-      type: "Positive Meniscus (Asph)",
+      type: "Positive Meniscus (1× Asph)",
       nd: 1.85135,
       vd: 40.1,
       indexReference: "d",
@@ -161,7 +169,8 @@ const LENS_DATA = {
     },
     {
       id: 7,
-      name: "L7",
+      name: "L7f",
+      diagramLabel: "L7f",
       label: "Element 7",
       type: "Positive Meniscus",
       nd: 1.497,
@@ -177,7 +186,8 @@ const LENS_DATA = {
     },
     {
       id: 8,
-      name: "L8",
+      name: "L7r",
+      diagramLabel: "L7r",
       label: "Element 8",
       type: "Negative Meniscus",
       nd: 1.77047,
@@ -190,7 +200,8 @@ const LENS_DATA = {
     },
     {
       id: 9,
-      name: "L9",
+      name: "L8f",
+      diagramLabel: "L8f",
       label: "Element 9",
       type: "Biconcave Negative",
       nd: 1.77047,
@@ -203,7 +214,8 @@ const LENS_DATA = {
     },
     {
       id: 10,
-      name: "L10",
+      name: "L8r",
+      diagramLabel: "L8r",
       label: "Element 10",
       type: "Biconvex Positive",
       nd: 1.76385,
@@ -216,7 +228,8 @@ const LENS_DATA = {
     },
     {
       id: 11,
-      name: "L11",
+      name: "L9",
+      diagramLabel: "L9",
       label: "Element 11",
       type: "Biconvex Positive",
       nd: 2.001,
@@ -228,7 +241,8 @@ const LENS_DATA = {
     },
     {
       id: 12,
-      name: "L12",
+      name: "L10f",
+      diagramLabel: "L10f",
       label: "Element 12",
       type: "Positive Meniscus",
       nd: 1.95375,
@@ -241,7 +255,8 @@ const LENS_DATA = {
     },
     {
       id: 13,
-      name: "L13",
+      name: "L10r",
+      diagramLabel: "L10r",
       label: "Element 13",
       type: "Biconcave Negative",
       nd: 1.77047,
@@ -254,9 +269,10 @@ const LENS_DATA = {
     },
     {
       id: 14,
-      name: "L14",
+      name: "L11",
+      diagramLabel: "L11",
       label: "Element 14",
-      type: "Negative Meniscus (Asph)",
+      type: "Negative Meniscus (2× Asph)",
       nd: 1.80835,
       vd: 40.55,
       indexReference: "d",
@@ -270,27 +286,27 @@ const LENS_DATA = {
       label: "1",
       R: -74.952,
       d: 2,
-      sd: 29,
+      sd: 27.5,
       medium: 1,
     },
     {
       label: "2",
       R: 60.086,
       d: 3.96,
-      sd: 29,
+      sd: 27.5,
     },
     {
       label: "3",
       R: 120.162,
       d: 4.13,
-      sd: 27.5,
+      sd: 27,
       medium: 2,
     },
     {
       label: "4",
       R: -2009.077,
       d: 0.88,
-      sd: 27.5,
+      sd: 27,
     },
     {
       label: "5",
@@ -322,16 +338,16 @@ const LENS_DATA = {
       label: "9",
       R: 136.308,
       d: 2,
-      sd: 24,
+      sd: 23.5,
       medium: 5,
     },
     {
       label: "10",
       R: 60.751,
-      sd: 23,
+      sd: 23.5,
     },
     {
-      label: "11",
+      label: "11A",
       R: 33.013,
       d: 5.41,
       sd: 19,
@@ -374,6 +390,7 @@ const LENS_DATA = {
       R: 24.858,
       d: 6.76,
       sd: 15,
+      rimExtensionSd: 18,
     },
     {
       label: "STO",
@@ -384,7 +401,7 @@ const LENS_DATA = {
       label: "17",
       R: -295.005,
       d: 1.3,
-      sd: 15,
+      sd: 15.5,
       medium: 9,
     },
     {
@@ -404,27 +421,27 @@ const LENS_DATA = {
       label: "20",
       R: 44.522,
       d: 5.83,
-      sd: 16.5,
+      sd: 16,
       medium: 11,
     },
     {
       label: "21",
       R: -65.473,
       d: 0.81,
-      sd: 16.5,
+      sd: 16,
     },
     {
       label: "22",
       R: -148.38,
       d: 4.49,
-      sd: 15.8,
+      sd: 15.2,
       medium: 12,
     },
     {
       label: "23",
       R: -26.533,
       d: 1,
-      sd: 15.8,
+      sd: 15.2,
       medium: 13,
     },
     {
@@ -432,9 +449,10 @@ const LENS_DATA = {
       R: 40.707,
       d: 6.08,
       sd: 13.5,
+      rimExtensionSd: 15.2,
     },
     {
-      label: "25",
+      label: "25A",
       R: -113.598,
       d: 2.11,
       sd: 13.5,
@@ -453,7 +471,7 @@ const LENS_DATA = {
       },
     },
     {
-      label: "26",
+      label: "26A",
       R: "flat",
       sd: 15,
       asphere: {
@@ -497,7 +515,7 @@ const LENS_DATA = {
       label: "D10",
       values: [[7.56, 6.168629, 4.595947, 2.794444, 0.7]],
     },
-    "26": {
+    "26A": {
       label: "D26",
       values: [[18.69, 20.081371, 21.654053, 23.455556, 25.55]],
     },
@@ -521,8 +539,8 @@ const LENS_DATA = {
     },
     {
       text: "Moving G2 + iris",
-      fromSurface: "11",
-      toSurface: "26",
+      fromSurface: "11A",
+      toSurface: "26A",
     },
   ],
   layout: {

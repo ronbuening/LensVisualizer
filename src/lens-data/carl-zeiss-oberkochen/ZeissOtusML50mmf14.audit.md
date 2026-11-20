@@ -32,7 +32,7 @@ At image height 21.63 mm, neither the axial beam nor the chief ray is clipped at
 - Near-focus distance 0.49954 m is derived from (394.90 + 104.64)/1000, object to image. The product specification rounds this to 0.50 m.
 - The 43.3 mm image-circle entry is the rounded diagonal of a 24×36 mm frame; ZEISS quotes 43 mm for the production lens.
 - Glass labels identify catalog equivalents, supplying dispersion beyond nd/νd; production suppliers and melts are unspecified.
-- L4 and L7 are inferred APD positions from the optical section and compatible glass properties. The patent explicitly identifies anomalous partial dispersion for L2 and L5.
+- L4 and L7f are inferred APD positions from the optical section and compatible glass properties. The patent explicitly identifies anomalous partial dispersion for L2 and L5.
 - Ten diaphragm blades come from the [ZEISS Otus ML series description](https://www.zeiss.com/photonics-and-optics/en/photography/products/lenses-for-mirrorless-system-cameras/otus-ml-lenses.html); the f/1.4–f/16 stop range comes from the [ZEISS 50 mm data sheet](https://www.zeiss.com/content/dam/pno/downloads/photo-lenses/datasheets/otus-ml-lenses/datasheet-zeiss-otus-ml-1450.pdf) and [Cosina specifications](https://www.cosina.co.jp/zeiss/otus-ml/otus-ml-1-4-50/).
 
 ## Product Identification
@@ -95,9 +95,38 @@ Infinity EFL is 50.137 mm, BFD 18.692 mm, paraxial f-number approximately 1.44, 
 - The drawn rims sit just above the f/1.435 axial beam; L5's 20.2 mm meets the beam's 20.25 mm. With all of them, wide-open illumination at infinity would fall from 65.9 % to 33.9 % at 23.1° and from 79.7 % to 46.4 % at 20.2°, and at close focus from 83.8 % to 58.8 % at 20.5°. Taken one element at a time, the cuts cost 6 to 17 points, except L6 (1.8 points) and C1 (none). Moving either the front group or the rear group a fifth of the way to the drawing costs 2 to 3 points, a change inside the 5–8 % reading noise.
 - No rim changed: the larger estimates are kept for their light, and L6, C1 and S25 already agree with the drawing within 4 %, C2 within 8 %. The traced half-field stays 23.1° and the aperture approximately f/1.44; the axial beam and the corner chief ray stay clear at all five focus positions.
 
+### 2026-11-20 final check against the drawing
+
+The page was compared with Fig. 1 (page 22, 300 dpi). Re-measured on the figure's axis line, the scale is 16.67 px/mm: S1 to the image plane spans 1744 px for 104.64 mm, and each vertex lies within 2 px of its prescription position. The drawn rims read L1 23.3, L2 22.8, L3 22.7, L4 21.8, L5 20.3, L6 18.8, C1 17.5, C2 14.3, L9 14.2, C3 12.6 and L11 13.1 mm, agreeing with the earlier reading. Two drawn details were missing from the page: L7r's concave rear face ends at 14.5 mm and continues as a flat step to its 17.4 mm rim, and L10r's rear face ends at 11.2 mm with a flat step to its 12.5 mm rim. The page drew both as slanted edges, drew L5, C2 and C3 with unequal faces where the figure squares them, and showed L9 1.0 mm above C2 where the figure draws them level.
+
+Each change below was measured wide open on the full-pupil grid at infinity and at all five focus positions, against the rims before the rim review. A change was kept only if it moves the page toward the figure and the whole lens stays within 3 points of that baseline at every field.
+
+| Surface | Before (mm) | After (mm) | Drawn (mm) | Reason | Light cost alone |
+| --- | ---: | ---: | ---: | --- | --- |
+| S1, S2 (L1) | 29.0 | 27.5 | 23.2 | Closer to the figure; L1 stays 0.5 mm above L2, as drawn | None |
+| S3, S4 (L2) | 27.5 | 27.0 | 22.7 | Level with L3, as drawn | None |
+| S9 / S10 (L5) | 24.0 / 23.0 | 23.5 / 23.5 | 20.2 | Square-cut, as drawn | 0.4 point |
+| S15 (L7r) | 15.0 | 15.0, flat step to 18.0 | 14.5, step to 17.4 | Drawn step; C1 square-cut | None |
+| S17 (L8f) | 15.0 | 15.5 | 14.3 | C2 square-cut, as drawn | None (raised) |
+| S20, S21 (L9) | 16.5 | 16.0 | 14.2 | Drawn level with C2; now 0.5 mm above it instead of 1.0 mm | 1.9 points |
+| S22, S23 (L10f, L10r) | 15.8 | 15.2 | 12.5 | Drawn below C2; now 0.3 mm below it instead of 0.3 mm above | None with L9 at 16.0 |
+| S24 (L10r) | 13.5 | 13.5, flat step to 15.2 | 11.2, step to 12.5 | Drawn step; C3 square-cut | None |
+
+Together the changes cost at most 2.4 points, at 17.3° at infinity (89.1 % to 86.7 %); the largest loss at each focus position, infinity to near, is 2.4, 1.5, 1.8, 1.9 and 1.7 points. Corner illumination is 65.4 % at 23.1° at infinity (65.9 % before) and 82.2 % at 20.5° at the near state (83.8 % before). The half-field stays 23.12°, the aperture f/1.435 and the iris radius 13.74 mm; the axial beam and the corner chief ray stay clear at all five focus positions, and the surface, edge and land clearances hold. With every drawn rim and step, corner illumination would be 30.6 % at infinity and 55.3 % at the near state.
+
+S26 stays 15.0 mm. Lowering it toward the drawn 13.1 mm costs light (0.2 point at 14.5 mm, 2.4 points at 14.2 mm) and would put L11 further below C3, while the figure draws L11 slightly taller than C3. S25 cannot rise to square L11 because it would cross S24's rim. L3 and L4 stay: 0.5 mm less on either costs 1.1–1.5 points at 20–23° by itself, and L1 and L2 would have to come down with them to keep the drawn order. C3 stays at 15.2 mm: at 14.8 mm the total loss reaches 3.4 points. L6 and C1 already agree with the figure within 4 %.
+
+Element names now follow the patent's Fig. 1 and ¶0033, which name the cemented lenses L7, L8 and L10 as L7f/L7r, L8f/L8r and L10f/L10r. The old sequential names L7–L14 become L7f, L7r, L8f, L8r, L9, L10f, L10r and L11, now drawn under the elements; entries above this section use the old names. The type text now counts the aspherical faces: Positive Meniscus (1× Asph) for L6 and Negative Meniscus (2× Asph) for L11. The groups (fixed G1; moving G2 with the iris), the cemented brackets C1–C3, the stop between L7r and L8f, the aspheres on S11, S25 and S26, and each element's shape agree with the patent; inspector focal lengths are unchanged.
+
+APD tags: ¶0037–¶0038 define Gr1P-ΔPgF as the largest positive ΔPgF among G1's lenses, 0.023; S-NPH1 on L2 gives +0.023 on the patent's normal line, against +0.014 for J-PSKH8 on L4. ¶0040 gives negative anomalous dispersion to G1's negative lens with νd 55.07, which is L5. L4 and L7f stay inferred. L2's note and its analysis paragraph now cite ¶0038–¶0039 instead of ¶0038 alone, since ¶0039 prints the νd of 22.76 that ties the condition to L2.
+
+Movement: the focus control on the page runs from infinity on the left to 50 cm on the right. G1 stays fixed, and G2 with the iris moves 6.86 mm toward the object (D10 7.56 to 0.70 mm, D26 18.69 to 25.55 mm, Table 3), steadily through the five positions.
+
+Glass and colour: all fourteen labels resolve to exact catalog rows (largest differences 5×10⁻⁶ in nd and 0.01 in νd), and no element falls back to constant dispersion. Fig. 2 prints C, d and g curves. Read on its axis, C lies about 0.025–0.035 mm behind d near the axis and g within about 0.01 mm of d; the model gives C 0.030 mm behind and g 0.018 mm ahead of d, within the reading error. The catalog curve for L2 reproduces the patent's ΔPgF of 0.023.
+
 ## Remaining Questions
 
-- Fig. 1 draws most rims 7–21 % smaller than the model keeps. Whether the production lens vignettes as strongly as the drawn rims imply is not established.
-- Catalog equivalents do not identify production suppliers or melts. L4 and L7 APD positions remain inferred.
+- Fig. 1 draws most rims 8–18 % smaller than the model keeps. Whether the production lens vignettes as strongly as the drawn rims imply is not established.
+- Catalog equivalents do not identify production suppliers or melts. L4 and L7f APD positions remain inferred.
 - The cited primary sources do not give a numerical blade-curvature value, so blade roundedness is left unspecified.
 - The S26 table conflict remains a source inconsistency; the plane has the stronger first-order and aberration evidence.

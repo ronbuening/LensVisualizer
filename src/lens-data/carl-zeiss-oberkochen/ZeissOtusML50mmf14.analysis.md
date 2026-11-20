@@ -19,6 +19,8 @@ S26 follows Table 4's INFINITY base over Table 2's −2000 mm. The plane agrees 
 
 ZEISS calls the production design a Distagon. G1 has five fixed elements; G2 has nine moving elements and the iris. Cemented pairs C1, C2 and C3 span S13–S15, S17–S19 and S22–S24, with in-air focal lengths −57.01, −577.15 and −53.71 mm.
 
+Element names follow the patent's Fig. 1 and text. The cemented lenses L7, L8 and L10 consist of L7f/L7r, L8f/L8r and L10f/L10r, so the fourteen elements run L1–L6, L7f, L7r, L8f, L8r, L9, L10f, L10r and L11. Within G2, the patent places G21 (L6 and L7) ahead of the iris, and G22 behind it: G221 (L8–L10) followed by G222 (L11).
+
 The unscaled millimetre prescription prints stop position, spacings and aspheres; rims are estimated, iris radius derived, and intermediate focus positions inferred. The printed 18.69 mm image gap is retained without plates or baffles.
 
 ## Element-by-Element Analysis
@@ -35,7 +37,7 @@ L1 spreads the incoming bundle before the positive elements.
 
 nd = 1.80809, νd = 22.76. Glass: S-NPH1 (OHARA equivalent). f = +140.43 mm.
 
-Patent ¶0038 identifies the front-group positive lens with νd = 22.76 as having positive anomalous partial dispersion, establishing L2 as an APD element. Its catalog partial dispersion agrees with the patent's value for that lens, ΔPgF = 0.023.
+Patent ¶0038–¶0039 identify the front-group positive lens with νd = 22.76 as having positive anomalous partial dispersion, establishing L2 as an APD element. Its catalog partial dispersion agrees with the patent's value for that lens, ΔPgF = 0.023.
 
 ### L3 — Biconvex Positive
 
@@ -61,49 +63,49 @@ nd = 1.85135, νd = 40.10. Glass: M-TAFD305 (HOYA equivalent). f = +57.56 mm.
 
 The first element of G2 has the S11 asphere and moves with the focusing group.
 
-### L7 — Positive Meniscus, C1
+### L7f — Positive Meniscus, C1
 
 nd = 1.49700, νd = 81.61. Glass: FCD1 (HOYA equivalent). f = +100.67 mm.
 
-The inferred ED/APD crown is cemented to L8 at S14, ahead of the iris.
+The inferred ED/APD crown is cemented to L7r at S14, ahead of the iris.
 
-### L8 — Negative Meniscus, C1
+### L7r — Negative Meniscus, C1
 
 nd = 1.77047, νd = 29.74. Glass: NBFD29 (HOYA equivalent). f = −34.70 mm.
 
-The dispersive negative member makes C1 net negative and bounds the air space before the iris.
+The dispersive negative member makes C1 net negative and bounds the air space before the iris. Fig. 1 ends its concave rear face in a flat step out to the rim.
 
-### L9 — Biconcave Negative, C2
+### L8f — Biconcave Negative, C2
 
 nd = 1.77047, νd = 29.74. Glass: NBFD29 (HOYA equivalent). f = −24.09 mm.
 
-This strong negative element sits immediately behind the iris and is cemented to L10 at S18.
+This strong negative element sits immediately behind the iris and is cemented to L8r at S18.
 
-### L10 — Biconvex Positive, C2
+### L8r — Biconvex Positive, C2
 
 nd = 1.76385, νd = 48.49. Glass: S-LAH96 (OHARA equivalent). f = +25.35 mm.
 
-L10 balances L9, leaving C2 weakly negative.
+L8r balances L8f, leaving C2 weakly negative.
 
-### L11 — Biconvex Positive
+### L9 — Biconvex Positive
 
 nd = 2.00100, νd = 29.13. Glass: TAFD55 (HOYA equivalent). f = +27.20 mm.
 
 The high-index positive singlet follows C2.
 
-### L12 — Positive Meniscus, C3
+### L10f — Positive Meniscus, C3
 
 nd = 1.95375, νd = 32.32. Glass: S-LAH98 (OHARA equivalent). f = +33.28 mm.
 
-L12 is the positive member of C3, cemented to L13 at S23.
+L10f is the positive member of C3, cemented to L10r at S23.
 
-### L13 — Biconcave Negative, C3
+### L10r — Biconcave Negative, C3
 
 nd = 1.77047, νd = 29.74. Glass: NBFD29 (HOYA equivalent). f = −20.71 mm.
 
-The negative member leaves C3 net negative before the final asphere.
+The negative member leaves C3 net negative before the final asphere. As with L7r, Fig. 1 ends its concave rear face in a flat step out to the rim.
 
-### L14 — Negative Meniscus, Aspherical
+### L11 — Negative Meniscus, Aspherical
 
 nd = 1.80835, νd = 40.55. Glass: L-LAH84 (OHARA equivalent). f = −140.53 mm.
 
@@ -113,7 +115,7 @@ S25 and S26 are aspherical. S26's plane base and polynomial produce a curved pro
 
 For the eleven distinct nd/νd pairs, the largest absolute differences between catalog and patent values are 5×10⁻⁶ in nd and about 0.0045 in νd. The reference is helium d, 587.56 nm. Catalog curves supply dispersion while the printed nd/νd remain unchanged; production melts and suppliers are unspecified.
 
-The four-APD-element count is reported by [LensTip](https://www.lenstip.com/2210-Carl_Zeiss_Otus_ML_50_mm_f_1.4-lens_specifications.html) and [PetaPixel](https://petapixel.com/2025/02/26/a-closer-look-at-the-zeiss-otus-ml-50mm-f-1-4-and-85mm-f-1-4-lenses-and-their-unique-promises/). [ZEISS's optical-section legend](https://www.zeiss.com/photonics-and-optics/en/photography/products/lenses-for-mirrorless-system-cameras/otus-ml-lenses.html) marks APD glass without printing a count. The patent explicitly identifies L2 and L5 in ¶0038 and ¶0040; L4 and L7 remain inferred from the optical section and compatible glass properties.
+The four-APD-element count is reported by [LensTip](https://www.lenstip.com/2210-Carl_Zeiss_Otus_ML_50_mm_f_1.4-lens_specifications.html) and [PetaPixel](https://petapixel.com/2025/02/26/a-closer-look-at-the-zeiss-otus-ml-50mm-f-1-4-and-85mm-f-1-4-lenses-and-their-unique-promises/). [ZEISS's optical-section legend](https://www.zeiss.com/photonics-and-optics/en/photography/products/lenses-for-mirrorless-system-cameras/otus-ml-lenses.html) marks APD glass without printing a count. The patent explicitly identifies L2 and L5 in ¶0038 and ¶0040; L4 and L7f remain inferred from the optical section and compatible glass properties.
 
 ## Focus Mechanism
 
@@ -131,7 +133,7 @@ Between the listed positions, the image plane can lie up to 0.041 mm in front of
 
 ## Aspherical Surfaces
 
-S11 on L6 and S25/S26 on L14 carry the three printed aspheres. All use standard (1 + K) conic sag, K = 0, plus A4–A20.
+S11 on L6 and S25/S26 on L11 carry the three printed aspheres. All use standard (1 + K) conic sag, K = 0, plus A4–A20.
 
 | Term |         S11 |         S25 |         S26 |
 | ---- | ----------: | ----------: | ----------: |
@@ -160,7 +162,7 @@ At the source pupil, full/half-pupil d-line longitudinal spherical aberration is
 
 The paraxial aperture, approximately f/1.44, gives iris radius 13.74 mm; pupil aberration reduces real-ray acceptance to approximately f/1.51. The production lens has ten diaphragm blades and an f/1.4–f/16 range. Estimated rims and iris limit performance comparisons. Chief rays reach the 24×36 mm corner at 23.1° half-field. The surfaces stay clear of each other; the iris sets the full aperture.
 
-Fig. 1 is drawn to scale apart from its iris marks. It draws L6, the first cemented pair and L14's front face within 4 % of the model's rims and the second cemented pair 5–8 % smaller; the front group, L11, the rear cemented pair and L14's rear face are drawn 7–21 % smaller; L1, for example, is 23.2 mm against 29.0 mm. The drawn rims clear the f/1.435 axial beam by little, and with them wide-open illumination at 23.1° would fall from 66 % to about 34 % at infinity, and at 20.5° from 84 % to 59 % at close focus. The model keeps its larger estimated rims for that light.
+Fig. 1 is drawn to scale apart from its iris marks. It draws L6, the first cemented pair and L11's front face within 4 % of the model's rims, the second cemented pair 8 % smaller, L9 and L11's rear face about 12 % smaller, and the front group and the rear cemented pair 14–18 % smaller; L1, for example, is 23.2 mm against 27.5 mm. As in the figure, L5 and the three cemented pairs are square-cut, and the concave rear faces of L7r and L10r end in flat steps. The drawn rims clear the f/1.435 axial beam by little, and with them wide-open illumination at 23.1° would fall from 65 % to about 31 % at infinity, and at 20.5° from 82 % to 55 % at close focus. The model keeps its larger estimated rims for that light.
 
 ## Sources
 
