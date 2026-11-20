@@ -32,6 +32,7 @@ import {
   buildImageFormatOptions,
   buildMakerOptions,
   buildMountOptions,
+  buildSourceKindOptions,
   catalogEntriesForView,
   groupByAssignee,
   groupByFocalLength,
@@ -65,6 +66,7 @@ export default function LensIndexPage() {
   );
   const mountOptions = useMemo(() => buildMountOptions(catalogEntries), [catalogEntries]);
   const imageFormatOptions = useMemo(() => buildImageFormatOptions(catalogEntries), [catalogEntries]);
+  const sourceKindOptions = useMemo(() => buildSourceKindOptions(catalogEntries), [catalogEntries]);
   const parsedUrlState = useMemo(
     () =>
       parseLensIndexUrlState(
@@ -93,6 +95,8 @@ export default function LensIndexPage() {
     toggleMount,
     clearImageFormatSelection,
     toggleImageFormat,
+    clearSourceKindSelection,
+    toggleSourceKind,
     applyNumericField,
     handleNumericInputChange,
     commitNumericInput,
@@ -425,6 +429,7 @@ export default function LensIndexPage() {
             patentDecadeOptions={patentDecadeOptions}
             mountOptions={mountOptions}
             imageFormatOptions={imageFormatOptions}
+            sourceKindOptions={sourceKindOptions}
             filterInputValues={filterInputValues}
             activeFilters={activeFilters}
             onClearFilters={clearFilters}
@@ -434,6 +439,8 @@ export default function LensIndexPage() {
             onToggleMount={toggleMount}
             onClearImageFormatSelection={clearImageFormatSelection}
             onToggleImageFormat={toggleImageFormat}
+            onClearSourceKindSelection={clearSourceKindSelection}
+            onToggleSourceKind={toggleSourceKind}
             onApplyNumericField={applyNumericField}
             onNumericInputChange={handleNumericInputChange}
             onNumericInputCommit={commitNumericInput}
