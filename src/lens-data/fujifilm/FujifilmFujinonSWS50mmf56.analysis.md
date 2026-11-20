@@ -11,7 +11,7 @@
 
 The patent's f = 1 table is scaled by 50 to millimetres. It specifies f/5.6, a 90° full field and eight elements in six groups. These values strongly connect the example to the Fujinon SW S 50mm f/5.6 for the Fujica G690/GL690 interchangeable-lens 6×9 rangefinder system. The December 1973 filing also coincides with the GL690's introduction. The [Fujica GL690/GM670 instruction manual](https://www.cameramanuals.org/fuji_pdf/fujica_gl690_gm670.pdf) lists the 50mm f/5.6 interchangeable lens and its external finder.
 
-[Lallement's G690 lens reference](https://www.lallement.com/pictures/lenses.htm) gives the f/5.6–32 aperture range, 90° field, 1 m minimum focus distance, eight elements in six groups and 72 mm filter diameter. [Kamerastore's retailer listing](https://kamerastore.com/products/fujica-fujinon-50mm-f5-6-sw-s-fujica-g690) also reports eight elements in six groups, the G690 mount, 1 m close focus, five diaphragm blades and the lens's own leaf shutter, with speeds of 1–1/500 s plus B. No manufacturer optical diagram or production prescription has been found to establish an exact product identity.
+[Lallement's G690 lens reference](https://www.lallement.com/pictures/lenses.htm) gives the f/5.6–32 aperture range, 90° field, 1 m minimum focus distance, eight elements in six groups and 72 mm filter diameter. [Kamerastore's dealer listing](https://kamerastore.com/products/fujica-fujinon-50mm-f5-6-sw-s-fujica-g690) also reports eight elements in six groups, the G690 mount, 1 m close focus and the lens's own leaf shutter, with speeds of 1–1/500 s plus B. The five-blade diaphragm count comes from this dealer listing, the only source found for that count. No manufacturer optical diagram or production prescription has been found to establish an exact product identity.
 
 ## Optical architecture and modeled field
 
@@ -38,17 +38,17 @@ These focal lengths describe each element in air; the cemented pairs' powers inc
 
 ## Glass identification
 
-The source gives d-line refractive indices and Abbe numbers, with no commercial glass names or measured partial dispersions. The listed catalog equivalents agree within 0.000003 in nd and 0.15 in νd and supply estimated spectral curves. Their vendor names do not identify Fujifilm's suppliers or production melts. No element is identified as anomalous-dispersion glass by the patent.
+The source gives d-line refractive indices and Abbe numbers, with no commercial glass names or measured partial dispersions. The listed catalog equivalents supply estimated spectral curves. Catalog minus patent differences are zero in nd except LAL7 (−0.000003); νd differences range from −0.15 for LLF1 to +0.11 for SF10. Their vendor names do not identify Fujifilm's suppliers or production melts. No element is identified as anomalous-dispersion glass by the patent.
 
 The positive members of C1/C2 use higher-index crowns paired with lower-index, more dispersive negative members. The rear SF10-class meniscus adds a distinctly more dispersive glass to the otherwise crown-rich palette. Unpublished spectral differences remain uncertain.
 
 ## Focus mechanism and conjugates
 
-Only the infinity state is modeled. The patent supplies no near-focus spacings or moving-group table. The production lens's documented 1 m minimum focus distance is recorded separately; no finite-focus motion is inferred from it.
+Only the infinity state is modeled. The patent supplies no near-focus spacings or moving-group table. The production lens focuses to 1 m; no finite-focus motion is inferred from that specification.
 
 ## Apertures and model scope
 
-Clear apertures are not tabulated. Increasing S1's semi-diameter from 18 to 20 mm to match Fig. 1 accounts for the whole 45° geometric pupil transmission gain, 18.6% → 45.2%. Reducing S7/S8 to 7.2 mm also matches the figure and costs no light from 0° to 45°; both retain the f/5.6 axial beam and the 45° chief ray. Other clear radii remain estimates. The prose's 44 mm front diameter exceeds the drawing's approximately 40 mm diameter and does not uniquely establish a clear optical rim.
+Clear apertures are not tabulated. The clear radii at S1 (20 mm) and S7/S8 (7.2 mm) follow Fig. 1. Both central surfaces admit the f/5.6 axial beam and the 45° chief ray. Other clear radii remain estimates. The patent text's 44 mm front diameter exceeds the drawing's approximately 40 mm diameter and does not uniquely establish a clear optical rim.
 
 The 0.47 mm gap between S10/S11 prevents extending their spherical caps to the approximately 12–13 mm outer radii drawn for L6/L7. The opaque lands extend to 12 mm while keeping the 10 mm clear radius at each surface. This avoids intersecting surfaces without opening those apertures. The resulting geometric pupil transmission at 45° is approximately 45.17%; coating losses, absorption and measured production illumination are not established.
 
@@ -57,4 +57,4 @@ The 0.47 mm gap between S10/S11 prevents extending their spherical caps to the a
 - [JP S50-96221 A](https://patents.google.com/patent/JPS5096221A/), Table 1, Figs. 1–2 and amendment dated 1974-03-19.
 - [Fujica GL690/GM670 instruction manual](https://www.cameramanuals.org/fuji_pdf/fujica_gl690_gm670.pdf), interchangeable lenses and special viewfinders.
 - [Lallement, Fujica G690 series](https://www.lallement.com/pictures/G690.html) and [lens specifications](https://www.lallement.com/pictures/lenses.htm), camera introduction, format, focus and aperture range.
-- [Kamerastore, Fujica Fujinon 50mm f/5.6 SW S](https://kamerastore.com/products/fujica-fujinon-50mm-f5-6-sw-s-fujica-g690), retailer's mount, construction, close-focus, five-blade diaphragm and leaf-shutter specifications.
+- [Kamerastore, Fujica Fujinon 50mm f/5.6 SW S](https://kamerastore.com/products/fujica-fujinon-50mm-f5-6-sw-s-fujica-g690), dealer's mount, construction, close-focus and leaf-shutter specifications; the only source found for the five-blade diaphragm count.

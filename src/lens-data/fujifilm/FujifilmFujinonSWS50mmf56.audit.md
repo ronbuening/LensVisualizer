@@ -24,13 +24,13 @@ The A publication prints d9 = 0.393. That value gives normalized f = 0.99997 and
 | Total first-surface-to-image distance (mm) | — | 109.52 |
 | Stop radius (mm) | — | 5.549 |
 
-The printed image plane differs from paraxial best focus by 0.0009 mm. The focal length, f-number, back focus, stop radius, field and focus states are unchanged by the metadata and wording changes. The older paraxial field estimate of 37.1° does not replace the modeled 45.0° half-field.
+The printed image plane differs from paraxial best focus by 0.0009 mm. The modeled half-field is 45.0°.
 
 The Petzval sum multiplied by focal length is −0.0065, against Table 2's −0.00649. The stated conditions are satisfied: fA2/|fA1| is 0.13, dB3/dB2 is 1.29, and d12 is 0.170f.
 
 At 45.0° the chief ray reaches 48.79 mm image height, about −2.4% distortion and 96.6% of the 50.50 mm 6×9 half-diagonal, consistent with Fig. 2(c). The format corner lies at about 46.0° and is clear. The difference in image height follows from retaining the patent's 90.0° field.
 
-A check of the surface geometry finds no edge-thickness or overlap errors. The effective aperture is within 3% of f/5.6 and is limited by the diaphragm, with no clear-rim limit or tracing failure. The estimated apertures accommodate the format corner; all checked field directions were resolved.
+The surfaces stay clear of each other; the iris sets the full aperture. The estimated apertures accommodate the format corner.
 
 ## Values Not Printed in the Patent
 
@@ -40,9 +40,9 @@ Clear radii are not tabulated. The front radius of 20 mm and the central radii o
 
 The 10 mm clear radii at S10/S11 and their opaque outer lands extending to 12 mm are inferred. Extending both spheres across the 0.47 mm air space would make them cross beyond about 10.4 mm radius, short of the approximately 12–13 mm outer silhouette. The lands retain the clear apertures while avoiding an overlap; their exact shape is unknown.
 
-Commercial glass names and measured partial dispersions are not supplied. The catalog glasses below supply estimated dispersion curves. They do not establish the production supplier, melt or historical purchase. The d-line indices and Abbe numbers remain the patent's values; there were no separate C-, F- or g-line values to remove. No anomalous-dispersion glass is identified by the patent.
+Commercial glass names and measured partial dispersions are not supplied. The catalog glasses below supply estimated dispersion curves. They do not establish the production supplier, melt or historical purchase. The d-line indices and Abbe numbers remain the patent's values; no C-, F- or g-line indices are printed. No anomalous-dispersion glass is identified by the patent.
 
-The patent supplies infinity data only. The product's 1 m minimum focus distance and f/5.6–32 aperture range come from the product references. Five diaphragm blades are reported by Kamerastore; blade curvature is not documented.
+The patent supplies infinity data only. The product's 1 m minimum focus distance and f/5.6–32 aperture range come from the product references. Five diaphragm blades are reported by Kamerastore's dealer listing, the only source found for that count; blade curvature is not documented.
 
 ## Product Identification
 
@@ -52,15 +52,14 @@ Lallement documents the construction, aperture range, field, 1 m minimum focus d
 
 ## Corrections, 2026-11-20
 
-- The name and public address were replaced by the product name, with the spacing “SW S”; the lens was made visible in the catalog. Fujifilm remains the maker. Notation and numeric formatting were made consistent, and rounding artifacts were removed without changing the source dimensions or optical results.
-- The example identification was corrected from a table number to the sole numerical example. Publication information now gives 1975-07-31; the bibliographic label now says assignee. The patent number, publication year, inventor names and assignee were retained.
-- The header now explains scaling, the retained d9 value, inferred stop placement and rims, the printed image plane and glass uncertainty. The subtitle changed from a camera-system description to “JP S50-96221 A, sole example — Fuji Photo Optical / Doi & Sakai”.
-- Repetitive specification lines were replaced by construction, design aperture and spherical-surface information. The redundant “DESIGN f = 50.00 mm” chip was then removed because design and marketed focal lengths agree. The final chips are “8 ELEMENTS / 6 GROUPS”, “ALL SPHERICAL”, “DESIGN F/5.6” and “90° FIELD”.
-- The G690 mount and marketed 1 m close focus were added from the product references. The 6×9 format, eight-element/six-group construction, and marketed/design values of 50 mm and f/5.6 were retained. The modeled close-focus endpoint was changed from 1 m to infinity because no near-focus prescription is printed; the focus description distinguishes that limit from the production lens's 1 m capability.
-- The stop list was extended from f/5.6–16 to f/5.6–32, and the maximum f-number from 16 to 32, following Lallement's table. The previously unspecified diaphragm blade count is now five, following Kamerastore. Blade curvature remains unspecified.
-- Element roles and focal lengths in air were added: L1 −58.60, L2 −136.60, L3 +21.63, L4 −34.68, L5 −25.45, L6 +15.45, L7 −73.43 and L8 −44.95 mm. Shape descriptions agree with the radius signs. The front and rear cemented pairs were relabeled D3 → C1 and D4 → C2, with spans S5–S7 and S8–S10. Their combined focal lengths are +44.24 and +23.68 mm. No anomalous-dispersion tags were added.
-- A1 and A2 annotations were added over S1–S7 and S8–S14, following Fig. 1(a). The analysis explains their subdivisions: B1 contains L1, B2 contains L2–L4, B3 contains L5–L7 and B4 contains L8.
-- Glass labels that previously described the material identity as unknown were replaced by the catalog names below. The source refractive indices and Abbe numbers were retained. Older compatible glass designations were preferred where available. Each name selects a catalog row within 0.000003 in nd and 0.15 in νd. KF5 selects Sumita's curve even when described elsewhere as Schott, so its vendor is explicitly Sumita.
+- The name was corrected to the product name, with the spacing “SW S”. Fujifilm remains the maker.
+- The example identification was corrected from a table number to the sole numerical example. The publication date is 1975-07-31. The patent number, publication year, inventor names and assignee were retained.
+- The specifications give eight elements in six groups, all spherical surfaces, a design aperture of f/5.6 and a 90° field. Design and marketed focal lengths are both 50 mm.
+- The G690 mount and marketed 1 m close focus were added from the product references. The 6×9 format, eight-element/six-group construction, and marketed/design values of 50 mm and f/5.6 were retained. Only infinity focus is modeled because no near-focus prescription is printed; the production lens focuses to 1 m.
+- The aperture range was extended from f/5.6–16 to f/5.6–32, following Lallement's table. The diaphragm blade count is five, from Kamerastore's dealer listing, the only source found for that count. Blade curvature remains unspecified.
+- Element roles and focal lengths in air were added: L1 −58.60, L2 −136.60, L3 +21.63, L4 −34.68, L5 −25.45, L6 +15.45, L7 −73.43 and L8 −44.95 mm. Shape descriptions agree with the radius signs. The front and rear cemented pairs span S5–S7 and S8–S10 and have combined focal lengths of +44.24 and +23.68 mm.
+- Fig. 1(a)'s A1 and A2 divisions span S1–S7 and S8–S14. B1 contains L1, B2 contains L2–L4, B3 contains L5–L7 and B4 contains L8.
+- The catalog equivalents below provide estimated dispersion curves while retaining the patent's refractive indices and Abbe numbers. The KF5 dispersion curve is from Sumita.
 
 | Element | Catalog label | Catalog vendor | Δnd | Δνd |
 | --- | --- | --- | ---: | ---: |
@@ -72,18 +71,17 @@ Lallement documents the construction, aperture range, field, 1 m minimum focus d
 | L6 | LAL7 (OHARA) | Ohara | −0.000003 | +0.02 |
 | L7 | SF10 (Schott) | Schott | 0 | +0.11 |
 
-Differences are catalog minus printed source values. The lowercase d-line reference remains on every element.
+Differences are catalog minus printed source values. Each element uses the d-line reference.
 
 - The front clear radius at S1 was increased from 18 to 20 mm; the central radii at S7/S8 were reduced from 11/10 to 7.2 mm to match Fig. 1(a). At S7/S8, axial marginal-ray heights are 5.616/5.601 mm and the 45.0° chief-ray heights are 1.137/1.497 mm, so neither beam is cut by the central reductions.
-- S10/S11 retained their 10 mm clear radii and gained opaque lands to 12 mm. These extensions admit no additional rays and avoid intersecting edges. The blanket description of the rims as estimated was removed because they now combine figure readings with estimates.
-- Geometric pupil transmission at 45.0° increased from 18.6% to 45.2%, entirely because of the S1 change. Comparisons at 0.0° through 45.0° in 5.0° increments show no additional light loss from the central reductions or outer lands. All intended ray directions were found, with no tracing failures. This is geometric pupil transmission; measured illumination, coating losses and absorption remain unknown.
-- The analysis now separates product identification, architecture, element roles, glass equivalents, infinity-only focus and inferred apertures. Duplicated table information, broken spacing, unrelated lens references and an unrelated image-plane instruction were removed. Citations now identify the source of all production specifications. This log was reorganized around the source facts, optical checks, corrections and remaining questions.
+- S10/S11 retained their 10 mm clear radii and gained opaque lands to 12 mm. These extensions admit no additional rays and avoid intersecting edges.
+- Geometric pupil transmission at 45.0° increased from 18.6% to 45.2% with S1's larger clear radius. The central clear radii and opaque lands introduce no additional light loss from 0° to 45°. Measured illumination, coating losses and absorption remain unknown.
 
-After these corrections, EFL is 49.998 mm, maximum aperture is f/5.60, paraxial back focus is 34.774 mm, stored back focus is 34.775 mm, total track is 109.52 mm, stop radius is 5.549 mm and half-field is 45.0°. The metadata and wording changes leave those values and all focus spacings unchanged.
+EFL is 49.998 mm, maximum aperture is f/5.60, paraxial back focus is 34.774 mm, last-surface-to-image distance is 34.775 mm, total track is 109.52 mm, stop radius is 5.549 mm and half-field is 45.0°.
 
 ## Remaining Questions
 
 - The remaining estimated rims need comparison with the complete patent figure. The S10/S11 lands and 10 mm clear caps need stronger dimensional evidence before any further enlargement.
 - The text's 44 mm front diameter and the drawing's approximately 40 mm diameter remain unresolved.
 - The exact production prescription, supplier and melt identities, measured partial dispersions and near-focus spacings remain unconfirmed. No manufacturer optical diagram has been located.
-- The cited sources do not establish diaphragm blade curvature, a separate measured image-circle diameter or dedicated teleconverter compatibility; those optional values remain unspecified.
+- No measured image-circle diameter is documented.
