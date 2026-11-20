@@ -39,7 +39,7 @@ L1/L2 provide net negative power; L3/L4 share plane surface 5. L5 is the more di
 
 ## Glass Identification and Selection
 
-The printed indices use the helium d line. Four catalog equivalents meet |Δnd| ≤ 0.0001 and |Δνd| ≤ 0.15; discontinued Sumita LAK6 matches exactly. Historical suppliers and melts remain unknown. L3 has no exact match; J-LF7's νd 41.51 exceeds L5's 41.3 by 0.21. Unlisted partial dispersion and APO performance remain unestablished.
+The indices refer to helium d. For L1, L2, L4 and L6, Δnd = 0; Δνd is +0.08, −0.09, +0.05 and 0 respectively. Sumita LAK6 is discontinued. Historical suppliers and melts remain unknown. L3 and L5 have no close match; J-LF7, nearest to L5, differs in νd by +0.21. Unlisted partial dispersion and apochromatic performance remain unestablished.
 
 ## Focus Mechanism
 
@@ -47,14 +47,14 @@ Only infinity focus is modeled; no finite-focus spacings are printed. The 0.5 m 
 
 ## Image Plane, Iris and Field Limits
 
-Computed EFL is 35.003 mm at f/3.5; paraxial BFD is 33.656 mm, total track 62.85 mm, and infinity defocus zero. [US 2,772,601](https://patents.google.com/patent/US2772601A/en) Example 2 rounds the same design at about 1.0055×. Its back-focus convention is paraxial: US Example 1's 98.5 mm agrees with the computed 98.54 mm of German Beispiel 1.
+Computed EFL is 35.003 mm at f/3.5; paraxial BFD is 33.656 mm, total track 62.85 mm, and infinity defocus negligible. [US 2,772,601](https://patents.google.com/patent/US2772601A/en) Example 2 rounds the same design at about 1.0055×. Its back-focus convention is paraxial: US Example 1's 98.5 mm agrees with the computed 98.54 mm of German Beispiel 1.
 
 The iris has 5.06 before and 2.90 after it in patent units, reversing the printed order. That order would put it 1.015 mm behind surface 6, inside L4's 1.82 mm sag at a 7 mm semi-diameter. Both drawings support placement near C. Its modeled position is 23.10 mm from the first vertex, with an inferred radius of 4.571 mm.
 
-The iris has eight blades and an f/3.5–16 range, following the early M42 version in AllPhotoLenses. Its later black version has six blades and reaches f/22; those mechanical specifications are distinct.
+AllPhotoLenses lists eight iris blades and an f/3.5–16 range, likely for the early chrome version. The later black version has six blades and reaches f/22.
 
 Rims are inferred, including the 12.5 mm front rims. The stated 32° half-field reaches 21.54 of the 21.65 mm film half-diagonal; the 32.1° corner chief ray clears. Surface 8 retains one-sided clipping, so full-pupil transmission and measured production coverage remain unknown.
 
 ## Sources
 
-The linked patents supply the prescription and group names; [AllPhotoLenses](https://allphotolenses.com/lenses/item/c_3226.html) supplies the product construction, early eight-blade iris, f/3.5–16 range and 0.5 m minimum. Kamerastore documents Exakta, and Flashback Camera documents Leica thread and its 1 m minimum. No maker optical drawing or description of blade roundedness was found.
+The linked patents supply the prescription and group names; [AllPhotoLenses](https://allphotolenses.com/lenses/item/c_3226.html) supplies the product construction, eight-blade iris, f/3.5–16 range and 0.5 m minimum. Kamerastore documents Exakta, and Flashback Camera documents Leica thread and its 1 m minimum. No maker optical drawing or description of blade roundedness was found.
