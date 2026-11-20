@@ -99,9 +99,9 @@ The alternating even-order terms modify the outer profile of the negative menisc
 
 The infinity prescription computes to EFL 33.91 mm and f/2.89, matching the printed values to that precision. Its paraxial back focal distance is 14.668 mm; the image plane is at the printed 14.6687 mm, about 0.0004 mm beyond paraxial focus. The first-to-last surface length is 21.06 mm and the infinity total track is 35.73 mm.
 
-The 64° full field gives a chief-ray height of 21.51 mm. Figure 7 gives IH = 21.6 mm, reached at about 32.1° half-field. The 24 × 36 mm corner at about 32.2° has a clear chief ray. Corner bundles at IH = 21.6 mm show approximately 4%, 14% and 10% one-sided clipping at surfaces 1–3, so a clear chief ray does not imply full corner illumination.
+The 64° full field gives a chief-ray height of 21.51 mm. Figure 7 gives IH = 21.6 mm, reached at about 32.1° half-field. The 24 × 36 mm corner at about 32.2° has a clear chief ray. Corner bundles at IH = 21.6 mm show approximately 4%, 14% and 10% one-sided clipping at surfaces 1–3, so a clear chief ray does not imply full corner illumination. Wide open at infinity, about 70% of the on-axis light reaches the 32° field edge.
 
-Semi-diameters are inferred rather than printed. Figure 1 suggests outer radii of 6.9, 6.1, 6.5 and 8.7 mm. L1's rear radius is limited to 5.9 mm because the adjacent surfaces cross at about 6.25 mm height, despite the overlap depicted in Figure 1. L4 has inferred clear radii of 7.1 and 7.8 mm and opaque outer lands extending to 8.7 mm; the rear clear-radius reading spans approximately 7.7–7.9 mm. These uncertain estimates do not establish production clear apertures.
+Semi-diameters are not printed; they are estimated from Figure 1, which is drawn to scale. It shows all four elements square-cut, at about 6.9, 6.1, 6.6 and 8.7 mm. L1's rear face and L2's front face would cross at about 6.25 mm, so L1's rear clear radius is 5.9 mm, and a flat land carries its edge out to 6.9 mm just ahead of L2's rim, where Figure 1 draws the two elements touching. L2 and L3 have clear radii of 6.1 and 6.5 mm. L4's front curve ends at 7.3 mm and continues as a flat land to the 8.7 mm edge, while its aspheric rear face runs to the edge, as drawn. These estimates do not establish production clear apertures.
 
 ## Sources
 

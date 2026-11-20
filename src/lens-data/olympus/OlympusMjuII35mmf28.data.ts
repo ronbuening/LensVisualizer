@@ -4,12 +4,14 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Radii, thicknesses, indices, Abbe numbers and the rear asphere follow the patent.
  * The printed 2.49 mm L2-to-L3 gap is split 1.60 / 0.89 mm at the stated stop position.
  * The iris radius is inferred from f/2.89, not from the drawing's approximately 5.3 mm radius.
- * Figure 1 suggests outer radii of 6.9, 6.1, 6.5 and 8.7 mm, with 0.1–0.3 mm uncertainty.
- * L1's rear clear radius of 5.9 mm is inferred to avoid overlap with L2; L2 and L3 use
- * their drawing envelopes as curve ends because separate endpoints are indistinct.
- * L4's clear radii are inferred as 7.1 / 7.8 mm; the rear reading spans 7.7–7.9 mm.
- * Its 8.7 mm opaque flat lands follow the drawing's step; the bevel shape is unknown.
- * The clear radii follow the drawing and surface geometry; none is enlarged to pass rays.
+ * Semi-diameters are estimated from Figure 1, which is drawn to scale (35.2 px/mm at 600 dpi from
+ * the 21.0641 mm first-to-last vertex span, confirmed by the stop position). It draws L1, L2, L3 and
+ * L4 square-cut at about 6.9, 6.1, 6.6 and 8.7 mm. L1's rear face would meet L2's front face near
+ * 6.25 mm, so its clear radius stays 5.9 mm and a flat land carries L1's edge out to 6.9 mm, just
+ * ahead of L2's rim where the drawing shows the two touching; gapSagFrac 0.94 admits that pair.
+ * L4's front curve ends at 7.3 mm with a flat land to 8.7 mm; its aspheric rear face runs to the
+ * 8.7 mm edge, as drawn. The clear radii follow the drawing and surface geometry; none is enlarged
+ * to pass rays.
  * The infinity image plane uses the printed fb = 14.6687 mm.
  * Whole-unit focus to 0.35 m is described by the patent, but its spacings are not tabulated.
  * The rear gap alone varies to an inferred 18.87 mm, with three inferred intermediate states.
@@ -21,6 +23,9 @@ const LENS_DATA = {
   layout: {
     scFill: 0.6,
     yScFill: 0.45,
+  },
+  checks: {
+    gapSagFrac: 0.94,
   },
   focus: {
     closeFocusM: 0.35,
@@ -124,6 +129,7 @@ const LENS_DATA = {
       R: 50.0294,
       d: 0.92,
       sd: 5.9,
+      rimExtensionSd: 6.9,
     },
     {
       label: "3",
@@ -160,14 +166,14 @@ const LENS_DATA = {
       label: "7",
       R: -8.3616,
       d: 1.4,
-      sd: 7.1,
+      sd: 7.3,
       medium: 4,
       rimExtensionSd: 8.7,
     },
     {
       label: "8A",
       R: -11.8346,
-      sd: 7.8,
+      sd: 8.7,
       asphere: {
         K: 0,
         A4: 0.000031902,
@@ -175,7 +181,6 @@ const LENS_DATA = {
         A8: 1.0551e-8,
         A10: -7.6647e-11,
       },
-      rimExtensionSd: 8.7,
     },
   ],
   gaps: {
