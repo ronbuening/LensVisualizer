@@ -7,11 +7,11 @@ the fields unset and add a note here until a source check resolves it.
 
 ## Current Coverage
 
-- Total lens data files: **1178**
-- Files with both `lensMounts` and `imageFormat`: **1108**
-- Files missing `lensMounts`: **58** (40 public lenses, 5 hidden patent designs and 13 hidden reference fixtures)
-- Files missing `imageFormat`: **54** (39 public lenses, 3 hidden patent designs and 12 hidden reference fixtures)
-- Files missing both fields: **42**
+- Total lens data files: **1170**
+- Files with both `lensMounts` and `imageFormat`: **1114**
+- Files missing `lensMounts`: **46** (28 public lenses, 5 hidden patent designs and 13 hidden reference fixtures)
+- Files missing `imageFormat`: **40** (25 public lenses, 3 hidden patent designs and 12 hidden reference fixtures)
+- Files missing both fields: **30**
 - Formats currently in use: `1-1.7-inch-type`, `1-1.8-inch-type`, `1-2.3-inch-type`, `1-2.55-inch-type`,
   `1-2.7-inch-type`, `1-inch-type`, `1.25-inch-tube`, `1.5-inch-type`, `110`, `135-full-frame`,
   `16mm-cinema`, `2-3-inch-type`, `35mm-cinema`, `44x33`, `4x5`, `5x7`, `645`, `6x6`, `6x7`, `6x9`, `8x10`,
