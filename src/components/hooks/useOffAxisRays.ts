@@ -1,3 +1,4 @@
+import { traceFiniteFocusFan, halfFieldAtZoom } from "../../optics/optics.js";
 /**
  * useOffAxisRays — Computes off-axis ray fan segments.
  *
@@ -66,6 +67,37 @@ export default function useOffAxisRays({
     if (!L || showOffAxis === "off") return { segments: [], error: null };
     try {
       const out: RaySegment[] = [];
+      if (L.source?.focus?.finiteOnly) {
+        const fractions = obstructionAwareRayFractionsForDensity(L, L.offAxisFractions, rayDensity, currentEPSD);
+        const rays = traceFiniteFocusFan(
+          L,
+          focusT,
+          currentPhysStopSD,
+          currentEPSD,
+          halfFieldAtZoom(0, L) * L.offAxisFieldFrac,
+          fractions,
+          undefined,
+          zPos,
+        );
+        return {
+          segments: rays.map((result) =>
+            compileRaySegment(
+              result.pts,
+              result.ghostPts,
+              result.u,
+              result.clipped,
+              sx,
+              sy,
+              clampedRayEnd,
+              IMG_MM,
+              undefined,
+              result.reachedImagePlane,
+              true,
+            ),
+          ),
+          error: null,
+        };
+      }
       const geometry = computeOffAxisTraceGeometry({
         L,
         zPos,

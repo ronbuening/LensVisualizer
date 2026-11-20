@@ -93,12 +93,22 @@ export default function MtfTab({
   currentEPSD,
   currentPhysStopSD,
   analysisContext,
-  fNumber,
+  fNumber: requestedFNumber,
   focalLengthMm,
   movementActive = false,
 }: MtfTabProps) {
   const [storedPreferences, updatePreferences, sharedSettings, useStoredSettings] = useSharedMtfPreferences();
-  const preferences = resolveMtfPreferences(storedPreferences, L.isZoom);
+  const resolvedPreferences = resolveMtfPreferences(storedPreferences, L.isZoom);
+  const finiteOnly = Boolean(L.source?.focus?.finiteOnly);
+  const fNumber = finiteOnly ? undefined : requestedFNumber;
+  const preferences = finiteOnly
+    ? {
+        ...resolvedPreferences,
+        spectrum: "reference" as const,
+        view: resolvedPreferences.view === "aperture" ? ("field" as const) : resolvedPreferences.view,
+        compareF8: false,
+      }
+    : resolvedPreferences;
   const chartRef = useRef<HTMLElement>(null);
   const view = preferences.view;
   const isSweep = view === "aperture" || view === "zoom";
@@ -140,7 +150,7 @@ export default function MtfTab({
     ],
   );
   const support = useMemo(() => assessMtfSupport(request, options), [request, options]);
-  const comparisonFNumbers = mtfComparisonFNumbers(fNumber, L.maxFstop);
+  const comparisonFNumbers = finiteOnly ? [] : mtfComparisonFNumbers(fNumber, L.maxFstop);
   const comparisonFNumber = preferences.comparisonFNumber;
   const comparisonAvailable = comparisonFNumbers.includes(comparisonFNumber);
   const comparisonAperture = `f/${comparisonFNumber}`;
@@ -411,6 +421,7 @@ export default function MtfTab({
         comparisonFNumber={comparisonFNumber}
         result={shown}
         isZoom={L.isZoom}
+        finiteOnly={finiteOnly}
       />
       {isSweep ? (
         sweep.error ? (

@@ -79,3 +79,8 @@ export {
 export type { RuntimeSkewRayTraceResult } from "./trace/runtimeRayResult.js";
 export { stopInnerBlockedSemiDiameter } from "./trace/stopObstruction.js";
 export { traceToStopViaGeneralized } from "./trace/stopTrace.js";
+
+export { traceFiniteFocusFan } from "./field/finiteFocusRays.js";
+
+export { normalizeFiniteFocus, isFiniteOnlyRuntime } from "./state/finiteFocus.js";
+export type { FiniteFocusSource } from "./state/finiteFocus.js";

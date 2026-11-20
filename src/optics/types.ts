@@ -226,6 +226,8 @@ export interface PathSpec {
 export interface VariableSpec {
   isZoom: boolean;
   focusPositions: readonly number[];
+  /** Optional discrete finite domain; copied into compiled authority before state preparation. */
+  finiteOnly?: Readonly<{ defaultKeyframe: number }>;
   zoomPositions: readonly number[] | null;
   zoomLabels: readonly string[] | null;
   zoomStep: number;

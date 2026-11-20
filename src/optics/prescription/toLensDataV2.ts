@@ -383,6 +383,7 @@ function writeLens(write: Writer, lens: CanonicalLens): Untyped {
   write.defaulted(focus, "focus", "keyframes", lens.focus.keyframes, "focus.keyframes");
   write.defaulted(focus, "focus", "step", lens.focus.step, "focus.step");
   write.copy(focus, "focus", lens.focus, "focus", ["description"]);
+  if (lens.focus.finiteOnly) write.copy(focus, "focus", lens.focus, "focus", ["finiteOnly"]);
   if (lens.focus.conjugates) {
     const conjugates = write.list(focus, "focus", "conjugates", "focus.conjugates");
     lens.focus.conjugates.forEach((conjugate, index) => {
@@ -394,7 +395,8 @@ function writeLens(write: Writer, lens: CanonicalLens): Untyped {
       write.copy(record, at, conjugate, at, ["sourceMagnification", "source"]);
     });
   }
-  if (!lens.zoom && !publishedDefaulted) write.copy(focus, "focus", lens.focus, "focus", ["published"]);
+  if (!lens.focus.finiteOnly && !lens.zoom && !publishedDefaulted)
+    write.copy(focus, "focus", lens.focus, "focus", ["published"]);
 
   if (lens.gaps.length > 0) writeGaps(write, out, "", "gaps", lens.gaps);
 

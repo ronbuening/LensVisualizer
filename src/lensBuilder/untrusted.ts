@@ -355,6 +355,7 @@ const schema = object(
     focus: object(
       {
         closeFocusM: number,
+        finiteOnly: object({ defaultKeyframe: number }, ["defaultKeyframe"]),
         keyframes: array(number, MAX_FOCUS_KEYFRAMES),
         step: number,
         description: freeText,

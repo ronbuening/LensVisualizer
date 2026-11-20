@@ -350,7 +350,7 @@ const DiagramHeader = memo(
               >
                 {L.isZoom && <span>{`${eflAtZoom(zoomT, L).toFixed(0)} mm`}</span>}
                 <span>{formatDist(focusT, L, zoomT)}</span>
-                <span>{`f/${formatFNumber(fNumber)}`}</span>
+                {!L.source?.focus?.finiteOnly && <span>{`f/${formatFNumber(fNumber)}`}</span>}
                 <span>{compactFocalReadout}</span>
               </div>
             )}
@@ -407,28 +407,32 @@ const DiagramHeader = memo(
                 />
                 {/* Ray mode */}
                 <div style={toggleGroup(t, { width: "100%" })}>
-                  {[
-                    { label: "FROM \u221e", val: false, icon: "\u2225" },
-                    { label: "TRACKS FOCUS", val: true, icon: "\u27e9" },
-                  ].map(({ label, val, icon }) => (
-                    <button
-                      key={label}
-                      onClick={() => onRayTracksFChange?.(val)}
-                      style={toggleBtn(t, rayTracksF === val, { hasRightBorder: !val, gap: 4 })}
-                    >
-                      <span
-                        style={{
-                          fontSize: 11,
-                          fontWeight: 700,
-                          lineHeight: 1,
-                          opacity: rayTracksF === val ? 1 : 0.4,
-                        }}
+                  {L.source?.focus?.finiteOnly ? (
+                    <span style={{ padding: 8 }}>FINITE OBJECT</span>
+                  ) : (
+                    [
+                      { label: "FROM \u221e", val: false, icon: "\u2225" },
+                      { label: "TRACKS FOCUS", val: true, icon: "\u27e9" },
+                    ].map(({ label, val, icon }) => (
+                      <button
+                        key={label}
+                        onClick={() => onRayTracksFChange?.(val)}
+                        style={toggleBtn(t, rayTracksF === val, { hasRightBorder: !val, gap: 4 })}
                       >
-                        {icon}
-                      </span>
-                      <span>{label}</span>
-                    </button>
-                  ))}
+                        <span
+                          style={{
+                            fontSize: 11,
+                            fontWeight: 700,
+                            lineHeight: 1,
+                            opacity: rayTracksF === val ? 1 : 0.4,
+                          }}
+                        >
+                          {icon}
+                        </span>
+                        <span>{label}</span>
+                      </button>
+                    ))
+                  )}
                 </div>
                 {/* Ray density */}
                 <div style={toggleGroup(t, { width: "100%" })}>
@@ -449,20 +453,24 @@ const DiagramHeader = memo(
                   ))}
                 </div>
                 {/* Chromatic */}
-                <ChromaticControls
-                  t={t}
-                  showChromatic={showChromatic}
-                  onShowChromaticChange={onShowChromaticChange}
-                  chromR={chromR}
-                  chromG={chromG}
-                  chromB={chromB}
-                  chromV={chromV}
-                  onChromRChange={onChromRChange}
-                  onChromGChange={onChromGChange}
-                  onChromBChange={onChromBChange}
-                  onChromVChange={onChromVChange}
-                  channelReference={lensChromaticReference(L.elements)}
-                />
+                {L.source?.focus?.finiteOnly ? (
+                  <span>Chromatic analysis unavailable for this finite-only reference</span>
+                ) : (
+                  <ChromaticControls
+                    t={t}
+                    showChromatic={showChromatic}
+                    onShowChromaticChange={onShowChromaticChange}
+                    chromR={chromR}
+                    chromG={chromG}
+                    chromB={chromB}
+                    chromV={chromV}
+                    onChromRChange={onChromRChange}
+                    onChromGChange={onChromGChange}
+                    onChromBChange={onChromBChange}
+                    onChromVChange={onChromVChange}
+                    channelReference={lensChromaticReference(L.elements)}
+                  />
+                )}
               </div>
             </div>
           )}

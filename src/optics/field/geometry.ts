@@ -1,3 +1,4 @@
+import { finiteFocusConjugate } from "../state/finiteFocus.js";
 /**
  * Field geometry — raw half-field, entrance-pupil ratios and conjugate sensitivity.
  *
@@ -155,6 +156,7 @@ export function entrancePupil(
  * @returns relative conjugate correction, zero at infinity focus
  */
 export function conjugateK(state: PreparedGeometry): number {
+  if (state.lens.variables?.finiteOnly) return paraxialObjectVergence(state);
   if (state.focusT < FOCUS_INFINITY_CUTOFF) return 0;
   const du = 1e-5;
   const currentEP = entrancePupil(state, {
@@ -184,6 +186,8 @@ export function conjugateK(state: PreparedGeometry): number {
  * @returns 1/s in 1/mm, positive for a real object; 0 at infinity focus and for folded paths
  */
 export function paraxialObjectVergence(state: PreparedGeometry): number {
+  const c = state.lens.variables?.finiteOnly ? finiteFocusConjugate(state.lens.source, state.focusT) : undefined;
+  if (c) return 1 / (c.objectDistanceMm - (c.distanceReference === "image-plane" ? state.imgZ - state.z[0] : 0));
   if (state.focusT < FOCUS_INFINITY_CUTOFF || state.lens.flags.isFoldedOptics) return 0;
   return paraxialInFocusVergence(state);
 }

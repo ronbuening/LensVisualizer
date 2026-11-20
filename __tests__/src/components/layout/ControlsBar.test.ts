@@ -35,6 +35,35 @@ describe("ControlsBar", () => {
     cleanup();
   });
 
+  it.each([false, true])("omits infinity and chromatic actions for finite references (compact=%s)", (compact) => {
+    render(
+      createElement(ControlsBar, {
+        theme: themes.dark,
+        finiteOnly: true,
+        compact,
+        showScaleMode: false,
+        showOnAxis: true,
+        showOffAxis: "off",
+        rayDensity: "normal",
+        rayTracksF: false,
+        showChromatic: true,
+        chromR: true,
+        chromG: true,
+        chromB: true,
+        chromV: false,
+        showPupils: false,
+        showCardinals: false,
+        showCardinalDimensions: false,
+        scaleMode: "independent",
+        dispatch,
+      }),
+    );
+    expect(screen.queryByRole("button", { name: /∞/ })).toBeNull();
+    expect(screen.queryByRole("button", { name: "COLOR" })).toBeNull();
+    expect(screen.getByText("Finite-only references use their authored object conjugates")).toBeTruthy();
+    expect(screen.getByText("Chromatic analysis unavailable for finite-only references")).toBeTruthy();
+  });
+
   it("dispatches the expected actions for ray toggles and ray mode changes", () => {
     render(
       createElement(ControlsBar, {

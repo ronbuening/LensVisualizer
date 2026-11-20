@@ -1,3 +1,7 @@
+import { isFiniteOnlyRuntime } from "./finiteFocus.js";
+import { finiteFocusConjugate } from "./finiteFocus.js";
+import { prepareState } from "./preparedGeometry.js";
+import { compiledLensFromRuntime } from "../prescription/identity.js";
 /** Focus-distance endpoints follow the same normalized station coordinates as zoom gaps. */
 import type { RuntimeLens } from "../../types/optics.js";
 import { closeFocusAtZoom } from "./stationTables.js";
@@ -11,6 +15,12 @@ export const FOCUS_INFINITY_CUTOFF = 0.003;
 
 /** Slider-convention focus distance in metres; null at infinity or for an invalid distance. */
 export function focusDistanceAt(focusT: number, L: RuntimeLens, zoomT = 0): number | null {
+  if (isFiniteOnlyRuntime(L)) {
+    const c = finiteFocusConjugate(L.source, focusT);
+    if (!c) return null;
+    const st = prepareState(compiledLensFromRuntime(L), focusT, zoomT);
+    return (c.objectDistanceMm + (c.distanceReference === "first-surface" ? st.imgZ - st.z[0] : 0)) / 1000;
+  }
   if (focusT < FOCUS_INFINITY_CUTOFF) return null;
   const distance = closeFocusAtZoom(zoomT, L) / focusT;
   return Number.isFinite(distance) && distance > 0 ? distance : null;

@@ -1082,6 +1082,9 @@ focus: {
 | `description` | `string` | | The focus mechanism, shown in the UI. |
 | `conjugates` | `ConjugateV2Input[]` | | Source-certified finite conjugates; see below. |
 | `published` | `number[]` | `[]` | On a prime: the focus keyframe indices (≥ 1) the source tabulates beyond infinity. A zoom's stations carry theirs. |
+| `finiteOnly` | `{ defaultKeyframe: number }` | absent | Optional discrete finite domain; see [finite-only reference states](#optional-finite-only-reference-states) for its coordinate, conjugate and iris rules. |
+
+The infinity and interpolated-focus conventions below apply when `finiteOnly` is absent.
 
 - When a published object-to-image distance is available, its keyframe coordinate is `closeFocusM / distanceM`.
   Values between keyframes are interpolated piecewise-linearly and are not source-published mechanical positions.
@@ -1147,8 +1150,9 @@ focus: {
 },
 ```
 
-- `zoomStation` indexes `zoom.stations` (0 on a prime); `keyframe` indexes `focus.keyframes` and is never 0
-  (infinity). Each pair names an authored state, and no state is certified twice.
+- `zoomStation` indexes `zoom.stations` (0 on a prime); `keyframe` indexes `focus.keyframes`. Index 0 is reserved for
+  infinity unless `finiteOnly` explicitly makes it a finite state. Each pair names an authored state, and no state
+  is certified twice.
 - `objectDistanceMm` is positive and axial, from the object plane to the current first vertex
   (`distanceReference: "first-surface"`) or to the fixed image plane (`"image-plane"`). `source` is non-empty and
   identifies the evidence for both the distance and the focus spacings.
@@ -2345,3 +2349,20 @@ aspheres.
   station record and addresses conjugates by index.
 - **Defaults:** V1 files relied on a spread of catalog defaults; V2 ingest applies the same values from the schema
   table ([Schema defaults](#schema-defaults)).
+
+### Optional finite-only reference states
+
+A sequential rectilinear prime may opt into `focus.finiteOnly: { defaultKeyframe: 0 }` (or another valid keyframe
+index). This is an explicit finite-state domain: coordinate zero is finite, not infinity. A singleton `keyframes: [0]`
+is valid; multiple coordinates must span 0–1 and snap to the nearest authored state without implying a continuous
+focus cam. Each keyframe requires exactly one positive-distance conjugate with an explicit reference and provenance.
+Omit the legacy infinity-based `focus.published` list. State provenance must distinguish a derived conjugate from a
+printed source operating state; do not put a calculated magnification in `sourceMagnification`.
+
+The first implementation supports a fixed physical `STO.sd`, retained as authored. The required nominal f-number is
+an intrinsic software reference, not a finite working aperture or retail claim. The viewer shows the physical iris,
+uses the actual finite object for monochrome diagrams and reference-line MTF, and offers no infinity or aperture
+sweep action. Unvalidated chromatic and ancillary analyses are unavailable. MTF stays within the modeled field
+bound; image-format declarations do not authorize extrapolation. Builder Advanced JSON and V2 export retain the
+domain; the element editor and V1 export do not represent it. Zoom, folded, movement and aberration-controlled
+finite-only systems are outside this initial scope.

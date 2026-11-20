@@ -366,7 +366,7 @@ export function computeLensConstants(lens: CompiledPrescription): LensConstants 
     imagePlane?: ResolvedImagePlane,
   ) => buildTraceGeometry(S, asphByIdx, stopIdx, opticalPath, imagePlane, lens.surfaces, lens.imageSurface);
 
-  const preserveAuthoredStopSD = S[stopIdx]?.stopPlacement === "inside-element";
+  const preserveAuthoredStopSD = Boolean(data.finiteOnlyFocus) || S[stopIdx]?.stopPlacement === "inside-element";
 
   if (lens.flags.isFoldedOptics) {
     const z = buildZPositions(S.map((surface) => surface.d));

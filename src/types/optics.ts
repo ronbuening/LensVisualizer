@@ -559,6 +559,8 @@ export interface LensData {
   varLabels?: [string, string][];
   /** Normalized focusT coordinates for each authored focus thickness; defaults to [0, 1]. */
   focusPositions?: number[];
+  /** Internal construction projection of the V2 finite-only domain. */
+  finiteOnlyFocus?: { defaultKeyframe: number };
   finiteConjugates?: FiniteConjugate[];
   /** Source provenance for the authored stations; absent means every zoom station at infinity focus. */
   publishedStations?: PublishedStations;

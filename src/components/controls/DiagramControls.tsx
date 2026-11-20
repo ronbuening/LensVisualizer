@@ -353,7 +353,24 @@ export default function DiagramControls({
         </SliderControl>
       )}
 
-      {showSliders && (
+      {showSliders && L.source?.focus?.finiteOnly && (
+        <label style={{ color: t.desc, fontSize: 11 }}>
+          FINITE OBJECT
+          <select
+            aria-label="Finite focus state"
+            value={focusT}
+            onChange={(event) => handleFocusChange(Number(event.target.value))}
+          >
+            {L.source.focus.keyframes.map((value, index) => (
+              <option key={value} value={value}>
+                {`State ${index + 1}: ${formatDist(value, L, zoomT)}`}
+              </option>
+            ))}
+          </select>
+          <div>Only explicit finite states; no interpolated focus travel.</div>
+        </label>
+      )}
+      {showSliders && !L.source?.focus?.finiteOnly && (
         <SliderControl
           t={t}
           compact={compact}
@@ -540,7 +557,12 @@ export default function DiagramControls({
         />
       )}
 
-      {showApertureControl && (
+      {showApertureControl && L.source?.focus?.finiteOnly && (
+        <div
+          style={{ color: t.desc, fontSize: 11 }}
+        >{`Fixed authored iris: Ø${(2 * currentPhysStopSD).toFixed(2)} mm`}</div>
+      )}
+      {showApertureControl && !L.source?.focus?.finiteOnly && (
         <SliderControl
           t={t}
           compact={compact}

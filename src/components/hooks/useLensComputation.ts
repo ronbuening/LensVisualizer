@@ -1,3 +1,4 @@
+import { normalizeFiniteFocus } from "../../optics/optics.js";
 /**
  * useLensComputation — Custom hook consolidating all memoized optical
  * calculations: lens building, layout, coordinate transforms, element
@@ -134,10 +135,11 @@ export default function useLensComputation({
     () => (snapToPublishedStations && L ? nearestPublishedStation(L, requestedZoomT, requestedFocusT) : null),
     [snapToPublishedStations, L, requestedZoomT, requestedFocusT],
   );
-  const focusT = station ? station.focusT : requestedFocusT;
-  const zoomT = station ? station.zoomT : requestedZoomT;
-  const aberrationT = station ? 0 : requestedAberrationT;
-  const stopdownT = station ? 0 : requestedStopdownT;
+  const proposedFocusT = station ? station.focusT : requestedFocusT;
+  const focusT = L?.source?.focus?.finiteOnly ? normalizeFiniteFocus(L.source, proposedFocusT) : proposedFocusT;
+  const zoomT = L?.source?.focus?.finiteOnly ? 0 : station ? station.zoomT : requestedZoomT;
+  const aberrationT = station || L?.source?.focus?.finiteOnly ? 0 : requestedAberrationT;
+  const stopdownT = station || L?.source?.focus?.finiteOnly ? 0 : requestedStopdownT;
 
   /* ── Layout ──
    * Compute surface z-positions with a fixed reference: infinity focus at the

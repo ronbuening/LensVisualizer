@@ -587,6 +587,8 @@ function buildLensView(
  * @returns fresh V1 `LensData`, sharing nothing with the prescription
  */
 export function toLensData(ingested: IngestedPrescription<CanonicalLens>): LensData {
+  if (ingested.prescription.focus.finiteOnly)
+    throw new Error("Finite-only focus requires V2 export; V1 has an infinity endpoint");
   const view = buildLensView(ingested, true) as unknown as LensData;
   if (ingested.attachedTeleconverter) view.attachedTeleconverter = structuredClone(ingested.attachedTeleconverter);
   associateCanonical(view, ingested);
@@ -601,6 +603,8 @@ export function toLensData(ingested: IngestedPrescription<CanonicalLens>): LensD
  * @returns fresh V1 lens input data
  */
 export function toLensDataInput(ingested: IngestedPrescription<CanonicalLens>, options?: V1FileOptions): LensDataInput {
+  if (ingested.prescription.focus.finiteOnly)
+    throw new Error("Finite-only focus requires V2 export; V1 has an infinity endpoint");
   return buildLensView(ingested, false, options) as unknown as LensDataInput;
 }
 

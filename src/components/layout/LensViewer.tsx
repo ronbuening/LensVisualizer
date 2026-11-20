@@ -22,6 +22,7 @@ import { useNavigate } from "react-router";
 import {
   CATALOG_KEYS,
   COMPARISON_CATALOG_KEYS,
+  LENS_CATALOG,
   lensNameForKey,
   opticalConfigurationOptionsForKey,
 } from "../../utils/catalog/lensCatalog.js";
@@ -307,6 +308,9 @@ export default function LensVisualization({ initialLensKey, initialLensKeyB }: L
   /* ── Controls bar props (shared between comparison and mobile instances) ── */
   const controlsBarProps = {
     theme: t,
+    finiteOnly: Boolean(
+      LENS_CATALOG[diagramLensKey]?.focus?.finiteOnly || (comparing && LENS_CATALOG[lensKeyB]?.focus?.finiteOnly),
+    ),
     showOnAxis,
     showOffAxis,
     rayDensity,

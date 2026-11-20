@@ -43,6 +43,7 @@ export function compilePrescription(
   const variables = Object.freeze({
     isZoom: input.isZoom,
     focusPositions: input.focusPositions,
+    ...(data.finiteOnlyFocus ? { finiteOnly: Object.freeze({ ...data.finiteOnlyFocus }) } : {}),
     zoomPositions: data.zoomPositions ? Object.freeze([...data.zoomPositions]) : null,
     zoomLabels: data.zoomLabels ? Object.freeze([...data.zoomLabels]) : null,
     zoomStep: data.zoomStep || 0.004,

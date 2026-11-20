@@ -18,6 +18,7 @@ import type { Dispatch } from "react";
 
 interface ControlsBarProps {
   theme: Theme;
+  finiteOnly?: boolean;
   compact: boolean;
   inlineGroups?: boolean;
   showScaleMode: boolean;
@@ -47,6 +48,7 @@ interface ControlsBarProps {
 
 export default function ControlsBar({
   theme: t,
+  finiteOnly = false,
   compact,
   inlineGroups = false,
   showScaleMode,
@@ -222,20 +224,24 @@ export default function ControlsBar({
 
       {/* Ray mode */}
       <div style={toggleGroup(t, compact || inlineGroups ? undefined : { width: 180 })}>
-        {rayModes.map(({ label, val, icon }: { label: string; val: boolean; icon?: string }) => (
-          <button
-            key={label}
-            onClick={() => dispatch({ type: SET_RAY_TOGGLE, field: "rayTracksF", value: val })}
-            style={toggleBtn(t, rayTracksF === val, { hasRightBorder: !val })}
-          >
-            {icon && (
-              <span style={{ fontSize: 11, fontWeight: 700, lineHeight: 1, opacity: rayTracksF === val ? 1 : 0.4 }}>
-                {icon}
-              </span>
-            )}
-            <span>{label}</span>
-          </button>
-        ))}
+        {finiteOnly ? (
+          <span style={{ padding: 8 }}>Finite-only references use their authored object conjugates</span>
+        ) : (
+          rayModes.map(({ label, val, icon }: { label: string; val: boolean; icon?: string }) => (
+            <button
+              key={label}
+              onClick={() => dispatch({ type: SET_RAY_TOGGLE, field: "rayTracksF", value: val })}
+              style={toggleBtn(t, rayTracksF === val, { hasRightBorder: !val })}
+            >
+              {icon && (
+                <span style={{ fontSize: 11, fontWeight: 700, lineHeight: 1, opacity: rayTracksF === val ? 1 : 0.4 }}>
+                  {icon}
+                </span>
+              )}
+              <span>{label}</span>
+            </button>
+          ))
+        )}
       </div>
 
       {/* Ray density */}
@@ -252,68 +258,72 @@ export default function ControlsBar({
       </div>
 
       {/* Chromatic */}
-      <div
-        style={
-          compact || inlineGroups
-            ? toggleGroup(t)
-            : {
-                ...toggleGroup(t, { width: showChromatic ? 220 : 90 }),
-                transition: "border-color 0.3s, width 0.3s",
-              }
-        }
-      >
-        <button
-          onClick={() => dispatch({ type: SET_RAY_TOGGLE, field: "showChromatic", value: !showChromatic })}
-          style={toggleBtn(t, showChromatic, { hasRightBorder: showChromatic })}
+      {finiteOnly ? (
+        <span>Chromatic analysis unavailable for finite-only references</span>
+      ) : (
+        <div
+          style={
+            compact || inlineGroups
+              ? toggleGroup(t)
+              : {
+                  ...toggleGroup(t, { width: showChromatic ? 220 : 90 }),
+                  transition: "border-color 0.3s, width 0.3s",
+                }
+          }
         >
-          <svg width={svgW} height="8" viewBox="0 0 14 8" style={{ flexShrink: 0 }}>
-            <line
-              x1="0"
-              y1="1"
-              x2="14"
-              y2="1"
-              stroke={showChromatic ? t.rayChromR : "rgba(128,128,128,0.3)"}
-              strokeWidth="1.5"
-            />
-            <line
-              x1="0"
-              y1="4"
-              x2="14"
-              y2="4"
-              stroke={showChromatic ? t.rayChromG : "rgba(128,128,128,0.3)"}
-              strokeWidth="1.5"
-            />
-            <line
-              x1="0"
-              y1="7"
-              x2="14"
-              y2="7"
-              stroke={showChromatic ? t.rayChromB : "rgba(128,128,128,0.3)"}
-              strokeWidth="1.5"
-            />
-          </svg>
-          <span>COLOR</span>
-        </button>
-        {showChromatic &&
-          chromChannels.map(({ ch, active, field, color }, idx) => (
-            <button
-              key={ch}
-              onClick={() => dispatch({ type: SET_RAY_TOGGLE, field, value: !active })}
-              style={chromChannelBtn(t, active, idx < 2)}
-            >
-              <span
-                style={{
-                  width: 6,
-                  height: 6,
-                  borderRadius: "50%",
-                  background: active ? color : "rgba(128,128,128,0.3)",
-                  display: "inline-block",
-                }}
+          <button
+            onClick={() => dispatch({ type: SET_RAY_TOGGLE, field: "showChromatic", value: !showChromatic })}
+            style={toggleBtn(t, showChromatic, { hasRightBorder: showChromatic })}
+          >
+            <svg width={svgW} height="8" viewBox="0 0 14 8" style={{ flexShrink: 0 }}>
+              <line
+                x1="0"
+                y1="1"
+                x2="14"
+                y2="1"
+                stroke={showChromatic ? t.rayChromR : "rgba(128,128,128,0.3)"}
+                strokeWidth="1.5"
               />
-              <span>{ch}</span>
-            </button>
-          ))}
-      </div>
+              <line
+                x1="0"
+                y1="4"
+                x2="14"
+                y2="4"
+                stroke={showChromatic ? t.rayChromG : "rgba(128,128,128,0.3)"}
+                strokeWidth="1.5"
+              />
+              <line
+                x1="0"
+                y1="7"
+                x2="14"
+                y2="7"
+                stroke={showChromatic ? t.rayChromB : "rgba(128,128,128,0.3)"}
+                strokeWidth="1.5"
+              />
+            </svg>
+            <span>COLOR</span>
+          </button>
+          {showChromatic &&
+            chromChannels.map(({ ch, active, field, color }, idx) => (
+              <button
+                key={ch}
+                onClick={() => dispatch({ type: SET_RAY_TOGGLE, field, value: !active })}
+                style={chromChannelBtn(t, active, idx < 2)}
+              >
+                <span
+                  style={{
+                    width: 6,
+                    height: 6,
+                    borderRadius: "50%",
+                    background: active ? color : "rgba(128,128,128,0.3)",
+                    display: "inline-block",
+                  }}
+                />
+                <span>{ch}</span>
+              </button>
+            ))}
+        </div>
+      )}
 
       {/* Scale mode toggle */}
       {showScaleMode && (

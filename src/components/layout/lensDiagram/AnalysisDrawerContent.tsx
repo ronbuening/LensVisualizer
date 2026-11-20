@@ -208,19 +208,25 @@ export default function AnalysisDrawerContent({
   );
 
   return withAnalysisNotices(
-    foldedUnsupported
-      ? foldedUnsupportedContent
-      : movementUnsupported
-        ? movementUnsupportedContent
-        : ANALYSIS_TAB_RENDERERS[activeTab]({
-            L,
-            t,
-            zPos,
-            preparedState,
-            analysisContext,
-            inputs: analysisInputs,
-            aberrationsExpanded,
-            onAberrationsExpandedChange,
-          }),
+    L.source?.focus?.finiteOnly && activeTab !== "summary" && activeTab !== "mtf" ? (
+      <div style={noticeStyle}>
+        Unavailable: this analysis has not been validated for finite-only object conjugates.
+      </div>
+    ) : foldedUnsupported ? (
+      foldedUnsupportedContent
+    ) : movementUnsupported ? (
+      movementUnsupportedContent
+    ) : (
+      ANALYSIS_TAB_RENDERERS[activeTab]({
+        L,
+        t,
+        zPos,
+        preparedState,
+        analysisContext,
+        inputs: analysisInputs,
+        aberrationsExpanded,
+        onAberrationsExpandedChange,
+      })
+    ),
   );
 }
