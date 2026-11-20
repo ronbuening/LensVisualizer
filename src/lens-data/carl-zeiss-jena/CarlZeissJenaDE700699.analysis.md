@@ -70,7 +70,7 @@ The table locates the iris 31.28 mm after the first vertex, splitting the second
 
 Real marginal tracing requires a slightly larger stop radius, about 16.49 mm, to pass an exact f/2 entrance radius of 25.003 mm. The modeled iris admits about 24.729 mm, equivalent to f/2.02. The difference between paraxial and finite-aperture f-numbers is retained with the printed prescription.
 
-The drawing suggests roughly 16 mm at R6/R7; the retained 16.8/17 mm values preserve the f/2 axial beam. The other rims follow the figure.
+The drawing ends the R6 and R7 curves at about 16 mm and chamfers both triplets out to their square-cut edges. The 16.8 and 17 mm clear radii there keep the f/2 axial beam, which reaches about 16.59 and 16.38 mm; straight edges join them to the 23.7 mm triplet rims. The front lens (28 mm) and both triplets (23.7 mm) lie within about 1.5% of the drawn heights.
 
 ## Modeled Field and Distortion
 

@@ -60,9 +60,16 @@ Previously unidentified glass labels were replaced by the following catalog equi
 
 The older SK16 spelling also identifies the modern N-SK16 curve; neither spelling establishes a historical glass identity.
 
+2026-11-20 rim review:
+
+- The drawing was remeasured at 600 dpi. The first-to-last vertex span of 67.57 mm gives 24.17 pixels/mm, and shorter vertex spans agree within 4%. Across the axis, the drawn sag of R1 at the front lens's edge (6.2 mm, against 6.3 mm calculated at that height) confirms the same scale within 1%.
+- Drawn clear radii are about 28.4 mm for the front lens and 23.9 mm for both cemented triplets, each drawn square-cut. The R6 curve ends at 15.6–16.2 mm and the R7 curve at about 16.1 mm.
+- No clear radius changed. R1–R5 and R8–R10 (28 and 23.7 mm) lie within 1.5% of the drawing. R6/R7 stay at 16.8/17 mm, above the drawn curve ends, because the f/2 axial beam reaches about 16.59 and 16.38 mm there. Trimming them to that beam (16.6/16.4 mm) would move them only 0.2–0.6 mm toward the drawing, within its measurement spread, and would cost up to 0.5% of edge light, so they were kept.
+- The drawing chamfers both triplets from the R6/R7 curve ends out to their full height. The straight edges joining the model's rims follow those chamfers about as closely as square lands at R6/R7 would, so no land was added.
+- Wide-open geometric transmission is unchanged: 98.6% at 8.3°, 92.8% at 13.8°, 77.3% at 19.3° and 64.9% at 22.0°. The 22.0° half-field and f/2 are unchanged.
+
 ## Remaining Questions
 
-- R6/R7 clear radii exceed the drawing readings to preserve the axial f/2 beam. Their exact optical rim and land shapes remain uncertain.
 - L4/L7 lack matching catalog curves. All historical glass suppliers and melt identities remain unknown.
 - The inferred 81.61 mm image circle is not printed by the patent. At 22.0°, the chief ray and one marginal extreme were found, while the opposite marginal extreme was not solved; a complete unvignetted edge bundle is not established.
 - No source documents a production lens, mount, image format, diaphragm blade count or shape, minimum iris opening, marketed specifications or close-focus mechanism. These values remain omitted; the f/16 endpoint is not a published limit.
