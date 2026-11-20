@@ -11,7 +11,7 @@
 
 The patent's f = 1 table is scaled by 50 to millimetres. It specifies f/5.6, a 90° full field and eight elements in six groups. These values strongly connect the example to the Fujinon SW S 50mm f/5.6 for the Fujica G690/GL690 interchangeable-lens 6×9 rangefinder system. The December 1973 filing also coincides with the GL690's introduction. The [Fujica GL690/GM670 instruction manual](https://www.cameramanuals.org/fuji_pdf/fujica_gl690_gm670.pdf) lists the 50mm f/5.6 interchangeable lens and its external finder.
 
-[Lallement's G690 lens reference](https://www.lallement.com/pictures/lenses.htm) gives the 90° field, 1 m minimum focus distance and f/5.6–32 aperture range. [Kamerastore's retailer listing](https://kamerastore.com/products/fujica-fujinon-50mm-f5-6-sw-s-fujica-g690) reports eight elements in six groups, the G690 mount and 1 m close focus; the element/group count is a retailer specification. No manufacturer optical diagram or production prescription has been found to establish an exact product identity.
+[Lallement's G690 lens reference](https://www.lallement.com/pictures/lenses.htm) gives the f/5.6–32 aperture range, 90° field, 1 m minimum focus distance, eight elements in six groups and 72 mm filter diameter. [Kamerastore's retailer listing](https://kamerastore.com/products/fujica-fujinon-50mm-f5-6-sw-s-fujica-g690) also reports eight elements in six groups, the G690 mount and 1 m close focus; these are retailer specifications. No manufacturer optical diagram or production prescription has been found to establish an exact product identity.
 
 ## Optical architecture and modeled field
 
@@ -48,9 +48,9 @@ Only the infinity state is modeled. The patent supplies no near-focus spacings o
 
 ## Apertures and model scope
 
-Clear apertures are not tabulated. Fig. 1 gives an approximate 20 mm front semi-diameter and 7.2 mm rims at surfaces 7/8; these retain the f/5.6 axial beam and the 45° chief ray. Other clear radii remain estimates. The prose's 44 mm front diameter exceeds the drawing's approximately 40 mm diameter and does not uniquely establish a clear optical rim.
+Clear apertures are not tabulated. Increasing S1's semi-diameter from 18 to 20 mm to match Fig. 1 accounts for the whole 45° geometric pupil transmission gain, 18.6% → 45.2%. Reducing S7/S8 to 7.2 mm also matches the figure and costs no light from 0° to 45°; both retain the f/5.6 axial beam and the 45° chief ray. Other clear radii remain estimates. The prose's 44 mm front diameter exceeds the drawing's approximately 40 mm diameter and does not uniquely establish a clear optical rim.
 
-The 0.47 mm gap between S10/S11 prevents extending their spherical caps to the approximately 12–13 mm outer radii drawn for L6/L7. The model retains 10 mm clear caps and adds opaque lands to 12 mm. This avoids intersecting surfaces without opening those apertures. The resulting geometric pupil transmission at 45° is approximately 45.17%; coating losses, absorption and measured production illumination are not established.
+The 0.47 mm gap between S10/S11 prevents extending their spherical caps to the approximately 12–13 mm outer radii drawn for L6/L7. The opaque lands extend to 12 mm while keeping the 10 mm clear radius at each surface. This avoids intersecting surfaces without opening those apertures. The resulting geometric pupil transmission at 45° is approximately 45.17%; coating losses, absorption and measured production illumination are not established.
 
 ## Sources
 
