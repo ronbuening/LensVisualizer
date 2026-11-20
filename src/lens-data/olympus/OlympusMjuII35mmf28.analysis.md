@@ -9,23 +9,23 @@
 **Published:** 12 January 2005; application published as JP H9-258098 A on 3 October 1997  
 **Example details:** Example 1, numerical data on p. 8; section in Figure 1; infinity and 35 cm aberration plots in Figures 7 and 8.
 
-The prescription follows Example 1 at its printed millimetre scale, without scaling. Its stated focal length is 33.91 mm and its design aperture is f/2.89. Example 1 is the lead example of the first configuration in claim 1. The [patent](https://patents.google.com/patent/JP3610160B2/en) describes a compact photographic objective covering about 64° and focusing by whole-unit extension to about 0.35 m.
+The prescription follows Example 1 at the printed millimetre scale. Its focal length is 33.91 mm and its design aperture is f/2.89. Example 1 is the lead example of the first configuration in claim 1. The [patent](https://patents.google.com/patent/JP3610160B2/en) describes a compact photographic objective covering about 64° and focusing by whole-unit extension to about 0.35 m.
 
 The association with the 1997 Olympus μ[mju:]-II, also called Stylus Epic, is circumstantial:
 
 1. Olympus filed the application about a year before the camera's introduction.
 2. The product has a fixed 35 mm f/2.8 lens with four elements in four groups and an aspherical element, according to the [Olympus release reproduced by Wanafoto](https://wanafoto.blogspot.com/1997/02/olympus-mju-ii-compact-camera.html) under 19 February 1997.
-3. The maker's [18 February 1997 specifications](https://www.olympus.co.jp/jp/news/1997a/nr970218mju2spj.html) give a 24 × 36 mm frame, 0.35 m minimum focus and an exposure range ending at f/11. These support the fixed-camera mount, 135 full-frame format and marketing minimum-focus metadata. [135compact](https://135compact.com/135_olympus_mjuII.htm) and [Wikipedia's Stylus Epic entry](https://en.wikipedia.org/wiki/Olympus_Stylus_Epic) corroborate the main specifications and alternate name.
+3. The maker's [18 February 1997 specifications](https://www.olympus.co.jp/jp/news/1997a/nr970218mju2spj.html) give a 24 × 36 mm frame, 0.35 m minimum focus and programmed exposure from f/2.8 at 4 seconds to f/11 at 1/1000 second. [135compact](https://135compact.com/135_olympus_mjuII.htm) and [Wikipedia's Stylus Epic entry](https://en.wikipedia.org/wiki/Olympus_Stylus_Epic) corroborate the main specifications and alternate name.
 
-All five patent examples have four elements in four groups and an asphere on L4's rear surface. Examples 1–3 place the stop before L3; Examples 4–5 place it after L3. The published product specifications do not distinguish these alternatives. Example 1 is therefore a plausible association, with moderate-to-strong evidence for the patent family but no proof of the exact production example. No maker construction diagram establishing that identity was found.
+All five examples have four elements in four groups and an asphere on L4's rear surface. Examples 1–3 place the stop before L3; Examples 4–5 place it after L3. Product specifications identify no particular example. Example 1 is plausible, with moderate-to-strong evidence for the patent family. No maker construction diagram proves the exact production example.
 
 ## Optical Architecture
 
-The four air-separated elements have positive–negative–positive–negative power. A positive front meniscus, biconcave negative element and biconvex positive element form a compact front assembly. A 10.2496 mm air space separates L3 from the negative rear meniscus. There are no cemented pairs.
+The four air-separated elements have positive–negative–positive–negative power. A positive front meniscus, biconcave negative element and biconvex positive element form a compact front assembly. A 10.25 mm air space separates L3 from the negative rear meniscus. There are no cemented pairs.
 
-The patent describes this as a telephoto-type arrangement intended to shorten the lens. Its L3-to-L4 spacing is 0.487 of the 21.0641 mm first-to-last surface length. The negative rear element has an in-air focal length of −62.97 mm, giving the printed ratio −f4/f ≈ 1.857.
+The patent describes this as a telephoto-type arrangement intended to shorten the lens. Its L3-to-L4 spacing is 0.487 of the 21.06 mm first-to-last surface length. The negative rear element has an in-air focal length of −62.97 mm, giving the printed ratio −f4/f ≈ 1.857.
 
-The stop is between L2 and L3. Paragraph 0055 prints 1.60 mm from L2's rear vertex to the stop, so the printed 2.49 mm air space is represented as 1.60 mm before and 0.89 mm after it. The physical iris diameter is unpublished; a 4.9593 mm stop radius is inferred to give the design f/2.89.
+The stop is between L2 and L3. Paragraph 0055 prints 1.60 mm from L2's rear vertex to the stop, splitting the 2.49 mm air space into 1.60 mm before and 0.89 mm after it. The physical iris diameter is unpublished; a 4.96 mm stop radius is inferred from f/2.89. A [teardown by Raymond Yee](https://lostlenscaps.com/project-02-olympus-mju-ii/) documents the camera's combined shutter/aperture mechanism with three blades and a triangular opening.
 
 ## Element-by-Element Analysis
 
@@ -49,37 +49,37 @@ L3 restores positive power immediately behind the stop. The patent specifically 
 
 ### L4 — Negative Meniscus with Rear Asphere
 
-nd = 1.52542, νd = 55.78. Material: Unmatched (COP resin, Zeonex type; exact grade unknown). In-air f = −62.97 mm.
+nd = 1.52542, νd = 55.78. Material: cyclo-olefin polymer resin, Zeonex type; exact grade unknown. In-air f = −62.97 mm.
 
 The rear element has a convex image-side surface and negative power. Its long separation from L3 contributes to the compact telephoto arrangement. The patent recommends a plastic rear element and names low-moisture-absorption ZEONEX as a suitable material (¶0012, ¶0030); it does not identify a resin grade. The rear asphere acts where axial and peripheral bundles are well separated, which the patent identifies as a useful position for aberration correction.
 
 ## Glass Identification and Selection
 
-The three Ohara labels are coordinate matches to the printed nd/νd pairs, not evidence of the production supplier or melt. Their catalog-minus-patent differences are approximately:
+The three Ohara glasses closely match the printed nd/νd pairs; the production supplier and melt remain unknown. Their catalog-minus-patent differences are approximately:
 
 | Element | Catalog equivalent |       Δnd |       Δνd |
 | ------- | ------------------ | --------: | --------: |
-| L1      | S-LAM60 (Ohara)    | −0.000002 | +0.029444 |
-| L2      | S-TIH10 (Ohara)    |         0 | +0.000599 |
-| L3      | S-LAH51 (Ohara)    | −0.000004 | +0.012637 |
+| L1      | S-LAM60 (Ohara)    | −0.000002 |   +0.0294 |
+| L2      | S-TIH10 (Ohara)    |         0 |   +0.0006 |
+| L3      | S-LAH51 (Ohara)    | −0.000004 |   +0.0126 |
 
-The printed indices and Abbe numbers remain unchanged. The resolved catalog glasses provide spectral curves; the resin remains unresolved and has no measured multi-line dispersion data in this model. Figure 7 identifies d, g, F and C, supporting the helium d-line reference at 587.6 nm. No anomalous-dispersion or apochromatic designation is inferred.
+The printed indices and Abbe numbers remain unchanged. The catalog equivalents supply estimated spectral curves; the resin has no measured multi-line dispersion data here. Figure 7 identifies d, g, F and C, supporting the helium d-line reference at 587.6 nm. No anomalous-dispersion or apochromatic designation is inferred.
 
 ## Focus Mechanism
 
 The patent describes whole-unit extension, including all four elements and the stop, for focusing from infinity to 35 cm (¶0018, ¶0054–0055). Figure 8 shows the near-distance aberrations, but no near-focus spacing is tabulated.
 
-The model represents unit focus by varying only the final air gap. The infinity value is the printed fb = 14.6687 mm. The near value of 18.87 mm is inferred paraxially for a 0.35 m object-to-image distance, requiring 4.2013 mm extension toward the object. Three intermediate spacings are also inferred:
+Unit focus varies only the final air gap. The infinity value is the printed fb = 14.6687 mm. The near value of 18.87 mm is inferred paraxially for a 0.35 m object-to-image distance, requiring 4.20 mm extension toward the object. Three intermediate spacings are also inferred:
 
-| Focus coordinate | Intended object-to-image distance |   Rear gap |
+| Focus setting    | Intended object-to-image distance |   Rear gap |
 | ---------------: | --------------------------------: | ---------: |
-|                0 |                          Infinity | 14.6687 mm |
-|             0.25 |                            1.40 m | 15.5350 mm |
-|             0.50 |                            0.70 m | 16.5060 mm |
-|             0.75 |                          0.4667 m | 17.6069 mm |
-|                1 |                            0.35 m | 18.8700 mm |
+|                0 |                          Infinity |  14.669 mm |
+|             0.25 |                            1.40 m |  15.535 mm |
+|             0.50 |                            0.70 m |  16.506 mm |
+|             0.75 |                           0.467 m |  17.607 mm |
+|                1 |                            0.35 m |   18.87 mm |
 
-The actual near-distance readout is about 0.3503 m after rounding. Linear travel between only the infinity and near spacings would produce up to 0.266 mm paraxial defocus at the inverse-distance readout. The added intermediate states reduce the maximum residual to 0.0234 mm; the four interval midpoints give 0.0119, 0.0144, 0.0181 and 0.0233 mm. These spacings do not establish the camera's mechanical focus law or reproduce Figure 8's aberration curves. They are not marked as source-published finite configurations.
+The near distance is about 0.3503 m after rounding. Linear travel between only the infinity and near spacings would produce up to 0.266 mm paraxial defocus at the corresponding inverse distance. The intermediate spacings reduce the maximum residual to 0.023 mm; the four interval midpoints give 0.012, 0.014, 0.018 and 0.023 mm. These inferred spacings do not establish the camera's mechanical focus law or reproduce Figure 8's aberration curves.
 
 ## Aspherical Surface
 
@@ -97,16 +97,18 @@ The alternating even-order terms modify the outer profile of the negative menisc
 
 ## Image Plane, Field and Rim Limits
 
-The infinity prescription computes to EFL 33.9096 mm and f/2.890, against the printed 33.91 mm and f/2.89. Its paraxial back focal distance is 14.6683 mm; the image plane retains the printed 14.6687 mm, a 0.0004 mm difference. The first-to-last surface length is 21.0641 mm and the infinity total track is 35.7328 mm.
+The infinity prescription computes to EFL 33.91 mm and f/2.89, matching the printed values to that precision. Its paraxial back focal distance is 14.668 mm; the image plane retains the printed 14.6687 mm, about 0.0004 mm beyond paraxial focus. The first-to-last surface length is 21.06 mm and the infinity total track is 35.73 mm.
 
-The declared 64° full field lands at a real chief-ray height of 21.51 mm. Figure 7 gives IH = 21.6 mm, reached at about 32.11° half-field. The declared 32° half-field is retained; the 24 × 36 mm corner at about 32.2° has a clear chief ray. Corner bundles at IH = 21.6 mm show approximately 4%, 14% and 10% one-sided clipping at surfaces 1–3, so a clear chief ray does not imply full corner illumination.
+The 64° full field gives a chief-ray height of 21.51 mm. Figure 7 gives IH = 21.6 mm, reached at about 32.1° half-field. The 32° half-field is retained; the 24 × 36 mm corner at about 32.2° has a clear chief ray. Corner bundles at IH = 21.6 mm show approximately 4%, 14% and 10% one-sided clipping at surfaces 1–3, so a clear chief ray does not imply full corner illumination.
 
-Semi-diameters are inferred rather than printed. Figure 1 suggests outer radii of 6.9, 6.1, 6.5 and 8.7 mm. L1's rear radius is limited to 5.9 mm because the adjacent surfaces cross at about 6.25 mm height, despite the drawing's apparent overlap. L4 has inferred clear radii of 7.1 and 7.8 mm and opaque outer lands extending to 8.7 mm; the rear clear-radius reading spans approximately 7.7–7.9 mm. These mixed geometric and drawing estimates remain uncertain and do not establish production clear apertures.
+Semi-diameters are inferred rather than printed. Figure 1 suggests outer radii of 6.9, 6.1, 6.5 and 8.7 mm. L1's rear radius is limited to 5.9 mm because the adjacent surfaces cross at about 6.25 mm height, despite the overlap depicted in Figure 1. L4 has inferred clear radii of 7.1 and 7.8 mm and opaque outer lands extending to 8.7 mm; the rear clear-radius reading spans approximately 7.7–7.9 mm. These uncertain estimates do not establish production clear apertures.
 
 ## Sources
 
 - [JP 3610160 B2](https://patents.google.com/patent/JP3610160B2/en), numerical Example 1, Figures 1, 7 and 8; design discussion in ¶0012, ¶0018, ¶0021, ¶0026, ¶0028, ¶0030 and ¶0054–0055; aspheric equation in ¶0063–0064.
 - [Olympus μ-II specifications, 18 February 1997](https://www.olympus.co.jp/jp/news/1997a/nr970218mju2spj.html), fixed lens, 135 film, 24 × 36 mm frame, 35 mm f/2.8, four elements/four groups, 0.35 m focus and f/11 exposure endpoint.
 - [Olympus introduction reproduced by Wanafoto, 19 February 1997](https://wanafoto.blogspot.com/1997/02/olympus-mju-ii-compact-camera.html), entry “Olympus µ [mju:]-II Compact Camera,” including the four-element/four-group construction and aspherical lens.
+- [Raymond Yee, Project 02 – Olympus Mju II, 5 October 2016](https://lostlenscaps.com/project-02-olympus-mju-ii/), teardown documenting a shared three-blade shutter/aperture mechanism and triangular opening.
+- [KJ Vogelius, Olympus mju:II – The perfect pocket camera?, May 2018](https://gear.vogelius.se/-editorials/olympus-mju-ii/index.html), corroborating the three-blade diaphragm.
 - [135compact, Olympus mju II](https://135compact.com/135_olympus_mjuII.htm), product specifications.
 - [Wikipedia, Olympus Stylus Epic](https://en.wikipedia.org/wiki/Olympus_Stylus_Epic), alternate product name, introduction year and focus range.

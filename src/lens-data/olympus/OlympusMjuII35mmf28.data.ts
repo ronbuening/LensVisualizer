@@ -9,7 +9,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * their drawing envelopes as curve ends because separate endpoints are indistinct.
  * L4's clear radii are inferred as 7.1 / 7.8 mm; the rear reading spans 7.7–7.9 mm.
  * Its 8.7 mm opaque flat lands follow the drawing's step; the bevel shape is unknown.
- * No rim is enlarged to pass rays. The infinity image plane uses the printed fb = 14.6687 mm.
+ * The clear radii follow the drawing and surface geometry; none is enlarged to pass rays.
+ * The infinity image plane uses the printed fb = 14.6687 mm.
  * Whole-unit focus to 0.35 m is described by the patent, but its spacings are not tabulated.
  * The rear gap alone varies to an inferred 18.87 mm, with three inferred intermediate states.
  * The helium d-line reference follows the d/g/F/C labels in Figure 7; glass suppliers are unknown.
@@ -25,12 +26,12 @@ const LENS_DATA = {
     closeFocusM: 0.35,
     keyframes: [0, 0.25, 0.5, 0.75, 1],
     description:
-      "Whole-unit focus from infinity to 0.35 m: all four elements and the iris move 4.2013 mm toward the object. Only the rear gap changes, from the printed 14.6687 mm to an inferred 18.87 mm; the three intermediate spacings are also inferred.",
+      "Whole-unit focus from infinity to 0.35 m: all four elements and the iris move 4.20 mm toward the object. Only the rear gap changes, from the printed 14.6687 mm to an inferred 18.87 mm; the three intermediate spacings are also inferred.",
   },
   key: "olympus-mju-ii-35-f28",
   maker: "Olympus",
   name: "OLYMPUS 35mm f/2.8 (Olympus μ[mju:]-II)",
-  subtitle: "JP 3610160 B2, Example 1 — possible Olympus μ[mju:]-II correlation",
+  subtitle: "JP 3610160 B2, Example 1 — Olympus / Takahashi, Shimizu & Takato",
   catalog: {
     lensMounts: ["fixed-lens-camera"],
     imageFormat: "135-full-frame",
@@ -183,10 +184,17 @@ const LENS_DATA = {
       values: [[14.6687, 15.535, 16.506, 17.6069, 18.87]],
     },
   },
+  groups: [
+    { text: "L1", fromSurface: "1", toSurface: "2" },
+    { text: "L2", fromSurface: "3", toSurface: "4" },
+    { text: "L3", fromSurface: "5", toSurface: "6" },
+    { text: "L4", fromSurface: "7", toSurface: "8A" },
+  ],
   aperture: {
     nominalFNumber: 2.89,
     fStops: [2.89, 4, 5.6, 8, 11],
     maxFNumber: 11,
+    blades: 3,
   },
   projection: {
     kind: "rectilinear",
