@@ -8,7 +8,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * table; signs follow the drawing. D is taken as sodium, 589.3 nm. The analysis
  * lists the printed G′ indices and small element/component focal-length differences.
  * The stop divides the 7.54 mm doublet gap into 3.11/4.43 mm, inferred from the
- * drawing and the astigmatic node below 15°; its opening follows f/6. Rims are estimates.
+ * drawing and the astigmatic node below 15°; its opening follows f/6. Rims are estimated
+ * from the drawing's proportions, including the tapers toward the iris at R5/R6;
+ * the drawing is not uniformly to scale. The axial f/6 beam and 15° chief ray clear them.
  * The 15° field is read as a half-angle; its real chief-ray height sets the image circle.
  * The image plane is at paraxial back focus, 88.64 mm. No back focus or close-focus data is printed.
  */
@@ -140,7 +142,7 @@ const LENS_DATA = {
       label: "5",
       R: 22.26,
       d: 3.11,
-      sd: 10,
+      sd: 8.1,
     },
     {
       label: "STO",
@@ -151,7 +153,7 @@ const LENS_DATA = {
       label: "6",
       R: -136.41,
       d: 0.84,
-      sd: 10.4,
+      sd: 7.7,
       medium: 4,
     },
     {
