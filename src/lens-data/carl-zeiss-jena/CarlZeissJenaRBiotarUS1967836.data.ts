@@ -6,8 +6,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * the R-Biotar family. The patent prints d-line glass values and the diaphragm
  * station: 43.80 mm behind R4 and 16.59 mm before R5. The inferred iris radius
  * follows paraxial f/0.90; exact axial tracing gives about f/0.96. Clear rims
- * are inferred and differ from the drawing. The image plane is the calculated
- * paraxial infinity focus because no back focus is printed. The 7.2° half-field
+ * are inferred from the sole drawing on page 1 and checked against the axial
+ * beam and corner chief ray. L1, L3 and L4 have square rims; L2's rear optical
+ * face ends at 52.6 mm with a land out to 61 mm. R9 is held slightly above its
+ * drawn curve end to preserve corner illumination. The image plane is the
+ * calculated paraxial infinity focus because no back focus is printed. The 7.2° half-field
  * follows the stated image diameter of approximately 25 mm; no finite-focus
  * state is given.
  */
@@ -120,27 +123,28 @@ const LENS_DATA = {
       label: "1",
       R: 135.14,
       d: 29.98,
-      sd: 66,
+      sd: 61,
       medium: 1,
     },
     {
       label: "2",
       R: -182.95,
       d: 9.78,
-      sd: 60.5,
+      sd: 61,
     },
     {
       label: "3",
       R: -128.96,
       d: 11.7,
-      sd: 55,
+      sd: 61,
       medium: 2,
     },
     {
       label: "4",
       R: -1813.8,
       d: 43.8,
-      sd: 54,
+      sd: 52.6,
+      rimExtensionSd: 61,
     },
     {
       label: "STO",
@@ -151,20 +155,20 @@ const LENS_DATA = {
       label: "5",
       R: 97.65,
       d: 23.82,
-      sd: 48,
+      sd: 45,
       medium: 3,
     },
     {
       label: "6",
       R: "flat",
       d: 22.64,
-      sd: 42,
+      sd: 45,
     },
     {
       label: "7",
       R: 60.22,
       d: 15.1,
-      sd: 27,
+      sd: 26,
       medium: 4,
     },
     {
@@ -178,7 +182,7 @@ const LENS_DATA = {
       label: "9",
       R: -369.17,
       d: 26.004567,
-      sd: 27,
+      sd: 23.4,
     },
   ],
   focus: {

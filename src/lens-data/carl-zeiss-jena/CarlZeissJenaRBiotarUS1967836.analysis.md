@@ -29,31 +29,31 @@ The stated image diameter is 25 mm. A real chief ray reaches the 12.5 mm image r
 
 nd = 1.63753, νd = 56.1. Glass: Unmatched. Focal length in air: +126.56 mm.
 
-The front collector has radii +135.14 and −182.95 mm and a center thickness of 29.98 mm. Its inferred front and rear clear radii are 66 and 60.5 mm. The front rim approaches a knife edge and differs from the patent drawing.
+The front collector has radii +135.14 and −182.95 mm and a center thickness of 29.98 mm. Its inferred front and rear clear radii are both 61 mm, giving a square rim with about 5 mm of edge thickness.
 
 ### L2 — Negative Meniscus
 
 nd = 1.75823, νd = 27.4. Glass: Unmatched. Focal length in air: −183.65 mm.
 
-The −128.96 mm front face is more strongly curved than the −1813.8 mm rear face. This 11.70 mm thick negative member uses the patent's high-dispersion glass, with νd below 35, ahead of the diaphragm. Its inferred clear radii are 55 and 54 mm.
+The −128.96 mm front face is more strongly curved than the −1813.8 mm rear face. This 11.70 mm thick negative member uses the patent's high-dispersion glass, with νd below 35, ahead of the diaphragm. Its inferred clear radii are 61 and 52.6 mm. An opaque rear land extends to 61 mm, approximating the raised shoulder and chamfer in the drawing.
 
 ### L3 — Plano-Convex Positive
 
 nd = 1.46449, νd = 65.8. Glass: FK3 (Schott), a catalog match. Focal length in air: +210.23 mm.
 
-The +97.65 mm front face and plane rear face form the added positive collector behind the diaphragm. Its center thickness is 23.82 mm; the inferred clear radii are 48 and 42 mm. The low index and high Abbe number distinguish it from the denser front collector and rear doublet glasses.
+The +97.65 mm front face and plane rear face form the added positive collector behind the diaphragm. Its center thickness is 23.82 mm; both inferred clear radii are 45 mm, giving a square rim. The low index and high Abbe number distinguish it from the denser front collector and rear doublet glasses.
 
 ### L4 — Biconvex Positive in the Rear Doublet
 
 nd = 1.62203, νd = 53.1. Glass: Unmatched. Focal length in air: +50.67 mm.
 
-The +60.22 mm front face and −59.78 mm cemented face enclose 15.10 mm of glass. L4 supplies the positive power of the rear doublet. Its inferred front and cemented clear radii are 27 and 26 mm.
+The +60.22 mm front face and −59.78 mm cemented face enclose 15.10 mm of glass. L4 supplies the positive power of the rear doublet. Its inferred front and cemented clear radii are both 26 mm.
 
 ### L5 — Negative Meniscus in the Rear Doublet
 
 nd = 1.75823, νd = 27.4. Glass: Unmatched. Focal length in air: −94.52 mm.
 
-L5 shares L4's −59.78 mm cemented face and has a weak −369.17 mm rear face. It is 3.40 mm thick on axis, with an inferred rear clear radius of 27 mm. Its dispersive glass repeats L2's printed pair, consistent with the patent's discussion of a dispersive element in the final converging member. L4+L5 form cemented group C1 with a combined focal length of +99.07 mm; the individual element focal lengths above are calculated in air.
+L5 shares L4's −59.78 mm cemented face and has a weak −369.17 mm rear face. It is 3.40 mm thick on axis, with an inferred rear clear radius of 23.4 mm and a bevel toward the 26 mm cemented edge. Its dispersive glass repeats L2's printed pair, consistent with the patent's discussion of a dispersive element in the final converging member. L4+L5 form cemented group C1 with a combined focal length of +99.07 mm; the individual element focal lengths above are calculated in air.
 
 ## Glass Identification and Spectral Limits
 
@@ -69,9 +69,9 @@ Infinity focus only; the patent gives no close-focus data. There is no group mot
 
 The printed aperture is f/0.90. The inferred iris radius is 37.27 mm from paraxial pupil scaling; exact axial tracing at that opening admits an entrance radius of 52.29 mm, equivalent to f/0.96. The full f/0.90 axial marginal ray would require an iris radius of 39.99 mm. The source aperture and printed stop station remain the basis of the model.
 
-No numerical clear radii are printed. The inferred radii at R1–R9 are 66, 60.5, 55, 54, 48, 42, 27, 26 and 27 mm. They have positive glass thickness and air clearance, and the stop plane lies entirely in air. Every optical rim passes the axial beam and the chief ray at 7.2°, while the rear doublet vignettes part of the off-axis bundle. Its upper-side meridional clipping is approximately 18%, 27% and 10% at R7, R8 and R9 for the nominal f/0.90 bundle; these widths are not radiometric illumination measurements.
+No numerical clear radii are printed. The inferred radii at R1–R9 are 61, 61, 61, 52.6, 45, 45, 26, 26 and 23.4 mm. They follow the sole drawing on page 1, whose axial spacings and front-surface sag support a common scale of about 7.7 pixels/mm at 600 dpi. R4 has an opaque land to 61 mm, approximating the drawn shoulder without continuing the optical curve. The rear optical face is slightly larger than its roughly 23 mm drawn extent to retain corner illumination. Glass thickness and air clearance remain positive, and the stop plane lies entirely in air.
 
-The drawing suggests different rims: about 61 mm on L1; about 61 mm at L2's front and 52.6 mm at its rear optical face, with a chamfer beyond; about 45 mm on L3; and about 26 mm on the rear doublet, with a smaller rear optical face. These differences remain unresolved. The drawn diaphragm opening is schematic and does not independently determine the iris diameter.
+Every optical rim passes the axial beam and the chief ray at 7.2°, while the rear doublet vignettes part of the off-axis bundle. Wide-open geometric pupil transmission is about 98.3% at 4.8°, 91.7% at 6.0° and 82.9% at 7.2°. Upper-side meridional clipping of the nominal f/0.90 bundle is approximately 23%, 27% and 30% at R7, R8 and R9; these widths are not radiometric illumination measurements. The opposite marginal extreme is not established. The drawn diaphragm opening is schematic and does not independently determine the iris diameter.
 
 The patent supplies no MTF curve or measured performance for comparison. The inferred apertures, limited glass dispersion data and infinity-only conjugate limit comparisons with a manufactured X-ray objective.
 
