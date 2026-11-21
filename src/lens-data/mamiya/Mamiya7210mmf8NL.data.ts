@@ -6,8 +6,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ╠══════════════════════════════════════════════════════════════════════════════╣
  * ║  Data source: JP 2000-028919 A, Example 1 (Hideyuki Suga / Mamiya-OP).     ║
  * ║  Seven-element, five-group, all-spherical medium-telephoto prescription.    ║
- * ║  Focus status: NO_INTERNAL_RECONSTRUCTION. The patent publishes infinity   ║
- * ║  data only; no close-focus spacing or internal motion has been invented.    ║
+ * ║  Focus: infinity only. The patent publishes infinity data only; no         ║
+ * ║  close-focus spacing or internal motion is modeled.                        ║
  * ║                                                                            ║
  * ║  SCALE: The patent example has f = 100.06 mm. All dimensional prescription ║
  * ║  values are scaled by s = 210 / 100.06 = 2.098740755546672. Indices and    ║
@@ -182,8 +182,8 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 7,
     description:
-      "NO_INTERNAL_RECONSTRUCTION: the patent publishes only the infinity prescription and no moving spacings. " +
-      "The marketed 7 m minimum focus distance is retained as metadata, not as an invented optical state.",
+      "Infinity focus only. The patent publishes only the infinity prescription and no close-focus spacings. " +
+      "Mamiya's 7 m minimum focus distance is product information; focus travel is not modeled.",
   },
 
   aperture: { nominalFNumber: 8.15, fStops: [8, 11, 16, 22, 32], maxFNumber: 32 },

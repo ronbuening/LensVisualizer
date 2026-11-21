@@ -15,10 +15,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ all-spherical, so no asphere-coefficient transform is required. The        ║
  * ║ resulting paraxial EFL is 54.999970204812 mm.                              ║
  * ║                                                                            ║
- * ║ FOCUS STATUS: NO_INTERNAL_RECONSTRUCTION. Manufacturer literature states  ║
- * ║ that the production lens uses a floating-element mechanism and focuses to ║
+ * ║ FOCUS: Infinity only. Manufacturer literature states that the              ║
+ * ║ production lens uses a floating-element mechanism and focuses to           ║
  * ║ 0.45 m, but the patent publishes no focus-spacing table, moving-group      ║
- * ║ designation, object-distance table, or travel. No focus var is invented.   ║
+ * ║ designation, object-distance table, or travel. Focus travel is not         ║
+ * ║ modeled.                                                                   ║
  * ║                                                                            ║
  * ║ STOP: the patent explicitly prints the flat stop row between B3 and C1.   ║
  * ║ Its diameter is not published. The stop radius is derived from the design  ║
@@ -222,7 +223,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.45,
     description:
-      "NO_INTERNAL_RECONSTRUCTION — manufacturer literature describes floating-element focusing to 0.45 m, but JP 1997-297263 Example 1 publishes no focus-motion data. Only the published infinity-like state is modeled.",
+      "Infinity focus only. Mamiya literature describes floating-element focusing to 0.45 m, but JP 1997-297263 Example 1 publishes no close-focus data, so focus travel is not modeled.",
   },
 
   aperture: { nominalFNumber: 2.8, fStops: [2.8, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22 },
