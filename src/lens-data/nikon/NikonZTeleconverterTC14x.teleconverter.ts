@@ -37,7 +37,7 @@ const TELECONVERTER_DATA = {
   key: "nikon-z-tc-1-4x",
   maker: "Nikon",
   name: "NIKON Z TELECONVERTER TC-1.4x",
-  subtitle: "JP 2021-189311 A, Example 1 \u2014 production correlation",
+  subtitle: "JP 2021-189311 A, Example 1 \u2014 production match",
 
   catalog: {
     lensMounts: ["nikon-z"],

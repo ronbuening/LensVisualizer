@@ -65,7 +65,7 @@ const LENS_DATA = {
   key: "nikon-nikkor-800mm-f8-ed",
   maker: "Nikon",
   name: "NIKON NIKKOR 800mm f/8 ED",
-  subtitle: "US 3,774,991 Example III — strong production correlation; stop and SDs modeled",
+  subtitle: "US 3,774,991 Example III — strong production match; stop and SDs modeled",
 
   catalog: {
     lensMounts: ["nikon-f"],

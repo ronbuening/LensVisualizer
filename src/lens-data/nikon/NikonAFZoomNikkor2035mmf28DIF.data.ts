@@ -61,7 +61,7 @@ const LENS_DATA = {
   key: "nikon-af-zoom-nikkor-20-35mm-f28d-if",
   maker: "Nikon",
   name: "NIKON AI AF ZOOM-NIKKOR 20-35mm f/2.8 D IF",
-  subtitle: "US 5,276,553 A — Example 1 — production correlation",
+  subtitle: "US 5,276,553 A — Example 1 — production match",
 
   catalog: {
     lensMounts: ["nikon-f"],

@@ -51,7 +51,7 @@ const LENS_DATA = {
   key: "nikon-ais-zoom-nikkor-100-300mm-f56",
   maker: "Nikon",
   name: "NIKON ZOOM-NIKKOR 100-300mm f/5.6",
-  subtitle: "US 4,641,928 A Example 2 - production correlation; corrected r19 source value",
+  subtitle: "US 4,641,928 A Example 2 - production match; corrected r19 source value",
 
   catalog: {
     lensMounts: ["nikon-f"],

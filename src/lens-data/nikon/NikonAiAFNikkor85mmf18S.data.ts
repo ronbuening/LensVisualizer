@@ -39,7 +39,7 @@ const LENS_DATA = {
   key: "nikon-ai-af-nikkor-85f18s",
   maker: "Nikon",
   name: "NIKON AI AF NIKKOR 85mm f/1.8 S",
-  subtitle: "US 4,812,027 A — Example 1; strong production correlation to the 1988 Ai AF Nikkor 85mm f/1.8S",
+  subtitle: "US 4,812,027 A — Example 1; strong production match to the 1988 Ai AF Nikkor 85mm f/1.8S",
 
   catalog: {
     lensMounts: ["nikon-f"],

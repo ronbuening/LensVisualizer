@@ -45,7 +45,7 @@ const LENS_DATA = {
   key: "nikon-pc-nikkor-35mm-f28",
   maker: "Nikon",
   name: "NIKON PC-NIKKOR 35mm f/2.8",
-  subtitle: "DE 1 497 540 A1 — Example III — 1968 7-group / 8-element production correlation",
+  subtitle: "DE 1 497 540 A1 — Example III — 1968 7-group / 8-element production match",
 
   catalog: {
     lensMounts: ["nikon-f"],

@@ -25,7 +25,7 @@ const LENS_DATA = {
   key: "nikon-zoom-nikkor-8-24-f28-49-coolpix-4300",
   maker: "Nikon",
   name: "NIKON ZOOM-NIKKOR 8-24mm f/2.8-4.9 (Nikon COOLPIX 4300)",
-  subtitle: "JP 2003-177313 A, Example 1 - strong COOLPIX 4300 correlation; not manufacturer-confirmed",
+  subtitle: "JP 2003-177313 A, Example 1 - strong COOLPIX 4300 match; not maker-confirmed",
 
   catalog: {
     lensMounts: ["fixed-lens-camera"],

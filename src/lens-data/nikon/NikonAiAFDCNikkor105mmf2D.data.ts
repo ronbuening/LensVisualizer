@@ -59,7 +59,7 @@ const LENS_DATA = {
   key: "nikon-ai-af-dc-nikkor-105mm-f2d",
   maker: "Nikon",
   name: "NIKON AI AF DC-NIKKOR 105mm f/2 D",
-  subtitle: "US 4,908,639 A Example 1 — patent-correlated DC / rear-focus design",
+  subtitle: "US 4,908,639 A Example 1 — patent match for the DC / rear-focus design",
 
   catalog: {
     lensMounts: ["nikon-f"],

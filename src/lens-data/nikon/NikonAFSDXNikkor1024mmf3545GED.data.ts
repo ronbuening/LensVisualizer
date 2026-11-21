@@ -47,7 +47,7 @@ const LENS_DATA = {
   key: "nikon-af-s-dx-nikkor-10-24mm-f35-45g-ed",
   maker: "Nikon",
   name: "NIKON AF-S DX NIKKOR 10-24mm f/3.5-4.5 G ED",
-  subtitle: "US 8,169,718 B2 — Example 4; convergent production correlation",
+  subtitle: "US 8,169,718 B2 — Example 4; strong production match",
 
   catalog: {
     lensMounts: ["nikon-f"],

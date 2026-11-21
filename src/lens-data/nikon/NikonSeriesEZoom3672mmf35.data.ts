@@ -40,7 +40,7 @@ const LENS_DATA = {
   key: "nikon-series-e-zoom-36-72mm-f35",
   maker: "Nikon",
   name: "NIKON SERIES E ZOOM 36-72mm f/3.5",
-  subtitle: "JP S55-163511 A Example 1 — Satoshi Mogami; production correlation by Nikon Tale 91",
+  subtitle: "JP S55-163511 A Example 1 — Satoshi Mogami; production match by Nikon Tale 91",
 
   catalog: {
     lensMounts: ["nikon-f"],
