@@ -46,7 +46,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
 | [`nikon-s`](#nikon-s--nikon-s) | hybrid | 34.85 mm | 44 mm | `renderable` | 1 |
 | [`nikon-z`](#nikon-z--nikon-z) | bayonet | 16 mm | 55 mm | `mvp_complete` | 1 |
 | [`olympus-om`](#olympus-om--olympus-om) | bayonet | 46 mm | 47 mm | `mvp_complete` | 1 |
-| [`pentax-110`](#pentax-110--pentax-110) | bayonet | 27 mm | 25 mm | `renderable` | 1 |
+| [`pentax-110`](#pentax-110--pentax-110) | bayonet | 27 mm | 20.6 mm | `renderable` | 1 |
 | [`pentax-645`](#pentax-645--pentax-645) | bayonet | 70.87 mm | 61 mm | `renderable` | 1 |
 | [`pentax-67`](#pentax-67--pentax-67) | bayonet | 84.95 mm | 72 mm | `renderable` | 1 |
 | [`pentax-k`](#pentax-k--pentax-k) | bayonet | 45.46 mm | 44 mm | `mvp_complete` | 7 |
@@ -3399,50 +3399,50 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 | Profile ID | Type | Applies to | Adds | Removes | Changes |
 |---|---|---|---|---|---|
-| `pentax-110/base` | base | Pentax Auto 110 lenses and bodies | two-tab miniature bayonet interface; in-body aperture/shutter system | lens aperture mechanism; electrical contacts | rendered geometry is photo-scaled |
+| `pentax-110/base` | base | Pentax Auto 110 and Auto 110 Super bodies and Pentax-110 lenses | two-tab miniature bayonet interface; in-body aperture/shutter system | lens aperture mechanism; electrical contacts | lock rotation (about 90° clockwise) and index clocking follow the maker manual; throat uses a published value that conflicts with a second published value; lug sectors, ring diameters and lock-pin position are photo-scaled |
 
 #### Dimensional summary
 
 | Field | Value | Unit |
 |---|---|---|
 | Flange focal distance | 27 (`secondary`) | mm |
-| Nominal throat diameter | 25 (`photo_scaled`) | mm |
-| Effective clear aperture | 25 (`photo_scaled`) | mm |
+| Nominal throat diameter | 20.6 (`conflicting`) | mm |
+| Effective clear aperture | 20.6 (`conflicting`) | mm |
 | Camera mount outer diameter | 34 (`photo_scaled`) | mm |
 | Lens mount outer diameter | 32 (`photo_scaled`) | mm |
 | Contact count | not_applicable (`not_applicable`) | count |
-| Lock rotation | 45 (`photo_scaled`) | deg |
-| Lock direction | clockwise (`photo_scaled`) | — |
+| Lock rotation | 90 (`official`) | deg |
+| Lock direction | clockwise (`official`) | — |
 
 #### Figures (selected profile `pentax-110/base`)
 
-**Camera-side front view** — viewBox `-22 -22 44 44` · 26 elements in 3 layers · hash `90dbd7d0` ([standalone SVG](mounts/pentax-110-camera-front.svg))
+**Camera-side front view** — viewBox `-22 -22 44 44` · 26 elements in 3 layers · hash `91f67f7c` ([standalone SVG](mounts/pentax-110-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-20 -21 40 41` · 26 elements in 3 layers · hash `61c9eb6a` ([standalone SVG](mounts/pentax-110-lens-rear.svg))
+**Lens-side rear view** — viewBox `-20 -21 40 41` · 26 elements in 3 layers · hash `f356a507` ([standalone SVG](mounts/pentax-110-lens-rear.svg))
 
-**Axial / register schematic** — viewBox `-31 -25 36 46` · 12 elements in 2 layers · hash `b57405a2` ([standalone SVG](mounts/pentax-110-axial.svg))
+**Axial / register schematic** — viewBox `-31 -25 36 46` · 12 elements in 2 layers · hash `ef7f45ad` ([standalone SVG](mounts/pentax-110-axial.svg))
 
 #### Camera-side front-view geometry
 
 | Feature ID | Type | Profile | Center | Start | End | Inner r | Outer r |
 |---|---|---|---|---|---|---|---|
-| `body-throat` | body_throat | `pentax-110/base` | 0° | 0° | 360° | 0 | 12.5 |
-| `body-mount-ring` | mount_ring | `pentax-110/base` | 0° | 0° | 360° | 12.5 | 17 |
-| `body-slot-1` | bayonet_receiving_slot | `pentax-110/base` | 0° | 339° | 21° | 12.5 | 15 |
-| `body-slot-2` | bayonet_receiving_slot | `pentax-110/base` | 180° | 159° | 201° | 12.5 | 15 |
-| `body-index-mark` | index_mark | `pentax-110/base` | 0° | unknown | unknown | unknown | 17.5 |
-| `body-lock-pin` | lock_pin | `pentax-110/base` | 90° | unknown | unknown | unknown | 13.5 |
+| `body-throat` | body_throat | `pentax-110/base` | 0° | 0° | 360° | 0 | 10.3 |
+| `body-mount-ring` | mount_ring | `pentax-110/base` | 0° | 0° | 360° | 10.3 | 17 |
+| `body-slot-1` | bayonet_receiving_slot | `pentax-110/base` | 0° | 339° | 21° | 10.3 | 12.8 |
+| `body-slot-2` | bayonet_receiving_slot | `pentax-110/base` | 180° | 159° | 201° | 10.3 | 12.8 |
+| `body-index-mark` | index_mark | `pentax-110/base` | 270° | unknown | unknown | unknown | 17.5 |
+| `body-lock-pin` | lock_pin | `pentax-110/base` | 90° | unknown | unknown | unknown | 11.3 |
 
 #### Lens-side rear-view geometry
 
 | Feature ID | Type | Profile | Center | Start | End | Inner r | Outer r |
 |---|---|---|---|---|---|---|---|
-| `lens-throat` | lens_throat | `pentax-110/base` | 0° | 0° | 360° | 0 | 11.5 |
-| `lens-mount-ring` | lens_mount_ring | `pentax-110/base` | 0° | 0° | 360° | 11.5 | 16 |
-| `lens-lug-1` | bayonet_lug | `pentax-110/base` | 0° | 339° | 21° | 12.5 | 15 |
-| `lens-lug-2` | bayonet_lug | `pentax-110/base` | 180° | 159° | 201° | 12.5 | 15 |
-| `lens-index-mark` | index_mark | `pentax-110/base` | 0° | unknown | unknown | unknown | 16.5 |
-| `lens-lock-notch` | lock_notch | `pentax-110/base` | 90° | unknown | unknown | unknown | 13.5 |
+| `lens-throat` | lens_throat | `pentax-110/base` | 0° | 0° | 360° | 0 | 9.3 |
+| `lens-mount-ring` | lens_mount_ring | `pentax-110/base` | 0° | 0° | 360° | 9.3 | 16 |
+| `lens-lug-1` | bayonet_lug | `pentax-110/base` | 0° | 339° | 21° | 10.3 | 12.8 |
+| `lens-lug-2` | bayonet_lug | `pentax-110/base` | 180° | 159° | 201° | 10.3 | 12.8 |
+| `lens-index-mark` | index_mark | `pentax-110/base` | 270° | unknown | unknown | unknown | 16.5 |
+| `lens-lock-notch` | lock_notch | `pentax-110/base` | 90° | unknown | unknown | unknown | 11.3 |
 
 #### Mechanical couplings
 
@@ -3458,7 +3458,7 @@ None — fully electronic.
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/pentax-110.mount.ts` (21815 bytes, content hash `5d80fc6f`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/pentax-110.mount.ts` (27380 bytes, content hash `3a69d662`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -3466,10 +3466,15 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 |---|---|---|---|---|---|
 | `p110-1` | secondary | “Flange focal distance,” Wikipedia. Accessed 2026-06-06. | [snapshot](http://web.archive.org/web/20260526152456/https://en.wikipedia.org/wiki/Flange_focal_distance) | 2026-05-26 | medium |
 | `p110-2` | secondary | ISO3200.org, “Pentax 110 mount lenses.” Accessed 2026-06-06. | [snapshot](http://web.archive.org/web/20260508081500/https://iso3200.org/blog/references/pentax-110-mount-lenses/) | 2026-05-08 | medium |
+| `p110-3` | official | Asahi Optical Co., Pentax Auto 110 operating manual, pp. 4 and 12 (scan in the M. Butkus camera manual library). Accessed 2026-11-21. | [snapshot](https://www.cameramanuals.org/pentax_pdf/pentax_auto_110.pdf) | 2026-11-21 | high |
+| `p110-4` | secondary | “Lens mount,” Wikipedia, list of lens mounts, revision of 2026-11-13. Accessed 2026-11-21. | [snapshot](https://en.wikipedia.org/w/index.php?title=Lens_mount&oldid=1385498741) | 2026-11-21 | low |
 
 #### Open questions
 
-- Pentax 110 lug spans and throat diameter are photo-scaled; two-tab count and 27 mm register are sourced. _(Upgrade with measured Auto 110 body/lens samples.)_
+- Throat diameter is unresolved. Wikipedia's lens-mount list carries two Auto 110 rows, 19.5 mm (uncited) and 20.6 mm (cited to a hobbyist adapter model); the earlier 25 mm value in this file was an unsourced photo-scale. The figure draws 20.6 mm with the conflicting stroke. No maker dimension, patent or service-manual value was found. _(Measure the body throat on an Auto 110, or find the dimension in the Asahi Auto 110 service manual or a dimensioned mount drawing.)_
+- Tab geometry is a stand-in. The two-tab count is sourced, but tab centres (0°/180°), the 42° span, the 1.8 mm depth and the tab radii are not: the radii are generated from the throat radius plus a fixed 2.5 mm, not measured. Ring outer diameters (34 mm body, 32 mm lens) are photo-scaled with no identified photograph. _(Measure an Auto 110 body and a Pentax-110 lens rear, or scale a straight-on dimensioned photograph of each.)_
+- Lock-pin clock position (90°) and radius are photo-scaled. The manual only shows the release lever to the right of the mount seen from the front; it does not show where the pin meets the lens. _(Read the pin position from a service-manual exploded view or a measured lens-rear notch.)_
+- Searched without result: Asahi Kogaku US/JP patents for the Auto 110 lens mount (web searches 1977 to 1980; US4032938A and US3956759A are earlier cassette-SLR optics/layout patents with no mount; US4251134A is Canon), and the Asahi Auto 110 service manual, which is listed online (manualzz, elektrotanya) but could not be read through plain page fetches. _(A patent-office assignee search (J-PlatPat, Espacenet) and a readable service-manual copy.)_
 
 ### `pentax-645` — Pentax 645
 
