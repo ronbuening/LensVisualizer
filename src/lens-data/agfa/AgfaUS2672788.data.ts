@@ -1,20 +1,29 @@
-import type { LensDataV2Input } from "../repo/src/types/lensDataV2.js";
-const data = {
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * Theodor Brendel, Agfa, US 2,672,788 A, Example 2 (1954), at the printed
+ * f = 100 mm and f/2.5. Radii, thicknesses, air spaces, d-line indices and
+ * Abbe numbers follow the table on PDF page 4. Figure 1 places the diaphragm
+ * in the 13.870 mm central gap; its 7.68/6.19 mm split and all clear radii
+ * are inferred. The iris radius is derived from f/2.5. The unprinted image
+ * distance is the computed paraxial back focus, 70.930726228 mm.
+ */
+const LENS_DATA = {
   schema: 2,
-  key: "brendel-us2672788-example2-infinity-reference",
-  maker: null,
-  name: "THEODOR BRENDEL US2672788 EXAMPLE II — f/2.5",
-  subtitle:
-    "Agfa asymmetric Gauss patent-only · helium-d infinity · estimated iris/rims",
-  visible: false,
+  key: "agfa-100mm-f25-us2672788",
+  maker: "Agfa",
+  name: "AGFA 100mm f/2.5 (US 2,672,788 Design)",
+  subtitle: "US 2,672,788 A, Example 2 — five-element modified Gauss design",
+  visible: true,
   source: {
-    patentNumber: "US 2,672,788",
+    patentNumber: "US 2,672,788 A",
     example: {
-      label: "Example II",
+      label: "Example 2",
       id: "2",
     },
+    patentYear: 1954,
     authors: ["Theodor Brendel"],
-    assignees: ["Agfa"],
+    assignees: ["Agfa Camera-Werk AG"],
     sdSource: "heuristic",
   },
   catalog: {
@@ -26,72 +35,71 @@ const data = {
     },
     elementCount: 5,
     groupCount: 4,
-    specs: [
-      "Literal Example II patent-only5E/4G asymmetric Gauss; no retail or finite-focus identity.",
-      "R4 is a genuine plano cement between L2/L3; R8 is a separate plano air/glass front face of L5. Neither is the iris.",
-      "All signed radii, axial spacings and explicit helium-d/Abbe pairs preserved. Reference587.5618nm, not sodiumD or calibrated broadband.",
-      "Central13.870mm airgap and stop-in-gap drawing evidence are published; 7.68/6.19mm split,z26.253mm and all physical caps/iris are estimates.",
-      "Stock source/control f/2.5 selected: inferred iris radius13.937449104mm; exact nominal marginal maps13.800673152mm; upstream13.99114mm estimate kept separate.",
-      "Rounded working reference100mm from literal EFL100.000530154/BFD70.930726228mm; computed Gaussian infinity detector without fitting. No separately verified printed focal header claim.",
-      "Chosen +/-10-degree diagnostic verified in actual desktop/mobile panel; upstream25/27.5deg benches are not55deg native coverage. No image format/circle assigned.",
-      "Quantitative MTF is scoped helium-d only using native field fractions. Wider automatic drawer fields and generic chromatic displays are not qualified; no format invented to suppress them.",
-    ],
+    imageCircleMm: 103.4015,
+    specs: ["5 ELEMENTS / 4 GROUPS", "DESIGN F/2.5", "ALL SPHERICAL"],
   },
   elements: [
     {
       id: 1,
       name: "L1",
-      label: "L1",
-      type: "Source Spherical Element",
+      label: "Element 1",
+      type: "Positive Meniscus",
       nd: 1.62425,
       vd: 56.8,
       indexReference: "d",
-      glass:
-        "Unmatched literal helium-d index/Abbe pair; no exact catalog-glass or calibrated spectral curves.",
+      focalLengthMm: 107.27,
+      glass: "Unmatched (nd 1.62425 / ν 56.8)",
+      role: "Front positive collecting meniscus",
     },
     {
       id: 2,
       name: "L2",
-      label: "L2",
-      type: "Source Spherical Element",
+      label: "Element 2",
+      type: "Plano-Convex Positive",
       nd: 1.62425,
       vd: 56.8,
       indexReference: "d",
-      glass:
-        "Unmatched literal helium-d index/Abbe pair; no exact catalog-glass or calibrated spectral curves.",
+      focalLengthMm: 55.83,
+      glass: "Unmatched (nd 1.62425 / ν 56.8)",
+      role: "Positive front member of the cemented meniscus",
+      cemented: "C1",
     },
     {
       id: 3,
       name: "L3",
-      label: "L3",
-      type: "Source Spherical Element",
+      label: "Element 3",
+      type: "Plano-Concave Negative",
       nd: 1.62356,
       vd: 36.8,
       indexReference: "d",
-      glass:
-        "Unmatched literal helium-d index/Abbe pair; no exact catalog-glass or calibrated spectral curves.",
+      focalLengthMm: -34.36,
+      glass: "Unmatched (nd 1.62356 / ν 36.8)",
+      role: "Dispersive negative rear member of the cemented meniscus",
+      cemented: "C1",
     },
     {
       id: 4,
       name: "L4",
-      label: "L4",
-      type: "Source Spherical Element",
+      label: "Element 4",
+      type: "Negative Meniscus",
       nd: 1.62356,
       vd: 36.8,
       indexReference: "d",
-      glass:
-        "Unmatched literal helium-d index/Abbe pair; no exact catalog-glass or calibrated spectral curves.",
+      focalLengthMm: -131.39,
+      glass: "Unmatched (nd 1.62356 / ν 36.8)",
+      role: "Rear negative meniscus facing the diaphragm",
     },
     {
       id: 5,
       name: "L5",
-      label: "L5",
-      type: "Source Spherical Element",
+      label: "Element 5",
+      type: "Plano-Convex Positive",
       nd: 1.62309,
       vd: 58.1,
       indexReference: "d",
-      glass:
-        "Unmatched literal helium-d index/Abbe pair; no exact catalog-glass or calibrated spectral curves.",
+      focalLengthMm: 68.28,
+      glass: "BACD15 (Hoya)",
+      role: "Rear positive collecting element",
     },
   ],
   surfaces: [
@@ -167,16 +175,15 @@ const data = {
   },
   projection: {
     kind: "rectilinear",
-    fullFieldDeg: 20,
-    maxTraceFieldDeg: 10,
+    fullFieldDeg: 55,
+    maxTraceFieldDeg: 27.5,
   },
   rays: {
     offAxisFieldFrac: 1,
   },
   focus: {
-    closeFocusM: 1000000000000000,
-    description:
-      "Private literal Theodor Brendel/Agfa US2672788 Example II helium-d infinity patent reference; no retail, finite or calibrated broadband identity.5E/4G asymmetricGauss, R4plano cement and distinct R8plano air/glass preserved; stop-in-central13.870mm gap source drawing evidence only. Split7.68/6.19mm,z26.253mm is drawing-derived estimate, physical iris and caps unprinted. Stock source/controlf/2.5 derives iris radius13.937449104mm, exact nominal marginal13.800673152mm; preliminary13.99114mm estimate is separate. Literal EFL100.000530154/BFD70.930726228mm Gaussian infinity reference without source fitting, overrides, baffles or app/schema changes. Chosen +/-10degree diagnostic verified by native actual-angle proof; upstream wider benches are not native55degree coverage. No source format/imagecircle invented. Native scoped MTF recipe uses supported fieldFractions; automatic wider drawer outputs and Abbe-derived chromatic displays remain unqualified. Source original signed table/PDFpage4 visually verified in external custody only; no local originalPDF/hash/pixels or known denied request.",
+    closeFocusM: 1e15,
+    description: "Infinity focus only; the patent gives no close-focus data.",
   },
   groups: [
     {
@@ -200,8 +207,9 @@ const data = {
       toSurface: "9",
     },
   ],
+  doublets: [{ text: "C1", fromSurface: "3", toSurface: "5" }],
   layout: {
     yScFill: 0.5,
   },
 } satisfies LensDataV2Input;
-export default data;
+export default LENS_DATA;
