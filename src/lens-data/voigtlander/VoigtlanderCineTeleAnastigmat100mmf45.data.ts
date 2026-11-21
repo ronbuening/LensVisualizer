@@ -23,7 +23,7 @@ const LENS_DATA = {
   key: "voigtlander-cine-tele-anastigmat-100mm-f45",
   maker: "Voigtländer",
   name: "VOIGTLÄNDER CINE-TELE-ANASTIGMAT 100mm f/4.5 (patent model)",
-  subtitle: "DE 444150 C, Example 2; selected commercial correlation unconfirmed",
+  subtitle: "DE 444150 C, Example 2; selected production match, not maker-confirmed",
 
   catalog: {
     specs: ["4 ELEMENTS / 3 GROUPS", "100 mm f/4.5 PATENT NOMINAL", "FIXED INFINITY MODEL", "SPHERICAL / PLANAR"],

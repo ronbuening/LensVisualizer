@@ -54,7 +54,7 @@ const LENS_DATA = {
   key: "voigtlander-telomar-100mm-f55",
   maker: "Voigtländer",
   name: "VOIGTLÄNDER TELOMAR 100mm f/5.5",
-  subtitle: "US 2,662,446 A — sole Numerical Example / Figure 3; ×100 family-correlation model",
+  subtitle: "US 2,662,446 A — sole Numerical Example / Figure 3; ×100 model based on the lens family",
 
   catalog: {
     lensMounts: ["voigtlander-prominent"],

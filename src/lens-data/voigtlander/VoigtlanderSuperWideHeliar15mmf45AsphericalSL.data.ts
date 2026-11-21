@@ -24,7 +24,7 @@ const LENS_DATA = {
   key: "voigtlander-super-wide-heliar-15mm-f45-aspherical-sl",
   maker: "Voigtländer",
   name: "VOIGTLÄNDER SUPER WIDE-HELIAR 15mm f/4.5 Aspherical SL",
-  subtitle: "JPH11326756A Example 3 — Cosina; production correlation inferred",
+  subtitle: "JPH11326756A Example 3 — Cosina; inferred production match",
 
   catalog: {
     lensMounts: ["nikon-f"],
