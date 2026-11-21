@@ -1,11 +1,19 @@
-import type { LensDataV2Input } from "../repo/src/types/lensDataV2.js";
-const data = {
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * US 1,955,617 A, Figure 1: the printed inch dimensions are multiplied by 25.4
+ * to obtain millimetres, without focal-length adjustment. The patent gives
+ * 1.059 inches at f/1.5; the prescription computes to 26.92907 mm. The stop is
+ * inferred at the midpoint of the R5–R6 air space, all clear radii are estimated,
+ * and the image plane is the computed paraxial back focus of 11.93664 mm.
+ * The illustrative ±3° field is not specified by the patent.
+ */
+const LENS_DATA = {
   schema: 2,
-  key: "warmisham-us1955617-figure1-dline-reference",
-  maker: null,
-  name: "WARMISHAM US1955617 FIG.1 — PATENT REFERENCE",
-  subtitle:
-    "Modified Petzval · literal inch-to-mm conversion · estimated iris/rims/field · D-line infinity diagnostic",
+  key: "cooke-27mm-f15-us1955617",
+  maker: "Cooke",
+  name: "COOKE 27mm f/1.5 (US 1,955,617 Design)",
+  subtitle: "US 1,955,617 A, Figure 1 — modified Petzval design",
   visible: false,
   source: {
     patentNumber: "US 1,955,617 A",
@@ -19,86 +27,92 @@ const data = {
     sdSource: "heuristic",
   },
   catalog: {
-    imageCircleMm: 2.8236707481951537,
     elementCount: 6,
     groupCount: 4,
     focalLengthMm: {
-      design: 26.8986,
+      design: 26.9,
     },
     fNumber: {
       design: 1.5,
     },
-    specs: [
-      "6E/4G · SOURCE NOMINAL1.059in / f/1.5",
-      "PATENT-ONLY · NO VERIFIED COMMERCIAL IDENTITY",
-      "NOMINALf/1.5 · FINITE ENTRANCE EQUIVALENT≈f/1.596",
-      "LITERAL INCH×25.4 · NO FOCAL RESCALING",
-      "FRONT AIR GAP0.0508mm PRESERVED",
-      "IRIS MIDPOINT, CLEAR RADII AND±3° FIELD ARE MODEL ESTIMATES",
-      "D-LINE INFINITY ONLY · NO FINITE PROJECTION CONJUGATE",
-      "NO CALIBRATED SPECTRUM OR THROUGHPUT CLAIM",
-    ],
+    specs: ["6 ELEMENTS / 4 GROUPS", "ALL SPHERICAL", "DESIGN F/1.5", "DESIGN f = 26.90 mm"],
   },
   elements: [
     {
       id: 1,
       name: "L1",
-      label: "L1",
+      label: "Element 1",
       type: "Positive Meniscus",
       nd: 1.5735,
       vd: 57.5,
       indexReference: "D",
-      glass: "Unmatched (source Chance 9002; literal nD/V, D-only scope)",
+      focalLengthMm: 93.86,
+      glass: "Unmatched (nD 1.5735 / ν 57.5, Chance 9002)",
+      role: "Positive front collector",
     },
     {
       id: 2,
       name: "L2",
-      label: "L2",
+      label: "Element 2",
       type: "Biconvex Positive",
       nd: 1.5181,
       vd: 60.3,
       indexReference: "D",
-      glass: "Unmatched (source Chance 9322; literal nD/V, D-only scope)",
+      focalLengthMm: 19.25,
+      glass: "Unmatched (nD 1.5181 / ν 60.3, Chance 9322)",
+      role: "Positive element of the front cemented doublet",
+      cemented: "C1",
     },
     {
       id: 3,
       name: "L3",
-      label: "L3",
+      label: "Element 3",
       type: "Biconcave Negative",
       nd: 1.6521,
       vd: 33.5,
       indexReference: "D",
-      glass: "Unmatched (source Chance 5093; literal nD/V, D-only scope)",
+      focalLengthMm: -21.25,
+      glass: "Unmatched (nD 1.6521 / ν 33.5, Chance 5093)",
+      role: "Negative element of the front cemented doublet",
+      cemented: "C1",
     },
     {
       id: 4,
       name: "L4",
-      label: "L4",
+      label: "Element 4",
       type: "Plano-Convex Positive",
       nd: 1.6437,
       vd: 48.3,
       indexReference: "D",
-      glass: "Unmatched (source code blank; literal nD/V, D-only scope)",
+      focalLengthMm: 28.6,
+      glass: "Unmatched (nD 1.6437 / ν 48.3)",
+      role: "Positive element of the rear diverging doublet",
+      cemented: "C2",
     },
     {
       id: 5,
       name: "L5",
-      label: "L5",
+      label: "Element 5",
       type: "Plano-Concave Negative",
       nd: 1.5635,
       vd: 42.9,
       indexReference: "D",
-      glass: "Unmatched (source Chance 8653; literal nD/V, D-only scope)",
+      focalLengthMm: -17.68,
+      glass: "Unmatched (nD 1.5635 / ν 42.9, Chance 8653)",
+      role: "Negative element of the rear diverging doublet",
+      cemented: "C2",
     },
     {
       id: 6,
       name: "L6",
-      label: "L6",
+      label: "Element 6",
       type: "Biconvex Positive",
       nd: 1.6437,
       vd: 48.3,
       indexReference: "D",
-      glass: "Unmatched (source code blank; literal nD/V, D-only scope)",
+      focalLengthMm: 23.44,
+      glass: "Unmatched (nD 1.6437 / ν 48.3)",
+      role: "Rear positive singlet",
     },
   ],
   surfaces: [
@@ -175,9 +189,8 @@ const data = {
     },
   ],
   focus: {
-    closeFocusM: 1000000000000000,
-    description:
-      "Source Figure1 illumination direction only, modeled at D-line infinity, not a finite projection state or exact production lens. All inches×25.4 without focal fitting. The0.0508mm frontgap is unchanged. Iris midpoint in R5–R6 air, physical diameter, clear radii and±3degree field are explicitly estimated; no source field or focus schedule is asserted.",
+    closeFocusM: 1e15,
+    description: "Infinity focus only; the patent gives no close-focus data.",
   },
   aperture: {
     nominalFNumber: 1.5,
@@ -201,7 +214,7 @@ const data = {
       toSurface: "5",
     },
     {
-      text: "Compound diverging member",
+      text: "Rear diverging doublet",
       fromSurface: "6",
       toSurface: "8",
     },
@@ -211,8 +224,12 @@ const data = {
       toSurface: "10",
     },
   ],
+  doublets: [
+    { text: "C1", fromSurface: "3", toSurface: "5" },
+    { text: "C2", fromSurface: "6", toSurface: "8" },
+  ],
   layout: {
     yScFill: 0.5,
   },
 } satisfies LensDataV2Input;
-export default data;
+export default LENS_DATA;
