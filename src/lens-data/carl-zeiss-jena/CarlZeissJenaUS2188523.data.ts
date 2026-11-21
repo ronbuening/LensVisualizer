@@ -53,7 +53,8 @@ const LENS_DATA = {
       vd: 60.3,
       indexReference: "d",
       focalLengthMm: 133.12,
-      glass: "Unmatched (nd 1.6200 / ν 60.3)",
+      glass:
+        "S-BSM16 (spectral proxy; patent nd 1.6200 / ν 60.3; supplier and melt unspecified)",
       role: "Positive front singlet that collects light for the cemented groups.",
     },
     {
@@ -78,7 +79,8 @@ const LENS_DATA = {
       vd: 45.8,
       indexReference: "d",
       focalLengthMm: 99.68,
-      glass: "Unmatched (nd 1.5487 / ν 45.8)",
+      glass:
+        "S-TIL1 (spectral proxy; patent nd 1.5487 / ν 45.8; supplier and melt unspecified)",
       role: "Positive middle element of the middle triplet.",
       cemented: "C1",
     },
@@ -104,7 +106,8 @@ const LENS_DATA = {
       vd: 60.3,
       indexReference: "d",
       focalLengthMm: 105.71,
-      glass: "Unmatched (nd 1.6200 / ν 60.3)",
+      glass:
+        "S-BSM16 (spectral proxy; patent nd 1.6200 / ν 60.3; supplier and melt unspecified)",
       role: "Positive meniscus at the front of the rear triplet.",
       cemented: "C2",
     },
