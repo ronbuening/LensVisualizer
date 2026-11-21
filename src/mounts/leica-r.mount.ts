@@ -15,11 +15,13 @@
  * aperture ring and its body feeler [lr-p2]; the one-piece stepped R cam with two prongs and its two
  * body followers [lr-p1]; the contact strip on R8 / R9 bodies and ROM lenses [lr-m1].
  *
- * What is only scaled from figures: the bayonet flange angles come from the undimensioned camera-front
- * elevation in US4181419 (FIG. 1a), and the cam, R-cam and contact-strip angles from the lens-rear
- * photographs on p. 128 of the R9 instructions, mirrored into the camera-front frame and clocked by the
- * lock notch. No source found gives a radius, a lug thickness, a cam rise or the number of ROM contacts;
- * those values stay unknown or on the earlier unsourced estimate [lr-2] and are listed in openQuestions.
+ * What is only scaled from figures: the bayonet flange edges, the lock pin, the ring diameter and the six
+ * ring screws come from a straight-on photograph of a Leicaflex SL body mount [lr-ph1]; the cam, R-cam and
+ * contact-strip angles from the lens-rear photographs on p. 128 of the R9 instructions, mirrored into the
+ * camera-front frame and clocked by the lock notch. US4181419 FIG. 1a draws the same three flanges at
+ * top, lower right and lower left. No source found gives a lug thickness, a cam rise or the number of
+ * ROM contacts; those values stay unknown or on the earlier unsourced estimate [lr-2] and are listed in
+ * openQuestions.
  */
 
 import type { ContactFeature, MechanicalCoupling, MountProfileId, MountSpecInput } from "../types/mount.js";
@@ -31,7 +33,9 @@ const EST = ["lr-2"]; // earlier unsourced visual estimate (label only)
 const M9 = ["lr-m1"]; // Leica R9 instructions
 const MSL = ["lr-m2"]; // Leicaflex SL instructions
 const P1 = ["lr-p1f"]; // US4181419 FIG. 1a, scaled
+const PH = ["lr-ph1"]; // Leicaflex SL body mount photograph, scaled
 const LOCK = ["lr-3", "lr-m1", "lr-m2"]; // Wikipedia "Leica R bayonet" clock position + both manuals
+const LOCK_PH = ["lr-ph1", "lr-3"]; // lock pin read off the body photograph; Wikipedia gives 8 o'clock
 const CAM = ["lr-m1", "lr-3"]; // R9 instructions photo, cams identified per Wikipedia
 
 const BASE = "leica-r/base";
@@ -42,11 +46,11 @@ const R_ONLY = "leica-r/r-only";
 const ROM = "leica-r/rom";
 
 const GAP_NOTE =
-  "body bayonet segment 8 in US4181419 FIG. 1a (camera-front elevation), the solid flange that retains a lens lug; angles scaled from that undimensioned figure. The open entry gaps sit between the flanges, centred near 60, 180 and 300 deg";
+  "solid body flange that retains a lens lug (bayonet segment 8 of US4181419); edges read off a straight-on photograph of a Leicaflex SL body mount, corrected for its 26 deg tilt with the six ring screws, good to about 3 deg. The three flanges differ in length and the open entry gaps between them are each about 73 deg wide (42 to 114, 158 to 232.5 and 273.5 to 347 deg)";
 const LUG_NOTE =
-  "lens bayonet segment 9, drawn where it sits on a mounted lens, behind the body flange at the same angle; the patent draws it only in perspective (FIG. 1b), so the drawn arc is the flange it engages and the lug's own length is not sourced";
+  "lens bayonet segment 9, drawn where it sits on a mounted lens, behind the body flange at the same angle; US4181419 draws it only in perspective (FIG. 1b), so the drawn arc is the flange it engages and the lug's own length is not sourced";
 const PHOTO_NOTE =
-  "angle scaled from the lens-rear photo on p. 128 of the R9 instructions, mirrored to the camera-front frame and clocked by the lock notch (taken as 240 deg); good to about 15 deg";
+  "angle scaled from the lens-rear photo on p. 128 of the R9 instructions, mirrored to the camera-front frame and clocked by the lock notch (253.5 deg, from the body photograph); good to about 15 deg";
 
 /** First Leicaflex cam: sloped, on the aperture ring, read by the Leicaflex Standard meter coupling. */
 function cam1(profileId: MountProfileId, slug: string): MechanicalCoupling {
@@ -54,7 +58,7 @@ function cam1(profileId: MountProfileId, slug: string): MechanicalCoupling {
     featureId: `leicaflex-cam-1-${slug}`,
     side: "lens",
     profileId,
-    centerAngleDeg: v(325, "photo_scaled", CAM),
+    centerAngleDeg: v(338.5, "photo_scaled", CAM),
     radiusMm: unknownV(M9),
     sizeOrTravel: "curved sloped cam inside the bayonet, arc of roughly 50 deg; rise not sourced",
     function: "passes the preselected aperture to the Leicaflex Standard meter coupling",
@@ -68,7 +72,7 @@ function cam2(profileId: MountProfileId, slug: string): MechanicalCoupling {
     featureId: `leicaflex-cam-2-${slug}`,
     side: "lens",
     profileId,
-    centerAngleDeg: v(130, "photo_scaled", CAM),
+    centerAngleDeg: v(143.5, "photo_scaled", CAM),
     radiusMm: unknownV(M9),
     sizeOrTravel: "curved sloped cam inside the bayonet, arc of roughly 50 deg; rise not sourced",
     function: "passes the preselected aperture to the Leicaflex SL / SL2 through-the-lens meter",
@@ -83,7 +87,7 @@ function rCam(profileId: MountProfileId, slug: string): MechanicalCoupling[] {
       featureId: `r-cam-${slug}`,
       side: "lens",
       profileId,
-      centerAngleDeg: v(120, "photo_scaled", CAM),
+      centerAngleDeg: v(133.5, "photo_scaled", CAM),
       radiusMm: unknownV(M9),
       sizeOrTravel: "one-piece curved member with two axial prongs (US4181419, 14 and 15); arc length not sourced",
       function: "passes the preselected aperture and the lens's maximum aperture to Leica R bodies (R3 onward)",
@@ -120,7 +124,7 @@ function romStrip(side: ContactFeature["side"]): ContactFeature {
     side,
     contactNo: 1,
     profileId: ROM,
-    centerAngleDeg: v(345, "photo_scaled", CAM),
+    centerAngleDeg: v(358.5, "photo_scaled", CAM),
     centerRadiusMm: unknownV(M9),
     widthMm: unknownV(M9),
     heightMm: unknownV(M9),
@@ -177,7 +181,7 @@ const LEICA_R_MOUNT = {
           cameraSideOverlayLayers: [],
           lensSideOverlayLayers: [],
           status: "partial",
-          sourceRefs: ["lr-1", "lr-2", "lr-3", "lr-m1", "lr-m2", "lr-p1", "lr-p3"],
+          sourceRefs: ["lr-1", "lr-2", "lr-3", "lr-m1", "lr-m2", "lr-ph1", "lr-p1", "lr-p3"],
         },
         {
           profileId: ONE_CAM,
@@ -254,7 +258,7 @@ const LEICA_R_MOUNT = {
     flangeFocalDistanceMm: v(47, "secondary", ["lr-1", "lr-3"]),
     nominalThroatDiameterMm: v(49, "secondary", W),
     effectiveClearApertureMm: v(49, "secondary", W),
-    cameraMountOuterDiameterMm: v(58, "photo_scaled", EST),
+    cameraMountOuterDiameterMm: v(59, "photo_scaled", PH),
     lensMountOuterDiameterMm: v(56, "photo_scaled", EST),
     contactCount: naV(),
   },
@@ -290,59 +294,60 @@ const LEICA_R_MOUNT = {
       startAngleDeg: v(0, "photo_scaled", EST),
       endAngleDeg: v(360, "photo_scaled", EST),
       innerRadiusMm: v(24.5, "secondary", W),
-      outerRadiusMm: v(29, "photo_scaled", EST),
+      outerRadiusMm: v(29.5, "photo_scaled", PH),
       depthMm: naV(),
       matesWith: "",
-      shapeNotes: "visible body mount ring; outer diameter is an unsourced estimate",
+      shapeNotes:
+        "visible body mount ring; outer diameter scaled from the Leicaflex SL body photograph by taking the ring bore as the 49 mm throat (about 59 mm, good to 1 mm)",
     },
     {
       featureId: "body-slot-1",
       featureType: "bayonet_receiving_slot",
       profileId: BASE,
       count: 1,
-      centerAngleDeg: v(0, "photo_scaled", P1),
-      startAngleDeg: v(330, "photo_scaled", P1),
-      endAngleDeg: v(30, "photo_scaled", P1),
+      centerAngleDeg: v(14.5, "photo_scaled", PH),
+      startAngleDeg: v(347, "photo_scaled", PH),
+      endAngleDeg: v(42, "photo_scaled", PH),
       innerRadiusMm: v(24.5, "photo_scaled", EST),
       outerRadiusMm: v(27, "photo_scaled", EST),
       depthMm: v(1.8, "photo_scaled", EST),
       matesWith: "lens-lug-1",
-      shapeNotes: `${GAP_NOTE}; the top flange, drawn in full (about 330 to 30 deg). Radii and depth are unsourced estimates`,
+      shapeNotes: `${GAP_NOTE}; the top flange, the longest (about 55 deg). Radii and depth are unsourced estimates`,
     },
     {
       featureId: "body-slot-2",
       featureType: "bayonet_receiving_slot",
       profileId: BASE,
       count: 1,
-      centerAngleDeg: v(120, "photo_scaled", P1),
-      startAngleDeg: v(90, "photo_scaled", P1),
-      endAngleDeg: v(150, "photo_scaled", P1),
+      centerAngleDeg: v(136, "photo_scaled", PH),
+      startAngleDeg: v(114, "photo_scaled", PH),
+      endAngleDeg: v(158, "photo_scaled", PH),
       innerRadiusMm: v(24.5, "photo_scaled", EST),
       outerRadiusMm: v(27, "photo_scaled", EST),
       depthMm: v(1.8, "photo_scaled", EST),
       matesWith: "lens-lug-2",
-      shapeNotes: `${GAP_NOTE}; its lower end is drawn and scales to about 148 deg; the upper end is hidden by a break-out and is placed by taking this flange as wide as the top one. Radii and depth are unsourced estimates`,
+      shapeNotes: `${GAP_NOTE}; the lower-right flange (about 44 deg). Radii and depth are unsourced estimates`,
     },
     {
       featureId: "body-slot-3",
       featureType: "bayonet_receiving_slot",
       profileId: BASE,
       count: 1,
-      centerAngleDeg: v(240, "photo_scaled", P1),
-      startAngleDeg: v(210, "photo_scaled", P1),
-      endAngleDeg: v(270, "photo_scaled", P1),
+      centerAngleDeg: v(253, "photo_scaled", PH),
+      startAngleDeg: v(232.5, "photo_scaled", PH),
+      endAngleDeg: v(273.5, "photo_scaled", PH),
       innerRadiusMm: v(24.5, "photo_scaled", EST),
       outerRadiusMm: v(27, "photo_scaled", EST),
       depthMm: v(1.8, "photo_scaled", EST),
       matesWith: "lens-lug-3",
-      shapeNotes: `${GAP_NOTE}; its lower end is drawn and scales to about 213 deg; the upper end is hidden by a break-out and is placed by taking this flange as wide as the top one. Radii and depth are unsourced estimates`,
+      shapeNotes: `${GAP_NOTE}; the left flange (about 41 deg), beside the lock pin. Radii and depth are unsourced estimates`,
     },
     {
       featureId: "body-index-mark",
       featureType: "index_mark",
       profileId: BASE,
       count: 1,
-      centerAngleDeg: v(240, "secondary", LOCK),
+      centerAngleDeg: v(253.5, "photo_scaled", LOCK_PH),
       startAngleDeg: unknownV(LOCK),
       endAngleDeg: unknownV(LOCK),
       innerRadiusMm: unknownV(LOCK),
@@ -350,22 +355,22 @@ const LEICA_R_MOUNT = {
       depthMm: naV(),
       matesWith: "lens-index-mark",
       shapeNotes:
-        "the body has no separate index: the lens's red dot is set against the red bayonet lock (Leicaflex SL) or the bayonet release button (R9), at 8 o'clock from the front",
+        "the body has no separate index: the lens's red dot is set against the red bayonet lock (Leicaflex SL) or the bayonet release button (R9). Stored at the lock pin's angle; the red release lever of the Leicaflex SL sits just outside the ring at about 256 deg in the body photograph",
     },
     {
       featureId: "body-lock-pin",
       featureType: "lock_pin",
       profileId: BASE,
       count: 1,
-      centerAngleDeg: v(240, "secondary", LOCK),
+      centerAngleDeg: v(253.5, "photo_scaled", LOCK_PH),
       startAngleDeg: unknownV(LOCK),
       endAngleDeg: unknownV(LOCK),
       innerRadiusMm: unknownV(LOCK),
-      outerRadiusMm: v(25.5, "photo_scaled", EST),
+      outerRadiusMm: v(28, "photo_scaled", PH),
       depthMm: v(1.8, "photo_scaled", EST),
       matesWith: "lens-lock-notch",
       shapeNotes:
-        "bayonet locking pin at 8 o'clock from the camera front (Wikipedia); the release control sits at about 243 deg in the R9 front view and about 245 deg in the Leicaflex SL three-quarter view. Radius and depth are unsourced estimates",
+        "bayonet locking pin in the face of the mount ring, on the screw circle, at 253.5 deg in the Leicaflex SL body photograph (Wikipedia rounds it to 8 o'clock); the release control sits at about 243 deg in the R9 front view and about 245 deg in the Leicaflex SL three-quarter view. Radius scaled from the photograph against the 49 mm throat; depth is an unsourced estimate",
     },
   ],
 
@@ -403,9 +408,9 @@ const LEICA_R_MOUNT = {
       featureType: "bayonet_lug",
       profileId: BASE,
       count: 1,
-      centerAngleDeg: v(0, "photo_scaled", P1),
-      startAngleDeg: v(330, "photo_scaled", P1),
-      endAngleDeg: v(30, "photo_scaled", P1),
+      centerAngleDeg: v(14.5, "photo_scaled", PH),
+      startAngleDeg: v(347, "photo_scaled", PH),
+      endAngleDeg: v(42, "photo_scaled", PH),
       innerRadiusMm: v(24.5, "photo_scaled", EST),
       outerRadiusMm: v(27, "photo_scaled", EST),
       thicknessMm: v(1.8, "photo_scaled", EST),
@@ -417,9 +422,9 @@ const LEICA_R_MOUNT = {
       featureType: "bayonet_lug",
       profileId: BASE,
       count: 1,
-      centerAngleDeg: v(120, "photo_scaled", P1),
-      startAngleDeg: v(90, "photo_scaled", P1),
-      endAngleDeg: v(150, "photo_scaled", P1),
+      centerAngleDeg: v(136, "photo_scaled", PH),
+      startAngleDeg: v(114, "photo_scaled", PH),
+      endAngleDeg: v(158, "photo_scaled", PH),
       innerRadiusMm: v(24.5, "photo_scaled", EST),
       outerRadiusMm: v(27, "photo_scaled", EST),
       thicknessMm: v(1.8, "photo_scaled", EST),
@@ -431,9 +436,9 @@ const LEICA_R_MOUNT = {
       featureType: "bayonet_lug",
       profileId: BASE,
       count: 1,
-      centerAngleDeg: v(240, "photo_scaled", P1),
-      startAngleDeg: v(210, "photo_scaled", P1),
-      endAngleDeg: v(270, "photo_scaled", P1),
+      centerAngleDeg: v(253, "photo_scaled", PH),
+      startAngleDeg: v(232.5, "photo_scaled", PH),
+      endAngleDeg: v(273.5, "photo_scaled", PH),
       innerRadiusMm: v(24.5, "photo_scaled", EST),
       outerRadiusMm: v(27, "photo_scaled", EST),
       thicknessMm: v(1.8, "photo_scaled", EST),
@@ -445,7 +450,7 @@ const LEICA_R_MOUNT = {
       featureType: "index_mark",
       profileId: BASE,
       count: 1,
-      centerAngleDeg: v(240, "secondary", LOCK),
+      centerAngleDeg: v(253.5, "photo_scaled", LOCK_PH),
       startAngleDeg: unknownV(LOCK),
       endAngleDeg: unknownV(LOCK),
       innerRadiusMm: unknownV(LOCK),
@@ -460,15 +465,15 @@ const LEICA_R_MOUNT = {
       featureType: "lock_notch",
       profileId: BASE,
       count: 1,
-      centerAngleDeg: v(240, "secondary", LOCK),
+      centerAngleDeg: v(253.5, "photo_scaled", LOCK_PH),
       startAngleDeg: unknownV(LOCK),
       endAngleDeg: unknownV(LOCK),
       innerRadiusMm: unknownV(LOCK),
-      outerRadiusMm: v(25.5, "photo_scaled", EST),
+      outerRadiusMm: v(28, "photo_scaled", PH),
       thicknessMm: v(1.8, "photo_scaled", EST),
       matesWith: "body-lock-pin",
       shapeNotes:
-        "locking slot at 4 o'clock seen from the lens rear (Wikipedia), which is 240 deg in the camera-front frame; visible on the flange in both lens-rear photos on p. 128 of the R9 instructions. Radius and thickness are unsourced estimates",
+        "locking slot cut into the rim of the lens flange, visible in both lens-rear photos on p. 128 of the R9 instructions; stored at the angle and radius of the body pin it takes (Wikipedia rounds it to 4 o'clock seen from the lens rear). Thickness is an unsourced estimate",
     },
   ],
 
@@ -498,10 +503,10 @@ const LEICA_R_MOUNT = {
       featureId: "body-mount-screws",
       featureType: "mount_screws",
       side: "body",
-      count: v(4, "photo_scaled", P1),
-      pcdMm: v(54, "photo_scaled", EST),
+      count: v(6, "photo_scaled", PH),
+      pcdMm: v(56, "photo_scaled", PH),
       diameterMm: v(2, "photo_scaled", EST),
-      centerAnglesDeg: degListV([45, 135, 225, 315], "photo_scaled", P1),
+      centerAnglesDeg: degListV([0, 60, 120, 180, 240, 300], "photo_scaled", PH),
       shape: "round",
     },
   ],
@@ -594,7 +599,31 @@ const LEICA_R_MOUNT = {
       archiveUrl: "https://patentimages.storage.googleapis.com/f2/13/08/42f97eafb8047a/US4181419.pdf",
       archiveDate: "2026-11-21",
       appliesTo:
-        "camera-front elevation, used with no mirroring. No dimension or scale is stated, so readings stay photo-scaled: the three body bayonet segments, the four mount screws and the two R-cam followers",
+        "camera-front elevation, used with no mirroring. No dimension or scale is stated, so readings stay photo-scaled: the two R-cam followers. It also sketches three body bayonet segments at the top, lower right and lower left, which the body photograph [lr-ph1] confirms and now supplies",
+      confidence: "low",
+    },
+    {
+      ref: "lr-ph1",
+      sourceType: "field_photo",
+      citation:
+        "HBR, “R-Mount of Leicaflex SL.JPG” (R-Bajonett einer Leicaflex SL), Wikimedia Commons, 2009-06-28. Accessed 2026-11-21.",
+      liveUrl: "https://commons.wikimedia.org/wiki/File:R-Mount_of_Leicaflex_SL.JPG",
+      archiveUrl: "https://upload.wikimedia.org/wikipedia/commons/0/0c/R-Mount_of_Leicaflex_SL.JPG",
+      archiveDate: "2026-11-21",
+      appliesTo:
+        "photograph of the body mount from the camera front, so angles are used unmirrored. The camera is tilted about 26 deg about the horizontal; the six ring screws (60 deg apart) give the centre and the correction, and the lower-left screw then reads 239 deg against a nominal 240. Flange edges, lock pin and screw positions are read off the image; lengths are scaled by taking the ring bore as the 49 mm throat. One body of one model, undimensioned, so every reading stays photo-scaled (about 3 deg, 1 mm)",
+      confidence: "medium",
+    },
+    {
+      ref: "lr-p4",
+      sourceType: "patent",
+      citation:
+        "P. Loseries, Ernst Leitz GmbH, DE1810353 (filed 1968-11-22; B2 1977, C3 1977), “Bajonettverriegelung”. Accessed 2026-11-21.",
+      liveUrl: "https://patents.google.com/patent/DE1810353C3/en",
+      archiveUrl: "https://depatisnet.dpma.de/DepatisNet/depatisnet?action=pdf&docid=DE000001810353C3",
+      archiveDate: "2026-11-21",
+      appliesTo:
+        "text: the body bayonet ring is a stamped part held under a threaded retaining ring whose collar centres the lens, and a spring bolt behind one lens bayonet tab locks the lens. Figs. 2 to 4 are schematic and draw the ring openings at the top, right and left, the reverse of the body photograph [lr-ph1]; no dimension or angle is stated and no value in this spec cites it",
       confidence: "low",
     },
     {
@@ -626,7 +655,7 @@ const LEICA_R_MOUNT = {
   openQuestions: [
     {
       issue:
-        "No dimensioned drawing of the bayonet was found. The body flanges (about 330-30, 90-150 and 210-270 deg) and the entry gaps between them (centres 60, 180, 300 deg, about 60 deg each) are scaled from the undimensioned front elevation US4181419 FIG. 1a, where two of the three flanges are partly hidden; the lens lugs are drawn over the flanges they engage, and their own length is not sourced; lug radii, thickness and both mount outer diameters are still the earlier unsourced estimate [lr-2].",
+        "No dimensioned drawing of the bayonet was found. The body flanges (347 to 42, 114 to 158 and 232.5 to 273.5 deg) are read off one straight-on photograph of a Leicaflex SL body mount, corrected for tilt with the six ring screws and good to about 3 deg; the ring diameter, screw circle and lock pin radius are scaled from the same photograph by taking the ring bore as the 49 mm throat. US4181419 FIG. 1a draws the same three flanges in a small sketch. DE1810353 (Leitz, 1968) Figs. 2 to 4 draw the stamped body bayonet ring with its openings at the top, right and left, the reverse of the photograph, so that schematic is not used. The lens lugs are drawn as the flange arcs they sit behind; their own lengths, every flange and lug radius, the lens flange diameter and all thicknesses are unsourced.",
       affectedFields: [
         "cameraSideFeatures.body-slot-1..3",
         "lensSideFeatures.lens-lug-1..3",
@@ -636,20 +665,20 @@ const LEICA_R_MOUNT = {
       ],
       candidateValues: [],
       resolution:
-        "Needs a Leitz service drawing, a Leicaflex or Leica R repair manual with the bayonet ring, or a calibrated measurement. Searched: Google Patents pages for US4181419, US3427946, US4504134, DE1772018, DE1282442, DE1220723, GB1096268; Leicaflex SL and R9 instructions; Wikipedia, apotelyt, JAPB, photoethnography. Only paid Leicaflex service manuals were located.",
+        "Needs a Leitz service drawing, a Leicaflex or Leica R repair manual with the bayonet ring, or a calibrated measurement of a body and a lens rear. Searched: Google Patents (Leitz, bayonet, 1960 to 1985, 82 results) and the pages for US4181419, US3427946, US4504134, DE1810353, DE1772018, DE1282442, DE1220723, GB1096268; DEPATISnet for the DE1810353 figures; Wikimedia Commons; Leicaflex SL and R9 instructions; Wikipedia, apotelyt, JAPB, photoethnography. Only paid Leicaflex service manuals were located.",
     },
     {
       issue:
-        "The turn to lock is stated by Leitz only as short or slight. 45 deg is scaled from one three-quarter view (Leicaflex SL instructions p. 4) and could be off by 10 deg or more; the earlier unsourced estimate was 60 deg. The two readings do not agree: in US4181419 FIG. 1a a gap centre is 60 deg from the next flange centre, so a 45 deg turn would leave each lug 15 deg short of centred behind its flange. Either the turn is nearer 60 deg, or the lugs sit off-centre when locked, or the figure's equal 60 deg division is schematic.",
+        "The turn to lock is stated by Leitz only as short or slight. 45 deg is scaled from one three-quarter view (Leicaflex SL instructions p. 4) and could be off by 10 deg or more; the earlier unsourced estimate was 60 deg. In the body photograph each entry gap is about 73 deg wide and a gap centre is 58 to 64 deg from the centre of the next flange clockwise, so a lug that starts centred in its gap and ends centred behind its flange would turn about 60 deg. Lug lengths are not sourced, so the photograph does not settle it.",
       affectedFields: ["lockGeometry.lockAngleDeg", "lockGeometry.lockRotationDeg"],
       candidateValues: [45, 60],
       resolution: "Measure on a body and lens, or find a service drawing.",
     },
     {
       issue:
-        "Cam, R-cam and contact-strip angles are scaled from two small lens-rear photos (R9 instructions p. 128) and clocked by the lock notch, itself placed only as 8 o'clock. Wikipedia instead rounds cam 1 to 12 o'clock and cams 2 and 3 to 6 o'clock, about 30 deg from the scaled values. No radius, arc length or cam rise is sourced, so the radii are unknown and the markers sit at a placeholder radius. The two body followers come from a patent figure of a camera the patent presents as an example only; the Leicaflex and SL / SL2 body feelers are not placed at all.",
+        "Cam, R-cam and contact-strip angles are scaled from two small lens-rear photos (R9 instructions p. 128) and clocked by the lock notch, placed at the 253.5 deg of the body pin in the Leicaflex SL photograph. Wikipedia instead rounds cam 1 to 12 o'clock and cams 2 and 3 to 6 o'clock, 20 to 45 deg from the scaled values. No radius, arc length or cam rise is sourced, so the radii are unknown and the markers sit at a placeholder radius. The two body followers come from a patent figure of a camera the patent presents as an example only; the Leicaflex and SL / SL2 body feelers are not placed at all.",
       affectedFields: ["mechanicalCouplings", "cameraSideFeatures.body-lock-pin", "lensSideFeatures.lens-lock-notch"],
-      candidateValues: ["cam 1 at 325 or 0 deg", "cam 2 at 130 or 180 deg", "R cam at 120 or 180 deg"],
+      candidateValues: ["cam 1 at 338.5 or 0 deg", "cam 2 at 143.5 or 180 deg", "R cam at 133.5 or 180 deg"],
       resolution: "Needs a dimensioned Leitz drawing of the lens rear or a measured lens of each generation.",
     },
     {
