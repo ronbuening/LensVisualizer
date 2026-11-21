@@ -64,7 +64,8 @@ const LENS_DATA = {
       nd: 1.611,
       vd: 58.8,
       indexReference: "D",
-      glass: "Unmatched (nD 1.611 / ν 58.8)",
+      glass:
+        "BSM4 (spectral proxy; patent nD 1.611 / ν 58.8; supplier and melt unspecified)",
     },
     {
       id: 2,
@@ -76,7 +77,8 @@ const LENS_DATA = {
       nd: 1.605,
       vd: 38.0,
       indexReference: "D",
-      glass: "Unmatched (nD 1.605 / ν 38.0)",
+      glass:
+        "F15 (spectral proxy; patent nD 1.605 / ν 38.0; supplier and melt unspecified)",
     },
     {
       id: 3,
@@ -88,7 +90,8 @@ const LENS_DATA = {
       nd: 1.611,
       vd: 58.8,
       indexReference: "D",
-      glass: "Unmatched (nD 1.611 / ν 58.8)",
+      glass:
+        "BSM4 (spectral proxy; patent nD 1.611 / ν 58.8; supplier and melt unspecified)",
     },
   ],
   surfaces: [
