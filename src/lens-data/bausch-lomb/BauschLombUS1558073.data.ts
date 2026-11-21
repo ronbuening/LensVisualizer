@@ -7,7 +7,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * The poorly printed d3 is read as 3.8 mm: its closed lower bowl resembles the 8 in d1 = 7.8.
  * The printed 188 mm is closer to the G′-line EFL of 188.21 mm than the D-line EFL of 188.64 mm.
  * Stop position is printed, 8.7 mm after R4 and 6.2 mm before R5; its diameter is inferred from f/4.5.
- * Clear semi-diameters are estimates. The image plane is the computed D-line paraxial back focus,
+ * Estimated clear semi-diameters follow the drawing's nearly equal, square rims, checked against the f/4.5 beam:
+ * 23.5 mm at R1/R2, 22.1 mm at R3/R4 and 21.5 mm at R5–R7, preserving off-axis illumination.
+ * The drawing gives proportions rather than exact manufactured apertures.
+ * The image plane is the computed D-line paraxial back focus,
  * 166.98 mm after R7. The 12.0° half-field is illustrative and is not printed.
  * Element focal lengths are thick-lens values in air at the D line, including the two cemented members.
  */
@@ -113,14 +116,14 @@ const LENS_DATA = {
       label: "3",
       R: -114.3,
       d: 3.3,
-      sd: 25,
+      sd: 22.1,
       medium: 2,
     },
     {
       label: "4",
       R: 44.5,
       d: 8.7,
-      sd: 24,
+      sd: 22.1,
     },
     {
       label: "STO",
@@ -131,7 +134,7 @@ const LENS_DATA = {
       label: "5",
       R: -271.9,
       d: 3.8,
-      sd: 24,
+      sd: 21.5,
       medium: 3,
     },
     {

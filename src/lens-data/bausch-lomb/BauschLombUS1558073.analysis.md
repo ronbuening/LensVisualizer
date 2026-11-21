@@ -33,7 +33,7 @@ The positive front collector has a strongly curved front face and a weakly curve
 
 nD = 1.5602, νD = 45.3. Glass: Unmatched (nD 1.5602 / ν 45.3). f = −56.75 mm.
 
-The negative middle singlet separates the positive front and rear groups. Its lower Abbe number provides greater dispersion than the positive elements. The center thickness is 3.3 mm, and the estimated front and rear semi-diameters are 25 and 24 mm. Its rear face precedes the printed diaphragm station by 8.7 mm.
+The negative middle singlet separates the positive front and rear groups. Its lower Abbe number provides greater dispersion than the positive elements. The center thickness is 3.3 mm, and both estimated semi-diameters are 22.1 mm, giving the square rim shown in the drawing. Its rear face precedes the printed diaphragm station by 8.7 mm.
 
 ### Element 3 — Biconcave Negative
 
@@ -41,7 +41,7 @@ nD = 1.5602, νD = 45.3. Glass: Unmatched (nD 1.5602 / ν 45.3). f = −71.37 mm
 
 This is the negative front member of the positive rear doublet, using the same printed glass values as element 2. The poorly printed d3 is read as 3.8 mm: the last digit has a closed lower bowl like the 8 in d1 = 7.8. This gives EFL 188.64 mm; reading 3.3 mm would give about 188.97 mm.
 
-The front face is 6.2 mm behind the diaphragm. Its estimated semi-diameters are 24 and 21.5 mm. R6 is the cemented interface with element 4, with no intervening air space.
+The front face is 6.2 mm behind the diaphragm. Both estimated semi-diameters are 21.5 mm, matching the square outer edge of the cemented pair. R6 is the cemented interface with element 4, with no intervening air space.
 
 ### Element 4 — Biconvex Positive
 
@@ -87,7 +87,7 @@ The printed 188 mm is closer to the G′ result (+0.1%) than the D-line result (
 
 The rear-pair index difference is 0.0563, within the patent's 0.05–0.06 range. Element 4 has nD = 1.6165, meeting the text's minimum of 1.615. The calculated power ratio of the air-spaced front pair to the rear cemented pair is about 0.171 against the stated 0.16; it lies within the broader stated range of 0.10–0.35.
 
-All glass edges and air spaces remain open at the estimated rims. The two air intervals have minimum modeled clearances of about 3.54 and 6.81 mm. The drawing suggests a common semi-diameter near 22 mm, while the modeled estimates range from 21.5 to 25 mm. Exact manufactured clear apertures remain unknown. No measured MTF or complete spectral performance is established by the source.
+The clear semi-diameters are estimated at 23.5 mm for the front singlet, 22.1 mm for the middle singlet and 21.5 mm throughout the rear doublet. Each group has a square rim, following the drawing's nearly equal heights. The drawing suggests about 22 mm at the overall axial scale, but its individual spacings and curvatures are approximate; it establishes proportions rather than exact manufactured apertures. All glass edges and air spaces remain open, with minimum clearances of about 3.75 and 8.51 mm across the two air intervals. Wide-open geometric transmission is 100% through 8°, 99.4% at 10° and 97.5% at the illustrative 12° field. No measured MTF or complete spectral performance is established by the source.
 
 ## Sources
 
