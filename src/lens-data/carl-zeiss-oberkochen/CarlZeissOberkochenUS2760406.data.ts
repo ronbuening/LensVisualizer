@@ -3,20 +3,20 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 /**
  * US 2,760,406 A, sole example: four spherical elements in three groups.
  * The unitless prescription is represented in millimetres, without changing
- * its numerical scale. The prescription gives EFL 100.894744 mm against
+ * its numerical scale. The prescription gives EFL 100.89 mm against
  * the stated "about f = 100".
  * The text names D, but the printed glass coordinates are d-line values;
  * the model uses d and retains every printed index and Abbe number.
  * The stop is inferred from the drawing, 9.0 mm after R4 and 2.3 mm before R5;
  * its opening is derived for f/2. Clear rims are estimated. The image plane
- * is the computed paraxial back focus, 69.018475 mm after R7.
+ * is the computed paraxial back focus, 69.02 mm after R7.
  */
 const LENS_DATA = {
   schema: 2,
   key: "carl-zeiss-100mm-f2-us2760406",
   maker: "Carl Zeiss Oberkochen",
   name: "CARL ZEISS 100mm f/2 (US 2,760,406 Design)",
-  subtitle: "US 2,760,406 A, sole example — three-component f/2 design",
+  subtitle: "US 2,760,406 A, sole example — Zeiss / Berger",
   visible: true,
   source: {
     patentNumber: "US 2,760,406 A",
@@ -45,7 +45,7 @@ const LENS_DATA = {
     elementCount: 4,
     groupCount: 3,
     imageCircleMm: 49.6,
-    specs: ["4 ELEMENTS / 3 GROUPS", "ALL SPHERICAL", "DESIGN F/2"],
+    specs: ["4 ELEMENTS / 3 GROUPS", "ALL SPHERICAL", "DESIGN f = 100 mm", "DESIGN F/2"],
   },
   elements: [
     {
