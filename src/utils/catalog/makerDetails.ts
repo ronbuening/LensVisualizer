@@ -28,6 +28,7 @@
  *   2026-07-16  Added Tamron maker entry.
  *   2026-08-06  Added P. Angénieux maker entry.
  *   2026-08-07  Added Mamiya maker entry.
+ *   2026-11-15  Added AEG maker entry.
  *   2026-11-16  Expanded the Kinoptik, Meike, Schacht, Thypoch, Viltrox, and Yongnuo entries to the
  *               full multi-paragraph form of the established makers; renamed the P. Angénieux slug
  *               to angenieux.
@@ -136,6 +137,16 @@ export const MAKER_DETAILS: Record<string, MakerDetails> = {
     summary: "Lenses whose maker is not known.",
     history:
       "Unattributed is not a company. It is where this catalog keeps lenses whose maker is not known. A patent names the person who designed a lens and often the company that owned the design, but not always the company that built it. Each lens here keeps the name and designer given in its source, and its notes explain what is known about who made it.",
+  },
+  // Patent and surviving example: DE 620,538 C; https://www.leitz-auction.com/en/AEG-Weitwinkelobjektiv-Camera/AI-21-13699
+  aeg: {
+    founded: 1883,
+    headquarters: "Berlin, Germany",
+    summary:
+      "German electrical-engineering company whose research institute designed one of the first fisheye objectives in the early 1930s.",
+    history:
+      "AEG was founded in Berlin in 1883 as Deutsche Edison-Gesellschaft and took the name Allgemeine Elektricitäts-Gesellschaft in 1887. It was an electrical manufacturer, not a camera maker, and its place in lens history comes from its research institute.\n\nIn 1932 the company applied for German patent DE 620,538, a five-element wide-angle objective covering about 180°, with two diverging menisci ahead of the stop. The design is credited in the literature to Hans Schulz. It was built around 1935 as a 17 mm f/6.3 objective for a cloud-recording camera, and a surviving example has been sold at auction together with a copy of the patent.",
+    notableDesigns: "Weitwinkelobjektiv 17mm f/6.3 (DE 620,538)",
   },
   agfa: {
     founded: 1867,
