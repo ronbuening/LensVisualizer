@@ -18,7 +18,7 @@ The inferred iris radius is 6.085409062993138 mm. An independent exact spherical
 
 ## Values Not Printed
 
-The stop split of 10.9/10.18 mm, iris size, 9.9/7.5 mm front/rear clear semi-diameters, paraxial image plane and ±10° field are inferred. The 35.833312 mm image circle is twice the real chief-ray height at the illustrative 10° limit. The patent gives no image format, numerical field for Figure 2, back focus, clear apertures or close-focus data. Its 30° field at f/5.6 describes prior art.
+The stop split of 10.9/10.18 mm, iris size, 9.9/7.5 mm front/rear clear semi-diameters, paraxial image plane and ±10° field are inferred. The real chief-ray image height at the illustrative 10° limit is about 17.92 mm. The patent gives no image format, numerical field for Figure 2, back focus, clear apertures or close-focus data. Its 30° field at f/5.6 describes prior art.
 
 The figure suggests a stop about 10.5 mm behind the front doublet, front semi-diameters about 9.4 mm and rear semi-diameters about 5.4–5.5 mm. The estimated stop and rims remain unchanged. The minimum computed glass edge thickness is about 0.216 mm and the intercomponent axial air clearance about 17.539 mm. Off-axis pupil clipping is present despite clear chief rays.
 
@@ -55,3 +55,5 @@ The data changes are:
 Before and after, the calculated EFL is 100.00346700678662 mm, paraxial f-number 5.6 and BFD 50.30405972406503 mm. Stop radius 6.085409062993138 mm, half-field 10° and total track 80.18405972406502 mm also remain unchanged. The surface check reports no errors. The aperture check reports no rim limit and no failed stations. The image-circle check reports one lens checked, zero undersized and zero skipped. Field coverage reaches 100% of the illustrative 10° limit, or 17.92 mm image height, with a clear corner chief ray; this does not establish full-pupil transmission.
 
 Open: Drawing-versus-estimated rims, unprinted diaphragm dimensions, glass identities, production use and a published field for Figure 2 remain unresolved.
+
+Review corrections: catalog.imageCircleMm 35.833311531527514 mm → omitted because no field is printed for Figure 2; analysis and audit image-circle diameter statements → an illustrative 10° chief-ray image height of about 17.92 mm. The image-circle and field-coverage checks now skip because no image format or image circle is specified.
