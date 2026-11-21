@@ -256,6 +256,7 @@ export const MAKER_DETAILS: Record<string, MakerDetails> = {
   // https://www.graflex.net/articles/kingslake/
   // Founding, lens manufacture and closure: https://collection.sciencemuseumgroup.org.uk/people/cp101684/wollensak
   // Cine lens families and Bolex distribution: https://bolexcollector.org/original/lenses/40wollensak
+  // Velostigmat line: https://alphaxbetax.com/Wollensak%20Lens%20and%20Shutter%20Compendium/
   wollensak: {
     founded: 1899,
     headquarters: "Rochester, New York, United States",
