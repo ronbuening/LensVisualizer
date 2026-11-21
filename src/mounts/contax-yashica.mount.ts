@@ -530,7 +530,7 @@ const CONTAX_YASHICA_MOUNT = {
       affectedFields: ["cameraSideFeatures", "lensSideFeatures"],
       candidateValues: [],
       resolution:
-        "A factory mount drawing, a service manual with mount dimensions, or calibrated measurement of a body and lens.",
+        "A factory mount drawing, a service manual with mount dimensions, or calibrated measurement of a body and lens. Searched on 2026-11-21: Google Patents for Yashica bayonet, mount and interchangeable-lens filings from 1971 to 1986 (28 results); none describes the bayonet itself.",
     },
     {
       issue:

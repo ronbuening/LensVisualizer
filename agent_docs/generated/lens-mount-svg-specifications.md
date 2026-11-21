@@ -1267,7 +1267,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/contax-yashica.mount.ts` (42091 bytes, content hash `54879fd7`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/contax-yashica.mount.ts` (42257 bytes, content hash `e5405741`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -1286,7 +1286,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 #### Open questions
 
-- No dimensioned drawing of the bayonet was found. Flange edges are scaled from one FX-3 flange photo (about +/-2 deg), with the 159MM repair manual Fig. 21 drawing as an undimensioned cross-check; the lens claws are drawn behind the flanges at the width of the gaps they enter through, an upper bound, because their own spans were not measured. Searched: web and Google Patents for Yashica, Kyocera and Carl Zeiss bayonet or aperture-coupling patents (none found for the mount itself; JPS58100837A and JPS58216227A cover a multi-mode aperture ring and state no angles or dimensions), the Contax RTS, RTS II and 159MM and Yashica FR repair manuals, and the RTS and FR owner manuals. _(A factory mount drawing, a service manual with mount dimensions, or calibrated measurement of a body and lens.)_
+- No dimensioned drawing of the bayonet was found. Flange edges are scaled from one FX-3 flange photo (about +/-2 deg), with the 159MM repair manual Fig. 21 drawing as an undimensioned cross-check; the lens claws are drawn behind the flanges at the width of the gaps they enter through, an upper bound, because their own spans were not measured. Searched: web and Google Patents for Yashica, Kyocera and Carl Zeiss bayonet or aperture-coupling patents (none found for the mount itself; JPS58100837A and JPS58216227A cover a multi-mode aperture ring and state no angles or dimensions), the Contax RTS, RTS II and 159MM and Yashica FR repair manuals, and the RTS and FR owner manuals. _(A factory mount drawing, a service manual with mount dimensions, or calibrated measurement of a body and lens. Searched on 2026-11-21: Google Patents for Yashica bayonet, mount and interchangeable-lens filings from 1971 to 1986 (28 results); none describes the bayonet itself.)_
 - The 159MM repair manual gives the body flange back as 45.42 +0.02/-0.03 mm from the body mount plane to the film rail plane (p. 48), against the 45.5 mm register in secondary tables. The stored value stays at the nominal 45.5 mm. _(A Zeiss or Kyocera statement of the nominal register and of how the body adjustment figure relates to it.)_
 - Coupling angles are photo-scaled and their radii are the apparent ones in a front photo (the parts sit behind the flange). The maximum-aperture pin has no radius, and no source gives the aperture follower's travel per stop or the diaphragm lever's stroke. _(A lens or body service manual with coupling dimensions, or calibrated measurement.)_
 - The MM program coupling is placed only by the Wikipedia article's 'about 5 o'clock on the body, outside the bayonet'; its radius is unknown. The 159MM repair manual names the parts without a position, and its Fig. 21 draws an unlabelled lever outside the ring at about 138 deg. The MM stop-down lever's proportional stroke is not dimensioned by any source found. _(A Contax 159MM or 167MT service drawing of the Theta lever, or an MM lens repair manual.)_
@@ -1969,7 +1969,7 @@ None — fully electronic.
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/hasselblad-h.mount.ts` (47797 bytes, content hash `b7a45eea`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/hasselblad-h.mount.ts` (47970 bytes, content hash `b104ee47`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -1983,7 +1983,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 #### Open questions
 
-- Bayonet lug count, centre angles and spans, the ring outer diameters and the mount screws are stand-ins. No dimensioned H-mount drawing was found: searches for Victor Hasselblad AB and Fuji Photo Optical mount patents from 2000 to 2003 found only US 7,500,796 (accessory status detection, no mount geometry), no H service manual was located, and the H2 and H6D manuals print no mount dimensions. _(Needs Hasselblad or Fujifilm service data, a dimensioned third-party H-mount drawing, or a calibrated measurement of a body and lens.)_
+- Bayonet lug count, centre angles and spans, the ring outer diameters and the mount screws are stand-ins. No dimensioned H-mount drawing was found: searches for Victor Hasselblad AB and Fuji Photo Optical mount patents from 2000 to 2003 found only US 7,500,796 (accessory status detection, no mount geometry), no H service manual was located, and the H2 and H6D manuals print no mount dimensions. _(Needs Hasselblad or Fujifilm service data, a dimensioned third-party H-mount drawing, or a calibrated measurement of a body and lens. Searched again on 2026-11-21: Google Patents for Hasselblad lens-mount and bayonet filings from 1995 to 2020 (18 results); the only H-system hit is the US 7,500,796 family.)_
 - Contact row, pin and index positions are photo-scaled from oblique maker figures (about +/-8 degrees; contact radius 25.5 to 29 mm and pin radius 26.5 to 33 mm, depending on which ring edge the 67.5 mm chart diameter refers to). Contact pad size and pinout are not sourced, and the pin's lock function is inferred from its place beside the lens release control. _(Replace with dimensioned positions from service data or a measured sample.)_
 - Contact count: three maker figures of body-side H mounts show nine pins (H2 manual p. 6 body drawing, Macro Converter H photograph, Fujifilm adapter drawing), but the H2 manual's lens-rear drawing on the same page shows ten pads. _(Count the pads on a straight-on photograph of an HC lens rear, or use a service pinout.)_
 - Lock rotation is the H2 manual's wording, approximately one quarter turn; the exact detent angle is not sourced. The H6D guide gives the direction only. _(Upgrade from a service drawing or a measured rotation between the index marks.)_
@@ -2026,7 +2026,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 **Camera-side front view** — viewBox `-46 -48 92 94` · 42 elements in 4 layers · hash `29066b3b` ([standalone SVG](mounts/hasselblad-v-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-45 -48 90 93` · 29 elements in 4 layers · hash `316dc6de` ([standalone SVG](mounts/hasselblad-v-lens-rear.svg))
+**Lens-side rear view** — viewBox `-45 -48 90 93` · 29 elements in 4 layers · hash `1423d33a` ([standalone SVG](mounts/hasselblad-v-lens-rear.svg))
 
 **Axial / register schematic** — viewBox `-84 -52 93 100` · 12 elements in 2 layers · hash `6e04e375` ([standalone SVG](mounts/hasselblad-v-axial.svg))
 
@@ -2050,10 +2050,10 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 |---|---|---|---|---|---|---|---|
 | `lens-throat` | lens_throat | `hasselblad-v/base` | 0° | 0° | 360° | 0 | 34.3 |
 | `lens-mount-ring` | lens_mount_ring | `hasselblad-v/base` | 0° | 0° | 360° | 34.3 | 37.2 |
-| `lens-lug-1` | bayonet_lug | `hasselblad-v/base` | 47° | 34° | 60° | 34.3 | 36.1 |
-| `lens-lug-2` | bayonet_lug | `hasselblad-v/base` | 136° | 121° | 151° | 34.3 | 36.1 |
-| `lens-lug-3` | bayonet_lug | `hasselblad-v/base` | 226° | 212° | 240° | 34.3 | 36.1 |
-| `lens-lug-4` | bayonet_lug | `hasselblad-v/base` | 314.5° | 300° | 329° | 34.3 | 36.1 |
+| `lens-lug-1` | bayonet_lug | `hasselblad-v/base` | 29° | 5° | 53° | 34.3 | 36.1 |
+| `lens-lug-2` | bayonet_lug | `hasselblad-v/base` | 122° | 97° | 147° | 34.3 | 36.1 |
+| `lens-lug-3` | bayonet_lug | `hasselblad-v/base` | 209.5° | 185° | 234° | 34.3 | 36.1 |
+| `lens-lug-4` | bayonet_lug | `hasselblad-v/base` | 300° | 275° | 325° | 34.3 | 36.1 |
 | `lens-index-mark` | index_mark | `hasselblad-v/base` | 0° | unknown | unknown | unknown | unknown |
 
 #### Electrical contacts
@@ -2086,7 +2086,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/hasselblad-v.mount.ts` (50600 bytes, content hash `d2a6b116`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/hasselblad-v.mount.ts` (53938 bytes, content hash `4ad96e0b`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -2102,11 +2102,13 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 | `hv-p1` | patent | A. P. Svensson, assignor to F. V. Hasselblad, US2526433A, “Mount for camera lenses” (Swedish priority 1944). Accessed 2026-06-06. | [snapshot](https://patents.google.com/patent/US2526433A/en) | 2026-06-06 | low |
 | `hv-p2` | patent | B. H. Hedén, assignor to F. V. Hasselblad, US2992602A, “Mirror reflex cameras” (Swedish priority 1957): col. 2, about lines 40 to 50, col. 3, about lines 35 to 47, and Figs. 6 to 12. Accessed 2026-11-21. | [snapshot](https://patentimages.storage.googleapis.com/dc/6c/c2/acd86cc4baf922/US2992602.pdf) | 2026-11-21 | high |
 | `hv-p3` | patent | A. I. Alfredsson, assignor to F. V. Hasselblad, US3715965A, “Preset diaphragm for interchangeable lenses of single-lens mirror reflex cameras” (Swedish priority 1970). Accessed 2026-11-21. | [snapshot](https://patentimages.storage.googleapis.com/6c/96/ea/4aa2458019574d/US3715965.pdf) | 2026-11-21 | medium |
+| `hv-p4` | patent | R. G. Fransson, assignor to Victor Hasselblad AB, US4954092A, “Electrical contact unit” (Swedish priority 1987): col. 3, about lines 21 to 66, and col. 4, about lines 49 to 53. Accessed 2026-11-21. | [snapshot](https://patentimages.storage.googleapis.com/5d/3a/1e/6e137b6df2bc75/US4954092.pdf) | 2026-11-21 | medium |
+| `hv-p4f` | patent_figure | US4954092A, FIGS. 4 and 5: camera-front view of the body mount and view of the mounting end of the lens. Undimensioned drawings, scaled for this spec. Accessed 2026-11-21. | [snapshot](https://patentimages.storage.googleapis.com/5d/3a/1e/6e137b6df2bc75/US4954092.pdf) | 2026-11-21 | medium |
 
 #### Open questions
 
 - The flange edges, the ring radii, index dot and release button are scaled from a small dimensioned drawing in the owner manual (about 0.5 deg and 0.3 mm per pixel; the four stated dimensions on that page give scales that differ by up to 1.5 percent). The flange centres read 47, 136, 226 and 314.5 deg, which may be a nominal 45, 135, 225 and 315. Flange thickness is not given anywhere. _(Replace with a dimensioned Hasselblad front-plate drawing (front bayonet plate 40403) or a measured body.)_
-- The lens lugs are drawn as the arc engaged behind each body flange; their own length is not sourced. The one lens drawing used (503cx manual p. 6) shows a 36 deg opening in the lens flange from 149 to 185 deg in the mounted position, between long lug arcs; read that way the lens could turn only about 28 to 34 deg, not the 72 deg the 500C manual states. The lug count, lengths and the reason for the single starting point are therefore unresolved. _(Measure a V lens rear or find a Carl Zeiss C / CF lens service drawing of the bayonet plate (the CB / CFE / CFi lens service manual was not reachable).)_
+- The lens lugs are scaled from one undimensioned patent figure (US4954092 FIG. 5: four lugs of 48 to 50 deg with openings of 38 to 44 deg), which agrees with the one opening visible in the owner-manual lens drawing (503cx manual p. 6, 149 to 185 deg). Both drawings show the mounted lens, and both put each lug only 27 to 31 deg clockwise of a lug centred in a body gap, so they imply a turn of about 30 deg, not the 72 deg (1/5 of a revolution) the 500C manual states. A 72 deg turn would carry each lug past its flange. The lock rotation is left at the maker's stated figure; the reason for the single starting point is also unresolved, because the patent draws four near-equal lugs. _(Measure a V lens rear or find a Carl Zeiss C / CF lens service drawing of the bayonet plate (the CB / CFE / CFi lens service manual was not reachable).)_
 - The point where lens catch lever 103440 engages the lens is not shown in the sources used, so no lock pin or lock notch is drawn; only the release button and the stop pin are placed. The stop pin is identified from the exploded-view leader, not from text. _(Read the lens catch position from a front-plate drawing or a photo taken square to the mount with the lens removed.)_
 - Drive key and stop pin radii rest on service manual Fig. 29 scaled to the 69 mm throat; the owner-manual front view scales the key to 27.4 mm instead of 26.4 mm. The four upper flange screws are not placed. The lens-side radii are scaled through that same key radius. _(Upgrade from a dimensioned front gear / front plate drawing or a measured body and lens.)_
 - Data-bus variant: the count of four is stated by Hasselblad, but the contact angles and pitch radius come from one perspective figure and are good to about 15 deg; contact size, protrusion and signal assignment are unknown, and no body-side view of the contacts was found. _(Read the contact positions from the 203FE / 205 service manual front-plate pages or a measured FE lens and 200-series body.)_
@@ -2215,7 +2217,7 @@ None — fully electronic.
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/hasselblad-xcd.mount.ts` (44700 bytes, content hash `9c49b340`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/hasselblad-xcd.mount.ts` (45975 bytes, content hash `39021a35`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -2224,10 +2226,11 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 | `xcd-1` | secondary | “Flange focal distance,” Wikipedia. Accessed 2026-06-06. | [snapshot](http://web.archive.org/web/20260526152456/https://en.wikipedia.org/wiki/Flange_focal_distance) | 2026-05-26 | medium |
 | `xcd-2` | secondary | Hasselblad XCD mount visual references. Accessed 2026-06-06. | [snapshot](unknown) | unknown | low |
 | `xcd-3` | official | Victor Hasselblad AB, X1D User Guide, version 1.8, 2017-12-19, pp. 51–52 (Remove and Attach a Lens) and p. 140 (Clean the Sensor Filter). The archive copy is an earlier 124-page edition with the same sections on pp. 51 and 123. Accessed 2026-11-21. | [snapshot](https://www.manualslib.com/manual/1232924/Hasselblad-X1d.html) | 2026-11-21 | medium |
+| `xcd-4` | secondary | “Hasselblad XCD mount lenses,” ISO3200.org reference page. Accessed 2026-11-21. | [snapshot](https://iso3200.org/blog/?page_id=1085) | 2026-11-21 | low |
 
 #### Open questions
 
-- Bayonet lug count, centre angles and spans are stand-ins. No dimensioned X-mount drawing was found: no Hasselblad X-mount utility patent turned up (the 2016 design patent USD868868 shows a different camera), the X1D User Guide and X2D II / XCD data sheets print no mount dimensions, and the user-guide renders do not resolve the lug edges. _(Needs Hasselblad service data, a dimensioned third-party X-mount drawing, or a calibrated measurement of a body and lens.)_
+- Bayonet lug centre angles and spans are stand-ins; only the count of three is stated, by one secondary reference (ISO3200.org). No dimensioned X-mount drawing was found: a Google Patents search for Hasselblad lens-mount and bayonet filings from 1995 to 2020 returned 18 results and no X-mount utility patent (the 2016 design patent USD868868 shows a different camera, and CN112243502A covers the inside of an adapter), the X1D User Guide and X2D II / XCD data sheets print no mount dimensions, and the user-guide renders do not resolve the lug edges. _(Needs Hasselblad service data, a dimensioned third-party X-mount drawing, or a calibrated measurement of a body and lens.)_
 - Contact row, lock pin, index and ring screw positions are photo-scaled from oblique user-guide renders (about +/-5 degrees; contact radius 24.5 to 27.5 mm, lock pin radius 32.5 to 34.5 mm, screw circle 65.5 to 69.5 mm, all scaled against the 61 mm throat). The nine contacts are counted on the body; no lens-rear figure was found, so the lens pads are assumed to mate one to one. Contact pad size and pinout are not sourced. _(Replace with dimensioned positions from service data or a measured sample.)_
 - The user guide's red-mark callout and the top ring screw fall at the same place in the figures; whether the red mark is a separate dot beside that screw is not visible. The pin scaled as the lock pin is not labelled in the guide. _(Check against a straight-on photograph of the body mount with a known scale.)_
 - The 18.14 mm register, 61 mm throat and ring outer diameters have no maker-stated value: Hasselblad's X1D guide, X2D II data sheet and XCD lens data sheets do not print them, and the adapter lengths Hasselblad lists (XH 53 mm, XV 64 mm, XPan 21.4 mm) are overall lengths, not register differences. _(Upgrade if Hasselblad publishes the mount dimensions or a service drawing is found.)_
@@ -2570,7 +2573,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 | Flange focal distance | 47 (`secondary`) | mm |
 | Nominal throat diameter | 49 (`secondary`) | mm |
 | Effective clear aperture | 49 (`secondary`) | mm |
-| Camera mount outer diameter | 58 (`photo_scaled`) | mm |
+| Camera mount outer diameter | 59 (`photo_scaled`) | mm |
 | Lens mount outer diameter | 56 (`photo_scaled`) | mm |
 | Contact count | not_applicable (`not_applicable`) | count |
 | Lock rotation | 45 (`photo_scaled`) | deg |
@@ -2578,23 +2581,23 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 #### Figures (selected profile `leica-r/3-cam`)
 
-**Camera-side front view** — viewBox `-36 -37 72 73` · 38 elements in 4 layers · hash `345b3660` ([standalone SVG](mounts/leica-r-camera-front.svg))
+**Camera-side front view** — viewBox `-36 -38 72 74` · 40 elements in 4 layers · hash `dcd3f00a` ([standalone SVG](mounts/leica-r-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-35 -36 70 71` · 33 elements in 4 layers · hash `48cd38ee` ([standalone SVG](mounts/leica-r-lens-rear.svg))
+**Lens-side rear view** — viewBox `-35 -36 70 71` · 33 elements in 4 layers · hash `7e4765d9` ([standalone SVG](mounts/leica-r-lens-rear.svg))
 
-**Axial / register schematic** — viewBox `-54 -40 62 76` · 12 elements in 2 layers · hash `54702276` ([standalone SVG](mounts/leica-r-axial.svg))
+**Axial / register schematic** — viewBox `-54 -40 62 76` · 12 elements in 2 layers · hash `b8737a4c` ([standalone SVG](mounts/leica-r-axial.svg))
 
 #### Camera-side front-view geometry
 
 | Feature ID | Type | Profile | Center | Start | End | Inner r | Outer r |
 |---|---|---|---|---|---|---|---|
 | `body-throat` | body_throat | `leica-r/base` | 0° | 0° | 360° | 0 | 24.5 |
-| `body-mount-ring` | mount_ring | `leica-r/base` | 0° | 0° | 360° | 24.5 | 29 |
-| `body-slot-1` | bayonet_receiving_slot | `leica-r/base` | 0° | 330° | 30° | 24.5 | 27 |
-| `body-slot-2` | bayonet_receiving_slot | `leica-r/base` | 120° | 90° | 150° | 24.5 | 27 |
-| `body-slot-3` | bayonet_receiving_slot | `leica-r/base` | 240° | 210° | 270° | 24.5 | 27 |
-| `body-index-mark` | index_mark | `leica-r/base` | 240° | unknown | unknown | unknown | 29.5 |
-| `body-lock-pin` | lock_pin | `leica-r/base` | 240° | unknown | unknown | unknown | 25.5 |
+| `body-mount-ring` | mount_ring | `leica-r/base` | 0° | 0° | 360° | 24.5 | 29.5 |
+| `body-slot-1` | bayonet_receiving_slot | `leica-r/base` | 14.5° | 347° | 42° | 24.5 | 27 |
+| `body-slot-2` | bayonet_receiving_slot | `leica-r/base` | 136° | 114° | 158° | 24.5 | 27 |
+| `body-slot-3` | bayonet_receiving_slot | `leica-r/base` | 253° | 232.5° | 273.5° | 24.5 | 27 |
+| `body-index-mark` | index_mark | `leica-r/base` | 253.5° | unknown | unknown | unknown | 29.5 |
+| `body-lock-pin` | lock_pin | `leica-r/base` | 253.5° | unknown | unknown | unknown | 28 |
 
 #### Lens-side rear-view geometry
 
@@ -2602,18 +2605,18 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 |---|---|---|---|---|---|---|---|
 | `lens-throat` | lens_throat | `leica-r/base` | 0° | 0° | 360° | 0 | 23.5 |
 | `lens-mount-ring` | lens_mount_ring | `leica-r/base` | 0° | 0° | 360° | 23.5 | 28 |
-| `lens-lug-1` | bayonet_lug | `leica-r/base` | 0° | 330° | 30° | 24.5 | 27 |
-| `lens-lug-2` | bayonet_lug | `leica-r/base` | 120° | 90° | 150° | 24.5 | 27 |
-| `lens-lug-3` | bayonet_lug | `leica-r/base` | 240° | 210° | 270° | 24.5 | 27 |
-| `lens-index-mark` | index_mark | `leica-r/base` | 240° | unknown | unknown | unknown | 28.5 |
-| `lens-lock-notch` | lock_notch | `leica-r/base` | 240° | unknown | unknown | unknown | 25.5 |
+| `lens-lug-1` | bayonet_lug | `leica-r/base` | 14.5° | 347° | 42° | 24.5 | 27 |
+| `lens-lug-2` | bayonet_lug | `leica-r/base` | 136° | 114° | 158° | 24.5 | 27 |
+| `lens-lug-3` | bayonet_lug | `leica-r/base` | 253° | 232.5° | 273.5° | 24.5 | 27 |
+| `lens-index-mark` | index_mark | `leica-r/base` | 253.5° | unknown | unknown | unknown | 28.5 |
+| `lens-lock-notch` | lock_notch | `leica-r/base` | 253.5° | unknown | unknown | unknown | 28 |
 
 #### Electrical contacts
 
 | Side | No. | Profile | Center angle | Radius | Function |
 |---|---|---|---|---|---|
-| body | 1 | `leica-r/rom` | 345° | unknown | contact strip in the R8 / R9 bayonet that reads the lens strip; stored at the lens strip's angle. One marker stands for the whole strip |
-| lens | 1 | `leica-r/rom` | 345° | unknown | ROM contact strip on the lens, in the place of the first Leicaflex cam; arc of roughly 60 deg in the R9 instructions photo (p. 128). One marker stands for the whole strip |
+| body | 1 | `leica-r/rom` | 358.5° | unknown | contact strip in the R8 / R9 bayonet that reads the lens strip; stored at the lens strip's angle. One marker stands for the whole strip |
+| lens | 1 | `leica-r/rom` | 358.5° | unknown | ROM contact strip on the lens, in the place of the first Leicaflex cam; arc of roughly 60 deg in the R9 instructions photo (p. 128). One marker stands for the whole strip |
 
 #### Mechanical couplings
 
@@ -2644,7 +2647,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/leica-r.mount.ts` (55371 bytes, content hash `6b5d0048`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/leica-r.mount.ts` (58535 bytes, content hash `a311389d`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -2657,14 +2660,16 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 | `lr-m2` | official | Ernst Leitz GmbH Wetzlar, “LEICAFLEX SL Instructions,” pp. 4, 12, 14 and 16. Accessed 2026-11-21. | [snapshot](https://www.cameramanuals.org/leica_pdf/leicaflex_sl.pdf) | 2026-11-21 | medium |
 | `lr-p1` | patent | W. Schlapp and W. Wiessner (Ernst Leitz Wetzlar GmbH), US4181419, “Interchangeable lens for SLR-cameras having TTL light metering,” 1980 (priority DE2651263, 1976). Accessed 2026-11-21. | [snapshot](https://patentimages.storage.googleapis.com/f2/13/08/42f97eafb8047a/US4181419.pdf) | 2026-11-21 | medium |
 | `lr-p1f` | patent_figure | US4181419, FIG. 1a: front elevation of the camera mount. Undimensioned drawing, scaled for this spec. Accessed 2026-11-21. | [snapshot](https://patentimages.storage.googleapis.com/f2/13/08/42f97eafb8047a/US4181419.pdf) | 2026-11-21 | low |
+| `lr-ph1` | field_photo | HBR, “R-Mount of Leicaflex SL.JPG” (R-Bajonett einer Leicaflex SL), Wikimedia Commons, 2009-06-28. Accessed 2026-11-21. | [snapshot](https://upload.wikimedia.org/wikipedia/commons/0/0c/R-Mount_of_Leicaflex_SL.JPG) | 2026-11-21 | medium |
+| `lr-p4` | patent | P. Loseries, Ernst Leitz GmbH, DE1810353 (filed 1968-11-22; B2 1977, C3 1977), “Bajonettverriegelung”. Accessed 2026-11-21. | [snapshot](https://depatisnet.dpma.de/DepatisNet/depatisnet?action=pdf&docid=DE000001810353C3) | 2026-11-21 | low |
 | `lr-p2` | patent | H. Broschke, W. Holle and W. Wiessner (Ernst Leitz GmbH), US3427946, “Single lens reflex cameras,” 1969 (German priority application L 51,782). Accessed 2026-11-21. | [snapshot](https://patentimages.storage.googleapis.com/88/f6/bb/ea685e4f228feb/US3427946.pdf) | 2026-11-21 | high |
 | `lr-p3` | patent | W. Schlapp and W. Wiessner (Ernst Leitz Wetzlar GmbH), US4504134, “Photographic objective with automatic diaphragm,” 1985. Accessed 2026-11-21. | [snapshot](https://patentimages.storage.googleapis.com/09/ce/2e/4b010ad69675dc/US4504134.pdf) | 2026-11-21 | medium |
 
 #### Open questions
 
-- No dimensioned drawing of the bayonet was found. The body flanges (about 330-30, 90-150 and 210-270 deg) and the entry gaps between them (centres 60, 180, 300 deg, about 60 deg each) are scaled from the undimensioned front elevation US4181419 FIG. 1a, where two of the three flanges are partly hidden; the lens lugs are drawn over the flanges they engage, and their own length is not sourced; lug radii, thickness and both mount outer diameters are still the earlier unsourced estimate [lr-2]. _(Needs a Leitz service drawing, a Leicaflex or Leica R repair manual with the bayonet ring, or a calibrated measurement. Searched: Google Patents pages for US4181419, US3427946, US4504134, DE1772018, DE1282442, DE1220723, GB1096268; Leicaflex SL and R9 instructions; Wikipedia, apotelyt, JAPB, photoethnography. Only paid Leicaflex service manuals were located.)_
-- The turn to lock is stated by Leitz only as short or slight. 45 deg is scaled from one three-quarter view (Leicaflex SL instructions p. 4) and could be off by 10 deg or more; the earlier unsourced estimate was 60 deg. The two readings do not agree: in US4181419 FIG. 1a a gap centre is 60 deg from the next flange centre, so a 45 deg turn would leave each lug 15 deg short of centred behind its flange. Either the turn is nearer 60 deg, or the lugs sit off-centre when locked, or the figure's equal 60 deg division is schematic. _(Measure on a body and lens, or find a service drawing.)_
-- Cam, R-cam and contact-strip angles are scaled from two small lens-rear photos (R9 instructions p. 128) and clocked by the lock notch, itself placed only as 8 o'clock. Wikipedia instead rounds cam 1 to 12 o'clock and cams 2 and 3 to 6 o'clock, about 30 deg from the scaled values. No radius, arc length or cam rise is sourced, so the radii are unknown and the markers sit at a placeholder radius. The two body followers come from a patent figure of a camera the patent presents as an example only; the Leicaflex and SL / SL2 body feelers are not placed at all. _(Needs a dimensioned Leitz drawing of the lens rear or a measured lens of each generation.)_
+- No dimensioned drawing of the bayonet was found. The body flanges (347 to 42, 114 to 158 and 232.5 to 273.5 deg) are read off one straight-on photograph of a Leicaflex SL body mount, corrected for tilt with the six ring screws and good to about 3 deg; the ring diameter, screw circle and lock pin radius are scaled from the same photograph by taking the ring bore as the 49 mm throat. US4181419 FIG. 1a draws the same three flanges in a small sketch. DE1810353 (Leitz, 1968) Figs. 2 to 4 draw the stamped body bayonet ring with its openings at the top, right and left, the reverse of the photograph, so that schematic is not used. The lens lugs are drawn as the flange arcs they sit behind; their own lengths, every flange and lug radius, the lens flange diameter and all thicknesses are unsourced. _(Needs a Leitz service drawing, a Leicaflex or Leica R repair manual with the bayonet ring, or a calibrated measurement of a body and a lens rear. Searched: Google Patents (Leitz, bayonet, 1960 to 1985, 82 results) and the pages for US4181419, US3427946, US4504134, DE1810353, DE1772018, DE1282442, DE1220723, GB1096268; DEPATISnet for the DE1810353 figures; Wikimedia Commons; Leicaflex SL and R9 instructions; Wikipedia, apotelyt, JAPB, photoethnography. Only paid Leicaflex service manuals were located.)_
+- The turn to lock is stated by Leitz only as short or slight. 45 deg is scaled from one three-quarter view (Leicaflex SL instructions p. 4) and could be off by 10 deg or more; the earlier unsourced estimate was 60 deg. In the body photograph each entry gap is about 73 deg wide and a gap centre is 58 to 64 deg from the centre of the next flange clockwise, so a lug that starts centred in its gap and ends centred behind its flange would turn about 60 deg. Lug lengths are not sourced, so the photograph does not settle it. _(Measure on a body and lens, or find a service drawing.)_
+- Cam, R-cam and contact-strip angles are scaled from two small lens-rear photos (R9 instructions p. 128) and clocked by the lock notch, placed at the 253.5 deg of the body pin in the Leicaflex SL photograph. Wikipedia instead rounds cam 1 to 12 o'clock and cams 2 and 3 to 6 o'clock, 20 to 45 deg from the scaled values. No radius, arc length or cam rise is sourced, so the radii are unknown and the markers sit at a placeholder radius. The two body followers come from a patent figure of a camera the patent presents as an example only; the Leicaflex and SL / SL2 body feelers are not placed at all. _(Needs a dimensioned Leitz drawing of the lens rear or a measured lens of each generation.)_
 - The ROM strip is one marker per side. The number of contacts, their pitch, pad size and radius were not found in any source that could be cited; the R9 instructions call it only a contact strip. The 3-cam MVP profile has no contacts, so contactCount stays not_applicable. _(Find a Leica patent or service document for the R8 lens contacts (none located), or count and measure on a ROM lens and an R8 / R9 body.)_
 - R-only and ROM lenses are said to have a slightly altered bayonet that keeps them off Leicaflex bodies. No source describes the alteration, so those profiles draw the base bayonet unchanged. The automatic-diaphragm lever and its body lever are documented (US4504134) but no source gives their angle, so they are not drawn. _(Compare an R-only lens flange with a 3-cam one, or find the Leitz conversion instructions.)_
 
@@ -3661,7 +3666,7 @@ None — fully electronic.
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/pentax-110.mount.ts` (27380 bytes, content hash `3a69d662`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/pentax-110.mount.ts` (27724 bytes, content hash `50d1a797`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -3677,7 +3682,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 - Throat diameter is unresolved. Wikipedia's lens-mount list carries two Auto 110 rows, 19.5 mm (uncited) and 20.6 mm (cited to a hobbyist adapter model); the earlier 25 mm value in this file was an unsourced photo-scale. The figure draws 20.6 mm with the conflicting stroke. No maker dimension, patent or service-manual value was found. _(Measure the body throat on an Auto 110, or find the dimension in the Asahi Auto 110 service manual or a dimensioned mount drawing.)_
 - Tab geometry is a stand-in. The two-tab count is sourced, but tab centres (0°/180°), the 42° span, the 1.8 mm depth and the tab radii are not: the radii are generated from the throat radius plus a fixed 2.5 mm, not measured. Ring outer diameters (34 mm body, 32 mm lens) are photo-scaled with no identified photograph. _(Measure an Auto 110 body and a Pentax-110 lens rear, or scale a straight-on dimensioned photograph of each.)_
 - Lock-pin clock position (90°) and radius are photo-scaled. The manual only shows the release lever to the right of the mount seen from the front; it does not show where the pin meets the lens. _(Read the pin position from a service-manual exploded view or a measured lens-rear notch.)_
-- Searched without result: Asahi Kogaku US/JP patents for the Auto 110 lens mount (web searches 1977 to 1980; US4032938A and US3956759A are earlier cassette-SLR optics/layout patents with no mount; US4251134A is Canon), and the Asahi Auto 110 service manual, which is listed online (manualzz, elektrotanya) but could not be read through plain page fetches. _(A patent-office assignee search (J-PlatPat, Espacenet) and a readable service-manual copy.)_
+- Searched without result: Asahi Kogaku US/JP patents for the Auto 110 lens mount (web searches 1977 to 1980; US4032938A and US3956759A are earlier cassette-SLR optics/layout patents with no mount; US4251134A is Canon), and the Asahi Auto 110 service manual, which is listed online (manualzz, elektrotanya) but could not be read through plain page fetches. _(A readable service-manual copy, or the figures of DE2838823 (Asahi, Japanese priority 1977, a camera with a bayonet lens and a shutter-release interlock): a Google Patents assignee search on 2026-11-21 (Asahi, bayonet mount, 1960 to 1985, 36 results) found it, but its text names no camera model, Google Patents carries no figures for it, and J-PlatPat document display was under maintenance and Espacenet behind a bot check that day.)_
 
 ### `pentax-645` — Pentax 645
 
@@ -3809,7 +3814,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/pentax-645.mount.ts` (74736 bytes, content hash `2191027f`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/pentax-645.mount.ts` (75045 bytes, content hash `f26d5f22`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -3827,7 +3832,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 #### Open questions
 
-- Claw and lug angles are scaled from US6341902B1 FIGS. 2 to 5, which state no angle or scale. Readings repeat to about 1 degree between the old and new figures except the narrow lug (lens-lug-1), drawn 31 degrees wide in FIG. 4 and 45.5 degrees in FIG. 2. Which sectors of the lens figures are lugs is inferred, not labelled: only the 59.5, 51.5 and 31 degree sectors fit through the 63.5, 59 and 47 degree body gaps. The bottom lug is drawn running 3.5 degrees past its claw (218 against 214.5 degrees), which is within the figure tolerance. _(A dimensioned Pentax bayonet drawing, a 645 / 645N service manual with mount-part drawings, or a measured lens and body. Searched: Google Patents pages for Asahi contact patents (US4653889A and JPS60243643A are K-mount; US5570153A is a joint Asahi/Nikon two-format bayonet), Ricoh manual downloads, Wikipedia, iso3200.org.)_
+- Claw and lug angles are scaled from US6341902B1 FIGS. 2 to 5, which state no angle or scale. Readings repeat to about 1 degree between the old and new figures except the narrow lug (lens-lug-1), drawn 31 degrees wide in FIG. 4 and 45.5 degrees in FIG. 2. Which sectors of the lens figures are lugs is inferred, not labelled: only the 59.5, 51.5 and 31 degree sectors fit through the 63.5, 59 and 47 degree body gaps. The bottom lug is drawn running 3.5 degrees past its claw (218 against 214.5 degrees), which is within the figure tolerance. _(A dimensioned Pentax bayonet drawing, a 645 / 645N service manual with mount-part drawings, or a measured lens and body. Searched: Google Patents pages for Asahi contact patents (US4653889A and JPS60243643A are K-mount; US5570153A is a joint Asahi/Nikon two-format bayonet), Ricoh manual downloads, Wikipedia, iso3200.org; a Google Patents search for Asahi bayonet-mount and lens-contact filings from 1960 to 2002 (136 results read by title). JPS60201328A (Asahi, 1984, mount locking device) is not tied to a camera model and Google Patents carries no figures for it; J-PlatPat document display was under maintenance on 2026-11-21.)_
 - Lock rotation angle is not stated by any source found. The 60 degree value is the earlier estimate; turning the locked lugs back until each clears its entry gap admits about 60 to 64 degrees on the patent-figure edges. Direction (clockwise from the front) is stated by the maker manuals. _(Maker service data or a measured sample.)_
 - Lock pin and lock notch positions are unknown and render as placeholders at 0 degrees. Candidates: near the lens unlock button (about 235 degrees in the 645D manual drawing) or the unlabelled notch in lens-lug-3 of US6341902B1 FIGS. 2 and 4 (about 180 degrees with the lens locked). _(Service manual exploded view or a measured body.)_
 - Throat 61.2 mm is an uncited Wikipedia table value; no maker, patent or service figure for it was found. Every radius scaled from the patent figures (lug root 28.1, lug tip 30.1, pin circle 25.4, rear opening 22.1 mm) is a ratio of that throat and moves with it. The 70.87 mm register is also still secondary: the Ricoh 645 lens line-up PDF Wikipedia cites for it no longer states a register. _(Maker drawing or calibrated measurement.)_
@@ -3920,7 +3925,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/pentax-67.mount.ts` (35544 bytes, content hash `7fb5d6e5`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/pentax-67.mount.ts` (35773 bytes, content hash `4641f818`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -3936,7 +3941,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 #### Open questions
 
-- Inner-bayonet lug sectors are photo-scaled from unidentified imagery [p67-2]: centres 20°/140°/260°, 34° spans, lug radii and depth. The three-lug count is sourced, the geometry is not. No patent, service-manual drawing with angles, or measured sample was found. _(Measure a 6x7/67 body mount and an inner-bayonet lens rear, or find a dimensioned bayonet drawing.)_
+- Inner-bayonet lug sectors are photo-scaled from unidentified imagery [p67-2]: centres 20°/140°/260°, 34° spans, lug radii and depth. The three-lug count is sourced, the geometry is not. No patent, service-manual drawing with angles, or measured sample was found. _(Measure a 6x7/67 body mount and an inner-bayonet lens rear, or find a dimensioned bayonet drawing. Searched on 2026-11-21: Google Patents for Asahi bayonet-mount filings from 1960 to 1985 (36 results); US3388647A and US3439600A (1965) turned out to be screw-mount patents, and none of the rest describes the 6x7 double bayonet.)_
 - Outer-bayonet geometry is unknown. Sources give only the count (four), the symmetry (four body positions) and the lens range (400 mm to 1000 mm). Clock position, spans, radii and how the outer lens locks are not sourced, so the outer profile renders as a placeholder. _(The Pentax 67 interchangeable-lens manual (cited by the 67II manual for outer-bayonet mounting), a service manual for an outer-bayonet lens, or a measured body and 400 mm-class lens.)_
 - Throat is a published secondary value (72 mm, uncited in its table); the effective clear aperture, both ring outer diameters (86 mm body, 84 mm lens) and the 60° lock rotation are still photo-scaled from unidentified imagery [p67-2]. _(Measured body and lens samples, or a maker dimension drawing.)_
 - Index, lock pin, aperture lever and mount screws are placed from undimensioned figures. The red-dot index (285°) is scaled from a perspective manual figure, about ±15°. The lock pin (90°) is known only to sit on the right-hand side seen from the front. The aperture stop-down lever (55°, 34 mm radius) and the screw pitch circle and clock angles rest on unidentified imagery [p67-2]; the four-screw count is from the service manual. The aperture-value coupler ring (O-K102) and the lens tab that drives it are not drawn. _(The Asahi Pentax 6x7 service manual (Product No. 23400) exploded views read page by page, or a measured body and lens rear.)_

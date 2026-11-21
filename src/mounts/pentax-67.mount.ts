@@ -345,7 +345,8 @@ const PENTAX_67_MOUNT = {
         "Inner-bayonet lug sectors are photo-scaled from unidentified imagery [p67-2]: centres 20°/140°/260°, 34° spans, lug radii and depth. The three-lug count is sourced, the geometry is not. No patent, service-manual drawing with angles, or measured sample was found.",
       affectedFields: ["cameraSideFeatures.body-slot-1..3", "lensSideFeatures.lens-lug-1..3"],
       candidateValues: [],
-      resolution: "Measure a 6x7/67 body mount and an inner-bayonet lens rear, or find a dimensioned bayonet drawing.",
+      resolution:
+        "Measure a 6x7/67 body mount and an inner-bayonet lens rear, or find a dimensioned bayonet drawing. Searched on 2026-11-21: Google Patents for Asahi bayonet-mount filings from 1960 to 1985 (36 results); US3388647A and US3439600A (1965) turned out to be screw-mount patents, and none of the rest describes the 6x7 double bayonet.",
     },
     {
       issue:

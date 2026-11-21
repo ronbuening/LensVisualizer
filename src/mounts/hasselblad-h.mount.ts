@@ -226,7 +226,7 @@ const HASSELBLAD_H_MOUNT = makeSimpleMountSpec({
       affectedFields: ["cameraSideFeatures", "lensSideFeatures", "screwsGasketsBaffles"],
       candidateValues: [],
       resolution:
-        "Needs Hasselblad or Fujifilm service data, a dimensioned third-party H-mount drawing, or a calibrated measurement of a body and lens.",
+        "Needs Hasselblad or Fujifilm service data, a dimensioned third-party H-mount drawing, or a calibrated measurement of a body and lens. Searched again on 2026-11-21: Google Patents for Hasselblad lens-mount and bayonet filings from 1995 to 2020 (18 results); the only H-system hit is the US 7,500,796 family.",
     },
     {
       issue:

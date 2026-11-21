@@ -211,7 +211,8 @@ const PENTAX_110_MOUNT = makeSimpleMountSpec({
         "Searched without result: Asahi Kogaku US/JP patents for the Auto 110 lens mount (web searches 1977 to 1980; US4032938A and US3956759A are earlier cassette-SLR optics/layout patents with no mount; US4251134A is Canon), and the Asahi Auto 110 service manual, which is listed online (manualzz, elektrotanya) but could not be read through plain page fetches.",
       affectedFields: ["cameraSideFeatures", "lensSideFeatures"],
       candidateValues: [],
-      resolution: "A patent-office assignee search (J-PlatPat, Espacenet) and a readable service-manual copy.",
+      resolution:
+        "A readable service-manual copy, or the figures of DE2838823 (Asahi, Japanese priority 1977, a camera with a bayonet lens and a shutter-release interlock): a Google Patents assignee search on 2026-11-21 (Asahi, bayonet mount, 1960 to 1985, 36 results) found it, but its text names no camera model, Google Patents carries no figures for it, and J-PlatPat document display was under maintenance and Espacenet behind a bot check that day.",
     },
   ],
 }) satisfies MountSpecInput;

@@ -610,7 +610,7 @@ const PENTAX_645_MOUNT = {
       affectedFields: ["cameraSideFeatures.body-slot-*", "lensSideFeatures.lens-lug-*"],
       candidateValues: ["lens-lug-1 start 293.5, span 31 (FIG. 4)", "lens-lug-1 start 279.5, span 45.5 (FIG. 2)"],
       resolution:
-        "A dimensioned Pentax bayonet drawing, a 645 / 645N service manual with mount-part drawings, or a measured lens and body. Searched: Google Patents pages for Asahi contact patents (US4653889A and JPS60243643A are K-mount; US5570153A is a joint Asahi/Nikon two-format bayonet), Ricoh manual downloads, Wikipedia, iso3200.org.",
+        "A dimensioned Pentax bayonet drawing, a 645 / 645N service manual with mount-part drawings, or a measured lens and body. Searched: Google Patents pages for Asahi contact patents (US4653889A and JPS60243643A are K-mount; US5570153A is a joint Asahi/Nikon two-format bayonet), Ricoh manual downloads, Wikipedia, iso3200.org; a Google Patents search for Asahi bayonet-mount and lens-contact filings from 1960 to 2002 (136 results read by title). JPS60201328A (Asahi, 1984, mount locking device) is not tied to a camera model and Google Patents carries no figures for it; J-PlatPat document display was under maintenance on 2026-11-21.",
     },
     {
       issue:

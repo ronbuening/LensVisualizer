@@ -19,6 +19,8 @@ import {
 /** Register chart plus the label-only imagery note that still carries the lug and ring stand-ins. */
 const REF = ["xcd-1", "xcd-2"];
 const IMAGERY = ["xcd-2"];
+/** ISO3200.org reference page: states 18.14 mm, a 61 mm throat and three bayonet tabs. */
+const ISO = ["xcd-4"];
 /** Hasselblad X1D User Guide v1.8: attachment text (p. 52) and the body-mount renders (pp. 52, 140). */
 const GUIDE = ["xcd-3"];
 const PROFILE = "hasselblad-xcd/base";
@@ -47,7 +49,8 @@ const base = makeBayonetFeatures({
   lockCenterAngleDeg: LOCK_PIN_ANGLE_DEG,
   scalarStatus: "secondary",
   featureStatus: "photo_scaled",
-  lugShapeNotes: "stand-in bayonet sectors; lug count, centres and spans are not sourced",
+  lugShapeNotes:
+    "stand-in bayonet sectors; a three-tab bayonet is stated by a secondary reference (ISO3200.org), but the centres and spans are not sourced",
 });
 
 const cameraSideFeatures = base.cameraSideFeatures.map((feature) => {
@@ -128,9 +131,9 @@ const HASSELBLAD_XCD_MOUNT = makeSimpleMountSpec({
     "single base interface: the maker lists XCD lenses for all X-system and 907X cameras, and no source shows a change in drawn geometry between bodies",
     "contact row, lock pin, index and ring screws are scaled from the X1D User Guide renders; lugs and ring diameters remain stand-ins",
   ],
-  flangeFocalDistanceMm: v(18.14, "secondary", REF),
-  nominalThroatDiameterMm: v(61, "secondary", REF),
-  effectiveClearApertureMm: v(61, "secondary", REF),
+  flangeFocalDistanceMm: v(18.14, "secondary", [...REF, ...ISO]),
+  nominalThroatDiameterMm: v(61, "secondary", [...REF, ...ISO]),
+  effectiveClearApertureMm: v(61, "secondary", [...REF, ...ISO]),
   cameraMountOuterDiameterMm: v(76, "photo_scaled", REF),
   lensMountOuterDiameterMm: v(74, "photo_scaled", REF),
   contactCount: v(CONTACT_COUNT, "secondary", GUIDE),
@@ -187,11 +190,22 @@ const HASSELBLAD_XCD_MOUNT = makeSimpleMountSpec({
         "text: red mark on lens to red mark on body, then turn the lens clockwise to lock (the p. 52 arrow shows this as seen from the camera front). Figures: rendered views of the body mount from the camera front, slightly oblique, so angles are already in the camera-front frame and none were mirrored; nine contact pins at the bottom of the throat, four ring screws, a pin beside the lens removal button, index callout at the top of the ring. No dimensions or angles are printed; every angle and radius taken from these figures is photo-scaled",
       confidence: "medium",
     },
+    {
+      ref: "xcd-4",
+      sourceType: "secondary",
+      citation: "“Hasselblad XCD mount lenses,” ISO3200.org reference page. Accessed 2026-11-21.",
+      liveUrl: "https://iso3200.org/blog/references/hasselblad-xcd-mount-lenses/",
+      archiveUrl: "https://iso3200.org/blog/?page_id=1085",
+      archiveDate: "2026-11-21",
+      appliesTo:
+        "text: a bayonet mount with three tabs, a flange focal distance of 18.14 mm and a throat diameter of 61 mm, fully electronic with no mechanical linkage. It cites no source for these figures and gives no angle",
+      confidence: "low",
+    },
   ],
   openQuestions: [
     {
       issue:
-        "Bayonet lug count, centre angles and spans are stand-ins. No dimensioned X-mount drawing was found: no Hasselblad X-mount utility patent turned up (the 2016 design patent USD868868 shows a different camera), the X1D User Guide and X2D II / XCD data sheets print no mount dimensions, and the user-guide renders do not resolve the lug edges.",
+        "Bayonet lug centre angles and spans are stand-ins; only the count of three is stated, by one secondary reference (ISO3200.org). No dimensioned X-mount drawing was found: a Google Patents search for Hasselblad lens-mount and bayonet filings from 1995 to 2020 returned 18 results and no X-mount utility patent (the 2016 design patent USD868868 shows a different camera, and CN112243502A covers the inside of an adapter), the X1D User Guide and X2D II / XCD data sheets print no mount dimensions, and the user-guide renders do not resolve the lug edges.",
       affectedFields: ["cameraSideFeatures", "lensSideFeatures", "lockGeometry.lockRotationDeg"],
       candidateValues: [],
       resolution:
