@@ -1,89 +1,93 @@
-import type { LensDataV2Input } from "../repo/src/types/lensDataV2.js";
-const data = {
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * US 2,239,538 A, Figure 2, one of two numerical examples, at f = 100.
+ * Patent dimensions are read in millimetres. Radii, thicknesses, air gaps,
+ * d-line indices, Abbe numbers and the 14.23 / 16.14 stop split are printed.
+ * Clear semi-diameters are inferred; the iris radius follows nominal f/6.3.
+ * The last gap is 41.58 mm: printed front-vertex-to-focus distance 79.37
+ * minus the 37.79 mm lens track, rather than the paraxial BFD of 41.5995 mm.
+ * L1 and L3 retain the same printed nd 1.60801 and different Abbe numbers,
+ * 45.0 and 46.2. The patent states an image field of about 30 degrees.
+ */
+const LENS_DATA = {
   schema: 2,
-  key: "richter-us2239538-figure2-infinity-reference",
-  maker: null,
-  name: "RICHTER US2239538 FIG.2 — PATENT REFERENCE",
-  subtitle:
-    "100mm nominal f/6.3 · literal n_d · source stop/detector · chosen0–10° infinity diagnostic",
-  visible: false,
+  key: "carl-zeiss-jena-100mm-f63-us2239538",
+  maker: "Carl Zeiss Jena",
+  name: "CARL ZEISS JENA 100mm f/6.3 (US 2,239,538 Design)",
+  subtitle: "US 2,239,538 A, Figure 2 — four-element telephoto design",
+  visible: true,
   source: {
-    patentNumber: "US 2,239,538",
+    patentNumber: "US 2,239,538 A",
     patentYear: 1941,
     example: {
       label: "Figure 2",
       id: "2",
     },
     authors: ["Robert Richter"],
-    assignees: ["Firm Carl Zeiss, Jena"],
+    assignees: ["Carl-Zeiss-Stiftung"],
     sdSource: "heuristic",
   },
   catalog: {
-    imageCircleMm: 35.27489329343408,
+    imageCircleMm: 54.192,
     elementCount: 4,
     groupCount: 4,
     focalLengthMm: {
-      design: 100,
+      design: 100.03,
     },
     fNumber: {
       design: 6.3,
     },
-    specs: [
-      "4E/4G · FOUR SEPARATE SINGLETS;0.07mm AIR GAPS NOT CEMENT",
-      "FIGURE2 ONLY; NO TELIKON/TELEMAR COMMERCIAL IDENTITY",
-      "SOURCE n_d /Vd; L1/L3 V45.0/46.2 DISTINCT; NOT SODIUM-D",
-      "LITERAL EFL100.026931 / GAUSSIAN BFD41.599494",
-      "PRINTED79.37 IS FRONT-VERTEX TO IMAGE; SOURCE LASTGAP41.58",
-      "SOURCE STOP14.23/16.14,z18.71; IRIS/CAPS ESTIMATED",
-      "NOMINAL f6.3; NATIVE FINITE ENTRANCE EQUIVALENT APPROX f6.40561",
-      "APPROX30° DESIGN FIELD NOT VERIFIED COVERAGE; CHOSEN0–10° ONLY",
-      "INFINITY AT SOURCE DETECTOR; NO FINITE/RETAIL/BROADBAND CLAIM",
-    ],
+    specs: ["4 ELEMENTS / 4 GROUPS", "ALL SPHERICAL", "DESIGN F/6.3", "TELEPHOTO"],
   },
   elements: [
     {
       id: 1,
       name: "L1",
-      label: "L1",
-      type: "Source Spherical Element",
+      label: "Element 1",
+      type: "Biconvex Positive",
       nd: 1.60801,
       vd: 45,
       indexReference: "d",
-      glass:
-        "Unmatched (literal source n_d/Vd, distinct sourceAbbe values; no glass substitution/calibrated dispersion)",
+      focalLengthMm: 23.18,
+      glass: "Unmatched (nd 1.60801 / ν 45.0)",
+      role: "Positive singlet of the front system",
     },
     {
       id: 2,
       name: "L2",
-      label: "L2",
-      type: "Source Spherical Element",
+      label: "Element 2",
+      type: "Biconcave Negative",
       nd: 1.72825,
       vd: 28.3,
       indexReference: "d",
-      glass:
-        "Unmatched (literal source n_d/Vd, distinct sourceAbbe values; no glass substitution/calibrated dispersion)",
+      focalLengthMm: -35.08,
+      glass: "SF10 (Schott)",
+      role: "Negative singlet of the front system, facing the rear negative lens",
     },
     {
       id: 3,
       name: "L3",
-      label: "L3",
-      type: "Source Spherical Element",
+      label: "Element 3",
+      type: "Negative Meniscus",
       nd: 1.60801,
       vd: 46.2,
       indexReference: "d",
-      glass:
-        "Unmatched (literal source n_d/Vd, distinct sourceAbbe values; no glass substitution/calibrated dispersion)",
+      focalLengthMm: -26.43,
+      glass: "H-BaF6 (CDGM)",
+      role: "Negative meniscus of the rear system, concave toward the front system",
     },
     {
       id: 4,
       name: "L4",
-      label: "L4",
-      type: "Source Spherical Element",
+      label: "Element 4",
+      type: "Plano-Convex Positive",
       nd: 1.72825,
       vd: 28.3,
       indexReference: "d",
-      glass:
-        "Unmatched (literal source n_d/Vd, distinct sourceAbbe values; no glass substitution/calibrated dispersion)",
+      focalLengthMm: 45.56,
+      glass: "SF10 (Schott)",
+      role: "Positive singlet of the rear system, with its plane face toward the stop",
     },
   ],
   surfaces: [
@@ -147,8 +151,7 @@ const data = {
   ],
   focus: {
     closeFocusM: 1000000000000000,
-    description:
-      "Richter/CarlZeiss US2239538 Figure2 patent-only Fraunhoferd infinity reference, no Telikon/Telemar retail identity. Source original4pages/PDFp3 table verified in independent scout custody; no local PDF/hash/pixels or blocked-route retry. Literal source n_d and distinctL1/L3 Abbe45/46.2 preserved, not sodiumD. Four separate singlets and0.07airgaps kept, R7plane active. Exact source stop14.23/16.14,z18.71; iris/caps estimated. Printed79.37frontvertex-to-image preserved as lastgap41.58, separateGaussianBFD41.599494/offset−.019494, no focus fit. Chosen0–10degrees diagnostic only, sourceapprox30full and ±15control not verifiedcoverage. No finite or calibrated broadband claim.",
+    description: "Infinity focus only; the patent gives no close-focus data.",
   },
   aperture: {
     nominalFNumber: 6.3,
@@ -157,27 +160,27 @@ const data = {
   },
   projection: {
     kind: "rectilinear",
-    fullFieldDeg: 20,
-    maxTraceFieldDeg: 10,
+    fullFieldDeg: 30,
+    maxTraceFieldDeg: 15,
   },
   groups: [
     {
-      text: "G1 · L1",
+      text: "FRONT POSITIVE",
       fromSurface: "1",
       toSurface: "2",
     },
     {
-      text: "G2 · L2",
+      text: "FRONT NEGATIVE",
       fromSurface: "3",
       toSurface: "4",
     },
     {
-      text: "G3 · L3",
+      text: "REAR NEGATIVE",
       fromSurface: "5",
       toSurface: "6",
     },
     {
-      text: "G4 · L4",
+      text: "REAR POSITIVE",
       fromSurface: "7",
       toSurface: "8",
     },
@@ -186,4 +189,4 @@ const data = {
     yScFill: 0.5,
   },
 } satisfies LensDataV2Input;
-export default data;
+export default LENS_DATA;

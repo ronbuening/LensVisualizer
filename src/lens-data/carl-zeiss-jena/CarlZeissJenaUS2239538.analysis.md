@@ -1,60 +1,79 @@
+# CARL ZEISS JENA 100mm f/6.3 (US 2,239,538 Design)
+
 ## Patent Reference and Design Identification
 
-**Patent:** US 2,239,538 A  
-**Granted:** 1941  
-**Priority:** 1939 (year only, as relayed in the source handoff)  
-**Inventor:** Robert Richter  
-**Assignee:** Firm Carl Zeiss, Jena  
-**Example details:** Figure 2, exact numerical table on original PDFp3; eight optical surfaces, four separate singlets.
+**Patent:** [US 2,239,538 A](https://patents.google.com/patent/US2239538A/en)
 
-This is a private patent-only reference, not a verified commercial Telikon, Telemar or other production prescription. Richter/Zeiss names follow the established historical Richter source naming; no new local original-header inspection is claimed. The [official primary facsimile](https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/2239538) was visually verified on all four pages in separate scout custody. Reported complete original PDF SHA256 `af77b8e24f501c05e5c164d650a83be74bb34258e1eeac137064ce92d8a4abca` is external custody, not a locally reproduced hash. The known blocked worker source route was not requested or bypassed.
+**Inventors:** Robert Richter
 
-At the supplied100working scale, literal source n_d gives EFL100.026930512mm, Gaussian BFD41.599493784mm and powered track37.79mm, without fitting to source nominal100/f6.3. The printed79.37mm datum is front vertex to image, never a rear gap. The actual model preserves that detector: lastgap41.58mm after37.79track, versus calculated Gaussian detector79.389493784mm. Its−0.019493784mm residual is disclosed, not repaired. No retail scale is established.
+**Assignee:** Carl-Zeiss-Stiftung
+
+**Published:** 22 April 1941
+
+**Filed:** 8 March 1940
+
+**Priority:** 30 March 1939, Germany
+
+**Title:** Photographic Teleobjective
+
+**Example details:** Figure 2, the second of two numerical examples; its table appears on drawing sheet 2 and the first specification page.
+
+The patent describes a four-element telephoto objective with an aperture ratio of 1:6.3 and an image field of about 30°. It gives f = 100; the model reads the dimensions in millimetres. The front page names the assignee as “the firm Carl Zeiss, Jena, Germany”; Carl-Zeiss-Stiftung is the catalog's canonical entity name. The [original facsimile](https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/2239538) supplies the prescription and dates.
 
 ## Optical Architecture
 
-Four separate spherical singlets in four air groups, 1|2|3|4. The two close front singlets and two close rear singlets are separated by a30.37mm air region containing the source diaphragm. The.07mm air gaps after R2 and R6 stay positive and explicitly air; neither pair is cemented. R7 is a plano refractive front of L4, not the iris. Source stop14.23/16.14mm is literal and z18.71mm exact. Only collimated infinity launch in the supplied source order is modeled, with the printed image plane retained.
+Four spherical singlets form four air-separated groups with positive–negative–negative–positive element powers. The front pair is a positive system and the rear pair a negative system, giving the telephoto arrangement a front-vertex-to-image distance shorter than its focal length.
+
+The two negative elements face one another across the central air space. The rear negative element is a meniscus, concave toward the front system. Each pair has a 0.07 mm air gap; neither pair is cemented. The plane front of element 4, surface 7, remains a refracting surface.
 
 ## Element-by-Element Analysis
 
-### L1 — biconvex positive singlet
+### Element 1 — Biconvex Positive
 
-Source n_d1.60801, ν_d45.0; unmatched source glass. R1+21.1/R2−40.0mm, thickness3.21mm. No modern substitute or assumption of a common glass with L3 is made merely from equal refractive index.
+nd = 1.60801, νd = 45.0. Glass: Unmatched. f = +23.18 mm.
 
-### L2 — biconcave negative singlet
+The positive front singlet supplies the collecting power of the front system. Its 3.21 mm centre thickness and +21.1 / −40.0 mm radii are printed. The following negative singlet is separated by 0.07 mm of air.
 
-Source n_d1.72825, ν_d28.3. R3−40.2/R4+70.95mm, thickness1.20mm. The.07air gap from L1 is real, with distinct exit/re-entry media and curvatures. It is never replaced by a cement interface.
+### Element 2 — Biconcave Negative
 
-### L3 — negative meniscus
+nd = 1.72825, νd = 28.3. Glass: SF10 (Schott), a catalogue coordinate match. f = −35.08 mm.
 
-Source n_d1.60801, ν_d46.2. R5−13.0/R6−70.0mm, thickness1.0mm. Its46.2Abbe differs from L1's45.0 despite equal n_d; both are retained as printed. Estimated clear radius9.5mm is not a factory reading.
+This 1.20 mm thick negative element completes the front system. Its −40.2 / +70.95 mm surfaces face the positive front element and the central stop respectively.
 
-### L4 — plano positive singlet
+### Element 3 — Negative Meniscus
 
-Source n_d1.72825, ν_d28.3. R7plane/R8−33.18mm, thickness1.87mm. R7 follows a separate.07air interval and remains an active refractive plane in every independent/native trace. Calculated lastgap41.58mm comes from the printed front-to-image datum, not from treating79.37as BFD.
+nd = 1.60801, νd = 46.2. Glass: H-BaF6 (CDGM), a catalogue coordinate match. f = −26.43 mm.
+
+The rear system begins with a 1.0 mm thick negative meniscus, with radii −13.0 / −70.0 mm. Its concave face points toward the front system, as the patent specifies. The printed index equals element 1's, but its Abbe number is 46.2 rather than 45.0; both values are retained.
+
+### Element 4 — Plano-Convex Positive
+
+nd = 1.72825, νd = 28.3. Glass: SF10 (Schott), a catalogue coordinate match. f = +45.56 mm.
+
+The final positive singlet has a plane front and a −33.18 mm rear radius, with a 1.87 mm centre thickness. The preceding 0.07 mm air gap keeps it separate from element 3.
 
 ## Glass Identification and Selection
 
-Native `indexReference:d` represents the supplied Fraunhofer n_d convention. No uppercase sodiumD identification is introduced. All printed indices and Abbe figures remain literal, especially L1/L3's45.0/46.2. No exact commercial glass, calibrated multi-line spectrum or vendor curve is substituted. Native Abbe-based ancillary chromatic displays are not qualified source broadband output; all optics/MTF conclusions are reference-line only.
+The patent prints lowercase nd and ν; the model uses the helium d line at 587.6 nm. The published 1.72825 index matches Schott SF10 at that line. Its catalogue Abbe number, 28.41, differs from the printed 28.3 by +0.11.
 
-## Exact Stop, Estimated Aperture and Source Detector
+Element 3 matches the tabulated 1.60801 / 46.2 coordinates of CDGM H-BaF6. The catalogue labels supply dispersion curves without establishing the historical supplier or melt. Element 1 remains unmatched: the same H-BaF6 row differs from its printed Abbe number by 1.2. The equal indices of elements 1 and 3 therefore do not justify assigning them the same glass. The patent supplies no partial-dispersion data or measured broadband performance.
 
-Source stop14.23/16.14 in30.37gap is fixed. Only physical iris size and caps[8.7,8.7,8.7,9,9.5,9.5,9.5,9.5]mm are inferred. No cap fitting/variation, gap merging, override, trim or baffle is used. Default geometry passes with minimum glass land0.375315842mm; both.07air intervals have minimum.07mm and widen outward. The plane optical surface and all four elements remain separate.
+## Stop, Focus and Image Plane
 
-Nominalf6.3 derives native iris5.431318527mm and finite geometric entrance equivalentf/6.405609437. An independent exact nominal-marginal ray maps to estimated radius5.525869773mm. Separate Builderinputf/6.192202879 reaches that estimate with source stop, caps, vertices, indices and Abbe unchanged; canonical6.3 is restored exactly. Neither iris value is printed hardware. Iris±2%only is tested. No change to exact source stop placement or source detector is justified by this estimate.
+The diaphragm is drawn between elements 2 and 3. Its printed distances are 14.23 mm after surface 4 and 16.14 mm before surface 5, placing it 18.71 mm behind the first vertex. Its diameter is unprinted. The nominal f/6.3 aperture gives an iris radius of 5.4313 mm; the corresponding real-ray entrance aperture is about f/6.41. The drawing's opening is approximately 5.5 mm.
 
-`source-detector-control` verifies native imagez79.37 and MTF applied shift0. Independent near-axis intersections approach computed Gaussianz79.389493784. The native best-MTF shift is reported as a diagnostic only and was never applied. Thus this is an infinity-launch source-plane reconstruction with an explicit small paraxial offset, not a claim of mathematically exact Gaussian focus at the printed plane. No finite-focus schedule is invented.
+The lens track through the last glass surface is 37.79 mm. The printed 79.37 mm front-vertex-to-focus distance therefore gives a last gap of 41.58 mm, which the model retains. The prescription computes to EFL 100.0269 mm and paraxial BFD 41.5995 mm, placing the paraxial image 0.0195 mm behind the printed plane. The image plane is not shifted to a best-focus plane.
 
-## Diagnostic Field, Clipping and MTF
+Only infinity focus is modeled; the patent gives no close-focus data.
 
-Chosen0–10°is diagnostic only. Sourceapprox30°full is a design statement, not validated full-pupil coverage. The optional±15°scope is not qualified or presented as retail coverage; no±15°trial is needed to claim the narrower checked scope. Metadata image circle is an ideal diagnostic request, not a measured physical cutoff or format.
+## Field and Clear Apertures
 
-Dense physical3D sampling at−10/−5/0/+5/+10°,24area-radius levels×144azimuths pluschief, gives17285samples:14483arrivals/2802blocks/0failed/unresolved. The230native noBracket outcomes have independent forward selected-sphere S1hits beyond the estimated firstcap; they are proved aperture misses, never called solver passes or silently omitted. Remaining first cap/iris clips are independently matched. Valid-hit discrepancy is at most9.99e-14mm. The10°chief lands at|y|17.753299mm on the printed source detector. Counts are unweighted, not throughput or full-pupil brightness. An additional independent rim-to-rim body check retains all sampled admitted ray segments within estimated sidewalls; it does not establish factory blank dimensions.
+The declared full field is 30°, matching the patent's “about 30°” statement. At the 15° half-field the real chief ray reaches an image height of approximately 27.096 mm on the printed image plane, giving the model's 54.192 mm image circle. This is a field-derived diameter at the model's focal length, without an assigned film format.
 
-Reference-d geometric MTF is computed at the printed detector with focus mode design/applied shift0. Adaptive image-height fraction fields are0/5.030033/9.936676°, and a separate exact10°native grid is recorded rather than relabeling9.9367°the edge. Explicit32–512grids reproduce adaptive values where applicable; worst256→512change0.000156531 through40lp/mm, including exact10°. All qualified sampled grids have0failed/unaimed/unknownflux. This observed convergence is not a rigorous errorbound, diffraction/broadband MTF, source aberration-plot match or manufactured performance. The Gaussian/best-focus diagnostics do not contaminate these source-plane metrics.
+All chief-ray intersections at 15° clear the current rims; the largest is approximately 7.50 mm against a 9.5 mm clear radius. Some off-axis pupil rays are vignetted. The inferred clear semi-diameters are 8.7 mm at surfaces 1–3, 9.0 mm at surface 4, and 9.5 mm at surfaces 5–8. They agree with the drawing within about 0.4 mm, but are not printed manufacturing dimensions. The minimum edge thicknesses are approximately 0.375 mm at element 1 and 0.481 mm at element 4.
 
-## Sources, Validation and Remaining Limits
+Geometric MTF at the printed image plane describes that unshifted plane. The patent provides no MTF curves for comparison, and the glass assignments do not establish manufactured broadband performance.
 
-Source custody, exact R/d/n_d/V, media/plane checks, source detector residual, independent ray/first-clip/body proofs, MTF refinement and raw types/tests/app evidence are retained.319existing targeted tests, repository/model types and formatting pass. Desktop/mobile Builder import/render/aperture/analysis health and exact canonical JSON roundtrip are tested. Full source stop/detector are protected; no shared app/catalog changes or integration/corpus build claim.
+## Historical Context and Product Relationship
 
-Dedup evaluates1188retained main bodies,4816retained main/21head/history profiles and additional readable localTS/JSON/TAR/ZIP bodies using signed positive-scale/reversed whole-radius necessary filter before full thickness/glass identity. Negative screens are bounded; overlapping counts, literal-expression and inaccessible-history limits remain. No fresh PR/main claim or known403retry. Five prior ZIPs, Lee and Dallmeyer checkpoints remain protected. No packaging, transmission, upload, publication, catalog/GitHub action or delivery credit. Source field/retail identity, calibrated dispersion and current-live/full integration remain future release limits.
+The f/6.3 aperture and roughly 30° field make Zeiss Telikon aerial telephotos a plausible family comparison. An [auction record of a Zeiss Jena Telikon](https://nmestateauctions.com/Event/LotDetails/26660102/Carl-Zeiss-Jena-75cm-f6-Telikon-Lens-for-RB7530-Aerial-Camera-WWIIEra) records a 75 cm lens engraved 1:6.3 for the Rb 75/30 aerial camera, but supplies no prescription or connection to this patent. No commercial product is documented for Figure 2, so the lens retains a patent-design name.
