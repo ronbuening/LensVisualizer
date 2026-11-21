@@ -47,7 +47,7 @@ const LENS_DATA = {
   key: "leica-summilux-m-35mm-f14-aspherical",
   maker: "Leica",
   name: "LEICA SUMMILUX-M 35mm f/1.4 ASPHERICAL",
-  subtitle: "US 5,161,060 A — FIG. 1 preferred embodiment; inferred correlation to Leica 11873",
+  subtitle: "US 5,161,060 A — FIG. 1 preferred embodiment; inferred match to Leica 11873",
 
   catalog: {
     lensMounts: ["leica-m"],

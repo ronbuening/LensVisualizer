@@ -37,7 +37,7 @@ const LENS_DATA = {
   key: "leica-super-angulon-r-21mm-f4",
   maker: "Leica",
   name: "LEICA SUPER-ANGULON-R 21mm f/4",
-  subtitle: "US 3,512,874 Example 3 — strong research correlation; not manufacturer-confirmed attribution",
+  subtitle: "US 3,512,874 Example 3 — strong production match; not maker-confirmed attribution",
 
   catalog: {
     lensMounts: ["leica-r"],
