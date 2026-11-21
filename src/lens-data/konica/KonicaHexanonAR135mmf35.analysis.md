@@ -78,9 +78,9 @@ The patent's own conditions divide the glass palette into $ν_1,ν_2>60$ for the
 
 ## Focus Mechanism
 
-The data model contains **no reconstructed focus state**. JPS54-55423A Example 1 publishes the infinity prescription and does not provide a focus-spacing table, group travel, magnification series, or mechanical focusing kinematics. Accordingly, `var` is empty and the model status is `NO_INTERNAL_RECONSTRUCTION`.
+The model contains **no modeled close-focus state**. JPS54-55423A Example 1 publishes the infinity prescription and does not provide a focus-spacing table, group travel, magnification series, or mechanical focusing kinematics. Accordingly, the model shows the lens at infinity only and moves no group.
 
-Konica's product manual gives a 1.5 m closest focusing distance for the 135mm f/3.5. The data file stores that value as product metadata only. It is not converted into an optical object distance and is not used to invent a unit-focus or internal-focus movement. The analysis therefore describes only the infinity optical state.
+Konica's product manual gives a 1.5 m closest focusing distance for the 135mm f/3.5. The model records that value as product information only. It is not converted into an optical object distance and is not used to work out a unit-focus or internal-focus movement. The analysis therefore describes only the infinity optical state.
 
 ## Conditional Expressions
 

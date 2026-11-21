@@ -7,8 +7,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  Data source: JPS54-55423A Example 1 (Konishiroku Photo Industry). ║
  * ║  Four-element / four-group all-spherical telephoto objective.      ║
  * ║  Production correlation: late KONICA HEXANON AR 135mm f/3.5.      ║
- * ║  Focus: NO_INTERNAL_RECONSTRUCTION. The patent publishes only     ║
- * ║  the infinity state; production MFD = 1.5 m is metadata only.     ║
+ * ║  Focus: infinity only. The patent publishes only the infinity     ║
+ * ║  state. The 1.5 m production minimum focus is product             ║
+ * ║  information; focus travel is not modeled.                        ║
  * ║                                                                    ║
  * ║  SCALING: the patent prescription is normalized to f = 1. All     ║
  * ║  dimensional prescription values are scaled uniformly ×135.      ║
@@ -144,7 +145,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 1.5,
     description:
-      "NO_INTERNAL_RECONSTRUCTION: JPS54-55423A Example 1 publishes only the infinity optical state. The production 1.5 m minimum focus distance is catalog metadata; no focus spacing is modeled.",
+      "Infinity focus only. JPS54-55423A Example 1 publishes only the infinity optical state. The production 1.5 m minimum focus distance is product information; focus travel is not modeled.",
   },
 
   /* ── Aperture configuration ── */

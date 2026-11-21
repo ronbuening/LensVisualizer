@@ -9,9 +9,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * All radii, thicknesses, inferred semi-diameters, stop coordinates, and rear image spacing are scaled;
  * nd and νd are unchanged. There are no aspheric coefficients to transform.
  *
- * Focus status: NO_INTERNAL_RECONSTRUCTION. The patent publishes no focus-spacing state. Konica F/FS
- * literature gives a 6 ft (1.8288 m) closest-focus specification, retained only as product metadata.
- * The optical prescription remains the infinity state and `var` is intentionally empty.
+ * Focus: infinity only. The patent publishes no focus-spacing state. Konica F/FS literature gives a
+ * 6 ft (1.8288 m) closest-focus specification, recorded only as product information. The optical
+ * prescription stays at the infinity state; focus travel is not modeled.
  *
  * STO MODEL — inferred, not patent-tabulated or clearly drawn:
  * The patent does not provide a numerical stop position, and Figure 1 does not clearly depict a diaphragm.
@@ -123,7 +123,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 1.8288,
     description:
-      "NO_INTERNAL_RECONSTRUCTION — Konica F/FS literature gives 6 ft (1.8288 m) closest focus, but JP 1955-009472's sole example publishes no focus-spacing state; the modeled prescription remains at infinity.",
+      "Infinity focus only. Konica F/FS literature gives 6 ft (1.8288 m) closest focus, but JP 1955-009472's sole example publishes no close-focus spacings, so focus travel is not modeled.",
   },
 
   aperture: { nominalFNumber: 3.5, fStops: [3.5, 4, 5.6, 8, 11, 16] },

@@ -19,10 +19,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  independently computes BFD=35.379606 mm. The computed Gaussian EFL is     ║
  * ║  50.248647 mm; marketed focal length remains 50mm.                         ║
  * ║                                                                            ║
- * ║  FOCUS STATUS — NO_INTERNAL_RECONSTRUCTION:                                ║
+ * ║  FOCUS — INFINITY ONLY:                                                    ║
  * ║  The patent publishes one infinity state and no focus kinematics. The      ║
- * ║  production 0.55m MFD is metadata only; no variable internal gaps are      ║
- * ║  invented.                                                                 ║
+ * ║  production 0.55m minimum focus is product information only; no spacing    ║
+ * ║  changes with focus and focus travel is not modeled.                       ║
  * ║                                                                            ║
  * ║  STOP MODEL: Figure 2 places the iris inside source d6 but gives no        ║
  * ║  numerical coordinate or diameter. Measurement of the rendered figure      ║
@@ -173,7 +173,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.55,
     description:
-      "NO_INTERNAL_RECONSTRUCTION — JP 1982-108817 A Example 1 publishes one infinity state and no focus kinematics; the production 0.55 m MFD is retained as metadata without invented internal movement.",
+      "Infinity focus only. JP 1982-108817 A Example 1 publishes one infinity state and no focus movement. The production 0.55 m minimum focus distance is product information; focus travel is not modeled.",
   },
 
   aperture: { nominalFNumber: 1.8, fStops: [1.8, 2.8, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22 },
