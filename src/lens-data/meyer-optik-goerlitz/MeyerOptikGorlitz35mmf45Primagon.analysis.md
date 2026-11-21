@@ -78,9 +78,9 @@ H-ZK1 was added from the [official CDGM datasheet](https://www.cdgmgd.com/webapp
 
 ## Focus Mechanism
 
-The selected patent publishes one fixed prescription and no finite-conjugate spacing table, moving-group law, or close-focus optical state. The final model therefore uses **NO_INTERNAL_RECONSTRUCTION**: it contains no focus `var` keys and does not invent internal group travel.
+The selected patent publishes one fixed prescription and no close-focus spacing table, moving-group law, or close-focus optical state. The model therefore shows the lens at infinity only: no spacing changes with focus and no group moves.
 
-Archived Meyer literature gives a 0.4 m minimum focusing distance for the production Primagon 35 mm f/4.5. [2] That value is retained as product metadata only. The available sources in this dossier do not establish the exact production focusing motion or the image-space displacement at 0.4 m, so the analysis does not label a specific optical focusing mechanism.
+Archived Meyer literature gives a 0.4 m minimum focusing distance for the production Primagon 35 mm f/4.5. [2] The model records that value as product information only. The sources consulted do not establish the exact production focusing motion or the image-space displacement at 0.4 m, so the analysis does not label a specific optical focusing mechanism.
 
 ## Conditional Expressions
 
@@ -119,7 +119,7 @@ Surface-by-surface Petzval computation using `φ/(n·n′)` gives a total of +0.
 ## Sources
 
 1. **VEB Feinoptisches Werk Görlitz**, *Vierlinsiges Weitwinkelobjektiv*, DE 1 749 770 U, application V 7479, filed 26 March 1957, published 1 August 1957. Primary six-page scan used for the prescription; numerical example on p. 3, repeated in claim 4 on p. 5, optical layout on p. 6. Google Patents metadata/transcription aid: https://patents.google.com/patent/DE1749770U/de
-2. **Meyer-Optik Görlitz**, *Kleinbildobjektive* technical brochure, 1957, archived as `HMG22-1957KBObjektive.pdf` by Ihagee.org. Product table evidence used for Primagon 1:4.5/35 mm, 63° field, 0.4 m minimum focus, Kleinbild use, and documented camera families. The archive PDF bytes were not recovered into the dossier; these facts were captured from indexed archival manufacturer text during source research: https://www.ihagee.org/Lenzen/HMG22-1957KBObjektive.pdf
+2. **Meyer-Optik Görlitz**, *Kleinbildobjektive* technical brochure, 1957, archived as `HMG22-1957KBObjektive.pdf` by Ihagee.org. Product table evidence used for Primagon 1:4.5/35 mm, 63° field, 0.4 m minimum focus, Kleinbild use, and documented camera families. The archive PDF itself was not recovered; these facts were captured from indexed archival manufacturer text during source research: https://www.ihagee.org/Lenzen/HMG22-1957KBObjektive.pdf
 3. Period 1957 price/listing sheet archived by Ihagee.org as `PLD119-Kanne5711.pdf`; lists the Meyer Görlitz Primagon-Weitwinkel 1:4.5/35 mm as a four-lens design with 63° field: https://www.ihagee.org/Prices/PLD119-Kanne5711.pdf
 4. **zeissikonveb.de**, “Primagon,” secondary historical research discussing the production lens, DBGM 1.749.770 association, FK5/SSK5 class context, and 1955–1956 product timing: https://zeissikonveb.de/start/objektive/wechselobjektive1950er/meyer-optik-goerlitz/primagon.html
 5. Current authoritative glass-catalog resources used for coordinate/class checks: SCHOTT Advanced Optics, OHARA Optical Glass Pocket Catalog, HIKARI optical-glass catalog, CDGM Optical Glass Database, SUMITA Optical Glass catalog, and HOYA Glass Cross Reference Index. These were used only for class/equivalent comparison; none is treated as proof of the historical supplier or melt.

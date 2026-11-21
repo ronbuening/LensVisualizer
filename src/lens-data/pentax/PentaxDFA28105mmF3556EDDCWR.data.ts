@@ -16,9 +16,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ Zoom-only variable gaps: D5, D14, D20, D23, and BF (surface 28).                    ║
  * ║ G3, the diaphragm, and G5 move integrally to source precision; no group reverses.    ║
  * ║                                                                                      ║
- * ║ Focus status: NO_INTERNAL_RECONSTRUCTION. The patent publishes infinity-focus zoom  ║
- * ║ states only. Every [infinity, close] pair is therefore identical. The manufacturer  ║
- * ║ 0.5 m minimum-focus specification is catalog metadata and is not used to invent      ║
+ * ║ Focus: infinity only. The patent publishes infinity-focus zoom states only, so every ║
+ * ║ spacing keeps its infinity value at both ends of the focus control. The manufacturer ║
+ * ║ 0.5 m minimum-focus specification is product information and is not used to model    ║
  * ║ internal focus motion.                                                               ║
  * ║                                                                                      ║
  * ║ No scale factor is applied. Patent prescription dimensions and asphere coefficients  ║
@@ -53,7 +53,7 @@ const LENS_DATA = {
   key: "pentax-dfa-28-105-f3556-ed-dc-wr",
   maker: "Pentax",
   name: "PENTAX HD D FA 28-105mm f/3.5-5.6 ED DC WR",
-  subtitle: "US 2017/0068075 A1 — Numerical Embodiment 2; production correlation inferred",
+  subtitle: "US 2017/0068075 A1 — Numerical Embodiment 2; inferred production match",
 
   catalog: {
     lensMounts: ["pentax-k"],
@@ -335,7 +335,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.5,
     description:
-      "NO_INTERNAL_RECONSTRUCTION: the patent publishes infinity-focus zoom states only. All modeled infinity/close pairs are identical; the manufacturer 0.5 m minimum-focus specification is metadata only.",
+      "Infinity focus only. The patent publishes infinity-focus zoom states only. The manufacturer's 0.5 m minimum focus distance is product information; focus travel is not modeled, zoom movement is.",
   },
 
   /* (moved from var) ── Zoom-only variable air spacings; close-focus pairs intentionally identical ── */

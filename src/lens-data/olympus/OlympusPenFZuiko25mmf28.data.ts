@@ -26,7 +26,7 @@ const LENS_DATA = {
   key: "olympus-pen-f-g-zuiko-auto-w-25mm-f28",
   maker: "Olympus",
   name: "OLYMPUS G.ZUIKO AUTO-W 25mm f/2.8",
-  subtitle: "JP S39-18282 Y1, Sole Example — qualified production correlation",
+  subtitle: "JP S39-18282 Y1, Sole Example — tentative production match",
   visible: true,
   catalog: {
     lensMounts: ["olympus-pen-f"],

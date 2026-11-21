@@ -72,7 +72,7 @@ const LENS_DATA = {
   key: "nikon-ai-zoom-nikkor-80-200mm-f45",
   maker: "Nikon",
   name: "NIKON AI ZOOM-NIKKOR 80-200mm f/4.5",
-  subtitle: "US 4,223,981 — Embodiment 1 (correlated 12-element / 9-group AI formula)",
+  subtitle: "US 4,223,981 — Embodiment 1 (matched to the 12-element / 9-group AI formula)",
 
   catalog: {
     lensMounts: ["nikon-f"],

@@ -162,11 +162,11 @@ The patent identifies B4/L11 as a single negative internal focus unit. Example 1
 | Middle     |               3.87 |             13.66 |          17.53 |
 | Telephoto  |               4.03 |             13.50 |          17.53 |
 
-The near conservation of the adjacent-gap sum is consistent with a translating B4 unit inside a nearly fixed local envelope. It does not determine the close-focus displacement, because the patent publishes no finite-object spacing row, object distance, focus travel, or close-focus magnification for Numerical Example 1.
+The near conservation of the adjacent-gap sum is consistent with a translating B4 unit inside a nearly fixed local envelope. It does not determine the close-focus displacement, because the patent publishes no close-focus spacing row, object distance, focus travel, or close-focus magnification for Numerical Example 1.
 
-The data status is therefore **NO_INTERNAL_RECONSTRUCTION**. Every authored infinity/close pair is identical, so the LensVisualizer focus state does not invent internal motion that the patent does not publish.
+The model therefore shows the lens at infinity focus only. Every spacing keeps the same value at both ends of the focus control, so the focus control does not show a movement that the patent does not publish.
 
-Canon's production specification gives a minimum focusing distance of 0.20–0.34 m during autofocus and 0.13–0.34 m during manual focus, with 0.5× maximum magnification at 24 mm in Center Focus Macro. The data file retains **0.13 m** only because `closeFocusM` is required product metadata. It is not used to solve a patent close-focus prescription. Canon also specifies a lead-screw STM drive, but the patent does not identify that commercial actuator.
+Canon's production specification gives a minimum focusing distance of 0.20–0.34 m during autofocus and 0.13–0.34 m during manual focus, with 0.5× maximum magnification at 24 mm in Center Focus Macro. The model records **0.13 m** only as product information. It is not used to solve a patent close-focus prescription. Canon also specifies a lead-screw STM drive, but the patent does not identify that commercial actuator.
 
 ## Aspherical Surfaces
 

@@ -41,7 +41,7 @@ const LENS_DATA = {
   key: "canon-ef-s-18-135mm-f35-56-is-stm",
   maker: "Canon",
   name: "CANON EF-S 18-135mm f/3.5-5.6 IS STM",
-  subtitle: "US 2013/0088622 A1 — Numerical Example 4; production correlation to EF-S 18–135mm IS STM",
+  subtitle: "US 2013/0088622 A1 — Numerical Example 4; production match to EF-S 18–135mm IS STM",
 
   catalog: {
     lensMounts: ["canon-ef-s"],

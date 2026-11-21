@@ -40,7 +40,7 @@ const LENS_DATA = {
   key: "sony-e-50mm-f18-oss",
   maker: "Sony",
   name: "SONY E 50mm f/1.8 OSS",
-  subtitle: "JP 2012-242690 A, Example 2 — SEL50F18 production correlation",
+  subtitle: "JP 2012-242690 A, Example 2 — SEL50F18 production match",
 
   catalog: {
     lensMounts: ["sony-fe"],

@@ -44,7 +44,7 @@ const LENS_DATA = {
   key: "minolta-af-24-105mm-f3-5-4-5-d",
   maker: "Minolta",
   name: "MINOLTA AF 24-105mm f/3.5-4.5 (D)",
-  subtitle: "JP 2000-187161 A, Example 3 — qualified production correlation",
+  subtitle: "JP 2000-187161 A, Example 3 — tentative production match",
   visible: true,
   catalog: {
     lensMounts: ["sony-a"],

@@ -68,7 +68,7 @@ const LENS_DATA = {
   key: "samyang-af-35mm-f2p8-fe",
   maker: "Samyang",
   name: "SAMYANG AF 35mm f/2.8 FE",
-  subtitle: "KR 10-2127451 B1 Example 4 — production correlation inferred",
+  subtitle: "KR 10-2127451 B1 Example 4 — inferred production match",
 
   catalog: {
     lensMounts: ["sony-fe"],

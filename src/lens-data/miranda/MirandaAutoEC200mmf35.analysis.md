@@ -93,9 +93,9 @@ No APO label is warranted. The model has no authored line-index or partial-dispe
 
 ## Focus Mechanism
 
-The optical focus status is **NO_INTERNAL_RECONSTRUCTION**. JP1976-114926 publishes one static Example 1 prescription and no close-focus spacing table, movable-group law, or alternate focus state. The data file therefore has no `var` entries and does not invent internal motion.
+JP1976-114926 publishes one static Example 1 prescription and no close-focus spacing table, no description of how a movable group travels, and no alternate focus state. The model therefore shows the lens at infinity only and moves no group.
 
-The Miranda manual gives a 2.5 m closest-focus distance for the production 200mm f/3.5. That figure is retained as product metadata, not converted into a patent focus model. The available sources are insufficient to determine whether the production optical unit moved rigidly, used an internal compensator, or followed another optical motion law. [2]
+The Miranda manual gives a 2.5 m closest-focus distance for the production 200mm f/3.5. That figure is recorded as product information, not converted into a modeled focus movement. The available sources are insufficient to determine whether the production optical unit moved rigidly, used an internal compensator, or followed another optical motion law. [2]
 
 ## Conditional Expressions
 

@@ -112,6 +112,7 @@ const LENS_FIELDS: Readonly<Record<keyof LensDataInput, true>> = {
   sourceOmissions: true,
   sdSource: true,
   sourceIssuer: true,
+  sourceLiterature: true,
   elementCount: true,
   groupCount: true,
   visible: true,
@@ -1042,6 +1043,7 @@ const V1_NAMES = {
     errata: "sourceErrata",
     omissions: "sourceOmissions",
     issuer: "sourceIssuer",
+    literature: "sourceLiterature",
   },
   focus: { closeFocusM: "closeFocusM", description: "focusDescription" },
   aperture: {
@@ -1102,6 +1104,7 @@ function recordSourceReads(sources: SourcePaths, source: Untyped): void {
     "omissions",
     "sdSource",
     "issuer",
+    "literature",
   ];
   recordReads(sources, "source", "", source, fields, V1_NAMES.source);
 }
@@ -1117,6 +1120,7 @@ function ingestSource(data: Untyped): Untyped {
   put(source, "omissions", data.sourceOmissions);
   put(source, "sdSource", data.sdSource);
   put(source, "issuer", data.sourceIssuer);
+  put(source, "literature", data.sourceLiterature);
   return source;
 }
 

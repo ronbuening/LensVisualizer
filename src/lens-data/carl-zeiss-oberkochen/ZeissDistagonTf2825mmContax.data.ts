@@ -30,7 +30,7 @@ const LENS_DATA = {
   key: "carl-zeiss-distagon-t-25f28-contax",
   maker: "Carl Zeiss Oberkochen",
   name: "CARL ZEISS DISTAGON T* 25mm f/2.8 (C/Y)",
-  subtitle: "DE 1 250 153 — Example 2 / Table II; C/Y correlation is strong but not manufacturer-confirmed",
+  subtitle: "DE 1 250 153 — Example 2 / Table II; strong C/Y match but not maker-confirmed",
 
   catalog: {
     lensMounts: ["contax-yashica"],

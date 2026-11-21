@@ -287,11 +287,11 @@ The manufacturer documents a lightweight focusing lens and stepping-motor drive.
 source provides a numerical finite-focus prescription for this selected example.
 [1, columns 7, 9–10; 2–3]
 
-The companion model uses NO_INTERNAL_RECONSTRUCTION. Its closeFocusM = 1.1 m is the retail
-minimum focus distance, carried as product metadata only. Each zoom station repeats its
-infinity gap at both focus endpoints, so there is no internal movement when the focus
-control changes. The model is not certified for the retail 0.2× close-up magnification,
-focus breathing, near-focus aberrations or the production focusing law.
+The model shows the lens at infinity focus only. The 1.1 m retail minimum focus distance
+is recorded as product information only. Each zoom station keeps its infinity spacing at
+both ends of the focus control, so no group moves when the focus control changes. The
+model is not certified for the retail 0.2× close-up magnification, focus breathing,
+near-focus aberrations or the production focusing law.
 
 The published zoom gaps are preserved as follows; each column is an infinity-focus state.
 

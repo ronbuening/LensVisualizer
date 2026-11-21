@@ -46,7 +46,7 @@ const LENS_DATA = {
   key: "leica-summicron-c-40mm-f2",
   maker: "Leica",
   name: "LEICA SUMMICRON-C 40mm f/2",
-  subtitle: "DE 2 222 892 A1 · Example 3 (A1 claim 4) · strong production correlation, not manufacturer-confirmed",
+  subtitle: "DE 2 222 892 A1 · Example 3 (A1 claim 4) · strong production match, not maker-confirmed",
 
   catalog: {
     lensMounts: ["leica-m"],

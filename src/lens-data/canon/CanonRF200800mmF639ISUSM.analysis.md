@@ -295,13 +295,13 @@ side from infinity toward close focus (¶0065). It also gives the telephoto-end 
 from the rounded prescription reproduce these as 2.360260 and 1.498446.
 
 The patent does **not** publish a close-focus L5 position, adjacent close-focus gaps, total focus travel, or a numerical
-close-focus prescription. Consequently the model status is `NO_INTERNAL_RECONSTRUCTION`. All authored focus pairs repeat
-the published infinity spacing at each zoom state; the viewer therefore has no internally reconstructed close-focus
-optical state.
+close-focus prescription. Consequently the model shows the lens at infinity focus only. At each zoom state, every
+spacing keeps the published infinity value at both ends of the focus control; the viewer therefore has no modeled
+close-focus optical state, and focus travel is not modeled.
 
-The data field `closeFocusM: 0.8` is production metadata, not an optical constraint on the prescription. Canon publishes
-0.8 m minimum focus at 200 mm, with larger minimum distances toward the long end. Those manufacturer values do not
-uniquely solve the position of L5, so no focus travel has been inferred from them.
+The model's 0.8 m close-focus figure is product information, not an optical constraint on the prescription. Canon
+publishes 0.8 m minimum focus at 200 mm, with larger minimum distances toward the long end. Those manufacturer values do
+not uniquely solve the position of L5, so no focus travel has been inferred from them.
 
 ## Chromatic Correction Evidence
 
@@ -405,7 +405,7 @@ no close-focus internal reconstruction exists.
 ## Sources / References
 
 1. Kohei Kimura, **"Zoom Lens and Imaging Apparatus Including the Same," US 2024/0134166 A1**, published April 25, 2024. First exemplary embodiment ¶¶0062–0065; First Numerical Example, PDF p.18 / printed p.6; Table 1, PDF p.20 /
-   printed p.8. Original patent PDF is included in the dossier. Machine-readable cross-reference:
+   printed p.8. The original patent PDF is among the sources consulted. Machine-readable cross-reference:
    <https://patents.google.com/patent/US20240134166A1/en>
 2. **US 2024/0231055 A9**, corrected publication for application 18/490,639, published July 11, 2024; used only for the
    corrected filing/priority metadata: <https://patents.google.com/patent/US20240231055A9/en>
@@ -416,7 +416,7 @@ no close-focus internal reconstruction exists.
    date: <https://global.canon/en/c-museum/product/rf530.html>
 5. Canon U.S.A., **November 2, 2023 lens announcement** — product announcement timing:
    <https://www.usa.canon.com/newsroom/2023/20231102-lens>
-6. Authoritative catalog evidence recorded in the dossier includes OHARA optical-glass tables and 2023 pocket catalog,
+6. Authoritative catalog sources consulted here include OHARA optical-glass tables and 2023 pocket catalog,
    SCHOTT optical-glass data, HOYA cross-reference and TAFD40-W data, HIKARI optical-glass catalog, SUMITA optical-glass
    data, and the CDGM optical-glass database. These sources support coordinate compatibility only; they do not establish
    Canon's glass supplier.
@@ -437,7 +437,7 @@ Glass-family/APD inferences are display annotations, not additional patent measu
 
 ## 2026-10-30 — Reused source coverage and current runtime follow-up
 
-The complete shape-and-glass inspection dated **2026-09-25** is reused for the unchanged prescription. A canonical comparison against its reviewed raw data confirms identical source radii, thicknesses, 17 media, all 29 surfaces, clear caps, three zoom stations and controls after the intervening schema migration; only normalized example provenance differs. This is not a new whole-lens original-PDF inspection. The current file retains 17 qualified catalog curves, zero per-lens spectral overrides and four explicitly inferred APD annotations. The earlier chemistry-class wording is now explicitly a conditional catalog comparison, with historical supplier, melt and composition unresolved.
+The complete shape-and-glass inspection dated **2026-09-25** is reused for the unchanged prescription. A canonical comparison against its reviewed raw data confirms identical source radii, thicknesses, 17 media, all 29 surfaces, clear caps, three zoom stations and controls after the intervening data-format migration; only normalized example provenance differs. This is not a new whole-lens original-PDF inspection. The current file retains 17 qualified catalog curves, zero per-lens spectral overrides and four explicitly inferred APD annotations. The earlier chemistry-class wording is now explicitly a conditional catalog comparison, with historical supplier, melt and composition unresolved.
 
 A narrow source-metadata check of **First Numerical Example**, PDF page 18 / printed page 6 of the same A1 original, restores `catalog.focalLengthMm.design` to its printed 203.00/776.00 mm endpoints. Computed EFLs remain 203.006060/390.814057/776.180743 mm and do not replace those source metadata values. No optical field, aperture authority, stop, cam or historical review date changes. The existing semi-diameters remain those of the September review; its 600 ppi viewing does not imply extra detail beyond the source's native 300 ppi raster.
 

@@ -36,7 +36,7 @@ const LENS_DATA = {
   maker: "Carl Zeiss Oberkochen",
   name: "CARL ZEISS PLANAR 80mm f/2.8 (6×6)",
   subtitle:
-    "US 2,724,994 Example II — strong five-element 6×6 Planar 2.8/80 correlation; not manufacturer-confirmed patent attribution",
+    "US 2,724,994 Example II — strong five-element 6×6 Planar 2.8/80 match; not maker-confirmed patent attribution",
 
   catalog: {
     lensMounts: ["fixed-lens-camera"],

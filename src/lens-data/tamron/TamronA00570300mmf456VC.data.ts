@@ -8,7 +8,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * All spherical. Source stop13 is modeled flat; no plate, dummy plane or fabricated VC decenter.
  * Source nd/vd only; vendor-neutral classes resolve17 qualified compatible curves, without
  * production supplier/melt or measured partial-dispersion attribution.
- * NO_INTERNAL_RECONSTRUCTION: identical infinity/close zoom pairs, production MOD1.5m metadata only.
+ * Focus: infinity only; identical infinity/close zoom pairs; production MOD 1.5 m is product information only.
  * D5/D12/D18/BF retain all3 source states and D18 reversal. Marketing70–300/f4–5.6 remains separate.
  * Printed FNO4.1/4.83/5.85 admits paraxial fixed-iris midpoint13.9203457mm; authored nominal values
  *4.1218709542/4.8269570055/5.8526252296 retain it. Real iris14.0201mm gives f4.122/4.838/5.875.
@@ -26,7 +26,7 @@ const LENS_DATA = {
   key: "tamron-a005-70-300-f4-5-6-vc",
   maker: "Tamron",
   name: "TAMRON SP 70-300mm f/4-5.6 Di VC USD",
-  subtitle: "US 8,228,605 B2 Example 2 — A005 correlation",
+  subtitle: "US 8,228,605 B2 Example 2 — A005 match",
 
   catalog: {
     lensMounts: ["canon-ef", "nikon-f", "sony-a"],
@@ -322,7 +322,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 1.5,
     description:
-      "NO_INTERNAL_RECONSTRUCTION: Example 2 publishes infinity-focus zoom spacings only. Tamron's 1.5 m production MOD is retained as metadata; no internal close-focus motion is modeled.",
+      "Infinity focus only. Example 2 publishes infinity-focus zoom spacings only, so focus travel is not modeled; zoom movement is. Tamron's 1.5 m minimum object distance is product information.",
   },
 
   gaps: {

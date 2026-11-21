@@ -4,15 +4,15 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ╔════════════════════════════════════════════════════════════════════════════╗
  * ║ LENS DATA — SCHACHT TRAVENAR 90mm f/2.8                                ║
  * ╠════════════════════════════════════════════════════════════════════════════╣
- * ║ Source: US 2,721,501, sole numerical "Example" (job-card Example 1).    ║
+ * ║ Source: US 2,721,501, sole numerical "Example".                            ║
  * ║ Four elements / three groups; all seven refracting surfaces spherical.   ║
- * ║ Production correlation: strong inferred match, not manufacturer-confirmed.║
+ * ║ Product match: strong but inferred, not manufacturer-confirmed.            ║
  * ║                                                                            ║
  * ║ SOURCE CORRECTION                                                         ║
  * ║   The patent table prints r2 = -181.91. The implemented model uses       ║
  * ║   r2 = +181.91 because that single sign change reproduces both the        ║
  * ║   patent's f = 100 normalization and its printed 5.14 curvature identity.║
- * ║   The raw printed sign remains preserved in the Stage 2 evidence dossier.║
+ * ║   The analysis records the printed sign.                                   ║
  * ║                                                                            ║
  * ║ SCALING                                                                   ║
  * ║   The corrected f = 100 source prescription is uniformly scaled x0.9.    ║
@@ -40,10 +40,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║   independently computed infinity paraxial BFD = 42.9293644880 mm.       ║
  * ║                                                                            ║
  * ║ FOCUS                                                                     ║
- * ║   NO_INTERNAL_RECONSTRUCTION. Manufacturer literature gives 1 m to       ║
- * ║   infinity, but neither the patent nor retained manufacturer evidence     ║
- * ║   defines an internal finite-focus spacing law. closeFocusM is therefore ║
- * ║   marketed metadata only; no focus var is authored.                      ║
+ * ║   Infinity only. Schacht literature gives a 1 m to infinity range, but     ║
+ * ║   neither the patent nor the maker's literature gives the close-focus      ║
+ * ║   spacings. closeFocusM = 1.0 is the product figure; focus travel is       ║
+ * ║   not modeled.                                                             ║
  * ║                                                                            ║
  * ║ GLASS                                                                     ║
  * ║   The patent publishes nd/Vd only. Class labels below are catalog-derived ║
@@ -56,7 +56,7 @@ const LENS_DATA = {
   key: "schacht-travenar-90f28",
   maker: "Schacht",
   name: "SCHACHT TRAVENAR 90mm f/2.8",
-  subtitle: "US 2,721,501 sole example — strong inferred production correlation",
+  subtitle: "US 2,721,501 sole example ×0.9 — likely production match, not maker-confirmed",
 
   catalog: {
     lensMounts: ["exakta"],
@@ -147,7 +147,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 1.0,
     description:
-      "NO_INTERNAL_RECONSTRUCTION — manufacturer literature specifies 1 m to infinity, but no internal finite-focus spacing law is published; the fixed patent prescription is retained without focus var.",
+      "Infinity focus only. Schacht gives a 1 m to infinity focusing range, but neither the patent nor the maker's literature gives the close-focus spacings, so focus travel is not modeled.",
   },
 
   aperture: { nominalFNumber: 2.8, fStops: [2.8, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22 },

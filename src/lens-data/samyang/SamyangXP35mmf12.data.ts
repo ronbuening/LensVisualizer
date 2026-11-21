@@ -59,7 +59,7 @@ const LENS_DATA = {
   key: "samyang-xp-35mm-f1p2",
   maker: "Samyang",
   name: "SAMYANG XP 35mm f/1.2",
-  subtitle: "KR 10-2077265 B1 Example 3 — production-lens correlation inferred from Samyang specifications",
+  subtitle: "KR 10-2077265 B1 Example 3 — inferred production match from Samyang specifications",
 
   catalog: {
     lensMounts: ["canon-ef"],

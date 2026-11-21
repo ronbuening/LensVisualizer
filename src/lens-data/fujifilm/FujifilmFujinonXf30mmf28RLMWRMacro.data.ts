@@ -26,7 +26,7 @@ const LENS_DATA = {
   key: "fujifilm-fujinon-xf-30mm-f28-r-lm-wr-macro",
   maker: "Fujifilm",
   name: "FUJIFILM FUJINON XF 30mm f/2.8 R LM WR Macro",
-  subtitle: "CN 116500768 A Example 1 - strong production correlation; not manufacturer-confirmed",
+  subtitle: "CN 116500768 A Example 1 - strong production match; not maker-confirmed",
 
   catalog: {
     lensMounts: ["fujifilm-x"],

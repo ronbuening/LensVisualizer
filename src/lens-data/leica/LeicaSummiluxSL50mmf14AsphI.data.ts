@@ -49,7 +49,7 @@ const LENS_DATA = {
   key: "leica-summilux-sl-50mm-f14-asph-i",
   maker: "Leica",
   name: "LEICA SUMMILUX-SL 50mm f/1.4 ASPH. I",
-  subtitle: "EP 3 136 147 A1 · Example 1 · original 2016/2017-generation correlation (strong inference)",
+  subtitle: "EP 3 136 147 A1 · Example 1 · original 2016/2017-generation production match (strong inference)",
 
   catalog: {
     lensMounts: ["l-mount"],

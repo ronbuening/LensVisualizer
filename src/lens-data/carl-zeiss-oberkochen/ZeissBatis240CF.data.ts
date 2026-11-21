@@ -32,7 +32,7 @@ const LENS_DATA = {
   key: "zeiss-batis-40mm-f2-cf",
   maker: "Carl Zeiss Oberkochen",
   name: "ZEISS BATIS 40mm f/2 CF",
-  subtitle: "JP 2019-191502 A, Example 1 — Tamron patent; research correlation with ZEISS Batis 2/40 CF",
+  subtitle: "JP 2019-191502 A, Example 1 — Tamron patent; likely production match with ZEISS Batis 2/40 CF",
 
   catalog: {
     lensMounts: ["sony-fe"],

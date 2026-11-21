@@ -49,7 +49,7 @@ const LENS_DATA = {
   key: "fujifilm-fujinon-xf-27mm-f28",
   maker: "Fujifilm",
   name: "FUJIFILM FUJINON XF 27mm f/2.8",
-  subtitle: "US 2016/0011404 A1 · Example 5 · production correlation unconfirmed by manufacturer",
+  subtitle: "US 2016/0011404 A1 · Example 5 · production match, not maker-confirmed",
 
   catalog: {
     lensMounts: ["fujifilm-x"],

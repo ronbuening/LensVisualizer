@@ -51,7 +51,7 @@ const LENS_DATA = {
   maker: "Leica",
   name: "LEICA SUMMILUX-M 35mm f/1.4",
   subtitle:
-    "FR 1.233.449 / US 2,975,673 Example 1 — strong correlation to the 1961 Summilux-M 35 f/1.4; attribution not manufacturer-confirmed",
+    "FR 1.233.449 / US 2,975,673 Example 1 — strong match to the 1961 Summilux-M 35 f/1.4; attribution not maker-confirmed",
 
   catalog: {
     lensMounts: ["leica-m"],

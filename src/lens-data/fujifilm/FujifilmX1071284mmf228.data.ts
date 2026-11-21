@@ -13,8 +13,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ Zoom variable gaps: DD3, DD9, DD19, and DD21 (G4 to the PP plate in `rearPlates`).                   ║
  * ║ DD9 moves the stop with G3 while preserving the patent's fixed 0.85 mm STO-to-S11 spacing.           ║
  * ║ G2 and G4 reverse direction around the middle state; all three published positions are retained.    ║
- * ║ Focus status: NO_INTERNAL_RECONSTRUCTION. The patent publishes infinity-focus zoom states only.      ║
- * ║ Every focus pair is therefore identical; no close-focus group motion is invented.                    ║
+ * ║ Focus: infinity only. The patent publishes infinity-focus zoom states only.                          ║
+ * ║ Every focus pair is therefore identical; focus travel is not modeled.                                ║
  * ║                                                                                                      ║
  * ║ No uniform scale was applied. Marketing focal length/aperture fields remain separate from the        ║
  * ║ patent/computed design values. The stop radius is derived from the design f-number at wide and held  ║
@@ -44,7 +44,7 @@ const LENS_DATA = {
   key: "fujifilm-x10-7-1-28-4-f2-2-8",
   maker: "Fujifilm",
   name: "FUJIFILM SUPER EBC FUJINON 7.1-28.4mm f/2-2.8 (Fujifilm X10)",
-  subtitle: "US 2014/0133036 A1 Example 1 — strong X10 correlation; not asserted as the exact production prescription",
+  subtitle: "US 2014/0133036 A1 Example 1 — strong X10 match; not asserted as the exact production prescription",
 
   catalog: {
     lensMounts: ["fixed-lens-camera"],
@@ -355,7 +355,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.5,
     description:
-      "NO_INTERNAL_RECONSTRUCTION: only published infinity-focus zoom states are modeled. The required close-focus metadata uses the X10 ordinary wide-angle 0.50 m limit; the separate 0.01 m Super Macro mode is not reconstructed.",
+      "Infinity focus only. The patent publishes infinity-focus zoom states only, so focus travel is not modeled; zoom movement is. The 0.50 m figure is the X10's ordinary wide-angle focusing limit; the separate 0.01 m Super Macro mode is not modeled.",
   },
 
   gaps: {

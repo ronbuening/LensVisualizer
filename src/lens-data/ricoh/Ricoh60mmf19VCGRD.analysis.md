@@ -128,9 +128,9 @@ Two historical naming points are intentionally preserved. `L-BSL7` remains the h
 
 ## Focus Mechanism
 
-The modeled focus status is `NO_INTERNAL_RECONSTRUCTION`. JP 2010-164839 A publishes the Example 4 infinity prescription but does not provide a focus-spacing table, moving-group trajectory, object-distance series, or magnification series from which an internal focus mechanism can be uniquely reconstructed.
+JP 2010-164839 A publishes the Example 4 infinity prescription but does not provide a focus-spacing table, moving-group trajectory, object-distance series, or magnification series from which an internal focus mechanism could be uniquely worked out. The model therefore shows the lens at infinity only.
 
-Accordingly, the final data contain no focus `var` entries and no modeled close-focus optical state. The `closeFocusM = 0.01` metadata value comes from Ricoh's production specification for macro shooting distance, measured from the front of the lens. It is a product-level shooting-distance specification only; it is not treated as a principal-plane object distance and is not used to infer a group displacement.
+Accordingly, no spacing in the model changes with focus, and there is no modeled close-focus optical state. The 0.01 m close-focus figure comes from Ricoh's production specification for macro shooting distance, measured from the front of the lens. It is a product-level shooting-distance specification only; it is not treated as a principal-plane object distance and is not used to infer a group displacement.
 
 No claim is therefore made that the production lens uses unit focus, inner focus, rear focus, or a particular floating mechanism. Any such assignment would require an additional source that constrains the actual moving optical group or groups.
 

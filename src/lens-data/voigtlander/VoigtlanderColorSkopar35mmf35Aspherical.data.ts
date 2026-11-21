@@ -56,7 +56,7 @@ const LENS_DATA = {
   key: "voigtlander-color-skopar-vm-35mm-f35-aspherical",
   maker: "Voigtländer",
   name: "VOIGTLÄNDER COLOR-SKOPAR 35mm f/3.5 Aspherical",
-  subtitle: "JP 2026-121744 A Example 3 — production correlation; patent scale retained",
+  subtitle: "JP 2026-121744 A Example 3 — production match; patent scale retained",
 
   catalog: {
     lensMounts: ["leica-m"],

@@ -1,22 +1,12 @@
 ## Source Reference and Design Identification
 
-**Patent:** Not applicable; the source is a published technical book.
-
-**Maker grouping:** KMZ (Krasnogorsk Mechanical Plant), through the documented Industar-50 design association.
+**Source:** А. Н. Иванов (A. N. Ivanov), *Проектирование узлов оптико-электронных приборов. Методические указания к выполнению курсового проекта* (Saint Petersburg: ITMO, 2013), Appendix 1.2, item 1, Variant 2, p. 51 (schematic p. 50)
 
 **Designer:** M. D. Maltsev at KMZ is credited for the Industar-50 family; authorship of this exact teaching prescription is not independently established.
 
-**Source author:** А.Н. Иванов (A. N. Ivanov).
+**Manufacturer:** KMZ (Krasnogorsk Mechanical Plant), through the documented Industar-50 design association.
 
-**Publisher:** ITMO, Saint Petersburg.
-
-**Published:** 2013.
-
-**Title:** Проектирование узлов оптико-электронных приборов. Методические указания к выполнению курсового проекта.
-
-**Embodiment analyzed:** Appendix 1.2, item 1, Industar Variant 2; PDF/printed p.51, with the schematic on p.50.
-
-**Model:** KMZ INDUSTAR 52.39mm f/3.56 (ITMO 2013 Variant 2).
+**Source dated:** 2013
 
 This analysis concerns the fixed teaching prescription in Ivanov's book, supplemented by explicitly identified catalog
 glass coordinates. The book author and publisher are not attributed as the lens inventor or manufacturer. Its numerical
@@ -35,6 +25,23 @@ The KMZ archive credits the Industar-50 calculation to M. D. Maltsev at KMZ. The
 identifies an Industar-50 from the OPAL library and gives the same radii and internal spacings as Appendix Variant 2.
 These sources support the KMZ maker grouping and Industar family branding. They do not establish a particular
 production Industar-50 or Industar-50-2 prescription, factory variant, mount, production date or image format.
+
+## Reconstruction Status
+
+This is a literature reconstruction: the prescription is a worked example in a teaching book, not a patent embodiment
+or a factory document, so the catalog keeps it in its literature category and off the relationship maps.
+
+- **Printed by the book (p. 51):** every radius (r2 = ∞ is drawn as flat), every thickness and air space up to the last
+  lens, the clear diameters, the 11.8 mm diaphragm, the glass grades ТК14, ЛФ5 and ОФ1, and the 52.39 mm focal length.
+  These values are used unscaled.
+- **Not printed:** the final spacing to the image, and any refractive index or wavelength. The schematic on p. 50 fixes
+  the arrangement, not a drawing scale.
+- **Added by this model:** the last gap is the computed d-line paraxial back focus, 43.533 mm; the 5.05 mm space after
+  surface 4 is split 2.30 + 2.75 mm around the stop; the glass coordinates are the PG&F catalog values for the named
+  grades (with the coordinate-exact CDGM QF3 curve for LF5's dispersion); the f-number follows from the printed
+  diaphragm (see below); and the clear semi-diameters are half the printed clear diameters.
+- **Printed against modelled:** 52.39 mm against the traced 52.391 mm. The book's adjacent f/2.9 worked example is not
+  reproduced by this variant's stop and is kept as context only.
 Its f/3.565 label denotes the calculated aperture
 convention explained below, not a manufacturer's specification.
 
@@ -127,13 +134,13 @@ does not substantiate apochromatic correction or secondary-spectrum performance.
 ## Focus Mechanism
 
 Only one fixed prescription is represented, evaluated for an object at infinity. No source-backed internal motion law,
-finite-focus spacing station, focus travel or production minimum focus distance is available for this selected variant.
-The model therefore uses NO_INTERNAL_RECONSTRUCTION and has no variable air gaps. It does not infer a focusing mechanism
-from a related production lens.
+close-focus spacing station, focus travel or production minimum focus distance is available for this selected variant.
+The model therefore shows the lens at infinity only, and no spacing changes with focus. It does not infer a focusing
+mechanism from a related production lens.
 
-The data's `closeFocusM = 0` is an unavailable-value placeholder, not a physical zero-distance minimum focus. Changing the
-application's focus parameter leaves all optical spacings unchanged. This fixed model makes no claim about close-focus
-aberrations, magnification or breathing.
+The minimum focus distance stored in the model is 0 only as a placeholder for an unavailable value, not a physical
+zero-distance minimum focus. Moving the focus control leaves all optical spacings unchanged. This fixed model makes no
+claim about close-focus aberrations, magnification or breathing.
 
 ## Verification Summary and Limits
 

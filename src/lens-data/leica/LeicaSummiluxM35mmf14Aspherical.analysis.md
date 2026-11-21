@@ -29,9 +29,9 @@ Several independent identifiers converge:
 5. The patent's published 64° field, 0.7 m close-range statement, and 1:17.5 magnification agree with the historical
    Leica handbook values.
 
-No Leica source in the dossier explicitly states that order code 11873 implements US 5,161,060. The data therefore
-labels the correlation as inferred. The historical handbook leaf carries the print code 12/89; that code is retained as
-a document marking and is not treated as a definitive launch date.
+No Leica source found explicitly states that order code 11873 implements US 5,161,060. The data therefore labels the
+correlation as inferred. The historical handbook leaf carries the print code 12/89; that code is retained as a document
+marking and is not treated as a definitive launch date.
 
 The marketed focal length is 35 mm. Recalculation from the final implemented prescription gives an e-line Gaussian EFL
 of **35.411722 mm**. The marketed maximum aperture is f/1.4; the modeled f-number is also 1.4, but that equality results
@@ -179,19 +179,19 @@ within the limits of the patent's own published aberration plots and the retaine
 
 ## Focus Mechanism
 
-The implemented focus status is **NO_INTERNAL_RECONSTRUCTION**. The patent publishes only one numerical prescription.
-It states that the preferred embodiment retains image quality at close range down to **0.7 m** and gives a linear
-magnification of about **1:17.5**, but it provides no second spacing table, moving-group identity, movement direction, or
-other constraints sufficient to solve an internal optical motion law. [US 5,161,060, PDF p. 6, printed p. 4.]
+The model shows the lens at infinity only. The patent publishes only one numerical prescription. It states that the
+preferred embodiment retains image quality at close range down to **0.7 m** and gives a linear magnification of about
+**1:17.5**, but it provides no second spacing table, moving-group identity, movement direction, or other constraints
+sufficient to solve an internal optical motion law. [US 5,161,060, PDF p. 6, printed p. 4.]
 
 The historical Leica system handbook independently describes a **non-rotating focusing mount** and gives the same
 infinity-to-0.7 m range and approximately 1:17.5 magnification. That mechanical description still does not determine
-which optical group or groups move internally. Accordingly, `var` is empty in the data file, and the 0.7 m value is a
-published performance endpoint rather than a reconstructed close-focus prescription.
+which optical group or groups move internally. Accordingly, no spacing in the model changes with focus, and the 0.7 m
+value is a published performance endpoint rather than a modeled close-focus prescription.
 
 The available evidence therefore does not justify classifying the optical focusing scheme as unit focus, inner focus,
 rear focus, or floating focus. Any such classification would require mechanism-constraining evidence not present in the
-selected patent or manufacturer material used for this dossier.
+selected patent or manufacturer material used here.
 
 ## Aspherical Surfaces
 

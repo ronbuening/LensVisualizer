@@ -42,7 +42,7 @@ const LENS_DATA = {
   key: "viltrox-af-23mm-f14",
   maker: "Viltrox",
   name: "VILTROX AF 23mm f/1.4",
-  subtitle: "CN 211826700 U, Example 1 — qualified production correlation",
+  subtitle: "CN 211826700 U, Example 1 — tentative production match",
 
   catalog: {
     lensMounts: ["sony-fe", "fujifilm-x", "canon-ef-m", "nikon-z"],

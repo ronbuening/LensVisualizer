@@ -56,7 +56,7 @@ const LENS_DATA = {
   key: "kinoptik-super-tegea-19mm-f19-fisheye",
   maker: "Kinoptik",
   name: "KINOPTIK SUPER-TEGEA 1.9mm f/1.9 FISHEYE",
-  subtitle: "US 3,037,426 — Example 3; strong production correlation, not manufacturer-confirmed example attribution",
+  subtitle: "US 3,037,426 — Example 3; strong production match, not maker-confirmed example attribution",
 
   catalog: {
     lensMounts: ["c-mount", "alpa"],

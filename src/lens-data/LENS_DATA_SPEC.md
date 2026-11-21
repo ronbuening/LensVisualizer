@@ -163,7 +163,7 @@ export default LENS_DATA;
 | `key` | `string` | required | Unique identifier and catalog key, e.g. `"nokton-50f1"`. Lowercase `a-z`/`0-9` words separated by single hyphens, with no periods or other punctuation: the key becomes the `/lens/` URL and the `cfg` query value, so write f-numbers like `f14` or `f35-56`. |
 | `maker` | `string \| null` | inferred | Canonical maker-page name (`"Nikon"`, `"Voigtländer"`), used for maker pages and SEO. Left out, it is inferred from `name` by prefix matching. `null` records an unconfirmed maker: the lens goes to the Unattributed category and the SEO manufacturer claim is omitted. |
 | `name` | `string` | required | Display name, following the convention below. |
-| `subtitle` | `string` | | Compact patent / design-correlation context. The UI header uses it when structured patent metadata is unavailable, and several corpus reports read it for source matching. The transcribed example's home is `source.example`; a subtitle that names an example must name the same one, and a sole example's subtitle may cite its table but not number the example (corpus sweep). |
+| `subtitle` | `string` | | Compact patent / design-match context, in plain words because it is public (`strong production match, not maker-confirmed`, not `strong production correlation`). The UI header uses it when structured patent or literature metadata is unavailable, and several corpus reports read it for source matching. The transcribed example's home is `source.example`; a subtitle that names an example must name the same one, and a sole example's subtitle may cite its table but not number the example (corpus sweep). |
 | `visible` | `boolean` | `true` | `false` hides the lens from the catalog without removing its file. |
 | `publishedAt` | `string` | Git-derived | Explicit UTC ISO timestamp (`YYYY-MM-DDTHH:mm:ssZ`) for a newly published replacement model. It overrides inherited file publication history in recent lenses, feeds and SEO; last-modified stays Git-derived but cannot precede publication. Omit for ordinary additions and routine corrections. |
 
@@ -187,6 +187,13 @@ views. Keep it normalized even when the product's official styling varies by sou
 For a historical numerical reconstruction whose focal/aperture ratings remain unresolved, identify the patent
 example in the title instead of a focal length and f-number the example does not reproduce. Keep the literal source
 ratings and computed behavior explicitly distinguished in the specs and source notes.
+
+A [literature reconstruction](#literature-reconstructions-sourceliterature) names the design and its printed aperture,
+then the work and figure in parentheses. When the work normalizes every lens to one focal length (von Rohr's f = 100),
+the name carries no focal length, since that scale describes no product; a work that prints its example at real scale
+keeps the printed focal length (`KMZ INDUSTAR 52.39mm f/3.56 (Ivanov 2013, Variant 2)`). The maker prefix follows the rules above when `maker` is set; with `maker: null` the name opens
+with the designer or design type. Examples: `VOIGTLÄNDER PETZVAL PORTRAIT f/3.4 (von Rohr 1899, Fig. 100)`,
+`FRENCH LANDSCAPE f/12.1 (von Rohr 1899, Fig. 54)`.
 
 ### Catalog (`catalog`)
 
@@ -272,13 +279,14 @@ catalog: {
 | `omissions` | `SourceOmission[]` | Missing source definitions, terms or equations and their modeled assumptions; see [Surface-definition omissions](#surface-definition-omissions-sourceomissions). Optional; absent makes no claim. |
 | `sdSource` | `"source-table" \| "figure-measured" \| "heuristic"` | Evidence for the lens's clear semi-diameters; see [Clear-aperture provenance](#clear-aperture-provenance-sourcesdsource). Optional; absent means not declared. |
 | `issuer` | `string` | Non-patent manufacturer sources only (a factory optical data sheet, a maker's drawing): the organization that issued the document, as the historical legal entity at its date, in the catalog's canonical assignee form (`"VEB Carl Zeiss Jena"` for a 1958 Jena sheet). Never beside `patentNumber`. |
+| `literature` | `LiteratureSource` | The published secondary work that prints the prescription; see [Literature reconstructions](#literature-reconstructions-sourceliterature). Never beside patent metadata or `issuer`. |
 
 Patent-backed lens files declare `patentNumber`, `authors` and `assignees` together. Synthetic, reference or
 independently measured prescriptions with no patent source leave all three out. A prescription transcribed from a
 manufacturer's own document records its issuer in `issuer`; the universal relationship map groups the model under that
 organization instead of an undated catalog-maker hub. Take the issuer from the document and its date, not from the
 lens maker alone. These structured fields supplement
-`subtitle`: keep design-correlation prose in `subtitle`, and the example in `source.example`, not in `patentNumber`.
+`subtitle`: keep design-match prose in `subtitle`, and the example in `source.example`, not in `patentNumber`.
 The UI displays `patentNumber`, then the example, then the names in `authors` (`US 10,095,009 B2, Example 6 — Hideki
 Sakai`); it uses `subtitle` only when the structured fields are unavailable.
 
@@ -327,6 +335,73 @@ source: {
 - Build metadata generation checks curated historical assignee aliases and legal-form start years derived from the
   corporate-history registry's successor dates, plus a short list of curated overrides. These checks flag impossible
   or non-canonical values for source review; they never infer or rewrite an assignee.
+
+### Literature reconstructions (`source.literature`)
+
+A prescription printed in published secondary literature — a book, treatise, journal article or teaching text that is
+neither a patent nor the manufacturer's own document — is a **literature reconstruction**. Its file records the work in
+`source.literature`, lives in `src/lens-data/literature/`, and carries no patent metadata (`patentNumber`, `example`,
+`patentYear`, `authors`, `assignees`) and no `issuer`. The field defines the category; the folder mirrors it, and a
+corpus check keeps the two together. The relationship maps leave literature reconstructions out; the lens header shows
+the citation where a patent line would go, and the lens library's Source filter lists them as published literature.
+
+| Member | Type | Description |
+| --- | --- | --- |
+| `authors` | `string[]` | Required. The work's authors in title-page order, one complete personal name each, romanized, without honorifics. |
+| `title` | `string` | Required. The title as printed, in its original language. |
+| `year` | `number` | Required. Year of the edition used. |
+| `publisher`, `place` | `string` | The publisher and place of publication, as printed. |
+| `locator` | `string` | Required. Where the prescription is printed, as the work numbers it: `"p. 250, Fig. 100"`. |
+| `url` | `string` | An absolute `https` link to the scan used, page-anchored where possible. |
+| `after` | `string` | The earlier work the publication says it took the data from, when it names one: `"J. M. Eder (1893)"`. |
+
+```ts
+source: {
+  sdSource: "figure-measured",
+  literature: {
+    authors: ["Moritz von Rohr"],
+    title: "Theorie und Geschichte des photographischen Objektivs",
+    year: 1899,
+    publisher: "Julius Springer",
+    place: "Berlin",
+    locator: "p. 250, Fig. 100",
+    url: "https://www.e-rara.ch/download/pdf/4637944.pdf#page=6",
+  },
+},
+```
+
+The citation's authors wrote the book, not the lens: never copy them into `authors`, and name the designer and any
+manufacturer in the analysis. A patent the work mentions is related context for the analysis, not the source of the
+numbers; when the patent prints the same prescription, transcribe the patent instead.
+
+Authoring rules for the rest of the file:
+
+- **`maker`**: the firm the work, or other cited evidence, credits with making the design; `null` when none is
+  established. The work's author is never the maker.
+- **`key`**: `<maker-or-designer>-<design>-<design year>-<work author>-<work year>`, e.g.
+  `voigtlander-petzval-portrait-1840-von-rohr-1899`. No `-d-line`, `-reference` or `reference-` tokens; a `reference-`
+  key would file the lens as a debug fixture.
+- **`name`**: design, printed aperture, then the work and figure; see
+  [Display Name Convention](#display-name-convention).
+- **`subtitle`**: design context only ("Thicknesses and rear air gap assumed by von Rohr"). The header shows the
+  citation in its place.
+- **`catalog.specs`**: the element/group count, then the work's scale and spectral limit where they apply
+  (`"NORMALIZED f = 100 mm"` for a normalized work, `"nD ONLY"`). Leave out words the citation already carries ("HISTORICAL REFERENCE").
+- **`catalog.focalLengthMm.design`** and **`catalog.fNumber.design`**: the focal length and aperture the work prints
+  (von Rohr's `100`), not a computed EFL; the traced EFL must still lie within the 0.8–1.25 window.
+- **`catalog.lensMounts`** and **`catalog.imageFormat`**: never set (the validator refuses them, and `marketing`
+  values), and no row in `agent_docs/lens-mount-format-backfill.md`. A normalized book prescription describes no
+  product.
+- **Indices**: a work that prints only nD — nineteenth-century sources give the Fraunhofer sodium D line — takes
+  `indexReference: "D"`, no `vd`, and `glass: "Unmatched (historical nD only, no dispersion published)"`. Add `vd`
+  only when the work defines its dispersion figure as (nD − 1)/(nF − nC); never take a modern catalog glass as a proxy.
+- **Values the work marks as assumed** (thicknesses, gaps, an index estimated from density, a distance measured from
+  its drawing) stay as printed. The analysis's reconstruction-status section names them; the file corrects only a
+  proven misprint, through `source.errata`.
+- **Rims**: `source.sdSource` is `"figure-measured"` when the clear radii come from the work's drawing by the
+  [figure procedure](../../agent_docs/patent-figure-sd-audit-procedure.md), `"heuristic"` otherwise. When the drawing
+  cannot pass the printed field angle, cap `projection.maxTraceFieldDeg` below it and state the printed angle in the
+  analysis rather than widening rims past the drawing.
 
 ### The transcribed example (`source.example`)
 
@@ -1004,7 +1079,7 @@ focus: {
 | `closeFocusM` | `number` | required | Close-focus distance in metres, object to image: where the close row (keyframe `1`) is paraxially in focus. A maker's different minimum focus distance goes in `catalog.closeFocusM.marketing`. |
 | `keyframes` | `number[]` | `[0, 1]` | Normalized focus coordinate of each authored thickness: `0` is infinity, `1` is `closeFocusM`. At least two, beginning at `0`, ending at `1`, strictly increasing. |
 | `step` | `number` | `0.004` | Focus slider step. |
-| `description` | `string` | | The focus mechanism, shown in the UI. |
+| `description` | `string` | | The focus mechanism, shown in the UI, in plain words. With no source close-focus data, say so (`Infinity focus only. The patent gives no close-focus spacings, so focus travel is not modeled.`), never an internal status code. |
 | `conjugates` | `ConjugateV2Input[]` | | Source-certified finite conjugates; see below. |
 | `published` | `number[]` | `[]` | On a prime: the focus keyframe indices (≥ 1) the source tabulates beyond infinity. A zoom's stations carry theirs. |
 
@@ -1776,7 +1851,7 @@ Code: `src/optics/prescription/validate/`.
 | Labels unique and not reserved; `R`, `d`, `sd` present; `sd` positive; `innerSd` non-negative and below `sd`; `rimCutDepthMm` positive, and not on the stop, an annular or diffractive surface, one with an `interaction` or a folded lens; `rimCutDepthSource` a non-empty string beside a `rimCutDepthMm`; `interaction` enums and normals; `diffractive` only on refracting surfaces; `stopPlacement` only on `STO`; exactly one `STO` | `validateSurfaces` (`schema.ts`) |
 | Element ids unique; `maxSdRatio` ≥ 1; `indexReference`, `apd` and `absorptionCoefficientPerMm` valid; no absorption on folded paths | `validateElements` (`schema.ts`) |
 | Every surface medium names an element, and every element is some surface's medium; asphere terms finite and known | `validateReferences` (`references.ts`) |
-| Patent metadata completeness, publication-number formatting, party-name rules and no inventor repeated as an assignee; `source.example` is `{ label, id }` with trimmed strings, `id` is what the label gives and `null` exactly for `"Sole example"`, it needs a patent number and does not repeat it; `source.issuer` is a trimmed, conventionally capitalized name and never stands beside a patent number | `validatePatentMetadata`, `validatePatentExample` (`patent.ts`) |
+| Patent metadata completeness, publication-number formatting, party-name rules and no inventor repeated as an assignee; `source.example` is `{ label, id }` with trimmed strings, `id` is what the label gives and `null` exactly for `"Sole example"`, it needs a patent number and does not repeat it; `source.issuer` is a trimmed, conventionally capitalized name and never stands beside a patent number; `source.literature` holds only its members, with `authors`, `title`, `year` and `locator`, person-name rules for `authors`, a whole `year` no later than the current one and an `https` `url`, and never stands beside patent metadata, `issuer`, `lensMounts`, `imageFormat` or a `marketing` focal length or f-number | `validatePatentMetadata`, `validatePatentExample` (`patent.ts`) |
 | `source.errata` entries | `validateSourceErrata` (`references.ts`) |
 | `source.omissions` kinds, bounded unique existing surface labels and trimmed, bounded notes; `source.sdSource` enum | Shared `sourceProvenanceIssues` (`src/types/sourceProvenanceSchema.ts`), called by `validateSourceProvenance` (`references.ts`) and the builder |
 | Element spans: both ends, in order; internal surfaces only an embedded stop or the folded exceptions | `validateSpans` (`references.ts`) |
@@ -2262,7 +2337,7 @@ the map below gives each of its fields' V2 paths.
 | `focalLengthMarketing`, `focalLengthDesign` | `catalog.focalLengthMm.marketing`, `.design` |
 | `apertureMarketing`, `apertureDesign` | `catalog.fNumber.marketing`, `.design` |
 | `closeFocusMarketing` | `catalog.closeFocusM.marketing` |
-| `patentNumber`, `patentYear`, `patentAuthors`, `patentAssignees`, `sourceErrata`, `sourceOmissions`, `sdSource`, `sourceIssuer` | `source.patentNumber`, `.patentYear`, `.authors`, `.assignees`, `.errata`, `.omissions`, `.sdSource`, `.issuer` |
+| `patentNumber`, `patentYear`, `patentAuthors`, `patentAssignees`, `sourceErrata`, `sourceOmissions`, `sdSource`, `sourceIssuer`, `sourceLiterature` | `source.patentNumber`, `.patentYear`, `.authors`, `.assignees`, `.errata`, `.omissions`, `.sdSource`, `.issuer`, `.literature` |
 | `surfaces[].nd` + `surfaces[].elemId` | `surfaces[].medium`: the element id, a `media` id, or left out for air (`elemId: 0`, `nd: 1`) |
 | an air surface with `nd ≠ 1` | an entry in `media` |
 | `elements[].fromSurface` / `toSurface` | `elements[].span: [from, to]` |

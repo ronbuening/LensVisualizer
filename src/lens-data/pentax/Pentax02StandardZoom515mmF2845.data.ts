@@ -55,7 +55,7 @@ const LENS_DATA = {
   key: "pentax-02-standard-zoom-5-15-f28-45",
   maker: "Pentax",
   name: "PENTAX-02 STANDARD ZOOM 5-15mm f/2.8-4.5",
-  subtitle: "US 8,824,059 B2 Example 1 — production correlation; constrained finite-focus reconstruction",
+  subtitle: "US 8,824,059 B2 Example 1 — production match; close focus modeled under constraints",
 
   catalog: {
     lensMounts: ["pentax-q"],

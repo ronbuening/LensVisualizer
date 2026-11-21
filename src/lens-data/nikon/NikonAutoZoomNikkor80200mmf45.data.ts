@@ -19,10 +19,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *   CONSTRAINED ZOOM RECONSTRUCTION solved for EFL = 126.4 mm, BFL = 40.0 mm, and D5 + D10 + D13 = 51.61 mm.
  * - D13 is non-monotonic, preserving the compensator reversal. The relay and image plane remain fixed.
  *
- * FOCUS STATUS — NO_INTERNAL_RECONSTRUCTION:
+ * FOCUS — INFINITY ONLY:
  * - The patent publishes infinity-focus zoom kinematics only. The production 1.8 m minimum focus distance is
- *   catalog metadata; all authored zoom var pairs are identical at infinity and close focus, so this file does
- *   not invent internal focusing motion.
+ *   product information; every zoom spacing pair is identical at infinity and close focus, so focus travel is
+ *   not modeled.
  *
  * STOP MODEL:
  * - The patent gives f/4.5 but no iris station or diameter. Exactly one inferred STO splits D18 at its midpoint,
@@ -309,9 +309,9 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 1.8,
     description:
-      "NO_INTERNAL_RECONSTRUCTION: the patent publishes infinity-focus zoom kinematics only. " +
-      "The production 1.8 m minimum focus distance is catalog metadata; all authored variable-gap pairs remain " +
-      "identical at infinity and close focus, so no close-focus optical motion is modeled.",
+      "Infinity focus only. The patent publishes infinity-focus zoom movement only, so every spacing stays at its " +
+      "infinity value at both ends of the focus control; focus travel is not modeled, zoom movement is. The " +
+      "production lens's 1.8 m minimum focus distance is product information.",
   },
 
   gaps: {

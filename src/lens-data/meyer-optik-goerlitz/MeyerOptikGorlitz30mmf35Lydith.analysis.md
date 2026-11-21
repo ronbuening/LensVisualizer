@@ -93,9 +93,9 @@ H-ZK1 was added from the [official CDGM datasheet](https://www.cdgmgd.com/webapp
 
 ## Focus Mechanism
 
-The focus disposition is **NO_INTERNAL_RECONSTRUCTION**. DE 1 794 971 supplies one nominal prescription and no finite-focus spacing table, moving-group description, or internal-focus kinematics. A production minimum-focus distance does not determine a unique internal motion law, so the data file contains no variable air-gap model and no synthetic close-focus optical state.
+The model shows the lens at infinity only and moves no group. DE 1 794 971 supplies one nominal prescription and no close-focus spacing table, moving-group description, or internal-focus movement. A production minimum-focus distance does not determine a unique internal motion law, so no spacing in the model changes with focus and no close-focus optical state is modeled.
 
-The `closeFocusM` value of **0.33 m** is manufacturer metadata for the historical preselection-aperture 1:3.5/30 variant selected for the catalog record. The 1964 Meyer brochure also contains a separate automatic-aperture 1:3.5/30 row with **0.40 m** minimum focus. [3] The selected 0.33 m row is marked for EXAKTA Varex, EXA I, EXA II, Pentacon/Praktica, and Praktina; the corresponding current taxonomy ids are `exakta`, `m42`, and `praktina`. The 0.33 m value therefore identifies the selected mechanical production variant; it is not a patent-derived optical constraint and is not used to move any surface in the model.
+The **0.33 m** close-focus figure is manufacturer product information for the historical preselection-aperture 1:3.5/30 variant selected for the catalog record. The 1964 Meyer brochure also contains a separate automatic-aperture 1:3.5/30 row with **0.40 m** minimum focus. [3] The selected 0.33 m row is marked for EXAKTA Varex, EXA I, EXA II, Pentacon/Praktica, and Praktina; the corresponding current taxonomy ids are `exakta`, `m42`, and `praktina`. The 0.33 m value therefore identifies the selected mechanical production variant; it is not a patent-derived optical constraint and is not used to move any surface in the model.
 
 ## Conditional Expressions
 

@@ -60,7 +60,7 @@ const LENS_DATA = {
   key: "angenieux-dem-180mm-f23-apo",
   maker: "P. Angénieux",
   name: "P. ANGÉNIEUX DEM 180mm f/2.3 APO",
-  subtitle: "US 4,726,669, Example 1 — uniformly scaled ×1.8; strong production correlation",
+  subtitle: "US 4,726,669, Example 1 — uniformly scaled ×1.8; strong production match",
 
   catalog: {
     lensMounts: ["canon-fd", "contax-yashica", "leica-r", "nikon-f"],

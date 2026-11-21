@@ -33,7 +33,7 @@ const LENS_DATA = {
   key: "pentax-smc-da-14mm-f28-ed-if",
   maker: "Pentax",
   name: "PENTAX DA 14mm f/2.8 ED [IF]",
-  subtitle: "US 7,116,499 B2, Embodiment 4 — probable production correlation",
+  subtitle: "US 7,116,499 B2, Embodiment 4 — probable production match",
   catalog: {
     lensMounts: ["pentax-k"],
     imageFormat: "aps-c",

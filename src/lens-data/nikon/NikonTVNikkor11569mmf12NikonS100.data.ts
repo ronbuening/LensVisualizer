@@ -47,7 +47,7 @@ const LENS_DATA = {
   key: "nikon-tv-nikkor-115-69-f12-s100",
   maker: "Nikon",
   name: "NIKON TV-NIKKOR 11.5-69mm f/1.2 (Nikon S-100)",
-  subtitle: "US 4,437,733 Example 1 — strong S-100 correlation; patent mapping inferred",
+  subtitle: "US 4,437,733 Example 1 — strong S-100 match; patent mapping inferred",
 
   catalog: {
     lensMounts: ["fixed-lens-camera"],

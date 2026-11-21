@@ -880,7 +880,14 @@ need a scalar launch height should read `solve.yLaunch`; new analysis code shoul
 Bracket selection follows the launch domain: the object-plane solve first tries the interval around the
 paraxial seed; if it fails, it uses the expanding 96-sample scans. The bounding-sphere path starts with those scans.
 Scans retain the first adjacent sign change, in-scan convergence, and nearest valid sample on bracket failure.
-Within the chosen bracket, a shared refinement takes the first midpoint and keeps its half, then uses
+A scan restarts its sign comparison after a null sample, so a root between a clear sample and a clipped neighbour has
+no bracket, and the wider retries only resample a coarser subset of the same grid. When all four bounding-sphere scans
+fail, the solve revisits each recorded clear/clipped pair in scan order and halves toward the clipped side (at most 8
+steps per pair, 128 traces in all), never joining samples across a clipped point. The first sign change or
+in-tolerance midpoint becomes the bracket, and its refined launch must retrace to a finite stop height inside the
+field's tolerance; otherwise the solve returns `bracket-failed` with the nearest valid sample. Successful scans keep
+their traces and root. The object-plane stop trace does not check semi-diameters, so its scans have no clipped gaps
+to recover. Within the chosen bracket, a shared refinement takes the first midpoint and keeps its half, then uses
 Illinois regula falsi with a midpoint safeguard for an interpolation outside the open bracket. Acceptance remains
 `|stop height| < 1e-7 mm` or bracket width `< 1e-9 mm`, with a 30-iteration cap. A null first midpoint returns
 `paraxial-fallback`; a later null replays bisection from the original bracket and returns its result. Iterations

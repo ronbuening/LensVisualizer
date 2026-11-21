@@ -101,16 +101,16 @@ No patent C/F/g line indices or partial-dispersion measurements are supplied for
 ## Focus Mechanism
 
 Example 2 contains one static prescription and no focus-spacing table, group travel, object-distance series, or
-magnification series. The implemented status therefore remains **NO_INTERNAL_RECONSTRUCTION** for internal spacings: `var`
-is empty and no internal lens gap is invented. The production mechanism itself is known, however. Nikon's official design
-retrospective states that the complete photographic lens is extended by the retraction motor, with 100 focus steps from
-infinity to 0.35 m and approximately 2.7 mm of extension at minimum focus.[3] The patent background is consistent with
-that arrangement, describing a fixed rear stop while the lens is extended for focusing.[1, ¶0002]
+magnification series. The model therefore shows the lens at infinity only: no spacing changes with focus and no internal
+lens gap is invented. The production mechanism itself is known, however. Nikon's official design retrospective states
+that the complete photographic lens is extended by the retraction motor, with 100 focus steps from infinity to 0.35 m
+and approximately 2.7 mm of extension at minimum focus.[3] The patent background is consistent with that arrangement,
+describing a fixed rear stop while the lens is extended for focusing.[1, ¶0002]
 
-A Stage 4 finite-conjugate paraxial check of the scaled Example 2 prescription solves a required rigid-lens extension of
-2.707913 mm for an object 350 mm from the image plane, agreeing with Nikon's approximately 2.7 mm figure. This agreement
-strengthens the production correlation, but the data file deliberately does not turn the external rigid-body motion into
-an internal `var` reconstruction.
+A close-focus paraxial check of the scaled Example 2 prescription solves a required rigid-lens extension of 2.707913 mm
+for an object 350 mm from the image plane, agreeing with Nikon's approximately 2.7 mm figure. This agreement strengthens
+the production match, but the model deliberately does not turn that whole-lens extension into modeled close-focus
+movement.
 
 ## Aperture Stop and Modeled Clear Apertures
 
@@ -181,7 +181,7 @@ The original exact-ray construction checks describe the starting apertures. Repo
 
 1. Japan Patent Office, **特開平6-235857 (JP H06-235857 A)**, “ビハインド絞りを有するトリプレットレンズ,” published
    1994-08-23. Primary prescription: ¶¶0015–0019, Table 2, Table 3, Figure 3; design rationale: ¶¶0007–0013. The original
-   seven-page patent PDF is included in this dossier.
+   seven-page patent PDF was among the sources used here.
 2. Nikon Corporation, **Our Product History: 1990s — 1993 Nikon AF600/AF600 QD**,
    https://imaging.nikon.com/imaging/information/products_history/1990/ (retrieved 2026-09-18).
 3. Nikon Corporation, **NIKKOR — The Thousand and One Nights No. 94: Nikon Mini AF600QD / Lite-Touch AF**,

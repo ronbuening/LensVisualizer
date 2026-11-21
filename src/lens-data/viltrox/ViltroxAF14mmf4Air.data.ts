@@ -49,7 +49,7 @@ const LENS_DATA = {
   key: "viltrox-af-14mm-f4-air",
   maker: "Viltrox",
   name: "VILTROX AF 14mm f/4 AIR",
-  subtitle: "CN 121091494 A Example 1 — production-correlated internal-focus model",
+  subtitle: "CN 121091494 A Example 1 — internal-focus model matched to the production lens",
 
   // apertureDesign is intentionally omitted: the patent's printed f/1.47 is geometrically inconsistent; see header/audit.
   catalog: {

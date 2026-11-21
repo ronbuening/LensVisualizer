@@ -42,7 +42,7 @@ const LENS_DATA = {
   key: "meyer-optik-gorlitz-lydith-30f35",
   maker: "Meyer Optik Görlitz",
   name: "MEYER OPTIK GÖRLITZ LYDITH 30mm f/3.5",
-  subtitle: "DE 1 794 971 — sole example; historical Lydith correlation is strong inference, not manufacturer-confirmed",
+  subtitle: "DE 1 794 971 — sole example; historical Lydith match is strongly inferred, not maker-confirmed",
 
   catalog: {
     lensMounts: ["exakta", "m42", "praktina"],

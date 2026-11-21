@@ -285,8 +285,9 @@ The patent identifies G1 as the positive focusing portion and states that the Fi
 short distance of 0.93 m. It does not publish a finite-focus spacing table, magnification, focus travel, or the reference
 plane from which that 0.93 m distance was measured. No drive mechanism is specified in the patent material used here.
 
-The data model therefore uses `NO_INTERNAL_RECONSTRUCTION`. The 0.93 m value is retained as source metadata, but the
-three zoom-variable gaps carry identical infinity and close members so that the viewer does not invent focus motion.
+The model therefore shows infinity focus only. It records the 0.93 m figure as given by the patent, but the three
+spacings that change with zoom stay at their infinity values at both ends of the focus control, so the viewer does not
+invent focus motion. Zoom movement is modeled; focus travel is not.
 
 A constrained paraxial sensitivity test illustrates why a unique reconstruction is not defensible. With only G1 allowed
 to translate and the image plane held fixed, solving the 0.93 m conjugate gives materially different G1 travel depending
@@ -337,7 +338,7 @@ middle-state D12 discrepancy.
 ## Sources / References
 
 1. **Takahashi, Tomowaki; Konno, Kunio; Sasaya, Toshihiro.** *Zoom Lens*. U.S. Patent 4,437,733, granted 1984-03-20.
-   The supplied dossier contains the original grant PDF. Relevant locations: Fig. 1 on PDF p. 2; design discussion and
+   The sources used here include the original grant PDF. Relevant locations: Fig. 1 on PDF p. 2; design discussion and
    conditions on PDF pp. 10–12; First Embodiment numerical table on PDF p. 13. Online family/text reference:
    https://patents.google.com/patent/US4437733A/en
 2. **Nikon.** “Family Cousins, Part 20: Color Video Camera S-100.” Nikon Camera Chronicle. Manufacturer history of the

@@ -72,7 +72,7 @@ const LENS_DATA = {
   key: "samyang-100mm-f28-ed-umc-macro",
   maker: "Samyang",
   name: "SAMYANG 100mm f/2.8 ED UMC MACRO",
-  subtitle: "KR 10-2017-0073883 A, Example 1 — construction-based production correlation",
+  subtitle: "KR 10-2017-0073883 A, Example 1 — production match by construction",
 
   catalog: {
     lensMounts: [

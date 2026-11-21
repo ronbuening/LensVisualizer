@@ -55,7 +55,7 @@ const LENS_DATA = {
   key: "hasselblad-xcd-35-100mm-f28-4-e",
   maker: "Hasselblad",
   name: "HASSELBLAD XCD 35-100mm f/2.8-4 E",
-  subtitle: "US 2026/0036794 A1, Example 1 — qualified production correlation",
+  subtitle: "US 2026/0036794 A1, Example 1 — tentative production match",
 
   catalog: {
     lensMounts: ["hasselblad-xcd"],

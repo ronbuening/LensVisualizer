@@ -25,7 +25,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * object-to-image convention. Treating that sign as a source equation error is supported by Fig. 1
  * and exact axial tracing; the previous polynomial negation reversed the peripheral shapes.
  * This interpretation does not recover missing rear coefficient precision. See the analysis/audit.
- * Focus status is NO_INTERNAL_RECONSTRUCTION: no focus-dependent spacing is invented.
+ * Focus: infinity only; no focus-dependent spacing is modeled.
  */
 
 const LENS_DATA = {
@@ -419,7 +419,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.1,
     description:
-      "NO_INTERNAL_RECONSTRUCTION — aperture states only; no focus motion modeled. 0.10 m MFD is metadata only.",
+      "Infinity focus only. The patent publishes aperture states but no close-focus data, so focus travel is not modeled. The 0.10 m minimum focus distance, from third-party device data, is product information only.",
   },
 
   aperture: { nominalFNumber: 1.5, fStops: [1.5, 2, 2.4], maxFNumber: 2.4 },

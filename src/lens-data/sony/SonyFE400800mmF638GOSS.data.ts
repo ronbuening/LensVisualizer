@@ -28,7 +28,7 @@ const LENS_DATA = {
   key: "sony-fe-400-800-f63-8-g-oss",
   maker: "Sony",
   name: "SONY FE 400-800mm f/6.3-8 G OSS",
-  subtitle: "WO 2024/154461 A1 Example 1 — research-supported correlation; not manufacturer-confirmed",
+  subtitle: "WO 2024/154461 A1 Example 1 — likely production match; not maker-confirmed",
 
   catalog: {
     lensMounts: ["sony-fe"],

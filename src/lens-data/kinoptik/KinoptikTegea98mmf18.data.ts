@@ -52,7 +52,7 @@ const LENS_DATA = {
   key: "kinoptik-tegea-98mm-f18",
   maker: "Kinoptik",
   name: "KINOPTIK TEGEA 9.8mm f/1.8",
-  subtitle: "US 3,037,426 Example 2 — 9.759 mm f/2 patent design; strong circumstantial TEGEA correlation",
+  subtitle: "US 3,037,426 Example 2 — 9.759 mm f/2 patent design; strong TEGEA match, not maker-confirmed",
 
   catalog: {
     lensMounts: ["arri-standard", "alpa"],

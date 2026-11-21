@@ -27,7 +27,7 @@ const LENS_DATA = {
   maker: "Tamron",
   name: "TAMRON SP 70-200mm f/2.8 Di VC USD",
   subtitle:
-    "US 8,867,144 B2 Example 1 — A009 production correlation; unscaled patent prescription",
+    "US 8,867,144 B2 Example 1 — A009 production match; unscaled patent prescription",
 
   catalog: {
     lensMounts: ["canon-ef", "nikon-f", "sony-a"],

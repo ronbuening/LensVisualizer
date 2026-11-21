@@ -208,18 +208,18 @@ apochromatic or anomalous-partial-dispersion behavior.
 
 ## Focus Mechanism
 
-The focus model is **`NO_INTERNAL_RECONSTRUCTION`**. Example 1 provides zoom spacings only. It does not publish an object-
-distance table, focus-dependent variable gaps, image magnification states, or another constraint that would determine a
-unique close-focus movement law.
+The model shows **infinity focus only**. Example 1 provides zoom spacings only. It does not publish an object-distance
+table, spacings that change with focus, image magnification states, or another constraint that would determine a unique
+close-focus movement law.
 
-Konica's UC lens leaflet gives a marketed closest distance of **0.35 m** for the production 45–100 mm lens. That figure is
-stored as `closeFocusM: 0.35`, but it is product metadata rather than a reconstructed patent focus state. Every zoom
-variable in the data file therefore has identical infinity and close-focus entries. No unit-focus, inner-focus, rear-focus,
-or floating close-focus travel is invented from the production MFD.
+Konica's UC lens leaflet gives a marketed closest distance of **0.35 m** for the production 45–100 mm lens. The model
+records that 0.35 m figure as product information, not as a modeled close-focus state from the patent. Every zoom
+spacing in the model therefore keeps its infinity value at both ends of the focus control. No unit-focus, inner-focus,
+rear-focus, or floating close-focus travel is modeled from the production minimum focus distance.
 
-The absence of an internal focus reconstruction is important when interpreting the viewer: the optical geometry is an
-infinity/nominal zoom model at the three patent focal-length control points, not a simulation of the manufacturer's
-0.35 m focusing configuration.
+The absence of modeled focus movement matters when reading the viewer: the optical geometry is an infinity/nominal zoom
+model at the three patent focal-length control points, not a simulation of the manufacturer's 0.35 m focusing
+configuration.
 
 ## Conditional Expressions
 

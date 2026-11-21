@@ -40,7 +40,7 @@ The stored glass label is intentionally supplier-neutral. Current OHARA and Niko
 
 L17 supplies most of the standalone negative power in System I and carries the design's only aspherical surface. Its front surface is plane and its rear surface is modeled as a rotational paraboloid. The combination of strong negative power and paraboloidal form is consistent with the patent's emphasis on the first system as the distortion-control mechanism for fields extending beyond 180°. [1]
 
-The Table 3 entry for the L17 rear surface is not used literally. The patent prints “rear face section parabola (parameter = 15).” A literal 15 mm vertex-radius interpretation produces a first-system focal length of -14.018 mm and a whole-objective EFL of 3.4253 mm, both incompatible with the patent's own -7.710 mm and 1.98 mm summaries. The raw `15` remains preserved in the dossier; the implemented surface uses the documented MD04 correction, R = +7.5 mm and K = -1.
+The Table 3 entry for the L17 rear surface is not used literally. The patent prints “rear face section parabola (parameter = 15).” A literal 15 mm vertex-radius interpretation produces a first-system focal length of -14.018 mm and a whole-objective EFL of 3.4253 mm, both incompatible with the patent's own -7.710 mm and 1.98 mm summaries. The printed `15` is recorded here; the implemented surface uses the documented MD04 correction, R = +7.5 mm and K = -1.
 
 That correction is not a numerical fit chosen only to reproduce one headline value. The patent states that L17 is similar to L7 of Figure 2; their center-thickness ratio, 2.56/5.09 = 0.502947, scales L7's printed parabola parameter 15 to 7.5442 mm. The corrected model also restores the applicable claim relationships and reproduces the published first-order summaries within source-precision-aware tolerances. The correction is therefore treated as a row-specific Table 3 error, not as a patent-wide redefinition of “parameter.”
 
@@ -96,7 +96,7 @@ No patent C/F/g line indices or partial-dispersion measurements are supplied for
 
 The patent gives one static prescription and no variable focus spacings. Archival Kinoptik/Karl Heitz product literature describes the 1.9 mm SUPER-TEGEA as fixed focus. [2] [3]
 
-The LensVisualizer model therefore uses `NO_INTERNAL_RECONSTRUCTION`: `var` is empty and no internal group motion is invented. The required `closeFocusM` field is set to 1,000,000 m solely as a non-operative schema placeholder. It is not a physical minimum-focus specification and should not be interpreted as one.
+The model therefore shows a single fixed-focus state, and no group moves. The focus control is held at infinity; the stored value of 1,000,000 m is not a physical minimum-focus specification and should not be interpreted as one.
 
 ## Aspherical Surfaces
 
@@ -127,7 +127,7 @@ These ratios intentionally use the patent's own published whole-objective focal 
 
 The patent states a 197° full object field and specifically notes that the image of an object having constant angular dimension increases in size as that object moves away from the optical axis. It does not publish an image-height equation. [1]
 
-The current data schema offers named equidistant and equisolid fisheye projections but not a stereographic or unknown-fisheye category. The data file therefore omits `projection` rather than assigning a law that the source does not establish. Under the current LensVisualizer contract, omission falls back to ordinary rectilinear projection metadata, so projection-dependent runtime interpretation is not source-faithful for this lens and remains an integration limitation. Manufacturer literature's 197° / 8.7 mm specification is consistent with the same production correlation, but it does not by itself define the exact mapping law. [2]
+The current data format offers named equidistant and equisolid fisheye projections but not a stereographic or unknown-fisheye category. The data file therefore omits `projection` rather than assigning a law that the source does not establish. Under the current LensVisualizer contract, omission falls back to ordinary rectilinear projection metadata, so projection-dependent runtime interpretation is not source-faithful for this lens and remains an integration limitation. Manufacturer literature's 197° / 8.7 mm specification is consistent with the same production correlation, but it does not by itself define the exact mapping law. [2]
 
 The patent publishes f/1.9 but not the physical diaphragm diameter. The modeled `STO` semi-diameter, 3.148125 mm, is calibrated so that the corrected paraxial system has an entrance-pupil semi-diameter of 0.514711 mm and a modeled f-number of 1.900000. Agreement with f/1.9 is therefore a calibration result, not independent evidence for the actual iris diameter.
 
