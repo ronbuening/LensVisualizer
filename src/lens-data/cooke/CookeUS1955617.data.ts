@@ -3,17 +3,17 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 /**
  * US 1,955,617 A, Figure 1: the printed inch dimensions are multiplied by 25.4
  * to obtain millimetres, without focal-length adjustment. The patent gives
- * 1.059 inches at f/1.5; the prescription computes to 26.92907 mm. The stop is
+ * 1.059 inches (26.90 mm) at f/1.5; the prescription computes to 26.93 mm. The stop is
  * inferred at the midpoint of the R5–R6 air space, all clear radii are estimated,
- * and the image plane is the computed paraxial back focus of 11.93664 mm.
- * The illustrative ±3° field is not specified by the patent.
+ * and the image plane is the computed paraxial back focus of 11.94 mm.
+ * The illustrative ±3.0° field is not specified by the patent.
  */
 const LENS_DATA = {
   schema: 2,
   key: "cooke-27mm-f15-us1955617",
   maker: "Cooke",
   name: "COOKE 27mm f/1.5 (US 1,955,617 Design)",
-  subtitle: "US 1,955,617 A, Figure 1 — modified Petzval design",
+  subtitle: "US 1,955,617 A, Figure 1 — Kapella / Warmisham",
   visible: false,
   source: {
     patentNumber: "US 1,955,617 A",
@@ -35,7 +35,7 @@ const LENS_DATA = {
     fNumber: {
       design: 1.5,
     },
-    specs: ["6 ELEMENTS / 4 GROUPS", "ALL SPHERICAL", "DESIGN F/1.5", "DESIGN f = 26.93 mm"],
+    specs: ["6 ELEMENTS / 4 GROUPS", "ALL SPHERICAL", "DESIGN F/1.5", "DESIGN f = 26.90 mm"],
   },
   elements: [
     {
