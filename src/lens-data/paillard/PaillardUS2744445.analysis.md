@@ -24,7 +24,7 @@ The Petzval-type layout and narrow field suit cinematographic projection, includ
 
 Four air-spaced singlets form two converging achromatic pairs, each with a positive element followed by a negative element. There are no cemented interfaces or aspherical surfaces. The front pair has a 1.15 mm air gap, the pairs are separated by 73.8 mm, and the rear pair has a 1.75 mm air gap.
 
-Figure 1 places the object to the left and the film plane F to the right. The model traces collimated light from left to right in that reduction direction. The 119.2 mm first-to-last-surface track follows the printed thicknesses and separations. The patent does not specify the finite conjugates of a projector installation.
+Figure 1 places the object to the left and the film plane F to the right. The model traces collimated light from left to right in that direction. The 119.2 mm first-to-last-surface track follows the printed thicknesses and separations. The patent does not specify the finite conjugates of a projector installation.
 
 The invention reduces the Petzval sum through its distribution of curvature, thickness and glass index. It requires the magnitudes of R2 and R3 to exceed 1.3 times R1, R1 to exceed 0.8 f, and the rear positive element to have a thickness between 0.10 f and 0.25 f. The printed example satisfies these conditions. Its paraxial Petzval sum is 0.00839325 mm⁻¹.
 
