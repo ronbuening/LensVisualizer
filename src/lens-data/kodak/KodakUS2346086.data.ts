@@ -14,7 +14,7 @@ const LENS_DATA = {
   key: "kodak-100mm-f45-us2346086",
   maker: "Kodak",
   name: "KODAK 100mm f/4.5 (US 2,346,086 Design)",
-  subtitle: "US 2,346,086 A, Example 2 — Tessar-type design",
+  subtitle: "US 2,346,086 A, Example 2 — Eastman Kodak / Schade & Tolle",
   visible: true,
   source: {
     patentNumber: "US 2,346,086 A",
@@ -28,7 +28,7 @@ const LENS_DATA = {
     sdSource: "heuristic",
   },
   catalog: {
-    imageCircleMm: 101.4856,
+    imageCircleMm: 101.49,
     elementCount: 4,
     groupCount: 3,
     focalLengthMm: {
@@ -37,7 +37,12 @@ const LENS_DATA = {
     fNumber: {
       design: 4.5,
     },
-    specs: ["4 ELEMENTS / 3 GROUPS", "ALL SPHERICAL", "DESIGN F/4.5"],
+    specs: [
+      "4 ELEMENTS / 3 GROUPS",
+      "ALL SPHERICAL",
+      "DESIGN f = 100 mm",
+      "DESIGN F/4.5",
+    ],
   },
   elements: [
     {
@@ -48,7 +53,7 @@ const LENS_DATA = {
       nd: 1.697,
       vd: 56.1,
       indexReference: "D",
-      glass: "Unmatched (nD 1.697 / ν 56.1)",
+      glass: "H-LaK12 (CDGM)",
       focalLengthMm: 37.88,
       role: "Positive front element collecting light into the central negative element.",
     },
