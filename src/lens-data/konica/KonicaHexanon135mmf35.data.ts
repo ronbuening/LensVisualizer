@@ -37,7 +37,7 @@ const LENS_DATA = {
   key: "konica-hexanon-135mm-f35",
   maker: "Konica",
   name: "KONICA HEXANON 135mm f/3.5",
-  subtitle: "JP 1955-009472 sole example — 1.35× scaled correlation to early Konica F/FS lens",
+  subtitle: "JP 1955-009472 sole example — 1.35× scaled production match to early Konica F/FS lens",
 
   catalog: {
     lensMounts: ["konica-f"],

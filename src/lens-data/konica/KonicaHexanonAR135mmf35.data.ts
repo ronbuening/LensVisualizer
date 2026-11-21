@@ -48,7 +48,7 @@ const LENS_DATA = {
   key: "konica-hexanon-ar-135mm-f3-5",
   maker: "Konica",
   name: "KONICA HEXANON AR 135mm f/3.5",
-  subtitle: "JPS54-55423A Example 1 — scaled ×135; late-production 135mm f/3.5 correlation",
+  subtitle: "JPS54-55423A Example 1 — scaled ×135; late-production 135mm f/3.5 match",
 
   catalog: {
     lensMounts: ["konica-ar"],

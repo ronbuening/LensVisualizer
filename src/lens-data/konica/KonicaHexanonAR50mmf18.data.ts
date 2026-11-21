@@ -55,7 +55,7 @@ const LENS_DATA = {
   key: "konica-hexanon-ar-50mm-f1-8",
   maker: "Konica",
   name: "KONICA HEXANON AR 50mm f/1.8",
-  subtitle: "JP 1982-108817 A Example 1 — ×0.5 production correlation",
+  subtitle: "JP 1982-108817 A Example 1 — ×0.5 production match",
 
   catalog: {
     lensMounts: ["konica-ar"],

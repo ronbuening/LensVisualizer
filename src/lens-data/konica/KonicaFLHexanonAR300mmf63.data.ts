@@ -40,7 +40,7 @@ const LENS_DATA = {
   key: "konica-fl-hexanon-ar-300mm-f63",
   maker: "Konica",
   name: "KONICA FL-HEXANON AR 300mm f/6.3",
-  subtitle: "JP 1974-023892 Example 1 — literal ×300 scale; Konica 300mm f/6.3 fluorite correlation",
+  subtitle: "JP 1974-023892 Example 1 — literal ×300 scale; Konica 300mm f/6.3 fluorite match",
 
   catalog: {
     lensMounts: ["konica-ar"],

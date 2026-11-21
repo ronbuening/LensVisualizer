@@ -41,7 +41,7 @@ const LENS_DATA = {
   key: "konica-hexanon-ar-21mm-f2-8",
   maker: "Konica",
   name: "KONICA HEXANON AR 21mm f/2.8",
-  subtitle: "JPS5517129A Example 1 — normalized f=1 prescription scaled ×21; strong production correlation",
+  subtitle: "JPS5517129A Example 1 — f=1 prescription scaled ×21; strong production match",
 
   catalog: {
     lensMounts: ["konica-ar"],
