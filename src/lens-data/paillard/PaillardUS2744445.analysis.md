@@ -68,7 +68,7 @@ The model is focused at infinity. The patent gives no close-focus distances, foc
 
 The printed prescription computes to EFL 99.71 mm, 0.3% below the stated 100 mm. Its paraxial back focal distance is 37.75 mm, placing the image plane 156.95 mm behind the first vertex. Back focus is not printed; the model uses this paraxial plane without a shift to improve image sharpness.
 
-The patent's ±8.0° field is retained. With the inferred stop described below, the real 8.0° chief ray reaches image height 13.86 mm at that plane. Twice this height, rounded upward, gives the catalogued 27.72 mm image circle. This is derived from the printed field, not a measured film-format dimension.
+The patent's ±8.0° field is retained. With the inferred stop described below, the real 8.0° chief ray reaches image height 13.86 mm at that plane. Twice this height gives the catalogued 27.72 mm image circle. This is derived from the printed field, not a measured film-format dimension.
 
 ## Inferred Stop and Clear Apertures
 
@@ -76,7 +76,7 @@ Figure 1 shows no iris, and the patent gives neither a stop station nor its diam
 
 This position is supported by Figure 3 and the text's limits of 0.17% f for mean field curvature and below 0.65% f for astigmatism. Real-ray fits with a stop 0–4 mm behind R4 give mean curvature of about 0.18–0.20% f and astigmatism of about 0.64–0.68% f. These are closer to the printed claims than a midpoint stop, which gives mean curvature about 0.37% f and the wrong sign for the edge tangential focus. The exact historical stop station remains unknown, and the inferred position does not reproduce every printed bound exactly.
 
-The paraxial f/1.40 stop has radius 30.41 mm. Its accepted real axial entrance radius is 34.18 mm, corresponding to f/1.46. The iris sets that aperture; the glass rims do not limit the axial beam. The 8.0° chief ray clears every rim, while approximately 95.0% of the on-axis pupil area remains at 8.0°. This area ratio describes modeled vignetting, not measured transmission.
+The paraxial f/1.40 stop has radius 30.41 mm. Its accepted real axial entrance radius is 34.18 mm, corresponding to f/1.46. The iris sets that aperture; the glass rims do not limit the axial beam. The 8.0° chief ray clears every rim, while approximately 95% of the on-axis pupil area remains at 8.0°. This area ratio describes modeled vignetting, not measured transmission.
 
 The clear semi-diameters remain inferred. The minimum front-pair air clearance is about 0.174 mm, the rear positive element retains about 1.701 mm minimum glass thickness, and the rear-pair air clearance is about 0.836 mm. Their precise relation to the drawn rims remains unresolved.
 

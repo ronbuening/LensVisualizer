@@ -98,7 +98,7 @@ The prescription computes to EFL 95.01 mm, about 0.01 mm above the table's nomin
 
 The nominal f/1.3 aperture produces a paraxial stop radius of 20.09 mm. Exact axial tracing gives an entrance-equivalent aperture of about f/1.34 and an image-space sine aperture of about f/1.33. A real f/1.3 marginal ray would require a stop radius of 20.66 mm. These differences concern the inferred iris and the aperture convention; no historical diaphragm measurement is available.
 
-The patent discusses picture angles up to about 45.0° for the lens class, without assigning a numerical field to Figure 1. The model retains an illustrative ±10.0° field. The chief ray clears the inferred rims there, but part of the off-axis pupil is vignetted. No image format or image-circle diameter is assigned from this illustrative field.
+The patent discusses picture angles up to about 45° for the lens class, without assigning a numerical field to Figure 1. The model retains an illustrative ±10.0° field. The chief ray clears the inferred rims there, but part of the off-axis pupil is vignetted. No image format or image-circle diameter is assigned from this illustrative field.
 
 The clear rims remain estimates rather than measurements of finished lens blanks. Apart from correcting R3's reversed edge, their relationship to the drawing remains unresolved. The radii, glass thicknesses, air spaces, stop position and paraxial image plane have not been adjusted to improve image quality. Any calculated MTF describes this inferred aperture geometry rather than measured production performance.
 

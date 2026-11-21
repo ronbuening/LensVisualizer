@@ -28,7 +28,7 @@ The surfaces stay clear of each other, and the iris sets the full aperture witho
 
 The stop station, iris diameter, clear semi-diameters, image-plane distance, selectable f-stops and illustrative ±10.0° field are inferred. The stop divides the 18 mm central space into 14 mm after R6 and 4 mm before R7, at 49.5 mm behind the first vertex. The drawing places it approximately 4–4.5 mm before R7, consistent with that choice. The R6/R7 rims lie at 47.32 and 50.06 mm behind the first vertex, on opposite sides of the stop plane.
 
-The patent discusses picture angles up to about 45.0° for the lens class, without assigning a field to Figure 1. No source-supported image circle or image format is established. Apart from R3's corrected edge, agreement between the inferred rims and Figure 1's optical edges remains unmeasured.
+The patent discusses picture angles up to about 45° for the lens class, without assigning a field to Figure 1. No source-supported image circle or image format is established. Apart from R3's corrected edge, agreement between the inferred rims and Figure 1's optical edges remains unmeasured.
 
 `focus.closeFocusM` is 10¹⁵ m, which stands for infinity. All relative spacings are fixed; no close-focus distance or motion is printed. The selectable aperture range ends at f/22, but the patent supplies no minimum iris opening.
 

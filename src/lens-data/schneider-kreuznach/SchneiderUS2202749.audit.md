@@ -40,8 +40,8 @@ opening. The optical rims admit that marginal; the iris accounts for the
 small difference between the paraxial and finite-aperture f-numbers.
 
 The surfaces stay clear of each other. The 12.0° chief ray reaches
-21.09 mm image height without blockage. Chief rays can reach about 20.0°,
-where the marginal bundle has about 14.0% vignetting at R1.
+21.09 mm image height without blockage. Chief rays can reach about 20°,
+where the marginal bundle has about 14% vignetting at R1.
 
 ## Values Not Printed in the Patent
 
