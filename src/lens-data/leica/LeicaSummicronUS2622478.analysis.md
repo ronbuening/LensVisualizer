@@ -32,13 +32,13 @@ The focal lengths below are calculated for each thick element in air. They descr
 
 | Element | Shape              |      nd |    ν | Glass identification           | Focal length (mm) | Optical role                                        |
 | ------- | ------------------ | ------: | ---: | ------------------------------ | ----------------: | --------------------------------------------------- |
-| 1       | Biconvex Positive  |  1.6923 | 54.7 | Unmatched                      |             69.04 | Front collector of the split positive member        |
-| 2       | Biconcave Negative | 1.65017 | 33.7 | Unmatched                      |           −126.39 | Flint element opposing the front collector's colour |
-| 3       | Positive Meniscus  |  1.6923 | 54.7 | Unmatched                      |            112.13 | Positive half of the front meniscus pair            |
+| 1       | Biconvex Positive  |  1.6923 | 54.7 | N-LAK9 (Schott), spectral proxy |             69.04 | Front collector of the split positive member        |
+| 2       | Biconcave Negative | 1.65017 | 33.7 | SF12 (Sumita), spectral proxy |           −126.39 | Flint element opposing the front collector's colour |
+| 3       | Positive Meniscus  |  1.6923 | 54.7 | N-LAK9 (Schott), spectral proxy |            112.13 | Positive half of the front meniscus pair            |
 | 4       | Negative Meniscus  | 1.57501 | 41.3 | QF3, CDGM catalogue equivalent |            −71.96 | Negative meniscus facing the diaphragm              |
 | 5       | Biconcave Negative | 1.58217 | 38.0 | Unmatched                      |            −44.99 | Negative front element of the cemented pair         |
-| 6       | Biconvex Positive  |  1.6923 | 54.7 | Unmatched                      |             54.38 | Positive rear element of the cemented pair          |
-| 7       | Biconvex Positive  | 1.71715 | 47.9 | Unmatched                      |            106.89 | Rear positive member                                |
+| 6       | Biconvex Positive  |  1.6923 | 54.7 | N-LAK9 (Schott), spectral proxy |             54.38 | Positive rear element of the cemented pair          |
+| 7       | Biconvex Positive  | 1.71715 | 47.9 | S-LAM3 (Ohara), spectral proxy |            106.89 | Rear positive member                                |
 
 The cemented pair as a whole has a calculated focal length of −606.28 mm in air.
 
@@ -46,7 +46,13 @@ The cemented pair as a whole has a calculated focal length of −606.28 mm in ai
 
 The patent explicitly defines nd as the refractive index for the d-line, interpreted as helium d at 587.6 nm. The printed indices and Abbe numbers are retained throughout.
 
-Element 4 has an optical-coordinate equivalent in CDGM QF3. Its catalogue row gives nd 1.57502 and ν 41.31, differing from the patent by +0.00001 and +0.01. This supports use of its dispersion curve without identifying the historical supplier or melt. The other glasses remain unmatched: the closest rows for Elements 1, 2, 3, 5, 6 and 7 do not reproduce both printed coordinates closely enough. No additional spectral indices are supplied by the patent; chromatic predictions for unmatched glasses depend on dispersion inferred from nd and ν.
+Element 4 matches the optical coordinates of CDGM QF3: its catalogue row gives nd 1.57502 and ν 41.31, with Δnd +0.00001 and Δν +0.01. Five other elements use spectral proxies:
+
+- Elements 1, 3 and 6: N-LAK9 (Schott), Δnd −0.00130 and Δν +0.01.
+- Element 2: SF12 (Sumita), Δnd −0.00186 and Δν +0.07.
+- Element 7: S-LAM3 (Ohara), Δnd −0.00015 and Δν +0.03.
+
+These differences are catalogue minus printed values at the patent's d-line. Each proxy lies within 0.002 in index and 0.25 in Abbe number. The present-day catalogue curves supply only the shape of the dispersion curve, so colour analysis for these elements follows real glass rather than an Abbe-number estimate. Neither the coordinate match nor the proxies identify the historical supplier or melt. Element 5 remains unmatched because no catalogue row falls within both tolerances; its dispersion is inferred from nd and ν. The patent supplies no additional spectral indices or measured partial dispersions.
 
 The text discusses radiation from thorium-bearing optical glass and the use of flint glass to absorb it before it reaches the emulsion. This provides historical context for the Summicron association but does not identify the composition of every element in either numerical example or a production specimen.
 
@@ -79,3 +85,7 @@ Example 2 agrees with the production lens's seven-element, six-group count, but 
 - [US 2,622,478 A](https://patents.google.com/patent/US2622478A/en): Figure 2 on PDF page 1; Example 2, Seidel coefficients, d-line definition and claims on PDF page 3; design discussion on PDF page 2.
 - [Leitz Summicron brochure](https://www.pacificrimcamera.com/rl/01536/01536.pdf): reported manufacturer statement connecting the basic Summicron design to this patent; it does not settle the numerical example.
 - [Leica Wiki: Gustav Kleinberg](https://wiki.l-camera-forum.com/leica-wiki.en/index.php/Gustav_Kleinberg): historical patent-family association and production context.
+- [Schott optical glass catalogue](https://www.schott.com/en-us/products/optical-glass-p1000267/downloads): N-LAK9 spectral proxy for Elements 1, 3 and 6.
+- [Sumita optical glass catalogue](https://www.sumita-opt.co.jp/en/download/): SF12 spectral proxy for Element 2.
+- [Ohara optical glass catalogue](https://www.ohara-inc.co.jp/en/product/catalog/): S-LAM3 spectral proxy for Element 7.
+- [CDGM optical glass catalogue](https://www.cdgmgd.com/): QF3 optical-coordinate match for Element 4.

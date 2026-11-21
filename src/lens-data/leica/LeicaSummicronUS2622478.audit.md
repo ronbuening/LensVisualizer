@@ -32,7 +32,7 @@ The surfaces stay clear of each other. Minimum glass thickness at a shared radiu
 
 The 50.0° field is printed; the 91.94 mm image circle follows twice the real 25.0° chief-ray height at the adopted scale. It is not a published production format. Millimetre units and the paraxial image plane are assumed. The f/2–f/22 stop sequence is illustrative, and the patent gives no minimum iris opening. `focus.closeFocusM` is 10¹⁵ m, which stands for infinity. No close-focus spacing or movement is supplied.
 
-The printed glass coordinates remain intact. QF3 supplies an approximate dispersion curve for Element 4; the other six elements use dispersion inferred from their indices and Abbe numbers. No additional spectral indices, measured partial dispersions or historical melt identities are supplied.
+The printed glass coordinates remain intact. QF3 supplies a dispersion curve for Element 4; N-LAK9 supplies spectral proxies for Elements 1, 3 and 6, SF12 for Element 2, and S-LAM3 for Element 7. Element 5 still uses dispersion inferred from its index and Abbe number. No additional spectral indices, measured partial dispersions or historical melt identities are supplied.
 
 ## Product Identification
 
@@ -47,7 +47,7 @@ The title retains the patent's f = 100 design scale. The later Rigid/Dual Range 
 - The subtitle is “US 2,622,478 A, Example 2 — Leitz / Kleineberg & Zimmermann”. The specification chips are “7 ELEMENTS / 6 GROUPS”, “ALL SPHERICAL”, “DESIGN f = 100 mm”, “DESIGN F/2” and “50° FIELD”, separating the patent's design scale from the 5 cm production lens.
 - The full field increased from 10.0° to the printed 50.0°, and the half-field from 5.0° to 25.0°. The inferred image-circle diameter was added from twice the real chief-ray image height at that field; `catalog.imageCircleMm` is 91.94 mm. The design focal length changed from 100 to 99.96 mm to record the calculated EFL.
 - Element labels changed from L1–L7 to Element 1–Element 7. Generic spherical shape descriptions became, in order, Biconvex Positive, Biconcave Negative, Positive Meniscus, Negative Meniscus, Biconcave Negative, Biconvex Positive and Biconvex Positive. Optical roles and calculated in-air focal lengths were added: +69.04, −126.39, +112.13, −71.96, −44.99, +54.38 and +106.89 mm. The cemented pair has a calculated in-air focal length of −606.28 mm.
-- Glass descriptions became explicit optical-coordinate labels. Elements 1, 3 and 6 remain unmatched at nd 1.6923 / ν 54.7; Element 2 at 1.65017 / 33.7; Element 5 at 1.58217 / 38.0; and Element 7 at 1.71715 / 47.9. Element 4 became `QF3 (CDGM)`: its catalog row is 1.57502 / 41.31, with catalog-minus-patent differences Δnd +0.00001 and Δν +0.01. The dispersion curve evaluates to about 1.57503 / 41.2969, with Δnd +0.000016 and Δν −0.0031. This identifies similar optical properties, leaving the historical supplier unknown. The patent's d-line reference is retained throughout.
+- Glass descriptions became explicit optical-coordinate labels, retaining the printed values. Element 4 became `QF3 (CDGM)`: its catalog row is 1.57502 / 41.31, with catalog-minus-patent differences Δnd +0.00001 and Δν +0.01. The dispersion curve evaluates to about 1.57503 / 41.2969, with Δnd +0.000016 and Δν −0.0031. This identifies similar optical properties, leaving the historical supplier unknown. The patent's d-line reference is retained throughout.
 - The cemented-pair identifier changed from G5 to C1, with a bracket spanning r9–r11. The six numbered group captions were replaced by four brackets for the patent's components: front positive r1–r4, front meniscus r5–r8, rear meniscus r9–r11 and rear positive r12–r13. These components contain six air-separated groups.
 
 2026-11-21 rim review:
@@ -59,12 +59,21 @@ The title retains the patent's f = 100 design scale. The later Rigid/Dual Range 
 - r1–r4 and r7/r8 remain at 28/27, 27/25 and 20/19 mm. Their relative heights are within about 8% of the drawing, and no axial or 25° chief ray is blocked. No flat land is clearly supported, and none is added.
 - At infinity and f/2, geometric transmission at 25° changes from 18.6% to 16.4%. The largest loss across 0–25° is 2.97 percentage points at 19.4°, from 56.6% to 53.6%; on-axis transmission remains 100%. The stated 25° half-field and f/2 aperture are unchanged. Chief-ray reach beyond the stated field changes from about 27.0° to 26.6°. All surfaces remain separated, the iris sets the aperture, no surface falls below the image-circle floor, and the 25° chief ray still reaches 45.97 mm image height. The infinity cross-section comparison confirms the smaller, square Element 3 and doublet rims; the rear singlet remains deliberately larger than the schematic proportion.
 
+2026-11-21 glass review:
+
+- Element 1: `Unmatched (nd 1.6923 / ν 54.7)` → `N-LAK9 (spectral proxy; patent nd 1.6923 / ν 54.7; supplier and melt unspecified)` (Schott), spectral proxy; Δnd −0.00130 and Δν +0.01.
+- Element 3: `Unmatched (nd 1.6923 / ν 54.7)` → `N-LAK9 (spectral proxy; patent nd 1.6923 / ν 54.7; supplier and melt unspecified)` (Schott), spectral proxy; Δnd −0.00130 and Δν +0.01.
+- Element 6: `Unmatched (nd 1.6923 / ν 54.7)` → `N-LAK9 (spectral proxy; patent nd 1.6923 / ν 54.7; supplier and melt unspecified)` (Schott), spectral proxy; Δnd −0.00130 and Δν +0.01.
+- Element 7: `Unmatched (nd 1.71715 / ν 47.9)` → `S-LAM3 (spectral proxy; patent nd 1.71715 / ν 47.9; supplier and melt unspecified)` (Ohara), spectral proxy; Δnd −0.00015 and Δν +0.03.
+- Element 2: `Unmatched (nd 1.65017 / ν 33.7)` → `SF12 (spectral proxy; patent nd 1.65017 / ν 33.7; supplier and melt unspecified)` (Sumita), spectral proxy; Δnd −0.00186 and Δν +0.07.
+- All five labels are spectral proxies within 0.002 in index and 0.25 in Abbe number at the printed d-line; differences are catalog minus printed. The printed index and Abbe number are kept, and the catalog row names do not identify historical suppliers or melts.
+
 The surface curvatures, thicknesses, air spaces, glass coordinates, index reference, stop position and image plane retain the original prescription. EFL remains 99.96 mm, paraxial aperture f/2.00, back focus 55.44 mm and stop radius 15.468 mm. Optical track remains 69.95 mm and total image track 125.39 mm; the half-field is 25.0°.
 
 ## Remaining Questions
 
 - Which numerical example entered production is unknown. The brochure is undated, and the historical association does not settle the production prescription.
-- Historical glass suppliers and melts are unidentified. Elements 1, 2, 3, 5, 6 and 7 lack matching catalog curves; the patent supplies no additional spectral indices or measured partial dispersion.
+- Historical glass suppliers and melts are unidentified. Element 5 lacks a catalog curve within the stated tolerances; the patent supplies no additional spectral indices or measured partial dispersion.
 - The physical iris position and bore are unprinted; its drawn station differs from the inferred 11.25/8.77 mm split. Absolute clear diameters and mechanical dimensions remain unknown; Figure 2 is schematic.
 - Complete off-axis illumination and the unresolved marginal extreme are not established by the clear 25.0° chief ray. The 16.4% geometric corner transmission describes the assumed optical rims; the actual barrel is unknown.
 - No source establishes this example's mount, production image format, diaphragm blade count or shape, minimum iris opening, marketed specifications, close-focus range or focusing mechanism. These values remain unassigned; f/22 is not a published mechanical limit.
