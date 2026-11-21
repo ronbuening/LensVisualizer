@@ -42,11 +42,11 @@ L2: nD = 1.6436, νD = 48.3. Glass: Unmatched. Positive Meniscus; focal length i
 
 L3: nD = 1.5100, νD = 64.5. Glass: Unmatched. Biconvex Positive; focal length in air +169.58 mm. This lower-index middle member occupies the position of the air lens discussed in the patent.
 
-L4: nD = 1.7005, νD = 30.2. Glass: Unmatched. Biconcave Negative; focal length in air −38.92 mm. Its stronger negative power makes the complete triplet net negative. The two cemented interfaces join L2/L3 at R4 and L3/L4 at R5.
+L4: nD = 1.7005, νD = 30.2. Glass: S-TIM35 (Ohara), spectral proxy. Biconcave Negative; focal length in air −38.92 mm. Its stronger negative power makes the complete triplet net negative. The two cemented interfaces join L2/L3 at R4 and L3/L4 at R5.
 
 ### L5–L6 — Cemented Rear Doublet
 
-L5: nD = 1.6193, νD = 36.4. Glass: Unmatched. Plano-Concave Negative; focal length in air −54.04 mm.
+L5: nD = 1.6193, νD = 36.4. Glass: J-F2 (Hikari), spectral proxy. Plano-Concave Negative; focal length in air −54.04 mm.
 
 L6: nD = 1.6435, νD = 48.3. Glass: Unmatched. Plano-Convex Positive; focal length in air +67.01 mm.
 
@@ -54,24 +54,24 @@ The common R8 surface is genuinely plane. The doublet is weakly negative overall
 
 ### L7 — Biconvex Positive
 
-nD = 1.6142, νD = 56.3. Glass: Unmatched. Focal length in air: +87.38 mm.
+nD = 1.6142, νD = 56.3. Glass: BACD6 (Hoya), spectral proxy. Focal length in air: +87.38 mm.
 
 The final collecting singlet is separated from the rear doublet by 2 mm. Its radii are +122.69 and −92.14 mm, with 11 mm axial thickness.
 
 ## Glass Identification and Selection
 
-The patent explicitly specifies the D line, taken as sodium at 589.3 nm, and Abbe V numbers. All seven printed pairs are retained, without assigning a supplier or historical melt. No catalogue glass matches both coordinates closely enough to receive a catalogue label.
+The patent explicitly specifies the D line, taken as sodium at 589.3 nm, and Abbe V numbers. All seven printed pairs are retained. L4, L5 and L7 use modern catalog rows as spectral proxies within index 0.002 and Abbe number 0.25 at sodium D. The rows supply only the shape of the dispersion curve, so colour analysis follows real glass curves. They do not identify Dallmeyer's historical suppliers or melts.
 
-| Elements | Printed nD | Printed νD | Glass label |
-| -------- | ---------: | ---------: | ----------- |
-| L1, L2   |     1.6436 |       48.3 | Unmatched   |
-| L3       |     1.5100 |       64.5 | Unmatched   |
-| L4       |     1.7005 |       30.2 | Unmatched   |
-| L5       |     1.6193 |       36.4 | Unmatched   |
-| L6       |     1.6435 |       48.3 | Unmatched   |
-| L7       |     1.6142 |       56.3 | Unmatched   |
+| Elements | Printed nD | Printed νD | Glass label                       | ΔnD      | ΔνD   |
+| -------- | ---------: | ---------: | --------------------------------- | -------: | ----: |
+| L1, L2   |     1.6436 |       48.3 | Unmatched                         |        — |     — |
+| L3       |     1.5100 |       64.5 | Unmatched                         |        — |     — |
+| L4       |     1.7005 |       30.2 | S-TIM35 (Ohara), spectral proxy    | −0.00175 | −0.08 |
+| L5       |     1.6193 |       36.4 | J-F2 (Hikari), spectral proxy      | +0.00059 | −0.01 |
+| L6       |     1.6435 |       48.3 | Unmatched                         |        — |     — |
+| L7       |     1.6142 |       56.3 | BACD6 (Hoya), spectral proxy       | −0.00054 | +0.07 |
 
-For example, Schott F2 gives approximately nD 1.61989 and νD 36.36, against L5's 1.6193 and 36.4. The similar dispersion does not establish a glass identity. The patent gives no C-, F- or g-line indices or partial dispersion. Colour calculations based on the Abbe numbers therefore remain estimates; D-line tracing provides the direct comparison with the printed prescription.
+The differences are catalog minus printed values at sodium D. L1–L3 and L6 remain Unmatched because no catalog row lies within both tolerances; their colour calculations retain Abbe-number estimates. The patent gives no C-, F- or g-line indices or partial dispersion. D-line tracing provides the direct comparison with the printed prescription.
 
 ## Focus Mechanism
 
@@ -93,3 +93,6 @@ Single-radius changes (R2 4.1447 to 5.1447, R1 0.6607 to 0.6407, or R6 0.28096 t
 2. [Oldlens, “Dallmeyer Septac 50mm f1.5”](https://oldlens.com/septac%2050mmf15.html), lists seven elements in four groups; Ilford Witness context.
 3. [Flints Auctions, “A Dallmeyer Septac f/1.5 2 in Lens”](https://www.flintsauctions.com/auction/lot/lot-158---a-dallmeyer-septac-f15-2-lens/?lot=13234&sd=1), surviving production specimen, serial 463511.
 4. [Photrio, “Dallmeyer Septac lens”](https://www.photrio.com/forum/threads/dallmeyer-septac-lens.75704/), forum post reporting “Pat 553,844” engraved on the front ring; not an independently established production prescription.
+5. [Ohara optical glass catalog](https://www.ohara-inc.co.jp/en/product/catalog/), S-TIM35 spectral proxy for L4.
+6. [Hikari optical glass catalog](https://www.hikari-g.co.jp/optical_glass/catalog/), J-F2 spectral proxy for L5.
+7. [Hoya optical glass data](https://www.hoya-opticalworld.com/english/datadownload/index.html), BACD6 spectral proxy for L7.

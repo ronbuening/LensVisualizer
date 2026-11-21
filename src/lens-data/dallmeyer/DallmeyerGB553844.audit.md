@@ -26,7 +26,7 @@ The physical focal-length unit, stop station and diameter, clear semi-diameters,
 
 The approximately 50° useful field is treated as a full angle. The 91.23 mm image-circle diameter is derived from twice the real chief-ray height at 25.0° at the chosen scale. It is not a printed film format or a fully illuminated field. The selectable f/1.5–f/22 range is retained, but the patent gives no minimum iris opening.
 
-Every glass label remains Unmatched and includes its printed nD/ν pair. No supplier or historical melt is identified. The patent supplies no C-, F- or g-line indices or partial dispersion; dispersion away from D is estimated from the Abbe numbers. No coating, baffle or camera-side cover plate is specified.
+L4, L5 and L7 use S-TIM35 (Ohara), J-F2 (Hikari) and BACD6 (Hoya) as spectral proxies for the shape of their dispersion curves; all printed nD/ν pairs are retained. L1–L3 and L6 remain Unmatched because no catalog row lies within both tolerances. No historical supplier or melt is identified. The patent supplies no C-, F- or g-line indices or partial dispersion; dispersion away from D uses catalog curves for the three proxies and Abbe-number estimates for the remaining glasses. No coating, baffle or camera-side cover plate is specified.
 
 ## Product Identification
 
@@ -42,7 +42,7 @@ The title retains the 100 mm design scale. Marketing focal length, marketing f-n
 - The full field changed from 24.0° to the patent's approximately 50.0°, and the half-field from 12.0° to 25.0°. The former inferred 42.99 mm image circle changed to 91.23 mm, derived from the real chief ray at the stated field. No radius, axial spacing, stop position, rim or image-plane distance changed for this field increase.
 - Element labels became Element 1 through Element 7. Shape descriptions became Positive Meniscus, Positive Meniscus, Biconvex Positive, Biconcave Negative, Plano-Concave Negative, Plano-Convex Positive and Biconvex Positive. Optical roles and in-air focal lengths were added: +120.70, +115.89, +169.58, −38.92, −54.04, +67.01 and +87.38 mm.
 - C1 identifies the L2–L4 triplet and C2 the L5/L6 doublet, with annotations spanning surfaces 3–6 and 7–9. The four group brackets name the patent's outer collective members and inner dispersive components.
-- General unidentified-glass descriptions became Unmatched labels containing each printed nD/ν pair. All seven remain unidentified, with ΔnD = 0 and ΔνD = 0. The sodium D reference is retained. Schott F2 differs from L5 by approximately ΔnD +0.00059 and ΔνD −0.04, so similar dispersion does not establish its identity.
+- General unidentified-glass descriptions became Unmatched labels containing each printed nD/ν pair, before the spectral proxy assignments below. All seven historical glass identities remain unknown; the printed indices and Abbe numbers are unchanged. The sodium D reference is retained.
 - The subtitle reads “GB 553,844 A, preferred form — Dallmeyer / Langton.” The specifications are “7 ELEMENTS / 4 GROUPS”, “ALL SPHERICAL”, “DESIGN f = 100 mm” and “DESIGN F/1.5”.
 
 The resulting EFL is 101.38 mm, paraxial aperture f/1.50, back focus 52.93 mm and stop radius 19.679 mm. The half-field is 25.0° and the image plane is 133.43 mm from the first vertex. The printed prescription, sodium D indices, Abbe numbers, inferred stop and infinity focus remain unchanged.
@@ -54,6 +54,12 @@ The resulting EFL is 101.38 mm, paraxial aperture f/1.50, back focus 52.93 mm an
   - R1/R2 remain at 35 mm against a drawing estimate near 37–38 mm, R6/R7 remain at 21 mm against roughly 22–23 mm, and R10/R11 remain at 31 mm against roughly 32 mm. These differences are comparable to the drawing's local scale variation. No rim cut or land was added.
   - At f/1.5 the axial marginal-ray heights at R3/R4/R5/R8 are 29.74, 27.41, 25.41 and 20.58 mm, below their final rims. All other rims also clear the axial beam and 25.0° chief ray. The surfaces remain separated, the iris sets the aperture, no rim is undersized for the image circle, and chief-ray coverage remains 100%. The EFL stays 101.38 mm, half-field 25.0° and paraxial aperture f/1.50; finite-aperture tracing remains about f/1.51. One opposite marginal extreme at the corner was not found, so a complete unvignetted corner bundle is not established.
   - Wide-open geometric transmission before → after is 100.0 → 100.0% at 0°, 95.7 → 95.8% at 5.6°, 89.3 → 91.1% at 8.3°, 81.9 → 85.9% at 11.1°, 73.2 → 80.0% at 13.9°, 63.1 → 69.1% at 16.7°, 51.5 → 53.7% at 19.4°, 34.4 → 34.5% at 22.2° and 13.6 → 13.6% at 25.0°. The largest loss is 0.0 percentage points; the largest gain is about 6.9 points. Restoring either changed component separately also gains no light. The section comparison preserves the four-group arrangement and the central tapers; no separate manufacturer's construction drawing is available.
+
+- 2026-11-21 glass review:
+  - L4: Unmatched (nD 1.7005 / ν 30.2) → S-TIM35 (spectral proxy; patent nD 1.7005 / ν 30.2; supplier and melt unspecified), catalog row S-TIM35 (Ohara); ΔnD = −0.00175, ΔνD = −0.08, catalog minus printed at sodium D.
+  - L5: Unmatched (nD 1.6193 / ν 36.4) → J-F2 (spectral proxy; patent nD 1.6193 / ν 36.4; supplier and melt unspecified), catalog row J-F2 (Hikari); ΔnD = +0.00059, ΔνD = −0.01, catalog minus printed at sodium D.
+  - L7: Unmatched (nD 1.6142 / ν 56.3) → BACD6 (spectral proxy; patent nD 1.6142 / ν 56.3; supplier and melt unspecified), catalog row BACD6 (Hoya); ΔnD = −0.00054, ΔνD = +0.07, catalog minus printed at sodium D.
+  - Each spectral proxy is within index 0.002 and Abbe number 0.25 at the printed sodium D line. Printed indices and Abbe numbers are kept; the catalog rows supply only dispersion-curve shape and do not identify historical suppliers or melts.
 
 ## Remaining Questions
 
