@@ -42,7 +42,7 @@ const LENS_DATA = {
   key: "minolta-af-28-70mm-f28-g",
   maker: "Minolta",
   name: "MINOLTA AF 28-70mm f/2.8 G",
-  subtitle: "JP1994-082698 Example 1 — high-confidence production correlation",
+  subtitle: "JP1994-082698 Example 1 — strong production match",
 
   catalog: {
     lensMounts: ["sony-a"],

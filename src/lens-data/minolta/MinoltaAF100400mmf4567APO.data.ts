@@ -32,7 +32,7 @@ const LENS_DATA = {
   key: "minolta-af-100-400mm-f45-67-apo",
   maker: "Minolta",
   name: "MINOLTA AF 100-400mm f/4.5-6.7 APO",
-  subtitle: "JP H08-086961 A, Example 2 — strong production correlation",
+  subtitle: "JP H08-086961 A, Example 2 — strong production match",
   catalog: {
     lensMounts: ["sony-a"],
     imageFormat: "135-full-frame",

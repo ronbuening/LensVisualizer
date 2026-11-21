@@ -45,7 +45,7 @@ const LENS_DATA = {
   key: "minolta-md-zoom-50-135mm-f35",
   maker: "Minolta",
   name: "MINOLTA MD ZOOM 50-135mm f/3.5",
-  subtitle: "US 4,192,577 — Example 1; strong production correlation, not manufacturer-confirmed attribution",
+  subtitle: "US 4,192,577 — Example 1; strong production match, not maker-confirmed",
 
   catalog: {
     lensMounts: ["minolta-sr"],

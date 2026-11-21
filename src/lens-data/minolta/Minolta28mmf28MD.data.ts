@@ -41,7 +41,7 @@ const LENS_DATA = {
   key: "minolta-md-28mm-f28-7-7",
   maker: "Minolta",
   name: "MINOLTA MD 28mm f/2.8 (7 elements / 7 groups)",
-  subtitle: "US 3,973,832 Example 2 — inferred 7-element / 7-group MD-family correlation",
+  subtitle: "US 3,973,832 Example 2 — inferred 7-element / 7-group MD-family match",
 
   catalog: {
     lensMounts: ["minolta-sr"],

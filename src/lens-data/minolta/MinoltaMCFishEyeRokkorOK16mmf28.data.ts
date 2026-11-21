@@ -59,7 +59,7 @@ const LENS_DATA = {
   key: "minolta-mc-fish-eye-rokkor-ok-16mm-f28",
   maker: "Minolta",
   name: "MINOLTA MC FISH-EYE ROKKOR-OK 16mm f/2.8",
-  subtitle: "US 3,589,798 — Example II; production correlation to the MC Fish-Eye Rokkor-OK",
+  subtitle: "US 3,589,798 — Example II; production match to the MC Fish-Eye Rokkor-OK",
 
   catalog: {
     lensMounts: ["minolta-sr"],

@@ -44,7 +44,7 @@ const LENS_DATA = {
   key: "minolta-md-zoom-75-150-f4",
   maker: "Minolta",
   name: "MINOLTA MD ZOOM 75-150mm f/4",
-  subtitle: "JP S56-150717 A Example 1 — strong production correlation; patent does not name the commercial lens",
+  subtitle: "JP S56-150717 A Example 1 — strong production match; patent does not name the commercial lens",
 
   catalog: {
     lensMounts: ["minolta-sr"],

@@ -33,7 +33,7 @@ const LENS_DATA = {
   key: "minolta-md-135f28",
   maker: "Minolta",
   name: "MINOLTA MD 135mm f/2.8",
-  subtitle: "US 4,214,816 Example 1 - 1.35x scaled correlation; production attribution inferred",
+  subtitle: "US 4,214,816 Example 1 - 1.35x scaled production match; production attribution inferred",
 
   catalog: {
     lensMounts: ["minolta-sr"],

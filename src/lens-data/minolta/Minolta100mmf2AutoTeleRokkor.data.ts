@@ -36,7 +36,7 @@ const LENS_DATA = {
   key: "minolta-auto-tele-rokkor-100f2",
   maker: "Minolta",
   name: "MINOLTA AUTO TELE ROKKOR-PF 100mm f/2",
-  subtitle: "JP 1963-011590 B, Example 2 — production correlation inferred",
+  subtitle: "JP 1963-011590 B, Example 2 — inferred production match",
 
   catalog: {
     lensMounts: ["minolta-sr"],

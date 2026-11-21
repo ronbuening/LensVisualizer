@@ -40,7 +40,7 @@ const LENS_DATA = {
   key: "minolta-md-50f2",
   maker: "Minolta",
   name: "MINOLTA MD 50mm f/2",
-  subtitle: "US 4,444,473 — Example 5; ×0.5 scaled production correlation",
+  subtitle: "US 4,444,473 — Example 5; ×0.5 scaled production match",
 
   catalog: {
     lensMounts: ["minolta-sr"],
