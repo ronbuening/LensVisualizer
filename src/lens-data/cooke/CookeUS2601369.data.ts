@@ -6,8 +6,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * giving millimetres at a nominal 100 mm focal length. Both tables give D1 =
  * .130F; the drawing's .103 label is a misprint, as the stated .403F total confirms.
  * The indices are for the D line (taken as sodium, 589.3 nm), with printed Abbe V.
- * The stop position, bore and clear rims are inferred; the image plane is the
- * calculated paraxial infinity focus. The patent states a 26-degree half-field.
+ * The stop position and bore are inferred. Clear rims follow the unnumbered
+ * drawing on PDF page 1; the square 22.3 mm front rim and the 16.7 mm R3 rim
+ * exceed the drawn curve ends to preserve off-axis illumination. R4 and
+ * the rear doublet agree with the drawing within measurement uncertainty. The
+ * image plane is the calculated paraxial infinity focus. The patent states a
+ * 26-degree half-field.
  */
 const LENS_DATA = {
   schema: 2,
@@ -101,20 +105,20 @@ const LENS_DATA = {
       label: "1",
       R: 35.09,
       d: 13,
-      sd: 23,
+      sd: 22.3,
       medium: 1,
     },
     {
       label: "2",
       R: "flat",
       d: 4,
-      sd: 20,
+      sd: 22.3,
     },
     {
       label: "3",
       R: -77.52,
       d: 2,
-      sd: 18,
+      sd: 16.7,
       medium: 2,
     },
     {
