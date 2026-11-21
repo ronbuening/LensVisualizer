@@ -6,8 +6,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * 27-degree half-field. Its nominal 100 mm focal length computes to 100.20 mm;
  * the printed 89.7 mm back focus is retained, versus 89.99 mm paraxially.
  * The stop is inferred within the 7.5 mm rear air space, split 4.2 / 3.3 mm;
- * its radius is derived from the nominal aperture. All clear semi-diameters
- * are inferred. The patent gives no close-focus data or named glass melts.
+ * its radius is derived from the nominal aperture. Clear semi-diameters are
+ * inferred from the drawing-sheet section: 13.3 mm at the front and 12.4 mm
+ * at the middle singlet and rear doublet. These square-cut rims preserve the
+ * drawn size order and the axial beam, with 92.0% geometric transmission at
+ * 27 degrees; the smaller drawn rims would lose substantially more light.
+ * The patent gives no close-focus data or named glass melts.
  */
 const LENS_DATA = {
   schema: 2,
@@ -114,14 +118,14 @@ const LENS_DATA = {
       label: "3",
       R: -85.6,
       d: 1.1,
-      sd: 12.85,
+      sd: 12.4,
       medium: 2,
     },
     {
       label: "4",
       R: 24.7,
       d: 4.2,
-      sd: 12.85,
+      sd: 12.4,
     },
     {
       label: "STO",
@@ -132,21 +136,21 @@ const LENS_DATA = {
       label: "5",
       R: -90.5,
       d: 1.0,
-      sd: 13.15,
+      sd: 12.4,
       medium: 3,
     },
     {
       label: "6",
       R: 48.3,
       d: 4.0,
-      sd: 13.15,
+      sd: 12.4,
       medium: 4,
     },
     {
       label: "7",
       R: -44.5,
       d: 89.7,
-      sd: 13.15,
+      sd: 12.4,
     },
   ],
   focus: {
