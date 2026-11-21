@@ -6,8 +6,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ╠══════════════════════════════════════════════════════════════════════════════╣
  * ║ Data source: US 2,397,565, Example 1 (Willy Schade / Eastman Kodak).       ║
  * ║ Seven elements in four air-spaced components; all surfaces are spherical.   ║
- * ║ Focus status: NO_INTERNAL_RECONSTRUCTION. Example 1 publishes one fixed      ║
- * ║ prescription and no internal finite-focus motion.                           ║
+ * ║ Focus: infinity only. Example 1 publishes one fixed prescription and no      ║
+ * ║ close-focus movement.                                                       ║
  * ║                                                                              ║
  * ║ SCALE: the patent example is normalized to F = 100 mm. All dimensional      ║
  * ║ prescription values are uniformly scaled ×0.52 for the selected 52 mm       ║
@@ -188,7 +188,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 1e15,
     description:
-      "NO_INTERNAL_RECONSTRUCTION: Example 1 is fixed at infinity; closeFocusM=1e15 is a UI sentinel, not product MFD.",
+      "Infinity focus only. Example 1 gives one fixed prescription and no close-focus data, so focus travel is not modeled. The focus control is held at infinity; the stored value is not a product minimum focus distance.",
   },
 
   aperture: { nominalFNumber: 1.5, fStops: [1.5, 2, 2.8, 4, 5.6, 8, 11, 16] },

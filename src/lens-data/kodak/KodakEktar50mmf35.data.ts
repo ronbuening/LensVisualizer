@@ -25,8 +25,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Image plane: Example 2 gives no image-plane row. Surface 7 d uses the independently computed paraxial BFD after the
  * same 0.5 scale, measured from the R7 vertex.
  *
- * Focus: NO_INTERNAL_RECONSTRUCTION. The patent publishes no focus states or internal movement law. `closeFocusM` uses
- * the 3.5 ft normal-focus near limit documented for both reviewed Kodak 50 mm f/3.5 Ektar implementations; the optical
+ * Focus: infinity only. The patent publishes no focus states or internal movement law. `closeFocusM` uses the
+ * 3.5 ft normal-focus near limit documented for both reviewed Kodak 50 mm f/3.5 Ektar implementations; the optical
  * prescription remains the static infinity model and does not simulate close-focus motion.
  */
 const LENS_DATA = {
@@ -133,7 +133,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 1.0668,
     description:
-      "NO_INTERNAL_RECONSTRUCTION — static infinity prescription only; 1.0668 m is the common documented 3.5 ft normal-focus near limit, not a modeled focus state.",
+      "Infinity focus only. The patent gives one prescription and no close-focus data, so focus travel is not modeled. The 1.0668 m (3.5 ft) figure is the normal-focus near limit documented for Kodak cameras carrying this lens; it is product information, not a modeled focus state.",
   },
 
   aperture: { nominalFNumber: 3.5, fStops: [3.5, 4, 5.6, 8, 11, 16] },
