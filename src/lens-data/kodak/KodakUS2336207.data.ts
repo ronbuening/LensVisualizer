@@ -6,7 +6,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * It computes to EFL 100.68 mm and paraxial BF 49.10 mm; the printed BF is used for
  * the image plane because it agrees more closely with the Figures 2 and 3 rim-ray curves.
  * The stop is inferred 9.35 mm after R5, leaving 4.55 mm before R6; its opening is
- * derived from f/1.5. Rims are inferred, with R10–R12 following Figure 1 at 27.2 mm.
+ * derived from f/1.5. Inferred rims follow Figure 1's proportions: R3/R4 share a
+ * square edge at 31.6 mm; R10–R12 retain 27.2 mm. Axial and chief rays clear the rims.
  * The patent names the D line, taken as sodium at 589.3 nm. No production lens is documented.
  */
 const LENS_DATA = {
@@ -172,14 +173,14 @@ const LENS_DATA = {
       label: "3",
       R: 45.2,
       d: 19.2,
-      sd: 34,
+      sd: 31.6,
       medium: 2,
     },
     {
       label: "4",
       R: -185.8,
       d: 4,
-      sd: 29,
+      sd: 31.6,
       medium: 3,
     },
     {
