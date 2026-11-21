@@ -1,11 +1,21 @@
-import type { LensDataV2Input } from "../repo/src/types/lensDataV2.js";
-const data = {
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * US 2,601,593 A, Example VI and Figure 6, a six-element f/4 objective.
+ * The normalized dimensions are multiplied by 100 mm per source unit.
+ * Radii, thicknesses, sodium-D indices and Abbe numbers follow the printed table.
+ * The text places the stop approximately midway between R5 and R6; its exact
+ * midpoint and opening, the clear radii and the paraxial image plane are inferred.
+ * R5's clear radius keeps its rear surface ahead of the stop plane.
+ * The rear doublet computes as weakly positive despite the patent's divergent
+ * description, and the text's x = 0.106 differs from 0.107 from the indices.
+ */
+const LENS_DATA = {
   schema: 2,
-  key: "cook-us2601593-example6-drawing-witness-dline-reference",
-  maker: null,
-  name: "COOK US2601593 EX.VI — DRAWING WITNESS",
-  subtitle:
-    "Normalized 100-unit representation · f/4 patent-only · source72° design field · D-line infinity",
+  key: "cooke-100mm-f4-us2601593",
+  maker: "Cooke",
+  name: "COOKE 100mm f/4 (US 2,601,593 Design)",
+  subtitle: "US 2,601,593 A, Example VI — wide-angle fluorite design",
   visible: false,
   source: {
     patentNumber: "US 2,601,593 A",
@@ -17,9 +27,19 @@ const data = {
     authors: ["Gordon Henry Cook"],
     assignees: ["Taylor, Taylor & Hobson Limited"],
     sdSource: "heuristic",
+    errata: [
+      {
+        status: "unresolved",
+        note: "The patent describes both outer doublets as divergent; the printed Example VI rear doublet has an in-air focal length of +718.47 mm at this model's scale.",
+      },
+      {
+        status: "unresolved",
+        note: "The text gives x = 0.106 for Example VI, while the printed refractive indices give 0.107. The printed indices are retained.",
+      },
+    ],
   },
   catalog: {
-    imageCircleMm: 145.3587692870305,
+    imageCircleMm: 145.36,
     elementCount: 6,
     groupCount: 4,
     focalLengthMm: {
@@ -28,79 +48,84 @@ const data = {
     fNumber: {
       design: 4,
     },
-    specs: [
-      "6E/4G · TWO CRYSTALLINE CaF2 MENISCI",
-      "100mm IS A DECLARED SCALE, NOT A SOURCE ABSOLUTE FOCAL LENGTH",
-      "FIG.6 R9 −0.6897 WITNESS + ≈1.45/F PROSE; APPARENT TABLE −0.6397 RETAINED IN EVIDENCE",
-      "SOURCE f/4 AND72° DESIGN FIELD · CLIPPING SHOWN, NO FULL-PUPIL CLAIM",
-      "IRIS MIDPOINT APPROXIMATE; CLEAR RADII ESTIMATED",
-      "NOMINAL f/4; FINITE ENTRANCE EQUIVALENT≈f/3.9784",
-      "EDGE GEOMETRIC MTF UNCONVERGED AT NATIVE GRID256; DENSE DIAGNOSTIC IN EVIDENCE",
-      "D-LINE INFINITY ONLY · NO RETAIL IDENTITY OR VERIFIED FINITE CONJUGATES",
-    ],
+    specs: ["6 ELEMENTS / 4 GROUPS", "ALL SPHERICAL", "DESIGN F/4", "2 FLUORITE ELEMENTS"],
   },
   elements: [
     {
       id: 1,
       name: "L1",
-      label: "L1",
-      type: "Cemented Meniscus Component",
+      label: "Element 1",
+      type: "Positive Meniscus",
+      focalLengthMm: 58.91,
+      role: "Positive outer element of the front cemented doublet",
+      cemented: "C1",
       nd: 1.717,
       vd: 47.9,
       indexReference: "D",
-      glass: "Unmatched (literal source nD/V, no catalog substitution)",
+      glass: "Unmatched (nD 1.717 / ν 47.9)",
     },
     {
       id: 2,
       name: "L2",
-      label: "L2",
-      type: "Cemented Meniscus Component",
+      label: "Element 2",
+      type: "Negative Meniscus",
+      focalLengthMm: -44.92,
+      role: "Negative inner element of the front cemented doublet",
+      cemented: "C1",
       nd: 1.61,
       vd: 37.5,
       indexReference: "D",
-      glass: "Unmatched (literal source nD/V, no catalog substitution)",
+      glass: "Unmatched (nD 1.610 / ν 37.5)",
     },
     {
       id: 3,
       name: "L3",
-      label: "L3",
+      label: "Element 3",
       type: "Positive Meniscus",
+      focalLengthMm: 123.17,
+      role: "Low-dispersion positive meniscus ahead of the diaphragm",
       nd: 1.4339,
       vd: 95.4,
       indexReference: "D",
-      glass:
-        "Crystalline CaF2 (source nD/V; no independently calibrated multi-line curve)",
+      glass: "CaF2 (fluorite crystal)",
     },
     {
       id: 4,
       name: "L4",
-      label: "L4",
+      label: "Element 4",
       type: "Positive Meniscus",
+      focalLengthMm: 139.31,
+      role: "Low-dispersion positive meniscus behind the diaphragm",
       nd: 1.4339,
       vd: 95.4,
       indexReference: "D",
-      glass:
-        "Crystalline CaF2 (source nD/V; no independently calibrated multi-line curve)",
+      glass: "CaF2 (fluorite crystal)",
     },
     {
       id: 5,
       name: "L5",
-      label: "L5",
-      type: "Cemented Meniscus Component",
+      label: "Element 5",
+      type: "Negative Meniscus",
+      focalLengthMm: -49.9,
+      role: "Negative inner element of the rear cemented doublet",
+      cemented: "C2",
       nd: 1.61,
       vd: 37.5,
       indexReference: "D",
-      glass: "Unmatched (literal source nD/V, no catalog substitution)",
+      glass: "Unmatched (nD 1.610 / ν 37.5)",
     },
     {
       id: 6,
       name: "L6",
-      label: "L6",
-      type: "Cemented Meniscus Component",
+      label: "Element 6",
+      type: "Positive Meniscus",
+      focalLengthMm: 55.12,
+      role: "Positive outer element of the rear cemented doublet",
+      cemented: "C2",
       nd: 1.717,
       vd: 47.9,
       indexReference: "D",
-      glass: "Unmatched (literal source nD/V, no catalog substitution)",
+      glass: "Unmatched (nD 1.717 / ν 47.9)",
     },
   ],
   surfaces: [
@@ -135,7 +160,7 @@ const data = {
       label: "5",
       R: 56.98,
       d: 2,
-      sd: 15.2,
+      sd: 14.9,
     },
     {
       label: "STO",
@@ -177,9 +202,8 @@ const data = {
     },
   ],
   focus: {
-    closeFocusM: 1000000000000000,
-    description:
-      "Patent-only normalized ExampleVI in larger-conjugate/front-to-rear infinity direction. 100mm declared representation. Fig6 R9−.6897 corroborated by ≈1.45/F prose; apparent table−.6397 kept separately, no official correction claimed. Approximate midpoint iris and estimated caps; published72degree design field is a trace request with clipping. No measured rims, finite conjugate or retail identity. Quantitative D-line scope only; edge geometric MTF remains unconverged at native grid256.",
+    closeFocusM: 1e15,
+    description: "Infinity focus only; the patent gives no close-focus data.",
   },
   aperture: {
     nominalFNumber: 4,
@@ -208,7 +232,19 @@ const data = {
       toSurface: "7",
     },
     {
-      text: "Rear divergent cemented pair",
+      text: "Rear cemented doublet",
+      fromSurface: "8",
+      toSurface: "10",
+    },
+  ],
+  doublets: [
+    {
+      text: "C1",
+      fromSurface: "1",
+      toSurface: "3",
+    },
+    {
+      text: "C2",
       fromSurface: "8",
       toSurface: "10",
     },
@@ -217,4 +253,4 @@ const data = {
     yScFill: 0.5,
   },
 } satisfies LensDataV2Input;
-export default data;
+export default LENS_DATA;
