@@ -1,25 +1,38 @@
-import type { LensDataV2Input } from "../repo/src/types/lensDataV2.js";
-const data = {
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * US 2,341,385 A, sole example: five spherical elements in four groups, in millimetres.
+ * The stop position and lens rims are inferred from the drawing; the iris follows f/3.5.
+ * The image plane uses the calculated paraxial back focus of 101.53 mm rather than
+ * the printed 101.7 mm, a difference consistent with table rounding; EFL is 100.08 mm.
+ * The rear three components compute to 67.95 mm against the text's unexplained 67.6 mm.
+ */
+const LENS_DATA = {
   schema: 2,
-  key: "kingslake-stevens-us2341385-infinity-reference",
-  maker: null,
-  name: "KINGSLAKE / STEVENS US2341385 \u2014 PATENT REFERENCE",
-  subtitle:
-    "100mm nominal f/3.5 \u00b7 literal D \u00b7 chosen \u00b125\u00b0 infinity diagnostic",
-  visible: false,
+  key: "kodak-100mm-f35-us2341385",
+  maker: "Kodak",
+  name: "KODAK 100mm f/3.5 (US 2,341,385 Design)",
+  subtitle: "US 2,341,385 A, sole example — early retrofocus wide-angle design",
+  visible: true,
   source: {
-    patentNumber: "US 2,341,385",
+    patentNumber: "US 2,341,385 A",
     patentYear: 1944,
     example: {
       label: "Sole example",
       id: null,
     },
-    authors: ["Kingslake", "Stevens"],
+    authors: ["Rudolf Kingslake", "Paul W. Stevens"],
     assignees: ["Eastman Kodak Company"],
+    errata: [
+      {
+        status: "unresolved",
+        note: "The text gives 67.6 mm for the rear three components; the printed prescription computes to 67.95 mm. The cause is unresolved and the table is retained.",
+      },
+    ],
     sdSource: "heuristic",
   },
   catalog: {
-    imageCircleMm: 92.67013420062605,
+    imageCircleMm: 114.9,
     elementCount: 5,
     groupCount: 4,
     focalLengthMm: {
@@ -28,72 +41,70 @@ const data = {
     fNumber: {
       design: 3.5,
     },
-    specs: [
-      "5E/4G; R8 cement; literal source prescription, no optical fitting",
-      "SOURCE100/f3.5/BF101.7; LITERAL EFL100.077588/BFD101.527023",
-      "Source D indices preserved; Abbe values are not calibrated dispersion",
-      "Stop near R5 drawn; inferred11.7/2.6,z40.8 and clear rims/physical iris estimates",
-      "Chosen \u00b125\u00b0 diagnostic; no historical measured field/coverage or retail claim",
-      "Nominal f3.5; modeled finite entrance-equivalent f3.586752 (estimated iris)",
-      "Infinity/reference-D only; no calibrated broadband or source-performance claim; no baffles/override",
-      "Diagnostic image-circle is twice native/independent25deg chief height; not a surveyed format",
-    ],
+    specs: ["5 ELEMENTS / 4 GROUPS", "ALL SPHERICAL", "DESIGN F/3.5", "RETROFOCUS"],
   },
   elements: [
     {
       id: 1,
       name: "L1",
-      label: "L1",
-      type: "Source Spherical Element",
+      label: "Element 1",
+      type: "Negative Meniscus",
       nd: 1.62,
       vd: 60.4,
       indexReference: "D",
-      glass:
-        "Unmatched literal source D/V; no exact catalog glass or calibrated spectral curve",
+      focalLengthMm: -87.73,
+      glass: "Unmatched (nD 1.620 / ν 60.4)",
+      role: "Front negative member that extends back focus",
     },
     {
       id: 2,
       name: "L2",
-      label: "L2",
-      type: "Source Spherical Element",
+      label: "Element 2",
+      type: "Biconvex Positive",
       nd: 1.697,
       vd: 56.1,
       indexReference: "D",
-      glass:
-        "Unmatched literal source D/V; no exact catalog glass or calibrated spectral curve",
+      focalLengthMm: 55.23,
+      glass: "Unmatched (nD 1.697 / ν 56.1)",
+      role: "Positive front component of the rear member",
     },
     {
       id: 3,
       name: "L3",
-      label: "L3",
-      type: "Source Spherical Element",
+      label: "Element 3",
+      type: "Biconcave Negative",
       nd: 1.617,
       vd: 36.6,
       indexReference: "D",
-      glass:
-        "Unmatched literal source D/V; no exact catalog glass or calibrated spectral curve",
+      focalLengthMm: -66.9,
+      glass: "Unmatched (nD 1.617 / ν 36.6)",
+      role: "Negative middle component that contributes to field correction",
     },
     {
       id: 4,
       name: "L4",
-      label: "L4",
-      type: "Source Spherical Element",
+      label: "Element 4",
+      type: "Negative Meniscus",
       nd: 1.617,
       vd: 36.6,
       indexReference: "D",
-      glass:
-        "Unmatched literal source D/V; no exact catalog glass or calibrated spectral curve",
+      focalLengthMm: -92.14,
+      glass: "Unmatched (nD 1.617 / ν 36.6)",
+      role: "Dispersive negative element of the rear doublet",
+      cemented: "C1",
     },
     {
       id: 5,
       name: "L5",
-      label: "L5",
-      type: "Source Spherical Element",
+      label: "Element 5",
+      type: "Biconvex Positive",
       nd: 1.611,
       vd: 57.2,
       indexReference: "D",
-      glass:
-        "Unmatched literal source D/V; no exact catalog glass or calibrated spectral curve",
+      focalLengthMm: 42.01,
+      glass: "Unmatched (nD 1.611 / ν 57.2)",
+      role: "Positive element of the rear doublet that converges light toward the image",
+      cemented: "C1",
     },
   ],
   surfaces: [
@@ -163,9 +174,8 @@ const data = {
     },
   ],
   focus: {
-    closeFocusM: 1000000000000000.0,
-    description:
-      "Kingslake/Stevens Eastman Kodak US2341385 sole patent design, not a retail match. Original drawingp1/tablep3 independently visually verified in external scout custody; original PDF hash pinned in evidence, no local source bytes/pixels/hash verification and no retry of denied provider. Literal R/t/D/V preserved; nominal100/f3.5/BF101.7 and calculated100.077588/101.527023 distinct, no fit. Chosen \u00b125deg infinity diagnostic only; no published measured field or finite conjugates. Stop nearR5 drawn but11.7/2.6,z40.8 and caps/physical iris estimated; no baffles/override/spectral calibration.",
+    closeFocusM: 1e15,
+    description: "Infinity focus only; the patent gives no close-focus data.",
   },
   aperture: {
     nominalFNumber: 3.5,
@@ -174,33 +184,34 @@ const data = {
   },
   projection: {
     kind: "rectilinear",
-    fullFieldDeg: 50,
-    maxTraceFieldDeg: 25,
+    fullFieldDeg: 60,
+    maxTraceFieldDeg: 30,
   },
   groups: [
     {
-      text: "G1 \u00b7 L1",
+      text: "G1 · L1",
       fromSurface: "1",
       toSurface: "2",
     },
     {
-      text: "G2 \u00b7 L2",
+      text: "G2 · L2",
       fromSurface: "3",
       toSurface: "4",
     },
     {
-      text: "G3 \u00b7 L3",
+      text: "G3 · L3",
       fromSurface: "5",
       toSurface: "6",
     },
     {
-      text: "G4 \u00b7 L4+L5",
+      text: "G4 · L4 + L5",
       fromSurface: "7",
       toSurface: "9",
     },
   ],
+  doublets: [{ text: "C1", fromSurface: "7", toSurface: "9" }],
   layout: {
     yScFill: 0.5,
   },
 } satisfies LensDataV2Input;
-export default data;
+export default LENS_DATA;
