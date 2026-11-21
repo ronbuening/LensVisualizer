@@ -8,7 +8,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * The printed 188 mm is closer to the G′-line EFL of 188.21 mm than the D-line EFL of 188.64 mm.
  * Stop position is printed, 8.7 mm after R4 and 6.2 mm before R5; its diameter is inferred from f/4.5.
  * Clear semi-diameters are estimates. The image plane is the computed D-line paraxial back focus,
- * 166.977796 mm after R7. The 12° half-field is illustrative and is not printed.
+ * 166.98 mm after R7. The 12.0° half-field is illustrative and is not printed.
  * Element focal lengths are thick-lens values in air at the D line, including the two cemented members.
  */
 const LENS_DATA = {
@@ -16,7 +16,7 @@ const LENS_DATA = {
   key: "bausch-lomb-188mm-f45-us1558073",
   maker: "Bausch & Lomb",
   name: "BAUSCH & LOMB 188mm f/4.5 (US 1,558,073 Design)",
-  subtitle: "US 1,558,073 A, sole example — Tessar-type four-element objective",
+  subtitle: "US 1,558,073 A, sole example — Bausch & Lomb / Bielicke",
   visible: false,
   source: {
     patentNumber: "US 1,558,073 A",
@@ -28,7 +28,7 @@ const LENS_DATA = {
     errata: [
       {
         status: "unresolved",
-        note: "The table gives a D-line EFL of 188.640798 mm against the stated 188 mm. The printed G′ indices give 188.210679 mm, closer to the stated focal length; the reason for the difference is not established.",
+        note: "The printed prescription gives a computed D-line EFL of 188.64 mm against the stated 188 mm. The printed G′ indices give 188.21 mm, closer to the stated focal length; the reason for the difference is not established.",
       },
     ],
   },
