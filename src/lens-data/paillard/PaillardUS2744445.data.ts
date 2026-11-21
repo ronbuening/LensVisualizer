@@ -6,13 +6,15 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * indices and Abbe numbers. Clear semi-diameters are inferred. The inferred
  * stop lies 3 mm behind surface 4, where the field curves support its position;
  * no iris is drawn. The image plane is the computed paraxial back focus.
+ * EFL is 99.71 mm; the accepted real axial aperture is about f/1.46.
+ * Agreement with the printed field-curvature limits is approximate.
  */
 const LENS_DATA = {
   schema: 2,
   key: "paillard-100mm-f14-us2744445",
   maker: "Paillard",
   name: "PAILLARD 100mm f/1.4 (US 2,744,445 Design)",
-  subtitle: "US 2,744,445 A, Figure 1 — Petzval-type projection objective",
+  subtitle: "US 2,744,445 A, Figure 1 — Paillard / Werfeli",
   visible: true,
   source: {
     patentNumber: "US 2,744,445 A",
@@ -26,7 +28,7 @@ const LENS_DATA = {
     sdSource: "heuristic",
   },
   catalog: {
-    imageCircleMm: 27.7124,
+    imageCircleMm: 27.72,
     elementCount: 4,
     groupCount: 4,
     focalLengthMm: {
@@ -35,7 +37,7 @@ const LENS_DATA = {
     fNumber: {
       design: 1.4,
     },
-    specs: ["4 ELEMENTS / 4 GROUPS", "ALL SPHERICAL", "DESIGN F/1.4", "PROJECTION OBJECTIVE"],
+    specs: ["4 ELEMENTS / 4 GROUPS", "ALL SPHERICAL", "DESIGN f = 100 mm", "DESIGN F/1.4", "PROJECTION OBJECTIVE"],
   },
   elements: [
     {

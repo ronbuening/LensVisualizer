@@ -1,6 +1,6 @@
 # PAILLARD 100mm f/1.4 (US 2,744,445 Design)
 
-## Patent and Design Identification
+## Patent Reference and Design Identification
 
 **Patent:** US 2,744,445 A, _Photographic and Projection Objective of the Petzval Type_
 
@@ -26,7 +26,7 @@ Four air-spaced singlets form two converging achromatic pairs, each with a posit
 
 Figure 1 places the object to the left and the film plane F to the right. The model traces collimated light from left to right in that direction. The 119.2 mm first-to-last-surface track follows the printed thicknesses and separations. The patent does not specify the finite conjugates of a projector installation.
 
-The invention reduces the Petzval sum through its distribution of curvature, thickness and glass index. It requires the magnitudes of R2 and R3 to exceed 1.3 times R1, R1 to exceed 0.8 f, and the rear positive element to have a thickness between 0.10 f and 0.25 f. The printed example satisfies these conditions. Its paraxial Petzval sum is 0.00839325 mm⁻¹.
+The invention reduces the Petzval sum through its distribution of curvature, thickness and glass index. It requires the magnitudes of R2 and R3 to exceed 1.3 times R1, R1 to exceed 0.8 f, and the rear positive element to have a thickness between 0.10 f and 0.25 f. The printed example satisfies these conditions. Its paraxial Petzval sum is 0.008393 mm⁻¹.
 
 ## Element-by-Element Analysis
 
@@ -38,7 +38,7 @@ The +89.8/−162.2 mm surfaces enclose 17.5 mm of glass. This is the positive me
 
 ### Element 2 / L2 — Biconcave Negative
 
-nD = 1.68873, ν = 31.2. Glass: FD8 (Hoya), a catalogue match in index and Abbe number. Standalone focal length in air: −139.33 mm.
+nD = 1.68873, ν = 31.2. Glass: FD8 (Hoya), an approximate catalogue match. Standalone focal length in air: −139.33 mm.
 
 The −131.55/+365.7 mm surfaces enclose 10 mm of glass. Its stronger dispersion offsets colour from the positive front member. The inferred clear semi-diameters are 36 and 38 mm; the 1.15 mm air gap separates it from Element 1.
 
@@ -58,17 +58,17 @@ The −59.95 mm front surface and plane rear surface enclose 2.5 mm of glass. Th
 
 The patent explicitly gives indices for the D line, taken as sodium at 589.3 nm, together with Abbe numbers. Those printed values are retained. It supplies no individual C-, F- or g-line indices or partial-dispersion data.
 
-Hoya FD8 evaluates to nD = 1.6887384, with catalogue Abbe number 31.158857, compared with Element 2's printed 1.68873 and 31.2. The differences are +0.0000084 and −0.041143. This match supports use of its catalogue dispersion curve; it does not identify the historical supplier or melt. No sufficiently close catalogue row was found for Elements 1, 3 or 4, which retain their printed values and Unmatched labels.
+Hoya FD8 evaluates to nD = 1.68874, with catalogue Abbe number 31.16, against Element 2's printed 1.68873 and 31.2. The differences are +0.0000084 and −0.04. Its index lies slightly outside the printed rounding range; the dispersion curve is an approximation, without identifying a historical supplier or melt. Elements 1, 3 and 4 lack catalogue matches at the printed precision and retain Unmatched labels.
 
 Chromatic estimates for the unmatched glasses depend on Abbe-based dispersion. The available data do not establish broadband performance or anomalous partial dispersion.
 
 ## Focus Mechanism and Image Plane
 
-The model represents infinity focus only. The patent gives no close-focus distances, focus travel or movement law, so the elements remain fixed.
+The model is focused at infinity. The patent gives no close-focus distances, focus travel or movement law, so the elements remain fixed.
 
-The printed prescription computes to EFL 99.7065 mm, 0.2935% below the stated 100 mm. Its paraxial back focal distance is 37.7458 mm, placing the image plane 156.9458 mm behind the first vertex. Back focus is not printed; the model uses this paraxial plane without a shift to improve image sharpness.
+The printed prescription computes to EFL 99.71 mm, 0.3% below the stated 100 mm. Its paraxial back focal distance is 37.75 mm, placing the image plane 156.95 mm behind the first vertex. Back focus is not printed; the model uses this paraxial plane without a shift to improve image sharpness.
 
-The patent's ±8° field is retained. With the inferred stop described below, the real 8° chief ray reaches image height 13.8562 mm at that plane. Twice this height gives the catalogued 27.7124 mm image circle at the model's focal length. This is derived from the printed field, not a measured film-format dimension.
+The patent's ±8.0° field is retained. With the inferred stop described below, the real 8.0° chief ray reaches image height 13.86 mm at that plane. Twice this height, rounded upward, gives the catalogued 27.72 mm image circle. This is derived from the printed field, not a measured film-format dimension.
 
 ## Inferred Stop and Clear Apertures
 
@@ -76,7 +76,7 @@ Figure 1 shows no iris, and the patent gives neither a stop station nor its diam
 
 This position is supported by Figure 3 and the text's limits of 0.17% f for mean field curvature and below 0.65% f for astigmatism. Real-ray fits with a stop 0–4 mm behind R4 give mean curvature of about 0.18–0.20% f and astigmatism of about 0.64–0.68% f. These are closer to the printed claims than a midpoint stop, which gives mean curvature about 0.37% f and the wrong sign for the edge tangential focus. The exact historical stop station remains unknown, and the inferred position does not reproduce every printed bound exactly.
 
-The paraxial f/1.4 stop has radius 30.4070 mm. Its accepted real axial entrance radius is 34.1842 mm, corresponding to f/1.4584. The iris sets that aperture; the glass rims do not limit the axial beam. The 8° chief ray clears every rim, while approximately 95% of the on-axis pupil area remains at 8°. This area ratio describes modeled vignetting, not measured transmission.
+The paraxial f/1.40 stop has radius 30.41 mm. Its accepted real axial entrance radius is 34.18 mm, corresponding to f/1.46. The iris sets that aperture; the glass rims do not limit the axial beam. The 8.0° chief ray clears every rim, while approximately 95.0% of the on-axis pupil area remains at 8.0°. This area ratio describes modeled vignetting, not measured transmission.
 
 The clear semi-diameters remain inferred. The minimum front-pair air clearance is about 0.174 mm, the rear positive element retains about 1.701 mm minimum glass thickness, and the rear-pair air clearance is about 0.836 mm. Their precise relation to the drawn rims remains unresolved.
 
