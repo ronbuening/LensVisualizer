@@ -17,7 +17,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
 |---|---|---|---|---|---|
 | [`bronica-etr`](#bronica-etr--zenza-bronica-etr) | bayonet | 69 mm | unknown mm | `renderable` | 1 |
 | [`bronica-gs`](#bronica-gs--zenza-bronica-gs) | bayonet | 85 mm | 57 mm | `renderable` | 1 |
-| [`bronica-sq`](#bronica-sq--zenza-bronica-sq) | bayonet | 85 mm | 57 mm | `renderable` | 1 |
+| [`bronica-sq`](#bronica-sq--zenza-bronica-sq) | bayonet | 85 mm | unknown mm | `renderable` | 1 |
 | [`canon-ef`](#canon-ef--canon-ef) | bayonet | 44 mm | 54 mm | `mvp_complete` | 1 |
 | [`canon-ef-m`](#canon-ef-m--canon-ef-m) | bayonet | 18 mm | 47 mm | `mvp_complete` | 1 |
 | [`canon-ef-s`](#canon-ef-s--canon-ef-s) | bayonet | 44 mm | 54 mm | `mvp_complete` | 1 |
@@ -297,71 +297,81 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 | Profile ID | Type | Applies to | Adds | Removes | Changes |
 |---|---|---|---|---|---|
-| `bronica-sq/base` | base | Bronica SQ / SQ-A / SQ-Ai 6x6 leaf-shutter lenses and bodies | medium-format bayonet; leaf-shutter cocking/release coupling; aperture coupling | electrical contacts in the classic leaf-shutter lens mount | SQ-specific mapping from the broader Bronica patent family remains unconfirmed |
+| `bronica-sq/base` | base | Bronica SQ / SQ-A / SQ-Ai 6x6 leaf-shutter lenses and bodies | four-claw bayonet; pivoted lens-release catch; two shutter cocking lugs on a rotating body ring; six electrical contacts in two groups of three at the top of the mount | separate mechanical aperture coupling (three of the six contacts carry the f-stop) | sources cover the SQ (1980) and SQ-A (1982); SQ-Ai and SQ-B bodies were not separately checked; the cited Bronica patent is an ETR-era filing and supplies no SQ value |
 
 #### Dimensional summary
 
 | Field | Value | Unit |
 |---|---|---|
 | Flange focal distance | 85 (`secondary`) | mm |
-| Nominal throat diameter | 57 (`patent`) | mm |
-| Effective clear aperture | 57 (`patent`) | mm |
-| Camera mount outer diameter | 70 (`patent`) | mm |
-| Lens mount outer diameter | 68 (`patent`) | mm |
-| Contact count | not_applicable (`not_applicable`) | count |
-| Lock rotation | 60 (`patent`) | deg |
-| Lock direction | clockwise (`patent`) | — |
+| Nominal throat diameter | unknown (`unknown`) | mm |
+| Effective clear aperture | unknown (`unknown`) | mm |
+| Camera mount outer diameter | 76 (`conflicting`) | mm |
+| Lens mount outer diameter | unknown (`unknown`) | mm |
+| Contact count | 6 (`secondary`) | count |
+| Lock rotation | 20 (`secondary`) | deg |
+| Lock direction | counterclockwise (`official`) | — |
 
 #### Figures (selected profile `bronica-sq/base`)
 
-**Camera-side front view** — viewBox `-43 -45 86 88` · 38 elements in 4 layers · hash `fa8c433e` ([standalone SVG](mounts/bronica-sq-camera-front.svg))
+**Camera-side front view** — viewBox `-46 -49 92 95` · 38 elements in 5 layers · hash `9d43e132` ([standalone SVG](mounts/bronica-sq-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-42 -44 84 86` · 32 elements in 4 layers · hash `cd815cea` ([standalone SVG](mounts/bronica-sq-lens-rear.svg))
+**Lens-side rear view** — viewBox `-34 -36 68 70` · 38 elements in 5 layers · hash `e1767c05` ([standalone SVG](mounts/bronica-sq-lens-rear.svg))
 
-**Axial / register schematic** — viewBox `-94 -53 104 102` · 12 elements in 2 layers · hash `fc849b7e` ([standalone SVG](mounts/bronica-sq-axial.svg))
+**Axial / register schematic** — viewBox `-94 -52 103 100` · 10 elements in 2 layers · hash `f82b6d84` ([standalone SVG](mounts/bronica-sq-axial.svg))
 
 #### Camera-side front-view geometry
 
 | Feature ID | Type | Profile | Center | Start | End | Inner r | Outer r |
 |---|---|---|---|---|---|---|---|
-| `body-throat` | body_throat | `bronica-sq/base` | 0° | 0° | 360° | 0 | 28.5 |
-| `body-mount-ring` | mount_ring | `bronica-sq/base` | 0° | 0° | 360° | 28.5 | 35 |
-| `body-slot-1` | bayonet_receiving_slot | `bronica-sq/base` | 20° | 2° | 38° | 28.5 | 31 |
-| `body-slot-2` | bayonet_receiving_slot | `bronica-sq/base` | 140° | 122° | 158° | 28.5 | 31 |
-| `body-slot-3` | bayonet_receiving_slot | `bronica-sq/base` | 260° | 242° | 278° | 28.5 | 31 |
-| `body-index-mark` | index_mark | `bronica-sq/base` | 0° | unknown | unknown | unknown | 35.5 |
-| `body-lock-pin` | lock_pin | `bronica-sq/base` | 270° | unknown | unknown | unknown | 29.5 |
+| `body-throat` | body_throat | `bronica-sq/base` | 0° | 0° | 360° | 0 | unknown |
+| `body-mount-ring` | mount_ring | `bronica-sq/base` | 0° | 0° | 360° | unknown | 38 |
+| `body-index-mark` | index_mark | `bronica-sq/base` | 0° | unknown | unknown | unknown | unknown |
+| `body-lock-pin` | lock_pin | `bronica-sq/base` | 135° | unknown | unknown | unknown | unknown |
 
 #### Lens-side rear-view geometry
 
 | Feature ID | Type | Profile | Center | Start | End | Inner r | Outer r |
 |---|---|---|---|---|---|---|---|
-| `lens-throat` | lens_throat | `bronica-sq/base` | 0° | 0° | 360° | 0 | 27.5 |
-| `lens-mount-ring` | lens_mount_ring | `bronica-sq/base` | 0° | 0° | 360° | 27.5 | 34 |
-| `lens-lug-1` | bayonet_lug | `bronica-sq/base` | 20° | 2° | 38° | 28.5 | 31 |
-| `lens-lug-2` | bayonet_lug | `bronica-sq/base` | 140° | 122° | 158° | 28.5 | 31 |
-| `lens-lug-3` | bayonet_lug | `bronica-sq/base` | 260° | 242° | 278° | 28.5 | 31 |
-| `lens-index-mark` | index_mark | `bronica-sq/base` | 0° | unknown | unknown | unknown | 34.5 |
-| `lens-lock-notch` | lock_notch | `bronica-sq/base` | 270° | unknown | unknown | unknown | 29.5 |
+| `lens-throat` | lens_throat | `bronica-sq/base` | 0° | 0° | 360° | 0 | unknown |
+| `lens-mount-ring` | lens_mount_ring | `bronica-sq/base` | 0° | 0° | 360° | unknown | unknown |
+| `lens-index-mark` | index_mark | `bronica-sq/base` | 0° | unknown | unknown | unknown | unknown |
+| `lens-lock-notch` | lock_notch | `bronica-sq/base` | 135° | unknown | unknown | unknown | unknown |
+
+#### Electrical contacts
+
+| Side | No. | Profile | Center angle | Radius | Function |
+|---|---|---|---|---|---|
+| body | 1 | `bronica-sq/base` | 323° | unknown |  |
+| body | 2 | `bronica-sq/base` | 330° | unknown |  |
+| body | 3 | `bronica-sq/base` | 338° | unknown |  |
+| body | 4 | `bronica-sq/base` | 22° | unknown |  |
+| body | 5 | `bronica-sq/base` | 30° | unknown |  |
+| body | 6 | `bronica-sq/base` | 37° | unknown |  |
+| lens | 1 | `bronica-sq/base` | 323° | unknown |  |
+| lens | 2 | `bronica-sq/base` | 330° | unknown |  |
+| lens | 3 | `bronica-sq/base` | 338° | unknown |  |
+| lens | 4 | `bronica-sq/base` | 22° | unknown |  |
+| lens | 5 | `bronica-sq/base` | 30° | unknown |  |
+| lens | 6 | `bronica-sq/base` | 37° | unknown |  |
 
 #### Mechanical couplings
 
 | Feature | Side | Profile | Function |
 |---|---|---|---|
-| `leaf-shutter-cocking-coupler` | both | `bronica-sq/base` | cocks/arms the lens leaf shutter |
-| `aperture-control-coupler` | both | `bronica-sq/base` | body/lens aperture coordination |
+| `shutter-cocking-lug-1` | both | `bronica-sq/base` | tensions and trips the leaf shutter in the lens |
+| `shutter-cocking-lug-2` | both | `bronica-sq/base` | tensions and trips the leaf shutter in the lens |
 
 #### Axial stack
 
 | Plane | z (mm) | Diameter (mm) |
 |---|---|---|
-| `flange_datum` | 0 | 70 |
-| `bayonet_lug_engagement` | 1.2 | 64 |
-| `sensor_film_plane` | -85 | 79.2 |
+| `flange_datum` | 0 | 76 |
+| `sensor_film_plane` | -85 | 78.6 |
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/bronica-sq.mount.ts` (28612 bytes, content hash `739c5835`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/bronica-sq.mount.ts` (32835 bytes, content hash `f2b4ce5f`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -369,11 +379,18 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 |---|---|---|---|---|---|
 | `bsq-1` | secondary | “Flange focal distance,” Wikipedia. Accessed 2026-06-06. | [snapshot](http://web.archive.org/web/20260526152456/https://en.wikipedia.org/wiki/Flange_focal_distance) | 2026-05-26 | medium |
 | `bsq-2` | secondary | “Bronica SQ,” Camera-wiki.org. Accessed 2026-06-06. | [snapshot](https://camera-wiki.org/wiki/Bronica_SQ-Ai) | 2026-06-06 | medium |
-| `bsq-p1` | patent | US4063264A, Bronica lens-shutter SLR interchangeable-lens mount family. Accessed 2026-06-06. | [snapshot](https://patents.google.com/patent/US4063264A/en) | 2026-06-06 | low |
+| `bsq-p1` | patent | US4063264A, “Means for mounting an interchangeable lens on a single lens reflex camera,” Zenza Bronica Industries, filed 1976-07-26. Accessed 2026-06-06. | [snapshot](https://patents.google.com/patent/US4063264A/en) | 2026-06-06 | low |
+| `bsq-om` | official | Zenza Bronica SQ-A instruction manual: specifications, “Exchanging Lenses,” and the “Cocking pin” care note. | [snapshot](https://www.cameramanuals.org/bronica/bronica_sq-a.pdf) | 2026-11-21 | high |
+| `bsq-mt` | secondary | Modern Photography “Modern Tests” report on the Bronica SQ (headed “Bronica SQ: Pro 2¼ SLR System”), reprint 5M/11-83, Pacific Rim Camera reference library. Original issue date not printed on the reprint. | [snapshot](https://www.pacificrimcamera.com/rl/01117/01117.pdf) | 2026-11-21 | medium |
+| `bsq-pp` | secondary | N. Goldberg and M. A. Frank, lab report on the Bronica SQ-A, Popular Photography, vol. 90, no. 5, May 1983, reprint 10M/12-83, Pacific Rim Camera reference library. | [snapshot](https://www.pacificrimcamera.com/rl/01116/01116.pdf) | 2026-11-21 | medium |
 
 #### Open questions
 
-- SQ bayonet sector geometry and leaf-shutter coupling positions are unresolved; current figure is register-correct and separate from the GS placeholder. _(Upgrade from Bronica SQ service manuals or measured SQ body/lens samples.)_
+- No source gives the clock positions, spans or radii of the four bayonet claws, so no claw is drawn; the four-claw count is recorded in the profile only. The earlier three lugs at 20°, 140° and 260° were unsourced and are removed. _(Needs an SQ service manual, a factory mount drawing or a measured body and lens. Checked: SQ and SQ-A owner manuals, the SQ-A sales brochure, the Modern Photography SQ report and the Popular Photography SQ-A report. No SQ-specific Bronica patent was found.)_
+- Mount diameters are unresolved. The only stated figure is “3 in.” for the body mount, while the same report's front photograph scales to about 83 mm against the 92 mm body width. Throat, clear aperture and lens flange diameter have no source; the earlier 57, 70 and 68 mm figures were unsourced stand-ins and are removed. _(Measure a body and lens, or find a dimensioned mount drawing.)_
+- Cocking lug and release catch positions are clock-face descriptions (about ±15° and ±25°), and their radii are unknown. The lens-rear photograph puts the lens cocking lugs nearer 104° and 286°. The 20° lock rotation is the report's “about 20°”. _(Needs an SQ service drawing or a measured sample.)_
+- Contact angles are scaled from halftone photographs; pin circle radius and pin size are unknown, and no source says which of the six contacts carries which signal. _(Needs an SQ lens or body wiring diagram.)_
+- The eight mount screws are counted on the SQ-A; their positions, pitch circle and size are unknown and they are not drawn. The 85 mm register still rests on secondary listings. _(An SQ repair manual would give both, as the ETRSi manual does for the ETR.)_
 
 ### `canon-ef` — Canon EF
 
