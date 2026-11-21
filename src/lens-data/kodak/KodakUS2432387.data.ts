@@ -1,21 +1,38 @@
-import type { LensDataV2Input } from "../repo/src/types/lensDataV2.js";
-const data = {
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * US 2,432,387 A, Example III / Figure 4: four air-spaced spherical elements
+ * for cinematography, with printed f = 100 mm and f/1.9. The radii, thicknesses,
+ * separations and sodium D-line index / Abbe pairs follow both printed tables.
+ * The stop position is inferred: 10 mm after R6 and 3.2 mm before R7; its radius
+ * is derived from f/1.9. All clear semi-diameters are estimated. The image plane
+ * is the calculated paraxial BFD, 64.0038 mm, rather than the printed BF 63.9 mm,
+ * which appears to describe best focus. The model computes EFL 100.0296 mm.
+ * The 24-degree full field uses the lower end of the patent's stated range;
+ * its real chief ray defines the 42.19 mm image circle. No focus motion is given.
+ */
+const LENS_DATA = {
   schema: 2,
-  key: "creighton-us2432387-example3-infinity-reference",
-  maker: null,
-  name: "CREIGHTON US2432387 EXAMPLE III / FIGURE 4 — f/1.9",
-  subtitle:
-    "Eastman Kodak patent-only · sodium-D infinity · estimated stop/rims",
-  visible: false,
+  key: "kodak-100mm-f19-us2432387",
+  maker: "Kodak",
+  name: "KODAK 100mm f/1.9 (US 2,432,387 Design)",
+  subtitle: "US 2,432,387 A, Example III — possibly related to the four-element Cine Ektar",
+  visible: true,
   source: {
-    patentNumber: "US 2,432,387",
+    patentNumber: "US 2,432,387 A",
     patentYear: 1947,
     example: {
       label: "Example III",
       id: "3",
     },
-    authors: ["Creighton"],
-    assignees: ["Eastman Kodak"],
+    authors: ["Philip E. Creighton"],
+    assignees: ["Eastman Kodak Company"],
+    errata: [
+      {
+        status: "unresolved",
+        note: "Printed BF is 63.9 mm; the printed prescription gives paraxial BFD 64.0038 mm. The printed BF appears to describe best focus; the model retains the paraxial plane.",
+      },
+    ],
     sdSource: "heuristic",
   },
   catalog: {
@@ -27,60 +44,57 @@ const data = {
     },
     elementCount: 4,
     groupCount: 4,
-    specs: [
-      "Literal ExampleIII/Figure4,4E/4G, four air-separated singlets; no cement or retail identity.",
-      "Explicit sodium D589.2938nm indices/Abbe pairs, no exact catalog-glass or calibrated broadband claim.",
-      "Source100mm f/1.9 BF63.9mm retained separately from literal EFL100.029572487/BFD64.003778675mm and Gaussian infinity detector; no fit.",
-      "Stop split10.0/3.2mm afterR6,z46.6mm and all clear caps are estimates; no published physical iris size.",
-      "Stock source/controlf1.9 infers iris radius17.666752560mm. Relayed16.42052mm seed is kept as a separate sensitivity, not forced; exact nominal marginal maps18.004105755mm.",
-      "Chosen actual native field request+/-10deg only; source-family12–15deg statements/wider benches do not establish verified coverage.",
-      "No image format/circle or baffles invented. Scoped reference-line geometric MTF only via supported native field fractions where needed; wider automatic drawer and Abbe-derived broadband outputs unqualified.",
-    ],
+    imageCircleMm: 42.19,
+    specs: ["4 ELEMENTS / 4 GROUPS", "ALL SPHERICAL", "DESIGN F/1.9"],
   },
   elements: [
     {
       id: 1,
       name: "L1",
-      label: "L1",
-      type: "Source Spherical Singlet",
+      label: "Element 1",
+      type: "Positive Meniscus",
       nd: 1.588,
       vd: 53.4,
       indexReference: "D",
-      glass:
-        "Literal sodium-D/Abbe pair, unmatched catalog glass; no measured spectral curve.",
+      focalLengthMm: 115.01,
+      glass: "Unmatched (nD 1.588 / ν 53.4)",
+      role: "Front positive element that begins convergence of the incoming beam.",
     },
     {
       id: 2,
       name: "L2",
-      label: "L2",
-      type: "Source Spherical Singlet",
+      label: "Element 2",
+      type: "Positive Meniscus",
       nd: 1.611,
       vd: 57.2,
       indexReference: "D",
-      glass:
-        "Literal sodium-D/Abbe pair, unmatched catalog glass; no measured spectral curve.",
+      focalLengthMm: 259.28,
+      glass: "Unmatched (nD 1.611 / ν 57.2)",
+      role: "Weak positive meniscus between the front collector and negative element.",
     },
     {
       id: 3,
       name: "L3",
-      label: "L3",
-      type: "Source Spherical Singlet",
+      label: "Element 3",
+      type: "Biconcave Negative",
       nd: 1.72,
       vd: 29.3,
       indexReference: "D",
-      glass:
-        "Literal sodium-D/Abbe pair, unmatched catalog glass; no measured spectral curve.",
+      focalLengthMm: -41.56,
+      glass: "Unmatched (nD 1.720 / ν 29.3)",
+      role: "Dispersive negative element that balances the surrounding positive elements.",
     },
     {
       id: 4,
       name: "L4",
-      label: "L4",
-      type: "Source Spherical Singlet",
+      label: "Element 4",
+      type: "Biconvex Positive",
       nd: 1.697,
       vd: 56.1,
       indexReference: "D",
-      glass:
-        "Literal sodium-D/Abbe pair, unmatched catalog glass; no measured spectral curve.",
+      focalLengthMm: 55.36,
+      glass: "H-LaK12 (CDGM)",
+      role: "Strong rear positive element that brings the beam to the image.",
     },
   ],
   surfaces: [
@@ -149,16 +163,15 @@ const data = {
   },
   projection: {
     kind: "rectilinear",
-    fullFieldDeg: 20,
-    maxTraceFieldDeg: 10,
+    fullFieldDeg: 24,
+    maxTraceFieldDeg: 12,
   },
   rays: {
     offAxisFieldFrac: 1,
   },
   focus: {
-    closeFocusM: 1000000000000000.0,
-    description:
-      "Private Creighton/EastmanKodak US2432387 ExampleIII/Figure4 patent-only4E/4G, no cement. Literal sodium-D589.2938nm infinity reference. Source100/f1.9/BF63.9 retained separately from literal EFL100.029572487/BFD64.003778675mm detector, no rounding or fit. Stop split10/3.2 afterR6,z46.6mm, bore and caps estimated. Stock f1.9 gives inferred iris radius17.666752560mm; relayed16.42052mm seed and exact nominal marginal18.004105755mm are separate hypotheses/metrics, no source aperture claim. Chosen+/-10degree diagnostic only, no source-format or family12–15degree coverage extrapolation. Native API-scoped geometric reference-line MTF only; wider automatic drawer and Abbe-derived broadband outputs unqualified. No retail, finite, baffle, override or app/schema change. Original source visually verified externally, no local originalPDF/pixel/rehash or denied-route retry.",
+    closeFocusM: 1e15,
+    description: "Infinity focus only; the patent gives no close-focus data.",
   },
   groups: [
     {
@@ -186,4 +199,4 @@ const data = {
     yScFill: 0.5,
   },
 } satisfies LensDataV2Input;
-export default data;
+export default LENS_DATA;
