@@ -1,27 +1,22 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
- * GB 295,519 A, sole numerical example on printed p. 2, with the section on the drawing sheet.
- * John William Hasselkus and George Arthur Richmond are the individual applicants; no company is printed.
- * The patent gives f = 100 units, f/4 and a 70-degree field. Dimensions are represented in millimetres.
- * All ten signed radii, glass thicknesses, air gaps and helium d-line indices follow the printed table.
- * The table computes to EFL 100.08235 mm and back focus 85.73492 mm; no image distance is printed.
- * The final spacing is the computed paraxial back focus. The stop position is printed: b1 = b2 = 2.32.
- * Its radius is derived from f/4. Clear radii are inferred; R1/R2 and R9/R10 use the drawing's 13.1 mm
- * doublet height, inside the face crossings at 13.57 and 14.86 mm. Other rims retain estimated heights.
- * The R3/R4 gap closes at about 10.9 mm, while the f/4 marginal needs 10.63 mm; gapSagFrac = 0.94
- * preserves that beam with positive air clearance. The 140.2 mm image circle is twice the real chief-ray
- * height at the stated 35-degree half-field, rounded to 0.1 mm. Off-axis bundles are vignetted.
- * Mercury g-line indices are printed but no Abbe numbers are given, so the model traces only helium d.
- * No close-focus prescription is printed. A connection to the Ross Wide Angle Xpres f/4 is likely but
- * unconfirmed; its production prescription is not documented by the cited product record.
+ * GB 295,519 A, sole example, printed p. 2 and drawing sheet; John William Hasselkus and George Arthur Richmond are the individual applicants, with no company named.
+ * The printed f = 100 units is represented in millimetres; f/4, a 70° field, all ten signed radii, thicknesses, air gaps and helium d-line indices are printed.
+ * EFL is 100.08 mm and paraxial back focus 85.73 mm; the final spacing uses that back focus because no image distance is printed.
+ * The stop position is printed as b1 = b2 = 2.32; its radius follows f/4. Clear radii are inferred.
+ * R1/R2 and R9/R10 follow the drawing's 13.1 mm doublet height, inside face crossings at 13.57 and 14.86 mm; other rims are estimates.
+ * The R3/R4 gap closes near 10.90 mm, while the f/4 marginal needs 10.63 mm; a 94% sag allowance preserves the beam with positive air clearance.
+ * The 140.2 mm image circle is twice the real chief-ray height at the printed field's 35° half-angle, rounded to 0.1 mm; off-axis bundles are vignetted.
+ * Mercury g-line indices are printed without Abbe numbers, so the model traces only helium d. No close-focus prescription is printed.
+ * A Ross Wide Angle Xpres f/4 connection is likely but unconfirmed; the cited product record supplies no production prescription.
  */
 const LENS_DATA = {
   schema: 2,
   key: "hasselkus-richmond-100mm-f4-gb295519",
   maker: null,
   name: "HASSELKUS & RICHMOND 100mm f/4 (GB 295,519 Design)",
-  subtitle: "GB 295,519 A, sole example — likely Ross Wide Angle Xpres relation",
+  subtitle: "GB 295,519 A, sole example — Hasselkus & Richmond",
   visible: true,
   source: {
     patentNumber: "GB 295,519 A",
@@ -43,7 +38,13 @@ const LENS_DATA = {
     fNumber: {
       design: 4,
     },
-    specs: ["6 ELEMENTS / 4 GROUPS", "ALL SPHERICAL", "DESIGN F/4", "70° FIELD"],
+    specs: [
+      "6 ELEMENTS / 4 GROUPS",
+      "ALL SPHERICAL",
+      "DESIGN f = 100 mm",
+      "DESIGN F/4",
+      "70° FIELD",
+    ],
   },
   elements: [
     {
