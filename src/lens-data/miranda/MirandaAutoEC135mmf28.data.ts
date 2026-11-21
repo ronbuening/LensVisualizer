@@ -34,9 +34,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ intentionally vignetted by the front group; no zero-corner-vignetting    ║
  * ║ claim is made.                                                            ║
  * ║                                                                            ║
- * ║ FOCUS: NO_INTERNAL_RECONSTRUCTION. The patent supplies only the infinity ║
- * ║ prescription. closeFocusM = 1.5 is manufacturer marketed metadata and    ║
- * ║ does not create an internal focus state or variable-gap law.              ║
+ * ║ FOCUS: infinity only. The patent supplies only the infinity              ║
+ * ║ prescription. closeFocusM = 1.5 is the manufacturer's marketed minimum   ║
+ * ║ focus distance; no spacing changes with focus.                           ║
  * ╚════════════════════════════════════════════════════════════════════════════╝
  */
 
@@ -169,7 +169,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 1.5,
     description:
-      "NO_INTERNAL_RECONSTRUCTION: the patent's sole example supplies only infinity focus; 1.5 m is manufacturer marketed MFD metadata.",
+      "Infinity focus only. The patent's sole example supplies only infinity focus, so focus travel is not modeled. The 1.5 m minimum focus distance is Miranda's marketed figure.",
   },
 
   aperture: { nominalFNumber: 2.8, fStops: [2.8, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22 },

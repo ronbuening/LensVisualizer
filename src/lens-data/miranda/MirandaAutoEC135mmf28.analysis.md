@@ -89,9 +89,9 @@ The palette uses two distinct dispersion contrasts that the patent itself calls 
 
 ## Focus Mechanism
 
-The optical model uses `NO_INTERNAL_RECONSTRUCTION`. JP1976-074627 Example 1 publishes only an infinity-focus prescription and does not provide finite-conjugate spacing tables, moving-group kinematics, or a focus-travel law. The data file therefore contains no focus `var` entries.
+JP1976-074627 Example 1 publishes only an infinity-focus prescription and gives no close-focus spacing tables, no description of how any group moves, and no focus-travel law. The model therefore shows the lens at infinity only, and no spacing changes with focus.
 
-The Miranda RE-II manual lists 1.5 m as the closest focus of the production 135 mm Auto EC. That number is retained as marketed metadata (`closeFocusM = 1.5`) but is not converted into an invented close-focus prescription. A minimum focusing distance by itself does not determine whether the production lens used pure unit extension, a hidden floating motion, or a prescription that differed mechanically from the patent example.
+The Miranda RE-II manual lists 1.5 m as the closest focus of the production 135 mm Auto EC. That figure is recorded as product information but is not converted into a modeled close-focus prescription. A minimum focusing distance by itself does not determine whether the production lens used pure unit extension, a hidden floating motion, or a prescription that differed mechanically from the patent example.
 
 ## Conditional Expressions
 
@@ -131,7 +131,7 @@ No aspherical coefficients, diffractive phase data, sensor cover plate, filter, 
 
 ## Sources / References
 
-1. Japanese Patent Office. **JP1976-074627 (特開昭51-74627)**, *小型軽量のエルノスター型望遠レンズ*. Filed 1974-12-24; published 1976-06-28. Example 1 and conditions on printed pp. 157–159; optical layout and aberration plots on printed p. 160. Original four-page patent PDF is included in the dossier.
+1. Japanese Patent Office. **JP1976-074627 (特開昭51-74627)**, *小型軽量のエルノスター型望遠レンズ*. Filed 1974-12-24; published 1976-06-28. Example 1 and conditions on printed pp. 157–159; optical layout and aberration plots on printed p. 160. Original four-page patent PDF consulted.
 2. Miranda Camera Co., Ltd. **Miranda RE-II Owner's Manual**, “MIRANDA AUTO EC LENS SERIES” table, printed p. 20 / PDF p. 22. Archival scan: https://butkus.org/chinon/miranda/miranda_re-ii/miranda_re-ii.pdf
 3. Buttler, Pekka. **“Data sheet: Miranda EC Auto 135 mm f/2.8.”** JAPB, 2026. Used only as secondary evidence for the EC-version timing, mount subtype, and sample-specific measurements; not as proof of patent attribution. https://japb.net/gear/gear-review-index/ds_miranda-135f28-ec/
 4. OHARA Corporation. Current optical-glass catalog pages used for coordinate comparison: https://oharacorp.com/optical-glass/radiation-resistant-glass/ ; https://oharacorp.com/glass-type/s-tih-s-nph/ ; https://oharacorp.com/glass-type/s-bsm/
