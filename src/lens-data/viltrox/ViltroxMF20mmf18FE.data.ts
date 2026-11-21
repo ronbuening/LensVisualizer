@@ -21,7 +21,7 @@ const LENS_DATA = {
   key: "viltrox-mf-20mm-f18-fe",
   maker: "Viltrox",
   name: "VILTROX MF 20mm f/1.8",
-  subtitle: "CN 209606699 U, Example 1 — inferred production correlation",
+  subtitle: "CN 209606699 U, Example 1 — inferred production match",
 
   catalog: {
     lensMounts: ["sony-fe", "nikon-z"],
