@@ -7,6 +7,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * and minus signs written in; the model follows those corrections.
  * The stop is inferred, 6.33 mm after R6 and 0.87 mm before R7. R6, R7 and the
  * rear singlet rims follow the drawing; the other clear radii are estimates.
+ * The drawing's steep R6 bevel is approximated by an opaque rim extension to
+ * 22.2 mm, matching R5; its optical cap remains 15.3 mm. The drawing scale is
+ * about 24.1 pixels/mm at 600 dpi, checked by vertex spacings and surface sags.
  * R6 retains its 15.3 mm clear radius, limiting real-ray acceptance to about f/2.07.
  * The image plane is the computed paraxial one; the illustrative ±6° field
  * is not stated in the patent.
@@ -181,6 +184,7 @@ const LENS_DATA = {
       R: 22.3,
       d: 6.33,
       sd: 15.3,
+      rimExtensionSd: 22.2,
     },
     {
       label: "STO",
