@@ -1,65 +1,95 @@
-## Patent Reference and Design Identification
+# DALLMEYER SEPTAC 100mm f/1.5 (GB 553,844 Design)
 
-**Patent:** GB 553844 A  
-**Published:** Exact event date not locally established; source handoff dates the historical context to1942/43.  
-**Inventor:** Bertram Langton  
-**Assignee:** Dallmeyer (supplied attribution; exact legal-name expansion not invented)  
-**Example details:** Preferred unnumbered worked example, native labelSoleexample under the author's unnumbered-example convention; normalizedF1 at a uniform×100workingmm scale.
+## Patent and Design Identification
 
-This is a private patent-only reconstruction. Septac association through engraved specimens is lineage evidence, not an exact serial prescription, factory dimensions or manufactured-product qualification. No production scale is claimed. Exact date/header/legal-company completion remains work before catalog integration, not invented from the uninspected header. Optional model year is omitted.
+**Patent:** GB 553,844 A, “Improved Lens System”
 
-The [official DPMA locator](https://depatisnet.dpma.de/DepatisNet/depatisnet?window=1&space=menu&content=treffer&action=pdf&docid=GB000000553844A) identifies three original pages independently visually verified in scout custody. These supplied page pins are separate original witnesses; no merged-PDF hash, byte count, guessed page download URL or local original PDF/hash/pixel inspection is claimed. Known denied worker DPMA route was not requested.
+**Inventors:** Bertram Langton
 
-- Original page 1: `265ce2d0fd95576bf1a7a5cfcbc0ecabbdef6b219da26497a63a3504adde78a2`
-- Original page 2: `345a1f0bb6893ad31ccab712cb36c8a1f2ca8967f3a4e6277f82f59048f8115c`
-- Original page 3: `030cab97759842c98d69026f73ba5b7ccfcb00fa5f893483e20f15aece787fc8`
+**Assignee:** J. H. Dallmeyer, Limited, co-applicant with Bertram Langton
 
-SourceF1/f1.5 is represented at×100workingmm. Literal D-line EFL101.384348158mm and calculated BFD52.933704086mm are retained without fitting to nominal100mm. The source approximate50°design aim is not treated as validated coverage.
+**Filed:** 7 March 1942
+
+**Published:** 8 June 1943, complete specification accepted
+
+**Example details:** The sole numerical example, described as a preferred form; table on page 2 and section drawing on page 3.
+
+The patent gives radii, thicknesses and air spaces in terms of unit focal length, with F = 1.0 and relative aperture f/1.5. All dimensional table values are multiplied by 100 to give millimetres in this model. This is the patent design at that scale, rather than the dimensions of the 2 in (approximately 51 mm) production Septac.
+
+The Septac family association rests on the seven-element, four-group construction documented by [Oldlens](https://oldlens.com/septac%2050mmf15.html), the surviving [2 in f/1.5 Septac specimens](https://www.flintsauctions.com/auction/lot/lot-158---a-dallmeyer-septac-f15-2-lens/?lot=13234&sd=1), and a [reported patent-number engraving](https://www.photrio.com/forum/threads/dallmeyer-septac-lens.75704/). The forum quotes a lens reference stating that Septacs carry patent 553,844; this remains a reported connection. The 1942 application and matching construction support the family association, but do not establish the exact prescription of any production specimen. Neither Septac nor Super-Six is named in the patent.
+
+The printed prescription computes to EFL 101.384348 mm, 1.384% above the nominal 100 mm implied by the table heading. Both independent readings agree with the printed values. The discrepancy remains unresolved, and the model retains the complete printed table.
 
 ## Optical Architecture
 
-Seven spherical elements in four air groups, 1|3|2|1. R4/R5 are front-triplet bonds; R8 is the rear-doublet bond and is truly plane. The diaphragm is separately inserted in R6–R7 air, never at R8. Powered-vertex track80.5workingmm. A positive front singlet and final positive singlet surround the two compound central members; no named retail design identity or finite-conjugate operation is inferred.
+Seven spherical elements form four air-spaced groups: a positive front singlet, a cemented triplet, a cemented doublet and a positive rear singlet. The two inner groups are net negative, with their concave outer faces facing one another across the central air space. Their focal lengths are approximately −146.34 mm and −717.31 mm; the outer singlets are +120.70 mm and +87.38 mm.
+
+The patent replaces an internal biconvex air lens with a low-index positive glass element. Its stated aim is improved spherical correction or a larger aperture while retaining a useful field of approximately 50° (page 1). The preferred index differences are at least 0.08 between the two positive members of the triplet and 0.1 between its intermediate positive member and negative member (page 2). The printed differences are 0.1336 and 0.1905.
+
+The triplet is cemented at R4 and R5; the rear doublet is cemented at the plane R8 interface. The first-to-last vertex distance is 80.5 mm. The drawing shows neither a diaphragm nor a dimensioned image plane.
 
 ## Element-by-Element Analysis
 
-### L1 — positive front meniscus
+### L1 — Positive Meniscus
 
-nD1.6436, νD48.3, unmatched source glass. R1+66.07/R2+414.47mm, thickness10.5mm. Exact source scalars are retained, not replaced by a modern catalog name.
+nD = 1.6436, νD = 48.3. Glass: Unmatched. Focal length in air: +120.70 mm.
 
-### L2–L4 — front cemented triplet
+The front collecting element has radii +66.07 and +414.47 mm and a thickness of 10.5 mm. Its rear face is separated from the triplet by the printed 0.5 mm air space.
 
-L2 nD1.6436/V48.3, R3+43.827/R4+94.874, thickness12mm. L3 nD1.5100/V64.5, shared R4+94.874 to R5−950.5, thickness8mm. L4 nD1.7005/V30.2, shared R5−950.5 to R6+28.096, thickness2mm. The asymmetric clear-cap estimates33/31/26/21mm are retained and physically checked, not silently replaced with common rims or changed for ray clearance.
+### L2–L4 — Cemented Triplet
 
-### L5–L6 — rear cemented doublet
+L2: nD = 1.6436, νD = 48.3. Glass: Unmatched. Positive Meniscus; focal length in air +115.89 mm. It forms the positive front member, bounded by R3 and R4.
 
-L5 nD1.6193/V36.4, R7−33.465/R8plane, thickness2mm. L6 nD1.6435/V48.3, R8plane/R9−43.123, thickness11mm. The1.6435 index differs from L1/L2's1.6436 and is not normalized away. Estimated clear radii21/22/26mm are physical model assumptions, not measured baffle/coating dimensions.
+L3: nD = 1.5100, νD = 64.5. Glass: Unmatched. Biconvex Positive; focal length in air +169.58 mm. This lower-index middle member occupies the position of the air lens discussed in the patent.
 
-### L7 — final positive singlet
+L4: nD = 1.7005, νD = 30.2. Glass: Unmatched. Biconcave Negative; focal length in air −38.92 mm. Its stronger negative power makes the complete triplet net negative. The two cemented interfaces join L2/L3 at R4 and L3/L4 at R5.
 
-nD1.6142, νD56.3. R10+122.69/R11−92.14, thickness11mm. Literal geometry and calculated infinity detector are preserved; no invented sensor plate or extra lens is added.
+### L5–L6 — Cemented Rear Doublet
+
+L5: nD = 1.6193, νD = 36.4. Glass: Unmatched. Plano-Concave Negative; focal length in air −54.04 mm.
+
+L6: nD = 1.6435, νD = 48.3. Glass: Unmatched. Plano-Convex Positive; focal length in air +67.01 mm.
+
+The common R8 surface is genuinely plane. The doublet is weakly negative overall. L6's printed index 1.6435 differs from the 1.6436 used for L1 and L2; that distinction is retained.
+
+### L7 — Biconvex Positive
+
+nD = 1.6142, νD = 56.3. Glass: Unmatched. Focal length in air: +87.38 mm.
+
+The final collecting singlet is separated from the rear doublet by 2 mm. Its radii are +122.69 and −92.14 mm, with 11 mm axial thickness.
 
 ## Glass Identification and Selection
 
-All seven nD/V pairs are authored literally with `indexReference:D`. No exact modern glass, spectral curve or proprietary melt is established. Source1.6436 and1.6435 remain distinct in the source, model, native runtime and independent comparison. Abbe-based ancillary color panels may render, but qualified optics/MTF is single-reference only; no calibrated broadband or source-curve match is claimed.
+The patent explicitly specifies the D line, taken as sodium at 589.3 nm, and Abbe V numbers. All seven printed pairs are retained, without assigning a supplier or historical melt. No catalogue glass matches both coordinates closely enough to receive a catalogue label.
 
-## Estimated Iris, Rims and Infinity Focus
+| Elements | Printed nD | Printed νD | Glass label |
+| -------- | ---------: | ---------: | ----------- |
+| L1, L2   |     1.6436 |       48.3 | Unmatched   |
+| L3       |     1.5100 |       64.5 | Unmatched   |
+| L4       |     1.7005 |       30.2 | Unmatched   |
+| L5       |     1.6193 |       36.4 | Unmatched   |
+| L6       |     1.6435 |       48.3 | Unmatched   |
+| L7       |     1.6142 |       56.3 | Unmatched   |
 
-Estimated caps[35,35,33,31,26,21,21,22,26,31,31]mm and iris split11.4/10.1 in the literal21.5mm R6–R7gap are unchanged. Stopz44.4mm. No override, rim fitting, cap variation, source gap increase, new baffle or shared engine change is used. Default geometry passes with zero trim, minimum shared-radius glass land1.647580mm and central air clearance4.659909mm (78.326004% sag consumption). Source.5mm front gap widens outward. Assumed iris plane clears the two capped central faces by1.969080/2.690829mm at r21mm.
+For example, Schott F2 gives approximately nD 1.619891 and νD 36.358, against L5's 1.6193 and 36.4. The similar dispersion does not establish a glass identity. The patent gives no C-, F- or g-line indices or partial dispersion. Colour calculations based on the Abbe numbers therefore remain estimates; D-line tracing provides the direct comparison with the printed prescription.
 
-Canonical nominalf1.5 derives native estimated iris radius19.679054521mm; actual accepted axial input radius33.553407237mm gives entrance-equivalentf/1.510790654. Exact nominal-marginal tracing gives estimated iris19.820987065mm. Separate Builderinputf/1.489258920 reaches that estimate with all source optics/caps unchanged, then canonical1.5 is restored. It is an inferred tuning control, not a factory dimension. Ordinary viewer nominal controls do not independently author physical iris diameter. Iris±2%only is tested; no physical source or cap geometry is changed. No close focus is extrapolated.
+## Focus Mechanism
 
-## Diagnostic Field, Physical Classification and MTF
+The model represents infinity focus only. The patent supplies no close-focus distances, focus travel or moving-group law. All four groups remain fixed, and the image plane is the calculated paraxial back focus, 52.933704 mm behind R11. The patent prints no back focus. Total first-vertex-to-image distance is 133.433704 mm.
 
-Chosen0–12°is diagnostic only, separate from approximate50°source design aim. No source field coverage, sensor format, retail scale or full-pupil brightness is asserted. Initial ideal image heightEFLtan12 made the outer native MTF sample12.018921°, beyond chosen scope. Those results are preserved as an unqualified out-of-scope control. Inferred image-circle metadata is now0.999times the independently verified12°chief diameter, a conservative analysis guard only; source optics/caps/ray acceptance do not change. Exact12°MTF is separately tested, so the outer edge is not silently dropped or relabeled. The12°chief reaches|y|21.515121mm.
+## Aperture, Field and Model Limits
 
-Dense physical3D sampling at−12/−6/0/+6/+12°(24area-radius levels×144azimuths pluschief) gives17285requested samples:15095arrivals/2190blocks/0failed/unresolved. The1334native noBracket results are not called solver passes: each has an independent forward selected-sphere S1hit beyond its estimated cap. Remaining direct clips, including R8plane, match independent first-hit radius/position proofs. Maximum valid-hit disagreement is 1.87327757e-13mm. Counts are unweighted samples, not throughput or uniform coverage.
+The stop position is inferred within the 21.5 mm R6–R7 air space: 11.4 mm behind R6 and 10.1 mm before R7, at 44.4 mm from the first vertex. Its computed semi-diameter is 19.679055 mm for a paraxial f-number of 1.5. The accepted axial entrance aperture corresponds to approximately f/1.51079 in real-ray tracing. A nominal f/1.5 marginal ray would reach a stop radius of 19.820987 mm.
 
-Straight rim-to-rim tapered sidewall proxies are checked independently without new engine geometry. An actual-entrance-envelope sample adds15211admitted ray replays/106477glass segments, with no sidewall violation. A physical-stop MTF128lattice adds35326admitted rays/247282segments, all independently matching image positions within1.36e−13mm and inside the proxy. These are bounded sample checks of an estimated body, not a survey or exhaustive continuous-pupil guarantee.
+All clear semi-diameters are inferred. The smallest shared-radius glass thickness is 1.647580 mm, and the central gap retains 4.659909 mm clearance. At the 21 mm central rims, the adjacent glass surfaces clear the inferred stop plane by 1.969080 mm and 2.690829 mm. These checks establish a consistent modeled body without recovering historical rim or iris dimensions.
 
-Bounded D-reference geometric MTF at the Gaussian detector adaptively converges at0/6.051954/11.988281°. Explicit32–512grids reproduce those results; an additional exact12°grid control has max256→512change0.002707818 through40lp/mm; worst qualified change0.002707818. All sampled qualified grids have0failed/unaimed/unknownflux. This observed refinement is not a rigorous errorbound, diffraction/broadband MTF, measured patent aberration replication or retail result. Initial12.0189°is never included in the qualified field claim.
+The patent's approximately 50° useful field is treated as a full angle. The model traces to its 25° half-field, where the chief ray reaches an image height of approximately 45.617 mm and clears every current rim. The 91.23 mm image circle is twice that real chief-ray height, rounded to two decimals. It describes field extent at this model's scale, without specifying a film format. Peripheral bundles are vignetted, particularly at R8 and the final singlet; chief-ray coverage does not imply uniform illumination.
 
-## Sources, Validation and Remaining Integration Limits
+Changing one radius can bring the calculated focal length near 100 mm: R2 4.1447 to 5.1447, R1 0.6607 to 0.6407, or R6 0.28096 to 0.28596 in the patent's units. Each worsens the spherical correction and sine condition, and the printed digits are unambiguous. None is adopted. The printed table gives approximately +0.83 mm longitudinal spherical aberration at the rim and −0.16 mm at the half zone, with a sine-condition departure of about −1%. These are calculated properties, not aberration values published by the patent.
 
-Raw source scalars, page custody pins, first-cap proofs, initial ideal-circle control, bounded metadata rationale, independent body/MTF replay, types, formatting and actual app/test evidence are retained.319existing targeted tests pass; desktop/mobile Builder imports, diagrams, aperture controls, analysis health and exact canonical JSON roundtrip are checked. There is no full catalog integration/corpus, metadata event-date completion or production build claim.
+## Sources
 
-Dedup evaluates1188retained main bodies,4816retained main/21head/historical profiles and readable localTS/JSON/TAR/ZIP bodies using signed positive-scale/reversed radius sequence as a necessary filter before full thickness/glass identity. All target profiles are negative; five broad553844substring archive hits were inspected as unrelated numeric coefficients, not actual GB aliases. Counts overlap; literal-expression and inaccessible-archive limits remain. Known previous PR403route was not retried and no fresh head claim is made. Lee and five prior ZIPs remain byte-protected. No packaging, transmission, upload, catalog/GitHub edit or delivery credit.
+1. [GB 553,844 A, “Improved Lens System”](https://patents.google.com/patent/GB553844A/en), Bertram Langton and J. H. Dallmeyer, Limited. Page 1: dates, applicants and approximately 50° field; page 2: sole numerical example, D-line convention and claims; page 3: section drawing. [DPMA record](https://depatisnet.dpma.de/DepatisNet/depatisnet?window=1&space=menu&content=treffer&action=pdf&docid=GB000000553844A).
+2. [Oldlens, “Dallmeyer Septac 50mm f1.5”](https://oldlens.com/septac%2050mmf15.html), seven-element, four-group construction and Ilford Witness context.
+3. [Flints Auctions, “A Dallmeyer Septac f/1.5 2 in Lens”](https://www.flintsauctions.com/auction/lot/lot-158---a-dallmeyer-septac-f15-2-lens/?lot=13234&sd=1), surviving production specimen, serial 463511.
+4. [Photrio, “Dallmeyer Septac lens”](https://www.photrio.com/forum/threads/dallmeyer-septac-lens.75704/), reported patent-number engraving, quoted from a secondary lens reference; not an independently established production prescription.

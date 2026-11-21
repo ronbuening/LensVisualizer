@@ -1,121 +1,141 @@
-import type { LensDataV2Input } from "../repo/src/types/lensDataV2.js";
-const data = {
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * GB 553,844 A, sole numerical example, described as a preferred form.
+ * Radii, thicknesses and air spaces are the patent's unit-focal-length values
+ * multiplied by 100 to give millimetres; this is not the 2 in production lens.
+ * The printed table computes to EFL 101.38 mm against the stated 100 mm at this
+ * scale. Its values are retained, with the discrepancy recorded as unresolved.
+ * Indices refer to the D line (taken as sodium, 589.3 nm).
+ * The stop is inferred 11.4 mm after R6, leaving 10.1 mm before R7; all clear
+ * semi-diameters are inferred. The image plane is the computed paraxial back
+ * focus, 52.933704 mm behind R11. Neither stop nor back focus is printed.
+ */
+const LENS_DATA = {
   schema: 2,
-  key: "dallmeyer-langton-gb553844-infinity-reference",
-  maker: null,
-  name: "DALLMEYER GB553844 — PATENT REFERENCE",
-  subtitle:
-    "Preferred example · F1 at ×100 · nominal f/1.5 · chosen0–12° D-line infinity diagnostic",
-  visible: false,
+  key: "dallmeyer-septac-100mm-f15-gb553844",
+  maker: "Dallmeyer",
+  name: "DALLMEYER SEPTAC 100mm f/1.5 (GB 553,844 Design)",
+  subtitle: "GB 553,844 A, preferred form — Septac f/1.5 family",
+  visible: true,
   source: {
-    patentNumber: "GB 553844 A",
+    patentNumber: "GB 553,844 A",
+    patentYear: 1943,
     example: {
       label: "Sole example",
       id: null,
     },
     authors: ["Bertram Langton"],
-    assignees: ["Dallmeyer"],
+    assignees: ["J. H. Dallmeyer, Limited"],
+    errata: [
+      {
+        status: "unresolved",
+        note: "The printed table computes to EFL 101.38 mm at the model's scale, whereas F = 1.0 implies 100 mm. The page image is unambiguous; the tested single-radius alternatives worsen spherical correction and the sine condition. The printed values are retained.",
+      },
+    ],
     sdSource: "heuristic",
   },
   catalog: {
-    imageCircleMm: 42.98721114539852,
+    imageCircleMm: 91.23,
     elementCount: 7,
     groupCount: 4,
     focalLengthMm: {
-      design: 100,
+      design: 101.38,
     },
     fNumber: {
       design: 1.5,
     },
-    specs: [
-      "7E/4G · 1|3|2|1 · CEMENT R4/R5/R8; TRUE OPTICAL PLANE R8",
-      "SOURCE F1 REPRESENTED AT UNIFORM100WORKING MM/UNIT; NO RETAIL SCALE",
-      "LITERAL EFL101.384348/BFD52.933704; NOMINAL100 f1.5 NOT FITTED",
-      "nD1.6436 AND1.6435 KEPT DISTINCT; NO GLASS SUBSTITUTION",
-      "ESTIMATED11.4/10.1 IRIS AND CLEAR CAPS; NO BAFFLES/OVERRIDE",
-      "NOMINAL f1.5; NATIVE FINITE ENTRANCE EQUIVALENT APPROX f1.51079",
-      "SOURCE APPROX50° DESIGN AIM ONLY; CHOSEN0–12° DIAGNOSTIC",
-      "SEPTAC LINEAGE ASSOCIATION IS NOT A SERIAL/FACTORY PRESCRIPTION",
-      "D-LINE INFINITY ONLY; NO FINITE/RETAIL/BROADBAND COVERAGE CLAIM",
-    ],
+    specs: ["7 ELEMENTS / 4 GROUPS", "ALL SPHERICAL", "DESIGN F/1.5"],
   },
   elements: [
     {
       id: 1,
       name: "L1",
-      label: "L1",
-      type: "Source Spherical Element",
+      label: "Element 1",
+      type: "Positive Meniscus",
+      role: "Positive front collecting element",
+      focalLengthMm: 120.7,
       nd: 1.6436,
       vd: 48.3,
       indexReference: "D",
-      glass:
-        "Unmatched (literal source nD/V; no exact modern glass or calibrated spectral curve)",
+      glass: "Unmatched (nD 1.6436 / ν 48.3)",
     },
     {
       id: 2,
       name: "L2",
-      label: "L2",
-      type: "Source Spherical Element",
+      label: "Element 2",
+      type: "Positive Meniscus",
+      role: "Positive front member of the cemented triplet",
+      focalLengthMm: 115.89,
+      cemented: "C1",
       nd: 1.6436,
       vd: 48.3,
       indexReference: "D",
-      glass:
-        "Unmatched (literal source nD/V; no exact modern glass or calibrated spectral curve)",
+      glass: "Unmatched (nD 1.6436 / ν 48.3)",
     },
     {
       id: 3,
       name: "L3",
-      label: "L3",
-      type: "Source Spherical Element",
+      label: "Element 3",
+      type: "Biconvex Positive",
+      role: "Low-index positive middle member of the cemented triplet",
+      focalLengthMm: 169.58,
+      cemented: "C1",
       nd: 1.51,
       vd: 64.5,
       indexReference: "D",
-      glass:
-        "Unmatched (literal source nD/V; no exact modern glass or calibrated spectral curve)",
+      glass: "Unmatched (nD 1.5100 / ν 64.5)",
     },
     {
       id: 4,
       name: "L4",
-      label: "L4",
-      type: "Source Spherical Element",
+      label: "Element 4",
+      type: "Biconcave Negative",
+      role: "Dispersive negative rear member of the cemented triplet",
+      focalLengthMm: -38.92,
+      cemented: "C1",
       nd: 1.7005,
       vd: 30.2,
       indexReference: "D",
-      glass:
-        "Unmatched (literal source nD/V; no exact modern glass or calibrated spectral curve)",
+      glass: "Unmatched (nD 1.7005 / ν 30.2)",
     },
     {
       id: 5,
       name: "L5",
-      label: "L5",
-      type: "Source Spherical Element",
+      label: "Element 5",
+      type: "Plano-Concave Negative",
+      role: "Dispersive negative front member of the rear doublet",
+      focalLengthMm: -54.04,
+      cemented: "C2",
       nd: 1.6193,
       vd: 36.4,
       indexReference: "D",
-      glass:
-        "Unmatched (literal source nD/V; no exact modern glass or calibrated spectral curve)",
+      glass: "Unmatched (nD 1.6193 / ν 36.4)",
     },
     {
       id: 6,
       name: "L6",
-      label: "L6",
-      type: "Source Spherical Element",
+      label: "Element 6",
+      type: "Plano-Convex Positive",
+      role: "Positive rear member of the rear doublet",
+      focalLengthMm: 67.01,
+      cemented: "C2",
       nd: 1.6435,
       vd: 48.3,
       indexReference: "D",
-      glass:
-        "Unmatched (literal source nD/V; no exact modern glass or calibrated spectral curve)",
+      glass: "Unmatched (nD 1.6435 / ν 48.3)",
     },
     {
       id: 7,
       name: "L7",
-      label: "L7",
-      type: "Source Spherical Element",
+      label: "Element 7",
+      type: "Biconvex Positive",
+      role: "Positive rear collecting element",
+      focalLengthMm: 87.38,
       nd: 1.6142,
       vd: 56.3,
       indexReference: "D",
-      glass:
-        "Unmatched (literal source nD/V; no exact modern glass or calibrated spectral curve)",
+      glass: "Unmatched (nD 1.6142 / ν 56.3)",
     },
   ],
   surfaces: [
@@ -199,9 +219,8 @@ const data = {
     },
   ],
   focus: {
-    closeFocusM: 1000000000000000,
-    description:
-      "Dallmeyer/BertramLangton GB553844 preferred unnumbered example, native labelSoleexample by authoring convention. Literal F1 uniformly represented100workingmm/unit, no retail scale or source fit. Original3DPMApages independently visually/hash verified; no local originals or denied-route retry. Literal1.6436vs1.6435 preserved. Iris11.4/10.1,z44.4 and caps estimated. Approx50degree design aim is not validated coverage; chosen0–12degrees only. Septac association from engraved specimens is not a serial prescription/production match. D-line infinity only, no calibrated broadband, finite-focus or retail claim. Exact event dates/legal company expansion are not invented from uninspected header.",
+    closeFocusM: 1e15,
+    description: "Infinity focus only; the patent gives no close-focus data.",
   },
   aperture: {
     nominalFNumber: 1.5,
@@ -210,8 +229,8 @@ const data = {
   },
   projection: {
     kind: "rectilinear",
-    fullFieldDeg: 24,
-    maxTraceFieldDeg: 12,
+    fullFieldDeg: 50,
+    maxTraceFieldDeg: 25,
   },
   groups: [
     {
@@ -235,8 +254,12 @@ const data = {
       toSurface: "11",
     },
   ],
+  doublets: [
+    { text: "C1", fromSurface: "3", toSurface: "6" },
+    { text: "C2", fromSurface: "7", toSurface: "9" },
+  ],
   layout: {
     yScFill: 0.5,
   },
 } satisfies LensDataV2Input;
-export default data;
+export default LENS_DATA;
