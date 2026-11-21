@@ -8,7 +8,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * is split 7.58/1.96 mm using the stop-space ratio printed in DE 700,699 C,
  * a German member of the same invention with a different numerical example.
  * The iris diameter follows the paraxial f/2 rule. Clear semi-diameters are
- * inferred; the image plane is the computed paraxial back focus, rounded to
+ * inferred from the section drawing's proportions: 24 mm at the cylindrical
+ * triplet rims, with R6/R7 retained above the f/2 axial beam. The drawing's
+ * unequal axial scales do not establish exact rim or chamfer dimensions.
+ * The image plane is the computed paraxial back focus, rounded to
  * 0.0001 mm. The 10-degree half-field is illustrative; no field is printed.
  */
 const LENS_DATA = {
@@ -150,21 +153,21 @@ const LENS_DATA = {
       label: "3",
       R: 34.35,
       d: 7.25,
-      sd: 25.4,
+      sd: 24,
       medium: 2,
     },
     {
       label: "4",
       R: 63.93,
       d: 7.63,
-      sd: 24.5,
+      sd: 24,
       medium: 3,
     },
     {
       label: "5",
       R: -362.56,
       d: 1.91,
-      sd: 22.9,
+      sd: 24,
       medium: 4,
     },
     {
@@ -189,21 +192,21 @@ const LENS_DATA = {
       label: "8",
       R: -44.84,
       d: 1.15,
-      sd: 18.6,
+      sd: 24,
       medium: 6,
     },
     {
       label: "9",
       R: 41.79,
       d: 22.52,
-      sd: 19.9,
+      sd: 24,
       medium: 7,
     },
     {
       label: "10",
       R: -88.43,
       d: 54.6259,
-      sd: 21.1,
+      sd: 24,
     },
   ],
   focus: {

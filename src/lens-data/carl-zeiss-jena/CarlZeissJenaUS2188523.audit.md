@@ -26,7 +26,7 @@ At the illustrative 10.0° half-field, the chief ray reaches an image height of 
 
 The US patent gives no iris position or diameter, clear semi-diameters, back focus, field angle, image height or camera format. The 9.54 mm central air gap is divided 7.58/1.96 mm using the ratio of the German example's 7.50/1.94 mm split in 9.44 mm. This transfers only a ratio between different examples; it is not a US-patent dimension. The iris radius follows paraxial f/2.
 
-The inferred clear semi-diameters from R1 to R10 are 30, 29.6, 25.4, 24.5, 22.9, 17.4, 17.3, 18.6, 19.9 and 21.1 mm. The drawing instead depicts nearly cylindrical triplets, about 23.7 mm in semi-height, with inner chamfers near 16 mm. The middle triplet therefore tapers from 25.4 to 17.4 mm and the rear triplet from 17.3 to 21.1 mm in the model, rather than following the drawing's full outer silhouette. No flat lands or rim cuts are present.
+The inferred clear semi-diameters from R1 to R10 are 30, 29.6, 24, 24, 24, 17.4, 17.3, 24, 24 and 24 mm. The drawing depicts nearly cylindrical triplets with chamfered inner ends. Its proportions support 24 mm outer rims, while R6/R7 remain above the axial beam. Unequal axial scales prevent an exact dimensional reading of the drawing. Straight edges join the inner curve ends to the outer rims; no flat lands or rim cuts are present.
 
 The 10.0° half-field is illustrative. No image-circle diameter is assigned because the patent prints neither a field angle nor a format. The selectable f/2–f/16 series is a modeling choice, not a documented iris range. `focus.closeFocusM` is 10¹⁵ m, which stands for infinity. All relative lens spacings are fixed; no finite-distance prescription or focusing law is supplied.
 
@@ -53,9 +53,17 @@ No marketed focal length, marketed f-number, marketed close-focus distance, moun
 
 After these corrections, EFL is 100.05 mm, paraxial aperture is f/2.00, back focus is 54.63 mm, iris radius is 16.315 mm, total track is 122.76 mm and half-field is 10.0°. The iris limits the axial beam, with no rim or propagation limit. No factory image-circle diameter is established.
 
+2026-11-21 rim review:
+
+- The sole section drawing on PDF page 1 was examined at 300 dots per inch and enlarged to 600. Its R1–R10 vertex span measures about 575 pixels at 300 dots per inch over 68.13 mm, giving 8.44 pixels/mm. The middle and rear triplet spans give about 8.1 and 8.2 pixels/mm. Across the axis, the drawn R1/R10 sags at about 22 mm height agree with the calculated arcs within about 8%. Individual spacings nevertheless disagree: the drawn L4 centre thickness is about 0.8 mm against the printed 1.91 mm, and the central air gap is about 11.0 mm against 9.54 mm. The drawing therefore supplies proportions, not exact rim dimensions.
+- Both triplets have level outer edges about 200 pixels from the local axis at 300 dots per inch, corresponding roughly to 24 mm at the overall scale. R3/R4/R5 changed from 25.4/24.5/22.9 to 24/24/24 mm to follow the middle triplet's cylindrical outline. Wide-open geometric transmission at the illustrative 10.0° edge changed from 100.0% to 98.3%; restoring this triplet alone recovers 1.7 percentage points, the largest loss at any field examined. Transmission remains 100.0% through 6.7° and is 99.4% at 8.3°.
+- R8/R9/R10 changed from 18.6/19.9/21.1 to 24/24/24 mm to follow the rear triplet's equal outer heights. With the middle triplet held at its final rims, restoring the rear triplet alone changes edge transmission by 0.0 percentage points. The complete rim set changes edge transmission from 100.0% to 98.3%, with a maximum loss of 1.7 percentage points across the fields examined.
+- R1/R2 remain at 30/29.6 mm, within about 3% of the drawing's approximate 29 mm front semi-height. R6/R7 remain at 17.4/17.3 mm: their drawn curve ends near 16 mm would clip the f/2 axial beam, which reaches 16.61/16.39 mm. These retained clearances respect the earlier axial-beam decision. The drawing chamfers the inner ends, so straight joins remain; no flat land or rim cut was added.
+- All surfaces remain clear of each other, with no axial or chief-ray clipping. The on-axis aperture check remains f/2.00 without a rim limit; the exact iris-limited entrance beam remains about f/2.02. EFL remains 100.05 mm and the illustrative half-field remains 10.0°. The 10.0° chief ray still reaches 17.69 mm. A camera-corner coverage check is unavailable because no format or factory image-circle diameter is assigned. The matched-scale section comparison confirms the level triplet rims and retained chamfered ends; seven elements in three groups agree with the patent. No separate manufacturer construction drawing was available.
+
 ## Remaining Questions
 
-- The precise optical rim and chamfer dimensions remain uncertain; the tapered openings differ from the drawing's nearly cylindrical triplets.
+- Exact optical rim and chamfer dimensions remain unknown because the patent supplies no diameters and the drawing is schematic. The cylindrical triplet proportions are represented, with inner curve ends set by axial-beam clearance.
 - Historical glass suppliers, melt identities, spectral curves and partial dispersions are unknown.
 - The US example's iris dimensions, factory field, baffles, finite focusing, tolerances and measured optical performance are undocumented.
 - No exact production product, mount, image format, blade count or shape, marketed specifications, minimum focus distance or minimum iris opening is established. The f/16 endpoint is not a published limit.

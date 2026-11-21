@@ -66,7 +66,7 @@ The 10.0° half-field is illustrative. The patent states neither a field angle n
 
 ## Model Scope and Design Heritage
 
-The clear semi-diameters, from R1 to R10, are inferred as 30, 29.6, 25.4, 24.5, 22.9, 17.4, 17.3, 18.6, 19.9 and 21.1 mm. The section drawing depicts more nearly cylindrical triplets with chamfered inner ends, whereas these openings taper. The precise optical rim and chamfer dimensions remain uncertain. The surfaces stay clear of each other at the inferred openings; no flat lands or rim cuts are present.
+The clear semi-diameters, from R1 to R10, are inferred as 30, 29.6, 24, 24, 24, 17.4, 17.3, 24, 24 and 24 mm. The section drawing supports nearly cylindrical triplets with chamfered inner ends. Its unequal axial scales make the drawing evidence for proportions rather than exact dimensions. The 24 mm outer rims follow those proportions; the R6/R7 curve ends remain above the f/2 axial ray heights of 16.61/16.39 mm. Straight edges join these curve ends to the outer rims; no flat lands or rim cuts are present. Wide-open geometric transmission is 99.4% at 8.3° and 98.3% at the illustrative 10.0° edge. The precise optical rim and chamfer dimensions remain uncertain.
 
 The German and US examples share the invention but differ numerically; for example, the German table gives R1 = 67.54 mm instead of 68.41 mm. The seven-element Sonnar and Jupiter-9 family resemblance does not establish that this particular prescription was manufactured. Factory clear apertures, baffles, tolerances, measured MTF and finite focusing remain undocumented.
 
