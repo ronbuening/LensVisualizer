@@ -1,26 +1,23 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
- * US 2,398,680 A, Arthur Warmisham, Taylor, Taylor & Hobson Limited (1946),
- * Example I and Figure 1: seven glass elements in five groups for photographic
- * or projection use. Every printed radius, thickness and air gap is multiplied
- * by 100 to give a nominal 100 mm f/1.5 objective in millimetres.
- * The indices refer to the sodium D line; Abbe numbers are copied as printed.
- * The cemented interfaces are R4 (elements 2/3) and R7 (elements 4/5).
- *
- * The patent gives no iris position, iris diameter or clear semi-diameters.
- * The inferred stop is 11.10 mm after R5 and 8.96 mm before R6, preserving
- * their 20.06 mm separation; its opening is set for paraxial f/1.5. All rims
- * are estimates. The image plane is the calculated paraxial back focus,
- * 57.32 mm after R12, against the printed 57.31 mm. Only infinity focus is
- * modeled, and the illustrative 10-degree half-field is not a patent claim.
+ * US 2,398,680 A, Example I / Figure 1, Arthur Warmisham,
+ * Taylor, Taylor & Hobson Limited (1946): seven glass elements in five groups
+ * for photographic or projection use. Printed radii, thicknesses and air gaps
+ * are multiplied by 100 for a nominal 100 mm f/1.5 objective in millimetres.
+ * Sodium-D indices and Abbe numbers are copied as printed; R4 and R7 are cemented.
+ * The patent gives no iris station, diameter or clear radii; all rims are estimates.
+ * The inferred iris lies 11.10 mm after R5 and 8.96 mm before R6, preserving
+ * their 20.06 mm gap; its opening gives paraxial f/1.5. The image plane is
+ * 57.32 mm after R12 at paraxial focus, against 57.31 mm printed back focus.
+ * Only infinity focus is modeled; the illustrative 10° half-field is not printed.
  */
 const LENS_DATA = {
   schema: 2,
   key: "cooke-100mm-f15-us2398680",
   maker: "Cooke",
   name: "COOKE 100mm f/1.5 (US 2,398,680 Design)",
-  subtitle: "US 2,398,680 A, Example I — seven-element f/1.5 objective",
+  subtitle: "US 2,398,680 A, Example I — Taylor Hobson / Warmisham",
   visible: false,
   source: {
     patentNumber: "US 2,398,680 A",
@@ -42,7 +39,7 @@ const LENS_DATA = {
     },
     elementCount: 7,
     groupCount: 5,
-    specs: ["7 ELEMENTS / 5 GROUPS", "ALL SPHERICAL", "DESIGN F/1.5"],
+    specs: ["7 ELEMENTS / 5 GROUPS", "ALL SPHERICAL", "DESIGN f = 100 mm", "DESIGN F/1.5"],
   },
   elements: [
     {
