@@ -1,12 +1,20 @@
-import type { LensDataV2Input } from "../repo/src/types/lensDataV2.js";
-const data = {
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * US 1,741,947 A, sole numerical example: a four-element Tessar-type objective
+ * with nominal f = 100 mm, f/3.5 and a 55° full field. Radii, axial spacings,
+ * D-line indices, Abbe numbers and the 4.42/2.29 mm stop spacing are printed.
+ * The typed table gives element III's Abbe number as 51.4; the drawing gives 51.
+ * Clear semi-diameters are estimated, the iris diameter is derived from the
+ * paraxial aperture, and the image plane is the computed infinity paraxial plane.
+ */
+const LENS_DATA = {
   schema: 2,
-  key: "merte-us1741947-dline-reference",
-  maker: null,
-  name: "MERTÉ US1741947 — PATENT REFERENCE",
-  subtitle:
-    "100-unit f/3.5 patent-only · published iris station · estimated clear radii · no retail identity",
-  visible: false,
+  key: "carl-zeiss-jena-tessar-100mm-f35-us1741947",
+  maker: "Carl Zeiss Jena",
+  name: "CARL ZEISS JENA TESSAR 100mm f/3.5 (US 1,741,947 Design)",
+  subtitle: "US 1,741,947 A, sole example — Tessar-type design",
+  visible: true,
   source: {
     patentNumber: "US 1,741,947 A",
     patentYear: 1929,
@@ -23,60 +31,67 @@ const data = {
     elementCount: 4,
     groupCount: 3,
     focalLengthMm: {
-      design: 100,
+      design: 100.05,
     },
     fNumber: {
       design: 3.5,
     },
-    specs: [
-      "4E/3G · SOURCE NOMINAL100 UNITS f/3.5,55°",
-      "PATENT-ONLY · NO VERIFIED RETAIL IDENTITY",
-      "MODELED55° FIELD VIGNETTED · NOMINALf/3.5 / FINITE EQUIVALENT≈f/3.549",
-      "PUBLISHED IRIS STATION · DIAMETER/CLEAR RADII ESTIMATED",
-      "SODIUM-D ONLY · ABBE VALUES ARE NOT CALIBRATED GLASS CURVES",
-      "INFINITY ONLY · DERIVED GAUSSIAN IMAGE DISTANCE",
-    ],
+    specs: ["4 ELEMENTS / 3 GROUPS", "ALL SPHERICAL", "DESIGN F/3.5"],
   },
   elements: [
     {
       id: 1,
       name: "L1",
-      label: "L1",
+      label: "Element 1",
+      diagramLabel: "I",
       type: "Plano-Convex Positive",
       nd: 1.60717,
       vd: 59.5,
       indexReference: "D",
-      glass: "Unmatched (literal historical nD/V; D-only optical scope)",
+      focalLengthMm: 52.84,
+      glass: "K-SK7 (Sumita)",
+      role: "Front positive singlet that converges incoming light",
     },
     {
       id: 2,
       name: "L2",
-      label: "L2",
+      label: "Element 2",
+      diagramLabel: "II",
       type: "Biconcave Negative",
       nd: 1.57596,
       vd: 41.3,
       indexReference: "D",
-      glass: "Unmatched (literal historical nD/V; D-only optical scope)",
+      focalLengthMm: -35.16,
+      glass: "FL57 (Hoya)",
+      role: "Negative singlet that balances the converging front and rear groups",
     },
     {
       id: 3,
       name: "L3",
-      label: "L3",
+      label: "Element 3",
+      diagramLabel: "III",
       type: "Plano-Concave Negative",
       nd: 1.52648,
       vd: 51.4,
       indexReference: "D",
-      glass: "Unmatched (literal historical nD/V; D-only optical scope)",
+      focalLengthMm: -54.13,
+      glass: "Unmatched (nD 1.52648 / ν 51.4)",
+      role: "Negative front member of the rear cemented doublet",
+      cemented: "C1",
     },
     {
       id: 4,
       name: "L4",
-      label: "L4",
+      label: "Element 4",
+      diagramLabel: "IV",
       type: "Biconvex Positive",
       nd: 1.62377,
       vd: 56.9,
       indexReference: "D",
-      glass: "Unmatched (literal historical nD/V; D-only optical scope)",
+      focalLengthMm: 29.7,
+      glass: "Unmatched (nD 1.62377 / ν 56.9)",
+      role: "Positive rear member that supplies the rear doublet's converging power",
+      cemented: "C1",
     },
   ],
   surfaces: [
@@ -133,9 +148,8 @@ const data = {
     },
   ],
   focus: {
-    closeFocusM: 1000000000000000,
-    description:
-      "Infinity-only patent reference;1 source optical unit represented as1mm without focal rescaling. Source iris4.42 behind R4 and2.29 ahead of R5; physical diameter and clear radii estimated. No finite-focus or production claim.",
+    closeFocusM: 1e15,
+    description: "Infinity focus only; the patent gives no close-focus data.",
   },
   aperture: {
     nominalFNumber: 3.5,
@@ -164,8 +178,9 @@ const data = {
       toSurface: "7",
     },
   ],
+  doublets: [{ text: "C1", fromSurface: "5", toSurface: "7" }],
   layout: {
     yScFill: 0.5,
   },
 } satisfies LensDataV2Input;
-export default data;
+export default LENS_DATA;

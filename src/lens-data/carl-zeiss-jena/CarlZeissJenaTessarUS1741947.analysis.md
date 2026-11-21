@@ -1,82 +1,94 @@
-## Patent Reference and Design Identification
+# CARL ZEISS JENA TESSAR 100mm f/3.5 (US 1,741,947 Design)
 
-**Patent:** US 1,741,947 A  
-**Granted:** 1929  
-**Inventor:** Willy Merté  
-**Assignee:** Carl-Zeiss-Stiftung (canonical corpus entity; source attribution Carl Zeiss)  
-**Example details:** Original typed specification p. 2 and drawing p. 1; 1 optical unit represented as 1 mm, without focal rescaling.
+## Patent and Design Identification
 
-This is a hidden, patent-only 4-element/3-group infinity reference. Tessar-type describes its architecture; no retail Tessar identity, mount, format, finite focusing mechanism or manufactured performance is asserted. The source nominal values are 100 optical units, f/3.5 and 55° full field. The literal D-line calculation gives EFL 100.0474679294 mm and rear-vertex BFD 85.2844286897 mm; the unpublished image distance is derived, not a source reading.
+**Patent:** US 1,741,947 A
 
-The complete table and topology were visually verified upstream by the source scout, including the official original's byte count and hash recorded in `source/LITERAL.json`. This executor did not inspect pixels: its ordinary official PDF request failed at the proxy with HTTP 403, and was not retried. These notes distinguish upstream primary-source verification from locally executed numerical/native checks. [Original official patent](https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/1741947).
+**Inventors:** Willy Merté
+
+**Assignee:** Carl-Zeiss-Stiftung (the patent names the firm Carl Zeiss, Jena)
+
+**Published:** 31 December 1929
+
+**Filed:** 11 June 1927; German priority 26 June 1926
+
+**Example details:** Sole numerical example; drawing on PDF page 1 and typed prescription on PDF page 2.
+
+The patent describes a photographic and projection objective with four elements in three groups, a nominal focal length of 100, an aperture of f/3.5 and a full field of 55°. The model uses millimetres. Its D-line effective focal length is 100.04747 mm, 0.047% above the printed value; the computed paraxial back focal distance is 85.28443 mm. The patent gives no back focal distance. [Original patent](https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/1741947).
+
+The layout is Tessar-type: a positive front singlet, a negative middle singlet and a rear cemented pair. ZEISS documents this architecture and production Tessars at f/3.5, but no source ties this particular prescription to a production Tessar. The later Merté–Wandersleb patent US 1,849,681 A, with German priority in 1930, contains different prescriptions. The Tessar name here identifies the design family. [ZEISS Tessar history](https://lenspire.zeiss.com/photo/app/uploads/2018/02/cln39_en_web_special_tessar.pdf), [later patent](https://patents.google.com/patent/US1849681A/en).
 
 ## Optical Architecture
 
-The front positive singlet, middle negative singlet and rear cemented negative/positive doublet form 4E/3G. Both R2 and R5 are flat optical faces. R6 is the sole cemented interface; it is not an additional air surface. A separate iris is inserted into the R4–R5 airspace, at the published 4.42/2.29 split. The powered-vertex track is 29.99 mm and stop z is 18.20 mm. There are seven refracting boundaries and one separate air stop, with no plate or baffle added.
+Elements I and II are air-spaced singlets. Elements III and IV form the rear cemented doublet C1, with a shared interface at R6. R2 and R5 are optical flats; the remaining refracting surfaces are spherical. There are seven refracting boundaries and a separate diaphragm between II and III.
+
+The printed diaphragm station is 4.42 mm behind R4 and 2.29 mm ahead of R5. Its axial coordinate is 18.20 mm from the first vertex. The first-to-last vertex track is 29.99 mm, and the image plane lies 115.27443 mm behind the first vertex.
 
 ## Element-by-Element Analysis
 
-### L1 — Plano-convex positive singlet
+### I / Element 1 — Plano-Convex Positive
 
-nD = 1.60717, νD = 59.5. Glass: unmatched historical index/Abbe pair; no exact catalog identification. The +32.08 front curvature and flat rear supply positive power. Estimated clear radii are 16.2/15.8 mm; the smaller rear radius imposes some off-axis vignetting. These are model assumptions, not measured outer diameters.
+nD = 1.60717, νD = 59.5. Glass: K-SK7 (Sumita), a catalogue match to the printed coordinates; historical supplier unknown. Standalone focal length in air: +52.84 mm.
 
-### L2 — Biconcave negative singlet
+The +32.08 mm front surface and flat rear surface provide the front group's positive power. Its estimated clear semi-diameters are 16.2 and 15.8 mm.
 
-nD = 1.57596, νD = 41.3. Glass: unmatched. The −71.13/+28.85 surfaces contribute negative power ahead of the source iris. Clear radii 16.0/15.2 mm are estimated; thickness remains exactly 3.73 mm.
+### II / Element 2 — Biconcave Negative
 
-### L3 — Plano-concave negative component of the rear doublet
+nD = 1.57596, νD = 41.3. Glass: FL57 (Hoya), a catalogue match to the printed coordinates; historical supplier unknown. Standalone focal length in air: −35.16 mm.
 
-nD = 1.52648, νD = 51.4. Glass: unmatched. The typed specification prints 51.4 while the drawing rounds to 51; typed 51.4 is retained. The front optical plane R5 is 2.29 mm behind the iris. Its 1.50 mm glass thickness ends at cemented R6 (+28.50). Estimated radii are 15.2/15.7 mm.
+The −71.13 and +28.85 mm surfaces supply negative power between the converging front and rear groups. The centre thickness is 3.73 mm; clear semi-diameters of 16.0 and 15.2 mm are estimated.
 
-### L4 — Biconvex positive component of the rear doublet
+### III / Element 3 — Plano-Concave Negative
 
-nD = 1.62377, νD = 56.9. Glass: unmatched. The shared +28.50 cemented interface and −47.22 rear surface provide positive power. Thickness is 8.00 mm; estimated rear clear radius is 16.5 mm. Element focal lengths are not separately sourced or used as validation targets.
+nD = 1.52648, νD = 51.4. Glass: Unmatched. Standalone focal length in air: −54.13 mm.
+
+The flat front surface is 2.29 mm behind the diaphragm. This 1.50 mm thick negative element is cemented to IV at R6, whose radius is +28.50 mm. The typed table prints ν = 51.4, while the drawing prints 51; the model retains the typed value. Estimated clear semi-diameters are 15.2 and 15.7 mm.
+
+### IV / Element 4 — Biconvex Positive
+
+nD = 1.62377, νD = 56.9. Glass: Unmatched. Standalone focal length in air: +29.70 mm.
+
+The shared +28.50 mm cemented interface and −47.22 mm rear surface provide positive power. Its centre thickness is 8.00 mm and its rear clear semi-diameter is estimated at 16.5 mm. The cemented III–IV group has a net positive focal length of +60.97 mm.
 
 ## Glass Identification and Spectral Scope
 
-All four source D indices and typed Abbe values are retained literally. `indexReference: "D"` selects the program's sodium-D reference (589.2938 nm). No vendor glass, measured dispersion curve or additional spectral index is invented. Optical qualification and quantitative MTF are D-line only. Native Abbe-based chromatic or polychromatic panels can render but are approximations, not validated historical spectral performance.
+The patent prints nD and Abbe numbers. The model retains those coordinates and uses the D line (taken as sodium, 589.3 nm). Catalogue comparisons at that line give the following differences, calculated as catalogue minus patent:
+
+| Element | Catalogue disposition           |        ΔnD |     ΔνD |
+| ------- | ------------------------------- | ---------: | ------: |
+| I       | K-SK7 (Sumita)                  | +0.0000271 | −0.0431 |
+| II      | FL57 (Hoya)                     | +0.0000812 | +0.0846 |
+| III     | Unmatched (nD 1.52648 / ν 51.4) |          — |       — |
+| IV      | Unmatched (nD 1.62377 / ν 56.9) |          — |       — |
+
+The first two labels supply catalogue dispersion curves without establishing the identity of the historical melts. No catalogue row meets the same matching limits for III or IV; their spectral behaviour is estimated from the printed Abbe numbers. The patent gives no additional spectral indices or partial-dispersion data, so calculated colour correction is not a measured property of a production lens.
 
 ## Focus Mechanism
 
-Only the static infinity reference is qualified. No finite-conjugate state, continuous focus travel or production minimum focus distance is inferred. `closeFocusM: 1e15` prevents a substantive finite-focus claim within the existing schema. The detector is at z = 115.2744286897 mm, the independently derived Gaussian infinity plane, with no best-focus fitting.
+The model represents infinity focus only. The patent gives no close-focus distances, focus-state table or movement law. All elements remain fixed, and the image plane is the computed paraxial infinity plane, 85.28443 mm behind R7. No production minimum focus distance is assigned.
 
-## Aperture, Clear Radii and Sensitivity
+## Aperture and Field Coverage
 
-The source specifies the iris station, not its diameter. The unchanged source nominal f/3.5 drives the app's ordinary-prime paraxial stop rule, yielding radius 11.9000851779 mm (diameter 23.8001703558 mm). The measured accepted axial launch radius is 14.0951317500 mm, a finite entrance equivalent f/3.5490079023. Thus the nominal f/3.5 outer ray is clipped by this modeled iris; it is not claimed to be a measured factory opening.
+The patent specifies the diaphragm's position but not its diameter. The paraxial f/3.5 aperture gives a stop radius of 11.90009 mm. Exact axial tracing gives a real-ray entrance equivalent of f/3.549 at that opening; a nominal f/3.5 marginal ray would require a stop radius of 12.07200 mm.
 
-An independent finite trace of the nominal f/3.5 marginal requires iris radius 12.0719984377 mm. The ordinary viewer cannot open beyond its nominal maximum, and ordinary primes cannot directly author `STO.sd`. In a separate Builder tuning copy, the tested Nominal f-number 3.4501576800 makes the native rule derive that physical radius; retain source f/3.5 separately and update the tuning copy's stop list consistently. This is a labeled tuning route, not a change to this canonical file.
+The patent's stated full field of 55° is represented by a 27.5° half-field. Its real chief ray reaches an image height of 51.64094 mm at the paraxial image plane, giving the model's 103.28188 mm image circle. This diameter is derived from the stated field, rather than a published film format. Chief rays clear the estimated rims through 27.5°, while peripheral pupil rays are vignetted; chief-ray coverage does not imply full-pupil illumination.
 
-The initial 19 mm front-cap trial and final 16.2 mm cap have identical sampled valid counts at every tested field. The tighter cap exceeds the maximum valid front hit (15.985877 mm), keeps its spherical edge ahead of the rear plane, and avoids an unnecessary overhang. All other assumed caps remain [15.8,16,15.2,15.2,15.7,16.5] mm. Rims were chosen from bounded ray footprints and conservative mechanical constraints; no promise of a factory envelope or full-pupil coverage follows. ±0.1 mm common clear-radius perturbations pass native geometry without trimming. A second physical field-sensitivity grid (217 rays each at0°,13.75°,27.5°) retains valid chiefs and zero unresolved losses for all five radius/iris variants. The corner arrivals are135/217 at baseline,135/217 for−0.1mm radii,139/217 for+0.1mm,133/217 for−2% iris and135/217 for+2% iris. These counts are a sampled sensitivity, not throughput. ±2% iris-radius diagnostics give finite equivalents f/3.619284, f/3.549008 and f/3.481536. These bounds quantify assumption sensitivity, not manufacturing tolerance.
+Every clear semi-diameter is inferred. The drawing suggests roughly 13.7 mm outer rims, with chamfers near R4 and R5. The model's larger 15.2–16.5 mm rims differ visibly: element I has an edge about 0.24 mm thick, and IV ends in a pointed rim. The drawing's front rim would also be too small for the nominal f/3.5 axial beam. These differences remain unresolved.
 
-Default geometry is sufficient: no local override, no render trimming, no source spacing/radius/index changes. Independent shared-band scans give minimum glass thickness 0.469284 mm and minimum air clearance 2.381062 mm; maximum cross-gap sag intrusion 64.5148% is below the default 90%. Iris-to-glass clearance is at least 1.851371 mm in front and 2.29 mm behind over its opening. Native element/rim diagnostics also validate the unequal-cap edge joins.
+## Patent Conditions and Model Limits
 
-## Physical Ray and Field Validation
+The numerical example satisfies the reported curvature conditions:
 
-At each field, 865 rays use 12 area-radius rings × 72 azimuths plus the central chief, launched about the native converged chief at the first-vertex plane. This is a physical skew-ray diagnostic; its counts are not a solid-angle throughput or illumination estimate. Each field has a valid chief and a nonempty image-forming pupil. Ordinary vignetting is retained:
+| Condition                                                                       | Values at the model dimensions   |
+| ------------------------------------------------------------------------------- | -------------------------------- |
+| Sum of the outer absolute radii at least three quarters of focal length         | 32.08 + 47.22 = 79.30 mm ≥ 75 mm |
+| Sum of the middle element's absolute radii at least nine tenths of focal length | 71.13 + 28.85 = 99.98 mm ≥ 90 mm |
+| Cemented radius no greater than five sixths of the rear radius magnitude        | 28.50 mm ≤ 39.35 mm              |
 
-| Half field | Valid detector arrivals | Modeled blocks | Raw native misses included in blocks |
-| --- | ---: | ---: | ---: |
-| 0° | 793 | 72 | 0 |
-| 6.875° | 818 | 47 | 0 |
-| 13.75° | 769 | 96 | 7 |
-| 20.625° | 688 | 177 | 72 |
-| 25° | 622 | 243 | 130 |
-| 27.5° | 566 | 299 | 180 |
+The dimensions meet the surface-clearance checks without local geometry overrides. Image-quality calculations depend on the inferred rims, unprinted iris diameter and calculated image plane. The patent supplies no MTF curve for this prescription; simulated MTF is not a measurement of a historical lens.
 
-Every raw miss is independently located outside its authored clear cap; all 389 proofs record surface, field, pupil coordinate and radius. There are zero unresolved physical sampling losses or failed classifications in this grid. For all 4256 valid rays, the independent vector Snell/sphere/plane tracer reproduces every native optical hit to within 2.11e-13 mm. The 27.5° chief image height is 51.640938 mm; the 103.281876 mm modeled image circle is derived from that hit, not a published format. Some edge azimuths are clipped, so 55° is a usable vignetted field, not a full-pupil acceptance assertion. Unexamined continuous pupil/field positions and actual specimen apertures remain unverified.
+## Sources
 
-## Sampled D-line MTF
-
-Native geometric MTF uses the derived Gaussian detector, reference spectrum, source nominal aperture and the current modeled clear apertures. Sampling converges within the engine's 0.01 MTF criterion through 40 lp/mm; unknown flux, failed and unaimed counts are zero. This is geometric ray MTF, without diffraction, measured coatings or calibrated polychromatic claims. No primary MTF curve was available for comparison; low MTF and side lobes are reported rather than optimized away.
-
-| Half field | Converged grid | 10 lp/mm S/T | 20 lp/mm S/T | 40 lp/mm S/T |
-| --- | ---: | --- | --- | --- |
-| 0.00000° | 128 | 0.0762/0.0762 | 0.1752/0.1752 | 0.0343/0.0343 |
-| 14.49245° | 128 | 0.1215/0.3517 | 0.0636/0.0290 | 0.0292/0.0779 |
-| 27.49997° | 256 | 0.3417/0.0918 | 0.1540/0.0415 | 0.0299/0.0207 |
-
-## Deduplication and Native Application Checks
-
-At pinned main `66c7570fb6eb3c31534b7191267a95c85d5ee590`, all 1,182 main bodies including hidden models and all 20 current PR-head source bodies were covered by the retained verified inventory: 2,369 distinct evaluated bodies. Another 2,438 retained historical numerical profiles were verified against their body hashes. Positive uniform-scale, signed forward/reversed optical-order profiles and normalized source aliases found no match. A separate recursive local ZIP screen hashed 41 archives and inspected 24,349 TS members with literal-radius parsing, also without a match. Computed-expression limits apply to the archive screen; inaccessible remote/private archives are not claimed. DE649112/GB278338 is a different, already-built US1792917 design and was not authored.
-
-Exact V2 JSON roundtrip passes; strict standalone model types, repository typecheck, formatting and 319 existing tests in five targeted Builder/aperture/geometry suites pass. Desktop (1440×1100) and mobile (390×844) Builder import, valid-prescription rendering, export availability, aperture changes and analysis-panel health pass without page errors. Desktop off-axis/dense controls are exercised; those controls are not exposed in the mobile layout. Browser panel health is not a spectral or image-quality qualification. No full corpus run, production integration, deployment or continuous-performance guarantee is claimed.
+1. Willy Merté, [US 1,741,947 A, “Photographic lens, corrected spherically, chromatically, astigmatically, and for coma”](https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/1741947), published 31 December 1929. PDF page 1: drawing and glass data; page 2: typed example and design conditions.
+2. H. H. Nasse, [“Tessar,” Carl Zeiss Camera Lens Division, March 2011](https://lenspire.zeiss.com/photo/app/uploads/2018/02/cln39_en_web_special_tessar.pdf), pp. 2–4 and 7: architecture, f/3.5 development and historical production examples.
+3. Willy Merté and Ernst Wandersleb, [US 1,849,681 A, “Photographic three-lens objective”](https://patents.google.com/patent/US1849681A/en), published 15 March 1932; German priority 17 July 1930. A later design with different numerical examples.
