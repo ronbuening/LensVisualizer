@@ -28,7 +28,7 @@ const LENS_DATA = {
   key: "sigma-10-20-f35-ex-dc-hsm",
   maker: "Sigma",
   name: "SIGMA 10-20mm f/3.5 EX DC HSM",
-  subtitle: "JP 2010-243737 A, Numerical Example 4 — construction-based production correlation",
+  subtitle: "JP 2010-243737 A, Numerical Example 4 — production match by construction",
   layout: {
     yScFill: 0.85,
   },

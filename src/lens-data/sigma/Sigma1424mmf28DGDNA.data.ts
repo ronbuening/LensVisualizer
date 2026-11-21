@@ -34,7 +34,7 @@ const LENS_DATA = {
   key: "sigma-14-24-f28-dg-dn-art",
   maker: "Sigma",
   name: "SIGMA 14-24mm f/2.8 DG DN | Art",
-  subtitle: "JP 2020-042221 A, Numerical Example 1; construction correlation, not factory confirmation",
+  subtitle: "JP 2020-042221 A, Numerical Example 1; production match by construction, not factory confirmation",
 
   catalog: {
     lensMounts: ["l-mount", "sony-fe"],
