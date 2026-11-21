@@ -54,7 +54,8 @@ const LENS_DATA = {
       nd: 1.573,
       vd: 57.4,
       indexReference: "D",
-      glass: "Unmatched (nD 1.573 / ν 57.4)",
+      glass:
+        "BAK1 (spectral proxy; patent nD 1.573 / ν 57.4; supplier and melt unspecified)",
       focalLengthMm: 123.3,
       role: "Positive front singlet collecting light into the inner menisci.",
     },
@@ -79,7 +80,8 @@ const LENS_DATA = {
       nd: 1.605,
       vd: 38.2,
       indexReference: "D",
-      glass: "Unmatched (nD 1.605 / ν 38.2)",
+      glass:
+        "F5 (spectral proxy; patent nD 1.605 / ν 38.2; supplier and melt unspecified)",
       focalLengthMm: -46.92,
       role: "Dispersive negative member facing the diaphragm.",
       cemented: "C1",
@@ -92,7 +94,8 @@ const LENS_DATA = {
       nd: 1.689,
       vd: 30.9,
       indexReference: "D",
-      glass: "Unmatched (nD 1.689 / ν 30.9)",
+      glass:
+        "L-TIM28 (spectral proxy; patent nD 1.689 / ν 30.9; supplier and melt unspecified)",
       focalLengthMm: -65.78,
       role: "Negative front member of the rear inner meniscus doublet.",
       cemented: "C2",
@@ -118,7 +121,8 @@ const LENS_DATA = {
       nd: 1.689,
       vd: 30.9,
       indexReference: "D",
-      glass: "Unmatched (nD 1.689 / ν 30.9)",
+      glass:
+        "L-TIM28 (spectral proxy; patent nD 1.689 / ν 30.9; supplier and melt unspecified)",
       focalLengthMm: -88.24,
       role: "Dispersive negative member of the positive rear doublet.",
       cemented: "C3",
