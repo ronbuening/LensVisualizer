@@ -1,66 +1,84 @@
+# MEOPTA 100mm f/1.8 (US 2,543,856 Design)
+
 ## Patent Reference and Design Identification
 
-**Patent:** US2543856A
-**Inventor:** František Kupka
-**Assignee:** Meopta
-**Priority:** Czechoslovakia, 1947 (year from the independently verified source handoff)
-**Granted:** 1951
-**Example details:** Literal Example 1; cinema optical patent, not an identified retail lens.
+**Patent:** US 2,543,856 A, _Large aperture four-member photographic objective_
 
-Private app-ready sodium-D infinity reference only. No retail, serial, production, finite-projection or camera identification is assigned. The primary original's three pages were visually verified by the independent source scout, outside this executor. [Official source locator](https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/2543856). Externally pinned SHA-256: `b9203404b0a37b47017fbdda1c67fe8132824b63cb377ff8c890b004b93c5ef4`. No original PDF is included, locally downloaded, rehashed or pixel-inspected. The known denied worker source route was not attempted.
+**Inventors:** František Kupka
+
+**Assignee:** Meopta, spojene zavody pro jemnou mechaniku a optiku, narodni podnik
+
+**Filed:** 20 July 1948
+
+**Published:** 6 March 1951
+
+**Priority:** Czechoslovakia, 4 August 1947
+
+**Example details:** Example 1 of three numerical examples, illustrated by Figure 1.
+
+The patent describes a large-aperture photographic objective particularly suited to cinematography. Example 1 specifies a focal length of 100 mm and an aperture ratio of 1:1.8. No production lens is documented as using this prescription. [US 2,543,856 A, PDF p. 2](https://patents.google.com/patent/US2543856A/en)
 
 ## Optical Architecture
 
-Five elements in four air-separated groups: L1 | L2+L3 | L4 | L5. R4 is a genuine plano glass-to-glass cemented interface. It is not an iris, omitted boundary or air gap. The 0.1 mm R2–R3 air gap is preserved. All nine radii, eight axial spacings, five sodium-D indices and Abbe values remain literal. There is no optical fitting, glass substitution, baffle, additional plate, false fixed-stop flag, global change, geometry relaxation or trimming.
+Five spherical elements form four air-separated groups: a positive front meniscus, a positive cemented second group, a biconcave negative third group and a biconvex positive rear group. Elements 2 and 3 are cemented at the flat r4 interface. Their combined focal length is +87.73 mm, although element 3 alone is negative. The front air separation is the printed 0.1 mm.
 
-Literal D-line EFL = 99.9978475914 mm, BFD = 52.3199662409 mm, first-to-last vertex track = 66.8 mm. The computed Gaussian infinity plane is used; no finite conjugate or focus cam is inferred. Published nominal EFL is 100 mm and nominal aperture is f/1.8.
+The patent emphasizes the weak curvature of the cemented interface, the front element's weak rear surface, and the higher dispersion of the negative member of the cemented pair. These features balance the positive components while allowing relatively shallow spherical surfaces. Example 1 uses an infinite cemented radius, within the claim's range from six focal lengths to infinity. [Specification and claim, PDF pp. 2–3](https://patents.google.com/patent/US2543856A/en)
+
+At the sodium D line the computed effective focal length is 99.99785 mm, within 0.0022% of the stated 100 mm. The first-to-last vertex distance is 66.8 mm. The image plane is the computed paraxial back focus, 52.31997 mm behind r9; the patent prints no back focus.
 
 ## Element-by-Element Analysis
 
-| Element | Front/rear surface | Source D index / Abbe | Modeled clear semidiameters (mm) |
-|---|---|---|---|
-| L1 | R1 / R2 | 1.65981 / 50.3 | 32 / 32 |
-| L2 | R3 / plano R4 | 1.65981 / 50.3 | 30 / 27 |
-| L3 | plano R4 / R5 | 1.71715 / 29.6 | 27 / 27 |
-| L4 | R6 / R7 | 1.71715 / 29.6 | 24 / 21 |
-| L5 | R8 / R9 | 1.61216 / 58.0 | 22 / 22 |
+The focal lengths below describe each element separately in air. All indices and Abbe numbers are the patent's printed values.
 
-Every listed clear semidiameter is an estimate, not a patent measurement. Shared interface R4 has one clear cap. Default geometry retains positive glass lands; minimum sampled common-radius glass thickness is 1.353966980 mm, with the other elements at least 1.5 mm. Air-gap minima are 0.100000, 6.274586182 and 19.020778107 mm. Maximum positive air-gap sag consumption is 23.9169%, below the default 90%; no override or render trim. Independent straight sidewall-envelope tests joining the authored face rims find no admitted ray crossing the estimated solids. These are mechanical proxy checks, not factory rim or barrel evidence.
+### Element 1 — Positive Meniscus
+
+`nD = 1.65981, ν = 50.3; f = +163.03 mm.` The front collector has radii +78 and +270 mm and a center thickness of 9.5 mm. Its glass remains unmatched.
+
+### Elements 2 and 3 — Cemented Positive Group C1
+
+Element 2 is plano-convex positive: `nD = 1.65981, ν = 50.3; f = +68.96 mm`. Element 3 is plano-concave negative: `nD = 1.71715, ν = 29.6; f = −278.88 mm`. The lower Abbe number of the negative element supplies greater dispersion within the pair. Their shared flat r4 surface is a glass-to-glass interface, with no intervening air gap. Element 2 remains unmatched; element 3 uses the Schott SF1 catalogue curve.
+
+### Element 4 — Biconcave Negative
+
+`nD = 1.71715, ν = 29.6; f = −41.69 mm.` This thin negative third group balances the positive components. It has radii −600 and +31.5 mm, a center thickness of 1.5 mm and the same printed glass coordinates as element 3. It also uses the Schott SF1 catalogue curve.
+
+### Element 5 — Biconvex Positive
+
+`nD = 1.61216, ν = 58.0; f = +72.37 mm.` The rear positive group forms the image after the stop. Its radii are +109 and −72.82 mm, and its center thickness is 7 mm. Its glass remains unmatched.
 
 ## Glass Identification and Selection
 
-The five literal sodium-D/Abbe pairs are preserved, including separate L2/L3 at the flat cement. No exact catalog glasses or individual C/F/g measurements are established. Index reference D is explicit. Quantitative image and MTF claims are restricted to sodium D. Generic app chromatic or polychromatic outputs based on Abbe dispersion are not qualified as source-calibrated performance.
+The patent explicitly names the sodium D line and supplies Abbe numbers, but gives no glass names or separate C, F or G′ indices. The source indices remain attached to that line.
+
+Schott SF1 matches elements 3 and 4 at the printed D-line precision: its catalogue curve gives nD = 1.7171488 and νD = 29.5041, differences of −0.0000012 and −0.0959 from the printed pair. The SF1 label selects a catalogue dispersion curve; it does not establish the historical supplier or melt. Elements 1, 2 and 5 have no exact catalogue match and retain their printed index and Abbe number without a named glass assignment. The available data do not establish anomalous partial dispersion or measured broadband performance.
 
 ## Focus Mechanism
 
-Only infinity in the transcribed source direction is modeled. No finite projection state, operational focusing mechanism or production lens behavior is asserted. The near-focus control is effectively disabled by the distant close-focus bound and described as an infinity diagnostic.
+Only infinity focus is modeled. The patent supplies no close-focus prescription, object distances or focusing mechanism; no minimum focus distance is assigned.
 
-The stop station is published: 9.4 mm after R7 and 15.6 mm before R8, at z44.2 mm. Its physical diameter is not published. Exact independent tracing of the source axial h27.78 mm witness gives inferred iris radius 16.734857895572 mm, diameter 33.469715791143 mm. The source nominal label f/1.8 stays in `catalog.fNumber.design`; the recognized `aperture.nominalFNumber` = 1.7536447904353865 is explicitly a software iris-calibration control. It is neither a source correction nor an exact effective f-number. A native f/1.8 control alone would give diameter 32.607773741384 mm, which is not the witness-derived opening.
-
-Desktop 1440×1100 and compact 390×844 import/export and fresh reload/reimport preserve diameter 33.469715791143315 mm in actual rendered DiagramSVG props. No state injection is used. Native aperture census diagnoses the calibrated state as `ok`; its paraxial control convention differs from independent exact entrance-equivalent f/1.799817271 and image-space sine equivalent f/1.803659884. These definitions and the source f/1.8 label are retained separately. The aperture audit's optional rim-raise tool would flag a faster-than-design control for review; no automatic rim raising, suppressed flag or altered acceptance rule is used.
+Figure 1 draws a dashed plane between elements 4 and 5. The printed separations place it 9.4 mm after r7 and 15.6 mm before r8, at an axial station of 44.2 mm from r1. The model treats that plane as the aperture stop; the prose does not explicitly name it a diaphragm. The opening is inferred from the printed f/1.8 ratio, giving a stop radius of 16.30389 mm. No iris diameter is printed.
 
 ## Aspherical Surfaces
 
-None. All curved boundaries are literal spheres; R4 is the source plano refractive cemented boundary.
+There are no aspherical surfaces. The curved faces are spherical, and r4 is flat.
 
-## Diagnostic Field, Rays and Aberration Evidence
+## Source Aberrations and Model Limits
 
-Chosen field is ±10 degrees, not a printed design-field or format claim. Native desktop and mobile rendered incoming rays and viewer geometry are measured at 10 degrees. Compact Builder has no exposed off-axis toggle: testing uses the native wide-layout toggle and restores the compact layout, rather than claiming compact activation exists. Image-circle metadata follows the native 10-degree chief height, 17.702159998 mm; it is a metric sampling datum, not a measured production format or optical fit.
+The computed Petzval sum is 0.00501623 mm⁻¹, or 0.5016 when multiplied by the stated 100 mm focal length, reproducing the patent's printed sum. The sodium-D spherical-aberration calculation also closely reproduces its table:
 
-Independent source LSA comparison at axial heights 19.45 / 24.06 / 27.78 mm gives -0.332342484 / -0.239530060 / +0.139283299 mm versus printed -0.327 / -0.241 / +0.148 mm. Differences are retained, maximum 0.008716701 mm. No prescription adjustment was made to match the printed values.
+| Incident axial ray height (mm) | Printed longitudinal aberration (mm) | Computed longitudinal aberration (mm) |
+| ------------------------------ | -----------------------------------: | ------------------------------------: |
+| 19.45                          |                               −0.327 |                                −0.332 |
+| 24.06                          |                               −0.241 |                                −0.240 |
+| 27.78                          |                               +0.148 |                                +0.139 |
 
-A dense physical entrance grid of 3,457 seeds at -10/-5/0/+5/+10 degrees yields valid arrivals 2930/3226/3169/3226/2930, with blocked counts 527/231/288/231/527. All chiefs survive. No unresolved raw paths remain in this sampled grid. Each outer field has 55 native `noBracket` outcomes: these are retained in the raw record, and an independent forward near-vertex sphere intersection proves every one lies outside the next modeled cap, with a matching native prefix. The 110 proofs are evidence of physical clear-cap misses, not overridden successes. The other 1,694 clipped samples have independent first-aperture position/radius proofs. Maximum native/independent hit discrepancy is below 2.1e-13 mm. Counts are unweighted diagnostics, not throughput.
+The largest difference is 0.00872 mm. These comparisons use the patent's specified incident heights; they do not define the inferred iris opening. The printed paraxial F−C separation is −0.345 mm. A calculation from the printed Abbe numbers gives about −0.404 mm, probably reflecting differences from the designer's glass data rather than a transcription error. The printed indices and Abbe numbers are retained. [Aberration tables and Figure 2, PDF pp. 1–3](https://patents.google.com/patent/US2543856A/en)
 
-A separate 865-point stop-aimed grid at the same fields gives 764/862/865/862/764 arrivals and 101/3/0/3/101 rim blocks, with no unaimed, failed or unresolved samples. At the 10-degree edge the first blocks are R1; at 5 degrees they are R4. This does not claim full-pupil edge transmission, measured vignetting or image quality.
+The patent states no field angle or image format. The displayed ±10° field is illustrative and carries no image-circle or mount claim. Its chief ray and the f/1.8 axial beam clear the modeled rims, although off-axis bundles are partly vignetted.
 
-## MTF Scope and Validation
+Every clear semi-diameter is estimated: r1/r2 32 mm, r3 30 mm, r4/r5 27 mm, r6 24 mm, r7 21 mm and r8/r9 22 mm. Figure 1 draws smaller front and rear components, particularly element 5. Those differences remain unresolved; the model does not establish factory edge dimensions or barrel geometry.
 
-Native geometric sodium-D MTF, Gaussian design plane, frequencies 0/10/20/40 cycles/mm. Sampled fields are 0, 5.05255598 and 10 degrees; intermediate fields are image-height fractions, not angle fractions. Explicit 32–512 lattice refinement reproduces native adaptive results. Largest 256→512 absolute MTF changes are 0.000190105 / 0.000126458 / 0.000202554. At 512, native unknown flux and omission bounds are zero; no unaimed or failed cells. Known aperture clipping is retained. This is convergence of the native geometric metric, not diffraction/broadband qualification, independent measured MTF or retail performance.
+## Sources
 
-Native import/validation, exact JSON roundtrip/export, field/iris browser measurements and analysis-panel rendering pass on desktop/mobile with no page errors. Strict model and full retained-baseline typechecks pass; model ESLint has zero errors/warnings; formatting passes; 346 tests in ingestV2/canonical/apertureStop/buildLens pass. Full-catalog regression and remote CI were not run, and no app code changed.
-
-## Deduplication and Reproducibility Bounds
-
-Retained baseline 4027fd20d095a1dba4ee3f46188dc70dad858055 contributes 1,188 re-evaluated catalog bodies. A separate hash-verified cache covers 2,378 older main/21 retained PR-head bodies and 2,438 historical profiles. Overlapping additional local checks include 16,723 loose TS bodies, 1,151 TAR TS bodies, 292 JSON surface profiles and 24,370 TS members in 48 ZIPs. No normalized signed forward/reversed-scale radius match was found. The unrelated #996 context citation is not optical identity. Counts overlap and must not be summed into unique models. Computed-expression parsing and inaccessible archives remain bounded limitations; no exhaustive archive claim. Known PR refresh 403 was not retried; current remote PR/main freshness is not certified and should be reviewed before distribution.
-
-A local immutable checkpoint contains the exact model, source transcription, independent/native evidence, repro scripts and full member hashes. Original PDFs are not members. Doi, Taylor, eight prior sealed ZIPs and the retained source baseline are preserved. No packaging, upload, delivery or credit is implied.
+1. František Kupka, [US 2,543,856 A, _Large aperture four-member photographic objective_](https://patents.google.com/patent/US2543856A/en), granted 6 March 1951. PDF p. 1: section and aberration curves; p. 2: bibliography, Examples 1–3 and longitudinal aberrations; p. 3: Seidel coefficients and claim.
+2. Meopta, [historical milestones](https://www.meopta.com/en/historical-milestones/), documenting the company's photographic and cinema-equipment history; this does not identify a product using Example 1.

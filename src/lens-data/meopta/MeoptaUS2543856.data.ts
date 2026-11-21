@@ -1,20 +1,31 @@
-import type { LensDataV2Input } from "../repo/src/types/lensDataV2.js";
-const data = {
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * US 2,543,856 A, Example 1: František Kupka's five-element cinema objective,
+ * published 6 March 1951. The patent gives f = 100 mm, aperture 1:1.8, spherical
+ * radii, axial spacings, sodium-D indices and Abbe numbers. The flat r4 interface
+ * cements elements 2 and 3. The dashed plane in Fig. 1 is treated as the stop,
+ * 9.4 mm after r7 and 15.6 mm before r8; its opening is inferred from f/1.8.
+ * All clear semi-diameters are estimated. The image plane is the computed
+ * paraxial back focus, 52.31996624092534 mm; no back focus is printed.
+ * The ±10° field is illustrative; the patent states no field or image format.
+ */
+const LENS_DATA = {
   schema: 2,
-  key: "kupka-us2543856-example1-infinity-reference",
-  maker: null,
-  name: "FRANTIŠEK KUPKA US2543856 EXAMPLE 1 — SOURCE f/1.8",
-  subtitle:
-    "Meopta cinema patent only · derived iris/calibrated control · sodium-D infinity",
-  visible: false,
+  key: "meopta-100mm-f18-us2543856",
+  maker: "Meopta",
+  name: "MEOPTA 100mm f/1.8 (US 2,543,856 Design)",
+  subtitle: "US 2,543,856 A, Example 1 — five-element cinema objective",
+  visible: true,
   source: {
-    patentNumber: "US 2,543,856",
+    patentNumber: "US 2,543,856 A",
+    patentYear: 1951,
     example: {
       label: "Example 1",
       id: "1",
     },
     authors: ["František Kupka"],
-    assignees: ["Meopta"],
+    assignees: ["Meopta, spojene zavody pro jemnou mechaniku a optiku, narodni podnik"],
     sdSource: "heuristic",
   },
   catalog: {
@@ -26,72 +37,70 @@ const data = {
     fNumber: {
       design: 1.8,
     },
-    imageCircleMm: 35.40431999587676,
-    specs: [
-      "Patent-only cinema optical reference; no retail lens identity or finite projection state.",
-      "Literal five elements, R4 plano glass-to-glass cement and 0.1 mm front air preserved.",
-      "Source design f/1.8 differs from saved software iris-calibration control.",
-      "Iris station R7 + 9.4 mm / R8 - 15.6 mm is published; diameter is not.",
-      "Derived iris radius 16.734857895572 mm from source axial height 27.78 mm; software control 1.753644790435.",
-      "All per-face clear apertures estimated; actual clipping documented through chosen +/-10-degree diagnostic scope.",
-      "Explicit sodium-D source indices; Abbe values retained, no calibrated broadband/glass-catalog claim.",
-    ],
+    specs: ["5 ELEMENTS / 4 GROUPS", "ALL SPHERICAL", "DESIGN F/1.8", "CINEMA OBJECTIVE"],
   },
   elements: [
     {
       id: 1,
       name: "L1",
-      label: "L1",
-      type: "Source Spherical Element",
+      label: "Element 1",
+      type: "Positive Meniscus",
+      role: "Positive front collector",
+      focalLengthMm: 163.03,
       nd: 1.65981,
       vd: 50.3,
       indexReference: "D",
-      glass:
-        "Unmatched literal sodium-D index and Abbe value; no calibrated dispersion or catalog identification.",
+      glass: "Unmatched (nD 1.65981 / ν 50.3)",
     },
     {
       id: 2,
       name: "L2",
-      label: "L2",
-      type: "Source Spherical Element",
+      label: "Element 2",
+      type: "Plano-Convex Positive",
+      role: "Positive front element of the cemented second group",
+      focalLengthMm: 68.96,
+      cemented: "C1",
       nd: 1.65981,
       vd: 50.3,
       indexReference: "D",
-      glass:
-        "Unmatched literal sodium-D index and Abbe value; no calibrated dispersion or catalog identification.",
+      glass: "Unmatched (nD 1.65981 / ν 50.3)",
     },
     {
       id: 3,
       name: "L3",
-      label: "L3",
-      type: "Source Spherical Element",
+      label: "Element 3",
+      type: "Plano-Concave Negative",
+      role: "Dispersive negative rear element of the cemented second group",
+      focalLengthMm: -278.88,
+      cemented: "C1",
       nd: 1.71715,
       vd: 29.6,
       indexReference: "D",
-      glass:
-        "Unmatched literal sodium-D index and Abbe value; no calibrated dispersion or catalog identification.",
+      glass: "SF1 (Schott)",
     },
     {
       id: 4,
       name: "L4",
-      label: "L4",
-      type: "Source Spherical Element",
+      label: "Element 4",
+      type: "Biconcave Negative",
+      role: "Negative third group balancing the positive components",
+      focalLengthMm: -41.69,
       nd: 1.71715,
       vd: 29.6,
       indexReference: "D",
-      glass:
-        "Unmatched literal sodium-D index and Abbe value; no calibrated dispersion or catalog identification.",
+      glass: "SF1 (Schott)",
     },
     {
       id: 5,
       name: "L5",
-      label: "L5",
-      type: "Source Spherical Element",
+      label: "Element 5",
+      type: "Biconvex Positive",
+      role: "Positive rear group forming the image",
+      focalLengthMm: 72.37,
       nd: 1.61216,
-      vd: 58.0,
+      vd: 58,
       indexReference: "D",
-      glass:
-        "Unmatched literal sodium-D index and Abbe value; no calibrated dispersion or catalog identification.",
+      glass: "Unmatched (nD 1.61216 / ν 58)",
     },
   ],
   surfaces: [
@@ -161,8 +170,8 @@ const data = {
     },
   ],
   aperture: {
-    nominalFNumber: 1.7536447904353865,
-    fStops: [1.7536447904353865, 1.8, 2, 2.8, 4, 5.6, 8, 11, 16],
+    nominalFNumber: 1.8,
+    fStops: [1.8, 2, 2.8, 4, 5.6, 8, 11, 16],
     maxFNumber: 16,
   },
   projection: {
@@ -174,9 +183,8 @@ const data = {
     offAxisFieldFrac: 1,
   },
   focus: {
-    closeFocusM: 1000000000000000.0,
-    description:
-      "Private literal US2543856 Example 1 infinity reference in source direction; no retail or solved finite projection state. Source f/1.8 is catalog design, while saved control f/1.753644790435 reproduces a derived iris radius 16.734857895572 mm at the published station z44.2 mm. Diameter is inferred from the source h27.78 mm axial witness, not a printed hardware dimension. No fake fixed-stop flag, invented glass, baffle, optical retuning or engine change. All caps estimated; +/-10-degree field is chosen diagnostic only. Literal sodium-D quantitative metrics; any generic Abbe chromatic output is not qualified. Original pages visually verified in independent external custody, not locally fetched or pixel-inspected.",
+    closeFocusM: 1e15,
+    description: "Infinity focus only; the patent gives no close-focus data.",
   },
   groups: [
     {
@@ -200,8 +208,15 @@ const data = {
       toSurface: "9",
     },
   ],
+  doublets: [
+    {
+      text: "C1",
+      fromSurface: "3",
+      toSurface: "5",
+    },
+  ],
   layout: {
     yScFill: 0.5,
   },
 } satisfies LensDataV2Input;
-export default data;
+export default LENS_DATA;
