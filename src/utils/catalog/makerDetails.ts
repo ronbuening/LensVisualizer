@@ -51,6 +51,19 @@ export interface MakerDetails {
 }
 
 export const MAKER_DETAILS: Record<string, MakerDetails> = {
+  // Company origins and Bolex chronology: https://www.letelepherique.org/expositions-rep%C3%A8res-chronologiques-pr%C3%A9cision-868-45-5-0.html
+  // Paillard trade literature: https://www.si.edu/object/SILNMAHTL_27772
+  // Factory history: https://bolex.com/company/
+  // Projection lens and manufacturer: https://www.cinematheque.fr/fr/catalogues/appareils/collection/projecteur-de-film-8-mmap-00-2191-1-2.html
+  paillard: {
+    founded: 1814,
+    headquarters: "Sainte-Croix, Switzerland",
+    summary:
+      "Swiss precision manufacturer behind Bolex motion-picture cameras and projectors, with origins in watchmaking and music boxes and a lens range supplied by specialist optical makers.",
+    history:
+      "Paillard traces its origins to the watch-assembly business opened by Moïse Paillard in Sainte-Croix in 1814. The firm developed music-box production and opened its first factory in the town in 1875. E. Paillard & Cie. became a joint-stock company in 1920, and its Hermes typewriter business began in 1923.\n\nPaillard acquired the Geneva company Bolex in 1930 and introduced the Bolex model H camera in 1935. Cinematographic equipment became a major part of its production alongside the precision mechanisms from which the company had developed. Smithsonian holdings preserve its catalogs for Bolex cameras, projectors, accessories and Hermes typewriters.\n\nThe Bolex optical range included lenses from specialist suppliers. The Cinémathèque française records a Paillard Bolex M8 projector made in Sainte-Croix with a Kern-Paillard 20mm f/1.6 lens. Paillard's trade literature also lists Kern-Paillard and SOM Berthiot lenses.\n\nPaillard S.A. was the assignee of Arnold Werfeli's US 2,744,445 (1956), a four-element Petzval-type f/1.4 objective for photography and projection; no production Bolex lens is documented as using that prescription.",
+    notableDesigns: "Bolex H cameras and Bolex projectors, Hermes typewriters, music-box movements",
+  },
   // Company history: https://www.hkyongnuo.com/gsjj
   // Shenzhen assignee: https://patents.google.com/patent/CN110146970B/en
   // First lenses: https://petapixel.com/2014/09/25/yongnuo-50mm-f1-4-looks-like-near-perfect-clone-canon-50mm-f1-4/

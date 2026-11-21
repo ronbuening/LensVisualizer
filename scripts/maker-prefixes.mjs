@@ -40,6 +40,7 @@ export const MAKER_PREFIXES = [
   { prefix: "VOIGTLANDER", display: "Voigtländer", slug: "voigtlander" },
   { prefix: "NIKON", display: "Nikon", slug: "nikon" },
   { prefix: "NIKKOR", display: "Nikon", slug: "nikon" },
+  { prefix: "PAILLARD", display: "Paillard", slug: "paillard" },
   { prefix: "OLYMPUS", display: "Olympus", slug: "olympus" },
   { prefix: "ZUIKO", display: "Olympus", slug: "olympus" },
   { prefix: "PANASONIC", display: "Panasonic", slug: "panasonic" },
