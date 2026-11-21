@@ -3,8 +3,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 /* JP2020042221A, Numerical Example 1. Source PDF pp. 10–13, Figure 1 p. 27.
  * Native scale 1; all source radii, spacings, media, K and A3–A20 preserved.
  * Five aspheres on three elements; odd terms are radial, rotationally symmetric.
- * NO_INTERNAL_RECONSTRUCTION: only published infinity zoom states are modeled.
- * Repeated focus endpoints invent no near motion; production 0.28 m is metadata.
+ * Focus: infinity only; only the published infinity zoom states are modeled.
+ * Both focus ends keep the infinity spacings; 0.28 m is product information.
  * Stop position is source s19. The stop radius is derived from the design
  * f-number at each zoom station by exact axial Snell tracing from nominal
  * EFL/(2*2.93). Agreement with f/2.93 is
@@ -488,7 +488,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.28,
     description:
-      "NO_INTERNAL_RECONSTRUCTION: patent G2 (GF, cemented L6/L7) moves imageward for near focus (¶0063, Figure 1 focus arrow), but the patent tabulates infinity spacings only at all three zoom stations. All authored zoom gaps retain their infinity values at both focus endpoints. 0.28 m is production metadata only; finite-conjugate simulation is not certified.",
+      "Infinity focus only. The patent names G2 (GF, cemented L6/L7) as the focusing group, moving toward the image for close focus (¶0063, Figure 1 focus arrow), but gives infinity spacings only, at all three zoom stations, so focus travel is not modeled; zoom movement is. Sigma's 0.28 m minimum focus distance is product information only.",
   },
 
   gaps: {
