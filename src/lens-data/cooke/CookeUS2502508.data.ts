@@ -6,7 +6,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Radii, thicknesses, air spaces and D-line glass data follow the printed table.
  * The inferred stop splits the 11.4 mm rear air space into 7.2 and 4.2 mm.
  * Clear radii are inferred; R1's 18.75 mm uses the printed 0.375F effective front
- * diameter. The image gap is the computed paraxial back focus, 76.297288 mm.
+ * diameter. The image gap is the computed paraxial back focus, 76.30 mm.
  * The illustrative ±5° field is not a field specification from the patent.
  */
 const LENS_DATA = {
@@ -14,7 +14,7 @@ const LENS_DATA = {
   key: "cooke-100mm-f267-us2502508",
   maker: "Cooke",
   name: "COOKE 100mm f/2.67 (US 2,502,508 Design)",
-  subtitle: "US 2,502,508 A, Example I — three-component photographic objective",
+  subtitle: "US 2,502,508 A, Example I — Taylor Hobson / Cook",
   visible: false,
   source: {
     patentNumber: "US 2,502,508 A",
@@ -36,7 +36,7 @@ const LENS_DATA = {
     },
     elementCount: 4,
     groupCount: 3,
-    specs: ["4 ELEMENTS / 3 GROUPS", "ALL SPHERICAL", "DESIGN F/2.67"],
+    specs: ["4 ELEMENTS / 3 GROUPS", "ALL SPHERICAL", "DESIGN f = 100 mm", "DESIGN F/2.67"],
   },
   elements: [
     {
