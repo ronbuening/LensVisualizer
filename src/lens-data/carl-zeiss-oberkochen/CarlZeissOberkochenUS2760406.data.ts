@@ -3,7 +3,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 /**
  * US 2,760,406 A, sole example: four spherical elements in three groups.
  * The unitless prescription is represented in millimetres, without changing
- * its numerical scale. The printed "about f = 100" gives EFL 100.894744 mm.
+ * its numerical scale. The prescription gives EFL 100.894744 mm against
+ * the stated "about f = 100".
  * The text names D, but the printed glass coordinates are d-line values;
  * the model uses d and retains every printed index and Abbe number.
  * The stop is inferred from the drawing, 9.0 mm after R4 and 2.3 mm before R5;
@@ -96,7 +97,7 @@ const LENS_DATA = {
       vd: 49.2,
       indexReference: "d",
       indexReferenceNote: "The text names D, but the printed glass coordinates are d-line catalogue values.",
-      glass: "BaF5 (Schott)",
+      glass: "Unmatched (nd 1.60729 / ν 49.2)",
       focalLengthMm: -61.68,
       role: "Negative rear member balancing the rear cemented component",
       cemented: "C1",
@@ -127,7 +128,7 @@ const LENS_DATA = {
       label: "4",
       R: 27.384,
       d: 9,
-      sd: 20.3,
+      sd: 20.2,
     },
     {
       label: "STO",
