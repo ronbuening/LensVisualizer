@@ -1,52 +1,56 @@
-# CARL ZEISS JENA R-BIOTAR 100mm f/0.9 (US 1,967,836 Design) — Audit
+# CARL ZEISS JENA R-BIOTAR 100mm f/0.9 (US 1,967,836 Design) — Audit Log
 
 ## Source
 
-US 1,967,836 A, _Photographic Lens_, Willy Merté, published July 24, 1934; filed December 29, 1933, with German priority December 30, 1932. The source names the firm Carl Zeiss, Jena, Germany; Carl-Zeiss-Stiftung is the catalog's organizational name. There is one numerical example, printed in millimetres at f = 100 mm and f/0.90. The image-field diameter is approximately 25 mm.
+[US 1,967,836 A, _Photographic Lens_](https://patents.google.com/patent/US1967836A/en), Willy Merté, published July 24, 1934; filed December 29, 1933, with German priority December 30, 1932. The printed assignee is the firm Carl Zeiss, Jena, Germany; `source.assignees` records Carl-Zeiss-Stiftung. The sole numerical example appears with the drawing on PDF page 1 and is repeated with the description and claims on PDF page 2. Dimensions are millimetres, with f = 100 mm, f/0.90 and an approximately 25 mm image-field diameter.
 
-## Transcription
+Edward K. Kaprelian, [_Objective Lenses of f/1 Aperture and Greater_](https://doi.org/10.5594/J17813), _Journal of the Society of Motion Picture Engineers_ 53(1), July 1949, pp. 86–99, Fig. 2a and accompanying discussion, supplies the R-Biotar family connection. [Flints Auctions, lot 264](https://www.flintsauctions.com/auction/lot/lot-264---a-carl-jena-zeiss-r-biotar-45cm-f085-camera-lens/?lot=22893&sd=1), May 23, 2023, documents a surviving 4.5 cm f/0.85 production lens without publishing its prescription.
 
-The drawing-sheet and specification tables agree on all nine radii, the five glass thicknesses, four air intervals, five indices and five Abbe values. All finite radius signs are explicit. R6 is plane; R8 cements L4 to L5. The diaphragm A lies between L2 and L3, at the printed 43.80/16.59 mm split. Two independent readings of the page images found no numerical transcription mismatch. Both tables use lowercase nd, and claim 3 explicitly specifies the d-line.
+## Transcription Check
 
-## First-order
+The radii, thicknesses, air spaces and glass pairs were re-read against both patent page images. The drawing-sheet and specification tables agree on all nine radii, five glass thicknesses, four air intervals, five indices and five Abbe values; no numerical mismatch was found. All finite radius signs are explicit. R6 is plane, R8 cements L4 to L5, and the five elements form four air-separated members. The original millimetre scale is retained, with no aspherical surfaces or variable spacings.
 
-The printed f = 100 mm gives a computed EFL of 99.997626 mm. The paraxial f-number is 0.900; the computed back focal distance is 26.004567 mm, which supplies the unprinted image spacing. The vertex length is 176.81 mm and the first-vertex-to-image distance is 202.814567 mm. The derived half-field is 7.1614113°, where the real chief ray reaches the stated image radius of 12.5 mm.
+Diaphragm A lies between L2 and L3 at the printed 43.80/16.59 mm split, 95.26 mm behind R1. Both tables print lowercase nd, and claim 3 explicitly specifies the d-line. This supports helium d rather than the original sodium-D attribution without altering any printed glass coordinate.
 
-The inferred iris radius is 37.268886 mm. Exact axial tracing gives an accepted entrance radius of 52.292331 mm and a real-ray aperture of f/0.956140; the nominal f/0.90 marginal ray needs an iris radius of 39.987373 mm. This distinction between paraxial and real-ray aperture is retained.
+## First-Order Check
 
-## Not Printed
+The calculated EFL is 99.998 mm, about 0.002 mm below the printed 100 mm. The paraxial f-number is 0.90, matching the printed f/0.90. Calculated BFD is 26.00 mm; no source back focus is printed. The image plane is at paraxial infinity focus, 26.00 mm behind R9 and 202.81 mm behind R1. The first-to-last vertex length is 176.81 mm, within the patent's preferred three-quarters-to-twice-focal-length range.
 
-Back focal distance, numerical field angle, clear rim radii, physical iris opening, named glass suppliers, partial dispersion and close-focus data are not printed. The image plane is paraxial, the field angle follows the stated image diameter, and clear rims and iris opening are inferred. The optical direction follows the source's reduction convention. No finite-conjugate performance or production minimum focus distance is assigned.
+The inferred iris radius is 37.27 mm. Exact axial tracing admits an entrance radius of 52.29 mm, equivalent to f/0.96; the full f/0.90 axial marginal ray requires an iris radius of 39.99 mm. The iris therefore limits the finite-aperture beam despite the paraxial f/0.90 result.
 
-## Product
+The surfaces stay clear of one another, glass thickness remains positive, and the stop lies entirely in air. Each optical rim passes the axial beam and the chief ray at the derived 7.2° half-field, where the chief ray reaches the stated 12.50 mm image radius. The rear doublet partly vignettes the off-axis bundle. Upper-side meridional clipping of the nominal f/0.90 bundle is approximately 18%, 27% and 10% at R7, R8 and R9; these widths do not measure radiometric illumination. A complete nominal f/0.90 edge bundle is not established.
 
-Kaprelian's July 1949 _Objective Lenses of f/1 Aperture and Greater_, Fig. 2a and accompanying description, connects Merté's R-Biotar f/0.85 with the same Petzval-derived five-element, four-group form, including the separated front elements and added collective element. A 45 mm f/0.85 production lens is documented, including Flints Auctions lot 264 of May 23, 2023. This supports the R-Biotar family association; it does not identify the 100 mm f/0.90 prescription as an exact production design. Sources are linked in the companion analysis.
+## Values Not Printed in the Patent
 
-## Corrections
+The patent prints the stop position but gives no physical iris opening, numerical clear rims, back focus, field angle, named glass supplier, partial dispersion or close-focus data. The iris radius follows paraxial pupil scaling; the image plane follows calculated paraxial focus. The 7.2° half-field follows the printed approximately 25 mm image diameter. The retained `catalog.imageCircleMm` value of 25 is thus source-supported. Larger fields are permitted with reduced definition, without a second numerical field.
 
-The five spectral references are corrected from sodium D to helium d, following the printed notation and claim 3, without changing any source index or Abbe value. Schott FK3 is a catalog match for L3; the other historical glasses remain unidentified. No correction to a printed prescription value is required.
+The clear radii at R1–R9 are inferred: 66, 60.5, 55, 54, 48, 42, 27, 26 and 27 mm. Drawing estimates differ: L1 about 61/61 mm; L2 about 61/52.6 mm with a chamfer extending to about 61 mm; L3 about 45/45 mm; the rear doublet about 26 mm with a rear optical face about 23 mm. L1's retained front rim approaches a knife edge, and L3 has unequal clear radii. The drawn diaphragm opening is schematic and does not establish the physical iris diameter.
+
+`focus.closeFocusM` is 10¹⁵ m, which stands for infinity. The model follows the reduction direction with the object at infinity. The patent defines the front toward the object for reduction and toward the image for enlargement, but gives no working finite conjugates or group motion. The selectable apertures extend to f/16; the patent supplies no minimum iris opening or stop range.
+
+The glass coordinates are printed, while the catalog names are additional identifications by optical properties. L3 uses the FK3 dispersion curve; L1, L2, L4 and L5 use estimates from their printed index and Abbe number. Historical suppliers, melts, measured partial dispersion and broadband performance remain unknown. The patent supplies no MTF curve or measured performance for comparison.
+
+## Product Identification
+
+Kaprelian describes Merté's f/0.85 X-ray cine objective as a Petzval arrangement with separated first and second elements and an added collective element. Fig. 2a, labelled “MERTE f/0.85,” matches the five-element, four-group construction. Together with the surviving Flints lens, this supports the R-Biotar family association. The production 45 mm f/0.85 lens differs from this 100 mm f/0.90 example; an exact production prescription is not established.
+
+No marketed focal length or aperture, production mount, image format, diaphragm blade count or shape, or minimum focus distance is assigned to this design. The foundation assignee name is retained while the literal patent wording remains stated above.
+
+## Corrections, 2026-11-21
+
+- The previously unspecified maker is Carl Zeiss Jena. The title and key identify the 100 mm f/0.9 R-Biotar family design and US patent, and the design is listed in the lens catalog. Kaprelian supports the family association without establishing an exact production lens.
+- All five `indexReference` values changed from sodium D to helium d, following the printed nd notation and claim 3. All source indices and Abbe values remain unchanged.
+- L3's unidentified glass label became `FK3 (Schott)`, with catalog nd 1.46450 and νd 65.77. Catalog minus printed differences are Δnd +0.00001 and Δνd −0.03. L1, L2, L4 and L5 retain `Unmatched` labels stating their printed pairs; no historical supplier or melt is identified.
+- Element labels became Element 1 through Element 5, with the patent's L1–L5 designations retained on the diagram. Optical roles and calculated in-air focal lengths were added: +126.56, −183.65, +210.23, +50.67 and −94.52 mm. C1 identifies the cemented L4+L5 doublet across R7–R9, whose combined focal length is +99.07 mm.
+- Infinity focus is explicit because the patent gives no close-focus data. The final image interval retains the calculated paraxial infinity plane at 26.00 mm behind R9; no printed optical dimension, stop position, rim or field changed.
+- The subtitle reads “US 1,967,836 A, sole example — Zeiss / Merté.” The specifications are “5 ELEMENTS / 4 GROUPS”, “DESIGN f = 100 mm”, “DESIGN F/0.9” and “ALL SPHERICAL”, identifying the patent scale without assigning production specifications.
+
+The resulting first-order values are EFL 99.998 mm, paraxial f/0.90, BFD 26.00 mm, iris radius 37.27 mm and half-field 7.2°. These values are unchanged from the original prescription. The finite-aperture iris limit remains about f/0.96.
 
 ## Remaining Questions
 
-Open: The inferred rims differ from the figure, especially L1's near-knife front rim, L2's chamfered rear face and L3's unequal rims. Figure estimates are L1 about 61/61 mm; L2 about 61/52.6 mm with a chamfer to about 61 mm; L3 about 45/45 mm; rear doublet about 26 mm, with its rear optical face about 23 mm. The retained radii are 66/60.5/55/54/48/42/27/26/27 mm. The drawn diaphragm opening is schematic.
-
-Open: The exact production prescription and historical glass melts are unknown. DE 607,631 is a reported counterpart whose page images have not been established here; no independent corroboration from that document is claimed. Measured spectral and finite-conjugate performance remain unknown.
-
-## 2026-11-21 — Deployment validation and cleanup
-
-Two independent re-readings of the patent page images compared both numerical tables, all signs, glass values, stop intervals, cementing, orientation and the approximately 25 mm image diameter. The prescription is correct; the spectral notation required correction. Kaprelian's 1949 description and Fig. 2a support the R-Biotar family link, with the production 45 mm f/0.85 and patent 100 mm f/0.90 distinction retained.
-
-- Identity: `merte-us1967836-dline-reference` → `carl-zeiss-jena-r-biotar-100mm-f09-us1967836`; maker unspecified → Carl Zeiss Jena; abbreviated Merté/patent title → `CARL ZEISS JENA R-BIOTAR 100mm f/0.9 (US 1,967,836 Design)`; visibility false → true.
-- File form: the external relative type path → `../../types/lensDataV2.js`; `data` → `LENS_DATA`; a single English source header records printed and inferred quantities.
-- Subtitle: the 100 mm f/0.90 reduction-direction and identity caveats → `US 1,967,836 A, sole example — R-Biotar family design`. The nine long specification lines → `5 ELEMENTS / 4 GROUPS`, `DESIGN F/0.9`, `ALL SPHERICAL`; optical limits are explained in the analysis.
-- Glass: all five `indexReference` values D → d. L1, L2, L4 and L5 receive Unmatched labels with their unchanged printed nd/ν pairs. L3's generic Unmatched label → `FK3 (Schott)`, resolving to Schott nd 1.46450 / νd 65.77; Δnd +0.00001 and Δνd −0.03. This is a catalog match, not identification of the historical melt.
-- Elements: labels L1–L5 → Element 1–Element 5, with L1–L5 retained as diagram labels; optical roles added. In-air focal lengths added: +126.56, −183.65, +210.23, +50.67 and −94.52 mm. L4/L5 receive cemented group C1 and an annotation spanning R7–R9; combined focal length +99.07 mm.
-- Focus: the long description → `Infinity focus only; the patent gives no close-focus data.` The infinity distance is written as 1e15. Final image spacing 26.00456696498972 → 26.004567 mm, rounding numerical noise at the same paraxial plane.
-- Metadata: image circle 25 mm, counts 5/4, design focal length 100 mm rounded from the computed EFL, nominal f/0.9 and derived 7.1614113° half-field are retained. No production mount, format or minimum focus distance is assigned.
-- Analysis and audit: replaced process history and calculation tables with the source identification, architecture, element powers, d-line glass evidence, infinity focus, aperture limits and product-family evidence. The analysis now has its exact lens-name title and the Patent, Inventors, Assignee and Published rows. Unsupported German-table corroboration is removed; the possible counterpart remains open.
-
-Before and after cleanup: EFL 99.997625507 mm, paraxial f-number 0.900, BFD 26.004566965 mm, iris radius 37.268886103 mm and half-field 7.1614113° are unchanged. Surface geometry has no errors; axial aperture has no rim limit or failed station. Image-circle coverage checks one lens with zero undersized surfaces and zero skips. Field coverage reaches 100%: 7.1614° gives 12.50 mm of the 12.50 mm image radius, with a clear corner chief ray. At that field no optical surface cuts the axial marginal or blocks the chief; the rear doublet partly vignettes the nominal bundle, and a lower nominal rim ray cannot be solved. These results retain the separate f/0.956 real-ray iris limit.
-
-Open: Rims versus the patent figure, the physical iris opening, historical glass identities, exact production correspondence and the reported German counterpart remain unresolved. No rim values, printed optical dimensions, stop position or source glass values are changed.
-
-Review corrections: Analysis sentence about unresolved image-edge pupil aiming → removed; Remaining Questions MTF pupil-aiming clause → removed; final Open item's image-edge pupil-aiming clause → removed.
+- The physical clear rims, chamfers and iris opening remain uncertain. The retained rims differ from the drawing, particularly L1's front edge, L2's rear chamfer and L3's unequal rims.
+- L1, L2, L4 and L5 lack established catalog matches. Historical suppliers and melt identities remain unknown for every element.
+- The exact production prescription and its marketed specifications, mount, image format, diaphragm construction, stop range and minimum focus distance are undocumented.
+- Whether the reported German counterpart DE 607,631 contains the same prescription remains unconfirmed.
+- Measured spectral performance, finite-conjugate behavior and complete off-axis pupil transmission remain unknown.

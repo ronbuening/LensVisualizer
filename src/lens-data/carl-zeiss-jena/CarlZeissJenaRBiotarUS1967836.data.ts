@@ -2,19 +2,21 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * US 1,967,836 A, sole numerical example in millimetres, by Willy Merté.
- * Five spherical elements in four groups, related to the R-Biotar family.
- * The patent prints d-line glass values and the diaphragm station: 43.80 mm
- * behind R4 and 16.59 mm before R5. The iris radius and all clear rims are
- * inferred. The image plane is the computed paraxial infinity focus because
- * no back focus is printed. The 7.16° half-field follows the stated image
- * diameter of approximately 25 mm; no finite-focus state is given.
+ * Five spherical elements in four groups; a 100 mm f/0.90 design related to
+ * the R-Biotar family. The patent prints d-line glass values and the diaphragm
+ * station: 43.80 mm behind R4 and 16.59 mm before R5. The inferred iris radius
+ * follows paraxial f/0.90; exact axial tracing gives about f/0.96. Clear rims
+ * are inferred and differ from the drawing. The image plane is the calculated
+ * paraxial infinity focus because no back focus is printed. The 7.2° half-field
+ * follows the stated image diameter of approximately 25 mm; no finite-focus
+ * state is given.
  */
 const LENS_DATA = {
   schema: 2,
   key: "carl-zeiss-jena-r-biotar-100mm-f09-us1967836",
   maker: "Carl Zeiss Jena",
   name: "CARL ZEISS JENA R-BIOTAR 100mm f/0.9 (US 1,967,836 Design)",
-  subtitle: "US 1,967,836 A, sole example — R-Biotar family design",
+  subtitle: "US 1,967,836 A, sole example — Zeiss / Merté",
   visible: true,
   source: {
     patentNumber: "US 1,967,836 A",
@@ -37,7 +39,12 @@ const LENS_DATA = {
     fNumber: {
       design: 0.9,
     },
-    specs: ["5 ELEMENTS / 4 GROUPS", "DESIGN F/0.9", "ALL SPHERICAL"],
+    specs: [
+      "5 ELEMENTS / 4 GROUPS",
+      "DESIGN f = 100 mm",
+      "DESIGN F/0.9",
+      "ALL SPHERICAL",
+    ],
   },
   elements: [
     {

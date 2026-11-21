@@ -9,7 +9,7 @@
 **Filed:** December 29, 1933; German priority December 30, 1932  
 **Example details:** Sole numerical example; drawing and prescription on PDF page 1, repeated table and claims on PDF page 2.
 
-The patent describes a five-element, four-group photographic objective at f = 100 mm and f/0.90, covering an image field approximately 25 mm in diameter. The front page names the firm Carl Zeiss, Jena, Germany; Carl-Zeiss-Stiftung is the catalog's organizational name for that assignee. All printed radii, axial intervals, refractive indices and Abbe values are retained. [US 1,967,836 A](https://patents.google.com/patent/US1967836A/en)
+The patent describes a five-element, four-group photographic objective at f = 100 mm and f/0.90, covering an image field approximately 25 mm in diameter. It names the firm Carl Zeiss, Jena, Germany as assignee, given above as Carl-Zeiss-Stiftung. All printed radii, axial intervals, refractive indices and Abbe values are retained. [US 1,967,836 A](https://patents.google.com/patent/US1967836A/en)
 
 The R-Biotar family association rests on Edward K. Kaprelian's July 1949 account of Merté's f/0.85 X-ray cine objective. He describes a Petzval arrangement with an air space between the first two elements and an added collective element; Fig. 2a, labelled “MERTE f/0.85,” has the same five-element, four-group form. This supports a family connection. The production R-Biotar was a 45 mm f/0.85 lens, whereas this example is 100 mm f/0.90; the exact production prescription is not established. A surviving 4.5 cm f/0.85 lens is documented by Flints Auctions. [Kaprelian, _Objective Lenses of f/1 Aperture and Greater_](https://doi.org/10.5594/J17813), [Flints, lot 264](https://www.flintsauctions.com/auction/lot/lot-264---a-carl-jena-zeiss-r-biotar-45cm-f085-camera-lens/?lot=22893&sd=1)
 
@@ -19,9 +19,9 @@ The optical order is L1 | L2 | diaphragm A | L3 | cemented L4+L5. L1, L3 and the
 
 The printed stop intervals are 43.80 mm behind R4 and 16.59 mm before R5, placing A 95.26 mm behind the first vertex. The first-to-last vertex length is 176.81 mm, within the patent's preferred range of three quarters to twice the focal length. The stop station is printed; its physical opening is inferred.
 
-The patent defines the front toward the object for reduction and toward the image for enlargement. The model follows the reduction direction with an object at infinity. The computed EFL is 99.997626 mm. No back focal distance is printed, so the image plane is the paraxial infinity plane, 26.004567 mm behind R9 and 202.814567 mm behind R1.
+The patent defines the front toward the object for reduction and toward the image for enlargement. The model follows the reduction direction with an object at infinity. The calculated EFL is 99.998 mm. No back focal distance is printed, so the image plane is the paraxial infinity plane, 26.00 mm behind R9 and 202.81 mm behind R1.
 
-The stated image diameter supplies `catalog.imageCircleMm: 25`. A real chief ray reaches the 12.5 mm image radius at the derived half-field of 7.1614113°. The patent prints the image diameter rather than a field angle. It permits larger image fields when reduced definition is acceptable, without giving a second numerical field.
+The stated image diameter is 25 mm. A real chief ray reaches the 12.5 mm image radius at the derived half-field of 7.2°. The patent prints the image diameter rather than a field angle. It permits larger image fields when reduced definition is acceptable, without giving a second numerical field.
 
 ## Element-by-Element Analysis
 
@@ -67,13 +67,13 @@ Infinity focus only; the patent gives no close-focus data. There is no group mot
 
 ## Aperture, Rims and Model Limits
 
-The printed aperture is f/0.90. The inferred iris radius is 37.268886 mm from paraxial pupil scaling; exact axial tracing at that opening admits an entrance radius of 52.292331 mm, equivalent to f/0.956. The full f/0.90 axial marginal ray would require an iris radius of 39.987373 mm. The source aperture and printed stop station remain the basis of the model.
+The printed aperture is f/0.90. The inferred iris radius is 37.27 mm from paraxial pupil scaling; exact axial tracing at that opening admits an entrance radius of 52.29 mm, equivalent to f/0.96. The full f/0.90 axial marginal ray would require an iris radius of 39.99 mm. The source aperture and printed stop station remain the basis of the model.
 
-No numerical clear radii are printed. The inferred radii at R1–R9 are 66, 60.5, 55, 54, 48, 42, 27, 26 and 27 mm. They have positive glass thickness and air clearance, and the stop plane lies entirely in air. Every optical rim passes the axial beam and the chief ray at 7.1614113°, while the rear doublet vignettes part of the off-axis bundle. Its upper-side meridional clipping is approximately 18%, 27% and 10% at R7, R8 and R9 for the nominal f/0.90 bundle; these widths are not radiometric illumination measurements.
+No numerical clear radii are printed. The inferred radii at R1–R9 are 66, 60.5, 55, 54, 48, 42, 27, 26 and 27 mm. They have positive glass thickness and air clearance, and the stop plane lies entirely in air. Every optical rim passes the axial beam and the chief ray at 7.2°, while the rear doublet vignettes part of the off-axis bundle. Its upper-side meridional clipping is approximately 18%, 27% and 10% at R7, R8 and R9 for the nominal f/0.90 bundle; these widths are not radiometric illumination measurements.
 
 The drawing suggests different rims: about 61 mm on L1; about 61 mm at L2's front and 52.6 mm at its rear optical face, with a chamfer beyond; about 45 mm on L3; and about 26 mm on the rear doublet, with a smaller rear optical face. These differences remain unresolved. The drawn diaphragm opening is schematic and does not independently determine the iris diameter.
 
-It is not measured lens performance, and the patent supplies no MTF curve for comparison. The inferred apertures, limited glass dispersion data and infinity-only conjugate also limit comparisons with a manufactured X-ray objective.
+The patent supplies no MTF curve or measured performance for comparison. The inferred apertures, limited glass dispersion data and infinity-only conjugate limit comparisons with a manufactured X-ray objective.
 
 ## Sources
 
