@@ -8,7 +8,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * both differences. The two tables give a 0.05 mm rear air space, retained
  * despite the prose's conflicting 0.005f (0.5 mm). Claim 5 gives only S2 < 0.01F.
  * The text places the diaphragm about 9 units behind R3. Its modeled station
- * uses that distance; its radius is derived from f/5.6. Clear rims are estimated.
+ * uses that distance; its radius is derived from f/5.6. Clear rims are inferred
+ * from the drawing on page 1, with larger front rims for the stated axial beam
+ * and larger rear rims to preserve illumination through the 15-degree field.
  */
 const LENS_DATA = {
   schema: 2,
@@ -146,34 +148,34 @@ const LENS_DATA = {
       label: "4",
       R: -11,
       d: 1,
-      sd: 8,
+      sd: 7.4,
       medium: 3,
     },
     {
       label: "5",
       R: -73.4,
       d: 1.5,
-      sd: 8,
+      sd: 7.4,
       medium: 4,
     },
     {
       label: "6",
       R: -30.8,
       d: 0.05,
-      sd: 8,
+      sd: 7.4,
     },
     {
       label: "7",
       R: 508,
       d: 1.2,
-      sd: 8,
+      sd: 7.8,
       medium: 5,
     },
     {
       label: "8",
       R: -79.8,
       d: 53.655204,
-      sd: 8,
+      sd: 7.8,
     },
   ],
   aperture: {
