@@ -37,7 +37,7 @@ const LENS_DATA = {
   key: "yashica-auto-yashinon-ds-20mm-f33",
   maker: "Yashica",
   name: "YASHICA AUTO YASHINON-DS 20mm f/3.3",
-  subtitle: "US 3,856,386 A, Example 1 — production correlation unconfirmed",
+  subtitle: "US 3,856,386 A, Example 1 — production match not maker-confirmed",
 
   catalog: {
     lensMounts: ["m42"],

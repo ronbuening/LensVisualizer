@@ -42,7 +42,7 @@ const LENS_DATA = {
   key: "yashica-ml-300mm-f56",
   maker: "Yashica",
   name: "YASHICA ML 300mm f/5.6 C",
-  subtitle: "JP 1978-129629 Example 2 - strong inferred production correlation",
+  subtitle: "JP 1978-129629 Example 2 - strong inferred production match",
 
   catalog: {
     lensMounts: ["contax-yashica"],

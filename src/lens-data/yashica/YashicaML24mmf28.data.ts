@@ -46,7 +46,7 @@ const LENS_DATA = {
   key: "yashica-ml-24mm-f2-8",
   maker: "Yashica",
   name: "YASHICA ML 24mm f/2.8",
-  subtitle: "JP 1975-110330 Example 1 — uniformly scaled ×0.24 production correlation",
+  subtitle: "JP 1975-110330 Example 1 — uniformly scaled ×0.24 production match",
 
   catalog: {
     lensMounts: ["contax-yashica"],
