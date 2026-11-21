@@ -64,7 +64,7 @@ const LENS_DATA = {
       nd: 1.62266,
       vd: 36,
       indexReference: "D",
-      glass: "Unmatched (nD 1.62266 / ν 36.0)",
+      glass: "TIM11 (spectral proxy; patent nD 1.62266 / ν 36.0; supplier and melt unspecified)",
     },
     {
       id: 3,
