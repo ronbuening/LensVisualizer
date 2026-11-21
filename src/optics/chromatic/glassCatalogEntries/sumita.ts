@@ -417,6 +417,16 @@ export const SUMITA_GLASS_ENTRIES: readonly GlassEntry[] = [
     source:
       "SUMITA Zemax all-glass catalog 2025-11-07 including discontinued glasses; vendor formula-3 polynomial for F3.",
   },
+  /* SF13: spectral proxy for the Paillard US 2,744,445 dense flint (2026-11-21). */
+  {
+    name: "SF13",
+    vendor: "Sumita",
+    polynomial: [2.919217, -0.01196333, 0.03299643, 0.002736291, -0.0002047521, 2.318136e-5],
+    nd: 1.74077,
+    vd: 27.7,
+    source:
+      "SUMITA all-glass Zemax catalog (2025-11-07), formula-1 coefficients for SF13; https://www.sumita-opt.co.jp/en/download/",
+  },
   {
     name: "BAF12",
     vendor: "Sumita",
