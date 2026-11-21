@@ -5,7 +5,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * table is multiplied by 150 to give millimetres, following the patent's own
  * statement that Figure 2 shows a 150 mm objective at natural size.
  * Radii, spacings, helium-d indices, Abbe numbers and the stop position are printed.
- * Clear semi-diameters are estimated; the stop radius is inferred from f/2.
+ * Clear semi-diameters follow Figure 2 proportions, subject to f/2 ray clearance
+ * and off-axis illumination; they are estimates, not printed dimensions.
+ * The stop radius is inferred from f/2.
  * The image plane is the computed paraxial back focus, 107.156 mm, compared
  * with the printed 107.154 mm. The stated illumination field is 60 degrees full.
  */
@@ -129,7 +131,7 @@ const LENS_DATA = {
       label: "2",
       R: 254.4855,
       d: 0.354,
-      sd: 43,
+      sd: 41,
     },
     {
       label: "3",
@@ -149,7 +151,7 @@ const LENS_DATA = {
       label: "5",
       R: 38.253,
       d: 16.3965,
-      sd: 30,
+      sd: 26.5,
     },
     {
       label: "STO",
@@ -160,34 +162,34 @@ const LENS_DATA = {
       label: "6",
       R: -43.488,
       d: 3.543,
-      sd: 28,
+      sd: 26,
       medium: 4,
     },
     {
       label: "7",
       R: 122.3055,
       d: 18.201,
-      sd: 33,
+      sd: 32.5,
       medium: 5,
     },
     {
       label: "8",
       R: -61.1565,
       d: 0.564,
-      sd: 34,
+      sd: 32.5,
     },
     {
       label: "9",
       R: 1311.273,
       d: 9.6645,
-      sd: 35,
+      sd: 34.5,
       medium: 6,
     },
     {
       label: "10",
       R: -119.1885,
       d: 107.155573,
-      sd: 35,
+      sd: 34.5,
     },
   ],
   aperture: {

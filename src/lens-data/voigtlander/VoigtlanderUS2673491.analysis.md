@@ -86,7 +86,7 @@ The patent states total illumination over a 60.0° field at f/2 for a remote obj
 
 The chief ray clears every current rim at 30°. Off-axis bundles are partly vignetted, so chief-ray coverage does not establish uniform illumination or image quality throughout the field. Quantitative wide-field MTF performance is not established by the patent or by this coverage result.
 
-All clear semi-diameters are estimates. The present radii are 43/43 mm for Element 1, 37/35/30 mm across the first cemented pair, 28/33/34 mm across the second pair, and 35/35 mm for Element 6. Figure 2 draws generally smaller rims; narrowing them can reduce the axial aperture or block the 30° chief ray. Their relation to the drawing remains unresolved. The surfaces retain positive glass thickness and air clearance, and no rim crosses the stop plane.
+The clear semi-diameters are estimated from Figure 2's proportions, with allowance for the f/2 axial beam and off-axis illumination: 43/41 mm for Element 1, 37/35/26.5 mm across the first cemented pair, 26/32.5/32.5 mm across the second pair, and 34.5/34.5 mm for Element 6. The drawing is not uniformly to scale, and several modeled rims exceed its curve ends to preserve light through the field. The rear cemented pair and rear singlet have level outer edges, while the front meniscus and the faces nearest the diaphragm have tapered edges. Wide-open geometric transmission is about 9.6% at 30°. The surfaces retain positive glass thickness and air clearance, and no rim crosses the stop plane.
 
 ## Sources
 
