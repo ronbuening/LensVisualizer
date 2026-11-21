@@ -52,7 +52,7 @@ const LENS_DATA = {
   key: "pentax-645-fa-150mm-f28-if",
   maker: "Pentax",
   name: "PENTAX SMC FA 645 150mm f/2.8 [IF]",
-  subtitle: "US 6,313,955 B1, Embodiment 2 — production correlation by construction and 1.2 m close focus",
+  subtitle: "US 6,313,955 B1, Embodiment 2 — production match by construction and 1.2 m close focus",
 
   catalog: {
     lensMounts: ["pentax-645"],

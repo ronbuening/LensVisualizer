@@ -58,7 +58,7 @@ const LENS_DATA = {
   key: "pentax-645-fa-300mm-f56-ed-if",
   maker: "Pentax",
   name: "PENTAX SMC FA 645 300mm f/5.6 ED [IF]",
-  subtitle: "US 2002/0041452 A1, Embodiment 1 — production correlation by construction",
+  subtitle: "US 2002/0041452 A1, Embodiment 1 — production match by construction",
 
   catalog: {
     lensMounts: ["pentax-645"],
