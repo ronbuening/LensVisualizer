@@ -16,10 +16,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  Zoom-only gaps: D6, D12, D19, D23, D27, D31, and BF.                      ║
  * ║  Reversing gap: D23 increases from wide to middle, then decreases.           ║
  * ║                                                                              ║
- * ║  Focus status: NO_INTERNAL_RECONSTRUCTION. The patent identifies G5 as       ║
- * ║  moving imageward for close focus but publishes no close-focus spacing       ║
- * ║  table. All var focus pairs are therefore identical. closeFocusM is product ║
- * ║  metadata only and does not create an internal focus state.                  ║
+ * ║  Focus: infinity only. The patent identifies G5 as moving imageward for      ║
+ * ║  close focus but publishes no close-focus spacing table, so every spacing    ║
+ * ║  keeps its infinity value at both ends of the focus control. closeFocusM     ║
+ * ║  is product information only and does not create a close-focus state.        ║
  * ║                                                                              ║
  * ║  Cement normalization: six repeated 0.010 mm generic adhesive layers at      ║
  * ║  raw patent surfaces 10, 16, 21, 25, 29, and 33 were removed. Each shared  ║
@@ -404,7 +404,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.54,
     description:
-      "NO_INTERNAL_RECONSTRUCTION. The patent publishes infinity-focus zoom spacings and states that G5 moves imageward for close focus, but it provides no close-focus spacing row or travel. The production minimum-focus distance is retained only as catalog metadata; every authored var pair is identical between infinity and close.",
+      "Infinity focus only. The patent publishes infinity-focus zoom spacings and states that G5 moves toward the image for close focus, but it gives no close-focus spacings or travel. Panasonic's 0.54 m minimum focus distance (at 70 mm) is product information; focus travel is not modeled, zoom movement is.",
   },
 
   /* (moved from var) ── Published infinity-focus zoom spacings; no close-focus reconstruction ── */

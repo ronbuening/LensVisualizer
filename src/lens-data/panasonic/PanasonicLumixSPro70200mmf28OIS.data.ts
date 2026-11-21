@@ -22,9 +22,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  ZOOM / FOCUS:                                                             ║
  * ║  • d6, d16, d18, d35, d39, and d41 are published infinity-focus zoom     ║
  * ║    gaps. G5 reverses between wide, middle, and tele.                       ║
- * ║  • Focus status is NO_INTERNAL_RECONSTRUCTION. The patent gives only the  ║
- * ║    directions of G5 and G6 at close focus, not their trajectories. All    ║
- * ║    close values therefore equal the published infinity values.            ║
+ * ║  • Focus: infinity only. The patent gives only the directions of G5        ║
+ * ║    and G6 at close focus, not their trajectories. All close values         ║
+ * ║    therefore equal the published infinity values.                          ║
  * ║                                                                            ║
  * ║  SEMI-DIAMETERS:                                                           ║
  * ║  The patent publishes none. SDs were inferred from the earlier solved     ║
@@ -409,9 +409,9 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.95,
     description:
-      "NO_INTERNAL_RECONSTRUCTION: the patent publishes infinity-focus zoom states and only the directions of the " +
-      "two rear focus groups. G5/G6 close-focus trajectories are underdetermined, so the viewer retains the " +
-      "infinity-focus spacings at every focus setting.",
+      "Infinity focus only. The patent publishes infinity-focus zoom states and only the directions in which the " +
+      "two rear focus groups, G5 and G6, move. Their close-focus travel cannot be worked out from that, so every " +
+      "spacing keeps its infinity value at every focus setting; zoom movement is modeled.",
   },
 
   gaps: {
