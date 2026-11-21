@@ -4,8 +4,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * JPH11326756A Example 3, Table 5/6, Cosina Co., Ltd., Yoshihisa Yomogida.
  * Production correlation is inferred, not manufacturer-confirmed.
  * 8 elements / 6 groups / one asphere (14A). Native mm scale: 1.
- * Focus: NO_INTERNAL_RECONSTRUCTION, static distant-object prescription only.
- * Production MFD 0.3 m is metadata, not a reconstructed finite-conjugate state.
+ * Focus: infinity only; static distant-object prescription only.
+ * Production MFD 0.3 m is product information, not a modeled close-focus state.
  * Stop position is published; its radius is derived from the design
  * f-number, patent f/4.57.
  * Every surface semi-diameter is modeled from exact meridional bundle coverage
@@ -173,7 +173,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.3,
     description:
-      "NO_INTERNAL_RECONSTRUCTION: only the static distant-object patent prescription is modeled. The production manual-focus lens reaches 0.3 m, but no finite-focus spacings or internal mechanism are established; no optical motion is authored.",
+      "Infinity focus only. Only the patent's distant-object prescription is modeled. The production manual-focus lens reaches 0.3 m, but no close-focus spacings or focusing mechanism have been established, so focus travel is not modeled.",
   },
 
   aperture: { nominalFNumber: 4.57, fStops: [4.57, 5.6, 8, 11, 16, 22], maxFNumber: 22, blades: 10 },

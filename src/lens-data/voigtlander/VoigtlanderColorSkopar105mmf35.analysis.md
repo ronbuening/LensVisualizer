@@ -86,9 +86,9 @@ The patent also publishes a seven-line chief-ray angular-deviation table. Its pr
 
 ## Focus Mechanism
 
-The data uses `NO_INTERNAL_RECONSTRUCTION`. US 2,573,511 A publishes a single infinity prescription and provides no finite-object spacing table, magnification, object distance, or focus-group displacement. Consequently, the analysis does not assign variable gaps or infer a unit-, inner-, or floating-focus optical state.
+US 2,573,511 A publishes a single infinity prescription and provides no close-focus spacing table, magnification, object distance, or focus-group displacement. The model therefore shows the lens at infinity only: no spacings change with focus, and no unit-, inner-, or floating-focus optical state is inferred.
 
-Voigtländer's Bessa II instructions describe a coupled rangefinder and a focusing knob, and the manufacturer's near-subject guidance reaches approximately 3.3 feet. The data records `closeFocusM: 1.0` as rounded production metadata. It is not a computed object distance for the patent prescription and does not create a close-focus ray-trace state.
+Voigtländer's Bessa II instructions describe a coupled rangefinder and a focusing knob, and the manufacturer's near-subject guidance reaches approximately 3.3 feet. The model records the rounded 1.0 m figure as production information. It is not a computed object distance for the patent prescription and does not create a close-focus ray-trace state.
 
 ## Air Lenses
 

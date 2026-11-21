@@ -10,10 +10,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  100mm EFL; every dimensional value is uniformly scaled ×1.05.          ║
  * ║  Four elements / three groups, all spherical; L3-L4 is cemented.        ║
  * ║                                                                            ║
- * ║  FOCUS STATUS: NO_INTERNAL_RECONSTRUCTION.                               ║
- * ║  The patent publishes one infinity prescription and no finite-focus      ║
- * ║  spacing table. The production close-focus figure is metadata only;      ║
- * ║  no focus variable gaps are invented.                                    ║
+ * ║  FOCUS: Infinity only. The patent publishes one infinity prescription      ║
+ * ║  and no close-focus spacing table. The production close-focus figure       ║
+ * ║  is product information only; focus travel is not modeled.                 ║
  * ║                                                                            ║
  * ║  STOP MODEL: The patent publishes only the combined R4-to-R5 gap.        ║
  * ║  The split at STO is inferred from Fig. 1: 5.32625mm before the stop     ║
@@ -130,7 +129,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 1.0,
     description:
-      "Production camera focusing is documented to approximately 1.0m, but US 2,573,511 A publishes only the infinity prescription; no focus gaps are modeled (NO_INTERNAL_RECONSTRUCTION).",
+      "Infinity focus only. Production camera focusing is documented to about 1.0 m, but US 2,573,511 A publishes only the infinity prescription, so focus travel is not modeled.",
   },
 
   aperture: { nominalFNumber: 3.5, fStops: [3.5, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22 },

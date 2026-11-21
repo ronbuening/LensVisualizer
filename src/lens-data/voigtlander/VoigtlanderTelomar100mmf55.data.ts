@@ -36,10 +36,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  Wide-open full-field meridional rays are intentionally vignetted by the   ║
  * ║  compact front group.                                                       ║
  * ║                                                                            ║
- * ║  FOCUS STATUS: NO_INTERNAL_RECONSTRUCTION. The patent publishes only the   ║
- * ║  infinity state. The approximate 6 ft metadata value is inferred from the  ║
- * ║  supplied manual's focus scale/finder note; no optical focus state is      ║
- * ║  reconstructed.                                                            ║
+ * ║  FOCUS: Infinity only. The patent publishes only the infinity state.       ║
+ * ║  The approximate 6 ft product figure is inferred from the supplied         ║
+ * ║  manual's focus scale/finder note; no close-focus state is modeled.        ║
  * ║                                                                            ║
  * ║  SPECTRAL DATA: The patent supplies nd and νd only. nC, nF, ng, and dPgF  ║
  * ║  are intentionally omitted. Glass labels are six-digit or class-level       ║
@@ -159,9 +158,9 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 1.8288,
     description:
-      "NO_INTERNAL_RECONSTRUCTION: the patent publishes only the infinity prescription. " +
-      "The approximate 1.8288 m (6 ft) metadata value is inferred from the supplied manual; " +
-      "no variable optical gap is modeled.",
+      "Infinity focus only. The patent publishes only the infinity prescription. " +
+      "The approximate 1.8288 m (6 ft) close-focus figure is product information inferred from the Voigtländer manual; " +
+      "focus travel is not modeled.",
   },
 
   aperture: { nominalFNumber: 5.473462636261754, fStops: [5.5, 8, 11, 16, 22], maxFNumber: 22 },
