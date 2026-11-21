@@ -4,21 +4,20 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * US 2,202,749 A, Example II: five-element asymmetric objective, f = 100 mm,
  * f/3.5. Radii, thicknesses, the 10.9 mm diaphragm space, refractive indices
  * and Abbe numbers follow the printed millimetre table without conversion.
- * The patent says only "yellow ray"; four of five glass pairs match helium d
- * catalogue values. Fig. 2 depicts the f/5 Example I form; Example II is
- * described as analogous to it, with planar R2 and R5.
- * The stop's 7.6 / 3.3 mm split, its size and all clear semi-diameters are
- * inferred. The last gap is the computed paraxial back focus, 77.948626 mm.
- * The calculated EFL is 99.936 mm; exact rays at the paraxial iris give about
- * f/3.520. The 12-degree half-field is illustrative;
- * the text's useful angle of about 60 degrees describes the design class.
+ * The patent says only "yellow ray"; four of five glass pairs match helium d.
+ * Figure 2 shows the f/5 Example I form; Example II is analogous, with planar
+ * R2 and R5. The stop's 7.6 / 3.3 mm split, its size and all clear rims are
+ * inferred. The image gap is the computed paraxial back focus, 77.95 mm;
+ * calculated EFL is 99.94 mm. Exact rays at the paraxial iris give f/3.52.
+ * The 12.0° half-field is illustrative; the text's useful angle of about
+ * 60° describes the design class.
  */
 const LENS_DATA = {
   schema: 2,
   key: "schneider-kreuznach-100mm-f35-us2202749",
   maker: "Schneider-Kreuznach",
   name: "SCHNEIDER-KREUZNACH 100mm f/3.5 (US 2,202,749 Design)",
-  subtitle: "US 2,202,749 A, Example II — asymmetric cemented-group design",
+  subtitle: "US 2,202,749 A, Example II — Schneider / Tronnier",
   visible: true,
   source: {
     patentNumber: "US 2,202,749 A",
@@ -40,7 +39,7 @@ const LENS_DATA = {
     fNumber: {
       design: 3.5,
     },
-    specs: ["5 ELEMENTS / 2 GROUPS", "ALL SPHERICAL", "DESIGN F/3.5"],
+    specs: ["5 ELEMENTS / 2 GROUPS", "ALL SPHERICAL", "DESIGN f = 100 mm", "DESIGN F/3.5"],
   },
   elements: [
     {

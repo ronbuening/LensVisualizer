@@ -103,26 +103,26 @@ measured MTF curves are published.
 
 ## Focus Mechanism and First-Order Values
 
-The model represents infinity focus only. The patent supplies no close-focus
+The model is focused at infinity. The patent supplies no close-focus
 spacing, focus travel, minimum focus distance or mount.
 
-The calculated EFL is 99.9360 mm, 0.0640% below the printed 100 mm. The
-paraxial back focus is 77.9486 mm, giving a first-vertex-to-image distance of
-120.2486 mm. No back focus is printed; the last gap places the image at the
+The calculated EFL is 99.936 mm, 0.064 mm below the printed 100 mm. The
+paraxial back focus is 77.95 mm, giving a first-vertex-to-image distance of
+120.25 mm. No back focus is printed; the last gap places the image at the
 computed paraxial plane.
 
 ## Aperture, Field and Model Limits
 
-The inferred stop lies 23.1 mm behind the first vertex. Its 11.18294 mm radius
-gives paraxial f/3.5; exact rays reach an entrance-pupil radius of 14.19591 mm,
-equivalent to about f/3.520. The stop clears R4's inferred rim by about
-0.444 mm, and the minimum central air clearance is about 3.744 mm.
+The inferred stop lies 23.1 mm behind the first vertex. Its 11.18 mm radius
+gives paraxial f/3.50; exact rays reach an entrance-pupil radius of 14.20 mm,
+equivalent to about f/3.52. The stop clears R4's inferred rim by about
+0.44 mm, and the minimum central air clearance is about 3.74 mm.
 
 The patent describes the design class as retaining a useful angle of about
 60°, without assigning that field to Example II. The model retains an
-illustrative ±12° field. Its chief ray reaches 21.093 mm image height there. Chief rays
-can reach about 20° with the current rims, although the marginal bundle
-suffers about 14% vignetting at R1 there.
+illustrative ±12.0° field. Its chief ray reaches 21.09 mm image height there.
+Chief rays can reach about 20.0° with the current rims, although the marginal
+bundle suffers about 14.0% vignetting at R1 there.
 
 All clear semi-diameters are inferred. Figure 2 supports the group topology,
 but its curved R2/R5 belong to the other numerical example, so its outline
