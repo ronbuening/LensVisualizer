@@ -2,20 +2,20 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * George H. Aklin, Eastman Kodak Company, US 2,391,114 A, Example 2 / Figure 2.
- * The patent gives a 100 mm f/2.25 spherical triplet with sodium D-line indices.
+ * The patent gives a 100 mm f/2.25 spherical triplet; its D line is taken as sodium.
  * Radii, thicknesses, air spaces and glass values follow the printed tables.
  * The stop is inferred 7.2 mm into the 10.2 mm rear air space; all clear radii
  * are estimated. The image plane is the computed paraxial back focus of
- * 73.493161 mm, against the printed 73.5 mm; EFL is 99.920682 mm.
- * The estimated iris gives a real-ray working aperture of about f/2.319.
- * The modeled half-field is 15 degrees, within the angles marked in Figure 4.
+ * 73.493 mm, against the printed 73.5 mm; EFL is 99.92 mm.
+ * The estimated iris gives a real-ray working aperture of about f/2.32.
+ * The modeled half-field is 15.0 degrees, an angle marked in Figure 4.
  */
 const LENS_DATA = {
   schema: 2,
   key: "kodak-100mm-f225-us2391114",
   maker: "Kodak",
   name: "KODAK 100mm f/2.25 (US 2,391,114 Design)",
-  subtitle: "US 2,391,114 A, Example 2 — high-index triplet design",
+  subtitle: "US 2,391,114 A, Example 2 — Eastman Kodak / Aklin",
   visible: true,
   source: {
     patentNumber: "US 2,391,114 A",
@@ -29,7 +29,7 @@ const LENS_DATA = {
     sdSource: "heuristic",
   },
   catalog: {
-    imageCircleMm: 53.4307,
+    imageCircleMm: 53.44,
     elementCount: 3,
     groupCount: 3,
     focalLengthMm: {
@@ -38,7 +38,7 @@ const LENS_DATA = {
     fNumber: {
       design: 2.25,
     },
-    specs: ["3 ELEMENTS / 3 GROUPS", "ALL SPHERICAL", "DESIGN F/2.25"],
+    specs: ["3 ELEMENTS / 3 GROUPS", "ALL SPHERICAL", "DESIGN f = 100 mm", "DESIGN F/2.25"],
   },
   elements: [
     {
@@ -74,7 +74,7 @@ const LENS_DATA = {
       vd: 51.1,
       indexReference: "D",
       focalLengthMm: 54.73,
-      glass: "Unmatched (nD 1.734 / ν 51.1)",
+      glass: "TAC4 (Hoya)",
       role: "Rear positive element that converges the beam toward the image",
     },
   ],
