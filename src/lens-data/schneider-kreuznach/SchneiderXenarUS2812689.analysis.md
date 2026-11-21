@@ -1,31 +1,77 @@
-# Albrecht / Schneider US2812689 — private helium-d infinity reference
+# SCHNEIDER-KREUZNACH XENAR 100mm f/3.5 (US 2,812,689 Design)
 
-## Patent reference
-Wolfram Wilhelm Albrecht, assignor to Jos. Schneider & Co.; German priority March 13, 1954 as stated, US filed March 10, 1955, granted November 12, 1957. Official source: https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/2812689 . Public facsimile: https://patentimages.storage.googleapis.com/b7/f5/de/450b9395ef7267/US2812689.pdf . Scout-held original SHA-256 112e5e685f97010bb8911cde651565bb8531fba111a64991f4174db4c8cb6411. Both ordinary web PDF reads were inaccessible once each, with no retry or bypass. Original bytes, pixels and hash were not locally verified or included. Primary prose at https://patents.google.com/patent/US2812689A/en independently corroborates yellow helium reference, longer-conjugate front orientation, architecture and diaphragm space; damaged numeric OCR was not substituted for the scout's visually checked table. Both original tables give front index 1.69347. Related GB769241A/FR1120790A are source aliases, not independently verified numerical reproductions here.
+## Patent and Design Identification
 
-## Optical architecture
-Four elements in three air groups, 1 | 2 | 3+4, R6 cemented. Seven literal curved boundaries; no plane or sensor plate added. Front positive singlet, negative middle singlet, rear cemented negative/positive pair. Nominal numerical focal length 100 is represented in millimeters for visualization; no manufactured scale or retail identity is established. This is not attributed to Xenar, Retina-Xenar or Tronnier US2084714.
+**Patent:** [US 2,812,689 A](https://patents.google.com/patent/US2812689A/en), _Unsymmetrical Photographic Objective with Three Air-Spaced Members_
 
-## Element-by-element prescription
-LITERAL.json preserves signed R=[37.3,1373,-70.6,32.4,-415.4,33.5,-50.6], following distances [9.79,4.77,2.84,7.06,2.17,7.20], and four exact nd/V pairs. No glass, geometry, source spacing or first-index OCR repair was made. Literal helium-d EFL 100.134895649 and BFD 83.212048982 mm, track 33.83 mm and detector z117.042048982 mm are independently computed. Nominal 100 remains a separate source fact; no source BFD or numeric field was found.
+**Inventors:** Wolfram W. Albrecht
 
-## Glass identification
-Printed helium-d/Abbe pairs are [1.69347/53.5,1.62004/36.3,1.62364/36.7,1.74472/44.7]. Native indexReference=d anchors each exact index at helium d, 587.5618 nm, distinct from sodium D. Quantitative optical acceptance is single reference line only. Abbe-based generic spectral values are not calibrated source dispersion; no exact catalog glass, nC/nF/ng or quantitative broadband claim is made.
+**Assignee:** Jos. Schneider & Co., Optische Werke
 
-## Focus and aperture
-Infinity only. Source nominal f/3.5 and saved native control f/3.5 are distinct from finite entrance f/3.554568909 and image-sine f/3.558563291. Native derived iris radius 11.509139816 mm is estimated, not printed. The independent exact nominal marginal seed gives radius 11.694857728 mm; that alternative is tested but not saved. Estimated stop lies in source S2 after R4, splitting the exact 7.06 mm gap 4.50/2.56 mm, z21.9 mm. Clear radii [18,18,16,15,16,15.5,15.5] mm remain estimates; rear caps were not enlarged to force coverage. Iris ±2% and station ±.2 mm sensitivities retain all source optics and total spacing, no failed/unaimed/unresolved samples. All sensitivity settings are separate diagnostics.
+**Filed:** 10 March 1955
 
-## Historical context
-Patent-only reference with no substantiated sold-lens tie. No physical format, finite focusing, measured throughput, baffle, full-field or retail performance claim. No original numerical field is assigned; actual validated desktop/mobile angle is ±5° only. Wider automatic analysis controls and arbitrary generic spectra remain outside this qualification.
+**Published:** 12 November 1957
 
-## Scoped validation
-Native default geometry passes, no trim, gap-sag override or source adjustment. Smallest glass edge is .966004987 mm in the rear doublet; common-radius R4–R5 gap clearance is 3.107723422 mm. Estimated stop front own-rim clearance .818635065 mm and rear own-rim clearance 2.251748894 mm are positive. Maximum rim angle is 28.853632°. A tapered sidewall proxy contains all sampled arrivals, but is not a measured barrel, retaining ring or absorbing baffle.
+**Priority:** Germany, 13 March 1954
 
-At -5,-2.5,0,2.5,5 degrees, each 1801 physical launch sample set gives 1713/1706/1729/1706/1713 arrivals and 88/95/72/95/88 iris clips. All 438 exclusions are independently proven iris losses; zero cap misses, failed, unaimed or unknown paths. Stopped-pupil aiming gives 865/865 at all five fields. Chief rays survive; admitted paths have independently verified forward surface order and Snell intersections. Unweighted counts are not transmission fractions or a full-pupil coverage claim.
+**Example details:** Sole numerical example; the table in column 2 is repeated in the claim in column 3.
 
-Geometric reference-helium-d MTF converges at actual 0/2.504629407/4.999900462 degrees with zero sampled unknown flux. Grid32/64/128/256/512 sweeps reproduce the adaptive results; maximum256-to512 delta .000147068 is a convergence comparison, not a total error bound or measured-performance validation. No diffraction, broadband or wider MTF qualification.
+The patent prints nominal focal length 100 and aperture f/3.5 without specifying a physical length unit. The model represents these dimensions in millimeters. Both printed tables give the same seven signed radii, six thicknesses and spaces, and four glass index/Abbe pairs, including the front index 1.69347. Related publications are GB 769,241 A and FR 1,120,790 A; their numerical tables have not been compared here.
 
-Seven unchanged targeted regression files pass 553 tests, one worker, 69.63 seconds, unchanged assertions/timeouts. Types, ESLint, Prettier, native aperture audit, serialized exact JSON/TS roundtrip, twelve 1440px/390px import/reload/control/Summary/Pupils states and viewport fit pass. Mobile screenshot personally inspected. No complete corpus rerun or catalog registration.
+## Optical Architecture
 
-## Deduplication and reproducibility
-Read scope is bounded retained custody: 1188 main bodies; 4816 overlapping evaluated main/21 retained PR-head/history profiles; 16834 loose TS,1151 TAR TS,430 structured JSON profiles,58 containers;57 ZIPs/24397 TS members;51 model profiles in17 sealed historical packs plus protected later checkpoints. Signed positive uniform scale/reversed-negated necessary radius filters and identifiers are negative; an exact duplicate would have to pass these filters. These are not full computed-expression or inaccessible archive proofs. Known PR403 was not retried; no current remote freshness or live PR refresh is claimed. Retained source baseline4027fd20d095a1dba4ee3f46188dc70dad858055 is unchanged (5586 tracked blobs). All17 prior ZIPs and39 earlier checkpoint manifests, including Group18 slots1/2, remain unchanged. The auxiliary plane-alias screen's initial missing-dependency attempt is retained and rerun only after its inventory completed; no assertions weakened. Clean replay and checkpoint receipt record exact reports and byte/hash/CRC readback. No package, upload or delivery.
+This is an all-spherical Tessar-type objective: a positive front singlet, a negative middle singlet, and a positive rear cemented doublet. Four elements form three air-spaced groups, with seven refracting surfaces and the L3/L4 cemented interface at R6. The cemented pair has a computed focal length of +59.74 mm. The patent cites Paul Rudolph's US 721,240, the original Tessar patent.
+
+The patent places the diaphragm in the 7.06 mm space after R4 but gives no exact stop plane. The model divides that space into 4.50 mm before and 2.56 mm after the inferred stop, placing it 21.90 mm behind the first vertex. No filter or sensor plate is specified or modeled.
+
+## Element-by-Element Analysis
+
+### L1 — Positive Meniscus
+
+nd = 1.69347, νd = 53.5. Glass: H-LaK6A (CDGM), a catalog equivalent. Standalone in-air f = +55.12 mm.
+
+The front element supplies positive power. Its +37.3 mm front radius is much stronger than the +1373 mm rear radius, giving the nearly plano-convex appearance of the drawing while retaining a positive-meniscus shape.
+
+### L2 — Biconcave Negative
+
+nd = 1.62004, νd = 36.3. Glass: F2 (Schott), a catalog equivalent. Standalone in-air f = −35.44 mm.
+
+The negative middle singlet balances the positive front and rear groups. Its −70.6 mm and +32.4 mm surfaces enclose the most dispersive glass in the prescription.
+
+### L3 and L4 — Rear Cemented Doublet C1
+
+L3: nd = 1.62364, νd = 36.7. Glass: Unmatched. Standalone in-air f = −49.62 mm. L4: nd = 1.74472, νd = 44.7. Glass: Unmatched. Standalone in-air f = +28.09 mm.
+
+L3 is biconcave and negative; L4 is biconvex and positive. They share the +33.5 mm cemented surface. L3 provides the more dispersive negative member, while L4 supplies the rear component's converging power. Individual in-air focal lengths describe the separated elements; the cemented assembly is positive overall.
+
+## Glass Identification and Selection
+
+The patent explicitly defines nd at the yellow helium d line, 587.6 nm, and prints νd. All four printed index/Abbe pairs are retained. H-LaK6A resolves to CDGM at nd 1.69350 / νd 53.380441, differing by +0.00003 / −0.119559. F2 resolves to Schott at nd 1.62004 / νd 36.37, differing by 0 / +0.07. These catalog matches supply dispersion curves without establishing the historical melt or supplier.
+
+L3 has no matching catalog row within 0.0001 in index and 0.15 in Abbe number. L4 lies near the LaF2 family, but its 1.74472 index differs by about 0.00072 from rows near 1.74400, so it remains Unmatched. The patent prints no separate C-, F- or g-line indices or partial dispersions; the unmatched glasses therefore have only an Abbe-based dispersion estimate. No measured broadband or apochromatic performance is established.
+
+## Focus Mechanism and Aperture
+
+Infinity focus only; the patent gives no close-focus data or group movement law. The f-stop sequence from f/3.5 to f/32 is a viewing control rather than a documented historical iris scale.
+
+The f/3.5 control gives a stop radius of 11.509140 mm. The finite-ray aperture is approximately f/3.56; a stop radius of about 11.694858 mm would be required for the nominal f/3.5 axial marginal ray. The supplied stop is retained and falls within the aperture check's 3% tolerance. Its opening and axial position are inferred.
+
+## First-Order Properties and Model Limits
+
+At the helium d line, the model computes EFL 100.134896 mm against the printed 100, a difference of +0.135%. The paraxial back focal distance is 83.212049 mm and sets the image plane; no back focal distance is printed. The optical track is 33.83 mm, matching the printed total, and the first-vertex-to-image distance is 117.042049 mm.
+
+The patent's dimensional conditions are satisfied: the first air space is 67.6% of the diaphragm space, the front thickness is 9.79% of nominal focal length, and R6 is about 99% of optical track. No source value has been corrected to remove the small focal-length residual.
+
+The unprinted ±5° field is illustrative. Chief rays and admitted pupil rays pass over this range; earlier geometric MTF calculations were limited to this field and the helium d line. They do not establish measured lens performance. The patent specifies no image format or image circle, so neither is assigned.
+
+Clear semi-diameters remain estimated at 18 / 18 / 16 / 15 / 16 / 15.5 / 15.5 mm. The drawing suggests narrower rims, particularly for L2 and the rear doublet; these await a separate rim review. The present model's minimum glass edge is about 0.97 mm. The R4–R5 common-radius gap clearance is about 3.11 mm, both stop-side rim clearances are positive, and the maximum rim angle is about 28.85°. These optical boundaries do not describe a measured barrel or baffle.
+
+## Design Heritage and Product Association
+
+The Xenar name expresses a family association. The four-element Tessar-type architecture and Schneider attribution support it, and Franke & Heidecke's [Rolleicord V instruction manual](https://www.cameramanuals.org/rolleiflex/rolleicord_v.pdf) documents a Schneider Xenar f/3.5 taking lens. No source ties the prescription of US 2,812,689 A to that camera or to a specific production Xenar. Tronnier's US 2,084,714 Xenar and DE 753,329 describe different prescriptions.
+
+## Sources
+
+1. [US 2,812,689 A](https://patents.google.com/patent/US2812689A/en): sole figure, PDF p. 1; design discussion and table, PDF p. 2; repeated table and cited patents, PDF p. 3.
+2. Franke & Heidecke, [_Rolleicord V_ instruction manual](https://www.cameramanuals.org/rolleiflex/rolleicord_v.pdf), printed p. 3: Schneider Xenar f/3.5 product name, without a patent attribution.
+3. CDGM H-LaK6A and Schott F2 optical-glass catalog entries: index/Abbe comparison and dispersion curves; historical supplier unresolved.

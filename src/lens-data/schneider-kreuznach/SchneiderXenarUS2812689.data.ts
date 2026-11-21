@@ -1,20 +1,29 @@
-import type { LensDataV2Input } from "../repo/src/types/lensDataV2.js";
-const data = {
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * US 2,812,689 A, sole example: a four-element, three-group f/3.5 objective.
+ * The patent gives f = 100 without a physical unit; dimensions are represented in mm.
+ * Radii, thicknesses, air spaces and helium-d index/Abbe pairs follow both printed tables.
+ * The inferred stop splits the 7.06 mm diaphragm space into 4.50 / 2.56 mm.
+ * Clear semi-diameters are estimated; the image plane uses the computed paraxial
+ * back focus of 83.212049 mm. The illustrative ±5° field is not printed in the patent.
+ */
+const LENS_DATA = {
   schema: 2,
-  key: "albrecht-us2812689-infinity-reference",
-  maker: null,
-  name: "ALBRECHT US2812689 REFERENCE \u2014 100mm PATENT f/3.5",
-  subtitle: "Patent-only 4E/3G \u00b7 helium-d infinity / estimated iris-rims",
-  visible: false,
+  key: "schneider-kreuznach-xenar-100mm-f35-us2812689",
+  maker: "Schneider-Kreuznach",
+  name: "SCHNEIDER-KREUZNACH XENAR 100mm f/3.5 (US 2,812,689 Design)",
+  subtitle: "US 2,812,689 A, sole example — Xenar Tessar-type family",
+  visible: true,
   source: {
-    patentNumber: "US 2,812,689",
+    patentNumber: "US 2,812,689 A",
     patentYear: 1957,
     example: {
       label: "Sole example",
       id: null,
     },
-    authors: ["Wolfram Wilhelm Albrecht"],
-    assignees: ["Jos. Schneider & Co."],
+    authors: ["Wolfram W. Albrecht"],
+    assignees: ["Jos. Schneider & Co., Optische Werke"],
     sdSource: "heuristic",
   },
   catalog: {
@@ -26,60 +35,58 @@ const data = {
     },
     elementCount: 4,
     groupCount: 3,
-    specs: [
-      "Patent-only source-literal four-element, three-group reference. No substantiated Xenar or Retina-Xenar production identity.",
-      "Helium d (587.5618 nm), infinity only. Validated diagnostic scope is limited to \u00b15\u00b0. No printed numerical field is inherited.",
-      "Iris station, bore and clear rims are estimates. Stop split 4.50 / 2.56 mm in the unchanged 7.06 mm second air gap.",
-      "Both original tables specify front index 1.69347 per independent scout verification. Original PDF pixels and hash remain external source custody.",
-      "Nominal/control f/3.5 and finite aperture equivalents are distinct. Quantitative broadband, retail and finite-focus behavior are unqualified.",
-    ],
+    specs: ["4 ELEMENTS / 3 GROUPS", "ALL SPHERICAL", "DESIGN F/3.5"],
   },
   elements: [
     {
       id: 1,
       name: "L1",
-      label: "L1",
-      type: "Source Spherical Element",
+      label: "Element 1",
+      type: "Positive Meniscus",
+      focalLengthMm: 55.12,
       nd: 1.69347,
       vd: 53.5,
       indexReference: "d",
-      glass:
-        "Literal helium-d/Abbe pair; no verified catalog identity or calibrated spectral curve.",
+      glass: "H-LaK6A (CDGM)",
+      role: "Positive front element of the three-group objective",
     },
     {
       id: 2,
       name: "L2",
-      label: "L2",
-      type: "Source Spherical Element",
+      label: "Element 2",
+      type: "Biconcave Negative",
+      focalLengthMm: -35.44,
       nd: 1.62004,
       vd: 36.3,
       indexReference: "d",
-      glass:
-        "Literal helium-d/Abbe pair; no verified catalog identity or calibrated spectral curve.",
+      glass: "F2 (Schott)",
+      role: "Negative middle element balancing the positive front and rear groups",
     },
     {
       id: 3,
       name: "L3",
-      label: "L3",
-      type: "Source Spherical Element",
+      label: "Element 3",
+      type: "Biconcave Negative",
+      focalLengthMm: -49.62,
       nd: 1.62364,
       vd: 36.7,
       indexReference: "d",
-      glass:
-        "Literal helium-d/Abbe pair; no verified catalog identity or calibrated spectral curve.",
-      cemented: "G3",
+      glass: "Unmatched (nd 1.62364 / ν 36.7)",
+      role: "Negative dispersive member of the rear cemented doublet",
+      cemented: "C1",
     },
     {
       id: 4,
       name: "L4",
-      label: "L4",
-      type: "Source Spherical Element",
+      label: "Element 4",
+      type: "Biconvex Positive",
+      focalLengthMm: 28.09,
       nd: 1.74472,
       vd: 44.7,
       indexReference: "d",
-      glass:
-        "Literal helium-d/Abbe pair; no verified catalog identity or calibrated spectral curve.",
-      cemented: "G3",
+      glass: "Unmatched (nd 1.74472 / ν 44.7)",
+      role: "Positive member supplying the rear doublet's converging power",
+      cemented: "C1",
     },
   ],
   surfaces: [
@@ -149,29 +156,29 @@ const data = {
     offAxisFieldFrac: 1,
   },
   focus: {
-    closeFocusM: 1000000000000000,
-    description:
-      "Infinity-only patent reference. Finite focusing is not modeled.",
+    closeFocusM: 1e15,
+    description: "Infinity focus only; the patent gives no close-focus data.",
   },
   groups: [
     {
-      text: "G1 \u00b7 L1",
+      text: "Front singlet",
       fromSurface: "1",
       toSurface: "2",
     },
     {
-      text: "G2 \u00b7 L2",
+      text: "Middle singlet",
       fromSurface: "3",
       toSurface: "4",
     },
     {
-      text: "G3 \u00b7 L3+L4",
+      text: "Rear cemented doublet",
       fromSurface: "5",
       toSurface: "7",
     },
   ],
+  doublets: [{ text: "C1", fromSurface: "5", toSurface: "7" }],
   layout: {
     yScFill: 0.5,
   },
 } satisfies LensDataV2Input;
-export default data;
+export default LENS_DATA;
