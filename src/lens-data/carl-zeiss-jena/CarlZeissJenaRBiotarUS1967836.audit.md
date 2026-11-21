@@ -28,7 +28,7 @@ The clear radii at R1–R9 are inferred: 61, 61, 61, 52.6, 45, 45, 26, 26 and 23
 
 `focus.closeFocusM` is 10¹⁵ m, which stands for infinity. The model follows the reduction direction with the object at infinity. The patent defines the front toward the object for reduction and toward the image for enlargement, but gives no working finite conjugates or group motion. The selectable apertures extend to f/16; the patent supplies no minimum iris opening or stop range.
 
-The glass coordinates are printed, while the catalog names are additional identifications by optical properties. L3 uses the FK3 dispersion curve; L1, L2, L4 and L5 use estimates from their printed index and Abbe number. Historical suppliers, melts, measured partial dispersion and broadband performance remain unknown. The patent supplies no MTF curve or measured performance for comparison.
+The glass coordinates are printed; catalog names select dispersion curves without identifying historical glass. L3 matches Schott FK3, and L4 uses Sumita SSK2 as a spectral proxy. L1, L2 and L5 use estimates from their printed index and Abbe number. Historical suppliers, melts, measured partial dispersion and broadband performance remain unknown. The patent supplies no MTF curve or measured performance for comparison.
 
 ## Product Identification
 
@@ -40,7 +40,7 @@ No marketed focal length or aperture, production mount, image format, diaphragm 
 
 - The previously unspecified maker is Carl Zeiss Jena. The title and key identify the 100 mm f/0.9 R-Biotar family design and US patent, and the design is listed in the lens catalog. Kaprelian supports the family association without establishing an exact production lens.
 - All five `indexReference` values changed from sodium D to helium d, following the printed nd notation and claim 3. All source indices and Abbe values remain unchanged.
-- L3's unidentified glass label became `FK3 (Schott)`, with catalog nd 1.46450 and νd 65.77. Catalog minus printed differences are Δnd +0.00001 and Δνd −0.03. L1, L2, L4 and L5 retain `Unmatched` labels stating their printed pairs; no historical supplier or melt is identified.
+- L3's unidentified glass label became `FK3 (Schott)`, with catalog nd 1.46450 and νd 65.77. Catalog minus printed differences are Δnd +0.00001 and Δνd −0.03. L1, L2 and L5 retain `Unmatched` labels stating their printed pairs; L4 uses the spectral proxy described below. No historical supplier or melt is identified.
 - Element labels became Element 1 through Element 5, with the patent's L1–L5 designations retained on the diagram. Optical roles and calculated in-air focal lengths were added: +126.56, −183.65, +210.23, +50.67 and −94.52 mm. C1 identifies the cemented L4+L5 doublet across R7–R9, whose combined focal length is +99.07 mm.
 - Infinity focus is explicit because the patent gives no close-focus data. The final image interval retains the calculated paraxial infinity plane at 26.00 mm behind R9; no printed optical dimension, stop position, rim or field changed.
 - The subtitle reads “US 1,967,836 A, sole example — Zeiss / Merté.” The specifications are “5 ELEMENTS / 4 GROUPS”, “DESIGN f = 100 mm”, “DESIGN F/0.9” and “ALL SPHERICAL”, identifying the patent scale without assigning production specifications.
@@ -58,10 +58,15 @@ The resulting first-order values are EFL 99.998 mm, paraxial f/0.90, BFD 26.00 m
 - All optical rims pass the nominal f/0.90 axial beam and the 7.2° chief ray. The smallest axial clearance is 3.55 mm at R7, and the smallest corner-chief clearance is 12.63 mm at R9. Glass thickness and air gaps remain positive, the iris sets the aperture, no surface is undersized for the image circle, and the chief ray reaches the full 12.50 mm image radius. The opposite marginal extreme remains unresolved. The 7.1614° half-field, f/0.90, 37.27 mm iris radius and infinity focus are unchanged. Clear-aperture field beyond the stated image circle decreases from 15.50° to 14.20°, outside the modeled field.
 - The model section was compared beside the drawing at the same scale. The square rims of L1, L3 and L4 and L2's full-height shoulder follow the drawn proportions. L2's short chamfer remains an approximation; the rear optical face remains slightly larger than drawn for the stated light limit. No aspherical surface or special-glass position is identified in the patent. The existing Kaprelian comparison supports five elements in four groups; no separate manufacturer's construction image was available.
 
+2026-11-21 glass review:
+
+- L4: `Unmatched (nd 1.62203 / ν 53.1)` → `SSK2 (spectral proxy; patent nd 1.62203 / ν 53.1; supplier and melt unspecified)`, using SSK2 (Sumita). Catalog minus printed differences at helium d are Δnd +0.00027 and Δνd +0.04; spectral proxy.
+- The spectral proxy is within 0.002 in index and 0.25 in Abbe number at the printed line. The printed index and Abbe number are kept; the catalog row supplies only dispersion-curve shape and does not identify the historical supplier or melt.
+
 ## Remaining Questions
 
 - The clear rims remain drawing-based estimates. L2's short chamfer is approximated by a land, and R9 is slightly larger than drawn to retain corner illumination. The physical iris opening remains uncertain.
-- L1, L2, L4 and L5 lack established catalog matches. Historical suppliers and melt identities remain unknown for every element.
+- L1, L2 and L5 have no catalog row within the stated tolerances. Historical suppliers and melt identities remain unknown for every element, including L4 with its spectral proxy.
 - The exact production prescription and its marketed specifications, mount, image format, diaphragm construction, stop range and minimum focus distance are undocumented.
 - Whether the reported German counterpart DE 607,631 contains the same prescription remains unconfirmed.
 - Measured spectral performance, finite-conjugate behavior and complete off-axis pupil transmission remain unknown.

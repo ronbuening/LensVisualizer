@@ -45,7 +45,7 @@ The +97.65 mm front face and plane rear face form the added positive collector b
 
 ### L4 — Biconvex Positive in the Rear Doublet
 
-nd = 1.62203, νd = 53.1. Glass: Unmatched. Focal length in air: +50.67 mm.
+nd = 1.62203, νd = 53.1. Glass: SSK2 (Sumita), spectral proxy. Focal length in air: +50.67 mm.
 
 The +60.22 mm front face and −59.78 mm cemented face enclose 15.10 mm of glass. L4 supplies the positive power of the rear doublet. Its inferred front and cemented clear radii are both 26 mm.
 
@@ -59,7 +59,11 @@ L5 shares L4's −59.78 mm cemented face and has a weak −369.17 mm rear face. 
 
 Both tables print nd with a lowercase d, and claim 3 explicitly names the d-line. All five elements therefore use helium d, approximately 587.6 nm. The patent gives an index and Abbe value for each glass, without naming suppliers, melts or additional spectral indices.
 
-L3 matches the Schott FK3 catalog row at nd = 1.46450 and νd = 65.77: catalog minus patent differences are +0.00001 and −0.03. This permits use of the catalog dispersion curve without establishing the historical supplier or melt. L1, L2, L4 and L5 retain Unmatched labels stating their printed values because no exact catalog row is established. Their spectral behavior is estimated from the printed index and Abbe number; measured partial dispersion and broadband performance are unknown.
+L3 matches the Schott FK3 catalog row at nd = 1.46450 and νd = 65.77: catalog minus printed differences are Δnd +0.00001 and Δνd −0.03. It uses the catalog dispersion curve.
+
+L4 uses Sumita SSK2 as a spectral proxy, with catalog minus printed differences of Δnd +0.00027 and Δνd +0.04 at helium d. The printed index and Abbe number are retained. Within the tolerance of 0.002 in index and 0.25 in Abbe number, the catalog row supplies only the shape of the dispersion curve, so colour analysis follows a real glass instead of an Abbe-number estimate. Neither catalog row identifies the historical supplier or melt.
+
+L1, L2 and L5 retain Unmatched labels because no catalog row falls within those tolerances. Their spectral behavior is estimated from the printed index and Abbe number; measured partial dispersion and broadband performance remain unknown.
 
 ## Focus Mechanism
 
@@ -80,3 +84,5 @@ The patent supplies no MTF curve or measured performance for comparison. The inf
 1. Willy Merté, [US 1,967,836 A, _Photographic Lens_](https://patents.google.com/patent/US1967836A/en), published July 24, 1934. PDF page 1: section and prescription; page 2: description, repeated prescription, image-field statement and claims. [US Patent Office facsimile](https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/1967836).
 2. Edward K. Kaprelian, [_Objective Lenses of f/1 Aperture and Greater_](https://doi.org/10.5594/J17813), _Journal of the Society of Motion Picture Engineers_ 53(1), July 1949, pp. 86–99, Fig. 2a and discussion of Merté's R-Biotar. [Reproduced journal-page image](https://i.postimg.cc/mrG0s6rJ/image.jpg).
 3. Flints Auctions, [lot 264, Carl Zeiss Jena R-Biotar 4.5 cm f/0.85](https://www.flintsauctions.com/auction/lot/lot-264---a-carl-jena-zeiss-r-biotar-45cm-f085-camera-lens/?lot=22893&sd=1), May 23, 2023. Documents a surviving production lens; it does not publish its prescription.
+4. Schott, [optical glass catalog downloads](https://www.schott.com/en-us/products/optical-glass-p1000267/downloads), FK3 catalog data.
+5. Sumita, [optical glass catalog downloads](https://www.sumita-opt.co.jp/en/download/), SSK2 catalog data.

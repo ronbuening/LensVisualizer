@@ -99,7 +99,8 @@ const LENS_DATA = {
       vd: 53.1,
       indexReference: "d",
       focalLengthMm: 50.67,
-      glass: "Unmatched (nd 1.62203 / ν 53.1)",
+      glass:
+        "SSK2 (spectral proxy; patent nd 1.62203 / ν 53.1; supplier and melt unspecified)",
       role: "Positive member of the rear converging doublet",
       cemented: "C1",
     },
