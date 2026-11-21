@@ -1,0 +1,7 @@
+# Private scoped reference audit
+
+Ready for private ±10-degree helium-d infinity reference use, with the wider automatic MTF range explicitly outside qualification. Literal Fig.2 150mm nominalf/2 6E/4G, cement R4/R7, all exact radii/spacings/glasses and source stop16.3965/14.2215mm at z49.929 preserved. Physical iris/caps are estimates. Stock f/2 iris radius25.894351772 is selected; upstream26.50057 hypothesis is retained/tested separately and not forced. No commercial Ultron/Septon, altered SIGGRAPH, finite or calibrated broadband claim.
+
+Default geometry has positive glass/rim/gap lands and zero trim/override. Native/independent scoped rays pass with explicit clipping and positive-distance cap proofs. Original stopped-pupil unknowns are preserved; separate follow-up proves all18 raw failures outside R1 cap without acceptance changes. Scoped native geometric MTF through10deg converges with bounded refinement; automatic unscoped MTF goes wider and remains unqualified, with separate128-grid wider unconverged results retained. No invented format or app change conceals that limitation.
+
+Native import/export/reload, actual field/iris, strict/full types, same-rule lint, format and346 targeted tests pass. External original source custody only, bounded readable/retained-PR dedup only. Nine ZIPs, Warmisham and prior checkpoints preserved. Local reproducibility/member SHA/CRC receipt only; no package, upload, user send, public action, integration or count.
