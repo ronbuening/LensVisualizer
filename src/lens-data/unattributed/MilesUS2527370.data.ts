@@ -1,67 +1,71 @@
-import type { LensDataV2Input } from "../repo/src/types/lensDataV2.js";
-const data = {
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * John R. Miles, US 2,527,370 A (1950), sole numerical example in Figure 1.
+ * The patent gives arbitrary length units, taken as millimetres here.
+ * Radii, thicknesses, D-line indices and Abbe numbers follow the printed table.
+ * The printed stop is 24.36 mm behind the last glass surface, with a 10.12 mm
+ * diameter; f/6.3 gives a 10.133 mm model iris, within the stated approximation.
+ * All three glass semi-diameters are measured from Figure 1 as 15.3 mm.
+ * The image plane is inferred from D-line paraxial infinity focus: 88.1986 mm
+ * behind the glass, or 63.8386 mm behind the stop. No back focus is printed.
+ */
+const LENS_DATA = {
   schema: 2,
-  key: "miles-us2527370-figure1-infinity-reference",
+  key: "miles-100mm-f63-us2527370",
   maker: null,
-  name: "JOHN R. MILES US2527370 FIGURE 1 \u2014 SOURCE approx f/6.3",
-  subtitle:
-    "Patent-only 2E/1G \u00b7 exact rear stop \u00d810.12 mm \u00b7 sodium-D infinity",
-  visible: false,
+  name: "MILES 100mm f/6.3 (US 2,527,370 Design)",
+  subtitle: "US 2,527,370 A, sole example — cemented achromatic doublet",
+  visible: true,
   source: {
-    patentNumber: "US 2,527,370",
+    patentNumber: "US 2,527,370 A",
     patentYear: 1950,
     example: {
-      label: "Figure 1",
-      id: "1",
+      label: "Sole example",
+      id: null,
     },
     authors: ["John R. Miles"],
-    assignees: ["La Croix Optical"],
-    sdSource: "heuristic",
+    assignees: ["La Croix Optical Company"],
+    sdSource: "figure-measured",
   },
   catalog: {
     focalLengthMm: {
-      design: 100,
+      design: 100.04,
     },
     fNumber: {
       design: 6.3,
     },
     elementCount: 2,
     groupCount: 1,
-    specs: [
-      "Literal2E1G Fig1,cementR2,no sourceR/thickness/index edits. Source100mm approximatelyf6.3 andapproximately19degree full,not retailidentity or measuredperformance.",
-      "Literal EFL100.042892149/glassrearBFD88.198578061mm,computedGaussian infinity focus,no fit.",
-      "SOURCE EXACT rearstop24.36mm afterR3,z37.48,bore10.12mm. Native softwarecontrol6.308159887455 differs transparently from sourceapprox6.3 and preserves exactbore;unadjusted6.3 would produce diameter10.133107628737mm,not accepted.",
-      "R3-to-stop24.36 andstop-to-image63.838578061mm;native last-surface/BFD UI may reference stop rather than finalglass,do not conflate glassrear88.198578.",
-      "Glasscaps13mm estimated,stopstation/bore published,not estimates. No fakeoptic,stoprelocation,unrecognizedfixediris or source-aperture exception.",
-      "SodiumD589.2938 only,literaln/V unmatched. No calibrated/measuredbroadband,finitefocus,physicalformat,widerautomaticMTF or retail claim.",
-      "Chosen actualnative +/-9.5degree diagnostic,approxsource19full separate from verifiedpupil/MTF scope;clips and exactfinitefnumber documented.",
-      "Primarysource opticaldata/stopdimensions/hash suppliedbyparent;no localoriginalPDF,pixels/rehash or known deniedroute retry.",
-    ],
+    imageCircleMm: 33.8313,
+    specs: ["2 ELEMENTS / 1 GROUP", "ALL SPHERICAL", "DESIGN F/6.3"],
   },
   elements: [
     {
       id: 1,
       name: "E1",
-      label: "E1",
-      type: "Source Spherical Element",
+      label: "Element 1",
+      type: "Biconvex Positive",
       nd: 1.516,
       vd: 59.1,
       indexReference: "D",
-      glass:
-        "Literal unmatched sodium-D/Abbe pair;no calibrated spectral curve.",
-      cemented: "D1",
+      glass: "Unmatched (ordinary window glass; nD 1.516 / ν 59.1)",
+      focalLengthMm: 41.43,
+      role: "Positive front element supplying image-forming power and field flattening.",
+      cemented: "C1",
     },
     {
       id: 2,
       name: "E2",
-      label: "E2",
-      type: "Source Spherical Element",
+      label: "Element 2",
+      type: "Biconcave Negative",
       nd: 1.617,
       vd: 36.6,
       indexReference: "D",
-      glass:
-        "Literal unmatched sodium-D/Abbe pair;no calibrated spectral curve.",
-      cemented: "D1",
+      glass: "Unmatched (ordinary flint; nD 1.617 / ν 36.6)",
+      focalLengthMm: -64.13,
+      role: "Negative rear element balancing the crown's chromatic power and contributing field flattening.",
+      cemented: "C1",
     },
   ],
   surfaces: [
@@ -69,31 +73,31 @@ const data = {
       label: "1",
       R: 35.01,
       d: 7.87,
-      sd: 13,
+      sd: 15.3,
       medium: 1,
     },
     {
       label: "2",
       R: -50.7,
       d: 5.25,
-      sd: 13,
+      sd: 15.3,
       medium: 2,
     },
     {
       label: "3",
       R: 187.36,
       d: 24.36,
-      sd: 13,
+      sd: 15.3,
     },
     {
       label: "STO",
       R: "flat",
-      d: 63.838578061040295,
+      d: 63.838578061,
     },
   ],
   aperture: {
-    nominalFNumber: 6.3081598874545755,
-    fStops: [6.3081598874545755, 8, 11, 16, 22, 32],
+    nominalFNumber: 6.3,
+    fStops: [6.3, 8, 11, 16, 22, 32],
     maxFNumber: 32,
   },
   projection: {
@@ -105,19 +109,19 @@ const data = {
     offAxisFieldFrac: 1,
   },
   focus: {
-    closeFocusM: 1000000000000000,
-    description:
-      "Literal2E1G Fig1,cementR2,no sourceR/thickness/index edits. Source100mm approximatelyf6.3 andapproximately19degree full,not retailidentity or measuredperformance. Literal EFL100.042892149/glassrearBFD88.198578061mm,computedGaussian infinity focus,no fit. SOURCE EXACT rearstop24.36mm afterR3,z37.48,bore10.12mm. Native softwarecontrol6.308159887455 differs transparently from sourceapprox6.3 and preserves exactbore;unadjusted6.3 would produce diameter10.133107628737mm,not accepted. R3-to-stop24.36 andstop-to-image63.838578061mm;native last-surface/BFD UI may reference stop rather than finalglass,do not conflate glassrear88.198578. Glasscaps13mm estimated,stopstation/bore published,not estimates. No fakeoptic,stoprelocation,unrecognizedfixediris or source-aperture exception. SodiumD589.2938 only,literaln/V unmatched. No calibrated/measuredbroadband,finitefocus,physicalformat,widerautomaticMTF or retail claim. Chosen actualnative +/-9.5degree diagnostic,approxsource19full separate from verifiedpupil/MTF scope;clips and exactfinitefnumber documented. Primarysource opticaldata/stopdimensions/hash suppliedbyparent;no localoriginalPDF,pixels/rehash or known deniedroute retry.",
+    closeFocusM: 1e15,
+    description: "Infinity focus only; the patent gives no close-focus data.",
   },
   groups: [
     {
-      text: "G1 \u00b7 E1+E2",
+      text: "Cemented achromatic doublet",
       fromSurface: "1",
       toSurface: "3",
     },
   ],
+  doublets: [{ text: "C1", fromSurface: "1", toSurface: "3" }],
   layout: {
     yScFill: 0.5,
   },
 } satisfies LensDataV2Input;
-export default data;
+export default LENS_DATA;
