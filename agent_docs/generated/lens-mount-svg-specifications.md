@@ -26,7 +26,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
 | [`canon-rf`](#canon-rf--canon-rf) | bayonet | 20 mm | 54 mm | `mvp_complete` | 1 |
 | [`contax-rf`](#contax-rf--contax-rf) | hybrid | 34.85 mm | 44 mm | `renderable` | 1 |
 | [`contax-yashica`](#contax-yashica--contax-yashica) | bayonet | 45.5 mm | 48 mm | `renderable` | 1 |
-| [`exakta`](#exakta--exakta) | bayonet | 44.7 mm | 33.8 mm | `renderable` | 1 |
+| [`exakta`](#exakta--exakta) | bayonet | 44.7 mm | 33.8 mm | `renderable` | 6 |
 | [`fixed-lens-camera`](#fixed-lens-camera--fixed-lens-camera) | fixed_lens | 0 mm | 28 mm | `not_applicable` | 1 |
 | [`four-thirds`](#four-thirds--four-thirds) | bayonet | 38.67 mm | 44 mm | `mvp_complete` | 1 |
 | [`fujifilm-g`](#fujifilm-g--fujifilm-g) | bayonet | 26.7 mm | 65 mm | `mvp_complete` | 1 |
@@ -1212,19 +1212,24 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 |---|---|
 | Mount ID | `exakta` |
 | Display label | Exakta |
-| Project note | Ihagee Exakta/Exa bayonet family. |
+| Project note | Ihagee Exakta/Exa bayonet family, with Topcon, Mamiya and Exakta RTL 1000 variants. |
 | Research status | `partial` |
 | MVP status | `renderable` |
 | Mount mechanism | `bayonet` (lock `sprung_detent`) |
 | Base profile | `exakta/base` |
-| Selected MVP profile | `exakta/base` |
-| Variant strategy | `base_only` |
+| Selected MVP profile | `exakta/outer-bayonet` |
+| Variant strategy | `variant_profiles_defined` |
 
 #### Base and variant profile matrix
 
 | Profile ID | Type | Applies to | Adds | Removes | Changes |
 |---|---|---|---|---|---|
-| `exakta/base` | base | inner Exakta bayonet lenses and bodies, 1936 onward | three-pronged inner bayonet; spring-loaded locking/release pin; left-side release clearance | electrical contacts | external telephoto bayonet and later Topcon/Mamiya variants not yet modeled |
+| `exakta/base` | base | every Exakta-mount body and lens, 1936 to the 1970s (Ihagee, Topcon, Mamiya, Pentacon) | three-lug inner bayonet on a 38 mm body bore; spring latch hook on the body and locking pin on the lens; red-dot index at 12 o'clock | electrical contacts | — |
+| `exakta/kine` | variant | Kine Exakta bodies as drawn in US2136149A (1936 to about 1950), inner bayonet only | narrow fixing flange; latch lever pivot and knob as drawn in the patent | outer bayonet | all values are proportions scaled from undimensioned patent figures |
+| `exakta/outer-bayonet` | variant | Ihagee bodies with the double bayonet (Exakta Varex / VX onward; introduced 1951 per JAPB), with long lenses on the outer mount and pod or rocker auto-diaphragm lenses | three outward lugs on the bayonet ring rim (outer bayonet); three inward hooks on long-lens mounts; wide fixing flange with the release lever; front shutter release reached by the lens's auto-diaphragm pod | — | fixing flange is wider than on the Kine Exakta |
+| `exakta/topcon-re` | variant | Topcon RE Super / Super D and later RE bodies with RE Auto-Topcor lenses (1963 onward) | outer skirt around the mount; body-to-lens aperture stop-down lever in an arcuate slot; lens-to-body aperture feeler in an arcuate slot (full-aperture metering) | outer bayonet lugs; front shutter release for pod lenses | different release lever shape; mount screws clocked differently from Ihagee bodies |
+| `exakta/rtl-1000` | variant | Exakta RTL 1000 (Pentacon, 1969 to 1973) and its inner-release lenses | aperture stop-down pin on the lens rear, worked from inside the body; flange cut-out that clears the release-lever knob of older bodies | — | right-hand body release; older external-release lenses use a coupling point on the camera's left side; outer bayonet rim retained |
+| `exakta/mamiya-prismat` | variant | Mamiya Prismat Exakta-mount bodies (1961) | body pin at the right front that works a reversed pressure diaphragm on the lens | — | earliest bodies carried both bayonets, later ones dropped the outer one |
 
 #### Dimensional summary
 
@@ -1232,75 +1237,103 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 |---|---|---|
 | Flange focal distance | 44.7 (`secondary`) | mm |
 | Nominal throat diameter | 33.8 (`secondary`) | mm |
-| Effective clear aperture | 33.8 (`secondary`) | mm |
-| Camera mount outer diameter | 43 (`photo_scaled`) | mm |
-| Lens mount outer diameter | 41 (`photo_scaled`) | mm |
+| Effective clear aperture | 32.5 (`secondary`) | mm |
+| Camera mount outer diameter | 56 (`photo_scaled`) | mm |
+| Lens mount outer diameter | 47 (`photo_scaled`) | mm |
 | Contact count | not_applicable (`not_applicable`) | count |
-| Lock rotation | 45 (`patent`) | deg |
+| Lock rotation | 60 (`patent`) | deg |
 | Lock direction | clockwise (`patent`) | — |
 
-#### Figures (selected profile `exakta/base`)
+#### Figures (selected profile `exakta/outer-bayonet`)
 
-**Camera-side front view** — viewBox `-27 -28 54 55` · 37 elements in 4 layers · hash `43ec2626` ([standalone SVG](mounts/exakta-camera-front.svg))
+**Camera-side front view** — viewBox `-35 -36 74 71` · 47 elements in 4 layers · hash `ac4ae99b` ([standalone SVG](mounts/exakta-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-26 -27 52 53` · 31 elements in 4 layers · hash `4aac9673` ([standalone SVG](mounts/exakta-lens-rear.svg))
+**Lens-side rear view** — viewBox `-38 -32 68 62` · 37 elements in 4 layers · hash `eb5df0f3` ([standalone SVG](mounts/exakta-lens-rear.svg))
 
-**Axial / register schematic** — viewBox `-50 -31 56 58` · 12 elements in 2 layers · hash `5d3e48a8` ([standalone SVG](mounts/exakta-axial.svg))
+**Axial / register schematic** — viewBox `-51 -38 59 72` · 12 elements in 2 layers · hash `8115f1c5` ([standalone SVG](mounts/exakta-axial.svg))
 
 #### Camera-side front-view geometry
 
 | Feature ID | Type | Profile | Center | Start | End | Inner r | Outer r |
 |---|---|---|---|---|---|---|---|
 | `body-throat` | body_throat | `exakta/base` | 0° | 0° | 360° | 0 | 16.9 |
-| `body-mount-ring` | mount_ring | `exakta/base` | 0° | 0° | 360° | 16.9 | 21.5 |
-| `body-slot-1` | bayonet_receiving_slot | `exakta/base` | 0° | 343° | 17° | 16.9 | 19.4 |
-| `body-slot-2` | bayonet_receiving_slot | `exakta/base` | 120° | 103° | 137° | 16.9 | 19.4 |
-| `body-slot-3` | bayonet_receiving_slot | `exakta/base` | 240° | 223° | 257° | 16.9 | 19.4 |
-| `body-index-mark` | index_mark | `exakta/base` | 0° | unknown | unknown | unknown | 22 |
-| `body-lock-pin` | lock_pin | `exakta/base` | 300° | unknown | unknown | unknown | 17.9 |
+| `body-mount-ring` | mount_ring | `exakta/base` | 0° | 0° | 360° | 16.9 | 19 |
+| `body-slot-1` | bayonet_receiving_slot | `exakta/base` | 45° | 5° | 85° | 16.9 | 19 |
+| `body-slot-2` | bayonet_receiving_slot | `exakta/base` | 165° | 125° | 205° | 16.9 | 19 |
+| `body-slot-3` | bayonet_receiving_slot | `exakta/base` | 285° | 245° | 325° | 16.9 | 19 |
+| `body-index-mark` | index_mark | `exakta/base` | 0° | unknown | unknown | unknown | 27 |
+| `body-lock-latch` | lock_receiver | `exakta/base` | 70° | unknown | unknown | unknown | 22.8 |
+| `body-kine-fixing-flange` | mount_ring | `exakta/kine` | 0° | 0° | 360° | 19 | 24.2 |
+| `body-fixing-flange` | mount_ring | `exakta/outer-bayonet` | 0° | 0° | 360° | 19 | 28 |
+| `body-outer-lug-1` | outer_bayonet_lug | `exakta/outer-bayonet` | 40° | 20° | 60° | 22 | 23 |
+| `body-outer-lug-2` | outer_bayonet_lug | `exakta/outer-bayonet` | 160° | 140° | 180° | 22 | 23 |
+| `body-outer-lug-3` | outer_bayonet_lug | `exakta/outer-bayonet` | 280° | 260° | 300° | 22 | 23 |
+| `body-topcon-mount-plate` | mount_ring | `exakta/topcon-re` | 0° | 0° | 360° | 19 | 29.9 |
+| `body-topcon-skirt` | mount_ring | `exakta/topcon-re` | 0° | 0° | 360° | 29.9 | 30.9 |
 
 #### Lens-side rear-view geometry
 
 | Feature ID | Type | Profile | Center | Start | End | Inner r | Outer r |
 |---|---|---|---|---|---|---|---|
-| `lens-throat` | lens_throat | `exakta/base` | 0° | 0° | 360° | 0 | 15.899999999999999 |
-| `lens-mount-ring` | lens_mount_ring | `exakta/base` | 0° | 0° | 360° | 15.899999999999999 | 20.5 |
-| `lens-lug-1` | bayonet_lug | `exakta/base` | 0° | 343° | 17° | 16.9 | 19.4 |
-| `lens-lug-2` | bayonet_lug | `exakta/base` | 120° | 103° | 137° | 16.9 | 19.4 |
-| `lens-lug-3` | bayonet_lug | `exakta/base` | 240° | 223° | 257° | 16.9 | 19.4 |
-| `lens-index-mark` | index_mark | `exakta/base` | 0° | unknown | unknown | unknown | 21 |
-| `lens-lock-notch` | lock_notch | `exakta/base` | 300° | unknown | unknown | unknown | 17.9 |
+| `lens-throat` | lens_throat | `exakta/base` | 0° | 0° | 360° | 0 | 16.25 |
+| `lens-mount-ring` | lens_mount_ring | `exakta/base` | 0° | 0° | 360° | 16.25 | 23.5 |
+| `lens-lug-1` | bayonet_lug | `exakta/base` | 45° | 12.5° | 77.5° | 16.9 | 18.75 |
+| `lens-lug-2` | bayonet_lug | `exakta/base` | 165° | 132.5° | 197.5° | 16.9 | 18.75 |
+| `lens-lug-3` | bayonet_lug | `exakta/base` | 285° | 252.5° | 317.5° | 16.9 | 18.75 |
+| `lens-index-mark` | index_mark | `exakta/base` | 0° | unknown | unknown | unknown | 24 |
+| `lens-lock-pin` | lock_pin | `exakta/base` | 70° | unknown | unknown | unknown | 21.2 |
+| `lens-outer-hook-1` | outer_bayonet_hook | `exakta/outer-bayonet` | 40° | 23° | 57° | 22 | 23 |
+| `lens-outer-hook-2` | outer_bayonet_hook | `exakta/outer-bayonet` | 160° | 143° | 177° | 22 | 23 |
+| `lens-outer-hook-3` | outer_bayonet_hook | `exakta/outer-bayonet` | 280° | 263° | 297° | 22 | 23 |
 
 #### Mechanical couplings
 
 | Feature | Side | Profile | Function |
 |---|---|---|---|
-| `lens-release-lever-clearance` | body | `exakta/base` | retains and releases the lens locking pin |
-| `aperture-pod-pass-through` | lens | `exakta/base` | allows Exakta auto-aperture pod lenses to actuate the body release |
+| `kine-release-lever-pivot` | body | `exakta/kine` | pivot of the spring-pressed locking latch on the fixing flange |
+| `kine-release-lever-knob` | body | `exakta/kine` | releases the lens pin from the latch hook |
+| `lens-release-lever-pivot` | body | `exakta/outer-bayonet` | pivot of the lens release lever on the fixing flange |
+| `lens-release-lever-knob` | body | `exakta/outer-bayonet` | releases the lens pin from the latch hook |
+| `body-front-shutter-release` | body | `exakta/outer-bayonet` | pressed through the lens's auto-diaphragm pod or rocker, which stops the lens down first |
+| `aperture-pod-pass-through` | lens | `exakta/outer-bayonet` | two-stage pass-through: stops the diaphragm down, then trips the body release |
+| `topcon-release-lever-pivot` | body | `exakta/topcon-re` | pivot of the lens release lever |
+| `topcon-release-lever-tail` | body | `exakta/topcon-re` | releases the lens pin from the latch hook |
+| `topcon-stop-down-lever` | both | `exakta/topcon-re` | body-to-lens aperture stop-down lever |
+| `topcon-aperture-feeler` | both | `exakta/topcon-re` | lens-to-body feeler that reads the aperture ring for full-aperture metering |
+| `rtl-internal-stop-down-pin` | lens | `exakta/rtl-1000` | internally operated pressure diaphragm, worked by the RTL 1000 body |
+| `rtl-release-lever-cutout` | lens | `exakta/rtl-1000` | clears the release-lever knob when the lens goes on an older Exakta body |
 
 #### Axial stack
 
 | Plane | z (mm) | Diameter (mm) |
 |---|---|---|
-| `flange_datum` | 0 | 43 |
-| `bayonet_lug_engagement` | 1.2 | 38 |
+| `flange_datum` | 0 | 56 |
+| `bayonet_lug_engagement` | 1.2 | 37.5 |
 | `sensor_film_plane` | -44.7 | 43.3 |
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/exakta.mount.ts` (28297 bytes, content hash `af4a67e7`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/exakta.mount.ts` (59630 bytes, content hash `cf2f4b2b`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
 | Ref | Type | Citation | Archive | Captured | Confidence |
 |---|---|---|---|---|---|
 | `exa-1` | secondary | “Flange focal distance,” Wikipedia. Accessed 2026-06-06. | [snapshot](http://web.archive.org/web/20260526152456/https://en.wikipedia.org/wiki/Flange_focal_distance) | 2026-05-26 | medium |
-| `exa-2` | secondary | “Lens Mounts: Exakta,” JAPB (japb.net). Accessed 2026-06-06. | [snapshot](https://japb.net/theory/lens-mounts/exakta/) | 2026-06-06 | medium |
-| `exa-p1` | patent | US2136149A, Ihagee quick-detachable lens mount patent. Accessed 2026-06-06. | [snapshot](https://patents.google.com/patent/US2136149A/en) | 2026-06-06 | low |
+| `exa-2` | secondary | “Lens Mounts: Exakta,” JAPB (japb.net). Accessed 2026-06-06; photos re-read 2026-11-21. | [snapshot](https://japb.net/theory/lens-mounts/exakta/) | 2026-06-06 | medium |
+| `exa-p1` | patent | K. Nuechterlein, “Lens mount,” US2136149A, assigned to Ihagee Kamerawerk Steenbergen & Co., filed 1937-06-04, granted 1938-11-08. | [snapshot](https://patentimages.storage.googleapis.com/db/83/3f/b6a3c99dd0fd5b/US2136149.pdf) | 2026-11-21 | high |
+| `exa-m1` | official | Ihagee Kamerawerk, “EXAKTA VX 1000” instruction manual, scan in M. Butkus's camera manual library. | [snapshot](https://www.butkus.org/chinon/exakta/exakta_vx1000/exakta_vx1000.pdf) | 2026-11-21 | high |
+| `exa-m2` | official | “EXAKTA RTL 1000 with Internal Metering” brochure, scan in M. Butkus's camera manual library. | [snapshot](https://www.cameramanuals.org/exakta/exakta_rtl1000-02.pdf) | 2026-11-21 | medium |
+| `exa-4` | secondary | S. H. Westin, “Camera Mounts Sorted by Register,” data from W.-J. Markerink, last modified 2016-02-11. | [snapshot](https://www.graphics.cornell.edu/~westin/misc/mounts-alphabetical.html) | 2026-11-21 | low |
 
 #### Open questions
 
-- The current Exakta diagram models only the inner bayonet; external bayonet, Topcon Exakta, Mamiya Exakta and RTL cut-out variants remain unresolved. _(Add variant profiles from measured body/lens samples or dimensioned service drawings.)_
+- No dimensioned drawing of the bayonet was found. US2136149A states no angle, dimension or lug count, so every lug, slot, flange, latch and index angle is scaled from JAPB photos (about +/-5 deg) and rounded to 5 deg on a 120 deg pitch. The 38 mm bore and the 60 deg lock rotation (slot centre to flange centre; the lens pin reads 60 to 70 deg from the red dot to the hook) are derived from those readings, not stated anywhere read. Lens-side features are stored at the angle of their mating body feature, so the lens red dot and lugs are not drawn where they sit on a locked lens. _(Find an Ihagee or Pentacon workshop drawing or repair manual (Upton's Exakta repair book and the Pentacon Exa repair manual were named in forums but not obtainable), or measure a body and lens.)_
+- Lug and flange thickness (1.8 mm) and the axial position of the lug engagement plane are unsourced stand-ins from the first draft. US2136149A Figs. 2 and 4 show the body flanges inset toward the film side of the ring, with no dimension. _(Measure a lens bayonet tube and body ring, or find a sectioned service drawing.)_
+- Outer bayonet: lug positions come from the hooks on one Telemegor rear photo, lug spans from a low-resolution outline, and the 46 mm lug circle from photo scaling supported only by an undefined “46” in the Westin/Markerink table. Introduction year conflicts between sources (1951 per JAPB; 1953 per Wrotniak, not cited). _(No Ihagee outer-bayonet patent was found by search; needs an Espacenet/DEPATISnet assignee search or a measured body.)_
+- Mount screws, fixing-flange diameters, release-lever pivot and knob, and the front shutter release are photo-scaled from one Varex VX body. Topcon RE bodies clock their four screws differently (about 55/125/235/305 deg on about 53 mm) and screws are not profile-scoped, so only the Ihagee pattern is drawn. The Kine profile is scaled from undimensioned patent figures. _(Measure sample bodies of each generation.)_
+- Topcon RE: no Tokyo Kogaku patent showing the production mount was found (US3163097A describes a coaxial resistor ring coupled to the lens preset ring, not the RE Super's lever and feeler slots), so the skirt, stop-down lever and aperture feeler are photo-scaled. The earlier Topcon R / Auto-Topcor pod placement is not modeled. _(Find the RE Super repair manual or a Tokyo Kogaku mount patent (J-PlatPat assignee search).)_
+- Exakta RTL 1000: the body-side internal release plunger and the RTL body's flange and outer-bayonet geometry were not seen; only the lens-side pin and cut-out are placed. Mamiya Prismat bodies are declared as a profile with no drawn geometry because no photo or drawing of their body pin was found. _(Find Pentacon RTL 1000 service documents and a Mamiya Prismat mount photo or patent.)_
 
 ### `fixed-lens-camera` — Fixed-lens Camera
 
