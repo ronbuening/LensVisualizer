@@ -269,7 +269,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 1.5,
     description:
-      "Front-group (V1) focus is inferred, not patent-stated; no finite-focus spacings (NO_INTERNAL_RECONSTRUCTION).",
+      "Infinity focus only. Front-group (V1) focus is inferred, not stated in the patent, and the patent gives no close-focus spacings, so focus travel is not modeled; zoom movement is. The 1.5 m minimum focus distance is product information.",
   },
 
   // (moved from var) No finite-focus rows are published. Each inner pair therefore repeats the infinity value.

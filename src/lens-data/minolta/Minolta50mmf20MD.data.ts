@@ -26,8 +26,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  approximately 0.27–0.40 mm ray clearance. The full 23° chief ray is also   ║
  * ║  contained. They are not claimed as production mechanical clear apertures.  ║
  * ║                                                                              ║
- * ║  FOCUS: NO_INTERNAL_RECONSTRUCTION. The 0.45 m product MFD is retained as   ║
- * ║  metadata only; no internal spacing law is invented.                        ║
+ * ║  FOCUS: infinity only. The 0.45 m minimum focus distance is product         ║
+ * ║  information only; no close-focus spacings are modeled.                     ║
  * ║                                                                              ║
  * ║  INDEX REFERENCE: d-line nd/νd is a catalog-supported inference because the ║
  * ║  patent labels only N and V. No nC/nF/ng/dPgF fields are source-supported.  ║
@@ -159,7 +159,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.45,
     description:
-      "NO_INTERNAL_RECONSTRUCTION — static scaled Example 5; marketed 0.45 m MFD only, with no internal focus law.",
+      "Infinity focus only. The scaled patent Example 5 has one fixed state and no close-focus data, so focus travel is not modeled. Minolta's 0.45 m minimum focus distance is product information.",
   },
 
   /* ── Aperture configuration ── */

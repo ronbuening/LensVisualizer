@@ -22,8 +22,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * sampling at +/-5.4 degrees through pupil fractions up to +/-0.75, and +/-9 degree field samples through pupil
  * fractions up to +/-0.5. These are modeled clear apertures, not source-published mechanical dimensions.
  *
- * Focus: NO_INTERNAL_RECONSTRUCTION. The selected patent publishes one prescription state and no focus-moving spacings;
- * the production 1.5 m minimum-focus distance is retained only as required product metadata.
+ * Focus: infinity only. The selected patent publishes one prescription state and no spacings that change with focus;
+ * the production 1.5 m minimum focus distance is recorded only as product information. Focus travel is not modeled.
  *
  * Source discrepancy preserved in the dossier: the description prints NC < 1.7, while claim 1 prints NC > 1.7 and the
  * numerical examples require the latter. The implemented prescription does not alter the raw patent record.
@@ -133,7 +133,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 1.5,
     description:
-      "NO_INTERNAL_RECONSTRUCTION: the patent publishes no focus-moving spacing state; 1.5 m is product MFD metadata only.",
+      "Infinity focus only. The patent publishes one prescription and no close-focus spacings, so focus travel is not modeled. The 1.5 m minimum focus distance is product information.",
   },
 
   aperture: { nominalFNumber: 2.8, fStops: [2.8, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22 },

@@ -8,8 +8,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  Yasukuni).                                                         ║
  * ║  Positive F / negative V / positive C / master M zoom architecture. ║
  * ║  12 elements / 8 air-spaced groups, all spherical.                  ║
- * ║  Focus: NO_INTERNAL_RECONSTRUCTION. The patent identifies F as the  ║
- * ║    focusing group but publishes infinity-focus zoom states only.    ║
+ * ║  Focus: infinity only. The patent identifies F as the focusing      ║
+ * ║    group but publishes infinity-focus zoom states only.             ║
  * ║                                                                      ║
  * ║  Zoom variable gaps: d5, d10, d13. The C group reverses between the ║
  * ║    middle and tele stations; the master group is effectively fixed. ║
@@ -242,7 +242,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 1.2,
     description:
-      "NO_INTERNAL_RECONSTRUCTION: the patent identifies F as the focusing group but publishes only infinity-focus zoom spacings. The production 1.2 m MFD is retained as product metadata; no finite-focus internal movement is invented.",
+      "Infinity focus only. The patent identifies F as the focusing group but publishes only infinity-focus zoom spacings, so focus travel is not modeled; zoom movement is. Minolta's 1.2 m minimum focus distance is product information.",
   },
 
   gaps: {

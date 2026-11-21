@@ -9,9 +9,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  zoom, 14 elements / 12 air-separated groups.                      ║
  * ║                                                                      ║
  * ║  PUBLISHED ZOOM STATES: d5, d13, and d19 are copied from Table 4.  ║
- * ║  No finite-focus spacing state is published. focusDescription      ║
- * ║  therefore records NO_INTERNAL_RECONSTRUCTION; closeFocusM is       ║
- * ║  product metadata only and does not drive any invented focus gap.   ║
+ * ║  No close-focus spacing state is published, so focus travel is not  ║
+ * ║  modeled. closeFocusM = 1.5 is the product's close-focus figure     ║
+ * ║  only and moves no gap.                                             ║
  * ║                                                                      ║
  * ║  IMAGE PLANE NORMALIZATION: Table 4 ends at r27 and does not        ║
  * ║  publish r27-to-image distance. Surface 27 therefore uses the       ║
@@ -314,7 +314,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 1.5,
     description:
-      "NO_INTERNAL_RECONSTRUCTION — US 5,249,079 publishes zoom spacings only. The 1.5 m close-focus value is product metadata; no finite-focus or macro internal motion is synthesized in this model.",
+      "Infinity focus only. US 5,249,079 publishes zoom spacings only, with no close-focus or macro data, so focus travel is not modeled; zoom movement is. The 1.5 m minimum focus distance is product information.",
   },
 
   gaps: {

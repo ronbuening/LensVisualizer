@@ -22,9 +22,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    - The stop radius is derived from the design f-number at each zoom station. nominalFNumber=2.87 ║
  * ║      controls the wide-open pupil at all zoom positions.                                           ║
  * ║                                                                                                      ║
- * ║  Focus: NO_INTERNAL_RECONSTRUCTION. The production MFD 0.85 m is metadata only; the patent gives   ║
- * ║  no close-focus spacing table or internal focus law. All authored var pairs therefore have         ║
- * ║  identical infinity/close values.                                                                   ║
+ * ║  Focus: infinity only. The production minimum focus distance of 0.85 m is product information;     ║
+ * ║  the patent gives no close-focus spacing table or focusing movement, so every spacing that         ║
+ * ║  changes with focus keeps its infinity value at both ends of the focus control.                    ║
  * ║                                                                                                      ║
  * ║  Semi-diameters: not published. They are model-derived from exact meridional ray envelopes,         ║
  * ║  runtime-compatible chiefs at the patent fields, default 0.6-field bundles, Figure 1 proportions,  ║
@@ -294,8 +294,8 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.85,
     description:
-      "NO_INTERNAL_RECONSTRUCTION: patent zoom states are modeled at infinity/design focus only; production MFD 0.85 m " +
-      "does not determine the internal close-focus motion.",
+      "Infinity focus only. The patent's zoom states are modeled at infinity (design focus) only; the production 0.85 m " +
+      "minimum focus distance does not say which groups move, so focus travel is not modeled; zoom movement is.",
   },
 
   gaps: {
