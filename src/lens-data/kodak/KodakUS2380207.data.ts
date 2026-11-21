@@ -15,7 +15,7 @@ const LENS_DATA = {
   key: "kodak-100mm-f56-us2380207",
   maker: "Kodak",
   name: "KODAK 100mm f/5.6 (US 2,380,207 Design)",
-  subtitle: "US 2,380,207 A, sole example — compact telephoto design",
+  subtitle: "US 2,380,207 A, sole example — Eastman Kodak / Aklin",
   visible: true,
   source: {
     patentNumber: "US 2,380,207 A",
@@ -29,7 +29,7 @@ const LENS_DATA = {
     errata: [
       {
         status: "unresolved",
-        note: "The prescription in the printed table computes to EFL 100.226983 mm and back focus 53.655204 mm, against stated values of 100 mm and 53.2 mm. No single misprint explains both differences; the image plane is at the calculated paraxial focus.",
+        note: "The prescription in the printed table computes to EFL 100.23 mm and back focus 53.66 mm, against stated values of 100 mm and 53.2 mm. No single misprint explains both differences; the image plane is at the calculated paraxial focus.",
       },
       {
         status: "unresolved",
@@ -47,8 +47,8 @@ const LENS_DATA = {
     },
     elementCount: 5,
     groupCount: 3,
-    imageCircleMm: 53.709469,
-    specs: ["5 ELEMENTS / 3 GROUPS", "ALL SPHERICAL", "DESIGN F/5.6", "TELEPHOTO"],
+    imageCircleMm: 53.71,
+    specs: ["5 ELEMENTS / 3 GROUPS", "ALL SPHERICAL", "DESIGN f = 100 mm", "DESIGN F/5.6", "TELEPHOTO"],
   },
   elements: [
     {
@@ -192,18 +192,13 @@ const LENS_DATA = {
   },
   groups: [
     {
-      text: "Front doublet",
+      text: "Front positive member",
       fromSurface: "1",
       toSurface: "3",
     },
     {
-      text: "Rear doublet",
+      text: "Rear negative member",
       fromSurface: "4",
-      toSurface: "6",
-    },
-    {
-      text: "Rear singlet",
-      fromSurface: "7",
       toSurface: "8",
     },
   ],
