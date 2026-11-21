@@ -30,7 +30,7 @@ const LENS_DATA = {
   "key": "kmz-zenitar-50mm-f12-s",
   "maker": "KMZ",
   "name": "KMZ ZENITAR 50mm f/1.2 S",
-  "subtitle": "RU 2592746 C1, sole example — Zenitar 50mm f/1.2 S production correlation",
+  "subtitle": "RU 2592746 C1, sole example — Zenitar 50mm f/1.2 S production match",
   "elements": [
     {
       "id": 1,
