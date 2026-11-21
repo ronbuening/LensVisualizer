@@ -46,13 +46,13 @@ The −131.55/+365.7 mm surfaces enclose 10 mm of glass. Its stronger dispersion
 
 nD = 1.67741, ν = 55.6. Glass: Unmatched. Standalone focal length in air: +48.77 mm.
 
-The +57.85/−70.3 mm surfaces enclose 12.5 mm of glass. This element supplies positive power in the rear pair. It has the same printed glass values as Element 1 and inferred clear semi-diameters of 26 and 25.6 mm.
+The +57.85/−70.3 mm surfaces enclose 12.5 mm of glass. This element supplies positive power in the rear pair. It has the same printed glass values as Element 1 and an inferred clear semi-diameter of 25.2 mm on both faces.
 
 ### Element 4 / L4 — Plano-Concave Negative
 
 nD = 1.74174, ν = 27.5. Glass: Unmatched. Standalone focal length in air: −80.82 mm.
 
-The −59.95 mm front surface and plane rear surface enclose 2.5 mm of glass. This is the negative, more dispersive member of the rear achromatic pair. The patent emphasizes its index above 1.72 and its index difference from Element 3 above 0.05. Its inferred clear semi-diameters are 27 and 26.5 mm. R8 is an optical exit surface.
+The −59.95 mm front surface and plane rear surface enclose 2.5 mm of glass. This is the negative, more dispersive member of the rear achromatic pair. The patent emphasizes its index above 1.72 and its index difference from Element 3 above 0.05. Its inferred clear semi-diameter is 23.4 mm on both faces. R8 is an optical exit surface.
 
 ## Glass Identification and Spectral Limits
 
@@ -76,9 +76,9 @@ Figure 1 shows no iris, and the patent gives neither a stop station nor its diam
 
 This position is supported by Figure 3 and the text's limits of 0.17% f for mean field curvature and below 0.65% f for astigmatism. Real-ray fits with a stop 0–4 mm behind R4 give mean curvature of about 0.18–0.20% f and astigmatism of about 0.64–0.68% f. These are closer to the printed claims than a midpoint stop, which gives mean curvature about 0.37% f and the wrong sign for the edge tangential focus. The exact historical stop station remains unknown, and the inferred position does not reproduce every printed bound exactly.
 
-The paraxial f/1.40 stop has radius 30.41 mm. Its accepted real axial entrance radius is 34.18 mm, corresponding to f/1.46. The iris sets that aperture; the glass rims do not limit the axial beam. The 8.0° chief ray clears every rim, while approximately 95% of the on-axis pupil area remains at 8.0°. This area ratio describes modeled vignetting, not measured transmission.
+The paraxial f/1.40 stop has radius 30.41 mm. Its accepted real axial entrance radius is 34.18 mm, corresponding to f/1.46. The iris sets that aperture; the glass rims do not limit the axial beam. The 8.0° chief ray clears every rim, while approximately 91.3% of the on-axis pupil area remains at 8.0°. This area ratio describes modeled vignetting, not measured transmission.
 
-The clear semi-diameters remain inferred. The minimum front-pair air clearance is about 0.174 mm, the rear positive element retains about 1.701 mm minimum glass thickness, and the rear-pair air clearance is about 0.836 mm. Their precise relation to the drawn rims remains unresolved.
+The inferred clear semi-diameters at R1–R8 are 39, 36, 36, 38, 25.2, 25.2, 23.4 and 23.4 mm. Figure 1 supports the front rims, a square-cut rear positive element and smaller optical rims on the rear negative element, whose small outer chamfers are omitted. The drawing's front thicknesses and front curvature agree on a scale of about 16.4 pixels/mm at 600 dpi, but its central gap and rear thicknesses do not share that scale, so the rear sizes follow proportions rather than absolute drawing dimensions. Both rear elements remain larger than those proportions alone suggest to preserve edge illumination. The minimum front-pair air clearance is about 0.174 mm, the rear positive element retains about 2.051 mm minimum glass thickness, and the rear-pair air clearance is about 1.003 mm.
 
 ## Aberration Curves and MTF Scope
 
