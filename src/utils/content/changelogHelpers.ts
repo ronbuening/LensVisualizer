@@ -41,6 +41,17 @@ export function formatDisplayDate(iso: string): string {
   return d.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
 }
 
+/**
+ * Select the updated label's date only for changes on a later UTC calendar day.
+ *
+ * @param publishedOn - git-derived publication day (YYYY-MM-DD), when known
+ * @param lastModified - git-derived modification day (YYYY-MM-DD), when known
+ * @returns the later modification day, or null when no updated label applies
+ */
+export function articleUpdatedOn(publishedOn?: string | null, lastModified?: string | null): string | null {
+  return publishedOn && lastModified && lastModified > publishedOn ? lastModified : null;
+}
+
 export function changelogEntryId(entry: ChangelogEntry): string {
   const identity = `${entry.date.trim()}|${entry.type.trim()}|${entry.summary.trim()}`;
   let hash = 0x811c9dc5;
