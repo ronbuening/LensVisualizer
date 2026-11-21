@@ -1,21 +1,36 @@
-import type { LensDataV2Input } from "../repo/src/types/lensDataV2.js";
-const data = {
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * US 2,398,680 A, Arthur Warmisham, Taylor, Taylor & Hobson Limited (1946),
+ * Example I and Figure 1: seven glass elements in five groups for photographic
+ * or projection use. Every printed radius, thickness and air gap is multiplied
+ * by 100 to give a nominal 100 mm f/1.5 objective in millimetres.
+ * The indices refer to the sodium D line; Abbe numbers are copied as printed.
+ * The cemented interfaces are R4 (elements 2/3) and R7 (elements 4/5).
+ *
+ * The patent gives no iris position, iris diameter or clear semi-diameters.
+ * The inferred stop is 11.10 mm after R5 and 8.96 mm before R6, preserving
+ * their 20.06 mm separation; its opening is set for paraxial f/1.5. All rims
+ * are estimates. The image plane is the calculated paraxial back focus,
+ * 57.32 mm after R12, against the printed 57.31 mm. Only infinity focus is
+ * modeled, and the illustrative 10-degree half-field is not a patent claim.
+ */
+const LENS_DATA = {
   schema: 2,
-  key: "warmisham-us2398680-example1-infinity-reference",
-  maker: null,
-  name: "ARTHUR WARMISHAM US2398680 EXAMPLE I — f/1.5",
-  subtitle:
-    "TT&H all-glass patent-only · sodium-D infinity · estimated iris/rims",
+  key: "cooke-100mm-f15-us2398680",
+  maker: "Cooke",
+  name: "COOKE 100mm f/1.5 (US 2,398,680 Design)",
+  subtitle: "US 2,398,680 A, Example I — seven-element f/1.5 objective",
   visible: false,
   source: {
-    patentNumber: "US 2,398,680",
+    patentNumber: "US 2,398,680 A",
     patentYear: 1946,
     example: {
       label: "Example I",
       id: "1",
     },
     authors: ["Arthur Warmisham"],
-    assignees: ["Taylor, Taylor & Hobson"],
+    assignees: ["Taylor, Taylor & Hobson Limited"],
     sdSource: "heuristic",
   },
   catalog: {
@@ -27,95 +42,96 @@ const data = {
     },
     elementCount: 7,
     groupCount: 5,
-    imageCircleMm: 35.23444167675022,
-    specs: [
-      "Literal Example I at source x100 scale; patent-only, no retail or finite projection identity.",
-      "Seven all-glass elements/five groups; R4/R7 cemented, both rear members separate positive singlets.",
-      "All three 0.2 mm air gaps, signed radii, sodium-D indices and Abbe values retained without fit.",
-      "Source nominal 100 mm f/1.5 and BFD57.31 mm; literal EFL100.001709/BFD57.321981 mm retained separately, no fitting.",
-      "Stop at z42.22 mm, split11.10/8.96 mm afterR5, is an estimate, not published.",
-      "Stock native f/1.5 yields estimated iris radius20.723959727 mm; exact nominal marginal maps to20.651007860 mm, separate conventions.",
-      "All caps estimated; chosen +/-10-degree diagnostic has explicit physical clipping and no source-field claim.",
-      "Quantitative sodium-D infinity only; Abbe-based chromatic outputs not calibrated or qualified.",
-    ],
+    specs: ["7 ELEMENTS / 5 GROUPS", "ALL SPHERICAL", "DESIGN F/1.5"],
   },
   elements: [
     {
       id: 1,
       name: "L1",
-      label: "L1",
-      type: "Source Spherical Element",
+      label: "Element 1",
+      type: "Positive Meniscus",
+      role: "Front positive collector",
+      focalLengthMm: 150.49,
       nd: 1.6135,
       vd: 59.3,
       indexReference: "D",
-      glass:
-        "Unmatched literal sodium-D index/Abbe pair; no exact catalog glass or calibrated dispersion identification.",
+      glass: "Unmatched (nD 1.6135 / ν 59.3)",
     },
     {
       id: 2,
       name: "L2",
-      label: "L2",
-      type: "Source Spherical Element",
+      label: "Element 2",
+      type: "Positive Meniscus",
+      role: "Positive front member of the cemented front meniscus",
+      cemented: "C1",
+      focalLengthMm: 66.7,
       nd: 1.6431,
       vd: 48.3,
       indexReference: "D",
-      glass:
-        "Unmatched literal sodium-D index/Abbe pair; no exact catalog glass or calibrated dispersion identification.",
+      glass: "Unmatched (nD 1.6431 / ν 48.3)",
     },
     {
       id: 3,
       name: "L3",
-      label: "L3",
-      type: "Source Spherical Element",
+      label: "Element 3",
+      type: "Negative Meniscus",
+      role: "Dispersive rear member of the front meniscus, concave towards the stop",
+      cemented: "C1",
+      focalLengthMm: -43.24,
       nd: 1.67605,
       vd: 32.3,
       indexReference: "D",
-      glass:
-        "Unmatched literal sodium-D index/Abbe pair; no exact catalog glass or calibrated dispersion identification.",
+      glass: "Unmatched (nD 1.67605 / ν 32.3)",
     },
     {
       id: 4,
       name: "L4",
-      label: "L4",
-      type: "Source Spherical Element",
+      label: "Element 4",
+      type: "Biconcave Negative",
+      role: "Dispersive front member of the rear doublet, concave towards the stop",
+      cemented: "C2",
+      focalLengthMm: -44.37,
       nd: 1.621,
       vd: 36.2,
       indexReference: "D",
-      glass:
-        "Unmatched literal sodium-D index/Abbe pair; no exact catalog glass or calibrated dispersion identification.",
+      glass: "Unmatched (nD 1.621 / ν 36.2)",
     },
     {
       id: 5,
       name: "L5",
-      label: "L5",
-      type: "Source Spherical Element",
+      label: "Element 5",
+      type: "Biconvex Positive",
+      role: "High-index positive rear member of the rear doublet",
+      cemented: "C2",
+      focalLengthMm: 52.23,
       nd: 1.7445,
       vd: 45.8,
       indexReference: "D",
-      glass:
-        "Unmatched literal sodium-D index/Abbe pair; no exact catalog glass or calibrated dispersion identification.",
+      glass: "Unmatched (nD 1.7445 / ν 45.8)",
     },
     {
       id: 6,
       name: "L6",
-      label: "L6",
-      type: "Source Spherical Element",
+      label: "Element 6",
+      type: "Biconvex Positive",
+      role: "First of the two positive rear collectors",
+      focalLengthMm: 196.87,
       nd: 1.613,
       vd: 59.3,
       indexReference: "D",
-      glass:
-        "Unmatched literal sodium-D index/Abbe pair; no exact catalog glass or calibrated dispersion identification.",
+      glass: "Unmatched (nD 1.613 / ν 59.3)",
     },
     {
       id: 7,
       name: "L7",
-      label: "L7",
-      type: "Source Spherical Element",
+      label: "Element 7",
+      type: "Biconvex Positive",
+      role: "Final positive collector, with its shallower face towards the front",
+      focalLengthMm: 237.57,
       nd: 1.6135,
       vd: 59.3,
       indexReference: "D",
-      glass:
-        "Unmatched literal sodium-D index/Abbe pair; no exact catalog glass or calibrated dispersion identification.",
+      glass: "Unmatched (nD 1.6135 / ν 59.3)",
     },
   ],
   surfaces: [
@@ -210,9 +226,8 @@ const data = {
     maxFNumber: 22,
   },
   focus: {
-    closeFocusM: 1000000000000000.0,
-    description:
-      "Private literal Warmisham/TT&H US2398680 Example I all-glass sodium-D infinity reference. No retail identity, finite state or calibrated broadband claim. Seven elements/five groups, cement R4/R7 and three0.2mm air gaps unchanged. Source nominal100mm f/1.5 and printedBF57.31mm retained separately from literal EFL100.001709/BF57.321981mm; computed Gaussian infinity detector. Stop station z42.22mm, split11.10/8.96mm afterR5, physical iris and all rims are estimated. Stock native f/1.5 derives iris radius20.723959727mm; exact nominal marginal maps to20.651007860mm and does not define published hardware. +/-10degree chosen diagnostic only, real clipping retained; no source coverage, full-pupil edge or throughput claim. Original seven-page facsimile visually verified in independent external custody only; no local original PDF/pixels/rehash or denied source request. No override, baffle, optical retuning, engine/schema change or source substitution.",
+    closeFocusM: 1e15,
+    description: "Infinity focus only; the patent gives no close-focus data.",
   },
   projection: {
     kind: "rectilinear",
@@ -249,8 +264,12 @@ const data = {
       toSurface: "12",
     },
   ],
+  doublets: [
+    { text: "C1", fromSurface: "3", toSurface: "5" },
+    { text: "C2", fromSurface: "6", toSurface: "8" },
+  ],
   layout: {
     yScFill: 0.5,
   },
 } satisfies LensDataV2Input;
-export default data;
+export default LENS_DATA;
