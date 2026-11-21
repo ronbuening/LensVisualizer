@@ -28,7 +28,7 @@ const LENS_DATA = {
   key: "schneider-cinegon-65f19",
   maker: "Schneider-Kreuznach",
   name: "SCHNEIDER-KREUZNACH CINEGON 6.5mm f/1.9",
-  subtitle: "DE 927 540 sole example — strong research correlation; not manufacturer-confirmed",
+  subtitle: "DE 927 540 sole example — strong production match; not maker-confirmed",
 
   catalog: {
     lensMounts: ["d-mount"],

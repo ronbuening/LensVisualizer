@@ -41,7 +41,7 @@ const LENS_DATA = {
   key: "schneider-kreuznach-xenar-50f28",
   maker: "Schneider-Kreuznach",
   name: "SCHNEIDER-KREUZNACH XENAR 50mm f/2.8",
-  subtitle: "DE 753329 sole example - 1935 five-element design; production correlation remains secondary",
+  subtitle: "DE 753329 sole example - 1935 five-element design; production match is uncertain",
 
   catalog: {
     specs: ["5 ELEMENTS / 4 GROUPS", "DESIGN f = 50.0 mm", "PATENT f/2.9 / MARKETED f/2.8"],
