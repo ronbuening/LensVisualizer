@@ -20,10 +20,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║    - Only those two endpoint states are defined; no intermediate cam law   ║
  * ║      or reversal is inferred.                                              ║
  * ║                                                                            ║
- * ║  FOCUS STATUS: NO_INTERNAL_RECONSTRUCTION.                                 ║
- * ║    The production 0.25 m MFD is retained as metadata only. The patent      ║
- * ║    publishes no close-focus spacing table, object distance, magnification, ║
- * ║    or focus cam law, so every authored focus pair is identical.            ║
+ * ║  FOCUS: INFINITY ONLY.                                                     ║
+ * ║    The production 0.25 m minimum focus is product information only. The    ║
+ * ║    patent publishes no close-focus spacing table, object distance,         ║
+ * ║    magnification, or focus cam law, so every spacing keeps its infinity    ║
+ * ║    value at both ends of the focus control.                                ║
  * ║                                                                            ║
  * ║  STOP MODEL (position inferred; iris traced from the patent f-number):     ║
  * ║    The patent states that the aperture lies in d6 and moves with the rear  ║
@@ -250,7 +251,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.25,
     description:
-      "NO_INTERNAL_RECONSTRUCTION: Example 3 publishes zoom-only infinity data. The production 0.25 m MFD is metadata only; no close-focus internal motion is modeled.",
+      "Infinity focus only. Example 3 publishes zoom data at infinity only. The production 0.25 m minimum focus distance is product information; focus travel is not modeled, zoom movement is.",
   },
 
   /* (moved from var) ── Zoom / focus spacings ──

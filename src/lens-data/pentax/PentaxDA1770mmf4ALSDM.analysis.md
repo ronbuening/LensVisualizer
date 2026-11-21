@@ -229,10 +229,10 @@ The production lens is documented as an inner-focusing design with a closest foc
 Embodiment 4, however, publishes only infinity-focus zoom states. It gives no focusing-group identity, object-distance
 table, close spacing, focus travel, magnification state, or adjacent-gap conservation rule.
 
-The data therefore uses the status **NO_INTERNAL_RECONSTRUCTION**. Every infinity/close pair in the zoom variables is
-identical. The 0.28 m value is retained as manufacturer metadata, but the model does not claim to reproduce the optical
-configuration, effective focal length, pupil behavior, or magnification at that distance. No internal focusing motion is
-invented from the product designation alone.
+The model therefore shows **infinity focus only**. Every spacing that changes with zoom keeps its infinity value at both
+ends of the focus control. The 0.28 m figure is recorded as manufacturer product information, but the model does not
+claim to reproduce the optical configuration, effective focal length, pupil behavior, or magnification at that distance.
+No internal focusing motion is modeled from the product designation alone.
 
 ## Aspherical Surfaces
 
