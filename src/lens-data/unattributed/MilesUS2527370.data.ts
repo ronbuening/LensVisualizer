@@ -7,15 +7,15 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * The printed stop is 24.36 mm behind the last glass surface, with a 10.12 mm
  * diameter; f/6.3 gives a 10.133 mm model iris, within the stated approximation.
  * All three glass semi-diameters are measured from Figure 1 as 15.3 mm.
- * The image plane is inferred from D-line paraxial infinity focus: 88.1986 mm
- * behind the glass, or 63.8386 mm behind the stop. No back focus is printed.
+ * The image plane is inferred from D-line paraxial infinity focus: 88.20 mm
+ * behind the glass, or 63.84 mm behind the stop. No back focus is printed.
  */
 const LENS_DATA = {
   schema: 2,
   key: "miles-100mm-f63-us2527370",
   maker: null,
   name: "MILES 100mm f/6.3 (US 2,527,370 Design)",
-  subtitle: "US 2,527,370 A, sole example — cemented achromatic doublet",
+  subtitle: "US 2,527,370 A, sole example — La Croix Optical / Miles",
   visible: true,
   source: {
     patentNumber: "US 2,527,370 A",
@@ -37,8 +37,13 @@ const LENS_DATA = {
     },
     elementCount: 2,
     groupCount: 1,
-    imageCircleMm: 33.8313,
-    specs: ["2 ELEMENTS / 1 GROUP", "ALL SPHERICAL", "DESIGN F/6.3"],
+    imageCircleMm: 33.84,
+    specs: [
+      "2 ELEMENTS / 1 GROUP",
+      "ALL SPHERICAL",
+      "DESIGN f = 100 mm",
+      "DESIGN F/6.3",
+    ],
   },
   elements: [
     {
