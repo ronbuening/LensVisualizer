@@ -1,13 +1,23 @@
-import type { LensDataV2Input } from "../repo/src/types/lensDataV2.js";
-const data = {
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * Gordon Henry Cook's sole example in US 2,601,369 A, specification table and
+ * claim 4. All dimensions are multiplied by 100 from the patent's F = 1 table,
+ * giving millimetres at a nominal 100 mm focal length. Both tables give D1 =
+ * .130F; the drawing's .103 label is a misprint, as the stated .403F total confirms.
+ * The indices are for the D line (taken as sodium, 589.3 nm), with printed Abbe V.
+ * The stop position, bore and clear rims are inferred; the image plane is the
+ * calculated paraxial infinity focus. The patent states a 26-degree half-field.
+ */
+const LENS_DATA = {
   schema: 2,
-  key: "cook-us2601369-infinity-reference",
-  maker: null,
-  name: "COOK US2601369 TABLE REFERENCE \u2014 100mm PATENT f/2.67",
-  subtitle: "Patent-only 4E/3G \u00b7 sodium-D infinity / estimated iris-rims",
+  key: "cooke-100mm-f267-us2601369",
+  maker: "Cooke",
+  name: "COOKE 100mm f/2.67 (US 2,601,369 Design)",
+  subtitle: "US 2,601,369 A, sole example — Three-component photographic objective",
   visible: false,
   source: {
-    patentNumber: "US 2,601,369",
+    patentNumber: "US 2,601,369 A",
     patentYear: 1952,
     example: {
       label: "Sole example",
@@ -19,67 +29,66 @@ const data = {
   },
   catalog: {
     focalLengthMm: {
-      design: 100,
+      design: 99.97,
     },
     fNumber: {
       design: 2.67,
     },
     elementCount: 4,
     groupCount: 3,
-    specs: [
-      "Patent-only four-element, three-group reference at a declared 100 mm representation of the f=1 table. No sold-lens identity is established.",
-      "Both tables specify first-element thickness .130F (13 mm here), supported by the prose total .403F. Figure 1 prints .103F; that conflict is preserved, not fitted away.",
-      "Sodium D (589.2938 nm), infinity only. Validated diagnostic field: \u00b15\u00b0. The published \u00b126\u00b0, wider automatic analyses and broadband results are unqualified.",
-      "Iris station, bore and clear radii are estimates. Stop split 4.8 / 0.20 mm. Source dimensions stay unchanged; default geometry passes without overrides and modeled clipping is retained.",
-      "Nominal/control f/2.67 derives the iris. See the companion analysis for finite-aperture equivalents and provenance. Original numerical table pixels/hash remain externally verified scout evidence.",
-    ],
+    imageCircleMm: 97.2,
+    specs: ["4 ELEMENTS / 3 GROUPS", "ALL SPHERICAL", "DESIGN F/2.67"],
   },
   elements: [
     {
       id: 1,
       name: "L1",
-      label: "L1",
-      type: "Source Spherical Element",
+      label: "Element 1",
+      type: "Plano-Convex Positive",
+      role: "Converging front component",
+      focalLengthMm: 53.41,
       nd: 1.657,
       vd: 50.8,
       indexReference: "D",
-      glass:
-        "Literal sodium-D/Abbe pair; no verified catalog identity or calibrated spectral curve.",
+      glass: "Unmatched (nD 1.6570 / ν 50.8)",
     },
     {
       id: 2,
       name: "L2",
-      label: "L2",
-      type: "Source Spherical Element",
+      label: "Element 2",
+      type: "Biconcave Negative",
+      role: "Diverging middle component",
+      focalLengthMm: -32.95,
       nd: 1.6535,
       vd: 33.5,
       indexReference: "D",
-      glass:
-        "Literal sodium-D/Abbe pair; no verified catalog identity or calibrated spectral curve.",
+      glass: "Unmatched (nD 1.6535 / ν 33.5)",
     },
     {
       id: 3,
       name: "L3",
-      label: "L3",
-      type: "Source Spherical Element",
+      label: "Element 3",
+      type: "Negative Meniscus",
+      role: "Negative front element of the converging rear doublet",
+      focalLengthMm: -31.98,
       nd: 1.7,
       vd: 41.2,
       indexReference: "D",
-      glass:
-        "Literal sodium-D/Abbe pair; no verified catalog identity or calibrated spectral curve.",
-      cemented: "G3",
+      glass: "Unmatched (nD 1.7000 / ν 41.2)",
+      cemented: "C1",
     },
     {
       id: 4,
       name: "L4",
-      label: "L4",
-      type: "Source Spherical Element",
+      label: "Element 4",
+      type: "Biconvex Positive",
+      role: "Positive rear element of the converging rear doublet",
+      focalLengthMm: 21.96,
       nd: 1.744,
       vd: 44.7,
       indexReference: "D",
-      glass:
-        "Literal sodium-D/Abbe pair; no verified catalog identity or calibrated spectral curve.",
-      cemented: "G3",
+      glass: "Unmatched (nD 1.7440 / ν 44.7)",
+      cemented: "C1",
     },
   ],
   surfaces: [
@@ -142,30 +151,36 @@ const data = {
   },
   projection: {
     kind: "rectilinear",
-    fullFieldDeg: 10,
-    maxTraceFieldDeg: 5,
+    fullFieldDeg: 52,
+    maxTraceFieldDeg: 26,
   },
   rays: {
     offAxisFieldFrac: 1,
   },
   focus: {
-    closeFocusM: 1000000000000000,
-    description:
-      "Infinity-only patent reference. Finite focusing is not modeled.",
+    closeFocusM: 1e15,
+    description: "Infinity focus only; the patent gives no close-focus data.",
   },
   groups: [
     {
-      text: "G1 \u00b7 L1",
+      text: "Group 1",
       fromSurface: "1",
       toSurface: "2",
     },
     {
-      text: "G2 \u00b7 L2",
+      text: "Group 2",
       fromSurface: "3",
       toSurface: "4",
     },
     {
-      text: "G3 \u00b7 L3+L4",
+      text: "Group 3",
+      fromSurface: "5",
+      toSurface: "7",
+    },
+  ],
+  doublets: [
+    {
+      text: "C1",
       fromSurface: "5",
       toSurface: "7",
     },
@@ -174,4 +189,4 @@ const data = {
     yScFill: 0.5,
   },
 } satisfies LensDataV2Input;
-export default data;
+export default LENS_DATA;
