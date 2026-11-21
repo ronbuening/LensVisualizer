@@ -1,24 +1,34 @@
-import type { LensDataV2Input } from "../repo/src/types/lensDataV2.js";
-const data = {
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * US 2,279,372 A, Example VI, describes a three-element photographic objective.
+ * The printed radii, thicknesses, air spaces and sodium-D glass values are retained.
+ * They give EFL 100.75 mm and back focus 79.41 mm against the printed 100 mm and
+ * 78.5 mm; Examples I–V also show the patent's loose focal-length normalization.
+ * The image plane is the computed paraxial infinity plane. The stop is inferred
+ * at the midpoint of the 7.5 mm rear air space, its size from f/3.5, and all clear
+ * semi-diameters are estimated. Covering power 26° is interpreted as a half-angle.
+ */
+const LENS_DATA = {
   schema: 2,
-  key: "herzberger-kodak-us2279372-example6-infinity-reference",
-  maker: null,
-  name: "HERZBERGER US2279372 EX.VI — PATENT REFERENCE",
-  subtitle:
-    "100mm nominal f/3.5 · literal nD · chosen 0–13° infinity diagnostic",
-  visible: false,
+  key: "kodak-100mm-f35-us2279372",
+  maker: "Kodak",
+  name: "KODAK 100mm f/3.5 (US 2,279,372 Design)",
+  subtitle: "US 2,279,372 A, Example VI — three-element photographic objective",
+  visible: true,
   source: {
-    patentNumber: "US 2,279,372",
+    patentNumber: "US 2,279,372 A",
+    patentYear: 1942,
     example: {
       label: "Example VI",
       id: "6",
     },
-    authors: ["Max Herzberger"],
+    authors: ["Maximilian J. Herzberger"],
     assignees: ["Eastman Kodak Company"],
     sdSource: "heuristic",
   },
   catalog: {
-    imageCircleMm: 46.521325385128854,
+    imageCircleMm: 97.6034,
     elementCount: 3,
     groupCount: 3,
     focalLengthMm: {
@@ -27,49 +37,44 @@ const data = {
     fNumber: {
       design: 3.5,
     },
-    specs: [
-      "3E/3G · LITERAL EXAMPLE VI · D-LINE INFINITY ONLY",
-      "SOURCE NOMINAL 100 / BFD78.5; LITERAL EFL100.753 / BFD79.4143",
-      "NO ROUNDING-CORNER FIT OR SOURCE DIMENSION REPLACEMENT",
-      "ESTIMATED MIDPOINT IRIS / SIZE / CLEAR RADII",
-      "NOMINAL f/3.5; FINITE ENTRANCE EQUIVALENT APPROX f/3.54823",
-      "26° SOURCE COVERING POWER IS AMBIGUOUS; CHOSEN 0–13° ONLY",
-      "NO RETAIL, FINITE, BROADBAND OR FULL-PUPIL COVERAGE CLAIM",
-    ],
+    specs: ["3 ELEMENTS / 3 GROUPS", "ALL SPHERICAL", "DESIGN F/3.5"],
   },
   elements: [
     {
       id: 1,
       name: "L1",
-      label: "L1",
-      type: "Source Spherical Element",
+      label: "Element 1",
+      type: "Positive Meniscus",
+      focalLengthMm: 59.39,
       nd: 1.616,
       vd: 55.1,
       indexReference: "D",
-      glass:
-        "Unmatched (literal source nD/V; no verified catalog or calibrated dispersion)",
+      glass: "Unmatched (nD 1.6160 / ν 55.1)",
+      role: "Positive front collector of the triplet.",
     },
     {
       id: 2,
       name: "L2",
-      label: "L2",
-      type: "Source Spherical Element",
+      label: "Element 2",
+      type: "Biconcave Negative",
+      focalLengthMm: -33.47,
       nd: 1.649,
       vd: 33.8,
       indexReference: "D",
-      glass:
-        "Unmatched (literal source nD/V; no verified catalog or calibrated dispersion)",
+      glass: "Unmatched (nD 1.6490 / ν 33.8)",
+      role: "More dispersive negative element between the positive singlets.",
     },
     {
       id: 3,
       name: "L3",
-      label: "L3",
-      type: "Source Spherical Element",
+      label: "Element 3",
+      type: "Biconvex Positive",
+      focalLengthMm: 52.29,
       nd: 1.616,
       vd: 55.1,
       indexReference: "D",
-      glass:
-        "Unmatched (literal source nD/V; no verified catalog or calibrated dispersion)",
+      glass: "Unmatched (nD 1.6160 / ν 55.1)",
+      role: "Positive rear collector of the triplet.",
     },
   ],
   surfaces: [
@@ -119,9 +124,8 @@ const data = {
     },
   ],
   focus: {
-    closeFocusM: 1000000000000000,
-    description:
-      "Patent-only Example VI D-line infinity reference. Source original p3 verified by independent scout; no local PDF or source pixels. Literal numbers preserved, EFL100.752999/BFD79.414318 differ from source100/78.5; no rounding-corner fitting. Estimated midpoint rear-gap iris3.75/3.75, physical size and rims; ordinary native nominal aperture convention. Chosen0–13° diagnostic only; source26° covering power is ambiguous, no half-field/format inference. No finite, retail or calibrated broadband claim.",
+    closeFocusM: 1e15,
+    description: "Infinity focus only; the patent gives no close-focus data.",
   },
   aperture: {
     nominalFNumber: 3.5,
@@ -130,8 +134,8 @@ const data = {
   },
   projection: {
     kind: "rectilinear",
-    fullFieldDeg: 26,
-    maxTraceFieldDeg: 13,
+    fullFieldDeg: 52,
+    maxTraceFieldDeg: 26,
   },
   groups: [
     {
@@ -154,4 +158,4 @@ const data = {
     yScFill: 0.5,
   },
 } satisfies LensDataV2Input;
-export default data;
+export default LENS_DATA;
