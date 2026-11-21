@@ -14,7 +14,7 @@
 
 **Priority:** Czechoslovakia, 4 August 1947
 
-**Example details:** Example 1 of three numerical examples, illustrated by Figure 1.
+**Example details:** Example 1 of three numerical examples; Figure 1 shows the shared construction and Figure 2 plots Example 1's corrections.
 
 The patent describes a large-aperture photographic objective particularly suited to cinematography. Example 1 specifies a focal length of 100 mm and an aperture ratio of 1:1.8. No production lens is documented as using this prescription. [US 2,543,856 A, PDF p. 2](https://patents.google.com/patent/US2543856A/en)
 

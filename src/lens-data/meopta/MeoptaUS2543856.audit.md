@@ -2,7 +2,7 @@
 
 ## Source
 
-US 2,543,856 A, Example 1, published 6 March 1951. The patent gives three numerical examples at f = 100 mm. Example 1 specifies 1:1.8 and is illustrated in Figure 1. The application was filed on 20 July 1948 with Czechoslovak priority dated 4 August 1947.
+US 2,543,856 A, Example 1, published 6 March 1951. The patent gives three numerical examples at f = 100 mm. Example 1 specifies 1:1.8; Figure 1 shows the shared construction and Figure 2 plots Example 1's corrections. The application was filed on 20 July 1948 with Czechoslovak priority dated 4 August 1947.
 
 The page prints František Kupka and the assignee “Meopta, spojene zavody pro jemnou mechaniku a optiku, narodni podnik”. The assignee's words are printed without Czech diacritics, and that spelling is retained.
 

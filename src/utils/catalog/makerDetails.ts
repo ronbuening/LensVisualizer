@@ -64,6 +64,7 @@ export const MAKER_DETAILS: Record<string, MakerDetails> = {
     notableDesigns: "Bolex H cameras and Bolex projectors, Hermes typewriters, music-box movements",
   },
   // Company origins and development: https://www.meopta.com/en/brief-history/
+  // Founders: https://www.meopta.com/en/persons
   // Dated milestones: https://www.meopta.com/en/historical-milestones/
   // Headquarters: https://www.meopta.com/en/contact/
   // Historical products: https://www.meopta.com/en/products/
