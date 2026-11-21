@@ -1,12 +1,21 @@
-import type { LensDataV2Input } from "../repo/src/types/lensDataV2.js";
-const data = {
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * US 1,967,836 A, sole numerical example in millimetres, by Willy Merté.
+ * Five spherical elements in four groups, related to the R-Biotar family.
+ * The patent prints d-line glass values and the diaphragm station: 43.80 mm
+ * behind R4 and 16.59 mm before R5. The iris radius and all clear rims are
+ * inferred. The image plane is the computed paraxial infinity focus because
+ * no back focus is printed. The 7.16° half-field follows the stated image
+ * diameter of approximately 25 mm; no finite-focus state is given.
+ */
+const LENS_DATA = {
   schema: 2,
-  key: "merte-us1967836-dline-reference",
-  maker: null,
-  name: "MERTÉ US1967836 — PATENT REFERENCE",
-  subtitle:
-    "100mm f/0.90 patent-only · reduction-direction infinity · estimated clear radii · no retail identity",
-  visible: false,
+  key: "carl-zeiss-jena-r-biotar-100mm-f09-us1967836",
+  maker: "Carl Zeiss Jena",
+  name: "CARL ZEISS JENA R-BIOTAR 100mm f/0.9 (US 1,967,836 Design)",
+  subtitle: "US 1,967,836 A, sole example — R-Biotar family design",
+  visible: true,
   source: {
     patentNumber: "US 1,967,836 A",
     patentYear: 1934,
@@ -28,68 +37,75 @@ const data = {
     fNumber: {
       design: 0.9,
     },
-    specs: [
-      "5E/4G · SOURCE NOMINAL100mm f/0.90",
-      "PATENT-ONLY · NOT AN EXACT RETAIL R-BIOTAR",
-      "REDUCTION-DIRECTION D-LINE INFINITY ONLY",
-      "SOURCE FOCAL-PLANE DIAMETER≈25mm · DERIVED HALF-FIELD≈7.1614°",
-      "ESTIMATED CLEAR RADII · REAL PUPIL CLIPPING RETAINED",
-      "NOMINALf/0.90 · FINITE ENTRANCE EQUIVALENT≈f/0.956",
-      "EDGE GEOMETRIC MTF HAS BOUNDED UNKNOWN PUPIL FLUX; SEE ANALYSIS",
-      "PUBLISHED IRIS STATION · PHYSICAL DIAMETER DERIVED",
-      "NO CALIBRATED SPECTRUM / FINITE CONJUGATE",
-    ],
+    specs: ["5 ELEMENTS / 4 GROUPS", "DESIGN F/0.9", "ALL SPHERICAL"],
   },
   elements: [
     {
       id: 1,
       name: "L1",
-      label: "L1",
+      label: "Element 1",
+      diagramLabel: "L1",
       type: "Biconvex Positive",
       nd: 1.63753,
       vd: 56.1,
-      indexReference: "D",
-      glass: "Unmatched (literal historical nD/V; D-only optical scope)",
+      indexReference: "d",
+      focalLengthMm: 126.56,
+      glass: "Unmatched (nd 1.63753 / ν 56.1)",
+      role: "Front positive collector",
     },
     {
       id: 2,
       name: "L2",
-      label: "L2",
+      label: "Element 2",
+      diagramLabel: "L2",
       type: "Negative Meniscus",
       nd: 1.75823,
       vd: 27.4,
-      indexReference: "D",
-      glass: "Unmatched (literal historical nD/V; D-only optical scope)",
+      indexReference: "d",
+      focalLengthMm: -183.65,
+      glass: "Unmatched (nd 1.75823 / ν 27.4)",
+      role: "Dispersive negative member ahead of the diaphragm",
     },
     {
       id: 3,
       name: "L3",
-      label: "L3",
+      label: "Element 3",
+      diagramLabel: "L3",
       type: "Plano-Convex Positive",
       nd: 1.46449,
       vd: 65.8,
-      indexReference: "D",
-      glass: "Unmatched (literal historical nD/V; D-only optical scope)",
+      indexReference: "d",
+      focalLengthMm: 210.23,
+      glass: "FK3 (Schott)",
+      role: "Positive collector behind the diaphragm",
     },
     {
       id: 4,
       name: "L4",
-      label: "L4",
+      label: "Element 4",
+      diagramLabel: "L4",
       type: "Biconvex Positive",
       nd: 1.62203,
       vd: 53.1,
-      indexReference: "D",
-      glass: "Unmatched (literal historical nD/V; D-only optical scope)",
+      indexReference: "d",
+      focalLengthMm: 50.67,
+      glass: "Unmatched (nd 1.62203 / ν 53.1)",
+      role: "Positive member of the rear converging doublet",
+      cemented: "C1",
     },
     {
       id: 5,
       name: "L5",
-      label: "L5",
+      label: "Element 5",
+      diagramLabel: "L5",
       type: "Negative Meniscus",
       nd: 1.75823,
       vd: 27.4,
-      indexReference: "D",
-      glass: "Unmatched (literal historical nD/V; D-only optical scope)",
+      indexReference: "d",
+      focalLengthMm: -94.52,
+      glass: "Unmatched (nd 1.75823 / ν 27.4)",
+      role: "Dispersive negative member of the rear converging doublet",
+      cemented: "C1",
     },
   ],
   surfaces: [
@@ -154,14 +170,13 @@ const data = {
     {
       label: "9",
       R: -369.17,
-      d: 26.00456696498972,
+      d: 26.004567,
       sd: 27,
     },
   ],
   focus: {
-    closeFocusM: 1000000000000000,
-    description:
-      "Literal100mm patent example in source reduction direction, not an identified retail R-Biotar. Source stop43.80 behind R4 and16.59 ahead of R5. Only D-line infinity is modeled; no measured finite conjugates or source-published angle. Physical iris and clear radii inferred; source≈25mm focal-plane diameter bounds the diagnostic field.",
+    closeFocusM: 1e15,
+    description: "Infinity focus only; the patent gives no close-focus data.",
   },
   aperture: {
     nominalFNumber: 0.9,
@@ -185,7 +200,7 @@ const data = {
       toSurface: "4",
     },
     {
-      text: "Plano-positive singlet",
+      text: "Plano-convex positive singlet",
       fromSurface: "5",
       toSurface: "6",
     },
@@ -195,8 +210,9 @@ const data = {
       toSurface: "9",
     },
   ],
+  doublets: [{ text: "C1", fromSurface: "7", toSurface: "9" }],
   layout: {
     yScFill: 0.5,
   },
 } satisfies LensDataV2Input;
-export default data;
+export default LENS_DATA;
