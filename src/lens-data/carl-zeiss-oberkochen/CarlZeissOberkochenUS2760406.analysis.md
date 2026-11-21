@@ -55,9 +55,7 @@ No back focus is printed. The image plane is the computed paraxial plane, 69.02 
 
 The full field is 28.0°, matching the patent's ±14.0°. A real chief ray at 14.0° reaches an image height of 24.80 mm at the paraxial image plane, giving the 49.6 mm image circle. This diameter follows the patent's field at the adopted millimetre scale; no film format or lens mount is identified.
 
-The retained clear semi-diameters at R1–R7 are 28, 28, 24, 20.2, 22, 20.5 and 22 mm. They are estimates rather than printed dimensions. They pass the axial f/2 beam and the 14° chief ray. Portions of the off-axis bundle are vignetted, so chief-ray coverage does not imply complete pupil transmission.
-
-The drawing suggests smaller rims, approximately 25.3, 23.7, 20.6, 17.2 and 20.7 mm for the front, middle and rear faces. The rear pair is drawn with a common outer cylinder, whereas the modeled R6 radius of 20.5 mm is smaller than the adjacent 22 mm rims. These differences remain unresolved.
+The estimated clear semi-diameters at R1–R7 are 28, 26, 20.6, 17.3, 21.1, 21.1 and 21.1 mm. The page 1 drawing supports the middle element's unequal rims and a common rim across the rear cemented pair. The front element remains larger than its drawn clear radii of about 25.3 and 23.7 mm to retain corner light; the rear pair's common radius is slightly above the approximately 20.7 mm drawn value for the same reason. All rims pass the axial f/2 beam and the 14° chief ray. Wide-open geometric transmission is 100% on axis and 75.2% at 14°. Portions of the off-axis bundle are vignetted, so chief-ray coverage does not imply complete pupil transmission.
 
 ## Patent Conditions
 

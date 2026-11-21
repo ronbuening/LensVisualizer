@@ -8,8 +8,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * The text names D, but the printed glass coordinates are d-line values;
  * the model uses d and retains every printed index and Abbe number.
  * The stop is inferred from the drawing, 9.0 mm after R4 and 2.3 mm before R5;
- * its opening is derived for f/2. Clear rims are estimated. The image plane
- * is the computed paraxial back focus, 69.02 mm after R7.
+ * its opening is derived for f/2. Clear rims are estimated from the page 1
+ * drawing, checked against the axial f/2 beam and 14-degree chief ray.
+ * Front rims exceed the drawing to retain corner light; the rear cemented
+ * pair has a common rim. The image plane is the computed paraxial back
+ * focus, 69.02 mm after R7.
  */
 const LENS_DATA = {
   schema: 2,
@@ -115,20 +118,20 @@ const LENS_DATA = {
       label: "2",
       R: 434.01,
       d: 11,
-      sd: 28,
+      sd: 26,
     },
     {
       label: "3",
       R: -100,
       d: 5,
-      sd: 24,
+      sd: 20.6,
       medium: 2,
     },
     {
       label: "4",
       R: 27.384,
       d: 9,
-      sd: 20.2,
+      sd: 17.3,
     },
     {
       label: "STO",
@@ -139,21 +142,21 @@ const LENS_DATA = {
       label: "5",
       R: 77.179,
       d: 24,
-      sd: 22,
+      sd: 21.1,
       medium: 3,
     },
     {
       label: "6",
       R: -23.714,
       d: 5,
-      sd: 20.5,
+      sd: 21.1,
       medium: 4,
     },
     {
       label: "7",
       R: -69.783,
       d: 69.018475,
-      sd: 22,
+      sd: 21.1,
     },
   ],
   aperture: {
