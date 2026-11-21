@@ -46,7 +46,7 @@ Two independent re-readings of the page images found no prescription mismatch, a
 
 Changes:
 
-- Type import: a scratch-relative path → the house `../../types/lensDataV2.js` path; object and default export: `data` → `LENS_DATA`. Added one source header explaining the printed stop station, inferred rims and iris diameter, computed image plane and III's Abbe-number difference.
+- Type import → the house `../../types/lensDataV2.js` path; object and default export: `data` → `LENS_DATA`. Added one source header explaining the printed stop station, inferred rims and iris diameter, computed image plane and III's Abbe-number difference.
 - Key: `merte-us1741947-dline-reference` → `carl-zeiss-jena-tessar-100mm-f35-us1741947`; maker: null → Carl Zeiss Jena; name: the short Merté patent title → CARL ZEISS JENA TESSAR 100mm f/3.5 (US 1,741,947 Design); visible: false → true.
 - Subtitle: the aperture-and-identity disclaimer → “US 1,741,947 A, sole example — Tessar-type design.” Six crowded specification lines → “4 ELEMENTS / 3 GROUPS,” “ALL SPHERICAL,” and “DESIGN F/3.5.”
 - Catalogue design focal length: 100 → 100.05 mm, the rounded computed EFL. The four-element/three-group counts, f/3.5 design aperture, 55° full field, 27.5° tracing limit and chief-ray-derived image circle remain unchanged.
@@ -61,3 +61,5 @@ Before → after: EFL 100.04746793 → 100.04746793 mm; paraxial f-number 3.5 �
 Surface checks report no errors. Aperture checks find no rim limit or trace failure and place the real-ray aperture within 3% of the stated f-number. Image-circle checks report no undersized lens and no skipped lens. Field coverage is 100% at the 27.5° corner: the chief ray reaches 51.64 mm of the 51.64 mm required radius, with no chief-ray blockage. This describes chief-ray coverage, not uniform pupil illumination.
 
 Open: Resolve the oversized rims against the drawing, especially the thin edge of I and pointed rim of IV, without cutting the required axial beam. The production-lens connection and historical glass identities remain unestablished.
+
+Review corrections: image-circle diameter 103.28187606617861 → 103.28 mm; R7 image-plane gap 85.28442868969088 → 85.2844 mm; analysis image-circle diameter 103.28188 → 103.28 mm; type-import description: path provenance → house `../../types/lensDataV2.js` path.

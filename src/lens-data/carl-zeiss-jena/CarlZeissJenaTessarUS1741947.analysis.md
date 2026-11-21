@@ -71,7 +71,7 @@ The model represents infinity focus only. The patent gives no close-focus distan
 
 The patent specifies the diaphragm's position but not its diameter. The paraxial f/3.5 aperture gives a stop radius of 11.90009 mm. Exact axial tracing gives a real-ray entrance equivalent of f/3.549 at that opening; a nominal f/3.5 marginal ray would require a stop radius of 12.07200 mm.
 
-The patent's stated full field of 55° is represented by a 27.5° half-field. Its real chief ray reaches an image height of 51.64094 mm at the paraxial image plane, giving the model's 103.28188 mm image circle. This diameter is derived from the stated field, rather than a published film format. Chief rays clear the estimated rims through 27.5°, while peripheral pupil rays are vignetted; chief-ray coverage does not imply full-pupil illumination.
+The patent's stated full field of 55° is represented by a 27.5° half-field. Its real chief ray reaches an image height of 51.64094 mm at the paraxial image plane, giving the model's 103.28 mm image circle. This diameter is derived from the stated field, rather than a published film format. Chief rays clear the estimated rims through 27.5°, while peripheral pupil rays are vignetted; chief-ray coverage does not imply full-pupil illumination.
 
 Every clear semi-diameter is inferred. The drawing suggests roughly 13.7 mm outer rims, with chamfers near R4 and R5. The model's larger 15.2–16.5 mm rims differ visibly: element I has an edge about 0.24 mm thick, and IV ends in a pointed rim. The drawing's front rim would also be too small for the nominal f/3.5 axial beam. These differences remain unresolved.
 

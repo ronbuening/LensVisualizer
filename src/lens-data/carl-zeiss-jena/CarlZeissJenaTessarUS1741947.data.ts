@@ -27,7 +27,7 @@ const LENS_DATA = {
     sdSource: "heuristic",
   },
   catalog: {
-    imageCircleMm: 103.28187606617861,
+    imageCircleMm: 103.28,
     elementCount: 4,
     groupCount: 3,
     focalLengthMm: {
@@ -143,7 +143,7 @@ const LENS_DATA = {
     {
       label: "7",
       R: -47.22,
-      d: 85.28442868969088,
+      d: 85.2844,
       sd: 16.5,
     },
   ],
