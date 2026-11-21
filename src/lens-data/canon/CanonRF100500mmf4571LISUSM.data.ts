@@ -33,7 +33,7 @@ const LENS_DATA = {
   key: "canon-rf-100-500mm-f45-71-l-is-usm",
   maker: "Canon",
   name: "CANON RF 100-500mm f/4.5-7.1 L IS USM",
-  subtitle: "US 2021/0003832 A1 — Numerical Example 2; production correlation to RF100-500mm F4.5-7.1 L IS USM",
+  subtitle: "US 2021/0003832 A1 — Numerical Example 2; production match to RF100-500mm F4.5-7.1 L IS USM",
 
   catalog: {
     lensMounts: ["canon-rf"],

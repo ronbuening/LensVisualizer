@@ -57,7 +57,7 @@ const LENS_DATA = {
   key: "canon-ef-100-400mm-f45-56l-is-ii-usm",
   maker: "Canon",
   name: "CANON EF 100-400mm f/4.5-5.6 L IS II USM",
-  subtitle: "US 2015/0146044 A1 Numerical Example 2 — production-correlated unscaled patent design",
+  subtitle: "US 2015/0146044 A1 Numerical Example 2 — unscaled patent design matched to the production lens",
 
   catalog: {
     lensMounts: ["canon-ef"],

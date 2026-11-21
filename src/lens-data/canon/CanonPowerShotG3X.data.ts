@@ -50,7 +50,7 @@ const LENS_DATA = {
   key: "canon-powershot-g3x",
   maker: "Canon",
   name: "CANON 8.8-220mm f/2.8-5.6 (Canon PowerShot G3 X)",
-  subtitle: "JP 2016-148731 A — Numerical Example 6 — Canon PowerShot G3 X correlation",
+  subtitle: "JP 2016-148731 A — Numerical Example 6 — Canon PowerShot G3 X match",
 
   catalog: {
     lensMounts: ["fixed-lens-camera"],

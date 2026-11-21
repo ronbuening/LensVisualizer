@@ -25,7 +25,7 @@ const LENS_DATA = {
   key: "canon-ef-70-200f28l-is-usm",
   maker: "Canon",
   name: "CANON EF 70-200mm f/2.8 L IS USM",
-  subtitle: "JP2002162564A Example 1 — correlated patent embodiment; not the exact 23/18 production formula",
+  subtitle: "JP2002162564A Example 1 — patent embodiment matched to the production lens; not the exact 23/18 production formula",
 
   catalog: {
     lensMounts: ["canon-ef"],

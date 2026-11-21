@@ -35,7 +35,7 @@ const LENS_DATA = {
   key: "canon-rfs-18-45mm-f45-63-is-stm",
   maker: "Canon",
   name: "CANON RF-S 18-45mm f/4.5-6.3 IS STM",
-  subtitle: "JP 2021-86024 A — Numerical Example 2; strong production correlation, unscaled",
+  subtitle: "JP 2021-86024 A — Numerical Example 2; strong production match at patent scale",
 
   catalog: {
     lensMounts: ["canon-rf"],

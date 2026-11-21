@@ -19,7 +19,7 @@ const LENS_DATA = {
   key: "canon-ef-28mm-f2-8",
   maker: "Canon",
   name: "CANON EF 28mm f/2.8",
-  subtitle: "JP S62-078520 A, Numerical Example 1 — production correlation",
+  subtitle: "JP S62-078520 A, Numerical Example 1 — production match",
 
   catalog: {
     lensMounts: ["canon-ef"],

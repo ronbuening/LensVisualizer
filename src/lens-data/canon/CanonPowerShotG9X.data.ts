@@ -52,7 +52,7 @@ const LENS_DATA = {
   key: "canon-powershot-g9x",
   maker: "Canon",
   name: "CANON 10.2-30.6mm f/2-4.9 (Canon PowerShot G9 X)",
-  subtitle: "JP 2016-161889 A, Example 1 — PowerShot G9 X correlation; no geometric scaling",
+  subtitle: "JP 2016-161889 A, Example 1 — PowerShot G9 X match; no geometric scaling",
 
   catalog: {
     lensMounts: ["fixed-lens-camera"],

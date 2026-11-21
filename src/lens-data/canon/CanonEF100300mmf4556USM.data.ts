@@ -61,7 +61,7 @@ const LENS_DATA = {
   key: "canon-ef-100300mm-f4556-usm",
   maker: "Canon",
   name: "CANON EF 100-300mm f/4.5-5.6 USM",
-  subtitle: "US 7,158,320 B2 Example 3 — design correlation only; patent postdates the 1990 production lens",
+  subtitle: "US 7,158,320 B2 Example 3 — design match only; patent postdates the 1990 production lens",
 
   catalog: {
     lensMounts: ["canon-ef"],

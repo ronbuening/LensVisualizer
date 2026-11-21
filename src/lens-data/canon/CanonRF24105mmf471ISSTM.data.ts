@@ -61,7 +61,7 @@ const LENS_DATA = {
   key: "canon-rf-24-105mm-f4-71-is-stm",
   maker: "Canon",
   name: "CANON RF 24-105mm f/4-7.1 IS STM",
-  subtitle: "US 2021/0003831 A1 Example 1 — production correlation to Canon RF 24-105mm F4-7.1 IS STM",
+  subtitle: "US 2021/0003831 A1 Example 1 — production match to Canon RF 24-105mm F4-7.1 IS STM",
 
   catalog: {
     lensMounts: ["canon-rf"],

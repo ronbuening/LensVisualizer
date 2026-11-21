@@ -41,7 +41,7 @@ const LENS_DATA = {
   key: "canon-ef-35mm-f14l-ii-usm",
   maker: "Canon",
   name: "CANON EF 35mm f/1.4 L II USM",
-  subtitle: "US 2015/0098138 A1 — Numerical Example 2; patent prescription correlated to the production lens",
+  subtitle: "US 2015/0098138 A1 — Numerical Example 2; patent prescription matched to the production lens",
 
   catalog: {
     lensMounts: ["canon-ef"],

@@ -21,7 +21,7 @@ const LENS_DATA = {
   key: "canon-ef-28-80mm-f35-56-ii",
   maker: "Canon",
   name: "CANON EF 28-80mm f/3.5-5.6 II",
-  subtitle: "US 5,899,585 — Numerical Example 1 (production-correlated patent prescription)",
+  subtitle: "US 5,899,585 — Numerical Example 1 (patent prescription matched to the production lens)",
 
   catalog: {
     lensMounts: ["canon-ef"],

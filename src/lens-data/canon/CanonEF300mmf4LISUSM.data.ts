@@ -15,7 +15,7 @@ const LENS_DATA = {
   key: "canon-ef-300mm-f4l-is-usm",
   maker: "Canon",
   name: "CANON EF 300mm f/4 L IS USM",
-  subtitle: "US 6,618,197 B1 — Numerical Example 2; patent design correlated with the production lens",
+  subtitle: "US 6,618,197 B1 — Numerical Example 2; patent design matched with the production lens",
   catalog: {
     lensMounts: ["canon-ef"],
     imageFormat: "135-full-frame",

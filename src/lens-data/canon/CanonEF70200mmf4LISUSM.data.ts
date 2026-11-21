@@ -61,7 +61,7 @@ const LENS_DATA = {
   key: "canon-ef-70-200mm-f4l-is-usm",
   maker: "Canon",
   name: "CANON EF 70-200mm f/4 L IS USM",
-  subtitle: "JP2008070450A Example 1 — strong production correlation; unscaled patent prescription",
+  subtitle: "JP2008070450A Example 1 — strong production match; unscaled patent prescription",
 
   catalog: {
     lensMounts: ["canon-ef"],

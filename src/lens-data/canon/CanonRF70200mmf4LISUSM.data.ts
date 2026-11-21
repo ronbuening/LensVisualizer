@@ -59,7 +59,7 @@ const LENS_DATA = {
   key: "canon-rf70-200mm-f4-l-is-usm",
   maker: "Canon",
   name: "CANON RF 70-200mm f/4 L IS USM",
-  subtitle: "US 2021/0033835 A1 — Numerical Example 1 / production correlation",
+  subtitle: "US 2021/0033835 A1 — Numerical Example 1 / production match",
 
   catalog: {
     lensMounts: ["canon-rf"],

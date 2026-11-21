@@ -61,7 +61,7 @@ const LENS_DATA = {
   key: "canon-ef-100-300mm-f5-6",
   maker: "Canon",
   name: "CANON EF 100-300mm f/5.6",
-  subtitle: "JP S61-77818 A sole example — strong inferred correlation to the Canon EF100-300mm f/5.6",
+  subtitle: "JP S61-77818 A sole example — strong inferred match to the Canon EF100-300mm f/5.6",
 
   catalog: {
     lensMounts: ["canon-ef"],
