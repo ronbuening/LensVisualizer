@@ -14,7 +14,7 @@
 
 **Example details:** Sole numerical example; prescription on PDF p. 2, repeated in claims 1 and 2 on PDF p. 3.
 
-The patent describes a photographic triplet at f/4.9, with a nominal seven-inch focal length and a 10° field. All dimensional values are converted from inches to millimetres by a factor of 25.4. The table's more precise focal length is 179.55514 mm; the model computes to 179.55328 mm.
+The patent describes a photographic triplet at f/4.9, with a nominal seven-inch focal length and a 10.0° field. All dimensional values are converted from inches to millimetres by a factor of 25.4. The table's focal length is 7.0691 inches, or 179.555 mm; the model computes to 179.553 mm.
 
 No production lens or camera is documented for this prescription. Northrop Aircraft, Inc. is the patent assignee; the patent does not establish a lens manufacturer or product name.
 
@@ -46,25 +46,25 @@ The rear crown completes image formation, with most of its power at the more str
 
 ## Glass Identification and Spectral Data
 
-The patent explicitly defines ND as the sodium D line at 5893 Å, NF as the hydrogen F line at 4861 Å, and NC as the hydrogen C line at 6563 Å. Each element retains the printed D-line index, Abbe number, and C/F indices. The file therefore uses the D-line reference throughout, without substituting helium d.
+The patent explicitly defines ND as the sodium D line at 5893 Å, NF as the hydrogen F line at 4861 Å, and NC as the hydrogen C line at 6563 Å. Each element retains the printed D-line index, Abbe number, and C/F indices. The D-line reference applies throughout, without substituting helium d.
 
-BSC-2 and DF-2 remain unmatched. At sodium D, Ohara S-BAL11 gives nD = 1.57241234 and νD = 57.73405, differing from the printed LBC-2 values by −0.00008766 and −0.06595. Its label is a catalog coordinate match; the authored refractive indices and Abbe number remain those in the patent.
+BSC-2 and DF-2 remain unmatched. At sodium D, Ohara S-BAL11 gives approximately nD = 1.57241 and νD = 57.73, differing from the printed LBC-2 values by −0.00009 and −0.07. Its label identifies similar optical properties; the refractive indices and Abbe number remain those in the patent.
 
 The patent supplies no g-line index or anomalous-dispersion designation. Its C/F indices support comparisons at those wavelengths, but do not establish the historical glass's complete dispersion curve or apochromatic performance.
 
-Using those printed indices, the calculated C-line EFL/BFD are 179.68624/143.82665 mm, and the F-line values are 179.43211/143.38898 mm. These are paraxial wavelength comparisons, not measured image-quality results.
+Using those printed indices, the calculated C-line EFL/BFD are 179.69/143.83 mm, and the F-line values are 179.43/143.39 mm. These are paraxial wavelength comparisons, not measured image-quality results.
 
 ## Focus Mechanism
 
-The model represents infinity focus only. The patent gives no close-focus distance, movement law or finite-conjugate prescription. The image plane is the computed paraxial infinity plane, 143.63747 mm behind surface 6, compared with the printed back focal length of 143.63446 mm. The difference is approximately 0.003 mm.
+The model is focused at infinity. The patent gives no close-focus distance, movement law or finite-conjugate prescription. The image plane is the computed paraxial infinity plane, 143.637 mm behind surface 6, compared with the printed back focal length of 143.634 mm. The difference is approximately 0.003 mm.
 
 ## Aperture, Field and Clear Rims
 
-The printed distance from the pole of surface 2 to the stop reads 0.7028 inch: 17.85112 mm behind surface 2 and 11.2395 mm before surface 3. The total air gap is 29.09062 mm. The drawing places the stop closer to the front element than this numerical distance does; the numerical description determines the modeled position.
+The printed distance from the pole of surface 2 to the stop reads 0.7028 inch: 17.851 mm behind surface 2 and 11.240 mm before surface 3. The total air gap is 29.091 mm. The drawing places the stop closer to the front element than this numerical distance does; the numerical description determines the modeled position.
 
-The printed stop diameter is 1.170 inch, or 29.718 mm. At the stated position it gives paraxial f/4.82 and real-ray f/4.87. The printed overall clear diameter is 1.452 inch, or 36.8808 mm, giving f′/D = 4.87. These figures are consistent with the patent's rounded f/4.9 designation. At the model's f/4.9 setting, the computed stop diameter is 29.25004 mm.
+The printed stop diameter is 1.170 inch, or 29.718 mm. At the stated position it gives paraxial f/4.82 and real-ray f/4.87. The printed overall clear diameter is 1.452 inch, or 36.881 mm, giving f′/D = 4.87. These figures are consistent with the patent's rounded f/4.9 designation. At the model's f/4.9 setting, the computed stop diameter is 29.250 mm.
 
-The patent's 10° field is represented as a full field, with a 5° half-field. The real chief ray at 5° reaches an image height of approximately 15.72 mm; the catalog image-circle diameter is consequently 31.44 mm. The chief ray clears every surface and the axial beam passes, while some off-axis pupil clipping remains. Chief-ray coverage does not establish complete corner illumination.
+The patent's 10.0° field is interpreted as a full field, with a 5.0° half-field. The real chief ray at 5.0° reaches an image height of approximately 15.72 mm, giving an image-circle diameter of 31.44 mm. The chief ray clears every surface and the axial beam passes, while some off-axis pupil clipping remains. Chief-ray coverage does not establish complete corner illumination.
 
 The patent gives a single clear diameter, not individual surface rims. The model assigns its half-diameter, 18.4404 mm, to all six faces. The minimum glass edge thickness is approximately 1.84 mm, and the two minimum inter-element air gaps are 26.21 and 13.63 mm. These inferred rims preserve positive edge thickness and clear air spaces, but the schematic drawing does not establish their individual sizes.
 
@@ -72,12 +72,12 @@ The patent gives a single clear diameter, not individual surface rims. The model
 
 | Quantity               |       Patent |        Model |
 | ---------------------- | -----------: | -----------: |
-| Effective focal length | 179.55514 mm | 179.55328 mm |
-| Back focal length      | 143.63446 mm | 143.63747 mm |
+| Effective focal length | 179.555 mm | 179.553 mm |
+| Back focal length      | 143.634 mm | 143.637 mm |
 | Design aperture        |        f/4.9 |        f/4.9 |
-| Full field             |          10° |          10° |
+| Full field             |        10.0° |        10.0° |
 
-The first-to-last optical surface span is 60.39866 mm, and the first surface to image distance is 204.03613 mm. The model retains the printed radii, glass thicknesses and total air spaces. The computed image plane differs slightly from the printed back focus; neither is a plane selected to minimize a spot size. Surface geometry is valid without an increased gap allowance, and no glass rim intersects the stop plane.
+The first-to-last optical surface span is 60.40 mm, and the first surface to image distance is 204.04 mm. The model retains the printed radii, glass thicknesses and total air spaces. The computed image plane differs slightly from the printed back focus; neither is a plane selected to minimize a spot size. The surfaces stay clear of each other, and no glass rim intersects the stop plane.
 
 ## Sources
 

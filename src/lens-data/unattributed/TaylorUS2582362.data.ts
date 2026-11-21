@@ -2,12 +2,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * US 2,582,362 A (1952), sole example: Philip H. Taylor's photographic triplet.
- * All printed lengths are converted from inches to millimetres by a factor of 25.4.
- * The printed stop is 17.85112 mm behind surface 2. Its diameter of 1.170 in
- * (29.718 mm) gives paraxial f/4.82; the clear diameter of 1.452 in (36.8808 mm)
- * gives f′/D = 4.87, consistent with the patent's rounded f/4.9 designation.
- * The model uses f/4.9. Equal surface rims are inferred from the single printed
- * clear diameter; the image plane is the computed paraxial infinity plane.
+ * Printed inch dimensions are converted to millimetres by a factor of 25.4.
+ * The numerical stop position is 17.851 mm behind surface 2; the drawing puts it
+ * farther forward. The printed stop diameter of 29.718 mm gives paraxial f/4.82;
+ * the clear diameter of 36.881 mm gives f′/D = 4.87, consistent with rounded f/4.9.
+ * The model uses f/4.9 and equal rims inferred from that single clear diameter.
+ * The image plane is the computed paraxial infinity plane, not the printed back focus.
  * The patent's sodium-D index, Abbe number and C/F indices are retained for each glass.
  */
 const LENS_DATA = {
@@ -15,7 +15,7 @@ const LENS_DATA = {
   key: "taylor-180mm-f49-us2582362",
   maker: null,
   name: "TAYLOR 180mm f/4.9 (US 2,582,362 Design)",
-  subtitle: "US 2,582,362 A, sole example — photographic triplet design",
+  subtitle: "US 2,582,362 A, sole example — Northrop Aircraft / Taylor",
   visible: true,
   source: {
     patentNumber: "US 2,582,362 A",
@@ -35,7 +35,7 @@ const LENS_DATA = {
     focalLengthMm: {
       design: 179.55,
     },
-    specs: ["3 ELEMENTS / 3 GROUPS", "ALL SPHERICAL", "DESIGN F/4.9", "DESIGN f = 179.55 mm"],
+    specs: ["3 ELEMENTS / 3 GROUPS", "ALL SPHERICAL", "DESIGN F/4.9", "DESIGN f = 179.56 mm"],
     fNumber: {
       design: 4.9,
     },

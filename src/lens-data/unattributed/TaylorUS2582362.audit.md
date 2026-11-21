@@ -1,54 +1,55 @@
-# TAYLOR 180mm f/4.9 (US 2,582,362 Design) — Audit
+# TAYLOR 180mm f/4.9 (US 2,582,362 Design) — Audit Log
 
 ## Source
 
-US 2,582,362 A, _Photographic Triplet Objective_, names Philip H. Taylor as inventor and Northrop Aircraft, Inc. as assignee. It was filed on 3 July 1950 and published on 15 January 1952. The drawing occupies PDF p. 1; the sole numerical example is on p. 2 and repeats in both claims on p. 3.
+[US 2,582,362 A, _Photographic Triplet Objective_](https://patents.google.com/patent/US2582362A/en), by Philip H. Taylor, was assigned to Northrop Aircraft, Inc. The filing and priority date is 3 July 1950; publication was 15 January 1952. The sole numerical example is on PDF p. 2 and repeats in claims 1 and 2 on p. 3. The drawing occupies p. 1. No product source identifies this prescription with a production lens.
 
-## Transcription
+## Transcription Check
 
-Two independent readings of the page images agree on the six signed radii, five intersurface distances, three sets of NF/ND/NC and V, clear diameter, stop diameter, focal length and back focal length. The radius signs are +, −, −, +, +, −. The three glasses are BSC-2 borosilicate crown, DF-2 dense flint and LBC-2 light barium crown. The patent explicitly identifies the sodium D line at 5893 Å.
+The six signed radii, three glass thicknesses, two complete air spaces and three sets of C/D/F indices and Abbe numbers agree with the page images on PDF pp. 2–3. All printed inch dimensions use the exact conversion factor 25.4 to millimetres. The radius signs are +, −, −, +, +, −, matching the biconvex, biconcave and biconvex elements in the drawing. The glasses are BSC-2 borosilicate crown, DF-2 dense flint and LBC-2 light barium crown. The patent explicitly defines sodium D at 5893 Å, hydrogen F at 4861 Å and hydrogen C at 6563 Å.
 
-The stop-position line was read as either 0.7026 or 0.7028 inch. At 1200 dpi its final digit is an 8. The adopted position is therefore 17.85112 mm after surface 2, with 11.2395 mm remaining before surface 3. The complete air gap remains 29.09062 mm.
+The only disputed digit was the surface-2-to-stop distance: the enlarged page image reads 0.7028 inch, not 0.7026 inch. This places the stop 17.851 mm behind surface 2 and 11.240 mm before surface 3, preserving the complete 29.091 mm air gap. The printed clear diameter, stop diameter, focal length and back focal length also agree with the page images.
 
-## First-Order Properties
+## First-Order Check
 
-The printed EFL and BFD are 179.55514 and 143.63446 mm. The calculated values are 179.55328 and 143.63747 mm. The stored image plane is the calculated paraxial plane. The powered track is 60.39866 mm; total first-surface-to-image distance is 204.03613 mm.
+The patent prints an EFL of 7.0691 inches, or 179.555 mm, and a BFD of 5.6549 inches, or 143.634 mm. The calculated EFL is 179.553 mm and BFD is 143.637 mm: differences of −0.002 mm and +0.003 mm. The image plane is 143.637 mm behind surface 6, at paraxial infinity focus. The first-to-last optical surface span is 60.40 mm and the first-surface-to-image distance is 204.04 mm.
 
-The original aperture setting was f/4.823134919231473 and reproduced the printed 29.718 mm stop at the earlier stop station. The patent names f/4.9 three times. Its printed stop gives approximately paraxial f/4.82 and real-ray f/4.87; the clear diameter gives f′/D = 4.87. The model now uses the stated f/4.9, producing a 29.25004 mm stop diameter at the corrected station.
+The patent names f/4.9 three times. Its printed 29.718 mm stop diameter gives approximately paraxial f/4.82 and real-ray f/4.87; its 36.881 mm clear diameter gives f′/D = 4.87. These are consistent with the rounded aperture designation. At the modeled f/4.90, the stop radius is 14.625 mm and diameter is 29.250 mm, smaller than the printed stop.
 
-## Not Printed
+The surfaces stay clear of each other; no glass rim intersects the stop plane, and the iris limits the axial aperture. The minimum glass edge thickness is approximately 1.84 mm; minimum inter-element air gaps are 26.21 and 13.63 mm. The 5.0° chief ray clears every surface and reaches an image height of approximately 15.72 mm. Some off-axis pupil clipping remains, so this establishes chief-ray coverage rather than complete corner illumination.
 
-Individual clear semi-diameters are unprinted. All six use 18.4404 mm, inferred from the single overall clear diameter. The image-circle diameter of 31.44 mm follows the real chief-ray height at the modeled 5° half-field. Close-focus behavior and a g-line refractive index are unprinted. The focal lengths attached to individual elements are calculated in air.
+Using the printed spectral indices, the C-line EFL/BFD are 179.69/143.83 mm and the F-line values are 179.43/143.39 mm. These are paraxial wavelength comparisons, not measured image-quality results.
 
-## Product
+## Values Not Printed in the Patent
 
-No production lens or camera is documented for this prescription. Northrop Aircraft, Inc. is the assignee, and does not establish a lens maker or product identity.
+The patent gives one overall clear diameter of 1.452 inches, not six individual surface rims. All six clear semi-diameters are inferred as 18.4404 mm from that value. The schematic drawing establishes the three air-spaced singlets and stop between the first two elements, but places the stop farther forward than the numerical description does. The numerical position determines the model.
 
-## Corrections
+The patent's 10.0° field is interpreted as a full field, giving a 5.0° half-field. The 31.44 mm image-circle diameter follows the real chief-ray height at that angle; it is not a published production format or a claim of full edge illumination.
 
-The stop-distance transcription, aperture setting and assignee metadata required correction. The surface curvatures, total air spaces, glass thicknesses, sodium-D reference and printed spectral data agree with the patent. The image plane remains the paraxial infinity plane.
+The image plane and individual in-air element focal lengths are calculated. `focus.closeFocusM` is 10¹⁵ m, which stands for infinity. No finite-focus movement or measured close-focus distance is given. The selectable f-stops are 4.9, 5.6, 8, 11, 16 and 22, with `aperture.maxFNumber` at 22; the patent gives no minimum iris opening or stop range.
+
+The printed D-line reference, Abbe numbers and C/F indices are retained for all three glasses. BSC-2 and DF-2 have no matching catalog rows. S-BAL11 (Ohara) has similar optical properties to LBC-2: approximately nD = 1.57241 and νD = 57.73, with catalog-minus-patent differences ΔnD ≈ −0.00009 and ΔνD ≈ −0.07. That label does not establish a historical supplier or melt. No g-line index or anomalous-dispersion designation is printed; a complete historical dispersion curve and apochromatic performance are not established.
+
+## Product Identification
+
+No production lens or camera is documented for this prescription. Northrop Aircraft, Inc. is the patent assignee; manufacturing and a product name are unconfirmed. `maker` remains null. No mount, production image format, diaphragm blade count or roundedness, marketed focal length or f-number, marketed minimum focus distance, or teleconverter compatibility is assigned.
+
+## Corrections, 2026-11-21
+
+- The key and title identify Taylor's nominal 180 mm f/4.9 patent design, and the lens is visible. The maker remains unconfirmed rather than being inferred from the assignee.
+- The patent designation gained its A kind code, the publication year was supplied as 1952, and Northrop Aircraft, Inc. replaced the empty assignee list. Philip H. Taylor and the sole-example designation are retained.
+- The stop distance was corrected from 0.7026 to 0.7028 inch. The surface-2-to-stop spacing changed from 17.846 to 17.851 mm and the remaining spacing from 11.245 to 11.240 mm. The stop moved rearward by approximately 0.005 mm without changing the complete air gap.
+- The nominal aperture changed from f/4.82 to the repeatedly printed f/4.90. The first selectable f-stop changed accordingly; the remaining values and f/22 endpoint are retained. The stop radius changed from 14.859 to 14.625 mm, so the aperture designation takes precedence over reproducing the printed stop diameter exactly.
+- The catalog design focal length identifies the calculated EFL, 179.55 mm, rather than the patent's tabulated focal length. The 31.44 mm image circle follows the printed field and chief-ray height. The three-element, three-group count, 5.0° half-field, inferred rims and paraxial image plane are retained; there is no change of optical scale or index reference.
+- Element types now identify the positive biconvex front and rear elements and negative biconcave middle element. Element 1–3 labels, optical roles and in-air focal lengths of +104.33, −43.88 and +69.82 mm replace generic descriptions. Group brackets identify the front positive, middle negative and rear positive elements.
+- Generic glass descriptions were replaced by named unmatched BSC-2 and DF-2 labels and S-BAL11 (Ohara) for LBC-2. The catalog differences for the rear glass are ΔnD ≈ −0.00009 and ΔνD ≈ −0.07; all printed refractive indices and Abbe numbers remain unchanged (Δn = 0, Δν = 0).
+- The subtitle identifies Northrop Aircraft and Taylor beside the patent and sole example. The four specifications state the three-element, three-group construction, spherical surfaces, design f/4.9 and printed 179.56 mm focal length. The focus description states infinity focus and the absence of close-focus data.
+
+After these corrections, the EFL is 179.553 mm, BFD is 143.637 mm, aperture is f/4.90, stop radius is 14.625 mm and half-field is 5.0°. The EFL and BFD remain those of the original prescription.
 
 ## Remaining Questions
 
-Open: individual rims cannot be recovered from the single clear diameter. The drawing is schematic: its stop station differs from the numerical description. The six equal rims require comparison with any further dimensional source before they can be treated as measured apertures. The historical glass suppliers and any production use remain unknown.
-
-## 2026-11-21 — Deployment validation and cleanup
-
-Two independent readings of the page images confirm the prescription and bibliographic details; the enlarged stop line resolves the only transcription disagreement as 0.7028 inch. The prescription is valid with inferred individual rims and a rounded aperture designation; no product link is documented.
-
-- Identity: key `philip-taylor-us2582362-iris-reference` → `taylor-180mm-f49-us2582362`; name `PHILIP H. TAYLOR US2582362 — HISTORICAL f/4.9 IRIS REFERENCE` → `TAYLOR 180mm f/4.9 (US 2,582,362 Design)`; visibility false → true; maker remains null.
-- Source: patent number `US 2,582,362` → `US 2,582,362 A`; missing year → 1952; empty assignee list → Northrop Aircraft, Inc. The inventor and sole-example designation are retained.
-- Stop station: surface 2 distance 17.84604 → 17.85112 mm; stop-to-surface-3 distance 11.24458 → 11.2395 mm. The stop moves rearward by 0.00508 mm without changing the total gap.
-- Aperture: nominal f-number 4.823134919231473 → 4.9; f-stop series beginning at 4.823134919231473 → 4.9, 5.6, 8, 11, 16, 22. Maximum f-number remains 22.
-- Catalog: design focal length 179.55514 → 179.55 mm, the calculated EFL rounded to two decimals; image-circle diameter 31.44494130695838 → 31.44 mm. Element/group counts remain 3/3; the 10° full field and 5° trace half-field remain.
-- Element descriptions: generic spherical types → Biconvex Positive / Biconcave Negative / Biconvex Positive; L1/L2/L3 display labels → Element 1/2/3. Optical roles and calculated focal lengths +104.33/−43.88/+69.82 mm are added. Group captions now describe the positive–negative–positive arrangement.
-- Glass: generic unmatched descriptions → `Unmatched (BSC-2, nD 1.517 / ν 64.5)`, `Unmatched (DF-2, nD 1.617 / ν 36.6)` and `S-BAL11 (Ohara)`. All authored nD, ν, nC and nF values remain unchanged (Δn = 0, Δν = 0). No exact catalog rows are available for BSC-2 or DF-2. At sodium D the resolved Ohara row differs from LBC-2 by Δn = −0.00008766 and Δν = −0.06595; this is a coordinate match, not a supplier identification.
-- Public wording: the long aperture description becomes `US 2,582,362 A, sole example — photographic triplet design`; eight prose specifications become `3 ELEMENTS / 3 GROUPS`, `ALL SPHERICAL`, `DESIGN F/4.9`, `DESIGN f = 179.55 mm`. The focus paragraph becomes `Infinity focus only; the patent gives no close-focus data.` Close-focus placeholder remains 1e15 m; no marketing focus distance is assigned.
-- File form: the type import now uses the house relative path and the default export is named LENS_DATA. A single source header explains the units, stop, rounded aperture, inferred rims and calculated image plane. Float artifacts are rounded: R3 −57.65545999999999 → −57.65546 mm, R4 51.88965999999999 → 51.88966 mm, third-element thickness 7.619999999999999 → 7.62 mm, last gap 143.6374689300742 → 143.63746893 mm. The numerical changes are below the printed precision.
-- Analysis and audit: the previous operational text is replaced by source identification, optical architecture, element and glass descriptions, focus, aperture/field, first-order properties, source references and a factual audit history.
-
-Calculated EFL is 179.553283944 mm before and after. BFD is 143.637468930 mm before and after. Aperture changes from f/4.823134919 to f/4.9; stop radius changes from 14.859000000 to 14.625018478 mm. The half-field stays 5°.
-
-Surface geometry: no errors. Axial aperture: no rim limit, trace limit, iris limit or failed station. Image-circle clearance: one lens checked, zero undersized and zero skipped. Field coverage: 100% at 5°, reaching 15.72 mm image height with the corner chief ray clear; zero unsolved or skipped stations. All three element focal lengths agree with their stored values. Rims remain 18.4404 mm throughout, with no stop-plane intersection.
-
-Open: individual surface rims remain inferred; the figure's different stop station is schematic and does not replace the printed distance. Partial edge-pupil clipping remains despite full chief-ray coverage. No historical supplier or production product is established.
+- Individual surface rims are inferred from the single clear diameter. Their exact sizes and the drawing's different stop position remain unexplained.
+- The patent does not explicitly say whether its 10.0° field is a full angle. The model uses the conventional full-field interpretation, and complete edge illumination is not established.
+- BSC-2 and DF-2 remain unmatched to catalog glasses. Historical suppliers, melt identities, the g-line index and a complete dispersion curve are unknown.
+- No source establishes a production product, manufacturer, mount, production image format, diaphragm blade count or shape, minimum iris opening, marketed specifications, teleconverter compatibility or close-focus mechanism.
