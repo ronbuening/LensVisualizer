@@ -41,3 +41,8 @@ assignee arrays. Product correlation with Schacht is not evidence of an assignme
 ## 2026-09-17 — Local-site diagram and inspector follow-up
 
 Direct local-site review against DE 843305 C p. 4 Fig. 2 confirms the retained 15.5 mm rear rim and front-element silhouette. No further SD change is justified. Named the existing N-SK16 proxy for L2 so its glass annotation agrees with the inspector's resolved curve. All four elements have compatible spectral curves. All are spherical singlets; shape/power labels and nd-based fill colors agree with the source data. Focus remains disabled at infinity, with no zoom control or authored motion law. Replaced the internal reconstruction code in the focus caption with a plain-language explanation.
+
+## 2026-11-20 — Public wording
+
+Rewrote the subtitle and analysis focus section in plain language; the internal focus-status code no longer appears in
+public text. No optical data, rim or focus value changed.
