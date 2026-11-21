@@ -74,7 +74,7 @@ The stated aperture is f/4.5, but the physical iris opening is unprinted. The pa
 
 The assumed iris size matters: varying its radius by ±2% gives entrance-equivalent apertures from about f/4.645 to f/4.468. The clear rims do not limit the axial beam before the iris. At the modeled iris radius, the adjacent glass surfaces remain about 4.908 mm and 5.605 mm away from its plane.
 
-The patent prints no field angle, format or image circle. The retained 12° half-field is illustrative. Its chief ray reaches an image height of 40.048038 mm at the fixed image plane, giving the stored derived circle of 80.096076 mm. The chief ray clears every rim there, while some marginal off-axis rays are vignetted. This circle describes the selected field, not a documented production format or maximum usable coverage.
+The patent prints no field angle, format or image circle. The retained 12° half-field is illustrative. Its chief ray reaches an image height of 40.048038 mm at the fixed image plane. The chief ray clears every rim there, while some marginal off-axis rays are vignetted.
 
 ## Model Scope and Source Consistency
 

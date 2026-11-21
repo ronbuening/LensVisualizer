@@ -22,7 +22,7 @@ The rear-pair index difference is 0.0563, within the stated 0.05–0.06 range, a
 
 ## Not printed
 
-The patent supplies no back focus, physical iris diameter, clear rims, field angle, image circle, close-focus prescription or f-stop ladder. The final image distance is the D-line paraxial result. The rims are estimates, and the selected 12° half-field gives a derived 80.096076 mm circle, rather than a source coverage claim.
+The patent supplies no back focus, physical iris diameter, clear rims, field angle, image circle, close-focus prescription or f-stop ladder. The final image distance is the D-line paraxial result. The rims are estimates, and the selected 12° half-field is illustrative; no image circle is stored.
 
 The minimum modeled glass edge thicknesses are about 1.221 mm for element 1 and 1.338 mm for element 4. Both air intervals stay open, with minimum clearances of about 3.535 and 6.812 mm and sag-consumption fractions of 0.3453 and 0.5428. At the shared 24 mm central clear radius, the diaphragm plane has about 1.673 mm front and 5.139 mm rear clearance; at the assumed iris opening these become 4.908 and 5.605 mm. No glass crosses the diaphragm plane.
 
@@ -51,7 +51,7 @@ Changes:
 - Source consistency: absent errata entry → unresolved D-line focal-length residual, with the printed G′ comparison. The header now distinguishes printed dimensions from the inferred iris, rims, field and computed image plane.
 - Subtitle: extended aperture and field description → “US 1,558,073 A, sole example — Tessar-type four-element objective”.
 - Specifications: eight explanatory lines → “4 ELEMENTS / 3 GROUPS”, “ALL SPHERICAL”, “DESIGN F/4.5” and “DESIGN f = 188 mm”.
-- Catalogue design focal length: 188 → 188.64 mm, the computed D-line EFL rounded to two decimals. Element/group counts remain 4/3; the existing illustrative image circle and 12° half-field remain unchanged.
+- Catalogue design focal length: 188 → 188.64 mm, the computed D-line EFL rounded to two decimals. Element/group counts remain 4/3; the 12° half-field remains illustrative.
 - Element labels: L1–L4 → Element 1–Element 4. Element 3 type: Rear Cemented Component → Biconcave Negative.
 - Element focal lengths: absent → +73.44, −56.75, −71.37 and +48.28 mm, each evaluated separately in air. Roles now identify the positive front collector, negative middle singlet, negative front doublet member and positive rear doublet member.
 - Cemented pair: absent identifiers → C1 on elements 3 and 4 and a C1 entry spanning surfaces 5–7.
@@ -60,6 +60,8 @@ Changes:
 - File form: relative type import corrected; constant and default export named LENS_DATA; one explanatory header added. Radii, axial distances, glass coordinates, rims, diaphragm station, image plane, f-stop ladder and aperture settings remain unchanged.
 - Analysis: replaced incomplete metadata rows with the patent, inventors, assignee and publication rows; added the matching title, full design sections, individual element powers, printed G′ table, first-order comparison, source limitations and patent citations. The audit now records source evidence, transcription, first-order results, unprinted values, product evidence, corrections and remaining questions.
 
-Before → after first-order values are identical: EFL 188.640797620 → 188.640797620 mm; paraxial aperture f/4.5 → f/4.5; BFD 166.977795948 → 166.977795948 mm; iris radius 17.975138734 → 17.975138734 mm; half-field 12° → 12°. Surface geometry reports no errors. The aperture check reports no rim, trace or iris limit within its 3% aperture criterion, with no failed station. The image-circle check finds no undersized surface. The field check reaches 100% of the retained circle at 12°, image height 40.048038 mm, with a clear chief ray; this checks the illustrative circle only.
+Before → after first-order values are identical: EFL 188.640797620 → 188.640797620 mm; paraxial aperture f/4.5 → f/4.5; BFD 166.977795948 → 166.977795948 mm; iris radius 17.975138734 → 17.975138734 mm; half-field 12° → 12°. Surface geometry reports no errors. The aperture check reports no rim, trace or iris limit within its 3% aperture criterion, with no failed station. Image-circle and field-coverage checks have no source-backed circle or format to assess. At the illustrative 12° half-field, the chief ray reaches image height 40.048038 mm and clears every rim.
 
 Open: retained rims versus the drawing's common height; physical iris diameter and the f/4.554866 real-ray aperture; unknown historical glass identities; the remaining nominal-focus difference; and the absence of a documented production lens or published field.
+
+Review corrections: catalogue image circle 80.09607598911735 mm → omitted because the patent prints no field or format; header, analysis and audit wording describing a stored derived circle → wording retaining only the illustrative 12° half-field; circle-based coverage claims → no source-backed circle or format to assess.
