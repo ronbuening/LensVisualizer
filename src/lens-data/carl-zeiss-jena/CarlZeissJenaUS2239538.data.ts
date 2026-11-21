@@ -6,7 +6,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * d-line indices, Abbe numbers and the 14.23 / 16.14 stop split are printed.
  * Clear semi-diameters are inferred; the iris radius follows nominal f/6.3.
  * The last gap is 41.58 mm: printed front-vertex-to-focus distance 79.37
- * minus the 37.79 mm lens track, rather than the paraxial BFD of 41.5995 mm.
+ * minus the 37.79 mm lens track, rather than the paraxial BFD of 41.60 mm.
  * L1 and L3 retain the same printed nd 1.60801 and different Abbe numbers,
  * 45.0 and 46.2. The patent states an image field of about 30 degrees.
  */
@@ -15,7 +15,7 @@ const LENS_DATA = {
   key: "carl-zeiss-jena-100mm-f63-us2239538",
   maker: "Carl Zeiss Jena",
   name: "CARL ZEISS JENA 100mm f/6.3 (US 2,239,538 Design)",
-  subtitle: "US 2,239,538 A, Figure 2 — four-element telephoto design",
+  subtitle: "US 2,239,538 A, Figure 2 — Zeiss / Richter",
   visible: true,
   source: {
     patentNumber: "US 2,239,538 A",
@@ -29,7 +29,7 @@ const LENS_DATA = {
     sdSource: "heuristic",
   },
   catalog: {
-    imageCircleMm: 54.192,
+    imageCircleMm: 54.2,
     elementCount: 4,
     groupCount: 4,
     focalLengthMm: {
@@ -38,7 +38,13 @@ const LENS_DATA = {
     fNumber: {
       design: 6.3,
     },
-    specs: ["4 ELEMENTS / 4 GROUPS", "ALL SPHERICAL", "DESIGN F/6.3", "TELEPHOTO"],
+    specs: [
+      "4 ELEMENTS / 4 GROUPS",
+      "ALL SPHERICAL",
+      "DESIGN f = 100 mm",
+      "DESIGN F/6.3",
+      "TELEPHOTO",
+    ],
   },
   elements: [
     {
@@ -165,23 +171,13 @@ const LENS_DATA = {
   },
   groups: [
     {
-      text: "FRONT POSITIVE",
+      text: "FRONT SYSTEM (+)",
       fromSurface: "1",
-      toSurface: "2",
-    },
-    {
-      text: "FRONT NEGATIVE",
-      fromSurface: "3",
       toSurface: "4",
     },
     {
-      text: "REAR NEGATIVE",
+      text: "REAR SYSTEM (−)",
       fromSurface: "5",
-      toSurface: "6",
-    },
-    {
-      text: "REAR POSITIVE",
-      fromSurface: "7",
       toSurface: "8",
     },
   ],

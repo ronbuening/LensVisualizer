@@ -18,7 +18,7 @@
 
 **Example details:** Figure 2, the second of two numerical examples; its table appears on drawing sheet 2 and the first specification page.
 
-The patent describes a four-element telephoto objective with an aperture ratio of 1:6.3 and an image field of about 30°. It gives f = 100; the model reads the dimensions in millimetres. The front page names the assignee as “the firm Carl Zeiss, Jena, Germany”; Carl-Zeiss-Stiftung is the catalog's canonical entity name. The [original facsimile](https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/2239538) supplies the prescription and dates.
+The patent describes a four-element telephoto objective with an aperture ratio of 1:6.3 and an image field of about 30°. It gives f = 100; the model reads the dimensions in millimetres. The front page names the assignee as “the firm Carl Zeiss, Jena, Germany.” The [original facsimile](https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/2239538) supplies the prescription and dates.
 
 ## Optical Architecture
 
@@ -60,15 +60,15 @@ Element 3 matches the tabulated 1.60801 / 46.2 coordinates of CDGM H-BaF6. The c
 
 ## Stop, Focus and Image Plane
 
-The diaphragm is drawn between elements 2 and 3. Its printed distances are 14.23 mm after surface 4 and 16.14 mm before surface 5, placing it 18.71 mm behind the first vertex. Its diameter is unprinted. The nominal f/6.3 aperture gives an iris radius of 5.4313 mm; the corresponding real-ray entrance aperture is about f/6.41. The drawn opening has a radius of approximately 5.5 mm (about 11 mm across).
+The diaphragm is drawn between elements 2 and 3. Its printed distances are 14.23 mm after surface 4 and 16.14 mm before surface 5, placing it 18.71 mm behind the first vertex. Its diameter is unprinted. The nominal f/6.3 aperture gives an iris radius of 5.43 mm; the corresponding real-ray entrance aperture is about f/6.41. The drawn opening has a radius of approximately 5.5 mm (about 11 mm across).
 
-The lens track through the last glass surface is 37.79 mm. The printed 79.37 mm front-vertex-to-focus distance therefore gives a last gap of 41.58 mm, which the model retains. The prescription computes to EFL 100.0269 mm and paraxial BFD 41.5995 mm, placing the paraxial image 0.0195 mm behind the printed plane. The image plane is not shifted to a best-focus plane.
+The lens track through the last glass surface is 37.79 mm. The printed 79.37 mm front-vertex-to-focus distance therefore gives a last gap of 41.58 mm, which the model retains. The prescription computes to EFL 100.03 mm and paraxial BFD 41.599 mm, placing the paraxial image about 0.02 mm behind the printed plane. The image plane remains at the printed distance.
 
-Only infinity focus is modeled; the patent gives no close-focus data.
+The model is focused at infinity; the patent gives no close-focus data.
 
 ## Field and Clear Apertures
 
-The declared full field is 30°, matching the patent's “about 30°” statement. At the 15° half-field the real chief ray reaches an image height of approximately 27.096 mm on the printed image plane, giving the model's 54.192 mm image circle. This is a field-derived diameter at the model's focal length, without an assigned film format.
+The full field is 30°, matching the patent's “about 30°” statement. At the 15.0° half-field the real chief ray reaches an image height of approximately 27.10 mm on the printed image plane, giving a field-derived image-circle diameter of 54.20 mm. No film format is assigned.
 
 All chief-ray intersections at 15° clear the current rims; the largest is approximately 7.50 mm against a 9.5 mm clear radius. Some off-axis pupil rays are vignetted. The inferred clear semi-diameters are 8.7 mm at surfaces 1–3, 9.0 mm at surface 4, and 9.5 mm at surfaces 5–8. They agree with the drawing within about 0.4 mm, but are not printed manufacturing dimensions. The minimum edge thicknesses are approximately 0.375 mm at element 1 and 0.481 mm at element 4.
 
