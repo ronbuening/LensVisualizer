@@ -2,7 +2,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * Ludwig Bertele's DE 428,657 C, Figure 2, a five-element f/2 projection
- * objective. The patent places the film at R10 and the screen on the R1 side;
+ * objective. The patent places the film behind R10 and the screen on the R1 side;
  * this infinity model traces from the screen side toward the film. The printed
  * radii, thicknesses, air gaps and D-line glass values are retained. The stop is
  * inferred at the midpoint of the 19.05 mm central gap. Clear radii combine

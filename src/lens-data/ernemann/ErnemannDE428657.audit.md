@@ -8,7 +8,7 @@ DE 428,657 C, _Objektiv_, published 10 May 1926 and effective from 5 March 1925.
 
 Two independent readings of the page images agree on all ten signed radii, five center thicknesses, four air gaps and five nD/ν pairs. R1 explicitly reads +48.57 mm. The table prints f = 100 mm, and the text specifies f/2. The five elements are air-spaced; both 0.48 mm gaps are air, with no cemented interfaces, aspheres or variable spacings. The D-line indices are retained.
 
-The projection text places the film at R10 and the screen on the R1 side. The large last component is intended to take in the light from the film or plate. The infinity model traces in the reciprocal screen-to-film direction.
+The projection text places the film behind R10 and the screen on the R1 side. The large last component is intended to take in the light from the film or plate. The infinity model traces in the reciprocal screen-to-film direction.
 
 ## First-order
 
