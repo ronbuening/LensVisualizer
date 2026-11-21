@@ -16,7 +16,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
 | Mount | Mechanism | Flange focal distance | Throat | MVP status | Profiles |
 |---|---|---|---|---|---|
 | [`bronica-etr`](#bronica-etr--zenza-bronica-etr) | bayonet | 69 mm | unknown mm | `renderable` | 1 |
-| [`bronica-gs`](#bronica-gs--zenza-bronica-gs) | bayonet | 85 mm | 57 mm | `renderable` | 1 |
+| [`bronica-gs`](#bronica-gs--zenza-bronica-gs) | bayonet | 85 mm | unknown mm | `renderable` | 1 |
 | [`bronica-sq`](#bronica-sq--zenza-bronica-sq) | bayonet | 85 mm | unknown mm | `renderable` | 1 |
 | [`canon-ef`](#canon-ef--canon-ef) | bayonet | 44 mm | 54 mm | `mvp_complete` | 1 |
 | [`canon-ef-m`](#canon-ef-m--canon-ef-m) | bayonet | 18 mm | 47 mm | `mvp_complete` | 1 |
@@ -201,71 +201,59 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 | Profile ID | Type | Applies to | Adds | Removes | Changes |
 |---|---|---|---|---|---|
-| `bronica-gs/base` | base | Bronica GS-1 6x7 leaf-shutter lenses and bodies | medium-format bayonet; leaf-shutter cocking/release coupling; aperture coupling | electrical contacts in the classic leaf-shutter lens mount | GS-specific mapping from the broader Bronica patent family remains unconfirmed |
+| `bronica-gs/base` | base | Bronica GS-1 6x7 leaf-shutter lenses and bodies | four-claw bayonet; lens release button; shutter cocking pins on body and lens | — | the claws, the lock and the cocking pins have no sourced position, so they are listed here but not drawn; lens-to-body electrical contacts are expected for the electronically timed shutter but no source consulted gives their count or layout, so none are drawn; the cited Bronica patent is an ETR-era filing and supplies no GS value |
 
 #### Dimensional summary
 
 | Field | Value | Unit |
 |---|---|---|
 | Flange focal distance | 85 (`secondary`) | mm |
-| Nominal throat diameter | 57 (`patent`) | mm |
-| Effective clear aperture | 57 (`patent`) | mm |
-| Camera mount outer diameter | 70 (`patent`) | mm |
-| Lens mount outer diameter | 68 (`patent`) | mm |
-| Contact count | not_applicable (`not_applicable`) | count |
-| Lock rotation | 60 (`patent`) | deg |
-| Lock direction | clockwise (`patent`) | — |
+| Nominal throat diameter | unknown (`unknown`) | mm |
+| Effective clear aperture | unknown (`unknown`) | mm |
+| Camera mount outer diameter | unknown (`unknown`) | mm |
+| Lens mount outer diameter | unknown (`unknown`) | mm |
+| Contact count | unknown (`unknown`) | count |
+| Lock rotation | unknown (`unknown`) | deg |
+| Lock direction | counterclockwise (`official`) | — |
 
 #### Figures (selected profile `bronica-gs/base`)
 
-**Camera-side front view** — viewBox `-43 -45 86 88` · 38 elements in 4 layers · hash `b2a651f0` ([standalone SVG](mounts/bronica-gs-camera-front.svg))
+**Camera-side front view** — viewBox `-34 -36 68 70` · 16 elements in 3 layers · hash `381dfa7a` ([standalone SVG](mounts/bronica-gs-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-42 -44 84 86` · 32 elements in 4 layers · hash `0d6dc0f4` ([standalone SVG](mounts/bronica-gs-lens-rear.svg))
+**Lens-side rear view** — viewBox `-34 -36 68 70` · 16 elements in 3 layers · hash `8053afe8` ([standalone SVG](mounts/bronica-gs-lens-rear.svg))
 
-**Axial / register schematic** — viewBox `-95 -59 106 114` · 12 elements in 2 layers · hash `77332cb5` ([standalone SVG](mounts/bronica-gs-axial.svg))
+**Axial / register schematic** — viewBox `-95 -58 105 112` · 10 elements in 2 layers · hash `3b2d443e` ([standalone SVG](mounts/bronica-gs-axial.svg))
 
 #### Camera-side front-view geometry
 
 | Feature ID | Type | Profile | Center | Start | End | Inner r | Outer r |
 |---|---|---|---|---|---|---|---|
-| `body-throat` | body_throat | `bronica-gs/base` | 0° | 0° | 360° | 0 | 28.5 |
-| `body-mount-ring` | mount_ring | `bronica-gs/base` | 0° | 0° | 360° | 28.5 | 35 |
-| `body-slot-1` | bayonet_receiving_slot | `bronica-gs/base` | 20° | 2° | 38° | 28.5 | 31 |
-| `body-slot-2` | bayonet_receiving_slot | `bronica-gs/base` | 140° | 122° | 158° | 28.5 | 31 |
-| `body-slot-3` | bayonet_receiving_slot | `bronica-gs/base` | 260° | 242° | 278° | 28.5 | 31 |
-| `body-index-mark` | index_mark | `bronica-gs/base` | 0° | unknown | unknown | unknown | 35.5 |
-| `body-lock-pin` | lock_pin | `bronica-gs/base` | 270° | unknown | unknown | unknown | 29.5 |
+| `body-throat` | body_throat | `bronica-gs/base` | 0° | 0° | 360° | 0 | unknown |
+| `body-mount-ring` | mount_ring | `bronica-gs/base` | 0° | 0° | 360° | unknown | unknown |
+| `body-index-mark` | index_mark | `bronica-gs/base` | 0° | unknown | unknown | unknown | unknown |
 
 #### Lens-side rear-view geometry
 
 | Feature ID | Type | Profile | Center | Start | End | Inner r | Outer r |
 |---|---|---|---|---|---|---|---|
-| `lens-throat` | lens_throat | `bronica-gs/base` | 0° | 0° | 360° | 0 | 27.5 |
-| `lens-mount-ring` | lens_mount_ring | `bronica-gs/base` | 0° | 0° | 360° | 27.5 | 34 |
-| `lens-lug-1` | bayonet_lug | `bronica-gs/base` | 20° | 2° | 38° | 28.5 | 31 |
-| `lens-lug-2` | bayonet_lug | `bronica-gs/base` | 140° | 122° | 158° | 28.5 | 31 |
-| `lens-lug-3` | bayonet_lug | `bronica-gs/base` | 260° | 242° | 278° | 28.5 | 31 |
-| `lens-index-mark` | index_mark | `bronica-gs/base` | 0° | unknown | unknown | unknown | 34.5 |
-| `lens-lock-notch` | lock_notch | `bronica-gs/base` | 270° | unknown | unknown | unknown | 29.5 |
+| `lens-throat` | lens_throat | `bronica-gs/base` | 0° | 0° | 360° | 0 | unknown |
+| `lens-mount-ring` | lens_mount_ring | `bronica-gs/base` | 0° | 0° | 360° | unknown | unknown |
+| `lens-index-mark` | index_mark | `bronica-gs/base` | 0° | unknown | unknown | unknown | unknown |
 
 #### Mechanical couplings
 
-| Feature | Side | Profile | Function |
-|---|---|---|---|
-| `leaf-shutter-cocking-coupler` | both | `bronica-gs/base` | cocks/arms the lens leaf shutter |
-| `aperture-control-coupler` | both | `bronica-gs/base` | body/lens aperture coordination |
+None — fully electronic.
 
 #### Axial stack
 
 | Plane | z (mm) | Diameter (mm) |
 |---|---|---|
-| `flange_datum` | 0 | 70 |
-| `bayonet_lug_engagement` | 1.2 | 64 |
-| `sensor_film_plane` | -85 | 89.6 |
+| `flange_datum` | 0 | unknown |
+| `sensor_film_plane` | -85 | 88.6 |
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/bronica-gs.mount.ts` (28604 bytes, content hash `ce14d029`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/bronica-gs.mount.ts` (17059 bytes, content hash `3530969b`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -273,11 +261,15 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 |---|---|---|---|---|---|
 | `bgs-1` | secondary | “Flange focal distance,” Wikipedia. Accessed 2026-06-06. | [snapshot](http://web.archive.org/web/20260526152456/https://en.wikipedia.org/wiki/Flange_focal_distance) | 2026-05-26 | medium |
 | `bgs-2` | secondary | “Bronica GS-1,” Camera-wiki.org. Accessed 2026-06-06. | [snapshot](https://camera-wiki.org/wiki/Bronica_GS1) | 2026-06-06 | medium |
-| `bgs-p1` | patent | US4063264A, Bronica lens-shutter SLR interchangeable-lens mount family. Accessed 2026-06-06. | [snapshot](https://patents.google.com/patent/US4063264A/en) | 2026-06-06 | low |
+| `bgs-p1` | patent | US4063264A, “Means for mounting an interchangeable lens on a single lens reflex camera,” Zenza Bronica Industries, filed 1976-07-26. Accessed 2026-06-06. | [snapshot](https://patents.google.com/patent/US4063264A/en) | 2026-06-06 | low |
+| `bgs-om` | official | Zenza Bronica GS-1 instruction manual: specifications, p. 4 “Parts of the Zenza Bronica GS-1,” p. 22 “Exchanging Lenses,” and p. 36 “Cocking pins.” | [snapshot](https://www.cameramanuals.org/bronica/bronica_gs-1.pdf) | 2026-11-21 | high |
 
 #### Open questions
 
-- GS bayonet sector geometry and leaf-shutter coupling positions are unresolved; GS and SQ share a register but are not assumed mechanically identical. _(Upgrade from Bronica GS service manuals or measured GS body/lens samples.)_
+- No source gives the clock positions, spans or radii of the four bayonet claws, the position of the lock, or the positions of the shutter cocking pins, so none of them is drawn; they are recorded in the profile only. The earlier three lugs at 20°, 140° and 260°, lock at 270°, cocking coupler at 40° and aperture coupler at 320° were unsourced and are removed. _(Needs a GS-1 service manual, a factory mount drawing or a measured body and lens. Checked: the GS-1 owner manual and the Modern Photography January 1984 GS-1 reprint. No GS-specific Bronica patent was found, and Petersen's Photographic January 1986 was not read.)_
+- No mount diameter is sourced: throat, clear aperture, body ring and lens flange are all unknown, so the figures use the renderer's default size. The earlier 57, 70 and 68 mm figures matched the SQ stand-ins and had no source. The 85 mm register still rests on secondary listings. _(Measure a body and lens, or find a dimensioned mount drawing or repair manual.)_
+- The lens-to-body electrical contacts are not documented in any source consulted: their count, layout and functions are unknown and none is drawn. Whether the GS mount has any mechanical aperture coupling is also unconfirmed. _(Needs a clear photograph of a PG lens rear and GS-1 body mount from a citable source, or a wiring diagram.)_
+- The lock rotation angle and the mount screw count and positions are unknown; the earlier 60° and four screws were unsourced stand-ins and are removed. _(Measure on a body, or find a GS-1 repair manual.)_
 
 ### `bronica-sq` — Zenza Bronica SQ
 
