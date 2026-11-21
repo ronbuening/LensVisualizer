@@ -1,14 +1,23 @@
-import type { LensDataV2Input } from "../repo/src/types/lensDataV2.js";
-const data = {
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * George H. Aklin's sole example in US 2,252,681 A (1941), printed at F = 100 mm and f/1.9.
+ * Radii, thicknesses, air spaces and D-line index/Abbe pairs follow the two printed tables in millimetres.
+ * The D line is taken as sodium, 589.3 nm. R10 is +60.8 mm; the text also describes it as about 0.61F.
+ * The diaphragm lies between the inner menisci; its exact station is inferred, splitting the 17.8 mm gap
+ * into 9.0 and 8.8 mm. Its radius is derived from the paraxial f/1.9 aperture. All clear rims are inferred;
+ * the front rim passes the full 5° bundle at that iris. The image plane is the computed paraxial back focus,
+ * 63.269633 mm behind R11. The ±5° display field is illustrative; the patent gives no numerical field.
+ */
+const LENS_DATA = {
   schema: 2,
-  key: "aklin-us2252681-infinity-reference",
-  maker: null,
-  name: "AKLIN US2252681 SOLE EXAMPLE \u2014 SOURCE f/1.9",
-  subtitle:
-    "Patent-only 7E/4G \u00b7 sodium-D infinity \u00b7 estimated iris/rims",
-  visible: false,
+  key: "kodak-100mm-f19-us2252681",
+  maker: "Kodak",
+  name: "KODAK 100mm f/1.9 (US 2,252,681 Design)",
+  subtitle: "US 2,252,681 A, sole example — possibly related to the Ektra Ektar f/1.9",
+  visible: true,
   source: {
-    patentNumber: "US 2,252,681",
+    patentNumber: "US 2,252,681 A",
     patentYear: 1941,
     example: {
       label: "Sole example",
@@ -20,97 +29,105 @@ const data = {
   },
   catalog: {
     focalLengthMm: {
-      design: 100,
+      design: 100.05,
     },
     fNumber: {
       design: 1.9,
     },
     elementCount: 7,
     groupCount: 4,
-    specs: [
-      "Literal7E4G1|2+3|4+5|6+7,bondsR4/R7/R10;Dindices/Abbe literal,no glasssubstitution orsourcefit. Source100mm f1.9 vs literalEFL100.046850385/BFD63.269632602mm,BFDcomputed/nothardware. No retailidentity.",
-      "Exact17.8mmR5-R6gap,estimatedstop9/8.8,z39.8,bore andclearcapsestimated/not factoryreadings. R9trueplanorefractivefrontoflastdoublet,notstop/cement. No sourcegeometryedits,trim,overrideorbaffle.",
-      "Savednativef1.9 derivesparaxialiris;separatefinite-marginalR16.444454421estimate. Realfiniteentrance/image-sineequivalentsdocumented,not conflatedwith nominal.",
-      "Actualnative+/-5degree sodium-D infinitydiagnostic only,no sourcefieldnumber,physicalformat/imagecircle,retail,finitefocus,broadband,measuredMTForthroughputclaim. Widerautomaticmetrics/10degbench unqualified.",
-      "Originalsignedtranscription/hash externalparent/scoutcustody,no localPDF/pixels/originalrehash. SupportedGooglePatentsprose corroboratesauthor/dates,4components,third/rearcementeddoublets,.055indexbreak/.116Fthirdthickness;not localfacsimiletableinspection.",
-    ],
+    specs: ["7 ELEMENTS / 4 GROUPS", "ALL SPHERICAL", "DESIGN F/1.9"],
   },
   elements: [
     {
       id: 1,
       name: "L1",
-      label: "L1",
-      type: "Source Spherical Element",
+      label: "Element 1",
+      type: "Positive Meniscus",
       nd: 1.573,
       vd: 57.4,
       indexReference: "D",
-      glass: "Literal sodium-D/Abbe pair; no calibrated spectral curve.",
+      glass: "Unmatched (nD 1.573 / ν 57.4)",
+      focalLengthMm: 123.3,
+      role: "Positive front singlet collecting light into the inner menisci.",
     },
     {
       id: 2,
       name: "L2",
-      label: "L2",
-      type: "Source Spherical Element",
+      label: "Element 2",
+      type: "Positive Meniscus",
       nd: 1.611,
       vd: 57.2,
       indexReference: "D",
-      glass: "Literal sodium-D/Abbe pair; no calibrated spectral curve.",
-      cemented: "G2",
+      glass: "Unmatched (nD 1.611 / ν 57.2)",
+      focalLengthMm: 82.98,
+      role: "Positive front member of the first inner meniscus doublet.",
+      cemented: "C1",
     },
     {
       id: 3,
       name: "L3",
-      label: "L3",
-      type: "Source Spherical Element",
+      label: "Element 3",
+      type: "Negative Meniscus",
       nd: 1.605,
       vd: 38.2,
       indexReference: "D",
-      glass: "Literal sodium-D/Abbe pair; no calibrated spectral curve.",
-      cemented: "G2",
+      glass: "Unmatched (nD 1.605 / ν 38.2)",
+      focalLengthMm: -46.92,
+      role: "Dispersive negative member facing the diaphragm.",
+      cemented: "C1",
     },
     {
       id: 4,
       name: "L4",
-      label: "L4",
-      type: "Source Spherical Element",
+      label: "Element 4",
+      type: "Negative Meniscus",
       nd: 1.689,
       vd: 30.9,
       indexReference: "D",
-      glass: "Literal sodium-D/Abbe pair; no calibrated spectral curve.",
-      cemented: "G3",
+      glass: "Unmatched (nD 1.689 / ν 30.9)",
+      focalLengthMm: -65.78,
+      role: "Negative front member of the rear inner meniscus doublet.",
+      cemented: "C2",
     },
     {
       id: 5,
       name: "L5",
-      label: "L5",
-      type: "Source Spherical Element",
+      label: "Element 5",
+      type: "Positive Meniscus",
       nd: 1.744,
       vd: 45.8,
       indexReference: "D",
-      glass: "Literal sodium-D/Abbe pair; no calibrated spectral curve.",
-      cemented: "G3",
+      glass: "Unmatched (nD 1.744 / ν 45.8)",
+      focalLengthMm: 96.04,
+      role: "Higher-index positive member balancing the adjacent negative element.",
+      cemented: "C2",
     },
     {
       id: 6,
       name: "L6",
-      label: "L6",
-      type: "Source Spherical Element",
+      label: "Element 6",
+      type: "Plano-Concave Negative",
       nd: 1.689,
       vd: 30.9,
       indexReference: "D",
-      glass: "Literal sodium-D/Abbe pair; no calibrated spectral curve.",
-      cemented: "G4",
+      glass: "Unmatched (nD 1.689 / ν 30.9)",
+      focalLengthMm: -88.24,
+      role: "Dispersive negative member of the positive rear doublet.",
+      cemented: "C3",
     },
     {
       id: 7,
       name: "L7",
-      label: "L7",
-      type: "Source Spherical Element",
+      label: "Element 7",
+      type: "Biconvex Positive",
       nd: 1.744,
       vd: 45.8,
       indexReference: "D",
-      glass: "Literal sodium-D/Abbe pair; no calibrated spectral curve.",
-      cemented: "G4",
+      glass: "Unmatched (nD 1.744 / ν 45.8)",
+      focalLengthMm: 45.14,
+      role: "Positive rear element completing the final converging doublet.",
+      cemented: "C3",
     },
   ],
   surfaces: [
@@ -118,7 +135,7 @@ const data = {
       label: "1",
       R: 60.2,
       d: 11.3,
-      sd: 30,
+      sd: 30.08,
       medium: 1,
     },
     {
@@ -189,7 +206,7 @@ const data = {
     {
       label: "11",
       R: -68.3,
-      d: 63.26963260224196,
+      d: 63.269632602242,
       sd: 24,
     },
   ],
@@ -207,34 +224,38 @@ const data = {
     offAxisFieldFrac: 1,
   },
   focus: {
-    closeFocusM: 1000000000000000,
-    description:
-      "Literal7E4G1|2+3|4+5|6+7,bondsR4/R7/R10;Dindices/Abbe literal,no glasssubstitution orsourcefit. Source100mm f1.9 vs literalEFL100.046850385/BFD63.269632602mm,BFDcomputed/nothardware. No retailidentity. Exact17.8mmR5-R6gap,estimatedstop9/8.8,z39.8,bore andclearcapsestimated/not factoryreadings. R9trueplanorefractivefrontoflastdoublet,notstop/cement. No sourcegeometryedits,trim,overrideorbaffle. Savednativef1.9 derivesparaxialiris;separatefinite-marginalR16.444454421estimate. Realfiniteentrance/image-sineequivalentsdocumented,not conflatedwith nominal. Actualnative+/-5degree sodium-D infinitydiagnostic only,no sourcefieldnumber,physicalformat/imagecircle,retail,finitefocus,broadband,measuredMTForthroughputclaim. Widerautomaticmetrics/10degbench unqualified. Originalsignedtranscription/hash externalparent/scoutcustody,no localPDF/pixels/originalrehash. SupportedGooglePatentsprose corroboratesauthor/dates,4components,third/rearcementeddoublets,.055indexbreak/.116Fthirdthickness;not localfacsimiletableinspection.",
+    closeFocusM: 1e15,
+    description: "Infinity focus only; the patent gives no close-focus data.",
   },
   groups: [
     {
-      text: "G1 \u00b7 L1",
+      text: "Front singlet",
       fromSurface: "1",
       toSurface: "2",
     },
     {
-      text: "G2 \u00b7 L2+L3",
+      text: "Front inner doublet",
       fromSurface: "3",
       toSurface: "5",
     },
     {
-      text: "G3 \u00b7 L4+L5",
+      text: "Rear inner doublet",
       fromSurface: "6",
       toSurface: "8",
     },
     {
-      text: "G4 \u00b7 L6+L7",
+      text: "Rear doublet",
       fromSurface: "9",
       toSurface: "11",
     },
+  ],
+  doublets: [
+    { text: "C1", fromSurface: "3", toSurface: "5" },
+    { text: "C2", fromSurface: "6", toSurface: "8" },
+    { text: "C3", fromSurface: "9", toSurface: "11" },
   ],
   layout: {
     yScFill: 0.5,
   },
 } satisfies LensDataV2Input;
-export default data;
+export default LENS_DATA;
