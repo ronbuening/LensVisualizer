@@ -5,8 +5,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * at the patent's stated 100 mm focal length and f/1.44. Radii, thicknesses,
  * air spaces and d-line glass data follow the table. The diaphragm is drawn
  * between R6 and R7; its 14.3/0.6 mm gap split and opening are inferred.
- * Front rims are estimated; rear rims follow Figure 1 within the surface-slope
- * limit at R9. The image plane is the computed paraxial back focus, 43.70 mm.
+ * Rims are inferred from Figure 1's proportions and checked against the axial
+ * beam; R9 stays within the surface-slope limit. The front singlet and R3-R5
+ * have square rims. The image plane is the computed paraxial back focus, 43.70 mm.
  * The patent states a 45-degree full field but gives no close-focus data.
  * Two prose index comparisons disagree with Table I; its values are retained.
  */
@@ -136,7 +137,7 @@ const LENS_DATA = {
       label: "1",
       R: 74.44,
       d: 9.5,
-      sd: 38,
+      sd: 36,
       medium: 1,
     },
     {
@@ -156,14 +157,14 @@ const LENS_DATA = {
       label: "4",
       R: 78.85,
       d: 7.75,
-      sd: 30,
+      sd: 32,
       medium: 3,
     },
     {
       label: "5",
       R: -804.6,
       d: 1.8,
-      sd: 28,
+      sd: 32,
       medium: 4,
     },
     {

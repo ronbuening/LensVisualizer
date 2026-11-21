@@ -12,19 +12,19 @@ All ten radii, seven glass thicknesses, two air spaces and seven refractive-inde
 
 The text and claims explicitly name the d-line, supporting helium d at 587.6 nm despite the table's capital-D subscript. The prose gives L6−L7 = 0.056 and n1+n2 = 3.38, while Table I gives 0.0594 and 3.3859. The tabulated values are retained. The middle component's axial length is 0.2145 of the nominal focal length, and 1/R1+1/R3−1/R2 is approximately 3.821/f, consistent with the stated conditions.
 
-Figure 1 indicates clear radii of about 36.4 mm at R1/R2, 32 mm at R3–R5, 21.2 mm at R6, 21 mm at R7–R9 and 26.5 mm at R10. The front estimates remain 38, 36, 32, 30 and 28 mm. R9 remains 20.16 mm: a 21 mm rim would have a 69.6° slope, exceeding the retained 64.2° limit.
+Figure 1 supports inferred clear radii of 36 mm at R1/R2, 32 mm at R3–R5, 21.2 mm at R6, 21 mm at R7/R8 and 26.5 mm at R10. The front singlet and R3–R5 have square rims. R9 remains 20.16 mm: a 21 mm rim would have a 69.6° slope, exceeding the retained 64.2° limit. The drawing supplies relative proportions rather than exact clear diameters.
 
 ## First-Order Check
 
 The printed 100 mm focal length gives a paraxial EFL of 99.97 mm, 0.03 mm lower. The paraxial aperture is f/1.44, matching the printed value, with a stop radius of 19.117 mm. Calculated back focus is 43.70 mm; no numerical back focus is printed. The image plane lies at this paraxial distance behind R10. The first-to-last vertex distance is 75.45 mm and the total distance to the image plane is 119.15 mm.
 
-Pupil aberration gives a real-ray entrance aperture of about f/1.48 and an image-space sine aperture of about f/1.47. An exact f/1.44 axial marginal ray would require a stop radius of about 19.715 mm. The surfaces stay clear of each other, the iris sets the full aperture, and the axial beam clears the rims. The 22.5° chief ray reaches an image semi-height of 42.635 mm without blockage; the paraxial field limit is about 27.6°. This establishes chief-ray coverage of the stated field, with geometric transmission over the diaphragm opening of 41.3% at its edge. It does not establish an unvignetted field or measured image quality.
+Pupil aberration gives a real-ray entrance aperture of about f/1.48 and an image-space sine aperture of about f/1.47. An exact f/1.44 axial marginal ray would require a stop radius of about 19.715 mm. The surfaces stay clear of each other, the iris sets the full aperture, and the axial beam clears the rims. The 22.5° chief ray reaches an image semi-height of 42.635 mm without blockage; the paraxial field limit is about 26.8°. This establishes chief-ray coverage of the stated field, with geometric transmission over the diaphragm opening of 39.8% at its edge. It does not establish an unvignetted field or measured image quality.
 
 ## Values Not Printed in the Patent
 
 The exact stop position, diaphragm opening, clear radii and image distance are not tabulated. The inferred 14.3/0.6 mm split preserves the printed 14.9 mm central air space and agrees approximately with Figure 1. The stop and R6 rim lie 45.55 and about 43.93 mm behind the first vertex, respectively, leaving the iris clear of the glass. The drawing suggests a back focus of about 43.9 mm, consistent with the calculated 43.70 mm.
 
-The 85.27 mm image circle is twice the chief-ray image height at the printed 22.5° half-field. It is a calculated diameter, not a published camera format or a claim of uniform illumination. The front rims are estimates, the rear rims follow the drawing subject to R9's slope limit, and no single origin describes every rim.
+The 85.27 mm image circle is twice the chief-ray image height at the printed 22.5° half-field. It is a calculated diameter, not a published camera format or a claim of uniform illumination. Clear radii follow the drawing's proportions, subject to R9's slope limit, and remain inferred dimensions.
 
 `focus.closeFocusM` is 10¹⁵ m, which stands for infinity. No close-focus state or mechanism is printed. The selectable apertures extend from f/1.44 to f/22, but the patent supplies no minimum iris opening or stop range.
 
@@ -48,9 +48,17 @@ No maker, mount, production image format, diaphragm blade count or shape, market
 
 The resulting EFL is 99.97 mm, paraxial aperture f/1.44, back focus 43.70 mm, stop radius 19.117 mm and half-field 22.5°. The stored image plane remains at paraxial focus.
 
+2026-11-21 rim review:
+
+- Figure 1 on PDF p. 1 was read at 600 dpi. The 75.45 mm first-to-last vertex span measures about 907 pixels, giving 12.0 pixels/mm. R1–R6 gives 12.3 pixels/mm and R6–R10 gives 11.8 pixels/mm; the three component thicknesses give 11.5–11.8 pixels/mm. Across the axis, the R3 arc implies about 13.9 pixels/mm, and the drawn front air gap corresponds to about 2.3 mm rather than the printed 0.3 mm. The drawing is therefore used for relative rim heights and square edges, without treating it as an exact dimensional drawing. The front and middle half-heights are about 430 and 380 pixels, consistent with 36 and 32 mm, while the rear outline agrees with the retained proportions.
+- R1 changed from 38 to 36 mm, matching the retained 36 mm R2 rim and the square-cut front singlet in Figure 1. The f/1.44 axial ray reaches 34.71 mm at R1 and 34.24 mm at R2. Edge transmission changed from 41.3% to 39.8%; the greatest loss at any compared field is 1.7 percentage points at 19.7°. Restoring the front rim recovers those 1.7 points, so the cut meets the three-point limit.
+- R4 changed from 30 to 32 mm and R5 from 28 to 32 mm, matching R3 and the drawing's level middle-component rim. The f/1.44 axial heights there are 28.58 and 27.23 mm. These two changes leave edge transmission at 39.8% with the final front rim; restoring both previous heights changes transmission by less than 0.1 percentage point at every compared field.
+- R2/R3 and R6–R10 retain their earlier values. The deliberate R9 slope limit remains; its smaller curved face is joined directly to the taller R10 edge. No flat land or rim cut depth is added at a cemented interface or at the chamfered shoulders.
+- Wide-open geometric transmission at 5.6°, 11.3°, 16.9°, 19.7° and 22.5° changed from 97.8%, 85.4%, 65.9%, 54.6% and 41.3% to 97.0%, 83.8%, 64.4%, 52.9% and 39.8%. On-axis transmission remains 100%. The stated 22.5° half-field, f/1.44 and 19.117 mm stop radius are unchanged; the real entrance aperture remains f/1.48. The rim-based paraxial field limit outside the stated field changes from 27.6° to 26.8°.
+- The surfaces remain clear of each other, the iris still limits the axial beam, and the 22.5° chief ray still reaches 42.63 mm. No image-circle radius is undersized. A comparison at matched scale confirms the square front and middle rims and retains the rear chamfers as straight rim joins. No manufacturer's construction diagram is available for this unassigned patent design; the seven-element, three-group arrangement follows Figure 1, and all surfaces remain spherical.
+
 ## Remaining Questions
 
-- The front clear radii differ from Figure 1, and R9 remains below its approximately 21 mm drawn height.
 - The exact diaphragm position and opening, minimum iris opening and close-focus mechanism are not documented.
 - Six glasses lack matching catalogue curves at the printed precision. Historical suppliers, melts and measured spectral performance remain unknown for all seven elements.
 - No production lens, manufacturer, mount, camera format, blade count or shape, or marketed specifications are established for Example I.

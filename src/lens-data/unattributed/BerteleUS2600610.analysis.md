@@ -64,9 +64,9 @@ The paraxial aperture is f/1.44. Pupil aberration makes the real-ray entrance ap
 
 The patent's 45.0° field extends to ±22.5°. At 22.5°, the real chief ray reaches an image semi-height of 42.635 mm at the paraxial image plane. Twice that height gives the model's 85.27 mm image circle. This diameter follows the stated field and computed chief ray; it does not identify a camera format or establish uniform illumination or sharpness across the field.
 
-Clear semi-diameters are not tabulated. The retained front estimates are R1–R5 = 38, 36, 32, 30 and 28 mm. The rear values are R6 = 21.2 mm, R7–R8 = 21 mm, R9 = 20.16 mm and R10 = 26.5 mm. The rear values follow Figure 1, except that R9 is kept below the model's surface-slope limit: the approximately 21 mm drawn rim would require a 69.6° rim angle, beyond the 64.2° limit.
+Clear semi-diameters are not tabulated. Figure 1 supports square rims at R1–R2 = 36 mm and R3–R5 = 32 mm. Its expanded front air gap and approximate arc shapes prevent an exact scale fit, so these are inferred from the drawing's relative heights. The rear values are R6 = 21.2 mm, R7–R8 = 21 mm, R9 = 20.16 mm and R10 = 26.5 mm. R9 stays below the model's surface-slope limit: the approximately 21 mm drawn rim would require a 69.6° rim angle, beyond the 64.2° limit. Straight rim joins approximate the chamfered shoulders at R6, R7 and R9; no flat lands are specified.
 
-The axial beam and the 22.5° chief ray clear the rims. Geometric transmission at the field edge, evaluated over the diaphragm opening, is about 41%. This describes geometric vignetting, without coating losses or measured image quality. The front estimates differ from the drawn heights and remain uncertain.
+The axial beam and the 22.5° chief ray clear the rims. Geometric transmission at the field edge, evaluated over the diaphragm opening, is about 40%. This describes geometric vignetting, without coating losses or measured image quality. All clear radii remain estimates rather than printed dimensions.
 
 ## Design heritage and context
 
