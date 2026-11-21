@@ -44,7 +44,7 @@ const LENS_DATA = {
   key: "panasonic-lumix-s-pro-70-200mm-f2-8-ois",
   maker: "Panasonic",
   name: "PANASONIC LUMIX S PRO 70-200mm f/2.8 O.I.S.",
-  subtitle: "US 2021/0132345 A1 Numerical Example 3 — strong S-E70200 correlation",
+  subtitle: "US 2021/0132345 A1 Numerical Example 3 — strong S-E70200 match",
 
   catalog: {
     lensMounts: ["l-mount"],

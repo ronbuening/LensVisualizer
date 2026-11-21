@@ -48,7 +48,7 @@ const LENS_DATA = {
   key: "panasonic-lumix-s-70-300-f45-56-macro-ois",
   maker: "Panasonic",
   name: "PANASONIC LUMIX S 70-300mm f/4.5-5.6 MACRO O.I.S.",
-  subtitle: "JP 2022-125453 A, Numerical Example 1 — strong inferred S-R70300 correlation",
+  subtitle: "JP 2022-125453 A, Numerical Example 1 — strong inferred S-R70300 match",
 
   catalog: {
     lensMounts: ["l-mount"],

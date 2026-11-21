@@ -60,7 +60,7 @@ const LENS_DATA = {
   key: "panasonic-lumix-s-26mm-f8",
   maker: "Panasonic",
   name: "PANASONIC LUMIX S 26mm f/8",
-  subtitle: "US 2025/0334777 A1, Example 4 — design correlation",
+  subtitle: "US 2025/0334777 A1, Example 4 — design match",
 
   catalog: {
     lensMounts: ["l-mount"],

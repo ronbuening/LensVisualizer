@@ -46,7 +46,7 @@ const LENS_DATA = {
   key: "panasonic-lumix-s-14-28mm-f4-56-macro",
   maker: "Panasonic",
   name: "PANASONIC LUMIX S 14-28mm f/4-5.6 MACRO",
-  subtitle: "US 2024/0192475 A1, Example 1 — selected production correlation",
+  subtitle: "US 2024/0192475 A1, Example 1 — selected production match",
 
   catalog: {
     lensMounts: ["l-mount"],

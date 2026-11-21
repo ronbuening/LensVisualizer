@@ -23,7 +23,7 @@ const LENS_DATA = {
   key: "panasonic-leica-dg-macro-elmarit-45mm-f28-asph-mega-ois",
   maker: "Panasonic",
   name: "PANASONIC LEICA DG MACRO-ELMARIT 45mm f/2.8 ASPH. MEGA O.I.S.",
-  subtitle: "JP 2011-48232 A, Example 3; selected production correlation, not manufacturer-confirmed prescription",
+  subtitle: "JP 2011-48232 A, Example 3; selected production match, prescription not maker-confirmed",
 
   catalog: {
     lensMounts: ["micro-four-thirds"],
