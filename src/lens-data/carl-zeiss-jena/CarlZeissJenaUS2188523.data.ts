@@ -62,7 +62,7 @@ const LENS_DATA = {
       vd: 41.2,
       indexReference: "d",
       focalLengthMm: 96.12,
-      glass: "Unmatched (nd 1.7015 / ν 41.2)",
+      glass: "BAFD7 (Hoya)",
       role: "Positive meniscus at the front of the middle triplet.",
       cemented: "C1",
     },

@@ -22,7 +22,7 @@ The four cemented interfaces are R4, R5, R8 and R9. The rear triplet places a lo
 
 ## Element-by-Element Analysis
 
-The focal lengths below describe each element alone in air, rather than its power within a cemented assembly. The patent gives no glass trade names; all seven glass identities remain unmatched.
+The focal lengths below describe each element alone in air, rather than its power within a cemented assembly. The patent gives no glass trade names. Element 2 matches a present-day catalog glass; the other six remain unmatched.
 
 ### Element 1 — Positive Meniscus
 
@@ -30,7 +30,7 @@ nd = 1.6200, νd = 60.3. Glass: Unmatched. f = +133.12 mm. The front singlet col
 
 ### Elements 2–4 — Middle Cemented Triplet C1
 
-Element 2: nd = 1.7015, νd = 41.2. Glass: Unmatched. f = +96.12 mm. This positive meniscus forms the front of the triplet.
+Element 2: nd = 1.7015, νd = 41.2. Glass: BAFD7 (Hoya), a catalog equivalent. f = +96.12 mm. This positive meniscus forms the front of the triplet.
 
 Element 3: nd = 1.5487, νd = 45.8. Glass: Unmatched. f = +99.68 mm. This biconvex element shares both faces with its neighbors.
 
