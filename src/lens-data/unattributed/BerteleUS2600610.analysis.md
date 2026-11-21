@@ -1,64 +1,78 @@
-## Patent reference and design identification
+# BERTELE 100mm f/1.44 (US 2,600,610 Design)
 
-**Patent:** [US2600610A](https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/2600610)  
-**Filed:** April 15, 1950  
-**Granted:** June 17, 1952  
-**Inventor:** Ludwig Bertele  
-**Swiss filing:** May 11, 1949, as stated in the primary text  
-**Example details:** Example I and Figure 1, literal 100 mm design, source f/1.44.
+## Patent and design identification
 
-Private patent-only reference, without verified production identity or commercial Sonnar attribution. This is not US2186621. Original signed numerical table and PDF SHA-256 `50eee3587acc8a4cd9f8d7899c828ff9e3e4744b57121cbca4c3018b9bb1fd3f` remain external parent/scout visual custody. The original bytes/hash and numeric pixels were not independently reproduced here. The official URL was inaccessible through the web tool; no retry. The public facsimile mirror was readable as structured text, corroborating running lowercase d-line, orientation, Example I topology and nominal aperture. Its numeric OCR is damaged and was not substituted for the scout table. Screenshots returned no viewable image payload; one ordinary public mirror fetch returned a tunnel403 and was stopped without retry or bypass. Original PDFs are not included.
+**Patent:** [US 2,600,610 A, “High-aperture and high-transmission three component objective”](https://patents.google.com/patent/US2600610A/en)
 
-Primary facsimile mirror: https://patentimages.storage.googleapis.com/e6/3e/9a/dbd5301723f597/US2600610.pdf . Physical page2 explicitly assigns100 mm and45degree field to the examples; earlier prose separately mentions prior f/1.5 executions. Published45degrees remains a source design statement, not acceptance of a full physical pupil, app field, retail format or measured performance. Actual validated scope is ±5degrees only.
+**Inventors:** Ludwig Bertele
+
+**Assignee:** None printed
+
+**Published:** 17 June 1952
+
+**Filed:** 15 April 1950
+
+**Swiss priority:** 11 May 1949
+
+**Example details:** Example I, Table I and Figure 1; the first of four numerical examples.
+
+The patent gives Example I at nominal focal length 100 mm and f/1.44, with a 45° full field of view. The tabulated prescription computes to EFL 99.96565 mm, a difference of −0.03435%, and paraxial back focus 43.69781 mm. No numerical back focus is printed. No production lens is documented for this example.
 
 ## Optical architecture
 
-Seven elements in three groups, **1 | 2+3+4 | 5+6+7**, cemented at R4/R5/R8/R9. R7 is a true plano refractive surface from air into L5, not a stop or a fictitious extra surface. The source B1 diaphragm lies in S2 between R6 and R7. Exact source radii, every glass thickness, the0.3mm front air gap and14.9mm central gap remain unchanged. No additional plate, baffle, finite state, rescaling, optical fit or glass substitution.
+Seven elements form three air-separated components: a positive front singlet, a negative middle triplet and a positive rear triplet, arranged as 1 | 2+3+4 | 5+6+7. The middle triplet is cemented at R4 and R5; the rear triplet is cemented at R8 and R9. R7 is the plane front surface of element 5. All curved surfaces are spherical.
 
-Literal reduced-angle helium-d calculation independently reproduces EFL99.965654824735mm, BFD43.697807592255mm, first-last vertex track75.45mm and detector z119.147807592255mm. Source nominal100mm f/1.44 is retained separately; no printed final image distance is inferred as hardware.
+The front component has focal length +127.74 mm. The middle and rear cemented components have focal lengths −147.92 mm and +91.80 mm respectively. These component powers differ from the individual elements' focal lengths measured in air.
+
+The 0.3 mm front air space and 14.9 mm central air space follow Table I. The first-to-last surface distance is 75.45 mm, and the total distance from the first vertex to the computed image plane is 119.14781 mm.
 
 ## Element-by-element analysis
 
-| Element | Literal n_d | Abbe | Interfaces and group |
-|---|---:|---:|---|
-| I |1.6930|43.0|R1–R2, first singlet|
-| II |1.6929|52.4|R3–R4, second group|
-| III |1.4875|70.0|R4–R5, second group|
-| IV |1.7229|28.5|R5–R6, second group|
-| V |1.5112|50.9|R7–R8, rear group|
-| VI |1.6666|48.4|R8–R9, rear group|
-| VII |1.6072|56.7|R9–R10, rear group|
+The focal lengths below describe each element by itself in air; the elements in each cemented triplet act together.
 
-Estimated clear semidiameters [38,36,32,30,28,20.8,22,22,19.7,20]mm are the unchanged initial modeling assumptions, not factory measurements. Native geometry passes default limits with zero trim and no override. Minimum shared-radius glass thickness is1.679921857mm; the0.3mm front air gap widens; central-gap minimum shared clearance2.933122012mm consumes80.3146174% of axial gap, below90% default. R6 sag at20.8mm radius is11.966877988mm; modeled stop is2.333122012mm beyond that cap and0.6mm ahead of planar R7. R9 rim tilt is about61.53degrees, below native default slope limit. The R8/R9 common-band glass land is4.290669929mm.
+| Element | Shape                  | Printed nd | Printed ν | Focal length in air (mm) | Optical role                                 |
+| ------- | ---------------------- | ---------: | --------: | -----------------------: | -------------------------------------------- |
+| 1       | Positive Meniscus      |     1.6930 |      43.0 |                  +127.74 | Front collector                              |
+| 2       | Positive Meniscus      |     1.6929 |      52.4 |                   +90.08 | Positive front member of the middle triplet  |
+| 3       | Biconvex Positive      |     1.4875 |      70.0 |                  +147.73 | Low-index positive middle member             |
+| 4       | Biconcave Negative     |     1.7229 |      28.5 |                   −32.29 | Strong negative member of the middle triplet |
+| 5       | Plano-Concave Negative |     1.5112 |      50.9 |                  −112.42 | Negative front member of the rear triplet    |
+| 6       | Biconvex Positive      |     1.6666 |      48.4 |                   +26.80 | Strong positive core of the rear triplet     |
+| 7       | Negative Meniscus      |     1.6072 |      56.7 |                   −48.33 | Negative rear member of the rear triplet     |
 
-Supplemental physical-order diagnostics first assumed globally disjoint axial cap envelopes and forward-z edge endpoints. Those assumptions are sufficient but unnecessarily restrictive for unequal spherical rim radii: R3 radius32mm ends0.605725766mm behind R4 radius30mm's edge in z, while common-radius glass thickness stays2.479345123mm. These were diagnostic assumptions, not a native failure or a reason to edit source/caps. The generalized analytic conical sidewall control accepts either endpoint-z sign; every tested admitted segment stays inside the estimated solid, minimum radial margin0.122046389mm. Independently sampled closed meridional contours have positive area and zero proper self-intersections for all seven glasses. All admitted optical paths have positive forward direction, strictly increasing hit z and independently matched source-sphere hits. Global envelope overlap alone is not mistaken for a same-radius collision. The initial control scripts and explanations remain in evidence. No native rules, solver, ray acceptance, source geometry, probe grid, pupil or field was changed to obtain these results. These estimated sidewalls are consistency checks, not added baffles or surveyed physical barrels.
+Element 1 is nearly plano-convex in appearance, although R2 is a finite positive radius and the element is a positive meniscus. Element 3 has a weakly curved rear face, while element 4 supplies the middle component's strong negative power. Element 6 supplies the principal positive power of the rear triplet, between two negative elements.
 
 ## Glass identification and selection
 
-The patent's running prescription explicitly uses lowercase d-line. Each element authors `indexReference:"d"`, supported natively as helium-d587.5618nm. Every native anchored reference index reproduces its literal source value within1e-12; scoped MTF support uses exactly one587.5618nm line. Sodium-D589.2938nm is a distinct convention and is not claimed here.
+The text and claims explicitly define the refractive indices for the d-line, despite the table's capital-D subscript. The model therefore uses helium d at 587.6 nm for all seven elements. The printed indices and Abbe numbers are retained.
 
-Literal n_d/Abbe pairs are retained without invented glass names, nC/nF/ng values, partial dispersions or calibrated curves. The application can estimate dispersion from Abbe data, but generic chromatic/broadband and secondary-spectrum outputs are unqualified. The source does not establish actual suppliers or measured wavelength-dependent performance.
+Element 5 matches the KF8 catalogue row resolved to Sumita: nd 1.51118 and ν 50.9, compared with the printed 1.5112 and 50.9. The differences are Δn = −0.00002 and Δν = 0.0. Its catalogue dispersion curve is used without asserting the historical supplier or melt.
 
-## Focus mechanism and aperture assumptions
+Elements 1–4, 6 and 7 remain labelled Unmatched with their printed coordinates. For example, the nearest FK5-family rows differ from element 3 in Abbe number, while BAF11 and SK2-family rows do not reproduce the four-decimal indices of elements 6 and 7. The patent supplies no additional spectral indices or partial dispersions; colour predictions for the unmatched glasses rely on estimates from their Abbe numbers.
 
-Infinity only at the literal computed Gaussian plane. Existing private infinity-state convention is retained; no finite conjugate, focus mechanism, cam or production schedule is fabricated. Diaphragm station is an estimate14.30mm afterR6 and0.60mm beforeR7, at z45.55mm. Bore and clear apertures are estimates.
+Two prose values disagree with Table I: the stated index difference L6−L7 is 0.056, whereas 1.6666−1.6072 = 0.0594; and the stated sum n1+n2 is 3.38, whereas the table gives 3.3859. The table values are retained. The middle-component axial length is 0.2145 of the nominal focal length, and the reciprocal-radius expression 1/R1+1/R3−1/R2 is approximately 3.821/f, consistent with the patent's stated conditions.
 
-The saved native nominal/control f/1.44 derives paraxial iris radius19.116952019mm (diameter38.233904038mm). An independent exact nominal entrance marginal maps to19.714780918mm at that station; that separate estimate is not silently saved. The actual saved stopped entrance equivalent is f/1.484212388, and image-space sine equivalent f/1.474184259. These definitions differ from the source nominal label and software paraxial control. An isolated control1.396333595 reproduces the larger estimated iris, with additional off-axis clipping; it is not the saved model. Stop/iris sensitivity ±0.2mm/±2% preserves every literal total gap, has independently classified outcomes, and changes no saved file.
+## Focus mechanism and aperture
 
-## Historical and commercial context
+Infinity focus only; the patent gives no close-focus data. The image plane is the computed paraxial plane, rather than a plane chosen to minimize spot size.
 
-This is a privately authored reconstruction of one patent example. No retail or manufacturing identity, commercial Sonnar/Jupiter association, camera mount, real image format, full source field quality or specimen dimensions are established. The inventor's earlier and later designs, including US2186621 and already preserved Bertele models, are not numerical donors. No Group credit or delivery is implied.
+Figure 1 shows the diaphragm between R6 and R7, close to R7, without a numerical position or opening. The model retains the inferred division of the 14.9 mm gap into 14.3 mm before the diaphragm and 0.6 mm after it. The resulting stop plane is 45.55 mm behind the first vertex, with a paraxially derived radius of 19.11695 mm. It lies clear of the adjacent glass.
 
-## Scoped native verification and reproducibility
+The paraxial aperture is f/1.44. Pupil aberration makes the real-ray entrance aperture about f/1.48 at this opening; an exact f/1.44 axial marginal ray would require a stop radius of about 19.71478 mm. The corresponding image-space sine aperture is about f/1.47.
 
-Validated desktop1440 and mobile390 with six states each: import, fresh reload/reimport, stop-down, wide reset, Summary and Pupils; import/export roundtrip exact and actual incoming-ray angle5degrees verified through committed native diagram state and rendered slopes. No page errors, stale fallback model, invented format or repository/catalog registration. Wider automatic UI metric fields are explicitly unqualified.
+## Field coverage and rim assumptions
 
-Physical nominal-entrance samples1801 each at -5/-2.5/0/2.5/5degrees give1637/1657/1657/1657/1637 arrivals. Actual stopped pupil865 each gives846/865/865/865/846. Across both domains780 clipped first-hit records are independently verified, plus18 native noBracket outcomes independently proved to be forward intersections outside the front R1 cap (9each edge). These remain blocked, not accepted, and are not mislabeled underlying-sphere misses. Every sample has a physical disposition; failed/unaimed/unknown0, all chiefs survive and no admitted TIR/wrong-order path. Independent hit disagreement is at most2.453e-13mm. Sample counts are not area/solid-angle transmission or manufacturing vignetting.
+The patent's 45° field is represented as ±22.5°. At 22.5°, the real chief ray reaches an image semi-height of 42.63493 mm at the paraxial image plane. Twice that height gives the model's 85.27 mm image circle. This diameter follows the stated field and computed chief ray; it does not identify a camera format or establish uniform illumination or sharpness across the field.
 
-Reference helium-d GEOMETRIC MTF at actual0/2.508230509/4.999900777degrees and0/10/20/40cycles/mm converges with zero unresolved in-beam flux, failed or unaimed samples. Dense32–512 grids reproduce the adaptive results; maximum256→512 amplitude change0.000522438 is a sampling comparison, not total error or measured performance. Wider modeled-edge/default UI results, diffraction, source-performance plots and broadband MTF remain unqualified.
+Clear semi-diameters are not tabulated. The retained front estimates are R1–R5 = 38, 36, 32, 30 and 28 mm. The rear values are R6 = 21.2 mm, R7–R8 = 21 mm, R9 = 20.16 mm and R10 = 26.5 mm. The rear values follow Figure 1, except that R9 is kept below the model's surface-slope limit: the approximately 21 mm drawn rim would require a 69.6° rim angle, beyond the 64.2° limit.
 
-553 unchanged targeted tests in7files pass under one worker (52.43s); baseline and strict model types, lint, format, native aperture audit, roundtrip, physical checks and separate replay pass. Aperture audit's traced1.439999999 is its paraxial convention, not the finite equivalents above. Initial empty-assignee metadata correction is recorded; no corporate assignee was invented and no optical requirement relaxed. Earlier6947-test same-baseline evidence remains historical, not a new full suite or integration claim.
+The axial beam and the 22.5° chief ray clear the rims. Geometric transmission at the field edge, evaluated over the diaphragm opening, increases from about 24.5% with the earlier rims to 41.3% with these values. This describes geometric vignetting, without coating losses or measured image quality. The front estimates differ from the drawn heights and remain uncertain.
 
-Dedup covers1188 reevaluated retained main bodies,4816 overlapping cached main/21retained full PR/history profiles, readable loose/TAR/JSON/ZIP bodies and48 parsed native profiles in sixteen sealed local historical ZIPs, with necessary full signed-radius positive uniform scale/reversed-negated filters and aliases. Negative full-radius signature excludes exact whole-prescription equality, not identity by names. Retained baseline4027fd20d095a1dba4ee3f46188dc70dad858055 and inaccessible/computed-expression/current-remote limits remain explicit. Known PR403 is not retried. No claim of current remote or exhaustive private archive coverage. Distribution freshness and local original bytes/pixels remain unverified; source signed values use explicitly attributed parent/scout original custody.
+## Design heritage and context
 
-Rebuild inputs, literal source, diagnostics, reports and a producer/frozen SHA256/CRC manifest form the private checkpoint. Sixteen prior ZIPs and all older checkpoint counterparts are checked unchanged. No ZIP, Library upload, external transfer, standalone delivery, commit, PR, deployment, public change or packaging credit for this candidate.
+This is a higher-index f/1.4 development of Bertele's Sonnar f/1.5 design in US 1,975,678, sharing its singlet–triplet–triplet arrangement. The family resemblance does not establish that Example I was manufactured under the Sonnar name.
+
+## Sources
+
+1. Ludwig Bertele, [US 2,600,610 A, “High-aperture and high-transmission three component objective”](https://patents.google.com/patent/US2600610A/en): Figure 1 on PDF p. 1; title, dates, nominal focal length and field on PDF p. 2; Table I and element descriptions on PDF p. 3; claims on PDF p. 4. [Patent page images](https://patentimages.storage.googleapis.com/e6/3e/9a/dbd5301723f597/US2600610.pdf).
+2. Ludwig Bertele, [US 1,975,678 A](https://patents.google.com/patent/US1975678A/en), the earlier Sonnar f/1.5 design, cited for design lineage.

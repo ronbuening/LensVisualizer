@@ -1,13 +1,23 @@
-import type { LensDataV2Input } from "../repo/src/types/lensDataV2.js";
-const data = {
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * US 2,600,610 A, Example I, Table I and Figure 1: a seven-element objective
+ * at the patent's stated 100 mm focal length and f/1.44. Radii, thicknesses,
+ * air spaces and d-line glass data follow the table. The diaphragm is drawn
+ * between R6 and R7; its 14.3/0.6 mm gap split and opening are inferred.
+ * Front rims are estimated; rear rims follow Figure 1 within the surface-slope
+ * limit at R9. The image plane is the computed paraxial back focus, 43.69781 mm.
+ * The patent states a 45-degree full field but gives no close-focus data.
+ */
+const LENS_DATA = {
   schema: 2,
-  key: "bertele-us2600610-example1-infinity-reference",
+  key: "bertele-100mm-f144-us2600610",
   maker: null,
-  name: "BERTELE US2600610 EXAMPLE I \u2014 SOURCE f/1.44",
-  subtitle: "Patent-only 7E/3G \u00b7 helium-d infinity / estimated iris-rims",
-  visible: false,
+  name: "BERTELE 100mm f/1.44 (US 2,600,610 Design)",
+  subtitle: "US 2,600,610 A, Example I — Sonnar-type development",
+  visible: true,
   source: {
-    patentNumber: "US 2,600,610",
+    patentNumber: "US 2,600,610 A",
     patentYear: 1952,
     example: {
       label: "Example I",
@@ -15,122 +25,109 @@ const data = {
     },
     authors: ["Ludwig Bertele"],
     assignees: [],
-    sdSource: "heuristic",
   },
   catalog: {
     focalLengthMm: {
-      design: 100,
+      design: 99.97,
     },
     fNumber: {
       design: 1.44,
     },
     elementCount: 7,
     groupCount: 3,
-    specs: [
-      "Literal7E3G1|2+3+4|5+6+7, cementsR4/R5/R8/R9. Lowercasehelium-d source indices/Abbe retained,not sodiumD. Source100/f1.44 versus literalEFL99.965654825/BFD43.697807592mm,no fit/glass change.",
-      "Source diaphragm B1 inS2 afterR6. Exact14.9mm air gap retained;estimated14.3/.6split,z45.55,estimatedboreandclearcaps,no factorydimensions.",
-      "Savednominal/controlf1.44 derivesparaxialiris;finite-marginalR19.714780918mm separate,actualfinite equivalents documented. No cap forcing,trim,overrides,extra plate or baffle.",
-      "Actualnative atmost+/-5degree helium-d infinity only. Genericchromatic/broadband,diffraction,widerautomaticMTF,fullpupil,retail,format,finitefocus andmeasuredperformance unqualified. Source45degree context not appguarantee.",
-      "Originalsignednumbers/hash externalparent/scoutcustody;no localoriginalPDF/pixels/rehash. Officialwebopen inaccessibleonce,noretry. Primaryprosemirror corroborates lowercase d-line/topology/orientation,not numericfacsimile inspection.",
-    ],
+    imageCircleMm: 85.27,
+    specs: ["7 ELEMENTS / 3 GROUPS", "ALL SPHERICAL", "DESIGN F/1.44"],
   },
   elements: [
     {
       id: 1,
       name: "L1",
-      label: "L1",
-      type: "Source Spherical Element",
+      label: "Element 1",
+      type: "Positive Meniscus",
       nd: 1.693,
       vd: 43,
       indexReference: "d",
-      indexReferenceNote:
-        "Patent explicitly states lowercase d-line. Native helium-d587.5618nm reference; only reference-line optical claims.",
-      glass:
-        "Literal helium-d/Abbe pair; no verified catalog identity or calibrated spectral curve.",
+      focalLengthMm: 127.74,
+      glass: "Unmatched (nd 1.6930 / ν 43.0)",
+      role: "Positive front collector",
     },
     {
       id: 2,
       name: "L2",
-      label: "L2",
-      type: "Source Spherical Element",
+      label: "Element 2",
+      type: "Positive Meniscus",
       nd: 1.6929,
       vd: 52.4,
       indexReference: "d",
-      indexReferenceNote:
-        "Patent explicitly states lowercase d-line. Native helium-d587.5618nm reference; only reference-line optical claims.",
-      glass:
-        "Literal helium-d/Abbe pair; no verified catalog identity or calibrated spectral curve.",
-      cemented: "G2",
+      focalLengthMm: 90.08,
+      glass: "Unmatched (nd 1.6929 / ν 52.4)",
+      role: "Positive front member of the negative middle triplet",
+      cemented: "C1",
     },
     {
       id: 3,
       name: "L3",
-      label: "L3",
-      type: "Source Spherical Element",
+      label: "Element 3",
+      type: "Biconvex Positive",
       nd: 1.4875,
       vd: 70,
       indexReference: "d",
-      indexReferenceNote:
-        "Patent explicitly states lowercase d-line. Native helium-d587.5618nm reference; only reference-line optical claims.",
-      glass:
-        "Literal helium-d/Abbe pair; no verified catalog identity or calibrated spectral curve.",
-      cemented: "G2",
+      focalLengthMm: 147.73,
+      glass: "Unmatched (nd 1.4875 / ν 70.0)",
+      role: "Low-index positive member of the middle triplet",
+      cemented: "C1",
     },
     {
       id: 4,
       name: "L4",
-      label: "L4",
-      type: "Source Spherical Element",
+      label: "Element 4",
+      type: "Biconcave Negative",
       nd: 1.7229,
       vd: 28.5,
       indexReference: "d",
-      indexReferenceNote:
-        "Patent explicitly states lowercase d-line. Native helium-d587.5618nm reference; only reference-line optical claims.",
-      glass:
-        "Literal helium-d/Abbe pair; no verified catalog identity or calibrated spectral curve.",
-      cemented: "G2",
+      focalLengthMm: -32.29,
+      glass: "Unmatched (nd 1.7229 / ν 28.5)",
+      role: "Strong negative rear member of the middle triplet",
+      cemented: "C1",
     },
     {
       id: 5,
       name: "L5",
-      label: "L5",
-      type: "Source Spherical Element",
+      label: "Element 5",
+      type: "Plano-Concave Negative",
       nd: 1.5112,
       vd: 50.9,
       indexReference: "d",
-      indexReferenceNote:
-        "Patent explicitly states lowercase d-line. Native helium-d587.5618nm reference; only reference-line optical claims.",
-      glass:
-        "Literal helium-d/Abbe pair; no verified catalog identity or calibrated spectral curve.",
-      cemented: "G3",
+      focalLengthMm: -112.42,
+      glass: "KF8 (Sumita)",
+      role: "Negative front member of the positive rear triplet",
+      cemented: "C2",
     },
     {
       id: 6,
       name: "L6",
-      label: "L6",
-      type: "Source Spherical Element",
+      label: "Element 6",
+      type: "Biconvex Positive",
       nd: 1.6666,
       vd: 48.4,
       indexReference: "d",
-      indexReferenceNote:
-        "Patent explicitly states lowercase d-line. Native helium-d587.5618nm reference; only reference-line optical claims.",
-      glass:
-        "Literal helium-d/Abbe pair; no verified catalog identity or calibrated spectral curve.",
-      cemented: "G3",
+      focalLengthMm: 26.8,
+      glass: "Unmatched (nd 1.6666 / ν 48.4)",
+      role: "Strong positive core of the rear triplet",
+      cemented: "C2",
     },
     {
       id: 7,
       name: "L7",
-      label: "L7",
-      type: "Source Spherical Element",
+      label: "Element 7",
+      type: "Negative Meniscus",
       nd: 1.6072,
       vd: 56.7,
       indexReference: "d",
-      indexReferenceNote:
-        "Patent explicitly states lowercase d-line. Native helium-d587.5618nm reference; only reference-line optical claims.",
-      glass:
-        "Literal helium-d/Abbe pair; no verified catalog identity or calibrated spectral curve.",
-      cemented: "G3",
+      focalLengthMm: -48.33,
+      glass: "Unmatched (nd 1.6072 / ν 56.7)",
+      role: "Negative rear member of the positive rear triplet",
+      cemented: "C2",
     },
   ],
   surfaces: [
@@ -172,7 +169,7 @@ const data = {
       label: "6",
       R: 24.06,
       d: 14.3,
-      sd: 20.8,
+      sd: 21.2,
     },
     {
       label: "STO",
@@ -183,28 +180,28 @@ const data = {
       label: "7",
       R: "flat",
       d: 4.8,
-      sd: 22,
+      sd: 21,
       medium: 5,
     },
     {
       label: "8",
       R: 57.47,
       d: 19.5,
-      sd: 22,
+      sd: 21,
       medium: 6,
     },
     {
       label: "9",
       R: -22.41,
       d: 5,
-      sd: 19.7,
+      sd: 20.16,
       medium: 7,
     },
     {
       label: "10",
       R: -102.8,
       d: 43.69780759225482,
-      sd: 20,
+      sd: 26.5,
     },
   ],
   aperture: {
@@ -214,16 +211,15 @@ const data = {
   },
   projection: {
     kind: "rectilinear",
-    fullFieldDeg: 10,
-    maxTraceFieldDeg: 5,
+    fullFieldDeg: 45,
+    maxTraceFieldDeg: 22.5,
   },
   rays: {
     offAxisFieldFrac: 1,
   },
   focus: {
-    closeFocusM: 1000000000000000,
-    description:
-      "Literal7E3G1|2+3+4|5+6+7, cementsR4/R5/R8/R9. Lowercasehelium-d source indices/Abbe retained,not sodiumD. Source100/f1.44 versus literalEFL99.965654825/BFD43.697807592mm,no fit/glass change. Source diaphragm B1 inS2 afterR6. Exact14.9mm air gap retained;estimated14.3/.6split,z45.55,estimatedboreandclearcaps,no factorydimensions. Savednominal/controlf1.44 derivesparaxialiris;finite-marginalR19.714780918mm separate,actualfinite equivalents documented. No cap forcing,trim,overrides,extra plate or baffle. Actualnative atmost+/-5degree helium-d infinity only. Genericchromatic/broadband,diffraction,widerautomaticMTF,fullpupil,retail,format,finitefocus andmeasuredperformance unqualified. Source45degree context not appguarantee. Originalsignednumbers/hash externalparent/scoutcustody;no localoriginalPDF/pixels/rehash. Officialwebopen inaccessibleonce,noretry. Primaryprosemirror corroborates lowercase d-line/topology/orientation,not numericfacsimile inspection.",
+    closeFocusM: 1e15,
+    description: "Infinity focus only; the patent gives no close-focus data.",
   },
   groups: [
     {
@@ -242,8 +238,20 @@ const data = {
       toSurface: "10",
     },
   ],
+  doublets: [
+    {
+      text: "C1 · Cemented triplet",
+      fromSurface: "3",
+      toSurface: "6",
+    },
+    {
+      text: "C2 · Cemented triplet",
+      fromSurface: "7",
+      toSurface: "10",
+    },
+  ],
   layout: {
     yScFill: 0.5,
   },
 } satisfies LensDataV2Input;
-export default data;
+export default LENS_DATA;
