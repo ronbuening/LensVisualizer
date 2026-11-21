@@ -18,7 +18,7 @@ The calculated helium d-line EFL is 100.08 mm, 0.1% above the stated 100-unit fo
 
 The front and rear doublets have focal lengths of −794.94 and −4859.31 mm; the menisci have +120.31 and +135.19 mm. The complete halves are approximately 167 and 161 mm. These values agree with the patent's stronger front negative doublet, stronger front positive meniscus and approximately equal half-lens focal lengths.
 
-The surfaces stay clear of each other. The stated f/4 axial marginal clears every rim, with about 0.01 mm to spare at R3. The effective aperture of the real beam is f/4.02, 0.6% above nominal, because R3 clips the outer edge of the slightly larger beam admitted by the derived iris. No rim reduces the aperture beyond that small difference. The 35° chief ray clears every surface and reaches a 70.10 mm image height, or 100.0% of the rounded image-circle radius to one decimal place. Off-axis bundles are vignetted; a complete f/4 pupil is not transmitted at the field edge.
+The surfaces stay clear of each other. The stated f/4 axial marginal clears every rim, with about 0.01 mm to spare at R3. The effective aperture of the real beam is f/4.02, 0.6% above nominal, because R3 clips the outer edge of the slightly larger beam admitted by the derived iris. No rim reduces the aperture beyond that small difference. The 35° chief ray clears every surface and reaches a 70.098 mm image height, about 0.002 mm short of the rounded 70.1 mm image-circle radius. Off-axis bundles are vignetted; a complete f/4 pupil is not transmitted at the field edge.
 
 ## Values Not Printed in the Patent
 

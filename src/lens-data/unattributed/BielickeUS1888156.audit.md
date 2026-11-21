@@ -52,7 +52,7 @@ After these corrections, EFL is 99.90 mm, paraxial aperture f/2.50, BFD 78.28 mm
 
 ## Remaining Questions
 
-- The drawing suggests smaller clear radii at R1/R2, about 21.1 mm versus 23 mm; R3, about 18.8 mm versus 22 mm; and R8/R9, about 21.3 mm versus 22 mm. At R1/R2 the retained edge is about 0.38 mm thick, against about 1.5 mm in the drawing. The smaller drawn rims admit the axial beam but increase vignetting at 10.0° from about 4.0% to 15.0%. The intended physical rim dimensions remain uncertain; the retained rims have not changed.
+- The drawing suggests smaller clear radii at R1/R2, about 21.1 mm versus 23 mm; R3, about 18.8 mm versus 22 mm; and R8/R9, about 21.3 mm versus 22 mm. At R1/R2 the retained edge is about 0.38 mm thick, against about 1.5 mm in the drawing. The smaller drawn rims admit the axial beam but increase vignetting at 10.0° from about 4.0% to 15.0%. The intended physical rim dimensions remain uncertain.
 - Historical glass identities, suppliers, full dispersion curves and the wavelength meant by G are unknown.
 - Physical iris position and diameter, blade count and shape, aperture range, field, image format, close-focus distance and focusing mechanism are undocumented.
 - The Astrar attribution lacks a matching construction or prescription. A confirmed production association, maker, mount and marketed specifications remain unknown.

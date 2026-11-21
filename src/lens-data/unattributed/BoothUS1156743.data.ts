@@ -4,8 +4,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * US 1,156,743 A (Lionel Barton Booth, 1915), Example 2 and Figure 2.
  * The approximately 12-unit focal length at 25 mm/unit is nominally 300 mm.
  * The printed prescription gives EFL 302.10 mm (+0.7%); no source value is adjusted.
- * Printed D, F and hydrogen Hγ indices give no Abbe numbers. Tracing uses
- * only sodium D (589.3 nm), without dispersion.
+ * The patent prints D, F and hydrogen Hγ indices but no Abbe numbers. Tracing
+ * uses only sodium D (589.3 nm), without dispersion.
  * The inferred stop is 15 mm behind R3 and 20.175 mm before R4. Estimated clear
  * radii are 22.5 mm for the front pair and 19 mm for the rear pair.
  * The image plane is the calculated paraxial focus, 152.88 mm behind R7.

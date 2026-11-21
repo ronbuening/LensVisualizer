@@ -80,7 +80,7 @@ The patent describes the use of high-index baryta crown to improve field flatnes
 
 The model is focused at infinity; the patent gives no close-focus data or focusing mechanism. The stop is inferred within the printed 9.2 mm air space between R4 and R5, divided into 5.4 mm before and 3.8 mm after the stop. Its axial station is 26.4 mm after the first vertex; the figure draws no iris.
 
-Nominal f/2.5 gives an inferred stop radius of 15.269 mm. The admitted axial beam has entrance-equivalent f/2.58 and image-sine f/2.58. These finite-ray values differ from the paraxial f-number because of pupil aberration. No clear rim limits the axial aperture. A finite entrance-equivalent f/2.5 would require a larger stop radius of 15.820 mm, which is not a printed iris dimension.
+Nominal f/2.5 gives an inferred stop radius of 15.269 mm. The admitted axial beam has entrance-equivalent and image-sine f-numbers of about f/2.58. These finite-ray values differ from the paraxial f-number because of pupil aberration. No clear rim limits the axial aperture. A finite entrance-equivalent f/2.5 would require a larger stop radius of 15.820 mm, which is not a printed iris dimension.
 
 ## Model Scope and Limitations
 

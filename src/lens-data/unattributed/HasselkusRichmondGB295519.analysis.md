@@ -74,9 +74,9 @@ The central gap has about 0.419 mm clearance at the shared outer band, and the R
 
 ## Field and Model Limitations
 
-The printed 70° full field corresponds to a 35° half-field. The real chief ray clears every rim there and reaches an image height of 70.10 mm. Twice that height, rounded to 0.1 mm, gives the 140.2 mm model image circle. It describes the patent's stated field at this model's dimensions; no physical image diameter or production film format is printed.
+The printed 70° full field corresponds to a 35° half-field. The real chief ray clears every rim there and reaches an image height of 70.098 mm. Twice that height, rounded to 0.1 mm, gives the 140.2 mm model image circle. It describes the patent's stated field at this model's dimensions; no physical image diameter or production film format is printed.
 
-Chief-ray coverage reaches 100.0% of the rounded circle radius to one decimal place. Off-axis bundles are vignetted, and a complete f/4 pupil is not transmitted at 35°. The monochromatic, infinity-focus model does not establish production performance, chromatic correction or the patent's full set of aberration claims. All surfaces are spherical.
+The 35° chief ray falls about 0.002 mm short of the rounded circle's 70.1 mm radius. Off-axis bundles are vignetted, and a complete f/4 pupil is not transmitted at 35°. The monochromatic, infinity-focus model does not establish production performance, chromatic correction or the patent's full set of aberration claims. All surfaces are spherical.
 
 ## Sources
 

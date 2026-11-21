@@ -70,12 +70,12 @@ The patent gives a single clear diameter, not individual surface rims. The model
 
 ## First-Order Properties and Limits
 
-| Quantity               |       Patent |        Model |
-| ---------------------- | -----------: | -----------: |
+| Quantity               |     Patent |      Model |
+| ---------------------- | ---------: | ---------: |
 | Effective focal length | 179.555 mm | 179.553 mm |
 | Back focal length      | 143.634 mm | 143.637 mm |
-| Design aperture        |        f/4.9 |        f/4.9 |
-| Full field             |        10.0° |        10.0° |
+| Design aperture        |      f/4.9 |      f/4.9 |
+| Full field             |      10.0° |      10.0° |
 
 The first-to-last optical surface span is 60.40 mm, and the first surface to image distance is 204.04 mm. The model retains the printed radii, glass thicknesses and total air spaces. The computed image plane differs slightly from the printed back focus; neither is a plane selected to minimize a spot size. The surfaces stay clear of each other, and no glass rim intersects the stop plane.
 
