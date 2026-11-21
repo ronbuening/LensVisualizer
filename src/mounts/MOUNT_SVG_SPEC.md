@@ -90,10 +90,11 @@ outward to whole mm. Coordinates are rounded to 3 decimals; layers emit in the f
 2. Fill `coreDimensions`, `lockGeometry`, `cameraSideFeatures`, `lensSideFeatures`, `axialStack`, and any
    `contacts` / `mechanicalCouplings` / `screwsGasketsBaffles`, each as value envelopes.
 3. Number bayonet instances clockwise from the one nearest 12 o'clock (`body-slot-1`, `lens-lug-1`, …) and
-   set `matesWith` to the opposite-side feature id. A `bayonet_receiving_slot` is the entry gap between
-   two body flanges, not the flange. Store every lens-side feature at the angle of the body feature it
-   mates with (lug at its slot, index at the body index, lock notch at the lock pin); the turn between
-   insertion and lock lives only in `lockGeometry`.
+   set `matesWith` to the opposite-side feature id. Draw the body as it is and the lens as mounted and
+   locked: a `body-slot-n` is the body's claw or flange (the solid metal that retains a lug), not the open
+   entry gap beside it, and each lens lug, lock notch, contact and coupling sits where it is on a mounted
+   lens, so a lug lies behind its claw. Only the lens index is drawn at the body index, where the two
+   line up for insertion. The turn between insertion and lock lives only in `lockGeometry`.
 4. Define the `mvp.profileModel` (base + variants) and set `selectedMvpProfileId`.
 5. Add `sourceRefs` (with archived snapshots) and `openQuestions` for any photo-scaled/unknown values.
 6. Register the spec in [`index.ts`](./index.ts).
