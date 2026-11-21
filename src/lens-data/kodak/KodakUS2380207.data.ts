@@ -1,0 +1,193 @@
+import type { LensDataV2Input } from "../repo/src/types/lensDataV2.js";
+const data = {
+  schema: 2,
+  key: "aklin-us2380207-infinity-reference",
+  maker: null,
+  name: "AKLIN US2380207 SOLE EXAMPLE \u2014 SOURCE f/5.6",
+  subtitle:
+    "Patent-only compact telephoto 5E/3G \u00b7 sodium-D infinity / estimated iris-rims",
+  visible: false,
+  source: {
+    patentNumber: "US 2,380,207",
+    patentYear: 1945,
+    example: {
+      label: "Sole example",
+      id: null,
+    },
+    authors: ["George H. Aklin"],
+    assignees: ["Eastman Kodak Company"],
+    sdSource: "heuristic",
+  },
+  catalog: {
+    focalLengthMm: {
+      design: 100,
+    },
+    fNumber: {
+      design: 5.6,
+    },
+    elementCount: 5,
+    groupCount: 3,
+    specs: [
+      "Literal5E3G1+2|3+4|5,bondsR2/R5,sodium-D indices/Abbe unchanged. Source100/f5.6/BF53.2 separate from calculatedEFL100.226982799/BFD53.655204174mm;no focusfit or glasschange.",
+      "Exact0.05mm rearR6-R7airgap repeated in two source tables retained;body.005F impliesabout.5mm atnominal100,explicit source conflict not repaired. Gapopensoutward under authoredcaps.",
+      "Source diaphragm about9mm afterR3;modeled9/12.1split in literal21.1mmgap,z15.1,estimatedbore/rims,notfactorydimensions. Nativeparaxialf5.6iris differsfromfinite-marginalR6.701607723 seed;actualfiniteequivalents documented separately.",
+      "Actualnativeatmost+/-5degrees sodium-D infinity only. No fullpupil,sourcewidefield,retail,format,finitefocus,broadband,calibrateddispersion,measuredMTF/throughput or widerautomaticmetricsclaim. No capforcing,trim,override,sourceedit or baffle.",
+      "Originalsource signednumbers/hash externally verified parent/scoutcustody;no localPDF/pixels/hashreproduction. Officialprimary/prosemirror web reads inaccessibleonce each,notretried orroutedaround. Bondmapping independentlycheckedagainstliteralEFL/BFD/gaps,notneworiginal inspection.",
+    ],
+  },
+  elements: [
+    {
+      id: 1,
+      name: "L1",
+      label: "L1",
+      type: "Source Spherical Element",
+      nd: 1.498,
+      vd: 67,
+      indexReference: "D",
+      glass: "Literal sodium-D/Abbe pair; no calibrated spectral curve.",
+      cemented: "G1",
+    },
+    {
+      id: 2,
+      name: "L2",
+      label: "L2",
+      type: "Source Spherical Element",
+      nd: 1.656,
+      vd: 40.5,
+      indexReference: "D",
+      glass: "Literal sodium-D/Abbe pair; no calibrated spectral curve.",
+      cemented: "G1",
+    },
+    {
+      id: 3,
+      name: "L3",
+      label: "L3",
+      type: "Source Spherical Element",
+      nd: 1.5,
+      vd: 61.6,
+      indexReference: "D",
+      glass: "Literal sodium-D/Abbe pair; no calibrated spectral curve.",
+      cemented: "G2",
+    },
+    {
+      id: 4,
+      name: "L4",
+      label: "L4",
+      type: "Source Spherical Element",
+      nd: 1.755,
+      vd: 47.2,
+      indexReference: "D",
+      glass: "Literal sodium-D/Abbe pair; no calibrated spectral curve.",
+      cemented: "G2",
+    },
+    {
+      id: 5,
+      name: "L5",
+      label: "L5",
+      type: "Source Spherical Element",
+      nd: 1.755,
+      vd: 47.2,
+      indexReference: "D",
+      glass: "Literal sodium-D/Abbe pair; no calibrated spectral curve.",
+    },
+  ],
+  surfaces: [
+    {
+      label: "1",
+      R: 16,
+      d: 4.8,
+      sd: 9.8,
+      medium: 1,
+    },
+    {
+      label: "2",
+      R: -51.3,
+      d: 1.3,
+      sd: 9.8,
+      medium: 2,
+    },
+    {
+      label: "3",
+      R: 49.3,
+      d: 9,
+      sd: 10,
+    },
+    {
+      label: "STO",
+      R: "flat",
+      d: 12.1,
+    },
+    {
+      label: "4",
+      R: -11,
+      d: 1,
+      sd: 8,
+      medium: 3,
+    },
+    {
+      label: "5",
+      R: -73.4,
+      d: 1.5,
+      sd: 8,
+      medium: 4,
+    },
+    {
+      label: "6",
+      R: -30.8,
+      d: 0.05,
+      sd: 8,
+    },
+    {
+      label: "7",
+      R: 508,
+      d: 1.2,
+      sd: 8,
+      medium: 5,
+    },
+    {
+      label: "8",
+      R: -79.8,
+      d: 53.65520417429909,
+      sd: 8,
+    },
+  ],
+  aperture: {
+    nominalFNumber: 5.6,
+    fStops: [5.6, 8, 11, 16, 22, 32],
+    maxFNumber: 32,
+  },
+  projection: {
+    kind: "rectilinear",
+    fullFieldDeg: 10,
+    maxTraceFieldDeg: 5,
+  },
+  rays: {
+    offAxisFieldFrac: 1,
+  },
+  focus: {
+    closeFocusM: 1000000000000000,
+    description:
+      "Literal5E3G1+2|3+4|5,bondsR2/R5,sodium-D indices/Abbe unchanged. Source100/f5.6/BF53.2 separate from calculatedEFL100.226982799/BFD53.655204174mm;no focusfit or glasschange. Exact0.05mm rearR6-R7airgap repeated in two source tables retained;body.005F impliesabout.5mm atnominal100,explicit source conflict not repaired. Gapopensoutward under authoredcaps. Source diaphragm about9mm afterR3;modeled9/12.1split in literal21.1mmgap,z15.1,estimatedbore/rims,notfactorydimensions. Nativeparaxialf5.6iris differsfromfinite-marginalR6.701607723 seed;actualfiniteequivalents documented separately. Actualnativeatmost+/-5degrees sodium-D infinity only. No fullpupil,sourcewidefield,retail,format,finitefocus,broadband,calibrateddispersion,measuredMTF/throughput or widerautomaticmetricsclaim. No capforcing,trim,override,sourceedit or baffle. Originalsource signednumbers/hash externally verified parent/scoutcustody;no localPDF/pixels/hashreproduction. Officialprimary/prosemirror web reads inaccessibleonce each,notretried orroutedaround. Bondmapping independentlycheckedagainstliteralEFL/BFD/gaps,notneworiginal inspection.",
+  },
+  groups: [
+    {
+      text: "G1 \u00b7 L1+L2",
+      fromSurface: "1",
+      toSurface: "3",
+    },
+    {
+      text: "G2 \u00b7 L3+L4",
+      fromSurface: "4",
+      toSurface: "6",
+    },
+    {
+      text: "G3 \u00b7 L5",
+      fromSurface: "7",
+      toSurface: "8",
+    },
+  ],
+  layout: {
+    yScFill: 0.5,
+  },
+} satisfies LensDataV2Input;
+export default data;

@@ -1,0 +1,17 @@
+# Rayton / Hudson, Bausch & Lomb US2390387 Figure 2
+
+This hidden patent-only reference preserves the literal Figure2 compact telephoto at source scale and nD. It is not Figure1, US2325275, a verified retail lens or a finite-focus simulation. Table magnitudes were signed from the original drawing by an independent source reader; this executor did not inspect original pixels.
+
+The source nominal100 mm f/5.6 remains unchanged. Literal computation gives EFL100.003467007 mm, rear-vertex infinity BFD50.304059724 mm and29.88 mm powered track. BFD and an exact field are not printed for this design; the earlier-class30° discussion is not assigned to Figure2. The derived Gaussian detector is used without fitting any source radius, thickness or material.
+
+Four elements form two cemented doublets. R2 andR5 are real glass-to-glass interfaces with following glass thicknesses1.3 and1.8 mm, not inserted zero air. All six signed radii, five axial advances and four nD/V pairs are unchanged. Glass assignments remain unmatched source values; Abbe numbers do not establish calibrated dispersive curves.
+
+The stop split10.9/10.18 mm in the21.08 mm airspace,z16.7, and cap semidiameters9.9/9.9/9.9/7.5/7.5/7.5 mm are modeling estimates. The native nominal f/5.6 rule gives iris radius6.085409063 mm. An independently traced nominal EFL/(2×5.6) marginal reaches radius6.215478910 at the inferred station. The canonical admitted axial beam has entrance-equivalentf/5.713297669 and image-space sinef/5.753186735. These are different aperture conventions/estimates, not measured factory values or a relabeling. No cap enlargement, clearance override or source retuning is used.
+
+Default geometry and renderer checks pass with zero trimming. The thinnest common-band glass edge is0.215809678 mm inL1; air clearance is17.539368962 mm. A separate straight tapered-wall proxy has positive clearance among checked native arrivals, with closest sampled radial margin0.000793610 mm. This is a sampled model boundary, not a surveyed blank or robustness guarantee.
+
+Chosen±10° is a diagnostic scope, not source coverage. At865 actual-stop pupil samples per field,0° gives865 arrivals,±5°850 arrivals/15 front-cap clips, and±10°740 arrivals/125 clips (front111,rear14). No failed, unaimed or unresolved sample remains in that grid. A separate3457-point entrance-grid audit has84 native noBracket cases at each10° edge, independently shown to intersect the selected first sphere beyond the authored front cap; those are retained as modeled front-cap losses, not silently accepted or unresolved numerical failures. These unweighted sample counts are not throughput, full-pupil certification or retail vignetting.
+
+Reference-D geometric MTF converges at image-height fields corresponding to0°,5.098005° and10°, at0/10/20/40lp/mm. Explicit32–512 lattice refinement changes256-grid values by at most0.00020958, with zero failed/unaimed/unknown flux. This is bounded monochromatic geometric evidence at the derived detector, not diffraction, broadband calibration or source/product measured MTF. Other spectral UI views are not quantitatively qualified. Optional±15° was not tested or promoted.
+
+Official original locator https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/2390387 . External scout visually verified all3 pages, including the drawing's signs. Full original PDF SHA256 pin `84edf8b7f2346d35860d4b8bbd032cb5dd594dc7a7e398ff61fba28bbde8f47b`. The PDF is not included, locally rehashed or newly requested. No known denied route was retried.
