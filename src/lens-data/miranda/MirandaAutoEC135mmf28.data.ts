@@ -46,7 +46,7 @@ const LENS_DATA = {
   key: "miranda-auto-ec-135mm-f28",
   maker: "Miranda",
   name: "MIRANDA AUTO EC 135mm f/2.8",
-  subtitle: "JP1976-074627 sole example — ×1.35 scaled production correlation; attribution not manufacturer-confirmed",
+  subtitle: "JP1976-074627 sole example — ×1.35 scaled production match; not maker-confirmed",
 
   catalog: {
     lensMounts: ["miranda-bayonet"],

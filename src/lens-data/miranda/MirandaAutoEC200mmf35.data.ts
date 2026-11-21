@@ -45,7 +45,7 @@ const LENS_DATA = {
   key: "miranda-auto-ec-200mm-f35",
   maker: "Miranda",
   name: "MIRANDA AUTO EC 200mm f/3.5",
-  subtitle: "JP1976-114926 sole example — 2× production-correlated scale",
+  subtitle: "JP1976-114926 sole example — 2× scaled production match",
 
   catalog: {
     lensMounts: ["miranda-bayonet"],
