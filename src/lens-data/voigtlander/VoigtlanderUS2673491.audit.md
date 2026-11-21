@@ -1,52 +1,59 @@
-# VOIGTLÄNDER 150mm f/2 (US 2,673,491 Design) — Audit
+# VOIGTLÄNDER 150mm f/2 (US 2,673,491 Design) — Audit Log
 
 ## Source
 
-US 2,673,491 A was filed on 7 September 1951, claims Swiss priority of 14 September 1950, and was granted on 30 March 1954. The inventor is Albrecht Wilhelm Tronnier, and the assignee is Voigtländer AG. The sole numerical example is illustrated in Figure 2; Figure 1 explains the general arrangement.
+[US 2,673,491 A, _Photographic Objective Comprising Four Lens Members Separated by Air Spaces and Enclosing the Diaphragm_](https://patents.google.com/patent/US2673491A/en), by Albrecht Wilhelm Tronnier, assigned to Voigtländer AG. Filed 7 September 1951, with Swiss priority of 14 September 1950; published and granted 30 March 1954. The sole numerical example appears on PDF page 3, column 3, and is illustrated in Figure 2 on PDF page 1. Figure 1 explains the general arrangement. The aperture and field are stated on PDF page 2, column 2.
 
-## Transcription
+The table is normalized to f = 1. The patent describes Figure 2 at natural size for a 150 mm objective, establishing the factor of 150 used for all dimensions. It explicitly identifies helium d at 5876 Å, approximately 587.6 nm, as the index reference.
 
-Two independent readings of the patent page images agree on all ten signed radii, six glass thicknesses, three air spaces, the two distances locating the stop, six refractive indices, six Abbe numbers, and the printed back focus. No transcription mismatch was found. The patent identifies the helium d line at 5876 Å. It describes Figure 2 at 150 mm focal length in natural size.
+## Transcription Check
 
-## First-order
+All ten signed radii, six glass thicknesses, three air spaces, two distances locating the diaphragm, six refractive indices, six Abbe numbers and the printed back focus agree with the patent page images. No transcription discrepancy was found. The central air space is 30.618 mm, divided into 16.3965 mm before the stop and 14.2215 mm after it. The cemented interfaces are R4 and R7. All ten refracting surfaces are spherical.
 
-The computed effective focal length is 149.998784560 mm, compared with the stated 150 mm. The computed paraxial back focus is 107.155573064 mm, compared with the printed 107.154 mm. The 0.001573064 mm difference is consistent with rounding. The paraxial aperture is f/2.000, and the inferred stop radius is 25.894351772 mm. The powered track is 96.123 mm and the first-vertex-to-image distance is 203.278573064 mm. The image plane is the paraxial infinity plane.
+## First-Order Check
 
-## Not Printed
+The calculated effective focal length is 150.00 mm, matching the printed 150 mm scale. The paraxial aperture is f/2.00, matching the printed 1:2. The stop radius is 25.89 mm. Finite-aperture tracing gives an entrance-aperture equivalent of approximately f/1.97 for the same opening.
 
-The clear semi-diameters and physical iris diameter are estimates. The patent supplies the stop position, with 16.3965 mm before it and 14.2215 mm after it, but no close-focus data or camera format. The glasses have no established catalog identities or published individual C-, F-, or g-line indices. The former 10° half-field was an unprinted display choice; the patent states a 60° full illumination field.
+Calculated paraxial back focus is 107.156 mm, compared with the printed 107.154 mm. The difference of about 0.002 mm is consistent with the table's rounding. The image plane is at the calculated paraxial infinity focus behind R10. The first-to-last surface distance is 96.123 mm, and the first-vertex-to-image distance is 203.28 mm.
 
-## Product
+The surfaces retain positive glass thickness and air clearance, no rim crosses the stop plane, and the iris sets the full aperture. The 30.0° chief ray clears every rim and reaches an image height of 83.67 mm. Its full diameter gives the inferred 167.34 mm image circle. Off-axis bundles are partly vignetted; chief-ray coverage does not establish uniform illumination or full-field image quality.
 
-No production lens is documented for this prescription. The Ultron 50mm f/2 associated with US 2,627,204 A has a different six-element, five-group arrangement. The present design has six elements in four groups, with cemented interfaces at R4 and R7.
+## Values Not Printed in the Patent
 
-## Corrections
+The stop position is printed, but its physical radius is inferred from f/2. Its plane lies 49.929 mm behind the first vertex. The image-plane distance is calculated rather than copied from the rounded printed back focus.
 
-The numerical prescription has no identified transcription correction. The computed image-plane distance differs slightly from the rounded printed back focus as stated above. The printed illumination field, estimated rim sizes and modeled image quality describe different properties and carry separate limits.
+The clear semi-diameters are estimates: R1/R2 are 43/43 mm; R3/R4/R5 are 37/35/30 mm; R6/R7/R8 are 28/33/34 mm; R9/R10 are 35/35 mm. Approximate Figure 2 readings are respectively 39.9/35.2, 35.3/35.3/26.3, 24.5/29.2/29.0 and 31.3/31.3 mm. The drawn stop radius is about 26.6 mm. These generally smaller rims conflict with the f/2 axial aperture or the stated field: R2, R5, R6 and R8 need about 37.0, 26.5, 25.4 and 29.7 mm to clear the axial beam. With those increases to the drawing-based rims, the chief ray clears to about 28.7° but is blocked at R9/R10 at 30.0°. The retained rims preserve both the axial aperture and the 30.0° chief ray; their difference from the drawing remains unresolved.
+
+The 60.0° full field is printed. The image-circle diameter is inferred from its 30.0° chief-ray height and rounded upward to two decimal places; it does not identify a camera format. The patent gives no close-focus data. `focus.closeFocusM` is 10¹⁵ m, which stands for infinity. The selectable f-stops extend from f/2 to f/22, but the source gives no minimum iris opening.
+
+No historical glass supplier, melt identity, individual C-, F- or g-line index, or partial dispersion is established. All six glasses retain the printed d-line indices and Abbe numbers with Unmatched labels. Other wavelengths depend on Abbe-based dispersion estimates. The closest catalog candidates do not reproduce the printed pairs; differences below are catalog minus printed values at the d line.
+
+| Elements | Candidate | Δnd | Δνd |
+| --- | --- | --- | --- |
+| L1, L2 | N-BAF10 (Schott) | −0.001220 | +0.01 |
+| L3 | S-TIM35 (Ohara) | +0.000527 | +0.03 |
+| L4 | F5 (Schott) | +0.000760 | −0.37 |
+| L5 | STK3 (LZOS) | −0.000030 | +0.37 |
+| L6 | LAF3 (Hoya) | −0.000400 | −0.12 |
+
+## Product Identification
+
+No production lens is documented for this prescription. The Ultron 50mm f/2 associated with [US 2,627,204 A, Example II](https://patents.google.com/patent/US2627204A/en) has six elements in five air-spaced groups and a different arrangement. Its name is not assigned to this six-element, four-group design. No product source establishes a mount, image format, diaphragm blade count or shape, marketed focal length or aperture, minimum focus distance, or production stop range for this prescription.
+
+## Corrections, 2026-11-21
+
+- The key and title were replaced by the maker-and-patent form, Voigtländer was added as maker, and the lens was made visible. The title retains the patent's 150 mm scale without assigning a production model.
+- The patent number gained publication code A. The example changed from Figure 2 with a numerical identifier to Sole example with no identifier, because Figure 2 illustrates the patent's only numerical example. The inventor's surname was expanded to Albrecht Wilhelm Tronnier, and the assignee to Voigtländer AG; the year remains 1954.
+- The subtitle identifies the patent, sole example, Voigtländer and Tronnier. The specifications state “6 ELEMENTS / 4 GROUPS”, “DESIGN f = 150 mm”, “DESIGN F/2” and “ALL SPHERICAL”. The focus description states infinity focus and the absence of close-focus data.
+- The half-field increased from 10.0° to 30.0° to follow the printed 60.0° illumination field. The inferred 167.34 mm image circle was added from the 30.0° chief-ray height at the paraxial image plane.
+- Element labels became Element 1 through Element 6. Generic shape descriptions were replaced by positive meniscus, positive meniscus, negative meniscus, biconcave negative, biconvex positive and biconvex positive, matching the signed radii. Optical roles and individual focal lengths in air were added: +196.52, +151.99, −83.72, −52.81, +64.35 and +152.73 mm.
+- C1 identifies Elements 2–3 with a bracket spanning R3–R5, and C2 identifies Elements 4–5 with a bracket spanning R6–R8. The physical cemented interfaces remain R4 and R7.
+- Glass descriptions became concise Unmatched labels carrying each printed index and Abbe number. Every relabel has Δn = 0 and Δν = 0. No catalog supplier was assigned, and the helium-d basis was retained.
+
+The resulting first-order values are EFL 150.00 mm, paraxial f/2.00, back focus 107.156 mm and stop radius 25.89 mm. Radii, axial distances, glass values, stop position, clear rims and image-plane position remain as first received.
 
 ## Remaining Questions
 
-The estimated rims are generally wider than Figure 2. Approximate figure readings are R1/R2 39.9/35.2 mm, R3/R4/R5 35.3/35.3/26.3 mm, R6/R7/R8 24.5/29.2/29.0 mm, and R9/R10 31.3/31.3 mm. The drawing suggests a stop radius near 26.6 mm. Some smaller figure rims would cut the f/2 beam or the stated field; the existing rims and inferred iris remain in place. The historical glasses, production use and full-field image quality are unresolved.
-
-## 2026-11-21 — Deployment validation and cleanup
-
-Two independent readings of the page images agree on the numerical example, signs, materials, cemented interfaces, stop distances, back focus, helium-d definition and natural-size statement. The prescription is consistent with the printed focal length and back focus to their rounding; no production lens is documented, and the Ultron comparison supplies no product identification.
-
-Changes:
-
-- Import path: `../repo/src/types/lensDataV2.js` → `../../types/lensDataV2.js`; constant and export: `data` → `LENS_DATA`, matching the lens-file form. A single header now states the source, dimensions and inferred quantities.
-- Key: `tronnier-us2673491-figure2-infinity-reference` → `voigtlander-150mm-f2-us2673491`; maker: absent → `Voigtländer`; name: `TRONNIER US2673491 FIGURE 2 — 150mm f/2` → `VOIGTLÄNDER 150mm f/2 (US 2,673,491 Design)`; visibility: false → true.
-- Patent number: `US 2,673,491` → `US 2,673,491 A`; example: `Figure 2`, id `2` → `Sole example`, id null; author: `Tronnier` → `Albrecht Wilhelm Tronnier`; assignee: `Voigtländer` → `Voigtländer AG`. The year remains 1954.
-- Subtitle: the former wording about source status and estimated apertures → `US 2,673,491 A, sole example — six-element Gauss design`. The eight long specification strings → `6 ELEMENTS / 4 GROUPS`, `DESIGN f = 150 mm`, `DESIGN F/2`, `ALL SPHERICAL`.
-- Traced half-field: 10° → 30°, following the printed 60° full illumination field. Image circle: absent → 167.338163 mm, twice the real 30° chief-ray height of 83.669081371 mm at the paraxial image plane. The 60° full-field value remains unchanged.
-- Element labels: L1–L6 → Element 1–Element 6. Types: the former generic spherical designation → positive meniscus, positive meniscus, negative meniscus, biconcave negative, biconvex positive and biconvex positive. Plain optical roles and individual in-air focal lengths were added: +196.52, +151.99, −83.72, −52.81, +64.35 and +152.73 mm.
-- Cemented annotations: absent → C1 on Elements 2–3 and C2 on Elements 4–5, with brackets spanning R3–R5 and R6–R8. The physical interfaces remain R4 and R7.
-- Glass descriptions: the shared long unmatched description → `Unmatched (nd 1.67125 / ν 47.1)` on Elements 1–2, `Unmatched (nd 1.69842 / ν 30.1)` on Element 3, `Unmatched (nd 1.60266 / ν 38.4)` on Element 4, `Unmatched (nd 1.65953 / ν 57)` on Element 5, and `Unmatched (nd 1.7174 / ν 48.1)` on Element 6. Each relabel has Δn = 0 and Δν = 0; all indices retain the printed d-line basis.
-- The closest catalog candidates remain unsuitable: N-BAF10 (Schott), Δn −0.001220 / Δν +0.01; S-TIM35 (Ohara), +0.000527 / +0.027865; F5 (Schott), +0.000760 / −0.37; STK3 (LZOS), −0.000028 / +0.35; LAF3 (Hoya), −0.000400 / −0.12. The first, second, third and fifth disagree with the printed index; STK3 disagrees with the printed Abbe number. No supplier is assigned.
-- Focus description: the long calculation history → `Infinity focus only; the patent gives no close-focus data.` The infinity bound remains 10¹⁵ m. The analysis now explains identification, architecture, each element, glass limits, focus, field coverage and sources; the audit records the source decisions and remaining questions.
-
-Before and after, the effective focal length is 149.998784560 mm, the paraxial aperture f/2.000, the back focus 107.155573064 mm, and the stop radius 25.894351772 mm. All R, d, n, ν, clear radii, stop and image-plane positions are unchanged. The rounded catalog design focal length remains 150.00 mm.
-
-Surface checks report no errors. Aperture checks find no rim limit and reproduce the stated f/2 within 3%. The image-circle check reports no undersized rims. Field coverage is 100%: the 30° corner chief ray is clear. This is a chief-ray coverage result, not a claim of full-pupil transmission or uniform illumination.
-
-Open: the rim differences from Figure 2 listed above remain for a semi-diameter assessment; reducing them would require reconciling axial aperture and edge-field clearance. Historical glass identities, production use and measured wide-field performance remain unresolved.
+- The retained rims are generally wider than Figure 2; the drawing's smaller rims do not provide both the stated aperture and the full chief-ray field.
+- Historical glass identities, suppliers and melts remain unknown. The patent supplies no measured partial dispersion or wide-field MTF performance.
+- Production use, mount, image format, blade count and shape, marketed specifications, minimum iris opening and close-focus mechanism remain undocumented.

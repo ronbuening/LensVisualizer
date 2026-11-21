@@ -6,7 +6,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * statement that Figure 2 shows a 150 mm objective at natural size.
  * Radii, spacings, helium-d indices, Abbe numbers and the stop position are printed.
  * Clear semi-diameters are estimated; the stop radius is inferred from f/2.
- * The image plane is the computed paraxial back focus, 107.155573 mm, compared
+ * The image plane is the computed paraxial back focus, 107.156 mm, compared
  * with the printed 107.154 mm. The stated illumination field is 60 degrees full.
  */
 const LENS_DATA = {
@@ -14,7 +14,7 @@ const LENS_DATA = {
   key: "voigtlander-150mm-f2-us2673491",
   maker: "Voigtländer",
   name: "VOIGTLÄNDER 150mm f/2 (US 2,673,491 Design)",
-  subtitle: "US 2,673,491 A, sole example — six-element Gauss design",
+  subtitle: "US 2,673,491 A, sole example — Voigtländer / Tronnier",
   visible: true,
   source: {
     patentNumber: "US 2,673,491 A",
@@ -36,7 +36,7 @@ const LENS_DATA = {
     },
     elementCount: 6,
     groupCount: 4,
-    imageCircleMm: 167.338163,
+    imageCircleMm: 167.34,
     specs: ["6 ELEMENTS / 4 GROUPS", "DESIGN f = 150 mm", "DESIGN F/2", "ALL SPHERICAL"],
   },
   elements: [

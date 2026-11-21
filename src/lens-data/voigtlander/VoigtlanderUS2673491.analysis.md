@@ -24,9 +24,9 @@ No production lens is documented for this prescription. The Ultron 50mm f/2 in U
 
 The arrangement is a positive front meniscus, a cemented positive–negative pair, a central diaphragm, a cemented negative–positive pair, and a positive rear singlet. The cemented interfaces are R4 and R7. The two inner groups have computed focal lengths of −272.62 mm and −1466.83 mm; each contains elements of opposite individual power. All ten refracting surfaces are spherical.
 
-The patent emphasizes glass-index distribution as a means of improving coma correction. The four positive elements have a mean index of 1.6798575. Element 4, immediately behind the diaphragm, has index 1.60266, lower by 0.0771975. The rear indices then increase to 1.65953 and 1.71740, with steps of 0.05687 and 0.05787 (PDF pp. 2–3).
+The patent emphasizes glass-index distribution as a means of improving coma correction. The four positive elements have a mean index of 1.67986. Element 4, immediately behind the diaphragm, has index 1.60266, lower by 0.07720. The rear indices then increase to 1.65953 and 1.71740, with steps of 0.05687 and 0.05787 (PDF pp. 2–3).
 
-The diaphragm position is printed: R5 to stop is 16.3965 mm and stop to R6 is 14.2215 mm. Its plane lies 49.929 mm behind the first vertex. Its opening is inferred from the stated f/2 aperture, giving a radius of 25.894352 mm.
+The diaphragm position is printed: R5 to stop is 16.3965 mm and stop to R6 is 14.2215 mm. Its plane lies 49.929 mm behind the first vertex. Its opening is inferred from the stated f/2 aperture, giving a radius of 25.89 mm.
 
 ## Element-by-Element Analysis
 
@@ -76,13 +76,13 @@ No individual C-, F-, or g-line indices or partial dispersions are published. Ca
 
 ## Focus Mechanism and Aperture
 
-The prescription represents infinity focus. The patent gives no close-focus distances or focus movement law. The inferred iris reproduces paraxial f/2.000; the real marginal ray gives an entrance-aperture equivalent of approximately f/1.9735. These describe the same modeled opening using different ray definitions.
+The model is focused at infinity. The patent gives no close-focus distances or focus movement law. The inferred iris reproduces paraxial f/2.00; the real marginal ray gives an entrance-aperture equivalent of approximately f/1.97. These describe the same modeled opening using different ray definitions.
 
-The computed effective focal length is 149.998785 mm. The paraxial back focus is 107.155573 mm, compared with the printed 107.154 mm, a difference of 0.001573 mm consistent with the table's rounding. The image plane remains at the computed paraxial focus. The first-to-last surface distance is 96.123 mm, and the first vertex to image-plane distance is 203.278573 mm.
+The computed effective focal length is 150.00 mm. The paraxial back focus is 107.156 mm, compared with the printed 107.154 mm, a difference of about 0.002 mm consistent with the table's rounding. The image plane remains at the computed paraxial focus. The first-to-last surface distance is 96.123 mm, and the first vertex to image-plane distance is 203.28 mm.
 
 ## Field Coverage and Clear Apertures
 
-The patent states total illumination over a 60° field at f/2 for a remote object (PDF p. 2, column 2). The model traces a 30° half-field. At the paraxial image plane, the real 30° chief ray reaches 83.669081 mm from the axis; twice that height gives the recorded 167.338163 mm image-circle diameter. This circle follows the patent's stated field at the model's scale and does not assign a camera format.
+The patent states total illumination over a 60.0° field at f/2 for a remote object (PDF p. 2, column 2). The model covers a 30.0° half-field. At the paraxial image plane, the real 30.0° chief ray reaches 83.67 mm from the axis, giving an inferred image-circle diameter of 167.34 mm. This circle follows the patent's stated field at the model's scale and does not assign a camera format.
 
 The chief ray clears every current rim at 30°. Off-axis bundles are partly vignetted, so chief-ray coverage does not establish uniform illumination or image quality throughout the field. Quantitative wide-field MTF performance is not established by the patent or by this coverage result.
 
