@@ -44,13 +44,15 @@ Element 2 is plano-convex positive: `nD = 1.65981, ν = 50.3; f = +68.96 mm`. El
 
 ### Element 5 — Biconvex Positive
 
-`nD = 1.61216, ν = 58.0; f = +72.37 mm.` The rear positive group forms the image after the stop. Its radii are +109 and −72.82 mm, and its center thickness is 7 mm. Its glass remains unmatched.
+`nD = 1.61216, ν = 58.0. Glass: P-SK60 (Schott), spectral proxy. f = +72.37 mm.` The rear positive group forms the image after the stop. Its radii are +109 and −72.82 mm, and its center thickness is 7 mm.
 
 ## Glass Identification and Selection
 
 The patent explicitly names the sodium D line and supplies Abbe numbers, but gives no glass names or separate C, F or G′ indices. The source indices remain attached to that line.
 
-Schott SF1 agrees with the printed D-line index for elements 3 and 4: its catalogue curve gives nD = 1.71715 and νD = 29.50, differences of −0.0000012 and −0.0959 from the printed pair. The SF1 label selects a catalogue dispersion curve; it does not establish the historical supplier or melt. Elements 1, 2 and 5 have no exact catalogue match and retain their printed index and Abbe number without a named glass assignment. The available data do not establish anomalous partial dispersion or measured broadband performance.
+Schott SF1 matches the printed D-line glass coordinates for elements 3 and 4: its catalogue curve gives nD = 1.71715 and νD = 29.50, with catalogue minus printed differences Δn = −0.0000012 and Δν = −0.0959. Element 5 uses Schott P-SK60 as a spectral proxy, with Δn = −0.00190 and Δν = −0.11 at the sodium D line, within the proxy limits of 0.002 in index and 0.25 in Abbe number. Its printed index and Abbe number are retained; P-SK60 supplies only the dispersion-curve shape so colour analysis follows a real glass rather than an Abbe-number estimate. Neither catalogue name identifies the historical supplier or melt.
+
+Elements 1 and 2 remain unmatched because no catalogue row falls within those limits at the sodium D line; their printed indices and Abbe numbers are retained. The available data do not establish anomalous partial dispersion or measured broadband performance.
 
 ## Focus Mechanism
 
@@ -82,3 +84,4 @@ Every clear semi-diameter is estimated: r1/r2 31.4 mm, r3–r5 27.3 mm, r6 24 mm
 
 1. František Kupka, [US 2,543,856 A, _Large aperture four-member photographic objective_](https://patents.google.com/patent/US2543856A/en), granted 6 March 1951. PDF p. 1: section and aberration curves; p. 2: bibliography, Examples 1–3 and longitudinal aberrations; p. 3: Seidel coefficients and claim.
 2. Meopta, [historical milestones](https://www.meopta.com/en/historical-milestones/), documenting the company's photographic and cinema-equipment history; this does not identify a product using Example 1.
+3. Schott, [optical glass catalogue downloads](https://www.schott.com/en-us/products/optical-glass-p1000267/downloads), for the SF1 and P-SK60 dispersion curves.

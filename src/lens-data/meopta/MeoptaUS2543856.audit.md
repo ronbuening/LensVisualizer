@@ -30,7 +30,7 @@ Every clear semi-diameter is estimated: r1/r2 31.4 mm, r3–r5 27.3 mm, r6 24 mm
 
 The back focus and image distance are calculated. The ±10.0° field is illustrative: the patent states no field angle or image format, so no image circle is assigned. `focus.closeFocusM` is 10¹⁵ m, which stands for infinity. No close-focus prescription, object distance or focusing mechanism is given.
 
-The patent identifies the sodium D line and gives Abbe numbers, without glass names or separate C, F or G′ indices. Schott SF1 supplies a catalogue dispersion curve for elements 3 and 4; elements 1, 2 and 5 use estimates from their printed Abbe numbers. No historical supplier, melt, anomalous partial dispersion, transmission or measured broadband performance is established.
+The patent identifies the sodium D line and gives Abbe numbers, without glass names or separate C, F or G′ indices. Schott SF1 supplies a matching catalogue dispersion curve for elements 3 and 4, and P-SK60 supplies a spectral proxy for element 5; elements 1 and 2 use estimates from their printed Abbe numbers. No historical supplier, melt, anomalous partial dispersion, transmission or measured broadband performance is established.
 
 ## Product Identification
 
@@ -41,7 +41,7 @@ No production lens is documented as using Example 1. The patent describes a cine
 - The inventor-and-example identity was replaced by the Meopta maker-and-patent title and key. The maker changed from unspecified to Meopta, and the lens became visible. No production lens attribution was added.
 - The patent number gained the publication suffix A, the missing publication year became 1951, and the shortened Meopta assignee became the full printed name. František Kupka and Example 1 were retained. Figure 1 is identified as the shared construction, while Figure 2 is specifically tied to Example 1.
 - The nominal aperture changed from f/1.75 to the printed f/1.80, and the aperture series begins at f/1.8. The inferred stop radius changed from 16.73 to 16.30 mm. The former opening admitted the patent's 27.78 mm incident ray, equivalent to approximately f/1.80 under exact tracing, but gave a paraxial aperture of f/1.75. The present opening follows the printed aperture ratio paraxially. The stop position and printed separations were retained; the source ray-height aberration comparisons are independent of this opening.
-- Unnamed glasses for elements 3 and 4 became `SF1 (Schott)`. Catalogue minus printed differences at the sodium D line are Δn = −0.0000012 and Δν = −0.0959; the catalogue values are nD = 1.71715 and νD = 29.50. Its helium-d Abbe number is 29.51. Elements 1 and 2 retain `Unmatched (nD 1.65981 / ν 50.3)` and element 5 retains `Unmatched (nD 1.61216 / ν 58)` because no exact catalogue rows match those pairs. The original sodium-D reference and printed glass coordinates were retained.
+- Unnamed glasses for elements 3 and 4 became `SF1 (Schott)`. Catalogue minus printed differences at the sodium D line are Δn = −0.0000012 and Δν = −0.0959; the catalogue values are nD = 1.71715 and νD = 29.50. Its helium-d Abbe number is 29.51. Elements 1 and 2 retain `Unmatched (nD 1.65981 / ν 50.3)` because no catalogue row lies within the spectral-proxy limits at the sodium D line. The original sodium-D reference and printed glass coordinates were retained.
 - Generic element types became the five shapes listed above, and display labels became Element 1 through Element 5. Optical roles and individual in-air focal lengths of +163.03, +68.96, −278.88, −41.69 and +72.37 mm were added. Elements 2 and 3 share C1, with a bracket spanning their cemented group; their combined focal length is +87.73 mm.
 - The inferred 35.40 mm image circle was removed because the patent states no field or format. The illustrative ±10.0° field, estimated rims and paraxial image plane were retained. No radius, thickness, air separation, refractive index or Abbe number was altered from the printed prescription.
 - The subtitle reads “US 2,543,856 A, Example 1 — Meopta / Kupka.” The specifications are “5 ELEMENTS / 4 GROUPS”, “DESIGN f = 100 mm”, “DESIGN F/1.8” and “ALL SPHERICAL”.
@@ -57,10 +57,15 @@ No production lens is documented as using Example 1. The patent describes a cine
 
 The resulting EFL is 99.998 mm, paraxial f-number 1.80, back focus 52.32 mm, stop radius 16.304 mm and half-field 10.0°. The vertex track is 66.8 mm. EFL and back focus retain their original values.
 
+2026-11-21 glass review:
+
+- Element 5: `Unmatched (nD 1.61216 / ν 58)` → `P-SK60 (spectral proxy; patent nD 1.61216 / ν 58; supplier and melt unspecified)`, using Schott P-SK60 as a spectral proxy. Catalogue minus printed differences at the sodium D line are Δn = −0.00190 and Δν = −0.11.
+- A spectral proxy must lie within 0.002 in index and 0.25 in Abbe number at the printed spectral line; the printed index and Abbe number are kept. The catalogue row supplies only the dispersion-curve shape and does not identify the historical supplier or melt.
+
 ## Remaining Questions
 
 - No clear diameters or barrel dimensions are printed. Figure 1's shared proportions do not establish physical edges for Example 1.
-- Elements 1, 2 and 5 lack exact catalogue matches. Historical glass suppliers and melts, partial dispersion and measured broadband performance remain unknown for all elements.
+- Elements 1 and 2 lack catalogue rows within the spectral-proxy limits; element 5 lacks an exact match and uses a spectral proxy. Historical glass suppliers and melts, partial dispersion and measured broadband performance remain unknown for all elements.
 - The printed F−C axial-colour separation is not reproduced from the Abbe numbers alone.
 - The dashed plane's identification as the diaphragm is inferred. No source gives an iris diameter, minimum opening, blade count or blade shape.
 - No production lens, mount, image format, field angle, marketed specifications, minimum focus distance or close-focus motion is established.
