@@ -6,8 +6,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * separations and sodium D-line index / Abbe pairs follow both printed tables.
  * The stop position is inferred: 10 mm after R6 and 3.2 mm before R7; its radius
  * is derived from f/1.9. All clear semi-diameters are estimated. The image plane
- * is the calculated paraxial BFD, 64.0038 mm, rather than the printed BF 63.9 mm,
- * which appears to describe best focus. The model computes EFL 100.0296 mm.
+ * is the calculated paraxial BFD, 64.004 mm, rather than the printed BF 63.9 mm,
+ * which may describe best focus. The model computes EFL 100.03 mm.
  * The 24-degree full field uses the lower end of the patent's stated range;
  * its real chief ray defines the 42.19 mm image circle. No focus motion is given.
  */
@@ -16,7 +16,7 @@ const LENS_DATA = {
   key: "kodak-100mm-f19-us2432387",
   maker: "Kodak",
   name: "KODAK 100mm f/1.9 (US 2,432,387 Design)",
-  subtitle: "US 2,432,387 A, Example III — possibly related to the four-element 25 mm f/1.9 Cine Ektar",
+  subtitle: "US 2,432,387 A, Example III — Eastman Kodak / Creighton",
   visible: true,
   source: {
     patentNumber: "US 2,432,387 A",
@@ -30,7 +30,7 @@ const LENS_DATA = {
     errata: [
       {
         status: "unresolved",
-        note: "Printed BF is 63.9 mm; the printed prescription gives paraxial BFD 64.0038 mm. The printed BF appears to describe best focus; the model retains the paraxial plane.",
+        note: "Printed BF is 63.9 mm; the printed prescription gives paraxial BFD 64.004 mm. The printed BF may describe best focus; the model retains the paraxial plane.",
       },
     ],
     sdSource: "heuristic",
@@ -45,7 +45,7 @@ const LENS_DATA = {
     elementCount: 4,
     groupCount: 4,
     imageCircleMm: 42.19,
-    specs: ["4 ELEMENTS / 4 GROUPS", "ALL SPHERICAL", "DESIGN F/1.9"],
+    specs: ["4 ELEMENTS / 4 GROUPS", "ALL SPHERICAL", "DESIGN f = 100 mm", "DESIGN F/1.9"],
   },
   elements: [
     {
