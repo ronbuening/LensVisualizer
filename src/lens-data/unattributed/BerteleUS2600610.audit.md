@@ -1,52 +1,57 @@
-# BERTELE 100mm f/1.44 (US 2,600,610 Design) — Audit
+# BERTELE 100mm f/1.44 (US 2,600,610 Design) — Audit Log
 
 ## Source
 
-US 2,600,610 A, Example I, Table I and Figure 1. The patent was filed on 15 April 1950, claims Swiss priority of 11 May 1949, and was published on 17 June 1952. The front page prints “Ludwig J. Bertele, Heerbrugg, Switzerland”; the catalogue uses the established form Ludwig Bertele. No assignee is printed.
+[US 2,600,610 A, _High-aperture and high-transmission three component objective_](https://patents.google.com/patent/US2600610A/en), by Ludwig J. Bertele, Heerbrugg, Switzerland. No assignee is printed. The application was filed on 15 April 1950, claims Swiss priority of 11 May 1949, and was published on 17 June 1952. The catalogue uses the established name Ludwig Bertele.
 
-## Transcription
+The prescription is Example I, Table I on PDF p. 3, printed columns 3–4; Figure 1 is on PDF p. 1. The title, dates, 100 mm focal length and 45.0° field are on PDF p. 2, and the claims on PDF p. 4. There are four numerical examples. [US 1,975,678 A](https://patents.google.com/patent/US1975678A/en) supplies the earlier design cited by Bertele, rather than evidence of a production lens for Example I.
 
-Two independent readings of the patent page images agree on every signed radius, seven glass thicknesses, two air spaces and seven refractive-index/Abbe pairs. R7 is explicitly plane. The arrangement is seven elements in three groups, with cemented interfaces at R4/R5 and R8/R9. The patent contains four numerical examples; this prescription is Example I.
+## Transcription Check
 
-The text and claims name the d-line, so all seven elements retain helium-d indices despite the table's capital-D subscript. The prose gives L6−L7 = 0.056 and n1+n2 = 3.38; Table I gives 0.0594 and 3.3859. The tabulated values hold.
+All ten radii, seven glass thicknesses, two air spaces and seven refractive-index/Abbe pairs agree with the page images. R7 is explicitly plane. No numerical transcription mismatch was found. The dimensions retain the printed 100 mm scale. Seven elements form three air-separated groups, with cemented interfaces at R4/R5 and R8/R9; all curved surfaces are spherical.
 
-## First-order properties
+The text and claims explicitly name the d-line, supporting helium d at 587.6 nm despite the table's capital-D subscript. The prose gives L6−L7 = 0.056 and n1+n2 = 3.38, while Table I gives 0.0594 and 3.3859. The tabulated values are retained. The middle component's axial length is 0.2145 of the nominal focal length, and 1/R1+1/R3−1/R2 is approximately 3.821/f, consistent with the stated conditions.
 
-The stated 100 mm focal length computes to 99.965654825 mm, a −0.03435% difference. Paraxial back focus is 43.697807592 mm; no numerical back focus is printed. The first-to-last vertex distance is 75.45 mm and total track to the image plane is 119.147807592 mm. The paraxial aperture is f/1.44, with stop radius 19.116952019 mm. The real-ray entrance aperture is about f/1.48 and the image-space sine aperture about f/1.47.
+Figure 1 indicates clear radii of about 36.4 mm at R1/R2, 32 mm at R3–R5, 21.2 mm at R6, 21 mm at R7–R9 and 26.5 mm at R10. The front estimates remain 38, 36, 32, 30 and 28 mm. R9 remains 20.16 mm: a 21 mm rim would have a 69.6° slope, exceeding the retained 64.2° limit.
 
-## Values not printed
+## First-Order Check
 
-The exact stop position, diaphragm opening, clear semi-diameters and final image distance are inferred or computed. The 14.3/0.6 mm stop split preserves the printed 14.9 mm gap and agrees approximately with Figure 1. The model supplies only an infinity state. No lens mount, camera format, close-focus distance, supplier identity or measured spectral performance is established.
+The printed 100 mm focal length gives a paraxial EFL of 99.97 mm, 0.03 mm lower. The paraxial aperture is f/1.44, matching the printed value, with a stop radius of 19.117 mm. Calculated back focus is 43.70 mm; no numerical back focus is printed. The image plane lies at this paraxial distance behind R10. The first-to-last vertex distance is 75.45 mm and the total distance to the image plane is 119.15 mm.
 
-## Product evidence
+Pupil aberration gives a real-ray entrance aperture of about f/1.48 and an image-space sine aperture of about f/1.47. An exact f/1.44 axial marginal ray would require a stop radius of about 19.715 mm. The surfaces stay clear of each other, the iris sets the full aperture, and the axial beam clears the rims. The 22.5° chief ray reaches an image semi-height of 42.635 mm without blockage; the paraxial field limit is about 27.6°. This establishes chief-ray coverage of the stated field, with geometric transmission over the diaphragm opening of 41.3% at its edge. It does not establish an unvignetted field or measured image quality.
 
-The 1|3|3 arrangement and increased front-element indices place this design in the development of Bertele's Sonnar f/1.5, US 1,975,678. No source documents Example I as a production lens.
+## Values Not Printed in the Patent
 
-## Corrections
+The exact stop position, diaphragm opening, clear radii and image distance are not tabulated. The inferred 14.3/0.6 mm split preserves the printed 14.9 mm central air space and agrees approximately with Figure 1. The stop and R6 rim lie 45.55 and about 43.93 mm behind the first vertex, respectively, leaving the iris clear of the glass. The drawing suggests a back focus of about 43.9 mm, consistent with the calculated 43.70 mm.
 
-The numerical prescription is retained. The field setting now follows the printed 45° full field, and the rear rims approach Figure 1 within the surface-slope limit. The rounded design focal length records the computed EFL rather than the nominal label. Source identification, element descriptions, glass labels and focus wording use the catalogue's file form.
+The 85.27 mm image circle is twice the chief-ray image height at the printed 22.5° half-field. It is a calculated diameter, not a published camera format or a claim of uniform illumination. The front rims are estimates, the rear rims follow the drawing subject to R9's slope limit, and no single origin describes every rim.
 
-## Remaining questions
+`focus.closeFocusM` is 10¹⁵ m, which stands for infinity. No close-focus state or mechanism is printed. The selectable apertures extend from f/1.44 to f/22, but the patent supplies no minimum iris opening or stop range.
 
-Open: the front clear semi-diameters are estimates and differ from Figure 1, whose R1/R2 heights are about 36.4 mm and R3–R5 about 32 mm. R9 is about 21 mm in the drawing but remains 20.16 mm to pass the surface-slope limit. Exact diaphragm dimensions, historical glasses and any production identity remain unknown.
+Sumita KF8 lists nd 1.51118 and ν 50.9; its dispersion curve gives ν 50.92. It approximates element 5 without identifying a historical supplier or melt. Elements 1–4, 6 and 7 retain their printed coordinates and Abbe-based dispersion estimates. No additional spectral indices, partial dispersions or measured colour performance are supplied.
 
-## 2026-11-21 — Deployment validation and cleanup
+## Product Identification
 
-Two independent re-readings of the page images found no numerical transcription errors; the prescription is valid with notes on the field, inferred rims and prose slips. The earlier Sonnar patent supports a design-family relationship, with no documented production match.
+The patent explicitly develops Bertele's earlier US 1,975,678 Sonnar f/1.5 design. The higher front-element indices and shared singlet–triplet–triplet arrangement establish design lineage. No source documents Example I as a production lens. A contemporary Sonnar product or the shared construction alone cannot establish that identity.
 
-Changes:
+No maker, mount, production image format, diaphragm blade count or shape, marketed focal length, marketed aperture or marketed minimum focus distance is assigned.
 
-- Identity: `bertele-us2600610-example1-infinity-reference` → `bertele-100mm-f144-us2600610`; name combining an unformatted patent number and aperture → “BERTELE 100mm f/1.44 (US 2,600,610 Design)”; `visible` false → true. Maker remains null, author remains Ludwig Bertele and assignees remain empty.
-- Source: “US 2,600,610” → “US 2,600,610 A”; Example I, id 1 and year 1952 retained. Rim provenance “heuristic” → omitted because front estimates and rear figure measurements are mixed.
-- File form: the type import now points to `../../types/lensDataV2.js`; the exported constant is `LENS_DATA`, with one source-and-assumptions header.
-- Subtitle: compressed element-count and iris description → “US 2,600,610 A, Example I — Sonnar-type development”. Five run-together specification paragraphs → “7 ELEMENTS / 3 GROUPS”, “ALL SPHERICAL”, “DESIGN F/1.44”.
-- Catalogue: design focal length 100 → 99.97 mm; image circle absent → 85.27 mm, from twice the real 22.5° chief-ray height, 42.634934752 mm. Counts 7/3 and design f/1.44 retained.
-- Field: full field 10° → 45°; maximum trace half-field 5° → 22.5°.
-- Rear semi-diameters, in mm: R6 20.8 → 21.2; R7/R8 22 → 21; R9 19.7 → 20.16; R10 20 → 26.5. Front rims, radii, thicknesses, refractive indices, Abbe numbers, stop position and image plane retained. R9 at 21 mm gives a 69.6° rim angle and fails the 64.2° surface-slope limit; 20.16 mm passes without changing that limit.
-- Elements: generic spherical descriptions → the seven shapes and optical roles listed in the analysis; L1–L7 labels → Element 1–7. Individual focal lengths added: +127.74, +90.08, +147.73, −32.29, −112.42, +26.80 and −48.33 mm. Cemented ids G2/G3 → C1/C2 on all members, with one annotation spanning each triplet.
-- Glass: the seven unnamed descriptions → Unmatched labels for elements 1–4, 6 and 7, and KF8 (Sumita) for element 5. The KF8 row resolves to Sumita at nd 1.51118 / ν 50.9, Δn = −0.00002 / Δν = 0.0. BAF11 differs from element 6 by Δn = +0.00012 / Δν = 0.0; Schott N-SK2 differs from element 7 by +0.00018 / −0.05; the FK5 label resolves to Sumita at Δn = −0.00001 / Δν = +0.4 for element 3. Those alternatives are not assigned. Redundant index-line notes removed; d-line references retained.
-- Focus: the long description → “Infinity focus only; the patent gives no close-focus data.” The close-focus placeholder remains 1e15 m. Analysis and audit now describe source facts, assumptions, optical properties and unresolved questions; obsolete calculation and process text removed.
+## Corrections, 2026-11-21
 
-The resulting EFL 99.965654825 mm, paraxial f/1.44, back focus 43.697807592 mm and stop radius 19.116952019 mm equal the preceding values. The surface check reports no errors. The aperture check reports no rim limit, iris mismatch, trace limit or failure. Image-circle coverage reports one lens checked, zero undersized and zero skipped. Field coverage is 100% at 22.5°, reaching 42.63 mm image height with a clear chief ray; zero stations are unsolved.
+- The title and `key` identify Bertele's 100 mm f/1.44 patent design, and `visible` changed from false to true. The subtitle is “US 2,600,610 A, Example I — Bertele”; the specifications are “7 ELEMENTS / 3 GROUPS”, “ALL SPHERICAL”, “DESIGN f = 100 mm” and “DESIGN F/1.44”. No maker is assigned because no production lens is documented.
+- The patent number gained the publication kind code A. Example I, its identifier 1, the year 1952, Ludwig Bertele and the empty assignee list are retained. A single rim-origin classification was removed because front estimates and rear drawing measurements have different origins.
+- The design focal length changed from 100 to 99.97 mm to record the calculated EFL; the nominal 100 mm remains the patent's design scale. The seven-element, three-group counts and design f/1.44 are retained.
+- The full field changed from 10.0° to the printed 45.0°, and the maximum half-field from 5.0° to 22.5°. The 85.27 mm image circle was added from twice the calculated chief-ray image height at that field.
+- Rear clear radii changed, in mm: R6 20.8 → 21.2, R7/R8 22 → 21, R9 19.7 → 20.16 and R10 20 → 26.5. These follow Figure 1 more closely while preserving the slope limit at R9. Front rims, radii, thicknesses, refractive indices, Abbe numbers, stop position and image plane are retained. Geometric transmission at 22.5° increased from 24.5% to 41.3%; the smaller R7/R8 rims cost no edge light.
+- Generic element descriptions became the seven shapes and optical roles supported by the radius signs and patent text. Element 1–7 labels accompany the patent's L1–L7 names. Focal lengths in air were added: +127.74, +90.08, +147.73, −32.29, −112.42, +26.80 and −48.33 mm. The cemented components have focal lengths −147.92 and +91.80 mm; C1 identifies L2–L4 and C2 identifies L5–L7, each with a spanning triplet annotation.
+- Unnamed glass descriptions became KF8 (Sumita) for element 5 and Unmatched labels retaining the printed coordinates for the other six elements. KF8's calculated d-line differences are Δn = −0.00002 and Δν = +0.02. The alternative BAF11 (Sumita) differs from element 6 by +0.00012/−0.02, N-SK2 (Schott) from element 7 by +0.00018/−0.05, and FK5 (Sumita) from element 3 by −0.00001/+0.41 in index/Abbe number. Those alternatives remain unassigned because they miss the printed precision. The d-line references are retained.
 
-At 22.5°, geometric transmission over the diaphragm opening is 24.5% → 41.3%. Open: front-rim correspondence, the remaining R9 difference from Figure 1, historical glass identity, exact iris dimensions and production attribution.
+The resulting EFL is 99.97 mm, paraxial aperture f/1.44, back focus 43.70 mm, stop radius 19.117 mm and half-field 22.5°. The stored image plane remains at paraxial focus.
+
+## Remaining Questions
+
+- The front clear radii differ from Figure 1, and R9 remains below its approximately 21 mm drawn height.
+- The exact diaphragm position and opening, minimum iris opening and close-focus mechanism are not documented.
+- Six glasses lack matching catalogue curves at the printed precision. Historical suppliers, melts and measured spectral performance remain unknown for all seven elements.
+- No production lens, manufacturer, mount, camera format, blade count or shape, or marketed specifications are established for Example I.
+- The two prose index comparisons disagree with Table I; no source erratum resolves them.

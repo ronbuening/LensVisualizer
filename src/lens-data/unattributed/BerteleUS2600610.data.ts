@@ -6,15 +6,16 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * air spaces and d-line glass data follow the table. The diaphragm is drawn
  * between R6 and R7; its 14.3/0.6 mm gap split and opening are inferred.
  * Front rims are estimated; rear rims follow Figure 1 within the surface-slope
- * limit at R9. The image plane is the computed paraxial back focus, 43.69781 mm.
+ * limit at R9. The image plane is the computed paraxial back focus, 43.70 mm.
  * The patent states a 45-degree full field but gives no close-focus data.
+ * Two prose index comparisons disagree with Table I; its values are retained.
  */
 const LENS_DATA = {
   schema: 2,
   key: "bertele-100mm-f144-us2600610",
   maker: null,
   name: "BERTELE 100mm f/1.44 (US 2,600,610 Design)",
-  subtitle: "US 2,600,610 A, Example I — Sonnar-type development",
+  subtitle: "US 2,600,610 A, Example I — Bertele",
   visible: true,
   source: {
     patentNumber: "US 2,600,610 A",
@@ -36,7 +37,7 @@ const LENS_DATA = {
     elementCount: 7,
     groupCount: 3,
     imageCircleMm: 85.27,
-    specs: ["7 ELEMENTS / 3 GROUPS", "ALL SPHERICAL", "DESIGN F/1.44"],
+    specs: ["7 ELEMENTS / 3 GROUPS", "ALL SPHERICAL", "DESIGN f = 100 mm", "DESIGN F/1.44"],
   },
   elements: [
     {

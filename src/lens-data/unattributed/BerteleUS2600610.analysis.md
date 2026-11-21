@@ -16,7 +16,7 @@
 
 **Example details:** Example I, Table I and Figure 1; the first of four numerical examples.
 
-The patent gives Example I at nominal focal length 100 mm and f/1.44, with a 45° full field of view. The tabulated prescription computes to EFL 99.96565 mm, a difference of −0.03435%, and paraxial back focus 43.69781 mm. No numerical back focus is printed. No production lens is documented for this example.
+The patent gives Example I at nominal focal length 100 mm and f/1.44, with a 45.0° full field of view. The tabulated prescription computes to EFL 99.97 mm, 0.03 mm below the stated value, and paraxial back focus 43.70 mm. No numerical back focus is printed. No production lens is documented for this example.
 
 ## Optical architecture
 
@@ -24,7 +24,7 @@ Seven elements form three air-separated components: a positive front singlet, a 
 
 The front component has focal length +127.74 mm. The middle and rear cemented components have focal lengths −147.92 mm and +91.80 mm respectively. These component powers differ from the individual elements' focal lengths measured in air.
 
-The 0.3 mm front air space and 14.9 mm central air space follow Table I. The first-to-last surface distance is 75.45 mm, and the total distance from the first vertex to the computed image plane is 119.14781 mm.
+The 0.3 mm front air space and 14.9 mm central air space follow Table I. The first-to-last surface distance is 75.45 mm, and the total distance from the first vertex to the computed image plane is 119.15 mm.
 
 ## Element-by-element analysis
 
@@ -46,7 +46,7 @@ Element 1 is nearly plano-convex in appearance, although R2 is a finite positive
 
 The text and claims explicitly define the refractive indices for the d-line, despite the table's capital-D subscript. The model therefore uses helium d at 587.6 nm for all seven elements. The printed indices and Abbe numbers are retained.
 
-Element 5 matches the KF8 catalogue row resolved to Sumita: nd 1.51118 and ν 50.9, compared with the printed 1.5112 and 50.9. The differences are Δn = −0.00002 and Δν = 0.0. Its catalogue dispersion curve is used without asserting the historical supplier or melt.
+Element 5 matches Sumita KF8: its catalogue dispersion curve gives nd 1.51118 and ν 50.92, compared with the printed 1.5112 and 50.9. The differences are Δn = −0.00002 and Δν = +0.02. The curve does not establish the historical supplier or melt.
 
 Elements 1–4, 6 and 7 remain labelled Unmatched with their printed coordinates. For example, the nearest FK5-family rows differ from element 3 in Abbe number, while BAF11 and SK2-family rows do not reproduce the four-decimal indices of elements 6 and 7. The patent supplies no additional spectral indices or partial dispersions; colour predictions for the unmatched glasses rely on estimates from their Abbe numbers.
 
@@ -54,15 +54,15 @@ Two prose values disagree with Table I: the stated index difference L6−L7 is 0
 
 ## Focus mechanism and aperture
 
-Infinity focus only; the patent gives no close-focus data. The image plane is the computed paraxial plane, rather than a plane chosen to minimize spot size.
+The model is focused at infinity; the patent gives no close-focus data. The image plane is the computed paraxial plane.
 
-Figure 1 shows the diaphragm between R6 and R7, close to R7, without a numerical position or opening. The model retains the inferred division of the 14.9 mm gap into 14.3 mm before the diaphragm and 0.6 mm after it. The resulting stop plane is 45.55 mm behind the first vertex, with a paraxially derived radius of 19.11695 mm. It lies clear of the adjacent glass.
+Figure 1 shows the diaphragm between R6 and R7, close to R7, without a numerical position or opening. The model retains the inferred division of the 14.9 mm gap into 14.3 mm before the diaphragm and 0.6 mm after it. The resulting stop plane is 45.55 mm behind the first vertex, with a paraxially derived radius of 19.117 mm. It lies clear of the adjacent glass.
 
-The paraxial aperture is f/1.44. Pupil aberration makes the real-ray entrance aperture about f/1.48 at this opening; an exact f/1.44 axial marginal ray would require a stop radius of about 19.71478 mm. The corresponding image-space sine aperture is about f/1.47.
+The paraxial aperture is f/1.44. Pupil aberration makes the real-ray entrance aperture about f/1.48 at this opening; an exact f/1.44 axial marginal ray would require a stop radius of about 19.715 mm. The corresponding image-space sine aperture is about f/1.47.
 
 ## Field coverage and rim assumptions
 
-The patent's 45° field is represented as ±22.5°. At 22.5°, the real chief ray reaches an image semi-height of 42.63493 mm at the paraxial image plane. Twice that height gives the model's 85.27 mm image circle. This diameter follows the stated field and computed chief ray; it does not identify a camera format or establish uniform illumination or sharpness across the field.
+The patent's 45.0° field extends to ±22.5°. At 22.5°, the real chief ray reaches an image semi-height of 42.635 mm at the paraxial image plane. Twice that height gives the model's 85.27 mm image circle. This diameter follows the stated field and computed chief ray; it does not identify a camera format or establish uniform illumination or sharpness across the field.
 
 Clear semi-diameters are not tabulated. The retained front estimates are R1–R5 = 38, 36, 32, 30 and 28 mm. The rear values are R6 = 21.2 mm, R7–R8 = 21 mm, R9 = 20.16 mm and R10 = 26.5 mm. The rear values follow Figure 1, except that R9 is kept below the model's surface-slope limit: the approximately 21 mm drawn rim would require a 69.6° rim angle, beyond the 64.2° limit.
 
