@@ -25,19 +25,19 @@ The focal lengths below are individual thick-lens values in air at the D line. F
 
 ### Element 1 — Biconvex Positive
 
-nD = 1.6088, νD = 56.5. Glass: Unmatched (nD 1.6088 / ν 56.5). f = +73.44 mm.
+nD = 1.6088, νD = 56.5. Glass: SK1 (Sumita), spectral proxy. f = +73.44 mm.
 
 The positive front collector has a strongly curved front face and a weakly curved rear face. Its 7.8 mm center thickness and 5.4 mm air space to element 2 are printed. Both clear semi-diameters are estimated at 23.5 mm; the minimum modeled edge thickness is about 1.22 mm.
 
 ### Element 2 — Biconcave Negative
 
-nD = 1.5602, νD = 45.3. Glass: Unmatched (nD 1.5602 / ν 45.3). f = −56.75 mm.
+nD = 1.5602, νD = 45.3. Glass: LLF4 (Sumita), spectral proxy. f = −56.75 mm.
 
 The negative middle singlet separates the positive front and rear groups. Its lower Abbe number provides greater dispersion than the positive elements. The center thickness is 3.3 mm, and both estimated semi-diameters are 22.1 mm, giving the square rim shown in the drawing. Its rear face precedes the printed diaphragm station by 8.7 mm.
 
 ### Element 3 — Biconcave Negative
 
-nD = 1.5602, νD = 45.3. Glass: Unmatched (nD 1.5602 / ν 45.3). f = −71.37 mm.
+nD = 1.5602, νD = 45.3. Glass: LLF4 (Sumita), spectral proxy. f = −71.37 mm.
 
 This is the negative front member of the positive rear doublet, using the same printed glass values as element 2. The poorly printed d3 is read as 3.8 mm: the last digit has a closed lower bowl like the 8 in d1 = 7.8. This gives EFL 188.64 mm; reading 3.3 mm would give about 188.97 mm.
 
@@ -45,13 +45,15 @@ The front face is 6.2 mm behind the diaphragm. Both estimated semi-diameters are
 
 ### Element 4 — Biconvex Positive
 
-nD = 1.6165, νD = 55.0. Glass: Unmatched (nD 1.6165 / ν 55.0). f = +48.28 mm.
+nD = 1.6165, νD = 55.0. Glass: K-SSK4 (Sumita), spectral proxy. f = +48.28 mm.
 
 The positive rear member supplies the stronger positive power of the cemented pair. Its center thickness is 9.7 mm and both estimated semi-diameters are 21.5 mm. The combined rear group has f = +133.33 mm; the minimum modeled edge thickness of element 4 is about 1.34 mm.
 
 ## Glass Identification and G′ Indices
 
-The patent names the D line, taken as sodium at 589.3 nm, and separately prints G′ indices. Its Abbe number is defined from the D, F and C lines. No catalogue row matches the printed D-line index and Abbe number closely enough to assign a glass name; supplier and melt remain unknown.
+The patent names the D line, taken as sodium at 589.3 nm, and separately prints G′ indices. Its Abbe number is defined from the D, F and C lines.
+
+All four elements use present-day Sumita spectral proxies: SK1 for element 1 (ΔnD = +0.00135, ΔνD ≈ 0.00), LLF4 for elements 2 and 3 (ΔnD = +0.00107, ΔνD = −0.03), and K-SSK4 for element 4 (ΔnD = +0.00106, ΔνD = +0.10). These catalog-minus-printed differences are evaluated at sodium D, within 0.002 in index and 0.25 in Abbe number. The printed indices and Abbe numbers are retained; the catalog curves supply only the dispersion shape for colour analysis. No element remains unmatched, and the row names do not identify historical suppliers or melts.
 
 | Element |     nD |    nG′ |   νD |
 | ------- | -----: | -----: | ---: |
@@ -60,7 +62,7 @@ The patent names the D line, taken as sodium at 589.3 nm, and separately prints 
 | 3       | 1.5602 | 1.5763 | 45.3 |
 | 4       | 1.6165 | 1.6309 | 55.0 |
 
-The printed G′ designation is kept distinct from the mercury g line. The model uses the D-line indices and Abbe numbers; the G′ values above support a separate first-order calculation. Dispersion estimated from Abbe numbers does not establish the actual glass curves or anomalous partial dispersion.
+The printed G′ designation is kept distinct from the mercury g line. The model uses the D-line indices and Abbe numbers; the G′ values above support a separate first-order calculation. The spectral proxies do not establish the historical glasses' complete spectral curves or anomalous partial dispersion.
 
 ## Focus Mechanism
 
@@ -93,3 +95,4 @@ The clear semi-diameters are estimated at 23.5 mm for the front singlet, 22.1 mm
 
 1. William F. Bielicke, [US 1,558,073 A](https://patents.google.com/patent/US1558073A/en), assigned to Bausch & Lomb Optical Company; filed 18 January 1922, published 20 October 1925. Drawing: PDF page 1; prescription, spectral definitions and claims: PDF page 3.
 2. William F. Bielicke, [US 1,540,752 A](https://patents.google.com/patent/US1540752A/en), cited only for comparison with the nominal focal length at the G′ line.
+3. [Sumita optical glass catalog](https://www.sumita-opt.co.jp/en/download/), source of the SK1, LLF4 and K-SSK4 spectral proxy curves.

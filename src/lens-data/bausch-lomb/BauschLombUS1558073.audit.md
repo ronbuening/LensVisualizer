@@ -12,7 +12,7 @@ All seven signed radii, seven axial distances and four sets of D-line index, G�
 
 The diaphragm is explicitly 8.7 mm after R4 and 6.2 mm before R5, dividing a 14.9 mm air space. Its station is therefore 25.2 mm from the first vertex. R6 is the cemented interface between elements III and IV. The figure shows biconvex elements I and IV, biconcave elements II and III, and three air-separated groups. All powered surfaces are spherical.
 
-The index reference is sodium D at 589.3 nm. The printed G′ indices are 1.6226, 1.5763, 1.5763 and 1.6309 for elements I–IV; the printed Abbe definition uses D, F and C. G′ remains distinct from the mercury g line. No historical glass supplier or melt is identified, and the four glass labels remain intentionally unmatched.
+The index reference is sodium D at 589.3 nm. The printed G′ indices are 1.6226, 1.5763, 1.5763 and 1.6309 for elements I–IV; the printed Abbe definition uses D, F and C. G′ remains distinct from the mercury g line. All four elements use present-day Sumita spectral proxies; no historical glass supplier or melt is identified.
 
 ## First-Order Check
 
@@ -32,7 +32,7 @@ At these rims, the minimum glass edge thicknesses are about 1.22 mm for element 
 
 The modeled 12.0° half-field is illustrative. Its chief ray clears every rim and reaches image height 40.05 mm at the fixed image plane, while some marginal off-axis rays are vignetted. No image-circle diameter is assigned. A ±2% variation in the assumed iris radius gives entrance-equivalent apertures from about f/4.65 to f/4.47; this sensitivity does not establish manufacturing dimensions.
 
-`focus.closeFocusM` is 10¹⁵ m, which stands for infinity. No near-focus state or movement law is given. The selectable f-stops are 4.5, 5.6, 8, 11, 16 and 22; `aperture.maxFNumber` is 22, without a published minimum iris opening. The glass dispersion follows the printed D-line indices and Abbe numbers; separate C/F indices, measured partial dispersion, actual spectral curves, measured MTF and complete spectral performance remain unknown.
+`focus.closeFocusM` is 10¹⁵ m, which stands for infinity. No near-focus state or movement law is given. The selectable f-stops are 4.5, 5.6, 8, 11, 16 and 22; `aperture.maxFNumber` is 22, without a published minimum iris opening. The printed D-line indices and Abbe numbers are retained, with present-day catalog curves supplying dispersion shape. Source C/F indices, measured partial dispersion, actual historical spectral curves, measured MTF and complete spectral performance remain unknown.
 
 ## Product Identification
 
@@ -47,7 +47,7 @@ The four-element, three-group arrangement is Tessar-type: a positive front singl
 - The element labels became Element 1–Element 4. The third element's generic cemented-member description became Biconcave Negative, matching its two radius signs and the drawing.
 - Individual in-air D-line focal lengths were added: +73.44, −56.75, −71.37 and +48.28 mm. The optical roles identify the positive front collector, negative middle singlet, negative front member of the rear doublet and positive rear member.
 - The rear cemented pair gained C1 identifiers on elements 3 and 4 and a bracket spanning R5–R7, following the shared R6 interface.
-- The glass descriptions became Unmatched labels carrying the printed pairs: 1.6088/56.5 for element 1, 1.5602/45.3 for elements 2 and 3, and 1.6165/55.0 for element 4. Each change has ΔnD = 0 and ΔνD = 0. No catalog glass name is assigned because a historical identity is unestablished and no sufficiently close row is documented.
+- The printed glass pairs were retained: 1.6088/56.5 for element 1, 1.5602/45.3 for elements 2 and 3, and 1.6165/55.0 for element 4. Their present-day spectral proxies are recorded below without establishing historical suppliers or melts.
 - The inferred 80.10 mm image-circle value was removed because the patent prints neither a field angle nor a format. The illustrative 12.0° half-field remains.
 - The subtitle identifies the patent, sole example, Bausch & Lomb and Bielicke. The specification chips state “4 ELEMENTS / 3 GROUPS”, “ALL SPHERICAL”, “DESIGN F/4.5” and “DESIGN f = 188 mm”, retaining the source's nominal design values.
 
@@ -61,6 +61,14 @@ After these corrections, the first-order values remain EFL 188.64 mm, paraxial f
 - R1/R2 remain 23.5 mm, about 7% above the drawing's nominal height and within its scale uncertainty. R6/R7 remain 21.5 mm, about 3% below that height. Reducing every group to 22.1 mm would lower transmission at 12° from 97.5% to 92.8%, a 4.7-point loss, so the front singlet stays larger. No land or additional rim cut is needed.
 - The final rims preserve the f/4.5 axial beam: its heights at R3/R4/R5 are 19.15/18.01/18.42 mm, against clear radii of 22.1/22.1/21.5 mm. The 12° chief ray clears every face and reaches 40.05 mm image height. All surfaces and glass edges remain clear; the iris sets the aperture. The half-field remains 12.0° and the paraxial aperture remains f/4.50; the real-ray entrance-equivalent aperture remains f/4.55.
 - Wide-open geometric transmission before and after is 100% at 0°, 2°, 4°, 6° and 8°, 99.4% at 10° and 97.5% at 12°. The greatest loss at these fields is zero points. With no format assigned, the default smaller field ends at about 6.5°, where transmission also remains 100%. The format-dependent coverage checks are inapplicable because the lens is hidden and has no assigned image format. A matched-scale comparison of the drawn section and modeled outline confirms square rims on all three groups; the front singlet remains slightly taller. Only the infinity state is specified.
+
+2026-11-21 glass review:
+
+- Element 1: `Unmatched (nD 1.6088 / ν 56.5)` → `SK1 (spectral proxy; patent nD 1.6088 / ν 56.5; supplier and melt unspecified)` (Sumita); ΔnD = +0.00135, ΔνD ≈ 0.00; spectral proxy.
+- Element 2: `Unmatched (nD 1.5602 / ν 45.3)` → `LLF4 (spectral proxy; patent nD 1.5602 / ν 45.3; supplier and melt unspecified)` (Sumita); ΔnD = +0.00107, ΔνD = −0.03; spectral proxy.
+- Element 3: `Unmatched (nD 1.5602 / ν 45.3)` → `LLF4 (spectral proxy; patent nD 1.5602 / ν 45.3; supplier and melt unspecified)` (Sumita); ΔnD = +0.00107, ΔνD = −0.03; spectral proxy.
+- Element 4: `Unmatched (nD 1.6165 / ν 55.0)` → `K-SSK4 (spectral proxy; patent nD 1.6165 / ν 55.0; supplier and melt unspecified)` (Sumita); ΔnD = +0.00106, ΔνD = +0.10; spectral proxy.
+- Each spectral proxy is within 0.002 in index and 0.25 in Abbe number at the printed sodium-D line; differences are catalog minus printed. The printed index and Abbe number are kept, and only the dispersion-curve shape comes from the catalog row.
 
 ## Remaining Questions
 
