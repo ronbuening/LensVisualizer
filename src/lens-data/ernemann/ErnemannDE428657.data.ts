@@ -1,106 +1,107 @@
-import type { LensDataV2Input } from "../main/src/types/lensDataV2.js";
-const data = {
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * Ludwig Bertele's DE 428,657 C, Figure 2, a five-element f/2 projection
+ * objective. The patent places the film at R10 and the screen on the R1 side;
+ * this infinity model traces from the screen side toward the film. The printed
+ * radii, thicknesses, air gaps and D-line glass values are retained. The stop is
+ * inferred at the midpoint of the 19.05 mm central gap. Clear radii combine
+ * estimates with Figure 2 readings; the image plane is the calculated paraxial
+ * back focus, 56.18336028624677 mm. The illustrative half-field is 5 degrees.
+ */
+const LENS_DATA = {
   schema: 2,
-  key: "ernemann-bertele-de428657-figure2-infinity-reference",
+  key: "ernemann-100mm-f2-de428657",
   maker: "Ernemann",
-  name: "BERTELE DE428657 FIGURE 2 — INFINITY REFERENCE",
-  subtitle:
-    "Patent-only hidden reference · assumed R1-side infinity · estimated iris/rims/field · no finite projection claim",
+  name: "ERNEMANN 100mm f/2 (DE 428,657 Design)",
+  subtitle: "DE 428,657 C, Figure 2 — Ernostar-type objective with split rear member",
   visible: false,
   source: {
-    patentNumber: "DE 428,657 A",
+    patentNumber: "DE 428,657 C",
+    patentYear: 1926,
     example: {
       label: "Figure 2",
       id: "2",
     },
     authors: ["Ludwig Bertele"],
     assignees: ["Ernemann-Werke AG"],
-    sdSource: "heuristic",
   },
   catalog: {
-    imageCircleMm: 17.508766838175543,
     elementCount: 5,
     groupCount: 5,
     focalLengthMm: {
-      design: 100,
+      design: 100.03,
     },
     fNumber: {
       design: 2,
     },
-    specs: [
-      "PATENT FIGURE 2 · FIVE SINGLET GROUPS",
-      "SOURCE NOMINAL f/2 · NOT A PRODUCTION IDENTITY",
-      "ASSUMED R1-SIDE INFINITY TRAVERSAL · NO FINITE CONJUGATE",
-      "ESTIMATED MID-GAP IRIS, CLEAR RADII AND 10° FULL FIELD",
-      "D-LINE ONLY · OTHER CHANNELS UNCALIBRATED",
-      "FIGURE 1 HELD SEPARATELY · NO SOURCE FITTING",
-    ],
+    specs: ["5 ELEMENTS / 5 GROUPS", "ALL SPHERICAL", "DESIGN F/2", "PROJECTION OBJECTIVE"],
   },
   elements: [
     {
       id: 1,
       name: "L1",
-      label: "L1",
+      label: "Element 1",
+      diagramLabel: "L1",
       type: "Biconvex Positive",
       nd: 1.6068,
       vd: 59.5,
       indexReference: "D",
-      indexReferenceNote:
-        "Literal source nD/Abbe relayed from primary scan; no identified catalog glass or measured spectral curve. D-line-only validation.",
-      glass:
-        "Unmatched (historical primary nD/V only; no exact catalog glass identity asserted)",
+      focalLengthMm: 76.41,
+      role: "Front converging element",
+      glass: "Unmatched (nD 1.6068 / ν 59.5)",
     },
     {
       id: 2,
       name: "L2",
-      label: "L2",
+      label: "Element 2",
+      diagramLabel: "L2",
       type: "Positive Meniscus",
       nd: 1.6068,
       vd: 59.5,
       indexReference: "D",
-      indexReferenceNote:
-        "Literal source nD/Abbe relayed from primary scan; no identified catalog glass or measured spectral curve. D-line-only validation.",
-      glass:
-        "Unmatched (historical primary nD/V only; no exact catalog glass identity asserted)",
+      focalLengthMm: 221.1,
+      role: "Second converging element ahead of the central diverging lens",
+      glass: "Unmatched (nD 1.6068 / ν 59.5)",
     },
     {
       id: 3,
       name: "L3",
-      label: "L3",
+      label: "Element 3",
+      diagramLabel: "L3",
       type: "Biconcave Negative",
       nd: 1.6477,
       vd: 33.9,
       indexReference: "D",
-      indexReferenceNote:
-        "Literal source nD/Abbe relayed from primary scan; no identified catalog glass or measured spectral curve. D-line-only validation.",
-      glass:
-        "Unmatched (historical primary nD/V only; no exact catalog glass identity asserted)",
+      focalLengthMm: -37.56,
+      role: "Central diverging element",
+      glass: "Unmatched (nD 1.6477 / ν 33.9)",
     },
     {
       id: 4,
       name: "L4",
-      label: "L4",
+      label: "Element 4",
+      diagramLabel: "L4",
       type: "Negative Meniscus",
       nd: 1.6068,
       vd: 59.5,
       indexReference: "D",
-      indexReferenceNote:
-        "Literal source nD/Abbe relayed from primary scan; no identified catalog glass or measured spectral curve. D-line-only validation.",
-      glass:
-        "Unmatched (historical primary nD/V only; no exact catalog glass identity asserted)",
+      focalLengthMm: -129.75,
+      role: "Negative part of the split rear component",
+      glass: "Unmatched (nD 1.6068 / ν 59.5)",
     },
     {
       id: 5,
       name: "L5",
-      label: "L5",
+      label: "Element 5",
+      diagramLabel: "L5",
       type: "Biconvex Positive",
       nd: 1.6068,
       vd: 59.5,
       indexReference: "D",
-      indexReferenceNote:
-        "Literal source nD/Abbe relayed from primary scan; no identified catalog glass or measured spectral curve. D-line-only validation.",
-      glass:
-        "Unmatched (historical primary nD/V only; no exact catalog glass identity asserted)",
+      focalLengthMm: 46.57,
+      role: "Positive part of the split rear component facing the film",
+      glass: "Unmatched (nD 1.6068 / ν 59.5)",
     },
   ],
   surfaces: [
@@ -121,27 +122,27 @@ const data = {
       label: "3",
       R: 38.1,
       d: 9.52,
-      sd: 22.5,
+      sd: 23.5,
       medium: 2,
     },
     {
       label: "4",
       R: 48.19,
       d: 5.71,
-      sd: 19.25,
+      sd: 23,
     },
     {
       label: "5",
       R: -223.83,
       d: 2.86,
-      sd: 18.25,
+      sd: 19.5,
       medium: 3,
     },
     {
       label: "6",
       R: 27.43,
       d: 9.525,
-      sd: 16.25,
+      sd: 19,
     },
     {
       label: "STO",
@@ -152,33 +153,32 @@ const data = {
       label: "7",
       R: 200.01,
       d: 2.86,
-      sd: 16.25,
+      sd: 23.5,
       medium: 4,
     },
     {
       label: "8",
       R: 56.19,
       d: 0.48,
-      sd: 16.25,
+      sd: 23.5,
     },
     {
       label: "9",
       R: 51.43,
       d: 14.29,
-      sd: 16.25,
+      sd: 24,
       medium: 5,
     },
     {
       label: "10",
       R: -56.15,
       d: 56.18336028624677,
-      sd: 16.25,
+      sd: 24,
     },
   ],
   focus: {
-    closeFocusM: 1000000000000000,
-    description:
-      "Infinity-only reference in explicitly assumed R1-to-R10 traversal. Long-conjugate side is a modeling choice, not a source arrow or measured projector state. No finite projection/retail focus range.",
+    closeFocusM: 1e15,
+    description: "Infinity focus only; the patent gives no close-focus data.",
   },
   aperture: {
     nominalFNumber: 2,
@@ -221,4 +221,4 @@ const data = {
     yScFill: 0.5,
   },
 } satisfies LensDataV2Input;
-export default data;
+export default LENS_DATA;
