@@ -11,6 +11,7 @@ import { useParams, Navigate, Link, useLocation } from "react-router";
 import SEOHead from "../components/SEOHead.js";
 import StaticPageShell from "../components/layout/StaticPageShell.js";
 import ArticleTOC from "../components/content/ArticleTOC.js";
+import ArticleDateline from "../components/content/ArticleDateline.js";
 import ThemedMarkdown from "../components/markdown/ThemedMarkdown.js";
 import { SITE_NAME, SITE_URL } from "../utils/catalog/lensMetadata.js";
 import { articleJsonLd, breadcrumbJsonLd } from "../utils/seo/structuredData.js";
@@ -88,6 +89,13 @@ export default function ArticlePage() {
               {textRun("← ", backLabel)}
             </Link>
           </nav>
+
+          <ArticleDateline
+            publishedOn={entry.publishedOn}
+            lastModified={entry.lastModified}
+            theme={t}
+            style={{ fontSize: "0.8rem", maxWidth: 700, lineHeight: 1.5, marginBottom: "0.5rem" }}
+          />
 
           <article style={{ maxWidth: 700, lineHeight: 1.7 }}>
             <ThemedMarkdown
