@@ -44,7 +44,7 @@ const lens = {
   "key": "kmz-zenitar-35mm-f1",
   "maker": "KMZ",
   "name": "KMZ ZENITAR 35mm f/1",
-  "subtitle": "RU 2771147 C1, sole example — strong production correlation",
+  "subtitle": "RU 2771147 C1, sole example — strong production match",
   "visible": true,
 
   "catalog": {
