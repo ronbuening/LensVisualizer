@@ -1,55 +1,77 @@
+# CARL ZEISS JENA 100mm f/2 (US 2,188,523 Design)
+
 ## Patent Reference and Design Identification
 
-**Patent:** [US 2,188,523 A](https://patentimages.storage.googleapis.com/ad/f8/4a/0e7ec43f07063c/US2188523.pdf#page=2)
-**Inventor:** Ludwig Bertele
+**Patent:** [US 2,188,523 A, Photographic Objective](https://patents.google.com/patent/US2188523A/en)
+**Inventors:** Ludwig Bertele
 **Assignee:** Zeiss Ikon AG
-**German filing:** January 8, 1938, as stated in the US document
-**Filed:** September 14, 1938; serial 229,819
-**Granted:** January 30, 1940
-**Example details:** Original page 2 numerical table, literal millimetre scale
+**Published:** January 30, 1940
+**Filed:** September 14, 1938
+**German priority:** January 8, 1938
+**Example details:** Sole numerical example, PDF page 2; section drawing on PDF page 1.
 
-This hidden reconstruction represents the patent example, without a verified retail Sonnar or Jupiter-9 identification. DE700699 and US2254511 have different prescriptions. Source figures, indices and Abbe numbers were independently read from original pixels by the parent research specialist. This executor independently checked the transcription numerically and natively; its web-tool attempt to open the scan failed, so no local pixel verification or original scan bytes are claimed.
+The patent describes a seven-element, three-group photographic objective at 100 mm f/2. Its ten signed radii, nine axial distances, seven refractive indices and seven Abbe numbers are preserved. The index heading is lowercase nd, interpreted as the helium d line; the patent does not state a numerical wavelength.
 
-## Reconstruction Status
-
-The patent supplies ten signed radii, nine intersurface distances, seven nD/Abbe pairs, seven elements in three groups and nominal 100 mm f/2. All are preserved. The source does not supply clear apertures, iris diameter, the iris split, diagnostic field or rear image distance.
-
-The modeled iris lies 79% through the unchanged 9.54 mm R6–R7 air gap: 7.5366 mm after R6, 2.0034 mm before R7, z = 31.5766 mm. This is a clearance-tested estimate, not a German-example stop transferred into this design. Clear semidiameters S1–S10 are estimated at 30, 29.6, 25.4, 24.5, 22.9, 17.4, 17.3, 18.6, 19.9 and 21.1 mm. They bound a useful sampled pupil while retaining explicit peripheral clipping; they are not measured mechanical rims or guaranteed factory clear diameters. No separate mechanical shoulders or baffles are asserted.
-
-The chosen 0–10° half-field and 36.2 mm diagnostic image-circle envelope are modeling scope, not source coverage, a camera format or a production specification. The envelope rounds up the largest sampled Gaussian-plane image radius. Sparse sampling cannot prove a global maximum.
+DE 700,699 C covers the same invention, with the same inventor, applicant and claim, but a different numerical example. Marco Kröger identifies that German design as an attempt to reduce the distortion of the Sonnar 2/5 cm and reports that the improvement never entered production ([Sonnar history, §5.2](https://www.zeissikonveb.de/start/objektive/normalobjektive/sonnar.html)). No production lens is documented for this US prescription.
 
 ## Optical Architecture
 
-A positive front singlet precedes a cemented triplet and a rear cemented triplet: 1 | 3 | 3. Four internal cemented interfaces share exact curvature and axial station. No published radius, thickness, material or air gap has been fitted. Reduced-angle D-line calculation gives EFL 100.047854508 mm and rear-vertex BFD 54.625853960 mm; the latter defines the derived infinity image plane at z = 122.755853960 mm.
+The layout is a positive front singlet, a cemented middle triplet and a cemented rear triplet: 1 | 3 | 3. All surfaces are spherical. The front singlet has an in-air focal length of +133.12 mm, the middle triplet is net negative at −207.17 mm, and the rear triplet is positive at +110.29 mm. These group powers combine to give a computed EFL of 100.0479 mm, 0.048% above the printed 100 mm.
+
+The four cemented interfaces are R4, R5, R8 and R9. The rear triplet places a low-index biconcave element between two higher-index positive elements. Claims 1–3 emphasize this index relationship and the nearly equal magnitudes of its concave radii, 44.84 and 41.79 mm.
 
 ## Element-by-Element Analysis
 
-| Element | Source nD | Source νD | Shape |
-|---|---:|---:|---|
-| L1 | 1.6200 | 60.3 | Positive meniscus |
-| L2 | 1.7015 | 41.2 | Positive meniscus |
-| L3 | 1.5487 | 45.8 | Biconvex positive |
-| L4 | 1.6883 | 30.0 | Biconcave negative |
-| L5 | 1.6200 | 60.3 | Positive meniscus |
-| L6 | 1.5150 | 50.0 | Biconcave negative |
-| L7 | 1.6682 | 48.8 | Biconvex positive |
+The focal lengths below describe each element alone in air, rather than its power within a cemented assembly. The patent gives no glass trade names; all seven glass identities remain unmatched.
 
-These are literal historical material coordinates, with no exact modern catalog glass assigned. Sodium-D tracing uses the application's documented 589.2938 nm center convention. Abbe-derived spectral outputs remain runtime estimates, not measured glass curves; only the D-line ray claims are qualified here. No calibrated chromatic or polychromatic MTF claim accompanies this model.
+### Element 1 — Positive Meniscus
 
-## Focus, Aperture and Field Limits
+nd = 1.6200, νd = 60.3. Glass: Unmatched. f = +133.12 mm. The front singlet collects light for the two cemented groups. Its convex face points toward the object.
 
-Only infinity is supported. There is no finite focus prescription or inferred focusing mechanism. Source nominal f/2 remains unchanged. The ordinary prime convention derives a 32.641262798 mm physical iris diameter paraxially; the native finite axial accepted entrance radius is 24.741468385 mm, corresponding to EFL/(2r) = f/2.021865739. This small difference is disclosed, not repaired.
+### Elements 2–4 — Middle Cemented Triplet C1
 
-A separate independent axial ray launched at EFL/4 crosses the estimated iris at radius 16.500750669 mm (33.001501339 mm diameter). Matching that diagnostic diameter would require an explicitly labeled Builder Advanced JSON tuning copy with paraxial nominal input about f/1.978168354 and matching first f-stop/catalog design metadata. The isolated control validates that edit and its axial ray without changing any surface or glass. Direct air-stop semi-diameter edits are unsupported, and the ordinary viewer does not widen beyond source f/2. The saved model retains f/2. Any tuned copy needs full field revalidation.
+Element 2: nd = 1.7015, νd = 41.2. Glass: Unmatched. f = +96.12 mm. This positive meniscus forms the front of the triplet.
 
-## Validation and Limitations
+Element 3: nd = 1.5487, νd = 45.8. Glass: Unmatched. f = +99.68 mm. This biconvex element shares both faces with its neighbors.
 
-Native geometry accepts the original prescription at the default 90% gap-sag limit, with zero render trim and no overrides. Minimum sampled glass edge thickness is 1.276274679 mm. The critical R6–R7 shared-edge clearance is 1.133212114 mm (88.121466% sag intrusion). The 0.38 mm front air gap widens toward its shared edge. Iris-plane clearance is positive for the opening and full adjacent caps.
+Element 4: nd = 1.6883, νd = 30.0. Glass: Unmatched. f = −33.01 mm. Its strong negative power makes the middle triplet net diverging despite the two positive elements ahead of it.
 
-Across six iris/rim/aperture cases and six fields, 20,772 physical 3D input samples yield 19,040 detector arrivals, 1,732 explicit iris/rim clips and no propagation failures. The 12.5° sample is outside modeled scope. A separate denser baseline uses 7,685 samples across 0°, 2.5°, 5°, 7.5° and 10°: 7,270 arrivals and 415 explicit clips, with no propagation failures. At 10° the denser pass records 65 iris clips and 21 clips on estimated optical rims (S1/S2/S4/S5). These are ordinary modeled peripheral losses, retained in the evidence; no zero-vignetting or throughput assertion is made. Every in-scope chief ray completes. Input rings are diagnostic samples, not a calibrated throughput integral.
+### Elements 5–7 — Rear Cemented Triplet C2
 
-Native and independently implemented vector-Snell spherical traces agree on completed ray surfaces and detector locations to better than 1.3e−13 mm. Rim estimates ±0.1 mm, iris station fractions 0.78/0.79/0.80, and an f/4 control retain positive physical geometry. Source spectral performance, measured MTF, full factory field, tolerances, scatter, baffles, finite focusing and production identity remain outside qualification. Builder rendering tests establish UI health only; estimated native spectral panels are not additional optical evidence.
+Element 5: nd = 1.6200, νd = 60.3. Glass: Unmatched. f = +105.71 mm. This positive meniscus has its concave face toward the stop space.
 
-## Design Heritage and Sources
+Element 6: nd = 1.5150, νd = 50.0. Glass: Unmatched. f = −41.81 mm. This biconcave element has a lower index than either neighboring element, as specified in the claims.
 
-The bounded duplicate screen evaluates full current-main and 19 open-PR-head model bodies, plus 2,438 retained readable historical numerical profiles. Uniform positive scale and reversed-negated curvature sequences are checked; no match is found. Archive byte verification is recorded separately. Inaccessible private history is not claimed to have been searched exhaustively. No new catalog entry, public release or packaging count is authorized by this checkpoint.
+Element 7: nd = 1.6682, νd = 48.8. Glass: Unmatched. f = +45.63 mm. This thick biconvex element completes the converging rear group.
+
+## Glass Identification and Selection
+
+The printed nd and Abbe numbers are retained without assigning a historical supplier or melt. Elements 1 and 5 use the same pair, 1.6200/60.3. The lower Abbe number of element 4 makes it the most dispersive glass in the prescription.
+
+The model uses the d-line convention, approximately 587.6 nm, to match the table heading. Other wavelengths are estimated from the printed index and Abbe number; the patent supplies no measured spectral curves or partial-dispersion data. Chromatic and polychromatic performance therefore remain uncertain.
+
+## Focus Mechanism
+
+Infinity focus only; the patent gives no close-focus data. The model contains no group motion or finite-distance prescription, and no marketed minimum focusing distance is assigned.
+
+## Aperture, Image Plane and Field Limits
+
+The US patent gives no iris position or diameter. DE 700,699 C divides its 9.44 mm stop space into 7.50 and 1.94 mm. Applying that ratio to the US example's 9.54 mm gap gives the rounded split 7.58/1.96 mm: the stop is 7.58 mm behind R6 and 1.96 mm ahead of R7. This is an inference from the German member, rather than a US-patent dimension.
+
+The paraxial f/2 rule gives a stop radius of 16.31499 mm. Exact axial tracing accepts an entrance radius of 24.74034 mm, corresponding to f/2.02196 by EFL divided by entrance diameter. The iris limits this beam; no optical rim needs enlargement.
+
+The computed paraxial back focus is 54.625854 mm. The stored image distance is rounded to 54.6259 mm, giving a total track of 122.7559 mm and a first-to-last-surface length of 68.13 mm. The image plane follows paraxial focus, with no adjustment for minimum spot size.
+
+The retained 10° half-field and 36.2 mm image-circle envelope are model limits. The patent states neither a field angle nor a camera format. At 10°, the real chief ray reaches an image height of 17.6865 mm, or 97.72% of the envelope's 18.1 mm radius. Reaching that radius would require 10.2278°, and that chief ray clears the rims. Peripheral rays can be clipped by the inferred rims; this does not establish a measured transmission or a factory coverage specification.
+
+## Model Scope and Design Heritage
+
+The clear semi-diameters, from R1 to R10, are inferred as 30, 29.6, 25.4, 24.5, 22.9, 17.4, 17.3, 18.6, 19.9 and 21.1 mm. The section drawing depicts more nearly cylindrical triplets with chamfered inner ends, whereas these openings taper. That difference remains for a separate rim review. The prescription passes the surface-clearance checks without a gap-sag override or drawing trim.
+
+The German and US examples share the invention but differ numerically; for example, the German table gives R1 = 67.54 mm instead of 68.41 mm. The seven-element Sonnar and Jupiter-9 family resemblance does not establish that this particular prescription was manufactured. Factory clear apertures, baffles, tolerances, measured MTF and finite focusing remain undocumented.
+
+## Sources
+
+1. Ludwig Bertele, [US 2,188,523 A, Photographic Objective](https://patents.google.com/patent/US2188523A/en), Zeiss Ikon AG, January 30, 1940. Section: PDF page 1; sole numerical table and claims: PDF pages 2–3.
+2. Ludwig Bertele, [DE 700,699 C](https://patents.google.com/patent/DE700699C/de), Zeiss Ikon AG. German member of the invention, with a different numerical example and a printed stop-space split of 7.50/1.94 mm.
+3. Marco Kröger, [Vom Ernostar zum Sonnar, §5.2](https://www.zeissikonveb.de/start/objektive/normalobjektive/sonnar.html), historical account of the distortion improvement described by DRP 700.699 and its absence from series production.
