@@ -37,7 +37,7 @@ const LENS_DATA = {
     elementCount: 3,
     groupCount: 3,
     focalLengthMm: {
-      design: 100,
+      design: 99.59,
     },
     fNumber: {
       design: 8,
@@ -126,7 +126,7 @@ const LENS_DATA = {
     {
       label: "STO",
       R: "flat",
-      d: 87.11063991897167,
+      d: 87.11064,
     },
   ],
   focus: {
