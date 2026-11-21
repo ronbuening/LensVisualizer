@@ -1,70 +1,87 @@
+# HASSELKUS & RICHMOND 100mm f/4 (GB 295,519 Design)
+
 ## Patent Reference and Design Identification
 
-**Patent:** [GB295519A](https://patents.google.com/patent/GB295519A/en), improvements in objectives suitable for photographic purposes
+**Patent:** [GB 295,519 A](https://patents.google.com/patent/GB295519A/en), _Improvements in and relating to Objectives suitable for Photographic Purposes_
+
 **Inventors:** John William Hasselkus and George Arthur Richmond
-**Filed:** September7,1927
-**Published:** August16,1928
-**Example details:** Sole100-unit numerical example, originalpage2table and page4diagram
 
-This hidden reconstruction is a **Ross-associated patent-only D-line reference**, not an exact production lens or a new retail identification. No organization is asserted as assignee; corporate ownership is not inferred from the historical association. The inventors use the established canonical personal-name spelling in the retained corpus. No production mount, film format, lens barrel, baffle or finite focusing mechanism is authored.
+**Assignee:** No company is printed; the two inventors are the individual applicants.
 
-The upstream specialist visually inspected all four pages of the [official original scan](https://depatisnet.dpma.de/DepatisNet/depatisnet?window=1&space=menu&content=treffer&action=pdf&docid=GB000000295519A). This executor uses the attributed exact transcription and independently reproduces its optics. The official PDF did not open in the local web tool; no local pixel inspection or scan-byte custody is claimed. The accessible patent abstract independently supports the doublet/meniscus topology and nominal f/4,70° field. No denied source transfer was retried.
+**Filed:** 7 September 1927
 
-## Qualification and Scope
+**Published:** 16 August 1928, when the complete specification was accepted
 
-**Qualified as an explicitly vignetted, infinity-only D-line patent reference.** The70° source image field has propagated chief/interior rays, not a fully transmitted f/4 pupil. At35° all eight sampled aperture-edge azimuths are blocked. This is retained rather than clipped out of the report, fitted away or claimed as factory vignetting. Numerical ray/MTF checks establish the scoped model's consistency, not a reproduction of all qualitative chromatic/comatic correction claims in the patent.
+**Example details:** Sole numerical example, printed p. 2; section on the drawing sheet, PDF p. 4
 
-The100-unit source scale is represented as100mm in this model, solely a modeling choice. Original radii/thicknesses/indices and source iris station are unchanged. There is no rescaling to a presumed manufactured focal length. The image distance and physical aperture/clear radii are derived or estimated and are not source dimensions.
+The patent describes a six-element, four-group photographic objective at f/4 with a 70° field. Its focal length is stated as 100 units, without a physical unit; the model represents those dimensions in millimetres. The complete specification was left on 30 May 1928. The applicants give 3 North Side, Clapham Common, London SW4, the address of Ross Ltd's optical works. That association does not make Ross a printed assignee.
+
+The Ross Wide Angle Xpres f/4, dating from around 1928 and associated with aerial survey, is a likely but unconfirmed product connection. A [Science Museum Group record](https://collection.sciencemuseumgroup.org.uk/objects/co8204618/ross-xpres-wide-angle-lens) documents a surviving 5-inch f/4–11 Wide Angle Xpres with an Air Ministry reference. Historical lens references also associate the Wide Angle Xpres with this patent. No cited production prescription or construction drawing establishes that a manufactured Xpres used this exact numerical example. The model therefore retains the inventors' names and the patent-design designation.
 
 ## Optical Architecture
 
-Six elements form four components: cemented front doublet, front positive meniscus, rear positive meniscus, cemented rear doublet. Source R2 and R9 are cemented interfaces. The only iris is centered in the literal4.64-unit gap after R5, split exactly2.32+2.32; its axial station is z14.63 from R1. Inserting STO does not change that optical gap.
+Six elements form four components: a front cemented doublet, a positive meniscus on each side of the stop, and a rear cemented doublet. R2 and R9 are the cemented interfaces, marked C1 and C2. Both menisci turn their concave faces toward the stop. The doublets have weak net negative power, while the two menisci provide positive power.
 
-The literal sequence R1–R10 is +22.66,−95.51,+16.73,+24.25,+37.77,−43.64,−27.61,−19.95,+81.96,−26.48. All nine intersurface distances remain5.48,1.91,1.45,3.47,4.64,3.47,1.45,3.13,5.92. The glass track is30.92 model units. Independent first-order D-line EFL100.082354233 and BFD85.734920677 define a derived paraxial infinity plane at z116.654920677. The image distance is not printed, and no real-ray best-focus optimization replaces it.
+The front doublet has a computed focal length of −794.94 mm, compared with −4859.31 mm for the rear doublet. The front meniscus is also stronger than the rear: +120.31 versus +135.19 mm. These asymmetries follow the patent's stated approach to controlling coma while keeping the two complete halves at approximately equal focal lengths, about 167 and 161 mm.
 
-## Element-by-Element Analysis and Spectrum
+Every radius sign is printed. R1–R10 are +22.66, −95.51, +16.73, +24.25, +37.77, −43.64, −27.61, −19.95, +81.96 and −26.48 mm. The successive intersurface distances are 5.48, 1.91, 1.45, 3.47, 4.64, 3.47, 1.45, 3.13 and 5.92 mm. The first-to-last vertex span is 30.92 mm.
 
-| Element | Faces | Literal nD | Literal source g index |
-|---|---|---:|---:|
-| L1 positive front doublet | R1–R2 | 1.61071 | 1.62501 |
-| L2 negative front doublet | R2–R3 | 1.55065 | 1.56616 |
-| L3 positive meniscus | R4–R5 | 1.51776 | 1.52839 |
-| L4 positive meniscus | R6–R7 | 1.51776 | 1.52839 |
-| L5 negative rear doublet | R8–R9 | 1.55065 | 1.56616 |
-| L6 positive rear doublet | R9–R10 | 1.61071 | 1.62501 |
+The printed table computes to a helium d-line EFL of 100.08235 mm, 0.082% above the stated 100, and a paraxial back focus of 85.73492 mm. The patent gives no image distance; that computed back focus places the image at 116.65492 mm from R1. The stored image plane is the paraxial infinity plane.
 
-No F/C indices, Abbe number, catalog glass, full dispersion curve or source-g wavelength conversion is invented. The literal g column remains source evidence, not a substitute for F/C or a fabricated Abbe fit. The authored elements carry nD and native `indexReference:"D"`; native reference tracing uses the documented sodium-doublet center589.2938nm convention. Quantitative claims here apply only at that reference. Missing-dispersion channels can fall back to constant index in the application; they are placeholders, not source-calibrated color/MTF predictions. Do not interpret a flat chromatic panel as evidence of zero color error. The source's broader chromatic statements are not validated by this D-only model.
+## Element-by-Element Analysis
+
+### Elements 1 and 2 — Front Cemented Doublet
+
+Element 1 is biconvex and positive, with an in-air focal length of +30.53 mm. Element 2 is biconcave and negative, at −25.70 mm. Their shared R2 interface joins the higher-index outer glass to the lower-index inner glass. Together they form the stronger of the two weak negative doublets.
+
+### Elements 3 and 4 — Positive Menisci
+
+Element 3, ahead of the stop, has an in-air focal length of +120.31 mm. Element 4, behind it, has +135.19 mm. Both use the same printed glass indices; their different curvatures produce the power difference described in the patent.
+
+### Elements 5 and 6 — Rear Cemented Doublet
+
+Element 5 is biconcave and negative, at −28.82 mm in air. Element 6 is biconvex and positive, at +33.46 mm. They meet at R9 and reverse the front pair's glass order. Their combined power is much weaker than the front doublet's.
+
+## Glass Identification and Spectral Scope
+
+The patent explicitly identifies its Nd and Ng columns as the helium and mercury lines, respectively. All six elements use helium d as their reference line. The printed values are:
+
+| Elements | Helium nd | Mercury ng |
+| -------- | --------: | ---------: |
+| 1 and 6  |   1.61071 |    1.62501 |
+| 2 and 5  |   1.55065 |    1.56616 |
+| 3 and 4  |   1.51776 |    1.52839 |
+
+No catalogue row has been established that reproduces both indices for any of the three glasses. Each remains labelled Unmatched with its printed nd/ng pair. No Abbe numbers or F/C indices are printed. The mercury values remain documented evidence; they are not used to invent a full dispersion curve. This model is monochromatic at helium d, approximately 587.6 nm. Constant-index behaviour in a colour panel cannot establish the patent's claimed chromatic correction.
+
+## Focus Mechanism
+
+Only infinity focus is modeled. The patent supplies no finite object distance, close-focus spacing or movement law. All optical spacings remain fixed; the focus placeholder is not a product minimum focus distance. No production mount, film format, barrel or baffle dimensions are documented for this numerical example.
 
 ## Iris and Clear-Aperture Assumptions
 
-The source supplies iris position but no physical diameter. The source f/4 paraxial entrance radius is12.510294279; native ordinary-prime pupil magnification derives iris radius10.289058363 (diameter20.578116726). The independently traced physical f/4 marginal instead meets the published iris plane at radius10.217243681 (diameter20.434487361). Both are derived diagnostics, neither factory aperture data. The saved model retains source nominal f/4 and the application's ordinary-prime iris convention.
+The stop position is printed: b1 = b2 = 2.32 mm, halfway through the 4.64 mm central air space, at z = 14.63 mm from R1. Its physical diameter is not printed. The paraxial entrance-pupil radius at f/4 is 12.51029 mm; pupil magnification gives a stop radius of 10.28906 mm. The real f/4 marginal meets the stop plane at 10.21724 mm. Both openings are derived quantities.
 
-Estimated optical clear semidiameters R1–R10 are16,13.4,10.64,10.65,12.9,13.5,12,13,14,15.5 model units. They are conditional optical envelopes, not measured outer mechanical diameters. They retain full axial source f/4 and explicit off-axis vignetting. Side-specific clear radii may differ within a glass component; no source-measured shoulder/bevel/retainer dimensions are claimed. Native render geometry needs no hidden trimming.
+Clear semi-diameters R1–R10 are 13.1, 13.1, 10.64, 10.65, 12.9, 13.5, 12, 13, 13.1 and 13.1 mm. The four 13.1 mm values follow the doublet height in the drawing. They lie inside the front and rear positive elements' face crossings, at approximately 13.57 and 14.86 mm. The other clear radii remain estimates and differ from the drawn outlines and chamfers.
 
-The accepted axial input radius is12.525225856, a finite entrance equivalent f/3.995231519, limited by R3. This tiny faster-than-nominal difference is disclosed rather than changing the source f-number. All865 axial samples, including the source f/4 marginal and its full azimuth ring, complete. The iris opening stays physically in air, with sampled front/rear clearance approximately0.89155/1.08973 units.
+The stated f/4 axial marginal clears every surface. Its smallest rim margin is about 0.01 mm at R3. R3 limits the accepted input radius to about 12.52523 mm, equivalent to f/3.995 when expressed as EFL divided by twice that radius. Relative to the slightly larger real beam admitted by the derived iris, the aperture calculation reports f/4.024, 0.61% above nominal. The stop opening lies in air, with front and rear glass clearances of about 0.89 and 1.09 mm at its edge.
 
-## Necessary Local Gap-Sag Control
+## Air-Gap Clearance
 
-Default90% was tested first and fails. The R3/R4 spherical contact radius is10.898895125. The actual source f/4 marginal requires R3/R4 radii10.628191597/10.631075221; its shared-band sag intrusion is93.5565678%, leaving real clearance0.093429767. The largest shared radius allowed by90% is10.471616717, too small to retain that marginal. A default-limit aperture would silently cut the source f/4 pupil; unsupported cuts, altered glass/gaps or a slower f-number were not substituted.
+The R3/R4 air gap closes at a radius of 10.89890 mm. The f/4 marginal needs heights of 10.62819 and 10.63108 mm on those faces, leaving approximately 0.09343 mm of air at that ray. A 90% sag allowance would restrict their common radius to 10.47162 mm and cut that beam. The model retains a 94% allowance; at the authored rims, maximum sag intrusion is 93.82973% and the remaining gap is about 0.08947 mm.
 
-Initial on-axis and broader estimates were tested at90/92/94/95/96/96.5/96.9/96.95/97%. Higher95% and96.9% trials were physically viable but are not the retained setting. A tighter source-marginal-derived clear pair10.64/10.65 passes at94%;90%,92% and93% fail for that same pair. **The saved lens-local `checks.gapSagFrac` is0.94**, the lowest whole-percent stage that retains the source marginal with the documented small clear-radius margin. No shared validator/tracer is changed, and no trial exceeds97%.
+The central gap has about 0.41858 mm clearance at the shared outer band, and the R7/R8 gap retains about 0.18157 mm. These geometric clearances do not establish manufacturing tolerances. The estimated R5 rim extends about 0.05 mm across the stop's axial plane outside the actual stop opening; its outline and the other meniscus rims remain questions for comparison with the drawing.
 
-Final maximum sampled intrusion is93.8297292%, leaving R3/R4 clearance0.089468927 units. All other occupied air bands are also physically positive; the combined meniscus gap across STO has90.9789800% intrusion at its shared outer band, with0.418575329 clearance, while its actual iris opening is in air as above. The R7/R8 gap retains0.181573634. Minimum glass edge is0.148679523. Estimated radii ±0.005 retain native geometry and zero trim. These ideal-envelope tests do not establish manufacturing tolerance.
+## Field and Model Limitations
 
-## Native and Independent Field Checks
+The printed 70° full field corresponds to a 35° half-field. The real chief ray clears every current rim there and reaches an image height of 70.09843 mm. Twice that height, rounded to 0.1 mm, gives the 140.2 mm model image circle. It describes the patent's stated field at this model's dimensions; no physical image diameter or production film format is printed.
 
-Native physical3D input-disc sampling covers0°,8.75°,17.5°,26.25°,30°,32.5°,35° using the existing bounding-sphere chief solve and twelve square-root-radius rings ×72 azimuths plus the axis. All seven chief solves converge and complete. The6,055 samples produce4,479 arrivals and1,576 blocked samples, with zero unresolved samples. Nine raw native noBracket misses at35° remain explicitly recorded and are proven aperture/vertex-branch exclusions by the existing classifier; they are not counted as arriving rays. Independent analytic spherical/vector-Snell completed surface hits agree within2.7e−13 model units.
+Chief-ray coverage reaches 99.9978% of the rounded circle radius. This describes field extent, not illumination: off-axis bundles are vignetted, and a complete f/4 pupil is not transmitted at 35°. The monochromatic, infinity-focus model does not establish production performance, chromatic correction or the patent's full set of aberration claims. All surfaces are spherical.
 
-At35°,408/865 input samples arrive; none of the eight sampled outer-ring azimuths arrives. At26.25°,622/865 arrive. These are conditional counts under estimated clear apertures, not irradiance/throughput fractions. Earlier uncapped upstream diagnostics found physical R10 vertex-branch misses and unresolved pre-stop aims. This model does not deny those observations: its explicit conservative rims change the admissible sampled mask, and the native aimed metric grids report their own blocking/unknown data. No full-pupil70° or global solver cure is claimed.
+## Sources
 
-## Reference-Line Metrics and Application Checks
-
-Geometric MTF at the derived Gaussian plane uses image heights0,31.53598,49.33632,57.74584,63.77280,70.07994 model-mm. These correspond approximately to0°,17.49245°,26.24607°,29.98697°,32.50445°,34.99292°. With0/10/20/40lp/mm requests, all six fields converge using the unchanged128/256-grid ladder and0.01 tolerance: center and second field at128, the others at256. Unknown flux, failed rays and unaimed rays are0 in those requests. The earlier unconverged128 estimates are retained and are not labeled passes. The140.16-unit image-circle reference is derived from the nominal field/focal-scale relationship, not a printed diameter or production format. Physical35° was tested separately as above.
-
-No diffraction-OTF, polychromatic metric, spectral correction, factory performance, finite focus or mechanical mount qualification accompanies these reference-line results. Exact native JSON export/import, strict private-model and main type checks, formatting and five existing native/Builder suites (319 tests) pass. Desktop1440px/mobile390px Builder import and rendering of aperture/off-axis/dense controls and analysis panels pass without page errors. Rendering uncalibrated spectral panels is a UI-health check only. Full catalog integration/regression remains outside this unregistered private pass.
-
-## Provenance, Dedup and Reproduction
-
-Fresh main66c7570fb6eb3c31534b7191267a95c85d5ee590 and all20current openPR heads are checked through2,369 distinct evaluated source bodies plus2,438 retained historical numerical profiles. Normalized source identifiers and forward/reversed-negated uniform-scale ten-boundary sequences have no match. Readable ZIPs are separately inventoried/hashed and literal-radius-screened; computed-expression and inaccessible-history limits are explicit. US2116264 in PR1005 is a different design and was not substituted. This is bounded available-body clearance, not an exhaustive assertion about every inaccessible private archive.
-
-Source JSON, independent/native scripts, staged geometry failures, rejected higher allowances, metric outputs, test/browser logs and byte hashes are retained in the local private checkpoint. The held Nikon checkpoint is rechecked unchanged. No count, archive shipment, direct delivery, catalog edit, commit/push/PR/merge/deployment or shared engine change is performed.
+1. John William Hasselkus and George Arthur Richmond, [GB 295,519 A](https://patents.google.com/patent/GB295519A/en), filed 7 September 1927, accepted 16 August 1928. Original specification: front-page bibliography; printed p. 2 numerical table, spectral-line identification and field/aperture statements; drawing sheet, PDF p. 4.
+2. Science Museum Group, [Ross Xpres Wide Angle Lens](https://collection.sciencemuseumgroup.org.uk/objects/co8204618/ross-xpres-wide-angle-lens), object 1990-5036/1287: 5-inch f/4–11 lens, serial 132787, Air Ministry reference 14A/843. The record supplies no production prescription.
+3. Early Photography, [Xpres](https://w.earlyphotography.co.uk/site/entry_L58.html), distinguishes the late-1920s Wide Angle Xpres and associates it with BP 295519; its historical references do not identify a production numerical table.
+4. The Industrial History of Hong Kong Group, [Ross Optical Ltd., Clapham, London](https://industrialhistoryhk.org/ross-ltd/), reproduces historical Ross works-address information for 3 North Side, Clapham Common.
+5. Orwell Astronomical Society, [E. H. Collinson](https://oasi.org.uk/OPO/EHC/EHC.php), records the use of an f/4 Ross Wide Angle Xpres originally produced for aerial survey.
