@@ -6,14 +6,14 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Abbe numbers follow the table on PDF page 4. Figure 1 places the diaphragm
  * in the 13.870 mm central gap; its 7.68/6.19 mm split and all clear radii
  * are inferred. The iris radius is derived from f/2.5. The unprinted image
- * distance is the computed paraxial back focus, 70.930726 mm.
+ * distance is the computed paraxial back focus, 70.93 mm.
  */
 const LENS_DATA = {
   schema: 2,
   key: "agfa-100mm-f25-us2672788",
   maker: "Agfa",
   name: "AGFA 100mm f/2.5 (US 2,672,788 Design)",
-  subtitle: "US 2,672,788 A, Example 2 — five-element modified Gauss design",
+  subtitle: "US 2,672,788 A, Example 2 — Agfa / Brendel",
   visible: true,
   source: {
     patentNumber: "US 2,672,788 A",
@@ -35,8 +35,8 @@ const LENS_DATA = {
     },
     elementCount: 5,
     groupCount: 4,
-    imageCircleMm: 103.4015,
-    specs: ["5 ELEMENTS / 4 GROUPS", "DESIGN F/2.5", "ALL SPHERICAL"],
+    imageCircleMm: 103.41,
+    specs: ["5 ELEMENTS / 4 GROUPS", "DESIGN f = 100 mm", "DESIGN F/2.5", "ALL SPHERICAL"],
   },
   elements: [
     {
