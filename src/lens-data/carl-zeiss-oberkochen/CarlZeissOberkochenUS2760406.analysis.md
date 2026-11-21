@@ -32,18 +32,20 @@ The indices and Abbe numbers below retain the printed values. The d-line interpr
 
 | Element | Shape and role                                        | Printed index / Abbe number | Glass label                           | Focal length in air |
 | ------- | ----------------------------------------------------- | --------------------------- | ------------------------------------- | ------------------: |
-| 1       | Positive meniscus; front converging component         | 1.69100 / 54.8              | Unmatched                             |           +65.57 mm |
-| 2       | Biconcave negative; balances the positive components  | 1.64831 / 33.8              | Unmatched                             |           −32.65 mm |
-| 3       | Biconvex positive; front member of the rear component | 1.69100 / 54.8              | Unmatched                             |           +29.08 mm |
-| 4       | Negative meniscus; rear member of the rear component  | 1.60729 / 49.2              | Unmatched                             |           −61.68 mm |
+| 1       | Positive meniscus; front converging component         | 1.69100 / 54.8              | S-LAL9 (Ohara), exact match            |           +65.57 mm |
+| 2       | Biconcave negative; balances the positive components  | 1.64831 / 33.8              | PBM22 (Ohara), spectral proxy          |           −32.65 mm |
+| 3       | Biconvex positive; front member of the rear component | 1.69100 / 54.8              | S-LAL9 (Ohara), exact match            |           +29.08 mm |
+| 4       | Negative meniscus; rear member of the rear component  | 1.60729 / 49.2              | BAF5 (Hoya), exact match               |           −61.68 mm |
 
 The cemented rear component has a combined focal length of +51.80 mm. Its positive net power differs from the standalone powers of its two members.
 
 ## Glass Identification and Selection
 
-The patent calls its reference the D line, conventionally taken as sodium at 589.3 nm. The printed coordinates instead resemble d-line glass values for LaK9, SF12 and BaF5, although the BaF5 Abbe number differs. The model uses the helium d line, 587.6 nm, while retaining every printed index and Abbe number. The reference-line wording remains unresolved.
+The patent calls its reference the D line, conventionally taken as sodium at 589.3 nm. The printed coordinates instead resemble d-line glass values for LaK9, SF12 and BaF5. The model uses the helium d line, 587.6 nm, while retaining every printed index and Abbe number. The reference-line wording remains unresolved; the catalogue comparisons below use the adopted d line.
 
-No available catalogue curve is assigned to the LaK9-like and SF12-like coordinates of elements 1–3. Hoya BAF5 has an index of about 1.60729 and an Abbe number of 49.34: differences of +0.00000225 and +0.137 from element 4. Its Abbe number falls outside the printed precision of 49.2, and it does not establish the proposed Schott identity, so element 4 is also unmatched. No historical supplier, melt, partial dispersion or apochromatic performance is established.
+Elements 1 and 3 match S-LAL9 (Ohara), with catalogue-minus-printed differences Δn = 0.00000 and Δν = +0.02. Element 4 matches BAF5 (Hoya), with Δn = 0.00000 and Δν = +0.14. These exact matches fall within |Δn| ≤ 0.0001 and |Δν| ≤ 0.15; their names do not identify the historical supplier or melt.
+
+Element 2 uses PBM22 (Ohara) as a spectral proxy, with Δn = −0.00062 and Δν = 0.00, within the proxy limits of 0.002 in index and 0.25 in Abbe number. The printed coordinates are kept; the catalogue curve supplies only the dispersion shape for colour analysis in place of an Abbe-number estimate. All four elements use catalogue curves. No historical supplier, melt, measured partial dispersion or apochromatic performance is established.
 
 ## Focus Mechanism
 
@@ -65,3 +67,5 @@ Using the computed EFL, R2 = 434.01 mm is below ten focal lengths; |R3| = 100 mm
 
 1. Johannes Berger, [US 2,760,406 A, _Three Component Photographic Objective_](https://patents.google.com/patent/US2760406A/en): drawing on PDF page 1; authorship, dates, numerical example, field and claim on PDF page 2.
 2. [CH 314696 A](https://patents.google.com/patent/CH314696A/en), Swiss counterpart.
+3. [Ohara optical glass catalogue](https://www.ohara-inc.co.jp/en/product/catalog/): S-LAL9 and PBM22 dispersion curves.
+4. [Hoya optical glass catalogue](https://www.hoya-opticalworld.com/english/datadownload/index.html): BAF5 dispersion curve.
