@@ -1,59 +1,52 @@
-# BAUSCH & LOMB 100mm f/5.6 (US 2,390,387 Design) — Audit
+# BAUSCH & LOMB 100mm f/5.6 (US 2,390,387 Design) — Audit Log
 
 ## Source
 
-US 2,390,387 A, “Telephoto Objective,” names Wilbur B. Rayton and Lena M. Hudson as inventors and Bausch & Lomb Optical Company as assignee. It was filed on 31 January 1944 and published on 4 December 1945. Figure 2 is the cemented example; Figure 1 is air-spaced. The Figure 2 tables on PDF pages 1 and 3 agree.
+[US 2,390,387 A, “Telephoto Objective”](https://patents.google.com/patent/US2390387A/en), by Wilbur B. Rayton and Lena M. Hudson, assigned to Bausch & Lomb Optical Company. The application was filed on 31 January 1944; no earlier priority is stated. Publication was on 4 December 1945. Figure 2 is the cemented 100 mm f/5.6 example, with matching tables on PDF pages 1 and 3. Figure 1 is a separate air-spaced design. No product source identifies a production lens using Figure 2.
 
-## Transcription
+## Transcription Check
 
-Two independent readings of the page images agree on all six distinct radius magnitudes, four center thicknesses, the 21.08 mm separation, four D-line indices and four Abbe numbers. Signs follow the drawing: +16.95, −45.40, +57.40, −10.75, −28.50 and −19.49 mm. No numerical transcription mismatch was found. L2 is printed as 1.6210 in both table images despite the incorrect 1.620 text extraction.
+The page images agree with all six distinct radius magnitudes, four center thicknesses, the 21.08 mm separation, four D-line indices and four Abbe numbers. Radius signs follow the drawing: +16.95, −45.40, +57.40, −10.75, −28.50 and −19.49 mm. The printed scale is retained in millimetres. No numerical transcription mismatch was found. L2 is printed as 1.6210 in both table images; the extracted text's 1.620 is incorrect.
 
-The two shared interfaces are R2 = R3 and R6 = R7 in the patent, represented by surfaces 2 and 5 in the model. Each is a single glass-to-glass transition. Figure 1’s disagreements between drawing and text tables, S1 = 0.008 versus 0.006 mm and R8 = 18.57 versus 17.57 mm, do not affect Figure 2.
+The patent's shared interfaces R2 = R3 and R6 = R7 correspond to surfaces 2 and 5, each a single glass-to-glass transition. Figure 1 has drawing-versus-text differences in S1, 0.008 versus 0.006 mm, and R8, 18.57 versus 17.57 mm. Neither affects Figure 2, whose tables agree.
 
-## First-order Results
+## First-Order Check
 
-The printed 100 mm f/5.6 design computes to EFL 100.00346700678662 mm and paraxial f/5.600. The calculated BFD of 50.30405972406503 mm equals the stored last gap. The powered track is 29.88 mm and the first-vertex-to-image distance is 80.18405972406502 mm. Individual element focal lengths in air are +24.47, −40.62, −33.44 and +79.02 mm; the cemented doublets are +53.12 and −64.07 mm.
+The printed 100 mm f/5.6 design gives a calculated D-line EFL of 100.003 mm, 0.003 mm above the printed value, and paraxial f/5.60. The patent gives no back focus. The image plane is at the calculated paraxial infinity focus, 50.30 mm behind the last vertex. The first-to-last refracting-surface distance is 29.88 mm and the first-vertex-to-image distance is 80.18 mm. Individual element focal lengths in air are +24.47, −40.62, −33.44 and +79.02 mm; the front and rear doublets are +53.12 and −64.07 mm.
 
-The inferred iris radius is 6.085409062993138 mm. An independent exact spherical trace gives entrance-equivalent f/5.713298 and image-space sine f/5.753187. A nominal f/5.6 marginal ray reaches radius 6.215479 mm at that stop plane. The admitted axial beam clears the estimated optical rims; the aperture difference comes from the inferred iris rather than a rim limit.
+The inferred iris radius is 6.085 mm. Exact spherical tracing gives entrance-equivalent f/5.71 and image-space sine f/5.75 for the admitted axial beam. A nominal f/5.6 marginal ray requires a 6.215 mm radius at the same stop plane. The axial beam clears all optical rims and is limited by the iris. The finite-aperture difference comes from the inferred iris and aperture convention; the patent supplies no diameter for comparison.
 
-## Values Not Printed
+The surfaces stay clear of each other. The smallest computed glass edge thickness is about 0.216 mm, and the minimum axial air clearance between the doublets is about 17.54 mm. Chief rays reach the image throughout the illustrative ±10.0° field; the 10.0° chief ray reaches about 17.92 mm image height. Off-axis pupil clipping remains despite clear chief rays.
 
-The stop split of 10.9/10.18 mm, iris size, 9.9/7.5 mm front/rear clear semi-diameters, paraxial image plane and ±10° field are inferred. The real chief-ray image height at the illustrative 10° limit is about 17.92 mm. The patent gives no image format, numerical field for Figure 2, back focus, clear apertures or close-focus data. Its 30° field at f/5.6 describes prior art.
+## Values Not Printed in the Patent
 
-The figure suggests a stop about 10.5 mm behind the front doublet, front semi-diameters about 9.4 mm and rear semi-diameters about 5.4–5.5 mm. The estimated stop and rims remain unchanged. The minimum computed glass edge thickness is about 0.216 mm and the intercomponent axial air clearance about 17.539 mm. Off-axis pupil clipping is present despite clear chief rays.
+The diaphragm is drawn between the components, without a numerical station or diameter. Its estimated station splits the 21.08 mm air space into 10.9 mm before and 10.18 mm after the stop, placing it 16.7 mm behind the first vertex. The iris radius follows the nominal f/5.6 aperture. The drawing suggests a station about 10.5 mm behind the front doublet and an opening radius of about 6.1 mm.
+
+Front and rear clear semi-diameters of 9.9 and 7.5 mm are estimates. The drawing suggests about 9.4 mm at the front and 5.4–5.5 mm at the rear, making the retained rear estimate about 38.0% larger than the drawing. Narrowing the rear rims to 5.5 mm would lower 10.0° corner transmission from about 88.2% to about 61.1%; this does not establish the historical clear apertures.
+
+The ±10.0° field and paraxial image plane are inferred. The patent gives no numerical field for Figure 2, image format, back focus or close-focus data. Its 30.0° field at f/5.6 describes prior art. No image-circle diameter is assigned from the illustrative field. `focus.closeFocusM` is 10¹⁵ m, which stands for infinity. All relative element spacings are fixed. The selectable f-stops extend from f/5.6 to f/22; the patent supplies no minimum iris opening.
+
+The printed index/Abbe pairs support approximate dispersion, without identifying a historical supplier or melt. All four glasses remain unmatched; no additional line indices or partial-dispersion data are supplied. The patent gives no measured MTF or detailed chromatic performance for comparison.
 
 ## Product Identification
 
-No product is documented as using this prescription. Bausch & Lomb’s wartime aerial telephotos do not establish a connection to Figure 2. The patent design name is retained without a production-model attribution.
+No product is documented as using this prescription. Bausch & Lomb's wartime aerial telephotos do not establish a connection to Figure 2. The name identifies the patent's 100 mm design scale without a production-model attribution. No mount, production image format, diaphragm blade count or shape, marketed focal length, marketed f-number or marketed minimum focus distance is assigned.
 
-## Corrections
+## Corrections, 2026-11-21
 
-The prescription requires no numerical correction. The D-line indices, Abbe numbers, radius signs, cemented interfaces and paraxial image plane agree with the page images and independent calculation. Bibliographic expansions correct incomplete file metadata, rather than an error in the patent; no source erratum is needed.
+- The inventor-based key and title were replaced by the maker-and-patent form above, and the maker changed from unspecified to Bausch & Lomb, following the patent attribution without assigning a production model. The lens remains hidden.
+- The patent designation gained the kind code A. The abbreviated inventors became Wilbur B. Rayton and Lena M. Hudson, and the abbreviated assignee became Bausch & Lomb Optical Company, matching the printed bibliography. Figure 2 and the 1945 publication year were retained; no Figure 2 source erratum was found.
+- The subtitle is “US 2,390,387 A, Figure 2 — Bausch & Lomb / Rayton & Hudson.” The specifications are “4 ELEMENTS / 2 GROUPS”, “ALL SPHERICAL”, “DESIGN f = 100 mm”, “DESIGN F/5.6” and “TELEPHOTO”, giving the construction and printed design values.
+- Generic element captions became Element 1–4 with the drawing's shapes: Biconvex Positive, Biconcave Negative, Negative Meniscus and Positive Meniscus. Optical roles and calculated in-air focal lengths of +24.47, −40.62, −33.44 and +79.02 mm were added to explain the power distribution.
+- C1 and C2 annotations were added for elements 1–2 and 3–4, with brackets spanning each cemented doublet. Group captions identify the positive front and negative rear components. The shared interfaces and 21.08 mm air space were retained.
+- Generic glass captions became explicit unmatched labels carrying the printed pairs: 1.5170/64.5, 1.6210/36.2, 1.5286/51.6 and 1.7200/29.3. For every element, Δn = 0 and Δν = 0. No catalog row matches both coordinates within the printed precision, so no supplier was assigned. The D-line reference was retained.
+- The inferred `catalog.imageCircleMm` of about 35.83 mm was removed because it came from the illustrative field rather than a field or format printed in a source. The ±10.0° field remains illustrative.
+
+No radii, thicknesses, refractive indices, Abbe numbers, stop position, clear semi-diameters, field angles, focus spacings or image-plane distance changed. The resulting EFL is 100.003 mm, paraxial f-number 5.60 and BFD 50.30 mm, with stop radius 6.085 mm and half-field 10.0°.
 
 ## Remaining Questions
 
-Open: The estimated rear semi-diameters are about 38% larger than the drawing suggests. Reducing them to 5.5 mm would lower 10° corner transmission from about 88% to about 61%. The front estimate of 9.9 mm also exceeds the approximately 9.4 mm drawing reading. The exact diaphragm position and diameter, historical glass identities, production use and source-supported field remain unknown.
-
-## 2026-11-21 — Deployment validation and cleanup
-
-Two independent re-readings of the page images checked both Figure 2 tables, radius signs, all thicknesses and spacings, indices, Abbe numbers, cemented interfaces and bibliography. The prescription agrees with the source, with estimated apertures and field retained; no product link is documented.
-
-The data changes are:
-
-- Type import: the temporary path → `../../types/lensDataV2.js`; constant/export binding: `data` → `LENS_DATA`, with one header describing the source and assumptions.
-- Key: `rayton-hudson-us2390387-figure2-infinity-reference` → `bausch-lomb-100mm-f56-us2390387`.
-- Name: the inventor-and-figure caption → “BAUSCH & LOMB 100mm f/5.6 (US 2,390,387 Design)”; maker: null → Bausch & Lomb. Visibility remains false.
-- Subtitle: the long nominal-aperture, spectral-line and field caption → “US 2,390,387 A, Figure 2 — two-doublet telephoto design”.
-- Patent number: US 2,390,387 → US 2,390,387 A; authors: Rayton/Hudson → Wilbur B. Rayton/Lena M. Hudson; assignee: Bausch & Lomb → Bausch & Lomb Optical Company. Figure 2 and 1945 remain unchanged.
-- Specifications: seven long construction and calculation captions → “4 ELEMENTS / 2 GROUPS”, “ALL SPHERICAL”, “DESIGN F/5.6”, “TELEPHOTO”.
-- Element labels: L1–L4 → Element 1–4. Types: four generic spherical-element captions → Biconvex Positive, Biconcave Negative, Negative Meniscus and Positive Meniscus. Added optical roles and focal lengths +24.47/−40.62/−33.44/+79.02 mm.
-- Cemented annotations: absent → C1 on elements 1–2 and C2 on elements 3–4, with matching doublet spans. Group captions: G1 · L1+L2 / G2 · L3+L4 → G1 (+) / G2 (−). No interface or air space changed.
-- Glass captions: four generic unmatched descriptions → “Unmatched (nD 1.5170 / ν 64.5)”, “Unmatched (nD 1.6210 / ν 36.2)”, “Unmatched (nD 1.5286 / ν 51.6)” and “Unmatched (nD 1.7200 / ν 29.3)”. For every element, the label change leaves Δn = 0 and Δν = 0. No catalog row matches both printed coordinates closely enough; no vendor is assigned.
-- Focus description: the long source-and-calculation caption → “Infinity focus only; the patent gives no close-focus data.” The close-focus value remains 10¹⁵ m, written as `1e15`.
-- Analysis: unsectioned notes → source identification, architecture, individual elements, glass selection, focus, aperture/field/image plane and sources. The audit now records source evidence, transcription, first-order results, unprinted assumptions, product evidence, corrections and remaining questions. Internal terminology, hashes and sampling/convergence counts were removed.
-
-Before and after, the calculated EFL is 100.00346700678662 mm, paraxial f-number 5.6 and BFD 50.30405972406503 mm. Stop radius 6.085409062993138 mm, half-field 10° and total track 80.18405972406502 mm also remain unchanged. The surface check reports no errors. The aperture check reports no rim limit and no failed stations. The image-circle check reports one lens checked, zero undersized and zero skipped. Field coverage reaches 100% of the illustrative 10° limit, or 17.92 mm image height, with a clear corner chief ray; this does not establish full-pupil transmission.
-
-Open: Drawing-versus-estimated rims, unprinted diaphragm dimensions, glass identities, production use and a published field for Figure 2 remain unresolved.
-
-Review corrections: catalog.imageCircleMm 35.833311531527514 mm → omitted because no field is printed for Figure 2; analysis and audit image-circle diameter statements → an illustrative 10° chief-ray image height of about 17.92 mm. The image-circle and field-coverage checks now skip because no image format or image circle is specified.
+- Historical clear semi-diameters remain uncertain: the retained front and rear rims exceed the drawing, particularly at the rear.
+- The exact diaphragm station, diameter, blade count, blade shape and smallest opening are not documented.
+- The four historical glass identities, suppliers, melts and detailed dispersion remain unknown.
+- No production use, mount, image format, published field for Figure 2, marketed specifications or close-focus mechanism is documented.

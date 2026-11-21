@@ -6,13 +6,14 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * radius signs follow the drawing. The stop position and clear semi-diameters are estimated,
  * and the iris size follows the nominal aperture. The image plane is the computed paraxial
  * back focus. The ±10° field is illustrative; the patent gives no field for this example.
+ * Both Figure 2 tables agree; extracted text misreads L2's printed index of 1.6210 as 1.620.
  */
 const LENS_DATA = {
   schema: 2,
   key: "bausch-lomb-100mm-f56-us2390387",
   maker: "Bausch & Lomb",
   name: "BAUSCH & LOMB 100mm f/5.6 (US 2,390,387 Design)",
-  subtitle: "US 2,390,387 A, Figure 2 — two-doublet telephoto design",
+  subtitle: "US 2,390,387 A, Figure 2 — Bausch & Lomb / Rayton & Hudson",
   visible: false,
   source: {
     patentNumber: "US 2,390,387 A",
@@ -34,7 +35,7 @@ const LENS_DATA = {
     fNumber: {
       design: 5.6,
     },
-    specs: ["4 ELEMENTS / 2 GROUPS", "ALL SPHERICAL", "DESIGN F/5.6", "TELEPHOTO"],
+    specs: ["4 ELEMENTS / 2 GROUPS", "ALL SPHERICAL", "DESIGN f = 100 mm", "DESIGN F/5.6", "TELEPHOTO"],
   },
   elements: [
     {

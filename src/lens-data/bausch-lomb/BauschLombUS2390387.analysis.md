@@ -20,7 +20,7 @@ The tables print radius magnitudes, four center thicknesses, the 21.08 mm separa
 
 ## Optical Architecture
 
-A positive front doublet and a negative rear doublet flank the diaphragm. Their computed focal lengths are +53.12 mm and −64.07 mm, respectively. This power distribution gives a first-vertex-to-image distance of 80.184060 mm, shorter than the 100.003467 mm effective focal length. All surfaces are spherical.
+A positive front doublet and a negative rear doublet flank the diaphragm. Their computed focal lengths are +53.12 mm and −64.07 mm, respectively. This power distribution gives a first-vertex-to-image distance of 80.18 mm, shorter than the 100.00 mm effective focal length. All surfaces are spherical.
 
 The patent labels eight element faces, but R2 = R3 and R6 = R7 are cemented interfaces. The model therefore has six distinct refracting surfaces: its surfaces 2 and 5 each represent one shared glass-to-glass interface. C1 joins elements 1–2 and C2 joins elements 3–4; the 21.08 mm air space lies between the doublets.
 
@@ -58,17 +58,17 @@ The patent labels the index N_D and gives V for each element. The model uses the
 
 ## Focus Mechanism
 
-The prescription represents infinity focus only. The patent supplies no close-focus distances, focus spacings or mechanical focusing law. The model’s close-focus value of 10¹⁵ m serves as an infinity placeholder.
+The model is focused at infinity. The patent supplies no close-focus distances, focus spacings or mechanical focusing law.
 
 ## Aperture, Field and Image Plane
 
-The calculated D-line EFL is 100.003467 mm, agreeing with the printed 100 mm to about 0.0035%. The patent gives no back focus. The image plane is the calculated paraxial infinity plane, 50.304060 mm behind the last vertex, with a 29.88 mm first-to-last refracting-surface distance.
+The calculated D-line EFL is 100.003 mm, 0.003 mm above the printed 100 mm. The patent gives no back focus. The image plane is the calculated paraxial infinity plane, 50.30 mm behind the last vertex, with a 29.88 mm first-to-last refracting-surface distance.
 
-The diaphragm is drawn between the components but has no numerical station or diameter. The estimated location divides the 21.08 mm air space into 10.9 mm before the stop and 10.18 mm after it, placing the stop 16.7 mm behind the first vertex. Its calculated radius of 6.085409 mm gives a paraxial f-number of 5.6. An exact spherical trace gives an entrance-equivalent f/5.713298 and image-space sine f/5.753187 for the admitted axial beam. A nominal f/5.6 marginal ray would require a 6.215479 mm stop radius at the same station. These differences arise from the estimated iris and the aperture convention; the patent supplies no diameter for comparison.
+The diaphragm is drawn between the components but has no numerical station or diameter. The estimated location divides the 21.08 mm air space into 10.9 mm before the stop and 10.18 mm after it, placing the stop 16.7 mm behind the first vertex. Its calculated radius of 6.085 mm gives a paraxial f-number of 5.60. An exact spherical trace gives an entrance-equivalent f/5.71 and image-space sine f/5.75 for the admitted axial beam. A nominal f/5.6 marginal ray would require a 6.215 mm stop radius at the same station. These differences arise from the estimated iris and the aperture convention; the patent supplies no diameter for comparison.
 
-The front and rear clear semi-diameters are estimated at 9.9 and 7.5 mm. The smallest computed glass edge thickness is about 0.216 mm, and the minimum axial air clearance between the components is about 17.539 mm. The drawing suggests approximately 9.4 mm front and 5.4–5.5 mm rear semi-diameters. The estimated rims are kept: narrowing the rear rims to the drawn 5.5 mm would lower 10° corner transmission from about 88% to about 61%.
+The front and rear clear semi-diameters are estimated at 9.9 and 7.5 mm. The smallest computed glass edge thickness is about 0.216 mm, and the minimum axial air clearance between the components is about 17.54 mm. The drawing suggests approximately 9.4 mm front and 5.4–5.5 mm rear semi-diameters, so the model's rims exceed the drawing. Narrowing the rear rims to 5.5 mm would lower 10.0° corner transmission from about 88.2% to about 61.1%.
 
-The ±10° field is illustrative. The patent’s discussion of a 30° field at f/5.6 concerns prior art and does not specify Figure 2’s coverage. Chief rays reach the image plane throughout the modeled field, although some off-axis pupil rays meet the front or rear rims. The calculated chief-ray image height at the illustrative 10° limit is about 17.92 mm; this is not a published format or coverage claim. Geometric image-quality calculations depend on these estimated apertures and the computed image plane; the patent supplies no measured MTF for comparison.
+The ±10.0° field is illustrative. The patent’s discussion of a 30.0° field at f/5.6 concerns prior art and does not specify Figure 2’s coverage. Chief rays reach the image plane throughout the modeled field, although some off-axis pupil rays meet the front or rear rims. The calculated chief-ray image height at the illustrative 10.0° limit is about 17.92 mm; this is not a published format or coverage claim. Geometric image-quality calculations depend on these estimated apertures and the computed image plane; the patent supplies no measured MTF for comparison.
 
 ## Sources
 
