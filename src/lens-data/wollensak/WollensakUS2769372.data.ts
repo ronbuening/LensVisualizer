@@ -6,14 +6,14 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * The stop is 4.4 mm before element 3; its opening is derived from f/3.2.
  * Rims follow the printed element diameters, with the R4 optical radius taken as
  * 12.5 mm where its 45-degree bevel starts. The bevel depth is not specified.
- * The image plane uses the computed paraxial back focus, 82.9103 mm (printed: 82.9 mm).
+ * The image plane uses the computed paraxial back focus, 82.91 mm (printed: 82.9 mm).
  */
 const LENS_DATA = {
   schema: 2,
   key: "wollensak-100mm-f32-us2769372",
   maker: "Wollensak",
   name: "WOLLENSAK 100mm f/3.2 (US 2,769,372 Design)",
-  subtitle: "US 2,769,372 A, Example I — Tessar-type objective",
+  subtitle: "US 2,769,372 A, Example I — Wollensak / Cook & Gilkeson",
   visible: true,
   source: {
     patentNumber: "US 2,769,372 A",
@@ -34,8 +34,13 @@ const LENS_DATA = {
     },
     elementCount: 4,
     groupCount: 3,
-    imageCircleMm: 103.0473,
-    specs: ["4 ELEMENTS / 3 GROUPS", "ALL SPHERICAL", "DESIGN F/3.2"],
+    imageCircleMm: 103.05,
+    specs: [
+      "4 ELEMENTS / 3 GROUPS",
+      "ALL SPHERICAL",
+      "DESIGN f = 100 mm",
+      "DESIGN F/3.2",
+    ],
   },
   elements: [
     {
