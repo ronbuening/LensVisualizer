@@ -7,7 +7,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * and .0060. The model follows the two numerical tables, preserving the 15.91 mm
  * central air space. All radii, thicknesses, D-line indices and Abbe numbers are printed.
  * The stop's 8.8 / 7.11 mm split, bore and all clear rims are inferred; the final
- * image gap is the computed paraxial back focus. The modelled +/-10 degree field
+ * image gap is the computed paraxial back focus. The modelled ±10.0° field
  * is not specified by the patent. Element 3 is potassium bromide crystal; the
  * printed relative partial dispersions are documented in the analysis.
  */
@@ -16,7 +16,7 @@ const LENS_DATA = {
   key: "cooke-100mm-f2-us2319171",
   maker: "Cooke",
   name: "COOKE 100mm f/2 (US 2,319,171 Design)",
-  subtitle: "US 2,319,171 A, Example II — Potassium bromide objective",
+  subtitle: "US 2,319,171 A, Example II — Taylor Hobson / Warmisham & Wynne",
   visible: false,
   source: {
     patentNumber: "US 2,319,171 A",
@@ -38,7 +38,7 @@ const LENS_DATA = {
     },
     elementCount: 6,
     groupCount: 4,
-    specs: ["6 ELEMENTS / 4 GROUPS", "ALL SPHERICAL", "DESIGN F/2"],
+    specs: ["6 ELEMENTS / 4 GROUPS", "ALL SPHERICAL", "DESIGN f = 100 mm", "DESIGN F/2"],
   },
   elements: [
     {
@@ -51,7 +51,7 @@ const LENS_DATA = {
       nd: 1.644,
       vd: 48.3,
       indexReference: "D",
-      glass: "Dense barium flint (nD 1.644 / ν 48.3)",
+      glass: "Unmatched (dense barium flint; nD 1.644 / ν 48.3)",
     },
     {
       id: 2,
@@ -63,7 +63,7 @@ const LENS_DATA = {
       nd: 1.644,
       vd: 48.3,
       indexReference: "D",
-      glass: "Dense barium flint (nD 1.644 / ν 48.3)",
+      glass: "Unmatched (dense barium flint; nD 1.644 / ν 48.3)",
       cemented: "C1",
     },
     {
@@ -76,7 +76,7 @@ const LENS_DATA = {
       nd: 1.558,
       vd: 31.5,
       indexReference: "D",
-      glass: "Potassium bromide crystal (nD 1.558 / ν 31.5)",
+      glass: "Unmatched (potassium bromide crystal; nD 1.558 / ν 31.5)",
       cemented: "C1",
     },
     {
@@ -89,7 +89,7 @@ const LENS_DATA = {
       nd: 1.651,
       vd: 33.5,
       indexReference: "D",
-      glass: "Dense flint (nD 1.651 / ν 33.5)",
+      glass: "Unmatched (dense flint; nD 1.651 / ν 33.5)",
       cemented: "C2",
     },
     {
@@ -102,7 +102,7 @@ const LENS_DATA = {
       nd: 1.644,
       vd: 48.3,
       indexReference: "D",
-      glass: "Dense barium flint (nD 1.644 / ν 48.3)",
+      glass: "Unmatched (dense barium flint; nD 1.644 / ν 48.3)",
       cemented: "C2",
     },
     {
@@ -115,7 +115,7 @@ const LENS_DATA = {
       nd: 1.644,
       vd: 48.3,
       indexReference: "D",
-      glass: "Dense barium flint (nD 1.644 / ν 48.3)",
+      glass: "Unmatched (dense barium flint; nD 1.644 / ν 48.3)",
     },
   ],
   surfaces: [
