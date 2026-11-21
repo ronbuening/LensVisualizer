@@ -4,8 +4,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * US 1,955,617 A, Figure 1: the printed inch dimensions are multiplied by 25.4
  * to obtain millimetres, without focal-length adjustment. The patent gives
  * 1.059 inches (26.90 mm) at f/1.5; the prescription computes to 26.93 mm. The stop is
- * inferred at the midpoint of the R5–R6 air space, all clear radii are estimated,
- * and the image plane is the computed paraxial back focus of 11.94 mm.
+ * inferred at the midpoint of the R5–R6 air space, and the image plane is the
+ * computed paraxial back focus of 11.94 mm. Clear radii are estimated from
+ * Figure 1's square rims, checked against axial and illustrative edge rays.
  * The illustrative ±3.0° field is not specified by the patent.
  */
 const LENS_DATA = {
@@ -120,14 +121,14 @@ const LENS_DATA = {
       label: "1",
       R: 22.43074,
       d: 2.4384,
-      sd: 9.6,
+      sd: 9.4,
       medium: 1,
     },
     {
       label: "2",
       R: 36.9316,
       d: 0.0508,
-      sd: 9.3,
+      sd: 9.4,
     },
     {
       label: "3",
@@ -140,14 +141,14 @@ const LENS_DATA = {
       label: "4",
       R: -20.1422,
       d: 0.8128,
-      sd: 8.6,
+      sd: 9,
       medium: 3,
     },
     {
       label: "5",
       R: 45.085,
       d: 1.651,
-      sd: 8.1,
+      sd: 9,
     },
     {
       label: "STO",
@@ -158,34 +159,34 @@ const LENS_DATA = {
       label: "6",
       R: 18.40738,
       d: 4.572,
-      sd: 7.3,
+      sd: 7.2,
       medium: 4,
     },
     {
       label: "7",
       R: "flat",
       d: 0.508,
-      sd: 6.5,
+      sd: 7.2,
       medium: 5,
     },
     {
       label: "8",
       R: 9.96188,
       d: 2.286,
-      sd: 6.1,
+      sd: 7.2,
     },
     {
       label: "9",
       R: 19.05,
       d: 5.08,
-      sd: 6.2,
+      sd: 7.5,
       medium: 6,
     },
     {
       label: "10",
       R: -64.9986,
       d: 11.936636,
-      sd: 5.5,
+      sd: 7.5,
     },
   ],
   focus: {
