@@ -26,6 +26,7 @@ export const MAKER_PREFIXES = [
   { prefix: "LEICA", display: "Leica", slug: "leica" },
   { prefix: "MAMIYA", display: "Mamiya", slug: "mamiya" },
   { prefix: "MEIKE", display: "Meike", slug: "meike" },
+  { prefix: "MEOPTA", display: "Meopta", slug: "meopta" },
   { prefix: "MEYER OPTIK GÖRLITZ", display: "Meyer Optik Görlitz", slug: "meyer-optik-goerlitz" },
   { prefix: "MEYER OPTIK GOERLITZ", display: "Meyer Optik Görlitz", slug: "meyer-optik-goerlitz" },
   { prefix: "MEYER OPTIC GOERLITZ", display: "Meyer Optik Görlitz", slug: "meyer-optik-goerlitz" },
