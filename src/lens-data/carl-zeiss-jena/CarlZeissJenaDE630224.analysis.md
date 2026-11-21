@@ -14,7 +14,7 @@
 
 **Example details:** The sole numerical example (“ein Zahlenbeispiel”), specification p. 1 and drawing sheet.
 
-The patent describes a fast photographic objective with seven spherical elements in four air-spaced groups. Its table states F = 100 and an aperture ratio of 1:2. The model computes to EFL 99.860188 mm, 0.14% below the stated value, while retaining the published radii, thicknesses and optical constants.
+The patent describes a fast photographic objective with seven spherical elements in four air-spaced groups. Its table states F = 100 and an aperture ratio of 1:2, without a length unit. At the chosen 100 mm scale, EFL is 99.86 mm, 0.1% below the stated value; the published radii, thicknesses and optical constants are retained.
 
 On the DPMA copy, the printed plus signs at R7 and R11 are struck through and minus signs written in. The model follows those corrections, −298.6 and −297.0 mm. The drawing supports both signs: R7 is concave toward the object and the last element is biconvex. Element 4's Abbe number is clearly 31.0.
 
@@ -26,7 +26,7 @@ The four components are a positive front singlet, a net-negative cemented triple
 
 The three published air separations are 0.6, 7.2 and 15.6 mm. The first-to-last vertex distance is 72.5 mm. The patent emphasizes the strongly curved collecting cemented surface of the third component as a means of correcting coma introduced by the preceding component's strongly curved glass-to-air surface.
 
-The patent gives no stop position or opening. The inferred iris lies 6.33 mm after R6 and 0.87 mm before R7, inside the published 7.2 mm air space, at 31.63 mm from the first vertex. This places it beyond the concave R6 rim; a stop at the gap midpoint would intersect that element. Its paraxial radius is 15.738134 mm at the nominal f/2 setting.
+The patent gives no stop position or opening. The inferred iris lies 6.33 mm after R6 and 0.87 mm before R7, inside the published 7.2 mm air space, at 31.63 mm from the first vertex. This places it beyond the concave R6 rim; a stop at the gap midpoint would intersect that element. Its paraxial radius is 15.738 mm at the nominal f/2 setting.
 
 ## Element-by-Element Analysis
 
@@ -76,19 +76,19 @@ The positive rear singlet has radii +114.4/−297.0 mm and thickness 9.7 mm. Bot
 
 ## Glass Identification and Selection
 
-The table prints n_d and ν without defining a wavelength. The model uses lowercase d as printed, with an explanatory note on every element; catalogue comparisons do not conclusively identify the intended spectral line. All seven printed index/Abbe pairs remain unchanged.
+The table prints n_d and ν without defining a wavelength. The printed lowercase d is retained; catalogue comparisons do not conclusively identify the intended spectral line. All seven printed index/Abbe pairs remain unchanged.
 
-Two catalogue rows match closely enough to supply dispersion curves: Sumita K-BK7 for element 3 (1.51633/64.1, Δn +0.000030, Δν +0.10) and Ohara S-TIM28 for element 4 (1.688931/31.07545, Δn −0.000069, Δν +0.07545). These numerical matches do not identify the 1930s glasses or their manufacturers. The other five elements remain unmatched; the repeated 1.6716/47.2 pair is used in elements 2, 6 and 7.
+Two catalogue curves approximate dispersion: Sumita K-BK7 for element 3 (about 1.51633/64.062, Δn +0.000030, Δν +0.062) and Ohara S-TIM28 for element 4 (about 1.68893/31.075, Δn −0.000069, Δν +0.075). Sumita lists ν = 64.1. These matches do not identify the 1930s suppliers or melts. Five elements remain unmatched; 1.6716/47.2 recurs in elements 2, 6 and 7.
 
 The patent supplies no individual C-, F- or g-line indices or partial-dispersion data. Colour calculations for unmatched glasses therefore depend on the printed Abbe numbers and an estimated dispersion relation. The prescription does not establish apochromatic performance, coatings, transmission or measured MTF.
 
 ## Focus Mechanism
 
-Infinity focus only; the patent gives no close-focus data. No finite-focus movement is inferred. The final air gap is the computed paraxial back focal distance, 41.319611 mm, placing the image plane 113.819611 mm behind the first vertex. The patent prints no back focus.
+The model is focused at infinity; the patent gives no close-focus data. No finite-focus movement is inferred. The final air gap is the computed paraxial back focal distance, 41.32 mm, placing the image plane 113.82 mm behind the first vertex. The patent prints no back focus.
 
 ## Aperture, Field and Model Limits
 
-The nominal f/2 setting and the real-ray aperture differ. At the nominal entrance radius of 24.965047 mm, the axial marginal ray reaches R6 at 15.773578 mm, beyond its 15.3 mm clear radius. The largest passing entrance radius is about 24.123835 mm, corresponding to a geometric entrance aperture of f/2.069741. Opening the iris alone does not remove that limit.
+The nominal f/2 setting and the real-ray aperture differ. At the nominal entrance radius of 24.965 mm, the axial marginal ray reaches R6 at 15.774 mm, beyond its 15.3 mm clear radius. The largest passing entrance radius is about 24.124 mm, corresponding to a geometric entrance aperture of f/2.07. Opening the iris alone does not remove that limit.
 
 R6 remains at the drawing-supported clear zone rather than extending across its chamfer. The wider R7 and rear-singlet rims follow the drawing without altering the stop, glass thicknesses or air separations; transmission at ±6° changes by only 0.1 percentage point (93.0% → 93.1%), with larger gains beyond 6°. Surface geometry is consistent with those rims and the inferred iris position.
 
@@ -97,5 +97,5 @@ No field angle, film format or image circle is printed. The displayed ±6° fiel
 ## Sources
 
 1. Reichspatentamt, [DE 630,224 C, _Photographisches Objektiv_](https://depatisnet.dpma.de/DepatisNet/depatisnet?window=1&space=menu&content=treffer&action=pdf&docid=DE000000630224A), issued 23 May 1936. DPMA facsimile: front cover for dates and applicant; specification p. 1 for the sole numerical example, corrected signs and claim; drawing sheet for component shapes and clear-rim estimates.
-2. [US 1,998,704 A](https://patents.google.com/patent/US1998704A/en), Example I, for comparison with the six-element, three-group Sonnar construction. This is a structural comparison, not evidence that DE 630,224 entered production.
-3. Sumita K-BK7 and Ohara S-TIM28 catalogue dispersion data, for the numerical glass matches described above; historical supplier and melt remain unknown.
+2. [US 1,998,704 A](https://patents.google.com/patent/US1998704A/en), Figure 1, for comparison with the six-element, three-group Sonnar construction. This is a structural comparison, not evidence that DE 630,224 entered production.
+3. [Sumita optical-glass data](https://www.sumita-opt.co.jp/en/download/), K-BK7, and [Ohara S-TIM28 data](https://www.ohara-gmbh.com/fileadmin/user_upload/export-data/pdf/product_datasheets/S-TIM28_English_.pdf), for the numerical glass matches above; historical supplier and melt remain unknown.

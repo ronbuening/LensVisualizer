@@ -1,12 +1,12 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
- * DE 630,224 C, sole numerical example, F = 100 and f/2; dimensions are in mm.
+ * DE 630,224 C, sole example, F = 100 and f/2; modeled at a 100 mm scale.
  * Radii, thicknesses, air separations, indices and Abbe numbers follow the table.
  * On the DPMA copy, the printed plus signs at R7 and R11 are struck through
  * and minus signs written in; the model follows those corrections.
- * The stop is inferred, 6.33 mm after R6 and 0.87 mm before R7. R7 and the rear
- * singlet rims follow the drawing; the other clear radii are estimates.
+ * The stop is inferred, 6.33 mm after R6 and 0.87 mm before R7. R6, R7 and the
+ * rear singlet rims follow the drawing; the other clear radii are estimates.
  * R6 retains its 15.3 mm clear radius, limiting real-ray acceptance to about f/2.07.
  * The image plane is the computed paraxial one; the illustrative ±6° field
  * is not stated in the patent.
@@ -16,7 +16,7 @@ const LENS_DATA = {
   key: "carl-zeiss-jena-100mm-f2-de630224",
   maker: "Carl Zeiss Jena",
   name: "CARL ZEISS JENA 100mm f/2 (DE 630,224 Design)",
-  subtitle: "DE 630,224 C, sole example — Sonnar-related four-group design",
+  subtitle: "DE 630,224 C, sole example — Zeiss Ikon",
   visible: true,
   source: {
     patentNumber: "DE 630,224 C",
@@ -34,7 +34,7 @@ const LENS_DATA = {
     fNumber: {
       design: 2,
     },
-    specs: ["7 ELEMENTS / 4 GROUPS", "ALL SPHERICAL", "DESIGN F/2"],
+    specs: ["7 ELEMENTS / 4 GROUPS", "ALL SPHERICAL", "DESIGN f = 100 mm", "DESIGN F/2"],
   },
   elements: [
     {
