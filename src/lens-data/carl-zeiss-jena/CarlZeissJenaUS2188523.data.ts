@@ -3,21 +3,20 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 /**
  * US 2,188,523 A, sole numerical example: a seven-element photographic objective
  * specified at 100 mm f/2. Radii, axial distances, nd and Abbe numbers follow the
- * printed table; its lowercase d identifies the helium d line.
+ * printed table; its lowercase nd heading is interpreted at the helium d line.
  * The US patent gives no stop position or diameter. The 9.54 mm central air gap
  * is split 7.58/1.96 mm using the stop-space ratio printed in DE 700,699 C,
  * a German member of the same invention with a different numerical example.
  * The iris diameter follows the paraxial f/2 rule. Clear semi-diameters are
  * inferred; the image plane is the computed paraxial back focus, rounded to
- * 54.6259 mm. The 10-degree half-field is illustrative, not a patent
- * specification.
+ * 0.0001 mm. The 10-degree half-field is illustrative; no field is printed.
  */
 const LENS_DATA = {
   schema: 2,
   key: "carl-zeiss-jena-100mm-f2-us2188523",
   maker: "Carl Zeiss Jena",
   name: "CARL ZEISS JENA 100mm f/2 (US 2,188,523 Design)",
-  subtitle: "US 2,188,523 A, sole example — Sonnar design with two cemented triplets",
+  subtitle: "US 2,188,523 A, sole example — Zeiss Ikon / Bertele",
   visible: true,
   source: {
     patentNumber: "US 2,188,523 A",
@@ -39,7 +38,7 @@ const LENS_DATA = {
     fNumber: {
       design: 2,
     },
-    specs: ["7 ELEMENTS / 3 GROUPS", "ALL SPHERICAL", "DESIGN F/2"],
+    specs: ["7 ELEMENTS / 3 GROUPS", "ALL SPHERICAL", "DESIGN f = 100 mm", "DESIGN F/2"],
   },
   elements: [
     {

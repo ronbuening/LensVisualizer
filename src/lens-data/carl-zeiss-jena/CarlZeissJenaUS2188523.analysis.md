@@ -12,11 +12,11 @@
 
 The patent describes a seven-element, three-group photographic objective at 100 mm f/2. Its ten signed radii, nine axial distances, seven refractive indices and seven Abbe numbers are preserved. The index heading is lowercase nd, interpreted as the helium d line; the patent does not state a numerical wavelength.
 
-DE 700,699 C covers the same invention, with the same inventor, applicant and claim, but a different numerical example. Marco Kröger identifies that German design as an attempt to reduce the distortion of the Sonnar 2/5 cm and reports that the improvement never entered production ([Sonnar history, §5.2](https://www.zeissikonveb.de/start/objektive/normalobjektive/sonnar.html)). No production lens is documented for this US prescription.
+DE 700,699 C covers the same invention, with the same inventor and applicant but a different numerical example. Marco Kröger identifies that German design as an attempt to reduce the distortion of the Sonnar 2/5 cm and reports that the improvement never entered production ([Sonnar history, §5.2](https://www.zeissikonveb.de/start/objektive/normalobjektive/sonnar.html)). No production lens is documented for this US prescription.
 
 ## Optical Architecture
 
-The layout is a positive front singlet, a cemented middle triplet and a cemented rear triplet: 1 | 3 | 3. All surfaces are spherical. The front singlet has an in-air focal length of +133.12 mm, the middle triplet is net negative at −207.17 mm, and the rear triplet is positive at +110.29 mm. These group powers combine to give a computed EFL of 100.0479 mm, 0.048% above the printed 100 mm.
+The layout is a positive front singlet, a cemented middle triplet and a cemented rear triplet: 1 | 3 | 3. All surfaces are spherical. The front singlet has an in-air focal length of +133.12 mm, the middle triplet is net negative at −207.17 mm, and the rear triplet is positive at +110.29 mm. These group powers combine to give a computed EFL of 100.05 mm, only 0.05 mm above the printed 100 mm.
 
 The four cemented interfaces are R4, R5, R8 and R9. The rear triplet places a low-index biconcave element between two higher-index positive elements. All three claims state this index relationship; claims 2 and 3 add the nearly equal magnitudes of its concave radii, 44.84 and 41.79 mm.
 
@@ -52,21 +52,21 @@ The model uses the d-line convention, approximately 587.6 nm, to match the table
 
 ## Focus Mechanism
 
-Infinity focus only; the patent gives no close-focus data. The model contains no group motion or finite-distance prescription, and no marketed minimum focusing distance is assigned.
+The model is focused at infinity. The patent gives no close-focus data or group motion, and no marketed minimum focusing distance is assigned.
 
 ## Aperture, Image Plane and Field Limits
 
 The US patent gives no iris position or diameter. DE 700,699 C divides its 9.44 mm stop space into 7.50 and 1.94 mm. Applying that ratio to the US example's 9.54 mm gap gives the rounded split 7.58/1.96 mm: the stop is 7.58 mm behind R6 and 1.96 mm ahead of R7. This is an inference from the German member, rather than a US-patent dimension.
 
-The paraxial f/2 rule gives a stop radius of 16.31499 mm. Exact axial tracing accepts an entrance radius of 24.74034 mm, corresponding to f/2.02196 by EFL divided by entrance diameter. The iris limits this beam; no optical rim needs enlargement.
+The paraxial f/2 rule gives a stop radius of 16.315 mm. Exact axial tracing accepts an entrance radius of 24.74 mm, corresponding to f/2.02 by EFL divided by entrance diameter. The iris limits this beam; the optical rims pass it.
 
-The computed paraxial back focus is 54.625854 mm. The stored image distance is rounded to 54.6259 mm, giving a total track of 122.7559 mm and a first-to-last-surface length of 68.13 mm. The image plane follows paraxial focus, with no adjustment for minimum spot size.
+The computed paraxial back focus is 54.63 mm. The image plane is within 0.00005 mm of paraxial focus, with no adjustment for minimum spot size. Total track is 122.76 mm and the first-to-last-surface length is 68.13 mm.
 
-The retained 10° half-field is illustrative. The patent states neither a field angle nor a camera format. At this illustrative field, the real chief ray reaches an image height of 17.6865 mm. Peripheral rays can be clipped by the inferred rims; this does not establish a measured transmission or a factory coverage specification.
+The 10.0° half-field is illustrative. The patent states neither a field angle nor a camera format. At this illustrative field, the real chief ray reaches an image height of 17.69 mm. Peripheral rays can be clipped by the inferred rims; this does not establish a measured transmission or a factory coverage specification.
 
 ## Model Scope and Design Heritage
 
-The clear semi-diameters, from R1 to R10, are inferred as 30, 29.6, 25.4, 24.5, 22.9, 17.4, 17.3, 18.6, 19.9 and 21.1 mm. The section drawing depicts more nearly cylindrical triplets with chamfered inner ends, whereas these openings taper. That difference remains for a separate rim review. The prescription passes the surface-clearance checks without a gap-sag override or drawing trim.
+The clear semi-diameters, from R1 to R10, are inferred as 30, 29.6, 25.4, 24.5, 22.9, 17.4, 17.3, 18.6, 19.9 and 21.1 mm. The section drawing depicts more nearly cylindrical triplets with chamfered inner ends, whereas these openings taper. The precise optical rim and chamfer dimensions remain uncertain. The surfaces stay clear of each other at the inferred openings; no flat lands or rim cuts are present.
 
 The German and US examples share the invention but differ numerically; for example, the German table gives R1 = 67.54 mm instead of 68.41 mm. The seven-element Sonnar and Jupiter-9 family resemblance does not establish that this particular prescription was manufactured. Factory clear apertures, baffles, tolerances, measured MTF and finite focusing remain undocumented.
 
