@@ -18,7 +18,7 @@ The patent states f = 100, an aperture ratio of 1:6.3 and an image field of abou
 
 The printed front-vertex-to-focus distance is 79.37, not a rear-vertex back focus. The last gap is 79.37 − 37.79 = 41.58 mm; the printed image plane is 0.019493784 mm ahead of the paraxial image. It remains unshifted.
 
-The nominal aperture gives an iris radius of 5.431318527 mm and paraxial f/6.30. An exact marginal-ray calculation gives an entrance-equivalent aperture of f/6.405609; admitting the nominal entrance ray would require a 5.525869773 mm iris radius. The drawn opening is approximately 5.5 mm. No change to the printed stop station follows from the estimated opening.
+The nominal aperture gives an iris radius of 5.431318527 mm and paraxial f/6.30. An exact marginal-ray calculation gives an entrance-equivalent aperture of f/6.405609; admitting the nominal entrance ray would require a 5.525869773 mm iris radius. The drawn opening has a radius of approximately 5.5 mm (about 11 mm across). No change to the printed stop station follows from the estimated opening.
 
 ## Values Not Printed
 

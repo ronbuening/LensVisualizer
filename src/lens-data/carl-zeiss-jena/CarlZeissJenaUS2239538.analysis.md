@@ -60,7 +60,7 @@ Element 3 matches the tabulated 1.60801 / 46.2 coordinates of CDGM H-BaF6. The c
 
 ## Stop, Focus and Image Plane
 
-The diaphragm is drawn between elements 2 and 3. Its printed distances are 14.23 mm after surface 4 and 16.14 mm before surface 5, placing it 18.71 mm behind the first vertex. Its diameter is unprinted. The nominal f/6.3 aperture gives an iris radius of 5.4313 mm; the corresponding real-ray entrance aperture is about f/6.41. The drawing's opening is approximately 5.5 mm.
+The diaphragm is drawn between elements 2 and 3. Its printed distances are 14.23 mm after surface 4 and 16.14 mm before surface 5, placing it 18.71 mm behind the first vertex. Its diameter is unprinted. The nominal f/6.3 aperture gives an iris radius of 5.4313 mm; the corresponding real-ray entrance aperture is about f/6.41. The drawn opening has a radius of approximately 5.5 mm (about 11 mm across).
 
 The lens track through the last glass surface is 37.79 mm. The printed 79.37 mm front-vertex-to-focus distance therefore gives a last gap of 41.58 mm, which the model retains. The prescription computes to EFL 100.0269 mm and paraxial BFD 41.5995 mm, placing the paraxial image 0.0195 mm behind the printed plane. The image plane is not shifted to a best-focus plane.
 
