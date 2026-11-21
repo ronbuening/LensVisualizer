@@ -246,9 +246,6 @@ const LENS_DATA = {
     fullFieldDeg: 44,
     maxTraceFieldDeg: 22,
   },
-  rays: {
-    offAxisFieldFrac: 1,
-  },
   focus: {
     closeFocusM: 1e15,
     description: "Infinity focus only; the patent gives no close-focus data.",
