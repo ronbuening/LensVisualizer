@@ -67,10 +67,9 @@ Helium d at 587.6 nm is inferred from the catalogue agreement of four
 element index/Abbe pairs; none of those pairs agrees at sodium D, 589.3 nm.
 The patent itself says only “yellow ray.” The named glasses supply
 approximate dispersion curves without establishing a historical supplier
-or melt. L2 remains Unmatched: FK5-family indices are close to 1.4875,
-but their nearest Abbe number is about 70.24 rather than the printed 70.0.
-L2 therefore uses an Abbe-based dispersion estimate. No measured partial
-dispersion or MTF curves are supplied.
+or melt. L2 uses S-FSL5 as a spectral proxy, retaining the printed index
+1.4875 and Abbe number 70.0. All five elements use catalogue curves.
+No measured partial dispersion or MTF curves are supplied.
 
 ## Product Identification
 
@@ -107,8 +106,8 @@ assigned.
   with Δn = +0.000043 and Δν = −0.05; L3 became SF9 (Hikari),
   with Δn = −0.000040 and Δν = +0.06; L4 became F7 (Hoya),
   with Δn = −0.000037 and Δν = −0.02. Differences are catalogue minus
-  printed values. These optical equivalents supply dispersion estimates;
-  L2 remains Unmatched. No anomalous-dispersion designation or additional
+  printed values. These optical equivalents supply dispersion estimates.
+  No anomalous-dispersion designation or additional
   spectral-line indices were added.
 - Generic element shapes became plano-convex positive for L1/L2,
   biconcave negative for L3, plano-concave negative for L4 and biconvex
@@ -167,6 +166,17 @@ field and image plane retain their original numerical values.
   element remain those of Example II. No production construction diagram
   is documented for this prescription, and no special glass or aspherical
   element is identified in the patent.
+
+2026-11-21 glass review:
+
+- L2: `Unmatched (yellow-ray n 1.4875 / ν 70.0)` →
+  `S-FSL5 (spectral proxy; patent yellow-ray n 1.4875 / ν 70.0; supplier and melt unspecified)`.
+  S-FSL5 (Ohara) is a spectral proxy, with Δn = −0.00001 and Δν = +0.24
+  (catalogue minus printed values at the inferred helium-d line).
+- The spectral proxy is within 0.002 in index and 0.25 in Abbe number at
+  the inferred helium-d interpretation of the printed yellow ray. The printed
+  index and Abbe number are kept; the catalogue supplies only the dispersion
+  curve's shape without identifying the historical supplier or melt.
 
 ## Remaining Questions
 

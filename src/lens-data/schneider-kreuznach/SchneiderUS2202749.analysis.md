@@ -55,7 +55,7 @@ about 1.775 mm.
 
 ### L2 — Plano-Convex Positive
 
-nd = 1.4875, νd = 70.0. Glass: Unmatched. f = +84.31 mm.
+nd = 1.4875, νd = 70.0. Glass: S-FSL5 (Ohara), spectral proxy. f = +84.31 mm.
 
 The plane front face and −41.1 mm rear face enclose 6.1 mm. This low-index
 central element is cemented to both neighbours. Its inferred clear
@@ -94,11 +94,21 @@ helium d catalogue values, while none matches the D line (taken as sodium,
 589.3 nm). The model therefore uses helium d, 587.6 nm, with a note identifying
 the inference. The printed indices and Abbe numbers remain unchanged.
 
-BAFD7 for L1/L5, SF9 for L3 and F7 for L4 provide catalogue dispersion curves.
-These matches identify optical equivalents, not the original supplier or
-melt. L2's index is close to FK5-family glasses, but even the closest Abbe
-number is about 70.24 rather than the printed 70.0, so it remains Unmatched
-and uses an Abbe-based dispersion estimate. No partial-dispersion data or
+At that inferred line, L1/L5 match BAFD7 (Δn = +0.000043, Δν = −0.05)
+and L4 matches F7 (Δn = −0.000037, Δν = −0.02) from the
+[Hoya catalogue](https://www.hoya-opticalworld.com/english/datadownload/index.html).
+L3 matches SF9 (Δn = −0.000040, Δν = +0.06) from the
+[Hikari catalogue](https://www.hikari-g.co.jp/optical_glass/catalog/).
+These pairs agree within the printed precision.
+
+L2 uses [Ohara's S-FSL5](https://www.ohara-inc.co.jp/en/product/catalog/)
+as a spectral proxy (Δn = −0.00001, Δν = +0.24), within the limits of
+0.002 in index and 0.25 in Abbe number. Differences are catalogue minus
+printed values at the inferred helium-d line. The present-day curve supplies
+only the dispersion shape for colour analysis, keeping L2's printed index
+and Abbe number rather than using an Abbe-based dispersion estimate.
+All five elements use catalogue curves; none remains unmatched. These rows
+do not identify historical suppliers or melts. No partial-dispersion data or
 measured MTF curves are published.
 
 ## Focus Mechanism and First-Order Values

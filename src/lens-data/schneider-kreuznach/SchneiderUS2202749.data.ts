@@ -71,7 +71,7 @@ const LENS_DATA = {
       indexReference: "d",
       indexReferenceNote: "The patent says only yellow ray; four of five glass pairs match helium d catalogue values.",
       focalLengthMm: 84.31,
-      glass: "Unmatched (yellow-ray n 1.4875 / ν 70.0)",
+      glass: "S-FSL5 (spectral proxy; patent yellow-ray n 1.4875 / ν 70.0; supplier and melt unspecified)",
       role: "Low-index central element of the cemented triplet.",
       cemented: "C1",
     },
