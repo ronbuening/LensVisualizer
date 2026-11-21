@@ -11,6 +11,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * semi-diameters, and the image plane (the computed paraxial back focus). The stop position
  * keeps both adjacent glass rims clear of its plane. The ±10° field is illustrative;
  * the patent gives no field angle or close-focus data.
+ * Clear radii follow the page 3 section proportions: the square-cut rear elements use
+ * 28 mm at R9/R10 and 29.7 mm at R11/R12. All rims clear the f/1.5 axial beam and
+ * the illustrative 10° chief ray; rear-rim vignetting remains.
  */
 const LENS_DATA = {
   schema: 2,
@@ -208,27 +211,27 @@ const LENS_DATA = {
       label: "9",
       R: -176.8,
       d: 9.455,
-      sd: 34,
+      sd: 28,
       medium: 6,
     },
     {
       label: "10",
       R: -71.2,
       d: 0.378,
-      sd: 34,
+      sd: 28,
     },
     {
       label: "11",
       R: 139.9,
       d: 9.455,
-      sd: 34,
+      sd: 29.7,
       medium: 7,
     },
     {
       label: "12",
       R: -191,
       d: 53.652699,
-      sd: 34,
+      sd: 29.7,
     },
   ],
   focus: {

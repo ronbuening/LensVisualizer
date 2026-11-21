@@ -70,7 +70,7 @@ The model is focused at infinity. The patent gives no close-focus distance, move
 
 The patent depicts no iris and prints no stop diameter or axial station. The inferred stop divides A2 into 12.0 mm after R5 and 9.75 mm before R6, placing it 47.36 mm behind the front vertex. A midpoint stop would intersect the R5 rim sag; the adopted position leaves about 0.92 mm and 1.93 mm clearance to the adjacent glass boundaries.
 
-All clear semi-diameters are inferred. In surface order, excluding the stop, they are 36, 36, 32, 31, 21.4, 21.4, 27, 27, 34, 34, 34 and 34 mm. The minimum glass edge thickness is about 2.21 mm, and the central air space remains open. The drawing suggests smaller rear rims, about 28 mm for L6 and 29.7 mm for L7; the model's larger rims admit more off-axis light.
+All clear semi-diameters are inferred. In surface order, excluding the stop, they are 36, 36, 32, 31, 21.4, 21.4, 27, 27, 28, 28, 29.7 and 29.7 mm. The square-cut rear elements follow the section drawing's approximate 28 mm and 29.7 mm radii. The front collector and cemented members retain the drawing's relative heights and tapered ends; its short air gaps and chamfers are schematic. The minimum glass edge thickness at the common clear radius is about 3.16 mm, and the central air space remains open. All rims clear the f/1.5 axial beam and the illustrative 10° chief ray.
 
 The calculated EFL is 99.994 mm, 0.006 mm below the printed F = 100 at the chosen scale. The unprinted image plane is the paraxial infinity back focus, 53.65 mm behind R12, giving a total front-vertex-to-image distance of 155.01 mm.
 
@@ -78,7 +78,7 @@ The paraxial iris radius is 19.687 mm at nominal f/1.5; exact axial acceptance a
 
 ## Field and Performance Limits
 
-The patent states no field angle or image format. The model's ±10° field is illustrative, and no image-circle diameter or camera format is assigned. At 10° the chief ray reaches the image plane at about 17.64 mm height and clears every rim. About 2–6% of the 10° beam is clipped at R7/R8.
+The patent states no field angle or image format. The model's ±10° field is illustrative, and no image-circle diameter or camera format is assigned. At 10° the chief ray reaches the image plane at about 17.64 mm height and clears every rim. About 2–6% of the meridional beam width is clipped at R7/R8 and up to 11% at R10. Across the full pupil, wide-open geometric transmission is about 95.8% at 5°, 87.9% at 8.3° and 81.5% at 10°.
 
 The patent publishes no measured MTF or aberration plots. Calculated image quality at the paraxial plane describes this inferred stop and rim geometry. It does not establish the physical Xenon aperture, full-field illumination or production performance.
 
