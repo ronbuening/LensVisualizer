@@ -1,57 +1,61 @@
-# LEICA SUMMICRON 100mm f/2 (US 2,622,478 Design) — Audit
+# LEICA SUMMICRON 100mm f/2 (US 2,622,478 Design) — Audit Log
 
 ## Source
 
-US 2,622,478 A, granted 23 December 1952, by Gustav Kleineberg and Otto Zimmermann, assigned to Ernst Leitz GmbH. Filed 20 July 1950 with German priority of 9 January 1950. The inscription over the single m in Zimmermann denotes a doubled consonant. Example 2 is on PDF page 3 and corresponds to Figure 2. Its table gives f = 100, relative opening 1:2 and a 50° full field without an absolute length unit; dimensions are read as millimetres in the model.
+[US 2,622,478 A, _Photographic objective lens system_](https://patents.google.com/patent/US2622478A/en), by Gustav Kleineberg and Otto Zimmermann, assigned to Ernst Leitz GmbH. Filed 20 July 1950 with German priority of 9 January 1950; published and granted 23 December 1952. The bar over the single m in the printed Zimmermann denotes a doubled consonant.
 
-## Transcription
+Example 2 and its Seidel coefficients appear on PDF page 3; Figure 2 is on PDF page 1, and the design discussion is on PDF page 2. The table gives f = 100, relative opening 1:2 and a 50.0° full field without an absolute length unit. The model reads the dimensions as millimetres.
 
-All thirteen signed radii, seven glass thicknesses, five air spaces, seven d-line indices and seven Abbe numbers agree with the page images. The two parts of the central gap add to the printed 20.02 mm. Elements 5 and 6 meet at the sole cemented face, r10. The additional flint plate drawn for Example 1 is absent from Example 2.
+The undated [Leitz Summicron brochure](https://www.pacificrimcamera.com/rl/01536/01536.pdf) reportedly connects the basic Summicron design with this patent. The Leica Wiki's [entry for Gustav Kleinberg](https://wiki.l-camera-forum.com/leica-wiki.en/index.php/Gustav_Kleinberg) associates the inventors, 20 July 1950 filing and seven-element/six-group construction with Summicron (I). Neither source identifies the numerical example used in production.
 
-The printed P and A Seidel columns reproduce surface by surface. The P sum is 0.1997 against the printed 0.1995, and the individual A entries agree within 0.0006. The patent explicitly defines the lowercase d-line.
+## Transcription Check
 
-## First-Order Properties
+All thirteen signed radii, seven glass thicknesses, five air spaces, seven d-line indices and seven Abbe numbers were re-read against the page images and agree. The two parts of the central gap total the printed 20.02 mm. Elements 5 and 6 meet at the sole cemented face, r10. Example 1 has seven elements in five groups and an additional flint plate; Example 2 has seven elements in six groups and no plate. Its seventh element is a powered lens.
 
-The initial prescription gives EFL 99.961191707 mm, nominal paraxial f/2 and back focus 55.440549239 mm. The first-to-last-surface track is 69.95 mm, and total image track is 125.390549239 mm. The stop radius is 15.468360668 mm; its finite entrance-equivalent aperture is approximately f/2.00813 and its image-space sine equivalent is f/2.00145. These first-order properties remain unchanged.
+The patent explicitly defines the lowercase d-line. The printed P and A Seidel columns agree surface by surface: calculated P sums to 0.1997 against the printed 0.1995, and individual A entries agree within 0.0006. No prescription correction is indicated.
 
-The former ±5° illustrated field was narrower than the printed ±25°. The prescription supports the printed chief-ray field, as recorded below. The per-surface P and A agreement establishes consistency with the Seidel table.
+## First-Order Check
 
-## Not Printed
+The calculated EFL is 99.96 mm against the printed f = 100, a difference of −0.04 mm. The nominal paraxial aperture is f/2.00, matching the printed 1:2. The back focus is 55.44 mm; the patent supplies no back-focus value. The image plane is at that calculated paraxial distance behind r13. The optical track is 69.95 mm and the first-vertex-to-image distance is 125.39 mm, also unprinted.
 
-The 11.25/8.77 mm split of the central air gap and stop position z = 40.73 mm are inferred. Figure 2 draws the iris at about 0.51 of that gap rather than the model's 0.56. The iris bore is derived from the nominal aperture. All thirteen clear radii, the paraxial image plane, the choice of millimetres and the stop sequence ending at f/22 are also inferred. The patent supplies no close-focus data.
+The stop radius is 15.468 mm. Finite rays give an entrance-equivalent aperture of about f/2.01 and an image-space sine equivalent of f/2.00. A finite marginal ray corresponding to f/2 would require a stop radius of about 15.532 mm. The iris sets the axial aperture without a limiting glass rim.
 
-At the current rims the minimum common-radius glass thickness is 1.99213 mm; the smallest common-radius air space is 0.20 mm. The minimum own-rim edge closure is 0.53984 mm, and the maximum spherical rim tilt is 53.324°. The front, inner-front and central air spaces remain open at their shared radii. No surface trim or gap-clearance exception is required.
+The 25.0° chief ray reaches an image radius of 45.97 mm without blockage, within the inferred 91.94 mm image circle. Chief rays reach approximately 27.0°. The rear rims vignette the 25.0° meridional bundle, and one marginal extreme is unresolved; chief-ray reach alone does not establish full illumination.
 
-## Product Association
+## Values Not Printed in the Patent
 
-The collapsible Summicron 5 cm f/2 of 1953–60 is a plausible family association. The [Leitz Summicron brochure](https://www.pacificrimcamera.com/rl/01536/01536.pdf) reportedly identifies US 2,622,478 as protection for the basic Summicron design. The Leica Wiki's [entry for Gustav Kleinberg](https://wiki.l-camera-forum.com/leica-wiki.en/index.php/Gustav_Kleinberg) associates the inventors, filing date and seven-element/six-group construction with Summicron (I). The patent discusses thorium-bearing glass and radiation absorption. The production example remains unsettled; the displayed 100 mm design is distinct from the 50 mm production lens. DE 939,956 B supplies the different later Rigid/Dual Range prescription.
+The diaphragm divides the central air space into 11.25 mm after r8 and 8.77 mm before r9, placing it at z = 40.73 mm from the first vertex. That split is inferred. Figure 2 draws the iris about 0.51 of the way across the gap, compared with 0.56 in the model. The printed coma coefficients refer to a pupil at r1 and do not independently locate the physical iris. Its opening follows paraxial f/2.
 
-## Corrections
+All clear semi-diameters are estimates. In r1–r13 order they are 28, 27, 27, 25, 24, 20, 20, 19, 19, 22, 22, 23 and 23 mm. The front face of Element 3, the 22 mm doublet rims and the 23 mm Element 7 rims are about 2–4 mm larger than Figure 2's proportions suggest. Smaller rims would exclude some of the light admitted by these estimates.
 
-The printed prescription requires no correction. The former identity, field setting and descriptive text have been replaced as detailed below. The source indices, Abbe numbers, spacings, stop position, image plane and all clear radii remain unchanged.
+The surfaces stay clear of each other. Minimum glass thickness at a shared radius is 1.99 mm, and the smallest air space at a shared radius is 0.20 mm. Minimum edge closure at each surface's own rim is 0.54 mm; maximum spherical rim tilt is 53.3°. The front 0.54 mm air space leaves 0.38 mm at 27 mm radius, the 0.39 mm space leaves 0.23 mm at 20 mm, and the central gap leaves 4.73 mm at 19 mm. The stop plane clears the r8 and r9 rims by about 1.71 and 3.02 mm. No rim cut or extra clearance allowance is needed.
+
+The 50.0° field is printed; the 91.94 mm image circle follows twice the real 25.0° chief-ray height at the adopted scale. It is not a published production format. Millimetre units and the paraxial image plane are assumed. The f/2–f/22 stop sequence is illustrative, and the patent gives no minimum iris opening. `focus.closeFocusM` is 10¹⁵ m, which stands for infinity. No close-focus spacing or movement is supplied.
+
+The printed glass coordinates remain intact. QF3 supplies an approximate dispersion curve for Element 4; the other six elements use dispersion inferred from their indices and Abbe numbers. No additional spectral indices, measured partial dispersions or historical melt identities are supplied.
+
+## Product Identification
+
+The patent likely concerns the collapsible Leitz Summicron 5 cm f/2 of 1953–60, but the association does not establish that production used Example 2. Its seven-element/six-group construction agrees with that lens. The discussion of thorium-bearing optical glass and absorption by flint glass supports the historical connection without identifying every element's composition.
+
+The title retains the patent's f = 100 design scale. The later Rigid/Dual Range Summicron from DE 939,956 B has different radii and is a separate design. No marketed focal length or aperture, production mount or image format, diaphragm blade count or shape, or marketed minimum focus distance is assigned to this numerical example.
+
+## Corrections, 2026-11-21
+
+- The designer-based identity and unidentified maker were replaced by the Leica Summicron name and Leica attribution. The key and title identify the maker, lens family and patent, retain the 100 mm design scale and keep the production-example uncertainty explicit. The lens was made visible in the catalog.
+- The patent number gained the publication suffix A. The example label changed from Example II to Example 2 to follow the table's Arabic numeral. Inventors, assignee, publication year and example number were retained.
+- The subtitle is “US 2,622,478 A, Example 2 — Leitz / Kleineberg & Zimmermann”. The specification chips are “7 ELEMENTS / 6 GROUPS”, “ALL SPHERICAL”, “DESIGN f = 100 mm”, “DESIGN F/2” and “50° FIELD”, separating the patent's design scale from the 5 cm production lens.
+- The full field increased from 10.0° to the printed 50.0°, and the half-field from 5.0° to 25.0°. The inferred image-circle diameter was added from twice the real chief-ray image height at that field; `catalog.imageCircleMm` is 91.94 mm. The design focal length changed from 100 to 99.96 mm to record the calculated EFL.
+- Element labels changed from L1–L7 to Element 1–Element 7. Generic spherical shape descriptions became, in order, Biconvex Positive, Biconcave Negative, Positive Meniscus, Negative Meniscus, Biconcave Negative, Biconvex Positive and Biconvex Positive. Optical roles and calculated in-air focal lengths were added: +69.04, −126.39, +112.13, −71.96, −44.99, +54.38 and +106.89 mm. The cemented pair has a calculated in-air focal length of −606.28 mm.
+- Glass descriptions became explicit optical-coordinate labels. Elements 1, 3 and 6 remain unmatched at nd 1.6923 / ν 54.7; Element 2 at 1.65017 / 33.7; Element 5 at 1.58217 / 38.0; and Element 7 at 1.71715 / 47.9. Element 4 became `QF3 (CDGM)`: its catalog row is 1.57502 / 41.31, with catalog-minus-patent differences Δnd +0.00001 and Δν +0.01. The dispersion curve evaluates to about 1.57503 / 41.2969, with Δnd +0.000016 and Δν −0.0031. This identifies similar optical properties, leaving the historical supplier unknown. The patent's d-line reference is retained throughout.
+- The cemented-pair identifier changed from G5 to C1, with a bracket spanning r9–r11. The six numbered group captions were replaced by four brackets for the patent's components: front positive r1–r4, front meniscus r5–r8, rear meniscus r9–r11 and rear positive r12–r13. These components contain six air-separated groups.
+
+The radii, thicknesses, air spaces, glass coordinates, index reference, stop position, clear radii and image plane retain the original prescription. EFL remains 99.96 mm, paraxial aperture f/2.00, back focus 55.44 mm and stop radius 15.468 mm. Optical track remains 69.95 mm and total image track 125.39 mm; the half-field is 25.0°.
 
 ## Remaining Questions
 
-The numerical example used in production and the historical glass suppliers remain unestablished. The drawn iris station and proportions of several optical rims differ from the estimates. Full illumination at the stated field is not established by chief-ray clearance.
-
-## 2026-11-21 — Deployment validation and cleanup
-
-Two independent readings of the page images agree on the thirteen radii, seven thicknesses, five air gaps, seven indices, seven Abbe numbers, d-line definition and r10 cemented interface. The prescription is consistent with Example 2 and its P/A Seidel columns. The Summicron association is plausible at the family level, supported by the reported Leitz brochure statement and the historical entry; neither settles the production example.
-
-- File form: the import from `../repo/src/types/lensDataV2.js` → `../../types/lensDataV2.js`; the constant and default export `data` → `LENS_DATA`; no header → one source-and-assumptions header.
-- Identity: key `kleineberg-zimmermann-us2622478-example2-infinity-reference` → `leica-summicron-100mm-f2-us2622478`; maker unset → Leica; name `KLEINEBERG ZIMMERMANN US2622478 EXAMPLE II — 100mm PATENT f/2` → `LEICA SUMMICRON 100mm f/2 (US 2,622,478 Design)`; catalogue visibility false → true.
-- Source: patent number `US 2,622,478` → `US 2,622,478 A`; example label `Example II` → `Example 2`, matching the printed Arabic numeral. Inventors, assignee, year and example id remain unchanged.
-- Subtitle: the former description of estimated iris and rims → `US 2,622,478 A, Example 2 — collapsible Summicron family`. Long descriptive specifications → `7 ELEMENTS / 6 GROUPS`, `ALL SPHERICAL`, `DESIGN F/2`, `MODIFIED GAUSS`.
-- Field: full angle 10° → 50° and maximum illustrated half-angle 5° → 25°, following the printed field. Image-circle diameter absent → 91.93596 mm, twice the real 25° chief-ray image height of 45.96798 mm. Design focal length 100 → 99.96 mm, the calculated EFL rounded to two decimals.
-- Elements: labels L1–L7 → Element 1–Element 7; generic spherical types → Biconvex Positive, Biconcave Negative, Positive Meniscus, Negative Meniscus, Biconcave Negative, Biconvex Positive and Biconvex Positive. Missing optical roles and in-air focal lengths → the roles described in the analysis and 69.04, −126.39, 112.13, −71.96, −44.99, 54.38 and 106.89 mm.
-- Glass: all seven former descriptions → explicit optical-coordinate labels. Elements 1/3/6 use `Unmatched (nd 1.6923 / ν 54.7)`; Element 2 uses `Unmatched (nd 1.65017 / ν 33.7)`; Element 5 uses `Unmatched (nd 1.58217 / ν 38.0)`; Element 7 uses `Unmatched (nd 1.71715 / ν 47.9)`. Element 4 → `QF3 (CDGM)`, resolving to CDGM QF3 with catalogue-row Δnd = +0.00001 and Δν = +0.01. Its dispersion curve gives nd 1.57502605 and ν 41.29692, differences of +0.00001605 and −0.00308. This is an optical equivalent; historical supplier identity remains unknown. Repeated d-line notes → omitted because the patent names the line; `indexReference: "d"` is retained.
-- Cemented pair: Elements 5/6 identifier G5 → C1; absent doublet annotation → C1 spanning r9–r11. Group captions G1–G6 with element lists → Group 1–Group 6.
-- Focus: the former infinity description → `Infinity focus only; the patent gives no close-focus data.` The numerical distance remains 10¹⁵ m, written as `1e15`. The analysis and audit now explain the source, architecture, elements, glass, focus, aperture, field, product evidence and remaining uncertainties in plain text.
-
-After these changes, EFL remains 99.961191707 mm, nominal f-number remains 2.000 and back focus remains 55.440549239 mm. Stop radius remains 15.468360668 mm, optical track 69.95 mm and total image track 125.390549239 mm. The illustrated half-field is now 25°; the geometry's chief-ray limit remains approximately 26.997°.
-
-Surface geometry reports no errors. The axial aperture has no rim limit, iris mismatch or tracing failure. The image-circle check finds no undersized surfaces and skips none. Field coverage is 100%: the modeled 25° chief ray reaches 45.97 mm against the 45.97 mm stated-field radius, with a clear corner and no skipped or unsolved state. The 25° meridional bundle is vignetted at the rear rims, and one edge-ray solve does not return a ray; chief-ray coverage does not establish complete illumination.
-
-Open: the 11.25/8.77 mm iris split versus Figure 2's approximately 0.51-gap station; the front rim of Element 3, the 22 mm doublet rims and the 23 mm Element 7 rims are about 2–4 mm larger than the drawing's proportions suggest. These rims remain unchanged because no axial or chief-ray obstruction requires enlargement, and reducing them would remove admitted light. The production example, historical melt identities and complete off-axis illumination remain unsettled.
-
-Review corrections: brochure dating “May 1953” → undated Leitz Summicron brochure; unconfirmed Summicron (I) wiki link and attribution → the Leica Wiki's entry for Gustav Kleinberg.
+- Which numerical example entered production is unknown. The brochure is undated, and the historical association does not settle the production prescription.
+- Historical glass suppliers and melts are unidentified. Elements 1, 2, 3, 5, 6 and 7 lack matching catalog curves; the patent supplies no additional spectral indices or measured partial dispersion.
+- The physical iris position and bore are unprinted; its drawn station differs from the inferred 11.25/8.77 mm split. Several estimated rims exceed Figure 2's proportions by about 2–4 mm. Mechanical dimensions remain unknown.
+- Complete off-axis illumination and the unresolved marginal extreme are not established by the clear 25.0° chief ray.
+- No source establishes this example's mount, production image format, diaphragm blade count or shape, minimum iris opening, marketed specifications, close-focus range or focusing mechanism. These values remain unassigned; f/22 is not a published mechanical limit.

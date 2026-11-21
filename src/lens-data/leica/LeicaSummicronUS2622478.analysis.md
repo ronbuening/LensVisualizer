@@ -52,21 +52,21 @@ The text discusses radiation from thorium-bearing optical glass and the use of f
 
 ## Focus Mechanism and Aperture
 
-The model is at infinity focus. The patent gives no close-focus spacing, movement or minimum focusing distance. The image plane is the calculated paraxial plane, 55.440549 mm behind the last surface; that back focus is not printed.
+The model is focused at infinity. The patent gives no close-focus spacing, movement or minimum focusing distance. The image plane is the calculated paraxial plane, 55.44 mm behind the last surface; that back focus is not printed.
 
 The diaphragm position is inferred within the printed 20.02 mm central space: 11.25 mm behind r8 and 8.77 mm ahead of r9, at z = 40.73 mm from the first vertex. Figure 2 places the drawn iris at about 0.51 of the gap, compared with 0.56 in the model. The printed coma coefficients refer to a pupil at r1 and cannot independently locate the physical diaphragm.
 
-At nominal f/2 the paraxial stop radius is 15.46836 mm. Finite rays give an entrance-equivalent aperture of about f/2.00813 and an image-space sine equivalent of f/2.00145. A finite marginal ray corresponding to f/2 would require a stop radius of about 15.53162 mm. The f/2–f/22 stop sequence is a display convention rather than a printed aperture ladder.
+At nominal f/2 the paraxial stop radius is 15.468 mm. Finite rays give an entrance-equivalent aperture of about f/2.01 and an image-space sine equivalent of f/2.00. A finite marginal ray corresponding to f/2 would require a stop radius of about 15.532 mm. The f/2–f/22 stop sequence is illustrative; the patent prints no aperture ladder.
 
-All clear semi-diameters are estimates: r1–r13 use 28, 27, 27, 25, 24, 20, 20, 19, 19, 22, 22, 23 and 23 mm. The smallest common-radius glass thickness is 1.99213 mm. The front 0.54 mm air space leaves 0.38161 mm at the shared 27 mm radius; the 0.39 mm space leaves 0.22530 mm at 20 mm; the central gap leaves 4.73253 mm at 19 mm. The stop plane clears the r8 and r9 rims by approximately 1.71 and 3.02 mm. These dimensions describe the chosen optical rims, not measured barrel dimensions.
+All clear semi-diameters are estimates: r1–r13 use 28, 27, 27, 25, 24, 20, 20, 19, 19, 22, 22, 23 and 23 mm. The smallest common-radius glass thickness is 1.99 mm. The front 0.54 mm air space leaves 0.38 mm at the shared 27 mm radius; the 0.39 mm space leaves 0.23 mm at 20 mm; the central gap leaves 4.73 mm at 19 mm. The stop plane clears the r8 and r9 rims by approximately 1.71 and 3.02 mm. These are estimated optical rims; barrel dimensions are unknown.
 
 ## First-Order Properties and Stated Field
 
-The prescription computes to EFL 99.96119 mm against the printed f = 100, a difference of −0.0388%. The design focal length is therefore recorded as 99.96 mm. The first-to-last-surface distance is 69.95 mm, and the first-surface-to-image distance is 125.39055 mm. No source back focus or total image distance is printed.
+The calculated EFL is 99.96 mm against the printed f = 100, a difference of −0.04 mm. The first-to-last-surface distance is 69.95 mm, and the first-surface-to-image distance is 125.39 mm. No source back focus or total image distance is printed.
 
 The printed Seidel P (image curvature) and A (spherical aberration) columns reproduce surface by surface. At the patent's normalization, the calculated P sum is 0.1997 against the printed 0.1995; every A entry agrees within 0.0006. This independently supports the printed radii, indices and spacings.
 
-The modeled field follows the printed 50° full angle, or ±25°. At 25° the real chief ray reaches an image semi-height of 45.96798 mm, giving the stated-field image-circle diameter of 91.93596 mm at this model's dimensions. The current geometry permits chief rays to approximately 27°. No rim cuts the axial beam or blocks the 25° chief ray, although the rear elements vignette the oblique bundle and one edge-ray solve does not return a ray. Field reach therefore does not establish complete pupil illumination or measured production performance.
+The modeled field follows the printed 50.0° full angle, or ±25.0°. At 25.0° the real chief ray reaches an image semi-height of 45.97 mm, giving an inferred image-circle diameter of 91.94 mm at this model's dimensions. The geometry permits chief rays to approximately 27.0°. The iris sets the axial aperture, and the 25.0° chief ray reaches the image. The rear elements vignette the oblique bundle, and one marginal extreme is unresolved. Field reach alone does not establish complete pupil illumination or measured production performance.
 
 ## Historical and Commercial Context
 

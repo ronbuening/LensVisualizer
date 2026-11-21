@@ -1,23 +1,23 @@
 import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
- * US 2,622,478 A, Example 2 and Figure 2, by Gustav Kleineberg and Otto Zimmermann
+ * US 2,622,478 A, Example 2 / Figure 2, by Gustav Kleineberg and Otto Zimmermann
  * for Ernst Leitz GmbH, granted 1952. Seven spherical elements in six groups.
- * The table gives f = 100 without an absolute length unit; its dimensions are read
- * in millimetres here. Radii, thicknesses, air spaces, d-line indices and Abbe
- * numbers follow the printed table. Elements 5 and 6 are cemented at r10.
+ * The table gives f = 100 without an absolute length unit; dimensions are read
+ * as millimetres. Radii, thicknesses, air spaces, d-line indices and Abbe numbers
+ * follow the printed table. Elements 5 and 6 are cemented at r10.
  * The iris splits the printed 20.02 mm central air space into 11.25 and 8.77 mm;
- * that position, its derived opening and all clear semi-diameters are inferred.
- * The image plane uses the computed paraxial back focus of 55.440549 mm.
- * The stated full field is 50 degrees. The Summicron family association does not
- * settle which numerical example entered production as the 5 cm f/2 lens.
+ * its position, derived opening and all clear semi-diameters are inferred.
+ * The image plane uses the calculated paraxial back focus of 55.44 mm.
+ * The printed full field is 50 degrees. The Summicron family association does
+ * not settle which numerical example entered production as the 5 cm f/2 lens.
  */
 const LENS_DATA = {
   schema: 2,
   key: "leica-summicron-100mm-f2-us2622478",
   maker: "Leica",
   name: "LEICA SUMMICRON 100mm f/2 (US 2,622,478 Design)",
-  subtitle: "US 2,622,478 A, Example 2 — collapsible Summicron family",
+  subtitle: "US 2,622,478 A, Example 2 — Leitz / Kleineberg & Zimmermann",
   visible: true,
   source: {
     patentNumber: "US 2,622,478 A",
@@ -39,8 +39,8 @@ const LENS_DATA = {
     },
     elementCount: 7,
     groupCount: 6,
-    imageCircleMm: 91.93596,
-    specs: ["7 ELEMENTS / 6 GROUPS", "ALL SPHERICAL", "DESIGN F/2", "MODIFIED GAUSS"],
+    imageCircleMm: 91.94,
+    specs: ["7 ELEMENTS / 6 GROUPS", "ALL SPHERICAL", "DESIGN f = 100 mm", "DESIGN F/2", "50° FIELD"],
   },
   elements: [
     {
@@ -238,32 +238,22 @@ const LENS_DATA = {
   },
   groups: [
     {
-      text: "Group 1",
+      text: "FRONT POSITIVE",
       fromSurface: "1",
-      toSurface: "2",
-    },
-    {
-      text: "Group 2",
-      fromSurface: "3",
       toSurface: "4",
     },
     {
-      text: "Group 3",
+      text: "FRONT MENISCUS",
       fromSurface: "5",
-      toSurface: "6",
-    },
-    {
-      text: "Group 4",
-      fromSurface: "7",
       toSurface: "8",
     },
     {
-      text: "Group 5",
+      text: "REAR MENISCUS",
       fromSurface: "9",
       toSurface: "11",
     },
     {
-      text: "Group 6",
+      text: "REAR POSITIVE",
       fromSurface: "12",
       toSurface: "13",
     },
