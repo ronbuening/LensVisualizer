@@ -28,7 +28,7 @@ const LENS_DATA = {
     errata: [
       {
         status: "unresolved",
-        note: "Example II gives EF 100 mm and BF 89.5 mm; its printed prescription computes to EFL 99.594153 mm and paraxial BF 89.110640 mm, with nearly the same BF/EF ratio. The printed prescription is retained and the image plane uses its paraxial focus. The element focal-length chart is also approximate.",
+        note: "Example II gives EF 100 mm and BF 89.5 mm; its printed prescription computes to EFL 99.59 mm and paraxial BF 89.11 mm, with nearly the same BF/EF ratio. The printed prescription is retained and the image plane uses its paraxial focus. The element focal-length chart is also approximate.",
       },
     ],
     sdSource: "heuristic",
@@ -42,8 +42,13 @@ const LENS_DATA = {
     fNumber: {
       design: 8,
     },
-    specs: ["3 ELEMENTS / 3 GROUPS", "ALL SPHERICAL", "DESIGN F/8"],
-    imageCircleMm: 102.097748,
+    specs: [
+      "3 ELEMENTS / 3 GROUPS",
+      "ALL SPHERICAL",
+      "DESIGN f = 100 mm",
+      "DESIGN F/8",
+    ],
+    imageCircleMm: 102.1,
   },
   elements: [
     {
@@ -146,7 +151,7 @@ const LENS_DATA = {
   layout: {
     yScFill: 0.5,
   },
-  subtitle: "US 2,388,869 A, Example II — rear-diaphragm triplet design",
+  subtitle: "US 2,388,869 A, Example II — Eastman Kodak / Reiss",
   groups: [
     {
       text: "Front positive element",
