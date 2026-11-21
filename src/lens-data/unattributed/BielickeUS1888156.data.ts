@@ -1,98 +1,114 @@
-import type { LensDataV2Input } from "../repo/src/types/lensDataV2.js";
-const data = {
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * US 1,888,156 A, sole numerical example (William F. Bielicke, granted 1932).
+ * The two printed tables agree on the radii, glass thicknesses, air spaces,
+ * D-line indices and Abbe numbers. The G-line indices are listed in the analysis.
+ * Five elements form four groups; only elements 3 and 4 are cemented, at R6,
+ * and the rear face of element 1 is plane.
+ *
+ * The printed 100 mm f/2.5 prescription computes to a D-line paraxial EFL of
+ * 99.9016 mm and back focus of 78.2750 mm. The image plane uses that computed
+ * back focus, which the patent does not print.
+ *
+ * All semi-diameters and the stop position are inferred. The stop divides the
+ * printed 9.2 mm air space into 5.4 and 3.8 mm at z = 26.4 mm; its radius is
+ * derived from nominal f/2.5. The finite entrance beam is about f/2.58.
+ * The displayed half-field of 10 degrees and the f-stop list are modeling
+ * choices; the patent gives no field, image format or close-focus data.
+ * No production lens is documented for this unassigned patent.
+ */
+const LENS_DATA = {
   schema: 2,
-  key: "bielicke-us1888156-infinity-reference",
+  key: "bielicke-100mm-f25-us1888156",
   maker: null,
-  name: "WILLY F. BIELICKE US1888156 — SOURCE f/2.5",
-  subtitle: "Patent-only5E/4G · sodium-D infinity · estimated stock iris/rims",
-  visible: false,
+  name: "BIELICKE 100mm f/2.5 (US 1,888,156 Design)",
+  subtitle: "US 1,888,156 A, sole example — cemented collective group",
+  visible: true,
   source: {
-    patentNumber: "US 1,888,156",
+    patentNumber: "US 1,888,156 A",
     patentYear: 1932,
     example: {
       label: "Sole example",
       id: null,
     },
-    authors: ["Willy F. Bielicke"],
+    authors: ["William F. Bielicke"],
     assignees: [],
     sdSource: "heuristic",
   },
   catalog: {
     focalLengthMm: {
-      design: 100,
+      design: 99.9,
     },
     fNumber: {
       design: 2.5,
     },
     elementCount: 5,
     groupCount: 4,
-    specs: [
-      "Literal sole100mm f2.5 patent design,5E/4G,onlyR6cement and genuine R2plane. No retail Astrar identity.",
-      "Explicit sodium-D589.2938nm/Abbe pairs retained. Separately printed uppercaseG is not assigned a wavelength or mapped to lowercaseg; no calibrated broadband or exact catalog glass.",
-      "Literal EFL99.901557811mm/BFD78.275003977mm computed without fit/rescale. BFD is not source-prescribed.",
-      "Stop split5.4/3.8 in literal9.2mm gap,z26.4 and all caps estimated. No source physical iris or field.",
-      "Saved source/catalog/controlf2.5 derives stock irisradius15.268999696mm. Supplied15.819945mm is the finite nominal marginal witness/sensitivity, not forced; exact literal finite nominal maps15.819945087mm.",
-      "Chosen actual native+/-10deg diagnostic, no source format/imagecircle. Relayed+/-20deg bench is separate, not native/source coverage.",
-      "Reference-line geometric MTF only through native API field fractions within10deg where needed; wider automatic MTF, finite focus, broadband and factory claims unqualified.",
-    ],
+    specs: ["5 ELEMENTS / 4 GROUPS", "ALL SPHERICAL", "DESIGN F/2.5"],
   },
   elements: [
     {
       id: 1,
       name: "L1",
-      label: "L1",
-      type: "Source Spherical Element",
+      label: "Element 1",
+      type: "Plano-Convex Positive",
       nd: 1.658,
       vd: 51.4,
       indexReference: "D",
-      glass:
-        "Unmatched literal sodium-D/Abbe pair; uppercaseG not mapped, no calibrated spectral curve.",
+      glass: "Unmatched (nD 1.6580 / ν 51.4)",
+      focalLengthMm: 64.13,
+      role: "Positive front crown collecting the incident beam.",
     },
     {
       id: 2,
       name: "L2",
-      label: "L2",
-      type: "Source Spherical Element",
+      label: "Element 2",
+      type: "Biconcave Negative",
       nd: 1.6741,
       vd: 32.0,
       indexReference: "D",
-      glass:
-        "Unmatched literal sodium-D/Abbe pair; uppercaseG not mapped, no calibrated spectral curve.",
+      glass: "Unmatched (nD 1.6741 / ν 32.0)",
+      focalLengthMm: -38.09,
+      role: "Dispersive negative singlet ahead of the stop.",
     },
     {
       id: 3,
       name: "L3",
-      label: "L3",
-      type: "Source Spherical Element",
+      label: "Element 3",
+      type: "Biconcave Negative",
       nd: 1.5821,
       vd: 42.0,
       indexReference: "D",
-      glass:
-        "Unmatched literal sodium-D/Abbe pair; uppercaseG not mapped, no calibrated spectral curve.",
-      cemented: "D1",
+      glass: "Unmatched (nD 1.5821 / ν 42.0)",
+      focalLengthMm: -53.6,
+      role: "Dispersive front member of the cemented collective group.",
+      cemented: "C1",
     },
     {
       id: 4,
       name: "L4",
-      label: "L4",
-      type: "Source Spherical Element",
+      label: "Element 4",
+      type: "Biconvex Positive",
       nd: 1.658,
       vd: 51.4,
       indexReference: "D",
-      glass:
-        "Unmatched literal sodium-D/Abbe pair; uppercaseG not mapped, no calibrated spectral curve.",
-      cemented: "D1",
+      glass: "Unmatched (nD 1.6580 / ν 51.4)",
+      focalLengthMm: 34.19,
+      role: "Positive crown member of the cemented collective group.",
+      cemented: "C1",
     },
     {
       id: 5,
       name: "L5",
-      label: "L5",
-      type: "Source Spherical Element",
+      label: "Element 5",
+      type: "Biconvex Positive",
       nd: 1.6513,
       vd: 38.3,
       indexReference: "D",
-      glass:
-        "Unmatched literal sodium-D/Abbe pair; uppercaseG not mapped, no calibrated spectral curve.",
+      glass: "Unmatched (nD 1.6513 / ν 38.3)",
+      focalLengthMm: 194.57,
+      role: "Weak positive rear singlet completing the collective system.",
     },
   ],
   surfaces: [
@@ -175,9 +191,8 @@ const data = {
     offAxisFieldFrac: 1,
   },
   focus: {
-    closeFocusM: 1000000000000000.0,
-    description:
-      "Private WillyF.Bielicke US1888156 sole100mm f2.5 patent-only5E/4G sodiumD589.2938 infinity,onlyR6cement andR2opticalplane. EFL99.901557811/BFD78.275003977mm calculated from literal source, BFDunprinted,no fit/rescale. Estimated stop5.4/3.8,z26.4 and clear caps. Source/controlf2.5 preserved under ordinary-prime paraxial stop convention: stock irisR15.268999696mm; supplied finite marginal15.819945mm is a separate unprinted estimate/sensitivity, not silently forced. Actual finite pupil metrics are separate from nominal. Chosen+/-10degree native diagnostic only,no invented format,retailAstrar,finite,calibratedbroadband or wider claim. UppercaseG convention unverified,never encoded as lowercaseg. Scoped nativeAPI reference-line geometric MTF only; automatic wider/Abbe spectral outputs unqualified. Original signed primary source/pin externally supplied,no local originalPDF/pixels/rehash or denied-route retry.",
+    closeFocusM: 1e15,
+    description: "Infinity focus only; the patent gives no close-focus data.",
   },
   groups: [
     {
@@ -191,7 +206,7 @@ const data = {
       toSurface: "4",
     },
     {
-      text: "G3 · L3+L4",
+      text: "G3 · L3 + L4",
       fromSurface: "5",
       toSurface: "7",
     },
@@ -201,8 +216,9 @@ const data = {
       toSurface: "9",
     },
   ],
+  doublets: [{ text: "C1", fromSurface: "5", toSurface: "7" }],
   layout: {
     yScFill: 0.5,
   },
 } satisfies LensDataV2Input;
-export default data;
+export default LENS_DATA;

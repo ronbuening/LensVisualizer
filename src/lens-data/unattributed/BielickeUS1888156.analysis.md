@@ -1,59 +1,97 @@
-## Patent Reference / Design Identification
+# BIELICKE 100mm f/2.5 (US 1,888,156 Design)
 
-Willy F. Bielicke US1888156, sole100mm f/2.5 example, is reconstructed as a hidden patent-only sodium-D infinity reference. The US original states German application January22,1931; US grant1932. The parent/source researcher supplied the verified signed prescription and original pin. No local original PDF,pixels or rehash is claimed. DE634843 andGB375723 are retained search aliases; no new legal-family or retail identification is made.
+## Patent and Design Identification
 
-Literal first order yields EFL99.901557811mm and BFD78.275003977mm. The source states100mm; BFD is not prescribed. The final gap is the calculated Gaussian infinity distance, not an adopted printed datum or focus fit. First-to-last track48.1mm, calculated detector z126.375003977mm. No radius, internal spacing,index or Abbe value is scaled,fitted or repaired.
+**Patent:** US 1,888,156 A, _Objective Lens System_
+
+**Inventors:** William F. Bielicke
+
+**Assignee:** None stated
+
+**Published:** November 15, 1932
+
+**Filed:** March 3, 1932; German application January 22, 1931
+
+**Example details:** Sole numerical example, repeated on the drawing sheet and specification page 1.
+
+The [patent](https://patents.google.com/patent/US1888156A/en) gives a 100 mm f/2.5 objective containing five elements in four groups. It improves Bielicke's earlier US 1,540,752 four-singlet design by making a rear collective group a cemented flint-and-crown pair to improve correction of oblique beams (specification p. 1, lines 13–32).
+
+The same invention was filed in Britain and Germany as [GB 375,723 A](https://patents.google.com/patent/GB375723A/en) and [DE 634,843 C](https://patents.google.com/patent/DE634843C/en). Bielicke co-founded Astro-Gesellschaft in Berlin, but this patent names no assignee and no production lens is documented for its prescription. The company history alone does not establish an Astrar or Tachar product identity.
 
 ## Optical Architecture
 
-Five elements/four air groups: L1|L2|L3+L4|L5, nine refracting interfaces. R2 is a genuine plane rear face of L1. Only R6 is cemented, between L3/L4; there are no additional bonds or invented plates. The estimated iris divides the exact9.2mm R4–R5 air interval5.4/3.8mm, z26.4mm. Station, bore and clear caps are modeling estimates, not factory dimensions. No baffle, finite mechanism or image format is added.
+From object to image, the groups are a positive plano-convex singlet, a negative biconcave singlet, a positive cemented pair, and a weak positive biconvex singlet. Element 1 has a plane rear face at R2. Only elements 3 and 4 are cemented, sharing R6; all curved surfaces are spherical.
+
+The central positive pair places a dispersive flint before a crown of higher index and lower dispersion, as the patent specifies. Its combined focal length is +82.82 mm; the individual element focal lengths below are calculated in air and describe their separate powers.
+
+The first-to-last surface distance is 48.1 mm. At the D line the printed prescription computes to EFL 99.9016 mm, 0.0984% below the stated 100 mm. The image plane is the computed paraxial back focus, 78.2750 mm after R9, giving 126.3750 mm from the first vertex to the image. The patent does not print a back focus.
 
 ## Element-by-Element Analysis
 
-| Element | Surfaces | Signed R mm | Thickness mm | Source nD / V | Modeled cap radii mm |
-|---|---|---|---|---|---|
-| L1 | 1–2 | +42.2 / plane | 7.2 | 1.6580 / 51.4 | 23 / 23 |
-| L2 | 3–4 | −65.4 / +42.9 | 2.4 | 1.6741 / 32.0 | 22 / 19 |
-| L3 | 5–6 | −213.1 / +36.7 | 2.4 | 1.5821 / 42.0 | 20 / 19 |
-| L4 | 6–7 | +36.7 / −52.1 | 9.6 | 1.6580 / 51.4 | 19 / 19 |
-| L5 | 8–9 | +252.5 / −252.5 | 4.8 | 1.6513 / 38.3 | 22 / 22 |
+The element numbers 1–5 correspond to the patent's I–V. All refractive indices below refer to the printed D line, taken as sodium at 589.3 nm.
 
-Default native geometry passes without cap trim or any override. Independent common-radius and actual-rim-endpoint checks retain positive glass/air separations. Minimum glass closure0.381351mm; the cemented L4's common-rim glass closure0.710843mm. Maximum air-gap sag consumption0.574523 remains below default0.9; the air-gap limit is not misapplied to glass thickness. Minimum own-endpoint air clearance3.822497mm and maximum spherical rim angle33.026283degrees. A separate tapered-wall proxy contains every sampled admitted glass segment; these are consistency checks of estimated blanks, not measured hardware or a continuum coverage guarantee.
+### Element 1 — Plano-Convex Positive
 
-## Glass Identification / Selection
+nD = 1.6580, ν = 51.4. Glass: Unmatched (nD 1.6580 / ν 51.4). In-air f = +64.13 mm.
 
-Explicit sodium D589.2938nm. All five nD/Abbe pairs are literal and unmatched to an exact modern glass. The separately printed uppercaseG has not been assigned a wavelength or encoded as lowercaseg; no unprovided G,C or F indices or calibrated spectral curves are invented. Generic Abbe-based chromatic displays are not qualified. Quantitative claims here use the source's D reference only.
+The front crown collects the incident beam. Its convex front face supplies the refractive power; the rear face is plane. It shares its printed glass values with element 4.
 
-## Focus Mechanism and Estimated Aperture
+### Element 2 — Biconcave Negative
 
-Infinity only. No finite-focus state or production mechanism is inferred. Source/catalog and native control remain f/2.5. The ordinary-prime paraxial stop convention derives radius15.268999696mm, diameter30.537999393mm at the estimated station. The supplied15.819945mm estimate matches the exact finite nominal marginal witness15.819945087mm; it is not a published bore. It is retained as a scratch sensitivity, not silently forced into the saved file.
+nD = 1.6741, ν = 32.0. Glass: Unmatched (nD 1.6741 / ν 32.0). In-air f = −38.09 mm.
 
-Opening to that larger estimate would require software control2.412935016. That is a different hypothesis and exceeds the repo's faster-than-source catalog rounding allowance if promoted with source design2.5. No exception, false fixed-iris field, source-label removal or shared rule change is used. The saved nominal/control2.5 pair obeys the existing rule. The exact stock iris admits axial entrance radius19.337967267mm: entrance-equivalent f/2.583041858 and image-sine f/2.584309004. These finite-ray definitions are distinct from nominal paraxial f/2.5. The standard native aperture census reports the stop-rule aperture within its3%criterion with no rim/trace/iris failure; that is not a claim that the finite equivalents equal2.5.
+This is the dispersive singlet between the front collective element and the rear collective groups. It has the lowest Abbe number in the prescription and works with the positive elements in chromatic correction.
 
-At865stop-grid samples at0/5/10degrees, iris−2% gives865/865/865 arrivals; saved default865/865/856; iris+2%865/865/852. Estimated station−.5mm gives865/865/858 and+.5mm865/865/854, preserving total9.2mm. The supplied larger iris gives865/865/836. Every trial's losses are independently checked, with no failed/unaimed/unresolved outcome. These are unweighted sensitivities, not throughput or additional qualified models; no optical prescription/caps are edited.
+### Element 3 — Biconcave Negative
 
-## Actual Native Scope and Physical Losses
+nD = 1.5821, ν = 42.0. Glass: Unmatched (nD 1.5821 / ν 42.0). In-air f = −53.60 mm.
 
-Chosen±10degree diagnostic only; no source field/format or retail coverage claim. Desktop1440×1100 and mobile390×844 actual rendered incoming slopes/helper both show10degrees, with the same source image distance and stock bore after import/export/fresh reload and view-control reset. Mobile uses the normal wide-layout ray toggle before returning to compact layout, no injected state. Summary/Pupils rendering health is checked; broader automatic MTF is not qualified.
+The negative front member of cemented group C1 adds dispersive power behind the stop. Its shared rear surface R6 joins element 4 without an air space.
 
-At five fields−10/−5/0/5/10,1801physical nominal-entrance samples give1656/1655/1657/1655/1656 arrivals. On axis144 are iris-blocked because the nominal entrance disc includes an annulus outside the stock finite pupil. At each edge:68explicit front-cap clips,74iris clips and3raw native noBracket cases. Those6raw cases are independently proven forward near-vertex hits outside the first cap, with raw reasons/native classifications retained. No failure is silently dropped or accepted. The865point actual stop grids give856/865/865/865/856, each edge losing9front-cap samples. All chiefs survive; no failed,unaimed or unresolved sampled path. There are738explicit clip proofs plus6raw first-cap proofs. Counts are not flux or transmission.
+### Element 4 — Biconvex Positive
 
-The relayed1801axis/1538at20degrees benchmark belongs to the supplied larger-iris hypothesis and a separate launch convention. No20degree native qualification is claimed, and no cap/iris/field is tuned to match that benchmark.
+nD = 1.6580, ν = 51.4. Glass: Unmatched (nD 1.6580 / ν 51.4). In-air f = +34.19 mm.
 
-## Scoped MTF and Convergence
+This thick positive crown is the rear member of C1. Its greater positive power makes the pair collective despite element 3's negative power. The higher index and lower dispersion relative to element 3 follow the patent's stated cemented-pair construction.
 
-Native geometric sodium-D MTF, Gaussian design detector,0/10/20/40cycles/mm. No format is invented. Native exploratory geometry finds55.655748176mm at28.267709792degrees; this is not verified coverage. Supported fractions request actual fields0/5.031635881/9.999803256degrees, with a documented.99998outer factor to remain inside10degrees despite inverse-field tolerance. Wider automatic drawer outputs remain unqualified.
+### Element 5 — Biconvex Positive
 
-All three native adaptive fields converge with zero unknown flux. Explicit32–512 refinement reproduces native adaptive results.256→512maximum changes:.000182865/.000166249/.001291231. The larger edge change prompted one bounded extra1024refinement, which exactly reproduces512and reduces the change to.000075244. At1024there are821642valid transmitted samples,1950known blocked samples,zero failed/unaimed/unknown flux. This is numerical geometric convergence, not measured factory MTF,diffraction or calibrated broadband performance. No optical or acceptance changes were made for the refinement.
+nD = 1.6513, ν = 38.3. Glass: Unmatched (nD 1.6513 / ν 38.3). In-air f = +194.57 mm.
 
-## Validation, Duplicate Bounds and Rebuild
+The rear singlet supplies weak positive power through equal and opposite radii of 252.5 mm. A 1.1 mm axial air space separates it from the cemented group.
 
-553tests/7standard native and Builder files pass with one worker and unchanged defaults. Full retained-baseline and strict model types, same-rule model lint0errors0warnings, formatting, native aperture audit, UI export/reload and12fresh byte-identical replay reports pass. The previous complete350file6947test pass is verified for the same unchanged4027fd20 baseline; it is not a new full run or catalog inclusion of this private reference.
+## Glass Identification and Selection
 
-Bounded negative normalized signed/scale/reversal screens:1188retained main,4816cached main/21PR/history profiles; additional overlapping16748loose TS,1151TAR,323structured surface profiles and24376TS members in50ZIPs, plus plane-alias normalization. Thirty native profiles in ten sealed ZIPs and private Creighton/held Herzberger are separately checked. US1558073's4E/3G and US1540752's4E/4G are distinct; their titles do not identify this5E/4G prescription. DE634843/GB375723 search aliases are not new original-page verification. Inaccessible/arbitrary-expression and live remote freshness remain excluded; known403/denied routes not retried.
+The patent prints D-line and G-line indices and Abbe numbers for every element, but no glass trade names or suppliers. The source pairs remain unmatched historical materials.
 
-Ten ZIPs and17prior checkpoint manifests/producer-frozen files remain unchanged, including qualified Creighton and manual-only held Herzberger. No packaging,upload,transfer,sharing,catalog entry,public action or delivery credit. Rebuild scripts and exact member receipt retain the scope and input/metric distinctions.
+| Element |     nD | nG, as printed |    ν |
+| ------- | -----: | -------------: | ---: |
+| 1 / I   | 1.6580 |         1.6741 | 51.4 |
+| 2 / II  | 1.6741 |         1.7015 | 32.0 |
+| 3 / III | 1.5821 |         1.5998 | 42.0 |
+| 4 / IV  | 1.6580 |         1.6741 | 51.4 |
+| 5 / V   | 1.6513 |         1.6732 | 38.3 |
+
+The G-line values are preserved with their printed designation. The patent gives no wavelength for G, so these values are not assigned to the model's 435.8 nm g-line field. The D-line indices and Abbe numbers support approximate chromatic calculations, but do not establish the complete dispersion curves or secondary spectrum of the historical glasses.
+
+The patent describes the use of high-index baryta crown to improve field flatness. Adding the cemented flint member permits chromatic correction without relying on a very heavy flint whose yellow tint would absorb blue light (specification p. 1, lines 33–58).
+
+## Focus Mechanism and Aperture
+
+Infinity focus only; the patent gives no close-focus data or focusing mechanism. The stop is inferred within the printed 9.2 mm air space between R4 and R5, divided into 5.4 mm before and 3.8 mm after the stop. Its axial station is 26.4 mm after the first vertex; the figure draws no iris.
+
+Nominal f/2.5 gives an inferred stop radius of 15.2690 mm. The admitted axial beam has entrance-equivalent f/2.5830 and image-sine f/2.5843. These finite-ray values differ from the paraxial f-number because of pupil aberration. No clear rim limits the axial aperture. A finite entrance-equivalent f/2.5 would require a larger stop radius of 15.8199 mm, which is not a printed iris dimension.
+
+## Model Scope and Limitations
+
+All clear semi-diameters are inferred. The model retains larger rims than the drawing suggests at R1/R2, R3 and R8/R9; they do not obstruct the axial beam or the chief ray at the displayed 10° half-field. Some off-axis marginal rays are vignetted by the front element. Neither the selected ±10° field nor the f-stop list is stated in the patent, and no image format or image circle is assigned.
+
+The model preserves the printed prescription and uses its paraxial infinity image plane. Geometric image-quality calculations describe this modeled aperture and field; measured production performance and full spectral behavior are not established.
 
 ## Sources
 
-[Official original locator](https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/1888156). Externally supplied signed original SHA-256: `4fb888a43444130ae43fd7d557c5a1569c84a299aa0f88680b8eb45484001911`. The checkpoint contains its attributed transcription/pin and diagnostics, not original PDF bytes or local source-pixel verification.
+- [US 1,888,156 A](https://patents.google.com/patent/US1888156A/en), drawing sheet and specification pp. 1–2: prescription, glass indices, construction and claims.
+- [US 1,540,752 A](https://patents.google.com/patent/US1540752A/en): the earlier four-singlet design expressly cited by the later patent.
+- [GB 375,723 A](https://patents.google.com/patent/GB375723A/en) and [DE 634,843 C](https://patents.google.com/patent/DE634843C/en): British and German filings of the same invention.
+- [Espen Susort, Astro-Gesellschaft historical timeline](https://espensusort.no/posts/timeline-of-astro-berlin/), 1922 section and reproduced contemporary notices: company background, without a production-prescription link.
+- [Pentacon Six, Astro lenses](https://www.pentaconsix.com/astro.htm): named Astro products and element counts; no construction establishes a match to this patent.
