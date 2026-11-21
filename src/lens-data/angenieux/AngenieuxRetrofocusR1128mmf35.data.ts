@@ -43,7 +43,7 @@ const LENS_DATA = {
   key: "angenieux-retrofocus-r11-28mm-f35",
   maker: "P. Angénieux",
   name: "P. ANGÉNIEUX RETROFOCUS TYPE R11 28mm f/3.5",
-  subtitle: "GB 720,808 sole example — correlated to the 1953 production Type R11",
+  subtitle: "GB 720,808 sole example — matched to the 1953 production Type R11",
 
   catalog: {
     imageFormat: "135-full-frame",
