@@ -31,7 +31,7 @@ const LENS_DATA = {
   },
   catalog: {
     focalLengthMm: {
-      design: 100,
+      design: 100.26,
     },
     fNumber: {
       design: 3.5,
