@@ -62,7 +62,8 @@ const LENS_DATA = {
       vd: 60.4,
       indexReference: "D",
       focalLengthMm: -87.73,
-      glass: "Unmatched (nD 1.620 / ν 60.4)",
+      glass:
+        "BACD16 (spectral proxy; patent nD 1.62 / ν 60.4; supplier and melt unspecified)",
       role: "Front negative member that extends back focus",
     },
     {
@@ -86,7 +87,8 @@ const LENS_DATA = {
       vd: 36.6,
       indexReference: "D",
       focalLengthMm: -66.9,
-      glass: "Unmatched (nD 1.617 / ν 36.6)",
+      glass:
+        "F4 (spectral proxy; patent nD 1.617 / ν 36.6; supplier and melt unspecified)",
       role: "Negative middle component that contributes to field correction",
     },
     {
@@ -98,7 +100,8 @@ const LENS_DATA = {
       vd: 36.6,
       indexReference: "D",
       focalLengthMm: -92.14,
-      glass: "Unmatched (nD 1.617 / ν 36.6)",
+      glass:
+        "F4 (spectral proxy; patent nD 1.617 / ν 36.6; supplier and melt unspecified)",
       role: "Dispersive negative element of the rear doublet",
       cemented: "C1",
     },
