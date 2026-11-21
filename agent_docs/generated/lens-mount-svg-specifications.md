@@ -47,7 +47,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
 | [`nikon-z`](#nikon-z--nikon-z) | bayonet | 16 mm | 55 mm | `mvp_complete` | 1 |
 | [`olympus-om`](#olympus-om--olympus-om) | bayonet | 46 mm | 47 mm | `mvp_complete` | 1 |
 | [`pentax-110`](#pentax-110--pentax-110) | bayonet | 27 mm | 20.6 mm | `renderable` | 1 |
-| [`pentax-645`](#pentax-645--pentax-645) | bayonet | 70.87 mm | 61 mm | `renderable` | 1 |
+| [`pentax-645`](#pentax-645--pentax-645) | bayonet | 70.87 mm | 61.2 mm | `renderable` | 4 |
 | [`pentax-67`](#pentax-67--pentax-67) | bayonet | 84.95 mm | 72 mm | `renderable` | 3 |
 | [`pentax-k`](#pentax-k--pentax-k) | bayonet | 45.46 mm | 44 mm | `mvp_complete` | 7 |
 | [`samsung-nx`](#samsung-nx--samsung-nx) | bayonet | 25.5 mm | 42 mm | `renderable` | 1 |
@@ -3569,77 +3569,126 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 | MVP status | `renderable` |
 | Mount mechanism | `bayonet` (lock `sprung_detent`) |
 | Base profile | `pentax-645/base` |
-| Selected MVP profile | `pentax-645/base` |
-| Variant strategy | `base_only` |
+| Selected MVP profile | `pentax-645/af` |
+| Variant strategy | `variant_profiles_defined` |
 
 #### Base and variant profile matrix
 
 | Profile ID | Type | Applies to | Adds | Removes | Changes |
 |---|---|---|---|---|---|
-| `pentax-645/base` | base | Pentax 645 and 645A/FA lenses and bodies | medium-format bayonet; aperture coupling; later electronic communication variants | — | electrical variants are noted but not split in MVP |
+| `pentax-645/base` | base | all Pentax 645 bodies and lenses, 1984 onward | three-lug bayonet; 70.87 mm register; clockwise lock; mounting index; aperture coupling | — | — |
+| `pentax-645/a` | variant | 645 A mount: Pentax 645 (1984) and 645 A lenses | seven lens information pins in two groups (four and three) inside the mount | — | manual focus only; no AF coupler |
+| `pentax-645/af` | variant | 645 AF mount: Pentax 645N / 645NII (1997 onward) and FA 645 lenses | five more pins between the two 645 A groups, twelve on one arc; AF coupler | — | the seven 645 A pin positions are kept, so 645 A lenses and bodies still connect |
+| `pentax-645/af2` | variant | 645 AF2 mount: Pentax 645D / 645Z and D FA 645 / DA 645 lenses | power contacts (position and count not sourced, not drawn) | — | the maker lists AF coupler, lens information contacts and power contacts; only the body AF coupler is drawn because no dimensioned or front-view source for the 645 AF2 contact bank was found |
 
 #### Dimensional summary
 
 | Field | Value | Unit |
 |---|---|---|
 | Flange focal distance | 70.87 (`secondary`) | mm |
-| Nominal throat diameter | 61 (`secondary`) | mm |
-| Effective clear aperture | 61 (`secondary`) | mm |
+| Nominal throat diameter | 61.2 (`secondary`) | mm |
+| Effective clear aperture | 61.2 (`secondary`) | mm |
 | Camera mount outer diameter | 72 (`photo_scaled`) | mm |
 | Lens mount outer diameter | 70 (`photo_scaled`) | mm |
-| Contact count | not_applicable (`not_applicable`) | count |
+| Contact count | 12 (`patent`) | count |
 | Lock rotation | 60 (`photo_scaled`) | deg |
-| Lock direction | clockwise (`photo_scaled`) | — |
+| Lock direction | clockwise (`official`) | — |
 
-#### Figures (selected profile `pentax-645/base`)
+#### Figures (selected profile `pentax-645/af`)
 
-**Camera-side front view** — viewBox `-44 -46 88 90` · 37 elements in 4 layers · hash `a161264d` ([standalone SVG](mounts/pentax-645-camera-front.svg))
+**Camera-side front view** — viewBox `-44 -46 88 90` · 64 elements in 5 layers · hash `a91432ee` ([standalone SVG](mounts/pentax-645-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-43 -45 86 88` · 31 elements in 4 layers · hash `38ac28b0` ([standalone SVG](mounts/pentax-645-lens-rear.svg))
+**Lens-side rear view** — viewBox `-43 -45 86 88` · 58 elements in 5 layers · hash `46d0842d` ([standalone SVG](mounts/pentax-645-lens-rear.svg))
 
-**Axial / register schematic** — viewBox `-79 -48 88 92` · 12 elements in 2 layers · hash `c59f31d9` ([standalone SVG](mounts/pentax-645-axial.svg))
+**Axial / register schematic** — viewBox `-79 -48 88 92` · 12 elements in 2 layers · hash `be478445` ([standalone SVG](mounts/pentax-645-axial.svg))
 
 #### Camera-side front-view geometry
 
 | Feature ID | Type | Profile | Center | Start | End | Inner r | Outer r |
 |---|---|---|---|---|---|---|---|
-| `body-throat` | body_throat | `pentax-645/base` | 0° | 0° | 360° | 0 | 30.5 |
-| `body-mount-ring` | mount_ring | `pentax-645/base` | 0° | 0° | 360° | 30.5 | 36 |
-| `body-slot-1` | bayonet_receiving_slot | `pentax-645/base` | 20° | 2° | 38° | 30.5 | 33 |
-| `body-slot-2` | bayonet_receiving_slot | `pentax-645/base` | 140° | 122° | 158° | 30.5 | 33 |
-| `body-slot-3` | bayonet_receiving_slot | `pentax-645/base` | 260° | 242° | 278° | 30.5 | 33 |
-| `body-index-mark` | index_mark | `pentax-645/base` | 0° | unknown | unknown | unknown | 36.5 |
-| `body-lock-pin` | lock_pin | `pentax-645/base` | 90° | unknown | unknown | unknown | 31.5 |
+| `body-throat` | body_throat | `pentax-645/base` | 0° | 0° | 360° | 0 | 30.6 |
+| `body-mount-ring` | mount_ring | `pentax-645/base` | 0° | 0° | 360° | 30.6 | 36 |
+| `body-slot-1` | bayonet_receiving_slot | `pentax-645/base` | 356.25° | 324.5° | 28° | 28.1 | 30.6 |
+| `body-slot-2` | bayonet_receiving_slot | `pentax-645/base` | 133.5° | 104° | 163° | 28.1 | 30.6 |
+| `body-slot-3` | bayonet_receiving_slot | `pentax-645/base` | 238° | 214.5° | 261.5° | 28.1 | 30.6 |
+| `body-index-mark` | index_mark | `pentax-645/base` | 305° | 305° | 305° | not_applicable | 36.5 |
+| `body-lock-pin` | lock_pin | `pentax-645/base` | unknown | unknown | unknown | unknown | unknown |
 
 #### Lens-side rear-view geometry
 
 | Feature ID | Type | Profile | Center | Start | End | Inner r | Outer r |
 |---|---|---|---|---|---|---|---|
-| `lens-throat` | lens_throat | `pentax-645/base` | 0° | 0° | 360° | 0 | 29.5 |
-| `lens-mount-ring` | lens_mount_ring | `pentax-645/base` | 0° | 0° | 360° | 29.5 | 35 |
-| `lens-lug-1` | bayonet_lug | `pentax-645/base` | 20° | 2° | 38° | 30.5 | 33 |
-| `lens-lug-2` | bayonet_lug | `pentax-645/base` | 140° | 122° | 158° | 30.5 | 33 |
-| `lens-lug-3` | bayonet_lug | `pentax-645/base` | 260° | 242° | 278° | 30.5 | 33 |
-| `lens-index-mark` | index_mark | `pentax-645/base` | 0° | unknown | unknown | unknown | 35.5 |
-| `lens-lock-notch` | lock_notch | `pentax-645/base` | 90° | unknown | unknown | unknown | 31.5 |
+| `lens-throat` | lens_throat | `pentax-645/base` | 0° | 0° | 360° | 0 | 22.1 |
+| `lens-mount-ring` | lens_mount_ring | `pentax-645/base` | 0° | 0° | 360° | 30.6 | 35 |
+| `lens-lug-1` | bayonet_lug | `pentax-645/base` | 356.25° | 326.5° | 26° | 28.1 | 30.1 |
+| `lens-lug-2` | bayonet_lug | `pentax-645/base` | 133.5° | 107.5° | 159.5° | 28.1 | 30.1 |
+| `lens-lug-3` | bayonet_lug | `pentax-645/base` | 238° | 222.25° | 253.75° | 28.1 | 30.1 |
+| `lens-index-mark` | index_mark | `pentax-645/base` | 305° | 305° | 305° | not_applicable | 35.5 |
+| `lens-lock-notch` | lock_notch | `pentax-645/base` | unknown | unknown | unknown | unknown | unknown |
+
+#### Electrical contacts
+
+| Side | No. | Profile | Center angle | Radius | Function |
+|---|---|---|---|---|---|
+| body | 1 | `pentax-645/a` | 325° | 25.4 | pin a: Fmin2/DATA |
+| body | 2 | `pentax-645/a` | 331.5° | 25.4 | pin b: Fmin1/SCK |
+| body | 3 | `pentax-645/a` | 338° | 25.4 | pin c: Fmax1 |
+| body | 4 | `pentax-645/a` | 344° | 25.4 | pin d: Fmax2 |
+| body | 5 | `pentax-645/a` | 22.5° | 25.4 | pin j: LS/ACK |
+| body | 6 | `pentax-645/a` | 28.5° | 25.4 | pin k: Fmin3/RES |
+| body | 7 | `pentax-645/a` | 35° | 25.4 | pin l: A/M |
+| lens | 1 | `pentax-645/a` | 325° | 25.4 | pin a: Fmin2/DATA |
+| lens | 2 | `pentax-645/a` | 331.5° | 25.4 | pin b: Fmin1/SCK |
+| lens | 3 | `pentax-645/a` | 338° | 25.4 | pin c: Fmax1 |
+| lens | 4 | `pentax-645/a` | 344° | 25.4 | pin d: Fmax2 |
+| lens | 5 | `pentax-645/a` | 22.5° | 25.4 | pin j: LS/ACK |
+| lens | 6 | `pentax-645/a` | 28.5° | 25.4 | pin k: Fmin3/RES |
+| lens | 7 | `pentax-645/a` | 35° | 25.4 | pin l: A/M |
+| body | 1 | `pentax-645/af` | 325° | 25.4 | pin a: Fmin2/DATA |
+| body | 2 | `pentax-645/af` | 331.5° | 25.4 | pin b: Fmin1/SCK |
+| body | 3 | `pentax-645/af` | 338° | 25.4 | pin c: Fmax1 |
+| body | 4 | `pentax-645/af` | 344° | 25.4 | pin d: Fmax2 |
+| body | 5 | `pentax-645/af` | 350.5° | 25.4 | pin e: (dummy) |
+| body | 6 | `pentax-645/af` | 356.5° | 25.4 | pin f: PGND |
+| body | 7 | `pentax-645/af` | 3° | 25.4 | pin g: VLENS (VBATT) |
+| body | 8 | `pentax-645/af` | 9° | 25.4 | pin h: LENS N/O |
+| body | 9 | `pentax-645/af` | 15.5° | 25.4 | pin i: CONTL/VDD |
+| body | 10 | `pentax-645/af` | 22.5° | 25.4 | pin j: LS/ACK |
+| body | 11 | `pentax-645/af` | 28.5° | 25.4 | pin k: Fmin3/RES |
+| body | 12 | `pentax-645/af` | 35° | 25.4 | pin l: A/M |
+| lens | 1 | `pentax-645/af` | 325° | 25.4 | pin a: Fmin2/DATA |
+| lens | 2 | `pentax-645/af` | 331.5° | 25.4 | pin b: Fmin1/SCK |
+| lens | 3 | `pentax-645/af` | 338° | 25.4 | pin c: Fmax1 |
+| lens | 4 | `pentax-645/af` | 344° | 25.4 | pin d: Fmax2 |
+| lens | 5 | `pentax-645/af` | 350.5° | 25.4 | pin e: (dummy) |
+| lens | 6 | `pentax-645/af` | 356.5° | 25.4 | pin f: PGND |
+| lens | 7 | `pentax-645/af` | 3° | 25.4 | pin g: VLENS (VBATT) |
+| lens | 8 | `pentax-645/af` | 9° | 25.4 | pin h: LENS N/O |
+| lens | 9 | `pentax-645/af` | 15.5° | 25.4 | pin i: CONTL/VDD |
+| lens | 10 | `pentax-645/af` | 22.5° | 25.4 | pin j: LS/ACK |
+| lens | 11 | `pentax-645/af` | 28.5° | 25.4 | pin k: Fmin3/RES |
+| lens | 12 | `pentax-645/af` | 35° | 25.4 | pin l: A/M |
 
 #### Mechanical couplings
 
 | Feature | Side | Profile | Function |
 |---|---|---|---|
 | `aperture-coupling` | both | `pentax-645/base` | aperture actuation and reporting |
+| `af-coupler` | body | `pentax-645/af` | screw-drive autofocus from the body AF motor |
+| `af-driven-coupler` | lens | `pentax-645/af` | receives the body AF coupler |
+| `af-coupler-af2` | body | `pentax-645/af2` | screw-drive autofocus from the body AF motor |
 
 #### Axial stack
 
 | Plane | z (mm) | Diameter (mm) |
 |---|---|---|
 | `flange_datum` | 0 | 72 |
-| `bayonet_lug_engagement` | 1.2 | 66 |
+| `bayonet_lug_engagement` | 1.2 | 60.2 |
 | `sensor_film_plane` | -70.87 | 69.7 |
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/pentax-645.mount.ts` (25676 bytes, content hash `7e8b4fba`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/pentax-645.mount.ts` (73903 bytes, content hash `0e45f0c5`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -3647,10 +3696,23 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 |---|---|---|---|---|---|
 | `p645-1` | secondary | “Flange focal distance,” Wikipedia. Accessed 2026-06-06. | [snapshot](http://web.archive.org/web/20260526152456/https://en.wikipedia.org/wiki/Flange_focal_distance) | 2026-05-26 | medium |
 | `p645-2` | secondary | Pentax 645 mount visual references. Accessed 2026-06-06. | [snapshot](unknown) | unknown | low |
+| `p645-3` | secondary | “Lens mount,” Wikipedia, table row “Pentax 645”. Accessed 2026-11-21. | [snapshot](https://en.wikipedia.org/w/index.php?title=Lens_mount&oldid=1385498741) | 2026-11-21 | low |
+| `p645-p1` | patent | US6341902B1, "Photographic lens recognition system for a camera body," Asahi Kogaku Kogyo K.K., priority JP 09-336028 (1997-12-05). Accessed 2026-11-21. | [snapshot](https://patentimages.storage.googleapis.com/48/94/2c/fd55faa9c410d2/US6341902.pdf) | 2026-11-21 | high |
+| `p645-p1f` | patent_figure | US6341902B1, FIGS. 2 to 5: lens rear and body front views of the pre-existing and new mounts. Undimensioned drawings, scaled for this spec. Accessed 2026-11-21. | [snapshot](https://patentimages.storage.googleapis.com/48/94/2c/fd55faa9c410d2/US6341902.pdf) | 2026-11-21 | medium |
+| `p645-m1` | official | Pentax 645NII Operating Manual, Asahi Optical Co., Ltd. Accessed 2026-11-21. | [snapshot](https://www.manualslib.com/manual/259899/Pentax-645n2.html) | 2026-11-21 | high |
+| `p645-m2` | official | PENTAX 645Z Menu Reference, main specifications, Ricoh Imaging Co., Ltd. Accessed 2026-11-21. | [snapshot](https://www.manualslib.com/manual/878377/Pentax-645-Z.html) | 2026-11-21 | high |
+| `p645-m3` | official | PENTAX 645D Operating Manual, maker PDF hosted by Ricoh Imaging. Accessed 2026-11-21. | [snapshot](https://www.manualslib.com/manual/417746/Pentax-645d.html) | 2026-11-21 | medium |
+| `p645-m4` | official | ペンタックス645 使用説明書 (Pentax 645 operating manual), Asahi Optical Co., Ltd. Accessed 2026-11-21. | [snapshot](https://www.ricoh-imaging.co.jp/japan/support/man-pdf/645-2.pdf) | 2026-11-21 | high |
 
 #### Open questions
 
-- Pentax 645 lug spans, exact throat, and generation-specific contacts are unresolved. _(Add A/FA/D FA profile overlays after measured samples or service data.)_
+- Lug and slot angles are scaled from US6341902B1 FIGS. 2 to 5, which state no angle or scale. Readings repeat to about 1 degree between the old and new figures except lens lug 3, drawn 31.5 degrees wide in FIG. 4 and 45.5 degrees in FIG. 2. Lens lugs are stored at their slot centres; at a 62 degree turn the figure-derived insertion centres differ from that by about 0.5, 3 and 9 degrees for lugs 1, 2 and 3. _(A dimensioned Pentax bayonet drawing, a 645 / 645N service manual with mount-part drawings, or a measured lens and body. Searched: Google Patents pages for Asahi contact patents (US4653889A and JPS60243643A are K-mount; US5570153A is a joint Asahi/Nikon two-format bayonet), Ricoh manual downloads, Wikipedia, iso3200.org.)_
+- Lock rotation angle is not stated by any source found. The 60 degree value is the earlier estimate; the patent-figure lug and gap edges admit about 60 to 64 degrees. Direction (clockwise from the front) is stated by the maker manuals. _(Maker service data or a measured sample.)_
+- Lock pin and lock notch positions are unknown and render as placeholders at 0 degrees. Candidates: near the lens unlock button (about 235 degrees in the 645D manual drawing) or the unlabelled notch in lens lug 2 of US6341902B1 FIGS. 2 and 4 (180 degrees with the lens locked). _(Service manual exploded view or a measured body.)_
+- Throat 61.2 mm is an uncited Wikipedia table value; no maker, patent or service figure for it was found. Every radius scaled from the patent figures (lug root 28.1, lug tip 30.1, pin circle 25.4, rear opening 22.1 mm) is a ratio of that throat and moves with it. The 70.87 mm register is also still secondary: the Ricoh 645 lens line-up PDF Wikipedia cites for it no longer states a register. _(Maker drawing or calibrated measurement.)_
+- Both outer diameters, the mount-ring outer radii, the index-mark radii, lug thickness, the lug-engagement plane, the aperture coupling (drawn outside the throat radius, which cannot be right) and the four mount screws still rest only on the unreferenced imagery source p645-2. The same patent-figure ratios would give about 67 mm (body ring) and 65 mm (lens ring) outer diameters, but those outer circles are not corroborated between figures and were not adopted. _(Measured sample or service manual. US6341902B1 FIGS. 2 and 4 also show three unlabelled arc windows in the lens rear ring that may include the aperture lever slot.)_
+- 645 AF pin positions follow the patent embodiment; that the production 645N / 645NII and FA 645 lenses carry all twelve pins is not confirmed by a photograph or service document. The body-front figures (FIGS. 3 and 5) place pins j to l about 2 to 4 degrees further clockwise than the lens-rear figures used here. Pin diameter (1.3 mm) is a figure ratio and pin protrusion is unknown. _(645N service manual or a measured body and lens.)_
+- 645 AF2 power contacts are named by the maker but not located. The 645D manual drawing shows one contact arc at the top of the mount with at least ten pins visible, and the patent's twelve-pin set already includes lens power pins (PGND, VLENS), so the power contacts may lie within that arc; this is not confirmed. No lens-side 645 AF2 geometry is drawn, and which D FA 645 / DA 645 lenses omit the AF coupler or use an electromagnetic diaphragm was not sourced. _(A Hoya / Ricoh patent or service manual for the 645D or 645Z mount, or front-view photographs with a scale. contactCount records the 645 AF figure of twelve.)_
 
 ### `pentax-67` — Pentax 67
 
