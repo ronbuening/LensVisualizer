@@ -20,7 +20,7 @@ The patent prints nominal focal length 100 and aperture f/3.5 without specifying
 
 ## Optical Architecture
 
-This is an all-spherical Tessar-type objective: a positive front singlet, a negative middle singlet, and a positive rear cemented doublet. Four elements form three air-spaced groups, with seven refracting surfaces and the L3/L4 cemented interface at R6. The cemented pair has a computed focal length of +59.74 mm. The patent cites Paul Rudolph's US 721,240, the original Tessar patent.
+This is an all-spherical Tessar-type objective: a positive front singlet (member I), a negative middle singlet (II), and a positive rear cemented doublet (III). Four elements form three air-spaced groups, with seven refracting surfaces and the L3/L4 cemented interface at R6. The cemented pair has a computed focal length of +59.74 mm. The patent cites Paul Rudolph's US 721,240, the original Tessar patent.
 
 The patent places the diaphragm in the 7.06 mm space after R4 but gives no exact stop plane. The model divides that space into 4.50 mm before and 2.56 mm after the inferred stop, placing it 21.90 mm behind the first vertex. No filter or sensor plate is specified or modeled.
 
@@ -46,25 +46,25 @@ L3 is biconcave and negative; L4 is biconvex and positive. They share the +33.5 
 
 ## Glass Identification and Selection
 
-The patent explicitly defines nd at the yellow helium d line, 587.6 nm, and prints νd. All four printed index/Abbe pairs are retained. H-LaK6A resolves to CDGM at nd 1.69350 / νd 53.380441, differing by +0.00003 / −0.119559, outside the patent's printed precision; L1 therefore remains Unmatched. F2 resolves to Schott at nd 1.62004 / νd 36.37, differing by 0 / +0.07. This catalog match supplies a dispersion curve without establishing the historical melt or supplier.
+The patent defines nd at the yellow helium d line, 587.6 nm, and prints νd. All four printed pairs are retained. CDGM H-LaK6A has nd 1.69350 / νd 53.38, differing by +0.00003 / −0.12, outside the printed precision; L1 remains Unmatched. Schott F2 has nd 1.62004 / νd 36.37, differing by 0 / +0.07 at the printed index precision. Its dispersion curve approximates L2 without establishing the historical melt or supplier.
 
 L3 has no matching catalog row within 0.0001 in index and 0.15 in Abbe number. L4 lies near the LaF2 family, but its 1.74472 index differs by about 0.00072 from rows near 1.74400, so it remains Unmatched. The patent prints no separate C-, F- or g-line indices or partial dispersions; the unmatched glasses therefore have only an Abbe-based dispersion estimate. No measured broadband or apochromatic performance is established.
 
 ## Focus Mechanism and Aperture
 
-Infinity focus only; the patent gives no close-focus data or group movement law. The f-stop sequence from f/3.5 to f/32 is a viewing control rather than a documented historical iris scale.
+The model is focused at infinity; the patent gives no close-focus data or group movement law. The selectable f-stops span f/3.5 to f/32; the source documents only the full aperture.
 
-The f/3.5 control gives a stop radius of 11.509140 mm. The finite-ray aperture is approximately f/3.56; a stop radius of about 11.694858 mm would be required for the nominal f/3.5 axial marginal ray. The supplied stop is retained and falls within the aperture check's 3% tolerance. Its opening and axial position are inferred.
+The paraxial f-number is 3.50 with a stop radius of 11.51 mm. Finite-aperture estimates are f/3.55 from the entrance pupil and f/3.56 from the image-side sine angle. An f/3.5 axial marginal ray requires about 11.69 mm at the stop. The inferred opening differs from nominal by less than 3%; its axial position is also inferred.
 
 ## First-Order Properties and Model Limits
 
-At the helium d line, the model computes EFL 100.134896 mm against the printed 100, a difference of +0.135%. The paraxial back focal distance is 83.212049 mm and sets the image plane; no back focal distance is printed. The optical track is 33.83 mm, matching the printed total, and the first-vertex-to-image distance is 117.042049 mm.
+At the helium d line, the model computes EFL 100.13 mm against the printed 100, a difference of +0.1%. The paraxial back focal distance is 83.21 mm and sets the image plane; no back focal distance is printed. The optical track is 33.83 mm, matching the printed total, and the first-vertex-to-image distance is 117.04 mm.
 
-The patent's dimensional conditions are satisfied: the first air space is 67.6% of the diaphragm space, the front thickness is 9.79% of nominal focal length, and R6 is about 99% of optical track. No source value has been corrected to remove the small focal-length residual.
+The patent's dimensional conditions are satisfied: the first air space is 67.6% of the diaphragm space, the front thickness is 9.8% of nominal focal length, and R6 is 99.0% of optical track. The printed values retain their small focal-length residual.
 
-The unprinted ±5° field is illustrative. The patent specifies no image format or image circle, so neither is assigned.
+The unprinted ±5.0° field is illustrative. The patent specifies no image format or image circle, so neither is assigned.
 
-Clear semi-diameters remain estimated at 18 / 18 / 16 / 15 / 16 / 15.5 / 15.5 mm. The drawing suggests narrower rims, particularly for L2 and the rear doublet; these await a separate rim review. The present model's minimum glass edge is about 0.97 mm. The R4–R5 common-radius gap clearance is about 3.11 mm, both stop-side rim clearances are positive, and the maximum rim angle is about 28.85°. These optical boundaries do not describe a measured barrel or baffle.
+Clear semi-diameters are estimated at 18 / 18 / 16 / 15 / 16 / 15.5 / 15.5 mm. The drawing suggests narrower rims, particularly for L2 and the rear doublet. The minimum glass edge is about 0.97 mm. The R4–R5 common-radius gap clearance is about 3.11 mm, both stop-side rim clearances are positive, and the maximum rim angle is about 28.9°. These optical boundaries do not describe a measured barrel or baffle.
 
 ## Design Heritage and Product Association
 
@@ -74,5 +74,5 @@ The Xenar name expresses a family association. The four-element Tessar-type arch
 
 1. [US 2,812,689 A](https://patents.google.com/patent/US2812689A/en): sole figure, PDF p. 1; design discussion and table, PDF p. 2; repeated table and cited patents, PDF p. 3.
 2. Franke & Heidecke, [_Rolleicord V_ instruction manual](https://www.cameramanuals.org/rolleiflex/rolleicord_v.pdf), printed p. 3: Schneider Xenar f/3.5 product name, without a patent attribution.
-3. CDGM H-LaK6A and Schott F2 optical-glass catalog entries: H-LaK6A excluded as an exact match; F2 index/Abbe comparison and dispersion curve; historical supplier unresolved.
+3. [CDGM H-LaK6A](https://www.cdgmgd.com/database/toWebDatabase.htm?k=Products_Data&pageIndex=9&url=database) and [Schott F2](https://us.shop.schott.com/advanced-optics/en/Optical-Glass/F2/c/glass-F2): glass comparisons and F2 dispersion; historical suppliers unresolved.
 4. [Tessar — Tessar-derived lenses](https://en.wikipedia.org/wiki/Tessar#Tessar-derived_lenses): Schneider Xenar family classification, without attribution of this prescription to a production lens.

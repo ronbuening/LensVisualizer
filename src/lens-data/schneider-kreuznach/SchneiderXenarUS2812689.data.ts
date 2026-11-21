@@ -6,14 +6,14 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Radii, thicknesses, air spaces and helium-d index/Abbe pairs follow both printed tables.
  * The inferred stop splits the 7.06 mm diaphragm space into 4.50 / 2.56 mm.
  * Clear semi-diameters are estimated; the image plane uses the computed paraxial
- * back focus of 83.212049 mm. The illustrative ±5° field is not printed in the patent.
+ * back focus of 83.21 mm. The illustrative ±5.0° field is not printed in the patent.
  */
 const LENS_DATA = {
   schema: 2,
   key: "schneider-kreuznach-xenar-100mm-f35-us2812689",
   maker: "Schneider-Kreuznach",
   name: "SCHNEIDER-KREUZNACH XENAR 100mm f/3.5 (US 2,812,689 Design)",
-  subtitle: "US 2,812,689 A, sole example — Xenar Tessar-type family",
+  subtitle: "US 2,812,689 A, sole example — Schneider / Albrecht",
   visible: true,
   source: {
     patentNumber: "US 2,812,689 A",
@@ -35,7 +35,12 @@ const LENS_DATA = {
     },
     elementCount: 4,
     groupCount: 3,
-    specs: ["4 ELEMENTS / 3 GROUPS", "ALL SPHERICAL", "DESIGN F/3.5"],
+    specs: [
+      "4 ELEMENTS / 3 GROUPS",
+      "ALL SPHERICAL",
+      "DESIGN f = 100 mm",
+      "DESIGN F/3.5",
+    ],
   },
   elements: [
     {
@@ -158,17 +163,17 @@ const LENS_DATA = {
   },
   groups: [
     {
-      text: "Front singlet",
+      text: "I",
       fromSurface: "1",
       toSurface: "2",
     },
     {
-      text: "Middle singlet",
+      text: "II",
       fromSurface: "3",
       toSurface: "4",
     },
     {
-      text: "Rear cemented doublet",
+      text: "III",
       fromSurface: "5",
       toSurface: "7",
     },
