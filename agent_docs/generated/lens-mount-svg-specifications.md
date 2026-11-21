@@ -25,7 +25,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
 | [`canon-fl`](#canon-fl--canon-fl) | breech_lock | 42 mm | 48 mm | `renderable` | 1 |
 | [`canon-rf`](#canon-rf--canon-rf) | bayonet | 20 mm | 54 mm | `mvp_complete` | 1 |
 | [`contax-rf`](#contax-rf--contax-rf) | hybrid | 34.85 mm | 44 mm | `renderable` | 1 |
-| [`contax-yashica`](#contax-yashica--contax-yashica) | bayonet | 45.5 mm | 48 mm | `renderable` | 1 |
+| [`contax-yashica`](#contax-yashica--contax-yashica) | bayonet | 45.5 mm | 48 mm | `renderable` | 3 |
 | [`exakta`](#exakta--exakta) | bayonet | 44.7 mm | 33.8 mm | `renderable` | 6 |
 | [`fixed-lens-camera`](#fixed-lens-camera--fixed-lens-camera) | fixed_lens | 0 mm | 28 mm | `not_applicable` | 1 |
 | [`four-thirds`](#four-thirds--four-thirds) | bayonet | 38.67 mm | 44 mm | `mvp_complete` | 1 |
@@ -1123,14 +1123,16 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 | MVP status | `renderable` |
 | Mount mechanism | `bayonet` (lock `sprung_detent`) |
 | Base profile | `contax-yashica/base` |
-| Selected MVP profile | `contax-yashica/base` |
-| Variant strategy | `base_only` |
+| Selected MVP profile | `contax-yashica/mm` |
+| Variant strategy | `variant_profiles_defined` |
 
 #### Base and variant profile matrix
 
 | Profile ID | Type | Applies to | Adds | Removes | Changes |
 |---|---|---|---|---|---|
-| `contax-yashica/base` | base | Contax/Yashica manual-focus SLR lenses and bodies | three-lug bayonet; aperture coupling | rangefinder focusing coupling | AE/MM generation details are collapsed for MVP rendering |
+| `contax-yashica/base` | base | every Contax/Yashica manual-focus SLR body and lens, 1975 to 2005 | three-claw bayonet with three unequal slots; body lock tab and lens claw notch; red-dot index at 12 o'clock; aperture-ring coupling to the body's F-stop connecting ring; maximum-aperture (aperture scale) pin; automatic diaphragm lever | electrical contacts | — |
+| `contax-yashica/ae` | variant | AE lenses (1975 onward) and bodies without program modes (for example Contax RTS and RTS II, Yashica FR and FX-3) | — | program coupling pin | aperture-priority and manual exposure only; draws the base geometry unchanged |
+| `contax-yashica/mm` | variant | MM lenses (introduced with the Contax 159MM, mid-1980s) on program-capable bodies | program coupling pin on the lens, read by the body's Theta lever outside the bayonet | — | program exposure modes, in which the body sets the aperture; MM lenses mark the minimum aperture in green; the body stops the diaphragm lever part-way by counting encoder pulses, eight per aperture step, so the lever stroke is equal per stop |
 
 #### Dimensional summary
 
@@ -1139,31 +1141,31 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 | Flange focal distance | 45.5 (`secondary`) | mm |
 | Nominal throat diameter | 48 (`secondary`) | mm |
 | Effective clear aperture | 48 (`secondary`) | mm |
-| Camera mount outer diameter | 58 (`photo_scaled`) | mm |
+| Camera mount outer diameter | 59.5 (`photo_scaled`) | mm |
 | Lens mount outer diameter | 56 (`photo_scaled`) | mm |
 | Contact count | not_applicable (`not_applicable`) | count |
-| Lock rotation | 60 (`photo_scaled`) | deg |
-| Lock direction | clockwise (`photo_scaled`) | — |
+| Lock rotation | 72 (`secondary`) | deg |
+| Lock direction | clockwise (`secondary`) | — |
 
-#### Figures (selected profile `contax-yashica/base`)
+#### Figures (selected profile `contax-yashica/mm`)
 
-**Camera-side front view** — viewBox `-36 -37 72 73` · 37 elements in 4 layers · hash `e21b2a77` ([standalone SVG](mounts/contax-yashica-camera-front.svg))
+**Camera-side front view** — viewBox `-38 -38 76 76` · 40 elements in 4 layers · hash `1a680319` ([standalone SVG](mounts/contax-yashica-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-35 -36 70 71` · 31 elements in 4 layers · hash `1708051c` ([standalone SVG](mounts/contax-yashica-lens-rear.svg))
+**Lens-side rear view** — viewBox `-35 -36 70 71` · 34 elements in 4 layers · hash `8cbee4bf` ([standalone SVG](mounts/contax-yashica-lens-rear.svg))
 
-**Axial / register schematic** — viewBox `-52 -40 60 76` · 12 elements in 2 layers · hash `c3a302f9` ([standalone SVG](mounts/contax-yashica-axial.svg))
+**Axial / register schematic** — viewBox `-52 -41 60 78` · 12 elements in 2 layers · hash `a3bac492` ([standalone SVG](mounts/contax-yashica-axial.svg))
 
 #### Camera-side front-view geometry
 
 | Feature ID | Type | Profile | Center | Start | End | Inner r | Outer r |
 |---|---|---|---|---|---|---|---|
 | `body-throat` | body_throat | `contax-yashica/base` | 0° | 0° | 360° | 0 | 24 |
-| `body-mount-ring` | mount_ring | `contax-yashica/base` | 0° | 0° | 360° | 24 | 29 |
-| `body-slot-1` | bayonet_receiving_slot | `contax-yashica/base` | 30° | 11° | 49° | 24 | 26.5 |
-| `body-slot-2` | bayonet_receiving_slot | `contax-yashica/base` | 150° | 131° | 169° | 24 | 26.5 |
-| `body-slot-3` | bayonet_receiving_slot | `contax-yashica/base` | 270° | 251° | 289° | 24 | 26.5 |
-| `body-index-mark` | index_mark | `contax-yashica/base` | 0° | unknown | unknown | unknown | 29.5 |
-| `body-lock-pin` | lock_pin | `contax-yashica/base` | 90° | unknown | unknown | unknown | 25 |
+| `body-mount-ring` | mount_ring | `contax-yashica/base` | 0° | 0° | 360° | 24 | 29.75 |
+| `body-slot-1` | bayonet_receiving_slot | `contax-yashica/base` | 42.5° | 18° | 67° | 22.3 | 24 |
+| `body-slot-2` | bayonet_receiving_slot | `contax-yashica/base` | 172.5° | 147° | 198° | 22.3 | 24 |
+| `body-slot-3` | bayonet_receiving_slot | `contax-yashica/base` | 284° | 252° | 316° | 22.3 | 24 |
+| `body-index-mark` | index_mark | `contax-yashica/base` | 0° | unknown | unknown | unknown | 30.8 |
+| `body-lock-pin` | lock_pin | `contax-yashica/base` | 15° | unknown | unknown | unknown | 22.7 |
 
 #### Lens-side rear-view geometry
 
@@ -1171,29 +1173,32 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 |---|---|---|---|---|---|---|---|
 | `lens-throat` | lens_throat | `contax-yashica/base` | 0° | 0° | 360° | 0 | 23 |
 | `lens-mount-ring` | lens_mount_ring | `contax-yashica/base` | 0° | 0° | 360° | 23 | 28 |
-| `lens-lug-1` | bayonet_lug | `contax-yashica/base` | 30° | 11° | 49° | 24 | 26.5 |
-| `lens-lug-2` | bayonet_lug | `contax-yashica/base` | 150° | 131° | 169° | 24 | 26.5 |
-| `lens-lug-3` | bayonet_lug | `contax-yashica/base` | 270° | 251° | 289° | 24 | 26.5 |
+| `lens-lug-1` | bayonet_lug | `contax-yashica/base` | 42.5° | 18° | 67° | 22.3 | 24 |
+| `lens-lug-2` | bayonet_lug | `contax-yashica/base` | 172.5° | 147° | 198° | 22.3 | 24 |
+| `lens-lug-3` | bayonet_lug | `contax-yashica/base` | 284° | 252° | 316° | 22.3 | 24 |
 | `lens-index-mark` | index_mark | `contax-yashica/base` | 0° | unknown | unknown | unknown | 28.5 |
-| `lens-lock-notch` | lock_notch | `contax-yashica/base` | 90° | unknown | unknown | unknown | 25 |
+| `lens-lock-notch` | lock_notch | `contax-yashica/base` | 15° | unknown | unknown | unknown | 22.7 |
 
 #### Mechanical couplings
 
 | Feature | Side | Profile | Function |
 |---|---|---|---|
-| `aperture-coupling` | both | `contax-yashica/base` | aperture control/reporting |
+| `aperture-ring-coupling` | both | `contax-yashica/base` | set-aperture input: a lug on the lens aperture ring positions the body's F-stop connecting ring |
+| `maximum-aperture-pin` | both | `contax-yashica/base` | aperture scale coupling: tells the body the lens's maximum aperture for the finder aperture display |
+| `automatic-diaphragm-lever` | both | `contax-yashica/base` | the body's automatic diaphragm action lever closes the lens diaphragm at exposure |
+| `mm-program-coupling` | both | `contax-yashica/mm` | tells a program-capable body that an MM lens is mounted |
 
 #### Axial stack
 
 | Plane | z (mm) | Diameter (mm) |
 |---|---|---|
-| `flange_datum` | 0 | 58 |
+| `flange_datum` | 0 | 59.5 |
 | `bayonet_lug_engagement` | 1.2 | 53 |
 | `sensor_film_plane` | -45.5 | 43.3 |
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/contax-yashica.mount.ts` (25395 bytes, content hash `868c20a8`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/contax-yashica.mount.ts` (41362 bytes, content hash `cb239a8a`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -1201,10 +1206,24 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 |---|---|---|---|---|---|
 | `cy-1` | secondary | “Flange focal distance,” Wikipedia. Accessed 2026-06-06. | [snapshot](http://web.archive.org/web/20260526152456/https://en.wikipedia.org/wiki/Flange_focal_distance) | 2026-05-26 | medium |
 | `cy-2` | secondary | Contax/Yashica mount visual references. Accessed 2026-06-06. | [snapshot](unknown) | unknown | low |
+| `cy-3` | secondary | “Lens mount,” Wikipedia, revision of 2026-11-13. Accessed 2026-11-21. | [snapshot](https://en.wikipedia.org/w/index.php?title=Lens_mount&oldid=1385498741) | 2026-11-21 | medium |
+| `cy-4` | secondary | “Contax/Yashica SLRs,” Wikipedia, revision of 2026-10-17, section “Lens mount”. Accessed 2026-11-21. | [snapshot](https://en.wikipedia.org/w/index.php?title=Contax/Yashica_SLRs&oldid=1380717752) | 2026-11-21 | medium |
+| `cy-m1` | official | Yashica Co., Ltd., Contax RTS instruction manual, c. 1975 (scan hosted by M. Butkus). Accessed 2026-11-21. | [snapshot](https://www.cameramanuals.org/contax/contax_rts.pdf) | 2026-11-21 | high |
+| `cy-m2` | official | Yashica Co., Ltd., Yashica FR instruction manual, c. 1976 (scan hosted by M. Butkus). Accessed 2026-11-21. | [snapshot](https://www.cameramanuals.org/yashica_pdf/yashica_fr.pdf) | 2026-11-21 | high |
+| `cy-sm1` | service_manual | Contax 159MM Repair Manual, Kyocera, mid-1980s (scan listed on the Contax 139 Resource documents page). Accessed 2026-11-21. | [snapshot](https://drive.google.com/open?id=0B4O3Tuo7UDz3d1o1M29rLU9VZW8) | 2026-11-21 | high |
+| `cy-sm2` | service_manual | Contax RTS II Quartz Repair Manual, Yashica Co., Ltd., c. 1982 (scan listed on the Contax 139 Resource documents page). Accessed 2026-11-21. | [snapshot](https://drive.google.com/open?id=0B4O3Tuo7UDz3Vk9uNWJPaE83cHc) | 2026-11-21 | high |
+| `cy-ph1` | field_photo | Mliu92, “Contax-Yashica mount, body.jpg” (mounting flange of a Yashica FX-3), Wikimedia Commons, 2026-06-30. Accessed 2026-11-21. | [snapshot](https://upload.wikimedia.org/wikipedia/commons/f/f1/Contax-Yashica_mount%2C_body.jpg) | 2026-11-21 | medium |
+| `cy-ph2` | field_photo | Mliu92, “Contax-Yashica mount, lens.jpg” (mounting flange of a Yashica ML 50 mm f/2), Wikimedia Commons, 2026-06-30. Accessed 2026-11-21. | [snapshot](https://upload.wikimedia.org/wikipedia/commons/e/eb/Contax-Yashica_mount%2C_lens.jpg) | 2026-11-21 | low |
 
 #### Open questions
 
-- C/Y lug geometry and AE/MM coupling details are photo-scaled. _(Upgrade with measured C/Y bodies and lenses or service drawings.)_
+- No dimensioned drawing of the bayonet was found. Slot edges are scaled from one FX-3 flange photo (about +/-2 deg), with the 159MM repair manual Fig. 21 drawing as an undimensioned cross-check; the lens claws are drawn with the slot extents because their own spans were not measured. Searched: web and Google Patents for Yashica, Kyocera and Carl Zeiss bayonet or aperture-coupling patents (none found for the mount itself; JPS58100837A and JPS58216227A cover a multi-mode aperture ring and state no angles or dimensions), the Contax RTS, RTS II and 159MM and Yashica FR repair manuals, and the RTS and FR owner manuals. _(A factory mount drawing, a service manual with mount dimensions, or calibrated measurement of a body and lens.)_
+- The 159MM repair manual gives the body flange back as 45.42 +0.02/-0.03 mm from the body mount plane to the film rail plane (p. 48), against the 45.5 mm register in secondary tables. The stored value stays at the nominal 45.5 mm. _(A Zeiss or Kyocera statement of the nominal register and of how the body adjustment figure relates to it.)_
+- Coupling angles are photo-scaled and their radii are the apparent ones in a front photo (the parts sit behind the flange). The maximum-aperture pin has no radius, and no source gives the aperture follower's travel per stop or the diaphragm lever's stroke. _(A lens or body service manual with coupling dimensions, or calibrated measurement.)_
+- The MM program coupling is placed only by the Wikipedia article's 'about 5 o'clock on the body, outside the bayonet'; its radius is unknown. The 159MM repair manual names the parts without a position, and its Fig. 21 draws an unlabelled lever outside the ring at about 138 deg. The MM stop-down lever's proportional stroke is not dimensioned by any source found. _(A Contax 159MM or 167MT service drawing of the Theta lever, or an MM lens repair manual.)_
+- The lock tab is placed by the Wikipedia article's clock position (about 12:30) and its radius by the FX-3 photo. The lens release button on the body front is not modelled. _(A service manual drawing of the lock tab and the notch in the lens claw.)_
+- Mount screw positions and pitch circle are photo-scaled from the FX-3 photo (four screws; the 159MM drawing shows four in similar positions). Screw diameter is a stand-in. _(A parts list or assembly chart with the screw size and positions.)_
+- The label-only reference cy-2 still carries stand-in values no located source supports: lens mount outer diameter (56 mm), lens throat and flange radii, lug thickness and slot depth (1.8 mm), the lug engagement plane, the lens index radius and the screw diameter. _(Measurement of a C/Y lens rear and a body mount ring section, or a lens service manual.)_
 
 ### `exakta` — Exakta
 
