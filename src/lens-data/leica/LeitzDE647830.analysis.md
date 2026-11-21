@@ -9,9 +9,9 @@
 **Published:** 14 July 1937\
 **Example details:** Sole numerical example, called “Ausführungsbeispiel”; table on PDF page 2 and section drawing on page 3.
 
-The [patent](https://depatisnet.dpma.de/DepatisNet/depatisnet?window=1&space=menu&content=treffer&action=pdf&docid=DE000000647830A) describes a seven-element, five-group Gauss objective at F = 100 and f/1.5. The table supplies every radius sign, thickness, air separation, refractive index n′ and Abbe number. It names no individual inventor. The grant announcement is dated 24 June 1937; the issue date printed on the cover is 14 July 1937.
+The [patent](https://depatisnet.dpma.de/DepatisNet/depatisnet?window=1&space=menu&content=treffer&action=pdf&docid=DE000000647830A) describes a seven-element, five-group Gauss objective at F = 100 and f/1.5. The table supplies every radius sign, thickness, air separation, refractive index n′ and Abbe number. No length unit is printed; the model uses a 100 mm focal-length scale. No individual inventor is named. The grant announcement is dated 24 June 1937; the cover's issue date is 14 July 1937.
 
-The design is plausibly the German design behind the Leitz Xenon 5 cm f/1.5. Its Leitz ownership, September 1934 filing, f/1.5 aperture and seven-element split-rear Gauss arrangement fit that association. A [Leitz Auction listing for a 1936 Xenon](https://www.leitz-auction.com/en/Xenon-1.5-5cm-Taylor-Hobson/AI-11-16440) records the front-ring engraving “D.R.P.a” beside the Taylor-Hobson name and US 2,019,985 number. The German application marking supports the timing but does not identify DE 647,830 by number. No published Xenon prescription establishes an exact match, so the model retains the patent-design name.
+The design is plausibly the German design behind the Leitz Xenon 5 cm f/1.5. Its Leitz ownership, September 1934 effective date, f/1.5 aperture and seven-element split-rear Gauss arrangement fit that association. A [Leitz Auction listing for a 1936 Xenon](https://www.leitz-auction.com/en/Xenon-1.5-5cm-Taylor-Hobson/AI-11-16440) records the front-ring engraving “D.R.P.a” beside the Taylor-Hobson name and US 2,019,985 number. The German application marking supports the timing but does not identify DE 647,830 by number. No published Xenon prescription establishes an exact match, so the model retains the patent-design name.
 
 ## Optical Architecture
 
@@ -54,27 +54,27 @@ L6 is a positive meniscus; its R10 = −71.20 mm is explicitly negative. L7 is b
 
 ## Glass Identification and Selection
 
-The table prints n′ and ν without identifying a spectral line. Helium d, 587.6 nm, is inferred from the two flints: LF5 has catalogue coordinates 1.58144/40.85, and LF3 has 1.58215/42.0. These reproduce the printed indices at four decimal places. Their calculated indices at the D line, taken as sodium at 589.3 nm, are about 1.581315 and 1.582029, which round differently from the printed values.
+The table prints n′ and ν without identifying a spectral line. Helium d, 587.6 nm, is inferred from the two flints: LF5 has catalogue coordinates 1.58144/40.85, and LF3 has 1.58215/42.0. These reproduce the printed indices at four decimal places. Their calculated indices at sodium D, 589.3 nm, are about 1.58132 and 1.58203, which round differently from the printed values.
 
 L3 uses the Schott LF5 row. L4 matches Sumita LF3 (1.58215 / 42.0). These are catalogue comparisons; neither establishes the historical supplier or melt.
 
-The five crowns retain the printed 1.6202/60.4 pair and remain unmatched. N-SK16 is 1.62041/60.32 at d, so its index does not reproduce the patent's four-decimal value. The model retains an explanatory line note on every element because the d-line interpretation is inferred.
+The five crowns retain the printed 1.6202/60.4 pair and remain unmatched. N-SK16 is 1.62041/60.32 at d, so its index does not reproduce the patent's four-decimal value. The spectral line remains uncertain.
 
 No individual C-, F- or g-line indices or partial-dispersion values are printed. Colour calculations therefore depend on catalogue dispersion for the two matched flints and Abbe-based estimates for the unmatched crowns. They do not establish the production lens's measured chromatic performance.
 
 ## Focus Mechanism
 
-The model represents infinity focus only. The patent gives no close-focus distance, movement law or additional focus-state prescription. All element positions remain fixed, and no marketed minimum-focus distance is assigned.
+The model is focused at infinity. The patent gives no close-focus distance, movement law or additional focus-state prescription. All element positions remain fixed, and no marketed minimum-focus distance is assigned.
 
 ## Stop, Clear Apertures and Image Plane
 
-The patent depicts no iris and prints no stop diameter or axial station. The inferred stop divides A2 into 12.0 mm after R5 and 9.75 mm before R6, placing it 47.361 mm behind the front vertex. A midpoint stop would intersect the R5 rim sag; the adopted position leaves about 0.92 mm and 1.93 mm clearance to the adjacent glass boundaries.
+The patent depicts no iris and prints no stop diameter or axial station. The inferred stop divides A2 into 12.0 mm after R5 and 9.75 mm before R6, placing it 47.36 mm behind the front vertex. A midpoint stop would intersect the R5 rim sag; the adopted position leaves about 0.92 mm and 1.93 mm clearance to the adjacent glass boundaries.
 
-All clear semi-diameters are inferred. In surface order, excluding the stop, they are 36, 36, 32, 31, 21.4, 21.4, 27, 27, 34, 34, 34 and 34 mm. The minimum glass edge thickness is about 2.21 mm, and the central air space remains open. The drawing suggests smaller rear rims, about 28 mm for L6 and 29.7 mm for L7; the larger model values admit more off-axis light and remain an unresolved drawing comparison.
+All clear semi-diameters are inferred. In surface order, excluding the stop, they are 36, 36, 32, 31, 21.4, 21.4, 27, 27, 34, 34, 34 and 34 mm. The minimum glass edge thickness is about 2.21 mm, and the central air space remains open. The drawing suggests smaller rear rims, about 28 mm for L6 and 29.7 mm for L7; the model's larger rims admit more off-axis light.
 
-The calculated EFL is 99.993914 mm against the printed F = 100, a difference of −0.0061%. The unprinted image plane is the paraxial infinity back focus, 53.652699 mm behind R12, giving a total front-vertex-to-image distance of 155.012699 mm.
+The calculated EFL is 99.994 mm, 0.006 mm below the printed F = 100 at the chosen scale. The unprinted image plane is the paraxial infinity back focus, 53.65 mm behind R12, giving a total front-vertex-to-image distance of 155.01 mm.
 
-The paraxial iris radius is 19.686993 mm at nominal f/1.5; exact axial acceptance at that iris corresponds to about f/1.45.
+The paraxial iris radius is 19.687 mm at nominal f/1.5; exact axial acceptance at that iris corresponds to about f/1.45.
 
 ## Field and Performance Limits
 

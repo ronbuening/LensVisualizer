@@ -2,10 +2,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * DE 647,830 C (Ernst Leitz GmbH, published 1937), sole Ausführungsbeispiel, F = 100 and f/1.5.
- * The printed signed radii, thicknesses, air spaces, n′ and Abbe numbers are retained.
+ * The source names no length unit; the printed dimensions are used at a 100 mm focal-length scale.
+ * All printed signed radii, thicknesses, air spaces, n′ and Abbe numbers are retained.
  * Seven spherical elements form five groups, with cemented interfaces at R4 and R7.
  * The patent names no spectral line; helium d is used because the two flints match LF5/LF3
- * catalogue values at d. The five crown elements remain unmatched.
+ * catalog values at d. The five crown elements remain unmatched.
  * Inferred values are the stop position (12 mm behind R5 and 9.75 mm before R6), all clear
  * semi-diameters, and the image plane (the computed paraxial back focus). The stop position
  * keeps both adjacent glass rims clear of its plane. The ±10° field is illustrative;
@@ -16,7 +17,7 @@ const LENS_DATA = {
   key: "leitz-100mm-f15-de647830",
   maker: "Leica",
   name: "LEITZ 100mm f/1.5 (DE 647,830 Design)",
-  subtitle: "DE 647,830 C, Ausführungsbeispiel — plausible Xenon design",
+  subtitle: "DE 647,830 C, Ausführungsbeispiel — Leitz",
   visible: true,
   source: {
     patentNumber: "DE 647,830 C",
@@ -38,7 +39,7 @@ const LENS_DATA = {
     fNumber: {
       design: 1.5,
     },
-    specs: ["7 ELEMENTS / 5 GROUPS", "ALL SPHERICAL", "DESIGN F/1.5", "SPLIT-REAR GAUSS"],
+    specs: ["7 ELEMENTS / 5 GROUPS", "ALL SPHERICAL", "DESIGN f = 100 mm", "DESIGN F/1.5", "SPLIT-REAR GAUSS"],
   },
   elements: [
     {
@@ -246,27 +247,27 @@ const LENS_DATA = {
   },
   groups: [
     {
-      text: "G1 · L1",
+      text: "Front collector",
       fromSurface: "1",
       toSurface: "2",
     },
     {
-      text: "G2 · L2–L3",
+      text: "Front dispersing member",
       fromSurface: "3",
       toSurface: "5",
     },
     {
-      text: "G3 · L4–L5",
+      text: "Rear dispersing member",
       fromSurface: "6",
       toSurface: "8",
     },
     {
-      text: "G4 · L6",
+      text: "Rear collector 1",
       fromSurface: "9",
       toSurface: "10",
     },
     {
-      text: "G5 · L7",
+      text: "Rear collector 2",
       fromSurface: "11",
       toSurface: "12",
     },
