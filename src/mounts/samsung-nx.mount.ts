@@ -9,9 +9,9 @@
  * scaled from those photographs: no dimensioned drawing or patent with stated mount geometry was
  * found, so they stay `photo_scaled`.
  *
- * Angle convention: camera-front frame, 0 deg at 12 o'clock, clockwise positive. Lens-side features
- * share the centre angle of the body feature they mate with; the 60 deg lock rotation lives only in
- * `lockGeometry`. Body photographs are front views (used as read); lens photographs are rear views
+ * Angle convention: camera-front frame, 0 deg at 12 o'clock, clockwise positive. `body-slot-n` is a body
+ * retaining claw, not the open gap beside it, and the lens is drawn as mounted and locked, so each lens
+ * lug sits behind the claw of the same number. The 60 deg lock rotation lives only in `lockGeometry`. Body photographs are front views (used as read); lens photographs are rear views
  * (converted with theta_front = (360 - theta_rear) mod 360).
  */
 
@@ -48,32 +48,30 @@ const LENS_THROAT_RADIUS_MM = 20;
 const PLATE_FACE_RADIUS_MM = 26.5;
 
 /**
- * Entry gaps between the three body retaining claws, numbered clockwise from the one nearest
- * 12 o'clock. Claw ends read from two body photographs (NX200 after removing 1.3 deg of photo roll,
- * NX300): claws span 332-26, 96-163 and 217-271 deg, so the gaps are the sectors below.
+ * The three body retaining claws, numbered clockwise from the one at 12 o'clock. Claw ends read from two
+ * body photographs (NX200 after removing 1.3 deg of photo roll, NX300). The open entry gaps between them
+ * span 26-96, 163-217 and 271-332 deg.
  */
 const BODY_SLOTS = [
-  { centre: 301.5, start: 271, end: 332 },
-  { centre: 61, start: 26, end: 96 },
-  { centre: 190, start: 163, end: 217 },
+  { centre: 359, start: 332, end: 26 },
+  { centre: 129.5, start: 96, end: 163 },
+  { centre: 244, start: 217, end: 271 },
 ];
 
 /**
- * Lens lugs at the insertion alignment. Lug ends read from the 85 mm and 30 mm lens-rear
- * photographs give locked-position sectors 336-31, 87-150 and 228-277 deg (front frame); taken back
- * through the 60 deg lock rotation their centres land within 2.5 deg of the body gap centres, so
- * each lug is stored on its slot's centre with its own measured span (55, 64 and 48 deg).
+ * Lens lugs on a mounted, locked lens: lug ends read from the 85 mm and 30 mm lens-rear photographs,
+ * mirrored to the camera-front frame. Each lug (55, 63 and 49 deg) sits behind the claw of the same number.
  */
 const LENS_LUGS = [
-  { centre: 301.5, start: 274, end: 329 },
-  { centre: 61, start: 29, end: 93 },
-  { centre: 190, start: 166, end: 214 },
+  { centre: 3.5, start: 336, end: 31 },
+  { centre: 118.5, start: 87, end: 150 },
+  { centre: 252.5, start: 228, end: 277 },
 ];
 
 const SLOT_NOTES =
-  "entry gap between two body retaining claws; claw ends photo-scaled from the NX200 and NX300 service-manual front photos (reading error about 3-4 deg); radial band is a stand-in";
+  "body retaining claw, the solid part that holds a lens lug; the open entry gaps sit between the claws. Claw ends photo-scaled from the NX200 and NX300 service-manual front photos (reading error about 3-4 deg); radial band is a stand-in";
 const LUG_NOTES =
-  "lens bayonet lug shown at the insertion alignment; span photo-scaled from the 85 mm and 30 mm lens service-manual rear photos (mirrored to the camera-front frame); radial band is a stand-in";
+  "lens bayonet lug drawn where it sits on a mounted lens, behind the body claw of the same number; ends photo-scaled from the 85 mm and 30 mm lens service-manual rear photos (mirrored to the camera-front frame); radial band is a stand-in";
 
 const cameraSideFeatures: CameraSideFeature[] = [
   {

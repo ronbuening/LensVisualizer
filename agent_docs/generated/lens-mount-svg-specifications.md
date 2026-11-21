@@ -4112,9 +4112,9 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 #### Figures (selected profile `samsung-nx/base`)
 
-**Camera-side front view** — viewBox `-37 -38 74 75` · 55 elements in 5 layers · hash `bb807332` ([standalone SVG](mounts/samsung-nx-camera-front.svg))
+**Camera-side front view** — viewBox `-37 -38 74 75` · 55 elements in 5 layers · hash `65c4a904` ([standalone SVG](mounts/samsung-nx-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-35 -37 70 72` · 46 elements in 4 layers · hash `1dec32aa` ([standalone SVG](mounts/samsung-nx-lens-rear.svg))
+**Lens-side rear view** — viewBox `-35 -37 70 72` · 46 elements in 4 layers · hash `e6fbb89a` ([standalone SVG](mounts/samsung-nx-lens-rear.svg))
 
 **Axial / register schematic** — viewBox `-32 -41 40 78` · 14 elements in 2 layers · hash `ed3f9133` ([standalone SVG](mounts/samsung-nx-axial.svg))
 
@@ -4124,9 +4124,9 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 |---|---|---|---|---|---|---|---|
 | `body-throat` | body_throat | `samsung-nx/base` | 0° | 0° | 360° | 0 | 21 |
 | `body-mount-ring` | mount_ring | `samsung-nx/base` | 0° | 0° | 360° | 21 | 30 |
-| `body-slot-1` | bayonet_receiving_slot | `samsung-nx/base` | 301.5° | 271° | 332° | 21 | 23.5 |
-| `body-slot-2` | bayonet_receiving_slot | `samsung-nx/base` | 61° | 26° | 96° | 21 | 23.5 |
-| `body-slot-3` | bayonet_receiving_slot | `samsung-nx/base` | 190° | 163° | 217° | 21 | 23.5 |
+| `body-slot-1` | bayonet_receiving_slot | `samsung-nx/base` | 359° | 332° | 26° | 21 | 23.5 |
+| `body-slot-2` | bayonet_receiving_slot | `samsung-nx/base` | 129.5° | 96° | 163° | 21 | 23.5 |
+| `body-slot-3` | bayonet_receiving_slot | `samsung-nx/base` | 244° | 217° | 271° | 21 | 23.5 |
 | `body-index-mark` | index_mark | `samsung-nx/base` | 300° | unknown | unknown | unknown | 26.5 |
 | `body-lock-pin` | lock_pin | `samsung-nx/base` | 90° | unknown | unknown | unknown | 26.5 |
 
@@ -4136,9 +4136,9 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 |---|---|---|---|---|---|---|---|
 | `lens-throat` | lens_throat | `samsung-nx/base` | 0° | 0° | 360° | 0 | 20 |
 | `lens-mount-ring` | lens_mount_ring | `samsung-nx/base` | 0° | 0° | 360° | 20 | 28.5 |
-| `lens-lug-1` | bayonet_lug | `samsung-nx/base` | 301.5° | 274° | 329° | 21 | 23.5 |
-| `lens-lug-2` | bayonet_lug | `samsung-nx/base` | 61° | 29° | 93° | 21 | 23.5 |
-| `lens-lug-3` | bayonet_lug | `samsung-nx/base` | 190° | 166° | 214° | 21 | 23.5 |
+| `lens-lug-1` | bayonet_lug | `samsung-nx/base` | 3.5° | 336° | 31° | 21 | 23.5 |
+| `lens-lug-2` | bayonet_lug | `samsung-nx/base` | 118.5° | 87° | 150° | 21 | 23.5 |
+| `lens-lug-3` | bayonet_lug | `samsung-nx/base` | 252.5° | 228° | 277° | 21 | 23.5 |
 | `lens-index-mark` | index_mark | `samsung-nx/base` | 300° | unknown | unknown | unknown | 29 |
 | `lens-lock-notch` | lock_notch | `samsung-nx/base` | 90° | unknown | unknown | unknown | 26.5 |
 
@@ -4180,7 +4180,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/samsung-nx.mount.ts` (54011 bytes, content hash `357f1542`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/samsung-nx.mount.ts` (54327 bytes, content hash `17158446`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
