@@ -1,14 +1,23 @@
-import type { LensDataV2Input } from "../repo/src/types/lensDataV2.js";
-const data = {
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * US 2,502,508 A, Example I and Figure 1, by Gordon Henry Cook.
+ * The unit-focal-length prescription is multiplied by 100 to give millimetres.
+ * Radii, thicknesses, air spaces and D-line glass data follow the printed table.
+ * The inferred stop splits the 11.4 mm rear air space into 7.2 and 4.2 mm.
+ * Clear radii are inferred; R1's 18.75 mm uses the printed 0.375F effective front
+ * diameter. The image gap is the computed paraxial back focus, 76.297288 mm.
+ * The illustrative ±5° field is not a field specification from the patent.
+ */
+const LENS_DATA = {
   schema: 2,
-  key: "cook-us2502508-example1-infinity-reference",
-  maker: null,
-  name: "COOK US2502508 EXAMPLE I \u2014 SOURCE f/2.67",
-  subtitle:
-    "Patent-only 4E/3G \u00b7 sodium-D infinity \u00b7 estimated iris/rims",
+  key: "cooke-100mm-f267-us2502508",
+  maker: "Cooke",
+  name: "COOKE 100mm f/2.67 (US 2,502,508 Design)",
+  subtitle: "US 2,502,508 A, Example I — three-component photographic objective",
   visible: false,
   source: {
-    patentNumber: "US 2,502,508",
+    patentNumber: "US 2,502,508 A",
     patentYear: 1950,
     example: {
       label: "Example I",
@@ -20,64 +29,65 @@ const data = {
   },
   catalog: {
     focalLengthMm: {
-      design: 100,
+      design: 99.97,
     },
     fNumber: {
       design: 2.67,
     },
     elementCount: 4,
     groupCount: 3,
-    specs: [
-      "Literal4E3G1|2|3+4,sourceconstraintR6cement;Dindices/Abbe literal,no glasssubstitution oropticalfit. Source100mm f2.67 vs literalEFL99.967529825/BFD76.297288379mm,computedBFD/not hardware. No retail identification.",
-      "Exact11.4mmgapafterR4,estimatedstop7.2/4.2,z30,bore andallclearcapsestimated,notfactoryreadings.",
-      "Front18.75mmclear-radius estimate partlyusesprinted.375F effectiveaperture at100mm;not a measuredrim orfullpupil/fieldcoverage claim. Allradii/gaps/glassesunchanged,no trim/override/baffle.",
-      "Savednativef2.67 derivesparaxialiris;independentfinite-marginalR14.247040182 separate. Finiteentrance/image-sine equivalents documented,not conflatedwith nominal.",
-      "Actualnative+/-5degreeD-lineinfinity diagnostic only,noinventedformat/imagecircle,finitefocus,retail,broadband,measuredMTF/throughput orwiderautomaticcoverage claim. Source hasno fieldnumber;10degexternalbench unqualified asnativefield.",
-      "Originalsignedtranscription/hash externalparent/scoutcustody,no localPDF/pixels/originalrehash. Googleproseopen inaccessibleonce,noretry;R6mapping verifiedbysuppliedsourceordering/airgapconstraints+literalEFL/BFD,not an additionalprimarypixelread.",
-    ],
+    specs: ["4 ELEMENTS / 3 GROUPS", "ALL SPHERICAL", "DESIGN F/2.67"],
   },
   elements: [
     {
       id: 1,
       name: "L1",
-      label: "L1",
-      type: "Source Spherical Element",
+      label: "Element 1",
+      type: "Biconvex Positive",
+      role: "Positive front component",
+      focalLengthMm: 57.35,
       nd: 1.6225,
       vd: 60.4,
       indexReference: "D",
-      glass: "Literal sodium-D/Abbe pair; no calibrated spectral curve.",
+      glass: "Unmatched (nD 1.62250 / ν 60.4)",
     },
     {
       id: 2,
       name: "L2",
-      label: "L2",
-      type: "Source Spherical Element",
+      label: "Element 2",
+      type: "Biconcave Negative",
+      role: "Negative middle component between the positive components",
+      focalLengthMm: -30.96,
       nd: 1.62266,
       vd: 36,
       indexReference: "D",
-      glass: "Literal sodium-D/Abbe pair; no calibrated spectral curve.",
+      glass: "Unmatched (nD 1.62266 / ν 36.0)",
     },
     {
       id: 3,
       name: "L3",
-      label: "L3",
-      type: "Source Spherical Element",
+      label: "Element 3",
+      type: "Biconvex Positive",
+      role: "Positive front element of the rear cemented doublet",
+      focalLengthMm: 31.77,
       nd: 1.6138,
       vd: 57.5,
       indexReference: "D",
-      glass: "Literal sodium-D/Abbe pair; no calibrated spectral curve.",
-      cemented: "G3",
+      glass: "Unmatched (nD 1.61380 / ν 57.5)",
+      cemented: "C1",
     },
     {
       id: 4,
       name: "L4",
-      label: "L4",
-      type: "Source Spherical Element",
+      label: "Element 4",
+      type: "Negative Meniscus",
+      role: "Negative rear element of the positive cemented doublet",
+      focalLengthMm: -82.97,
       nd: 1.51414,
       vd: 56.5,
       indexReference: "D",
-      glass: "Literal sodium-D/Abbe pair; no calibrated spectral curve.",
-      cemented: "G3",
+      glass: "Unmatched (nD 1.51414 / ν 56.5)",
+      cemented: "C1",
     },
   ],
   surfaces: [
@@ -147,29 +157,29 @@ const data = {
     offAxisFieldFrac: 1,
   },
   focus: {
-    closeFocusM: 1000000000000000,
-    description:
-      "Literal4E3G1|2|3+4,sourceconstraintR6cement;Dindices/Abbe literal,no glasssubstitution oropticalfit. Source100mm f2.67 vs literalEFL99.967529825/BFD76.297288379mm,computedBFD/not hardware. No retail identification. Exact11.4mmgapafterR4,estimatedstop7.2/4.2,z30,bore andallclearcapsestimated,notfactoryreadings. Front18.75mmclear-radius estimate partlyusesprinted.375F effectiveaperture at100mm;not a measuredrim orfullpupil/fieldcoverage claim. Allradii/gaps/glassesunchanged,no trim/override/baffle. Savednativef2.67 derivesparaxialiris;independentfinite-marginalR14.247040182 separate. Finiteentrance/image-sine equivalents documented,not conflatedwith nominal. Actualnative+/-5degreeD-lineinfinity diagnostic only,noinventedformat/imagecircle,finitefocus,retail,broadband,measuredMTF/throughput orwiderautomaticcoverage claim. Source hasno fieldnumber;10degexternalbench unqualified asnativefield. Originalsignedtranscription/hash externalparent/scoutcustody,no localPDF/pixels/originalrehash. Googleproseopen inaccessibleonce,noretry;R6mapping verifiedbysuppliedsourceordering/airgapconstraints+literalEFL/BFD,not an additionalprimarypixelread.",
+    closeFocusM: 1e15,
+    description: "Infinity focus only; the patent gives no close-focus data.",
   },
   groups: [
     {
-      text: "G1 \u00b7 L1",
+      text: "Front component",
       fromSurface: "1",
       toSurface: "2",
     },
     {
-      text: "G2 \u00b7 L2",
+      text: "Middle component",
       fromSurface: "3",
       toSurface: "4",
     },
     {
-      text: "G3 \u00b7 L3+L4",
+      text: "Rear component",
       fromSurface: "5",
       toSurface: "7",
     },
   ],
+  doublets: [{ text: "C1", fromSurface: "5", toSurface: "7" }],
   layout: {
     yScFill: 0.5,
   },
 } satisfies LensDataV2Input;
-export default data;
+export default LENS_DATA;
