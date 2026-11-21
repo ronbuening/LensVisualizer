@@ -70,7 +70,7 @@ const LENS_DATA = {
       nd: 1.717,
       vd: 47.9,
       indexReference: "D",
-      glass: "Unmatched (nD 1.717 / ν 47.9)",
+      glass: "S-LAM3 (spectral proxy; patent nD 1.717 / ν 47.9; supplier and melt unspecified)",
     },
     {
       id: 2,
@@ -133,7 +133,7 @@ const LENS_DATA = {
       nd: 1.717,
       vd: 47.9,
       indexReference: "D",
-      glass: "Unmatched (nD 1.717 / ν 47.9)",
+      glass: "S-LAM3 (spectral proxy; patent nD 1.717 / ν 47.9; supplier and melt unspecified)",
     },
   ],
   surfaces: [
