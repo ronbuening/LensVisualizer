@@ -6,7 +6,7 @@ The DPMA facsimile identifies Zeiss Ikon Akt.-Ges. in Dresden and _Photographisc
 
 ## Transcription
 
-Two independent readings of the page images agree on all eleven radii, seven glass thicknesses, three air separations, seven refractive indices and seven Abbe numbers. No aspheres or variable gaps are printed. The scanned table has its printed plus signs at R7 and R11 struck through and minus signs written in; −298.6 and −297.0 mm follow those corrections and agree with the drawing. L4's ν is clearly 31.0, rather than 34.0 from text recognition. The earlier uncertainty about these readings is resolved.
+Two independent readings of the page images agree on all eleven radii, seven glass thicknesses, three air separations, seven refractive indices and seven Abbe numbers. No aspheres or variable gaps are printed. The scanned table has its printed plus signs at R7 and R11 struck through and minus signs written in; −298.6 and −297.0 mm follow those corrections and agree with the drawing. L4's ν is clearly 31.0. The earlier uncertainty about these readings is resolved.
 
 The drawing shows seven elements in four groups: 1 | 2+3+4 | 5+6 | 7. Cemented surfaces are R4, R5 and R8.
 
@@ -14,7 +14,7 @@ The drawing shows seven elements in four groups: 1 | 2+3+4 | 5+6 | 7. Cemented s
 
 The unchanged prescription computes to EFL 99.860188267 mm against the printed F = 100, a −0.139812% difference. The computed paraxial BFD is 41.319610882 mm, the first-to-last vertex distance is 72.5 mm and the first-vertex-to-image distance is 113.819610882 mm. The nominal f-number is 2.000 and the inferred paraxial iris radius is 15.738134444 mm. Both focus endpoints retain the same optical state.
 
-The R6 clear radius limits the largest passing axial entrance height to about 24.123835 mm, or geometric f/2.069741. The aperture census instead compares that passing beam with the exact beam admitted by the paraxial iris, reporting f/2.061720, +3.086%, with the same R6 limiter. These two aperture figures use different reference beams.
+The R6 clear radius limits the largest passing axial entrance height to about 24.123835 mm, or geometric f/2.069741. Measured against the beam the paraxial iris admits, the R6 limit is f/2.06 (+3.1%). These two aperture figures use different reference beams.
 
 ## Not printed
 
@@ -49,11 +49,13 @@ Changes:
 - Index reference on all seven elements: D → d, with a note that the printed n_d has no wavelength definition and catalogue comparisons are inconclusive. The printed n/ν numbers do not change.
 - Glass descriptions: the common generic unmatched sentence → each element's printed nd/ν pair for L1, L2, L5, L6 and L7. L3: Unmatched → K-BK7 (Sumita), resolved to Sumita K-BK7 1.51633/64.1, Δn +0.000030 / Δν +0.10. L4: Unmatched → S-TIM28 (Ohara), resolved to Ohara S-TIM28 1.688931/31.07545, Δn −0.000069 / Δν +0.07545. These are numerical matches, not historical supplier identifications; no anomalous-dispersion tags or extra spectral indices are added.
 - Cemented annotations: absent → C1 on L2–L4 with a span from R3 to R6, and C2 on L5–L6 with a span from R7 to R9. Each cemented component has one annotation.
-- Clear radii: R7 15.3 → 17.8 mm; R10 and R11 17 → 25 mm, following the drawing and removing additional beam restrictions. R6 stays 15.3 mm. The wider rear rims let the 23° chief ray clear, with image height 42.10 mm; this is not a claim of full-bundle illumination or correction there.
+- Clear radii: R7 15.3 → 17.8 mm; R10 and R11 17 → 25 mm, following the drawing; transmission at ±6° changes by only 0.1 percentage point (93.0% → 93.1%), with larger gains beyond 6°. R6 stays 15.3 mm. The wider rear rims let the 23° chief ray clear, with image height 42.10 mm; this is not a claim of full-bundle illumination or correction there.
 - Focus description: the source-status paragraph → “Infinity focus only; the patent gives no close-focus data.” The close-focus value remains 1e15 m. The analysis now has the lens-name heading, complete patent metadata, architecture, individual elements, glass selection, focus, aperture/field limits and sources. This audit records source, transcription, first-order results, unprinted assumptions, product evidence, corrections and remaining questions.
 
 Before → after: EFL 99.860188267 → 99.860188267 mm; nominal f-number 2.000 → 2.000; BFD 41.319610882 → 41.319610882 mm; half-field 6 → 6°; iris radius 15.738134444 → 15.738134444 mm. Both focus endpoints remain unchanged.
 
-Surface geometry reports no errors. The axial aperture check retains one rim-limited station at R6, f/2.061720 (+3.086%), and no trace, iris or failed-ray diagnosis. Image-circle and field-coverage checks skip the published file because it has no sourced circle or format. For the illustrative ±6° field alone, a temporary 21.013448 mm test circle gives no undersized surfaces and 100% chief-ray coverage: 6.0° reaches 10.51 mm of 10.51 mm, with no blocked chief or unsolved station. That test circle is omitted from the lens data.
+Surface geometry reports no errors. The axial aperture check retains one rim-limited station at R6, f/2.061720 (+3.086%). Image-circle and field-coverage checks skip the published file because it has no sourced circle or format. For the illustrative ±6° field alone, a temporary 21.013448 mm test circle gives no undersized surfaces and 100% chief-ray coverage: 6.0° reaches 10.51 mm of 10.51 mm, with no blocked chief or unsolved station. That test circle is omitted from the lens data.
 
 Open: R6 prevents a rim-unlimited nominal f/2 result under the retained drawing-supported geometry. The remaining estimated rims need comparison with the figure. The intended spectral wavelength, historical glasses, iris station, image format, useful field and product identity remain unestablished.
+
+Review corrections: R7/rear-singlet “remove additional restrictions” → follow the drawing, with ±6° transmission 93.0% → 93.1% and larger gains beyond 6°; “aperture census … f/2.061720, +3.086%” → R6 limits the beam admitted by the paraxial iris to f/2.06 (+3.1%); “no trace, iris or failed-ray diagnosis” → omitted; L4's “rather than 34.0 … text recognition” clauses → omitted in the analysis and audit. The widened rims are retained, and the design focal length remains 99.86 mm, the computed EFL rounded to two decimals.

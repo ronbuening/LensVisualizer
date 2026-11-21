@@ -16,7 +16,7 @@
 
 The patent describes a fast photographic objective with seven spherical elements in four air-spaced groups. Its table states F = 100 and an aperture ratio of 1:2. The model computes to EFL 99.860188 mm, 0.14% below the stated value, while retaining the published radii, thicknesses and optical constants.
 
-On the DPMA copy, the printed plus signs at R7 and R11 are struck through and minus signs written in. The model follows those corrections, −298.6 and −297.0 mm. The drawing supports both signs: R7 is concave toward the object and the last element is biconvex. Element 4's Abbe number is clearly 31.0, rather than the 34.0 produced by text recognition.
+On the DPMA copy, the printed plus signs at R7 and R11 are struck through and minus signs written in. The model follows those corrections, −298.6 and −297.0 mm. The drawing supports both signs: R7 is concave toward the object and the last element is biconvex. Element 4's Abbe number is clearly 31.0.
 
 The 1 + 3 + 2 + 1 arrangement is related to the Contax Sonnar 5 cm f/2's 1 + 3 + 2 construction, with a positive rear singlet added. No product is documented for this prescription.
 
@@ -90,7 +90,7 @@ Infinity focus only; the patent gives no close-focus data. No finite-focus movem
 
 The nominal f/2 setting and the real-ray aperture differ. At the nominal entrance radius of 24.965047 mm, the axial marginal ray reaches R6 at 15.773578 mm, beyond its 15.3 mm clear radius. The largest passing entrance radius is about 24.123835 mm, corresponding to a geometric entrance aperture of f/2.069741. Opening the iris alone does not remove that limit.
 
-R6 remains at the drawing-supported clear zone rather than extending across its chamfer. The wider R7 and rear-singlet rims remove additional restrictions without altering the stop, glass thicknesses or air separations. Surface geometry is consistent with those rims and the inferred iris position.
+R6 remains at the drawing-supported clear zone rather than extending across its chamfer. The wider R7 and rear-singlet rims follow the drawing without altering the stop, glass thicknesses or air separations; transmission at ±6° changes by only 0.1 percentage point (93.0% → 93.1%), with larger gains beyond 6°. Surface geometry is consistent with those rims and the inferred iris position.
 
 No field angle, film format or image circle is printed. The displayed ±6° field is illustrative; its real chief ray reaches approximately 10.51 mm image height. That height is not a claimed format. The chief ray also clears every rim at 23°, but this does not establish an adequately corrected or fully illuminated field there. Some marginal rays are clipped even within the illustrative field.
 
