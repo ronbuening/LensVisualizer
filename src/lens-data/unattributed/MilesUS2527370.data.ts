@@ -69,7 +69,8 @@ const LENS_DATA = {
       nd: 1.617,
       vd: 36.6,
       indexReference: "D",
-      glass: "Unmatched (ordinary flint; nD 1.617 / ν 36.6)",
+      glass:
+        "F4 (spectral proxy; patent nD 1.617 / ν 36.6; supplier and melt unspecified)",
       focalLengthMm: -64.13,
       role: "Negative rear element balancing the crown's chromatic power and contributing field flattening.",
       cemented: "C1",
