@@ -2004,7 +2004,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 | Profile ID | Type | Applies to | Adds | Removes | Changes |
 |---|---|---|---|---|---|
-| `hasselblad-xcd/base` | base | Hasselblad XCD lenses and X-system bodies | short-register mirrorless medium-format bayonet; electrical contact bank | SLR mirror box spacing | feature placement is photo-scaled pending official drawings |
+| `hasselblad-xcd/base` | base | Hasselblad XCD lenses and X-system bodies (X1D, X1D II, X2D, 907X) | short-register mirrorless medium-format bayonet; nine-pin electrical contact row at the bottom of the throat | SLR mirror box spacing | single base interface: the maker lists XCD lenses for all X-system and 907X cameras, and no source shows a change in drawn geometry between bodies; contact row, lock pin, index and ring screws are scaled from the X1D User Guide renders; lugs and ring diameters remain stand-ins |
 
 #### Dimensional summary
 
@@ -2015,17 +2015,17 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 | Effective clear aperture | 61 (`secondary`) | mm |
 | Camera mount outer diameter | 76 (`photo_scaled`) | mm |
 | Lens mount outer diameter | 74 (`photo_scaled`) | mm |
-| Contact count | 10 (`photo_scaled`) | count |
+| Contact count | 9 (`secondary`) | count |
 | Lock rotation | 60 (`photo_scaled`) | deg |
-| Lock direction | clockwise (`photo_scaled`) | — |
+| Lock direction | clockwise (`official`) | — |
 
 #### Figures (selected profile `hasselblad-xcd/base`)
 
-**Camera-side front view** — viewBox `-47 -49 94 96` · 56 elements in 4 layers · hash `01354a4e` ([standalone SVG](mounts/hasselblad-xcd-camera-front.svg))
+**Camera-side front view** — viewBox `-47 -49 94 96` · 54 elements in 4 layers · hash `605f5b62` ([standalone SVG](mounts/hasselblad-xcd-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-46 -47 92 93` · 50 elements in 4 layers · hash `13f89228` ([standalone SVG](mounts/hasselblad-xcd-lens-rear.svg))
+**Lens-side rear view** — viewBox `-46 -47 92 93` · 48 elements in 4 layers · hash `b3cf8bad` ([standalone SVG](mounts/hasselblad-xcd-lens-rear.svg))
 
-**Axial / register schematic** — viewBox `-27 -50 37 96` · 14 elements in 2 layers · hash `955f08fc` ([standalone SVG](mounts/hasselblad-xcd-axial.svg))
+**Axial / register schematic** — viewBox `-27 -50 37 96` · 14 elements in 2 layers · hash `dd45cbff` ([standalone SVG](mounts/hasselblad-xcd-axial.svg))
 
 #### Camera-side front-view geometry
 
@@ -2037,7 +2037,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 | `body-slot-2` | bayonet_receiving_slot | `hasselblad-xcd/base` | 140° | 123° | 157° | 30.5 | 33 |
 | `body-slot-3` | bayonet_receiving_slot | `hasselblad-xcd/base` | 260° | 243° | 277° | 30.5 | 33 |
 | `body-index-mark` | index_mark | `hasselblad-xcd/base` | 0° | unknown | unknown | unknown | 38.5 |
-| `body-lock-pin` | lock_pin | `hasselblad-xcd/base` | 285° | unknown | unknown | unknown | 31.5 |
+| `body-lock-pin` | lock_pin | `hasselblad-xcd/base` | 133° | unknown | unknown | unknown | 33.5 |
 
 #### Lens-side rear-view geometry
 
@@ -2049,32 +2049,30 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 | `lens-lug-2` | bayonet_lug | `hasselblad-xcd/base` | 140° | 123° | 157° | 30.5 | 33 |
 | `lens-lug-3` | bayonet_lug | `hasselblad-xcd/base` | 260° | 243° | 277° | 30.5 | 33 |
 | `lens-index-mark` | index_mark | `hasselblad-xcd/base` | 0° | unknown | unknown | unknown | 37.5 |
-| `lens-lock-notch` | lock_notch | `hasselblad-xcd/base` | 285° | unknown | unknown | unknown | 31.5 |
+| `lens-lock-notch` | lock_notch | `hasselblad-xcd/base` | 133° | unknown | unknown | unknown | 33.5 |
 
 #### Electrical contacts
 
 | Side | No. | Profile | Center angle | Radius | Function |
 |---|---|---|---|---|---|
-| body | 1 | `hasselblad-xcd/base` | 215° | 33 |  |
-| body | 2 | `hasselblad-xcd/base` | 221° | 33 |  |
-| body | 3 | `hasselblad-xcd/base` | 227° | 33 |  |
-| body | 4 | `hasselblad-xcd/base` | 233° | 33 |  |
-| body | 5 | `hasselblad-xcd/base` | 239° | 33 |  |
-| body | 6 | `hasselblad-xcd/base` | 245° | 33 |  |
-| body | 7 | `hasselblad-xcd/base` | 251° | 33 |  |
-| body | 8 | `hasselblad-xcd/base` | 257° | 33 |  |
-| body | 9 | `hasselblad-xcd/base` | 263° | 33 |  |
-| body | 10 | `hasselblad-xcd/base` | 269° | 33 |  |
-| lens | 1 | `hasselblad-xcd/base` | 215° | 33 |  |
-| lens | 2 | `hasselblad-xcd/base` | 221° | 33 |  |
-| lens | 3 | `hasselblad-xcd/base` | 227° | 33 |  |
-| lens | 4 | `hasselblad-xcd/base` | 233° | 33 |  |
-| lens | 5 | `hasselblad-xcd/base` | 239° | 33 |  |
-| lens | 6 | `hasselblad-xcd/base` | 245° | 33 |  |
-| lens | 7 | `hasselblad-xcd/base` | 251° | 33 |  |
-| lens | 8 | `hasselblad-xcd/base` | 257° | 33 |  |
-| lens | 9 | `hasselblad-xcd/base` | 263° | 33 |  |
-| lens | 10 | `hasselblad-xcd/base` | 269° | 33 |  |
+| body | 1 | `hasselblad-xcd/base` | 162° | 26 |  |
+| body | 2 | `hasselblad-xcd/base` | 166.5° | 26 |  |
+| body | 3 | `hasselblad-xcd/base` | 171° | 26 |  |
+| body | 4 | `hasselblad-xcd/base` | 175.5° | 26 |  |
+| body | 5 | `hasselblad-xcd/base` | 180° | 26 |  |
+| body | 6 | `hasselblad-xcd/base` | 184.5° | 26 |  |
+| body | 7 | `hasselblad-xcd/base` | 189° | 26 |  |
+| body | 8 | `hasselblad-xcd/base` | 193.5° | 26 |  |
+| body | 9 | `hasselblad-xcd/base` | 198° | 26 |  |
+| lens | 1 | `hasselblad-xcd/base` | 162° | 26 |  |
+| lens | 2 | `hasselblad-xcd/base` | 166.5° | 26 |  |
+| lens | 3 | `hasselblad-xcd/base` | 171° | 26 |  |
+| lens | 4 | `hasselblad-xcd/base` | 175.5° | 26 |  |
+| lens | 5 | `hasselblad-xcd/base` | 180° | 26 |  |
+| lens | 6 | `hasselblad-xcd/base` | 184.5° | 26 |  |
+| lens | 7 | `hasselblad-xcd/base` | 189° | 26 |  |
+| lens | 8 | `hasselblad-xcd/base` | 193.5° | 26 |  |
+| lens | 9 | `hasselblad-xcd/base` | 198° | 26 |  |
 
 #### Mechanical couplings
 
@@ -2086,12 +2084,12 @@ None — fully electronic.
 |---|---|---|
 | `flange_datum` | 0 | 76 |
 | `bayonet_lug_engagement` | 1.2 | 69 |
-| `electrical_contact_plane` | 0.5 | 65 |
+| `electrical_contact_plane` | 0.5 | 52 |
 | `sensor_film_plane` | -18.14 | 54.78 |
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/hasselblad-xcd.mount.ts` (44323 bytes, content hash `4a1b20fc`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/hasselblad-xcd.mount.ts` (44700 bytes, content hash `9c49b340`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -2099,10 +2097,14 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 |---|---|---|---|---|---|
 | `xcd-1` | secondary | “Flange focal distance,” Wikipedia. Accessed 2026-06-06. | [snapshot](http://web.archive.org/web/20260526152456/https://en.wikipedia.org/wiki/Flange_focal_distance) | 2026-05-26 | medium |
 | `xcd-2` | secondary | Hasselblad XCD mount visual references. Accessed 2026-06-06. | [snapshot](unknown) | unknown | low |
+| `xcd-3` | official | Victor Hasselblad AB, X1D User Guide, version 1.8, 2017-12-19, pp. 51–52 (Remove and Attach a Lens) and p. 140 (Clean the Sensor Filter). The archive copy is an earlier 124-page edition with the same sections on pp. 51 and 123. Accessed 2026-11-21. | [snapshot](https://www.manualslib.com/manual/1232924/Hasselblad-X1d.html) | 2026-11-21 | medium |
 
 #### Open questions
 
-- XCD contact count/position and lug spans are photo-scaled. _(Upgrade from Hasselblad service data or measured XCD body/lens samples.)_
+- Bayonet lug count, centre angles and spans are stand-ins. No dimensioned X-mount drawing was found: no Hasselblad X-mount utility patent turned up (the 2016 design patent USD868868 shows a different camera), the X1D User Guide and X2D II / XCD data sheets print no mount dimensions, and the user-guide renders do not resolve the lug edges. _(Needs Hasselblad service data, a dimensioned third-party X-mount drawing, or a calibrated measurement of a body and lens.)_
+- Contact row, lock pin, index and ring screw positions are photo-scaled from oblique user-guide renders (about +/-5 degrees; contact radius 24.5 to 27.5 mm, lock pin radius 32.5 to 34.5 mm, screw circle 65.5 to 69.5 mm, all scaled against the 61 mm throat). The nine contacts are counted on the body; no lens-rear figure was found, so the lens pads are assumed to mate one to one. Contact pad size and pinout are not sourced. _(Replace with dimensioned positions from service data or a measured sample.)_
+- The user guide's red-mark callout and the top ring screw fall at the same place in the figures; whether the red mark is a separate dot beside that screw is not visible. The pin scaled as the lock pin is not labelled in the guide. _(Check against a straight-on photograph of the body mount with a known scale.)_
+- The 18.14 mm register, 61 mm throat and ring outer diameters have no maker-stated value: Hasselblad's X1D guide, X2D II data sheet and XCD lens data sheets do not print them, and the adapter lengths Hasselblad lists (XH 53 mm, XV 64 mm, XPan 21.4 mm) are overall lengths, not register differences. _(Upgrade if Hasselblad publishes the mount dimensions or a service drawing is found.)_
 
 ### `l-mount` — L-Mount
 
