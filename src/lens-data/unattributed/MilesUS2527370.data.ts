@@ -7,8 +7,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * The printed stop is 24.36 mm behind the last glass surface, with a 10.12 mm
  * diameter; f/6.3 gives a 10.133 mm model iris, within the stated approximation.
  * All three glass semi-diameters are estimated from Figure 1 as 15.3 mm.
- * Axial stop spacing and transverse opening agree at about 15.5 pixels/unit
- * in the enlarged drawing; real rays clear the axial beam and corner chief ray.
+ * The drawn stop spacing and stop opening give the same drawing scale; real
+ * rays clear the axial beam and corner chief ray.
  * The image plane is inferred from D-line paraxial infinity focus: 88.20 mm
  * behind the glass, or 63.84 mm behind the stop. No back focus is printed.
  */

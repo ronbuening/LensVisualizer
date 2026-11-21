@@ -50,7 +50,7 @@ After these corrections, the EFL is 179.553 mm, BFD is 143.637 mm, aperture is f
 
 2026-11-21 rim review:
 
-- The sole drawing on PDF p. 1 of US2582362A.pdf was examined at 600 dpi alongside the numerical example on p. 2. The first-to-last vertex span is about 963 pixels for 60.40 mm, or 15.9 pixels/mm. The first-to-middle and middle-to-last spans give about 16.2 and 15.6 pixels/mm. Drawn axial glass thicknesses at this scale are about 5.4, 2.8 and 7.1 mm, compared with 5.08, 2.54 and 7.62 mm in the table. Across the axis, the front surface's sag at about 10 mm height is approximately 0.9 mm, consistent with the printed radius. The drawn stop lies about 37% of the way across the first air gap, compared with 61% in the numerical description. The drawing therefore supports proportions and rim shape, not precise individual clear diameters.
+- The sole drawing on PDF p. 1 was examined at 600 dpi alongside the numerical example on p. 2. The first-to-last vertex span is about 963 pixels for 60.40 mm, or 15.9 pixels/mm. The first-to-middle and middle-to-last spans give about 16.2 and 15.6 pixels/mm. Drawn axial glass thicknesses at this scale are about 5.4, 2.8 and 7.1 mm, compared with 5.08, 2.54 and 7.62 mm in the table. Across the axis, the front surface's sag at about 10 mm height is approximately 0.9 mm, consistent with the printed radius. The drawn stop lies about 37% of the way across the first air gap, compared with 61% in the numerical description. The drawing therefore supports proportions and rim shape, not precise individual clear diameters.
 - Excluding hatching, leaders and element-number tails, each lens is about 610 pixels high; their heights agree within about 1%. All three have square-cut rims, without a drawn land or stepped optical edge. The model's equal rims preserve that relationship. The printed 1.452-inch clear diameter takes precedence over small differences in the drawing. No clear radius changed:
 
   | Surfaces | Before (mm) | After (mm) | Evidence |
@@ -65,7 +65,7 @@ After these corrections, the EFL is 179.553 mm, BFD is 143.637 mm, aperture is f
 
 2026-11-21 glass review:
 
-- L2: `Unmatched (DF-2, nD 1.617 / ν 36.6)` → `F4 (spectral proxy; patent nD 1.617 / ν 36.6; supplier and melt unspecified)`, using the F4 (Sumita) curve as a spectral proxy; ΔnD = −0.00056 and ΔνD = +0.01 (catalog minus printed, sodium D).
+- L2: `Unmatched (DF-2, nD 1.617 / ν 36.6)` → `F4 (spectral proxy; patent nD 1.61700 / ν 36.6; supplier and melt unspecified)`, quoting the printed ND as 1.61700 and using the F4 (Sumita) curve as a spectral proxy; ΔnD = −0.00056 and ΔνD = +0.01 (catalog minus printed, sodium D).
 - The spectral proxy is within index 0.002 and Abbe number 0.25 at the printed sodium-D line; the printed index, Abbe number and C/F indices are kept. The curve supplies only the dispersion shape and does not identify the historical supplier or melt.
 
 ## Remaining Questions

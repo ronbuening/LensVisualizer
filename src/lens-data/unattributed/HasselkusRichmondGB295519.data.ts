@@ -4,8 +4,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * GB 295,519 A, sole example, printed p. 2 and drawing sheet; John William Hasselkus and George Arthur Richmond are the individual applicants, with no company named.
  * The printed f = 100 units is represented in millimetres; f/4, a 70° field, all ten signed radii, thicknesses, air gaps and helium d-line indices are printed.
  * EFL is 100.08 mm and paraxial back focus 85.73 mm; the final spacing uses that back focus because no image distance is printed.
- * The stop position is printed as b1 = b2 = 2.32; its radius follows f/4. Clear radii are inferred.
- * Clear radii are estimated from the drawing sheet at 35.1 pixels per unit and checked against the real f/4 marginal and 35° chief ray.
+ * The stop position is printed as b1 = b2 = 2.32; its radius follows f/4.
+ * Clear radii are inferred from the drawing sheet, which is drawn to the table's scale, and checked against the real f/4 marginal and 35° chief ray.
  * R1/R2 and R9/R10 follow the 13.1 mm doublet height; R4 is 11.5 mm, while R3/R5/R6 retain the axial beam and R8 retains off-axis light above the drawn chamfers.
  * R7 remains 12 mm, within the drawing's reading uncertainty; opaque lands extend R3/R8 to 13.1 mm to approximate the doublets' shoulders without changing their clear apertures.
  * The R3/R4 gap closes near 10.90 mm, while the f/4 marginal needs 10.63 mm; a 94% sag allowance preserves the beam with positive air clearance.
