@@ -7,7 +7,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * cements elements 2 and 3. The dashed plane in Fig. 1 is treated as the stop,
  * 9.4 mm after r7 and 15.6 mm before r8; its opening is inferred from f/1.8.
  * All clear semi-diameters are estimated. The image plane is the computed
- * paraxial back focus, 52.31996624092534 mm; no back focus is printed.
+ * paraxial back focus, 52.319966 mm; no back focus is printed.
  * The ±10° field is illustrative; the patent states no field or image format.
  */
 const LENS_DATA = {
@@ -165,7 +165,7 @@ const LENS_DATA = {
     {
       label: "9",
       R: -72.82,
-      d: 52.31996624092534,
+      d: 52.319966,
       sd: 22,
     },
   ],
@@ -178,9 +178,6 @@ const LENS_DATA = {
     kind: "rectilinear",
     fullFieldDeg: 20,
     maxTraceFieldDeg: 10,
-  },
-  rays: {
-    offAxisFieldFrac: 1,
   },
   focus: {
     closeFocusM: 1e15,

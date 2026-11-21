@@ -235,7 +235,7 @@ const LENS_DATA = {
     {
       label: "12",
       R: -209.6,
-      d: 44.02029809798847,
+      d: 44.020298,
       sd: 27,
     },
   ],
@@ -252,9 +252,6 @@ const LENS_DATA = {
     kind: "rectilinear",
     fullFieldDeg: 20,
     maxTraceFieldDeg: 10,
-  },
-  rays: {
-    offAxisFieldFrac: 1,
   },
   groups: [
     {

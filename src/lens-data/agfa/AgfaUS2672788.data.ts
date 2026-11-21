@@ -6,7 +6,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Abbe numbers follow the table on PDF page 4. Figure 1 places the diaphragm
  * in the 13.870 mm central gap; its 7.68/6.19 mm split and all clear radii
  * are inferred. The iris radius is derived from f/2.5. The unprinted image
- * distance is the computed paraxial back focus, 70.930726228 mm.
+ * distance is the computed paraxial back focus, 70.930726 mm.
  */
 const LENS_DATA = {
   schema: 2,
@@ -164,7 +164,7 @@ const LENS_DATA = {
     {
       label: "9",
       R: -42.546,
-      d: 70.93072622762332,
+      d: 70.930726,
       sd: 20,
     },
   ],

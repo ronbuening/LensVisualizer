@@ -7,7 +7,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * radii, thicknesses, air gaps and D-line glass values are retained. The stop is
  * inferred at the midpoint of the 19.05 mm central gap. Clear radii combine
  * estimates with Figure 2 readings; the image plane is the calculated paraxial
- * back focus, 56.18336028624677 mm. The illustrative half-field is 5 degrees.
+ * back focus, 56.18336 mm. The illustrative half-field is 5 degrees.
  */
 const LENS_DATA = {
   schema: 2,
@@ -172,7 +172,7 @@ const LENS_DATA = {
     {
       label: "10",
       R: -56.15,
-      d: 56.18336028624677,
+      d: 56.18336,
       sd: 24,
     },
   ],
