@@ -1,17 +1,109 @@
-# Yoshikazu Doi / Fuji Photo Film US2718174 Figure 1
+# FUJIFILM FUJINON 95mm f/1.3 (US 2,718,174 Design)
 
-Hidden patent-only infinity reference at exact×100 source scale: nominal95 mm f/1.3,8E/4G. It is not a verified retail lens or finite-focus state. The source explicitly provides lowercase d/V; native indexReference is`d`, referenceMTF wavelength587.5618 nm. This is not sodiumD, a six-digit catalog-glass identification or a calibrated dispersion model. Repeated source glass pairs remain distinct physical elements.
+## Patent Reference and Design Identification
 
-All12 signed radii,11 axial advances and8 d/V pairs are literal. R2 remains shallow positive+6083, not flat or608.3. Two triplets retain four cemented interfacesR4/R5 andR8/R9; all three airspaces0.4/18/0.4 mm remain. Literal EFL95.010636450, rear-vertex Gaussian BFD44.020298098 and83.82 mm track independently reproduced without fit. No image gap is printed in the supplied source; the model uses the derived Gaussian detectorz127.840298098.
+**Patent:** [US 2,718,174 A](https://patents.google.com/patent/US2718174A/en), “High Aperture Photographic Objective”
 
-The stop14/4 split in the18 mm airspace,z49.5, iris and caps39/39/34/32/32/23/21/21/21/26/27/27 mm semidiameters are estimates. Native nominalf/1.3 gives iris radius20.089487939 mm. The independent nominal EFL/(2×1.3) marginal reaches20.658184288; the admitted axial beam is entrance-equivalentf/1.335183794 and image-space sinef/1.325616165. These are separate conventions and modeled aperture assumptions, not factory physical measurements or a relabeling. Canonical f/1.3 unchanged;±2% iris trials diagnostic only.
+**Inventors:** Yoshikazu Doi
 
-Default geometry passes with zero trim/override. Minimum common-band glass1.348303094 mm; central gap minimum5.222598226 mm, both0.4 mm gaps widen radially. Asymmetric estimated rims require care: L2front34/rear32 rim endpoints reverse their axial order(z29.440126 vs28.310828). An independent radial solid proxy using the source spherical faces and straight rim joins verifies nonnegative material, positive common-band land, and every sampled native-arrival glass segment inside the inferred solid. Outer tapered tips close to zero by construction; those ideal proxy edges are not measured manufactured bevels. No model, ray acceptance, cap or engine change was made for this check. Sampling does not prove all unsampled body paths or manufacturing robustness.
+**Assignee:** Fuji Photo Film Co., Ltd.
 
-Chosen±10° only, no source coverage or retail format claim. At865 actual-stop pupil targets per field,0° gives865 arrivals;±5°825 arrivals/40cap losses;±10°702 arrivals/163cap losses. At each10° edge,32 native pre-stop-blocked/noBracket paths are independently shown to hit the selected first sphere outsidecap39, with positive forward distance and matching prefixes; they remain recorded raw losses, not accepted or unresolved rays. No failed, unaimed or unresolved sample remains in this grid. The separate3457entrance-grid has243 raw first-cap misses per10°edge, also independently classified. Counts are not flux/throughput or proof of full continuous pupil coverage.
+**Filed:** 21 June 1954
 
-Native viewer helper and read-only rendered incomingSVG slopes verify actual10° on desktop and responsive mobile. Sourcecode sets supported offAxisFieldFrac1; no hidden interior default angle. Tested incoming displayed segments:4of5desktop ray objects and10of11responsive-mobile objects have nonempty incoming segments, all10°; empty/clipped paths are not silently promoted. Compact Builder has no raytoggle: normalwide-layout activation then resizeback390px was required. No internal state injection or app change, no purecompact activation claim.
+**Published:** 20 September 1955
 
-Reference d-line geometric MTF0/10/20/40lp/mm converges at angles0°,5.049470°,10°; explicit32–512 lattice refinement has max256→512 differences0.000356212/0.000092899/0.000432213, zero failed/unaimed/unknown flux. Nativekernel geometric computation, not independently measured-source MTF, diffraction or calibrated broadband. Wider independent meridional-only101-seed benches at12.5/15/20° have79/73/51 arrivals and explicit cap losses; this is not a native coverage or wider MTF qualification.
+**Priority:** Japan, 25 June 1953
 
-Original issue facsimile p1–3 independently verified externally: https://patentimages.storage.googleapis.com/2f/46/f6/50d9bb58d78dc2/US2718174.pdf . Full original SHA256 pin `69b8fc5a21f93561d2ae8a58cfead1dc46fd7419efbe46ac51aeaae163ee442c`. No original bytes/pixels/hash were verified locally or included; known denied routes not retried. Altman remains unrelated bench-only and untouched.
+**Example details:** Figure 1; first numerical table in column 2, repeated in claim 1.
+
+Figure 1 describes an eight-element f/1.3 objective. Figure 2 is a separate nine-element f/1.2 example. The model multiplies the table's dimensional values by 100, so the printed focal length f′T = .9500 becomes 95 mm. The printed radii, thicknesses, air spaces and eight refractive-index/Abbe pairs are retained.
+
+The design belongs to the development history of the Fujinon 5 cm f/1.2. [Oldlens](https://oldlens.com/fujinon%205cmf12.html) summarizes Doi's 1955 account in _Shashin Kogyo_: an f/1.5 design was extended toward f/1.3, followed by a nine-element f/1.2 prototype and an eight-element production lens. Figure 1's aperture and construction fit the f/1.3 stage; Figure 2 fits the nine-element stage. This is a development-stage family association, not evidence that Figure 1 was the production prescription. [Fujifilm's historical account](https://www.fujifilm-x.com/th-th/stories/fujinon-speed-lenses-rebirth-of-the-legend-1/) confirms the production lens's introduction in 1954.
+
+## Optical Architecture
+
+Eight spherical elements form four air-separated groups: a positive front singlet, a negative cemented triplet, a positive cemented triplet and a positive rear singlet. Their computed focal lengths are +123.74, −147.62, +228.06 and +126.42 mm respectively. The construction combines a central stop gap with strongly refracting cemented surfaces.
+
+The front triplet comprises L2–L4, joined at R4 and R5; the rear triplet comprises L5–L7, joined at R8 and R9. The air spaces between groups are 0.4, 18 and 0.4 mm. R2 is a shallow positive surface with radius +6083 mm, rather than a plane.
+
+The drawing places the stop in the central gap but supplies no coordinate. The model divides that gap into 14 mm after R6 and 4 mm before R7, placing the stop 49.5 mm behind the first vertex. This agrees approximately with the drawn location. The stop diameter and all clear semi-diameters are inferred.
+
+## Element-by-Element Analysis
+
+The focal lengths below are those of the individual elements in air; the powers of the cemented assemblies differ.
+
+### L1 — Positive Meniscus
+
+nd = 1.6713, νd = 47.0. Glass: Unmatched. f = +123.74 mm.
+
+The positive front singlet collects the incoming beam. Its rear surface is almost planar but retains the printed positive radius.
+
+### L2 — Positive Meniscus
+
+nd = 1.6713, νd = 47.0. Glass: Unmatched. f = +86.42 mm.
+
+L2 is the positive front member of the first cemented triplet. Its R3 clear semi-diameter is 33 mm, below the element's calculated knife edge at about 33.39 mm. The former 34 mm rim extended beyond that edge and reversed the outline.
+
+### L3 — Biconvex Positive
+
+nd = 1.5414, νd = 47.1. Glass: Unmatched. f = +156.98 mm.
+
+L3 is the middle positive element of the front triplet. Both faces are cemented, joining L2 at R4 and L4 at R5.
+
+### L4 — Biconcave Negative
+
+nd = 1.7572, νd = 27.5. Glass: Unmatched. f = −32.81 mm.
+
+The high-index, more dispersive rear member makes the front triplet negative overall. Its strongly curved rear surface faces the stop gap.
+
+### L5 — Biconcave Negative
+
+nd = 1.5414, νd = 47.1. Glass: Unmatched. f = −56.17 mm.
+
+L5 begins the rear triplet immediately after the stop gap. Its rear face is cemented to the stronger positive L6.
+
+### L6 — Biconvex Positive
+
+nd = 1.6738, νd = 47.0. Glass: Unmatched. f = +27.63 mm.
+
+L6 supplies the main positive power within the rear triplet, between the negative elements L5 and L7.
+
+### L7 — Negative Meniscus
+
+nd = 1.6480, νd = 47.8. Glass: Unmatched. f = −54.08 mm.
+
+L7 forms the rear member of the positive rear triplet. Its concave cemented front face is more strongly curved than its rear face.
+
+### L8 — Biconvex Positive
+
+nd = 1.6216, νd = 60.2. Glass: Unmatched. f = +126.42 mm.
+
+The final positive singlet follows a 0.4 mm air space. It has the highest Abbe number in the example.
+
+## Glass Identification and Selection
+
+The patent explicitly defines its refractive indices for the d line, taken as helium at 587.6 nm. All eight index/Abbe pairs remain as printed, including the repeated pairs on L1/L2 and L3/L5. Repeated values do not combine distinct physical elements.
+
+The text names BaF10 for the principal positive glass of the f/1.3 example, but the printed indices do not match an available catalogue row exactly. It also discusses SSK10, SK21, EK330 and EK210 in connection with faster designs; these names do not establish the identity of each Figure 1 element.
+
+None of the six distinct printed pairs has an exact catalogue match. All eight elements therefore remain Unmatched, with their printed values in the labels. No additional line indices or partial-dispersion values are supplied. Calculations based on these Abbe numbers do not establish the historical glasses' secondary spectrum or measured broadband performance.
+
+## Focus Mechanism
+
+The model represents infinity focus only. The patent supplies no close-focus distances, displacement law or alternate focus spacing. No production minimum-focus specification is transferred to this design.
+
+## First-Order Properties and Model Limits
+
+The prescription computes to EFL 95.0106 mm, 0.0112% above the table's nominal 95 mm. The first-to-last vertex distance is 83.82 mm. No back focus is printed; the image plane is placed at the calculated paraxial back focus of 44.0203 mm, or 127.8403 mm behind the first vertex.
+
+The nominal f/1.3 aperture produces a paraxial stop radius of 20.0895 mm. Exact axial tracing gives an entrance-equivalent aperture of about f/1.3352 and an image-space sine aperture of about f/1.3256. A real f/1.3 marginal ray would require a stop radius of 20.6582 mm. These differences concern the inferred iris and the aperture convention; no historical diaphragm measurement is available.
+
+The patent discusses picture angles up to about 45° for the lens class, without assigning a numerical field to Figure 1. The model retains an illustrative ±10° field. The chief ray clears the inferred rims there, but part of the off-axis pupil is vignetted. No image format or image-circle diameter is assigned from this illustrative field.
+
+The clear rims remain estimates rather than measurements of finished lens blanks. Apart from correcting R3's reversed edge, their relationship to the drawing remains unresolved. The radii, glass thicknesses, air spaces, stop position and paraxial image plane have not been adjusted to improve image quality. Any calculated MTF describes this inferred aperture geometry rather than measured production performance.
+
+## Sources
+
+1. Yoshikazu Doi, [US 2,718,174 A, “High Aperture Photographic Objective”](https://patents.google.com/patent/US2718174A/en), assigned to Fuji Photo Film Co., Ltd.; drawing sheet, specification columns 1–4 and claim 1.
+2. [Oldlens, “Fujinon 5 cm f/1.2”](https://oldlens.com/fujinon%205cmf12.html), summarizing the development account published in _Shashin Kogyo_ in 1955.
+3. Fujifilm, [“FUJINON Speed Lenses — Rebirth of the Legend #1”](https://www.fujifilm-x.com/th-th/stories/fujinon-speed-lenses-rebirth-of-the-legend-1/), production introduction date.

@@ -1,132 +1,155 @@
-import type { LensDataV2Input } from "../repo/src/types/lensDataV2.js";
-const data = {
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * Yoshikazu Doi's Figure 1 in US 2,718,174 A, assigned to Fuji Photo Film Co., Ltd.
+ * The dimensional table is multiplied by 100: printed f′T = .9500 becomes 95 mm.
+ * All signed radii, thicknesses, air spaces and d-line index/Abbe pairs are retained,
+ * including the shallow positive R2. The two central groups are cemented triplets.
+ * The stop is inferred within the central 18 mm air space, 14 mm after R6 and 4 mm
+ * before R7. Its radius follows the nominal f/1.3 aperture; exact axial tracing gives
+ * about f/1.335. Clear rims are inferred; R3 is limited to 33 mm to avoid a reversed
+ * edge on L2. The unprinted image distance is the paraxial back focus, 44.0203 mm.
+ * The illustrated ±10° field is not a published field or image-format specification.
+ */
+const LENS_DATA = {
   schema: 2,
-  key: "doi-us2718174-figure1-infinity-reference",
-  maker: null,
-  name: "YOSHIKAZU DOI US2718174 FIG.1 \u2014 PATENT REFERENCE",
-  subtitle:
-    "95mm nominal f/1.3 \u00b7 literal \u00d7100 \u00b7 explicit d-line \u00b7 chosen \u00b110\u00b0 infinity diagnostic",
-  visible: false,
+  key: "fujifilm-fujinon-95mm-f13-us2718174",
+  maker: "Fujifilm",
+  name: "FUJIFILM FUJINON 95mm f/1.3 (US 2,718,174 Design)",
+  subtitle: "US 2,718,174 A, Figure 1 — Fujinon 5 cm f/1.2 development",
+  visible: true,
   source: {
-    patentNumber: "US 2,718,174",
+    patentNumber: "US 2,718,174 A",
     patentYear: 1955,
     example: {
       label: "Figure 1",
       id: "1",
     },
     authors: ["Yoshikazu Doi"],
-    assignees: ["Fuji Photo Film"],
+    assignees: ["Fuji Photo Film Co., Ltd."],
     sdSource: "heuristic",
   },
   catalog: {
-    imageCircleMm: 33.607544552935906,
     elementCount: 8,
     groupCount: 4,
     focalLengthMm: {
-      design: 95,
+      design: 95.01,
     },
     fNumber: {
       design: 1.3,
     },
-    specs: [
-      "Figure1 exact100\u00d7 patent-only;8E/4G with two cemented triplets",
-      "BondsR4/R5 andR8/R9; shallowR2+6083 preserved, all airliteral",
-      "Explicit lowercase d/V retained, no sodiumD or catalogglass substitution",
-      "LiteralEFL95.010636/BFD44.020298/track83.82; nominal95/f1.3, no fit",
-      "Inferred stop14/4,z49.5 and iris/caps; chosen\u00b110deg actualray scope only",
-      "No retail/finite/coverage/calibrated spectrum or manufactured aperture claim",
-      "Metric circle uses actual10deg chief image height, not measuredformat; panel fraction1",
-      "Nominal f1.3 retained; modeled finite entrance equivalent f1.335184 (estimated iris)",
-    ],
+    specs: ["8 ELEMENTS / 4 GROUPS", "DESIGN f = 95 mm", "DESIGN F/1.3", "ALL SPHERICAL"],
   },
   elements: [
     {
       id: 1,
       name: "L1",
       label: "L1",
-      type: "Source Spherical Element",
+      diagramLabel: "L1",
+      type: "Positive Meniscus",
+      role: "Positive front singlet",
+      focalLengthMm: 123.74,
       nd: 1.6713,
       vd: 47.0,
       indexReference: "d",
-      glass:
-        "Unmatched literal explicit d/V; no exact catalog glass or calibrated spectral curve",
+      glass: "Unmatched (nd 1.6713 / νd 47.0)",
     },
     {
       id: 2,
       name: "L2",
       label: "L2",
-      type: "Source Spherical Element",
+      diagramLabel: "L2",
+      type: "Positive Meniscus",
+      role: "Positive front element of the front cemented triplet",
+      focalLengthMm: 86.42,
+      cemented: "C1",
       nd: 1.6713,
       vd: 47.0,
       indexReference: "d",
-      glass:
-        "Unmatched literal explicit d/V; no exact catalog glass or calibrated spectral curve",
+      glass: "Unmatched (nd 1.6713 / νd 47.0)",
     },
     {
       id: 3,
       name: "L3",
       label: "L3",
-      type: "Source Spherical Element",
+      diagramLabel: "L3",
+      type: "Biconvex Positive",
+      role: "Positive middle element of the front cemented triplet",
+      focalLengthMm: 156.98,
+      cemented: "C1",
       nd: 1.5414,
       vd: 47.1,
       indexReference: "d",
-      glass:
-        "Unmatched literal explicit d/V; no exact catalog glass or calibrated spectral curve",
+      glass: "Unmatched (nd 1.5414 / νd 47.1)",
     },
     {
       id: 4,
       name: "L4",
       label: "L4",
-      type: "Source Spherical Element",
+      diagramLabel: "L4",
+      type: "Biconcave Negative",
+      role: "Negative rear element of the front cemented triplet",
+      focalLengthMm: -32.81,
+      cemented: "C1",
       nd: 1.7572,
       vd: 27.5,
       indexReference: "d",
-      glass:
-        "Unmatched literal explicit d/V; no exact catalog glass or calibrated spectral curve",
+      glass: "Unmatched (nd 1.7572 / νd 27.5)",
     },
     {
       id: 5,
       name: "L5",
       label: "L5",
-      type: "Source Spherical Element",
+      diagramLabel: "L5",
+      type: "Biconcave Negative",
+      role: "Negative front element of the rear cemented triplet",
+      focalLengthMm: -56.17,
+      cemented: "C2",
       nd: 1.5414,
       vd: 47.1,
       indexReference: "d",
-      glass:
-        "Unmatched literal explicit d/V; no exact catalog glass or calibrated spectral curve",
+      glass: "Unmatched (nd 1.5414 / νd 47.1)",
     },
     {
       id: 6,
       name: "L6",
       label: "L6",
-      type: "Source Spherical Element",
+      diagramLabel: "L6",
+      type: "Biconvex Positive",
+      role: "Positive middle element of the rear cemented triplet",
+      focalLengthMm: 27.63,
+      cemented: "C2",
       nd: 1.6738,
       vd: 47.0,
       indexReference: "d",
-      glass:
-        "Unmatched literal explicit d/V; no exact catalog glass or calibrated spectral curve",
+      glass: "Unmatched (nd 1.6738 / νd 47.0)",
     },
     {
       id: 7,
       name: "L7",
       label: "L7",
-      type: "Source Spherical Element",
+      diagramLabel: "L7",
+      type: "Negative Meniscus",
+      role: "Negative rear element of the rear cemented triplet",
+      focalLengthMm: -54.08,
+      cemented: "C2",
       nd: 1.648,
       vd: 47.8,
       indexReference: "d",
-      glass:
-        "Unmatched literal explicit d/V; no exact catalog glass or calibrated spectral curve",
+      glass: "Unmatched (nd 1.6480 / νd 47.8)",
     },
     {
       id: 8,
       name: "L8",
       label: "L8",
-      type: "Source Spherical Element",
+      diagramLabel: "L8",
+      type: "Biconvex Positive",
+      role: "Positive rear singlet",
+      focalLengthMm: 126.42,
       nd: 1.6216,
       vd: 60.2,
       indexReference: "d",
-      glass:
-        "Unmatched literal explicit d/V; no exact catalog glass or calibrated spectral curve",
+      glass: "Unmatched (nd 1.6216 / νd 60.2)",
     },
   ],
   surfaces: [
@@ -147,7 +170,7 @@ const data = {
       label: "3",
       R: 42.44,
       d: 12.2,
-      sd: 34,
+      sd: 33,
       medium: 2,
     },
     {
@@ -217,9 +240,8 @@ const data = {
     },
   ],
   focus: {
-    closeFocusM: 1000000000000000.0,
-    description:
-      "YoshikazuDoi/FujiPhotoFilm US2718174 Fig1 patent-only explicitlowercase-d infinity reference, exact100\u00d7source; not retail/finite. Originalissuefacsimilep1\u20133 independently verified inexternalcustody withPDFhashpin, no localoriginal/pixels/hash or deniedroute retry. AllsignedR/t/d-index/V preserved; R2+6083shallow and two tripletbondsR4/R5,R8/R9 remain, no glasssubstitution. Nominal95/f1.3 vs literal95.010636/BFD44.020298/track83.82; unprintedGaussianimagegap derived, no fit. Stop14/4,z49.5 and iris/rims estimates; chosen\u00b110degdiagnosticactualpanel, no sourcecoverage/broadband/baffle/finiteclaim. Altmanunrelatedbench untouched.",
+    closeFocusM: 1e15,
+    description: "Infinity focus only; the patent gives no close-focus data.",
   },
   aperture: {
     nominalFNumber: 1.3,
@@ -256,8 +278,20 @@ const data = {
       toSurface: "12",
     },
   ],
+  doublets: [
+    {
+      text: "C1 · Cemented triplet",
+      fromSurface: "3",
+      toSurface: "6",
+    },
+    {
+      text: "C2 · Cemented triplet",
+      fromSurface: "7",
+      toSurface: "10",
+    },
+  ],
   layout: {
     yScFill: 0.5,
   },
 } satisfies LensDataV2Input;
-export default data;
+export default LENS_DATA;
