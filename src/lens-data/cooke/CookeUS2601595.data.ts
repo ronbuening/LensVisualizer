@@ -1,11 +1,26 @@
-import type { LensDataV2Input } from "../repo/src/types/lensDataV2.js";
-const data = {
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * US 2,601,595 A, Example VII and Figure 7, by Gordon Henry Cook for Taylor,
+ * Taylor & Hobson Limited. The patent's F = 1.000 prescription is multiplied
+ * by 100 to express every length in millimetres at nominal f = 100 mm.
+ * Six spherical elements form five air-spaced groups, with a cemented front
+ * doublet and a 0.5 mm air gap between the two rear elements.
+ * The patent states f/3.5, a 25-degree half-field and an approximately central
+ * stop; the exact stop station is inferred by halving the R5-R6 air space.
+ * Rims combine the suggested diameters with inferred R4, R7 and R9 apertures.
+ * R3 and R5 use 11.3 and 11.05 mm semi-diameters to admit the axial f/3.5 beam;
+ * the patent says its suggested diameters exceed the axial requirement.
+ * Its repeated R8 in the rear-diameter list is probably a misprint for R9.
+ * The image plane is the computed paraxial back focus, 80.319697 mm; no back
+ * focus or close-focus data is printed. Glass indices refer to sodium D.
+ */
+const LENS_DATA = {
   schema: 2,
-  key: "cook-us2601595-example7-chamfer-proxy-dline-reference",
-  maker: null,
-  name: "COOK US2601595 EX.VII — CHAMFER PROXY",
-  subtitle:
-    "Normalized100-unit representation · nominal f/3.5 / cap-limited≈f/3.595 · source50° design field · D-line infinity",
+  key: "cooke-100mm-f35-us2601595",
+  maker: "Cooke",
+  name: "COOKE 100mm f/3.5 (US 2,601,595 Design)",
+  subtitle: "US 2,601,595 A, Example VII — four-component wide-angle design",
   visible: false,
   source: {
     patentNumber: "US 2,601,595 A",
@@ -16,7 +31,6 @@ const data = {
     },
     authors: ["Gordon Henry Cook"],
     assignees: ["Taylor, Taylor & Hobson Limited"],
-    sdSource: "heuristic",
   },
   catalog: {
     imageCircleMm: 93.32155407299163,
@@ -28,82 +42,82 @@ const data = {
     fNumber: {
       design: 3.5,
     },
-    specs: [
-      "6E/5G · FRONT CEMENTED, REAR CONTACT INTENTIONALLY BROKEN",
-      "100mm IS A DECLARED NORMALIZED SCALE, NOT A SOURCE ABSOLUTE FOCAL LENGTH",
-      "SOURCE NOMINAL f/3.5; CONSERVATIVE R3 PROXY LIMITS FINITE ENTRANCE TO≈f/3.595",
-      "SOURCE50° DESIGN FIELD REQUEST WITH EXPLICIT CLIPPING",
-      "SOURCE SUGGESTED CHAMFER DIAMETERS ARE CONSERVATIVE SPHERICAL CAP PROXIES, NOT MEASUREMENTS",
-      "R9 ESTIMATED; LITERAL0.005F REAR AIR RETAINED",
-      "D-LINE INFINITY ONLY · NO RETAIL IDENTITY OR CALIBRATED DISPERSION",
-    ],
+    specs: ["6 ELEMENTS / 5 GROUPS", "ALL SPHERICAL", "DESIGN F/3.5", "WIDE-ANGLE"],
   },
   elements: [
     {
       id: 1,
       name: "L1",
-      label: "L1",
-      type: "Meniscus Component",
+      label: "Element 1",
+      type: "Positive Meniscus",
       nd: 1.657,
       vd: 50.8,
       indexReference: "D",
-      glass:
-        "Unmatched (literal source nD/V; no catalog curve substitution, D-line scope)",
+      focalLengthMm: 58.67,
+      glass: "Unmatched (nD 1.6570 / ν 50.8)",
+      role: "Positive front element of the negative front component.",
+      cemented: "C1",
     },
     {
       id: 2,
       name: "L2",
-      label: "L2",
-      type: "Meniscus Component",
+      label: "Element 2",
+      type: "Negative Meniscus",
       nd: 1.6205,
       vd: 36.2,
       indexReference: "D",
-      glass:
-        "Unmatched (literal source nD/V; no catalog curve substitution, D-line scope)",
+      focalLengthMm: -42.54,
+      glass: "Unmatched (nD 1.6205 / ν 36.2)",
+      role: "Negative rear element of the cemented front component.",
+      cemented: "C1",
     },
     {
       id: 3,
       name: "L3",
-      label: "L3",
+      label: "Element 3",
       type: "Positive Meniscus",
       nd: 1.6234,
       vd: 56.2,
       indexReference: "D",
-      glass:
-        "Unmatched (literal source nD/V; no catalog curve substitution, D-line scope)",
+      focalLengthMm: 114.13,
+      glass: "Unmatched (nD 1.6234 / ν 56.2)",
+      role: "Positive inner meniscus ahead of the aperture stop.",
     },
     {
       id: 4,
       name: "L4",
-      label: "L4",
+      label: "Element 4",
       type: "Positive Meniscus",
       nd: 1.6234,
       vd: 56.2,
       indexReference: "D",
-      glass:
-        "Unmatched (literal source nD/V; no catalog curve substitution, D-line scope)",
+      focalLengthMm: 120.95,
+      glass: "Unmatched (nD 1.6234 / ν 56.2)",
+      role: "Positive inner meniscus behind the aperture stop.",
     },
     {
       id: 5,
       name: "L5",
-      label: "L5",
-      type: "Meniscus Component",
+      label: "Element 5",
+      type: "Negative Meniscus",
       nd: 1.6055,
       vd: 38,
       indexReference: "D",
-      glass:
-        "Unmatched (literal source nD/V; no catalog curve substitution, D-line scope)",
+      focalLengthMm: -39.57,
+      glass: "F15 (Hoya)",
+      role: "Negative front element of the air-spaced rear component.",
     },
     {
       id: 6,
       name: "L6",
-      label: "L6",
-      type: "Meniscus Component",
+      label: "Element 6",
+      type: "Positive Meniscus",
       nd: 1.657,
       vd: 50.8,
       indexReference: "D",
-      glass:
-        "Unmatched (literal source nD/V; no catalog curve substitution, D-line scope)",
+      focalLengthMm: 45.28,
+      glass: "Unmatched (nD 1.6570 / ν 50.8)",
+      role: "Positive rear element of the air-spaced rear component.",
     },
   ],
   surfaces: [
@@ -125,7 +139,7 @@ const data = {
       label: "3",
       R: 16.95,
       d: 2.8,
-      sd: 11,
+      sd: 11.3,
     },
     {
       label: "4",
@@ -138,7 +152,7 @@ const data = {
       label: "5",
       R: 45.25,
       d: 2.55,
-      sd: 11,
+      sd: 11.05,
     },
     {
       label: "STO",
@@ -186,9 +200,8 @@ const data = {
     },
   ],
   focus: {
-    closeFocusM: 1000000000000000,
-    description:
-      "Patent-only normalized ExampleVII, larger-conjugate/front infinity direction. 100mm is a declared scale. Literal source R/d/nD/V and0.005F rear air retained. Approximate midpoint stop and conservative spherical cap proxies of suggested chamfer diameters; no bevel geometry inferred. R4/R7/R9 caps estimated. Source nominalf/3.5 is distinct from actual cap-limited≈f/3.595. Source50degree full field requested with clipping; no full-pupil, finite-conjugate or retail identity claim. Quantitative D-line only.",
+    closeFocusM: 1e15,
+    description: "Infinity focus only; the patent gives no close-focus data.",
   },
   aperture: {
     nominalFNumber: 3.5,
@@ -217,18 +230,25 @@ const data = {
       toSurface: "7",
     },
     {
-      text: "Broken rear group L5",
+      text: "Rear negative meniscus",
       fromSurface: "8",
       toSurface: "9",
     },
     {
-      text: "Broken rear group L6",
+      text: "Rear positive meniscus",
       fromSurface: "10",
       toSurface: "11",
+    },
+  ],
+  doublets: [
+    {
+      text: "C1",
+      fromSurface: "1",
+      toSurface: "3",
     },
   ],
   layout: {
     yScFill: 0.5,
   },
 } satisfies LensDataV2Input;
-export default data;
+export default LENS_DATA;
