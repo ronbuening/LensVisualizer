@@ -6,8 +6,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * and Abbe numbers follow the printed millimetre table without conversion.
  * The patent says only "yellow ray"; four of five glass pairs match helium d.
  * Figure 2 shows the f/5 Example I form; Example II is analogous, with planar
- * R2 and R5. The stop's 7.6 / 3.3 mm split, its size and all clear rims are
- * inferred. The image gap is the computed paraxial back focus, 77.95 mm;
+ * R2 and R5. The stop's 7.6 / 3.3 mm split and its size are inferred.
+ * Clear rims use Figure 2's proportions, retaining the front triplet's
+ * 17.5–18 mm body, a 14 mm rear face and a 14.5 mm rear doublet; these are
+ * estimates, checked against the axial beam and illustrative 12° field.
+ * The image gap is the computed paraxial back focus, 77.95 mm;
  * calculated EFL is 99.94 mm. Exact rays at the paraxial iris give f/3.52.
  * The 12.0° half-field is illustrative; the text's useful angle of about
  * 60° describes the design class.
@@ -144,7 +147,7 @@ const LENS_DATA = {
       label: "4",
       R: 22.6,
       d: 7.6,
-      sd: 16.5,
+      sd: 14,
     },
     {
       label: "STO",
@@ -155,21 +158,21 @@ const LENS_DATA = {
       label: "5",
       R: "flat",
       d: 1.8,
-      sd: 17,
+      sd: 14.5,
       medium: 4,
     },
     {
       label: "6",
       R: 21.7,
       d: 14.1,
-      sd: 17,
+      sd: 14.5,
       medium: 5,
     },
     {
       label: "7",
       R: -62.3,
       d: 77.948626,
-      sd: 17,
+      sd: 14.5,
     },
   ],
   focus: {

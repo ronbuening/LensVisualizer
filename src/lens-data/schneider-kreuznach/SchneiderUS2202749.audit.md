@@ -40,18 +40,19 @@ opening. The optical rims admit that marginal; the iris accounts for the
 small difference between the paraxial and finite-aperture f-numbers.
 
 The surfaces stay clear of each other. The 12.0° chief ray reaches
-21.09 mm image height without blockage. Chief rays can reach about 20°,
-where the marginal bundle has about 14% vignetting at R1.
+21.09 mm image height without blockage. Wide-open geometric transmission
+is about 99.8% there. Chief rays also reach 20°, with increasing vignetting
+at the front and rear rims.
 
 ## Values Not Printed in the Patent
 
 The 10.9 mm diaphragm space is divided into 7.6 mm after R4 and 3.3 mm
 before R5, placing the stop 23.1 mm behind the first vertex. This station,
 the iris diameter and every clear semi-diameter are inferred. The retained
-clear radii at R1–R7 are 17.5, 17.5, 18, 16.5, 17, 17 and 17 mm.
-Minimum air clearance is about 3.74 mm; R4's rim clears the stop plane
-by about 0.44 mm. Figure 2 supports the topology, but its different R2/R5
-curvatures do not establish Example II's rim sizes.
+clear radii at R1–R7 are 17.5, 17.5, 18, 14, 14.5, 14.5 and 14.5 mm.
+Minimum air clearance between the groups is about 6.04 mm; R4's rim clears
+the stop plane by about 2.74 mm. Figure 2 supplies relative rim proportions;
+its different R2/R5 curvatures do not establish Example II's absolute rim sizes.
 
 The ±12.0° field is illustrative. The text's useful angle of about 60°
 describes the design class without specifying Example II's useful field.
@@ -124,7 +125,48 @@ The resulting model retains EFL 99.94 mm, paraxial f/3.50, back focus
 77.95 mm, first-vertex-to-image distance 120.25 mm, stop radius 11.183 mm
 and half-field 12.0°. The finite-aperture result remains f/3.52.
 Radii, thicknesses, spaces, indices, Abbe numbers, stop position,
-clear rims, field and image plane retain their original numerical values.
+field and image plane retain their original numerical values.
+
+2026-11-21 rim review:
+
+- Figure 2 on PDF page 1 was read at the scan's original 300 dpi. Its roughly
+  328-pixel first-to-last vertex span corresponds to 20.798 mm in Example I,
+  or about 15.8 pixels/mm. The front and rear vertex spans give about 15.6
+  and 15.7 pixels/mm. Across the axis, the front arc's roughly 168-pixel
+  height and 44-pixel sag imply a radius of about 21.7 mm, close to Example I's
+  printed 21.8 mm. This is the f/5 form, not Example II. Fitting the same
+  overall span to Example II's 42.3 mm gives 7.75 pixels/mm, but its rear
+  element thickness would require only about 4.7 pixels/mm and the front
+  arc would imply a radius near 44 mm rather than 29.2 mm. The drawing
+  therefore supplies proportions only for Example II.
+- Away from the lettering and radius leaders, the front body is about
+  345 pixels high, the R4 curve ends about 270 pixels apart and the rear
+  doublet about 282 pixels high. Their relative radii are about 1 : 0.79 : 0.82.
+  R1–R3 remain at 17.5, 17.5 and 18 mm; their small differences are within
+  the drawing's precision. The rear doublet retains a common rim height.
+- R4 changed from 16.5 to 14 mm to follow the triplet's smaller rear face.
+  This costs no geometric transmission at any field through 12°. Its
+  f/3.5 axial marginal height is 11.07 mm and its 12° chief-ray height is
+  2.06 mm. The inferred stop position is retained; its axial clearance
+  from this rim is now 2.74 mm.
+- R5, R6 and R7 each changed from 17 to 14.5 mm, following the rear group's
+  roughly 82% height relative to the front body. At 12°, geometric
+  transmission changes from 100% to 99.8%; the greatest loss through the
+  illustrative field is 0.2 percentage points. Restoring this doublet alone
+  recovers those 0.2 points, whereas restoring R4 alone recovers none.
+- The final rims clear the stated axial beam and 12° chief ray. Axial heights
+  at R5–R7 are 11.38, 11.50 and 11.45 mm; chief-ray heights are 0.90, 1.21
+  and 3.36 mm. The unrestricted marginal extreme at R7 is 14.72 mm, so a
+  small amount of ordinary off-axis vignetting remains. Edge thicknesses
+  and air spaces remain positive. The 12° half-field, paraxial f/3.50 and
+  finite-aperture f/3.52 are unchanged. Image-circle and format-corner
+  checks have no declared image format to compare against.
+- The drawn section was compared beside the model with their front-group
+  heights matched. The smaller rear group and triplet rear face follow
+  Figure 2's relative outline; the planar R2/R5 and thicker rear positive
+  element remain those of Example II. No production construction diagram
+  is documented for this prescription, and no special glass or aspherical
+  element is identified in the patent.
 
 ## Remaining Questions
 
@@ -134,7 +176,8 @@ clear rims, field and image plane retain their original numerical values.
   are unknown.
 - Example II's historical iris station, diameter, blade count, blade shape
   and stop range are not given.
-- Example II's clear rims, useful field and image format are not specified.
+- Example II's absolute clear rims, useful field and image format remain
+  unspecified; the estimated rims follow Figure 2's relative proportions.
 - A production lens association, marketed focal length and aperture, mount,
   and minimum focus distance remain undocumented.
 - Measured partial dispersion and imaging performance are not available

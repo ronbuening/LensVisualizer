@@ -68,7 +68,7 @@ f = −22.03 mm.
 
 The −41.1 and +22.6 mm faces enclose 1.8 mm. L3 supplies negative power at the
 rear of the triplet and exits into the diaphragm space. Its inferred clear
-semi-diameters are 18 and 16.5 mm.
+semi-diameters are 18 and 14 mm.
 
 ### L4 — Plano-Concave Negative
 
@@ -76,7 +76,7 @@ nd = 1.6254, νd = 35.6. Glass: F7 (Hoya), an optical equivalent.
 f = −34.70 mm.
 
 The planar R5 and +21.7 mm cemented R6 enclose 1.8 mm. L4 is the negative
-front element of the rear doublet. Both inferred clear semi-diameters are 17 mm.
+front element of the rear doublet. Both inferred clear semi-diameters are 14.5 mm.
 
 ### L5 — Biconvex Positive
 
@@ -84,8 +84,8 @@ nd = 1.7015, νd = 41.2. Glass: BAFD7 (Hoya), an optical equivalent.
 f = +24.65 mm.
 
 The +21.7 and −62.3 mm faces enclose 14.1 mm. L5 supplies the rear group's
-positive collecting power. Both inferred clear semi-diameters are 17 mm;
-the working-edge thickness is about 3.522 mm.
+positive collecting power. Both inferred clear semi-diameters are 14.5 mm;
+the working-edge thickness is about 6.83 mm.
 
 ## Glass Identification and Index Reference
 
@@ -116,14 +116,18 @@ computed paraxial plane.
 The inferred stop lies 23.1 mm behind the first vertex. Its 11.18 mm radius
 gives paraxial f/3.50; exact rays reach an entrance-pupil radius of 14.20 mm,
 equivalent to about f/3.52. The stop clears R4's inferred rim by about
-0.44 mm, and the minimum central air clearance is about 3.74 mm.
+2.74 mm, and the minimum air clearance between the groups is about 6.04 mm.
 
 The patent describes the design class as retaining a useful angle of about
 60°, without assigning that field to Example II. The model retains an
 illustrative ±12.0° field. Its chief ray reaches 21.09 mm image height there.
-Chief rays can reach about 20° with the current rims, although the marginal
-bundle suffers about 14% vignetting at R1 there.
+Wide-open geometric transmission is about 99.8% at 12°. Chief rays also
+reach 20°, with increasing vignetting at the front and rear rims.
 
-All clear semi-diameters are inferred. Figure 2 supports the group topology,
-but its curved R2/R5 belong to the other numerical example, so its outline
-does not establish Example II's rim sizes.
+All clear semi-diameters are estimated. Figure 2 supplies proportions only:
+the triplet's rear face and the rear doublet are about 79% and 82% of the
+front group's body radius. The retained 17.5–18 mm front body, 14 mm R4
+and square-cut 14.5 mm rear doublet follow those proportions while clearing
+the f/3.5 axial beam and 12° chief ray. The drawing's curved R2/R5 belong
+to Example I, so neither its absolute rim dimensions nor those curvatures
+establish Example II's construction.
