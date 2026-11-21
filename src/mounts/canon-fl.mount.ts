@@ -7,10 +7,11 @@
  * top body lug. FL has one coupling, the automatic diaphragm lever, and none of the FD signal levers.
  *
  * Evidence, in short: register, bore and lug count are Canon's own figures; the tightening direction and
- * the red-dot / guide-pin alignment come from the Canon FT QL manual; lug, slot and claw angles and radii
+ * the red-dot / guide-pin alignment come from the Canon FT QL manual; lug and claw angles and radii
  * are scaled from an undimensioned Canon patent drawing (US3906534A FIG. 2, an FD-era lens on the same
  * body flange) and are therefore photo-scaled, not patent-stated; the diaphragm lever is scaled from one
- * photograph of an FL lens. Stored lens-side features sit at the insertion position (ring index at top).
+ * photograph of an FL lens. The lens body does not turn on this mount, so the lens is drawn as it is on the camera; only the breech ring
+ * turns, and its claws are drawn with the ring open (ring index at top), which is the state the sources show.
  */
 
 import type { MountSpecInput } from "../types/mount.js";
@@ -42,10 +43,8 @@ const RING_OUTER_R = 32.5;
 
 const LUG_NOTE =
   "outward lug on the fixed body flange; angles and radii scaled from US3906534A FIG. 2 (lens-rear view, mirrored to the camera-front frame), about ±2 degrees";
-const SLOT_NOTE =
-  "gap between body lugs that a ring claw passes through at insertion; edges are the neighbouring lug ends scaled from US3906534A FIG. 2, and the band is drawn from the claw tip radius to the lug outer radius so that gaps read thinner than the lugs";
 const CLAW_NOTE =
-  "inward claw of the rotating breech ring, stored at the insertion position; scaled from US3906534A FIG. 2 (lens-rear view, mirrored), and the same three-relief pattern shows on the FL 28 mm ring photograph within about ±7 degrees";
+  "inward claw of the rotating breech ring, drawn with the ring open, as on a detached lens and as the source figure shows it: each claw then sits in the gap between two body lugs, and tightening turns it clockwise behind the next lug by an amount no source states; scaled from US3906534A FIG. 2 (lens-rear view, mirrored), and the same three-relief pattern shows on the FL 28 mm ring photograph within about ±7 degrees";
 
 function bodyLug(n: number, centerDeg: number, startDeg: number, endDeg: number, locksClaw: number) {
   return {
@@ -59,29 +58,12 @@ function bodyLug(n: number, centerDeg: number, startDeg: number, endDeg: number,
     innerRadiusMm: v(FLANGE_ROOT_R, "photo_scaled", F),
     outerRadiusMm: v(LUG_OUTER_R, "photo_scaled", F),
     depthMm: unknownV(F),
-    matesWith: "",
+    matesWith: `lens-claw-${locksClaw}`,
     shapeNotes: `${LUG_NOTE}; lens-claw-${locksClaw} hooks behind it when the ring is turned clockwise`,
   } satisfies MountSpecInput["cameraSideFeatures"][number];
 }
 
-function bodySlot(n: number, centerDeg: number, startDeg: number, endDeg: number) {
-  return {
-    featureId: `body-slot-${n}`,
-    featureType: "bayonet_receiving_slot",
-    profileId: PROFILE,
-    count: 1,
-    centerAngleDeg: v(centerDeg, "photo_scaled", F),
-    startAngleDeg: v(startDeg, "photo_scaled", F),
-    endAngleDeg: v(endDeg, "photo_scaled", F),
-    innerRadiusMm: v(CLAW_TIP_R, "photo_scaled", F),
-    outerRadiusMm: v(LUG_OUTER_R, "photo_scaled", F),
-    depthMm: unknownV(F),
-    matesWith: `lens-claw-${n}`,
-    shapeNotes: SLOT_NOTE,
-  } satisfies MountSpecInput["cameraSideFeatures"][number];
-}
-
-function lensClaw(n: number, centerDeg: number, startDeg: number, endDeg: number) {
+function lensClaw(n: number, centerDeg: number, startDeg: number, endDeg: number, hooksLug: number) {
   return {
     featureId: `lens-claw-${n}`,
     featureType: "breech_ring_claw",
@@ -93,7 +75,7 @@ function lensClaw(n: number, centerDeg: number, startDeg: number, endDeg: number
     innerRadiusMm: v(CLAW_TIP_R, "photo_scaled", F),
     outerRadiusMm: v(RING_RELIEF_R, "photo_scaled", F),
     thicknessMm: unknownV(F),
-    matesWith: `body-slot-${n}`,
+    matesWith: `body-lug-${hooksLug}`,
     shapeNotes: CLAW_NOTE,
   } satisfies MountSpecInput["lensSideFeatures"][number];
 }
@@ -191,9 +173,6 @@ const CANON_FL_MOUNT = {
     bodyLug(1, 359, 325, 33, 3),
     bodyLug(2, 122.5, 100.5, 144.5, 1),
     bodyLug(3, 237.5, 215.5, 259.5, 2),
-    bodySlot(1, 67, 33, 100.5),
-    bodySlot(2, 180, 144.5, 215.5),
-    bodySlot(3, 292, 259.5, 325),
     {
       featureId: "body-index-mark",
       featureType: "index_mark",
@@ -257,9 +236,9 @@ const CANON_FL_MOUNT = {
       shapeNotes:
         "rotating breech ring; inner radius is the relieved part of its rear flange (US3906534A FIG. 2), outer radius is scaled from the FL 28 mm photograph (65 mm; the patent drawing scales to 65.6 mm)",
     },
-    lensClaw(1, 67, 39.5, 95.5),
-    lensClaw(2, 180, 149, 212),
-    lensClaw(3, 292, 263.5, 320.5),
+    lensClaw(1, 67, 39.5, 95.5, 2),
+    lensClaw(2, 180, 149, 212, 3),
+    lensClaw(3, 292, 263.5, 320.5, 1),
     {
       featureId: "lens-index-mark",
       featureType: "index_mark",
@@ -441,7 +420,7 @@ const CANON_FL_MOUNT = {
   openQuestions: [
     {
       issue:
-        "No dimensioned drawing of the FL (or common R/FL/FD) body flange or breech ring was found. Lug, slot, claw, notch and pin angles and radii are scaled from US3906534A FIG. 2, which carries no dimensions and shows an FD-era lens; only the body flange is common with FL by Canon's own statement. The FL 28 mm photograph confirms the same wide-plus-two-narrow relief pattern on an FL ring, but only to about ±7 degrees.",
+        "No dimensioned drawing of the FL (or common R/FL/FD) body flange or breech ring was found. Lug, claw, notch and pin angles and radii are scaled from US3906534A FIG. 2, which carries no dimensions and shows an FD-era lens; only the body flange is common with FL by Canon's own statement. The FL 28 mm photograph confirms the same wide-plus-two-narrow relief pattern on an FL ring, but only to about ±7 degrees.",
       affectedFields: ["cameraSideFeatures", "lensSideFeatures", "coreDimensions.cameraMountOuterDiameterMm"],
       candidateValues: [],
       resolution:

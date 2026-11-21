@@ -869,7 +869,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 #### Figures (selected profile `canon-fl/base`)
 
-**Camera-side front view** — viewBox `-33 -35 66 68` · 35 elements in 4 layers · hash `09777bcf` ([standalone SVG](mounts/canon-fl-camera-front.svg))
+**Camera-side front view** — viewBox `-33 -35 66 68` · 29 elements in 4 layers · hash `97070d6a` ([standalone SVG](mounts/canon-fl-camera-front.svg))
 
 **Lens-side rear view** — viewBox `-40 -42 80 82` · 32 elements in 4 layers · hash `90c85e78` ([standalone SVG](mounts/canon-fl-lens-rear.svg))
 
@@ -884,9 +884,6 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 | `body-lug-1` | bayonet_lug | `canon-fl/base` | 359° | 325° | 33° | 26 | 27 |
 | `body-lug-2` | bayonet_lug | `canon-fl/base` | 122.5° | 100.5° | 144.5° | 26 | 27 |
 | `body-lug-3` | bayonet_lug | `canon-fl/base` | 237.5° | 215.5° | 259.5° | 26 | 27 |
-| `body-slot-1` | bayonet_receiving_slot | `canon-fl/base` | 67° | 33° | 100.5° | 26.5 | 27 |
-| `body-slot-2` | bayonet_receiving_slot | `canon-fl/base` | 180° | 144.5° | 215.5° | 26.5 | 27 |
-| `body-slot-3` | bayonet_receiving_slot | `canon-fl/base` | 292° | 259.5° | 325° | 26.5 | 27 |
 | `body-index-mark` | index_mark | `canon-fl/base` | 0° | unknown | unknown | unknown | unknown |
 | `body-positioning-notch` | positioning_notch | `canon-fl/base` | 0° | 357.5° | 2.5° | 24.4 | 27 |
 
@@ -918,7 +915,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/canon-fl.mount.ts` (39255 bytes, content hash `988bedd2`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/canon-fl.mount.ts` (35931 bytes, content hash `e8d9c946`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -934,7 +931,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 #### Open questions
 
-- No dimensioned drawing of the FL (or common R/FL/FD) body flange or breech ring was found. Lug, slot, claw, notch and pin angles and radii are scaled from US3906534A FIG. 2, which carries no dimensions and shows an FD-era lens; only the body flange is common with FL by Canon's own statement. The FL 28 mm photograph confirms the same wide-plus-two-narrow relief pattern on an FL ring, but only to about ±7 degrees. _(Replace with a Canon service drawing of the FX / FT QL / Pellix mount flange or an FL breech ring, or a calibrated measurement of a body and lens. Searched without result: Canon patents US3906534A, US3051067A, US3081680A and US2826118A, Canon Camera Museum FX, FT QL, FTb and F-1 pages, Canon FT QL instructions, and web searches for FL / FT / Pellix service manuals and dimensioned mount drawings.)_
+- No dimensioned drawing of the FL (or common R/FL/FD) body flange or breech ring was found. Lug, claw, notch and pin angles and radii are scaled from US3906534A FIG. 2, which carries no dimensions and shows an FD-era lens; only the body flange is common with FL by Canon's own statement. The FL 28 mm photograph confirms the same wide-plus-two-narrow relief pattern on an FL ring, but only to about ±7 degrees. _(Replace with a Canon service drawing of the FX / FT QL / Pellix mount flange or an FL breech ring, or a calibrated measurement of a body and lens. Searched without result: Canon patents US3906534A, US3051067A, US3081680A and US2826118A, Canon Camera Museum FX, FT QL, FTb and F-1 pages, Canon FT QL instructions, and web searches for FL / FT / Pellix service manuals and dimensioned mount drawings.)_
 - The ring's lock rotation is not stated by any source. The earlier 90 degree figure was a stand-in and is withdrawn; the scaled lug and claw arcs would give full overlap after roughly 49 to 61 degrees of clockwise ring travel, which is an inference from an undimensioned drawing, not a sourced value. _(Take the ring travel from a service manual or a measured lens on a body.)_
 - The automatic diaphragm lever is placed from a single oblique photograph of one FL lens (FL 28 mm). Its travel, its direction of travel, the body-side actuating lever geometry and any lens-to-lens variation are not sourced. _(Use a Canon FL lens or FX / FT QL body service manual, or the Canon FL automatic diaphragm patent if one can be identified.)_
 - Lug thickness and the axial position of the claw engagement are unknown. US3906534A says the ring claws come to the rear of the body lugs, so the engagement lies on the camera side of the flange face, but gives no depth. The earlier lug-engagement plane (a stand-in drawn 1.2 mm on the lens side) is withdrawn, and no engagement plane is drawn until its depth is sourced. _(Take lug thickness and claw depth from a service drawing or a measured flange.)_
