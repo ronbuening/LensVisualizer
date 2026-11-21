@@ -1,14 +1,24 @@
-import type { LensDataV2Input } from "../repo/src/types/lensDataV2.js";
-const data = {
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * US 2,380,207 A, sole example: George H. Aklin's five-element telephoto.
+ * Dimensions are in millimetres. The printed table computes to EFL 100.23 mm
+ * and back focus 53.66 mm against the stated 100 mm and 53.2 mm; the image
+ * plane remains at the calculated paraxial focus. No single misprint explains
+ * both differences. The two tables give a 0.05 mm rear air space, retained
+ * despite the prose's conflicting 0.005f (0.5 mm). Claim 5 gives only S2 < 0.01F.
+ * The text places the diaphragm about 9 units behind R3. Its modeled station
+ * uses that distance; its radius is derived from f/5.6. Clear rims are estimated.
+ */
+const LENS_DATA = {
   schema: 2,
-  key: "aklin-us2380207-infinity-reference",
-  maker: null,
-  name: "AKLIN US2380207 SOLE EXAMPLE \u2014 SOURCE f/5.6",
-  subtitle:
-    "Patent-only compact telephoto 5E/3G \u00b7 sodium-D infinity / estimated iris-rims",
-  visible: false,
+  key: "kodak-100mm-f56-us2380207",
+  maker: "Kodak",
+  name: "KODAK 100mm f/5.6 (US 2,380,207 Design)",
+  subtitle: "US 2,380,207 A, sole example — compact telephoto design",
+  visible: true,
   source: {
-    patentNumber: "US 2,380,207",
+    patentNumber: "US 2,380,207 A",
     patentYear: 1945,
     example: {
       label: "Sole example",
@@ -16,79 +26,94 @@ const data = {
     },
     authors: ["George H. Aklin"],
     assignees: ["Eastman Kodak Company"],
+    errata: [
+      {
+        status: "unresolved",
+        note: "The prescription in the printed table computes to EFL 100.226983 mm and back focus 53.655204 mm, against stated values of 100 mm and 53.2 mm. No single misprint explains both differences; the image plane is at the calculated paraxial focus.",
+      },
+      {
+        status: "unresolved",
+        note: "Both numerical tables give rear air space S2 = 0.05 mm, whereas the prose gives 0.005f (0.5 mm at f = 100 mm); claim 5 gives only S2 < 0.01F. The model follows the tables, consistent with the figure and the distortion pattern.",
+      },
+    ],
     sdSource: "heuristic",
   },
   catalog: {
     focalLengthMm: {
-      design: 100,
+      design: 100.23,
     },
     fNumber: {
       design: 5.6,
     },
     elementCount: 5,
     groupCount: 3,
-    specs: [
-      "Literal5E3G1+2|3+4|5,bondsR2/R5,sodium-D indices/Abbe unchanged. Source100/f5.6/BF53.2 separate from calculatedEFL100.226982799/BFD53.655204174mm;no focusfit or glasschange.",
-      "Exact0.05mm rearR6-R7airgap repeated in two source tables retained;body.005F impliesabout.5mm atnominal100,explicit source conflict not repaired. Gapopensoutward under authoredcaps.",
-      "Source diaphragm about9mm afterR3;modeled9/12.1split in literal21.1mmgap,z15.1,estimatedbore/rims,notfactorydimensions. Nativeparaxialf5.6iris differsfromfinite-marginalR6.701607723 seed;actualfiniteequivalents documented separately.",
-      "Actualnativeatmost+/-5degrees sodium-D infinity only. No fullpupil,sourcewidefield,retail,format,finitefocus,broadband,calibrateddispersion,measuredMTF/throughput or widerautomaticmetricsclaim. No capforcing,trim,override,sourceedit or baffle.",
-      "Originalsource signednumbers/hash externally verified parent/scoutcustody;no localPDF/pixels/hashreproduction. Officialprimary/prosemirror web reads inaccessibleonce each,notretried orroutedaround. Bondmapping independentlycheckedagainstliteralEFL/BFD/gaps,notneworiginal inspection.",
-    ],
+    imageCircleMm: 53.709469,
+    specs: ["5 ELEMENTS / 3 GROUPS", "ALL SPHERICAL", "DESIGN F/5.6", "TELEPHOTO"],
   },
   elements: [
     {
       id: 1,
       name: "L1",
-      label: "L1",
-      type: "Source Spherical Element",
+      label: "Element 1",
+      type: "Biconvex Positive",
       nd: 1.498,
       vd: 67,
       indexReference: "D",
-      glass: "Literal sodium-D/Abbe pair; no calibrated spectral curve.",
-      cemented: "G1",
+      focalLengthMm: 25.09,
+      glass: "N-BK10 (Schott)",
+      role: "Positive front element of the collecting doublet",
+      cemented: "C1",
     },
     {
       id: 2,
       name: "L2",
-      label: "L2",
-      type: "Source Spherical Element",
+      label: "Element 2",
+      type: "Biconcave Negative",
       nd: 1.656,
       vd: 40.5,
       indexReference: "D",
-      glass: "Literal sodium-D/Abbe pair; no calibrated spectral curve.",
-      cemented: "G1",
+      focalLengthMm: -38.13,
+      glass: "Unmatched (nD 1.656 / ν 40.5)",
+      role: "Dispersive negative partner in the front doublet",
+      cemented: "C1",
     },
     {
       id: 3,
       name: "L3",
-      label: "L3",
-      type: "Source Spherical Element",
+      label: "Element 3",
+      type: "Negative Meniscus",
       nd: 1.5,
       vd: 61.6,
       indexReference: "D",
-      glass: "Literal sodium-D/Abbe pair; no calibrated spectral curve.",
-      cemented: "G2",
+      focalLengthMm: -26.02,
+      glass: "Unmatched (nD 1.500 / ν 61.6)",
+      role: "Negative front element of the rear diverging doublet",
+      cemented: "C2",
     },
     {
       id: 4,
       name: "L4",
-      label: "L4",
-      type: "Source Spherical Element",
+      label: "Element 4",
+      type: "Positive Meniscus",
       nd: 1.755,
       vd: 47.2,
       indexReference: "D",
-      glass: "Literal sodium-D/Abbe pair; no calibrated spectral curve.",
-      cemented: "G2",
+      focalLengthMm: 69.24,
+      glass: "Unmatched (nD 1.755 / ν 47.2)",
+      role: "High-index positive partner in the rear doublet",
+      cemented: "C2",
     },
     {
       id: 5,
       name: "L5",
-      label: "L5",
-      type: "Source Spherical Element",
+      label: "Element 5",
+      type: "Biconvex Positive",
       nd: 1.755,
       vd: 47.2,
       indexReference: "D",
-      glass: "Literal sodium-D/Abbe pair; no calibrated spectral curve.",
+      focalLengthMm: 91.43,
+      glass: "Unmatched (nD 1.755 / ν 47.2)",
+      role: "Positive singlet completing the rear negative member",
     },
   ],
   surfaces: [
@@ -158,36 +183,39 @@ const data = {
   },
   projection: {
     kind: "rectilinear",
-    fullFieldDeg: 10,
-    maxTraceFieldDeg: 5,
+    fullFieldDeg: 30,
+    maxTraceFieldDeg: 15,
   },
   rays: {
     offAxisFieldFrac: 1,
   },
   focus: {
-    closeFocusM: 1000000000000000,
-    description:
-      "Literal5E3G1+2|3+4|5,bondsR2/R5,sodium-D indices/Abbe unchanged. Source100/f5.6/BF53.2 separate from calculatedEFL100.226982799/BFD53.655204174mm;no focusfit or glasschange. Exact0.05mm rearR6-R7airgap repeated in two source tables retained;body.005F impliesabout.5mm atnominal100,explicit source conflict not repaired. Gapopensoutward under authoredcaps. Source diaphragm about9mm afterR3;modeled9/12.1split in literal21.1mmgap,z15.1,estimatedbore/rims,notfactorydimensions. Nativeparaxialf5.6iris differsfromfinite-marginalR6.701607723 seed;actualfiniteequivalents documented separately. Actualnativeatmost+/-5degrees sodium-D infinity only. No fullpupil,sourcewidefield,retail,format,finitefocus,broadband,calibrateddispersion,measuredMTF/throughput or widerautomaticmetricsclaim. No capforcing,trim,override,sourceedit or baffle. Originalsource signednumbers/hash externally verified parent/scoutcustody;no localPDF/pixels/hashreproduction. Officialprimary/prosemirror web reads inaccessibleonce each,notretried orroutedaround. Bondmapping independentlycheckedagainstliteralEFL/BFD/gaps,notneworiginal inspection.",
+    closeFocusM: 1e15,
+    description: "Infinity focus only; the patent gives no close-focus data.",
   },
   groups: [
     {
-      text: "G1 \u00b7 L1+L2",
+      text: "Front doublet",
       fromSurface: "1",
       toSurface: "3",
     },
     {
-      text: "G2 \u00b7 L3+L4",
+      text: "Rear doublet",
       fromSurface: "4",
       toSurface: "6",
     },
     {
-      text: "G3 \u00b7 L5",
+      text: "Rear singlet",
       fromSurface: "7",
       toSurface: "8",
     },
+  ],
+  doublets: [
+    { text: "C1", fromSurface: "1", toSurface: "3" },
+    { text: "C2", fromSurface: "4", toSurface: "6" },
   ],
   layout: {
     yScFill: 0.5,
   },
 } satisfies LensDataV2Input;
-export default data;
+export default LENS_DATA;
