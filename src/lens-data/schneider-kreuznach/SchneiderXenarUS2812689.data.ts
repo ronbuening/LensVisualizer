@@ -5,8 +5,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * The patent gives f = 100 without a physical unit; dimensions are represented in mm.
  * Radii, thicknesses, air spaces and helium-d index/Abbe pairs follow both printed tables.
  * The inferred stop splits the 7.06 mm diaphragm space into 4.50 / 2.56 mm.
- * Clear semi-diameters are estimated; the image plane uses the computed paraxial
- * back focus of 83.21 mm. The illustrative ±5.0° field is not printed in the patent.
+ * Clear semi-diameters follow the sole figure's approximate proportions, with the
+ * front rims retained within drawing uncertainty; all clear the axial f/3.5 beam.
+ * The image plane uses the computed paraxial back focus of 83.21 mm.
+ * The illustrative ±5.0° field is not printed in the patent.
  */
 const LENS_DATA = {
   schema: 2,
@@ -112,14 +114,14 @@ const LENS_DATA = {
       label: "3",
       R: -70.6,
       d: 2.84,
-      sd: 16,
+      sd: 12.5,
       medium: 2,
     },
     {
       label: "4",
       R: 32.4,
       d: 4.5,
-      sd: 15,
+      sd: 11.7,
     },
     {
       label: "STO",
@@ -130,21 +132,21 @@ const LENS_DATA = {
       label: "5",
       R: -415.4,
       d: 2.17,
-      sd: 16,
+      sd: 12.6,
       medium: 3,
     },
     {
       label: "6",
       R: 33.5,
       d: 7.2,
-      sd: 15.5,
+      sd: 13.7,
       medium: 4,
     },
     {
       label: "7",
       R: -50.6,
       d: 83.212049,
-      sd: 15.5,
+      sd: 13.7,
     },
   ],
   aperture: {

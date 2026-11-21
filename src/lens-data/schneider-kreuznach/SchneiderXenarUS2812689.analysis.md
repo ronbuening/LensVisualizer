@@ -64,7 +64,7 @@ The patent's dimensional conditions are satisfied: the first air space is 67.6% 
 
 The unprinted ±5.0° field is illustrative. The patent specifies no image format or image circle, so neither is assigned.
 
-Clear semi-diameters are estimated at 18 / 18 / 16 / 15 / 16 / 15.5 / 15.5 mm. The drawing suggests narrower rims, particularly for L2 and the rear doublet. The minimum glass edge is about 0.97 mm. The R4–R5 common-radius gap clearance is about 3.11 mm, both stop-side rim clearances are positive, and the maximum rim angle is about 28.9°. These optical boundaries do not describe a measured barrel or baffle.
+Clear semi-diameters are estimated at 18 / 18 / 12.5 / 11.7 / 12.6 / 13.7 / 13.7 mm from the sole figure's approximate proportions. Its major axial spans and front-surface curvature support a scale of about 32 pixels/mm at 600 dpi, but the first air gap is drawn about 11% long. The front element's 18 mm rims lie within about 5% of the drawing. The smaller rear face of L2 and front face of the rear doublet follow the drawn bevels; the L4 faces share one height. The minimum glass edge is about 2.38 mm, the R4–R5 common-radius gap is about 4.71 mm, and the maximum rim angle is about 28.9°. All rims clear the axial f/3.5 beam and the 5.0° chief ray; wide-open geometric transmission is about 99.9% at that illustrative field edge. These estimated optical boundaries do not describe a measured barrel or baffle.
 
 ## Design Heritage and Product Association
 

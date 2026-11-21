@@ -18,9 +18,9 @@ The source gives focal length 100 without a physical length unit. Its dimensions
 
 The calculated paraxial EFL is 100.13 mm against the printed 100, a difference of +0.1%. The paraxial f-number is 3.50, matching the printed f/3.5, with stop radius 11.51 mm. BFD is 83.21 mm, placing the image plane at paraxial infinity focus, 117.04 mm behind the first vertex. The optical track is 33.83 mm; the patent prints no back focus.
 
-Finite-aperture estimates are f/3.55 from the entrance pupil and f/3.56 from the image-side sine angle. An f/3.5 axial marginal ray requires about 11.69 mm at the stop. The retained aperture differs from nominal by less than 3%, and the iris sets the full aperture without clipping at a lens rim. Rays admitted by the iris reach the image through the illustrative ±5.0° field.
+Finite-aperture estimates are f/3.55 from the entrance pupil and f/3.56 from the image-side sine angle. An f/3.5 axial marginal ray requires about 11.69 mm at the stop. The retained aperture differs from nominal by less than 3%, and the iris sets the full aperture without clipping the on-axis beam at a lens rim. Chief rays reach the image through the illustrative ±5.0° field; slight marginal vignetting remains near its edge.
 
-The minimum glass edge is 0.97 mm in the rear doublet. The R4–R5 common-radius gap clearance is 3.11 mm; front and rear stop-side rim clearances are 0.82 and 2.25 mm. The maximum rim angle is 28.9°. The surfaces stay clear of each other without a gap-clearance exception.
+The minimum glass edge is 2.38 mm in the rear doublet. The R4–R5 common-radius gap clearance is 4.71 mm; front and rear stop-side rim clearances are 2.31 and 2.37 mm. The maximum rim angle is 28.9°. The surfaces stay clear of each other without a gap-clearance exception.
 
 The first air space is 67.6% of the diaphragm space, the front thickness is 9.8% of nominal focal length, and R6 is 99.0% of the optical track, satisfying the patent's dimensional conditions. The printed values retain their small focal-length residual.
 
@@ -28,7 +28,7 @@ The first air space is 67.6% of the diaphragm space, the front thickness is 9.8%
 
 The stop position divides the printed 7.06 mm diaphragm space into 4.50 mm after R4 and 2.56 mm before R5, placing it 21.90 mm behind the first vertex. The figure draws no diaphragm. The stop opening follows the paraxial f-number; both its exact position and diameter are inferred.
 
-The estimated clear semi-diameters are 18 / 18 / 16 / 15 / 16 / 15.5 / 15.5 mm. The drawing suggests approximately 17.1 / 17.1 / 12.5 / 11.7 / 12.6 / 13.7 / 13.7 mm, especially narrower at L2 and the rear doublet. The model's L4 edge is about 0.97 mm thick, compared with about 2.4 mm in the drawing. The retained rims are not drawing measurements or measured barrel and baffle dimensions.
+The estimated clear semi-diameters are 18 / 18 / 12.5 / 11.7 / 12.6 / 13.7 / 13.7 mm. The sole drawing supports these proportions, with front rims reading about 17.1–17.3 mm. The retained 18 mm front rims are within about 5% of that reading. L2 and the rear doublet follow the narrower drawn outlines, including the smaller R4 and R5 curve ends. The L4 edge is about 2.38 mm thick, consistent with about 2.4 mm in the drawing. None of these values is a printed clear aperture or a measured barrel or baffle dimension.
 
 The image plane is calculated from the prescription. The ±5.0° field is illustrative; the source prints no field angle, image circle or image format. No image-circle diameter is assigned. No filter or sensor plate is specified or included.
 
@@ -55,9 +55,17 @@ No marketed focal length, marketed f-number, marketed minimum focus distance, mo
 
 The resulting first-order values are EFL 100.13 mm, paraxial f/3.50, BFD 83.21 mm, stop radius 11.51 mm and half-field 5.0°.
 
+2026-11-21 rim review:
+
+- The sole figure on PDF p. 1 was read at 600 dpi. The 33.83 mm first-to-last vertex span measures about 1,090 pixels, or 32.2 pixels/mm. A fit through all seven vertices gives 32.1 pixels/mm; the front and rear thicknesses agree within 4%, and the diaphragm space within 6%. Across the axis, the front face's sag at about 12.5 mm height reads about 2.2 mm against 2.1 mm from its printed radius. The first air space is drawn about 11% long, so the rim readings give approximate proportions rather than precise clear apertures.
+- R3 changed from 16 to 12.5 mm and R4 from 15 to 11.7 mm, following L2's narrower outline and beveled rear edge. R5 changed from 16 to 12.6 mm, following the rear doublet's beveled front edge. R6 and R7 changed from 15.5 to 13.7 mm, keeping L4 square-cut and bringing its edge thickness from 0.97 to 2.38 mm. The clear-radius readings are about 12.5–12.7, 11.6–11.8, 12.4–12.7 and 13.6–13.9 mm, respectively. The drawing's leader lines and group bracket were excluded.
+- R1/R2 remain 18/18 mm: their roughly 5% difference from the drawing is within the reading allowance. No flat lands were added; the straight rim joins follow the drawn bevels. The inferred diaphragm and every printed optical dimension remain unchanged.
+- The f/3.5 axial marginal-ray heights at R3–R7 are 12.10, 11.51, 11.88, 12.14 and 12.23 mm. The narrowest margin is about 0.19 mm at R4. The 5.0° chief ray clears every rim. The iris still sets the aperture, the surfaces stay clear, and no gap-clearance exception is needed. Image-circle and format-corner checks have no documented format to evaluate.
+- Wide-open geometric transmission at the illustrative 5.0° edge changed from 100.0% to 99.9%. The largest loss across the field is 0.1 percentage point, attributable to L2; restoring the rear doublet's starting rims recovers no light. Transmission through 4.2° stays 100.0%. The 5.0° half-field and f/3.50 are unchanged. The resulting narrower rear outlines and thicker L4 edge agree with the sole figure; no production construction diagram is available for this prescription.
+
 ## Remaining Questions
 
-- The narrower drawn rims and the difference in L4 edge thickness remain unexplained; the exact physical clear apertures, barrel and baffle dimensions are unknown.
+- Exact physical clear apertures, barrel and baffle dimensions remain unknown; the drawing provides approximate rim proportions and is slightly inconsistent in its axial spacings.
 - L1, L3 and L4 lack matching catalog curves at the stated precision. Historical glass suppliers and melt identities remain unknown for all elements.
 - No source identifies a production lens, mount, image format, field angle, image circle, blade count or shape, minimum iris opening, marketed specifications or close-focus mechanism for this prescription. The exact diaphragm position is also unprinted.
 - The numerical contents of GB 769,241 A and FR 1,120,790 A remain unconfirmed against the US tables.
