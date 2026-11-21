@@ -6,7 +6,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Radii, thicknesses, air spaces and D-line glass data follow the printed table.
  * The inferred stop splits the 6.5 mm rear air space into 3 and 3.5 mm.
  * Clear semi-diameters are inferred; the image gap is the computed paraxial
- * back focus, 48.908493 mm. The illustrative ±5° field is not printed.
+ * back focus, 48.91 mm. The illustrative ±5.0° field is not printed.
  * Total length is 0.871 of the computed focal length, below the stated 7/8.
  */
 const LENS_DATA = {
@@ -14,7 +14,7 @@ const LENS_DATA = {
   key: "cooke-100mm-f25-us2366597",
   maker: "Cooke",
   name: "COOKE 100mm f/2.5 (US 2,366,597 Design)",
-  subtitle: "US 2,366,597 A, Example I — three-doublet telephoto design",
+  subtitle: "US 2,366,597 A, Example I — Taylor Hobson / Cox",
   visible: false,
   source: {
     patentNumber: "US 2,366,597 A",
@@ -36,7 +36,13 @@ const LENS_DATA = {
     },
     elementCount: 6,
     groupCount: 3,
-    specs: ["6 ELEMENTS / 3 GROUPS", "ALL SPHERICAL", "DESIGN F/2.5", "TELEPHOTO"],
+    specs: [
+      "6 ELEMENTS / 3 GROUPS",
+      "ALL SPHERICAL",
+      "DESIGN f = 100 mm",
+      "DESIGN F/2.5",
+      "TELEPHOTO",
+    ],
   },
   elements: [
     {
