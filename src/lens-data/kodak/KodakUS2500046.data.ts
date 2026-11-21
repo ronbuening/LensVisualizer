@@ -5,8 +5,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Four-element Petzval objective with a cemented front doublet and spherical surfaces.
  * The patent prints a 100 mm focal length, f/2, and D-line glass indices.
  * The stop follows the patent's principal-ray crossing 18.9 mm behind the front
- * doublet; its diameter and the clear semi-diameters are inferred. The image plane
- * is the computed paraxial back focus, 56.45 mm, against the printed 56.5 mm.
+ * doublet; its diameter is inferred. The front doublet's common 25.8 mm clear
+ * semi-diameter follows Figure 1's square rim with f/2 beam clearance and limited
+ * loss of edge illumination; the 18 mm rear rims agree with the drawing within 6%.
+ * The image plane is the computed paraxial back focus, 56.45 mm, against the printed 56.5 mm.
  * Figure 4 supplies the modeled 7.0-degree half-field.
  */
 const LENS_DATA = {
@@ -96,21 +98,21 @@ const LENS_DATA = {
       label: "1",
       R: 70.97,
       d: 15,
-      sd: 28,
+      sd: 25.8,
       medium: 1,
     },
     {
       label: "2",
       R: -56.79,
       d: 4.5,
-      sd: 26,
+      sd: 25.8,
       medium: 2,
     },
     {
       label: "3",
       R: "flat",
       d: 18.9,
-      sd: 25,
+      sd: 25.8,
     },
     {
       label: "STO",
