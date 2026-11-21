@@ -2,21 +2,21 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * Arthur Cox's telephoto objective, US 2,354,503 A, sole numerical example.
- * All printed dimensions are multiplied by 100 to express the f = 1 prescription
+ * Printed dimensions are multiplied by 100 to express the f = 1 prescription
  * in millimetres at nominal f = 100 mm. Radii, thicknesses, D-line indices and
- * Abbe numbers follow the table. Its printed precision gives EFL 99.4874 mm
- * rather than 100 mm; no misprint has been identified. The image gap is the
- * computed paraxial back focus, 50.2779 mm. Clear rims and the stop 1.5 mm behind
- * R3 are inferred; the iris gives paraxial f/6.3. The external rear/front clear
- * aperture ratio is the printed 1.20. The 12-degree half-field is inferred from
- * the patent's aperture-ratio conditions, rather than an explicitly stated field.
+ * Abbe numbers follow the table. EFL is 99.49 mm rather than 100 mm; no misprint
+ * has been identified, and rounding as the cause remains unproven. The image gap
+ * is the computed paraxial back focus, 50.28 mm. Clear rims and the stop 1.5 mm
+ * behind R3 are inferred; the iris gives paraxial f/6.3. The external rear/front
+ * clear aperture ratio is the printed 1.20. The 12.0° half-field follows the
+ * patent's aperture-ratio conditions; no exact example field is printed.
  */
 const LENS_DATA = {
   schema: 2,
   key: "cooke-100mm-f63-us2354503",
   maker: "Cooke",
   name: "COOKE 100mm f/6.3 (US 2,354,503 Design)",
-  subtitle: "US 2,354,503 A, sole example — telephoto design",
+  subtitle: "US 2,354,503 A, sole example — Taylor Hobson / Cox",
   visible: false,
   source: {
     patentNumber: "US 2,354,503 A",
@@ -38,7 +38,13 @@ const LENS_DATA = {
     },
     elementCount: 4,
     groupCount: 3,
-    specs: ["4 ELEMENTS / 3 GROUPS", "ALL SPHERICAL", "DESIGN F/6.3", "TELEPHOTO"],
+    specs: [
+      "4 ELEMENTS / 3 GROUPS",
+      "ALL SPHERICAL",
+      "DESIGN f = 100 mm",
+      "DESIGN F/6.3",
+      "TELEPHOTO",
+    ],
   },
   elements: [
     {
