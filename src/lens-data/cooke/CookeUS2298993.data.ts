@@ -1,0 +1,210 @@
+import type { LensDataV2Input } from "../repo/src/types/lensDataV2.js";
+const data = {
+  schema: 2,
+  key: "warmisham-us2298993-example4-infinity-reference",
+  maker: null,
+  name: "WARMISHAM US2298993 EXAMPLE IV \u2014 SOURCE f/2.5",
+  subtitle:
+    "Patent-only 5E/5G \u00b7 sodium-D infinity \u00b7 estimated iris/rims",
+  visible: false,
+  source: {
+    patentNumber: "US 2,298,993",
+    patentYear: 1942,
+    example: {
+      label: "Example IV",
+      id: "4",
+    },
+    authors: ["Arthur Warmisham"],
+    assignees: ["Taylor, Taylor & Hobson Limited"],
+    sdSource: "heuristic",
+  },
+  catalog: {
+    focalLengthMm: {
+      design: 100,
+    },
+    fNumber: {
+      design: 2.5,
+    },
+    elementCount: 5,
+    groupCount: 5,
+    specs: [
+      "Literal five air-spaced singlets, sodium D. Source nominal 100 mm f/2.5; literal EFL 99.619436 / BFD 76.966226 mm, no fitting.",
+      "Stop estimated 3.51 mm after R6 and .49 mm before R7, z23.31 mm. Bore and clear radii estimated, not factory measurements. Exact .1 mm front air gap preserved.",
+      "Stock native f/2.5 control; finite pupil equivalents are separate diagnostics. Scope \u00b110 degrees D-line infinity only; no Example V field inheritance, retail identity, physical format, finite focus, broadband or throughput claim.",
+      "Original numerical transcription and source hash supplied through independent parent custody; original PDF not locally inspected or included. Wider automatic metrics are unqualified.",
+    ],
+  },
+  elements: [
+    {
+      id: 1,
+      name: "L1",
+      label: "L1",
+      type: "Source Spherical Element",
+      nd: 1.644,
+      vd: 48.3,
+      indexReference: "D",
+      glass: "Literal sodium-D/Abbe pair; no calibrated spectral curve.",
+    },
+    {
+      id: 2,
+      name: "L2",
+      label: "L2",
+      type: "Source Spherical Element",
+      nd: 1.613,
+      vd: 59.3,
+      indexReference: "D",
+      glass: "Literal sodium-D/Abbe pair; no calibrated spectral curve.",
+    },
+    {
+      id: 3,
+      name: "L3",
+      label: "L3",
+      type: "Source Spherical Element",
+      nd: 1.652,
+      vd: 33.5,
+      indexReference: "D",
+      glass: "Literal sodium-D/Abbe pair; no calibrated spectral curve.",
+    },
+    {
+      id: 4,
+      name: "L4",
+      label: "L4",
+      type: "Source Spherical Element",
+      nd: 1.652,
+      vd: 33.5,
+      indexReference: "D",
+      glass: "Literal sodium-D/Abbe pair; no calibrated spectral curve.",
+    },
+    {
+      id: 5,
+      name: "L5",
+      label: "L5",
+      type: "Source Spherical Element",
+      nd: 1.644,
+      vd: 48.3,
+      indexReference: "D",
+      glass: "Literal sodium-D/Abbe pair; no calibrated spectral curve.",
+    },
+  ],
+  surfaces: [
+    {
+      label: "1",
+      R: 65.53,
+      d: 5.7,
+      sd: 24,
+      medium: 1,
+    },
+    {
+      label: "2",
+      R: 166.7,
+      d: 0.1,
+      sd: 23,
+    },
+    {
+      label: "3",
+      R: 39.45,
+      d: 8.4,
+      sd: 22,
+      medium: 2,
+    },
+    {
+      label: "4",
+      R: 144.9,
+      d: 4.1,
+      sd: 21,
+    },
+    {
+      label: "5",
+      R: -200,
+      d: 1.5,
+      sd: 21,
+      medium: 3,
+    },
+    {
+      label: "6",
+      R: 48.15,
+      d: 3.51,
+      sd: 16.65,
+    },
+    {
+      label: "STO",
+      R: "flat",
+      d: 0.49,
+    },
+    {
+      label: "7",
+      R: 308.6,
+      d: 1.5,
+      sd: 18,
+      medium: 4,
+    },
+    {
+      label: "8",
+      R: 44.64,
+      d: 6.5,
+      sd: 22,
+    },
+    {
+      label: "9",
+      R: 84.03,
+      d: 8,
+      sd: 20.2,
+      medium: 5,
+    },
+    {
+      label: "10",
+      R: -55.9,
+      d: 76.9662257474766,
+      sd: 20.2,
+    },
+  ],
+  aperture: {
+    nominalFNumber: 2.5,
+    fStops: [2.5, 2.8, 4, 5.6, 8, 11, 16, 22],
+    maxFNumber: 22,
+  },
+  projection: {
+    kind: "rectilinear",
+    fullFieldDeg: 20,
+    maxTraceFieldDeg: 10,
+  },
+  rays: {
+    offAxisFieldFrac: 1,
+  },
+  focus: {
+    closeFocusM: 1000000000000000,
+    description:
+      "Literal five air-spaced singlets, sodium D. Source nominal 100 mm f/2.5; literal EFL 99.619436 / BFD 76.966226 mm, no fitting. Stop estimated 3.51 mm after R6 and .49 mm before R7, z23.31 mm. Bore and clear radii estimated, not factory measurements. Exact .1 mm front air gap preserved. Stock native f/2.5 control; finite pupil equivalents are separate diagnostics. Scope \u00b110 degrees D-line infinity only; no Example V field inheritance, retail identity, physical format, finite focus, broadband or throughput claim. Original numerical transcription and source hash supplied through independent parent custody; original PDF not locally inspected or included. Wider automatic metrics are unqualified.",
+  },
+  groups: [
+    {
+      text: "G1 \u00b7 L1",
+      fromSurface: "1",
+      toSurface: "2",
+    },
+    {
+      text: "G2 \u00b7 L2",
+      fromSurface: "3",
+      toSurface: "4",
+    },
+    {
+      text: "G3 \u00b7 L3",
+      fromSurface: "5",
+      toSurface: "6",
+    },
+    {
+      text: "G4 \u00b7 L4",
+      fromSurface: "7",
+      toSurface: "8",
+    },
+    {
+      text: "G5 \u00b7 L5",
+      fromSurface: "9",
+      toSurface: "10",
+    },
+  ],
+  layout: {
+    yScFill: 0.5,
+  },
+} satisfies LensDataV2Input;
+export default data;
