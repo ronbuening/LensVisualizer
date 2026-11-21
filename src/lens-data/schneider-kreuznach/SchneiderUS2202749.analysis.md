@@ -120,9 +120,7 @@ equivalent to about f/3.520. The stop clears R4's inferred rim by about
 
 The patent describes the design class as retaining a useful angle of about
 60°, without assigning that field to Example II. The model retains an
-illustrative ±12° field. Its chief ray reaches 21.093 mm image height there;
-the stored 42.186 mm image-circle diameter describes that illustrative
-footprint, not a published format or an illumination guarantee. Chief rays
+illustrative ±12° field. Its chief ray reaches 21.093 mm image height there. Chief rays
 can reach about 20° with the current rims, although the marginal bundle
 suffers about 14% vignetting at R1 there.
 

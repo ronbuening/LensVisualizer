@@ -39,7 +39,7 @@ The 7.6 / 3.3 mm division of the diaphragm space, stop size, all clear
 semi-diameters and the image distance are inferred. The minimum air
 clearance is about 3.744 mm; no optical rim crosses the stop plane.
 
-The ±12° field and 42.186 mm image footprint are illustrative. The text's
+The ±12° field is illustrative. The text's
 useful angle of about 60° applies to the design class, not specifically to
 Example II. No format, mount or close-focus prescription is given.
 
@@ -128,3 +128,10 @@ Open: Compare the clear rims in a later semi-diameter review, allowing for
 Figure 2's different R2/R5 curvature. The source does not settle the exact
 stop station or diameter, original glass identities, Example II's useful
 field or any production lens association.
+
+Review corrections: catalogue image-circle diameter 42.18608947079678 mm →
+omitted because the ±12° field is illustrative; header “12-degree half-field
+and its image footprint are illustrative” → “12-degree half-field is
+illustrative”; analysis stored image-circle claim → removed, retaining the
+21.093 mm chief-ray height; audit “±12° field and 42.186 mm image footprint
+are illustrative” → “±12° field is illustrative”.

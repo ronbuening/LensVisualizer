@@ -10,7 +10,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * The stop's 7.6 / 3.3 mm split, its size and all clear semi-diameters are
  * inferred. The last gap is the computed paraxial back focus, 77.948626 mm.
  * The calculated EFL is 99.936 mm; exact rays at the paraxial iris give about
- * f/3.520. The 12-degree half-field and its image footprint are illustrative;
+ * f/3.520. The 12-degree half-field is illustrative;
  * the text's useful angle of about 60 degrees describes the design class.
  */
 const LENS_DATA = {
@@ -32,7 +32,6 @@ const LENS_DATA = {
     sdSource: "heuristic",
   },
   catalog: {
-    imageCircleMm: 42.18608947079678,
     elementCount: 5,
     groupCount: 2,
     focalLengthMm: {
