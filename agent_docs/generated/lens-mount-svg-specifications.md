@@ -1241,7 +1241,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 | Camera mount outer diameter | 56 (`photo_scaled`) | mm |
 | Lens mount outer diameter | 47 (`photo_scaled`) | mm |
 | Contact count | not_applicable (`not_applicable`) | count |
-| Lock rotation | 60 (`patent`) | deg |
+| Lock rotation | 60 (`photo_scaled`) | deg |
 | Lock direction | clockwise (`patent`) | — |
 
 #### Figures (selected profile `exakta/outer-bayonet`)
@@ -1313,7 +1313,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/exakta.mount.ts` (59630 bytes, content hash `cf2f4b2b`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/exakta.mount.ts` (60551 bytes, content hash `9a0d2ba8`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -1322,6 +1322,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 | `exa-1` | secondary | “Flange focal distance,” Wikipedia. Accessed 2026-06-06. | [snapshot](http://web.archive.org/web/20260526152456/https://en.wikipedia.org/wiki/Flange_focal_distance) | 2026-05-26 | medium |
 | `exa-2` | secondary | “Lens Mounts: Exakta,” JAPB (japb.net). Accessed 2026-06-06; photos re-read 2026-11-21. | [snapshot](https://japb.net/theory/lens-mounts/exakta/) | 2026-06-06 | medium |
 | `exa-p1` | patent | K. Nuechterlein, “Lens mount,” US2136149A, assigned to Ihagee Kamerawerk Steenbergen & Co., filed 1937-06-04, granted 1938-11-08. | [snapshot](https://patentimages.storage.googleapis.com/db/83/3f/b6a3c99dd0fd5b/US2136149.pdf) | 2026-11-21 | high |
+| `exa-p1f` | patent_figure | US2136149A, Figs. 1, 3 and 5 (drawing sheet). Undimensioned drawings, scaled for this spec. Accessed 2026-11-21. | [snapshot](https://patentimages.storage.googleapis.com/db/83/3f/b6a3c99dd0fd5b/US2136149.pdf) | 2026-11-21 | low |
 | `exa-m1` | official | Ihagee Kamerawerk, “EXAKTA VX 1000” instruction manual, scan in M. Butkus's camera manual library. | [snapshot](https://www.butkus.org/chinon/exakta/exakta_vx1000/exakta_vx1000.pdf) | 2026-11-21 | high |
 | `exa-m2` | official | “EXAKTA RTL 1000 with Internal Metering” brochure, scan in M. Butkus's camera manual library. | [snapshot](https://www.cameramanuals.org/exakta/exakta_rtl1000-02.pdf) | 2026-11-21 | medium |
 | `exa-4` | secondary | S. H. Westin, “Camera Mounts Sorted by Register,” data from W.-J. Markerink, last modified 2016-02-11. | [snapshot](https://www.graphics.cornell.edu/~westin/misc/mounts-alphabetical.html) | 2026-11-21 | low |

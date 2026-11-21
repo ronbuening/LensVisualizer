@@ -27,7 +27,8 @@ import { makeMountScrews, makeStandardAxialStack } from "./mountAuthoringShared.
 const J = ["exa-2"]; // JAPB text dimensions and annotated photos
 const WJ = ["exa-1", "exa-2"]; // Wikipedia register table + JAPB
 const P = ["exa-p1"]; // US2136149A
-const JP = ["exa-2", "exa-p1"];
+const PF = ["exa-p1f"]; // US2136149A Figs. 1, 3 and 5, scaled
+const JP = ["exa-2", "exa-p1f"];
 const JW = ["exa-2", "exa-4"]; // JAPB photo + Westin/Markerink "46" diameter
 
 const BASE = "exakta/base";
@@ -321,11 +322,11 @@ const EXAKTA_MOUNT = {
       featureType: "mount_ring",
       profileId: KINE,
       count: 1,
-      centerAngleDeg: v(0, "photo_scaled", P),
-      startAngleDeg: v(0, "photo_scaled", P),
-      endAngleDeg: v(360, "photo_scaled", P),
+      centerAngleDeg: v(0, "photo_scaled", PF),
+      startAngleDeg: v(0, "photo_scaled", PF),
+      endAngleDeg: v(360, "photo_scaled", PF),
       innerRadiusMm: v(19, "photo_scaled", J),
-      outerRadiusMm: v(24.2, "photo_scaled", P),
+      outerRadiusMm: v(24.2, "photo_scaled", PF),
       depthMm: naV(),
       matesWith: "",
       shapeNotes:
@@ -464,8 +465,8 @@ const EXAKTA_MOUNT = {
       featureId: "kine-release-lever-pivot",
       side: "body",
       profileId: KINE,
-      centerAngleDeg: v(110, "photo_scaled", P),
-      radiusMm: v(22, "photo_scaled", P),
+      centerAngleDeg: v(110, "photo_scaled", PF),
+      radiusMm: v(22, "photo_scaled", PF),
       sizeOrTravel: "pivot screw 8 of the latch",
       function: "pivot of the spring-pressed locking latch on the fixing flange",
       compatibilityNotes:
@@ -475,8 +476,8 @@ const EXAKTA_MOUNT = {
       featureId: "kine-release-lever-knob",
       side: "body",
       profileId: KINE,
-      centerAngleDeg: v(128, "photo_scaled", P),
-      radiusMm: v(29.7, "photo_scaled", P),
+      centerAngleDeg: v(128, "photo_scaled", PF),
+      radiusMm: v(29.7, "photo_scaled", PF),
       sizeOrTravel: "knob 11; pressed toward the ring to swing the hook outward",
       function: "releases the lens pin from the latch hook",
       compatibilityNotes: "scaled off US2136149A Fig. 3 (camera-front view, undimensioned)",
@@ -627,8 +628,20 @@ const EXAKTA_MOUNT = {
       archiveUrl: "https://patentimages.storage.googleapis.com/db/83/3f/b6a3c99dd0fd5b/US2136149.pdf",
       archiveDate: "2026-11-21",
       appliesTo:
-        "Text: spaced inward flanges on the body ring whose number may vary, complementary lens flanges, spring latch pivoted on the fixing flange, pin on the lens ring, stop screw, removal by an anti-clockwise twist (p. 1 col. 2; p. 2 col. 1 lines 1-60). No angle, dimension or lug count is stated. Figs. 1 and 3 are camera-front views (used unmirrored, sheet turned so the captions read upright); Fig. 5 is a lens-rear view (mirrored). Figure readings are proportions off undimensioned drawings",
+        "Text: spaced inward flanges on the body ring whose number may vary, complementary lens flanges, spring latch pivoted on the fixing flange, pin on the lens ring, stop screw, removal by an anti-clockwise twist (p. 1 col. 2; p. 2 col. 1 lines 1-60). No angle, dimension or lug count is stated. The figures are cited separately as [exa-p1f]",
       confidence: "high",
+    },
+    {
+      ref: "exa-p1f",
+      sourceType: "patent_figure",
+      citation:
+        "US2136149A, Figs. 1, 3 and 5 (drawing sheet). Undimensioned drawings, scaled for this spec. Accessed 2026-11-21.",
+      liveUrl: "https://patents.google.com/patent/US2136149A/en",
+      archiveUrl: "https://patentimages.storage.googleapis.com/db/83/3f/b6a3c99dd0fd5b/US2136149.pdf",
+      archiveDate: "2026-11-21",
+      appliesTo:
+        "Figs. 1 and 3 are camera-front views (used unmirrored, sheet turned so the captions read upright); Fig. 5 is a lens-rear view (mirrored with theta_front = 360 - theta_rear). No scale or dimension is stated, so readings are proportions off the drawings and stay photo-scaled: flange, gap and lug angles as a cross-check on the JAPB photos, and the Kine-era fixing flange, latch pivot and knob",
+      confidence: "low",
     },
     {
       ref: "exa-m1",
