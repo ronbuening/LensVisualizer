@@ -1,21 +1,30 @@
-import type { LensDataV2Input } from "../repo/src/types/lensDataV2.js";
-const data = {
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * US 2,673,491 A, sole numerical example illustrated in Figure 2. The normalized
+ * table is multiplied by 150 to give millimetres, following the patent's own
+ * statement that Figure 2 shows a 150 mm objective at natural size.
+ * Radii, spacings, helium-d indices, Abbe numbers and the stop position are printed.
+ * Clear semi-diameters are estimated; the stop radius is inferred from f/2.
+ * The image plane is the computed paraxial back focus, 107.155573 mm, compared
+ * with the printed 107.154 mm. The stated illumination field is 60 degrees full.
+ */
+const LENS_DATA = {
   schema: 2,
-  key: "tronnier-us2673491-figure2-infinity-reference",
-  maker: null,
-  name: "TRONNIER US2673491 FIGURE 2 — 150mm f/2",
-  subtitle:
-    "Voigtländer patent-only · explicit helium-d infinity · estimated clear apertures",
-  visible: false,
+  key: "voigtlander-150mm-f2-us2673491",
+  maker: "Voigtländer",
+  name: "VOIGTLÄNDER 150mm f/2 (US 2,673,491 Design)",
+  subtitle: "US 2,673,491 A, sole example — six-element Gauss design",
+  visible: true,
   source: {
-    patentNumber: "US 2,673,491",
+    patentNumber: "US 2,673,491 A",
     patentYear: 1954,
     example: {
-      label: "Figure 2",
-      id: "2",
+      label: "Sole example",
+      id: null,
     },
-    authors: ["Tronnier"],
-    assignees: ["Voigtländer"],
+    authors: ["Albrecht Wilhelm Tronnier"],
+    assignees: ["Voigtländer AG"],
     sdSource: "heuristic",
   },
   catalog: {
@@ -27,83 +36,85 @@ const data = {
     },
     elementCount: 6,
     groupCount: 4,
-    specs: [
-      "Literal Fig.2 patent-only 6E/4G; two cemented inner doublets at R4/R7, no altered SIGGRAPH prescription or commercial Ultron/Septon identity.",
-      "Explicit helium-d source indices, reference587.5618nm; not sodium D or calibrated broadband glass.",
-      "Published stop split16.3965/14.2215mm, z49.929mm, preserved. Physical diameter and all face caps estimated.",
-      "Stock source/control f/2 gives inferred iris radius25.894351772mm; exact nominal marginal maps25.566177950mm; preliminary26.50057mm estimate retained separately.",
-      "Printed150mm/BF107.154mm; literal149.998784560/107.155573064mm, no fitting.",
-      "Printed60-degree full illumination is separate from the chosen/natively realizable diagnostic field, with real vignetting and potential TIR at extreme fields.",
-      "No invented physical format, finite-focus state, baffle, optical retuning or app change.",
-      "Without an authored format, automatic native MTF extends beyond the verified +/-10-degree scope. Only scoped native field-fraction results in companion evidence are qualified; wider automatic drawer results are exploratory.",
-    ],
+    imageCircleMm: 167.338163,
+    specs: ["6 ELEMENTS / 4 GROUPS", "DESIGN f = 150 mm", "DESIGN F/2", "ALL SPHERICAL"],
   },
   elements: [
     {
       id: 1,
       name: "L1",
-      label: "L1",
-      type: "Source Spherical Element",
+      label: "Element 1",
+      type: "Positive Meniscus",
       nd: 1.67125,
       vd: 47.1,
       indexReference: "d",
-      glass:
-        "Unmatched explicit helium-d source index and Abbe value; no exact catalog-glass or calibrated broadband claim.",
+      focalLengthMm: 196.52,
+      glass: "Unmatched (nd 1.67125 / ν 47.1)",
+      role: "Positive front singlet that collects the incoming light.",
     },
     {
       id: 2,
       name: "L2",
-      label: "L2",
-      type: "Source Spherical Element",
+      label: "Element 2",
+      type: "Positive Meniscus",
       nd: 1.67125,
       vd: 47.1,
       indexReference: "d",
-      glass:
-        "Unmatched explicit helium-d source index and Abbe value; no exact catalog-glass or calibrated broadband claim.",
+      focalLengthMm: 151.99,
+      glass: "Unmatched (nd 1.67125 / ν 47.1)",
+      role: "Positive front member of the first cemented pair.",
+      cemented: "C1",
     },
     {
       id: 3,
       name: "L3",
-      label: "L3",
-      type: "Source Spherical Element",
+      label: "Element 3",
+      type: "Negative Meniscus",
       nd: 1.69842,
       vd: 30.1,
       indexReference: "d",
-      glass:
-        "Unmatched explicit helium-d source index and Abbe value; no exact catalog-glass or calibrated broadband claim.",
+      focalLengthMm: -83.72,
+      glass: "Unmatched (nd 1.69842 / ν 30.1)",
+      role: "Negative rear member of the first cemented pair; balances the dispersion of Element 2.",
+      cemented: "C1",
     },
     {
       id: 4,
       name: "L4",
-      label: "L4",
-      type: "Source Spherical Element",
+      label: "Element 4",
+      type: "Biconcave Negative",
       nd: 1.60266,
       vd: 38.4,
       indexReference: "d",
-      glass:
-        "Unmatched explicit helium-d source index and Abbe value; no exact catalog-glass or calibrated broadband claim.",
+      focalLengthMm: -52.81,
+      glass: "Unmatched (nd 1.60266 / ν 38.4)",
+      role: "Diverging member beside the stop; begins the rear refractive-index progression.",
+      cemented: "C2",
     },
     {
       id: 5,
       name: "L5",
-      label: "L5",
-      type: "Source Spherical Element",
+      label: "Element 5",
+      type: "Biconvex Positive",
       nd: 1.65953,
       vd: 57,
       indexReference: "d",
-      glass:
-        "Unmatched explicit helium-d source index and Abbe value; no exact catalog-glass or calibrated broadband claim.",
+      focalLengthMm: 64.35,
+      glass: "Unmatched (nd 1.65953 / ν 57)",
+      role: "Positive rear member of the second cemented pair.",
+      cemented: "C2",
     },
     {
       id: 6,
       name: "L6",
-      label: "L6",
-      type: "Source Spherical Element",
+      label: "Element 6",
+      type: "Biconvex Positive",
       nd: 1.7174,
       vd: 48.1,
       indexReference: "d",
-      glass:
-        "Unmatched explicit helium-d source index and Abbe value; no exact catalog-glass or calibrated broadband claim.",
+      focalLengthMm: 152.73,
+      glass: "Unmatched (nd 1.7174 / ν 48.1)",
+      role: "Positive rear singlet that completes the rear refractive-index progression.",
     },
   ],
   surfaces: [
@@ -187,15 +198,14 @@ const data = {
   projection: {
     kind: "rectilinear",
     fullFieldDeg: 60,
-    maxTraceFieldDeg: 10,
+    maxTraceFieldDeg: 30,
   },
   rays: {
     offAxisFieldFrac: 1,
   },
   focus: {
-    closeFocusM: 1000000000000000,
-    description:
-      "Private literal Tronnier/Voigtländer US2673491 Figure2 helium-d infinity patent reference; no commercial Ultron/Septon, altered SIGGRAPH, finite or calibrated broadband identity. Exact source 150mm nominalf/2, two cemented inner doublets and all spacings/materials preserved. Stop station49.929mm and16.3965/14.2215mm split published; diameter and caps inferred. Stock f/2 control iris radius25.894351772mm, exact nominal marginal estimate25.566177950mm; upstream preliminary26.50057mm iris not forced into prescription. Source full60degree illumination is not verified full-pupil coverage or production quality. Native actual field must be measured and conservatively scoped; no source format assigned. Gaussian detectorBF107.155573mm separately from printed107.154mm. External source visual/hash custody only; no originalPDF locally fetched/rehash/pixels or known denied source request. No source fitting, override, baffle or engine/schema change. Automatic native MTF modeled-edge range is wider than the +/-10-degree qualified diagram/optical scope because no format is assigned. Use the companion native field-fraction recipe for scoped MTF; wider drawer results are exploratory, not validated coverage or production performance.",
+    closeFocusM: 1e15,
+    description: "Infinity focus only; the patent gives no close-focus data.",
   },
   groups: [
     {
@@ -219,8 +229,12 @@ const data = {
       toSurface: "10",
     },
   ],
+  doublets: [
+    { text: "C1", fromSurface: "3", toSurface: "5" },
+    { text: "C2", fromSurface: "6", toSurface: "8" },
+  ],
   layout: {
     yScFill: 0.5,
   },
 } satisfies LensDataV2Input;
-export default data;
+export default LENS_DATA;

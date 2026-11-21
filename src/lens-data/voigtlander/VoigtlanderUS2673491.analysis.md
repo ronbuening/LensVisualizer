@@ -1,77 +1,94 @@
-## Patent Reference and Design Identification
+# VOIGTLÄNDER 150mm f/2 (US 2,673,491 Design)
 
-**Patent:** US2673491A
-**Inventor:** Tronnier (as identified in the source handoff)
-**Assignee:** Voigtländer
-**Priority:** Switzerland, 1950
-**Granted:** 1954
-**Example details:** Literal Figure 2 prescription, 150 mm nominal f/2.
+## Patent and Design Identification
 
-Private, hidden helium-d infinity patent reference. No commercial Ultron/Septon, production specimen, altered SIGGRAPH prescription or finite-focus identity is assigned. [Official original locator](https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/2673491). All five original pages were visually verified in independent external custody, with pinned SHA-256 `3a04f87f7a9d4869032cf715761e89e3707a6e4c9aecea7535f1b57337cadf1f`. No original PDF is locally fetched, rehashed, pixel-inspected or included; no known blocked source route was retried.
+**Patent:** US 2,673,491 A, _Photographic Objective Comprising Four Lens Members Separated by Air Spaces and Enclosing the Diaphragm_
+
+**Inventors:** Albrecht Wilhelm Tronnier
+
+**Assignee:** Voigtländer AG
+
+**Filed:** 7 September 1951
+
+**Published:** 30 March 1954
+
+**Priority:** Switzerland, 14 September 1950
+
+**Example details:** Sole numerical example, illustrated in Figure 2.
+
+The patent describes an f/2 photographic objective of the Gauss type, with six elements in four air-spaced groups. Figure 1 explains the general arrangement; Figure 2 illustrates the numerical example. The table is normalized to f = 1, and every dimensional value is multiplied by 150 to obtain millimetres, following the patent's statement that Figure 2 shows a 150 mm objective at natural size (PDF p. 3, column 3).
+
+No production lens is documented for this prescription. The Ultron 50mm f/2 in US 2,627,204 A has six elements in five groups and a different arrangement; its name is not assigned to this design.
 
 ## Optical Architecture
 
-Six elements in four air groups, L1 | L2+L3 | L4+L5 | L6. R4 and R7 are the two cemented inner-doublet interfaces. Every signed radius, axial spacing, glass index and Abbe value remains literal. Published stop split R5→stop 16.3965 mm and stop→R6 14.2215 mm is retained, at z49.929 mm. No swapped split, source fitting, gap change, extra optic, baffle, engine/schema edit or geometry override is used.
+The arrangement is a positive front meniscus, a cemented positive–negative pair, a central diaphragm, a cemented negative–positive pair, and a positive rear singlet. The cemented interfaces are R4 and R7. The two inner groups have computed focal lengths of −272.62 mm and −1466.83 mm; each contains elements of opposite individual power. All ten refracting surfaces are spherical.
 
-Printed nominal EFL/BFD are 150/107.154 mm. Independent literal helium-d values are 149.998784559608/107.155573063601 mm, powered track 96.123 mm. The reference detector is the computed Gaussian infinity plane; printed BFD is kept separately, not fitted.
+The patent emphasizes glass-index distribution as a means of improving coma correction. The four positive elements have a mean index of 1.6798575. Element 4, immediately behind the diaphragm, has index 1.60266, lower by 0.0771975. The rear indices then increase to 1.65953 and 1.71740, with steps of 0.05687 and 0.05787 (PDF pp. 2–3).
+
+The diaphragm position is printed: R5 to stop is 16.3965 mm and stop to R6 is 14.2215 mm. Its plane lies 49.929 mm behind the first vertex. Its opening is inferred from the stated f/2 aperture, giving a radius of 25.894352 mm.
 
 ## Element-by-Element Analysis
 
-| Element | Surfaces | Source helium-d index / Abbe | Axial glass thickness (mm) | Estimated face semidiameters (mm) |
-|---|---|---|---|---|
-| L1 | R1 / R2 | 1.67125 / 47.1 | 11.274 | 43 / 43 |
-| L2 | R3 / R4 | 1.67125 / 47.1 | 12.0795 | 37 / 35 |
-| L3 | R4 / R5 | 1.69842 / 30.1 | 9.825 | 35 / 30 |
-| L4 | R6 / R7 | 1.60266 / 38.4 | 3.543 | 28 / 33 |
-| L5 | R7 / R8 | 1.65953 / 57.0 | 18.201 | 33 / 34 |
-| L6 | R9 / R10 | 1.71740 / 48.1 | 9.6645 | 35 / 35 |
+The focal lengths below are those of each element alone in air; they differ from the powers of the cemented groups.
 
-Every face cap is an estimate, not a source dimension. Shared cement interfaces use a single cap. Default native geometry passes without render trim or allowance. Minimum sampled glass thickness at shared radii is 3.543 mm. The closing R5–R6 air gap retains minimum shared-band clearance 8.214938249 mm, consuming 73.1695792% of its axial gap; the other air gaps widen from their positive 0.354 and 0.564 mm vertices. The minimum own-rim endpoint glass closure is 3.342631701 mm, minimum air endpoint clearance 5.885480865 mm, and maximum rim angle 51.651570 degrees. Separate independent tapered-sidewall checks admit no ray exiting the estimated glass solids in the scoped grid. These are modeled mechanical bounds, not factory barrel, rim or manufacturing measurements.
+### Element 1 — Positive Meniscus
+
+nd = 1.67125, νd = 47.1. Glass: Unmatched. f = +196.52 mm.
+
+The front singlet collects the incoming light. Its front surface is more strongly curved than its rear surface, giving positive power. Its axial thickness is 11.274 mm.
+
+### Element 2 — Positive Meniscus
+
+nd = 1.67125, νd = 47.1. Glass: Unmatched. f = +151.99 mm.
+
+The positive member of the first cemented pair uses the same printed glass values as Element 1. It is 12.0795 mm thick and meets Element 3 at R4.
+
+### Element 3 — Negative Meniscus
+
+nd = 1.69842, νd = 30.1. Glass: Unmatched. f = −83.72 mm.
+
+The more dispersive negative member balances Element 2 in the front cemented pair. Its strongly curved rear surface faces the diaphragm. Its axial thickness is 9.825 mm.
+
+### Element 4 — Biconcave Negative
+
+nd = 1.60266, νd = 38.4. Glass: Unmatched. f = −52.81 mm.
+
+This 3.543 mm element sits immediately behind the stop and is cemented to Element 5 at R7. Its relatively low index begins the rear index progression that the patent associates with coma correction.
+
+### Element 5 — Biconvex Positive
+
+nd = 1.65953, νd = 57.0. Glass: Unmatched. f = +64.35 mm.
+
+The positive member of the rear cemented pair is 18.201 mm thick. Its higher Abbe number complements the more dispersive negative Element 4, while its index is the intermediate step toward the rear singlet.
+
+### Element 6 — Biconvex Positive
+
+nd = 1.71740, νd = 48.1. Glass: Unmatched. f = +152.73 mm.
+
+The rear singlet has a nearly flat front surface and a more strongly curved rear surface. It completes the rear index progression and is 9.6645 mm thick.
 
 ## Glass Identification and Selection
 
-All six literal index/Abbe pairs are preserved separately. The source explicitly uses lowercase helium d, represented by `indexReference: "d"`, reference wavelength 587.5618 nm. Sodium D is not substituted. There are no verified individual C/F/g indices, catalog glasses or calibrated dispersion curves. Quantitative metric claims use helium d only. Generic Abbe-based chromatic/polychromatic app displays are not qualified as source-calibrated performance.
+The patent explicitly gives indices for the helium d line at 5876 Å, approximately 587.6 nm, together with Abbe numbers (PDF p. 3, column 3). All six elements retain those printed values. None has an exact catalog assignment, and the historical glass suppliers and melts remain unknown.
 
-## Focus Mechanism and Inferred Aperture
+No individual C-, F-, or g-line indices or partial dispersions are published. Calculations away from the d line therefore depend on dispersion inferred from the Abbe numbers; they do not establish the patent's measured chromatic performance.
 
-Only infinity in the transcribed source direction is represented. No finite conjugate, focus mechanism/cam or retail behavior is inferred. The near-focus bound is effectively infinity and the model notes state this scope.
+## Focus Mechanism and Aperture
 
-The exact source stop station is z49.929 mm; diameter is unpublished. Stock source/control f/2 is unchanged and derives inferred radius 25.894351771541 mm, diameter 51.788703543082 mm. The independent exact nominal marginal ray at h=EFL/4 maps to radius 25.566177950249 mm. The selected physical stop admits entrance-equivalent f/1.973498483 and image-space sine equivalent f/1.976176536. These are different definitions, not a source relabeling or exact manufactured aperture.
+The prescription represents infinity focus. The patent gives no close-focus distances or focus movement law. The inferred iris reproduces paraxial f/2.000; the real marginal ray gives an entrance-aperture equivalent of approximately f/1.9735. These describe the same modeled opening using different ray definitions.
 
-The upstream preliminary radius 26.50057 mm is preserved but was not independently reproduced at the published split. A reversed-split paraxial diagnostic gives 26.123931430198 mm and does not reproduce it either; no explanation or altered source station is invented. The saved model keeps the published split and stock f/2. A separate estimated-iris sensitivity trial at 26.50057 mm is not a second model or published hardware claim.
+The computed effective focal length is 149.998785 mm. The paraxial back focus is 107.155573 mm, compared with the printed 107.154 mm, a difference of 0.001573 mm consistent with the table's rounding. The image plane remains at the computed paraxial focus. The first-to-last surface distance is 96.123 mm, and the first vertex to image-plane distance is 203.278573 mm.
 
-Desktop 1440×1100 and compact 390×844 native import/export and fresh reload/reimport reproduce actual rendered diameter 51.788703543081844 mm. Native aperture census diagnoses `ok` with an iris limiter. No fixed-stop flag, fake glass, internal state injection or app change is used.
+## Field Coverage and Clear Apertures
 
-At stop-aimed 865-point fields 0/5/10 degrees, iris −2% gives 865/865/816 arrivals, default gives 865/856/791, iris +2% gives 865/842/770, and the preliminary 26.50057 mm trial gives 865/840/764. Every trial preserves the exact source stop position and all optical geometry, with zero failed, unaimed or unresolved sampled outcomes after independent aperture-loss checks. These are estimated-opening sensitivities, not flux ratios, source states or a reason to enlarge source optics.
+The patent states total illumination over a 60° field at f/2 for a remote object (PDF p. 2, column 2). The model traces a 30° half-field. At the paraxial image plane, the real 30° chief ray reaches 83.669081 mm from the axis; twice that height gives the recorded 167.338163 mm image-circle diameter. This circle follows the patent's stated field at the model's scale and does not assign a camera format.
 
-## Aspherical Surfaces
+The chief ray clears every current rim at 30°. Off-axis bundles are partly vignetted, so chief-ray coverage does not establish uniform illumination or image quality throughout the field. Quantitative wide-field MTF performance is not established by the patent or by this coverage result.
 
-None. All ten boundaries are the literal spherical prescription.
+All clear semi-diameters are estimates. The present radii are 43/43 mm for Element 1, 37/35/30 mm across the first cemented pair, 28/33/34 mm across the second pair, and 35/35 mm for Element 6. Figure 2 draws generally smaller rims; narrowing them can reduce the axial aperture or block the 30° chief ray. Their relation to the drawing remains unresolved. The surfaces retain positive glass thickness and air clearance, and no rim crosses the stop plane.
 
-## Actual Native Field and Ray Classification
+## Sources
 
-The first native panel probe was performed before selecting the validation field. It renders an actual 10 degrees on both desktop and responsive mobile, with native helper and read-only incoming SVG slopes agreeing. No image format or image circle is authored to force that result. The source's printed 60-degree full illumination is retained as a separate claim, not verified full-pupil coverage, retail format or image quality. The chosen verified native diagram/physical field is ±10 degrees. Parent-side bench notes report hard vignetting/TIR near 30-degree edges; no local ±25/±30 independent bench or wider coverage qualification is claimed here.
-
-Compact Builder has no exposed off-axis toggle. The browser test activates the normal wide-layout toggle and restores 390 px width, without injecting internal state. This is not a claim that compact activation exists.
-
-A 3,457-seed physical entrance grid at -10/-5/0/+5/+10 degrees gives arrivals 3261/3430/3457/3430/3261, blocks 196/27/0/27/196, all chiefs surviving, no failed or unresolved raw physical samples. Each outer field contains 38 native `noBracket` outcomes: independent positive-distance near-vertex sphere hits prove all 76 are outside the R1 cap, with matching native prefixes. Another 370 first-cap/iris clips have independent radius/position proofs. Raw native reasons remain recorded; no failed ray is converted into an accepted path. Maximum independent/native hit discrepancy is below 3.5e-13 mm. These counts are unweighted diagnostics, not transmission fractions or continuous pupil guarantees.
-
-The independent actual-stop grid has 865 targets per field and arrivals 791/856/865/856/791, with 74/9/0/9/74 blocks. Its original generic report retained nine unclassified `noBracket` cases at each outer field. `stopped-pupil-resolved.json` is a separate bounded follow-up: all 18 cases are independently proved to hit R1 outside radius43 mm with positive forward distance and matching native prefixes. Original reasons/counts and acceptance stay unchanged; no unaimed, failed or unresolved sampled path remains after that proof. All baseline and follow-up reports are preserved.
-
-## Scoped MTF and Wider Automatic-Range Hold
-
-**Only the 0–10-degree helium-d geometric MTF is qualified.** Without a declared format, the existing native MTF machinery automatically discovers a modeled chief-edge reference of 88.372472710 mm at 31.545139730 degrees. Its automatic range is wider than the chosen diagram/verification scope and is not capped by the diagram's requested trace angle. No fictitious format/circle or shared code change is added to hide this behavior.
-
-The supported native API `fieldFractions` requests [0, 0.149318090408, 0.298636180815] of that automatic reference height. The outer fraction is derived from the actual 10-degree chief height 26.391217739375 mm. This produces sampled angles 0, 5.030079433 and 9.999999903 degrees. The reproducible recipe uses `resolveMtfGeometry` and `computeMtf`, retains native rays/weights/support, and is recorded in `evidence/metric.mjs`; it is not a non-native performance substitute or source field schedule.
-
-At Gaussian design focus, frequencies 0/10/20/40 cycles/mm, the scoped native fields converge. Explicit 32–512 refinement reproduces adaptive results, with maximum 256→512 absolute MTF changes 0.000167450 / 0.000379725 / 0.001843185. At 512 there are no failed or unaimed cells, native unknown flux and omission bounds are zero, and known clipping remains. This is bounded numerical convergence of native geometric MTF, not diffraction, independent measured-source performance or broadband calibration.
-
-A separate **outside-qualified-scope** 128-grid diagnostic at automatic fractions [0,0.5,1] samples 0,16.517639 and31.545140 degrees. The two wider samples are reported `unconverged` at that cap, with no failed/unaimed/unknown cells. They are not promoted to passes. This diagnostic does not certify the UI's own configured maximum grid or wide-field performance. The automatic drawer's wider values remain exploratory/unqualified; a user must not treat them as part of the ±10-degree validation. The limitation is visible in model specs and focus notes. Confining the drawer itself would require separately authorized application work; no such change was made or required to obtain the scoped native evidence.
-
-## Validation, Deduplication and Rebuild Bounds
-
-Native validation/import, exact JSON export/roundtrip, actual field and iris on desktop/mobile reload, strict model and full retained-baseline typechecks, same-rule model ESLint, format and 346 ingestV2/canonical/apertureStop/buildLens tests pass. Browser analysis-panel checks establish rendering health, not qualification of wider automatic metric fields. No full-catalog regression, remote CI or app source modification is claimed.
-
-Retained baseline 4027fd20d095a1dba4ee3f46188dc70dad858055 contributes 1,188 re-evaluated catalog bodies. A separate hash-verified cache has 2,378 older main/21 retained PR-head bodies and 2,438 historical profiles. Additional overlapping local screens cover 16,733 loose TS bodies, 1,151 TAR TS bodies, 305 JSON profiles and 24,373 TS members in 49 ZIPs. No normalized signed forward/reversed-scale radius match was found. Counts overlap, literal-expression limitations and inaccessible archives are excluded, and no exhaustive or fresh remote clearance is asserted. Known PR-refresh403/source blocks were not retried. Remote freshness remains a distribution caveat.
-
-The private checkpoint freezes exact model bytes, literal source transcription, native/independent reports, sensitivity, raw and resolved cap evidence, scoped and explicitly unqualified wider MTF, and reproducible commands with full byte/SHA/CRC readback. Original PDFs, dependencies, source repository and external raw dedup pools are not included. Warmisham and nine sealed ZIPs remain unchanged. No packaging, upload, delivery, catalog registration, release or Group credit is implied.
+- Albrecht Wilhelm Tronnier, [US 2,673,491 A](https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/2673491), granted 30 March 1954. Figure 2: PDF p. 1; aperture and field: p. 2, column 2; numerical table, helium-d definition and natural-size statement: p. 3, column 3.
+- [US 2,627,204 A](https://patents.google.com/patent/US2627204A/en), Example II: the different six-element, five-group design associated with the Ultron 50mm f/2.
