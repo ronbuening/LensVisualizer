@@ -12,9 +12,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *
  * Zoom: published infinity states at 16.49, 27.98, and 48.56 mm. DD(3), DD(9), and DD(21) are zoom-only.
  * G3 and G4 move integrally; G5 is fixed. No sampled group reverses across the three published states.
- * Focus status: NO_INTERNAL_RECONSTRUCTION. The patent identifies L41 as the focusing element and L42 as fixed,
- * but publishes no finite-focus spacing state. The var pairs therefore repeat infinity values; closeFocusM is
- * retained only as the marketed minimum focus distance and does not authorize invented internal motion.
+ * Focus: infinity only. The patent identifies L41 as the focusing element and L42 as fixed,
+ * but publishes no close-focus spacings. The focus pairs therefore repeat infinity values; closeFocusM = 0.15 is
+ * the marketed minimum focus distance only; focus travel is not modeled.
  *
  * Aperture: the patent publishes F No. but no physical stop diameter. The stop radius is derived from the
  * design f-number at each zoom station. The station nominalFNumber values carry the three modeled/published
@@ -416,7 +416,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.15,
     description:
-      "NO_INTERNAL_RECONSTRUCTION — patent infinity states only; L41 focuses axially while L42/G5 remain fixed, but no finite-focus spacing law is authored.",
+      "Infinity focus only. The patent names L41 as the focusing element, moving along the axis while L42 and G5 stay fixed, but gives no close-focus spacings. The 0.15 m minimum focus distance is product information; focus travel is not modeled, zoom movement is.",
   },
 
   gaps: {

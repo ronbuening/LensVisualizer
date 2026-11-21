@@ -13,10 +13,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ Variable gaps are D8, D14, D17, and D23. G1 reverses direction between      ║
  * ║ the intermediate and telephoto states. G5 is fixed to the image plane.       ║
  * ║                                                                              ║
- * ║ FOCUS: NO_INTERNAL_RECONSTRUCTION. Patent ¶0066 permits L41-only focusing,  ║
- * ║ but Example 1 gives no finite-focus spacing table or travel. Production      ║
- * ║ 0.24 m MFD is retained only as product metadata; the authored var vectors    ║
- * ║ therefore repeat infinity spacing at both focus endpoints.                   ║
+ * ║ FOCUS: Infinity only. Patent ¶0066 permits L41-only focusing, but Example 1  ║
+ * ║ gives no close-focus spacing table or travel. The 0.24 m production MFD is   ║
+ * ║ product information only; the focus pairs therefore repeat infinity spacing  ║
+ * ║ at both ends of the focus control.                                           ║
  * ║                                                                              ║
  * ║ REAR PLATE: Table 1 plane-parallel member PP (surfaces 26–27: 2.85 mm,       ║
  * ║ nd 1.516798, νd 64.20) is modeled in `rearPlates` (traced, not drawn).       ║
@@ -444,7 +444,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.24,
     description:
-      "NO_INTERNAL_RECONSTRUCTION: Example 1 publishes infinity-only zoom states. Patent ¶0066 permits L41-only focusing, but no finite-focus L41 travel is given; 0.24 m is production MFD metadata only.",
+      "Infinity focus only. Patent ¶0066 permits focusing by L41 alone, but Example 1 publishes infinity-focus zoom states only and gives no close-focus L41 travel. The 0.24 m minimum focus distance is product information; focus travel is not modeled, zoom movement is.",
   },
 
   gaps: {

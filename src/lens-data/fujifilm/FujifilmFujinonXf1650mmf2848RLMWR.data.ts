@@ -6,9 +6,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * No dimensional scaling is applied. Source surfaces 22–23 (parallel plate PP) are excluded;
  * surface 21 uses the documented 14.9577556962025 mm air-equivalent rear spacing.
  * Zoom states are the three published infinity-focus states. G1 reverses between the published states.
- * Focus status: NO_INTERNAL_RECONSTRUCTION. The patent says G3 moves imageward toward near focus,
- * but publishes no Example 17 close-focus spacings; the identical infinity/close var pairs below
- * therefore preserve zoom only and do not invent internal close-focus travel.
+ * Focus: infinity only. The patent says G3 moves imageward toward near focus,
+ * but publishes no Example 17 close-focus spacings; the identical infinity/close focus pairs below
+ * therefore preserve zoom only, and focus travel is not modeled.
  *
  * Semi-diameters are modeled, not source-published physical clear apertures. For active lens surfaces
  * they use patent ED/2 (a ray-envelope coordinate) plus an 0.08 mm radial guard band. That guard
@@ -404,7 +404,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.24,
     description:
-      "NO_INTERNAL_RECONSTRUCTION — G3 is the published focus group and moves imageward toward near focus, but Example 17 gives no close-focus spacings; the model preserves the three infinity-focus zoom states only.",
+      "Infinity focus only. The patent names G3 as the focusing group, moving toward the image for close focus, but Example 17 gives no close-focus spacings. The 0.24 m minimum focus distance is product information; focus travel is not modeled, zoom movement is.",
   },
 
   gaps: {
