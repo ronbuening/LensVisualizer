@@ -3,9 +3,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 /**
  * US 2,503,751 A, Example 2 (Figure 3): a 100 mm f/2.5 Cooke triplet.
  * Radii, element thicknesses, air spaces and sodium D-line glass values are printed.
- * The stop position and opening and all clear radii are inferred; the stop divides
+ * The stop position and opening are inferred; the stop divides
  * the printed 17.66 mm rear air space into 11.00 mm and 6.66 mm. The image plane
  * is the computed paraxial infinity focus, 67.68 mm behind the last surface.
+ * Clear radii are inferred and clear the axial beam and the 14-degree chief ray.
+ * Figure 1 depicts Example 1 and supports relative rim proportions only;
+ * it supplies no rim dimensions for Example 2.
  * The summary ratios 0.43 and 2.79 differ slightly from the values 0.425 and
  * 2.784 derived from the printed radii; the radii are retained.
  */
