@@ -63,7 +63,7 @@ const LENS_DATA = {
       indexReference: "D",
       focalLengthMm: -87.73,
       glass:
-        "BACD16 (spectral proxy; patent nD 1.62 / ν 60.4; supplier and melt unspecified)",
+        "BACD16 (spectral proxy; patent nD 1.620 / ν 60.4; supplier and melt unspecified)",
       role: "Front negative member that extends back focus",
     },
     {

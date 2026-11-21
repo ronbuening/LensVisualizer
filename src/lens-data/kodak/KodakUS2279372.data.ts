@@ -56,7 +56,7 @@ const LENS_DATA = {
       nd: 1.616,
       vd: 55.1,
       indexReference: "D",
-      glass: "K-SSK4 (spectral proxy; patent nD 1.616 / ν 55.1; supplier and melt unspecified)",
+      glass: "K-SSK4 (spectral proxy; patent nD 1.6160 / ν 55.1; supplier and melt unspecified)",
       role: "Positive front collector of the triplet.",
     },
     {
@@ -68,7 +68,7 @@ const LENS_DATA = {
       nd: 1.649,
       vd: 33.8,
       indexReference: "D",
-      glass: "PBM22 (spectral proxy; patent nD 1.649 / ν 33.8; supplier and melt unspecified)",
+      glass: "PBM22 (spectral proxy; patent nD 1.6490 / ν 33.8; supplier and melt unspecified)",
       role: "More dispersive negative element between the positive singlets.",
     },
     {
@@ -80,7 +80,7 @@ const LENS_DATA = {
       nd: 1.616,
       vd: 55.1,
       indexReference: "D",
-      glass: "K-SSK4 (spectral proxy; patent nD 1.616 / ν 55.1; supplier and melt unspecified)",
+      glass: "K-SSK4 (spectral proxy; patent nD 1.6160 / ν 55.1; supplier and melt unspecified)",
       role: "Positive rear collector of the triplet.",
     },
   ],

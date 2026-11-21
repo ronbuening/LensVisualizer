@@ -71,7 +71,7 @@ const LENS_DATA = {
       vd: 38,
       indexReference: "D",
       focalLengthMm: 438.48,
-      glass: "F15 (spectral proxy; patent nD 1.605 / ν 38; supplier and melt unspecified)",
+      glass: "F15 (spectral proxy; patent nD 1.605 / ν 38.0; supplier and melt unspecified)",
     },
     {
       id: 3,
@@ -95,7 +95,7 @@ const LENS_DATA = {
       vd: 60.2,
       indexReference: "D",
       focalLengthMm: 57.2,
-      glass: "J-SK16 (spectral proxy; patent nD 1.62 / ν 60.2; supplier and melt unspecified)",
+      glass: "J-SK16 (spectral proxy; patent nD 1.620 / ν 60.2; supplier and melt unspecified)",
     },
   ],
   surfaces: [
