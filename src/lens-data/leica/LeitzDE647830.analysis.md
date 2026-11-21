@@ -1,64 +1,91 @@
+# LEITZ 100mm f/1.5 (DE 647,830 Design)
+
 ## Patent Reference and Design Identification
 
-**Patent:** DE 647830  
-**Published:** 1937 (year supplied in the source handoff)  
-**Assignee:** Ernst Leitz Wetzlar  
-**Example details:** Seven-element numerical table, original three-page official facsimile; exact traversal signs and cement interfaces supplied by the source researcher.
+**Patent:** DE 647,830 C, _Photographisches Objektiv_\
+**Inventors:** Not named in the patent\
+**Assignee:** Ernst Leitz GmbH\
+**Filed:** 27 September 1934\
+**Published:** 14 July 1937\
+**Example details:** Sole numerical example, called “Ausführungsbeispiel”; table on PDF page 2 and section drawing on page 3.
 
-This is a patent-only reference, with no retail Xenon attribution. No individual inventor is established by the handoff, so the authors list remains empty. The [official DPMA locator](https://depatisnet.dpma.de/DepatisNet/depatisnet?window=1&space=menu&content=treffer&action=pdf&docid=DE000000647830A) identifies the source. Independent scout custody visually verified the three original pages, including R2 positive, R10 negative, and cement at R4/R7. No original PDF or pixel inspection is claimed locally, and the known denied worker DPMA route was not requested. The three supplied page hashes remain separate provenance references, without a merged-document hash or invented byte counts:
+The [patent](https://depatisnet.dpma.de/DepatisNet/depatisnet?window=1&space=menu&content=treffer&action=pdf&docid=DE000000647830A) describes a seven-element, five-group Gauss objective at F = 100 and f/1.5. The table supplies every radius sign, thickness, air separation, refractive index n′ and Abbe number. It names no individual inventor. The grant announcement is dated 24 June 1937; the issue date printed on the cover is 14 July 1937.
 
-- Original page 1: `5b88242ce986944a3888bb3f3e2d25d63a2ea31b89a6edd5f37e08d677607bcc`
-- Original page 2: `a5a429877885416cfee287cab79e7dd422a2c0fe80797cc1d11c471a658e81c7`
-- Original page 3: `ffbbe4c2034f4273f20a8d8c9a78601d24782710f6c8756009c07b5de12937e4`
-
-Printed F100/f1.5 and all signed radii, spacings and n′/V scalars remain literal. The numerical F100 scale is represented at a chosen100mm working scale; no manufactured dimensional identity follows. Independent first-order reference calculation gives EFL 99.993914083 mm and BFD 53.652699253 mm. Back focus is calculated, not printed. Source n′ is not silently reidentified as a known spectral line.
+The design is plausibly the German design behind the Leitz Xenon 5 cm f/1.5. Its Leitz ownership, September 1934 filing, f/1.5 aperture and seven-element split-rear Gauss arrangement fit that association. A [Leitz Auction listing for a 1936 Xenon](https://www.leitz-auction.com/en/Xenon-1.5-5cm-Taylor-Hobson/AI-11-16440) records the front-ring engraving “D.R.P.a” beside the Taylor-Hobson name and US 2,019,985 number. The German application marking supports the timing but does not identify DE 647,830 by number. No published Xenon prescription establishes an exact match, so the model retains the patent-design name.
 
 ## Optical Architecture
 
-Seven spherical elements in five air groups, 1|2+3|4+5|6|7. The rear positive part is split into three groups. R4 and R7 are cement boundaries. The central air gap is21.75 workingmm, powered vertex track101.36mm. This infinity calculation follows the supplied front-to-rear numerical order; no finite-conjugate, focusing mechanism or retail comparison is inferred.
+Seven spherical elements form five groups in the order 1 | 2+3 | 4+5 | 6 | 7. The front meniscus is followed by two cemented negative members with their concave air surfaces facing the central stop. The rear positive component is split into two positive members, L6 and L7. The group-power sequence is positive–negative–negative–positive–positive.
+
+The cemented interfaces are R4 between L2 and L3, and R7 between L4 and L5. The central air space A2 is 21.75 mm; the first-to-last optical vertex distance is 101.36 mm. The three short outer air spaces are each 0.378 mm.
+
+The patent emphasizes the strongly curved, converging R7 cemented interface in the rear negative member. It attributes reduced zonal spherical aberration and improved chromatic correction to this choice (PDF page 2, description and claim). R7 = 43.50 mm is less than half the nominal focal length, and |R7|/|R6| = 1.31 satisfies the stated range of 1.0–1.5.
 
 ## Element-by-Element Analysis
 
-### L1 — positive meniscus
+The indices below are the printed n′ values. The model traces them at helium d; the source does not name a line. Each focal length is calculated for the individual element in air, rather than for its cemented assembly.
 
-Printed n′1.6202, V60.4; unmatched source glass. Radii+80.37/+1068.5 and12.29thickness are literal; R2 is positive. The element is represented as a collector, not an assertion of a source-stated aberration allocation.
+### L1 — Positive Meniscus
 
-### L2–L3 — front cemented pair
+n′ = 1.6202, ν = 60.4; unmatched glass; f = +139.46 mm.
 
-L2 has n′1.6202/V60.4, radii+45.39/−387.6, thickness17.02. L3 has n′1.5814/V40.8, shared R4−387.6 to R5+26.21, thickness5.673. R4 is the bond. The front and rear cap estimates of L3 differ strongly (31/21.4); the connecting taper is independently tested and is not silently replaced by a common cap.
+The front collector has a weakly curved rear face. Both radii are explicitly positive in the table, including R2 = +1068.5 mm.
 
-### L4–L5 — rear cemented pair
+### L2–L3 — Front Cemented Member
 
-L4 n′1.5822/V42.0, R6−33.19/R7+43.50, thickness5.673. L5 n′1.6202/V60.4, shared R7+43.50 to R8−60.51, thickness18.91. R7 is the bond. Front/rear clear radii are estimates; no baffle is added.
+L2: n′ = 1.6202, ν = 60.4; unmatched glass; f = +66.51 mm.\
+L3: n′ = 1.5814, ν = 40.8; LF5 (Schott) catalogue match; f = −42.01 mm.
 
-### L6 and L7 — split rear singlets
+The biconvex crown L2 is cemented to the biconcave flint L3 at R4. The assembly is weakly negative, with calculated focal length −240.69 mm. L3's strongly curved rear face points toward the stop. Its inferred clear radius tapers from 31 mm at R4 to 21.4 mm at R5.
 
-Both have n′1.6202/V60.4 and thickness9.455. L6 radii−176.8/−71.20 form a positive meniscus; R10 is explicitly negative. L7 radii+139.9/−191.0 form a positive biconvex singlet. The separating.378gaps remain exact.
+### L4–L5 — Rear Cemented Member
+
+L4: n′ = 1.5822, ν = 42.0; LF3 (Sumita) catalogue match; f = −31.48 mm.\
+L5: n′ = 1.6202, ν = 60.4; unmatched glass; f = +43.86 mm.
+
+The biconcave flint L4 faces the stop and is cemented to the positive crown L5 at R7. The assembly remains weakly negative, with calculated focal length −268.00 mm. The index increase across the positive-radius cemented surface makes that interface converging, as the patent describes.
+
+### L6–L7 — Split Rear Collector
+
+L6: n′ = 1.6202, ν = 60.4; unmatched glass; f = +185.84 mm.\
+L7: n′ = 1.6202, ν = 60.4; unmatched glass; f = +131.64 mm.
+
+L6 is a positive meniscus; its R10 = −71.20 mm is explicitly negative. L7 is biconvex. Together these two air-spaced positive elements form the split rear collector.
 
 ## Glass Identification and Selection
 
-The source supplies n′/V, not an established exact spectral identity or catalog glass. `indexReference: D` is a modeling convention for the scalar reference, not confirmation that the source n′ means sodiumD. The model's internal nD field holds that literal scalar by convention. Abbe-based native chromatic panels may render, but no calibrated broadband, spectral matching, or measured glass curve is qualified. All reported optics and MTF use a single representative reference.
+The table prints n′ and ν without identifying a spectral line. Helium d, 587.6 nm, is inferred from the two flints: LF5 has catalogue coordinates 1.58144/40.85, and LF3 has 1.58215/42.0. These reproduce the printed indices at four decimal places. Their calculated indices at the D line, taken as sodium at 589.3 nm, are about 1.581315 and 1.582029, which round differently from the printed values.
 
-## Stop, Clear Apertures and Focusing
+L3 uses the Schott LF5 row. L4 uses Sumita LF3: the corpus label “LF3 (Schott)” also resolves to that Sumita row, so the model names the resolved vendor explicitly. These are catalogue comparisons; neither establishes the historical supplier or melt.
 
-No iris station, diameter, field, clear rims or BFD is printed in the supplied source evidence. Estimated stop12/9.75 in the21.75gap places it at z47.361. Estimated semidiameters are[36,36,32,31,21.4,21.4,27,27,34,34,34,34]mm. These define a physically checked representative geometry, not surveyed hardware. All source vertices and glasses remain fixed; no gap allowance, trim, baffle, curve correction or cap enlargement is used.
+The five crowns retain the printed 1.6202/60.4 pair and remain unmatched. N-SK16 is 1.62041/60.32 at d, so its index does not reproduce the patent's four-decimal value. The model retains an explanatory line note on every element because the d-line interpretation is inferred.
 
-Default geometry passes. Minimum glass land is2.210062mm; central shared-radius air clearance is2.852471mm and sag consumption86.885189%, within default90%. Each.378gap widens outward. At the21.4cap, the assumed iris plane clears its two optical boundaries by0.922881/1.929590mm. Caps±.1, iris±2%, and station±.1 sensitivities retain fixed optical data and positive default geometry.
+No individual C-, F- or g-line indices or partial-dispersion values are printed. Colour calculations therefore depend on catalogue dispersion for the two matched flints and Abbe-based estimates for the unmatched crowns. They do not establish the production lens's measured chromatic performance.
 
-Nominalf/1.5 derives native estimated iris radius 19.686992798mm. Actual axial acceptance is34.435581517mm input radius, geometric entrance equivalentf/1.451898148. An independent exact nominal-marginal ray maps to iris19.105696504mm. A separate Builder inputf/1.545637930 reaches that estimate with optical vertices and glass unchanged; it is only a tuning control, not the authored canonical model or a factory reading. Ordinary viewer nominal controls are not an independent physical-iris authoring control. No finite focus is modeled.
+## Focus Mechanism
 
-## Field, Vignetting and Performance Scope
+The model represents infinity focus only. The patent gives no close-focus distance, movement law or additional focus-state prescription. All element positions remain fixed, and no marketed minimum-focus distance is assigned.
 
-Chosen0–10° is diagnostic only; no field is printed and no format is assigned. The metadata image circle is a calculated diagnostic request, not a physical cutoff or source coverage assertion. Initial nominal-pupil4325samples were supplemented by17285signed physical samples at±10/±5/0°,24rings×144azimuths plus chief, using an outer launch radius1.000001times the actual admitted axial radius. This intentionally includes the iris edge rather than testing only the smaller nominal pupil.
+## Stop, Clear Apertures and Image Plane
 
-The dense pass gives15563arrivals/1722blocks/0failed/0unresolved. Of those blocks,64native noBracket outcomes are retained explicitly: independent forward source-sphere intersections put every one outside S1 cap, minimum excess6.717140mm. They are proven aperture misses, not accepted rays or concealed solver failures. Other blocks have independent first-cap/iris intersection proofs. Valid-hit disagreement is at most3.66e-13mm. Counts are unweighted samples, not throughput or uniform full-field brightness. The10°chief reaches|y|17.643162mm.
+The patent depicts no iris and prints no stop diameter or axial station. The inferred stop divides A2 into 12.0 mm after R5 and 9.75 mm before R6, placing it 47.361 mm behind the front vertex. A midpoint stop would intersect the R5 rim sag; the adopted position leaves about 0.92 mm and 1.93 mm clearance to the adjacent glass boundaries.
 
-Straight tapered sidewall proxies join each modeled glass's rim endpoints. A separate independent check bounds the whole monotonic ray segment using concavity of linear wall radius minus transverse radial norm; it is not a new engine baffle or measured edge. All15563dense arrivals remain within the proxy, including R4–R5. An additional physical-stop MTF128lattice replays35998admitted rays through251986glass segments; all agree independently at the image to<1.1e−13mm and stay within the proxy. Minimum R4–R5 radial margin in that test is1.711217mm. Finite sampled margins do not establish actual factory rim dimensions or exhaustive continuous-field clearance.
+All clear semi-diameters are inferred. In surface order, excluding the stop, they are 36, 36, 32, 31, 21.4, 21.4, 27, 27, 34, 34, 34 and 34 mm. The minimum glass edge thickness is about 2.21 mm, and the central air space remains open. The drawing suggests smaller rear rims, about 28 mm for L6 and 29.7 mm for L7; the larger model values admit more off-axis light and remain an unresolved drawing comparison.
 
-Representative-reference geometric MTF at the Gaussian detector converges at image-height fractions0/.5/1 (0/5.037823/9.993591°), through40lp/mm. Grids32–512 reproduce the adaptive result with worst256→512change0.000251981; all sampled grids have0failed/unaimed/unknownflux. This observed change is not a rigorous errorbound, diffraction/broadband MTF or a source measured-performance match. No source curve comparison is claimed.
+The calculated EFL is 99.993914 mm against the printed F = 100, a difference of −0.0061%. The unprinted image plane is the paraxial infinity back focus, 53.652699 mm behind R12, giving a total front-vertex-to-image distance of 155.012699 mm.
 
-## Sources, Validation and Reconstruction Limits
+The paraxial iris radius is 19.686993 mm at nominal f/1.5; exact axial acceptance at that iris corresponds to about f/1.45.
 
-Source data, custody, independent code, physical first-loss proofs, tapered-solid checks, MTF convergence and actual test logs are retained. Repository/model types, model formatting and319targeted existing tests pass; desktop/mobile Builder imports, render controls, analysis health and canonical exact JSON roundtrip are tested. Scalar convention caveats also appear in the model's visible notes. There is no full catalog regression or integration claim.
+## Field and Performance Limits
 
-Dedup evaluates1188retained main bodies and4816retained main/21head/history profiles, with additional readable localTS/JSON/TAR/ZIP bodies. Signed positive-scale/reversed curvature matching is a necessary filter before full thickness/glass equality and is negative. Thirty broad647830numeric substring hits in older zoom coefficient arrays were explicitly inspected: none is a DE647830alias or matching design. Literal-token computed-expression limits, overlapping counts and inaccessible archives remain documented. Prior freshPRrefresh403 was not retried; no new live head or exhaustive private-history clearance is claimed. No packaging, transmission, catalog or public action occurs.
+The patent states no field angle or image format. The model's ±10° field is illustrative, and no image-circle diameter or camera format is assigned. At 10° the chief ray reaches the image plane at about 17.64 mm height and clears every rim. Some marginal rays are vignetted; the existing clear-aperture assessment found roughly 2–6% side clipping at R7/R8.
+
+The patent publishes no measured MTF or aberration plots. Calculated image quality at the paraxial plane describes this inferred stop and rim geometry. It does not establish the physical Xenon aperture, full-field illumination or production performance.
+
+## Design Heritage and Sources
+
+The Xenon engraving also refers to [Horace William Lee's US 2,019,985 A](https://patents.google.com/patent/US2019985A/en), a separate split-rear Gauss design. Similar topology does not make its prescription identical to the Leitz example. The Leitz claim specifically depends on the strongly curved rear cemented interface.
+
+- [DE 647,830 C, official DPMA record](https://depatisnet.dpma.de/DepatisNet/depatisnet?window=1&space=menu&content=treffer&action=pdf&docid=DE000000647830A): cover, sole numerical table and section drawing.
+- [Leitz Auction, Xenon 1.5/5cm Taylor-Hobson, lot 92](https://www.leitz-auction.com/en/Xenon-1.5-5cm-Taylor-Hobson/AI-11-16440): 1936 example and patent engravings.
+- [US 2,019,985 A, “Lens”](https://patents.google.com/patent/US2019985A/en): Lee's related architecture, used for historical context.

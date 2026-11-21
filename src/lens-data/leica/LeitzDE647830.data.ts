@@ -1,121 +1,147 @@
-import type { LensDataV2Input } from "../repo/src/types/lensDataV2.js";
-const data = {
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * DE 647,830 C (Ernst Leitz GmbH, published 1937), sole Ausführungsbeispiel, F = 100 and f/1.5.
+ * The printed signed radii, thicknesses, air spaces, n′ and Abbe numbers are retained.
+ * Seven spherical elements form five groups, with cemented interfaces at R4 and R7.
+ * The patent names no spectral line; helium d is used because the two flints match LF5/LF3
+ * catalogue values at d. The five crown elements remain unmatched.
+ * Inferred values are the stop position (12 mm behind R5 and 9.75 mm before R6), all clear
+ * semi-diameters, and the image plane (the computed paraxial back focus). The stop position
+ * keeps both adjacent glass rims clear of its plane. The ±10° field is illustrative;
+ * the patent gives no field angle or close-focus data.
+ */
+const LENS_DATA = {
   schema: 2,
-  key: "leitz-de647830-infinity-patent-reference",
-  maker: null,
-  name: "LEITZ DE647830 — PATENT REFERENCE",
-  subtitle:
-    "100-unit nominal f/1.5 · printed n′ / representative D metadata · chosen 0–10° infinity diagnostic",
-  visible: false,
+  key: "leitz-100mm-f15-de647830",
+  maker: "Leica",
+  name: "LEITZ 100mm f/1.5 (DE 647,830 Design)",
+  subtitle: "DE 647,830 C, Ausführungsbeispiel — plausible Xenon design",
+  visible: true,
   source: {
-    patentNumber: "DE 647830",
+    patentNumber: "DE 647,830 C",
     patentYear: 1937,
     example: {
       label: "Sole example",
       id: null,
     },
     authors: [],
-    assignees: ["Ernst Leitz Wetzlar"],
+    assignees: ["Ernst Leitz GmbH"],
     sdSource: "heuristic",
   },
   catalog: {
-    imageCircleMm: 35.263249918973194,
     elementCount: 7,
     groupCount: 5,
     focalLengthMm: {
-      design: 100,
+      design: 99.99,
     },
     fNumber: {
       design: 1.5,
     },
-    specs: [
-      "7E/5G · SPLIT-REAR GAUSSIAN · CEMENT R4/R7",
-      "PRINTED n′ SCALARS; D METADATA IS A MODEL CONVENTION",
-      "SOURCE NOMINAL100 f/1.5; CALCULATED EFL99.993914/BFD53.652699",
-      "ESTIMATED12/9.75 IRIS SPLIT AND CLEAR CAPS; TAPERED R4/R5 PROXY",
-      "NO SOURCE FIELD / PHYSICAL IRIS / RIMS / BACK FOCUS",
-      "NOMINAL f/1.5; MODELED FINITE ENTRANCE EQUIVALENT APPROX f/1.45190",
-      "CHOSEN0–10° INFINITY DIAGNOSTIC; NO RETAIL XENON CLAIM",
-      "NO FINITE, CALIBRATED SPECTRAL OR FULL-PUPIL COVERAGE CLAIM",
-    ],
+    specs: ["7 ELEMENTS / 5 GROUPS", "ALL SPHERICAL", "DESIGN F/1.5", "SPLIT-REAR GAUSS"],
   },
   elements: [
     {
       id: 1,
       name: "L1",
-      label: "L1",
-      type: "Source Spherical Element",
+      label: "Element 1",
+      diagramLabel: "L1",
+      type: "Positive Meniscus",
       nd: 1.6202,
       vd: 60.4,
-      indexReference: "D",
-      glass:
-        "Unmatched (literal source n′/V; representative D convention, no verified spectral identity or curve)",
+      indexReference: "d",
+      indexReferenceNote: "The patent prints n′ without a line; helium d is inferred from the LF5/LF3 matches.",
+      glass: "Unmatched (printed n′ 1.6202 / ν 60.4)",
+      focalLengthMm: 139.46,
+      role: "Positive front collector, nearly flat on its rear face.",
     },
     {
       id: 2,
       name: "L2",
-      label: "L2",
-      type: "Source Spherical Element",
+      label: "Element 2",
+      diagramLabel: "L2",
+      type: "Biconvex Positive",
       nd: 1.6202,
       vd: 60.4,
-      indexReference: "D",
-      glass:
-        "Unmatched (literal source n′/V; representative D convention, no verified spectral identity or curve)",
+      indexReference: "d",
+      indexReferenceNote: "The patent prints n′ without a line; helium d is inferred from the LF5/LF3 matches.",
+      glass: "Unmatched (printed n′ 1.6202 / ν 60.4)",
+      focalLengthMm: 66.51,
+      role: "Positive crown element of the front cemented member.",
+      cemented: "C1",
     },
     {
       id: 3,
       name: "L3",
-      label: "L3",
-      type: "Source Spherical Element",
+      label: "Element 3",
+      diagramLabel: "L3",
+      type: "Biconcave Negative",
       nd: 1.5814,
       vd: 40.8,
-      indexReference: "D",
-      glass:
-        "Unmatched (literal source n′/V; representative D convention, no verified spectral identity or curve)",
+      indexReference: "d",
+      indexReferenceNote: "The patent prints n′ without a line; helium d is inferred from the LF5/LF3 matches.",
+      glass: "LF5 (Schott)",
+      focalLengthMm: -42.01,
+      role: "Negative flint element of the front cemented member, concave toward the stop.",
+      cemented: "C1",
     },
     {
       id: 4,
       name: "L4",
-      label: "L4",
-      type: "Source Spherical Element",
+      label: "Element 4",
+      diagramLabel: "L4",
+      type: "Biconcave Negative",
       nd: 1.5822,
       vd: 42,
-      indexReference: "D",
-      glass:
-        "Unmatched (literal source n′/V; representative D convention, no verified spectral identity or curve)",
+      indexReference: "d",
+      indexReferenceNote: "The patent prints n′ without a line; helium d is inferred from the LF5/LF3 matches.",
+      glass: "LF3 (Sumita)",
+      focalLengthMm: -31.48,
+      role: "Negative flint element of the rear cemented member, concave toward the stop.",
+      cemented: "C2",
     },
     {
       id: 5,
       name: "L5",
-      label: "L5",
-      type: "Source Spherical Element",
+      label: "Element 5",
+      diagramLabel: "L5",
+      type: "Biconvex Positive",
       nd: 1.6202,
       vd: 60.4,
-      indexReference: "D",
-      glass:
-        "Unmatched (literal source n′/V; representative D convention, no verified spectral identity or curve)",
+      indexReference: "d",
+      indexReferenceNote: "The patent prints n′ without a line; helium d is inferred from the LF5/LF3 matches.",
+      glass: "Unmatched (printed n′ 1.6202 / ν 60.4)",
+      focalLengthMm: 43.86,
+      role: "Positive crown element behind the rear cemented flint.",
+      cemented: "C2",
     },
     {
       id: 6,
       name: "L6",
-      label: "L6",
-      type: "Source Spherical Element",
+      label: "Element 6",
+      diagramLabel: "L6",
+      type: "Positive Meniscus",
       nd: 1.6202,
       vd: 60.4,
-      indexReference: "D",
-      glass:
-        "Unmatched (literal source n′/V; representative D convention, no verified spectral identity or curve)",
+      indexReference: "d",
+      indexReferenceNote: "The patent prints n′ without a line; helium d is inferred from the LF5/LF3 matches.",
+      glass: "Unmatched (printed n′ 1.6202 / ν 60.4)",
+      focalLengthMm: 185.84,
+      role: "First of the two positive elements in the split rear collector.",
     },
     {
       id: 7,
       name: "L7",
-      label: "L7",
-      type: "Source Spherical Element",
+      label: "Element 7",
+      diagramLabel: "L7",
+      type: "Biconvex Positive",
       nd: 1.6202,
       vd: 60.4,
-      indexReference: "D",
-      glass:
-        "Unmatched (literal source n′/V; representative D convention, no verified spectral identity or curve)",
+      indexReference: "d",
+      indexReferenceNote: "The patent prints n′ without a line; helium d is inferred from the LF5/LF3 matches.",
+      glass: "Unmatched (printed n′ 1.6202 / ν 60.4)",
+      focalLengthMm: 131.64,
+      role: "Final positive element of the split rear collector.",
     },
   ],
   surfaces: [
@@ -205,9 +231,8 @@ const data = {
     },
   ],
   focus: {
-    closeFocusM: 1000000000000000,
-    description:
-      "Patent-only DE647830 infinity reference. Independent scout verified original3pages, no local PDF, known denied DPMA route not retried. Literal radii, spacings and source nprime preserved; D-reference metadata is a modeling convention, not verified source spectral identity. Estimated iris12/9.75, z47.361 and clear caps including tapered R4/R5 proxy; no source field/iris/rims/BFD.0–10degrees is chosen diagnostic only. No Xenon/retail, finite-focus, broadband or full-pupil coverage claim.",
+    closeFocusM: 1e15,
+    description: "Infinity focus only; the patent gives no close-focus data.",
   },
   aperture: {
     nominalFNumber: 1.5,
@@ -246,8 +271,12 @@ const data = {
       toSurface: "12",
     },
   ],
+  doublets: [
+    { text: "C1", fromSurface: "3", toSurface: "5" },
+    { text: "C2", fromSurface: "6", toSurface: "8" },
+  ],
   layout: {
     yScFill: 0.5,
   },
 } satisfies LensDataV2Input;
-export default data;
+export default LENS_DATA;
