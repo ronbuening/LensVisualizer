@@ -1,84 +1,99 @@
-import type { LensDataV2Input } from "../repo/src/types/lensDataV2.js";
-const data = {
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * US 1,558,073 A, William F. Bielicke's sole numerical example for Bausch & Lomb Optical Company,
+ * published October 20, 1925: a four-element, three-group Tessar-type objective printed at 188 mm f/4.5.
+ * Radii, axial distances, D-line indices and Abbe numbers follow the table; all lengths are in millimetres.
+ * The poorly printed d3 is read as 3.8 mm: its closed lower bowl resembles the 8 in d1 = 7.8.
+ * The printed 188 mm is closer to the G′-line EFL of 188.21 mm than the D-line EFL of 188.64 mm.
+ * Stop position is printed, 8.7 mm after R4 and 6.2 mm before R5; its diameter is inferred from f/4.5.
+ * Clear semi-diameters are estimates. The image plane is the computed D-line paraxial back focus,
+ * 166.977796 mm after R7. The 12° half-field and its derived image circle are illustrative; neither is printed.
+ * Element focal lengths are thick-lens values in air at the D line, including the two cemented members.
+ */
+const LENS_DATA = {
   schema: 2,
-  key: "bielicke-us1558073-dline-infinity-reference",
-  maker: null,
-  name: "BIELICKE US1558073 — PATENT REFERENCE",
-  subtitle:
-    "188mm f/4.5 patent-only · published iris station / estimated diameter and rims · chosen0–12° D-line infinity diagnostic",
+  key: "bausch-lomb-188mm-f45-us1558073",
+  maker: "Bausch & Lomb",
+  name: "BAUSCH & LOMB 188mm f/4.5 (US 1,558,073 Design)",
+  subtitle: "US 1,558,073 A, sole example — Tessar-type four-element objective",
   visible: false,
   source: {
-    patentNumber: "US 1,558,073",
+    patentNumber: "US 1,558,073 A",
     patentYear: 1925,
+    example: { label: "Sole example", id: null },
     authors: ["William F. Bielicke"],
-    assignees: ["Bausch & Lomb"],
+    assignees: ["Bausch & Lomb Optical Company"],
     sdSource: "heuristic",
+    errata: [
+      {
+        status: "unresolved",
+        note: "The table gives a D-line EFL of 188.640798 mm against the stated 188 mm. The printed G′ indices give 188.210679 mm, closer to the stated focal length; the reason for the difference is not established.",
+      },
+    ],
   },
   catalog: {
     imageCircleMm: 80.09607598911735,
     elementCount: 4,
     groupCount: 3,
     focalLengthMm: {
-      design: 188,
+      design: 188.64,
     },
     fNumber: {
       design: 4.5,
     },
-    specs: [
-      "4E/3G · REAR CEMENT AT R6",
-      "SOURCE NOMINAL188mm f/4.5 · LITERAL OPTICS/GLASS/GAPS",
-      "NATIVE FINITE ENTRANCE EQUIVALENT≈f/4.5549 WITH ESTIMATED IRIS",
-      "PUBLISHED STOP8.7/6.2mm IN R4–R5 GAP · PHYSICAL SIZE/RIMS ESTIMATED",
-      "D-LINE INFINITY ONLY · NO CALIBRATED BROADBAND OR RETAIL IDENTITY",
-      "G-PRIME INDICES RETAINED IN SEPARATE EVIDENCE, NOT MERCURYg",
-      "NO SOURCE COVERAGE CLAIM · CHOSEN0–12° DIAGNOSTIC WITH CLIPPING",
-      "ORIGINAL DRAWING/TABLE CUSTODY VERIFIED BY SCOUT; NO LOCAL PIXEL CLAIM",
-    ],
+    specs: ["4 ELEMENTS / 3 GROUPS", "ALL SPHERICAL", "DESIGN F/4.5", "DESIGN f = 188 mm"],
   },
   elements: [
     {
       id: 1,
       name: "L1",
-      label: "L1",
+      label: "Element 1",
       type: "Biconvex Positive",
       nd: 1.6088,
       vd: 56.5,
       indexReference: "D",
-      glass:
-        "Unmatched (literal source nD/V; G-prime retained separately, no invented curve)",
+      focalLengthMm: 73.44,
+      glass: "Unmatched (nD 1.6088 / ν 56.5)",
+      role: "Positive front collector",
     },
     {
       id: 2,
       name: "L2",
-      label: "L2",
+      label: "Element 2",
       type: "Biconcave Negative",
       nd: 1.5602,
       vd: 45.3,
       indexReference: "D",
-      glass:
-        "Unmatched (literal source nD/V; G-prime retained separately, no invented curve)",
+      focalLengthMm: -56.75,
+      glass: "Unmatched (nD 1.5602 / ν 45.3)",
+      role: "Negative middle singlet between the positive front and rear groups",
     },
     {
       id: 3,
       name: "L3",
-      label: "L3",
-      type: "Rear Cemented Component",
+      label: "Element 3",
+      type: "Biconcave Negative",
       nd: 1.5602,
       vd: 45.3,
       indexReference: "D",
-      glass:
-        "Unmatched (literal source nD/V; G-prime retained separately, no invented curve)",
+      focalLengthMm: -71.37,
+      glass: "Unmatched (nD 1.5602 / ν 45.3)",
+      role: "Negative front member of the positive rear doublet",
+      cemented: "C1",
     },
     {
       id: 4,
       name: "L4",
-      label: "L4",
+      label: "Element 4",
       type: "Biconvex Positive",
       nd: 1.6165,
       vd: 55,
       indexReference: "D",
-      glass:
-        "Unmatched (literal source nD/V; G-prime retained separately, no invented curve)",
+      focalLengthMm: 48.28,
+      glass: "Unmatched (nD 1.6165 / ν 55.0)",
+      role: "Positive rear member of the rear doublet",
+      cemented: "C1",
     },
   ],
   surfaces: [
@@ -135,9 +150,8 @@ const data = {
     },
   ],
   focus: {
-    closeFocusM: 1000000000000000,
-    description:
-      "Patent-only US1558073, independent scout verified original drawing/table; executor GET deniedHTTP403, no local pixels claimed. D-line infinity only. Literal R/d/nD/V retained, published stop afterR4 by8.7 and beforeR5 by6.2mm preserved. Physical diameter and clear rims are estimates under ordinary native aperture convention; finite equivalence documented separately from nominalf4.5. G-prime is separate direct-line evidence, not a custom native broadband model.0-12deg is chosen diagnostic, no published/full coverage, finite conjugate or retail identity. US1540752 is distinct.",
+    closeFocusM: 1e15,
+    description: "Infinity focus only; the patent gives no close-focus data.",
   },
   aperture: {
     nominalFNumber: 4.5,
@@ -166,8 +180,9 @@ const data = {
       toSurface: "7",
     },
   ],
+  doublets: [{ text: "C1", fromSurface: "5", toSurface: "7" }],
   layout: {
     yScFill: 0.5,
   },
 } satisfies LensDataV2Input;
-export default data;
+export default LENS_DATA;

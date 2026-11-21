@@ -1,121 +1,95 @@
+# BAUSCH & LOMB 188mm f/4.5 (US 1,558,073 Design)
+
 ## Patent Reference and Design Identification
 
-**Patent:**US1,558,073  
-**Filed:**1922, per supplied primary-source custody  
-**Granted:**1925, per supplied primary-source custody  
-**Inventor:**William F. Bielicke  
-**Assignee:**Bausch & Lomb, as supplied  
-**Source details:**Original USPTO p.1 drawing and p.3 exact table independently visually verified by the scout; nominal188mm f/4.5.
+**Patent:** US 1,558,073 A\
+**Inventors:** William F. Bielicke\
+**Assignee:** Bausch & Lomb Optical Company\
+**Filed:** 18 January 1922\
+**Published:** 20 October 1925\
+**Example details:** Sole numerical example; unnumbered drawing on PDF page 1 and prescription table on PDF page 3.
 
-This is a hidden, patent-only D-line infinity reference, not an exact retail identification. No numbered source example, precise filing/grant day, manufactured clear diameter, finite operating state or full coverage is invented. US1540752, the same inventor's distinct8-boundary4E/4G nominalf/2 source in retainedPR1005, is not substituted or conflated with this7-boundary4E/3G prescription.
+The patent describes a four-element, three-group photographic objective at 188 mm f/4.5. The arrangement is Tessar-type: a positive front singlet, a negative middle singlet and a positive cemented rear doublet. No production lens is documented for this prescription.
 
-The recognized independent scout custody supplied with this task includes an original-PDF SHA-256 of `e80d69789650308c895de9213f15e21b9bc94787943007cf81f483ce31593944`. The scout verified the [official USPTO facsimile](https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/1558073), including the drawing/table. This executor's single ordinary request failed at a tunnelHTTP403 before receiving PDF bytes. No retry, bypass or alternate route was attempted. The model uses that attributed independent primary-source transcription; no local PDF-byte or pixel verification is claimed.
+The dimensions are used at the patent's printed millimetre scale. All seven signed radii, glass thicknesses, air spaces, D-line indices and Abbe numbers follow the table. The aperture position is printed; its physical opening, the clear rims, the final image distance and the displayed field are inferred or computed.
 
 ## Optical Architecture
 
-Four elements form three air groups,1|1|2. The rear pair is cemented at R6. Every signed radius, source axial distance, nD/νD and published stop split is preserved without focal refitting or normalization. Powered-vertex track is44.9mm.
+The three groups have positive–negative–positive power, with D-line focal lengths of approximately +73.44, −56.75 and +133.33 mm. The rear group consists of a biconcave negative element cemented to a biconvex positive element at R6. All powered surfaces are spherical.
 
-Independent isolated thick-group D-line focal lengths are approximately73.437/-56.752/133.331mm, giving positive front singlet, negative middle singlet and positive compound rear group. This is an optical description, not a commercial-family attribution.
-
-The source publishes R4-to-stop8.7mm and stop-to-R5 6.2mm. The inserted flat air iris is therefore at z25.2mm; the total source air interval is14.9mm. Its axial position is source data, while its diameter and the optical clear radii remain estimates. No baffle, sensor plate, asphere, extra glass or invented finite cam is added.
+The patent places diaphragm P 8.7 mm behind R4 and 6.2 mm before R5. These distances divide the 14.9 mm air space and put the diaphragm at 25.2 mm from the first vertex. The powered-vertex track is 44.9 mm. The model retains this printed station and estimates the iris diameter from the stated aperture.
 
 ## Element-by-Element Analysis
 
-### L1 — Positive front singlet
+The focal lengths below are individual thick-lens values in air at the D line. For elements 3 and 4, these describe their shapes and powers separately; their cemented assembly has a different focal length.
 
-nD=1.6088,nG′=1.6226,νD=56.5. Glass is unmatched literal source data, without a modern catalog substitution. The isolated D-line group focal length is73.437mm.
+### Element 1 — Biconvex Positive
 
-The+49.01/−478.70mm faces enclose7.8mm of glass. Both estimated clear radii are23.5mm. The weak negative rear radius remains finite, not silently converted to a plane. The first source air interval to L2 remains5.4mm. Front-glass edge land stays positive under the default native geometry.
+nD = 1.6088, νD = 56.5. Glass: Unmatched (nD 1.6088 / ν 56.5). f = +73.44 mm.
 
-### L2 — Negative middle singlet
+The positive front collector has a strongly curved front face and a weakly curved rear face. Its 7.8 mm center thickness and 5.4 mm air space to element 2 are printed. Both clear semi-diameters are estimated at 23.5 mm; the minimum modeled edge thickness is about 1.221 mm.
 
-nD=1.5602,nG′=1.5763,νD=45.3. Glass remains unmatched; the source line values are not expanded into a custom dispersion curve. Its isolated D-line group focal length is-56.752mm.
+### Element 2 — Biconcave Negative
 
-The−114.30/+44.50mm faces enclose3.3mm. Estimated radii are25/24mm. The published diaphragm lies8.7mm behind R4, not at a guessed midpoint. The lower Abbe number than the positive front/rear crown-like source pairs is a property of the printed table, not proof of complete broadband correction.
+nD = 1.5602, νD = 45.3. Glass: Unmatched (nD 1.5602 / ν 45.3). f = −56.75 mm.
 
-### L3 — Front element of the rear cemented pair
+The negative middle singlet separates the positive front and rear groups. Its lower Abbe number provides greater dispersion than the positive elements. The center thickness is 3.3 mm, and the estimated front and rear semi-diameters are 25 and 24 mm. Its rear face precedes the printed diaphragm station by 8.7 mm.
 
-nD=1.5602,nG′=1.5763,νD=45.3. These repeat L2's source material tuple but describe a separate physical element. No per-element isolated in-air focal length is substituted for its cemented behavior.
+### Element 3 — Biconcave Negative
 
-R5/R6 are−271.90/+47.11mm with3.8mm thickness. R6 is the true cemented boundary into L4. Estimated caps are24/21.5mm; the published stop-to-R5 air remains6.2mm. The source glass identity, not a new vendor match, is retained.
+nD = 1.5602, νD = 45.3. Glass: Unmatched (nD 1.5602 / ν 45.3). f = −71.37 mm.
 
-### L4 — Rear positive element of the cemented pair
+This is the negative front member of the positive rear doublet, using the same printed glass values as element 2. The poorly printed d3 is read as 3.8 mm: the last digit has a closed lower bowl like the 8 in d1 = 7.8. This gives EFL 188.64 mm; reading 3.3 mm would give about 188.97 mm.
 
-nD=1.6165,nG′=1.6309,νD=55.0. Glass is unmatched literal source data. The combined rear-group D-line focal length is133.331mm; individual bonded-element focal powers are not presented as separate measured lens focal lengths.
+The front face is 6.2 mm behind the diaphragm. Its estimated semi-diameters are 24 and 21.5 mm. R6 is the cemented interface with element 4, with no intervening air space.
 
-The+47.11/−74.50mm faces enclose9.7mm, with21.5/21.5mm estimated caps. The glass land at the shared working edge is1.338020mm. The final air image gap is independently derived at the Gaussian D-line focus rather than taken as a printed physical datum.
+### Element 4 — Biconvex Positive
 
-## Glass Identification and Separate G′ Evidence
+nD = 1.6165, νD = 55.0. Glass: Unmatched (nD 1.6165 / ν 55.0). f = +48.28 mm.
 
-All four nD/νD pairs are retained literally with sodium-D reference. The original also supplies the four G′ indices listed above. G′ is kept as a distinct source label, not mapped to the app's mercuryg field. No native `ng`, nC, nF, partial-dispersion or custom fitted broadband curve is authored. Exact catalog glass, coating, secondary-spectrum and apochromatic claims are not established by these data.
+The positive rear member supplies the stronger positive power of the cemented pair. Its center thickness is 9.7 mm and both estimated semi-diameters are 21.5 mm. The combined rear group has f = +133.33 mm; the minimum modeled edge thickness of element 4 is about 1.338 mm.
 
-The independent direct-line reduced-angle check gives:
+## Glass Identification and G′ Indices
 
-|Source index column|EFL(mm)|Rear-vertex BFD(mm)|Native quantitative scope|
-|---|---:|---:|---|
-|D|188.640797620|166.977795948|Native rays and geometric MTF use this reference|
-|G′|188.210678537|166.483031076|Separate direct-index first-order evidence only|
+The patent names the D line, taken as sodium at 589.3 nm, and separately prints G′ indices. Its Abbe number is defined from the D, F and C lines. No catalogue row matches the printed D-line index and Abbe number closely enough to assign a glass name; supplier and melt remain unknown.
 
-This reproduces the supplied independent benchmarks without interpolation. It is not a calibrated spectral model, multi-line MTF or broadband simulation. Native chromatic channels may use Abbe approximations; their panel rendering is tested for UI health only. The native reference wavelength for quantitative results is589.2938nm.
+| Element |     nD |    nG′ |   νD |
+| ------- | -----: | -----: | ---: |
+| 1       | 1.6088 | 1.6226 | 56.5 |
+| 2       | 1.5602 | 1.5763 | 45.3 |
+| 3       | 1.5602 | 1.5763 | 45.3 |
+| 4       | 1.6165 | 1.6309 | 55.0 |
 
-## Focus Mechanism and Source Scale
+G′ remains a separate printed spectral designation and is not assigned to the mercury g-line field. The data file carries the D-line indices and Abbe numbers; the G′ values above support a separate first-order calculation. Dispersion estimated from Abbe numbers does not establish the actual glass curves or anomalous partial dispersion.
 
-The source nominal focal length remains188mm. Literal D-line EFL is188.640797620mm, a+0.340850% difference preserved without scaling the prescription. The source thicknesses and gaps are not adjusted to reach exactly188mm.
+## Focus Mechanism
 
-Only infinity in the source table/drawing direction is modeled. No finite conjugate, focus travel or close-focus prescription is supplied. The app's effectively infinite close-focus sentinel represents that private limited scope, not a manufactured focus range. The computed D-line BFD is166.977795948mm and the detector is at z211.877795948mm from the first vertex. These are derived, not source measurements or a field-by-field best-focus fit.
+The prescription represents infinity focus only. The patent supplies no close-focus distance, focus travel or movement law.
 
-## Aperture Station, Estimated Diameter and Native Convention
+The image plane is the computed D-line paraxial back focus, 166.977796 mm after R7, rather than a printed back-focus value. The total distance from the first vertex to the image plane is 211.877796 mm. This plane is held fixed across the illustrative field.
 
-The published8.7/6.2mm split and z25.2mm iris position remain exact. No axial iris tuning or station sensitivity changes those source facts. The physical diameter is unprinted.
+## Aperture and Field
 
-At source nominalf/4.5, the exact independent D marginal launched at height EFL/9=20.960088624mm maps to estimated physical iris radius18.200810184mm, matching the upstream seed18.2008102mm. The app's ordinary-prime paraxial aperture convention instead derives17.975138734mm radius for the canonical nominalf/4.5 input. Those are explicitly different estimates/conventions, not two factory readings.
+The stated aperture is f/4.5, but the physical iris opening is unprinted. The paraxial aperture calculation gives an entrance-pupil radius of 20.960089 mm and an iris radius of 17.975139 mm. Exact axial tracing through that iris gives an entrance-equivalent aperture of approximately f/4.554866, with an accepted entrance radius of 20.707611 mm. An iris radius of 18.200810 mm would admit the exact f/4.5 marginal ray; the model retains the paraxial opening. These are geometric aperture estimates, not measured T-stops or image-space sine f-numbers.
 
-With the canonical opening and caps, actual axial acceptance ends at entrance radius20.707611293mm, giving **finite geometric entrance equivalent f/4.554866**. The nominal sourcef/4.5 label remains unchanged. The source nominal marginal is clipped by the modeled iris, not a failed refraction or a hidden optical repair. This metric is not an image-space sine f-number or a T-stop.
+The assumed iris size matters: varying its radius by ±2% gives entrance-equivalent apertures from about f/4.645 to f/4.468. The clear rims do not limit the axial beam before the iris. At the modeled iris radius, the adjacent glass surfaces remain about 4.908 mm and 5.605 mm away from its plane.
 
-A separate Builder control sets nominal input4.444204598 with the first f-stop matching; it derives the independently traced18.200810184mm radius and admits the exact sourcef/4.5 marginal. Every literal surface, glass and published stop distance remains unchanged. That control was exported in the actual Builder and then the canonicalf/4.5 model was restored with exact parsed-JSON roundtrip. It is documented as an app tuning control, not applied to canonical bytes or claimed as a source f-number.
+The patent prints no field angle, format or image circle. The retained 12° half-field is illustrative. Its chief ray reaches an image height of 40.048038 mm at the fixed image plane, giving the stored derived circle of 80.096076 mm. The chief ray clears every rim there, while some marginal off-axis rays are vignetted. This circle describes the selected field, not a documented production format or maximum usable coverage.
 
-Iris radius±2% yields finite equivalentsf/4.645241 to f/4.468115 in the tested model. Estimated clear caps±0.1mm remain valid with zero trimming. None of these sensitivities is a new factory measurement or a source prescription fit.
+## Model Scope and Source Consistency
 
-## Mechanical Geometry and Ray Classification
+| Printed index column |  Computed EFL | Computed back focus |
+| -------------------- | ------------: | ------------------: |
+| D                    | 188.640798 mm |       166.977796 mm |
+| G′                   | 188.210679 mm |       166.483031 mm |
 
-The inferred radii are[23.5,23.5,25,24,24,21.5,21.5]mm and remain unchanged in the canonical file. Default geometry passes without any override or render trimming. Independent minimum glass lands are1.221318mm at L1 and1.338020mm at L4, with the other glass intervals positive. The source air intervals have minimum working clearances3.535295mm and6.812040mm; their sag-consumption fractions are0.345316 and0.542816.
+The printed 188 mm is closer to the G′ result (+0.11%) than the D-line result (+0.34%). A similar distinction appears in Bielicke's US 1,540,752, a different four-element, four-group f/2 design. The reason for the remaining focal-length difference is unresolved; the printed prescription is retained.
 
-At the full shared24mm central optical cap, the published iris plane has1.673324mm front clearance and5.138716mm rear clearance. At the actual canonical iris radius, corresponding distances are4.908038/5.605187mm. No source gap or stop location is changed.
+The rear-pair index difference is 0.0563, within the patent's 0.05–0.06 range. Element 4 has nD = 1.6165, meeting the text's minimum of 1.615. An independent calculation gives a front-to-rear power ratio of about 0.171 against the stated 0.16; it lies within the broader stated range of 0.10–0.35.
 
-Five positive diagnostic fields use865 physical3D samples each, native bounding-sphere chief aiming, and actual caps/iris:
+All glass edges and air spaces remain open at the estimated rims. The two air intervals have minimum modeled clearances of about 3.535 and 6.812 mm. The drawing suggests a common semi-diameter near 22 mm, while the retained estimates range from 21.5 to 25 mm. Exact manufactured clear apertures remain unknown. No measured MTF or complete spectral performance is established by the source.
 
-|Chosen half-field|Arrivals|Blocks|Raw native misses|Failed|Unresolved|
-|---|---:|---:|---:|---:|---:|
-|0°|793|72|0|0|0|
-|3°|793|72|0|0|0|
-|6°|810|55|0|0|0|
-|9°|818|47|0|0|0|
-|12°|800|65|0|0|0|
+## Sources
 
-Totals are4,014 arrivals and311 explicit iris/rim blocks from4,325 samples, with zero raw misses, failed or unresolved paths.247 blocks occur at the iris and64 at R1. Every one of those311 losses has a separate independent radius/point comparison: the source sphere or published stop plane intersection exceeds its modeled limit, with maximum hit difference2.313360e−13mm. The smallest outside margin is0.001129mm. No failed ray is dropped or reclassified to manufacture acceptance.
-
-Valid native optical hits agree with the independent vector Snell/sphere implementation within4.84e-13mm. Signed physical controls at−6°/−12° preserve mirrored hit coordinates and outcomes. Cap/iris sensitivities at17 chosen fields from0° through12° retain explicit clipping and zero unresolved classifications. Counts are unweighted sample diagnostics, not quantitative transmission.
-
-No source full coverage is established. The0–12° range is a chosen diagnostic scope, with ordinary vignetting retained. The12° chief lands at40.048038mm image height. The authored80.096076mm image circle is twice this derived diagnostic height, not a published sensor format or measured field cutoff. Wider field and continuous-pupil completeness are not asserted.
-
-## Bounded D-Line Geometric MTF
-
-Native D-line geometric MTF at the fixed Gaussian detector converges at grids64/64/128 for fields0°/6.060924°/approximately12°. Field fractions are image-height fractions, not exact angular fractions. Frequencies are[0,10,20,40]lp/mm. All sampled grids retain clipping with zero failed/unaimed samples and zero unknown flux.
-
-A separate fixed-grid512 diagnostic reproduces the adaptive native curves at their selected grids. Center/middle/edge256→512 maximum curve changes are0.000079902/0.000217687/0.000119316. These are observed discretization changes, not rigorous error bounds. At the edge, grid512 records201,188 arrivals and4,704 blocked stop-lattice cells; this is not a throughput estimate.
-
-The G′ line is not silently included through an approximate native curve. No source MTF curve was provided for comparison, and no diffraction, measured broadband or retail performance is claimed. Numerical convergence does not verify unknown manufactured rims or source material curves.
-
-## Deduplication, App Checks and Reproducibility
-
-Fresh public main4027fd20d095a1dba4ee3f46188dc70dad858055 is negative across1,188 re-evaluated model bodies. The retained main/21PR body cache plus2,438 historical evaluated profiles totals4,816 records, negative under normalized positive scale and reversed-negated whole-radius screening. A negative necessary radius identity excludes any exact full R/d/glass identity; this is not title-only matching.
-
-Readable local archive screens cover43 ZIPs/24,355 TS-member occurrences,16,661 local TS bodies,1,151 TAR TS bodies and207 JSON profiles. Counts overlap and are not unique designs. No inaccessible archive or exhaustive private universe is claimed. The scout's78-hosted-ZIP result is separate upstream context, not a locally repeated transfer. Known live PR-listHTTP403 is not retried; coverage remains21 retained complete heads, not a clean-current-PR duplicate certification.
-
-319 targeted existing tests in five files pass, as do repository/model types, model formatting, native serialization, exact actual desktop Builder export roundtrip and desktop/mobile rendering. The separate finite-iris tuning control was exported and restored without optical changes. Normal metadata generation passed using the existing full Git ancestry; no guard or app code was altered. Chromatic UI health is not spectral calibration. This does not claim a full-catalog regression or catalog integration.
-
-## Sources and Disposition
-
-Recognized independent source custody, the exact original-PDF hash, source D/G′/V transcription and failed local official URL attempt are retained separately. Local source pixels are not claimed. Scope is app-ready private D-line infinity reconstruction with published stop position and estimated physical opening/rims, not a release, retail match, finite lens or calibrated broadband model.
-
-All three prior ZIPs, their recorded checkpoints and the Zeiss source-held73-member checkpoint remain verified unchanged. No packaging, upload, customer send, catalog/app change, branch publication, commit or GitHub edit occurs. The local manifest/receipt verifies exact checkpoint bytes and full member hashes only; no remote backup is claimed.
+1. William F. Bielicke, [US 1,558,073 A](https://patents.google.com/patent/US1558073A/en), assigned to Bausch & Lomb Optical Company; filed 18 January 1922, published 20 October 1925. Drawing: PDF page 1; prescription, spectral definitions and claims: PDF page 3.
+2. William F. Bielicke, [US 1,540,752 A](https://patents.google.com/patent/US1540752A/en), cited only for comparison with the nominal focal length at the G′ line.
