@@ -49,7 +49,7 @@ const LENS_DATA = {
   key: "fujifilm-x-fujinon-w-24mm-f28-dm-ebc",
   maker: "Fujifilm",
   name: "FUJIFILM EBC X-FUJINON W 24mm f/2.8 DM",
-  subtitle: "US 4,158,482 — Example 1 / Table I; production correlation to EBC X-FUJINON W 24mm f/2.8 DM",
+  subtitle: "US 4,158,482 — Example 1 / Table I; production match to EBC X-FUJINON W 24mm f/2.8 DM",
 
   catalog: {
     lensMounts: ["fujica-x"],

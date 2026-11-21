@@ -44,7 +44,7 @@ const LENS_DATA = {
   key: "fujifilm-x10-7-1-28-4-f2-2-8",
   maker: "Fujifilm",
   name: "FUJIFILM SUPER EBC FUJINON 7.1-28.4mm f/2-2.8 (Fujifilm X10)",
-  subtitle: "US 2014/0133036 A1 Example 1 — strong X10 correlation; not asserted as the exact production prescription",
+  subtitle: "US 2014/0133036 A1 Example 1 — strong X10 match; not asserted as the exact production prescription",
 
   catalog: {
     lensMounts: ["fixed-lens-camera"],

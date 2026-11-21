@@ -29,7 +29,7 @@ const LENS_DATA = {
   key: "fujifilm-fujinon-xf-18-55-f28-4-r-lm-ois",
   maker: "Fujifilm",
   name: "FUJIFILM FUJINON XF 18-55mm f/2.8-4 R LM OIS",
-  subtitle: "US 2015/0177500 A1 Example 1 — strong production correlation; not manufacturer-confirmed",
+  subtitle: "US 2015/0177500 A1 Example 1 — strong production match; not maker-confirmed",
 
   catalog: {
     lensMounts: ["fujifilm-x"],

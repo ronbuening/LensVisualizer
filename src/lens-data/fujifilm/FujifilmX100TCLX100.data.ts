@@ -46,7 +46,7 @@ const LENS_DATA = {
   key: "fujifilm-x100-tcl-x100",
   maker: "Fujifilm",
   name: "FUJIFILM TCL-X100 33mm f/2 (Fujifilm X100)",
-  subtitle: "US 2015/0226942 A1 Example 1 — production correlation inferred",
+  subtitle: "US 2015/0226942 A1 Example 1 — inferred production match",
 
   catalog: {
     lensMounts: ["fixed-lens-camera"],

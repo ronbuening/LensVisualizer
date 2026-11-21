@@ -27,7 +27,7 @@ const LENS_DATA = {
   key: "fujifilm-fujinon-xf-16-50mm-f28-48-r-lm-wr",
   maker: "Fujifilm",
   name: "FUJIFILM FUJINON XF 16-50mm f/2.8-4.8 R LM WR",
-  subtitle: "WO 2024/057734 A1 — Example 17; strong production correlation, not manufacturer-confirmed",
+  subtitle: "WO 2024/057734 A1 — Example 17; strong production match, not maker-confirmed",
 
   catalog: {
     lensMounts: ["fujifilm-x"],

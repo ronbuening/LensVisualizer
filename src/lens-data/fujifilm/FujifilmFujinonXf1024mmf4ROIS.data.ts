@@ -47,7 +47,7 @@ const LENS_DATA = {
   key: "fujifilm-fujinon-xf-10-24mm-f4-r-ois",
   maker: "Fujifilm",
   name: "FUJIFILM FUJINON XF 10-24mm f/4 R OIS",
-  subtitle: "US 2015/0131163 A1 Example 1 — high-confidence production correlation",
+  subtitle: "US 2015/0131163 A1 Example 1 — strong production match",
 
   catalog: {
     lensMounts: ["fujifilm-x"],

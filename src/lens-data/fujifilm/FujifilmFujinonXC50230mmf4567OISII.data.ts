@@ -40,7 +40,7 @@ const LENS_DATA = {
   key: "fujifilm-fujinon-xc-50-230mm-f45-67-ois-ii",
   maker: "Fujifilm",
   name: "FUJIFILM FUJINON XC 50-230mm f/4.5-6.7 OIS II",
-  subtitle: "US 10,095,009 B2 EXAMPLE 6 — FUJIFILM / ORI, CHO — PRODUCT CORRELATION UNCONFIRMED",
+  subtitle: "US 10,095,009 B2 EXAMPLE 6 — FUJIFILM / ORI, CHO — PRODUCTION MATCH, NOT MAKER-CONFIRMED",
 
   catalog: {
     lensMounts: ["fujifilm-x"],

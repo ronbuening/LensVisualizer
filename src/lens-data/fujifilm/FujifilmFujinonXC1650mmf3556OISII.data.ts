@@ -39,7 +39,7 @@ const LENS_DATA = {
   key: "fujifilm-fujinon-xc-16-50mm-f35-56-ois-ii",
   maker: "Fujifilm",
   name: "FUJIFILM FUJINON XC 16-50mm f/3.5-5.6 OIS II",
-  subtitle: "US 2014/0368925 A1 Example 1 — strong convergent, unconfirmed production correlation",
+  subtitle: "US 2014/0368925 A1 Example 1 — strong production match, not maker-confirmed",
 
   catalog: {
     lensMounts: ["fujifilm-x"],
