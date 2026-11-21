@@ -62,7 +62,7 @@ All four elements use present-day Sumita spectral proxies: SK1 for element 1 (Δ
 | 3       | 1.5602 | 1.5763 | 45.3 |
 | 4       | 1.6165 | 1.6309 | 55.0 |
 
-The printed G′ designation is kept distinct from the mercury g line. The model uses the D-line indices and Abbe numbers; the G′ values above support a separate first-order calculation. The spectral proxies do not establish the historical glasses' complete spectral curves or anomalous partial dispersion.
+The printed G′ designation is kept distinct from the mercury g line. The model uses the D-line indices and Abbe numbers; the G′ values above support a separate first-order calculation. Anchored at the printed D indices, the three proxy curves reproduce these G′ indices within 0.0001. The spectral proxies still do not establish the historical glasses' complete spectral curves or anomalous partial dispersion.
 
 ## Focus Mechanism
 
