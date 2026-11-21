@@ -59,7 +59,8 @@ const LENS_DATA = {
       vd: 50.8,
       indexReference: "D",
       focalLengthMm: 58.67,
-      glass: "Unmatched (nD 1.6570 / ν 50.8)",
+      glass:
+        "J-SSK5 (spectral proxy; patent nD 1.6570 / ν 50.8; supplier and melt unspecified)",
       role: "Positive front element of the negative front component.",
       cemented: "C1",
     },
@@ -72,7 +73,8 @@ const LENS_DATA = {
       vd: 36.2,
       indexReference: "D",
       focalLengthMm: -42.54,
-      glass: "Unmatched (nD 1.6205 / ν 36.2)",
+      glass:
+        "S-TIM2 (spectral proxy; patent nD 1.6205 / ν 36.2; supplier and melt unspecified)",
       role: "Negative rear element of the cemented front component.",
       cemented: "C1",
     },
@@ -121,7 +123,8 @@ const LENS_DATA = {
       vd: 50.8,
       indexReference: "D",
       focalLengthMm: 45.28,
-      glass: "Unmatched (nD 1.6570 / ν 50.8)",
+      glass:
+        "J-SSK5 (spectral proxy; patent nD 1.6570 / ν 50.8; supplier and melt unspecified)",
       role: "Positive rear element of the air-spaced rear component.",
     },
   ],
