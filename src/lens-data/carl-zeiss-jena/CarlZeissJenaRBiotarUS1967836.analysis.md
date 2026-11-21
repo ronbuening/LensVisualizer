@@ -73,7 +73,7 @@ No numerical clear radii are printed. The inferred radii at R1–R9 are 66, 60.5
 
 The drawing suggests different rims: about 61 mm on L1; about 61 mm at L2's front and 52.6 mm at its rear optical face, with a chamfer beyond; about 45 mm on L3; and about 26 mm on the rear doublet, with a smaller rear optical face. These differences remain unresolved. The drawn diaphragm opening is schematic and does not independently determine the iris diameter.
 
-Geometric MTF at the image edge retains uncertainty from incompletely resolved pupil aiming. It is not measured lens performance, and the patent supplies no MTF curve for comparison. The inferred apertures, limited glass dispersion data and infinity-only conjugate also limit comparisons with a manufactured X-ray objective.
+It is not measured lens performance, and the patent supplies no MTF curve for comparison. The inferred apertures, limited glass dispersion data and infinity-only conjugate also limit comparisons with a manufactured X-ray objective.
 
 ## Sources
 

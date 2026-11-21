@@ -30,7 +30,7 @@ The five spectral references are corrected from sodium D to helium d, following 
 
 Open: The inferred rims differ from the figure, especially L1's near-knife front rim, L2's chamfered rear face and L3's unequal rims. Figure estimates are L1 about 61/61 mm; L2 about 61/52.6 mm with a chamfer to about 61 mm; L3 about 45/45 mm; rear doublet about 26 mm, with its rear optical face about 23 mm. The retained radii are 66/60.5/55/54/48/42/27/26/27 mm. The drawn diaphragm opening is schematic.
 
-Open: The exact production prescription and historical glass melts are unknown. DE 607,631 is a reported counterpart whose page images have not been established here; no independent corroboration from that document is claimed. Geometric MTF at the image edge retains pupil-aiming uncertainty, and measured spectral and finite-conjugate performance remain unknown.
+Open: The exact production prescription and historical glass melts are unknown. DE 607,631 is a reported counterpart whose page images have not been established here; no independent corroboration from that document is claimed. Measured spectral and finite-conjugate performance remain unknown.
 
 ## 2026-11-21 — Deployment validation and cleanup
 
@@ -47,4 +47,6 @@ Two independent re-readings of the patent page images compared both numerical ta
 
 Before and after cleanup: EFL 99.997625507 mm, paraxial f-number 0.900, BFD 26.004566965 mm, iris radius 37.268886103 mm and half-field 7.1614113° are unchanged. Surface geometry has no errors; axial aperture has no rim limit or failed station. Image-circle coverage checks one lens with zero undersized surfaces and zero skips. Field coverage reaches 100%: 7.1614° gives 12.50 mm of the 12.50 mm image radius, with a clear corner chief ray. At that field no optical surface cuts the axial marginal or blocks the chief; the rear doublet partly vignettes the nominal bundle, and a lower nominal rim ray cannot be solved. These results retain the separate f/0.956 real-ray iris limit.
 
-Open: Rims versus the patent figure, the physical iris opening, historical glass identities, exact production correspondence, the reported German counterpart and image-edge pupil-aiming uncertainty remain unresolved. No rim values, printed optical dimensions, stop position or source glass values are changed.
+Open: Rims versus the patent figure, the physical iris opening, historical glass identities, exact production correspondence and the reported German counterpart remain unresolved. No rim values, printed optical dimensions, stop position or source glass values are changed.
+
+Review corrections: Analysis sentence about unresolved image-edge pupil aiming → removed; Remaining Questions MTF pupil-aiming clause → removed; final Open item's image-edge pupil-aiming clause → removed.
