@@ -13,8 +13,8 @@
  * front view [hv-4]; drive key, its index dot, the stop pin and the flange screws from the vector Fig. 29
  * of the service manual [hv-3], scaled so the flange-tip circle is the 69 mm throat [hv-2].
  *
- * Receiving slots are the openings between the flanges, and lens-side features are stored at the angle
- * of the body feature they mate with (lugs at their insertion position). The earlier 1600F /
+ * `body-slot-n` is a body retaining flange, not the open gap beside it, and the lens is drawn as mounted:
+ * each lens lug sits behind the flange of the same number. The earlier 1600F /
  * 1000F cameras use a different mount and are outside this spec; US2526433A [hv-p1] belongs to that era
  * and supports no value here.
  */
@@ -37,14 +37,14 @@ const DATABUS: MountProfileId = "hasselblad-v/databus";
 const FLANGE_ARCS = "34 to 60, 121 to 151, 212 to 240 and 300 to 329 deg";
 
 /**
- * Receiving slots: the openings between the flanges, bounded by the flange edges above and numbered
- * clockwise from the one that spans 12 o'clock.
+ * The four body retaining flanges, numbered clockwise from the upper right. The open gaps between them
+ * are centred near 1.5, 90.5, 181.5 and 270 deg.
  */
 const SLOTS = [
-  { n: 1, center: 1.5, start: 329, end: 34, note: "top, across 12 o'clock" },
-  { n: 2, center: 90.5, start: 60, end: 121, note: "right" },
-  { n: 3, center: 181.5, start: 151, end: 212, note: "bottom, around the drive shaft key" },
-  { n: 4, center: 270, start: 240, end: 300, note: "left" },
+  { n: 1, center: 47, start: 34, end: 60, note: "upper right" },
+  { n: 2, center: 136, start: 121, end: 151, note: "lower right" },
+  { n: 3, center: 226, start: 212, end: 240, note: "lower left" },
+  { n: 4, center: 314.5, start: 300, end: 329, note: "upper left" },
 ] as const;
 
 /**
@@ -195,7 +195,7 @@ const HASSELBLAD_V_MOUNT = {
       outerRadiusMm: v(36.3, "photo_scaled", OM),
       depthMm: unknownV(SM),
       matesWith: `lens-lug-${slot.n}`,
-      shapeNotes: `opening (${slot.note}) between two body retaining flanges, through which a lens lug passes at insertion; its edges are the flange edges read from the dimensioned front view. The four flanges (part 103439, two screws each) sit at ${FLANGE_ARCS} and are not drawn as features. Service manual Fig. 29 draws the two lower flanges as 27.8 deg arcs centred at 135.3 and 225.3 deg`,
+      shapeNotes: `body retaining flange (${slot.note}; part 103439, two screws each), the solid part that holds a lens lug; edges read from the dimensioned front view. The four flanges sit at ${FLANGE_ARCS}, with open gaps between them through which the lugs enter. Service manual Fig. 29 draws the two lower flanges as 27.8 deg arcs centred at 135.3 and 225.3 deg`,
     })),
     {
       featureId: "body-index-mark",
@@ -288,7 +288,7 @@ const HASSELBLAD_V_MOUNT = {
       thicknessMm: unknownV(OM),
       matesWith: `body-slot-${slot.n}`,
       shapeNotes:
-        "lens bayonet lug at its insertion position, in the body opening of the same number. The arc drawn is that opening's span, which is only an upper bound: the lug's own length is not sourced",
+        "lens bayonet lug drawn where it sits on a mounted lens, behind the body flange of the same number. The arc drawn is that flange, the engaged part; the lug's own length is not sourced",
     })),
     {
       featureId: "lens-index-mark",
@@ -504,7 +504,7 @@ const HASSELBLAD_V_MOUNT = {
   openQuestions: [
     {
       issue:
-        "The flange edges that bound the receiving slots, the ring radii, index dot and release button are scaled from a small dimensioned drawing in the owner manual (about 0.5 deg and 0.3 mm per pixel; the four stated dimensions on that page give scales that differ by up to 1.5 percent). The flange centres read 47, 136, 226 and 314.5 deg, which may be a nominal 45, 135, 225 and 315, so the slot centres of 1.5, 90.5, 181.5 and 270 deg may be a nominal 0, 90, 180 and 270. The flanges themselves are not drawn: the renderer would fill them like the slots and the ring would read as unbroken. Flange thickness is not given anywhere.",
+        "The flange edges, the ring radii, index dot and release button are scaled from a small dimensioned drawing in the owner manual (about 0.5 deg and 0.3 mm per pixel; the four stated dimensions on that page give scales that differ by up to 1.5 percent). The flange centres read 47, 136, 226 and 314.5 deg, which may be a nominal 45, 135, 225 and 315. Flange thickness is not given anywhere.",
       affectedFields: ["cameraSideFeatures", "coreDimensions.cameraMountOuterDiameterMm", "axialStack"],
       candidateValues: [
         "lower-right flange arc 121.4 to 149.2 deg (service manual Fig. 29)",
@@ -515,7 +515,7 @@ const HASSELBLAD_V_MOUNT = {
     },
     {
       issue:
-        "The lens lugs are drawn with the span of the body opening they pass through, which is only an upper bound. The one lens drawing used (503cx manual p. 6) shows a 36 deg opening in the lens flange from 149 to 185 deg in the mounted position, between long lug arcs; read that way the lens could turn only about 28 to 34 deg, not the 72 deg the 500C manual states. The lug count, lengths and the reason for the single starting point are therefore unresolved.",
+        "The lens lugs are drawn as the arc engaged behind each body flange; their own length is not sourced. The one lens drawing used (503cx manual p. 6) shows a 36 deg opening in the lens flange from 149 to 185 deg in the mounted position, between long lug arcs; read that way the lens could turn only about 28 to 34 deg, not the 72 deg the 500C manual states. The lug count, lengths and the reason for the single starting point are therefore unresolved.",
       affectedFields: ["lensSideFeatures", "lockGeometry.lockRotationDeg", "lockGeometry.lockAngleDeg"],
       candidateValues: [
         72,

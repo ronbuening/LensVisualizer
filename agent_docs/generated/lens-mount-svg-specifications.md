@@ -2027,9 +2027,9 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 #### Figures (selected profile `hasselblad-v/base`)
 
-**Camera-side front view** — viewBox `-46 -48 92 94` · 42 elements in 4 layers · hash `e7a492e5` ([standalone SVG](mounts/hasselblad-v-camera-front.svg))
+**Camera-side front view** — viewBox `-46 -48 92 94` · 42 elements in 4 layers · hash `29066b3b` ([standalone SVG](mounts/hasselblad-v-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-45 -48 90 93` · 29 elements in 4 layers · hash `55468876` ([standalone SVG](mounts/hasselblad-v-lens-rear.svg))
+**Lens-side rear view** — viewBox `-45 -48 90 93` · 29 elements in 4 layers · hash `316dc6de` ([standalone SVG](mounts/hasselblad-v-lens-rear.svg))
 
 **Axial / register schematic** — viewBox `-84 -52 93 100` · 12 elements in 2 layers · hash `6e04e375` ([standalone SVG](mounts/hasselblad-v-axial.svg))
 
@@ -2039,10 +2039,10 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 |---|---|---|---|---|---|---|---|
 | `body-throat` | body_throat | `hasselblad-v/base` | 0° | 0° | 360° | 0 | 34.5 |
 | `body-mount-ring` | mount_ring | `hasselblad-v/base` | 0° | 0° | 360° | 34.5 | 37.8 |
-| `body-slot-1` | bayonet_receiving_slot | `hasselblad-v/base` | 1.5° | 329° | 34° | 34.5 | 36.3 |
-| `body-slot-2` | bayonet_receiving_slot | `hasselblad-v/base` | 90.5° | 60° | 121° | 34.5 | 36.3 |
-| `body-slot-3` | bayonet_receiving_slot | `hasselblad-v/base` | 181.5° | 151° | 212° | 34.5 | 36.3 |
-| `body-slot-4` | bayonet_receiving_slot | `hasselblad-v/base` | 270° | 240° | 300° | 34.5 | 36.3 |
+| `body-slot-1` | bayonet_receiving_slot | `hasselblad-v/base` | 47° | 34° | 60° | 34.5 | 36.3 |
+| `body-slot-2` | bayonet_receiving_slot | `hasselblad-v/base` | 136° | 121° | 151° | 34.5 | 36.3 |
+| `body-slot-3` | bayonet_receiving_slot | `hasselblad-v/base` | 226° | 212° | 240° | 34.5 | 36.3 |
+| `body-slot-4` | bayonet_receiving_slot | `hasselblad-v/base` | 314.5° | 300° | 329° | 34.5 | 36.3 |
 | `body-index-mark` | index_mark | `hasselblad-v/base` | 0° | 0° | 0° | 33.6 | 33.6 |
 | `body-stop-pin` | alignment_pin | `hasselblad-v/base` | 153° | 153° | 153° | 34.8 | 34.8 |
 | `body-release-button` | lens_release_button | `hasselblad-v/base` | 135° | unknown | unknown | unknown | 47 |
@@ -2053,10 +2053,10 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 |---|---|---|---|---|---|---|---|
 | `lens-throat` | lens_throat | `hasselblad-v/base` | 0° | 0° | 360° | 0 | 34.3 |
 | `lens-mount-ring` | lens_mount_ring | `hasselblad-v/base` | 0° | 0° | 360° | 34.3 | 37.2 |
-| `lens-lug-1` | bayonet_lug | `hasselblad-v/base` | 1.5° | 329° | 34° | 34.3 | 36.1 |
-| `lens-lug-2` | bayonet_lug | `hasselblad-v/base` | 90.5° | 60° | 121° | 34.3 | 36.1 |
-| `lens-lug-3` | bayonet_lug | `hasselblad-v/base` | 181.5° | 151° | 212° | 34.3 | 36.1 |
-| `lens-lug-4` | bayonet_lug | `hasselblad-v/base` | 270° | 240° | 300° | 34.3 | 36.1 |
+| `lens-lug-1` | bayonet_lug | `hasselblad-v/base` | 47° | 34° | 60° | 34.3 | 36.1 |
+| `lens-lug-2` | bayonet_lug | `hasselblad-v/base` | 136° | 121° | 151° | 34.3 | 36.1 |
+| `lens-lug-3` | bayonet_lug | `hasselblad-v/base` | 226° | 212° | 240° | 34.3 | 36.1 |
+| `lens-lug-4` | bayonet_lug | `hasselblad-v/base` | 314.5° | 300° | 329° | 34.3 | 36.1 |
 | `lens-index-mark` | index_mark | `hasselblad-v/base` | 0° | unknown | unknown | unknown | unknown |
 
 #### Electrical contacts
@@ -2089,7 +2089,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/hasselblad-v.mount.ts` (51000 bytes, content hash `be895431`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/hasselblad-v.mount.ts` (50600 bytes, content hash `d2a6b116`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -2108,8 +2108,8 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 #### Open questions
 
-- The flange edges that bound the receiving slots, the ring radii, index dot and release button are scaled from a small dimensioned drawing in the owner manual (about 0.5 deg and 0.3 mm per pixel; the four stated dimensions on that page give scales that differ by up to 1.5 percent). The flange centres read 47, 136, 226 and 314.5 deg, which may be a nominal 45, 135, 225 and 315, so the slot centres of 1.5, 90.5, 181.5 and 270 deg may be a nominal 0, 90, 180 and 270. The flanges themselves are not drawn: the renderer would fill them like the slots and the ring would read as unbroken. Flange thickness is not given anywhere. _(Replace with a dimensioned Hasselblad front-plate drawing (front bayonet plate 40403) or a measured body.)_
-- The lens lugs are drawn with the span of the body opening they pass through, which is only an upper bound. The one lens drawing used (503cx manual p. 6) shows a 36 deg opening in the lens flange from 149 to 185 deg in the mounted position, between long lug arcs; read that way the lens could turn only about 28 to 34 deg, not the 72 deg the 500C manual states. The lug count, lengths and the reason for the single starting point are therefore unresolved. _(Measure a V lens rear or find a Carl Zeiss C / CF lens service drawing of the bayonet plate (the CB / CFE / CFi lens service manual was not reachable).)_
+- The flange edges, the ring radii, index dot and release button are scaled from a small dimensioned drawing in the owner manual (about 0.5 deg and 0.3 mm per pixel; the four stated dimensions on that page give scales that differ by up to 1.5 percent). The flange centres read 47, 136, 226 and 314.5 deg, which may be a nominal 45, 135, 225 and 315. Flange thickness is not given anywhere. _(Replace with a dimensioned Hasselblad front-plate drawing (front bayonet plate 40403) or a measured body.)_
+- The lens lugs are drawn as the arc engaged behind each body flange; their own length is not sourced. The one lens drawing used (503cx manual p. 6) shows a 36 deg opening in the lens flange from 149 to 185 deg in the mounted position, between long lug arcs; read that way the lens could turn only about 28 to 34 deg, not the 72 deg the 500C manual states. The lug count, lengths and the reason for the single starting point are therefore unresolved. _(Measure a V lens rear or find a Carl Zeiss C / CF lens service drawing of the bayonet plate (the CB / CFE / CFi lens service manual was not reachable).)_
 - The point where lens catch lever 103440 engages the lens is not shown in the sources used, so no lock pin or lock notch is drawn; only the release button and the stop pin are placed. The stop pin is identified from the exploded-view leader, not from text. _(Read the lens catch position from a front-plate drawing or a photo taken square to the mount with the lens removed.)_
 - Drive key and stop pin radii rest on service manual Fig. 29 scaled to the 69 mm throat; the owner-manual front view scales the key to 27.4 mm instead of 26.4 mm. The four upper flange screws are not placed. The lens-side radii are scaled through that same key radius. _(Upgrade from a dimensioned front gear / front plate drawing or a measured body and lens.)_
 - Data-bus variant: the count of four is stated by Hasselblad, but the contact angles and pitch radius come from one perspective figure and are good to about 15 deg; contact size, protrusion and signal assignment are unknown, and no body-side view of the contacts was found. _(Read the contact positions from the 203FE / 205 service manual front-plate pages or a measured FE lens and 200-series body.)_
