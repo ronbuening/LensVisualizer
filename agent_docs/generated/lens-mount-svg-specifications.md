@@ -51,7 +51,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
 | [`pentax-67`](#pentax-67--pentax-67) | bayonet | 84.95 mm | 72 mm | `renderable` | 3 |
 | [`pentax-k`](#pentax-k--pentax-k) | bayonet | 45.46 mm | 44 mm | `mvp_complete` | 7 |
 | [`samsung-nx`](#samsung-nx--samsung-nx) | bayonet | 25.5 mm | 42 mm | `renderable` | 1 |
-| [`sigma-sa`](#sigma-sa--sigma-sa) | bayonet | 44 mm | 44 mm | `renderable` | 1 |
+| [`sigma-sa`](#sigma-sa--sigma-sa) | bayonet | 44 mm | 44.4 mm | `renderable` | 3 |
 | [`sony-a`](#sony-a--sony-a) | bayonet | 44.5 mm | 49.7 mm | `mvp_complete` | 1 |
 | [`sony-fe`](#sony-fe--sony-e) | bayonet | 18 mm | 46.1 mm | `mvp_complete` | 1 |
 | [`zeiss-contarex`](#zeiss-contarex--zeiss-contarex) | bayonet | 46 mm | 46 mm | `renderable` | 1 |
@@ -3953,110 +3953,128 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 | MVP status | `renderable` |
 | Mount mechanism | `bayonet` (lock `sprung_detent`) |
 | Base profile | `sigma-sa/base` |
-| Selected MVP profile | `sigma-sa/base` |
-| Variant strategy | `base_only` |
+| Selected MVP profile | `sigma-sa/sa-ib` |
+| Variant strategy | `variant_profiles_defined` |
 
 #### Base and variant profile matrix
 
 | Profile ID | Type | Applies to | Adds | Removes | Changes |
 |---|---|---|---|---|---|
-| `sigma-sa/base` | base | Sigma SA autofocus lenses and bodies | three-lug bayonet; electrical contact bank; aperture actuation lever | — | geometry is represented at MVP level pending a dimensioned Sigma drawing |
+| `sigma-sa/base` | base | all Sigma SA bodies and lenses, 1992-2018 | three-lug inner bayonet (SA-IB); axial lock pin and lock groove; 12 o'clock mounting index; seven electrical contacts in a 5 + 2 grouping | mechanical aperture and metering couplings (the mount is all-electronic) | — |
+| `sigma-sa/sa-ib-ob` | variant | dual-bayonet bodies, 1992-2006: SA-300 through SD10 (the SD9 and SD10 manuals name both SA-IB and SA-OB) | outer bayonet (SA-OB) on the body mount ring periphery, never used by a Sigma lens; two extra body contact pins with no lens counterpart | — | outer bayonet geometry is not dimensioned by any source found |
+| `sigma-sa/sa-ib` | variant | inner-bayonet-only bodies, 2007-2018 (SD14 through sd Quattro H), and late SA lenses | extra pads on late lenses, extending the five-pad group; no body pin meets them | outer bayonet (SA-OB); the two extra body contact pins | — |
 
 #### Dimensional summary
 
 | Field | Value | Unit |
 |---|---|---|
 | Flange focal distance | 44 (`secondary`) | mm |
-| Nominal throat diameter | 44 (`secondary`) | mm |
-| Effective clear aperture | 44 (`secondary`) | mm |
-| Camera mount outer diameter | 54 (`photo_scaled`) | mm |
-| Lens mount outer diameter | 52 (`photo_scaled`) | mm |
-| Contact count | 8 (`photo_scaled`) | count |
+| Nominal throat diameter | 44.4 (`secondary`) | mm |
+| Effective clear aperture | 44.4 (`secondary`) | mm |
+| Camera mount outer diameter | 61 (`photo_scaled`) | mm |
+| Lens mount outer diameter | 62 (`photo_scaled`) | mm |
+| Contact count | 7 (`secondary`) | count |
 | Lock rotation | 60 (`photo_scaled`) | deg |
-| Lock direction | clockwise (`photo_scaled`) | — |
+| Lock direction | clockwise (`official`) | — |
 
-#### Figures (selected profile `sigma-sa/base`)
+#### Figures (selected profile `sigma-sa/sa-ib`)
 
-**Camera-side front view** — viewBox `-34 -35 68 69` · 55 elements in 5 layers · hash `494a4691` ([standalone SVG](mounts/sigma-sa-camera-front.svg))
+**Camera-side front view** — viewBox `-37 -39 74 76` · 50 elements in 4 layers · hash `00c6f7f3` ([standalone SVG](mounts/sigma-sa-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-32 -33 64 65` · 49 elements in 5 layers · hash `010898ae` ([standalone SVG](mounts/sigma-sa-lens-rear.svg))
+**Lens-side rear view** — viewBox `-38 -40 76 78` · 50 elements in 4 layers · hash `1adad3fb` ([standalone SVG](mounts/sigma-sa-lens-rear.svg))
 
-**Axial / register schematic** — viewBox `-50 -37 58 70` · 14 elements in 2 layers · hash `96bc2a5f` ([standalone SVG](mounts/sigma-sa-axial.svg))
+**Axial / register schematic** — viewBox `-51 -41 58 78` · 16 elements in 2 layers · hash `9fcb77e0` ([standalone SVG](mounts/sigma-sa-axial.svg))
 
 #### Camera-side front-view geometry
 
 | Feature ID | Type | Profile | Center | Start | End | Inner r | Outer r |
 |---|---|---|---|---|---|---|---|
-| `body-throat` | body_throat | `sigma-sa/base` | 0° | 0° | 360° | 0 | 22 |
-| `body-mount-ring` | mount_ring | `sigma-sa/base` | 0° | 0° | 360° | 22 | 27 |
-| `body-slot-1` | bayonet_receiving_slot | `sigma-sa/base` | 30° | 11° | 49° | 22 | 24.5 |
-| `body-slot-2` | bayonet_receiving_slot | `sigma-sa/base` | 150° | 131° | 169° | 22 | 24.5 |
-| `body-slot-3` | bayonet_receiving_slot | `sigma-sa/base` | 270° | 251° | 289° | 22 | 24.5 |
-| `body-index-mark` | index_mark | `sigma-sa/base` | 0° | unknown | unknown | unknown | 27.5 |
-| `body-lock-pin` | lock_pin | `sigma-sa/base` | 90° | unknown | unknown | unknown | 23 |
+| `body-throat` | body_throat | `sigma-sa/base` | 0° | 0° | 360° | 0 | 22.2 |
+| `body-mount-ring` | mount_ring | `sigma-sa/base` | 0° | 0° | 360° | 22.2 | 30.5 |
+| `body-slot-1` | bayonet_receiving_slot | `sigma-sa/base` | 326.5° | 303° | 350° | 22.2 | 23.6 |
+| `body-slot-2` | bayonet_receiving_slot | `sigma-sa/base` | 97.5° | 72° | 123° | 22.2 | 23.6 |
+| `body-slot-3` | bayonet_receiving_slot | `sigma-sa/base` | 203.5° | 181° | 226° | 22.2 | 23.6 |
+| `body-index-mark` | index_mark | `sigma-sa/base` | 0° | unknown | unknown | unknown | 30.5 |
+| `body-lock-pin` | lock_pin | `sigma-sa/base` | 252° | unknown | unknown | unknown | 26.5 |
+| `body-outer-bayonet` | outer_bayonet_lug | `sigma-sa/sa-ib-ob` | unknown | unknown | unknown | unknown | unknown |
 
 #### Lens-side rear-view geometry
 
 | Feature ID | Type | Profile | Center | Start | End | Inner r | Outer r |
 |---|---|---|---|---|---|---|---|
-| `lens-throat` | lens_throat | `sigma-sa/base` | 0° | 0° | 360° | 0 | 21 |
-| `lens-mount-ring` | lens_mount_ring | `sigma-sa/base` | 0° | 0° | 360° | 21 | 26 |
-| `lens-lug-1` | bayonet_lug | `sigma-sa/base` | 30° | 11° | 49° | 22 | 24.5 |
-| `lens-lug-2` | bayonet_lug | `sigma-sa/base` | 150° | 131° | 169° | 22 | 24.5 |
-| `lens-lug-3` | bayonet_lug | `sigma-sa/base` | 270° | 251° | 289° | 22 | 24.5 |
-| `lens-index-mark` | index_mark | `sigma-sa/base` | 0° | unknown | unknown | unknown | 26.5 |
-| `lens-lock-notch` | lock_notch | `sigma-sa/base` | 90° | unknown | unknown | unknown | 23 |
+| `lens-throat` | lens_throat | `sigma-sa/base` | 0° | 0° | 360° | 0 | 20.7 |
+| `lens-mount-ring` | lens_mount_ring | `sigma-sa/base` | 0° | 0° | 360° | 20.7 | 31 |
+| `lens-lug-1` | bayonet_lug | `sigma-sa/base` | 326.5° | 303° | 350° | 22.2 | 23.6 |
+| `lens-lug-2` | bayonet_lug | `sigma-sa/base` | 97.5° | 72° | 123° | 22.2 | 23.6 |
+| `lens-lug-3` | bayonet_lug | `sigma-sa/base` | 203.5° | 181° | 226° | 22.2 | 23.6 |
+| `lens-index-mark` | index_mark | `sigma-sa/base` | 0° | unknown | unknown | unknown | 26.6 |
+| `lens-lock-notch` | lock_notch | `sigma-sa/base` | 252° | unknown | unknown | unknown | 26.5 |
 
 #### Electrical contacts
 
 | Side | No. | Profile | Center angle | Radius | Function |
 |---|---|---|---|---|---|
-| body | 1 | `sigma-sa/base` | 230° | 23 |  |
-| body | 2 | `sigma-sa/base` | 237° | 23 |  |
-| body | 3 | `sigma-sa/base` | 244° | 23 |  |
-| body | 4 | `sigma-sa/base` | 251° | 23 |  |
-| body | 5 | `sigma-sa/base` | 258° | 23 |  |
-| body | 6 | `sigma-sa/base` | 265° | 23 |  |
-| body | 7 | `sigma-sa/base` | 272° | 23 |  |
-| body | 8 | `sigma-sa/base` | 279° | 23 |  |
-| lens | 1 | `sigma-sa/base` | 230° | 23 |  |
-| lens | 2 | `sigma-sa/base` | 237° | 23 |  |
-| lens | 3 | `sigma-sa/base` | 244° | 23 |  |
-| lens | 4 | `sigma-sa/base` | 251° | 23 |  |
-| lens | 5 | `sigma-sa/base` | 258° | 23 |  |
-| lens | 6 | `sigma-sa/base` | 265° | 23 |  |
-| lens | 7 | `sigma-sa/base` | 272° | 23 |  |
-| lens | 8 | `sigma-sa/base` | 279° | 23 |  |
+| body | 1 | `sigma-sa/base` | 159.6° | 20.2 |  |
+| body | 2 | `sigma-sa/base` | 165.4° | 20.2 |  |
+| body | 3 | `sigma-sa/base` | 171.1° | 20.2 |  |
+| body | 4 | `sigma-sa/base` | 176.9° | 20.2 |  |
+| body | 5 | `sigma-sa/base` | 182.6° | 20.2 |  |
+| body | 6 | `sigma-sa/base` | 194.4° | 20.2 |  |
+| body | 7 | `sigma-sa/base` | 202.9° | 20.2 |  |
+| body | 8 | `sigma-sa/sa-ib-ob` | 211.2° | 20.5 |  |
+| body | 9 | `sigma-sa/sa-ib-ob` | 215.6° | 18.1 |  |
+| lens | 1 | `sigma-sa/base` | 159.6° | 20.2 |  |
+| lens | 2 | `sigma-sa/base` | 165.4° | 20.2 |  |
+| lens | 3 | `sigma-sa/base` | 171.1° | 20.2 |  |
+| lens | 4 | `sigma-sa/base` | 176.9° | 20.2 |  |
+| lens | 5 | `sigma-sa/base` | 182.6° | 20.2 |  |
+| lens | 6 | `sigma-sa/base` | 194.4° | 20.2 |  |
+| lens | 7 | `sigma-sa/base` | 202.9° | 20.2 |  |
+| lens | 8 | `sigma-sa/sa-ib` | 153.5° | 20.1 |  |
+| lens | 9 | `sigma-sa/sa-ib` | 147.6° | 20.1 |  |
+| lens | 10 | `sigma-sa/sa-ib` | 141.7° | 20.1 |  |
 
 #### Mechanical couplings
 
-| Feature | Side | Profile | Function |
-|---|---|---|---|
-| `aperture-actuation-lever` | both | `sigma-sa/base` | body-driven aperture stop-down actuation |
+None — fully electronic.
 
 #### Axial stack
 
 | Plane | z (mm) | Diameter (mm) |
 |---|---|---|
-| `flange_datum` | 0 | 54 |
-| `bayonet_lug_engagement` | 1.2 | 49 |
-| `electrical_contact_plane` | 0.5 | 45 |
+| `flange_datum` | 0 | 61 |
+| `lens_locating_spigot` | -0.89 | 50.4 |
+| `bayonet_lug_engagement` | -3.05 | 47.2 |
+| `electrical_contact_plane` | unknown | 40.4 |
 | `sensor_film_plane` | -44 | 43.3 |
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/sigma-sa.mount.ts` (41229 bytes, content hash `1abfc097`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/sigma-sa.mount.ts` (57169 bytes, content hash `86e3026a`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
 | Ref | Type | Citation | Archive | Captured | Confidence |
 |---|---|---|---|---|---|
 | `ssa-1` | secondary | “Flange focal distance,” Wikipedia. Accessed 2026-06-06. | [snapshot](http://web.archive.org/web/20260526152456/https://en.wikipedia.org/wiki/Flange_focal_distance) | 2026-05-26 | medium |
-| `ssa-2` | secondary | Sigma SA mount visual references and mount charts. Accessed 2026-06-06. | [snapshot](unknown) | unknown | low |
+| `ssa-2` | secondary | P. Buttler, “Lens Mounts: Sigma SA mount,” JAPB (japb.net), updated May 2025, with the annotated rear photograph of a Sigma 18-50mm 1:3.5-5.6 DC. Accessed 2026-11-21. | [snapshot](https://japb.net/wp-content/uploads/2025/05/ID-Sigma-SA.jpg) | 2026-11-21 | medium |
+| `ssa-3` | secondary | P. Buttler, photograph of a Sigma SA-300 body mount, in “Lens Mounts: Sigma SA mount,” JAPB (japb.net), updated May 2025. Accessed 2026-11-21. | [snapshot](https://japb.net/wp-content/uploads/2025/05/Sigma-sa-300-dual-mount.jpg) | 2026-11-21 | low |
+| `ssa-4` | secondary | P. Buttler, rear photograph of a Sigma 30 mm f/1.4 EX HSM, in “Lens Mounts: Sigma SA mount,” JAPB (japb.net), updated May 2025. Accessed 2026-11-21. | [snapshot](https://japb.net/wp-content/uploads/2025/05/SA-30f1.4-1-s-l1600.jpg) | 2026-11-21 | medium |
+| `ssa-5` | secondary | S. H. Westin, “Comparison: Sigma SA mount vs. Pentax K,” dimensioned section drawing dated 28 May 2004, Cornell University Program of Computer Graphics. Accessed 2026-11-21. | [snapshot](https://www.graphics.cornell.edu/~westin/misc/pentax-sigma-compare.png) | 2026-11-21 | medium |
+| `ssa-6` | official | Sigma Corporation, SD9 User's Manual (English), pp. 11 and 23-24. Accessed 2026-11-21. | [snapshot](https://www.sigma-global.com/en/support/download/SD9Users_Manual_Engl.pdf) | 2026-11-21 | high |
+| `ssa-7` | official | Sigma Corporation, SD14 User's Manual (English), pp. 11 and 24-25. Accessed 2026-11-21. | [snapshot](https://www.sigma-global.com/en/support/download/SD14Users_Manual_en.pdf) | 2026-11-21 | high |
+| `ssa-8` | field_photo | Morio, “Sigma sd Quattro front-left 2016 China P&E,” Wikimedia Commons, CC BY-SA 4.0, taken 2016-04-23. Accessed 2026-11-21. | [snapshot](https://upload.wikimedia.org/wikipedia/commons/c/cb/Sigma_sd_Quattro_front-left_2016_China_P%26E.jpg) | 2026-11-21 | medium |
+| `ssa-p1` | patent | M. Katayama (Sigma Corp.), “Mount lock device for camera,” JP H04-242732 A, filed 1990-12-28, published 1992-08-31 (granted as JP 3062957 B2). Accessed 2026-11-21. | [snapshot](https://www.j-platpat.inpit.go.jp/c1801/PU/JP-H04-242732/11/en) | 2026-11-21 | low |
 
 #### Open questions
 
-- SA lug geometry, exact throat, contact pitch, and aperture lever position need a measured sample. _(Upgrade with Sigma service documentation or calibrated body/lens measurements.)_
+- Lug and slot angles are photo-scaled from the bayonet outline JAPB drew on one lens rear photograph (about ±3°; the leading edge of lug 1 is hidden under an annotation marker). Body claw edges were not scaled. No Sigma drawing, service manual or patent with lug angles was found. _(Replace with a Sigma service drawing or a calibrated measurement of a body and lens. Searched: Google Patents (Sigma Corp, bayonet/mount, 1988-1996), J-PlatPat, Espacenet, Sigma support manuals, JAPB, Westin's mount pages, Wikimedia Commons.)_
+- Lock pin position (252°, radius 26.5 mm), the 60° lock rotation and the index position are photo-scaled. JP H04-242732 A describes the lock but gives no angles, and its figures could not be viewed (J-PlatPat document display was under maintenance and Espacenet was behind a bot check on 2026-11-21). _(Confirm against a dimensioned drawing or measured sample; view the patent figures 2 and 3.)_
+- Contact pitch (about 5.8° in the five-group, 8.5° in the pair), radius (about 20.2 mm) and pad size are photo-scaled; the pinout is unknown. JAPB's text gives late lenses a 7 + 2 grouping but its 30 mm F1.4 photograph shows 8 + 2, so the late-lens pad count is unsettled. The two extra SA-300 body pins are placed from one oblique photograph. _(Measure a body and an early and a late lens; document the signal on each contact.)_
+- The outer bayonet (SA-OB) of the SA-300 to SD10 bodies has no dimensioned source. JAPB's SA-300 photograph shows relief around the ring periphery near 45-130°, 205-245° and 295-325°, but the view is too oblique to store as geometry. _(Measure a dual-bayonet body or find a Sigma drawing of the SA-OB flange.)_
+- The throat is entered as Westin's measured lens bayonet barrel diameter (44.4 mm, ±0.3 mm); 44 mm is the commonly listed figure but no source found here states it, and the body bore was not measured. _(Measure the opening between the body claws.)_
+- Mount ring diameters and the screw pattern are photo-scaled: the body ring and its four screws from JAPB's oblique SA-300 photograph, the lens flange plate from two lens photographs. The sd Quattro photograph shows five screws, so the screw pattern is body-specific. _(Measure the ring of an SA-300-era body and of an SD14-or-later body.)_
+- Westin's section records a fixed lug inside the lens rear, between radii 17.3 mm and 20.7 mm and reaching 7 mm behind the flange. It is not drawn because its angular position and purpose are not documented. _(Identify the part on a lens sample and record its angle.)_
 
 ### `sony-a` — Sony A
 
