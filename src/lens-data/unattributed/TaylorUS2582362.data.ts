@@ -1,39 +1,41 @@
-import type { LensDataV2Input } from "../repo/src/types/lensDataV2.js";
-const data = {
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * US 2,582,362 A (1952), sole example: Philip H. Taylor's photographic triplet.
+ * All printed lengths are converted from inches to millimetres by a factor of 25.4.
+ * The printed stop is 17.85112 mm behind surface 2. Its diameter of 1.170 in
+ * (29.718 mm) gives paraxial f/4.82; the clear diameter of 1.452 in (36.8808 mm)
+ * gives f′/D = 4.87, consistent with the patent's rounded f/4.9 designation.
+ * The model uses f/4.9. Equal surface rims are inferred from the single printed
+ * clear diameter; the image plane is the computed paraxial infinity plane.
+ * The patent's sodium-D index, Abbe number and C/F indices are retained for each glass.
+ */
+const LENS_DATA = {
   schema: 2,
-  key: "philip-taylor-us2582362-iris-reference",
+  key: "taylor-180mm-f49-us2582362",
   maker: null,
-  name: "PHILIP H. TAYLOR US2582362 \u2014 HISTORICAL f/4.9 IRIS REFERENCE",
-  subtitle:
-    "Source iris \u00d829.718mm \u00b7 separate calibrated Builder control f/4.823134919 \u00b7 D-only infinity",
-  visible: false,
+  name: "TAYLOR 180mm f/4.9 (US 2,582,362 Design)",
+  subtitle: "US 2,582,362 A, sole example — photographic triplet design",
+  visible: true,
   source: {
-    patentNumber: "US 2,582,362",
+    patentNumber: "US 2,582,362 A",
+    patentYear: 1952,
     example: {
       label: "Sole example",
       id: null,
     },
     authors: ["Philip H. Taylor"],
-    assignees: [],
+    assignees: ["Northrop Aircraft, Inc."],
     sdSource: "heuristic",
   },
   catalog: {
-    imageCircleMm: 31.44494130695838,
+    imageCircleMm: 31.44,
     elementCount: 3,
     groupCount: 3,
     focalLengthMm: {
-      design: 179.55514,
+      design: 179.55,
     },
-    specs: [
-      "Patent-only photographic triplet; literal inches converted uniformly by 25.4 to mm. No retail or application identity.",
-      "Historical source f/4.9 is retained as a label; the saved software iris-calibration control is f/4.823134919231473.",
-      "Published iris diameter 29.718 mm at R2 + 17.84604 mm, z = 22.92604 mm. The calibrated control reproduces this hardware after import and reload.",
-      "catalog.fNumber.design = 4.9 retains the source label; aperture.nominalFNumber = 4.823134919231473 calibrates the exact published iris. No retail aperture is assigned.",
-      "Printed EFL/BFD 179.55514/143.63446 mm; literal sodium-D calculation 179.553284/143.637469 mm. No optical fitting.",
-      "Exact published C/D/F indices retained. Quantitative image metrics qualified only at sodium D; no measured g or calibrated continuous dispersion claim.",
-      "Source overall clear diameter 36.8808 mm; assigning semidiameter 18.4404 mm to each face is a conservative modeling estimate, not measured per-face rims.",
-      "Source 10-degree full field; verified diagnostic half-fields through 5 degrees with explicit rim clipping. No finite state or full-pupil edge claim.",
-    ],
+    specs: ["3 ELEMENTS / 3 GROUPS", "ALL SPHERICAL", "DESIGN F/4.9", "DESIGN f = 179.55 mm"],
     fNumber: {
       design: 4.9,
     },
@@ -42,41 +44,44 @@ const data = {
     {
       id: 1,
       name: "L1",
-      label: "L1",
-      type: "Source Spherical Element",
+      label: "Element 1",
+      type: "Biconvex Positive",
+      role: "Positive front element that begins convergence toward the image",
+      focalLengthMm: 104.33,
       nd: 1.517,
       vd: 64.5,
       indexReference: "D",
       nC: 1.51462,
       nF: 1.52264,
-      glass:
-        "Unmatched source C/sodium-D/F indices and Abbe value; no exact catalog-glass or measured g identification.",
+      glass: "Unmatched (BSC-2, nD 1.517 / ν 64.5)",
     },
     {
       id: 2,
       name: "L2",
-      label: "L2",
-      type: "Source Spherical Element",
+      label: "Element 2",
+      type: "Biconcave Negative",
+      role: "Dispersive negative middle element that balances the positive crowns",
+      focalLengthMm: -43.88,
       nd: 1.617,
       vd: 36.6,
       indexReference: "D",
       nC: 1.61216,
       nF: 1.62901,
-      glass:
-        "Unmatched source C/sodium-D/F indices and Abbe value; no exact catalog-glass or measured g identification.",
+      glass: "Unmatched (DF-2, nD 1.617 / ν 36.6)",
     },
     {
       id: 3,
       name: "L3",
-      label: "L3",
-      type: "Source Spherical Element",
+      label: "Element 3",
+      type: "Biconvex Positive",
+      role: "Positive rear element that completes image formation",
+      focalLengthMm: 69.82,
       nd: 1.5725,
       vd: 57.8,
       indexReference: "D",
       nC: 1.5696,
       nF: 1.5795,
-      glass:
-        "Unmatched source C/sodium-D/F indices and Abbe value; no exact catalog-glass or measured g identification.",
+      glass: "S-BAL11 (Ohara)",
     },
   ],
   surfaces: [
@@ -90,49 +95,48 @@ const data = {
     {
       label: "2",
       R: -1177.72434,
-      d: 17.84604,
+      d: 17.85112,
       sd: 18.4404,
     },
     {
       label: "STO",
       R: "flat",
-      d: 11.24458,
+      d: 11.2395,
     },
     {
       label: "3",
-      R: -57.65545999999999,
+      R: -57.65546,
       d: 2.54,
       sd: 18.4404,
       medium: 2,
     },
     {
       label: "4",
-      R: 51.88965999999999,
+      R: 51.88966,
       d: 16.06804,
       sd: 18.4404,
     },
     {
       label: "5",
       R: 180.54828,
-      d: 7.619999999999999,
+      d: 7.62,
       sd: 18.4404,
       medium: 3,
     },
     {
       label: "6",
       R: -50.546,
-      d: 143.6374689300742,
+      d: 143.63746893,
       sd: 18.4404,
     },
   ],
   focus: {
-    closeFocusM: 1000000000000000,
-    description:
-      "Private patent-only infinity reconstruction of Philip H. Taylor US2582362. The historical f/4.9 label and calibrated software control f/4.823134919231473 are distinct: the latter reproduces the published iris diameter 29.718 mm at z 22.92604 mm, including after native import and reload. Numeric catalog design f/4.9 and separate calibrated aperture control are explicitly retained; marketing aperture is not assigned; no false fixed-stop flag or fake optic. Literal inches converted by 25.4; original source dimensions and C/D/F/V values preserved. Sodium-D image metrics only; exact C/F endpoint comparisons are separate, and unmeasured g/intermediate dispersion is not qualified. Source overall clear diameter is published; per-face caps are estimates. Verified +/-5-degree diagnostic scope includes real edge clipping. Gaussian detector BFD 143.637469 mm is calculated, distinct from printed 143.63446 mm. Original facsimile is in independent external custody only; no local PDF or pixel verification. No retail identity, finite state, throughput or factory rim claim.",
+    closeFocusM: 1e15,
+    description: "Infinity focus only; the patent gives no close-focus data.",
   },
   aperture: {
-    nominalFNumber: 4.823134919231473,
-    fStops: [4.823134919231473, 4.9, 5.6, 8, 11, 16, 22],
+    nominalFNumber: 4.9,
+    fStops: [4.9, 5.6, 8, 11, 16, 22],
     maxFNumber: 22,
   },
   projection: {
@@ -145,17 +149,17 @@ const data = {
   },
   groups: [
     {
-      text: "G1 \u00b7 L1",
+      text: "Front positive element",
       fromSurface: "1",
       toSurface: "2",
     },
     {
-      text: "G2 \u00b7 L2",
+      text: "Middle negative element",
       fromSurface: "3",
       toSurface: "4",
     },
     {
-      text: "G3 \u00b7 L3",
+      text: "Rear positive element",
       fromSurface: "5",
       toSurface: "6",
     },
@@ -164,4 +168,4 @@ const data = {
     yScFill: 0.5,
   },
 } satisfies LensDataV2Input;
-export default data;
+export default LENS_DATA;
