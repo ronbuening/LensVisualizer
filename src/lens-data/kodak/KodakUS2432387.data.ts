@@ -5,9 +5,13 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * for cinematography, with printed f = 100 mm and f/1.9. The radii, thicknesses,
  * separations and sodium D-line index / Abbe pairs follow both printed tables.
  * The stop position is inferred: 10 mm after R6 and 3.2 mm before R7; its radius
- * is derived from f/1.9. All clear semi-diameters are estimated. The image plane
- * is the calculated paraxial BFD, 64.004 mm, rather than the printed BF 63.9 mm,
- * which may describe best focus. The model computes EFL 100.03 mm.
+ * is derived from f/1.9. Clear semi-diameters are estimated from Figure 1's
+ * proportions and checked against the f/1.9 axial beam and 12-degree chief ray.
+ * The schematic is not uniformly to scale. R6 ends at 20.4 mm, below R5's
+ * 23 mm rim, following the third element's bevel; no flat land is inferred.
+ * The image plane is the calculated paraxial BFD, 64.004 mm, rather than the
+ * printed BF 63.9 mm, which may describe best focus. The model computes
+ * EFL 100.03 mm.
  * The 24-degree full field uses the lower end of the patent's stated range;
  * its real chief ray defines the 42.19 mm image circle. No focus motion is given.
  */
@@ -135,7 +139,7 @@ const LENS_DATA = {
       label: "6",
       R: 35.7,
       d: 10,
-      sd: 23,
+      sd: 20.4,
     },
     {
       label: "STO",
