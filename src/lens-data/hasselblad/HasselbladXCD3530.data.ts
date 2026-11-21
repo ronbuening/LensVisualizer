@@ -10,11 +10,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  11 elements / 10 groups, 2 aspherical surfaces on L7.                    ║
  * ║  Scaling: none. Patent EFL 30.98 mm; independently traced EFL 30.981116 mm.║
  * ║                                                                              ║
- * ║  FOCUS STATUS — NO_INTERNAL_RECONSTRUCTION:                                ║
+ * ║  FOCUS — INFINITY ONLY:                                                    ║
  * ║    The patent states that G1+stop and G2 move independently toward the     ║
  * ║    object during focusing, but publishes no numerical close-focus spacing. ║
  * ║    The model therefore preserves only the published infinity state.         ║
- * ║    Hasselblad's 0.40 m MFD is retained as product metadata only.            ║
+ * ║    Hasselblad's 0.40 m MFD is kept as product information only.             ║
  * ║                                                                              ║
  * ║  STOP MODEL:                                                                ║
  * ║    The WO 2018/052113 A1 Fig. 2 prescription table (Example 1), S11, lists  ║
@@ -250,7 +250,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.4,
     description:
-      "NO_INTERNAL_RECONSTRUCTION: patent Example 1 states G1+stop and G2 move independently objectward, but gives no numerical focus spacings; this model preserves the infinity state only. Hasselblad 0.40 m MFD is metadata only.",
+      "Infinity focus only. Patent Example 1 states that G1 (with the stop) and G2 move independently toward the object for close focus, but gives no close-focus spacings, so focus travel is not modeled. Hasselblad's 0.40 m minimum focus distance is product information only.",
   },
 
   aperture: { nominalFNumber: 3.5, fStops: [3.5, 4, 5.6, 8, 11, 16, 22, 32], maxFNumber: 32 },
