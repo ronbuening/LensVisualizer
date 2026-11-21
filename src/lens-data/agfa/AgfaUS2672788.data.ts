@@ -98,7 +98,7 @@ const LENS_DATA = {
       vd: 58.1,
       indexReference: "d",
       focalLengthMm: 68.28,
-      glass: "BACD15 (Hoya)",
+      glass: "Unmatched (nd 1.62309 / ν 58.1)",
       role: "Rear positive collecting element",
     },
   ],
@@ -177,9 +177,6 @@ const LENS_DATA = {
     kind: "rectilinear",
     fullFieldDeg: 55,
     maxTraceFieldDeg: 27.5,
-  },
-  rays: {
-    offAxisFieldFrac: 1,
   },
   focus: {
     closeFocusM: 1e15,
