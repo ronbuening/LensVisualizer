@@ -24,7 +24,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
 | [`canon-fd`](#canon-fd--canon-fd) | breech_lock | 42 mm | 48 mm | `mvp_complete` | 1 |
 | [`canon-fl`](#canon-fl--canon-fl) | breech_lock | 42 mm | 48 mm | `renderable` | 1 |
 | [`canon-rf`](#canon-rf--canon-rf) | bayonet | 20 mm | 54 mm | `mvp_complete` | 1 |
-| [`contax-rf`](#contax-rf--contax-rf) | hybrid | 34.85 mm | 44 mm | `renderable` | 1 |
+| [`contax-rf`](#contax-rf--contax-rf) | hybrid | 34.85 mm | 36 mm | `renderable` | 3 |
 | [`contax-yashica`](#contax-yashica--contax-yashica) | bayonet | 45.5 mm | 48 mm | `renderable` | 3 |
 | [`exakta`](#exakta--exakta) | bayonet | 44.7 mm | 33.8 mm | `renderable` | 6 |
 | [`fixed-lens-camera`](#fixed-lens-camera--fixed-lens-camera) | fixed_lens | 0 mm | 28 mm | `not_applicable` | 1 |
@@ -1035,82 +1035,95 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 |---|---|
 | Mount ID | `contax-rf` |
 | Display label | Contax RF |
-| Project note | Contax rangefinder bayonet with internal/external focusing interfaces. |
+| Project note | Contax rangefinder double bayonet: an inner bayonet in the body's focusing helicoid for 5 cm lenses and a fixed outer bayonet for all other focal lengths. |
 | Research status | `partial` |
 | MVP status | `renderable` |
 | Mount mechanism | `hybrid` (lock `sprung_detent`) |
 | Base profile | `contax-rf/base` |
-| Selected MVP profile | `contax-rf/base` |
-| Variant strategy | `base_only` |
+| Selected MVP profile | `contax-rf/outer-bayonet` |
+| Variant strategy | `variant_profiles_defined` |
 
 #### Base and variant profile matrix
 
 | Profile ID | Type | Applies to | Adds | Removes | Changes |
 |---|---|---|---|---|---|
-| `contax-rf/base` | base | Zeiss Ikon Contax rangefinder lenses and bodies | internal bayonet for normal lenses; external bayonet for larger lenses; rangefinder focusing coupling | SLR mirror clearance | internal/external bayonet details are collapsed into one renderable MVP profile |
+| `contax-rf/base` | base | Zeiss Ikon Contax I, II, III, IIa and IIIa bodies and the Kiev copies of the pre-war mount | bore of the focusing helicoid (inner bayonet diameter); rotating helicoid ring with the distance scale; fixed outer ring with the depth-of-field scale; 34.85 mm register at the outer bayonet seat and 31.85 mm at the inner seat | electrical contacts; SLR mirror clearance | — |
+| `contax-rf/inner-bayonet` | variant | 5 cm (2 inch) lenses, which have no helicoid and focus with the body's | three unequal receiving slots in the helicoid bore; spring catch on the helicoid ring that holds the lens's red-dot projection; red-dot mounting index on the catch spring | outer bayonet lugs and hooks (present on the body but not used by these lenses) | lens turns anti-clockwise, seen from the front, to lock; about 47 deg from the red dot to the catch on the Kiev photograph, against 90 deg for the outer bayonet |
+| `contax-rf/outer-bayonet` | variant | all lenses other than 5 cm, which carry their own focusing helicoid | three fixed outward lugs on the outer ring; three inward hooks in the lens skirt; red-dot mounting index on the front plate; rear sleeve of the lens that turns the body helicoid for rangefinder coupling | inner receiving slots as a lens seat (the sleeve still engages them) | lens turns 90 deg anti-clockwise, seen from the front, to a stop; a catch on the lens then snaps in |
 
 #### Dimensional summary
 
 | Field | Value | Unit |
 |---|---|---|
 | Flange focal distance | 34.85 (`secondary`) | mm |
-| Nominal throat diameter | 44 (`photo_scaled`) | mm |
-| Effective clear aperture | 44 (`photo_scaled`) | mm |
-| Camera mount outer diameter | 52 (`photo_scaled`) | mm |
+| Nominal throat diameter | 36 (`secondary`) | mm |
+| Effective clear aperture | 34.4 (`photo_scaled`) | mm |
+| Camera mount outer diameter | 49 (`secondary`) | mm |
 | Lens mount outer diameter | 50 (`photo_scaled`) | mm |
 | Contact count | not_applicable (`not_applicable`) | count |
-| Lock rotation | 45 (`photo_scaled`) | deg |
-| Lock direction | clockwise (`photo_scaled`) | — |
+| Lock rotation | 90 (`official`) | deg |
+| Lock direction | counterclockwise (`official`) | — |
 
-#### Figures (selected profile `contax-rf/base`)
+#### Figures (selected profile `contax-rf/outer-bayonet`)
 
-**Camera-side front view** — viewBox `-32 -33 64 65` · 31 elements in 4 layers · hash `8bc1d5e5` ([standalone SVG](mounts/contax-rf-camera-front.svg))
+**Camera-side front view** — viewBox `-31 -32 62 63` · 29 elements in 4 layers · hash `383e41dc` ([standalone SVG](mounts/contax-rf-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-31 -32 62 63` · 31 elements in 4 layers · hash `46ad7b1b` ([standalone SVG](mounts/contax-rf-lens-rear.svg))
+**Lens-side rear view** — viewBox `-31 -32 62 63` · 27 elements in 4 layers · hash `d5f7c966` ([standalone SVG](mounts/contax-rf-lens-rear.svg))
 
-**Axial / register schematic** — viewBox `-41 -36 48 68` · 12 elements in 2 layers · hash `0ea2d05b` ([standalone SVG](mounts/contax-rf-axial.svg))
+**Axial / register schematic** — viewBox `-41 -34 48 64` · 14 elements in 2 layers · hash `a144def5` ([standalone SVG](mounts/contax-rf-axial.svg))
 
 #### Camera-side front-view geometry
 
 | Feature ID | Type | Profile | Center | Start | End | Inner r | Outer r |
 |---|---|---|---|---|---|---|---|
-| `body-throat` | body_throat | `contax-rf/base` | 0° | 0° | 360° | 0 | 22 |
-| `body-mount-ring` | mount_ring | `contax-rf/base` | 0° | 0° | 360° | 22 | 26 |
-| `body-slot-1` | bayonet_receiving_slot | `contax-rf/base` | 0° | 344° | 16° | 22 | 24.5 |
-| `body-slot-2` | bayonet_receiving_slot | `contax-rf/base` | 120° | 104° | 136° | 22 | 24.5 |
-| `body-slot-3` | bayonet_receiving_slot | `contax-rf/base` | 240° | 224° | 256° | 22 | 24.5 |
-| `body-index-mark` | index_mark | `contax-rf/base` | 0° | unknown | unknown | unknown | 26.5 |
-| `body-lock-pin` | lock_pin | `contax-rf/base` | 90° | unknown | unknown | unknown | 23 |
+| `body-throat` | body_throat | `contax-rf/base` | 0° | 0° | 360° | 0 | 18 |
+| `body-helicoid-ring` | mount_ring | `contax-rf/base` | 0° | 0° | 360° | 18 | 21.6 |
+| `body-mount-ring` | mount_ring | `contax-rf/base` | 0° | 0° | 360° | 21.6 | 22.9 |
+| `body-slot-1` | bayonet_receiving_slot | `contax-rf/inner-bayonet` | 324.5° | 289° | 0° | 17.2 | 18 |
+| `body-slot-2` | bayonet_receiving_slot | `contax-rf/inner-bayonet` | 84.5° | 62° | 107° | 17.2 | 18 |
+| `body-slot-3` | bayonet_receiving_slot | `contax-rf/inner-bayonet` | 207° | 182° | 232° | 17.2 | 18 |
+| `body-outer-lug-1` | outer_bayonet_lug | `contax-rf/outer-bayonet` | 359° | 331° | 27° | 22.9 | 24.5 |
+| `body-outer-lug-2` | outer_bayonet_lug | `contax-rf/outer-bayonet` | 126.5° | 109° | 144° | 22.9 | 24.5 |
+| `body-outer-lug-3` | outer_bayonet_lug | `contax-rf/outer-bayonet` | 234.5° | 217° | 252° | 22.9 | 24.5 |
+| `body-index-mark` | index_mark | `contax-rf/inner-bayonet` | 71° | unknown | unknown | unknown | 20.3 |
+| `body-outer-index-mark` | index_mark | `contax-rf/outer-bayonet` | 69° | unknown | unknown | unknown | 25.7 |
+| `body-lock-pin` | lock_pin | `contax-rf/inner-bayonet` | 24.5° | 19° | 30° | 18.7 | 20.3 |
 
 #### Lens-side rear-view geometry
 
 | Feature ID | Type | Profile | Center | Start | End | Inner r | Outer r |
 |---|---|---|---|---|---|---|---|
-| `lens-throat` | lens_throat | `contax-rf/base` | 0° | 0° | 360° | 0 | 21 |
-| `lens-mount-ring` | lens_mount_ring | `contax-rf/base` | 0° | 0° | 360° | 21 | 25 |
-| `lens-lug-1` | bayonet_lug | `contax-rf/base` | 0° | 344° | 16° | 22 | 24.5 |
-| `lens-lug-2` | bayonet_lug | `contax-rf/base` | 120° | 104° | 136° | 22 | 24.5 |
-| `lens-lug-3` | bayonet_lug | `contax-rf/base` | 240° | 224° | 256° | 22 | 24.5 |
-| `lens-index-mark` | index_mark | `contax-rf/base` | 0° | unknown | unknown | unknown | 25.5 |
-| `lens-lock-notch` | lock_notch | `contax-rf/base` | 90° | unknown | unknown | unknown | 23 |
+| `lens-throat` | lens_throat | `contax-rf/inner-bayonet` | unknown | unknown | unknown | unknown | unknown |
+| `lens-lug-1` | bayonet_lug | `contax-rf/inner-bayonet` | 324.5° | 308.5° | 340.5° | 17.2 | 18 |
+| `lens-lug-2` | bayonet_lug | `contax-rf/inner-bayonet` | 84.5° | 68.5° | 100.5° | 17.2 | 18 |
+| `lens-lug-3` | bayonet_lug | `contax-rf/inner-bayonet` | 207° | 191° | 223° | 17.2 | 18 |
+| `lens-index-mark` | index_mark | `contax-rf/inner-bayonet` | 71° | unknown | unknown | unknown | 20.3 |
+| `lens-lock-notch` | lock_notch | `contax-rf/inner-bayonet` | 24.5° | unknown | unknown | 18.7 | 20.3 |
+| `lens-outer-throat` | lens_throat | `contax-rf/outer-bayonet` | unknown | unknown | unknown | unknown | unknown |
+| `lens-mount-ring` | lens_mount_ring | `contax-rf/outer-bayonet` | 0° | 0° | 360° | 22.9 | 25 |
+| `lens-outer-hook-1` | outer_bayonet_hook | `contax-rf/outer-bayonet` | 359° | 343° | 15° | 22.9 | 24.5 |
+| `lens-outer-hook-2` | outer_bayonet_hook | `contax-rf/outer-bayonet` | 126.5° | 110.5° | 142.5° | 22.9 | 24.5 |
+| `lens-outer-hook-3` | outer_bayonet_hook | `contax-rf/outer-bayonet` | 234.5° | 218.5° | 250.5° | 22.9 | 24.5 |
+| `lens-outer-index-mark` | index_mark | `contax-rf/outer-bayonet` | 69° | unknown | unknown | unknown | unknown |
 
 #### Mechanical couplings
 
 | Feature | Side | Profile | Function |
 |---|---|---|---|
-| `rangefinder-focusing-coupler` | both | `contax-rf/base` | couples lens focus to rangefinder mechanism |
+| `rangefinder-coupling-sleeve` | both | `contax-rf/outer-bayonet` | turning the lens's own focusing ring turns the body helicoid and with it the rangefinder cam; a cam inside the lens matches its focal length to the body's 5 cm movement |
 
 #### Axial stack
 
 | Plane | z (mm) | Diameter (mm) |
 |---|---|---|
-| `flange_datum` | 0 | 52 |
+| `flange_datum` | 0 | 49 |
+| `inner_bayonet_seat` | -3 | 36 |
 | `bayonet_lug_engagement` | 1.2 | 47 |
 | `sensor_film_plane` | -34.85 | 43.3 |
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/contax-rf.mount.ts` (25084 bytes, content hash `337c0902`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/contax-rf.mount.ts` (48926 bytes, content hash `22ca5135`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -1118,10 +1131,20 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 |---|---|---|---|---|---|
 | `crf-1` | secondary | “Flange focal distance,” Wikipedia. Accessed 2026-06-06. | [snapshot](http://web.archive.org/web/20260526152456/https://en.wikipedia.org/wiki/Flange_focal_distance) | 2026-05-26 | medium |
 | `crf-2` | secondary | Contax rangefinder mount visual references. Accessed 2026-06-06. | [snapshot](unknown) | unknown | low |
+| `crf-3` | secondary | “Байонет Contax RF,” Russian Wikipedia, revision of 2025-07-16; its dimensions cite V. Gutskin, “Kreplenie smennykh ob’ektivov,” Sovetskoe Foto, 1981, no. 4, p. 42. Accessed 2026-11-21. | [snapshot](https://ru.wikipedia.org/w/index.php?title=%D0%91%D0%B0%D0%B9%D0%BE%D0%BD%D0%B5%D1%82_Contax_RF&oldid=146423487) | 2026-11-21 | medium |
+| `crf-4` | field_photo | Runner1616, “Kiev-Contax mount.jpg,” Wikimedia Commons, 2018-12-23, CC BY-SA 4.0 (captioned “Contax pre-war rangefinder lens mount”). Accessed 2026-11-21. | [snapshot](https://upload.wikimedia.org/wikipedia/commons/c/c6/Kiev-Contax_mount.jpg) | 2026-11-21 | medium |
+| `crf-m1` | official | Zeiss Ikon, Contax II instruction book (English), section V, “Changing the lenses,” pp. 22–24; scan in M. Butkus’s camera manual library. Accessed 2026-11-21. | [snapshot](https://www.cameramanuals.org/zeiss_ikon/zeiss_ikon_contax_ii.pdf) | 2026-11-21 | high |
+| `crf-m2` | official | Zeiss Ikon, Contax IIa instruction book (English), “Changing the lenses,” pp. 28–29, figs. 36–38; scan in M. Butkus’s camera manual library. Accessed 2026-11-21. | [snapshot](https://cameramanuals.org/zeiss_ikon/zeiss_ikon_contax_iia.pdf) | 2026-11-21 | high |
+| `crf-p1` | patent | H. Küppenbender, M. Nowicki, E. Goldberg and A. Mende, “Photographic camera with finder,” US1973213A, filed 1932-02-27 (Germany 1931-04-11), granted 1934-09-11. Accessed 2026-11-21. | [snapshot](https://patentimages.storage.googleapis.com/81/23/f8/e94f19bc0ae401/US1973213.pdf) | 2026-11-21 | medium |
 
 #### Open questions
 
-- Internal and external Contax RF bayonet dimensions need a dedicated split profile. _(Add inner/outer bayonet variants from a service manual or measured Contax body.)_
+- Every angle here comes from one photograph of a Kiev body, not from a dimensioned drawing or a Zeiss Ikon body. Lug ends, slot edges, the catch and the red dots are good to about 3 deg at best. _(Replace with a Zeiss Ikon or Arsenal works drawing, a repair manual with a dimensioned mount, or a calibrated measurement of a Contax body. Searched without result: Zeiss Ikon patents (US1973213A has no front view; US2830513A is a later, different mount), Maizenberg's Soviet repair book, GOST 10332-63 (covers other mounts), Zeiss Historica Spring 2012.)_
+- Lens-side lug and hook widths are a 32 deg stand-in from the earlier label-only reference [crf-2], as are the 50 mm lens flange diameter and the lug engagement plane in the axial view. No lens-rear source was found. _(Measure or photograph square-on the rear of a 5 cm lens and of an outer-mount lens. Fig. 38 of the Contax IIa instruction book shows an outer-mount lens rear, but at an angle that cannot be scaled.)_
+- The turn that locks a 5 cm lens in the inner bayonet is not stated; the instruction books say only a slight turn. The Kiev photograph gives about 47 deg, from the red dot at 71 deg to the catch at 24.5 deg. _(Confirm on a body, or from a drawing of the helicoid ring.)_
+- The catch of an outer-mount lens is on the lens and is not drawn: neither its angle nor the body feature it catches is sourced. The pin in the front plate beside the mount, near 47 deg on the Kiev photograph, is not drawn either, because no usable source states its function. _(Find a repair manual or parts drawing for the Contax II or IIa front plate and an outer-mount lens.)_
+- The nominal throat was 44 mm; it is now the 36 mm inner bayonet. The 44 mm in general mount tables matches no opening on the photograph, where the bore scales to about 36 mm and the clear opening inside the lip to about 34.4 mm. _(Confirm the bore and lip diameters against a works drawing or a measured body.)_
+- Sources disagree on the inner register. Russian Wikipedia gives 31.85 mm (3.00 mm behind the outer seat); a Japanese adapter review gives 31.75 mm. _(Confirm against a Zeiss Ikon drawing or the original Sovetskoe Foto table.)_
 
 ### `contax-yashica` — Contax / Yashica
 
