@@ -16,7 +16,7 @@ const LENS_DATA = {
   key: "kodak-100mm-f35-us2343629",
   maker: "Kodak",
   name: "KODAK 100mm f/3.5 (US 2,343,629 Design)",
-  subtitle: "US 2,343,629 A, Example 2 — Possible Kodak Reflex lens family",
+  subtitle: "US 2,343,629 A, Example 2 — Eastman Kodak / Altman",
   visible: true,
   source: {
     patentNumber: "US 2,343,629 A",
@@ -38,8 +38,13 @@ const LENS_DATA = {
     },
     elementCount: 4,
     groupCount: 4,
-    imageCircleMm: 101.131168,
-    specs: ["4 ELEMENTS / 4 GROUPS", "ALL SPHERICAL", "DESIGN F/3.5"],
+    imageCircleMm: 101.14,
+    specs: [
+      "4 ELEMENTS / 4 GROUPS",
+      "ALL SPHERICAL",
+      "DESIGN f = 100 mm",
+      "DESIGN F/3.5",
+    ],
   },
   elements: [
     {
