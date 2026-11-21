@@ -109,7 +109,7 @@ const TELECONVERTER_DATA = {
       nd: 1.57501,
       vd: 41.49,
       focalLengthMm: 31.930231961117727,
-      glass: "575415 — light-flint class (S-TIL27 / LF7 compatible; supplier unproven)",
+      glass: "S-TIL27 (catalog equivalent; supplier unconfirmed)",
       role: "Equiconvex positive rear element of the cemented triplet.",
       cemented: "T1",
     },

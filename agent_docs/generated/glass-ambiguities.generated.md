@@ -12,18 +12,18 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **1188** lenses scanned
-- **13240** glass elements examined
-- **2704** elements have multiple coordinate-compatible candidates
-- **494** lens files are affected
+- **1194** lenses scanned
+- **13278** glass elements examined
+- **2707** elements have multiple coordinate-compatible candidates
+- **496** lens files are affected
 - **276** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
 - **118** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
 
 | Selection criterion | Elements |
 |---|---:|
-| Smallest reference-index residual | 1571 |
+| Smallest reference-index residual | 1572 |
 | Evidence-source priority | 839 |
-| Vendor context | 280 |
+| Vendor context | 282 |
 | Stable canonical-name order | 12 |
 | Smallest Abbe residual | 2 |
 
@@ -276,6 +276,7 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `LAC6 (HOYA) class (642581 lanthanum crown, LaK6 type; Δnd +0.0005, Δνd −0.14; equivalent)` | 1.64200 / 58.10 (d) | LAC6 — Annotation vendor context matches Hoya. | LAK6 (Sumita, name, vendor ✗) | 1 | [CARL ZEISS BIOGON 21mm f/4.5](../../src/lens-data/carl-zeiss-oberkochen/ZeissBiogon21mmf45.data.ts) L8 |
 | `N-SK16 (Schott) / SK16 class (620603)` | 1.62040 / 60.30 (d) | N-SK16 — direct name evidence outranks six-digit code evidence. | J-SK16 (Hikari, code, vendor ✗, alternate code row)<br>S-BSM16 (Ohara, code, vendor ✗, alternate code row) | 2 | [CARL ZEISS BIOGON 35mm f/2.8 (post-war Contax)](../../src/lens-data/carl-zeiss-oberkochen/ZeissBiogon35mmf28ContaxOpton.data.ts) L5 |
 | `LaF3 (Schott 717479)` | 1.71700 / 47.90 (d) | LAF3 — direct name evidence outranks six-digit code evidence. | S-LAM3 (Ohara, code, vendor ✗, preferred code row) | 2 | [CARL ZEISS CONTAREX PLANAR 55mm f/1.4](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissContarexPlanar55mmf14.data.ts) L1 |
+| `LF7 class; J-LF7 catalog spectral proxy (production supplier unspecified)` | 1.57501 / 41.31 (d) | J-LF7 — smallest d-line \|Δn\| (1.4e-8 vs 5.0e-7) | LF7 (Sumita, name) | 1 | [CARL ZEISS CONTAREX PLANAR 55mm f/1.4](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissContarexPlanar55mmf14.data.ts) L3 |
 | `SF6 (Schott 805255)` | 1.80518 / 25.46 (d) | SF6 — direct name evidence outranks six-digit code evidence. | J-SF6 (Hikari, code, vendor ✗, alternate code row)<br>H-ZF7LA (CDGM, code, vendor ✗, preferred code row)<br>FD60 (Hoya, code, vendor ✗, alternate code row) | 1 | [CARL ZEISS CONTAREX PLANAR 55mm f/1.4](../../src/lens-data/carl-zeiss-oberkochen/CarlZeissContarexPlanar55mmf14.data.ts) L4 |
 | `620603 — SK16/BSM16-class (supplier unresolved)` | 1.62041 / 60.29 (d) | N-SK16 — alias evidence outranks six-digit code evidence. | J-SK16 (Hikari, code, alternate code row)<br>S-BSM16 (Ohara, code, alternate code row) | 2 | [CARL ZEISS DISTAGON T* 25mm f/2.8 (C/Y)](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagonTf2825mmContax.data.ts) L1 |
 | `589612/589613 — SK5/BAL35-class (supplier unresolved)` | 1.58913 / 61.24 (d) | SK5 — direct name evidence outranks six-digit code evidence. | J-SK5 (Hikari, code, alternate code row)<br>S-BAL35 (Ohara, code, preferred code row)<br>N-SK5 (Schott, code, preferred code row)<br>M-BACD5N (Hoya, code, alternate code row)<br>BACD5 (Hoya, code, alternate code row) | 1 | [CARL ZEISS DISTAGON T* 25mm f/2.8 (C/Y)](../../src/lens-data/carl-zeiss-oberkochen/ZeissDistagonTf2825mmContax.data.ts) L3 |
@@ -570,8 +571,10 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `699301 class (vendor unproven)` | 1.69895 / 30.13 (d) | E-FD15 — smallest d-line \|Δn\| (2.0e-7 vs 3.2e-6) | S-TIM35 (Ohara, code, preferred code row) | 1 | [HASSELBLAD XCD 45mm f/3.5](../../src/lens-data/hasselblad/HasselbladXCD3545.data.ts) L4 |
 | `835427 class (vendor unproven)` | 1.83481 / 42.72 (d) | J-LASF05 — smallest d-line \|Δn\| (2.1e-8 vs 2.9e-6) | S-LAH55 (Ohara, code, preferred code row)<br>TAFD5G (Hoya, code, alternate code row)<br>TAFD5F (Hoya, code, alternate code row) | 1 | [HASSELBLAD XCD 45mm f/3.5](../../src/lens-data/hasselblad/HasselbladXCD3545.data.ts) L8 |
 | `TAFD35 (HOYA, 911353; patent rounds vd to 35.2)` | 1.91082 / 35.20 (d) | TAFD35 — direct name evidence outranks six-digit code evidence. | H-ZLaF4LA (CDGM, code, vendor ✗, alternate code row) | 2 | [HASSELBLAD XCD 90mm f/2.5 V](../../src/lens-data/hasselblad/HasselbladXCD90mmf25V.data.ts) L6 +1 files |
+| `SBF2 (HOYA) class (OF1 / KzF2-type special flint, 529516; spectral proxy, historic melt unconfirmed)` | 1.52949 / 51.81 (d) | SBF2 — Annotation vendor context matches Hoya. | KZF2 (Sumita, name, vendor ✗) | 1 | [KMZ INDUSTAR 52.39mm f/3.56 (Ivanov 2013, Variant 2)](../../src/lens-data/literature/IndustarITMO2013V2.data.ts) L3 |
 | `SF5 catalog proxy; 673322 dense-flint class (supplier unconfirmed)` | 1.67300 / 32.20 (d) | SF5 — direct name evidence outranks six-digit code evidence. | H-ZF2 (CDGM, code, alternate code row)<br>E-FD5 (Hoya, code, preferred code row) | 1 | [KODAK EKTAR 52mm f/1.5](../../src/lens-data/kodak/KodakEktar52mmf15.data.ts) IV |
 | `S-BAH10 catalog proxy; 670472 BAF10 class (supplier unconfirmed)` | 1.67000 / 47.20 (d) | BAF10 — smallest d-line \|Δn\| (2.8e-5 vs 2.9e-5) | S-BAH10 (Ohara, name)<br>H-ZBaF52 (CDGM, code, preferred code row) | 1 | [KODAK EKTAR 52mm f/1.5](../../src/lens-data/kodak/KodakEktar52mmf15.data.ts) V |
+| `J-LF7 (Hikari) / LF7 class (575414 light flint; Δnd +0.00001, Δνd +0.11; equivalent; the original Kodak melt is not known)` | 1.57500 / 41.40 (d) | J-LF7 — Annotation vendor context matches Hikari. | LF7 (Sumita, name, vendor ✗) | 1 | [KODAK ENLARGING EKTAR 100mm f/4.5](../../src/lens-data/kodak/KodakEnlargingEktar100mmf45.data.ts) L4 |
 | `804396 class; S-LAH63Q catalog-equivalent coefficient proxy (production supplier unspecified)` | 1.80440 / 39.60 (d) | S-LAH63Q — direct name evidence outranks six-digit code evidence. | J-LASF013 (Hikari, code, alternate code row)<br>S-LAH63 (Ohara, code, preferred code row) | 2 | [KONICA FL-HEXANON AR 300mm f/6.3](../../src/lens-data/konica/KonicaFLHexanonAR300mmf63.data.ts) L3 +1 files |
 | `673322 dense-flint class; H-ZF2 catalog-equivalent coefficient proxy (production supplier unspecified)` | 1.67270 / 32.20 (d) | H-ZF2 — direct name evidence outranks six-digit code evidence. | E-FD5 (Hoya, code, preferred code row)<br>SF5 (Schott, code, alternate code row) | 1 | [KONICA HEXANON 135mm f/3.5](../../src/lens-data/konica/KonicaHexanon135mmf35.data.ts) L3 |
 | `648339 flint class; E-FD2 catalog-equivalent coefficient proxy (production supplier unspecified)` | 1.64769 / 33.90 (d) | E-FD2 — direct name evidence outranks six-digit code evidence. | SF2 (Schott, code, preferred code row) | 1 | [KONICA HEXANON 135mm f/3.5](../../src/lens-data/konica/KonicaHexanon135mmf35.data.ts) L4 |

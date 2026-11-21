@@ -1,0 +1,236 @@
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
+/**
+ * DE 1,020,809 B, Example 2 (Beispiel 2): all radii and axial distances are scaled by 0.35
+ * from the printed 100 mm design to 35 mm for comparison with the Travegon,
+ * in millimetres.
+ * Glass coordinates are printed nd/νd values; catalog labels do not identify the
+ * production supplier. Surface rims are inferred: the patent's only drawing
+ * shows Example 1, so it sets proportions, not sizes. Following it, group C is
+ * square-cut at 6.7 mm, L4's rear curve ends at 5.7 mm with a flat step out to
+ * the 7 mm edge, and L2's rear curve ends in a flat step out to 9.4 mm. The
+ * drawing's smaller group B and C rims would cut the f/3.5 beam or corner
+ * light, so those rims stay larger. The iris radius is derived from f/3.5, and
+ * the image plane is the computed paraxial infinity back focus.
+ * The iris split keeps 5.06 before and 2.90 after it in the patent's units,
+ * reversing the printed order: the other order puts it 1.015 mm behind r6,
+ * inside L4's rear rim, which reaches 1.18 mm behind the vertex where its
+ * curve ends at 5.7 mm. The patent figure and the
+ * AllPhotoLenses diagram both place the iris near group C. No finite-focus
+ * state is supplied.
+ */
+const LENS_DATA = {
+  schema: 2,
+  visible: true,
+  key: "schacht-travegon-35mm-f35",
+  maker: "Schacht",
+  name: "SCHACHT TRAVEGON 35mm f/3.5",
+  subtitle: "DE 1,020,809 B, Example 2 — Bertele",
+  catalog: {
+    lensMounts: ["exakta", "m42", "leica-ltm"],
+    imageFormat: "135-full-frame",
+    elementCount: 6,
+    groupCount: 3,
+    focalLengthMm: {
+      marketing: 35,
+      design: 35,
+    },
+    fNumber: {
+      marketing: 3.5,
+      design: 3.5,
+    },
+    closeFocusM: {
+      marketing: 0.5,
+    },
+    specs: ["6 ELEMENTS / 3 GROUPS", "DESIGN F/3.5", "ALL SPHERICAL"],
+  },
+  source: {
+    patentNumber: "DE 1,020,809 B",
+    example: {
+      label: "Example 2",
+      id: "2",
+    },
+    patentYear: 1957,
+    authors: ["Ludwig Bertele"],
+    assignees: [],
+    sdSource: "heuristic",
+  },
+  elements: [
+    {
+      id: 1,
+      name: "L1",
+      label: "Element 1",
+      type: "Positive Meniscus",
+      nd: 1.717,
+      vd: 47.9,
+      indexReference: "d",
+      focalLengthMm: 40.71,
+      glass: "LAF3 (Hoya)",
+      role: "Positive front member of diverging group A.",
+      cemented: "C1",
+    },
+    {
+      id: 2,
+      name: "L2",
+      label: "Element 2",
+      type: "Negative Meniscus",
+      nd: 1.50137,
+      vd: 56.5,
+      indexReference: "d",
+      focalLengthMm: -21.19,
+      glass: "K10 (Schott)",
+      role: "Negative rear member of diverging group A.",
+      cemented: "C1",
+    },
+    {
+      id: 3,
+      name: "L3",
+      label: "Element 3",
+      type: "Plano-Convex Positive",
+      nd: 1.72019,
+      vd: 50.3,
+      indexReference: "d",
+      focalLengthMm: 23.92,
+      glass: "Unmatched (nd 1.72019 / νd 50.3)",
+      role: "Positive front member of collecting group B.",
+      cemented: "C2",
+    },
+    {
+      id: 4,
+      name: "L4",
+      label: "Element 4",
+      type: "Plano-Concave Negative",
+      nd: 1.5927,
+      vd: 35.4,
+      indexReference: "d",
+      focalLengthMm: -24.19,
+      glass: "FF5 (Hoya)",
+      role: "Negative rear member of collecting group B.",
+      cemented: "C2",
+    },
+    {
+      id: 5,
+      name: "L5",
+      label: "Element 5",
+      type: "Biconcave Negative",
+      nd: 1.57501,
+      vd: 41.3,
+      indexReference: "d",
+      focalLengthMm: -20.79,
+      glass: "LF7 (Sumita)",
+      role: "Negative front member of collecting group C.",
+      cemented: "C3",
+    },
+    {
+      id: 6,
+      name: "L6",
+      label: "Element 6",
+      type: "Biconvex Positive",
+      nd: 1.6425,
+      vd: 58.1,
+      indexReference: "d",
+      focalLengthMm: 11.73,
+      glass: "LAK6 (Sumita)",
+      role: "Positive rear member of collecting group C.",
+      cemented: "C3",
+    },
+  ],
+  surfaces: [
+    {
+      label: "1",
+      R: 25.6865,
+      d: 3.1325,
+      sd: 12.5,
+      medium: 1,
+    },
+    {
+      label: "2",
+      R: 203.0385,
+      d: 0.8715,
+      sd: 12.5,
+      medium: 2,
+    },
+    {
+      label: "3",
+      R: 10.0835,
+      d: 6.391,
+      sd: 8.5,
+      rimExtensionSd: 9.4,
+    },
+    {
+      label: "4",
+      R: 17.2305,
+      d: 3.4825,
+      sd: 7,
+      medium: 3,
+    },
+    {
+      label: "5",
+      R: "flat",
+      d: 7.448,
+      sd: 7,
+      medium: 4,
+    },
+    {
+      label: "6",
+      R: 14.3395,
+      d: 1.771,
+      sd: 5.7,
+      rimExtensionSd: 7,
+    },
+    {
+      label: "STO",
+      R: "flat",
+      d: 1.015,
+    },
+    {
+      label: "7",
+      R: -170.562,
+      d: 0.8715,
+      sd: 6.7,
+      medium: 5,
+    },
+    {
+      label: "8",
+      R: 12.88,
+      d: 4.2105,
+      sd: 6.7,
+      medium: 6,
+    },
+    {
+      label: "9",
+      R: -15.855,
+      d: 33.6557,
+      sd: 6.7,
+    },
+  ],
+  focus: {
+    closeFocusM: 1e15,
+    description: "Infinity focus only; the patent gives no finite-focus spacings.",
+  },
+  aperture: {
+    nominalFNumber: 3.5,
+    fStops: [3.5, 4, 5.6, 8, 11, 16],
+    maxFNumber: 16,
+    blades: 8,
+  },
+  projection: {
+    kind: "rectilinear",
+    fullFieldDeg: 64,
+    maxTraceFieldDeg: 32,
+  },
+  groups: [
+    { text: "A", fromSurface: "1", toSurface: "3" },
+    { text: "B", fromSurface: "4", toSurface: "6" },
+    { text: "C", fromSurface: "7", toSurface: "9" },
+  ],
+  doublets: [
+    { text: "C1", fromSurface: "1", toSurface: "3" },
+    { text: "C2", fromSurface: "4", toSurface: "6" },
+    { text: "C3", fromSurface: "7", toSurface: "9" },
+  ],
+  layout: {
+    scFill: 0.6,
+    yScFill: 0.4,
+  },
+} satisfies LensDataV2Input;
+export default LENS_DATA;
