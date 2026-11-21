@@ -4,7 +4,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Arthur Cox's telephoto objective, US 2,433,438 A, Example I and Figure 1.
  * The normalized prescription is multiplied by 100 to give dimensions in millimetres.
  * Radii, thicknesses, D-line indices, Abbe numbers and the 53.75 mm image gap are printed;
- * the calculated paraxial back focus is 53.776780 mm. The stop position and clear rims
+ * the calculated paraxial back focus is 53.777 mm. The stop position and clear rims
  * are inferred. The iris follows the paraxial f/2.8 aperture, and the illustrative
  * field extends to 10 degrees from the axis; the patent gives no field angle.
  */
@@ -13,7 +13,7 @@ const LENS_DATA = {
   key: "cooke-100mm-f28-us2433438",
   maker: "Cooke",
   name: "COOKE 100mm f/2.8 (US 2,433,438 Design)",
-  subtitle: "US 2,433,438 A, Example I — five-element telephoto design",
+  subtitle: "US 2,433,438 A, Example I — Taylor Hobson / Cox",
   visible: false,
   source: {
     patentNumber: "US 2,433,438 A",
@@ -35,7 +35,13 @@ const LENS_DATA = {
     fNumber: {
       design: 2.8,
     },
-    specs: ["5 ELEMENTS / 3 GROUPS", "ALL SPHERICAL", "DESIGN F/2.8", "TELEPHOTO"],
+    specs: [
+      "5 ELEMENTS / 3 GROUPS",
+      "ALL SPHERICAL",
+      "DESIGN f = 100 mm",
+      "DESIGN F/2.8",
+      "TELEPHOTO",
+    ],
   },
   elements: [
     {
