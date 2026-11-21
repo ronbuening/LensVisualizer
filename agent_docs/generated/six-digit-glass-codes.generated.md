@@ -9,10 +9,10 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **1188** lenses scanned
-- **1665** total code-only elements found
-- **1665** elements in this report
-- **273** distinct lens files affected
+- **1195** lenses scanned
+- **1673** total code-only elements found
+- **1673** elements in this report
+- **275** distinct lens files affected
 
 ## Codes by Frequency
 
@@ -120,6 +120,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 871407 | 4 | 4 | patents/WO2025013477A1.pdf<br>patents/US20200166730A1.pdf<br>patents/JP2020118738A.pdf<br>patents/US20240295723A1.pdf | No review-record hit |
 | 986165 | 4 | 4 | patents/WO2025013477A1.pdf<br>patents/JP2022140076A.pdf<br>patents/WO2024166548A1.pdf<br>patents/WO_2025239028_A1.pdf | 1/4 rows have review records |
 | 459902 | 3 | 2 | patents/JP2023044106A.pdf<br>patents/CN_121091494_A.pdf | No review-record hit |
+| 510634 | 3 | 2 | patents/US1643865A.pdf<br>patents/DE_927540_C.pdf | 1/3 rows have review records |
 | 516565 | 3 | 1 | patents/CN216772097U.pdf | All rows have review records |
 | 538747 | 3 | 3 | patents/JP2023033114A.pdf<br>patents/US20160327774A1.pdf<br>patents/JP2016114800A.pdf | No review-record hit |
 | 544561 | 3 | 1 | patents/US20210149156A1.pdf | All rows explicitly disposed |
@@ -156,7 +157,6 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 460658 | 2 | 2 | patents/DE3907928C2.pdf<br>patents/DE_3907928_A1.pdf | All rows explicitly disposed |
 | 465658 | 2 | 1 | patents/US3481666.pdf | No review-record hit |
 | 501564 | 2 | 2 | patents/DE_1250153_B.pdf<br>patents/US3038379.pdf | No review-record hit |
-| 510634 | 2 | 1 | patents/DE_927540_C.pdf | No review-record hit |
 | 514428 | 2 | 1 | patents/JP2016021011A.pdf | All rows have review records |
 | 517641 | 2 | 2 | patents/JP_2003241093_A.pdf<br>patents/US4452513.pdf | No review-record hit |
 | 520642 | 2 | 2 | patents/DE3907928C2.pdf<br>patents/DE_3907928_A1.pdf | All rows explicitly disposed |
@@ -172,6 +172,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 617540 | 2 | 1 | patents/JPA 1999030748-000000.pdf | No review-record hit |
 | 620586 | 2 | 1 | patents/US4303314.pdf | All rows have review records |
 | 621569 | 2 | 1 | patents/GB_135853_A.pdf | All rows explicitly disposed |
+| 623562 | 2 | 1 | patents/US2117252A.pdf | All rows explicitly disposed |
 | 626357 | 2 | 2 | patents/US20140098253A1.pdf<br>patents/CN211955966U.pdf | 1/2 rows have review records |
 | 627376 | 2 | 2 | patents/WO2019131993A1.pdf | All rows have review records |
 | 633315 | 2 | 2 | patents/WO2019131993A1.pdf | All rows have review records |
@@ -256,6 +257,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 540509 | 1 | 1 | patents/GB_775944_A.pdf | All rows explicitly disposed |
 | 540597 | 1 | 1 | patents/US20200073096A1.pdf | No review-record hit |
 | 545486 | 1 | 1 | patents/CN116520542A.pdf | All rows have review records |
+| 549471 | 1 | 1 | patents/US1643865A.pdf | All rows explicitly disposed |
 | 552635 | 1 | 1 | patents/US3482900.pdf | No review-record hit |
 | 554381 | 1 | 1 | patents/US7359125.pdf | All rows have review records |
 | 554522 | 1 | 1 | patents/US20100208366A1.pdf | No review-record hit |
@@ -279,11 +281,15 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | 602352 | 1 | 1 | patents/GB_850117_A.pdf | All rows have review records |
 | 603564 | 1 | 1 | patents/JP2022092388A.pdf | All rows have review records |
 | 604208 | 1 | 1 | patents/US20200012073A1.pdf | All rows explicitly disposed |
+| 605380 | 1 | 1 | patents/US2117252A.pdf | All rows explicitly disposed |
 | 605382 | 1 | 1 | patents/US2279384.pdf | All rows explicitly disposed |
+| 608396 | 1 | 1 | patents/US2117252A.pdf | All rows explicitly disposed |
+| 610533 | 1 | 1 | patents/US2117252A.pdf | All rows explicitly disposed |
 | 611572 | 1 | 1 | patents/US2279384.pdf | All rows explicitly disposed |
 | 612313 | 1 | 1 | patents/US20210026133A1.pdf | All rows have review records |
 | 613445 | 1 | 1 | patents/JP2023001878A.pdf | No review-record hit |
 | 617308 | 1 | 1 | patents/US5528428.pdf | All rows have review records |
+| 621572 | 1 | 1 | patents/US2117252A.pdf | All rows explicitly disposed |
 | 622532 | 1 | 1 | patents/JPA 1994082698-000000.pdf | No review-record hit |
 | 624470 | 1 | 1 | patents/US3481666.pdf | No review-record hit |
 | 624584 | 1 | 1 | patents/JP2025052870A.pdf | All rows have review records |
@@ -915,6 +921,17 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L4 (Element 4) | 5 | `Unmatched (739282 — dense-flint class; supplier unconfirmed)` | 1.73940 / 28.20 | No catalog entry | abbe | patents/US2186621.pdf | Explicit disposition in data |
 | L5 (Element 5) | 7 | `Unmatched (523509 — supplier unconfirmed)` | 1.52320 / 50.90 | No catalog entry | abbe | patents/US2186621.pdf | Explicit disposition in data |
 
+### [COOKE 100mm f/2 (US 2,117,252 Design)](../../src/lens-data/cooke/CookeUS2117252.data.ts) - US 2,117,252 A
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
+|---|---|---|---|---|---|---|---|
+| L1 (Element 1) | 1 | `Unmatched (Chance type 610533, nD 1.61 / V 53.3)` | 1.61000 / 53.30 | No catalog entry | abbe | patents/US2117252A.pdf | Explicit disposition in data |
+| L2 (Element 2) | 3 | `Unmatched (Chance type 623562, nD 1.6234 / V 56.2)` | 1.62340 / 56.20 | No catalog entry | abbe | patents/US2117252A.pdf | Explicit disposition in data |
+| L3 (Element 3) | 4 | `Unmatched (Chance type 608396, nD 1.6083 / V 39.6)` | 1.60830 / 39.60 | No catalog entry | abbe | patents/US2117252A.pdf | Explicit disposition in data |
+| L4 (Element 4) | 6 | `Unmatched (Chance type 605380, nD 1.6054 / V 38.0)` | 1.60540 / 38.00 | No catalog entry | abbe | patents/US2117252A.pdf | Explicit disposition in data |
+| L5 (Element 5) | 7 | `Unmatched (Chance type 621572, nD 1.6209 / V 57.2)` | 1.62090 / 57.20 | No catalog entry | abbe | patents/US2117252A.pdf | Explicit disposition in data |
+| L6 (Element 6) | 9 | `Unmatched (Chance type 623562, nD 1.6234 / V 56.2)` | 1.62340 / 56.20 | No catalog entry | abbe | patents/US2117252A.pdf | Explicit disposition in data |
+
 ### [FUJIFILM EBC X-FUJINON W 24mm f/2.8 DM](../../src/lens-data/fujifilm/FujifilmXFujinonSW24mmf28DMEBC.data.ts) - US 4,158,482
 
 | Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
@@ -1135,6 +1152,13 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 | L21 (Element L21) | 15 | `954323 high-index lanthanum-flint class (supplier unconfirmed)` | 1.95375 / 32.33 | J-LASFH21 (trusted Sellmeier) | sellmeier | patents/JP2023001878A.pdf | No review-record hit |
 | L22 (Element L22) | 16 | `457903 fluorophosphate/ED class (supplier unconfirmed)` | 1.45650 / 90.27 | H-FK71 (trusted Sellmeier) | sellmeier | patents/JP2023001878A.pdf | No review-record hit |
 | L25 (Element L25) | 21 | `497816 fluorophosphate/ED class (supplier unconfirmed)` | 1.49700 / 81.54 | H-FK61 (trusted Sellmeier) | sellmeier | patents/JP2023001878A.pdf | No review-record hit |
+
+### [GOERZ 100mm f/9 (US 1,643,865 Design)](../../src/lens-data/goerz/GoerzUS1643865.data.ts) - US 1,643,865 A
+
+| Element | Surfaces | Code-only annotation | Stored nd/vd | Catalog/Sellmeier status | Dispersion quality | localPatentStatus | reviewRecordStatus |
+|---|---|---|---|---|---|---|---|
+| L1 (Element 1) | 1 | `Unmatched (nD 1.5096 / V 63.4, Sendlinger crown 510/634)` | 1.50960 / 63.40 | No catalog entry | abbe | patents/US1643865A.pdf | Explicit disposition in data |
+| L2 (Element 2) | 2 | `Unmatched (nD 1.5490 / V 47.1, Sendlinger flint 549/471)` | 1.54900 / 47.10 | No catalog entry | abbe | patents/US1643865A.pdf | Explicit disposition in data |
 
 ### [HASSELBLAD HC 50mm f/3.5 II](../../src/lens-data/hasselblad/HasselbladHC3550II.data.ts) - US 2012/0063011 A1
 
