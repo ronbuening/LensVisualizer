@@ -40,7 +40,7 @@ const LENS_DATA = {
   key: "apple-iphone-7-wide-camera-lens",
   maker: "Apple",
   name: "APPLE WIDE 4.10mm f/1.8 (Apple iPhone 7)",
-  subtitle: "US 2016/0341934 A1 Example 11 — inferred iPhone 7 wide-camera correlation",
+  subtitle: "US 2016/0341934 A1 Example 11 — inferred iPhone 7 wide-camera match",
 
   catalog: {
     lensMounts: ["fixed-lens-camera"],
