@@ -7,7 +7,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * back focus compute to 100.26 mm and 80.61 mm; the paraxial image plane is retained.
  * Examples 1 and 3 also show small departures from their stated first-order values.
  * The stop is inferred within the 10.15 mm rear air gap, split as 6.0 + 4.15 mm;
- * its radius is derived from f/3.5. All clear semi-diameters are inferred.
+ * its radius is derived from f/3.5. Clear semi-diameters are estimated from Figure 3,
+ * with larger front rims preserving wide-open illumination and the middle facing
+ * rims limited by their air clearance. Surface 6 follows the inner end of the drawn bevel.
  * The stated field extends upwards of 27° from the axis. The image-circle diameter
  * is twice the real chief-ray height at 27° on the paraxial image plane.
  */
@@ -101,20 +103,20 @@ const LENS_DATA = {
       label: "1",
       R: 50.3,
       d: 5.5,
-      sd: 20,
+      sd: 19.3,
       medium: 1,
     },
     {
       label: "2",
       R: "flat",
       d: 0.5,
-      sd: 19,
+      sd: 19.3,
     },
     {
       label: "3",
       R: 50,
       d: 9.5,
-      sd: 18,
+      sd: 16.1,
       medium: 2,
     },
     {
@@ -134,7 +136,7 @@ const LENS_DATA = {
       label: "6",
       R: 42.04,
       d: 6,
-      sd: 14,
+      sd: 12.3,
     },
     {
       label: "STO",
