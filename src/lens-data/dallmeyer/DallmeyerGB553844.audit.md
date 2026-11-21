@@ -10,9 +10,9 @@ Two independent readings of the page images agree on all eleven radii, ten thick
 
 ## First-order
 
-The printed table computes to EFL 101.384348158 mm, paraxial f/1.5 and back focus 52.933704086 mm. The first-to-last vertex distance is 80.5 mm; total first-vertex-to-image distance is 133.433704086 mm. The inferred stop radius is 19.679054521 mm at 44.4 mm behind the first vertex. Real-ray axial entrance-equivalent aperture is approximately f/1.510790654; the nominal f/1.5 marginal ray reaches an inferred iris radius of 19.820987065 mm.
+The printed table computes to EFL 101.384348158 mm, paraxial f/1.5 and back focus 52.933704086 mm. The first-to-last vertex distance is 80.5 mm; total first-vertex-to-image distance is 133.433704086 mm. The inferred stop radius is 19.679054521 mm at 44.4 mm behind the first vertex. The real-ray aperture is about f/1.51; the nominal f/1.5 marginal ray reaches an inferred iris radius of 19.820987065 mm.
 
-The smallest shared-radius glass thickness is 1.647580 mm. The central air gap retains 4.659909 mm clearance, with 78.326% of the gap consumed by the facing sags. At the 21 mm rims, the facing surfaces clear the stop plane by 1.969080 and 2.690829 mm. No geometry exception or rim trimming is needed. The 0.5 mm front air gap widens outward.
+The smallest edge thickness is 1.65 mm (L7). The central air gap retains 4.659909 mm clearance, with 78.326% of the gap consumed by the facing sags. At the 21 mm rims, the facing surfaces clear the stop plane by 1.969080 and 2.690829 mm. The 0.5 mm front air gap widens outward.
 
 ## Not printed
 
@@ -20,11 +20,11 @@ The stop station and diameter, all clear semi-diameters, back focus, image-plane
 
 ## Product
 
-The Dallmeyer Septac 2 in (approximately 51 mm) f/1.5 is a supported family association: [Oldlens](https://oldlens.com/septac%2050mmf15.html) documents seven elements in four groups, and a [surviving specimen](https://www.flintsauctions.com/auction/lot/lot-158---a-dallmeyer-septac-f15-2-lens/?lot=13234&sd=1) confirms the production name and focal length. A [Photrio discussion](https://www.photrio.com/forum/threads/dallmeyer-septac-lens.75704/) reports patent 553,844 engraved on Septacs. That engraving is reported evidence; no production prescription establishes an exact specimen match. The patent itself names no product.
+The Dallmeyer Septac 2 in (approximately 51 mm) f/1.5 is a supported family association: [Oldlens](https://oldlens.com/septac%2050mmf15.html) lists seven elements in four groups, and a [surviving specimen](https://www.flintsauctions.com/auction/lot/lot-158---a-dallmeyer-septac-f15-2-lens/?lot=13234&sd=1) confirms the production name and focal length. A [Photrio discussion](https://www.photrio.com/forum/threads/dallmeyer-septac-lens.75704/) reports patent 553,844 engraved on Septacs. That engraving is reported evidence; no production prescription establishes an exact specimen match. The patent itself names no product.
 
 ## Corrections
 
-The 1.384% focal-length discrepancy is retained as an unresolved source erratum. In the patent's units, individual alternatives R2 4.1447 → 5.1447, R1 0.6607 → 0.6407 and R6 0.28096 → 0.28596 give EFL approximately 100.006, 100.013 and 100.04 mm respectively. All worsen spherical correction and the sine condition; the page images do not support them. The printed prescription is retained. Its calculated longitudinal spherical aberration is approximately +0.83 mm at the rim and −0.16 mm at the half zone; the sine-condition departure is approximately −1%.
+The 1.384% focal-length discrepancy is retained as an unresolved source erratum. In the patent's units, individual alternatives R2 4.1447 → 5.1447, R1 0.6607 → 0.6407 and R6 0.28096 → 0.28596 give EFL approximately 100.006, 100.013 and 100.04 mm respectively. Nothing else in the patent supports any of these single-radius changes, and the page image is unambiguous. The printed prescription is retained. Its calculated longitudinal spherical aberration is approximately +0.83 mm at the rim and −0.16 mm at the half zone; the sine-condition departure is approximately −1%.
 
 The former ±12° display field and 42.987211 mm image circle were modeling choices. They are superseded by the patent's approximately 50° full field and a diameter derived from the 25° chief ray.
 
@@ -54,3 +54,5 @@ Before and after: EFL 101.384348158 mm, f/1.5, BFD 52.933704086 mm and stop radi
 The surface check reports no errors. The aperture check reports no rim, iris, trace or failed-station limitation and is within 3% of the stated f-number. The image-circle check reports zero undersized and zero skipped. Chief-ray field coverage is 100% at 25°, reaching 45.62 mm of the required 45.62 mm, with a clear corner and no skipped or unsolved state. Peripheral vignetting remains, particularly at R8 and the final singlet; the diameter does not imply uniform illumination.
 
 Open: resolve the focal-length discrepancy only with further source evidence; compare the inferred rims with the drawing in the semi-diameter pass, especially R8 22 mm versus approximately 25.6 mm; retain uncertainty about historical glass, stop dimensions and the exact production prescription.
+
+Review corrections: single-radius changes “worsen spherical correction and the sine condition” → changes can give about 100 mm but have no support elsewhere in the patent; forum quotation from a lens reference → reported “Pat 553,844” front-ring engraving; Oldlens “documented” construction → lists seven elements in four groups; entrance-equivalent aperture f/1.51079 → real-ray aperture about f/1.51; shared-radius glass thickness 1.647580 mm → smallest edge thickness 1.65 mm (L7). The “consistent modeled body” and “geometry exception or rim trimming” sentences are removed.

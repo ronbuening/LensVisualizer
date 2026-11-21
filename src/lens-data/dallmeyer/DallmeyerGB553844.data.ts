@@ -30,7 +30,7 @@ const LENS_DATA = {
     errata: [
       {
         status: "unresolved",
-        note: "The printed table computes to EFL 101.38 mm at the model's scale, whereas F = 1.0 implies 100 mm. The page image is unambiguous; the tested single-radius alternatives worsen spherical correction and the sine condition. The printed values are retained.",
+        note: "The printed table computes to EFL 101.38 mm at the model's scale, whereas F = 1.0 implies 100 mm. Single-radius changes (R2 5.1447, R1 0.6407, R6 0.28596) would each give 100 mm, but nothing else in the patent supports any of them, and the page image is unambiguous. The printed values are retained.",
       },
     ],
     sdSource: "heuristic",
