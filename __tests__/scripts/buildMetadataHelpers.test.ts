@@ -332,6 +332,62 @@ describe("build metadata helpers", () => {
     });
   });
 
+  it.each([
+    ["R100", "2026-02-01", "edited"],
+    ["R087", "2026-03-01", "renamed"],
+  ])("dates a %s rename while following its publication history", (status, lastModified, lastModifiedCommit) => {
+    const raw =
+      `\x1e2026-03-01T12:00:00Z\trenamed\tMove pages\0\n${status}\0old.md\0new.md\0M\0other.md\0` +
+      "\x1e2026-02-01T12:00:00Z\tedited\tEdit page\0\nM\0old.md\0" +
+      "\x1e2026-01-01T12:00:00Z\tadded\tAdd pages\0\nA\0old.md\0A\0other.md\0";
+    const calls: string[][] = [];
+    const history = gitHistory({
+      execFileImpl: (_file, args) => {
+        calls.push(args);
+        return args[0] === "rev-parse" ? "\n" : raw;
+      },
+    });
+    const expected = {
+      publishedOn: "2026-01-01",
+      publishedAt: "2026-01-01T12:00:00.000Z",
+      publishedCommit: "added",
+      lastModified,
+      lastModifiedAt: `${lastModified}T12:00:00.000Z`,
+      lastModifiedCommit,
+    };
+
+    expect(history.fileFreshness("new.md")).toEqual(expected);
+    expect(history.firstFileFreshness(["missing.md", "new.md"])).toEqual(expected);
+    expect(
+      history
+        .log("new.md")
+        .split("\n")
+        .map((line) => line.split("\t")[1]),
+    ).toEqual(["renamed", "edited", "added"]);
+    expect(history.fileFreshness("other.md")).toMatchObject({
+      lastModified: "2026-03-01",
+      lastModifiedCommit: "renamed",
+    });
+    expect(calls.filter((args) => args.includes("log"))).toHaveLength(1);
+    expect(calls[1]).toContain("-M");
+  });
+
+  it("falls back to the oldest commit when pure renames and format-only commits are all skipped", () => {
+    const raw =
+      "\x1e2026-03-01T12:00:00Z\trenamed\tMove page\0\nR100\0old.md\0new.md\0" +
+      "\x1e2026-01-01T12:00:00Z\tadded\tS2.P5.T1 Convert\0\nA\0old.md\0";
+    const history = gitHistory({ execFileImpl: (_file, args) => (args[0] === "rev-parse" ? "\n" : raw) });
+
+    expect(history.fileFreshness("new.md")).toEqual({
+      publishedOn: "2026-01-01",
+      publishedAt: "2026-01-01T12:00:00.000Z",
+      publishedCommit: "added",
+      lastModified: "2026-01-01",
+      lastModifiedAt: "2026-01-01T12:00:00.000Z",
+      lastModifiedCommit: "added",
+    });
+  });
+
   it("follows a file's renames but not copies, from one read of the history", () => {
     /* Enough shared lines that git pairs the edited rename, and would report the copy as one under --follow. */
     const body = Array.from({ length: 20 }, (_, line) => `Line ${line} of the page.\n`).join("");

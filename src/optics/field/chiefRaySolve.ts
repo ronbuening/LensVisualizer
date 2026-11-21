@@ -25,6 +25,9 @@ const CHIEF_RAY_RESIDUAL_TOLERANCE = 1e-7;
 const CHIEF_RAY_RESIDUAL_FULL_FIELD_DEG = 1;
 const OBJECT_PLANE_BRACKET_SCAN_SAMPLES = 96;
 const BOUNDING_SPHERE_BRACKET_SCAN_SAMPLES = 96;
+/** Failed scans only: approach each clear/clipped boundary without widening across it. */
+const BOUNDING_SPHERE_BOUNDARY_STEPS = 8;
+const BOUNDING_SPHERE_BOUNDARY_TRACE_BUDGET = 128;
 
 /** Times the bracket around a seeded launch height grows (×4 each) before the full solve takes over. */
 const SEEDED_CHIEF_RAY_BRACKET_ATTEMPTS = 4;
@@ -230,20 +233,26 @@ export function solveChiefRayBoundingSphere(
   let bracket: ChiefRayBracket | null = null;
   let nearestYEP = paraxialYEP;
   let nearestAbsHeight = Infinity;
+  const boundaries: { valid: number; height: number; invalid: number }[] = [];
 
   for (let attempt = 0; attempt < 4 && bracket === null; attempt++) {
     const scanHalf = bracketHalf * (2 << attempt);
     const scanLo = paraxialYEP - scanHalf;
     const scanHi = paraxialYEP + scanHalf;
     let prev: { yEP: number; height: number } | null = null;
+    let previousInvalid: number | null = null;
 
     for (let i = 0; i <= BOUNDING_SPHERE_BRACKET_SCAN_SAMPLES; i++) {
       const yEP = scanLo + ((scanHi - scanLo) * i) / BOUNDING_SPHERE_BRACKET_SCAN_SAMPLES;
       const height = heightAtStop(yEP);
       if (height === null) {
+        if (prev !== null) boundaries.push({ valid: prev.yEP, height: prev.height, invalid: yEP });
+        previousInvalid = yEP;
         prev = null;
         continue;
       }
+      if (previousInvalid !== null) boundaries.push({ valid: yEP, height, invalid: previousInvalid });
+      previousInvalid = null;
 
       const absHeight = Math.abs(height);
       if (absHeight < nearestAbsHeight) {
@@ -268,6 +277,35 @@ export function solveChiefRayBoundingSphere(
     }
   }
 
+  // Preserve every successful legacy scan (including its root choice and trace count).
+  // A wider retry has coarser spacing and can keep missing a root near a clear rim.
+  let recoveredBoundary = false;
+  if (bracket === null) {
+    let budget = BOUNDING_SPHERE_BOUNDARY_TRACE_BUDGET;
+    for (const boundary of boundaries) {
+      let { valid, height, invalid } = boundary;
+      for (let step = 0; step < BOUNDING_SPHERE_BOUNDARY_STEPS && budget > 0; step++, budget--) {
+        const mid = (valid + invalid) / 2;
+        const yMid = heightAtStop(mid);
+        if (yMid === null) {
+          invalid = mid;
+          continue;
+        }
+        if (height * yMid <= 0 || Math.abs(yMid) < residualTolerance) {
+          bracket =
+            valid < mid
+              ? { lo: valid, hi: mid, yLo: height, yHi: yMid }
+              : { lo: mid, hi: valid, yLo: yMid, yHi: height };
+          recoveredBoundary = true;
+          break;
+        }
+        valid = mid;
+        height = yMid;
+      }
+      if (bracket !== null || budget === 0) break;
+    }
+  }
+
   if (bracket === null) {
     return {
       yLaunch: projectYLaunchToZ0(nearestYEP),
@@ -280,6 +318,21 @@ export function solveChiefRayBoundingSphere(
   }
 
   const solved = refineChiefRayBracket(heightAtStop, bracket, paraxialYEP, residualTolerance);
+  // A disconnected domain or discontinuity is not a root. Legacy interval/iteration
+  // termination alone is insufficient evidence for a newly recovered bracket.
+  if (recoveredBoundary) {
+    const residual = solved.status === "converged" ? heightAtStop(solved.yLaunch) : null;
+    if (residual === null || !Number.isFinite(residual) || Math.abs(residual) >= residualTolerance) {
+      return {
+        yLaunch: projectYLaunchToZ0(nearestYEP),
+        uField: uFieldEquivalent,
+        status: "bracket-failed",
+        iterations: solved.iterations,
+        launchSurface,
+        vectorLaunch: launchAtYEP(nearestYEP),
+      };
+    }
+  }
   return {
     ...solved,
     yLaunch: projectYLaunchToZ0(solved.yLaunch),
