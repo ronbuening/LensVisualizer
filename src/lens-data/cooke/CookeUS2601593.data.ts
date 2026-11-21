@@ -8,7 +8,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * midpoint and opening and the paraxial image plane are inferred. Printed
  * effective diameters set the rims except at R4/R7, whose radii are inferred,
  * and R3, enlarged from 10.0 to 10.1 mm to clear the axial f/4 beam. These
- * diameters set the vignetting, with about 41% relative illumination at 36°.
+ * diameters set the vignetting, with about 41.4% relative illumination at 36.0°.
  * The rear doublet computes as weakly positive despite the patent's divergent
  * description, and the text's x = 0.106 differs from 0.107 from the indices.
  */
@@ -17,7 +17,7 @@ const LENS_DATA = {
   key: "cooke-100mm-f4-us2601593",
   maker: "Cooke",
   name: "COOKE 100mm f/4 (US 2,601,593 Design)",
-  subtitle: "US 2,601,593 A, Example VI — wide-angle fluorite design",
+  subtitle: "US 2,601,593 A, Example VI — Taylor Hobson / Cook",
   visible: false,
   source: {
     patentNumber: "US 2,601,593 A",
@@ -49,7 +49,13 @@ const LENS_DATA = {
     fNumber: {
       design: 4,
     },
-    specs: ["6 ELEMENTS / 4 GROUPS", "ALL SPHERICAL", "DESIGN F/4", "2 FLUORITE ELEMENTS"],
+    specs: [
+      "6 ELEMENTS / 4 GROUPS",
+      "DESIGN f = 100 mm",
+      "DESIGN F/4",
+      "ALL SPHERICAL",
+      "2 FLUORITE ELEMENTS",
+    ],
   },
   elements: [
     {
