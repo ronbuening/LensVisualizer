@@ -24,7 +24,7 @@ Five spherical elements form four air-separated groups: a positive front meniscu
 
 The patent emphasizes the weak curvature of the cemented interface, the front element's weak rear surface, and the higher dispersion of the negative member of the cemented pair. These features balance the positive components while allowing relatively shallow spherical surfaces. Example 1 uses an infinite cemented radius, within the claim's range from six focal lengths to infinity. [Specification and claim, PDF pp. 2–3](https://patents.google.com/patent/US2543856A/en)
 
-At the sodium D line the computed effective focal length is 99.99785 mm, within 0.0022% of the stated 100 mm. The first-to-last vertex distance is 66.8 mm. The image plane is the computed paraxial back focus, 52.31997 mm behind r9; the patent prints no back focus.
+At the sodium D line the computed effective focal length is 99.998 mm, 0.002 mm below the stated 100 mm. The first-to-last vertex distance is 66.8 mm. The image plane is the computed paraxial back focus, 52.32 mm behind r9; the patent prints no back focus.
 
 ## Element-by-Element Analysis
 
@@ -50,13 +50,13 @@ Element 2 is plano-convex positive: `nD = 1.65981, ν = 50.3; f = +68.96 mm`. El
 
 The patent explicitly names the sodium D line and supplies Abbe numbers, but gives no glass names or separate C, F or G′ indices. The source indices remain attached to that line.
 
-Schott SF1 matches elements 3 and 4 at the printed D-line precision: its catalogue curve gives nD = 1.7171488 and νD = 29.5041, differences of −0.0000012 and −0.0959 from the printed pair. The SF1 label selects a catalogue dispersion curve; it does not establish the historical supplier or melt. Elements 1, 2 and 5 have no exact catalogue match and retain their printed index and Abbe number without a named glass assignment. The available data do not establish anomalous partial dispersion or measured broadband performance.
+Schott SF1 agrees with the printed D-line index for elements 3 and 4: its catalogue curve gives nD = 1.71715 and νD = 29.50, differences of −0.0000012 and −0.0959 from the printed pair. The SF1 label selects a catalogue dispersion curve; it does not establish the historical supplier or melt. Elements 1, 2 and 5 have no exact catalogue match and retain their printed index and Abbe number without a named glass assignment. The available data do not establish anomalous partial dispersion or measured broadband performance.
 
 ## Focus Mechanism
 
 Only infinity focus is modeled. The patent supplies no close-focus prescription, object distances or focusing mechanism; no minimum focus distance is assigned.
 
-Figure 1 draws a dashed plane between elements 4 and 5. The printed separations place it 9.4 mm after r7 and 15.6 mm before r8, at an axial station of 44.2 mm from r1. The model treats that plane as the aperture stop; the prose does not explicitly name it a diaphragm. The opening is inferred from the printed f/1.8 ratio, giving a stop radius of 16.30389 mm. No iris diameter is printed.
+Figure 1 draws a dashed plane between elements 4 and 5. The printed separations place it 9.4 mm after r7 and 15.6 mm before r8, at an axial station of 44.2 mm from r1. The model treats that plane as the aperture stop; the prose does not explicitly name it a diaphragm. The opening is inferred from the printed f/1.8 ratio, giving a stop radius of 16.30 mm. No iris diameter is printed.
 
 ## Aspherical Surfaces
 
@@ -64,7 +64,7 @@ There are no aspherical surfaces. The curved faces are spherical, and r4 is flat
 
 ## Source Aberrations and Model Limits
 
-The computed Petzval sum is 0.00501623 mm⁻¹, or 0.5016 when multiplied by the stated 100 mm focal length, reproducing the patent's printed sum. The sodium-D spherical-aberration calculation also closely reproduces its table:
+The computed Petzval sum is 0.0050162 mm⁻¹, or 0.5016 when multiplied by the stated 100 mm focal length, reproducing the patent's printed sum. The sodium-D spherical-aberration calculation also closely reproduces its table:
 
 | Incident axial ray height (mm) | Printed longitudinal aberration (mm) | Computed longitudinal aberration (mm) |
 | ------------------------------ | -----------------------------------: | ------------------------------------: |
@@ -72,7 +72,7 @@ The computed Petzval sum is 0.00501623 mm⁻¹, or 0.5016 when multiplied by the
 | 24.06                          |                               −0.241 |                                −0.240 |
 | 27.78                          |                               +0.148 |                                +0.139 |
 
-The largest difference is 0.00872 mm. These comparisons use the patent's specified incident heights; they do not define the inferred iris opening. The printed paraxial F−C separation is −0.345 mm. A calculation from the printed Abbe numbers gives about −0.404 mm, probably reflecting differences from the designer's glass data rather than a transcription error. The printed indices and Abbe numbers are retained. [Aberration tables and Figure 2, PDF pp. 1–3](https://patents.google.com/patent/US2543856A/en)
+The largest difference is 0.009 mm. These comparisons use the patent's specified incident heights; they do not define the inferred iris opening. The printed paraxial F−C separation is −0.345 mm. A calculation from the printed Abbe numbers gives about −0.404 mm, probably reflecting differences from the designer's glass data rather than a transcription error. The printed indices and Abbe numbers are retained. [Aberration tables and Figure 2, PDF pp. 1–3](https://patents.google.com/patent/US2543856A/en)
 
 The patent states no field angle or image format. The displayed ±10° field is illustrative and carries no image-circle or mount claim. Its chief ray and the f/1.8 axial beam clear the modeled rims, although off-axis bundles are partly vignetted.
 

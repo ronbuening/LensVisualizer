@@ -1,51 +1,57 @@
-# MEOPTA 100mm f/1.8 (US 2,543,856 Design) — Audit
+# MEOPTA 100mm f/1.8 (US 2,543,856 Design) — Audit Log
 
 ## Source
 
-US 2,543,856 A, Example 1, published 6 March 1951. The patent gives three numerical examples at f = 100 mm. Example 1 specifies 1:1.8; Figure 1 shows the shared construction and Figure 2 plots Example 1's corrections. The application was filed on 20 July 1948 with Czechoslovak priority dated 4 August 1947.
+[US 2,543,856 A, _Large aperture four-member photographic objective_](https://patents.google.com/patent/US2543856A/en), by František Kupka, assigned to Meopta, spojene zavody pro jemnou mechaniku a optiku, narodni podnik, Přerov, Czechoslovakia. The application was filed on 20 July 1948 with Czechoslovak priority dated 4 August 1947; publication was on 6 March 1951. The assignee's words are printed without Czech diacritics, and that spelling is retained.
 
-The page prints František Kupka and the assignee “Meopta, spojene zavody pro jemnou mechaniku a optiku, narodni podnik”. The assignee's words are printed without Czech diacritics, and that spelling is retained.
+Example 1 is on PDF page 2, right column, among three numerical examples at f = 100 mm. It specifies an aperture ratio of 1:1.8. Figure 1 on PDF page 1 shows the shared construction; Figure 2 plots Example 1's corrections. PDF page 3 gives the Seidel coefficients and claim.
 
-## Transcription
+Meopta's [historical milestones](https://www.meopta.com/en/historical-milestones/) document its photographic and cinema-equipment history without identifying a production lens using this prescription.
 
-Two independent readings of the page images agree on all nine radii, five element thicknesses, four air separations, five sodium-D indices and five Abbe numbers. No prescription mismatch was found. The apparent “8” at r4 denotes infinity: the surface is flat, its printed Petzval term is zero, and the claim permits an infinite cemented radius.
+## Transcription Check
 
-Elements 2 and 3 share the flat r4 cemented interface. The 0.1 mm front air gap and the r7-to-r8 separation split of 9.4/15.6 mm are printed. Figure 1's dashed plane is treated as the stop, although the prose does not explicitly name a diaphragm. All curved surfaces are spherical.
+All nine radii, five element thicknesses, four air separations, five sodium-D indices and five Abbe numbers agree with the page images. No prescription mismatch was found. All finite radius signs are explicit, and the dimensions retain the printed millimetre scale. The apparent “8” at r4 denotes infinity: the surface is flat, its printed Petzval term is zero, and the claim permits an infinite cemented radius.
 
-## First-Order and Aberration Results
+Elements 2 and 3 share the flat r4 cemented interface. The front air gap is 0.1 mm. The r7-to-r8 separation is split into 9.4 mm before the dashed plane and 15.6 mm after it. The element shapes agree with Figure 1: positive meniscus, plano-convex positive, plano-concave negative, biconcave negative and biconvex positive. All curved surfaces are spherical; there are no variable spacings.
 
-The sodium-D effective focal length is 99.99784759 mm against the stated 100 mm. The paraxial back focus is 52.31996624 mm, equal to the stored image distance. The vertex track is 66.8 mm. The Petzval sum multiplied by 100 mm is 0.50162310, reproducing the printed 0.5016.
+## First-Order Check
 
-At the printed incident heights 19.45/24.06/27.78 mm, calculated sodium-D longitudinal spherical aberration is −0.33234/−0.23953/+0.13928 mm against −0.327/−0.241/+0.148 mm. The maximum discrepancy is 0.00872 mm. A calculation using the printed Abbe numbers gives F−C axial colour about −0.404 mm against the printed −0.345 mm, probably because the designer used more detailed glass data. No index or Abbe number is changed to fit that result.
+The sodium-D effective focal length is 99.998 mm, 0.002 mm below the printed 100 mm. The paraxial f-number is 1.80, matching the printed 1:1.8, with a stop radius of 16.304 mm. The calculated back focus is 52.32 mm; no back focus is printed. The image plane is at paraxial infinity focus, 52.32 mm behind r9. The first-to-last vertex distance is 66.8 mm, and the first-vertex-to-image distance is 119.12 mm.
 
-## Quantities Not Printed
+The Petzval sum multiplied by 100 mm is 0.5016, reproducing the printed sum. At incident heights of 19.45, 24.06 and 27.78 mm, the calculated sodium-D longitudinal spherical aberrations are −0.332, −0.240 and +0.139 mm, compared with the printed −0.327, −0.241 and +0.148 mm. The largest discrepancy is 0.009 mm. The F−C axial colour derived from the printed Abbe numbers is about −0.404 mm, compared with −0.345 mm in the patent. More detailed glass data may explain this difference; the printed indices and Abbe numbers are retained.
 
-The patent gives no clear semi-diameters, iris diameter, back focus, field angle, image format, minimum focus distance or close-focus prescription. The model's rims are estimates; its final gap is the paraxial back focus. The ±10° field is illustrative. The distant close-focus bound denotes an infinity-only model.
+The surfaces stay clear of each other, and the iris sets the full aperture. The f/1.8 axial beam and the 10.0° chief ray clear the rims. At the illustrative 35.40 mm image diameter, no surface is undersized and the chief ray reaches the image; off-axis bundles remain partly vignetted. This diameter is not a patent or product specification.
+
+## Values Not Printed in the Patent
+
+The dashed plane in Figure 1 is treated as the stop, although the prose does not explicitly name a diaphragm. It lies 44.2 mm behind r1, following the printed 9.4/15.6 mm split. The iris opening is inferred from paraxial f/1.8; neither its diameter nor its minimum opening is printed. The selectable aperture range extends to f/16 without evidence of a production stop range.
+
+Every clear semi-diameter is estimated: r1/r2 32 mm, r3 30 mm, r4/r5 27 mm, r6 24 mm, r7 21 mm and r8/r9 22 mm. Figure 1 suggests approximately 28.2 mm for element 1, 27.2 mm for the cemented group, 26 mm at r6, 19.9 mm at r7 and 16.8 mm for element 5. These differences remain unresolved, particularly the wider front and rear elements. No factory edge dimensions or barrel geometry are established.
+
+The back focus and image distance are calculated. The ±10.0° field is illustrative: the patent states no field angle or image format, so no image circle is assigned. `focus.closeFocusM` is 10¹⁵ m, which stands for infinity. No close-focus prescription, object distance or focusing mechanism is given.
+
+The patent identifies the sodium D line and gives Abbe numbers, without glass names or separate C, F or G′ indices. Schott SF1 supplies a catalogue dispersion curve for elements 3 and 4; elements 1, 2 and 5 use estimates from their printed Abbe numbers. No historical supplier, melt, anomalous partial dispersion, transmission or measured broadband performance is established.
 
 ## Product Identification
 
-No production lens is documented as using Example 1. The patent states a cinematographic application, but the available Meopta Openar information supplies no construction that establishes a match. The name therefore identifies the patent design.
+No production lens is documented as using Example 1. The patent describes a cinematographic application, but no published construction establishes a connection with a Meopta Openar lens. The title therefore identifies the patent design at its printed 100 mm scale. No production mount, image format, diaphragm blade count or shape, marketed focal length, marketed aperture or marketed minimum focus distance is assigned.
 
-## Corrections
+## Corrections, 2026-11-21
 
-The initial model used f/1.7536447904353865 to obtain a 16.73485790 mm stop radius from the patent's h = 27.78 mm axial ray. Independent tracing gave an entrance-equivalent f/1.79982 for that ray, but the first-order aperture differed from the printed 1:1.8. The model now uses the printed nominal f/1.8 with an inferred stop radius of 16.30388687 mm. The printed ray-height aberration comparisons remain valid independently of this aperture choice.
+- The inventor-and-example identity was replaced by the Meopta maker-and-patent title and key. The maker changed from unspecified to Meopta, and the lens became visible. No production lens attribution was added.
+- The patent number gained the publication suffix A, the missing publication year became 1951, and the shortened Meopta assignee became the full printed name. František Kupka and Example 1 were retained. Figure 1 is identified as the shared construction, while Figure 2 is specifically tied to Example 1.
+- The nominal aperture changed from f/1.75 to the printed f/1.80, and the aperture series begins at f/1.8. The inferred stop radius changed from 16.73 to 16.30 mm. The former opening admitted the patent's 27.78 mm incident ray, equivalent to approximately f/1.80 under exact tracing, but gave a paraxial aperture of f/1.75. The present opening follows the printed aperture ratio paraxially. The stop position and printed separations were retained; the source ray-height aberration comparisons are independent of this opening.
+- Unnamed glasses for elements 3 and 4 became `SF1 (Schott)`. Catalogue minus printed differences at the sodium D line are Δn = −0.0000012 and Δν = −0.0959; the catalogue values are nD = 1.71715 and νD = 29.50. Its helium-d Abbe number is 29.51. Elements 1 and 2 retain `Unmatched (nD 1.65981 / ν 50.3)` and element 5 retains `Unmatched (nD 1.61216 / ν 58)` because no exact catalogue rows match those pairs. The original sodium-D reference and printed glass coordinates were retained.
+- Generic element types became the five shapes listed above, and display labels became Element 1 through Element 5. Optical roles and individual in-air focal lengths of +163.03, +68.96, −278.88, −41.69 and +72.37 mm were added. Elements 2 and 3 share C1, with a bracket spanning their cemented group; their combined focal length is +87.73 mm.
+- The inferred 35.40 mm image circle was removed because the patent states no field or format. The illustrative ±10.0° field, estimated rims and paraxial image plane were retained. No radius, thickness, air separation, refractive index or Abbe number was altered from the printed prescription.
+- The subtitle reads “US 2,543,856 A, Example 1 — Meopta / Kupka.” The specifications are “5 ELEMENTS / 4 GROUPS”, “DESIGN f = 100 mm”, “DESIGN F/1.8” and “ALL SPHERICAL”.
+
+The resulting EFL is 99.998 mm, paraxial f-number 1.80, back focus 52.32 mm, stop radius 16.304 mm and half-field 10.0°. The vertex track is 66.8 mm. EFL and back focus retain their original values.
 
 ## Remaining Questions
 
-Open: Figure 1 suggests semi-diameters near 28.2 mm for element 1, 27.2 mm for the cemented group, 26 mm at r6, 19.9 mm at r7 and 16.8 mm for element 5. The present values are 32/32, 30/27/27, 24/21 and 22/22 mm respectively. These rim differences remain unresolved. The historical glass melts and the axial-colour discrepancy are also unresolved; no production lens or close-focus motion is established.
-
-## 2026-11-21 — Deployment validation and cleanup
-
-Two independent readings checked the radii, thicknesses, air separations, sodium-D indices, Abbe numbers, flat cemented interface, dashed stop plane and printed aberration tables against the page images. The prescription is valid with the aperture convention corrected; there is no documented product match.
-
-- Identity: key `kupka-us2543856-example1-infinity-reference` → `meopta-100mm-f18-us2543856`; inventor-and-example title → `MEOPTA 100mm f/1.8 (US 2,543,856 Design)`; maker null → Meopta; visibility false → true.
-- Source: `US 2,543,856` → `US 2,543,856 A`; publication year absent → 1951; assignee Meopta → the full printed name above. František Kupka and Example 1 remain as printed.
-- Aperture: nominal f/1.7536447904353865 → f/1.8; the stop series now begins at 1.8. Inferred stop radius 16.73485790 → 16.30388687 mm. Radii, spacings, source indices, Abbe numbers, rim sizes, stop station and image plane are unchanged.
-- Glass: elements 3 and 4, unnamed → `SF1 (Schott)`, resolving to Schott SF1. At the D line, catalogue-minus-source Δn = −0.0000012 and Δν = −0.0959 (catalogue νD 29.5041; its listed helium-d Abbe number is 29.51). Elements 1/2 → `Unmatched (nD 1.65981 / ν 50.3)`; element 5 → `Unmatched (nD 1.61216 / ν 58)` because no exact catalogue rows match those pairs. Historical suppliers remain unknown.
-- Elements: generic spherical type labels → Positive Meniscus / Plano-Convex Positive / Plano-Concave Negative / Biconcave Negative / Biconvex Positive; L1–L5 display labels → Element 1–5. Optical roles and individual focal lengths +163.03/+68.96/−278.88/−41.69/+72.37 mm are added. Elements 2 and 3 now share C1, with a matching cemented-group annotation.
-- Text and scope: subtitle → `US 2,543,856 A, Example 1 — five-element cinema objective`; descriptive specifications → `5 ELEMENTS / 4 GROUPS`, `ALL SPHERICAL`, `DESIGN F/1.8`, `CINEMA OBJECTIVE`. Focus description → “Infinity focus only; the patent gives no close-focus data.” The infinity bound remains 1e15 m. Image circle 35.40431999587676 mm → omitted because the patent states no field or format. The ±10° illustrative field is retained. The header, analysis and audit now describe source facts, optical behavior and remaining uncertainties in plain language.
-- File form: incorrect type-import path → the shared lens-data type; the constant and default export now use `LENS_DATA`. No prescription value is corrected away from the patent, so no source erratum is introduced.
-
-The resulting EFL is 99.99784759 mm, nominal f-number 1.8, back focus 52.31996624 mm and vertex track 66.8 mm. EFL and back focus equal their previous values; the previous nominal f-number was 1.7536447904353865. Surface geometry has no errors. Aperture checks find no rim limit, trace limit or iris discrepancy. Image-circle and format-coverage checks skip the file because it claims no format or image circle. Against an illustrative 35.40432 mm image diameter, the same prescription has no undersized surface, reaches 100% field coverage and clears the 10° chief ray. That diameter is a calculation target, not a patent or product specification.
-
-Open: the figure-rim differences and unknown historical glasses remain as described above. The printed axial-colour result is not reproduced from the Abbe numbers alone. No measured field, production attribution or close-focus behavior is established.
+- Figure 1's rims differ from the estimated clear semi-diameters, especially at the first and last elements. Their physical edge dimensions remain unknown.
+- Elements 1, 2 and 5 lack exact catalogue matches. Historical glass suppliers and melts, partial dispersion and measured broadband performance remain unknown for all elements.
+- The printed F−C axial-colour separation is not reproduced from the Abbe numbers alone.
+- The dashed plane's identification as the diaphragm is inferred. No source gives an iris diameter, minimum opening, blade count or blade shape.
+- No production lens, mount, image format, field angle, marketed specifications, minimum focus distance or close-focus motion is established.

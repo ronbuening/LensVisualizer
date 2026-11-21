@@ -7,7 +7,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * cements elements 2 and 3. The dashed plane in Fig. 1 is treated as the stop,
  * 9.4 mm after r7 and 15.6 mm before r8; its opening is inferred from f/1.8.
  * All clear semi-diameters are estimated. The image plane is the computed
- * paraxial back focus, 52.319966 mm; no back focus is printed.
+ * paraxial back focus, 52.32 mm; no back focus is printed.
  * The ±10° field is illustrative; the patent states no field or image format.
  */
 const LENS_DATA = {
@@ -15,7 +15,7 @@ const LENS_DATA = {
   key: "meopta-100mm-f18-us2543856",
   maker: "Meopta",
   name: "MEOPTA 100mm f/1.8 (US 2,543,856 Design)",
-  subtitle: "US 2,543,856 A, Example 1 — five-element cinema objective",
+  subtitle: "US 2,543,856 A, Example 1 — Meopta / Kupka",
   visible: true,
   source: {
     patentNumber: "US 2,543,856 A",
@@ -37,7 +37,7 @@ const LENS_DATA = {
     fNumber: {
       design: 1.8,
     },
-    specs: ["5 ELEMENTS / 4 GROUPS", "ALL SPHERICAL", "DESIGN F/1.8", "CINEMA OBJECTIVE"],
+    specs: ["5 ELEMENTS / 4 GROUPS", "DESIGN f = 100 mm", "DESIGN F/1.8", "ALL SPHERICAL"],
   },
   elements: [
     {
