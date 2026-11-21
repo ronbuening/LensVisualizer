@@ -7,9 +7,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * The printed table computes to EFL 101.38 mm against the stated 100 mm at this
  * scale. Its values are retained, with the discrepancy recorded as unresolved.
  * Indices refer to the D line (taken as sodium, 589.3 nm).
- * The stop is inferred 11.4 mm after R6, leaving 10.1 mm before R7; all clear
- * semi-diameters are inferred. The image plane is the computed paraxial back
- * focus, 52.93 mm behind R11. Neither stop nor back focus is printed.
+ * The stop is inferred 11.4 mm after R6, leaving 10.1 mm before R7. Clear
+ * semi-diameters follow the page 3 drawing's proportions: R3–R5 share a 32 mm
+ * edge, R8/R9 share 26 mm, and the central caps retain 21 mm. The drawing is
+ * not uniformly to scale; all rims clear the f/1.5 axial and 25° chief rays.
+ * The image plane is the computed paraxial back focus, 52.93 mm behind R11.
+ * Neither stop nor back focus is printed.
  */
 const LENS_DATA = {
   schema: 2,
@@ -156,21 +159,21 @@ const LENS_DATA = {
       label: "3",
       R: 43.827,
       d: 12,
-      sd: 33,
+      sd: 32,
       medium: 2,
     },
     {
       label: "4",
       R: 94.874,
       d: 8,
-      sd: 31,
+      sd: 32,
       medium: 3,
     },
     {
       label: "5",
       R: -950.5,
       d: 2,
-      sd: 26,
+      sd: 32,
       medium: 4,
     },
     {
@@ -195,7 +198,7 @@ const LENS_DATA = {
       label: "8",
       R: "flat",
       d: 11,
-      sd: 22,
+      sd: 26,
       medium: 6,
     },
     {
