@@ -70,7 +70,7 @@ The stated f/4 axial marginal clears every surface. Its smallest rim margin is a
 
 The R3/R4 air gap closes at a radius of 10.89890 mm. The f/4 marginal needs heights of 10.62819 and 10.63108 mm on those faces, leaving approximately 0.09343 mm of air at that ray. A 90% sag allowance would restrict their common radius to 10.47162 mm and cut that beam. The model retains a 94% allowance; at the authored rims, maximum sag intrusion is 93.82973% and the remaining gap is about 0.08947 mm.
 
-The central gap has about 0.41858 mm clearance at the shared outer band, and the R7/R8 gap retains about 0.18157 mm. These geometric clearances do not establish manufacturing tolerances. The estimated R5 rim extends about 0.05 mm across the stop's axial plane outside the actual stop opening; its outline and the other meniscus rims remain questions for comparison with the drawing.
+The central gap has about 0.41858 mm clearance at the shared outer band, and the R7/R8 gap retains about 0.18157 mm. These geometric clearances do not establish manufacturing tolerances. The estimated R5 rim ends about 0.05 mm short of the stop plane; its outline and the other meniscus rims remain questions for comparison with the drawing.
 
 ## Field and Model Limitations
 
@@ -82,6 +82,6 @@ Chief-ray coverage reaches 99.9978% of the rounded circle radius. This describes
 
 1. John William Hasselkus and George Arthur Richmond, [GB 295,519 A](https://patents.google.com/patent/GB295519A/en), filed 7 September 1927, accepted 16 August 1928. Original specification: front-page bibliography; printed p. 2 numerical table, spectral-line identification and field/aperture statements; drawing sheet, PDF p. 4.
 2. Science Museum Group, [Ross Xpres Wide Angle Lens](https://collection.sciencemuseumgroup.org.uk/objects/co8204618/ross-xpres-wide-angle-lens), object 1990-5036/1287: 5-inch f/4–11 lens, serial 132787, Air Ministry reference 14A/843. The record supplies no production prescription.
-3. Early Photography, [Xpres](https://w.earlyphotography.co.uk/site/entry_L58.html), distinguishes the late-1920s Wide Angle Xpres and associates it with BP 295519; its historical references do not identify a production numerical table.
-4. The Industrial History of Hong Kong Group, [Ross Optical Ltd., Clapham, London](https://industrialhistoryhk.org/ross-ltd/), reproduces historical Ross works-address information for 3 North Side, Clapham Common.
+3. Early Photography, [Xpres](http://www.earlyphotography.co.uk/site/entry_L58.html), distinguishes the late-1920s Wide Angle Xpres and associates it with BP 295519; its historical references do not identify a production numerical table.
+4. Grace's Guide, [Ross](https://gracesguide.co.uk/Ross), gives the works address as 3 North Side, Clapham Common.
 5. Orwell Astronomical Society, [E. H. Collinson](https://oasi.org.uk/OPO/EHC/EHC.php), records the use of an f/4 Ross Wide Angle Xpres originally produced for aerial survey.

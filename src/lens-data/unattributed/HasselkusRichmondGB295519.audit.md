@@ -28,7 +28,7 @@ The helium reference line was misidentified as D in the previous data. Its numer
 
 ## Remaining Questions
 
-Open: R5 12.9 mm, R6 13.5 mm and R7 12 mm remain taller than the figure's meniscus outlines, about 11.6 mm. The figure also shows chamfers around R3 10.1, R5 9.6, R6 9.9 and R8 10.25 mm. The R5 rim extends about 0.05 mm across the stop plane outside its opening. Those outlines need further comparison with the figure; they have not been narrowed here.
+Open: R5 12.9 mm, R6 13.5 mm and R7 12 mm remain taller than the figure's meniscus outlines, about 11.6 mm. The figure also shows chamfers around R3 10.1, R5 9.6, R6 9.9 and R8 10.25 mm. The R5 rim ends about 0.05 mm short of the stop plane. Those outlines need further comparison with the figure; they have not been narrowed here.
 
 Open: the derived iris admits a slightly larger real beam than the stated f/4 marginal. R3 limits its outermost rays; the effective aperture calculation gives f/4.024. Raising R3/R4 to 10.70/10.71 mm would conflict with the retained 94% gap allowance. The stated f/4 marginal clears both by about 0.01 mm.
 
@@ -50,10 +50,12 @@ Two independent re-readings of the page images agree on the numerical table, pri
 - Cemented annotations: absent → C1 on elements 1/2 and C2 on 5/6, with matching entries spanning R1–R3 and R8–R10. Existing group captions are retained.
 - Semi-diameters: R1 16 → 13.1 mm; R2 13.4 → 13.1 mm; R9 14 → 13.1 mm; R10 15.5 → 13.1 mm. All other rims, radii, spacings, numerical indices, stop station and image spacing are retained. The single heuristic rim-origin flag → omitted because the evidence now combines drawing measurements and estimates. The 0.94 gap allowance is retained.
 - Focus description: the former calculation-oriented text → `Infinity focus only; the patent gives no close-focus data.` The 1e15 placeholder is unchanged and uses shorter numeric notation.
-- Analysis: the former text → the exact display-name title, dated patent metadata, architecture, element roles, printed nd/ng table, focus scope, iris/rim assumptions, air-gap clearance, field limitations and public sources. Incorrect helium-line attribution and obsolete calculation details are removed. This audit log is new.
+- Analysis: the former text → the exact display-name title, dated patent metadata, architecture, element roles, printed nd/ng table, focus scope, iris/rim assumptions, air-gap clearance, field limitations and public sources. Incorrect sodium-D attribution and obsolete calculation details are removed. This audit log is new.
 
 First-order values before → after are identical: EFL 100.08235423 → 100.08235423 mm; nominal/paraxial f-number 4.000 → 4.000; BFD 85.73492068 → 85.73492068 mm; stop radius 10.28905836 → 10.28905836 mm; half-field 35° → 35°. No printed prescription value is corrected.
 
 Surface checks report no errors. The axial-aperture census reports one acceptable station and zero rim, trace, iris or failed diagnoses; its real-beam aperture is f/4.02420, 0.605% above nominal, with R3 at the outer edge as described above. The stated f/4 marginal passes every rim. The image-circle check reports zero undersized surfaces and zero skipped lenses. Field coverage is 99.9978% at 35°, with a converged chief ray, image height 70.09843 mm and no chief-ray clipping; no lens is skipped. The 140.2 mm circle is rounded, explaining the small coverage difference from 100%.
 
 Open: the remaining figure/rim differences, the outer R5 rim near the stop plane, the small R3 iris-beam limit, historical glass identity and exact Ross production link remain as stated above.
+
+Review corrections: R5 rim extending about 0.05 mm across the stop plane → ending about 0.05 mm short of it, in the analysis and remaining questions; incorrect helium-line attribution → incorrect sodium-D attribution in the cleanup history; Early Photography URL https://w.earlyphotography.co.uk/site/entry_L58.html → http://www.earlyphotography.co.uk/site/entry_L58.html; Ross works-address source https://industrialhistoryhk.org/ross-ltd/ → Grace's Guide, https://gracesguide.co.uk/Ross. The computed EFL rounds to the existing 100.08 mm design focal length.
