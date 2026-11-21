@@ -5,8 +5,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * The normalized dimensions are multiplied by 100 mm per source unit.
  * Radii, thicknesses, sodium-D indices and Abbe numbers follow the printed table.
  * The text places the stop approximately midway between R5 and R6; its exact
- * midpoint and opening, the clear radii and the paraxial image plane are inferred.
- * R5's clear radius keeps its rear surface ahead of the stop plane.
+ * midpoint and opening and the paraxial image plane are inferred. Printed
+ * effective diameters set the rims except at R4/R7, whose radii are inferred,
+ * and R3, enlarged from 10.0 to 10.1 mm to clear the axial f/4 beam. These
+ * diameters set the vignetting, with about 41% relative illumination at 36°.
  * The rear doublet computes as weakly positive despite the patent's divergent
  * description, and the text's x = 0.106 differs from 0.107 from the indices.
  */
@@ -26,7 +28,6 @@ const LENS_DATA = {
     },
     authors: ["Gordon Henry Cook"],
     assignees: ["Taylor, Taylor & Hobson Limited"],
-    sdSource: "heuristic",
     errata: [
       {
         status: "unresolved",
@@ -43,7 +44,7 @@ const LENS_DATA = {
     elementCount: 6,
     groupCount: 4,
     focalLengthMm: {
-      design: 100,
+      design: 99.99,
     },
     fNumber: {
       design: 4,
@@ -133,21 +134,21 @@ const LENS_DATA = {
       label: "1",
       R: 24.62,
       d: 7.2,
-      sd: 19.2,
+      sd: 17,
       medium: 1,
     },
     {
       label: "2",
       R: 51.81,
       d: 3.6,
-      sd: 14.9,
+      sd: 17,
       medium: 2,
     },
     {
       label: "3",
       R: 17.45,
       d: 2.6,
-      sd: 11.8,
+      sd: 10.1,
     },
     {
       label: "4",
@@ -160,7 +161,7 @@ const LENS_DATA = {
       label: "5",
       R: 56.98,
       d: 2,
-      sd: 14.9,
+      sd: 10,
     },
     {
       label: "STO",
@@ -171,7 +172,7 @@ const LENS_DATA = {
       label: "6",
       R: -98.72,
       d: 4.6,
-      sd: 15.2,
+      sd: 10,
       medium: 4,
     },
     {
@@ -184,21 +185,21 @@ const LENS_DATA = {
       label: "8",
       R: -20.77,
       d: 3,
-      sd: 12.4,
+      sd: 10,
       medium: 5,
     },
     {
       label: "9",
       R: -68.97,
       d: 7.2,
-      sd: 17.7,
+      sd: 15,
       medium: 6,
     },
     {
       label: "10",
       R: -26.22,
       d: 80.7136246289312,
-      sd: 19.1,
+      sd: 15,
     },
   ],
   focus: {
