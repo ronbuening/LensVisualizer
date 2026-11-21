@@ -46,7 +46,7 @@ const LENS_DATA = {
   key: "kodak-ektar-52f15",
   maker: "Kodak",
   name: "KODAK EKTAR 52mm f/1.5",
-  subtitle: "US 2,397,565 — Example 1; scaled ×0.52; production correlation plausible, not manufacturer-confirmed",
+  subtitle: "US 2,397,565 — Example 1; scaled ×0.52; plausible production match, not maker-confirmed",
 
   catalog: {
     specs: ["7 ELEMENTS / 4 GROUPS", "f = 52.0207 mm (scaled design)", "f/1.5", "ALL-SPHERICAL"],
