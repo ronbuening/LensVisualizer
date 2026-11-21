@@ -1,140 +1,101 @@
+# CARL ZEISS JENA 100mm f/2 (DE 630,224 Design)
+
 ## Patent Reference and Design Identification
 
-**Patent:** DE630224; official locator docid DE000000630224A  
-**Effective year:**1934, per source handoff  
-**Issued year:**1936, per source handoff  
-**Assignee:**Zeiss Ikon, as attributed upstream  
-**Inventor:**No individual inventor printed, per source handoff; no person is inferred  
-**Prescription:**100-unit nominal f/2,7E/4G, signs and data as transcribed by the parent/source lane.
+**Patent:** DE 630,224 C, _Photographisches Objektiv_
 
-**SOURCE HOLD:** The required local read of the official three-page facsimile failed before any PDF bytes were received: an ordinary GET to the [official DPMA locator](https://depatisnet.dpma.de/DepatisNet/depatisnet?window=1&space=menu&content=treffer&action=pdf&docid=DE000000630224A) returned a tunnelHTTP403. No retry or alternate source route was attempted. This executor did not inspect the original header, table or drawing. The local numeric/native results below are conditional on the attributed source transcription and are not a qualified source admission.
+**Inventors:** No individual inventor is printed.
 
-The primary note is retained: R7 and R11 are reported visibly overwritten with minus signs, giving−298.6 and−297.0; L4νD is31.0, not the OCR34.0. Those signs and the drawing still require the requested readable original inspection. No positive-sign alternative, fitted radius or repaired spacing is authored. Exact filing/issue dates and a source example number are not invented. The source metadata uses an empty author array rather than attributing the corporate holder to an individual designer.
+**Assignee:** Zeiss Ikon AG, printed as “Zeiss Ikon Akt.-Ges. in Dresden”
 
-This is a private source-pending D-line infinity diagnostic. It is not a retail Sonnar, Biotar or other manufactured lens attribution.100mm is an illustrative representation of the source100-unit prescription, not an established absolute focal length or film format.
+**Published:** 23 May 1936
+
+**Patented from:** 11 February 1934; grant announced 30 April 1936
+
+**Example details:** The sole numerical example (“ein Zahlenbeispiel”), specification p. 1 and drawing sheet.
+
+The patent describes a fast photographic objective with seven spherical elements in four air-spaced groups. Its table states F = 100 and an aperture ratio of 1:2. The model computes to EFL 99.860188 mm, 0.14% below the stated value, while retaining the published radii, thicknesses and optical constants.
+
+On the DPMA copy, the printed plus signs at R7 and R11 are struck through and minus signs written in. The model follows those corrections, −298.6 and −297.0 mm. The drawing supports both signs: R7 is concave toward the object and the last element is biconvex. Element 4's Abbe number is clearly 31.0, rather than the 34.0 produced by text recognition.
+
+The 1 + 3 + 2 + 1 arrangement is related to the Contax Sonnar 5 cm f/2's 1 + 3 + 2 construction, with a positive rear singlet added. No product is documented for this prescription.
 
 ## Optical Architecture
 
-Seven spherical elements form four air groups,1|3|2|1. R4/R5 cement the triplet and R8 cements the doublet. The three source air intervals remain0.6,7.2 and15.6mm; track remains72.5mm at the stated representation scale. No asphere, baffle, plate, new glass or source gap alteration is introduced.
+The four components are a positive front singlet, a net-negative cemented triplet, a weakly positive cemented doublet and a positive rear singlet. Their computed focal lengths in air are approximately +114.68, −148.08, +598.40 and +124.15 mm. The triplet joins elements 2–4 at R4 and R5; the doublet joins elements 5–6 at R8.
 
-Independent isolated air-group D-line matrices give approximate component focal lengths+114.680/−148.078/+598.396/+124.148mm. Thus the source-transcribed architecture has a positive front singlet, negative compound triplet, weak positive doublet and positive rear singlet. This describes the supplied optical data, not a commercial family identity or a measured component focal length.
+The three published air separations are 0.6, 7.2 and 15.6 mm. The first-to-last vertex distance is 72.5 mm. The patent emphasizes the strongly curved collecting cemented surface of the third component as a means of correcting coma introduced by the preceding component's strongly curved glass-to-air surface.
 
-The source supplies no iris station or diameter. A midpoint trial in the7.2mm gap would intersect the R6 capped envelope. The provisional model instead places the iris6.33mm after R6 and0.87mm before R7, z31.63mm. This is a clearly derived physical-space assumption, not a published stop. No source field is printed;0–6° half-field is a chosen diagnostic request only.
+The patent gives no stop position or opening. The inferred iris lies 6.33 mm after R6 and 0.87 mm before R7, inside the published 7.2 mm air space, at 31.63 mm from the first vertex. This places it beyond the concave R6 rim; a stop at the gap midpoint would intersect that element. Its paraxial radius is 15.738134 mm at the nominal f/2 setting.
 
 ## Element-by-Element Analysis
 
-### L1 — Positive front meniscus
+The focal lengths below describe each element considered separately in air. Cemented-component powers include the shared interfaces and differ from those individual values.
 
-nD=1.6203,νD=60.4. Glass is unmatched literal source data, without catalog substitution. Its isolated air-group focal length is+114.680mm in the conditional D-line calculation.
+### Element 1 — Positive Meniscus
 
-The+51.8/+179.3mm faces enclose8.0mm. Estimated clear radii are26/26mm. The following0.6mm air gap widens away from the axis; it is not changed or treated as a geometry blocker.
+nd = 1.6203, ν = 60.4. Glass: Unmatched. f = +114.68 mm.
 
-### L2 — Front element of the cemented triplet
+The front collector has radii +51.8/+179.3 mm and thickness 8.0 mm. Its estimated clear radii are 26/26 mm. The following 0.6 mm air interval widens away from the axis.
 
-nD=1.6716,νD=47.2. Glass is unmatched literal source data. An isolated in-air focal length is not assigned to this bonded element.
+### Element 2 — Positive Meniscus
 
-R3/R4 are+34.0/+76.4mm with8.9mm thickness and24mm estimated caps. R4 is a cement bond to L3, not an air surface or diaphragm.
+nd = 1.6716, ν = 47.2. Glass: Unmatched. f = +84.13 mm.
 
-### L3 — Inner crown-like element of the triplet
+This is the positive front member of the cemented triplet. Its +34.0/+76.4 mm surfaces enclose 8.9 mm of glass, with estimated clear radii of 24/24 mm. R4 is the cemented interface to element 3.
 
-nD=1.5163,νD=64.0. This is a source pair, not proof of a modern named glass or a calibrated dispersion curve.
+### Element 3 — Positive Meniscus
 
-The+76.4/+707.3mm boundaries enclose5.0mm. The weak R5 curvature is preserved literally and is the cement bond to L4. Estimated clear radii are24/22.2mm.
+nd = 1.5163, ν = 64.0. Glass: K-BK7 (Sumita), a catalogue match. f = +165.45 mm.
 
-### L4 — Rear element of the triplet
+The low-index middle member of the triplet has radii +76.4/+707.3 mm and thickness 5.0 mm. Its clear radii are estimated as 24/22.2 mm. R5 is the cemented interface to element 4. The catalogue name does not establish the historical supplier.
 
-nD=1.6890,νD=31.0. The Abbe value follows the supplied original-reading note, not OCR34.0. Glass remains unmatched.
+### Element 4 — Negative Meniscus
 
-R5/R6 are+707.3/+22.3mm with2.8mm thickness. Estimated caps are22.2/15.3mm. R6 is the limiting axial optical cap at the nominal f/2 opening, and its sag governs the narrow physical interval available to the estimated iris. The triplet as a whole has isolated D-line focal length−148.078mm; no per-element in-air focal lengths are substituted for its bonded behavior.
+nd = 1.6890, ν = 31.0. Glass: S-TIM28 (Ohara), a catalogue match. f = −33.48 mm.
 
-### L5–L6 — Cemented weak positive doublet
+The strong negative rear member gives the complete triplet its net-negative power. Its +707.3/+22.3 mm faces enclose 2.8 mm of glass. The estimated front clear radius is 22.2 mm; the 15.3 mm rear radius follows the clear zone ending before the drawing's chamfer. R6 limits the axial beam.
 
-L5:nD=1.5017,νD=56.5. L6:nD=1.6716,νD=47.2. Both retain unmatched literal source values. The isolated pair focal length is+598.396mm in the supplied D-line prescription.
+### Element 5 — Biconcave Negative
 
-R7/R8/R9 are−298.6/+30.2/+285.9mm with3.9/10.8mm thicknesses. R8 is cemented. The R7 negative sign is attributed upstream but not locally confirmed from the overwritten original and drawing. Estimated caps are15.3/18/18mm. This group is not assigned a source field, actual format or production identity.
+nd = 1.5017, ν = 56.5. Glass: Unmatched. f = −54.45 mm.
 
-### L7 — Positive rear singlet
+The negative front member of the rear doublet has radii −298.6/+30.2 mm and thickness 3.9 mm. Its front clear radius is 17.8 mm from the drawing; the shared R8 radius is estimated as 18 mm.
 
-nD=1.6716,νD=47.2. Glass is the repeated literal source pair, not an inferred vendor match. Isolated air-group focal length is+124.148mm for the supplied sign convention.
+### Element 6 — Positive Meniscus
 
-The+114.4/−297.0mm faces enclose9.7mm, with17/17mm estimated caps. The overwritten R11 minus remains part of the explicit source-reading hold. The final Gaussian image gap is computed, not published or fitted.
+nd = 1.6716, ν = 47.2. Glass: Unmatched. f = +49.44 mm.
+
+This positive member nearly balances element 5, leaving a weakly converging doublet. Its +30.2/+285.9 mm faces enclose 10.8 mm of glass. Both clear radii are estimated as 18 mm. The curved cemented interface is the collecting surface emphasized in the patent's claim.
+
+### Element 7 — Biconvex Positive
+
+nd = 1.6716, ν = 47.2. Glass: Unmatched. f = +124.15 mm.
+
+The positive rear singlet has radii +114.4/−297.0 mm and thickness 9.7 mm. Both clear radii are 25 mm, following the drawing, which shows this element approximately as tall as the front singlet.
 
 ## Glass Identification and Selection
 
-All seven nD/νD values are retained. No spectral curves, individual nC/nF/ng values, anomalous partial dispersion or exact catalog glasses are supplied. Every element declares sodium-D reference, and quantitative optical/MTF claims are D-line only. Native reference wavelength is589.2938nm.
+The table prints n_d and ν without defining a wavelength. The model uses lowercase d as printed, with an explanatory note on every element; catalogue comparisons do not conclusively identify the intended spectral line. All seven printed index/Abbe pairs remain unchanged.
 
-The native app may approximate other color channels from Abbe values; their rendered panels are checked for UI health only. No calibrated broadband, apochromatic, coating, diffraction, transmission or measured throughput claim is made.
+Two catalogue rows match closely enough to supply dispersion curves: Sumita K-BK7 for element 3 (1.51633/64.1, Δn +0.000030, Δν +0.10) and Ohara S-TIM28 for element 4 (1.688931/31.07545, Δn −0.000069, Δν +0.07545). These numerical matches do not identify the 1930s glasses or their manufacturers. The other five elements remain unmatched; the repeated 1.6716/47.2 pair is used in elements 2, 6 and 7.
+
+The patent supplies no individual C-, F- or g-line indices or partial-dispersion data. Colour calculations for unmatched glasses therefore depend on the printed Abbe numbers and an estimated dispersion relation. The prescription does not establish apochromatic performance, coatings, transmission or measured MTF.
 
 ## Focus Mechanism
 
-No finite conjugate or focusing mechanism is printed in the supplied evidence. Only infinity in the transcribed front-to-rear direction is tested, with no invented finite state or motion. The ordinary app's effectively infinite close-focus sentinel carries this private diagnostic scope.
+Infinity focus only; the patent gives no close-focus data. No finite-focus movement is inferred. The final air gap is the computed paraxial back focal distance, 41.319611 mm, placing the image plane 113.819611 mm behind the first vertex. The patent prints no back focus.
 
-Independent reduced-angle computation yields EFL99.860188267mm and rear-vertex BFD41.319610882mm. Relative to the source nominal100-unit illustration, EFL differs by−0.139812%; no rescaling removes this difference. The Gaussian detector is at z113.819611mm from the first vertex, derived from the source-transcribed optical data.
+## Aperture, Field and Model Limits
 
-## Iris Assumption, Gap and Cap Geometry
+The nominal f/2 setting and the real-ray aperture differ. At the nominal entrance radius of 24.965047 mm, the axial marginal ray reaches R6 at 15.773578 mm, beyond its 15.3 mm clear radius. The largest passing entrance radius is about 24.123835 mm, corresponding to a geometric entrance aperture of f/2.069741. Opening the iris alone does not remove that limit.
 
-Estimated caps are[26,26,24,24,22.2,15.3,15.3,18,18,17,17]mm. They are not measured rims, source aperture readings or surveyed outer blanks. Native default geometry passes with zero render trimming and no per-lens override. Independent minimum glass land is2.051969mm; minimum R6–R7 air clearance is0.731203mm.
+R6 remains at the drawing-supported clear zone rather than extending across its chamfer. The wider R7 and rear-singlet rims remove additional restrictions without altering the stop, glass thicknesses or air separations. Surface geometry is consistent with those rims and the inferred iris position.
 
-The common15.3mm R6/R7 rim consumes89.844403% of the7.2mm gap's center separation, below the unmodified90% default. That is a tight bound, not a generous engineering tolerance. Increasing both gap caps by0.005 or0.010mm retains zero trimming in these controls. A+0.020mm trial builds but produces0.008741mm render trimming; it is rejected by the explicit zero-trim control and is not adopted. This is not represented as a native build exception or an allowed source repair.
+No field angle, film format or image circle is printed. The displayed ±6° field is illustrative; its real chief ray reaches approximately 10.51 mm image height. That height is not a claimed format. The chief ray also clears every rim at 23°, but this does not establish an adequately corrected or fully illuminated field there. Some marginal rays are clipped even within the illustrative field.
 
-At the actual capped envelope, the chosen iris has0.253440mm clearance after R6 and0.477763mm before R7. A midpoint placement would have−2.476560mm front clearance and physically intersects the R6 envelope; it is not authored. These bounds use the actual capped faces, not an unbounded spherical extension to the full iris radius or an invented outer blank.
+## Sources
 
-The0.6mm front air interval and15.6mm rear air interval have their minima on axis and widen; neither is changed. Iris-station±0.1mm controls preserve the total7.2mm gap, every powered vertex, EFL and source glass. Cap/iris sensitivity covers17 chosen fields from0° to6° with independent cap checks and no unresolved categories. None of the trials is used to force nominal f/2.
-
-## Nominal Versus Modeled Aperture
-
-Source nominal f/2 stays unchanged. The app's paraxial physical iris radius is15.738134mm. The unbounded exact source f/2 marginal at entrance height24.965047mm would reach the estimated stop at15.798888mm, consistent with the upstream seed. It reaches R6/R7 at15.773578/15.743190mm, exceeding the canonical15.3mm caps.
-
-Actual canonical axial acceptance ends at entrance radius24.123835mm, giving **modeled geometric entrance equivalent f/2.069741**. This is not an image-space sine f-number, exact manufactured iris or measured T-stop. The source f/2 marginal is first clipped at R6. Iris radius±2% leaves this cap limit unchanged; iris opening alone cannot restore nominal f/2.
-
-The hypothetical equal gap caps needed to encompass the nominal R6 height would consume96.576791% of the center gap. Even the smaller radius needed by both faces would consume96.132967%. These are independent calculations only, not authored models, overrides or a request to relax the default. The actual file remains at the original gaps and default90% rule.
-
-## Physical Rays and Miss Classification
-
-Five chosen positive fields use865 chief-centered physical3D samples each. All chiefs converge and land on the Gaussian detector. Counts are unweighted diagnostics, not photometric transmission.
-
-|Half-field|Arrivals|Blocks|Native bounded-cap noBracket events within blocks|Failed|Unresolved|
-|---|---:|---:|---:|---:|---:|
-|0°|793|72|0|0|0|
-|1.5°|784|81|0|0|0|
-|3°|768|97|0|0|0|
-|4.5°|764|101|0|0|0|
-|6°|776|89|13|0|0|
-
-The4,325 samples yield3,885 arrivals and440 blocks. On axis,72 samples first clip at R6. At6°,13 native bounded-cap noBracket cases are already classified blocked; an independent positive-forward first-surface hit lies outside the26mm R1 cap in every case. The smallest excess is1.727435329mm. These are modeled cap misses, not hidden propagation failures or admitted rays. Native acceptance is unchanged.
-
-All valid native optical hit coordinates match a separate vector Snell/selected-sphere implementation within1.54e-13mm. Signed physical controls at−3°/−6° preserve the matching outcomes and hit symmetry. The derived diagnostic image circle is21.013448mm from the±6° chief height, not a source format or published field.
-
-### Reproducing the upstream1801-ray issue
-
-A separate25radial×72azimuth+chief grid uses the native chief and the same nominal entrance launch radius. It reproduces9 unbounded independent failures at3° and25 at6°. The upstream complete seed record was not supplied, so count agreement is not a claim of byte-exact upstream seed custody.
-
-|Half-field|Arrivals|Blocks|Independent uncapped failures|Proved blocked earlier|Unresolved|
-|---|---:|---:|---:|---:|---:|
-|0°|1657|144|0|0|0|
-|3°|1651|150|9|9|0|
-|6°|1650|151|25|25|0|
-
-All34 unbounded failures occur after an actual earlier R1 cap block. At6°,12 have explicit native clipped hits;13 are native bounded first-cap misses with positive forward R1 roots outside the cap. The latter have no native hit entry, so they need the separate analytic first-cap proof before the later unbounded failure. Initial bookkeeping treated that no-hit case separately; the final classification retains the original events, adds the source-order proof and restores the zero-unresolved assertion. The initial diagnostic probe is preserved. No ray, sample, pupil, field or source parameter is removed or changed.
-
-## D-Line Geometric MTF
-
-Native geometric D-line MTF at the Gaussian detector converges at grids64/128/128 for fields0°/3.010561°/approximately6°. Middle field is a fraction of image height, not an angle midpoint. Frequencies are[0,10,20,40]lp/mm. All tested grids have zero failed, unaimed and unknown-flux samples while retaining actual clipping.
-
-A separate fixed-grid512 replay reproduces the native selected-grid curves. Center/middle/edge256→512 maximum changes are0.000216691/0.000170023/0.000208528. These are observed numerical changes, not rigorous error bounds. Zero sampled unknown flux does not certify all continuous or unsampled pupil positions.
-
-The results are conditional D-line reconstruction diagnostics at an illustrative scale. No source MTF curve was supplied for comparison, and no broadband, diffraction, retail coverage or measured intensity is inferred. The0–6° range remains a chosen bench scope because no source field is printed.
-
-## Native App, Deduplication and Source Disposition
-
-Fresh main4027fd20d095a1dba4ee3f46188dc70dad858055 is negative across1,188 re-evaluated source bodies. The retained main/21PR-head body cache plus2,438 historical evaluated profiles totals4,816 records, also negative under whole-radius normalized scale and reversed-negated necessary identity screening. Source-body hashes are checked. Readable local scans include43 ZIPs/24,355 TS-member occurrences,16,659 local TS bodies,1,151 TAR TS bodies and205 JSON-profile occurrences. These overlap and are not unique models. All nine models in the previous three ZIPs are within this bounded readable coverage; no inaccessible/private-universe claim is made.
-
-The known PR-list403 is not retried. PR coverage remains21 retained full heads rather than a refreshed live list. The DPMA source GET is separately blocked, with no PDF received and no alternate route attempted. This remains an actual source hold, not a clean qualified model or delivery/count.
-
-319 targeted existing tests in five files, repository/model types, formatting, native serialization, exact desktop Builder export roundtrip and desktop/mobile viewing pass. Initial viewer setup failed because generated client metadata was absent; the metadata generator's freshness guard then correctly rejected missing Git ancestry in the shallow snapshot. Existing local parent history was restored and normal generation passed, without bypassing the guard or changing app source. Both failed setup attempts and successful replay are retained.
-
-## Sources and Next Gate
-
-The source handoff and exact attempted official URL are in source/LITERAL.json and evidence/source-access.json. No local original PDF hash or pixel inspection is asserted. A readable authorized original table/cross-section/header is needed to inspect the R7/R11 overwritten minus signs, source traversal/drawing and source identity/date details as requested. Until that source gate is resolved, this is a numerically tested private prototype only.
-
-No retail identity, finite focus, source field, measured iris/rim, global workaround, archive, package, upload, customer send, catalog registration, commit or GitHub edit occurs. Existing checkpoints and all three prior ZIPs remain protected and verified unchanged.
+1. Reichspatentamt, [DE 630,224 C, _Photographisches Objektiv_](https://depatisnet.dpma.de/DepatisNet/depatisnet?window=1&space=menu&content=treffer&action=pdf&docid=DE000000630224A), issued 23 May 1936. DPMA facsimile: front cover for dates and applicant; specification p. 1 for the sole numerical example, corrected signs and claim; drawing sheet for component shapes and clear-rim estimates.
+2. [US 1,998,704 A](https://patents.google.com/patent/US1998704A/en), Example I, for comparison with the six-element, three-group Sonnar construction. This is a structural comparison, not evidence that DE 630,224 entered production.
+3. Sumita K-BK7 and Ohara S-TIM28 catalogue dispersion data, for the numerical glass matches described above; historical supplier and melt remain unknown.

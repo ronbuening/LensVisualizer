@@ -1,116 +1,144 @@
-import type { LensDataV2Input } from "../repo/src/types/lensDataV2.js";
-const data = {
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * DE 630,224 C, sole numerical example, F = 100 and f/2; dimensions are in mm.
+ * Radii, thicknesses, air separations, indices and Abbe numbers follow the table.
+ * On the DPMA copy, the printed plus signs at R7 and R11 are struck through
+ * and minus signs written in; the model follows those corrections.
+ * The stop is inferred, 6.33 mm after R6 and 0.87 mm before R7. R7 and the rear
+ * singlet rims follow the drawing; the other clear radii are estimates.
+ * R6 retains its 15.3 mm clear radius, limiting real-ray acceptance to about f/2.07.
+ * The image plane is the computed paraxial one; the illustrative ±6° field
+ * is not stated in the patent.
+ */
+const LENS_DATA = {
   schema: 2,
-  key: "zeiss-ikon-de630224-source-pending-dline-diagnostic",
-  maker: null,
-  name: "ZEISS IKON DE630224 — SOURCE-PENDING DIAGNOSTIC",
-  subtitle:
-    "Patent-only D-line infinity · nominal f/2 / cap-limited≈f/2.070 · estimated0–6° diagnostic field",
-  visible: false,
+  key: "carl-zeiss-jena-100mm-f2-de630224",
+  maker: "Carl Zeiss Jena",
+  name: "CARL ZEISS JENA 100mm f/2 (DE 630,224 Design)",
+  subtitle: "DE 630,224 C, sole example — Sonnar-related four-group design",
+  visible: true,
   source: {
-    patentNumber: "DE 630224",
+    patentNumber: "DE 630,224 C",
+    example: { label: "Sole example", id: null },
     patentYear: 1936,
     authors: [],
-    assignees: ["Zeiss Ikon"],
-    sdSource: "heuristic",
+    assignees: ["Zeiss Ikon AG"],
   },
   catalog: {
-    imageCircleMm: 21.01344842179863,
     elementCount: 7,
     groupCount: 4,
     focalLengthMm: {
-      design: 100,
+      design: 99.86,
     },
     fNumber: {
       design: 2,
     },
-    specs: [
-      "7E/4G · 1|3|2|1 · NO RETAIL SONNAR/BIOTAR ATTRIBUTION",
-      "SOURCE NOMINAL f/2; ESTIMATED R6 CAP LIMITS ENTRANCE≈f/2.070",
-      "ORIGINAL R7/R11 MINUS SIGNS ATTRIBUTED UPSTREAM; LOCAL SCAN READ BLOCKED",
-      "LITERAL OPTICS/GAPS; ESTIMATED STOP6.33/.87 IN7.2mm GAP",
-      "DEFAULT GEOMETRY ONLY · NO RAISE TO FORCE f/2",
-      "NO SOURCE FIELD:0–6° IS ONLY A CHOSEN DIAGNOSTIC REQUEST",
-      "D-LINE INFINITY · NO FINITE FOCUS OR CALIBRATED SPECTRUM",
-    ],
+    specs: ["7 ELEMENTS / 4 GROUPS", "ALL SPHERICAL", "DESIGN F/2"],
   },
   elements: [
     {
       id: 1,
       name: "L1",
-      label: "L1",
-      type: "Source Spherical Element",
+      label: "Element 1",
+      type: "Positive Meniscus",
       nd: 1.6203,
       vd: 60.4,
-      indexReference: "D",
-      glass:
-        "Unmatched (literal source-transcribed nD/V, no catalog substitution, D-line diagnostic)",
+      indexReference: "d",
+      indexReferenceNote:
+        "The patent prints n_d without defining its wavelength; catalogue comparisons do not settle the line.",
+      focalLengthMm: 114.68,
+      glass: "Unmatched (nd 1.6203 / ν 60.4)",
+      role: "Positive front collecting element",
     },
     {
       id: 2,
       name: "L2",
-      label: "L2",
-      type: "Source Spherical Element",
+      label: "Element 2",
+      type: "Positive Meniscus",
       nd: 1.6716,
       vd: 47.2,
-      indexReference: "D",
-      glass:
-        "Unmatched (literal source-transcribed nD/V, no catalog substitution, D-line diagnostic)",
+      indexReference: "d",
+      indexReferenceNote:
+        "The patent prints n_d without defining its wavelength; catalogue comparisons do not settle the line.",
+      focalLengthMm: 84.13,
+      glass: "Unmatched (nd 1.6716 / ν 47.2)",
+      role: "Positive front member of the cemented triplet",
+      cemented: "C1",
     },
     {
       id: 3,
       name: "L3",
-      label: "L3",
-      type: "Source Spherical Element",
+      label: "Element 3",
+      type: "Positive Meniscus",
       nd: 1.5163,
       vd: 64,
-      indexReference: "D",
-      glass:
-        "Unmatched (literal source-transcribed nD/V, no catalog substitution, D-line diagnostic)",
+      indexReference: "d",
+      indexReferenceNote:
+        "The patent prints n_d without defining its wavelength; catalogue comparisons do not settle the line.",
+      focalLengthMm: 165.45,
+      glass: "K-BK7 (Sumita)",
+      role: "Low-index positive middle member of the cemented triplet",
+      cemented: "C1",
     },
     {
       id: 4,
       name: "L4",
-      label: "L4",
-      type: "Source Spherical Element",
+      label: "Element 4",
+      type: "Negative Meniscus",
       nd: 1.689,
       vd: 31,
-      indexReference: "D",
-      glass:
-        "Unmatched (literal source-transcribed nD/V, no catalog substitution, D-line diagnostic)",
+      indexReference: "d",
+      indexReferenceNote:
+        "The patent prints n_d without defining its wavelength; catalogue comparisons do not settle the line.",
+      focalLengthMm: -33.48,
+      glass: "S-TIM28 (Ohara)",
+      role: "Strong negative rear member of the cemented triplet",
+      cemented: "C1",
     },
     {
       id: 5,
       name: "L5",
-      label: "L5",
-      type: "Source Spherical Element",
+      label: "Element 5",
+      type: "Biconcave Negative",
       nd: 1.5017,
       vd: 56.5,
-      indexReference: "D",
-      glass:
-        "Unmatched (literal source-transcribed nD/V, no catalog substitution, D-line diagnostic)",
+      indexReference: "d",
+      indexReferenceNote:
+        "The patent prints n_d without defining its wavelength; catalogue comparisons do not settle the line.",
+      focalLengthMm: -54.45,
+      glass: "Unmatched (nd 1.5017 / ν 56.5)",
+      role: "Negative front member of the rear cemented doublet",
+      cemented: "C2",
     },
     {
       id: 6,
       name: "L6",
-      label: "L6",
-      type: "Source Spherical Element",
+      label: "Element 6",
+      type: "Positive Meniscus",
       nd: 1.6716,
       vd: 47.2,
-      indexReference: "D",
-      glass:
-        "Unmatched (literal source-transcribed nD/V, no catalog substitution, D-line diagnostic)",
+      indexReference: "d",
+      indexReferenceNote:
+        "The patent prints n_d without defining its wavelength; catalogue comparisons do not settle the line.",
+      focalLengthMm: 49.44,
+      glass: "Unmatched (nd 1.6716 / ν 47.2)",
+      role: "Positive rear member of the weakly converging cemented doublet",
+      cemented: "C2",
     },
     {
       id: 7,
       name: "L7",
-      label: "L7",
-      type: "Source Spherical Element",
+      label: "Element 7",
+      type: "Biconvex Positive",
       nd: 1.6716,
       vd: 47.2,
-      indexReference: "D",
-      glass:
-        "Unmatched (literal source-transcribed nD/V, no catalog substitution, D-line diagnostic)",
+      indexReference: "d",
+      indexReferenceNote:
+        "The patent prints n_d without defining its wavelength; catalogue comparisons do not settle the line.",
+      focalLengthMm: 124.15,
+      glass: "Unmatched (nd 1.6716 / ν 47.2)",
+      role: "Positive rear collecting singlet",
     },
   ],
   surfaces: [
@@ -163,7 +191,7 @@ const data = {
       label: "7",
       R: -298.6,
       d: 3.9,
-      sd: 15.3,
+      sd: 17.8,
       medium: 5,
     },
     {
@@ -183,20 +211,19 @@ const data = {
       label: "10",
       R: 114.4,
       d: 9.7,
-      sd: 17,
+      sd: 25,
       medium: 7,
     },
     {
       label: "11",
       R: -297,
       d: 41.31961088181356,
-      sd: 17,
+      sd: 25,
     },
   ],
   focus: {
-    closeFocusM: 1000000000000000,
-    description:
-      "Provisional patent-only DE630224 source-transcribed D-line infinity diagnostic. Official scan GET blockedHTTP403: local overwritten-minus/drawing inspection remains a source gate, no qualification claim. No individual inventor supplied. Literal R/d/nD/V retained, L4V31.0. Stop and caps are estimates; source nominalf2 is separate from cap-limited≈f2.070. No printed field;0-6degrees is a diagnostic request with clipping. No retail Sonnar/Biotar, finite focus or calibrated spectral claim.",
+    closeFocusM: 1e15,
+    description: "Infinity focus only; the patent gives no close-focus data.",
   },
   aperture: {
     nominalFNumber: 2,
@@ -230,8 +257,12 @@ const data = {
       toSurface: "11",
     },
   ],
+  doublets: [
+    { text: "C1", fromSurface: "3", toSurface: "6" },
+    { text: "C2", fromSurface: "7", toSurface: "9" },
+  ],
   layout: {
     yScFill: 0.5,
   },
 } satisfies LensDataV2Input;
-export default data;
+export default LENS_DATA;
