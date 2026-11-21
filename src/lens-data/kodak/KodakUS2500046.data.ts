@@ -3,17 +3,18 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 /**
  * US 2,500,046 A, sole numerical example in Figure 2, in millimetres.
  * Four-element Petzval objective with a cemented front doublet and spherical surfaces.
+ * The patent prints a 100 mm focal length, f/2, and D-line glass indices.
  * The stop follows the patent's principal-ray crossing 18.9 mm behind the front
  * doublet; its diameter and the clear semi-diameters are inferred. The image plane
- * is the computed paraxial back focus, 56.452649 mm, against the printed 56.5 mm.
- * Figure 4 supplies the modeled 7-degree half-field.
+ * is the computed paraxial back focus, 56.45 mm, against the printed 56.5 mm.
+ * Figure 4 supplies the modeled 7.0-degree half-field.
  */
 const LENS_DATA = {
   schema: 2,
   key: "kodak-100mm-f2-us2500046",
   maker: "Kodak",
   name: "KODAK 100mm f/2 (US 2,500,046 Design)",
-  subtitle: "US 2,500,046 A, sole example — Petzval-type objective",
+  subtitle: "US 2,500,046 A, sole example — Eastman Kodak / Schade",
   visible: true,
   source: {
     patentNumber: "US 2,500,046 A",
@@ -36,7 +37,7 @@ const LENS_DATA = {
     elementCount: 4,
     groupCount: 3,
     imageCircleMm: 24.56,
-    specs: ["4 ELEMENTS / 3 GROUPS", "ALL SPHERICAL", "DESIGN F/2"],
+    specs: ["4 ELEMENTS / 3 GROUPS", "ALL SPHERICAL", "DESIGN f = 100 mm", "DESIGN F/2"],
   },
   elements: [
     {
