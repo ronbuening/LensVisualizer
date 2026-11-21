@@ -9,14 +9,14 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Indices refer to the D line (taken as sodium, 589.3 nm).
  * The stop is inferred 11.4 mm after R6, leaving 10.1 mm before R7; all clear
  * semi-diameters are inferred. The image plane is the computed paraxial back
- * focus, 52.933704 mm behind R11. Neither stop nor back focus is printed.
+ * focus, 52.93 mm behind R11. Neither stop nor back focus is printed.
  */
 const LENS_DATA = {
   schema: 2,
   key: "dallmeyer-septac-100mm-f15-gb553844",
   maker: "Dallmeyer",
   name: "DALLMEYER SEPTAC 100mm f/1.5 (GB 553,844 Design)",
-  subtitle: "GB 553,844 A, preferred form — Septac f/1.5 family",
+  subtitle: "GB 553,844 A, preferred form — Dallmeyer / Langton",
   visible: true,
   source: {
     patentNumber: "GB 553,844 A",
@@ -45,7 +45,7 @@ const LENS_DATA = {
     fNumber: {
       design: 1.5,
     },
-    specs: ["7 ELEMENTS / 4 GROUPS", "ALL SPHERICAL", "DESIGN F/1.5"],
+    specs: ["7 ELEMENTS / 4 GROUPS", "ALL SPHERICAL", "DESIGN f = 100 mm", "DESIGN F/1.5"],
   },
   elements: [
     {
@@ -234,22 +234,22 @@ const LENS_DATA = {
   },
   groups: [
     {
-      text: "G1 · L1",
+      text: "G1 · Front collective",
       fromSurface: "1",
       toSurface: "2",
     },
     {
-      text: "G2 · L2–L4",
+      text: "G2 · Front dispersive",
       fromSurface: "3",
       toSurface: "6",
     },
     {
-      text: "G3 · L5–L6",
+      text: "G3 · Rear dispersive",
       fromSurface: "7",
       toSurface: "9",
     },
     {
-      text: "G4 · L7",
+      text: "G4 · Rear collective",
       fromSurface: "10",
       toSurface: "11",
     },

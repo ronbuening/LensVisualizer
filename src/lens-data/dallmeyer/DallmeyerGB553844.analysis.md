@@ -18,7 +18,7 @@ The patent gives radii, thicknesses and air spaces in terms of unit focal length
 
 The Septac family association rests on the [Oldlens listing](https://oldlens.com/septac%2050mmf15.html), which lists seven elements in four groups, and surviving [2 in f/1.5 Septac specimens](https://www.flintsauctions.com/auction/lot/lot-158---a-dallmeyer-septac-f15-2-lens/?lot=13234&sd=1). A [forum post](https://www.photrio.com/forum/threads/dallmeyer-septac-lens.75704/) reports “Pat 553,844” engraved on the front ring. The 1942 application and matching construction support the family association, but do not establish the exact prescription of any production specimen. Neither Septac nor Super-Six is named in the patent.
 
-The printed prescription computes to EFL 101.384348 mm, 1.384% above the nominal 100 mm implied by the table heading. Both independent readings agree with the printed values. The discrepancy remains unresolved, and the model retains the complete printed table.
+The printed prescription computes to EFL 101.38 mm, 1.4% above the nominal 100 mm implied by the table heading. The transcribed values agree with the page images. The discrepancy remains unresolved, and the model retains the complete printed table.
 
 ## Optical Architecture
 
@@ -71,19 +71,19 @@ The patent explicitly specifies the D line, taken as sodium at 589.3 nm, and Abb
 | L6       |     1.6435 |       48.3 | Unmatched   |
 | L7       |     1.6142 |       56.3 | Unmatched   |
 
-For example, Schott F2 gives approximately nD 1.619891 and νD 36.358, against L5's 1.6193 and 36.4. The similar dispersion does not establish a glass identity. The patent gives no C-, F- or g-line indices or partial dispersion. Colour calculations based on the Abbe numbers therefore remain estimates; D-line tracing provides the direct comparison with the printed prescription.
+For example, Schott F2 gives approximately nD 1.61989 and νD 36.36, against L5's 1.6193 and 36.4. The similar dispersion does not establish a glass identity. The patent gives no C-, F- or g-line indices or partial dispersion. Colour calculations based on the Abbe numbers therefore remain estimates; D-line tracing provides the direct comparison with the printed prescription.
 
 ## Focus Mechanism
 
-The model represents infinity focus only. The patent supplies no close-focus distances, focus travel or moving-group law. All four groups remain fixed, and the image plane is the calculated paraxial back focus, 52.933704 mm behind R11. The patent prints no back focus. Total first-vertex-to-image distance is 133.433704 mm.
+The model is focused at infinity. The patent supplies no close-focus distances, focus travel or moving-group law. All four groups remain fixed, and the image plane is the calculated paraxial back focus, 52.93 mm behind R11. The patent prints no back focus. Total first-vertex-to-image distance is 133.43 mm.
 
 ## Aperture, Field and Model Limits
 
-The stop position is inferred within the 21.5 mm R6–R7 air space: 11.4 mm behind R6 and 10.1 mm before R7, at 44.4 mm from the first vertex. Its computed semi-diameter is 19.679055 mm for a paraxial f-number of 1.5. The real-ray aperture is about f/1.51. A nominal f/1.5 marginal ray would reach a stop radius of 19.820987 mm.
+The stop position is inferred within the 21.5 mm R6–R7 air space: 11.4 mm behind R6 and 10.1 mm before R7, at 44.4 mm from the first vertex. Its computed semi-diameter is 19.679 mm for a paraxial f-number of 1.50. The real-ray aperture is about f/1.51. A nominal f/1.5 marginal ray would reach a stop radius of 19.821 mm.
 
-All clear semi-diameters are inferred. The smallest edge thickness is 1.65 mm (L7), and the central gap retains 4.659909 mm clearance. At the 21 mm central rims, the adjacent glass surfaces clear the inferred stop plane by 1.969080 mm and 2.690829 mm.
+All clear semi-diameters are inferred. The smallest edge thickness is 1.65 mm (L7), and the central gap retains 4.66 mm clearance. At the 21 mm central rims, the adjacent glass surfaces clear the inferred stop plane by 1.97 mm and 2.69 mm.
 
-The patent's approximately 50° useful field is treated as a full angle. The model traces to its 25° half-field, where the chief ray reaches an image height of approximately 45.617 mm and clears every current rim. The 91.23 mm image circle is twice that real chief-ray height, rounded to two decimals. It describes field extent at this model's scale, without specifying a film format. Peripheral bundles are vignetted, particularly at R8 and the final singlet; chief-ray coverage does not imply uniform illumination.
+The patent's approximately 50° useful field is treated as a full angle. At the 25.0° half-field, the chief ray reaches an image height of approximately 45.62 mm and clears every inferred rim. The 91.23 mm image circle is twice that real chief-ray height, rounded to two decimals. It describes field extent at this model's scale, without specifying a film format. Peripheral bundles are vignetted, particularly at R8 and the final singlet; chief-ray coverage does not imply uniform illumination.
 
 Single-radius changes (R2 4.1447 to 5.1447, R1 0.6607 to 0.6407, or R6 0.28096 to 0.28596 in the patent's units) would each give 100 mm, but nothing else in the patent supports any of them, and the page image is unambiguous. None is adopted. The printed table gives approximately +0.83 mm longitudinal spherical aberration at the rim and −0.16 mm at the half zone, with a sine-condition departure of about −1%. These are calculated properties, not aberration values published by the patent.
 
