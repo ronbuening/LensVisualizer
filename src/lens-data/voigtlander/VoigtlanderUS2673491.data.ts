@@ -115,7 +115,7 @@ const LENS_DATA = {
       vd: 48.1,
       indexReference: "d",
       focalLengthMm: 152.73,
-      glass: "LAF3 (spectral proxy; patent nd 1.7174 / ν 48.1; supplier and melt unspecified)",
+      glass: "LAF3 (spectral proxy; patent nd 1.71740 / ν 48.1; supplier and melt unspecified)",
       role: "Positive rear singlet that completes the rear refractive-index progression.",
     },
   ],

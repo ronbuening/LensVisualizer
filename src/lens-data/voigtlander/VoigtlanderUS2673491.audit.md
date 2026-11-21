@@ -63,7 +63,7 @@ The resulting first-order values are EFL 150.00 mm, paraxial f/2.00, back focus 
   - L1: `Unmatched (nd 1.67125 / ν 47.1)` → `N-BAF10 (spectral proxy; patent nd 1.67125 / ν 47.1; supplier and melt unspecified)`; Δnd = −0.00122, Δνd = +0.01, catalog minus printed at the d line; spectral proxy.
   - L2: `Unmatched (nd 1.67125 / ν 47.1)` → `N-BAF10 (spectral proxy; patent nd 1.67125 / ν 47.1; supplier and melt unspecified)`; Δnd = −0.00122, Δνd = +0.01, catalog minus printed at the d line; spectral proxy.
   - L3: `Unmatched (nd 1.69842 / ν 30.1)` → `S-TIM35 (spectral proxy; patent nd 1.69842 / ν 30.1; supplier and melt unspecified)`; Δnd = +0.00053, Δνd = +0.03, catalog minus printed at the d line; spectral proxy.
-  - L6: `Unmatched (nd 1.7174 / ν 48.1)` → `LAF3 (spectral proxy; patent nd 1.7174 / ν 48.1; supplier and melt unspecified)`; Δnd = −0.00040, Δνd = −0.12, catalog minus printed at the d line; spectral proxy.
+  - L6: `Unmatched (nd 1.7174 / ν 48.1)` → `LAF3 (spectral proxy; patent nd 1.71740 / ν 48.1; supplier and melt unspecified)`; Δnd = −0.00040, Δνd = −0.12, catalog minus printed at the d line; spectral proxy.
   - Spectral proxies are within 0.002 in index and 0.25 in Abbe number at the printed helium-d line. The printed indices and Abbe numbers are kept; the catalog rows supply only dispersion-curve shapes and do not identify historical suppliers or melts.
 
 ## Remaining Questions

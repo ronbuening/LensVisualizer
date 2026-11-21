@@ -40,9 +40,7 @@ The focal lengths below describe each element by itself in air; the elements in 
 | 6       | Biconvex Positive      |     1.6666 |      48.4 |                   +26.80 | Strong positive core of the rear triplet     |
 | 7       | Negative Meniscus      |     1.6072 |      56.7 |                   −48.33 | Negative rear member of the rear triplet     |
 
-- Element 3 — Glass: S-FSL5 (Ohara), spectral proxy.
-- Element 6 — Glass: BAF11 (Sumita), spectral proxy.
-- Element 7 — Glass: BACD2 (Hoya), spectral proxy.
+Glass: element 5 matches KF8 (Sumita); elements 3, 6 and 7 use S-FSL5 (Ohara), BAF11 (Sumita) and BACD2 (Hoya) as spectral proxies; elements 1, 2 and 4 are Unmatched.
 
 Element 1 is nearly plano-convex in appearance, although R2 is a finite positive radius and the element is a positive meniscus. Element 3 has a weakly curved rear face, while element 4 supplies the middle component's strong negative power. Element 6 supplies the principal positive power of the rear triplet, between two negative elements.
 

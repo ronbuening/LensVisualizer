@@ -59,7 +59,7 @@ The resulting EFL is 99.998 mm, paraxial f-number 1.80, back focus 52.32 mm, sto
 
 2026-11-21 glass review:
 
-- Element 5: `Unmatched (nD 1.61216 / ν 58)` → `P-SK60 (spectral proxy; patent nD 1.61216 / ν 58; supplier and melt unspecified)`, using Schott P-SK60 as a spectral proxy. Catalogue minus printed differences at the sodium D line are Δn = −0.00190 and Δν = −0.11.
+- Element 5: `Unmatched (nD 1.61216 / ν 58)` → `P-SK60 (spectral proxy; patent nD 1.61216 / ν 58.0; supplier and melt unspecified)`, using Schott P-SK60 as a spectral proxy. Catalogue minus printed differences at the sodium D line are Δn = −0.00190 and Δν = −0.11.
 - A spectral proxy must lie within 0.002 in index and 0.25 in Abbe number at the printed spectral line; the printed index and Abbe number are kept. The catalogue row supplies only the dispersion-curve shape and does not identify the historical supplier or melt.
 
 ## Remaining Questions

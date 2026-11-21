@@ -102,7 +102,7 @@ const LENS_DATA = {
       nd: 1.61216,
       vd: 58,
       indexReference: "D",
-      glass: "P-SK60 (spectral proxy; patent nD 1.61216 / ν 58; supplier and melt unspecified)",
+      glass: "P-SK60 (spectral proxy; patent nD 1.61216 / ν 58.0; supplier and melt unspecified)",
     },
   ],
   surfaces: [
