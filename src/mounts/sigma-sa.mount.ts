@@ -19,9 +19,10 @@
  * metering coupling [ssa-2, ssa-5].
  *
  * Angle convention: both rear photographs show the lens in its locked orientation (the pads line up
- * with the body pins). Slots, lugs and the index are stored in the insertion frame, with the index marks
- * aligned at 0°, by subtracting the lens dot's photographed 60° offset; the lock notch and the contacts
- * are stored at the body feature they meet when locked. The rotation lives only in `lockGeometry`.
+ * with the body pins), and the lens is drawn that way: lugs, lock notch and contacts sit where the
+ * photographs put them. `body-slot-n` is the body claw that retains lug n, drawn over that lug because the
+ * body claw edges were not scaled separately. Only the lens index is drawn at the body index (they line up
+ * for insertion, 60° anticlockwise of the locked dot). The rotation lives only in `lockGeometry`.
  *
  * JP H04-242732 A (Sigma, filed 1990) describes a three-claw mount with an axial spring-loaded lock pin
  * in the camera mount face and a tapered groove in the lens mount face [ssa-p1]. It states no angles or
@@ -48,17 +49,17 @@ const MANUALS = ["ssa-6", "ssa-7"]; // Sigma SD9 and SD14 user manuals
 const PHOTOS = ["ssa-3", "ssa-8"]; // body photographs: SA-300 and sd Quattro
 
 /**
- * Bayonet sectors in the insertion frame (index marks aligned at 0°), clockwise from 12 o'clock.
- * Photographed locked positions are these plus the 60° lock rotation.
+ * Lens lugs on a mounted, locked lens, clockwise from 12 o'clock, as photographed (camera-front frame).
+ * The lens enters 60° anticlockwise of this.
  */
 const LUGS = [
-  { n: 1, center: 326.5, start: 303, end: 350 },
-  { n: 2, center: 97.5, start: 72, end: 123 },
-  { n: 3, center: 203.5, start: 181, end: 226 },
+  { n: 1, center: 26.5, start: 3, end: 50 },
+  { n: 2, center: 157.5, start: 132, end: 183 },
+  { n: 3, center: 263.5, start: 241, end: 286 },
 ] as const;
 
 const LUG_NOTES =
-  "angles scaled from the bayonet outline on JAPB's 18-50 mm lens rear photo (lens-rear view of a locked lens; converted with theta_front = 360 - theta_rear, then less the lens dot's 60° offset); radii and axial thickness from Westin's measured section (±0.3 mm)";
+  "angles scaled from the bayonet outline on JAPB's 18-50 mm lens rear photo (lens-rear view of a locked lens; converted with theta_front = 360 - theta_rear); radii and axial thickness from Westin's measured section (±0.3 mm)";
 
 /** Contact angles as photographed on the lens, which match the SA-300 body pins to within about 1°. */
 const SHARED_CONTACT_ANGLES = [159.6, 165.4, 171.1, 176.9, 182.6, 194.4, 202.9];
@@ -238,7 +239,7 @@ const SIGMA_SA_MOUNT = {
       outerRadiusMm: v(23.6, "secondary", WS),
       depthMm: v(1.55, "secondary", WS),
       matesWith: `lens-lug-${lug.n}`,
-      shapeNotes: `receiving gap for lens lug ${lug.n}; ${LUG_NOTES}; the body claw edges were not scaled separately`,
+      shapeNotes: `body claw that retains lens lug ${lug.n}, drawn over that lug's locked position; ${LUG_NOTES}; the body claw edges were not scaled separately`,
     })),
     {
       featureId: "body-index-mark",

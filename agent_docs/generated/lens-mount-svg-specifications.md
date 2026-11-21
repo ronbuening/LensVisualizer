@@ -4240,9 +4240,9 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 #### Figures (selected profile `sigma-sa/sa-ib`)
 
-**Camera-side front view** — viewBox `-37 -39 74 76` · 50 elements in 4 layers · hash `00c6f7f3` ([standalone SVG](mounts/sigma-sa-camera-front.svg))
+**Camera-side front view** — viewBox `-37 -39 74 76` · 50 elements in 4 layers · hash `b74ddcf5` ([standalone SVG](mounts/sigma-sa-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-38 -40 76 78` · 50 elements in 4 layers · hash `1adad3fb` ([standalone SVG](mounts/sigma-sa-lens-rear.svg))
+**Lens-side rear view** — viewBox `-38 -40 76 78` · 50 elements in 4 layers · hash `7a1b033f` ([standalone SVG](mounts/sigma-sa-lens-rear.svg))
 
 **Axial / register schematic** — viewBox `-51 -41 58 78` · 16 elements in 2 layers · hash `9fcb77e0` ([standalone SVG](mounts/sigma-sa-axial.svg))
 
@@ -4252,9 +4252,9 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 |---|---|---|---|---|---|---|---|
 | `body-throat` | body_throat | `sigma-sa/base` | 0° | 0° | 360° | 0 | 22.2 |
 | `body-mount-ring` | mount_ring | `sigma-sa/base` | 0° | 0° | 360° | 22.2 | 30.5 |
-| `body-slot-1` | bayonet_receiving_slot | `sigma-sa/base` | 326.5° | 303° | 350° | 22.2 | 23.6 |
-| `body-slot-2` | bayonet_receiving_slot | `sigma-sa/base` | 97.5° | 72° | 123° | 22.2 | 23.6 |
-| `body-slot-3` | bayonet_receiving_slot | `sigma-sa/base` | 203.5° | 181° | 226° | 22.2 | 23.6 |
+| `body-slot-1` | bayonet_receiving_slot | `sigma-sa/base` | 26.5° | 3° | 50° | 22.2 | 23.6 |
+| `body-slot-2` | bayonet_receiving_slot | `sigma-sa/base` | 157.5° | 132° | 183° | 22.2 | 23.6 |
+| `body-slot-3` | bayonet_receiving_slot | `sigma-sa/base` | 263.5° | 241° | 286° | 22.2 | 23.6 |
 | `body-index-mark` | index_mark | `sigma-sa/base` | 0° | unknown | unknown | unknown | 30.5 |
 | `body-lock-pin` | lock_pin | `sigma-sa/base` | 252° | unknown | unknown | unknown | 26.5 |
 | `body-outer-bayonet` | outer_bayonet_lug | `sigma-sa/sa-ib-ob` | unknown | unknown | unknown | unknown | unknown |
@@ -4265,9 +4265,9 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 |---|---|---|---|---|---|---|---|
 | `lens-throat` | lens_throat | `sigma-sa/base` | 0° | 0° | 360° | 0 | 20.7 |
 | `lens-mount-ring` | lens_mount_ring | `sigma-sa/base` | 0° | 0° | 360° | 20.7 | 31 |
-| `lens-lug-1` | bayonet_lug | `sigma-sa/base` | 326.5° | 303° | 350° | 22.2 | 23.6 |
-| `lens-lug-2` | bayonet_lug | `sigma-sa/base` | 97.5° | 72° | 123° | 22.2 | 23.6 |
-| `lens-lug-3` | bayonet_lug | `sigma-sa/base` | 203.5° | 181° | 226° | 22.2 | 23.6 |
+| `lens-lug-1` | bayonet_lug | `sigma-sa/base` | 26.5° | 3° | 50° | 22.2 | 23.6 |
+| `lens-lug-2` | bayonet_lug | `sigma-sa/base` | 157.5° | 132° | 183° | 22.2 | 23.6 |
+| `lens-lug-3` | bayonet_lug | `sigma-sa/base` | 263.5° | 241° | 286° | 22.2 | 23.6 |
 | `lens-index-mark` | index_mark | `sigma-sa/base` | 0° | unknown | unknown | unknown | 26.6 |
 | `lens-lock-notch` | lock_notch | `sigma-sa/base` | 252° | unknown | unknown | unknown | 26.5 |
 
@@ -4311,7 +4311,7 @@ None — fully electronic.
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/sigma-sa.mount.ts` (57169 bytes, content hash `86e3026a`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/sigma-sa.mount.ts` (57069 bytes, content hash `839f6e9d`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
