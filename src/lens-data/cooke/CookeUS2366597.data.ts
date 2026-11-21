@@ -71,7 +71,8 @@ const LENS_DATA = {
       nd: 1.699,
       vd: 30.3,
       indexReference: "D",
-      glass: "Unmatched (nD 1.699 / ν 30.3)",
+      glass:
+        "S-TIM35 (spectral proxy; patent nD 1.699 / ν 30.3; supplier and melt unspecified)",
       cemented: "C1",
     },
     {
@@ -97,7 +98,8 @@ const LENS_DATA = {
       nd: 1.699,
       vd: 30.3,
       indexReference: "D",
-      glass: "Unmatched (nD 1.699 / ν 30.3)",
+      glass:
+        "S-TIM35 (spectral proxy; patent nD 1.699 / ν 30.3; supplier and melt unspecified)",
       cemented: "C2",
     },
     {
