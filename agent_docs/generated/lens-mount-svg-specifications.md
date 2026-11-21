@@ -3720,9 +3720,9 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 #### Figures (selected profile `pentax-645/af`)
 
-**Camera-side front view** — viewBox `-44 -46 88 90` · 64 elements in 5 layers · hash `a91432ee` ([standalone SVG](mounts/pentax-645-camera-front.svg))
+**Camera-side front view** — viewBox `-44 -46 88 90` · 64 elements in 5 layers · hash `7037aa0a` ([standalone SVG](mounts/pentax-645-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-43 -45 86 88` · 58 elements in 5 layers · hash `46d0842d` ([standalone SVG](mounts/pentax-645-lens-rear.svg))
+**Lens-side rear view** — viewBox `-43 -45 86 88` · 58 elements in 5 layers · hash `bd6f8f9f` ([standalone SVG](mounts/pentax-645-lens-rear.svg))
 
 **Axial / register schematic** — viewBox `-79 -48 88 92` · 12 elements in 2 layers · hash `be478445` ([standalone SVG](mounts/pentax-645-axial.svg))
 
@@ -3732,9 +3732,9 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 |---|---|---|---|---|---|---|---|
 | `body-throat` | body_throat | `pentax-645/base` | 0° | 0° | 360° | 0 | 30.6 |
 | `body-mount-ring` | mount_ring | `pentax-645/base` | 0° | 0° | 360° | 30.6 | 36 |
-| `body-slot-1` | bayonet_receiving_slot | `pentax-645/base` | 356.25° | 324.5° | 28° | 28.1 | 30.6 |
-| `body-slot-2` | bayonet_receiving_slot | `pentax-645/base` | 133.5° | 104° | 163° | 28.1 | 30.6 |
-| `body-slot-3` | bayonet_receiving_slot | `pentax-645/base` | 238° | 214.5° | 261.5° | 28.1 | 30.6 |
+| `body-slot-1` | bayonet_receiving_slot | `pentax-645/base` | 66° | 28° | 104° | 28.1 | 30.6 |
+| `body-slot-2` | bayonet_receiving_slot | `pentax-645/base` | 188.75° | 163° | 214.5° | 28.1 | 30.6 |
+| `body-slot-3` | bayonet_receiving_slot | `pentax-645/base` | 293° | 261.5° | 324.5° | 28.1 | 30.6 |
 | `body-index-mark` | index_mark | `pentax-645/base` | 305° | 305° | 305° | not_applicable | 36.5 |
 | `body-lock-pin` | lock_pin | `pentax-645/base` | unknown | unknown | unknown | unknown | unknown |
 
@@ -3744,9 +3744,9 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 |---|---|---|---|---|---|---|---|
 | `lens-throat` | lens_throat | `pentax-645/base` | 0° | 0° | 360° | 0 | 22.1 |
 | `lens-mount-ring` | lens_mount_ring | `pentax-645/base` | 0° | 0° | 360° | 30.6 | 35 |
-| `lens-lug-1` | bayonet_lug | `pentax-645/base` | 356.25° | 326.5° | 26° | 28.1 | 30.1 |
-| `lens-lug-2` | bayonet_lug | `pentax-645/base` | 133.5° | 107.5° | 159.5° | 28.1 | 30.1 |
-| `lens-lug-3` | bayonet_lug | `pentax-645/base` | 238° | 222.25° | 253.75° | 28.1 | 30.1 |
+| `lens-lug-1` | bayonet_lug | `pentax-645/base` | 309° | 293.5° | 324.5° | 28.1 | 30.1 |
+| `lens-lug-2` | bayonet_lug | `pentax-645/base` | 57.75° | 28° | 87.5° | 28.1 | 30.1 |
+| `lens-lug-3` | bayonet_lug | `pentax-645/base` | 192.25° | 166.5° | 218° | 28.1 | 30.1 |
 | `lens-index-mark` | index_mark | `pentax-645/base` | 305° | 305° | 305° | not_applicable | 35.5 |
 | `lens-lock-notch` | lock_notch | `pentax-645/base` | unknown | unknown | unknown | unknown | unknown |
 
@@ -3812,7 +3812,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/pentax-645.mount.ts` (73903 bytes, content hash `0e45f0c5`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/pentax-645.mount.ts` (74736 bytes, content hash `2191027f`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -3830,9 +3830,9 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 #### Open questions
 
-- Lug and slot angles are scaled from US6341902B1 FIGS. 2 to 5, which state no angle or scale. Readings repeat to about 1 degree between the old and new figures except lens lug 3, drawn 31.5 degrees wide in FIG. 4 and 45.5 degrees in FIG. 2. Lens lugs are stored at their slot centres; at a 62 degree turn the figure-derived insertion centres differ from that by about 0.5, 3 and 9 degrees for lugs 1, 2 and 3. _(A dimensioned Pentax bayonet drawing, a 645 / 645N service manual with mount-part drawings, or a measured lens and body. Searched: Google Patents pages for Asahi contact patents (US4653889A and JPS60243643A are K-mount; US5570153A is a joint Asahi/Nikon two-format bayonet), Ricoh manual downloads, Wikipedia, iso3200.org.)_
-- Lock rotation angle is not stated by any source found. The 60 degree value is the earlier estimate; the patent-figure lug and gap edges admit about 60 to 64 degrees. Direction (clockwise from the front) is stated by the maker manuals. _(Maker service data or a measured sample.)_
-- Lock pin and lock notch positions are unknown and render as placeholders at 0 degrees. Candidates: near the lens unlock button (about 235 degrees in the 645D manual drawing) or the unlabelled notch in lens lug 2 of US6341902B1 FIGS. 2 and 4 (180 degrees with the lens locked). _(Service manual exploded view or a measured body.)_
+- Claw and lug angles are scaled from US6341902B1 FIGS. 2 to 5, which state no angle or scale. Readings repeat to about 1 degree between the old and new figures except the narrow lug (lens-lug-1), drawn 31 degrees wide in FIG. 4 and 45.5 degrees in FIG. 2. Which sectors of the lens figures are lugs is inferred, not labelled: only the 59.5, 51.5 and 31 degree sectors fit through the 63.5, 59 and 47 degree body gaps. The bottom lug is drawn running 3.5 degrees past its claw (218 against 214.5 degrees), which is within the figure tolerance. _(A dimensioned Pentax bayonet drawing, a 645 / 645N service manual with mount-part drawings, or a measured lens and body. Searched: Google Patents pages for Asahi contact patents (US4653889A and JPS60243643A are K-mount; US5570153A is a joint Asahi/Nikon two-format bayonet), Ricoh manual downloads, Wikipedia, iso3200.org.)_
+- Lock rotation angle is not stated by any source found. The 60 degree value is the earlier estimate; turning the locked lugs back until each clears its entry gap admits about 60 to 64 degrees on the patent-figure edges. Direction (clockwise from the front) is stated by the maker manuals. _(Maker service data or a measured sample.)_
+- Lock pin and lock notch positions are unknown and render as placeholders at 0 degrees. Candidates: near the lens unlock button (about 235 degrees in the 645D manual drawing) or the unlabelled notch in lens-lug-3 of US6341902B1 FIGS. 2 and 4 (about 180 degrees with the lens locked). _(Service manual exploded view or a measured body.)_
 - Throat 61.2 mm is an uncited Wikipedia table value; no maker, patent or service figure for it was found. Every radius scaled from the patent figures (lug root 28.1, lug tip 30.1, pin circle 25.4, rear opening 22.1 mm) is a ratio of that throat and moves with it. The 70.87 mm register is also still secondary: the Ricoh 645 lens line-up PDF Wikipedia cites for it no longer states a register. _(Maker drawing or calibrated measurement.)_
 - Both outer diameters, the mount-ring outer radii, the index-mark radii, lug thickness, the lug-engagement plane, the aperture coupling (drawn outside the throat radius, which cannot be right) and the four mount screws still rest only on the unreferenced imagery source p645-2. The same patent-figure ratios would give about 67 mm (body ring) and 65 mm (lens ring) outer diameters, but those outer circles are not corroborated between figures and were not adopted. _(Measured sample or service manual. US6341902B1 FIGS. 2 and 4 also show three unlabelled arc windows in the lens rear ring that may include the aperture lever slot.)_
 - 645 AF pin positions follow the patent embodiment; that the production 645N / 645NII and FA 645 lenses carry all twelve pins is not confirmed by a photograph or service document. The body-front figures (FIGS. 3 and 5) place pins j to l about 2 to 4 degrees further clockwise than the lens-rear figures used here. Pin diameter (1.3 mm) is a figure ratio and pin protrusion is unknown. _(645N service manual or a measured body and lens.)_

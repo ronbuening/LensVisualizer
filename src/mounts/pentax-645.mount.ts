@@ -17,9 +17,12 @@
  * Maker manuals [p645-m1..m4] give the mount names, what each generation adds and the clockwise lock in text
  * (`official`); angles scaled from their oblique line drawings are `photo_scaled` to about +/-10 degrees.
  *
- * Storage convention. Body slots are the entry gaps between the body bayonet-plate claws, and each lens lug is
- * stored at the centre angle of the slot it enters; the turn to the locked position lives only in
- * `lockGeometry`. Contacts and the AF coupler are stored where they meet with the lens locked.
+ * Storage convention. The body is drawn as it is and the lens as mounted and locked. Each `body-slot-n` is a
+ * body bayonet-plate claw (the metal that retains a lug); the open entry gaps lie between the claws. Each
+ * `lens-lug-n` sits where FIGS. 2 and 4 draw it on a locked lens, behind the claw named in `matesWith`.
+ * Claws and lugs are each numbered clockwise from the one nearest 12 o'clock, so the numbers of a mated pair
+ * differ. Contacts and the AF coupler are also at their mounted positions; the turn from insertion to lock
+ * lives only in `lockGeometry`.
  *
  * Still estimated: both outer diameters, the mount-ring radii, lug thickness, the aperture coupling, the mount
  * screws and the lug-engagement plane rest on the unreferenced imagery source [p645-2]; the lock pin and notch
@@ -94,9 +97,9 @@ function pinBank(profileId: MountProfileId, pins: typeof PINS): ContactFeature[]
 }
 
 const SLOT_NOTES =
-  "entry gap between two body bayonet-plate claws; edges scaled from US6341902B1 FIG. 5 (body front view), FIG. 3 agrees within 1 degree; radii are figure ratios of the 61.2 mm throat";
+  "body bayonet-plate claw projecting inward from the throat; edges scaled from US6341902B1 FIG. 5 (body front view), FIG. 3 agrees within 1 degree; radii are figure ratios of the 61.2 mm throat. The open entry gaps are 324.5 to 28 (top, over the pin plate), 104 to 163 and 214.5 to 261.5 degrees";
 const LUG_NOTES =
-  "span scaled from US6341902B1 FIG. 4 (lens rear view, mirrored); stored at the centre of the body slot it enters; radii are figure ratios of the 61.2 mm throat";
+  "edges scaled from US6341902B1 FIG. 4 (lens rear view of a mounted lens, mirrored to the camera-front frame), drawn at the locked position; radii are figure ratios of the 61.2 mm throat";
 
 const PENTAX_645_MOUNT = {
   mountId: "pentax-645",
@@ -225,42 +228,42 @@ const PENTAX_645_MOUNT = {
       featureType: "bayonet_receiving_slot",
       profileId: BASE,
       count: 1,
-      centerAngleDeg: v(356.25, "photo_scaled", PF),
-      startAngleDeg: v(324.5, "photo_scaled", PF),
-      endAngleDeg: v(28, "photo_scaled", PF),
+      centerAngleDeg: v(66, "photo_scaled", PF),
+      startAngleDeg: v(28, "photo_scaled", PF),
+      endAngleDeg: v(104, "photo_scaled", PF),
       innerRadiusMm: v(LUG_ROOT_R, "photo_scaled", PF),
       outerRadiusMm: v(THROAT_R, "secondary", T),
       depthMm: v(1.8, "photo_scaled", L),
-      matesWith: "lens-lug-1",
-      shapeNotes: `top gap, 63.5 degrees, above the contact pin plate; ${SLOT_NOTES}`,
+      matesWith: "lens-lug-2",
+      shapeNotes: `right claw, 76 degrees; ${SLOT_NOTES}`,
     },
     {
       featureId: "body-slot-2",
       featureType: "bayonet_receiving_slot",
       profileId: BASE,
       count: 1,
-      centerAngleDeg: v(133.5, "photo_scaled", PF),
-      startAngleDeg: v(104, "photo_scaled", PF),
-      endAngleDeg: v(163, "photo_scaled", PF),
+      centerAngleDeg: v(188.75, "photo_scaled", PF),
+      startAngleDeg: v(163, "photo_scaled", PF),
+      endAngleDeg: v(214.5, "photo_scaled", PF),
       innerRadiusMm: v(LUG_ROOT_R, "photo_scaled", PF),
       outerRadiusMm: v(THROAT_R, "secondary", T),
       depthMm: v(1.8, "photo_scaled", L),
-      matesWith: "lens-lug-2",
-      shapeNotes: `lower-right gap, 59 degrees; ${SLOT_NOTES}`,
+      matesWith: "lens-lug-3",
+      shapeNotes: `bottom claw, 51.5 degrees; ${SLOT_NOTES}`,
     },
     {
       featureId: "body-slot-3",
       featureType: "bayonet_receiving_slot",
       profileId: BASE,
       count: 1,
-      centerAngleDeg: v(238, "photo_scaled", PF),
-      startAngleDeg: v(214.5, "photo_scaled", PF),
-      endAngleDeg: v(261.5, "photo_scaled", PF),
+      centerAngleDeg: v(293, "photo_scaled", PF),
+      startAngleDeg: v(261.5, "photo_scaled", PF),
+      endAngleDeg: v(324.5, "photo_scaled", PF),
       innerRadiusMm: v(LUG_ROOT_R, "photo_scaled", PF),
       outerRadiusMm: v(THROAT_R, "secondary", T),
       depthMm: v(1.8, "photo_scaled", L),
-      matesWith: "lens-lug-3",
-      shapeNotes: `lower-left gap, 47 degrees; ${SLOT_NOTES}`,
+      matesWith: "lens-lug-1",
+      shapeNotes: `left claw, 63 degrees; ${SLOT_NOTES}`,
     },
     {
       featureId: "body-index-mark",
@@ -290,7 +293,7 @@ const PENTAX_645_MOUNT = {
       depthMm: unknownV([...M_D, ...PF]),
       matesWith: "lens-lock-notch",
       shapeNotes:
-        "position not sourced. The lens unlock button sits at about 235 degrees in the 645D manual p. 11 drawing, but the pin is not shown; US6341902B1 FIGS. 2 and 4 show an unlabelled notch in lens lug 2 that sits at 180 degrees with the lens locked",
+        "position not sourced. The lens unlock button sits at about 235 degrees in the 645D manual p. 11 drawing, but the pin is not shown; US6341902B1 FIGS. 2 and 4 show an unlabelled notch in the outer edge of lens-lug-3 at about 180 degrees",
     },
   ],
 
@@ -330,42 +333,42 @@ const PENTAX_645_MOUNT = {
       featureType: "bayonet_lug",
       profileId: BASE,
       count: 1,
-      centerAngleDeg: v(356.25, "photo_scaled", PF),
-      startAngleDeg: v(326.5, "photo_scaled", PF),
-      endAngleDeg: v(26, "photo_scaled", PF),
+      centerAngleDeg: v(309, "conflicting", PF),
+      startAngleDeg: v(293.5, "conflicting", PF),
+      endAngleDeg: v(324.5, "photo_scaled", PF),
       innerRadiusMm: v(LUG_ROOT_R, "photo_scaled", PF),
       outerRadiusMm: v(LUG_TIP_R, "photo_scaled", PF),
       thicknessMm: v(1.8, "photo_scaled", L),
-      matesWith: "body-slot-1",
-      shapeNotes: `59.5 degree lug; ${LUG_NOTES}`,
+      matesWith: "body-slot-3",
+      shapeNotes: `narrow lug behind the left claw: 31 degrees in FIG. 4 (pre-existing lens) but 45.5 degrees in FIG. 2 (new lens) of the same patent, which starts it at 279.5 degrees; both figures end it at 324.5. The FIG. 4 edges are stored; ${LUG_NOTES}`,
     },
     {
       featureId: "lens-lug-2",
       featureType: "bayonet_lug",
       profileId: BASE,
       count: 1,
-      centerAngleDeg: v(133.5, "photo_scaled", PF),
-      startAngleDeg: v(107.5, "photo_scaled", PF),
-      endAngleDeg: v(159.5, "photo_scaled", PF),
+      centerAngleDeg: v(57.75, "photo_scaled", PF),
+      startAngleDeg: v(28, "photo_scaled", PF),
+      endAngleDeg: v(87.5, "photo_scaled", PF),
       innerRadiusMm: v(LUG_ROOT_R, "photo_scaled", PF),
       outerRadiusMm: v(LUG_TIP_R, "photo_scaled", PF),
       thicknessMm: v(1.8, "photo_scaled", L),
-      matesWith: "body-slot-2",
-      shapeNotes: `52 degree lug with one slanted end and an unlabelled notch in its outer edge; ${LUG_NOTES}`,
+      matesWith: "body-slot-1",
+      shapeNotes: `59.5 degree lug behind the right claw; FIG. 2 agrees within 0.5 degrees; ${LUG_NOTES}`,
     },
     {
       featureId: "lens-lug-3",
       featureType: "bayonet_lug",
       profileId: BASE,
       count: 1,
-      centerAngleDeg: v(238, "photo_scaled", PF),
-      startAngleDeg: v(222.25, "conflicting", PF),
-      endAngleDeg: v(253.75, "conflicting", PF),
+      centerAngleDeg: v(192.25, "photo_scaled", PF),
+      startAngleDeg: v(166.5, "photo_scaled", PF),
+      endAngleDeg: v(218, "photo_scaled", PF),
       innerRadiusMm: v(LUG_ROOT_R, "photo_scaled", PF),
       outerRadiusMm: v(LUG_TIP_R, "photo_scaled", PF),
       thicknessMm: v(1.8, "photo_scaled", L),
-      matesWith: "body-slot-3",
-      shapeNotes: `31.5 degree lug in FIG. 4 (pre-existing lens), drawn as 45.5 degrees in FIG. 2 (new lens) of the same patent; the FIG. 4 span is stored; ${LUG_NOTES}`,
+      matesWith: "body-slot-2",
+      shapeNotes: `51.5 degree lug behind the bottom claw, with a slanted end at 218 degrees and an unlabelled notch in its outer edge at 177 to 182.5 degrees; FIG. 2 agrees within 0.5 degrees; ${LUG_NOTES}`,
     },
     {
       featureId: "lens-index-mark",
@@ -380,7 +383,7 @@ const PENTAX_645_MOUNT = {
       thicknessMm: naV(),
       matesWith: "body-index-mark",
       shapeNotes:
-        "red dot aligned with the body index at insertion, so stored at the body index angle; radius is an unreferenced estimate",
+        "red dot that meets the body index when the lens is offered up; kept at the body index angle; radius is an unreferenced estimate",
     },
     {
       featureId: "lens-lock-notch",
@@ -550,7 +553,7 @@ const PENTAX_645_MOUNT = {
       archiveUrl: "https://patentimages.storage.googleapis.com/48/94/2c/fd55faa9c410d2/US6341902.pdf",
       archiveDate: "2026-11-21",
       appliesTo:
-        "FIGS. 2 and 4 are lens rear views, mirrored with theta_front = (360 - theta_rear) mod 360; FIGS. 3 and 5 are body front views, used as drawn. No dimension, angle or scale is stated, so every reading stays photo-scaled: bayonet gap and lug edges, radii as ratios of the throat, and the pin angles and pin-circle radius",
+        "FIGS. 2 and 4 are lens rear views, mirrored with theta_front = (360 - theta_rear) mod 360; FIGS. 3 and 5 are body front views, used as drawn. No dimension, angle or scale is stated, so every reading stays photo-scaled: bayonet claw and lug edges, radii as ratios of the throat, and the pin angles and pin-circle radius",
       confidence: "medium",
     },
     {
@@ -603,22 +606,22 @@ const PENTAX_645_MOUNT = {
   openQuestions: [
     {
       issue:
-        "Lug and slot angles are scaled from US6341902B1 FIGS. 2 to 5, which state no angle or scale. Readings repeat to about 1 degree between the old and new figures except lens lug 3, drawn 31.5 degrees wide in FIG. 4 and 45.5 degrees in FIG. 2. Lens lugs are stored at their slot centres; at a 62 degree turn the figure-derived insertion centres differ from that by about 0.5, 3 and 9 degrees for lugs 1, 2 and 3.",
+        "Claw and lug angles are scaled from US6341902B1 FIGS. 2 to 5, which state no angle or scale. Readings repeat to about 1 degree between the old and new figures except the narrow lug (lens-lug-1), drawn 31 degrees wide in FIG. 4 and 45.5 degrees in FIG. 2. Which sectors of the lens figures are lugs is inferred, not labelled: only the 59.5, 51.5 and 31 degree sectors fit through the 63.5, 59 and 47 degree body gaps. The bottom lug is drawn running 3.5 degrees past its claw (218 against 214.5 degrees), which is within the figure tolerance.",
       affectedFields: ["cameraSideFeatures.body-slot-*", "lensSideFeatures.lens-lug-*"],
-      candidateValues: ["lens-lug-3 span 31.5 (FIG. 4)", "lens-lug-3 span 45.5 (FIG. 2)"],
+      candidateValues: ["lens-lug-1 start 293.5, span 31 (FIG. 4)", "lens-lug-1 start 279.5, span 45.5 (FIG. 2)"],
       resolution:
         "A dimensioned Pentax bayonet drawing, a 645 / 645N service manual with mount-part drawings, or a measured lens and body. Searched: Google Patents pages for Asahi contact patents (US4653889A and JPS60243643A are K-mount; US5570153A is a joint Asahi/Nikon two-format bayonet), Ricoh manual downloads, Wikipedia, iso3200.org.",
     },
     {
       issue:
-        "Lock rotation angle is not stated by any source found. The 60 degree value is the earlier estimate; the patent-figure lug and gap edges admit about 60 to 64 degrees. Direction (clockwise from the front) is stated by the maker manuals.",
+        "Lock rotation angle is not stated by any source found. The 60 degree value is the earlier estimate; turning the locked lugs back until each clears its entry gap admits about 60 to 64 degrees on the patent-figure edges. Direction (clockwise from the front) is stated by the maker manuals.",
       affectedFields: ["lockGeometry.lockAngleDeg", "lockGeometry.lockRotationDeg"],
       candidateValues: [60, 62, 64],
       resolution: "Maker service data or a measured sample.",
     },
     {
       issue:
-        "Lock pin and lock notch positions are unknown and render as placeholders at 0 degrees. Candidates: near the lens unlock button (about 235 degrees in the 645D manual drawing) or the unlabelled notch in lens lug 2 of US6341902B1 FIGS. 2 and 4 (180 degrees with the lens locked).",
+        "Lock pin and lock notch positions are unknown and render as placeholders at 0 degrees. Candidates: near the lens unlock button (about 235 degrees in the 645D manual drawing) or the unlabelled notch in lens-lug-3 of US6341902B1 FIGS. 2 and 4 (about 180 degrees with the lens locked).",
       affectedFields: ["cameraSideFeatures.body-lock-pin", "lensSideFeatures.lens-lock-notch"],
       candidateValues: [180, 235],
       resolution: "Service manual exploded view or a measured body.",
