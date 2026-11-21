@@ -62,7 +62,7 @@ The paraxial f/2 rule gives a stop radius of 16.31499 mm. Exact axial tracing ac
 
 The computed paraxial back focus is 54.625854 mm. The stored image distance is rounded to 54.6259 mm, giving a total track of 122.7559 mm and a first-to-last-surface length of 68.13 mm. The image plane follows paraxial focus, with no adjustment for minimum spot size.
 
-The retained 10° half-field and 35.37 mm image-circle envelope are model limits. The patent states neither a field angle nor a camera format. At 10°, the real chief ray reaches an image height of 17.6865 mm, giving a 35.3731 mm diameter rounded to 35.37 mm. Peripheral rays can be clipped by the inferred rims; this does not establish a measured transmission or a factory coverage specification.
+The retained 10° half-field is illustrative. The patent states neither a field angle nor a camera format. At this illustrative field, the real chief ray reaches an image height of 17.6865 mm. Peripheral rays can be clipped by the inferred rims; this does not establish a measured transmission or a factory coverage specification.
 
 ## Model Scope and Design Heritage
 

@@ -9,8 +9,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * a German member of the same invention with a different numerical example.
  * The iris diameter follows the paraxial f/2 rule. Clear semi-diameters are
  * inferred; the image plane is the computed paraxial back focus, rounded to
- * 54.6259 mm. The 10-degree half-field and 35.37 mm image-circle envelope are
- * model limits, not patent specifications.
+ * 54.6259 mm. The 10-degree half-field is illustrative, not a patent
+ * specification.
  */
 const LENS_DATA = {
   schema: 2,
@@ -31,7 +31,6 @@ const LENS_DATA = {
     sdSource: "heuristic",
   },
   catalog: {
-    imageCircleMm: 35.37,
     elementCount: 7,
     groupCount: 3,
     focalLengthMm: {
