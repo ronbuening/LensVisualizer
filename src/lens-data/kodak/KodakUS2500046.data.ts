@@ -77,7 +77,7 @@ const LENS_DATA = {
       vd: 33.8,
       indexReference: "D",
       focalLengthMm: -97.38,
-      glass: "Unmatched (nD 1.649 / ν 33.8)",
+      glass: "PBM22 (spectral proxy; patent nD 1.649 / ν 33.8; supplier and melt unspecified)",
       role: "Negative front member of the air-spaced rear pair",
     },
     {
