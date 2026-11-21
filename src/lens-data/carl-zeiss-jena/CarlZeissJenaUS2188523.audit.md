@@ -16,7 +16,7 @@ The original inferred rims passed surface-clearance checks. The minimum sampled 
 
 ## Values Not Printed
 
-The US patent prints no stop position, stop diameter, clear semi-diameters, back focus, field angle, image height or camera format. The original stop split was 7.5366/2.0034 mm inside the printed 9.54 mm gap. The 10° half-field, 36.2 mm image-circle envelope, aperture series through f/16 and infinity-only focus setting are modeling choices. No finite focusing law is supplied.
+The US patent prints no stop position, stop diameter, clear semi-diameters, back focus, field angle, image height or camera format. The original stop split was 7.5366/2.0034 mm inside the printed 9.54 mm gap. The 10° half-field, 35.37 mm image-circle envelope, aperture series through f/16 and infinity-only focus setting are modeling choices. No finite focusing law is supplied.
 
 DE 700,699 C is the German member of the same invention, with the same inventor, applicant and claim but a different numerical example. Its printed stop-space split, 7.50/1.94 mm in 9.44 mm, supports an inferred split of 7.58/1.96 mm in this US example. Only the ratio is transferred; no German prescription values replace the US table.
 
@@ -54,8 +54,10 @@ Changes:
 
 After the changes, EFL is 100.047854508 mm and the paraxial aperture is f/2.000, both unchanged. Computed back focus remains 54.625853960 mm; total track is 122.7559 mm, half-field 10° and stop radius 16.314989026 mm. The real accepted entrance radius is 24.740343249 mm, equivalent to f/2.021957689, limited by the iris.
 
-Surface clearance: no errors. Axial aperture: f/2.000 on the paraxial iris normalization, no rim or propagation limit and no required rim enlargement. Image-circle check: one lens checked, zero undersized, zero skipped. Field coverage: 97.7157%, with a 10° chief-ray image height of 17.686536848 mm against an 18.1 mm envelope radius; the declared field ends first. The 10.227767806° ray to the envelope edge clears the rims.
+Surface clearance: no errors. Axial aperture: f/2.000 on the paraxial iris normalization, no rim or propagation limit and no required rim enlargement. Image-circle check: one lens checked, zero undersized, zero skipped. Field coverage: 100% rounded, against a 17.685 mm envelope radius; the envelope agrees with the 10° declared field to rounding. The chief ray to the envelope edge clears the rims.
 
 Formatting, analysis source rows, section structure and whitespace checks pass. A comparison with the original prescription confirms that the only axial changes are the inferred stop split and rounded image distance. No line comments remain in the data object.
 
 Open: compare the tapered triplet rims and inner chamfers with the section drawing in the later semi-diameter review. Historical glass identity, spectral performance, US-example iris dimensions, factory coverage and finite focusing remain unresolved. Rendered-page review could not be completed: the existing local server returned the application shell for the requested lens source, and the screenshot attempt produced no image.
+
+Review corrections: image-circle envelope 36.2 → 35.37 mm (radius 18.1 → 17.685 mm), with matching header and field descriptions; field coverage 97.7157% → 100% rounded, removing the obsolete 10.2278° envelope-edge statement; near-equal concave radii attributed to claims 1–3 → claims 2 and 3, while all three retain the index relationship; catalog design focal length 100 → 100.05 mm, the computed EFL rounded to two decimals.

@@ -18,7 +18,7 @@ DE 700,699 C covers the same invention, with the same inventor, applicant and cl
 
 The layout is a positive front singlet, a cemented middle triplet and a cemented rear triplet: 1 | 3 | 3. All surfaces are spherical. The front singlet has an in-air focal length of +133.12 mm, the middle triplet is net negative at −207.17 mm, and the rear triplet is positive at +110.29 mm. These group powers combine to give a computed EFL of 100.0479 mm, 0.048% above the printed 100 mm.
 
-The four cemented interfaces are R4, R5, R8 and R9. The rear triplet places a low-index biconcave element between two higher-index positive elements. Claims 1–3 emphasize this index relationship and the nearly equal magnitudes of its concave radii, 44.84 and 41.79 mm.
+The four cemented interfaces are R4, R5, R8 and R9. The rear triplet places a low-index biconcave element between two higher-index positive elements. All three claims state this index relationship; claims 2 and 3 add the nearly equal magnitudes of its concave radii, 44.84 and 41.79 mm.
 
 ## Element-by-Element Analysis
 
@@ -62,7 +62,7 @@ The paraxial f/2 rule gives a stop radius of 16.31499 mm. Exact axial tracing ac
 
 The computed paraxial back focus is 54.625854 mm. The stored image distance is rounded to 54.6259 mm, giving a total track of 122.7559 mm and a first-to-last-surface length of 68.13 mm. The image plane follows paraxial focus, with no adjustment for minimum spot size.
 
-The retained 10° half-field and 36.2 mm image-circle envelope are model limits. The patent states neither a field angle nor a camera format. At 10°, the real chief ray reaches an image height of 17.6865 mm, or 97.72% of the envelope's 18.1 mm radius. Reaching that radius would require 10.2278°, and that chief ray clears the rims. Peripheral rays can be clipped by the inferred rims; this does not establish a measured transmission or a factory coverage specification.
+The retained 10° half-field and 35.37 mm image-circle envelope are model limits. The patent states neither a field angle nor a camera format. At 10°, the real chief ray reaches an image height of 17.6865 mm, giving a 35.3731 mm diameter rounded to 35.37 mm. Peripheral rays can be clipped by the inferred rims; this does not establish a measured transmission or a factory coverage specification.
 
 ## Model Scope and Design Heritage
 
