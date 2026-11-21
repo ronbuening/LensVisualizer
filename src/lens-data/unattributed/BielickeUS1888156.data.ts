@@ -7,7 +7,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * groups; only elements 3 and 4 are cemented, at R6, and R2 is plane.
  * Printed 100 mm f/2.5 gives D-line EFL 99.90 mm and back focus 78.28 mm;
  * the infinity image plane uses this calculated, unprinted back focus.
- * Rims and stop position are inferred: the stop at z = 26.4 mm divides the printed
+ * Rims are inferred from the drawing's relative heights and axial-ray clearance;
+ * the front singlet is square-cut at 22 mm and the negative singlet at 19 mm.
+ * The inferred stop at z = 26.4 mm divides the printed
  * 9.2 mm gap into 5.4 + 3.8 mm. Paraxial f/2.5 sets its radius; the finite beam is f/2.58.
  * The 10.0° half-field and f-stop list are chosen; no field, format or close focus is printed.
  * The patent names no assignee; no production lens is confirmed for this design.
@@ -110,20 +112,20 @@ const LENS_DATA = {
       label: "1",
       R: 42.2,
       d: 7.2,
-      sd: 23,
+      sd: 22,
       medium: 1,
     },
     {
       label: "2",
       R: "flat",
       d: 11.4,
-      sd: 23,
+      sd: 22,
     },
     {
       label: "3",
       R: -65.4,
       d: 2.4,
-      sd: 22,
+      sd: 19,
       medium: 2,
     },
     {

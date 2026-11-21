@@ -84,7 +84,7 @@ Nominal f/2.5 gives an inferred stop radius of 15.269 mm. The admitted axial bea
 
 ## Model Scope and Limitations
 
-All clear semi-diameters are inferred. The model retains larger rims than the drawing suggests at R1/R2, R3 and R8/R9; they do not obstruct the axial beam or the chief ray at the displayed 10.0° half-field. Some off-axis marginal rays are vignetted by the front element. Neither the selected ±10.0° field nor the f-stop list is stated in the patent, and no image format or image circle is assigned.
+All clear semi-diameters are inferred from the drawing's relative heights and ray clearance. The front and rear singlets have 22 mm rims; the negative singlet is square-cut at 19 mm. The cemented group has a 20 mm front rim and 19 mm rims at its shared and rear faces. The drawing's local thicknesses are inconsistent with the table, so its proportions do not establish exact clear diameters. The front element's edge is 1.01 mm thick. No rim obstructs the axial beam or the chief ray at the displayed 10.0° half-field. Some off-axis marginal rays are vignetted by the front element; geometric pupil transmission is 98.9% at 8.3° and 96.7% at 10.0°. Neither the selected ±10.0° field nor the f-stop list is stated in the patent, and no image format or image circle is assigned.
 
 The model preserves the printed prescription and uses its paraxial infinity image plane. Geometric image-quality calculations describe this modeled aperture and field; measured production performance and full spectral behavior are not established.
 
