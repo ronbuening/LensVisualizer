@@ -70,7 +70,7 @@ The model is focused at infinity; the patent gives no close-focus data.
 
 The full field is 30°, matching the patent's “about 30°” statement. At the 15.0° half-field the real chief ray reaches an image height of approximately 27.10 mm on the printed image plane, giving a field-derived image-circle diameter of 54.20 mm. No film format is assigned.
 
-All chief-ray intersections at 15° clear the current rims; the largest is approximately 7.50 mm against a 9.5 mm clear radius. Some off-axis pupil rays are vignetted. The inferred clear semi-diameters are 8.7 mm at surfaces 1–3, 9.0 mm at surface 4, and 9.5 mm at surfaces 5–8. They agree with the drawing within about 0.4 mm, but are not printed manufacturing dimensions. The minimum edge thicknesses are approximately 0.375 mm at element 1 and 0.481 mm at element 4.
+All chief-ray intersections at 15° clear the rims; the largest is approximately 7.50 mm against a 9.5 mm clear radius. The inferred clear semi-diameters are 8.7 mm at surfaces 1–4 and 9.5 mm at surfaces 5–8, with both faces of each element at the same height. Figure 2 supports these square rims and the slightly larger rear elements, but its individual glass thicknesses are not drawn consistently to scale, so it supplies proportions rather than manufacturing dimensions. The full on-axis beam clears every glass rim. Wide-open geometric transmission is approximately 76.7% at 10°, 67.0% at 12.5° and 40.2% at 15°; off-axis pupil rays remain vignetted. The minimum edge thicknesses are approximately 0.375 mm at element 1 and 0.481 mm at element 4.
 
 Geometric MTF at the printed image plane describes that unshifted plane. The patent provides no MTF curves for comparison, and the glass assignments do not establish manufactured broadband performance.
 

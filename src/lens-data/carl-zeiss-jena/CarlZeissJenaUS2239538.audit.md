@@ -26,7 +26,7 @@ The surfaces stay clear of each other and the iris sets the full on-axis apertur
 
 ## Values Not Printed in the Patent
 
-The clear semi-diameters are inferred: 8.7 mm at surfaces 1–3, 9.0 mm at surface 4 and 9.5 mm at surfaces 5–8. They agree with the optical rims drawn in Figure 2 to within about 0.4 mm. They are not printed manufacturing dimensions. The stop position itself is printed, 18.71 mm behind the first vertex; only its opening is inferred from nominal f/6.3.
+The clear semi-diameters are inferred: 8.7 mm at surfaces 1–4 and 9.5 mm at surfaces 5–8. Figure 2 supports square rims and slightly larger rear elements, but its individual glass thicknesses are not drawn consistently to scale. The drawing supplies proportions, not manufacturing dimensions. The stop position itself is printed, 18.71 mm behind the first vertex; only its opening is inferred from nominal f/6.3.
 
 The last gap follows the printed total image distance. The 30.0° field is printed, but the 54.20 mm image-circle diameter is derived from twice the real chief-ray image height at 15.0°, rounded upward. It is not a published film format or a claim of an unvignetted edge bundle.
 
@@ -47,11 +47,20 @@ Zeiss Telikon aerial telephotos are a plausible family comparison because of the
 - Generic element types became Biconvex Positive, Biconcave Negative, Negative Meniscus and Plano-Convex Positive, following the radius signs. Labels became Element 1–4; optical roles and in-air focal lengths of +23.18, −35.08, −26.43 and +45.56 mm were added. Brackets span the front positive system, surfaces 1–4, and rear negative system, surfaces 5–8, matching the patent's description.
 - Elements 2 and 4 received the catalog label SF10 (Schott): tabulated catalog-minus-patent Δnd = 0 and Δν = +0.11; the dispersion curve gives Δnd about +2.4 × 10⁻⁷. Element 3 received H-BaF6 (CDGM), with zero tabulated differences; the curve gives Δnd about +4.7 × 10⁻⁶ and Δν about +0.02. These labels identify approximate dispersion curves without establishing historical suppliers or melts. Element 1 remains “Unmatched (nd 1.60801 / ν 45.0)”; H-BaF6 differs from its printed Abbe number by +1.2 and is not assigned.
 
-The radii, thicknesses, air gaps, printed indices and Abbe numbers, helium d reference, stop position, clear rims and image plane require no correction. At the 15.0° half-field, the first-order values remain EFL 100.027 mm, nominal f/6.30, paraxial BFD 41.599 mm and iris radius 5.43 mm. Lens track is 37.79 mm and first-vertex-to-image distance is 79.37 mm.
+The radii, thicknesses, air gaps, printed indices and Abbe numbers, helium d reference, stop position and image plane require no correction. At the 15.0° half-field, the first-order values remain EFL 100.027 mm, nominal f/6.30, paraxial BFD 41.599 mm and iris radius 5.43 mm. Lens track is 37.79 mm and first-vertex-to-image distance is 79.37 mm.
+
+2026-11-21 rim review:
+
+- Figure 2 on PDF page 2 was read at 600 dpi. The 37.79 mm first-to-last vertex span measures about 1,230 pixels, giving an overall scale of 32.5 pixels/mm. The two stop-to-glass spans give about 32.1 and 32.7 pixels/mm. Across the axis, surface 1's sag at about 6.2 mm height reads approximately 0.92 mm, agreeing with the printed 21.1 mm radius at this scale. However, element 1's drawn centre thickness is about 2.8 mm against the printed 3.21 mm, and element 3's is about 0.8 mm against 1.0 mm. These departures exceed 10%, so the drawing governs rim proportions and square edges rather than absolute dimensions.
+- At that approximate scale, the front elements' rims read about 8.1 mm, the rear meniscus about 9.3 mm and the last element about 9.5 mm. Thick lines and slight skew limit the readings to about 0.2 mm. Surfaces 1–3 retain 8.7 mm and surfaces 5–8 retain 9.5 mm: their proportions agree within about 7%, and no axial or chief ray is clipped.
+- Surface 4's clear radius decreased from 9.0 to 8.7 mm. Both faces of element 2 now end at one height, matching its square upper and lower edges in Figure 2 and the neighbouring front element. The surface clears the f/6.3 axial marginal ray at 7.48 mm and the 15° chief ray at 5.63 mm. Restoring 9.0 mm would recover no light. No mounting land was added.
+- Wide-open geometric transmission is unchanged before and after: 100.0%, 99.9%, 93.7%, 85.4%, 76.7%, 67.0% and 40.2% at 0°, 2.5°, 5°, 7.5°, 10°, 12.5° and 15°. The worst loss at any of these fields is 0.0 percentage points. The 15.0° half-field and nominal f/6.30 are unchanged, with no glass rim limiting the on-axis aperture. Every chief ray reaches the image circle; no clear radius is undersized and the surfaces remain separated.
+- The model section was compared beside Figure 2 at the same overall scale. Its four separate spherical elements, square edges and larger rear pair agree with the drawing's proportions. No manufacturer's construction drawing is available, and no special glass or aspherical element is identified by the patent. Only infinity focus is described.
 
 ## Remaining Questions
 
 - Element 1 lacks a matching catalog glass; all historical suppliers and melt identities remain unknown. The equal indices and different Abbe numbers of elements 1 and 3 are printed consistently, without further explanation.
-- The clear radii and physical iris opening are inferred, with no manufacturing dimensions supplied.
+- No manufacturing clear radii or physical iris diameter are printed; the drawing-based rim estimates and inferred iris opening remain approximate.
+- One meridional marginal ray at 15° could not be solved. The chief ray clears, but a complete unvignetted corner bundle is not established.
 - No source establishes a production product, mount, film format, marketed focal length or aperture, commercial close-focus distance, focusing mechanism, blade count or shape, or minimum iris opening. These product values remain omitted; f/32 is not a published aperture limit.
 - Partial dispersion and measured broadband or MTF performance are undocumented.

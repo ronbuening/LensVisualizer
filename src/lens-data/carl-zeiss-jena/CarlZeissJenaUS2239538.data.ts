@@ -4,7 +4,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * US 2,239,538 A, Figure 2, one of two numerical examples, at f = 100.
  * Patent dimensions are read in millimetres. Radii, thicknesses, air gaps,
  * d-line indices, Abbe numbers and the 14.23 / 16.14 stop split are printed.
- * Clear semi-diameters are inferred; the iris radius follows nominal f/6.3.
+ * Clear semi-diameters are inferred from Figure 2's rim proportions and
+ * checked against real rays. Elements keep square rims; the iris follows f/6.3.
  * The last gap is 41.58 mm: printed front-vertex-to-focus distance 79.37
  * minus the 37.79 mm lens track, rather than the paraxial BFD of 41.60 mm.
  * L1 and L3 retain the same printed nd 1.60801 and different Abbe numbers,
@@ -121,7 +122,7 @@ const LENS_DATA = {
       label: "4",
       R: 70.95,
       d: 14.23,
-      sd: 9,
+      sd: 8.7,
     },
     {
       label: "STO",
