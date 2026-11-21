@@ -34,19 +34,19 @@ The focal lengths below are those of each element alone in air; they differ from
 
 ### Element 1 — Positive Meniscus
 
-nd = 1.67125, νd = 47.1. Glass: Unmatched. f = +196.52 mm.
+nd = 1.67125, νd = 47.1. Glass: N-BAF10 (Schott), spectral proxy. f = +196.52 mm.
 
 The front singlet collects the incoming light. Its front surface is more strongly curved than its rear surface, giving positive power. Its axial thickness is 11.274 mm.
 
 ### Element 2 — Positive Meniscus
 
-nd = 1.67125, νd = 47.1. Glass: Unmatched. f = +151.99 mm.
+nd = 1.67125, νd = 47.1. Glass: N-BAF10 (Schott), spectral proxy. f = +151.99 mm.
 
 The positive member of the first cemented pair uses the same printed glass values as Element 1. It is 12.0795 mm thick and meets Element 3 at R4.
 
 ### Element 3 — Negative Meniscus
 
-nd = 1.69842, νd = 30.1. Glass: Unmatched. f = −83.72 mm.
+nd = 1.69842, νd = 30.1. Glass: S-TIM35 (Ohara), spectral proxy. f = −83.72 mm.
 
 The more dispersive negative member balances Element 2 in the front cemented pair. Its strongly curved rear surface faces the diaphragm. Its axial thickness is 9.825 mm.
 
@@ -64,15 +64,23 @@ The positive member of the rear cemented pair is 18.201 mm thick. Its higher Abb
 
 ### Element 6 — Biconvex Positive
 
-nd = 1.71740, νd = 48.1. Glass: Unmatched. f = +152.73 mm.
+nd = 1.71740, νd = 48.1. Glass: LAF3 (Hoya), spectral proxy. f = +152.73 mm.
 
 The rear singlet has a nearly flat front surface and a more strongly curved rear surface. It completes the rear index progression and is 9.6645 mm thick.
 
 ## Glass Identification and Selection
 
-The patent explicitly gives indices for the helium d line at 5876 Å, approximately 587.6 nm, together with Abbe numbers (PDF p. 3, column 3). All six elements retain those printed values. None has an exact catalog assignment, and the historical glass suppliers and melts remain unknown.
+The patent explicitly gives indices for the helium d line at 5876 Å, approximately 587.6 nm, together with Abbe numbers (PDF p. 3, column 3). All six elements retain those printed values. Four elements use present-day catalog spectral proxies; differences below are catalog minus printed values at the d line.
 
-No individual C-, F-, or g-line indices or partial dispersions are published. Calculations away from the d line therefore depend on dispersion inferred from the Abbe numbers; they do not establish the patent's measured chromatic performance.
+| Elements | Spectral proxy | Δnd | Δνd |
+| --- | --- | --- | --- |
+| L1, L2 | N-BAF10 (Schott) | −0.00122 | +0.01 |
+| L3 | S-TIM35 (Ohara) | +0.00053 | +0.03 |
+| L6 | LAF3 (Hoya) | −0.00040 | −0.12 |
+
+Each proxy is within 0.002 in index and 0.25 in Abbe number at the d line. The catalog curves supply only the dispersion shape, so colour analysis follows real glass curves rather than Abbe-number estimates for these four elements. No exact catalog match is assigned, and the row names do not identify the historical suppliers or melts.
+
+Elements 4 and 5 remain Unmatched because no catalog row falls within those tolerances; their dispersion still follows Abbe-number estimates. No individual C-, F-, or g-line indices or partial dispersions are published. Neither the proxies nor the estimates establish the patent's measured chromatic performance.
 
 ## Focus Mechanism and Aperture
 
@@ -92,3 +100,6 @@ The clear semi-diameters are estimated from Figure 2's proportions, with allowan
 
 - Albrecht Wilhelm Tronnier, [US 2,673,491 A](https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/2673491), granted 30 March 1954. Figure 2: PDF p. 1; aperture and field: p. 2, column 2; numerical table, helium-d definition and natural-size statement: p. 3, column 3.
 - [US 2,627,204 A](https://patents.google.com/patent/US2627204A/en), Example II: the different six-element, five-group design associated with the Ultron 50mm f/2.
+- [Schott optical-glass catalog](https://www.schott.com/en-us/products/optical-glass-p1000267/downloads): N-BAF10 spectral proxy.
+- [Ohara optical-glass catalog](https://www.ohara-inc.co.jp/en/product/catalog/): S-TIM35 spectral proxy.
+- [Hoya optical-glass catalog](https://www.hoya-opticalworld.com/english/datadownload/index.html): LAF3 spectral proxy.

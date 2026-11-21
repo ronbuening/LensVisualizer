@@ -26,15 +26,12 @@ The clear semi-diameters are estimates: R1/R2 are 43/41 mm; R3/R4/R5 are 37/35/2
 
 The 60.0° full field is printed. The image-circle diameter is inferred from its 30.0° chief-ray height; it does not identify a camera format. The patent gives no close-focus data. `focus.closeFocusM` is 10¹⁵ m, which stands for infinity. The selectable f-stops extend from f/2 to f/22, but the source gives no minimum iris opening.
 
-No historical glass supplier, melt identity, individual C-, F- or g-line index, or partial dispersion is established. All six glasses retain the printed d-line indices and Abbe numbers with Unmatched labels. Other wavelengths depend on Abbe-based dispersion estimates. The closest catalog candidates do not reproduce the printed pairs; differences below are catalog minus printed values at the d line.
+No historical glass supplier, melt identity, individual C-, F- or g-line index, or partial dispersion is established. All six glasses retain the printed d-line indices and Abbe numbers. Elements 1, 2, 3 and 6 use catalog spectral proxies. Elements 4 and 5 remain Unmatched and use Abbe-based dispersion estimates: no catalog row falls within 0.002 in index and 0.25 in Abbe number at the d line. Their closest candidates exceed the Abbe-number tolerance; differences below are catalog minus printed values at the d line.
 
 | Elements | Candidate | Δnd | Δνd |
 | --- | --- | --- | --- |
-| L1, L2 | N-BAF10 (Schott) | −0.001220 | +0.01 |
-| L3 | S-TIM35 (Ohara) | +0.000527 | +0.03 |
 | L4 | F5 (Schott) | +0.000760 | −0.37 |
 | L5 | STK3 (LZOS) | −0.000030 | +0.37 |
-| L6 | LAF3 (Hoya) | −0.000400 | −0.12 |
 
 ## Product Identification
 
@@ -48,7 +45,7 @@ No production lens is documented for this prescription. The Ultron 50mm f/2 asso
 - The half-field increased from 10.0° to 30.0° to follow the printed 60.0° illumination field. The inferred 167.34 mm image circle was added from the 30.0° chief-ray height at the paraxial image plane.
 - Element labels became Element 1 through Element 6. Generic shape descriptions were replaced by positive meniscus, positive meniscus, negative meniscus, biconcave negative, biconvex positive and biconvex positive, matching the signed radii. Optical roles and individual focal lengths in air were added: +196.52, +151.99, −83.72, −52.81, +64.35 and +152.73 mm.
 - C1 identifies Elements 2–3 with a bracket spanning R3–R5, and C2 identifies Elements 4–5 with a bracket spanning R6–R8. The physical cemented interfaces remain R4 and R7.
-- Glass descriptions became concise Unmatched labels carrying each printed index and Abbe number. Every relabel has Δn = 0 and Δν = 0. No catalog supplier was assigned, and the helium-d basis was retained.
+- All six printed indices and Abbe numbers and the helium-d basis were retained. Elements 1, 2, 3 and 6 use catalog spectral proxies; historical suppliers and melts remain unspecified.
 
 The resulting first-order values are EFL 150.00 mm, paraxial f/2.00, back focus 107.156 mm and stop radius 25.89 mm. Radii, axial distances, glass values, stop position and image-plane position remain as first received.
 
@@ -61,6 +58,13 @@ The resulting first-order values are EFL 150.00 mm, paraxial f/2.00, back focus 
   - R9/R10 changed together from 35/35 to 34.5/34.5 mm, keeping the rear singlet's level edge. Their 30° chief-ray heights are 30.52/32.37 mm. A reduction to 32.4/32.4 mm alone would lose up to 7.2 illumination points. Restoring both final faces would recover at most 1.4 points, at 18°.
   - Wide-open geometric transmission at 6°, 9°, 12°, 15°, 18°, 21°, 24°, 27° and 30° changed from 99.4, 96.3, 89.0, 79.8, 68.6, 55.5, 41.4, 26.1 and 10.7% to 97.5, 93.9, 86.8, 77.2, 65.9, 53.1, 39.1, 24.7 and 9.6%. The largest loss is 2.8 points at 18°; the corner loss is 1.1 points. The half-field remains 30.0°, paraxial aperture remains f/2.00, and the corner chief ray reaches 83.67 mm. The approximate field limit falls from 29.45° to 29.20°, while the directly aimed 30° chief ray remains clear. No axial or chief ray is clipped, and all surfaces retain positive glass thickness and air clearance.
   - The infinity cross-section was compared side by side with Figure 2 at matched overall scale. The inner openings are closer to the drawing, the rear cemented pair's outer edge is level, and the front meniscus is tapered. No manufacturer construction diagram is documented; the patent agrees with six elements in four groups, cemented pairs at Elements 2–3 and 4–5, and no aspheric surface or identified special-glass element. No close-focus state is published.
+
+- 2026-11-21 glass review:
+  - L1: `Unmatched (nd 1.67125 / ν 47.1)` → `N-BAF10 (spectral proxy; patent nd 1.67125 / ν 47.1; supplier and melt unspecified)`; Δnd = −0.00122, Δνd = +0.01, catalog minus printed at the d line; spectral proxy.
+  - L2: `Unmatched (nd 1.67125 / ν 47.1)` → `N-BAF10 (spectral proxy; patent nd 1.67125 / ν 47.1; supplier and melt unspecified)`; Δnd = −0.00122, Δνd = +0.01, catalog minus printed at the d line; spectral proxy.
+  - L3: `Unmatched (nd 1.69842 / ν 30.1)` → `S-TIM35 (spectral proxy; patent nd 1.69842 / ν 30.1; supplier and melt unspecified)`; Δnd = +0.00053, Δνd = +0.03, catalog minus printed at the d line; spectral proxy.
+  - L6: `Unmatched (nd 1.7174 / ν 48.1)` → `LAF3 (spectral proxy; patent nd 1.7174 / ν 48.1; supplier and melt unspecified)`; Δnd = −0.00040, Δνd = −0.12, catalog minus printed at the d line; spectral proxy.
+  - Spectral proxies are within 0.002 in index and 0.25 in Abbe number at the printed helium-d line. The printed indices and Abbe numbers are kept; the catalog rows supply only dispersion-curve shapes and do not identify historical suppliers or melts.
 
 ## Remaining Questions
 
