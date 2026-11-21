@@ -32,7 +32,7 @@ The prescription requires no numerical correction. The D-line indices, Abbe numb
 
 ## Remaining Questions
 
-Open: The estimated rear semi-diameters are about 38% larger than the drawing suggests. Reducing them to 5.5 mm gives about 51% corner vignetting at 10°. The front estimate of 9.9 mm also exceeds the approximately 9.4 mm drawing reading. The exact diaphragm position and diameter, historical glass identities, production use and source-supported field remain unknown.
+Open: The estimated rear semi-diameters are about 38% larger than the drawing suggests. Reducing them to 5.5 mm would lower 10° corner transmission from about 88% to about 61%. The front estimate of 9.9 mm also exceeds the approximately 9.4 mm drawing reading. The exact diaphragm position and diameter, historical glass identities, production use and source-supported field remain unknown.
 
 ## 2026-11-21 — Deployment validation and cleanup
 
