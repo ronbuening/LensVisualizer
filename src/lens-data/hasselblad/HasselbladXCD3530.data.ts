@@ -43,7 +43,7 @@ const LENS_DATA = {
   key: "hasselblad-xcd-30mm-f35",
   maker: "Hasselblad",
   name: "HASSELBLAD XCD 30mm f/3.5",
-  subtitle: "WO 2018/052113 A1 Example 1 — production correlation inferred",
+  subtitle: "WO 2018/052113 A1 Example 1 — inferred production match",
 
   catalog: {
     lensMounts: ["hasselblad-xcd"],
