@@ -5,8 +5,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * The patent gives f = 100 without a length unit; dimensions are interpreted in mm.
  * The radii follow the figure in the direction of light travel. The printed D-light
  * indices and Abbe numbers are retained. The midpoint stop in the 7.366 mm central
- * gap and all clear semi-diameters are inferred. The final gap is the computed
- * paraxial back focus, 90.54 mm; the patent prints no back focus or close-focus data.
+ * gap is inferred. Clear semi-diameters follow Figure 1: 15 mm outer rims and
+ * 9.45 mm square inner rims, checked against the f/6 axial beam and 45° chief ray.
+ * The final gap is the computed paraxial back focus, 90.54 mm; the patent prints
+ * no back focus or close-focus data.
  */
 const LENS_DATA = {
   schema: 2,
@@ -98,20 +100,20 @@ const LENS_DATA = {
       label: "1",
       R: 20.118,
       d: 4.84,
-      sd: 12,
+      sd: 15,
       medium: 1,
     },
     {
       label: "2",
       R: 55.801,
       d: 0.316,
-      sd: 12,
+      sd: 15,
     },
     {
       label: "3",
       R: 25.089,
       d: 1.052,
-      sd: 11,
+      sd: 9.45,
       medium: 2,
     },
     {
@@ -136,20 +138,20 @@ const LENS_DATA = {
       label: "6",
       R: -25.089,
       d: 0.316,
-      sd: 11,
+      sd: 9.45,
     },
     {
       label: "7",
       R: -55.801,
       d: 4.84,
-      sd: 12,
+      sd: 15,
       medium: 4,
     },
     {
       label: "8",
       R: -20.118,
       d: 90.536134,
-      sd: 12,
+      sd: 15,
     },
   ],
   aperture: {
