@@ -1,63 +1,77 @@
-## Patent reference and design identification
+# WOLLENSAK 100mm f/3.2 (US 2,769,372 Design)
 
-**Patent:** [US2769372A](https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/2769372)  
-**Filed:** July 25, 1955  
-**Granted:** November 6, 1956  
-**Inventors:** Alan A. Cook; David C. Gilkeson  
-**Assignee:** Wollensak Optical Company  
-**Example details:** Example I, Figures 1–2, literal100mm design.
+## Patent Reference and Design Identification
 
-Private patent-only reconstruction using a separately labeled **native f/3.3 control**, not a claim of source f/3.3 or of full physical f/3.2. The source nominal100mm f/3.2/BF82.9mm remains documentary catalog information; literal sodium-D EFL99.992697856941mm/BFD82.910303499659mm is independently calculated without fitting. Track35.8mm and Gaussian detector z118.710303499659mm. No optical rescaling, glass substitution or source-focus repair.
+**Patent:** [US 2,769,372 A — Three Component Objectives for Photographic and Projection Purposes](https://patents.google.com/patent/US2769372A/en)
 
-Original signed numerical table and PDF SHA-256 `0630036bbbd3d7f07ca82b0c0ff640652ba0592808ac37a85419b7740095b729` are externally verified parent/scout original custody. Official primary URL webread was inaccessible/internal error once and was not retried. The primary-prose mirror https://patents.google.com/patent/US2769372A/en independently corroborates dates/authors/assignee, ExampleI/Figs1–2, sodiumD,4E3G topology, diameters, bevel, stop position and printed BF/aperture/field. Incomplete numeric OCR was not adopted over the scout table. No local original PDF, pixels, byte count or original digest reproduction is claimed; no original PDF included and no access-control workaround attempted.
+**Inventors:** Alan A. Cook; David C. Gilkeson
 
-## Optical architecture
+**Assignee:** Wollensak Optical Company
 
-Four elements in three groups, **1 | 2 | 3+4**, with R6 cemented. R2 is a genuine plano optical surface from L1 to air, not a stop, zero curvature substitute or absent interface. Exact source7optical surfaces, distances and indices remain unchanged; the source-constrained diaphragm is inserted only in the8.7mm R4–R5 air gap. No fictitious plate, baffle, finite state or geometry override.
+**Filed:** 25 July 1955
 
-The source glass diameters are32/27/28/28mm. The rear of L2, R4, has a45degree bevel starting at25mm diameter. Selected effective per-face optical caps **[16,16,13.5,12.5,14,14,14]mm** preserve this constraint. R4 is never enlarged to pass a marginal ray. These source-derived effective optical caps are proxies, not a complete3D machining model: outer glass diameter and usable optical radius differ, and the bevel's cut depth/profile is not invented or rendered as surveyed geometry. Tapered-sidewall tests below are consistency checks of the authored effective-rim solid, not evidence of the actual beveled outer body.
+**Published:** 6 November 1956
 
-## Element-by-element analysis
+**Example details:** Example I, Figure 2 prescription and claim 1; Figure 1 shows the common construction.
 
-| Element | Literal sodium-D index | Abbe | Interfaces |
-|---|---:|---:|---|
-| I |1.638|55.0|R1–R2, front singlet|
-| II |1.620|36.0|R3–R4, middle singlet; R4 bevel cap12.5mm|
-| III |1.605|38.0|R5–R6, rear doublet front|
-| IV |1.700|48.0|R6–R7, rear doublet rear|
+Example I specifies a 100 mm objective at f/3.2 with a 55° total angular field and an 82.9 mm back focal length. The computed D-line effective focal length is 99.9927 mm and the paraxial back focus is 82.9103 mm. Example II is a separate f/3.5 design with a 50° field and is not used here. No particular production lens is documented for Example I.
 
-Default geometry passes without source edits, enlargement, trim or overrides. Shared-radius glass minima3.067375879/4.2/2.2/3.105051430mm; air minima5.640853075/6.687366224mm. Maximum shared-air sag consumption23.1337216%, below native90% default. Own glass rim endpoint closure minimum3.067375879mm; maximum spherical rim tilt24.901062370degrees. Adjacent cap z bands are strictly ordered. Source stop plane atz22mm is2.060183649mm behind R4's effective cap and4.685001782mm before R5's cap. All admitted native rays independently have forward direction and increasing optical-hit z. Estimated conical sidewall consistency checks have minimum radial margin0.022133735mm; not a surveyed mechanical tolerance or added baffle.
+## Optical Architecture
 
-## Glass identification and selection
+The objective has four elements in three air-separated components: a positive front singlet, a negative middle singlet and a positive rear cemented doublet. This is a Tessar-type arrangement. The seven optical surfaces are spherical or plane; R2 is the plane refracting rear face of element 1. Elements 3 and 4 meet at R6 and form cemented group C1.
 
-Literal n_D/Abbe values are retained with `indexReference:"D"`; native reference is sodium-D589.2938nm. Every anchored reference index matches its authored value within1e-12, and scoped MTF uses one589.2938nm spectral line. Helium-d587.5618nm remains distinct. No catalog glass identity, nC/nF/ng values, partial dispersion or calibrated spectral curves are invented. Generic Abbe-derived broadband/chromatic and secondary-spectrum outputs remain unqualified.
+The patent gives element diameters of 32, 27, 28 and 28 mm. It also specifies a 45° bevel on R4 beginning at a diameter of 25 mm. The model therefore uses semi-diameters of 16 mm at R1–R2, 13.5 mm at R3, 12.5 mm at R4 and 14 mm at R5–R7. Taking the bevel-start radius as R4's clear optical edge is a modeling choice; the patent does not give the bevel depth or complete edge profile.
 
-## Focus mechanism and aperture assumptions
+The first-to-last vertex distance is 35.8 mm. The image plane lies at the computed paraxial focus, 82.9103 mm behind R7, giving a total first-vertex-to-image distance of 118.7103 mm. It is not moved to minimize a finite-aperture spot.
 
-Infinity only at the literal computed Gaussian detector. No physical finite-focus mechanism, conjugate, cam or projection operating state is established. Source stop is4.4mm before L3, yielding **4.3/4.4mm** within the literal8.7mm gap and source-constrained stop z22mm. Bore is estimated; stop station is source-constrained, not arbitrarily relocated.
+## Element-by-Element Analysis
 
-Source f/3.2 and the selected **software f/3.3 control** are separate facts. Source f/3.2 entrance marginal height15.623859040mm reaches R4 at12.691453206mm, **0.191453206mm outside** its fixed12.5mm optical cap. Its independent finite-marginal iris estimate is12.844675292mm. In an1801-ray on-axis nominal entrance-disc test, source3.2 gives1729arrivals and72independently provedR4clips. These results are preserved, not hidden or repaired.
+### Element 1 — Plano-Convex Positive
 
-The stock native f/3.2 paraxial iris is smaller, radius12.610831404mm; its separately stopped865-ray axial sample passes. This does not prove a full physical f/3.2 beam. At2.5/5degrees the stopped source3.2 grid gives838/808arrivals with27/57classified clips. Native3.2 is not claimed unbuildable; the narrower3.3 control is a conservative explicitly disclosed choice, not a covert substitute or source correction.
+D-line index 1.638; Abbe number 55.0. Glass: Unmatched. Focal length in air: +59.56 mm.
 
-For nominal physical f/3.3, the independent entrance marginal height15.150408766mm reachesR4 at12.283122544mm and maps to iris radius12.439951588mm. That finite seed is independently tested as an isolated sensitivity, not silently used as the native3.3 opening. The **saved native3.3** paraxial iris radius is12.228684998mm (diameter24.457369995mm); its finite entrance equivalent is **f/3.354900165**, and image-space sine equivalent **f/3.368550772**. Native aperture audit returns3.299999997 in its own paraxial convention, not either finite definition.
+The convex front surface and plane rear surface form the positive front component. It collects the incident beam and begins its convergence toward the negative middle component.
 
-The metadata/name/specs distinguish source3.2, control3.3 and finite equivalents throughout serialization/reload. No second-example f/3.5 prescription is used. Iris ±2% and station ±0.2mm sensitivity preserve the total gap and all core source optics. Separate finite3.3 iris12.43995159 and source3.2 iris12.84467529 trials remain diagnostic only; opening the latter shows actual R4 exclusions, not a new qualified model or permission to enlarge a cap.
+### Element 2 — Biconcave Negative
 
-## Historical and commercial context
+D-line index 1.620; Abbe number 36.0. Glass: Unmatched. Focal length in air: −38.32 mm.
 
-Alan A. Cook and David C. Gilkeson, Wollensak, are distinct from Gordon Henry Cook of TT&H. No Raptar/Optar production identity, retail lens, mount, physical format or specimen machining dimensions are established. Published55degree total field remains a source statement, not verified full-pupil coverage, app quality or retail format. The private diagnostic is at most ±5degrees, not the source55degree field. Other Cook designs and general Tessar architecture are not numerical donors or identity evidence.
+The middle component supplies negative power between the two positive components. Its lower Abbe number provides dispersion that helps balance the front component. The bevel on its rear face sets the smaller R4 optical radius.
 
-## Scoped native verification and reproducibility
+### Element 3 — Negative Meniscus
 
-Actual desktop1440/mobile390 each pass six native states: import, fresh reload/reimport, stop-down, wide reset, Summary and Pupils. Import/export/reload exact, selected3.3 control and source3.2 metadata remain distinct, view controls do not alter the authored file. Committed native runtime state and rendered incoming slopes prove actual5degree request; no page error, stale fallback or invented format. Wider automatic analysis fields are unqualified.
+D-line index 1.605; Abbe number 38.0. Glass: Unmatched. Focal length in air: −83.63 mm.
 
-Saved-control physical nominal entrance-disc grids1801rays each at -5/-2.5/0/2.5/5degrees give1693/1702/1729/1702/1693arrivals. Actual stopped-pupil865grids give846/865/865/865/846. Across both domains524first-loss clips are independently verified:340iris,180R1 and4R4. Raw misses/failed/unaimed/unknown0; all chiefs survive; independent hit agreement within1.4266e-13mm. No admitted TIR or wrong-order path. Sample counts are not area/solid-angle flux, transmission or measured vignetting. The source3.2 controls and their loss proofs remain separate in aperture-admission.json; they are not mixed into selected3.3 MTF.
+This is the negative front member of the rear doublet. Its weakly curved front face and stronger cemented rear face give negative power in air. It provides the more dispersive member of the rear pair.
 
-Selected3.3 reference sodium-D GEOMETRIC MTF at actual0/2.504341387/4.999900434degrees and0/10/20/40cyclesmm converges without unknown in-beam flux, failed or unaimed rays. Dense32–512grids reproduce adaptive results; maximum256→512amplitude change0.000194842 is a sampling comparison, not total error or measured performance. Wider automatic UI outputs, diffraction, calibrated broadband and source-performance reproduction are unqualified.
+### Element 4 — Biconvex Positive
 
-553unchanged targeted tests in7files pass with one worker (52.38s); baseline/strictmodel types, lint, format, native aperture audit, roundtrip and desktop/mobile pass. No source, engine, schema, ray acceptance, cap or test timeout/assertion change. No new complete-suite run or catalog registration; older6947-test same-baseline evidence remains historical.
+D-line index 1.700; Abbe number 48.0. Glass: S-LAM51 (Ohara), a catalog match at the printed index precision. Focal length in air: +36.03 mm.
 
-Numerical dedup uses1188 reevaluated retained main bodies,4816overlapping cached main/21retained fullPR/history profiles, readable loose/TAR/JSON/ZIP bodies and48parsed native profiles in16sealed historicalZIPs, plus protected later checkpoints. Necessary full signed-radius positive uniform scale/reversed-negated filters and source aliases are negative. Names alone do not establish duplicate clearance. Retained source baseline4027fd20d095a1dba4ee3f46188dc70dad858055 is not fresh current remote/main; inaccessible archives, arbitrary expressions and current PR freshness remain outside the claim. Known403refresh was not retried.
+Element 4 supplies the rear component's positive power. The cemented elements together have a focal length of +61.07 mm, so the rear component remains positive despite element 3's negative power.
 
-Private checkpoint includes source, exact one selected3.3 nativeJSON/TS pair, companion notes, source3.2/narrower3.3 diagnostics, independent/native/MTF/geometry/test/browser evidence and deterministic clean replay with SHA256/CRC producer/frozen readback. Original PDFs absent; original numeric pixels/hash stay external scout custody. Sixteen prior ZIPs, every previous producer/frozen checkpoint and baseline blobs remain unchanged. No packaging, upload, transfer, delivery, catalog/repository change, commit, PR, publication, deployment or delivered credit. Packaging requires separate independent approval.
+## Glass Identification and Selection
+
+The patent explicitly identifies the D line, taken here as sodium at 589.3 nm, and prints an index and Abbe number for each element. Those values remain unchanged. It supplies no trade names, suppliers, additional line indices or partial-dispersion data.
+
+Elements 1–3 remain Unmatched because the available catalog rows do not reproduce both printed coordinates. For element 4, Ohara S-LAM51 gives nD = 1.699869 and a D-referenced Abbe number of 48.072: the index rounds to the printed 1.700 and the dispersion differs by +0.072. Hikari J-LAF01 also matches at that precision. The Ohara label supplies a catalog dispersion curve; it does not establish the historical manufacturer or melt. The three unmatched glasses have only an Abbe-based dispersion estimate, so broadband performance and secondary spectrum are not established by the patent data.
+
+## Focus Mechanism and Aperture
+
+The model represents infinity focus only. The patent gives no close-focus prescription, movement law or minimum object distance. The large close-focus value in the data denotes this infinity-only state.
+
+The stop position is printed: 4.4 mm in front of element 3. This divides the 8.7 mm R4–R5 air space into 4.3 mm before the stop and 4.4 mm after it, placing the stop 22.0 mm behind R1. R4's optical rim lies at about 19.94 mm, clear of the stop plane. The opening diameter is not printed; the model derives a stop radius of 12.6108 mm from the nominal f/3.2 aperture.
+
+At that opening the paraxial aperture is f/3.20 and the axial beam clears the fixed rims; the marginal ray reaches R4 at about 12.455 mm against its 12.5 mm radius. A ray launched instead at entrance height f/(2 × 3.2) = 15.624 mm reaches R4 at 12.691 mm and is clipped. That alternative finite-ray aperture definition does not describe the beam admitted by the modeled iris.
+
+## Field and Model Limits
+
+The patent's 55° total field corresponds to ±27.5°. At 27.5° the real chief ray reaches an image height of 51.5236 mm and clears every optical rim; its largest front-element height is 13.1079 mm against the 16 mm radius. The modeled image circle is twice that real chief-ray height, 103.0473 mm. This is derived from the patent's field, not from a camera format. Edge distortion is approximately −1.0% relative to the paraxial rectilinear image height.
+
+The edge bundle is substantially vignetted. About 39% of a meridional fan passes at 27.5°. Sampling the two-dimensional pupil gives approximately 30.1% geometrical transmission and 22.0% relative illumination compared with the axis. These are different measures of the modeled bundle; they are not measured transmission or illumination, and they do not include coating losses.
+
+The prescription and field statements do not establish a commercial mount, image format, finite-focus mechanism or measured MTF. The bevel's full three-dimensional shape and the historical glass identities remain unknown.
+
+## Sources
+
+1. Alan A. Cook and David C. Gilkeson, [US 2,769,372 A](https://patents.google.com/patent/US2769372A/en), Wollensak Optical Company, published 6 November 1956. PDF page 1: Figures 1–3; page 2: Example I, D-line convention, diameters, bevel, stop, aperture and field; page 3: claim 1 repeats Example I.

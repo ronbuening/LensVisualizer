@@ -1,14 +1,22 @@
-import type { LensDataV2Input } from "../repo/src/types/lensDataV2.js";
-const data = {
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * US 2,769,372 A, Example I (Figures 1–2): a 100 mm f/3.2 Tessar-type objective.
+ * Radii, thicknesses, D-line indices, Abbe numbers and the stop position are printed.
+ * The stop is 4.4 mm before element 3; its opening is derived from f/3.2.
+ * Rims follow the printed element diameters, with the R4 optical radius taken as
+ * 12.5 mm where its 45-degree bevel starts. The bevel depth is not specified.
+ * The image plane uses the computed paraxial back focus, 82.9103 mm (printed: 82.9 mm).
+ */
+const LENS_DATA = {
   schema: 2,
-  key: "cook-gilkeson-us2769372-example1-infinity-reference",
-  maker: null,
-  name: "COOK GILKESON US2769372 EXAMPLE I \u2014 SOURCE f/3.2 \u00b7 CONTROL f/3.3",
-  subtitle:
-    "Patent-only 4E/3G \u00b7 selected f/3.3 control \u00b7 sodium-D infinity",
-  visible: false,
+  key: "wollensak-100mm-f32-us2769372",
+  maker: "Wollensak",
+  name: "WOLLENSAK 100mm f/3.2 (US 2,769,372 Design)",
+  subtitle: "US 2,769,372 A, Example I — Tessar-type objective",
+  visible: true,
   source: {
-    patentNumber: "US 2,769,372",
+    patentNumber: "US 2,769,372 A",
     patentYear: 1956,
     example: {
       label: "Example I",
@@ -16,68 +24,69 @@ const data = {
     },
     authors: ["Alan A. Cook", "David C. Gilkeson"],
     assignees: ["Wollensak Optical Company"],
-    sdSource: "heuristic",
   },
   catalog: {
     focalLengthMm: {
-      design: 100,
+      design: 99.99,
     },
     fNumber: {
       design: 3.2,
     },
     elementCount: 4,
     groupCount: 3,
-    specs: [
-      "Cook/Gilkeson Wollensak US2769372 ExampleI/Figs1-2,4E3G1|2|3+4,R6cement,trueplanorefractiveR2. Not GordonHenryCook/TT&H;noRaptar/Optarretailidentity. Source100/f3.2/BF82.9 vs literal99.992697857/82.910303500mm,no fit/glasschange.",
-      "Selectednative softwarecontrol f/3.3,distinctfromsource nominalf3.2. Sourcef3.2 finite/physicalrimclipping preservedindependently;no R4enlargement toforcepass. Actualfiniteaperture equivalentsdocumented separately.",
-      "Sourceglassdiameters32/27/28/28mm;R4rearopticalcap12.5mm atsource45degreebevelstart25mmdiameter;othercaps[16,16,13.5,14,14,14]. Beveldepth/profile notinvented;effectiveopticalcap proxydoesnotclaim literal3Dbevel.",
-      "Source stop4.4mm beforeL3,therefore4.3/4.4in exact8.7mmgap,z22. Irisboreestimated,notfactorymeasurement. No sourcegeometryedit,capenlargement,trim,override,extra plate or baffle.",
-      "Actualnativeatmost+/-5degree sodium-D infinity only,notpublished55degreecoverage. No fullpupil,retail,format,finitefocus,broadband,calibrateddispersion,measuredMTF/throughput or widerautomaticmetricsclaim.",
-      "Originalsignednumbers/PDFhash externalparent/scoutcustody,no localPDF/pixels/rehash. Officialwebread inaccessibleonce,noretry;primaryprose independentlycorroboratestop/diameters/bevel/Dline/topology,not numericfacsimilepixelinspection.",
-    ],
+    imageCircleMm: 103.0473,
+    specs: ["4 ELEMENTS / 3 GROUPS", "ALL SPHERICAL", "DESIGN F/3.2"],
   },
   elements: [
     {
       id: 1,
       name: "L1",
-      label: "L1",
-      type: "Source Spherical Element",
+      label: "Element 1",
+      type: "Plano-Convex Positive",
       nd: 1.638,
       vd: 55,
       indexReference: "D",
-      glass: "Literal sodium-D/Abbe pair; no calibrated spectral curve.",
+      glass: "Unmatched (nD 1.638 / ν 55.0)",
+      focalLengthMm: 59.56,
+      role: "Positive front component that collects incident light",
     },
     {
       id: 2,
       name: "L2",
-      label: "L2",
-      type: "Source Spherical Element",
+      label: "Element 2",
+      type: "Biconcave Negative",
       nd: 1.62,
       vd: 36,
       indexReference: "D",
-      glass: "Literal sodium-D/Abbe pair; no calibrated spectral curve.",
+      glass: "Unmatched (nD 1.620 / ν 36.0)",
+      focalLengthMm: -38.32,
+      role: "Negative middle component that balances the positive components",
     },
     {
       id: 3,
       name: "L3",
-      label: "L3",
-      type: "Source Spherical Element",
+      label: "Element 3",
+      type: "Negative Meniscus",
       nd: 1.605,
       vd: 38,
       indexReference: "D",
-      glass: "Literal sodium-D/Abbe pair; no calibrated spectral curve.",
-      cemented: "G3",
+      glass: "Unmatched (nD 1.605 / ν 38.0)",
+      focalLengthMm: -83.63,
+      role: "Dispersive negative member of the positive rear doublet",
+      cemented: "C1",
     },
     {
       id: 4,
       name: "L4",
-      label: "L4",
-      type: "Source Spherical Element",
+      label: "Element 4",
+      type: "Biconvex Positive",
       nd: 1.7,
       vd: 48,
       indexReference: "D",
-      glass: "Literal sodium-D/Abbe pair; no calibrated spectral curve.",
-      cemented: "G3",
+      glass: "S-LAM51 (Ohara)",
+      focalLengthMm: 36.03,
+      role: "Positive member that supplies the rear doublet's converging power",
+      cemented: "C1",
     },
   ],
   surfaces: [
@@ -129,47 +138,47 @@ const data = {
     {
       label: "7",
       R: -55.1,
-      d: 82.91030349965871,
+      d: 82.9103035,
       sd: 14,
     },
   ],
   aperture: {
-    nominalFNumber: 3.3,
-    fStops: [3.3, 4, 5.6, 8, 11, 16, 22, 32],
+    nominalFNumber: 3.2,
+    fStops: [3.2, 4, 5.6, 8, 11, 16, 22, 32],
     maxFNumber: 32,
   },
   projection: {
     kind: "rectilinear",
-    fullFieldDeg: 10,
-    maxTraceFieldDeg: 5,
+    fullFieldDeg: 55,
+    maxTraceFieldDeg: 27.5,
   },
   rays: {
     offAxisFieldFrac: 1,
   },
   focus: {
-    closeFocusM: 1000000000000000,
-    description:
-      "Cook/Gilkeson Wollensak US2769372 ExampleI/Figs1-2,4E3G1|2|3+4,R6cement,trueplanorefractiveR2. Not GordonHenryCook/TT&H;noRaptar/Optarretailidentity. Source100/f3.2/BF82.9 vs literal99.992697857/82.910303500mm,no fit/glasschange. Selectednative softwarecontrol f/3.3,distinctfromsource nominalf3.2. Sourcef3.2 finite/physicalrimclipping preservedindependently;no R4enlargement toforcepass. Actualfiniteaperture equivalentsdocumented separately. Sourceglassdiameters32/27/28/28mm;R4rearopticalcap12.5mm atsource45degreebevelstart25mmdiameter;othercaps[16,16,13.5,14,14,14]. Beveldepth/profile notinvented;effectiveopticalcap proxydoesnotclaim literal3Dbevel. Source stop4.4mm beforeL3,therefore4.3/4.4in exact8.7mmgap,z22. Irisboreestimated,notfactorymeasurement. No sourcegeometryedit,capenlargement,trim,override,extra plate or baffle. Actualnativeatmost+/-5degree sodium-D infinity only,notpublished55degreecoverage. No fullpupil,retail,format,finitefocus,broadband,calibrateddispersion,measuredMTF/throughput or widerautomaticmetricsclaim. Originalsignednumbers/PDFhash externalparent/scoutcustody,no localPDF/pixels/rehash. Officialwebread inaccessibleonce,noretry;primaryprose independentlycorroboratestop/diameters/bevel/Dline/topology,not numericfacsimilepixelinspection.",
+    closeFocusM: 1e15,
+    description: "Infinity focus only; the patent gives no close-focus data.",
   },
   groups: [
     {
-      text: "G1 \u00b7 L1",
+      text: "Front component",
       fromSurface: "1",
       toSurface: "2",
     },
     {
-      text: "G2 \u00b7 L2",
+      text: "Middle component",
       fromSurface: "3",
       toSurface: "4",
     },
     {
-      text: "G3 \u00b7 L3+L4",
+      text: "Rear doublet",
       fromSurface: "5",
       toSurface: "7",
     },
   ],
+  doublets: [{ text: "C1", fromSurface: "5", toSurface: "7" }],
   layout: {
     yScFill: 0.5,
   },
 } satisfies LensDataV2Input;
-export default data;
+export default LENS_DATA;
