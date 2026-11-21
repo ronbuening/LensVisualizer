@@ -1,14 +1,23 @@
-import type { LensDataV2Input } from "../repo/src/types/lensDataV2.js";
-const data = {
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * US 2,366,597 A, Example I and Figure 1, by Arthur Cox.
+ * The unit-focal-length prescription is multiplied by 100 to give millimetres.
+ * Radii, thicknesses, air spaces and D-line glass data follow the printed table.
+ * The inferred stop splits the 6.5 mm rear air space into 3 and 3.5 mm.
+ * Clear semi-diameters are inferred; the image gap is the computed paraxial
+ * back focus, 48.908493 mm. The illustrative ±5° field is not printed.
+ * Total length is 0.871 of the computed focal length, below the stated 7/8.
+ */
+const LENS_DATA = {
   schema: 2,
-  key: "cox-us2366597-example1-infinity-reference",
-  maker: null,
-  name: "COX US2366597 EXAMPLE I \u2014 SOURCE f/2.5",
-  subtitle:
-    "Patent-only 6E/3G \u00b7 three doublets \u00b7 sodium-D infinity / estimated iris-rims",
+  key: "cooke-100mm-f25-us2366597",
+  maker: "Cooke",
+  name: "COOKE 100mm f/2.5 (US 2,366,597 Design)",
+  subtitle: "US 2,366,597 A, Example I — three-doublet telephoto design",
   visible: false,
   source: {
-    patentNumber: "US 2,366,597",
+    patentNumber: "US 2,366,597 A",
     patentYear: 1945,
     example: {
       label: "Example I",
@@ -20,87 +29,93 @@ const data = {
   },
   catalog: {
     focalLengthMm: {
-      design: 100,
+      design: 99.87,
     },
     fNumber: {
       design: 2.5,
     },
     elementCount: 6,
     groupCount: 3,
-    specs: [
-      "Literal6E3Gthreedoublets1+2|3+4|5+6,bondsR2/R5/R8;Dindices/Abbe unchanged. Source100mm f2.5 vs literalEFL99.867750695/BFD48.908493251mm,nofit/glasschange. Literaltele-ratio.87124<7/8,notretail/productclaim.",
-      "Exact6.5mmS2R6-R7gap,estimatedstop3/3.5,z25.3,irisandclearcapsestimated/not factorymeasurements. No sourcegeometryedits,trim,overrideorbaffle.",
-      "Savednativef2.5 derivesparaxialiris;finite-marginalR15.428276136 separate. Realfiniteentrance/image-sine equivalentsdocumented,notconflatedwithnominal.",
-      "Actualnative+/-5degreeD-lineinfinityonly,no broaderfield/product/format/imagecircle,retail,finite,broadband,measuredMTF/throughputclaim. Upstream10degwrong-order/14degTIR retainedaswarnings,notlocalnativequalification.",
-      "Originalsignedtranscription/hash externalparent/scoutcustody,nolocalPDF/pixels/rehash. Prosemirrorinaccessibleonce,noretry;bondmappingfromsuppliedthreedoubletlayout+literalEFL/BFD/ratio,notadditionalprimarypixelinspection.",
-    ],
+    specs: ["6 ELEMENTS / 3 GROUPS", "ALL SPHERICAL", "DESIGN F/2.5", "TELEPHOTO"],
   },
   elements: [
     {
       id: 1,
       name: "L1",
-      label: "L1",
-      type: "Source Spherical Element",
+      label: "Element 1",
+      type: "Biconvex Positive",
+      role: "Positive front element of the first convergent doublet",
+      focalLengthMm: 52.75,
       nd: 1.613,
       vd: 57.6,
       indexReference: "D",
-      glass: "Literal sodium-D/Abbe pair; no calibrated spectral curve.",
-      cemented: "G1",
+      glass: "Unmatched (nD 1.613 / ν 57.6)",
+      cemented: "C1",
     },
     {
       id: 2,
       name: "L2",
-      label: "L2",
-      type: "Source Spherical Element",
+      label: "Element 2",
+      type: "Biconcave Negative",
+      role: "Dispersive negative element of the first convergent doublet",
+      focalLengthMm: -84.47,
       nd: 1.699,
       vd: 30.3,
       indexReference: "D",
-      glass: "Literal sodium-D/Abbe pair; no calibrated spectral curve.",
-      cemented: "G1",
+      glass: "Unmatched (nD 1.699 / ν 30.3)",
+      cemented: "C1",
     },
     {
       id: 3,
       name: "L3",
-      label: "L3",
-      type: "Source Spherical Element",
+      label: "Element 3",
+      type: "Biconvex Positive",
+      role: "Positive front element of the second convergent doublet",
+      focalLengthMm: 51.77,
       nd: 1.613,
       vd: 57.6,
       indexReference: "D",
-      glass: "Literal sodium-D/Abbe pair; no calibrated spectral curve.",
-      cemented: "G2",
+      glass: "Unmatched (nD 1.613 / ν 57.6)",
+      cemented: "C2",
     },
     {
       id: 4,
       name: "L4",
-      label: "L4",
-      type: "Source Spherical Element",
+      label: "Element 4",
+      type: "Biconcave Negative",
+      role: "Dispersive negative element of the second convergent doublet",
+      focalLengthMm: -74.91,
       nd: 1.699,
       vd: 30.3,
       indexReference: "D",
-      glass: "Literal sodium-D/Abbe pair; no calibrated spectral curve.",
-      cemented: "G2",
+      glass: "Unmatched (nD 1.699 / ν 30.3)",
+      cemented: "C2",
     },
     {
       id: 5,
       name: "L5",
-      label: "L5",
-      type: "Source Spherical Element",
+      label: "Element 5",
+      type: "Biconvex Positive",
+      role: "Positive front element of the divergent rear doublet",
+      focalLengthMm: 33.01,
       nd: 1.652,
       vd: 33.5,
       indexReference: "D",
-      glass: "Literal sodium-D/Abbe pair; no calibrated spectral curve.",
-      cemented: "G3",
+      glass: "Unmatched (nD 1.652 / ν 33.5)",
+      cemented: "C3",
     },
     {
       id: 6,
       name: "L6",
-      label: "L6",
-      type: "Source Spherical Element",
+      label: "Element 6",
+      type: "Biconcave Negative",
+      role: "Negative rear element providing the telephoto divergence",
+      focalLengthMm: -19.7,
       nd: 1.644,
       vd: 48.3,
       indexReference: "D",
-      glass: "Literal sodium-D/Abbe pair; no calibrated spectral curve.",
-      cemented: "G3",
+      glass: "Unmatched (nD 1.644 / ν 48.3)",
+      cemented: "C3",
     },
   ],
   surfaces: [
@@ -184,29 +199,33 @@ const data = {
     offAxisFieldFrac: 1,
   },
   focus: {
-    closeFocusM: 1000000000000000,
-    description:
-      "Literal6E3Gthreedoublets1+2|3+4|5+6,bondsR2/R5/R8;Dindices/Abbe unchanged. Source100mm f2.5 vs literalEFL99.867750695/BFD48.908493251mm,nofit/glasschange. Literaltele-ratio.87124<7/8,notretail/productclaim. Exact6.5mmS2R6-R7gap,estimatedstop3/3.5,z25.3,irisandclearcapsestimated/not factorymeasurements. No sourcegeometryedits,trim,overrideorbaffle. Savednativef2.5 derivesparaxialiris;finite-marginalR15.428276136 separate. Realfiniteentrance/image-sine equivalentsdocumented,notconflatedwithnominal. Actualnative+/-5degreeD-lineinfinityonly,no broaderfield/product/format/imagecircle,retail,finite,broadband,measuredMTF/throughputclaim. Upstream10degwrong-order/14degTIR retainedaswarnings,notlocalnativequalification. Originalsignedtranscription/hash externalparent/scoutcustody,nolocalPDF/pixels/rehash. Prosemirrorinaccessibleonce,noretry;bondmappingfromsuppliedthreedoubletlayout+literalEFL/BFD/ratio,notadditionalprimarypixelinspection.",
+    closeFocusM: 1e15,
+    description: "Infinity focus only; the patent gives no close-focus data.",
   },
   groups: [
     {
-      text: "G1 \u00b7 L1+L2",
+      text: "First convergent doublet",
       fromSurface: "1",
       toSurface: "3",
     },
     {
-      text: "G2 \u00b7 L3+L4",
+      text: "Second convergent doublet",
       fromSurface: "4",
       toSurface: "6",
     },
     {
-      text: "G3 \u00b7 L5+L6",
+      text: "Divergent rear doublet",
       fromSurface: "7",
       toSurface: "9",
     },
+  ],
+  doublets: [
+    { text: "C1", fromSurface: "1", toSurface: "3" },
+    { text: "C2", fromSurface: "4", toSurface: "6" },
+    { text: "C3", fromSurface: "7", toSurface: "9" },
   ],
   layout: {
     yScFill: 0.5,
   },
 } satisfies LensDataV2Input;
-export default data;
+export default LENS_DATA;
