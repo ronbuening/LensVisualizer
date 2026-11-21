@@ -30,7 +30,7 @@ The surfaces stay clear of each other. The front element's edge is about 1.01 mm
 
 `focus.closeFocusM` is 10¹⁵ m, which stands for infinity. No close-focus distance, focusing mechanism, field angle, image format or image circle is printed. The selectable apertures span f/2.5 to f/22 without a published minimum iris opening. No image circle is assigned because the field is illustrative and no cited source supplies a field angle or format for this design.
 
-The glass names and suppliers are unknown. All four distinct printed glass pairs remain Unmatched. A modern LF3 (Sumita) curve gives sodium-D index 1.58203 and Abbe number 42.02, differences of ΔnD ≈ −0.00007 and Δν ≈ +0.02 from element 3. This proximity does not establish the identity of the 1932 glass. The other pairs have no comparably close catalog curve. Approximate chromatic behavior follows the printed indices and Abbe numbers; complete dispersion curves, secondary spectrum, transmission and anomalous partial dispersion are not established.
+The historical glass names, suppliers and melts are unknown. Elements 1 and 4 remain Unmatched because no catalog row falls within tolerance at sodium D. Element 3 matches LF3 (Sumita) within printed precision; elements 2 and 5 use S-TIM25 (Ohara) and BASF4 (Sumita) as spectral proxies. These catalog curves do not identify the historical glasses. The printed D-line indices and Abbe numbers are retained; historical full dispersion curves, secondary spectrum, transmission and anomalous partial dispersion are not established.
 
 ## Product Identification
 
@@ -46,7 +46,7 @@ No confirmed product supplies a mount, image format, marketed focal length or ap
 - The design focal-length metadata changed from 100 to 99.90 mm to match the calculated EFL. The printed design aperture and the five-element/four-group counts were retained. No product mount, format, image circle or marketing values were added.
 - Element labels changed from L1–L5 to Element 1–Element 5. Shape descriptions became Plano-Convex Positive, Biconcave Negative, Biconcave Negative, Biconvex Positive and Biconvex Positive. Optical roles and in-air focal lengths were added: +64.13, −38.09, −53.60, +34.19 and +194.57 mm.
 - The cemented pair's identifier changed from D1 to C1, with its bracket spanning surfaces 5–7. The four group brackets identify the front collective lens, dispersive lens, cemented collective lens and rear collective lens, following the patent's description.
-- Long glass descriptions became concise Unmatched labels for each printed pair: elements 1/4, 1.6580 / 51.4; element 2, 1.6741 / 32.0; element 3, 1.5821 / 42.0; element 5, 1.6513 / 38.3. Every element retains ΔnD = 0 and Δν = 0, its sodium-D reference and no anomalous-dispersion claim.
+- Glass labels retain each printed pair: elements 1/4, 1.6580 / 51.4; element 2, 1.6741 / 32.0; element 3, 1.5821 / 42.0; element 5, 1.6513 / 38.3. Every element retains its printed index and Abbe number, sodium-D reference and no anomalous-dispersion claim.
 - 2026-11-21 rim review:
   - The sole example's drawing sheet, PDF page 1, was read at 600 dpi. The 48.1 mm first-to-last vertex span measures about 747 pixels, giving 15.5 pixels/mm. The 11.4 mm R2–R3 air space and 9.6 mm R6–R7 thickness measure about 177 and 149 pixels and agree with that scale. A circular fit to the front arc gives about 16.7 pixels/mm, within 8%. However, the 2.4 mm R5–R6 thickness measures about 57 pixels rather than 37; the drawing therefore supplies relative heights and square-cut outlines, not exact dimensions.
   - At the overall scale, the front rim reads about 21.0 mm, the negative singlet 18.7 mm, the cemented group 18.9 mm and the rear singlet 21.4 mm. Opposite halves were compared to avoid the slight shear of the page; labels and their leader lines were excluded.
@@ -55,6 +55,12 @@ No confirmed product supplies a mount, image format, marketed focal length or ap
   - R4 remains 19 mm; R5/R6/R7 remain 20/19/19 mm; R8/R9 remain 22/22 mm. Their heights differ from the drawing by about 1–6%, within its uncertainty. No land or flat rim cut was added, and the cemented junction remains continuous.
   - Geometric pupil transmission at 0°, 1.7°, 3.3°, 5.0° and 6.7° remains 100%. At 8.3° it changes from 100% to 98.9%, and at 10.0° from 99.7% to 96.7%. The largest loss is 2.97 points at 10.0°, entirely due to the front rim; each element was also restored separately to check its contribution.
   - All surfaces retain positive edge thickness and clear air gaps. The conservative finite-f/2.5 axial ray reaches 19.98 mm at R1, 19.53 mm at R2 and 16.20 mm at R3, below their final rims. The 10.0° chief ray remains clear and reaches image height 17.584 mm. The selected half-field remains 10.0°, paraxial aperture f/2.50 and admitted finite aperture about f/2.58. Format-corner checks remain unavailable because no image format is assigned. The matched-scale cross-sections show the corrected square negative singlet and a thicker front edge; no separate production construction drawing is available.
+
+- 2026-11-21 glass review:
+  - Element 2: `Unmatched (nD 1.6741 / ν 32.0)` → `S-TIM25 (spectral proxy; patent nD 1.6741 / ν 32.0; supplier and melt unspecified)`; spectral proxy, sodium-D ΔnD = −0.00158 and Δν = +0.09.
+  - Element 3: `Unmatched (nD 1.5821 / ν 42.0)` → `LF3 (Sumita)`; exact match, sodium-D ΔnD = −0.00007 and Δν = +0.02.
+  - Element 5: `Unmatched (nD 1.6513 / ν 38.3)` → `BASF4 (spectral proxy; patent nD 1.6513 / ν 38.3; supplier and melt unspecified)`; spectral proxy, sodium-D ΔnD = −0.00017 and Δν = +0.02.
+  - LF3 matches within printed precision (index 0.0001 / Abbe number 0.15); spectral proxies stay within index 0.002 / Abbe number 0.25 at the printed sodium-D line. Printed indices and Abbe numbers are kept; catalog rows identify no historical supplier or melt.
 
 After these corrections, EFL is 99.90 mm, paraxial aperture f/2.50, BFD 78.28 mm, stop radius 15.269 mm and selected half-field 10.0°. The prescription scale, radii, thicknesses, air spaces, glass coordinates, index reference, stop position, field and image plane are unchanged.
 

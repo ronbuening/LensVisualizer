@@ -38,13 +38,13 @@ The front crown collects the incident beam. Its convex front face supplies the r
 
 ### Element 2 — Biconcave Negative
 
-nD = 1.6741, ν = 32.0. Glass: Unmatched (nD 1.6741 / ν 32.0). In-air f = −38.09 mm.
+nD = 1.6741, ν = 32.0. Glass: S-TIM25 (Ohara), spectral proxy. In-air f = −38.09 mm.
 
 This is the dispersive singlet between the front collective element and the rear collective groups. It has the lowest Abbe number in the prescription and works with the positive elements in chromatic correction.
 
 ### Element 3 — Biconcave Negative
 
-nD = 1.5821, ν = 42.0. Glass: Unmatched (nD 1.5821 / ν 42.0). In-air f = −53.60 mm.
+nD = 1.5821, ν = 42.0. Glass: LF3 (Sumita), matches the printed pair. In-air f = −53.60 mm.
 
 The negative front member of cemented group C1 adds dispersive power behind the stop. Its shared rear surface R6 joins element 4 without an air space.
 
@@ -56,13 +56,13 @@ This thick positive crown is the rear member of C1. Its greater positive power m
 
 ### Element 5 — Biconvex Positive
 
-nD = 1.6513, ν = 38.3. Glass: Unmatched (nD 1.6513 / ν 38.3). In-air f = +194.57 mm.
+nD = 1.6513, ν = 38.3. Glass: BASF4 (Sumita), spectral proxy. In-air f = +194.57 mm.
 
 The rear singlet supplies weak positive power through equal and opposite radii of 252.5 mm. A 1.1 mm axial air space separates it from the cemented group.
 
 ## Glass Identification and Selection
 
-The patent prints D-line and G-line indices and Abbe numbers for every element, but no glass trade names or suppliers. The source pairs remain unmatched historical materials.
+The patent prints D-line and G-line indices and Abbe numbers for every element, but no glass trade names or suppliers. Historical glass identities remain unknown.
 
 | Element |     nD | nG, as printed |    ν |
 | ------- | -----: | -------------: | ---: |
@@ -72,7 +72,11 @@ The patent prints D-line and G-line indices and Abbe numbers for every element, 
 | 4 / IV  | 1.6580 |         1.6741 | 51.4 |
 | 5 / V   | 1.6513 |         1.6732 | 38.3 |
 
-The G-line values retain their printed designation. The patent gives no wavelength for G, so the model does not treat them as indices at 435.8 nm. The D-line indices and Abbe numbers support approximate chromatic calculations, but do not establish the complete dispersion curves or secondary spectrum of the historical glasses.
+Element 3 matches LF3 (Sumita) within printed precision: ΔnD = −0.00007 and Δν = +0.02. Elements 2 and 5 use spectral proxies: S-TIM25 (Ohara), ΔnD = −0.00158 and Δν = +0.09; and BASF4 (Sumita), ΔnD = −0.00017 and Δν = +0.02. These differences are catalog minus printed values at sodium D.
+
+The printed indices and Abbe numbers are kept. Catalog curves supply the dispersion shape for elements 2, 3 and 5; the spectral proxies replace an Abbe-only estimate with a real-glass curve. No row identifies the historical supplier or melt. Elements 1 and 4 remain Unmatched because no row falls within the index 0.002 / Abbe number 0.25 tolerance at sodium D.
+
+The G-line values retain their printed designation. The patent gives no wavelength for G, so the model does not treat them as indices at 435.8 nm. Neither the printed values nor the catalog curves establish the complete dispersion curves or secondary spectrum of the historical glasses.
 
 The patent describes the use of high-index baryta crown to improve field flatness. Adding the cemented flint member permits chromatic correction without relying on a very heavy flint whose yellow tint would absorb blue light (specification p. 1, lines 33–58).
 
@@ -95,3 +99,5 @@ The model preserves the printed prescription and uses its paraxial infinity imag
 - [GB 375,723 A](https://patents.google.com/patent/GB375723A/en) and [DE 634,843 C](https://patents.google.com/patent/DE634843C/en): British and German filings of the same invention.
 - [Espen Susort, Astro-Gesellschaft historical timeline](https://espensusort.no/posts/timeline-of-astro-berlin/), 1922 and 1931–1932 sections and lens list: company background and an unconfirmed Astrar attribution, alongside a conflicting f/2.7 Cooke-triplet description.
 - [Pentacon Six, Astro lenses](https://www.pentaconsix.com/astro.htm): named Astro products and element counts; no construction establishes a match to this patent.
+- [Ohara optical glass catalog](https://www.ohara-inc.co.jp/en/product/catalog/): S-TIM25 dispersion curve.
+- [Sumita optical glass catalog](https://www.sumita-opt.co.jp/en/download/): LF3 and BASF4 dispersion curves.
