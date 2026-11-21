@@ -7,14 +7,14 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * 78.5 mm; Examples I–V also show the patent's loose focal-length normalization.
  * The image plane is the computed paraxial infinity plane. The stop is inferred
  * at the midpoint of the 7.5 mm rear air space, its size from f/3.5, and all clear
- * semi-diameters are estimated. Covering power 26° is interpreted as a half-angle.
+ * semi-diameters are estimated. Covering power 26° is read as a 26.0° half-angle.
  */
 const LENS_DATA = {
   schema: 2,
   key: "kodak-100mm-f35-us2279372",
   maker: "Kodak",
   name: "KODAK 100mm f/3.5 (US 2,279,372 Design)",
-  subtitle: "US 2,279,372 A, Example VI — three-element photographic objective",
+  subtitle: "US 2,279,372 A, Example VI — Eastman Kodak / Herzberger",
   visible: true,
   source: {
     patentNumber: "US 2,279,372 A",
@@ -28,7 +28,7 @@ const LENS_DATA = {
     sdSource: "heuristic",
   },
   catalog: {
-    imageCircleMm: 97.6034,
+    imageCircleMm: 97.61,
     elementCount: 3,
     groupCount: 3,
     focalLengthMm: {
@@ -37,7 +37,12 @@ const LENS_DATA = {
     fNumber: {
       design: 3.5,
     },
-    specs: ["3 ELEMENTS / 3 GROUPS", "ALL SPHERICAL", "DESIGN F/3.5"],
+    specs: [
+      "3 ELEMENTS / 3 GROUPS",
+      "ALL SPHERICAL",
+      "DESIGN f = 100 mm",
+      "DESIGN F/3.5",
+    ],
   },
   elements: [
     {
