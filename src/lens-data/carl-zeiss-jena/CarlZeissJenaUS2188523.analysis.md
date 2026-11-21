@@ -2,12 +2,12 @@
 
 ## Patent Reference and Design Identification
 
-**Patent:** [US 2,188,523 A, Photographic Objective](https://patents.google.com/patent/US2188523A/en)
-**Inventors:** Ludwig Bertele
-**Assignee:** Zeiss Ikon AG
-**Published:** January 30, 1940
-**Filed:** September 14, 1938
-**German priority:** January 8, 1938
+**Patent:** [US 2,188,523 A, Photographic Objective](https://patents.google.com/patent/US2188523A/en)\
+**Inventors:** Ludwig Bertele\
+**Assignee:** Zeiss Ikon AG\
+**Published:** January 30, 1940\
+**Filed:** September 14, 1938\
+**German priority:** January 8, 1938\
 **Example details:** Sole numerical example, PDF page 2; section drawing on PDF page 1.
 
 The patent describes a seven-element, three-group photographic objective at 100 mm f/2. Its ten signed radii, nine axial distances, seven refractive indices and seven Abbe numbers are preserved. The index heading is lowercase nd, interpreted as the helium d line; the patent does not state a numerical wavelength.
