@@ -3,8 +3,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 /**
  * US 2,390,387 A, Figure 2: a 100 mm f/5.6 telephoto objective with two cemented doublets.
  * Radius magnitudes, thicknesses, separation, D-line indices and Abbe numbers are printed;
- * radius signs follow the drawing. The stop position and clear semi-diameters are estimated,
- * and the iris size follows the nominal aperture. The image plane is the computed paraxial
+ * radius signs follow the drawing. The stop position and clear semi-diameters are estimated.
+ * Square doublet rims are checked against Figure 2 and the nominal axial beam. The rear
+ * clear radius remains above the drawing estimate to limit the loss of off-axis light.
+ * The iris size follows the nominal aperture. The image plane is the computed paraxial
  * back focus. The ±10° field is illustrative; the patent gives no field for this example.
  * Both Figure 2 tables agree; extracted text misreads L2's printed index of 1.6210 as 1.620.
  */
@@ -121,21 +123,21 @@ const LENS_DATA = {
       label: "4",
       R: -10.75,
       d: 1.2,
-      sd: 7.5,
+      sd: 7.2,
       medium: 3,
     },
     {
       label: "5",
       R: -28.5,
       d: 1.8,
-      sd: 7.5,
+      sd: 7.2,
       medium: 4,
     },
     {
       label: "6",
       R: -19.49,
       d: 50.30406,
-      sd: 7.5,
+      sd: 7.2,
     },
   ],
   focus: {
