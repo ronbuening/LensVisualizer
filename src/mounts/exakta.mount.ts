@@ -14,10 +14,10 @@
  * photos and, for the Kine profile, from the patent's undimensioned figures, so they stay
  * `photo_scaled` (about +/-5 deg, +/-1 mm) and are listed in openQuestions.
  *
- * Angle convention (the house one): every lens-side feature is stored at the camera-front angle of the
- * body feature it mates with, so lens-lug-n shares body-slot-n (the entry gap it passes through), the
- * index marks share 0 deg, and the lens pin shares the latch hook angle. The clockwise turn that carries
- * the lugs from the gaps to behind the body flanges lives only in lockGeometry (60 deg, derived).
+ * Drawing convention: the camera-front view shows the body as it is, so `body-slot-n` is one of the
+ * three inward body flanges, not the open gap beside it. The lens is drawn as mounted and locked, so
+ * `lens-lug-n` sits behind that flange at the same angle and the lens pin sits in the latch hook. The
+ * lens enters about 60 deg anticlockwise of that, through the gaps between the flanges (lockGeometry).
  */
 
 import type { CameraSideFeature, LensSideFeature, MountSpecInput } from "../types/mount.js";
@@ -33,6 +33,7 @@ const JW = ["exa-2", "exa-4"]; // JAPB photo + Westin/Markerink "46" diameter
 
 const BASE = "exakta/base";
 const KINE = "exakta/kine";
+const VAREX = "exakta/varex";
 const OUTER = "exakta/outer-bayonet";
 const TOPCON = "exakta/topcon-re";
 const RTL = "exakta/rtl-1000";
@@ -48,14 +49,14 @@ function bodySlot(index: number, centerDeg: number): CameraSideFeature {
     profileId: BASE,
     count: 1,
     centerAngleDeg: v(centerDeg, "photo_scaled", JP),
-    startAngleDeg: v((centerDeg + 320) % 360, "photo_scaled", JP),
-    endAngleDeg: v((centerDeg + 40) % 360, "photo_scaled", JP),
+    startAngleDeg: v((centerDeg + 340) % 360, "photo_scaled", JP),
+    endAngleDeg: v((centerDeg + 20) % 360, "photo_scaled", JP),
     innerRadiusMm: v(16.9, "secondary", J),
     outerRadiusMm: v(19, "photo_scaled", J),
     depthMm: v(LUG_DEPTH_MM, "photo_scaled", J),
     matesWith: `lens-lug-${index}`,
     shapeNotes:
-      "entry gap, about 80 deg wide, that the lens lug passes through. The three inward body flanges (each about 40 deg) sit between the gaps at about 345/105/225 deg, and the lugs lock behind them. Scaled from the JAPB Varex VX front photo and US2136149A Fig. 3, both camera-front views",
+      "inward body flange, about 40 deg wide, that retains a lens lug. The open gaps between the flanges are about 80 deg wide and centred near 45/165/285 deg; the lugs enter through them. Scaled from the JAPB Varex VX front photo and US2136149A Fig. 3, both camera-front views",
   };
 }
 
@@ -73,15 +74,15 @@ function lensLug(index: number, centerDeg: number): LensSideFeature {
     thicknessMm: v(LUG_DEPTH_MM, "photo_scaled", J),
     matesWith: `body-slot-${index}`,
     shapeNotes:
-      "about 65 deg lug, stored at the angle of the entry gap it passes through; once turned it sits behind a body flange (flanges at about 345/105/225 deg). Span and spacing scaled from JAPB lens-rear photos (Biotar, Oreston) and US2136149A Fig. 5, all lens-rear views converted with theta_front = (360 - theta_rear). 37.5 mm over the lugs is JAPB's stated figure",
+      "about 65 deg lug, drawn where it sits on a mounted lens, behind the body flange at the same angle. Span and spacing scaled from JAPB lens-rear photos (Biotar, Oreston) and US2136149A Fig. 5, all lens-rear views converted with theta_front = (360 - theta_rear) and clocked by the lens pin sitting in the latch hook. 37.5 mm over the lugs is JAPB's stated figure",
   };
 }
 
-function outerLug(index: number, centerDeg: number): CameraSideFeature {
+function outerLug(profileId: typeof VAREX | typeof OUTER, index: number, centerDeg: number): CameraSideFeature {
   return {
-    featureId: `body-outer-lug-${index}`,
+    featureId: profileId === VAREX ? `body-outer-lug-${index}` : `body-outer-lug-${index}-long-lens`,
     featureType: "outer_bayonet_lug",
-    profileId: OUTER,
+    profileId,
     count: 1,
     centerAngleDeg: v(centerDeg, "photo_scaled", J),
     startAngleDeg: v(centerDeg - 20, "photo_scaled", J),
@@ -89,9 +90,27 @@ function outerLug(index: number, centerDeg: number): CameraSideFeature {
     innerRadiusMm: v(22, "photo_scaled", J),
     outerRadiusMm: v(23, "photo_scaled", JW),
     depthMm: unknownV(J),
-    matesWith: `lens-outer-hook-${index}`,
+    matesWith: profileId === OUTER ? `lens-outer-hook-${index}` : "",
     shapeNotes:
       "outward lug on the rim of the body bayonet ring; position taken from where the Telemegor's hooks sit when locked, lug span read off the outline on the JAPB Varex VX front photo (low resolution)",
+  };
+}
+
+function fixingFlange(profileId: typeof VAREX | typeof OUTER): CameraSideFeature {
+  return {
+    featureId: profileId === VAREX ? "body-fixing-flange" : "body-fixing-flange-long-lens",
+    featureType: "mount_ring",
+    profileId,
+    count: 1,
+    centerAngleDeg: v(0, "photo_scaled", J),
+    startAngleDeg: v(0, "photo_scaled", J),
+    endAngleDeg: v(360, "photo_scaled", J),
+    innerRadiusMm: v(19, "photo_scaled", J),
+    outerRadiusMm: v(28, "photo_scaled", J),
+    depthMm: naV(),
+    matesWith: "",
+    shapeNotes:
+      "bayonet ring and wide fixing flange of the Varex VX, about 56 mm across, scaled from the JAPB front photo against the 38 mm bore",
   };
 }
 
@@ -107,9 +126,9 @@ function outerHook(index: number, centerDeg: number): LensSideFeature {
     innerRadiusMm: v(22, "photo_scaled", J),
     outerRadiusMm: v(23, "photo_scaled", JW),
     thicknessMm: unknownV(J),
-    matesWith: `body-outer-lug-${index}`,
+    matesWith: `body-outer-lug-${index}-long-lens`,
     shapeNotes:
-      "inward hook, about 34 deg, on long lenses with the outer mount; stored at the angle of the body outer lug it grips. Angles from the JAPB photo of a 500 mm Telemegor rear (lens-rear view, mirrored and clocked by its locking pin); radii copied from the mating body lug",
+      "inward hook, about 34 deg, on long lenses with the outer mount; drawn where it sits on a mounted lens, over the body outer lug it grips. Angles from the JAPB photo of a 500 mm Telemegor rear (lens-rear view, mirrored and clocked by its locking pin); radii copied from the mating body lug",
   };
 }
 
@@ -139,7 +158,7 @@ const EXAKTA_MOUNT = {
     },
     profileModel: {
       baseProfileId: BASE,
-      selectedMvpProfileId: OUTER,
+      selectedMvpProfileId: VAREX,
       variantStrategy: "variant_profiles_defined",
       variantProfiles: [
         {
@@ -171,14 +190,13 @@ const EXAKTA_MOUNT = {
           sourceRefs: P,
         },
         {
-          profileId: OUTER,
+          profileId: VAREX,
           profileType: "variant",
           appliesTo:
-            "Ihagee bodies with the double bayonet (Exakta Varex / VX onward; introduced 1951 per JAPB), with long lenses on the outer mount and pod or rocker auto-diaphragm lenses",
+            "Ihagee bodies with the double bayonet (Exakta Varex / VX onward; introduced 1951 per JAPB) with a standard inner-bayonet lens, including pod or rocker auto-diaphragm lenses",
           adds: [
-            "three outward lugs on the bayonet ring rim (outer bayonet)",
-            "three inward hooks on long-lens mounts",
             "wide fixing flange with the release lever",
+            "three outward lugs on the bayonet ring rim (outer bayonet), unused by a standard lens",
             "front shutter release reached by the lens's auto-diaphragm pod",
           ],
           removes: [],
@@ -187,6 +205,18 @@ const EXAKTA_MOUNT = {
           lensSideOverlayLayers: ["lens-side-variant-mechanical"],
           status: "partial",
           sourceRefs: ["exa-2", "exa-4", "exa-m1"],
+        },
+        {
+          profileId: OUTER,
+          profileType: "variant",
+          appliesTo: "long lenses that grip the outer bayonet of a Varex-era body (for example the 500 mm Telemegor)",
+          adds: ["three inward hooks on the lens mount", "the body's outer lugs and wide fixing flange that they grip"],
+          removes: ["inner lugs on the lens: an outer-mount lens has none, though the base still draws them"],
+          changes: [],
+          cameraSideOverlayLayers: [],
+          lensSideOverlayLayers: [],
+          status: "partial",
+          sourceRefs: ["exa-2", "exa-4"],
         },
         {
           profileId: TOPCON,
@@ -277,16 +307,16 @@ const EXAKTA_MOUNT = {
       centerAngleDeg: v(0, "photo_scaled", J),
       startAngleDeg: v(0, "photo_scaled", J),
       endAngleDeg: v(360, "photo_scaled", J),
-      innerRadiusMm: v(16.9, "secondary", J),
-      outerRadiusMm: v(19, "photo_scaled", J),
+      innerRadiusMm: v(19, "photo_scaled", J),
+      outerRadiusMm: v(22, "photo_scaled", J),
       depthMm: naV(),
       matesWith: "",
       shapeNotes:
-        "annulus holding the three inward flanges, out to the body bore. The 38 mm bore is scaled from the JAPB Varex VX front photo and must pass the 37.5 mm lug circle JAPB states; no source read here gives it as a dimension",
+        "body bayonet ring, from the bore out to its rim. The three flanges project inward from the bore, and the bore is open between them. The 38 mm bore is scaled from the JAPB Varex VX front photo and must pass the 37.5 mm lug circle JAPB states; no source read here gives it as a dimension. The rim radius is the photo-scaled circle on which the Varex outer lugs sit",
     },
-    bodySlot(1, 45),
-    bodySlot(2, 165),
-    bodySlot(3, 285),
+    bodySlot(1, 345),
+    bodySlot(2, 105),
+    bodySlot(3, 225),
     {
       featureId: "body-index-mark",
       featureType: "index_mark",
@@ -332,24 +362,14 @@ const EXAKTA_MOUNT = {
       shapeNotes:
         "attaching flange 3 of US2136149A Fig. 3, scaled as flange/bore = 1.275 times the 38 mm bore; the patent gives no dimension, so this is a proportion off an undimensioned drawing",
     },
-    {
-      featureId: "body-fixing-flange",
-      featureType: "mount_ring",
-      profileId: OUTER,
-      count: 1,
-      centerAngleDeg: v(0, "photo_scaled", J),
-      startAngleDeg: v(0, "photo_scaled", J),
-      endAngleDeg: v(360, "photo_scaled", J),
-      innerRadiusMm: v(19, "photo_scaled", J),
-      outerRadiusMm: v(28, "photo_scaled", J),
-      depthMm: naV(),
-      matesWith: "",
-      shapeNotes:
-        "bayonet ring and wide fixing flange of the Varex VX, about 56 mm across, scaled from the JAPB front photo against the 38 mm bore",
-    },
-    outerLug(1, 40),
-    outerLug(2, 160),
-    outerLug(3, 280),
+    fixingFlange(VAREX),
+    outerLug(VAREX, 1, 40),
+    outerLug(VAREX, 2, 160),
+    outerLug(VAREX, 3, 280),
+    fixingFlange(OUTER),
+    outerLug(OUTER, 1, 40),
+    outerLug(OUTER, 2, 160),
+    outerLug(OUTER, 3, 280),
     {
       featureId: "body-topcon-mount-plate",
       featureType: "mount_ring",
@@ -411,9 +431,9 @@ const EXAKTA_MOUNT = {
       shapeNotes:
         "bayonet tube and seating shoulder of one sample lens (JAPB Biotar 58 mm rear photo, scaled against the 37.5 mm lug circle); the shoulder diameter varies from lens to lens",
     },
-    lensLug(1, 45),
-    lensLug(2, 165),
-    lensLug(3, 285),
+    lensLug(1, 345),
+    lensLug(2, 105),
+    lensLug(3, 225),
     {
       featureId: "lens-index-mark",
       featureType: "index_mark",
@@ -427,7 +447,7 @@ const EXAKTA_MOUNT = {
       thicknessMm: naV(),
       matesWith: "body-index-mark",
       shapeNotes:
-        "red dot on the lens, stored at the body dot's angle: the VX 1000 manual says the two dots line up for insertion. Where it sits on the lens relative to the lugs and pin is not shown in any photo read here",
+        "red dot on the lens, drawn at the body dot's angle: the VX 1000 manual says the two dots line up for insertion. On a mounted lens it sits about 60 deg clockwise of this (derived from the lock rotation, not read from a photo)",
     },
     {
       featureId: "lens-lock-pin",
@@ -485,7 +505,7 @@ const EXAKTA_MOUNT = {
     {
       featureId: "lens-release-lever-pivot",
       side: "body",
-      profileId: OUTER,
+      profileId: VAREX,
       centerAngleDeg: v(88, "photo_scaled", J),
       radiusMm: v(25, "photo_scaled", J),
       sizeOrTravel: "pivot screw of the spring-loaded release lever",
@@ -495,7 +515,7 @@ const EXAKTA_MOUNT = {
     {
       featureId: "lens-release-lever-knob",
       side: "body",
-      profileId: OUTER,
+      profileId: VAREX,
       centerAngleDeg: v(110, "photo_scaled", J),
       radiusMm: v(32.2, "photo_scaled", J),
       sizeOrTravel: "knob at the lever's free end, beyond the flange rim; pressed toward the lens to release",
@@ -506,7 +526,7 @@ const EXAKTA_MOUNT = {
     {
       featureId: "body-front-shutter-release",
       side: "body",
-      profileId: OUTER,
+      profileId: VAREX,
       centerAngleDeg: v(52, "photo_scaled", J),
       radiusMm: v(40, "photo_scaled", J),
       sizeOrTravel: "front-mounted shutter release button",
@@ -516,7 +536,7 @@ const EXAKTA_MOUNT = {
     {
       featureId: "aperture-pod-pass-through",
       side: "lens",
-      profileId: OUTER,
+      profileId: VAREX,
       centerAngleDeg: v(52, "photo_scaled", J),
       radiusMm: v(40, "photo_scaled", J),
       sizeOrTravel: "external pod or rocker arm over the body's shutter release",
@@ -682,7 +702,7 @@ const EXAKTA_MOUNT = {
   openQuestions: [
     {
       issue:
-        "No dimensioned drawing of the bayonet was found. US2136149A states no angle, dimension or lug count, so every lug, slot, flange, latch and index angle is scaled from JAPB photos (about +/-5 deg) and rounded to 5 deg on a 120 deg pitch. The 38 mm bore and the 60 deg lock rotation (slot centre to flange centre; the lens pin reads 60 to 70 deg from the red dot to the hook) are derived from those readings, not stated anywhere read. Lens-side features are stored at the angle of their mating body feature, so the lens red dot and lugs are not drawn where they sit on a locked lens.",
+        "No dimensioned drawing of the bayonet was found. US2136149A states no angle, dimension or lug count, so every lug, slot, flange, latch and index angle is scaled from JAPB photos (about +/-5 deg) and rounded to 5 deg on a 120 deg pitch. The 38 mm bore and the 60 deg lock rotation (slot centre to flange centre; the lens pin reads 60 to 70 deg from the red dot to the hook) are derived from those readings, not stated anywhere read. The lens is drawn as mounted, with its lugs behind the body flanges and its pin in the latch hook; only the lens red dot is drawn at the body dot's angle, where the two line up for insertion.",
       affectedFields: [
         "lockGeometry.lockAngleDeg",
         "lockGeometry.lockRotationDeg",
