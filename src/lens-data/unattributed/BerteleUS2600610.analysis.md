@@ -40,6 +40,10 @@ The focal lengths below describe each element by itself in air; the elements in 
 | 6       | Biconvex Positive      |     1.6666 |      48.4 |                   +26.80 | Strong positive core of the rear triplet     |
 | 7       | Negative Meniscus      |     1.6072 |      56.7 |                   −48.33 | Negative rear member of the rear triplet     |
 
+- Element 3 — Glass: S-FSL5 (Ohara), spectral proxy.
+- Element 6 — Glass: BAF11 (Sumita), spectral proxy.
+- Element 7 — Glass: BACD2 (Hoya), spectral proxy.
+
 Element 1 is nearly plano-convex in appearance, although R2 is a finite positive radius and the element is a positive meniscus. Element 3 has a weakly curved rear face, while element 4 supplies the middle component's strong negative power. Element 6 supplies the principal positive power of the rear triplet, between two negative elements.
 
 ## Glass identification and selection
@@ -48,7 +52,9 @@ The text and claims explicitly define the refractive indices for the d-line, des
 
 Element 5 matches Sumita KF8: its catalogue dispersion curve gives nd 1.51118 and ν 50.92, compared with the printed 1.5112 and 50.9. The differences are Δn = −0.00002 and Δν = +0.02. The curve does not establish the historical supplier or melt.
 
-Elements 1–4, 6 and 7 remain labelled Unmatched with their printed coordinates. For example, the nearest FK5-family rows differ from element 3 in Abbe number, while BAF11 and SK2-family rows do not reproduce the four-decimal indices of elements 6 and 7. The patent supplies no additional spectral indices or partial dispersions; colour predictions for the unmatched glasses rely on estimates from their Abbe numbers.
+Elements 3, 6 and 7 use spectral proxies: S-FSL5 (Ohara), with Δn = −0.00001 and Δν = +0.24; BAF11 (Sumita), with Δn = +0.00012 and Δν = −0.02; and BACD2 (Hoya), with Δn = +0.00018 and Δν = +0.01, respectively. These catalog-minus-printed differences are within index 0.002 and Abbe number 0.25 at helium d. The catalog curves supply only the dispersion-curve shape, so colour analysis follows real glass curves while retaining the printed indices and Abbe numbers. They do not identify Bertele's historical suppliers or melts.
+
+Elements 1, 2 and 4 remain labelled Unmatched because no catalog row is within that tolerance. The patent supplies no additional spectral indices or partial dispersions; colour predictions for these three glasses rely on estimates from their Abbe numbers.
 
 Two prose values disagree with Table I: the stated index difference L6−L7 is 0.056, whereas 1.6666−1.6072 = 0.0594; and the stated sum n1+n2 is 3.38, whereas the table gives 3.3859. The table values are retained. The middle-component axial length is 0.2145 of the nominal focal length, and the reciprocal-radius expression 1/R1+1/R3−1/R2 is approximately 3.821/f, consistent with the patent's stated conditions.
 
@@ -76,3 +82,6 @@ This is a higher-index f/1.4 development of Bertele's Sonnar f/1.5 design in US 
 
 1. Ludwig Bertele, [US 2,600,610 A, “High-aperture and high-transmission three component objective”](https://patents.google.com/patent/US2600610A/en): Figure 1 on PDF p. 1; title, dates, nominal focal length and field on PDF p. 2; Table I and element descriptions on PDF p. 3; claims on PDF p. 4. [Patent page images](https://patentimages.storage.googleapis.com/e6/3e/9a/dbd5301723f597/US2600610.pdf).
 2. Ludwig Bertele, [US 1,975,678 A](https://patents.google.com/patent/US1975678A/en), the earlier Sonnar f/1.5 design, cited for design lineage.
+3. [Ohara optical glass catalog](https://www.ohara-inc.co.jp/en/product/catalog/): S-FSL5 dispersion data.
+4. [Sumita optical glass catalog](https://www.sumita-opt.co.jp/en/download/): KF8 and BAF11 dispersion data.
+5. [Hoya optical glass catalog](https://www.hoya-opticalworld.com/english/datadownload/index.html): BACD2 dispersion data.

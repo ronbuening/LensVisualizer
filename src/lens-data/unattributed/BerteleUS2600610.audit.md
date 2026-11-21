@@ -28,7 +28,7 @@ The 85.27 mm image circle is twice the chief-ray image height at the printed 22.
 
 `focus.closeFocusM` is 10¹⁵ m, which stands for infinity. No close-focus state or mechanism is printed. The selectable apertures extend from f/1.44 to f/22, but the patent supplies no minimum iris opening or stop range.
 
-Sumita KF8 lists nd 1.51118 and ν 50.9; its dispersion curve gives ν 50.92. It approximates element 5 without identifying a historical supplier or melt. Elements 1–4, 6 and 7 retain their printed coordinates and Abbe-based dispersion estimates. No additional spectral indices, partial dispersions or measured colour performance are supplied.
+Sumita KF8 lists nd 1.51118 and ν 50.9; its dispersion curve gives ν 50.92. It matches element 5 at the printed precision without identifying a historical supplier or melt. Elements 3, 6 and 7 use catalog spectral proxies; elements 1, 2 and 4 retain Abbe-based dispersion estimates. All printed coordinates are retained. No additional spectral indices, partial dispersions or measured colour performance are supplied.
 
 ## Product Identification
 
@@ -44,7 +44,7 @@ No maker, mount, production image format, diaphragm blade count or shape, market
 - The full field changed from 10.0° to the printed 45.0°, and the maximum half-field from 5.0° to 22.5°. The 85.27 mm image circle was added from twice the calculated chief-ray image height at that field.
 - Rear clear radii changed, in mm: R6 20.8 → 21.2, R7/R8 22 → 21, R9 19.7 → 20.16 and R10 20 → 26.5. These follow Figure 1 more closely while preserving the slope limit at R9. Front rims, radii, thicknesses, refractive indices, Abbe numbers, stop position and image plane are retained. Geometric transmission at 22.5° increased from 24.5% to 41.3%; the smaller R7/R8 rims cost no edge light.
 - Generic element descriptions became the seven shapes and optical roles supported by the radius signs and patent text. Element 1–7 labels accompany the patent's L1–L7 names. Focal lengths in air were added: +127.74, +90.08, +147.73, −32.29, −112.42, +26.80 and −48.33 mm. The cemented components have focal lengths −147.92 and +91.80 mm; C1 identifies L2–L4 and C2 identifies L5–L7, each with a spanning triplet annotation.
-- Unnamed glass descriptions became KF8 (Sumita) for element 5 and Unmatched labels retaining the printed coordinates for the other six elements. KF8's calculated d-line differences are Δn = −0.00002 and Δν = +0.02. The alternative BAF11 (Sumita) differs from element 6 by +0.00012/−0.02, N-SK2 (Schott) from element 7 by +0.00018/−0.05, and FK5 (Sumita) from element 3 by −0.00001/+0.41 in index/Abbe number. Those alternatives remain unassigned because they miss the printed precision. The d-line references are retained.
+- Unnamed glass descriptions became KF8 (Sumita) for element 5 and labels retaining the printed coordinates for the other six elements. KF8's calculated d-line differences are Δn = −0.00002 and Δν = +0.02. The initial Unmatched labels for elements 3, 6 and 7 are superseded by the spectral proxies listed below. The d-line references are retained.
 
 The resulting EFL is 99.97 mm, paraxial aperture f/1.44, back focus 43.70 mm, stop radius 19.117 mm and half-field 22.5°. The stored image plane remains at paraxial focus.
 
@@ -57,9 +57,16 @@ The resulting EFL is 99.97 mm, paraxial aperture f/1.44, back focus 43.70 mm, st
 - Wide-open geometric transmission at 5.6°, 11.3°, 16.9°, 19.7° and 22.5° changed from 97.8%, 85.4%, 65.9%, 54.6% and 41.3% to 97.0%, 83.8%, 64.4%, 52.9% and 39.8%. On-axis transmission remains 100%. The stated 22.5° half-field, f/1.44 and 19.117 mm stop radius are unchanged; the real entrance aperture remains f/1.48. The rim-based paraxial field limit outside the stated field changes from 27.6° to 26.8°.
 - The surfaces remain clear of each other, the iris still limits the axial beam, and the 22.5° chief ray still reaches 42.63 mm. No image-circle radius is undersized. A comparison at matched scale confirms the square front and middle rims and retains the rear chamfers as straight rim joins. No manufacturer's construction diagram is available for this unassigned patent design; the seven-element, three-group arrangement follows Figure 1, and all surfaces remain spherical.
 
+2026-11-21 glass review:
+
+- Element 3, S-FSL5 (Ohara): `Unmatched (nd 1.4875 / ν 70.0)` → `S-FSL5 (spectral proxy; patent nd 1.4875 / ν 70.0; supplier and melt unspecified)`; spectral proxy, Δn = −0.00001 and Δν = +0.24.
+- Element 6, BAF11 (Sumita): `Unmatched (nd 1.6666 / ν 48.4)` → `BAF11 (spectral proxy; patent nd 1.6666 / ν 48.4; supplier and melt unspecified)`; spectral proxy, Δn = +0.00012 and Δν = −0.02.
+- Element 7, BACD2 (Hoya): `Unmatched (nd 1.6072 / ν 56.7)` → `BACD2 (spectral proxy; patent nd 1.6072 / ν 56.7; supplier and melt unspecified)`; spectral proxy, Δn = +0.00018 and Δν = +0.01.
+- These spectral proxies are within index 0.002 and Abbe number 0.25 at the printed helium d-line. Differences are catalog minus printed values; the printed index and Abbe number are kept. Historical suppliers and melts remain unspecified.
+
 ## Remaining Questions
 
 - The exact diaphragm position and opening, minimum iris opening and close-focus mechanism are not documented.
-- Six glasses lack matching catalogue curves at the printed precision. Historical suppliers, melts and measured spectral performance remain unknown for all seven elements.
+- Elements 1, 2 and 4 have no catalogue row within the spectral-proxy tolerance. Historical suppliers, melts and measured spectral performance remain unknown for all seven elements.
 - No production lens, manufacturer, mount, camera format, blade count or shape, or marketed specifications are established for Example I.
 - The two prose index comparisons disagree with Table I; no source erratum resolves them.
