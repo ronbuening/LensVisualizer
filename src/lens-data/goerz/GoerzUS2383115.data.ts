@@ -1,87 +1,91 @@
-import type { LensDataV2Input } from "../repo/src/types/lensDataV2.js";
-const data = {
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * US 2,383,115 A, Example I and Figure 1: four air-spaced spherical menisci.
+ * The patent gives f = 100 without a length unit; dimensions are interpreted in mm.
+ * The radii follow the figure in the direction of light travel. The printed D-light
+ * indices and Abbe numbers are retained. The midpoint stop in the 7.366 mm central
+ * gap and all clear semi-diameters are inferred. The final gap is the computed
+ * paraxial back focus, 90.5361 mm; the patent prints no back focus or close-focus data.
+ */
+const LENS_DATA = {
   schema: 2,
-  key: "durand-us2383115-example1-infinity-reference",
-  maker: null,
-  name: "MILO DURAND US2383115 EXAMPLE I \u2014 SOURCE f/6",
-  subtitle:
-    "Patent-only symmetric 4E/4G \u00b7 sodium-D infinity \u00b7 estimated iris/rims",
-  visible: false,
+  key: "goerz-100mm-f6-us2383115",
+  maker: "Goerz",
+  name: "GOERZ 100mm f/6 (US 2,383,115 Design)",
+  subtitle: "US 2,383,115 A, Example I — related to the Rectagon family",
+  visible: true,
   source: {
-    patentNumber: "US 2,383,115",
+    patentNumber: "US 2,383,115 A",
     patentYear: 1945,
     example: {
       label: "Example I",
       id: "1",
     },
-    authors: ["Milo Durand"],
-    assignees: ["C. P. Goerz American Optical"],
+    authors: ["Milo A. Durand"],
+    assignees: ["C. P. Goerz American Optical Company"],
     sdSource: "heuristic",
   },
   catalog: {
     focalLengthMm: {
-      design: 100,
+      design: 99.98,
     },
     fNumber: {
       design: 6,
     },
     elementCount: 4,
     groupCount: 4,
-    specs: [
-      "Literal symmetric4E4G ExampleI/Fig1 menisci,no cements. R signs are global relative to raytravel; source localconvex/concave labels are not substituted. No retail/specimen identity.",
-      "Source sodium-D n/V retained,unmatchedglass and no calibrated broadband.",
-      "Literal EFL99.980685777/BFD90.536134447mm versus source100/f6. BFDcomputed/unprinted,no fitting or source edits.",
-      "Central exact7.366mm airgap preserved; midpoint3.683/3.683,z9.891,iris and clearcaps estimated,not measured source hardware.",
-      "Saved source/controlf6 uses ordinary-prime paraxial-derived iris;7.088919mm finite-marginal seed compared separately,not silently forced. Actual finite equivalent and nominal differ.",
-      "Actual +/-10deg diagnostic only,no invented format,sourcewidefield,retail,finitefocus,broadband or throughput claim.",
-      "Reference geometric sodium-D MTF only at fractions within10deg;wider automatic/spectral outputs unqualified.",
-      "Original signed primary transcription/hash externally visually verified;no localPDF,pixels,rehash or known denied route retry. NBSexperimental family context is not specimen identity.",
-    ],
+    imageCircleMm: 203.49,
+    specs: ["4 ELEMENTS / 4 GROUPS", "ALL SPHERICAL", "DESIGN F/6"],
   },
   elements: [
     {
       id: 1,
       name: "L1",
-      label: "L1",
-      type: "Source Spherical Element",
+      label: "Element 1",
+      type: "Positive Meniscus",
+      role: "Positive front meniscus supplying converging power",
+      focalLengthMm: 50.95,
       nd: 1.588,
       vd: 53.4,
       indexReference: "D",
-      glass:
-        "Literal unmatched sodium-D/Abbe pair; no calibrated spectral curve.",
+      glass: "Unmatched (nD 1.588 / ν 53.4)",
     },
     {
       id: 2,
       name: "L2",
-      label: "L2",
-      type: "Source Spherical Element",
+      label: "Element 2",
+      type: "Negative Meniscus",
+      role: "Negative front inner meniscus balancing the positive outer elements",
+      focalLengthMm: -63.21,
       nd: 1.636,
       vd: 34.8,
       indexReference: "D",
-      glass:
-        "Literal unmatched sodium-D/Abbe pair; no calibrated spectral curve.",
+      glass: "Unmatched (nD 1.636 / ν 34.8)",
     },
     {
       id: 3,
       name: "L3",
-      label: "L3",
-      type: "Source Spherical Element",
+      label: "Element 3",
+      type: "Negative Meniscus",
+      role: "Negative rear inner meniscus forming the symmetric partner of Element 2",
+      focalLengthMm: -63.21,
       nd: 1.636,
       vd: 34.8,
       indexReference: "D",
-      glass:
-        "Literal unmatched sodium-D/Abbe pair; no calibrated spectral curve.",
+      glass: "Unmatched (nD 1.636 / ν 34.8)",
     },
     {
       id: 4,
       name: "L4",
-      label: "L4",
-      type: "Source Spherical Element",
+      label: "Element 4",
+      type: "Positive Meniscus",
+      role: "Positive rear meniscus supplying converging power toward the image",
+      focalLengthMm: 50.95,
       nd: 1.588,
       vd: 53.4,
       indexReference: "D",
-      glass:
-        "Literal unmatched sodium-D/Abbe pair; no calibrated spectral curve.",
+      glass: "Unmatched (nD 1.588 / ν 53.4)",
     },
   ],
   surfaces: [
@@ -150,16 +154,15 @@ const data = {
   },
   projection: {
     kind: "rectilinear",
-    fullFieldDeg: 20,
-    maxTraceFieldDeg: 10,
+    fullFieldDeg: 90,
+    maxTraceFieldDeg: 45,
   },
   rays: {
     offAxisFieldFrac: 1,
   },
   focus: {
-    closeFocusM: 1000000000000000,
-    description:
-      "Literal symmetric4E4G ExampleI/Fig1 menisci,no cements. R signs are global relative to raytravel; source localconvex/concave labels are not substituted. No retail/specimen identity. Source sodium-D n/V retained,unmatchedglass and no calibrated broadband. Literal EFL99.980685777/BFD90.536134447mm versus source100/f6. BFDcomputed/unprinted,no fitting or source edits. Central exact7.366mm airgap preserved; midpoint3.683/3.683,z9.891,iris and clearcaps estimated,not measured source hardware. Saved source/controlf6 uses ordinary-prime paraxial-derived iris;7.088919mm finite-marginal seed compared separately,not silently forced. Actual finite equivalent and nominal differ. Actual +/-10deg diagnostic only,no invented format,sourcewidefield,retail,finitefocus,broadband or throughput claim. Reference geometric sodium-D MTF only at fractions within10deg;wider automatic/spectral outputs unqualified. Original signed primary transcription/hash externally visually verified;no localPDF,pixels,rehash or known denied route retry. NBSexperimental family context is not specimen identity.",
+    closeFocusM: 1e15,
+    description: "Infinity focus only; the patent gives no close-focus data.",
   },
   groups: [
     {
@@ -187,4 +190,4 @@ const data = {
     yScFill: 0.5,
   },
 } satisfies LensDataV2Input;
-export default data;
+export default LENS_DATA;
