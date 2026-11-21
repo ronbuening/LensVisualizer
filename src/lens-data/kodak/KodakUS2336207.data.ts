@@ -14,7 +14,7 @@ const LENS_DATA = {
   key: "kodak-100mm-f15-us2336207",
   maker: "Kodak",
   name: "KODAK 100mm f/1.5 (US 2,336,207 Design)",
-  subtitle: "US 2,336,207 A, Example 1 — four-component photographic objective",
+  subtitle: "US 2,336,207 A, Example 1 — Eastman Kodak / Aklin",
   visible: true,
   source: {
     patentNumber: "US 2,336,207 A",
@@ -41,8 +41,13 @@ const LENS_DATA = {
     },
     elementCount: 8,
     groupCount: 4,
-    imageCircleMm: 80.438,
-    specs: ["8 ELEMENTS / 4 GROUPS", "ALL SPHERICAL", "DESIGN F/1.5"],
+    imageCircleMm: 80.44,
+    specs: [
+      "8 ELEMENTS / 4 GROUPS",
+      "ALL SPHERICAL",
+      "DESIGN f = 100 mm",
+      "DESIGN F/1.5",
+    ],
   },
   elements: [
     {
