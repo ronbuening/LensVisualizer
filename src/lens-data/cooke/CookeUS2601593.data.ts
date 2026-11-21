@@ -6,9 +6,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Radii, thicknesses, sodium-D indices and Abbe numbers follow the printed table.
  * The text places the stop approximately midway between R5 and R6; its exact
  * midpoint and opening and the paraxial image plane are inferred. Printed
- * effective diameters set the rims except at R4/R7, whose radii are inferred,
- * and R3, enlarged from 10.0 to 10.1 mm to clear the axial f/4 beam. These
- * diameters set the vignetting, with about 41.4% relative illumination at 36.0°.
+ * effective diameters set the rims except at R4/R7, inferred at 11.8/12.4 mm
+ * and consistent with Figure 6 within its drawing accuracy. R3's 10.1 mm radius
+ * includes 0.1 mm clearance beyond the printed value for the axial f/4 beam.
+ * These diameters give about 41.4% relative illumination at 36.0°.
  * The rear doublet computes as weakly positive despite the patent's divergent
  * description, and the text's x = 0.106 differs from 0.107 from the indices.
  */
