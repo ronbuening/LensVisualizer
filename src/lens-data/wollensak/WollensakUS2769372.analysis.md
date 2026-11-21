@@ -20,7 +20,7 @@ Example I specifies a 100 mm objective at f/3.2 with a 55° total angular field 
 
 The objective has four elements in three air-separated components: a positive front singlet, a negative middle singlet and a positive rear cemented doublet. This is a Tessar-type arrangement. The seven optical surfaces are spherical or plane; R2 is the plane refracting rear face of element 1. Elements 3 and 4 meet at R6 and form cemented group C1.
 
-The patent gives element diameters of 32, 27, 28 and 28 mm. It also specifies a 45° bevel on R4 beginning at a diameter of 25 mm. The model therefore uses semi-diameters of 16 mm at R1–R2, 13.5 mm at R3, 12.5 mm at R4 and 14 mm at R5–R7. Taking the bevel-start radius as R4's clear optical edge is a modeling choice; the patent does not give the bevel depth or complete edge profile.
+The patent gives element diameters of 32, 27, 28 and 28 mm. It also specifies a 45° bevel on R4 beginning at a diameter of 25 mm. The model therefore uses semi-diameters of 16 mm at R1–R2, 13.5 mm at R3, 12.5 mm at R4 and 14 mm at R5–R7. Figure 1 agrees within about 3% and shows square outer edges on the front singlet and rear doublet, with the smaller R4 optical edge inside the middle element's bevel. Taking the bevel-start radius as R4's clear optical edge is a modeling choice; the patent does not give the bevel depth or complete edge profile. A flat extension would not describe the drawn 45° bevel.
 
 The first-to-last vertex distance is 35.8 mm. The image plane lies at the computed paraxial focus, 82.91 mm behind R7, giving a total first-vertex-to-image distance of 118.71 mm. It is not moved to minimize a finite-aperture spot.
 

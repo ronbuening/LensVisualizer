@@ -49,9 +49,16 @@ No specific commercial lens is documented for this prescription. Its Tessar-type
 
 After these corrections the model has EFL 99.99 mm, aperture f/3.20, paraxial back focus 82.91 mm, stop radius 12.611 mm and half-field 27.5°. The fixed rims admit the axial beam and the edge chief ray, with substantial edge-bundle vignetting.
 
+2026-11-21 rim review:
+
+- Figure 1 on PDF page 1 was read at 600 dpi against Example I in Figure 2 and the printed diameters on PDF page 2. The R1–R7 vertex span measures about 1,432 pixels for 35.8 mm, giving 40.0 pixels/mm. The front thickness measures about 262 pixels for 6.6 mm, or 39.7 pixels/mm. At 10 mm height, the drawn R1 sag is about 1.35 mm, against 1.34 mm from its printed radius; the scale therefore agrees along and across the axis. Figure 1 illustrates the common construction of both examples; Example I's printed dimensions govern the clear radii.
+- No clear radius changed: R1/R2 remain 16/16 mm, R3/R4 remain 13.5/12.5 mm and R5–R7 remain 14/14/14 mm. The drawing gives approximately 16.5 mm at the front singlet, 13.9 mm at the middle element's outer edge, 12.8 mm at the R4 bevel start and 14.3 mm at the rear doublet. These agree with the printed dimensions within about 3%. The front and rear components retain their square outer edges, and the middle element retains the smaller R4 boundary. No flat land was added because it would replace the drawn bevel with a square corner.
+- The f/3.2 iris admits an axial entrance radius of 15.351 mm. That ray reaches R4 at 12.455 mm, leaving 0.045 mm to its clear boundary, and passes every surface. The alternative 15.624 mm paraxial entrance radius reaches R4 at 12.691 mm but also exceeds the iris opening; it is not grounds to enlarge the printed bevel boundary. At 27.5°, the chief ray remains clear and reaches 51.52 mm image height. No surface-clearance errors or undersized rims were found, and chief-ray coverage is 100% of the stated image radius.
+- Corner geometric transmission remains 30.1% before and after, with relative illumination 22.0% in both cases. The greatest transmission loss over the field is 0.0 percentage points. The half-field remains 27.5° and the aperture remains f/3.20. The matched-scale sections agree in element sizes and step order; the full bevel shape remains unknown.
+
 ## Remaining Questions
 
-- The R4 bevel depth and complete three-dimensional edge profile are unknown; the clear boundary remains the printed bevel-start radius.
+- The printed diameters and R4 bevel-start diameter settle the clear-radius values. The bevel's axial depth and complete three-dimensional edge profile remain unknown.
 - Historical glass identities, suppliers, melts and measured partial dispersion are unknown.
 - No production-lens association, marketed focal length or aperture, marketed minimum focus distance, mount, camera format, compatible teleconverter or production optical variant is documented.
 - Diaphragm blade count, blade shape, the physical stop range and finite-focus behavior are not documented.

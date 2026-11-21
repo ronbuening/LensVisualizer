@@ -4,8 +4,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * US 2,769,372 A, Example I (Figures 1–2): a 100 mm f/3.2 Tessar-type objective.
  * Radii, thicknesses, D-line indices, Abbe numbers and the stop position are printed.
  * The stop is 4.4 mm before element 3; its opening is derived from f/3.2.
- * Rims follow the printed element diameters, with the R4 optical radius taken as
- * 12.5 mm where its 45-degree bevel starts. The bevel depth is not specified.
+ * Rims follow the printed element diameters and agree with Figure 1 within about 3%.
+ * R4's optical radius is 12.5 mm where its printed 45-degree bevel starts;
+ * the bevel depth is not specified, so no flat rim extension is imposed.
  * The image plane uses the computed paraxial back focus, 82.91 mm (printed: 82.9 mm).
  */
 const LENS_DATA = {
