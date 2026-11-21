@@ -7,11 +7,11 @@ the fields unset and add a note here until a source check resolves it.
 
 ## Current Coverage
 
-- Total lens data files, literature reconstructions excluded: **1174**
-- Files with both `lensMounts` and `imageFormat`: **1118**
-- Files missing `lensMounts`: **46** (31 public lenses, 2 hidden patent designs and 13 hidden reference fixtures)
-- Files missing `imageFormat`: **40** (28 public lenses and 12 hidden reference fixtures)
-- Files missing both fields: **30**
+- Total lens data files, literature reconstructions excluded: **1181**
+- Files with both `lensMounts` and `imageFormat`: **1120**
+- Files missing `lensMounts`: **50** (33 public lenses, 4 hidden patent designs and 13 hidden reference fixtures)
+- Files missing `imageFormat`: **45** (31 public lenses, 2 hidden patent designs and 12 hidden reference fixtures)
+- Files missing both fields: **34**
 - Formats currently in use: `1-1.7-inch-type`, `1-1.8-inch-type`, `1-2.3-inch-type`, `1-2.55-inch-type`,
   `1-2.7-inch-type`, `1-inch-type`, `1.25-inch-tube`, `1.5-inch-type`, `110`, `135-full-frame`,
   `16mm-cinema`, `2-3-inch-type`, `35mm-cinema`, `44x33`, `4x5`, `5x7`, `645`, `6x6`, `6x7`, `6x9`, `8x10`,
@@ -53,6 +53,7 @@ with remaining compatibility questions explained in the lens analysis.
 | Voigtländer Cine-Tele-Anastigmat 100mm f/4.5 | No manufacturer or period source names this product. Voigtländer’s catalogue Nr. 1709.7.25 and its price list of about 1930 offer only the Tele-Dynar f/6.3 as a telephoto, so no camera fitting can be tied to the research-correlated name. |
 | Sigma H.L. Wide 28mm f/2.8 | Sigma's lens booklet lists its mount options (Canon, Contax, Fujica, Konica, Minolta, Nikon, Olympus, Pentax K, Praktica, Ricoh, Rollei, Yashica) for the whole line, not per model. A per-model mount list is needed before assigning ids. |
 | Voigtländer Tele-Dynar 100mm f/6.3 | The same two lists sell the Tele-Dynar only at 14–32 cm, as cells for the shutters of Voigtländer cameras or in Compur, shutterless and helical mountings. No 100 mm production variant exists to select, and none of those fittings is a canonical mount. |
+| Kodak US 2,231,699, US 2,158,179, US 1,352,028 and US 1,880,393 designs; Bausch & Lomb US 2,124,356; Booth US 1,421,156; Carl Zeiss Jena telephoto US 1,485,515, Topogon US 2,031,792 and Triotar US 1,892,162; Meyer Optik Görlitz US 1,812,717; Leitz US 1,899,934 Figures 1 and 2; Schneider-Kreuznach Xenar US 2,084,714; C. P. Goerz US 912,352 | Historical patent examples, normalised to f = 100 or kept at the patent's own scale. No source ties these examples to a production lens and fitting, and a family name (Topogon, Triotar, Xenar, Celor) does not select a camera mount. |
 
 ### Hidden reference fixtures
 
@@ -61,6 +62,9 @@ catalog mount/format taxonomy unless a separate reference-fixture convention is 
 
 The hidden Nikon 61mm f/2.88 and Pentax 87.8mm f/2.9 macro patent designs match no production lens, so no camera
 mount applies; each carries the image format its patent implies.
+
+The hidden Cooke US 2,012,822 and US 2,194,413 patent designs are shown once a Cooke maker entry lands; like the
+shown patent designs above, no source supplies a mount or format for them.
 
 ### Literature reconstructions
 
@@ -89,6 +93,7 @@ patent scaling, angular field, or circular image into an unsupported rectangular
 | Agfa Color-Magnolar II 100mm; Kodak Enlarging Ektar 100mm | Finite-conjugate enlarger objectives: Kodak’s cited brochure describes a negative up to 2¼ × 3¼ inches, not the modeled image-plane frame. A catalog format needs an explicit object/image-side convention; no arbitrary output-print format is assigned. |
 | Voigtländer Dynar; symmetric Heliar; second asymmetric Heliar | Normalized patent examples are not tied to a uniquely chosen production focal length/frame combination. |
 | Carl Zeiss Jena PI-Flektogon 30mm f/2.8 | The sheet gives a 29.5 mm image circle and 54° field. The related HFK camera exposed 24 × 24 mm (33.9 mm diagonal, larger than the circle), no canonical id exists for it, and its "Halbformat" name is not evidence for 18 × 24. Keep `imageCircleMm`. |
+| The 14 patent designs in the mount table above; Kodak Anastigmat US 1,620,337; Carl Zeiss Jena US 2,170,428; Emil Busch US 759,537 | Normalised or patent-scale examples with no recording frame in the source. Where the patent states its field or picture diagonal, the file carries `imageCircleMm` instead (Kodak US 1,352,028 and Anastigmat US 1,620,337, Bausch & Lomb, Carl Zeiss Jena US 2,170,428, Topogon, Triotar, Xenar, Emil Busch); the projection objectives that are not 35 mm cinema lenses as built keep no format. |
 | Zeiss S-Biogon 40mm f/5.6 | The only frame figure, 32 × 45 mm on 35 mm microfilm at 1:30, is a Zeiss staff forum post, not a Zeiss publication, and Cavina describes the Mikrobox output as microfiche. No canonical microfilm format id exists; do not substitute `135-full-frame`. |
 | Voigtländer Cine-Tele-Anastigmat 100mm f/4.5 | No source ties the research-correlated name to a film gauge or gate. Do not infer a cinema format from the “Cine” name or the patent’s 100 mm f/4.5 scale. |
 | Voigtländer Tele-Dynar 100mm f/6.3 | No 100 mm production variant exists in the period lists, and their 14–32 cm sizes are matched to the focal length of each camera’s lens, not specified for a recording format. |
