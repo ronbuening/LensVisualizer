@@ -60,10 +60,10 @@ With these values, EFL is 99.86 mm, nominal f-number 2.00, BFD 41.32 mm, stop ra
 2026-11-21 glass review:
 
 - Element 1: Unmatched (nd 1.6203 / ν 60.4) → BACD16 (spectral proxy; patent nd 1.6203 / ν 60.4; supplier and melt unspecified), Hoya. Δn +0.00011, Δν −0.06.
-- Element 2: Unmatched (nd 1.6716 / ν 47.2) → BAF10 (spectral proxy; patent nd 1.6716 / ν 47.2; supplier and melt unspecified), Hoya. Δn −0.00157, Δν −0.00.
+- Element 2: Unmatched (nd 1.6716 / ν 47.2) → BAF10 (spectral proxy; patent nd 1.6716 / ν 47.2; supplier and melt unspecified), Hoya. Δn −0.00157, Δν 0.00.
 - Element 5: Unmatched (nd 1.5017 / ν 56.5) → S-FTL10 (spectral proxy; patent nd 1.5017 / ν 56.5; supplier and melt unspecified), Ohara. Δn −0.00033, Δν −0.08.
-- Element 6: Unmatched (nd 1.6716 / ν 47.2) → BAF10 (spectral proxy; patent nd 1.6716 / ν 47.2; supplier and melt unspecified), Hoya. Δn −0.00157, Δν −0.00.
-- Element 7: Unmatched (nd 1.6716 / ν 47.2) → BAF10 (spectral proxy; patent nd 1.6716 / ν 47.2; supplier and melt unspecified), Hoya. Δn −0.00157, Δν −0.00.
+- Element 6: Unmatched (nd 1.6716 / ν 47.2) → BAF10 (spectral proxy; patent nd 1.6716 / ν 47.2; supplier and melt unspecified), Hoya. Δn −0.00157, Δν 0.00.
+- Element 7: Unmatched (nd 1.6716 / ν 47.2) → BAF10 (spectral proxy; patent nd 1.6716 / ν 47.2; supplier and melt unspecified), Hoya. Δn −0.00157, Δν 0.00.
 - Differences are catalogue minus printed at the printed d line, whose wavelength remains undefined. Spectral proxies are within 0.002 in index and 0.25 in Abbe number; the printed index and Abbe number are kept. Catalogue names do not identify the historical supplier or melt.
 
 ## Remaining Questions

@@ -80,7 +80,7 @@ The table prints n_d and ν without defining a wavelength. The printed lowercase
 
 Element 3 matches Sumita K-BK7 (about 1.51633/64.062, Δn +0.000030, Δν +0.062) and element 4 matches Ohara S-TIM28 (about 1.68893/31.075, Δn −0.000069, Δν +0.075) within the printed precision. Sumita lists ν = 64.1. All offsets are catalogue minus printed at d.
 
-The other five elements use spectral proxies: Hoya BACD16 for element 1 (Δn +0.00011, Δν −0.06), Hoya BAF10 for elements 2, 6 and 7 (Δn −0.00157, Δν −0.00), and Ohara S-FTL10 for element 5 (Δn −0.00033, Δν −0.08). Each is within 0.002 in index and 0.25 in Abbe number at d. These present-day rows supply only the dispersion-curve shape for colour calculations, retaining the printed index and Abbe number. All seven elements use catalogue curves; none remains unmatched. Neither matches nor proxies identify the 1930s suppliers or melts.
+The other five elements use spectral proxies: Hoya BACD16 for element 1 (Δn +0.00011, Δν −0.06), Hoya BAF10 for elements 2, 6 and 7 (Δn −0.00157, Δν 0.00), and Ohara S-FTL10 for element 5 (Δn −0.00033, Δν −0.08). Each is within 0.002 in index and 0.25 in Abbe number at d. These present-day rows supply only the dispersion-curve shape for colour calculations, retaining the printed index and Abbe number. All seven elements use catalogue curves; none remains unmatched. Neither matches nor proxies identify the 1930s suppliers or melts.
 
 The patent supplies no individual C-, F- or g-line indices or partial-dispersion data. The prescription does not establish apochromatic performance, coatings, transmission or measured MTF.
 

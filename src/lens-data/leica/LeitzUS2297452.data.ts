@@ -57,7 +57,7 @@ const LENS_DATA = {
       nd: 1.5338,
       vd: 55.4,
       indexReference: "D",
-      glass: "K26R-25 (spectral proxy; patent nD 1.5338 / ν 55.4; supplier and melt unspecified)",
+      glass: "Unmatched (nD 1.5338 / ν 55.4)",
       focalLengthMm: 103.1,
       role: "Positive front element of the first collecting doublet.",
       cemented: "C1",

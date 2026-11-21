@@ -73,7 +73,7 @@ const LENS_DATA = {
       vd: 33.8,
       indexReference: "d",
       indexReferenceNote: "The text names D, but the printed glass coordinates are d-line catalogue values.",
-      glass: "PBM22 (spectral proxy; patent nd 1.64831 / ν 33.8; supplier and melt unspecified)",
+      glass: "SF12 (Sumita)",
       focalLengthMm: -32.65,
       role: "Negative middle component balancing the positive components",
     },

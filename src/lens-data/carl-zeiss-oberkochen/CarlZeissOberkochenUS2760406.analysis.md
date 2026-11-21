@@ -33,7 +33,7 @@ The indices and Abbe numbers below retain the printed values. The d-line interpr
 | Element | Shape and role                                        | Printed index / Abbe number | Glass label                           | Focal length in air |
 | ------- | ----------------------------------------------------- | --------------------------- | ------------------------------------- | ------------------: |
 | 1       | Positive meniscus; front converging component         | 1.69100 / 54.8              | S-LAL9 (Ohara), exact match            |           +65.57 mm |
-| 2       | Biconcave negative; balances the positive components  | 1.64831 / 33.8              | PBM22 (Ohara), spectral proxy          |           −32.65 mm |
+| 2       | Biconcave negative; balances the positive components  | 1.64831 / 33.8              | SF12 (Sumita), exact match            |           −32.65 mm |
 | 3       | Biconvex positive; front member of the rear component | 1.69100 / 54.8              | S-LAL9 (Ohara), exact match            |           +29.08 mm |
 | 4       | Negative meniscus; rear member of the rear component  | 1.60729 / 49.2              | BAF5 (Hoya), exact match               |           −61.68 mm |
 
@@ -45,7 +45,7 @@ The patent calls its reference the D line, conventionally taken as sodium at 589
 
 Elements 1 and 3 match S-LAL9 (Ohara), with catalogue-minus-printed differences Δn = 0.00000 and Δν = +0.02. Element 4 matches BAF5 (Hoya), with Δn = 0.00000 and Δν = +0.14. These exact matches fall within |Δn| ≤ 0.0001 and |Δν| ≤ 0.15; their names do not identify the historical supplier or melt.
 
-Element 2 uses PBM22 (Ohara) as a spectral proxy, with Δn = −0.00062 and Δν = 0.00, within the proxy limits of 0.002 in index and 0.25 in Abbe number. The printed coordinates are kept; the catalogue curve supplies only the dispersion shape for colour analysis in place of an Abbe-number estimate. All four elements use catalogue curves. No historical supplier, melt, measured partial dispersion or apochromatic performance is established.
+Element 2 matches SF12 (Sumita), with Δn = 0.00000 and Δν = −0.03. All four elements use catalogue curves. No historical supplier, melt, measured partial dispersion or apochromatic performance is established.
 
 ## Focus Mechanism
 
@@ -67,5 +67,6 @@ Using the computed EFL, R2 = 434.01 mm is below ten focal lengths; |R3| = 100 mm
 
 1. Johannes Berger, [US 2,760,406 A, _Three Component Photographic Objective_](https://patents.google.com/patent/US2760406A/en): drawing on PDF page 1; authorship, dates, numerical example, field and claim on PDF page 2.
 2. [CH 314696 A](https://patents.google.com/patent/CH314696A/en), Swiss counterpart.
-3. [Ohara optical glass catalogue](https://www.ohara-inc.co.jp/en/product/catalog/): S-LAL9 and PBM22 dispersion curves.
+3. [Ohara optical glass catalogue](https://www.ohara-inc.co.jp/en/product/catalog/): S-LAL9 dispersion curve.
 4. [Hoya optical glass catalogue](https://www.hoya-opticalworld.com/english/datadownload/index.html): BAF5 dispersion curve.
+5. [Sumita optical glass data](https://www.sumita-opt.co.jp/en/download/): SF12 dispersion curve.
