@@ -1,12 +1,19 @@
-import type { LensDataV2Input } from "../repo/src/types/lensDataV2.js";
-const data = {
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * US 2,744,445 A, Figure 1 and claim 2, at the printed f = 100 mm.
+ * The four air-spaced elements retain the printed radii, thicknesses, D-line
+ * indices and Abbe numbers. Clear semi-diameters are inferred. The inferred
+ * stop lies 3 mm behind surface 4, where the field curves support its position;
+ * no iris is drawn. The image plane is the computed paraxial back focus.
+ */
+const LENS_DATA = {
   schema: 2,
-  key: "werfeli-us2744445-figure1-dline-reference",
-  maker: null,
-  name: "WERFELI US2744445 FIG.1 — PATENT REFERENCE",
-  subtitle:
-    "100mm f/1.4 patent-only · source±8° design field · estimated iris/rims · reduction-direction D-line infinity",
-  visible: false,
+  key: "paillard-100mm-f14-us2744445",
+  maker: "Paillard",
+  name: "PAILLARD 100mm f/1.4 (US 2,744,445 Design)",
+  subtitle: "US 2,744,445 A, Figure 1 — Petzval-type projection objective",
+  visible: true,
   source: {
     patentNumber: "US 2,744,445 A",
     patentYear: 1956,
@@ -19,69 +26,69 @@ const data = {
     sdSource: "heuristic",
   },
   catalog: {
-    imageCircleMm: 27.715742799207472,
+    imageCircleMm: 27.71238705584913,
     elementCount: 4,
     groupCount: 4,
     focalLengthMm: {
-      design: 100,
+      design: 99.71,
     },
     fNumber: {
       design: 1.4,
     },
-    specs: [
-      "4E/4G · TWO FUNCTIONAL AIR-SPACED ACHROMATIC PAIRS",
-      "SOURCE NOMINAL100mm f/1.4 AND±8° DESIGN FIELD",
-      "PATENT-ONLY · NO VERIFIED PAILLARD/BOLEX RETAIL IDENTITY",
-      "NOMINALf/1.4 · FINITE ENTRANCE EQUIVALENT≈f/1.4684",
-      "IRIS MIDPOINT AND CLEAR RADII ESTIMATED · CLIPPING RETAINED",
-      "D-LINE REDUCTION-DIRECTION INFINITY ONLY",
-      "NO FINITE CONJUGATE, CALIBRATED SPECTRUM OR THROUGHPUT CLAIM",
-    ],
+    specs: ["4 ELEMENTS / 4 GROUPS", "ALL SPHERICAL", "DESIGN F/1.4", "PROJECTION OBJECTIVE"],
   },
   elements: [
     {
       id: 1,
       name: "L1",
-      label: "L1",
+      label: "Element 1",
+      diagramLabel: "L1",
       type: "Biconvex Positive",
+      role: "Positive front element of the first achromatic pair",
+      focalLengthMm: 87.79,
       nd: 1.67741,
       vd: 55.6,
       indexReference: "D",
-      glass:
-        "Unmatched (literal source nD/V; no catalog substitution, D-only scope)",
+      glass: "Unmatched (nD 1.67741 / ν 55.6)",
     },
     {
       id: 2,
       name: "L2",
-      label: "L2",
+      label: "Element 2",
+      diagramLabel: "L2",
       type: "Biconcave Negative",
+      role: "Negative colour-correcting element of the first achromatic pair",
+      focalLengthMm: -139.33,
       nd: 1.68873,
       vd: 31.2,
       indexReference: "D",
-      glass:
-        "Unmatched (literal source nD/V; no catalog substitution, D-only scope)",
+      glass: "FD8 (Hoya)",
     },
     {
       id: 3,
       name: "L3",
-      label: "L3",
+      label: "Element 3",
+      diagramLabel: "L3",
       type: "Biconvex Positive",
+      role: "Positive front element of the rear achromatic pair",
+      focalLengthMm: 48.77,
       nd: 1.67741,
       vd: 55.6,
       indexReference: "D",
-      glass:
-        "Unmatched (literal source nD/V; no catalog substitution, D-only scope)",
+      glass: "Unmatched (nD 1.67741 / ν 55.6)",
     },
     {
       id: 4,
       name: "L4",
-      label: "L4",
+      label: "Element 4",
+      diagramLabel: "L4",
       type: "Plano-Concave Negative",
+      role: "Negative colour-correcting element of the rear achromatic pair",
+      focalLengthMm: -80.82,
       nd: 1.74174,
       vd: 27.5,
       indexReference: "D",
-      glass:
-        "Unmatched (literal source nD/V; no catalog substitution, D-only scope)",
+      glass: "Unmatched (nD 1.74174 / ν 27.5)",
     },
   ],
   surfaces: [
@@ -108,13 +115,13 @@ const data = {
     {
       label: "4",
       R: 365.7,
-      d: 36.9,
+      d: 3,
       sd: 38,
     },
     {
       label: "STO",
       R: "flat",
-      d: 36.9,
+      d: 70.8,
     },
     {
       label: "5",
@@ -145,8 +152,7 @@ const data = {
   ],
   focus: {
     closeFocusM: 1000000000000000,
-    description:
-      "Source Fig1/claim2 only; object-left reduction-direction D-line infinity, no verified finite projector or factoryBolex identity. Literal optical R/d/nD/V and printed±8degree field retained, with clipping. Iris midpoint in73.8mm airgap and optical clear caps are estimates; physical diameter and image distance derived, not source measurements. Claim3 and unverified regional tables are excluded.",
+    description: "Infinity focus only; the patent gives no close-focus data.",
   },
   aperture: {
     nominalFNumber: 1.4,
@@ -160,12 +166,12 @@ const data = {
   },
   groups: [
     {
-      text: "Front functional pair (air-spaced)",
+      text: "Front achromatic pair (air-spaced)",
       fromSurface: "1",
       toSurface: "4",
     },
     {
-      text: "Rear functional pair (air-spaced)",
+      text: "Rear achromatic pair (air-spaced)",
       fromSurface: "5",
       toSurface: "8",
     },
@@ -174,4 +180,4 @@ const data = {
     yScFill: 0.5,
   },
 } satisfies LensDataV2Input;
-export default data;
+export default LENS_DATA;
