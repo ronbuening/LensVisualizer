@@ -2,22 +2,21 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * US 2,297,452 A, sole example (Figure 1), f = 100 and aperture 1:1.3.
- * The patent gives no physical unit; the model takes its lengths as millimetres.
- * The signed radii, thicknesses, air spaces and six index/Abbe pairs follow the
- * printed table. The D/C/F correction table supports the D-line index reference
- * (taken as sodium, 589.3 nm). No glass supplier is established.
- * Inferred: all clear semi-diameters and the iris, placed 11.75 mm behind r8 and
- * 1.07 mm ahead of r9 within the printed 12.82 mm air space. Figure 1 draws no iris.
- * The image gap is the computed paraxial back focus, rounded to 34.8788 mm,
- * against the printed D-line axial back distance of 34.875. The field of ±5° is
- * illustrative; the patent states only moderate angles of view.
+ * The patent gives no physical unit; lengths are expressed in millimetres.
+ * Signed radii, thicknesses, air spaces and six index/Abbe pairs follow the table;
+ * D/C/F corrections support sodium D (589.3 nm). No supplier is established.
+ * Clear semi-diameters and the iris are inferred; Figure 1 draws no iris.
+ * The stop is 11.75 mm after r8 and 1.07 mm before r9 in the printed 12.82 mm gap.
+ * The image gap is rounded paraxial back focus, 34.879 mm (printed: 34.875).
+ * Zonal distances agree with r10-vertex intercepts despite emergence-point wording.
+ * The ±5.0° field is illustrative; the patent mentions only moderate view angles.
  */
 const LENS_DATA = {
   schema: 2,
   key: "leitz-100mm-f13-us2297452",
   maker: "Leica",
   name: "LEITZ 100mm f/1.3 (US 2,297,452 Design)",
-  subtitle: "US 2,297,452 A, sole example — Leitz split-front triplet",
+  subtitle: "US 2,297,452 A, sole example — Berek, Zimmermann & Kleineberg",
   visible: true,
   source: {
     patentNumber: "US 2,297,452 A",
@@ -39,7 +38,13 @@ const LENS_DATA = {
     },
     elementCount: 6,
     groupCount: 4,
-    specs: ["6 ELEMENTS / 4 GROUPS", "ALL SPHERICAL", "DESIGN F/1.3", "SPLIT-FRONT TRIPLET"],
+    specs: [
+      "6 ELEMENTS / 4 GROUPS",
+      "ALL SPHERICAL",
+      "DESIGN f = 100 mm",
+      "DESIGN F/1.3",
+      "SPLIT-FRONT TRIPLET",
+    ],
   },
   elements: [
     {
