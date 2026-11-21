@@ -2916,9 +2916,9 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 #### Figures (selected profile `minolta-sr/md`)
 
-**Camera-side front view** — viewBox `-35 -37 70 72` · 39 elements in 4 layers · hash `00e85f08` ([standalone SVG](mounts/minolta-sr-camera-front.svg))
+**Camera-side front view** — viewBox `-35 -37 70 72` · 39 elements in 4 layers · hash `473728fa` ([standalone SVG](mounts/minolta-sr-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-33 -35 66 68` · 33 elements in 4 layers · hash `6f65d8ed` ([standalone SVG](mounts/minolta-sr-lens-rear.svg))
+**Lens-side rear view** — viewBox `-33 -35 66 68` · 33 elements in 4 layers · hash `0203d1e3` ([standalone SVG](mounts/minolta-sr-lens-rear.svg))
 
 **Axial / register schematic** — viewBox `-50 -39 58 74` · 12 elements in 2 layers · hash `86c74519` ([standalone SVG](mounts/minolta-sr-axial.svg))
 
@@ -2928,9 +2928,9 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 |---|---|---|---|---|---|---|---|
 | `body-throat` | body_throat | `minolta-sr/base` | 0° | 0° | 360° | 0 | 22.485 |
 | `body-mount-ring` | mount_ring | `minolta-sr/base` | 0° | 0° | 360° | 22.485 | 28.65 |
-| `body-slot-1` | bayonet_receiving_slot | `minolta-sr/base` | 59° | 33° | 85° | 20.95 | 22.485 |
-| `body-slot-2` | bayonet_receiving_slot | `minolta-sr/base` | 189° | 159° | 219° | 20.95 | 22.485 |
-| `body-slot-3` | bayonet_receiving_slot | `minolta-sr/base` | 297.5° | 270° | 325° | 20.95 | 22.485 |
+| `body-slot-1` | bayonet_receiving_slot | `minolta-sr/base` | 359° | 325° | 33° | 20.95 | 22.485 |
+| `body-slot-2` | bayonet_receiving_slot | `minolta-sr/base` | 122° | 85° | 159° | 20.95 | 22.485 |
+| `body-slot-3` | bayonet_receiving_slot | `minolta-sr/base` | 244.5° | 219° | 270° | 20.95 | 22.485 |
 | `body-index-mark` | index_mark | `minolta-sr/base` | 1° | unknown | unknown | unknown | 25.5 |
 | `body-lock-pin` | lock_pin | `minolta-sr/base` | 90° | unknown | unknown | unknown | 23.5 |
 
@@ -2940,9 +2940,9 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 |---|---|---|---|---|---|---|---|
 | `lens-throat` | lens_throat | `minolta-sr/base` | 0° | 0° | 360° | 0 | unknown |
 | `lens-mount-ring` | lens_mount_ring | `minolta-sr/base` | 0° | 0° | 360° | unknown | 26.5 |
-| `lens-lug-1` | bayonet_lug | `minolta-sr/base` | 59° | 33° | 85° | 20.95 | 22.485 |
-| `lens-lug-2` | bayonet_lug | `minolta-sr/base` | 189° | 159° | 219° | 20.95 | 22.485 |
-| `lens-lug-3` | bayonet_lug | `minolta-sr/base` | 297.5° | 270° | 325° | 20.95 | 22.485 |
+| `lens-lug-1` | bayonet_lug | `minolta-sr/base` | 359° | 331.5° | 26.5° | 20.95 | 22.485 |
+| `lens-lug-2` | bayonet_lug | `minolta-sr/base` | 122° | 96° | 148° | 20.95 | 22.485 |
+| `lens-lug-3` | bayonet_lug | `minolta-sr/base` | 244.5° | 214.5° | 274.5° | 20.95 | 22.485 |
 | `lens-index-mark` | index_mark | `minolta-sr/base` | 1° | unknown | unknown | unknown | 27 |
 | `lens-lock-notch` | lock_notch | `minolta-sr/base` | 90° | unknown | unknown | unknown | 23.5 |
 
@@ -2965,7 +2965,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/minolta-sr.mount.ts` (44252 bytes, content hash `4af7994f`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/minolta-sr.mount.ts` (44508 bytes, content hash `c60a4e65`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -2984,7 +2984,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 #### Open questions
 
-- No dimensioned source for the bayonet was found. The entry gaps come from one SR-1 photograph (about +/-3 deg), and the lens lugs are drawn at the full extent of their gaps because no usable lens-rear photograph was found, so true lug arcs, lug thickness and the flange ramp are unknown. The 1.8 mm depth and the axial lug plane still rest on the unsourced first draft [msr-2]. _(A Minolta mount drawing, a patent with stated angles, or a calibrated measurement of a body ring and a lens bayonet.)_
+- No dimensioned source for the bayonet was found. The body flanges come from one SR-1 photograph (about +/-3 deg), and the lens lugs are drawn behind them at the width of the gaps they enter through, an upper bound, because no usable lens-rear photograph was found, so true lug arcs, lug thickness and the flange ramp are unknown. The 1.8 mm depth and the axial lug plane still rest on the unsourced first draft [msr-2]. _(A Minolta mount drawing, a patent with stated angles, or a calibrated measurement of a body ring and a lens bayonet.)_
 - Every photo-scaled millimetre value assumes the Wikipedia 44.97 mm throat is the bore the lugs pass through. The table row has no reference and does not define the diameter. On that scale the clear opening between the flanges is 41.9 mm and the ring is 57.3 mm across; Westin's list gives an undefined 41 mm. _(A sourced bore and flange diameter.)_
 - The 54 deg locking turn is known only from the unreferenced Wikipedia table, which shows the same figure for the Minolta A mount. The first draft used 60. The body photo allows roughly 51 to 63 deg, so it does not decide between them; the manual states the direction but no angle. _(A Minolta figure for the turn, or the angle between the red dot and the aperture index measured on a lens.)_
 - The lock pin and notch position (90 deg, 23.5 mm) still rests only on the unsourced first draft [msr-2]. Neither body photograph shows the latch. Two places would fit the flange geometry: the start of the right-hand flange at about 85 deg, and the pocket at the end of the top flange at about 30 to 35 deg. _(A service-manual exploded view of the mount, or a photograph with the latch visible.)_

@@ -18,10 +18,10 @@
  * so they stay `photo_scaled` (about +/-3 deg, +/-0.5 mm). The lock position and a few lens-side sizes
  * still rest on the unsourced first draft [msr-2]. All of this is listed in openQuestions.
  *
- * Angle convention (the house one): every lens-side feature is stored at the camera-front angle of the
- * body feature it mates with, so lens-lug-n shares body-slot-n (the entry gap it passes through), the
- * index marks share one angle, and the lens lugs on the aperture ring share their body followers' angles.
- * The clockwise turn that carries the lugs behind the body flanges lives only in lockGeometry.
+ * Drawing convention: `body-slot-n` is one of the three inward body flanges, not the open gap beside it,
+ * and the lens is drawn as mounted, so lens-lug-n sits behind that flange. The index marks share one
+ * angle, and the lens lugs on the aperture ring share their body followers' angles. The clockwise turn
+ * that carries the lugs from the gaps to behind the flanges lives only in lockGeometry.
  */
 
 import type { CameraSideFeature, LensSideFeature, MountSpecInput } from "../types/mount.js";
@@ -52,11 +52,14 @@ const FLANGE_INNER_RADIUS_MM = 20.95;
 /** Lug/flange engagement depth is an unsourced stand-in carried over from the first draft. */
 const LUG_DEPTH_MM = 1.8;
 
-/** Entry gaps between the body flanges, measured on the SR-1 photo: [centre, start, end] in degrees. */
+/**
+ * The three inward body flanges, measured on the SR-1 photo: [centre, start, end] in degrees. The open
+ * entry gaps between them span 33 to 85, 159 to 219 and 270 to 325 deg.
+ */
 const SLOTS: [number, number, number][] = [
-  [59, 33, 85],
-  [189, 159, 219],
-  [297.5, 270, 325],
+  [359, 325, 33],
+  [122, 85, 159],
+  [244.5, 219, 270],
 ];
 
 function bodySlot(index: number): CameraSideFeature {
@@ -74,26 +77,30 @@ function bodySlot(index: number): CameraSideFeature {
     depthMm: v(LUG_DEPTH_MM, "photo_scaled", LEGACY),
     matesWith: `lens-lug-${index}`,
     shapeNotes:
-      "entry gap between two body flanges, scaled from the square-on SR-1 body photo (camera-front view, no conversion). The three inward flanges sit between the gaps at about 325 to 33, 85 to 159 and 219 to 270 deg, and the lugs lock behind them. Each flange end is filleted over 3 to 5 deg, and the edge is taken at mid-fillet. The X-700 photo gives the same edges within about 4 deg. Depth is an unsourced stand-in",
+      "inward body flange that retains a lens lug, scaled from the square-on SR-1 body photo (camera-front view, no conversion). The open entry gaps sit between the flanges at about 33 to 85, 159 to 219 and 270 to 325 deg. Each flange end is filleted over 3 to 5 deg, and the edge is taken at mid-fillet. The X-700 photo gives the same edges within about 4 deg. Depth is an unsourced stand-in",
   };
 }
 
+/** Widths of the entry gaps anticlockwise of flanges 1 to 3 (270-325, 33-85, 159-219 deg): upper bounds for the lugs. */
+const LUG_MAX_SPANS = [55, 52, 60];
+
 function lensLug(index: number): LensSideFeature {
-  const [center, start, end] = SLOTS[index - 1];
+  const [center] = SLOTS[index - 1];
+  const halfSpan = LUG_MAX_SPANS[index - 1] / 2;
   return {
     featureId: `lens-lug-${index}`,
     featureType: "bayonet_lug",
     profileId: BASE,
     count: 1,
     centerAngleDeg: v(center, "photo_scaled", C1),
-    startAngleDeg: v(start, "photo_scaled", C1),
-    endAngleDeg: v(end, "photo_scaled", C1),
+    startAngleDeg: v((center - halfSpan + 360) % 360, "photo_scaled", C1),
+    endAngleDeg: v((center + halfSpan) % 360, "photo_scaled", C1),
     innerRadiusMm: v(FLANGE_INNER_RADIUS_MM, "photo_scaled", C1W),
     outerRadiusMm: v(BORE_RADIUS_MM, "photo_scaled", C1W),
     thicknessMm: v(LUG_DEPTH_MM, "photo_scaled", LEGACY),
     matesWith: `body-slot-${index}`,
     shapeNotes:
-      "stored at the angle of the entry gap it passes through; once turned it sits behind a body flange. No square-on lens-rear photograph with a second stable copy was found, so the lug is drawn at the full extent of its gap: that is an upper bound on its arc and on its radii, not a lug measurement. Thickness is an unsourced stand-in",
+      "drawn where it sits on a mounted lens, behind the body flange of the same number, at that flange's centre. No square-on lens-rear photograph with a second stable copy was found, so the lug's own arc is not measured: it is drawn with the width of the entry gap anticlockwise of its flange, which it must pass through, and that is an upper bound. Radii are the flange band, an upper bound; thickness is an unsourced stand-in",
   };
 }
 
@@ -533,7 +540,7 @@ const MINOLTA_SR_MOUNT = {
   openQuestions: [
     {
       issue:
-        "No dimensioned source for the bayonet was found. The entry gaps come from one SR-1 photograph (about +/-3 deg), and the lens lugs are drawn at the full extent of their gaps because no usable lens-rear photograph was found, so true lug arcs, lug thickness and the flange ramp are unknown. The 1.8 mm depth and the axial lug plane still rest on the unsourced first draft [msr-2].",
+        "No dimensioned source for the bayonet was found. The body flanges come from one SR-1 photograph (about +/-3 deg), and the lens lugs are drawn behind them at the width of the gaps they enter through, an upper bound, because no usable lens-rear photograph was found, so true lug arcs, lug thickness and the flange ramp are unknown. The 1.8 mm depth and the axial lug plane still rest on the unsourced first draft [msr-2].",
       affectedFields: ["cameraSideFeatures", "lensSideFeatures", "axialStack"],
       candidateValues: [],
       resolution:
