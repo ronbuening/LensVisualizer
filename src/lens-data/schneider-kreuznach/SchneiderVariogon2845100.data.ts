@@ -43,7 +43,7 @@ const LENS_DATA = {
   key: "schneider-variogon-45-100-f28",
   maker: "Schneider-Kreuznach",
   name: "SCHNEIDER-KREUZNACH VARIOGON 45-100mm f/2.8",
-  subtitle: "US 3,482,900 — Table I / Example 1; tentative production match",
+  subtitle: "US 3,482,900 — Table I; tentative production match",
 
   catalog: {
     lensMounts: [

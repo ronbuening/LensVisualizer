@@ -48,7 +48,7 @@ const LENS_DATA = {
   maker: "Schneider-Kreuznach",
   name: "SCHNEIDER-KREUZNACH ANGULON 210mm f/6.8",
   subtitle:
-    "US 1,882,530 A, sole numerical construction (Example 1) — 1.05× scale to 210 mm production match",
+    "US 1,882,530 A, sole numerical construction — scaled 1.05× to match the 210 mm production lens",
 
   catalog: {
     lensMounts: ["large-format-lens-board"],
