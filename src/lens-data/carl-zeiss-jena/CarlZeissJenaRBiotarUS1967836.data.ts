@@ -185,8 +185,8 @@ const LENS_DATA = {
   },
   projection: {
     kind: "rectilinear",
-    fullFieldDeg: 14.3228226,
-    maxTraceFieldDeg: 7.1614113,
+    fullFieldDeg: 14.322823,
+    maxTraceFieldDeg: 7.161411,
   },
   groups: [
     {
