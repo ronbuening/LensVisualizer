@@ -6,8 +6,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * They give EFL 100.75 mm and back focus 79.41 mm against the printed 100 mm and
  * 78.5 mm; Examples I–V also show the patent's loose focal-length normalization.
  * The image plane is the computed paraxial infinity plane. The stop is inferred
- * at the midpoint of the 7.5 mm rear air space, its size from f/3.5, and all clear
- * semi-diameters are estimated. Covering power 26° is read as a 26.0° half-angle.
+ * at the midpoint of the 7.5 mm rear air space, its size from f/3.5. Estimated clear
+ * semi-diameters are 18/18, 14/14 and 18/18 mm; the middle element follows the
+ * nearly level rims in the Example I drawing, used for proportions only, with
+ * axial and chief-ray clearance retained. Covering power 26° is read as a half-angle.
  */
 const LENS_DATA = {
   schema: 2,
@@ -100,7 +102,7 @@ const LENS_DATA = {
       label: "3",
       R: -71.4,
       d: 2.2,
-      sd: 19,
+      sd: 14,
       medium: 2,
     },
     {
