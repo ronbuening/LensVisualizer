@@ -40,7 +40,7 @@ const LENS_DATA = {
   key: "mamiya-n-210mm-f8-l",
   maker: "Mamiya",
   name: "MAMIYA N 210mm f/8 L",
-  subtitle: "JP 2000-028919 A Example 1 — scaled production correlation",
+  subtitle: "JP 2000-028919 A Example 1 — scaled production match",
 
   catalog: {
     lensMounts: ["mamiya-7"],
