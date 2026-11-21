@@ -7,14 +7,14 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * The diaphragm lies between the inner menisci; its exact station is inferred, splitting the 17.8 mm gap
  * into 9.0 and 8.8 mm. Its radius is derived from the paraxial f/1.9 aperture. All clear rims are inferred;
  * the front rim passes the full 5° bundle at that iris. The image plane is the computed paraxial back focus,
- * 63.269633 mm behind R11. The ±5° display field is illustrative; the patent gives no numerical field.
+ * 63.27 mm behind R11. The ±5.0° display field is illustrative; the patent gives no numerical field.
  */
 const LENS_DATA = {
   schema: 2,
   key: "kodak-100mm-f19-us2252681",
   maker: "Kodak",
   name: "KODAK 100mm f/1.9 (US 2,252,681 Design)",
-  subtitle: "US 2,252,681 A, sole example — possibly related to the Ektra 50mm f/1.9 Ektar",
+  subtitle: "US 2,252,681 A, sole example — Eastman Kodak / Aklin",
   visible: true,
   source: {
     patentNumber: "US 2,252,681 A",
@@ -36,7 +36,12 @@ const LENS_DATA = {
     },
     elementCount: 7,
     groupCount: 4,
-    specs: ["7 ELEMENTS / 4 GROUPS", "ALL SPHERICAL", "DESIGN F/1.9"],
+    specs: [
+      "7 ELEMENTS / 4 GROUPS",
+      "ALL SPHERICAL",
+      "DESIGN f = 100 mm",
+      "DESIGN F/1.9",
+    ],
   },
   elements: [
     {
