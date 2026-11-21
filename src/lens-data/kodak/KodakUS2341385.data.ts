@@ -2,6 +2,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * US 2,341,385 A, sole example: five spherical elements in four groups, in millimetres.
+ * The table prints f = 100 mm, f/3.5 and sodium D-line indices, retained here.
  * The stop position and lens rims are inferred from the drawing; the iris follows f/3.5.
  * The image plane uses the calculated paraxial back focus of 101.53 mm rather than
  * the printed 101.7 mm, a difference consistent with table rounding; EFL is 100.08 mm.
@@ -12,7 +13,7 @@ const LENS_DATA = {
   key: "kodak-100mm-f35-us2341385",
   maker: "Kodak",
   name: "KODAK 100mm f/3.5 (US 2,341,385 Design)",
-  subtitle: "US 2,341,385 A, sole example — early retrofocus wide-angle design",
+  subtitle: "US 2,341,385 A, sole example — Eastman Kodak / Kingslake & Stevens",
   visible: true,
   source: {
     patentNumber: "US 2,341,385 A",
@@ -32,7 +33,7 @@ const LENS_DATA = {
     sdSource: "heuristic",
   },
   catalog: {
-    imageCircleMm: 114.9,
+    imageCircleMm: 114.89,
     elementCount: 5,
     groupCount: 4,
     focalLengthMm: {
@@ -41,7 +42,13 @@ const LENS_DATA = {
     fNumber: {
       design: 3.5,
     },
-    specs: ["5 ELEMENTS / 4 GROUPS", "ALL SPHERICAL", "DESIGN F/3.5", "RETROFOCUS"],
+    specs: [
+      "5 ELEMENTS / 4 GROUPS",
+      "ALL SPHERICAL",
+      "DESIGN f = 100 mm",
+      "DESIGN F/3.5",
+      "RETROFOCUS",
+    ],
   },
   elements: [
     {
@@ -65,7 +72,7 @@ const LENS_DATA = {
       vd: 56.1,
       indexReference: "D",
       focalLengthMm: 55.23,
-      glass: "Unmatched (nD 1.697 / ν 56.1)",
+      glass: "H-LaK12 (CDGM)",
       role: "Positive front component of the rear member",
     },
     {
@@ -189,23 +196,13 @@ const LENS_DATA = {
   },
   groups: [
     {
-      text: "G1 · L1",
+      text: "Front member",
       fromSurface: "1",
       toSurface: "2",
     },
     {
-      text: "G2 · L2",
+      text: "Rear member",
       fromSurface: "3",
-      toSurface: "4",
-    },
-    {
-      text: "G3 · L3",
-      fromSurface: "5",
-      toSurface: "6",
-    },
-    {
-      text: "G4 · L4 + L5",
-      fromSurface: "7",
       toSurface: "9",
     },
   ],
