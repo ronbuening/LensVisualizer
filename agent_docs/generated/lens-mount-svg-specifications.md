@@ -1790,7 +1790,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 | Profile ID | Type | Applies to | Adds | Removes | Changes |
 |---|---|---|---|---|---|
-| `hasselblad-h/base` | base | Hasselblad H-system lenses and bodies | large medium-format bayonet; electrical contact bank; leaf-shutter communication | — | renderable profile uses chart dimensions and photo-scaled feature placement |
+| `hasselblad-h/base` | base | Hasselblad H-system bodies and HC/HCD lenses | large medium-format bayonet; nine-pin databus contact row at the bottom of the throat; leaf-shutter communication | — | single base interface: the H2 (2005) and H6D (2018) manuals give the same index position and clockwise attachment, and no source shows a mechanical change between body or lens generations; contact row, pin and index are scaled from maker figures; register and throat are chart values; lugs, ring diameters and screws remain stand-ins |
 
 #### Dimensional summary
 
@@ -1801,17 +1801,17 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 | Effective clear aperture | 67.5 (`secondary`) | mm |
 | Camera mount outer diameter | 80 (`photo_scaled`) | mm |
 | Lens mount outer diameter | 78 (`photo_scaled`) | mm |
-| Contact count | 10 (`photo_scaled`) | count |
-| Lock rotation | 60 (`photo_scaled`) | deg |
-| Lock direction | clockwise (`photo_scaled`) | — |
+| Contact count | 9 (`conflicting`) | count |
+| Lock rotation | 90 (`official`) | deg |
+| Lock direction | clockwise (`official`) | — |
 
 #### Figures (selected profile `hasselblad-h/base`)
 
-**Camera-side front view** — viewBox `-49 -51 98 100` · 56 elements in 4 layers · hash `9fbd0ee6` ([standalone SVG](mounts/hasselblad-h-camera-front.svg))
+**Camera-side front view** — viewBox `-49 -51 98 100` · 54 elements in 4 layers · hash `1c1fac3a` ([standalone SVG](mounts/hasselblad-h-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-48 -50 96 98` · 50 elements in 4 layers · hash `7c966a9f` ([standalone SVG](mounts/hasselblad-h-lens-rear.svg))
+**Lens-side rear view** — viewBox `-48 -50 96 98` · 48 elements in 4 layers · hash `67908038` ([standalone SVG](mounts/hasselblad-h-lens-rear.svg))
 
-**Axial / register schematic** — viewBox `-71 -53 81 102` · 14 elements in 2 layers · hash `4cc88b3a` ([standalone SVG](mounts/hasselblad-h-axial.svg))
+**Axial / register schematic** — viewBox `-71 -53 81 102` · 14 elements in 2 layers · hash `abe3d89b` ([standalone SVG](mounts/hasselblad-h-axial.svg))
 
 #### Camera-side front-view geometry
 
@@ -1823,7 +1823,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 | `body-slot-2` | bayonet_receiving_slot | `hasselblad-h/base` | 140° | 123° | 157° | 33.75 | 36.25 |
 | `body-slot-3` | bayonet_receiving_slot | `hasselblad-h/base` | 260° | 243° | 277° | 33.75 | 36.25 |
 | `body-index-mark` | index_mark | `hasselblad-h/base` | 0° | unknown | unknown | unknown | 40.5 |
-| `body-lock-pin` | lock_pin | `hasselblad-h/base` | 285° | unknown | unknown | unknown | 34.75 |
+| `body-lock-pin` | lock_pin | `hasselblad-h/base` | 145° | unknown | unknown | unknown | 29 |
 
 #### Lens-side rear-view geometry
 
@@ -1835,32 +1835,30 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 | `lens-lug-2` | bayonet_lug | `hasselblad-h/base` | 140° | 123° | 157° | 33.75 | 36.25 |
 | `lens-lug-3` | bayonet_lug | `hasselblad-h/base` | 260° | 243° | 277° | 33.75 | 36.25 |
 | `lens-index-mark` | index_mark | `hasselblad-h/base` | 0° | unknown | unknown | unknown | 39.5 |
-| `lens-lock-notch` | lock_notch | `hasselblad-h/base` | 285° | unknown | unknown | unknown | 34.75 |
+| `lens-lock-notch` | lock_notch | `hasselblad-h/base` | 145° | unknown | unknown | unknown | 29 |
 
 #### Electrical contacts
 
 | Side | No. | Profile | Center angle | Radius | Function |
 |---|---|---|---|---|---|
-| body | 1 | `hasselblad-h/base` | 215° | 36 |  |
-| body | 2 | `hasselblad-h/base` | 221° | 36 |  |
-| body | 3 | `hasselblad-h/base` | 227° | 36 |  |
-| body | 4 | `hasselblad-h/base` | 233° | 36 |  |
-| body | 5 | `hasselblad-h/base` | 239° | 36 |  |
-| body | 6 | `hasselblad-h/base` | 245° | 36 |  |
-| body | 7 | `hasselblad-h/base` | 251° | 36 |  |
-| body | 8 | `hasselblad-h/base` | 257° | 36 |  |
-| body | 9 | `hasselblad-h/base` | 263° | 36 |  |
-| body | 10 | `hasselblad-h/base` | 269° | 36 |  |
-| lens | 1 | `hasselblad-h/base` | 215° | 36 |  |
-| lens | 2 | `hasselblad-h/base` | 221° | 36 |  |
-| lens | 3 | `hasselblad-h/base` | 227° | 36 |  |
-| lens | 4 | `hasselblad-h/base` | 233° | 36 |  |
-| lens | 5 | `hasselblad-h/base` | 239° | 36 |  |
-| lens | 6 | `hasselblad-h/base` | 245° | 36 |  |
-| lens | 7 | `hasselblad-h/base` | 251° | 36 |  |
-| lens | 8 | `hasselblad-h/base` | 257° | 36 |  |
-| lens | 9 | `hasselblad-h/base` | 263° | 36 |  |
-| lens | 10 | `hasselblad-h/base` | 269° | 36 |  |
+| body | 1 | `hasselblad-h/base` | 160° | 27 |  |
+| body | 2 | `hasselblad-h/base` | 165° | 27 |  |
+| body | 3 | `hasselblad-h/base` | 170° | 27 |  |
+| body | 4 | `hasselblad-h/base` | 175° | 27 |  |
+| body | 5 | `hasselblad-h/base` | 180° | 27 |  |
+| body | 6 | `hasselblad-h/base` | 185° | 27 |  |
+| body | 7 | `hasselblad-h/base` | 190° | 27 |  |
+| body | 8 | `hasselblad-h/base` | 195° | 27 |  |
+| body | 9 | `hasselblad-h/base` | 200° | 27 |  |
+| lens | 1 | `hasselblad-h/base` | 160° | 27 |  |
+| lens | 2 | `hasselblad-h/base` | 165° | 27 |  |
+| lens | 3 | `hasselblad-h/base` | 170° | 27 |  |
+| lens | 4 | `hasselblad-h/base` | 175° | 27 |  |
+| lens | 5 | `hasselblad-h/base` | 180° | 27 |  |
+| lens | 6 | `hasselblad-h/base` | 185° | 27 |  |
+| lens | 7 | `hasselblad-h/base` | 190° | 27 |  |
+| lens | 8 | `hasselblad-h/base` | 195° | 27 |  |
+| lens | 9 | `hasselblad-h/base` | 200° | 27 |  |
 
 #### Mechanical couplings
 
@@ -1872,12 +1870,12 @@ None — fully electronic.
 |---|---|---|
 | `flange_datum` | 0 | 80 |
 | `bayonet_lug_engagement` | 1.2 | 74 |
-| `electrical_contact_plane` | 0.5 | 70 |
+| `electrical_contact_plane` | 0.5 | 54 |
 | `sensor_film_plane` | -61.63 | 69.7 |
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/hasselblad-h.mount.ts` (43920 bytes, content hash `d75bc0ad`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/hasselblad-h.mount.ts` (47797 bytes, content hash `b7a45eea`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -1885,10 +1883,16 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 |---|---|---|---|---|---|
 | `hh-1` | secondary | Film and Digital Times / IB/E Optics mount chart. Accessed 2026-06-06. | [snapshot](https://www.fdtimes.com/wp-content/uploads/2017/05/81-82-FDTimes-IBE-Optics-Update.pdf) | 2026-06-06 | medium |
 | `hh-2` | secondary | Hasselblad H mount body/lens visual references. Accessed 2026-06-06. | [snapshot](unknown) | unknown | low |
+| `hh-3` | official | Victor Hasselblad AB, H2 User Manual, 2005, p. 6 (parts drawing, items 34, 42 and 44), p. 8 (step 8 and figures 5 and 8) and p. 30 (Attaching a lens). Accessed 2026-11-21. | [snapshot](https://www.manualslib.com/manual/66533/Hasselblad-H2.html) | 2026-11-21 | medium |
+| `hh-4` | official | Victor Hasselblad AB, H6D User Guide, 2018, p. 51 (Change Lens) and p. 177 (Optional HC Lens Accessories, Macro Converter H photograph). The archive copy is a 192-page edition with the same sections on pp. 162 and 174. Accessed 2026-11-21. | [snapshot](https://www.manualslib.com/manual/1081614/Hasselblad-H6d.html) | 2026-11-21 | medium |
+| `hh-5` | secondary | FUJIFILM Corporation, H MOUNT ADAPTER G Owner's Manual, pp. EN-5 (Parts of the Adapter) and EN-7 (Attaching Lenses). Accessed 2026-11-21. | [snapshot](https://www.manualslib.mx/manual/275971/Fujifilm-H-Mount-Adapter-G.html) | 2026-11-21 | medium |
 
 #### Open questions
 
-- H-system lug spans and contact geometry are photo-scaled; exact official drawing is still needed. _(Upgrade from Hasselblad service data or a measured H body/lens pair.)_
+- Bayonet lug count, centre angles and spans, the ring outer diameters and the mount screws are stand-ins. No dimensioned H-mount drawing was found: searches for Victor Hasselblad AB and Fuji Photo Optical mount patents from 2000 to 2003 found only US 7,500,796 (accessory status detection, no mount geometry), no H service manual was located, and the H2 and H6D manuals print no mount dimensions. _(Needs Hasselblad or Fujifilm service data, a dimensioned third-party H-mount drawing, or a calibrated measurement of a body and lens.)_
+- Contact row, pin and index positions are photo-scaled from oblique maker figures (about +/-8 degrees; contact radius 25.5 to 29 mm and pin radius 26.5 to 33 mm, depending on which ring edge the 67.5 mm chart diameter refers to). Contact pad size and pinout are not sourced, and the pin's lock function is inferred from its place beside the lens release control. _(Replace with dimensioned positions from service data or a measured sample.)_
+- Contact count: three maker figures of body-side H mounts show nine pins (H2 manual p. 6 body drawing, Macro Converter H photograph, Fujifilm adapter drawing), but the H2 manual's lens-rear drawing on the same page shows ten pads. _(Count the pads on a straight-on photograph of an HC lens rear, or use a service pinout.)_
+- Lock rotation is the H2 manual's wording, approximately one quarter turn; the exact detent angle is not sourced. The H6D guide gives the direction only. _(Upgrade from a service drawing or a measured rotation between the index marks.)_
 
 ### `hasselblad-v` — Hasselblad V
 
