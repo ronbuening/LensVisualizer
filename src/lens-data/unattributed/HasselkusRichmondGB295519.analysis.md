@@ -62,21 +62,21 @@ The model is focused at infinity. The patent supplies no finite object distance,
 
 The stop position is printed: b1 = b2 = 2.32 mm, halfway through the 4.64 mm central air space, at z = 14.63 mm from R1. Its physical diameter is not printed. The paraxial entrance-pupil radius at f/4 is 12.51 mm; pupil magnification gives a stop radius of 10.29 mm. The real f/4 marginal meets the stop plane at 10.22 mm. Both openings are derived quantities.
 
-Clear semi-diameters R1–R10 are 13.1, 13.1, 10.64, 10.65, 12.9, 13.5, 12, 13, 13.1 and 13.1 mm. The four 13.1 mm values follow the doublet height in the drawing. They lie inside the front and rear positive elements' face crossings, at approximately 13.57 and 14.86 mm. The other clear radii remain estimates and differ from the drawn outlines and chamfers.
+Clear semi-diameters R1–R10 are 13.1, 13.1, 10.64, 11.5, 10.3, 10.2, 12, 10.4, 13.1 and 13.1 mm. They are estimated from the drawing sheet, whose 30.92 mm vertex span establishes 35.1 pixels per model millimetre at 300 dpi; shorter spans and the R1 arc agree with that scale. The four 13.1 mm values follow the doublet height and lie inside the positive elements' face crossings, at approximately 13.57 and 14.86 mm. R4 follows the front meniscus's 11.5 mm outer height; R7 is within about 4% of the rear meniscus's drawn height. R3, R5 and R6 remain above the drawn chamfer ends to pass the f/4 axial beam, which reaches 10.63, 10.28 and 10.14 mm there. R8 is slightly above its roughly 10.2–10.3 mm drawn curve end to preserve off-axis light. Opaque lands extend R3 and R8 to the doublets' 13.1 mm outer height without enlarging their clear apertures. These approximate the drawn short chamfers and broad shoulders; the meniscus edges use straight chamfers.
 
-The stated f/4 axial marginal clears every surface. Its smallest rim margin is about 0.01 mm at R3. R3 limits the accepted input radius to about 12.53 mm, equivalent to f/4.00 when expressed as EFL divided by twice that radius. Relative to the slightly larger real beam admitted by the derived iris, the effective aperture is f/4.02, 0.6% above nominal. The stop opening lies in air, with front and rear glass clearances of about 0.89 and 1.09 mm at its edge.
+The stated f/4 axial marginal clears every surface. Its smallest rim margin is about 0.01 mm at R3. R3 limits the accepted input radius to about 12.53 mm, equivalent to f/4.00 when expressed as EFL divided by twice that radius. Relative to the slightly larger real beam admitted by the derived iris, the effective aperture is f/4.02, 0.6% above nominal. The stop opening lies in air, with front and rear glass clearances of about 0.89 and 1.21 mm at its edge; the latter meets the rear meniscus's straight chamfer.
 
 ## Air-Gap Clearance
 
 The R3/R4 air gap closes at a radius of 10.90 mm. The f/4 marginal needs heights of 10.628 and 10.631 mm on those faces, leaving approximately 0.093 mm of air at that ray. A 90% sag allowance would restrict their common radius to 10.47 mm and cut that beam. The model retains a 94% allowance; at the retained rims, maximum sag intrusion is 93.8% and the remaining gap is about 0.089 mm.
 
-The central gap has about 0.419 mm clearance at the shared outer band, and the R7/R8 gap retains about 0.182 mm. These geometric clearances do not establish manufacturing tolerances. The estimated R5 rim ends about 0.05 mm short of the stop plane; the estimated meniscus outlines differ from the drawing.
+The central gap has about 2.03 mm clearance at the shared 10.2 mm radius, and the R7/R8 gap retains about 0.56 mm at 10.4 mm. The R5 rim ends about 0.89 mm short of the stop plane. These geometric clearances do not establish manufacturing tolerances. The lands and straight chamfers approximate the drawing's edge shapes; the patent gives no numerical edge dimensions.
 
 ## Field and Model Limitations
 
 The printed 70° full field corresponds to a 35° half-field. The real chief ray clears every rim there and reaches an image height of 70.098 mm. Twice that height, rounded to 0.1 mm, gives the 140.2 mm model image circle. It describes the patent's stated field at this model's dimensions; no physical image diameter or production film format is printed.
 
-The 35° chief ray falls about 0.002 mm short of the rounded circle's 70.1 mm radius. Off-axis bundles are vignetted, and a complete f/4 pupil is not transmitted at 35°. The monochromatic, infinity-focus model does not establish production performance, chromatic correction or the patent's full set of aberration claims. All surfaces are spherical.
+The 35° chief ray falls about 0.002 mm short of the rounded circle's 70.1 mm radius. Wide-open geometric transmission is about 98.4% on axis, 80.8% at 17.5°, 52.9% at 29.2° and 35.3% at 35°. Off-axis bundles are vignetted, and a complete f/4 pupil is not transmitted at 35°. The monochromatic, infinity-focus model does not establish production performance, chromatic correction or the patent's full set of aberration claims. All surfaces are spherical.
 
 ## Sources
 

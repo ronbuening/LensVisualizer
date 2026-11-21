@@ -5,7 +5,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * The printed f = 100 units is represented in millimetres; f/4, a 70° field, all ten signed radii, thicknesses, air gaps and helium d-line indices are printed.
  * EFL is 100.08 mm and paraxial back focus 85.73 mm; the final spacing uses that back focus because no image distance is printed.
  * The stop position is printed as b1 = b2 = 2.32; its radius follows f/4. Clear radii are inferred.
- * R1/R2 and R9/R10 follow the drawing's 13.1 mm doublet height, inside face crossings at 13.57 and 14.86 mm; other rims are estimates.
+ * Clear radii are estimated from the drawing sheet at 35.1 pixels per unit and checked against the real f/4 marginal and 35° chief ray.
+ * R1/R2 and R9/R10 follow the 13.1 mm doublet height; R4 is 11.5 mm, while R3/R5/R6 retain the axial beam and R8 retains off-axis light above the drawn chamfers.
+ * R7 remains 12 mm, within the drawing's reading uncertainty; opaque lands extend R3/R8 to 13.1 mm to approximate the doublets' shoulders without changing their clear apertures.
  * The R3/R4 gap closes near 10.90 mm, while the f/4 marginal needs 10.63 mm; a 94% sag allowance preserves the beam with positive air clearance.
  * The 140.2 mm image circle is twice the real chief-ray height at the printed field's 35° half-angle, rounded to 0.1 mm; off-axis bundles are vignetted.
  * Mercury g-line indices are printed without Abbe numbers, so the model traces only helium d. No close-focus prescription is printed.
@@ -138,19 +140,20 @@ const LENS_DATA = {
       R: 16.73,
       d: 1.45,
       sd: 10.64,
+      rimExtensionSd: 13.1,
     },
     {
       label: "4",
       R: 24.25,
       d: 3.47,
-      sd: 10.65,
+      sd: 11.5,
       medium: 3,
     },
     {
       label: "5",
       R: 37.77,
       d: 2.32,
-      sd: 12.9,
+      sd: 10.3,
     },
     {
       label: "STO",
@@ -161,7 +164,7 @@ const LENS_DATA = {
       label: "6",
       R: -43.64,
       d: 3.47,
-      sd: 13.5,
+      sd: 10.2,
       medium: 4,
     },
     {
@@ -174,7 +177,8 @@ const LENS_DATA = {
       label: "8",
       R: -19.95,
       d: 3.13,
-      sd: 13,
+      sd: 10.4,
+      rimExtensionSd: 13.1,
       medium: 5,
     },
     {
