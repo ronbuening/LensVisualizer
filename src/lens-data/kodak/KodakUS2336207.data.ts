@@ -71,7 +71,7 @@ const LENS_DATA = {
       nd: 1.617,
       vd: 55,
       indexReference: "D",
-      glass: "K-SSK4 (spectral proxy; patent nD 1.617 / ν 55; supplier and melt unspecified)",
+      glass: "K-SSK4 (spectral proxy; patent nD 1.617 / ν 55.0; supplier and melt unspecified)",
       focalLengthMm: 60.85,
       role: "Positive front member of the inner doublet",
       cemented: "C1",
