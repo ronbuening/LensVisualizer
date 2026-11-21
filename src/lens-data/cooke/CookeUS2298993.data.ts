@@ -1,14 +1,24 @@
-import type { LensDataV2Input } from "../repo/src/types/lensDataV2.js";
-const data = {
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * US 2,298,993 A, Example IV / Figure 4: five air-spaced spherical singlets.
+ * The normalized f = 1.000 table is multiplied by 100 for millimetres at nominal
+ * f = 100 mm. Its printed values give EFL 99.6194 mm, consistent with the
+ * rounding seen across the patent's examples; no prescription values are altered.
+ * The stop is inferred in S3, 3.51 mm after R6 and 0.49 mm before R7; its bore
+ * and all clear rims are inferred. The image plane is the computed paraxial
+ * back focus, 76.966226 mm after R10. The ±10° field is illustrative; the
+ * patent gives no field for Example IV.
+ */
+const LENS_DATA = {
   schema: 2,
-  key: "warmisham-us2298993-example4-infinity-reference",
-  maker: null,
-  name: "WARMISHAM US2298993 EXAMPLE IV \u2014 SOURCE f/2.5",
-  subtitle:
-    "Patent-only 5E/5G \u00b7 sodium-D infinity \u00b7 estimated iris/rims",
+  key: "cooke-100mm-f25-us2298993",
+  maker: "Cooke",
+  name: "COOKE 100mm f/2.5 (US 2,298,993 Design)",
+  subtitle: "US 2,298,993 A, Example IV — five-singlet photographic objective",
   visible: false,
   source: {
-    patentNumber: "US 2,298,993",
+    patentNumber: "US 2,298,993 A",
     patentYear: 1942,
     example: {
       label: "Example IV",
@@ -20,70 +30,75 @@ const data = {
   },
   catalog: {
     focalLengthMm: {
-      design: 100,
+      design: 99.62,
     },
     fNumber: {
       design: 2.5,
     },
     elementCount: 5,
     groupCount: 5,
-    specs: [
-      "Literal five air-spaced singlets, sodium D. Source nominal 100 mm f/2.5; literal EFL 99.619436 / BFD 76.966226 mm, no fitting.",
-      "Stop estimated 3.51 mm after R6 and .49 mm before R7, z23.31 mm. Bore and clear radii estimated, not factory measurements. Exact .1 mm front air gap preserved.",
-      "Stock native f/2.5 control; finite pupil equivalents are separate diagnostics. Scope \u00b110 degrees D-line infinity only; no Example V field inheritance, retail identity, physical format, finite focus, broadband or throughput claim.",
-      "Original numerical transcription and source hash supplied through independent parent custody; original PDF not locally inspected or included. Wider automatic metrics are unqualified.",
-    ],
+    specs: ["5 ELEMENTS / 5 GROUPS", "ALL SPHERICAL", "DESIGN F/2.5"],
   },
   elements: [
     {
       id: 1,
       name: "L1",
-      label: "L1",
-      type: "Source Spherical Element",
+      label: "Element 1",
+      type: "Positive Meniscus",
       nd: 1.644,
       vd: 48.3,
       indexReference: "D",
-      glass: "Literal sodium-D/Abbe pair; no calibrated spectral curve.",
+      focalLengthMm: 164.04,
+      glass: "Unmatched (nD 1.644 / ν 48.3)",
+      role: "Positive front element contributing converging power",
     },
     {
       id: 2,
       name: "L2",
-      label: "L2",
-      type: "Source Spherical Element",
+      label: "Element 2",
+      type: "Positive Meniscus",
       nd: 1.613,
       vd: 59.3,
       indexReference: "D",
-      glass: "Literal sodium-D/Abbe pair; no calibrated spectral curve.",
+      focalLengthMm: 85.83,
+      glass: "Unmatched (nD 1.613 / ν 59.3)",
+      role: "Second positive element ahead of the negative pair",
     },
     {
       id: 3,
       name: "L3",
-      label: "L3",
-      type: "Source Spherical Element",
+      label: "Element 3",
+      type: "Biconcave Negative",
       nd: 1.652,
       vd: 33.5,
       indexReference: "D",
-      glass: "Literal sodium-D/Abbe pair; no calibrated spectral curve.",
+      focalLengthMm: -59.38,
+      glass: "Unmatched (nD 1.652 / ν 33.5)",
+      role: "Front negative element balancing the positive components",
     },
     {
       id: 4,
       name: "L4",
-      label: "L4",
-      type: "Source Spherical Element",
+      label: "Element 4",
+      type: "Negative Meniscus",
       nd: 1.652,
       vd: 33.5,
       indexReference: "D",
-      glass: "Literal sodium-D/Abbe pair; no calibrated spectral curve.",
+      focalLengthMm: -80.22,
+      glass: "Unmatched (nD 1.652 / ν 33.5)",
+      role: "Rear negative element ahead of the final positive element",
     },
     {
       id: 5,
       name: "L5",
-      label: "L5",
-      type: "Source Spherical Element",
+      label: "Element 5",
+      type: "Biconvex Positive",
       nd: 1.644,
       vd: 48.3,
       indexReference: "D",
-      glass: "Literal sodium-D/Abbe pair; no calibrated spectral curve.",
+      focalLengthMm: 53.32,
+      glass: "Unmatched (nD 1.644 / ν 48.3)",
+      role: "Positive rear element converging light toward the image",
     },
   ],
   surfaces: [
@@ -172,9 +187,8 @@ const data = {
     offAxisFieldFrac: 1,
   },
   focus: {
-    closeFocusM: 1000000000000000,
-    description:
-      "Literal five air-spaced singlets, sodium D. Source nominal 100 mm f/2.5; literal EFL 99.619436 / BFD 76.966226 mm, no fitting. Stop estimated 3.51 mm after R6 and .49 mm before R7, z23.31 mm. Bore and clear radii estimated, not factory measurements. Exact .1 mm front air gap preserved. Stock native f/2.5 control; finite pupil equivalents are separate diagnostics. Scope \u00b110 degrees D-line infinity only; no Example V field inheritance, retail identity, physical format, finite focus, broadband or throughput claim. Original numerical transcription and source hash supplied through independent parent custody; original PDF not locally inspected or included. Wider automatic metrics are unqualified.",
+    closeFocusM: 1e15,
+    description: "Infinity focus only; the patent gives no close-focus data.",
   },
   groups: [
     {
@@ -207,4 +221,5 @@ const data = {
     yScFill: 0.5,
   },
 } satisfies LensDataV2Input;
-export default data;
+
+export default LENS_DATA;
