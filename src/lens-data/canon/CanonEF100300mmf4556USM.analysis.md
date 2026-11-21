@@ -250,10 +250,10 @@ focus displacement, no magnification-state prescription, and no focus travel. Th
 uniquely determine the internal fourth-group motion because the principal planes and effective focal properties of the
 complete zoom vary with group position.
 
-The data therefore uses focus status `NO_INTERNAL_RECONSTRUCTION`. Every `[infinity, close]` pair in `gaps` is identical at
-each zoom position. The 1.5 m value remains catalog metadata rather than being converted into a synthetic close-focus
-optical state. No total focus travel is asserted because the sources do not provide one and the selected prescription
-does not determine it uniquely.
+The model therefore shows the published infinity zoom states only: at each zoom position, every spacing keeps the same
+value at both ends of the focus control, and focus travel is not modeled. The 1.5 m figure is recorded as catalog
+product information and is not turned into a modeled close-focus state. No total focus travel is asserted because the
+sources do not provide one and the selected prescription does not determine it uniquely.
 
 The distinction matters particularly for L4. At infinity, L4 is effectively fixed during zoom in the image-referenced
 analysis. That does not conflict with Canon's statement that L4 moves during focusing; zoom motion and focus motion are

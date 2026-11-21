@@ -44,7 +44,7 @@ const LENS_DATA = {
   key: "pentax-smc-da-16-45-f4-ed-al",
   maker: "Pentax",
   name: "PENTAX SMC DA 16-45mm f/4 ED AL",
-  subtitle: "US 7,106,520 B2, Embodiment 8 — native-scale production correlation",
+  subtitle: "US 7,106,520 B2, Embodiment 8 — production match at patent scale",
 
   catalog: {
     lensMounts: ["pentax-k"],

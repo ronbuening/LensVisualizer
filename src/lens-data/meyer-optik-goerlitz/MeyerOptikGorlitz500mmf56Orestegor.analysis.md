@@ -83,7 +83,7 @@ L1 remains unresolved: BK1 and NSL7 bracket its Abbe number but neither identifi
 
 The patent supplies one fixed numerical prescription and no table of finite-conjugate focus spacings. Period manufacturer literature gives a closest-focus distance of 6.0 m, but it does not establish which optical group moves or provide enough constraints to reconstruct internal spacing changes.
 
-The final model therefore uses `NO_INTERNAL_RECONSTRUCTION`. The 6.0 m value is retained only as production metadata (`closeFocusM`); `var` is empty, and no close-focus optical state, focus travel, breathing value, or internal movement law is claimed. This avoids converting a marketed minimum-focus distance into an underdetermined optical mechanism.
+The model therefore shows the lens at infinity only and moves no group. The 6.0 m value is recorded only as product information; no spacing changes with focus, and no close-focus optical state, focus travel, breathing value, or internal movement law is claimed. This avoids converting a marketed minimum-focus distance into an underdetermined optical mechanism.
 
 ## Modeling Disclosures and Verification
 
@@ -114,10 +114,10 @@ The final row makes the system’s compactness explicit in the patent’s own fo
 
 ## Sources and References
 
-- **Primary prescription source:** *Photographisches Tele-Objektiv*, German utility-model record Nr. 1 980 417, VEB Feinoptisches Werk Görlitz. Supplied dossier file `DE_1980417_U.pdf`. Numerical example: PDF p. 5; duplicate claim table: PDF p. 8; architecture: PDF p. 6; optical section: PDF p. 9; conditions: PDF pp. 4 and 7.
+- **Primary prescription source:** *Photographisches Tele-Objektiv*, German utility-model record Nr. 1 980 417, VEB Feinoptisches Werk Görlitz. Source file consulted: `DE_1980417_U.pdf`. Numerical example: PDF p. 5; duplicate claim table: PDF p. 8; architecture: PDF p. 6; optical section: PDF p. 9; conditions: PDF pp. 4 and 7.
 - **Period manufacturer brochure:** Meyer-Optik Görlitz / VEB Feinoptisches Werk Görlitz, *ORESTEGOR 5,6 / 500* (1966), https://www.ihagee.org/Lenzen/HMG44-1966-29-500.pdf
 - **Product record:** Deutsches Kameramuseum, *Meyer-Optik Görlitz Orestegor 1:5,6/500 mm*, https://kameramuseum.de/objekte/meyer-optik-goerlitz-orestegor-156-500-mm/
 - **Inventor bibliography:** PHOTODeal III/2013, *Meyer Optik Görlitz: Telemegore und Orestegore*, https://www.pentaconsix.com/meyer_objektive_2.pdf
 - **Related-patent identification:** Arkadii Shapoval, *Modification of Tair-3 1:4.5 F=30 cm — optical design comparison*, https://radojuva.com/en/2024/02/tair-3-4-5-f30-sm-kmz-optical-design/
 - **Historical stop-location evidence:** *Orestegor 5,6/500 Schnitt*, https://photobutmore.de/exakta/meyer/orestegor500-schnitt.jpg
-- **Glass catalogs and cross-references:** SCHOTT SF3 and N-SSK5 catalog data; OHARA S-BSM25; CDGM F3 / cross-reference database; HOYA optical-glass data downloads; HIKARI optical-glass catalog; SUMITA optical-glass downloads. The exact source URLs and retrieval qualifications are preserved in the dossier `evidence.json`.
+- **Glass catalogs and cross-references:** SCHOTT SF3 and N-SSK5 catalog data; OHARA S-BSM25; CDGM F3 / cross-reference database; HOYA optical-glass data downloads; HIKARI optical-glass catalog; SUMITA optical-glass downloads. The exact source URLs and retrieval qualifications are recorded with the sources used here.

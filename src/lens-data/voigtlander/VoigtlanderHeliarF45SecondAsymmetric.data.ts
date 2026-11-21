@@ -6,7 +6,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ╠══════════════════════════════════════════════════════════════════════════════════════════════════════╣
  * ║ Source: DE 143889 C, the patent's single worked numerical example (job-card Example 1).              ║
  * ║ Five elements in three air-spaced groups; all eight refracting surfaces are spherical.               ║
- * ║ Focus status: NO_INTERNAL_RECONSTRUCTION. The patent publishes only the infinity prescription.       ║
+ * ║ Focus: infinity only. The patent publishes only the infinity prescription.                           ║
  * ║                                                                                                      ║
  * ║ Modeling decisions:                                                                                  ║
  * ║ - Native 100 mm patent scale; no dimensional or asphere scaling was applied.                         ║
@@ -23,8 +23,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ - The schema's nd slot directly retains the patent's sodium-D values. The printed historical G′-line ║
  * ║   values are preserved in comments but are not authored as the schema's modern mercury-g `ng`.       ║
  * ║   The source supplies no vd, nC, nF, modern ng, dPgF, or defensible catalog glass identity.          ║
- * ║ - closeFocusM = 1.0 is a schema-required UI placeholder only; it is not a patent or product MFD and  ║
- * ║   does not create a close-focus state. var and varLabels remain empty.                               ║
+ * ║ - closeFocusM = 1.0 is a placeholder only; it is not a patent or product MFD and                     ║
+ * ║   does not create a close-focus state. No spacing changes with focus.                                ║
  * ╚══════════════════════════════════════════════════════════════════════════════════════════════════════╝
  */
 
@@ -138,9 +138,9 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 1.0,
     description:
-      "NO_INTERNAL_RECONSTRUCTION: DE 143889 C publishes only the infinity prescription and no MFD or movement law. " +
-      "closeFocusM=1.0 is a schema-required UI placeholder, not a claimed source value; " +
-      "no variable optical gap is modeled.",
+      "Infinity focus only. DE 143889 C publishes only the infinity prescription, with no minimum focus distance " +
+      "or focusing movement, so focus travel is not modeled. " +
+      "The focus control's 1.0 m end is a placeholder, not a value from the source.",
   },
 
   aperture: { nominalFNumber: 4.3416595905124735, fStops: [4.5, 5.6, 8, 11, 16, 22], maxFNumber: 22 },

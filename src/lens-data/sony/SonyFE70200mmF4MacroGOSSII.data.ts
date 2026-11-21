@@ -76,7 +76,7 @@ const LENS_DATA = {
   key: "sony-fe-70-200mm-f4-macro-g-oss-ii",
   maker: "Sony",
   name: "SONY FE 70-200mm f/4 Macro G OSS II",
-  subtitle: "WO 2024/247472 A1 Example 2 — strong production correlation; attribution unconfirmed",
+  subtitle: "WO 2024/247472 A1 Example 2 — strong production match; not maker-confirmed",
 
   catalog: {
     lensMounts: ["sony-fe"],

@@ -140,16 +140,15 @@ as line-by-line dispersion data for the modeled materials.
 
 ## Focus Mechanism
 
-The implemented focus status is `NO_INTERNAL_RECONSTRUCTION`. Example 11 supplies one infinity prescription and no
-finite-distance spacing table. The patent states generically that some embodiments may focus from more than 20 m to less
-than 100 mm by moving the lens system and/or the photosensor (¶0098), while Apple documents autofocus with Focus Pixels for
-the iPhone 7. Neither source identifies a unique moving group, travel, or spacing law for Example 11 or for the production
-module.
+The model shows the lens at infinity focus only. Example 11 supplies one infinity prescription and no close-focus
+spacing table. The patent states generically that some embodiments may focus from more than 20 m to less than 100 mm by
+moving the lens system and/or the photosensor (¶0098), while Apple documents autofocus with Focus Pixels for the iPhone
+7. Neither source identifies a unique moving group, travel, or spacing law for Example 11 or for the production module.
 
-Accordingly, the data contains no focus `var` entries and preserves the published infinity geometry. The required
-`closeFocusM: 0.1` field is a non-operative UI boundary proxy derived from the patent's generic sub-100-mm statement. It is
-not a claim that Example 11 or the iPhone 7 production camera has a 0.10 m minimum focus distance, and it is not used to
-reconstruct internal motion.
+Accordingly, the model has no spacings that change with focus and preserves the published infinity geometry. Its 0.1 m
+close-focus figure only sets the end of the focus control, which moves nothing; it is derived from the patent's generic
+sub-100-mm statement. It is not a claim that Example 11 or the iPhone 7 production camera has a 0.10 m minimum focus
+distance, and it is not used to model internal motion.
 
 ## Aspherical Surfaces
 

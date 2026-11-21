@@ -164,16 +164,14 @@ by themselves, to determine higher-order partial-dispersion behavior.
 
 ## Focus Mechanism
 
-The focus status is `NO_INTERNAL_RECONSTRUCTION`.
-
 US 2,645,156 A publishes one infinity prescription. It provides no close-focus table, object-distance row, magnification
-row, variable air spacing, moving-group statement, or reference-plane definition from which a focus state could be
-solved. The data consequently contains no `var` entries and makes no claim that the patent prescription focuses by unit
-movement, inner movement, or a floating mechanism.
+row, air spacing that changes with focus, moving-group statement, or reference-plane definition from which a focus
+state could be solved. The model therefore shows the lens at infinity only and moves no group, and it makes no claim
+that the patent prescription focuses by unit movement, inner movement, or a floating mechanism.
 
-The German Voigtländer Bessa II instruction booklet shows the meter scale extending to 1.0 m. The data retains
-`closeFocusM: 1.0` as product metadata only. The 1.0 m value does not generate a modeled optical state and is not used
-to infer internal spacing or lens extension.
+The German Voigtländer Bessa II instruction booklet shows the meter scale extending to 1.0 m. The model records 1.0 m as
+product information only. The 1.0 m value does not generate a modeled optical state and is not used to infer internal
+spacing or lens extension.
 
 ## Conditional Expressions
 

@@ -34,7 +34,7 @@ const LENS_DATA = {
   key: "mamiya-sekor-sfc-150f4-soft-focus",
   maker: "Mamiya",
   name: "MAMIYA-SEKOR SFC 150mm f/4 SOFT FOCUS",
-  subtitle: "JP S52-141223 A Example 1 — production-correlated RB67 prescription",
+  subtitle: "JP S52-141223 A Example 1 — production match for the RB67 prescription",
 
   catalog: {
     lensMounts: ["mamiya-rb67"],

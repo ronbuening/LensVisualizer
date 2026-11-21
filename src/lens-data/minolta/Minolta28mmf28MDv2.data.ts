@@ -23,7 +23,7 @@ const LENS_DATA = {
   key: "minolta-md-28mm-f28-v2",
   maker: "Minolta",
   name: "MINOLTA MD 28mm f/2.8 (5 elements / 5 groups)",
-  subtitle: "US 4,493,536 Example 1 — 0.28× model; strong secondary correlation to the later 5/5 MD variant",
+  subtitle: "US 4,493,536 Example 1 — 0.28× model; strong match to the later 5/5 MD variant, from secondary sources",
 
   catalog: {
     lensMounts: ["minolta-sr"],

@@ -58,7 +58,7 @@ const TELECONVERTER_DATA = {
   key: "canon-extender-ef2x",
   maker: "Canon",
   name: "CANON EXTENDER EF2X",
-  subtitle: "JP S63-106715 A, Example 2 — production correlation",
+  subtitle: "JP S63-106715 A, Example 2 — production match",
 
   catalog: {
     lensMounts: ["canon-ef"],

@@ -48,7 +48,7 @@ const LENS_DATA = {
   "key": "kmz-zenitar-50mm-f095",
   "maker": "KMZ",
   "name": "KMZ ZENITAR 50mm f/0.95",
-  "subtitle": "RU 2726264 C1, sole example — probable Zenitar 50mm f/0.95 production correlation",
+  "subtitle": "RU 2726264 C1, sole example — probable Zenitar 50mm f/0.95 production match",
   "visible": true,
   "catalog": {
     "lensMounts": [

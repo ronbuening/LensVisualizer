@@ -60,7 +60,7 @@ const LENS_DATA = {
   key: "tamron-b028-18-400-f35-63",
   maker: "Tamron",
   name: "TAMRON 18-400mm f/3.5-6.3 Di II VC HLD",
-  subtitle: "JP 2017-116646 A Example 1 — inferred production correlation to Model B028",
+  subtitle: "JP 2017-116646 A Example 1 — inferred production match to Model B028",
 
   catalog: {
     lensMounts: ["canon-ef", "nikon-f"],

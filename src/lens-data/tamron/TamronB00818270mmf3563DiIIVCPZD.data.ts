@@ -49,7 +49,7 @@ const LENS_DATA = {
   "key": "tamron-18-270mm-f35-63-di-ii-vc-pzd-b008",
   "maker": "Tamron",
   "name": "TAMRON 18-270mm f/3.5-6.3 Di II VC PZD (B008)",
-  "subtitle": "JP 2011-248219 A, Embodiment 1 — B008 production correlation",
+  "subtitle": "JP 2011-248219 A, Embodiment 1 — B008 production match",
   "catalog": {
     "lensMounts": [
       "canon-ef",

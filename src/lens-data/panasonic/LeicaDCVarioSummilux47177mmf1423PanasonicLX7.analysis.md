@@ -148,9 +148,9 @@ Catalog-inferred APD color tags identify L3, L4, L9. Each selected spectral prox
 
 The patent identifies G4, consisting only of L10, as the focusing unit. From infinity toward a close object, G4 moves toward the object along the optical axis (¶0118, ¶0129). This is an inner-focus mechanism in the sense that one internal unit moves independently of the front unit and image plane.
 
-Numerical Example 1 publishes only infinity-focus zoom states. It gives no close-focus G4 position, no paired adjacent-gap values, no object-distance reference plane, and no intermediate focus law. The model therefore uses **NO_INTERNAL_RECONSTRUCTION**: every focus pair in `var` repeats the infinity spacing at each zoom state. The zoom prescription is real; the focus slider has no invented optical motion.
+Numerical Example 1 publishes only infinity-focus zoom states. It gives no close-focus G4 position, no paired adjacent-gap values, no object-distance reference plane, and no intermediate focus law. The model therefore shows **infinity focus only**: at each zoom state, every spacing keeps its infinity value at both ends of the focus control. The zoom prescription is real; the focus slider moves no group.
 
-Panasonic's product specifications list 1 cm minimum focus at maximum wide and 30 cm at maximum tele in macro/MF/Intelligent Auto/movie modes. The data-file `closeFocusM: 0.01` records the marketed minimum-wide capability, not a reconstructed patent conjugate and not a claim that the telephoto state focuses to 1 cm. Because no close-focus internal geometry is authored, no finite-object magnification or focus breathing result is claimed here.
+Panasonic's product specifications list 1 cm minimum focus at maximum wide and 30 cm at maximum tele in macro/MF/Intelligent Auto/movie modes. The model records the 0.01 m (1 cm) figure as the marketed minimum-wide capability, not as a modeled close-focus state from the patent and not as a claim that the telephoto state focuses to 1 cm. Because no close-focus internal geometry is modeled, no close-object magnification or focus breathing result is claimed here.
 
 ## Aspherical Surfaces
 

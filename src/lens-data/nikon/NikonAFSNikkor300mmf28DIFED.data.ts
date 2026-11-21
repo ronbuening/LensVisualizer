@@ -23,7 +23,7 @@ const LENS_DATA = {
   key: "nikon-ai-af-s-nikkor-300mm-f28d-if-ed",
   maker: "Nikon",
   name: "NIKON AI AF-S NIKKOR 300mm f/2.8 D IF-ED",
-  subtitle: "US 5,745,306 A — Example 1; correlated to the 1996 AF-S production lens",
+  subtitle: "US 5,745,306 A — Example 1; matched to the 1996 AF-S production lens",
 
   catalog: {
     lensMounts: ["nikon-f"],

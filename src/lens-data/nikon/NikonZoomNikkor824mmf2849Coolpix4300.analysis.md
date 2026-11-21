@@ -280,15 +280,16 @@ For the production camera, Nikon identifies rear-group focusing by G3 using a st
 The manufacturer reports macro working distances of 0.04 m at the wide end and 0.30 m at the long end, measured from
 the lens. These are not object-to-image distances. [M1, §V][M1]; [M2, p.144][M2]
 
-The patent's selected numerical example publishes infinity zoom endpoints but no finite-conjugate G3 positions. The
-model status is therefore `NO_INTERNAL_RECONSTRUCTION`. The known identity of the moving group is not a numerical focus
-law: no missing displacement is inferred from the production working distances alone. The rear group's invariant
-position in the endpoint table applies to zoom at infinity, not to all production focusing operations. [P1, Table 1][P1]
+The patent's selected numerical example publishes infinity zoom endpoints but no close-focus G3 positions. The model
+therefore shows infinity focus only. The known identity of the moving group is not a numerical focus law: no missing
+displacement is inferred from the production working distances alone. The rear group's invariant position in the
+endpoint table applies to zoom at infinity, not to all production focusing operations. [P1, Table 1][P1]
 
-Every authored focus vector repeats its infinity spacing. `finiteConjugates` is absent. The required `closeFocusM`
-scalar is retained only as a descriptive wide-end working-distance label; it is not a certified optical conjugate.
-`zoomCloseFocusM` is omitted because converting the manufacturer's lens-referenced distances into image-referenced
-endpoints would require information not established by these sources.
+Every spacing stays at its infinity value at both ends of the focus control, and no close-focus object distance is
+modeled. The 0.04 m close-focus figure is kept only as a descriptive label for the wide-end working distance; it is not
+a verified optical object distance. No per-zoom close-focus distances are recorded, because converting the
+manufacturer's lens-referenced distances into image-referenced endpoints would require information not established by
+these sources.
 
 Finite-distance magnification, focus breathing, effective aperture at macro distances and close-focus image quality
 are consequently not predictions supported by this prescription. In particular, moving a focus control without changing
@@ -315,7 +316,7 @@ polynomial values are copied without rescaling; $A_p=C_p$ in this unscaled model
 | A8 | `-6.34410e-08` |
 | A10 | `1.02560e-09` |
 
-The source's quadratic polynomial term is zero. The data's zero A12 and A14 values are required schema padding, not
+The source's quadratic polynomial term is zero. The model's zero A12 and A14 values are required placeholders, not
 additional published nonzero terms. No odd-order term or diffractive phase polynomial is introduced.
 [P1, Table 1, aspherical coefficients][P1]
 

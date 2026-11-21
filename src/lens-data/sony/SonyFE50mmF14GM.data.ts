@@ -45,7 +45,7 @@ const LENS_DATA = {
   key: "sony-fe-50mm-f14-gm",
   maker: "Sony",
   name: "SONY FE 50mm f/1.4 GM",
-  subtitle: "WO 2024/166548 A1 Example 1 — inferred production correlation",
+  subtitle: "WO 2024/166548 A1 Example 1 — inferred production match",
 
   catalog: {
     lensMounts: ["sony-fe"],

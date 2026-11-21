@@ -63,7 +63,7 @@ const LENS_DATA = {
   key: "carl-zeiss-vario-sonnar-t-143-715mm-f28-48-sony-dsc-r1",
   maker: "Sony",
   name: "SONY ZEISS VARIO-SONNAR T* 14.3-71.5mm f/2.8-4.8 (Sony Cyber-shot DSC-R1)",
-  subtitle: "US 2008/0218875 A1 Example 1 — unscaled patent design; strong DSC-R1 correlation",
+  subtitle: "US 2008/0218875 A1 Example 1 — unscaled patent design; strong DSC-R1 match",
 
   catalog: {
     lensMounts: ["fixed-lens-camera"],

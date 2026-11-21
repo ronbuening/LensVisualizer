@@ -93,9 +93,9 @@ Named curves pass the catalog coordinate guard without changing the patent coord
 
 ## Focus Mechanism
 
-The patent publishes no focus-state spacing table and no moving-group law. The optical model therefore uses `NO_INTERNAL_RECONSTRUCTION`: the prescription remains fixed at the published state and contains no variable optical gaps.
+The patent publishes no focus-state spacing table and no moving-group law. The model therefore shows the lens at infinity only: the prescription stays fixed at the published state, and no spacing changes with focus.
 
-For the correlated Rolleiflex 2.8D production context, the manufacturer's instructions describe both camera lenses as rigidly coupled to a common front panel and describe focusing by moving that front lens panel. The same manual gives a focusing range from infinity to 40 inches, measured from the focal/film plane.[3] The data file records the corresponding 1.016 m value as production metadata, but it does not convert that specification into a reconstructed patent spacing state.
+For the correlated Rolleiflex 2.8D production context, the manufacturer's instructions describe both camera lenses as rigidly coupled to a common front panel and describe focusing by moving that front lens panel. The same manual gives a focusing range from infinity to 40 inches, measured from the focal/film plane.[3] The model records the corresponding 1.016 m value as product information, but it does not convert that specification into a modeled close-focus spacing state.
 
 No close-focus EFL, BFD, aberration, or field-performance claim is therefore made from this model. The verified optical calculations refer to the fixed patent prescription and its derived infinity image plane.
 

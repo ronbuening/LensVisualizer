@@ -89,9 +89,9 @@ The patent supplies d-line refractive indices and Abbe numbers but no per-elemen
 
 ## Focus Mechanism
 
-The selected patent publishes only the infinity prescription. It gives no close-focus spacing table, object-distance sequence, magnification sequence, or mechanical movement law from which a unique internal focus model could be solved. The validated data therefore retains `NO_INTERNAL_RECONSTRUCTION`, with empty focus `var` data.
+The selected patent publishes only the infinity prescription. It gives no close-focus spacing table, object-distance sequence, magnification sequence, or mechanical movement law from which a unique focusing movement could be worked out. The model therefore shows the lens at infinity only and moves no group.
 
-Manufacturer literature gives a minimum focus of 4.5 m measured from the film plane. That value is stored as product metadata only. It does not identify which group moves, so no unit-focus, inner-focus, rear-focus, or floating-focus mechanism is assigned to the optical model. The 4.5 m endpoint should consequently not be interpreted as a traced LensVisualizer focus state.
+Manufacturer literature gives a minimum focus of 4.5 m measured from the film plane. The model records that value as product information only. It does not identify which group moves, so no unit-focus, inner-focus, rear-focus, or floating-focus mechanism is assigned to the optical model. The 4.5 m endpoint should consequently not be read as a traced close-focus state of the model.
 
 ## Chromatic Correction Strategy
 

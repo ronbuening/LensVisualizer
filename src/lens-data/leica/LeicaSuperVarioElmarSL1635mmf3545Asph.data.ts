@@ -56,7 +56,7 @@ const LENS_DATA = {
   key: "leica-super-vario-elmar-sl-16-35mm-f35-45-asph",
   maker: "Leica",
   name: "LEICA SUPER-VARIO-ELMAR-SL 16-35mm f/3.5-4.5 ASPH.",
-  subtitle: "JP 2018-087903 A Example 1 — strong production correlation, not manufacturer-confirmed",
+  subtitle: "JP 2018-087903 A Example 1 — strong production match, not maker-confirmed",
 
   catalog: {
     lensMounts: ["l-mount"],

@@ -20,7 +20,7 @@ const LENS_DATA = {
   key: "panasonic-leica-dg-vario-elmarit-8-18mm-f28-4",
   maker: "Panasonic",
   name: "PANASONIC LEICA DG VARIO-ELMARIT 8-18mm f/2.8-4.0 ASPH.",
-  subtitle: "JP 2018-180348 A, Numerical Example 1 — qualified production correlation",
+  subtitle: "JP 2018-180348 A, Numerical Example 1 — tentative production match",
   catalog: {
     lensMounts: ["micro-four-thirds"],
     imageFormat: "four-thirds",

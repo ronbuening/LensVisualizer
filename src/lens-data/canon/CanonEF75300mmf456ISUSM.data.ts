@@ -35,7 +35,7 @@ const LENS_DATA = {
   key: "canon-ef-75-300mm-f4-56-is-usm",
   maker: "Canon",
   name: "CANON EF 75-300mm f/4-5.6 IS USM",
-  subtitle: "JP H08-062541 A, Example 2 — inferred production correlation",
+  subtitle: "JP H08-062541 A, Example 2 — inferred production match",
 
   catalog: {
     lensMounts: ["canon-ef"],
