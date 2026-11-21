@@ -7,6 +7,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Dimensions use the printed 100 mm focal-length scale.
  * The stop lies in the printed 14.61 mm gap after surface 7; its 12.50/2.11 mm
  * split and all clear radii are inferred. The stop radius is derived for f/1.5.
+ * R6's 26.4 mm clear radius follows Figure 1's height relative to the retained
+ * 37 mm front rim. The drawing is not uniformly to scale; other rims retain
+ * their inferred values. The axial beam and 20-degree chief ray clear them.
  * The image plane is at the calculated paraxial back focus of 47.00 mm, which
  * is not printed. Calculated EFL is 100.03 mm against the stated 100 mm.
  * The 20.0° half-field lies within the patent's stated covering power.
@@ -175,7 +178,7 @@ const LENS_DATA = {
       label: "6",
       R: -303.7,
       d: 3.37,
-      sd: 29,
+      sd: 26.4,
       medium: 4,
     },
     {
