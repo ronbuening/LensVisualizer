@@ -3,11 +3,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 /**
  * US 2,298,993 A, Example IV / Figure 4: five air-spaced spherical singlets.
  * The normalized f = 1.000 table is multiplied by 100 for millimetres at nominal
- * f = 100 mm. Its printed values give EFL 99.6194 mm, consistent with the
- * rounding seen across the patent's examples; no prescription values are altered.
+ * f = 100 mm. Its printed values give EFL 99.62 mm; rounding may explain the
+ * difference, but no particular correction is supported.
  * The stop is inferred in S3, 3.51 mm after R6 and 0.49 mm before R7; its bore
  * and all clear rims are inferred. The image plane is the computed paraxial
- * back focus, 76.966226 mm after R10. The ±10° field is illustrative; the
+ * back focus, 76.97 mm after R10. The ±10.0° field is illustrative; the
  * patent gives no field for Example IV.
  */
 const LENS_DATA = {
@@ -15,7 +15,7 @@ const LENS_DATA = {
   key: "cooke-100mm-f25-us2298993",
   maker: "Cooke",
   name: "COOKE 100mm f/2.5 (US 2,298,993 Design)",
-  subtitle: "US 2,298,993 A, Example IV — five-singlet photographic objective",
+  subtitle: "US 2,298,993 A, Example IV — Taylor Hobson / Warmisham",
   visible: false,
   source: {
     patentNumber: "US 2,298,993 A",
@@ -37,7 +37,12 @@ const LENS_DATA = {
     },
     elementCount: 5,
     groupCount: 5,
-    specs: ["5 ELEMENTS / 5 GROUPS", "ALL SPHERICAL", "DESIGN F/2.5"],
+    specs: [
+      "5 ELEMENTS / 5 GROUPS",
+      "ALL SPHERICAL",
+      "DESIGN f = 100 mm",
+      "DESIGN F/2.5",
+    ],
   },
   elements: [
     {
