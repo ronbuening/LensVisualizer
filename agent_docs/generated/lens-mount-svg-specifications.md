@@ -40,7 +40,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
 | [`leica-r`](#leica-r--leica-r) | bayonet | 47 mm | 49 mm | `renderable` | 1 |
 | [`m42`](#m42--m42) | threaded | 45.46 mm | 42 mm | `mvp_complete` | 1 |
 | [`micro-four-thirds`](#micro-four-thirds--micro-four-thirds) | bayonet | 19.25 mm | 38 mm | `mvp_complete` | 1 |
-| [`minolta-sr`](#minolta-sr--minolta-sr) | bayonet | 43.5 mm | 45 mm | `renderable` | 1 |
+| [`minolta-sr`](#minolta-sr--minolta-sr) | bayonet | 43.5 mm | 44.97 mm | `renderable` | 4 |
 | [`nikon-1`](#nikon-1--nikon-1) | bayonet | 17 mm | 40 mm | `mvp_complete` | 1 |
 | [`nikon-f`](#nikon-f--nikon-f) | bayonet | 46.5 mm | 44 mm | `mvp_complete` | 6 |
 | [`nikon-s`](#nikon-s--nikon-s) | hybrid | 34.85 mm | 44 mm | `renderable` | 1 |
@@ -2724,83 +2724,88 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 |---|---|
 | Mount ID | `minolta-sr` |
 | Display label | Minolta SR |
-| Project note | Minolta SR manual-focus SLR bayonet mount. |
+| Project note | Minolta SR manual-focus SLR bayonet mount (SR, MC and MD generations). |
 | Research status | `partial` |
 | MVP status | `renderable` |
 | Mount mechanism | `bayonet` (lock `sprung_detent`) |
 | Base profile | `minolta-sr/base` |
-| Selected MVP profile | `minolta-sr/base` |
-| Variant strategy | `base_only` |
+| Selected MVP profile | `minolta-sr/md` |
+| Variant strategy | `variant_profiles_defined` |
 
 #### Base and variant profile matrix
 
 | Profile ID | Type | Applies to | Adds | Removes | Changes |
 |---|---|---|---|---|---|
-| `minolta-sr/base` | base | Minolta SR, MC, and MD manual-focus lenses and bodies | three-lug bayonet; aperture and meter coupling levers | electrical contacts | SR/MC/MD couplings are collapsed for MVP rendering |
+| `minolta-sr/base` | base | every Minolta SR-mount body and lens, 1958 to 2001 (SR, MC and MD generations) | three-lug bayonet on a 44.97 mm body bore; red mounting index; lens lock released by a button beside the mount; automatic-diaphragm lever inside the mirror box | — | — |
+| `minolta-sr/sr` | variant | SR bodies and Auto Rokkor lenses, 1958 to 1966 | — | — | automatic diaphragm only: no coupling lug on the aperture ring and no follower on the body, so the figure is the base alone |
+| `minolta-sr/mc` | variant | MC (meter-coupled) lenses and full-aperture-metering bodies, 1966 to 1977 | meter-coupling lug on the aperture ring; its follower on a ring around the body mount | — | the lug reports how many stops the ring is set below full aperture |
+| `minolta-sr/md` | variant | MD lenses and shutter-priority or program bodies (XD, X-700 and later), 1977 to 2001 | minimum-aperture lug on the aperture ring; its follower lever beside the meter-coupling follower on the body | — | keeps the meter-coupling lug unchanged; the second lug reaches its follower only with the ring at minimum aperture and reports whether that is f/16, f/22 or f/32 |
 
 #### Dimensional summary
 
 | Field | Value | Unit |
 |---|---|---|
 | Flange focal distance | 43.5 (`secondary`) | mm |
-| Nominal throat diameter | 45 (`secondary`) | mm |
-| Effective clear aperture | 45 (`secondary`) | mm |
-| Camera mount outer diameter | 55 (`photo_scaled`) | mm |
+| Nominal throat diameter | 44.97 (`secondary`) | mm |
+| Effective clear aperture | 41.9 (`photo_scaled`) | mm |
+| Camera mount outer diameter | 57.3 (`photo_scaled`) | mm |
 | Lens mount outer diameter | 53 (`photo_scaled`) | mm |
 | Contact count | not_applicable (`not_applicable`) | count |
-| Lock rotation | 60 (`photo_scaled`) | deg |
-| Lock direction | clockwise (`photo_scaled`) | — |
+| Lock rotation | 54 (`secondary`) | deg |
+| Lock direction | clockwise (`official`) | — |
 
-#### Figures (selected profile `minolta-sr/base`)
+#### Figures (selected profile `minolta-sr/md`)
 
-**Camera-side front view** — viewBox `-34 -35 68 69` · 37 elements in 4 layers · hash `86001b45` ([standalone SVG](mounts/minolta-sr-camera-front.svg))
+**Camera-side front view** — viewBox `-35 -37 70 72` · 39 elements in 4 layers · hash `00e85f08` ([standalone SVG](mounts/minolta-sr-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-33 -34 66 67` · 32 elements in 4 layers · hash `e39e4b25` ([standalone SVG](mounts/minolta-sr-lens-rear.svg))
+**Lens-side rear view** — viewBox `-33 -35 66 68` · 33 elements in 4 layers · hash `6f65d8ed` ([standalone SVG](mounts/minolta-sr-lens-rear.svg))
 
-**Axial / register schematic** — viewBox `-50 -38 58 72` · 12 elements in 2 layers · hash `f4c52f13` ([standalone SVG](mounts/minolta-sr-axial.svg))
+**Axial / register schematic** — viewBox `-50 -39 58 74` · 12 elements in 2 layers · hash `86c74519` ([standalone SVG](mounts/minolta-sr-axial.svg))
 
 #### Camera-side front-view geometry
 
 | Feature ID | Type | Profile | Center | Start | End | Inner r | Outer r |
 |---|---|---|---|---|---|---|---|
-| `body-throat` | body_throat | `minolta-sr/base` | 0° | 0° | 360° | 0 | 22.5 |
-| `body-mount-ring` | mount_ring | `minolta-sr/base` | 0° | 0° | 360° | 22.5 | 27.5 |
-| `body-slot-1` | bayonet_receiving_slot | `minolta-sr/base` | 20° | 0° | 40° | 22.5 | 25 |
-| `body-slot-2` | bayonet_receiving_slot | `minolta-sr/base` | 140° | 120° | 160° | 22.5 | 25 |
-| `body-slot-3` | bayonet_receiving_slot | `minolta-sr/base` | 260° | 240° | 280° | 22.5 | 25 |
-| `body-index-mark` | index_mark | `minolta-sr/base` | 0° | unknown | unknown | unknown | 28 |
+| `body-throat` | body_throat | `minolta-sr/base` | 0° | 0° | 360° | 0 | 22.485 |
+| `body-mount-ring` | mount_ring | `minolta-sr/base` | 0° | 0° | 360° | 22.485 | 28.65 |
+| `body-slot-1` | bayonet_receiving_slot | `minolta-sr/base` | 59° | 33° | 85° | 20.95 | 22.485 |
+| `body-slot-2` | bayonet_receiving_slot | `minolta-sr/base` | 189° | 159° | 219° | 20.95 | 22.485 |
+| `body-slot-3` | bayonet_receiving_slot | `minolta-sr/base` | 297.5° | 270° | 325° | 20.95 | 22.485 |
+| `body-index-mark` | index_mark | `minolta-sr/base` | 1° | unknown | unknown | unknown | 25.5 |
 | `body-lock-pin` | lock_pin | `minolta-sr/base` | 90° | unknown | unknown | unknown | 23.5 |
 
 #### Lens-side rear-view geometry
 
 | Feature ID | Type | Profile | Center | Start | End | Inner r | Outer r |
 |---|---|---|---|---|---|---|---|
-| `lens-throat` | lens_throat | `minolta-sr/base` | 0° | 0° | 360° | 0 | 21.5 |
-| `lens-mount-ring` | lens_mount_ring | `minolta-sr/base` | 0° | 0° | 360° | 21.5 | 26.5 |
-| `lens-lug-1` | bayonet_lug | `minolta-sr/base` | 20° | 0° | 40° | 22.5 | 25 |
-| `lens-lug-2` | bayonet_lug | `minolta-sr/base` | 140° | 120° | 160° | 22.5 | 25 |
-| `lens-lug-3` | bayonet_lug | `minolta-sr/base` | 260° | 240° | 280° | 22.5 | 25 |
-| `lens-index-mark` | index_mark | `minolta-sr/base` | 0° | unknown | unknown | unknown | 27 |
+| `lens-throat` | lens_throat | `minolta-sr/base` | 0° | 0° | 360° | 0 | unknown |
+| `lens-mount-ring` | lens_mount_ring | `minolta-sr/base` | 0° | 0° | 360° | unknown | 26.5 |
+| `lens-lug-1` | bayonet_lug | `minolta-sr/base` | 59° | 33° | 85° | 20.95 | 22.485 |
+| `lens-lug-2` | bayonet_lug | `minolta-sr/base` | 189° | 159° | 219° | 20.95 | 22.485 |
+| `lens-lug-3` | bayonet_lug | `minolta-sr/base` | 297.5° | 270° | 325° | 20.95 | 22.485 |
+| `lens-index-mark` | index_mark | `minolta-sr/base` | 1° | unknown | unknown | unknown | 27 |
 | `lens-lock-notch` | lock_notch | `minolta-sr/base` | 90° | unknown | unknown | unknown | 23.5 |
 
 #### Mechanical couplings
 
 | Feature | Side | Profile | Function |
 |---|---|---|---|
-| `aperture-actuation-lever` | both | `minolta-sr/base` | stops down aperture at exposure |
-| `meter-coupling-tab` | lens | `minolta-sr/base` | reports aperture setting to body |
+| `aperture-actuation-lever` | both | `minolta-sr/base` | holds the lens diaphragm open and lets it stop down at exposure |
+| `meter-coupling-tab` | both | `minolta-sr/mc` | reports how many stops the aperture ring is set below full aperture |
+| `meter-coupling-tab-md` | both | `minolta-sr/md` | reports how many stops the aperture ring is set below full aperture |
+| `minimum-aperture-tab` | both | `minolta-sr/md` | signals that the ring is at minimum aperture and whether that is f/16, f/22 or f/32 |
 
 #### Axial stack
 
 | Plane | z (mm) | Diameter (mm) |
 |---|---|---|
-| `flange_datum` | 0 | 55 |
-| `bayonet_lug_engagement` | 1.2 | 50 |
+| `flange_datum` | 0 | 57.3 |
+| `bayonet_lug_engagement` | 1.2 | 44.97 |
 | `sensor_film_plane` | -43.5 | 43.3 |
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/minolta-sr.mount.ts` (26077 bytes, content hash `33eee8d8`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/minolta-sr.mount.ts` (44252 bytes, content hash `4af7994f`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -2808,10 +2813,25 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 |---|---|---|---|---|---|
 | `msr-1` | secondary | “Flange focal distance,” Wikipedia. Accessed 2026-06-06. | [snapshot](http://web.archive.org/web/20260526152456/https://en.wikipedia.org/wiki/Flange_focal_distance) | 2026-05-26 | medium |
 | `msr-2` | secondary | Minolta SR/MC/MD mount visual references. Accessed 2026-06-06. | [snapshot](unknown) | unknown | low |
+| `msr-3` | secondary | “Lens mount,” Wikipedia, table of lens mounts, revision of 2026-11-13. Accessed 2026-11-21. Second copy: the permanent link to that revision. | [snapshot](https://en.wikipedia.org/w/index.php?title=Lens_mount&oldid=1385498741) | 2026-11-21 | low |
+| `msr-4` | secondary | “Minolta SR-mount,” Wikipedia, revision of 2025-02-20. Accessed 2026-11-21. Second copy: the permanent link to that revision. | [snapshot](https://en.wikipedia.org/w/index.php?title=Minolta_SR-mount&oldid=1276636299) | 2026-11-21 | medium |
+| `msr-5` | secondary | S. H. Westin, “Alphabetical List of Camera Mounts,” data from W.-J. Markerink, last modified 2016-02-11. Accessed 2026-11-21. Second copy: the same row on the site's by-register page. | [snapshot](https://www.graphics.cornell.edu/~westin/misc/mounts-by-register.html) | 2026-11-21 | low |
+| `msr-p1` | patent | Y. Kuramoto, H. Ueda, and K. Uesugi (Minolta Camera K.K.), US4118726A, "Exchangeable lenses for use in internal light measuring type single lens reflex cameras," filed 1977-02-17, issued 1978-10-03. Accessed 2026-11-21. | [snapshot](https://patentimages.storage.googleapis.com/4f/58/80/5dae08a1eaedb7/US4118726.pdf) | 2026-11-21 | high |
+| `msr-m1` | official | Minolta Camera Co., Ltd., Minolta X-700 instruction manual, “Mounting and care of lenses,” p. 11. Accessed 2026-11-21. Second copy: the scan hosted by cameramanuals.org (PDF page 14). | [snapshot](https://www.cameramanuals.org/minolta_pdf/minolta_x-700.pdf) | 2026-11-21 | high |
+| `msr-c1` | secondary | Runner1616, “Minolta SR mount” (female mount of a Minolta SR-1), photograph, Wikimedia Commons, 2025-02-25, CC BY-SA 4.0. Accessed 2026-11-21. Second copy: the original file on upload.wikimedia.org. | [snapshot](https://upload.wikimedia.org/wikipedia/commons/9/96/Minolta_SR_mount.jpg) | 2026-11-21 | low |
+| `msr-c2` | secondary | M. Pettitt, “Close-up front view of Minolta X-700 SLR camera without lens,” photograph, Wikimedia Commons (from Flickr), 2022-04-15, CC BY 2.0. Accessed 2026-11-21. Second copy: the original file on upload.wikimedia.org. | [snapshot](https://upload.wikimedia.org/wikipedia/commons/d/dc/Close-up_front_view_of_Minolta_X-700_SLR_camera_without_lens.jpg) | 2026-11-21 | low |
+| `msr-c3` | secondary | smial, “Bajonett manual minolta” (Minolta XD-7 body and MC Rokkor 58 mm f/1.4 rear), photograph, Wikimedia Commons, 2005-12-09, CC BY-SA 2.0 DE. Accessed 2026-11-21. Second copy: the original file on upload.wikimedia.org. | [snapshot](https://upload.wikimedia.org/wikipedia/commons/4/4b/Bajonett_manual_minolta.jpg) | 2026-11-21 | low |
 
 #### Open questions
 
-- Exact SR/MC/MD lever clocking and lug dimensions are photo-scaled. _(Split generation variants after measured Minolta examples are available.)_
+- No dimensioned source for the bayonet was found. The entry gaps come from one SR-1 photograph (about +/-3 deg), and the lens lugs are drawn at the full extent of their gaps because no usable lens-rear photograph was found, so true lug arcs, lug thickness and the flange ramp are unknown. The 1.8 mm depth and the axial lug plane still rest on the unsourced first draft [msr-2]. _(A Minolta mount drawing, a patent with stated angles, or a calibrated measurement of a body ring and a lens bayonet.)_
+- Every photo-scaled millimetre value assumes the Wikipedia 44.97 mm throat is the bore the lugs pass through. The table row has no reference and does not define the diameter. On that scale the clear opening between the flanges is 41.9 mm and the ring is 57.3 mm across; Westin's list gives an undefined 41 mm. _(A sourced bore and flange diameter.)_
+- The 54 deg locking turn is known only from the unreferenced Wikipedia table, which shows the same figure for the Minolta A mount. The first draft used 60. The body photo allows roughly 51 to 63 deg, so it does not decide between them; the manual states the direction but no angle. _(A Minolta figure for the turn, or the angle between the red dot and the aperture index measured on a lens.)_
+- The lock pin and notch position (90 deg, 23.5 mm) still rests only on the unsourced first draft [msr-2]. Neither body photograph shows the latch. Two places would fit the flange geometry: the start of the right-hand flange at about 85 deg, and the pocket at the end of the top flange at about 30 to 35 deg. _(A service-manual exploded view of the mount, or a photograph with the latch visible.)_
+- Lens-side sizes still on the unsourced first draft [msr-2]: flange outer diameter 53 mm and index radius 27 mm. The lens rear opening is now unknown; its first-draft 21.5 mm radius could not pass the 41.9 mm clear opening. _(A square-on lens-rear photograph with a scale, or a lens service drawing.)_
+- The meter-coupling and minimum-aperture followers are placed from one X-700 photograph at rest with no lens. The MC profile reuses that position because no square-on photo of a 1966-era body was found. Lug sizes, travel per stop and the three minimum-aperture offsets are not dimensioned; US4118726A states the scheme only. _(Minolta SR-T, XD or X-700 service-manual dimensions for the coupling ring and lever, or measured lenses.)_
+- The 43.5 mm register is a Wikipedia table value. The Minolta X-700 service manual gives a body back of 43.72 +0.01/-0.02 mm measured to the pressure-plate contact surface, which is a different plane; it was not added as a source because no second copy on another host was found. _(A Minolta statement of the film-plane register.)_
+- The body index is read from the X-700 only. The SR-1 photograph shows no index on the ring face, so its position on 1958-era bodies is not confirmed. _(A front photograph or manual figure of an SR-1, SR-2 or SR-7 showing the index.)_
 
 ### `nikon-1` — Nikon 1
 
