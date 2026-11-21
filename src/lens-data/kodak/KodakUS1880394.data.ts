@@ -2,27 +2,22 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * Fred E. Altman, US 1,880,394 A (Eastman Kodak Company, 1932), sole numerical
- * example: a five-element f/6 aerial objective. The patent gives dimensions for
- * a focal length of 100 units; each unit is treated as one millimetre here.
- * Radius magnitudes, thicknesses, air spaces, D-line indices and Abbe numbers
- * follow the table; radius signs follow the drawing. The D line is taken as
- * sodium, 589.3 nm. The printed G′ indices are listed in the analysis.
- *
- * The diaphragm is drawn in the 7.54 mm space between the two doublets. Its
- * inferred station is 3.11 mm after R5 and 4.43 mm before R6, consistent with
- * the drawn position and the stated astigmatic node below 15°. Its opening is
- * calculated for f/6. All clear semi-diameters are estimates. The image plane
- * is the computed paraxial back focus, 88.635299 mm; no back focus is printed.
- * The computed focal length is 100.011791 mm. The stated field is read as a
- * 15° half-angle; the image circle is twice the real chief-ray height there.
- * The patent gives no close-focus data.
+ * example: five-element f/6 aerial objective. The printed focal length is 100
+ * units; one unit is treated as one millimetre, giving a D-line EFL of 100.01 mm.
+ * Radius magnitudes, thicknesses, spaces, D indices and Abbe numbers follow the
+ * table; signs follow the drawing. D is taken as sodium, 589.3 nm. The analysis
+ * lists the printed G′ indices and small element/component focal-length differences.
+ * The stop divides the 7.54 mm doublet gap into 3.11/4.43 mm, inferred from the
+ * drawing and the astigmatic node below 15°; its opening follows f/6. Rims are estimates.
+ * The 15° field is read as a half-angle; its real chief-ray height sets the image circle.
+ * The image plane is at paraxial back focus, 88.64 mm. No back focus or close-focus data is printed.
  */
 const LENS_DATA = {
   schema: 2,
   key: "kodak-100mm-f6-us1880394",
   maker: "Kodak",
   name: "KODAK 100mm f/6 (US 1,880,394 Design)",
-  subtitle: "US 1,880,394 A, sole example — Kodak f/6 aerial objective",
+  subtitle: "US 1,880,394 A, sole example — Eastman Kodak / Altman",
   visible: true,
   source: {
     patentNumber: "US 1,880,394 A",
@@ -45,7 +40,7 @@ const LENS_DATA = {
     elementCount: 5,
     groupCount: 3,
     imageCircleMm: 53.6,
-    specs: ["5 ELEMENTS / 3 GROUPS", "ALL SPHERICAL", "DESIGN F/6", "AERIAL OBJECTIVE"],
+    specs: ["5 ELEMENTS / 3 GROUPS", "ALL SPHERICAL", "DESIGN f = 100 mm", "DESIGN F/6"],
   },
   elements: [
     {
