@@ -28,7 +28,7 @@ const LENS_DATA = {
   },
   catalog: {
     focalLengthMm: {
-      design: 100,
+      design: 100.13,
     },
     fNumber: {
       design: 3.5,
@@ -47,7 +47,7 @@ const LENS_DATA = {
       nd: 1.69347,
       vd: 53.5,
       indexReference: "d",
-      glass: "H-LaK6A (CDGM)",
+      glass: "Unmatched (nd 1.69347 / ν 53.5)",
       role: "Positive front element of the three-group objective",
     },
     {

@@ -28,7 +28,7 @@ The patent places the diaphragm in the 7.06 mm space after R4 but gives no exact
 
 ### L1 — Positive Meniscus
 
-nd = 1.69347, νd = 53.5. Glass: H-LaK6A (CDGM), a catalog equivalent. Standalone in-air f = +55.12 mm.
+nd = 1.69347, νd = 53.5. Glass: Unmatched. Standalone in-air f = +55.12 mm.
 
 The front element supplies positive power. Its +37.3 mm front radius is much stronger than the +1373 mm rear radius, giving the nearly plano-convex appearance of the drawing while retaining a positive-meniscus shape.
 
@@ -46,7 +46,7 @@ L3 is biconcave and negative; L4 is biconvex and positive. They share the +33.5 
 
 ## Glass Identification and Selection
 
-The patent explicitly defines nd at the yellow helium d line, 587.6 nm, and prints νd. All four printed index/Abbe pairs are retained. H-LaK6A resolves to CDGM at nd 1.69350 / νd 53.380441, differing by +0.00003 / −0.119559. F2 resolves to Schott at nd 1.62004 / νd 36.37, differing by 0 / +0.07. These catalog matches supply dispersion curves without establishing the historical melt or supplier.
+The patent explicitly defines nd at the yellow helium d line, 587.6 nm, and prints νd. All four printed index/Abbe pairs are retained. H-LaK6A resolves to CDGM at nd 1.69350 / νd 53.380441, differing by +0.00003 / −0.119559, outside the patent's printed precision; L1 therefore remains Unmatched. F2 resolves to Schott at nd 1.62004 / νd 36.37, differing by 0 / +0.07. This catalog match supplies a dispersion curve without establishing the historical melt or supplier.
 
 L3 has no matching catalog row within 0.0001 in index and 0.15 in Abbe number. L4 lies near the LaF2 family, but its 1.74472 index differs by about 0.00072 from rows near 1.74400, so it remains Unmatched. The patent prints no separate C-, F- or g-line indices or partial dispersions; the unmatched glasses therefore have only an Abbe-based dispersion estimate. No measured broadband or apochromatic performance is established.
 
@@ -62,16 +62,17 @@ At the helium d line, the model computes EFL 100.134896 mm against the printed 1
 
 The patent's dimensional conditions are satisfied: the first air space is 67.6% of the diaphragm space, the front thickness is 9.79% of nominal focal length, and R6 is about 99% of optical track. No source value has been corrected to remove the small focal-length residual.
 
-The unprinted ±5° field is illustrative. Chief rays and admitted pupil rays pass over this range; earlier geometric MTF calculations were limited to this field and the helium d line. They do not establish measured lens performance. The patent specifies no image format or image circle, so neither is assigned.
+The unprinted ±5° field is illustrative. The patent specifies no image format or image circle, so neither is assigned.
 
 Clear semi-diameters remain estimated at 18 / 18 / 16 / 15 / 16 / 15.5 / 15.5 mm. The drawing suggests narrower rims, particularly for L2 and the rear doublet; these await a separate rim review. The present model's minimum glass edge is about 0.97 mm. The R4–R5 common-radius gap clearance is about 3.11 mm, both stop-side rim clearances are positive, and the maximum rim angle is about 28.85°. These optical boundaries do not describe a measured barrel or baffle.
 
 ## Design Heritage and Product Association
 
-The Xenar name expresses a family association. The four-element Tessar-type architecture and Schneider attribution support it, and Franke & Heidecke's [Rolleicord V instruction manual](https://www.cameramanuals.org/rolleiflex/rolleicord_v.pdf) documents a Schneider Xenar f/3.5 taking lens. No source ties the prescription of US 2,812,689 A to that camera or to a specific production Xenar. Tronnier's US 2,084,714 Xenar and DE 753,329 describe different prescriptions.
+The Xenar name expresses a family association. The four-element Tessar-type architecture and Schneider attribution support it; the [Tessar reference](https://en.wikipedia.org/wiki/Tessar#Tessar-derived_lenses) lists the Schneider Xenar among Tessar-derived lenses, and Franke & Heidecke's [Rolleicord V instruction manual](https://www.cameramanuals.org/rolleiflex/rolleicord_v.pdf) documents a Schneider Xenar f/3.5 taking lens. No source ties the prescription of US 2,812,689 A to that camera or to a specific production Xenar. Tronnier's US 2,084,714 Xenar and DE 753,329 describe different prescriptions.
 
 ## Sources
 
 1. [US 2,812,689 A](https://patents.google.com/patent/US2812689A/en): sole figure, PDF p. 1; design discussion and table, PDF p. 2; repeated table and cited patents, PDF p. 3.
 2. Franke & Heidecke, [_Rolleicord V_ instruction manual](https://www.cameramanuals.org/rolleiflex/rolleicord_v.pdf), printed p. 3: Schneider Xenar f/3.5 product name, without a patent attribution.
-3. CDGM H-LaK6A and Schott F2 optical-glass catalog entries: index/Abbe comparison and dispersion curves; historical supplier unresolved.
+3. CDGM H-LaK6A and Schott F2 optical-glass catalog entries: H-LaK6A excluded as an exact match; F2 index/Abbe comparison and dispersion curve; historical supplier unresolved.
+4. [Tessar — Tessar-derived lenses](https://en.wikipedia.org/wiki/Tessar#Tessar-derived_lenses): Schneider Xenar family classification, without attribution of this prescription to a production lens.
