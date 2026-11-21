@@ -15,7 +15,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
 
 | Mount | Mechanism | Flange focal distance | Throat | MVP status | Profiles |
 |---|---|---|---|---|---|
-| [`bronica-etr`](#bronica-etr--zenza-bronica-etr) | bayonet | 69 mm | 54 mm | `renderable` | 1 |
+| [`bronica-etr`](#bronica-etr--zenza-bronica-etr) | bayonet | 69 mm | unknown mm | `renderable` | 1 |
 | [`bronica-gs`](#bronica-gs--zenza-bronica-gs) | bayonet | 85 mm | 57 mm | `renderable` | 1 |
 | [`bronica-sq`](#bronica-sq--zenza-bronica-sq) | bayonet | 85 mm | 57 mm | `renderable` | 1 |
 | [`canon-ef`](#canon-ef--canon-ef) | bayonet | 44 mm | 54 mm | `mvp_complete` | 1 |
@@ -76,71 +76,91 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
 
 | Profile ID | Type | Applies to | Adds | Removes | Changes |
 |---|---|---|---|---|---|
-| `bronica-etr/base` | base | Bronica ETR / ETRS / ETRSi 6x4.5 leaf-shutter lenses and bodies | medium-format bayonet; leaf-shutter cocking/release coupling; aperture coupling | electrical contacts in the classic leaf-shutter lens mount | ETR-specific mapping from the broader Bronica patent family remains unconfirmed |
+| `bronica-etr/base` | base | Bronica ETR / ETRS / ETRSi 6x4.5 leaf-shutter lenses and bodies | four-claw bayonet; spring-loaded lock pin and fixed stop pin; two shutter drive pins on a rotating body ring; six electrical contact pins in two groups of three | separate mechanical aperture coupling (aperture values are passed through the contacts) | the ETRSi repair manual says the ETRS body mount ring is not interchangeable with the ETRSi ring (two holes are 2.3 mm against 2.0 mm); no source shows a difference in the lens-facing geometry, so no variant profile is drawn |
 
 #### Dimensional summary
 
 | Field | Value | Unit |
 |---|---|---|
-| Flange focal distance | 69 (`secondary`) | mm |
-| Nominal throat diameter | 54 (`patent`) | mm |
-| Effective clear aperture | 54 (`patent`) | mm |
-| Camera mount outer diameter | 64 (`patent`) | mm |
-| Lens mount outer diameter | 62 (`patent`) | mm |
-| Contact count | not_applicable (`not_applicable`) | count |
-| Lock rotation | 60 (`patent`) | deg |
-| Lock direction | clockwise (`patent`) | — |
+| Flange focal distance | 69 (`service_manual`) | mm |
+| Nominal throat diameter | unknown (`unknown`) | mm |
+| Effective clear aperture | unknown (`unknown`) | mm |
+| Camera mount outer diameter | 84 (`photo_scaled`) | mm |
+| Lens mount outer diameter | unknown (`unknown`) | mm |
+| Contact count | 6 (`secondary`) | count |
+| Lock rotation | unknown (`unknown`) | deg |
+| Lock direction | counterclockwise (`official`) | — |
 
 #### Figures (selected profile `bronica-etr/base`)
 
-**Camera-side front view** — viewBox `-40 -41 80 81` · 38 elements in 4 layers · hash `28b96df2` ([standalone SVG](mounts/bronica-etr-camera-front.svg))
+**Camera-side front view** — viewBox `-51 -54 102 105` · 50 elements in 5 layers · hash `e10e1987` ([standalone SVG](mounts/bronica-etr-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-38 -40 76 78` · 32 elements in 4 layers · hash `26d770fe` ([standalone SVG](mounts/bronica-etr-lens-rear.svg))
+**Lens-side rear view** — viewBox `-34 -36 68 70` · 50 elements in 5 layers · hash `10861872` ([standalone SVG](mounts/bronica-etr-lens-rear.svg))
 
-**Axial / register schematic** — viewBox `-77 -47 86 90` · 12 elements in 2 layers · hash `8b47149f` ([standalone SVG](mounts/bronica-etr-axial.svg))
+**Axial / register schematic** — viewBox `-78 -55 87 106` · 10 elements in 2 layers · hash `e7941b62` ([standalone SVG](mounts/bronica-etr-axial.svg))
 
 #### Camera-side front-view geometry
 
 | Feature ID | Type | Profile | Center | Start | End | Inner r | Outer r |
 |---|---|---|---|---|---|---|---|
-| `body-throat` | body_throat | `bronica-etr/base` | 0° | 0° | 360° | 0 | 27 |
-| `body-mount-ring` | mount_ring | `bronica-etr/base` | 0° | 0° | 360° | 27 | 32 |
-| `body-slot-1` | bayonet_receiving_slot | `bronica-etr/base` | 20° | 2° | 38° | 27 | 29.5 |
-| `body-slot-2` | bayonet_receiving_slot | `bronica-etr/base` | 140° | 122° | 158° | 27 | 29.5 |
-| `body-slot-3` | bayonet_receiving_slot | `bronica-etr/base` | 260° | 242° | 278° | 27 | 29.5 |
-| `body-index-mark` | index_mark | `bronica-etr/base` | 0° | unknown | unknown | unknown | 32.5 |
-| `body-lock-pin` | lock_pin | `bronica-etr/base` | 270° | unknown | unknown | unknown | 28 |
+| `body-throat` | body_throat | `bronica-etr/base` | 0° | 0° | 360° | 0 | unknown |
+| `body-mount-ring` | mount_ring | `bronica-etr/base` | 0° | 0° | 360° | unknown | 42 |
+| `body-slot-1` | bayonet_receiving_slot | `bronica-etr/base` | 0° | 338° | 22° | unknown | unknown |
+| `body-slot-2` | bayonet_receiving_slot | `bronica-etr/base` | 89.5° | 68° | 111° | unknown | unknown |
+| `body-slot-3` | bayonet_receiving_slot | `bronica-etr/base` | 181.5° | 161° | 202° | unknown | unknown |
+| `body-slot-4` | bayonet_receiving_slot | `bronica-etr/base` | 269° | 246° | 292° | unknown | unknown |
+| `body-index-mark` | index_mark | `bronica-etr/base` | 0° | unknown | unknown | unknown | 42 |
+| `body-lock-pin` | lock_pin | `bronica-etr/base` | 121° | unknown | unknown | unknown | unknown |
+| `body-stop-pin` | alignment_pin | `bronica-etr/base` | 209° | unknown | unknown | unknown | unknown |
 
 #### Lens-side rear-view geometry
 
 | Feature ID | Type | Profile | Center | Start | End | Inner r | Outer r |
 |---|---|---|---|---|---|---|---|
-| `lens-throat` | lens_throat | `bronica-etr/base` | 0° | 0° | 360° | 0 | 26 |
-| `lens-mount-ring` | lens_mount_ring | `bronica-etr/base` | 0° | 0° | 360° | 26 | 31 |
-| `lens-lug-1` | bayonet_lug | `bronica-etr/base` | 20° | 2° | 38° | 27 | 29.5 |
-| `lens-lug-2` | bayonet_lug | `bronica-etr/base` | 140° | 122° | 158° | 27 | 29.5 |
-| `lens-lug-3` | bayonet_lug | `bronica-etr/base` | 260° | 242° | 278° | 27 | 29.5 |
-| `lens-index-mark` | index_mark | `bronica-etr/base` | 0° | unknown | unknown | unknown | 31.5 |
-| `lens-lock-notch` | lock_notch | `bronica-etr/base` | 270° | unknown | unknown | unknown | 28 |
+| `lens-throat` | lens_throat | `bronica-etr/base` | 0° | 0° | 360° | 0 | unknown |
+| `lens-mount-ring` | lens_mount_ring | `bronica-etr/base` | 0° | 0° | 360° | unknown | unknown |
+| `lens-lug-1` | bayonet_lug | `bronica-etr/base` | 0° | 338° | 22° | unknown | unknown |
+| `lens-lug-2` | bayonet_lug | `bronica-etr/base` | 89.5° | 68° | 111° | unknown | unknown |
+| `lens-lug-3` | bayonet_lug | `bronica-etr/base` | 181.5° | 161° | 202° | unknown | unknown |
+| `lens-lug-4` | bayonet_lug | `bronica-etr/base` | 269° | 246° | 292° | unknown | unknown |
+| `lens-index-mark` | index_mark | `bronica-etr/base` | 0° | unknown | unknown | unknown | unknown |
+| `lens-lock-notch` | lock_notch | `bronica-etr/base` | 121° | unknown | unknown | unknown | unknown |
+| `lens-stop-pin` | alignment_pin | `bronica-etr/base` | 209° | unknown | unknown | unknown | unknown |
+
+#### Electrical contacts
+
+| Side | No. | Profile | Center angle | Radius | Function |
+|---|---|---|---|---|---|
+| body | 1 | `bronica-etr/base` | 322° | unknown |  |
+| body | 2 | `bronica-etr/base` | 330° | unknown |  |
+| body | 3 | `bronica-etr/base` | 338° | unknown |  |
+| body | 4 | `bronica-etr/base` | 22° | unknown |  |
+| body | 5 | `bronica-etr/base` | 30° | unknown |  |
+| body | 6 | `bronica-etr/base` | 38° | unknown |  |
+| lens | 1 | `bronica-etr/base` | 322° | unknown |  |
+| lens | 2 | `bronica-etr/base` | 330° | unknown |  |
+| lens | 3 | `bronica-etr/base` | 338° | unknown |  |
+| lens | 4 | `bronica-etr/base` | 22° | unknown |  |
+| lens | 5 | `bronica-etr/base` | 30° | unknown |  |
+| lens | 6 | `bronica-etr/base` | 38° | unknown |  |
 
 #### Mechanical couplings
 
 | Feature | Side | Profile | Function |
 |---|---|---|---|
-| `leaf-shutter-cocking-coupler` | both | `bronica-etr/base` | cocks/arms the lens leaf shutter |
-| `aperture-control-coupler` | both | `bronica-etr/base` | body/lens aperture coordination |
+| `shutter-drive-pin-1` | both | `bronica-etr/base` | fixed pin 21 with retractable pin 22 drives lens connecting pin 11 on the lens shutter drive ring 10 (cocks and trips the leaf shutter) |
+| `shutter-drive-pin-2` | both | `bronica-etr/base` | fixed pin 20 drives lens connecting pin 12 on the lens shutter drive ring 10 (cocks and trips the leaf shutter) |
 
 #### Axial stack
 
 | Plane | z (mm) | Diameter (mm) |
 |---|---|---|
-| `flange_datum` | 0 | 64 |
-| `bayonet_lug_engagement` | 1.2 | 59 |
-| `sensor_film_plane` | -69 | 69.7 |
+| `flange_datum` | 0 | 84 |
+| `sensor_film_plane` | -69 | 69.6 |
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/bronica-etr.mount.ts` (28965 bytes, content hash `c0159b28`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/bronica-etr.mount.ts` (47117 bytes, content hash `7273df34`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -148,11 +168,20 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 |---|---|---|---|---|---|
 | `betr-1` | secondary | “Flange focal distance,” Wikipedia. Accessed 2026-06-06. | [snapshot](http://web.archive.org/web/20260526152456/https://en.wikipedia.org/wiki/Flange_focal_distance) | 2026-05-26 | medium |
 | `betr-2` | secondary | “Zenza Bronica ETRSi,” Lunar Stage. Accessed 2026-06-06. | [snapshot](https://lunarstage.com/bronica-etrsi/) | 2026-06-06 | medium |
-| `betr-p1` | patent | US4063264A, Bronica lens-shutter SLR interchangeable-lens mount family. Accessed 2026-06-06. | [snapshot](https://patents.google.com/patent/US4063264A/en) | 2026-06-06 | low |
+| `betr-p1` | patent | US4063264A, “Means for mounting an interchangeable lens on a single lens reflex camera,” Zenza Bronica Industries, filed 1976-07-26, granted 1977-12-13. Accessed 2026-06-06. | [snapshot](https://patents.google.com/patent/US4063264A/en) | 2026-06-06 | medium |
+| `betr-p1f` | patent_figure | US4063264A, FIG. 2 (drawing sheet 1 of 3): front view of the camera body. Angles scaled by hand from the figure, 2026-11-21. | [snapshot](https://patentimages.storage.googleapis.com/ff/03/60/00c9f2bed7855b/US4063264.pdf) | 2026-11-21 | low |
+| `betr-sm` | service_manual | Zenza Bronica, ETRSi Repair Manual, March 1990, pp. P-16, P-18 and P-29. | [snapshot](https://www.cameramanuals.org/bronica/bronica_etrsi_repair_manual.pdf) | 2026-11-21 | high |
+| `betr-om1` | official | Zenza Bronica ETR instruction manual, specifications and section 7, “Exchanging Lenses.” | [snapshot](https://www.cameramanuals.org/prof_pdf/bronica_etr-scan.pdf) | 2026-11-21 | high |
+| `betr-om2` | official | Zenza Bronica ETRSi instruction manual, specifications, p. 22 “Exchanging Lenses,” and p. 39 “Shutter cocking pins” photographs. | [snapshot](https://www.cameramanuals.org/bronica/bronica_etr_si.pdf) | 2026-11-21 | medium |
+| `betr-mp` | secondary | “World's Best Cameras,” Bronica ETRS article reprinted from the Fall 1980 issue of Modern Photography (reprint 10M-11/83), Pacific Rim Camera reference library. | [snapshot](https://www.pacificrimcamera.com/rl/02213/02213.pdf) | 2026-11-21 | medium |
 
 #### Open questions
 
-- ETR bayonet sector geometry and leaf-shutter coupling positions are unresolved; current figure is register-correct and renderable but not reference-grade. _(Upgrade from Bronica ETR service manuals or measured ETR body/lens samples.)_
+- No dimensioned drawing of the ETR bayonet was found. Claw, lock pin, stop pin and drive pin angles are scaled from US4063264A FIG. 2, which has no stated angles or scale. Claw radii and depth, the length of the lens claws, and the radii of the lock pin, stop pin and drive pins are unknown. The earlier three lugs at 20°, 140° and 260°, the 1.2 mm lug engagement plane and the aperture coupler at 320° had no source and are removed. _(Needs a factory lens-mount drawing or a measured body and lens. Checked: US4063264A, its Japanese counterpart JPS5221036A, connector utility model JPS5850335Y2, the ETRSi repair manual, the ETR and ETRSi owner manuals, and the Modern Photography 1980 reprint.)_
+- Throat diameter, clear aperture and lens flange diameter have no source; the earlier 54, 64 and 62 mm figures were unsourced stand-ins and are removed. The 84 mm body ring diameter is scaled from an oblique manual photograph and is good to about ±5 mm. _(Measure a body and lens, or find a dimensioned mount drawing.)_
+- The lock rotation angle is not stated anywhere. Comparing the perspective lens view (FIG. 1) with FIG. 2 suggests roughly 30°, too loose to store. The earlier 60° was an unsourced stand-in. _(Measure on a body, or find a manual or drawing that states the angle.)_
+- Contact pin angles are scaled from oblique photographs; pin circle radius, pin size and the function of each pin are unknown. The count of six comes from ETRSi-era sources and is not separately confirmed for the 1976 ETR. JPS5850335Y2 describes radially sprung body pins against fixed lens pins but shows four or eight, not six. _(Needs an ETR lens wiring diagram or a measured lens rear.)_
+- The nine mount screws have no sourced positions or pitch circle and are not drawn. The repair manual says the ETRS mount ring is not interchangeable with the ETRSi ring and tells them apart by two holes of 2.3 mm or 2.0 mm, without saying what the holes are. _(An ETRS repair manual or parts list would show whether this difference needs separate ETRS and ETRSi profiles.)_
 
 ### `bronica-gs` — Zenza Bronica GS
 
