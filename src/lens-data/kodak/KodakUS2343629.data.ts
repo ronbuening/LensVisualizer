@@ -1,17 +1,28 @@
-import type { LensDataV2Input } from "../repo/src/types/lensDataV2.js";
-const data = {
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * Fred E. Altman's US 2,343,629 A, Example 2, Figures 3–4, in millimetres.
+ * Four air-spaced spherical elements retain the drawing table's radii, thicknesses,
+ * sodium-D indices and Abbe numbers. The printed 100 mm focal length and 80.4 mm
+ * back focus compute to 100.26 mm and 80.61 mm; the paraxial image plane is retained.
+ * Examples 1 and 3 also show small departures from their stated first-order values.
+ * The stop is inferred within the 10.15 mm rear air gap, split as 6.0 + 4.15 mm;
+ * its radius is derived from f/3.5. All clear semi-diameters are inferred.
+ * The stated field extends upwards of 27° from the axis. The image-circle diameter
+ * is twice the real chief-ray height at 27° on the paraxial image plane.
+ */
+const LENS_DATA = {
   schema: 2,
-  key: "altman-us2343629-example2-infinity-reference",
-  maker: null,
-  name: "FRED E. ALTMAN US2343629 EXAMPLE II \u2014 SOURCE f/3.5",
-  subtitle:
-    "Patent-only 4E/4G \u00b7 sodium-D infinity \u00b7 estimated iris/rims",
-  visible: false,
+  key: "kodak-100mm-f35-us2343629",
+  maker: "Kodak",
+  name: "KODAK 100mm f/3.5 (US 2,343,629 Design)",
+  subtitle: "US 2,343,629 A, Example 2 — Possible Kodak Reflex lens family",
+  visible: true,
   source: {
-    patentNumber: "US 2,343,629",
+    patentNumber: "US 2,343,629 A",
     patentYear: 1944,
     example: {
-      label: "Example II",
+      label: "Example 2",
       id: "2",
     },
     authors: ["Fred E. Altman"],
@@ -27,61 +38,57 @@ const data = {
     },
     elementCount: 4,
     groupCount: 4,
-    specs: [
-      "Literal100mm f3.5 ExampleII,Fig3section/Fig4table,4E/4G all-airspaced,R2realplane. No retail identity.",
-      "Source sodium-D n/V retained without modern glass match or calibrated broadband.",
-      "Literal EFL100.259568165/BFD80.607861379mm vs source100/80.4. Calculated Gaussian infinity image plane,no fit or radius/spacing repair.",
-      "Stop split6.0/4.15 in literal10.15mm afterR6,z27.3 and caps estimated; no printed iris bore/station or field.",
-      "Source/controlf3.5 preserved; stock paraxial-derived iris and exact finite pupil equivalents documented separately from relayed11.4543845mm finite-marginal estimate.",
-      "Actual +/-10deg diagnostic only,no invented format or source/retail coverage,finitefocus or measured throughput.",
-      "Native geometric sodium-D MTF only at supported fractions within10deg; wider automatic/spectral results unqualified.",
-      "Original signed primary transcription/pin externally visually verified; no localoriginal PDF,pixels or rehash,known denied route not retried.",
-    ],
+    imageCircleMm: 101.131168,
+    specs: ["4 ELEMENTS / 4 GROUPS", "ALL SPHERICAL", "DESIGN F/3.5"],
   },
   elements: [
     {
       id: 1,
       name: "L1",
-      label: "L1",
-      type: "Source Spherical Element",
+      label: "Element 1",
+      type: "Plano-Convex Positive",
+      role: "Positive front collector with a planar rear surface",
       nd: 1.611,
       vd: 57.2,
       indexReference: "D",
-      glass:
-        "Literal unmatched sodium-D/Abbe pair;no calibrated spectral curve.",
+      focalLengthMm: 82.32,
+      glass: "Unmatched (nD 1.611 / ν 57.2)",
     },
     {
       id: 2,
       name: "L2",
-      label: "L2",
-      type: "Source Spherical Element",
+      label: "Element 2",
+      type: "Positive Meniscus",
+      role: "Weak positive meniscus between the front collector and negative element",
       nd: 1.605,
       vd: 38,
       indexReference: "D",
-      glass:
-        "Literal unmatched sodium-D/Abbe pair;no calibrated spectral curve.",
+      focalLengthMm: 438.48,
+      glass: "Unmatched (nD 1.605 / ν 38.0)",
     },
     {
       id: 3,
       name: "L3",
-      label: "L3",
-      type: "Source Spherical Element",
+      label: "Element 3",
+      type: "Biconcave Negative",
+      role: "Negative dispersive element ahead of the aperture stop",
       nd: 1.649,
       vd: 33.8,
       indexReference: "D",
-      glass:
-        "Literal unmatched sodium-D/Abbe pair;no calibrated spectral curve.",
+      focalLengthMm: -39.08,
+      glass: "Unmatched (nD 1.649 / ν 33.8)",
     },
     {
       id: 4,
       name: "L4",
-      label: "L4",
-      type: "Source Spherical Element",
+      label: "Element 4",
+      type: "Biconvex Positive",
+      role: "Positive rear element that brings the beam to the image plane",
       nd: 1.62,
       vd: 60.2,
       indexReference: "D",
-      glass:
-        "Literal unmatched sodium-D/Abbe pair;no calibrated spectral curve.",
+      focalLengthMm: 57.2,
+      glass: "Unmatched (nD 1.620 / ν 60.2)",
     },
   ],
   surfaces: [
@@ -150,35 +157,34 @@ const data = {
   },
   projection: {
     kind: "rectilinear",
-    fullFieldDeg: 20,
-    maxTraceFieldDeg: 10,
+    fullFieldDeg: 54,
+    maxTraceFieldDeg: 27,
   },
   rays: {
     offAxisFieldFrac: 1,
   },
   focus: {
     closeFocusM: 1000000000000000,
-    description:
-      "Literal100mm f3.5 ExampleII,Fig3section/Fig4table,4E/4G all-airspaced,R2realplane. No retail identity. Source sodium-D n/V retained without modern glass match or calibrated broadband. Literal EFL100.259568165/BFD80.607861379mm vs source100/80.4. Calculated Gaussian infinity image plane,no fit or radius/spacing repair. Stop split6.0/4.15 in literal10.15mm afterR6,z27.3 and caps estimated; no printed iris bore/station or field. Source/controlf3.5 preserved; stock paraxial-derived iris and exact finite pupil equivalents documented separately from relayed11.4543845mm finite-marginal estimate. Actual +/-10deg diagnostic only,no invented format or source/retail coverage,finitefocus or measured throughput. Native geometric sodium-D MTF only at supported fractions within10deg; wider automatic/spectral results unqualified. Original signed primary transcription/pin externally visually verified; no localoriginal PDF,pixels or rehash,known denied route not retried.",
+    description: "Infinity focus only; the patent gives no close-focus data.",
   },
   groups: [
     {
-      text: "G1 \u00b7 L1",
+      text: "Group 1 · Element 1",
       fromSurface: "1",
       toSurface: "2",
     },
     {
-      text: "G2 \u00b7 L2",
+      text: "Group 2 · Element 2",
       fromSurface: "3",
       toSurface: "4",
     },
     {
-      text: "G3 \u00b7 L3",
+      text: "Group 3 · Element 3",
       fromSurface: "5",
       toSurface: "6",
     },
     {
-      text: "G4 \u00b7 L4",
+      text: "Group 4 · Element 4",
       fromSurface: "7",
       toSurface: "8",
     },
@@ -187,4 +193,4 @@ const data = {
     yScFill: 0.5,
   },
 } satisfies LensDataV2Input;
-export default data;
+export default LENS_DATA;
