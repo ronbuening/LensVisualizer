@@ -6,7 +6,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * The numerical stop position is 17.851 mm behind surface 2; the drawing puts it
  * farther forward. The printed stop diameter of 29.718 mm gives paraxial f/4.82;
  * the clear diameter of 36.881 mm gives f′/D = 4.87, consistent with rounded f/4.9.
- * The model uses f/4.9 and equal rims inferred from that single clear diameter.
+ * The model uses f/4.9 and six equal clear semi-diameters of 18.4404 mm inferred
+ * from that single clear diameter. The sole drawing supports equal square-cut rims,
+ * but its schematic proportions do not establish individual effective diameters.
  * The image plane is the computed paraxial infinity plane, not the printed back focus.
  * The patent's sodium-D index, Abbe number and C/F indices are retained for each glass.
  */

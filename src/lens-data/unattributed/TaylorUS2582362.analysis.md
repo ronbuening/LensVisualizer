@@ -66,7 +66,7 @@ The printed stop diameter is 1.170 inch, or 29.718 mm. At the stated position it
 
 The patent's 10.0° field is interpreted as a full field, with a 5.0° half-field. The real chief ray at 5.0° reaches an image height of approximately 15.72 mm, giving an image-circle diameter of 31.44 mm. The chief ray clears every surface and the axial beam passes, while some off-axis pupil clipping remains. Chief-ray coverage does not establish complete corner illumination.
 
-The patent gives a single clear diameter, not individual surface rims. The model assigns its half-diameter, 18.4404 mm, to all six faces. The minimum glass edge thickness is approximately 1.84 mm, and the two minimum inter-element air gaps are 26.21 and 13.63 mm. These inferred rims preserve positive edge thickness and clear air spaces, but the schematic drawing does not establish their individual sizes.
+The patent gives a single clear diameter, not individual surface rims. The model assigns its half-diameter, 18.4404 mm, to all six faces, consistent with the drawing's nearly equal, square-cut rims. The schematic drawing does not establish individual effective diameters. The minimum glass edge thickness is approximately 1.84 mm, and the two minimum inter-element air gaps are 26.21 and 13.63 mm. The axial beam admitted by the f/4.9 iris clears every glass rim by at least 0.30 mm, and the 5.0° chief ray clears them by at least 14.14 mm. Wide-open geometric transmission is approximately 98.8% at 1.7°, 96.6% at 3.3° and 93.4% at 5.0°; this is the fraction of the pupil passing the clear apertures, without coating, absorption or natural falloff losses.
 
 ## First-Order Properties and Limits
 

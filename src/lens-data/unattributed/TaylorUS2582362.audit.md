@@ -48,9 +48,24 @@ No production lens or camera is documented for this prescription. Northrop Aircr
 
 After these corrections, the EFL is 179.553 mm, BFD is 143.637 mm, aperture is f/4.90, stop radius is 14.625 mm and half-field is 5.0°. The EFL and BFD remain those of the original prescription.
 
+2026-11-21 rim review:
+
+- The sole drawing on PDF p. 1 of US2582362A.pdf was examined at 600 dpi alongside the numerical example on p. 2. The first-to-last vertex span is about 963 pixels for 60.40 mm, or 15.9 pixels/mm. The first-to-middle and middle-to-last spans give about 16.2 and 15.6 pixels/mm. Drawn axial glass thicknesses at this scale are about 5.4, 2.8 and 7.1 mm, compared with 5.08, 2.54 and 7.62 mm in the table. Across the axis, the front surface's sag at about 10 mm height is approximately 0.9 mm, consistent with the printed radius. The drawn stop lies about 37% of the way across the first air gap, compared with 61% in the numerical description. The drawing therefore supports proportions and rim shape, not precise individual clear diameters.
+- Excluding hatching, leaders and element-number tails, each lens is about 610 pixels high; their heights agree within about 1%. All three have square-cut rims, without a drawn land or stepped optical edge. The model's equal rims preserve that relationship. The printed 1.452-inch clear diameter takes precedence over small differences in the drawing. No clear radius changed:
+
+  | Surfaces | Before (mm) | After (mm) | Evidence |
+  | -------- | ----------: | ---------: | -------- |
+  | 1, 2 | 18.4404 | 18.4404 | Half the printed clear diameter; square front rim at the common drawn height. |
+  | 3, 4 | 18.4404 | 18.4404 | Middle lens has the same drawn height and square rim. |
+  | 5, 6 | 18.4404 | 18.4404 | Rear lens has the same drawn height and square rim. |
+
+- At the f/4.9 iris, the axial marginal-ray heights at surfaces 1–6 are 18.14, 17.92, 12.83, 12.71, 14.56 and 14.79 mm. The corresponding absolute heights of the 5.0° chief ray are 2.32, 1.96, 1.23, 1.43, 3.70 and 4.30 mm. The smallest glass-rim clearances are 0.30 mm for the axial beam and 14.14 mm for the chief ray. The iris limits the aperture; the surfaces have positive edge thickness and clear air spaces, with no undersized image-circle rim. The chief ray reaches 15.722 mm at the image plane, covering the inferred 31.44 mm image circle.
+- Wide-open geometric transmission before and after is 100.0, 99.9, 98.8, 97.8, 96.6, 95.0 and 93.4% at 0.0, 0.8, 1.7, 2.5, 3.3, 4.2 and 5.0°. The greatest loss is 0.0 percentage points. The half-field remains 5.0°, the aperture f/4.9 and the stop radius 14.625 mm. No lands or cuts were added.
+- The model section and patent drawing were compared side by side at approximately 16 pixels/mm. The three-element, three-group arrangement, square rims and relative heights agree. The drawing's different iris position and thicker middle lens do not justify altering the printed prescription. No separate maker construction drawing is available, and no production lens is identified. All six surfaces are spherical; no aspherical or anomalous-dispersion element is designated.
+
 ## Remaining Questions
 
-- Individual surface rims are inferred from the single clear diameter. Their exact sizes and the drawing's different stop position remain unexplained.
+- Individual effective diameters are not printed. The equal square-cut rim proportions are supported by the drawing, but exact optical extents and the reason for its different stop position remain unknown.
 - The patent does not explicitly say whether its 10.0° field is a full angle. The model uses the conventional full-field interpretation, and complete edge illumination is not established.
 - BSC-2 and DF-2 remain unmatched to catalog glasses. Historical suppliers, melt identities, the g-line index and a complete dispersion curve are unknown.
 - No source establishes a production product, manufacturer, mount, production image format, diaphragm blade count or shape, minimum iris opening, marketed specifications, teleconverter compatibility or close-focus mechanism.
