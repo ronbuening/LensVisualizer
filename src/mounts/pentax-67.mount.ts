@@ -2,26 +2,23 @@
  * Pentax 67 mount SVG specification.
  *
  * The 6x7 / 67 / 67II body carries a dual bayonet: an inner three-lug bayonet for lenses from 35 mm to
- * 300 mm and an outer four-lug bayonet for the 400 mm to 1000 mm telephotos [p67-5], [p67-7]. The two are
- * different drawn geometry, so the base profile holds only what both share (throat, body mount ring,
- * register, mount screws) and two variants overlay the bayonets: `pentax-67/inner` (rendered) and
- * `pentax-67/outer`.
+ * 300 mm and an outer four-lug bayonet for the 400 mm to 1000 mm telephotos [p67-5], [p67-7]. The spec has
+ * one profile, which draws the inner bayonet. The outer bayonet is not drawn and has no profile of its
+ * own, because nothing gives its geometry: the profile's `changes` and `openQuestions` record what is
+ * known about it (four symmetric lugs, four body positions, no automatic-aperture linkage).
  *
  * Sourced: the 84.95 ± 0.04 mm mechanical back and the four-screw bayonet seat come from the 67II service
  * manual [p67-3]; the clockwise mounting turn and the red-dot index come from the maker operating manuals
  * [p67-4], [p67-5]; the 72 mm throat is a published secondary value [p67-6]. Inner lug sectors, ring
  * diameters, lock rotation angle and the aperture-lever position are still photo-scaled from unidentified
- * imagery [p67-2]. Nothing dimensions the outer bayonet, so it is recorded as a four-lug set of unknown
- * geometry. No patent for the dual bayonet was found.
+ * imagery [p67-2]. No patent for the dual bayonet was found.
  */
 
 import type { CameraSideFeature, LensSideFeature, MountProfileId, MountSpecInput } from "../types/mount.js";
-import { degListV, dirV, naV, unknownV, v } from "../optics/mount/authoring.js";
+import { degListV, dirV, naV, v } from "../optics/mount/authoring.js";
 import { makeBayonetFeatures, makeStandardAxialStack } from "./mountAuthoringShared.js";
 
 const BASE: MountProfileId = "pentax-67/base";
-const INNER: MountProfileId = "pentax-67/inner";
-const OUTER: MountProfileId = "pentax-67/outer";
 
 const WIKI_FFD = ["p67-1"]; // register cross-check
 const IMAGERY = ["p67-2"]; // unidentified body / lens-rear imagery (label-only, low confidence)
@@ -31,14 +28,13 @@ const MANUAL_6X7 = ["p67-5"]; // 6x7 operating manual
 const WIKI_THROAT = ["p67-6"]; // published throat diameter
 const WIKI_67 = ["p67-7"]; // dual-bayonet description
 const MANUALS = [...MANUAL_67II, ...MANUAL_6X7];
-const OUTER_REFS = [...MANUAL_6X7, ...WIKI_67];
 
 const THROAT_DIAMETER_MM = 72;
 /** Red-dot index, scaled from the 67II manual p. 18 perspective figure (about 9:30 seen from the front). */
 const INDEX_ANGLE_DEG = 285;
 
 const inner = makeBayonetFeatures({
-  profileId: INNER,
+  profileId: BASE,
   refs: IMAGERY,
   throatDiameterMm: THROAT_DIAMETER_MM,
   cameraOuterDiameterMm: 86,
@@ -58,15 +54,14 @@ const inner = makeBayonetFeatures({
 });
 
 /**
- * The helper emits one profile and one ref list. Move the shared metal to the base profile, cite the
- * published throat where the throat radius is used, and give the index and lock features their real sources.
+ * The helper emits one ref list. Cite the published throat where the throat radius is used, and give the
+ * index and lock features their real sources.
  */
 function withSourcedOverrides<T extends CameraSideFeature | LensSideFeature>(feature: T): T {
   switch (feature.featureType) {
     case "body_throat":
       return {
         ...feature,
-        profileId: BASE,
         centerAngleDeg: { ...feature.centerAngleDeg, sourceRefs: WIKI_THROAT },
         startAngleDeg: { ...feature.startAngleDeg, sourceRefs: WIKI_THROAT },
         endAngleDeg: { ...feature.endAngleDeg, sourceRefs: WIKI_THROAT },
@@ -74,7 +69,7 @@ function withSourcedOverrides<T extends CameraSideFeature | LensSideFeature>(fea
         outerRadiusMm: { ...feature.outerRadiusMm, sourceRefs: WIKI_THROAT },
       };
     case "mount_ring":
-      return { ...feature, profileId: BASE, innerRadiusMm: { ...feature.innerRadiusMm, sourceRefs: WIKI_THROAT } };
+      return { ...feature, innerRadiusMm: { ...feature.innerRadiusMm, sourceRefs: WIKI_THROAT } };
     case "lens_throat":
       return {
         ...feature,
@@ -93,44 +88,9 @@ function withSourcedOverrides<T extends CameraSideFeature | LensSideFeature>(fea
   }
 }
 
-const OUTER_SHAPE_NOTES =
-  "outer four-lug bayonet for the 400 mm to 1000 mm lenses; the lugs are symmetric so the body can be set in any of four positions (90° pitch); clocking, spans and radii are not sourced";
+const cameraSideFeatures: CameraSideFeature[] = inner.cameraSideFeatures.map(withSourcedOverrides);
 
-const cameraSideFeatures: CameraSideFeature[] = [
-  ...inner.cameraSideFeatures.map(withSourcedOverrides),
-  {
-    featureId: "body-outer-bayonet-lugs",
-    featureType: "outer_bayonet_lug",
-    profileId: OUTER,
-    count: 4,
-    centerAngleDeg: unknownV(OUTER_REFS),
-    startAngleDeg: unknownV(OUTER_REFS),
-    endAngleDeg: unknownV(OUTER_REFS),
-    innerRadiusMm: unknownV(OUTER_REFS),
-    outerRadiusMm: unknownV(OUTER_REFS),
-    depthMm: unknownV(OUTER_REFS),
-    matesWith: "lens-outer-bayonet-lugs",
-    shapeNotes: OUTER_SHAPE_NOTES,
-  },
-];
-
-const lensSideFeatures: LensSideFeature[] = [
-  ...inner.lensSideFeatures.map(withSourcedOverrides),
-  {
-    featureId: "lens-outer-bayonet-lugs",
-    featureType: "outer_bayonet_lug",
-    profileId: OUTER,
-    count: 4,
-    centerAngleDeg: unknownV(OUTER_REFS),
-    startAngleDeg: unknownV(OUTER_REFS),
-    endAngleDeg: unknownV(OUTER_REFS),
-    innerRadiusMm: unknownV(OUTER_REFS),
-    outerRadiusMm: unknownV(OUTER_REFS),
-    thicknessMm: unknownV(OUTER_REFS),
-    matesWith: "body-outer-bayonet-lugs",
-    shapeNotes: OUTER_SHAPE_NOTES,
-  },
-];
+const lensSideFeatures: LensSideFeature[] = inner.lensSideFeatures.map(withSourcedOverrides);
 
 const axialStack = makeStandardAxialStack({
   refs: IMAGERY,
@@ -156,51 +116,38 @@ const PENTAX_67_MOUNT = {
     requirementLevels: {
       mvpRequired: ["flange_focal_distance_mm", "nominal_throat_diameter_mm", "camera_mount_outer_diameter_mm"],
       conditionalCoreRequired: ["bayonet_lugs", "lock_pin", "index_mark"],
-      variantRequired: ["aperture_coupling", "outer_bayonet"],
+      variantRequired: ["aperture_coupling"],
       mvpOptional: ["mount_screws"],
       referenceGrade: ["exact_lug_geometry", "outer_bayonet_geometry"],
     },
     profileModel: {
       baseProfileId: BASE,
-      selectedMvpProfileId: INNER,
-      variantStrategy: "variant_profiles_defined",
+      selectedMvpProfileId: BASE,
+      variantStrategy: "base_only",
       variantProfiles: [
         {
           profileId: BASE,
           profileType: "base",
-          appliesTo: "all Pentax 6x7, 67 and 67II bodies, 1969 onward",
-          adds: ["72 mm throat and body mount ring", "84.95 mm register", "four-screw bayonet seat"],
-          removes: [],
-          changes: [],
-          status: "partial",
-          sourceRefs: [...SERVICE, ...WIKI_THROAT, ...WIKI_FFD],
-        },
-        {
-          profileId: INNER,
-          profileType: "variant",
-          appliesTo: "inner-bayonet lenses, 35 mm to 300 mm, and inner-bayonet accessories",
+          appliesTo:
+            "all Pentax 6x7, 67 and 67II bodies, 1969 onward, with inner-bayonet lenses (35 mm to 300 mm) and inner-bayonet accessories",
           adds: [
+            "72 mm throat and body mount ring",
+            "84.95 mm register",
+            "four-screw bayonet seat",
             "three-lug inner bayonet",
             "red-dot mounting index",
             "body lock pin and lens notch",
             "automatic-aperture coupling",
           ],
           removes: [],
-          changes: ["lug sectors, lock rotation angle and aperture-lever position are photo-scaled"],
+          changes: [
+            "lug sectors, lock rotation angle and aperture-lever position are photo-scaled",
+            "the same body ring also carries an outer four-lug bayonet for the 400 mm to 1000 mm lenses and their extension tubes. Its lugs are symmetric, so the body can be set in any of four positions, and those lenses have no automatic-aperture linkage (stop-down operation only). It is not drawn: no source gives its clocking, spans or radii",
+          ],
           cameraSideOverlayLayers: ["camera-side-variant-mechanical"],
           lensSideOverlayLayers: ["lens-side-variant-mechanical"],
           status: "partial",
-          sourceRefs: [...MANUALS, ...SERVICE, ...WIKI_67, ...IMAGERY],
-        },
-        {
-          profileId: OUTER,
-          profileType: "variant",
-          appliesTo: "outer-bayonet lenses, 400 mm to 1000 mm, and outer-bayonet extension tubes",
-          adds: ["four-lug outer bayonet, symmetric so the body can be set in any of four positions"],
-          removes: ["automatic-aperture linkage (stop-down operation only)"],
-          changes: ["outer lug clocking, spans and radii are unknown; drawn as a placeholder"],
-          status: "stub",
-          sourceRefs: OUTER_REFS,
+          sourceRefs: [...SERVICE, ...WIKI_THROAT, ...WIKI_FFD, ...MANUALS, ...WIKI_67, ...IMAGERY],
         },
       ],
     },
@@ -231,7 +178,7 @@ const PENTAX_67_MOUNT = {
     {
       featureId: "aperture-actuation-lever",
       side: "both",
-      profileId: INNER,
+      profileId: BASE,
       centerAngleDeg: v(55, "photo_scaled", IMAGERY),
       radiusMm: v(34, "photo_scaled", IMAGERY),
       sizeOrTravel: "lever",
@@ -350,15 +297,11 @@ const PENTAX_67_MOUNT = {
     },
     {
       issue:
-        "Outer-bayonet geometry is unknown. Sources give only the count (four), the symmetry (four body positions) and the lens range (400 mm to 1000 mm). Clock position, spans, radii and how the outer lens locks are not sourced, so the outer profile renders as a placeholder.",
-      affectedFields: [
-        "cameraSideFeatures.body-outer-bayonet-lugs",
-        "lensSideFeatures.lens-outer-bayonet-lugs",
-        "mvp.profileModel.variantProfiles",
-      ],
+        "Outer-bayonet geometry is unknown. Sources give only the count (four), the symmetry (four body positions) and the lens range (400 mm to 1000 mm). Clock position, spans, radii and how the outer lens locks are not sourced, so the outer bayonet is described in the profile notes and is not drawn.",
+      affectedFields: ["cameraSideFeatures", "lensSideFeatures", "mvp.profileModel.variantProfiles"],
       candidateValues: [],
       resolution:
-        "The Pentax 67 interchangeable-lens manual (cited by the 67II manual for outer-bayonet mounting), a service manual for an outer-bayonet lens, or a measured body and 400 mm-class lens.",
+        "The Pentax 67 interchangeable-lens manual (cited by the 67II manual for outer-bayonet mounting), a service manual for an outer-bayonet lens, or a measured body and 400 mm-class lens. With a source, add the outer bayonet as its own profile.",
     },
     {
       issue:
