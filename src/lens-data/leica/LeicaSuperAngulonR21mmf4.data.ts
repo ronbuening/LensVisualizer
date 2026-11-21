@@ -24,8 +24,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *   ~10% of the drawing and is retained. The complete on-axis bundle and the 45° chief ray are contained; the
  *   default 0.6-field (27°) bundle loses about 5% on its lower rim at surface 10, and the extreme 45° f/4 meridional
  *   bundle is intentionally vignetted.
- * - Focus status is NO_INTERNAL_RECONSTRUCTION. The 0.2 m production MFD is retained only as product metadata; the
- *   patent supplies no focus-state prescription or internal-motion law, so no variable focus gaps are invented.
+ * - Focus: infinity only. The 0.2 m production MFD is kept only as product information; the patent supplies no
+ *   focus-state prescription or internal-motion law, so focus travel is not modeled.
  * - Production correlation to Leica/Leitz code 11813 is strong research correlation, not manufacturer-confirmed
  *   patent attribution. The patent's 90° design field and the manufacturer's 92° marketed angle remain distinct.
  * - Leitz manufacturer literature confirms f/22 as an available production stop; maxFstop/fstopSeries retain that
@@ -215,7 +215,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.2,
     description:
-      "NO_INTERNAL_RECONSTRUCTION — static patent prescription only; production MFD 0.2 m is metadata, not a reconstructed focus state.",
+      "Infinity focus only. The patent gives one static prescription and no close-focus data, so focus travel is not modeled. The 0.2 m minimum focus distance is product information.",
   },
 
   aperture: { nominalFNumber: 4, fStops: [4, 5.6, 8, 11, 16, 22], maxFNumber: 22 },
