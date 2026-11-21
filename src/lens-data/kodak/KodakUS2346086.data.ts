@@ -1,88 +1,94 @@
-import type { LensDataV2Input } from "../repo/src/types/lensDataV2.js";
-const data = {
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * US 2,346,086 A, Example 2: a four-element Tessar-type photographic objective.
+ * The patent gives dimensions in millimetres, nD and Abbe numbers, f/4.5 and a
+ * 27-degree half-field. Its nominal 100 mm focal length computes to 100.20 mm;
+ * the printed 89.7 mm back focus is retained, versus 89.99 mm paraxially.
+ * The stop is inferred within the 7.5 mm rear air space, split 4.2 / 3.3 mm;
+ * its radius is derived from the nominal aperture. All clear semi-diameters
+ * are inferred. The patent gives no close-focus data or named glass melts.
+ */
+const LENS_DATA = {
   schema: 2,
-  key: "schade-tolle-us2346086-example2-infinity-reference",
-  maker: null,
-  name: "SCHADE / TOLLE US2346086 EX.II \u2014 PATENT REFERENCE",
-  subtitle:
-    "100mm nominal f/4.5 \u00b7 D-line \u00b7 chosen \u00b110\u00b0 source-plane infinity diagnostic",
-  visible: false,
+  key: "kodak-100mm-f45-us2346086",
+  maker: "Kodak",
+  name: "KODAK 100mm f/4.5 (US 2,346,086 Design)",
+  subtitle: "US 2,346,086 A, Example 2 — Tessar-type design",
+  visible: true,
   source: {
-    patentNumber: "US 2,346,086",
+    patentNumber: "US 2,346,086 A",
     patentYear: 1944,
     example: {
-      label: "Example II",
+      label: "Example 2",
       id: "2",
     },
-    authors: ["Schade", "Tolle"],
+    authors: ["Willy Schade", "Karl Tolle"],
     assignees: ["Eastman Kodak Company"],
     sdSource: "heuristic",
   },
   catalog: {
-    imageCircleMm: 35.226612480839634,
+    imageCircleMm: 101.4856,
     elementCount: 4,
     groupCount: 3,
     focalLengthMm: {
-      design: 100,
+      design: 100.2,
     },
     fNumber: {
       design: 4.5,
     },
-    specs: [
-      "ExampleII patent-only;4E/3G, R2 true refractive plane, R6 cemented",
-      "Nominal100/f4.5/sourceBF89.7; literal100.203804/GaussianBF89.990410, no fit",
-      "Authored source imagegap89.7 retained; Gaussianfocus0.290410mm farther, no MTFrefocus",
-      "Estimated stop4.2/3.3,z11.2, iris/caps, no override/baffle",
-      "Chosen\u00b110deg actual ray-panel scope; source27deg designaim not coverage/format",
-      "Not commercial Tessar/Ektar or RudolphUS721240; no finite/calibrated broadband claim",
-      "Metric circle is twice source-plane10deg chief height; offAxisFieldFrac1 sets panel edge",
-      "Nominal f4.5 retained; modeled finite entrance equivalent f4.562707 (estimated iris)",
-    ],
+    specs: ["4 ELEMENTS / 3 GROUPS", "ALL SPHERICAL", "DESIGN F/4.5"],
   },
   elements: [
     {
       id: 1,
       name: "L1",
-      label: "L1",
-      type: "Source Spherical Element",
+      label: "Element 1",
+      type: "Plano-Convex Positive",
       nd: 1.697,
       vd: 56.1,
       indexReference: "D",
-      glass:
-        "Unmatched literal source nD/V; no exact catalog glass or calibrated spectral curve",
+      glass: "Unmatched (nD 1.697 / ν 56.1)",
+      focalLengthMm: 37.88,
+      role: "Positive front element collecting light into the central negative element.",
     },
     {
       id: 2,
       name: "L2",
-      label: "L2",
-      type: "Source Spherical Element",
+      label: "Element 2",
+      type: "Biconcave Negative",
       nd: 1.605,
       vd: 43.6,
       indexReference: "D",
-      glass:
-        "Unmatched literal source nD/V; no exact catalog glass or calibrated spectral curve",
+      glass: "Unmatched (nD 1.605 / ν 43.6)",
+      focalLengthMm: -31.57,
+      role: "Negative middle element balancing the positive front and rear components.",
     },
     {
       id: 3,
       name: "L3",
-      label: "L3",
-      type: "Source Spherical Element",
+      label: "Element 3",
+      type: "Biconcave Negative",
       nd: 1.621,
       vd: 36.2,
       indexReference: "D",
-      glass:
-        "Unmatched literal source nD/V; no exact catalog glass or calibrated spectral curve",
+      glass: "Unmatched (nD 1.621 / ν 36.2)",
+      focalLengthMm: -50.57,
+      role: "Negative front member of the rear cemented doublet.",
+      cemented: "C1",
     },
     {
       id: 4,
       name: "L4",
-      label: "L4",
-      type: "Source Spherical Element",
+      label: "Element 4",
+      type: "Biconvex Positive",
       nd: 1.744,
       vd: 45.8,
       indexReference: "D",
-      glass:
-        "Unmatched literal source nD/V; no exact catalog glass or calibrated spectral curve",
+      glass: "Unmatched (nD 1.744 / ν 45.8)",
+      focalLengthMm: 31.71,
+      role: "High-index positive rear member providing the doublet's converging power.",
+      cemented: "C1",
     },
   ],
   surfaces: [
@@ -139,9 +145,8 @@ const data = {
     },
   ],
   focus: {
-    closeFocusM: 1000000000000000.0,
-    description:
-      "Schade/Tolle EastmanKodak US2346086 ExII patent-only D-line infinity reference; no commercialTessar/Ektar label. Original independently verified externalfacsimile custody withhashpin, no localoriginal/pixels/hash or deniedprovider retry. AllsourceR/t/nD/V preserved, R2refractiveplane/R6bond. Source100/f4.5/BF89.7 retained atsourceimageplane89.7; literalEFL100.203804/GaussianBF89.990410, no opticsfit/refocus. Stop4.2/3.3,z11.2 andphysicaliris/caps estimated; chosen\u00b110deg raypanel+metrics, source27degdesignaim not measuredcoverage. RelatedRudolphUS721240 differs, no retail/finite/broadbandcalibration/baffle/override.",
+    closeFocusM: 1e15,
+    description: "Infinity focus only; the patent gives no close-focus data.",
   },
   aperture: {
     nominalFNumber: 4.5,
@@ -150,31 +155,29 @@ const data = {
   },
   projection: {
     kind: "rectilinear",
-    fullFieldDeg: 20,
-    maxTraceFieldDeg: 10,
-  },
-  rays: {
-    offAxisFieldFrac: 1,
+    fullFieldDeg: 54,
+    maxTraceFieldDeg: 27,
   },
   groups: [
     {
-      text: "G1 \u00b7 L1",
+      text: "FRONT POSITIVE",
       fromSurface: "1",
       toSurface: "2",
     },
     {
-      text: "G2 \u00b7 L2",
+      text: "MIDDLE NEGATIVE",
       fromSurface: "3",
       toSurface: "4",
     },
     {
-      text: "G3 \u00b7 L3+L4",
+      text: "REAR DOUBLET",
       fromSurface: "5",
       toSurface: "7",
     },
   ],
+  doublets: [{ text: "C1", fromSurface: "5", toSurface: "7" }],
   layout: {
     yScFill: 0.5,
   },
 } satisfies LensDataV2Input;
-export default data;
+export default LENS_DATA;
