@@ -135,7 +135,7 @@ const LENS_DATA = {
       vd: 47,
       indexReference: "D",
       focalLengthMm: 66.99,
-      glass: "N-BAF10 (spectral proxy; patent nD 1.671 / ν 47; supplier and melt unspecified)",
+      glass: "N-BAF10 (spectral proxy; patent nD 1.671 / ν 47.0; supplier and melt unspecified)",
       role: "Positive rear member of the cemented rear triplet",
       cemented: "C2",
     },
