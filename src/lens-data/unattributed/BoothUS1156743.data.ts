@@ -7,7 +7,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * The patent prints D, F and hydrogen Hγ indices but no Abbe numbers. Tracing
  * uses only sodium D (589.3 nm), without dispersion.
  * The inferred stop is 15 mm behind R3 and 20.175 mm before R4. Estimated clear
- * radii are 22.5 mm for the front pair and 19 mm for the rear pair.
+ * radii follow Figure 2 proportions, retaining off-axis light: 20.9 mm for the
+ * front pair and 13.5 mm for both rear singlets. No clear diameters are printed.
  * The image plane is the calculated paraxial focus, 152.88 mm behind R7.
  * No stop dimensions, back focus, field or close-focus data are printed;
  * the displayed ±7.0° field is illustrative.
@@ -98,21 +99,21 @@ const LENS_DATA = {
       label: "1",
       R: 54.55,
       d: 11.35,
-      sd: 22.5,
+      sd: 20.9,
       medium: 1,
     },
     {
       label: "2",
       R: -51.445,
       d: 2.925,
-      sd: 22.5,
+      sd: 20.9,
       medium: 2,
     },
     {
       label: "3",
       R: 652.75,
       d: 15,
-      sd: 22.5,
+      sd: 20.9,
     },
     {
       label: "STO",
@@ -123,27 +124,27 @@ const LENS_DATA = {
       label: "4",
       R: 630.25,
       d: 6.2,
-      sd: 19,
+      sd: 13.5,
       medium: 3,
     },
     {
       label: "5",
       R: -42.3675,
       d: 1,
-      sd: 19,
+      sd: 13.5,
     },
     {
       label: "6",
       R: -36.525,
       d: 2.8375,
-      sd: 19,
+      sd: 13.5,
       medium: 4,
     },
     {
       label: "7",
       R: 55.1525,
       d: 152.88094,
-      sd: 19,
+      sd: 13.5,
     },
   ],
   focus: {
