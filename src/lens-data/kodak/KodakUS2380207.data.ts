@@ -88,7 +88,7 @@ const LENS_DATA = {
       vd: 61.6,
       indexReference: "D",
       focalLengthMm: -26.02,
-      glass: "Unmatched (nD 1.500 / ν 61.6)",
+      glass: "K11 (Sumita)",
       role: "Negative front element of the rear diverging doublet",
       cemented: "C2",
     },
