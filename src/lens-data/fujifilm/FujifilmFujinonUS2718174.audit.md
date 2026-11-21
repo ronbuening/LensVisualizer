@@ -1,68 +1,65 @@
-# FUJIFILM FUJINON 95mm f/1.3 (US 2,718,174 Design) — Audit
+# FUJIFILM FUJINON 95mm f/1.3 (US 2,718,174 Design) — Audit Log
 
 ## Source
 
-US 2,718,174 A, “High Aperture Photographic Objective,” names Yoshikazu Doi as inventor and Fuji Photo Film Co., Ltd. as assignee. It was filed on 21 June 1954, with Japanese priority dated 25 June 1953, and published on 20 September 1955.
+[US 2,718,174 A, “High Aperture Photographic Objective”](https://patents.google.com/patent/US2718174A/en), by Yoshikazu Doi, assigned to Fuji Photo Film Co., Ltd. The application was filed on 21 June 1954, claiming Japanese priority of 25 June 1953, and published on 20 September 1955.
 
-The drawing sheet contains Figure 1 and Figure 2. Figure 1 is the eight-element f/1.3 example; its numerical table is in column 2 and is repeated in claim 1. Figure 2 is a separate nine-element f/1.2 example.
+Figure 1 is the eight-element f/1.3 example. Its drawing is on PDF page 1; the first numerical table is in column 2 on PDF page 2 and is repeated in claim 1, column 3, on PDF page 3. Figure 2 is a separate nine-element f/1.2 example.
 
-## Transcription
+[Oldlens, “Fujinon 5 cm f/1.2”](https://oldlens.com/fujinon%205cmf12.html), summarizes Doi's 1955 account in _Shashin Kogyo_. [Fujifilm, “FUJINON Speed Lenses — Rebirth of the Legend #1”](https://www.fujifilm-x.com/en-us/stories/fujinon-speed-lenses-rebirth-of-the-legend-1/), confirms the production lens's introduction in 1954. Neither source identifies Figure 1 as its production prescription.
 
-Two independent readings of the page images agree on all twelve signed radii, eleven axial distances and eight refractive-index/Abbe pairs for Figure 1. The repeated claim-1 table agrees. All radius signs are printed explicitly; R2 is +60.83 in the table, not a plane. The stated index line is lowercase d.
+## Transcription Check
 
-Figure 1 contains two cemented triplets, with interfaces at R4/R5 and R8/R9. The printed air spaces and the source's conditions I–III are consistent with this surface mapping. No Figure 1 transcription error was found.
+All twelve signed radii, eleven axial distances and eight refractive-index/Abbe pairs were re-read against the page images. The Figure 1 table and repeated claim-1 table agree at the printed precision; no transcription mismatch was found. Dimensions are multiplied by 100, so printed f′T = .9500 becomes 95 mm. R2 is explicitly positive, +60.83 in the table and +6083 mm at this scale. The patent explicitly defines the d-line indices; the helium d reference is retained.
 
-## First-order Properties
+The eight elements form four air-separated members, B1–B4. B2 and B3 are cemented triplets, with interfaces at R4/R5 and R8/R9. The air spaces are 0.4, 18 and 0.4 mm. Conditions I–III hold for this surface mapping. There are no aspherical surfaces or variable spacings.
 
-The printed focal-length value corresponds to 95.00 mm in the model. The prescription computes to EFL 95.01063645 mm, a difference of +0.0112%. The first-to-last vertex track is 83.82 mm. Back focus is not printed; the stored final gap is the paraxial BFD, 44.02029810 mm.
+Figure 2 has an unrelated source inconsistency: its embodiment table gives R10 = −.9076, while claim 2 gives +.9076. This does not affect Figure 1.
 
-The inferred stop radius is 20.08948794 mm for the nominal paraxial f/1.3 setting. Exact axial tracing gives an entrance-equivalent f/1.33518379 and image-space sine f/1.32561617. A real f/1.3 marginal ray requires a stop radius of 20.65818429 mm. These are model aperture conventions, not measurements of a historical iris.
+## First-Order Check
 
-## Values Not Printed
+The printed focal length corresponds to 95.00 mm. Calculated EFL is 95.01 mm, about 0.01 mm longer. The first-to-last vertex distance is 83.82 mm. Back focus is not printed; the image plane lies at the calculated paraxial BFD of 44.02 mm behind R12, or 127.84 mm behind the first vertex.
 
-The exact stop station, iris diameter, clear semi-diameters, image-plane distance, f-stop list and ±10° field are inferred. The stop divides the central 18 mm air space into 14 and 4 mm and lies 49.5 mm behind the first vertex, approximately where Figure 1 draws it.
+The printed f/1.3 is retained. Its paraxial stop radius is 20.09 mm. Exact axial tracing gives an entrance-equivalent f/1.34 and an image-space sine aperture of f/1.33. An exact f/1.3 entrance aperture would require a stop radius of 20.66 mm. The difference follows from the inferred iris and aperture convention; no historical iris measurement is available.
 
-The introduction discusses picture angles up to about 45° for the lens class, without assigning that field to Figure 1. No image format, image circle, mount or close-focus data is established for this example. The chief ray clears the existing rims at 10° and 22.5°, but that does not establish full pupil transmission at either field.
+The surfaces stay clear of each other, and the iris sets the full aperture without an axial rim limit. At an exact f/1.3 entrance aperture, the axial beam needs about 20.90 and 20.91 mm at R8/R9, below their 21 mm clear radii. The chief rays at 10.0° and 22.5° reach the image through the inferred rims; this does not establish full pupil transmission, and the off-axis pupil is partly vignetted.
 
-## Product Association
+## Values Not Printed in the Patent
 
-[Oldlens](https://oldlens.com/fujinon%205cmf12.html) summarizes Doi's 1955 _Shashin Kogyo_ account: f/1.5 design, attempted f/1.3 extension, nine-element f/1.2 prototype, then an eight-element production Fujinon 5 cm f/1.2. Figure 1 fits the f/1.3 development stage; Figure 2 fits the nine-element stage. [Fujifilm](https://www.fujifilm-x.com/th-th/stories/fujinon-speed-lenses-rebirth-of-the-legend-1/) confirms that the production lens was introduced in 1954.
+The stop station, iris diameter, clear semi-diameters, image-plane distance, selectable f-stops and illustrative ±10.0° field are inferred. The stop divides the 18 mm central space into 14 mm after R6 and 4 mm before R7, at 49.5 mm behind the first vertex. The drawing places it approximately 4–4.5 mm before R7, consistent with that choice. The R6/R7 rims lie at 47.32 and 50.06 mm behind the first vertex, on opposite sides of the stop plane.
 
-The evidence supports a development-stage family link. It does not identify Figure 1 as the production prescription, so the catalogue name retains “Design” and production mount, format and minimum-focus metadata are not assigned.
+The patent discusses picture angles up to about 45.0° for the lens class, without assigning a field to Figure 1. No source-supported image circle or image format is established. Apart from R3's corrected edge, agreement between the inferred rims and Figure 1's optical edges remains unmeasured.
 
-## Corrections
+`focus.closeFocusM` is 10¹⁵ m, which stands for infinity. All relative spacings are fixed; no close-focus distance or motion is printed. The selectable aperture range ends at f/22, but the patent supplies no minimum iris opening.
 
-The Figure 1 prescription needs no correction to its printed radii, thicknesses, air spaces or glass values. The original inferred R3 rim of 34 mm exceeded L2's calculated knife edge at about 33.39 mm and reversed the outline; a 33 mm rim removes that defect while remaining above the axial beam's approximately 31.2 mm requirement.
+The six distinct printed glass pairs remain unchanged. All eight elements use Abbe-based dispersion estimates; the patent provides no additional line indices or partial-dispersion data. Historical suppliers, melts, secondary spectrum and measured broadband performance are unknown.
 
-No available catalogue glass meets the printed index/Abbe pairs closely enough for an exact assignment. BaF10 is named in the patent's discussion of the f/1.3 design, but the available BAF10 row differs from the printed values. Historical melt identities remain unresolved.
+## Product Identification
+
+Oldlens describes an f/1.5 design extended toward f/1.3, followed by a nine-element f/1.2 prototype and an eight-element production Fujinon 5 cm f/1.2. Figure 1's aperture and construction fit the f/1.3 stage; Figure 2 fits the nine-element stage. This supports a likely link to that development, without establishing Figure 1 as the production prescription.
+
+The title therefore retains the 95 mm design scale and “Design.” No production blade count or shape, mount, image format, marketed focal length or aperture, or minimum focus distance is assigned to Figure 1.
+
+## Corrections, 2026-11-21
+
+- The key and title identify Fujifilm, FUJINON and the patent, replacing the inventor-only identity. The maker is Fujifilm, and the design is publicly listed. “Design” distinguishes the numerical example from a documented product.
+- The patent number gained the publication kind code A, and the assignee changed from Fuji Photo Film to Fuji Photo Film Co., Ltd., following the front page. Yoshikazu Doi, the 1955 year, Figure 1 and the d-line reference remain correct.
+- The subtitle is “US 2,718,174 A, Figure 1 — Fuji Photo Film / Doi.” The specifications are “8 ELEMENTS / 4 GROUPS”, “DESIGN f = 95 mm”, “DESIGN F/1.3” and “ALL SPHERICAL”.
+- The design focal length changed from the nominal 95 mm to the calculated 95.01 mm. The inferred 33.61 mm image circle was removed because its ±10.0° basis is illustrative rather than a published field or format.
+- The R3 clear semi-diameter changed from 34 to 33 mm. The former rim exceeded L2's calculated knife edge at 33.39 mm, reversing the outline by about 0.64 mm. The 33 mm rim leaves about 0.40 mm edge thickness and remains above the axial beam's 31.22 mm requirement. No printed radius, thickness, air space or glass pair changed; the stop split and paraxial image plane are retained.
+- Element shapes now distinguish the positive menisci L1/L2, positive biconvex L3/L6/L8, negative biconcave L4/L5 and negative meniscus L7. The patent's L1–L8 names are retained in the diagram, with optical roles and in-air focal lengths of +123.74, +86.42, +156.98, −32.81, −56.17, +27.63, −54.08 and +126.42 mm.
+- C1 identifies L2–L4 and C2 identifies L5–L7, with brackets spanning R3–R6 and R7–R10. The four group brackets use the patent's B1–B4 names in place of G1–G4.
+- All eight glass descriptions became Unmatched labels giving the printed index and Abbe number: L1/L2 1.6713/47.0, L3/L5 1.5414/47.1, L4 1.7572/27.5, L6 1.6738/47.0, L7 1.6480/47.8 and L8 1.6216/60.2. For every element, Δnd = 0 and Δνd = 0; no catalog dispersion curve is assigned.
+- The oblique diagram ray changed from 10.0° to 6.0° within the unchanged illustrative 10.0° half-field. Neither angle is a measured field specification.
+
+BaF10 is named in the patent's discussion of the f/1.3 example, but the available BAF10 curve has nd/νd = 1.67003/47.20. A BAF10 label bearing the Schott name instead selects the Hoya curve. Its differences from L1/L2 are Δnd = −0.00127 and Δνd = +0.20. SF4 (Schott) differs from L4 by −0.00200/+0.08; SK16 (Schott) selects N-SK16 and differs from L8 by −0.00119/+0.12. These candidates were rejected because they exceed the printed precision. None of the other printed pairs has an exact catalog row.
+
+After these corrections, EFL is 95.01 mm, nominal paraxial aperture f/1.30, BFD 44.02 mm and stop radius 20.09 mm. The first-to-last vertex distance is 83.82 mm and the half-field is 10.0°.
 
 ## Remaining Questions
 
-Open: Apart from the corrected R3 edge, the inferred rims still need comparison with Figure 1's optical edges. The exact iris diameter, stop station, historical glass melts and relationship between Figure 1 and any surviving production lens remain unmeasured.
-
-Figure 2 has a separate sign discrepancy: its embodiment table prints R10 = −.9076 while claim 2 prints +.9076. It does not affect this Figure 1 prescription.
-
-## 2026-11-21 — Deployment validation and cleanup
-
-Two independent readings of the page images agree on the Figure 1 table, repeated claim table, d-line definition, radius signs and cemented interfaces. The prescription is consistent with the source, with inferred apertures and image plane; the historical sources support a development-stage relationship to the Fujinon 5 cm f/1.2.
-
-Changes:
-
-- Import path: `../repo/src/types/lensDataV2.js` → `../../types/lensDataV2.js`; constant/export: `data` → `LENS_DATA`. A single header now explains the source and inferred quantities.
-- Key: `doi-us2718174-figure1-infinity-reference` → `fujifilm-fujinon-95mm-f13-us2718174`; maker: null → Fujifilm; name: the inventor/figure label → FUJIFILM FUJINON 95mm f/1.3 (US 2,718,174 Design); visibility: false → true.
-- Patent number: US 2,718,174 → US 2,718,174 A; assignee: Fuji Photo Film → Fuji Photo Film Co., Ltd. The inventor, year and Figure 1 selection are retained.
-- Subtitle: the compressed aperture, scale and field description → “US 2,718,174 A, Figure 1 — Fujinon 5 cm f/1.2 development.” Specifications: eight long technical notes → 8 ELEMENTS / 4 GROUPS, DESIGN f = 95 mm, DESIGN F/1.3 and ALL SPHERICAL.
-- Design focal length: 95 → 95.01 mm, the computed EFL rounded to two decimals. Image circle: 33.60754455 mm → omitted, because its ±10° basis is illustrative rather than a published field.
-- R3 clear semi-diameter: 34 → 33 mm, removing the reversed edge. All other surface values, the stop split and the paraxial image plane are retained.
-- Element types: generic spherical descriptions → Positive Meniscus on L1/L2, Biconvex Positive on L3/L6/L8, Biconcave Negative on L4/L5 and Negative Meniscus on L7. The patent's L1–L8 labels are retained and added as diagram labels; short optical roles and individual focal lengths are supplied.
-- Cemented-group metadata: absent → C1 on L2/L3/L4 and C2 on L5/L6/L7, with brackets spanning R3–R6 and R7–R10.
-- All eight glass descriptions: the verbose unresolved description → Unmatched labels stating the printed nd and νd. The pairs are L1/L2 1.6713/47.0, L3/L5 1.5414/47.1, L4 1.7572/27.5, L6 1.6738/47.0, L7 1.6480/47.8 and L8 1.6216/60.2. Δnd = 0 and Δνd = 0 for every element; no catalogue dispersion curve is assigned.
-- Candidate labels do not establish exact matches. “BAF10 (Schott)” resolves to Hoya BAF10 at 1.67003/47.19 for L1/L2: Δnd = −0.00127, Δνd = +0.19. SF4 (Schott) for L4 differs by −0.00200/+0.08; SK16 (Schott) resolves to N-SK16 (Schott) for L8 and differs by −0.00119/+0.12. All are rejected. None of the other printed pairs has an exact row.
-- Infinity-focus distance: unchanged numerically at 1e15 m, with shorter notation. Description: the compressed technical paragraph → “Infinity focus only; the patent gives no close-focus data.”
-- Analysis: replaced compressed prose with the required metadata rows, optical architecture, element descriptions, glass discussion, focus scope, first-order limits and cited historical context. This audit retains the source findings and optical limitations while removing unrelated calculations and interface history.
-
-EFL / nominal f-number / BFD before → after: 95.01063645 mm / 1.3 / 44.02029810 mm → 95.01063645 mm / 1.3 / 44.02029810 mm. The half-field remains 10°, stop radius 20.08948794 mm and first-to-last vertex track 83.82 mm.
-
-Surface geometry reports no errors. The aperture check reports no rim, trace or iris limit and is within 3% of the stated f-number. Image-circle and field-coverage checks cannot assess a format corner because no image format or source-supported image circle is assigned; both skip this visible lens for that reason.
-
-Open: Figure-based rim measurements, the exact historical iris and stop station, glass identities and a direct production-prescription match remain unresolved. The ±10° field remains illustrative.
+- The exact historical iris diameter, stop station and clear rims are not documented. Agreement of the inferred rims with Figure 1's optical edges, apart from the corrected R3 edge, remains unknown.
+- The historical glass suppliers and melts, additional spectral indices and partial dispersion remain unidentified. The named BaF10 does not agree with available catalog coordinates at the printed precision.
+- No source documents a production lens using this exact prescription, or its mount, image format, diaphragm blade count or shape, marketed specifications, minimum iris opening or close-focus mechanism. These values remain omitted; the selectable f/22 endpoint is not a published limit.
+- The ±10.0° field is illustrative. No numerical field or image circle is established for Figure 1.
+- Figure 2's R10 sign discrepancy between its embodiment and claim tables remains unresolved.

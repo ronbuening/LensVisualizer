@@ -2,21 +2,22 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * Yoshikazu Doi's Figure 1 in US 2,718,174 A, assigned to Fuji Photo Film Co., Ltd.
- * The dimensional table is multiplied by 100: printed f′T = .9500 becomes 95 mm.
+ * Dimensions are multiplied by 100: printed f′T = .9500 becomes 95 mm.
  * All signed radii, thicknesses, air spaces and d-line index/Abbe pairs are retained,
  * including the shallow positive R2. The two central groups are cemented triplets.
- * The stop is inferred within the central 18 mm air space, 14 mm after R6 and 4 mm
- * before R7. Its radius follows the nominal f/1.3 aperture; exact axial tracing gives
- * about f/1.335. Clear rims are inferred; R3 is limited to 33 mm to avoid a reversed
- * edge on L2. The unprinted image distance is the paraxial back focus, 44.0203 mm.
- * The illustrated ±10° field is not a published field or image-format specification.
+ * The inferred stop divides the central 18 mm gap into 14 mm after R6 and 4 mm before R7.
+ * Its radius follows nominal f/1.3; exact axial tracing gives about f/1.34.
+ * Clear rims are inferred; the 33 mm R3 rim avoids a reversed edge on L2.
+ * The unprinted image distance is the paraxial back focus, 44.02 mm.
+ * The ±10.0° field is illustrative, with no published image format.
+ * Figure 2 has a separate R10 sign conflict between its two tables.
  */
 const LENS_DATA = {
   schema: 2,
   key: "fujifilm-fujinon-95mm-f13-us2718174",
   maker: "Fujifilm",
   name: "FUJIFILM FUJINON 95mm f/1.3 (US 2,718,174 Design)",
-  subtitle: "US 2,718,174 A, Figure 1 — Fujinon 5 cm f/1.2 development",
+  subtitle: "US 2,718,174 A, Figure 1 — Fuji Photo Film / Doi",
   visible: true,
   source: {
     patentNumber: "US 2,718,174 A",
@@ -255,22 +256,22 @@ const LENS_DATA = {
   },
   groups: [
     {
-      text: "G1 \u00b7 L1",
+      text: "B1 \u00b7 L1",
       fromSurface: "1",
       toSurface: "2",
     },
     {
-      text: "G2 \u00b7 L2+L3+L4",
+      text: "B2 \u00b7 L2+L3+L4",
       fromSurface: "3",
       toSurface: "6",
     },
     {
-      text: "G3 \u00b7 L5+L6+L7",
+      text: "B3 \u00b7 L5+L6+L7",
       fromSurface: "7",
       toSurface: "10",
     },
     {
-      text: "G4 \u00b7 L8",
+      text: "B4 \u00b7 L8",
       fromSurface: "11",
       toSurface: "12",
     },
