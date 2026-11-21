@@ -14,7 +14,7 @@ const LENS_DATA = {
   key: "cooke-100mm-f267-us2601369",
   maker: "Cooke",
   name: "COOKE 100mm f/2.67 (US 2,601,369 Design)",
-  subtitle: "US 2,601,369 A, sole example — Three-component photographic objective",
+  subtitle: "US 2,601,369 A, sole example — Taylor Hobson / Cook",
   visible: false,
   source: {
     patentNumber: "US 2,601,369 A",
@@ -37,7 +37,12 @@ const LENS_DATA = {
     elementCount: 4,
     groupCount: 3,
     imageCircleMm: 97.2,
-    specs: ["4 ELEMENTS / 3 GROUPS", "ALL SPHERICAL", "DESIGN F/2.67"],
+    specs: [
+      "4 ELEMENTS / 3 GROUPS",
+      "ALL SPHERICAL",
+      "DESIGN f = 100 mm",
+      "DESIGN F/2.67",
+    ],
   },
   elements: [
     {
@@ -160,17 +165,17 @@ const LENS_DATA = {
   },
   groups: [
     {
-      text: "Group 1",
+      text: "Front component",
       fromSurface: "1",
       toSurface: "2",
     },
     {
-      text: "Group 2",
+      text: "Middle component",
       fromSurface: "3",
       toSurface: "4",
     },
     {
-      text: "Group 3",
+      text: "Rear component",
       fromSurface: "5",
       toSurface: "7",
     },
