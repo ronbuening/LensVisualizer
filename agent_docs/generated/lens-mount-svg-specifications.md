@@ -814,82 +814,93 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 | Profile ID | Type | Applies to | Adds | Removes | Changes |
 |---|---|---|---|---|---|
-| `canon-fl/base` | base | Canon FL breech-lock lenses and bodies, 1964–1971 | FL/FD-family breech-lock bayonet; lens-side rotating locking collar; automatic diaphragm lever | FD selected-aperture reporting linkage; electrical contacts | predecessor to FD, with simpler aperture communication |
+| `canon-fl/base` | base | Canon FL breech-lock lenses and bodies (FX, FP, Pellix, FT QL, TL), 1964–1971 | fixed body flange with three outward bayonet lugs; lens-side rotating breech ring with three inward claws; lens guide pin and body notch at 12 o'clock; automatic diaphragm lever | FD aperture-signal lever and full-aperture signal pin; electrical contacts | predecessor to FD on the same 42 mm / 48 mm three-lug body flange |
 
 #### Dimensional summary
 
 | Field | Value | Unit |
 |---|---|---|
-| Flange focal distance | 42 (`secondary`) | mm |
-| Nominal throat diameter | 48 (`secondary`) | mm |
+| Flange focal distance | 42 (`official`) | mm |
+| Nominal throat diameter | 48 (`official`) | mm |
 | Effective clear aperture | 48 (`secondary`) | mm |
-| Camera mount outer diameter | 58 (`photo_scaled`) | mm |
-| Lens mount outer diameter | 56 (`photo_scaled`) | mm |
+| Camera mount outer diameter | 54 (`photo_scaled`) | mm |
+| Lens mount outer diameter | 65 (`photo_scaled`) | mm |
 | Contact count | not_applicable (`not_applicable`) | count |
-| Lock rotation | 90 (`photo_scaled`) | deg |
-| Lock direction | clockwise (`photo_scaled`) | — |
+| Lock rotation | unknown (`unknown`) | deg |
+| Lock direction | clockwise (`official`) | — |
 
 #### Figures (selected profile `canon-fl/base`)
 
-**Camera-side front view** — viewBox `-36 -37 72 73` · 37 elements in 4 layers · hash `175d4e0e` ([standalone SVG](mounts/canon-fl-camera-front.svg))
+**Camera-side front view** — viewBox `-33 -35 66 68` · 35 elements in 4 layers · hash `09777bcf` ([standalone SVG](mounts/canon-fl-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-35 -36 70 71` · 32 elements in 4 layers · hash `cbe39b66` ([standalone SVG](mounts/canon-fl-lens-rear.svg))
+**Lens-side rear view** — viewBox `-40 -42 80 82` · 32 elements in 4 layers · hash `90c85e78` ([standalone SVG](mounts/canon-fl-lens-rear.svg))
 
-**Axial / register schematic** — viewBox `-49 -40 57 76` · 12 elements in 2 layers · hash `877967d7` ([standalone SVG](mounts/canon-fl-axial.svg))
+**Axial / register schematic** — viewBox `-48 -37 54 70` · 10 elements in 2 layers · hash `ac132d99` ([standalone SVG](mounts/canon-fl-axial.svg))
 
 #### Camera-side front-view geometry
 
 | Feature ID | Type | Profile | Center | Start | End | Inner r | Outer r |
 |---|---|---|---|---|---|---|---|
 | `body-throat` | body_throat | `canon-fl/base` | 0° | 0° | 360° | 0 | 24 |
-| `body-mount-ring` | mount_ring | `canon-fl/base` | 0° | 0° | 360° | 24 | 29 |
-| `body-slot-1` | bayonet_receiving_slot | `canon-fl/base` | 30° | 10° | 50° | 24 | 26.5 |
-| `body-slot-2` | bayonet_receiving_slot | `canon-fl/base` | 150° | 130° | 170° | 24 | 26.5 |
-| `body-slot-3` | bayonet_receiving_slot | `canon-fl/base` | 270° | 250° | 290° | 24 | 26.5 |
-| `body-index-mark` | index_mark | `canon-fl/base` | 0° | unknown | unknown | unknown | 29.5 |
-| `body-lock-pin` | lock_pin | `canon-fl/base` | 0° | unknown | unknown | unknown | 25 |
+| `body-mount-ring` | mount_ring | `canon-fl/base` | 0° | 0° | 360° | 24 | 26 |
+| `body-lug-1` | bayonet_lug | `canon-fl/base` | 359° | 325° | 33° | 26 | 27 |
+| `body-lug-2` | bayonet_lug | `canon-fl/base` | 122.5° | 100.5° | 144.5° | 26 | 27 |
+| `body-lug-3` | bayonet_lug | `canon-fl/base` | 237.5° | 215.5° | 259.5° | 26 | 27 |
+| `body-slot-1` | bayonet_receiving_slot | `canon-fl/base` | 67° | 33° | 100.5° | 26.5 | 27 |
+| `body-slot-2` | bayonet_receiving_slot | `canon-fl/base` | 180° | 144.5° | 215.5° | 26.5 | 27 |
+| `body-slot-3` | bayonet_receiving_slot | `canon-fl/base` | 292° | 259.5° | 325° | 26.5 | 27 |
+| `body-index-mark` | index_mark | `canon-fl/base` | 0° | unknown | unknown | unknown | unknown |
+| `body-positioning-notch` | positioning_notch | `canon-fl/base` | 0° | 357.5° | 2.5° | 24.4 | 27 |
 
 #### Lens-side rear-view geometry
 
 | Feature ID | Type | Profile | Center | Start | End | Inner r | Outer r |
 |---|---|---|---|---|---|---|---|
-| `lens-throat` | lens_throat | `canon-fl/base` | 0° | 0° | 360° | 0 | 23 |
-| `lens-mount-ring` | lens_mount_ring | `canon-fl/base` | 0° | 0° | 360° | 23 | 28 |
-| `lens-lug-1` | bayonet_lug | `canon-fl/base` | 30° | 10° | 50° | 24 | 26.5 |
-| `lens-lug-2` | bayonet_lug | `canon-fl/base` | 150° | 130° | 170° | 24 | 26.5 |
-| `lens-lug-3` | bayonet_lug | `canon-fl/base` | 270° | 250° | 290° | 24 | 26.5 |
-| `lens-index-mark` | index_mark | `canon-fl/base` | 0° | unknown | unknown | unknown | 28.5 |
-| `lens-lock-notch` | lock_notch | `canon-fl/base` | 0° | unknown | unknown | unknown | 25 |
+| `lens-throat` | lens_throat | `canon-fl/base` | 0° | 0° | 360° | 0 | 23.6 |
+| `lens-mount-ring` | lens_mount_ring | `canon-fl/base` | 0° | 0° | 360° | 27.7 | 32.5 |
+| `lens-claw-1` | breech_ring_claw | `canon-fl/base` | 67° | 39.5° | 95.5° | 26.5 | 27.7 |
+| `lens-claw-2` | breech_ring_claw | `canon-fl/base` | 180° | 149° | 212° | 26.5 | 27.7 |
+| `lens-claw-3` | breech_ring_claw | `canon-fl/base` | 292° | 263.5° | 320.5° | 26.5 | 27.7 |
+| `lens-index-mark` | index_mark | `canon-fl/base` | 0° | unknown | unknown | unknown | 32.5 |
+| `lens-positioning-pin` | alignment_pin | `canon-fl/base` | 0° | unknown | unknown | unknown | 25.7 |
 
 #### Mechanical couplings
 
 | Feature | Side | Profile | Function |
 |---|---|---|---|
-| `automatic-diaphragm-lever` | both | `canon-fl/base` | automatic diaphragm stop-down |
+| `automatic-diaphragm-lever` | both | `canon-fl/base` | automatic diaphragm stop-down: the body lever moves the lens lever at exposure |
 | `breech-lock-collar` | lens | `canon-fl/base` | clamps the lens to the body without rotating the lens barrel |
 
 #### Axial stack
 
 | Plane | z (mm) | Diameter (mm) |
 |---|---|---|
-| `flange_datum` | 0 | 58 |
-| `bayonet_lug_engagement` | 1.2 | 53 |
+| `flange_datum` | 0 | 54 |
 | `sensor_film_plane` | -42 | 43.3 |
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/canon-fl.mount.ts` (25621 bytes, content hash `b74b8c87`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/canon-fl.mount.ts` (39255 bytes, content hash `988bedd2`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
 | Ref | Type | Citation | Archive | Captured | Confidence |
 |---|---|---|---|---|---|
 | `fl-1` | secondary | “Canon FL lens mount,” Wikipedia. Accessed 2026-06-06. | [snapshot](http://web.archive.org/web/20260513020307/https://en.wikipedia.org/wiki/Canon_FL_lens_mount) | 2026-05-13 | medium |
-| `fl-p1` | patent | US3906534A, “Device for mounting and dismounting an interchangeable lens.” Accessed 2026-06-06. | [snapshot](https://patents.google.com/patent/US3906534A/en) | 2026-06-06 | low |
+| `fl-o1` | official | Canon Inc., “Canon FX,” Canon Camera Museum, Film Cameras (marketed April 1964), Lens Mount specification. Accessed 2026-11-21. Second copy: Canon's Japanese-language page for the same camera. | [snapshot](https://global.canon/ja/c-museum/product/film49.html) | 2026-11-21 | high |
+| `fl-o2` | official | Canon Inc., “Canon F-1,” Canon Camera Museum, Film Cameras (marketed March 1971), Lens Mount specification. Accessed 2026-11-21. Second copy: Canon's Japanese-language page for the same camera. | [snapshot](https://global.canon/ja/c-museum/product/film78.html) | 2026-11-21 | high |
+| `fl-m1` | official | Canon Camera Co., Canon FT QL Instructions, “Uses of Lenses: Changing Lenses,” p. 30 (PDF p. 32 of the cameramanuals.org scan). Accessed 2026-11-21. Second copy: ManualsLib, page 30 of 44. | [snapshot](https://www.manualslib.com/manual/3384540/Canon-Ft-Ql.html?page=30) | 2026-11-21 | high |
+| `fl-p1` | patent | T. Shirasaki (Canon K.K.), US3906534A, “Device for mounting and dismounting an interchangeable lens,” filed 1973-08-29 (Japanese priority 1972), granted 1975-09-16. Accessed 2026-11-21. | [snapshot](https://patentimages.storage.googleapis.com/8c/87/1b/6bcdb04f3d405e/US3906534.pdf) | 2026-11-21 | medium |
+| `fl-p1f` | patent_figure | US3906534A, FIG. 2 (drawing sheet 2 of 2): rear end view of the lens with the body mounting washer in section. Undimensioned drawing, scaled for this spec. Accessed 2026-11-21. | [snapshot](https://patentimages.storage.googleapis.com/4b/ee/ec/ef91431b848a50/US3906534-drawings-page-3.png) | 2026-11-21 | low |
+| `fl-ph1` | secondary | H. W. Robeck, “Rear of Canon FL 28mm Lens and Super-Canomatic Lens R 50mm,” photograph, Wikimedia Commons, 2020-02-09, CC BY-SA 4.0. Accessed 2026-11-21. Second copy: the original file on upload.wikimedia.org. | [snapshot](https://upload.wikimedia.org/wikipedia/commons/f/f0/Rear_of_Canon_FL_28mm_Lens_and_Super-Canomatic_Lens_R_50mm.jpg) | 2026-11-21 | low |
 
 #### Open questions
 
-- FL-specific lug/collar geometry and diaphragm-lever position are unresolved; current diagram is a renderable FL-family approximation. _(Upgrade to Canon FL service drawings or measured body/lens samples.)_
+- No dimensioned drawing of the FL (or common R/FL/FD) body flange or breech ring was found. Lug, slot, claw, notch and pin angles and radii are scaled from US3906534A FIG. 2, which carries no dimensions and shows an FD-era lens; only the body flange is common with FL by Canon's own statement. The FL 28 mm photograph confirms the same wide-plus-two-narrow relief pattern on an FL ring, but only to about ±7 degrees. _(Replace with a Canon service drawing of the FX / FT QL / Pellix mount flange or an FL breech ring, or a calibrated measurement of a body and lens. Searched without result: Canon patents US3906534A, US3051067A, US3081680A and US2826118A, Canon Camera Museum FX, FT QL, FTb and F-1 pages, Canon FT QL instructions, and web searches for FL / FT / Pellix service manuals and dimensioned mount drawings.)_
+- The ring's lock rotation is not stated by any source. The earlier 90 degree figure was a stand-in and is withdrawn; the scaled lug and claw arcs would give full overlap after roughly 49 to 61 degrees of clockwise ring travel, which is an inference from an undimensioned drawing, not a sourced value. _(Take the ring travel from a service manual or a measured lens on a body.)_
+- The automatic diaphragm lever is placed from a single oblique photograph of one FL lens (FL 28 mm). Its travel, its direction of travel, the body-side actuating lever geometry and any lens-to-lens variation are not sourced. _(Use a Canon FL lens or FX / FT QL body service manual, or the Canon FL automatic diaphragm patent if one can be identified.)_
+- Lug thickness and the axial position of the claw engagement are unknown. US3906534A says the ring claws come to the rear of the body lugs, so the engagement lies on the camera side of the flange face, but gives no depth. The earlier lug-engagement plane (a stand-in drawn 1.2 mm on the lens side) is withdrawn, and no engagement plane is drawn until its depth is sourced. _(Take lug thickness and claw depth from a service drawing or a measured flange.)_
+- Values still resting on fl-1 are stand-ins that the cited page does not carry: the effective clear aperture (set equal to the 48 mm bore), the 43.3 mm film-plane diameter (the 24 x 36 mm frame diagonal), and the schematic breech-collar marker. Body mount screws are set to unknown: the earlier four-screw 54 mm circle fell on the lug edge and had no source. The body index-dot radius is also unknown. _(Source each from a service manual or measured sample, or drop the stand-ins.)_
 
 ### `canon-rf` — Canon RF
 
