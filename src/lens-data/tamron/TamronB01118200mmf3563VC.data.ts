@@ -17,12 +17,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * D16 and D18 reverse between the middle and telephoto states. The aperture stop and
  * M carrier co-move to source precision (STO->M ~= 12.308 mm at all three states).
  *
- * Focus status: NO_INTERNAL_RECONSTRUCTION. The patent publishes only a telephoto
+ * Focus: infinity only. The patent publishes only a telephoto
  * close-focus row; wide and middle close-focus rows are absent, and the tele row does
  * not uniquely determine a continuous mechanism after reference-plane normalization.
- * Therefore all authored var pairs are infinity-only zoom states with identical
- * [infinity, close] values. closeFocusM records the marketed 0.5 m MOD only; it does
- * not imply a reconstructed LensVisualizer focus state.
+ * Therefore all focus pairs are infinity-only zoom states with identical
+ * [infinity, close] values. closeFocusM records the marketed 0.5 m MOD only; focus
+ * travel is not modeled.
  *
  * Rear-plate normalization: patent surfaces 34-35 form a 2.000 mm, nd=1.51680
  * plane-parallel plate. It is omitted under the project sensor-cover/filter rule.
@@ -385,9 +385,9 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.5,
     description:
-      "Patent inner focus uses the single positive F element as the focusing group. " +
-      "Focus status NO_INTERNAL_RECONSTRUCTION: only the three published infinity zoom states are modeled; " +
-      "0.5 m is the marketed MOD, not a reconstructed close-focus state.",
+      "Infinity focus only. The patent names the single positive F element as its inner-focus group but publishes a close-focus row at tele only, " +
+      "so focus travel is not modeled; zoom movement is. " +
+      "Tamron's 0.5 m minimum object distance is product information.",
   },
 
   gaps: {

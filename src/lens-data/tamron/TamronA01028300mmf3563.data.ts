@@ -10,8 +10,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * The elements array has 20 modeled refractive media because S33-S34 is the thin resin layer
  * of one physical hybrid aspherical element; elementCount remains the manufacturer-published 19.
  *
- * Focus status: NO_INTERNAL_RECONSTRUCTION. Example 7 publishes infinity-focus zoom states only.
- * Every zoom var pair therefore uses identical infinity/close values; product MOD 0.49 m is metadata only.
+ * Focus: infinity only. Example 7 publishes infinity-focus zoom states only.
+ * Every zoom focus pair therefore uses identical infinity/close values; product MOD 0.49 m is product information only.
  * Zoom gaps: D7, D15, D23, normalized D26→S28, and BFD D37. D23 reverses after the middle state.
  * Patent figure FNO labels: 3.628 / 3.628 / 6.459 at wide / middle / tele (Figs. 26(a), 27(a), 28(a)).
  * Source erratum, middle FNO: the Fig. 27(a) label repeats the wide value. The wide and tele labels trace to one
@@ -429,7 +429,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.49,
     description:
-      "NO_INTERNAL_RECONSTRUCTION — patent Example 7 publishes infinity-focus zoom states only; product MOD 0.49 m is metadata and no close-focus internal motion is invented.",
+      "Infinity focus only. Patent Example 7 publishes infinity-focus zoom states only, so focus travel is not modeled; zoom movement is. Tamron's 0.49 m minimum object distance is product information.",
   },
 
   gaps: {
