@@ -28,19 +28,19 @@ The first-to-last vertex distance is 35.8 mm. The image plane lies at the comput
 
 ### Element 1 — Plano-Convex Positive
 
-D-line index 1.638; Abbe number 55.0. Glass: Unmatched. Focal length in air: +59.56 mm.
+D-line index 1.638; Abbe number 55.0. Glass: M-PCD55AR (Hoya), spectral proxy. Focal length in air: +59.56 mm.
 
 The convex front surface and plane rear surface form the positive front component. It collects the incident beam and begins its convergence toward the negative middle component.
 
 ### Element 2 — Biconcave Negative
 
-D-line index 1.620; Abbe number 36.0. Glass: Unmatched. Focal length in air: −38.32 mm.
+D-line index 1.620; Abbe number 36.0. Glass: TIM11 (Ohara), spectral proxy. Focal length in air: −38.32 mm.
 
 The middle component supplies negative power between the two positive components. Its lower Abbe number provides dispersion that helps balance the front component. The bevel on its rear face sets the smaller R4 optical radius.
 
 ### Element 3 — Negative Meniscus
 
-D-line index 1.605; Abbe number 38.0. Glass: Unmatched. Focal length in air: −83.63 mm.
+D-line index 1.605; Abbe number 38.0. Glass: F15 (Hoya), spectral proxy. Focal length in air: −83.63 mm.
 
 This is the negative front member of the rear doublet. Its weakly curved front face and stronger cemented rear face give negative power in air. It provides the more dispersive member of the rear pair.
 
@@ -54,7 +54,9 @@ Element 4 supplies the rear component's positive power. The cemented elements to
 
 The patent explicitly identifies the D line, taken here as sodium at 589.3 nm, and prints an index and Abbe number for each element. Those values remain unchanged. It supplies no trade names, suppliers, additional line indices or partial-dispersion data.
 
-Elements 1–3 remain Unmatched because the available catalog rows do not reproduce both printed coordinates. For element 4, Ohara S-LAM51 gives nD = 1.69987 and a D-referenced Abbe number of 48.072: the index rounds to the printed 1.700 and the dispersion differs by +0.072. Hikari J-LAF01 also matches at that precision. The Ohara label supplies a catalog dispersion curve; it does not establish the historical manufacturer or melt. The three unmatched glasses have only an Abbe-based dispersion estimate, so broadband performance and secondary spectrum are not established by the patent data.
+Elements 1–3 use spectral proxies: Hoya M-PCD55AR for element 1 (ΔnD +0.00048, Δν +0.17), Ohara TIM11 for element 2 (ΔnD +0.00080, Δν −0.13) and Hoya F15 for element 3 (ΔnD +0.00051, Δν −0.11). Differences are catalog minus printed values at the sodium D line. Each row is within the proxy limits of 0.002 in index and 0.25 in Abbe number. The printed coordinates are retained; the catalog rows supply only the dispersion-curve shape, so colour analysis follows real glass curves rather than Abbe-based estimates.
+
+Element 4 retains Ohara S-LAM51: nD = 1.69987 and a D-referenced Abbe number of 48.072. The index rounds to the printed 1.700 and the dispersion differs by +0.072. All four elements use catalog curves; none remains unmatched. These rows do not identify Wollensak's historical suppliers or melts, and the patent data do not establish broadband performance or secondary-spectrum accuracy.
 
 ## Focus Mechanism and Aperture
 
@@ -75,4 +77,5 @@ The prescription and field statements do not establish a commercial mount, image
 ## Sources
 
 1. Alan A. Cook and David C. Gilkeson, [US 2,769,372 A](https://patents.google.com/patent/US2769372A/en), Wollensak Optical Company, published 6 November 1956. PDF page 1: Figures 1–3; page 2: Example I, D-line convention, diameters, bevel, stop, aperture and field; page 3: claim 1 repeats Example I.
-2. Ohara, [optical-glass catalog, 30 November 2017](https://refractiveindex.info/download/data/2017/ohara_2017-11-30.agf), S-LAM51 dispersion coefficients.
+2. Ohara, [optical-glass catalog](https://www.ohara-inc.co.jp/en/product/catalog/), TIM11 and S-LAM51 dispersion coefficients.
+3. Hoya, [optical-glass catalog](https://www.hoya-opticalworld.com/english/datadownload/index.html), M-PCD55AR and F15 dispersion coefficients.

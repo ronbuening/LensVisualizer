@@ -4,7 +4,7 @@
 
 [US 2,769,372 A, _Three Component Objectives for Photographic and Projection Purposes_](https://patents.google.com/patent/US2769372A/en), by Alan A. Cook and David C. Gilkeson, assigned to Wollensak Optical Company. The filing and priority date is 25 July 1955; publication was 6 November 1956. Example I appears in Figure 2 on PDF page 1, in the specification on page 2 and in claim 1 on page 3. Figure 1 shows the common construction. Example II is a separate f/3.5 design with a 50° total field and is not used here.
 
-The [Ohara optical-glass catalog of 30 November 2017](https://refractiveindex.info/download/data/2017/ohara_2017-11-30.agf) supplies the S-LAM51 dispersion coefficients. No production-lens source is documented for Example I.
+The [Ohara optical-glass catalog](https://www.ohara-inc.co.jp/en/product/catalog/) supplies the TIM11 and S-LAM51 dispersion curves; the [Hoya optical-glass catalog](https://www.hoya-opticalworld.com/english/datadownload/index.html) supplies M-PCD55AR and F15. No production-lens source is documented for Example I.
 
 ## Transcription Check
 
@@ -30,7 +30,7 @@ The exact paraxial image distance is calculated. The 103.05 mm image circle is d
 
 `focus.closeFocusM` is 10¹⁵ m, which stands for infinity. No close-focus prescription, movement law or minimum object distance is printed. The modeled aperture series extends from f/3.2 to f/32; the patent gives no minimum iris opening or blade details.
 
-The patent supplies no glass trade names, suppliers, additional spectral indices or partial-dispersion data. Elements 1–3 use Abbe-based dispersion estimates. Element 4 uses an Ohara catalog curve that matches the printed coordinates, without establishing the historical supplier or melt. No anomalous dispersion, broadband performance or secondary-spectrum accuracy is established by these data.
+The patent supplies no glass trade names, suppliers, additional spectral indices or partial-dispersion data. Elements 1–3 use catalog dispersion curves as spectral proxies while retaining the printed D-line indices and Abbe numbers. Element 4 retains its Ohara catalog match at the printed precision. None of these rows establishes the historical supplier or melt. No anomalous dispersion, broadband performance or secondary-spectrum accuracy is established by these data.
 
 ## Product Identification
 
@@ -55,6 +55,13 @@ After these corrections the model has EFL 99.99 mm, aperture f/3.20, paraxial ba
 - No clear radius changed: R1/R2 remain 16/16 mm, R3/R4 remain 13.5/12.5 mm and R5–R7 remain 14/14/14 mm. The drawing gives approximately 16.5 mm at the front singlet, 13.9 mm at the middle element's outer edge, 12.8 mm at the R4 bevel start and 14.3 mm at the rear doublet. These agree with the printed dimensions within about 3%. The front and rear components retain their square outer edges, and the middle element retains the smaller R4 boundary. No flat land was added because it would replace the drawn bevel with a square corner.
 - The f/3.2 iris admits an axial entrance radius of 15.351 mm. That ray reaches R4 at 12.455 mm, leaving 0.045 mm to its clear boundary, and passes every surface. The alternative 15.624 mm paraxial entrance radius reaches R4 at 12.691 mm but also exceeds the iris opening; it is not grounds to enlarge the printed bevel boundary. At 27.5°, the chief ray remains clear and reaches 51.52 mm image height. No surface-clearance errors or undersized rims were found, and chief-ray coverage is 100% of the stated image radius.
 - Corner geometric transmission remains 30.1% before and after, with relative illumination 22.0% in both cases. The greatest transmission loss over the field is 0.0 percentage points. The half-field remains 27.5° and the aperture remains f/3.20. The matched-scale sections agree in element sizes and step order; the full bevel shape remains unknown.
+
+2026-11-21 glass review:
+
+- Element 1: `Unmatched (nD 1.638 / ν 55.0)` → `M-PCD55AR (spectral proxy; patent nD 1.638 / ν 55.0; supplier and melt unspecified)` (Hoya); ΔnD +0.00048, Δν +0.17, catalog minus printed at the sodium D line; spectral proxy.
+- Element 2: `Unmatched (nD 1.620 / ν 36.0)` → `TIM11 (spectral proxy; patent nD 1.620 / ν 36.0; supplier and melt unspecified)` (Ohara); ΔnD +0.00080, Δν −0.13, catalog minus printed at the sodium D line; spectral proxy.
+- Element 3: `Unmatched (nD 1.605 / ν 38.0)` → `F15 (spectral proxy; patent nD 1.605 / ν 38.0; supplier and melt unspecified)` (Hoya); ΔnD +0.00051, Δν −0.11, catalog minus printed at the sodium D line; spectral proxy.
+- Spectral proxies are within 0.002 in index and 0.25 in Abbe number at the printed D line; the printed index and Abbe number are kept. Element 4 retains `S-LAM51 (Ohara)`, and historical glass identities remain unresolved.
 
 ## Remaining Questions
 
