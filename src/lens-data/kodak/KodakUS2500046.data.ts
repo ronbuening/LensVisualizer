@@ -1,14 +1,22 @@
-import type { LensDataV2Input } from "../repo/src/types/lensDataV2.js";
-const data = {
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * US 2,500,046 A, sole numerical example in Figure 2, in millimetres.
+ * Four-element Petzval objective with a cemented front doublet and spherical surfaces.
+ * The stop follows the patent's principal-ray crossing 18.9 mm behind the front
+ * doublet; its diameter and the clear semi-diameters are inferred. The image plane
+ * is the computed paraxial back focus, 56.452649 mm, against the printed 56.5 mm.
+ * Figure 4 supplies the modeled 7-degree half-field.
+ */
+const LENS_DATA = {
   schema: 2,
-  key: "schade-us2500046-infinity-reference",
-  maker: null,
-  name: "SCHADE US2500046 SOLE EXAMPLE \u2014 f/2 REFERENCE",
-  subtitle:
-    "Patent-only 4E/3G \u00b7 sodium-D infinity \u00b7 proxy stop / estimated rims",
-  visible: false,
+  key: "kodak-100mm-f2-us2500046",
+  maker: "Kodak",
+  name: "KODAK 100mm f/2 (US 2,500,046 Design)",
+  subtitle: "US 2,500,046 A, sole example — Petzval-type objective",
+  visible: true,
   source: {
-    patentNumber: "US 2,500,046",
+    patentNumber: "US 2,500,046 A",
     patentYear: 1950,
     example: {
       label: "Sole example",
@@ -20,64 +28,66 @@ const data = {
   },
   catalog: {
     focalLengthMm: {
-      design: 100,
+      design: 99.98,
     },
     fNumber: {
       design: 2,
     },
     elementCount: 4,
     groupCount: 3,
-    specs: [
-      "LiteralPetzvaltype4E3G1+2|3|4,R2cement,R3trueplanorearof frontdoublet;Dindices/Abbeunchanged. Printed100/BF56.5 vs literalEFL99.983760999/BFD56.452649017mm,no fitting/glasschanges/retailidentity.",
-      "Selectedf2referencestate,distinctfromFig3f2.8label. Native/controlf2vsfinitepupil equivalents separatelydocumented. InferredmarginalirisR20.698297833 notfactorybore.",
-      "Principal-raycrossover18.9mmbehindfrontdoublet isONLY computationalproxyforstop,notpublishedphysicaldiaphragm. Exact49.3R3-R4gap,modeled18.9/30.4split,z38.4,iris/capsestimated.",
-      "Exactrear.9mmairgap retained,defaultpositivegeometry,no capenlargement,trim,overrideorbaffle.",
-      "Actualnative+/-5degree sodium-D infinity only;Fig4upto7deg/general8or10degreeproseaim notViewer/format/coverage. No widerautomaticmetrics,retail,physicalformat,imagecircle,finite,broadband ormeasuredMTF/throughputclaim.",
-      "Originalnumericaltranscription/hash externalparent/scoutcustody,nolocalPDF/pixels/originalrehash. Primaryprose independentlycorroborateslayout,Dline,datesandprincipal-raycrossovercomputation,notlocalfacsimiletableinspection.",
-    ],
+    imageCircleMm: 24.56,
+    specs: ["4 ELEMENTS / 3 GROUPS", "ALL SPHERICAL", "DESIGN F/2"],
   },
   elements: [
     {
       id: 1,
       name: "L1",
-      label: "L1",
-      type: "Source Spherical Element",
+      label: "Element 1",
+      type: "Biconvex Positive",
       nd: 1.523,
       vd: 58.6,
       indexReference: "D",
-      glass: "Literal sodium-D/Abbe pair; no calibrated spectral curve.",
-      cemented: "G1",
+      focalLengthMm: 62.85,
+      glass: "C12 (Hoya)",
+      role: "Positive front member of the cemented collecting doublet",
+      cemented: "C1",
     },
     {
       id: 2,
       name: "L2",
-      label: "L2",
-      type: "Source Plano Element",
+      label: "Element 2",
+      type: "Plano-Concave Negative",
       nd: 1.617,
       vd: 38.5,
       indexReference: "D",
-      glass: "Literal sodium-D/Abbe pair; no calibrated spectral curve.",
-      cemented: "G1",
+      focalLengthMm: -92.04,
+      glass: "Unmatched (nD 1.617 / ν 38.5)",
+      role: "Negative rear member of the cemented front doublet",
+      cemented: "C1",
     },
     {
       id: 3,
       name: "L3",
-      label: "L3",
-      type: "Source Spherical Element",
+      label: "Element 3",
+      type: "Negative Meniscus",
       nd: 1.649,
       vd: 33.8,
       indexReference: "D",
-      glass: "Literal sodium-D/Abbe pair; no calibrated spectral curve.",
+      focalLengthMm: -97.38,
+      glass: "Unmatched (nD 1.649 / ν 33.8)",
+      role: "Negative front member of the air-spaced rear pair",
     },
     {
       id: 4,
       name: "L4",
-      label: "L4",
-      type: "Source Spherical Element",
+      label: "Element 4",
+      type: "Biconvex Positive",
       nd: 1.697,
       vd: 56.1,
       indexReference: "D",
-      glass: "Literal sodium-D/Abbe pair; no calibrated spectral curve.",
+      focalLengthMm: 58.21,
+      glass: "Unmatched (nD 1.697 / ν 56.1)",
+      role: "Positive rear member of the air-spaced rear pair",
     },
   ],
   surfaces: [
@@ -140,36 +150,36 @@ const data = {
   },
   projection: {
     kind: "rectilinear",
-    fullFieldDeg: 10,
-    maxTraceFieldDeg: 5,
+    fullFieldDeg: 14,
+    maxTraceFieldDeg: 7,
   },
   rays: {
     offAxisFieldFrac: 1,
   },
   focus: {
-    closeFocusM: 1000000000000000,
-    description:
-      "LiteralPetzvaltype4E3G1+2|3|4,R2cement,R3trueplanorearof frontdoublet;Dindices/Abbeunchanged. Printed100/BF56.5 vs literalEFL99.983760999/BFD56.452649017mm,no fitting/glasschanges/retailidentity. Selectedf2referencestate,distinctfromFig3f2.8label. Native/controlf2vsfinitepupil equivalents separatelydocumented. InferredmarginalirisR20.698297833 notfactorybore. Principal-raycrossover18.9mmbehindfrontdoublet isONLY computationalproxyforstop,notpublishedphysicaldiaphragm. Exact49.3R3-R4gap,modeled18.9/30.4split,z38.4,iris/capsestimated. Exactrear.9mmairgap retained,defaultpositivegeometry,no capenlargement,trim,overrideorbaffle. Actualnative+/-5degree sodium-D infinity only;Fig4upto7deg/general8or10degreeproseaim notViewer/format/coverage. No widerautomaticmetrics,retail,physicalformat,imagecircle,finite,broadband ormeasuredMTF/throughputclaim. Originalnumericaltranscription/hash externalparent/scoutcustody,nolocalPDF/pixels/originalrehash. Primaryprose independentlycorroborateslayout,Dline,datesandprincipal-raycrossovercomputation,notlocalfacsimiletableinspection.",
+    closeFocusM: 1e15,
+    description: "Infinity focus only; the patent gives no close-focus data.",
   },
   groups: [
     {
-      text: "G1 \u00b7 L1+L2",
+      text: "Front doublet",
       fromSurface: "1",
       toSurface: "3",
     },
     {
-      text: "G2 \u00b7 L3",
+      text: "Rear negative element",
       fromSurface: "4",
       toSurface: "5",
     },
     {
-      text: "G3 \u00b7 L4",
+      text: "Rear positive element",
       fromSurface: "6",
       toSurface: "7",
     },
   ],
+  doublets: [{ text: "C1", fromSurface: "1", toSurface: "3" }],
   layout: {
     yScFill: 0.5,
   },
 } satisfies LensDataV2Input;
-export default data;
+export default LENS_DATA;
