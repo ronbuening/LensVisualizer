@@ -16,7 +16,7 @@
 
 The [patent](https://patents.google.com/patent/US1888156A/en) gives a 100 mm f/2.5 objective containing five elements in four groups. It improves Bielicke's earlier US 1,540,752 four-singlet design by making a rear collective group a cemented flint-and-crown pair to improve correction of oblique beams (specification p. 1, lines 13–32).
 
-The same invention was filed in Britain and Germany as [GB 375,723 A](https://patents.google.com/patent/GB375723A/en) and [DE 634,843 C](https://patents.google.com/patent/DE634843C/en). Bielicke co-founded Astro-Gesellschaft in Berlin, but this patent names no assignee and no production lens is documented for its prescription. The company history alone does not establish an Astrar or Tachar product identity.
+The same invention was filed in Britain and Germany as [GB 375,723 A](https://patents.google.com/patent/GB375723A/en) and [DE 634,843 C](https://patents.google.com/patent/DE634843C/en). Bielicke co-founded Astro-Gesellschaft in Berlin; the patent names no assignee. [Espen Susort's collector timeline](https://espensusort.no/posts/timeline-of-astro-berlin/) lists all three patents under the Astrar, an f/2.7 line it describes as a Cooke triplet. This conflicts with the five-element/four-group f/2.5 design; no Astrar construction or prescription confirms the link.
 
 ## Optical Architecture
 
@@ -93,5 +93,5 @@ The model preserves the printed prescription and uses its paraxial infinity imag
 - [US 1,888,156 A](https://patents.google.com/patent/US1888156A/en), drawing sheet and specification pp. 1–2: prescription, glass indices, construction and claims.
 - [US 1,540,752 A](https://patents.google.com/patent/US1540752A/en): the earlier four-singlet design expressly cited by the later patent.
 - [GB 375,723 A](https://patents.google.com/patent/GB375723A/en) and [DE 634,843 C](https://patents.google.com/patent/DE634843C/en): British and German filings of the same invention.
-- [Espen Susort, Astro-Gesellschaft historical timeline](https://espensusort.no/posts/timeline-of-astro-berlin/), 1922 section and reproduced contemporary notices: company background, without a production-prescription link.
+- [Espen Susort, Astro-Gesellschaft historical timeline](https://espensusort.no/posts/timeline-of-astro-berlin/), 1922 and 1931–1932 sections and lens list: company background and an unconfirmed Astrar attribution, alongside a conflicting f/2.7 Cooke-triplet description.
 - [Pentacon Six, Astro lenses](https://www.pentaconsix.com/astro.htm): named Astro products and element counts; no construction establishes a match to this patent.

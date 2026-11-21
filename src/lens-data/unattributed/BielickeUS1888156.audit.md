@@ -26,7 +26,7 @@ The inferred blanks retain positive glass edge thickness and air clearance. The 
 
 ## Product
 
-Bielicke co-founded Astro-Gesellschaft in Berlin, but the patent is unassigned and no production lens is documented for this prescription. Astro product names and element counts alone do not establish a match; maker remains null. Historical sources are linked in the analysis.
+Bielicke co-founded Astro-Gesellschaft in Berlin, but the patent is unassigned. Espen Susort's collector timeline lists US 1,888,156 and its British and German filings under the Astrar, an f/2.7 line described there as a Cooke triplet. That conflicts with this five-element/four-group f/2.5 design; no Astrar construction or prescription confirms the link, so maker remains null. Historical sources are linked in the analysis.
 
 ## Corrections
 
@@ -58,3 +58,5 @@ Before → after: EFL 99.9015578114 → 99.9015578114 mm; nominal f/2.5 → f/2.
 The surface audit reports no errors. The aperture audit reports the single station within 3% of the stated f-number, with no rim, trace, iris or failed-station limits. The image-circle and field-coverage checks each skip the lens because no image format or image circle is given, including with visibility true. An exact meridional check at 10° reaches image height 17.584 mm with no axial rim obstruction or blocked chief ray; marginal off-axis vignetting remains. This is an illustrative field, not a patent coverage claim.
 
 Open: the figure/rim differences listed above, historical glass identity, the unprinted physical iris dimensions and field, the G-line wavelength, and a production-prescription link.
+
+Review corrections: product discussion in the analysis and audit, no product association → an explicit but unconfirmed Astrar association; timeline source description, company background only → patent-family attribution and the conflicting f/2.7 Cooke-triplet description.
