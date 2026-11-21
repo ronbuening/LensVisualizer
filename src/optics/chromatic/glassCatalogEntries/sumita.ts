@@ -226,6 +226,16 @@ export const SUMITA_GLASS_ENTRIES: readonly GlassEntry[] = [
     source:
       "SUMITA Zemax all-glass catalog 2025-11-07 including discontinued glasses; vendor formula-3 polynomial for K5.",
   },
+  /* K11: exact row for the Kodak US 2,380,207 rear crown (2026-11-21). */
+  {
+    name: "K11",
+    vendor: "Sumita",
+    polynomial: [2.221166, -0.009241823, 0.01072974, 0.0001519675, 2.472143e-6, 1.510953e-7],
+    nd: 1.50013,
+    vd: 61.6,
+    source:
+      "SUMITA all-glass Zemax catalog (2025-11-07), formula-1 coefficients for K11; https://www.sumita-opt.co.jp/en/download/",
+  },
   {
     name: "LAFN2",
     vendor: "Sumita",
