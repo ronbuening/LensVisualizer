@@ -4,8 +4,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Arthur Cox's telephoto objective, US 2,433,438 A, Example I and Figure 1.
  * The normalized prescription is multiplied by 100 to give dimensions in millimetres.
  * Radii, thicknesses, D-line indices, Abbe numbers and the 53.75 mm image gap are printed;
- * the calculated paraxial back focus is 53.777 mm. The stop position and clear rims
- * are inferred. The iris follows the paraxial f/2.8 aperture, and the illustrative
+ * the calculated paraxial back focus is 53.777 mm. The stop position is inferred.
+ * Clear rims are estimated from Figure 1's proportions and the f/2.8 axial beam,
+ * with a square front rim and a narrower rear face on the rear doublet.
+ * The drawing compresses the meniscus thickness, so it gives no exact clear diameters.
+ * The iris follows the paraxial f/2.8 aperture, and the illustrative
  * field extends to 10 degrees from the axis; the patent gives no field angle.
  */
 const LENS_DATA = {
@@ -134,7 +137,7 @@ const LENS_DATA = {
       label: "4",
       R: 37.01,
       d: 4.46,
-      sd: 17.7,
+      sd: 16.5,
       medium: 3,
     },
     {
@@ -152,21 +155,21 @@ const LENS_DATA = {
       label: "6",
       R: 23.63,
       d: 8.93,
-      sd: 15.1,
+      sd: 13.9,
       medium: 4,
     },
     {
       label: "7",
       R: -99.2,
       d: 3.47,
-      sd: 14.5,
+      sd: 13.9,
       medium: 5,
     },
     {
       label: "8",
       R: 14.17,
       d: 53.75,
-      sd: 12.3,
+      sd: 10.2,
     },
   ],
   focus: {
