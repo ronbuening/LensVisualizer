@@ -60,7 +60,7 @@ const LENS_DATA = {
       nd: 1.613,
       vd: 55.7,
       indexReference: "D",
-      glass: "Unmatched (nD 1.613 / ν 55.7)",
+      glass: "BACD8 (spectral proxy; patent nD 1.613 / ν 55.7; supplier and melt unspecified)",
       cemented: "C1",
     },
     {
@@ -86,7 +86,7 @@ const LENS_DATA = {
       nd: 1.613,
       vd: 55.7,
       indexReference: "D",
-      glass: "Unmatched (nD 1.613 / ν 55.7)",
+      glass: "BACD8 (spectral proxy; patent nD 1.613 / ν 55.7; supplier and melt unspecified)",
     },
     {
       id: 4,
