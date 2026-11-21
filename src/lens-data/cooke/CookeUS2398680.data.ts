@@ -6,7 +6,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * for photographic or projection use. Printed radii, thicknesses and air gaps
  * are multiplied by 100 for a nominal 100 mm f/1.5 objective in millimetres.
  * Sodium-D indices and Abbe numbers are copied as printed; R4 and R7 are cemented.
- * The patent gives no iris station, diameter or clear radii; all rims are estimates.
+ * The patent gives no iris station, diameter or clear radii. Rims are estimated
+ * from Figure 1 with axial-beam and off-axis illumination checks: C1 has a
+ * 30.4 mm outer rim; C2 and both rear singlets have 24.3 mm outer rims.
+ * The front singlet retains 37 mm to preserve edge light; R5/R6 retain
+ * 21.1/22 mm. No lands are inferred; the facing concave rims remain tapered.
  * The inferred iris lies 11.10 mm after R5 and 8.96 mm before R6, preserving
  * their 20.06 mm gap; its opening gives paraxial f/1.5. The image plane is
  * 57.32 mm after R12 at paraxial focus, against 57.31 mm printed back focus.
@@ -149,14 +153,14 @@ const LENS_DATA = {
       label: "3",
       R: 39.72,
       d: 16.93,
-      sd: 33,
+      sd: 30.4,
       medium: 2,
     },
     {
       label: "4",
       R: 447.1,
       d: 3.13,
-      sd: 32,
+      sd: 30.4,
       medium: 3,
     },
     {
@@ -181,40 +185,40 @@ const LENS_DATA = {
       label: "7",
       R: 126.3,
       d: 14.09,
-      sd: 23,
+      sd: 24.3,
       medium: 5,
     },
     {
       label: "8",
       R: -53.51,
       d: 0.2,
-      sd: 29,
+      sd: 24.3,
     },
     {
       label: "9",
       R: 421,
       d: 5.76,
-      sd: 28,
+      sd: 24.3,
       medium: 6,
     },
     {
       label: "10",
       R: -168.3,
       d: 0.2,
-      sd: 26,
+      sd: 24.3,
     },
     {
       label: "11",
       R: 388.6,
       d: 4.95,
-      sd: 26,
+      sd: 24.3,
       medium: 7,
     },
     {
       label: "12",
       R: -232.1,
       d: 57.321981,
-      sd: 26,
+      sd: 24.3,
     },
   ],
   aperture: {
