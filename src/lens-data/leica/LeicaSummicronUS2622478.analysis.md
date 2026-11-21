@@ -1,73 +1,81 @@
-## Patent reference and design identification
+# LEICA SUMMICRON 100mm f/2 (US 2,622,478 Design)
 
-**Patent:** [US2622478A](https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/2622478)  
-**Filed:** July 20, 1950  
-**Granted:** December 23, 1952  
-**Inventors:** Gustav Kleineberg; Otto Zimmermann  
-**Assignee:** Ernst Leitz GmbH  
-**German priority:** January 9, 1950, as stated in the primary text  
-**Example details:** Example II and Figure 2, unscaled f100 table represented at100mm for visualization.
+## Patent Reference and Design Identification
 
-Private patent-only reference. Source nominal100/f2 and50degree total field are distinct from literal helium-d EFL99.961191707261mm/BFD55.440549238988mm. Track69.95mm and Gaussian detector z125.390549238988mm. No source BFD hardware is printed or inferred as measured. No rescaling, rounding repair, optical fit or glass substitution. This100mm-scale reference is not a manufactured100mm lens or an exact50mm retail reconstruction.
+**Patent:** [US 2,622,478 A](https://patents.google.com/patent/US2622478A/en)
 
-Original signed numerical table and PDF SHA-256 `99972ed49a2a184e9d12e4ed80319894b4b6d73e41f69088b2dac4a4d81805a7` are independently verified parent/scout visual custody. The official primary web URL was inaccessible once and not retried. The supplied public facsimile https://patentimages.storage.googleapis.com/01/cc/90/23a547ebfde38a/US2622478.pdf was readable as structured primary text, corroborating ExampleII, d-line definition, source f100/1:2/50degrees and plate only in Fig1. Numeric OCR signs/digits are damaged and were not substituted for the scout transcription. Screenshot output had no viewable pixel payload; no local original PDF/pixel/hash reproduction is claimed, and originals are not included. No denied route retry, alternate raw transfer or access-control workaround.
+**Inventors:** Gustav Kleineberg; Otto Zimmermann
 
-## Optical architecture
+**Assignee:** Ernst Leitz GmbH
 
-Seven elements in six groups, **1 | 2 | 3 | 4 | 5+6 | 7**, with the sole cemented interface R10. All13optical boundaries and the source0.54/0.20/0.39/20.02/1.96mm air gaps remain literal. R8–R9 is the source a4 diaphragm airspace. The only inserted bookkeeping plane is the iris within this airspace, never an optical substitution.
+**Filed:** 20 July 1950
 
-**No additional plate** is authored. Primary prose explicitly labels plate g in Figure1; the present reference is Figure2/ExampleII. The source rear seventh element is preserved as a refractive lens, not replaced by a plane plate. No rearPlates, artificial baffle, curved image surface, extra powered surface or source-field format proxy is added.
+**Published:** 23 December 1952
 
-## Element-by-element analysis
+**German priority:** 9 January 1950
 
-| Element | Literal n_d | Abbe | Interfaces |
-|---|---:|---:|---|
-| I |1.6923|54.7|R1–R2|
-| II |1.65017|33.7|R3–R4|
-| III |1.6923|54.7|R5–R6|
-| IV |1.57501|41.3|R7–R8|
-| V |1.58217|38.0|R9–R10, doublet front|
-| VI |1.6923|54.7|R10–R11, doublet rear|
-| VII |1.71715|47.9|R12–R13|
+**Example details:** Example 2, Figure 2; the numerical table and Seidel coefficients on PDF page 3.
 
-Estimated optical semidiameters **[28,27,27,25,24,20,20,19,19,22,22,23,23]mm** remain the initial proposed values, not factory rim measurements. Default native geometry passes with zero trim/no overrides. Minimum shared-radius glass thickness1.992127814mm and air gap0.2mm are positive. The0.54mm front air gap leaves0.381609507mm at shared27mm radius; the0.39mm R6–R7 gap leaves0.225304550mm at20mm, with42.2296024% sag consumption. Central a4 leaves4.732533969mm at shared19mm radius,76.3609692% consumption, below native90% default. No gap increase, source change or cap enlargement.
+The patent gives two numerical examples at f = 100 and f/2, each with a 50° full field. Example 2 has seven elements in six groups. The table specifies no absolute length unit; the model treats its dimensions as millimetres. The name identifies the Summicron family while retaining the patent's f = 100 design; the production collapsible Summicron was a 5 cm f/2 lens, and its correspondence to a particular numerical example remains unsettled.
 
-Own glass rim endpoint closure minimum0.539842294mm and maximum spherical rim tilt53.324025406degrees remain physically valid. Estimated conical sidewall checks contain every sampled native arrival with minimum radial clearance0.026408047mm. These are consistency proxies, not surveyed external barrel dimensions or additional baffles. Global axial cap envelopes can overlap at different radii; that sufficient disjoint-envelope condition is not required. Common-radius material/air gaps remain positive and all admitted independent optical hits progress strictly forward with positive propagation direction. No invalid negative-distance branch or TIR is accepted.
+Example 1 has seven elements in five groups, including a cemented front meniscus pair, and Figure 1 shows an additional flint plate between the objective and the emulsion. Example 2 separates that meniscus pair and has no additional plate. Its seventh element remains a powered lens.
 
-## Glass identification and selection
+## Optical Architecture
 
-The primary running definition explicitly uses lowercase d-line. Every element authors `indexReference:"d"`, supported natively as standard helium-d587.5618nm. Each anchored reference index reproduces its literal value within1e-12, and quantitative MTF uses exactly one587.5618nm line. Uppercase sodium-D589.2938nm is a distinct convention and is not substituted.
+The modified Gauss arrangement is **1 | 2 | 3 | 4 | 5+6 | 7**. Four separate front elements precede the diaphragm; a cemented negative-positive pair and a positive singlet follow it. The sole cemented interface is r10, between Elements 5 and 6. All thirteen refracting surfaces are spherical, and their radius signs are printed explicitly.
 
-Literal n_d/Abbe pairs are retained without modern catalog glass names, Sellmeier/partial-dispersion substitutions or invented nC/nF/ng indices. Generic Abbe-derived chromatic/broadband and secondary-spectrum results remain unqualified. Equal n/V entries do not merge physically separated source lenses. The source's general discussion of glass composition or radiation does not establish the material identity or chemical composition of a production specimen, nor does this optical reference model such effects.
+The patent describes high-index positive glasses, a split front positive member with a dispersing air lens, and an optional separation of the object-side meniscus into two elements. Elements 1, 3 and 6 share nd 1.6923 and ν 54.7. The five printed air spaces are 0.54, 0.20, 0.39, 20.02 and 1.96 mm. The diaphragm lies in the 20.02 mm space between r8 and r9.
 
-## Focus mechanism and aperture assumptions
+## Element-by-Element Analysis
 
-Infinity only at the literal calculated Gaussian detector. No source finite-focus mechanism, conjugate or cam is established; existing private infinity-state convention is retained and no finite behavior is qualified.
+The focal lengths below are calculated for each thick element in air. They describe individual power rather than each element's contribution to aberrations in the complete objective.
 
-The diaphragm is in source a4, the exact20.02mm R8–R9 gap. **11.25/8.77mm** split and **stop z40.73mm** are representative estimates, not separately tabulated physical iris dimensions. Bore and clear caps are also estimates. At these caps, stop plane is clear of both optical surfaces; changing source spacing is unnecessary.
+| Element | Shape              |      nd |    ν | Glass identification           | Focal length (mm) | Optical role                                        |
+| ------- | ------------------ | ------: | ---: | ------------------------------ | ----------------: | --------------------------------------------------- |
+| 1       | Biconvex Positive  |  1.6923 | 54.7 | Unmatched                      |             69.04 | Front collector of the split positive member        |
+| 2       | Biconcave Negative | 1.65017 | 33.7 | Unmatched                      |           −126.39 | Flint element opposing the front collector's colour |
+| 3       | Positive Meniscus  |  1.6923 | 54.7 | Unmatched                      |            112.13 | Positive half of the front meniscus pair            |
+| 4       | Negative Meniscus  | 1.57501 | 41.3 | QF3, CDGM catalogue equivalent |            −71.96 | Negative meniscus facing the diaphragm              |
+| 5       | Biconcave Negative | 1.58217 | 38.0 | Unmatched                      |            −44.99 | Negative front element of the cemented pair         |
+| 6       | Biconvex Positive  |  1.6923 | 54.7 | Unmatched                      |             54.38 | Positive rear element of the cemented pair          |
+| 7       | Biconvex Positive  | 1.71715 | 47.9 | Unmatched                      |            106.89 | Rear positive member                                |
 
-Saved nominal/control f/2 derives native paraxial iris radius15.468360668mm (diameter30.936721336mm). The independent finite nominal-marginal estimate is15.531622441mm and is kept separate, not silently substituted. Saved finite entrance equivalent is **f/2.008133467**, image-space sine equivalent **f/2.001445143**. Native aperture audit gives1.999999998 in its own paraxial convention, not an exact finite f/2 or factory-opening claim. An isolated control1.991853810 reproduces the larger finite seed and increases modeled off-axis clipping; it is not saved. Iris ±2% and station ±0.2mm sensitivity keep all total air gaps/source optics unchanged and give independently classified outcomes.
+The cemented pair as a whole has a calculated focal length of −606.28 mm in air.
 
-## Historical and commercial context
+## Glass Identification and Selection
 
-The May1953 Leitz brochure at https://www.pacificrimcamera.com/rl/01536/01536.pdf supports only a **basic patent-family connection** to the collapsible Summicron50mm f/2 according to the parent/source researcher. It does not identify this numerical ExampleII as the exact retail prescription. The worker's ordinary web read was rejected for12,271,895-byte content length, without retry or another transfer. Brochure pages/hash were not independently inspected locally; the family-context provenance remains explicit.
+The patent explicitly defines nd as the refractive index for the d-line, interpreted as helium d at 587.6 nm. The printed indices and Abbe numbers are retained throughout.
 
-The existing rigid/DR catalog model comes from DE939956 and is numerically separate. Re-evaluation of its typed body, normalized from50mm to100mm, gives R=[82.16,-440.92,-364.46,209.11,33.68,109.64,145.08,24.76,-36.12,132.85,-54.35,744.71,-78.85], not this source's thirteen-radius profile. Forward fixed-f100 normalization has maximum relative component deviation176.99%; reversed-negated order additionally has seven sign mismatches. The broader retained-main filter also tests arbitrary positive uniform scale/reversal. No duplicate clearance from names alone, no changes to the rigid/DR file, and no retail50mm rescaling or identity inference here.
+Element 4 has an optical-coordinate equivalent in CDGM QF3. Its catalogue row gives nd 1.57502 and ν 41.31, differing from the patent by +0.00001 and +0.01. This supports use of its dispersion curve without identifying the historical supplier or melt. The other glasses remain unmatched: the closest rows for Elements 1, 2, 3, 5, 6 and 7 do not reproduce both printed coordinates closely enough. No additional spectral indices are supplied by the patent; chromatic predictions for unmatched glasses depend on dispersion inferred from nd and ν.
 
-This reference has no verified manufacturing identity, mount, physical format, retail coverage, measured factory performance or production specimen rim dimensions. The source50degree total field and Seidel coefficients remain documentary design information, not reproduced measurements or app acceptance at those angles.
+The text discusses radiation from thorium-bearing optical glass and the use of flint glass to absorb it before it reaches the emulsion. This provides historical context for the Summicron association but does not identify the composition of every element in either numerical example or a production specimen.
 
-## Scoped native verification and reproducibility
+## Focus Mechanism and Aperture
 
-Actual desktop1440/mobile390 each pass six final native states: import, fresh reload/reimport, stop-down, wide reset, Summary and Pupils. Runtime/image-plane/iris and5degree incoming slopes are verified through committed native diagram state. Import/export/reload are exact, no stale model or page error, and view controls do not change the file. Final viewport/document widths match at1440/1440 and390/390 across all twelve states; no horizontal page overflow.
+The model is at infinity focus. The patent gives no close-focus spacing, movement or minimum focusing distance. The image plane is the calculated paraxial plane, 55.440549 mm behind the last surface; that back focus is not printed.
 
-Initial visual review caught densely concatenated display notes overflowing mobile. Only `catalog.specs` and `focus.description` were shortened into readable user-facing text; all other fields, source optics, caps, iris/control, focus parameters and diagnostic scope are unchanged. Before/after text and source-model hash, initial browser reports/screenshots and final rerun evidence are retained. No app/CSS/source/engine edits were made. Final desktop/mobile import screenshots were personally visually inspected; the diagrams and notes fit. Native optical checks/import and strict model types/lint/format were rerun after this metadata-only change; the unchanged baseline553test suite was not unnecessarily rerun.
+The diaphragm position is inferred within the printed 20.02 mm central space: 11.25 mm behind r8 and 8.77 mm ahead of r9, at z = 40.73 mm from the first vertex. Figure 2 places the drawn iris at about 0.51 of the gap, compared with 0.56 in the model. The printed coma coefficients refer to a pupil at r1 and cannot independently locate the physical diaphragm.
 
-Physical nominal entrance-disc1801rays per field at -5/-2.5/0/2.5/5degrees gives1697/1743/1729/1743/1697arrivals. Actual stopped pupil865rays each gives825/844/865/844/825. Across these distinct domains518 first-loss clips are independently verified:340R6,116iris,62R1. Raw misses/failed/unaimed/unknown0; all chief rays survive; independent native/source-sphere hit mismatch at most1.162e-13mm. No admitted TIR/wrong-order branch, forced pupil or hidden propagation failure. These sample counts are not transmission, weighted flux or measured vignetting; off-axis cap clips remain visible.
+At nominal f/2 the paraxial stop radius is 15.46836 mm. Finite rays give an entrance-equivalent aperture of about f/2.00813 and an image-space sine equivalent of f/2.00145. A finite marginal ray corresponding to f/2 would require a stop radius of about 15.53162 mm. The f/2–f/22 stop sequence is a display convention rather than a printed aperture ladder.
 
-Scoped reference helium-d GEOMETRIC MTF at actual0/2.505056786/4.999895308degrees and0/10/20/40cyclesmm converges without unknown in-beam flux, failed or unaimed rays. Dense32–512grids reproduce adaptive outputs; maximum256→512amplitude change0.000201243 is a sampling comparison, not total error or measured performance. Frequencies belong to the chosen100mm visualization scale, not the retail50mm lens. Wider automatic UI metrics, diffraction/broadband, source50degree performance and Seidel-table reproduction are unqualified.
+All clear semi-diameters are estimates: r1–r13 use 28, 27, 27, 25, 24, 20, 20, 19, 19, 22, 22, 23 and 23 mm. The smallest common-radius glass thickness is 1.99213 mm. The front 0.54 mm air space leaves 0.38161 mm at the shared 27 mm radius; the 0.39 mm space leaves 0.22530 mm at 20 mm; the central gap leaves 4.73253 mm at 19 mm. The stop plane clears the r8 and r9 rims by approximately 1.71 and 3.02 mm. These dimensions describe the chosen optical rims, not measured barrel dimensions.
 
-553unchanged targeted tests in7files pass with one worker (53.92s); baseline and final strict model types, lint, format, aperture audit, actual native classified rays/geometry and final browser roundtrip pass. No test timeout/assertion, source geometry, cap, lens schema or engine acceptance changes. Earlier6947test same-baseline full-suite evidence remains historical, not a new complete suite or private catalog registration.
+## First-Order Properties and Stated Field
 
-Bounded dedup covers1188reevaluated retained main bodies,4816overlapping cachedmain/21retained fullPR/history profiles, readable loose/TAR/JSON/ZIP bodies and51parsed native profiles in17sealed historicalZIPs plus later protected checkpoints. Necessary complete signed-radius positive uniform scale/reversed-negated filters and source aliases are negative. Retained baseline4027fd20d095a1dba4ee3f46188dc70dad858055 is not a current remote/main claim. Arbitrary expressions/inaccessible archives/current PR freshness remain outside the claim; known403refresh was not retried.
+The prescription computes to EFL 99.96119 mm against the printed f = 100, a difference of −0.0388%. The design focal length is therefore recorded as 99.96 mm. The first-to-last-surface distance is 69.95 mm, and the first-surface-to-image distance is 125.39055 mm. No source back focus or total image distance is printed.
 
-The private checkpoint holds source, exactly one final nativeJSON/TS pair, companion analysis/audit, independent/native/geometry/reference/MTF/rim/iris sensitivity evidence, initial and final visual QA, tests and deterministic fresh replay with producer/frozen byte/SHA256/CRC readback. Original source PDF/brochure bytes/pixels/hashes are not claimed local.17priorZIPs, all previous producer/frozen checkpoints and baseline blobs stay unchanged. No packaging, standalone delivery, upload, transfer, commit, PR, catalog/repository change, publication, deployment or Group credit.
+The printed Seidel P (image curvature) and A (spherical aberration) columns reproduce surface by surface. At the patent's normalization, the calculated P sum is 0.1997 against the printed 0.1995; every A entry agrees within 0.0006. This independently supports the printed radii, indices and spacings.
+
+The modeled field follows the printed 50° full angle, or ±25°. At 25° the real chief ray reaches an image semi-height of 45.96798 mm, giving the stated-field image-circle diameter of 91.93596 mm at this model's dimensions. The current geometry permits chief rays to approximately 27°. No rim cuts the axial beam or blocks the 25° chief ray, although the rear elements vignette the oblique bundle and one edge-ray solve does not return a ray. Field reach therefore does not establish complete pupil illumination or measured production performance.
+
+## Historical and Commercial Context
+
+The association with the collapsible Leitz Summicron 5 cm f/2 of 1953–60 is plausible at the patent-family level. A [May 1953 Leitz brochure](https://www.pacificrimcamera.com/rl/01536/01536.pdf) reportedly states that the Summicron's basic design is protected by US 2,622,478. The [Leica Wiki entry for Summicron (I)](<https://wiki.l-camera-forum.com/leica-wiki.en/index.php/Summicron_(I)_f%3D_5_cm_1:2>) associates a seven-element, six-group Kleineberg–Zimmermann patent filed on 20 July 1950 with that lens. The patent's discussion of thorium glass also fits the family history.
+
+Example 2 agrees with the production lens's seven-element, six-group count, but that count alone cannot establish the production prescription. Which numerical example entered production remains unsettled. The later Rigid/Dual Range Summicron prescription from DE 939,956 B has different radii and remains a separate design.
+
+## Sources
+
+- [US 2,622,478 A](https://patents.google.com/patent/US2622478A/en): Figure 2 on PDF page 1; Example 2, Seidel coefficients, d-line definition and claims on PDF page 3; design discussion on PDF page 2.
+- [Leitz Summicron brochure, May 1953](https://www.pacificrimcamera.com/rl/01536/01536.pdf): reported manufacturer statement connecting the basic Summicron design to this patent; it does not settle the numerical example.
+- [Leica Wiki: Summicron (I), f = 5 cm 1:2](<https://wiki.l-camera-forum.com/leica-wiki.en/index.php/Summicron_(I)_f%3D_5_cm_1:2>): historical patent-family association and production context.

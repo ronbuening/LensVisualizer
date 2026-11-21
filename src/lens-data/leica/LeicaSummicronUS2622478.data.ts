@@ -1,16 +1,29 @@
-import type { LensDataV2Input } from "../repo/src/types/lensDataV2.js";
-const data = {
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * US 2,622,478 A, Example 2 and Figure 2, by Gustav Kleineberg and Otto Zimmermann
+ * for Ernst Leitz GmbH, granted 1952. Seven spherical elements in six groups.
+ * The table gives f = 100 without an absolute length unit; its dimensions are read
+ * in millimetres here. Radii, thicknesses, air spaces, d-line indices and Abbe
+ * numbers follow the printed table. Elements 5 and 6 are cemented at r10.
+ * The iris splits the printed 20.02 mm central air space into 11.25 and 8.77 mm;
+ * that position, its derived opening and all clear semi-diameters are inferred.
+ * The image plane uses the computed paraxial back focus of 55.440549 mm.
+ * The stated full field is 50 degrees. The Summicron family association does not
+ * settle which numerical example entered production as the 5 cm f/2 lens.
+ */
+const LENS_DATA = {
   schema: 2,
-  key: "kleineberg-zimmermann-us2622478-example2-infinity-reference",
-  maker: null,
-  name: "KLEINEBERG ZIMMERMANN US2622478 EXAMPLE II \u2014 100mm PATENT f/2",
-  subtitle: "Patent-only 7E/6G \u00b7 helium-d infinity / estimated iris-rims",
-  visible: false,
+  key: "leica-summicron-100mm-f2-us2622478",
+  maker: "Leica",
+  name: "LEICA SUMMICRON 100mm f/2 (US 2,622,478 Design)",
+  subtitle: "US 2,622,478 A, Example 2 — collapsible Summicron family",
+  visible: true,
   source: {
-    patentNumber: "US 2,622,478",
+    patentNumber: "US 2,622,478 A",
     patentYear: 1952,
     example: {
-      label: "Example II",
+      label: "Example 2",
       id: "2",
     },
     authors: ["Gustav Kleineberg", "Otto Zimmermann"],
@@ -19,114 +32,102 @@ const data = {
   },
   catalog: {
     focalLengthMm: {
-      design: 100,
+      design: 99.96,
     },
     fNumber: {
       design: 2,
     },
     elementCount: 7,
     groupCount: 6,
-    specs: [
-      "Patent-only Example II at the table\u2019s 100 mm scale: seven elements in six groups, nominal f/2. This is not an exact retail Summicron reconstruction.",
-      "Helium d (587.5618 nm), infinity only. Validated diagnostic field: \u00b15\u00b0. The patent\u2019s 50\u00b0 total field, broadband results and wider automatic analyses are unqualified.",
-      "Iris station, bore and clear radii are estimates. Modeled clipping is retained. No extra plate is included in Example II; the separate plate belongs to Fig. 1.",
-      "The nominal f/2 control derives its iris. Finite entrance equivalent is about f/2.008; an exact physical aperture is not established.",
-      "Original numerical data and hash were verified by the source scout. Local original pixel/hash verification is unavailable. See the companion analysis for provenance, sensitivity and optical limits.",
-    ],
+    imageCircleMm: 91.93596,
+    specs: ["7 ELEMENTS / 6 GROUPS", "ALL SPHERICAL", "DESIGN F/2", "MODIFIED GAUSS"],
   },
   elements: [
     {
       id: 1,
       name: "L1",
-      label: "L1",
-      type: "Source Spherical Element",
+      label: "Element 1",
+      type: "Biconvex Positive",
       nd: 1.6923,
       vd: 54.7,
       indexReference: "d",
-      indexReferenceNote:
-        "Patent explicitly defines nd for lowercase d-line;native helium-d587.5618nm. No calibrated broadband interpretation.",
-      glass:
-        "Literal helium-d/Abbe pair; no verified catalog identity or calibrated spectral curve.",
+      focalLengthMm: 69.04,
+      glass: "Unmatched (nd 1.6923 / ν 54.7)",
+      role: "Positive front collector of the split front member.",
     },
     {
       id: 2,
       name: "L2",
-      label: "L2",
-      type: "Source Spherical Element",
+      label: "Element 2",
+      type: "Biconcave Negative",
       nd: 1.65017,
       vd: 33.7,
       indexReference: "d",
-      indexReferenceNote:
-        "Patent explicitly defines nd for lowercase d-line;native helium-d587.5618nm. No calibrated broadband interpretation.",
-      glass:
-        "Literal helium-d/Abbe pair; no verified catalog identity or calibrated spectral curve.",
+      focalLengthMm: -126.39,
+      glass: "Unmatched (nd 1.65017 / ν 33.7)",
+      role: "Negative flint opposing the front collector's colour.",
     },
     {
       id: 3,
       name: "L3",
-      label: "L3",
-      type: "Source Spherical Element",
+      label: "Element 3",
+      type: "Positive Meniscus",
       nd: 1.6923,
       vd: 54.7,
       indexReference: "d",
-      indexReferenceNote:
-        "Patent explicitly defines nd for lowercase d-line;native helium-d587.5618nm. No calibrated broadband interpretation.",
-      glass:
-        "Literal helium-d/Abbe pair; no verified catalog identity or calibrated spectral curve.",
+      focalLengthMm: 112.13,
+      glass: "Unmatched (nd 1.6923 / ν 54.7)",
+      role: "Positive half of the air-spaced meniscus pair before the stop.",
     },
     {
       id: 4,
       name: "L4",
-      label: "L4",
-      type: "Source Spherical Element",
+      label: "Element 4",
+      type: "Negative Meniscus",
       nd: 1.57501,
       vd: 41.3,
       indexReference: "d",
-      indexReferenceNote:
-        "Patent explicitly defines nd for lowercase d-line;native helium-d587.5618nm. No calibrated broadband interpretation.",
-      glass:
-        "Literal helium-d/Abbe pair; no verified catalog identity or calibrated spectral curve.",
+      focalLengthMm: -71.96,
+      glass: "QF3 (CDGM)",
+      role: "Negative meniscus with its deeply concave rear face toward the stop.",
     },
     {
       id: 5,
       name: "L5",
-      label: "L5",
-      type: "Source Spherical Element",
+      label: "Element 5",
+      type: "Biconcave Negative",
       nd: 1.58217,
       vd: 38,
       indexReference: "d",
-      indexReferenceNote:
-        "Patent explicitly defines nd for lowercase d-line;native helium-d587.5618nm. No calibrated broadband interpretation.",
-      glass:
-        "Literal helium-d/Abbe pair; no verified catalog identity or calibrated spectral curve.",
-      cemented: "G5",
+      focalLengthMm: -44.99,
+      glass: "Unmatched (nd 1.58217 / ν 38.0)",
+      role: "Negative front element of the rear cemented pair.",
+      cemented: "C1",
     },
     {
       id: 6,
       name: "L6",
-      label: "L6",
-      type: "Source Spherical Element",
+      label: "Element 6",
+      type: "Biconvex Positive",
       nd: 1.6923,
       vd: 54.7,
       indexReference: "d",
-      indexReferenceNote:
-        "Patent explicitly defines nd for lowercase d-line;native helium-d587.5618nm. No calibrated broadband interpretation.",
-      glass:
-        "Literal helium-d/Abbe pair; no verified catalog identity or calibrated spectral curve.",
-      cemented: "G5",
+      focalLengthMm: 54.38,
+      glass: "Unmatched (nd 1.6923 / ν 54.7)",
+      role: "Positive rear element of the cemented pair.",
+      cemented: "C1",
     },
     {
       id: 7,
       name: "L7",
-      label: "L7",
-      type: "Source Spherical Element",
+      label: "Element 7",
+      type: "Biconvex Positive",
       nd: 1.71715,
       vd: 47.9,
       indexReference: "d",
-      indexReferenceNote:
-        "Patent explicitly defines nd for lowercase d-line;native helium-d587.5618nm. No calibrated broadband interpretation.",
-      glass:
-        "Literal helium-d/Abbe pair; no verified catalog identity or calibrated spectral curve.",
+      focalLengthMm: 106.89,
+      glass: "Unmatched (nd 1.71715 / ν 47.9)",
+      role: "Positive rear element following the cemented pair.",
     },
   ],
   surfaces: [
@@ -228,51 +229,51 @@ const data = {
   },
   projection: {
     kind: "rectilinear",
-    fullFieldDeg: 10,
-    maxTraceFieldDeg: 5,
+    fullFieldDeg: 50,
+    maxTraceFieldDeg: 25,
   },
   rays: {
     offAxisFieldFrac: 1,
   },
   focus: {
-    closeFocusM: 1000000000000000,
-    description:
-      "Infinity-only patent reference. Finite focusing is not modeled.",
+    closeFocusM: 1e15,
+    description: "Infinity focus only; the patent gives no close-focus data.",
   },
   groups: [
     {
-      text: "G1 \u00b7 L1",
+      text: "Group 1",
       fromSurface: "1",
       toSurface: "2",
     },
     {
-      text: "G2 \u00b7 L2",
+      text: "Group 2",
       fromSurface: "3",
       toSurface: "4",
     },
     {
-      text: "G3 \u00b7 L3",
+      text: "Group 3",
       fromSurface: "5",
       toSurface: "6",
     },
     {
-      text: "G4 \u00b7 L4",
+      text: "Group 4",
       fromSurface: "7",
       toSurface: "8",
     },
     {
-      text: "G5 \u00b7 L5+L6",
+      text: "Group 5",
       fromSurface: "9",
       toSurface: "11",
     },
     {
-      text: "G6 \u00b7 L7",
+      text: "Group 6",
       fromSurface: "12",
       toSurface: "13",
     },
   ],
+  doublets: [{ text: "C1", fromSurface: "9", toSurface: "11" }],
   layout: {
     yScFill: 0.5,
   },
 } satisfies LensDataV2Input;
-export default data;
+export default LENS_DATA;
