@@ -5,14 +5,16 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Radii, element thicknesses, air spaces and sodium D-line glass values are printed.
  * The stop position and opening and all clear radii are inferred; the stop divides
  * the printed 17.66 mm rear air space into 11.00 mm and 6.66 mm. The image plane
- * is the computed paraxial infinity focus, 67.6793 mm behind the last surface.
+ * is the computed paraxial infinity focus, 67.68 mm behind the last surface.
+ * The summary ratios 0.43 and 2.79 differ slightly from the values 0.425 and
+ * 2.784 derived from the printed radii; the radii are retained.
  */
 const LENS_DATA = {
   schema: 2,
   key: "kodak-100mm-f25-us2503751",
   maker: "Kodak",
   name: "KODAK 100mm f/2.5 (US 2,503,751 Design)",
-  subtitle: "US 2,503,751 A, Example 2 — Cooke triplet design",
+  subtitle: "US 2,503,751 A, Example 2 — Eastman Kodak / Litten, Aklin & Altman",
   visible: true,
   source: {
     patentNumber: "US 2,503,751 A",
@@ -35,7 +37,13 @@ const LENS_DATA = {
     elementCount: 3,
     groupCount: 3,
     imageCircleMm: 49.78,
-    specs: ["3 ELEMENTS / 3 GROUPS", "DESIGN F/2.5", "ALL SPHERICAL", "COOKE TRIPLET"],
+    specs: [
+      "3 ELEMENTS / 3 GROUPS",
+      "DESIGN f = 100 mm",
+      "DESIGN F/2.5",
+      "ALL SPHERICAL",
+      "COOKE TRIPLET",
+    ],
   },
   elements: [
     {
