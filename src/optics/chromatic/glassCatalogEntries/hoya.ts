@@ -2125,4 +2125,16 @@ export const HOYA_GLASS_ENTRIES: readonly GlassEntry[] = [
     source:
       "HOYA Zemax OpticStudio DATA 2026-07-07 (HOYA20260707.agf), MP-TAFD51-50 precision-moulding preform row; vendor formula-1 polynomial. It shares the six-digit code 821427 with M-TAFD51, so code6 is omitted.",
   },
+  /* Exact patent coordinates for the Meyer Optik Görlitz US 1,812,717 L1/L3 zinc crown (nD 1.5331 / V 58.0). */
+  {
+    name: "ZNC1",
+    vendor: "Hoya",
+    polynomial: [2.3183336, -0.0099949226, 0.010598834, 0.00078929099, -0.000080517518, 0.0000041882755],
+    nd: 1.533149,
+    vd: 58.063515,
+    PgF: 0.5432,
+    code6: "533581",
+    source:
+      "HOYA Zemax OpticStudio DATA 2026-07-07 (HOYA20260707_include_obsolete.agf), discontinued ZNC1 zinc crown row; vendor formula-1 polynomial.",
+  },
 ];
