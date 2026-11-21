@@ -5,8 +5,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Radii, thicknesses, air spaces and D-line index/Abbe pairs follow the two printed tables in millimetres.
  * The D line is taken as sodium, 589.3 nm. R10 is +60.8 mm; the text also describes it as about 0.61F.
  * The diaphragm lies between the inner menisci; its exact station is inferred, splitting the 17.8 mm gap
- * into 9.0 and 8.8 mm. Its radius is derived from the paraxial f/1.9 aperture. All clear rims are inferred;
- * the front rim passes the full 5° bundle at that iris. The image plane is the computed paraxial back focus,
+ * into 9.0 and 8.8 mm. Its radius is derived from the paraxial f/1.9 aperture. Clear rims are estimated from
+ * the drawing on PDF page 1: the inner doublets have square outer rims of 26 and 23 mm, and the rear doublet
+ * has a square 25 mm rim. The front singlet retains 30.08/30 mm rims and the diaphragm-facing curves end at
+ * 18 mm. The axial beam and full 5° bundle clear these rims. The image plane is the computed paraxial back focus,
  * 63.27 mm behind R11. The ±5.0° display field is illustrative; the patent gives no numerical field.
  */
 const LENS_DATA = {
@@ -153,14 +155,14 @@ const LENS_DATA = {
       label: "3",
       R: 42,
       d: 13.9,
-      sd: 28,
+      sd: 26,
       medium: 2,
     },
     {
       label: "4",
       R: 214,
       d: 3.7,
-      sd: 24,
+      sd: 26,
       medium: 3,
     },
     {
@@ -185,34 +187,34 @@ const LENS_DATA = {
       label: "7",
       R: -73.1,
       d: 7.9,
-      sd: 20,
+      sd: 23,
       medium: 5,
     },
     {
       label: "8",
       R: -37.8,
       d: 1.9,
-      sd: 22,
+      sd: 23,
     },
     {
       label: "9",
       R: "flat",
       d: 3.8,
-      sd: 23,
+      sd: 25,
       medium: 6,
     },
     {
       label: "10",
       R: 60.8,
       d: 12.8,
-      sd: 23,
+      sd: 25,
       medium: 7,
     },
     {
       label: "11",
       R: -68.3,
       d: 63.269633,
-      sd: 24,
+      sd: 25,
     },
   ],
   aperture: {
