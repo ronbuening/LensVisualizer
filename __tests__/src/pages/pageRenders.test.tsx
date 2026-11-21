@@ -181,6 +181,42 @@ describe("static page renders", () => {
     expect(scrollTo).toHaveBeenCalledWith({ top: 0, left: 0 });
   });
 
+  it.each([
+    ["2026-07-25", "Mar 24, 2026 (Updated: Jul 25, 2026)"],
+    ["2026-03-24", "Mar 24, 2026"],
+  ])("renders the article dateline for modification day %s", (lastModified, expected) => {
+    const slug = "dateline-fixture";
+    ARTICLE_CONTENT[slug] = {
+      title: "Dateline fixture",
+      description: "Synthetic article dates",
+      markdown: "# Dateline fixture\n\nArticle body.",
+      publishedOn: "2026-03-24",
+      lastModified,
+    };
+
+    try {
+      renderRoutes(
+        `/articles/${slug}`,
+        <Routes>
+          <Route path="/articles/:slug" element={<ArticlePage />} />
+        </Routes>,
+      );
+
+      const published = screen.getByText("Mar 24, 2026");
+      const dateline = published.parentElement!;
+      expect(published.tagName).toBe("TIME");
+      expect(published.getAttribute("datetime")).toBe("2026-03-24");
+      expect(dateline.textContent).toBe(expected);
+      expect(dateline.previousElementSibling?.tagName).toBe("NAV");
+      expect(dateline.nextElementSibling?.tagName).toBe("ARTICLE");
+      expect(Array.from(dateline.querySelectorAll("time"), (time) => time.dateTime)).toEqual(
+        lastModified === "2026-07-25" ? ["2026-03-24", "2026-07-25"] : ["2026-03-24"],
+      );
+    } finally {
+      delete ARTICLE_CONTENT[slug];
+    }
+  });
+
   it("renders GFM footnote references as article links", () => {
     renderRoutes(
       "/articles/achromat-apochromat",

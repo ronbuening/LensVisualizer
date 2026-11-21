@@ -8,11 +8,11 @@
 
 import { Link } from "react-router";
 import type { Theme } from "../../types/theme.js";
-import { formatDisplayDate } from "../../utils/content/changelogHelpers.js";
 import type { SeriesSummary } from "../../utils/content/homepageContent.js";
 import { canonicalPagePath } from "../../utils/seo/siteUrls.js";
 import { withAlpha } from "../../utils/style/styles.js";
 import { textRun } from "../../utils/text.js";
+import ArticleDateline from "./ArticleDateline.js";
 
 interface SeriesCardProps {
   series: SeriesSummary;
@@ -51,9 +51,12 @@ export default function SeriesCard({ series, theme: t }: SeriesCardProps) {
             {textRun(members.length, "-part series")}
           </span>
         </div>
-        <div style={{ fontSize: "0.7rem", color: t.label, marginBottom: "0.3rem" }}>
-          {formatDisplayDate(landing.date)}
-        </div>
+        <ArticleDateline
+          publishedOn={landing.date}
+          lastModified={landing.lastModified}
+          theme={t}
+          style={{ marginBottom: "0.3rem" }}
+        />
         <div style={{ fontSize: "0.8rem", color: t.muted, lineHeight: 1.5 }}>{landing.summary}</div>
       </Link>
 
