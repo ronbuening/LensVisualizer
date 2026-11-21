@@ -7,7 +7,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * and .0060. The model follows the two numerical tables, preserving the 15.91 mm
  * central air space. All radii, thicknesses, D-line indices and Abbe numbers are printed.
  * The stop's 8.8 / 7.11 mm split, bore and all clear rims are inferred; the final
- * image gap is the computed paraxial back focus. The illustrated +/-10 degree field
+ * image gap is the computed paraxial back focus. The modelled +/-10 degree field
  * is not specified by the patent. Element 3 is potassium bromide crystal; the
  * printed relative partial dispersions are documented in the analysis.
  */
