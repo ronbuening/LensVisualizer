@@ -13,7 +13,7 @@ const LENS_DATA = {
   key: "carl-zeiss-jena-tessar-100mm-f35-us1741947",
   maker: "Carl Zeiss Jena",
   name: "CARL ZEISS JENA TESSAR 100mm f/3.5 (US 1,741,947 Design)",
-  subtitle: "US 1,741,947 A, sole example — Tessar-type design",
+  subtitle: "US 1,741,947 A, sole example — Zeiss / Merté",
   visible: true,
   source: {
     patentNumber: "US 1,741,947 A",
@@ -36,7 +36,12 @@ const LENS_DATA = {
     fNumber: {
       design: 3.5,
     },
-    specs: ["4 ELEMENTS / 3 GROUPS", "ALL SPHERICAL", "DESIGN F/3.5"],
+    specs: [
+      "4 ELEMENTS / 3 GROUPS",
+      "ALL SPHERICAL",
+      "DESIGN f = 100 mm",
+      "DESIGN F/3.5",
+    ],
   },
   elements: [
     {

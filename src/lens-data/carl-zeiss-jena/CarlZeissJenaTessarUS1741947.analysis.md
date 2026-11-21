@@ -14,7 +14,7 @@
 
 **Example details:** Sole numerical example; drawing on PDF page 1 and typed prescription on PDF page 2.
 
-The patent describes a photographic and projection objective with four elements in three groups, a nominal focal length of 100, an aperture of f/3.5 and a full field of 55°. The model uses millimetres. Its D-line effective focal length is 100.04747 mm, 0.047% above the printed value; the computed paraxial back focal distance is 85.28443 mm. The patent gives no back focal distance. [Original patent](https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/1741947).
+The patent describes a photographic and projection objective with four elements in three groups, a nominal focal length of 100, an aperture of f/3.5 and a full field of 55.0°. The model uses millimetres. Its D-line effective focal length is 100.05 mm, 0.05 mm above the printed value; the calculated paraxial back focal distance is 85.284 mm. The patent gives no back focal distance. [Original patent](https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/1741947).
 
 The layout is Tessar-type: a positive front singlet, a negative middle singlet and a rear cemented pair. ZEISS documents this architecture and production Tessars at f/3.5, but no source ties this particular prescription to a production Tessar. The later Merté–Wandersleb patent US 1,849,681 A, with German priority in 1930, contains different prescriptions. The Tessar name here identifies the design family. [ZEISS Tessar history](https://lenspire.zeiss.com/photo/app/uploads/2018/02/cln39_en_web_special_tessar.pdf), [later patent](https://patents.google.com/patent/US1849681A/en).
 
@@ -22,7 +22,7 @@ The layout is Tessar-type: a positive front singlet, a negative middle singlet a
 
 Elements I and II are air-spaced singlets. Elements III and IV form the rear cemented doublet C1, with a shared interface at R6. R2 and R5 are optical flats; the remaining refracting surfaces are spherical. There are seven refracting boundaries and a separate diaphragm between II and III.
 
-The printed diaphragm station is 4.42 mm behind R4 and 2.29 mm ahead of R5. Its axial coordinate is 18.20 mm from the first vertex. The first-to-last vertex track is 29.99 mm, and the image plane lies 115.27443 mm behind the first vertex.
+The printed diaphragm station is 4.42 mm behind R4 and 2.29 mm ahead of R5. Its axial coordinate is 18.20 mm from the first vertex. The first-to-last vertex track is 29.99 mm, and the image plane lies 115.274 mm behind the first vertex.
 
 ## Element-by-Element Analysis
 
@@ -56,8 +56,8 @@ The patent prints nD and Abbe numbers. The model retains those coordinates and u
 
 | Element | Catalogue disposition           |        ΔnD |     ΔνD |
 | ------- | ------------------------------- | ---------: | ------: |
-| I       | K-SK7 (Sumita)                  | +0.0000271 | −0.0431 |
-| II      | FL57 (Hoya)                     | +0.0000812 | +0.0846 |
+| I       | K-SK7 (Sumita)                  | +0.0000271 |   −0.04 |
+| II      | FL57 (Hoya)                     | +0.0000812 |   +0.08 |
 | III     | Unmatched (nD 1.52648 / ν 51.4) |          — |       — |
 | IV      | Unmatched (nD 1.62377 / ν 56.9) |          — |       — |
 
@@ -65,13 +65,13 @@ The first two labels supply catalogue dispersion curves without establishing the
 
 ## Focus Mechanism
 
-The model represents infinity focus only. The patent gives no close-focus distances, focus-state table or movement law. All elements remain fixed, and the image plane is the computed paraxial infinity plane, 85.28443 mm behind R7. No production minimum focus distance is assigned.
+The model is focused at infinity. The patent gives no close-focus distances, focus-state table or movement law. All elements remain fixed, and the image plane is the calculated paraxial infinity plane, 85.284 mm behind R7. No production minimum focus distance is assigned.
 
 ## Aperture and Field Coverage
 
-The patent specifies the diaphragm's position but not its diameter. The paraxial f/3.5 aperture gives a stop radius of 11.90009 mm. Exact axial tracing gives a real-ray entrance equivalent of f/3.549 at that opening; a nominal f/3.5 marginal ray would require a stop radius of 12.07200 mm.
+The patent specifies the diaphragm's position but not its diameter. The paraxial f/3.50 aperture gives a stop radius of 11.900 mm. Exact axial tracing gives a real-ray entrance equivalent of f/3.55 at that opening; a nominal f/3.50 marginal ray would require a stop radius of 12.072 mm.
 
-The patent's stated full field of 55° is represented by a 27.5° half-field. Its real chief ray reaches an image height of 51.64094 mm at the paraxial image plane, giving the model's 103.28 mm image circle. This diameter is derived from the stated field, rather than a published film format. Chief rays clear the estimated rims through 27.5°, while peripheral pupil rays are vignetted; chief-ray coverage does not imply full-pupil illumination.
+The patent's stated full field of 55.0° gives a 27.5° half-field. Its real chief ray reaches an image height of 51.64 mm at the paraxial image plane, giving an approximately 103.28 mm image circle. This diameter is derived from the stated field, rather than a published film format. Chief rays clear the estimated rims through 27.5°, while peripheral pupil rays are vignetted; chief-ray coverage does not imply full-pupil illumination.
 
 Every clear semi-diameter is inferred. The drawing suggests roughly 13.7 mm outer rims, with chamfers near R4 and R5. The model's larger 15.2–16.5 mm rims differ visibly: element I has an edge about 0.24 mm thick, and IV ends in a pointed rim. The drawing's front rim would also be too small for the nominal f/3.5 axial beam. These differences remain unresolved.
 
@@ -85,7 +85,7 @@ The numerical example satisfies the reported curvature conditions:
 | Sum of the middle element's absolute radii at least nine tenths of focal length | 71.13 + 28.85 = 99.98 mm ≥ 90 mm |
 | Cemented radius no greater than five sixths of the rear radius magnitude        | 28.50 mm ≤ 39.35 mm              |
 
-The dimensions meet the surface-clearance checks without local geometry overrides. Image-quality calculations depend on the inferred rims, unprinted iris diameter and calculated image plane. The patent supplies no MTF curve for this prescription; simulated MTF is not a measurement of a historical lens.
+The surfaces stay clear of each other. Image-quality calculations depend on the inferred rims, unprinted iris diameter and calculated image plane. The patent supplies no MTF curve for this prescription; simulated MTF is not a measurement of a historical lens.
 
 ## Sources
 
