@@ -20,7 +20,7 @@ const LENS_DATA = {
   key: "cooke-100mm-f35-us2601595",
   maker: "Cooke",
   name: "COOKE 100mm f/3.5 (US 2,601,595 Design)",
-  subtitle: "US 2,601,595 A, Example VII — four-component wide-angle design",
+  subtitle: "US 2,601,595 A, Example VII — four-component anastigmat design",
   visible: false,
   source: {
     patentNumber: "US 2,601,595 A",
@@ -33,16 +33,16 @@ const LENS_DATA = {
     assignees: ["Taylor, Taylor & Hobson Limited"],
   },
   catalog: {
-    imageCircleMm: 93.32155407299163,
+    imageCircleMm: 93.32,
     elementCount: 6,
     groupCount: 5,
     focalLengthMm: {
-      design: 100,
+      design: 100.02,
     },
     fNumber: {
       design: 3.5,
     },
-    specs: ["6 ELEMENTS / 5 GROUPS", "ALL SPHERICAL", "DESIGN F/3.5", "WIDE-ANGLE"],
+    specs: ["6 ELEMENTS / 5 GROUPS", "ALL SPHERICAL", "DESIGN F/3.5"],
   },
   elements: [
     {
