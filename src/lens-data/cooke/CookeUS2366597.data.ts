@@ -5,8 +5,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * The unit-focal-length prescription is multiplied by 100 to give millimetres.
  * Radii, thicknesses, air spaces and D-line glass data follow the printed table.
  * The inferred stop splits the 6.5 mm rear air space into 3 and 3.5 mm.
- * Clear semi-diameters are inferred; the image gap is the computed paraxial
- * back focus, 48.91 mm. The illustrative ±5.0° field is not printed.
+ * Clear semi-diameters are estimated from Figure 1's proportions, with square
+ * positive elements, beveled rear faces and positive edge thickness; axial
+ * rays clear every rim.
+ * The image gap is the computed paraxial back focus, 48.91 mm.
+ * The illustrative ±5.0° field is not printed.
  * Total length is 0.871 of the computed focal length, below the stated 7/8.
  */
 const LENS_DATA = {
@@ -129,14 +132,14 @@ const LENS_DATA = {
       label: "1",
       R: 51.23,
       d: 8.7,
-      sd: 23,
+      sd: 22.7,
       medium: 1,
     },
     {
       label: "2",
       R: -82,
       d: 1.8,
-      sd: 21,
+      sd: 22.7,
       medium: 2,
     },
     {
@@ -149,21 +152,21 @@ const LENS_DATA = {
       label: "4",
       R: 37.1,
       d: 8.6,
-      sd: 20,
+      sd: 22,
       medium: 3,
     },
     {
       label: "5",
       R: -200,
       d: 1.8,
-      sd: 17.4,
+      sd: 22,
       medium: 4,
     },
     {
       label: "6",
       R: 71.2,
       d: 3,
-      sd: 17,
+      sd: 21.4,
     },
     {
       label: "STO",
@@ -174,21 +177,21 @@ const LENS_DATA = {
       label: "7",
       R: 26.67,
       d: 7,
-      sd: 14,
+      sd: 16,
       medium: 5,
     },
     {
       label: "8",
       R: -100,
       d: 2.3,
-      sd: 14,
+      sd: 16,
       medium: 6,
     },
     {
       label: "9",
       R: 14.66,
       d: 48.908493,
-      sd: 11.5,
+      sd: 12.7,
     },
   ],
   aperture: {
