@@ -19,9 +19,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  derived from the design f-number, F/5.6, and the computed EFL, giving     ║
  * ║  26.783548 mm.                                                             ║
  * ║                                                                            ║
- * ║  FOCUS: NO_INTERNAL_RECONSTRUCTION. The patent publishes no finite-focus   ║
- * ║  spacing states. The 4.5 m close-focus value is production metadata only;  ║
- * ║  no focus var spacings are invented.                                       ║
+ * ║  FOCUS: infinity only. The patent publishes no close-focus spacing         ║
+ * ║  states. The 4.5 m close-focus value is product information only; no       ║
+ * ║  spacing changes with focus.                                               ║
  * ║                                                                            ║
  * ║  SEMI-DIAMETERS: No clear apertures are published. SDs are inferred from   ║
  * ║  the F/5.6 entrance pupil, the patent optical section, the production      ║
@@ -159,7 +159,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 4.5,
     description:
-      "NO_INTERNAL_RECONSTRUCTION: the production lens is documented to focus to 4.5 m, but JP 1978-129629 Example 2 publishes no finite-focus spacing states; no internal focus movement is modeled.",
+      "Infinity focus only. The production lens is documented to focus to 4.5 m, but JP 1978-129629 Example 2 publishes no close-focus spacings, so focus travel is not modeled.",
   },
 
   aperture: { nominalFNumber: 5.6, fStops: [5.6, 8, 11, 16, 22], maxFNumber: 22 },

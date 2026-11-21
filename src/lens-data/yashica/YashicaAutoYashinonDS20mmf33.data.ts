@@ -223,7 +223,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.3,
     description:
-      "NO_INTERNAL_RECONSTRUCTION: the patent publishes one infinity-focus prescription and no focusing data, so no focus movement is modeled. 0.3 m is the marketed minimum focus distance, not a modeled state.",
+      "Infinity focus only. The patent publishes one infinity-focus prescription and no focusing data, so focus travel is not modeled. 0.3 m is the marketed minimum focus distance, not a modeled state.",
   },
 
   aperture: { nominalFNumber: 3.3, fStops: [3.3, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22 },

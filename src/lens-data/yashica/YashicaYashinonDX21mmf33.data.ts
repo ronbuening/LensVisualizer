@@ -17,9 +17,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  radius is derived from the design f-number, the published f/3.3, using ║
  * ║  the modeled entrance pupil.                                            ║
  * ║                                                                          ║
- * ║  Focus status: NO_INTERNAL_RECONSTRUCTION. The patent gives one fixed   ║
- * ║  prescription and no finite-object motion table. The marketed 0.8m MFD ║
- * ║  is metadata only; no internal or unit-focus motion is invented.        ║
+ * ║  Focus: infinity only. The patent gives one fixed prescription and      ║
+ * ║  no close-focus motion table. The marketed 0.8 m minimum focus distance ║
+ * ║  is product information only; no group moves with focus.                ║
  * ║                                                                          ║
  * ║  Glass: the patent explicitly defines n_i as the d-line refractive index. ║
  * ║  Historical vendor provenance is unresolved. Each element therefore uses║
@@ -192,7 +192,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.8,
     description:
-      "NO_INTERNAL_RECONSTRUCTION — JP 1969-024068's sole example publishes one fixed prescription and no finite-focus movement table; the 0.8m marketed MFD is metadata only and no focus movement is modeled.",
+      "Infinity focus only. JP 1969-024068's sole example publishes one fixed prescription and no close-focus data, so focus travel is not modeled. The marketed 0.8 m minimum focus distance is product information.",
   },
 
   /* ── Aperture configuration ── */
