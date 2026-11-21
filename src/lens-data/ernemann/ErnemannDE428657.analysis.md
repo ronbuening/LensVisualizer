@@ -38,13 +38,13 @@ The front converging element is 8.57 mm thick, with radii +48.57 and −952.45 m
 
 nD = 1.6068, ν = 59.5. Glass: Unmatched. Standalone focal length = +221.10 mm.
 
-This second converging element precedes the central diverging lens. Its thickness is 9.52 mm and its radii are +38.10 and +48.19 mm. Clear radii of 23.5 and 23 mm follow Figure 2 approximately; they do not establish a factory rim shape.
+This second converging element precedes the central diverging lens. Its thickness is 9.52 mm and its radii are +38.10 and +48.19 mm. Clear radii of 23.5 and 20.5 mm follow Figure 2 approximately, with the rear curve ending below the front rim; they do not establish a factory rim shape.
 
 ### L3 / Element 3 — Biconcave Negative
 
 nD = 1.6477, ν = 33.9. Glass: Unmatched. Standalone focal length = −37.56 mm.
 
-The central diverging element is the more dispersive of the two glass types. It is 2.86 mm thick with radii −223.83 and +27.43 mm. Its clear radii are 19.5 and 19 mm. The following 19.05 mm air gap contains the inferred stop.
+The central diverging element is the more dispersive of the two glass types. It is 2.86 mm thick with radii −223.83 and +27.43 mm. Its clear radii are 19.5 and 17.5 mm, following the shorter rear curve in Figure 2. The following 19.05 mm air gap contains the inferred stop.
 
 ### L4 / Element 4 — Negative Meniscus
 
@@ -74,7 +74,7 @@ No iris is drawn or dimensioned. The stop is placed halfway through the 19.05 mm
 
 The ±5.0° field is illustrative because the patent gives neither a numerical field angle nor a format. Its 5.0° chief ray reaches an image height of 8.75 mm and clears every rim. No catalog image circle is assigned from that chosen field.
 
-The clear radii combine the retained front estimates with Figure 2 readings for the remaining elements. The larger rear rims admit the 5.0° bundle without rear clipping. Front-rim vignetting remains; this construction does not establish full-field illumination or the dimensions of a manufactured barrel. All element edges and adjacent clearances remain positive, and no glass crosses the stop plane.
+The clear radii follow Figure 2 approximately: 25.5 mm at R1/R2, 23.5/20.5 mm at R3/R4, 19.5/17.5 mm at R5/R6, 23.5 mm at R7/R8 and 24 mm at R9/R10. The shorter R4 and R6 curves preserve the drawn taper of L2 and L3. At f/2 and the illustrative 5.0° edge, their full-bundle extremes are 19.90 and 16.25 mm, leaving about 0.6 and 1.3 mm of rim clearance. Geometric transmission is about 93.4% at that edge; front-rim vignetting remains. This construction does not establish full-field illumination or the dimensions of a manufactured barrel. All element edges and adjacent clearances remain positive, and no glass crosses the stop plane.
 
 ## Model Scope and Limitations
 

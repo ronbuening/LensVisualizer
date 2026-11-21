@@ -6,9 +6,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * The patent places the film behind R10 and the screen on the R1 side;
  * this infinity model traces from the screen side toward the film. The printed
  * radii, thicknesses, air gaps and D-line glass values are retained. The stop is
- * inferred at the midpoint of the 19.05 mm central gap. Clear radii combine
- * estimates with Figure 2 readings; the image plane is the calculated paraxial
- * back focus, 56.18 mm. The illustrative half-field is 5.0 degrees.
+ * inferred at the midpoint of the 19.05 mm central gap. Clear radii follow
+ * Figure 2 approximately, including the shorter curved faces at R4 and R6;
+ * real rays clear these rims at f/2 and the illustrative 5.0-degree half-field.
+ * The image plane is the calculated paraxial back focus, 56.18 mm.
  */
 const LENS_DATA = {
   schema: 2,
@@ -136,7 +137,7 @@ const LENS_DATA = {
       label: "4",
       R: 48.19,
       d: 5.71,
-      sd: 23,
+      sd: 20.5,
     },
     {
       label: "5",
@@ -149,7 +150,7 @@ const LENS_DATA = {
       label: "6",
       R: 27.43,
       d: 9.525,
-      sd: 19,
+      sd: 17.5,
     },
     {
       label: "STO",
