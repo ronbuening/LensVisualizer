@@ -1,14 +1,26 @@
-import type { LensDataV2Input } from "../repo/src/types/lensDataV2.js";
-const data = {
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * US 2,297,452 A, sole example (Figure 1), f = 100 and aperture 1:1.3.
+ * The patent gives no physical unit; the model takes its lengths as millimetres.
+ * The signed radii, thicknesses, air spaces and six index/Abbe pairs follow the
+ * printed table. The D/C/F correction table supports the D-line index reference
+ * (taken as sodium, 589.3 nm). No glass supplier is established.
+ * Inferred: all clear semi-diameters and the iris, placed 11.75 mm behind r8 and
+ * 1.07 mm ahead of r9 within the printed 12.82 mm air space. Figure 1 draws no iris.
+ * The image gap is the computed paraxial back focus, rounded to 34.8788 mm,
+ * against the printed D-line axial back distance of 34.875. The field of ±5° is
+ * illustrative; the patent states only moderate angles of view.
+ */
+const LENS_DATA = {
   schema: 2,
-  key: "berek-zimmermann-kleineberg-us2297452-infinity-reference",
-  maker: null,
-  name: "BEREK, ZIMMERMANN & KLEINEBERG US2297452 \u2014 SOURCE f/1.3",
-  subtitle:
-    "Sole patent example \u00b7 6E/4G \u00b7 sodium-D infinity \u00b7 estimated iris/rims",
-  visible: false,
+  key: "leitz-100mm-f13-us2297452",
+  maker: "Leica",
+  name: "LEITZ 100mm f/1.3 (US 2,297,452 Design)",
+  subtitle: "US 2,297,452 A, sole example — Leitz split-front triplet",
+  visible: true,
   source: {
-    patentNumber: "US 2,297,452",
+    patentNumber: "US 2,297,452 A",
     patentYear: 1942,
     example: {
       label: "Sole example",
@@ -20,94 +32,91 @@ const data = {
   },
   catalog: {
     focalLengthMm: {
-      design: 100,
+      design: 100.01,
     },
     fNumber: {
       design: 1.3,
     },
     elementCount: 6,
     groupCount: 4,
-    specs: [
-      "Literal100mm f1.3 soleexample/Fig1,6E/4G2+2|1|1,cementR2/R5,R7opticalplane. No commercial Leitz identity.",
-      "Source sodium-D n/V retained,no fabricatedC/Fglass from observationalcrossings,no calibrated broadband or catalog substitution.",
-      "Literal EFL100.005617633/BFD34.878822756mm versus printedD-axisBFD34.875,computedGaussian plane separate,no fitting.",
-      "ExactS3air12.82mm afterR8 retained;stop split11.75/1.07,z77.83 and caps estimated,no source bore.",
-      "Saved source/controlf1.3 uses stockparaxialiris,independent finite-marginal16.989196mm seed separate and not forced across native source-aperture guard. Actual equivalents documented.",
-      "Chosen actual +/-5deg diagnostic only,no invented format,sourcefield,retail,finite,broadband,widerautomaticMTF or throughputclaim.",
-      "Reference geometric sodium-D MTF only through supported fractions within5deg. Relayed10degbench and sourceC/Fobservations are not localnative or calibrated spectralclaims.",
-      "Signed original/pin visually verified externally,no localPDF/pixels/rehash. Separate localpatent prose corroborates firsttwo doublets then twosinglets;no source-route retry.",
-    ],
+    specs: ["6 ELEMENTS / 4 GROUPS", "ALL SPHERICAL", "DESIGN F/1.3", "SPLIT-FRONT TRIPLET"],
   },
   elements: [
     {
       id: 1,
       name: "L1",
-      label: "L1",
-      type: "Source Spherical Element",
+      label: "Element 1",
+      type: "Biconvex Positive",
       nd: 1.5338,
       vd: 55.4,
       indexReference: "D",
-      glass:
-        "Literal unmatched sodium-D/Abbe pair;no invented C/F indices or calibrated spectral curve.",
-      cemented: "D1",
+      glass: "Unmatched (nD 1.5338 / ν 55.4)",
+      focalLengthMm: 103.1,
+      role: "Positive front element of the first collecting doublet.",
+      cemented: "C1",
     },
     {
       id: 2,
       name: "L2",
-      label: "L2",
-      type: "Source Spherical Element",
+      label: "Element 2",
+      type: "Negative Meniscus",
       nd: 1.7283,
       vd: 28.3,
       indexReference: "D",
-      glass:
-        "Literal unmatched sodium-D/Abbe pair;no invented C/F indices or calibrated spectral curve.",
-      cemented: "D1",
+      glass: "Unmatched (nD 1.7283 / ν 28.3)",
+      focalLengthMm: -268.67,
+      role: "Dispersive negative partner in the first collecting doublet.",
+      cemented: "C1",
     },
     {
       id: 3,
       name: "L3",
-      label: "L3",
-      type: "Source Spherical Element",
+      label: "Element 3",
+      type: "Biconvex Positive",
       nd: 1.623,
       vd: 58.1,
       indexReference: "D",
-      glass:
-        "Literal unmatched sodium-D/Abbe pair;no invented C/F indices or calibrated spectral curve.",
-      cemented: "D2",
+      glass: "Unmatched (nD 1.6230 / ν 58.1)",
+      focalLengthMm: 78.09,
+      role: "Positive front element of the second collecting doublet.",
+      cemented: "C2",
     },
     {
       id: 4,
       name: "L4",
-      label: "L4",
-      type: "Source Spherical Element",
+      label: "Element 4",
+      type: "Biconcave Negative",
       nd: 1.7283,
       vd: 28.3,
       indexReference: "D",
-      glass:
-        "Literal unmatched sodium-D/Abbe pair;no invented C/F indices or calibrated spectral curve.",
-      cemented: "D2",
+      glass: "Unmatched (nD 1.7283 / ν 28.3)",
+      focalLengthMm: -122.94,
+      role: "Dispersive negative partner in the second collecting doublet.",
+      cemented: "C2",
     },
     {
       id: 5,
       name: "L5",
-      label: "L5",
-      type: "Source Spherical Element",
+      label: "Element 5",
+      type: "Plano-Concave Negative",
       nd: 1.6073,
       vd: 49.2,
       indexReference: "D",
-      glass:
-        "Literal unmatched sodium-D/Abbe pair;no invented C/F indices or calibrated spectral curve.",
+      glass: "Unmatched (nD 1.6073 / ν 49.2)",
+      focalLengthMm: -47.09,
+      role: "Negative singlet between the collecting doublets and the rear positive lens.",
     },
     {
       id: 6,
       name: "L6",
-      label: "L6",
-      type: "Source Spherical Element",
+      label: "Element 6",
+      type: "Biconvex Positive",
       nd: 1.6074,
       vd: 56.7,
       indexReference: "D",
-      glass:
-        "Literal unmatched sodium-D/Abbe pair;no invented C/F indices or calibrated spectral curve.",
+      glass: "Unmatched (nD 1.6074 / ν 56.7)",
+      focalLengthMm: 56.07,
+      role: "Rear positive singlet that brings the beam to the image.",
     },
   ],
   surfaces: [
@@ -179,7 +188,7 @@ const data = {
     {
       label: "10",
       R: -108.5,
-      d: 34.87882275568537,
+      d: 34.8788,
       sd: 26,
     },
   ],
@@ -197,34 +206,37 @@ const data = {
     offAxisFieldFrac: 1,
   },
   focus: {
-    closeFocusM: 1000000000000000,
-    description:
-      "Literal100mm f1.3 soleexample/Fig1,6E/4G2+2|1|1,cementR2/R5,R7opticalplane. No commercial Leitz identity. Source sodium-D n/V retained,no fabricatedC/Fglass from observationalcrossings,no calibrated broadband or catalog substitution. Literal EFL100.005617633/BFD34.878822756mm versus printedD-axisBFD34.875,computedGaussian plane separate,no fitting. ExactS3air12.82mm afterR8 retained;stop split11.75/1.07,z77.83 and caps estimated,no source bore. Saved source/controlf1.3 uses stockparaxialiris,independent finite-marginal16.989196mm seed separate and not forced across native source-aperture guard. Actual equivalents documented. Chosen actual +/-5deg diagnostic only,no invented format,sourcefield,retail,finite,broadband,widerautomaticMTF or throughputclaim. Reference geometric sodium-D MTF only through supported fractions within5deg. Relayed10degbench and sourceC/Fobservations are not localnative or calibrated spectralclaims. Signed original/pin visually verified externally,no localPDF/pixels/rehash. Separate localpatent prose corroborates firsttwo doublets then twosinglets;no source-route retry.",
+    closeFocusM: 1e15,
+    description: "Infinity focus only; the patent gives no close-focus data.",
   },
   groups: [
     {
-      text: "G1 \u00b7 L1+L2",
+      text: "Front doublet",
       fromSurface: "1",
       toSurface: "3",
     },
     {
-      text: "G2 \u00b7 L3+L4",
+      text: "Second doublet",
       fromSurface: "4",
       toSurface: "6",
     },
     {
-      text: "G3 \u00b7 L5",
+      text: "Negative singlet",
       fromSurface: "7",
       toSurface: "8",
     },
     {
-      text: "G4 \u00b7 L6",
+      text: "Rear positive singlet",
       fromSurface: "9",
       toSurface: "10",
     },
+  ],
+  doublets: [
+    { text: "C1", fromSurface: "1", toSurface: "3" },
+    { text: "C2", fromSurface: "4", toSurface: "6" },
   ],
   layout: {
     yScFill: 0.5,
   },
 } satisfies LensDataV2Input;
-export default data;
+export default LENS_DATA;
