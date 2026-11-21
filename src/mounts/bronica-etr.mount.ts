@@ -36,16 +36,15 @@ const OM2 = ["betr-om2"];
 const MP = ["betr-mp"];
 
 /**
- * Entry gaps between the body claws 15 as drawn in FIG. 2: [start, centre, end] in the camera-front
- * frame, numbered clockwise from the gap at 12 o'clock. The claws themselves sit between the gaps at
- * 22-68, 111-161, 202-246 and 292-338 deg (centres 45/136/224/315), read from the radial steps at each
- * claw end, about ±2°.
+ * Body claws 15 as drawn in FIG. 2: [start, centre, end] in the camera-front frame, numbered clockwise
+ * from 12 o'clock. Read from the radial steps at each claw end, about ±2°. The open gaps between them
+ * are centred near 0, 89.5, 181.5 and 269 deg.
  */
-const BODY_GAPS: [number, number, number][] = [
-  [338, 0, 22],
-  [68, 89.5, 111],
-  [161, 181.5, 202],
-  [246, 269, 292],
+const BODY_CLAWS: [number, number, number][] = [
+  [22, 45, 68],
+  [111, 136, 161],
+  [202, 224, 246],
+  [292, 315, 338],
 ];
 
 const LOCK_PIN_DEG = 121;
@@ -179,7 +178,7 @@ const BRONICA_ETR_MOUNT = {
       shapeNotes:
         "chromed body mount ring; outer diameter about 84 mm scaled from the body photograph on p. 39 of the ETRSi owner manual against the 87 mm body height in its specifications, about ±5 mm",
     },
-    ...BODY_GAPS.map(([start, center, end], index) => ({
+    ...BODY_CLAWS.map(([start, center, end], index) => ({
       featureId: `body-slot-${index + 1}`,
       featureType: "bayonet_receiving_slot",
       profileId: PROFILE,
@@ -192,7 +191,7 @@ const BRONICA_ETR_MOUNT = {
       depthMm: unknownV([]),
       matesWith: `lens-lug-${index + 1}`,
       shapeNotes:
-        "entry gap between two inwardly bent body bayonet claws 15, which sit at about 22-68, 111-161, 202-246 and 292-338 deg; claw edges scaled from US4063264A FIG. 2 (camera-front view, no stated angles or scale), about ±2°; four claws per the owner manuals; radii and depth not sourced",
+        "inwardly bent body bayonet claw 15, the solid part that retains a lens claw; the open entry gaps sit between the claws. Edges scaled from US4063264A FIG. 2 (camera-front view, no stated angles or scale), about ±2°; four claws per the owner manuals; radii and depth not sourced",
     })),
     {
       featureId: "body-index-mark",
@@ -270,7 +269,7 @@ const BRONICA_ETR_MOUNT = {
       matesWith: "",
       shapeNotes: "lens rear face 2a and flange; diameters not sourced, drawn as a placeholder",
     },
-    ...BODY_GAPS.map(([start, center, end], index) => ({
+    ...BODY_CLAWS.map(([start, center, end], index) => ({
       featureId: `lens-lug-${index + 1}`,
       featureType: "bayonet_lug",
       profileId: PROFILE,
@@ -283,7 +282,7 @@ const BRONICA_ETR_MOUNT = {
       thicknessMm: unknownV([]),
       matesWith: `body-slot-${index + 1}`,
       shapeNotes:
-        "outwardly bent lens bayonet claw 3, stored at the entry gap it passes through; the gap span is only an upper bound for the claw, whose own length is not sourced, because US4063264A FIG. 1 is a perspective view and cannot be scaled",
+        "outwardly bent lens bayonet claw 3, drawn where it sits on a mounted lens, behind the body claw at the same angle; the drawn arc is the body claw it engages, and the lens claw's own length is not sourced, because US4063264A FIG. 1 is a perspective view and cannot be scaled",
     })),
     {
       featureId: "lens-index-mark",

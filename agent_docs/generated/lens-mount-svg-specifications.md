@@ -93,9 +93,9 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
 
 #### Figures (selected profile `bronica-etr/base`)
 
-**Camera-side front view** — viewBox `-51 -54 102 105` · 50 elements in 5 layers · hash `e10e1987` ([standalone SVG](mounts/bronica-etr-camera-front.svg))
+**Camera-side front view** — viewBox `-51 -54 102 105` · 50 elements in 5 layers · hash `11223f5d` ([standalone SVG](mounts/bronica-etr-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-34 -36 68 70` · 50 elements in 5 layers · hash `10861872` ([standalone SVG](mounts/bronica-etr-lens-rear.svg))
+**Lens-side rear view** — viewBox `-34 -36 68 70` · 50 elements in 5 layers · hash `a58860c8` ([standalone SVG](mounts/bronica-etr-lens-rear.svg))
 
 **Axial / register schematic** — viewBox `-78 -55 87 106` · 10 elements in 2 layers · hash `e7941b62` ([standalone SVG](mounts/bronica-etr-axial.svg))
 
@@ -105,10 +105,10 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
 |---|---|---|---|---|---|---|---|
 | `body-throat` | body_throat | `bronica-etr/base` | 0° | 0° | 360° | 0 | unknown |
 | `body-mount-ring` | mount_ring | `bronica-etr/base` | 0° | 0° | 360° | unknown | 42 |
-| `body-slot-1` | bayonet_receiving_slot | `bronica-etr/base` | 0° | 338° | 22° | unknown | unknown |
-| `body-slot-2` | bayonet_receiving_slot | `bronica-etr/base` | 89.5° | 68° | 111° | unknown | unknown |
-| `body-slot-3` | bayonet_receiving_slot | `bronica-etr/base` | 181.5° | 161° | 202° | unknown | unknown |
-| `body-slot-4` | bayonet_receiving_slot | `bronica-etr/base` | 269° | 246° | 292° | unknown | unknown |
+| `body-slot-1` | bayonet_receiving_slot | `bronica-etr/base` | 45° | 22° | 68° | unknown | unknown |
+| `body-slot-2` | bayonet_receiving_slot | `bronica-etr/base` | 136° | 111° | 161° | unknown | unknown |
+| `body-slot-3` | bayonet_receiving_slot | `bronica-etr/base` | 224° | 202° | 246° | unknown | unknown |
+| `body-slot-4` | bayonet_receiving_slot | `bronica-etr/base` | 315° | 292° | 338° | unknown | unknown |
 | `body-index-mark` | index_mark | `bronica-etr/base` | 0° | unknown | unknown | unknown | 42 |
 | `body-lock-pin` | lock_pin | `bronica-etr/base` | 121° | unknown | unknown | unknown | unknown |
 | `body-stop-pin` | alignment_pin | `bronica-etr/base` | 209° | unknown | unknown | unknown | unknown |
@@ -119,10 +119,10 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
 |---|---|---|---|---|---|---|---|
 | `lens-throat` | lens_throat | `bronica-etr/base` | 0° | 0° | 360° | 0 | unknown |
 | `lens-mount-ring` | lens_mount_ring | `bronica-etr/base` | 0° | 0° | 360° | unknown | unknown |
-| `lens-lug-1` | bayonet_lug | `bronica-etr/base` | 0° | 338° | 22° | unknown | unknown |
-| `lens-lug-2` | bayonet_lug | `bronica-etr/base` | 89.5° | 68° | 111° | unknown | unknown |
-| `lens-lug-3` | bayonet_lug | `bronica-etr/base` | 181.5° | 161° | 202° | unknown | unknown |
-| `lens-lug-4` | bayonet_lug | `bronica-etr/base` | 269° | 246° | 292° | unknown | unknown |
+| `lens-lug-1` | bayonet_lug | `bronica-etr/base` | 45° | 22° | 68° | unknown | unknown |
+| `lens-lug-2` | bayonet_lug | `bronica-etr/base` | 136° | 111° | 161° | unknown | unknown |
+| `lens-lug-3` | bayonet_lug | `bronica-etr/base` | 224° | 202° | 246° | unknown | unknown |
+| `lens-lug-4` | bayonet_lug | `bronica-etr/base` | 315° | 292° | 338° | unknown | unknown |
 | `lens-index-mark` | index_mark | `bronica-etr/base` | 0° | unknown | unknown | unknown | unknown |
 | `lens-lock-notch` | lock_notch | `bronica-etr/base` | 121° | unknown | unknown | unknown | unknown |
 | `lens-stop-pin` | alignment_pin | `bronica-etr/base` | 209° | unknown | unknown | unknown | unknown |
@@ -160,7 +160,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/bronica-etr.mount.ts` (47117 bytes, content hash `7273df34`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/bronica-etr.mount.ts` (47269 bytes, content hash `f004a6f6`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
