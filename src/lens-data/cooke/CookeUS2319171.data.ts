@@ -6,8 +6,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * The table and claim 16 give S2 = .1591 and S3 = .0050; Figure 2 labels them .1691
  * and .0060. The model follows the two numerical tables, preserving the 15.91 mm
  * central air space. All radii, thicknesses, D-line indices and Abbe numbers are printed.
- * The stop's 8.8 / 7.11 mm split, bore and all clear rims are inferred; the final
- * image gap is the computed paraxial back focus. The modelled ±10.0° field
+ * The stop's 8.8 / 7.11 mm split and bore are inferred. Clear rims follow Figure 2's
+ * proportions: 26 mm outer singlets, 23.4 mm positive doublet members, and retained
+ * 18.6 / 18.4 mm concave ends. The drawing's inconsistent thickness scale permits
+ * proportions only; all rims pass the f/2 axial beam and the modelled chief ray.
+ * The final image gap is the computed paraxial back focus. The modelled ±10.0° field
  * is not specified by the patent. Element 3 is potassium bromide crystal; the
  * printed relative partial dispersions are documented in the analysis.
  */
@@ -123,27 +126,27 @@ const LENS_DATA = {
       label: "1",
       R: 64.32,
       d: 8.45,
-      sd: 29,
+      sd: 26,
       medium: 1,
     },
     {
       label: "2",
       R: 159.9,
       d: 0.53,
-      sd: 29,
+      sd: 26,
     },
     {
       label: "3",
       R: 41.75,
       d: 9.5,
-      sd: 26,
+      sd: 23.4,
       medium: 2,
     },
     {
       label: "4",
       R: "flat",
       d: 4.18,
-      sd: 23,
+      sd: 23.4,
       medium: 3,
     },
     {
@@ -168,27 +171,27 @@ const LENS_DATA = {
       label: "7",
       R: "flat",
       d: 10.43,
-      sd: 20,
+      sd: 23.4,
       medium: 5,
     },
     {
       label: "8",
       R: -41.58,
       d: 0.5,
-      sd: 22,
+      sd: 23.4,
     },
     {
       label: "9",
       R: 316.7,
       d: 7.46,
-      sd: 23,
+      sd: 26,
       medium: 6,
     },
     {
       label: "10",
       R: -87.73,
       d: 73.905064,
-      sd: 23,
+      sd: 26,
     },
   ],
   aperture: {
