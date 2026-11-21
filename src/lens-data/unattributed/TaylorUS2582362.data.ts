@@ -69,7 +69,7 @@ const LENS_DATA = {
       indexReference: "D",
       nC: 1.61216,
       nF: 1.62901,
-      glass: "Unmatched (DF-2, nD 1.617 / ν 36.6)",
+      glass: "F4 (spectral proxy; patent nD 1.617 / ν 36.6; supplier and melt unspecified)",
     },
     {
       id: 3,

@@ -28,7 +28,7 @@ The patent's 10.0° field is interpreted as a full field, giving a 5.0° half-fi
 
 The image plane and individual in-air element focal lengths are calculated. `focus.closeFocusM` is 10¹⁵ m, which stands for infinity. No finite-focus movement or measured close-focus distance is given. The selectable f-stops are 4.9, 5.6, 8, 11, 16 and 22, with `aperture.maxFNumber` at 22; the patent gives no minimum iris opening or stop range.
 
-The printed D-line reference, Abbe numbers and C/F indices are retained for all three glasses. BSC-2 and DF-2 have no matching catalog rows. S-BAL11 (Ohara) has similar optical properties to LBC-2: approximately nD = 1.57241 and νD = 57.73, with catalog-minus-patent differences ΔnD ≈ −0.00009 and ΔνD ≈ −0.07. That label does not establish a historical supplier or melt. No g-line index or anomalous-dispersion designation is printed; a complete historical dispersion curve and apochromatic performance are not established.
+The printed D-line reference, Abbe numbers and C/F indices are retained for all three glasses. BSC-2 remains unmatched because no catalog row is within the sodium-D proxy tolerances; DF-2 uses the F4 (Sumita) spectral proxy described below. S-BAL11 (Ohara) matches LBC-2 within the printed precision: approximately nD = 1.57241 and νD = 57.73, with catalog-minus-patent differences ΔnD ≈ −0.00009 and ΔνD ≈ −0.07. Neither catalog curve establishes a historical supplier or melt. No g-line index or anomalous-dispersion designation is printed; a complete historical dispersion curve and apochromatic performance are not established.
 
 ## Product Identification
 
@@ -43,7 +43,7 @@ No production lens or camera is documented for this prescription. Northrop Aircr
 - Floating-point artifacts in four stored values were rounded: R3 to −57.65546 mm, R4 to 51.88966 mm, the third element's thickness to 7.62 mm and the last gap to 143.637469 mm. Each change lies far below the printed precision.
 - The catalog design focal length identifies the calculated EFL, 179.55 mm, rather than the patent's tabulated focal length. The 31.44 mm image circle follows the printed field and chief-ray height. The three-element, three-group count, 5.0° half-field, inferred rims and paraxial image plane are retained; there is no change of optical scale or index reference.
 - Element types now identify the positive biconvex front and rear elements and negative biconcave middle element. Element 1–3 labels, optical roles and in-air focal lengths of +104.33, −43.88 and +69.82 mm replace generic descriptions. Group brackets identify the front positive, middle negative and rear positive elements.
-- Generic glass descriptions were replaced by named unmatched BSC-2 and DF-2 labels and S-BAL11 (Ohara) for LBC-2. The catalog differences for the rear glass are ΔnD ≈ −0.00009 and ΔνD ≈ −0.07; all printed refractive indices and Abbe numbers remain unchanged (Δn = 0, Δν = 0).
+- Generic glass descriptions were replaced by the patent names BSC-2 and DF-2, and S-BAL11 (Ohara) for LBC-2. The catalog differences for the rear glass are ΔnD ≈ −0.00009 and ΔνD ≈ −0.07; all printed refractive indices and Abbe numbers remain unchanged (Δn = 0, Δν = 0).
 - The subtitle identifies Northrop Aircraft and Taylor beside the patent and sole example. The four specifications state the three-element, three-group construction, spherical surfaces, design f/4.9 and printed 179.56 mm focal length. The focus description states infinity focus and the absence of close-focus data.
 
 After these corrections, the EFL is 179.553 mm, BFD is 143.637 mm, aperture is f/4.90, stop radius is 14.625 mm and half-field is 5.0°. The EFL and BFD remain those of the original prescription.
@@ -63,9 +63,14 @@ After these corrections, the EFL is 179.553 mm, BFD is 143.637 mm, aperture is f
 - Wide-open geometric transmission before and after is 100.0, 99.9, 98.8, 97.8, 96.6, 95.0 and 93.4% at 0.0, 0.8, 1.7, 2.5, 3.3, 4.2 and 5.0°. The greatest loss is 0.0 percentage points. The half-field remains 5.0°, the aperture f/4.9 and the stop radius 14.625 mm. No lands or cuts were added.
 - The model section and patent drawing were compared side by side at approximately 16 pixels/mm. The three-element, three-group arrangement, square rims and relative heights agree. The drawing's different iris position and thicker middle lens do not justify altering the printed prescription. No separate maker construction drawing is available, and no production lens is identified. All six surfaces are spherical; no aspherical or anomalous-dispersion element is designated.
 
+2026-11-21 glass review:
+
+- L2: `Unmatched (DF-2, nD 1.617 / ν 36.6)` → `F4 (spectral proxy; patent nD 1.617 / ν 36.6; supplier and melt unspecified)`, using the F4 (Sumita) curve as a spectral proxy; ΔnD = −0.00056 and ΔνD = +0.01 (catalog minus printed, sodium D).
+- The spectral proxy is within index 0.002 and Abbe number 0.25 at the printed sodium-D line; the printed index, Abbe number and C/F indices are kept. The curve supplies only the dispersion shape and does not identify the historical supplier or melt.
+
 ## Remaining Questions
 
 - Individual effective diameters are not printed. The equal square-cut rim proportions are supported by the drawing, but exact optical extents and the reason for its different stop position remain unknown.
 - The patent does not explicitly say whether its 10.0° field is a full angle. The model uses the conventional full-field interpretation, and complete edge illumination is not established.
-- BSC-2 and DF-2 remain unmatched to catalog glasses. Historical suppliers, melt identities, the g-line index and a complete dispersion curve are unknown.
+- BSC-2 remains unmatched; F4 (Sumita) supplies a spectral proxy for DF-2. Historical suppliers, melt identities, the g-line index and a complete historical dispersion curve are unknown.
 - No source establishes a production product, manufacturer, mount, production image format, diaphragm blade count or shape, minimum iris opening, marketed specifications, teleconverter compatibility or close-focus mechanism.

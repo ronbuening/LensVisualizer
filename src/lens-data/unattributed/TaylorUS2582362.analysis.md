@@ -34,7 +34,7 @@ The front crown starts convergence toward the image. Its strongly curved front f
 
 ### Element 2 — Biconcave Negative
 
-nD = 1.617, νD = 36.6. Glass: DF-2, dense flint, unmatched to an exact catalog row. Standalone focal length: −43.88 mm.
+nD = 1.617, νD = 36.6. Glass: F4 (Sumita), spectral proxy for the patent's DF-2 dense flint. Standalone focal length: −43.88 mm.
 
 The middle element provides negative power and greater dispersion than either crown, balancing their positive power and chromatic contributions. It sits behind the stop. The patent prints nC = 1.61216 and nF = 1.62901.
 
@@ -48,7 +48,9 @@ The rear crown completes image formation, with most of its power at the more str
 
 The patent explicitly defines ND as the sodium D line at 5893 Å, NF as the hydrogen F line at 4861 Å, and NC as the hydrogen C line at 6563 Å. Each element retains the printed D-line index, Abbe number, and C/F indices. The D-line reference applies throughout, without substituting helium d.
 
-BSC-2 and DF-2 remain unmatched. At sodium D, Ohara S-BAL11 gives approximately nD = 1.57241 and νD = 57.73, differing from the printed LBC-2 values by −0.00009 and −0.07. Its label identifies similar optical properties; the refractive indices and Abbe number remain those in the patent.
+L1's BSC-2 remains unmatched because no catalog row is within index 0.002 and Abbe number 0.25 at sodium D. L2's DF-2 uses F4 (Sumita) as a spectral proxy, with catalog-minus-printed differences ΔnD = −0.00056 and ΔνD = +0.01 at sodium D. The printed index, Abbe number and C/F indices are kept; beyond those wavelengths, the proxy supplies the dispersion shape of a real glass instead of an Abbe-number estimate.
+
+L3's LBC-2 matches S-BAL11 (Ohara) within the printed precision. At sodium D, the catalog row gives approximately nD = 1.57241 and νD = 57.73, differing from the printed values by −0.00009 and −0.07. Neither catalog curve identifies the historical supplier or melt.
 
 The patent supplies no g-line index or anomalous-dispersion designation. Its C/F indices support comparisons at those wavelengths, but do not establish the historical glass's complete dispersion curve or apochromatic performance.
 
@@ -82,3 +84,5 @@ The first-to-last optical surface span is 60.40 mm, and the first surface to ima
 ## Sources
 
 1. Philip H. Taylor, [US 2,582,362 A, _Photographic Triplet Objective_](https://patents.google.com/patent/US2582362A/en), assigned to Northrop Aircraft, Inc., published 15 January 1952. PDF p. 1: drawing; p. 2: bibliographic information, numerical prescription, glass definitions, stop dimensions, field and aberration table; p. 3: claims and repeated prescription.
+2. Sumita, [Optical glass catalog](https://www.sumita-opt.co.jp/en/download/), F4 dispersion data.
+3. Ohara, [Optical glass catalog](https://www.ohara-inc.co.jp/en/product/catalog/), S-BAL11 dispersion data.
