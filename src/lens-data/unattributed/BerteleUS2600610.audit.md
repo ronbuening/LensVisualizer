@@ -49,4 +49,4 @@ Changes:
 
 The resulting EFL 99.965654825 mm, paraxial f/1.44, back focus 43.697807592 mm and stop radius 19.116952019 mm equal the preceding values. The surface check reports no errors. The aperture check reports no rim limit, iris mismatch, trace limit or failure. Image-circle coverage reports one lens checked, zero undersized and zero skipped. Field coverage is 100% at 22.5°, reaching 42.63 mm image height with a clear chief ray; zero stations are unsolved.
 
-At 22.5°, geometric transmission over the diaphragm opening is 24.5% → 41.3%. The earlier approximate 22% → 43% figures used transmitted entrance-plane area relative to the axial beam and a different drawn rim set; the present values use the same diaphragm-area definition for both models. Open: front-rim correspondence, the remaining R9 difference from Figure 1, historical glass identity, exact iris dimensions and production attribution.
+At 22.5°, geometric transmission over the diaphragm opening is 24.5% → 41.3%. Open: front-rim correspondence, the remaining R9 difference from Figure 1, historical glass identity, exact iris dimensions and production attribution.

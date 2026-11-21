@@ -66,7 +66,7 @@ The patent's 45° field is represented as ±22.5°. At 22.5°, the real chief ra
 
 Clear semi-diameters are not tabulated. The retained front estimates are R1–R5 = 38, 36, 32, 30 and 28 mm. The rear values are R6 = 21.2 mm, R7–R8 = 21 mm, R9 = 20.16 mm and R10 = 26.5 mm. The rear values follow Figure 1, except that R9 is kept below the model's surface-slope limit: the approximately 21 mm drawn rim would require a 69.6° rim angle, beyond the 64.2° limit.
 
-The axial beam and the 22.5° chief ray clear the rims. Geometric transmission at the field edge, evaluated over the diaphragm opening, increases from about 24.5% with the earlier rims to 41.3% with these values. This describes geometric vignetting, without coating losses or measured image quality. The front estimates differ from the drawn heights and remain uncertain.
+The axial beam and the 22.5° chief ray clear the rims. Geometric transmission at the field edge, evaluated over the diaphragm opening, is about 41%. This describes geometric vignetting, without coating losses or measured image quality. The front estimates differ from the drawn heights and remain uncertain.
 
 ## Design heritage and context
 
