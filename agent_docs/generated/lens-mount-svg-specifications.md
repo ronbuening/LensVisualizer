@@ -383,7 +383,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 **Camera-side front view** — viewBox `-40 -42 80 82` · 54 elements in 4 layers · hash `fa292b81` ([standalone SVG](mounts/canon-ef-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-38 -40 76 78` · 46 elements in 4 layers · hash `775ebff5` ([standalone SVG](mounts/canon-ef-lens-rear.svg))
+**Lens-side rear view** — viewBox `-38 -40 76 78` · 46 elements in 4 layers · hash `d7291545` ([standalone SVG](mounts/canon-ef-lens-rear.svg))
 
 **Axial / register schematic** — viewBox `-51 -44 60 84` · 14 elements in 2 layers · hash `c9102df1` ([standalone SVG](mounts/canon-ef-axial.svg))
 
@@ -501,7 +501,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 **Camera-side front view** — viewBox `-35 -36 70 71` · 54 elements in 4 layers · hash `045aec3d` ([standalone SVG](mounts/canon-ef-m-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-34 -35 68 69` · 48 elements in 4 layers · hash `ca237aa5` ([standalone SVG](mounts/canon-ef-m-lens-rear.svg))
+**Lens-side rear view** — viewBox `-34 -35 68 69` · 48 elements in 4 layers · hash `5ecbfd23` ([standalone SVG](mounts/canon-ef-m-lens-rear.svg))
 
 **Axial / register schematic** — viewBox `-24 -38 32 72` · 14 elements in 2 layers · hash `e63b191a` ([standalone SVG](mounts/canon-ef-m-axial.svg))
 
@@ -618,7 +618,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 **Camera-side front view** — viewBox `-40 -42 80 82` · 54 elements in 4 layers · hash `7a4f283e` ([standalone SVG](mounts/canon-ef-s-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-39 -40 78 79` · 49 elements in 4 layers · hash `15518f1c` ([standalone SVG](mounts/canon-ef-s-lens-rear.svg))
+**Lens-side rear view** — viewBox `-39 -40 78 79` · 49 elements in 4 layers · hash `ec7c6d58` ([standalone SVG](mounts/canon-ef-s-lens-rear.svg))
 
 **Axial / register schematic** — viewBox `-51 -44 60 84` · 14 elements in 2 layers · hash `5dc8ef1a` ([standalone SVG](mounts/canon-ef-s-axial.svg))
 
@@ -928,7 +928,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 **Camera-side front view** — viewBox `-40 -42 80 82` · 62 elements in 4 layers · hash `dc858a2c` ([standalone SVG](mounts/canon-rf-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-38 -40 76 78` · 54 elements in 4 layers · hash `6f33e20e` ([standalone SVG](mounts/canon-rf-lens-rear.svg))
+**Lens-side rear view** — viewBox `-38 -40 76 78` · 54 elements in 4 layers · hash `9f581cc8` ([standalone SVG](mounts/canon-rf-lens-rear.svg))
 
 **Axial / register schematic** — viewBox `-27 -44 36 84` · 14 elements in 2 layers · hash `e2d76571` ([standalone SVG](mounts/canon-rf-axial.svg))
 
@@ -1449,7 +1449,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 **Camera-side front view** — viewBox `-31 -32 62 63` · 54 elements in 4 layers · hash `3c5709fe` ([standalone SVG](mounts/four-thirds-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-30 -31 60 61` · 48 elements in 4 layers · hash `4ea196e1` ([standalone SVG](mounts/four-thirds-lens-rear.svg))
+**Lens-side rear view** — viewBox `-30 -31 60 61` · 48 elements in 4 layers · hash `c9de0f99` ([standalone SVG](mounts/four-thirds-lens-rear.svg))
 
 **Axial / register schematic** — viewBox `-45 -35 52 66` · 14 elements in 2 layers · hash `5934d50c` ([standalone SVG](mounts/four-thirds-axial.svg))
 
@@ -1566,7 +1566,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 **Camera-side front view** — viewBox `-48 -50 96 98` · 62 elements in 4 layers · hash `0eec3f02` ([standalone SVG](mounts/fujifilm-g-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-47 -49 94 96` · 54 elements in 4 layers · hash `f7ce434d` ([standalone SVG](mounts/fujifilm-g-lens-rear.svg))
+**Lens-side rear view** — viewBox `-47 -49 94 96` · 54 elements in 4 layers · hash `9fa9e6c5` ([standalone SVG](mounts/fujifilm-g-lens-rear.svg))
 
 **Axial / register schematic** — viewBox `-35 -52 45 100` · 14 elements in 2 layers · hash `b5c39255` ([standalone SVG](mounts/fujifilm-g-axial.svg))
 
@@ -1690,7 +1690,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 **Camera-side front view** — viewBox `-31 -32 62 63` · 56 elements in 4 layers · hash `d318e3c7` ([standalone SVG](mounts/fujifilm-x-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-30 -31 60 61` · 50 elements in 4 layers · hash `e4cf732e` ([standalone SVG](mounts/fujifilm-x-lens-rear.svg))
+**Lens-side rear view** — viewBox `-30 -31 60 61` · 50 elements in 4 layers · hash `3e5eb856` ([standalone SVG](mounts/fujifilm-x-lens-rear.svg))
 
 **Axial / register schematic** — viewBox `-24 -35 31 66` · 14 elements in 2 layers · hash `2b87f13b` ([standalone SVG](mounts/fujifilm-x-axial.svg))
 
@@ -1809,7 +1809,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 **Camera-side front view** — viewBox `-49 -51 98 100` · 54 elements in 4 layers · hash `1c1fac3a` ([standalone SVG](mounts/hasselblad-h-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-48 -50 96 98` · 48 elements in 4 layers · hash `67908038` ([standalone SVG](mounts/hasselblad-h-lens-rear.svg))
+**Lens-side rear view** — viewBox `-48 -50 96 98` · 48 elements in 4 layers · hash `0509e740` ([standalone SVG](mounts/hasselblad-h-lens-rear.svg))
 
 **Axial / register schematic** — viewBox `-71 -53 81 102` · 14 elements in 2 layers · hash `abe3d89b` ([standalone SVG](mounts/hasselblad-h-axial.svg))
 
@@ -2027,7 +2027,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 **Camera-side front view** — viewBox `-47 -49 94 96` · 54 elements in 4 layers · hash `605f5b62` ([standalone SVG](mounts/hasselblad-xcd-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-46 -47 92 93` · 48 elements in 4 layers · hash `b3cf8bad` ([standalone SVG](mounts/hasselblad-xcd-lens-rear.svg))
+**Lens-side rear view** — viewBox `-46 -47 92 93` · 48 elements in 4 layers · hash `bca41f5d` ([standalone SVG](mounts/hasselblad-xcd-lens-rear.svg))
 
 **Axial / register schematic** — viewBox `-27 -50 37 96` · 14 elements in 2 layers · hash `dd45cbff` ([standalone SVG](mounts/hasselblad-xcd-axial.svg))
 
@@ -2147,7 +2147,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 **Camera-side front view** — viewBox `-38 -40 76 78` · 60 elements in 4 layers · hash `24660a32` ([standalone SVG](mounts/l-mount-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-37 -39 74 76` · 52 elements in 4 layers · hash `bed91b66` ([standalone SVG](mounts/l-mount-lens-rear.svg))
+**Lens-side rear view** — viewBox `-37 -39 74 76` · 52 elements in 4 layers · hash `343c976e` ([standalone SVG](mounts/l-mount-lens-rear.svg))
 
 **Axial / register schematic** — viewBox `-27 -42 35 80` · 14 elements in 2 layers · hash `1b5ff790` ([standalone SVG](mounts/l-mount-axial.svg))
 
@@ -2634,7 +2634,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 **Camera-side front view** — viewBox `-28 -28 56 56` · 58 elements in 4 layers · hash `2d574df2` ([standalone SVG](mounts/micro-four-thirds-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-26 -27 52 53` · 52 elements in 4 layers · hash `744b0ab6` ([standalone SVG](mounts/micro-four-thirds-lens-rear.svg))
+**Lens-side rear view** — viewBox `-26 -27 52 53` · 52 elements in 4 layers · hash `ac2bf37e` ([standalone SVG](mounts/micro-four-thirds-lens-rear.svg))
 
 **Axial / register schematic** — viewBox `-25 -31 32 58` · 14 elements in 2 layers · hash `d21e78fb` ([standalone SVG](mounts/micro-four-thirds-axial.svg))
 
@@ -2849,7 +2849,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 **Camera-side front view** — viewBox `-30 -31 60 61` · 60 elements in 4 layers · hash `c47372cd` ([standalone SVG](mounts/nikon-1-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-29 -30 58 59` · 54 elements in 4 layers · hash `84688f0d` ([standalone SVG](mounts/nikon-1-lens-rear.svg))
+**Lens-side rear view** — viewBox `-29 -30 58 59` · 54 elements in 4 layers · hash `10f99389` ([standalone SVG](mounts/nikon-1-lens-rear.svg))
 
 **Axial / register schematic** — viewBox `-23 -34 30 64` · 14 elements in 2 layers · hash `17aba5b6` ([standalone SVG](mounts/nikon-1-axial.svg))
 
@@ -2980,7 +2980,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 **Camera-side front view** — viewBox `-34 -35 68 69` · 56 elements in 5 layers · hash `96727b9b` ([standalone SVG](mounts/nikon-f-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-32 -32 64 64` · 56 elements in 5 layers · hash `40f529fa` ([standalone SVG](mounts/nikon-f-lens-rear.svg))
+**Lens-side rear view** — viewBox `-32 -32 64 64` · 56 elements in 5 layers · hash `eda151ca` ([standalone SVG](mounts/nikon-f-lens-rear.svg))
 
 **Axial / register schematic** — viewBox `-53 -37 61 70` · 12 elements in 2 layers · hash `6318edcf` ([standalone SVG](mounts/nikon-f-axial.svg))
 
@@ -3206,7 +3206,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 **Camera-side front view** — viewBox `-41 -42 82 83` · 62 elements in 4 layers · hash `6e425bab` ([standalone SVG](mounts/nikon-z-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-39 -41 78 80` · 54 elements in 4 layers · hash `c579251b` ([standalone SVG](mounts/nikon-z-lens-rear.svg))
+**Lens-side rear view** — viewBox `-39 -41 78 80` · 54 elements in 4 layers · hash `4e5bf093` ([standalone SVG](mounts/nikon-z-lens-rear.svg))
 
 **Axial / register schematic** — viewBox `-23 -44 31 84` · 14 elements in 2 layers · hash `74eab9f8` ([standalone SVG](mounts/nikon-z-axial.svg))
 
@@ -3726,7 +3726,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 **Camera-side front view** — viewBox `-35 -36 70 71` · 52 elements in 5 layers · hash `11bc3a75` ([standalone SVG](mounts/pentax-k-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-33 -34 66 67` · 42 elements in 4 layers · hash `7e1ed239` ([standalone SVG](mounts/pentax-k-lens-rear.svg))
+**Lens-side rear view** — viewBox `-33 -34 66 67` · 42 elements in 4 layers · hash `d958b335` ([standalone SVG](mounts/pentax-k-lens-rear.svg))
 
 **Axial / register schematic** — viewBox `-52 -38 60 72` · 12 elements in 2 layers · hash `f8955533` ([standalone SVG](mounts/pentax-k-axial.svg))
 
@@ -3852,7 +3852,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 **Camera-side front view** — viewBox `-37 -38 74 75` · 55 elements in 5 layers · hash `bb807332` ([standalone SVG](mounts/samsung-nx-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-35 -37 70 72` · 46 elements in 4 layers · hash `98100866` ([standalone SVG](mounts/samsung-nx-lens-rear.svg))
+**Lens-side rear view** — viewBox `-35 -37 70 72` · 46 elements in 4 layers · hash `1dec32aa` ([standalone SVG](mounts/samsung-nx-lens-rear.svg))
 
 **Axial / register schematic** — viewBox `-32 -41 40 78` · 14 elements in 2 layers · hash `ed3f9133` ([standalone SVG](mounts/samsung-nx-axial.svg))
 
@@ -3978,7 +3978,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 **Camera-side front view** — viewBox `-34 -35 68 69` · 55 elements in 5 layers · hash `494a4691` ([standalone SVG](mounts/sigma-sa-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-32 -33 64 65` · 49 elements in 5 layers · hash `c6392460` ([standalone SVG](mounts/sigma-sa-lens-rear.svg))
+**Lens-side rear view** — viewBox `-32 -33 64 65` · 49 elements in 5 layers · hash `010898ae` ([standalone SVG](mounts/sigma-sa-lens-rear.svg))
 
 **Axial / register schematic** — viewBox `-50 -37 58 70` · 14 elements in 2 layers · hash `96bc2a5f` ([standalone SVG](mounts/sigma-sa-axial.svg))
 
@@ -4094,7 +4094,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 **Camera-side front view** — viewBox `-35 -37 70 72` · 57 elements in 5 layers · hash `11bb9ae0` ([standalone SVG](mounts/sony-a-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-35 -35 70 70` · 49 elements in 5 layers · hash `16f88ff0` ([standalone SVG](mounts/sony-a-lens-rear.svg))
+**Lens-side rear view** — viewBox `-35 -35 70 70` · 49 elements in 5 layers · hash `2a934ff4` ([standalone SVG](mounts/sony-a-lens-rear.svg))
 
 **Axial / register schematic** — viewBox `-51 -39 59 74` · 14 elements in 2 layers · hash `157549a6` ([standalone SVG](mounts/sony-a-axial.svg))
 
@@ -4215,7 +4215,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 **Camera-side front view** — viewBox `-34 -35 68 69` · 58 elements in 4 layers · hash `67767d85` ([standalone SVG](mounts/sony-fe-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-32 -33 64 65` · 50 elements in 4 layers · hash `3c2bcf77` ([standalone SVG](mounts/sony-fe-lens-rear.svg))
+**Lens-side rear view** — viewBox `-32 -33 64 65` · 50 elements in 4 layers · hash `41d28c2f` ([standalone SVG](mounts/sony-fe-lens-rear.svg))
 
 **Axial / register schematic** — viewBox `-24 -37 31 70` · 14 elements in 2 layers · hash `4b09e9a0` ([standalone SVG](mounts/sony-fe-axial.svg))
 
