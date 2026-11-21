@@ -288,10 +288,9 @@ describe("prepared chief-ray ownership", () => {
 describe.each(["object-plane", "bounding-sphere"] as const)("%s bracket refinement", (surface) => {
   afterEach(() => vi.restoreAllMocks());
 
-  function solveStopFunction(height: (x: number) => number | null) {
+  function solveStopFunction(height: (x: number) => number | null, fieldAngleDeg = 10) {
     const state = prepareStateUncached(compiledLensFromRuntime(buildSimplePositiveElementLens()), 0, 0);
     const geometry = { ...computePreparedFieldGeometry(state), epRatio: 0 };
-    const fieldAngleDeg = 10;
     const samples: number[] = [];
     const sample = (x: number) => {
       samples.push(x);
@@ -323,6 +322,58 @@ describe.each(["object-plane", "bounding-sphere"] as const)("%s bracket refineme
     const result = solve(state, { fieldAngleDeg, geometry });
     const root = result.yLaunch * (surface === "object-plane" ? 1 : Math.cos((fieldAngleDeg * Math.PI) / 180));
     return { result, root, samples };
+  }
+
+  if (surface === "bounding-sphere") {
+    // A clear root hides between the last valid coarse sample and a clipped one.
+    // All wider retries miss the same narrow clear interval.
+    it.each([94, 95])("recovers a clear boundary root at %s degrees", (field) => {
+      const height = (x: number) => (x >= 0.12 && x < 0.14 ? x - 0.13 : null);
+      const { result, root, samples } = solveStopFunction(height, field);
+      expect(result.status).toBe("converged");
+      expect(height(root)).not.toBeNull();
+      expect(Math.abs(height(root)!)).toBeLessThan(1e-7);
+      expect(root).toBeCloseTo(0.13, 7);
+      // Four failed scans, eight traces on the rim below the lone clear sample, one boundary midpoint,
+      // refinement and the independent residual retrace.
+      expect(samples.length).toBe(4 * 97 + 8 + 1 + result.iterations + 1);
+    });
+
+    it("recovers a root next to a clipped-to-valid boundary", () => {
+      const { result, root, samples } = solveStopFunction((x) => (x > -0.14 && x <= -0.12 ? x + 0.13 : null));
+      expect(result.status).toBe("converged");
+      expect(root).toBeCloseTo(-0.13, 7);
+      // The first recorded rim holds the root: one boundary midpoint, refinement and the residual retrace.
+      expect(samples.length).toBe(4 * 97 + 1 + result.iterations + 1);
+    });
+
+    // Each case reaches the boundary search; its trace count shows how far it got before rejection.
+    it.each([
+      {
+        name: "a root inside the clipped region",
+        height: (x: number) => (x >= 0.12 && x < 0.14 ? x + 1 : null),
+        iterations: 0,
+        traces: 4 * 97 + 32,
+      },
+      { name: "a fully blocked domain", height: () => null, iterations: 0, traces: 4 * 97 },
+      {
+        name: "a sign step without a root",
+        height: (x: number) => (x >= 0.12 && x < 0.14 ? (x < 0.13 ? -1 : 1) : null),
+        iterations: 26,
+        traces: 4 * 97 + 36,
+      },
+      {
+        name: "a root inside a clipped gap of the recovered bracket",
+        height: (x: number) => (x >= 0.12 && x < 0.14 && !(x >= 0.135 && x < 0.1352) ? x - 0.1351 : null),
+        iterations: 5,
+        traces: 4 * 97 + 16,
+      },
+    ])("rejects $name", ({ height, iterations, traces }) => {
+      const { result, samples } = solveStopFunction(height);
+      expect(result.status).toBe("bracket-failed");
+      expect(result.iterations).toBe(iterations);
+      expect(samples.length).toBe(traces);
+    });
   }
 
   // Independent legacy reference: no secant weighting or retry logic.
@@ -431,7 +482,8 @@ describe.each(["object-plane", "bounding-sphere"] as const)("%s bracket refineme
     const { result, root, samples } = solveStopFunction((x) => (Math.abs(x) < 0.01 || Math.abs(x) >= 0.5 ? null : x));
     expect(result.status).toBe("bracket-failed");
     expect(result.iterations).toBe(0);
-    expect(samples.length).toBe(4 * 97 + (surface === "object-plane" ? 2 : 0));
+    // Bounding-sphere failures then spend the whole boundary budget on the four clear/clipped rims.
+    expect(samples.length).toBe(4 * 97 + (surface === "object-plane" ? 2 : 128));
     expect(Math.abs(root)).toBeCloseTo(1 / 48, 12);
   });
 });

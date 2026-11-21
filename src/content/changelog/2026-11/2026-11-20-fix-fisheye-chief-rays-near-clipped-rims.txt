@@ -1,0 +1,1 @@
+Fixed some wide fisheye fields showing no chief ray when a clear ray passes through the stop center
