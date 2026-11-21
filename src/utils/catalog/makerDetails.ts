@@ -31,6 +31,7 @@
  *   2026-11-16  Expanded the Kinoptik, Meike, Schacht, Thypoch, Viltrox, and Yongnuo entries to the
  *               full multi-paragraph form of the established makers; renamed the P. Angénieux slug
  *               to angenieux.
+ *   2026-11-17  Added Bausch & Lomb maker entry.
  *   2026-11-18  Added Busch, Dallmeyer, Goerz, Ross, and Steinheil maker entries for the historical
  *               literature reconstructions and patent lenses.
  *   2026-04-26  Detail and accuracy pass on Leica (designer attributions,
@@ -146,6 +147,40 @@ export const MAKER_DETAILS: Record<string, MakerDetails> = {
       "Agfa began in Berlin in 1867 as Aktiengesellschaft für Anilinfabrikation, a dye and chemistry company founded by Paul Mendelssohn Bartholdy and Carl Alexander von Martius. Its photographic business grew from dry plates, film, paper, and chemistry rather than cameras at first; Rodinal developer and the Agfa trademark made the name familiar to darkrooms well before Agfa became a mass-market camera marque. The Belgian half of the later Agfa-Gevaert group began separately in 1894, when Lieven Gevaert founded a photographic-paper business near Antwerp. The two companies merged in 1964 as Agfa-Gevaert.\n\nAgfa's camera and lens identity came through the Munich camera works that descended from Alexander Rietzschel's optical firm. Bayer acquired control of Rietzschel in the early 1920s, and the factory became part of Agfa's photographic operation. Interwar and postwar Agfa cameras ranged from simple box and folding cameras to the Karat, Silette, Ambi Silette, Optima, and compact 35 mm families. Their lenses carried names such as Agnar, Apotar, Solinar, and Color-Solinar, often designed for practical consumer photography rather than prestige interchangeable-lens systems.\n\nAgfa was also central to European color photography. Agfacolor Neu, introduced in the 1930s, established a chromogenic color-film process distinct from Kodak's Kodachrome approach and influenced later color-negative and color-print materials. After World War II, Agfa's eastern Wolfen plant became ORWO, while the western Agfa business continued through Bayer and then Agfa-Gevaert. The consumer imaging division was sold in 2004 and the AgfaPhoto name became a licensing business, while Agfa-Gevaert today focuses on medical imaging, digital printing, chemicals, and industrial imaging.",
     notableDesigns:
       "Agfa Karat, Agfa Silette, Agfa Ambi Silette, Agfa Optima, Color-Agnar, Apotar, Solinar, Color-Solinar, Agfacolor",
+  },
+  // Founding, lenses from 1883, shutters from 1888, Volute, 1892 Zeiss licence, 1903 output (Kingslake, 1974):
+  // https://www.graflex.org/articles/kingslake/
+  // Bausch's shop, Lomb's loan and William Bausch's optical glass (company centennial booklet):
+  // https://www.mcnygenealogy.com/book/bausch-lomb-century.pdf
+  // Microscopes, CinemaScope optics and contact lenses:
+  // https://en.wikipedia.org/wiki/Bausch_%26_Lomb
+  // Kodak lenses, Unicum shutter, B&L-made Protar and Tessar:
+  // https://camera-wiki.org/wiki/Bausch_%26_Lomb
+  // Zeiss Anastigmat renamed Protar:
+  // https://phsc.ca/camera/zeiss-anastigmat-series-v-lens/
+  // Zeiss shareholding, 1907–1915:
+  // https://company-histories.com/Bausch-Lomb-Inc-Company-History.html
+  // Raytar launch (Cinematographic Annual, 1931):
+  // https://lantern.mediahist.org/catalog/cinematographi02unse_0019
+  // Super Baltar date:
+  // https://cinelenswiki.com/mfg:bausch_lomb
+  // Metrogon:
+  // https://en.wikipedia.org/wiki/Metrogon
+  // Wilbur B. Rayton:
+  // https://optica.org/history/biographies/bios/wilbur-bramley-rayton
+  // https://en.wikipedia.org/wiki/Wilbur_B._Rayton
+  // Rayton patents:
+  // https://patents.google.com/patent/US2124356A/en
+  // https://patents.google.com/patent/US2325275A/en
+  "bausch-lomb": {
+    founded: 1853,
+    headquarters: "Rochester, New York, United States (historical optical works)",
+    summary:
+      "American optical manufacturer founded in Rochester in 1853 that made photographic lenses and shutters from the 1880s, built Zeiss designs under licence, and later produced the Raytar and Baltar cine lenses and the Metrogon aerial mapping lens.",
+    history:
+      "John Jacob Bausch, an optician who had emigrated from Germany, opened a small optical shop in Rochester, New York, in 1853 with sixty dollars borrowed from his friend Henry Lomb, a cabinet maker who joined the business and became his partner. Its first success was a spectacle frame of hard rubber, and the firm grew into a manufacturer of spectacles and, from 1876, microscopes.\n\nBausch & Lomb added photographic lenses to its line in 1883 and began making shutters in 1888, among them the Unicum and the Volute, which its shutter designer Theodor Brueck designed in 1902. From 1888 it supplied lenses for Kodak cameras. In 1892 it became the only American company licensed to make the Zeiss Anastigmats, Paul Rudolph's designs that Zeiss later sold as the Protar, and it went on to make the Tessar in Rochester as well. By 1903 it had made some 500,000 photographic lenses and 550,000 shutters. Zeiss bought a fifth of the company in 1907, giving it free use of Zeiss patents in the United States, and sold the holding back in 1915.\n\nWilliam Bausch's experiments in glassmaking made Bausch & Lomb the principal American source of optical glass during the First World War. Its motion-picture camera lenses began with the Raytar, offered to cinematographers in 1931 after two years of testing, and continued with the Baltar and, from 1966, the Super Baltar. The Metrogon, a licensed version of Robert Richter's Zeiss Topogon, was usually made as a 6 in f/6.3 lens; in the three-camera tri-Metrogon arrangement it was used to chart some 3,000,000 square miles in a single year by 1944. The company also developed optics for CinemaScope.\n\nWilbur B. Rayton spent his career as an optical designer on the Bausch & Lomb staff, was president of the Optical Society of America in 1933–34, and in 1937 designed an f/0.59 objective for astronomical spectrographs that Milton Humason used to observe star clusters beyond the Milky Way. His US 2,124,356, filed in 1937 and granted in 1938, describes a seven-element f/1.5 objective of 100 mm focal length and is the source of the Bausch & Lomb entry in this catalog; his US 2,325,275 of 1943 is a five-element f/6.3 wide-angle objective with a 90° field for low-distortion map photography. In 1965 the company acquired the patent for hydrogel contact lenses, which it launched as Soflens in 1971, and it now operates as an eye-health company.",
+    notableDesigns:
+      "Protar and Tessar (Zeiss licence), Unicum shutter, Volute shutter, Raytar, Baltar, Super Baltar, Metrogon, CinemaScope lenses",
   },
   "enna-munchen": {
     founded: 1920,
