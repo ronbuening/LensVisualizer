@@ -1,12 +1,23 @@
-import type { LensDataV2Input } from "../repo/src/types/lensDataV2.js";
-const data = {
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * US 2,388,869 A, Example II, from the second table on PDF page 2, in millimeters.
+ * The page 1 drawing depicts Example I. The printed D-line indices, Abbe numbers,
+ * radii and internal spacings are retained. The table gives EF 100 mm and BF
+ * 89.5 mm; the prescription computes to EFL 99.59 mm and BF 89.11 mm, with nearly
+ * the same BF/EF ratio. The image plane is at that computed paraxial focus.
+ * The source's element-power summary chart is also approximate.
+ * The text places the diaphragm about 2 mm behind the rear vertex; the model
+ * uses exactly 2 mm. Its opening is derived from f/8; clear rims are inferred.
+ */
+const LENS_DATA = {
   schema: 2,
-  key: "reiss-us2388869-example2-infinity-reference",
-  maker: null,
-  name: "REISS US2388869 EX.II \u2014 PATENT REFERENCE",
-  visible: false,
+  key: "kodak-100mm-f8-us2388869",
+  maker: "Kodak",
+  name: "KODAK 100mm f/8 (US 2,388,869 Design)",
+  visible: true,
   source: {
-    patentNumber: "US 2,388,869",
+    patentNumber: "US 2,388,869 A",
     patentYear: 1945,
     example: {
       label: "Example II",
@@ -14,6 +25,12 @@ const data = {
     },
     authors: ["Max Reiss"],
     assignees: ["Eastman Kodak Company"],
+    errata: [
+      {
+        status: "unresolved",
+        note: "Example II gives EF 100 mm and BF 89.5 mm; its printed prescription computes to EFL 99.594153 mm and paraxial BF 89.110640 mm, with nearly the same BF/EF ratio. The printed prescription is retained and the image plane uses its paraxial focus. The element focal-length chart is also approximate.",
+      },
+    ],
     sdSource: "heuristic",
   },
   catalog: {
@@ -25,46 +42,45 @@ const data = {
     fNumber: {
       design: 8,
     },
-    specs: [
-      "Literal sodium-D patent-only ExampleII; source p1drawing belongs to ExampleI",
-      "Actual post-glass diaphragm modeled2mm afterR6; no fake lens or relocation",
-      "Nominal100/f8/BF89.5; literal99.594153/89.110640; no fit",
-      "Physical iris/caps estimated; chosen \u00b125deg diagnostic only; no retail or finite claim",
-      "Chosen metric circle is twice actual25deg chief image height, not source format",
-      "UI Cardinal BFD starts at final modeled STO:87.110640mm; glass-rear BFD89.110640mm",
-    ],
-    imageCircleMm: 93.44113199987868,
+    specs: ["3 ELEMENTS / 3 GROUPS", "ALL SPHERICAL", "DESIGN F/8"],
+    imageCircleMm: 102.097748,
   },
   elements: [
     {
       id: 1,
       name: "L1",
-      label: "L1",
-      type: "Source Spherical Element",
+      label: "Element 1",
+      type: "Biconvex Positive",
+      role: "Front positive collector",
+      focalLengthMm: 52.83,
       nd: 1.611,
       vd: 58.8,
       indexReference: "D",
-      glass: "Unmatched literal sodiumD/V; no calibrated curve",
+      glass: "Unmatched (nD 1.611 / ν 58.8)",
     },
     {
       id: 2,
       name: "L2",
-      label: "L2",
-      type: "Source Spherical Element",
+      label: "Element 2",
+      type: "Biconcave Negative",
+      role: "Central negative element with greater dispersion",
+      focalLengthMm: -32.53,
       nd: 1.605,
       vd: 38.0,
       indexReference: "D",
-      glass: "Unmatched literal sodiumD/V; no calibrated curve",
+      glass: "Unmatched (nD 1.605 / ν 38.0)",
     },
     {
       id: 3,
       name: "L3",
-      label: "L3",
-      type: "Source Spherical Element",
+      label: "Element 3",
+      type: "Plano-Convex Positive",
+      role: "Rear positive element ahead of the diaphragm",
+      focalLengthMm: 52.7,
       nd: 1.611,
       vd: 58.8,
       indexReference: "D",
-      glass: "Unmatched literal sodiumD/V; no calibrated curve",
+      glass: "Unmatched (nD 1.611 / ν 58.8)",
     },
   ],
   surfaces: [
@@ -114,9 +130,8 @@ const data = {
     },
   ],
   focus: {
-    closeFocusM: 1000000000000000.0,
-    description:
-      "Max Reiss/EastmanKodak US2388869 ExampleII, literal sodiumD infinity diagnostic. Source says about2mm rear diaphragm; model fixes2mm afterR6 and derived87.110640mm fromstoptoimage. Original PDFp2 externally visually verified; p1Fig belongs to ExI. No original bytes/pixels or denied-route retry, no fake glass/stop relocation, no retail or finite state. Estimated caps/physicaliris, chosen\u00b125deg only.",
+    closeFocusM: 1e15,
+    description: "Infinity focus only; the patent gives no close-focus data.",
   },
   aperture: {
     nominalFNumber: 8,
@@ -125,30 +140,29 @@ const data = {
   },
   projection: {
     kind: "rectilinear",
-    fullFieldDeg: 50,
-    maxTraceFieldDeg: 25,
+    fullFieldDeg: 54,
+    maxTraceFieldDeg: 27,
   },
   layout: {
     yScFill: 0.5,
   },
-  subtitle:
-    "100mm nominal f/8 \u00b7 sodium D \u00b7 rear diaphragm \u00b7 chosen \u00b125\u00b0 infinity diagnostic",
+  subtitle: "US 2,388,869 A, Example II — rear-diaphragm triplet design",
   groups: [
     {
-      text: "G1 \u00b7 L1",
+      text: "Front positive element",
       fromSurface: "1",
       toSurface: "2",
     },
     {
-      text: "G2 \u00b7 L2",
+      text: "Central negative element",
       fromSurface: "3",
       toSurface: "4",
     },
     {
-      text: "G3 \u00b7 L3",
+      text: "Rear positive element",
       fromSurface: "5",
       toSurface: "6",
     },
   ],
 } satisfies LensDataV2Input;
-export default data;
+export default LENS_DATA;
