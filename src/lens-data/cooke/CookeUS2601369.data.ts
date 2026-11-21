@@ -140,7 +140,7 @@ const LENS_DATA = {
     {
       label: "7",
       R: -54.74,
-      d: 79.47436764045179,
+      d: 79.474368,
       sd: 17,
     },
   ],
@@ -153,9 +153,6 @@ const LENS_DATA = {
     kind: "rectilinear",
     fullFieldDeg: 52,
     maxTraceFieldDeg: 26,
-  },
-  rays: {
-    offAxisFieldFrac: 1,
   },
   focus: {
     closeFocusM: 1e15,

@@ -92,7 +92,7 @@ const LENS_DATA = {
     {
       label: "STO",
       R: "flat",
-      d: 63.838578061,
+      d: 63.838578,
     },
   ],
   aperture: {
@@ -104,9 +104,6 @@ const LENS_DATA = {
     kind: "rectilinear",
     fullFieldDeg: 19,
     maxTraceFieldDeg: 9.5,
-  },
-  rays: {
-    offAxisFieldFrac: 1,
   },
   focus: {
     closeFocusM: 1e15,
