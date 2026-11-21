@@ -1,17 +1,24 @@
-import type { LensDataV2Input } from "../repo/src/types/lensDataV2.js";
-const data = {
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * US 2,503,751 A, Example 2 (Figure 3): a 100 mm f/2.5 Cooke triplet.
+ * Radii, element thicknesses, air spaces and sodium D-line glass values are printed.
+ * The stop position and opening and all clear radii are inferred; the stop divides
+ * the printed 17.66 mm rear air space into 11.00 mm and 6.66 mm. The image plane
+ * is the computed paraxial infinity focus, 67.6793 mm behind the last surface.
+ */
+const LENS_DATA = {
   schema: 2,
-  key: "litten-aklin-altman-us2503751-example2-infinity-reference",
-  maker: null,
-  name: "LITTEN / AKLIN / ALTMAN US2503751 EXAMPLE II \u2014 SOURCE f/2.5",
-  subtitle:
-    "Patent-only 3E/3G \u00b7 sodium-D infinity \u00b7 estimated iris/rims",
-  visible: false,
+  key: "kodak-100mm-f25-us2503751",
+  maker: "Kodak",
+  name: "KODAK 100mm f/2.5 (US 2,503,751 Design)",
+  subtitle: "US 2,503,751 A, Example 2 — Cooke triplet design",
+  visible: true,
   source: {
-    patentNumber: "US 2,503,751",
+    patentNumber: "US 2,503,751 A",
     patentYear: 1950,
     example: {
-      label: "Example II",
+      label: "Example 2",
       id: "2",
     },
     authors: ["Walter Litten", "George H. Aklin", "Fred E. Altman"],
@@ -27,50 +34,45 @@ const data = {
     },
     elementCount: 3,
     groupCount: 3,
-    specs: [
-      "Literal100mm f2.5 ExampleII/Fig3 triplet,3E3G allairspaced,no cement. No retail association.",
-      "Source sodium-D n/V retained without calibrateddispersion or modern glass substitution.",
-      "Literal EFL100.036129153/BFD67.679265130mm,BFDcomputed/not sourcehardware,no fitting or source edits.",
-      "Exactrear17.66airgap retained;stop split11/6.66,z40.65,bore and clearcaps estimated,not measured.",
-      "Source/controlf2.5 uses stockparaxialiris;supplied13.975482finite-marginal estimate separate. Actual pupil equivalents documented distinctly.",
-      "Author +/-14degree designfield separate from actualnative +/-10degree diagnostic,no invented physicalformat/imagecircle. No finitefocus,broadband,retail or throughputclaim.",
-      "Scoped native geometric sodium-D MTF only within10degrees;widerautomatic/spectralresults unqualified.",
-      "Signed originalnumerics/hash externally verified;no localoriginalPDF,pixels/rehash or deniedroute retry. Separate localprose read corroborates authornames andD-line,not localfacsimile table.",
-    ],
+    imageCircleMm: 49.78,
+    specs: ["3 ELEMENTS / 3 GROUPS", "DESIGN F/2.5", "ALL SPHERICAL", "COOKE TRIPLET"],
   },
   elements: [
     {
       id: 1,
       name: "L1",
-      label: "L1",
-      type: "Source Spherical Element",
+      label: "Element 1",
+      type: "Biconvex Positive",
       nd: 1.734,
       vd: 51.1,
       indexReference: "D",
-      glass:
-        "Literal unmatched sodium-D/Abbe pair;no calibrated spectral curve.",
+      focalLengthMm: 53.94,
+      glass: "Unmatched (nD 1.734 / ν 51.1)",
+      role: "Front positive crown element",
     },
     {
       id: 2,
       name: "L2",
-      label: "L2",
-      type: "Source Spherical Element",
+      label: "Element 2",
+      type: "Biconcave Negative",
       nd: 1.689,
       vd: 30.9,
       indexReference: "D",
-      glass:
-        "Literal unmatched sodium-D/Abbe pair;no calibrated spectral curve.",
+      focalLengthMm: -34.81,
+      glass: "Unmatched (nD 1.689 / ν 30.9)",
+      role: "Central negative flint element for chromatic and field correction",
     },
     {
       id: 3,
       name: "L3",
-      label: "L3",
-      type: "Source Spherical Element",
+      label: "Element 3",
+      type: "Biconvex Positive",
       nd: 1.734,
       vd: 51.1,
       indexReference: "D",
-      glass:
-        "Literal unmatched sodium-D/Abbe pair;no calibrated spectral curve.",
+      focalLengthMm: 63.96,
+      glass: "Unmatched (nD 1.734 / ν 51.1)",
+      role: "Rear positive crown element",
     },
   ],
   surfaces: [
@@ -126,30 +128,29 @@ const data = {
   },
   projection: {
     kind: "rectilinear",
-    fullFieldDeg: 20,
-    maxTraceFieldDeg: 10,
+    fullFieldDeg: 28,
+    maxTraceFieldDeg: 14,
   },
   rays: {
     offAxisFieldFrac: 1,
   },
   focus: {
-    closeFocusM: 1000000000000000,
-    description:
-      "Literal100mm f2.5 ExampleII/Fig3 triplet,3E3G allairspaced,no cement. No retail association. Source sodium-D n/V retained without calibrateddispersion or modern glass substitution. Literal EFL100.036129153/BFD67.679265130mm,BFDcomputed/not sourcehardware,no fitting or source edits. Exactrear17.66airgap retained;stop split11/6.66,z40.65,bore and clearcaps estimated,not measured. Source/controlf2.5 uses stockparaxialiris;supplied13.975482finite-marginal estimate separate. Actual pupil equivalents documented distinctly. Author +/-14degree designfield separate from actualnative +/-10degree diagnostic,no invented physicalformat/imagecircle. No finitefocus,broadband,retail or throughputclaim. Scoped native geometric sodium-D MTF only within10degrees;widerautomatic/spectralresults unqualified. Signed originalnumerics/hash externally verified;no localoriginalPDF,pixels/rehash or deniedroute retry. Separate localprose read corroborates authornames andD-line,not localfacsimile table.",
+    closeFocusM: 1e15,
+    description: "Infinity focus only; the patent gives no close-focus data.",
   },
   groups: [
     {
-      text: "G1 \u00b7 L1",
+      text: "Front positive element",
       fromSurface: "1",
       toSurface: "2",
     },
     {
-      text: "G2 \u00b7 L2",
+      text: "Central negative element",
       fromSurface: "3",
       toSurface: "4",
     },
     {
-      text: "G3 \u00b7 L3",
+      text: "Rear positive element",
       fromSurface: "5",
       toSurface: "6",
     },
@@ -158,4 +159,4 @@ const data = {
     yScFill: 0.5,
   },
 } satisfies LensDataV2Input;
-export default data;
+export default LENS_DATA;
