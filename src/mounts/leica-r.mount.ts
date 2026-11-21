@@ -15,7 +15,7 @@
  * aperture ring and its body feeler [lr-p2]; the one-piece stepped R cam with two prongs and its two
  * body followers [lr-p1]; the contact strip on R8 / R9 bodies and ROM lenses [lr-m1].
  *
- * What is only scaled from figures: the bayonet gap and flange angles come from the undimensioned camera-front
+ * What is only scaled from figures: the bayonet flange angles come from the undimensioned camera-front
  * elevation in US4181419 (FIG. 1a), and the cam, R-cam and contact-strip angles from the lens-rear
  * photographs on p. 128 of the R9 instructions, mirrored into the camera-front frame and clocked by the
  * lock notch. No source found gives a radius, a lug thickness, a cam rise or the number of ROM contacts;
@@ -42,9 +42,9 @@ const R_ONLY = "leica-r/r-only";
 const ROM = "leica-r/rom";
 
 const GAP_NOTE =
-  "entry gap between two of the body bayonet segments 8 in US4181419 FIG. 1a (camera-front elevation); angles scaled from that undimensioned figure. The body flanges themselves sit between the gaps at about 330-30, 90-150 and 210-270 deg";
+  "body bayonet segment 8 in US4181419 FIG. 1a (camera-front elevation), the solid flange that retains a lens lug; angles scaled from that undimensioned figure. The open entry gaps sit between the flanges, centred near 60, 180 and 300 deg";
 const LUG_NOTE =
-  "lens bayonet segment 9, stored at the entry gap it passes through; the patent draws it only in perspective (FIG. 1b), so the span is the gap's and is an upper limit for the lug";
+  "lens bayonet segment 9, drawn where it sits on a mounted lens, behind the body flange at the same angle; the patent draws it only in perspective (FIG. 1b), so the drawn arc is the flange it engages and the lug's own length is not sourced";
 const PHOTO_NOTE =
   "angle scaled from the lens-rear photo on p. 128 of the R9 instructions, mirrored to the camera-front frame and clocked by the lock notch (taken as 240 deg); good to about 15 deg";
 
@@ -300,42 +300,42 @@ const LEICA_R_MOUNT = {
       featureType: "bayonet_receiving_slot",
       profileId: BASE,
       count: 1,
-      centerAngleDeg: v(60, "photo_scaled", P1),
-      startAngleDeg: v(30, "photo_scaled", P1),
-      endAngleDeg: v(90, "photo_scaled", P1),
+      centerAngleDeg: v(0, "photo_scaled", P1),
+      startAngleDeg: v(330, "photo_scaled", P1),
+      endAngleDeg: v(30, "photo_scaled", P1),
       innerRadiusMm: v(24.5, "photo_scaled", EST),
       outerRadiusMm: v(27, "photo_scaled", EST),
       depthMm: v(1.8, "photo_scaled", EST),
       matesWith: "lens-lug-1",
-      shapeNotes: `${GAP_NOTE}; its upper end is the drawn end of the top flange (about 30 deg); the lower end is hidden by a break-out and is placed by taking the hidden flange as wide as the top one. Radii and depth are unsourced estimates`,
+      shapeNotes: `${GAP_NOTE}; the top flange, drawn in full (about 330 to 30 deg). Radii and depth are unsourced estimates`,
     },
     {
       featureId: "body-slot-2",
       featureType: "bayonet_receiving_slot",
       profileId: BASE,
       count: 1,
-      centerAngleDeg: v(180, "photo_scaled", P1),
-      startAngleDeg: v(150, "photo_scaled", P1),
-      endAngleDeg: v(210, "photo_scaled", P1),
+      centerAngleDeg: v(120, "photo_scaled", P1),
+      startAngleDeg: v(90, "photo_scaled", P1),
+      endAngleDeg: v(150, "photo_scaled", P1),
       innerRadiusMm: v(24.5, "photo_scaled", EST),
       outerRadiusMm: v(27, "photo_scaled", EST),
       depthMm: v(1.8, "photo_scaled", EST),
       matesWith: "lens-lug-2",
-      shapeNotes: `${GAP_NOTE}; both ends are drawn and scale to about 148 and 213 deg. Radii and depth are unsourced estimates`,
+      shapeNotes: `${GAP_NOTE}; its lower end is drawn and scales to about 148 deg; the upper end is hidden by a break-out and is placed by taking this flange as wide as the top one. Radii and depth are unsourced estimates`,
     },
     {
       featureId: "body-slot-3",
       featureType: "bayonet_receiving_slot",
       profileId: BASE,
       count: 1,
-      centerAngleDeg: v(300, "photo_scaled", P1),
-      startAngleDeg: v(270, "photo_scaled", P1),
-      endAngleDeg: v(330, "photo_scaled", P1),
+      centerAngleDeg: v(240, "photo_scaled", P1),
+      startAngleDeg: v(210, "photo_scaled", P1),
+      endAngleDeg: v(270, "photo_scaled", P1),
       innerRadiusMm: v(24.5, "photo_scaled", EST),
       outerRadiusMm: v(27, "photo_scaled", EST),
       depthMm: v(1.8, "photo_scaled", EST),
       matesWith: "lens-lug-3",
-      shapeNotes: `${GAP_NOTE}; its upper end is the drawn end of the top flange (about 330 deg); the lower end is hidden by a break-out and is placed by taking the hidden flange as wide as the top one. Radii and depth are unsourced estimates`,
+      shapeNotes: `${GAP_NOTE}; its lower end is drawn and scales to about 213 deg; the upper end is hidden by a break-out and is placed by taking this flange as wide as the top one. Radii and depth are unsourced estimates`,
     },
     {
       featureId: "body-index-mark",
@@ -403,9 +403,9 @@ const LEICA_R_MOUNT = {
       featureType: "bayonet_lug",
       profileId: BASE,
       count: 1,
-      centerAngleDeg: v(60, "photo_scaled", P1),
-      startAngleDeg: v(30, "photo_scaled", P1),
-      endAngleDeg: v(90, "photo_scaled", P1),
+      centerAngleDeg: v(0, "photo_scaled", P1),
+      startAngleDeg: v(330, "photo_scaled", P1),
+      endAngleDeg: v(30, "photo_scaled", P1),
       innerRadiusMm: v(24.5, "photo_scaled", EST),
       outerRadiusMm: v(27, "photo_scaled", EST),
       thicknessMm: v(1.8, "photo_scaled", EST),
@@ -417,9 +417,9 @@ const LEICA_R_MOUNT = {
       featureType: "bayonet_lug",
       profileId: BASE,
       count: 1,
-      centerAngleDeg: v(180, "photo_scaled", P1),
-      startAngleDeg: v(150, "photo_scaled", P1),
-      endAngleDeg: v(210, "photo_scaled", P1),
+      centerAngleDeg: v(120, "photo_scaled", P1),
+      startAngleDeg: v(90, "photo_scaled", P1),
+      endAngleDeg: v(150, "photo_scaled", P1),
       innerRadiusMm: v(24.5, "photo_scaled", EST),
       outerRadiusMm: v(27, "photo_scaled", EST),
       thicknessMm: v(1.8, "photo_scaled", EST),
@@ -431,9 +431,9 @@ const LEICA_R_MOUNT = {
       featureType: "bayonet_lug",
       profileId: BASE,
       count: 1,
-      centerAngleDeg: v(300, "photo_scaled", P1),
-      startAngleDeg: v(270, "photo_scaled", P1),
-      endAngleDeg: v(330, "photo_scaled", P1),
+      centerAngleDeg: v(240, "photo_scaled", P1),
+      startAngleDeg: v(210, "photo_scaled", P1),
+      endAngleDeg: v(270, "photo_scaled", P1),
       innerRadiusMm: v(24.5, "photo_scaled", EST),
       outerRadiusMm: v(27, "photo_scaled", EST),
       thicknessMm: v(1.8, "photo_scaled", EST),
@@ -594,7 +594,7 @@ const LEICA_R_MOUNT = {
       archiveUrl: "https://patentimages.storage.googleapis.com/f2/13/08/42f97eafb8047a/US4181419.pdf",
       archiveDate: "2026-11-21",
       appliesTo:
-        "camera-front elevation, used with no mirroring. No dimension or scale is stated, so readings stay photo-scaled: the three body bayonet segments (and so the entry gaps between them), the four mount screws and the two R-cam followers",
+        "camera-front elevation, used with no mirroring. No dimension or scale is stated, so readings stay photo-scaled: the three body bayonet segments, the four mount screws and the two R-cam followers",
       confidence: "low",
     },
     {
@@ -626,7 +626,7 @@ const LEICA_R_MOUNT = {
   openQuestions: [
     {
       issue:
-        "No dimensioned drawing of the bayonet was found. The body flanges (about 330-30, 90-150 and 210-270 deg) and the entry gaps between them (centres 60, 180, 300 deg, about 60 deg each) are scaled from the undimensioned front elevation US4181419 FIG. 1a, where two of the three flanges are partly hidden; the lens lug spans are copied from the gaps and are only an upper limit; lug radii, thickness and both mount outer diameters are still the earlier unsourced estimate [lr-2].",
+        "No dimensioned drawing of the bayonet was found. The body flanges (about 330-30, 90-150 and 210-270 deg) and the entry gaps between them (centres 60, 180, 300 deg, about 60 deg each) are scaled from the undimensioned front elevation US4181419 FIG. 1a, where two of the three flanges are partly hidden; the lens lugs are drawn over the flanges they engage, and their own length is not sourced; lug radii, thickness and both mount outer diameters are still the earlier unsourced estimate [lr-2].",
       affectedFields: [
         "cameraSideFeatures.body-slot-1..3",
         "lensSideFeatures.lens-lug-1..3",

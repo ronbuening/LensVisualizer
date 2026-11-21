@@ -2581,9 +2581,9 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 #### Figures (selected profile `leica-r/3-cam`)
 
-**Camera-side front view** — viewBox `-36 -37 72 73` · 38 elements in 4 layers · hash `c5076936` ([standalone SVG](mounts/leica-r-camera-front.svg))
+**Camera-side front view** — viewBox `-36 -37 72 73` · 38 elements in 4 layers · hash `345b3660` ([standalone SVG](mounts/leica-r-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-35 -36 70 71` · 33 elements in 4 layers · hash `d01fa1d0` ([standalone SVG](mounts/leica-r-lens-rear.svg))
+**Lens-side rear view** — viewBox `-35 -36 70 71` · 33 elements in 4 layers · hash `48cd38ee` ([standalone SVG](mounts/leica-r-lens-rear.svg))
 
 **Axial / register schematic** — viewBox `-54 -40 62 76` · 12 elements in 2 layers · hash `54702276` ([standalone SVG](mounts/leica-r-axial.svg))
 
@@ -2593,9 +2593,9 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 |---|---|---|---|---|---|---|---|
 | `body-throat` | body_throat | `leica-r/base` | 0° | 0° | 360° | 0 | 24.5 |
 | `body-mount-ring` | mount_ring | `leica-r/base` | 0° | 0° | 360° | 24.5 | 29 |
-| `body-slot-1` | bayonet_receiving_slot | `leica-r/base` | 60° | 30° | 90° | 24.5 | 27 |
-| `body-slot-2` | bayonet_receiving_slot | `leica-r/base` | 180° | 150° | 210° | 24.5 | 27 |
-| `body-slot-3` | bayonet_receiving_slot | `leica-r/base` | 300° | 270° | 330° | 24.5 | 27 |
+| `body-slot-1` | bayonet_receiving_slot | `leica-r/base` | 0° | 330° | 30° | 24.5 | 27 |
+| `body-slot-2` | bayonet_receiving_slot | `leica-r/base` | 120° | 90° | 150° | 24.5 | 27 |
+| `body-slot-3` | bayonet_receiving_slot | `leica-r/base` | 240° | 210° | 270° | 24.5 | 27 |
 | `body-index-mark` | index_mark | `leica-r/base` | 240° | unknown | unknown | unknown | 29.5 |
 | `body-lock-pin` | lock_pin | `leica-r/base` | 240° | unknown | unknown | unknown | 25.5 |
 
@@ -2605,9 +2605,9 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 |---|---|---|---|---|---|---|---|
 | `lens-throat` | lens_throat | `leica-r/base` | 0° | 0° | 360° | 0 | 23.5 |
 | `lens-mount-ring` | lens_mount_ring | `leica-r/base` | 0° | 0° | 360° | 23.5 | 28 |
-| `lens-lug-1` | bayonet_lug | `leica-r/base` | 60° | 30° | 90° | 24.5 | 27 |
-| `lens-lug-2` | bayonet_lug | `leica-r/base` | 180° | 150° | 210° | 24.5 | 27 |
-| `lens-lug-3` | bayonet_lug | `leica-r/base` | 300° | 270° | 330° | 24.5 | 27 |
+| `lens-lug-1` | bayonet_lug | `leica-r/base` | 0° | 330° | 30° | 24.5 | 27 |
+| `lens-lug-2` | bayonet_lug | `leica-r/base` | 120° | 90° | 150° | 24.5 | 27 |
+| `lens-lug-3` | bayonet_lug | `leica-r/base` | 240° | 210° | 270° | 24.5 | 27 |
 | `lens-index-mark` | index_mark | `leica-r/base` | 240° | unknown | unknown | unknown | 28.5 |
 | `lens-lock-notch` | lock_notch | `leica-r/base` | 240° | unknown | unknown | unknown | 25.5 |
 
@@ -2647,7 +2647,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/leica-r.mount.ts` (55248 bytes, content hash `dfd2a410`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/leica-r.mount.ts` (55371 bytes, content hash `6b5d0048`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -2665,7 +2665,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 #### Open questions
 
-- No dimensioned drawing of the bayonet was found. The body flanges (about 330-30, 90-150 and 210-270 deg) and the entry gaps between them (centres 60, 180, 300 deg, about 60 deg each) are scaled from the undimensioned front elevation US4181419 FIG. 1a, where two of the three flanges are partly hidden; the lens lug spans are copied from the gaps and are only an upper limit; lug radii, thickness and both mount outer diameters are still the earlier unsourced estimate [lr-2]. _(Needs a Leitz service drawing, a Leicaflex or Leica R repair manual with the bayonet ring, or a calibrated measurement. Searched: Google Patents pages for US4181419, US3427946, US4504134, DE1772018, DE1282442, DE1220723, GB1096268; Leicaflex SL and R9 instructions; Wikipedia, apotelyt, JAPB, photoethnography. Only paid Leicaflex service manuals were located.)_
+- No dimensioned drawing of the bayonet was found. The body flanges (about 330-30, 90-150 and 210-270 deg) and the entry gaps between them (centres 60, 180, 300 deg, about 60 deg each) are scaled from the undimensioned front elevation US4181419 FIG. 1a, where two of the three flanges are partly hidden; the lens lugs are drawn over the flanges they engage, and their own length is not sourced; lug radii, thickness and both mount outer diameters are still the earlier unsourced estimate [lr-2]. _(Needs a Leitz service drawing, a Leicaflex or Leica R repair manual with the bayonet ring, or a calibrated measurement. Searched: Google Patents pages for US4181419, US3427946, US4504134, DE1772018, DE1282442, DE1220723, GB1096268; Leicaflex SL and R9 instructions; Wikipedia, apotelyt, JAPB, photoethnography. Only paid Leicaflex service manuals were located.)_
 - The turn to lock is stated by Leitz only as short or slight. 45 deg is scaled from one three-quarter view (Leicaflex SL instructions p. 4) and could be off by 10 deg or more; the earlier unsourced estimate was 60 deg. The two readings do not agree: in US4181419 FIG. 1a a gap centre is 60 deg from the next flange centre, so a 45 deg turn would leave each lug 15 deg short of centred behind its flange. Either the turn is nearer 60 deg, or the lugs sit off-centre when locked, or the figure's equal 60 deg division is schematic. _(Measure on a body and lens, or find a service drawing.)_
 - Cam, R-cam and contact-strip angles are scaled from two small lens-rear photos (R9 instructions p. 128) and clocked by the lock notch, itself placed only as 8 o'clock. Wikipedia instead rounds cam 1 to 12 o'clock and cams 2 and 3 to 6 o'clock, about 30 deg from the scaled values. No radius, arc length or cam rise is sourced, so the radii are unknown and the markers sit at a placeholder radius. The two body followers come from a patent figure of a camera the patent presents as an example only; the Leicaflex and SL / SL2 body feelers are not placed at all. _(Needs a dimensioned Leitz drawing of the lens rear or a measured lens of each generation.)_
 - The ROM strip is one marker per side. The number of contacts, their pitch, pad size and radius were not found in any source that could be cited; the R9 instructions call it only a contact strip. The 3-cam MVP profile has no contacts, so contactCount stays not_applicable. _(Find a Leica patent or service document for the R8 lens contacts (none located), or count and measure on a ROM lens and an R8 / R9 body.)_
