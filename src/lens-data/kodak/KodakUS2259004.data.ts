@@ -2,21 +2,21 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * US 2,259,004 A, Figure 2 numerical example, with the section in Figure 1.
- * Seven elements in four groups; all surfaces are spherical. The printed radii,
- * thicknesses and air spaces are retained in mm. Sodium-D indices and Abbe
- * numbers follow the table.
+ * Seven elements in four groups; all surfaces are spherical. Printed radii,
+ * thicknesses, air spaces, sodium-D indices and Abbe numbers are retained.
+ * Dimensions use the printed 100 mm focal-length scale.
  * The stop lies in the printed 14.61 mm gap after surface 7; its 12.50/2.11 mm
  * split and all clear radii are inferred. The stop radius is derived for f/1.5.
- * The image plane is the computed paraxial back focus, 46.997125 mm; the patent
- * prints no back focus. Computed EFL is 100.025779 mm against the stated 100 mm.
- * The modeled half-field is 20 degrees, within the patent's stated covering power.
+ * The image plane is at the calculated paraxial back focus of 47.00 mm, which
+ * is not printed. Calculated EFL is 100.03 mm against the stated 100 mm.
+ * The 20.0° half-field lies within the patent's stated covering power.
  */
 const LENS_DATA = {
   schema: 2,
   key: "kodak-100mm-f15-us2259004",
   maker: "Kodak",
   name: "KODAK 100mm f/1.5 (US 2,259,004 Design)",
-  subtitle: "US 2,259,004 A, Figure 2 — Schade seven-element design",
+  subtitle: "US 2,259,004 A, Figure 2 — Eastman Kodak / Schade",
   visible: true,
   source: {
     patentNumber: "US 2,259,004 A",
@@ -38,8 +38,13 @@ const LENS_DATA = {
     },
     elementCount: 7,
     groupCount: 4,
-    imageCircleMm: 72.1452,
-    specs: ["7 ELEMENTS / 4 GROUPS", "ALL SPHERICAL", "DESIGN F/1.5"],
+    imageCircleMm: 72.15,
+    specs: [
+      "7 ELEMENTS / 4 GROUPS",
+      "ALL SPHERICAL",
+      "DESIGN f = 100 mm",
+      "DESIGN F/1.5",
+    ],
   },
   elements: [
     {
