@@ -55,7 +55,7 @@ const LENS_DATA = {
   key: "tamron-a069-50-300mm-f4-5-6-3-di-iii-vc-vxd",
   maker: "Tamron",
   name: "TAMRON 50-300mm f/4.5-6.3 Di III VC VXD",
-  subtitle: "US 2024/0295723 A1 — Example 1 / Tamron A069 correlation",
+  subtitle: "US 2024/0295723 A1 — Example 1 / Tamron A069 match",
 
   catalog: {
     lensMounts: ["sony-fe"],

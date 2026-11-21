@@ -48,7 +48,7 @@ const LENS_DATA = {
   key: "tamron-sp-a007-24-70mm-f28-vc",
   maker: "Tamron",
   name: "TAMRON SP 24-70mm f/2.8 Di VC USD",
-  subtitle: "US 8,810,918 B2 Example 4 — A007 correlation (inferred)",
+  subtitle: "US 8,810,918 B2 Example 4 — inferred A007 match",
 
   catalog: {
     lensMounts: ["canon-ef", "nikon-f", "sony-a"],

@@ -53,7 +53,7 @@ const LENS_DATA = {
   key: "tamron-b011-18-200mm-f35-63-di-iii-vc",
   maker: "Tamron",
   name: "TAMRON 18-200mm f/3.5-6.3 Di III VC (B011)",
-  subtitle: "JP 2012-181525 A Example 1 - unscaled patent prescription correlated to Model B011",
+  subtitle: "JP 2012-181525 A Example 1 - unscaled patent prescription matched to Model B011",
 
   catalog: {
     lensMounts: ["sony-fe", "canon-ef-m"],

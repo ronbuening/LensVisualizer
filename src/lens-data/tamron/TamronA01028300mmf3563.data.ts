@@ -40,7 +40,7 @@ const LENS_DATA = {
   maker: "Tamron",
   name: "TAMRON 28-300mm f/3.5-6.3 Di VC PZD",
   subtitle:
-    "JP 2013-254160 A Example 7 — strong production correlation to Model A010",
+    "JP 2013-254160 A Example 7 — strong production match to Model A010",
 
   catalog: {
     lensMounts: ["canon-ef", "nikon-f", "sony-a"],

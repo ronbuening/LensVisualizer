@@ -26,7 +26,7 @@ const LENS_DATA = {
   key: "tamron-a005-70-300-f4-5-6-vc",
   maker: "Tamron",
   name: "TAMRON SP 70-300mm f/4-5.6 Di VC USD",
-  subtitle: "US 8,228,605 B2 Example 2 — A005 correlation",
+  subtitle: "US 8,228,605 B2 Example 2 — A005 match",
 
   catalog: {
     lensMounts: ["canon-ef", "nikon-f", "sony-a"],
