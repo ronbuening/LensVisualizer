@@ -87,7 +87,7 @@ const LENS_DATA = {
       vd: 56.1,
       indexReference: "D",
       focalLengthMm: 58.21,
-      glass: "Unmatched (nD 1.697 / ν 56.1)",
+      glass: "H-LaK12 (CDGM)",
       role: "Positive rear member of the air-spaced rear pair",
     },
   ],
