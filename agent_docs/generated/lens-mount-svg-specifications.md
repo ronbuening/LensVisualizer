@@ -3833,7 +3833,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 | Profile ID | Type | Applies to | Adds | Removes | Changes |
 |---|---|---|---|---|---|
-| `samsung-nx/base` | base | Samsung NX lenses and APS-C NX bodies, 2010–2015 | three-sector short-register bayonet; eight-contact fully electronic interface; body-side sprung lock pin and red mounting index | mechanical aperture and autofocus couplings | single base interface; NX Mini uses the separate, incompatible NX-M mount |
+| `samsung-nx/base` | base | Samsung NX lenses and APS-C NX bodies, 2010–2015 | three-sector short-register bayonet with unequal sectors; eight-contact fully electronic interface (five interface pins, three power pins); body-side sprung lock shaft and red mounting index on the mount plate face; spring-loaded lens-detect pin inside the throat | mechanical aperture and autofocus couplings | single base interface; NX Mini uses the separate, incompatible NX-M mount; NX10 (2010), NX200 (2011) and NX300 (2013) service manuals show the same four-screw plate, eight contacts, index and lock positions; only the plate screw thread differs by body |
 
 #### Dimensional summary
 
@@ -3842,81 +3842,83 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 | Flange focal distance | 25.5 (`secondary`) | mm |
 | Nominal throat diameter | 42 (`secondary`) | mm |
 | Effective clear aperture | 42 (`secondary`) | mm |
-| Camera mount outer diameter | 52 (`photo_scaled`) | mm |
-| Lens mount outer diameter | 50 (`photo_scaled`) | mm |
-| Contact count | 8 (`photo_scaled`) | count |
+| Camera mount outer diameter | 60 (`photo_scaled`) | mm |
+| Lens mount outer diameter | 57 (`photo_scaled`) | mm |
+| Contact count | 8 (`service_manual`) | count |
 | Lock rotation | 60 (`photo_scaled`) | deg |
 | Lock direction | clockwise (`official`) | — |
 
 #### Figures (selected profile `samsung-nx/base`)
 
-**Camera-side front view** — viewBox `-32 -33 64 65` · 52 elements in 4 layers · hash `06d7cc8d` ([standalone SVG](mounts/samsung-nx-camera-front.svg))
+**Camera-side front view** — viewBox `-37 -38 74 75` · 55 elements in 5 layers · hash `bb807332` ([standalone SVG](mounts/samsung-nx-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-31 -32 62 63` · 46 elements in 4 layers · hash `f88bef92` ([standalone SVG](mounts/samsung-nx-lens-rear.svg))
+**Lens-side rear view** — viewBox `-35 -37 70 72` · 46 elements in 4 layers · hash `98100866` ([standalone SVG](mounts/samsung-nx-lens-rear.svg))
 
-**Axial / register schematic** — viewBox `-32 -36 39 68` · 14 elements in 2 layers · hash `c094ccc0` ([standalone SVG](mounts/samsung-nx-axial.svg))
+**Axial / register schematic** — viewBox `-32 -41 40 78` · 14 elements in 2 layers · hash `ed3f9133` ([standalone SVG](mounts/samsung-nx-axial.svg))
 
 #### Camera-side front-view geometry
 
 | Feature ID | Type | Profile | Center | Start | End | Inner r | Outer r |
 |---|---|---|---|---|---|---|---|
 | `body-throat` | body_throat | `samsung-nx/base` | 0° | 0° | 360° | 0 | 21 |
-| `body-mount-ring` | mount_ring | `samsung-nx/base` | 0° | 0° | 360° | 21 | 26 |
-| `body-slot-1` | bayonet_receiving_slot | `samsung-nx/base` | 30° | 10° | 50° | 21 | 23.5 |
-| `body-slot-2` | bayonet_receiving_slot | `samsung-nx/base` | 150° | 130° | 170° | 21 | 23.5 |
-| `body-slot-3` | bayonet_receiving_slot | `samsung-nx/base` | 292° | 272° | 312° | 21 | 23.5 |
-| `body-index-mark` | index_mark | `samsung-nx/base` | 240° | unknown | unknown | unknown | 26.5 |
-| `body-lock-pin` | lock_pin | `samsung-nx/base` | 90° | unknown | unknown | unknown | 22 |
+| `body-mount-ring` | mount_ring | `samsung-nx/base` | 0° | 0° | 360° | 21 | 30 |
+| `body-slot-1` | bayonet_receiving_slot | `samsung-nx/base` | 301.5° | 271° | 332° | 21 | 23.5 |
+| `body-slot-2` | bayonet_receiving_slot | `samsung-nx/base` | 61° | 26° | 96° | 21 | 23.5 |
+| `body-slot-3` | bayonet_receiving_slot | `samsung-nx/base` | 190° | 163° | 217° | 21 | 23.5 |
+| `body-index-mark` | index_mark | `samsung-nx/base` | 300° | unknown | unknown | unknown | 26.5 |
+| `body-lock-pin` | lock_pin | `samsung-nx/base` | 90° | unknown | unknown | unknown | 26.5 |
 
 #### Lens-side rear-view geometry
 
 | Feature ID | Type | Profile | Center | Start | End | Inner r | Outer r |
 |---|---|---|---|---|---|---|---|
 | `lens-throat` | lens_throat | `samsung-nx/base` | 0° | 0° | 360° | 0 | 20 |
-| `lens-mount-ring` | lens_mount_ring | `samsung-nx/base` | 0° | 0° | 360° | 20 | 25 |
-| `lens-lug-1` | bayonet_lug | `samsung-nx/base` | 30° | 10° | 50° | 21 | 23.5 |
-| `lens-lug-2` | bayonet_lug | `samsung-nx/base` | 150° | 130° | 170° | 21 | 23.5 |
-| `lens-lug-3` | bayonet_lug | `samsung-nx/base` | 292° | 272° | 312° | 21 | 23.5 |
-| `lens-index-mark` | index_mark | `samsung-nx/base` | 240° | unknown | unknown | unknown | 25.5 |
-| `lens-lock-notch` | lock_notch | `samsung-nx/base` | 90° | unknown | unknown | unknown | 22 |
+| `lens-mount-ring` | lens_mount_ring | `samsung-nx/base` | 0° | 0° | 360° | 20 | 28.5 |
+| `lens-lug-1` | bayonet_lug | `samsung-nx/base` | 301.5° | 274° | 329° | 21 | 23.5 |
+| `lens-lug-2` | bayonet_lug | `samsung-nx/base` | 61° | 29° | 93° | 21 | 23.5 |
+| `lens-lug-3` | bayonet_lug | `samsung-nx/base` | 190° | 166° | 214° | 21 | 23.5 |
+| `lens-index-mark` | index_mark | `samsung-nx/base` | 300° | unknown | unknown | unknown | 29 |
+| `lens-lock-notch` | lock_notch | `samsung-nx/base` | 90° | unknown | unknown | unknown | 26.5 |
 
 #### Electrical contacts
 
 | Side | No. | Profile | Center angle | Radius | Function |
 |---|---|---|---|---|---|
-| body | 1 | `samsung-nx/base` | 330° | 19 |  |
-| body | 2 | `samsung-nx/base` | 338.5° | 19 |  |
-| body | 3 | `samsung-nx/base` | 347° | 19 |  |
-| body | 4 | `samsung-nx/base` | 355.5° | 19 |  |
-| body | 5 | `samsung-nx/base` | 4° | 19 |  |
-| body | 6 | `samsung-nx/base` | 12.5° | 19 |  |
-| body | 7 | `samsung-nx/base` | 21° | 19 |  |
-| body | 8 | `samsung-nx/base` | 29.5° | 19 |  |
-| lens | 1 | `samsung-nx/base` | 330° | 19 |  |
-| lens | 2 | `samsung-nx/base` | 338.5° | 19 |  |
-| lens | 3 | `samsung-nx/base` | 347° | 19 |  |
-| lens | 4 | `samsung-nx/base` | 355.5° | 19 |  |
-| lens | 5 | `samsung-nx/base` | 4° | 19 |  |
-| lens | 6 | `samsung-nx/base` | 12.5° | 19 |  |
-| lens | 7 | `samsung-nx/base` | 21° | 19 |  |
-| lens | 8 | `samsung-nx/base` | 29.5° | 19 |  |
+| body | 1 | `samsung-nx/base` | 328.5° | 18 | interface signal: one of SIO3_SCK, SIO3_MISO, SIO3_MOSI, LENS_SYNC, LENS_RB (per-pin order not established) |
+| body | 2 | `samsung-nx/base` | 337.5° | 18 | interface signal: one of SIO3_SCK, SIO3_MISO, SIO3_MOSI, LENS_SYNC, LENS_RB (per-pin order not established) |
+| body | 3 | `samsung-nx/base` | 346.5° | 18 | interface signal: one of SIO3_SCK, SIO3_MISO, SIO3_MOSI, LENS_SYNC, LENS_RB (per-pin order not established) |
+| body | 4 | `samsung-nx/base` | 355.5° | 18 | interface signal: one of SIO3_SCK, SIO3_MISO, SIO3_MOSI, LENS_SYNC, LENS_RB (per-pin order not established) |
+| body | 5 | `samsung-nx/base` | 4.5° | 18 | interface signal: one of SIO3_SCK, SIO3_MISO, SIO3_MOSI, LENS_SYNC, LENS_RB (per-pin order not established) |
+| body | 6 | `samsung-nx/base` | 13.5° | 18 | power group: one of GND, DP, MP (per-pin order not established) |
+| body | 7 | `samsung-nx/base` | 22.5° | 18 | power group: one of GND, DP, MP (per-pin order not established) |
+| body | 8 | `samsung-nx/base` | 31.5° | 18 | power group: one of GND, DP, MP (per-pin order not established) |
+| lens | 1 | `samsung-nx/base` | 328.5° | 18 | interface signal: one of SIO3_SCK, SIO3_MISO, SIO3_MOSI, LENS_SYNC, LENS_RB (per-pin order not established) |
+| lens | 2 | `samsung-nx/base` | 337.5° | 18 | interface signal: one of SIO3_SCK, SIO3_MISO, SIO3_MOSI, LENS_SYNC, LENS_RB (per-pin order not established) |
+| lens | 3 | `samsung-nx/base` | 346.5° | 18 | interface signal: one of SIO3_SCK, SIO3_MISO, SIO3_MOSI, LENS_SYNC, LENS_RB (per-pin order not established) |
+| lens | 4 | `samsung-nx/base` | 355.5° | 18 | interface signal: one of SIO3_SCK, SIO3_MISO, SIO3_MOSI, LENS_SYNC, LENS_RB (per-pin order not established) |
+| lens | 5 | `samsung-nx/base` | 4.5° | 18 | interface signal: one of SIO3_SCK, SIO3_MISO, SIO3_MOSI, LENS_SYNC, LENS_RB (per-pin order not established) |
+| lens | 6 | `samsung-nx/base` | 13.5° | 18 | power group: one of GND, DP, MP (per-pin order not established) |
+| lens | 7 | `samsung-nx/base` | 22.5° | 18 | power group: one of GND, DP, MP (per-pin order not established) |
+| lens | 8 | `samsung-nx/base` | 31.5° | 18 | power group: one of GND, DP, MP (per-pin order not established) |
 
 #### Mechanical couplings
 
-None — fully electronic.
+| Feature | Side | Profile | Function |
+|---|---|---|---|
+| `lens-detect-pin` | body | `samsung-nx/base` | pressed by the mounted lens so the body's lens-detect switch reports a lens is attached |
 
 #### Axial stack
 
 | Plane | z (mm) | Diameter (mm) |
 |---|---|---|
-| `flange_datum` | 0 | 52 |
+| `flange_datum` | 0 | 60 |
 | `bayonet_lug_engagement` | 1.2 | 47 |
-| `electrical_contact_plane` | 0.5 | 38 |
+| `electrical_contact_plane` | 0.5 | 36 |
 | `sensor_film_plane` | -25.5 | 28.35 |
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/samsung-nx.mount.ts` (39883 bytes, content hash `da9c7128`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/samsung-nx.mount.ts` (54011 bytes, content hash `357f1542`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -3924,11 +3926,20 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 |---|---|---|---|---|---|
 | `snx-1` | secondary | “Samsung NX-mount,” Wikipedia. Accessed 2026-08-02. | [snapshot](http://web.archive.org/web/20260623060500/https://en.wikipedia.org/wiki/Samsung_NX-mount) | 2026-06-23 | medium |
 | `snx-2` | official | Samsung NX10 User Manual, version 1.3, pp. 17 and 21. Accessed 2026-08-02. | [snapshot](https://nxfiles.nx.tc/files/NX10/Manual/NX10_English.pdf) | 2026-08-02 | medium |
+| `snx-3` | service_manual | Samsung Electronics, NX200 Service Manual (NX200_ENG_SM_110921), 2011: p. 3-13 (PDF p. 26) front photo “Remove the 4 screws”, M.SCREW(M1.7X5/NI), and the mount-plate exploded photo; p. 7-4 (PDF p. 66) flange-back adjust value; p. 8-8 (PDF p. 81) Inner Mount Holder Assy exploded view and parts list. Accessed 2026-11-21. | [snapshot](https://nxfiles.nx.tc/files/NX200/Service-Manual/NX200_ENG_SM_110921.pdf) | 2026-11-21 | medium |
+| `snx-4` | service_manual | Samsung Electronics, NX300 Service Manual, 2013: p. 3-13 (PDF p. 27) Figs. 3-23 and 3-24, “Remove the 4 screws” and the PLATE-MOUNT LENS / MOUNT-INNER / SHAFT-LENS DETECT sequence; PDF p. 71 flange-back adjust specification; PDF pp. 9–10 body dimensions. Accessed 2026-11-21. | [snapshot](https://nxfiles.nx.tc/files/NX300/Service-Manual/Samsung_NX300_Service_manual.pdf) | 2026-11-21 | medium |
+| `snx-5` | service_manual | Samsung Electronics, NX10 Service Manual: pp. 3-6 and 3-7 (PDF pp. 23–24) Mount Holder Assembly exploded view and parts list (MOUNT LENS, SCREW 2.0*6.0 PAN x4, SHAFT LENS LOCK, SHAFT LENS DETECT, ASSY-BASE IF PIN); p. 7-5 (PDF p. 53) Lens PCB signal names. Accessed 2026-11-21. | [snapshot](https://nxfiles.nx.tc/files/NX10/Service-Manual/Samsung_NX10_Service_manual.pdf) | 2026-11-21 | high |
+| `snx-6` | service_manual | Samsung Electronics, NX Lens XL1103 (85 mm F1.4 ED SSA) Service Manual, 2011: p. 3-2 (PDF p. 11) Figs. 3-1 and 3-2, lens-rear photographs. Accessed 2026-11-21. | [snapshot](https://nxfiles.nx.tc/files/Lens/Service-Manual/XL1103_LENS_ENG_121024_85mm.pdf) | 2026-11-21 | medium |
+| `snx-7` | service_manual | Samsung Electronics, NX Lens XL1012 (30 mm F2) Service Manual, 2011: p. 1-1 (PDF p. 3) “Max. Diameter x Length 61.5x21.5mm”; p. 2-1 (PDF p. 4) “Align the red mark on the lens with the red mark on the camera body … Rotate the lens clockwise until it locks into place”; p. 4-2 (PDF p. 14) lens-rear photograph. Accessed 2026-11-21. | [snapshot](https://nxfiles.nx.tc/files/Lens/Service-Manual/XL1012_LENS_ENG_121015_30mm.pdf) | 2026-11-21 | low |
 
 #### Open questions
 
-- NX mount outer diameters, lug spans/angles, lock rotation, contact pitch, and screw circle are photo-scaled; no production mechanical drawing was located. _(Upgrade from a Samsung service drawing or measured NX body/lens sample.)_
-- The commonly published 42 mm mount diameter is secondary-sourced and should be checked against metrology. _(Confirm whether 42 mm denotes the clear throat or another mount-diameter convention.)_
+- No dimensioned drawing or patent with stated NX mount geometry was located, so lug and slot angles, lock rotation, index, lock pin, lens-detect pin, screw positions, contact pitch and both outer diameters are scaled from service-manual photographs (angles about +/-3-4 deg, diameters about +/-2 mm). Searched: Samsung NX10, NX200, NX300 and NX1 body service manuals and the 30 mm, 18-55 mm and 85 mm lens service manuals (parts lists and photos only, no mount drawings); Samsung patents KR10-2012-0138199 and KR10-2012-0138201 (lens communication, no geometry), KR101567816B1 / US8414204B2 lens adapter and US2010/0166417A1 (no dimensions or angles). _(Upgrade from a Samsung mechanical drawing, a mount patent with stated angles, or a measured NX body and lens.)_
+- Bayonet radial bands (21 to 23.5 mm), lug depth and thickness (1.8 mm), lens rear opening (20 mm radius), contact pad width, height and protrusion, lock-pin protrusion and the drawn screw diameter are unscaled stand-ins carried over from the first draft. Lens lugs are stored on their slot's centre angle; the lens photos put them within 2.5 deg of that. _(Measure a body mount plate, MOUNT-INNER ring and lens mount, or find a drawing.)_
+- The commonly published 42 mm mount diameter is secondary-sourced and it is unclear which diameter it denotes. Photo scaling puts the mount-plate opening near 45 mm and the claw-to-claw and lens-lug diameters near 40-42 mm. _(Confirm whether 42 mm denotes the clear throat or another mount-diameter convention.)_
+- The 25.5 mm register is secondary-sourced. The NX200 and NX300 service manuals give a mount-to-CMOS flange-back adjust value of 25.55 mm (-35/+15, printed “mm” but evidently micrometres), measured on a Kyoritsu RSM-5000; that band does not include 25.50 mm, so it may be a mechanical distance that allows for the sensor cover glass. _(Find a Samsung statement of the design register, or establish what the service adjust value measures.)_
+- Contact functions are known only as groups: five interface pins (contacts 1-5) and three power pins (contacts 6-8, release-button side), with signal names from the NX10 Lens PCB. Which pin carries which signal is not established; the lens-side sixth pad is wider than the rest. _(Trace an NX body contact block or lens flex to assign each signal to its pin.)_
+- Mount-plate screw thread differs by body: SCREW 2.0*6.0 PAN on the NX10, M1.7x5 on the NX200. The screw count (4) is from the parts lists; the pitch circle and 45 deg positions are photo-scaled, and the drawn diameter is a stand-in. _(Minor feature; settle with a measured body or drawing.)_
 
 ### `sigma-sa` — Sigma SA
 
