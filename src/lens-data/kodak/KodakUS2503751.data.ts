@@ -55,7 +55,7 @@ const LENS_DATA = {
       vd: 51.1,
       indexReference: "D",
       focalLengthMm: 53.94,
-      glass: "Unmatched (nD 1.734 / ν 51.1)",
+      glass: "TAC4 (Hoya)",
       role: "Front positive crown element",
     },
     {
@@ -79,7 +79,7 @@ const LENS_DATA = {
       vd: 51.1,
       indexReference: "D",
       focalLengthMm: 63.96,
-      glass: "Unmatched (nD 1.734 / ν 51.1)",
+      glass: "TAC4 (Hoya)",
       role: "Rear positive crown element",
     },
   ],
