@@ -7,8 +7,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * the front doublet is cemented and the rear pair has a 0.5 mm air gap.
  * The patent prints f/3.5 and a 25-degree half-field; its approximately central
  * stop is placed halfway across the R5-R6 space. Rims follow the suggested
- * diameters except R4/R7/R9, which are inferred, and R3/R5, set to 11.3/11.05 mm
- * to clear the axial beam (the patent says its diameters exceed the axial need).
+ * diameters except inferred R4/R7/R9 and R3/R5, set to 11.3/11.05 mm to clear
+ * the axial beam (the patent says its diameters exceed the axial need).
+ * Figure 7 supports the rim proportions but is not uniformly to scale; its
+ * chamfers do not establish exact clear radii or bevel depths.
  * The repeated R8 in the rear-diameter list is probably a misprint for R9. The
  * image is at the computed paraxial back focus, 80.32 mm; no back focus or close
  * focus is printed. Glass indices refer to sodium D.
