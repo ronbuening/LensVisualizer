@@ -2,28 +2,22 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * US 1,888,156 A, sole numerical example (William F. Bielicke, granted 1932).
- * The two printed tables agree on the radii, glass thicknesses, air spaces,
- * D-line indices and Abbe numbers. The G-line indices are listed in the analysis.
- * Five elements form four groups; only elements 3 and 4 are cemented, at R6,
- * and the rear face of element 1 is plane.
- *
- * The printed 100 mm f/2.5 prescription computes to a D-line paraxial EFL of
- * 99.9016 mm and back focus of 78.2750 mm. The image plane uses that computed
- * back focus, which the patent does not print.
- *
- * All semi-diameters and the stop position are inferred. The stop divides the
- * printed 9.2 mm air space into 5.4 and 3.8 mm at z = 26.4 mm; its radius is
- * derived from nominal f/2.5. The finite entrance beam is about f/2.58.
- * The displayed half-field of 10 degrees and the f-stop list are modeling
- * choices; the patent gives no field, image format or close-focus data.
- * No production lens is documented for this unassigned patent.
+ * Both tables agree on radii, thicknesses, spaces, D-line indices and Abbe numbers;
+ * the printed G-line indices are listed in the analysis. Five elements form four
+ * groups; only elements 3 and 4 are cemented, at R6, and R2 is plane.
+ * Printed 100 mm f/2.5 gives D-line EFL 99.90 mm and back focus 78.28 mm;
+ * the infinity image plane uses this calculated, unprinted back focus.
+ * Rims and stop position are inferred: the stop at z = 26.4 mm divides the printed
+ * 9.2 mm gap into 5.4 + 3.8 mm. Paraxial f/2.5 sets its radius; the finite beam is f/2.58.
+ * The 10.0° half-field and f-stop list are chosen; no field, format or close focus is printed.
+ * The patent names no assignee; no production lens is confirmed for this design.
  */
 const LENS_DATA = {
   schema: 2,
   key: "bielicke-100mm-f25-us1888156",
   maker: null,
   name: "BIELICKE 100mm f/2.5 (US 1,888,156 Design)",
-  subtitle: "US 1,888,156 A, sole example — cemented collective group",
+  subtitle: "US 1,888,156 A, sole example — Bielicke",
   visible: true,
   source: {
     patentNumber: "US 1,888,156 A",
@@ -45,7 +39,7 @@ const LENS_DATA = {
     },
     elementCount: 5,
     groupCount: 4,
-    specs: ["5 ELEMENTS / 4 GROUPS", "ALL SPHERICAL", "DESIGN F/2.5"],
+    specs: ["5 ELEMENTS / 4 GROUPS", "ALL SPHERICAL", "DESIGN f = 100 mm", "DESIGN F/2.5"],
   },
   elements: [
     {
@@ -193,22 +187,22 @@ const LENS_DATA = {
   },
   groups: [
     {
-      text: "G1 · L1",
+      text: "Front collective lens",
       fromSurface: "1",
       toSurface: "2",
     },
     {
-      text: "G2 · L2",
+      text: "Dispersive lens",
       fromSurface: "3",
       toSurface: "4",
     },
     {
-      text: "G3 · L3 + L4",
+      text: "Cemented collective lens",
       fromSurface: "5",
       toSurface: "7",
     },
     {
-      text: "G4 · L5",
+      text: "Rear collective lens",
       fromSurface: "8",
       toSurface: "9",
     },

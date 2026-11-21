@@ -24,7 +24,7 @@ From object to image, the groups are a positive plano-convex singlet, a negative
 
 The central positive pair places a dispersive flint before a crown of higher index and lower dispersion, as the patent specifies. Its combined focal length is +82.82 mm; the individual element focal lengths below are calculated in air and describe their separate powers.
 
-The first-to-last surface distance is 48.1 mm. At the D line the printed prescription computes to EFL 99.9016 mm, 0.0984% below the stated 100 mm. The image plane is the computed paraxial back focus, 78.2750 mm after R9, giving 126.3750 mm from the first vertex to the image. The patent does not print a back focus.
+The first-to-last surface distance is 48.1 mm. At the D line the printed prescription gives EFL 99.90 mm, 0.1% below the stated 100 mm. The image plane is the calculated paraxial back focus, 78.28 mm after R9, giving 126.38 mm from the first vertex to the image. The patent does not print a back focus.
 
 ## Element-by-Element Analysis
 
@@ -72,19 +72,19 @@ The patent prints D-line and G-line indices and Abbe numbers for every element, 
 | 4 / IV  | 1.6580 |         1.6741 | 51.4 |
 | 5 / V   | 1.6513 |         1.6732 | 38.3 |
 
-The G-line values are preserved with their printed designation. The patent gives no wavelength for G, so these values are not assigned to the model's 435.8 nm g-line field. The D-line indices and Abbe numbers support approximate chromatic calculations, but do not establish the complete dispersion curves or secondary spectrum of the historical glasses.
+The G-line values retain their printed designation. The patent gives no wavelength for G, so the model does not treat them as indices at 435.8 nm. The D-line indices and Abbe numbers support approximate chromatic calculations, but do not establish the complete dispersion curves or secondary spectrum of the historical glasses.
 
 The patent describes the use of high-index baryta crown to improve field flatness. Adding the cemented flint member permits chromatic correction without relying on a very heavy flint whose yellow tint would absorb blue light (specification p. 1, lines 33–58).
 
 ## Focus Mechanism and Aperture
 
-Infinity focus only; the patent gives no close-focus data or focusing mechanism. The stop is inferred within the printed 9.2 mm air space between R4 and R5, divided into 5.4 mm before and 3.8 mm after the stop. Its axial station is 26.4 mm after the first vertex; the figure draws no iris.
+The model is focused at infinity; the patent gives no close-focus data or focusing mechanism. The stop is inferred within the printed 9.2 mm air space between R4 and R5, divided into 5.4 mm before and 3.8 mm after the stop. Its axial station is 26.4 mm after the first vertex; the figure draws no iris.
 
-Nominal f/2.5 gives an inferred stop radius of 15.2690 mm. The admitted axial beam has entrance-equivalent f/2.5830 and image-sine f/2.5843. These finite-ray values differ from the paraxial f-number because of pupil aberration. No clear rim limits the axial aperture. A finite entrance-equivalent f/2.5 would require a larger stop radius of 15.8199 mm, which is not a printed iris dimension.
+Nominal f/2.5 gives an inferred stop radius of 15.269 mm. The admitted axial beam has entrance-equivalent f/2.58 and image-sine f/2.58. These finite-ray values differ from the paraxial f-number because of pupil aberration. No clear rim limits the axial aperture. A finite entrance-equivalent f/2.5 would require a larger stop radius of 15.820 mm, which is not a printed iris dimension.
 
 ## Model Scope and Limitations
 
-All clear semi-diameters are inferred. The model retains larger rims than the drawing suggests at R1/R2, R3 and R8/R9; they do not obstruct the axial beam or the chief ray at the displayed 10° half-field. Some off-axis marginal rays are vignetted by the front element. Neither the selected ±10° field nor the f-stop list is stated in the patent, and no image format or image circle is assigned.
+All clear semi-diameters are inferred. The model retains larger rims than the drawing suggests at R1/R2, R3 and R8/R9; they do not obstruct the axial beam or the chief ray at the displayed 10.0° half-field. Some off-axis marginal rays are vignetted by the front element. Neither the selected ±10.0° field nor the f-stop list is stated in the patent, and no image format or image circle is assigned.
 
 The model preserves the printed prescription and uses its paraxial infinity image plane. Geometric image-quality calculations describe this modeled aperture and field; measured production performance and full spectral behavior are not established.
 
