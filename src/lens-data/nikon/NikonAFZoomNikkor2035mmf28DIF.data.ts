@@ -22,9 +22,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║   • D8, D13, D16, and BF vary with zoom. D11 is source-marked variable because   ║
  * ║     the cemented L21 doublet is the internal-focus component, but the patent      ║
  * ║     publishes no finite-focus row or travel.                                      ║
- * ║   • Focus status: NO_INTERNAL_RECONSTRUCTION. Every [infinity, close] pair below  ║
- * ║     is therefore identical; the production 0.5 m MFD is metadata only and is not  ║
- * ║     used to invent internal focus travel.                                         ║
+ * ║   • Focus: infinity only. Every [infinity, close] pair below is therefore          ║
+ * ║     identical; the production 0.5 m MFD is product information only and is         ║
+ * ║     not used to model focus travel.                                                ║
  * ║   • G1 reverses direction between the published mid and tele states when group    ║
  * ║     positions are normalized to the fixed image plane.                            ║
  * ║                                                                                    ║
@@ -314,16 +314,16 @@ const LENS_DATA = {
   ],
 
   zoom: {
-    /* (moved from zoomPositions) ── Zoom states: all second values equal first values by NO_INTERNAL_RECONSTRUCTION ── */
+    /* (moved from zoomPositions) ── Zoom states: infinity focus only; each close value equals its infinity value ── */
     stations: [{ focalLengthMm: 20.5, label: "Wide" }, { focalLengthMm: 28 }, { focalLengthMm: 34, label: "Tele" }],
   },
 
   focus: {
     closeFocusM: 0.5,
     description:
-      "NO_INTERNAL_RECONSTRUCTION — US 5,276,553 identifies cemented L21 as the internal focusing component, but " +
-      "publishes no finite-focus spacing table or travel. The authored zoom states therefore remain infinity-focus only; " +
-      "the 0.5 m production minimum focus distance is catalog metadata and does not drive a reconstructed focus state.",
+      "Infinity focus only. US 5,276,553 names the cemented L21 doublet as the internal focusing group but gives no " +
+      "close-focus spacings or travel. Nikon's 0.5 m minimum focus distance is product information; focus travel is " +
+      "not modeled, zoom movement is.",
   },
 
   gaps: {

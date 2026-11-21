@@ -9,8 +9,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  Nikon does not explicitly identify this patent example as the     ║
  * ║  production prescription.                                          ║
  * ║  5 elements / 4 groups, all spherical.                             ║
- * ║  Focus: production AU-1 unit focus; the data file preserves only   ║
- * ║  the infinity optical state (NO_INTERNAL_RECONSTRUCTION). The 1978 ║
+ * ║  Focus: production AU-1 unit focus; the model shows only the         ║
+ * ║  infinity optical state and focus travel is not modeled. The 1978    ║
  * ║  Nikon manual gives both 20.0 m and 61 ft MFD rows; closeFocusM     ║
  * ║  selects 20.0 m for the AU-1 context and records the discrepancy.   ║
  * ║                                                                    ║
@@ -183,7 +183,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 20,
     description:
-      "Production focusing uses the AU-1 unit and Nikon states that focusing-unit super-telephotos moved the entire lens. This model preserves only the patent infinity prescription (NO_INTERNAL_RECONSTRUCTION); closeFocusM=20 m is sourced product metadata and no variable focus spacing is authored.",
+      "Infinity focus only. Production focusing uses the AU-1 unit, and Nikon states that focusing-unit super-telephotos moved the entire lens. The model shows only the patent infinity prescription; Nikon's 20 m minimum focus distance is product information, and focus travel is not modeled.",
   },
 
   aperture: { nominalFNumber: 8, fStops: [8, 11, 16, 22], maxFNumber: 22 },
