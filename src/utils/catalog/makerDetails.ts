@@ -264,8 +264,7 @@ export const MAKER_DETAILS: Record<string, MakerDetails> = {
       "American optical company founded in Rochester in 1899, maker of photographic shutters, still-camera lenses and the Cine Velostigmat and Cine Raptar motion-picture lens families.",
     history:
       "Andrew Wollensak worked as a machinist and foreman at Bausch & Lomb before founding Rauber and Wollensak in 1899 with his brother John and financial backing from Stephen Rauber. The Rochester firm initially made photographic shutters. After Rauber died in 1901 it became the Wollensak Optical Company, and in 1902 it added lens manufacture.\n\nThe purchase of the Rochester Lens Company in 1905 brought the Royal anastigmat line. Andrew Wollensak designed the Optimo shutter in 1909, and it remained on sale until 1930. The business moved to Clinton Avenue North in 1913, to Hudson Avenue in 1924 and into larger premises nearby in 1938.\n\nWollensak made lenses for still photography and introduced the Cine Velostigmat and Cine Raptar families for motion-picture cameras. After the Second World War the American Bolex Company offered Wollensak alongside Kern lenses. The cine range included lenses for both 8 mm and 16 mm cameras.\n\nThe company supplied military optical equipment during the Second World War and employed more than 1,200 people at its 1958 peak. Later ownership included Revere Camera Company and 3M. Wollensak ceased operations in 1972.",
-    notableDesigns:
-      "Optimo shutters, Royal anastigmats, Velostigmat, Cine Velostigmat and Cine Raptar lenses",
+    notableDesigns: "Optimo shutters, Royal anastigmats, Velostigmat, Cine Velostigmat and Cine Raptar lenses",
   },
   // Andrew and Thomas Ross (Darwin Correspondence Project): https://epsilon.ac.uk/view/dcp-data/nameregs/nameregs_4081
   // https://epsilon.ac.uk/view/dcp-data/nameregs/nameregs_4085
