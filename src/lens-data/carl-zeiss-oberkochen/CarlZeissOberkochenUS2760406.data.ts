@@ -1,83 +1,105 @@
-import type { LensDataV2Input } from "../repo/src/types/lensDataV2.js";
-const data = {
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * US 2,760,406 A, sole example: four spherical elements in three groups.
+ * The unitless prescription is represented in millimetres, without changing
+ * its numerical scale. The printed "about f = 100" gives EFL 100.894744 mm.
+ * The text names D, but the printed glass coordinates are d-line values;
+ * the model uses d and retains every printed index and Abbe number.
+ * The stop is inferred from the drawing, 9.0 mm after R4 and 2.3 mm before R5;
+ * its opening is derived for f/2. Clear rims are estimated. The image plane
+ * is the computed paraxial back focus, 69.018475 mm after R7.
+ */
+const LENS_DATA = {
   schema: 2,
-  key: "berger-us2760406-infinity-reference",
-  maker: null,
-  name: "BERGER US2760406 SOLE EXAMPLE \u2014 SOURCE f/2",
-  subtitle:
-    "Patent-only 4E/3G \u00b7 sodium-D infinity \u00b7 estimated iris/rims",
-  visible: false,
+  key: "carl-zeiss-100mm-f2-us2760406",
+  maker: "Carl Zeiss Oberkochen",
+  name: "CARL ZEISS 100mm f/2 (US 2,760,406 Design)",
+  subtitle: "US 2,760,406 A, sole example — three-component f/2 design",
+  visible: true,
   source: {
-    patentNumber: "US 2,760,406",
+    patentNumber: "US 2,760,406 A",
     patentYear: 1956,
     example: {
       label: "Sole example",
       id: null,
     },
     authors: ["Johannes Berger"],
-    assignees: ["Carl Zeiss"],
+    assignees: ["Carl-Zeiss-Stiftung"],
+    errata: [
+      {
+        status: "unresolved",
+        note: "The text names the D line, but the printed glass coordinates correspond to d-line catalogue values. The model uses d while retaining every printed index and Abbe number.",
+      },
+    ],
     sdSource: "heuristic",
   },
   catalog: {
     focalLengthMm: {
-      design: 100,
+      design: 100.89,
     },
     fNumber: {
       design: 2,
     },
     elementCount: 4,
     groupCount: 3,
-    specs: [
-      "Literal4E3G1|2|3+4,sourcecementR6;D-line indices/Abbe retained,no catalogglass substitution,geometry fit or retuning. No exact production identity.",
-      "Sourceabout100mm f2,+/-14degree designfield;literalEFL100.894744038/BFD69.018474912mm,BFDcomputed/not prescribedhardware. No roundingrepair or invented finitefocus.",
-      "Source places iris in11.3mmR4-R5gap;estimated10.06/1.24split,z40.06,bore andclearcaps estimated,not measured.",
-      "Savedstocknativef2 yieldsparaxialiris;independent17.921290332mm finite-marginal radius separate. Finite entrance/image-sine equivalents documented distinctly.",
-      "Actualnative+/-5degree sodium-D infinity diagnostic only,no inventedformat/imagecircle,retail,finite,broadband,baffles,measuredMTF or throughputclaim. Source14deg andwiderautomaticmetrics unqualified.",
-      "Originalnumericaltranscription/hash externalparent/scout custody;no localoriginalPDF,pixels/rehash. Supportedpatentprose corroboratesDline,topology,stopgapanddates,notlocalfacsimiledigits.",
-    ],
+    imageCircleMm: 49.6,
+    specs: ["4 ELEMENTS / 3 GROUPS", "ALL SPHERICAL", "DESIGN F/2"],
   },
   elements: [
     {
       id: 1,
       name: "L1",
-      label: "L1",
-      type: "Source Spherical Element",
+      label: "Element 1",
+      type: "Positive Meniscus",
       nd: 1.691,
       vd: 54.8,
-      indexReference: "D",
-      glass: "Literal sodium-D/Abbe pair; no calibrated spectral curve.",
+      indexReference: "d",
+      indexReferenceNote: "The text names D, but the printed glass coordinates are d-line catalogue values.",
+      glass: "Unmatched (nd 1.69100 / ν 54.8)",
+      focalLengthMm: 65.57,
+      role: "Positive front component that converges the incoming beam",
     },
     {
       id: 2,
       name: "L2",
-      label: "L2",
-      type: "Source Spherical Element",
+      label: "Element 2",
+      type: "Biconcave Negative",
       nd: 1.64831,
       vd: 33.8,
-      indexReference: "D",
-      glass: "Literal sodium-D/Abbe pair; no calibrated spectral curve.",
+      indexReference: "d",
+      indexReferenceNote: "The text names D, but the printed glass coordinates are d-line catalogue values.",
+      glass: "Unmatched (nd 1.64831 / ν 33.8)",
+      focalLengthMm: -32.65,
+      role: "Negative middle component balancing the positive components",
     },
     {
       id: 3,
       name: "L3",
-      label: "L3",
-      type: "Source Spherical Element",
+      label: "Element 3",
+      type: "Biconvex Positive",
       nd: 1.691,
       vd: 54.8,
-      indexReference: "D",
-      glass: "Literal sodium-D/Abbe pair; no calibrated spectral curve.",
-      cemented: "G3",
+      indexReference: "d",
+      indexReferenceNote: "The text names D, but the printed glass coordinates are d-line catalogue values.",
+      glass: "Unmatched (nd 1.69100 / ν 54.8)",
+      focalLengthMm: 29.08,
+      role: "Positive front member of the rear cemented component",
+      cemented: "C1",
     },
     {
       id: 4,
       name: "L4",
-      label: "L4",
-      type: "Source Spherical Element",
+      label: "Element 4",
+      type: "Negative Meniscus",
       nd: 1.60729,
       vd: 49.2,
-      indexReference: "D",
-      glass: "Literal sodium-D/Abbe pair; no calibrated spectral curve.",
-      cemented: "G3",
+      indexReference: "d",
+      indexReferenceNote: "The text names D, but the printed glass coordinates are d-line catalogue values.",
+      glass: "BaF5 (Schott)",
+      focalLengthMm: -61.68,
+      role: "Negative rear member balancing the rear cemented component",
+      cemented: "C1",
     },
   ],
   surfaces: [
@@ -104,13 +126,13 @@ const data = {
     {
       label: "4",
       R: 27.384,
-      d: 10.06,
+      d: 9,
       sd: 20.3,
     },
     {
       label: "STO",
       R: "flat",
-      d: 1.24,
+      d: 2.3,
     },
     {
       label: "5",
@@ -140,36 +162,36 @@ const data = {
   },
   projection: {
     kind: "rectilinear",
-    fullFieldDeg: 10,
-    maxTraceFieldDeg: 5,
+    fullFieldDeg: 28,
+    maxTraceFieldDeg: 14,
   },
   rays: {
     offAxisFieldFrac: 1,
   },
   focus: {
-    closeFocusM: 1000000000000000,
-    description:
-      "Literal4E3G1|2|3+4,sourcecementR6;D-line indices/Abbe retained,no catalogglass substitution,geometry fit or retuning. No exact production identity. Sourceabout100mm f2,+/-14degree designfield;literalEFL100.894744038/BFD69.018474912mm,BFDcomputed/not prescribedhardware. No roundingrepair or invented finitefocus. Source places iris in11.3mmR4-R5gap;estimated10.06/1.24split,z40.06,bore andclearcaps estimated,not measured. Savedstocknativef2 yieldsparaxialiris;independent17.921290332mm finite-marginal radius separate. Finite entrance/image-sine equivalents documented distinctly. Actualnative+/-5degree sodium-D infinity diagnostic only,no inventedformat/imagecircle,retail,finite,broadband,baffles,measuredMTF or throughputclaim. Source14deg andwiderautomaticmetrics unqualified. Originalnumericaltranscription/hash externalparent/scout custody;no localoriginalPDF,pixels/rehash. Supportedpatentprose corroboratesDline,topology,stopgapanddates,notlocalfacsimiledigits.",
+    closeFocusM: 1e15,
+    description: "Infinity focus only; the patent gives no close-focus data.",
   },
   groups: [
     {
-      text: "G1 \u00b7 L1",
+      text: "Front positive component",
       fromSurface: "1",
       toSurface: "2",
     },
     {
-      text: "G2 \u00b7 L2",
+      text: "Middle negative component",
       fromSurface: "3",
       toSurface: "4",
     },
     {
-      text: "G3 \u00b7 L3+L4",
+      text: "Rear cemented component",
       fromSurface: "5",
       toSurface: "7",
     },
   ],
+  doublets: [{ text: "C1", fromSurface: "5", toSurface: "7" }],
   layout: {
     yScFill: 0.5,
   },
 } satisfies LensDataV2Input;
-export default data;
+export default LENS_DATA;

@@ -1,60 +1,69 @@
-## Patent reference and design identification
+# CARL ZEISS 100mm f/2 (US 2,760,406 Design)
 
-**Patent:** [US2760406A, Three component photographic objective](https://patents.google.com/patent/US2760406A/en)  
-**Filed:** July 8, 1953  
-**Granted:** August 28, 1956  
-**Inventor:** Johannes Berger  
-**Assignee:** Carl Zeiss  
-**Priority:** German application July 24, 1952, as stated in the US publication  
-**Example details:** Sole numerical prescription, literal millimetre representation.
+## Patent Reference and Design Identification
 
-Private patent-only reference; neither an exact production Tessar nor another named retail lens. The original signed numerical table and PDF hash were independently verified in parent/scout custody. [Official original locator](https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/2760406); SHA256 `60262174b943c0130e4c653a24c1517cc9f2a8a280f39e5788f6864b919ae78f`. No local original PDF, pixel inspection or rehash is claimed; original PDF is not included. One supported patent-prose read corroborated authorship, dates, D convention, topology and stop gap, not local facsimile table digits. Known denied original/PR routes were not retried.
+**Patent:** [US 2,760,406 A, _Three Component Photographic Objective_](https://patents.google.com/patent/US2760406A/en)
 
-Printed focal length is approximately100 mm, relative aperture f/2 and design half-field14°. Literal D-line calculation instead gives EFL100.894744037703 mm and rear-vertex BFD69.018474911710 mm, first-to-last vertex track70.3 mm. No printed BFD is asserted. Detector is the computed literal Gaussian plane z139.318474911710 mm from the first vertex. No focal rescaling, glass changes, rounding repair or optical fit.
+**Inventors:** Johannes Berger
 
-## Optical architecture
+**Assignee:** Carl-Zeiss-Stiftung; the US publication names Carl Zeiss, Heidenheim (Brenz), Germany
 
-Four elements in three air-separated groups, **1 | 2 | 3+4**: front positive meniscus, middle biconcave singlet and rear collective cemented doublet. R6 is the sole cemented interface. The stop lies in the11.3 mm R4–R5 air space. All seven optical boundaries, thicknesses and gaps remain literal; no baffles, extra plates, source retuning or geometry exceptions.
+**Filed:** July 8, 1953
 
-## Element-by-element analysis
+**Published:** August 28, 1956
 
-| Element | Literal D index | Abbe | Interfaces / role |
-|---|---:|---:|---|
-| I | 1.69100 | 54.8 | R1–R2, front meniscus |
-| II | 1.64831 | 33.8 | R3–R4, middle biconcave singlet |
-| III | 1.69100 | 54.8 | R5–R6, front member of rear doublet |
-| IV | 1.60729 | 49.2 | R6–R7, rear member of rear doublet |
+**Priority:** July 24, 1952, Germany
 
-Estimated clear semidiameters are [28,28,24,20.3,22,20.5,22] mm. These are modeled optical bounds, not surveyed factory rims or barrel dimensions. Native trim is zero, all shared-band glass/air clearances are positive under default checks, and no override is present. Maximum shared air sag consumption55.639780% is below the unchanged90% default. Minimum shared glass clearance4.058727 mm, minimum shared air clearance5.012705 mm; own cap endpoint glass closure4.058727 mm and air endpoint separation5.497148 mm are separate geometric proxies. Largest rim angle59.822041°. Independent tapered-wall checks provide consistency evidence only, not a measured retaining structure or absorbing baffle.
+**Example details:** The sole numerical example, headed “Example,” on PDF page 2.
 
-## Glass identification and selection
+The patent describes a four-element, three-component f/2 objective with a stated image angle of ±14°. It is intended primarily for small focal lengths, consistent with a cine application, but no production lens is documented. The Swiss counterpart is [CH 314696 A](https://patents.google.com/patent/CH314696A/en).
 
-Source D indices and Abbe values are literal; no modern catalog glass is substituted. Metadata589.2938 nm is the model's sodium-D reference convention, not a source-tabulated wavelength or calibrated dispersion curve. Only reference-D geometry/rays and geometric MTF are qualified. Generic inferred spectral, secondary-spectrum, broadband and measured performance claims are excluded.
+The table states “about f = 100” without specifying a length unit. The model interprets its dimensions in millimetres at the printed numerical scale, with a factor of 1. The resulting EFL is 100.894744 mm, 0.895% above 100 mm. This agrees with the approximate wording; isolated digit changes that bring EFL to 100 mm worsen the marginal spherical correction of the published prescription.
 
-## Focus mechanism
+## Optical Architecture
 
-Infinity-only diagnostic in source front-to-image order. No finite focus, factory motion or physical image format is inferred. The existing private infinity convention is not a validated close-focus design.
+The three components have positive, negative and positive net power: a front positive meniscus, a biconcave negative singlet, and a rear cemented pair. Elements 3 and 4 meet at R6, with no intervening air space. All seven refracting surfaces are spherical.
 
-The source locates the diaphragm within R4–R5 but supplies no measured split or bore. The estimated split is10.06 mm after R4 at z30 mm and1.24 mm before R5 at z41.3 mm; stop z40.06 mm. Native nominal f/2 control yields estimated physical iris radius17.948150120184 mm, diameter35.896300240367 mm. Independently tracing an EFL/4 marginal yields17.921290331928 mm, a separate estimate. The latter was tested with software control f/2.002997528603 but was not silently saved. Saved iris has finite entrance equivalent f/1.996976144356 and image-sine equivalent f/2.001436257790, distinct from the stock paraxial f/2 audit.
+The diaphragm lies between the second and third components, as the text states and the drawing shows. The drawing gives an estimated station 9.0 mm behind R4 and 2.3 mm ahead of R5, preserving the printed 11.3 mm air separation. At the model's f/2 setting, the computed iris radius is 17.816459 mm, close to the approximately 17.7 mm opening read from the drawing. Neither the exact station nor the bore is tabulated.
 
-Estimated iris±2% and station±.2 mm sensitivity retain the entire prescription and11.3 mm gap. At5° saved actual-stop grid has860/865 arrivals; stopping2% down gives865/865 and opening2% gives835/865. These are sample counts, not transmission. Users may tune an imported Builder copy; authored nominal label and saved estimates remain explicit.
+## Element-by-Element Analysis
 
-## Aspherical surfaces
+The indices and Abbe numbers below retain the printed values. The d-line interpretation is explained in the following section. Individual focal lengths describe each element in air; the rear component's power is computed with the cemented interface intact.
 
-Every optical face is spherical. No asphere, fitted coefficient or fabricated cover glass is present.
+| Element | Shape and role                                        | Printed index / Abbe number | Glass label                           | Focal length in air |
+| ------- | ----------------------------------------------------- | --------------------------- | ------------------------------------- | ------------------: |
+| 1       | Positive meniscus; front converging component         | 1.69100 / 54.8              | Unmatched                             |           +65.57 mm |
+| 2       | Biconcave negative; balances the positive components  | 1.64831 / 33.8              | Unmatched                             |           −32.65 mm |
+| 3       | Biconvex positive; front member of the rear component | 1.69100 / 54.8              | Unmatched                             |           +29.08 mm |
+| 4       | Negative meniscus; rear member of the rear component  | 1.60729 / 49.2              | BaF5 (Schott), resolving to Hoya BAF5 |           −61.68 mm |
 
-## Scoped validation and wider-field hold
+The cemented rear component has a combined focal length of +51.80 mm. Its positive net power differs from the standalone powers of its two members.
 
-Final app-ready scope is **±5° sodium-D infinity** only, with no invented image format or image circle. Source ±14° is retained solely as a design claim. It is not actual verified full-pupil coverage, measured retail behavior or a native MTF claim.
+## Glass Identification and Selection
 
-Initial ±10° controls are preserved in evidence/outer10-control. Geometry, browser and independently classified rays passed, but native adaptive edge geometric MTF remained unconverged at the engine's maximum supported256 grid. The independent512 fixed-grid refinement change0.000290685 does not convert that native status to a pass. The final projection/diagnostic field alone was narrowed to5°; source R/d/n/V, iris, caps, detector, ray acceptance, weights, assertions and engine are unchanged. Original10° prototype bytes and scripts are retained as text witnesses, not a second active lens. No10° or14° scope is promoted.
+The patent calls its reference the D line, conventionally taken as sodium at 589.3 nm. The printed coordinates instead correspond to d-line glass values for LaK9, SF12 and BaF5. The model therefore uses the helium d line, 587.6 nm, with a note on each element and an unresolved source entry recording the wording discrepancy. No printed index or Abbe number is changed.
 
-At final actual fields -5,-2.5,0,2.5,5°, nominal-entrance physical grids give1730,1766,1801,1766,1730 arrivals out of1801 each. The212 losses are130 iris and82 R1 clips. Actual-stop grids give860,865,865,865,860 arrivals out of865; the ten remaining losses are R1 clips. All222 losses are independently verified at the first cap/iris boundary, with no raw native miss, failed/unaimed or unresolved sample in this scope. All chiefs survive; native/independent hit agreement is recorded. Counts do not claim throughput or complete aperture transmission.
+The LaK9 and SF12 labels do not resolve in the current glass catalogue, so elements 1–3 remain unmatched. The requested BaF5 (Schott) label resolves to Hoya BAF5, with catalogue index 1.607292 and Abbe number 49.336899: differences of +0.00000225 and +0.136899 from element 4. This supplies a catalogue dispersion curve for that element; it does not establish the historical supplier or melt. No partial-dispersion or apochromatic claim is made.
 
-At the separately preserved10° control,96 physical native noBracket outcomes were independently shown to have forward underlying-sphere intersections beyond R1's estimated cap. Raw native reasons remain in the evidence. These are physically excluded rays under this estimated cap model, not accepted image-forming rays or an engine fix. The10° stopped grids give763/865 arrivals at each edge, ordinary estimated-rim vignetting, not a retail statement.
+## Focus Mechanism
 
-Final quantitative native reference-D geometric MTF uses actual0,2.501473,4.999900° at0/10/20/40 cycles/mm, at the literal Gaussian detector. All adaptive fields converge with zero unknown flux. Supported fixed-grid32–512 controls reproduce adaptive results; maximum256→512 change0.000851446. No diffraction, broadband, source aberration-plot replication or measured MTF claim. Wider automatic drawer results remain unqualified; Summary/Pupils are checked for rendering health only.
+The model represents infinity focus only. The patent gives no close-focus distances, moving-group law or finite-conjugate prescription.
 
-Desktop1440 and mobile390 import/reload/reimport/export, stop-down/reset, Summary/Pupils and actual native/SVG5° launch angles are checked separately from mere labels. Full types, strict isolated model types, unchanged lint/format, aperture audit, targeted553tests and eleven fresh byte-identical replay outputs are recorded. Prior complete6947-test same-baseline evidence is retained, not a new full-suite run or private catalog registration.
+No back focus is printed. The image plane is the computed paraxial plane, 69.018475 mm behind R7. The first-to-last surface track is 70.3 mm, and the first-surface-to-image distance is 139.318475 mm.
 
-Dedup is bounded to1188 retained main bodies at4027fd20d095a1dba4ee3f46188dc70dad858055,21 retained full PR heads/cached history and readable local archives. Positive-scale/reversed-negated whole signed-radius necessary filters are negative; complete checked counts and literal/computed-expression limits remain in reports. Current remote PR state and inaccessible archives are not certified. Thirteen earlier ZIPs,27 checkpoint manifests including Warmisham/Aklin, and5586 baseline blobs remain unchanged. No package, upload, Library staging, external backup, delivery, group credit or public action.
+## Field and Aperture
+
+The declared full field is 28°, matching the patent's ±14°. A real chief ray at 14° reaches an image height of 24.799369 mm at the paraxial image plane, giving the rounded 49.6 mm image circle recorded in the model. This diameter follows the patent's field at the adopted millimetre scale; no film format or lens mount is identified.
+
+The retained clear semi-diameters at R1–R7 are 28, 28, 24, 20.3, 22, 20.5 and 22 mm. They are estimates rather than printed dimensions. They pass the axial f/2 beam and the 14° chief ray. Portions of the off-axis bundle are vignetted, so chief-ray coverage does not imply complete pupil transmission.
+
+The drawing suggests smaller rims, approximately 25.3, 23.7, 20.6, 17.2 and 20.7 mm for the front, middle and rear faces. The rear pair is drawn with a common outer cylinder, whereas the modeled R6 radius of 20.5 mm is smaller than the adjacent 22 mm rims. These differences remain unresolved.
+
+## Patent Conditions
+
+Using the computed EFL, R2 = 434.01 mm is below ten focal lengths; |R3| = 100 mm exceeds both three times R4 = 82.152 mm and 80% of EFL = 80.716 mm. The R4-to-R6 vertex distance is 35.3 mm, exceeding both 25% of EFL = 25.224 mm and 115% of |R6| = 27.271 mm. The prescription therefore satisfies the stated geometric conditions.
+
+## Sources
+
+1. Johannes Berger, [US 2,760,406 A, _Three Component Photographic Objective_](https://patents.google.com/patent/US2760406A/en): drawing on PDF page 1; authorship, dates, numerical example, field and claim on PDF page 2.
+2. [CH 314696 A](https://patents.google.com/patent/CH314696A/en), Swiss counterpart.
