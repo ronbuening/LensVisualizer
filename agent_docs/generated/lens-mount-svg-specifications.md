@@ -4460,7 +4460,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 |---|---|
 | Mount ID | `zeiss-contarex` |
 | Display label | Zeiss Contarex |
-| Project note | Zeiss Ikon Contarex SLR bayonet mount. |
+| Project note | Zeiss Ikon Contarex SLR bayonet (1959 to 1972): lugs on the body, aperture set from the body. |
 | Research status | `partial` |
 | MVP status | `renderable` |
 | Mount mechanism | `bayonet` (lock `sprung_detent`) |
@@ -4472,28 +4472,28 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 | Profile ID | Type | Applies to | Adds | Removes | Changes |
 |---|---|---|---|---|---|
-| `zeiss-contarex/base` | base | Zeiss Ikon Contarex SLR lenses and bodies | Contarex bayonet; aperture/metering coupling | rangefinder mount coupling | feature placement is photo-scaled |
+| `zeiss-contarex/base` | base | Zeiss Ikon Contarex I (Bullseye), Special, Professional, Super and Super Electronic bodies and Carl Zeiss Contarex-mount lenses | three outward lugs on the body with a female bayonet on the lens; lock pin and release button on the body; body-driven aperture ring coupling; lens-speed indexing nose | aperture ring on the lens | every drawn angle and radius is photo-scaled; no dimensioned source was found |
 
 #### Dimensional summary
 
 | Field | Value | Unit |
 |---|---|---|
 | Flange focal distance | 46 (`secondary`) | mm |
-| Nominal throat diameter | 46 (`secondary`) | mm |
-| Effective clear aperture | 46 (`secondary`) | mm |
+| Nominal throat diameter | 46 (`photo_scaled`) | mm |
+| Effective clear aperture | unknown (`unknown`) | mm |
 | Camera mount outer diameter | 58 (`photo_scaled`) | mm |
 | Lens mount outer diameter | 56 (`photo_scaled`) | mm |
 | Contact count | not_applicable (`not_applicable`) | count |
-| Lock rotation | 60 (`photo_scaled`) | deg |
-| Lock direction | clockwise (`photo_scaled`) | — |
+| Lock rotation | 90 (`photo_scaled`) | deg |
+| Lock direction | clockwise (`official`) | — |
 
 #### Figures (selected profile `zeiss-contarex/base`)
 
-**Camera-side front view** — viewBox `-36 -37 72 73` · 37 elements in 4 layers · hash `247d6ae9` ([standalone SVG](mounts/zeiss-contarex-camera-front.svg))
+**Camera-side front view** — viewBox `-36 -37 75 73` · 41 elements in 4 layers · hash `a970913c` ([standalone SVG](mounts/zeiss-contarex-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-35 -36 70 71` · 31 elements in 4 layers · hash `0ca5fb5a` ([standalone SVG](mounts/zeiss-contarex-lens-rear.svg))
+**Lens-side rear view** — viewBox `-35 -36 70 71` · 34 elements in 4 layers · hash `fa2fe8a0` ([standalone SVG](mounts/zeiss-contarex-lens-rear.svg))
 
-**Axial / register schematic** — viewBox `-53 -40 61 76` · 12 elements in 2 layers · hash `1e8a5cea` ([standalone SVG](mounts/zeiss-contarex-axial.svg))
+**Axial / register schematic** — viewBox `-53 -40 61 76` · 12 elements in 2 layers · hash `d3fc61d3` ([standalone SVG](mounts/zeiss-contarex-axial.svg))
 
 #### Camera-side front-view geometry
 
@@ -4501,52 +4501,66 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 |---|---|---|---|---|---|---|---|
 | `body-throat` | body_throat | `zeiss-contarex/base` | 0° | 0° | 360° | 0 | 23 |
 | `body-mount-ring` | mount_ring | `zeiss-contarex/base` | 0° | 0° | 360° | 23 | 29 |
-| `body-slot-1` | bayonet_receiving_slot | `zeiss-contarex/base` | 0° | 343° | 17° | 23 | 25.5 |
-| `body-slot-2` | bayonet_receiving_slot | `zeiss-contarex/base` | 120° | 103° | 137° | 23 | 25.5 |
-| `body-slot-3` | bayonet_receiving_slot | `zeiss-contarex/base` | 240° | 223° | 257° | 23 | 25.5 |
-| `body-index-mark` | index_mark | `zeiss-contarex/base` | 0° | unknown | unknown | unknown | 29.5 |
-| `body-lock-pin` | lock_pin | `zeiss-contarex/base` | 90° | unknown | unknown | unknown | 24 |
+| `body-lug-1` | bayonet_lug | `zeiss-contarex/base` | 51° | 34° | 68° | 23 | 25 |
+| `body-lug-2` | bayonet_lug | `zeiss-contarex/base` | 172° | 155° | 189° | 23 | 25 |
+| `body-lug-3` | bayonet_lug | `zeiss-contarex/base` | 303° | 286° | 320° | 23 | 25 |
+| `body-index-mark` | index_mark | `zeiss-contarex/base` | 45° | unknown | unknown | unknown | 29.5 |
+| `body-lock-pin` | lock_pin | `zeiss-contarex/base` | 82.5° | unknown | unknown | unknown | 26.5 |
+| `body-release-button` | lens_release_button | `zeiss-contarex/base` | 73° | unknown | unknown | unknown | 33 |
 
 #### Lens-side rear-view geometry
 
 | Feature ID | Type | Profile | Center | Start | End | Inner r | Outer r |
 |---|---|---|---|---|---|---|---|
-| `lens-throat` | lens_throat | `zeiss-contarex/base` | 0° | 0° | 360° | 0 | 22 |
-| `lens-mount-ring` | lens_mount_ring | `zeiss-contarex/base` | 0° | 0° | 360° | 22 | 28 |
-| `lens-lug-1` | bayonet_lug | `zeiss-contarex/base` | 0° | 343° | 17° | 23 | 25.5 |
-| `lens-lug-2` | bayonet_lug | `zeiss-contarex/base` | 120° | 103° | 137° | 23 | 25.5 |
-| `lens-lug-3` | bayonet_lug | `zeiss-contarex/base` | 240° | 223° | 257° | 23 | 25.5 |
-| `lens-index-mark` | index_mark | `zeiss-contarex/base` | 0° | unknown | unknown | unknown | 28.5 |
-| `lens-lock-notch` | lock_notch | `zeiss-contarex/base` | 90° | unknown | unknown | unknown | 24 |
+| `lens-throat` | lens_throat | `zeiss-contarex/base` | 0° | 0° | 360° | 0 | 17.8 |
+| `lens-mount-ring` | lens_mount_ring | `zeiss-contarex/base` | 0° | 0° | 360° | 23.5 | 28 |
+| `lens-slot-1` | bayonet_receiving_slot | `zeiss-contarex/base` | 51° | 31.5° | 70.5° | 23.5 | 25 |
+| `lens-slot-2` | bayonet_receiving_slot | `zeiss-contarex/base` | 172° | 154.5° | 189.5° | 23.5 | 25 |
+| `lens-slot-3` | bayonet_receiving_slot | `zeiss-contarex/base` | 303° | 285° | 321° | 23.5 | 25 |
+| `lens-stop-key` | rotation_stop_key | `zeiss-contarex/base` | 192° | 189.5° | 194.5° | 23 | 25 |
+| `lens-index-mark` | index_mark | `zeiss-contarex/base` | 45° | unknown | unknown | unknown | 28.5 |
+| `lens-lock-notch` | lock_notch | `zeiss-contarex/base` | 82.5° | unknown | unknown | unknown | 26.5 |
 
 #### Mechanical couplings
 
 | Feature | Side | Profile | Function |
 |---|---|---|---|
-| `aperture-metering-coupler` | both | `zeiss-contarex/base` | communicates aperture/metering state |
+| `aperture-drive-ring` | both | `zeiss-contarex/base` | the body's aperture wheel, preselection store and spring drive turn the lens diaphragm through a ring gear around the optical axis |
+| `max-aperture-index` | both | `zeiss-contarex/base` | a nose on the lens mount, clocked by the lens's maximum aperture, moves a lever on the body's aperture index ring so the scale starts at that lens's speed |
 
 #### Axial stack
 
 | Plane | z (mm) | Diameter (mm) |
 |---|---|---|
 | `flange_datum` | 0 | 58 |
-| `bayonet_lug_engagement` | 1.2 | 52 |
+| `bayonet_lug_engagement` | 1.2 | 50 |
 | `sensor_film_plane` | -46 | 43.3 |
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/zeiss-contarex.mount.ts` (25485 bytes, content hash `de45b240`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/zeiss-contarex.mount.ts` (42974 bytes, content hash `54c31742`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
 | Ref | Type | Citation | Archive | Captured | Confidence |
 |---|---|---|---|---|---|
-| `zcx-1` | secondary | “Flange focal distance,” Wikipedia. Accessed 2026-06-06. | [snapshot](http://web.archive.org/web/20260526152456/https://en.wikipedia.org/wiki/Flange_focal_distance) | 2026-05-26 | medium |
-| `zcx-2` | secondary | Contarex mount visual references. Accessed 2026-06-06. | [snapshot](unknown) | unknown | low |
+| `zcx-man1` | official | Zeiss Ikon AG, “Contarex 35 mm: Instructions for Use,” pp. 24–25 with Figs. 12–13 and the nomenclature fold-out (items 9, 10). Scan hosted by M. Butkus. Accessed 2026-11-21. | [snapshot](https://www.cameramanuals.org/zeiss_ikon/zeiss_ikon_contarex.pdf) | 2026-11-21 | medium |
+| `zcx-man2` | official | Zeiss Ikon AG, “Contarex Special: Instructions for Use,” p. 19 with Figs. 12–13 (PDF pp. 22–24). Scan hosted by M. Butkus. Accessed 2026-11-21. | [snapshot](https://www.cameramanuals.org/zeiss_ikon/zeiss_ikon_contarex_special.pdf) | 2026-11-21 | medium |
+| `zcx-man3` | official | Zeiss Ikon AG, “Contarex Professional” instructions, sections “Special flash lenses” and “Changing lenses” with Figs. 8–10 (PDF pp. 13–16). Scan hosted by M. Butkus. Accessed 2026-11-21. | [snapshot](https://cameramanuals.org/zeiss_ikon/zeiss_ikon_contarex_professional.pdf) | 2026-11-21 | medium |
+| `zcx-man4` | official | Zeiss Ikon / Voigtländer, Contarex Super Electronic instructions, nomenclature fold-outs. Scan hosted by M. Butkus. Accessed 2026-11-21. | [snapshot](https://cameramanuals.org/contax/contarex_elextronic_diagrams.pdf) | 2026-11-21 | low |
+| `zcx-p1` | patent | E. Sauer (Zeiss Ikon AG), DE1230309B, “Einäugige Spiegelreflexkamera mit Wechselobjektiven und mit einer kameraseitigen Blendeneinstell-, Vorwahl-, Speicher- und Abtasteinrichtung,” filed 1964-04-30, published 1966-12-08. Accessed 2026-11-21. | [snapshot](https://depatisnet.dpma.de/DepatisNet/depatisnet?action=pdf&docid=DE000001230309B) | 2026-11-21 | high |
+| `zcx-p1f` | patent_figure | DE1230309B, Fig. 2: front view of the camera mount. Undimensioned drawing, scaled for this spec. Accessed 2026-11-21. | [snapshot](https://depatisnet.dpma.de/DepatisNet/depatisnet?action=pdf&docid=DE000001230309B) | 2026-11-21 | low |
+| `zcx-japb` | secondary | P. Buttler, “Lens mounts: Contarex,” JAPB (japb.net), updated May 2025. Accessed 2026-11-21. | [snapshot](https://japb.net/wp-content/uploads/2025/05/ID-Contarex.jpg) | 2026-11-21 | medium |
+| `zcx-westin` | secondary | S. H. Westin, “Alphabetical List of Camera Mounts” (after W.-J. Markerink), Cornell University, last modified 2016-02-11. Accessed 2026-11-21. | [snapshot](https://www.graphics.cornell.edu/~westin/misc/mounts-by-register.html) | 2026-11-21 | medium |
 
 #### Open questions
 
-- Contarex bayonet and coupling geometry are photo-scaled. _(Upgrade with Zeiss service drawings or measured examples.)_
+- No source states any Contarex mount diameter. The 46 mm bore, 58 mm body ring and 56 mm lens rear ring are the first draft's stand-ins; JAPB's lens-rear photo only fixes proportions (tab bore 0.84, openings 0.89, aperture ring 0.64 to 0.77 of the rear ring's outer radius). The clear light opening is unknown. _(Needs the Zeiss Ikon factory service manual (a German-language Contarex service manual is sold by learncamerarepair.com; not obtained) or a calibrated measurement. Searched without result: Zeiss Ikon patents DE1230309B, DE1047005B, US2830513A, US3034411A, US2926576A, US3074331A, US3075442A, US3075444A; Carl Zeiss DE1179101B; Zeiss Ikon catalogues at pacificrimcamera.com (rl/00079, 00252, 02113, 02114); JAPB; Westin; Camera-wiki; Wikipedia.)_
+- Lug, opening, lock pin, release button and index dot angles are scaled from two manual photos taken from above the lens axis and one third-party lens-rear photo (about +/-5 deg). Body lug 2 is hidden in both manual photos and is placed from the lens openings. The two visible lugs read 116 deg apart on the manuals against 108.5 deg between the matching openings on the JAPB photo. _(Replace with dimensioned service-manual or patent values, or a straight-on photo of a bare body.)_
+- The lock rotation of about 90 deg is derived, not stated: the manuals give only the direction. It follows from the lock groove and openings on the JAPB photo against the lock pin and lugs on the manual photos (87.5 to 95 deg), and from the stop key reaching the next lug (89 to 91 deg). _(Confirm on a camera or from the service manual.)_
+- Aperture coupling: the stored angle is one state of a ring that turns with the aperture setting and shutter cocking, and the body-side driver is not shown in any source used. The lens-speed nose is drawn at the body lever's mid position; its angle per lens speed is not dimensioned. _(Needs the service manual or a patent on the bayonet coupling itself; none was found.)_
+- Flash (Blitz) lenses: DE1230309B puts a feeler pin through a recess in the lens mount face, working a lever that passes through the body's front wall. No source gives its angle or radius, and the Professional manual does not show whether production bodies carry the lever, so no variant profile is defined. The Super Electronic's differences seen in its manual are in the body electronics, not in the mount. _(Add a flash-lens variant profile once the pin and lever are located on a lens rear and a later body (Professional, Super).)_
+- Mount screws: five are visible at about 30, 90, 210, 270 and 330 deg; a sixth at 150 deg is likely but hidden in both photos. The 54 mm pitch circle and 2 mm size are the first draft's stand-ins. Lug thickness and the axial engagement plane are unsourced stand-ins as well. _(Minor; confirm from a bare body or the service manual.)_
 
 ## Appendix — JSON Schema reference
 
