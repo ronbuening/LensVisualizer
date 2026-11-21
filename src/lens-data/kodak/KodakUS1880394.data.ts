@@ -79,7 +79,7 @@ const LENS_DATA = {
       vd: 45.8,
       indexReference: "D",
       focalLengthMm: -16.65,
-      glass: "Unmatched (nD 1.54995 / ν 45.8)",
+      glass: "E-FEL1 (spectral proxy; patent nD 1.54995 / ν 45.8; supplier and melt unspecified)",
       role: "Dispersive negative member that supplies the middle doublet's negative power.",
       cemented: "C1",
     },
