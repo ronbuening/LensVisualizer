@@ -48,7 +48,7 @@ const LENS_DATA = {
       vd: 57.5,
       indexReference: "D",
       focalLengthMm: 93.86,
-      glass: "Unmatched (nD 1.5735 / ν 57.5, Chance 9002)",
+      glass: "BAK1 (spectral proxy; patent nD 1.5735 / ν 57.5; supplier and melt unspecified)",
       role: "Positive front collector",
     },
     {
@@ -60,7 +60,7 @@ const LENS_DATA = {
       vd: 60.3,
       indexReference: "D",
       focalLengthMm: 19.25,
-      glass: "Unmatched (nD 1.5181 / ν 60.3, Chance 9322)",
+      glass: "BALK3 (spectral proxy; patent nD 1.5181 / ν 60.3; supplier and melt unspecified)",
       role: "Positive element of the front cemented doublet",
       cemented: "C1",
     },
