@@ -5,7 +5,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * The patent gives no physical unit; lengths are expressed in millimetres.
  * Signed radii, thicknesses, air spaces and six index/Abbe pairs follow the table;
  * D/C/F corrections support sodium D (589.3 nm). No supplier is established.
- * Clear semi-diameters and the iris are inferred; Figure 1 draws no iris.
+ * Clear semi-diameters are inferred from Figure 1 and checked against real rays.
+ * The second doublet has level r4/r5 rims; r6/r8 lands follow its drawn edges.
+ * The r8 optical rim stays ahead of the inferred iris; Figure 1 draws no iris.
  * The stop is 11.75 mm after r8 and 1.07 mm before r9 in the printed 12.82 mm gap.
  * The image gap is rounded paraxial back focus, 34.879 mm (printed: 34.875).
  * Zonal distances agree with r10-vertex intercepts despite emergence-point wording.
@@ -149,14 +151,14 @@ const LENS_DATA = {
       label: "4",
       R: 50.8,
       d: 18.74,
-      sd: 37,
+      sd: 35.3,
       medium: 3,
     },
     {
       label: "5",
       R: -986.34,
       d: 3.94,
-      sd: 33,
+      sd: 35.3,
       medium: 4,
     },
     {
@@ -164,6 +166,7 @@ const LENS_DATA = {
       R: 98.64,
       d: 12.82,
       sd: 33,
+      rimExtensionSd: 35.3,
     },
     {
       label: "7",
@@ -177,6 +180,7 @@ const LENS_DATA = {
       R: 28.6,
       d: 11.75,
       sd: 22,
+      rimExtensionSd: 30,
     },
     {
       label: "STO",
