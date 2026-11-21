@@ -23,7 +23,6 @@ import {
 import { eflAtFocus } from "../../../../../src/optics/first-order/focusBreathing.js";
 import { skewImagePlaneIntercept, traceSkewRay } from "../../../../../src/optics/trace/rayAdapters.js";
 import SigmaMacro180Raw from "../../../../../src/lens-data/sigma/SigmaAPOMacro180mmf28.data.js";
-import NikonGyogyotto20Raw from "../../../../../src/lens-data/nikon/NikonGyogyotto20mmf8.data.js";
 import NikonZ135Raw from "../../../../../src/lens-data/nikon/NikonZ135f18.data.js";
 import NikonZ100400Raw from "../../../../../src/lens-data/nikon/NikonNikkorZ100400f4556.data.js";
 import NikonFisheye6mmf28Raw from "../../../../../src/lens-data/nikon/NikonFisheyeNikkor6mmf28.data.js";
@@ -39,35 +38,12 @@ import {
 import type { RuntimeLens } from "../../../../../src/types/optics.js";
 
 describe("computeDistortionCurve", () => {
-  it.each([0, 1])(
-    "drops failed samples and reports the Nikon 20 mm fisheye corner unavailable at focus %s",
-    (focusT) => {
-      const L = build(NikonGyogyotto20Raw);
-      const { z } = doLayout(focusT, 0, L);
-      const result = computeDistortionCurve(
-        createAnalysisRequest({
-          preparedState: stateWithZ(prepareRuntimeState(L, focusT, 0, 0), z),
-          dynamicEFL: L.EFL,
-          currentEPSD: L.EP.epSD,
-          currentPhysStopSD: L.stopPhysSD,
-          fieldGeometry: undefined,
-          sampling: undefined,
-        }),
-      );
-      expect(result.corner.status).toBe("unreachable");
-      expect(result.cornerImageHeight).toBe(21.65);
-      expect(result.samples.length).toBeGreaterThan(1);
-      expect(result.samples.length).toBe(16);
-      for (const sample of result.samples) {
-        expect(
-          Math.abs(chiefRayImageHeightAccurate(sample.fieldAngleDeg, z, focusT, 0, L) - sample.realHeight),
-        ).toBeLessThan(1e-4);
-      }
-    },
-  );
-
-  function curveAcrossJump() {
-    const L = buildVariableStopGapLens([1, 1], "test-distortion-jump", undefined, { imageCircleMm: 60 });
+  /**
+   * Distortion curve of a singlet whose mocked chief-ray image height jumps by 10 mm at 12° (heights 12–22 mm are
+   * never landed), across a 20° field and four samples; the image circle sets the format corner.
+   */
+  function curveAcrossJump(imageCircleMm = 60) {
+    const L = buildVariableStopGapLens([1, 1], `test-distortion-jump-${imageCircleMm}`, undefined, { imageCircleMm });
     const { z } = doLayout(0, 0, L);
     const geometry = { ...computeAnalysisFieldGeometryAtState(0, 0, L), halfFieldDeg: 20 };
     const prepare = rayAdapters.prepareRayTraceForState;
@@ -109,6 +85,13 @@ describe("computeDistortionCurve", () => {
     const result = curveAcrossJump();
     expect(result.samples.map((sample) => Math.round(sample.imageHeight))).toEqual([0, -10, -30]);
     expect(result.samples.map((sample) => sample.normalizedImageHeight)).toEqual([0, 1 / 3, 1]);
+  });
+
+  it("drops failed samples and reports a format corner no chief ray reaches unavailable", () => {
+    const result = curveAcrossJump(40);
+    expect(result.cornerImageHeight).toBe(20);
+    expect(result.corner).toMatchObject({ status: "unreachable", reason: "height-miss" });
+    expect(result.samples.map((sample) => Math.round(sample.imageHeight))).toEqual([0, -10, -30]);
   });
 
   // Hold forward residuals so solver changes are checked against physical target accuracy.
