@@ -1,14 +1,25 @@
-import type { LensDataV2Input } from "../repo/src/types/lensDataV2.js";
-const data = {
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * US 2,319,171 A, Example II and Figure 2, by Arthur Warmisham and Charles Gorrie Wynne.
+ * The normalized prescription at f = 1.000 is multiplied by 100 for a 100 mm design.
+ * The table and claim 16 give S2 = .1591 and S3 = .0050; Figure 2 labels them .1691
+ * and .0060. The model follows the two numerical tables, preserving the 15.91 mm
+ * central air space. All radii, thicknesses, D-line indices and Abbe numbers are printed.
+ * The stop's 8.8 / 7.11 mm split, bore and all clear rims are inferred; the final
+ * image gap is the computed paraxial back focus. The illustrated +/-10 degree field
+ * is not specified by the patent. Element 3 is potassium bromide crystal; the
+ * printed relative partial dispersions are documented in the analysis.
+ */
+const LENS_DATA = {
   schema: 2,
-  key: "warmisham-wynne-us2319171-example2-infinity-reference",
-  maker: null,
-  name: "WARMISHAM / WYNNE US2319171 EXAMPLE II \u2014 SOURCE f/2",
-  subtitle:
-    "Patent-only 6E/4G \u00b7 KBr E3 \u00b7 sodium-D infinity \u00b7 estimated iris/rims",
+  key: "cooke-100mm-f2-us2319171",
+  maker: "Cooke",
+  name: "COOKE 100mm f/2 (US 2,319,171 Design)",
+  subtitle: "US 2,319,171 A, Example II — Potassium bromide objective",
   visible: false,
   source: {
-    patentNumber: "US 2,319,171",
+    patentNumber: "US 2,319,171 A",
     patentYear: 1943,
     example: {
       label: "Example II",
@@ -27,86 +38,84 @@ const data = {
     },
     elementCount: 6,
     groupCount: 4,
-    specs: [
-      "Literal100mm f2 ExampleII/Fig2,6E/4G1|2+3|4+5|6,plano cementsR4/R7. No named retail identity.",
-      "E3 is source potassium bromide crystal,not substituted glass. Literal sodiumD1.558/V31.5 retained;source partialdispersions[1.02,1.02,1.00,1.07,1.02,1.02] documentation only,not consumed by native optics.",
-      "Quantitative sodium-D589.2938nm only. No native secondary-spectrum,calibrated/measured broadband or exact modern glass match. Generic Abbe spectral panels are not this reconstruction.",
-      "Literal EFL99.997844068/BFD73.905063648mm,no fitting;BFDcomputed,not supplied as sourcehardware.",
-      "Exactcentral15.91airgap preserved;stop8.8/7.11,z31.46,bore and caps estimated. Savedsource/controlf2 stockiris vs unprinted finite-marginal17.966954estimate and actual equivalents documented separately.",
-      "Chosen actual +/-10degree sodium-D infinity diagnostic only,no format,finite,sourcewidefield,measuredperformance or widerautomaticMTF claims.",
-      "Primary signednumerics/material/partialdispersion/hash externally verified;no localoriginalPDF,pixels/rehash. GooglePatents source open inaccessible,not claimed locallyverifiedprimary.",
-    ],
+    specs: ["6 ELEMENTS / 4 GROUPS", "ALL SPHERICAL", "DESIGN F/2"],
   },
   elements: [
     {
       id: 1,
-      name: "E1",
-      label: "E1",
-      type: "Source Spherical Element",
+      name: "Element 1",
+      label: "Element 1",
+      type: "Positive Meniscus",
+      role: "Front positive collector",
+      focalLengthMm: 161.49,
       nd: 1.644,
       vd: 48.3,
       indexReference: "D",
-      glass:
-        "Literal sodium-D/Abbe pair;printedpartialdispersion1.02 documentation only. No calibrated native secondary spectrum/broadband.",
+      glass: "Dense barium flint (nD 1.644 / ν 48.3)",
     },
     {
       id: 2,
-      name: "E2",
-      label: "E2",
-      type: "Source Spherical Element",
+      name: "Element 2",
+      label: "Element 2",
+      type: "Plano-Convex Positive",
+      role: "Positive member of the front cemented doublet",
+      focalLengthMm: 64.83,
       nd: 1.644,
       vd: 48.3,
       indexReference: "D",
-      glass:
-        "Literal sodium-D/Abbe pair;printedpartialdispersion1.02 documentation only. No calibrated native secondary spectrum/broadband.",
-      cemented: "D1",
+      glass: "Dense barium flint (nD 1.644 / ν 48.3)",
+      cemented: "C1",
     },
     {
       id: 3,
-      name: "E3 \u00b7 Potassium bromide crystal",
-      label: "E3 \u00b7 KBr",
-      type: "Source Potassium Bromide Crystal",
+      name: "Element 3",
+      label: "Element 3",
+      type: "Plano-Concave Negative",
+      role: "Potassium bromide negative member of the front cemented doublet",
+      focalLengthMm: -49.84,
       nd: 1.558,
       vd: 31.5,
       indexReference: "D",
-      glass:
-        "Source potassium bromide crystal;literalnD1.558/V31.5,printedpartialdispersion1.00 documentation only. Native quantitativeD-only;no secondary-spectrum or broadband reconstruction.",
-      cemented: "D1",
+      glass: "Potassium bromide crystal (nD 1.558 / ν 31.5)",
+      cemented: "C1",
     },
     {
       id: 4,
-      name: "E4",
-      label: "E4",
-      type: "Source Spherical Element",
+      name: "Element 4",
+      label: "Element 4",
+      type: "Plano-Concave Negative",
+      role: "Dispersive negative member of the rear cemented doublet",
+      focalLengthMm: -48.57,
       nd: 1.651,
       vd: 33.5,
       indexReference: "D",
-      glass:
-        "Literal sodium-D/Abbe pair;printedpartialdispersion1.07 documentation only. No calibrated native secondary spectrum/broadband.",
-      cemented: "D2",
+      glass: "Dense flint (nD 1.651 / ν 33.5)",
+      cemented: "C2",
     },
     {
       id: 5,
-      name: "E5",
-      label: "E5",
-      type: "Source Spherical Element",
+      name: "Element 5",
+      label: "Element 5",
+      type: "Plano-Convex Positive",
+      role: "Positive member of the rear cemented doublet",
+      focalLengthMm: 64.57,
       nd: 1.644,
       vd: 48.3,
       indexReference: "D",
-      glass:
-        "Literal sodium-D/Abbe pair;printedpartialdispersion1.02 documentation only. No calibrated native secondary spectrum/broadband.",
-      cemented: "D2",
+      glass: "Dense barium flint (nD 1.644 / ν 48.3)",
+      cemented: "C2",
     },
     {
       id: 6,
-      name: "E6",
-      label: "E6",
-      type: "Source Spherical Element",
+      name: "Element 6",
+      label: "Element 6",
+      type: "Biconvex Positive",
+      role: "Rear positive collector",
+      focalLengthMm: 107.45,
       nd: 1.644,
       vd: 48.3,
       indexReference: "D",
-      glass:
-        "Literal sodium-D/Abbe pair;printedpartialdispersion1.02 documentation only. No calibrated native secondary spectrum/broadband.",
+      glass: "Dense barium flint (nD 1.644 / ν 48.3)",
     },
   ],
   surfaces: [
@@ -196,34 +205,37 @@ const data = {
     offAxisFieldFrac: 1,
   },
   focus: {
-    closeFocusM: 1000000000000000,
-    description:
-      "Literal100mm f2 ExampleII/Fig2,6E/4G1|2+3|4+5|6,plano cementsR4/R7. No named retail identity. E3 is source potassium bromide crystal,not substituted glass. Literal sodiumD1.558/V31.5 retained;source partialdispersions[1.02,1.02,1.00,1.07,1.02,1.02] documentation only,not consumed by native optics. Quantitative sodium-D589.2938nm only. No native secondary-spectrum,calibrated/measured broadband or exact modern glass match. Generic Abbe spectral panels are not this reconstruction. Literal EFL99.997844068/BFD73.905063648mm,no fitting;BFDcomputed,not supplied as sourcehardware. Exactcentral15.91airgap preserved;stop8.8/7.11,z31.46,bore and caps estimated. Savedsource/controlf2 stockiris vs unprinted finite-marginal17.966954estimate and actual equivalents documented separately. Chosen actual +/-10degree sodium-D infinity diagnostic only,no format,finite,sourcewidefield,measuredperformance or widerautomaticMTF claims. Primary signednumerics/material/partialdispersion/hash externally verified;no localoriginalPDF,pixels/rehash. GooglePatents source open inaccessible,not claimed locallyverifiedprimary.",
+    closeFocusM: 1e15,
+    description: "Infinity focus only; the patent gives no close-focus data.",
   },
   groups: [
     {
-      text: "G1 \u00b7 E1",
+      text: "Front singlet",
       fromSurface: "1",
       toSurface: "2",
     },
     {
-      text: "G2 \u00b7 E2+E3(KBr)",
+      text: "Front cemented doublet",
       fromSurface: "3",
       toSurface: "5",
     },
     {
-      text: "G3 \u00b7 E4+E5",
+      text: "Rear cemented doublet",
       fromSurface: "6",
       toSurface: "8",
     },
     {
-      text: "G4 \u00b7 E6",
+      text: "Rear singlet",
       fromSurface: "9",
       toSurface: "10",
     },
+  ],
+  doublets: [
+    { text: "C1", fromSurface: "3", toSurface: "5" },
+    { text: "C2", fromSurface: "6", toSurface: "8" },
   ],
   layout: {
     yScFill: 0.5,
   },
 } satisfies LensDataV2Input;
-export default data;
+export default LENS_DATA;
