@@ -218,7 +218,7 @@ export function assessMtfDataLimitations(state: PreparedGeometry, input: MtfData
       blocking: false,
       text:
         corrected.length === 1
-          ? `A printed value (${values}) contradicts the source's own data and is corrected here: the source prints ${corrected[0].printed}, this prescription uses ${corrected[0].applied}.`
+          ? `A printed value (${values}) contradicts the source's own data and is corrected here: the source prints ${erratumValue(corrected[0].printed)}, this prescription uses ${erratumValue(corrected[0].applied)}.`
           : `${corrected.length} printed values (${values}) contradict the source's own data and are corrected here.`,
     });
   }
@@ -232,4 +232,9 @@ export function assessMtfDataLimitations(state: PreparedGeometry, input: MtfData
   }
 
   return limitations;
+}
+
+/** Lens files author a plane as a huge radius; name the plane instead of printing that sentinel. */
+function erratumValue(value: number): string {
+  return Math.abs(value) >= 1e10 ? "a plane (infinite radius)" : String(value);
 }
