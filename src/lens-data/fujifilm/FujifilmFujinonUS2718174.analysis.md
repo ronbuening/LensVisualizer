@@ -34,31 +34,31 @@ The focal lengths below are those of the individual elements in air; the powers 
 
 ### L1 — Positive Meniscus
 
-nd = 1.6713, νd = 47.0. Glass: Unmatched. f = +123.74 mm.
+nd = 1.6713, νd = 47.0. Glass: N-BAF10 (Schott), spectral proxy. f = +123.74 mm.
 
 The positive front singlet collects the incoming beam. Its rear surface is almost planar but retains the printed positive radius.
 
 ### L2 — Positive Meniscus
 
-nd = 1.6713, νd = 47.0. Glass: Unmatched. f = +86.42 mm.
+nd = 1.6713, νd = 47.0. Glass: N-BAF10 (Schott), spectral proxy. f = +86.42 mm.
 
 L2 is the positive front member of the first cemented triplet. Its R3 clear semi-diameter is 33 mm, below the element's calculated knife edge at about 33.39 mm.
 
 ### L3 — Biconvex Positive
 
-nd = 1.5414, νd = 47.1. Glass: Unmatched. f = +156.98 mm.
+nd = 1.5414, νd = 47.1. Glass: E-FEL2 (Hoya), spectral proxy. f = +156.98 mm.
 
 L3 is the middle positive element of the front triplet. Both faces are cemented, joining L2 at R4 and L4 at R5.
 
 ### L4 — Biconcave Negative
 
-nd = 1.7572, νd = 27.5. Glass: Unmatched. f = −32.81 mm.
+nd = 1.7572, νd = 27.5. Glass: H-ZF6 (CDGM), spectral proxy. f = −32.81 mm.
 
 The high-index, more dispersive rear member makes the front triplet negative overall. Its strongly curved rear surface faces the stop gap.
 
 ### L5 — Biconcave Negative
 
-nd = 1.5414, νd = 47.1. Glass: Unmatched. f = −56.17 mm.
+nd = 1.5414, νd = 47.1. Glass: E-FEL2 (Hoya), spectral proxy. f = −56.17 mm.
 
 L5 begins the rear triplet immediately after the stop gap. Its rear face is cemented to the stronger positive L6.
 
@@ -76,7 +76,7 @@ L7 forms the rear member of the positive rear triplet. Its concave cemented fron
 
 ### L8 — Biconvex Positive
 
-nd = 1.6216, νd = 60.2. Glass: Unmatched. f = +126.42 mm.
+nd = 1.6216, νd = 60.2. Glass: J-SK16 (Hikari), spectral proxy. f = +126.42 mm.
 
 The final positive singlet follows a 0.4 mm air space. It has the highest Abbe number in the example.
 
@@ -86,7 +86,16 @@ The patent explicitly defines its refractive indices for the d line, taken as he
 
 The text names BaF10 for the principal positive glass of the f/1.3 example, but the printed indices do not match an available catalogue row exactly. It also discusses SSK10, SK21, EK330 and EK210 in connection with faster designs; these names do not establish the identity of each Figure 1 element.
 
-None of the six distinct printed pairs has an exact catalogue match. All eight elements therefore remain Unmatched, with their printed values in the labels. No additional line indices or partial-dispersion values are supplied. Calculations based on these Abbe numbers do not establish the historical glasses' secondary spectrum or measured broadband performance.
+None of the six distinct printed pairs has an exact catalog match. Six elements use present-day catalog curves as spectral proxies, with differences measured as catalog minus printed at the d line:
+
+| Elements | Spectral proxy | Δnd | Δνd |
+| --- | --- | --- | --- |
+| L1/L2 | N-BAF10 (Schott) | −0.00127 | +0.11 |
+| L3/L5 | E-FEL2 (Hoya) | −0.00068 | +0.10 |
+| L4 | H-ZF6 (CDGM) | −0.00200 | +0.03 |
+| L8 | J-SK16 (Hikari) | −0.00119 | +0.05 |
+
+These rows fall within 0.002 in index and 0.25 in Abbe number at the printed line. The printed index and Abbe number are kept; each proxy supplies only the dispersion-curve shape so colour analysis follows a real glass. L6 (1.6738/47.0) and L7 (1.6480/47.8) remain Unmatched because no catalog row falls within both tolerances, and retain Abbe-based dispersion estimates. The patent supplies no additional line indices or partial-dispersion values. The proxies do not identify the historical suppliers or melts, or establish the historical glasses' secondary spectrum or measured broadband performance.
 
 ## Focus Mechanism
 
@@ -107,3 +116,7 @@ The clear radii are estimates supported by Figure 1's proportions and axial-beam
 1. Yoshikazu Doi, [US 2,718,174 A, “High Aperture Photographic Objective”](https://patents.google.com/patent/US2718174A/en), assigned to Fuji Photo Film Co., Ltd.; drawing sheet, specification columns 1–4 and claim 1.
 2. [Oldlens, “Fujinon 5 cm f/1.2”](https://oldlens.com/fujinon%205cmf12.html), summarizing the development account published in _Shashin Kogyo_ in 1955.
 3. Fujifilm, [“FUJINON Speed Lenses — Rebirth of the Legend #1”](https://www.fujifilm-x.com/en-us/stories/fujinon-speed-lenses-rebirth-of-the-legend-1/), production introduction date.
+4. [Schott optical glass catalog](https://www.schott.com/en-us/products/optical-glass-p1000267/downloads), N-BAF10.
+5. [Hoya optical glass catalog](https://www.hoya-opticalworld.com/english/datadownload/index.html), E-FEL2.
+6. [CDGM optical glass catalog](https://www.cdgmgd.com/), H-ZF6.
+7. [Hikari optical glass catalog](https://www.hikari-g.co.jp/optical_glass/catalog/), J-SK16.

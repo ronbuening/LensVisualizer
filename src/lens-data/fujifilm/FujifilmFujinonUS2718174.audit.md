@@ -32,7 +32,7 @@ The patent discusses picture angles up to about 45° for the lens class, without
 
 `focus.closeFocusM` is 10¹⁵ m, which stands for infinity. All relative spacings are fixed; no close-focus distance or motion is printed. The selectable aperture range ends at f/22, but the patent supplies no minimum iris opening.
 
-The six distinct printed glass pairs remain unchanged. All eight elements use Abbe-based dispersion estimates; the patent provides no additional line indices or partial-dispersion data. Historical suppliers, melts, secondary spectrum and measured broadband performance are unknown.
+The six distinct printed glass pairs remain unchanged. Six elements use catalog dispersion curves as spectral proxies; L6 and L7 retain Abbe-based dispersion estimates because no catalog row falls within the proxy tolerances. The patent provides no additional line indices or partial-dispersion data. Historical suppliers, melts, secondary spectrum and measured broadband performance are unknown.
 
 ## Product Identification
 
@@ -49,10 +49,10 @@ The title therefore retains the 95 mm design scale and “Design.” No producti
 - The R3 clear semi-diameter changed from 34 to 33 mm. The former rim exceeded L2's calculated knife edge at 33.39 mm, reversing the outline by about 0.64 mm. The 33 mm rim leaves about 0.40 mm edge thickness and remains above the axial beam's 31.22 mm requirement. No printed radius, thickness, air space or glass pair changed; the stop split and paraxial image plane are retained.
 - Element shapes now distinguish the positive menisci L1/L2, positive biconvex L3/L6/L8, negative biconcave L4/L5 and negative meniscus L7. The patent's L1–L8 names are retained in the diagram, with optical roles and in-air focal lengths of +123.74, +86.42, +156.98, −32.81, −56.17, +27.63, −54.08 and +126.42 mm.
 - C1 identifies L2–L4 and C2 identifies L5–L7, with brackets spanning R3–R6 and R7–R10. The four group brackets use the patent's B1–B4 names in place of G1–G4.
-- All eight glass descriptions became Unmatched labels giving the printed index and Abbe number: L1/L2 1.6713/47.0, L3/L5 1.5414/47.1, L4 1.7572/27.5, L6 1.6738/47.0, L7 1.6480/47.8 and L8 1.6216/60.2. For every element, Δnd = 0 and Δνd = 0; no catalog dispersion curve is assigned.
+- All eight glass descriptions give the printed index and Abbe number: L1/L2 1.6713/47.0, L3/L5 1.5414/47.1, L4 1.7572/27.5, L6 1.6738/47.0, L7 1.6480/47.8 and L8 1.6216/60.2. Six elements use the spectral proxies listed below; L6 and L7 remain Unmatched. No printed index or Abbe number changed.
 - The oblique diagram ray changed from 10.0° to 6.0° within the unchanged illustrative 10.0° half-field. Neither angle is a measured field specification.
 
-BaF10 is named in the patent's discussion of the f/1.3 example, but the available BAF10 curve has nd/νd = 1.67003/47.20. A BAF10 label bearing the Schott name instead selects the Hoya curve. Its differences from L1/L2 are Δnd = −0.00127 and Δνd = +0.20. SF4 (Schott) differs from L4 by −0.00200/+0.08; SK16 (Schott) selects N-SK16 and differs from L8 by −0.00119/+0.12. These candidates were rejected because they exceed the printed precision. None of the other printed pairs has an exact catalog row.
+BaF10 is named in the patent's discussion of the f/1.3 example, but the available BAF10 curve has nd/νd = 1.67003/47.20. A BAF10 label bearing the Schott name instead selects the Hoya curve. Its differences from L1/L2 are Δnd = −0.00127 and Δνd = +0.20. SF4 (Schott) differs from L4 by −0.00200/+0.08; SK16 (Schott) selects N-SK16 and differs from L8 by −0.00119/+0.12. These differences exceed the printed precision, so these candidates do not establish exact glass identities. None of the other printed pairs has an exact catalog row. The spectral proxies listed below supply compatible dispersion shapes without identifying the historical glasses.
 
 After these corrections, EFL is 95.01 mm, nominal paraxial aperture f/1.30, BFD 44.02 mm and stop radius 20.09 mm. The first-to-last vertex distance is 83.82 mm and the half-field is 10.0°.
 
@@ -65,6 +65,16 @@ After these corrections, EFL is 95.01 mm, nominal paraxial aperture f/1.30, BFD 
 - The section at matched overall scale shows fuller stop-side edges, closer to the drawing. Straight rim joins still approximate the bevel on L4 and the small shoulders at the cemented joins. No land was added at a cemented face, and neither optical cap was enlarged to fill out the outline. The R6/R7 lands lie at 47.32 and 50.06 mm behind the first vertex, clear of the stop plane at 49.50 mm.
 - The surfaces remain clear of one another, and the iris sets the aperture without an axial rim limit. An exact f/1.3 axial beam needs 21.21 mm at R6, 20.57 mm at R7 and 20.90/20.91 mm at R8/R9. The 10° chief ray reaches 16.80 mm image height without blockage. The opposite full-pupil extremes were not both found; ordinary off-axis vignetting remains. Image-circle and format-corner checks have no assigned image format to assess.
 - Wide-open geometric transmission before and after is 100.0, 100.0, 99.9, 97.7, 94.1, 89.5 and 84.1% at 0, 1.7, 3.3, 5.0, 6.7, 8.3 and 10.0°. The greatest loss is 0.0 percentage points, including when either land is removed separately. The illustrative half-field stays 10.0°, nominal aperture f/1.30 and exact entrance-equivalent aperture about f/1.34. No live page or separate manufacturer construction drawing was available for this comparison.
+
+2026-11-21 glass review:
+
+- L1: `Unmatched (nd 1.6713 / νd 47.0)` → `N-BAF10 (spectral proxy; patent nd 1.6713 / νd 47.0; supplier and melt unspecified)`; Schott, Δnd = −0.00127, Δνd = +0.11; spectral proxy.
+- L2: `Unmatched (nd 1.6713 / νd 47.0)` → `N-BAF10 (spectral proxy; patent nd 1.6713 / νd 47.0; supplier and melt unspecified)`; Schott, Δnd = −0.00127, Δνd = +0.11; spectral proxy.
+- L3: `Unmatched (nd 1.5414 / νd 47.1)` → `E-FEL2 (spectral proxy; patent nd 1.5414 / ν 47.1; supplier and melt unspecified)`; Hoya, Δnd = −0.00068, Δνd = +0.10; spectral proxy.
+- L4: `Unmatched (nd 1.7572 / νd 27.5)` → `H-ZF6 (spectral proxy; patent nd 1.7572 / ν 27.5; supplier and melt unspecified)`; CDGM, Δnd = −0.00200, Δνd = +0.03; spectral proxy.
+- L5: `Unmatched (nd 1.5414 / νd 47.1)` → `E-FEL2 (spectral proxy; patent nd 1.5414 / ν 47.1; supplier and melt unspecified)`; Hoya, Δnd = −0.00068, Δνd = +0.10; spectral proxy.
+- L8: `Unmatched (nd 1.6216 / νd 60.2)` → `J-SK16 (spectral proxy; patent nd 1.6216 / ν 60.2; supplier and melt unspecified)`; Hikari, Δnd = −0.00119, Δνd = +0.05; spectral proxy.
+- Each row is a spectral proxy within index 0.002 and Abbe number 0.25 at the printed d line, with differences given as catalog minus printed. The printed index and Abbe number are kept; the catalog curve supplies only the dispersion shape. No historical supplier or melt is identified.
 
 ## Remaining Questions
 

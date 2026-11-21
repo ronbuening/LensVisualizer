@@ -55,7 +55,7 @@ const LENS_DATA = {
       nd: 1.6713,
       vd: 47.0,
       indexReference: "d",
-      glass: "Unmatched (nd 1.6713 / νd 47.0)",
+      glass: "N-BAF10 (spectral proxy; patent nd 1.6713 / νd 47.0; supplier and melt unspecified)",
     },
     {
       id: 2,
@@ -69,7 +69,7 @@ const LENS_DATA = {
       nd: 1.6713,
       vd: 47.0,
       indexReference: "d",
-      glass: "Unmatched (nd 1.6713 / νd 47.0)",
+      glass: "N-BAF10 (spectral proxy; patent nd 1.6713 / νd 47.0; supplier and melt unspecified)",
     },
     {
       id: 3,
@@ -83,7 +83,7 @@ const LENS_DATA = {
       nd: 1.5414,
       vd: 47.1,
       indexReference: "d",
-      glass: "Unmatched (nd 1.5414 / νd 47.1)",
+      glass: "E-FEL2 (spectral proxy; patent nd 1.5414 / ν 47.1; supplier and melt unspecified)",
     },
     {
       id: 4,
@@ -97,7 +97,7 @@ const LENS_DATA = {
       nd: 1.7572,
       vd: 27.5,
       indexReference: "d",
-      glass: "Unmatched (nd 1.7572 / νd 27.5)",
+      glass: "H-ZF6 (spectral proxy; patent nd 1.7572 / ν 27.5; supplier and melt unspecified)",
     },
     {
       id: 5,
@@ -111,7 +111,7 @@ const LENS_DATA = {
       nd: 1.5414,
       vd: 47.1,
       indexReference: "d",
-      glass: "Unmatched (nd 1.5414 / νd 47.1)",
+      glass: "E-FEL2 (spectral proxy; patent nd 1.5414 / ν 47.1; supplier and melt unspecified)",
     },
     {
       id: 6,
@@ -152,7 +152,7 @@ const LENS_DATA = {
       nd: 1.6216,
       vd: 60.2,
       indexReference: "d",
-      glass: "Unmatched (nd 1.6216 / νd 60.2)",
+      glass: "J-SK16 (spectral proxy; patent nd 1.6216 / ν 60.2; supplier and melt unspecified)",
     },
   ],
   surfaces: [
