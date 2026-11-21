@@ -69,7 +69,8 @@ const LENS_DATA = {
       nd: 1.605,
       vd: 43.6,
       indexReference: "D",
-      glass: "Unmatched (nD 1.605 / ν 43.6)",
+      glass:
+        "S-BAM4 (spectral proxy; patent nD 1.605 / ν 43.6; supplier and melt unspecified)",
       focalLengthMm: -31.57,
       role: "Negative middle element balancing the positive front and rear components.",
     },
@@ -81,7 +82,8 @@ const LENS_DATA = {
       nd: 1.621,
       vd: 36.2,
       indexReference: "D",
-      glass: "Unmatched (nD 1.621 / ν 36.2)",
+      glass:
+        "S-TIM2 (spectral proxy; patent nD 1.621 / ν 36.2; supplier and melt unspecified)",
       focalLengthMm: -50.57,
       role: "Negative front member of the rear cemented doublet.",
       cemented: "C1",
