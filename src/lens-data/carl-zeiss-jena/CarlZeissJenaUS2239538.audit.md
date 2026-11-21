@@ -26,7 +26,7 @@ The surfaces stay clear of each other and the iris sets the full on-axis apertur
 
 ## Values Not Printed in the Patent
 
-The clear semi-diameters are inferred: 8.7 mm at surfaces 1–3, 9.0 mm at surface 4 and 9.5 mm at surfaces 5–8. Earlier drawing measurements place them within about 0.4 mm of the optical rims. They are not printed manufacturing dimensions. The stop position itself is printed, 18.71 mm behind the first vertex; only its opening is inferred from nominal f/6.3.
+The clear semi-diameters are inferred: 8.7 mm at surfaces 1–3, 9.0 mm at surface 4 and 9.5 mm at surfaces 5–8. They agree with the optical rims drawn in Figure 2 to within about 0.4 mm. They are not printed manufacturing dimensions. The stop position itself is printed, 18.71 mm behind the first vertex; only its opening is inferred from nominal f/6.3.
 
 The last gap follows the printed total image distance. The 30.0° field is printed, but the 54.20 mm image-circle diameter is derived from twice the real chief-ray image height at 15.0°, rounded upward. It is not a published film format or a claim of an unvignetted edge bundle.
 

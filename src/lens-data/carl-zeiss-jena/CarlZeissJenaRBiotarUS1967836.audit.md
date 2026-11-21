@@ -34,7 +34,7 @@ The glass coordinates are printed, while the catalog names are additional identi
 
 Kaprelian describes Merté's f/0.85 X-ray cine objective as a Petzval arrangement with separated first and second elements and an added collective element. Fig. 2a, labelled “MERTE f/0.85,” matches the five-element, four-group construction. Together with the surviving Flints lens, this supports the R-Biotar family association. The production 45 mm f/0.85 lens differs from this 100 mm f/0.90 example; an exact production prescription is not established.
 
-No marketed focal length or aperture, production mount, image format, diaphragm blade count or shape, or minimum focus distance is assigned to this design. The foundation assignee name is retained while the literal patent wording remains stated above.
+No marketed focal length or aperture, production mount, image format, diaphragm blade count or shape, or minimum focus distance is assigned to this design.
 
 ## Corrections, 2026-11-21
 

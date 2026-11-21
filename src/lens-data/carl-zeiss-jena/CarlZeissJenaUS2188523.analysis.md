@@ -12,7 +12,7 @@
 
 The patent describes a seven-element, three-group photographic objective at 100 mm f/2. Its ten signed radii, nine axial distances, seven refractive indices and seven Abbe numbers are preserved. The index heading is lowercase nd, interpreted as the helium d line; the patent does not state a numerical wavelength.
 
-DE 700,699 C covers the same invention, with the same inventor and applicant but a different numerical example. Marco Kröger identifies that German design as an attempt to reduce the distortion of the Sonnar 2/5 cm and reports that the improvement never entered production ([Sonnar history, §5.2](https://www.zeissikonveb.de/start/objektive/normalobjektive/sonnar.html)). No production lens is documented for this US prescription.
+DE 700,699 C covers the same invention, with the same inventor, applicant and claim but a different numerical example. Marco Kröger identifies that German design as an attempt to reduce the distortion of the Sonnar 2/5 cm and reports that the improvement never entered production ([Sonnar history, §5.2](https://www.zeissikonveb.de/start/objektive/normalobjektive/sonnar.html)). No production lens is documented for this US prescription.
 
 ## Optical Architecture
 
@@ -48,7 +48,7 @@ Element 7: nd = 1.6682, νd = 48.8. Glass: Unmatched. f = +45.63 mm. This thick 
 
 The printed nd and Abbe numbers are retained without assigning a historical supplier or melt. Elements 1 and 5 use the same pair, 1.6200/60.3. The lower Abbe number of element 4 makes it the most dispersive glass in the prescription.
 
-The model uses the d-line convention, approximately 587.6 nm, to match the table heading. Other wavelengths are estimated from the printed index and Abbe number; the patent supplies no measured spectral curves or partial-dispersion data. Chromatic and polychromatic performance therefore remain uncertain.
+The model uses the d-line convention, approximately 587.6 nm, to match the table heading. Element 2's other wavelengths follow the BAFD7 (Hoya) catalog curve; those of the other six elements are estimated from the printed index and Abbe number. The patent supplies no measured spectral curves or partial-dispersion data. Chromatic and polychromatic performance therefore remain uncertain.
 
 ## Focus Mechanism
 
