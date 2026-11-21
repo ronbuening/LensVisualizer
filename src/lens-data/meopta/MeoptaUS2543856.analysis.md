@@ -76,7 +76,7 @@ The largest difference is 0.009 mm. These comparisons use the patent's specified
 
 The patent states no field angle or image format. The displayed ±10° field is illustrative and carries no image-circle or mount claim. Its chief ray and the f/1.8 axial beam clear the modeled rims, although off-axis bundles are partly vignetted.
 
-Every clear semi-diameter is estimated: r1/r2 32 mm, r3 30 mm, r4/r5 27 mm, r6 24 mm, r7 21 mm and r8/r9 22 mm. Figure 1 draws smaller front and rear components, particularly element 5. Those differences remain unresolved; the model does not establish factory edge dimensions or barrel geometry.
+Every clear semi-diameter is estimated: r1/r2 31.4 mm, r3–r5 27.3 mm, r6 24 mm, r7 21 mm and r8/r9 20.7 mm. Figure 1 supplies shared construction proportions, with square-cut front and rear lenses, a level cemented-group edge and a taper across element 4. Its rear-lens thickness differs from Example 1, so it does not establish exact edge dimensions. The front and rear clear radii remain above its approximate 28 and 17 mm proportions to retain off-axis illumination. At f/1.8, geometric transmission is 98.9% at 5.0°, 96.1% at 6.7°, 93.0% at 8.3° and 88.9% at 10.0°. No factory edge dimensions or barrel geometry are established.
 
 ## Sources
 

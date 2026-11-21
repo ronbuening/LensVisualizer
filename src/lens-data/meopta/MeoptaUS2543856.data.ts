@@ -6,7 +6,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * radii, axial spacings, sodium-D indices and Abbe numbers. The flat r4 interface
  * cements elements 2 and 3. The dashed plane in Fig. 1 is treated as the stop,
  * 9.4 mm after r7 and 15.6 mm before r8; its opening is inferred from f/1.8.
- * All clear semi-diameters are estimated. The image plane is the computed
+ * Clear semi-diameters are estimated from Fig. 1's shared proportions, with
+ * the f/1.8 beam and off-axis illumination retained. The drawing does not fix
+ * Example 1's physical edge dimensions. The image plane is the computed
  * paraxial back focus, 52.32 mm; no back focus is printed.
  * The ±10° field is illustrative; the patent states no field or image format.
  */
@@ -108,34 +110,34 @@ const LENS_DATA = {
       label: "1",
       R: 78,
       d: 9.5,
-      sd: 32,
+      sd: 31.4,
       medium: 1,
     },
     {
       label: "2",
       R: 270,
       d: 0.1,
-      sd: 32,
+      sd: 31.4,
     },
     {
       label: "3",
       R: 45.5,
       d: 13,
-      sd: 30,
+      sd: 27.3,
       medium: 2,
     },
     {
       label: "4",
       R: "flat",
       d: 2.5,
-      sd: 27,
+      sd: 27.3,
       medium: 3,
     },
     {
       label: "5",
       R: 200,
       d: 8.2,
-      sd: 27,
+      sd: 27.3,
     },
     {
       label: "6",
@@ -159,14 +161,14 @@ const LENS_DATA = {
       label: "8",
       R: 109,
       d: 7,
-      sd: 22,
+      sd: 20.7,
       medium: 5,
     },
     {
       label: "9",
       R: -72.82,
       d: 52.319966,
-      sd: 22,
+      sd: 20.7,
     },
   ],
   aperture: {
