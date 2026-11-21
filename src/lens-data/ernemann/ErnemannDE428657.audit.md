@@ -1,49 +1,53 @@
-# ERNEMANN 100mm f/2 (DE 428,657 Design) — Audit
+# ERNEMANN 100mm f/2 (DE 428,657 Design) — Audit Log
 
 ## Source
 
-DE 428,657 C, _Objektiv_, published 10 May 1926 and effective from 5 March 1925. The heading names Firma Ernemann-Werke A.-G. in Dresden; the inventor footnote names Ludwig Bertele in Dresden-Blasewitz. The catalog uses Ludwig Bertele and Ernemann-Werke AG. The numerical prescription is “Beispiel nach Abb. 2” on page 2; Figure 1 is a different numerical example.
+[DE 428,657 C, _Objektiv_](https://depatisnet.dpma.de/DepatisNet/depatisnet?window=1&space=menu&content=treffer&action=pdf&docid=DE000000428657A), published 10 May 1926, names Firma Ernemann-Werke A.-G. in Dresden and credits Ludwig Bertele in Dresden-Blasewitz in the inventor footnote. Protection dates from 5 March 1925; the scan gives no separately identified filing or priority date. The numerical prescription is “Beispiel nach Abb. 2” on page 2. Figure 1 is a different numerical example.
 
-## Transcription
+[Schott SF2 optical data](https://us.shop.schott.com/advanced-optics/en/Optical-Glass/SF2/c/glass-SF2) supplies the comparison of sodium D and helium d indices and C–F dispersion. It does not establish a historical glass supplier.
 
-Two independent readings of the page images agree on all ten signed radii, five center thicknesses, four air gaps and five nD/ν pairs. R1 explicitly reads +48.57 mm. The table prints f = 100 mm, and the text specifies f/2. The five elements are air-spaced; both 0.48 mm gaps are air, with no cemented interfaces, aspheres or variable spacings. The D-line indices are retained.
+## Transcription Check
 
-The projection text places the film behind R10 and the screen on the R1 side. The large last component is intended to take in the light from the film or plate. The infinity model traces in the reciprocal screen-to-film direction.
+All ten signed radii, five center thicknesses, four air gaps and five nD/ν pairs agree with the patent page images. R1 explicitly reads +48.57 mm. The table prints f = 100 mm, and the text specifies f/2. Dimensions retain that scale without conversion. Both 0.48 mm gaps are air, so the five elements form five air-separated groups. There are no cemented interfaces, aspheres or variable spacings. The printed sodium D reference is retained.
 
-## First-order
+The projection description places the film behind R10 and the screen on the R1 side. The large last member collects light from the film or plate. The model is focused at infinity in the reciprocal screen-to-film direction.
 
-The printed prescription gives EFL 100.028122 mm and paraxial f/2.000. The 0.0281% difference from the stated 100 mm is retained. Back focus is not printed; the calculated 56.183360 mm sets the image plane. Optical track is 63.82 mm, with total R1-to-image distance 120.003360 mm. The inferred stop radius is 15.384722 mm at z = 36.665 mm. Exact axial tracing gives an admitted entrance radius of 24.574267 mm, equivalent to f/2.035221.
+## First-Order Check
 
-## Not printed
+The printed prescription gives EFL 100.03 mm, 0.03 mm above the stated 100 mm, and paraxial f/2.00. Back focus is not printed; the calculated 56.18 mm sets the image plane behind R10. The first-to-last surface track is 63.82 mm and the R1-to-image distance is 120.00 mm. Reversing the infinity conjugates preserves EFL but gives back focus 64.62 mm toward R1.
 
-The iris position and diameter, clear semi-diameters, back focus, numerical field, image format and close-focus behavior are not specified. The stop bisects the 19.05 mm central gap as 9.525 + 9.525 mm. The ±5° field is illustrative; its chief ray reaches 8.754383 mm image height. No catalog image circle or format is assigned. Clear radii combine front estimates with readings of Figure 2, so no single rim-evidence category is declared.
+The inferred stop radius is 15.385 mm at 36.665 mm from R1. Exact axial tracing admits an entrance radius of 24.57 mm, equivalent to approximately f/2.04. The iris sets the axial aperture; the rims do not limit it. All element edges and adjacent clearances remain positive, and no glass crosses the stop plane.
 
-## Product
+At 5.0°, the chief ray clears every surface and reaches image height 8.75 mm. Rear-bundle extremes at R7–R10 are 17.05–17.84 mm, below the 23.5–24 mm clear radii. Front-rim vignetting remains; full-field illumination is not established.
 
-No production lens is documented. Figure 2 is an Ernostar-type construction with the rear positive component split into a negative meniscus and a biconvex lens around a converging air lens. The later DE 436,260 C Ernostar has a different six-element, four-group prescription with a cemented triplet.
+## Values Not Printed in the Patent
 
-## Corrections
+The iris position and diameter, clear radii, back focus, numerical field, image format and close-focus behavior are not specified. The stop bisects the 19.05 mm R6–R7 gap into 9.525 + 9.525 mm. Its diameter is 30.77 mm for paraxial f/2.00. Clear radii combine front estimates with approximate Figure 2 readings for the other elements; they do not establish factory rim shapes.
 
-The printed optical prescription requires no correction. The former patent suffix A and missing publication year are bibliographic errors in the model. The publication date and film-to-screen orientation are established by the patent text. Clear radii are reconstructed dimensions, so their revision does not amend a printed source value.
+The ±5.0° field is illustrative. No catalog image circle or image format is assigned because the source prints neither a numerical field nor a format. `focus.closeFocusM` is 10¹⁵ m, which stands for infinity. All relative spacings remain fixed. The selectable f-stops extend from f/2 to f/16; the patent supplies no minimum iris opening. No cover plate, filter or baffle is specified.
 
-## Remaining questions
+The patent prints only nD and ν, without individual C-, F- or g-line indices, partial dispersion, transmission or a glass supplier. Both glass pairs remain unmatched, so spectral behavior is estimated from the printed index and Abbe number.
 
-Open: Figure 2 gives approximate rim proportions rather than tabulated optical clear apertures; their precise relationship to the physical edges remains unresolved. The inferred iris position and diameter, finite projection distances, historical glass identities and production use remain unknown.
+## Product Identification
 
-## 2026-11-21 — Deployment validation and cleanup
+No production lens is documented for this prescription. Figure 2 is an Ernostar-type construction whose rear positive component is split into a negative meniscus and a biconvex lens around a converging air lens. It differs from the DE 436,260 C Ernostar, which has six elements in four groups and a cemented triplet. No production mount, image format, diaphragm blade count or shape, marketed focal length, marketed f-number or marketed minimum focus distance is assigned.
 
-Two independent readings of the patent page images agree on the signed prescription, glass pairs, f/2 aperture and five air-spaced elements; the heading and projection text establish the publication date and orientation. The prescription agrees with the source, with the small focal-length rounding difference retained; an Ernostar-family relationship is supported by the layout, but no production lens is documented.
+## Corrections, 2026-11-21
 
-Identity and source changes: key `ernemann-bertele-de428657-figure2-infinity-reference` → `ernemann-100mm-f2-de428657`; name `BERTELE DE428657 FIGURE 2 — INFINITY REFERENCE` → `ERNEMANN 100mm f/2 (DE 428,657 Design)`; patent `DE 428,657 A` → `DE 428,657 C`; publication year absent → 1926. Maker Ernemann, inventor Ludwig Bertele, assignee Ernemann-Werke AG and Figure 2 are retained. Visibility remains false.
+- The key and title changed to the Ernemann-and-patent form, identifying the 100 mm f/2 Figure 2 design. The patent designation changed from DE 428,657 A to DE 428,657 C, and the missing publication year was set to 1926. Ludwig Bertele and Ernemann-Werke AG agree with the front page; its text establishes the projection orientation.
+- The subtitle is “DE 428,657 C, Figure 2 — Ernemann / Bertele”. The specifications are “5 ELEMENTS / 5 GROUPS”, “ALL SPHERICAL”, “DESIGN f = 100 mm”, “DESIGN F/2” and “PROJECTION OBJECTIVE”.
+- R3–R6 clear radii changed from 22.5, 19.25, 18.25 and 16.25 mm to 23.5, 23, 19.5 and 19 mm. R7/R8 changed from 16.25 to 23.5 mm; R9/R10 changed from 16.25 to 24 mm. These approximate Figure 2's larger rear members and remove rear clipping at 5.0°. R1/R2 remain 25.5 mm. The signed radii, thicknesses, air gaps, indices, Abbe numbers, stop position and paraxial image plane are retained.
+- The catalog design focal length changed from the nominal 100 mm to the calculated 100.03 mm without rescaling the prescription. The 17.51 mm catalog image circle was removed because it came only from the illustrative field. `source.sdSource` was omitted because the rims combine estimates with drawing readings.
+- Element labels changed to Element 1–5, with L1–L5 on the diagram. Optical roles and standalone focal lengths of +76.41, +221.10, −37.56, −129.75 and +46.57 mm were added; the shapes are retained. A “Rear member” bracket spans L4–L5 to identify the patent's split collecting component without changing the five air-separated groups.
+- General glass descriptions became `Unmatched (nD 1.6068 / ν 59.5)` for L1/L2/L4/L5 and `Unmatched (nD 1.6477 / ν 33.9)` for L3. Schott SF2 was not assigned: its curve gives nD 1.64752 and νD 33.84, differences of −0.00018 and −0.06 from L3. Its helium d-line pair, 1.64769 / 33.85, differs by −0.00001 / −0.05 but describes a different reference wavelength. No printed glass value or index reference changed.
 
-Public wording changes: subtitle describing an unestablished orientation → `DE 428,657 C, Figure 2 — Ernostar-type objective with split rear member`; six provenance-heavy specs → `5 ELEMENTS / 5 GROUPS`, `ALL SPHERICAL`, `DESIGN F/2`, `PROJECTION OBJECTIVE`. The infinity-focus description now states that the patent gives no close-focus data; the 1e15 m setting is retained. The header explains the printed prescription, supported orientation and inferred stop, rims and image plane. The analysis now has the matching title, patent metadata, optical architecture, individual elements, glass selection, focus, iris/field, limitations and sources. Unsupported publication and orientation uncertainty and calculation-process text are removed.
+The resulting first-order values are EFL 100.03 mm, paraxial f/2.00, BFD 56.18 mm, stop radius 15.385 mm and illustrative half-field 5.0°.
 
-Rim changes in mm: R3 22.5 → 23.5; R4 19.25 → 23; R5 18.25 → 19.5; R6 16.25 → 19; R7/R8 16.25 → 23.5; R9/R10 16.25 → 24. These restore the large rear members shown in Figure 2 and remove rear-bundle clipping. R1/R2 remain 25.5. Radii, spacings, indices, Abbe numbers, stop location and image plane are retained.
+## Remaining Questions
 
-Metadata and element changes: design focal length 100 → 100.03 mm, the computed EFL rounded to two decimals; image circle 17.508767 mm → omitted because its field was illustrative; rim evidence `heuristic` → undeclared because the evidence is mixed. Element labels L1–L5 → Element 1–5 with L1–L5 diagram labels; optical roles and standalone focal lengths +76.41, +221.10, −37.56, −129.75 and +46.57 mm are added. The element shapes remain unchanged. The import and default export follow the shared data-file form.
-
-Glass labels: the generic historical-glass wording → `Unmatched (nD 1.6068 / ν 59.5)` for L1/L2/L4/L5 and `Unmatched (nD 1.6477 / ν 33.9)` for L3. Repeated index notes are removed because the table specifies nD. SF2 resolves to Schott, but its curve gives nD 1.647522 and νD 33.839518, differences of −0.000178 / −0.060482 from L3. The helium d-line catalog pair 1.64769 / 33.85 would differ by −0.00001 / −0.05, but does not describe the printed D line; SF2 is therefore not assigned. No nD or ν value changes.
-
-Before → after: EFL 100.028122 → 100.028122 mm; paraxial f-number 2.000 → 2.000; BFD 56.183360 → 56.183360 mm; stop radius 15.384722 → 15.384722 mm; illustrative half-field 5° → 5°. Surface geometry reports no validation errors. The aperture check reports no rim, iris or trace limit. Image-circle and field-coverage checks have no usable format and are skipped. At 5°, the chief ray clears every surface, and rear bundle extremes at R7–R10 are 17.05–17.84 mm, below the revised 23.5–24 mm rims. Front-rim vignetting remains. All element edges and clearances are positive, and no glass crosses the stop plane.
-
-Open: Exact clear apertures versus Figure 2, historical iris dimensions, finite projection behavior, glass identities and production use remain unresolved. Image-circle and field-coverage comparisons require a published format or field; none is supplied, so no format-coverage claim is made.
+- Exact optical clear apertures and their relationship to the drawn physical edges remain unknown.
+- The historical iris position, diameter, blade geometry and minimum opening are not documented.
+- Finite film-to-screen distances, magnification, focus movement and close-focus behavior are not given.
+- Historical glass identities, suppliers, partial dispersion and measured spectral performance remain unresolved.
+- No production product, mount, image format or marketed specifications are established for this prescription.
+- A separately identified filing or priority date is not available in the scan.

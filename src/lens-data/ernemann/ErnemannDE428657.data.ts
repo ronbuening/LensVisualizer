@@ -2,19 +2,20 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 
 /**
  * Ludwig Bertele's DE 428,657 C, Figure 2, a five-element f/2 projection
- * objective. The patent places the film behind R10 and the screen on the R1 side;
+ * objective at the printed f = 100 mm scale (calculated EFL 100.03 mm).
+ * The patent places the film behind R10 and the screen on the R1 side;
  * this infinity model traces from the screen side toward the film. The printed
  * radii, thicknesses, air gaps and D-line glass values are retained. The stop is
  * inferred at the midpoint of the 19.05 mm central gap. Clear radii combine
  * estimates with Figure 2 readings; the image plane is the calculated paraxial
- * back focus, 56.18336 mm. The illustrative half-field is 5 degrees.
+ * back focus, 56.18 mm. The illustrative half-field is 5.0 degrees.
  */
 const LENS_DATA = {
   schema: 2,
   key: "ernemann-100mm-f2-de428657",
   maker: "Ernemann",
   name: "ERNEMANN 100mm f/2 (DE 428,657 Design)",
-  subtitle: "DE 428,657 C, Figure 2 — Ernostar-type objective with split rear member",
+  subtitle: "DE 428,657 C, Figure 2 — Ernemann / Bertele",
   visible: false,
   source: {
     patentNumber: "DE 428,657 C",
@@ -35,7 +36,13 @@ const LENS_DATA = {
     fNumber: {
       design: 2,
     },
-    specs: ["5 ELEMENTS / 5 GROUPS", "ALL SPHERICAL", "DESIGN F/2", "PROJECTION OBJECTIVE"],
+    specs: [
+      "5 ELEMENTS / 5 GROUPS",
+      "ALL SPHERICAL",
+      "DESIGN f = 100 mm",
+      "DESIGN F/2",
+      "PROJECTION OBJECTIVE",
+    ],
   },
   elements: [
     {
@@ -207,13 +214,8 @@ const LENS_DATA = {
       toSurface: "6",
     },
     {
-      text: "L4",
+      text: "Rear member",
       fromSurface: "7",
-      toSurface: "8",
-    },
-    {
-      text: "L5",
-      fromSurface: "9",
       toSurface: "10",
     },
   ],
