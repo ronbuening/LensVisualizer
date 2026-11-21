@@ -6,7 +6,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Radii, thicknesses, air spaces and D-line glass data follow the printed table.
  * The inferred stop splits the 11.4 mm rear air space into 7.2 and 4.2 mm.
  * Clear radii are inferred; R1's 18.75 mm uses the printed 0.375F effective front
- * diameter. The image gap is the computed paraxial back focus, 76.30 mm.
+ * diameter. Figure 1 supports level rims: 18 mm on the middle singlet and
+ * 17 mm across the rear doublet, whose positive element closes at 17.17 mm.
+ * The axial f/2.67 beam clears these rims. The image gap is the computed
+ * paraxial back focus, 76.30 mm.
  * The illustrative ±5° field is not a field specification from the patent.
  */
 const LENS_DATA = {
@@ -115,7 +118,7 @@ const LENS_DATA = {
       label: "4",
       R: 30.3,
       d: 7.2,
-      sd: 17,
+      sd: 18,
     },
     {
       label: "STO",
@@ -133,7 +136,7 @@ const LENS_DATA = {
       label: "6",
       R: -23.34,
       d: 3,
-      sd: 16,
+      sd: 17,
       medium: 4,
     },
     {
