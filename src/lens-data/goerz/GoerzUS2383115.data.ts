@@ -6,14 +6,14 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * The radii follow the figure in the direction of light travel. The printed D-light
  * indices and Abbe numbers are retained. The midpoint stop in the 7.366 mm central
  * gap and all clear semi-diameters are inferred. The final gap is the computed
- * paraxial back focus, 90.5361 mm; the patent prints no back focus or close-focus data.
+ * paraxial back focus, 90.54 mm; the patent prints no back focus or close-focus data.
  */
 const LENS_DATA = {
   schema: 2,
   key: "goerz-100mm-f6-us2383115",
   maker: "Goerz",
   name: "GOERZ 100mm f/6 (US 2,383,115 Design)",
-  subtitle: "US 2,383,115 A, Example I — related to the Rectagon family",
+  subtitle: "US 2,383,115 A, Example I — Goerz / Durand",
   visible: true,
   source: {
     patentNumber: "US 2,383,115 A",
@@ -36,7 +36,12 @@ const LENS_DATA = {
     elementCount: 4,
     groupCount: 4,
     imageCircleMm: 203.49,
-    specs: ["4 ELEMENTS / 4 GROUPS", "ALL SPHERICAL", "DESIGN F/6"],
+    specs: [
+      "4 ELEMENTS / 4 GROUPS",
+      "ALL SPHERICAL",
+      "DESIGN f = 100 mm",
+      "DESIGN F/6",
+    ],
   },
   elements: [
     {
