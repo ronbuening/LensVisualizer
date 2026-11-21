@@ -97,7 +97,8 @@ const LENS_DATA = {
       vd: 56.9,
       indexReference: "D",
       focalLengthMm: 29.7,
-      glass: "Unmatched (nD 1.62377 / ν 56.9)",
+      glass:
+        "N-SK10 (spectral proxy; patent nD 1.62377 / ν 56.9; supplier and melt unspecified)",
       role: "Positive rear member that supplies the rear doublet's converging power",
       cemented: "C1",
     },

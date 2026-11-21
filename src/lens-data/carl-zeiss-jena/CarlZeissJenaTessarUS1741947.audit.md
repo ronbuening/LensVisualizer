@@ -30,7 +30,7 @@ All clear semi-diameters are estimates: R1/R2 15.8, R3–R5 13.7 and R6/R7 15.5 
 
 `focus.closeFocusM` is 10¹⁵ m, which stands for infinity. No close-focus distances, movement law or production focusing mechanism are given. The selectable aperture range extends from f/3.5 to f/22; the patent gives no minimum iris opening.
 
-Historical glass suppliers, melt identities, additional spectral indices and partial-dispersion data are unprinted. K-SK7 (Sumita) and FL57 (Hoya) supply catalog dispersion curves for I and II without establishing their historical identities. III and IV use Abbe-based estimates. Calculated colour correction and simulated MTF are not measured performance of a production lens; the patent supplies no MTF curve.
+Historical glass suppliers, melt identities, additional spectral indices and partial-dispersion data are unprinted. K-SK7 (Sumita) and FL57 (Hoya) match I and II within printed precision; N-SK10 (Schott) supplies a spectral proxy for IV. These catalog curves establish no historical glass identity. III uses an Abbe-based estimate. Calculated colour correction and simulated MTF are not measured performance of a production lens; the patent supplies no MTF curve.
 
 ## Product Identification
 
@@ -45,7 +45,7 @@ No production mount, image format, diaphragm blade count or shape, marketed foca
 - The catalog design focal length changed from 100 to 100.05 mm to describe the calculated EFL. The four-element/three-group counts and f/3.5 design aperture agree with the patent.
 - Element labels became Element 1 through Element 4, with the drawing's numerals I–IV. Optical roles and standalone focal lengths of +52.84, −35.16, −54.13 and +29.70 mm were added. C1 identifies III and IV as the rear cemented doublet spanning R5–R7; its net focal length is +60.97 mm. The shape descriptions were retained.
 - Element I's glass label changed from unmatched to K-SK7 (Sumita). At sodium D, catalog minus printed differences are ΔnD = +0.0000271 and ΔνD = −0.04. Element II changed from unmatched to FL57 (Hoya), with ΔnD = +0.0000812 and ΔνD = +0.08. These are close optical-property matches, without establishing historical suppliers; the printed indices and Abbe numbers were retained.
-- Elements III and IV received explicit unmatched labels carrying their printed pairs, nD 1.52648 / ν 51.4 and nD 1.62377 / ν 56.9. No catalog curve meets the same matching limits for either. Their coordinates changed by Δn = 0 and Δν = 0.
+- Element III received an explicit unmatched label carrying its printed pair, nD 1.52648 / ν 51.4; no catalog curve meets the proxy limits for III. Element IV's printed pair, nD 1.62377 / ν 56.9, is retained with the spectral proxy recorded below. Their coordinates changed by Δn = 0 and Δν = 0.
 - The front clear semi-diameter decreased from 19 to 16.2 mm to reduce excess overhang while preserving the accepted rays. The other estimated rims were retained. No printed radius, thickness, separation or glass coordinate was changed to alter image quality.
 - The focus description states infinity focus only because the patent gives no close-focus data. No production minimum focus distance is claimed.
 
@@ -59,10 +59,15 @@ No production mount, image format, diaphragm blade count or shape, marketed foca
 - Wide-open geometric transmission changed from 100.0% to 100.0% on axis, 91.8% to 91.0% at 16.5°, 83.0% to 80.7% at 22.0° and 67.5% to 64.7% at 27.5°. The largest loss over the eleven field angles is 2.9 percentage points, at the corner. These fractions describe pupil transmission, excluding absorption and obliquity falloff.
 - All surfaces remain separated. The f/3.5 axial marginal heights at R1–R7 are 14.29, 14.06, 12.77, 11.92, 12.26, 12.49 and 12.55 mm; each is below its clear radius. The 27.5° chief ray clears every rim, with 100% chief-ray field coverage and no image-circle shortfall. Half-field stays at 27.5°, paraxial aperture at f/3.50 and exact axial aperture near f/3.55. The iris remains the aperture limit. The drawn section retains four elements in three groups, with no aspheres or source-designated special glass; the front and rear edges are square, while their greater heights and the approximate R4/R5 chamfers remain visible differences.
 
+2026-11-21 glass review:
+
+- Element IV: `Unmatched (nD 1.62377 / ν 56.9)` → `N-SK10 (spectral proxy; patent nD 1.62377 / ν 56.9; supplier and melt unspecified)` (Schott); catalog minus printed at sodium D: ΔnD = −0.00109, ΔνD = +0.07; spectral proxy.
+- The spectral proxy is within index 0.002 / Abbe number 0.25 at the printed sodium D line; the printed index and Abbe number are kept. The catalog row does not identify the historical supplier or melt.
+
 The resulting model has EFL 100.05 mm, paraxial f/3.50, BFD 85.284 mm, stop radius 11.900 mm and half-field 27.5°. The printed diaphragm station and field are retained. The calculated image plane is approximately 85.284 mm behind R7, and the inferred image-circle diameter is approximately 103.28 mm.
 
 ## Remaining Questions
 
 - The R4/R5 chamfers have no numerical dimensions, so their exact outlines remain uncertain.
-- The historical identities of all four glasses, matching catalog curves for III and IV, and measured spectral performance remain unknown.
+- The historical identities of all four glasses, a matching catalog curve for III, and measured spectral performance remain unknown.
 - No source establishes a specific production lens, mount, image format, diaphragm blade count or shape, minimum iris opening, marketed specifications or close-focus mechanism.

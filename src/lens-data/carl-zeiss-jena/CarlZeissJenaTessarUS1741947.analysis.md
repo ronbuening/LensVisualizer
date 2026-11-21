@@ -46,7 +46,7 @@ The flat front surface is 2.29 mm behind the diaphragm. This 1.50 mm thick negat
 
 ### IV / Element 4 — Biconvex Positive
 
-nD = 1.62377, νD = 56.9. Glass: Unmatched. Standalone focal length in air: +29.70 mm.
+nD = 1.62377, νD = 56.9. Glass: N-SK10 (Schott), spectral proxy. Standalone focal length in air: +29.70 mm.
 
 The shared +28.50 mm cemented interface and −47.22 mm rear surface provide positive power. Its centre thickness is 8.00 mm and both clear semi-diameters are estimated at 15.5 mm, giving a square-cut rear rim. The cemented III–IV group has a net positive focal length of +60.97 mm.
 
@@ -54,14 +54,14 @@ The shared +28.50 mm cemented interface and −47.22 mm rear surface provide pos
 
 The patent prints nD and Abbe numbers. The model retains those coordinates and uses the D line (taken as sodium, 589.3 nm). Catalogue comparisons at that line give the following differences, calculated as catalogue minus patent:
 
-| Element | Catalogue disposition           |        ΔnD |     ΔνD |
-| ------- | ------------------------------- | ---------: | ------: |
-| I       | K-SK7 (Sumita)                  | +0.0000271 |   −0.04 |
-| II      | FL57 (Hoya)                     | +0.0000812 |   +0.08 |
-| III     | Unmatched (nD 1.52648 / ν 51.4) |          — |       — |
-| IV      | Unmatched (nD 1.62377 / ν 56.9) |          — |       — |
+| Element | Catalogue disposition              |        ΔnD |   ΔνD |
+| ------- | ---------------------------------- | ---------: | ----: |
+| I       | K-SK7 (Sumita), exact match         | +0.0000271 | −0.04 |
+| II      | FL57 (Hoya), exact match            | +0.0000812 | +0.08 |
+| III     | Unmatched (nD 1.52648 / ν 51.4)    |          — |     — |
+| IV      | N-SK10 (Schott), spectral proxy     |   −0.00109 | +0.07 |
 
-The first two labels supply catalogue dispersion curves without establishing the identity of the historical melts. No catalogue row meets the same matching limits for III or IV; their spectral behaviour is estimated from the printed Abbe numbers. The patent gives no additional spectral indices or partial-dispersion data, so calculated colour correction is not a measured property of a production lens.
+I and II match their catalogue rows within printed precision. IV uses a spectral proxy within index 0.002 / Abbe number 0.25 at sodium D. Its catalogue curve supplies only the dispersion shape while the printed index and Abbe number are kept. III has no row within those tolerances and uses an Abbe-based estimate. Catalogue names identify neither historical suppliers nor melts. The patent gives no additional spectral indices or partial-dispersion data; calculated colour correction is not measured production performance.
 
 ## Focus Mechanism
 
@@ -92,3 +92,6 @@ The surfaces stay clear of each other. Image-quality calculations depend on the 
 1. Willy Merté, [US 1,741,947 A, “Photographic lens, corrected spherically, chromatically, astigmatically, and for coma”](https://image-ppubs.uspto.gov/dirsearch-public/print/downloadPdf/1741947), published 31 December 1929. PDF page 1: drawing and glass data; page 2: typed example and design conditions.
 2. H. H. Nasse, [“Tessar,” Carl Zeiss Camera Lens Division, March 2011](https://lenspire.zeiss.com/photo/app/uploads/2018/02/cln39_en_web_special_tessar.pdf), pp. 2–4 and 7: architecture, f/3.5 development and historical production examples.
 3. Willy Merté and Ernst Wandersleb, [US 1,849,681 A, “Photographic three-lens objective”](https://patents.google.com/patent/US1849681A/en), published 15 March 1932; German priority 17 July 1930. A later design with different numerical examples.
+4. [Sumita optical glass catalogue](https://www.sumita-opt.co.jp/en/download/): K-SK7 dispersion data.
+5. [Hoya optical glass catalogue](https://www.hoya-opticalworld.com/english/datadownload/index.html): FL57 dispersion data.
+6. [Schott optical glass catalogue](https://www.schott.com/en-us/products/optical-glass-p1000267/downloads): N-SK10 dispersion data.
