@@ -43,7 +43,7 @@ const LENS_DATA = {
   key: "sony-vario-tessar-t-fe-16-35-f4-za-oss-jp2015166834-ex1",
   maker: "Sony",
   name: "SONY VARIO-TESSAR T* FE 16-35mm f/4 ZA OSS",
-  subtitle: "JP 2015-166834 A Example 1 — production correlation to SEL1635Z",
+  subtitle: "JP 2015-166834 A Example 1 — production match to SEL1635Z",
 
   catalog: {
     lensMounts: ["sony-fe"],

@@ -61,7 +61,7 @@ const LENS_DATA = {
   key: "sony-epz1650mmf3556oss",
   maker: "Sony",
   name: "SONY E PZ 16-50mm f/3.5-5.6 OSS",
-  subtitle: "US 2015/0316753 A9 — Example 1; production correlation inferred",
+  subtitle: "US 2015/0316753 A9 — Example 1; inferred production match",
 
   catalog: {
     lensMounts: ["sony-fe"],

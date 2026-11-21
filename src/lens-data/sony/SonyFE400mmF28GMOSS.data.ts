@@ -39,7 +39,7 @@ const LENS_DATA = {
   key: "sony-fe-400mm-f28-gm-oss",
   maker: "Sony",
   name: "SONY FE 400mm f/2.8 GM OSS",
-  subtitle: "JP 2025-063175 A, Example 2 — strong research correlation; not manufacturer-confirmed",
+  subtitle: "JP 2025-063175 A, Example 2 — strong production match; not maker-confirmed",
 
   catalog: {
     lensMounts: ["sony-fe"],
