@@ -18,10 +18,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ direction between the intermediate and tele states. The stop moves with    ║
  * ║ GR2.                                                                       ║
  * ║                                                                            ║
- * ║ Focus status: NO_INTERNAL_RECONSTRUCTION. The patent identifies GR3 as the ║
- * ║ axial focus group but publishes no Example 1 close-focus spacing table.    ║
- * ║ All var pairs therefore retain the published infinity state at both ends;  ║
- * ║ Sony's 0.25-0.30 m MFD remains product metadata only.                      ║
+ * ║ Focus: infinity only. The patent identifies GR3 as the axial focus group   ║
+ * ║ but publishes no Example 1 close-focus spacing table. Every spacing that   ║
+ * ║ changes with focus stays at its infinity value at both ends; Sony's        ║
+ * ║ 0.25-0.30 m MFD is product information only.                               ║
  * ║                                                                            ║
  * ║ The unshown, unparameterized cover glass stated between GR4 and IMG is      ║
  * ║ excluded. D18 retains the patent's source vertex-to-IMG separation and is    ║
@@ -307,7 +307,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.25,
     description:
-      "NO_INTERNAL_RECONSTRUCTION: the patent identifies GR3 as the axial focus group, but Example 1 publishes only infinity-focus zoom spacings. The authored model therefore preserves infinity focus at both focus endpoints; Sony's marketed MFD is 0.25-0.30 m.",
+      "Infinity focus only. The patent names GR3 as the focusing group, but Example 1 publishes infinity-focus spacings at wide, middle and tele only, so focus travel is not modeled; zoom movement is. Sony's minimum focus distance is 0.25-0.30 m.",
   },
 
   gaps: {
