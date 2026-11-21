@@ -37,7 +37,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
 | [`l-mount`](#l-mount--l-mount) | bayonet | 20 mm | 51.6 mm | `mvp_complete` | 1 |
 | [`leica-ltm`](#leica-ltm--leica-ltm-m39) | threaded | 28.8 mm | 39 mm | `mvp_complete` | 1 |
 | [`leica-m`](#leica-m--leica-m) | bayonet | 27.8 mm | 44 mm | `mvp_complete` | 2 |
-| [`leica-r`](#leica-r--leica-r) | bayonet | 47 mm | 49 mm | `renderable` | 1 |
+| [`leica-r`](#leica-r--leica-r) | bayonet | 47 mm | 49 mm | `renderable` | 6 |
 | [`m42`](#m42--m42) | threaded | 45.46 mm | 42 mm | `mvp_complete` | 1 |
 | [`micro-four-thirds`](#micro-four-thirds--micro-four-thirds) | bayonet | 19.25 mm | 38 mm | `mvp_complete` | 1 |
 | [`minolta-sr`](#minolta-sr--minolta-sr) | bayonet | 43.5 mm | 44.97 mm | `renderable` | 4 |
@@ -2423,19 +2423,24 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 |---|---|
 | Mount ID | `leica-r` |
 | Display label | Leica R |
-| Project note | Leica R SLR bayonet mount. |
+| Project note | Leica R SLR bayonet mount, Leicaflex (1964) to R9. |
 | Research status | `partial` |
 | MVP status | `renderable` |
 | Mount mechanism | `bayonet` (lock `sprung_detent`) |
 | Base profile | `leica-r/base` |
-| Selected MVP profile | `leica-r/base` |
-| Variant strategy | `base_only` |
+| Selected MVP profile | `leica-r/3-cam` |
+| Variant strategy | `variant_profiles_defined` |
 
 #### Base and variant profile matrix
 
 | Profile ID | Type | Applies to | Adds | Removes | Changes |
 |---|---|---|---|---|---|
-| `leica-r/base` | base | Leica R SLR lenses and bodies | three-lug bayonet; mechanical aperture/metering cam interface | rangefinder coupling; threaded LTM interface | variant cam and ROM details are not split into profile overlays yet |
+| `leica-r/base` | base | every Leicaflex and Leica R body and lens, 1964 to the R9 | three-lug bayonet; 47 mm register; bayonet lock at 8 o'clock from the camera front, which is also the index the lens's red dot is set against; automatic-diaphragm lever at the lens rear, worked by a body lever linked to the mirror (position not sourced, not drawn) | rangefinder coupling; threaded LTM interface | — |
+| `leica-r/1-cam` | variant | 1-cam lenses for the Leicaflex Standard, 1964 to 1968 | one sloped cam on the aperture ring | — | stop-down metering only on SL / SL2 and R bodies; Leica warns against use on the R8 / R9 |
+| `leica-r/2-cam` | variant | 2-cam lenses for the Leicaflex SL and SL2, 1968 to 1976 | second sloped cam for the through-the-lens meter, opposite the first | — | first cam kept for the Leicaflex Standard |
+| `leica-r/3-cam` | variant | 3-cam lenses, 1976 to 1988; fit every Leicaflex and Leica R body | stepped R cam just inside the second sloped cam; two R-cam followers in Leica R bodies | — | both Leicaflex cams kept |
+| `leica-r/r-only` | variant | R-only lenses, 1988 to 1996; Leica R bodies from the R3 only | stepped R cam; two R-cam followers in Leica R bodies | both Leicaflex cams | bayonet altered slightly so the lens does not fit Leicaflex bodies; the altered geometry is not sourced and not drawn |
+| `leica-r/rom` | variant | ROM lenses and R8 / R9 bodies, 1996 onward | electrical contact strip on the lens in the place of the first Leicaflex cam; matching contact strip in the R8 / R9 bayonet; stepped R cam; two R-cam followers in Leica R bodies | both Leicaflex cams | lens data such as focal length go to the body electrically; does not fit Leicaflex bodies |
 
 #### Dimensional summary
 
@@ -2447,16 +2452,16 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 | Camera mount outer diameter | 58 (`photo_scaled`) | mm |
 | Lens mount outer diameter | 56 (`photo_scaled`) | mm |
 | Contact count | not_applicable (`not_applicable`) | count |
-| Lock rotation | 60 (`photo_scaled`) | deg |
-| Lock direction | clockwise (`photo_scaled`) | — |
+| Lock rotation | 45 (`photo_scaled`) | deg |
+| Lock direction | clockwise (`official`) | — |
 
-#### Figures (selected profile `leica-r/base`)
+#### Figures (selected profile `leica-r/3-cam`)
 
-**Camera-side front view** — viewBox `-36 -37 72 73` · 34 elements in 3 layers · hash `bdd12bb8` ([standalone SVG](mounts/leica-r-camera-front.svg))
+**Camera-side front view** — viewBox `-36 -37 72 73` · 38 elements in 4 layers · hash `c5076936` ([standalone SVG](mounts/leica-r-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-35 -36 70 71` · 31 elements in 4 layers · hash `6e0c857d` ([standalone SVG](mounts/leica-r-lens-rear.svg))
+**Lens-side rear view** — viewBox `-35 -36 70 71` · 33 elements in 4 layers · hash `d01fa1d0` ([standalone SVG](mounts/leica-r-lens-rear.svg))
 
-**Axial / register schematic** — viewBox `-54 -40 62 76` · 12 elements in 2 layers · hash `16a497d8` ([standalone SVG](mounts/leica-r-axial.svg))
+**Axial / register schematic** — viewBox `-54 -40 62 76` · 12 elements in 2 layers · hash `54702276` ([standalone SVG](mounts/leica-r-axial.svg))
 
 #### Camera-side front-view geometry
 
@@ -2464,11 +2469,11 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 |---|---|---|---|---|---|---|---|
 | `body-throat` | body_throat | `leica-r/base` | 0° | 0° | 360° | 0 | 24.5 |
 | `body-mount-ring` | mount_ring | `leica-r/base` | 0° | 0° | 360° | 24.5 | 29 |
-| `body-slot-1` | bayonet_receiving_slot | `leica-r/base` | 35° | 17° | 53° | 24.5 | 27 |
-| `body-slot-2` | bayonet_receiving_slot | `leica-r/base` | 155° | 137° | 173° | 24.5 | 27 |
-| `body-slot-3` | bayonet_receiving_slot | `leica-r/base` | 275° | 257° | 293° | 24.5 | 27 |
-| `body-index-mark` | index_mark | `leica-r/base` | 0° | unknown | unknown | unknown | 29.5 |
-| `body-lock-pin` | lock_pin | `leica-r/base` | 90° | unknown | unknown | unknown | 25.5 |
+| `body-slot-1` | bayonet_receiving_slot | `leica-r/base` | 60° | 30° | 90° | 24.5 | 27 |
+| `body-slot-2` | bayonet_receiving_slot | `leica-r/base` | 180° | 150° | 210° | 24.5 | 27 |
+| `body-slot-3` | bayonet_receiving_slot | `leica-r/base` | 300° | 270° | 330° | 24.5 | 27 |
+| `body-index-mark` | index_mark | `leica-r/base` | 240° | unknown | unknown | unknown | 29.5 |
+| `body-lock-pin` | lock_pin | `leica-r/base` | 240° | unknown | unknown | unknown | 25.5 |
 
 #### Lens-side rear-view geometry
 
@@ -2476,17 +2481,37 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 |---|---|---|---|---|---|---|---|
 | `lens-throat` | lens_throat | `leica-r/base` | 0° | 0° | 360° | 0 | 23.5 |
 | `lens-mount-ring` | lens_mount_ring | `leica-r/base` | 0° | 0° | 360° | 23.5 | 28 |
-| `lens-lug-1` | bayonet_lug | `leica-r/base` | 35° | 17° | 53° | 24.5 | 27 |
-| `lens-lug-2` | bayonet_lug | `leica-r/base` | 155° | 137° | 173° | 24.5 | 27 |
-| `lens-lug-3` | bayonet_lug | `leica-r/base` | 275° | 257° | 293° | 24.5 | 27 |
-| `lens-index-mark` | index_mark | `leica-r/base` | 0° | unknown | unknown | unknown | 28.5 |
-| `lens-lock-notch` | lock_notch | `leica-r/base` | 90° | unknown | unknown | unknown | 25.5 |
+| `lens-lug-1` | bayonet_lug | `leica-r/base` | 60° | 30° | 90° | 24.5 | 27 |
+| `lens-lug-2` | bayonet_lug | `leica-r/base` | 180° | 150° | 210° | 24.5 | 27 |
+| `lens-lug-3` | bayonet_lug | `leica-r/base` | 300° | 270° | 330° | 24.5 | 27 |
+| `lens-index-mark` | index_mark | `leica-r/base` | 240° | unknown | unknown | unknown | 28.5 |
+| `lens-lock-notch` | lock_notch | `leica-r/base` | 240° | unknown | unknown | unknown | 25.5 |
+
+#### Electrical contacts
+
+| Side | No. | Profile | Center angle | Radius | Function |
+|---|---|---|---|---|---|
+| body | 1 | `leica-r/rom` | 345° | unknown | contact strip in the R8 / R9 bayonet that reads the lens strip; stored at the lens strip's angle. One marker stands for the whole strip |
+| lens | 1 | `leica-r/rom` | 345° | unknown | ROM contact strip on the lens, in the place of the first Leicaflex cam; arc of roughly 60 deg in the R9 instructions photo (p. 128). One marker stands for the whole strip |
 
 #### Mechanical couplings
 
 | Feature | Side | Profile | Function |
 |---|---|---|---|
-| `metering-cam` | lens | `leica-r/base` | aperture/metering communication on R lenses |
+| `leicaflex-cam-1-1-cam` | lens | `leica-r/1-cam` | passes the preselected aperture to the Leicaflex Standard meter coupling |
+| `leicaflex-cam-1-2-cam` | lens | `leica-r/2-cam` | passes the preselected aperture to the Leicaflex Standard meter coupling |
+| `leicaflex-cam-2-2-cam` | lens | `leica-r/2-cam` | passes the preselected aperture to the Leicaflex SL / SL2 through-the-lens meter |
+| `leicaflex-cam-1-3-cam` | lens | `leica-r/3-cam` | passes the preselected aperture to the Leicaflex Standard meter coupling |
+| `leicaflex-cam-2-3-cam` | lens | `leica-r/3-cam` | passes the preselected aperture to the Leicaflex SL / SL2 through-the-lens meter |
+| `r-cam-3-cam` | lens | `leica-r/3-cam` | passes the preselected aperture and the lens's maximum aperture to Leica R bodies (R3 onward) |
+| `r-cam-meter-follower-3-cam` | body | `leica-r/3-cam` | follows the R-cam prong whose position is the same on every lens (metering) |
+| `r-cam-aperture-follower-3-cam` | body | `leica-r/3-cam` | follows the R-cam prong whose position varies with the lens's maximum aperture |
+| `r-cam-r-only` | lens | `leica-r/r-only` | passes the preselected aperture and the lens's maximum aperture to Leica R bodies (R3 onward) |
+| `r-cam-meter-follower-r-only` | body | `leica-r/r-only` | follows the R-cam prong whose position is the same on every lens (metering) |
+| `r-cam-aperture-follower-r-only` | body | `leica-r/r-only` | follows the R-cam prong whose position varies with the lens's maximum aperture |
+| `r-cam-rom` | lens | `leica-r/rom` | passes the preselected aperture and the lens's maximum aperture to Leica R bodies (R3 onward) |
+| `r-cam-meter-follower-rom` | body | `leica-r/rom` | follows the R-cam prong whose position is the same on every lens (metering) |
+| `r-cam-aperture-follower-rom` | body | `leica-r/rom` | follows the R-cam prong whose position varies with the lens's maximum aperture |
 
 #### Axial stack
 
@@ -2498,7 +2523,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/leica-r.mount.ts` (25226 bytes, content hash `f5eb116d`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/leica-r.mount.ts` (55248 bytes, content hash `dfd2a410`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -2506,10 +2531,21 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 |---|---|---|---|---|---|
 | `lr-1` | secondary | “Flange focal distance,” Wikipedia. Accessed 2026-06-06. | [snapshot](http://web.archive.org/web/20260526152456/https://en.wikipedia.org/wiki/Flange_focal_distance) | 2026-05-26 | medium |
 | `lr-2` | secondary | Leica R mount visual references. Accessed 2026-06-06. | [snapshot](unknown) | unknown | low |
+| `lr-3` | secondary | “Leica R bayonet,” Wikipedia, revision of 2026-06-03. Accessed 2026-11-21. | [snapshot](https://en.wikipedia.org/w/index.php?title=Leica_R_bayonet&oldid=1357537022) | 2026-06-03 | low |
+| `lr-m1` | official | Leica Camera AG, “LEICA R9 Instructions,” fold-out front view and pp. 108, 127–129 and 197. Accessed 2026-11-21. | [snapshot](https://www.manualslib.com/manual/1968838/Leica-R9.html?page=133) | 2026-11-21 | medium |
+| `lr-m2` | official | Ernst Leitz GmbH Wetzlar, “LEICAFLEX SL Instructions,” pp. 4, 12, 14 and 16. Accessed 2026-11-21. | [snapshot](https://www.cameramanuals.org/leica_pdf/leicaflex_sl.pdf) | 2026-11-21 | medium |
+| `lr-p1` | patent | W. Schlapp and W. Wiessner (Ernst Leitz Wetzlar GmbH), US4181419, “Interchangeable lens for SLR-cameras having TTL light metering,” 1980 (priority DE2651263, 1976). Accessed 2026-11-21. | [snapshot](https://patentimages.storage.googleapis.com/f2/13/08/42f97eafb8047a/US4181419.pdf) | 2026-11-21 | medium |
+| `lr-p1f` | patent_figure | US4181419, FIG. 1a: front elevation of the camera mount. Undimensioned drawing, scaled for this spec. Accessed 2026-11-21. | [snapshot](https://patentimages.storage.googleapis.com/f2/13/08/42f97eafb8047a/US4181419.pdf) | 2026-11-21 | low |
+| `lr-p2` | patent | H. Broschke, W. Holle and W. Wiessner (Ernst Leitz GmbH), US3427946, “Single lens reflex cameras,” 1969 (German priority application L 51,782). Accessed 2026-11-21. | [snapshot](https://patentimages.storage.googleapis.com/88/f6/bb/ea685e4f228feb/US3427946.pdf) | 2026-11-21 | high |
+| `lr-p3` | patent | W. Schlapp and W. Wiessner (Ernst Leitz Wetzlar GmbH), US4504134, “Photographic objective with automatic diaphragm,” 1985. Accessed 2026-11-21. | [snapshot](https://patentimages.storage.googleapis.com/09/ce/2e/4b010ad69675dc/US4504134.pdf) | 2026-11-21 | medium |
 
 #### Open questions
 
-- Leica R cam variants and exact lug profile need measured drawings. _(Split R cam/ROM generations after sourcing service documentation.)_
+- No dimensioned drawing of the bayonet was found. The body flanges (about 330-30, 90-150 and 210-270 deg) and the entry gaps between them (centres 60, 180, 300 deg, about 60 deg each) are scaled from the undimensioned front elevation US4181419 FIG. 1a, where two of the three flanges are partly hidden; the lens lug spans are copied from the gaps and are only an upper limit; lug radii, thickness and both mount outer diameters are still the earlier unsourced estimate [lr-2]. _(Needs a Leitz service drawing, a Leicaflex or Leica R repair manual with the bayonet ring, or a calibrated measurement. Searched: Google Patents pages for US4181419, US3427946, US4504134, DE1772018, DE1282442, DE1220723, GB1096268; Leicaflex SL and R9 instructions; Wikipedia, apotelyt, JAPB, photoethnography. Only paid Leicaflex service manuals were located.)_
+- The turn to lock is stated by Leitz only as short or slight. 45 deg is scaled from one three-quarter view (Leicaflex SL instructions p. 4) and could be off by 10 deg or more; the earlier unsourced estimate was 60 deg. The two readings do not agree: in US4181419 FIG. 1a a gap centre is 60 deg from the next flange centre, so a 45 deg turn would leave each lug 15 deg short of centred behind its flange. Either the turn is nearer 60 deg, or the lugs sit off-centre when locked, or the figure's equal 60 deg division is schematic. _(Measure on a body and lens, or find a service drawing.)_
+- Cam, R-cam and contact-strip angles are scaled from two small lens-rear photos (R9 instructions p. 128) and clocked by the lock notch, itself placed only as 8 o'clock. Wikipedia instead rounds cam 1 to 12 o'clock and cams 2 and 3 to 6 o'clock, about 30 deg from the scaled values. No radius, arc length or cam rise is sourced, so the radii are unknown and the markers sit at a placeholder radius. The two body followers come from a patent figure of a camera the patent presents as an example only; the Leicaflex and SL / SL2 body feelers are not placed at all. _(Needs a dimensioned Leitz drawing of the lens rear or a measured lens of each generation.)_
+- The ROM strip is one marker per side. The number of contacts, their pitch, pad size and radius were not found in any source that could be cited; the R9 instructions call it only a contact strip. The 3-cam MVP profile has no contacts, so contactCount stays not_applicable. _(Find a Leica patent or service document for the R8 lens contacts (none located), or count and measure on a ROM lens and an R8 / R9 body.)_
+- R-only and ROM lenses are said to have a slightly altered bayonet that keeps them off Leicaflex bodies. No source describes the alteration, so those profiles draw the base bayonet unchanged. The automatic-diaphragm lever and its body lever are documented (US4504134) but no source gives their angle, so they are not drawn. _(Compare an R-only lens flange with a 3-cam one, or find the Leitz conversion instructions.)_
 
 ### `m42` — M42
 
