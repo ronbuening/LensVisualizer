@@ -48,7 +48,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
 | [`olympus-om`](#olympus-om--olympus-om) | bayonet | 46 mm | 47 mm | `mvp_complete` | 1 |
 | [`pentax-110`](#pentax-110--pentax-110) | bayonet | 27 mm | 20.6 mm | `renderable` | 1 |
 | [`pentax-645`](#pentax-645--pentax-645) | bayonet | 70.87 mm | 61 mm | `renderable` | 1 |
-| [`pentax-67`](#pentax-67--pentax-67) | bayonet | 84.95 mm | 72 mm | `renderable` | 1 |
+| [`pentax-67`](#pentax-67--pentax-67) | bayonet | 84.95 mm | 72 mm | `renderable` | 3 |
 | [`pentax-k`](#pentax-k--pentax-k) | bayonet | 45.46 mm | 44 mm | `mvp_complete` | 7 |
 | [`samsung-nx`](#samsung-nx--samsung-nx) | bayonet | 25.5 mm | 42 mm | `renderable` | 1 |
 | [`sigma-sa`](#sigma-sa--sigma-sa) | bayonet | 44 mm | 44 mm | `renderable` | 1 |
@@ -3576,40 +3576,42 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 |---|---|
 | Mount ID | `pentax-67` |
 | Display label | Pentax 67 |
-| Project note | Pentax 6x7 / 67 medium-format bayonet mount. |
+| Project note | Pentax 6x7 / 67 medium-format dual bayonet mount. |
 | Research status | `partial` |
 | MVP status | `renderable` |
 | Mount mechanism | `bayonet` (lock `sprung_detent`) |
 | Base profile | `pentax-67/base` |
-| Selected MVP profile | `pentax-67/base` |
-| Variant strategy | `base_only` |
+| Selected MVP profile | `pentax-67/inner` |
+| Variant strategy | `variant_profiles_defined` |
 
 #### Base and variant profile matrix
 
 | Profile ID | Type | Applies to | Adds | Removes | Changes |
 |---|---|---|---|---|---|
-| `pentax-67/base` | base | Pentax 6x7 and Pentax 67 lenses and bodies | large medium-format bayonet; aperture coupling | — | feature placement is photo-scaled |
+| `pentax-67/base` | base | all Pentax 6x7, 67 and 67II bodies, 1969 onward | 72 mm throat and body mount ring; 84.95 mm register; four-screw bayonet seat | — | — |
+| `pentax-67/inner` | variant | inner-bayonet lenses, 35 mm to 300 mm, and inner-bayonet accessories | three-lug inner bayonet; red-dot mounting index; body lock pin and lens notch; automatic-aperture coupling | — | lug sectors, lock rotation angle and aperture-lever position are photo-scaled |
+| `pentax-67/outer` | variant | outer-bayonet lenses, 400 mm to 1000 mm, and outer-bayonet extension tubes | four-lug outer bayonet, symmetric so the body can be set in any of four positions | automatic-aperture linkage (stop-down operation only) | outer lug clocking, spans and radii are unknown; drawn as a placeholder |
 
 #### Dimensional summary
 
 | Field | Value | Unit |
 |---|---|---|
-| Flange focal distance | 84.95 (`secondary`) | mm |
-| Nominal throat diameter | 72 (`photo_scaled`) | mm |
+| Flange focal distance | 84.95 (`service_manual`) | mm |
+| Nominal throat diameter | 72 (`secondary`) | mm |
 | Effective clear aperture | 72 (`photo_scaled`) | mm |
 | Camera mount outer diameter | 86 (`photo_scaled`) | mm |
 | Lens mount outer diameter | 84 (`photo_scaled`) | mm |
 | Contact count | not_applicable (`not_applicable`) | count |
 | Lock rotation | 60 (`photo_scaled`) | deg |
-| Lock direction | clockwise (`photo_scaled`) | — |
+| Lock direction | clockwise (`official`) | — |
 
-#### Figures (selected profile `pentax-67/base`)
+#### Figures (selected profile `pentax-67/inner`)
 
-**Camera-side front view** — viewBox `-53 -55 106 108` · 37 elements in 4 layers · hash `81be679f` ([standalone SVG](mounts/pentax-67-camera-front.svg))
+**Camera-side front view** — viewBox `-53 -55 106 108` · 37 elements in 4 layers · hash `f297942c` ([standalone SVG](mounts/pentax-67-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-52 -54 104 106` · 31 elements in 4 layers · hash `794ae986` ([standalone SVG](mounts/pentax-67-lens-rear.svg))
+**Lens-side rear view** — viewBox `-52 -54 104 106` · 31 elements in 4 layers · hash `b1b6fb01` ([standalone SVG](mounts/pentax-67-lens-rear.svg))
 
-**Axial / register schematic** — viewBox `-95 -59 106 114` · 12 elements in 2 layers · hash `10abe52f` ([standalone SVG](mounts/pentax-67-axial.svg))
+**Axial / register schematic** — viewBox `-95 -59 106 114` · 12 elements in 2 layers · hash `005b4b96` ([standalone SVG](mounts/pentax-67-axial.svg))
 
 #### Camera-side front-view geometry
 
@@ -3617,29 +3619,31 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 |---|---|---|---|---|---|---|---|
 | `body-throat` | body_throat | `pentax-67/base` | 0° | 0° | 360° | 0 | 36 |
 | `body-mount-ring` | mount_ring | `pentax-67/base` | 0° | 0° | 360° | 36 | 43 |
-| `body-slot-1` | bayonet_receiving_slot | `pentax-67/base` | 20° | 3° | 37° | 36 | 38.5 |
-| `body-slot-2` | bayonet_receiving_slot | `pentax-67/base` | 140° | 123° | 157° | 36 | 38.5 |
-| `body-slot-3` | bayonet_receiving_slot | `pentax-67/base` | 260° | 243° | 277° | 36 | 38.5 |
-| `body-index-mark` | index_mark | `pentax-67/base` | 0° | unknown | unknown | unknown | 43.5 |
-| `body-lock-pin` | lock_pin | `pentax-67/base` | 90° | unknown | unknown | unknown | 37 |
+| `body-slot-1` | bayonet_receiving_slot | `pentax-67/inner` | 20° | 3° | 37° | 36 | 38.5 |
+| `body-slot-2` | bayonet_receiving_slot | `pentax-67/inner` | 140° | 123° | 157° | 36 | 38.5 |
+| `body-slot-3` | bayonet_receiving_slot | `pentax-67/inner` | 260° | 243° | 277° | 36 | 38.5 |
+| `body-index-mark` | index_mark | `pentax-67/inner` | 285° | unknown | unknown | unknown | 43.5 |
+| `body-lock-pin` | lock_pin | `pentax-67/inner` | 90° | unknown | unknown | unknown | 37 |
+| `body-outer-bayonet-lugs` | outer_bayonet_lug | `pentax-67/outer` | unknown | unknown | unknown | unknown | unknown |
 
 #### Lens-side rear-view geometry
 
 | Feature ID | Type | Profile | Center | Start | End | Inner r | Outer r |
 |---|---|---|---|---|---|---|---|
-| `lens-throat` | lens_throat | `pentax-67/base` | 0° | 0° | 360° | 0 | 35 |
-| `lens-mount-ring` | lens_mount_ring | `pentax-67/base` | 0° | 0° | 360° | 35 | 42 |
-| `lens-lug-1` | bayonet_lug | `pentax-67/base` | 20° | 3° | 37° | 36 | 38.5 |
-| `lens-lug-2` | bayonet_lug | `pentax-67/base` | 140° | 123° | 157° | 36 | 38.5 |
-| `lens-lug-3` | bayonet_lug | `pentax-67/base` | 260° | 243° | 277° | 36 | 38.5 |
-| `lens-index-mark` | index_mark | `pentax-67/base` | 0° | unknown | unknown | unknown | 42.5 |
-| `lens-lock-notch` | lock_notch | `pentax-67/base` | 90° | unknown | unknown | unknown | 37 |
+| `lens-throat` | lens_throat | `pentax-67/inner` | 0° | 0° | 360° | 0 | 35 |
+| `lens-mount-ring` | lens_mount_ring | `pentax-67/inner` | 0° | 0° | 360° | 35 | 42 |
+| `lens-lug-1` | bayonet_lug | `pentax-67/inner` | 20° | 3° | 37° | 36 | 38.5 |
+| `lens-lug-2` | bayonet_lug | `pentax-67/inner` | 140° | 123° | 157° | 36 | 38.5 |
+| `lens-lug-3` | bayonet_lug | `pentax-67/inner` | 260° | 243° | 277° | 36 | 38.5 |
+| `lens-index-mark` | index_mark | `pentax-67/inner` | 285° | unknown | unknown | unknown | 42.5 |
+| `lens-lock-notch` | lock_notch | `pentax-67/inner` | 90° | unknown | unknown | unknown | 37 |
+| `lens-outer-bayonet-lugs` | outer_bayonet_lug | `pentax-67/outer` | unknown | unknown | unknown | unknown | unknown |
 
 #### Mechanical couplings
 
 | Feature | Side | Profile | Function |
 |---|---|---|---|
-| `aperture-actuation-lever` | both | `pentax-67/base` | body-driven aperture stop-down actuation |
+| `aperture-actuation-lever` | both | `pentax-67/inner` | body-driven aperture stop-down actuation |
 
 #### Axial stack
 
@@ -3651,7 +3655,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/pentax-67.mount.ts` (25428 bytes, content hash `5e33b695`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/pentax-67.mount.ts` (35544 bytes, content hash `7fb5d6e5`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -3659,10 +3663,19 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 |---|---|---|---|---|---|
 | `p67-1` | secondary | “Flange focal distance,” Wikipedia. Accessed 2026-06-06. | [snapshot](http://web.archive.org/web/20260526152456/https://en.wikipedia.org/wiki/Flange_focal_distance) | 2026-05-26 | medium |
 | `p67-2` | secondary | Pentax 67 mount visual references. Accessed 2026-06-06. | [snapshot](unknown) | unknown | low |
+| `p67-3` | service_manual | Pentax 67II Service Manual, Product No. 27340, sections 2.16 and 6.15 (sheets 17/70, 42/70 and 43/70; viewer pages 18, 43 and 44). Accessed 2026-11-21. | [snapshot](https://www.scribd.com/document/269439309/Pentax67II-Service-Manual) | 2026-11-21 | high |
+| `p67-4` | official | Pentax 67II Operating Manual, pp. 18 and 19. Ricoh Imaging. Accessed 2026-11-21. | [snapshot](https://www.manualslib.com/manual/121756/Pentax-67ii.html?page=20) | 2026-11-21 | high |
+| `p67-5` | official | Asahi Optical Co., Asahi Pentax 6x7 operating manual, pp. 2, 14 and 15 (scan in the M. Butkus camera manual library). Accessed 2026-11-21. | [snapshot](https://www.cameramanuals.org/pentax_pdf/pentax_6x7.pdf) | 2026-11-21 | high |
+| `p67-6` | secondary | “Lens mount,” Wikipedia, list of lens mounts, revision of 2026-11-13. Accessed 2026-11-21. | [snapshot](https://en.wikipedia.org/w/index.php?title=Lens_mount&oldid=1385498741) | 2026-11-21 | low |
+| `p67-7` | secondary | “Pentax 6×7,” Wikipedia, revision of 2026-11-09. Accessed 2026-11-21. | [snapshot](https://en.wikipedia.org/w/index.php?title=Pentax_6%C3%977&oldid=1384743181) | 2026-11-21 | medium |
 
 #### Open questions
 
-- Pentax 67 throat, lug sectors, and aperture lever clocking are photo-scaled. _(Upgrade with measured Pentax 67 body/lens samples.)_
+- Inner-bayonet lug sectors are photo-scaled from unidentified imagery [p67-2]: centres 20°/140°/260°, 34° spans, lug radii and depth. The three-lug count is sourced, the geometry is not. No patent, service-manual drawing with angles, or measured sample was found. _(Measure a 6x7/67 body mount and an inner-bayonet lens rear, or find a dimensioned bayonet drawing.)_
+- Outer-bayonet geometry is unknown. Sources give only the count (four), the symmetry (four body positions) and the lens range (400 mm to 1000 mm). Clock position, spans, radii and how the outer lens locks are not sourced, so the outer profile renders as a placeholder. _(The Pentax 67 interchangeable-lens manual (cited by the 67II manual for outer-bayonet mounting), a service manual for an outer-bayonet lens, or a measured body and 400 mm-class lens.)_
+- Throat is a published secondary value (72 mm, uncited in its table); the effective clear aperture, both ring outer diameters (86 mm body, 84 mm lens) and the 60° lock rotation are still photo-scaled from unidentified imagery [p67-2]. _(Measured body and lens samples, or a maker dimension drawing.)_
+- Index, lock pin, aperture lever and mount screws are placed from undimensioned figures. The red-dot index (285°) is scaled from a perspective manual figure, about ±15°. The lock pin (90°) is known only to sit on the right-hand side seen from the front. The aperture stop-down lever (55°, 34 mm radius) and the screw pitch circle and clock angles rest on unidentified imagery [p67-2]; the four-screw count is from the service manual. The aperture-value coupler ring (O-K102) and the lens tab that drives it are not drawn. _(The Asahi Pentax 6x7 service manual (Product No. 23400) exploded views read page by page, or a measured body and lens rear.)_
+- The low-confidence imagery source [p67-2] still carries drawn features: the inner lug sectors, ring diameters, lock rotation angle, aperture lever, and screw pitch circle. Patent searches for the Asahi dual bayonet and its aperture coupling (1965 to 1972) found nothing; US4017878A and DE1900677A1 are Asahi screw-to-bayonet adapter patents that do not describe this mount. _(Replace [p67-2] once the values above have a dimensioned or measured source.)_
 
 ### `pentax-k` — Pentax K
 
