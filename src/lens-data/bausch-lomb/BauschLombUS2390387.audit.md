@@ -22,7 +22,7 @@ The surfaces stay clear of each other. The smallest computed glass edge thicknes
 
 The diaphragm is drawn between the components, without a numerical station or diameter. Its estimated station splits the 21.08 mm air space into 10.9 mm before and 10.18 mm after the stop, placing it 16.7 mm behind the first vertex. The iris radius follows the nominal f/5.6 aperture. The drawing suggests a station about 10.5 mm behind the front doublet and an opening radius of about 6.1 mm.
 
-Front and rear clear semi-diameters of 9.9 and 7.5 mm are estimates. The drawing suggests about 9.4 mm at the front and 5.4–5.5 mm at the rear, making the retained rear estimate about 38.0% larger than the drawing. Narrowing the rear rims to 5.5 mm would lower 10.0° corner transmission from about 88.2% to about 61.1%; this does not establish the historical clear apertures.
+Front and rear clear semi-diameters of 9.9 and 7.5 mm are estimates. The drawing suggests about 9.4 mm at the front and 5.4–5.5 mm at the rear, making the retained rear estimate about 38% larger than the drawing. Narrowing the rear rims to 5.5 mm would lower 10.0° corner transmission from about 88.2% to about 61.1%; this does not establish the historical clear apertures.
 
 The ±10.0° field and paraxial image plane are inferred. The patent gives no numerical field for Figure 2, image format, back focus or close-focus data. Its 30.0° field at f/5.6 describes prior art. No image-circle diameter is assigned from the illustrative field. `focus.closeFocusM` is 10¹⁵ m, which stands for infinity. All relative element spacings are fixed. The selectable f-stops extend from f/5.6 to f/22; the patent supplies no minimum iris opening.
 

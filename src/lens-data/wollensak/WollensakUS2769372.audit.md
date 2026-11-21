@@ -18,7 +18,7 @@ The patent specifies EFL 100 mm, maximum aperture f/3.2 and back focus 82.9 mm. 
 
 The derived stop radius is 12.611 mm. The iris sets the axial aperture, and the surfaces stay clear of one another. The axial marginal ray reaches R4 at approximately 12.455 mm, inside its 12.5 mm optical radius. An entrance height defined instead as f/(2 × 3.2), or 15.624 mm, gives a 12.691 mm height at R4 and is clipped. That different finite-ray aperture convention explains the earlier f/3.3 restriction; it does not describe the beam admitted by the present iris.
 
-At the printed 27.5° half-field, the chief ray clears every optical rim and reaches an image height of 51.524 mm. Its largest front-element height is 13.108 mm against the 16 mm radius. The inferred image-circle diameter is 103.05 mm, with approximately −1.0% edge distortion. About 39% of the meridional fan passes at the edge; geometrical pupil transmission is approximately 30.1%, and relative illumination is 22.0% of the axis. These are distinct modeled quantities, exclude coating losses and do not establish measured illumination or MTF.
+At the 27.5° half-field, half the printed 55° total field, the chief ray clears every optical rim and reaches an image height of 51.524 mm. Its largest front-element height is 13.108 mm against the 16 mm radius. The inferred image-circle diameter is 103.05 mm, with approximately −1.0% edge distortion. About 39% of the meridional fan passes at the edge; geometrical pupil transmission is approximately 30.1%, and relative illumination is 22.0% of the axis. These are distinct modeled quantities, exclude coating losses and do not establish measured illumination or MTF.
 
 ## Values Not Printed in the Patent
 

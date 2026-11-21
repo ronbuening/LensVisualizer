@@ -70,7 +70,7 @@ The image plane is the computed D-line paraxial back focus, 166.98 mm after R7. 
 
 ## Aperture and Field
 
-The stated aperture is f/4.5, but the physical iris opening is unprinted. The paraxial aperture calculation gives an entrance-pupil radius of 20.960 mm and an iris radius of 17.975 mm. Exact axial tracing through that iris gives an entrance-equivalent aperture of approximately f/4.55, with an accepted entrance radius of 20.708 mm. An iris radius of 18.201 mm would admit the exact f/4.5 marginal ray; the model retains the paraxial opening. These are geometric aperture estimates; measured T-stops and image-space sine f-numbers are unknown.
+The stated aperture is f/4.5, but the physical iris opening is unprinted. The paraxial aperture calculation gives an entrance-pupil radius of 20.960 mm and an iris radius of 17.975 mm. Exact axial tracing through that iris gives an entrance-equivalent aperture of approximately f/4.55, with an accepted entrance radius of 20.708 mm. An iris radius of 18.201 mm would admit the exact f/4.5 marginal ray; the model retains the paraxial opening. These are geometric entrance-aperture estimates, not measured T-stops or image-space sine f-numbers.
 
 The assumed iris size matters: varying its radius by ±2% gives entrance-equivalent apertures from about f/4.65 to f/4.47. The clear rims do not limit the axial beam before the iris. At the modeled iris radius, the adjacent glass surfaces remain about 4.91 mm and 5.61 mm away from its plane.
 
