@@ -32,7 +32,7 @@ const LENS_DATA = {
     elementCount: 3,
     groupCount: 3,
     focalLengthMm: {
-      design: 100,
+      design: 100.75,
     },
     fNumber: {
       design: 3.5,
