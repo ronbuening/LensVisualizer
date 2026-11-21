@@ -1,20 +1,34 @@
-import type { LensDataV2Input } from "../repo/src/types/lensDataV2.js";
-const data = {
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * US 2,202,749 A, Example II: five-element asymmetric objective, f = 100 mm,
+ * f/3.5. Radii, thicknesses, the 10.9 mm diaphragm space, refractive indices
+ * and Abbe numbers follow the printed millimetre table without conversion.
+ * The patent says only "yellow ray"; four of five glass pairs match helium d
+ * catalogue values. Fig. 2 depicts the f/5 Example I form; Example II is
+ * described as analogous to it, with planar R2 and R5.
+ * The stop's 7.6 / 3.3 mm split, its size and all clear semi-diameters are
+ * inferred. The last gap is the computed paraxial back focus, 77.948626 mm.
+ * The calculated EFL is 99.936 mm; exact rays at the paraxial iris give about
+ * f/3.520. The 12-degree half-field and its image footprint are illustrative;
+ * the text's useful angle of about 60 degrees describes the design class.
+ */
+const LENS_DATA = {
   schema: 2,
-  key: "tronnier-us2202749-example2-yellow-infinity-reference",
-  maker: null,
-  name: "TRONNIER US2202749 EX.II — YELLOW-INDEX REFERENCE",
-  subtitle:
-    "100mm nominal f/3.5 table branch · printed yellow indices / representative D metadata · chosen0–12° infinity diagnostic",
-  visible: false,
+  key: "schneider-kreuznach-100mm-f35-us2202749",
+  maker: "Schneider-Kreuznach",
+  name: "SCHNEIDER-KREUZNACH 100mm f/3.5 (US 2,202,749 Design)",
+  subtitle: "US 2,202,749 A, Example II — asymmetric cemented-group design",
+  visible: true,
   source: {
-    patentNumber: "US 2,202,749",
+    patentNumber: "US 2,202,749 A",
+    patentYear: 1940,
     example: {
       label: "Example II",
       id: "2",
     },
     authors: ["Albrecht Wilhelm Tronnier"],
-    assignees: ["Schneider"],
+    assignees: ["Jos. Schneider & Co., Optotechnische Gesellschaft"],
     sdSource: "heuristic",
   },
   catalog: {
@@ -22,77 +36,88 @@ const data = {
     elementCount: 5,
     groupCount: 2,
     focalLengthMm: {
-      design: 100,
+      design: 99.94,
     },
     fNumber: {
       design: 3.5,
     },
-    specs: [
-      "5E/2G · CEMENTED3+2 · R2/R5 ARE TRUE OPTICAL PLANES",
-      "PRINTED YELLOW-RAY INDICES; EXACT SOURCE WAVELENGTH UNVERIFIED",
-      "D-REFERENCE METADATA IS REPRESENTATIVE ONLY · NO BROADBAND CLAIM",
-      "TABLE f/3.5 BRANCH; SEPARATE FIG2 f/5 TEXT RETAINED, NOT BLENDED",
-      "ESTIMATED IRIS: NATIVE GEOMETRIC ENTRANCE EQUIVALENT≈f/3.5199",
-      "PRINTED10.9mm GAP; ESTIMATED7.6/3.3mm STOP SPLIT AND PHYSICAL SIZE/RIMS",
-      "NO NUMERIC SOURCE FIELD · CHOSEN0–12° DIAGNOSTIC ONLY",
-      "NO ANGULON/RETAIL ATTRIBUTION; OTHER EXAMPLEI VIOLET EXCLUDED",
-    ],
+    specs: ["5 ELEMENTS / 2 GROUPS", "ALL SPHERICAL", "DESIGN F/3.5"],
   },
   elements: [
     {
       id: 1,
       name: "L1",
-      label: "L1",
-      type: "Source Spherical Element",
+      label: "Element 1",
+      diagramLabel: "L1",
+      type: "Plano-Convex Positive",
       nd: 1.7015,
       vd: 41.2,
-      indexReference: "D",
-      glass:
-        "Unmatched (literal printed yellow n/V; representative D metadata, not exact source line)",
+      indexReference: "d",
+      indexReferenceNote: "The patent says only yellow ray; four of five glass pairs match helium d catalogue values.",
+      focalLengthMm: 41.63,
+      glass: "BAFD7 (Hoya)",
+      role: "Positive front element of the cemented triplet.",
+      cemented: "C1",
     },
     {
       id: 2,
       name: "L2",
-      label: "L2",
-      type: "Source Spherical Element",
+      label: "Element 2",
+      diagramLabel: "L2",
+      type: "Plano-Convex Positive",
       nd: 1.4875,
       vd: 70,
-      indexReference: "D",
-      glass:
-        "Unmatched (literal printed yellow n/V; representative D metadata, not exact source line)",
+      indexReference: "d",
+      indexReferenceNote: "The patent says only yellow ray; four of five glass pairs match helium d catalogue values.",
+      focalLengthMm: 84.31,
+      glass: "Unmatched (yellow-ray n 1.4875 / ν 70.0)",
+      role: "Low-index central element of the cemented triplet.",
+      cemented: "C1",
     },
     {
       id: 3,
       name: "L3",
-      label: "L3",
-      type: "Source Spherical Element",
+      label: "Element 3",
+      diagramLabel: "L3",
+      type: "Biconcave Negative",
       nd: 1.6545,
       vd: 33.8,
-      indexReference: "D",
-      glass:
-        "Unmatched (literal printed yellow n/V; representative D metadata, not exact source line)",
+      indexReference: "d",
+      indexReferenceNote: "The patent says only yellow ray; four of five glass pairs match helium d catalogue values.",
+      focalLengthMm: -22.03,
+      glass: "SF9 (Hikari)",
+      role: "Negative rear element of the cemented triplet.",
+      cemented: "C1",
     },
     {
       id: 4,
       name: "L4",
-      label: "L4",
-      type: "Source Spherical Element",
+      label: "Element 4",
+      diagramLabel: "L4",
+      type: "Plano-Concave Negative",
       nd: 1.6254,
       vd: 35.6,
-      indexReference: "D",
-      glass:
-        "Unmatched (literal printed yellow n/V; representative D metadata, not exact source line)",
+      indexReference: "d",
+      indexReferenceNote: "The patent says only yellow ray; four of five glass pairs match helium d catalogue values.",
+      focalLengthMm: -34.7,
+      glass: "F7 (Hoya)",
+      role: "Negative front element of the rear cemented doublet.",
+      cemented: "C2",
     },
     {
       id: 5,
       name: "L5",
-      label: "L5",
-      type: "Source Spherical Element",
+      label: "Element 5",
+      diagramLabel: "L5",
+      type: "Biconvex Positive",
       nd: 1.7015,
       vd: 41.2,
-      indexReference: "D",
-      glass:
-        "Unmatched (literal printed yellow n/V; representative D metadata, not exact source line)",
+      indexReference: "d",
+      indexReferenceNote: "The patent says only yellow ray; four of five glass pairs match helium d catalogue values.",
+      focalLengthMm: 24.65,
+      glass: "BAFD7 (Hoya)",
+      role: "Positive collecting element of the rear cemented doublet.",
+      cemented: "C2",
     },
   ],
   surfaces: [
@@ -150,9 +175,8 @@ const data = {
     },
   ],
   focus: {
-    closeFocusM: 1000000000000000,
-    description:
-      "Patent-only ExampleII printed-yellow-index infinity reference. Source original drawing/table verified in independent scout custody; known worker USPTO denial not retried, no local PDF claim. D metadata at589.2938nm is a representative authoring convention, not a verified source wavelength or calibrated spectrum. Literal optics/glass/10.9mm gap preserved; stop7.6/3.3 split, diameter and rims estimated. Tablef3.5 retained separately from Fig2f5 text; no ExampleIviolet blend.0–12degrees chosen diagnostic only; no source/fullcoverage, finite or Angulon/retail claim.",
+    closeFocusM: 1e15,
+    description: "Infinity focus only; the patent gives no close-focus data.",
   },
   aperture: {
     nominalFNumber: 3.5,
@@ -176,8 +200,12 @@ const data = {
       toSurface: "7",
     },
   ],
+  doublets: [
+    { text: "C1", fromSurface: "1", toSurface: "4" },
+    { text: "C2", fromSurface: "5", toSurface: "7" },
+  ],
   layout: {
     yScFill: 0.5,
   },
 } satisfies LensDataV2Input;
-export default data;
+export default LENS_DATA;
