@@ -6,7 +6,7 @@
 
 The sole numerical example appears in column 2 on PDF p. 2 and is repeated in the claim, column 3 on PDF p. 3. The sole figure is on PDF p. 1. Related publications are GB 769,241 A and FR 1,120,790 A.
 
-Franke & Heidecke's [Rolleicord V instruction manual](https://www.cameramanuals.org/rolleiflex/rolleicord_v.pdf), printed p. 3, documents the Xenar f/3.5 product name. The [Tessar family account](https://en.wikipedia.org/wiki/Tessar#Tessar-derived_lenses) lists the Schneider Xenar among Tessar-derived lenses. [Schott F2](https://us.shop.schott.com/advanced-optics/en/Optical-Glass/F2/c/glass-F2) and [CDGM H-LaK6A](https://www.cdgmgd.com/database/toWebDatabase.htm?k=Products_Data&pageIndex=9&url=database) supply the glass comparisons below.
+Franke & Heidecke's [Rolleicord V instruction manual](https://www.cameramanuals.org/rolleiflex/rolleicord_v.pdf), printed p. 3, documents the Xenar f/3.5 product name. The [Tessar family account](https://en.wikipedia.org/wiki/Tessar#Tessar-derived_lenses) lists the Schneider Xenar among Tessar-derived lenses. The [Schott](https://www.schott.com/en-us/products/optical-glass-p1000267/downloads), [CDGM](https://www.cdgmgd.com/) and [Ohara](https://www.ohara-inc.co.jp/en/product/catalog/) catalogs supply the glass comparisons below.
 
 ## Transcription Check
 
@@ -34,7 +34,7 @@ The image plane is calculated from the prescription. The ±5.0° field is illust
 
 `focus.closeFocusM` is 10¹⁵ m, which stands for infinity. Both focus endpoints have the same geometry; no close-focus distance or group movement law is given. The selectable f-stops span f/3.5 to f/32, but the patent documents only the full aperture. The f/32 endpoint is not a published minimum opening.
 
-The patent supplies no glass trade names, separate C-, F- or g-line indices, or partial dispersions. F2 supplies an approximate dispersion curve for L2; the other three glasses use Abbe-based estimates. Historical suppliers, melts, measured broadband performance and apochromatic correction are not established. No special-dispersion designation is assigned.
+The patent supplies no glass trade names, separate C-, F- or g-line indices, or partial dispersions. H-LaK6A and F2 supply catalog dispersion curves for L1 and L2; S-LAM2 supplies a spectral proxy for L4. Only L3 uses an Abbe-based estimate. Historical suppliers, melts, measured broadband performance and apochromatic correction are not established. No special-dispersion designation is assigned.
 
 ## Product Identification
 
@@ -48,7 +48,7 @@ No marketed focal length, marketed f-number, marketed minimum focus distance, mo
 - The patent designation gained the A publication code. The inventor is recorded as Wolfram W. Albrecht, as on the drawing; the assignee is recorded as Jos. Schneider & Co., Optische Werke. The 1957 publication year, sole example, helium-d index reference and estimated-rim origin are retained.
 - The subtitle reads “US 2,812,689 A, sole example — Schneider / Albrecht.” The specifications are “4 ELEMENTS / 3 GROUPS”, “ALL SPHERICAL”, “DESIGN f = 100 mm” and “DESIGN F/3.5”, distinguishing the printed scale from a marketed lens specification.
 - Generic element descriptions became Element 1 through Element 4, with shapes Positive Meniscus, Biconcave Negative, Biconcave Negative and Biconvex Positive. Optical roles and standalone in-air focal lengths of +55.12, −35.44, −49.62 and +28.09 mm were added. The rear cemented pair has calculated focal length +59.74 mm.
-- L1 is labeled `Unmatched (nd 1.69347 / ν 53.5)`. Its tentative H-LaK6A identification was removed because that catalog glass has nd 1.69350 / νd 53.38, differences of +0.00003 / −0.12, outside the printed precision. L2 is labeled `F2 (Schott)`: nd 1.62004 / νd 36.37, differences of 0 at the printed index precision and +0.07 in Abbe number. F2 approximates dispersion without identifying a historical supplier. L3 and L4 are labeled `Unmatched (nd 1.62364 / ν 36.7)` and `Unmatched (nd 1.74472 / ν 44.7)`. L3 has no catalog match within 0.0001 in index and 0.15 in Abbe number; L4 differs by about 0.00072 in index from nearby LaF2-family rows.
+- L2 retains `F2 (Schott)`: nd 1.62004 / νd 36.37, differences of 0 at the printed index precision and +0.07 in Abbe number. F2 supplies a catalog curve without identifying a historical supplier. L3 retains `Unmatched (nd 1.62364 / ν 36.7)` because no catalog row lies within 0.002 in index and 0.25 in Abbe number. L1 and L4 use the catalog curves described in the glass review below.
 - C1 identifies both members of the rear cemented doublet and spans R5–R7, replacing the earlier group identifier on those elements. Group brackets identify the patent's members I, II and III.
 - The catalog design focal length changed from 100 to 100.13 mm to state the calculated EFL. The printed f/3.5, four elements and three groups remain. Production-only specifications and an unsupported image-circle diameter remain omitted.
 - The focus description states infinity focus and the absence of close-focus data. The infinity distance, all printed radii, thicknesses, spaces, indices and Abbe numbers, the inferred stop, estimated rims, field and image plane are retained.
@@ -63,9 +63,15 @@ The resulting first-order values are EFL 100.13 mm, paraxial f/3.50, BFD 83.21 m
 - The f/3.5 axial marginal-ray heights at R3–R7 are 12.10, 11.51, 11.88, 12.14 and 12.23 mm. The narrowest margin is about 0.19 mm at R4. The 5.0° chief ray clears every rim. The iris still sets the aperture, the surfaces stay clear, and no gap-clearance exception is needed. Image-circle and format-corner checks have no documented format to evaluate.
 - Wide-open geometric transmission at the illustrative 5.0° edge changed from 100.0% to 99.9%. The largest loss across the field is 0.1 percentage point, attributable to L2; restoring the rear doublet's starting rims recovers no light. Transmission through 4.2° stays 100.0%. The 5.0° half-field and f/3.50 are unchanged. The resulting narrower rear outlines and thicker L4 edge agree with the sole figure; no production construction diagram is available for this prescription.
 
+2026-11-21 glass review:
+
+- L1: `Unmatched (nd 1.69347 / ν 53.5)` → `H-LaK6A (CDGM)`, exact match; catalog-minus-patent Δn = +0.00003 / Δν = −0.12 at the helium d line.
+- L4: `Unmatched (nd 1.74472 / ν 44.7)` → `S-LAM2 (spectral proxy; patent nd 1.74472 / ν 44.7; supplier and melt unspecified)`, Ohara S-LAM2 spectral proxy; catalog-minus-patent Δn = −0.00072 / Δν = +0.09 at the helium d line.
+- Exact matches are within 0.0001 in index and 0.15 in Abbe number; spectral proxies are within 0.002 in index and 0.25 in Abbe number at the printed line. Printed indices and Abbe numbers are kept; catalog curves supply dispersion shape without establishing historical suppliers or melts.
+
 ## Remaining Questions
 
 - Exact physical clear apertures, barrel and baffle dimensions remain unknown; the drawing provides approximate rim proportions and is slightly inconsistent in its axial spacings.
-- L1, L3 and L4 lack matching catalog curves at the stated precision. Historical glass suppliers and melt identities remain unknown for all elements.
+- L3 lacks a catalog curve within the proxy limits. Historical glass suppliers and melt identities remain unknown for all elements, including the catalog matches and spectral proxy.
 - No source identifies a production lens, mount, image format, field angle, image circle, blade count or shape, minimum iris opening, marketed specifications or close-focus mechanism for this prescription. The exact diaphragm position is also unprinted.
 - The numerical contents of GB 769,241 A and FR 1,120,790 A remain unconfirmed against the US tables.

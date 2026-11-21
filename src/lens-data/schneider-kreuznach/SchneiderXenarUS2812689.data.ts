@@ -54,7 +54,7 @@ const LENS_DATA = {
       nd: 1.69347,
       vd: 53.5,
       indexReference: "d",
-      glass: "Unmatched (nd 1.69347 / ν 53.5)",
+      glass: "H-LaK6A (CDGM)",
       role: "Positive front element of the three-group objective",
     },
     {
@@ -91,7 +91,8 @@ const LENS_DATA = {
       nd: 1.74472,
       vd: 44.7,
       indexReference: "d",
-      glass: "Unmatched (nd 1.74472 / ν 44.7)",
+      glass:
+        "S-LAM2 (spectral proxy; patent nd 1.74472 / ν 44.7; supplier and melt unspecified)",
       role: "Positive member supplying the rear doublet's converging power",
       cemented: "C1",
     },

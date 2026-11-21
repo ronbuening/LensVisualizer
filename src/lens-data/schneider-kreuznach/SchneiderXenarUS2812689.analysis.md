@@ -28,7 +28,7 @@ The patent places the diaphragm in the 7.06 mm space after R4 but gives no exact
 
 ### L1 — Positive Meniscus
 
-nd = 1.69347, νd = 53.5. Glass: Unmatched. Standalone in-air f = +55.12 mm.
+nd = 1.69347, νd = 53.5. Glass: H-LaK6A (CDGM), catalog match. Standalone in-air f = +55.12 mm.
 
 The front element supplies positive power. Its +37.3 mm front radius is much stronger than the +1373 mm rear radius, giving the nearly plano-convex appearance of the drawing while retaining a positive-meniscus shape.
 
@@ -40,15 +40,15 @@ The negative middle singlet balances the positive front and rear groups. Its −
 
 ### L3 and L4 — Rear Cemented Doublet C1
 
-L3: nd = 1.62364, νd = 36.7. Glass: Unmatched. Standalone in-air f = −49.62 mm. L4: nd = 1.74472, νd = 44.7. Glass: Unmatched. Standalone in-air f = +28.09 mm.
+L3: nd = 1.62364, νd = 36.7. Glass: Unmatched. Standalone in-air f = −49.62 mm. L4: nd = 1.74472, νd = 44.7. Glass: S-LAM2 (Ohara), spectral proxy. Standalone in-air f = +28.09 mm.
 
 L3 is biconcave and negative; L4 is biconvex and positive. They share the +33.5 mm cemented surface. L3 provides the more dispersive negative member, while L4 supplies the rear component's converging power. Individual in-air focal lengths describe the separated elements; the cemented assembly is positive overall.
 
 ## Glass Identification and Selection
 
-The patent defines nd at the yellow helium d line, 587.6 nm, and prints νd. All four printed pairs are retained. CDGM H-LaK6A has nd 1.69350 / νd 53.38, differing by +0.00003 / −0.12, outside the printed precision; L1 remains Unmatched. Schott F2 has nd 1.62004 / νd 36.37, differing by 0 / +0.07 at the printed index precision. Its dispersion curve approximates L2 without establishing the historical melt or supplier.
+The patent defines nd at the yellow helium d line, 587.6 nm, and prints νd. All four printed pairs are retained. L1 matches CDGM H-LaK6A at nd 1.69350 / νd 53.38; L2 matches Schott F2 at nd 1.62004 / νd 36.37. Their catalog-minus-patent differences at the d line are Δn = +0.00003 / Δν = −0.12 and Δn = 0 / Δν = +0.07, respectively, within the match limits of 0.0001 in index and 0.15 in Abbe number. These row names do not identify the historical supplier or melt.
 
-L3 has no matching catalog row within 0.0001 in index and 0.15 in Abbe number. L4 lies near the LaF2 family, but its 1.74472 index differs by about 0.00072 from rows near 1.74400, so it remains Unmatched. The patent prints no separate C-, F- or g-line indices or partial dispersions; the unmatched glasses therefore have only an Abbe-based dispersion estimate. No measured broadband or apochromatic performance is established.
+L4 uses Ohara S-LAM2 as a spectral proxy, with Δn = −0.00072 / Δν = +0.09 at the d line, within the proxy limits of 0.002 in index and 0.25 in Abbe number. The catalog curve supplies only the dispersion shape while the printed index and Abbe number are kept, so colour analysis follows a real glass curve rather than an Abbe-based estimate. It does not identify Schneider's historical glass. L3 remains Unmatched because no catalog row lies within those proxy limits; it retains an Abbe-based dispersion estimate. The patent prints no separate C-, F- or g-line indices or partial dispersions. No measured broadband or apochromatic performance is established.
 
 ## Focus Mechanism and Aperture
 
@@ -74,5 +74,5 @@ The Xenar name expresses a family association. The four-element Tessar-type arch
 
 1. [US 2,812,689 A](https://patents.google.com/patent/US2812689A/en): sole figure, PDF p. 1; design discussion and table, PDF p. 2; repeated table and cited patents, PDF p. 3.
 2. Franke & Heidecke, [_Rolleicord V_ instruction manual](https://www.cameramanuals.org/rolleiflex/rolleicord_v.pdf), printed p. 3: Schneider Xenar f/3.5 product name, without a patent attribution.
-3. [CDGM H-LaK6A](https://www.cdgmgd.com/database/toWebDatabase.htm?k=Products_Data&pageIndex=9&url=database) and [Schott F2](https://us.shop.schott.com/advanced-optics/en/Optical-Glass/F2/c/glass-F2): glass comparisons and F2 dispersion; historical suppliers unresolved.
+3. [CDGM optical glass catalog](https://www.cdgmgd.com/), [Schott optical glass catalog](https://www.schott.com/en-us/products/optical-glass-p1000267/downloads) and [Ohara optical glass catalog](https://www.ohara-inc.co.jp/en/product/catalog/): H-LaK6A and F2 matches and the S-LAM2 spectral proxy; historical suppliers unresolved.
 4. [Tessar — Tessar-derived lenses](https://en.wikipedia.org/wiki/Tessar#Tessar-derived_lenses): Schneider Xenar family classification, without attribution of this prescription to a production lens.
