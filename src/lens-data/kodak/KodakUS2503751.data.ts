@@ -70,7 +70,7 @@ const LENS_DATA = {
       vd: 30.9,
       indexReference: "D",
       focalLengthMm: -34.81,
-      glass: "Unmatched (nD 1.689 / ν 30.9)",
+      glass: "L-TIM28 (spectral proxy; patent nD 1.689 / ν 30.9; supplier and melt unspecified)",
       role: "Central negative flint element for chromatic and field correction",
     },
     {
