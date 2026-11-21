@@ -16,7 +16,7 @@ const LENS_DATA = {
   key: "kodak-100mm-f19-us2432387",
   maker: "Kodak",
   name: "KODAK 100mm f/1.9 (US 2,432,387 Design)",
-  subtitle: "US 2,432,387 A, Example III — possibly related to the four-element Cine Ektar",
+  subtitle: "US 2,432,387 A, Example III — possibly related to the four-element 25 mm f/1.9 Cine Ektar",
   visible: true,
   source: {
     patentNumber: "US 2,432,387 A",
@@ -37,7 +37,7 @@ const LENS_DATA = {
   },
   catalog: {
     focalLengthMm: {
-      design: 100,
+      design: 100.03,
     },
     fNumber: {
       design: 1.9,
