@@ -24,7 +24,7 @@ At the current rims the minimum common-radius glass thickness is 1.99213 mm; the
 
 ## Product Association
 
-The collapsible Summicron 5 cm f/2 of 1953–60 is a plausible family association. The [May 1953 Leitz brochure](https://www.pacificrimcamera.com/rl/01536/01536.pdf) reportedly identifies US 2,622,478 as protection for the basic Summicron design. The [Leica Wiki](<https://wiki.l-camera-forum.com/leica-wiki.en/index.php/Summicron_(I)_f%3D_5_cm_1:2>) associates the inventors, filing date and seven-element/six-group construction with Summicron (I). The patent discusses thorium-bearing glass and radiation absorption. The production example remains unsettled; the displayed 100 mm design is distinct from the 50 mm production lens. DE 939,956 B supplies the different later Rigid/Dual Range prescription.
+The collapsible Summicron 5 cm f/2 of 1953–60 is a plausible family association. The [Leitz Summicron brochure](https://www.pacificrimcamera.com/rl/01536/01536.pdf) reportedly identifies US 2,622,478 as protection for the basic Summicron design. The Leica Wiki's [entry for Gustav Kleinberg](https://wiki.l-camera-forum.com/leica-wiki.en/index.php/Gustav_Kleinberg) associates the inventors, filing date and seven-element/six-group construction with Summicron (I). The patent discusses thorium-bearing glass and radiation absorption. The production example remains unsettled; the displayed 100 mm design is distinct from the 50 mm production lens. DE 939,956 B supplies the different later Rigid/Dual Range prescription.
 
 ## Corrections
 
@@ -53,3 +53,5 @@ After these changes, EFL remains 99.961191707 mm, nominal f-number remains 2.000
 Surface geometry reports no errors. The axial aperture has no rim limit, iris mismatch or tracing failure. The image-circle check finds no undersized surfaces and skips none. Field coverage is 100%: the modeled 25° chief ray reaches 45.97 mm against the 45.97 mm stated-field radius, with a clear corner and no skipped or unsolved state. The 25° meridional bundle is vignetted at the rear rims, and one edge-ray solve does not return a ray; chief-ray coverage does not establish complete illumination.
 
 Open: the 11.25/8.77 mm iris split versus Figure 2's approximately 0.51-gap station; the front rim of Element 3, the 22 mm doublet rims and the 23 mm Element 7 rims are about 2–4 mm larger than the drawing's proportions suggest. These rims remain unchanged because no axial or chief-ray obstruction requires enlargement, and reducing them would remove admitted light. The production example, historical melt identities and complete off-axis illumination remain unsettled.
+
+Review corrections: brochure dating “May 1953” → undated Leitz Summicron brochure; unconfirmed Summicron (I) wiki link and attribution → the Leica Wiki's entry for Gustav Kleinberg.

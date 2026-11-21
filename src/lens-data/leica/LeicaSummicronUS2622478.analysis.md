@@ -70,12 +70,12 @@ The modeled field follows the printed 50° full angle, or ±25°. At 25° the re
 
 ## Historical and Commercial Context
 
-The association with the collapsible Leitz Summicron 5 cm f/2 of 1953–60 is plausible at the patent-family level. A [May 1953 Leitz brochure](https://www.pacificrimcamera.com/rl/01536/01536.pdf) reportedly states that the Summicron's basic design is protected by US 2,622,478. The [Leica Wiki entry for Summicron (I)](<https://wiki.l-camera-forum.com/leica-wiki.en/index.php/Summicron_(I)_f%3D_5_cm_1:2>) associates a seven-element, six-group Kleineberg–Zimmermann patent filed on 20 July 1950 with that lens. The patent's discussion of thorium glass also fits the family history.
+The association with the collapsible Leitz Summicron 5 cm f/2 of 1953–60 is plausible at the patent-family level. A [Leitz Summicron brochure](https://www.pacificrimcamera.com/rl/01536/01536.pdf) reportedly states that the Summicron's basic design is protected by US 2,622,478. The Leica Wiki's [entry for Gustav Kleinberg](https://wiki.l-camera-forum.com/leica-wiki.en/index.php/Gustav_Kleinberg) associates a seven-element, six-group Kleineberg–Zimmermann patent filed on 20 July 1950 with that lens. The patent's discussion of thorium glass also fits the family history.
 
 Example 2 agrees with the production lens's seven-element, six-group count, but that count alone cannot establish the production prescription. Which numerical example entered production remains unsettled. The later Rigid/Dual Range Summicron prescription from DE 939,956 B has different radii and remains a separate design.
 
 ## Sources
 
 - [US 2,622,478 A](https://patents.google.com/patent/US2622478A/en): Figure 2 on PDF page 1; Example 2, Seidel coefficients, d-line definition and claims on PDF page 3; design discussion on PDF page 2.
-- [Leitz Summicron brochure, May 1953](https://www.pacificrimcamera.com/rl/01536/01536.pdf): reported manufacturer statement connecting the basic Summicron design to this patent; it does not settle the numerical example.
-- [Leica Wiki: Summicron (I), f = 5 cm 1:2](<https://wiki.l-camera-forum.com/leica-wiki.en/index.php/Summicron_(I)_f%3D_5_cm_1:2>): historical patent-family association and production context.
+- [Leitz Summicron brochure](https://www.pacificrimcamera.com/rl/01536/01536.pdf): reported manufacturer statement connecting the basic Summicron design to this patent; it does not settle the numerical example.
+- [Leica Wiki: Gustav Kleinberg](https://wiki.l-camera-forum.com/leica-wiki.en/index.php/Gustav_Kleinberg): historical patent-family association and production context.
