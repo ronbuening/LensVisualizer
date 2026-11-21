@@ -45,7 +45,7 @@ const LENS_DATA = {
   key: "ricoh-gr-lens-6mm-f19-gr-digital-iv",
   maker: "Ricoh",
   name: "RICOH GR LENS 6.0mm f/1.9 (Ricoh GR DIGITAL IV)",
-  subtitle: "JP 2010-164839 A, Example 4 — GR DIGITAL IV correlation (not unique vs GR DIGITAL III)",
+  subtitle: "JP 2010-164839 A, Example 4 — GR DIGITAL IV match (could also be the GR DIGITAL III)",
 
   catalog: {
     lensMounts: ["fixed-lens-camera"],

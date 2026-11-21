@@ -52,7 +52,7 @@ const LENS_DATA = {
   key: "ricoh-lens-a16-24-85-f35-55",
   maker: "Ricoh",
   name: "RICOH LENS A16 24-85mm f/3.5-5.5 (Ricoh GXR A16)",
-  subtitle: "US 2012/0307375 A1 — Embodiment 3; Ricoh GXR camera-unit correlation",
+  subtitle: "US 2012/0307375 A1 — Embodiment 3; Ricoh GXR camera-unit match",
 
   catalog: {
     lensMounts: ["fixed-lens-camera"],
