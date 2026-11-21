@@ -5,12 +5,13 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Taylor, Taylor & Hobson Limited. F = 1.000 lengths are multiplied by 100
  * for nominal f = 100 mm. Six spherical elements form five air-spaced groups;
  * the front doublet is cemented and the rear pair has a 0.5 mm air gap.
- * Printed f/3.5 and 25-degree half-field; the approximately central stop is
- * placed halfway across R5-R6. Rims follow suggested diameters, except
- * inferred R4/R7/R9 and R3/R5 radii of 11.3/11.05 mm to clear the axial beam;
- * the suggested diameters are said to exceed its needs. Repeated R8 in the
- * rear-diameter list is probably R9. The image is at computed paraxial back
- * focus, 80.32 mm; back/close focus is unprinted. Glass indices are sodium D.
+ * The patent prints f/3.5 and a 25-degree half-field; its approximately central
+ * stop is placed halfway across the R5-R6 space. Rims follow the suggested
+ * diameters except R4/R7/R9, which are inferred, and R3/R5, set to 11.3/11.05 mm
+ * to clear the axial beam (the patent says its diameters exceed the axial need).
+ * The repeated R8 in the rear-diameter list is probably a misprint for R9. The
+ * image is at the computed paraxial back focus, 80.32 mm; no back focus or close
+ * focus is printed. Glass indices refer to sodium D.
  */
 const LENS_DATA = {
   schema: 2,
@@ -30,7 +31,7 @@ const LENS_DATA = {
     assignees: ["Taylor, Taylor & Hobson Limited"],
   },
   catalog: {
-    imageCircleMm: 93.32,
+    imageCircleMm: 93.33,
     elementCount: 6,
     groupCount: 5,
     focalLengthMm: {
