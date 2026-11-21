@@ -57,7 +57,8 @@ const LENS_DATA = {
       indexReference: "D",
       focalLengthMm: 76.41,
       role: "Front converging element",
-      glass: "Unmatched (nD 1.6068 / ν 59.5)",
+      glass:
+        "K-SK7 (spectral proxy; patent nD 1.6068 / ν 59.5; supplier and melt unspecified)",
     },
     {
       id: 2,
@@ -70,7 +71,8 @@ const LENS_DATA = {
       indexReference: "D",
       focalLengthMm: 221.1,
       role: "Second converging element ahead of the central diverging lens",
-      glass: "Unmatched (nD 1.6068 / ν 59.5)",
+      glass:
+        "K-SK7 (spectral proxy; patent nD 1.6068 / ν 59.5; supplier and melt unspecified)",
     },
     {
       id: 3,
@@ -83,7 +85,8 @@ const LENS_DATA = {
       indexReference: "D",
       focalLengthMm: -37.56,
       role: "Central diverging element",
-      glass: "Unmatched (nD 1.6477 / ν 33.9)",
+      glass:
+        "SF2 (spectral proxy; patent nD 1.6477 / ν 33.9; supplier and melt unspecified)",
     },
     {
       id: 4,
@@ -96,7 +99,8 @@ const LENS_DATA = {
       indexReference: "D",
       focalLengthMm: -129.75,
       role: "Negative part of the split rear component",
-      glass: "Unmatched (nD 1.6068 / ν 59.5)",
+      glass:
+        "K-SK7 (spectral proxy; patent nD 1.6068 / ν 59.5; supplier and melt unspecified)",
     },
     {
       id: 5,
@@ -109,7 +113,8 @@ const LENS_DATA = {
       indexReference: "D",
       focalLengthMm: 46.57,
       role: "Positive part of the split rear component facing the film",
-      glass: "Unmatched (nD 1.6068 / ν 59.5)",
+      glass:
+        "K-SK7 (spectral proxy; patent nD 1.6068 / ν 59.5; supplier and melt unspecified)",
     },
   ],
   surfaces: [

@@ -4,7 +4,7 @@
 
 [DE 428,657 C, _Objektiv_](https://depatisnet.dpma.de/DepatisNet/depatisnet?window=1&space=menu&content=treffer&action=pdf&docid=DE000000428657A), published 10 May 1926, names Firma Ernemann-Werke A.-G. in Dresden and credits Ludwig Bertele in Dresden-Blasewitz in the inventor footnote. Protection dates from 5 March 1925; the scan gives no separately identified filing or priority date. The numerical prescription is “Beispiel nach Abb. 2” on page 2. Figure 1 is a different numerical example.
 
-[Schott SF2 optical data](https://us.shop.schott.com/advanced-optics/en/Optical-Glass/SF2/c/glass-SF2) supplies the comparison of sodium D and helium d indices and C–F dispersion. It does not establish a historical glass supplier.
+The [Sumita optical glass catalog](https://www.sumita-opt.co.jp/en/download/) supplies the K-SK7 spectral proxy for L1/L2/L4/L5; the [Schott optical glass catalog](https://www.schott.com/en-us/products/optical-glass-p1000267/downloads) supplies the SF2 spectral proxy for L3. Neither identifies a historical glass supplier or melt.
 
 ## Transcription Check
 
@@ -26,7 +26,7 @@ The iris position and diameter, clear radii, back focus, numerical field, image 
 
 The ±5.0° field is illustrative. No catalog image circle or image format is assigned because the source prints neither a numerical field nor a format. `focus.closeFocusM` is 10¹⁵ m, which stands for infinity. All relative spacings remain fixed. The selectable f-stops extend from f/2 to f/16; the patent supplies no minimum iris opening. No cover plate, filter or baffle is specified.
 
-The patent prints only nD and ν, without individual C-, F- or g-line indices, partial dispersion, transmission or a glass supplier. Both glass pairs remain unmatched, so spectral behavior is estimated from the printed index and Abbe number.
+The patent prints only nD and ν, without individual C-, F- or g-line indices, partial dispersion, transmission or a glass supplier. Both glass pairs use catalog curves as spectral proxies while retaining the printed index and Abbe number; historical glass identities and measured spectral performance remain unresolved.
 
 ## Product Identification
 
@@ -39,7 +39,7 @@ No production lens is documented for this prescription. Figure 2 is an Ernostar-
 - R3–R6 clear radii changed from 22.5, 19.25, 18.25 and 16.25 mm to 23.5, 23, 19.5 and 19 mm. R7/R8 changed from 16.25 to 23.5 mm; R9/R10 changed from 16.25 to 24 mm. These approximate Figure 2's larger rear members and remove rear clipping at 5.0°. R1/R2 remain 25.5 mm. The signed radii, thicknesses, air gaps, indices, Abbe numbers, stop position and paraxial image plane are retained.
 - The catalog design focal length changed from the nominal 100 mm to the calculated 100.03 mm without rescaling the prescription. The 17.51 mm catalog image circle was removed because it came only from the illustrative field. `source.sdSource` was omitted because the rims combine estimates with drawing readings.
 - Element labels changed to Element 1–5, with L1–L5 on the diagram. Optical roles and standalone focal lengths of +76.41, +221.10, −37.56, −129.75 and +46.57 mm were added; the shapes are retained. A “Rear member” bracket spans L4–L5 to identify the patent's split collecting component without changing the five air-separated groups.
-- General glass descriptions became `Unmatched (nD 1.6068 / ν 59.5)` for L1/L2/L4/L5 and `Unmatched (nD 1.6477 / ν 33.9)` for L3. Schott SF2 was not assigned: its curve gives nD 1.64752 and νD 33.84, differences of −0.00018 and −0.06 from L3. Its helium d-line pair, 1.64769 / 33.85, differs by −0.00001 / −0.05 but describes a different reference wavelength. No printed glass value or index reference changed.
+- General glass descriptions initially became `Unmatched (nD 1.6068 / ν 59.5)` for L1/L2/L4/L5 and `Unmatched (nD 1.6477 / ν 33.9)` for L3. The glass review below replaces these labels with spectral proxies. No printed glass value or sodium D reference changed.
 - 2026-11-21 rim review:
   - Page 2, Figure 2 depicts the modeled example. The first-to-last vertex span is about 691 pixels for 63.82 mm, or 10.8 pixels/mm. R1–R3 spans about 97 pixels for 9.05 mm, and L2 is about 105 pixels thick for 9.52 mm, giving 10.7 and 11.0 pixels/mm. The R1 and R10 arcs independently give about 11.0 and 10.7 pixels/mm from the printed 48.57 and 56.15 mm radii. These axial and radial readings agree within a few percent; the rounded corners and slightly asymmetric outlines still limit rim readings to about 0.3 mm.
   - R4 changed from 23 to 20.5 mm. Its curved face ends at the two beveled corners, about 442 pixels apart, giving a clear radius near 20.4 mm. The taller flat edge belongs to the element outline. The former radius exceeded that curve endpoint by about 13%; the front face remains 23.5 mm. This refines the earlier approximate rear-face reading. Transmission at 5.0° stays 93.4%, with no loss at the intervening fields.
@@ -47,6 +47,14 @@ No production lens is documented for this prescription. Figure 2 is an Ernostar-
   - R1/R2 remain 25.5 mm, R3 remains 23.5 mm, R5 remains 19.5 mm, R7/R8 remain 23.5 mm and R9/R10 remain 24 mm. Their approximate figure readings are 24.8, 22.8, 19.3, 23.3 and 24.1 mm respectively, within the drawing's precision. The earlier larger rear members are retained. No flat lands are added: the short corner strokes are bevels, rather than extensions square to the axis. The model's straight edge joins approximate those corners.
   - The axial marginal-ray heights at R4/R6 are 18.61/15.69 mm, and the full-bundle extremes at 5.0° are 19.90/16.25 mm. Both changed faces clear the axial beam and the chief ray. All element edges and adjacent clearances remain positive; the iris sets the aperture. The format-based checks remain inapplicable because no image format is assigned. A comparison of the drawn section with the calculated section confirms the five air-separated elements and the shorter rear faces of L2/L3; no manufacturer's construction drawing for this exact design is documented.
   - Wide-open transmission before and after is 100.0, 100.0, 99.7, 98.4, 96.8, 95.1 and 93.4% at 0, 0.8, 1.7, 2.5, 3.3, 4.2 and 5.0°. The largest loss is 0.0 percentage points, including when each changed element is considered separately. EFL remains 100.03 mm, half-field 5.0° and paraxial aperture f/2.00. No published finite-focus state is available.
+
+- 2026-11-21 glass review:
+  - L1: `Unmatched (nD 1.6068 / ν 59.5)` → K-SK7 (Sumita), spectral proxy; ΔnD = +0.00040, ΔνD = −0.04.
+  - L2: `Unmatched (nD 1.6068 / ν 59.5)` → K-SK7 (Sumita), spectral proxy; ΔnD = +0.00040, ΔνD = −0.04.
+  - L3: `Unmatched (nD 1.6477 / ν 33.9)` → SF2 (Schott), spectral proxy; ΔnD = −0.00018, ΔνD = −0.06.
+  - L4: `Unmatched (nD 1.6068 / ν 59.5)` → K-SK7 (Sumita), spectral proxy; ΔnD = +0.00040, ΔνD = −0.04.
+  - L5: `Unmatched (nD 1.6068 / ν 59.5)` → K-SK7 (Sumita), spectral proxy; ΔnD = +0.00040, ΔνD = −0.04.
+  - All five assignments are spectral proxies within index 0.002 and Abbe number 0.25 at the printed sodium D line; differences are catalog minus printed. The printed index and Abbe number are kept, with catalog curves supplying only dispersion shape. Historical glass identities, suppliers and melts remain unknown.
 
 The resulting first-order values are EFL 100.03 mm, paraxial f/2.00, BFD 56.18 mm, stop radius 15.385 mm and illustrative half-field 5.0°.
 

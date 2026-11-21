@@ -30,39 +30,39 @@ The rear negative meniscus and positive biconvex lens enclose an air lens with c
 
 ### L1 / Element 1 — Biconvex Positive
 
-nD = 1.6068, ν = 59.5. Glass: Unmatched. Standalone focal length = +76.41 mm.
+nD = 1.6068, ν = 59.5. Glass: K-SK7 (Sumita), spectral proxy. Standalone focal length = +76.41 mm.
 
 The front converging element is 8.57 mm thick, with radii +48.57 and −952.45 mm. Its clear radii are estimated at 25.5 mm on both surfaces. The weak rear curvature makes it nearly plano-convex in appearance; its minimum edge thickness is about 1.00 mm.
 
 ### L2 / Element 2 — Positive Meniscus
 
-nD = 1.6068, ν = 59.5. Glass: Unmatched. Standalone focal length = +221.10 mm.
+nD = 1.6068, ν = 59.5. Glass: K-SK7 (Sumita), spectral proxy. Standalone focal length = +221.10 mm.
 
 This second converging element precedes the central diverging lens. Its thickness is 9.52 mm and its radii are +38.10 and +48.19 mm. Clear radii of 23.5 and 20.5 mm follow Figure 2 approximately, with the rear curve ending below the front rim; they do not establish a factory rim shape.
 
 ### L3 / Element 3 — Biconcave Negative
 
-nD = 1.6477, ν = 33.9. Glass: Unmatched. Standalone focal length = −37.56 mm.
+nD = 1.6477, ν = 33.9. Glass: SF2 (Schott), spectral proxy. Standalone focal length = −37.56 mm.
 
 The central diverging element is the more dispersive of the two glass types. It is 2.86 mm thick with radii −223.83 and +27.43 mm. Its clear radii are 19.5 and 17.5 mm, following the shorter rear curve in Figure 2. The following 19.05 mm air gap contains the inferred stop.
 
 ### L4 / Element 4 — Negative Meniscus
 
-nD = 1.6068, ν = 59.5. Glass: Unmatched. Standalone focal length = −129.75 mm.
+nD = 1.6068, ν = 59.5. Glass: K-SK7 (Sumita), spectral proxy. Standalone focal length = −129.75 mm.
 
 This is the negative part of the split rear component. Its radii are +200.01 and +56.19 mm and its thickness is 2.86 mm. Both clear radii are 23.5 mm. A 0.48 mm air gap separates it from L5; together their facing surfaces enclose the converging air lens.
 
 ### L5 / Element 5 — Biconvex Positive
 
-nD = 1.6068, ν = 59.5. Glass: Unmatched. Standalone focal length = +46.57 mm.
+nD = 1.6068, ν = 59.5. Glass: K-SK7 (Sumita), spectral proxy. Standalone focal length = +46.57 mm.
 
 The positive part of the rear component faces the film. It is 14.29 mm thick with radii +51.43 and −56.15 mm. Both clear radii are 24 mm, consistent with the large rear member shown in Figure 2. Its converging power is stronger than that of either front positive element.
 
 ## Glass Identification and Selection
 
-The table prints nD and ν. The D line is taken as sodium, 589.3 nm. L1, L2, L4 and L5 share 1.6068 / 59.5, while L3 uses 1.6477 / 33.9. These printed values are retained, and no exact catalog row has been assigned to either pair.
+The table prints nD and ν, with D taken as sodium, 589.3 nm. L1, L2, L4 and L5 retain 1.6068 / 59.5 and use Sumita K-SK7 as a spectral proxy (ΔnD = +0.00040, ΔνD = −0.04). L3 retains 1.6477 / 33.9 and uses Schott SF2 as a spectral proxy (ΔnD = −0.00018, ΔνD = −0.06). Differences are catalog minus printed at the sodium D line.
 
-[Schott SF2](https://us.shop.schott.com/advanced-optics/en/Optical-Glass/SF2/c/glass-SF2) is close to L3, but its catalog curve gives nD = 1.64752 and νD = 33.84: differences of −0.00018 and −0.06 from the patent. Its D-line index does not reproduce the printed 1.6477, even though its helium d-line index, 1.64769, is close. L3 therefore remains Unmatched. The patent provides no individual C-, F- or g-line indices, partial dispersion, transmission or glass supplier; spectral calculations based on nD and ν are estimates.
+All five elements use catalog curves within index 0.002 and Abbe number 0.25 of the printed pair. The printed index and Abbe number are kept; the curves supply only the shape of dispersion for colour analysis instead of an Abbe-number estimate. Neither row is an exact match, and neither identifies the historical supplier or melt. The patent gives no individual C-, F- or g-line indices, partial dispersion or transmission; historical spectral performance remains unknown.
 
 ## Focus Mechanism
 
@@ -78,9 +78,10 @@ The clear radii follow Figure 2 approximately: 25.5 mm at R1/R2, 23.5/20.5 mm at
 
 ## Model Scope and Limitations
 
-The signed radii, center thicknesses, air gaps and glass pairs are printed. The iris station and size, clear radii, illustrative field and paraxial image distance are inferred. The patent supports the film-to-screen orientation but does not supply finite projection distances or an iris design. Glass identities, spectral performance, mechanical dimensions and production identity remain unresolved.
+The signed radii, center thicknesses, air gaps and glass pairs are printed. The iris station and size, clear radii, illustrative field and paraxial image distance are inferred. The patent supports the film-to-screen orientation but does not supply finite projection distances or an iris design. Historical glass identities, measured spectral performance, mechanical dimensions and production identity remain unresolved.
 
 ## Sources
 
 - [DE 428,657 C, original patent scan](https://depatisnet.dpma.de/DepatisNet/depatisnet?window=1&space=menu&content=treffer&action=pdf&docid=DE000000428657A): p. 1, publication, parties, projection purpose and f/2 aperture; p. 2, Figure 2, numerical example and claim.
-- [Schott SF2 optical data](https://us.shop.schott.com/advanced-optics/en/Optical-Glass/SF2/c/glass-SF2): sodium D and helium d indices and C–F dispersion, without assigning a historical supplier.
+- [Sumita optical glass catalog](https://www.sumita-opt.co.jp/en/download/): K-SK7 dispersion curve used as a spectral proxy for L1, L2, L4 and L5.
+- [Schott optical glass catalog](https://www.schott.com/en-us/products/optical-glass-p1000267/downloads): SF2 dispersion curve used as a spectral proxy for L3.
