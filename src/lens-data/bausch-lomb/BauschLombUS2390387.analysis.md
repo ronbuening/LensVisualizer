@@ -36,25 +36,27 @@ The strongly curved front surface supplies positive collecting power. The elemen
 
 ### Element 2 — Biconcave Negative
 
-nD = 1.6210, ν = 36.2. Glass: Unmatched. Standalone focal length in air: −40.62 mm.
+nD = 1.6210, ν = 36.2. Glass: S-TIM2 (Ohara), spectral proxy. Standalone focal length in air: −40.62 mm.
 
 This more dispersive member opposes part of the first element’s positive power. Its front face is the shared cemented interface in C1; its rear face opens into the diaphragm space.
 
 ### Element 3 — Negative Meniscus
 
-nD = 1.5286, ν = 51.6. Glass: Unmatched. Standalone focal length in air: −33.44 mm.
+nD = 1.5286, ν = 51.6. Glass: SBF2 (Hoya), spectral proxy. Standalone focal length in air: −33.44 mm.
 
 The object-facing concave surface supplies the rear component’s principal negative power. The element is cemented to the higher-index positive fourth element at the 28.50 mm interface.
 
 ### Element 4 — Positive Meniscus
 
-nD = 1.7200, ν = 29.3. Glass: Unmatched. Standalone focal length in air: +79.02 mm.
+nD = 1.7200, ν = 29.3. Glass: S-TIH18 (Ohara), spectral proxy. Standalone focal length in air: +79.02 mm.
 
 This positive member moderates the third element’s negative power while preserving a net negative rear doublet. Its index difference from element 3 is a central condition of the patent’s correction of field curvature, coma and astigmatism.
 
 ## Glass Identification and Selection
 
-The patent labels the index N_D and gives V for each element. The model uses the D line (taken as sodium, 589.3 nm), with the printed Abbe numbers. No catalog row matches both coordinates closely enough to name a glass, so all four labels retain the printed values as “Unmatched.” The patent gives no supplier, melt, additional line indices or partial-dispersion data. The index/Abbe pairs support an approximate dispersion model, without establishing detailed chromatic performance or historical material identity.
+The patent labels the index N_D and gives V for each element. The model retains the printed indices and Abbe numbers at the sodium D line, 589.3 nm. Elements 2–4 use catalog spectral proxies: element 2, S-TIM2 (Ohara; Δn = −0.00111, Δν = +0.05); element 3, SBF2 (Hoya; Δn = +0.00075, Δν = +0.03); element 4, S-TIH18 (Ohara; Δn = +0.00129, Δν = −0.08). Differences are catalog minus printed at the D line.
+
+These present-day rows fall within the proxy tolerance of 0.002 in index and 0.25 in Abbe number. Their curves supply only the dispersion shape, so colour analysis follows a real glass rather than an Abbe-number estimate. Element 1 remains unmatched because no catalog row falls within that tolerance; it uses an Abbe-number estimate. The patent supplies no supplier, melt, additional line indices or partial-dispersion data. The proxies do not identify the historical glasses or establish their detailed chromatic performance.
 
 ## Focus Mechanism
 
@@ -73,3 +75,5 @@ The ±10.0° field is illustrative. The patent’s discussion of a 30.0° field 
 ## Sources
 
 1. Wilbur B. Rayton and Lena M. Hudson, [US 2,390,387 A, “Telephoto Objective”](https://patents.google.com/patent/US2390387A/en), Bausch & Lomb Optical Company, filed 31 January 1944, published 4 December 1945. PDF page 1: Figures 1–2 and tables; page 2: design discussion, prior-art field and cemented construction; page 3: Figure 2 table and claims.
+2. [Ohara optical glass catalog](https://www.ohara-inc.co.jp/en/product/catalog/): S-TIM2 and S-TIH18 dispersion curves.
+3. [Hoya optical glass catalog](https://www.hoya-opticalworld.com/english/datadownload/index.html): SBF2 dispersion curve.
