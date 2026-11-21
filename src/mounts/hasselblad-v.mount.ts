@@ -14,7 +14,9 @@
  * of the service manual [hv-3], scaled so the flange-tip circle is the 69 mm throat [hv-2].
  *
  * `body-slot-n` is a body retaining flange, not the open gap beside it, and the lens is drawn as mounted:
- * each lens lug sits behind the flange of the same number. The earlier 1600F /
+ * each lens lug sits behind the flange of the same number. The four lug arcs are scaled from the lens
+ * mounting-end view in US4954092 (FIG. 5) [hv-p4f], which the patent draws in the mounted position and
+ * which agrees with the lens drawing in the owner manual [hv-4]. The earlier 1600F /
  * 1000F cameras use a different mount and are outside this spec; US2526433A [hv-p1] belongs to that era
  * and supports no value here.
  */
@@ -29,6 +31,7 @@ const OM = ["hv-4"]; // 503cx / 500C/M instruction manual
 const C500 = ["hv-5"]; // 500C instruction manual
 const FE = ["hv-6"]; // 203FE instruction manual (hv-7 is the CFi / CFE lens leaflet)
 const OM_SM = ["hv-4", "hv-3"];
+const LUG_FIG = ["hv-p4f", "hv-4"]; // US4954092 FIG. 5, scaled; opening confirmed by the 503cx manual p. 6
 
 const BASE: MountProfileId = "hasselblad-v/base";
 const DATABUS: MountProfileId = "hasselblad-v/databus";
@@ -45,6 +48,18 @@ const SLOTS = [
   { n: 2, center: 136, start: 121, end: 151, note: "lower right" },
   { n: 3, center: 226, start: 212, end: 240, note: "lower left" },
   { n: 4, center: 314.5, start: 300, end: 329, note: "upper left" },
+] as const;
+
+/**
+ * The four lens lugs as mounted, numbered like the flange each sits behind. Outline of lens mounting ring
+ * 13 in US4954092 FIG. 5 (a lens-rear view), mirrored into the camera-front frame; edges good to about
+ * 2 deg. The openings between them are 53 to 97, 147 to 185, 234 to 275 and 325 to 5 deg.
+ */
+const LUGS = [
+  { n: 1, center: 29, start: 5, end: 53 },
+  { n: 2, center: 122, start: 97, end: 147 },
+  { n: 3, center: 209.5, start: 185, end: 234 },
+  { n: 4, center: 300, start: 275, end: 325 },
 ] as const;
 
 /**
@@ -117,7 +132,7 @@ const HASSELBLAD_V_MOUNT = {
           cameraSideOverlayLayers: ["camera-side-variant-mechanical"],
           lensSideOverlayLayers: ["lens-side-variant-mechanical"],
           status: "partial",
-          sourceRefs: ["hv-1", "hv-2", "hv-3", "hv-4", "hv-5", "hv-p2", "hv-p3"],
+          sourceRefs: ["hv-1", "hv-2", "hv-3", "hv-4", "hv-5", "hv-p2", "hv-p3", "hv-p4", "hv-p4f"],
         },
         {
           profileId: DATABUS,
@@ -275,20 +290,20 @@ const HASSELBLAD_V_MOUNT = {
       shapeNotes:
         "lens seating flange. The drawing has no scale of its own: radii are scaled so that the lens drive coupling sits at the 26.4 mm radius of the body key it mates with",
     },
-    ...SLOTS.map((slot) => ({
-      featureId: `lens-lug-${slot.n}`,
+    ...LUGS.map((lug) => ({
+      featureId: `lens-lug-${lug.n}`,
       featureType: "bayonet_lug",
       profileId: BASE,
       count: 1,
-      centerAngleDeg: v(slot.center, "photo_scaled", OM),
-      startAngleDeg: v(slot.start, "photo_scaled", OM),
-      endAngleDeg: v(slot.end, "photo_scaled", OM),
+      centerAngleDeg: v(lug.center, "photo_scaled", LUG_FIG),
+      startAngleDeg: v(lug.start, "photo_scaled", LUG_FIG),
+      endAngleDeg: v(lug.end, "photo_scaled", LUG_FIG),
       innerRadiusMm: v(34.3, "photo_scaled", OM_SM),
       outerRadiusMm: v(36.1, "photo_scaled", OM_SM),
       thicknessMm: unknownV(OM),
-      matesWith: `body-slot-${slot.n}`,
+      matesWith: `body-slot-${lug.n}`,
       shapeNotes:
-        "lens bayonet lug drawn where it sits on a mounted lens, behind the body flange of the same number. The arc drawn is that flange, the engaged part; the lug's own length is not sourced",
+        "lens bayonet lug (projection 14 of US4954092) drawn where it sits on a mounted lens: the body flange of the same number covers its clockwise end by 19 to 26 deg. Arc scaled from FIG. 5 of that patent, an undimensioned lens-rear view drawn with the lens contacts opposite the body contacts; the 147 to 185 deg opening matches the 149 to 185 deg opening in the lens drawing on p. 6 of the 503cx manual",
     })),
     {
       featureId: "lens-index-mark",
@@ -499,6 +514,30 @@ const HASSELBLAD_V_MOUNT = {
         "the same body shaft, a chisel-shaped pin at the edge of the lens mount turning about 270 deg on release and about 45 deg more after exposure, also drives the preset diaphragm of a lens that has no shutter; no dimension or position is given",
       confidence: "medium",
     },
+    {
+      ref: "hv-p4",
+      sourceType: "patent",
+      citation:
+        "R. G. Fransson, assignor to Victor Hasselblad AB, US4954092A, “Electrical contact unit” (Swedish priority 1987): col. 3, about lines 21 to 66, and col. 4, about lines 49 to 53. Accessed 2026-11-21.",
+      liveUrl: "https://patents.google.com/patent/US4954092A/en",
+      archiveUrl: "https://patentimages.storage.googleapis.com/5d/3a/1e/6e137b6df2bc75/US4954092.pdf",
+      archiveDate: "2026-11-21",
+      appliesTo:
+        "text: the body's outer mounting ring carries inward projections, the lens mounting ring carries the same number of outward projections, each lens projection passes between two body projections and is turned behind one until a stop, and the lens is friction-locked; the contact cradle sits beside the opening. The eight pins are an example only and the production data bus has four contacts. No dimension or angle is stated",
+      confidence: "medium",
+    },
+    {
+      ref: "hv-p4f",
+      sourceType: "patent_figure",
+      citation:
+        "US4954092A, FIGS. 4 and 5: camera-front view of the body mount and view of the mounting end of the lens. Undimensioned drawings, scaled for this spec. Accessed 2026-11-21.",
+      liveUrl: "https://patents.google.com/patent/US4954092A/en",
+      archiveUrl: "https://patentimages.storage.googleapis.com/5d/3a/1e/6e137b6df2bc75/US4954092.pdf",
+      archiveDate: "2026-11-21",
+      appliesTo:
+        "FIG. 5 is a lens-rear view, mirrored into the camera-front frame: the outline of lens mounting ring 13 gives the four lug arcs. It is drawn as mounted, since its contact block lies at 83 to 114 deg, the place of the body contact cradle in FIG. 4. FIG. 4 puts the body projections on the diagonals, as the owner-manual drawing does. No scale is stated, so readings stay photo-scaled",
+      confidence: "medium",
+    },
   ],
 
   openQuestions: [
@@ -515,11 +554,12 @@ const HASSELBLAD_V_MOUNT = {
     },
     {
       issue:
-        "The lens lugs are drawn as the arc engaged behind each body flange; their own length is not sourced. The one lens drawing used (503cx manual p. 6) shows a 36 deg opening in the lens flange from 149 to 185 deg in the mounted position, between long lug arcs; read that way the lens could turn only about 28 to 34 deg, not the 72 deg the 500C manual states. The lug count, lengths and the reason for the single starting point are therefore unresolved.",
+        "The lens lugs are scaled from one undimensioned patent figure (US4954092 FIG. 5: four lugs of 48 to 50 deg with openings of 38 to 44 deg), which agrees with the one opening visible in the owner-manual lens drawing (503cx manual p. 6, 149 to 185 deg). Both drawings show the mounted lens, and both put each lug only 27 to 31 deg clockwise of a lug centred in a body gap, so they imply a turn of about 30 deg, not the 72 deg (1/5 of a revolution) the 500C manual states. A 72 deg turn would carry each lug past its flange. The lock rotation is left at the maker's stated figure; the reason for the single starting point is also unresolved, because the patent draws four near-equal lugs.",
       affectedFields: ["lensSideFeatures", "lockGeometry.lockRotationDeg", "lockGeometry.lockAngleDeg"],
       candidateValues: [
         72,
-        "28 to 34 (inferred from the lens drawing)",
+        "27 to 31 (lug positions in US4954092 FIGS. 4 and 5)",
+        "28 to 34 (inferred from the 503cx manual lens drawing)",
         "about 51 (index triangle in the 203FE lens figure)",
       ],
       resolution:
