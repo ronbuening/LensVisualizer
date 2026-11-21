@@ -32,9 +32,9 @@ All clear radii are inferred. In surface order, excluding the stop, they are 36,
 
 The ±10.0° field is illustrative. At 10.0° the chief ray reaches the image plane at about 17.64 mm height and clears every rim; about 2–6% of the meridional beam width is clipped at R7/R8 and up to 11% at R10. Wide-open full-pupil geometric transmission is about 81.5% at 10°. No source-supported image-circle diameter or camera format is assigned. `focus.closeFocusM` is 10¹⁵ m, which stands for infinity. All element positions remain fixed; no near-focus prescription or movement law is given.
 
-Helium d is inferred from the two flint matches; the patent's n′ notation does not establish it. Schott LF5 has tabulated nd/νd = 1.58144/40.85. Sumita LF3 has 1.58215/42.0; its dispersion curve gives nd = 1.58215 and νd ≈ 42.03. Their sodium-D indices are about 1.58132 and 1.58203, which do not reproduce the printed indices at four decimal places. The five crowns remain unmatched at 1.6202/60.4: N-SK16 is 1.62041/60.32, differing by +0.00021/−0.08 and missing the printed index precision.
+Helium d is inferred from the two flint matches; the patent's n′ notation does not establish it. Schott LF5 has tabulated nd/νd = 1.58144/40.85. Sumita LF3 has 1.58215/42.0; its dispersion curve gives nd = 1.58215 and νd ≈ 42.03. Their sodium-D indices are about 1.58132 and 1.58203, which do not reproduce the printed indices at four decimal places. The five crowns retain 1.6202/60.4 and use BACD16 spectral proxies at the adopted d reference; the row does not identify their historical glass.
 
-The patent supplies no individual C-, F- or g-line indices, partial-dispersion values, measured MTF or aberration plots. Colour calculations use catalog dispersion for the two flints and Abbe-based estimates for the crowns. These comparisons do not identify historical suppliers or melts, and calculated performance depends on the inferred stop, rims and image plane.
+The patent supplies no individual C-, F- or g-line indices, partial-dispersion values, measured MTF or aberration plots. Colour calculations use catalog dispersion for the two matched flints and the BACD16 spectral proxies for the crowns. These comparisons do not identify historical suppliers or melts, and calculated performance depends on the inferred stop, rims and image plane.
 
 ## Product Identification
 
@@ -50,7 +50,7 @@ Lee's US 2,019,985 A shares the broad split-rear architecture but has different 
 - Element labels became Element 1 through Element 7, retaining the drawing's L1–L7 designations. Shape descriptions identify the positive meniscus, biconvex, biconcave, biconcave, biconvex, positive meniscus and biconvex elements in order. Optical roles and the calculated individual focal lengths were added. The rear collector is described as two positive members, correcting the earlier count of three.
 - C1 identifies L2/L3 across R3–R5 and C2 identifies L4/L5 across R6–R8, with spanning cemented-doublet annotations. Group brackets name the patent's front collector, front and rear dispersing members, and two rear collecting members.
 - All seven index references changed from sodium D to helium d, with an explanatory note because the patent names no line. The two flints support d at the printed index precision; no printed index or Abbe number changed.
-- The previously unidentified L3 glass became LF5 (Schott), with catalog-minus-printed Δn = +0.00004 and Δν = +0.05. L4 became LF3 (Sumita), with tabulated Δn = −0.00005 and Δν = 0.00; the evaluated dispersion curve gives Δν ≈ +0.03. The Sumita name identifies the matching curve, without establishing the historical supplier. The other five labels explicitly retain their unmatched printed pair.
+- The previously unidentified L3 glass became LF5 (Schott), with catalog-minus-printed Δn = +0.00004 and Δν = +0.05. L4 became LF3 (Sumita), with tabulated Δn = −0.00005 and Δν = 0.00; the evaluated dispersion curve gives Δν ≈ +0.03. The Sumita name identifies the matching curve, without establishing the historical supplier. The five crowns retain their printed pair and use the BACD16 spectral proxy described below.
 
 The resulting EFL is 99.994 mm, paraxial f-number 1.50, BFD 53.653 mm, stop radius 19.687 mm and half-field 10.0°. These values are unchanged. No printed prescription number, physical spacing, stop station, clear radius or image-plane position has changed.
 
@@ -63,6 +63,15 @@ The resulting EFL is 99.994 mm, paraxial f-number 1.50, BFD 53.653 mm, stop radi
 - With all four reductions, wide-open geometric transmission changes from 88.8% to 87.9% at 8.3° and from 83.4% to 81.5% at 10°; it remains 100.0%, 100.0%, 98.4%, 95.8% and 92.9% at 0°, 1.7°, 3.3°, 5° and 6.7°. The largest loss over the field is 1.9 percentage points at 10°, below three points. The 10° half-field, f/1.5, EFL, back focus and 19.687 mm stop radius are unchanged. The estimated chief-ray reach beyond the chosen field decreases from 23.13° to 21.32°; neither is a published field specification.
 - Geometry and axial aperture checks pass, with no rim limit. At 10° the chief ray remains clear; axial marginal heights at R9–R12 are about 21.4, 21.5, 20.6 and 19.4 mm, below the final rims. The lower edge of the off-axis meridional bundle remains vignetted. Format-based image-circle and field checks remain inapplicable because no camera format is established.
 - A matched-scale comparison of the drawn and calculated sections confirms the smaller rear elements and L7's slightly greater height. No manufacturer construction drawing was available for comparison.
+
+2026-11-21 glass review:
+
+- L1: `Unmatched (printed n′ 1.6202 / ν 60.4)` → `BACD16 (spectral proxy; patent nd 1.6202 / ν 60.4; supplier and melt unspecified)`; spectral proxy, catalog-minus-printed Δn = +0.00021 / Δν = −0.06 at helium d.
+- L2: `Unmatched (printed n′ 1.6202 / ν 60.4)` → `BACD16 (spectral proxy; patent nd 1.6202 / ν 60.4; supplier and melt unspecified)`; spectral proxy, catalog-minus-printed Δn = +0.00021 / Δν = −0.06 at helium d.
+- L5: `Unmatched (printed n′ 1.6202 / ν 60.4)` → `BACD16 (spectral proxy; patent nd 1.6202 / ν 60.4; supplier and melt unspecified)`; spectral proxy, catalog-minus-printed Δn = +0.00021 / Δν = −0.06 at helium d.
+- L6: `Unmatched (printed n′ 1.6202 / ν 60.4)` → `BACD16 (spectral proxy; patent nd 1.6202 / ν 60.4; supplier and melt unspecified)`; spectral proxy, catalog-minus-printed Δn = +0.00021 / Δν = −0.06 at helium d.
+- L7: `Unmatched (printed n′ 1.6202 / ν 60.4)` → `BACD16 (spectral proxy; patent nd 1.6202 / ν 60.4; supplier and melt unspecified)`; spectral proxy, catalog-minus-printed Δn = +0.00021 / Δν = −0.06 at helium d.
+- Spectral proxies must lie within index 0.002 / Abbe number 0.25 at the adopted spectral line. The printed indices and Abbe numbers are kept; helium d remains inferred because the patent names no line. Historical suppliers and melts remain unidentified.
 
 ## Remaining Questions
 

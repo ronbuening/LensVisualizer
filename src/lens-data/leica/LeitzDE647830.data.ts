@@ -6,7 +6,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * All printed signed radii, thicknesses, air spaces, n′ and Abbe numbers are retained.
  * Seven spherical elements form five groups, with cemented interfaces at R4 and R7.
  * The patent names no spectral line; helium d is used because the two flints match LF5/LF3
- * catalog values at d. The five crown elements remain unmatched.
+ * catalog values at d. The five crown elements use BACD16 spectral proxies.
  * Inferred values are the stop position (12 mm behind R5 and 9.75 mm before R6), all clear
  * semi-diameters, and the image plane (the computed paraxial back focus). The stop position
  * keeps both adjacent glass rims clear of its plane. The ±10° field is illustrative;
@@ -55,7 +55,7 @@ const LENS_DATA = {
       vd: 60.4,
       indexReference: "d",
       indexReferenceNote: "The patent prints n′ without a line; helium d is inferred from the LF5/LF3 matches.",
-      glass: "Unmatched (printed n′ 1.6202 / ν 60.4)",
+      glass: "BACD16 (spectral proxy; patent nd 1.6202 / ν 60.4; supplier and melt unspecified)",
       focalLengthMm: 139.46,
       role: "Positive front collector, nearly flat on its rear face.",
     },
@@ -69,7 +69,7 @@ const LENS_DATA = {
       vd: 60.4,
       indexReference: "d",
       indexReferenceNote: "The patent prints n′ without a line; helium d is inferred from the LF5/LF3 matches.",
-      glass: "Unmatched (printed n′ 1.6202 / ν 60.4)",
+      glass: "BACD16 (spectral proxy; patent nd 1.6202 / ν 60.4; supplier and melt unspecified)",
       focalLengthMm: 66.51,
       role: "Positive crown element of the front cemented member.",
       cemented: "C1",
@@ -114,7 +114,7 @@ const LENS_DATA = {
       vd: 60.4,
       indexReference: "d",
       indexReferenceNote: "The patent prints n′ without a line; helium d is inferred from the LF5/LF3 matches.",
-      glass: "Unmatched (printed n′ 1.6202 / ν 60.4)",
+      glass: "BACD16 (spectral proxy; patent nd 1.6202 / ν 60.4; supplier and melt unspecified)",
       focalLengthMm: 43.86,
       role: "Positive crown element behind the rear cemented flint.",
       cemented: "C2",
@@ -129,7 +129,7 @@ const LENS_DATA = {
       vd: 60.4,
       indexReference: "d",
       indexReferenceNote: "The patent prints n′ without a line; helium d is inferred from the LF5/LF3 matches.",
-      glass: "Unmatched (printed n′ 1.6202 / ν 60.4)",
+      glass: "BACD16 (spectral proxy; patent nd 1.6202 / ν 60.4; supplier and melt unspecified)",
       focalLengthMm: 185.84,
       role: "First of the two positive elements in the split rear collector.",
     },
@@ -143,7 +143,7 @@ const LENS_DATA = {
       vd: 60.4,
       indexReference: "d",
       indexReferenceNote: "The patent prints n′ without a line; helium d is inferred from the LF5/LF3 matches.",
-      glass: "Unmatched (printed n′ 1.6202 / ν 60.4)",
+      glass: "BACD16 (spectral proxy; patent nd 1.6202 / ν 60.4; supplier and melt unspecified)",
       focalLengthMm: 131.64,
       role: "Final positive element of the split rear collector.",
     },

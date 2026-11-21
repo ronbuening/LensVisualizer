@@ -27,13 +27,13 @@ The indices below are the printed n′ values. The model traces them at helium d
 
 ### L1 — Positive Meniscus
 
-n′ = 1.6202, ν = 60.4; unmatched glass; f = +139.46 mm.
+n′ = 1.6202, ν = 60.4; Glass: BACD16 (Hoya), spectral proxy; f = +139.46 mm.
 
 The front collector has a weakly curved rear face. Both radii are explicitly positive in the table, including R2 = +1068.5 mm.
 
 ### L2–L3 — Front Cemented Member
 
-L2: n′ = 1.6202, ν = 60.4; unmatched glass; f = +66.51 mm.\
+L2: n′ = 1.6202, ν = 60.4; Glass: BACD16 (Hoya), spectral proxy; f = +66.51 mm.\
 L3: n′ = 1.5814, ν = 40.8; LF5 (Schott) catalogue match; f = −42.01 mm.
 
 The biconvex crown L2 is cemented to the biconcave flint L3 at R4. The assembly is weakly negative, with calculated focal length −240.69 mm. L3's strongly curved rear face points toward the stop. Its inferred clear radius tapers from 31 mm at R4 to 21.4 mm at R5.
@@ -41,14 +41,14 @@ The biconvex crown L2 is cemented to the biconcave flint L3 at R4. The assembly 
 ### L4–L5 — Rear Cemented Member
 
 L4: n′ = 1.5822, ν = 42.0; LF3 (Sumita) catalogue match; f = −31.48 mm.\
-L5: n′ = 1.6202, ν = 60.4; unmatched glass; f = +43.86 mm.
+L5: n′ = 1.6202, ν = 60.4; Glass: BACD16 (Hoya), spectral proxy; f = +43.86 mm.
 
 The biconcave flint L4 faces the stop and is cemented to the positive crown L5 at R7. The assembly remains weakly negative, with calculated focal length −268.00 mm. The index increase across the positive-radius cemented surface makes that interface converging, as the patent describes.
 
 ### L6–L7 — Split Rear Collector
 
-L6: n′ = 1.6202, ν = 60.4; unmatched glass; f = +185.84 mm.\
-L7: n′ = 1.6202, ν = 60.4; unmatched glass; f = +131.64 mm.
+L6: n′ = 1.6202, ν = 60.4; Glass: BACD16 (Hoya), spectral proxy; f = +185.84 mm.\
+L7: n′ = 1.6202, ν = 60.4; Glass: BACD16 (Hoya), spectral proxy; f = +131.64 mm.
 
 L6 is a positive meniscus; its R10 = −71.20 mm is explicitly negative. L7 is biconvex. Together these two air-spaced positive elements form the split rear collector.
 
@@ -56,11 +56,11 @@ L6 is a positive meniscus; its R10 = −71.20 mm is explicitly negative. L7 is b
 
 The table prints n′ and ν without identifying a spectral line. Helium d, 587.6 nm, is inferred from the two flints: LF5 has catalogue coordinates 1.58144/40.85, and LF3 has 1.58215/42.0. These reproduce the printed indices at four decimal places. Their calculated indices at sodium D, 589.3 nm, are about 1.58132 and 1.58203, which round differently from the printed values.
 
-L3 uses the Schott LF5 row. L4 matches Sumita LF3 (1.58215 / 42.0). These are catalogue comparisons; neither establishes the historical supplier or melt.
+L3 matches Schott LF5 at the adopted d reference, with catalogue-minus-printed Δn = +0.00004 and Δν = +0.05. L4 matches Sumita LF3, with tabulated Δn = −0.00005 and Δν = 0.00; its dispersion curve gives Δν ≈ +0.03. These matches lie within the printed precision and do not establish the historical supplier or melt.
 
-The five crowns retain the printed 1.6202/60.4 pair and remain unmatched. N-SK16 is 1.62041/60.32 at d, so its index does not reproduce the patent's four-decimal value. The spectral line remains uncertain.
+L1, L2, L5, L6 and L7 retain the printed 1.6202/60.4 pair and use Hoya BACD16 as a spectral proxy. At the adopted d reference, its catalogue-minus-printed differences are Δn = +0.00021 and Δν = −0.06, within the proxy limits of 0.002 in index and 0.25 in Abbe number. The present-day row supplies only the dispersion-curve shape, allowing colour analysis to follow a real glass rather than an Abbe-number estimate. It does not identify Leitz's historical glass, supplier or melt. The patent's spectral line remains uncertain.
 
-No individual C-, F- or g-line indices or partial-dispersion values are printed. Colour calculations therefore depend on catalogue dispersion for the two matched flints and Abbe-based estimates for the unmatched crowns. They do not establish the production lens's measured chromatic performance.
+No individual C-, F- or g-line indices or partial-dispersion values are printed. All seven elements use catalogue dispersion curves, with the five crowns using spectral proxies. These calculations do not establish the production lens's measured chromatic performance.
 
 ## Focus Mechanism
 
@@ -89,3 +89,6 @@ The Xenon engraving also refers to [Horace William Lee's US 2,019,985 A](https:/
 - [DE 647,830 C, official DPMA record](https://depatisnet.dpma.de/DepatisNet/depatisnet?window=1&space=menu&content=treffer&action=pdf&docid=DE000000647830A): cover, sole numerical table and section drawing.
 - [Leitz Auction, Xenon 1.5/5cm Taylor-Hobson, lot 92](https://www.leitz-auction.com/en/Xenon-1.5-5cm-Taylor-Hobson/AI-11-16440): 1936 example and patent engravings.
 - [US 2,019,985 A, “Lens”](https://patents.google.com/patent/US2019985A/en): Lee's related architecture, used for historical context.
+- [Hoya optical-glass catalogue](https://www.hoya-opticalworld.com/english/datadownload/index.html): BACD16 spectral proxy for the five crowns.
+- [Schott optical-glass catalogue](https://www.schott.com/en-us/products/optical-glass-p1000267/downloads): LF5 catalogue match.
+- [Sumita optical-glass catalogue](https://www.sumita-opt.co.jp/en/download/): LF3 catalogue match.
