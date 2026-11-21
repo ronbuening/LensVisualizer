@@ -7,9 +7,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * The rounded table computes EFL = 6.497604437 mm; the source image plane remains
  * 8.5345 mm behind surface 14 rather than being silently refocused to the Gaussian BFD.
  *
- * Focus status: NO_INTERNAL_RECONSTRUCTION. The patent publishes one fixed design state.
- * No focus var is authored. closeFocusM uses a schema-required static-model sentinel and
- * is not a production minimum-focus-distance claim.
+ * Focus: infinity only. The patent publishes one fixed design state, and no spacing
+ * changes with focus. closeFocusM = 1e15 holds the lens at infinity; it is not a
+ * production minimum-focus-distance claim.
  *
  * STO is not published. It is modeled at the midpoint of source gap a5, the widest rear
  * air space and the mechanically plausible gap immediately before the final positive lens.
@@ -164,7 +164,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 1000000000000000,
     description:
-      "NO_INTERNAL_RECONSTRUCTION — static published design state only; production barrel focus is not modeled and the schema-required closeFocusM value is an infinity sentinel, not a product MFD.",
+      "Infinity focus only. The patent gives one fixed prescription and no close-focus data, so focus travel is not modeled. The focus control is held at infinity; the stored value is not a product minimum focus distance.",
   },
 
   aperture: { nominalFNumber: 1.9, fStops: [1.9, 2.8, 4, 5.6, 8, 11, 16] },
