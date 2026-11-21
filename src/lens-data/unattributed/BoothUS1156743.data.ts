@@ -1,17 +1,30 @@
-import type { LensDataV2Input } from "../repo/src/types/lensDataV2.js";
-const data = {
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * US 1,156,743 A (Lionel Barton Booth, 1915), Example 2 and Figure 2.
+ * The patent's approximately 12-unit focal length is represented at 25 mm per
+ * source unit, giving a nominal 300 mm lens. The printed prescription computes
+ * to EFL 302.10 mm, 0.70% above that nominal value; no source value is adjusted.
+ * The patent prints D, F and hydrogen Hγ indices but no Abbe numbers. Tracing
+ * uses only nD at the D line (taken as sodium, 589.3 nm), without dispersion.
+ * The stop is inferred 15 mm behind R3 and 20.175 mm ahead of R4. All clear
+ * semi-diameters are estimated: 22.5 mm for the front pair and 19 mm at the rear.
+ * The image plane is the computed D-line paraxial focus, 152.88094 mm behind R7.
+ * The patent gives no stop dimensions, back focus, field or close-focus data;
+ * the displayed ±7° field is illustrative.
+ */
+const LENS_DATA = {
   schema: 2,
-  key: "booth-us1156743-figure2-infinity-reference",
+  key: "booth-300mm-f8-us1156743",
   maker: null,
-  name: "BOOTH US1156743 FIG.2 — PATENT REFERENCE",
-  subtitle:
-    "12 source units at ×25 · nominal f/8 · D-line-only · chosen0–7° infinity diagnostic",
-  visible: false,
+  name: "BOOTH 300mm f/8 (US 1,156,743 Design)",
+  subtitle: "US 1,156,743 A, Example 2 — four-element telephoto design",
+  visible: true,
   source: {
-    patentNumber: "US 1,156,743",
+    patentNumber: "US 1,156,743 A",
     patentYear: 1915,
     example: {
-      label: "Figure 2",
+      label: "Example 2",
       id: "2",
     },
     authors: ["Lionel Barton Booth"],
@@ -19,66 +32,66 @@ const data = {
     sdSource: "heuristic",
   },
   catalog: {
-    imageCircleMm: 74.18610978208257,
     elementCount: 4,
     groupCount: 3,
     focalLengthMm: {
-      design: 300,
+      design: 302.1,
     },
     fNumber: {
       design: 8,
     },
-    specs: [
-      "4E/3G · FRONT CEMENTED POSITIVE PAIR / REAR AIR-SPACED MEMBER",
-      "FIGURE2 ONLY; NO KINIC/RETAIL OR GB FAMILY IDENTITY",
-      "12 ARBITRARY SOURCE UNITS AT UNIFORM25 WORKING MM/UNIT",
-      "SOURCE NOMINAL300 f/8; LITERAL EFL302.098689 / CALCULATED BFD152.880940",
-      "LITERAL nD ONLY; SOURCE F/Hγ RETAINED IN EVIDENCE, NO SYNTHESIZED DISPERSION",
-      "ESTIMATED IRIS15/20.175 AND CLEAR RADII; NO BAFFLES",
-      "NOMINAL f/8; MODELED FINITE ENTRANCE EQUIVALENT APPROX f/8.15745",
-      "CHOSEN0–7° INFINITY DIAGNOSTIC ONLY; NO SOURCE FIELD/FINITE CLAIM",
-    ],
+    specs: ["4 ELEMENTS / 3 GROUPS", "ALL SPHERICAL", "DESIGN f = 300 mm", "DESIGN F/8", "TELEPHOTO"],
   },
   elements: [
     {
       id: 1,
       name: "L1",
-      label: "L1",
-      type: "Source Spherical Element",
+      label: "Element 1",
+      diagramLabel: "L1",
+      type: "Biconvex Positive",
       nd: 1.5899,
       indexReference: "D",
-      glass:
-        "Unmatched (literal historical nD only in model; printed F/Hgamma retained separately, no synthesized Cauchy/Abbe/g-line)",
+      focalLengthMm: 46.74,
+      glass: "Unmatched (nD 1.5899, nF 1.5967, nG′ 1.6022)",
+      role: "Positive front lens of the cemented collecting pair",
+      cemented: "C1",
     },
     {
       id: 2,
       name: "L2",
-      label: "L2",
-      type: "Source Spherical Element",
+      label: "Element 2",
+      diagramLabel: "L2",
+      type: "Biconcave Negative",
       nd: 1.6259,
       indexReference: "D",
-      glass:
-        "Unmatched (literal historical nD only in model; printed F/Hgamma retained separately, no synthesized Cauchy/Abbe/g-line)",
+      focalLengthMm: -76.07,
+      glass: "Unmatched (nD 1.6259, nF 1.6381, nG′ 1.6485)",
+      role: "Negative lens balancing the positive front pair",
+      cemented: "C1",
     },
     {
       id: 3,
       name: "L3",
-      label: "L3",
-      type: "Source Spherical Element",
+      label: "Element 3",
+      diagramLabel: "L3",
+      type: "Biconvex Positive",
       nd: 1.6129,
       indexReference: "D",
-      glass:
-        "Unmatched (literal historical nD only in model; printed F/Hgamma retained separately, no synthesized Cauchy/Abbe/g-line)",
+      focalLengthMm: 65,
+      glass: "Unmatched (nD 1.6129, nF 1.6247, nG′ 1.6348)",
+      role: "Positive leading lens of the rear negative assembly",
     },
     {
       id: 4,
       name: "L4",
-      label: "L4",
-      type: "Source Spherical Element",
+      label: "Element 4",
+      diagramLabel: "L4",
+      type: "Biconcave Negative",
       nd: 1.6119,
       indexReference: "D",
-      glass:
-        "Unmatched (literal historical nD only in model; printed F/Hgamma retained separately, no synthesized Cauchy/Abbe/g-line)",
+      focalLengthMm: -35.49,
+      glass: "Unmatched (nD 1.6119, nF 1.61965, nG′ 1.62593)",
+      role: "Negative rear lens extending focal length relative to lens length",
     },
   ],
   surfaces: [
@@ -135,9 +148,8 @@ const data = {
     },
   ],
   focus: {
-    closeFocusM: 1000000000000000,
-    description:
-      "Patent-only BoothFigure2 D-line infinity reference. All original pages visually verified in independent scout custody; no local PDF/pixels, denied worker USPTO route not retried. Source12arbitraryunits uniformly represented25workingmm/unit, not source-unit identification. Literal optics retained, EFL302.098689/BFD152.880940 not fitted to300nominal. Estimated iris15/20.175 and clear radii;0–7degrees chosen diagnostic only. SourceF/Hgamma indices remain separate evidence, Hgamma is not mercury/Fraunhoferg; no fabricatedC/Abbe/dispersion. No Figure1/KINIC/retail, finite-focus or unverifiedGBfamily claim.",
+    closeFocusM: 1e15,
+    description: "Infinity focus only; the patent gives no close-focus data.",
   },
   aperture: {
     nominalFNumber: 8,
@@ -151,23 +163,24 @@ const data = {
   },
   groups: [
     {
-      text: "G1 · L1–L2",
+      text: "FRONT",
       fromSurface: "1",
       toSurface: "3",
     },
     {
-      text: "G2 · L3",
+      text: "REAR POSITIVE",
       fromSurface: "4",
       toSurface: "5",
     },
     {
-      text: "G3 · L4",
+      text: "REAR NEGATIVE",
       fromSurface: "6",
       toSurface: "7",
     },
   ],
+  doublets: [{ text: "C1", fromSurface: "1", toSurface: "3" }],
   layout: {
     yScFill: 0.5,
   },
 } satisfies LensDataV2Input;
-export default data;
+export default LENS_DATA;
