@@ -34,13 +34,13 @@ The focal lengths below describe each element considered separately in air. Ceme
 
 ### Element 1 — Positive Meniscus
 
-nd = 1.6203, ν = 60.4. Glass: Unmatched. f = +114.68 mm.
+nd = 1.6203, ν = 60.4. Glass: BACD16 (Hoya), spectral proxy. f = +114.68 mm.
 
 The front collector has radii +51.8/+179.3 mm and thickness 8.0 mm. Its estimated clear radii are 26/26 mm. The following 0.6 mm air interval widens away from the axis.
 
 ### Element 2 — Positive Meniscus
 
-nd = 1.6716, ν = 47.2. Glass: Unmatched. f = +84.13 mm.
+nd = 1.6716, ν = 47.2. Glass: BAF10 (Hoya), spectral proxy. f = +84.13 mm.
 
 This is the positive front member of the cemented triplet. Its +34.0/+76.4 mm surfaces enclose 8.9 mm of glass, with estimated clear radii of 24/24 mm. R4 is the cemented interface to element 3.
 
@@ -58,19 +58,19 @@ The strong negative rear member gives the complete triplet its net-negative powe
 
 ### Element 5 — Biconcave Negative
 
-nd = 1.5017, ν = 56.5. Glass: Unmatched. f = −54.45 mm.
+nd = 1.5017, ν = 56.5. Glass: S-FTL10 (Ohara), spectral proxy. f = −54.45 mm.
 
 The negative front member of the rear doublet has radii −298.6/+30.2 mm and thickness 3.9 mm. Its front clear radius is 17.8 mm from the drawing; the shared R8 radius is estimated as 18 mm.
 
 ### Element 6 — Positive Meniscus
 
-nd = 1.6716, ν = 47.2. Glass: Unmatched. f = +49.44 mm.
+nd = 1.6716, ν = 47.2. Glass: BAF10 (Hoya), spectral proxy. f = +49.44 mm.
 
 This positive member nearly balances element 5, leaving a weakly converging doublet. Its +30.2/+285.9 mm faces enclose 10.8 mm of glass. Both clear radii are estimated as 18 mm. The curved cemented interface is the collecting surface emphasized in the patent's claim.
 
 ### Element 7 — Biconvex Positive
 
-nd = 1.6716, ν = 47.2. Glass: Unmatched. f = +124.15 mm.
+nd = 1.6716, ν = 47.2. Glass: BAF10 (Hoya), spectral proxy. f = +124.15 mm.
 
 The positive rear singlet has radii +114.4/−297.0 mm and thickness 9.7 mm. Both clear radii are 25 mm, following the drawing, which shows this element approximately as tall as the front singlet.
 
@@ -78,9 +78,11 @@ The positive rear singlet has radii +114.4/−297.0 mm and thickness 9.7 mm. Bot
 
 The table prints n_d and ν without defining a wavelength. The printed lowercase d is retained; catalogue comparisons do not conclusively identify the intended spectral line. All seven printed index/Abbe pairs remain unchanged.
 
-Two catalogue curves approximate dispersion: Sumita K-BK7 for element 3 (about 1.51633/64.062, Δn +0.000030, Δν +0.062) and Ohara S-TIM28 for element 4 (about 1.68893/31.075, Δn −0.000069, Δν +0.075). Sumita lists ν = 64.1. These matches do not identify the 1930s suppliers or melts. Five elements remain unmatched; 1.6716/47.2 recurs in elements 2, 6 and 7.
+Element 3 matches Sumita K-BK7 (about 1.51633/64.062, Δn +0.000030, Δν +0.062) and element 4 matches Ohara S-TIM28 (about 1.68893/31.075, Δn −0.000069, Δν +0.075) within the printed precision. Sumita lists ν = 64.1. All offsets are catalogue minus printed at d.
 
-The patent supplies no individual C-, F- or g-line indices or partial-dispersion data. Colour calculations for unmatched glasses therefore depend on the printed Abbe numbers and an estimated dispersion relation. The prescription does not establish apochromatic performance, coatings, transmission or measured MTF.
+The other five elements use spectral proxies: Hoya BACD16 for element 1 (Δn +0.00011, Δν −0.06), Hoya BAF10 for elements 2, 6 and 7 (Δn −0.00157, Δν −0.00), and Ohara S-FTL10 for element 5 (Δn −0.00033, Δν −0.08). Each is within 0.002 in index and 0.25 in Abbe number at d. These present-day rows supply only the dispersion-curve shape for colour calculations, retaining the printed index and Abbe number. All seven elements use catalogue curves; none remains unmatched. Neither matches nor proxies identify the 1930s suppliers or melts.
+
+The patent supplies no individual C-, F- or g-line indices or partial-dispersion data. The prescription does not establish apochromatic performance, coatings, transmission or measured MTF.
 
 ## Focus Mechanism
 
@@ -98,4 +100,4 @@ No field angle, film format or image circle is printed. The displayed ±6° fiel
 
 1. Reichspatentamt, [DE 630,224 C, _Photographisches Objektiv_](https://depatisnet.dpma.de/DepatisNet/depatisnet?window=1&space=menu&content=treffer&action=pdf&docid=DE000000630224A), issued 23 May 1936. DPMA facsimile: front cover for dates and applicant; specification p. 1 for the sole numerical example, corrected signs and claim; drawing sheet for component shapes and clear-rim estimates.
 2. [US 1,998,704 A](https://patents.google.com/patent/US1998704A/en), Figure 1, for comparison with the six-element, three-group Sonnar construction. This is a structural comparison, not evidence that DE 630,224 entered production.
-3. [Sumita optical-glass data](https://www.sumita-opt.co.jp/en/download/), K-BK7, and [Ohara S-TIM28 data](https://www.ohara-gmbh.com/fileadmin/user_upload/export-data/pdf/product_datasheets/S-TIM28_English_.pdf), for the numerical glass matches above; historical supplier and melt remain unknown.
+3. [Sumita optical-glass data](https://www.sumita-opt.co.jp/en/download/), K-BK7; [Ohara optical-glass catalogue](https://www.ohara-inc.co.jp/en/product/catalog/), S-TIM28 and S-FTL10; and [Hoya optical-glass catalogue](https://www.hoya-opticalworld.com/english/datadownload/index.html), BACD16 and BAF10, for the catalogue curves above; historical supplier and melt remain unknown.

@@ -51,7 +51,7 @@ const LENS_DATA = {
       indexReferenceNote:
         "The patent prints n_d without defining its wavelength; catalogue comparisons do not settle the line.",
       focalLengthMm: 114.68,
-      glass: "Unmatched (nd 1.6203 / ν 60.4)",
+      glass: "BACD16 (spectral proxy; patent nd 1.6203 / ν 60.4; supplier and melt unspecified)",
       role: "Positive front collecting element",
     },
     {
@@ -65,7 +65,7 @@ const LENS_DATA = {
       indexReferenceNote:
         "The patent prints n_d without defining its wavelength; catalogue comparisons do not settle the line.",
       focalLengthMm: 84.13,
-      glass: "Unmatched (nd 1.6716 / ν 47.2)",
+      glass: "BAF10 (spectral proxy; patent nd 1.6716 / ν 47.2; supplier and melt unspecified)",
       role: "Positive front member of the cemented triplet",
       cemented: "C1",
     },
@@ -110,7 +110,7 @@ const LENS_DATA = {
       indexReferenceNote:
         "The patent prints n_d without defining its wavelength; catalogue comparisons do not settle the line.",
       focalLengthMm: -54.45,
-      glass: "Unmatched (nd 1.5017 / ν 56.5)",
+      glass: "S-FTL10 (spectral proxy; patent nd 1.5017 / ν 56.5; supplier and melt unspecified)",
       role: "Negative front member of the rear cemented doublet",
       cemented: "C2",
     },
@@ -125,7 +125,7 @@ const LENS_DATA = {
       indexReferenceNote:
         "The patent prints n_d without defining its wavelength; catalogue comparisons do not settle the line.",
       focalLengthMm: 49.44,
-      glass: "Unmatched (nd 1.6716 / ν 47.2)",
+      glass: "BAF10 (spectral proxy; patent nd 1.6716 / ν 47.2; supplier and melt unspecified)",
       role: "Positive rear member of the weakly converging cemented doublet",
       cemented: "C2",
     },
@@ -140,7 +140,7 @@ const LENS_DATA = {
       indexReferenceNote:
         "The patent prints n_d without defining its wavelength; catalogue comparisons do not settle the line.",
       focalLengthMm: 124.15,
-      glass: "Unmatched (nd 1.6716 / ν 47.2)",
+      glass: "BAF10 (spectral proxy; patent nd 1.6716 / ν 47.2; supplier and melt unspecified)",
       role: "Positive rear collecting singlet",
     },
   ],
