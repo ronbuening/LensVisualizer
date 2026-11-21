@@ -30,12 +30,12 @@ const LENS_DATA = {
     elementCount: 6,
     groupCount: 4,
     focalLengthMm: {
-      design: 26.9,
+      design: 26.93,
     },
     fNumber: {
       design: 1.5,
     },
-    specs: ["6 ELEMENTS / 4 GROUPS", "ALL SPHERICAL", "DESIGN F/1.5", "DESIGN f = 26.90 mm"],
+    specs: ["6 ELEMENTS / 4 GROUPS", "ALL SPHERICAL", "DESIGN F/1.5", "DESIGN f = 26.93 mm"],
   },
   elements: [
     {
