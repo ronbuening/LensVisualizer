@@ -9,11 +9,11 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **1188** lenses scanned (**1167** visible)
-- **12241 / 13246** non-air surfaces use strict catalog Sellmeier data (92.4%)
-- **12259 / 13246** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 92.5%)
-- **0** mismatch surfaces in Sweep 1 across **0** lens files
-- **0** Sweep 1 surfaces have a matching untracked local patent PDF
+- **1190** lenses scanned (**1169** visible)
+- **12256 / 13263** non-air surfaces use strict catalog Sellmeier data (92.4%)
+- **12274 / 13263** non-air surfaces use trusted chromatic data (Sellmeier or measured line indices, 92.5%)
+- **1** mismatch surfaces in Sweep 1 across **1** lens files
+- **1** Sweep 1 surfaces have a matching untracked local patent PDF
 - **290** code-only missing-Sellmeier elements in Sweep 2: **27** active unreviewed, **157** self-recording explicit dispositions, **0** dispositions missing any review record
 - **0** unresolved named-token elements in Sweep 2B, producing **0** token occurrences across **0** distinct tokens
 - **20** Tier A proprietary backfill rows in Sweep 3
@@ -24,6 +24,7 @@ Patent PDFs under `patents/` are untracked local references. A missing local pat
 
 | Lens | Patent | Surface | Ref | Current label | Stored n/ν | Best candidate(s) | localPatentPath | localPatentStatus |
 |---|---|---|---|---|---|---|---|---|
+| [OLYMPUS ZUIKO AUTO-W 21mm f/2](../../src/lens-data/olympus/OlympusZuikoAuto21mmf2.data.ts) | US 4,210,388 | 12 | d | `593348 — LF7-class light flint (no exact public catalog match)` | 1.59340 / 34.80 | S-FTM16 (Δn=-0.0007, Δν=+0.51)<br>FF5 (Δn=-0.0007, Δν=+0.65) | patents/US4210388.pdf | Matched untracked local patent PDF |
 
 ## Near-Complete Visible Lenses - Glass Opportunities
 
