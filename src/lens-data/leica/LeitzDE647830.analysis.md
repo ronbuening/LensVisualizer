@@ -5,7 +5,7 @@
 **Patent:** DE 647,830 C, _Photographisches Objektiv_\
 **Inventors:** Not named in the patent\
 **Assignee:** Ernst Leitz GmbH\
-**Filed:** 27 September 1934\
+**Patent effective from:** 27 September 1934\
 **Published:** 14 July 1937\
 **Example details:** Sole numerical example, called “Ausführungsbeispiel”; table on PDF page 2 and section drawing on page 3.
 
@@ -56,7 +56,7 @@ L6 is a positive meniscus; its R10 = −71.20 mm is explicitly negative. L7 is b
 
 The table prints n′ and ν without identifying a spectral line. Helium d, 587.6 nm, is inferred from the two flints: LF5 has catalogue coordinates 1.58144/40.85, and LF3 has 1.58215/42.0. These reproduce the printed indices at four decimal places. Their calculated indices at the D line, taken as sodium at 589.3 nm, are about 1.581315 and 1.582029, which round differently from the printed values.
 
-L3 uses the Schott LF5 row. L4 uses Sumita LF3: the corpus label “LF3 (Schott)” also resolves to that Sumita row, so the model names the resolved vendor explicitly. These are catalogue comparisons; neither establishes the historical supplier or melt.
+L3 uses the Schott LF5 row. L4 matches Sumita LF3 (1.58215 / 42.0). These are catalogue comparisons; neither establishes the historical supplier or melt.
 
 The five crowns retain the printed 1.6202/60.4 pair and remain unmatched. N-SK16 is 1.62041/60.32 at d, so its index does not reproduce the patent's four-decimal value. The model retains an explanatory line note on every element because the d-line interpretation is inferred.
 
@@ -78,7 +78,7 @@ The paraxial iris radius is 19.686993 mm at nominal f/1.5; exact axial acceptanc
 
 ## Field and Performance Limits
 
-The patent states no field angle or image format. The model's ±10° field is illustrative, and no image-circle diameter or camera format is assigned. At 10° the chief ray reaches the image plane at about 17.64 mm height and clears every rim. Some marginal rays are vignetted; the existing clear-aperture assessment found roughly 2–6% side clipping at R7/R8.
+The patent states no field angle or image format. The model's ±10° field is illustrative, and no image-circle diameter or camera format is assigned. At 10° the chief ray reaches the image plane at about 17.64 mm height and clears every rim. About 2–6% of the 10° beam is clipped at R7/R8.
 
 The patent publishes no measured MTF or aberration plots. Calculated image quality at the paraxial plane describes this inferred stop and rim geometry. It does not establish the physical Xenon aperture, full-field illumination or production performance.
 
