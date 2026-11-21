@@ -32,25 +32,25 @@ The invention reduces the Petzval sum through its distribution of curvature, thi
 
 ### Element 1 / L1 — Biconvex Positive
 
-nD = 1.67741, ν = 55.6. Glass: Unmatched. Standalone focal length in air: +87.79 mm.
+nD = 1.67741, ν = 55.6. Glass: LAC12 (Hoya), spectral proxy. Standalone focal length in air: +87.79 mm.
 
 The +89.8/−162.2 mm surfaces enclose 17.5 mm of glass. This is the positive member of the front achromatic pair. Its inferred front and rear clear semi-diameters are 39 and 36 mm.
 
 ### Element 2 / L2 — Biconcave Negative
 
-nD = 1.68873, ν = 31.2. Glass: FD8 (Hoya), an approximate catalogue match. Standalone focal length in air: −139.33 mm.
+nD = 1.68873, ν = 31.2. Glass: FD8 (Hoya), catalogue match. Standalone focal length in air: −139.33 mm.
 
 The −131.55/+365.7 mm surfaces enclose 10 mm of glass. Its stronger dispersion offsets colour from the positive front member. The inferred clear semi-diameters are 36 and 38 mm; the 1.15 mm air gap separates it from Element 1.
 
 ### Element 3 / L3 — Biconvex Positive
 
-nD = 1.67741, ν = 55.6. Glass: Unmatched. Standalone focal length in air: +48.77 mm.
+nD = 1.67741, ν = 55.6. Glass: LAC12 (Hoya), spectral proxy. Standalone focal length in air: +48.77 mm.
 
 The +57.85/−70.3 mm surfaces enclose 12.5 mm of glass. This element supplies positive power in the rear pair. It has the same printed glass values as Element 1 and an inferred clear semi-diameter of 25.2 mm on both faces.
 
 ### Element 4 / L4 — Plano-Concave Negative
 
-nD = 1.74174, ν = 27.5. Glass: Unmatched. Standalone focal length in air: −80.82 mm.
+nD = 1.74174, ν = 27.5. Glass: SF13 (Sumita), spectral proxy. Standalone focal length in air: −80.82 mm.
 
 The −59.95 mm front surface and plane rear surface enclose 2.5 mm of glass. This is the negative, more dispersive member of the rear achromatic pair. The patent emphasizes its index above 1.72 and its index difference from Element 3 above 0.05. Its inferred clear semi-diameter is 23.4 mm on both faces. R8 is an optical exit surface.
 
@@ -58,9 +58,11 @@ The −59.95 mm front surface and plane rear surface enclose 2.5 mm of glass. Th
 
 The patent explicitly gives indices for the D line, taken as sodium at 589.3 nm, together with Abbe numbers. Those printed values are retained. It supplies no individual C-, F- or g-line indices or partial-dispersion data.
 
-Hoya FD8 evaluates to nD = 1.68874, with catalogue Abbe number 31.16, against Element 2's printed 1.68873 and 31.2. The differences are +0.0000084 and −0.04. Its index lies slightly outside the printed rounding range; the dispersion curve is an approximation, without identifying a historical supplier or melt. Elements 1, 3 and 4 lack catalogue matches at the printed precision and retain Unmatched labels.
+FD8 (Hoya) matches Element 2's printed pair within index 0.0001 and Abbe number 0.15, with ΔnD = +0.0000084 and Δν = −0.04 using its catalogue Abbe number. A catalogue match does not identify the historical supplier or melt.
 
-Chromatic estimates for the unmatched glasses depend on Abbe-based dispersion. The available data do not establish broadband performance or anomalous partial dispersion.
+Elements 1 and 3 use LAC12 (Hoya) as a spectral proxy, with ΔnD = +0.00038 and Δν = −0.09. Element 4 uses SF13 (Sumita) as a spectral proxy, with ΔnD = −0.00120 and Δν = +0.20. These catalogue-minus-printed differences are evaluated at the sodium D line and lie within the proxy limits of index 0.002 and Abbe number 0.25. The printed indices and Abbe numbers are kept; the catalogue curves supply only the dispersion shape in place of Abbe-based estimates.
+
+All four elements use catalogue curves; none remains Unmatched. The proxy names do not identify Paillard's historical glasses. The available data do not establish broadband performance or anomalous partial dispersion.
 
 ## Focus Mechanism and Image Plane
 
@@ -91,3 +93,5 @@ The patent publishes no MTF curve. Geometric MTF estimates depend on the inferre
 1. Arnold Werfeli, [US 2,744,445 A](https://patents.google.com/patent/US2744445A/en), _Photographic and Projection Objective of the Petzval Type_, Paillard S.A., published May 8, 1956. PDF page 1: Figures 1–3; page 2: description, main prescription and rear-group modification; page 3: claims 2 and 3.
 2. [DE 1,086,911 B](https://patents.google.com/patent/DE1086911B/en), German member of the same patent family.
 3. La Cinémathèque française, [Paillard Bolex M8, collection AP-00-2191(1/2)](https://www.cinematheque.fr/fr/catalogues/appareils/collection/projecteur-de-film-8-mmap-00-2191-1-2.html), documenting a Kern-Paillard 20 mm f/1.6 projection lens.
+4. [Hoya optical-glass catalogue](https://www.hoya-opticalworld.com/english/datadownload/index.html), LAC12 and FD8 dispersion curves.
+5. [Sumita optical-glass catalogue](https://www.sumita-opt.co.jp/en/download/), SF13 dispersion curve.
