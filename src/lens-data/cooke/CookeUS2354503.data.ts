@@ -6,10 +6,13 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * in millimetres at nominal f = 100 mm. Radii, thicknesses, D-line indices and
  * Abbe numbers follow the table. EFL is 99.49 mm rather than 100 mm; no misprint
  * has been identified, and rounding as the cause remains unproven. The image gap
- * is the computed paraxial back focus, 50.28 mm. Clear rims and the stop 1.5 mm
- * behind R3 are inferred; the iris gives paraxial f/6.3. The external rear/front
- * clear aperture ratio is the printed 1.20. The 12.0° half-field follows the
- * patent's aperture-ratio conditions; no exact example field is printed.
+ * is the computed paraxial back focus, 50.28 mm. Clear rims are estimated from
+ * the printed rear/front aperture ratio of 1.20 and rear air-gap clearance.
+ * The drawing on PDF p. 1 is schematic at the rear gap and aperture outlines;
+ * its larger rims cannot all follow the printed curves without overlap.
+ * The stop 1.5 mm behind R3 is inferred; the iris gives paraxial f/6.3.
+ * The 12.0° half-field follows the patent's aperture-ratio conditions;
+ * no exact example field is printed.
  */
 const LENS_DATA = {
   schema: 2,
