@@ -43,7 +43,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
 | [`minolta-sr`](#minolta-sr--minolta-sr) | bayonet | 43.5 mm | 44.97 mm | `renderable` | 4 |
 | [`nikon-1`](#nikon-1--nikon-1) | bayonet | 17 mm | 40 mm | `mvp_complete` | 1 |
 | [`nikon-f`](#nikon-f--nikon-f) | bayonet | 46.5 mm | 44 mm | `mvp_complete` | 6 |
-| [`nikon-s`](#nikon-s--nikon-s) | hybrid | 34.85 mm | 44 mm | `renderable` | 1 |
+| [`nikon-s`](#nikon-s--nikon-s) | hybrid | 34.85 mm | 36.5 mm | `renderable` | 3 |
 | [`nikon-z`](#nikon-z--nikon-z) | bayonet | 16 mm | 55 mm | `mvp_complete` | 1 |
 | [`olympus-om`](#olympus-om--olympus-om) | bayonet | 46 mm | 47 mm | `mvp_complete` | 1 |
 | [`pentax-110`](#pentax-110--pentax-110) | bayonet | 27 mm | 20.6 mm | `renderable` | 1 |
@@ -3191,64 +3191,73 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 |---|---|
 | Mount ID | `nikon-s` |
 | Display label | Nikon S |
-| Project note | Nikon S rangefinder bayonet mount. |
+| Project note | Nikon S rangefinder double bayonet: an inner bayonet in the body's focusing helicoid for 5 cm lenses and a fixed outer bayonet for wide-angle and telephoto lenses. |
 | Research status | `partial` |
 | MVP status | `renderable` |
 | Mount mechanism | `hybrid` (lock `sprung_detent`) |
 | Base profile | `nikon-s/base` |
-| Selected MVP profile | `nikon-s/base` |
-| Variant strategy | `base_only` |
+| Selected MVP profile | `nikon-s/outer-bayonet` |
+| Variant strategy | `variant_profiles_defined` |
 
 #### Base and variant profile matrix
 
 | Profile ID | Type | Applies to | Adds | Removes | Changes |
 |---|---|---|---|---|---|
-| `nikon-s/base` | base | Nikon S rangefinder lenses and bodies | internal/external rangefinder bayonet; rangefinder focusing coupling | SLR mirror clearance | inner/outer bayonet detail is simplified for MVP rendering |
+| `nikon-s/base` | base | Nikon I, M, S, S2, SP, S3, S4 and S3M bodies | bore of the focusing helicoid (internal bayonet diameter); rotating helicoid ring with the distance scale; fixed outer ring; red-dot mounting index on the front plate; 34.85 mm register | electrical contacts; SLR mirror clearance | — |
+| `nikon-s/inner-bayonet` | variant | standard 5 cm lenses, which have no helicoid and focus with the body's | three unequal receiving slots in the helicoid bore; spring catch on the helicoid ring that holds the lens | outer bayonet lugs and hooks (present on the body but not used by these lenses) | lens turns counter-clockwise, seen from the front, until it clicks; about 41 deg from the red dot to the catch on the Nikon SP photograph |
+| `nikon-s/outer-bayonet` | variant | wide-angle and telephoto lenses, which carry their own focusing helicoid | three fixed outward lugs on the outer ring; three inward hooks in the lens skirt | inner receiving slots as a lens seat | lens turns counter-clockwise, seen from the front, until it clicks and the safety catch on the lens sets; the angle of the turn is not stated |
 
 #### Dimensional summary
 
 | Field | Value | Unit |
 |---|---|---|
 | Flange focal distance | 34.85 (`secondary`) | mm |
-| Nominal throat diameter | 44 (`photo_scaled`) | mm |
-| Effective clear aperture | 44 (`photo_scaled`) | mm |
-| Camera mount outer diameter | 52 (`photo_scaled`) | mm |
+| Nominal throat diameter | 36.5 (`secondary`) | mm |
+| Effective clear aperture | 34 (`secondary`) | mm |
+| Camera mount outer diameter | 49 (`secondary`) | mm |
 | Lens mount outer diameter | 50 (`photo_scaled`) | mm |
 | Contact count | not_applicable (`not_applicable`) | count |
-| Lock rotation | 45 (`photo_scaled`) | deg |
-| Lock direction | clockwise (`photo_scaled`) | — |
+| Lock rotation | unknown (`unknown`) | deg |
+| Lock direction | counterclockwise (`official`) | — |
 
-#### Figures (selected profile `nikon-s/base`)
+#### Figures (selected profile `nikon-s/outer-bayonet`)
 
-**Camera-side front view** — viewBox `-32 -33 64 65` · 31 elements in 4 layers · hash `f15a633c` ([standalone SVG](mounts/nikon-s-camera-front.svg))
+**Camera-side front view** — viewBox `-32 -32 64 64` · 29 elements in 4 layers · hash `68dd7c35` ([standalone SVG](mounts/nikon-s-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-31 -32 62 63` · 31 elements in 4 layers · hash `3b0cc2d4` ([standalone SVG](mounts/nikon-s-lens-rear.svg))
+**Lens-side rear view** — viewBox `-31 -32 62 63` · 27 elements in 4 layers · hash `70446de1` ([standalone SVG](mounts/nikon-s-lens-rear.svg))
 
-**Axial / register schematic** — viewBox `-41 -36 48 68` · 12 elements in 2 layers · hash `12ef402c` ([standalone SVG](mounts/nikon-s-axial.svg))
+**Axial / register schematic** — viewBox `-41 -34 48 64` · 12 elements in 2 layers · hash `222cb50d` ([standalone SVG](mounts/nikon-s-axial.svg))
 
 #### Camera-side front-view geometry
 
 | Feature ID | Type | Profile | Center | Start | End | Inner r | Outer r |
 |---|---|---|---|---|---|---|---|
-| `body-throat` | body_throat | `nikon-s/base` | 0° | 0° | 360° | 0 | 22 |
-| `body-mount-ring` | mount_ring | `nikon-s/base` | 0° | 0° | 360° | 22 | 26 |
-| `body-slot-1` | bayonet_receiving_slot | `nikon-s/base` | 0° | 344° | 16° | 22 | 24.5 |
-| `body-slot-2` | bayonet_receiving_slot | `nikon-s/base` | 120° | 104° | 136° | 22 | 24.5 |
-| `body-slot-3` | bayonet_receiving_slot | `nikon-s/base` | 240° | 224° | 256° | 22 | 24.5 |
-| `body-index-mark` | index_mark | `nikon-s/base` | 0° | unknown | unknown | unknown | 26.5 |
-| `body-lock-pin` | lock_pin | `nikon-s/base` | 90° | unknown | unknown | unknown | 23 |
+| `body-throat` | body_throat | `nikon-s/base` | 0° | 0° | 360° | 0 | 18.25 |
+| `body-helicoid-ring` | mount_ring | `nikon-s/base` | 0° | 0° | 360° | 18.25 | 21.4 |
+| `body-mount-ring` | mount_ring | `nikon-s/base` | 0° | 0° | 360° | 21.4 | 23.1 |
+| `body-slot-1` | bayonet_receiving_slot | `nikon-s/inner-bayonet` | 324° | 288° | 0° | 17 | 18.25 |
+| `body-slot-2` | bayonet_receiving_slot | `nikon-s/inner-bayonet` | 83° | 60° | 106° | 17 | 18.25 |
+| `body-slot-3` | bayonet_receiving_slot | `nikon-s/inner-bayonet` | 207° | 181° | 233° | 17 | 18.25 |
+| `body-outer-lug-1` | outer_bayonet_lug | `nikon-s/outer-bayonet` | 359° | 332° | 26° | 23.1 | 24.5 |
+| `body-outer-lug-2` | outer_bayonet_lug | `nikon-s/outer-bayonet` | 125° | 109° | 141° | 23.1 | 24.5 |
+| `body-outer-lug-3` | outer_bayonet_lug | `nikon-s/outer-bayonet` | 234° | 219° | 249° | 23.1 | 24.5 |
+| `body-index-mark` | index_mark | `nikon-s/base` | 66° | unknown | unknown | unknown | 26.6 |
+| `body-lock-pin` | lock_pin | `nikon-s/inner-bayonet` | 25.5° | 20° | 31° | 20.2 | 20.7 |
 
 #### Lens-side rear-view geometry
 
 | Feature ID | Type | Profile | Center | Start | End | Inner r | Outer r |
 |---|---|---|---|---|---|---|---|
-| `lens-throat` | lens_throat | `nikon-s/base` | 0° | 0° | 360° | 0 | 21 |
-| `lens-mount-ring` | lens_mount_ring | `nikon-s/base` | 0° | 0° | 360° | 21 | 25 |
-| `lens-lug-1` | bayonet_lug | `nikon-s/base` | 0° | 344° | 16° | 22 | 24.5 |
-| `lens-lug-2` | bayonet_lug | `nikon-s/base` | 120° | 104° | 136° | 22 | 24.5 |
-| `lens-lug-3` | bayonet_lug | `nikon-s/base` | 240° | 224° | 256° | 22 | 24.5 |
-| `lens-index-mark` | index_mark | `nikon-s/base` | 0° | unknown | unknown | unknown | 25.5 |
-| `lens-lock-notch` | lock_notch | `nikon-s/base` | 90° | unknown | unknown | unknown | 23 |
+| `lens-throat` | lens_throat | `nikon-s/base` | unknown | unknown | unknown | unknown | unknown |
+| `lens-index-mark` | index_mark | `nikon-s/base` | 66° | unknown | unknown | unknown | unknown |
+| `lens-lug-1` | bayonet_lug | `nikon-s/inner-bayonet` | 324° | 308° | 340° | 17 | 18.25 |
+| `lens-lug-2` | bayonet_lug | `nikon-s/inner-bayonet` | 83° | 67° | 99° | 17 | 18.25 |
+| `lens-lug-3` | bayonet_lug | `nikon-s/inner-bayonet` | 207° | 191° | 223° | 17 | 18.25 |
+| `lens-lock-notch` | lock_notch | `nikon-s/inner-bayonet` | 25.5° | unknown | unknown | 20.2 | 20.7 |
+| `lens-mount-ring` | lens_mount_ring | `nikon-s/outer-bayonet` | 0° | 0° | 360° | 23.1 | 25 |
+| `lens-outer-hook-1` | outer_bayonet_hook | `nikon-s/outer-bayonet` | 359° | 343° | 15° | 23.1 | 24.5 |
+| `lens-outer-hook-2` | outer_bayonet_hook | `nikon-s/outer-bayonet` | 125° | 109° | 141° | 23.1 | 24.5 |
+| `lens-outer-hook-3` | outer_bayonet_hook | `nikon-s/outer-bayonet` | 234° | 218° | 250° | 23.1 | 24.5 |
 
 #### Mechanical couplings
 
@@ -3260,13 +3269,13 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 | Plane | z (mm) | Diameter (mm) |
 |---|---|---|
-| `flange_datum` | 0 | 52 |
+| `flange_datum` | 0 | 49 |
 | `bayonet_lug_engagement` | 1.2 | 47 |
 | `sensor_film_plane` | -34.85 | 43.3 |
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/nikon-s.mount.ts` (24651 bytes, content hash `2ec9eb3c`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/nikon-s.mount.ts` (43887 bytes, content hash `809d9fe0`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -3274,10 +3283,20 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 |---|---|---|---|---|---|
 | `ns-1` | secondary | “Flange focal distance,” Wikipedia. Accessed 2026-06-06. | [snapshot](http://web.archive.org/web/20260526152456/https://en.wikipedia.org/wiki/Flange_focal_distance) | 2026-05-26 | medium |
 | `ns-2` | secondary | Nikon S rangefinder mount visual references. Accessed 2026-06-06. | [snapshot](unknown) | unknown | low |
+| `ns-3` | secondary | “Nikon S-mount,” Wikipedia, revision of 2026-10-07. Accessed 2026-11-21. | [snapshot](https://en.wikipedia.org/w/index.php?title=Nikon_S-mount&oldid=1378943424) | 2026-11-21 | low |
+| `ns-4` | secondary | “Lens mount,” Wikipedia, revision of 2026-11-13, comparison table. Accessed 2026-11-21. | [snapshot](https://en.wikipedia.org/w/index.php?title=Lens_mount&oldid=1385498741) | 2026-11-21 | medium |
+| `ns-5` | field_photo | S. Shenoy, “Nikon-S-mount.jpg,” Wikimedia Commons, 2009-11-21, CC BY 3.0 (Nikon SP body without lens). Accessed 2026-11-21. | [snapshot](https://upload.wikimedia.org/wikipedia/commons/3/3b/Nikon-S-mount.jpg) | 2026-11-21 | medium |
+| `ns-m1` | official | Nippon Kogaku, Nikon SP Instructions, “Changing Lenses,” pp. 14–15, figs. 14–15; scan in M. Butkus’s camera manual library. Accessed 2026-11-21. | [snapshot](https://www.cameramanuals.org/nikon_pdf/nikon_sp.pdf) | 2026-11-21 | high |
+| `ns-6` | secondary | “Байонет Contax RF,” Russian Wikipedia, revision of 2025-07-16; its Nikon passage cites K. Nakamura (Photoethnography) and S. Gandy (CameraQuest). Accessed 2026-11-21. | [snapshot](https://ru.wikipedia.org/w/index.php?title=%D0%91%D0%B0%D0%B9%D0%BE%D0%BD%D0%B5%D1%82_Contax_RF&oldid=146423487) | 2026-11-21 | medium |
 
 #### Open questions
 
-- Nikon S inner/outer bayonet and Contax compatibility differences need a split, measured profile. _(Upgrade with measured Nikon S and Contax rangefinder samples.)_
+- Every angle here comes from one photograph of a Nikon SP body, not from a dimensioned drawing. Outer lug ends, the catch and the red dot are good to about 3 deg; the inner slot edges sit in shadow and are good to about 5 deg. _(Replace with a Nippon Kogaku drawing, a repair manual with a dimensioned mount, or a calibrated measurement of a body. The Nikon SP repair manual compiled by E. Romney (1984) shows the focusing mount only in undimensioned exploded views and sets the flange distance with shims without stating it.)_
+- The instruction book gives the direction of the locking turn but not its angle. The Zeiss Ikon Contax II book states 90 deg for outer-bayonet lenses, and the outer lugs measured here sit within about 3 deg of those on a Contax-pattern body, but no usable source states the Nikon angle. _(Confirm on a body or from Nippon Kogaku documentation; then set the lock angle from the 66 deg red dot.)_
+- Lens-side lug and hook widths are a 32 deg stand-in from the earlier label-only reference [ns-2], as are the 50 mm lens flange diameter and the lug engagement plane in the axial view. No lens-rear source was found, and the safety catch on wide-angle and telephoto lenses is not drawn because its position is not sourced. _(Measure or photograph square-on the rear of a 5 cm Nikkor and of an outer-mount Nikkor.)_
+- The register of the inner bayonet is not drawn. A Japanese adapter review gives 31.95 mm for Nikon S against 31.75 mm for Contax, and one mount list gives 34.54 mm instead of 34.85 mm for the outer register; neither could be added as a source. _(Confirm both registers from Nikon documentation or a measured body.)_
+- The nominal throat was 44 mm; it is now the 36.5 mm internal bayonet, with the 34 mm table throat as the clear opening. Both are uncited Wikipedia figures; on the photograph the bore scales to roughly 35.5 mm. _(Confirm the bore and lip diameters against a drawing or a measured body.)_
+- What separates Nikon S from Contax is not drawn: the body helicoid is matched to a 5 cm lens of about 51.6 mm focal length against about 52.3 mm for Contax, so the two agree at infinity and drift apart at close range [ns-6]. No helicoid lead or rotation figure was found, and the rangefinder coupling marker is still the earlier stand-in position [ns-2]. _(Add the helicoid lead and the rangefinder cam travel from a repair manual if one states them.)_
 
 ### `nikon-z` — Nikon Z
 
