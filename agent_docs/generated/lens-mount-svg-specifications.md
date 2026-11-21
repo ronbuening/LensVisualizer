@@ -4613,9 +4613,9 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 #### Figures (selected profile `zeiss-contarex/base`)
 
-**Camera-side front view** — viewBox `-36 -37 75 73` · 41 elements in 4 layers · hash `a970913c` ([standalone SVG](mounts/zeiss-contarex-camera-front.svg))
+**Camera-side front view** — viewBox `-36 -37 75 73` · 41 elements in 4 layers · hash `aa460970` ([standalone SVG](mounts/zeiss-contarex-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-35 -36 70 71` · 34 elements in 4 layers · hash `fa2fe8a0` ([standalone SVG](mounts/zeiss-contarex-lens-rear.svg))
+**Lens-side rear view** — viewBox `-35 -36 70 71` · 34 elements in 4 layers · hash `958b3184` ([standalone SVG](mounts/zeiss-contarex-lens-rear.svg))
 
 **Axial / register schematic** — viewBox `-53 -40 61 76` · 12 elements in 2 layers · hash `d3fc61d3` ([standalone SVG](mounts/zeiss-contarex-axial.svg))
 
@@ -4638,10 +4638,10 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 |---|---|---|---|---|---|---|---|
 | `lens-throat` | lens_throat | `zeiss-contarex/base` | 0° | 0° | 360° | 0 | 17.8 |
 | `lens-mount-ring` | lens_mount_ring | `zeiss-contarex/base` | 0° | 0° | 360° | 23.5 | 28 |
-| `lens-slot-1` | bayonet_receiving_slot | `zeiss-contarex/base` | 51° | 31.5° | 70.5° | 23.5 | 25 |
-| `lens-slot-2` | bayonet_receiving_slot | `zeiss-contarex/base` | 172° | 154.5° | 189.5° | 23.5 | 25 |
-| `lens-slot-3` | bayonet_receiving_slot | `zeiss-contarex/base` | 303° | 285° | 321° | 23.5 | 25 |
-| `lens-stop-key` | rotation_stop_key | `zeiss-contarex/base` | 192° | 189.5° | 194.5° | 23 | 25 |
+| `lens-tab-1` | bayonet_tab | `zeiss-contarex/base` | 336° | 296° | 16° | 23.5 | 25 |
+| `lens-tab-2` | bayonet_tab | `zeiss-contarex/base` | 87.5° | 52° | 123° | 23.5 | 25 |
+| `lens-tab-3` | bayonet_tab | `zeiss-contarex/base` | 204° | 162° | 246° | 23.5 | 25 |
+| `lens-stop-key` | rotation_stop_key | `zeiss-contarex/base` | 283.5° | 281° | 286° | 23 | 25 |
 | `lens-index-mark` | index_mark | `zeiss-contarex/base` | 45° | unknown | unknown | unknown | 28.5 |
 | `lens-lock-notch` | lock_notch | `zeiss-contarex/base` | 82.5° | unknown | unknown | unknown | 26.5 |
 
@@ -4662,7 +4662,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/zeiss-contarex.mount.ts` (42974 bytes, content hash `54c31742`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/zeiss-contarex.mount.ts` (44134 bytes, content hash `82017310`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -4680,9 +4680,9 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 #### Open questions
 
 - No source states any Contarex mount diameter. The 46 mm bore, 58 mm body ring and 56 mm lens rear ring are the first draft's stand-ins; JAPB's lens-rear photo only fixes proportions (tab bore 0.84, openings 0.89, aperture ring 0.64 to 0.77 of the rear ring's outer radius). The clear light opening is unknown. _(Needs the Zeiss Ikon factory service manual (a German-language Contarex service manual is sold by learncamerarepair.com; not obtained) or a calibrated measurement. Searched without result: Zeiss Ikon patents DE1230309B, DE1047005B, US2830513A, US3034411A, US2926576A, US3074331A, US3075442A, US3075444A; Carl Zeiss DE1179101B; Zeiss Ikon catalogues at pacificrimcamera.com (rl/00079, 00252, 02113, 02114); JAPB; Westin; Camera-wiki; Wikipedia.)_
-- Lug, opening, lock pin, release button and index dot angles are scaled from two manual photos taken from above the lens axis and one third-party lens-rear photo (about +/-5 deg). Body lug 2 is hidden in both manual photos and is placed from the lens openings. The two visible lugs read 116 deg apart on the manuals against 108.5 deg between the matching openings on the JAPB photo. _(Replace with dimensioned service-manual or patent values, or a straight-on photo of a bare body.)_
-- The lock rotation of about 90 deg is derived, not stated: the manuals give only the direction. It follows from the lock groove and openings on the JAPB photo against the lock pin and lugs on the manual photos (87.5 to 95 deg), and from the stop key reaching the next lug (89 to 91 deg). _(Confirm on a camera or from the service manual.)_
-- Aperture coupling: the stored angle is one state of a ring that turns with the aperture setting and shutter cocking, and the body-side driver is not shown in any source used. The lens-speed nose is drawn at the body lever's mid position; its angle per lens speed is not dimensioned. _(Needs the service manual or a patent on the bayonet coupling itself; none was found.)_
+- Lug, lock pin, release button and index dot angles are scaled from two manual photos taken from above the lens axis; tab, stop key and lock groove angles from one third-party lens-rear photo (about +/-5 deg overall, +/-2 deg within the lens photo). Body lug 2 is hidden in both manual photos and is placed from the lens openings. The two visible lugs read 116 deg apart on the manuals against 108.5 deg between the matching openings on the JAPB photo; the lugs stand forward of the screw plane used to take off the foreshortening, which would open the reading that way, but this was not measured. _(Replace with dimensioned service-manual or patent values, or a straight-on photo of a bare body.)_
+- The lock rotation of about 90 deg is derived, not stated: the manuals give only the direction. It follows from the lock groove and openings on the JAPB photo against the lock pin and lugs on the manual photos (87.5 to 95 deg), and from the stop key reaching the next lug (89 to 91 deg). As stored, each body lug lies under only the spring-finger end of its tab (16, 27 and 24 deg of its 34 deg for lugs 1, 2 and 3) and stands partly in the next opening; that is what the measured edges give and it was not adjusted, so either the true turn is a few degrees short of 90 or the body angles are off by that much. _(Confirm on a camera or from the service manual.)_
+- Aperture coupling: the stored angle is the notch as photographed on a detached lens (diaphragm closed), in the locked frame; the ring turns with the aperture setting and shutter cocking, and the body-side driver is not shown in any source used. The lens-speed nose is drawn at the body lever's mid position; its angle per lens speed is not dimensioned. _(Needs the service manual or a patent on the bayonet coupling itself; none was found.)_
 - Flash (Blitz) lenses: DE1230309B puts a feeler pin through a recess in the lens mount face, working a lever that passes through the body's front wall. No source gives its angle or radius, and the Professional manual does not show whether production bodies carry the lever, so no variant profile is defined. The Super Electronic's differences seen in its manual are in the body electronics, not in the mount. _(Add a flash-lens variant profile once the pin and lever are located on a lens rear and a later body (Professional, Super).)_
 - Mount screws: five are visible at about 30, 90, 210, 270 and 330 deg; a sixth at 150 deg is likely but hidden in both photos. The 54 mm pitch circle and 2 mm size are the first draft's stand-ins. Lug thickness and the axial engagement plane are unsourced stand-ins as well. _(Minor; confirm from a bare body or the service manual.)_
 

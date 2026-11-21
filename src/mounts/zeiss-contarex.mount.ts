@@ -21,9 +21,12 @@
  * ("Blitz") lenses add a pin through a recess in the lens mount face in DE1230309B, but no source
  * gives its position or shows it on a production body; it is recorded in openQuestions, not drawn.
  *
- * Angle convention: each lens-side feature is stored at the camera-front angle of the body feature
- * it mates with (openings on their lugs at insertion, lock groove on the lock pin). The quarter
- * turn lives only in lockGeometry.
+ * Angle convention: the body is drawn as it is, and the lens as mounted and locked, in the
+ * camera-front frame. The lens's female bayonet is stored as its three inward tabs (solid sectors,
+ * the metal that sits over the body lugs when locked) at the edges measured on the JAPB photo, with
+ * the lock groove on the body lock pin; the openings between them are described in shapeNotes. The
+ * lens-rear figure is therefore the JAPB photo turned by about 177 deg. Only the lens index dot is
+ * stored on the body dot it meets at insertion. The quarter turn lives only in lockGeometry.
  */
 
 import type { CameraSideFeature, LensSideFeature, MountSpecInput } from "../types/mount.js";
@@ -37,14 +40,14 @@ const J = ["zcx-japb"]; // JAPB annotated lens-rear photo
 const P = ["zcx-p1f"]; // DE1230309B Fig. 2, scaled
 const MJ = ["zcx-man1", "zcx-man2", "zcx-japb"];
 const WJ = ["zcx-westin", "zcx-japb"]; // 46 mm register
-const ALL = ["zcx-man1", "zcx-man2", "zcx-man3", "zcx-man4", "zcx-p1", "zcx-japb", "zcx-westin"];
+const ALL = ["zcx-man1", "zcx-man2", "zcx-man3", "zcx-man4", "zcx-p1", "zcx-p1f", "zcx-japb", "zcx-westin"];
 
 const PROFILE = "zeiss-contarex/base";
 
 /** Body lug span read off the two manual photos (33 to 35 deg). */
 const LUG_SPAN_DEG = 34;
 
-function bodyLug(index: number, centerDeg: number, note: string): CameraSideFeature {
+function bodyLug(index: number, centerDeg: number, lockedUnderTab: number, note: string): CameraSideFeature {
   return {
     featureId: `body-lug-${index}`,
     featureType: "bayonet_lug",
@@ -56,25 +59,37 @@ function bodyLug(index: number, centerDeg: number, note: string): CameraSideFeat
     innerRadiusMm: v(23, "photo_scaled", J),
     outerRadiusMm: v(25, "photo_scaled", J),
     depthMm: unknownV(MJ),
-    matesWith: `lens-slot-${index}`,
-    shapeNotes: `outward lug on the body bayonet barrel, about 34 deg. ${note}`,
+    matesWith: `lens-tab-${lockedUnderTab}`,
+    shapeNotes: `outward lug on the body bayonet barrel, about 34 deg; lens tab ${lockedUnderTab} sits over it when the lens is locked. ${note}`,
   };
 }
 
-function lensSlot(index: number, centerDeg: number, spanDeg: number, rearSpan: string): LensSideFeature {
+/**
+ * One inward tab of the lens's female bayonet, at its locked position. `startDeg` to `endDeg` is the
+ * clockwise sweep in the camera-front frame, i.e. the JAPB lens-rear edges through K = 183 deg.
+ */
+function lensTab(
+  index: number,
+  startDeg: number,
+  endDeg: number,
+  bodyLugIndex: number,
+  rearSpan: string,
+  note: string,
+): LensSideFeature {
+  const spanDeg = (endDeg - startDeg + 360) % 360;
   return {
-    featureId: `lens-slot-${index}`,
-    featureType: "bayonet_receiving_slot",
+    featureId: `lens-tab-${index}`,
+    featureType: "bayonet_tab",
     profileId: PROFILE,
     count: 1,
-    centerAngleDeg: v(centerDeg, "photo_scaled", MJ),
-    startAngleDeg: v(centerDeg - spanDeg / 2, "photo_scaled", MJ),
-    endAngleDeg: v(centerDeg + spanDeg / 2, "photo_scaled", MJ),
+    centerAngleDeg: v((startDeg + spanDeg / 2) % 360, "photo_scaled", J),
+    startAngleDeg: v(startDeg, "photo_scaled", J),
+    endAngleDeg: v(endDeg, "photo_scaled", J),
     innerRadiusMm: v(23.5, "photo_scaled", J),
     outerRadiusMm: v(25, "photo_scaled", J),
     thicknessMm: unknownV(J),
-    matesWith: `body-lug-${index}`,
-    shapeNotes: `opening, about ${spanDeg} deg, between two inward tabs of the lens's female bayonet; ${rearSpan} on the JAPB lens-rear photo. Stored on the body lug it passes over at insertion. The tab that then turns onto the lug ends in a slit spring finger`,
+    matesWith: `body-lug-${bodyLugIndex}`,
+    shapeNotes: `inward tab of the lens's female bayonet, about ${spanDeg} deg (${rearSpan} on the JAPB lens-rear photo), stored where it sits with the lens locked. Its first 15 deg clockwise from the start angle are a slit spring finger, and that end rests on body lug ${bodyLugIndex}. ${note}`,
   };
 }
 
@@ -112,16 +127,19 @@ const cameraSideFeatures: CameraSideFeature[] = [
   bodyLug(
     1,
     51,
+    2,
     "Upper right seen from the front: 38 to 72 deg on the Contarex manual Fig. 13 and 39 to 70 deg on the Contarex Special manual Fig. 13 (both camera-front views). The stored centre is the best fit of JAPB's three-opening pattern to the two lugs visible in those photos",
   ),
   bodyLug(
     2,
     172,
-    "Near the bottom; hidden by the camera's lower rim in both manual photos. Placed from JAPB's lens openings, which the three lugs must pass through together (121 deg clockwise of lug 1)",
+    3,
+    "Near the bottom; hidden by the camera's lower rim in both manual photos. Placed from the three openings of JAPB's lens bayonet, which the three lugs must pass through together (121 deg clockwise of lug 1)",
   ),
   bodyLug(
     3,
     303,
+    1,
     "Upper left seen from the front: 282 to 317 deg on the Contarex manual Fig. 13 and 282 to 315 deg on the Contarex Special manual Fig. 13. JAPB's pattern puts it 108.5 deg anticlockwise of lug 1; the photos read 116 deg",
   ),
   {
@@ -202,23 +220,44 @@ const lensSideFeatures: LensSideFeature[] = [
     shapeNotes:
       "rear bayonet ring of the lens; its inner edge is the tab bore, 0.84 of the outer radius on the JAPB photo. The 56 mm outer diameter is the first draft's stand-in and sets the scale of every lens-side radius",
   },
-  lensSlot(1, 51, 39, "21 to 60 deg"),
-  lensSlot(2, 172, 35, "262 to 297 deg"),
-  lensSlot(3, 303, 36, "131 to 167 deg"),
+  lensTab(
+    1,
+    296,
+    16,
+    3,
+    "167 to 247 deg",
+    "The 36 deg opening clockwise of it (16 to 52 deg here, 131 to 167 deg on the photo) is the one body lug 3 enters through",
+  ),
+  lensTab(
+    2,
+    52,
+    123,
+    1,
+    "60 to 131 deg",
+    "The 39 deg opening clockwise of it (123 to 162 deg here, 21 to 60 deg on the photo) is the one body lug 1 enters through",
+  ),
+  lensTab(
+    3,
+    162,
+    246,
+    2,
+    "297 to 21 deg",
+    "The opening clockwise of it (246 to 296 deg here) holds the stop key; its clear 35 deg (246 to 281 deg here, 262 to 297 deg on the photo) is where body lug 2 enters",
+  ),
   {
     featureId: "lens-stop-key",
     featureType: "rotation_stop_key",
     profileId: PROFILE,
     count: 1,
-    centerAngleDeg: v(192, "photo_scaled", J),
-    startAngleDeg: v(189.5, "photo_scaled", J),
-    endAngleDeg: v(194.5, "photo_scaled", J),
+    centerAngleDeg: v(283.5, "photo_scaled", J),
+    startAngleDeg: v(281, "photo_scaled", J),
+    endAngleDeg: v(286, "photo_scaled", J),
     innerRadiusMm: v(23, "photo_scaled", J),
     outerRadiusMm: v(25, "photo_scaled", J),
     thicknessMm: unknownV(J),
-    matesWith: "body-lug-2",
+    matesWith: "body-lug-3",
     shapeNotes:
-      "small inward tooth at one end of opening 2 (257 to 262 deg on the JAPB lens-rear photo), reaching slightly further in than the tabs. It sits against body lug 2 at insertion; on locking, body lug 3 comes round to its other side after about 90 deg. Read as the rotation stop from the photo; no source names it",
+      "small inward tooth in the opening between tabs 3 and 1 (257 to 262 deg on the JAPB lens-rear photo), reaching slightly further in than the tabs; stored at its locked position, where it meets the anticlockwise edge of body lug 3. At insertion it lies 90 deg anticlockwise, against the clockwise edge of body lug 2. Read as the rotation stop from the photo; no source names it",
   },
   {
     featureId: "lens-index-mark",
@@ -233,7 +272,7 @@ const lensSideFeatures: LensSideFeature[] = [
     thicknessMm: naV(),
     matesWith: "body-index-mark",
     shapeNotes:
-      "red dot on the side of the lens's rear ring, set against the body's red dot to insert and remove (Fig. 12 of both manuals); stored on the body dot",
+      "red dot on the side of the lens's rear ring, set against the body's red dot to insert and remove (Fig. 12 of both manuals). Stored on the body dot it meets at insertion; on a locked lens it sits a quarter turn clockwise of that. Its place relative to the tabs is not visible on the JAPB photo",
   },
   {
     featureId: "lens-lock-notch",
@@ -248,7 +287,7 @@ const lensSideFeatures: LensSideFeature[] = [
     thicknessMm: unknownV(J),
     matesWith: "body-lock-pin",
     shapeNotes:
-      "locking groove cut into the rim of the rear ring, about 5 deg wide, at 100.5 deg on the JAPB lens-rear photo (JAPB: about the 3:30 position); stored on the body lock pin it drops over when the lens is locked",
+      "locking groove cut into the rim of the rear ring, about 5 deg wide, at 100.5 deg on the JAPB lens-rear photo (JAPB: about the 3:30 position). It sits on the body lock pin when the lens is locked, which fixes the frame for every other lens-side angle (K = 183 deg)",
   },
 ];
 
@@ -302,14 +341,14 @@ const ZEISS_CONTAREX_MOUNT = makeSimpleMountSpec({
       featureId: "aperture-drive-ring",
       side: "both",
       profileId: PROFILE,
-      centerAngleDeg: v(112, "photo_scaled", J),
+      centerAngleDeg: v(203.5, "photo_scaled", J),
       radiusMm: v(19, "photo_scaled", J),
       sizeOrTravel:
         "lens aperture control ring about 17.8 to 21.4 mm in radius with an 18 deg notch in its inner edge; body ring gear concentric with the optical axis",
       function:
         "the body's aperture wheel, preselection store and spring drive turn the lens diaphragm through a ring gear around the optical axis",
       compatibilityNotes:
-        "DE1230309B (col. 4 l. 66 to col. 5 l. 2, col. 5 ll. 50 to 53) states the ring gear and that the lens diaphragm is coupled to it; it gives no angle. The stored angle is the notch on JAPB's photo of a detached lens with the diaphragm closed, turned to the insertion position; both rings rotate in use, so this is one state, not a fixed position. The body-side driver that enters the notch is not shown in any source used",
+        "DE1230309B (col. 4 l. 66 to col. 5 l. 2, col. 5 ll. 50 to 53) states the ring gear and that the lens diaphragm is coupled to it; it gives no angle. The stored angle is the notch (330 to 349 deg) on JAPB's photo of a detached lens with the diaphragm closed, in the same locked frame as the tabs; both rings rotate in use, so this is the photographed state, not a fixed position. The body-side driver that enters the notch is not shown in any source used",
     },
     {
       featureId: "max-aperture-index",
@@ -407,7 +446,7 @@ const ZEISS_CONTAREX_MOUNT = makeSimpleMountSpec({
       archiveUrl: "https://japb.net/wp-content/uploads/2025/05/ID-Contarex.jpg",
       archiveDate: "2026-11-21",
       appliesTo:
-        "46.0 mm flange focal distance; three-opening female bayonet on the lens with the release on the camera; inner ring by which the camera sets the aperture. The annotated photo (archive URL) is a lens-rear view of a Sonnar 135 mm f/4, about 180 deg from lens-top-up; opening spans, stop key, lock groove and aperture-ring notch were measured on it in polar coordinates and converted with theta_front = (K - theta_rear), K fixed by the lock groove on the body pin. Radii are its proportions times an unsourced 56 mm rear ring",
+        "46.0 mm flange focal distance; three-opening female bayonet on the lens with the release on the camera; inner ring by which the camera sets the aperture. The annotated photo (archive URL) is a lens-rear view of a Sonnar 135 mm f/4, about 180 deg from lens-top-up; tab and opening edges, stop key, lock groove and aperture-ring notch were measured on it in polar coordinates and converted with theta_front = (K - theta_rear), K = 183 deg fixed by the lock groove on the body pin, so the lens side is stored as locked. Radii are its proportions times an unsourced 56 mm rear ring",
       confidence: "medium",
     },
     {
@@ -441,21 +480,21 @@ const ZEISS_CONTAREX_MOUNT = makeSimpleMountSpec({
     },
     {
       issue:
-        "Lug, opening, lock pin, release button and index dot angles are scaled from two manual photos taken from above the lens axis and one third-party lens-rear photo (about +/-5 deg). Body lug 2 is hidden in both manual photos and is placed from the lens openings. The two visible lugs read 116 deg apart on the manuals against 108.5 deg between the matching openings on the JAPB photo.",
+        "Lug, lock pin, release button and index dot angles are scaled from two manual photos taken from above the lens axis; tab, stop key and lock groove angles from one third-party lens-rear photo (about +/-5 deg overall, +/-2 deg within the lens photo). Body lug 2 is hidden in both manual photos and is placed from the lens openings. The two visible lugs read 116 deg apart on the manuals against 108.5 deg between the matching openings on the JAPB photo; the lugs stand forward of the screw plane used to take off the foreshortening, which would open the reading that way, but this was not measured.",
       affectedFields: ["cameraSideFeatures", "lensSideFeatures"],
       candidateValues: [51, 172, 303],
       resolution: "Replace with dimensioned service-manual or patent values, or a straight-on photo of a bare body.",
     },
     {
       issue:
-        "The lock rotation of about 90 deg is derived, not stated: the manuals give only the direction. It follows from the lock groove and openings on the JAPB photo against the lock pin and lugs on the manual photos (87.5 to 95 deg), and from the stop key reaching the next lug (89 to 91 deg).",
+        "The lock rotation of about 90 deg is derived, not stated: the manuals give only the direction. It follows from the lock groove and openings on the JAPB photo against the lock pin and lugs on the manual photos (87.5 to 95 deg), and from the stop key reaching the next lug (89 to 91 deg). As stored, each body lug lies under only the spring-finger end of its tab (16, 27 and 24 deg of its 34 deg for lugs 1, 2 and 3) and stands partly in the next opening; that is what the measured edges give and it was not adjusted, so either the true turn is a few degrees short of 90 or the body angles are off by that much.",
       affectedFields: ["lockGeometry.lockAngleDeg", "lockGeometry.lockRotationDeg"],
       candidateValues: [90],
       resolution: "Confirm on a camera or from the service manual.",
     },
     {
       issue:
-        "Aperture coupling: the stored angle is one state of a ring that turns with the aperture setting and shutter cocking, and the body-side driver is not shown in any source used. The lens-speed nose is drawn at the body lever's mid position; its angle per lens speed is not dimensioned.",
+        "Aperture coupling: the stored angle is the notch as photographed on a detached lens (diaphragm closed), in the locked frame; the ring turns with the aperture setting and shutter cocking, and the body-side driver is not shown in any source used. The lens-speed nose is drawn at the body lever's mid position; its angle per lens speed is not dimensioned.",
       affectedFields: ["mechanicalCouplings"],
       candidateValues: [],
       resolution: "Needs the service manual or a patent on the bayonet coupling itself; none was found.",
