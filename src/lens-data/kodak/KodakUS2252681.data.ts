@@ -14,7 +14,7 @@ const LENS_DATA = {
   key: "kodak-100mm-f19-us2252681",
   maker: "Kodak",
   name: "KODAK 100mm f/1.9 (US 2,252,681 Design)",
-  subtitle: "US 2,252,681 A, sole example — possibly related to the Ektra Ektar f/1.9",
+  subtitle: "US 2,252,681 A, sole example — possibly related to the Ektra 50mm f/1.9 Ektar",
   visible: true,
   source: {
     patentNumber: "US 2,252,681 A",
