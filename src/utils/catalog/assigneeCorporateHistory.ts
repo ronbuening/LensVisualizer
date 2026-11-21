@@ -173,6 +173,16 @@ export const ASSIGNEE_CORPORATE_HISTORY: Partial<Record<string, AuthoredCorporat
       },
     ],
   },
+  "Ernemann-Werke AG": {
+    acquiredBy: [
+      {
+        organization: "Zeiss Ikon AG",
+        effectiveDate: "1926",
+        sourceUrl: SOURCES.zeissIkon,
+        note: "The museum record names Ernemann among the four German camera companies, with Ica, Contessa Nettel and Goerz, that Carl Zeiss Jena combined to form Zeiss Ikon.",
+      },
+    ],
+  },
   "Ernst Leitz Canada Limited": {
     subsidiaryOf: [
       {
