@@ -8,7 +8,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * the same BF/EF ratio. The image plane is at that computed paraxial focus.
  * The source's element-power summary chart is also approximate.
  * The text places the diaphragm about 2 mm behind the rear vertex; the model
- * uses exactly 2 mm. Its opening is derived from f/8; clear rims are inferred.
+ * uses exactly 2 mm. Its opening is derived from f/8. Clear rims of 15/12.5/10 mm
+ * are inferred and clear the f/8 axial beam and 27-degree chief ray. Their relative
+ * heights agree within about 5% with the Example I drawing, which does not give
+ * Example II's clear dimensions or rim profiles.
  */
 const LENS_DATA = {
   schema: 2,
