@@ -1,21 +1,28 @@
-import type { LensDataV2Input } from "../repo/src/types/lensDataV2.js";
-const data = {
+import type { LensDataV2Input } from "../../types/lensDataV2.js";
+
+/**
+ * US 2,390,387 A, Figure 2: a 100 mm f/5.6 telephoto objective with two cemented doublets.
+ * Radius magnitudes, thicknesses, separation, D-line indices and Abbe numbers are printed;
+ * radius signs follow the drawing. The stop position and clear semi-diameters are estimated,
+ * and the iris size follows the nominal aperture. The image plane is the computed paraxial
+ * back focus. The ±10° field is illustrative; the patent gives no field for this example.
+ */
+const LENS_DATA = {
   schema: 2,
-  key: "rayton-hudson-us2390387-figure2-infinity-reference",
-  maker: null,
-  name: "RAYTON / HUDSON US2390387 FIG.2 \u2014 PATENT REFERENCE",
-  subtitle:
-    "100mm nominal f/5.6 \u00b7 D-line \u00b7 two cemented doublets \u00b7 chosen \u00b110\u00b0 infinity diagnostic",
+  key: "bausch-lomb-100mm-f56-us2390387",
+  maker: "Bausch & Lomb",
+  name: "BAUSCH & LOMB 100mm f/5.6 (US 2,390,387 Design)",
+  subtitle: "US 2,390,387 A, Figure 2 — two-doublet telephoto design",
   visible: false,
   source: {
-    patentNumber: "US 2,390,387",
+    patentNumber: "US 2,390,387 A",
     patentYear: 1945,
     example: {
       label: "Figure 2",
       id: "2",
     },
-    authors: ["Rayton", "Hudson"],
-    assignees: ["Bausch & Lomb"],
+    authors: ["Wilbur B. Rayton", "Lena M. Hudson"],
+    assignees: ["Bausch & Lomb Optical Company"],
     sdSource: "heuristic",
   },
   catalog: {
@@ -28,60 +35,60 @@ const data = {
     fNumber: {
       design: 5.6,
     },
-    specs: [
-      "Figure2 only;4E/2G, both R2/R5 cemented, no inserted air",
-      "Literal signed sourceR/t/nD/V; EFL100.003467/BFD50.304060, no fit",
-      "Source nominal100/f5.6; no printedBFD or exactfield; priorclass30deg not this scope",
-      "Inferred stop10.9/10.18,z16.7; iris/rims estimated, no geometryoverride/baffle",
-      "Chosen\u00b110deg D-line infinity diagnostic only; no retail/finite/calibrated spectrum claim",
-      "Metric circle is twice traced10deg chief image height; not a source format",
-      "Nominal f5.6 retained; modeled finite entrance equivalent f5.713298 (estimated iris)",
-    ],
+    specs: ["4 ELEMENTS / 2 GROUPS", "ALL SPHERICAL", "DESIGN F/5.6", "TELEPHOTO"],
   },
   elements: [
     {
       id: 1,
       name: "L1",
-      label: "L1",
-      type: "Source Spherical Element",
+      label: "Element 1",
+      type: "Biconvex Positive",
       nd: 1.517,
       vd: 64.5,
       indexReference: "D",
-      glass:
-        "Unmatched literal nD/V; no exact catalog glass or calibrated dispersion",
+      focalLengthMm: 24.47,
+      glass: "Unmatched (nD 1.5170 / ν 64.5)",
+      role: "Positive front member of the collecting doublet",
+      cemented: "C1",
     },
     {
       id: 2,
       name: "L2",
-      label: "L2",
-      type: "Source Spherical Element",
+      label: "Element 2",
+      type: "Biconcave Negative",
       nd: 1.621,
       vd: 36.2,
       indexReference: "D",
-      glass:
-        "Unmatched literal nD/V; no exact catalog glass or calibrated dispersion",
+      focalLengthMm: -40.62,
+      glass: "Unmatched (nD 1.6210 / ν 36.2)",
+      role: "Negative member of the positive front doublet",
+      cemented: "C1",
     },
     {
       id: 3,
       name: "L3",
-      label: "L3",
-      type: "Source Spherical Element",
+      label: "Element 3",
+      type: "Negative Meniscus",
       nd: 1.5286,
       vd: 51.6,
       indexReference: "D",
-      glass:
-        "Unmatched literal nD/V; no exact catalog glass or calibrated dispersion",
+      focalLengthMm: -33.44,
+      glass: "Unmatched (nD 1.5286 / ν 51.6)",
+      role: "Negative front member of the diverging rear doublet",
+      cemented: "C2",
     },
     {
       id: 4,
       name: "L4",
-      label: "L4",
-      type: "Source Spherical Element",
+      label: "Element 4",
+      type: "Positive Meniscus",
       nd: 1.72,
       vd: 29.3,
       indexReference: "D",
-      glass:
-        "Unmatched literal nD/V; no exact catalog glass or calibrated dispersion",
+      focalLengthMm: 79.02,
+      glass: "Unmatched (nD 1.7200 / ν 29.3)",
+      role: "Positive member of the negative rear doublet",
+      cemented: "C2",
     },
   ],
   surfaces: [
@@ -132,9 +139,8 @@ const data = {
     },
   ],
   focus: {
-    closeFocusM: 1000000000000000.0,
-    description:
-      "Rayton/Hudson Bausch&Lomb US2390387 Fig2 patent-only D-line infinity reference, not Fig1/US2325275 or retail. Original all3pages externally visually verified, source table magnitudes signed from actual drawing; fullPDFhash pinned externally, no local original/pixels/hash or deniedroute retry. Both R2/R5 cemented and all literalR/t/nD/V preserved. Source100/f5.6 with no publishedBFD/field; model100.003467/50.304060 calculated nofit. Inferred10.9/10.18stop,z16.7, iris/caps estimates, chosen\u00b110degdiagnostic only. Prior-class30deg not assigned, no finite/baffles/override/calibratedbroadband.",
+    closeFocusM: 1e15,
+    description: "Infinity focus only; the patent gives no close-focus data.",
   },
   aperture: {
     nominalFNumber: 5.6,
@@ -148,12 +154,24 @@ const data = {
   },
   groups: [
     {
-      text: "G1 \u00b7 L1+L2",
+      text: "G1 (+)",
       fromSurface: "1",
       toSurface: "3",
     },
     {
-      text: "G2 \u00b7 L3+L4",
+      text: "G2 (−)",
+      fromSurface: "4",
+      toSurface: "6",
+    },
+  ],
+  doublets: [
+    {
+      text: "C1",
+      fromSurface: "1",
+      toSurface: "3",
+    },
+    {
+      text: "C2",
       fromSurface: "4",
       toSurface: "6",
     },
@@ -162,4 +180,4 @@ const data = {
     yScFill: 0.5,
   },
 } satisfies LensDataV2Input;
-export default data;
+export default LENS_DATA;
