@@ -1202,7 +1202,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 | Profile ID | Type | Applies to | Adds | Removes | Changes |
 |---|---|---|---|---|---|
-| `contax-yashica/base` | base | every Contax/Yashica manual-focus SLR body and lens, 1975 to 2005 | three-claw bayonet with three unequal slots; body lock tab and lens claw notch; red-dot index at 12 o'clock; aperture-ring coupling to the body's F-stop connecting ring; maximum-aperture (aperture scale) pin; automatic diaphragm lever | electrical contacts | — |
+| `contax-yashica/base` | base | every Contax/Yashica manual-focus SLR body and lens, 1975 to 2005 | three-claw bayonet with three unequal flanges and gaps; body lock tab and lens claw notch; red-dot index at 12 o'clock; aperture-ring coupling to the body's F-stop connecting ring; maximum-aperture (aperture scale) pin; automatic diaphragm lever | electrical contacts | — |
 | `contax-yashica/ae` | variant | AE lenses (1975 onward) and bodies without program modes (for example Contax RTS and RTS II, Yashica FR and FX-3) | — | program coupling pin | aperture-priority and manual exposure only; draws the base geometry unchanged |
 | `contax-yashica/mm` | variant | MM lenses (introduced with the Contax 159MM, mid-1980s) on program-capable bodies | program coupling pin on the lens, read by the body's Theta lever outside the bayonet | — | program exposure modes, in which the body sets the aperture; MM lenses mark the minimum aperture in green; the body stops the diaphragm lever part-way by counting encoder pulses, eight per aperture step, so the lever stroke is equal per stop |
 
@@ -1221,9 +1221,9 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 #### Figures (selected profile `contax-yashica/mm`)
 
-**Camera-side front view** — viewBox `-38 -38 76 76` · 40 elements in 4 layers · hash `1a680319` ([standalone SVG](mounts/contax-yashica-camera-front.svg))
+**Camera-side front view** — viewBox `-38 -38 76 76` · 40 elements in 4 layers · hash `a0f3e9ed` ([standalone SVG](mounts/contax-yashica-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-35 -36 70 71` · 34 elements in 4 layers · hash `8cbee4bf` ([standalone SVG](mounts/contax-yashica-lens-rear.svg))
+**Lens-side rear view** — viewBox `-35 -36 70 71` · 34 elements in 4 layers · hash `f17bb2d9` ([standalone SVG](mounts/contax-yashica-lens-rear.svg))
 
 **Axial / register schematic** — viewBox `-52 -41 60 78` · 12 elements in 2 layers · hash `a3bac492` ([standalone SVG](mounts/contax-yashica-axial.svg))
 
@@ -1233,9 +1233,9 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 |---|---|---|---|---|---|---|---|
 | `body-throat` | body_throat | `contax-yashica/base` | 0° | 0° | 360° | 0 | 24 |
 | `body-mount-ring` | mount_ring | `contax-yashica/base` | 0° | 0° | 360° | 24 | 29.75 |
-| `body-slot-1` | bayonet_receiving_slot | `contax-yashica/base` | 42.5° | 18° | 67° | 22.3 | 24 |
-| `body-slot-2` | bayonet_receiving_slot | `contax-yashica/base` | 172.5° | 147° | 198° | 22.3 | 24 |
-| `body-slot-3` | bayonet_receiving_slot | `contax-yashica/base` | 284° | 252° | 316° | 22.3 | 24 |
+| `body-slot-1` | bayonet_receiving_slot | `contax-yashica/base` | 347° | 316° | 18° | 22.3 | 24 |
+| `body-slot-2` | bayonet_receiving_slot | `contax-yashica/base` | 107° | 67° | 147° | 22.3 | 24 |
+| `body-slot-3` | bayonet_receiving_slot | `contax-yashica/base` | 225° | 198° | 252° | 22.3 | 24 |
 | `body-index-mark` | index_mark | `contax-yashica/base` | 0° | unknown | unknown | unknown | 30.8 |
 | `body-lock-pin` | lock_pin | `contax-yashica/base` | 15° | unknown | unknown | unknown | 22.7 |
 
@@ -1245,9 +1245,9 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 |---|---|---|---|---|---|---|---|
 | `lens-throat` | lens_throat | `contax-yashica/base` | 0° | 0° | 360° | 0 | 23 |
 | `lens-mount-ring` | lens_mount_ring | `contax-yashica/base` | 0° | 0° | 360° | 23 | 28 |
-| `lens-lug-1` | bayonet_lug | `contax-yashica/base` | 42.5° | 18° | 67° | 22.3 | 24 |
-| `lens-lug-2` | bayonet_lug | `contax-yashica/base` | 172.5° | 147° | 198° | 22.3 | 24 |
-| `lens-lug-3` | bayonet_lug | `contax-yashica/base` | 284° | 252° | 316° | 22.3 | 24 |
+| `lens-lug-1` | bayonet_lug | `contax-yashica/base` | 347° | 315° | 19° | 22.3 | 24 |
+| `lens-lug-2` | bayonet_lug | `contax-yashica/base` | 107° | 82.5° | 131.5° | 22.3 | 24 |
+| `lens-lug-3` | bayonet_lug | `contax-yashica/base` | 225° | 199.5° | 250.5° | 22.3 | 24 |
 | `lens-index-mark` | index_mark | `contax-yashica/base` | 0° | unknown | unknown | unknown | 28.5 |
 | `lens-lock-notch` | lock_notch | `contax-yashica/base` | 15° | unknown | unknown | unknown | 22.7 |
 
@@ -1270,7 +1270,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/contax-yashica.mount.ts` (41362 bytes, content hash `cb239a8a`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/contax-yashica.mount.ts` (42091 bytes, content hash `54879fd7`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -1289,7 +1289,7 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 
 #### Open questions
 
-- No dimensioned drawing of the bayonet was found. Slot edges are scaled from one FX-3 flange photo (about +/-2 deg), with the 159MM repair manual Fig. 21 drawing as an undimensioned cross-check; the lens claws are drawn with the slot extents because their own spans were not measured. Searched: web and Google Patents for Yashica, Kyocera and Carl Zeiss bayonet or aperture-coupling patents (none found for the mount itself; JPS58100837A and JPS58216227A cover a multi-mode aperture ring and state no angles or dimensions), the Contax RTS, RTS II and 159MM and Yashica FR repair manuals, and the RTS and FR owner manuals. _(A factory mount drawing, a service manual with mount dimensions, or calibrated measurement of a body and lens.)_
+- No dimensioned drawing of the bayonet was found. Flange edges are scaled from one FX-3 flange photo (about +/-2 deg), with the 159MM repair manual Fig. 21 drawing as an undimensioned cross-check; the lens claws are drawn behind the flanges at the width of the gaps they enter through, an upper bound, because their own spans were not measured. Searched: web and Google Patents for Yashica, Kyocera and Carl Zeiss bayonet or aperture-coupling patents (none found for the mount itself; JPS58100837A and JPS58216227A cover a multi-mode aperture ring and state no angles or dimensions), the Contax RTS, RTS II and 159MM and Yashica FR repair manuals, and the RTS and FR owner manuals. _(A factory mount drawing, a service manual with mount dimensions, or calibrated measurement of a body and lens.)_
 - The 159MM repair manual gives the body flange back as 45.42 +0.02/-0.03 mm from the body mount plane to the film rail plane (p. 48), against the 45.5 mm register in secondary tables. The stored value stays at the nominal 45.5 mm. _(A Zeiss or Kyocera statement of the nominal register and of how the body adjustment figure relates to it.)_
 - Coupling angles are photo-scaled and their radii are the apparent ones in a front photo (the parts sit behind the flange). The maximum-aperture pin has no radius, and no source gives the aperture follower's travel per stop or the diaphragm lever's stroke. _(A lens or body service manual with coupling dimensions, or calibrated measurement.)_
 - The MM program coupling is placed only by the Wikipedia article's 'about 5 o'clock on the body, outside the bayonet'; its radius is unknown. The 159MM repair manual names the parts without a position, and its Fig. 21 draws an unlabelled lever outside the ring at about 138 deg. The MM stop-down lever's proportional stroke is not dimensioned by any source found. _(A Contax 159MM or 167MT service drawing of the Theta lever, or an MM lens repair manual.)_

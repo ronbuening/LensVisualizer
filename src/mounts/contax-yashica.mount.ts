@@ -20,7 +20,7 @@
  * tab and the clock positions of the links are from the Wikipedia C/Y article and Yashica's own manuals
  * [cy-4, cy-m1, cy-m2]. Slot, screw and coupling angles are scaled from a straight-on photograph of a
  * Yashica FX-3 body flange [cy-ph1]; the Contax 159MM repair manual's front-view drawing (Fig. 21)
- * agrees with the slot edges to a few degrees and names the aperture follower [cy-sm1]. No source gives
+ * agrees with the flange edges to a few degrees and names the aperture follower [cy-sm1]. No source gives
  * a dimensioned drawing of the bayonet, so those values are `photo_scaled`. A few stand-in values with
  * no located source still rest on the label-only reference [cy-2]; `openQuestions` lists them.
  */
@@ -45,11 +45,15 @@ const WIKI_MANUALS = [...WIKI, ...MANUALS];
 const PHOTO_SM = [...BODY_PHOTO, ...SM159];
 const PHOTOS = [...BODY_PHOTO, ...LENS_PHOTO];
 
-/** Body slot edges in the camera-front frame, numbered clockwise from the slot nearest 12 o'clock. */
+/**
+ * The three retaining flanges of the body ring in the camera-front frame, numbered clockwise from the one
+ * at 12 o'clock. The open entry gaps between them span 18 to 67, 147 to 198 and 252 to 316 deg;
+ * `clawMaxSpanDeg` is the width of the gap anticlockwise of each flange, which its lens claw enters through.
+ */
 const SLOTS = [
-  { index: 1, startDeg: 18, endDeg: 67, centerDeg: 42.5 },
-  { index: 2, startDeg: 147, endDeg: 198, centerDeg: 172.5 },
-  { index: 3, startDeg: 252, endDeg: 316, centerDeg: 284 },
+  { index: 1, startDeg: 316, endDeg: 18, centerDeg: 347, clawMaxSpanDeg: 64 },
+  { index: 2, startDeg: 67, endDeg: 147, centerDeg: 107, clawMaxSpanDeg: 49 },
+  { index: 3, startDeg: 198, endDeg: 252, centerDeg: 225, clawMaxSpanDeg: 51 },
 ] as const;
 
 /** Inner radius of the body's retaining flanges, scaled from the body photo against the 48 mm throat. */
@@ -72,7 +76,7 @@ function bodySlot(slot: (typeof SLOTS)[number]): CameraSideFeature {
     depthMm: v(1.8, "photo_scaled", LABEL),
     matesWith: `lens-lug-${slot.index}`,
     shapeNotes:
-      "gap between two retaining flanges of the stainless body ring, where a lens claw enters. Edges read off a straight-on Yashica FX-3 flange photo (camera-front view, about +/-2 deg); the Contax 159MM repair manual Fig. 21 front-view drawing shows the same three unequal gaps. Depth is a stand-in",
+      "retaining flange of the stainless body ring, the solid part that holds a lens claw; the open entry gaps sit between the flanges. Edges read off a straight-on Yashica FX-3 flange photo (camera-front view, about +/-2 deg); the Contax 159MM repair manual Fig. 21 front-view drawing shows the same three unequal gaps. Depth is a stand-in",
   };
 }
 
@@ -83,14 +87,14 @@ function lensLug(slot: (typeof SLOTS)[number]): LensSideFeature {
     profileId: BASE,
     count: 1,
     centerAngleDeg: v(slot.centerDeg, "photo_scaled", BODY_PHOTO),
-    startAngleDeg: v(slot.startDeg, "photo_scaled", BODY_PHOTO),
-    endAngleDeg: v(slot.endDeg, "photo_scaled", BODY_PHOTO),
+    startAngleDeg: v((slot.centerDeg - slot.clawMaxSpanDeg / 2 + 360) % 360, "photo_scaled", BODY_PHOTO),
+    endAngleDeg: v((slot.centerDeg + slot.clawMaxSpanDeg / 2) % 360, "photo_scaled", BODY_PHOTO),
     innerRadiusMm: v(SLOT_INNER_RADIUS_MM, "photo_scaled", BODY_PHOTO),
     outerRadiusMm: v(THROAT_RADIUS_MM, "secondary", THROAT),
     thicknessMm: v(1.8, "photo_scaled", LABEL),
     matesWith: `body-slot-${slot.index}`,
     shapeNotes:
-      "lens claw, stored at the body slot it enters (insertion position) and drawn with that slot's extent; the claw itself is narrower by a clearance no source gives. Thickness is a stand-in",
+      "lens claw, drawn where it sits on a mounted lens, behind the body flange of the same number, at that flange's centre. The claw arcs were not measured (the lens-rear photo was too low in contrast), so the claw is drawn with the width of the entry gap anticlockwise of its flange, which it must pass through; that is an upper bound. Thickness is a stand-in",
   };
 }
 
@@ -127,7 +131,7 @@ const CONTAX_YASHICA_MOUNT = {
           profileType: "base",
           appliesTo: "every Contax/Yashica manual-focus SLR body and lens, 1975 to 2005",
           adds: [
-            "three-claw bayonet with three unequal slots",
+            "three-claw bayonet with three unequal flanges and gaps",
             "body lock tab and lens claw notch",
             "red-dot index at 12 o'clock",
             "aperture-ring coupling to the body's F-stop connecting ring",
@@ -202,7 +206,7 @@ const CONTAX_YASHICA_MOUNT = {
       outerRadiusMm: v(THROAT_RADIUS_MM, "secondary", THROAT),
       depthMm: naV(),
       matesWith: "",
-      shapeNotes: "48 mm throat, measured across the slots (the widest opening of the body ring)",
+      shapeNotes: "48 mm throat, measured across the open gaps (the widest opening of the body ring)",
     },
     {
       featureId: "body-mount-ring",
@@ -502,7 +506,7 @@ const CONTAX_YASHICA_MOUNT = {
       archiveUrl: "https://upload.wikimedia.org/wikipedia/commons/f/f1/Contax-Yashica_mount%2C_body.jpg",
       archiveDate: "2026-11-21",
       appliesTo:
-        "straight-on photograph from the camera front, so angles are used unmirrored. Slot edges, screw positions, index dot, lock tab, aperture follower pin and diaphragm lever read off the image; lengths scaled by taking the slot circle as the 48 mm throat. One body of one model; no calibrated scale",
+        "straight-on photograph from the camera front, so angles are used unmirrored. Flange edges, screw positions, index dot, lock tab, aperture follower pin and diaphragm lever read off the image; lengths scaled by taking the circle through the open gaps as the 48 mm throat. One body of one model; no calibrated scale",
       confidence: "medium",
     },
     {
@@ -522,7 +526,7 @@ const CONTAX_YASHICA_MOUNT = {
   openQuestions: [
     {
       issue:
-        "No dimensioned drawing of the bayonet was found. Slot edges are scaled from one FX-3 flange photo (about +/-2 deg), with the 159MM repair manual Fig. 21 drawing as an undimensioned cross-check; the lens claws are drawn with the slot extents because their own spans were not measured. Searched: web and Google Patents for Yashica, Kyocera and Carl Zeiss bayonet or aperture-coupling patents (none found for the mount itself; JPS58100837A and JPS58216227A cover a multi-mode aperture ring and state no angles or dimensions), the Contax RTS, RTS II and 159MM and Yashica FR repair manuals, and the RTS and FR owner manuals.",
+        "No dimensioned drawing of the bayonet was found. Flange edges are scaled from one FX-3 flange photo (about +/-2 deg), with the 159MM repair manual Fig. 21 drawing as an undimensioned cross-check; the lens claws are drawn behind the flanges at the width of the gaps they enter through, an upper bound, because their own spans were not measured. Searched: web and Google Patents for Yashica, Kyocera and Carl Zeiss bayonet or aperture-coupling patents (none found for the mount itself; JPS58100837A and JPS58216227A cover a multi-mode aperture ring and state no angles or dimensions), the Contax RTS, RTS II and 159MM and Yashica FR repair manuals, and the RTS and FR owner manuals.",
       affectedFields: ["cameraSideFeatures", "lensSideFeatures"],
       candidateValues: [],
       resolution:
