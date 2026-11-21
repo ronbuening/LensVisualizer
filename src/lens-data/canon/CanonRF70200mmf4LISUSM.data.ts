@@ -10,10 +10,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║                                                                            ║
  * ║ Published infinity zoom states: 72.27 / 135.02 / 193.89 mm.             ║
  * ║ Zoom gaps: 5, 11, 14, 17, 22, 25, 29.                                   ║
- * ║ Focus status: NO_INTERNAL_RECONSTRUCTION. The patent gives focus         ║
- * ║ directions for L4 and L6 but no numerical close-focus spacing table;     ║
- * ║ therefore every authored var pair is infinity/infinity and focus motion  ║
- * ║ is not invented. Canon's 0.6 m MFD is retained only as product metadata. ║
+ * ║ Focus: infinity only. The patent gives focus directions for L4 and L6 but  ║
+ * ║ no numerical close-focus spacing table; therefore every focus pair is      ║
+ * ║ infinity/infinity and focus travel is not modeled. Canon's 0.6 m MFD is    ║
+ * ║ recorded only as product information.                                      ║
  * ║                                                                            ║
  * ║ Surface 6 of the patent is an optically neutral air-air plane associated ║
  * ║ with the probable flare-cutting diaphragm FP. It is omitted from the     ║
@@ -369,7 +369,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.6,
     description:
-      "NO_INTERNAL_RECONSTRUCTION: Example 1 publishes infinity zoom spacings and focus directions only. L4 focuses objectward and L6 imageward, but no numerical close-focus gap table is published; the data therefore models only the published infinity zoom states. Canon's 0.6 m MFD and dual Nano USM focus/floating mechanism are product metadata, not reconstructed spacings.",
+      "Infinity focus only. The patent's Example 1 gives infinity zoom spacings and focus directions only: L4 moves toward the object and L6 toward the image for close focus, but no close-focus spacings are published, so focus travel is not modeled; zoom movement is. Canon's 0.6 m minimum focus distance and dual Nano USM focus/floating mechanism are product information, not modeled spacings.",
   },
 
   /* (moved from var) ── Zoom-only variable air spacings; close-focus pairs intentionally equal ── */

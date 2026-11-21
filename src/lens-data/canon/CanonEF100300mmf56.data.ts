@@ -25,10 +25,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ source correction; the raw 1.43749 value is not an OCR correction.         ║
  * ║                                                                              ║
  * ║ Zoom-only variable gaps: D5, D10, D13 and the modeled rear BF (surface 25). ║
- * ║ All [infinity, close] pairs are identical because focus status is           ║
- * ║ NO_INTERNAL_RECONSTRUCTION. The patent says Group I is preferably moved    ║
- * ║ for focusing but publishes no close-focus spacing table. closeFocusM = 2 m ║
- * ║ is manufacturer metadata only and does not define an internal focus state. ║
+ * ║ All [infinity, close] pairs are identical because focus travel is not        ║
+ * ║ modeled. The patent says Group I is preferably moved for focusing but        ║
+ * ║ publishes no close-focus spacing table. closeFocusM = 2 m is Canon's product ║
+ * ║ figure only and does not define an internal focus state.                     ║
  * ║ The Group III path reverses between the 198 and 290 mm tabulated states.    ║
  * ║                                                                              ║
  * ║ Semi-diameters are not published. They were derived from exact spherical   ║
@@ -349,7 +349,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 2,
     description:
-      "NO_INTERNAL_RECONSTRUCTION: the patent states Group I is preferably used for focusing but publishes no close-focus spacing table. Internal geometry therefore remains at the published infinity zoom states; closeFocusM = 2.0 m is manufacturer metadata only.",
+      "Infinity focus only. The patent says Group I is preferably used for focusing but publishes no close-focus spacing table, so focus travel is not modeled; zoom movement is. Canon's 2.0 m minimum focus distance is product information.",
   },
 
   gaps: {

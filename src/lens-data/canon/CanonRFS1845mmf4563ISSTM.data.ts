@@ -215,7 +215,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.2,
     description:
-      "NO_INTERNAL_RECONSTRUCTION: JP 2021-86024 A Example 2 publishes only infinity-focus zoom spacings and states that B3 moves image-side toward close focus. Canon's 0.20 m AF MFD applies at 18 mm and is retained as product metadata; no finite-focus internal spacing is modeled.",
+      "Infinity focus only. JP 2021-86024 A Example 2 states that B3 moves toward the image for close focus but publishes only infinity-focus zoom spacings, so focus travel is not modeled; zoom movement is. Canon's 0.20 m autofocus minimum focus distance, at 18 mm, is product information.",
   },
 
   /* (moved from var) ── Published infinity-focus zoom spacings; no finite-focus reconstruction ── */

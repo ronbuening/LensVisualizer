@@ -212,11 +212,11 @@ The strongest source-backed chromatic statement concerns U11 and U13 rather than
 
 ## Focus Mechanism
 
-The focus model is `NO_INTERNAL_RECONSTRUCTION`. JP 2015-94867 A states that positive U12, surfaces 7-8, moves imageward to focus on nearer objects (¶0049). The numerical example publishes only infinity-focus prescriptions at 17, 51, and 119 mm; it does not give close-focus values for the air spaces on either side of U12.
+JP 2015-94867 A states that positive U12, surfaces 7-8, moves imageward to focus on nearer objects (¶0049). The numerical example publishes only infinity-focus prescriptions at 17, 51, and 119 mm; it does not give close-focus values for the air spaces on either side of U12. The model therefore shows the lens at infinity focus only: zoom movement is modeled, focus travel is not.
 
-Canon specifies a production minimum object distance of 0.85 m measured from the image sensor. That external observable does not uniquely determine U12's internal translation as a function of zoom. A pure translation of U12 at a fixed zoom position would increase the air space before it and reduce the air space after it by the same amount, but the magnitude of that movement is unknown. Accordingly, `closeFocusM: 0.85` is retained as product metadata only. The three authored variable gaps D18, D26, and D29 are zoom-only and use identical infinity/close entries; there is no synthetic finite-conjugate prescription.
+Canon specifies a production minimum object distance of 0.85 m measured from the image sensor. That outside figure does not uniquely determine U12's internal translation as a function of zoom. A pure translation of U12 at a fixed zoom position would increase the air space before it and reduce the air space after it by the same amount, but the magnitude of that movement is unknown. Accordingly, the 0.85 m close-focus figure is recorded as product information only. The three spacings D18, D26, and D29 change with zoom only and keep the same value at both ends of the focus control; there is no modeled close-focus prescription.
 
-This limitation means the model can describe the published infinity zoom architecture and the identity of the focusing group, but it does not support quantitative claims about close-focus internal travel, focus breathing, close-focus aberrations, or reproduction ratio from an internally reconstructed state.
+This limitation means the model can describe the published infinity zoom architecture and the identity of the focusing group, but it does not support quantitative claims about close-focus internal travel, focus breathing, close-focus aberrations, or reproduction ratio from a modeled close-focus state.
 
 ## Aspherical Surfaces
 

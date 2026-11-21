@@ -7,9 +7,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * is not present or dimensioned in this source table; no published source plate is removed. Zoom positions
  * are the patent design focal lengths; marketed focal lengths and apertures are kept in separate metadata fields.
  *
- * Focus status: NO_INTERNAL_RECONSTRUCTION. The patent publishes infinity focus only. L1 is identified as the
- * focusing unit, but no finite-distance spacing table is published. Canon's 2.0 m MFD is retained as product
- * metadata only; no internal focus motion is invented.
+ * Focus: infinity only, the one focus state the patent publishes. L1 is identified as the focusing unit, but
+ * no close-focus spacing table is published. Canon's 2.0 m MFD is recorded as product information only; focus
+ * travel is not modeled.
  * Zoom-only variable gaps: d8, d18, d25. Each var pair keeps infinity/close values identical at a given zoom
  * position.
  *
@@ -430,9 +430,9 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 2.0,
     description:
-      "NO_INTERNAL_RECONSTRUCTION: the patent publishes infinity focus only. L1 is the stated focusing unit, but no " +
-      "finite-distance spacing table is available; Canon's 2.0 m MFD is metadata only and focus does not alter this " +
-      "prescription.",
+      "Infinity focus only. The patent names L1 as the focusing unit but publishes no close-focus spacings, so " +
+      "focus travel is not modeled and the focus control does not change this prescription; zoom movement is " +
+      "modeled. Canon's 2.0 m minimum focus distance is product information.",
   },
 
   gaps: {

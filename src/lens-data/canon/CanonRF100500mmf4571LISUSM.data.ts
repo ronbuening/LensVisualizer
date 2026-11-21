@@ -410,9 +410,9 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.9,
     description:
-      "NO_INTERNAL_RECONSTRUCTION: the patent publishes infinity-focus zoom spacings only. " +
-      "For closer focus it states that L4 moves object-side and L6 image-side, " +
-      "but no finite-focus positions are authored.",
+      "Infinity focus only. The patent publishes infinity-focus zoom spacings only. " +
+      "For closer focus it states that L4 moves toward the object and L6 toward the image, " +
+      "but it gives no close-focus positions, so focus travel is not modeled; zoom movement is.",
   },
 
   /* (moved from var) Published infinity-focus zoom states only; no finite-focus reconstruction. */
