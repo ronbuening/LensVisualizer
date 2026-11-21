@@ -7,7 +7,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * as millimetres. Radii, thicknesses, air spaces, d-line indices and Abbe numbers
  * follow the printed table. Elements 5 and 6 are cemented at r10.
  * The iris splits the printed 20.02 mm central air space into 11.25 and 8.77 mm;
- * its position, derived opening and all clear semi-diameters are inferred.
+ * its position and derived opening are inferred. Clear semi-diameters follow
+ * Figure 2's relative rim heights, with the f/2 axial beam preserved. Element 3
+ * has a square 21 mm rim; the doublet and rear singlet retain larger clear
+ * radii than the schematic drawing to limit the loss of oblique illumination.
  * The image plane uses the calculated paraxial back focus of 55.44 mm.
  * The printed full field is 50 degrees. The Summicron family association does
  * not settle which numerical example entered production as the 5 cm f/2 lens.
@@ -161,14 +164,14 @@ const LENS_DATA = {
       label: "5",
       R: 34.36,
       d: 6.67,
-      sd: 24,
+      sd: 21,
       medium: 3,
     },
     {
       label: "6",
       R: 56.75,
       d: 0.39,
-      sd: 20,
+      sd: 21,
     },
     {
       label: "7",
@@ -192,34 +195,34 @@ const LENS_DATA = {
       label: "9",
       R: -34.28,
       d: 3.63,
-      sd: 19,
+      sd: 20,
       medium: 5,
     },
     {
       label: "10",
       R: 115.3,
       d: 8.78,
-      sd: 22,
+      sd: 20,
       medium: 6,
     },
     {
       label: "11",
       R: -54.16,
       d: 1.96,
-      sd: 22,
+      sd: 20,
     },
     {
       label: "12",
       R: 268.86,
       d: 6.08,
-      sd: 23,
+      sd: 22.4,
       medium: 7,
     },
     {
       label: "13",
       R: -106.21,
       d: 55.440549,
-      sd: 23,
+      sd: 22.4,
     },
   ],
   aperture: {

@@ -58,7 +58,7 @@ The diaphragm position is inferred within the printed 20.02 mm central space: 11
 
 At nominal f/2 the paraxial stop radius is 15.468 mm. Finite rays give an entrance-equivalent aperture of about f/2.01 and an image-space sine equivalent of f/2.00. A finite marginal ray corresponding to f/2 would require a stop radius of about 15.532 mm. The f/2–f/22 stop sequence is illustrative; the patent prints no aperture ladder.
 
-All clear semi-diameters are estimates: r1–r13 use 28, 27, 27, 25, 24, 20, 20, 19, 19, 22, 22, 23 and 23 mm. The smallest common-radius glass thickness is 1.99 mm. The front 0.54 mm air space leaves 0.38 mm at the shared 27 mm radius; the 0.39 mm space leaves 0.23 mm at 20 mm; the central gap leaves 4.73 mm at 19 mm. The stop plane clears the r8 and r9 rims by approximately 1.71 and 3.02 mm. These are estimated optical rims; barrel dimensions are unknown.
+All clear semi-diameters are estimates: r1–r13 use 28, 27, 27, 25, 21, 21, 20, 19, 20, 20, 20, 22.4 and 22.4 mm. Figure 2 is schematic: its thicknesses and air spaces do not share a consistent scale. Its relative rim heights support the square edge of Element 3 and the common doublet rim. Element 3 clears the f/2 axial ray at r5 by about 0.08 mm. The doublet and rear singlet remain larger than the drawn proportions to preserve oblique illumination. Wide-open geometric transmission is 100% on axis, 69.2% at 16.7°, 53.6% at 19.4° and 16.4% at 25°. The smallest common-radius glass thickness is 2.76 mm. The front 0.54 mm air space leaves 0.38 mm at 27 mm radius; the 0.39 mm space leaves 0.23 mm at 20 mm; the central gap leaves 4.73 mm at 19 mm. The stop plane clears the r8 and r9 rims by approximately 1.71 and 2.33 mm. No flat lands are inferred. Barrel dimensions remain unknown.
 
 ## First-Order Properties and Stated Field
 
@@ -66,7 +66,7 @@ The calculated EFL is 99.96 mm against the printed f = 100, a difference of −0
 
 The printed Seidel P (image curvature) and A (spherical aberration) columns reproduce surface by surface. At the patent's normalization, the calculated P sum is 0.1997 against the printed 0.1995; every A entry agrees within 0.0006. This independently supports the printed radii, indices and spacings.
 
-The modeled field follows the printed 50.0° full angle, or ±25.0°. At 25.0° the real chief ray reaches an image semi-height of 45.97 mm, giving an inferred image-circle diameter of 91.94 mm at this model's dimensions. The geometry permits chief rays to approximately 27.0°. The iris sets the axial aperture, and the 25.0° chief ray reaches the image. The rear elements vignette the oblique bundle, and one marginal extreme is unresolved. Field reach alone does not establish complete pupil illumination or measured production performance.
+The modeled field follows the printed 50.0° full angle, or ±25.0°. At 25.0° the real chief ray reaches an image semi-height of 45.97 mm, giving an inferred image-circle diameter of 91.94 mm at this model's dimensions. The geometry permits chief rays to approximately 26.6°. The iris sets the axial aperture, and the 25.0° chief ray reaches the image. The rear elements vignette the oblique bundle, and one marginal extreme is unresolved. Field reach alone does not establish complete pupil illumination or measured production performance.
 
 ## Historical and Commercial Context
 
