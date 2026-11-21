@@ -3,7 +3,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
 /**
  * US 2,341,385 A, sole example: five spherical elements in four groups, in millimetres.
  * The table prints f = 100 mm, f/3.5 and sodium D-line indices, retained here.
- * The stop position and lens rims are inferred from the drawing; the iris follows f/3.5.
+ * The stop position is inferred from the drawing; the iris follows f/3.5.
+ * Lens rims are estimated from the drawing on PDF page 1 and clear the axial beam.
+ * R2 and R6 follow the bevelled curve ends; no flat lands are inferred.
  * The image plane uses the calculated paraxial back focus of 101.53 mm rather than
  * the printed 101.7 mm, a difference consistent with table rounding; EFL is 100.08 mm.
  * The rear three components compute to 67.95 mm against the text's unexplained 67.6 mm.
@@ -126,7 +128,7 @@ const LENS_DATA = {
       label: "2",
       R: 31.6,
       d: 10.6,
-      sd: 27,
+      sd: 23.6,
     },
     {
       label: "3",
@@ -157,7 +159,7 @@ const LENS_DATA = {
       label: "6",
       R: 46.1,
       d: 9.7,
-      sd: 22,
+      sd: 19.7,
     },
     {
       label: "7",
