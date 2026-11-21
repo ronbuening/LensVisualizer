@@ -32,7 +32,7 @@ Headline dimensions (flange focal distance, throat, mechanism) are sourced; fine
 | [`fujifilm-g`](#fujifilm-g--fujifilm-g) | bayonet | 26.7 mm | 65 mm | `mvp_complete` | 1 |
 | [`fujifilm-x`](#fujifilm-x--fujifilm-x) | bayonet | 17.7 mm | 44 mm | `mvp_complete` | 1 |
 | [`hasselblad-h`](#hasselblad-h--hasselblad-h) | bayonet | 61.63 mm | 67.5 mm | `renderable` | 1 |
-| [`hasselblad-v`](#hasselblad-v--hasselblad-v) | bayonet | 74.9 mm | 69 mm | `renderable` | 1 |
+| [`hasselblad-v`](#hasselblad-v--hasselblad-v) | bayonet | 74.9 mm | 69 mm | `renderable` | 2 |
 | [`hasselblad-xcd`](#hasselblad-xcd--hasselblad-xcd) | bayonet | 18.14 mm | 61 mm | `renderable` | 1 |
 | [`l-mount`](#l-mount--l-mount) | bayonet | 20 mm | 51.6 mm | `mvp_complete` | 1 |
 | [`leica-ltm`](#leica-ltm--leica-ltm-m39) | threaded | 28.8 mm | 39 mm | `mvp_complete` | 1 |
@@ -1960,13 +1960,14 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 | Mount mechanism | `bayonet` (lock `sprung_detent`) |
 | Base profile | `hasselblad-v/base` |
 | Selected MVP profile | `hasselblad-v/base` |
-| Variant strategy | `base_only` |
+| Variant strategy | `variant_profiles_defined` |
 
 #### Base and variant profile matrix
 
 | Profile ID | Type | Applies to | Adds | Removes | Changes |
 |---|---|---|---|---|---|
-| `hasselblad-v/base` | base | Hasselblad V-system 500/200-series lenses and bodies | medium-format bayonet interface; lens shutter synchronization/cocking couplings | electrical contacts in the classic mechanical interface | early Hasselblad-related patent is treated as related lineage, not a complete V mount drawing |
+| `hasselblad-v/base` | base | Hasselblad 500-series, 2000-series and 200-series bodies with C, CF, CB, CFi, F and other V lenses, 1957 onward; not the 1600F / 1000F mount | four body retaining flanges; mounting index at 12 o'clock; rotation stop pin; lens release button; body drive shaft key and lens drive coupling | electrical contacts | F lenses have no leaf shutter but keep the same bayonet and drive coupling, so they need no profile of their own |
+| `hasselblad-v/databus` | variant | FE lenses on 200-series bodies such as the 203FE; CFE lenses carry the same data-bus connections for the 200 series | four data-bus contact pins in the lens bayonet plate and matching body contacts | — | the lens reports its aperture setting to the body metering system |
 
 #### Dimensional summary
 
@@ -1975,62 +1976,77 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 | Flange focal distance | 74.9 (`secondary`) | mm |
 | Nominal throat diameter | 69 (`secondary`) | mm |
 | Effective clear aperture | 69 (`secondary`) | mm |
-| Camera mount outer diameter | 78 (`patent`) | mm |
-| Lens mount outer diameter | 76 (`patent`) | mm |
+| Camera mount outer diameter | 75.5 (`photo_scaled`) | mm |
+| Lens mount outer diameter | 74.4 (`photo_scaled`) | mm |
 | Contact count | not_applicable (`not_applicable`) | count |
-| Lock rotation | 60 (`patent`) | deg |
-| Lock direction | clockwise (`patent`) | — |
+| Lock rotation | 72 (`official`) | deg |
+| Lock direction | clockwise (`official`) | — |
 
 #### Figures (selected profile `hasselblad-v/base`)
 
-**Camera-side front view** — viewBox `-48 -50 96 98` · 38 elements in 4 layers · hash `504b4407` ([standalone SVG](mounts/hasselblad-v-camera-front.svg))
+**Camera-side front view** — viewBox `-46 -48 92 94` · 42 elements in 4 layers · hash `e7a492e5` ([standalone SVG](mounts/hasselblad-v-camera-front.svg))
 
-**Lens-side rear view** — viewBox `-47 -49 94 96` · 32 elements in 4 layers · hash `a7aae316` ([standalone SVG](mounts/hasselblad-v-lens-rear.svg))
+**Lens-side rear view** — viewBox `-45 -48 90 93` · 29 elements in 4 layers · hash `55468876` ([standalone SVG](mounts/hasselblad-v-lens-rear.svg))
 
-**Axial / register schematic** — viewBox `-84 -52 94 100` · 12 elements in 2 layers · hash `4f515194` ([standalone SVG](mounts/hasselblad-v-axial.svg))
+**Axial / register schematic** — viewBox `-84 -52 93 100` · 12 elements in 2 layers · hash `6e04e375` ([standalone SVG](mounts/hasselblad-v-axial.svg))
 
 #### Camera-side front-view geometry
 
 | Feature ID | Type | Profile | Center | Start | End | Inner r | Outer r |
 |---|---|---|---|---|---|---|---|
 | `body-throat` | body_throat | `hasselblad-v/base` | 0° | 0° | 360° | 0 | 34.5 |
-| `body-mount-ring` | mount_ring | `hasselblad-v/base` | 0° | 0° | 360° | 34.5 | 39 |
-| `body-slot-1` | bayonet_receiving_slot | `hasselblad-v/base` | 0° | 343° | 17° | 34.5 | 37 |
-| `body-slot-2` | bayonet_receiving_slot | `hasselblad-v/base` | 120° | 103° | 137° | 34.5 | 37 |
-| `body-slot-3` | bayonet_receiving_slot | `hasselblad-v/base` | 240° | 223° | 257° | 34.5 | 37 |
-| `body-index-mark` | index_mark | `hasselblad-v/base` | 0° | unknown | unknown | unknown | 39.5 |
-| `body-lock-pin` | lock_pin | `hasselblad-v/base` | 270° | unknown | unknown | unknown | 35.5 |
+| `body-mount-ring` | mount_ring | `hasselblad-v/base` | 0° | 0° | 360° | 34.5 | 37.8 |
+| `body-slot-1` | bayonet_receiving_slot | `hasselblad-v/base` | 1.5° | 329° | 34° | 34.5 | 36.3 |
+| `body-slot-2` | bayonet_receiving_slot | `hasselblad-v/base` | 90.5° | 60° | 121° | 34.5 | 36.3 |
+| `body-slot-3` | bayonet_receiving_slot | `hasselblad-v/base` | 181.5° | 151° | 212° | 34.5 | 36.3 |
+| `body-slot-4` | bayonet_receiving_slot | `hasselblad-v/base` | 270° | 240° | 300° | 34.5 | 36.3 |
+| `body-index-mark` | index_mark | `hasselblad-v/base` | 0° | 0° | 0° | 33.6 | 33.6 |
+| `body-stop-pin` | alignment_pin | `hasselblad-v/base` | 153° | 153° | 153° | 34.8 | 34.8 |
+| `body-release-button` | lens_release_button | `hasselblad-v/base` | 135° | unknown | unknown | unknown | 47 |
 
 #### Lens-side rear-view geometry
 
 | Feature ID | Type | Profile | Center | Start | End | Inner r | Outer r |
 |---|---|---|---|---|---|---|---|
-| `lens-throat` | lens_throat | `hasselblad-v/base` | 0° | 0° | 360° | 0 | 33.5 |
-| `lens-mount-ring` | lens_mount_ring | `hasselblad-v/base` | 0° | 0° | 360° | 33.5 | 38 |
-| `lens-lug-1` | bayonet_lug | `hasselblad-v/base` | 0° | 343° | 17° | 34.5 | 37 |
-| `lens-lug-2` | bayonet_lug | `hasselblad-v/base` | 120° | 103° | 137° | 34.5 | 37 |
-| `lens-lug-3` | bayonet_lug | `hasselblad-v/base` | 240° | 223° | 257° | 34.5 | 37 |
-| `lens-index-mark` | index_mark | `hasselblad-v/base` | 0° | unknown | unknown | unknown | 38.5 |
-| `lens-lock-notch` | lock_notch | `hasselblad-v/base` | 270° | unknown | unknown | unknown | 35.5 |
+| `lens-throat` | lens_throat | `hasselblad-v/base` | 0° | 0° | 360° | 0 | 34.3 |
+| `lens-mount-ring` | lens_mount_ring | `hasselblad-v/base` | 0° | 0° | 360° | 34.3 | 37.2 |
+| `lens-lug-1` | bayonet_lug | `hasselblad-v/base` | 1.5° | 329° | 34° | 34.3 | 36.1 |
+| `lens-lug-2` | bayonet_lug | `hasselblad-v/base` | 90.5° | 60° | 121° | 34.3 | 36.1 |
+| `lens-lug-3` | bayonet_lug | `hasselblad-v/base` | 181.5° | 151° | 212° | 34.3 | 36.1 |
+| `lens-lug-4` | bayonet_lug | `hasselblad-v/base` | 270° | 240° | 300° | 34.3 | 36.1 |
+| `lens-index-mark` | index_mark | `hasselblad-v/base` | 0° | unknown | unknown | unknown | unknown |
+
+#### Electrical contacts
+
+| Side | No. | Profile | Center angle | Radius | Function |
+|---|---|---|---|---|---|
+| body | 1 | `hasselblad-v/databus` | 97° | 33.3 | data-bus line (signal assignment not published) |
+| body | 2 | `hasselblad-v/databus` | 104° | 33.3 | data-bus line (signal assignment not published) |
+| body | 3 | `hasselblad-v/databus` | 111° | 33.3 | data-bus line (signal assignment not published) |
+| body | 4 | `hasselblad-v/databus` | 118° | 33.3 | data-bus line (signal assignment not published) |
+| lens | 1 | `hasselblad-v/databus` | 97° | 33.3 | data-bus line (signal assignment not published) |
+| lens | 2 | `hasselblad-v/databus` | 104° | 33.3 | data-bus line (signal assignment not published) |
+| lens | 3 | `hasselblad-v/databus` | 111° | 33.3 | data-bus line (signal assignment not published) |
+| lens | 4 | `hasselblad-v/databus` | 118° | 33.3 | data-bus line (signal assignment not published) |
 
 #### Mechanical couplings
 
 | Feature | Side | Profile | Function |
 |---|---|---|---|
-| `leaf-shutter-cocking-coupler` | both | `hasselblad-v/base` | coordinates the lens leaf shutter with the body |
-| `aperture-shutter-release-coupler` | both | `hasselblad-v/base` | body-to-lens shutter/aperture release coordination |
+| `lens-drive-shaft` | both | `hasselblad-v/base` | winding turns the key to cock the lens shutter and open it for viewing; on release the key turns back to close the shutter, stop the lens down and fire it |
+| `drive-shaft-index-dot` | body | `hasselblad-v/base` | the key slot points at this dot when the body is cocked |
 
 #### Axial stack
 
 | Plane | z (mm) | Diameter (mm) |
 |---|---|---|
-| `flange_datum` | 0 | 78 |
-| `bayonet_lug_engagement` | 1.2 | 72 |
+| `flange_datum` | 0 | 75.5 |
+| `body_rear_plate` | -71.4 | unknown |
 | `sensor_film_plane` | -74.9 | 79.2 |
 
 #### Machine-readable mount block
 
-Summarized, not embedded: the block is emitted by construction from `src/mounts/hasselblad-v.mount.ts` (28599 bytes, content hash `853c6244`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
+Summarized, not embedded: the block is emitted by construction from `src/mounts/hasselblad-v.mount.ts` (51000 bytes, content hash `be895431`). Read the typed source for the diffable geometry, or regenerate the full JSON with `emitMountJsonString`.
 
 #### Sources
 
@@ -2038,11 +2054,23 @@ Summarized, not embedded: the block is emitted by construction from `src/mounts/
 |---|---|---|---|---|---|
 | `hv-1` | secondary | “Flange focal distance,” Wikipedia. Accessed 2026-06-06. | [snapshot](http://web.archive.org/web/20260526152456/https://en.wikipedia.org/wiki/Flange_focal_distance) | 2026-05-26 | medium |
 | `hv-2` | secondary | Film and Digital Times / IB/E Optics mount chart. Accessed 2026-06-06. | [snapshot](https://www.fdtimes.com/wp-content/uploads/2017/05/81-82-FDTimes-IBE-Optics-Update.pdf) | 2026-06-06 | medium |
-| `hv-p1` | patent | US2526433A, early Hasselblad-related lens-mount/focusing patent. Accessed 2026-06-06. | [snapshot](https://patents.google.com/patent/US2526433A/en) | 2026-06-06 | low |
+| `hv-3` | service_manual | Victor Hasselblad AB, Service Manual, Camera body 503CW (with 501C, 503CXi, 503CX, 500C/M and 501CM sections), October 1996, revised to January 2001: p. 4:6 (PDF p. 18); p. 5:1 Fig. 29 (PDF p. 19); pp. 5:2 and 5:3 (PDF pp. 20 and 21); p. 6:1 Figs. 55 and 56 (PDF p. 32); section 11 exploded view and parts list (PDF pp. 44 and 45). Accessed 2026-11-21. | [snapshot](https://www.scribd.com/document/496560651/Hasselblad-500-503-Sm-En) | 2026-11-21 | medium |
+| `hv-4` | official | Victor Hasselblad AB, Hasselblad 503cx / 500C/M Instruction Manual: p. 6 (drive shaft and lens drive coupling illustration), p. 7 (attaching and removing the lens), p. 32 (Camera Body Dimensions). Accessed 2026-11-21. | [snapshot](https://www.cameramanuals.org/hasselblad/hasselblad_503cx.pdf) | 2026-11-21 | medium |
+| `hv-5` | official | Victor Hasselblad AB, Hasselblad 500C Instructions for Use, “Changing lenses” and “Shutter setting”: p. 21 with Figs. 20 and 21 in the later printing, p. 15 with Figs. 16 and 17 in the earlier printing. Accessed 2026-11-21. | [snapshot](https://www.cameramanuals.org/hasselblad/hasselblad_500c.pdf) | 2026-11-21 | high |
+| `hv-6` | official | Victor Hasselblad AB, Hasselblad 203FE Instruction Manual: p. 5 (Parts and Components, items 62 to 65), p. 30 (FE Lenses), p. 79 (troubleshooting) and the Lens Mount line of the specifications. Accessed 2026-11-21. | [snapshot](https://www.cameramanuals.org/hasselblad/hasselblad_203fe.pdf) | 2026-11-21 | low |
+| `hv-7` | official | Victor Hasselblad AB, Hasselblad CFi, CFE Lenses Instruction Manual: parts list item 8 and the closing description. Accessed 2026-11-21. | [snapshot](https://www.cameramanuals.org/hasselblad/hasselblad_cfi_cfe_lenses.pdf) | 2026-11-21 | high |
+| `hv-p1` | patent | A. P. Svensson, assignor to F. V. Hasselblad, US2526433A, “Mount for camera lenses” (Swedish priority 1944). Accessed 2026-06-06. | [snapshot](https://patents.google.com/patent/US2526433A/en) | 2026-06-06 | low |
+| `hv-p2` | patent | B. H. Hedén, assignor to F. V. Hasselblad, US2992602A, “Mirror reflex cameras” (Swedish priority 1957): col. 2, about lines 40 to 50, col. 3, about lines 35 to 47, and Figs. 6 to 12. Accessed 2026-11-21. | [snapshot](https://patentimages.storage.googleapis.com/dc/6c/c2/acd86cc4baf922/US2992602.pdf) | 2026-11-21 | high |
+| `hv-p3` | patent | A. I. Alfredsson, assignor to F. V. Hasselblad, US3715965A, “Preset diaphragm for interchangeable lenses of single-lens mirror reflex cameras” (Swedish priority 1970). Accessed 2026-11-21. | [snapshot](https://patentimages.storage.googleapis.com/6c/96/ea/4aa2458019574d/US3715965.pdf) | 2026-11-21 | medium |
 
 #### Open questions
 
-- Bayonet lug count/spans and the V-system leaf-shutter coupling positions are not confirmed from a dimensioned source; current values are renderable placeholders. _(Upgrade from Hasselblad service drawings or measured V-system body/lens samples.)_
+- The flange edges that bound the receiving slots, the ring radii, index dot and release button are scaled from a small dimensioned drawing in the owner manual (about 0.5 deg and 0.3 mm per pixel; the four stated dimensions on that page give scales that differ by up to 1.5 percent). The flange centres read 47, 136, 226 and 314.5 deg, which may be a nominal 45, 135, 225 and 315, so the slot centres of 1.5, 90.5, 181.5 and 270 deg may be a nominal 0, 90, 180 and 270. The flanges themselves are not drawn: the renderer would fill them like the slots and the ring would read as unbroken. Flange thickness is not given anywhere. _(Replace with a dimensioned Hasselblad front-plate drawing (front bayonet plate 40403) or a measured body.)_
+- The lens lugs are drawn with the span of the body opening they pass through, which is only an upper bound. The one lens drawing used (503cx manual p. 6) shows a 36 deg opening in the lens flange from 149 to 185 deg in the mounted position, between long lug arcs; read that way the lens could turn only about 28 to 34 deg, not the 72 deg the 500C manual states. The lug count, lengths and the reason for the single starting point are therefore unresolved. _(Measure a V lens rear or find a Carl Zeiss C / CF lens service drawing of the bayonet plate (the CB / CFE / CFi lens service manual was not reachable).)_
+- The point where lens catch lever 103440 engages the lens is not shown in the sources used, so no lock pin or lock notch is drawn; only the release button and the stop pin are placed. The stop pin is identified from the exploded-view leader, not from text. _(Read the lens catch position from a front-plate drawing or a photo taken square to the mount with the lens removed.)_
+- Drive key and stop pin radii rest on service manual Fig. 29 scaled to the 69 mm throat; the owner-manual front view scales the key to 27.4 mm instead of 26.4 mm. The four upper flange screws are not placed. The lens-side radii are scaled through that same key radius. _(Upgrade from a dimensioned front gear / front plate drawing or a measured body and lens.)_
+- Data-bus variant: the count of four is stated by Hasselblad, but the contact angles and pitch radius come from one perspective figure and are good to about 15 deg; contact size, protrusion and signal assignment are unknown, and no body-side view of the contacts was found. _(Read the contact positions from the 203FE / 205 service manual front-plate pages or a measured FE lens and 200-series body.)_
+- The 74.9 mm register is still a secondary value. The factory gauges give 71.40 mm from the front bayonet to the body rear plate; the film magazine manual's 3.55 mm picture-frame distance would make 74.95 mm, but that manual has no second copy to cite. _(Cite a Hasselblad or Carl Zeiss statement of the flange focal distance.)_
 
 ### `hasselblad-xcd` — Hasselblad XCD
 
