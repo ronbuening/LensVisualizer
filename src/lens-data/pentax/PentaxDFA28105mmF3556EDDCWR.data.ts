@@ -53,7 +53,7 @@ const LENS_DATA = {
   key: "pentax-dfa-28-105-f3556-ed-dc-wr",
   maker: "Pentax",
   name: "PENTAX HD D FA 28-105mm f/3.5-5.6 ED DC WR",
-  subtitle: "US 2017/0068075 A1 — Numerical Embodiment 2; production correlation inferred",
+  subtitle: "US 2017/0068075 A1 — Numerical Embodiment 2; inferred production match",
 
   catalog: {
     lensMounts: ["pentax-k"],

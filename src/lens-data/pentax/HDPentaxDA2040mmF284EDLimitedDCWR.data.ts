@@ -42,7 +42,7 @@ const LENS_DATA = {
   key: "pentax-hd-da-20-40-f28-4-limited",
   maker: "Pentax",
   name: "PENTAX HD DA 20-40mm f/2.8-4 ED Limited DC WR",
-  subtitle: "JP 2015-11156 A — Numerical Example 1; production correlation inferred",
+  subtitle: "JP 2015-11156 A — Numerical Example 1; inferred production match",
 
   catalog: {
     lensMounts: ["pentax-k"],

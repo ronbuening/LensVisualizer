@@ -45,7 +45,7 @@ const LENS_DATA = {
   key: "pentax-da-17-70mm-f4-al-if-sdm",
   maker: "Pentax",
   name: "PENTAX SMC DA 17-70mm f/4 AL [IF] SDM",
-  subtitle: "US 7,804,652 B2 EMBODIMENT 4 — STRONG PRODUCTION CORRELATION",
+  subtitle: "US 7,804,652 B2 EMBODIMENT 4 — STRONG PRODUCTION MATCH",
 
   catalog: {
     lensMounts: ["pentax-k"],

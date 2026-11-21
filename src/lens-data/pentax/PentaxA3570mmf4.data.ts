@@ -94,7 +94,7 @@ const LENS_DATA = {
   key: "pentax-a-35-70f4",
   maker: "Pentax",
   name: "PENTAX SMC A ZOOM 35-70mm f/4",
-  subtitle: "US 4,812,022 Example 3 — patent-scale 36-68.5mm f/4.1; production correlation to 35-70mm f/4",
+  subtitle: "US 4,812,022 Example 3 — patent-scale 36-68.5mm f/4.1; production match to 35-70mm f/4",
 
   catalog: {
     lensMounts: ["pentax-k"],
