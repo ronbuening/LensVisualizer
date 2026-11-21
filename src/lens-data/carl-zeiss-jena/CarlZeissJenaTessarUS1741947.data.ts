@@ -5,8 +5,11 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * with nominal f = 100 mm, f/3.5 and a 55° full field. Radii, axial spacings,
  * D-line indices, Abbe numbers and the 4.42/2.29 mm stop spacing are printed.
  * The typed table gives element III's Abbe number as 51.4; the drawing gives 51.
- * Clear semi-diameters are estimated, the iris diameter is derived from the
- * paraxial aperture, and the image plane is the computed infinity paraxial plane.
+ * Clear semi-diameters are inferred from the sole drawing on PDF page 1 and
+ * checked against the f/3.5 axial beam. Front and rear rims exceed the drawing
+ * to keep field illumination within three percentage points of the earlier rims.
+ * The iris diameter is derived from the paraxial aperture, and the image plane
+ * is the computed infinity paraxial plane.
  */
 const LENS_DATA = {
   schema: 2,
@@ -104,7 +107,7 @@ const LENS_DATA = {
       label: "1",
       R: 32.08,
       d: 4.63,
-      sd: 16.2,
+      sd: 15.8,
       medium: 1,
     },
     {
@@ -117,14 +120,14 @@ const LENS_DATA = {
       label: "3",
       R: -71.13,
       d: 3.73,
-      sd: 16,
+      sd: 13.7,
       medium: 2,
     },
     {
       label: "4",
       R: 28.85,
       d: 4.42,
-      sd: 15.2,
+      sd: 13.7,
     },
     {
       label: "STO",
@@ -135,21 +138,21 @@ const LENS_DATA = {
       label: "5",
       R: "flat",
       d: 1.5,
-      sd: 15.2,
+      sd: 13.7,
       medium: 3,
     },
     {
       label: "6",
       R: 28.5,
       d: 8,
-      sd: 15.7,
+      sd: 15.5,
       medium: 4,
     },
     {
       label: "7",
       R: -47.22,
       d: 85.2844,
-      sd: 16.5,
+      sd: 15.5,
     },
   ],
   focus: {

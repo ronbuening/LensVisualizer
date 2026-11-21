@@ -30,25 +30,25 @@ The printed diaphragm station is 4.42 mm behind R4 and 2.29 mm ahead of R5. Its 
 
 nD = 1.60717, νD = 59.5. Glass: K-SK7 (Sumita), a catalogue match to the printed coordinates; historical supplier unknown. Standalone focal length in air: +52.84 mm.
 
-The +32.08 mm front surface and flat rear surface provide the front group's positive power. Its estimated clear semi-diameters are 16.2 and 15.8 mm.
+The +32.08 mm front surface and flat rear surface provide the front group's positive power. Both estimated clear semi-diameters are 15.8 mm, giving a square-cut rim.
 
 ### II / Element 2 — Biconcave Negative
 
 nD = 1.57596, νD = 41.3. Glass: FL57 (Hoya), a catalogue match to the printed coordinates; historical supplier unknown. Standalone focal length in air: −35.16 mm.
 
-The −71.13 and +28.85 mm surfaces supply negative power between the converging front and rear groups. The centre thickness is 3.73 mm; clear semi-diameters of 16.0 and 15.2 mm are estimated.
+The −71.13 and +28.85 mm surfaces supply negative power between the converging front and rear groups. The centre thickness is 3.73 mm; both estimated clear semi-diameters are 13.7 mm.
 
 ### III / Element 3 — Plano-Concave Negative
 
 nD = 1.52648, νD = 51.4. Glass: Unmatched. Standalone focal length in air: −54.13 mm.
 
-The flat front surface is 2.29 mm behind the diaphragm. This 1.50 mm thick negative element is cemented to IV at R6, whose radius is +28.50 mm. The typed table prints ν = 51.4, while the drawing prints 51; the model retains the typed value. Estimated clear semi-diameters are 15.2 and 15.7 mm.
+The flat front surface is 2.29 mm behind the diaphragm. This 1.50 mm thick negative element is cemented to IV at R6, whose radius is +28.50 mm. The typed table prints ν = 51.4, while the drawing prints 51; the model retains the typed value. Estimated clear semi-diameters are 13.7 and 15.5 mm.
 
 ### IV / Element 4 — Biconvex Positive
 
 nD = 1.62377, νD = 56.9. Glass: Unmatched. Standalone focal length in air: +29.70 mm.
 
-The shared +28.50 mm cemented interface and −47.22 mm rear surface provide positive power. Its centre thickness is 8.00 mm and its rear clear semi-diameter is estimated at 16.5 mm. The cemented III–IV group has a net positive focal length of +60.97 mm.
+The shared +28.50 mm cemented interface and −47.22 mm rear surface provide positive power. Its centre thickness is 8.00 mm and both clear semi-diameters are estimated at 15.5 mm, giving a square-cut rear rim. The cemented III–IV group has a net positive focal length of +60.97 mm.
 
 ## Glass Identification and Spectral Scope
 
@@ -73,7 +73,7 @@ The patent specifies the diaphragm's position but not its diameter. The paraxial
 
 The patent's stated full field of 55.0° gives a 27.5° half-field. Its real chief ray reaches an image height of 51.64 mm at the paraxial image plane, giving an approximately 103.28 mm image circle. This diameter is derived from the stated field, rather than a published film format. Chief rays clear the estimated rims through 27.5°, while peripheral pupil rays are vignetted; chief-ray coverage does not imply full-pupil illumination.
 
-Every clear semi-diameter is inferred. The drawing suggests roughly 13.7 mm outer rims, with chamfers near R4 and R5. The model's larger 15.2–16.5 mm rims differ visibly: element I has an edge about 0.24 mm thick, and IV ends in a pointed rim. The drawing's front rim would also be too small for the nominal f/3.5 axial beam. These differences remain unresolved.
+Every clear semi-diameter is inferred from the sole drawing on PDF page 1 and checked against the nominal f/3.5 axial beam. The drawing supports roughly 13.7 mm outer rims, with undimensioned chamfers near R4 and R5. R3–R5 use 13.7 mm; R1/R2 use 15.8 mm and R6/R7 use 15.5 mm to preserve peripheral illumination. The front singlet and rear positive element have square-cut rims. The drawn front rim is smaller than the nominal axial beam's 14.29 mm radius. Wide-open geometric pupil transmission is approximately 91.0% at 16.5°, 80.7% at 22.0° and 64.7% at 27.5°; these figures exclude absorption and obliquity falloff.
 
 ## Patent Conditions and Model Limits
 
