@@ -18,3 +18,8 @@ clear rim. No strong evidence supports changing these estimates.
 No verified legacy PK50 coefficient source was recovered from the current SCHOTT material or refractiveindex.info
 catalog index. The already validated J-PKH1 curve is used within existing coordinate tolerances, without adding
 an unsupported PK50 alias or fabricating a catalog row.
+
+## 2026-11-20 — Public wording
+
+Rewrote the focus caption, subtitle and analysis focus section in plain language; the internal focus-status code no
+longer appears in public text. No optical data, rim or focus value changed.

@@ -15,7 +15,7 @@ Swiss Patent CH 479 879 describes a four-element photographic objective intended
 The patent table itself remains the prescription authority for radii, spacings, refractive indices, and Abbe values.
 [Swiss Patent CH 479 879, p. 1; Example table on p. 2.]
 
-The identification with the production S-Travenar 135mm f/2.8 is a research correlation rather than a manufacturer-
+The identification with the production S-Travenar 135mm f/2.8 rests on research rather than a manufacturer-
 confirmed patent attribution. The main converging evidence is:
 
 1. The patent text specifies a preferred 13.5 cm focal length, 1:2.8 opening ratio, and 24×36 mm coverage.
@@ -136,14 +136,13 @@ more specific chromatic design intent than those verified facts support.
 
 ## Focus Mechanism
 
-The patent publishes one optical prescription and no finite-object focus state, variable-spacing table, minimum focus
-distance, or mechanism-constrained internal motion. The model therefore uses `NO_INTERNAL_RECONSTRUCTION`: `var` is empty
-and no internal group motion is synthesized.
+The patent publishes one optical prescription. It gives no close-focus state, no table of variable spacings, no minimum
+focus distance and no description of how the lens focuses. The model therefore shows the lens at infinity only and moves
+no group.
 
-The cited Schacht product-program literature identifies the S-Travenar 2.8/135 and its preset diaphragm but does not give
-an authoritative exact-product minimum focus distance in the material used for this dossier. The required `closeFocusM` field therefore uses the static-model infinity sentinel `1e15`,
-which is not a production minimum-focus-distance claim and supplies no focus motion. The analysis consequently makes no claim that production focusing was unit, inner, rear, or
-floating focus.
+The cited Schacht product literature names the S-Travenar 2.8/135 and its preset diaphragm but gives no reliable minimum
+focus distance. The focus control is therefore held at infinity, and the value stored for it is not a product minimum
+focus distance. This analysis makes no claim about whether the production lens used unit, inner, rear or floating focus.
 
 ## Verification Summary
 
@@ -158,18 +157,18 @@ The modeled stop produces an entrance-pupil semi-diameter of 24.109260 mm and a 
 does not independently recover the undocumented physical diaphragm diameter.
 
 Surface-by-surface Petzval summation using `φ/(n·n′)` gives +0.0014161261 mm⁻¹ for the implemented scale, corresponding
-to a signed reciprocal radius of +706.151805 mm under the verifier's convention. The stop plane is optically neutral and
+to a signed reciprocal radius of +706.151805 mm. The stop plane is optically neutral and
 contributes zero to this sum.
 
 The patent does not publish clear apertures. All surface semi-diameters in the model are therefore inferred geometry.
-Portable checks on those modeled apertures give a minimum positive element edge thickness of 0.398539 mm, a maximum
+Checks on those modeled apertures give a minimum positive element edge thickness of 0.398539 mm, a maximum
 spherical rim-slope angle of 47.655° at surface 6, and a tightest positive shared-gap sag-intrusion ratio of 0.875695 at
 the r4–r5 air gap, below the modeled 0.90 gap limit. A denser independent meridional launch sweep using 8,001
 incident-height samples shows that all 4,747 on-axis stop-passing samples clear the authored apertures. At 60% of the
 24×36 diagonal half-field, 4,651 of 4,744 stop-passing samples clear; at the full 9.103274° diagonal half-field, 4,339
 of 4,436 clear; and at the patent’s approximate 10° half-field, 4,259 of 4,357 clear. All authored-aperture clips in
-these off-axis sweeps occur at L1, defining a narrow modeled mechanical-vignetting band. These finite one-dimensional
-meridional samples are portable model validation, not a continuum proof or a production-render diagnostic.
+these off-axis sweeps occur at L1, defining a narrow modeled mechanical-vignetting band. These meridional samples
+check the modeled rims; they are not a full two-dimensional proof.
 
 ## Sources and References
 
