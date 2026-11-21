@@ -7,7 +7,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * including the shallow positive R2. The two central groups are cemented triplets.
  * The inferred stop divides the central 18 mm gap into 14 mm after R6 and 4 mm before R7.
  * Its radius follows nominal f/1.3; exact axial tracing gives about f/1.34.
- * Clear rims are inferred; the 33 mm R3 rim avoids a reversed edge on L2.
+ * Clear rims follow Figure 1's proportions and pass the stated axial beam.
+ * Flat lands extend R6/R7 to 29/23.5 mm outside their 23/21 mm optical caps.
+ * The 33 mm R3 rim avoids a reversed edge on L2; no clear diameter is printed.
  * The unprinted image distance is the paraxial back focus, 44.02 mm.
  * The ±10.0° field is illustrative, with no published image format.
  * Figure 2 has a separate R10 sign conflict between its two tables.
@@ -193,6 +195,7 @@ const LENS_DATA = {
       R: 28.29,
       d: 14,
       sd: 23,
+      rimExtensionSd: 29,
     },
     {
       label: "STO",
@@ -204,6 +207,7 @@ const LENS_DATA = {
       R: -65.76,
       d: 1.8,
       sd: 21,
+      rimExtensionSd: 23.5,
       medium: 5,
     },
     {

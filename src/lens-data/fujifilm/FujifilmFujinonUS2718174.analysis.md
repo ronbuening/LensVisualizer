@@ -100,7 +100,7 @@ The nominal f/1.3 aperture produces a paraxial stop radius of 20.09 mm. Exact ax
 
 The patent discusses picture angles up to about 45° for the lens class, without assigning a numerical field to Figure 1. The model retains an illustrative ±10.0° field. The chief ray clears the inferred rims there, but part of the off-axis pupil is vignetted. No image format or image-circle diameter is assigned from this illustrative field.
 
-The clear rims remain estimates rather than measurements of finished lens blanks. Apart from correcting R3's reversed edge, their relationship to the drawing remains unresolved. The radii, glass thicknesses, air spaces, stop position and paraxial image plane have not been adjusted to improve image quality. Any calculated MTF describes this inferred aperture geometry rather than measured production performance.
+The clear radii are estimates supported by Figure 1's proportions and axial-beam clearance, rather than measurements of finished lens blanks. They are 39 mm at R1/R2, 33/32/32/23 mm through the front triplet, 21/21/21/26 mm through the rear triplet, and 27 mm at R11/R12. Flat opaque lands extend R6 and R7 to outer radii of 29 and 23.5 mm, retaining their 23 and 21 mm optical caps. The drawing is schematic; its stop-side bevels and small shoulders at the cemented joins are approximated by straight rim joins. Wide-open geometric transmission is about 84% at the illustrative 10° field. The radii, glass thicknesses, air spaces, stop position and paraxial image plane have not been adjusted to improve image quality. Any calculated MTF describes this inferred aperture geometry rather than measured production performance.
 
 ## Sources
 
