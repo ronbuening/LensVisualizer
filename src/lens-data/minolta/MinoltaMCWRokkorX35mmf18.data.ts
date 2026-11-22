@@ -25,7 +25,7 @@ const LENS_DATA = {
   key: "minolta-mc-w-rokkor-x-35f18",
   maker: "Minolta",
   name: "MINOLTA MC W.ROKKOR-X 35mm f/1.8",
-  subtitle: "JP S45-39874 B, Example 3 — scaled ×35; production correlation",
+  subtitle: "JP S45-39874 B, Example 3 — scaled ×35; production match",
   visible: true,
   catalog: {
     lensMounts: ["minolta-sr"],

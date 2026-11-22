@@ -77,7 +77,7 @@ const LENS_DATA = {
   key: "nikon-afs-zoom-nikkor-80-200mm-f28d-if-ed",
   maker: "Nikon",
   name: "NIKON AI AF-S ZOOM-NIKKOR 80-200mm f/2.8 D IF-ED",
-  subtitle: "JP 2000-19398 A Example 1 — strong production correlation",
+  subtitle: "JP 2000-19398 A Example 1 — strong production match",
 
   catalog: {
     lensMounts: ["nikon-f"],

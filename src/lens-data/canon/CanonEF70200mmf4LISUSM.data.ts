@@ -16,9 +16,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * direction between the middle and tele states; the stop and L4 relay remain fixed because d8 + d15 + d18 =
  * 46.559 mm at every published zoom state.
  *
- * Focus status: NO_INTERNAL_RECONSTRUCTION. Example 1 identifies L2 as the focus group but publishes no finite-focus
- * spacing state. The production 1.2 m MFD is metadata only. Each zoom gap therefore repeats its infinity value at the
- * close-focus endpoint rather than inventing internal travel.
+ * Focus: infinity only. Example 1 identifies L2 as the focus group but publishes no close-focus spacing state.
+ * The production 1.2 m MFD is product information only. Each zoom gap therefore repeats its infinity value at the
+ * close-focus endpoint; focus travel is not modeled.
  *
  * Rear image spacing: the patent omits d36. The data uses a fixed 54.495 mm air spacing from surface 36 to IMG,
  * the source-precision-rounded mean of the independently computed Gaussian BFDs for the three rounded zoom rows
@@ -61,7 +61,7 @@ const LENS_DATA = {
   key: "canon-ef-70-200mm-f4l-is-usm",
   maker: "Canon",
   name: "CANON EF 70-200mm f/4 L IS USM",
-  subtitle: "JP2008070450A Example 1 — strong production correlation; unscaled patent prescription",
+  subtitle: "JP2008070450A Example 1 — strong production match; unscaled patent prescription",
 
   catalog: {
     lensMounts: ["canon-ef"],
@@ -380,7 +380,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 1.2,
     description:
-      "NO_INTERNAL_RECONSTRUCTION: JP2008070450A Example 1 identifies L2 (surfaces 9-15) as the focus group but publishes no finite-focus spacing state. The data preserves only the three published infinity zoom states; 1.2 m is Canon production metadata and the zoom gaps repeat their infinity values at the close-focus endpoint.",
+      "Infinity focus only. JP2008070450A Example 1 names L2 (surfaces 9-15) as the focusing group but gives no close-focus spacings, so focus travel is not modeled; the model shows the three published infinity zoom states. Canon's 1.2 m minimum focus distance is product information.",
   },
 
   gaps: {

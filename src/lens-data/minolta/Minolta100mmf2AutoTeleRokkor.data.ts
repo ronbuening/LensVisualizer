@@ -9,9 +9,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  Production correlation is convergent, not manufacturer-confirmed patent  ║
  * ║  attribution. The manufacturer brochure matches 100mm f/2, 6/5, and 24°. ║
  * ║                                                                            ║
- * ║  Focus: NO_INTERNAL_RECONSTRUCTION. The optical model is the published     ║
- * ║  infinity prescription only. Production minimum focus is 4 ft (1.2192 m); ║
- * ║  no internal focus spacing law is inferred from that specification.       ║
+ * ║  Focus: infinity only. The model is the published infinity prescription.  ║
+ * ║  Production minimum focus is 4 ft (1.2192 m); no close-focus spacings are ║
+ * ║  worked out from that figure, and focus travel is not modeled.            ║
  * ║                                                                            ║
  * ║  STOP INFERENCE: the patent gives only stop topology inside d7 = 24.08 mm.║
  * ║  A 600 dpi measurement of Fig. 1 places the stop at 0.3368 of d7 from r7,║
@@ -36,7 +36,7 @@ const LENS_DATA = {
   key: "minolta-auto-tele-rokkor-100f2",
   maker: "Minolta",
   name: "MINOLTA AUTO TELE ROKKOR-PF 100mm f/2",
-  subtitle: "JP 1963-011590 B, Example 2 — production correlation inferred",
+  subtitle: "JP 1963-011590 B, Example 2 — inferred production match",
 
   catalog: {
     lensMounts: ["minolta-sr"],
@@ -161,7 +161,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 1.2192,
     description:
-      "NO_INTERNAL_RECONSTRUCTION: published Example 2 is modeled at infinity only; the production 4 ft minimum-focus specification is metadata and is not converted into an internal spacing law.",
+      "Infinity focus only. The patent publishes Example 2 at infinity only, with no close-focus spacings. Minolta's 4 ft minimum focus distance is product information; focus travel is not modeled.",
   },
 
   aperture: { nominalFNumber: 2, fStops: [2, 2.8, 4, 5.6, 8, 11, 16] },

@@ -16,3 +16,8 @@ The smaller rear rim can vignette the edge-field pupil; the draft's all-rays-cle
 Patent glass coordinates confirmed. L1/L3/L4 retain compatible catalog curves. L2's 1.56536 / 55.8 remains
 unmatched: no coefficient-backed compatible entry was established, and BAK4/BAL14 is outside the index guard.
 The documented r2 sign correction remains explicit; no source prescription number was changed in this pass.
+
+## 2026-11-20 — Public wording
+
+Rewrote the focus caption, subtitle and analysis focus section in plain language; the internal focus-status code no
+longer appears in public text. No optical data, rim or focus value changed.

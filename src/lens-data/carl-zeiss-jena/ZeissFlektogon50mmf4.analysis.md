@@ -12,7 +12,7 @@
 
 The implemented prescription is derived from the first numerical construction in DE 1 157 000. The patent's numerical table gives an opening ratio of 1:4 at a normalized focal length of 100, eleven refracting radii, the corresponding axial spacings and d-line glass coordinates, and the focal lengths of the four source-defined members I, IIa, IIb, and IIc. Fig. 1 identifies the physical sequence as a cemented front doublet followed, after a long air space, by a positive singlet, a positive meniscus, and a cemented rear triplet. [1, p. 2, Claim 8; p. 4, Fig. 1]
 
-The production correlation is strong but remains an inference rather than a manufacturer-confirmed patent attribution. A Pentacon/Carl Zeiss Jena catalog identifies a **ZEISS FLEKTOGON 4/50** for PENTACON six TL and PRAKTISIX, describes it as a seven-element lens, and gives a 78° used image angle and 0.50 m shortest focusing distance. Those product facts converge with the patent's seven-element f/4 wide-angle construction, while a uniform scale of 0.5 converts the patent's normalized 100 mm design to approximately 50 mm without changing its dimensionless architecture or f-number. No primary source located for this dossier explicitly states that the production Flektogon 4/50 uses DE 1 157 000 Example 1. [1, pp. 1-2] [2, product panel on PDF p. 6]
+The production correlation is strong but remains an inference rather than a manufacturer-confirmed patent attribution. A Pentacon/Carl Zeiss Jena catalog identifies a **ZEISS FLEKTOGON 4/50** for PENTACON six TL and PRAKTISIX, describes it as a seven-element lens, and gives a 78° used image angle and 0.50 m shortest focusing distance. Those product facts converge with the patent's seven-element f/4 wide-angle construction, while a uniform scale of 0.5 converts the patent's normalized 100 mm design to approximately 50 mm without changing its dimensionless architecture or f-number. No primary source found explicitly states that the production Flektogon 4/50 uses DE 1 157 000 Example 1. [1, pp. 1-2] [2, product panel on PDF p. 6]
 
 The LensVisualizer model therefore keeps marketing and design quantities separate. The production identity is 50 mm f/4; the final scaled prescription computes an effective focal length of 49.999544 mm. The data file uses the canonical `6x6` image-format identifier because the manufacturer catalog names the Pentacon Six TL / Praktisix systems, and now records their shared `pentacon-six` mount.
 
@@ -104,9 +104,9 @@ Named curves pass the catalog coordinate guard without changing the patent coord
 
 ## Focus Mechanism
 
-DE 1 157 000 Example 1 publishes one static prescription only. It gives no finite-distance spacing table, moving-group identity, or mechanical focusing description. The final model therefore has **NO_INTERNAL_RECONSTRUCTION**: `var` and `varLabels` are empty, and no internal group motion is synthesized.
+DE 1 157 000 Example 1 publishes one static prescription only. It gives no close-focus spacing table, moving-group identity, or mechanical focusing description. The model therefore shows the lens at infinity only: no spacing changes with focus and no internal group moves.
 
-The manufacturer catalog gives a shortest focusing distance of 0.50 m for the production Flektogon 4/50. That number is retained as `closeFocusM` metadata, but it is not sufficient to solve a unique internal focus law and is not used to generate a close-focus optical state. [2]
+The manufacturer catalog gives a shortest focusing distance of 0.50 m for the production Flektogon 4/50. The model records that figure as product information, but it is not sufficient to solve a unique internal focus law and is not used to generate a close-focus optical state. [2]
 
 ## Modeling and Verification Notes
 

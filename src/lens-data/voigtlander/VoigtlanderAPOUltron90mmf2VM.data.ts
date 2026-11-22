@@ -33,7 +33,7 @@ const LENS_DATA = {
   key: "voigtlander-apo-ultron-vm-90mm-f2",
   maker: "Voigtländer",
   name: "VOIGTLÄNDER APO-ULTRON 90mm f/2 VM",
-  subtitle: "JP 2026-8235 A Example 1 — unscaled production correlation",
+  subtitle: "JP 2026-8235 A Example 1 — production match at patent scale",
 
   catalog: {
     lensMounts: ["leica-m"],

@@ -55,7 +55,7 @@ const LENS_DATA = {
   key: "nikon-af-s-nikkor-600mm-f4d-if-ed-ii",
   maker: "Nikon",
   name: "NIKON AI AF-S NIKKOR 600mm f/4 D IF-ED II",
-  subtitle: "US 5,745,306 A — Example 3 — Nikon internal-focus telephoto correlation",
+  subtitle: "US 5,745,306 A — Example 3 — Nikon internal-focus telephoto match",
 
   catalog: {
     lensMounts: ["nikon-f"],

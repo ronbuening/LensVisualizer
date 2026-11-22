@@ -240,12 +240,14 @@ mechanism statement, not a reconstructed numerical focus curve.
 
 Example 4 supplies only the infinity-focus zoom prescription. It does not give a second internal-spacing row at close
 focus, a Gr1B travel distance, a second object-distance/magnification pair, or a table of focus-variable clearances. The
-LensVisualizer model therefore uses `NO_INTERNAL_RECONSTRUCTION`: every zoom-variable gap has identical infinity and
-close entries at a given zoom position, so the viewer does not invent a close-focus optical state.
+model therefore shows infinity focus only: at each zoom position, every zoom-dependent spacing stays at its infinity
+value at both ends of the focus control, so the viewer does not invent a close-focus optical state. Zoom movement is
+modeled; focus travel is not.
 
 Nikon publishes a 0.24 m minimum focus distance for the production lens and identifies AF-S Silent Wave Motor operation
-with internal focusing. The model retains 0.24 m as production metadata only. That number is not used to solve Gr1B
-travel, because a production MFD by itself does not uniquely determine the patent's internal focus state.
+with internal focusing. The model records 0.24 m as product information only. That number is not used to solve Gr1B
+travel, because a production minimum focus distance by itself does not uniquely determine the patent's internal focus
+state.
 
 ## Aspherical Surfaces
 

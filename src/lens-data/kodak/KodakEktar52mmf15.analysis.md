@@ -9,9 +9,9 @@
 
 The implemented prescription is Schade's Example 1, the seven-element, four-component f/1.5 objective tabulated with a nominal focal length of 100 mm in Figs. 1–2 of the patent. The data model retains that numerical example and applies a uniform linear scale of 0.52 for the selected 52 mm lens correlation. The resulting computed paraxial effective focal length is 52.020687 mm; the difference from the selected 52 mm correlation value is kept explicit rather than folded into the prescription. (US 2,397,565, Fig. 2 and printed p. 1 / PDF p. 2.)
 
-The association with a Kodak Ektar 52 mm f/1.5 is plausible rather than manufacturer-confirmed. The patent is assigned to Eastman Kodak Company, and independent secondary specimen/design sources associate a Kodak 52 mm f/1.5 with this Schade patent and a seven-element/four-component construction. The retained primary Kodak 1941 catalog, however, does not list a 52 mm f/1.5 among the Ektra-system Ektars, and no Kodak primary document in the dossier explicitly states that the production 52 mm f/1.5 is Example 1. The data therefore leaves original mount and image format unset and does not treat later adapted mounts as production evidence. Because no manufacturer primary source in the dossier establishes production marketing specifications for this exact correlation, the optional `focalLengthMarketing` and `apertureMarketing` fields are intentionally omitted; the design and modeled aperture fields remain tied to the selected patent model.
+The association with a Kodak Ektar 52 mm f/1.5 is plausible rather than manufacturer-confirmed. The patent is assigned to Eastman Kodak Company, and independent secondary specimen/design sources associate a Kodak 52 mm f/1.5 with this Schade patent and a seven-element/four-component construction. The retained primary Kodak 1941 catalog, however, does not list a 52 mm f/1.5 among the Ektra-system Ektars, and no Kodak primary document among the sources consulted explicitly states that the production 52 mm f/1.5 is Example 1. The data therefore leaves original mount and image format unset and does not treat later adapted mounts as production evidence. Because no manufacturer primary source consulted establishes production marketing specifications for this exact correlation, the optional `focalLengthMarketing` and `apertureMarketing` fields are intentionally omitted; the design and modeled aperture fields remain tied to the selected patent model.
 
-The patent's optical constants are historical Fraunhofer/sodium D-line values. LensVisualizer currently exposes `d` and `e` index-reference labels, so the final data preserves the patent's rounded N/V coordinates numerically in the `nd`/`vd` fields with `indexReference: "d"` as a schema approximation. No numerical D-to-d conversion is claimed.
+The patent's optical constants are historical Fraunhofer/sodium D-line values. LensVisualizer currently exposes `d` and `e` index-reference labels, so the final data preserves the patent's rounded N/V coordinates numerically in the `nd`/`vd` fields with `indexReference: "d"` as an approximation. No numerical D-to-d conversion is claimed.
 
 ## Optical Architecture
 
@@ -98,11 +98,11 @@ No element in the final data carries `nC`, `nF`, `ng`, or `dPgF`. The present mo
 
 ## Focus Mechanism
 
-Example 1 provides a single fixed prescription and no internal focusing law. The model therefore uses `NO_INTERNAL_RECONSTRUCTION`: `var` and `varLabels` are empty, and no finite-distance group motion is authored.
+Example 1 provides a single fixed prescription and no internal focusing law. The model therefore shows the lens at infinity only: no spacing changes with focus and no close-focus group movement is modeled.
 
-The required `closeFocusM` field is set to `1e15` only as a finite schema/UI sentinel for a static optical model. It is not a product minimum focus distance. Example 3 of the patent is explicitly a separate embodiment corrected for a finite conjugate; its numerical spacings are not imported into Example 1.
+The focus control is held at infinity; the stored value is not a product minimum focus distance. Example 3 of the patent is explicitly a separate embodiment corrected for a close object distance; its numerical spacings are not imported into Example 1.
 
-No statement is made here about whether a production lens used unit focusing, internal focusing, or another mechanical focusing arrangement, because the retained primary product evidence does not establish that mechanism for the selected 52 mm lens.
+No statement is made here about whether a production lens used unit focusing, internal focusing, or another mechanical focusing arrangement, because the primary product sources consulted do not establish that mechanism for the selected 52 mm lens.
 
 ## Air Lens and Patent Design Rationale
 

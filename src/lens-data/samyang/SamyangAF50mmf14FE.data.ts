@@ -43,7 +43,7 @@ const LENS_DATA = {
   key: "samyang-af-50mm-f1p4-fe",
   maker: "Samyang",
   name: "SAMYANG AF 50mm f/1.4 FE",
-  subtitle: "KR 10-1825708 B1 — Numerical Example 1; first-generation AF 50mm F1.4 FE correlation",
+  subtitle: "KR 10-1825708 B1 — Numerical Example 1; first-generation AF 50mm F1.4 FE match",
 
   catalog: {
     lensMounts: ["sony-fe"],

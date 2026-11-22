@@ -55,7 +55,7 @@ const LENS_DATA = {
   maker: "Nikon",
   name: "NIKON AF-S DX ZOOM-NIKKOR 18-55mm f/3.5-5.6 G ED II",
   subtitle:
-    "US 2006/0007559 A1 Example 4 — Haruo Sato / Nikon Corporation; selected ED II correlation, not unique within the 18-55 ED family",
+    "US 2006/0007559 A1 Example 4 — Haruo Sato / Nikon Corporation; selected ED II production match, not unique within the 18-55 ED family",
 
   catalog: {
     lensMounts: ["nikon-f"],

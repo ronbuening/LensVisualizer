@@ -49,7 +49,7 @@ const LENS_DATA = {
   key: "nikon-af-s-nikkor-24-85mm-f35-45g-ed-vr",
   maker: "Nikon",
   name: "NIKON AF-S NIKKOR 24-85mm f/3.5-4.5 G ED VR",
-  subtitle: "JP 2011-221421 A, Example 4 — selected production correlation; unconfirmed",
+  subtitle: "JP 2011-221421 A, Example 4 — selected production match; not maker-confirmed",
 
   catalog: {
     lensMounts: ["nikon-f"],

@@ -55,7 +55,7 @@ const LENS_DATA = {
   key: "hasselblad-xcd-45f35",
   maker: "Hasselblad",
   name: "HASSELBLAD XCD 45mm f/3.5",
-  subtitle: "WO 2017/221949 A1 Example 1 — strong production correlation; attribution not explicit",
+  subtitle: "WO 2017/221949 A1 Example 1 — strong production match; attribution not explicit",
 
   catalog: {
     lensMounts: ["hasselblad-xcd"],

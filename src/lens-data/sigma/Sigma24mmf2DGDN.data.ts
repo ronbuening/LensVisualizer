@@ -29,7 +29,7 @@ const LENS_DATA = {
   key: "sigma-24mm-f2-dg-dn-contemporary",
   maker: "Sigma",
   name: "SIGMA 24mm f/2 DG DN | Contemporary",
-  subtitle: "JP 2022-073433 A, Numerical Example 1; construction correlation",
+  subtitle: "JP 2022-073433 A, Numerical Example 1; production match by construction",
 
   catalog: {
     lensMounts: ["l-mount", "sony-fe"],

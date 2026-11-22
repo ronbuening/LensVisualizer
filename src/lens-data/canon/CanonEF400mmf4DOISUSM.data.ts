@@ -34,9 +34,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║     uses 587.6 nm as a disclosed d-line modeling inference; the coefficients are        ║
  * ║     unchanged from the patent.                                                          ║
  * ║                                                                                          ║
- * ║ FOCUS STATUS: NO_INTERNAL_RECONSTRUCTION                                                 ║
- * ║   Canon specifies inner focusing and 3.5 m MFD, but Example 1 provides no finite-focus  ║
- * ║   spacing table or moving-group law. No var gaps are invented.                          ║
+ * ║ FOCUS: INFINITY ONLY                                                                     ║
+ * ║   Canon specifies inner focusing and 3.5 m MFD, but Example 1 provides no close-focus    ║
+ * ║   spacing table or moving-group law. No group moves; focus travel is not modeled.        ║
  * ║                                                                                          ║
  * ║ SEMI-DIAMETERS                                                                            ║
  * ║   The patent does not tabulate clear semi-diameters. Values below are modeling          ║
@@ -337,7 +337,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 3.5,
     description:
-      "Production lens: inner focusing with USM, 3.5 m MFD. Patent Example 1 publishes only the infinity prescription; no internal focus movement is reconstructed (NO_INTERNAL_RECONSTRUCTION).",
+      "Infinity focus only. Canon's production lens uses USM-driven inner focusing and a 3.5 m minimum focus distance, but the patent's Example 1 gives only the infinity prescription, so focus travel is not modeled.",
   },
 
   aperture: { nominalFNumber: 4.12, fStops: [4.12, 5.6, 8, 11, 16, 22, 32], maxFNumber: 32, blades: 8 },

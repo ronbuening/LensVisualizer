@@ -40,7 +40,7 @@ const LENS_DATA = {
   key: "sony-dt-18-135mm-f35-56-sam",
   maker: "Sony",
   name: "SONY DT 18-135mm f/3.5-5.6 SAM",
-  subtitle: "US 2013/0155294 A1, Example 1 — production correlation to Sony SAL18135",
+  subtitle: "US 2013/0155294 A1, Example 1 — production match to Sony SAL18135",
   visible: true,
   catalog: {
     lensMounts: ["sony-a"],

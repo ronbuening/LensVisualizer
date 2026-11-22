@@ -185,9 +185,9 @@ The patent describes a two-unit internal focusing mechanism. B2 and B4 move inde
 
 Canon's production documentation describes a Nano USM driving a floating-focus unit and a VCM driving a rear-focus unit, with the two units controlled independently or together.[2][3] This is consistent with the patent's two moving units, but the commercial motor labels are not assigned directly to B2 and B4 in the patent, so no one-to-one motor mapping is asserted here.
 
-Example 2 publishes only its infinity prescription. It provides no numerical close-focus spacing table, no total travel for B2 or B4, and no intermediate focus states. The data file therefore authors no variable gaps; its focus status is **NO_INTERNAL_RECONSTRUCTION**. No internal close-focus geometry is invented from the commercial minimum focusing distance. The group captions identify both published directions as `OBJECTWARD FOCUS`, but the viewer correctly exposes neither a focus slider nor a zoom slider for this prime.
+Example 2 publishes only its infinity prescription. It provides no numerical close-focus spacing table, no total travel for B2 or B4, and no intermediate focus states. The model therefore has no spacings that change with focus and shows the lens at infinity only. No internal close-focus geometry is modeled from the commercial minimum focusing distance. The group captions identify both published directions as `OBJECTWARD FOCUS`, but the viewer correctly exposes neither a focus slider nor a zoom slider for this prime.
 
-The stored `closeFocusM = 0.28` m is Canon production metadata only.[1] It does not imply that the modeled infinity prescription has been solved to 0.28 m, nor does it provide enough information to determine two independent internal translations uniquely.
+The model's 0.28 m close-focus figure is Canon product information only.[1] It does not imply that the modeled infinity prescription has been solved to 0.28 m, nor does it provide enough information to determine two independent internal translations uniquely.
 
 ## Aspherical Surfaces
 

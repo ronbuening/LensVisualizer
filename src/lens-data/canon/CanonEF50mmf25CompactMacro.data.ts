@@ -22,7 +22,7 @@ const LENS_DATA = {
   key: "canon-ef-50mm-f25-compact-macro",
   maker: "Canon",
   name: "CANON EF 50mm f/2.5 Compact Macro",
-  subtitle: "JP S63-179308 A, Example 2 — probable production correlation",
+  subtitle: "JP S63-179308 A, Example 2 — probable production match",
   catalog: {
     lensMounts: ["canon-ef"],
     imageFormat: "135-full-frame",

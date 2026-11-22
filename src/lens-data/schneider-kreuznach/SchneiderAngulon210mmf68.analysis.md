@@ -85,9 +85,9 @@ No `nC`, `nF`, `ng`, or `dPgF` values are authored because the patent does not p
 
 ## Focus Mechanism
 
-The prescription has **NO_INTERNAL_RECONSTRUCTION**. The patent gives one fixed optical cell and no finite-object spacing table, floating group, zoom state, or internal focus motion. Accordingly, `var` and `varLabels` are empty.
+The patent gives one fixed optical cell and no close-focus spacing table, floating group, zoom state, or internal focus movement. The model therefore shows the lens at infinity only, and no group moves.
 
-Practical focusing of a large-format Angulon is performed by changing the lens-to-image-plane separation with camera bellows or standard movement. That system-level translation is outside the internal optical prescription. The data file’s `closeFocusM = 1.0` is only the current finite UI/schema placeholder used for fixed-cell large-format records; it is not a Schneider-published minimum focusing distance and does not imply a modeled 1 m focus state.
+Practical focusing of a large-format Angulon is performed by changing the lens-to-image-plane separation with camera bellows or standard movement. That movement of the whole lens is outside the optical prescription itself. The 1 m close-focus figure in the model is only a placeholder used for fixed-cell large-format lenses; it is not a Schneider-published minimum focusing distance and does not imply a modeled 1 m focus state.
 
 ## Patent Conditions
 
@@ -108,7 +108,7 @@ The completed 210 mm model is a uniform 1.05× scale of the patent’s 200 mm nu
 
 The physical diaphragm diameter is not published. The modeled stop semi-diameter of **13.807122 mm** is therefore an f/6.8 calibration inference. It produces a computed entrance-pupil semi-diameter of **15.442685 mm** and a modeled f-number of **6.800000**. Agreement with f/6.8 confirms the calibration target, not an independently measured historical iris diameter.
 
-Semi-diameters require the same distinction. The patent’s approximate 0.20-focal-distance outside-meniscus diameter becomes a 21.0 mm semi-diameter after scaling and is used as the source anchor on the exposed outer faces. The internal 15.538 mm and 14.0 mm semi-diameters are modeled clear apertures. They pass the portable spherical-domain, actual-rim-slope, positive-edge-thickness, shared-gap, and exact meridional containment checks used for this dossier.
+Semi-diameters require the same distinction. The patent’s approximate 0.20-focal-distance outside-meniscus diameter becomes a 21.0 mm semi-diameter after scaling and is used as the source anchor on the exposed outer faces. The internal 15.538 mm and 14.0 mm semi-diameters are modeled clear apertures. They pass the portable spherical-domain, actual-rim-slope, positive-edge-thickness, shared-gap, and exact meridional containment checks used for this analysis.
 
 The most restrictive modeled element rim is the L2/L5 pair, for which the computed positive edge thickness is only **0.001205 mm** at the selected clear aperture. That is a model-clear-aperture result, not a claim about a production metal cell or manufacturing rim. The retained rims follow the optical boundaries of the stepped cemented groups; the outer blank extensions are not internal clear apertures.
 

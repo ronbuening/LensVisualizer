@@ -22,9 +22,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  values; the G5 to G7 air gap is therefore 7.302950006252345 mm at ║
  * ║  ×16.                                                              ║
  * ║                                                                    ║
- * ║  Focus status: NO_INTERNAL_RECONSTRUCTION. Minolta publishes      ║
- * ║  minimum focus 0.3 m, but the selected patent publishes no focus  ║
- * ║  movement table; no variable internal gaps are invented.          ║
+ * ║  Focus: infinity only. Minolta publishes minimum focus 0.3 m,     ║
+ * ║  but the selected patent publishes no focus movement table, so    ║
+ * ║  no spacing changes with focus.                                   ║
  * ║                                                                    ║
  * ║  STOP MODELING INFERENCE: the patent only says that the stop is   ║
  * ║  usually between G5 and G7. STO is placed at the air-equivalent   ║
@@ -59,7 +59,7 @@ const LENS_DATA = {
   key: "minolta-mc-fish-eye-rokkor-ok-16mm-f28",
   maker: "Minolta",
   name: "MINOLTA MC FISH-EYE ROKKOR-OK 16mm f/2.8",
-  subtitle: "US 3,589,798 — Example II; production correlation to the MC Fish-Eye Rokkor-OK",
+  subtitle: "US 3,589,798 — Example II; production match to the MC Fish-Eye Rokkor-OK",
 
   catalog: {
     lensMounts: ["minolta-sr"],
@@ -258,7 +258,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.3,
     description:
-      "NO_INTERNAL_RECONSTRUCTION — Minolta specifies 0.3 m minimum focus, but US 3,589,798 Example II publishes no focus-spacing or movement table; the model remains at the published infinity prescription.",
+      "Infinity focus only. Minolta specifies 0.3 m minimum focus, but US 3,589,798 Example II publishes no close-focus spacings or focusing movement, so focus travel is not modeled.",
   },
 
   aperture: { nominalFNumber: 2.8, fStops: [2.8, 4, 5.6, 8, 11, 16] },

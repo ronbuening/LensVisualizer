@@ -87,9 +87,9 @@ The patent publishes no per-element `nC`, `nF`, `ng`, $P_{gF}$, or `dPgF`, and t
 
 ## Focus Mechanism
 
-The focus status is **NO_INTERNAL_RECONSTRUCTION**. US 2,645,154 Example 1 publishes an infinity prescription only; it supplies no finite-object spacing table, internal focusing motion, minimum focus distance, or magnification state. The final data therefore has empty `var` and `varLabels` objects and does not move any lens group internally.
+US 2,645,154 Example 1 publishes an infinity prescription only; it gives no close-focus spacing table, internal focusing movement, minimum focus distance, or magnification state. The model therefore shows the lens at infinity only and moves no lens group.
 
-The cited 1965 commercial listing documents the 210mm f/4.5 version in an X-Compound shutter, consistent with a view-camera installation. Focusing motion belongs to the camera standards and bellows rather than to an internal lens group, so that external motion is not represented as an optical state here. The required `closeFocusM: 1.0` value is only a finite UI/schema placeholder used by the current corpus for this no-internal-reconstruction case. It is **not** a sourced or modeled 1.0 m minimum focusing distance and must not be interpreted as one.
+The cited 1965 commercial listing documents the 210mm f/4.5 version in an X-Compound shutter, consistent with a view-camera installation. Focusing motion belongs to the camera standards and bellows rather than to an internal lens group, so that external motion is not represented as an optical state here. The 1.0 m value stored for the close end of the focus control is only a placeholder. It is **not** a sourced or modeled 1.0 m minimum focusing distance and must not be interpreted as one.
 
 ## Conditional Expressions
 

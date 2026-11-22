@@ -170,9 +170,9 @@ All twelve bulk-glass entries resolve to catalog spectral proxies; the two compo
 
 The patent uses **inner focusing by axial translation of GR4**, which in Example 1 is the single biconcave negative lens G8. The patent explains that the small single-lens focus group is intended to reduce moving mass and travel while supporting faster autofocus. (US 2008/0218875 A1, ¶¶0035–0039.)
 
-The selected numerical example, however, publishes only three **infinity-focus** zoom states. It does not publish G8 travel versus object distance, a close-focus spacing table, or a solved macro state. The implemented focus status is therefore **NO_INTERNAL_RECONSTRUCTION**. Every `var` focus pair is identical, so the viewer does not simulate internal focus motion.
+The selected numerical example, however, publishes only three **infinity-focus** zoom states. It does not publish G8 travel versus object distance, a close-focus spacing table, or a solved macro state. The model therefore keeps every spacing that changes with focus at its infinity value at both ends of the focus control, so the viewer does not simulate internal focus motion.
 
-The required `closeFocusM` field is set to 0.35 m because Sony publishes approximately 35 cm at the wide end in macro AF; Sony also publishes approximately 40 cm at tele. These are production-camera specifications, not numerical Example 1 conjugates. They do not supply enough information to reconstruct the internal GR4 position uniquely, and the data deliberately does not treat them as such.
+The model records 0.35 m as the close-focus figure because Sony publishes approximately 35 cm at the wide end in macro AF; Sony also publishes approximately 40 cm at tele. These are production-camera specifications, not numerical Example 1 conjugates. They do not supply enough information to work out the internal GR4 position uniquely, and the data deliberately does not treat them as such.
 
 The absence of a close-focus model also means that no numerical claim is made here for focus breathing, close-range aberration change, or actual GR4 focus travel. The patent’s statements about those behaviors remain source design objectives unless and until a constrained reconstruction is solved separately.
 
@@ -254,10 +254,10 @@ The final parsed Petzval sum is **0.001306562050 mm⁻¹**, evaluated surface by
 2. **Sony Japan.** “DSC-R1 主な仕様.” Archived product specifications. <https://www.sony.jp/cyber-shot/products/archive/DSC-R1/spec.html>. Product name, sensor, 10-group/12-element construction, asphere count, marketed focal length/aperture, and focus-distance specifications.
 3. **Sony Marketing (Japan) Inc.** DSC-R1 launch release, 2005-09-13. <https://www.sony.jp/CorporateCruise/Press/200509/05-0913B/>. Production identity, 21.5 × 14.4 mm CMOS sensor, 24–120 mm equivalent range, f/2.8–4.8, and announcement timing.
 4. **Sony UK.** “DSC-R1 Specifications.” <https://www.sony.co.uk/electronics/support/compact-cameras-dsc-r-series/dsc-r1/specifications>. Marketed 14.3–71.5 mm focal length and macro focus distances.
-5. **SCHOTT Advanced Optics.** Optical Glass Collection and N-PSK53A product data, consulted for coordinate matching during the dossier glass audit.
-6. **OHARA Corporation.** S-LAH, S-BSM, and detailed optical-glass data, consulted for coordinate matching during the dossier glass audit.
-7. **HOYA Corporation Optics Division.** Molded-lens material and legacy optical-glass coordinate data, consulted for coordinate matching during the dossier glass audit.
-8. **HIKARI Glass / Nikon Corporation.** J-series LASF, SK, and SF optical-glass catalog data, consulted for coordinate matching during the dossier glass audit.
-9. **Companion verified model records:** `ZeissVarioSonnarT143715mmf2848SonyDCSR1.data.ts`, `ZeissVarioSonnarT143715mmf2848SonyDCSR1.results.json`, and the consolidated audit in the same dossier. Computed values in this analysis are drawn only from the verified final data revision and its executed verifier outputs.
+5. **SCHOTT Advanced Optics.** Optical Glass Collection and N-PSK53A product data, consulted for coordinate matching during the glass audit.
+6. **OHARA Corporation.** S-LAH, S-BSM, and detailed optical-glass data, consulted for coordinate matching during the glass audit.
+7. **HOYA Corporation Optics Division.** Molded-lens material and legacy optical-glass coordinate data, consulted for coordinate matching during the glass audit.
+8. **HIKARI Glass / Nikon Corporation.** J-series LASF, SK, and SF optical-glass catalog data, consulted for coordinate matching during the glass audit.
+9. **Companion verified model records:** `ZeissVarioSonnarT143715mmf2848SonyDCSR1.data.ts`, `ZeissVarioSonnarT143715mmf2848SonyDCSR1.results.json`, and the consolidated audit filed with them. Computed values in this analysis are drawn only from the verified final data revision and its executed verifier outputs.
 
 The catalog groups this Sony camera lens under Sony and preserves ZEISS Vario-Sonnar T* branding in the display name. Camera-family correlation and patent-assignee metadata remain separate from that manufacturer attribution.

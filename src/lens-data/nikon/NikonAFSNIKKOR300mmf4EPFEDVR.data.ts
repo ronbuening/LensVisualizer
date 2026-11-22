@@ -36,7 +36,7 @@ const LENS_DATA = {
   key: "nikon-af-s-nikkor-300mm-f4e-pf-ed-vr",
   maker: "Nikon",
   name: "NIKON AF-S NIKKOR 300mm f/4 E PF ED VR",
-  subtitle: "JP 2015-102852 A — Example 1; strong production correlation; unscaled patent design",
+  subtitle: "JP 2015-102852 A — Example 1; strong production match; unscaled patent design",
 
   catalog: {
     lensMounts: ["nikon-f"],

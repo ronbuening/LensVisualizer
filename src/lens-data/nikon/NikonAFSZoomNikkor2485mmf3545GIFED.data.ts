@@ -32,7 +32,7 @@ const LENS_DATA = {
   key: "nikon-af-s-zoom-nikkor-24-85mm-f35-45g-if-ed",
   maker: "Nikon",
   name: "NIKON AF-S ZOOM-NIKKOR 24-85mm f/3.5-4.5 G IF-ED",
-  subtitle: "JP 2003-241093 A · Example 2 — production correlation",
+  subtitle: "JP 2003-241093 A · Example 2 — production match",
 
   catalog: {
     lensMounts: ["nikon-f"],

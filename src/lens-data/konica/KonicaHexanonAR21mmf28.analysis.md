@@ -102,9 +102,9 @@ The most conspicuous `νd` contrast occurs inside G6, from 60.7 in L6 to 25.4 in
 
 ## Focus Mechanism
 
-The patent examples are infinity-state prescriptions and provide no variable focus-spacing table. The final data therefore has `var: {}` and carries the focus status `NO_INTERNAL_RECONSTRUCTION`. No group translation, floating compensation, or close-focus spacing has been invented.
+The patent examples are infinity-state prescriptions and provide no variable focus-spacing table. The model therefore shows the lens at infinity only: every spacing stays at its infinity value, and no group translation, floating compensation, or close-focus spacing is modeled.
 
-The production specification of 0.2 m minimum focus from the film plane is retained as catalog metadata because `closeFocusM` is required by the data schema. It does not define an optical state in this model and should not be read as evidence for unit focus, internal focus, or any particular mechanical focusing arrangement.
+The production specification of 0.2 m minimum focus from the film plane is recorded as product information. It does not define an optical state in this model and should not be read as evidence for unit focus, internal focus, or any particular mechanical focusing arrangement.
 
 ## Conditional Expressions
 

@@ -111,7 +111,7 @@ No element carries `nC`, `nF`, `ng`, or `dPgF` in the data file because the sele
 
 Minolta's period literature specifies a 0.3 m minimum focusing distance for the production lens. US 3,589,798 Example II, however, provides only a single prescription and no focus-spacing table, magnification row, or description of an internally moving optical group.
 
-The data file therefore uses `NO_INTERNAL_RECONSTRUCTION`. Its `var` table is empty and the modeled prescription remains at the published infinity state. No unit-focus, internal-focus, or floating-focus mechanism is assigned from inference, and the 0.3 m product specification is retained only as product metadata rather than converted into invented optical movement.
+The model therefore shows the lens at the published infinity state only, and no spacing changes with focus. No unit-focus, internal-focus, or floating-focus mechanism is assigned from inference, and the 0.3 m product specification is recorded only as product information rather than converted into a modeled close-focus movement.
 
 ## Aberration Correction Strategy
 

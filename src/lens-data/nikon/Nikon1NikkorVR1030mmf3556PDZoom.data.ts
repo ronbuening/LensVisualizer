@@ -41,7 +41,7 @@ const LENS_DATA = {
   key: "nikon-1-nikkor-vr-10-30mm-f35-56-pd-zoom",
   maker: "Nikon",
   name: "NIKON 1 NIKKOR VR 10-30mm f/3.5-5.6 PD-ZOOM",
-  subtitle: "US 2018/0196240 A1 Example 11 — strong production correlation; not manufacturer-confirmed",
+  subtitle: "US 2018/0196240 A1 Example 11 — strong production match; not maker-confirmed",
 
   catalog: {
     lensMounts: ["nikon-1"],

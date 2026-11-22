@@ -35,7 +35,7 @@ const LENS_DATA = {
   key: "schneider-tele-xenar-180f45",
   maker: "Schneider-Kreuznach",
   name: "SCHNEIDER-KREUZNACH TELE-XENAR 180mm f/4.5",
-  subtitle: "DE 471565 C — f/4.5 numerical example / Abb. 1; 180 mm production correlation inferred",
+  subtitle: "DE 471565 C — f/4.5 numerical example / Abb. 1; 180 mm inferred production match",
 
   catalog: {
     lensMounts: ["large-format-lens-board"],

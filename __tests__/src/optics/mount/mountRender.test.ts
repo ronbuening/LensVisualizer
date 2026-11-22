@@ -312,6 +312,19 @@ describe("lens-rear mirror", () => {
     expect(frontSlot?.sortAngle).toBe(90);
     expect(rearLug?.sortAngle).toBe(270);
   });
+
+  it("draws an off-centre lens contact on the mirrored side of the rear view", () => {
+    const pathStartX = (view: "camera_side_front" | "lens_side_rear", sortKey: string): number => {
+      const doc = buildMountSvgDoc(SPEC, "canon-ef/base", view);
+      const contact = doc.layers.flatMap((l) => l.elements).find((e) => e.sortKey === sortKey);
+      const match = /^M(-?[\d.]+),/.exec(String(contact?.attrs.d ?? ""));
+      if (!match) throw new Error(`Expected a contact path for ${sortKey}`);
+      return Number(match[1]);
+    };
+    // Both contacts are stored at 150° (camera-front frame): right of centre from the front, left from the rear.
+    expect(pathStartX("camera_side_front", "contact-body-1")).toBeGreaterThan(0);
+    expect(pathStartX("lens_side_rear", "contact-lens-1")).toBeLessThan(0);
+  });
 });
 
 describe("mountSvgDocToString", () => {

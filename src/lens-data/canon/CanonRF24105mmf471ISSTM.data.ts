@@ -9,10 +9,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  13 elements / 11 groups, 2 aspherical surfaces on one element.        ║
  * ║  Zoom: all six patent lens units move; B3B is the transverse IS unit.   ║
  * ║                                                                            ║
- * ║  FOCUS STATUS: NO_INTERNAL_RECONSTRUCTION.                               ║
- * ║    The patent identifies negative Unit B4 as the focus unit but gives    ║
- * ║    only infinity-focus zoom states. No finite-focus spacing is invented; ║
- * ║    all authored [infinity, close] pairs are therefore identical.         ║
+ * ║  FOCUS: INFINITY ONLY.                                                     ║
+ * ║    The patent identifies negative Unit B4 as the focus unit but gives only ║
+ * ║    infinity-focus zoom states. No close-focus spacing is modeled; all      ║
+ * ║    [infinity, close] pairs are therefore identical.                        ║
  * ║                                                                            ║
  * ║  ZOOM MODEL:                                                               ║
  * ║    Variable gaps D2, D8, D19, D21, D23, and D25 are transcribed at         ║
@@ -61,7 +61,7 @@ const LENS_DATA = {
   key: "canon-rf-24-105mm-f4-71-is-stm",
   maker: "Canon",
   name: "CANON RF 24-105mm f/4-7.1 IS STM",
-  subtitle: "US 2021/0003831 A1 Example 1 — production correlation to Canon RF 24-105mm F4-7.1 IS STM",
+  subtitle: "US 2021/0003831 A1 Example 1 — production match to Canon RF 24-105mm F4-7.1 IS STM",
 
   catalog: {
     lensMounts: ["canon-rf"],
@@ -333,7 +333,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.13,
     description:
-      "NO_INTERNAL_RECONSTRUCTION: Example 1 publishes infinity-only zoom states. B4 is the negative axial focus unit, but no finite-focus spacings are authored. Canon's 0.13 m minimum manual-focus distance is metadata only.",
+      "Infinity focus only. The patent's Example 1 publishes infinity-focus zoom states only. B4 is the negative focusing unit, but no close-focus spacings are given, so focus travel is not modeled; zoom movement is. Canon's 0.13 m minimum manual-focus distance is product information.",
   },
 
   /* (moved from var) ── Zoom / focus spacings ──

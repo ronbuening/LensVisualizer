@@ -41,7 +41,7 @@ const LENS_DATA = {
   key: "czj-flektogon-20-f4",
   maker: "Carl Zeiss Jena",
   name: "CARL ZEISS JENA FLEKTOGON 20mm f/4",
-  subtitle: "GB 978,797 Example 1 — strong Flektogon 4/20 correlation; attribution not manufacturer-confirmed",
+  subtitle: "GB 978,797 Example 1 — strong Flektogon 4/20 match; attribution not maker-confirmed",
 
   catalog: {
     lensMounts: ["m42", "exakta"],

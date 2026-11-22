@@ -140,13 +140,13 @@ The patent indices and Abbe numbers are retained unchanged. Catalog curves are c
 
 ## Focus Mechanism
 
-The optical model contains only the patent's infinity/source design state. The production literature gives a focus range of
-2.5 ft to infinity, represented in the data as `closeFocusM = 0.762 m`, but neither CH 352844 Zahlenbeispiel A nor the
-manufacturer material used for correlation supplies enough information to reconstruct a unique internal spacing law.
+The optical model contains only the patent's infinity/source design state. The production literature gives a focus range
+of 2.5 ft to infinity, recorded in the model as 0.762 m, but neither CH 352844 Zahlenbeispiel A nor the manufacturer
+material used for correlation supplies enough information to work out a unique internal spacing law.
 
-Accordingly, the data has no focus `var` entries and the focus status is `NO_INTERNAL_RECONSTRUCTION`. It does not assert a
+Accordingly, no spacing in the model changes with focus, and focus travel is not modeled. The model does not assert a
 unit-focus, inner-focus, or floating-group travel model; it also does not claim a total optical travel, close-focus
-magnification, or finite-focus prescription. The marketed minimum distance is retained as product metadata only.
+magnification, or close-focus prescription. The marketed minimum distance is kept as product information only.
 
 ## Verification Summary
 
