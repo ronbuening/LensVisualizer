@@ -28,7 +28,7 @@ const LENS_DATA = {
   key: "pentax-fa-star-24mm-f2-al-if",
   maker: "Pentax",
   name: "PENTAX SMC FA* 24mm f/2 AL [IF]",
-  subtitle: "US 4,934,797 A, Example 4 — probable production correlation",
+  subtitle: "US 4,934,797 A, Example 4 — probable production match",
   visible: true,
   layout: {
     yScFill: 0.35,

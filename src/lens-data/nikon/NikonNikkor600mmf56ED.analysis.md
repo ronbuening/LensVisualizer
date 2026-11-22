@@ -94,11 +94,11 @@ That limitation matters for terminology. The patent explicitly presents the inve
 
 ## Focus Mechanism
 
-The optical prescription is modeled only at infinity. The patent publishes no finite-focus spacing table, no group-travel values, and no numerical focus mechanism from which a unique close-focus state could be reconstructed. Accordingly, the data uses `NO_INTERNAL_RECONSTRUCTION`: no `var` gaps or internal lens movement are authored.
+The optical prescription is modeled only at infinity. The patent publishes no close-focus spacing table, no group-travel values, and no numerical focus mechanism from which a unique close-focus state could be worked out. Accordingly, the model shows the lens at infinity only: no spacing changes with focus and no group moves.
 
 Nikon's history of the focusing-unit super-telephotos explains the production mechanism. The lens head itself used a fixed barrel, while movable focusing and aperture mechanisms were built into the common focusing unit. The revised AU-1 focusing unit was released in 1975 and provided 600/1200 mm distance scales. Nikon also describes this family as using a behind-the-lens diaphragm arrangement. [2]
 
-The production minimum focus of 11 m is retained only as manufacturer metadata from Nikon's period specification. [4] It does not define a finite optical prescription in the model, because minimum-focus distance alone is insufficient to solve the lens-head/focusing-unit travel and reference station uniquely.
+The production minimum focus of 11 m is recorded only as product information from Nikon's period specification. [4] It does not define a close-focus optical prescription in the model, because minimum-focus distance alone is insufficient to solve the lens-head/focusing-unit travel and reference station uniquely.
 
 The aperture stop is likewise a modeling inference rather than a patent measurement. Because Nikon documents the diaphragm in the focusing unit behind the lens head, the model inserts one flat `STO` 1.000 mm behind patent surface 9. Its physical semi-diameter, 22.047760 mm, is calibrated by exact spherical tracing to reproduce the published f/5.6 entrance pupil. The 1.000 mm station offset is a numerical convention, and the calibrated stop radius is not evidence of the manufactured iris diameter.
 
@@ -126,7 +126,7 @@ All five d-line index/Abbe pairs were checked afresh in Example II (PDF page 11,
 
 ## Sources and References
 
-1. Yoshiyuki Shimizu, **US 3,774,991, “Achromatic Telephoto Objective Lens,”** filed 20 December 1971, granted 27 November 1973. Example II: PDF p. 11; Claim 3: PDF p. 12; Certificate of Correction: PDF p. 13; optical section Figure 2A: PDF p. 3; chromatic discussion: PDF pp. 9–10; Example-II achromatism Figure 8: PDF p. 8. Patent copy included with the dossier; public record: https://patents.google.com/patent/US3774991A/en
+1. Yoshiyuki Shimizu, **US 3,774,991, “Achromatic Telephoto Objective Lens,”** filed 20 December 1971, granted 27 November 1973. Example II: PDF p. 11; Claim 3: PDF p. 12; Certificate of Correction: PDF p. 13; optical section Figure 2A: PDF p. 3; chromatic discussion: PDF pp. 9–10; Example-II achromatism Figure 8: PDF p. 8. Patent copy among the sources used here; public record: https://patents.google.com/patent/US3774991A/en
 2. Nikon Imaging, **NIKKOR — The Thousand and One Nights No. 50**, focusing-unit history, AU-1 mechanism, behind-the-lens diaphragm discussion, and Yoshiyuki Shimizu design responsibility: https://imaging.nikon.com/imaging/information/story/0050/
 3. Nikon Imaging, **NIKKOR — The Thousand and One Nights No. 98**, historical note identifying the Nikkor 600mm F5.6 ED among Nikon's four ED telephotos released in 1975: https://imaging.nikon.com/imaging/information/story/0098/
 4. Nikon, Inc., **Nikkor Lenses / Technical Specifications**, Tele-Nikkor section, June 1978; manufacturer-authored specification archived by Pacific Rim Camera. The separate-focusing-mount 600mm f/5.6 ED is listed as 5 elements/4 groups, f/5.6–22, 4°10′, and 35 ft / 11 m minimum focus: https://www.pacificrimcamera.com/rl/01037/01037.pdf

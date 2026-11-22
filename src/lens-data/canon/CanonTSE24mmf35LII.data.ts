@@ -57,7 +57,7 @@ const LENS_DATA = {
   key: "canon-ts-e-24mm-f35l-ii",
   maker: "Canon",
   name: "CANON TS-E 24mm f/3.5 L II",
-  subtitle: "US 2010/0208366 A1 — Numerical Example 1; production correlation to TS-E 24mm f/3.5L II",
+  subtitle: "US 2010/0208366 A1 — Numerical Example 1; production match to TS-E 24mm f/3.5L II",
 
   catalog: {
     lensMounts: ["canon-ef"],

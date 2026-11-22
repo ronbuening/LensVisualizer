@@ -32,7 +32,7 @@ const LENS_DATA = {
   key: "sigma-15mm-f28-ex-dg-diagonal-fisheye",
   maker: "Sigma",
   name: "SIGMA 15mm f/2.8 EX DG DIAGONAL FISHEYE",
-  subtitle: "JP H02-248910 A, Numerical Example 1 \u2014 construction-based production correlation",
+  subtitle: "JP H02-248910 A, Numerical Example 1 \u2014 production match by construction",
   catalog: {
     lensMounts: ["sigma-sa", "canon-ef", "nikon-f", "pentax-k", "sony-a"],
     imageFormat: "135-full-frame",

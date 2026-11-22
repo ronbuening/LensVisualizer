@@ -22,7 +22,7 @@ const LENS_DATA = {
   key: "olympus-zuiko-digital-ed-300mm-f28",
   maker: "Olympus",
   name: "OLYMPUS ZUIKO DIGITAL ED 300mm f/2.8",
-  subtitle: "US 6,927,926 B2 EXAMPLE 3 — native 12-element patent model; commercial correlation qualified",
+  subtitle: "US 6,927,926 B2 EXAMPLE 3 — native 12-element patent model; tentative production match",
 
   catalog: {
     lensMounts: ["four-thirds"],

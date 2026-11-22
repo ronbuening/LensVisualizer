@@ -133,13 +133,12 @@ so duplicating them under historical names would falsely imply new measured coef
 
 ## Focus Mechanism
 
-The selected patent example publishes one fixed optical prescription and no internal-focus or zoom movement. The model is
-therefore `NO_INTERNAL_RECONSTRUCTION`: `var` is empty, there are no reconstructed moving groups, and no production
-minimum focusing distance or whole-lens focus travel is asserted.
+The selected patent example publishes one fixed optical prescription and no internal-focus or zoom movement. The model
+therefore shows the lens at infinity only: no spacing changes with focus, no group moves, and no production minimum
+focusing distance or whole-lens focus travel is asserted.
 
-The current data schema requires a numeric `closeFocusM`. The value `1000000` m in the data file is deliberately
-non-operative because no variable spacing uses it. It is a schema placeholder, not a physical minimum focusing distance
-and not historical product metadata.
+The focus control is held at infinity; the value stored for it is not a physical minimum focusing distance and not
+historical product information. It has no effect because no spacing changes with focus.
 
 ## Aberrational Vignetting and Field Coverage
 

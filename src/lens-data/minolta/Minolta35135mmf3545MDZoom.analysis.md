@@ -158,7 +158,7 @@ No `nC`, `nF`, `ng`, or `dPgF` values are authored for the lens. Even where a mo
 
 The patent publishes zoom spacings, not a finite-object focusing prescription. It does not specify which unit or units move for ordinary focus, how much they move, or how the macro setting changes internal spacings. The production Minolta manual documents normal focusing and macro operation, but those operating instructions do not determine a unique internal optical motion.[2]
 
-For that reason the model status is **NO_INTERNAL_RECONSTRUCTION**. The `closeFocusM` value of 1.5 m is retained as product metadata from Minolta’s instruction-manual specification,[2] but every focus pair in the authored `var` structure is identical at infinity and close focus. No finite-focus optical state is being represented by those pairs.
+For that reason the model shows the lens at infinity focus only. The 1.5 m close-focus figure from Minolta’s instruction-manual specification is recorded as product information,[2] but every spacing in the model stays at its infinity value at both ends of the focus control. No close-focus optical state is modeled.
 
 This distinction matters for interpretation: the viewer can identify the production minimum-focus specification, but it cannot legitimately simulate the production lens’s close-focus or macro prescription from the available patent evidence.
 

@@ -21,7 +21,7 @@ const LENS_DATA = {
   key: "minolta-md-apo-tele-600mm-f63",
   maker: "Minolta",
   name: "MINOLTA MD APO TELE 600mm f/6.3",
-  subtitle: "US4126378A EXAMPLE 3 — selected production correlation, not manufacturer-confirmed",
+  subtitle: "US4126378A EXAMPLE 3 — selected production match, not maker-confirmed",
 
   catalog: {
     lensMounts: ["minolta-sr"],

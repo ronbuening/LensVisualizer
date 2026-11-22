@@ -15,9 +15,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  0.3 m minimum focus, f/2.8–16, and 62 mm filter. Yashica system literature ║
  * ║  identifies the Contax/Yashica bayonet and 35 mm SLR system.                 ║
  * ║                                                                              ║
- * ║  FOCUS STATUS: NO_INTERNAL_RECONSTRUCTION. Example 1 publishes only the     ║
- * ║  infinity prescription. No finite-focus internal spacing changes are        ║
- * ║  invented; var is intentionally empty. closeFocusM is production metadata.  ║
+ * ║  FOCUS: infinity only. Example 1 publishes only the infinity                ║
+ * ║  prescription, so no spacing changes with focus. closeFocusM = 0.3 is the   ║
+ * ║  product's minimum focus distance; focus travel is not modeled.             ║
  * ║                                                                              ║
  * ║  STOP MODEL: the patent locates the diaphragm only within d11, between r11 ║
  * ║  and r12. Figure 3 places it approximately two-thirds of the way from r11   ║
@@ -46,7 +46,7 @@ const LENS_DATA = {
   key: "yashica-ml-24mm-f2-8",
   maker: "Yashica",
   name: "YASHICA ML 24mm f/2.8",
-  subtitle: "JP 1975-110330 Example 1 — uniformly scaled ×0.24 production correlation",
+  subtitle: "JP 1975-110330 Example 1 — uniformly scaled ×0.24 production match",
 
   catalog: {
     lensMounts: ["contax-yashica"],
@@ -198,7 +198,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.3,
     description:
-      "Production minimum focus is 0.3 m; patent Example 1 publishes only the infinity prescription. Focus status: NO_INTERNAL_RECONSTRUCTION; no internal spacing changes are modeled.",
+      "Infinity focus only. Patent Example 1 publishes only the infinity prescription, so focus travel is not modeled. The 0.3 m minimum focus distance is product information.",
   },
 
   aperture: { nominalFNumber: 2.8, fStops: [2.8, 4, 5.6, 8, 11, 16] },

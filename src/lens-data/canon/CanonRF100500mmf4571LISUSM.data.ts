@@ -33,7 +33,7 @@ const LENS_DATA = {
   key: "canon-rf-100-500mm-f45-71-l-is-usm",
   maker: "Canon",
   name: "CANON RF 100-500mm f/4.5-7.1 L IS USM",
-  subtitle: "US 2021/0003832 A1 — Numerical Example 2; production correlation to RF100-500mm F4.5-7.1 L IS USM",
+  subtitle: "US 2021/0003832 A1 — Numerical Example 2; production match to RF100-500mm F4.5-7.1 L IS USM",
 
   catalog: {
     lensMounts: ["canon-rf"],
@@ -410,9 +410,9 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.9,
     description:
-      "NO_INTERNAL_RECONSTRUCTION: the patent publishes infinity-focus zoom spacings only. " +
-      "For closer focus it states that L4 moves object-side and L6 image-side, " +
-      "but no finite-focus positions are authored.",
+      "Infinity focus only. The patent publishes infinity-focus zoom spacings only. " +
+      "For closer focus it states that L4 moves toward the object and L6 toward the image, " +
+      "but it gives no close-focus positions, so focus travel is not modeled; zoom movement is.",
   },
 
   /* (moved from var) Published infinity-focus zoom states only; no finite-focus reconstruction. */

@@ -72,7 +72,7 @@ const LENS_DATA = {
   key: "sony-fe-85mm-f14-gm",
   maker: "Sony",
   name: "SONY FE 85mm f/1.4 GM",
-  subtitle: "WO 2017/130571 A1, Example 2 — inferred production correlation",
+  subtitle: "WO 2017/130571 A1, Example 2 — inferred production match",
 
   catalog: {
     lensMounts: ["sony-fe"],

@@ -54,7 +54,7 @@ const LENS_DATA = {
   key: "minolta-mc-w-rokkor-sg-28f35-v2",
   maker: "Minolta",
   name: "MINOLTA MC W.ROKKOR-SG 28mm f/3.5",
-  subtitle: "JP 1969-025743 B, Example 2 — scaled ×28; production correlation, not manufacturer-confirmed attribution",
+  subtitle: "JP 1969-025743 B, Example 2 — scaled ×28; production match, not maker-confirmed",
 
   catalog: {
     lensMounts: ["minolta-sr"],

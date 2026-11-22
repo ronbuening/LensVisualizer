@@ -67,7 +67,7 @@ const LENS_DATA = {
   key: "minolta-af-80-200mm-f28-apo",
   maker: "Minolta",
   name: "MINOLTA AF 80-200mm f/2.8 APO",
-  subtitle: "JP1989-039542 Example 1 — correlated to Minolta AF Zoom 80-200mm F2.8 (2589)",
+  subtitle: "JP1989-039542 Example 1 — matched to Minolta AF Zoom 80-200mm F2.8 (2589)",
 
   catalog: {
     lensMounts: ["sony-a"],

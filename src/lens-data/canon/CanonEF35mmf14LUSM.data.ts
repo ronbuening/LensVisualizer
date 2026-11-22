@@ -27,7 +27,7 @@ const LENS_DATA = {
   key: "canon-ef-35mm-f14l-usm",
   maker: "Canon",
   name: "CANON EF 35mm f/1.4 L USM",
-  subtitle: "JP H11-211978 A Example 1 — corrected r11 sign; production correlation inferred",
+  subtitle: "JP H11-211978 A Example 1 — corrected r11 sign; inferred production match",
 
   catalog: {
     lensMounts: ["canon-ef"],

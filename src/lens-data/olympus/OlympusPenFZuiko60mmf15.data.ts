@@ -31,7 +31,7 @@ const LENS_DATA = {
   key: "olympus-pen-f-g-zuiko-auto-t-60mm-f15",
   maker: "Olympus",
   name: "OLYMPUS G.ZUIKO AUTO-T 60mm f/1.5",
-  subtitle: "JP S38-9224 B, Sole Example — probable Pen F production correlation",
+  subtitle: "JP S38-9224 B, Sole Example — probable Pen F production match",
   visible: true,
   catalog: {
     lensMounts: ["olympus-pen-f"],

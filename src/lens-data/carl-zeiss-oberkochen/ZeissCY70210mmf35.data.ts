@@ -29,7 +29,7 @@ const LENS_DATA = {
   key: "carl-zeiss-vario-sonnar-70-210mm-f35",
   maker: "Carl Zeiss Oberkochen",
   name: "CARL ZEISS VARIO-SONNAR T* 70-210mm f/3.5",
-  subtitle: "US 4,303,312 A, sole example — Contax/Yashica Vario-Sonnar; strong production correlation",
+  subtitle: "US 4,303,312 A, sole example — Contax/Yashica Vario-Sonnar; strong production match",
   visible: true,
   catalog: {
     lensMounts: ["contax-yashica"],

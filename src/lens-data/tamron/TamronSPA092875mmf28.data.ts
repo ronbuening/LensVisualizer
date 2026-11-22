@@ -51,7 +51,7 @@ const LENS_DATA = {
   key: "tamron-sp-af-28-75-f28-xr-di-a09",
   maker: "Tamron",
   name: "TAMRON SP AF 28-75mm f/2.8 XR Di LD Aspherical [IF] MACRO",
-  subtitle: "US 7,075,731 B1 exemplary prescription — Model A09 correlation; constrained G2 focus reconstruction",
+  subtitle: "US 7,075,731 B1 exemplary prescription — Model A09 match; G2 focus travel modeled under constraints",
 
   catalog: {
     lensMounts: ["canon-ef", "nikon-f", "sony-a", "pentax-k"],

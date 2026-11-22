@@ -135,14 +135,14 @@ Named curves pass the catalog coordinate guard without changing the patent coord
 
 ## Focus Mechanism
 
-The optical model has one published state: infinity. Its focus status is **NO_INTERNAL_RECONSTRUCTION**. No `var` spacing
-is authored, and no element or group is made to move internally.
+The optical model has one published state: infinity. The model therefore shows the lens at infinity only; no spacing
+changes with focus, and no element or group moves internally.
 
-Graflex documentation describes the XL's combination bayonet mount and focusing ring and lists the 80mm Zeiss Planar in a
-precision-matched barrel. The catalog gives a scale-focusing limit of 2.5 ft and a rangefinder limit of 3 ft. The data file
-stores 0.762 m, the exact metric conversion of 2.5 ft, only as product close-focus metadata. It does not use that number to
-construct a second optical prescription, because the manufacturer documents cited here do not supply the necessary barrel
-travel or optical reference datum. [2, PDF p. 6] [3, PDF pp. 4, 12]
+Graflex documentation describes the XL's combination bayonet mount and focusing ring and lists the 80mm Zeiss Planar in
+a precision-matched barrel. The catalog gives a scale-focusing limit of 2.5 ft and a rangefinder limit of 3 ft. The
+model stores 0.762 m, the exact metric conversion of 2.5 ft, only as product close-focus information. It does not use
+that number to construct a second optical prescription, because the manufacturer documents cited here do not supply the
+necessary barrel travel or optical reference datum. [2, PDF p. 6] [3, PDF pp. 4, 12]
 
 ## Stop, Aperture, and Semi-Diameter Model
 

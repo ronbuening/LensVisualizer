@@ -63,7 +63,7 @@ const LENS_DATA = {
   key: "canon-ef-s-18-55mm-f3p5-5p6",
   maker: "Canon",
   name: "CANON EF-S 18-55mm f/3.5-5.6",
-  subtitle: "JP2005092056A Example 5 — correlated to production EF-S 18-55mm f/3.5-5.6",
+  subtitle: "JP2005092056A Example 5 — matched to production EF-S 18-55mm f/3.5-5.6",
 
   catalog: {
     lensMounts: ["canon-ef-s"],

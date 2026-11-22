@@ -39,7 +39,7 @@ const LENS_DATA = {
   key: "nikon-nikkor-z-180-600mm-f56-63-vr",
   maker: "Nikon",
   name: "NIKON NIKKOR Z 180-600mm f/5.6-6.3 VR",
-  subtitle: "WO 2024/062958 A1 Example 2 - strong production correlation; published 2.4 m focus state",
+  subtitle: "WO 2024/062958 A1 Example 2 - strong production match; published 2.4 m focus state",
 
   catalog: {
     lensMounts: ["nikon-z"],

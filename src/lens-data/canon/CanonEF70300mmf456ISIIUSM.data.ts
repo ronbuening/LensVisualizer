@@ -34,7 +34,7 @@ const LENS_DATA = {
   key: "canon-ef-70-300mm-f4-56-is-ii-usm",
   maker: "Canon",
   name: "CANON EF 70-300mm f/4-5.6 IS II USM",
-  subtitle: "US 2017/0003486 A1 — Example 5; production correlation to Canon EF 70-300mm f/4-5.6 IS II USM",
+  subtitle: "US 2017/0003486 A1 — Example 5; production match to Canon EF 70-300mm f/4-5.6 IS II USM",
 
   catalog: {
     lensMounts: ["canon-ef"],

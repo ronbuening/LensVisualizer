@@ -26,7 +26,7 @@ const LENS_DATA = {
   "key": "minolta-md-fisheye-rokkor-x-75mm-f4",
   "maker": "Minolta",
   "name": "MINOLTA MD FISHEYE ROKKOR-X 7.5mm f/4",
-  "subtitle": "US 4,009,943, Example 2 — probable March 1981 production correlation",
+  "subtitle": "US 4,009,943, Example 2 — probable March 1981 production match",
   "catalog": {
     "lensMounts": [
       "minolta-sr"
