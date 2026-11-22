@@ -55,7 +55,7 @@ const LENS_DATA = {
   key: "pentax-hd-d-fa-star-70-200mm-f28-ed-dc-aw",
   maker: "Pentax",
   name: "PENTAX HD D FA* 70-200mm f/2.8 ED DC AW",
-  subtitle: "US 2016/0103303 A1 — Numerical Embodiment 1; strong production correlation",
+  subtitle: "US 2016/0103303 A1 — Numerical Embodiment 1; strong production match",
 
   catalog: {
     lensMounts: ["pentax-k"],

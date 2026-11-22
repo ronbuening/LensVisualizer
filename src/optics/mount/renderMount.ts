@@ -251,9 +251,11 @@ function drawContact(ctx: DrawContext, c: ContactFeature, electricalLayer: Mount
   const halfSpan = r > 0 ? ((widthMm / 2 / r) * 180) / Math.PI : 4;
   const status = combineStatus([c.centerAngleDeg.status, c.centerRadiusMm.status, c.widthMm.status]);
   const centerRaw = normalizeAngleDeg(numberOr(c.centerAngleDeg, 0));
+  // `center` is already in the view's frame (mirrored for the lens-rear view), and a pad is
+  // symmetric about its centre, so the sweep needs no second mirror.
   const center = ctx.angleOf(centerRaw);
-  const start = ctx.mirror ? mirrorAngleDeg(center + halfSpan) : center - halfSpan;
-  const end = ctx.mirror ? mirrorAngleDeg(center - halfSpan) : center + halfSpan;
+  const start = center - halfSpan;
+  const end = center + halfSpan;
   pushElement(ctx, {
     layer: electricalLayer,
     kind: "path",

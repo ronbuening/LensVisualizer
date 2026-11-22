@@ -39,7 +39,7 @@ const LENS_DATA = {
   maker: "Pentax",
   name: "PENTAX HD D FA645 35mm f/3.5 AL [IF]",
   subtitle:
-    "US 2001/0007512 A1 Embodiment 4 — plausible FA645-lineage correlation; not confirmed as the exact 2015 HD formula",
+    "US 2001/0007512 A1 Embodiment 4 — plausible FA645-lineage match; not confirmed as the exact 2015 HD formula",
 
   catalog: {
     lensMounts: ["pentax-645"],

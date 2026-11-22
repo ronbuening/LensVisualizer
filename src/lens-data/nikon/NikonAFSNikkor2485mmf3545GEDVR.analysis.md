@@ -339,12 +339,12 @@ The patent does **not** publish a numerical close-focus spacing row, G2 focus tr
 intermediate focus state for Example 4. The 0.38 m production MFD is one external observable and does not uniquely solve
 the internal group displacement.
 
-The implemented focus status is therefore **`NO_INTERNAL_RECONSTRUCTION`**. All five variable-spacing entries in the data
-file repeat their infinity value in the nominal “close” slot at each zoom keyframe. The viewer thus preserves the published
-infinity-focus zoom geometry rather than fabricating a close-focus internal model.
+The model therefore shows infinity focus only. At each zoom position, all five spacings that change with zoom stay at
+their infinity values at both ends of the focus control. The viewer thus preserves the published infinity-focus zoom
+geometry rather than fabricating a close-focus internal model; zoom movement is modeled, focus travel is not.
 
-The 0.38 m value in `closeFocusM` is manufacturer metadata for the production lens. It must not be read as evidence that
-the rendered internal group positions reproduce the production lens at 0.38 m.
+The 0.38 m close-focus figure is Nikon's product specification for the production lens. It must not be read as evidence
+that the rendered internal group positions reproduce the production lens at 0.38 m.
 
 ## Aspherical Surfaces
 

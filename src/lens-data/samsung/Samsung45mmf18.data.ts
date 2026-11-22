@@ -43,7 +43,7 @@ const LENS_DATA = {
   key: "samsung-nx-45mm-f18",
   maker: "Samsung",
   name: "SAMSUNG 45mm f/1.8",
-  subtitle: "US 2013/0314588 A1 Example 1 — production correlation to the Samsung 45mm f/1.8",
+  subtitle: "US 2013/0314588 A1 Example 1 — production match to the Samsung 45mm f/1.8",
 
   catalog: {
     lensMounts: ["samsung-nx"],

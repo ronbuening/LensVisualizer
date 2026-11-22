@@ -35,7 +35,7 @@ const LENS_DATA = {
   "key": "pentax-fa-j-75-300mm-f45-58-al",
   "maker": "Pentax",
   "name": "PENTAX SMC FA J 75-300mm f/4.5-5.8 AL",
-  "subtitle": "US 2003/0223122 A1, Embodiment 3 \u2014 qualified production correlation",
+  "subtitle": "US 2003/0223122 A1, Embodiment 3 \u2014 tentative production match",
   "catalog": {
     "lensMounts": [
       "pentax-k"

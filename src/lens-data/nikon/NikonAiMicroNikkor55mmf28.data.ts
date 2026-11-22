@@ -48,7 +48,7 @@ const LENS_DATA = {
   key: "nikon-ai-micro-nikkor-55f28",
   maker: "Nikon",
   name: "NIKON AI MICRO-NIKKOR 55mm f/2.8",
-  subtitle: "US 4,260,223 A — Example 1; ×0.55 production correlation",
+  subtitle: "US 4,260,223 A — Example 1; ×0.55 production match",
 
   catalog: {
     lensMounts: ["nikon-f"],

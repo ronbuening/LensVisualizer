@@ -31,7 +31,7 @@ const LENS_DATA = {
   key: "olympus-mzuiko-75mm-f18",
   maker: "Olympus",
   name: "OLYMPUS M.ZUIKO DIGITAL ED 75mm f/1.8",
-  subtitle: "JP 2013-161076 A, Numerical Example 1 — Sigma patent; production correlation unconfirmed",
+  subtitle: "JP 2013-161076 A, Numerical Example 1 — Sigma patent; production match not maker-confirmed",
 
   catalog: {
     lensMounts: ["micro-four-thirds"],

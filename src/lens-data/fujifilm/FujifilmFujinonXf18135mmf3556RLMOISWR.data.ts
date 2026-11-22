@@ -58,7 +58,7 @@ const LENS_DATA = {
   key: "fujifilm-fujinon-xf-18-135mm-f35-56-r-lm-ois-wr",
   maker: "Fujifilm",
   name: "FUJIFILM FUJINON XF 18-135mm f/3.5-5.6 R LM OIS WR",
-  subtitle: "US 9,651,761 B2 Example 1 — production correlation; unscaled patent prescription",
+  subtitle: "US 9,651,761 B2 Example 1 — production match; unscaled patent prescription",
 
   catalog: {
     lensMounts: ["fujifilm-x"],

@@ -52,7 +52,7 @@ const LENS_DATA = {
   key: "fujifilm-fujinon-xf-18-120mm-f4-lm-pz-wr",
   maker: "Fujifilm",
   name: "FUJIFILM FUJINON XF 18-120mm f/4 LM PZ WR",
-  subtitle: "JP 2023-033114 A Example 1 — native-scale production correlation",
+  subtitle: "JP 2023-033114 A Example 1 — production match at patent scale",
 
   catalog: {
     lensMounts: ["fujifilm-x"],

@@ -21,6 +21,7 @@ export const MAKER_PREFIXES = [
   { prefix: "C. P. GOERZ", display: "Goerz", slug: "goerz" },
   { prefix: "GOERZ", display: "Goerz", slug: "goerz" },
   { prefix: "HASSELBLAD", display: "Hasselblad", slug: "hasselblad" },
+  { prefix: "ISCO", display: "ISCO", slug: "isco" },
   { prefix: "KONICA", display: "Konica", slug: "konica" },
   { prefix: "KINOPTIK", display: "Kinoptik", slug: "kinoptik" },
   { prefix: "KMZ", display: "KMZ", slug: "kmz" },

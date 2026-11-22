@@ -47,7 +47,7 @@ const LENS_DATA = {
   key: "canon-ef-m-18-55-f35-56-is-stm",
   maker: "Canon",
   name: "CANON EF-M 18-55mm f/3.5-5.6 IS STM",
-  subtitle: "US 2013/0335830 A1 · Numerical Embodiment 1 · production correlation inferred",
+  subtitle: "US 2013/0335830 A1 · Numerical Embodiment 1 · inferred production match",
 
   catalog: {
     lensMounts: ["canon-ef-m"],

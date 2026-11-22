@@ -12,10 +12,10 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 
 ## Summary
 
-- **1195** lenses scanned
-- **13277** glass elements examined
-- **2704** elements have multiple coordinate-compatible candidates
-- **494** lens files are affected
+- **1203** lenses scanned
+- **13328** glass elements examined
+- **2706** elements have multiple coordinate-compatible candidates
+- **495** lens files are affected
 - **276** ambiguous elements retain authored dPgF at the runtime g-line, independent of the selected catalog row
 - **118** ambiguous elements provide complete C/F/g indices and bypass catalog dispersion entirely
 
@@ -23,7 +23,7 @@ Regenerate the full glass report set with `npm run generate:glass-reports`.
 |---|---:|
 | Smallest reference-index residual | 1571 |
 | Evidence-source priority | 839 |
-| Vendor context | 280 |
+| Vendor context | 282 |
 | Stable canonical-name order | 12 |
 | Smallest Abbe residual | 2 |
 
@@ -2029,4 +2029,5 @@ resolves for. Per-candidate residuals are one `explainCompatibleGlassResolution`
 | `N-LASF44 catalog proxy; 804465 — lanthanum high-index class (supplier unproven)` | 1.80420 / 46.50 (d) | N-LASF44 — direct name evidence outranks six-digit code evidence. | TAF3 (Hoya, code, alternate code row)<br>TAF3D (Hoya, code, alternate code row) | 1 | [ZEISS BATIS 85mm f/1.8](../../src/lens-data/carl-zeiss-oberkochen/ZeissBatis1885.data.ts) L8 |
 | `J-LASFH6 catalog proxy; 806333 — high-index flint class (supplier unproven)` | 1.80610 / 33.27 (d) | J-LASFH6 — direct name evidence outranks six-digit code evidence. | NBFD15 (Hoya, code, preferred code row) | 1 | [ZEISS BATIS 85mm f/1.8](../../src/lens-data/carl-zeiss-oberkochen/ZeissBatis1885.data.ts) L9 |
 | `S-NSL3 catalog proxy; 518590 — crown class (supplier unproven)` | 1.51820 / 58.96 (d) | S-NSL3 — direct name evidence outranks six-digit code evidence. | E-C3 (Hoya, code, alternate code row) | 1 | [ZEISS BATIS 85mm f/1.8](../../src/lens-data/carl-zeiss-oberkochen/ZeissBatis1885.data.ts) L11 |
+| `SF4 (Schott catalog equivalent of TF5)` | 1.75523 / 27.52 (d) | SF4 — Annotation vendor context matches Schott. | TF5 (LZOS, name, vendor ✗) | 2 | [ZENIT MC ZENITAR 85mm f/1.4](../../src/lens-data/kmz/ZenitMCZenitar85mmf14.data.ts) L4 |
 

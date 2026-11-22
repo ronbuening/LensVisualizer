@@ -45,7 +45,7 @@ const LENS_DATA = {
   key: "fujifilm-fujinon-xf-16mm-f14-r-wr",
   maker: "Fujifilm",
   name: "FUJIFILM FUJINON XF 16mm f/1.4 R WR",
-  subtitle: "US 2016/0282590 A1 Example 1 — native-scale production correlation",
+  subtitle: "US 2016/0282590 A1 Example 1 — production match at patent scale",
 
   catalog: {
     lensMounts: ["fujifilm-x"],

@@ -19,7 +19,7 @@ const LENS_DATA = {
   key: "minolta-md-tele-rokkor-135mm-f28",
   maker: "Minolta",
   name: "MINOLTA MD TELE ROKKOR 135mm f/2.8",
-  subtitle: "JP S51-62037 A Example 1; selected four-element production correlation",
+  subtitle: "JP S51-62037 A Example 1; selected four-element production match",
 
   catalog: {
     lensMounts: ["minolta-sr"],

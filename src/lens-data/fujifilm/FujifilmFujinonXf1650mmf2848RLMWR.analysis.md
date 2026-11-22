@@ -11,7 +11,7 @@
 
 The prescription modeled here is Example 17 of WO 2024/057734 A1. The example is described in the patent at ¶¶0292–0297 and tabulated in Tables 49–51 on printed pages 98–99. Table 49 supplies the radii, axial spacings, d-line indices, Abbe numbers, partial-dispersion ratios, effective diameters, and specific gravities. Table 50 gives the three published infinity-focus zoom states. Table 51 gives the six aspherical-surface coefficient sets. The patent identifies the zoom architecture as four lens groups, G1− / G2+ / G3− / G4+, with G3 as the focus group and G4 fixed relative to the image plane during zooming. [WO 2024/057734 A1, ¶¶0292–0297, Fig. 35, Tables 49–51.]
 
-The production correlation is strong but is not presented as manufacturer confirmation. FUJIFILM's production specifications for the FUJINON XF16-50mmF2.8-4.8 R LM WR state 11 elements in 9 groups, including 3 aspherical and 3 ED elements, a 16–50 mm focal range, f/2.8–4.8 maximum aperture, 0.24 m minimum focus distance, and inner focusing. The May 2024 launch material also states that the focus group is driven by a linear motor. The patent example independently has 11 glass elements in 9 air-separated optical groups, three double-aspherical elements, a computed design range of 16.4899–48.5702 mm, published F-numbers of 2.88–4.94, and a compact single-element G3 focus group. The WO publication preceded the product announcement by roughly two months. These convergences support the identification, but no FUJIFILM source located for this dossier explicitly states that Example 17 is the production prescription.
+The production correlation is strong but is not presented as manufacturer confirmation. FUJIFILM's production specifications for the FUJINON XF16-50mmF2.8-4.8 R LM WR state 11 elements in 9 groups, including 3 aspherical and 3 ED elements, a 16–50 mm focal range, f/2.8–4.8 maximum aperture, 0.24 m minimum focus distance, and inner focusing. The May 2024 launch material also states that the focus group is driven by a linear motor. The patent example independently has 11 glass elements in 9 air-separated optical groups, three double-aspherical elements, a computed design range of 16.4899–48.5702 mm, published F-numbers of 2.88–4.94, and a compact single-element G3 focus group. The WO publication preceded the product announcement by roughly two months. These convergences support the identification, but no FUJIFILM source found explicitly states that Example 17 is the production prescription.
 
 The modeled lens is therefore identified as a patent-grounded research reconstruction of the production XF16-50mm optical formula rather than a manufacturer-certified production prescription. Marketing specifications are kept separate from the exact design quantities throughout this analysis.
 
@@ -154,7 +154,7 @@ The patent identifies G3, consisting solely of L31, as the focus group. From inf
 
 FUJIFILM's production material independently describes the XF16-50mm as an inner-focus lens in which a compact focus-lens group is driven by a linear motor. The production minimum focus distance is 0.24 m from the focal plane. These product facts are mechanically consistent with the patent architecture but do not supply Example 17's missing close-focus internal spacings.
 
-The modeled focus status is therefore **NO_INTERNAL_RECONSTRUCTION**. The `.data.ts` retains the three published infinity-focus zoom states and uses identical infinity/close values in every `var` pair. The `closeFocusM: 0.24` field is production metadata for the user interface; it is not evidence that the internal close-focus optical state has been reconstructed.
+The model therefore shows infinity focus only. It keeps the three published infinity-focus zoom states, and every spacing that changes with focus keeps its infinity value at both ends of the focus control. The 0.24 m close-focus figure is product information for the focus control; it is not evidence that the internal close-focus optical state has been modeled.
 
 No close-focus G3 travel, adjacent-gap values, breathing curve, or intermediate focus law is claimed. Production MFD alone does not uniquely determine those internal degrees of freedom.
 
@@ -168,7 +168,7 @@ FUJIFILM's patent uses the base term
 
 LensVisualizer uses the conventional `(1+K)` form, so the required mapping is `K = KA − 1`. Every Example 17 asphere has `KA = 1`, giving `K = 0` in the implemented file. No coefficient scaling is applied because the prescription scale factor is exactly 1.
 
-The coefficient sets below are copied from Table 51 after the verified transcription corrections recorded in the dossier. Zero A3 terms are omitted from the data file; all nonzero A4–A20 terms are retained.
+The coefficient sets below are copied from Table 51 after the verified transcription corrections made for this model. Zero A3 terms are omitted from the data file; all nonzero A4–A20 terms are retained.
 
 ### Surface 3A — L12 Front
 
@@ -351,7 +351,7 @@ The prescription itself is supported more directly by Tables 49–51: independen
 
 ## Verification Summary
 
-The final `.data.ts` was reloaded by the dossier verifier rather than re-entered as a separate hard-coded model. Independent sequential and ABCD first-order calculations agree to floating-point precision.
+The final `.data.ts` was reloaded by the verification script rather than re-entered as a separate hard-coded model. Independent sequential and ABCD first-order calculations agree to floating-point precision.
 
 | State | Published EFL (mm) | Computed EFL (mm) | Published Bf (mm) | Computed BFL (mm) |
 | --- | ---: | ---: | ---: | ---: |

@@ -132,11 +132,10 @@ approximate and does not support an APO designation or a claim about secondary s
 
 ## Focus Mechanism
 
-The implemented status is NO_INTERNAL_RECONSTRUCTION. The published table is an infinity-design prescription;
-no finite-conjugate spacing schedule or mechanically constrained focus solution is available.
-The model keeps every internal gap and the tabulated image spacing fixed. Its variable-gap object is empty,
-and the established closeFocusM = 1e15 sentinel disables a meaningful close-focus endpoint.
-The viewer description explicitly says that close focus is not modeled.
+The published table is an infinity-design prescription; no close-focus spacing schedule or mechanically
+constrained focus solution is available. The model keeps every internal gap and the tabulated image spacing fixed,
+so no spacing changes with focus. The focus control is held at infinity; the stored value is not a product minimum
+focus distance. The focus caption explicitly says that close focus is not modeled.
 
 Cosina's L39 product is manually focused and rangefinder-coupled to 0.9 m. That production specification does
 not determine whether this exact patent prescription moved as a unit or used another optical motion.

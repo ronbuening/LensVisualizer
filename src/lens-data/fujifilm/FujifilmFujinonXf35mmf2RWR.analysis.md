@@ -21,7 +21,7 @@ The match to the production FUJINON XF35mmF2 R WR is strong but remains a resear
 4. The patent uses a single lightweight negative inner-focus group between fixed G1 and G3; Fujifilm describes an inner-focus mechanism driven by a stepping motor.
 5. The Japanese priority date, 2015-07-10, precedes Fujifilm's manufacturer-recorded release month of November 2015.
 
-One measurable offset is retained rather than reconciled: Example 1 publishes a maximum full angle of view of 47.2°, while Fujifilm specifies 44.2° for the production lens. The implemented model therefore keeps the patent field quantity separate from the marketed product specification. No Fujifilm source reviewed for this dossier explicitly states that US 2017/0010441 A1 Example 1 is the production formula.
+One measurable offset is retained rather than reconciled: Example 1 publishes a maximum full angle of view of 47.2°, while Fujifilm specifies 44.2° for the production lens. The implemented model therefore keeps the patent field quantity separate from the marketed product specification. No Fujifilm source reviewed here explicitly states that US 2017/0010441 A1 Example 1 is the production formula.
 
 The final LensVisualizer data file uses the exact published dimensional scale; no focal-length normalization or other uniform scaling is applied. Its computed d-line EFL is 35.3260144 mm, within 0.0020 mm of the patent's rounded 35.328 mm value.
 
@@ -57,7 +57,7 @@ The 883408 coordinate has exact catalog-coordinate matches in more than one vend
 
 L12 is the positive member of the cemented L12/L13 pair. Its rear cemented interface is plane in the patent table. The positive member's higher Abbe number relative to L13 is the quantity used by the patent's first chromatic condition.
 
-The 755523 coordinate is retained as a generic lanthanum-crown class. Historical OHARA S-YGH51 and CDGM H-LaK53B reproduce the patent coordinate exactly; the dossier does not convert that coordinate into a supplier claim.
+The 755523 coordinate is retained as a generic lanthanum-crown class. Historical OHARA S-YGH51 and CDGM H-LaK53B reproduce the patent coordinate exactly; this analysis does not convert that coordinate into a supplier claim.
 
 ### L13 — Plano-Concave Negative, Cemented Pair D1
 
@@ -135,9 +135,9 @@ No element carries authored nC, nF, ng, or dPgF values because the patent does n
 
 The patent describes an inner-focus mechanism. G2 consists solely of L21 and moves from the object side toward the image side as focus changes from infinity toward a nearer object. G1, the aperture stop, G3, and the image plane remain fixed (¶0058, ¶0087).
 
-The final data file uses `NO_INTERNAL_RECONSTRUCTION`. Example 1 provides only the infinity-focus spacing state. It does not provide a near-focus G2 displacement, a second set of adjacent air gaps, or a second object distance/magnification state from which a unique travel law could be solved. Accordingly, `var` is empty and no close-focus internal geometry is synthesized.
+The model shows the lens at infinity only. Example 1 provides only the infinity-focus spacing state. It does not provide a near-focus G2 displacement, a second set of adjacent air gaps, or a second object distance/magnification state from which a unique travel law could be solved. Accordingly, no spacing changes with focus and no close-focus movement is modeled.
 
-Fujifilm specifies a 0.35 m minimum focus distance for the production XF35mmF2 R WR and describes an inner-focus stepping-motor mechanism. In the data file, 0.35 m is retained only as production metadata through `closeFocusM`; it is not used to infer patent group travel. This distinction prevents a marketed object-distance limit from being mistaken for a published Example 1 focus state.
+Fujifilm specifies a 0.35 m minimum focus distance for the production XF35mmF2 R WR and describes an inner-focus stepping-motor mechanism. The model records 0.35 m only as product information; it is not used to infer patent group travel. This distinction prevents a marketed object-distance limit from being mistaken for a published Example 1 focus state.
 
 ## Aspherical Surfaces
 

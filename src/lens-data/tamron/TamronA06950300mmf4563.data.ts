@@ -17,10 +17,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ ZOOM: published infinity-focus Example 1 states only. D5, D14, D25, D28,   ║
  * ║ and D34 vary with zoom; D25 and D28 reverse at the intermediate state.     ║
  * ║                                                                            ║
- * ║ FOCUS STATUS — NO_INTERNAL_RECONSTRUCTION: the patent states that G4        ║
- * ║ (cemented L15+L16) moves imageward toward near focus, but Example 1 gives   ║
- * ║ no close-focus D25/D28 values. Every authored [d_inf, d_close] pair is      ║
- * ║ therefore identical. Production MOD values remain metadata only.            ║
+ * ║ FOCUS: Infinity only. The patent states that G4 (cemented L15+L16) moves   ║
+ * ║ imageward toward near focus, but Example 1 gives no close-focus D25/D28    ║
+ * ║ values. Every [d_inf, d_close] pair is therefore identical. Production MOD ║
+ * ║ values are product information only.                                       ║
  * ║                                                                            ║
  * ║ SENSOR COVER GLASS: source surfaces 35-36 (CG, 2.500 mm, nd 1.516798,      ║
  * ║ vd 64.20) and the 1.000 mm air gap to IMG are modeled in `rearPlates`      ║
@@ -55,7 +55,7 @@ const LENS_DATA = {
   key: "tamron-a069-50-300mm-f4-5-6-3-di-iii-vc-vxd",
   maker: "Tamron",
   name: "TAMRON 50-300mm f/4.5-6.3 Di III VC VXD",
-  subtitle: "US 2024/0295723 A1 — Example 1 / Tamron A069 correlation",
+  subtitle: "US 2024/0295723 A1 — Example 1 / Tamron A069 match",
 
   catalog: {
     lensMounts: ["sony-fe"],
@@ -362,7 +362,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.22,
     description:
-      "NO_INTERNAL_RECONSTRUCTION. Example 1 publishes only infinity-focus zoom spacings. G4 (cemented L15+L16) is the focusing group and moves toward the image side at nearer distances, but no close-focus D25/D28 values are published; all focus pairs therefore remain identical. Tamron's production MOD is 0.22 m at wide and 0.9 m at tele and is not used to invent internal travel.",
+      "Infinity focus only. The patent names G4 (cemented L15+L16) as the focusing group, moving toward the image for close focus, but Example 1 gives no close-focus D25/D28 spacings. Tamron's minimum object distances of 0.22 m at wide and 0.9 m at tele are product information; focus travel is not modeled, zoom movement is.",
   },
 
   gaps: {

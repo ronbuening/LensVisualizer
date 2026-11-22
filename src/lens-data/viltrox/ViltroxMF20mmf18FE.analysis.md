@@ -217,13 +217,13 @@ phrase “fluorite glass” for its ED elements does not establish crystalline f
 ## Focus Mechanism
 
 The patent describes G1 and G2 as fixed and G3 as the moving focus group.
-It does not publish finite-conjugate spacing rows, travel, or a complete motion law.
-The model consequently uses NO_INTERNAL_RECONSTRUCTION and retains a single static
-infinity configuration. It does not replace the described rear-group mechanism with
-an invented unit-focus movement. [1, §0070]
+It does not publish close-focus spacing rows, travel, or a complete motion law.
+The model therefore shows the lens at infinity only, in a single fixed infinity
+configuration, and focus travel is not modeled. It does not replace the described
+rear-group mechanism with a modeled unit-focus movement. [1, §0070]
 
 The manufacturer's manual-focus designation and 0.25 m minimum shooting distance are
-production metadata. They do not locate a finite-focus group position in this model,
+product information. They do not locate a close-focus group position in this model,
 certify a near-focus conjugate or provide a basis for breathing or magnification claims.
 
 ## Aspherical Surfaces

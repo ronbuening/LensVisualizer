@@ -183,7 +183,7 @@ coordinate/class labels instead of turning catalog proximity into supplier ident
 | 728283 — SF10/E-FD10/H-ZF4 coordinate class | L9 | 1.72825 | 28.3 | Strong coordinate class; supplier unresolved |
 | 767466 — J-LASFH2 coordinate-compatible proxy | L11 | 1.76684 | 46.6 | Coordinate-compatible proxy; supplier unresolved |
 
-The dossier's catalog review found exact or near-exact coordinate rows in authoritative HIKARI, CDGM, and SUMITA data for
+A catalog review found exact or near-exact coordinate rows in authoritative HIKARI, CDGM, and SUMITA data for
 several of these points and checked the official OHARA, HOYA, and SCHOTT catalog resources as available. Those comparisons
 establish plausible coordinate families, not the historical procurement source for the lens. Accordingly, the data file
 contains no `nC`, `nF`, `ng`, or `dPgF` fields and this analysis makes no APO or anomalous-partial-dispersion claim.
@@ -192,16 +192,16 @@ Eight of eleven elements now resolve to coefficient-backed catalog proxies. L3 a
 
 ## Focus Mechanism
 
-The finite-object focus status is **NO_INTERNAL_RECONSTRUCTION**. US 3,771,853 supplies zoom motion at the image focus but
-no close-focus spacing table for Embodiment III. The selected source therefore does not provide enough observables to solve
-a unique finite-object internal focus model.
+The model shows infinity focus only. US 3,771,853 supplies zoom motion at the image focus but no close-focus spacing
+table for Embodiment III. The selected source therefore does not provide enough observables to solve a unique
+close-focus internal focus model.
 
-The data file records `closeFocusM = 0.6` because archival Nikon product literature lists a distance scale from 0.6 m
-(2 ft) to infinity for the production Zoom-Nikkor 28–45mm f/4.5. That number is product metadata only. Every focus vector
-in the implemented `var` structure has identical infinity and close values, so moving the focus control does not invent
-any optical group motion. The analysis therefore does not label the production lens as unit focus, inner focus, or floating
-focus from this patent alone. [Archival Nikon product literature scan, specification block, reproduced at Pacific Rim
-Camera; see Sources.]
+The model records 0.6 m as the close-focus distance because archival Nikon product literature lists a distance scale
+from 0.6 m (2 ft) to infinity for the production Zoom-Nikkor 28–45mm f/4.5. That number is product information only.
+Every spacing stays at its infinity value at both ends of the focus control, so moving the focus control does not invent
+any optical group motion. The analysis therefore does not label the production lens as unit focus, inner focus, or
+floating focus from this patent alone. [Archival Nikon product literature scan, specification block, reproduced at
+Pacific Rim Camera; see Sources.]
 
 Zoom motion and focusing are distinct in this model. The five zoom keyframes describe the patent's variable-focal-length
 kinematics at the selected image focus; they do not constitute finite-object focus states.
@@ -290,7 +290,7 @@ with a real marginal ray by the LensVisualizer engine and are not patent-publish
 
 The patent prints a back-focus range of 37.768–48.895 mm. The rounded prescription does not reproduce those values at the
 printed 0.001 mm precision. The final model therefore uses the self-consistent paraxial BFL values shown above as the image
-plane while retaining the printed back-focus values as a source discrepancy. The dossier retains this as a rounded-source discrepancy; no lens surface was altered merely to force the printed Bf
+plane while retaining the printed back-focus values as a source discrepancy. This analysis records it as a rounded-source discrepancy; no lens surface was altered merely to force the printed Bf
 numbers.
 
 The parsed final model also gives a surface-by-surface Petzval sum of +0.00492696779 mm⁻¹ using
@@ -319,7 +319,7 @@ runtime was not mounted. Their absence does not convert the portable checks into
 5. Nikon / Nippon Kogaku K.K., **Zoom-Nikkor 28-45mm f/4.5 product literature**, archival third-party scan; specification
    block lists 11 elements in 7 groups and a 0.6 m (2 ft) to infinity distance scale.
    https://www.pacificrimcamera.com/rl/00594/00594.pdf
-6. Authoritative glass resources recorded in the dossier: OHARA optical-glass catalog, HOYA Optics data downloads,
+6. Authoritative glass resources consulted: OHARA optical-glass catalog, HOYA Optics data downloads,
    SCHOTT optical-glass data, HIKARI optical-glass catalog, CDGM optical-glass data sheets, and SUMITA ZEMAX/AGF data.
    These resources are used only for coordinate/class comparison; no supplier identity is asserted for the patent glasses.
 

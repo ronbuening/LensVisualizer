@@ -94,9 +94,9 @@ The small two-line residuals do not establish manufacturer, exact melt, `νd`, p
 
 ## Focus Mechanism
 
-The focus status is `NO_INTERNAL_RECONSTRUCTION`. The patent supplies one infinity prescription and no variable-spacing table, object-distance series, magnification, minimum focus distance, or internal focusing mechanism.
+The patent supplies one infinity prescription and no table of spacings that change with focus, object-distance series, magnification, minimum focus distance, or internal focusing mechanism.
 
-The data file therefore defines one static state and no `var` or `varLabels` block. The schema-required `closeFocusM: 1.0` is only a UI placeholder, not patent or product metadata and not a finite-focus reconstruction. Historical focusing by camera bed, bellows, plate motion, or whole-cell translation is outside the optical prescription.
+The model therefore shows one infinity state and moves no group. The 1.0 m value stored for the close end of the focus control is only a placeholder; it is not a patent or product figure and not a modeled close-focus state. Historical focusing by camera bed, bellows, plate motion, or whole-cell translation is outside the optical prescription.
 
 ## Patent Material-Ordering Conditions
 

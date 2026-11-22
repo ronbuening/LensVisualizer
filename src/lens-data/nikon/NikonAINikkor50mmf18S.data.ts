@@ -51,7 +51,7 @@ const LENS_DATA = {
   key: "nikon-ai-nikkor-50f18s",
   maker: "Nikon",
   name: "NIKON AI NIKKOR 50mm f/1.8 S",
-  subtitle: "US 4,234,242 A — Example 3; ×0.5 patent-to-production correlation",
+  subtitle: "US 4,234,242 A — Example 3; ×0.5 scaled production match",
 
   catalog: {
     lensMounts: ["nikon-f"],

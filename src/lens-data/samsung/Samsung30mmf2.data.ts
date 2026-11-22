@@ -7,7 +7,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  Data source: US 2010/0149663 A1, First Embodiment / Example 1.   ║
  * ║  Correlated production lens: Samsung 30mm F2 NX standard prime.   ║
  * ║  Five air-spaced elements / five groups; one aspherical surface.  ║
- * ║  Focus status: NO_INTERNAL_RECONSTRUCTION. The patent publishes    ║
+ * ║  Focus: infinity only. The patent publishes                        ║
  * ║  only one infinity prescription; no focus movement is modeled.     ║
  * ║                                                                    ║
  * ║  SCALING: None. Patent radii, thicknesses, and asphere values are  ║
@@ -139,8 +139,8 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.25,
     description:
-      "NO_INTERNAL_RECONSTRUCTION: the patent publishes only the infinity prescription. " +
-      "The production 0.25 m MFD is metadata only; no internal focus gaps are modeled.",
+      "Infinity focus only. The patent publishes only the infinity prescription, so focus travel is not modeled. " +
+      "Samsung's 0.25 m minimum focus distance is product information only.",
   },
 
   aperture: { nominalFNumber: 2.07, fStops: [2.07, 2.8, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22, blades: 7 },

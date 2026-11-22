@@ -65,7 +65,7 @@ const LENS_DATA = {
   key: "zeiss-vario-sonnar-t-9-72-f28-45-sony-rx100m6-m7",
   maker: "Sony",
   name: "SONY ZEISS VARIO-SONNAR T* 9-72mm f/2.8-4.5 (Sony Cyber-shot RX100 VI / RX100 VII)",
-  subtitle: "JP WO2019/188070 A1 EXAMPLE 3 — SONY CORPORATION (CORRELATED WITH RX100 VI / VII)",
+  subtitle: "JP WO2019/188070 A1 EXAMPLE 3 — SONY CORPORATION (MATCHED WITH RX100 VI / VII)",
 
   catalog: {
     lensMounts: ["fixed-lens-camera"],

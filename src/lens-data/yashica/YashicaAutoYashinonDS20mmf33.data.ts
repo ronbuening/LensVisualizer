@@ -37,7 +37,7 @@ const LENS_DATA = {
   key: "yashica-auto-yashinon-ds-20mm-f33",
   maker: "Yashica",
   name: "YASHICA AUTO YASHINON-DS 20mm f/3.3",
-  subtitle: "US 3,856,386 A, Example 1 — production correlation unconfirmed",
+  subtitle: "US 3,856,386 A, Example 1 — production match not maker-confirmed",
 
   catalog: {
     lensMounts: ["m42"],
@@ -223,7 +223,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.3,
     description:
-      "NO_INTERNAL_RECONSTRUCTION: the patent publishes one infinity-focus prescription and no focusing data, so no focus movement is modeled. 0.3 m is the marketed minimum focus distance, not a modeled state.",
+      "Infinity focus only. The patent publishes one infinity-focus prescription and no focusing data, so focus travel is not modeled. 0.3 m is the marketed minimum focus distance, not a modeled state.",
   },
 
   aperture: { nominalFNumber: 3.3, fStops: [3.3, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22 },

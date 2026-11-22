@@ -33,7 +33,7 @@ const LENS_DATA = {
   "key": "pentax-fa-100-300mm-f47-58",
   "maker": "Pentax",
   "name": "PENTAX SMC FA 100-300mm f/4.7-5.8",
-  "subtitle": "US 2001/0006433 A1, Embodiment 1 \u2014 qualified production correlation",
+  "subtitle": "US 2001/0006433 A1, Embodiment 1 \u2014 tentative production match",
   "catalog": {
     "lensMounts": [
       "pentax-k"

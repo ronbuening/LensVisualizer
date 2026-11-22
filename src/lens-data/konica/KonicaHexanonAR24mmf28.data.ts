@@ -12,9 +12,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * than the patent header's rounded 1.497 × 24 = 35.928 mm, so the authored infinity
  * image plane is self-consistent with the actual prescription.
  *
- * Focus status: NO_INTERNAL_RECONSTRUCTION. The patent publishes no focus-spacing table
- * or internal-focus mechanism. The production MFD of 0.25 m is retained as manufacturer
- * metadata only; no close-focus optical state is invented.
+ * Focus: infinity only. The patent publishes no focus-spacing table or internal-focus
+ * mechanism. The production minimum focus of 0.25 m is recorded as manufacturer product
+ * information only; focus travel is not modeled.
  *
  * Stop model: the patent gives F/2.8 but no diaphragm location or physical diameter.
  * The required LensVisualizer STO is modeled at the midpoint of the published d8 air gap
@@ -184,8 +184,8 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.25,
     description:
-      "NO_INTERNAL_RECONSTRUCTION: JP1980-087117 Example 1 publishes only the infinity prescription. " +
-      "The production minimum focus distance is 0.25 m from the film plane; no internal focus movement is modeled.",
+      "Infinity focus only. JP1980-087117 Example 1 publishes only the infinity prescription. " +
+      "The production minimum focus distance is 0.25 m from the film plane; focus travel is not modeled.",
   },
 
   aperture: { nominalFNumber: 2.8, fStops: [2.8, 4, 5.6, 8, 11, 16] },

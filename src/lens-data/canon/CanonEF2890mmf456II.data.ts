@@ -31,7 +31,7 @@ const LENS_DATA = {
   key: "canon-ef-28-90mm-f4-56-ii-usm",
   maker: "Canon",
   name: "CANON EF 28-90mm f/4-5.6 II USM",
-  subtitle: "JP 2009-282554 A — Numerical Example 6; production correlation inferred",
+  subtitle: "JP 2009-282554 A — Numerical Example 6; inferred production match",
 
   catalog: {
     lensMounts: ["canon-ef"],

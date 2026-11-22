@@ -43,7 +43,7 @@ const LENS_DATA = {
   "key": "konica-hexanon-ar-57mm-f12",
   "maker": "Konica",
   "name": "KONICA HEXANON AR 57mm f/1.2",
-  "subtitle": "JP S47-19025 Y1, Sole example — probable production correlation, f = 1 scaled to 57 mm",
+  "subtitle": "JP S47-19025 Y1, Sole example — probable production match, f = 1 scaled to 57 mm",
   "catalog": {
     "lensMounts": [
       "konica-ar"

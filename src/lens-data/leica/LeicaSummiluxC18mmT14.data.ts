@@ -49,7 +49,7 @@ const LENS_DATA = {
   key: "leica-summilux-c-18mm-t14",
   maker: "Leica",
   name: "LEICA SUMMILUX-C 18mm T1.4",
-  subtitle: "EP 2 321 688 B1, First Embodiment — research correlation; production prescription unconfirmed",
+  subtitle: "EP 2 321 688 B1, First Embodiment — likely production match; production prescription not maker-confirmed",
 
   catalog: {
     lensMounts: ["arri-pl"],

@@ -64,7 +64,7 @@ const LENS_DATA = {
   key: "fujifilm-xf-55-200mm-f35-48-r-lm-ois",
   maker: "Fujifilm",
   name: "FUJIFILM FUJINON XF 55-200mm f/3.5-4.8 R LM OIS",
-  subtitle: "DE 11 2013 006 887 B4 Example 1 — inferred production correlation",
+  subtitle: "DE 11 2013 006 887 B4 Example 1 — inferred production match",
 
   catalog: {
     lensMounts: ["fujifilm-x"],

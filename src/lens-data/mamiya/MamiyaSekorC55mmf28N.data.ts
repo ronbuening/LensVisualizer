@@ -45,7 +45,7 @@ const LENS_DATA = {
   key: "mamiya-sekor-c-55mm-f2-8-n",
   maker: "Mamiya",
   name: "MAMIYA-SEKOR C 55mm f/2.8 N",
-  subtitle: "JP S54-107336 A Example 1 — uniformly scaled ×0.55; strong production correlation",
+  subtitle: "JP S54-107336 A Example 1 — uniformly scaled ×0.55; strong production match",
 
   catalog: {
     lensMounts: ["mamiya-645"],

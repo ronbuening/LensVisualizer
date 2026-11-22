@@ -44,7 +44,7 @@ const LENS_DATA = {
   key: "panasonic-lumix-s-pro-70-200-f4-ois",
   maker: "Panasonic",
   name: "PANASONIC LUMIX S PRO 70-200mm f/4 O.I.S.",
-  subtitle: "JP 2020-086133 A, Numerical Example 6 — strong inferred S-R70200 correlation",
+  subtitle: "JP 2020-086133 A, Numerical Example 6 — strong inferred S-R70200 match",
 
   catalog: {
     lensMounts: ["l-mount"],

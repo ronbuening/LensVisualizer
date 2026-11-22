@@ -50,7 +50,7 @@ const LENS_DATA = {
   key: "leica-dc-vario-elmarit-4p5-108mm-f28-panasonic-fz300",
   maker: "Panasonic",
   name: "PANASONIC LEICA DC VARIO-ELMARIT 4.5-108mm f/2.8 (Panasonic Lumix DMC-FZ300)",
-  subtitle: "US 2015/0103211 A1 Example 1 — strong probable FZ300 correlation; native patent scale",
+  subtitle: "US 2015/0103211 A1 Example 1 — strong probable FZ300 match; native patent scale",
 
   catalog: {
     lensMounts: ["fixed-lens-camera"],
