@@ -25,7 +25,7 @@ const LENS_DATA = {
   key: "canon-cine-servo-17-120-t295-39-ef",
   maker: "Canon",
   name: "CANON CINE-SERVO 17-120mm T2.95-3.9 (CN7×17 KAS S/E1)",
-  subtitle: "JP 2015-94867 A, Example 1 — production correlation is inferential",
+  subtitle: "JP 2015-94867 A, Example 1 — inferred production match",
 
   catalog: {
     lensMounts: ["canon-ef"],

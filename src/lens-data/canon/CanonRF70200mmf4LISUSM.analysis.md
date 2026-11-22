@@ -59,7 +59,7 @@ L11 is the front positive collector in L1. Its relatively weak standalone positi
 
 `nd = 1.61340`, `νd = 44.3`. Glass: **613443 — medium-dispersion class (vendor unresolved)**. `f = −116.950 mm`.
 
-L12 begins cemented pair D1 and is individually negative. Its rear surface is the cemented interface into L13; the interface is therefore authored with the downstream L13 element identity, as required by the data schema. The pair sits inside the overall positive L1 unit and supplies a sign-opposed partner to the low-dispersion positive member behind it.
+L12 begins cemented pair D1 and is individually negative. Its rear surface is the cemented interface into L13; the interface is therefore modeled with the downstream L13 element identity, as required by the model's data format. The pair sits inside the overall positive L1 unit and supplies a sign-opposed partner to the low-dispersion positive member behind it.
 
 ### L13 — Positive Meniscus, D1 Rear Member
 
@@ -178,7 +178,7 @@ The production lens uses an electronic floating-focus system with two independen
 
 The selected patent embodiment gives only the _directions_ of the internal focus motions. Figure 1 and ¶0022 show L4 moving toward the object side and L6 toward the image side when focusing from infinity toward a short distance. Example 1 does not publish the numerical close-focus gaps, close object distance, or close-focus magnification needed to solve both internal group positions over the zoom range.
 
-For that reason the data file's focus status is **NO_INTERNAL_RECONSTRUCTION**. Every zoom `var` entry stores identical infinity/close values, so the focus control does not fabricate a hidden cam law. `closeFocusM = 0.6` remains production metadata only. No total focus travel is claimed because the patent does not provide it and the product specifications do not expose the internal group displacements.
+For that reason the model shows the lens at infinity focus only. Every spacing that changes with zoom keeps the same value at both ends of the focus control, so the focus control does not fabricate a hidden cam law. The 0.6 m close-focus figure remains product information only. No total focus travel is claimed because the patent does not provide it and the product specifications do not expose the internal group displacements.
 
 The distinction matters because the L4 and L6 focus motions are independent of their zoom motions. The W-to-T zoom displacements quoted in the architecture section describe the published infinity zoom family, not close-focus travel.
 

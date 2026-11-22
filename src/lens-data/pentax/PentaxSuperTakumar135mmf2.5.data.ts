@@ -57,7 +57,7 @@ const LENS_DATA = {
   key: "pentax-super-takumar-135mm-f2-5",
   maker: "Pentax",
   name: "PENTAX SUPER-TAKUMAR 135mm f/2.5",
-  subtitle: "US 3,459,469 sole example — scaled x0.135 production correlation",
+  subtitle: "US 3,459,469 sole example — scaled x0.135 production match",
 
   catalog: {
     lensMounts: ["m42"],

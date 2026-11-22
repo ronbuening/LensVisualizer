@@ -101,9 +101,9 @@ These matches do not prove the historical supplier or melt. The L4 and L5/L6 coo
 
 ## Focus Mechanism
 
-The production manual lists a closest focus of 0.30 m for the Auto EC 35 mm lens, but neither the patent nor the manufacturer literature provides an internal spacing law or identifies which optical elements move during focusing. The LensVisualizer record therefore uses `NO_INTERNAL_RECONSTRUCTION`: `var` and `varLabels` are empty, and the optical prescription remains the patent's static/infinity state.
+The production manual lists a closest focus of 0.30 m for the Auto EC 35 mm lens, but neither the patent nor the manufacturer literature gives the close-focus spacings or identifies which optical elements move during focusing. The model therefore shows the patent's static/infinity state only, and no spacing changes with focus.
 
-The 0.30 m value is retained only as marketed product metadata. It is not used to derive unit-focus travel, internal-group motion, close-focus BFD, or magnification. Assigning any of those quantities from MFD alone would be underdetermined.
+The 0.30 m value is recorded only as marketed product information. It is not used to derive unit-focus travel, internal-group motion, close-focus BFD, or magnification. Assigning any of those quantities from the minimum focus distance alone would be underdetermined.
 
 Manufacturer source: *Miranda RE-II Instruction Manual*, “MIRANDA AUTO EC LENS SERIES” table, PDF p. 22, archived at <https://butkus.org/chinon/miranda/miranda_re-ii/miranda_re-ii.pdf>.
 

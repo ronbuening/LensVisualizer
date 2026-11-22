@@ -163,7 +163,7 @@ rules and the LCA quality-badge upgrade path.
 | `source.patentNumber` | Exact publication or grant transcribed, including jurisdiction/kind code. Required for patent-backed production lenses. |
 | `source.authors` / `source.assignees` | Complete source-order inventor list and source assignee/applicant list. Required with `source.patentNumber`; empty arrays mean the source truly names none, not “unknown.” |
 | `source.example` | The numerical example transcribed, as the publication prints it (`{ label: "Example 9", id: "9" }`, or `{ label: "Sole example", id: null }`). An audit confirms it against the patent; a job-card number is not the source's designation. Rules in [`LENS_DATA_SPEC.md`](../src/lens-data/LENS_DATA_SPEC.md#the-transcribed-example-sourceexample). |
-| `subtitle` | Compact design-correlation context — e.g. `"WO 2019/220618 A1 — Example 9"`. Keep it because reports still use it for source matching; an example it names must be `source.example`'s. |
+| `subtitle` | Compact design-match context in plain words (see `LENS_DATA_SPEC.md`) — e.g. `"WO 2019/220618 A1 — Example 9"`. Keep it because reports still use it for source matching; an example it names must be `source.example`'s. |
 | `source.patentYear` | Year published or granted. |
 | `catalog.focalLengthMm.design` / `catalog.fNumber.design` | When the patent's computed values differ from marketing. |
 | `catalog.elementCount` / `catalog.groupCount` | Always — easy to miss. |

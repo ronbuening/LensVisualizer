@@ -61,7 +61,7 @@ const LENS_DATA = {
   key: "viltrox-af-33mm-f14-e",
   maker: "Viltrox",
   name: "VILTROX AF 33mm f/1.4 E",
-  subtitle: "CN 211826699 U Example 1 — correlated to Viltrox AF 33mm F1.4 E",
+  subtitle: "CN 211826699 U Example 1 — matched to Viltrox AF 33mm F1.4 E",
 
   catalog: {
     lensMounts: ["sony-fe"],

@@ -31,7 +31,7 @@ const LENS_DATA = {
   key: "fujifilm-fujinon-xc-15-45mm-f35-56-ois-pz",
   maker: "Fujifilm",
   name: "FUJIFILM FUJINON XC 15-45mm f/3.5-5.6 OIS PZ",
-  subtitle: "JP 2021-15312 A Example 3 — strong production correlation; not manufacturer-confirmed",
+  subtitle: "JP 2021-15312 A Example 3 — strong production match; not maker-confirmed",
 
   catalog: {
     lensMounts: ["fujifilm-x"],

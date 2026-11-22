@@ -68,7 +68,7 @@ const LENS_DATA = {
   key: "nikon-nikkor-35mm-f28",
   maker: "Nikon",
   name: "NIKON NEW NIKKOR 35mm f/2.8",
-  subtitle: "US 3,874,770 A Example I — 0.35× scaled production-correlated model",
+  subtitle: "US 3,874,770 A Example I — 0.35× scaled production match for the model",
 
   catalog: {
     lensMounts: ["nikon-f"],

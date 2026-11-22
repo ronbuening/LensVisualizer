@@ -23,7 +23,7 @@ const LENS_DATA = {
   key: "pentax-hd-da-55-300-f45-63-ed-plm-wr-re",
   maker: "Pentax",
   name: "PENTAX HD DA 55-300mm f/4.5-6.3 ED PLM WR RE",
-  subtitle: "US 2017/0329112 A1, Numerical Embodiment 1 — production correlation",
+  subtitle: "US 2017/0329112 A1, Numerical Embodiment 1 — production match",
   catalog: {
     lensMounts: ["pentax-k"],
     acceptsTeleconverters: true, // Ricoh lists the HD PENTAX-DA AF REAR CONVERTER 1.4X AW as compatible

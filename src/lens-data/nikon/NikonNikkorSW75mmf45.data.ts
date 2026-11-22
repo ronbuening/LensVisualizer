@@ -55,7 +55,7 @@ const LENS_DATA = {
   key: "nikon-nikkor-sw-75mm-f45",
   maker: "Nikon",
   name: "NIKON NIKKOR-SW 75mm f/4.5",
-  subtitle: "JPS5357028A Example 1 — 0.75× scaled production-correlated model",
+  subtitle: "JPS5357028A Example 1 — 0.75× scaled production match for the model",
 
   catalog: {
     lensMounts: ["large-format-lens-board"],

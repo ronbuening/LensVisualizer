@@ -36,7 +36,7 @@ const LENS_DATA = {
   key: "canon-ef-500mm-f4l-is-usm",
   maker: "Canon",
   name: "CANON EF 500mm f/4 L IS USM",
-  subtitle: "US 6,115,188 A — Numerical Example 24; correlated to the Canon EF 500mm f/4L IS USM",
+  subtitle: "US 6,115,188 A — Numerical Example 24; matched to the Canon EF 500mm f/4L IS USM",
 
   catalog: {
     lensMounts: ["canon-ef"],

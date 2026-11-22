@@ -76,7 +76,7 @@ Element VIII is the outer positive meniscus of the rear half. Together with elem
 
 ## Glass Identification and Selection
 
-The patent refractive indices and Abbe numbers are retained. Catalog curves are coordinate-compatible dispersion proxies, not evidence of the historical supplier or production melt. The source specifies sodium D near 589.3 nm; the schema only supports d/e, so the d marker and helium-d catalog comparison remain an approximation, not a conversion of the source values.
+The patent refractive indices and Abbe numbers are retained. Catalog curves are coordinate-compatible dispersion proxies, not evidence of the historical supplier or production melt. The source specifies sodium D near 589.3 nm; the model only supports d/e, so the d marker and helium-d catalog comparison remain an approximation, not a conversion of the source values.
 
 | Element | Source index / Abbe | Catalog curve |
 |---|---|---|
@@ -93,14 +93,14 @@ Named curves pass the catalog coordinate guard without changing the patent coord
 
 ## Focus Mechanism
 
-The source prescription contains one fixed optical state and no finite-focus variable-spacing table. The data therefore uses **NO_INTERNAL_RECONSTRUCTION**: all five patent inter-element air gaps remain fixed, and no floating or internal focusing motion is invented.
+The source prescription contains one fixed optical state and no close-focus table of spacings that change with focus. In the model, all five patent inter-element air gaps therefore stay fixed, and no floating or internal focusing motion is invented.
 
-For the required viewer focus metadata, the model selects the Leica M2/M1 bayonet variant documented in period Leitz material with rangefinder coupling to 2 ft 4 in, represented as `closeFocusM = 0.7112 m`. The implemented focus variable changes only the final image-space gap on surface 14, from 22.658268 mm at infinity to 24.591778 mm at the close state.
+For the viewer's close-focus distance, the model selects the Leica M2/M1 bayonet variant documented in period Leitz material with rangefinder coupling to 2 ft 4 in, represented as 0.7112 m. Focusing in the model changes only the final image-space gap on surface 14, from 22.658268 mm at infinity to 24.591778 mm at the close state.
 
 The close state is a paraxial unit-focus equivalent solved from the final system matrix under a 711.2 mm object-to-image conjugate constraint. The equivalent rear-image extension is 1.9335098 mm. This is a model representation of the optical conjugate, not a claim that the production mount moved an internal group by that amount or used a published internal compensation law.
 Intermediate slider states linearly interpolate only that rear image-space gap. They are viewer interpolation states, not source-published focus distances or a production mechanical focusing law.
 
-The period Leitz catalogue describes a non-rotating focusing mount and variant-specific coupling limits. Those mechanical statements support the selected product metadata, but they do not determine an internal optical spacing law for Example II.
+The period Leitz catalogue describes a non-rotating focusing mount and variant-specific coupling limits. Those mechanical statements support the selected product information, but they do not determine an internal optical spacing law for Example II.
 
 ## Verification Summary
 

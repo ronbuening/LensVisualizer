@@ -34,7 +34,7 @@ const LENS_DATA = {
   key: "carl-zeiss-planar-80mm-f28-graflex-xl",
   maker: "Carl Zeiss Oberkochen",
   name: "CARL ZEISS PLANAR 80mm f/2.8 (Graflex XL)",
-  subtitle: "US 2,799,207 — Embodiment I; high-confidence Graflex XL correlation, not manufacturer-confirmed",
+  subtitle: "US 2,799,207 — Embodiment I; strong Graflex XL match, not maker-confirmed",
 
   catalog: {
     lensMounts: ["graflex-xl"],

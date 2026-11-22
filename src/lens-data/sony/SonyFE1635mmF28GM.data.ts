@@ -55,7 +55,7 @@ const LENS_DATA = {
   key: "sony-fe-16-35mm-f28-gm",
   maker: "Sony",
   name: "SONY FE 16-35mm f/2.8 GM",
-  subtitle: "WO 2018/139160 A1, Example 4 — production correlation",
+  subtitle: "WO 2018/139160 A1, Example 4 — production match",
 
   catalog: {
     lensMounts: ["sony-fe"],

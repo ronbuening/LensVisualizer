@@ -20,7 +20,7 @@ const LENS_DATA = {
   key: "olympus-zuiko-digital-ed-90-250mm-f28",
   maker: "Olympus",
   name: "OLYMPUS ZUIKO DIGITAL ED 90-250mm f/2.8",
-  subtitle: "JP 2006-201524 A, Example 1 — Sigma Corporation patent; probable production correlation",
+  subtitle: "JP 2006-201524 A, Example 1 — Sigma Corporation patent; probable production match",
   visible: true,
   layout: {
     yScFill: 0.85,

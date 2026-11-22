@@ -168,9 +168,9 @@ No `nC`, `nF`, `ng`, `PgF`, or `dPgF` values are authored because Example 1 does
 
 The patent identifies L2, surfaces 9–15 in the modeled sequence, as the focus lens group. Its stated design rationale is mechanical as well as optical: compared with front-group focusing, the lower axial ray height at L2 permits a smaller moving group, which the patent presents as advantageous for rapid autofocus. [JP2008070450A, ¶0021](https://patents.google.com/patent/JP2008070450A/en)
 
-Example 1 does not publish finite-focus gap values, focus travel, a magnification table, or a close-focus numerical state. Canon specifies 1.2 m as the production minimum focusing distance and 0.21× as the maximum magnification, but those are product specifications and do not determine the internal patent movement uniquely. [Canon Camera Museum](https://global.canon/en/c-museum/product/ef391.html)
+Example 1 does not publish close-focus gap values, focus travel, a magnification table, or a close-focus numerical state. Canon specifies 1.2 m as the production minimum focusing distance and 0.21× as the maximum magnification, but those are product specifications and do not determine the internal patent movement uniquely. [Canon Camera Museum](https://global.canon/en/c-museum/product/ef391.html)
 
-Accordingly, the data carries the focus status `NO_INTERNAL_RECONSTRUCTION`. The three zoom-dependent gaps repeat their infinity values at the close-focus endpoint so the viewer does not imply an invented internal motion. The 1.2 m value is retained only as production metadata. No numerical focus travel or traced close-focus optical state is asserted in this analysis.
+Accordingly, the model shows the lens at infinity focus only. The three spacings that change with zoom keep their infinity values at both ends of the focus control, so the viewer does not suggest a focus movement the patent does not give. The 1.2 m figure is recorded only as product information. No numerical focus travel or traced close-focus optical state is asserted in this analysis.
 
 ## Chromatic Correction Strategy
 

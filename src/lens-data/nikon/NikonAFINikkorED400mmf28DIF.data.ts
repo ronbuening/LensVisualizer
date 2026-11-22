@@ -42,7 +42,7 @@ const LENS_DATA = {
   key: "nikon-af-i-nikkor-400mm-f28d-if-ed",
   maker: "Nikon",
   name: "NIKON AF-I NIKKOR 400mm f/2.8 D IF-ED",
-  subtitle: "US 5,438,455 A — Example 1; production-lens correlation",
+  subtitle: "US 5,438,455 A — Example 1; production match",
 
   catalog: {
     lensMounts: ["nikon-f"],

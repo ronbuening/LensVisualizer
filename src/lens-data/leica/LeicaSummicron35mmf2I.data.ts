@@ -37,7 +37,7 @@ const LENS_DATA = {
   key: "leica-summicron-35mm-f2-i",
   maker: "Leica",
   name: "LEICA SUMMICRON 35mm f/2 I",
-  subtitle: "US 3,006,249 Example II — scaled ×0.35; production correlation not manufacturer-confirmed",
+  subtitle: "US 3,006,249 Example II — scaled ×0.35; production match, not maker-confirmed",
 
   catalog: {
     lensMounts: ["leica-m"],

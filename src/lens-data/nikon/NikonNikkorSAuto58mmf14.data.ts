@@ -42,7 +42,7 @@ const LENS_DATA = {
   key: "nikon-nikkor-s-auto-58mm-f1-4",
   maker: "Nikon",
   name: "NIKON NIKKOR-S AUTO 5.8cm f/1.4",
-  subtitle: "JP 1966-017177 sole example — production-correlated patent design",
+  subtitle: "JP 1966-017177 sole example — production match for the patent design",
 
   catalog: {
     lensMounts: ["nikon-f"],

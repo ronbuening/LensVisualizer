@@ -180,7 +180,7 @@ The patent states that G6, consisting only of L11, moves toward the object side 
 
 The production camera specification gives a minimum focus distance of 0.03 m at the wide end and 0.30 m at the long end. [2] Those are product-level subject-distance specifications, not internal lens-group positions.
 
-For that reason the data file uses `NO_INTERNAL_RECONSTRUCTION`. `closeFocusM` is set to 0.03 m because the schema requires a minimum-focus value, but every focus pair in `var` is identical. The viewer therefore represents only the three published infinity-focus zoom states; it does not claim to reproduce the internal near-focus mechanism.
+For that reason the model shows infinity focus only. The model records the 0.03 m wide-end figure as the minimum focus distance, but every spacing keeps its infinity value at both ends of the focus control. The viewer therefore represents only the three published infinity-focus zoom states; it does not claim to reproduce the internal near-focus mechanism.
 
 This distinction matters particularly for G6. The patent identifies the direction of focus travel, but the final model does not encode a guessed displacement merely to make the focus slider move.
 
@@ -194,7 +194,7 @@ $$
 z(h)=\frac{h^2/R}{1+\sqrt{1-(1+K)(h/R)^2}}+\sum A_n h^n.
 $$
 
-This is the same conic convention used by the LensVisualizer data specification, so no conic conversion is required. All eight published conic constants are K = 0. The polynomial contains even orders A4 through A12; the data file adds A14 = 0 only to satisfy the current authored schema shape, not because the patent publishes a nonzero A14 term.
+This is the same conic convention used by the LensVisualizer data specification, so no conic conversion is required. All eight published conic constants are K = 0. The polynomial contains even orders A4 through A12; the data file adds A14 = 0 only because the model's asphere format includes that term, not because the patent publishes a nonzero A14 term.
 
 | Surface | A4 | A6 | A8 | A10 | A12 |
 |---|---:|---:|---:|---:|---:|
@@ -249,7 +249,7 @@ The minimum modeled edge thickness is about 0.11455 mm at L9. The maximum modele
 
 The final surface-by-surface Petzval sum, using $\phi/(n n')$ on every refracting surface, is 0.004154170644 mm⁻¹, corresponding to a Petzval radius magnitude of about 240.722 mm. Collapsing the same-radius adhesive interfaces leaves this sum unchanged to numerical precision, and the flat plate P contributes no refracting power.
 
-The original dossier used portable verification. Repository integration results are recorded in the accompanying 2026-09-15 audit log.
+The original checks were run as standalone calculations. Results from the full model are recorded in the accompanying 2026-09-15 audit log.
 
 ## Sources / References
 

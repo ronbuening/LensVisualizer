@@ -140,11 +140,11 @@ or anomalous-partial-dispersion performance claim from these glass labels alone.
 
 ## Focus Mechanism
 
-The optical model has **NO_INTERNAL_RECONSTRUCTION**. Table II publishes a single static prescription and gives no
-moving-group law or close-focus spacing table. The ZEISS product datasheet states focusing from infinity to `0.25 m`, and
-that value is retained as product metadata, but it is not represented as a second optical state.
+Table II publishes a single static prescription and gives no moving-group law or close-focus spacing table. The model
+therefore shows the lens at infinity only. The ZEISS product datasheet states focusing from infinity to 0.25 m, and the
+model records that value as product information, but it is not represented as a second optical state.
 
-Accordingly, the data file contains no focus `var` entries. The available sources do not establish whether the production
+Accordingly, no spacing in the model changes with focus. The available sources do not establish whether the production
 lens should be modeled as unit focus, internal focus, or another motion scheme, and the single minimum-focus-distance
 specification is insufficient to solve such a mechanism uniquely.
 

@@ -295,12 +295,13 @@ subgroup toward the object on close focusing (¶0166–¶0167). G1A remains the 
 
 Table 1, however, supplies only infinity-focus W/M/T numerical spacing states. Nikon’s production specification gives a
 minimum focus distance of approximately 1.0 m, but that external observable is insufficient to determine a unique G1B
-travel law at each zoom station. The implemented model therefore has **NO_INTERNAL_RECONSTRUCTION**: its focus-variable
-pairs are identical at each W/M/T station, and no close-focus G1B displacement is invented.
+travel law at each zoom station. The model therefore shows infinity focus only: at each W/M/T station, every spacing
+stays at its infinity value at both ends of the focus control, and no close-focus G1B displacement is invented. Zoom
+movement is modeled; focus travel is not.
 
-The `closeFocusM = 1.0` field records the production MFD for interface metadata only. It does not mean the LensVisualizer
-prescription contains a solved 1.0 m optical state. Consequently, no quantitative claims about focus breathing, close-focus
-EFL, or close-focus aberrations are made from this data revision.
+The 1.0 m close-focus figure is recorded as product information only. It does not mean the model contains a solved 1.0 m
+optical state. Consequently, no quantitative claims about focus breathing, close-focus EFL, or close-focus aberrations
+are made from this model.
 
 ## Chromatic Correction Strategy
 

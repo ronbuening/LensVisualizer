@@ -191,11 +191,11 @@ No `nC`, `nF`, `ng`, or `dPgF` values are copied into the element records becaus
 
 ## Focus Mechanism
 
-The modeled focus status is **NO_INTERNAL_RECONSTRUCTION**.
+The model shows infinity focus only; focus travel is not modeled.
 
 Example 4 and Figs. 23–28 publish optical states at infinity focus. The patent gives no close-focus spacing table for this embodiment, no axial focus-group travel, and no set of adjacent-gap constraints sufficient to solve a unique internal focus motion. Tamron's production specification gives a minimum focus distance of 0.38 m and maximum magnification of 1:5 at 70 mm, but those marketing values do not determine which patent group moves axially or by how much.
 
-Accordingly, every authored zoom `var` entry uses identical infinity and close values at each zoom control point. The `closeFocusM` field retains the manufacturer-published 0.38 m value as catalog metadata, while the optical model remains an infinity-focus zoom model. No unit-focus, inner-focus, rear-focus, or floating-focus classification is assigned because the required internal kinematic evidence is absent.
+Accordingly, every zoom-dependent spacing keeps its infinity value at both ends of the focus control at each zoom control point. The model records the manufacturer-published 0.38 m value as product information, while the optical model remains an infinity-focus zoom model. No unit-focus, inner-focus, rear-focus, or floating-focus classification is assigned because the required internal kinematic evidence is absent.
 
 Tamron documents USD autofocus drive for the production lens, but the motor type does not identify a unique Example 4 axial focus solution. The patent's lateral motion of G32 is separately modeled and interpreted as image stabilization architecture, not focusing.
 
@@ -215,7 +215,7 @@ $$
 K = \epsilon - 1.
 $$
 
-The patent's quadratic `A h^2` term is zero for every Example 4 asphere. The final data stores the published fourth- through tenth-order terms as A4 through A10. A12 and A14 are zero-valued schema fields because Example 4 publishes no corresponding higher-order coefficients; they are not represented as independently published patent values.
+The patent's quadratic `A h^2` term is zero for every Example 4 asphere. The final data stores the published fourth- through tenth-order terms as A4 through A10. A12 and A14 are stored as zero-valued fields because Example 4 publishes no corresponding higher-order coefficients; they are not represented as independently published patent values.
 
 | Surface | Element   |       K |     A4 (mm^-3) |      A6 (mm^-5) |      A8 (mm^-7) |     A10 (mm^-9) |
 | ------- | --------- | ------: | -------------: | --------------: | --------------: | --------------: |

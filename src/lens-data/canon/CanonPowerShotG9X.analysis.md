@@ -111,11 +111,11 @@ L23 is the most important identification limit. Its nd is close to several ordin
 
 ## Focus Mechanism
 
-The focus status is **NO_INTERNAL_RECONSTRUCTION**. Example 1 publishes zoom spacings but no focus-state spacing table, object-distance prescription, magnification table, or quantified axial travel for any focusing group.
+The model shows the lens at infinity focus only. Example 1 publishes zoom spacings but no focus-state spacing table, object-distance prescription, magnification table, or quantified axial travel for any focusing group.
 
-Canon specifies a focusing range of 5 cm to infinity at maximum wide angle and 35 cm to infinity at maximum telephoto, and Canon's support documentation states that these distances are measured from the end of the lens. The data file stores `closeFocusM = 0.05` because the schema requires a minimum-focus value, but this production specification is not used to infer internal movement.
+Canon specifies a focusing range of 5 cm to infinity at maximum wide angle and 35 cm to infinity at maximum telephoto, and Canon's support documentation states that these distances are measured from the end of the lens. The model records 0.05 m as its minimum focus distance, but this production specification is not used to infer internal movement.
 
-The patent's statement that L3 can be moved to facilitate rapid focusing (¶0053) establishes a plausible mechanism concept, not a published focus trajectory for Example 1. All focus endpoints in the authored `var` data are therefore identical at each zoom position. No breathing, close-focus EFL, or internal focus travel is claimed from this model.
+The patent's statement that L3 can be moved to facilitate rapid focusing (¶0053) establishes a plausible mechanism concept, not a published focus trajectory for Example 1. At each zoom position, every spacing therefore keeps the same value at both ends of the focus control, and focus travel is not modeled. No breathing, close-focus EFL, or internal focus travel is claimed from this model.
 
 ## Aspherical Surfaces
 
@@ -137,7 +137,7 @@ The patent-published nonzero coefficients retained by the data are:
 | 7A | −10 | +3.05647e−5 | +9.16099e−7 | — | — | — | — |
 | 15A | 0 | +4.12200e−5 | −7.26104e−7 | +8.64422e−9 | −4.49816e−11 | — |
 
-The data file stores schema-required unused higher orders as zero where applicable; the table above lists only the terms actually published by the patent. The patent does not state a manufacturing process for these aspheres, so the analysis does not infer whether they are molded, polished, or hybrid surfaces.
+The model stores unused higher-order terms as zero where applicable; the table above lists only the terms actually published by the patent. The patent does not state a manufacturing process for these aspheres, so the analysis does not infer whether they are molded, polished, or hybrid surfaces.
 
 The semi-diameters used by the visualization are not patent-published apertures. They were derived from the final optical model and checked against nonlinear marginal and off-axis ray containment, edge thickness, actual rim slope, conic-domain limits, and cross-gap intrusion. They therefore support the rendered geometry but should not be read as a source clear-aperture table.
 

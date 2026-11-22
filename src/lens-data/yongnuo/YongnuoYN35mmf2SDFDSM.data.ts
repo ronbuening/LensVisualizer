@@ -18,7 +18,7 @@ const LENS_DATA = {
   key: "yongnuo-yn35mm-f2s-df-dsm",
   maker: "Yongnuo",
   name: "YONGNUO YN 35mm f/2 S DF DSM",
-  subtitle: "CN 113126266 A, Example 1 — construction-based production correlation",
+  subtitle: "CN 113126266 A, Example 1 — production match by construction",
   visible: true,
   catalog: {
     lensMounts: ["sony-fe"],

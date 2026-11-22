@@ -96,9 +96,9 @@ Because no line-index or anomalous-partial-dispersion data is authored, the pres
 
 ## Focus Mechanism
 
-The final data uses **NO_INTERNAL_RECONSTRUCTION**. Example 3 publishes zoom geometry but no close-focus spacing table, object distance, magnification, or focus cam law. The production catalog's 0.25 m minimum focusing distance is therefore stored only as product metadata and is not used to invent internal movement.
+The model shows the lens **at infinity focus only**. Example 3 publishes zoom geometry but no close-focus spacing table, object distance, magnification, or focus cam law. The production catalog's 0.25 m minimum focusing distance is therefore recorded only as product information and is not used to model internal movement.
 
-Every `[infinity, close]` spacing pair in `var` is identical. The model consequently contains no optically distinct close-focus prescription. Its only defined movement is zoom: the intergroup gap and the computed image-space distance change between the 36 mm and 68.5 mm endpoints.
+Every spacing keeps its infinity value at both ends of the focus control. The model consequently contains no optically distinct close-focus prescription. Its only defined movement is zoom: the intergroup gap and the computed image-space distance change between the 36 mm and 68.5 mm endpoints.
 
 The aperture model requires a separate qualification. Example 3 prints one F number, 1:4.1, for the whole 36-68.5 mm range, and its aberration plots (Figures 10-12) are headed 1:4.1 at minimum, medium, and maximum focal length. The patent gives no stop coordinate, stop diameter, or iris-opening law. `nominalFno` is therefore 4.1 at both stations, `apertureDesign` is 4.1, and `apertureMarketing` is 4. The wide-open iris is traced from that f-number at each station. With the stop riding on the rear group, f/4.1 needs an iris radius of 7.7842 mm at 36 mm and 10.3442 mm at 68.5 mm, about 33 % more, so no single iris radius gives the printed value at both ends.
 

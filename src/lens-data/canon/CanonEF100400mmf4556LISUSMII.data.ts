@@ -10,12 +10,12 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  21 elements / 16 air-separated groups; six functional zoom units (+/-/+/-/+/-); ║
  * ║  all refracting surfaces are spherical.                                           ║
  * ║                                                                                    ║
- * ║  FOCUS STATUS — NO_INTERNAL_RECONSTRUCTION:                                       ║
+ * ║  FOCUS — infinity only:                                                            ║
  * ║  Example 2 states that L6 moves imageward for main focus and L4 slightly           ║
- * ║  objectward for auxiliary floating correction, but it does not publish complete   ║
- * ║  finite-focus spacing rows or the L4 travel magnitude. Every close member of       ║
- * ║  `gaps` therefore repeats its infinity value. Canon's marketed 0.98 m MFD is         ║
- * ║  metadata only; no internal close-focus motion is invented.                        ║
+ * ║  objectward for auxiliary floating correction, but it does not publish complete    ║
+ * ║  close-focus spacing rows or the L4 travel magnitude. Every close member of `gaps` ║
+ * ║  therefore repeats its infinity value. Canon's marketed 0.98 m MFD is product      ║
+ * ║  information only; focus travel is not modeled.                                    ║
  * ║                                                                                    ║
  * ║  ZOOM: source D6, D14, D19, D20, D23, D30, and BF/D38 are modeled at the          ║
  * ║  published 102.79 / 199.97 / 389.03 mm stations. The W/M/T rows show no           ║
@@ -57,7 +57,7 @@ const LENS_DATA = {
   key: "canon-ef-100-400mm-f45-56l-is-ii-usm",
   maker: "Canon",
   name: "CANON EF 100-400mm f/4.5-5.6 L IS II USM",
-  subtitle: "US 2015/0146044 A1 Numerical Example 2 — production-correlated unscaled patent design",
+  subtitle: "US 2015/0146044 A1 Numerical Example 2 — unscaled patent design matched to the production lens",
 
   catalog: {
     lensMounts: ["canon-ef"],
@@ -397,10 +397,10 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.98,
     description:
-      "NO_INTERNAL_RECONSTRUCTION: Example 2 states that L6 moves imageward for main focus and L4 slightly objectward " +
-      "for auxiliary floating correction, but it does not publish complete finite-focus spacing rows or the L4 travel " +
-      "magnitude. All authored focus pairs therefore remain at the published infinity values. Canon's marketed 0.98 m " +
-      "MFD is metadata only; the patent's 1.0 m near-distance statement is measured from the image plane.",
+      "Infinity focus only. The patent's Example 2 says L6 moves toward the image for main focus and L4 slightly " +
+      "toward the object for floating correction, but it gives no complete close-focus spacings or L4 travel, so " +
+      "focus travel is not modeled; zoom movement is. Canon's 0.98 m minimum focus distance is product information; " +
+      "the patent's 1.0 m near distance is measured from the image plane.",
   },
 
   /* (moved from var) ── Published infinity-state zoom variables only; no finite-focus reconstruction ── */
