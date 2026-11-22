@@ -105,11 +105,11 @@ The authored elements contain no `nC`, `nF`, `ng`, or `dPgF` fields. Figure 7C p
 
 ## Focus Mechanism
 
-The selected patent example provides only an infinity prescription. It contains no focus-state spacing table, moving-group identity, focus travel, magnification sequence, or finite-conjugate prescription. The data status is therefore **NO_INTERNAL_RECONSTRUCTION**, `var` is empty, and no internal focus movement is modeled.
+The selected patent example provides only an infinity prescription. It contains no focus-state spacing table, moving-group identity, focus travel, magnification sequence, or close-focus prescription. The model therefore shows the lens at infinity only and moves no group; focus travel is not modeled.
 
-Apple's iPhone 12 technical specification documents autofocus-related `100% Focus Pixels` on the Main camera, but this does not determine which optical element or group moves. The data field `closeFocusM = 0.12` is not treated as an iPhone 12 Main optical fact: it is a UI-only same-generation fallback from Apple's separate WWDC21 statement that the iPhone 12 Pro Wide camera has a 12 cm minimum focus distance. It does not create a 0.12 m traced prescription, and the selected Main camera's minimum focus distance remains unavailable in the cited manufacturer material.
+Apple's iPhone 12 technical specification documents autofocus-related `100% Focus Pixels` on the Main camera, but this does not determine which optical element or group moves. The model's 0.12 m close-focus figure is not treated as an iPhone 12 Main optical fact: it is a stand-in that only sets the range of the focus control, taken from Apple's separate WWDC21 statement that the same-generation iPhone 12 Pro Wide camera has a 12 cm minimum focus distance. It does not create a 0.12 m traced prescription, and the selected Main camera's minimum focus distance remains unavailable in the cited manufacturer material.
 
-No focus breathing, close-focus EFL, or finite-distance aberration claim can be made from this model. All verified prescription quantities in this analysis refer to the published infinity state.
+No focus breathing, close-focus EFL, or close-focus aberration claim can be made from this model. All verified prescription quantities in this analysis refer to the published infinity state.
 
 ## Aspherical Surfaces
 
@@ -177,4 +177,4 @@ The modeled clear apertures also pass the portable edge-thickness, actual-rim-sl
 2. Apple. **iPhone 12 — Technical Specifications.** https://support.apple.com/en-us/111876 — manufacturer source for the Main camera's marketed f/1.6 aperture, seven-element lens, optical image stabilization, and 100% Focus Pixels.
 3. Apple Newsroom. **Apple announces iPhone 12 and iPhone 12 mini: A new era for iPhone with 5G.** 2020-10-13. https://www.apple.com/newsroom/2020/10/apple-announces-iphone-12-and-iphone-12-mini-a-new-era-for-iphone-with-5g/ — launch timing and marketed Wide-camera aperture.
 4. Apple Developer. **What's new in camera capture — WWDC21 Session 10047.** 2021-06-08. https://developer.apple.com/videos/play/wwdc2021/10047/ — source for the separate iPhone 12 Pro Wide 12 cm minimum-focus-distance example used only as the documented UI fallback.
-5. OHARA INC., SCHOTT, HIKARI GLASS, CDGM, HOYA, and SUMITA current optical-glass catalog resources, as recorded in the dossier evidence. These sources are used for coordinate-class screening only; no supplier identity is inferred for the patent materials.
+5. OHARA INC., SCHOTT, HIKARI GLASS, CDGM, HOYA, and SUMITA current optical-glass catalog resources, as consulted for this analysis. These sources are used for coordinate-class screening only; no supplier identity is inferred for the patent materials.

@@ -44,7 +44,7 @@ const LENS_DATA = {
   key: "sigma-24-70-f28-dg-os-hsm-art",
   maker: "Sigma",
   name: "SIGMA 24-70mm f/2.8 DG OS HSM | Art",
-  subtitle: "JP 2017-156719 A, Numerical Example 1 — probable production correlation",
+  subtitle: "JP 2017-156719 A, Numerical Example 1 — probable production match",
 
   catalog: {
     lensMounts: ["sigma-sa", "canon-ef", "nikon-f"],

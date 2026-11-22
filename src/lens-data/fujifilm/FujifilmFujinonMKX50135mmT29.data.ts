@@ -28,7 +28,7 @@ const LENS_DATA = {
   key: "fujifilm-fujinon-mkx50-135mm-t29",
   maker: "Fujifilm",
   name: "FUJIFILM FUJINON MKX50-135mm T2.9",
-  subtitle: "US 10,274,698 B2, Example 1 — production correlation; 1.2 m focus reconstructed",
+  subtitle: "US 10,274,698 B2, Example 1 — production match; 1.2 m focus modeled",
   visible: true,
   catalog: {
     lensMounts: ["fujifilm-x"],

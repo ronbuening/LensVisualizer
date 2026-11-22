@@ -24,7 +24,7 @@ const LENS_DATA = {
   "key": "yashica-ml-35mm-f28-early",
   "maker": "Yashica",
   "name": "YASHICA ML 35mm f/2.8 (early diamond-grip)",
-  "subtitle": "JP S50-132921 A, Sole example — uniformly scaled ×0.35 production correlation",
+  "subtitle": "JP S50-132921 A, Sole example — uniformly scaled ×0.35 production match",
   "catalog": {
     "imageFormat": "135-full-frame",
     "elementCount": 7,

@@ -40,7 +40,7 @@ const LENS_DATA = {
   maker: "Carl Zeiss Jena",
   name: "CARL ZEISS JENA PRAKTICAR 50mm f/1.4",
   subtitle:
-    "GB 2 066 504 A Example 4 — strong PRAKTICAR 1.4/50 correlation; exact production-example attribution not manufacturer-confirmed",
+    "GB 2 066 504 A Example 4 — strong PRAKTICAR 1.4/50 match; exact production-example attribution not maker-confirmed",
 
   catalog: {
     lensMounts: ["praktica-b"],

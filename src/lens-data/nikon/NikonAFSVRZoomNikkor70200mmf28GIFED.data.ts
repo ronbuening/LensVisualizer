@@ -52,7 +52,7 @@ const LENS_DATA = {
   key: "nikon-afs-vr-zoom-nikkor-70-200-f28g-if-ed",
   maker: "Nikon",
   name: "NIKON AF-S VR ZOOM-NIKKOR 70-200mm f/2.8 G IF-ED",
-  subtitle: "US 2003/0133200 A1 Example 1 — strong production correlation; tele source label corrected to 196 mm",
+  subtitle: "US 2003/0133200 A1 Example 1 — strong production match; tele source label corrected to 196 mm",
 
   catalog: {
     lensMounts: ["nikon-f"],

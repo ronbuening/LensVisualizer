@@ -41,7 +41,7 @@ const LENS_DATA = {
   key: "canon-ef-100mm-f28-macro",
   maker: "Canon",
   name: "CANON EF 100mm f/2.8 Macro",
-  subtitle: "JP 1991-141313 Example 1 — production correlation",
+  subtitle: "JP 1991-141313 Example 1 — production match",
 
   catalog: {
     lensMounts: ["canon-ef"],

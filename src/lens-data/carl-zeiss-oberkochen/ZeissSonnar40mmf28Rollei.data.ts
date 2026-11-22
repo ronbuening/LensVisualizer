@@ -33,7 +33,7 @@ const LENS_DATA = {
   key: "zeiss-sonnar-40f28-rollei",
   maker: "Carl Zeiss Oberkochen",
   name: "CARL ZEISS SONNAR 40mm f/2.8 (Rollei 35 S)",
-  subtitle: "US 3,994,576, Example 7 — inferred production correlation",
+  subtitle: "US 3,994,576, Example 7 — inferred production match",
 
   catalog: {
     lensMounts: ["fixed-lens-camera"],

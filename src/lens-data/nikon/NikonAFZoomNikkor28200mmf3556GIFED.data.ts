@@ -53,7 +53,7 @@ const LENS_DATA = {
   key: "nikkor-af-28-200-f3556-g-if-ed",
   maker: "Nikon",
   name: "NIKON AF ZOOM-NIKKOR 28-200mm f/3.5-5.6 G IF-ED",
-  subtitle: "US 6,621,643 B2 Example 1 — production correlation",
+  subtitle: "US 6,621,643 B2 Example 1 — production match",
 
   catalog: {
     lensMounts: ["nikon-f"],

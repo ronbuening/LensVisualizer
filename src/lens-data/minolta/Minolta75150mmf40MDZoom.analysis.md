@@ -55,7 +55,7 @@ Together, L1 and F23 produce a positive front component with +114.942 mm standal
 
 The first part of the negative variator is an unusual power pairing in which the higher-index, low-Abbe L4 is positive while the lower-index, high-Abbe L5 is negative. The cemented pair remains weakly negative overall, with a standalone focal length of -194.883 mm. That net sign is the relevant result for the subassembly; the much stronger positive and negative standalone element powers should not be confused with its in-situ contribution inside the moving variator.
 
-The L5 coordinate has no defensible exact match in the authoritative catalog set recorded for this dossier, so it remains an unmatched coordinate class rather than being assigned a modern vendor glass.
+The L5 coordinate has no defensible exact match in the authoritative catalog set consulted for this analysis, so it remains an unmatched coordinate class rather than being assigned a modern vendor glass.
 
 ### L6 — Biconcave Negative Singlet
 
@@ -99,7 +99,7 @@ The patent provides no rear cover plate or filter after L12. The model therefore
 
 ## Glass Identification and Selection
 
-The prescription contains ten distinct d-line `(nd, νd)` coordinates. The patent provides no glass trade names, line indices, partial-dispersion ratios, or supplier identities. Catalog matching in this dossier therefore distinguishes coordinate-family evidence from actual material identification.
+The prescription contains ten distinct d-line `(nd, νd)` coordinates. The patent provides no glass trade names, line indices, partial-dispersion ratios, or supplier identities. Catalog matching here therefore distinguishes coordinate-family evidence from actual material identification.
 
 | Coordinate / class | Elements | Status | Interpretation |
 |---|---|---|---|
@@ -120,9 +120,9 @@ Because the source provides only `nd` and `νd`, the data file does not invent `
 
 The patent identifies the positive front component F as the focusing group. Minolta's production manual describes the 75–150 mm f/4 as using a one-touch grip that slides for zooming and rotates for focusing, and it gives a minimum focusing distance of 1.2 m.
 
-Example 1, however, publishes only infinity-focus zoom spacings. It gives no finite-focus displacement of F, no corresponding change in the F-to-V air gap, and no focal-length-dependent close-focus compensation law. The final data therefore uses `NO_INTERNAL_RECONSTRUCTION`. The three zoom positions are modeled at infinity only, and each variable-gap focus pair repeats the same spacing at both endpoints.
+Example 1, however, publishes only infinity-focus zoom spacings. It gives no close-focus displacement of F, no corresponding change in the F-to-V air gap, and no focal-length-dependent close-focus compensation law. The model therefore shows the three zoom positions at infinity only, and every spacing that would change with focus stays at its infinity value at both ends of the focus control.
 
-The 1.2 m minimum focusing distance remains production metadata because the schema requires a close-focus value, but it is not used to manufacture an internal optical state. In particular, no claimed close-focus EFL, magnification, breathing value, or finite-conjugate aberration result can be derived from this model.
+The 1.2 m minimum focusing distance is recorded as product information, but it is not used to work out a close-focus optical state. In particular, no close-focus EFL, magnification, breathing value, or close-focus aberration result can be derived from this model.
 
 ## Conditional Expressions
 
@@ -148,5 +148,5 @@ The modeled semi-diameter set passes the portable geometry checks applied to the
 ## Sources
 
 1. Japan Patent Office, **JP S56-150717 A**, “ズームレンズ系” (Zoom lens system), published 21 November 1981. Example 1 prescription: supplied PDF pp. 2–3; optical layout: Figure 1, p. 5; aberration plots and `Y′ = 21.6`: Figure 6, p. 6; conditional expressions: pp. 1–2. Convenience family/index page: <https://patents.google.com/patent/JPS56150717A/en>.
-2. Minolta Camera Co., Ltd., **Minolta MD Zoom Lenses owner's manual** (1985), production specifications and one-touch zoom/focus operation for the 75–150 mm f/4 MD Zoom. Archived copy recorded in the dossier: <https://manuals.plus/m/540c39fa1e885dc79fc174e827a42f8cfa39b959cc8ef98ddcf78fdc7c166c11>.
-3. Current authoritative optical-glass catalog families recorded in the dossier: SCHOTT, OHARA, HOYA, HIKARI, CDGM, and SUMITA. Catalog-coordinate matches are used only as class/equivalence evidence unless otherwise stated.
+2. Minolta Camera Co., Ltd., **Minolta MD Zoom Lenses owner's manual** (1985), production specifications and one-touch zoom/focus operation for the 75–150 mm f/4 MD Zoom. Archived copy: <https://manuals.plus/m/540c39fa1e885dc79fc174e827a42f8cfa39b959cc8ef98ddcf78fdc7c166c11>.
+3. Current authoritative optical-glass catalog families consulted: SCHOTT, OHARA, HOYA, HIKARI, CDGM, and SUMITA. Catalog-coordinate matches are used only as class/equivalence evidence unless otherwise stated.

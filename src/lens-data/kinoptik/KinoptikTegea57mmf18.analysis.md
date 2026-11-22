@@ -96,9 +96,9 @@ No patent C/F/g line indices or partial-dispersion measurements are supplied for
 
 ## Focus Mechanism
 
-The optical focus status is **NO_INTERNAL_RECONSTRUCTION**. The patent gives a remote-object state and a focal plane but no variable-spacing table, focus travel, or internal focusing law. The data file therefore contains no `var` gaps and no reconstructed optical close-focus state.
+The patent gives a remote-object state and a focal plane but no table of variable spacings, no focus travel and no description of how the lens focuses. The model therefore has no spacings that change with focus and no modeled close-focus state.
 
-The Kinoptik-origin brochure specifies fixed focus, from infinity to the front element. No moving groups are modeled. The required `closeFocusM` uses the same non-operative infinity sentinel as the Super-Tegea; the secondary 19-inch listing no longer overrides the manufacturer description.
+The Kinoptik-origin brochure specifies fixed focus, from infinity to the front element. No moving groups are modeled. As with the Super-Tegea, the focus control is held at infinity; the stored value is not a product minimum focus distance. A secondary listing of 19 inches is not used, because the manufacturer describes the lens as fixed focus.
 
 ## Aspherical Surfaces
 

@@ -113,7 +113,7 @@ Modern and legacy optical-glass catalogs contain multiple plausible equivalents 
 
 The production Yashica table specifies a minimum focus distance of 0.3 m. [2] Example 1, however, publishes only the infinity prescription: it gives no finite-conjugate spacing table, moving-group description, focus travel, or magnification series from which an internal focus model could be recovered.
 
-The data file therefore uses `NO_INTERNAL_RECONSTRUCTION`. `var` and `varLabels` are empty, and `closeFocusM: 0.3` is retained strictly as production metadata. The available sources do not establish whether the production lens reaches close focus by unit translation or by internal relative motion, so no mechanism is asserted in the optical model.
+The model therefore shows the lens at infinity only: no spacing changes with focus, and the 0.3 m figure is recorded strictly as product information. The available sources do not establish whether the production lens reaches close focus by unit translation or by internal relative motion, so no mechanism is asserted in the model.
 
 ## Conditional Expressions
 

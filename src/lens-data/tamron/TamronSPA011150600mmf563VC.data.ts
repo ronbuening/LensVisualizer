@@ -57,7 +57,7 @@ const LENS_DATA = {
   maker: "Tamron",
   name: "TAMRON SP 150-600mm f/5-6.3 Di VC USD (A011)",
   subtitle:
-    "US 10,545,321 B2 Example 4 — strong A011 correlation; normalized patent prescription",
+    "US 10,545,321 B2 Example 4 — strong A011 match; simplified patent prescription",
 
   catalog: {
     lensMounts: ["canon-ef", "nikon-f", "sony-a"],

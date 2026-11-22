@@ -201,11 +201,11 @@ This repeated alternation gives the design multiple local degrees of freedom for
 
 The selected embodiment states that G5—the cemented L12+L13 negative doublet—moves toward the image when focusing from infinity to a near object (¶0041). A later camera-system paragraph instead names G4 (¶0217). That later statement conflicts with the embodiment-specific description and the layout; it is treated as a drafting carry-over error. The data file follows G5.
 
-The patent does not publish a close-focus spacing row, focus travel, object-distance table, or intermediate zoom focus law. The final model is therefore classified as **NO_INTERNAL_RECONSTRUCTION**. Every close member of every `[d∞, dclose]` pair is identical to its infinity member. The viewer contains the three published infinity zoom states but no invented focus trajectory.
+The patent does not publish a close-focus spacing row, focus travel, object-distance table, or intermediate zoom focus law. The model therefore shows **infinity focus only**: every spacing keeps its infinity value at both ends of the focus control. The viewer contains the three published infinity zoom states but no modeled focus movement.
 
-Panasonic publishes minimum focus distances of 0.54m at 70mm and 0.74m at 300mm, with 0.5× maximum magnification at 300mm.[3] The required `closeFocusM` catalog field stores the shortest marketed distance, 0.54m. It is metadata only and does not imply that the modeled groups move to a computed 0.54m state.
+Panasonic publishes minimum focus distances of 0.54m at 70mm and 0.74m at 300mm, with 0.5× maximum magnification at 300mm.[3] The model records the shortest marketed distance, 0.54m, as product information only. It does not imply that the modeled groups move to a computed 0.54m state.
 
-A Stage 1 mechanism diagnostic moved only G5 while conserving the sum of its adjacent air gaps. At the marketed tele endpoint it produced approximately 0.493× at a 0.74m image-plane-referenced object distance. This supports the product correlation, but it remains a diagnostic rather than an authored focus state because the patent does not establish the complete close-focus prescription.
+A separate trial calculation moved only G5 while conserving the sum of its adjacent air gaps. At the marketed tele endpoint it produced approximately 0.493× at a 0.74m image-plane-referenced object distance. This supports the product match, but it remains a trial calculation rather than a modeled focus state because the patent does not establish the complete close-focus prescription.
 
 ## Image Stabilization
 

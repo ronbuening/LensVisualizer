@@ -39,7 +39,7 @@ const LENS_DATA = {
   key: "voigtlander-skoparex-35f34-bessamatic",
   maker: "Voigtländer",
   name: "VOIGTLÄNDER SKOPAREX 35mm f/3.4 (Bessamatic)",
-  subtitle: "US 2,927,506 Example 1 — correlated to the Bessamatic Skoparex 35mm f/3.4",
+  subtitle: "US 2,927,506 Example 1 — matched to the Bessamatic Skoparex 35mm f/3.4",
 
   catalog: {
     lensMounts: ["dkl"],

@@ -39,7 +39,7 @@ const LENS_DATA = {
   key: "ricoh-gr-digital-iii-6mm-f19",
   maker: "Ricoh",
   name: "RICOH GR LENS 6.0mm f/1.9 (Ricoh GR DIGITAL III)",
-  subtitle: "JP 2010-72639 A Example 4 — high-likelihood GR DIGITAL III production correlation",
+  subtitle: "JP 2010-72639 A Example 4 — strong GR DIGITAL III production match",
 
   catalog: {
     lensMounts: ["fixed-lens-camera"],

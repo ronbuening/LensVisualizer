@@ -22,7 +22,7 @@ const LENS_DATA = {
   key: "canon-fl-f-300mm-f56",
   maker: "Canon",
   name: "CANON FL-F 300mm f/5.6",
-  subtitle: "JP S47-8749 B, Example 2 — probable production correlation, front protective glass omitted",
+  subtitle: "JP S47-8749 B, Example 2 — probable production match, front protective glass omitted",
   catalog: {
     lensMounts: ["canon-fl"],
     imageFormat: "135-full-frame",

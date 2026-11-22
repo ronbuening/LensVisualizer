@@ -27,7 +27,7 @@ const LENS_DATA = {
   key: "nikon-series-e-75-150mm-f35",
   maker: "Nikon",
   name: "NIKON SERIES E ZOOM 75-150mm f/3.5",
-  subtitle: "US 4,398,807 A, sole embodiment — strong production correlation",
+  subtitle: "US 4,398,807 A, sole embodiment — strong production match",
 
   catalog: {
     lensMounts: ["nikon-f"],

@@ -163,14 +163,14 @@ an apochromatic or anomalous-partial-dispersion claim, so none is made here.
 
 ## Focus Mechanism
 
-The implemented focus status is `NO_INTERNAL_RECONSTRUCTION`. Example 1 publishes aperture changes, not focus travel.
-Tables 1-3 repeat the same S1-S17 radii, media, and spacings while changing only VST aperture and F-number. Paragraph
-0110 states that the focal point remains at the same position when F-number changes in this example.
+Example 1 publishes aperture changes, not focus travel. Tables 1-3 repeat the same S1-S17 radii, media, and spacings
+while changing only VST aperture and F-number. Paragraph 0110 states that the focal point remains at the same position
+when F-number changes in this example.
 
-No finite-object-distance table, focus-dependent air gap, moving-group displacement, or production autofocus law is
-published for Example 1. Consequently, `var` and `varLabels` are empty and no internal focus motion is invented. The data
-field `closeFocusM: 0.10` comes from independent Camera FV-5 Galaxy S9 rear-camera metadata because the schema requires a
-minimum-focus value; it is product metadata only and does not constrain or validate any modeled focus movement.
+No close-focus object-distance table, focus-dependent air gap, moving-group displacement, or production autofocus law is
+published for Example 1. The model therefore shows the lens at infinity only, and no internal focus movement is modeled.
+The 0.10 m close-focus figure comes from independent Camera FV-5 Galaxy S9 rear-camera data; it is product information
+only and does not constrain or validate any modeled focus movement.
 
 ## Aspherical Surfaces
 

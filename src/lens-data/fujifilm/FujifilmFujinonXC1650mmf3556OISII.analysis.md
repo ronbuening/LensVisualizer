@@ -178,7 +178,7 @@ The design spans a broad dispersion range, from L23 at $\nu_d=17.98$ to L33 at $
 
 The patent uses an internal focusing arrangement within G4. L41 moves along the optical axis during focusing, while L42 is fixed (¶0134); G5 is also fixed in the zoom architecture. The production manual specifies a macro range reaching 0.15 m at the wide setting and 0.35 m at the long setting, but those external object-distance specifications do not determine the internal L41 travel uniquely.
 
-Accordingly, the final model uses **`NO_INTERNAL_RECONSTRUCTION`**. Every numerical zoom state is an infinity-focus state, and each `var` focus pair repeats the same infinity spacing. `closeFocusM: 0.15` is retained only as marketed metadata. It must not be interpreted as a reconstructed 0.15 m optical state.
+Accordingly, the model shows infinity focus only and focus travel is not modeled. Every numerical zoom state is an infinity-focus state, and each spacing that changes with focus keeps the same infinity value at both ends of the focus control. The 0.15 m close-focus figure is recorded only as product information. It must not be interpreted as a modeled 0.15 m optical state.
 
 | Zoom state | DD(3) | DD(9) | DD(21) | Authored focus state |
 |---|---:|---:|---:|---|

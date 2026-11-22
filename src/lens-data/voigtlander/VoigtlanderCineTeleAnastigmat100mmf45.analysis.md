@@ -118,14 +118,13 @@ an off-axis astigmatic-focus calculation.
 
 ## Focus Mechanism
 
-The optical focus status is **NO_INTERNAL_RECONSTRUCTION**.
-Only the fixed patent prescription at a calculated infinity image plane is represented.
-No internal movement, unit-focus extension, finite-conjugate certification or production MFD is inferred.
-The variable-spacing tables are empty.
+The model shows only the fixed patent prescription at a calculated infinity image plane.
+No internal movement, unit-focus extension, close-focus performance or production minimum focus distance is inferred.
+No spacings change with focus.
 
-The required closeFocusM field uses the established **1e15** finite infinity-only schema sentinel.
+The focus control is held at infinity; the stored value is not a product minimum focus distance.
 It is neither a measured distance nor a manufacturing specification.
-With no variable-gap travel, the current application disables the focus control and labels its endpoint
+With no spacings that change with focus, the current application disables the focus control and labels its endpoint
 “Not modeled.” The verified optical state remains infinity; forced nonzero programmatic focus states
 are outside the modeled claim.
 

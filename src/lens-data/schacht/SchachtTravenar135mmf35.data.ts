@@ -4,7 +4,7 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Lens data — Albert Schacht Travenar 135mm f/3.5.
  *
  * Source prescription: DE 843 305, Example 2 (Ludwig Bertele), published at f = 100 mm.
- * Every patent radius and axial spacing is uniformly scaled by 1.35 for the 135 mm production correlation.
+ * Every patent radius and axial spacing is uniformly scaled by 1.35 to match the 135 mm production lens.
  * The resulting Gaussian EFL is 135.348216996 mm; the marketed focal length remains 135 mm.
  *
  * The patent publishes f/3.5 but no physical diaphragm location or diameter. The model inserts exactly one STO at
@@ -13,17 +13,16 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * not an unpublished physical diaphragm diameter or location.
  *
  * The patent publishes no clear apertures. Surface semi-diameters are modeled from exact meridional spherical-ray
- * containment at the project's default 0.6 × 135-format diagonal half-field, then enlarged by 5% plus 0.2 mm and checked
+ * containment at 0.6 of the 24×36 diagonal half-field, then enlarged by 5% plus 0.2 mm and checked
  * for positive element edge thickness, actual spherical rim slope, shared-gap sag intrusion, and exact-ray containment.
- * The rear element uses 15.5 mm rims inferred from DE 843 305 p. 4, Fig. 2; see the audit sidecar.
+ * The rear element uses 15.5 mm rims inferred from DE 843 305 p. 4, Fig. 2; see the audit log.
  *
- * Focus status: NO_INTERNAL_RECONSTRUCTION. The patent gives no finite-focus prescription or internal spacing law.
- * closeFocusM = 1.5 is retained only as secondary product metadata from the Stage 1 evidence; var remains empty and no
- * finite-focus optical motion is invented.
+ * Focus: infinity only. The patent gives no close-focus prescription or spacing law. closeFocusM = 1.5 is the
+ * product's close-focus distance as reported by a secondary source; focus travel is not modeled.
  *
- * Product attribution to the Schacht Travenar 135mm f/3.5 is strong circumstantial research correlation, not a
+ * Product attribution to the Schacht Travenar 135mm f/3.5 is strong but circumstantial, not a
  * manufacturer-confirmed patent-to-product identification. Glass labels are coordinate classes unless explicitly
- * marked Unmatched; no candidate catalog nC/nF/ng/dPgF values are promoted into the prescription.
+ * marked Unmatched; no catalog nC/nF/ng/dPgF values are copied into the prescription.
  */
 
 const LENS_DATA = {
@@ -31,7 +30,7 @@ const LENS_DATA = {
   key: "schacht-travenar-135mm-f35",
   maker: "Schacht",
   name: "SCHACHT TRAVENAR 135mm f/3.5",
-  subtitle: "DE 843 305 Example 2 — 1.35× production-scale correlation; attribution circumstantial",
+  subtitle: "DE 843 305 Example 2 ×1.35 — likely production match, not maker-confirmed",
 
   catalog: {
     lensMounts: ["exakta"],

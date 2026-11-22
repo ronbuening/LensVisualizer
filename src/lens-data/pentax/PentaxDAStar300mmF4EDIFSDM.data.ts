@@ -40,7 +40,7 @@ const LENS_DATA = {
   key: "pentax-da-star-300mm-f4",
   maker: "Pentax",
   name: "PENTAX DA* 300mm f/4 ED [IF] SDM",
-  subtitle: "US 7,715,116 B2, Embodiment 7 — production-family correlation",
+  subtitle: "US 7,715,116 B2, Embodiment 7 — match to the production lens family",
   visible: true,
   catalog: {
     lensMounts: ["pentax-k"],

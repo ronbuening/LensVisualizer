@@ -48,7 +48,7 @@ const LENS_DATA = {
   key: "panasonic-lumix-s-24-105-f4-macro-ois",
   maker: "Panasonic",
   name: "PANASONIC LUMIX S 24-105mm f/4 MACRO O.I.S.",
-  subtitle: "JP 2020-118738 A, Numerical Example 1 — strong inferred S-R24105 correlation",
+  subtitle: "JP 2020-118738 A, Numerical Example 1 — strong inferred S-R24105 match",
 
   catalog: {
     lensMounts: ["l-mount"],

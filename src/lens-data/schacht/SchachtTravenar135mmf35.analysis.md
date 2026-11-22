@@ -20,9 +20,9 @@ document a licensing arrangement.
 DE 843 305 describes a four-element objective in which all four lenses are separated by air. The first two lenses are
 converging, the third is diverging, and the fourth is converging. Example 2 is published at a nominal focal length of
 100 mm and an aperture ratio of 1:3.5. The present model preserves that example and applies a uniform 1.35× dimensional
-scale to correlate it with the 135 mm production lens; refractive indices and Abbe numbers are unchanged. [1]
+scale to match the 135 mm production lens; refractive indices and Abbe numbers are unchanged. [1]
 
-The production identification is a strong circumstantial correlation rather than a manufacturer-confirmed patent match.
+The production identification is strong but circumstantial, not a manufacturer-confirmed patent match.
 The evidence converges in several ways:
 
 1. The patent embodiment and the period Schacht product are both four-element f/3.5 objectives. [1][2]
@@ -38,7 +38,7 @@ The patent itself does not name Schacht or Travenar, and no accessed Schacht pri
 DE 843 305 Example 2 became the production Travenar 135 mm f/3.5. The patent describes the design class as covering
 approximately ±10° on page 1 and later summarizes the examples as having an image field of about 20–25°, supporting a
 full-field interpretation for that latter range. The 18° period product listing is therefore close but not an exact
-patent field match. These limits prevent the correlation from being treated as manufacturer confirmation. [1][2][3]
+patent field match. These limits prevent the match from being treated as manufacturer confirmation. [1][2][3]
 
 ## Optical Architecture
 
@@ -111,13 +111,13 @@ S-prefix nomenclature and names no glass supplier. The data file therefore names
 L4 is the rear positive meniscus, separated from L3 by the largest air space in the prescription. The patent independently
 constrains the fourth lens to νd < 45.0; Example 2 gives 34.9 and therefore satisfies that condition. [1]
 
-SCHOTT LAFN7 provides a qualified spectral proxy at nd = 1.74950 and νd = 34.95. The index residual of
+SCHOTT LAFN7 serves as a spectral proxy at nd = 1.74950 and νd = 34.95. The index residual of
 +0.00250 is inside, but near the edge of, the existing ±0.003 compatibility limit. This is an approximate spectral
 model, not an exact melt identification; no catalog line indices are copied into the prescription. [11]
 
 ## Glass Identification / Selection
 
-The prescription is natively specified only by d-line refractive index and νd. The patent does not identify a glass
+The prescription specifies only the d-line refractive index and νd. The patent does not identify a glass
 manufacturer, and it publishes no nC, nF, ng, or anomalous-partial-dispersion quantity. The glass strings in the data file
 therefore express coordinate classes or explicit unresolved status, not supplier attribution.
 
@@ -135,14 +135,12 @@ partial-dispersion performance claim is warranted.
 
 ## Focus Mechanism
 
-The implemented focus status is `NO_INTERNAL_RECONSTRUCTION`. DE 843 305 Example 2 supplies no finite-focus prescription,
-no variable spacing table, and no internal movement law. The final data therefore has an empty `var` object and represents
-the verified infinity optical state only. [1]
+DE 843 305 Example 2 gives only the infinity prescription: no close-focus prescription, no table of variable spacings and
+no description of the focusing movement. The model therefore shows the verified infinity state only. [1]
 
-A secondary archival source gives approximately 1.5 m close focus for the production Travenar. [5] The data schema
-requires `closeFocusM`, so 1.5 m is retained as product metadata, but it is not used to solve or invent any finite-focus
-optical motion. Manufacturer-era material confirms manual focusing but does not determine a unique internal optical law.
-[3][4]
+A secondary archival source gives about 1.5 m close focus for the production Travenar. [5] The model records 1.5 m as
+product information but does not use it to work out any close-focus movement. Period material confirms manual focusing
+but does not say which parts move. [3][4]
 
 ## Conditional Expressions
 

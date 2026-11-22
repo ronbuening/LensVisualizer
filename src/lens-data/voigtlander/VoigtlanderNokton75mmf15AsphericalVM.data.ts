@@ -36,7 +36,7 @@ const LENS_DATA = {
   key: "voigtlander-nokton-vintage-line-vm-75mm-f1-5-aspherical",
   maker: "Voigtländer",
   name: "VOIGTLÄNDER NOKTON Vintage Line 75mm f/1.5 Aspherical VM",
-  subtitle: "JP 2020-122918 A — Example 3; production correlation",
+  subtitle: "JP 2020-122918 A — Example 3; production match",
 
   catalog: {
     lensMounts: ["leica-m"],

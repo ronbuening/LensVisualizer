@@ -31,7 +31,7 @@ const LENS_DATA = {
   key: "canon-rf-15-30mm-f4-5-6-3-is-stm",
   maker: "Canon",
   name: "CANON RF 15-30mm f/4.5-6.3 IS STM",
-  subtitle: "EP 4 174 551 A1 — Second Numerical Embodiment; production correlation inferred",
+  subtitle: "EP 4 174 551 A1 — Second Numerical Embodiment; inferred production match",
 
   catalog: {
     lensMounts: ["canon-rf"],

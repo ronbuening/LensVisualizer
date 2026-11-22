@@ -18,10 +18,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ both published K_A = 0 values are converted to standard K = -1. Odd radial ║
  * ║ orders A3, A5, ... A19 are preserved exactly under the updated schema.      ║
  * ║                                                                            ║
- * ║ Focus status: NO_INTERNAL_RECONSTRUCTION. The patent publishes one static   ║
- * ║ infinity prescription and no mechanism-constrained focus schedule. The     ║
- * ║ 0.14 m closeFocusM value is Fujifilm's product-level minimum distance and   ║
- * ║ does not create variable internal spacings in this model.                   ║
+ * ║ Focus: infinity only. The patent publishes one fixed infinity prescription ║
+ * ║ and no close-focus spacings. The 0.14 m closeFocusM value is Fujifilm's    ║
+ * ║ product-level minimum distance; focus travel is not modeled.               ║
  * ║                                                                            ║
  * ║ Rear normalization: patent cover/filter plate PP is excluded. Its optical  ║
  * ║ effect is folded into the final air-equivalent M15-to-image spacing of      ║
@@ -47,7 +46,7 @@ const LENS_DATA = {
   key: "fujifilm-x100-tcl-x100",
   maker: "Fujifilm",
   name: "FUJIFILM TCL-X100 33mm f/2 (Fujifilm X100)",
-  subtitle: "US 2015/0226942 A1 Example 1 — production correlation inferred",
+  subtitle: "US 2015/0226942 A1 Example 1 — inferred production match",
 
   catalog: {
     lensMounts: ["fixed-lens-camera"],
@@ -307,7 +306,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.14,
     description:
-      "NO_INTERNAL_RECONSTRUCTION: static infinity prescription; marketed 0.14 m MFD does not drive variable spacings.",
+      "Infinity focus only. The patent gives one prescription and no close-focus data, so focus travel is not modeled. The 0.14 m minimum focus distance is Fujifilm's product figure.",
   },
 
   aperture: { nominalFNumber: 2.05, fStops: [2.05, 2.8, 4, 5.6, 8, 11, 16] },

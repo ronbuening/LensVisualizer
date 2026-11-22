@@ -18,7 +18,7 @@ const LENS_DATA = {
   key: "samyang-af-14mm-f28-ef",
   maker: "Samyang",
   name: "SAMYANG AF 14mm f/2.8 EF",
-  subtitle: "KR 10-1918210 B1, Example 3 — construction-based production correlation",
+  subtitle: "KR 10-1918210 B1, Example 3 — production match by construction",
   catalog: {
     lensMounts: ["canon-ef"],
     imageFormat: "135-full-frame",

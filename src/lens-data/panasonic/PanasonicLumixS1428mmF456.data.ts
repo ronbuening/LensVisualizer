@@ -9,10 +9,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * inspector counts D1–D4 as two-element doublets. Their diagramLabel C1–C4 stands in for ids 15–18 in
  * the element-number row; an empty label does not hide a layer cleanly, because the row packer still
  * reserves its slot and leaves 12 and 14 floating over a gap.
- * Focus: NO_INTERNAL_RECONSTRUCTION. Only the three printed infinity stations are modeled and each
- * focus vector repeats its infinity value. G3 focuses toward the image, but the patent prints no
- * finite-focus spacings. closeFocusM is Panasonic's marketed 0.15 m minimum focus distance; it is
- * not modeled.
+ * Focus: infinity only. Only the three printed infinity stations are modeled and every spacing keeps
+ * its infinity value at both ends of the focus control. G3 focuses toward the image, but the patent
+ * prints no close-focus spacings. closeFocusM is Panasonic's marketed 0.15 m minimum focus distance;
+ * focus travel is not modeled.
  * Zoom between the printed stations is piecewise-linear interpolation of the printed gaps, not a
  * published cam; the paraxial focus error at the printed image plane reaches -0.672669 mm in
  * 401 zoom samples.
@@ -46,7 +46,7 @@ const LENS_DATA = {
   key: "panasonic-lumix-s-14-28mm-f4-56-macro",
   maker: "Panasonic",
   name: "PANASONIC LUMIX S 14-28mm f/4-5.6 MACRO",
-  subtitle: "US 2024/0192475 A1, Example 1 — selected production correlation",
+  subtitle: "US 2024/0192475 A1, Example 1 — selected production match",
 
   catalog: {
     lensMounts: ["l-mount"],
@@ -421,7 +421,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.15,
     description:
-      "NO_INTERNAL_RECONSTRUCTION. The patent prints three infinity-focus zoom stations (14.56, 19.80 and 26.93 mm) and only those are modeled, so the focus control moves nothing. The third group, the L11–L12 doublet, focuses toward the image for near objects, but no finite-focus spacings are printed. The 0.15 m minimum focus distance (0.5× at the long end) is Panasonic's marketed figure and is not modeled. Between the printed stations the zoom gaps are linearly interpolated; this is not a published cam, and the paraxial focus sits up to 0.67 mm off the printed image plane between the middle and long-end stations.",
+      "Infinity focus only. The patent prints three infinity-focus zoom stations (14.56, 19.80 and 26.93 mm) and names the third group, the L11–L12 doublet, as moving toward the image for near objects, but prints no close-focus spacings; Panasonic's 0.15 m minimum focus distance (0.5× at the long end) is product information, and focus travel is not modeled. Between the printed stations the zoom gaps are linearly interpolated rather than following a published cam, and the paraxial focus sits up to 0.67 mm off the printed image plane between the middle and long-end stations.",
   },
 
   gaps: {
