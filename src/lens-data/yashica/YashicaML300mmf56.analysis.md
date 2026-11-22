@@ -177,10 +177,9 @@ match into an unsupported historical-material claim.
 
 ## Focus Mechanism
 
-The production lens is documented to focus to **4.5 m**, but JP 1978-129629 A Example 2 publishes no finite-object
-prescription, focus-spacing table, magnification state, or focusing-group movement. The data file therefore uses the
-status **NO_INTERNAL_RECONSTRUCTION**: `closeFocusM` retains the production specification while `var` and `varLabels`
-remain empty. [1][2]
+The production lens is documented to focus to **4.5 m**, but JP 1978-129629 A Example 2 publishes no close-focus
+prescription, focus-spacing table, magnification state, or focusing-group movement. The model therefore shows the lens
+at infinity only: the 4.5 m figure is recorded as product information, and no spacing changes with focus. [1][2]
 
 Consequently, the source does not establish whether the production implementation achieved focusing by unit extension,
 internal movement, or another mechanical arrangement. The analysis does not infer a focus mechanism from the 4.5 m

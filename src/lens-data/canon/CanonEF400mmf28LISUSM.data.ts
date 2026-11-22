@@ -31,7 +31,7 @@ const LENS_DATA = {
   key: "canon-ef-400mm-f28l-is-usm",
   maker: "Canon",
   name: "CANON EF 400mm f/2.8 L IS USM",
-  subtitle: "US 6,115,188 A — Numerical Example 25; production correlation to EF 400mm f/2.8 L IS USM",
+  subtitle: "US 6,115,188 A — Numerical Example 25; production match to EF 400mm f/2.8 L IS USM",
 
   catalog: {
     lensMounts: ["canon-ef"],

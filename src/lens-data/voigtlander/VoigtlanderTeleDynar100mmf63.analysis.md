@@ -138,13 +138,13 @@ is preserved; no replacement glass is introduced to force the prose into agreeme
 ## Focus Mechanism
 
 Only a static infinity-reference prescription is modeled. Neither numerical example
-supplies finite-conjugate spacing states or a production MFD. The two-cell shutter
-arrangement documented in the Avus manual does not specify a focus law. [1,2]
+supplies close-focus spacing states or a production minimum focus distance. The two-cell
+shutter arrangement documented in the Avus manual does not specify a focus law. [1,2]
 
-The focus disposition is NO_INTERNAL_RECONSTRUCTION. There are no variable gaps and no
-invented internal motion. The required closeFocusM value of 1e9 m is a schema sentinel,
-not a physical MFD. It does not establish finite-distance focus performance or justify
-moving any group. No focus travel or close-focus magnification is claimed.
+The model therefore moves no group, and no spacing changes with focus. The focus control
+is held at infinity; the stored value is not a product minimum focus distance. It does
+not establish close-focus performance or justify moving any group. No focus travel or
+close-focus magnification is claimed.
 
 ## Aperture, Field and Model Geometry
 

@@ -46,7 +46,7 @@ const LENS_DATA = {
   maker: "Tamron",
   name: "TAMRON AF 28-300mm f/3.5-6.3 XR Di LD Aspherical [IF] MACRO",
   subtitle:
-    "US 2003/0156333 A1 — sole preferred numerical embodiment; A061 correlation via its A06 optical-system base",
+    "US 2003/0156333 A1 — sole preferred numerical embodiment; A061 match via its A06 optical-system base",
 
   catalog: {
     lensMounts: ["canon-ef", "nikon-f", "sony-a", "pentax-k"],

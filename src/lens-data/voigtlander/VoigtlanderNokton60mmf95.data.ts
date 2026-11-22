@@ -39,7 +39,7 @@ const LENS_DATA = {
   key: "voigtlander-nokton-60mm-f095-mft",
   maker: "Voigtländer",
   name: "VOIGTLÄNDER NOKTON 60mm f/0.95",
-  subtitle: "JP 2021-076740 A Example 2 — Cosina production correlation",
+  subtitle: "JP 2021-076740 A Example 2 — Cosina production match",
 
   catalog: {
     lensMounts: ["micro-four-thirds"],

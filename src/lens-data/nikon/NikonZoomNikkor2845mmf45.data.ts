@@ -59,7 +59,7 @@ const LENS_DATA = {
   key: "nikon-zoom-nikkor-28-45f45",
   maker: "Nikon",
   name: "NIKON ZOOM-NIKKOR 28-45mm f/4.5",
-  subtitle: "US 3,771,853 A — Embodiment III; strong Nikon product correlation, exact embodiment unconfirmed",
+  subtitle: "US 3,771,853 A — Embodiment III; strong Nikon production match, exact embodiment unconfirmed",
   // Embodiment III replaces the hidden earlier model; publication is the revision addition commit in UTC.
   publishedAt: "2026-09-14T12:06:25Z",
 

@@ -8,7 +8,7 @@
 **Inventor:** Ludwig Bertele  
 **Assignee:** None named on the US grant  
 **Title:** *Three-Component Objective*  
-**Example details:** headed “Example” (job-card Example 1)
+**Example details:** headed “Example”
 
 The implemented prescription is based on the sole worked numerical example in US 2,721,501. The patent describes a
 three-member photographic objective: a single positive front lens, a cemented two-lens middle member, and a single
@@ -16,8 +16,8 @@ positive rear lens. Its numerical example is normalized to a focal length of 100
 1:2.8. The patent further describes useful image angles up to about ±15°. [US 2,721,501, pp. 1–2; numerical “Example”
 table and claim on p. 2.]
 
-The association with the production Schacht Travenar 90mm f/2.8 is strong but remains a research correlation rather than
-a manufacturer-confirmed patent attribution. The convergent evidence is:
+The association with the production Schacht Travenar 90mm f/2.8 is strong but rests on research rather than a
+manufacturer-confirmed patent attribution. The convergent evidence is:
 
 1. The patent example and Schacht literature both specify four lenses in three groups/members.
 2. Both identify an f/2.8 maximum aperture.
@@ -28,7 +28,7 @@ a manufacturer-confirmed patent attribution. The convergent evidence is:
 5. The 1954 filing and 1955 grant precede the retained 1966 Schacht leaflet; this establishes chronology but not the product’s first-release year.
 
 Period Schacht literature additionally specifies 1 m to infinity focusing and documents an Exakta/Exa version. No
-primary Schacht source retained in the dossier explicitly names US 2,721,501 or identifies Ludwig Bertele as the designer
+primary Schacht source found explicitly names US 2,721,501 or identifies Ludwig Bertele as the designer
 of the production Travenar 90mm f/2.8. The data file therefore records the match as a strong inference, not as a
 manufacturer statement.
 
@@ -55,7 +55,7 @@ in-situ reduced-angle trace, not merely to the signs of the standalone element p
 
 The patent’s description emphasizes the three separated members and the cemented middle meniscus rather than an
 aspherical or moving-group correction strategy. The implemented model likewise contains no aspheres, diffractive
-surfaces, stabilization group, or reconstructed internal focus motion.
+surfaces, stabilization group, or modeled focus movement.
 
 ## Element-by-Element Analysis
 
@@ -128,20 +128,19 @@ historical Sellmeier model.
 
 ## Focus Mechanism
 
-Schacht literature gives a focusing range from 1 m to infinity, but neither the patent nor the retained manufacturer
-material specifies the optical motion that produces that range. The prescription therefore has focus status
-`NO_INTERNAL_RECONSTRUCTION`.
+Schacht literature gives a focusing range from 1 m to infinity, but neither the patent nor the maker's literature gives
+the lens spacings at close focus or the movement that produces that range. The model therefore shows the infinity state
+only.
 
-The data file keeps the patent-derived infinity prescription fixed and authors no variable internal spacings. The
-`closeFocusM: 1.0` field is product metadata only. It is not a reconstructed close-focus optical state and does not imply
-unit focus, inner focus, or any other specific mechanical law.
+The 1 m close-focus figure is product information only. It is not a modeled close-focus state and does not imply unit
+focus, inner focus, or any other particular mechanism.
 
 ## Patent Conditions, Source Correction, and Scaling
 
 The numerical table on patent p. 2 prints `r2 = −181.91`. With that sign, independent paraxial tracing gives an EFL of
 57.1412 source units instead of the stated 100-unit normalization, and the patent’s printed curvature expression evaluates
-to 6.23918 rather than 5.14. The source value is therefore preserved as printed evidence but treated as an apparent source
-error in the implemented optical model.
+to 6.23918 rather than 5.14. The printed value is therefore recorded here but treated as an apparent misprint in the
+model.
 
 Changing only that radius to `r2 = +181.91` resolves both contradictions. The corrected normalized prescription gives an
 EFL of 100.0137 source units and
@@ -161,7 +160,7 @@ The claim’s wording that the third-lens focal length is “smaller than −0.3
 language. The implemented analysis therefore reports the numerical example and its verified ratio rather than silently
 rewriting the claim.
 
-For correlation with the 90 mm production lens, every dimensional value in the corrected 100-unit model is uniformly
+To match the 90 mm production lens, every dimensional value in the corrected 100-unit model is uniformly
 scaled by `s = 0.9`; refractive indices and Abbe numbers are unchanged. There are no aspherical coefficients to transform.
 The scale is tied to the patent’s stated 100-unit normalization and the marketed 90 mm focal length; it is not fitted to
 force the rounded prescription to exactly 90.000 mm.
@@ -176,9 +175,9 @@ unpublished production diaphragm size.
 
 The patent publishes no surface clear apertures. The front and cemented-element SDs retain the geometry-constrained
 estimates. The rear surfaces now use 12.2/12.3 mm, measured from the optical rim on patent p. 1 at 600 dpi
-(about 0.0368 mm/pixel), instead of the draft's 16.9/17.0 mm ray-envelope margins. The narrower rear silhouette
-matches the drawing and passes the production geometry and render diagnostics. It can clip off-axis pupil rays;
-the draft's all-rays-clear meridional claim does not apply to these revised apertures.
+(about 0.0368 mm/pixel), instead of the earlier 16.9/17.0 mm estimates, which left a margin around the traced rays. The
+narrower rear rim matches the drawing and still gives a valid element shape. It can clip some off-axis rays, so the
+edge of the field vignettes slightly.
 
 The patent draws `l3` from the last lens to the focal plane but does not tabulate it numerically. The implemented final
 surface spacing is therefore the independently computed infinity BFD, 42.9294 mm from the surface-7 vertex, rather than a

@@ -14,9 +14,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  The image plane is fixed in the patent; in physical coordinates the      ║
  * ║  front component reverses by about 1.78 mm from mid to tele.               ║
  * ║                                                                            ║
- * ║  FOCUS STATUS — NO_INTERNAL_RECONSTRUCTION:                                ║
- * ║  The patent publishes no finite-focus prescription or internal focus       ║
- * ║  trajectory. Production MFD 0.35 m is retained as metadata only.           ║
+ * ║  FOCUS — INFINITY ONLY:                                                    ║
+ * ║  The patent publishes no close-focus prescription or internal focus        ║
+ * ║  trajectory. The 0.35 m production minimum focus is product information    ║
+ * ║  only; focus travel is not modeled.                                        ║
  * ║                                                                            ║
  * ║  SOURCE CORRECTION: r12 is visibly overstruck in the scan. Independent     ║
  * ║  multi-position EFL/BFD closure resolves it to +149.473 mm; the rejected   ║
@@ -44,7 +45,7 @@ const LENS_DATA = {
   key: "konica-zoom-hexanon-ar-35-70mm-f3-5",
   maker: "Konica",
   name: "KONICA ZOOM-HEXANON AR 35-70mm f/3.5",
-  subtitle: "JPS55-21005A Example 1 — production correlation to Cat. No. 703-172",
+  subtitle: "JPS55-21005A Example 1 — production match to Cat. No. 703-172",
 
   catalog: {
     lensMounts: ["konica-ar"],
@@ -202,7 +203,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.35,
     description:
-      "NO_INTERNAL_RECONSTRUCTION — patent publishes infinity zoom spacings only; 0.35 m production MFD is retained without an invented close-focus optical state.",
+      "Infinity focus only. The patent publishes infinity zoom spacings only. The 0.35 m production minimum focus distance is product information; focus travel is not modeled, zoom movement is.",
   },
 
   gaps: {

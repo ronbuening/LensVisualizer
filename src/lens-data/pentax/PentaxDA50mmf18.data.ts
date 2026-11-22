@@ -28,7 +28,7 @@ const LENS_DATA = {
   key: "pentax-smc-da-50mm-f18",
   maker: "Pentax",
   name: "PENTAX DA 50mm f/1.8",
-  subtitle: "JP 2014-026184 A, Example 4 \u2014 probable production correlation",
+  subtitle: "JP 2014-026184 A, Example 4 \u2014 probable production match",
   catalog: {
     lensMounts: ["pentax-k"],
     imageFormat: "aps-c",

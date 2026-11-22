@@ -14,7 +14,7 @@ const LENS_DATA = {
   key: "canon-fl-300mm-f28-ssc-fluorite",
   maker: "Canon",
   name: "CANON FL 300mm f/2.8 S.S.C. FLUORITE",
-  subtitle: "US 3,868,174 A, Example 1 — probable production correlation, drop-in filter omitted",
+  subtitle: "US 3,868,174 A, Example 1 — probable production match, drop-in filter omitted",
   visible: true,
   layout: {
     yScFill: 0.85,

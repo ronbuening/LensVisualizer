@@ -28,7 +28,7 @@ const LENS_DATA = {
   key: "voigtlander-color-skopar-18mm-f28-x",
   maker: "Voigtländer",
   name: "VOIGTLÄNDER COLOR-SKOPAR 18mm f/2.8 Aspherical X-Mount",
-  subtitle: "JP 2025-044411 A, Embodiment 3 — probable production correlation",
+  subtitle: "JP 2025-044411 A, Embodiment 3 — probable production match",
   catalog: {
     lensMounts: ["fujifilm-x"],
     imageFormat: "aps-c",

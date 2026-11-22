@@ -46,7 +46,7 @@ const LENS_DATA = {
   key: "fujifilm-fujinon-xf-16mm-f28-r-wr",
   maker: "Fujifilm",
   name: "FUJIFILM FUJINON XF 16mm f/2.8 R WR",
-  subtitle: "US 2020/0073096 A1 Example 3 — production correlation inferred",
+  subtitle: "US 2020/0073096 A1 Example 3 — inferred production match",
 
   catalog: {
     lensMounts: ["fujifilm-x"],

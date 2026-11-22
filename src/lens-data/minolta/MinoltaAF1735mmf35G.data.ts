@@ -20,7 +20,7 @@ const LENS_DATA = {
   key: "minolta-af-17-35mm-f35-g",
   maker: "Minolta",
   name: "MINOLTA AF 17-35mm f/3.5 G",
-  subtitle: "JP H10-082954 A, Example 1 — strong production correlation",
+  subtitle: "JP H10-082954 A, Example 1 — strong production match",
   visible: true,
   catalog: {
     lensMounts: ["sony-a"],

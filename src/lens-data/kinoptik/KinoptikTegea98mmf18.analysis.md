@@ -138,12 +138,12 @@ No patent C/F/g line indices or partial-dispersion measurements are supplied for
 
 ## Focus Mechanism
 
-The optical model has **NO_INTERNAL_RECONSTRUCTION**. Example 2 publishes only the remote-object design state and contains
-no finite-focus spacing table, moving-group identification, or internal motion law. Accordingly, `var` is empty and all
-surface spacings remain at the published design state.
+Example 2 publishes only the remote-object design state and contains no close-focus spacing table, no identification of
+a moving group and no description of the focusing movement. Accordingly, no spacing changes with focus and all surface
+spacings remain at the published design state.
 
-The KINOPTIK product sheet gives a focusing range from infinity to 9 inches, corresponding to 0.2286 m, and that value is
-stored as production close-focus metadata. [2] It is not converted into a modeled lens-group displacement. A production
+The KINOPTIK product sheet gives a focusing range from infinity to 9 inches, corresponding to 0.2286 m, and the model
+records that value as product information. [2] It is not converted into a modeled lens-group displacement. A production
 minimum-focus distance by itself does not determine which group moves or how the internal separations change.
 
 ## Aspherical Surfaces

@@ -38,7 +38,7 @@ const LENS_DATA = {
   key: "voigtlander-nokton-50f15-aspherical-ii-vm",
   maker: "Voigtländer",
   name: "VOIGTLÄNDER NOKTON Vintage Line 50mm f/1.5 Aspherical II VM",
-  subtitle: "JP 2022-012964 A — Example 2 — production correlation",
+  subtitle: "JP 2022-012964 A — Example 2 — production match",
 
   catalog: {
     lensMounts: ["leica-m"],

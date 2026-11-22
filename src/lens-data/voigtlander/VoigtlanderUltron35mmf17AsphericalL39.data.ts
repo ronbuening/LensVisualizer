@@ -21,7 +21,7 @@ const LENS_DATA = {
   key: "voigtlander-ultron-35mm-f17-aspherical-l39",
   maker: "Voigtländer",
   name: "VOIGTLÄNDER ULTRON 35mm f/1.7 Aspherical L39",
-  subtitle: "JP 2000-321490 A, Example 1 — supported but unconfirmed L39 production correlation",
+  subtitle: "JP 2000-321490 A, Example 1 — supported but unconfirmed L39 production match",
 
   catalog: {
     lensMounts: ["leica-ltm"],

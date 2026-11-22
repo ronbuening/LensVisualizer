@@ -176,15 +176,15 @@ contrasts, not as apochromatic or as dependent on anomalous partial dispersion.
 
 ## Focus Mechanism
 
-The patent supplies only an infinity prescription. It provides no finite-conjugate table, moving-group diagram,
-variable air spaces, or mechanical constraint from which an internal focus model could be solved. The data therefore
-uses `NO_INTERNAL_RECONSTRUCTION`, an empty `var` object, and no close-focus optical state.
+The patent supplies only an infinity prescription. It provides no close-focus table, moving-group diagram, air
+spaces that change with focus, or mechanical constraint from which an internal focus model could be solved. The model
+therefore shows the lens at infinity only, with no close-focus optical state.
 
-The production minimum focus distance of 7m is retained as manufacturer metadata. The system brochure's generic
-helicoid-focus description does not identify whether this particular lens uses whole-lens translation or internal group
-motion. A reference-plane-normalized conjugate check of the infinity design gives approximately 7.051m for the published
-0.032× maximum magnification. The 51mm difference is compatible with rounded production specifications, but it cannot
-establish a focus mechanism. The analysis therefore does not infer one.
+The production minimum focus distance of 7m is recorded as manufacturer product information. The system brochure's
+generic helicoid-focus description does not identify whether this particular lens uses whole-lens translation or
+internal group motion. A reference-plane-normalized conjugate check of the infinity design gives approximately 7.051m
+for the published 0.032× maximum magnification. The 51mm difference is compatible with rounded production
+specifications, but it cannot establish a focus mechanism. The analysis therefore does not infer one.
 
 ## Chromatic Correction Strategy
 

@@ -44,7 +44,7 @@ const LENS_DATA = {
   key: "fujifilm-fujinon-gf-30mm-f35-r-wr",
   maker: "Fujifilm",
   name: "FUJIFILM FUJINON GF 30mm f/3.5 R WR",
-  subtitle: "US 2021/0231930 A1 — Example 1; production correlation to GF30mmF3.5 R WR",
+  subtitle: "US 2021/0231930 A1 — Example 1; production match to GF30mmF3.5 R WR",
 
   catalog: {
     lensMounts: ["fujifilm-g"],

@@ -174,9 +174,9 @@ No element in the final data carries `nC`, `nF`, `ng`, or `dPgF`. Although some 
 
 The patent permits the positive single lens L41 to move along the optical axis for focusing. It presents this as a single-element internal-focusing arrangement and states that moving only L41 can reduce focusing mass and suppress changes in aberration and angle of view. [US 2015/0131163 A1, ¶0066.]
 
-Example 1 does not publish any finite-object spacing table, L41 travel, focus cam, or finite-focus conjugate. The final LensVisualizer data therefore uses `NO_INTERNAL_RECONSTRUCTION`: every zoom-dependent variable gap has identical infinity and close-focus entries. No L41 motion is synthesized from the production minimum-focus distance.
+Example 1 does not publish any close-focus spacing table, L41 travel, focus cam, or close-focus conjugate. The model therefore shows infinity focus only: every zoom-dependent spacing keeps its infinity value at both ends of the focus control. No L41 motion is modeled from the production minimum-focus distance.
 
-The `closeFocusM` value of 0.24 m is manufacturer product metadata only. It allows the catalog to retain the production minimum-focus specification, but it does not define a modeled finite-focus optical state in this prescription. The production maximum magnification of 0.16× at the long end likewise does not uniquely determine L41 travel and is not used as a reconstruction constraint.
+The 0.24 m minimum focus distance is manufacturer product information only. The model records that production specification, but it does not define a modeled close-focus optical state in this prescription. The production maximum magnification of 0.16× at the long end likewise does not uniquely determine L41 travel and is not used to work out any close-focus movement.
 
 ## Aspherical Surfaces
 
@@ -252,7 +252,7 @@ The patent gives eight principal conditions for this design family. All eight in
 | 7 | `-3.0 < (r51f+r51r)/(r51f-r51r) < 7.5` | 0.7921242796 | 0.79 | matches printed value; inequality satisfied |
 | 8 | `50 < omega` | 56 | 56 | matches printed value; inequality satisfied |
 
-Condition (2), `0.1 < f4/f5 < 1.1`, is the exception: Table 21 prints 0.75, whereas the isolated group matrices derived from Table 1 give `f4/f5 = 0.7404793143`, which rounds to 0.74 at two decimals. The inequality is still satisfied. The source value remains visible in the dossier; no widened tolerance or silent patent correction is used.
+Condition (2), `0.1 < f4/f5 < 1.1`, is the exception: Table 21 prints 0.75, whereas the isolated group matrices derived from Table 1 give `f4/f5 = 0.7404793143`, which rounds to 0.74 at two decimals. The inequality is still satisfied. The printed source value is reported here as published; no widened tolerance or silent patent correction is used.
 
 The other conditions connect the G1/G2 power ratio, the L41/G4 power ratio, the G4 cemented-pair Abbe contrast, the tele-end G4–G5 spacing, wide-end back focus relative to G5, the form factor of L51, and the wide-end half-field. Their published rationale is distributed through ¶0060–0073 of the patent.
 
@@ -286,7 +286,7 @@ The patent supplies no clear semi-diameters, so the data’s `sd` values are mod
 | Minimum sampled non-stop ray clearance | 0.135412 mm |
 | Maximum sampled non-stop aperture fill | 0.985440 |
 
-The stop diameter is also modeled rather than source-published. `STO.sd = 4.0483914768 mm` is the wide-state paraxial calibration required by the Table-2 FNo. 4.12 value. Those paraxial estimates are not the runtime iris schedule. The model uses `zoomApertureModel: "from-nominal-fno"`: exact entrance-pupil-to-stop tracing infers radii of 4.063642, 4.806205, and 6.098988 mm at the three source stations. Intermediate radii are interpolated. This avoids a fixed physical iris silently reducing the telephoto maximum aperture. Agreement with the Table-2 FNo. 4.12 values is therefore calibration, not independent evidence of the physical diaphragm diameter. Figure 7 separately labels the Example-1 telephoto aberration panel FNo. 4.55; that internal source discrepancy is not used to redefine the modeled aperture and remains documented in the dossier.
+The stop diameter is also modeled rather than source-published. `STO.sd = 4.0483914768 mm` is the wide-state paraxial calibration required by the Table-2 FNo. 4.12 value. Those paraxial estimates are not the runtime iris schedule. The model uses `zoomApertureModel: "from-nominal-fno"`: exact entrance-pupil-to-stop tracing infers radii of 4.063642, 4.806205, and 6.098988 mm at the three source stations. Intermediate radii are interpolated. This avoids a fixed physical iris silently reducing the telephoto maximum aperture. Agreement with the Table-2 FNo. 4.12 values is therefore calibration, not independent evidence of the physical diaphragm diameter. Figure 7 separately labels the Example-1 telephoto aberration panel FNo. 4.55; that internal source discrepancy is not used to redefine the modeled aperture; it is noted here as printed.
 
 Figure 1 was reviewed at 600 dpi during integration. The front-group optical rims are larger than the initial ray-envelope estimates: S1 is 20.5 mm, S2/S3A 13.7 mm, S4A 11.2 mm, and S5–S8 12.8 mm. The S2/S3A and S4A limits preserve air-gap clearance; the larger drawn blank outlines cannot be copied as optical clear apertures. Other groups retain their original estimates.
 
@@ -298,7 +298,7 @@ L13, L32, L41, and L43 carry **inferred APD** colors. Their coordinate-compatibl
 
 ## Sources and References
 
-1. Taiga Noda, **US 2015/0131163 A1, “Zoom Lens and Imaging Apparatus,”** FUJIFILM Corporation, published 2015-05-14. Primary prescription source: Fig. 1–2; ¶0053–0086; Tables 1–4 and 21. The supplied patent PDF in the dossier is the controlling transcription source.
+1. Taiga Noda, **US 2015/0131163 A1, “Zoom Lens and Imaging Apparatus,”** FUJIFILM Corporation, published 2015-05-14. Primary prescription source: Fig. 1–2; ¶0053–0086; Tables 1–4 and 21. The patent PDF consulted is the controlling transcription source.
 2. FUJIFILM, **FUJINON XF10-24mmF4 R OIS — official discontinued product page**: https://www.fujifilm-x.com/fi-fi/products/discontinued-lenses/xf10-24mmf4-r-ois/ . Used for production identity, optical counts, focal range, aperture, angle of view, MFD, magnification, mount/system context, and other marketed specifications.
 3. FUJIFILM, **XF10-24mmF4 R OIS official lens manual**: https://dl.fujifilm-x.com/support/manual/lenses/lens_xf10-24_xf18-55_xf55-200_manual_03.pdf . Used as manufacturer product documentation.
 4. FUJIFILM Corporation, **“Fujifilm Introduces FUJINON XF10-24mmF4 R OIS WR lens,”** 2020-10-15: https://www.fujifilm-x.com/de-ch/news/fujifilm-introduces-fujinon-xf10-24mmf4-r-ois-wr-lens/ . Used for the statement that the WR revision retains the original lens’s optical design.

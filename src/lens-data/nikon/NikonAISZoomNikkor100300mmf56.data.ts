@@ -16,10 +16,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ZOOM / FOCUS:
  *   Published infinity zoom endpoints only. Zoom-only gaps are d5, d11, and d14. Intermediate
  *   slider positions are linear viewer interpolation, not additional patent-published spacing states.
- *   Focus status is NO_INTERNAL_RECONSTRUCTION: the patent describes G1 focusing and coupled
- *   G1+G2 macro motion but publishes no quantitative close-focus spacings. Therefore every
- *   zoom var pair has identical infinity/close values. closeFocusM = 0.71 is Nikon marketing
- *   metadata for the 100 mm-only macro mode and is not used to invent internal movement.
+ *   Focus: infinity only. The patent describes G1 focusing and coupled G1+G2 macro motion
+ *   but publishes no quantitative close-focus spacings. Therefore every zoom spacing pair has
+ *   identical infinity/close values. closeFocusM = 0.71 is Nikon's product figure for the
+ *   100 mm-only macro mode and is not used to model focus travel.
  *
  * APERTURE STOP:
  *   The patent gives F/5.6 but no stop station or diameter. The single modeled STO is an explicit
@@ -51,7 +51,7 @@ const LENS_DATA = {
   key: "nikon-ais-zoom-nikkor-100-300mm-f56",
   maker: "Nikon",
   name: "NIKON ZOOM-NIKKOR 100-300mm f/5.6",
-  subtitle: "US 4,641,928 A Example 2 - production correlation; corrected r19 source value",
+  subtitle: "US 4,641,928 A Example 2 - production match; corrected r19 source value",
 
   catalog: {
     lensMounts: ["nikon-f"],
@@ -297,7 +297,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.71,
     description:
-      "NO_INTERNAL_RECONSTRUCTION. The patent describes G1 focusing and coupled G1+G2 macro motion but publishes no quantitative close-focus spacings; the model therefore retains only the two published infinity zoom states. Nikon's 0.71 m minimum applies only to the 100 mm macro mode and is metadata, not a solved internal state.",
+      "Infinity focus only. The patent describes G1 focusing and coupled G1+G2 macro motion but publishes no close-focus spacings, so the model shows only the two published infinity zoom states and focus travel is not modeled. Nikon's 0.71 m minimum focus distance applies only to the 100 mm macro mode and is product information.",
   },
 
   gaps: {

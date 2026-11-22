@@ -21,7 +21,7 @@ const LENS_DATA = {
   key: "sigma-12mm-f14-dc-contemporary",
   maker: "Sigma",
   name: "SIGMA 12mm f/1.4 DC | Contemporary",
-  subtitle: "JP 2025-186709 A, Numerical Example 1; construction correlation, not confirmed production prescription",
+  subtitle: "JP 2025-186709 A, Numerical Example 1; production match by construction, not confirmed production prescription",
   // Published with the asphere-cap engine fix it depends on, not at the earlier draft addition commit.
   publishedAt: "2026-10-05T14:11:00Z",
 
