@@ -103,4 +103,36 @@ describe("LensIndexPage custom filters", () => {
 
     expect(screen.getByRole("link", { name: /NIKON NIKKOR Z 26mm f\/2.8/i })).toBeTruthy();
   });
+
+  it("keeps toolbar filters and the custom panel in sync", () => {
+    renderLensIndexPage("/lenses?sources=literature");
+
+    const source = screen.getByRole<HTMLSelectElement>("combobox", { name: "Build source" });
+    const production = screen.getByRole<HTMLSelectElement>("combobox", { name: "Production match" });
+    const customFilter = screen.getByRole("button", { name: "Custom Filter" });
+    expect(source.value).toBe("literature");
+
+    fireEvent.change(production, { target: { value: "matched" } });
+    expect(customFilter.getAttribute("aria-expanded")).toBe("false");
+    expect(screen.getByRole("link", { name: /ROSS.*DOUBLET/i })).toBeTruthy();
+    expect(screen.queryByRole("link", { name: /INDUSTAR.*Variant 2/i })).toBeNull();
+    fireEvent.click(screen.getByRole("button", { name: "By Focal Length" }));
+    expect(screen.getByRole("link", { name: /ROSS.*DOUBLET/i })).toBeTruthy();
+
+    fireEvent.click(customFilter);
+    expect(screen.getByRole("button", { name: "Has production match", pressed: true })).toBeTruthy();
+    fireEvent.click(screen.getByRole("button", { name: "No known production match" }));
+    expect(production.value).toBe("unmatched");
+    expect(screen.getByRole("link", { name: /INDUSTAR.*Variant 2/i })).toBeTruthy();
+    expect(screen.queryByRole("link", { name: /ROSS.*DOUBLET/i })).toBeNull();
+
+    fireEvent.click(screen.getByRole("button", { name: /^Patents \(\d+\)$/ }));
+    expect(source.value).toBe("multiple");
+    expect(screen.getByRole("link", { name: /AF-S NIKKOR 58mm f\/1.4 G.*patent design candidate/i })).toBeTruthy();
+    fireEvent.change(source, { target: { value: "literature" } });
+    expect(screen.queryByRole("link", { name: /AF-S NIKKOR 58mm f\/1.4 G.*patent design candidate/i })).toBeNull();
+    fireEvent.click(screen.getByRole("button", { name: "Clear Filters" }));
+    expect(source.value).toBe("all");
+    expect(production.value).toBe("all");
+  });
 });

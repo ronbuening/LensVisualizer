@@ -40,6 +40,7 @@ function entry(
     aperture: 2,
     patentYear: 2021,
     sourceKind: null,
+    productionMatch: true,
     lensMounts: [],
     imageFormat: null,
     ...overrides,
