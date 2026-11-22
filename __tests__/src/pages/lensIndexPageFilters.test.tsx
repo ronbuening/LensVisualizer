@@ -115,7 +115,7 @@ describe("LensIndexPage custom filters", () => {
     fireEvent.change(production, { target: { value: "matched" } });
     expect(customFilter.getAttribute("aria-expanded")).toBe("false");
     expect(screen.getByRole("link", { name: /ROSS.*DOUBLET/i })).toBeTruthy();
-    expect(screen.queryByRole("link", { name: /INDUSTAR.*Variant 2/i })).toBeNull();
+    expect(screen.queryByRole("link", { name: /PETZVAL LANDSCAPE FIRST FORM/i })).toBeNull();
     fireEvent.click(screen.getByRole("button", { name: "By Focal Length" }));
     expect(screen.getByRole("link", { name: /ROSS.*DOUBLET/i })).toBeTruthy();
 
@@ -123,7 +123,7 @@ describe("LensIndexPage custom filters", () => {
     expect(screen.getByRole("button", { name: "Has production match", pressed: true })).toBeTruthy();
     fireEvent.click(screen.getByRole("button", { name: "No known production match" }));
     expect(production.value).toBe("unmatched");
-    expect(screen.getByRole("link", { name: /INDUSTAR.*Variant 2/i })).toBeTruthy();
+    expect(screen.getByRole("link", { name: /PETZVAL LANDSCAPE FIRST FORM/i })).toBeTruthy();
     expect(screen.queryByRole("link", { name: /ROSS.*DOUBLET/i })).toBeNull();
 
     fireEvent.click(screen.getByRole("button", { name: /^Patents \(\d+\)$/ }));
