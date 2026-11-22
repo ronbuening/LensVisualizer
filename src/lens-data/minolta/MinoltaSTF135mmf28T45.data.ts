@@ -33,7 +33,7 @@ const LENS_DATA = {
   key: "minolta-stf-135f28-t45",
   maker: "Minolta",
   name: "MINOLTA AF 135mm f/2.8 [T4.5] STF",
-  subtitle: "JP 1999-231209 A, Example 1 — Minolta AF 135mm STF production-design correlation",
+  subtitle: "JP 1999-231209 A, Example 1 — Minolta AF 135mm STF production design match",
 
   catalog: {
     lensMounts: ["sony-a"],

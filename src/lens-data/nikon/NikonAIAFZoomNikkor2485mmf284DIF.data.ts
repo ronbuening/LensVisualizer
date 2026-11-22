@@ -55,7 +55,7 @@ const LENS_DATA = {
   key: "nikon-ai-af-zoom-nikkor-24-85mm-f28-4d-if",
   maker: "Nikon",
   name: "NIKON AI AF ZOOM-NIKKOR 24-85mm f/2.8-4 D IF",
-  subtitle: "JP 2000-321497 A, Example 1 — production correlation",
+  subtitle: "JP 2000-321497 A, Example 1 — production match",
   visible: true,
 
   catalog: {

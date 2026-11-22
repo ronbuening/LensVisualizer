@@ -104,9 +104,9 @@ No apochromatic, anomalous-partial-dispersion, or ED-glass claim is made. The pa
 
 ## Focus Mechanism
 
-The selected patent embodiment publishes one optical prescription state and no focus movement table. The lens data therefore uses `NO_INTERNAL_RECONSTRUCTION`: no `var` gaps, focus keyframes, floating groups, or inferred internal motion are authored.
+The selected patent embodiment publishes one optical prescription state and no focus movement table. The model therefore shows the lens at infinity only: it has no spacings that change with focus, no floating group and no inferred internal movement.
 
-Archival Schneider literature describes helical focusing for documented 16 mm variants, and the ARRIFLEX catalog gives 0.5 m to infinity for the 25 mm f/1.4 Cine Xenon. The data field `closeFocusM = 0.5` records that production-variant metadata. It does not drive any optical spacing change and does not establish that every C-thread, ARRIFLEX, or other Cine-Xenon variant used the same focusing mechanics.
+Archival Schneider literature describes helical focusing for documented 16 mm variants, and the ARRIFLEX catalog gives 0.5 m to infinity for the 25 mm f/1.4 Cine Xenon. The model records that 0.5 m figure as product information for that variant. It does not drive any optical spacing change and does not establish that every C-thread, ARRIFLEX, or other Cine-Xenon variant used the same focusing mechanics.
 
 ## Conditional Expressions
 

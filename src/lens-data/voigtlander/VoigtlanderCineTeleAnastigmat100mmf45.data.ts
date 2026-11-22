@@ -11,9 +11,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * consistent with current runtimeLens stop construction. This differs from
  * paraxial calibration.
  * Last gap is computed paraxial infinity BFD, not a published dimension.
- * NO_INTERNAL_RECONSTRUCTION: empty var/varLabels; no finiteConjugates.
- * closeFocusM=1e15 follows the established infinity-only schema convention,
- * not a production MFD. The focus control is disabled for empty variable gaps.
+ * Focus: infinity only; no spacings change with focus and no close-focus states.
+ * closeFocusM = 1e15 holds the lens at infinity; it is not a production MFD.
+ * The focus control is disabled because no spacing changes with focus.
  * F-stop buttons are modeled UI choices, not documented mechanical detents.
  * Glass labels deliberately unresolved; no candidate spectrum is substituted.
  */
@@ -23,7 +23,7 @@ const LENS_DATA = {
   key: "voigtlander-cine-tele-anastigmat-100mm-f45",
   maker: "Voigtländer",
   name: "VOIGTLÄNDER CINE-TELE-ANASTIGMAT 100mm f/4.5 (patent model)",
-  subtitle: "DE 444150 C, Example 2; selected commercial correlation unconfirmed",
+  subtitle: "DE 444150 C, Example 2; selected production match, not maker-confirmed",
 
   catalog: {
     specs: ["4 ELEMENTS / 3 GROUPS", "100 mm f/4.5 PATENT NOMINAL", "FIXED INFINITY MODEL", "SPHERICAL / PLANAR"],
@@ -112,7 +112,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 1000000000000000.0,
     description:
-      "NO_INTERNAL_RECONSTRUCTION: static infinity model; no focus travel or finite conjugate is authored. closeFocusM=1e15 is the established finite schema sentinel, not a production minimum focus distance.",
+      "Infinity focus only. Only the patent's infinity prescription is modeled; focus travel and close-focus states are not. The focus control is held at infinity; the stored value is not a product minimum focus distance.",
   },
 
   aperture: { nominalFNumber: 4.5, fStops: [4.5, 5.6, 8, 11, 16] },

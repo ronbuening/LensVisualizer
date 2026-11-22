@@ -52,7 +52,7 @@ const LENS_DATA = {
   key: "canon-rf-35mm-f18-macro-is-stm",
   maker: "Canon",
   name: "CANON RF 35mm f/1.8 MACRO IS STM",
-  subtitle: "US 2019/0113711 A1 — Example 1; production correlation to RF35mm F1.8 MACRO IS STM",
+  subtitle: "US 2019/0113711 A1 — Example 1; production match to RF35mm F1.8 MACRO IS STM",
 
   catalog: {
     lensMounts: ["canon-rf"],

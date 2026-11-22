@@ -57,7 +57,7 @@ const LENS_DATA = {
   key: "canon-ef-s-55-250-f4-56-is",
   maker: "Canon",
   name: "CANON EF-S 55-250mm f/4-5.6 IS",
-  subtitle: "US 2008/0112063 A1, Example 2 — production correlation; unscaled patent prescription",
+  subtitle: "US 2008/0112063 A1, Example 2 — production match; unscaled patent prescription",
 
   catalog: {
     lensMounts: ["canon-ef-s"],

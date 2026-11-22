@@ -80,9 +80,9 @@ in the catalog, so L5 resolves despite the patent’s rounded coordinate code di
 
 ## Focus Mechanism
 
-The Schneider product brochure gives a focusing range from infinity to 0.30 m. [2] The patent, however, provides only one infinity-design prescription: it publishes no finite-conjugate spacing state, no movable-group table, and no internal focusing law. The LensVisualizer record therefore uses `NO_INTERNAL_RECONSTRUCTION`; `closeFocusM: 0.3` is product metadata rather than an authored close-focus optical state.
+The Schneider product brochure gives a focusing range from infinity to 0.30 m. [2] The patent, however, provides only one infinity-design prescription: it publishes no close-focus spacing state, no movable-group table, and no internal focusing law. The model therefore shows the lens at infinity only; the 0.30 m close-focus figure is product information rather than a modeled close-focus optical state.
 
-No `var` gaps are present in the final data. Consequently, the analysis does not assign unit focus, inner focus, or floating motion to the prescription. Period literature can establish that Curtagon products were mechanically focusable, but it does not determine how the selected patent's internal spacings behave at 0.30 m.
+No spacing in the model changes with focus. Consequently, the analysis does not assign unit focus, inner focus, or floating motion to the prescription. Period literature can establish that Curtagon products were mechanically focusable, but it does not determine how the selected patent's internal spacings behave at 0.30 m.
 
 ## Air Spaces and Patent Conditions
 

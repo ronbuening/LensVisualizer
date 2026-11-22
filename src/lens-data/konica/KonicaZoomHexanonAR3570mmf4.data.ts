@@ -52,7 +52,7 @@ const LENS_DATA = {
   key: "konica-zoom-hexanon-ar-35-70mm-f4",
   maker: "Konica",
   name: "KONICA ZOOM-HEXANON AR 35-70mm f/4",
-  subtitle: "JPS57-19708A — Example 1; production correlation inferred",
+  subtitle: "JPS57-19708A — Example 1; inferred production match",
 
   catalog: {
     lensMounts: ["konica-ar"],

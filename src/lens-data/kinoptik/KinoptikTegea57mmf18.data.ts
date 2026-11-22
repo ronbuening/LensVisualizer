@@ -41,7 +41,7 @@ const LENS_DATA = {
   key: "kinoptik-tegea-57mm-f18",
   maker: "Kinoptik",
   name: "KINOPTIK TEGEA 5.7mm f/1.8",
-  subtitle: "US 3,037,426 Example 1 — strong Tegea correlation; not manufacturer-confirmed",
+  subtitle: "US 3,037,426 Example 1 — strong Tegea match; not maker-confirmed",
 
   catalog: {
     lensMounts: ["c-mount", "arri-standard"],

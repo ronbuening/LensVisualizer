@@ -57,7 +57,7 @@ const LENS_DATA = {
   key: "leica-summilux-c-100mm-t14",
   maker: "Leica",
   name: "LEICA SUMMILUX-C 100mm T1.4",
-  subtitle: "US 8,508,864 B2 — Example 3; research correlation, not manufacturer-confirmed patent attribution",
+  subtitle: "US 8,508,864 B2 — Example 3; likely production match, not maker-confirmed patent attribution",
 
   catalog: {
     lensMounts: ["arri-pl"],

@@ -53,7 +53,7 @@ const LENS_DATA = {
   key: "schneider-tv-variogon-20-600-f21-66",
   maker: "Schneider-Kreuznach",
   name: "SCHNEIDER-KREUZNACH TV-VARIOGON 20-600mm f/2.1-6.6",
-  subtitle: "US 3,912,373 — Example 1; scale ×20; qualified production correlation",
+  subtitle: "US 3,912,373 — Example 1; scale ×20; tentative production match",
 
   catalog: {
     imageFormat: "1.25-inch-tube",

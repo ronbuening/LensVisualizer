@@ -22,7 +22,7 @@ production formula. Three pieces of evidence converge:
 1. The patent itself identifies curve 9 in Figure 2 as the **Russar-22**, but it does not explicitly label Example II as
    Russar-22. (US 2,516,724 A, patent p. 4.)
 2. The selected example is a 69.883 mm, f/8, six-element/four-group design with a published 122° field; the independent
-   production-correlation source recorded in the dossier describes Russar-22 as a 70 mm f/8, 6/4, 122° aerial lens.
+   production-correlation source consulted describes Russar-22 as a 70 mm f/8, 6/4, 122° aerial lens.
 3. ITMO archival material places the Russar-21/-22/-23/-24 aerial-objective series in the 1939–1941 period, consistent with
    Roossinov's development history. The patent was filed later in the United States in 1946.
 
@@ -60,7 +60,7 @@ a defining part of the architecture and associates their near-semispherical inne
 aperture behavior of the design. That explanation is a patent statement; the data model does not convert it into a separate
 aberration-performance claim. (US 2,516,724 A, patent pp. 3–4.)
 
-The element's source glass designation is retained rather than replaced with a speculative modern supplier. The dossier glass audit did not establish a defensible named modern identity for Lenzos L-67, so the data file keeps the
+The element's source glass designation is retained rather than replaced with a speculative modern supplier. The glass review for this model did not establish a defensible named modern identity for Lenzos L-67, so the data file keeps the
 six-digit coordinate code and an explicit `Unmatched` label.
 
 ### L2 — Front Cemented Member, Positive Component
@@ -129,13 +129,13 @@ so duplicating them under historical names would falsely imply new measured coef
 
 ## Focus Mechanism
 
-The patent publishes only one static Example II prescription. No finite-conjugate spacing table, moving group, focus law,
-or close-focus distance is supplied. The implemented focus status is therefore **NO_INTERNAL_RECONSTRUCTION**: `var` is
-empty and no element or group moves in the model.
+The patent publishes only one fixed Example II prescription. No close-focus spacing table, moving group, focus law, or
+close-focus distance is supplied. The model therefore shows the lens at infinity only: no spacing changes with focus and
+no element or group moves.
 
-The required scalar `closeFocusM` is set to **1,000,000 m** solely as a finite schema/UI sentinel. It is not a claimed
-minimum focus distance and does not certify any finite-conjugate state. Any analysis that depends on close-focus geometry
-must therefore be treated as unavailable for this prescription.
+The focus control is held at infinity; the value stored for it is not a claimed minimum focus distance and does not
+certify any close-focus state. Any analysis that depends on close-focus geometry must therefore be treated as
+unavailable for this prescription.
 
 ## Design Philosophy and Patent Conditions
 
@@ -160,7 +160,7 @@ Several published conditions can nevertheless be checked directly against the im
 ## Model-Specific Construction Notes
 
 Example II prints `d4 = 0.11890 in (3.029 mm)`. Exact conversion of the inch value is **3.020060 mm**. The raw mismatch is
-preserved in the dossier; the implemented branch uses 3.020060 mm because the inch-column normalization gives the tighter
+noted here as printed; the implemented branch uses 3.020060 mm because the inch-column normalization gives the tighter
 joint reproduction of the patent's published focal quantities. This is a documented source correction in the model branch,
 not a silent rewrite of the patent table.
 
@@ -204,8 +204,8 @@ separate from LensVisualizer's production renderer and runtime tracer, which are
    notes on patent pp. 5–6; Lenzos glass table and claims on pp. 7–10. Public patent record:
    https://patents.google.com/patent/US2516724A/en
 2. U.S. National Bureau of Standards, *Spot Diagrams for the Prediction of Lens Performance From Design Data*, NBS
-   Monograph 93 (1965). The dossier uses this as an independent reproduction/identification of the US 2,516,724 Example II
-   dataset: https://nvlpubs.nist.gov/nistpubs/Legacy/MONO/nbsmonograph93.pdf
+   Monograph 93 (1965). This analysis uses it as an independent reproduction/identification of the US 2,516,724
+   Example II dataset: https://nvlpubs.nist.gov/nistpubs/Legacy/MONO/nbsmonograph93.pdf
 3. ITMO Museum, M. M. Rusinov autobiographical/biographical material, used for the 1939–1940 Russar-21/-22/-23/-24
    development context: https://museum.itmo.ru/images/pages/360/biografiya_rusinov_m.m..pdf
 4. ITMO Museum, institutional history for 1940–1949, used for the recorded 1941 aerial-objective award context:
@@ -214,6 +214,6 @@ separate from LensVisualizer's production renderer and runtime tracer, which are
    Russar-22 70 mm f/8, 6/4, 122° specification: https://www.arnecroell.com/eastern-block-new.pdf
 6. N. N. Kachalov and V. G. Voano, *Fundamentals of Optical Glass Production* (1936), historical glass reference used for
    the Lenzos L-24→SK4 and L-28→LLF1 class mappings: https://ru.djvu.online/file/129FlTkciu6QA
-7. Current authoritative glass-catalog checks recorded in the dossier: SCHOTT, OHARA, HOYA, HIKARI, CDGM, and SUMITA.
+7. Current authoritative glass-catalog checks made for this model: SCHOTT, OHARA, HOYA, HIKARI, CDGM, and SUMITA.
    These sources support class/coordinate auditing only; they are not treated as proof of the historical Lenzos melt
    identities.

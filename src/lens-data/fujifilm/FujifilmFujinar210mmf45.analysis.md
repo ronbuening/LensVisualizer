@@ -73,9 +73,9 @@ Accordingly, this prescription supports no claim of anomalous partial dispersion
 
 ## Focus Mechanism
 
-The patent publishes one static prescription and no finite-object spacing table, focusing movement, or internal group displacement. The modeled focus status is therefore **NO_INTERNAL_RECONSTRUCTION**.
+The patent publishes one fixed prescription. It gives no close-focus spacing table, no focusing movement and no internal group displacement. The model therefore shows the lens at infinity only and moves no group.
 
-No internal spacing is varied and no close-focus state is synthesized. A view camera would normally focus by changing the camera standard or bellows extension, but that external camera movement is outside this lens prescription. The data file's finite `closeFocusM = 1.0` value is only the schema-required UI placeholder used for infinity-only models and must not be read as a physical 1.0 m minimum focusing distance.
+No spacing changes with focus and no close-focus state is modeled. A view camera would normally focus by changing the camera standard or bellows extension, but that external camera movement is outside this lens prescription. The 1.0 m value stored for the focus control is only a placeholder for an infinity-only model and must not be read as a physical 1.0 m minimum focusing distance.
 
 ## Aspherical Surfaces
 

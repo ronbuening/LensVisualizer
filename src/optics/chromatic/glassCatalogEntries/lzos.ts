@@ -39,4 +39,13 @@ export const LZOS_GLASS_ENTRIES: readonly GlassEntry[] = [
     source:
       "LZOS clear optical glass catalogue, STK3 (СТК3) index table via refractiveindex.info (specs/lzos/optical/CTK3.yml); formula-3 least-squares fit over 365–1014 nm, max abs index error 5.8e-6.",
   },
+  {
+    name: "TF5",
+    vendor: "LZOS",
+    polynomial: [2.959751698, -0.009119101566, 0.0382087966, 0.00156471631, -0.00001278540046, 0.00001071093486],
+    nd: 1.755234,
+    vd: 27.53,
+    source:
+      "LZOS clear optical glass catalogue, TF5 (ТФ5) index table via refractiveindex.info (specs/lzos/optical/TF5.yml); formula-3 least-squares fit over 365–1014 nm, max abs index error 5.9e-6. Added for the KMZ New Petzval 85mm f/2.2 (RU 2 549 915 C1 names TF5 for L2).",
+  },
 ];

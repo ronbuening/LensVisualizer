@@ -114,10 +114,10 @@ file, and no apochromatic or anomalous-partial-dispersion performance claim is m
 
 ## Focus Mechanism
 
-The selected patent publishes a single prescription state and gives no focus-moving group, travel, variable air-gap row,
-or close-focus optical prescription. The data therefore uses **NO_INTERNAL_RECONSTRUCTION** and contains no `var` focus
-spacings. The **1.5 m** minimum-focus distance comes from the Minolta product guide and is retained only as product metadata;
-it is not converted into an inferred internal focusing law.
+The selected patent publishes a single prescription state and gives no focusing group, no focus travel, no row of
+variable air gaps and no close-focus optical prescription. The model therefore shows the lens at infinity only, and no
+spacing changes with focus. The **1.5 m** minimum-focus distance comes from the Minolta product guide and is recorded
+only as product information; it is not converted into a modeled close-focus movement.
 
 Because the available evidence does not establish whether the production lens focuses by whole-lens translation or by a
 specific internal group motion, this analysis does not assign a more specific focus mechanism.

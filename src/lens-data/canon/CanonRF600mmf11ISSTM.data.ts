@@ -52,7 +52,7 @@ const LENS_DATA = {
   key: "canon-rf600mmf11-is-stm",
   maker: "Canon",
   name: "CANON RF 600mm f/11 IS STM",
-  subtitle: "JP 2020-173349 A — Numerical Example 1; production correlation to RF600mm F11 IS STM",
+  subtitle: "JP 2020-173349 A — Numerical Example 1; production match to RF600mm F11 IS STM",
 
   catalog: {
     lensMounts: ["canon-rf"],

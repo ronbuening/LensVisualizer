@@ -136,7 +136,7 @@ The patent's close-distance correction is a **floating middle-section translatio
 
 This motion translates the complete L2–L4 block rearward by **0.9996 mm** without changing its internal separations. The patent presents the state as a close-distance aberration-correction condition and labels it `M = 1/6`.
 
-The production literature gives a minimum focus of **0.18 m from the film plane**, but the patent does not provide the complete focusing extension or cam law needed to map the production endpoint to a unique internal state. The data therefore uses **NO_INTERNAL_RECONSTRUCTION** for the 0.18 m endpoint: `closeFocusM` records the marketed minimum focus, while runtime `var` is intentionally empty. The published `M = 1/6` state remains a source-backed diagnostic state rather than a fabricated minimum-focus endpoint.
+The production literature gives a minimum focus of **0.18 m from the film plane**, but the patent does not provide the complete focusing extension or cam law needed to map the production endpoint to a unique internal state. The model therefore **does not model focus travel** to the 0.18 m endpoint: it records 0.18 m as the marketed minimum focus, and every spacing stays at its infinity value at both ends of the focus control. The published `M = 1/6` state is reported here as patent data for analysis, not presented as the minimum-focus endpoint.
 
 No focusing drive mechanism is specified in the cited manufacturer literature used for this analysis, so none is assigned.
 

@@ -62,7 +62,7 @@ const LENS_DATA = {
   key: "nikon-af-s-dx-micro-nikkor-40mm-f28g",
   maker: "Nikon",
   name: "NIKON AF-S DX MICRO-NIKKOR 40mm f/2.8 G",
-  subtitle: "US 2011/0170195 A1 — Example 1; strong production correlate with documented group-count mismatch",
+  subtitle: "US 2011/0170195 A1 — Example 1; strong production match with documented group-count mismatch",
 
   catalog: {
     lensMounts: ["nikon-f"],

@@ -145,13 +145,13 @@ No anomalous-dispersion designation is assigned to the production design.
 
 ## Focus Mechanism
 
-The optical model has status **NO_INTERNAL_RECONSTRUCTION** and contains no variable gaps.
-The patent supplies the single distant-object prescription; it does not provide finite-focus spacing rows.
+The model shows the lens at infinity only; no spacing changes with focus.
+The patent supplies the single distant-object prescription; it does not provide close-focus spacing rows.
 Cosina documents manual focusing, a 0.3 m minimum focusing distance and focus clicks at 0.5 m and 1 m,
 but the inspected primary sources do not identify the internal motion law or mechanical travel.
 
-The 0.3 m value is production metadata, not evidence that this static model reproduces that conjugate.
-No internal group motion, unit-focus extension, finite-conjugate magnification or focus-breathing prediction is asserted.
+The 0.3 m value is product information, not evidence that this static model reproduces that close-focus state.
+No internal group motion, unit-focus extension, close-focus magnification or focus-breathing prediction is asserted.
 The printed 14.50 mm image gap remains unchanged rather than being adjusted to remove rounding-related paraxial defocus.
 
 ## Aspherical Surface
@@ -171,7 +171,7 @@ For surface 14A, Table 6 gives:
 | A8 | −0.112758E−06 | mm⁻⁷ |
 | A10 | +0.900778E−09 | mm⁻⁹ |
 
-Unused A12 and A14 are zero-valued schema padding, not extra published terms.
+Unused A12 and A14 are zero-valued placeholders, not extra published terms.
 At the **modeled**, not published, semi-diameter of 6.3 mm, the asphere's sag is −2.284907 mm.
 The vertex-matched sphere has sag −1.367365 mm, giving a departure of −0.917542 mm and an actual rim-slope angle of 54.550117°.
 The mathematical conic domain ends at radial height 6.800887 mm; the modeled rim also satisfies the separate construction margin.

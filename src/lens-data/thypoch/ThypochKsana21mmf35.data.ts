@@ -31,7 +31,7 @@ const LENS_DATA = {
   key: "thypoch-ksana-21mm-f35",
   maker: "Thypoch",
   name: "THYPOCH KSANA 21mm f/3.5 ASPH.",
-  subtitle: "CN 118534627 A Example 1; construction-correlated production association",
+  subtitle: "CN 118534627 A Example 1; production match by construction",
 
   catalog: {
     lensMounts: ["leica-m"],

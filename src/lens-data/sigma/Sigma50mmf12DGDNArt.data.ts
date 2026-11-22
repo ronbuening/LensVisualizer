@@ -35,7 +35,7 @@ const LENS_DATA = {
   key: "sigma-50mm-f12-dg-dn-art",
   maker: "Sigma",
   name: "SIGMA 50mm f/1.2 DG DN | Art",
-  subtitle: "JP 2025-124346 A Example 1 — Sigma / Yuki Ueda; construction correlation",
+  subtitle: "JP 2025-124346 A Example 1 — Sigma / Yuki Ueda; production match by construction",
 
   catalog: {
     lensMounts: ["l-mount", "sony-fe"],

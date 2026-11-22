@@ -18,10 +18,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║  diameter; the stop radius is derived from the design f-number, the      ║
  * ║  published f/2.8 target.                                                 ║
  * ║                                                                            ║
- * ║  FOCUS STATUS: NO_INTERNAL_RECONSTRUCTION. Example 1 publishes only      ║
- * ║  the infinity state. The production 0.2 m MFD is retained as catalog     ║
- * ║  metadata, but no internal movement or close-focus variable gaps are     ║
- * ║  invented.                                                                ║
+ * ║  FOCUS: Infinity only. Example 1 publishes only the infinity state.      ║
+ * ║  The production 0.2 m minimum focus is recorded as product               ║
+ * ║  information; no group moves and focus travel is not modeled.            ║
  * ║                                                                            ║
  * ║  SEMI-DIAMETERS: Not published. SDs were derived from independently      ║
  * ║  traced on-axis marginal rays, the default 0.6-field off-axis bundle,    ║
@@ -42,7 +41,7 @@ const LENS_DATA = {
   key: "konica-hexanon-ar-21mm-f2-8",
   maker: "Konica",
   name: "KONICA HEXANON AR 21mm f/2.8",
-  subtitle: "JPS5517129A Example 1 — normalized f=1 prescription scaled ×21; strong production correlation",
+  subtitle: "JPS5517129A Example 1 — f=1 prescription scaled ×21; strong production match",
 
   catalog: {
     lensMounts: ["konica-ar"],
@@ -212,7 +211,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.2,
     description:
-      "NO_INTERNAL_RECONSTRUCTION — patent Example 1 is infinity-only; production MFD is 0.2 m from the film plane, but no internal focus movement is modeled.",
+      "Infinity focus only. Patent Example 1 gives the infinity state only. The production minimum focus distance is 0.2 m from the film plane, but focus travel is not modeled.",
   },
 
   /* ── Aperture configuration ── */

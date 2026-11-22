@@ -26,7 +26,7 @@ const LENS_DATA = {
   key: "olympus-mzuiko-ed-12-200mm-f35-63",
   maker: "Olympus",
   name: "OLYMPUS M.ZUIKO DIGITAL ED 12-200mm f/3.5-6.3",
-  subtitle: "JP 2020-154139 A, Example 1 — strong production correlation; infinity focus only",
+  subtitle: "JP 2020-154139 A, Example 1 — strong production match; infinity focus only",
   catalog: {
     lensMounts: ["micro-four-thirds"],
     imageFormat: "four-thirds",

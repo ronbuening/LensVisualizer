@@ -50,7 +50,7 @@ const LENS_DATA = {
   key: "leica-elmar-35mm-f35-mini-ii",
   maker: "Leica",
   name: "LEICA ELMAR 35mm f/3.5 (Leica Mini II)",
-  subtitle: "US 5,321,555 A, Fig. 1 / Claim 2 — qualified production correlation",
+  subtitle: "US 5,321,555 A, Fig. 1 / Claim 2 — tentative production match",
 
   catalog: {
     lensMounts: ["fixed-lens-camera"],

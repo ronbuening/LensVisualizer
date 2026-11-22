@@ -17,7 +17,7 @@ The production-lens correlation is convergent rather than manufacturer-confirmed
 *The Minolta SR System* brochure lists an Auto Tele Rokkor / MC Tele Rokkor 100mm f/2 with six elements in five groups and
 a 24° angle of view. Those three product specifications independently coincide with Example 2's 100 mm, 1:2, 6/5, and 24°
 source data. The patent also describes the objective as intended for a Leica-format small camera. No primary Minolta source
-located in the dossier explicitly states that JP 1963-011590 B Example 2 is the production prescription, so the identification
+found explicitly states that JP 1963-011590 B Example 2 is the production prescription, so the identification
 should be read as a strong optical and product-specification match, not as a documented factory attribution.
 
 The data file therefore separates product metadata from exact design quantities. The marketed focal length and aperture
@@ -134,7 +134,7 @@ This avoids attaching modern catalog Sellmeier data to a vintage prescription wi
 | L5 | 575391 — supplier unresolved | 1.57526 | 39.1 | Source coordinate only |
 | L6 | 704408 — supplier unresolved | 1.70442 | 40.8 | Source coordinate only |
 
-The dossier audited these coordinates against authoritative OHARA, HOYA, SCHOTT, HIKARI, CDGM, and SUMITA catalog
+These coordinates were checked against authoritative OHARA, HOYA, SCHOTT, HIKARI, CDGM, and SUMITA catalog
 sources. Several modern glasses are coordinate-near, but none was promoted to a production identity because the residuals
 and historical provenance do not establish a specific supplier or melt. In particular, numerical agreement at a different
 spectral reference line is not treated as a valid d-line match.
@@ -146,14 +146,13 @@ stated in the patent.
 
 ## Focus Mechanism
 
-The optical model is **NO_INTERNAL_RECONSTRUCTION**. JP 1963-011590 B publishes no finite-distance spacing table, focus-group
-movement law, or second prescription state from which an internal focus mechanism can be solved. The data file therefore
-contains no `var` entries and represents the published Example 2 prescription only at infinity.
+JP 1963-011590 B publishes no close-focus spacing table, no description of how a focusing group moves, and no second
+prescription from which the focusing movement could be worked out. The model therefore shows the published Example 2
+prescription at infinity only, and no spacing changes with focus.
 
-Minolta's brochure gives a production minimum focus of 4 ft, stored as 1.2192 m in the data metadata. That product
-specification is not converted into a unit-focus, inner-focus, or floating-group model. A single minimum-focus distance is
-insufficient to determine how the individual optical gaps change, so the production mechanical focus type remains outside
-the implemented optical reconstruction.
+Minolta's brochure gives a production minimum focus of 4 ft, recorded as 1.2192 m in the product information. That
+figure is not converted into a unit-focus, inner-focus, or floating-group model. A single minimum-focus distance is not
+enough to determine how the individual optical gaps change, so the production focusing type is not modeled.
 
 ## Conditional Expressions
 
@@ -204,14 +203,14 @@ Seidel table is not used to force the paraxial prescription to match.
 No aspherical surfaces are present, no dimensional scaling is applied, and no sensor cover glass, filter, flare-cutter
 plane, or synthetic cement layer is included. Real LensVisualizer `LensDataInput` type checking, `buildLens()` /
 `validateLensData()`, exact project tracing, runtime glass resolution, Prettier execution, live taxonomy validation, and
-production render diagnostics remain integration-stage checks rather than claimed results of this portable dossier.
+production render diagnostics remain integration-stage checks rather than claimed results of this analysis.
 
 ## Sources and References
 
 1. Japan Patent Office. **JP 1963-011590 B**, `大口径比望遠写真対物`. Example 2 prescription and conditions on pp. 1–2;
    optical section and diaphragm placement in Fig. 1 on page 3; Seidel coefficient table on p. 2. Filed 1958-04-11;
-   published 1963-07-08. Supplied original patent PDF in this dossier.
-2. Minolta Camera Co., Ltd. **The Minolta SR System**. Manufacturer brochure; the archived scan used by the dossier lists
+   published 1963-07-08. Original patent PDF consulted.
+2. Minolta Camera Co., Ltd. **The Minolta SR System**. Manufacturer brochure; the archived scan used here lists
    the Auto Tele Rokkor / MC Tele Rokkor 100mm f/2, 6 elements in 5 groups, 24° angle of view, and 4 ft minimum focus.
    Archival access: https://www.pacificrimcamera.com/rl/01951/01951.pdf
 3. OHARA INC. Optical Glass catalog/downloads: https://www.ohara-inc.co.jp/en/product/catalog/
