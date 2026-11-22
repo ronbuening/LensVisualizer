@@ -6,8 +6,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * Source: GB 720,808, sole numerical example, Pierre Angénieux.
  * Six spherical elements in six air-spaced groups.
  *
- * Focus status: NO_INTERNAL_RECONSTRUCTION. The patent publishes only the
- * infinity prescription; no focus spacing is invented here.
+ * Focus: infinity only. The patent publishes only the infinity
+ * prescription; focus travel is not modeled.
  *
  * Scaling: The patent labels the normalized design F = 100, but the printed
  * prescription independently computes to EFL = 101.007234632 raw units.
@@ -43,7 +43,7 @@ const LENS_DATA = {
   key: "angenieux-retrofocus-r11-28mm-f35",
   maker: "P. Angénieux",
   name: "P. ANGÉNIEUX RETROFOCUS TYPE R11 28mm f/3.5",
-  subtitle: "GB 720,808 sole example — correlated to the 1953 production Type R11",
+  subtitle: "GB 720,808 sole example — matched to the 1953 production Type R11",
 
   catalog: {
     imageFormat: "135-full-frame",
@@ -164,7 +164,8 @@ const LENS_DATA = {
 
   focus: {
     closeFocusM: 0.6,
-    description: "NO_INTERNAL_RECONSTRUCTION — infinity prescription only; no focus motion is modeled.",
+    description:
+      "Infinity focus only. The patent gives one prescription and no close-focus data, so focus travel is not modeled. The 0.6 m close-focus figure is product information.",
   },
 
   aperture: { nominalFNumber: 3.5, fStops: [3.5, 4, 5.6, 8, 11, 16] },

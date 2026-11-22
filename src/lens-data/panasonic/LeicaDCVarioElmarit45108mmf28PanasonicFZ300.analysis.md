@@ -126,7 +126,7 @@ L13 is the sole element of G5, is biconvex, and carries two aspheric surfaces (`
 
 **nd = 1.54410, νd = 56.1. Glass: Unmatched (nd=1.54410, νd=56.1; current six-vendor sweep). Standalone f = −13.510 mm.**
 
-L14 is the sole element of G6 and is biconcave. Its object-side face is the ninth aspherical surface in the example (`28A`; ¶0122). The exact nd/νd coordinate remains unmatched in the authoritative catalog sweep used for this dossier.
+L14 is the sole element of G6 and is biconcave. Its object-side face is the ninth aspherical surface in the example (`28A`; ¶0122). The exact nd/νd coordinate remains unmatched in the authoritative catalog sweep used for this analysis.
 
 The patent prose calls G6 fixed relative to the image surface during zooming (¶0123), but the rounded source spacing table implies a small nonzero state-to-state displacement. The model preserves the published spacing states rather than altering them to force the prose statement to be mathematically exact. After the active-model normalization and refocus, G6's net wide-to-tele position change relative to the fixed image plane is only about +0.0043 mm, with a small reversal across the three sampled states.
 
@@ -165,9 +165,9 @@ Catalog-inferred APD color tags identify L1, L2, L3, L6, L7, L12. Each selected 
 
 The patent's focus mechanism is an inner-focus movement of G4, the single-element negative fourth unit. In Embodiment 1, G4 moves toward the image side when focusing from infinity toward a close object (¶0124). The patent does not publish close-focus values for the two adjacent G4 air gaps in Numerical Example 1.
 
-The model therefore uses the project status **NO_INTERNAL_RECONSTRUCTION**. All focus endpoint pairs in `var` are identical at every zoom control point. The zoom states are real published infinity states; the focus slider does not represent a fabricated G4 translation.
+The model therefore shows **infinity focus only**: at every zoom control point, each spacing stays at its infinity value at both ends of the focus control. The zoom states are real published infinity states; the focus slider does not show any G4 movement.
 
-The data file's `closeFocusM: 0.01` records Panasonic's marketed wide-angle macro/manual-focus minimum distance for UI metadata. Panasonic also lists longer normal-focus and telephoto minimum distances. Those product distances do not uniquely determine the optical displacement of G4 because the patent does not publish the necessary conjugate reference, internal spacing pair, or enough additional constraints to solve a unique focus law.
+The model records Panasonic's marketed wide-angle macro/manual-focus minimum distance of 0.01 m as product information for the focus control. Panasonic also lists longer normal-focus and telephoto minimum distances. Those product distances do not uniquely determine the optical displacement of G4 because the patent does not publish the necessary conjugate reference, internal spacing pair, or enough additional constraints to solve a unique focus law.
 
 Panasonic launch material describes a dedicated linear motor in the production focus system. That is a manufacturer fact about the camera, not evidence that the motor travel equals any unpublished G4 displacement in Numerical Example 1. The analysis therefore keeps the product drive description and the patent optical mechanism separate.
 
@@ -201,7 +201,7 @@ Because the patent does not publish clear semi-diameters, the active model uses 
 
 The largest verified actual rim-slope angle among the modeled surfaces is about 44.65° at 8A with a modeled semi-diameter of 7.5 mm. All conic constants are zero, so there is no positive-K finite conic-domain limit to enforce in this example. The geometry checks also verify positive edge thickness and cross-gap clearance at the modeled apertures.
 
-No specific aberration is assigned to an individual asphere solely from the sign of one coefficient. The patent presents the aspheres as part of the complete optimized zoom, and a surface-by-surface aberration attribution would require a separate perturbation or aberration-sensitivity analysis that is not part of this dossier.
+No specific aberration is assigned to an individual asphere solely from the sign of one coefficient. The patent presents the aspheres as part of the complete optimized zoom, and a surface-by-surface aberration attribution would require a separate perturbation or aberration-sensitivity analysis that is not part of this analysis.
 
 ## Model Normalization and Reference Planes
 

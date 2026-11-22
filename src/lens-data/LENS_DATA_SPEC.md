@@ -163,7 +163,7 @@ export default LENS_DATA;
 | `key` | `string` | required | Unique identifier and catalog key, e.g. `"nokton-50f1"`. Lowercase `a-z`/`0-9` words separated by single hyphens, with no periods or other punctuation: the key becomes the `/lens/` URL and the `cfg` query value, so write f-numbers like `f14` or `f35-56`. |
 | `maker` | `string \| null` | inferred | Canonical maker-page name (`"Nikon"`, `"Voigtländer"`), used for maker pages and SEO. Left out, it is inferred from `name` by prefix matching. `null` records an unconfirmed maker: the lens goes to the Unattributed category and the SEO manufacturer claim is omitted. |
 | `name` | `string` | required | Display name, following the convention below. |
-| `subtitle` | `string` | | Compact patent / design-correlation context. The UI header uses it when structured patent or literature metadata is unavailable, and several corpus reports read it for source matching. The transcribed example's home is `source.example`; a subtitle that names an example must name the same one, and a sole example's subtitle may cite its table but not number the example (corpus sweep). |
+| `subtitle` | `string` | | Compact patent / design-match context, in plain words because it is public (`strong production match, not maker-confirmed`, not `strong production correlation`). The UI header uses it when structured patent or literature metadata is unavailable, and several corpus reports read it for source matching. The transcribed example's home is `source.example`; a subtitle that names an example must name the same one, and a sole example's subtitle may cite its table but not number the example (corpus sweep). |
 | `visible` | `boolean` | `true` | `false` hides the lens from the catalog without removing its file. |
 | `publishedAt` | `string` | Git-derived | Explicit UTC ISO timestamp (`YYYY-MM-DDTHH:mm:ssZ`) for a newly published replacement model. It overrides inherited file publication history in recent lenses, feeds and SEO; last-modified stays Git-derived but cannot precede publication. Omit for ordinary additions and routine corrections. |
 
@@ -286,7 +286,7 @@ independently measured prescriptions with no patent source leave all three out. 
 manufacturer's own document records its issuer in `issuer`; the universal relationship map groups the model under that
 organization instead of an undated catalog-maker hub. Take the issuer from the document and its date, not from the
 lens maker alone. These structured fields supplement
-`subtitle`: keep design-correlation prose in `subtitle`, and the example in `source.example`, not in `patentNumber`.
+`subtitle`: keep design-match prose in `subtitle`, and the example in `source.example`, not in `patentNumber`.
 The UI displays `patentNumber`, then the example, then the names in `authors` (`US 10,095,009 B2, Example 6 — Hideki
 Sakai`); it uses `subtitle` only when the structured fields are unavailable.
 
@@ -1080,7 +1080,7 @@ focus: {
 | `closeFocusM` | `number` | required | Close-focus distance in metres, object to image: where the close row (keyframe `1`) is paraxially in focus. A maker's different minimum focus distance goes in `catalog.closeFocusM.marketing`. |
 | `keyframes` | `number[]` | `[0, 1]` | Normalized focus coordinate of each authored thickness: `0` is infinity, `1` is `closeFocusM`. At least two, beginning at `0`, ending at `1`, strictly increasing. |
 | `step` | `number` | `0.004` | Focus slider step. |
-| `description` | `string` | | The focus mechanism, shown in the UI. |
+| `description` | `string` | | The focus mechanism, shown in the UI, in plain words. With no source close-focus data, say so (`Infinity focus only. The patent gives no close-focus spacings, so focus travel is not modeled.`), never an internal status code. |
 | `conjugates` | `ConjugateV2Input[]` | | Source-certified finite conjugates; see below. |
 | `published` | `number[]` | `[]` | On a prime: the focus keyframe indices (≥ 1) the source tabulates beyond infinity. A zoom's stations carry theirs. |
 

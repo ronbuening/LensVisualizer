@@ -44,7 +44,7 @@ const LENS_DATA = {
   key: "minolta-af-35mm-f2",
   maker: "Minolta",
   name: "MINOLTA AF 35mm f/2",
-  subtitle: "JP 1988-201614 A Example 4 — scaled ×0.35; production correlation to Minolta AF 35mm f/2",
+  subtitle: "JP 1988-201614 A Example 4 — scaled ×0.35; production match to Minolta AF 35mm f/2",
 
   catalog: {
     lensMounts: ["sony-a"],

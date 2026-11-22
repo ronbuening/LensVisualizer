@@ -10,8 +10,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * f/6.3, by exact axial tracing; the other semi-diameters are modeled for a sampled
  * 5-degree half-field.
  * Last spacing is calculated paraxial infinity BFD, not a patent-tabulated value.
- * Focus: NO_INTERNAL_RECONSTRUCTION. closeFocusM=1e9 m is an infinity-only schema
- * sentinel, NOT a physical MFD. No variable gaps or finite-focus law are asserted.
+ * Focus: infinity only. closeFocusM=1e9 m holds the lens at infinity; it is NOT a
+ * physical MFD. No spacings that change with focus and no focus law are asserted.
  * Patent's lower-dispersion wording fails against rear crown, passes rear flint;
  * original Example1 glass coordinates are retained without source correction.
  */
@@ -121,7 +121,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 1000000000.0,
     description:
-      "NO_INTERNAL_RECONSTRUCTION: static infinity prescription only. closeFocusM=1e9 m is a schema sentinel, not a physical MFD. No finite-focus movement or performance is modeled.",
+      "Infinity focus only. Only the static infinity prescription is modeled; focus movement and close-focus performance are not. The focus control is held at infinity; the stored value is not a product minimum focus distance.",
   },
 
   aperture: { nominalFNumber: 6.3, fStops: [6.3, 8, 11, 16] },

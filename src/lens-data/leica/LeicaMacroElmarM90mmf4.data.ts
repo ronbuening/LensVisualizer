@@ -37,7 +37,7 @@ const LENS_DATA = {
   key: "leica-macro-elmar-m-90mm-f4",
   maker: "Leica",
   name: "LEICA MACRO-ELMAR-M 90mm f/4",
-  subtitle: "DE 2 246 966 A1 Claim 3 — inferred production correlation",
+  subtitle: "DE 2 246 966 A1 Claim 3 — inferred production match",
 
   catalog: {
     lensMounts: ["leica-m"],

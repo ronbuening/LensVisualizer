@@ -46,7 +46,7 @@ const LENS_DATA = {
   key: "sony-vario-sonnar-t-dt-16-80-f3-5-4-5-za",
   maker: "Sony",
   name: "SONY VARIO-SONNAR T* DT 16-80mm f/3.5-4.5 ZA",
-  subtitle: "US 2007/0229969 A1 Example 1 — SAL1680Z production correlation",
+  subtitle: "US 2007/0229969 A1 Example 1 — SAL1680Z production match",
 
   catalog: {
     lensMounts: ["sony-a"],

@@ -54,7 +54,7 @@ const LENS_DATA = {
   key: "viltrox-af-35f18-fe",
   maker: "Viltrox",
   name: "VILTROX AF 35mm f/1.8 FE",
-  subtitle: "CN 211955963 U Example 1 — corrected stop/asphere row mapping; production correlation",
+  subtitle: "CN 211955963 U Example 1 — corrected stop/asphere row mapping; production match",
 
   catalog: {
     lensMounts: ["sony-fe"],

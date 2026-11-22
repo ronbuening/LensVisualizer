@@ -41,7 +41,7 @@ const LENS_DATA = {
   key: "schneider-cine-xenon-25f14",
   maker: "Schneider-Kreuznach",
   name: "SCHNEIDER-KREUZNACH CINE-XENON 25mm f/1.4",
-  subtitle: "US 3,005,379 Table A — 25 mm f/1.4 production correlation (inferred)",
+  subtitle: "US 3,005,379 Table A — 25 mm f/1.4 inferred production match",
 
   catalog: {
     lensMounts: ["c-mount"],

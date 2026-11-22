@@ -53,7 +53,7 @@ const LENS_DATA = {
   key: "nikkor-z-70-200f28-vr-s-ii",
   maker: "Nikon",
   name: "NIKON NIKKOR Z 70-200mm f/2.8 VR S II",
-  subtitle: "WO 2026/172598 A1 Example 1 — strong production correlation; not manufacturer-confirmed",
+  subtitle: "WO 2026/172598 A1 Example 1 — strong production match; not maker-confirmed",
 
   catalog: {
     lensMounts: ["nikon-z"],

@@ -57,7 +57,7 @@ const LENS_DATA = {
   key: "canon-rf-14-35mm-f4-l-is-usm",
   maker: "Canon",
   name: "CANON RF 14-35mm f/4 L IS USM",
-  subtitle: "US 2022/0171174 A1 — Numerical Example 3 production correlation",
+  subtitle: "US 2022/0171174 A1 — Numerical Example 3 production match",
 
   catalog: {
     lensMounts: ["canon-rf"],

@@ -50,7 +50,7 @@ const LENS_DATA = {
   key: "nikon-af-s-dx-micro-nikkor-85mm-f35g-ed-vr",
   maker: "Nikon",
   name: "NIKON AF-S DX MICRO-NIKKOR 85mm f/3.5 G ED VR",
-  subtitle: "US 2009/0190220 A1 Example 1 — production correlation inferred; published focus keyframes",
+  subtitle: "US 2009/0190220 A1 Example 1 — inferred production match; published focus keyframes",
 
   catalog: {
     lensMounts: ["nikon-f"],

@@ -42,7 +42,7 @@ const LENS_DATA = {
   key: "unique-lens-key", // REQUIRED: lowercase a-z/0-9 words joined by single hyphens; becomes the /lens/ URL
   maker: "Manufacturer", // optional: canonical maker-page name (e.g. "Nikon", "Voigtländer"); inferred from name if left out
   name: "MANUFACTURER BRAND MOUNT 50mm f/1.8 CHARACTERISTIC", // REQUIRED: all-caps maker + branding, separated mount/system tokens, `FLmm f/N`
-  subtitle: "PATENT-NUMBER EXAMPLE N — COMPANY / INVENTOR", // optional: compact example/correlation context; UI/report fallback
+  subtitle: "PATENT-NUMBER EXAMPLE N — COMPANY / INVENTOR", // optional: compact example/production-match context in plain words; UI/report fallback
   // visible: false,                 // optional: hides the lens from the catalog (default true)
 
   /* ── Catalog ── See LENS_DATA_SPEC.md § Catalog (catalog) */

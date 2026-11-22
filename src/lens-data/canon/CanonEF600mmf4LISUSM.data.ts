@@ -49,7 +49,7 @@ const LENS_DATA = {
   key: "canon-ef-600mm-f4l-is-usm",
   maker: "Canon",
   name: "CANON EF 600mm f/4 L IS USM",
-  subtitle: "US 6,115,188 A — Numerical Example 22; production-correlated",
+  subtitle: "US 6,115,188 A — Numerical Example 22; production match",
 
   catalog: {
     lensMounts: ["canon-ef"],

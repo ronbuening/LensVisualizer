@@ -19,7 +19,7 @@ patent attribution. Leica's current technical specification gives a 90 mm f/4 Le
 a 27° diagonal field and a 4-element / 4-group optical construction. Those values converge directly with the patent's
 scaled focal length, f/4 aperture, full `27°` field, and four-singlet architecture. Leica's 2016 M-System catalog,
 however, lists Macro-Elmar-M 90 mm f/4 generations dated 2003 and 2014, decades after the 1972 filing, and no Leica primary
-source located for this dossier explicitly assigns DE 2 246 966 A1 to either production generation. Leica's current official
+source found explicitly assigns DE 2 246 966 A1 to either production generation. Leica's current official
 product page does, however, publish an optical cross-section with the same three-elements-before-stop / separated rear-meniscus
 architecture, adding direct structural support without establishing patent attribution. The data file therefore retains the
 correlation as inferred.
@@ -58,7 +58,7 @@ the production lens.
 ## Element-by-Element Analysis
 
 Because the patent table is explicitly headed `n_e` and `ν_e`, the element values below are reported as **nₑ** and **νₑ**.
-The data schema stores them in its historical `nd` / `vd` fields with `indexReference: "e"`; they are not d-line values.
+The model stores them in its historical `nd` / `vd` fields with `indexReference: "e"`; they are not d-line values.
 The listed focal lengths are verified standalone thick-lens values from the final scaled prescription, not in-situ group
 focal lengths.
 
@@ -132,12 +132,12 @@ no claim is made that Ernst Leitz GmbH used these exact SCHOTT melts.
 
 ## Focus Mechanism
 
-The modeled focus status is **NO_INTERNAL_RECONSTRUCTION**. DE 2 246 966 A1 supplies only one static prescription and does
-not publish a finite-conjugate spacing table, a focusing-group movement law, or close-focus optical states. Consequently,
-the data file contains no focus-variable gaps and does not invent internal motion.
+DE 2 246 966 A1 supplies only one static prescription and does not publish a close-focus spacing table, a focusing-group
+movement law, or close-focus optical states. Consequently, the model shows the lens at infinity only: no spacing changes
+with focus and no internal motion is invented.
 
 Leica's tabulated technical specification publishes a production focusing range of **0.8 m to infinity** for the
-Macro-Elmar-M 90 mm f/4 without the Macro-Adapter. Current Leica product-page prose instead states 0.77 m; the data retains
+Macro-Elmar-M 90 mm f/4 without the Macro-Adapter. Current Leica product-page prose instead states 0.77 m; the model keeps
 0.8 m because it is the value in the tabulated technical specification and the 2016 M-System catalog. Neither figure is used
 to solve or imply a specific internal focus mechanism for the patent model. The analysis therefore does not label the design as unit-focus,
 inner-focus, rear-focus, or floating-focus without supporting source evidence.

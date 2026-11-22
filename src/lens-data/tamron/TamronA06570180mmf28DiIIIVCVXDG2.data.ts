@@ -34,7 +34,7 @@ const LENS_DATA = {
   key: "tamron-a065-70-180mm-f28-di-iii-vc-vxd-g2",
   maker: "Tamron",
   name: "TAMRON 70-180mm f/2.8 Di III VC VXD G2",
-  subtitle: "JP 2025-033505 A — Numerical Example 1; research construction correlation",
+  subtitle: "JP 2025-033505 A — Numerical Example 1; likely production match by construction",
 
   catalog: {
     lensMounts: ["sony-fe", "nikon-z"],

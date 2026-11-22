@@ -45,7 +45,7 @@ const LENS_DATA = {
   key: "minolta-md-zoom-50-135mm-f35",
   maker: "Minolta",
   name: "MINOLTA MD ZOOM 50-135mm f/3.5",
-  subtitle: "US 4,192,577 — Example 1; strong production correlation, not manufacturer-confirmed attribution",
+  subtitle: "US 4,192,577 — Example 1; strong production match, not maker-confirmed",
 
   catalog: {
     lensMounts: ["minolta-sr"],
@@ -269,7 +269,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 1.5,
     description:
-      "Front-group (V1) focus is inferred, not patent-stated; no finite-focus spacings (NO_INTERNAL_RECONSTRUCTION).",
+      "Infinity focus only. Front-group (V1) focus is inferred, not stated in the patent, and the patent gives no close-focus spacings, so focus travel is not modeled; zoom movement is. The 1.5 m minimum focus distance is product information.",
   },
 
   // (moved from var) No finite-focus rows are published. Each inner pair therefore repeats the infinity value.

@@ -49,7 +49,7 @@ const LENS_DATA = {
   key: "nikon-ai-af-micro-nikkor-105mm-f28s",
   maker: "Nikon",
   name: "NIKON AI AF MICRO-NIKKOR 105mm f/2.8 S",
-  subtitle: "JP H02-19814 A Example 5 — production correlation to the 1990 AI AF Micro-Nikkor 105mm f/2.8S",
+  subtitle: "JP H02-19814 A Example 5 — production match to the 1990 AI AF Micro-Nikkor 105mm f/2.8S",
 
   catalog: {
     lensMounts: ["nikon-f"],

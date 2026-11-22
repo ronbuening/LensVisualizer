@@ -18,7 +18,7 @@ const LENS_DATA = {
   key: "leica-noctilux-m-35mm-f12-asph",
   maker: "Leica",
   name: "LEICA NOCTILUX-M 35mm f/1.2 ASPH.",
-  subtitle: "US 2025/0271647 A1, Example 2 — Leica Camera AG / Stefan Roth; production correlation",
+  subtitle: "US 2025/0271647 A1, Example 2 — Leica Camera AG / Stefan Roth; production match",
   visible: true,
   catalog: {
     lensMounts: ["leica-m"],

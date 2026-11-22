@@ -29,7 +29,7 @@ const LENS_DATA = {
   key: "sigma-18-35-f18-dc-hsm-art",
   maker: "Sigma",
   name: "SIGMA 18-35mm f/1.8 DC HSM | Art",
-  subtitle: "JP 2014-89365 A Numerical Example 1; production correlation unconfirmed",
+  subtitle: "JP 2014-89365 A Numerical Example 1; production match not maker-confirmed",
 
   catalog: {
     lensMounts: ["sigma-sa", "canon-ef", "nikon-f", "pentax-k", "sony-a"],

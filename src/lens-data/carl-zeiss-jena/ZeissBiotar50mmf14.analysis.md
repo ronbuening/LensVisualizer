@@ -82,9 +82,9 @@ The canonical assignee is Carl-Zeiss-Stiftung; the original publication says “
 
 ## Focus Mechanism
 
-The selected patent gives only one static optical prescription. It provides no finite-conjugate spacing table, focus-group motion, minimum focus distance, or mechanical focusing description. The model accordingly uses **NO_INTERNAL_RECONSTRUCTION**: `var` and `varLabels` are empty, and no internal lens motion is invented. [1, PDF pp. 1–2]
+The selected patent gives only one static optical prescription. It provides no close-focus spacing table, focus-group motion, minimum focus distance, or mechanical focusing description. The model accordingly shows the lens at infinity only: no spacing changes with focus and no internal lens movement is modeled. [1, PDF pp. 1–2]
 
-`closeFocusM = 1.0 m` exists only because the current LensDataInput schema requires a finite value for that field. It is a UI/schema placeholder, not a ZEISS production minimum-focus specification and not a second optical state. Any future finite-distance model would require a production source and enough mechanism constraints to solve a defensible reconstruction.
+The 1.0 m close-focus figure in the model is only a placeholder for the focus control. It is not a ZEISS production minimum-focus specification and not a second optical state. Any future close-focus model would require a production source and enough information about the mechanism to work out a defensible focusing movement.
 
 ## Verification Summary and Model Limits
 
@@ -112,7 +112,7 @@ These checks establish that the selected numerical example satisfies the cited c
 
 ## Sources and References
 
-1. Willy Merté, **US Patent 1,786,916, “Objective Corrected Spherically, Chromatically, Astigmatically, and for Coma,”** assigned to Carl Zeiss, filed September 7, 1928; German filing September 29, 1927; granted December 30, 1930. Example 2 and Fig. 2 are on PDF pp. 1–2; claims are on PDF p. 3. The original patent scan is retained with this dossier.
+1. Willy Merté, **US Patent 1,786,916, “Objective Corrected Spherically, Chromatically, Astigmatically, and for Coma,”** assigned to Carl Zeiss, filed September 7, 1928; German filing September 29, 1927; granted December 30, 1930. Example 2 and Fig. 2 are on PDF pp. 1–2; claims are on PDF p. 3. The original patent scan is kept with the sources used here.
 2. H. H. Nasse, **“Planar — From the Series of Articles on Lens,”** Carl Zeiss AG Camera Lens Division, July 2011, especially pp. 3–4. https://lenspire.zeiss.com/photo/app/uploads/2018/02/en_CLB_40_Nasse_Lens_Names_Planar.pdf
-3. Authoritative glass-catalog evidence retained in the dossier: HOYA Glass Cross Reference Index; OHARA optical-glass catalog and S-BSM10/S-TIM25 data; SCHOTT optical-glass catalog; HIKARI J-SK/J-SF5 data; CDGM optical-glass database; SUMITA optical-glass data. Catalog matches are used only as coordinate-equivalence evidence unless explicitly identified otherwise above.
+3. Authoritative glass catalogs consulted: HOYA Glass Cross Reference Index; OHARA optical-glass catalog and S-BSM10/S-TIM25 data; SCHOTT optical-glass catalog; HIKARI J-SK/J-SF5 data; CDGM optical-glass database; SUMITA optical-glass data. Catalog matches are used only as coordinate-equivalence evidence unless explicitly identified otherwise above.
 4. Zeiss Ikon AG, **Zeiss Ikon Cameras 1931**, Kinamo N. 25 price table, p. 80, order no. 5401/7 Q. The period catalog lists a Zeiss Biotar 1:1.4, f = 5 cm. Archival scan: https://www.cameramanuals.org/booklets/zeiss_catalog_1931.pdf

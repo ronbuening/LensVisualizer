@@ -28,7 +28,7 @@ const LENS_DATA = {
   key: "olympus-xa2-d-zuiko-35-f35",
   maker: "Olympus",
   name: "OLYMPUS D.ZUIKO 35mm f/3.5 (Olympus XA2)",
-  subtitle: "US 4,303,313 A, Embodiment 1 — XA2 production correlation",
+  subtitle: "US 4,303,313 A, Embodiment 1 — XA2 production match",
   visible: true,
   layout: {
     yScFill: 0.35,

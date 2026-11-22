@@ -27,8 +27,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  *   statement tying US 3,038,379's example to the production formula was found. imageFormat is 16mm-cinema: the 1961
  *   Burleigh Brooks listing's 64° field fits the 12.7 mm 16 mm-frame diagonal. lensMounts stays unset because the
  *   taxonomy has no C-mount id.
- * - Focus status: NO_INTERNAL_RECONSTRUCTION. The patent has one fixed optical state. The 1961 period listing's 8 in
- *   closest-focus figure is retained only as product metadata; no internal focus var gaps are invented.
+ * - Focus: infinity only. The patent has one fixed optical state. The 1961 period listing's 8 in closest-focus
+ *   figure is kept only as product information; no spacings that change with focus are modeled.
  */
 const LENS_DATA = {
   /* ── Identity ── */
@@ -36,7 +36,7 @@ const LENS_DATA = {
   key: "schneider-cinegon-10f18",
   maker: "Schneider-Kreuznach",
   name: "SCHNEIDER-KREUZNACH CINEGON 10mm f/1.8",
-  subtitle: "US 3,038,379 sole example — 10× scaled patent model; strong Cinegon 1.8/10 correlation",
+  subtitle: "US 3,038,379 sole example — 10× scaled patent model; strong Cinegon 1.8/10 match",
 
   catalog: {
     lensMounts: ["c-mount"],
@@ -214,7 +214,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.2032,
     description:
-      "NO_INTERNAL_RECONSTRUCTION — one fixed patent prescription; 0.2032 m is the period product listing's closest-focus specification only, with no authored internal focus motion.",
+      "Infinity focus only. The patent gives one fixed prescription and no close-focus data, so focus travel is not modeled. The 0.2032 m (8 in) closest-focus figure comes from a 1961 product listing and is product information only.",
   },
 
   aperture: { nominalFNumber: 1.8, fStops: [1.8, 2, 2.8, 4, 5.6, 8, 11, 16, 22], maxFNumber: 22 },

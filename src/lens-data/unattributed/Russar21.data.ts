@@ -39,7 +39,7 @@ const LENS_DATA = {
   // Russar is a design family; the historical manufacturer is unconfirmed.
   maker: null,
   name: "RUSSAR-21 60mm f/18",
-  subtitle: "US 2,516,724 A — Example I; strong Russar-21 correlation, not manufacturer-confirmed production drawing",
+  subtitle: "US 2,516,724 A — Example I; strong Russar-21 match, not maker-confirmed production drawing",
 
   catalog: {
     specs: ["6 ELEMENTS / 4 GROUPS", "f = 59.426 mm", "F/17.929", "133° PUBLISHED FIELD", "ALL SPHERICAL"],

@@ -20,7 +20,7 @@ const LENS_DATA = {
   key: "pentax-smc-fa-28-105mm-f4-56-power-zoom",
   maker: "Pentax",
   name: "PENTAX SMC FA 28-105mm f/4-5.6 POWER ZOOM",
-  subtitle: "US 5,264,965 A, Embodiment 4 — original 13/11 Power Zoom; probable production correlation",
+  subtitle: "US 5,264,965 A, Embodiment 4 — original 13/11 Power Zoom; probable production match",
   visible: true,
   layout: {
     yScFill: 0.85,

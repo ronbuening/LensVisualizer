@@ -53,7 +53,7 @@ const LENS_DATA = {
   key: "hd-pentax-da645-28-45mm-f45-ed-aw-sr",
   maker: "Pentax",
   name: "PENTAX HD DA645 28-45mm f/4.5 ED AW SR",
-  subtitle: "JP 2015-87681 A Example 1 — strong PENTAX HD DA645 28-45mm f/4.5 ED AW SR correlation",
+  subtitle: "JP 2015-87681 A Example 1 — strong PENTAX HD DA645 28-45mm f/4.5 ED AW SR match",
 
   catalog: {
     lensMounts: ["pentax-645"],

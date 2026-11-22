@@ -165,9 +165,9 @@ fabricating extra smooth resin elements, UV chemical identity, a layer air spaci
 
 Canon specifies an inner-focusing system driven by USM and a closest focusing distance of 3.5 m for the production lens. These are product facts. [5]
 
-Numerical Example 1, however, contains only the infinity prescription. It does not publish a finite-focus spacing table, a moving-group identity, a focus cam law, or a close-focus magnification state. The final data therefore has no variable gaps and records the focus status as `NO_INTERNAL_RECONSTRUCTION`. No internal group motion or focus travel is inferred from the production MFD.
+Numerical Example 1, however, contains only the infinity prescription. It does not publish a close-focus spacing table, a moving-group identity, a focus cam law, or a close-focus magnification state. The model therefore shows the lens at infinity only and has no spacings that change with focus. No internal group motion or focus travel is inferred from the production MFD.
 
-The 3.5 m value is retained as `closeFocusM` for product metadata and user-interface context. It does not imply that the displayed prescription has been solved to 3.5 m.
+The 3.5 m figure is recorded as product information and as context for the focus control. It does not imply that the displayed prescription has been solved to 3.5 m.
 
 ## Chromatic Correction Strategy
 

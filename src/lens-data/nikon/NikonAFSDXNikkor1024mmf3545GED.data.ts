@@ -15,8 +15,8 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ Zoom-only variable gaps: S7→STO (D7), S14→S15 (D14), S17→S18 (D17),      ║
  * ║ and modeled S26→IMG BFD. All inf/close pairs are identical because         ║
  * ║ Example 4 publishes no numerical near-focus state.                         ║
- * ║ Focus status: NO_INTERNAL_RECONSTRUCTION. Patent FIG.10 identifies Gr1B    ║
- * ║ as the internal focus member moving objectward, but no travel is invented. ║
+ * ║ Focus: infinity only. Patent FIG.10 identifies Gr1B as the internal        ║
+ * ║ focus member moving objectward, but focus travel is not modeled.           ║
  * ║                                                                            ║
  * ║ Stop: S8 is published. Its physical diameter is not. The stop radius is    ║
  * ║ derived from the design f-number at each zoom station; nominalFNumber      ║
@@ -47,7 +47,7 @@ const LENS_DATA = {
   key: "nikon-af-s-dx-nikkor-10-24mm-f35-45g-ed",
   maker: "Nikon",
   name: "NIKON AF-S DX NIKKOR 10-24mm f/3.5-4.5 G ED",
-  subtitle: "US 8,169,718 B2 — Example 4; convergent production correlation",
+  subtitle: "US 8,169,718 B2 — Example 4; strong production match",
 
   catalog: {
     lensMounts: ["nikon-f"],
@@ -389,7 +389,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.24,
     description:
-      "Published internal focusing: Gr1B moves toward the object from infinity toward near focus. Example 4 provides no numerical near-focus spacing state, so this model preserves infinity-focus zoom states only (NO_INTERNAL_RECONSTRUCTION).",
+      "Infinity focus only. The patent names Gr1B as the internal focusing group, moving toward the object for close focus, but Example 4 gives no close-focus spacings. Nikon's 0.24 m minimum focus distance is product information; focus travel is not modeled, zoom movement is.",
   },
 
   gaps: {

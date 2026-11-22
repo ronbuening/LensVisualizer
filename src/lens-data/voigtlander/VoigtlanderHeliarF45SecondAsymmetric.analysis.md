@@ -58,7 +58,7 @@ The patent classifies `a2` as flint. It completes the rear cemented pair and off
 
 ## Glass Identification and Selection
 
-The patent supplies sodium-D indices and a second coordinate printed as `nG′`, together with broad crown/flint classifications. The prime mark is part of the historical G′-line notation; it is not the numeral 1. The source does not supply `νd`, C- or F-line indices, the schema's modern mercury-g index, anomalous partial-dispersion data, Sellmeier coefficients, vendor names, or six-digit glass codes. The data file therefore retains the five source `nD` values directly in `nd` and preserves the printed `nG′` values only as comments and source metadata.
+The patent supplies sodium-D indices and a second coordinate printed as `nG′`, together with broad crown/flint classifications. The prime mark is part of the historical G′-line notation; it is not the numeral 1. The source does not supply `νd`, C- or F-line indices, the modern mercury-g index used by the model, anomalous partial-dispersion data, Sellmeier coefficients, vendor names, or six-digit glass codes. The data file therefore retains the five source `nD` values directly in `nd` and preserves the printed `nG′` values only as comments and source metadata.
 
 | Element | Patent class | Retained source `nD` | Printed `nG′` | Data-file glass annotation |
 |---|---|---:|---:|---|
@@ -68,15 +68,15 @@ The patent supplies sodium-D indices and a second coordinate printed as `nG′`,
 | `b2` | Crown | 1.61294 | 1.62640 | Unmatched historical pair |
 | `a2` | Flint | 1.57073 | 1.58866 | Unmatched historical pair |
 
-The equal `nD` values of `b1` and `b2` do not justify merging their identities: the patent prints different `nG′` coordinates for them. Those values are retained without correction. Because G′ is not the schema's modern mercury-g reference, the values are not copied into `ng`; no `nC`, `nF`, `dPgF`, or `νd` value is authored. The prescription therefore supports neither a modern named-glass claim nor an apochromatic or anomalous-dispersion claim.
+The equal `nD` values of `b1` and `b2` do not justify merging their identities: the patent prints different `nG′` coordinates for them. Those values are retained without correction. Because G′ is not the modern mercury-g reference used by the model, the values are not copied into `ng`; no `nC`, `nF`, `dPgF`, or `νd` value is authored. The prescription therefore supports neither a modern named-glass claim nor an apochromatic or anomalous-dispersion claim.
 
 The chromatic interpretation is limited to what the patent establishes: the outer systems pair flint and crown components, and the central lens is a flint. The exact partial-dispersion behavior and secondary-spectrum correction cannot be reconstructed from the published coordinates alone.
 
 ## Focus Mechanism
 
-The data file has the status `NO_INTERNAL_RECONSTRUCTION`. DE 143889 C publishes only an infinity prescription. It gives no minimum focusing distance, object-distance table, magnification, moving-group description, focus travel, or variable-spacing law. The final model therefore contains no variable optical gaps and no close-focus state.
+DE 143889 C publishes only an infinity prescription. It gives no minimum focusing distance, object-distance table, magnification, moving-group description, focus travel, or law for spacings that change with focus. The model therefore shows the lens at infinity only: no spacing changes with focus and there is no close-focus state.
 
-The schema-required `closeFocusM: 1.0` value is only a UI placeholder. It is not a patent value, a production specification, or a modeled focusing condition. No internal, rear, floating, or unit-focus mechanism is inferred from it.
+The 1.0 m value stored for the close end of the focus control is only a placeholder. It is not a patent value, a production specification, or a modeled focusing condition. No internal, rear, floating, or unit-focus mechanism is inferred from it.
 
 ## Aperture, Field, and Modeling Inferences
 
