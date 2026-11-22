@@ -32,7 +32,7 @@ const LENS_DATA = {
   key: "carl-zeiss-contarex-distagon-35f2",
   maker: "Carl Zeiss Oberkochen",
   name: "CARL ZEISS CONTAREX DISTAGON 35mm f/2",
-  subtitle: "GB 1,066,527 A, Table I — strong production correlation; patented at f/1.8",
+  subtitle: "GB 1,066,527 A, Table I — strong production match; patented at f/1.8",
   visible: true,
   catalog: {
     lensMounts: ["zeiss-contarex"],

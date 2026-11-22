@@ -273,17 +273,16 @@ provides high focus sensitivity, allowing a shorter focus stroke (¶0135-0143). 
 not a numerical close-focus state for Example 1.
 
 All three Example 1 spacing rows are explicitly infinity-focus states (¶0172). No close-focus spacing table, object
-distance row, focus stroke, or magnification row is published for this example. The final model therefore has focus
-status **`NO_INTERNAL_RECONSTRUCTION`**. Every focus pair in `var` repeats the infinity value at both endpoints; no
-internal movement has been invented.
+distance row, focus stroke, or magnification row is published for this example. In the model, every spacing that
+changes with focus therefore stays at its infinity value at both ends of the focus control; no group moves for focus.
 
 Sony specifies a production minimum-focus distance of 0.25-0.30 m and maximum magnification of 0.215×. Those are
-manufacturer product specifications measured for the finished lens system, not patent internal-spacing data. The schema
-requires one scalar `closeFocusM`, so the data file stores 0.25 m, the minimum of Sony's published range, while
-`focusDescription` preserves the complete 0.25-0.30 m statement and the absence of an internal reconstruction.
+manufacturer product specifications measured for the finished lens system, not patent internal-spacing data. The model
+records 0.25 m, the minimum of Sony's published range, as product information, while the focus caption gives the
+complete 0.25-0.30 m statement and notes that focus travel is not modeled.
 
-Consequently, the analysis does not quote a close-focus travel, close-focus air-gap table, or modeled finite-conjugate
-magnification. The viewer's authored optical prescription remains the patent's infinity-focus zoom model.
+Consequently, the analysis does not quote a close-focus travel, close-focus air-gap table, or modeled close-focus
+magnification. The model's optical prescription remains the patent's infinity-focus zoom model.
 
 ## Aspherical Surfaces
 
@@ -298,7 +297,7 @@ x = \frac{c y^2}{1 + \sqrt{1-(1+K)c^2y^2}} + \sum A_i y^i, \qquad c=\frac{1}{R}.
 $$
 
 Thus the published `K` is already the project's standard conic constant. No `κ`-to-`K` conversion is applied. Only even
-orders A4, A6, A8, and A10 are published for Example 1; the data file sets A12 and A14 to zero because the schema carries
+orders A4, A6, A8, and A10 are published for Example 1; the data file sets A12 and A14 to zero because the model carries
 those slots but the patent provides no nonzero terms. At `s = 1.0`, no coefficient scaling is required.
 
 | Surface | K | A4 | A6 | A8 | A10 |

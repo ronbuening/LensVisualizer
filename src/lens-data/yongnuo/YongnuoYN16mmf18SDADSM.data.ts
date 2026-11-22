@@ -16,7 +16,7 @@ const LENS_DATA = {
   key: "yongnuo-yn16mm-f18s-da-dsm",
   maker: "Yongnuo",
   name: "YONGNUO YN 16mm f/1.8 S DA DSM",
-  subtitle: "CN 214795390 U, sole embodiment — strong production correlation",
+  subtitle: "CN 214795390 U, sole embodiment — strong production match",
   visible: true,
   catalog: {
     lensMounts: ["sony-fe"],

@@ -102,7 +102,7 @@ The ordinary chromatic pattern is visible at the level of `nd` and `νd`: the ne
 
 The patent publishes one infinity-focus prescription and no focus-spacing table, object-distance row, magnification row, or moving-group diagram. The manufacturer manual gives a 0.25 m minimum focus distance and 0.16× maximum magnification, but it does not identify the internal optical group motion or the reference plane used for the distance specification.
 
-The model therefore uses the focus status **`NO_INTERNAL_RECONSTRUCTION`**. The data file contains no variable gaps and does not label the lens as unit focus, inner focus, rear focus, or floating focus. The 0.25 m value is retained solely as production metadata required by the catalog schema. No close-focus prescription, extension distance, or magnification state is inferred from it.
+The model therefore shows the lens at infinity only. No spacing changes with focus, and the model does not label the lens as unit focus, inner focus, rear focus, or floating focus. The 0.25 m value is kept only as product information. No close-focus prescription, extension distance, or magnification state is inferred from it.
 
 ## Aspherical Surfaces
 
@@ -156,7 +156,7 @@ The final TypeScript surface arrays reproduce the patent's load-bearing paraxial
 
 The final semi-diameters are inferred rather than patent-published manufacturing dimensions. They pass the independent geometry checks: the minimum modeled edge thickness is 0.528098 mm, the maximum actual rim angle is 62.8313° at 4A, and the tightest shared-gap clearance is 0.036599 mm between surfaces 7 and 8. The apertures contain the default 0.60-field, ±0.75-pupil display bundle. Extreme full-field, wide-open pupil rays are intentionally vignetted so that 4A remains inside its validated conic and slope limits; this is a ray-aperture modeling choice, not a claim about measured production relative illumination.
 
-No sensor cover glass, filter, inactive dummy plane, flare cutter, or mechanical component is included. The patent table does not contain such an active plane in the selected example. Patent `ST` is normalized to the schema-required `STO`, and `4*` is normalized to `4A`; no numerical patent value is corrected. The model is unscaled and contains no reconstructed focus state.
+No sensor cover glass, filter, inactive dummy plane, flare cutter, or mechanical component is included. The patent table does not contain such an active plane in the selected example. Patent `ST` is normalized to the required `STO` label, and `4*` is normalized to `4A`; no numerical patent value is corrected. The model is unscaled and contains no modeled close-focus state.
 
 ## Sources
 

@@ -25,9 +25,9 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ remaining apertures are derived from exact spherical ray envelopes, the    ║
  * ║ patent optical section, edge-thickness and cross-gap clearance checks.     ║
  * ║                                                                            ║
- * ║ Focus status: NO_INTERNAL_RECONSTRUCTION. The manufacturer-published       ║
- * ║ minimum focus distance is 0.25 m, but the patent gives no finite-conjugate ║
- * ║ spacing table or internal focus kinematics. No focus var is invented.      ║
+ * ║ Focus: infinity only. The manufacturer-published minimum focus distance is ║
+ * ║ 0.25 m, but the patent gives no close-focus spacing table or internal      ║
+ * ║ focus movement. Focus travel is not modeled.                               ║
  * ║                                                                            ║
  * ║ Glass: Table I publishes nd and νd only. Vendor identity and line indices   ║
  * ║ are underdetermined, so elements use vendor-neutral six-digit coordinate   ║
@@ -49,7 +49,7 @@ const LENS_DATA = {
   key: "fujifilm-x-fujinon-w-24mm-f28-dm-ebc",
   maker: "Fujifilm",
   name: "FUJIFILM EBC X-FUJINON W 24mm f/2.8 DM",
-  subtitle: "US 4,158,482 — Example 1 / Table I; production correlation to EBC X-FUJINON W 24mm f/2.8 DM",
+  subtitle: "US 4,158,482 — Example 1 / Table I; production match to EBC X-FUJINON W 24mm f/2.8 DM",
 
   catalog: {
     lensMounts: ["fujica-x"],
@@ -218,7 +218,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.25,
     description:
-      "NO_INTERNAL_RECONSTRUCTION: infinity prescription only; manufacturer MFD is 0.25 m, but patent focus kinematics are unpublished.",
+      "Infinity focus only. The patent gives one prescription and no close-focus data, so focus travel is not modeled. Fujifilm's 0.25 m minimum focus distance is product information.",
   },
 
   aperture: { nominalFNumber: 2.800000054, fStops: [2.8, 4, 5.6, 8, 11, 16] },

@@ -114,14 +114,14 @@ No nC, nF, ng, or dPgF values are authored. Because the source line is unresolve
 
 ## Focus Mechanism
 
-The selected patent example publishes one static prescription. It gives no finite-conjugate spacing table, no close-focus
-object distance, and no internal group kinematics. The data therefore use `NO_INTERNAL_RECONSTRUCTION`: `var` is empty and
-no lens group is made to move internally.
+The selected patent example publishes one static prescription. It gives no close-focus spacing table, no close-focus
+object distance, and no internal group movement. The model therefore shows the lens at infinity only, and no lens group
+moves internally.
 
-`closeFocusM = 1000000` is only a LensVisualizer schema/UI sentinel for the static infinity prescription. It is not a
-production minimum-focus distance, not an optical finite-conjugate state, and not evidence for unit, front, internal, or
-rear focusing. Historical Schneider literature discusses mounting and interchangeability, but it does not provide a
-focus-spacing law that would justify reconstructing internal motion for this prescription.
+The focus control is held at infinity; the stored value is not a production minimum focus distance, not a close-focus
+optical state, and not evidence for unit, front, internal, or rear focusing. Historical Schneider literature discusses
+mounting and interchangeability, but it does not provide a focus-spacing law that would justify modeling close-focus
+movement for this prescription.
 
 ## Scaling, Aperture Stop, and Modeled Geometry
 
@@ -170,8 +170,9 @@ resolution remain integration tasks rather than evidence supplied by this analys
    Tele-Xenar description is on scan p. 21; the 18 cm exchange entry is on p. 23; the 6×9 cm exchange table is on p. 24.
    https://www.cameramanuals.org/booklets/schneider_lenses_1937.pdf
 3. Modern glass-coordinate cross-checks used only for class/equivalent labeling: OHARA, SCHOTT, HOYA, HIKARI, CDGM, and SUMITA
-   optical-glass catalogues, checked 1 October 2026. Detailed candidate coordinates, residuals, and URLs are retained
-   in the dossier's `SchneiderTeleXenar180mmf45.evidence.json`; none is treated as proof of the historical supplier or melt.
+   optical-glass catalogues, checked 1 October 2026. Detailed candidate coordinates, residuals, and URLs are kept in
+   the research file `SchneiderTeleXenar180mmf45.evidence.json`; none is treated as proof of the historical supplier or
+   melt.
 
 
 ## Integration audit

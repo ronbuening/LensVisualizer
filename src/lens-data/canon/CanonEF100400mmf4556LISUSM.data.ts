@@ -66,7 +66,7 @@ const LENS_DATA = {
   key: "canon-ef-100400-f45-56l-is-usm",
   maker: "Canon",
   name: "CANON EF 100-400mm f/4.5-5.6 L IS USM",
-  subtitle: "JP 2000-47107 A Example 2 — unscaled patent prescription; production correlation",
+  subtitle: "JP 2000-47107 A Example 2 — unscaled patent prescription; production match",
 
   catalog: {
     lensMounts: ["canon-ef"],

@@ -58,7 +58,7 @@ const LENS_DATA = {
   key: "nikon-zoom-nikkor-auto-50-300mm-f45",
   maker: "Nikon",
   name: "NIKON ZOOM-NIKKOR AUTO 50-300mm f/4.5",
-  subtitle: "US 3,481,666 Example 3 — strong probable 1967 production correlation",
+  subtitle: "US 3,481,666 Example 3 — strong probable 1967 production match",
 
   catalog: {
     lensMounts: ["nikon-f"],

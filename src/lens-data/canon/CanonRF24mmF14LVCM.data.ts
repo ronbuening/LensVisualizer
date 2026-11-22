@@ -33,7 +33,7 @@ const LENS_DATA = {
   key: "canon-rf-24mm-f14-l-vcm",
   maker: "Canon",
   name: "CANON RF 24mm f/1.4 L VCM",
-  subtitle: "JP 2025-15010 A — Numerical Example 3; production correlation to RF24mm F1.4 L VCM",
+  subtitle: "JP 2025-15010 A — Numerical Example 3; production match to RF24mm F1.4 L VCM",
 
   catalog: {
     lensMounts: ["canon-rf"],

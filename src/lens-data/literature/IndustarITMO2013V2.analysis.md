@@ -134,13 +134,13 @@ does not substantiate apochromatic correction or secondary-spectrum performance.
 ## Focus Mechanism
 
 Only one fixed prescription is represented, evaluated for an object at infinity. No source-backed internal motion law,
-finite-focus spacing station, focus travel or production minimum focus distance is available for this selected variant.
-The model therefore uses NO_INTERNAL_RECONSTRUCTION and has no variable air gaps. It does not infer a focusing mechanism
-from a related production lens.
+close-focus spacing station, focus travel or production minimum focus distance is available for this selected variant.
+The model therefore shows the lens at infinity only, and no spacing changes with focus. It does not infer a focusing
+mechanism from a related production lens.
 
-The data's `closeFocusM = 0` is an unavailable-value placeholder, not a physical zero-distance minimum focus. Changing the
-application's focus parameter leaves all optical spacings unchanged. This fixed model makes no claim about close-focus
-aberrations, magnification or breathing.
+The minimum focus distance stored in the model is 0 only as a placeholder for an unavailable value, not a physical
+zero-distance minimum focus. Moving the focus control leaves all optical spacings unchanged. This fixed model makes no
+claim about close-focus aberrations, magnification or breathing.
 
 ## Verification Summary and Limits
 

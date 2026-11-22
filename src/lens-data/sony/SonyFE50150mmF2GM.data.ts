@@ -54,7 +54,7 @@ const LENS_DATA = {
   key: "sony-fe-50-150mm-f2-gm",
   maker: "Sony",
   name: "SONY FE 50-150mm f/2 GM",
-  subtitle: "WO 2025/220324 A1 Example 1 — strong production correlation; not manufacturer-confirmed",
+  subtitle: "WO 2025/220324 A1 Example 1 — strong production match; not maker-confirmed",
 
   catalog: {
     lensMounts: ["sony-fe"],

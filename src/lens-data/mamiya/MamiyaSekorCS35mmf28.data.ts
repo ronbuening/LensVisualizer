@@ -30,10 +30,10 @@ import type { LensDataV2Input } from "../../types/lensDataV2.js";
  * ║ The G4–G5 facing surfaces require gapSagFrac = 0.97 to retain the F/2.8     ║
  * ║ on-axis bundle while preserving a positive 0.0399 mm rim air gap.          ║
  * ║                                                                            ║
- * ║ FOCUS STATUS — NO_INTERNAL_RECONSTRUCTION: The patent publishes only the   ║
- * ║ infinity prescription. The manufacturer's rounded 0.4 m MFD is retained    ║
- * ║ only as catalog metadata; no internal movement or close-focus state is     ║
- * ║ invented.                                                                   ║
+ * ║ FOCUS: Infinity only. The patent publishes only the infinity               ║
+ * ║ prescription. The manufacturer's rounded 0.4 m MFD is recorded only as     ║
+ * ║ product information; no internal movement or close-focus state is          ║
+ * ║ modeled.                                                                   ║
  * ║                                                                            ║
  * ║ SPECTRAL DATA: The patent gives nd and νd only. nC, nF, ng, and dPgF are   ║
  * ║ intentionally absent rather than imported from merely similar catalogs.   ║
@@ -159,7 +159,7 @@ const LENS_DATA = {
   focus: {
     closeFocusM: 0.4,
     description:
-      "NO_INTERNAL_RECONSTRUCTION — static infinity prescription; the manufacturer's rounded 0.4 m MFD is catalog metadata only.",
+      "Infinity focus only. The patent gives only the infinity prescription, so focus travel is not modeled. Mamiya's rounded 0.4 m minimum focus distance is product information.",
   },
 
   aperture: { nominalFNumber: 2.8, fStops: [2.8, 4, 5.6, 8, 11, 16] },

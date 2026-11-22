@@ -39,7 +39,7 @@ const LENS_DATA = {
   key: "pentax-fa-star-300mm-f28-ed-if",
   maker: "Pentax",
   name: "PENTAX SMC FA* 300mm f/2.8 ED [IF]",
-  subtitle: "JP H06-138385 A, Example 1 — probable production correlation",
+  subtitle: "JP H06-138385 A, Example 1 — probable production match",
   catalog: {
     lensMounts: ["pentax-k"],
     imageFormat: "135-full-frame",

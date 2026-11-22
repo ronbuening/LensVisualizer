@@ -45,7 +45,7 @@ const LENS_DATA = {
   key: "elmarit-r-28f28",
   maker: "Leica",
   name: "LEICA ELMARIT-R 28mm f/2.8",
-  subtitle: "US 3,740,120 A, Table III — qualified production correlation",
+  subtitle: "US 3,740,120 A, Table III — tentative production match",
 
   catalog: {
     lensMounts: ["leica-r"],

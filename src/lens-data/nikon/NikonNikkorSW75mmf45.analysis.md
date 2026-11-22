@@ -94,9 +94,9 @@ The final prescription does **not** author candidate catalog `nC`, `nF`, `ng`, o
 
 ## Focus Mechanism
 
-The patent publishes one infinity-design prescription and no internal focusing trajectory. The focus status is therefore **NO_INTERNAL_RECONSTRUCTION**: `var` and `varLabels` are empty, and no lens group moves inside the modeled prescription.
+The patent publishes one infinity-design prescription and no internal focusing trajectory. The model therefore shows the lens at infinity only: no spacing changes with focus, and no lens group moves inside the modeled prescription.
 
-Finite-object focusing for a view-camera lens is obtained by camera standard/bellows displacement, which lies outside this lens model. The required `closeFocusM = 1.0` value is only a finite schema/UI placeholder and is not a Nikon minimum-focus-distance specification or a computed close-focus state.
+Close focusing for a view-camera lens is obtained by camera standard/bellows displacement, which lies outside this lens model. The 1.0 m value stored for the focus control is only a placeholder; it is not a Nikon minimum-focus-distance specification or a computed close-focus state.
 
 ## Conditional Expressions
 

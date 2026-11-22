@@ -31,7 +31,7 @@ Figure 1 shows an iris in the air space between L3 and member IV but provides no
 
 ## Element-by-Element Analysis
 
-The focal lengths in this section are verified standalone thick-element focal lengths in air from the final scaled model. They are not in-situ member contributions. The stored `nd` and `νd` labels are the data schema's d-reference fields; the patent itself states only that its refractive indices refer to the “yellow ray,” without naming a modern spectral line.
+The focal lengths in this section are verified standalone thick-element focal lengths in air from the final scaled model. They are not in-situ member contributions. The stored `nd` and `νd` labels are the model's d-reference fields; the patent itself states only that its refractive indices refer to the “yellow ray,” without naming a modern spectral line.
 
 ### L1 — Biconvex Positive
 
@@ -75,13 +75,13 @@ The patent indices and Abbe numbers are retained unchanged. Catalog curves are c
 | L4 | 1.5145 / 54.7 | KF3 (qualified catalog proxy) |
 | L5 | 1.6025 / 59.5 | N-SK14 (qualified catalog proxy) |
 
-The source says only “yellow ray”; `indexReference: "d"` remains a schema approximation. These proxies do not establish a precise He-d reference for the historical table.
+The source says only “yellow ray”; `indexReference: "d"` remains an approximation. These proxies do not establish a precise He-d reference for the historical table.
 
 ## Focus Mechanism
 
-DE 753329 publishes one static prescription. It gives no focus-state spacing table, no object-distance series, no moving-group description, no close-focus optical prescription, and no finite-conjugate magnification state. The data therefore uses `NO_INTERNAL_RECONSTRUCTION`: `var` is empty and no internal motion is inferred.
+DE 753329 publishes one static prescription. It gives no focus-state spacing table, no object-distance series, no moving-group description, no close-focus optical prescription, and no close-focus magnification state. The model therefore shows the lens at infinity only; no spacing changes with focus and no internal movement is inferred.
 
-The required `closeFocusM = 0.75 m` field comes from the secondary prewar Exakta-variant correlation. It is catalog/UI metadata only. It does not define a modeled close-focus state, and it should not be generalized to every historical Xenar 2.8/50 installation because the fixed job card does not select one mechanical variant. For the same reason, the data leaves `lensMounts` and `imageFormat` unset.
+The 0.75 m close-focus figure comes from the secondary source on the prewar Exakta variant. It is product information only. It does not define a modeled close-focus state, and it should not be generalized to every historical Xenar 2.8/50 installation because this model is not tied to one mechanical variant. For the same reason, the model leaves the lens mount and image format unset.
 
 ## Verification Summary
 

@@ -37,7 +37,7 @@ const LENS_DATA = {
   key: "zeiss-batis-85f18",
   maker: "Carl Zeiss Oberkochen",
   name: "ZEISS BATIS 85mm f/1.8",
-  subtitle: "JP 2015-096915 A Example 2 — inferred ZEISS Batis 1.8/85 correlation",
+  subtitle: "JP 2015-096915 A Example 2 — inferred ZEISS Batis 1.8/85 match",
 
   catalog: {
     lensMounts: ["sony-fe"],

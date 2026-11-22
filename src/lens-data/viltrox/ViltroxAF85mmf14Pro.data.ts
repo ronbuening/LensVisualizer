@@ -55,7 +55,7 @@ const LENS_DATA = {
   key: "viltrox-af-85mm-f14-pro",
   maker: "Viltrox",
   name: "VILTROX AF 85mm f/1.4 PRO",
-  subtitle: "CN 120686438 A, Example 1 — printed aspheric coefficients unusable; fitted; production correlation",
+  subtitle: "CN 120686438 A, Example 1 — printed aspheric coefficients unusable; fitted; production match",
   visible: true,
   catalog: {
     lensMounts: ["sony-fe", "nikon-z"],

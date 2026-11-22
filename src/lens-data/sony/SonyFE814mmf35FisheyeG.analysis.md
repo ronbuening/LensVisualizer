@@ -69,7 +69,7 @@ projection with zoom so that a relatively modest focal-length change can move fr
 Condition (1) measures that change against an equisolid reference, while condition (4) places a negative lens unit in G2
 to support the long-end mapping behavior. JP 2022-155067 A, ¶0031–¶0036 and ¶0053–¶0057.
 
-The data model uses `fisheye-equisolid` as a fixed reference convention across the zoom because the current schema exposes
+The data model uses `fisheye-equisolid` as a fixed reference convention across the zoom because the model stores only
 one projection kind and the patent itself uses equisolid image height as the condition-(1) baseline at both endpoints.
 This is a reference convention only. The patent's Tele state remains an equidistant diagonal-fisheye design, not an
 equisolid design.
@@ -257,7 +257,7 @@ Several candidate catalog records provide C/F/g-line indices or partial-dispersi
 the catalog candidates, not to the unidentified patent melts. They are deliberately not copied into the authored elements.
 Consequently, this analysis does not make an APO or anomalous-partial-dispersion performance claim. The broad spread in
 `νd` values is a source fact; assigning a specific secondary-spectrum strategy to a particular vendor glass would require
-stronger material identification and spectral verification than this dossier provides.
+stronger material identification and spectral verification than the sources used here provide.
 
 ## Focus Mechanism
 
@@ -265,11 +265,11 @@ The patent explicitly states that G2B, consisting of L13 and L14, moves axially 
 G2A, G2B, and G2C all move during zooming. JP 2022-155067 A, ¶0082 and Fig. 1.
 
 Only two spacing states are numerically published for Example 1: Wide at infinity and Tele at infinity. The source does
-not provide finite-focus values for the gaps adjacent to G2B. For that reason the implemented focus status is
-`NO_INTERNAL_RECONSTRUCTION`. The data's focus vectors repeat the infinity spacing at each zoom endpoint rather than
-inventing a close-focus displacement.
+not provide close-focus values for the gaps adjacent to G2B. The model therefore shows infinity focus only: at each zoom
+endpoint, every spacing keeps its infinity value at both ends of the focus control, and no close-focus displacement is
+modeled.
 
-| Variable spacing | Wide infinity | Tele infinity | Authored close-focus value |
+| Variable spacing | Wide infinity | Tele infinity | Modeled close-focus value |
 |---|---:|---:|---|
 | d11 | 14.40 mm | 1.20 mm | Repeats infinity value |
 | d22 | 2.26 mm | 5.20 mm | Repeats infinity value |
@@ -277,9 +277,9 @@ inventing a close-focus displacement.
 | d30 | 14.10 mm | 21.88 mm | Repeats infinity value |
 
 Sony specifies a 0.15 m minimum focus distance and 0.22× maximum magnification for the production SEL814G. Those values
-are retained as production metadata, but they are not used to solve a patent focus law because the correlated product and
-Example 1 differ in focal range and maximum aperture and the necessary vertex/object-distance reference is unpublished.
-Therefore no internal focus travel, close-focus group position, or focus-breathing result is claimed here.
+are recorded as product information, but they are not used to solve a patent focus law because the correlated product
+and Example 1 differ in focal range and maximum aperture and the necessary vertex/object-distance reference is
+unpublished. Therefore no internal focus travel, close-focus group position, or focus-breathing result is claimed here.
 
 ## Aspherical Surfaces
 
@@ -314,9 +314,10 @@ conic base at the modeled rim:
 | 25A | 10.00 mm | +0.229051 mm |
 | 26A | 10.45 mm | +0.727480 mm |
 
-The sign here describes the algebraic polynomial sag added to the spherical base at the selected modeled radius. It is not
-an element-by-element statement about a particular aberration contribution. The dossier does not establish whether these
-surfaces are molded, polished, hybrid, or made by another manufacturing process, so no manufacturing method is assigned.
+The sign here describes the algebraic polynomial sag added to the spherical base at the selected modeled radius. It is
+not an element-by-element statement about a particular aberration contribution. The sources used here do not establish
+whether these surfaces are molded, polished, hybrid, or made by another manufacturing process, so no manufacturing
+method is assigned.
 
 ## Projection and Distortion Strategy
 
@@ -400,7 +401,7 @@ The patent Fig. 1 optical section on PDF page 47 was used only as a qualitative 
 same Wide/Tele ordering, the four functional group labels, the stop between L7 and L8, the G2B focus arrow, and the rear
 `Fn` designation at L15. It was not used as a dimensional source for semi-diameters.
 
-No real LensVisualizer repository validation was available in this dossier. Project TypeScript checking, Prettier,
+No real LensVisualizer repository validation was available for this analysis. Project TypeScript checking, Prettier,
 `buildLens()` / `validateLensData()`, project exact tracing, runtime glass resolution, and production render diagnostics
 remain integration-stage checks and are not represented here as completed by the portable verifier.
 

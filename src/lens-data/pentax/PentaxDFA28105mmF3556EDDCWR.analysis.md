@@ -257,14 +257,14 @@ support an APO claim.
 
 ## Focus Mechanism
 
-The focus status is **NO_INTERNAL_RECONSTRUCTION**. The patent publishes only infinity-focus zoom states and supplies no
-finite-object spacing table, focusing-group designation, object-distance series, or close-focus magnification for the
+The model shows the lens **at infinity focus only**. The patent publishes only infinity-focus zoom states and supplies
+no close-object spacing table, focusing-group designation, object-distance series, or close-focus magnification for the
 numerical embodiment. Ricoh's 0.5 m minimum focus and 0.22× maximum reproduction are rounded product specifications and
 do not uniquely determine an internal optical mechanism.
 
-Accordingly, every `[infinity, close]` pair in the zoom `var` table is identical. The model displays the three published
-zoom states without inventing a close-focus group motion. The `closeFocusM: 0.5` field is catalog metadata, not a traced
-or solved finite-conjugate state.
+Accordingly, every spacing that changes with zoom keeps its infinity value at both ends of the focus control. The model
+displays the three published zoom states without modeling a close-focus group motion. The 0.5 m close-focus figure is
+product information, not a traced or solved close-focus state.
 
 Ricoh documents a built-in DC autofocus motor and Quick-Shift manual override. Those are mechanical product features;
 they do not identify which optical group moves during focusing. The analysis therefore does not classify the design as
@@ -290,7 +290,7 @@ mm$^{1-p}$ for order $p$.
 | 25A | L51 image side | 0 | +9.220e−6 | +2.232e−8 | −1.534e−10 | +3.866e−12 |
 
 A12 is zero because the numerical table omits it and the patent states that unlisted coefficients are zero. A14 is zero
-in the data schema because the patent equation publishes no fourteenth-order term. No scaling was applied, so the
+in the model because the patent equation publishes no fourteenth-order term. No scaling was applied, so the
 coefficients are entered directly and were not transformed.
 
 Surface 6A is the object-side surface of the thin synthetic-resin layer bonded to L21G. Surfaces 24A and 25A are the two

@@ -234,14 +234,14 @@ uncertainty rather than a reason to overwrite the patent values.
 
 The converter is a fixed detachable relay. It contains no independent diaphragm, translating focus group, zoom
 schedule or decentered stabilization group in this prescription. The source master supplies those external
-operating conditions. The modeled status is NO_INTERNAL_RECONSTRUCTION: no converter focus travel, close-focus
-law or internal motion has been invented. [Patent, Figure 1 and Tables 1–2, Figure 7 and Tables 13–14][P]
+operating conditions. The model gives the converter no focus travel, close-focus law or internal motion. [Patent,
+Figure 1 and Tables 1–2, Figure 7 and Tables 13–14][P]
 
 The source gives Wide and Tele configurations of the master at infinity. Their tabulated master spacings can be
 evaluated as those two discrete states, but they do not determine a unique continuous zoom cam or finite-object
 focus trajectory. The reference calculations therefore use two separately fixed infinity prescriptions, not a
-fabricated moving host. The private computational fixture’s required closeFocusM = 0 is an unused schema
-sentinel and has no physical meaning as a minimum focusing distance.
+fabricated moving host. The zero focus value stored for those reference calculations is an unused placeholder and
+has no physical meaning as a minimum focusing distance.
 
 The aperture stop is the master’s source surface 23. Its diameter is not published. Calibration begins with the
 nominal entrance radius EFL/(2Fno), then differs according to the ray model: a paraxial calculation maps that

@@ -62,7 +62,7 @@ const LENS_DATA = {
   key: "om-system-mzuiko-digital-ed-90mm-f35-macro-is-pro",
   maker: "Olympus",
   name: "OM SYSTEM M.ZUIKO DIGITAL ED 90mm f/3.5 MACRO IS PRO",
-  subtitle: "JP 2024-066164 A, Example 1 — production correlation unconfirmed",
+  subtitle: "JP 2024-066164 A, Example 1 — production match not maker-confirmed",
 
   catalog: {
     lensMounts: ["micro-four-thirds"],

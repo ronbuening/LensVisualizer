@@ -30,7 +30,7 @@ const LENS_DATA = {
   key: "pentax-da-18-55mm-f35-56-al",
   maker: "Pentax",
   name: "PENTAX SMC DA 18-55mm f/3.5-5.6 AL",
-  subtitle: "US 7,307,794 B2 Example 1 — source-scale prescription; production correlation inferred",
+  subtitle: "US 7,307,794 B2 Example 1 — source-scale prescription; inferred production match",
 
   catalog: {
     lensMounts: ["pentax-k"],

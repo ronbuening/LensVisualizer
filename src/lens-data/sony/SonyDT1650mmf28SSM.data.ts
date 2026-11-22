@@ -64,7 +64,7 @@ const LENS_DATA = {
   key: "sony-dt-16-50mm-f28-ssm",
   maker: "Sony",
   name: "SONY DT 16-50mm f/2.8 SSM",
-  subtitle: "US 2012/0307129 A1 Example 1 — unscaled patent prescription correlated to Sony SAL1650",
+  subtitle: "US 2012/0307129 A1 Example 1 — unscaled patent prescription matched to Sony SAL1650",
 
   catalog: {
     lensMounts: ["sony-a"],

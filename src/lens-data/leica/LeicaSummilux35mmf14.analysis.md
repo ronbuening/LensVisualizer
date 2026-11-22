@@ -163,11 +163,11 @@ Named curves pass the catalog coordinate guard without changing the patent coord
 
 ## Focus Mechanism
 
-Example 1 publishes only one optical prescription and no alternate focus spacings. The model therefore uses
-**NO_INTERNAL_RECONSTRUCTION**: `var` is empty and no optical group is assigned an inferred focus motion.
+Example 1 publishes only one optical prescription and no alternate focus spacings. The model therefore shows the lens at
+infinity only: no spacing changes with focus and no optical group is assigned an inferred focus motion.
 
-Leica's current technical specification gives a focus range of 1 m to infinity for the Classic reissue, and the data
-retains 1.0 m as product metadata. [3] That production minimum-focus distance does not determine a unique internal or
+Leica's current technical specification gives a focus range of 1 m to infinity for the Classic reissue, and the model
+records 1.0 m as product information. [3] That production minimum-focus distance does not determine a unique internal or
 unit-focus law for the patent prescription. The analysis therefore does not assign a unit-focus, inner-focus, or rear-focus
 mechanism that the available sources do not establish.
 
@@ -190,7 +190,7 @@ aberration performance claimed in the patent. [1, pp. 1-2]
 The final model's paraxial EFL is **35.1431768 mm**. Its first-to-last refracting-surface vertex track is **32.4240 mm**,
 or 0.922626× the EFL. The paraxial BFD measured from surface 12 is **19.1164174 mm**, while the scaled source image-plane
 spacing is **19.1415000 mm**. The -0.0250826 mm residual is retained rather than forcing the source image plane to the
-recomputed paraxial focus; in normalized source units it lies within the dossier's rounding-propagation tolerance.
+recomputed paraxial focus; in normalized source units it lies within the rounding-propagation tolerance used here.
 
 The first-order result is reproduced with two distinct paraxial representations: reduced-angle $[y,\nu]$
 tracing and an ordinary-angle $[y,u]$ matrix chain. They agree at machine precision for this air-to-air system. The
@@ -203,7 +203,7 @@ verification of the unpublished physical stop diameter.
 
 The retained aperture model was checked with the repository surface and image-circle audits. Exact on-axis rays at
 95%, 99%, and 100% of the modeled entrance-pupil radius pass the authored apertures. These checks do not establish
-full-pupil off-axis illumination; the earlier dossier's dense field-bundle claims have not been revalidated for the
+full-pupil off-axis illumination; the earlier dense field-bundle claims have not been revalidated for the
 revised rim set. The semi-diameters and stop position remain inferred model choices.
 
 ## Sources / References

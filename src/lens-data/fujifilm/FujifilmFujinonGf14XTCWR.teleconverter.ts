@@ -81,7 +81,7 @@ const TELECONVERTER_DATA = {
   key: "fujifilm-gf14x-tc-wr",
   maker: "Fujifilm",
   name: "FUJIFILM FUJINON TELECONVERTER GF1.4X TC WR",
-  subtitle: "US 2021/0003819 A1 Example 1 — rear converter; production correlation not manufacturer-confirmed",
+  subtitle: "US 2021/0003819 A1 Example 1 — rear converter; production match not maker-confirmed",
 
   catalog: {
     lensMounts: ["fujifilm-g"],

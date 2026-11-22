@@ -29,7 +29,7 @@ const LENS_DATA = {
   key: "canon-ef-300mm-f28l-is-usm",
   maker: "Canon",
   name: "CANON EF 300mm f/2.8 L IS USM",
-  subtitle: "US 6,115,188 A — Numerical Example 1; production correlation",
+  subtitle: "US 6,115,188 A — Numerical Example 1; production match",
 
   catalog: {
     lensMounts: ["canon-ef"],

@@ -260,7 +260,7 @@ The palette spans a wide range of refractive index and Abbe number, but those tw
 
 The patent states that front lens L1 of component 1 may be limitedly adjusted axially for focusing. It does not publish the L1 travel, any corresponding finite object distance, or a finite-conjugate spacing table. [US 3,912,373, PDF p. 10, printed col. 5.]
 
-The final model accordingly uses **NO_INTERNAL_RECONSTRUCTION**. Every zoom-dependent `var` entry has identical infinity and close values, so the viewer receives the nine published infinity-focus zoom geometries without invented internal focus motion. The stored `closeFocusM = 0.85 m` is secondary product metadata from a 1983 *Broadcast Engineering* specification table; it is not used as an optical constraint and does not certify a modeled 0.85 m state.
+The model therefore shows the nine published infinity-focus zoom geometries. Every spacing that changes with zoom keeps the same value at both ends of the focus control, so focus travel is not modeled; zoom movement is. The 0.85 m close-focus figure is secondary product information from a 1983 *Broadcast Engineering* specification table; it is not used as an optical constraint and does not certify a modeled 0.85 m state.
 
 This distinction is important because the source gives enough information to identify the focusing *mechanism* but not enough to determine a unique focusing *law*. A production minimum object distance by itself cannot resolve the missing L1 displacement and reference geometry.
 

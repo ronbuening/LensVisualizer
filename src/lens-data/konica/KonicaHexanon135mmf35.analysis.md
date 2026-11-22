@@ -129,11 +129,10 @@ the patent still does not support an apochromatic or anomalous-partial-dispersio
 ## Focus Mechanism
 
 JP 1955-009472 B Example 1 publishes no object-distance table, focus-spacing table, magnification state, or internal
-focusing motion. The data file therefore remains `NO_INTERNAL_RECONSTRUCTION`: `var` is empty and the optical
-prescription represents the infinity state only.
+focusing motion. The model therefore shows the lens at infinity only and moves no group.
 
-The `closeFocusM` value of 1.8288 m is product metadata derived from the 6 ft closest-focus specification in Konica
-F/FS literature. It is not used to solve a close-focus optical state and does not imply a particular internal or
+The 1.8288 m close-focus figure is product information taken from the 6 ft closest-focus specification in Konica F/FS
+literature. It is not used to work out a close-focus optical state and does not imply a particular internal or
 unit-focusing mechanism. No focus travel or moving-group behavior is asserted from the patent.
 
 ## Conditional Expressions

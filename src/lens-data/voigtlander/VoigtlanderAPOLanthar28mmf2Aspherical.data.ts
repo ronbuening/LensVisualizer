@@ -56,7 +56,7 @@ const LENS_DATA = {
   key: "voigtlander-apo-lanthar-28mm-f2-aspherical-vm",
   maker: "Voigtländer",
   name: "VOIGTLÄNDER APO-LANTHAR 28mm f/2 Aspherical VM",
-  subtitle: "JP 2026-98935 A Example 2 — closest production correlation: VM 0.5 m focus state",
+  subtitle: "JP 2026-98935 A Example 2 — closest production match: VM 0.5 m focus state",
 
   catalog: {
     lensMounts: ["leica-m"],

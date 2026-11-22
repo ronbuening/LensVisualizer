@@ -40,7 +40,7 @@ const LENS_DATA = {
   key: "nikon-af-s-zoom-nikkor-17-35mm-f28d-if-ed",
   maker: "Nikon",
   name: "NIKON AF-S ZOOM-NIKKOR 17-35mm f/2.8 D IF-ED",
-  subtitle: "JP 2001-083421 A, Example 1 — strong production correlation; not manufacturer-confirmed",
+  subtitle: "JP 2001-083421 A, Example 1 — strong production match; not maker-confirmed",
 
   catalog: {
     lensMounts: ["nikon-f"],

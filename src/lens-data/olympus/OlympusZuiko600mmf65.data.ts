@@ -44,7 +44,7 @@ const LENS_DATA = {
   key: "olympus-zuiko-600mm-f65",
   maker: "Olympus",
   name: "OLYMPUS ZUIKO AUTO-T 600mm f/6.5",
-  subtitle: "US 3,827,781 A, sole example — probable production correlation",
+  subtitle: "US 3,827,781 A, sole example — probable production match",
 
   catalog: {
     lensMounts: ["olympus-om"],

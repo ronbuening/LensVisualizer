@@ -44,7 +44,7 @@ const LENS_DATA = {
   key: "meyer-optik-gorlitz-orestor-135f28",
   maker: "Meyer Optik Görlitz",
   name: "MEYER OPTIK GÖRLITZ ORESTOR 135mm f/2.8",
-  subtitle: "DE 1 282 311, sole example — uniformly scaled ×1.35; production correlation inferred",
+  subtitle: "DE 1 282 311, sole example — uniformly scaled ×1.35; inferred production match",
 
   catalog: {
     lensMounts: ["exakta", "m42", "praktina"],
